@@ -22,8 +22,7 @@
 #ifndef __GTK_SOURCE_COMPLETION_ITEM_H__
 #define __GTK_SOURCE_COMPLETION_ITEM_H__
 
-#include <glib-object.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS

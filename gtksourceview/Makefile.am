@@ -48,7 +48,6 @@ libgtksourceview_headers =			\
 libgtksourceview_private_headers = \
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletion-private.h		\
-	gtksourcecompletionutils.h		\
 	gtksourcecontextengine.h		\
 	gtksourceengine.h			\
 	gtksourcegutter-private.h		\
@@ -67,7 +66,6 @@ libgtksourceview_private_headers = \
 
 libgtksourceview_private_c_files = \
 	gtksourcecompletionmodel.c	\
-	gtksourcecompletionutils.c	\
 	gtksourcecontextengine.c	\
 	gtksourceengine.c		\
 	gtksourcepixbufhelper.c		\

@@ -23,7 +23,6 @@ IGNORE_HFILES =					\
 	config.h				\
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletion-private.h		\
-	gtksourcecompletionutils.h		\
 	gtksourcecompletionwordsbuffer.h	\
 	gtksourcecompletionwordslibrary.h	\
 	gtksourcecompletionwordsproposal.h	\

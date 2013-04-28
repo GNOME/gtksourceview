@@ -76,13 +76,13 @@
 
 #include "gtksourcecompletion.h"
 #include "gtksourcecompletion-private.h"
-#include "gtksourcecompletionutils.h"
 #include "gtksourcecompletionmodel.h"
 #include "gtksourcecompletioncontext.h"
 #include "gtksourcecompletioninfo.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcebuffer.h"
+#include "gtksourceview.h"
 #include "gtksourceview-marshal.h"
 #include "gtksourceview-i18n.h"
 
@@ -365,6 +365,66 @@ reset_completion (GtkSourceCompletion *completion)
 	completion->priv->active_providers = NULL;
 }
 
+/* A separator is a character like (, a space etc. An _ is not a separator. */
+static gboolean
+is_separator (const gunichar ch)
+{
+	if (g_unichar_isprint (ch) &&
+	    (g_unichar_isalnum (ch) || ch == g_utf8_get_char ("_")))
+	{
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+/* Assigns @start_word to the start position of the word, and @end_word to the
+ * end position.
+ */
+static void
+get_word_iter (GtkTextBuffer *buffer,
+	       GtkTextIter   *start_word,
+	       GtkTextIter   *end_word)
+{
+	gtk_text_buffer_get_iter_at_mark (buffer,
+	                                  end_word,
+	                                  gtk_text_buffer_get_insert (buffer));
+
+	*start_word = *end_word;
+
+	while (gtk_text_iter_backward_char (start_word))
+	{
+		gunichar ch = gtk_text_iter_get_char (start_word);
+
+		if (is_separator (ch))
+		{
+			gtk_text_iter_forward_char (start_word);
+			return;
+		}
+	}
+}
+
+static void
+replace_current_word (GtkTextBuffer *buffer,
+		      const gchar   *new_text)
+{
+	GtkTextIter word_start;
+	GtkTextIter word_end;
+
+	get_word_iter (buffer, &word_start, &word_end);
+
+	gtk_text_buffer_begin_user_action (buffer);
+
+	gtk_text_buffer_delete (buffer, &word_start, &word_end);
+
+	if (new_text != NULL)
+	{
+		gtk_text_buffer_insert (buffer, &word_start, new_text, -1);
+	}
+
+	gtk_text_buffer_end_user_action (buffer);
+}
+
 static void
 update_window_position (GtkSourceCompletion *completion)
 {
@@ -392,7 +452,7 @@ update_window_position (GtkSourceCompletion *completion)
 		GtkTextIter end_word;
 		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 
-		gtk_source_completion_utils_get_word_iter (buffer, &iter, &end_word);
+		get_word_iter (buffer, &iter, &end_word);
 	}
 
 	gtk_source_completion_info_move_to_iter (completion->priv->main_window,
@@ -558,7 +618,7 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 		}
 		else
 		{
-			gtk_source_completion_utils_replace_current_word (buffer, text);
+			replace_current_word (buffer, text);
 		}
 
 		g_free (text);

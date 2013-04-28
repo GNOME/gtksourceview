@@ -30,7 +30,6 @@
 
 #include "gtksourcecompletionitem.h"
 #include "gtksourcecompletionproposal.h"
-#include "gtksourcecompletionutils.h"
 #include "gtksourceview-i18n.h"
 
 #define GTK_SOURCE_COMPLETION_ITEM_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_ITEM, GtkSourceCompletionItemPrivate))

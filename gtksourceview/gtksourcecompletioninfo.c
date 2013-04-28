@@ -57,7 +57,6 @@
  */
 
 #include <gtksourceview/gtksourcecompletioninfo.h>
-#include "gtksourcecompletionutils.h"
 #include "gtksourceview-i18n.h"
 
 struct _GtkSourceCompletionInfoPrivate
