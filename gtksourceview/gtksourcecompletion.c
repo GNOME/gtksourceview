@@ -131,7 +131,7 @@ enum
 
 struct _GtkSourceCompletionPrivate
 {
-	GtkWindow *main_window;
+	GtkSourceCompletionInfo *main_window;
 	GtkSourceCompletionInfo *info_window;
 
 	/* Bottom bar, containing the "Details" button and the selection image
@@ -395,9 +395,9 @@ update_window_position (GtkSourceCompletion *completion)
 		gtk_source_completion_utils_get_word_iter (buffer, &iter, &end_word);
 	}
 
-	gtk_source_completion_utils_move_to_iter (completion->priv->main_window,
-	                                          completion->priv->view,
-	                                          &iter);
+	gtk_source_completion_info_move_to_iter (completion->priv->main_window,
+	                                         GTK_TEXT_VIEW (completion->priv->view),
+	                                         &iter);
 }
 
 static void
@@ -581,11 +581,11 @@ update_info_position (GtkSourceCompletion *completion)
 	gint screen_width;
 	gint info_width;
 
-	gtk_window_get_position (completion->priv->main_window, &x, &y);
-	gtk_window_get_size (completion->priv->main_window, &width, &height);
+	gtk_window_get_position (GTK_WINDOW (completion->priv->main_window), &x, &y);
+	gtk_window_get_size (GTK_WINDOW (completion->priv->main_window), &width, &height);
 	gtk_window_get_size (GTK_WINDOW (completion->priv->info_window), &info_width, NULL);
 
-	screen = gtk_window_get_screen (completion->priv->main_window);
+	screen = gtk_window_get_screen (GTK_WINDOW (completion->priv->main_window));
 	screen_width = gdk_screen_get_width (screen);
 
 	/* Determine on which side to place it */
@@ -1183,7 +1183,7 @@ update_transient_for_info (GObject             *window,
                            GtkSourceCompletion *completion)
 {
 	gtk_window_set_transient_for (GTK_WINDOW (completion->priv->info_window),
-				      gtk_window_get_transient_for (completion->priv->main_window));
+				      gtk_window_get_transient_for (GTK_WINDOW (completion->priv->main_window)));
 }
 
 static void
@@ -2181,13 +2181,13 @@ static void
 init_main_window (GtkSourceCompletion *completion,
 		  GtkBuilder          *builder)
 {
-	completion->priv->main_window = GTK_WINDOW (gtk_builder_get_object (builder, "main_window"));
+	completion->priv->main_window = GTK_SOURCE_COMPLETION_INFO (gtk_builder_get_object (builder, "main_window"));
 	completion->priv->info_button = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "info_button"));
 	completion->priv->selection_image = GTK_IMAGE (gtk_builder_get_object (builder, "selection_image"));
 	completion->priv->selection_label = GTK_LABEL (gtk_builder_get_object (builder, "selection_label"));
 	completion->priv->bottom_bar = GTK_WIDGET (gtk_builder_get_object (builder, "bottom_bar"));
 
-	gtk_window_set_attached_to (completion->priv->main_window,
+	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->main_window),
 				    GTK_WIDGET (completion->priv->view));
 
 	gtk_widget_set_size_request (GTK_WIDGET (completion->priv->main_window),
@@ -2606,9 +2606,9 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
 		return;
 	}
 
-	gtk_source_completion_utils_move_to_iter (completion->priv->main_window,
-	                                          completion->priv->view,
-	                                          iter);
+	gtk_source_completion_info_move_to_iter (completion->priv->main_window,
+	                                         GTK_TEXT_VIEW (completion->priv->view),
+	                                         iter);
 }
 
 /**
