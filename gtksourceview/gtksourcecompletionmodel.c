@@ -1122,6 +1122,73 @@ gtk_source_completion_model_previous_proposal (GtkSourceCompletionModel *model,
 	return TRUE;
 }
 
+static gboolean
+proposal_has_info (GtkSourceCompletionProvider *provider,
+		   GtkSourceCompletionProposal *proposal)
+{
+	gchar *info;
+
+	if (gtk_source_completion_provider_get_info_widget (provider, proposal) != NULL)
+	{
+		return TRUE;
+	}
+
+	info = gtk_source_completion_proposal_get_info (proposal);
+
+	if (info != NULL)
+	{
+		g_free (info);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+static gboolean
+provider_has_info (ProviderInfo *provider_info)
+{
+	GList *l;
+
+	for (l = provider_info->proposals->head; l != NULL; l = l->next)
+	{
+		ProposalInfo *proposal_info = l->data;
+
+		if (proposal_info->completion_proposal == NULL)
+		{
+			continue;
+		}
+
+		if (proposal_has_info (provider_info->completion_provider,
+				       proposal_info->completion_proposal))
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+/* Returns whether the model contains one or more proposal with extra
+ * information. If the function returns %FALSE, the "Details" button is useless.
+ */
+gboolean
+gtk_source_completion_model_has_info (GtkSourceCompletionModel *model)
+{
+	GList *l;
+
+	for (l = model->priv->providers; l != NULL; l = l->next)
+	{
+		ProviderInfo *provider_info = l->data;
+
+		if (provider_has_info (provider_info))
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
 gboolean
 gtk_source_completion_model_iter_equal (GtkSourceCompletionModel *model,
                                         GtkTreeIter              *iter1,

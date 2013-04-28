@@ -134,6 +134,10 @@ struct _GtkSourceCompletionPrivate
 	GtkWindow *main_window;
 	GtkSourceCompletionInfo *info_window;
 
+	/* Bottom bar, containing the "Details" button and the selection image
+	 * and label. */
+	GtkWidget *bottom_bar;
+
 	/* Image and label in the bottom bar, on the right, for showing which
 	 * provider(s) are selected. */
 	GtkImage *selection_image;
@@ -1362,6 +1366,32 @@ buffer_insert_text_cb (GtkTextBuffer       *buffer,
 }
 
 static void
+update_bottom_bar_visibility (GtkSourceCompletion *completion)
+{
+	GList *providers;
+	guint nb_providers;
+
+	providers = gtk_source_completion_model_get_providers (completion->priv->model_proposals);
+	nb_providers = g_list_length (providers);
+	g_list_free (providers);
+
+	if (nb_providers > 1)
+	{
+		gtk_widget_show (completion->priv->bottom_bar);
+		return;
+	}
+
+	if (gtk_source_completion_model_has_info (completion->priv->model_proposals))
+	{
+		gtk_widget_show (completion->priv->bottom_bar);
+	}
+	else
+	{
+		gtk_widget_hide (completion->priv->bottom_bar);
+	}
+}
+
+static void
 populating_done (GtkSourceCompletion        *completion,
                  GtkSourceCompletionContext *context)
 {
@@ -1375,6 +1405,7 @@ populating_done (GtkSourceCompletion        *completion,
 				 GTK_TREE_MODEL (completion->priv->model_proposals));
 
 	update_selection_label (completion);
+	update_bottom_bar_visibility (completion);
 
 	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
 	{
@@ -2150,6 +2181,7 @@ init_main_window (GtkSourceCompletion *completion,
 	completion->priv->info_button = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "info_button"));
 	completion->priv->selection_image = GTK_IMAGE (gtk_builder_get_object (builder, "selection_image"));
 	completion->priv->selection_label = GTK_LABEL (gtk_builder_get_object (builder, "selection_label"));
+	completion->priv->bottom_bar = GTK_WIDGET (gtk_builder_get_object (builder, "bottom_bar"));
 
 	gtk_window_set_attached_to (completion->priv->main_window,
 				    GTK_WIDGET (completion->priv->view));

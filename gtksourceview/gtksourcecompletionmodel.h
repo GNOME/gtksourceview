@@ -116,6 +116,9 @@ gboolean gtk_source_completion_model_previous_proposal          (GtkSourceComple
 								 GtkTreeIter                 *iter);
 
 G_GNUC_INTERNAL
+gboolean gtk_source_completion_model_has_info                   (GtkSourceCompletionModel    *model);
+
+G_GNUC_INTERNAL
 gboolean gtk_source_completion_model_iter_equal			(GtkSourceCompletionModel    *model,
 								 GtkTreeIter                 *iter1,
 								 GtkTreeIter                 *iter2);
