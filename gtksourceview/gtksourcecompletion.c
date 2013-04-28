@@ -1414,6 +1414,10 @@ populating_done (GtkSourceCompletion        *completion,
 
 	if (!check_first_selected (completion))
 	{
+		/* Update the window position only if the first proposal is not
+		 * selected, because if it is selected, the window position will
+		 * already be updated.
+		 */
 		update_window_position (completion);
 	}
 }
