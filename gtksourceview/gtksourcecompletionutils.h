@@ -36,15 +36,6 @@ G_GNUC_INTERNAL
 void		 gtk_source_completion_utils_replace_current_word	(GtkTextBuffer   *buffer,
 									 const gchar     *text);
 
-G_GNUC_INTERNAL
-void		 gtk_source_completion_utils_move_to_iter		(GtkWindow       *window,
-									 GtkSourceView   *view,
-									 GtkTextIter     *iter);
-
-G_GNUC_INTERNAL
-void		 gtk_source_completion_utils_move_to_cursor		(GtkWindow       *window,
-									 GtkSourceView   *view);
-
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_COMPLETION_ITEM_H__ */

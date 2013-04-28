@@ -332,6 +332,176 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 	g_type_class_add_private (object_class, sizeof (GtkSourceCompletionInfoPrivate));
 }
 
+/* Move to iter */
+
+static void
+get_iter_pos (GtkTextView *text_view,
+              GtkTextIter *iter,
+              gint        *x,
+              gint        *y,
+              gint        *height)
+{
+	GdkWindow *win;
+	GdkRectangle location;
+	gint win_x;
+	gint win_y;
+	gint xx;
+	gint yy;
+
+	gtk_text_view_get_iter_location (text_view, iter, &location);
+
+	gtk_text_view_buffer_to_window_coords (text_view,
+					       GTK_TEXT_WINDOW_WIDGET,
+					       location.x,
+					       location.y,
+					       &win_x,
+					       &win_y);
+
+	win = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_WIDGET);
+	gdk_window_get_origin (win, &xx, &yy);
+
+	*x = win_x + xx;
+	*y = win_y + yy + location.height;
+	*height = location.height;
+}
+
+static void
+compensate_for_gravity (GtkSourceCompletionInfo *window,
+                        gint                    *x,
+                        gint                    *y,
+                        gint                     w,
+                        gint                     h)
+{
+	GdkGravity gravity = gtk_window_get_gravity (GTK_WINDOW (window));
+
+	/* Horizontal */
+	switch (gravity)
+	{
+		case GDK_GRAVITY_NORTH:
+		case GDK_GRAVITY_SOUTH:
+		case GDK_GRAVITY_CENTER:
+			*x = w / 2;
+			break;
+		case GDK_GRAVITY_NORTH_EAST:
+		case GDK_GRAVITY_SOUTH_EAST:
+		case GDK_GRAVITY_EAST:
+			*x = w;
+			break;
+		default:
+			*x = 0;
+			break;
+	}
+
+	/* Vertical */
+	switch (gravity)
+	{
+		case GDK_GRAVITY_WEST:
+		case GDK_GRAVITY_CENTER:
+		case GDK_GRAVITY_EAST:
+			*y = w / 2;
+			break;
+		case GDK_GRAVITY_SOUTH_EAST:
+		case GDK_GRAVITY_SOUTH:
+		case GDK_GRAVITY_SOUTH_WEST:
+			*y = w;
+			break;
+		default:
+			*y = 0;
+			break;
+	}
+}
+
+static void
+move_overlap (gint     *y,
+              gint      h,
+              gint      oy,
+              gint      cy,
+              gint      line_height,
+              gboolean  move_up)
+{
+	/* Test if there is overlap */
+	if (*y - cy < oy && *y - cy + h > oy - line_height)
+	{
+		if (move_up)
+		{
+			*y = oy - line_height - h + cy;
+		}
+		else
+		{
+			*y = oy + cy;
+		}
+	}
+}
+
+static void
+move_to_iter (GtkSourceCompletionInfo *window,
+	      GtkTextView             *view,
+	      GtkTextIter             *iter)
+{
+	GdkScreen *screen;
+	gint x, y;
+	gint w, h;
+	gint sw, sh;
+	gint cx, cy;
+	gint oy;
+	gint height;
+	gboolean overlapup;
+
+	screen = gtk_window_get_screen (GTK_WINDOW (window));
+
+	sw = gdk_screen_get_width (screen);
+	sh = gdk_screen_get_height (screen);
+
+	get_iter_pos (view, iter, &x, &y, &height);
+	gtk_window_get_size (GTK_WINDOW (window), &w, &h);
+
+	oy = y;
+	compensate_for_gravity (window, &cx, &cy, w, h);
+
+	/* Push window inside screen */
+	if (x - cx + w > sw)
+	{
+		x = (sw - w) + cx;
+	}
+	else if (x - cx < 0)
+	{
+		x = cx;
+	}
+
+	if (y - cy + h > sh)
+	{
+		y = (sh - h) + cy;
+		overlapup = TRUE;
+	}
+	else if (y - cy < 0)
+	{
+		y = cy;
+		overlapup = FALSE;
+	}
+	else
+	{
+		overlapup = TRUE;
+	}
+
+	/* Make sure that text is still readable */
+	move_overlap (&y, h, oy, cy, height, overlapup);
+
+	gtk_window_move (GTK_WINDOW (window), x, y);
+}
+
+static void
+move_to_cursor (GtkSourceCompletionInfo *window,
+		GtkTextView             *view)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter insert;
+
+	buffer = gtk_text_view_get_buffer (view);
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert, gtk_text_buffer_get_insert (buffer));
+
+	move_to_iter (window, view, &insert);
+}
+
 /* Public functions */
 
 /**
@@ -364,18 +534,15 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
                                          GtkTextIter             *iter)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info));
-	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (GTK_IS_TEXT_VIEW (view));
 
 	if (iter == NULL)
 	{
-		gtk_source_completion_utils_move_to_cursor (GTK_WINDOW (info),
-							    GTK_SOURCE_VIEW (view));
+		move_to_cursor (info, view);
 	}
 	else
 	{
-		gtk_source_completion_utils_move_to_iter (GTK_WINDOW (info),
-							  GTK_SOURCE_VIEW (view),
-							  iter);
+		move_to_iter (info, view, iter);
 	}
 }
 
