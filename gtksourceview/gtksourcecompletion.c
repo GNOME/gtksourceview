@@ -408,21 +408,102 @@ update_tree_view_visibility (GtkSourceCompletion *completion)
 }
 
 static void
+set_info_widget (GtkSourceCompletion *completion,
+		 GtkWidget           *new_widget)
+{
+	GtkWidget *cur_widget = gtk_bin_get_child (GTK_BIN (completion->priv->info_window));
+
+	if (cur_widget == new_widget)
+	{
+		return;
+	}
+
+	if (cur_widget != NULL)
+	{
+		gtk_container_remove (GTK_CONTAINER (completion->priv->info_window), cur_widget);
+	}
+
+	gtk_container_add (GTK_CONTAINER (completion->priv->info_window), new_widget);
+}
+
+static void
+update_proposal_info_state (GtkSourceCompletion *completion)
+{
+	GtkSourceCompletionProvider *provider = NULL;
+	GtkSourceCompletionProposal *proposal = NULL;
+	GtkWidget *info_widget;
+
+	if (!get_selected_proposal (completion, &provider, &proposal))
+	{
+		gtk_widget_set_sensitive (GTK_WIDGET (completion->priv->info_button), FALSE);
+		return;
+	}
+
+	info_widget = gtk_source_completion_provider_get_info_widget (provider, proposal);
+
+	if (info_widget != NULL)
+	{
+		set_info_widget (completion, info_widget);
+		gtk_widget_set_sensitive (GTK_WIDGET (completion->priv->info_button), TRUE);
+
+		gtk_source_completion_provider_update_info (provider,
+			                                    proposal,
+			                                    completion->priv->info_window);
+	}
+	else
+	{
+		gchar *text = gtk_source_completion_proposal_get_info (proposal);
+
+		if (text != NULL)
+		{
+			set_info_widget (completion, GTK_WIDGET (completion->priv->default_info));
+			gtk_widget_set_sensitive (GTK_WIDGET (completion->priv->info_button), TRUE);
+
+			gtk_label_set_markup (completion->priv->default_info, text);
+			g_free (text);
+		}
+		else
+		{
+			gtk_widget_set_sensitive (GTK_WIDGET (completion->priv->info_button), FALSE);
+		}
+	}
+
+	g_object_unref (provider);
+	g_object_unref (proposal);
+}
+
+static void
+update_info_window_visibility (GtkSourceCompletion *completion)
+{
+	if (gtk_widget_get_sensitive (GTK_WIDGET (completion->priv->info_button)) &&
+	    gtk_toggle_button_get_active (completion->priv->info_button))
+	{
+		gtk_widget_show (GTK_WIDGET (completion->priv->info_window));
+	}
+	else
+	{
+		gtk_widget_hide (GTK_WIDGET (completion->priv->info_window));
+	}
+}
+
+static void
+update_proposal_info (GtkSourceCompletion *completion)
+{
+	update_proposal_info_state (completion);
+	update_info_window_visibility (completion);
+}
+
+static void
 gtk_source_completion_show_default (GtkSourceCompletion *completion)
 {
 	gtk_widget_show (GTK_WIDGET (completion->priv->main_window));
 
-	if (completion->priv->remember_info_visibility)
-	{
-		if (gtk_toggle_button_get_active (completion->priv->info_button))
-		{
-			gtk_widget_show (GTK_WIDGET (completion->priv->info_window));
-		}
-	}
-	else
+	if (!completion->priv->remember_info_visibility)
 	{
 		gtk_toggle_button_set_active (completion->priv->info_button, FALSE);
 	}
+
+	update_proposal_info (completion);
 
 	gtk_widget_grab_focus (GTK_WIDGET (completion->priv->view));
 }
@@ -488,25 +569,6 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 }
 
 static void
-set_info_widget (GtkSourceCompletion *completion,
-		 GtkWidget           *new_widget)
-{
-	GtkWidget *cur_widget = gtk_bin_get_child (GTK_BIN (completion->priv->info_window));
-
-	if (cur_widget == new_widget)
-	{
-		return;
-	}
-
-	if (cur_widget != NULL)
-	{
-		gtk_container_remove (GTK_CONTAINER (completion->priv->info_window), cur_widget);
-	}
-
-	gtk_container_add (GTK_CONTAINER (completion->priv->info_window), new_widget);
-}
-
-static void
 update_info_position (GtkSourceCompletion *completion)
 {
 	GdkScreen *screen;
@@ -533,57 +595,6 @@ update_info_position (GtkSourceCompletion *completion)
 	}
 
 	gtk_window_move (GTK_WINDOW (completion->priv->info_window), x, y);
-}
-
-static void
-update_proposal_info (GtkSourceCompletion *completion)
-{
-	GtkSourceCompletionProvider *provider = NULL;
-	GtkSourceCompletionProposal *proposal = NULL;
-	GtkWidget *info_widget;
-
-	if (!get_selected_proposal (completion, &provider, &proposal))
-	{
-		set_info_widget (completion, GTK_WIDGET (completion->priv->default_info));
-
-		gtk_label_set_markup (completion->priv->default_info,
-				      _("No extra information available"));
-
-		return;
-	}
-
-	info_widget = gtk_source_completion_provider_get_info_widget (provider, proposal);
-
-	if (info_widget != NULL)
-	{
-		set_info_widget (completion, info_widget);
-
-		gtk_source_completion_provider_update_info (provider,
-			                                    proposal,
-			                                    completion->priv->info_window);
-	}
-	else
-	{
-		gchar *text;
-
-		set_info_widget (completion, GTK_WIDGET (completion->priv->default_info));
-
-		text = gtk_source_completion_proposal_get_info (proposal);
-
-		if (text != NULL)
-		{
-			gtk_label_set_markup (completion->priv->default_info, text);
-			g_free (text);
-		}
-		else
-		{
-			gtk_label_set_markup (completion->priv->default_info,
-					      _("No extra information available"));
-		}
-	}
-
-	g_object_unref (provider);
-	g_object_unref (proposal);
 }
 
 static GtkSourceCompletionProvider *
@@ -1120,7 +1131,8 @@ view_key_press_event_cb (GtkSourceView       *view,
 
 	/* Handle info button mnemonic */
 	if ((mod & GDK_MOD1_MASK) != 0 &&
-	    event->keyval == mnemonic_keyval)
+	    event->keyval == mnemonic_keyval &&
+	    gtk_widget_get_sensitive (GTK_WIDGET (completion->priv->info_button)))
 	{
 		gtk_toggle_button_set_active (completion->priv->info_button,
 		                              !gtk_toggle_button_get_active (completion->priv->info_button));
@@ -2160,6 +2172,11 @@ init_main_window (GtkSourceCompletion *completion,
 	                  "notify::transient-for",
 	                  G_CALLBACK (update_transient_for_info),
 	                  completion);
+
+	g_signal_connect_swapped (completion->priv->info_button,
+				  "toggled",
+				  G_CALLBACK (update_info_window_visibility),
+				  completion);
 }
 
 static void
@@ -2170,10 +2187,6 @@ init_info_window (GtkSourceCompletion *completion)
 
 	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->info_window),
 				    GTK_WIDGET (completion->priv->main_window));
-
-	g_object_bind_property (completion->priv->info_button, "active",
-				completion->priv->info_window, "visible",
-				G_BINDING_DEFAULT);
 
 	g_signal_connect_swapped (completion->priv->info_window,
 				  "size-allocate",
