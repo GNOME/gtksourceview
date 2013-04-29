@@ -42,6 +42,8 @@
         <context id="cpp-proper">
             <include>
                 <context id="keywords" style-ref="keyword">
+                    <keyword>alignas</keyword>
+                    <keyword>alignof</keyword>
                     <keyword>and</keyword>
                     <keyword>and_eq</keyword>
                     <keyword>bitand</keyword>
@@ -54,14 +56,17 @@
                     <keyword>delete</keyword>
                     <keyword>dynamic_cast</keyword>
                     <keyword>false</keyword>
+                    <keyword>final</keyword>
                     <keyword>friend</keyword>
                     <keyword>new</keyword>
+                    <keyword>noexcept</keyword>
                     <keyword>not</keyword>
                     <keyword>not_eq</keyword>
                     <keyword>nullptr</keyword>
                     <keyword>operator</keyword>
                     <keyword>or</keyword>
                     <keyword>or_eq</keyword>
+                    <keyword>override</keyword>
                     <keyword>private</keyword>
                     <keyword>protected</keyword>
                     <keyword>public</keyword>
@@ -69,6 +74,7 @@
                     <keyword>static_assert</keyword>
                     <keyword>static_cast</keyword>
                     <keyword>this</keyword>
+                    <keyword>thread_local</keyword>
                     <keyword>throw</keyword>
                     <keyword>true</keyword>
                     <keyword>try</keyword>
