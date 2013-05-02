@@ -2,23 +2,23 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-18 14:01+0000\n"
-"PO-Revision-Date: 2012-09-18 16:19+0200\n"
+"POT-Creation-Date: 2013-04-07 12:37+0000\n"
+"PO-Revision-Date: 2013-05-02 19:42+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Gtranslator 2.91.5\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -1703,7 +1703,7 @@ msgstr "palabra clave"
 
 #: ../data/language-specs/mallard.lang.h:2
 msgid "Mallard"
-msgstr "Malla"
+msgstr "Mallard"
 
 #: ../data/language-specs/mallard.lang.h:3
 msgid "Page Elements"
@@ -1796,17 +1796,14 @@ msgid "NetRexx"
 msgstr "NetRexx"
 
 #: ../data/language-specs/netrexx.lang.h:7
-#| msgid "External"
 msgid "Externals"
 msgstr "Externo"
 
 #: ../data/language-specs/netrexx.lang.h:8
-#| msgid "Option"
 msgid "Options"
 msgstr "Opciones"
 
 #: ../data/language-specs/netrexx.lang.h:9
-#| msgid "Data Type"
 msgid "Data Types"
 msgstr "Tipos de datos"
 
@@ -1815,22 +1812,18 @@ msgid "Special"
 msgstr "Especial"
 
 #: ../data/language-specs/netrexx.lang.h:11
-#| msgid "Visible"
 msgid "Visibility"
 msgstr "Visibilidad"
 
 #: ../data/language-specs/netrexx.lang.h:12
-#| msgid "Identifier"
 msgid "Modifiers"
 msgstr "Modificadores"
 
 #: ../data/language-specs/netrexx.lang.h:13
-#| msgid "Keyword"
 msgid "Keywords"
 msgstr "Palabras clave"
 
 #: ../data/language-specs/netrexx.lang.h:14
-#| msgid "Keyword"
 msgid "Sub Keywords"
 msgstr "Subpalabras clave"
 
@@ -1884,7 +1877,7 @@ msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:2
 msgid "Opal"
-msgstr "Ópalo"
+msgstr "Opal"
 
 #: ../data/language-specs/opal.lang.h:3 ../data/language-specs/python.lang.h:3
 #: ../data/language-specs/python3.lang.h:3
@@ -1901,7 +1894,7 @@ msgstr "OpenCL"
 
 #: ../data/language-specs/opencl.lang.h:5
 msgid "Global Function"
-msgstr "Función globales"
+msgstr "Funciones globales"
 
 #: ../data/language-specs/opencl.lang.h:6
 msgid "Device Function"
@@ -2141,7 +2134,7 @@ msgstr "Numérico literal"
 
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
-msgstr "Esquema"
+msgstr "Scheme"
 
 #: ../data/language-specs/scilab.lang.h:2
 msgid "Scilab"
@@ -2729,7 +2722,7 @@ msgid "The gutters' GtkSourceView"
 msgstr "Los canales de GtkSourceView"
 
 #: ../gtksourceview/gtksourcegutter.c:560
-#: ../gtksourceview/gtksourcegutterrenderer.c:703
+#: ../gtksourceview/gtksourcegutterrenderer.c:724
 msgid "Window Type"
 msgstr "Tipo de ventana"
 
@@ -2738,71 +2731,71 @@ msgid "The gutters text window type"
 msgstr "Los canales de texto del tipo de ventana"
 
 #: ../gtksourceview/gtksourcegutter.c:572
-#: ../gtksourceview/gtksourcegutterrenderer.c:479
+#: ../gtksourceview/gtksourcegutterrenderer.c:500
 msgid "X Padding"
 msgstr "Relleno X"
 
 #: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:480
+#: ../gtksourceview/gtksourcegutterrenderer.c:501
 msgid "The x-padding"
 msgstr "El relleno en x"
 
 #: ../gtksourceview/gtksourcegutter.c:583
-#: ../gtksourceview/gtksourcegutterrenderer.c:495
+#: ../gtksourceview/gtksourcegutterrenderer.c:516
 msgid "Y Padding"
 msgstr "Relleno en Y"
 
 #: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:496
+#: ../gtksourceview/gtksourcegutterrenderer.c:517
 msgid "The y-padding"
 msgstr "El relleno en y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:465
-#: ../gtksourceview/gtksourcegutterrenderer.c:466
+#: ../gtksourceview/gtksourcegutterrenderer.c:486
+#: ../gtksourceview/gtksourcegutterrenderer.c:487
 msgid "Visible"
 msgstr "Visible"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:511
+#: ../gtksourceview/gtksourcegutterrenderer.c:532
 msgid "X Alignment"
 msgstr "Alineación X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:512
+#: ../gtksourceview/gtksourcegutterrenderer.c:533
 msgid "The x-alignment"
 msgstr "La alineación en x"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:527
+#: ../gtksourceview/gtksourcegutterrenderer.c:548
 msgid "Y Alignment"
 msgstr "Alineación Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:528
+#: ../gtksourceview/gtksourcegutterrenderer.c:549
 msgid "The y-alignment"
 msgstr "La alineación en y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:670
+#: ../gtksourceview/gtksourcegutterrenderer.c:691
 msgid "The View"
 msgstr "La vista"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:671
+#: ../gtksourceview/gtksourcegutterrenderer.c:692
 msgid "The view"
 msgstr "La vista"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:687
+#: ../gtksourceview/gtksourcegutterrenderer.c:708
 msgid "Alignment Mode"
 msgstr "Modo de alineación"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:688
+#: ../gtksourceview/gtksourcegutterrenderer.c:709
 msgid "The alignment mode"
 msgstr "El modo de alineación"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:704
+#: ../gtksourceview/gtksourcegutterrenderer.c:725
 msgid "The window type"
 msgstr "El tipo de ventana"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:712
+#: ../gtksourceview/gtksourcegutterrenderer.c:733
 msgid "Size"
 msgstr "Tamaño"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:713
+#: ../gtksourceview/gtksourcegutterrenderer.c:734
 msgid "The size"
 msgstr "El tamaño"
 
@@ -2991,7 +2984,8 @@ msgstr "Nombre de la tipografía del cuerpo"
 #: ../gtksourceview/gtksourceprintcompositor.c:594
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:617
 msgid "Line Numbers Font Name"
@@ -3020,7 +3014,8 @@ msgstr "Nombre de la tipografía del pie"
 #: ../gtksourceview/gtksourceprintcompositor.c:666
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:682
 msgid "Number of pages"
@@ -3236,8 +3231,8 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter no "
-"blanco de la línea antes de ir al inicio/fin de la línea"
+"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
+"no blanco de la línea antes de ir al inicio/fin de la línea"
 
 #: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
