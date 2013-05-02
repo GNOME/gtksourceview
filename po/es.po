@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-09 20:56+0000\n"
-"PO-Revision-Date: 2013-03-11 16:28+0100\n"
+"POT-Creation-Date: 2013-04-07 12:38+0000\n"
+"PO-Revision-Date: 2013-05-02 19:39+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Gtranslator 2.91.5\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -74,7 +74,7 @@ msgstr "Sobrantes"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:537
+#: ../gtksourceview/gtksourcecompletion.c:640
 msgid "All"
 msgstr "Todo"
 
@@ -1758,7 +1758,7 @@ msgstr "palabra clave"
 
 #: ../data/language-specs/mallard.lang.h:2
 msgid "Mallard"
-msgstr "Malla"
+msgstr "Mallard"
 
 #: ../data/language-specs/mallard.lang.h:3
 msgid "Page Elements"
@@ -1944,7 +1944,7 @@ msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:2
 msgid "Opal"
-msgstr "Ópalo"
+msgstr "Opal"
 
 #: ../data/language-specs/opal.lang.h:3
 #: ../data/language-specs/python3.lang.h:3
@@ -1962,7 +1962,7 @@ msgstr "OpenCL"
 
 #: ../data/language-specs/opencl.lang.h:5
 msgid "Global Function"
-msgstr "Función globales"
+msgstr "Funciones globales"
 
 #: ../data/language-specs/opencl.lang.h:6
 msgid "Device Function"
@@ -2207,7 +2207,7 @@ msgstr "Literal"
 
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
-msgstr "Esquema"
+msgstr "Scheme"
 
 #: ../data/language-specs/scilab.lang.h:2
 msgid "Scilab"
@@ -2232,7 +2232,7 @@ msgstr "Subshell"
 
 #: ../data/language-specs/sml.lang.h:2
 msgid "Standard ML"
-msgstr "ML estándar"
+msgstr "Standard ML"
 
 #: ../data/language-specs/sml.lang.h:13
 msgid "Module name, Variant, etc"
@@ -2571,113 +2571,113 @@ msgstr "Gestor de deshacer"
 msgid "The buffer undo manager"
 msgstr "El búfer de gestión de deshacer"
 
-#: ../gtksourceview/gtksourcecompletion.c:627
-#: ../gtksourceview/gtksourcecompletion.c:658
+#: ../gtksourceview/gtksourcecompletion.c:550
+#: ../gtksourceview/gtksourcecompletion.c:581
 msgid "No extra information available"
 msgstr "No existe información adicional"
 
-#: ../gtksourceview/gtksourcecompletion.c:1527
+#: ../gtksourceview/gtksourcecompletion.c:1620
 #: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "Ver"
 
-#: ../gtksourceview/gtksourcecompletion.c:1528
+#: ../gtksourceview/gtksourcecompletion.c:1621
 msgid "The GtkSourceView bound to the completion"
 msgstr "La GtkSourceView vinculada con el completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:1542
+#: ../gtksourceview/gtksourcecompletion.c:1635
 msgid "Remember Info Visibility"
 msgstr "Recordar la información de visibiliadd"
 
-#: ../gtksourceview/gtksourcecompletion.c:1543
+#: ../gtksourceview/gtksourcecompletion.c:1636
 msgid "Remember the last info window visibility state"
 msgstr "Recordar el último estado de visibilidad de información de la ventana"
 
-#: ../gtksourceview/gtksourcecompletion.c:1555
+#: ../gtksourceview/gtksourcecompletion.c:1648
 msgid "Select on Show"
 msgstr "Seleccionar al mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:1556
+#: ../gtksourceview/gtksourcecompletion.c:1649
 msgid "Select first proposal when completion is shown"
 msgstr "Seleccionar la primera propuesta al mostrar el completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:1569
+#: ../gtksourceview/gtksourcecompletion.c:1662
 msgid "Show Headers"
 msgstr "Mostrar cabeceras"
 
-#: ../gtksourceview/gtksourcecompletion.c:1570
+#: ../gtksourceview/gtksourcecompletion.c:1663
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Mostrar las cabeceras del proveedor cuando existan propuestas de múltiples "
 "proveedores"
 
-#: ../gtksourceview/gtksourcecompletion.c:1583
+#: ../gtksourceview/gtksourcecompletion.c:1676
 msgid "Show Icons"
 msgstr "Mostrar iconos"
 
-#: ../gtksourceview/gtksourcecompletion.c:1584
+#: ../gtksourceview/gtksourcecompletion.c:1677
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Mostrar el proveedor y los iconos propuestos en la ventana emergente de "
 "completado"
 
-#: ../gtksourceview/gtksourcecompletion.c:1598
+#: ../gtksourceview/gtksourcecompletion.c:1691
 msgid "Accelerators"
 msgstr "Aceleradores"
 
-#: ../gtksourceview/gtksourcecompletion.c:1599
+#: ../gtksourceview/gtksourcecompletion.c:1692
 msgid "Number of proposal accelerators to show"
 msgstr "Número de aceleradores propuestos que mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:1614
+#: ../gtksourceview/gtksourcecompletion.c:1707
 msgid "Auto Complete Delay"
 msgstr "Retardo de autocompletado"
 
-#: ../gtksourceview/gtksourcecompletion.c:1615
+#: ../gtksourceview/gtksourcecompletion.c:1708
 msgid "Completion popup delay for interactive completion"
 msgstr ""
 "Retardo de la ventana emergente de completado para el completado interactivo"
 
-#: ../gtksourceview/gtksourcecompletion.c:1631
+#: ../gtksourceview/gtksourcecompletion.c:1724
 msgid "Provider Page Size"
 msgstr "Tamaño de página del proveedor"
 
-#: ../gtksourceview/gtksourcecompletion.c:1632
+#: ../gtksourceview/gtksourcecompletion.c:1725
 msgid "Provider scrolling page size"
 msgstr "Tamaño de página de desplazamiento del proveedor"
 
-#: ../gtksourceview/gtksourcecompletion.c:1652
+#: ../gtksourceview/gtksourcecompletion.c:1745
 msgid "Proposal Page Size"
 msgstr "Tamaño de página de la propuesta"
 
-#: ../gtksourceview/gtksourcecompletion.c:1653
+#: ../gtksourceview/gtksourcecompletion.c:1746
 msgid "Proposal scrolling page size"
 msgstr "Tamaño de página de desplazamiento de la propuesta"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:255
+#: ../gtksourceview/gtksourcecompletioncontext.c:261
 #: ../gtksourceview/gtksourceview.c:310
 msgid "Completion"
 msgstr "Completado"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:256
+#: ../gtksourceview/gtksourcecompletioncontext.c:262
 msgid "The completion object to which the context belongs"
 msgstr "El objeto de completado al que pertenece el contexto"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:269
+#: ../gtksourceview/gtksourcecompletioncontext.c:275
 msgid "Iterator"
 msgstr "Iterador"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:270
+#: ../gtksourceview/gtksourcecompletioncontext.c:276
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "El GtkTextIter en el que se invocó el completado"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:282
+#: ../gtksourceview/gtksourcecompletioncontext.c:288
 msgid "Activation"
 msgstr "Activación"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:283
+#: ../gtksourceview/gtksourcecompletioncontext.c:289
 msgid "The type of activation"
 msgstr "El tipo de activación"
 
@@ -3049,7 +3049,8 @@ msgstr "Nombre de la tipografía del cuerpo"
 #: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:619
 msgid "Line Numbers Font Name"
@@ -3078,7 +3079,8 @@ msgstr "Nombre de la tipografía del pie"
 #: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:684
 msgid "Number of pages"
@@ -3294,8 +3296,8 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter no "
-"blanco de la línea antes de ir al inicio/fin de la línea"
+"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
+"no blanco de la línea antes de ir al inicio/fin de la línea"
 
 #: ../gtksourceview/gtksourceview.c:435
 msgid "Highlight current line"
