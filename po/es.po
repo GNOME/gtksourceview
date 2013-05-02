@@ -2,21 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-05-14 16:50+0000\n"
-"PO-Revision-Date: 2012-05-16 11:24+0200\n"
+"POT-Creation-Date: 2012-12-29 15:35+0000\n"
+"PO-Revision-Date: 2013-05-02 19:41+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Gtranslator 2.91.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -1612,7 +1613,7 @@ msgstr "palabra clave"
 
 #: ../data/language-specs/mallard.lang.h:2
 msgid "Mallard"
-msgstr "Malla"
+msgstr "Mallard"
 
 #: ../data/language-specs/mallard.lang.h:3
 msgid "Page Elements"
@@ -1738,7 +1739,7 @@ msgstr "OOC"
 
 #: ../data/language-specs/opal.lang.h:2
 msgid "Opal"
-msgstr "Ópalo"
+msgstr "Opal"
 
 #: ../data/language-specs/opal.lang.h:3 ../data/language-specs/python.lang.h:3
 #: ../data/language-specs/python3.lang.h:3
@@ -1755,7 +1756,7 @@ msgstr "OpenCL"
 
 #: ../data/language-specs/opencl.lang.h:5
 msgid "Global Function"
-msgstr "Función globales"
+msgstr "Funciones globales"
 
 #: ../data/language-specs/opencl.lang.h:6
 msgid "Device Function"
@@ -1967,7 +1968,7 @@ msgstr "Numérico literal"
 
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
-msgstr "Esquema"
+msgstr "Scheme"
 
 #: ../data/language-specs/scilab.lang.h:2
 msgid "Scilab"
@@ -2436,7 +2437,6 @@ msgid "Provider"
 msgstr "Proveedor"
 
 #: ../gtksourceview/gtksourcecompletion.ui.h:1
-#| msgid "Show provider and proposal icons in the completion popup"
 msgid "Show detailed proposal information"
 msgstr "Mostrar la información propuesta detallada"
 
@@ -2826,7 +2826,8 @@ msgstr "Nombre de la tipografía del cuerpo"
 #: ../gtksourceview/gtksourceprintcompositor.c:594
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el cuerpo del texto (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:617
 msgid "Line Numbers Font Name"
@@ -2855,7 +2856,8 @@ msgstr "Nombre de la tipografía del pie"
 #: ../gtksourceview/gtksourceprintcompositor.c:666
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
-"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace 10»)"
+"Nombre de la tipografía que usar para el pie de la página (ej. «Monospace "
+"10»)"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:682
 msgid "Number of pages"
@@ -3071,8 +3073,8 @@ msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
 msgstr ""
-"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter no "
-"blanco de la línea antes de ir al inicio/fin de la línea"
+"Las teclas «Inicio» y «Fin» situarán el cursor en el primer/último carácter "
+"no blanco de la línea antes de ir al inicio/fin de la línea"
 
 #: ../gtksourceview/gtksourceview.c:431
 msgid "Highlight current line"
