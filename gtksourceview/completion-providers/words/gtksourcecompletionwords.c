@@ -462,7 +462,7 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_NAME,
 	                                 g_param_spec_string ("name",
-	                                                      _("Name"),
+	                                                      C_("Object", "Name"),
 	                                                      _("The provider name"),
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
