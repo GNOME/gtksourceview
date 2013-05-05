@@ -46,6 +46,8 @@ G_BEGIN_DECLS
 #    endif
 #    undef GD_
 #    define GD_(Domain,String) _gtksourceview_dgettext (Domain, String)
+#    undef C_
+#    define C_(Context,String) _gtksourceview_gettext (Context "\004" String)
 #else
 /* Stubs that do something close enough.  */
 #    undef textdomain
@@ -66,6 +68,8 @@ G_BEGIN_DECLS
 #    define N_(String) (String)
 #    undef GD_
 #    define GD_(Domain,String) (g_strdup (String))
+#    undef C_
+#    define C_(Context,String) (String)
 #endif
 
 G_GNUC_INTERNAL
