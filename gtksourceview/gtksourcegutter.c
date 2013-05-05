@@ -546,6 +546,9 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                 PROP_VIEW,
 	                                 g_param_spec_object ("view",
 	                                                      _("View"),
+							      /* Translators: gutters can be used to display information
+							       * on the left or on the right of the text view. To draw the
+							       * line numbers for example. */
 	                                                      _("The gutters' GtkSourceView"),
 	                                                      GTK_SOURCE_TYPE_VIEW,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
@@ -559,7 +562,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                 PROP_WINDOW_TYPE,
 	                                 g_param_spec_enum ("window_type",
 	                                                    _("Window Type"),
-	                                                    _("The gutters text window type"),
+	                                                    _("The gutters' text window type"),
 	                                                    GTK_TYPE_TEXT_WINDOW_TYPE,
 	                                                    0,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
