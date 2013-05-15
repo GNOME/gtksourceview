@@ -53,6 +53,7 @@ LANGUAGES =			\
 	java.lang		\
 	javascript.lang		\
 	json.lang		\
+	julia.lang		\
 	latex.lang		\
 	libtool.lang		\
 	lua.lang		\
