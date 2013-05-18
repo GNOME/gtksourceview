@@ -336,6 +336,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	/**
 	 * GtkSourceBuffer::source-mark-updated:
 	 * @buffer: the buffer that received the signal
+	 * @mark: the #GtkSourceMark
 	 *
 	 * The ::source_mark_updated signal is emitted each time
 	 * a mark is added to, moved or removed from the @buffer.
