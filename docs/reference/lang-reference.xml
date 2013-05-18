@@ -12,6 +12,15 @@ Reference to the GtkSourceView language definition file format
 
 <refsect1>
 <title>Overview</title>
+
+<note>
+  <para>
+    The version 2 here refers to the language definition file format,
+    not to the version of GtkSourceView. So this reference is suitable
+    for GtkSourceView 2 and 3.
+  </para>
+</note>
+
 <para>
 This is an overview of the Language Definition XML format, describing the
 meaning and usage of every element and attribute.  The formal definition is
