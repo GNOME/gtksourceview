@@ -27,7 +27,7 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_COMPLETION_WORDS				(gtk_source_completion_words_get_type ())
+#define GTK_SOURCE_TYPE_COMPLETION_WORDS		(gtk_source_completion_words_get_type ())
 #define GTK_SOURCE_COMPLETION_WORDS(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS, GtkSourceCompletionWords))
 #define GTK_SOURCE_COMPLETION_WORDS_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_COMPLETION_WORDS, GtkSourceCompletionWordsClass))
 #define GTK_SOURCE_IS_COMPLETION_WORDS(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS))
@@ -48,7 +48,7 @@ struct _GtkSourceCompletionWordsClass {
 	GObjectClass parent_class;
 };
 
-GType gtk_source_completion_words_get_type (void) G_GNUC_CONST;
+GType		gtk_source_completion_words_get_type	(void) G_GNUC_CONST;
 
 GtkSourceCompletionWords *
 		gtk_source_completion_words_new 	(const gchar              *name,

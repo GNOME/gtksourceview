@@ -50,7 +50,7 @@ struct _GtkSourceCompletionWordsProposalClass {
 };
 
 G_GNUC_INTERNAL
-GType gtk_source_completion_words_proposal_get_type (void) G_GNUC_CONST;
+GType		 gtk_source_completion_words_proposal_get_type	(void) G_GNUC_CONST;
 
 G_GNUC_INTERNAL
 GtkSourceCompletionWordsProposal *
