@@ -40,7 +40,7 @@ typedef struct _GtkSourceCompletionWordsPrivate		GtkSourceCompletionWordsPrivate
 
 struct _GtkSourceCompletionWords {
 	GObject parent;
-	
+
 	GtkSourceCompletionWordsPrivate *priv;
 };
 
@@ -53,7 +53,7 @@ GType gtk_source_completion_words_get_type (void) G_GNUC_CONST;
 GtkSourceCompletionWords *
 		gtk_source_completion_words_new 	(const gchar              *name,
 		                                         GdkPixbuf                *icon);
-		
+
 void 		gtk_source_completion_words_register 	(GtkSourceCompletionWords *words,
                                                          GtkTextBuffer            *buffer);
 

@@ -47,7 +47,7 @@
 enum
 {
 	PROP_0,
-	
+
 	PROP_NAME,
 	PROP_ICON,
 	PROP_PROPOSALS_BATCH_SIZE,
@@ -65,16 +65,16 @@ struct _GtkSourceCompletionWordsPrivate
 	gchar *word;
 	gint word_len;
 	guint idle_id;
-	
+
 	GtkSourceCompletionContext *context;
 	GSequenceIter *populate_iter;
 
 	guint cancel_id;
-	
+
 	guint proposals_batch_size;
 	guint scan_batch_size;
 	guint minimum_word_size;
-	
+
 	GtkSourceCompletionWordsLibrary *library;
 	GList *buffers;
 
@@ -109,7 +109,7 @@ gtk_source_completion_words_get_name (GtkSourceCompletionProvider *self)
 	return g_strdup (GTK_SOURCE_COMPLETION_WORDS (self)->priv->name);
 }
 
-static GdkPixbuf * 
+static GdkPixbuf *
 gtk_source_completion_words_get_icon (GtkSourceCompletionProvider *self)
 {
 	return GTK_SOURCE_COMPLETION_WORDS (self)->priv->icon;
@@ -123,19 +123,19 @@ population_finished (GtkSourceCompletionWords *words)
 		g_source_remove (words->priv->idle_id);
 		words->priv->idle_id = 0;
 	}
-	
+
 	g_free (words->priv->word);
 	words->priv->word = NULL;
-	
+
 	if (words->priv->context != NULL)
 	{
 		if (words->priv->cancel_id)
 		{
-			g_signal_handler_disconnect (words->priv->context, 
+			g_signal_handler_disconnect (words->priv->context,
 			                             words->priv->cancel_id);
 			words->priv->cancel_id = 0;
 		}
-	
+
 		g_object_unref (words->priv->context);
 		words->priv->context = NULL;
 	}
@@ -147,21 +147,21 @@ add_in_idle (GtkSourceCompletionWords *words)
 	guint idx = 0;
 	GList *ret = NULL;
 	gboolean finished;
-	
+
 	if (words->priv->populate_iter == NULL)
 	{
-		words->priv->populate_iter = 
+		words->priv->populate_iter =
 			gtk_source_completion_words_library_find_first (words->priv->library,
 			                                                words->priv->word,
 			                                                words->priv->word_len);
 	}
 
-	while (idx < words->priv->proposals_batch_size && 
+	while (idx < words->priv->proposals_batch_size &&
 	       words->priv->populate_iter)
 	{
-		GtkSourceCompletionWordsProposal *proposal = 
+		GtkSourceCompletionWordsProposal *proposal =
 				gtk_source_completion_words_library_get_proposal (words->priv->populate_iter);
-		
+
 		/* Only add non-exact matches */
 		if (strcmp (gtk_source_completion_words_proposal_get_word (proposal),
 		            words->priv->word) != 0)
@@ -169,16 +169,16 @@ add_in_idle (GtkSourceCompletionWords *words)
 			ret = g_list_prepend (ret, proposal);
 		}
 
-		words->priv->populate_iter = 
+		words->priv->populate_iter =
 				gtk_source_completion_words_library_find_next (words->priv->populate_iter,
 		                                                               words->priv->word,
 		                                                               words->priv->word_len);
 		++idx;
 	}
-	
+
 	ret = g_list_reverse (ret);
 	finished = words->priv->populate_iter == NULL;
-	
+
 	gtk_source_completion_context_add_proposals (words->priv->context,
 	                                             GTK_SOURCE_COMPLETION_PROVIDER (words),
 	                                             ret,
@@ -196,7 +196,7 @@ add_in_idle (GtkSourceCompletionWords *words)
 }
 
 static gboolean
-valid_word_char (gunichar ch, 
+valid_word_char (gunichar ch,
                  gpointer data)
 {
 	return g_unichar_isprint (ch) && (ch == '_' || g_unichar_isalnum (ch));
@@ -216,13 +216,13 @@ get_word_at_iter (GtkTextIter    *iter,
                   gpointer        data)
 {
 	GtkTextIter end = *iter;
-	
+
 	if (!gtk_source_completion_words_utils_forward_word_end (iter, valid, data) ||
 	    !gtk_text_iter_equal (iter, &end))
 	{
 		return NULL;
 	}
-	
+
 	if (!gtk_source_completion_words_utils_backward_word_start (iter,
 	                                                            valid,
 	                                                            valid_start,
@@ -230,7 +230,7 @@ get_word_at_iter (GtkTextIter    *iter,
 	{
 		return NULL;
 	}
-	
+
 	if (gtk_text_iter_equal (iter, &end))
 	{
 		return NULL;
@@ -280,7 +280,7 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 		return;
 	}
 
-	words->priv->cancel_id = 
+	words->priv->cancel_id =
 		g_signal_connect_swapped (context,
 			                  "cancelled",
 			                   G_CALLBACK (population_finished),
@@ -290,12 +290,12 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 
 	words->priv->word = word;
 	words->priv->word_len = strlen (word);
-	
+
 	buf = GET_WORDS_BUFFER (buffer);
 	gtk_text_buffer_move_mark (buffer,
 	                           gtk_source_completion_words_buffer_get_mark (buf),
 	                           &iter);
-	
+
 	/* Do first right now */
 	if (add_in_idle (words))
 	{
@@ -340,7 +340,7 @@ static void
 update_buffers_batch_size (GtkSourceCompletionWords *words)
 {
 	GList *item;
-	
+
 	for (item = words->priv->buffers; item; item = g_list_next (item))
 	{
 		BufferBinding *binding = (BufferBinding *)item->data;
@@ -353,7 +353,7 @@ static void
 update_buffers_minimum_word_size (GtkSourceCompletionWords *words)
 {
 	GList *item;
-	
+
 	for (item = words->priv->buffers; item; item = g_list_next (item))
 	{
 		BufferBinding *binding = (BufferBinding *)item->data;
@@ -369,13 +369,13 @@ gtk_source_completion_words_set_property (GObject      *object,
                                           GParamSpec   *pspec)
 {
 	GtkSourceCompletionWords *self = GTK_SOURCE_COMPLETION_WORDS (object);
-	
+
 	switch (prop_id)
 	{
 		case PROP_NAME:
 			g_free (self->priv->name);
 			self->priv->name = g_value_dup_string (value);
-			
+
 			if (self->priv->name == NULL)
 			{
 				self->priv->name = g_strdup (_("Document Words"));
@@ -386,7 +386,7 @@ gtk_source_completion_words_set_property (GObject      *object,
 			{
 				g_object_unref (self->priv->icon);
 			}
-			
+
 			self->priv->icon = g_value_dup_object (value);
 		break;
 		case PROP_PROPOSALS_BATCH_SIZE:
@@ -419,7 +419,7 @@ gtk_source_completion_words_get_property (GObject    *object,
                                           GParamSpec *pspec)
 {
 	GtkSourceCompletionWords *self = GTK_SOURCE_COMPLETION_WORDS (object);
-	
+
 	switch (prop_id)
 	{
 		case PROP_NAME:
@@ -449,7 +449,7 @@ gtk_source_completion_words_get_property (GObject    *object,
 	}
 }
 
-static void 
+static void
 gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -458,7 +458,7 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 
 	object_class->set_property = gtk_source_completion_words_set_property;
 	object_class->get_property = gtk_source_completion_words_get_property;
-	
+
 	g_object_class_install_property (object_class,
 	                                 PROP_NAME,
 	                                 g_param_spec_string ("name",
@@ -466,7 +466,7 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 	                                                      _("The provider name"),
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-	
+
 	g_object_class_install_property (object_class,
 	                                 PROP_ICON,
 	                                 g_param_spec_object ("icon",
@@ -494,7 +494,7 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 	                                                    G_MAXUINT,
 	                                                    50,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-	
+
 	g_object_class_install_property (object_class,
 	                                 PROP_MINIMUM_WORD_SIZE,
 	                                 g_param_spec_uint ("minimum-word-size",
@@ -537,12 +537,12 @@ gtk_source_completion_words_get_start_iter (GtkSourceCompletionProvider *provide
 	GtkTextBuffer *buffer;
 	GtkSourceCompletionWordsBuffer *buf;
 	GtkTextIter it;
-	
+
 	gtk_source_completion_context_get_iter (context, &it);
-	
+
 	buffer = gtk_text_iter_get_buffer (&it);
 	buf = GET_WORDS_BUFFER (buffer);
-	
+
 	gtk_text_buffer_get_iter_at_mark (buffer,
 	                                  iter,
 	                                  gtk_source_completion_words_buffer_get_mark (buf));
@@ -575,11 +575,11 @@ gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface)
 	iface->get_priority = gtk_source_completion_words_get_priority;
 }
 
-static void 
+static void
 gtk_source_completion_words_init (GtkSourceCompletionWords *self)
-{	
+{
 	self->priv = GTK_SOURCE_COMPLETION_WORDS_GET_PRIVATE (self);
-	
+
 	self->priv->library = gtk_source_completion_words_library_new ();
 }
 
@@ -594,16 +594,16 @@ GtkSourceCompletionWords *
 gtk_source_completion_words_new (const gchar *name,
                                  GdkPixbuf   *icon)
 {
-	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_WORDS, 
-	                     "name", name, 
-	                     "icon", icon, 
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_WORDS,
+	                     "name", name,
+	                     "icon", icon,
 	                     NULL);
 }
 
 static void
 buffer_destroyed (BufferBinding *binding)
 {
-	binding->words->priv->buffers = g_list_remove (binding->words->priv->buffers, 
+	binding->words->priv->buffers = g_list_remove (binding->words->priv->buffers,
 	                                               binding);
 	g_object_unref (binding->buffer);
 	g_slice_free (BufferBinding, binding);
@@ -625,33 +625,33 @@ gtk_source_completion_words_register (GtkSourceCompletionWords *words,
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS (words));
 	g_return_if_fail (GTK_IS_TEXT_BUFFER (buffer));
-	
+
 	binding = g_object_get_data (G_OBJECT (buffer), BUFFER_KEY);
-	
+
 	if (binding != NULL)
 	{
 		return;
 	}
-	
+
 	buf = gtk_source_completion_words_buffer_new (words->priv->library,
 	                                              buffer);
-	
+
 	gtk_source_completion_words_buffer_set_scan_batch_size (buf,
 	                                                        words->priv->scan_batch_size);
 
 	gtk_source_completion_words_buffer_set_minimum_word_size (buf,
 	                                                          words->priv->minimum_word_size);
-	
+
 	binding = g_slice_new (BufferBinding);
 	binding->words = words;
 	binding->buffer = buf;
-	
-	g_object_set_data_full (G_OBJECT (buffer), 
-	                        BUFFER_KEY, 
+
+	g_object_set_data_full (G_OBJECT (buffer),
+	                        BUFFER_KEY,
 	                        binding,
 	                        (GDestroyNotify)buffer_destroyed);
 
-	words->priv->buffers = g_list_prepend (words->priv->buffers, 
+	words->priv->buffers = g_list_prepend (words->priv->buffers,
 	                                       binding);
 }
 
@@ -668,7 +668,7 @@ gtk_source_completion_words_unregister (GtkSourceCompletionWords *words,
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS (words));
 	g_return_if_fail (GTK_IS_TEXT_BUFFER (buffer));
-	
+
 	g_object_set_data (G_OBJECT (buffer), BUFFER_KEY, NULL);
 }
 

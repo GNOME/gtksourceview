@@ -8,12 +8,12 @@
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * gtksourceview is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -52,7 +52,7 @@ static void
 gtk_source_completion_words_library_class_init (GtkSourceCompletionWordsLibraryClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	
+
 	object_class->finalize = gtk_source_completion_words_library_finalize;
 
 	signals[LOCK] =
@@ -60,20 +60,20 @@ gtk_source_completion_words_library_class_init (GtkSourceCompletionWordsLibraryC
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL, 
 		              NULL,
-		              g_cclosure_marshal_VOID__VOID, 
+		              NULL,
+		              g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
 		              0);
-	
+
 	signals[UNLOCK] =
 		g_signal_new ("unlock",
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL, 
 		              NULL,
-		              g_cclosure_marshal_VOID__VOID, 
+		              NULL,
+		              g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
 		              0);
 
@@ -84,7 +84,7 @@ static void
 gtk_source_completion_words_library_init (GtkSourceCompletionWordsLibrary *self)
 {
 	self->priv = GTK_SOURCE_COMPLETION_WORDS_LIBRARY_GET_PRIVATE (self);
-	
+
 	self->priv->store = g_sequence_new ((GDestroyNotify)g_object_unref);
 }
 
@@ -108,9 +108,9 @@ compare_items (GtkSourceCompletionWordsProposal *a,
                GtkSourceCompletionWordsProposal *b,
                const gchar                      *word)
 {
-	const gchar *m1 = 
+	const gchar *m1 =
 		gtk_source_completion_words_proposal_get_word (a == NULL ? b : a);
-	
+
 	return strcmp (m1, word);
 }
 
@@ -120,11 +120,11 @@ iter_match_prefix (GSequenceIter *iter,
                    gint           len)
 {
 	GtkSourceCompletionWordsProposal *item;
-	
+
 	item = gtk_source_completion_words_library_get_proposal (iter);
-	
+
 	return strncmp (gtk_source_completion_words_proposal_get_word (item),
-	                word, 
+	                word,
 	                len != -1 ? len : strlen (word)) == 0;
 }
 
@@ -135,7 +135,7 @@ gtk_source_completion_words_library_get_proposal (GSequenceIter *iter)
 	{
 		return NULL;
 	}
-	
+
 	return GTK_SOURCE_COMPLETION_WORDS_PROPOSAL (g_sequence_get (iter));
 }
 
@@ -146,7 +146,7 @@ gtk_source_completion_words_library_find_first (GtkSourceCompletionWordsLibrary 
 {
 	GSequenceIter *iter;
 	GSequenceIter *prev;
-	
+
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (word != NULL, NULL);
 
@@ -159,45 +159,45 @@ gtk_source_completion_words_library_find_first (GtkSourceCompletionWordsLibrary 
 	{
 		return NULL;
 	}
-	
+
 	if (len == -1)
 	{
 		len = strlen (word);
 	}
-	
+
 	/* Test if this position might be after the last match */
-	if (!g_sequence_iter_is_begin (iter) && 
-	    (g_sequence_iter_is_end (iter) || 
+	if (!g_sequence_iter_is_begin (iter) &&
+	    (g_sequence_iter_is_end (iter) ||
 	     !iter_match_prefix (iter, word, len)))
 	{
 		iter = g_sequence_iter_prev (iter);
-	
+
 		/* Maybe there is actually nothing in the sequence */
-		if (g_sequence_iter_is_end (iter) || 
+		if (g_sequence_iter_is_end (iter) ||
 		    !iter_match_prefix (iter, word, len))
 		{
 			return NULL;
 		}
 	}
-	
+
 	if (g_sequence_iter_is_end (iter))
 	{
 		return NULL;
 	}
-	
+
 	/* Go back while it matches */
 	while (iter &&
-	       (prev = g_sequence_iter_prev (iter)) && 
+	       (prev = g_sequence_iter_prev (iter)) &&
 	       iter_match_prefix (prev, word, len))
 	{
 		iter = prev;
-		
+
 		if (g_sequence_iter_is_begin (iter))
 		{
 			break;
 		}
 	}
-	
+
 	return iter;
 }
 
@@ -227,26 +227,26 @@ gtk_source_completion_words_library_find (GtkSourceCompletionWordsLibrary  *libr
 	GtkSourceCompletionWordsProposal *other;
 	const gchar *word = gtk_source_completion_words_proposal_get_word (proposal);
 	gint len = strlen (word);
-	
+
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal), NULL);
-	
+
 	iter = gtk_source_completion_words_library_find_first (library, word, len);
-	
+
 	if (!iter)
 	{
 		return NULL;
 	}
-	
+
 	do
 	{
 		other = gtk_source_completion_words_library_get_proposal (iter);
-		
+
 		if (proposal == other)
 		{
 			return iter;
 		}
-		
+
 		iter = g_sequence_iter_next (iter);
 	} while (!g_sequence_iter_is_end (iter) &&
 	         strcmp (gtk_source_completion_words_proposal_get_word (other),
@@ -259,9 +259,9 @@ static void
 on_proposal_unused (GtkSourceCompletionWordsProposal *proposal,
                     GtkSourceCompletionWordsLibrary  *library)
 {
-	GSequenceIter *iter = gtk_source_completion_words_library_find (library, 
+	GSequenceIter *iter = gtk_source_completion_words_library_find (library,
 	                                                                proposal);
-	
+
 	if (iter != NULL)
 	{
 		g_sequence_remove (iter);
@@ -274,17 +274,17 @@ gtk_source_completion_words_library_add_word (GtkSourceCompletionWordsLibrary *l
 {
 	GtkSourceCompletionWordsProposal *proposal;
 	GSequenceIter *iter;
-	
+
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (word != NULL, NULL);
-	
+
 	/* Check if word already exists */
 	iter = gtk_source_completion_words_library_find_first (library, word, -1);
-	
+
 	if (iter)
 	{
 		proposal = gtk_source_completion_words_library_get_proposal (iter);
-		
+
 		if (strcmp (gtk_source_completion_words_proposal_get_word (proposal),
 		            word) == 0)
 		{
@@ -293,19 +293,19 @@ gtk_source_completion_words_library_add_word (GtkSourceCompletionWordsLibrary *l
 			return proposal;
 		}
 	}
-	
+
 	if (library->priv->locked)
 	{
 		return NULL;
 	}
 
 	proposal = gtk_source_completion_words_proposal_new (word);
-	
+
 	g_signal_connect (proposal,
 	                  "unused",
 	                  G_CALLBACK (on_proposal_unused),
 	                  library);
-	
+
 	/* Insert proposal into binary tree of words */
 	g_sequence_insert_sorted (library->priv->store,
 	                          proposal,
@@ -318,7 +318,7 @@ gtk_source_completion_words_library_add_word (GtkSourceCompletionWordsLibrary *l
 void
 gtk_source_completion_words_library_remove_word (GtkSourceCompletionWordsLibrary  *library,
                                                  GtkSourceCompletionWordsProposal *proposal)
-{	
+{
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library));
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal));
 
@@ -329,7 +329,7 @@ void
 gtk_source_completion_words_library_lock (GtkSourceCompletionWordsLibrary *library)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library));
-	
+
 	library->priv->locked = TRUE;
 	g_signal_emit (library, signals[LOCK], 0);
 }
@@ -338,7 +338,7 @@ void
 gtk_source_completion_words_library_unlock (GtkSourceCompletionWordsLibrary *library)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library));
-	
+
 	library->priv->locked = FALSE;
 	g_signal_emit (library, signals[UNLOCK], 0);
 }
@@ -347,6 +347,6 @@ gboolean
 gtk_source_completion_words_library_is_locked (GtkSourceCompletionWordsLibrary *library)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library), TRUE);
-	
+
 	return library->priv->locked;
 }

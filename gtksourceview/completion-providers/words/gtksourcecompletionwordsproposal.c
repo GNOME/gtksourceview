@@ -39,8 +39,8 @@ static guint signals[NUM_SIGNALS] = {0,};
 
 static void gtk_source_completion_proposal_iface_init (gpointer g_iface, gpointer iface_data);
 
-G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWordsProposal, 
-			 gtk_source_completion_words_proposal, 
+G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWordsProposal,
+			 gtk_source_completion_words_proposal,
 			 G_TYPE_OBJECT,
 			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,
 			 			gtk_source_completion_proposal_iface_init))
@@ -52,21 +52,21 @@ gtk_source_completion_words_proposal_get_text (GtkSourceCompletionProposal *prop
 }
 
 static void
-gtk_source_completion_proposal_iface_init (gpointer g_iface, 
+gtk_source_completion_proposal_iface_init (gpointer g_iface,
                                            gpointer iface_data)
 {
 	GtkSourceCompletionProposalIface *iface = (GtkSourceCompletionProposalIface *)g_iface;
-	
+
 	/* Interface data getter implementations */
 	iface->get_label = gtk_source_completion_words_proposal_get_text;
 	iface->get_text = gtk_source_completion_words_proposal_get_text;
 }
-			 			
+
 static void
 gtk_source_completion_words_proposal_finalize (GObject *object)
 {
 	GtkSourceCompletionWordsProposal *proposal;
-	
+
 	proposal = GTK_SOURCE_COMPLETION_WORDS_PROPOSAL (object);
 	g_free (proposal->priv->word);
 
@@ -77,7 +77,7 @@ static void
 gtk_source_completion_words_proposal_class_init (GtkSourceCompletionWordsProposalClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	
+
 	object_class->finalize = gtk_source_completion_words_proposal_finalize;
 
 	signals[UNUSED] =
@@ -85,9 +85,9 @@ gtk_source_completion_words_proposal_class_init (GtkSourceCompletionWordsProposa
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL, 
 		              NULL,
-		              g_cclosure_marshal_VOID__VOID, 
+		              NULL,
+		              g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
 		              0);
 
@@ -98,7 +98,7 @@ static void
 gtk_source_completion_words_proposal_init (GtkSourceCompletionWordsProposal *self)
 {
 	self->priv = GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_GET_PRIVATE (self);
-	
+
 	self->priv->use_count = 1;
 }
 
@@ -107,7 +107,7 @@ gtk_source_completion_words_proposal_new (const gchar *word)
 {
 	GtkSourceCompletionWordsProposal *proposal =
 		g_object_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, NULL);
-	
+
 	proposal->priv->word = g_strdup (word);
 	return proposal;
 }
@@ -116,7 +116,7 @@ void
 gtk_source_completion_words_proposal_use (GtkSourceCompletionWordsProposal *proposal)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal));
-	
+
 	g_atomic_int_inc (&proposal->priv->use_count);
 }
 
@@ -124,7 +124,7 @@ void
 gtk_source_completion_words_proposal_unuse (GtkSourceCompletionWordsProposal *proposal)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal));
-	
+
 	if (g_atomic_int_dec_and_test (&proposal->priv->use_count))
 	{
 		g_signal_emit (proposal, signals[UNUSED], 0);

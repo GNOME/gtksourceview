@@ -28,7 +28,7 @@ gtk_source_completion_words_utils_backward_word_start (GtkTextIter    *iter,
                                                        gpointer        data)
 {
 	GtkTextIter prev = *iter;
-	
+
 	/* Go backward as long as there are word characters */
 	while (TRUE)
 	{
@@ -37,23 +37,23 @@ gtk_source_completion_words_utils_backward_word_start (GtkTextIter    *iter,
 		{
 			break;
 		}
-		
+
 		gtk_text_iter_backward_char (&prev);
-		
+
 		/* Check if the previous character is a valid word character */
 		if (!valid (gtk_text_iter_get_char (&prev), data))
 		{
 			break;
 		}
-		
+
 		*iter = prev;
 	}
-	
+
 	if (!valid (gtk_text_iter_get_char (iter), data))
 	{
 		return FALSE;
 	}
-	
+
 	/* Go forward with while !valid_start */
 	return valid_start (gtk_text_iter_get_char (iter), data);
 }
@@ -71,15 +71,15 @@ gtk_source_completion_words_utils_forward_word_end (GtkTextIter    *iter,
 		{
 			break;
 		}
-		
+
 		/* Check if the next character is a valid word character */
 		if (!valid (gtk_text_iter_get_char (iter), data))
 		{
 			break;
 		}
-		
+
 		gtk_text_iter_forward_char (iter);
 	}
-	
+
 	return TRUE;
 }

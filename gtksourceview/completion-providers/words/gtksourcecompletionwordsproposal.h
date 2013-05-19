@@ -41,7 +41,7 @@ typedef struct _GtkSourceCompletionWordsProposalPrivate		GtkSourceCompletionWord
 
 struct _GtkSourceCompletionWordsProposal {
 	GObject parent;
-	
+
 	GtkSourceCompletionWordsProposalPrivate *priv;
 };
 

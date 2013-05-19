@@ -43,7 +43,7 @@ typedef struct _GtkSourceCompletionWordsBufferPrivate		GtkSourceCompletionWordsB
 
 struct _GtkSourceCompletionWordsBuffer {
 	GObject parent;
-	
+
 	GtkSourceCompletionWordsBufferPrivate *priv;
 };
 
