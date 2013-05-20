@@ -565,7 +565,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
           and \%{here-doc-bound-char}+ when not).
     -->
 
-    <define-regex id="here-doc-bound-char">[^\s'"=;)]</define-regex>
+    <define-regex id="here-doc-bound-char">[^\s'"=;)&lt;&gt;]</define-regex>
 
     <context id="here-doc-no-ve">
       <start extended="true" dupnames="true">
