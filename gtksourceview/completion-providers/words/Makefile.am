@@ -1,3 +1,5 @@
+@GNOME_CODE_COVERAGE_RULES@
+
 INCLUDES = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
@@ -18,13 +20,19 @@ libgtksourcecompletionwords_headers = 		\
 	gtksourcecompletionwords.h
 
 libgtksourcecompletionwords_la_SOURCES =	\
-	gtksourcecompletionwordsbuffer.c	\
 	gtksourcecompletionwords.c		\
+	gtksourcecompletionwordsbuffer.c	\
 	gtksourcecompletionwordslibrary.c	\
 	gtksourcecompletionwordsproposal.c	\
 	gtksourcecompletionwordsutils.c		\
 	$(libgtksourcecompletionwords_headers)	\
 	$(NOINST_H_FILES)
+
+libgtksourcecompletionwords_la_CFLAGS =		\
+	$(CODE_COVERAGE_CFLAGS)
+
+libgtksourcecompletionwords_la_LDFLAGS =	\
+	$(CODE_COVERAGE_LDFLAGS)
 
 libgtksourcecompletionwords_includedir = \
 	$(includedir)/gtksourceview-3.0/gtksourceview/completion-providers/words
