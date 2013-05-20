@@ -100,22 +100,22 @@ gtk_source_completion_words_library_new (void)
 
 static gint
 compare_two_items (GtkSourceCompletionWordsProposal *a,
-                   GtkSourceCompletionWordsProposal *b,
-                   gpointer                          data)
+                   GtkSourceCompletionWordsProposal *b)
 {
 	return strcmp (gtk_source_completion_words_proposal_get_word (a),
 	               gtk_source_completion_words_proposal_get_word (b));
 }
 
 static gint
-compare_items (GtkSourceCompletionWordsProposal *a,
-               GtkSourceCompletionWordsProposal *b,
-               const gchar                      *word)
+compare_prefix (GtkSourceCompletionWordsProposal *a,
+		GtkSourceCompletionWordsProposal *b,
+		gpointer                          len)
 {
-	const gchar *m1 =
-		gtk_source_completion_words_proposal_get_word (a == NULL ? b : a);
+	gint prefix_length = GPOINTER_TO_INT (len);
 
-	return strcmp (m1, word);
+	return strncmp (gtk_source_completion_words_proposal_get_word (a),
+			gtk_source_completion_words_proposal_get_word (b),
+			prefix_length);
 }
 
 static gboolean
@@ -143,63 +143,49 @@ gtk_source_completion_words_library_get_proposal (GSequenceIter *iter)
 	return GTK_SOURCE_COMPLETION_WORDS_PROPOSAL (g_sequence_get (iter));
 }
 
+/* Find the first item in the library with the prefix equal to @word.
+ * If no such items exist, returns %NULL.
+ */
 GSequenceIter *
 gtk_source_completion_words_library_find_first (GtkSourceCompletionWordsLibrary *library,
                                                 const gchar                     *word,
                                                 gint                             len)
 {
+	GtkSourceCompletionWordsProposal *proposal;
 	GSequenceIter *iter;
-	GSequenceIter *prev;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (word != NULL, NULL);
-
-	iter = g_sequence_search (library->priv->store,
-	                          NULL,
-	                          (GCompareDataFunc)compare_items,
-	                          (gpointer)word);
-
-	if (iter == NULL)
-	{
-		return NULL;
-	}
 
 	if (len == -1)
 	{
 		len = strlen (word);
 	}
 
-	/* Test if this position might be after the last match */
-	if (!g_sequence_iter_is_begin (iter) &&
-	    (g_sequence_iter_is_end (iter) ||
-	     !iter_match_prefix (iter, word, len)))
-	{
-		iter = g_sequence_iter_prev (iter);
+	proposal = gtk_source_completion_words_proposal_new (word);
 
-		/* Maybe there is actually nothing in the sequence */
-		if (g_sequence_iter_is_end (iter) ||
-		    !iter_match_prefix (iter, word, len))
-		{
-			return NULL;
-		}
-	}
+	iter = g_sequence_lookup (library->priv->store,
+				  proposal,
+				  (GCompareDataFunc)compare_prefix,
+				  GINT_TO_POINTER (len));
 
-	if (g_sequence_iter_is_end (iter))
+	g_clear_object (&proposal);
+
+	if (iter == NULL)
 	{
 		return NULL;
 	}
 
-	/* Go back while it matches */
-	while (iter &&
-	       (prev = g_sequence_iter_prev (iter)) &&
-	       iter_match_prefix (prev, word, len))
+	while (!g_sequence_iter_is_begin (iter))
 	{
-		iter = prev;
+		GSequenceIter *prev = g_sequence_iter_prev (iter);
 
-		if (g_sequence_iter_is_begin (iter))
+		if (!iter_match_prefix (prev, word, len))
 		{
 			break;
 		}
+
+		iter = prev;
 	}
 
 	return iter;
