@@ -45,6 +45,10 @@ G_DEFINE_TYPE (GtkSourceCompletionWordsLibrary, gtk_source_completion_words_libr
 static void
 gtk_source_completion_words_library_finalize (GObject *object)
 {
+	GtkSourceCompletionWordsLibrary *library = GTK_SOURCE_COMPLETION_WORDS_LIBRARY (object);
+
+	g_sequence_free (library->priv->store);
+
 	G_OBJECT_CLASS (gtk_source_completion_words_library_parent_class)->finalize (object);
 }
 
