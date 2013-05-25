@@ -84,18 +84,11 @@ struct _GtkSourceCompletionWordsPrivate
 
 typedef struct
 {
-	GObjectClass parent_class;
-} GscProposalWordsClass;
-
-typedef struct
-{
 	GtkSourceCompletionWords *words;
 	GtkSourceCompletionWordsBuffer *buffer;
 } BufferBinding;
 
 static void gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface);
-
-GType gsc_proposal_words_get_type (void);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWords,
 			 gtk_source_completion_words,
@@ -136,8 +129,7 @@ population_finished (GtkSourceCompletionWords *words)
 			words->priv->cancel_id = 0;
 		}
 
-		g_object_unref (words->priv->context);
-		words->priv->context = NULL;
+		g_clear_object (&words->priv->context);
 	}
 }
 
@@ -283,8 +275,8 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 	words->priv->cancel_id =
 		g_signal_connect_swapped (context,
 			                  "cancelled",
-			                   G_CALLBACK (population_finished),
-			                   provider);
+			                  G_CALLBACK (population_finished),
+			                  provider);
 
 	words->priv->context = g_object_ref (context);
 
@@ -341,9 +333,9 @@ update_buffers_batch_size (GtkSourceCompletionWords *words)
 {
 	GList *item;
 
-	for (item = words->priv->buffers; item; item = g_list_next (item))
+	for (item = words->priv->buffers; item != NULL; item = g_list_next (item))
 	{
-		BufferBinding *binding = (BufferBinding *)item->data;
+		BufferBinding *binding = item->data;
 		gtk_source_completion_words_buffer_set_scan_batch_size (binding->buffer,
 		                                                        words->priv->scan_batch_size);
 	}
@@ -354,7 +346,7 @@ update_buffers_minimum_word_size (GtkSourceCompletionWords *words)
 {
 	GList *item;
 
-	for (item = words->priv->buffers; item; item = g_list_next (item))
+	for (item = words->priv->buffers; item != NULL; item = g_list_next (item))
 	{
 		BufferBinding *binding = (BufferBinding *)item->data;
 		gtk_source_completion_words_buffer_set_minimum_word_size (binding->buffer,
@@ -380,35 +372,38 @@ gtk_source_completion_words_set_property (GObject      *object,
 			{
 				self->priv->name = g_strdup (_("Document Words"));
 			}
-		break;
-		case PROP_ICON:
-			if (self->priv->icon)
-			{
-				g_object_unref (self->priv->icon);
-			}
+			break;
 
+		case PROP_ICON:
+			g_clear_object (&self->priv->icon);
 			self->priv->icon = g_value_dup_object (value);
-		break;
+			break;
+
 		case PROP_PROPOSALS_BATCH_SIZE:
 			self->priv->proposals_batch_size = g_value_get_uint (value);
-		break;
+			break;
+
 		case PROP_SCAN_BATCH_SIZE:
 			self->priv->scan_batch_size = g_value_get_uint (value);
 			update_buffers_batch_size (self);
-		break;
+			break;
+
 		case PROP_MINIMUM_WORD_SIZE:
 			self->priv->minimum_word_size = g_value_get_uint (value);
 			update_buffers_minimum_word_size (self);
-		break;
+			break;
+
 		case PROP_INTERACTIVE_DELAY:
 			self->priv->interactive_delay = g_value_get_int (value);
-		break;
+			break;
+
 		case PROP_PRIORITY:
 			self->priv->priority = g_value_get_int (value);
-		break;
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-		break;
+			break;
 	}
 }
 
@@ -424,28 +419,35 @@ gtk_source_completion_words_get_property (GObject    *object,
 	{
 		case PROP_NAME:
 			g_value_set_string (value, self->priv->name);
-		break;
+			break;
+
 		case PROP_ICON:
 			g_value_set_object (value, self->priv->icon);
-		break;
+			break;
+
 		case PROP_PROPOSALS_BATCH_SIZE:
 			g_value_set_uint (value, self->priv->proposals_batch_size);
-		break;
+			break;
+
 		case PROP_SCAN_BATCH_SIZE:
 			g_value_set_uint (value, self->priv->scan_batch_size);
-		break;
+			break;
+
 		case PROP_MINIMUM_WORD_SIZE:
 			g_value_set_uint (value, self->priv->minimum_word_size);
-		break;
+			break;
+
 		case PROP_INTERACTIVE_DELAY:
 			g_value_set_int (value, self->priv->interactive_delay);
-		break;
+			break;
+
 		case PROP_PRIORITY:
 			g_value_set_int (value, self->priv->priority);
-		break;
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-		break;
+			break;
 	}
 }
 
@@ -671,4 +673,3 @@ gtk_source_completion_words_unregister (GtkSourceCompletionWords *words,
 
 	g_object_set_data (G_OBJECT (buffer), BUFFER_KEY, NULL);
 }
-

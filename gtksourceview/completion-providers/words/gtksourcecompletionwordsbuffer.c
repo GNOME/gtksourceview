@@ -22,8 +22,6 @@
 #include "gtksourcecompletionwordsbuffer.h"
 #include "gtksourcecompletionwordsutils.h"
 
-#include <glib.h>
-
 #define GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferPrivate))
 
 /* Timeout in seconds */
@@ -44,13 +42,6 @@ typedef struct
 	GtkTextMark *end;
 } ScanRegion;
 
-enum
-{
-	EXT_INSERT_TEXT,
-	EXT_DELETE_RANGE,
-	NUM_EXT_SIGNALS
-};
-
 struct _GtkSourceCompletionWordsBufferPrivate
 {
 	GtkSourceCompletionWordsLibrary *library;
@@ -60,12 +51,8 @@ struct _GtkSourceCompletionWordsBufferPrivate
 	gulong batch_scan_id;
 	gulong initiate_scan_id;
 
-	guint ext_signal_handlers[NUM_EXT_SIGNALS];
 	guint scan_batch_size;
 	guint minimum_word_size;
-
-	guint lock_handler_id;
-	guint unlock_handler_id;
 
 	GtkTextMark *mark;
 	GHashTable *words;
@@ -169,7 +156,7 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 		buffer->priv->mark = NULL;
 	}
 
-	if (buffer->priv->words)
+	if (buffer->priv->words != NULL)
 	{
 		remove_words (buffer);
 
@@ -177,45 +164,23 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 		buffer->priv->words = NULL;
 	}
 
-	g_list_foreach (buffer->priv->scan_regions, (GFunc)scan_region_free, NULL);
-	g_list_free (buffer->priv->scan_regions);
+	g_list_free_full (buffer->priv->scan_regions, (GDestroyNotify)scan_region_free);
 	buffer->priv->scan_regions = NULL;
 
-	if (buffer->priv->buffer)
-	{
-		gint i;
-
-		for (i = 0; i < NUM_EXT_SIGNALS; ++i)
-		{
-			g_signal_handler_disconnect (buffer->priv->buffer,
-			                             buffer->priv->ext_signal_handlers[i]);
-		}
-
-		g_object_unref (buffer->priv->buffer);
-		buffer->priv->buffer = NULL;
-	}
-
-	if (buffer->priv->batch_scan_id)
+	if (buffer->priv->batch_scan_id != 0)
 	{
 		g_source_remove (buffer->priv->batch_scan_id);
 		buffer->priv->batch_scan_id = 0;
 	}
 
-	if (buffer->priv->initiate_scan_id)
+	if (buffer->priv->initiate_scan_id != 0)
 	{
 		g_source_remove (buffer->priv->initiate_scan_id);
 		buffer->priv->initiate_scan_id = 0;
 	}
 
-	if (buffer->priv->library)
-	{
-		g_signal_handler_disconnect (buffer->priv->library,
-		                             buffer->priv->lock_handler_id);
-		g_signal_handler_disconnect (buffer->priv->library,
-		                             buffer->priv->unlock_handler_id);
-
-		g_clear_object (&buffer->priv->library);
-	}
+	g_clear_object (&buffer->priv->buffer);
+	g_clear_object (&buffer->priv->library);
 
 	G_OBJECT_CLASS (gtk_source_completion_words_buffer_parent_class)->dispose (object);
 }
@@ -314,11 +279,9 @@ static void
 remove_word (GtkSourceCompletionWordsBuffer *buffer,
              const gchar                    *word)
 {
-	ProposalCache *cache;
+	ProposalCache *cache = g_hash_table_lookup (buffer->priv->words, word);
 
-	cache = g_hash_table_lookup (buffer->priv->words, word);
-
-	if (!cache)
+	if (cache == NULL)
 	{
 		g_warning ("Could not find word to remove in buffer (%s), this should not happen!",
 		           word);
@@ -342,7 +305,7 @@ add_words (GtkSourceCompletionWordsBuffer *buffer,
 {
 	GSList *item;
 
-	for (item = words; item; item = g_slist_next (item))
+	for (item = words; item != NULL; item = g_slist_next (item))
 	{
 		GtkSourceCompletionWordsProposal *proposal;
 		ProposalCache *cache;
@@ -353,7 +316,7 @@ add_words (GtkSourceCompletionWordsBuffer *buffer,
 		cache = g_hash_table_lookup (buffer->priv->words,
 		                             item->data);
 
-		if (cache)
+		if (cache != NULL)
 		{
 			++cache->use_count;
 			g_free (item->data);
@@ -656,8 +619,7 @@ on_delete_range_cb (GtkTextBuffer                  *text_buffer,
 	    gtk_text_iter_equal (end, &end_buf))
 	{
 		remove_words (buffer);
-		g_list_foreach (buffer->priv->scan_regions, (GFunc)scan_region_free, NULL);
-		g_list_free (buffer->priv->scan_regions);
+		g_list_free_full (buffer->priv->scan_regions, (GDestroyNotify)scan_region_free);
 		buffer->priv->scan_regions = NULL;
 
 		add_scan_region (buffer, NULL, start, end, FALSE);
@@ -675,27 +637,23 @@ connect_buffer (GtkSourceCompletionWordsBuffer *buffer)
 	GtkTextIter start;
 	GtkTextIter end;
 
-	buffer->priv->ext_signal_handlers[EXT_INSERT_TEXT] =
-		g_signal_connect (buffer->priv->buffer,
-		                  "insert-text",
-		                  G_CALLBACK (on_insert_text_cb),
-		                  buffer);
+	g_signal_connect_object (buffer->priv->buffer,
+				 "insert-text",
+				 G_CALLBACK (on_insert_text_cb),
+				 buffer,
+				 0);
 
-	buffer->priv->ext_signal_handlers[EXT_DELETE_RANGE] =
-		g_signal_connect (buffer->priv->buffer,
-		                  "delete-range",
-		                  G_CALLBACK (on_delete_range_cb),
-		                  buffer);
+	g_signal_connect_object (buffer->priv->buffer,
+				 "delete-range",
+				 G_CALLBACK (on_delete_range_cb),
+				 buffer,
+				 0);
 
 	gtk_text_buffer_get_bounds (buffer->priv->buffer,
 	                            &start,
 	                            &end);
 
-	add_scan_region (buffer,
-	                 NULL,
-	                 &start,
-	                 &end,
-	                 FALSE);
+	add_scan_region (buffer, NULL, &start, &end, FALSE);
 }
 
 static void
@@ -706,7 +664,8 @@ on_library_lock (GtkSourceCompletionWordsBuffer *buffer)
 		g_source_remove (buffer->priv->batch_scan_id);
 		buffer->priv->batch_scan_id = 0;
 	}
-	else if (buffer->priv->initiate_scan_id != 0)
+
+	if (buffer->priv->initiate_scan_id != 0)
 	{
 		g_source_remove (buffer->priv->initiate_scan_id);
 		buffer->priv->initiate_scan_id = 0;
@@ -737,20 +696,19 @@ gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library
 	ret->priv->library = g_object_ref (library);
 	ret->priv->buffer = g_object_ref (buffer);
 
-	ret->priv->lock_handler_id =
-		g_signal_connect_swapped (ret->priv->library,
-		                          "lock",
-		                          G_CALLBACK (on_library_lock),
-		                          ret);
-
-	ret->priv->unlock_handler_id =
-		g_signal_connect_swapped (ret->priv->library,
-		                          "unlock",
-		                          G_CALLBACK (on_library_unlock),
-		                          ret);
+	g_signal_connect_object (ret->priv->library,
+				 "lock",
+				 G_CALLBACK (on_library_lock),
+				 ret,
+				 G_CONNECT_SWAPPED);
 
 	gtk_text_buffer_get_start_iter (buffer, &iter);
 	ret->priv->mark = gtk_text_buffer_create_mark (buffer, NULL, &iter, TRUE);
+	g_signal_connect_object (ret->priv->library,
+				 "unlock",
+				 G_CALLBACK (on_library_unlock),
+				 ret,
+				 G_CONNECT_SWAPPED);
 
 	connect_buffer (ret);
 
