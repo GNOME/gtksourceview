@@ -54,7 +54,6 @@ struct _GtkSourceCompletionWordsBufferPrivate
 	guint scan_batch_size;
 	guint minimum_word_size;
 
-	GtkTextMark *mark;
 	GHashTable *words;
 };
 
@@ -148,13 +147,6 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 {
 	GtkSourceCompletionWordsBuffer *buffer =
 		GTK_SOURCE_COMPLETION_WORDS_BUFFER (object);
-
-	if (buffer->priv->mark)
-	{
-		gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (buffer->priv->mark),
-		                             buffer->priv->mark);
-		buffer->priv->mark = NULL;
-	}
 
 	if (buffer->priv->words != NULL)
 	{
@@ -691,7 +683,6 @@ gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library
                                         GtkTextBuffer                   *buffer)
 {
 	GtkSourceCompletionWordsBuffer *ret;
-	GtkTextIter iter;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), NULL);
@@ -707,8 +698,6 @@ gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library
 				 ret,
 				 G_CONNECT_SWAPPED);
 
-	gtk_text_buffer_get_start_iter (buffer, &iter);
-	ret->priv->mark = gtk_text_buffer_create_mark (buffer, NULL, &iter, TRUE);
 	g_signal_connect_object (ret->priv->library,
 				 "unlock",
 				 G_CALLBACK (on_library_unlock),
@@ -746,12 +735,4 @@ gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWor
 	g_return_if_fail (size != 0);
 
 	buffer->priv->minimum_word_size = size;
-}
-
-GtkTextMark *
-gtk_source_completion_words_buffer_get_mark (GtkSourceCompletionWordsBuffer *buffer)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER (buffer), NULL);
-
-	return buffer->priv->mark;
 }

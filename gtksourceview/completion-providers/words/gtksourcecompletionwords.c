@@ -3,6 +3,7 @@
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2009 - Jesse van den Kieboom
+ * Copyright (C) 2013 - Sébastien Wilmet
  *
  * gtksourceview is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -41,8 +42,6 @@
 #define GTK_SOURCE_COMPLETION_WORDS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_WORDS, GtkSourceCompletionWordsPrivate))
 
 #define BUFFER_KEY "GtkSourceCompletionWordsBufferKey"
-
-#define GET_WORDS_BUFFER(buf) (((BufferBinding *)g_object_get_data(G_OBJECT(buf), BUFFER_KEY))->buffer)
 
 enum
 {
@@ -187,51 +186,24 @@ add_in_idle (GtkSourceCompletionWords *words)
 	return !finished;
 }
 
-static gboolean
-valid_word_char (gunichar ch,
-                 gpointer data)
-{
-	return g_unichar_isprint (ch) && (ch == '_' || g_unichar_isalnum (ch));
-}
-
-static gboolean
-valid_start_char (gunichar ch,
-                  gpointer data)
-{
-	return !g_unichar_isdigit (ch);
-}
-
 static gchar *
-get_word_at_iter (GtkTextIter    *iter,
-                  CharacterCheck  valid,
-                  CharacterCheck  valid_start,
-                  gpointer        data)
+get_word_at_iter (GtkTextIter *iter)
 {
-	GtkTextIter end = *iter;
+	GtkTextBuffer *buffer;
+	GtkTextIter start_line;
+	gchar *line_text;
+	gchar *word;
 
-	if (!gtk_source_completion_words_utils_forward_word_end (iter, valid, data) ||
-	    !gtk_text_iter_equal (iter, &end))
-	{
-		return NULL;
-	}
+	buffer = gtk_text_iter_get_buffer (iter);
+	start_line = *iter;
+	gtk_text_iter_set_line_offset (&start_line, 0);
 
-	if (!gtk_source_completion_words_utils_backward_word_start (iter,
-	                                                            valid,
-	                                                            valid_start,
-	                                                            data))
-	{
-		return NULL;
-	}
+	line_text = gtk_text_buffer_get_text (buffer, &start_line, iter, FALSE);
 
-	if (gtk_text_iter_equal (iter, &end))
-	{
-		return NULL;
-	}
-	else
-	{
-		return gtk_text_iter_get_text (iter, &end);
-	}
+	word = _gtk_source_completion_words_utils_get_end_word (line_text);
 
+	g_free (line_text);
+	return word;
 }
 
 static void
@@ -241,19 +213,13 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
 	GtkTextIter iter;
 	gchar *word;
-	GtkTextBuffer *buffer;
-	GtkSourceCompletionWordsBuffer *buf;
 
 	gtk_source_completion_context_get_iter (context, &iter);
-	buffer = gtk_text_iter_get_buffer (&iter);
 
 	g_free (words->priv->word);
 	words->priv->word = NULL;
 
-	word = get_word_at_iter (&iter,
-	                         valid_word_char,
-	                         valid_start_char,
-	                         words);
+	word = get_word_at_iter (&iter);
 
 	if (word == NULL ||
 	    g_utf8_strlen (word, -1) < words->priv->minimum_word_size)
@@ -276,11 +242,6 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 
 	words->priv->word = word;
 	words->priv->word_len = strlen (word);
-
-	buf = GET_WORDS_BUFFER (buffer);
-	gtk_text_buffer_move_mark (buffer,
-	                           gtk_source_completion_words_buffer_get_mark (buf),
-	                           &iter);
 
 	/* Do first right now */
 	if (add_in_idle (words))
@@ -523,18 +484,18 @@ gtk_source_completion_words_get_start_iter (GtkSourceCompletionProvider *provide
                                             GtkSourceCompletionProposal *proposal,
                                             GtkTextIter                 *iter)
 {
-	GtkTextBuffer *buffer;
-	GtkSourceCompletionWordsBuffer *buf;
-	GtkTextIter it;
+	gchar *word;
+	glong nb_chars;
 
-	gtk_source_completion_context_get_iter (context, &it);
+	gtk_source_completion_context_get_iter (context, iter);
 
-	buffer = gtk_text_iter_get_buffer (&it);
-	buf = GET_WORDS_BUFFER (buffer);
+	word = get_word_at_iter (iter);
+	g_return_val_if_fail (word != NULL, FALSE);
 
-	gtk_text_buffer_get_iter_at_mark (buffer,
-	                                  iter,
-	                                  gtk_source_completion_words_buffer_get_mark (buf));
+	nb_chars = g_utf8_strlen (word, -1);
+	gtk_text_iter_backward_chars (iter, nb_chars);
+
+	g_free (word);
 	return TRUE;
 }
 

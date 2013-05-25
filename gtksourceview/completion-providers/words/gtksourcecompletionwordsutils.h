@@ -3,6 +3,7 @@
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2009 - Jesse van den Kieboom
+ * Copyright (C) 2013 - Sébastien Wilmet
  *
  * gtksourceview is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -34,10 +35,7 @@ gboolean	 gtk_source_completion_words_utils_forward_word_end 	(GtkTextIter    *i
 									 gpointer        data);
 
 G_GNUC_INTERNAL
-gboolean	 gtk_source_completion_words_utils_backward_word_start 	(GtkTextIter    *iter,
-									 CharacterCheck  valid,
-									 CharacterCheck  valid_start,
-									 gpointer        data);
+gchar		*_gtk_source_completion_words_utils_get_end_word	(gchar          *text);
 
 G_END_DECLS
 

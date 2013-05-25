@@ -69,9 +69,6 @@ G_GNUC_INTERNAL
 void		 gtk_source_completion_words_buffer_set_minimum_word_size	(GtkSourceCompletionWordsBuffer  *buffer,
 										 guint                            size);
 
-G_GNUC_INTERNAL
-GtkTextMark     *gtk_source_completion_words_buffer_get_mark			(GtkSourceCompletionWordsBuffer  *buffer);
-
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_COMPLETION_WORDS_BUFFER_H__ */
