@@ -340,10 +340,11 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 	gboolean finished;
 	guint num = buffer->priv->scan_batch_size;
 
-	/* Scan some regions */
-	while (buffer->priv->scan_regions)
+	/* Scan some regions (maximum 'num' lines) */
+	while (buffer->priv->scan_regions != NULL && num > 0)
 	{
 		ScanRegion *region = buffer->priv->scan_regions->data;
+		gboolean region_done = FALSE;
 		GtkTextIter start;
 		GtkTextIter end;
 
@@ -355,9 +356,20 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 		                                  &end,
 		                                  region->end);
 
-		while (gtk_text_iter_compare (&start, &end) < 0 && num)
+		while (TRUE)
 		{
 			GSList *words;
+
+			if (gtk_text_iter_compare (&start, &end) >= 0)
+			{
+				region_done = TRUE;
+				break;
+			}
+
+			if (num == 0)
+			{
+				break;
+			}
 
 			words = scan_line (buffer, &start);
 
@@ -365,17 +377,11 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 			add_words (buffer, words);
 
 			--num;
-
-			if (!gtk_text_iter_forward_line (&start))
-			{
-				num = 0;
-				break;
-			}
+			gtk_text_iter_forward_line (&start);
 		}
 
-		if (gtk_text_iter_compare (&start, &end) >= 0 || num != 0)
+		if (region_done)
 		{
-			/* Done with region */
 			scan_region_free (region);
 			buffer->priv->scan_regions = g_list_delete_link (buffer->priv->scan_regions,
 			                                                 buffer->priv->scan_regions);
@@ -385,7 +391,6 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 			gtk_text_buffer_move_mark (buffer->priv->buffer,
 			                           region->start,
 			                           &start);
-			break;
 		}
 	}
 
