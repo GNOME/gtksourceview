@@ -298,26 +298,19 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 }
 
 static void
-remove_buffer (BufferBinding *binding)
-{
-	g_object_set_data (G_OBJECT (gtk_source_completion_words_buffer_get_buffer (binding->buffer)),
-	                   BUFFER_KEY,
-	                   NULL);
-}
-
-static void
 gtk_source_completion_words_dispose (GObject *object)
 {
 	GtkSourceCompletionWords *provider = GTK_SOURCE_COMPLETION_WORDS (object);
-	GList *cp;
 
 	population_finished (provider);
 
-	cp = g_list_copy (provider->priv->buffers);
-	g_list_foreach (cp, (GFunc)remove_buffer, NULL);
+	while (provider->priv->buffers != NULL)
+	{
+		BufferBinding *binding = provider->priv->buffers->data;
+		GtkTextBuffer *buffer = gtk_source_completion_words_buffer_get_buffer (binding->buffer);
 
-	g_list_free (cp);
-	g_list_free (provider->priv->buffers);
+		gtk_source_completion_words_unregister (provider, buffer);
+	}
 
 	g_free (provider->priv->name);
 	provider->priv->name = NULL;
