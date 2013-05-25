@@ -99,9 +99,14 @@ gtk_source_completion_words_library_new (void)
 }
 
 static gint
-compare_two_items (GtkSourceCompletionWordsProposal *a,
-                   GtkSourceCompletionWordsProposal *b)
+compare_full (GtkSourceCompletionWordsProposal *a,
+	      GtkSourceCompletionWordsProposal *b)
 {
+	if (a == b)
+	{
+		return 0;
+	}
+
 	return strcmp (gtk_source_completion_words_proposal_get_word (a),
 	               gtk_source_completion_words_proposal_get_word (b));
 }
@@ -201,48 +206,26 @@ gtk_source_completion_words_library_find_next (GSequenceIter *iter,
 
 	iter = g_sequence_iter_next (iter);
 
-	if (!iter || g_sequence_iter_is_end (iter))
+	if (!g_sequence_iter_is_end (iter) &&
+	    iter_match_prefix (iter, word, len))
 	{
-		return NULL;
+		return iter;
 	}
 
-	return iter_match_prefix (iter, word, len) ? iter : NULL;
+	return NULL;
 }
 
 GSequenceIter *
 gtk_source_completion_words_library_find (GtkSourceCompletionWordsLibrary  *library,
 					  GtkSourceCompletionWordsProposal *proposal)
 {
-	GSequenceIter *iter;
-	GtkSourceCompletionWordsProposal *other;
-	const gchar *word = gtk_source_completion_words_proposal_get_word (proposal);
-	gint len = strlen (word);
-
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_LIBRARY (library), NULL);
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal), NULL);
 
-	iter = gtk_source_completion_words_library_find_first (library, word, len);
-
-	if (!iter)
-	{
-		return NULL;
-	}
-
-	do
-	{
-		other = gtk_source_completion_words_library_get_proposal (iter);
-
-		if (proposal == other)
-		{
-			return iter;
-		}
-
-		iter = g_sequence_iter_next (iter);
-	} while (!g_sequence_iter_is_end (iter) &&
-	         strcmp (gtk_source_completion_words_proposal_get_word (other),
-	                 word) == 0);
-
-	return NULL;
+	return g_sequence_lookup (library->priv->store,
+				  proposal,
+				  (GCompareDataFunc)compare_full,
+				  NULL);
 }
 
 static void
@@ -269,37 +252,37 @@ gtk_source_completion_words_library_add_word (GtkSourceCompletionWordsLibrary *l
 	g_return_val_if_fail (word != NULL, NULL);
 
 	/* Check if word already exists */
-	iter = gtk_source_completion_words_library_find_first (library, word, -1);
+	proposal = gtk_source_completion_words_proposal_new (word);
 
-	if (iter)
+	iter = gtk_source_completion_words_library_find (library, proposal);
+
+	if (iter != NULL)
 	{
-		proposal = gtk_source_completion_words_library_get_proposal (iter);
+		GtkSourceCompletionWordsProposal *iter_proposal;
 
-		if (strcmp (gtk_source_completion_words_proposal_get_word (proposal),
-		            word) == 0)
-		{
-			/* Already exists, increase the use count */
-			gtk_source_completion_words_proposal_use (proposal);
-			return proposal;
-		}
+		iter_proposal = gtk_source_completion_words_library_get_proposal (iter);
+
+		/* Already exists, increase the use count */
+		gtk_source_completion_words_proposal_use (iter_proposal);
+
+		g_object_unref (proposal);
+		return iter_proposal;
 	}
 
 	if (library->priv->locked)
 	{
+		g_object_unref (proposal);
 		return NULL;
 	}
-
-	proposal = gtk_source_completion_words_proposal_new (word);
 
 	g_signal_connect (proposal,
 	                  "unused",
 	                  G_CALLBACK (on_proposal_unused),
 	                  library);
 
-	/* Insert proposal into binary tree of words */
 	g_sequence_insert_sorted (library->priv->store,
 	                          proposal,
-	                          (GCompareDataFunc)compare_two_items,
+	                          (GCompareDataFunc)compare_full,
 	                          NULL);
 
 	return proposal;
