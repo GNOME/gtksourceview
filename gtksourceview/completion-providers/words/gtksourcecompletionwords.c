@@ -231,13 +231,7 @@ get_word_at_iter (GtkTextIter    *iter,
 	{
 		return gtk_text_iter_get_text (iter, &end);
 	}
-}
 
-static gboolean
-gtk_source_completion_words_match (GtkSourceCompletionProvider *provider,
-                                   GtkSourceCompletionContext  *context)
-{
-	return TRUE;
 }
 
 static void
@@ -561,10 +555,7 @@ gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface)
 {
 	iface->get_name = gtk_source_completion_words_get_name;
 	iface->get_icon = gtk_source_completion_words_get_icon;
-
 	iface->populate = gtk_source_completion_words_populate;
-	iface->match = gtk_source_completion_words_match;
-
 	iface->get_start_iter = gtk_source_completion_words_get_start_iter;
 	iface->get_interactive_delay = gtk_source_completion_words_get_interactive_delay;
 	iface->get_priority = gtk_source_completion_words_get_priority;
