@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-05 18:52+0000\n"
-"PO-Revision-Date: 2013-05-09 13:56+0200\n"
+"POT-Creation-Date: 2013-05-26 20:51+0000\n"
+"PO-Revision-Date: 2013-05-27 13:24+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -447,7 +447,7 @@ msgstr "ASP"
 
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/changelog.lang.h:9
 #: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
 #: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
 #: ../data/language-specs/gtk-doc.lang.h:10
@@ -775,24 +775,24 @@ msgstr "ChangeLog"
 msgid "Date"
 msgstr "Fecha"
 
-#: ../data/language-specs/changelog.lang.h:4
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#. Translators: the name of a person, not an object.
+#: ../data/language-specs/changelog.lang.h:5
 msgid "Name"
 msgstr "Nombre"
 
-#: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/changelog.lang.h:6
 msgid "E-mail address"
 msgstr "Dirección de correo-e"
 
-#: ../data/language-specs/changelog.lang.h:6
+#: ../data/language-specs/changelog.lang.h:7
 msgid "File"
 msgstr "Archivo"
 
-#: ../data/language-specs/changelog.lang.h:7
+#: ../data/language-specs/changelog.lang.h:8
 msgid "Bullet"
 msgstr "Punto"
 
-#: ../data/language-specs/changelog.lang.h:9
+#: ../data/language-specs/changelog.lang.h:10
 msgid "Release"
 msgstr "Publicación"
 
@@ -2452,6 +2452,12 @@ msgstr "Esquema de colores usando la paleta de colores de Tango"
 msgid "Document Words"
 msgstr "Palabras del documento"
 
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#| msgid "Name"
+msgctxt "Object"
+msgid "Name"
+msgstr "Nombre"
+
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
 msgid "The provider name"
 msgstr "El nombre del proveedor"
@@ -2790,7 +2796,6 @@ msgid "Window Type"
 msgstr "Tipo de ventana"
 
 #: ../gtksourceview/gtksourcegutter.c:565
-#| msgid "The gutters text window type"
 msgid "The gutters' text window type"
 msgstr "Los canales de texto del tipo de ventana"
 
@@ -2976,11 +2981,11 @@ msgstr "El fondo"
 msgid "The GIcon"
 msgstr "El GIcon"
 
-#: ../gtksourceview/gtksourcemark.c:140
+#: ../gtksourceview/gtksourcemark.c:139
 msgid "category"
 msgstr "categoría"
 
-#: ../gtksourceview/gtksourcemark.c:141
+#: ../gtksourceview/gtksourcemark.c:140
 msgid "The mark category"
 msgstr "La marca de la categoría"
 
