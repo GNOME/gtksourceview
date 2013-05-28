@@ -24,7 +24,6 @@
 <language id="julia" _name="Julia" version="2.0" _section="Scientific" >
 
   <metadata>
-    <property name="mimetypes" >text/x-julia;application/x-julia</property>
     <property name="globs" >*.jl</property>
     <property name="line-comment-start" >#</property>
   </metadata>
@@ -39,13 +38,13 @@
     <style id="character"        _name="Character"         map-to="def:character" />
     <style id="number"           _name="Number"            map-to="def:number" />
     <style id="boolean"          _name="Boolean"           map-to="def:boolean" />
-    <style id="math-constant"    _name="Math constant"     map-to="def:constant" />
-    <style id="special-constant" _name="Special constant"  map-to="def:special-constant" />
+    <style id="math-constant"    _name="Math Constant"     map-to="def:constant" />
+    <style id="special-constant" _name="Special Constant"  map-to="def:special-constant" />
     <style id="operator"         _name="Operator"          map-to="def:operator" />
     <style id="keyword"          _name="Keyword"           map-to="def:keyword" />
     <style id="macro"            _name="Macro"             map-to="def:keyword" />
-    <style id="external-command" _name="External command"  map-to="def:constant" />
-    <style id="builtin-function" _name="Built-in function" map-to="def:builtin" />
+    <style id="external-command" _name="External Command"  map-to="def:constant" />
+    <style id="builtin-function" _name="Built-in Function" map-to="def:builtin" />
     <style id="module"           _name="Module"            map-to="def:builtin" />
     <style id="type"             _name="Type"              map-to="def:type" />
   </styles>
