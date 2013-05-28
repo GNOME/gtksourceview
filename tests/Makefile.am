@@ -92,10 +92,10 @@ test_completion_model_LDADD =					\
 UNIT_TEST_PROGS += test-completion-words
 test_completion_words_SOURCES = test-completion-words.c
 test_completion_words_LDADD =					\
-	$(DEP_LIBS)						\
-	$(TESTS_LIBS)						\
+	$(top_builddir)/gtksourceview/completion-providers/words/libgtksourcecompletionwords.la	\
 	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
-	$(top_builddir)/gtksourceview/completion-providers/words/libgtksourcecompletionwords.la
+	$(DEP_LIBS)						\
+	$(TESTS_LIBS)
 
 UNIT_TEST_PROGS += test-region
 test_region_SOURCES = test-region.c
