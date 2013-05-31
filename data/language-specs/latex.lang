@@ -40,6 +40,13 @@
     <style id="command"            _name="Command"              map-to="def:keyword"/>
     <style id="verbatim"           _name="Verbatim"             map-to="def:comment"/>
     <style id="special-char"       _name="Special Character"    map-to="def:special-char"/>
+    <style id="part"               _name="Part Heading"          map-to="def:heading0"/>
+    <style id="chapter"            _name="Chapter Heading"       map-to="def:heading1"/>
+    <style id="section"            _name="Section Heading"       map-to="def:heading2"/>
+    <style id="subsection"         _name="SubSection Heading"    map-to="def:heading3"/>
+    <style id="subsubsection"      _name="SubSubSection Heading" map-to="def:heading4"/>
+    <style id="paragraph"          _name="Paragraph Heading"     map-to="def:heading5"/>
+    <style id="subparagraph"       _name="SubParagraph Heading"  map-to="def:heading6"/>
 
     <!-- names, e.g., name of package, name of environment, name of class -->
     <style id="name"               _name="Name"                 map-to="def:identifier"/>
@@ -343,6 +350,82 @@
       </include>
     </context>
 
+    <!-- headings -->
+
+    <context id="headings">
+      <include>
+        <context id="part" style-inside="true" style-ref="part" end-at-line-end="true">
+          <start>\\part\{</start>
+          <end>\}</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="common-commands"/>
+            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="latex"/>
+          </include>
+        </context>
+
+        <context id="chapter" style-inside="true" style-ref="chapter" end-at-line-end="true">
+          <start>\\chapter\{</start>
+          <end>\}</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="common-commands"/>
+            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="latex"/>
+          </include>
+        </context>
+
+        <context id="section" style-inside="true" style-ref="section" end-at-line-end="true">
+          <start>\\section\{</start>
+          <end>\}</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="common-commands"/>
+            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="latex"/>
+          </include>
+        </context>
+
+        <context id="subsection" style-inside="true" style-ref="subsection" end-at-line-end="true">
+          <start>\\subsection\{</start>
+          <end>\}</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="common-commands"/>
+            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="latex"/>
+          </include>
+        </context>
+
+        <context id="subsubsection" style-inside="true" style-ref="subsubsection" end-at-line-end="true">
+          <start>\\subsubsection\{</start>
+          <end>\}</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="common-commands"/>
+            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="latex"/>
+          </include>
+        </context>
+
+        <context id="paragraph" style-inside="true" style-ref="paragraph" end-at-line-end="true">
+          <start>\\paragraph\{</start>
+          <end>\}</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="common-commands"/>
+            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="latex"/>
+          </include>
+        </context>
+
+        <context id="subparagraph" style-inside="true" style-ref="subparagraph" end-at-line-end="true">
+          <start>\\subparagraph\{</start>
+          <end>\}</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="common-commands"/>
+            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="latex"/>
+          </include>
+        </context>
+      </include>
+    </context>
+
     <!-- math -->
 
     <!-- Commands exclusive to math mode -->
@@ -480,6 +563,7 @@
       <include>
         <context ref="comment"/>
         <context ref="verbatim"/>
+        <context ref="headings"/>
         <context ref="math"/>
         <context ref="specific-commands"/>
         <context ref="include"/>
