@@ -89,6 +89,7 @@ LANGUAGES =			\
 	R.lang			\
 	rpmspec.lang		\
 	ruby.lang		\
+	scala.lang		\
 	scheme.lang		\
 	scilab.lang		\
 	sh.lang			\
