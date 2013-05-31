@@ -66,7 +66,9 @@ enum
 	PROP_UNDERLINE,
 	PROP_UNDERLINE_SET,
 	PROP_STRIKETHROUGH,
-	PROP_STRIKETHROUGH_SET
+	PROP_STRIKETHROUGH_SET,
+	PROP_SCALE,
+	PROP_SCALE_SET
 };
 
 static void
@@ -138,6 +140,14 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
+					 PROP_SCALE,
+					 g_param_spec_string ("scale",
+							      _("Scale"),
+							      _("Text scale factor"),
+							      NULL,
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+
+	g_object_class_install_property (object_class,
 					 PROP_LINE_BACKGROUND_SET,
 					 g_param_spec_boolean ("line-background-set",
 							       _("Line background set"),
@@ -190,6 +200,14 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 					 g_param_spec_boolean ("strikethrough-set",
 							       _("Strikethrough set"),
 							       _("Whether strikethrough attribute is set"),
+							       FALSE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+
+	g_object_class_install_property (object_class,
+					 PROP_SCALE_SET,
+					 g_param_spec_boolean ("scale-set",
+							       _("Scale set"),
+							       _("Whether scale attribute is set"),
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 }
@@ -289,6 +307,20 @@ gtk_source_style_set_property (GObject      *object,
 			SET_MASK (style, STRIKETHROUGH);
 			break;
 
+		case PROP_SCALE:
+			string = g_value_get_string (value);
+			if (string != NULL)
+			{
+				style->scale = g_intern_string (string);
+				SET_MASK (style, SCALE);
+			}
+			else
+			{
+				style->scale = NULL;
+				UNSET_MASK (style, SCALE);
+			}
+			break;
+
 		case PROP_FOREGROUND_SET:
 			MODIFY_MASK (style, value, FOREGROUND);
 			break;
@@ -315,6 +347,9 @@ gtk_source_style_set_property (GObject      *object,
 
 		case PROP_STRIKETHROUGH_SET:
 			MODIFY_MASK (style, value, STRIKETHROUGH);
+			break;
+		case PROP_SCALE_SET:
+			MODIFY_MASK (style, value, SCALE);
 			break;
 
 		default:
@@ -360,6 +395,9 @@ gtk_source_style_get_property (GObject      *object,
 		case PROP_STRIKETHROUGH:
 			g_value_set_boolean (value, style->strikethrough);
 			break;
+		case PROP_SCALE:
+			g_value_set_string (value, style->scale);
+			break;
 
 		case PROP_FOREGROUND_SET:
 			GET_MASK (style, value, FOREGROUND);
@@ -387,6 +425,9 @@ gtk_source_style_get_property (GObject      *object,
 
 		case PROP_STRIKETHROUGH_SET:
 			GET_MASK (style, value, STRIKETHROUGH);
+			break;
+		case PROP_SCALE_SET:
+			GET_MASK (style, value, SCALE);
 			break;
 
 		default:
@@ -424,6 +465,7 @@ gtk_source_style_copy (const GtkSourceStyle *style)
 	copy->underline = style->underline;
 	copy->strikethrough = style->strikethrough;
 	copy->mask = style->mask;
+	copy->scale = style->scale;
 
 	return copy;
 }
@@ -513,6 +555,50 @@ _gtk_source_style_apply (const GtkSourceStyle *style,
 			g_object_set (tag, "strikethrough-set", FALSE, NULL);
 		}
 
+		if (style->mask & GTK_SOURCE_STYLE_USE_SCALE)
+		{
+			if (g_ascii_strcasecmp (style->scale, "large") == 0)
+			{
+				g_object_set (tag, "scale", PANGO_SCALE_LARGE, NULL);
+			}
+			else if (g_ascii_strcasecmp (style->scale, "x-large") == 0)
+			{
+				g_object_set (tag, "scale", PANGO_SCALE_X_LARGE, NULL);
+			}
+			else if (g_ascii_strcasecmp (style->scale, "xx-large") == 0)
+			{
+				g_object_set (tag, "scale", PANGO_SCALE_XX_LARGE, NULL);
+			}
+			else if (g_ascii_strcasecmp (style->scale, "small") == 0)
+			{
+				g_object_set (tag, "scale", PANGO_SCALE_SMALL, NULL);
+			}
+			else if (g_ascii_strcasecmp (style->scale, "x-small") == 0)
+			{
+				g_object_set (tag, "scale", PANGO_SCALE_X_SMALL, NULL);
+			}
+			else if (g_ascii_strcasecmp (style->scale, "xx-small") == 0)
+			{
+				g_object_set (tag, "scale", PANGO_SCALE_XX_SMALL, NULL);
+			}
+			else if (g_ascii_strcasecmp (style->scale, "medium") == 0)
+			{
+				g_object_set (tag, "scale", PANGO_SCALE_MEDIUM, NULL);
+			}
+			else if (g_ascii_strtod (style->scale, NULL) > 0)
+			{
+				g_object_set (tag, "scale", g_ascii_strtod (style->scale, NULL), NULL);
+			}
+			else
+			{
+				g_object_set (tag, "scale-set", FALSE, NULL);
+			}
+		}
+		else
+		{
+			g_object_set (tag, "scale-set", FALSE, NULL);
+		}
+
 		g_object_thaw_notify (G_OBJECT (tag));
 	}
 	else
@@ -525,6 +611,7 @@ _gtk_source_style_apply (const GtkSourceStyle *style,
 			      "weight-set", FALSE,
 			      "underline-set", FALSE,
 			      "strikethrough-set", FALSE,
+			      "scale-set", FALSE,
 			      NULL);
 	}
 }
