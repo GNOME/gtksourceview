@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-28 21:07+0000\n"
-"PO-Revision-Date: 2013-05-29 11:02+0200\n"
+"POT-Creation-Date: 2013-06-05 12:01+0000\n"
+"PO-Revision-Date: 2013-06-06 10:52+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -103,6 +103,7 @@ msgstr "Todo"
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
 #: ../data/language-specs/pascal.lang.h:1
 #: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/scala.lang.h:1
 #: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
 #: ../data/language-specs/systemverilog.lang.h:1
@@ -145,6 +146,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
 #: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
@@ -168,7 +170,7 @@ msgstr "Comentario"
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
 #: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
 #: ../data/language-specs/verilog.lang.h:7
 #: ../data/language-specs/xml.lang.h:13
 msgid "Error"
@@ -208,7 +210,7 @@ msgstr "Error"
 #: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
@@ -223,11 +225,13 @@ msgstr "Cadena"
 #. allow to get external functionalities
 #: ../data/language-specs/actionscript.lang.h:6
 #: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/scala.lang.h:4
 msgid "External"
 msgstr "Externo"
 
 #: ../data/language-specs/actionscript.lang.h:7
 #: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/scala.lang.h:8
 msgid "Declaration"
 msgstr "Declaración"
 
@@ -281,7 +285,8 @@ msgstr "Ámbito de la declaración"
 #: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
+#: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
 #: ../data/language-specs/sql.lang.h:6
@@ -335,6 +340,7 @@ msgstr "Valor booleano"
 #: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
 #: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/scala.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
 msgstr "Número"
@@ -370,9 +376,9 @@ msgstr "Futura palabra clave reservada"
 #: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
 #: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
-#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
+#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Tipo de dato"
 
@@ -438,7 +444,8 @@ msgstr "Número real"
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python3.lang.h:7
 #: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/sml.lang.h:8 ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/texinfo.lang.h:4
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "Carácter de escape"
@@ -472,6 +479,7 @@ msgstr "Función"
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
 #: ../data/language-specs/prolog.lang.h:8
+#: ../data/language-specs/scala.lang.h:13
 #: ../data/language-specs/sparql.lang.h:15
 msgid "Operator"
 msgstr "Operador"
@@ -1668,31 +1676,27 @@ msgid "Julia"
 msgstr "Julia"
 
 #: ../data/language-specs/julia.lang.h:7
-#| msgid "Constant"
 msgid "Math Constant"
 msgstr "Constante matemática"
 
 #: ../data/language-specs/julia.lang.h:8 ../data/language-specs/R.lang.h:7
+#: ../data/language-specs/scala.lang.h:11
 msgid "Special Constant"
 msgstr "Constante especial"
 
 #: ../data/language-specs/julia.lang.h:11
-#| msgid "Macros"
 msgid "Macro"
 msgstr "Macro"
 
 #: ../data/language-specs/julia.lang.h:12
-#| msgid "External"
 msgid "External Command"
 msgstr "Comando externo"
 
 #: ../data/language-specs/julia.lang.h:13
-#| msgid "Builtin Function"
 msgid "Built-in Function"
 msgstr "Función integrada"
 
 #: ../data/language-specs/julia.lang.h:14
-#| msgid "Module Path"
 msgid "Module"
 msgstr "Módulo"
 
@@ -1877,17 +1881,14 @@ msgid "MediaWiki"
 msgstr "MediaWiki"
 
 #: ../data/language-specs/mediawiki.lang.h:4
-#| msgid "Emphasis"
 msgid "Light Emphasis"
 msgstr "Énfasis suave"
 
 #: ../data/language-specs/mediawiki.lang.h:5
-#| msgid "Signal name"
 msgid "Signature"
 msgstr "Firma"
 
 #: ../data/language-specs/mediawiki.lang.h:7
-#| msgid "Link Text"
 msgid "Link"
 msgstr "Enlace"
 
@@ -2297,6 +2298,29 @@ msgstr "Numérico literal"
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Literal"
 msgstr "Literal"
+
+#: ../data/language-specs/scala.lang.h:2
+msgid "Scala"
+msgstr "Scala"
+
+#: ../data/language-specs/scala.lang.h:9
+#| msgid "Modifiers"
+msgid "Modifier"
+msgstr "Modificador"
+
+#: ../data/language-specs/scala.lang.h:15
+#| msgid "Builtin"
+msgid "Built In"
+msgstr "Integrado"
+
+#: ../data/language-specs/scala.lang.h:16
+#| msgid "Others"
+msgid "Other"
+msgstr "Otros"
+
+#: ../data/language-specs/scala.lang.h:17
+msgid "XML Tag"
+msgstr "Etiqueta XML"
 
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
