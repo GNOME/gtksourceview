@@ -23,31 +23,10 @@
 #include "gtksourcecompletionwordsutils.h"
 #include <string.h>
 
-gboolean
-gtk_source_completion_words_utils_forward_word_end (GtkTextIter    *iter,
-                                                    CharacterCheck  valid,
-                                                    gpointer        data)
-{
-	/* Go backward as long as there are word characters */
-	while (TRUE)
-	{
-		/* Ending a line is good */
-		if (gtk_text_iter_ends_line (iter))
-		{
-			break;
-		}
-
-		/* Check if the next character is a valid word character */
-		if (!valid (gtk_text_iter_get_char (iter), data))
-		{
-			break;
-		}
-
-		gtk_text_iter_forward_char (iter);
-	}
-
-	return TRUE;
-}
+/* Here, we work on strings. It is more efficient than working with
+ * GtkTextIters to traverse the text. Both techniques are equally difficult to
+ * implement.
+ */
 
 static gboolean
 valid_word_char (gunichar ch)
@@ -59,6 +38,93 @@ static gboolean
 valid_start_char (gunichar ch)
 {
 	return !g_unichar_isdigit (ch);
+}
+
+/* Find the next word in @text, beginning at the index @start_idx.
+ * Use only valid_word_char() to find the word boundaries.
+ * Store in @start_idx and @end_idx the word boundaries. The character at
+ * @start_idx is included in the word, but the character at @end_idx is not
+ * included in the word (it is the next char, or '\0').
+ *
+ * Returns %TRUE if a word has been found.
+ */
+static gboolean
+find_next_word (gchar *text,
+		guint *start_idx,
+		guint *end_idx)
+{
+	gchar *cur_char;
+
+	/* Find the start of the next word */
+
+	cur_char = text + *start_idx;
+
+	while (TRUE)
+	{
+		gunichar ch = g_utf8_get_char (cur_char);
+
+		if (ch == '\0')
+		{
+			return FALSE;
+		}
+
+		if (valid_word_char (ch))
+		{
+			*start_idx = cur_char - text;
+			break;
+		}
+
+		cur_char = g_utf8_next_char (cur_char);
+	}
+
+	/* Find the end of the word */
+
+	while (TRUE)
+	{
+		gunichar ch;
+
+		cur_char = g_utf8_next_char (cur_char);
+		ch = g_utf8_get_char (cur_char);
+
+		if (ch == '\0' ||
+		    !valid_word_char (ch))
+		{
+			*end_idx = cur_char - text;
+			return TRUE;
+		}
+	}
+}
+
+/* Get the list of words in @text.
+ * You must free the data with g_free(), and free the list with
+ * g_slist_free().
+ */
+GSList *
+_gtk_source_completion_words_utils_scan_words (gchar *text,
+					       guint  minimum_word_size)
+{
+	GSList *words = NULL;
+	guint start_idx = 0;
+	guint end_idx = 0;
+
+	while (find_next_word (text, &start_idx, &end_idx))
+	{
+		gint word_size = end_idx - start_idx;
+		gunichar ch = g_utf8_get_char (text + start_idx);
+
+		g_assert (word_size >= 0);
+
+		if (word_size >= minimum_word_size &&
+		    valid_start_char (ch))
+		{
+			gchar *new_word = g_strndup (text + start_idx, word_size);
+			words = g_slist_prepend (words, new_word);
+		}
+
+		start_idx = end_idx;
+	}
+
+	return words;
 }
 
 /* Get the word at the end of @text.

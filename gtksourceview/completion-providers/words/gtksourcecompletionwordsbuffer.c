@@ -3,6 +3,7 @@
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2009 - Jesse van den Kieboom
+ * Copyright (C) 2013 - Sébastien Wilmet
  *
  * gtksourceview is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -201,70 +202,32 @@ gtk_source_completion_words_buffer_init (GtkSourceCompletionWordsBuffer *self)
 	                                           (GDestroyNotify)proposal_cache_free);
 }
 
-static gboolean
-valid_word_char (gunichar ch,
-                 gpointer data)
-{
-	return g_unichar_isprint (ch) && (ch == '_' || g_unichar_isalnum (ch));
-}
-
-static gboolean
-valid_start_char (gunichar ch)
-{
-	return !g_unichar_isdigit (ch);
-}
-
 static GSList *
 scan_line (GtkSourceCompletionWordsBuffer *buffer,
            GtkTextIter                    *start)
 {
-	GSList *ret = NULL;
-	GtkTextIter end;
-	gint line = gtk_text_iter_get_line (start);
+	GtkTextIter end = *start;
+	gchar *text_line;
+	GSList *words;
 
-	while (line == gtk_text_iter_get_line (start))
+	if (!gtk_text_iter_starts_line (start))
 	{
-		gchar *word;
-
-		while (!gtk_text_iter_ends_line (start) &&
-		       !valid_word_char (gtk_text_iter_get_char (start), NULL))
-		{
-			gtk_text_iter_forward_char (start);
-		}
-
-		if (gtk_text_iter_ends_line (start))
-		{
-			break;
-		}
-
-		end = *start;
-
-		if (!gtk_source_completion_words_utils_forward_word_end (&end,
-		                                                         valid_word_char,
-		                                                         NULL))
-		{
-			break;
-		}
-
-		if (valid_start_char (gtk_text_iter_get_char (start)))
-		{
-			if (gtk_text_iter_get_offset (&end) -
-			    gtk_text_iter_get_offset (start) >= buffer->priv->minimum_word_size)
-			{
-				word = gtk_text_iter_get_text (start, &end);
-				ret = g_slist_prepend (ret, word);
-			}
-		}
-
-		*start = end;
-
-		if (!gtk_text_iter_forward_char (start))
-		{
-			break;
-		}
+		g_warning ("scan line: 'start' doesn't start a line.");
+		gtk_text_iter_set_line_offset (start, 0);
 	}
 
-	return ret;
+	gtk_text_iter_forward_to_line_end (&end);
+
+	text_line = gtk_text_buffer_get_text (buffer->priv->buffer,
+					      start,
+					      &end,
+					      FALSE);
+
+	words = _gtk_source_completion_words_utils_scan_words (text_line,
+							       buffer->priv->minimum_word_size);
+
+	g_free (text_line);
+	return words;
 }
 
 static void

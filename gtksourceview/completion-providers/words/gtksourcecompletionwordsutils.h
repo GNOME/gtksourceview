@@ -27,15 +27,12 @@
 
 G_BEGIN_DECLS
 
-typedef gboolean (*CharacterCheck)(gunichar ch, gpointer data);
+G_GNUC_INTERNAL
+GSList		*_gtk_source_completion_words_utils_scan_words		(gchar *text,
+									 guint  minimum_word_size);
 
 G_GNUC_INTERNAL
-gboolean	 gtk_source_completion_words_utils_forward_word_end 	(GtkTextIter    *iter,
-									 CharacterCheck  valid,
-									 gpointer        data);
-
-G_GNUC_INTERNAL
-gchar		*_gtk_source_completion_words_utils_get_end_word	(gchar          *text);
+gchar		*_gtk_source_completion_words_utils_get_end_word	(gchar *text);
 
 G_END_DECLS
 
