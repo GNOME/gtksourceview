@@ -211,6 +211,7 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
                                       GtkSourceCompletionContext  *context)
 {
 	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
+	GtkSourceCompletionActivation activation;
 	GtkTextIter iter;
 	gchar *word;
 
@@ -221,8 +222,11 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 
 	word = get_word_at_iter (&iter);
 
+	activation = gtk_source_completion_context_get_activation (context);
+
 	if (word == NULL ||
-	    g_utf8_strlen (word, -1) < words->priv->minimum_word_size)
+	    (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE &&
+	     g_utf8_strlen (word, -1) < words->priv->minimum_word_size))
 	{
 		g_free (word);
 		gtk_source_completion_context_add_proposals (context,
