@@ -671,7 +671,7 @@ on_library_lock (GtkSourceCompletionWordsBuffer *buffer)
 static void
 on_library_unlock (GtkSourceCompletionWordsBuffer *buffer)
 {
-	if (gtk_text_region_subregions (buffer->priv->scan_region) > 0)
+	if (!is_text_region_empty (buffer->priv->scan_region))
 	{
 		install_initiate_scan (buffer);
 	}
