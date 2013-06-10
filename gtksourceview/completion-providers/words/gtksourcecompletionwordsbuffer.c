@@ -612,11 +612,25 @@ on_delete_range_after_cb (GtkTextBuffer                  *text_buffer,
 }
 
 static void
-connect_buffer (GtkSourceCompletionWordsBuffer *buffer)
+scan_all_buffer (GtkSourceCompletionWordsBuffer *buffer)
 {
 	GtkTextIter start;
 	GtkTextIter end;
 
+	gtk_text_buffer_get_bounds (buffer->priv->buffer,
+	                            &start,
+	                            &end);
+
+	gtk_text_region_add (buffer->priv->scan_region,
+			     &start,
+			     &end);
+
+	install_initiate_scan (buffer);
+}
+
+static void
+connect_buffer (GtkSourceCompletionWordsBuffer *buffer)
+{
 	g_signal_connect_object (buffer->priv->buffer,
 				 "insert-text",
 				 G_CALLBACK (on_insert_text_before_cb),
@@ -641,15 +655,7 @@ connect_buffer (GtkSourceCompletionWordsBuffer *buffer)
 				 buffer,
 				 G_CONNECT_AFTER);
 
-	gtk_text_buffer_get_bounds (buffer->priv->buffer,
-	                            &start,
-	                            &end);
-
-	gtk_text_region_add (buffer->priv->scan_region,
-			     &start,
-			     &end);
-
-	install_initiate_scan (buffer);
+	scan_all_buffer (buffer);
 }
 
 static void
@@ -736,4 +742,7 @@ gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWor
 	g_return_if_fail (size != 0);
 
 	buffer->priv->minimum_word_size = size;
+
+	remove_all_words (buffer);
+	scan_all_buffer (buffer);
 }
