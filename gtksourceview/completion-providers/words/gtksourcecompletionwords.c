@@ -34,9 +34,10 @@
 #include "gtksourcecompletionwordslibrary.h"
 #include "gtksourcecompletionwordsbuffer.h"
 #include "gtksourcecompletionwordsutils.h"
+#include "gtksourceview/gtksource.h"
+#include "gtksourceview/gtksourceview-typebuiltins.h"
+#include "gtksourceview/gtksourceview-i18n.h"
 
-#include <gtksourceview/gtksourcecompletion.h>
-#include <gtksourceview/gtksourceview-i18n.h>
 #include <string.h>
 
 #define GTK_SOURCE_COMPLETION_WORDS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_WORDS, GtkSourceCompletionWordsPrivate))
@@ -53,7 +54,8 @@ enum
 	PROP_SCAN_BATCH_SIZE,
 	PROP_MINIMUM_WORD_SIZE,
 	PROP_INTERACTIVE_DELAY,
-	PROP_PRIORITY
+	PROP_PRIORITY,
+	PROP_ACTIVATION
 };
 
 struct _GtkSourceCompletionWordsPrivate
@@ -79,6 +81,7 @@ struct _GtkSourceCompletionWordsPrivate
 
 	gint interactive_delay;
 	gint priority;
+	GtkSourceCompletionActivation activation;
 };
 
 typedef struct
@@ -353,6 +356,10 @@ gtk_source_completion_words_set_property (GObject      *object,
 			self->priv->priority = g_value_get_int (value);
 			break;
 
+		case PROP_ACTIVATION:
+			self->priv->activation = g_value_get_flags (value);
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -395,6 +402,10 @@ gtk_source_completion_words_get_property (GObject    *object,
 
 		case PROP_PRIORITY:
 			g_value_set_int (value, self->priv->priority);
+			break;
+
+		case PROP_ACTIVATION:
+			g_value_set_flags (value, self->priv->activation);
 			break;
 
 		default:
@@ -479,6 +490,23 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 	                                                   0,
 	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+	/**
+	 * GtkSourceCompletionWords:activation:
+	 *
+	 * The type of activation.
+	 *
+	 * Since: 3.10
+	 */
+	g_object_class_install_property (object_class,
+	                                 PROP_ACTIVATION,
+					 g_param_spec_flags ("activation",
+							     _("Activation"),
+							     _("The type of activation"),
+							     GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
+							     GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE |
+							     GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
+							     G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
 	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionWordsPrivate));
 }
 
@@ -515,6 +543,12 @@ gtk_source_completion_words_get_priority (GtkSourceCompletionProvider *provider)
 	return GTK_SOURCE_COMPLETION_WORDS (provider)->priv->priority;
 }
 
+static GtkSourceCompletionActivation
+gtk_source_completion_words_get_activation (GtkSourceCompletionProvider *provider)
+{
+	return GTK_SOURCE_COMPLETION_WORDS (provider)->priv->activation;
+}
+
 static void
 gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface)
 {
@@ -524,6 +558,7 @@ gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface)
 	iface->get_start_iter = gtk_source_completion_words_get_start_iter;
 	iface->get_interactive_delay = gtk_source_completion_words_get_interactive_delay;
 	iface->get_priority = gtk_source_completion_words_get_priority;
+	iface->get_activation = gtk_source_completion_words_get_activation;
 }
 
 static void
