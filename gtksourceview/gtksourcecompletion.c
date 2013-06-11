@@ -953,6 +953,7 @@ gtk_source_completion_move_page (GtkSourceCompletion *completion,
 	}
 
 	gtk_tree_view_set_model (completion->priv->tree_view_proposals, NULL);
+	gtk_tree_view_columns_autosize (completion->priv->tree_view_proposals);
 
 	gtk_source_completion_model_set_visible_providers (completion->priv->model_proposals,
 							   visible_providers);
@@ -1205,6 +1206,8 @@ update_completion (GtkSourceCompletion        *completion,
 
 	/* Create a new CompletionModel */
 	gtk_tree_view_set_model (completion->priv->tree_view_proposals, NULL);
+	gtk_tree_view_columns_autosize (completion->priv->tree_view_proposals);
+
 	replace_model (completion);
 
 	for (item = providers_copy; item != NULL; item = g_list_next (item))
