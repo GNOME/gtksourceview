@@ -58,7 +58,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
                 <child>
                   <object class="GtkTreeViewColumn" id="tree_view_column_proposal">
                     <property name="expand">True</property>
-                    <property name="sizing">autosize</property>
                     <child>
                       <object class="GtkCellRendererPixbuf" id="cell_renderer_icon"/>
                     </child>
