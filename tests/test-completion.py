@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# WARNING: test-completion.c is more complete.
+
 import os, os.path
 import sys
 
