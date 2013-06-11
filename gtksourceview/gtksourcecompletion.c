@@ -81,13 +81,11 @@
 #include "gtksourcecompletioninfo.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
+#include "gtksourcecompletioncontainer.h"
 #include "gtksourcebuffer.h"
 #include "gtksourceview.h"
 #include "gtksourceview-marshal.h"
 #include "gtksourceview-i18n.h"
-
-#define WINDOW_WIDTH 350
-#define WINDOW_HEIGHT 200
 
 #define GTK_SOURCE_COMPLETION_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
 						  GTK_SOURCE_TYPE_COMPLETION,           \
@@ -2257,14 +2255,15 @@ init_main_window (GtkSourceCompletion *completion,
 	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->main_window),
 				    GTK_WIDGET (completion->priv->view));
 
-	gtk_widget_set_size_request (GTK_WIDGET (completion->priv->main_window),
-	                             WINDOW_WIDTH,
-	                             WINDOW_HEIGHT);
-
 	g_signal_connect (completion->priv->main_window,
 			  "configure-event",
 			  G_CALLBACK (gtk_source_completion_configure_event),
 			  completion);
+
+	g_signal_connect_swapped (completion->priv->main_window,
+				  "size-allocate",
+				  G_CALLBACK (update_window_position),
+				  completion);
 
 	g_signal_connect (completion->priv->main_window,
 			  "delete-event",
@@ -2307,21 +2306,33 @@ init_info_window (GtkSourceCompletion *completion)
 static void
 gtk_source_completion_init (GtkSourceCompletion *completion)
 {
+	GError *error = NULL;
 	GtkBuilder *builder = gtk_builder_new ();
+	GtkSourceCompletionContainer *container = _gtk_source_completion_container_new ();
+	g_object_ref_sink (container);
 
 	completion->priv = GTK_SOURCE_COMPLETION_GET_PRIVATE (completion);
 
 	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
 
+	/* GtkSourceCompletionContainer is a private type. */
+	gtk_builder_expose_object (builder, "completion_container", G_OBJECT (container));
+
 	gtk_builder_add_from_resource (builder,
 				       "/org/gnome/gtksourceview/ui/gtksourcecompletion.ui",
-				       NULL);
+				       &error);
+
+	if (error != NULL)
+	{
+		g_error ("Error while loading the completion UI: %s", error->message);
+	}
 
 	init_tree_view (completion, builder);
 	init_main_window (completion, builder);
 	init_info_window (completion);
 
 	g_object_unref (builder);
+	g_object_unref (container);
 }
 
 void

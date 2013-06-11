@@ -26,6 +26,7 @@
 
 G_BEGIN_DECLS
 
+typedef struct _GtkSourceCompletionContainer	GtkSourceCompletionContainer;
 typedef struct _GtkSourceCompletionModel	GtkSourceCompletionModel;
 typedef struct _GtkSourceContextEngine		GtkSourceContextEngine;
 typedef struct _GtkSourceEngine			GtkSourceEngine;

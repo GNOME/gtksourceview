@@ -45,7 +45,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkScrolledWindow" id="scrolled_window_completion">
+          <object class="GtkSourceCompletionContainer" id="completion_container">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
