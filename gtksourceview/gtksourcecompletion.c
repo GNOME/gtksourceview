@@ -192,27 +192,31 @@ scroll_to_iter (GtkSourceCompletion *completion,
 	GtkTreePath *path;
 	GtkTreeIter prev_iter = *iter;
 
-	/* If we want to scroll to the first proposal of a provider, it's better
-	 * to show the header too, if there is a header. */
+	path = gtk_tree_model_get_path (GTK_TREE_MODEL (completion->priv->model_proposals),
+					iter);
+
+	gtk_tree_view_scroll_to_cell (completion->priv->tree_view_proposals,
+				      path, NULL,
+				      FALSE, 0, 0);
+	gtk_tree_path_free (path);
+
 	if (gtk_source_completion_model_iter_previous (completion->priv->model_proposals, &prev_iter) &&
 	    gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, &prev_iter))
 	{
+		/* If we want to scroll to the first proposal of a provider,
+		 * it's better to show the header too, if there is a header.
+		 * We first scroll to the proposal, and then to the
+		 * header, so we are sure that the proposal is visible.
+		 */
+
 		path = gtk_tree_model_get_path (GTK_TREE_MODEL (completion->priv->model_proposals),
 						&prev_iter);
-	}
-	else
-	{
-		path = gtk_tree_model_get_path (GTK_TREE_MODEL (completion->priv->model_proposals),
-						iter);
-	}
 
-	gtk_tree_view_scroll_to_cell (completion->priv->tree_view_proposals,
-				      path,
-				      NULL,
-				      FALSE,
-				      0,
-				      0);
-	gtk_tree_path_free (path);
+		gtk_tree_view_scroll_to_cell (completion->priv->tree_view_proposals,
+					      path, NULL,
+					      FALSE, 0, 0);
+		gtk_tree_path_free (path);
+	}
 }
 
 /* Returns %TRUE if a proposal is selected.
