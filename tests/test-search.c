@@ -424,13 +424,10 @@ test_search_init (TestSearch *search)
 	gtk_widget_override_font (GTK_WIDGET (search->priv->source_view), font);
 	pango_font_description_free (font);
 
-	/* Workaround for https://bugzilla.gnome.org/show_bug.cgi?id=643732:
-	 * "Source view is created with a GtkTextBuffer instead of GtkSourceBuffer"
-	 */
-	search->priv->source_buffer = gtk_source_buffer_new (NULL);
+	search->priv->source_buffer = GTK_SOURCE_BUFFER (
+		gtk_text_view_get_buffer (GTK_TEXT_VIEW (search->priv->source_view)));
 
-	gtk_text_view_set_buffer (GTK_TEXT_VIEW (search->priv->source_view),
-				  GTK_TEXT_BUFFER (search->priv->source_buffer));
+	g_object_ref (search->priv->source_buffer);
 
 	open_file (search, TOP_SRCDIR "/gtksourceview/gtksourcesearchcontext.c");
 

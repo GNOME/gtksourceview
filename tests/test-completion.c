@@ -339,7 +339,6 @@ create_window (void)
 	GError *error = NULL;
 	GtkWindow *window;
 	GtkSourceView *source_view;
-	GtkSourceBuffer *source_buffer;
 	GtkSourceCompletion *completion;
 	GtkCheckButton *remember_info_visibility;
 	GtkCheckButton *select_on_show;
@@ -373,16 +372,6 @@ create_window (void)
 	enable_random_provider = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_random_provider"));
 	nb_fixed_proposals = GTK_SPIN_BUTTON (gtk_builder_get_object (builder, "spinbutton_nb_fixed_proposals"));
 	nb_random_proposals = GTK_SPIN_BUTTON (gtk_builder_get_object (builder, "spinbutton_nb_random_proposals"));
-
-	/* Workaround for https://bugzilla.gnome.org/show_bug.cgi?id=643732:
-	 * "Source view is created with a GtkTextBuffer instead of GtkSourceBuffer"
-	 */
-	source_buffer = gtk_source_buffer_new (NULL);
-
-	gtk_text_view_set_buffer (GTK_TEXT_VIEW (source_view),
-				  GTK_TEXT_BUFFER (source_buffer));
-
-	g_object_unref (source_buffer);
 
 	completion = gtk_source_view_get_completion (source_view);
 
