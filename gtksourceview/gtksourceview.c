@@ -201,6 +201,7 @@ static void 	gtk_source_view_finalize			(GObject            *object);
 static void	gtk_source_view_undo 			(GtkSourceView      *view);
 static void	gtk_source_view_redo 			(GtkSourceView      *view);
 static void	gtk_source_view_show_completion_real	(GtkSourceView      *view);
+static GtkTextBuffer * gtk_source_view_create_buffer	(GtkTextView        *view);
 static void 	set_source_buffer 			(GtkSourceView      *view,
 								 GtkTextBuffer      *buffer);
 static void	gtk_source_view_populate_popup 		(GtkTextView        *view,
@@ -290,6 +291,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
+	textview_class->create_buffer = gtk_source_view_create_buffer;
 
 	klass->undo = gtk_source_view_undo;
 	klass->redo = gtk_source_view_redo;
@@ -2465,6 +2467,12 @@ calculate_real_tab_width (GtkSourceView *view, guint tab_size, gchar c)
 		tab_width = -1;
 
 	return tab_width;
+}
+
+static GtkTextBuffer *
+gtk_source_view_create_buffer (GtkTextView *text_view)
+{
+	return GTK_TEXT_BUFFER (gtk_source_buffer_new (NULL));
 }
 
 
