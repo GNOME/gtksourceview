@@ -2149,10 +2149,10 @@ init_main_window (GtkSourceCompletion *completion,
 	                             WINDOW_WIDTH,
 	                             WINDOW_HEIGHT);
 
-	g_signal_connect_after (completion->priv->main_window,
-				"configure-event",
-				G_CALLBACK (gtk_source_completion_configure_event),
-				completion);
+	g_signal_connect (completion->priv->main_window,
+			  "configure-event",
+			  G_CALLBACK (gtk_source_completion_configure_event),
+			  completion);
 
 	g_signal_connect (completion->priv->main_window,
 			  "delete-event",
