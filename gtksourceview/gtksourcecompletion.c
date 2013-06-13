@@ -1371,14 +1371,14 @@ populating_done (GtkSourceCompletion        *completion,
 
 	update_selection_label (completion);
 
-	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
-	{
-		g_signal_emit (completion, signals[SHOW], 0);
-	}
-
 	if (!check_first_selected (completion))
 	{
 		update_window_position (completion);
+	}
+
+	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
+	{
+		g_signal_emit (completion, signals[SHOW], 0);
 	}
 }
 
