@@ -1472,11 +1472,6 @@ populating_done (GtkSourceCompletion        *completion,
 	update_selection_label (completion);
 	update_bottom_bar_visibility (completion);
 
-	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
-	{
-		g_signal_emit (completion, signals[SHOW], 0);
-	}
-
 	if (!check_first_selected (completion))
 	{
 		/* Update the window position only if the first proposal is not
@@ -1484,6 +1479,11 @@ populating_done (GtkSourceCompletion        *completion,
 		 * already be updated.
 		 */
 		update_window_position (completion);
+	}
+
+	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
+	{
+		g_signal_emit (completion, signals[SHOW], 0);
 	}
 }
 
