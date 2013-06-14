@@ -1,6 +1,6 @@
 @GNOME_CODE_COVERAGE_RULES@
 
-INCLUDES = 				\
+AM_CPPFLAGS = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
 	-I$(top_srcdir) -I$(srcdir) 	\
