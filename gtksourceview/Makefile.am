@@ -218,7 +218,7 @@ if HAVE_INTROSPECTION
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS = GtkSource-3.0.gir
 
-GtkSource-3.0.gir: libgtksourceview-3.0.la
+GtkSource-3.0.gir: libgtksourceview-3.0.la $(BUILT_SOURCES)
 INTROSPECTION_SCANNER_ARGS =			\
 	-I$(top_srcdir)				\
 	--c-include=gtksourceview/gtksource.h	\
