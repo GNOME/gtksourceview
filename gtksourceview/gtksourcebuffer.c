@@ -30,10 +30,10 @@
 #include <string.h>
 #include <gtk/gtk.h>
 
+#include "gtksourcebuffer.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
-#include "gtksourcebuffer.h"
 #include "gtksourceundomanager.h"
 #include "gtksourceview-marshal.h"
 #include "gtksourcestylescheme.h"
@@ -42,6 +42,7 @@
 #include "gtksourceundomanagerdefault.h"
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourcemark.h"
+#include "gtksourcesearch.h"
 
 /**
  * SECTION:buffer
@@ -49,32 +50,76 @@
  * @Title: GtkSourceBuffer
  * @See_also: #GtkTextBuffer, #GtkSourceView
  *
- * The #GtkSourceBuffer object is the model for #GtkSourceView widgets.
- * It extends the #GtkTextBuffer object by adding features useful to display
- * and edit source code as syntax highlighting and bracket matching. It
- * also implements support for undo/redo operations.
- *
- * To create a #GtkSourceBuffer use gtk_source_buffer_new() or
- * gtk_source_buffer_new_with_language(). The second form is just a convenience
- * function which allows you to initially set a #GtkSourceLanguage.
- *
- * By default highlighting is enabled, but you can disable it with
- * gtk_source_buffer_set_highlight_syntax().
- *
- * A custom #GtkSourceUndoManager can be implemented and set with
- * gtk_source_buffer_set_undo_manager(). However the default implementation
- * should be suitable for most uses. By default, actions that can be undone or
- * redone are defined as groups of operations between a call to
- * gtk_text_buffer_begin_user_action() and gtk_text_buffer_end_user_action(). In
- * general, this happens whenever the user presses any key which modifies the
- * buffer. But the default undo manager will try to merge similar consecutive
- * actions, such as multiple character insertions on the same line, into one
- * action. But, inserting a newline starts a new action.
- *
- * The default undo manager remembers the "modified" state of the buffer, and
- * restore it when an action is undone or redone. It can be useful in a text
- * editor to know whether the file is saved. See gtk_text_buffer_get_modified()
- * and gtk_text_buffer_set_modified().
+ * <para>
+ *   The #GtkSourceBuffer object is the model for #GtkSourceView widgets.
+ *   It extends the #GtkTextBuffer object by adding features useful to display
+ *   and edit source code such as syntax highlighting and bracket matching. It
+ *   also implements support for undo/redo operations, and for the search and
+ *   replace.
+ * </para>
+ * <para>
+ *   To create a #GtkSourceBuffer use gtk_source_buffer_new() or
+ *   gtk_source_buffer_new_with_language(). The second form is just a convenience
+ *   function which allows you to initially set a #GtkSourceLanguage.
+ * </para>
+ * <para>
+ *   By default highlighting is enabled, but you can disable it with
+ *   gtk_source_buffer_set_highlight_syntax().
+ * </para>
+ * <refsect2>
+ *   <title>Undo and Redo</title>
+ *   <para>
+ *     A custom #GtkSourceUndoManager can be implemented and set with
+ *     gtk_source_buffer_set_undo_manager(). However the default implementation
+ *     should be suitable for most uses. By default, actions that can be undone or
+ *     redone are defined as groups of operations between a call to
+ *     gtk_text_buffer_begin_user_action() and gtk_text_buffer_end_user_action(). In
+ *     general, this happens whenever the user presses any key which modifies the
+ *     buffer. But the default undo manager will try to merge similar consecutive
+ *     actions, such as multiple character insertions on the same line, into one
+ *     action. But, inserting a newline starts a new action.
+ *   </para>
+ *   <para>
+ *     The default undo manager remembers the "modified" state of the buffer, and
+ *     restore it when an action is undone or redone. It can be useful in a text
+ *     editor to know whether the file is saved. See gtk_text_buffer_get_modified()
+ *     and gtk_text_buffer_set_modified().
+ *   </para>
+ * </refsect2>
+ * <refsect2>
+ *   <title>Search and Replace</title>
+ *   <para>
+ *     To set the text to search, use gtk_source_buffer_set_search_text(). The
+ *     search occurrences will be highlighted, and the total number of
+ *     occurrences can be retrieved with
+ *     gtk_source_buffer_get_search_occurrences_count(). The buffer is scanned
+ *     asynchronously, so it doesn't block the user interface. For each search,
+ *     the buffer is scanned at most once. After that, navigating through the
+ *     occurrences doesn't require to re-scan the buffer entirely.
+ *   </para>
+ *   <para>
+ *     You can tune the search with the following properties:
+ *     #GtkSourceBuffer:case-sensitive-search,
+ *     #GtkSourceBuffer:search-at-word-boundaries and
+ *     #GtkSourceBuffer:search-wrap-around.
+ *   </para>
+ *   <para>
+ *     To search forward, use gtk_source_buffer_forward_search() or
+ *     gtk_source_buffer_forward_search_async() for the asynchronous version.
+ *     The backward search is done similarly. To replace a search match, or all
+ *     matches, use gtk_source_buffer_search_replace() and
+ *     gtk_source_buffer_search_replace_all().
+ *   </para>
+ *   <para>
+ *     To know the position of a certain match, use
+ *     gtk_source_buffer_get_search_occurrence_position().
+ *   </para>
+ *   <para>
+ *     In the GtkSourceView source code, there is an example of how to use the
+ *     search and replace API: see the tests/test-search-ui.c file. It is a mini
+ *     application for the search and replace, with a basic user interface.
+ *   </para>
+ * </refsect2>
  */
 
 /*
@@ -120,7 +165,12 @@ enum {
 	PROP_MAX_UNDO_LEVELS,
 	PROP_LANGUAGE,
 	PROP_STYLE_SCHEME,
-	PROP_UNDO_MANAGER
+	PROP_UNDO_MANAGER,
+	PROP_SEARCH_TEXT,
+	PROP_SEARCH_OCCURRENCES_COUNT,
+	PROP_CASE_SENSITIVE_SEARCH,
+	PROP_SEARCH_AT_WORD_BOUNDARIES,
+	PROP_SEARCH_WRAP_AROUND
 };
 
 struct _GtkSourceBufferPrivate
@@ -139,6 +189,8 @@ struct _GtkSourceBufferPrivate
 
 	GtkSourceUndoManager  *undo_manager;
 	gint                   max_undo_levels;
+
+	GtkSourceSearch       *search;
 
 	guint                  highlight_syntax : 1;
 	guint                  highlight_brackets : 1;
@@ -335,6 +387,87 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	                                                      GTK_SOURCE_TYPE_UNDO_MANAGER,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+	/**
+	 * GtkSourceBuffer:search-text:
+	 *
+	 * A search string, or %NULL if the search is disabled.
+	 *
+	 * Since: 3.10
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_SEARCH_TEXT,
+					 g_param_spec_string ("search-text",
+							      _("Search text"),
+							      _("The text to search"),
+							      NULL,
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	/**
+	 * GtkSourceBuffer:search-occurrences-count:
+	 *
+	 * The total number of search occurrences. If the search is disabled,
+	 * the value is 0.
+	 *
+	 * Since: 3.10
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_SEARCH_OCCURRENCES_COUNT,
+					 g_param_spec_uint ("search-occurrences-count",
+							    _("Search occurrences count"),
+							    _("Total number of search occurrences"),
+							    0,
+							    G_MAXUINT,
+							    0,
+							    G_PARAM_READABLE));
+
+	/**
+	 * GtkSourceBuffer:case-sensitive-search:
+	 *
+	 * Whether the search is case sensitive.
+	 *
+	 * Since: 3.10
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_CASE_SENSITIVE_SEARCH,
+					 g_param_spec_boolean ("case-sensitive-search",
+							       _("Case sensitive search"),
+							       _("Case sensitive search"),
+							       FALSE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	/**
+	 * GtkSourceBuffer:search-at-word-boundaries:
+	 *
+	 * If %TRUE, a search match must start and end a word. The match can
+	 * span multiple words.
+	 *
+	 * Since: 3.10
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_SEARCH_AT_WORD_BOUNDARIES,
+					 g_param_spec_boolean ("search-at-word-boundaries",
+							       _("Search at word boundaries"),
+							       _("Search at word boundaries"),
+							       FALSE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	/**
+	 * GtkSourceBuffer:search-wrap-around:
+	 *
+	 * For a forward search, continue at the beginning of the buffer if no
+	 * search occurrence is found. For a backward search, continue at the
+	 * end of the buffer.
+	 *
+	 * Since: 3.10
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_SEARCH_WRAP_AROUND,
+					 g_param_spec_boolean ("search-wrap-around",
+							       _("Search: wrap around"),
+							       _("Search: wrap around"),
+							       TRUE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
 	param_types[0] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
 	param_types[1] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
 
@@ -471,6 +604,8 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 
 	if (priv->style_scheme != NULL)
 		g_object_ref (priv->style_scheme);
+
+	priv->search = _gtk_source_search_new (buffer);
 }
 
 static void
@@ -513,6 +648,7 @@ gtk_source_buffer_dispose (GObject *object)
 	g_clear_object (&buffer->priv->highlight_engine);
 	g_clear_object (&buffer->priv->language);
 	g_clear_object (&buffer->priv->style_scheme);
+	g_clear_object (&buffer->priv->search);
 
 	G_OBJECT_CLASS (gtk_source_buffer_parent_class)->dispose (object);
 }
@@ -559,6 +695,26 @@ gtk_source_buffer_set_property (GObject      *object,
 		case PROP_UNDO_MANAGER:
 			gtk_source_buffer_set_undo_manager (source_buffer,
 			                                    g_value_get_object (value));
+			break;
+
+		case PROP_SEARCH_TEXT:
+			_gtk_source_search_set_text (source_buffer->priv->search,
+						     g_value_get_string (value));
+			break;
+
+		case PROP_CASE_SENSITIVE_SEARCH:
+			_gtk_source_search_set_case_sensitive (source_buffer->priv->search,
+							       g_value_get_boolean (value));
+			break;
+
+		case PROP_SEARCH_AT_WORD_BOUNDARIES:
+			_gtk_source_search_set_at_word_boundaries (source_buffer->priv->search,
+								   g_value_get_boolean (value));
+			break;
+
+		case PROP_SEARCH_WRAP_AROUND:
+			_gtk_source_search_set_wrap_around (source_buffer->priv->search,
+							    g_value_get_boolean (value));
 			break;
 
 		default:
@@ -614,6 +770,26 @@ gtk_source_buffer_get_property (GObject    *object,
 
 		case PROP_UNDO_MANAGER:
 			g_value_set_object (value, source_buffer->priv->undo_manager);
+			break;
+
+		case PROP_SEARCH_TEXT:
+			g_value_set_string (value, _gtk_source_search_get_text (source_buffer->priv->search));
+			break;
+
+		case PROP_SEARCH_OCCURRENCES_COUNT:
+			g_value_set_uint (value, _gtk_source_search_get_occurrences_count (source_buffer->priv->search));
+			break;
+
+		case PROP_CASE_SENSITIVE_SEARCH:
+			g_value_set_boolean (value, _gtk_source_search_get_case_sensitive (source_buffer->priv->search));
+			break;
+
+		case PROP_SEARCH_AT_WORD_BOUNDARIES:
+			g_value_set_boolean (value, _gtk_source_search_get_at_word_boundaries (source_buffer->priv->search));
+			break;
+
+		case PROP_SEARCH_WRAP_AROUND:
+			g_value_set_boolean (value, _gtk_source_search_get_wrap_around (source_buffer->priv->search));
 			break;
 
 		default:
@@ -1527,10 +1703,17 @@ _gtk_source_buffer_update_highlight (GtkSourceBuffer   *buffer,
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	if (buffer->priv->highlight_engine != NULL)
+	{
 		_gtk_source_engine_update_highlight (buffer->priv->highlight_engine,
 						     start,
 						     end,
 						     synchronous);
+	}
+
+	_gtk_source_search_update_highlight (buffer->priv->search,
+					     start,
+					     end,
+					     synchronous);
 }
 
 /**
@@ -2470,4 +2653,487 @@ gtk_source_buffer_get_undo_manager (GtkSourceBuffer *buffer)
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
 	return buffer->priv->undo_manager;
+}
+
+/**
+ * gtk_source_buffer_set_search_text:
+ * @buffer: a #GtkSourceBuffer.
+ * @text: (allow-none): the nul-terminated text to search, or %NULL to disable the search.
+ *
+ * Sets the text to search. If @text is %NULL or is empty, the search will be
+ * disabled. A copy of @text will be made, so you can safely free @text after
+ * a call to this function.
+ *
+ * You may be interested to call gtk_source_utils_unescape_search_text() before
+ * this function.
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_buffer_set_search_text (GtkSourceBuffer *buffer,
+				   const gchar     *text)
+{
+	const gchar *cur_text;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	cur_text = _gtk_source_search_get_text (buffer->priv->search);
+
+	if (cur_text == NULL && (text == NULL || *text == '\0'))
+	{
+		return;
+	}
+
+	if (g_strcmp0 (cur_text, text) != 0)
+	{
+		_gtk_source_search_set_text (buffer->priv->search, text);
+		g_object_notify (G_OBJECT (buffer), "search-text");
+	}
+}
+
+/**
+ * gtk_source_buffer_get_search_text:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Gets the text to search. The return value must not be freed.
+ *
+ * You may be interested to call gtk_source_utils_escape_search_text() after
+ * this function.
+ *
+ * Returns: the text to search, or %NULL if the search is disabled.
+ * Since: 3.10
+ */
+const gchar *
+gtk_source_buffer_get_search_text (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
+
+	return _gtk_source_search_get_text (buffer->priv->search);
+}
+
+/**
+ * gtk_source_buffer_set_case_sensitive_search:
+ * @buffer: a #GtkSourceBuffer.
+ * @case_sensitive: the setting.
+ *
+ * Enables or disables the case sensitivity for the search.
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_buffer_set_case_sensitive_search (GtkSourceBuffer *buffer,
+					     gboolean         case_sensitive)
+{
+	gboolean cur_val;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	case_sensitive = case_sensitive != FALSE;
+
+	cur_val = _gtk_source_search_get_case_sensitive (buffer->priv->search);
+
+	if (cur_val != case_sensitive)
+	{
+		_gtk_source_search_set_case_sensitive (buffer->priv->search,
+						       case_sensitive);
+
+		g_object_notify (G_OBJECT (buffer), "case-sensitive-search");
+	}
+}
+
+/**
+ * gtk_source_buffer_get_case_sensitive_search:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Returns: whether the search is case sensitive.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_get_case_sensitive_search (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return _gtk_source_search_get_case_sensitive (buffer->priv->search);
+}
+
+/**
+ * gtk_source_buffer_set_search_at_word_boundaries:
+ * @buffer: a #GtkSourceBuffer.
+ * @at_word_boundaries: the setting.
+ *
+ * Change whether the search is done at word boundaries. If @at_word_boundaries
+ * is %TRUE, a search match must start and end a word. The match can span
+ * multiple words. See also gtk_text_iter_starts_word() and
+ * gtk_text_iter_ends_word().
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_buffer_set_search_at_word_boundaries (GtkSourceBuffer *buffer,
+						 gboolean         at_word_boundaries)
+{
+	gboolean cur_val;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	at_word_boundaries = at_word_boundaries != FALSE;
+
+	cur_val = _gtk_source_search_get_at_word_boundaries (buffer->priv->search);
+
+	if (cur_val != at_word_boundaries)
+	{
+		_gtk_source_search_set_at_word_boundaries (buffer->priv->search,
+							   at_word_boundaries);
+
+		g_object_notify (G_OBJECT (buffer), "search-at-word-boundaries");
+	}
+}
+
+/**
+ * gtk_source_buffer_get_search_at_word_boundaries:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Returns: whether to search at word boundaries.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_get_search_at_word_boundaries (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return _gtk_source_search_get_at_word_boundaries (buffer->priv->search);
+}
+
+/**
+ * gtk_source_buffer_set_search_wrap_around:
+ * @buffer: a #GtkSourceBuffer.
+ * @wrap_around: the setting.
+ *
+ * Enables or disables the wrap around search. If @wrap_around is %TRUE, the
+ * forward search continues at the beginning of the buffer if no search
+ * occurrences are found. Similarly, the backward search continues to search at
+ * the end of the buffer.
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_buffer_set_search_wrap_around (GtkSourceBuffer *buffer,
+					  gboolean         wrap_around)
+{
+	gboolean cur_val;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	wrap_around = wrap_around != FALSE;
+
+	cur_val = _gtk_source_search_get_wrap_around (buffer->priv->search);
+
+	if (cur_val != wrap_around)
+	{
+		_gtk_source_search_set_wrap_around (buffer->priv->search,
+						    wrap_around);
+
+		g_object_notify (G_OBJECT (buffer), "search-wrap-around");
+	}
+}
+
+/**
+ * gtk_source_buffer_get_search_wrap_around:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Returns: whether to wrap around the search.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_get_search_wrap_around (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return _gtk_source_search_get_wrap_around (buffer->priv->search);
+}
+
+/**
+ * gtk_source_buffer_get_search_occurrences_count:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Gets the total number of search occurrences.
+ *
+ * Returns: the total number of search occurrences.
+ * Since: 3.10
+ */
+guint
+gtk_source_buffer_get_search_occurrences_count (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), 0);
+
+	return _gtk_source_search_get_occurrences_count (buffer->priv->search);
+}
+
+/**
+ * gtk_source_buffer_get_search_occurrence_position:
+ * @buffer: a #GtkSourceBuffer.
+ * @match_start: the start of the occurrence.
+ * @match_end: the end of the occurrence.
+ *
+ * Gets the position of a search occurrence. If the buffer is not already fully
+ * scanned, the position may be unknown, and -1 is returned. Therefore you
+ * should call this function when you know that the buffer is fully scanned.
+ *
+ * Returns: the position of the search occurrence. The first occurrence has the
+ * position 1 (not 0). Returns 0 if @match_start and @match_end doesn't delimit
+ * an occurrence. Returns -1 if the position is not yet known.
+ *
+ * Since: 3.10
+ */
+gint
+gtk_source_buffer_get_search_occurrence_position (GtkSourceBuffer   *buffer,
+						  const GtkTextIter *match_start,
+						  const GtkTextIter *match_end)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), -1);
+	g_return_val_if_fail (match_start != NULL, -1);
+	g_return_val_if_fail (match_end != NULL, -1);
+
+	return _gtk_source_search_get_occurrence_position (buffer->priv->search,
+							   match_start,
+							   match_end);
+}
+
+/**
+ * gtk_source_buffer_forward_search:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: start of search.
+ * @match_start: (out) (allow-none): return location for start of match, or %NULL.
+ * @match_end: (out) (allow-none): return location for end of match, or %NULL.
+ *
+ * Synchronous forward search.
+ *
+ * Returns: whether a match was found.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_forward_search (GtkSourceBuffer   *buffer,
+				  const GtkTextIter *iter,
+				  GtkTextIter       *match_start,
+				  GtkTextIter       *match_end)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
+
+	return _gtk_source_search_forward (buffer->priv->search,
+					   iter,
+					   match_start,
+					   match_end);
+}
+
+/**
+ * gtk_source_buffer_forward_search_async:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: start of search.
+ * @cancellable: (allow-none): a #GCancellable, or %NULL.
+ * @callback: a #GAsyncReadyCallback to call when the operation is finished.
+ * @user_data: the data to pass to the @callback function.
+ *
+ * Asynchronous forward search. See the #GAsyncResult documentation to know
+ * how to use this function.
+ *
+ * If the operation is cancelled, the @callback will only be called if
+ * @cancellable was not %NULL. gtk_source_buffer_forward_search_async() takes
+ * ownership of @cancellable, so you can unref it after calling this function.
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_buffer_forward_search_async (GtkSourceBuffer     *buffer,
+					const GtkTextIter   *iter,
+					GCancellable        *cancellable,
+					GAsyncReadyCallback  callback,
+					gpointer             user_data)
+{
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (iter != NULL);
+
+	_gtk_source_search_forward_async (buffer->priv->search,
+					  iter,
+					  cancellable,
+					  callback,
+					  user_data);
+}
+
+/**
+ * gtk_source_buffer_forward_search_finish:
+ * @buffer: a #GtkSourceBuffer.
+ * @result: a #GAsyncResult.
+ * @match_start: (out) (allow-none): return location for start of match, or %NULL.
+ * @match_end: (out) (allow-none): return location for end of match, or %NULL.
+ * @error: a #GError, or %NULL.
+ *
+ * Finishes a forward search started with
+ * gtk_source_buffer_forward_search_async().
+ *
+ * Returns: whether a match was found.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_forward_search_finish (GtkSourceBuffer  *buffer,
+					 GAsyncResult     *result,
+					 GtkTextIter      *match_start,
+					 GtkTextIter      *match_end,
+					 GError          **error)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return _gtk_source_search_forward_finish (buffer->priv->search,
+						  result,
+						  match_start,
+						  match_end,
+						  error);
+}
+
+/**
+ * gtk_source_buffer_backward_search:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: start of search.
+ * @match_start: (out) (allow-none): return location for start of match, or %NULL.
+ * @match_end: (out) (allow-none): return location for end of match, or %NULL.
+ *
+ * Synchronous backward search.
+ *
+ * Returns: whether a match was found.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_backward_search (GtkSourceBuffer   *buffer,
+				   const GtkTextIter *iter,
+				   GtkTextIter       *match_start,
+				   GtkTextIter       *match_end)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (iter != NULL, FALSE);
+
+	return _gtk_source_search_backward (buffer->priv->search,
+					    iter,
+					    match_start,
+					    match_end);
+}
+
+/**
+ * gtk_source_buffer_backward_search_async:
+ * @buffer: a #GtkSourceBuffer.
+ * @iter: start of search.
+ * @cancellable: (allow-none): a #GCancellable, or %NULL.
+ * @callback: a #GAsyncReadyCallback to call when the operation is finished.
+ * @user_data: the data to pass to the @callback function.
+ *
+ * Asynchronous backward search. See the #GAsyncResult documentation to know
+ * how to use this function.
+ *
+ * If the operation is cancelled, the @callback will only be called if
+ * @cancellable was not %NULL. gtk_source_buffer_backward_search_async() takes
+ * ownership of @cancellable, so you can unref it after calling this function.
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_buffer_backward_search_async (GtkSourceBuffer     *buffer,
+					 const GtkTextIter   *iter,
+					 GCancellable        *cancellable,
+					 GAsyncReadyCallback  callback,
+					 gpointer             user_data)
+{
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (iter != NULL);
+
+	_gtk_source_search_backward_async (buffer->priv->search,
+					   iter,
+					   cancellable,
+					   callback,
+					   user_data);
+}
+
+/**
+ * gtk_source_buffer_backward_search_finish:
+ * @buffer: a #GtkSourceBuffer.
+ * @result: a #GAsyncResult.
+ * @match_start: (out) (allow-none): return location for start of match, or %NULL.
+ * @match_end: (out) (allow-none): return location for end of match, or %NULL.
+ * @error: a #GError, or %NULL.
+ *
+ * Finishes a backward search started with
+ * gtk_source_buffer_backward_search_async().
+ *
+ * Returns: whether a match was found.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_backward_search_finish (GtkSourceBuffer  *buffer,
+					  GAsyncResult     *result,
+					  GtkTextIter      *match_start,
+					  GtkTextIter      *match_end,
+					  GError          **error)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return _gtk_source_search_backward_finish (buffer->priv->search,
+						   result,
+						   match_start,
+						   match_end,
+						   error);
+}
+
+/**
+ * gtk_source_buffer_search_replace:
+ * @buffer: a #GtkSourceBuffer.
+ * @match_start: the start of the match to replace.
+ * @match_end: the end of the match to replace.
+ * @replace: the replacement text.
+ * @replace_length: the length of @replace in bytes, or -1.
+ *
+ * Replaces a search match by another text. If @match_start and @match_end
+ * doesn't correspond to a search match, %FALSE is returned.
+ *
+ * Returns: whether the match has been replaced.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_search_replace (GtkSourceBuffer   *buffer,
+				  const GtkTextIter *match_start,
+				  const GtkTextIter *match_end,
+				  const gchar       *replace,
+				  gint               replace_length)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+	g_return_val_if_fail (match_start != NULL, FALSE);
+	g_return_val_if_fail (match_end != NULL, FALSE);
+	g_return_val_if_fail (replace != NULL, FALSE);
+
+	return _gtk_source_search_replace (buffer->priv->search,
+					   match_start,
+					   match_end,
+					   replace,
+					   replace_length);
+}
+
+/**
+ * gtk_source_buffer_search_replace_all:
+ * @buffer: a #GtkSourceBuffer.
+ * @replace: the replacement text.
+ * @replace_length: the length of @replace in bytes, or -1.
+ *
+ * Replaces all search matches by another text.
+ *
+ * Returns: the number of replaced matches.
+ * Since: 3.10
+ */
+guint
+gtk_source_buffer_search_replace_all (GtkSourceBuffer *buffer,
+				      const gchar     *replace,
+				      gint             replace_length)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), 0);
+	g_return_val_if_fail (replace != NULL, 0);
+
+	return _gtk_source_search_replace_all (buffer->priv->search,
+					       replace,
+					       replace_length);
 }

@@ -34,6 +34,7 @@ typedef struct _GtkSourceGutterRendererLines	GtkSourceGutterRendererLines;
 typedef struct _GtkSourceGutterRendererMarks	GtkSourceGutterRendererMarks;
 typedef struct _GtkSourcePixbufHelper		GtkSourcePixbufHelper;
 typedef struct _GtkSourceRegex			GtkSourceRegex;
+typedef struct _GtkSourceSearch			GtkSourceSearch;
 typedef struct _GtkSourceUndoManagerDefault	GtkSourceUndoManagerDefault;
 
 G_END_DECLS

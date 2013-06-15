@@ -81,114 +81,195 @@ struct _GtkSourceBufferClass
 	void (*_gtk_source_reserved3) (void);
 };
 
-GType           	 gtk_source_buffer_get_type 		(void) G_GNUC_CONST;
-
+GType           	 gtk_source_buffer_get_type				(void) G_GNUC_CONST;
 
 /* Constructor */
-GtkSourceBuffer	 	*gtk_source_buffer_new 			(GtkTextTagTable        *table);
-GtkSourceBuffer 	*gtk_source_buffer_new_with_language 	(GtkSourceLanguage      *language);
+GtkSourceBuffer	 	*gtk_source_buffer_new					(GtkTextTagTable        *table);
+
+GtkSourceBuffer 	*gtk_source_buffer_new_with_language			(GtkSourceLanguage      *language);
 
 /* Properties */
-gboolean		 gtk_source_buffer_get_highlight_syntax	(GtkSourceBuffer        *buffer);
-void			 gtk_source_buffer_set_highlight_syntax	(GtkSourceBuffer        *buffer,
-								 gboolean                highlight);
+gboolean		 gtk_source_buffer_get_highlight_syntax			(GtkSourceBuffer        *buffer);
 
-gboolean		 gtk_source_buffer_get_highlight_matching_brackets
-								(GtkSourceBuffer        *buffer);
-void			 gtk_source_buffer_set_highlight_matching_brackets
-								(GtkSourceBuffer        *buffer,
-							       	 gboolean                highlight);
+void			 gtk_source_buffer_set_highlight_syntax			(GtkSourceBuffer        *buffer,
+										 gboolean                highlight);
 
-gint			 gtk_source_buffer_get_max_undo_levels	(GtkSourceBuffer        *buffer);
-void			 gtk_source_buffer_set_max_undo_levels	(GtkSourceBuffer        *buffer,
-							    	 gint                    max_undo_levels);
+gboolean		 gtk_source_buffer_get_highlight_matching_brackets	(GtkSourceBuffer        *buffer);
 
-GtkSourceLanguage 	*gtk_source_buffer_get_language 	(GtkSourceBuffer        *buffer);
-void			 gtk_source_buffer_set_language 	(GtkSourceBuffer        *buffer,
-								 GtkSourceLanguage      *language);
+void			 gtk_source_buffer_set_highlight_matching_brackets	(GtkSourceBuffer        *buffer,
+										 gboolean                highlight);
 
-gboolean		 gtk_source_buffer_can_undo		(GtkSourceBuffer        *buffer);
-gboolean		 gtk_source_buffer_can_redo		(GtkSourceBuffer        *buffer);
+gint			 gtk_source_buffer_get_max_undo_levels			(GtkSourceBuffer        *buffer);
 
-GtkSourceStyleScheme    *gtk_source_buffer_get_style_scheme     (GtkSourceBuffer        *buffer);
-void			 gtk_source_buffer_set_style_scheme     (GtkSourceBuffer        *buffer,
-								 GtkSourceStyleScheme   *scheme);
+void			 gtk_source_buffer_set_max_undo_levels			(GtkSourceBuffer        *buffer,
+										 gint                    max_undo_levels);
+
+GtkSourceLanguage 	*gtk_source_buffer_get_language				(GtkSourceBuffer        *buffer);
+
+void			 gtk_source_buffer_set_language				(GtkSourceBuffer        *buffer,
+										 GtkSourceLanguage      *language);
+
+gboolean		 gtk_source_buffer_can_undo				(GtkSourceBuffer        *buffer);
+
+gboolean		 gtk_source_buffer_can_redo				(GtkSourceBuffer        *buffer);
+
+GtkSourceStyleScheme    *gtk_source_buffer_get_style_scheme			(GtkSourceBuffer        *buffer);
+
+void			 gtk_source_buffer_set_style_scheme			(GtkSourceBuffer        *buffer,
+										 GtkSourceStyleScheme   *scheme);
 
 /* Force highlighting */
-void			 gtk_source_buffer_ensure_highlight     (GtkSourceBuffer        *buffer,
-								 const GtkTextIter      *start,
-								 const GtkTextIter      *end);
+void			 gtk_source_buffer_ensure_highlight			(GtkSourceBuffer        *buffer,
+										 const GtkTextIter      *start,
+										 const GtkTextIter      *end);
 
 /* Undo/redo methods */
-void			 gtk_source_buffer_undo			(GtkSourceBuffer        *buffer);
-void			 gtk_source_buffer_redo			(GtkSourceBuffer        *buffer);
+void			 gtk_source_buffer_undo					(GtkSourceBuffer        *buffer);
 
-void			 gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer   *buffer);
-void			 gtk_source_buffer_end_not_undoable_action   (GtkSourceBuffer   *buffer);
+void			 gtk_source_buffer_redo					(GtkSourceBuffer        *buffer);
+
+void			 gtk_source_buffer_begin_not_undoable_action		(GtkSourceBuffer	*buffer);
+
+void			 gtk_source_buffer_end_not_undoable_action		(GtkSourceBuffer	*buffer);
 
 /* Mark methods */
-GtkSourceMark		*gtk_source_buffer_create_source_mark	(GtkSourceBuffer        *buffer,
-								 const gchar            *name,
-								 const gchar            *category,
-								 const GtkTextIter      *where);
-gboolean		 gtk_source_buffer_forward_iter_to_source_mark
-								(GtkSourceBuffer        *buffer,
-								 GtkTextIter            *iter,
-								 const gchar            *category);
-gboolean		 gtk_source_buffer_backward_iter_to_source_mark
-								(GtkSourceBuffer        *buffer,
-								 GtkTextIter            *iter,
-								 const gchar            *category);
-GSList			*gtk_source_buffer_get_source_marks_at_iter
-								(GtkSourceBuffer        *buffer,
-								 GtkTextIter            *iter,
-								 const gchar            *category);
-GSList			*gtk_source_buffer_get_source_marks_at_line
-								(GtkSourceBuffer        *buffer,
-								 gint 			 line,
-								 const gchar		*category);
-void			 gtk_source_buffer_remove_source_marks	(GtkSourceBuffer        *buffer,
-								 const GtkTextIter      *start,
-								 const GtkTextIter      *end,
-								 const gchar            *category);
+GtkSourceMark		*gtk_source_buffer_create_source_mark			(GtkSourceBuffer        *buffer,
+										 const gchar            *name,
+										 const gchar            *category,
+										 const GtkTextIter      *where);
 
-gboolean		 gtk_source_buffer_iter_has_context_class
-								(GtkSourceBuffer	*buffer,
-								 const GtkTextIter	*iter,
-								 const gchar            *context_class);
+gboolean		 gtk_source_buffer_forward_iter_to_source_mark		(GtkSourceBuffer        *buffer,
+										 GtkTextIter            *iter,
+										 const gchar            *category);
 
-gchar			**gtk_source_buffer_get_context_classes_at_iter
-								(GtkSourceBuffer	*buffer,
-								 const GtkTextIter	*iter);
+gboolean		 gtk_source_buffer_backward_iter_to_source_mark		(GtkSourceBuffer        *buffer,
+										 GtkTextIter            *iter,
+										 const gchar            *category);
 
-gboolean		 gtk_source_buffer_iter_forward_to_context_class_toggle
-								(GtkSourceBuffer	*buffer,
-								 GtkTextIter		*iter,
-								 const gchar		*context_class);
+GSList			*gtk_source_buffer_get_source_marks_at_iter		(GtkSourceBuffer        *buffer,
+										 GtkTextIter            *iter,
+										 const gchar            *category);
+
+GSList			*gtk_source_buffer_get_source_marks_at_line		(GtkSourceBuffer        *buffer,
+										 gint 			 line,
+										 const gchar		*category);
+
+void			 gtk_source_buffer_remove_source_marks			(GtkSourceBuffer        *buffer,
+										 const GtkTextIter      *start,
+										 const GtkTextIter      *end,
+										 const gchar            *category);
+
+gboolean		 gtk_source_buffer_iter_has_context_class		(GtkSourceBuffer	*buffer,
+										 const GtkTextIter	*iter,
+										 const gchar            *context_class);
+
+gchar		       **gtk_source_buffer_get_context_classes_at_iter		(GtkSourceBuffer	*buffer,
+										 const GtkTextIter	*iter);
+
+gboolean		 gtk_source_buffer_iter_forward_to_context_class_toggle	(GtkSourceBuffer	*buffer,
+										 GtkTextIter		*iter,
+										 const gchar		*context_class);
 
 gboolean		 gtk_source_buffer_iter_backward_to_context_class_toggle
-								(GtkSourceBuffer	*buffer,
-								 GtkTextIter		*iter,
-								 const gchar		*context_class);
+										(GtkSourceBuffer	*buffer,
+										 GtkTextIter		*iter,
+										 const gchar		*context_class);
 
-GtkSourceUndoManager	*gtk_source_buffer_get_undo_manager	(GtkSourceBuffer	*buffer);
-void			 gtk_source_buffer_set_undo_manager	(GtkSourceBuffer	*buffer,
-								 GtkSourceUndoManager	*manager);
+GtkSourceUndoManager	*gtk_source_buffer_get_undo_manager			(GtkSourceBuffer	*buffer);
+
+void			 gtk_source_buffer_set_undo_manager			(GtkSourceBuffer	*buffer,
+										 GtkSourceUndoManager	*manager);
+
+void			 gtk_source_buffer_set_search_text			(GtkSourceBuffer	*buffer,
+										 const gchar		*text);
+
+const gchar		*gtk_source_buffer_get_search_text			(GtkSourceBuffer	*buffer);
+
+void			 gtk_source_buffer_set_case_sensitive_search		(GtkSourceBuffer	*buffer,
+										 gboolean		 case_sensitive);
+
+gboolean		 gtk_source_buffer_get_case_sensitive_search		(GtkSourceBuffer	*buffer);
+
+void			 gtk_source_buffer_set_search_at_word_boundaries	(GtkSourceBuffer	*buffer,
+										 gboolean		 at_word_boundaries);
+
+gboolean		 gtk_source_buffer_get_search_at_word_boundaries	(GtkSourceBuffer	*buffer);
+
+void			 gtk_source_buffer_set_search_wrap_around		(GtkSourceBuffer	*buffer,
+										 gboolean		 wrap_around);
+
+gboolean		 gtk_source_buffer_get_search_wrap_around		(GtkSourceBuffer	*buffer);
+
+guint			 gtk_source_buffer_get_search_occurrences_count		(GtkSourceBuffer	*buffer);
+
+gint			 gtk_source_buffer_get_search_occurrence_position	(GtkSourceBuffer	*buffer,
+										 const GtkTextIter	*match_start,
+										 const GtkTextIter	*match_end);
+
+gboolean		 gtk_source_buffer_forward_search			(GtkSourceBuffer	*buffer,
+										 const GtkTextIter	*iter,
+										 GtkTextIter		*match_start,
+										 GtkTextIter		*match_end);
+
+void			 gtk_source_buffer_forward_search_async			(GtkSourceBuffer	*buffer,
+										 const GtkTextIter	*iter,
+										 GCancellable		*cancellable,
+										 GAsyncReadyCallback	 callback,
+										 gpointer		 user_data);
+
+gboolean		 gtk_source_buffer_forward_search_finish		(GtkSourceBuffer	*buffer,
+										 GAsyncResult		*result,
+										 GtkTextIter		*match_start,
+										 GtkTextIter		*match_end,
+										 GError		       **error);
+
+gboolean		 gtk_source_buffer_backward_search			(GtkSourceBuffer	*buffer,
+										 const GtkTextIter	*iter,
+										 GtkTextIter		*match_start,
+										 GtkTextIter		*match_end);
+
+void			 gtk_source_buffer_backward_search_async		(GtkSourceBuffer	*buffer,
+										 const GtkTextIter	*iter,
+										 GCancellable		*cancellable,
+										 GAsyncReadyCallback	 callback,
+										 gpointer		 user_data);
+
+gboolean		 gtk_source_buffer_backward_search_finish		(GtkSourceBuffer	*buffer,
+										 GAsyncResult		*result,
+										 GtkTextIter		*match_start,
+										 GtkTextIter		*match_end,
+										 GError		       **error);
+
+gboolean		 gtk_source_buffer_search_replace			(GtkSourceBuffer	*buffer,
+										 const GtkTextIter	*match_start,
+										 const GtkTextIter	*match_end,
+										 const gchar		*replace,
+										 gint			 replace_length);
+
+guint			 gtk_source_buffer_search_replace_all			(GtkSourceBuffer	*buffer,
+										 const gchar		*replace,
+										 gint			 replace_length);
 
 /* private */
-void			 _gtk_source_buffer_update_highlight	(GtkSourceBuffer        *buffer,
-								 const GtkTextIter      *start,
-								 const GtkTextIter      *end,
-								 gboolean                synchronous);
 
-GtkSourceMark		*_gtk_source_buffer_source_mark_next	(GtkSourceBuffer        *buffer,
-								 GtkSourceMark          *mark,
-								 const gchar            *category);
-GtkSourceMark		*_gtk_source_buffer_source_mark_prev	(GtkSourceBuffer        *buffer,
-								 GtkSourceMark          *mark,
-								 const gchar            *category);
+G_GNUC_INTERNAL
+void			 _gtk_source_buffer_update_highlight			(GtkSourceBuffer        *buffer,
+										 const GtkTextIter      *start,
+										 const GtkTextIter      *end,
+										 gboolean                synchronous);
 
-GtkTextTag		*_gtk_source_buffer_get_bracket_match_tag (GtkSourceBuffer        *buffer);
+G_GNUC_INTERNAL
+GtkSourceMark		*_gtk_source_buffer_source_mark_next			(GtkSourceBuffer        *buffer,
+										 GtkSourceMark          *mark,
+										 const gchar            *category);
+
+G_GNUC_INTERNAL
+GtkSourceMark		*_gtk_source_buffer_source_mark_prev			(GtkSourceBuffer        *buffer,
+										 GtkSourceMark          *mark,
+										 const gchar            *category);
+
+G_GNUC_INTERNAL
+GtkTextTag		*_gtk_source_buffer_get_bracket_match_tag		(GtkSourceBuffer        *buffer);
 
 G_END_DECLS
 

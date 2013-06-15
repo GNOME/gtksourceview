@@ -13,11 +13,15 @@ AM_CPPFLAGS = 				\
 noinst_PROGRAMS = $(TEST_PROGS) $(UNIT_TEST_PROGS)
 TESTS = $(UNIT_TEST_PROGS)
 
-BUILT_SOURCES = \
-	test-completion-resources.c
+BUILT_SOURCES =				\
+	test-completion-resources.c	\
+	test-search-ui-resources.c
 
 test-completion-resources.c: test-completion.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-completion.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-completion.gresource.xml
+
+test-search-ui-resources.c: test-search-ui.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-search-ui.gresource.xml)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-search-ui.gresource.xml
 
 TEST_PROGS = test-widget
 test_widget_SOURCES = test-widget.c
@@ -27,12 +31,29 @@ test_widget_LDADD = 			\
 	$(TESTS_LIBS)
 
 TEST_PROGS += test-completion
-test_completion_SOURCES =	\
-	$(BUILT_SOURCES)	\
-	test-completion.c
+test_completion_SOURCES =		\
+	test-completion.c		\
+	test-completion-resources.c
 test_completion_LDADD = 		\
 	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
 	$(DEP_LIBS)			\
+	$(TESTS_LIBS)
+
+TEST_PROGS += test-search-ui
+test_search_ui_SOURCES =		\
+	test-search-ui.c		\
+	test-search-ui-resources.c
+test_search_ui_LDADD =						\
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
+	$(DEP_LIBS)						\
+	$(TESTS_LIBS)
+
+TEST_PROGS += test-search-performances
+test_search_performances_SOURCES = \
+	test-search-performances.c
+test_search_performances_LDADD =				\
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
+	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
 
 UNIT_TEST_PROGS = test-languagemanager
@@ -119,6 +140,14 @@ test_undo_manager_LDADD =					\
 	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
 
+UNIT_TEST_PROGS += test-search
+test_search_SOURCES = test-search.c
+test_search_LDADD =							\
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la		\
+	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
+	$(DEP_LIBS)							\
+	$(TESTS_LIBS)
+
 python_tests =			\
 	test-completion.py	\
 	test-widget.py
@@ -129,6 +158,8 @@ EXTRA_DIST =				\
 	styles/classic.xml		\
 	test-completion.gresource.xml	\
 	test-completion.ui		\
+	test-search-ui.gresource.xml	\
+	test-search-ui.ui		\
 	$(python_tests)
 
 -include $(top_srcdir)/git.mk

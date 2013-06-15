@@ -44,6 +44,7 @@ libgtksourceview_headers =			\
 	gtksourcestyleschememanager.h		\
 	gtksourcetypes.h			\
 	gtksourceundomanager.h			\
+	gtksourceutils.h			\
 	gtksourceview.h
 
 libgtksourceview_private_headers = \
@@ -59,6 +60,7 @@ libgtksourceview_private_headers = \
 	gtksourcelanguage-private.h		\
 	gtksourcepixbufhelper.h			\
 	gtksourceregex.h			\
+	gtksourcesearch.h			\
 	gtksourcestyle-private.h		\
 	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
@@ -75,6 +77,7 @@ libgtksourceview_private_c_files = \
 	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\
 	gtksourceregex.c		\
+	gtksourcesearch.c		\
 	gtksourceundomanager.c 		\
 	gtksourceundomanagerdefault.c	\
 	gtksourceview-i18n.c		\
@@ -103,6 +106,7 @@ libgtksourceview_c_files = \
 	gtksourcestyle.c		\
 	gtksourcestylescheme.c		\
 	gtksourcestyleschememanager.c	\
+	gtksourceutils.c		\
 	gtksourceview.c
 
 # Split in a helper library for unit tests
