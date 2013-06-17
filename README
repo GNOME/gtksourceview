@@ -1,7 +1,7 @@
 General Information
 ===================
 
-This is version 3.9.2 of GtkSourceView.
+This is version 3.9.3 of GtkSourceView.
 
 GtkSourceView is a text widget that extends the standard gtk+ 3.x
 text widget GtkTextView.
@@ -32,8 +32,8 @@ GtkSourceView requires glib-2.34.x, GTK+-3.8.x and libxml2 2.6.x.
 
 Simple install procedure:
 
-  % tar Jxf gtksourceview-3.9.2.tar.xz	   # unpack the sources
-  % cd gtksourceview-3.9.2		   # change to the toplevel directory
+  % tar Jxf gtksourceview-3.9.3.tar.xz	   # unpack the sources
+  % cd gtksourceview-3.9.3		   # change to the toplevel directory
   % ./configure				   # run the `configure' script
   % make				   # build gtksourceview
   [ Become root if necessary ]
