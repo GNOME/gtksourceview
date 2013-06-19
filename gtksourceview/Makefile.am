@@ -7,6 +7,7 @@ endif
 AM_CPPFLAGS = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
+	-I$(top_builddir)		\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
@@ -221,6 +222,7 @@ INTROSPECTION_GIRS = GtkSource-3.0.gir
 GtkSource-3.0.gir: libgtksourceview-3.0.la $(BUILT_SOURCES)
 INTROSPECTION_SCANNER_ARGS =			\
 	-I$(top_srcdir)				\
+	-I$(top_builddir)			\
 	--c-include=gtksourceview/gtksource.h	\
 	--warn-all
 GtkSource_3_0_gir_NAMESPACE = GtkSource
