@@ -144,7 +144,6 @@ struct _GtkSourceViewPrivate
 
 	GtkSourceCompletion	*completion;
 
-	gulong           notify_buffer_id;
 	gint             num_line_digits;
 
 	guint		 right_margin_pos;
@@ -973,25 +972,16 @@ gtk_source_view_init (GtkSourceView *view)
 			  G_CALLBACK (view_dnd_drop),
 			  NULL);
 
-	view->priv->notify_buffer_id = g_signal_connect (view,
-							 "notify::buffer",
-							 G_CALLBACK (notify_buffer),
-							 NULL);
+	g_signal_connect (view,
+			  "notify::buffer",
+			  G_CALLBACK (notify_buffer),
+			  NULL);
 }
 
 static void
 gtk_source_view_dispose (GObject *object)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (object);
-
-	/* notify_buffer() would recreate the buffer if it is set to null,
-	 * and we don't want that to happen when destroying/finalizing */
-	if (view->priv->notify_buffer_id)
-	{
-		g_signal_handler_disconnect (view, view->priv->notify_buffer_id);
-		view->priv->notify_buffer_id = 0;
-	}
-	set_source_buffer (view, NULL);
 
 	g_clear_object (&view->priv->completion);
 	g_clear_object (&view->priv->left_gutter);
@@ -1129,52 +1119,51 @@ set_source_buffer (GtkSourceView *view,
 		   GtkTextBuffer *buffer)
 {
 	if (buffer == (GtkTextBuffer*) view->priv->source_buffer)
+	{
 		return;
+	}
 
-	if (view->priv->source_buffer)
+	if (view->priv->source_buffer != NULL)
 	{
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
 						      highlight_updated_cb,
 						      view);
+
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
 						      source_mark_updated_cb,
 						      view);
+
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
 						      buffer_style_scheme_changed_cb,
 						      view);
 
-		g_object_unref (view->priv->source_buffer);
+		g_clear_object (&view->priv->source_buffer);
 	}
 
-	if (buffer && GTK_SOURCE_IS_BUFFER (buffer))
+	if (GTK_SOURCE_IS_BUFFER (buffer))
 	{
 		view->priv->source_buffer = g_object_ref (buffer);
 
-		g_signal_connect (buffer,
-				  "highlight_updated",
-				  G_CALLBACK (highlight_updated_cb),
-				  view);
-		g_signal_connect (buffer,
-				  "source_mark_updated",
-				  G_CALLBACK (source_mark_updated_cb),
-				  view);
-		g_signal_connect (buffer,
-				  "notify::style-scheme",
-				  G_CALLBACK (buffer_style_scheme_changed_cb),
-				  view);
-	}
-	else
-	{
-		view->priv->source_buffer = NULL;
+		g_signal_connect_object (buffer,
+					 "highlight_updated",
+					 G_CALLBACK (highlight_updated_cb),
+					 view,
+					 0);
+
+		g_signal_connect_object (buffer,
+					 "source_mark_updated",
+					 G_CALLBACK (source_mark_updated_cb),
+					 view,
+					 0);
+
+		g_signal_connect_object (buffer,
+					 "notify::style-scheme",
+					 G_CALLBACK (buffer_style_scheme_changed_cb),
+					 view,
+					 0);
 	}
 
-	/* if buffer isn't NULL then we aren't being destroyed, so call
-	 * gtk_source_view_update_style_scheme(), that will check whether it's
-	 * a GtkSourceBuffer or not */
-	if (buffer)
-	{
-		gtk_source_view_update_style_scheme (view);
-	}
+	gtk_source_view_update_style_scheme (view);
 }
 
 static void
@@ -4124,21 +4113,27 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
 	if (GTK_SOURCE_IS_BUFFER (buffer))
+	{
 		new_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer));
+	}
 	else
+	{
 		new_scheme = NULL;
+	}
 
 	if (view->priv->style_scheme != new_scheme)
 	{
-		if (view->priv->style_scheme)
+		if (view->priv->style_scheme != NULL)
 		{
 			_gtk_source_style_scheme_unapply (view->priv->style_scheme, GTK_WIDGET (view));
 			g_object_unref (view->priv->style_scheme);
 		}
 
 		view->priv->style_scheme = new_scheme;
-		if (new_scheme)
+		if (new_scheme != NULL)
+		{
 			g_object_ref (new_scheme);
+		}
 
 		if (gtk_widget_get_realized (GTK_WIDGET (view)))
 		{
