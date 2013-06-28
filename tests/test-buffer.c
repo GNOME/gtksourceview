@@ -24,12 +24,7 @@ test_get_buffer (void)
 	 * destroyed, which causes assertion failure in GtkTextView's finalize ()
 	 * function.
 	 * Please see: https://bugzilla.gnome.org/show_bug.cgi?id=634510 */
-	if (g_test_trap_fork (0, 0))
-	{
-		g_object_unref (view);
-		exit (EXIT_SUCCESS);
-	}
-	g_test_trap_assert_passed ();
+	g_object_unref (view);
 }
 
 int
