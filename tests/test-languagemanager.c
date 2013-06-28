@@ -54,6 +54,38 @@ test_get_language (void)
 }
 
 static void
+test_guess_language_null_null (void)
+{
+	GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
+
+	gtk_source_language_manager_guess_language (lm, NULL, NULL);
+}
+
+static void
+test_guess_language_empty_null (void)
+{
+	GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
+
+	gtk_source_language_manager_guess_language (lm, "", NULL);
+}
+
+static void
+test_guess_language_null_empty (void)
+{
+	GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
+
+	gtk_source_language_manager_guess_language (lm, NULL, "");
+}
+
+static void
+test_guess_language_empty_empty (void)
+{
+	GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
+
+	gtk_source_language_manager_guess_language (lm, "", "");
+}
+
+static void
 test_guess_language (void)
 {
 	GtkSourceLanguageManager *lm;
@@ -61,28 +93,16 @@ test_guess_language (void)
 
 	lm = gtk_source_language_manager_get_default ();
 
-	if (g_test_trap_fork (0, G_TEST_TRAP_SILENCE_STDERR))
-	{
-		l = gtk_source_language_manager_guess_language (lm, NULL, NULL);
-	}
+	g_test_trap_subprocess ("/LanguageManager/guess-language/subprocess/null_null", 0, 0);
 	g_test_trap_assert_failed ();
 
-	if (g_test_trap_fork (0, G_TEST_TRAP_SILENCE_STDERR))
-	{
-		l = gtk_source_language_manager_guess_language (lm, "", NULL);
-	}
+	g_test_trap_subprocess ("/LanguageManager/guess-language/subprocess/empty_null", 0, 0);
 	g_test_trap_assert_failed ();
 
-	if (g_test_trap_fork (0, G_TEST_TRAP_SILENCE_STDERR))
-	{
-		l = gtk_source_language_manager_guess_language (lm, NULL, "");
-	}
+	g_test_trap_subprocess ("/LanguageManager/guess-language/subprocess/null_empty", 0, 0);
 	g_test_trap_assert_failed ();
 
-	if (g_test_trap_fork (0, G_TEST_TRAP_SILENCE_STDERR))
-	{
-		l = gtk_source_language_manager_guess_language (lm, "", "");
-	}
+	g_test_trap_subprocess ("/LanguageManager/guess-language/subprocess/empty_empty", 0, 0);
 	g_test_trap_assert_failed ();
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.abcdef", NULL);
@@ -111,10 +131,10 @@ test_guess_language (void)
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.c", "text/x-csrc");
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");
-	
+
 	l = gtk_source_language_manager_guess_language (lm, "foo.mo", "text/x-modelica");
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "modelica");
-	
+
 	l = gtk_source_language_manager_guess_language (lm, "foo.mo", "");
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "modelica");
 
@@ -137,6 +157,10 @@ main (int argc, char** argv)
 	g_test_add_func ("/LanguageManager/get-default", test_get_default);
 	g_test_add_func ("/LanguageManager/get-language", test_get_language);
 	g_test_add_func ("/LanguageManager/guess-language", test_guess_language);
+	g_test_add_func ("/LanguageManager/guess-language/subprocess/null_null", test_guess_language_null_null);
+	g_test_add_func ("/LanguageManager/guess-language/subprocess/empty_null", test_guess_language_empty_null);
+	g_test_add_func ("/LanguageManager/guess-language/subprocess/null_empty", test_guess_language_null_empty);
+	g_test_add_func ("/LanguageManager/guess-language/subprocess/empty_empty", test_guess_language_empty_empty);
 
 	return g_test_run();
 }
