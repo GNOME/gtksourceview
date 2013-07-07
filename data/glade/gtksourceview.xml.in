@@ -3,9 +3,9 @@
   <glade-widget-classes>
     <glade-widget-class name="GtkSourceView" _title="GtkSourceView" generic-name="gtksourceview">
       <properties>
-        <property id="auto-indent" default="True" />
+        <property id="auto-indent" default="False" />
         <property id="highlight-current-line" default="False" />
-        <property id="indent-on-tab" default="False" />
+        <property id="indent-on-tab" default="True" />
         <property id="insert-spaces-instead-of-tabs" default="False" />
         <property id="right-margin-position" default="80" />
         <property id="show-line-marks" default="False" />
@@ -20,7 +20,7 @@
             <value id="GTK_SOURCE_SMART_HOME_END_ALWAYS" _name="Always" />
           </displayable-values>
         </property>
-        <property id="tab-width" default="4" />
+        <property id="tab-width" default="8" />
         <property id="draw-spaces">
           <displayable-values>
             <value id="GTK_SOURCE_DRAW_SPACES_SPACE" _name="Space" />
