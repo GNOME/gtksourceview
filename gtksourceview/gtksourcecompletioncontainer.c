@@ -155,6 +155,11 @@ _gtk_source_completion_container_get_preferred_width (GtkWidget *widget,
 	GtkRequisition nat_size;
 	gint width;
 
+	/* FIXME sometimes the returned height (nat_size.height) is 0. Maybe a
+	 * bug in GtkTreeView. If there are sizing problems, or if there are
+	 * problems with the scrolled window, a workaround would be to compute
+	 * the height manually, like it is done in get_preferred_height() below.
+	 */
 	gtk_widget_get_preferred_size (GTK_WIDGET (container->priv->tree_view),
 				       NULL,
 				       &nat_size);
