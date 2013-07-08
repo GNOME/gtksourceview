@@ -216,6 +216,8 @@ from_pixbuf (GtkSourcePixbufHelper *helper,
 	                                            GDK_INTERP_BILINEAR));
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
+
 static void
 from_stock (GtkSourcePixbufHelper *helper,
             GtkWidget             *widget,
@@ -239,6 +241,9 @@ from_stock (GtkSourcePixbufHelper *helper,
 	                                                  helper->stock_id,
 	                                                  icon_size));
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS;
+
 static void
 from_gicon (GtkSourcePixbufHelper *helper,
             GtkWidget             *widget,
