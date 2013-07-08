@@ -65,9 +65,11 @@ void         gtk_source_gutter_renderer_pixbuf_set_pixbuf       (GtkSourceGutter
 
 GdkPixbuf   *gtk_source_gutter_renderer_pixbuf_get_pixbuf       (GtkSourceGutterRendererPixbuf *renderer);
 
+G_DEPRECATED
 void         gtk_source_gutter_renderer_pixbuf_set_stock_id     (GtkSourceGutterRendererPixbuf *renderer,
                                                                  const gchar                   *stock_id);
 
+G_DEPRECATED
 const gchar *gtk_source_gutter_renderer_pixbuf_get_stock_id     (GtkSourceGutterRendererPixbuf *renderer);
 
 void         gtk_source_gutter_renderer_pixbuf_set_gicon        (GtkSourceGutterRendererPixbuf *renderer,
