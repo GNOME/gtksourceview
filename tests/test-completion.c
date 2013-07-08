@@ -119,7 +119,7 @@ test_provider_get_icon (GtkSourceCompletionProvider *provider)
 	if (tp->icon == NULL)
 	{
 		GtkIconTheme *theme = gtk_icon_theme_get_default ();
-		tp->icon = gtk_icon_theme_load_icon (theme, GTK_STOCK_DIALOG_INFO, 16, 0, NULL);
+		tp->icon = gtk_icon_theme_load_icon (theme, "dialog-information", 16, 0, NULL);
 	}
 
 	return tp->icon;
@@ -131,7 +131,7 @@ test_provider_iface_init (GtkSourceCompletionProviderIface *iface)
 	iface->get_name = test_provider_get_name;
 	iface->populate = test_provider_populate;
 	iface->get_priority = test_provider_get_priority;
-	//iface->get_icon = test_provider_get_icon;
+	/* iface->get_icon = test_provider_get_icon; */
 }
 
 static void
