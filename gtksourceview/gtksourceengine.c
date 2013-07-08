@@ -29,7 +29,6 @@
 
 G_DEFINE_TYPE (GtkSourceEngine, _gtk_source_engine, G_TYPE_OBJECT)
 
-
 static void
 _gtk_source_engine_class_init (GtkSourceEngineClass *klass)
 {

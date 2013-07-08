@@ -32,8 +32,6 @@
 #include "gtksourcecompletionproposal.h"
 #include "gtksourceview-i18n.h"
 
-#define GTK_SOURCE_COMPLETION_ITEM_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_ITEM, GtkSourceCompletionItemPrivate))
-
 struct _GtkSourceCompletionItemPrivate
 {
 	gchar *label;
@@ -59,6 +57,7 @@ static void gtk_source_completion_proposal_iface_init (gpointer g_iface, gpointe
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionItem,
 			 gtk_source_completion_item,
 			 G_TYPE_OBJECT,
+			 G_ADD_PRIVATE (GtkSourceCompletionItem)
 			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,
 			 			gtk_source_completion_proposal_iface_init))
 
@@ -290,14 +289,12 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 							      _("Info to be shown for this item"),
 							      NULL,
 							      G_PARAM_READWRITE));
-
-	g_type_class_add_private (object_class, sizeof (GtkSourceCompletionItemPrivate));
 }
 
 static void
 gtk_source_completion_item_init (GtkSourceCompletionItem *self)
 {
-	self->priv = GTK_SOURCE_COMPLETION_ITEM_GET_PRIVATE (self);
+	self->priv = gtk_source_completion_item_get_instance_private (self);
 }
 
 /**

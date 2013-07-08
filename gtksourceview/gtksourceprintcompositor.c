@@ -196,7 +196,7 @@ enum
 	PROP_N_PAGES
 };
 
-G_DEFINE_TYPE (GtkSourcePrintCompositor, gtk_source_print_compositor, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourcePrintCompositor, gtk_source_print_compositor, G_TYPE_OBJECT)
 
 #define MM_PER_INCH 25.4
 #define POINTS_PER_INCH 72
@@ -687,8 +687,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							     "completely paginated)."),
 							   -1, G_MAXINT, -1,
 							   G_PARAM_READABLE));
-
-	g_type_class_add_private (object_class, sizeof(GtkSourcePrintCompositorPrivate));
 }
 
 static void
@@ -696,9 +694,7 @@ gtk_source_print_compositor_init (GtkSourcePrintCompositor *compositor)
 {
 	GtkSourcePrintCompositorPrivate *priv;
 
-	priv = G_TYPE_INSTANCE_GET_PRIVATE (compositor,
-					    GTK_SOURCE_TYPE_PRINT_COMPOSITOR,
-					    GtkSourcePrintCompositorPrivate);
+	priv = gtk_source_print_compositor_get_instance_private (compositor);
 
 	compositor->priv = priv;
 

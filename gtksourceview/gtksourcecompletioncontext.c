@@ -66,8 +66,6 @@
 #include "gtksourceview-i18n.h"
 #include "gtksourcecompletion.h"
 
-#define GTK_SOURCE_COMPLETION_CONTEXT_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_CONTEXT, GtkSourceCompletionContextPrivate))
-
 struct _GtkSourceCompletionContextPrivate
 {
 	GtkSourceCompletion *completion;
@@ -97,7 +95,7 @@ enum
 
 guint context_signals[NUM_SIGNALS] = {0,};
 
-G_DEFINE_TYPE (GtkSourceCompletionContext, gtk_source_completion_context, G_TYPE_INITIALLY_UNOWNED)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionContext, gtk_source_completion_context, G_TYPE_INITIALLY_UNOWNED)
 
 /* FIXME: we use this util to get the buffer from the completion
    but this object is not robust to a change of the buffer associated
@@ -303,14 +301,12 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                     GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
 	                                                     GTK_SOURCE_COMPLETION_ACTIVATION_NONE,
 	                                                     G_PARAM_READWRITE));
-
-	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionContextPrivate));
 }
 
 static void
 gtk_source_completion_context_init (GtkSourceCompletionContext *context)
 {
-	context->priv = GTK_SOURCE_COMPLETION_CONTEXT_GET_PRIVATE (context);
+	context->priv = gtk_source_completion_context_get_instance_private (context);
 }
 
 /**

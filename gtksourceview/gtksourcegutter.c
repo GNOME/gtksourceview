@@ -50,8 +50,6 @@
  *
  */
 
-#define GTK_SOURCE_GUTTER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER, GtkSourceGutterPrivate))
-
 /* Properties */
 enum
 {
@@ -105,7 +103,7 @@ struct _GtkSourceGutterPrivate
 	guint is_drawing : 1;
 };
 
-G_DEFINE_TYPE (GtkSourceGutter, gtk_source_gutter, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutter, gtk_source_gutter, G_TYPE_OBJECT)
 
 static gboolean on_view_draw (GtkSourceView   *view,
                               cairo_t         *cr,
@@ -567,9 +565,6 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                                    0,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
-	g_type_class_add_private (object_class, sizeof(GtkSourceGutterPrivate));
-
-
 	g_object_class_install_property (object_class,
 	                                 PROP_XPAD,
 	                                 g_param_spec_int ("xpad",
@@ -595,7 +590,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 static void
 gtk_source_gutter_init (GtkSourceGutter *self)
 {
-	self->priv = GTK_SOURCE_GUTTER_GET_PRIVATE (self);
+	self->priv = gtk_source_gutter_get_instance_private (self);
 }
 
 static gint

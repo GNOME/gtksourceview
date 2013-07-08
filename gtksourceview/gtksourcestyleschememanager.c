@@ -45,15 +45,13 @@ struct _GtkSourceStyleSchemeManagerPrivate
 	gchar          **ids; /* Cache the IDs of the available schemes */
 };
 
-
 enum {
 	PROP_0,
 	PROP_SEARCH_PATH,
 	PROP_SCHEME_IDS
 };
 
-
-G_DEFINE_TYPE (GtkSourceStyleSchemeManager, gtk_source_style_scheme_manager, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceStyleSchemeManager, gtk_source_style_scheme_manager, G_TYPE_OBJECT)
 
 static void
 gtk_source_style_scheme_manager_set_property (GObject 	   *object,
@@ -163,16 +161,12 @@ gtk_source_style_scheme_manager_class_init (GtkSourceStyleSchemeManagerClass *kl
 							       "style schemes"),
 							     G_TYPE_STRV,
 							     G_PARAM_READABLE));
-
-	g_type_class_add_private (object_class, sizeof(GtkSourceStyleSchemeManagerPrivate));
 }
 
 static void
 gtk_source_style_scheme_manager_init (GtkSourceStyleSchemeManager *mgr)
 {
-	mgr->priv = G_TYPE_INSTANCE_GET_PRIVATE (mgr,
-						 GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER,
-						 GtkSourceStyleSchemeManagerPrivate);
+	mgr->priv = gtk_source_style_scheme_manager_get_instance_private (mgr);
 	mgr->priv->schemes_hash = NULL;
 	mgr->priv->ids = NULL;
 	mgr->priv->search_path = NULL;

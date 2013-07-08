@@ -87,10 +87,6 @@
 #include "gtksourceview-marshal.h"
 #include "gtksourceview-i18n.h"
 
-#define GTK_SOURCE_COMPLETION_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object),\
-						  GTK_SOURCE_TYPE_COMPLETION,           \
-						  GtkSourceCompletionPrivate))
-
 /* Signals */
 enum
 {
@@ -185,7 +181,7 @@ struct _GtkSourceCompletionPrivate
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE(GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT)
 
 static void
 scroll_to_iter (GtkSourceCompletion *completion,
@@ -1708,8 +1704,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkBindingSet *binding_set;
 
-	g_type_class_add_private (klass, sizeof (GtkSourceCompletionPrivate));
-
 	object_class->get_property = gtk_source_completion_get_property;
 	object_class->set_property = gtk_source_completion_set_property;
 	object_class->dispose = gtk_source_completion_dispose;
@@ -2311,7 +2305,7 @@ gtk_source_completion_init (GtkSourceCompletion *completion)
 	GtkSourceCompletionContainer *container = _gtk_source_completion_container_new ();
 	g_object_ref_sink (container);
 
-	completion->priv = GTK_SOURCE_COMPLETION_GET_PRIVATE (completion);
+	completion->priv = gtk_source_completion_get_instance_private (completion);
 
 	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
 

@@ -24,14 +24,12 @@
 #include "gtksourceview-i18n.h"
 #include "gtksourcepixbufhelper.h"
 
-#define GTK_SOURCE_GUTTER_RENDERER_PIXBUF_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF, GtkSourceGutterRendererPixbufPrivate))
-
 struct _GtkSourceGutterRendererPixbufPrivate
 {
 	GtkSourcePixbufHelper *helper;
 };
 
-G_DEFINE_TYPE (GtkSourceGutterRendererPixbuf, gtk_source_gutter_renderer_pixbuf, GTK_SOURCE_TYPE_GUTTER_RENDERER)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererPixbuf, gtk_source_gutter_renderer_pixbuf, GTK_SOURCE_TYPE_GUTTER_RENDERER)
 
 enum
 {
@@ -285,8 +283,6 @@ gtk_source_gutter_renderer_pixbuf_class_init (GtkSourceGutterRendererPixbufClass
 
 	renderer_class->draw = gutter_renderer_pixbuf_draw;
 
-	g_type_class_add_private (object_class, sizeof (GtkSourceGutterRendererPixbufPrivate));
-
 	g_object_class_install_property (object_class,
 	                                 PROP_PIXBUF,
 	                                 g_param_spec_object ("pixbuf",
@@ -330,7 +326,7 @@ gtk_source_gutter_renderer_pixbuf_class_init (GtkSourceGutterRendererPixbufClass
 static void
 gtk_source_gutter_renderer_pixbuf_init (GtkSourceGutterRendererPixbuf *self)
 {
-	self->priv = GTK_SOURCE_GUTTER_RENDERER_PIXBUF_GET_PRIVATE (self);
+	self->priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (self);
 
 	self->priv->helper = gtk_source_pixbuf_helper_new ();
 }

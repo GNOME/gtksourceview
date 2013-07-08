@@ -27,8 +27,6 @@
 
 #define COMPOSITE_ALPHA                 225
 
-#define GTK_SOURCE_GUTTER_RENDERER_MARKS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER_MARKS, GtkSourceGutterRendererMarksPrivate))
-
 struct _GtkSourceGutterRendererMarksPrivate
 {
 };
@@ -442,14 +440,11 @@ gtk_source_gutter_renderer_marks_class_init (GtkSourceGutterRendererMarksClass *
 	renderer_class->query_tooltip = gutter_renderer_query_tooltip;
 	renderer_class->query_activatable = gutter_renderer_query_activatable;
 	renderer_class->change_view = gutter_renderer_change_view;
-
-	/*g_type_class_add_private (object_class, sizeof (GtkSourceGutterRendererMarksPrivate));*/
 }
 
 static void
 gtk_source_gutter_renderer_marks_init (GtkSourceGutterRendererMarks *self)
 {
-	/*self->priv = GTK_SOURCE_GUTTER_RENDERER_MARKS_GET_PRIVATE (self);*/
 }
 
 GtkSourceGutterRenderer *

@@ -24,8 +24,6 @@
 #include "gtksourcecompletionwordsutils.h"
 #include "gtksourceview/gtktextregion.h"
 
-#define GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferPrivate))
-
 /* Timeout in seconds */
 #define INITIATE_SCAN_TIMEOUT 5
 
@@ -53,7 +51,7 @@ struct _GtkSourceCompletionWordsBufferPrivate
 	GHashTable *words;
 };
 
-G_DEFINE_TYPE (GtkSourceCompletionWordsBuffer, gtk_source_completion_words_buffer, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionWordsBuffer, gtk_source_completion_words_buffer, G_TYPE_OBJECT)
 
 static ProposalCache *
 proposal_cache_new (GtkSourceCompletionWordsProposal *proposal)
@@ -140,14 +138,12 @@ gtk_source_completion_words_buffer_class_init (GtkSourceCompletionWordsBufferCla
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	object_class->dispose = gtk_source_completion_words_buffer_dispose;
-
-	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionWordsBufferPrivate));
 }
 
 static void
 gtk_source_completion_words_buffer_init (GtkSourceCompletionWordsBuffer *self)
 {
-	self->priv = GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_PRIVATE (self);
+	self->priv = gtk_source_completion_words_buffer_get_instance_private (self);
 
 	self->priv->scan_batch_size = 20;
 	self->priv->minimum_word_size = 3;

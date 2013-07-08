@@ -146,7 +146,7 @@ struct _GtkSourceBufferPrivate
 	guint                  allow_bracket_match : 1;
 };
 
-G_DEFINE_TYPE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
 
 static guint 	 buffer_signals[LAST_SIGNAL];
 
@@ -408,8 +408,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_TYPE_NONE, 2,
 			  GTK_TYPE_TEXT_ITER,
 			  GTK_SOURCE_TYPE_BRACKET_MATCH_TYPE);
-
-	g_type_class_add_private (object_class, sizeof (GtkSourceBufferPrivate));
 }
 
 static void
@@ -458,10 +456,7 @@ set_undo_manager (GtkSourceBuffer      *buffer,
 static void
 gtk_source_buffer_init (GtkSourceBuffer *buffer)
 {
-	GtkSourceBufferPrivate *priv;
-
-	priv = G_TYPE_INSTANCE_GET_PRIVATE (buffer, GTK_SOURCE_TYPE_BUFFER,
-					    GtkSourceBufferPrivate);
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
 	buffer->priv = priv;
 

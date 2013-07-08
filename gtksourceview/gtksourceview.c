@@ -173,8 +173,7 @@ struct _MarkCategory
 	gint                     priority;
 };
 
-G_DEFINE_TYPE (GtkSourceView, gtk_source_view, GTK_TYPE_TEXT_VIEW)
-
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceView, gtk_source_view, GTK_TYPE_TEXT_VIEW)
 
 /* Implement DnD for application/x-color drops */
 typedef enum {
@@ -756,8 +755,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, 1);
-
-	g_type_class_add_private (object_class, sizeof (GtkSourceViewPrivate));
 }
 
 static void
@@ -937,8 +934,7 @@ gtk_source_view_init (GtkSourceView *view)
 {
 	GtkTargetList *tl;
 
-	view->priv = G_TYPE_INSTANCE_GET_PRIVATE (view, GTK_SOURCE_TYPE_VIEW,
-						  GtkSourceViewPrivate);
+	view->priv = gtk_source_view_get_instance_private (view);
 
 	view->priv->tab_width = DEFAULT_TAB_WIDTH;
 	view->priv->tabs_set = FALSE;

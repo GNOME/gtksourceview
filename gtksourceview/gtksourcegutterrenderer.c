@@ -25,8 +25,6 @@
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourceview-i18n.h"
 
-#define GTK_SOURCE_GUTTER_RENDERER_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER, GtkSourceGutterRendererPrivate))
-
 enum
 {
 	ACTIVATE,
@@ -62,9 +60,7 @@ struct _GtkSourceGutterRendererPrivate
 
 static guint signals[NUM_SIGNALS] = {0,};
 
-G_DEFINE_ABSTRACT_TYPE (GtkSourceGutterRenderer,
-                        gtk_source_gutter_renderer,
-                        G_TYPE_INITIALLY_UNOWNED)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (GtkSourceGutterRenderer, gtk_source_gutter_renderer, G_TYPE_INITIALLY_UNOWNED)
 
 enum
 {
@@ -472,8 +468,6 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	klass->draw = renderer_draw_impl;
 	klass->change_view = renderer_change_view_impl;
 
-	g_type_class_add_private (object_class, sizeof (GtkSourceGutterRendererPrivate));
-
 	/**
 	 * GtkSourceGutterRenderer:visible:
 	 *
@@ -756,7 +750,7 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 static void
 gtk_source_gutter_renderer_init (GtkSourceGutterRenderer *self)
 {
-	self->priv = GTK_SOURCE_GUTTER_RENDERER_GET_PRIVATE (self);
+	self->priv = gtk_source_gutter_renderer_get_instance_private (self);
 }
 
 /**

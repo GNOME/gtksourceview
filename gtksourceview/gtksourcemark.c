@@ -53,7 +53,7 @@ struct _GtkSourceMarkPrivate
 	gchar *category;
 };
 
-G_DEFINE_TYPE (GtkSourceMark, gtk_source_mark, GTK_TYPE_TEXT_MARK);
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMark, gtk_source_mark, GTK_TYPE_TEXT_MARK);
 
 static void
 gtk_source_mark_set_property (GObject      *object,
@@ -140,15 +140,12 @@ gtk_source_mark_class_init (GtkSourceMarkClass *klass)
 							      _("The mark category"),
 							      NULL,
 							      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-
-	g_type_class_add_private (object_class, sizeof (GtkSourceMarkPrivate));
 }
 
 static void
 gtk_source_mark_init (GtkSourceMark *mark)
 {
-	mark->priv = G_TYPE_INSTANCE_GET_PRIVATE (mark, GTK_SOURCE_TYPE_MARK,
-						  GtkSourceMarkPrivate);
+	mark->priv = gtk_source_mark_get_instance_private (mark);
 }
 
 /**

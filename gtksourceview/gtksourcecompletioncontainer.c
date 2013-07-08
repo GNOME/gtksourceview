@@ -44,12 +44,7 @@ struct _GtkSourceCompletionContainerPrivate
 	GtkWidget *scrolled_window;
 };
 
-G_DEFINE_TYPE (GtkSourceCompletionContainer, _gtk_source_completion_container, GTK_TYPE_BIN);
-
-#define GTK_SOURCE_COMPLETION_CONTAINER_GET_PRIVATE(object)			\
-	(G_TYPE_INSTANCE_GET_PRIVATE ((object),					\
-				      GTK_SOURCE_TYPE_COMPLETION_CONTAINER,	\
-				      GtkSourceCompletionContainerPrivate))
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionContainer, _gtk_source_completion_container, GTK_TYPE_BIN);
 
 /* gtk_container_add() is overridden. This function calls the GtkBin's add(). */
 static void
@@ -292,7 +287,7 @@ _gtk_source_completion_container_add (GtkContainer *gtk_container,
 static void
 _gtk_source_completion_container_init (GtkSourceCompletionContainer *container)
 {
-	container->priv = GTK_SOURCE_COMPLETION_CONTAINER_GET_PRIVATE (container);
+	container->priv = _gtk_source_completion_container_get_instance_private (container);
 
 	container->priv->scrolled_window = gtk_scrolled_window_new (NULL, NULL);
 	g_object_ref_sink (container->priv->scrolled_window);
@@ -324,8 +319,6 @@ _gtk_source_completion_container_class_init (GtkSourceCompletionContainerClass *
 	widget_class->get_preferred_height = _gtk_source_completion_container_get_preferred_height;
 
 	container_class->add = _gtk_source_completion_container_add;
-
-	g_type_class_add_private (object_class, sizeof (GtkSourceCompletionContainerPrivate));
 }
 
 GtkSourceCompletionContainer *

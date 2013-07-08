@@ -25,8 +25,6 @@
 #include "gtksourcecompletionproposal.h"
 #include "gtksourceview-i18n.h"
 
-#define GTK_SOURCE_COMPLETION_MODEL_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_MODEL, GtkSourceCompletionModelPrivate))
-
 typedef struct
 {
 	GtkSourceCompletionModel *model;
@@ -73,6 +71,7 @@ static void tree_model_iface_init (gpointer g_iface, gpointer iface_data);
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionModel,
                          gtk_source_completion_model,
                          G_TYPE_OBJECT,
+			 G_ADD_PRIVATE (GtkSourceCompletionModel)
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL,
                                                 tree_model_iface_init))
 
@@ -716,14 +715,12 @@ gtk_source_completion_model_class_init (GtkSourceCompletionModelClass *klass)
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	object_class->dispose = gtk_source_completion_model_dispose;
-
-	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionModelPrivate));
 }
 
 static void
 gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 {
-	self->priv = GTK_SOURCE_COMPLETION_MODEL_GET_PRIVATE (self);
+	self->priv = gtk_source_completion_model_get_instance_private (self);
 
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP] = G_TYPE_STRING;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON] = GDK_TYPE_PIXBUF;

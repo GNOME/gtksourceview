@@ -80,8 +80,6 @@
  * takes precedence.
  */
 
-#define GTK_SOURCE_MARK_ATTRIBUTES_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_MARK_ATTRIBUTES, GtkSourceMarkAttributesPrivate))
-
 struct _GtkSourceMarkAttributesPrivate
 {
 	GdkRGBA background;
@@ -91,7 +89,7 @@ struct _GtkSourceMarkAttributesPrivate
 	guint background_set : 1;
 };
 
-G_DEFINE_TYPE (GtkSourceMarkAttributes, gtk_source_mark_attributes, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMarkAttributes, gtk_source_mark_attributes, G_TYPE_OBJECT)
 
 enum
 {
@@ -279,8 +277,6 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	object_class->get_property = gtk_source_mark_attributes_get_property;
 	object_class->set_property = gtk_source_mark_attributes_set_property;
 
-	g_type_class_add_private (object_class, sizeof (GtkSourceMarkAttributesPrivate));
-
 	/**
 	 * GtkSourceMarkAttributes:background:
 	 *
@@ -396,7 +392,7 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 static void
 gtk_source_mark_attributes_init (GtkSourceMarkAttributes *self)
 {
-	self->priv = GTK_SOURCE_MARK_ATTRIBUTES_GET_PRIVATE (self);
+	self->priv = gtk_source_mark_attributes_get_instance_private (self);
 
 	self->priv->helper = gtk_source_pixbuf_helper_new ();
 }

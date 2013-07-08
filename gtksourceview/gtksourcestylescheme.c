@@ -84,7 +84,7 @@ struct _GtkSourceStyleSchemePrivate
 	GtkCssProvider *css;
 };
 
-G_DEFINE_TYPE (GtkSourceStyleScheme, gtk_source_style_scheme, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceStyleScheme, gtk_source_style_scheme, G_TYPE_OBJECT)
 
 static void
 gtk_source_style_scheme_dispose (GObject *object)
@@ -252,8 +252,6 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 							      _("Style scheme filename"),
 							      NULL,
 							      G_PARAM_READABLE));
-
-	g_type_class_add_private (object_class, sizeof (GtkSourceStyleSchemePrivate));
 }
 
 static void
@@ -266,8 +264,7 @@ unref_if_not_null (gpointer object)
 static void
 gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
 {
-	scheme->priv = G_TYPE_INSTANCE_GET_PRIVATE (scheme, GTK_SOURCE_TYPE_STYLE_SCHEME,
-						    GtkSourceStyleSchemePrivate);
+	scheme->priv = gtk_source_style_scheme_get_instance_private (scheme);
 
 	scheme->priv->defined_styles = g_hash_table_new_full (g_str_hash, g_str_equal,
 							      g_free, g_object_unref);

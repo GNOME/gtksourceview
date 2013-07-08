@@ -183,6 +183,7 @@ static gboolean merge_action          (GtkSourceUndoManagerDefault      *um,
 static void gtk_source_undo_manager_iface_init (GtkSourceUndoManagerIface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceUndoManagerDefault, gtk_source_undo_manager_default, G_TYPE_OBJECT,
+			 G_ADD_PRIVATE (GtkSourceUndoManagerDefault)
                          G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_UNDO_MANAGER,
                                                 gtk_source_undo_manager_iface_init))
 
@@ -417,16 +418,12 @@ gtk_source_undo_manager_default_class_init (GtkSourceUndoManagerDefaultClass *kl
 	                                                   G_MAXINT,
 	                                                   DEFAULT_MAX_UNDO_LEVELS,
 	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
-	g_type_class_add_private (object_class, sizeof(GtkSourceUndoManagerDefaultPrivate));
 }
 
 static void
 gtk_source_undo_manager_default_init (GtkSourceUndoManagerDefault *um)
 {
-	um->priv = G_TYPE_INSTANCE_GET_PRIVATE (um, GTK_SOURCE_TYPE_UNDO_MANAGER_DEFAULT,
-	                                        GtkSourceUndoManagerDefaultPrivate);
-
+	um->priv = gtk_source_undo_manager_default_get_instance_private (um);
 	um->priv->actions = g_ptr_array_new ();
 }
 

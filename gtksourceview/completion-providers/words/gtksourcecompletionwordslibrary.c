@@ -24,8 +24,6 @@
 
 #include <string.h>
 
-#define GTK_SOURCE_COMPLETION_WORDS_LIBRARY_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_WORDS_LIBRARY, GtkSourceCompletionWordsLibraryPrivate))
-
 enum
 {
 	LOCK,
@@ -41,7 +39,7 @@ struct _GtkSourceCompletionWordsLibraryPrivate
 
 static guint signals[NUM_SIGNALS] = {0,};
 
-G_DEFINE_TYPE (GtkSourceCompletionWordsLibrary, gtk_source_completion_words_library, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionWordsLibrary, gtk_source_completion_words_library, G_TYPE_OBJECT)
 
 static void
 gtk_source_completion_words_library_finalize (GObject *object)
@@ -81,14 +79,12 @@ gtk_source_completion_words_library_class_init (GtkSourceCompletionWordsLibraryC
 		              g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
 		              0);
-
-	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionWordsLibraryPrivate));
 }
 
 static void
 gtk_source_completion_words_library_init (GtkSourceCompletionWordsLibrary *self)
 {
-	self->priv = GTK_SOURCE_COMPLETION_WORDS_LIBRARY_GET_PRIVATE (self);
+	self->priv = gtk_source_completion_words_library_get_instance_private (self);
 
 	self->priv->store = g_sequence_new ((GDestroyNotify)g_object_unref);
 }

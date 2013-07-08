@@ -76,9 +76,7 @@ enum
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE(GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WINDOW);
-
-#define GTK_SOURCE_COMPLETION_INFO_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE ((object), GTK_SOURCE_TYPE_COMPLETION_INFO, GtkSourceCompletionInfoPrivate))
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WINDOW);
 
 /* Resize the window */
 
@@ -227,7 +225,7 @@ update_attached_to (GtkSourceCompletionInfo *info)
 static void
 gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 {
-	info->priv = GTK_SOURCE_COMPLETION_INFO_GET_PRIVATE (info);
+	info->priv = gtk_source_completion_info_get_instance_private (info);
 
 	g_signal_connect (info,
 			  "notify::attached-to",
@@ -327,8 +325,6 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 		              g_cclosure_marshal_VOID__VOID,
 		              G_TYPE_NONE,
 		              0);
-
-	g_type_class_add_private (object_class, sizeof (GtkSourceCompletionInfoPrivate));
 }
 
 /* Move to iter */

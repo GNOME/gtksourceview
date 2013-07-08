@@ -63,7 +63,7 @@ enum {
 	PROP_HIDDEN
 };
 
-G_DEFINE_TYPE (GtkSourceLanguage, gtk_source_language, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceLanguage, gtk_source_language, G_TYPE_OBJECT)
 
 static GtkSourceLanguage *process_language_node (xmlTextReaderPtr	 reader,
 						 const gchar		*filename);
@@ -253,15 +253,13 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 							       _("Whether the language should be hidden from the user"),
 							       FALSE,
 							       G_PARAM_READABLE));
-
-	g_type_class_add_private (object_class, sizeof(GtkSourceLanguagePrivate));
 }
 
 static void
 gtk_source_language_init (GtkSourceLanguage *lang)
 {
-	lang->priv = G_TYPE_INSTANCE_GET_PRIVATE (lang, GTK_SOURCE_TYPE_LANGUAGE,
-						  GtkSourceLanguagePrivate);
+	lang->priv = gtk_source_language_get_instance_private (lang);
+
 	lang->priv->styles = g_hash_table_new_full (g_str_hash,
 						    g_str_equal,
 						    g_free,

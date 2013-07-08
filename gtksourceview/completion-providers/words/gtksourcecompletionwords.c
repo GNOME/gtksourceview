@@ -40,8 +40,6 @@
 
 #include <string.h>
 
-#define GTK_SOURCE_COMPLETION_WORDS_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_COMPLETION_WORDS, GtkSourceCompletionWordsPrivate))
-
 #define BUFFER_KEY "GtkSourceCompletionWordsBufferKey"
 
 enum
@@ -95,6 +93,7 @@ static void gtk_source_completion_words_iface_init (GtkSourceCompletionProviderI
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWords,
 			 gtk_source_completion_words,
 			 G_TYPE_OBJECT,
+			 G_ADD_PRIVATE (GtkSourceCompletionWords)
 			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROVIDER,
 				 		gtk_source_completion_words_iface_init))
 
@@ -506,8 +505,6 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 							     GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE |
 							     GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
 							     G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
-	g_type_class_add_private (object_class, sizeof(GtkSourceCompletionWordsPrivate));
 }
 
 static gboolean
@@ -564,7 +561,7 @@ gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface)
 static void
 gtk_source_completion_words_init (GtkSourceCompletionWords *self)
 {
-	self->priv = GTK_SOURCE_COMPLETION_WORDS_GET_PRIVATE (self);
+	self->priv = gtk_source_completion_words_get_instance_private (self);
 
 	self->priv->library = gtk_source_completion_words_library_new ();
 }

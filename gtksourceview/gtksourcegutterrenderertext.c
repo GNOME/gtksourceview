@@ -22,8 +22,6 @@
 #include "gtksourcegutterrenderertext.h"
 #include "gtksourceview-i18n.h"
 
-#define GTK_SOURCE_GUTTER_RENDERER_TEXT_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT, GtkSourceGutterRendererTextPrivate))
-
 struct _GtkSourceGutterRendererTextPrivate
 {
 	gchar *text;
@@ -35,7 +33,7 @@ struct _GtkSourceGutterRendererTextPrivate
 	guint is_markup : 1;
 };
 
-G_DEFINE_TYPE (GtkSourceGutterRendererText, gtk_source_gutter_renderer_text, GTK_SOURCE_TYPE_GUTTER_RENDERER)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererText, gtk_source_gutter_renderer_text, GTK_SOURCE_TYPE_GUTTER_RENDERER)
 
 enum
 {
@@ -387,8 +385,6 @@ gtk_source_gutter_renderer_text_class_init (GtkSourceGutterRendererTextClass *kl
 	renderer_class->draw = gutter_renderer_text_draw;
 	renderer_class->end = gutter_renderer_text_end;
 
-	g_type_class_add_private (object_class, sizeof (GtkSourceGutterRendererTextPrivate));
-
 	g_object_class_install_property (object_class,
 	                                 PROP_MARKUP,
 	                                 g_param_spec_string ("markup",
@@ -409,7 +405,7 @@ gtk_source_gutter_renderer_text_class_init (GtkSourceGutterRendererTextClass *kl
 static void
 gtk_source_gutter_renderer_text_init (GtkSourceGutterRendererText *self)
 {
-	self->priv = GTK_SOURCE_GUTTER_RENDERER_TEXT_GET_PRIVATE (self);
+	self->priv = gtk_source_gutter_renderer_text_get_instance_private (self);
 
 	self->priv->is_markup = TRUE;
 }

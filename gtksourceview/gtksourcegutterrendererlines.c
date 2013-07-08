@@ -22,8 +22,6 @@
 #include "gtksourcegutterrendererlines.h"
 #include "gtksourceview.h"
 
-#define GTK_SOURCE_GUTTER_RENDERER_LINES_GET_PRIVATE(object)(G_TYPE_INSTANCE_GET_PRIVATE((object), GTK_SOURCE_TYPE_GUTTER_RENDERER_LINES, GtkSourceGutterRendererLinesPrivate))
-
 struct _GtkSourceGutterRendererLinesPrivate
 {
 	gint num_line_digits;
@@ -31,7 +29,7 @@ struct _GtkSourceGutterRendererLinesPrivate
 	guint changed_handler_id;
 };
 
-G_DEFINE_TYPE (GtkSourceGutterRendererLines, gtk_source_gutter_renderer_lines, GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererLines, gtk_source_gutter_renderer_lines, GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT)
 
 static void
 gtk_source_gutter_renderer_lines_finalize (GObject *object)
@@ -289,14 +287,12 @@ gtk_source_gutter_renderer_lines_class_init (GtkSourceGutterRendererLinesClass *
 	renderer_class->query_activatable = gutter_renderer_query_activatable;
 	renderer_class->activate = gutter_renderer_activate;
 	renderer_class->change_buffer = gutter_renderer_change_buffer;
-
-	g_type_class_add_private (object_class, sizeof(GtkSourceGutterRendererLinesPrivate));
 }
 
 static void
 gtk_source_gutter_renderer_lines_init (GtkSourceGutterRendererLines *self)
 {
-	self->priv = GTK_SOURCE_GUTTER_RENDERER_LINES_GET_PRIVATE (self);
+	self->priv = gtk_source_gutter_renderer_lines_get_instance_private (self);
 }
 
 GtkSourceGutterRenderer *
