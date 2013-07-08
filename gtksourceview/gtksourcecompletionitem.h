@@ -59,6 +59,7 @@ GtkSourceCompletionItem *gtk_source_completion_item_new_with_markup	(const gchar
 									 GdkPixbuf   *icon,
 									 const gchar *info);
 
+G_DEPRECATED_FOR (gtk_source_completion_item_new)
 GtkSourceCompletionItem *gtk_source_completion_item_new_from_stock	(const gchar *label,
 								 	 const gchar *text,
 								 	 const gchar *stock,

@@ -354,6 +354,8 @@ gtk_source_completion_item_new_with_markup (const gchar *markup,
 			     NULL);
 }
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
+
 /**
  * gtk_source_completion_item_new_from_stock:
  * @label: (allow-none): The item label.
@@ -365,6 +367,7 @@ gtk_source_completion_item_new_with_markup (const gchar *markup,
  * the stock label will be used.
  *
  * Returns: a new #GtkSourceCompletionItem.
+ * Deprecated: 3.10: Use gtk_source_completion_item_new() instead.
  */
 GtkSourceCompletionItem *
 gtk_source_completion_item_new_from_stock (const gchar *label,
@@ -410,3 +413,5 @@ gtk_source_completion_item_new_from_stock (const gchar *label,
 
 	return item;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS;
