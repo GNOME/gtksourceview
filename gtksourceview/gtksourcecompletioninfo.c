@@ -112,7 +112,7 @@ idle_resize (GtkSourceCompletionInfo *info)
 				   MAX (1, window_height));
 	}
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void

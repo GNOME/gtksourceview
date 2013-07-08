@@ -1309,7 +1309,7 @@ auto_completion_final (GtkSourceCompletion *completion)
 
 	g_list_free (selection);
 	g_object_unref (context);
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void

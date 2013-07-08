@@ -2320,9 +2320,9 @@ all_analyzed (GtkSourceContextEngine *ce)
 static gboolean
 idle_worker (GtkSourceContextEngine *ce)
 {
-	gboolean retval = TRUE;
+	gboolean retval = G_SOURCE_CONTINUE;
 
-	g_return_val_if_fail (ce->priv->buffer != NULL, FALSE);
+	g_return_val_if_fail (ce->priv->buffer != NULL, G_SOURCE_REMOVE);
 
 	/* analyze batch of text */
 	update_syntax (ce, NULL, INCREMENTAL_UPDATE_TIME_SLICE);
@@ -2331,7 +2331,7 @@ idle_worker (GtkSourceContextEngine *ce)
 	if (all_analyzed (ce))
 	{
 		ce->priv->incremental_update = 0;
-		retval = FALSE;
+		retval = G_SOURCE_REMOVE;
 	}
 
 	return retval;
@@ -2347,7 +2347,7 @@ idle_worker (GtkSourceContextEngine *ce)
 static gboolean
 first_update_callback (GtkSourceContextEngine *ce)
 {
-	g_return_val_if_fail (ce->priv->buffer != NULL, FALSE);
+	g_return_val_if_fail (ce->priv->buffer != NULL, G_SOURCE_REMOVE);
 
 	/* analyze batch of text */
 	update_syntax (ce, NULL, FIRST_UPDATE_TIME_SLICE);
@@ -2358,7 +2358,7 @@ first_update_callback (GtkSourceContextEngine *ce)
 	if (!all_analyzed (ce))
 		install_idle_worker (ce);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 /**

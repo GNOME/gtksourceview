@@ -382,7 +382,7 @@ initiate_scan (GtkSourceCompletionWordsBuffer *buffer)
 		                    buffer,
 		                    NULL);
 
-	return FALSE;
+	return G_SOURCE_REMOVE;
 }
 
 static void
