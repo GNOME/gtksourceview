@@ -1326,7 +1326,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 	gtk_widget_show (menu_item);
 
 	/* create redo menu_item. */
-	menu_item = gtk_image_menu_item_new_from_stock ("gtk-redo", NULL);
+	menu_item = gtk_menu_item_new_with_mnemonic (_("_Redo"));
 	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", "redo");
 	g_signal_connect (G_OBJECT (menu_item), "activate",
 			  G_CALLBACK (menu_item_activate_cb), text_view);
@@ -1337,7 +1337,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 	gtk_widget_show (menu_item);
 
 	/* create undo menu_item. */
-	menu_item = gtk_image_menu_item_new_from_stock ("gtk-undo", NULL);
+	menu_item = gtk_menu_item_new_with_mnemonic (_("_Undo"));
 	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", "undo");
 	g_signal_connect (G_OBJECT (menu_item), "activate",
 			  G_CALLBACK (menu_item_activate_cb), text_view);
