@@ -2106,6 +2106,11 @@ _gtk_source_search_replace_all (GtkSourceSearch *search,
 		return 0;
 	}
 
+	g_signal_handlers_block_by_func (search->priv->buffer, insert_text_before_cb, search);
+	g_signal_handlers_block_by_func (search->priv->buffer, insert_text_after_cb, search);
+	g_signal_handlers_block_by_func (search->priv->buffer, delete_range_before_cb, search);
+	g_signal_handlers_block_by_func (search->priv->buffer, delete_range_after_cb, search);
+
 	gtk_text_buffer_get_start_iter (search->priv->buffer, &iter);
 
 	gtk_text_buffer_begin_user_action (search->priv->buffer);
@@ -2120,6 +2125,13 @@ _gtk_source_search_replace_all (GtkSourceSearch *search,
 	}
 
 	gtk_text_buffer_end_user_action (search->priv->buffer);
+
+	g_signal_handlers_unblock_by_func (search->priv->buffer, insert_text_before_cb, search);
+	g_signal_handlers_unblock_by_func (search->priv->buffer, insert_text_after_cb, search);
+	g_signal_handlers_unblock_by_func (search->priv->buffer, delete_range_before_cb, search);
+	g_signal_handlers_unblock_by_func (search->priv->buffer, delete_range_after_cb, search);
+
+	update (search);
 
 	return nb_matches_replaced;
 }
