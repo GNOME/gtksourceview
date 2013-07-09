@@ -2906,7 +2906,9 @@ gtk_source_buffer_get_search_occurrence_position (GtkSourceBuffer   *buffer,
  * @match_start: (out) (allow-none): return location for start of match, or %NULL.
  * @match_end: (out) (allow-none): return location for end of match, or %NULL.
  *
- * Synchronous forward search.
+ * Synchronous forward search. It is recommended to use the asynchronous
+ * functions instead, to not block the user interface. However, if you are sure
+ * that the @buffer is small, this function is more convenient to use.
  *
  * Returns: whether a match was found.
  * Since: 3.10
@@ -2997,7 +2999,9 @@ gtk_source_buffer_forward_search_finish (GtkSourceBuffer  *buffer,
  * @match_start: (out) (allow-none): return location for start of match, or %NULL.
  * @match_end: (out) (allow-none): return location for end of match, or %NULL.
  *
- * Synchronous backward search.
+ * Synchronous backward search. It is recommended to use the asynchronous
+ * functions instead, to not block the user interface. However, if you are sure
+ * that the @buffer is small, this function is more convenient to use.
  *
  * Returns: whether a match was found.
  * Since: 3.10
@@ -3120,7 +3124,8 @@ gtk_source_buffer_search_replace (GtkSourceBuffer   *buffer,
  * @replace: the replacement text.
  * @replace_length: the length of @replace in bytes, or -1.
  *
- * Replaces all search matches by another text.
+ * Replaces all search matches by another text. It is a synchronous function, so
+ * it can block the user interface.
  *
  * Returns: the number of replaced matches.
  * Since: 3.10
