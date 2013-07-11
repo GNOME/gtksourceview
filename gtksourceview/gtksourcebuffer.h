@@ -200,6 +200,13 @@ void			 gtk_source_buffer_set_search_wrap_around		(GtkSourceBuffer	*buffer,
 
 gboolean		 gtk_source_buffer_get_search_wrap_around		(GtkSourceBuffer	*buffer);
 
+void			 gtk_source_buffer_set_regex_search			(GtkSourceBuffer	*buffer,
+										 gboolean		 regex);
+
+gboolean		 gtk_source_buffer_get_regex_search			(GtkSourceBuffer	*buffer);
+
+GError			*gtk_source_buffer_get_regex_search_error		(GtkSourceBuffer	*buffer);
+
 void			 gtk_source_buffer_set_highlight_search			(GtkSourceBuffer	*buffer,
 										 gboolean		 highlight);
 

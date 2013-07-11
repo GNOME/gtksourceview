@@ -50,6 +50,7 @@ struct _TestSearchUIPrivate
 	GtkSourceBuffer *source_buffer;
 	GtkEntry *replace_entry;
 	GtkLabel *label_occurrences;
+	GtkLabel *label_regex_error;
 
 	guint idle_update_label_id;
 };
@@ -92,7 +93,7 @@ open_file (TestSearchUI *search,
 }
 
 static void
-update_label (TestSearchUI *search)
+update_label_occurrences (TestSearchUI *search)
 {
 	gint occurrences_count;
 	GtkTextIter select_start;
@@ -125,6 +126,26 @@ update_label (TestSearchUI *search)
 
 	gtk_label_set_text (search->priv->label_occurrences, text);
 	g_free (text);
+}
+
+static void
+update_label_regex_error (TestSearchUI *search)
+{
+	GError *error;
+
+	error = gtk_source_buffer_get_regex_search_error (search->priv->source_buffer);
+
+	if (error == NULL)
+	{
+		gtk_label_set_text (search->priv->label_regex_error, "");
+		gtk_widget_hide (GTK_WIDGET (search->priv->label_regex_error));
+	}
+	else
+	{
+		gtk_label_set_text (search->priv->label_regex_error, error->message);
+		gtk_widget_show (GTK_WIDGET (search->priv->label_regex_error));
+		g_error_free (error);
+	}
 }
 
 /* The search entry is a GtkSearchEntry. The "changed" signal is delayed on a
@@ -285,7 +306,7 @@ update_label_idle_cb (TestSearchUI *search)
 {
 	search->priv->idle_update_label_id = 0;
 
-	update_label (search);
+	update_label_occurrences (search);
 
 	return G_SOURCE_REMOVE;
 }
@@ -343,6 +364,14 @@ wrap_around_toggled_cb (TestSearchUI    *search,
 }
 
 static void
+regex_toggled_cb (TestSearchUI    *search,
+		  GtkToggleButton *button)
+{
+	gtk_source_buffer_set_regex_search (search->priv->source_buffer,
+					    gtk_toggle_button_get_active (button));
+}
+
+static void
 test_search_ui_dispose (GObject *object)
 {
 	TestSearchUI *search = TEST_SEARCH_UI (object);
@@ -366,6 +395,7 @@ test_search_ui_class_init (TestSearchUIClass *klass)
 	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, source_view);
 	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, replace_entry);
 	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, label_occurrences);
+	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, label_regex_error);
 
 	gtk_widget_class_bind_template_callback (widget_class, search_entry_text_notify_cb);
 	gtk_widget_class_bind_template_callback (widget_class, button_previous_clicked_cb);
@@ -381,6 +411,7 @@ test_search_ui_class_init (TestSearchUIClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, match_case_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, at_word_boundaries_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, wrap_around_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, regex_toggled_cb);
 }
 
 static void
@@ -408,13 +439,20 @@ test_search_ui_init (TestSearchUI *search)
 
 	g_signal_connect_swapped (search->priv->source_buffer,
 				  "notify::search-occurrences-count",
-				  G_CALLBACK (update_label),
+				  G_CALLBACK (update_label_occurrences),
 				  search);
 
 	g_signal_connect (search->priv->source_buffer,
 			  "mark-set",
 			  G_CALLBACK (mark_set_cb),
 			  search);
+
+	g_signal_connect_swapped (search->priv->source_buffer,
+				  "notify::regex-search-error",
+				  G_CALLBACK (update_label_regex_error),
+				  search);
+
+	update_label_regex_error (search);
 }
 
 static TestSearchUI *
@@ -443,7 +481,7 @@ main (gint argc, gchar *argv[])
 	search = test_search_ui_new ();
 	gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (search));
 
-	gtk_widget_show_all (window);
+	gtk_widget_show (window);
 
 	gtk_main ();
 

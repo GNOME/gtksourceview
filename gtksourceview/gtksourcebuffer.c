@@ -106,8 +106,9 @@
  *   <para>
  *     You can tune the search with the following properties:
  *     #GtkSourceBuffer:case-sensitive-search,
- *     #GtkSourceBuffer:search-at-word-boundaries and
- *     #GtkSourceBuffer:search-wrap-around.
+ *     #GtkSourceBuffer:search-at-word-boundaries,
+ *     #GtkSourceBuffer:search-wrap-around and
+ *     #GtkSourceBuffer:regex-search.
  *   </para>
  *   <para>
  *     To search forward, use gtk_source_buffer_forward_search() or
@@ -177,7 +178,9 @@ enum {
 	PROP_SEARCH_OCCURRENCES_COUNT,
 	PROP_CASE_SENSITIVE_SEARCH,
 	PROP_SEARCH_AT_WORD_BOUNDARIES,
-	PROP_SEARCH_WRAP_AROUND
+	PROP_SEARCH_WRAP_AROUND,
+	PROP_REGEX_SEARCH,
+	PROP_REGEX_SEARCH_ERROR
 };
 
 struct _GtkSourceBufferPrivate
@@ -410,7 +413,9 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	/**
 	 * GtkSourceBuffer:search-text:
 	 *
-	 * A search string, or %NULL if the search is disabled.
+	 * A search string, or %NULL if the search is disabled. If the regular
+	 * expression search is enabled, #GtkSourceBuffer:search-text is the
+	 * pattern.
 	 *
 	 * Since: 3.10
 	 */
@@ -488,6 +493,40 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							       _("Search: wrap around"),
 							       TRUE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	/**
+	 * GtkSourceBuffer:regex-search:
+	 *
+	 * Search by regular expressions with #GtkSourceBuffer:search-text as
+	 * the pattern.
+	 *
+	 * Since: 3.10
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_REGEX_SEARCH,
+					 g_param_spec_boolean ("regex-search",
+							       _("Regex search"),
+							       _("Search by regular expression"),
+							       FALSE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	/**
+	 * GtkSourceBuffer:regex-search-error:
+	 *
+	 * If the regex search pattern doesn't follow all the rules,
+	 * #GtkSourceBuffer:regex-search-error will be set. If the pattern
+	 * is valid, #GtkSourceBuffer:regex-search-error is %NULL.
+	 *
+	 * Free with g_error_free().
+	 *
+	 * Since: 3.10
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_REGEX_SEARCH_ERROR,
+					 g_param_spec_pointer ("regex-search-error",
+							       _("Regex search error"),
+							       _("Regular expression search error"),
+							       G_PARAM_READABLE));
 
 	param_types[0] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
 	param_types[1] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
@@ -743,6 +782,11 @@ gtk_source_buffer_set_property (GObject      *object,
 							    g_value_get_boolean (value));
 			break;
 
+		case PROP_REGEX_SEARCH:
+			_gtk_source_search_set_regex_enabled (source_buffer->priv->search,
+							      g_value_get_boolean (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -820,6 +864,14 @@ gtk_source_buffer_get_property (GObject    *object,
 
 		case PROP_SEARCH_WRAP_AROUND:
 			g_value_set_boolean (value, _gtk_source_search_get_wrap_around (source_buffer->priv->search));
+			break;
+
+		case PROP_REGEX_SEARCH:
+			g_value_set_boolean (value, _gtk_source_search_get_regex_enabled (source_buffer->priv->search));
+			break;
+
+		case PROP_REGEX_SEARCH_ERROR:
+			g_value_set_pointer (value, _gtk_source_search_get_regex_error (source_buffer->priv->search));
 			break;
 
 		default:
@@ -2885,6 +2937,75 @@ gtk_source_buffer_get_search_wrap_around (GtkSourceBuffer *buffer)
 }
 
 /**
+ * gtk_source_buffer_set_regex_search:
+ * @buffer: a #GtkSourceBuffer.
+ * @regex: the setting.
+ *
+ * Enables or disables whether to search by regular expressions.
+ * If enabled, the #GtkSourceBuffer:search-text property contains the pattern of
+ * the regular expression.
+ *
+ * See also gtk_source_buffer_get_regex_search_error().
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_buffer_set_regex_search (GtkSourceBuffer *buffer,
+				    gboolean         regex)
+{
+	gboolean cur_val;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	regex = regex != FALSE;
+
+	cur_val = _gtk_source_search_get_regex_enabled (buffer->priv->search);
+
+	if (cur_val != regex)
+	{
+		_gtk_source_search_set_regex_enabled (buffer->priv->search, regex);
+
+		g_object_notify (G_OBJECT (buffer), "regex-search");
+	}
+}
+
+/**
+ * gtk_source_buffer_get_regex_search:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Returns: whether to search by regular expressions.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_get_regex_search (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return _gtk_source_search_get_regex_enabled (buffer->priv->search);
+}
+
+/**
+ * gtk_source_buffer_get_regex_search_error:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Regular expression patterns must follow certain rules. If
+ * #GtkSourceBuffer:search-text breaks a rule, the error can be retrieved with
+ * this function. The error domain is #G_REGEX_ERROR.
+ *
+ * Free the return value with g_error_free().
+ *
+ * Returns: the #GError, or %NULL if the pattern is valid.
+ * Since: 3.10
+ */
+GError *
+gtk_source_buffer_get_regex_search_error (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
+
+	return _gtk_source_search_get_regex_error (buffer->priv->search);
+}
+
+/**
  * gtk_source_buffer_set_highlight_search:
  * @buffer: a #GtkSourceBuffer.
  * @highlight: the setting.
@@ -3175,6 +3296,10 @@ gtk_source_buffer_backward_search_finish (GtkSourceBuffer  *buffer,
  * Replaces a search match by another text. If @match_start and @match_end
  * doesn't correspond to a search match, %FALSE is returned.
  *
+ * For a regular expression replacement, you can check if @replace is valid by
+ * calling g_regex_check_replacement(). The @replace text can contain
+ * backreferences; read the g_regex_replace() documentation for more details.
+ *
  * Returns: whether the match has been replaced.
  * Since: 3.10
  */
@@ -3205,6 +3330,10 @@ gtk_source_buffer_search_replace (GtkSourceBuffer   *buffer,
  *
  * Replaces all search matches by another text. It is a synchronous function, so
  * it can block the user interface.
+ *
+ * For a regular expression replacement, you can check if @replace is valid by
+ * calling g_regex_check_replacement(). The @replace text can contain
+ * backreferences; read the g_regex_replace() documentation for more details.
  *
  * Returns: the number of replaced matches.
  * Since: 3.10
