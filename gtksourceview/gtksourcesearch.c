@@ -145,6 +145,7 @@ struct _GtkSourceSearchPrivate
 	GtkTextSearchFlags flags;
 	guint at_word_boundaries : 1;
 	guint wrap_around : 1;
+	guint highlight : 1;
 };
 
 /* Data for the asynchronous forward and backward search tasks. */
@@ -178,6 +179,12 @@ sync_found_tag (GtkSourceSearch *search)
 
 	if (dispose_has_run (search))
 	{
+		return;
+	}
+
+	if (!search->priv->highlight)
+	{
+		_gtk_source_style_apply (NULL, search->priv->found_tag);
 		return;
 	}
 
@@ -1755,6 +1762,28 @@ _gtk_source_search_get_wrap_around (GtkSourceSearch *search)
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH (search), FALSE);
 
 	return search->priv->wrap_around;
+}
+
+void
+_gtk_source_search_set_highlight (GtkSourceSearch *search,
+				  gboolean         highlight)
+{
+	g_return_if_fail (GTK_SOURCE_IS_SEARCH (search));
+
+	search->priv->highlight = highlight;
+
+	if (search->priv->found_tag != NULL)
+	{
+		sync_found_tag (search);
+	}
+}
+
+gboolean
+_gtk_source_search_get_highlight (GtkSourceSearch *search)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH (search), FALSE);
+
+	return search->priv->highlight;
 }
 
 guint

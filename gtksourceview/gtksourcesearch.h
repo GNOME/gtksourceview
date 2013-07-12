@@ -86,6 +86,13 @@ G_GNUC_INTERNAL
 gboolean		_gtk_source_search_get_wrap_around		(GtkSourceSearch	*search);
 
 G_GNUC_INTERNAL
+void			_gtk_source_search_set_highlight		(GtkSourceSearch	*search,
+									 gboolean		 highlight);
+
+G_GNUC_INTERNAL
+gboolean		_gtk_source_search_get_highlight		(GtkSourceSearch	*search);
+
+G_GNUC_INTERNAL
 guint			_gtk_source_search_get_occurrences_count	(GtkSourceSearch	*search);
 
 G_GNUC_INTERNAL

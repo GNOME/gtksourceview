@@ -307,6 +307,14 @@ mark_set_cb (GtkTextBuffer *buffer,
 }
 
 static void
+highlight_toggled_cb (TestSearchUI    *search,
+		      GtkToggleButton *button)
+{
+	gtk_source_buffer_set_highlight_search (search->priv->source_buffer,
+						gtk_toggle_button_get_active (button));
+}
+
+static void
 match_case_toggled_cb (TestSearchUI    *search,
 		       GtkToggleButton *button)
 {
@@ -365,6 +373,7 @@ test_search_ui_class_init (TestSearchUIClass *klass)
 	 * g_object_bind_property(), between the check buttons and the source
 	 * buffer. But GtkBuilder and Glade don't support that yet.
 	 */
+	gtk_widget_class_bind_callback (widget_class, highlight_toggled_cb);
 	gtk_widget_class_bind_callback (widget_class, match_case_toggled_cb);
 	gtk_widget_class_bind_callback (widget_class, at_word_boundaries_toggled_cb);
 	gtk_widget_class_bind_callback (widget_class, wrap_around_toggled_cb);

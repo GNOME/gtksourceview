@@ -162,6 +162,7 @@ enum {
 	PROP_CAN_REDO,
 	PROP_HIGHLIGHT_SYNTAX,
 	PROP_HIGHLIGHT_MATCHING_BRACKETS,
+	PROP_HIGHLIGHT_SEARCH,
 	PROP_MAX_UNDO_LEVELS,
 	PROP_LANGUAGE,
 	PROP_STYLE_SCHEME,
@@ -319,6 +320,19 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							       _("Whether to highlight matching brackets"),
 							       TRUE,
 							       G_PARAM_READWRITE));
+
+	/**
+	 * GtkSourceBuffer:highlight-search:
+	 *
+	 * Whether to highlight search occurrences in the buffer.
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_HIGHLIGHT_SEARCH,
+					 g_param_spec_boolean ("highlight-search",
+							       _("Highlight Search"),
+							       _("Whether to highlight search occurrences"),
+							       TRUE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	/**
 	 * GtkSourceBuffer:max-undo-levels:
@@ -669,12 +683,17 @@ gtk_source_buffer_set_property (GObject      *object,
 	{
 		case PROP_HIGHLIGHT_SYNTAX:
 			gtk_source_buffer_set_highlight_syntax (source_buffer,
-							      g_value_get_boolean (value));
+								g_value_get_boolean (value));
 			break;
 
 		case PROP_HIGHLIGHT_MATCHING_BRACKETS:
 			gtk_source_buffer_set_highlight_matching_brackets (source_buffer,
-								g_value_get_boolean (value));
+									   g_value_get_boolean (value));
+			break;
+
+		case PROP_HIGHLIGHT_SEARCH:
+			_gtk_source_search_set_highlight (source_buffer->priv->search,
+							  g_value_get_boolean (value));
 			break;
 
 		case PROP_MAX_UNDO_LEVELS:
@@ -745,6 +764,10 @@ gtk_source_buffer_get_property (GObject    *object,
 		case PROP_HIGHLIGHT_MATCHING_BRACKETS:
 			g_value_set_boolean (value,
 					     source_buffer->priv->highlight_brackets);
+			break;
+
+		case PROP_HIGHLIGHT_SEARCH:
+			g_value_set_boolean (value, _gtk_source_search_get_highlight (source_buffer->priv->search));
 			break;
 
 		case PROP_MAX_UNDO_LEVELS:
@@ -2850,6 +2873,51 @@ gtk_source_buffer_get_search_wrap_around (GtkSourceBuffer *buffer)
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
 	return _gtk_source_search_get_wrap_around (buffer->priv->search);
+}
+
+/**
+ * gtk_source_buffer_set_highlight_search:
+ * @buffer: a #GtkSourceBuffer.
+ * @highlight: the setting.
+ *
+ * Enables or disables search highlighting. If you disable the search
+ * highlighting, you can still use the other search and replace functions.
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_buffer_set_highlight_search (GtkSourceBuffer *buffer,
+					gboolean         highlight)
+{
+	gboolean cur_val;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	highlight = highlight != FALSE;
+
+	cur_val = _gtk_source_search_get_highlight (buffer->priv->search);
+
+	if (cur_val != highlight)
+	{
+		_gtk_source_search_set_highlight (buffer->priv->search, highlight);
+
+		g_object_notify (G_OBJECT (buffer), "highlight-search");
+	}
+}
+
+/**
+ * gtk_source_buffer_get_highlight_search:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Returns: whether to highlight search occurrences.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_buffer_get_highlight_search (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return _gtk_source_search_get_highlight (buffer->priv->search);
 }
 
 /**
