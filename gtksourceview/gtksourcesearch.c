@@ -2097,6 +2097,7 @@ _gtk_source_search_replace_all (GtkSourceSearch *search,
 	GtkTextIter match_start;
 	GtkTextIter match_end;
 	guint nb_matches_replaced = 0;
+	gboolean highlight_matching_brackets;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH (search), 0);
 	g_return_val_if_fail (replace != NULL, 0);
@@ -2110,6 +2111,12 @@ _gtk_source_search_replace_all (GtkSourceSearch *search,
 	g_signal_handlers_block_by_func (search->priv->buffer, insert_text_after_cb, search);
 	g_signal_handlers_block_by_func (search->priv->buffer, delete_range_before_cb, search);
 	g_signal_handlers_block_by_func (search->priv->buffer, delete_range_after_cb, search);
+
+	highlight_matching_brackets =
+		gtk_source_buffer_get_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->priv->buffer));
+
+	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->priv->buffer),
+							   FALSE);
 
 	gtk_text_buffer_get_start_iter (search->priv->buffer, &iter);
 
@@ -2125,6 +2132,9 @@ _gtk_source_search_replace_all (GtkSourceSearch *search,
 	}
 
 	gtk_text_buffer_end_user_action (search->priv->buffer);
+
+	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->priv->buffer),
+							   highlight_matching_brackets);
 
 	g_signal_handlers_unblock_by_func (search->priv->buffer, insert_text_before_cb, search);
 	g_signal_handlers_unblock_by_func (search->priv->buffer, insert_text_after_cb, search);
