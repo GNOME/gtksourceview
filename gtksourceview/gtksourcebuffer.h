@@ -205,7 +205,7 @@ void			 gtk_source_buffer_set_highlight_search			(GtkSourceBuffer	*buffer,
 
 gboolean		 gtk_source_buffer_get_highlight_search			(GtkSourceBuffer	*buffer);
 
-guint			 gtk_source_buffer_get_search_occurrences_count		(GtkSourceBuffer	*buffer);
+gint			 gtk_source_buffer_get_search_occurrences_count		(GtkSourceBuffer	*buffer);
 
 gint			 gtk_source_buffer_get_search_occurrence_position	(GtkSourceBuffer	*buffer,
 										 const GtkTextIter	*match_start,

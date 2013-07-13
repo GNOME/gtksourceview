@@ -135,7 +135,7 @@ struct _GtkSourceSearchPrivate
 
 	gulong idle_scan_id;
 
-	guint occurrences_count;
+	gint occurrences_count;
 
 	GtkTextTag *found_tag;
 
@@ -1786,12 +1786,12 @@ _gtk_source_search_get_highlight (GtkSourceSearch *search)
 	return search->priv->highlight;
 }
 
-guint
+gint
 _gtk_source_search_get_occurrences_count (GtkSourceSearch *search)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH (search), 0);
 
-	return search->priv->occurrences_count;
+	return is_text_region_empty (search->priv->scan_region) ? search->priv->occurrences_count : -1;
 }
 
 gint

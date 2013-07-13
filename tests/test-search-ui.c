@@ -94,7 +94,7 @@ open_file (TestSearchUI *search,
 static void
 update_label (TestSearchUI *search)
 {
-	guint occurrences_count;
+	gint occurrences_count;
 	GtkTextIter select_start;
 	GtkTextIter select_end;
 	gint occurrence_pos;
@@ -110,13 +110,17 @@ update_label (TestSearchUI *search)
 									   &select_start,
 									   &select_end);
 
-	if (occurrence_pos > 0)
+	if (occurrences_count == -1)
 	{
-		text = g_strdup_printf ("%d of %u", occurrence_pos, occurrences_count);
+		text = g_strdup ("");
+	}
+	else if (occurrence_pos == -1)
+	{
+		text = g_strdup_printf ("%u occurrences", occurrences_count);
 	}
 	else
 	{
-		text = g_strdup_printf ("%u occurrences", occurrences_count);
+		text = g_strdup_printf ("%d of %u", occurrence_pos, occurrences_count);
 	}
 
 	gtk_label_set_text (search->priv->label_occurrences, text);

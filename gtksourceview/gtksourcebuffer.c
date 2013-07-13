@@ -420,19 +420,20 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * GtkSourceBuffer:search-occurrences-count:
 	 *
 	 * The total number of search occurrences. If the search is disabled,
-	 * the value is 0.
+	 * the value is 0. If the buffer is not already fully scanned, the value
+	 * is -1.
 	 *
 	 * Since: 3.10
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_SEARCH_OCCURRENCES_COUNT,
-					 g_param_spec_uint ("search-occurrences-count",
-							    _("Search occurrences count"),
-							    _("Total number of search occurrences"),
-							    0,
-							    G_MAXUINT,
-							    0,
-							    G_PARAM_READABLE));
+					 g_param_spec_int ("search-occurrences-count",
+							   _("Search occurrences count"),
+							   _("Total number of search occurrences"),
+							   -1,
+							   G_MAXINT,
+							   0,
+							   G_PARAM_READABLE));
 
 	/**
 	 * GtkSourceBuffer:case-sensitive-search:
@@ -800,7 +801,7 @@ gtk_source_buffer_get_property (GObject    *object,
 			break;
 
 		case PROP_SEARCH_OCCURRENCES_COUNT:
-			g_value_set_uint (value, _gtk_source_search_get_occurrences_count (source_buffer->priv->search));
+			g_value_set_int (value, _gtk_source_search_get_occurrences_count (source_buffer->priv->search));
 			break;
 
 		case PROP_CASE_SENSITIVE_SEARCH:
@@ -2924,12 +2925,14 @@ gtk_source_buffer_get_highlight_search (GtkSourceBuffer *buffer)
  * gtk_source_buffer_get_search_occurrences_count:
  * @buffer: a #GtkSourceBuffer.
  *
- * Gets the total number of search occurrences.
+ * Gets the total number of search occurrences. If the buffer is not already
+ * fully scanned, the total number of occurrences is unknown, and -1 is
+ * returned.
  *
- * Returns: the total number of search occurrences.
+ * Returns: the total number of search occurrences, or -1 if unknown.
  * Since: 3.10
  */
-guint
+gint
 gtk_source_buffer_get_search_occurrences_count (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), 0);
