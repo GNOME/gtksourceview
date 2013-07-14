@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-07-08 20:33+0000\n"
+"POT-Creation-Date: 2013-07-12 20:43+0000\n"
 "PO-Revision-Date: 2013-07-09 21:41+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
@@ -2641,102 +2641,108 @@ msgstr "Aktivace"
 msgid "The type of activation"
 msgstr "Typ aktivace"
 
-#: ../gtksourceview/gtksourcebuffer.c:304
+#: ../gtksourceview/gtksourcebuffer.c:305
 #: ../gtksourceview/gtksourceprintcompositor.c:504
 msgid "Highlight Syntax"
 msgstr "Zvýrazňovat syntaxi"
 
-#: ../gtksourceview/gtksourcebuffer.c:305
+#: ../gtksourceview/gtksourcebuffer.c:306
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Zda zvýrazňovat syntax ve vyrovnávací paměti"
 
-#: ../gtksourceview/gtksourcebuffer.c:318
+#: ../gtksourceview/gtksourcebuffer.c:319
 msgid "Highlight Matching Brackets"
 msgstr "Zvýrazňovat odpovídající závorky"
 
-#: ../gtksourceview/gtksourcebuffer.c:319
+#: ../gtksourceview/gtksourcebuffer.c:320
 msgid "Whether to highlight matching brackets"
 msgstr "Zda zvýrazňovat závorky, které si odpovídají"
 
 #: ../gtksourceview/gtksourcebuffer.c:332
+msgid "Highlight Search"
+msgstr "Zvýrazňovat nalezené"
+
+#: ../gtksourceview/gtksourcebuffer.c:333
+msgid "Whether to highlight search occurrences"
+msgstr "Zda zvýrazňovat nalezené výskyty"
+
+#: ../gtksourceview/gtksourcebuffer.c:346
 #: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Maximum Undo Levels"
 msgstr "Maximum úrovní vracení zpět"
 
-#: ../gtksourceview/gtksourcebuffer.c:333
+#: ../gtksourceview/gtksourcebuffer.c:347
 #: ../gtksourceview/gtksourceundomanagerdefault.c:415
 msgid "Number of undo levels for the buffer"
 msgstr "Počet kroků, o které se lze ve vyrovnávací paměti vrátit zpět"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:345
+#: ../gtksourceview/gtksourcebuffer.c:359
 msgid "Language"
 msgstr "Jazyk"
 
-#: ../gtksourceview/gtksourcebuffer.c:346
+#: ../gtksourceview/gtksourcebuffer.c:360
 msgid "Language object to get highlighting patterns from"
 msgstr "Objekt jazyka, ze kterého se mají brát vzory pro zvýrazňovací"
 
-#: ../gtksourceview/gtksourcebuffer.c:354
+#: ../gtksourceview/gtksourcebuffer.c:368
 msgid "Can undo"
 msgstr "Lze vrátit"
 
-#: ../gtksourceview/gtksourcebuffer.c:355
+#: ../gtksourceview/gtksourcebuffer.c:369
 msgid "Whether Undo operation is possible"
 msgstr "Zdali je možné provádět vracení zpět"
 
-#: ../gtksourceview/gtksourcebuffer.c:362
+#: ../gtksourceview/gtksourcebuffer.c:376
 msgid "Can redo"
 msgstr "Lze zopakovat"
 
-#: ../gtksourceview/gtksourcebuffer.c:363
+#: ../gtksourceview/gtksourcebuffer.c:377
 msgid "Whether Redo operation is possible"
 msgstr "Zdali je možné provádět opakování vrácených úkonů"
 
-#: ../gtksourceview/gtksourcebuffer.c:377
-#: ../gtksourceview/gtksourcebuffer.c:378
+#: ../gtksourceview/gtksourcebuffer.c:391
+#: ../gtksourceview/gtksourcebuffer.c:392
 msgid "Style scheme"
 msgstr "Schéma stylu"
 
-#: ../gtksourceview/gtksourcebuffer.c:385
+#: ../gtksourceview/gtksourcebuffer.c:399
 msgid "Undo manager"
 msgstr "Správce vracení akcí"
 
-#: ../gtksourceview/gtksourcebuffer.c:386
+#: ../gtksourceview/gtksourcebuffer.c:400
 msgid "The buffer undo manager"
 msgstr "Správce vyrovnávací paměti pro vracení akcí"
 
-#: ../gtksourceview/gtksourcebuffer.c:400
-#| msgid "The text"
+#: ../gtksourceview/gtksourcebuffer.c:414
 msgid "Search text"
 msgstr "Hledaný text"
 
-#: ../gtksourceview/gtksourcebuffer.c:401
-#| msgid "The text"
+#: ../gtksourceview/gtksourcebuffer.c:415
 msgid "The text to search"
 msgstr "Text, který se má najít"
 
-#: ../gtksourceview/gtksourcebuffer.c:416
+#: ../gtksourceview/gtksourcebuffer.c:430
 msgid "Search occurrences count"
 msgstr "Počet nalezených výskytů"
 
-#: ../gtksourceview/gtksourcebuffer.c:417
+#: ../gtksourceview/gtksourcebuffer.c:431
 msgid "Total number of search occurrences"
 msgstr "Celkový počet nalezených výskytů"
 
-#: ../gtksourceview/gtksourcebuffer.c:433
-#: ../gtksourceview/gtksourcebuffer.c:434
+#: ../gtksourceview/gtksourcebuffer.c:447
+#: ../gtksourceview/gtksourcebuffer.c:448
 msgid "Case sensitive search"
 msgstr "Citlivost hledání na velikost písmen"
 
-#: ../gtksourceview/gtksourcebuffer.c:449
-#: ../gtksourceview/gtksourcebuffer.c:450
+#: ../gtksourceview/gtksourcebuffer.c:463
+#: ../gtksourceview/gtksourcebuffer.c:464
 msgid "Search at word boundaries"
 msgstr "Hledat celá slova"
 
-#: ../gtksourceview/gtksourcebuffer.c:466
-#: ../gtksourceview/gtksourcebuffer.c:467
+#: ../gtksourceview/gtksourcebuffer.c:480
+#: ../gtksourceview/gtksourcebuffer.c:481
 msgid "Search: wrap around"
 msgstr "Hledání: přecházet přes okraj"
 
