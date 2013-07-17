@@ -147,14 +147,6 @@ gtk_source_utils_escape_search_text (const gchar* text)
 
 	length = strlen (text);
 
-	/* no escape when typing.
-	 * The short circuit works only for ascii, but we only
-	 * care about not escaping a single '\' */
-	if (length == 1)
-	{
-		return g_strdup (text);
-	}
-
 	str = g_string_new ("");
 
 	p = text;
@@ -162,8 +154,7 @@ gtk_source_utils_escape_search_text (const gchar* text)
 
 	while (p != end)
 	{
-		const gchar *next;
-		next = g_utf8_next_char (p);
+		const gchar *next = g_utf8_next_char (p);
 
 		switch (*p)
 		{
