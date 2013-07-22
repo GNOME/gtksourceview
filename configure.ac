@@ -73,18 +73,13 @@ AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
 # Compile warnings
 GNOME_COMPILE_WARNINGS([maximum])
 
-if test "$USE_MAINTAINER_MODE" = "yes"; then
-	enable_deprecations=yes
-else
-	enable_deprecations=no
-fi
-
 AC_ARG_ENABLE(deprecations,
-              [AS_HELP_STRING([--enable-deprecations],
-                              [warn about deprecated usages [default=no]])],
-              [enable_deprecations=$enableval], [])
+              [AS_HELP_STRING([--disable-deprecations],
+                              [remove deprecated symbols from the header files])],
+              [enable_deprecations=$enableval],
+              [enable_deprecations="yes"])
 
-if test "$enable_deprecations" = "yes"; then
+if test "$enable_deprecations" = "no"; then
 	DISABLE_DEPRECATED_CFLAGS="\
 -DG_DISABLE_DEPRECATED \
 -DGDK_DISABLE_DEPRECATED \
