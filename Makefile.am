@@ -82,6 +82,7 @@ MAINTAINERCLEANFILES = 		\
 	po/insert-header.sin	\
 	po/quot.sed		\
 	po/remove-potcdate.sin	\
+	test-driver		\
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
 DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-glade-catalog

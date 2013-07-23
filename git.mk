@@ -172,6 +172,8 @@ $(srcdir)/.gitignore: Makefile.am $(top_srcdir)/git.mk
 			"*~" \
 			".*.sw[nop]" \
 			".dirstamp" \
+			"*.log" \
+			"*.trs" \
 		; do echo /$$x; done; \
 	} | \
 	sed "s@^/`echo "$(srcdir)" | sed 's/\(.\)/[\1]/g'`/@/@" | \
