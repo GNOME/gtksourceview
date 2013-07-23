@@ -74,6 +74,11 @@
  * #GtkSourceCompletion.
  */
 
+/* Idea to improve the code: use a composite widget template. This class is not
+ * a GtkWidget, so some refactoring needs to be done, to have a subclass of
+ * GtkSourceCompletionInfo for the main completion window.
+ */
+
 #include "gtksourcecompletion.h"
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletionmodel.h"
