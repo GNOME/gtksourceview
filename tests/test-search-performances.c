@@ -164,8 +164,8 @@ main (int argc, char *argv[])
 	/* The asynchronous overhead doesn't depend on the search flags, it
 	 * depends on the maximum number of lines to scan in one batch, and
 	 * (obviously), on the buffer size.
-	 * You can tune SCAN_BATCH_SIZE in gtksourcesearch.c to see a difference
-	 * in the overhead.
+	 * You can tune SCAN_BATCH_SIZE in gtksourcesearchcontext.c to see a
+	 * difference in the overhead.
 	 */
 
 	g_signal_connect (buffer,

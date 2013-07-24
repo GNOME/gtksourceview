@@ -42,7 +42,7 @@
 #include "gtksourceundomanagerdefault.h"
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourcemark.h"
-#include "gtksourcesearch.h"
+#include "gtksourcesearchcontext.h"
 
 /**
  * SECTION:buffer
@@ -200,7 +200,7 @@ struct _GtkSourceBufferPrivate
 	GtkSourceUndoManager  *undo_manager;
 	gint                   max_undo_levels;
 
-	GtkSourceSearch       *search;
+	GtkSourceSearchContext *search;
 
 	guint                  highlight_syntax : 1;
 	guint                  highlight_brackets : 1;
@@ -665,7 +665,7 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 	if (priv->style_scheme != NULL)
 		g_object_ref (priv->style_scheme);
 
-	priv->search = _gtk_source_search_new (buffer);
+	priv->search = gtk_source_search_context_new (buffer);
 }
 
 static void
@@ -738,8 +738,8 @@ gtk_source_buffer_set_property (GObject      *object,
 			break;
 
 		case PROP_HIGHLIGHT_SEARCH:
-			_gtk_source_search_set_highlight (source_buffer->priv->search,
-							  g_value_get_boolean (value));
+			gtk_source_search_context_set_highlight (source_buffer->priv->search,
+								 g_value_get_boolean (value));
 			break;
 
 		case PROP_MAX_UNDO_LEVELS:
@@ -763,28 +763,28 @@ gtk_source_buffer_set_property (GObject      *object,
 			break;
 
 		case PROP_SEARCH_TEXT:
-			_gtk_source_search_set_text (source_buffer->priv->search,
-						     g_value_get_string (value));
+			gtk_source_search_context_set_text (source_buffer->priv->search,
+							    g_value_get_string (value));
 			break;
 
 		case PROP_CASE_SENSITIVE_SEARCH:
-			_gtk_source_search_set_case_sensitive (source_buffer->priv->search,
-							       g_value_get_boolean (value));
+			gtk_source_search_context_set_case_sensitive (source_buffer->priv->search,
+								      g_value_get_boolean (value));
 			break;
 
 		case PROP_SEARCH_AT_WORD_BOUNDARIES:
-			_gtk_source_search_set_at_word_boundaries (source_buffer->priv->search,
-								   g_value_get_boolean (value));
+			gtk_source_search_context_set_at_word_boundaries (source_buffer->priv->search,
+									  g_value_get_boolean (value));
 			break;
 
 		case PROP_SEARCH_WRAP_AROUND:
-			_gtk_source_search_set_wrap_around (source_buffer->priv->search,
-							    g_value_get_boolean (value));
+			gtk_source_search_context_set_wrap_around (source_buffer->priv->search,
+								   g_value_get_boolean (value));
 			break;
 
 		case PROP_REGEX_SEARCH:
-			_gtk_source_search_set_regex_enabled (source_buffer->priv->search,
-							      g_value_get_boolean (value));
+			gtk_source_search_context_set_regex_enabled (source_buffer->priv->search,
+								     g_value_get_boolean (value));
 			break;
 
 		default:
@@ -818,7 +818,7 @@ gtk_source_buffer_get_property (GObject    *object,
 			break;
 
 		case PROP_HIGHLIGHT_SEARCH:
-			g_value_set_boolean (value, _gtk_source_search_get_highlight (source_buffer->priv->search));
+			g_value_set_boolean (value, gtk_source_search_context_get_highlight (source_buffer->priv->search));
 			break;
 
 		case PROP_MAX_UNDO_LEVELS:
@@ -847,31 +847,31 @@ gtk_source_buffer_get_property (GObject    *object,
 			break;
 
 		case PROP_SEARCH_TEXT:
-			g_value_set_string (value, _gtk_source_search_get_text (source_buffer->priv->search));
+			g_value_set_string (value, gtk_source_search_context_get_text (source_buffer->priv->search));
 			break;
 
 		case PROP_SEARCH_OCCURRENCES_COUNT:
-			g_value_set_int (value, _gtk_source_search_get_occurrences_count (source_buffer->priv->search));
+			g_value_set_int (value, gtk_source_search_context_get_occurrences_count (source_buffer->priv->search));
 			break;
 
 		case PROP_CASE_SENSITIVE_SEARCH:
-			g_value_set_boolean (value, _gtk_source_search_get_case_sensitive (source_buffer->priv->search));
+			g_value_set_boolean (value, gtk_source_search_context_get_case_sensitive (source_buffer->priv->search));
 			break;
 
 		case PROP_SEARCH_AT_WORD_BOUNDARIES:
-			g_value_set_boolean (value, _gtk_source_search_get_at_word_boundaries (source_buffer->priv->search));
+			g_value_set_boolean (value, gtk_source_search_context_get_at_word_boundaries (source_buffer->priv->search));
 			break;
 
 		case PROP_SEARCH_WRAP_AROUND:
-			g_value_set_boolean (value, _gtk_source_search_get_wrap_around (source_buffer->priv->search));
+			g_value_set_boolean (value, gtk_source_search_context_get_wrap_around (source_buffer->priv->search));
 			break;
 
 		case PROP_REGEX_SEARCH:
-			g_value_set_boolean (value, _gtk_source_search_get_regex_enabled (source_buffer->priv->search));
+			g_value_set_boolean (value, gtk_source_search_context_get_regex_enabled (source_buffer->priv->search));
 			break;
 
 		case PROP_REGEX_SEARCH_ERROR:
-			g_value_set_pointer (value, _gtk_source_search_get_regex_error (source_buffer->priv->search));
+			g_value_set_pointer (value, gtk_source_search_context_get_regex_error (source_buffer->priv->search));
 			break;
 
 		default:
@@ -1792,10 +1792,10 @@ _gtk_source_buffer_update_highlight (GtkSourceBuffer   *buffer,
 						     synchronous);
 	}
 
-	_gtk_source_search_update_highlight (buffer->priv->search,
-					     start,
-					     end,
-					     synchronous);
+	gtk_source_search_context_update_highlight (buffer->priv->search,
+						    start,
+						    end,
+						    synchronous);
 }
 
 /**
@@ -2761,7 +2761,7 @@ gtk_source_buffer_set_search_text (GtkSourceBuffer *buffer,
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	cur_text = _gtk_source_search_get_text (buffer->priv->search);
+	cur_text = gtk_source_search_context_get_text (buffer->priv->search);
 
 	if (cur_text == NULL && (text == NULL || *text == '\0'))
 	{
@@ -2770,7 +2770,7 @@ gtk_source_buffer_set_search_text (GtkSourceBuffer *buffer,
 
 	if (g_strcmp0 (cur_text, text) != 0)
 	{
-		_gtk_source_search_set_text (buffer->priv->search, text);
+		gtk_source_search_context_set_text (buffer->priv->search, text);
 		g_object_notify (G_OBJECT (buffer), "search-text");
 	}
 }
@@ -2792,7 +2792,7 @@ gtk_source_buffer_get_search_text (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
-	return _gtk_source_search_get_text (buffer->priv->search);
+	return gtk_source_search_context_get_text (buffer->priv->search);
 }
 
 /**
@@ -2814,12 +2814,12 @@ gtk_source_buffer_set_case_sensitive_search (GtkSourceBuffer *buffer,
 
 	case_sensitive = case_sensitive != FALSE;
 
-	cur_val = _gtk_source_search_get_case_sensitive (buffer->priv->search);
+	cur_val = gtk_source_search_context_get_case_sensitive (buffer->priv->search);
 
 	if (cur_val != case_sensitive)
 	{
-		_gtk_source_search_set_case_sensitive (buffer->priv->search,
-						       case_sensitive);
+		gtk_source_search_context_set_case_sensitive (buffer->priv->search,
+							      case_sensitive);
 
 		g_object_notify (G_OBJECT (buffer), "case-sensitive-search");
 	}
@@ -2837,7 +2837,7 @@ gtk_source_buffer_get_case_sensitive_search (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return _gtk_source_search_get_case_sensitive (buffer->priv->search);
+	return gtk_source_search_context_get_case_sensitive (buffer->priv->search);
 }
 
 /**
@@ -2862,12 +2862,12 @@ gtk_source_buffer_set_search_at_word_boundaries (GtkSourceBuffer *buffer,
 
 	at_word_boundaries = at_word_boundaries != FALSE;
 
-	cur_val = _gtk_source_search_get_at_word_boundaries (buffer->priv->search);
+	cur_val = gtk_source_search_context_get_at_word_boundaries (buffer->priv->search);
 
 	if (cur_val != at_word_boundaries)
 	{
-		_gtk_source_search_set_at_word_boundaries (buffer->priv->search,
-							   at_word_boundaries);
+		gtk_source_search_context_set_at_word_boundaries (buffer->priv->search,
+								  at_word_boundaries);
 
 		g_object_notify (G_OBJECT (buffer), "search-at-word-boundaries");
 	}
@@ -2885,7 +2885,7 @@ gtk_source_buffer_get_search_at_word_boundaries (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return _gtk_source_search_get_at_word_boundaries (buffer->priv->search);
+	return gtk_source_search_context_get_at_word_boundaries (buffer->priv->search);
 }
 
 /**
@@ -2910,12 +2910,12 @@ gtk_source_buffer_set_search_wrap_around (GtkSourceBuffer *buffer,
 
 	wrap_around = wrap_around != FALSE;
 
-	cur_val = _gtk_source_search_get_wrap_around (buffer->priv->search);
+	cur_val = gtk_source_search_context_get_wrap_around (buffer->priv->search);
 
 	if (cur_val != wrap_around)
 	{
-		_gtk_source_search_set_wrap_around (buffer->priv->search,
-						    wrap_around);
+		gtk_source_search_context_set_wrap_around (buffer->priv->search,
+							   wrap_around);
 
 		g_object_notify (G_OBJECT (buffer), "search-wrap-around");
 	}
@@ -2933,7 +2933,7 @@ gtk_source_buffer_get_search_wrap_around (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return _gtk_source_search_get_wrap_around (buffer->priv->search);
+	return gtk_source_search_context_get_wrap_around (buffer->priv->search);
 }
 
 /**
@@ -2959,11 +2959,11 @@ gtk_source_buffer_set_regex_search (GtkSourceBuffer *buffer,
 
 	regex = regex != FALSE;
 
-	cur_val = _gtk_source_search_get_regex_enabled (buffer->priv->search);
+	cur_val = gtk_source_search_context_get_regex_enabled (buffer->priv->search);
 
 	if (cur_val != regex)
 	{
-		_gtk_source_search_set_regex_enabled (buffer->priv->search, regex);
+		gtk_source_search_context_set_regex_enabled (buffer->priv->search, regex);
 
 		g_object_notify (G_OBJECT (buffer), "regex-search");
 	}
@@ -2981,7 +2981,7 @@ gtk_source_buffer_get_regex_search (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return _gtk_source_search_get_regex_enabled (buffer->priv->search);
+	return gtk_source_search_context_get_regex_enabled (buffer->priv->search);
 }
 
 /**
@@ -3002,7 +3002,7 @@ gtk_source_buffer_get_regex_search_error (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
-	return _gtk_source_search_get_regex_error (buffer->priv->search);
+	return gtk_source_search_context_get_regex_error (buffer->priv->search);
 }
 
 /**
@@ -3025,11 +3025,11 @@ gtk_source_buffer_set_highlight_search (GtkSourceBuffer *buffer,
 
 	highlight = highlight != FALSE;
 
-	cur_val = _gtk_source_search_get_highlight (buffer->priv->search);
+	cur_val = gtk_source_search_context_get_highlight (buffer->priv->search);
 
 	if (cur_val != highlight)
 	{
-		_gtk_source_search_set_highlight (buffer->priv->search, highlight);
+		gtk_source_search_context_set_highlight (buffer->priv->search, highlight);
 
 		g_object_notify (G_OBJECT (buffer), "highlight-search");
 	}
@@ -3047,7 +3047,7 @@ gtk_source_buffer_get_highlight_search (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return _gtk_source_search_get_highlight (buffer->priv->search);
+	return gtk_source_search_context_get_highlight (buffer->priv->search);
 }
 
 /**
@@ -3066,7 +3066,7 @@ gtk_source_buffer_get_search_occurrences_count (GtkSourceBuffer *buffer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), 0);
 
-	return _gtk_source_search_get_occurrences_count (buffer->priv->search);
+	return gtk_source_search_context_get_occurrences_count (buffer->priv->search);
 }
 
 /**
@@ -3094,9 +3094,9 @@ gtk_source_buffer_get_search_occurrence_position (GtkSourceBuffer   *buffer,
 	g_return_val_if_fail (match_start != NULL, -1);
 	g_return_val_if_fail (match_end != NULL, -1);
 
-	return _gtk_source_search_get_occurrence_position (buffer->priv->search,
-							   match_start,
-							   match_end);
+	return gtk_source_search_context_get_occurrence_position (buffer->priv->search,
+								  match_start,
+								  match_end);
 }
 
 /**
@@ -3122,10 +3122,10 @@ gtk_source_buffer_forward_search (GtkSourceBuffer   *buffer,
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	return _gtk_source_search_forward (buffer->priv->search,
-					   iter,
-					   match_start,
-					   match_end);
+	return gtk_source_search_context_forward (buffer->priv->search,
+						  iter,
+						  match_start,
+						  match_end);
 }
 
 /**
@@ -3155,11 +3155,11 @@ gtk_source_buffer_forward_search_async (GtkSourceBuffer     *buffer,
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
 
-	_gtk_source_search_forward_async (buffer->priv->search,
-					  iter,
-					  cancellable,
-					  callback,
-					  user_data);
+	gtk_source_search_context_forward_async (buffer->priv->search,
+						 iter,
+						 cancellable,
+						 callback,
+						 user_data);
 }
 
 /**
@@ -3185,11 +3185,11 @@ gtk_source_buffer_forward_search_finish (GtkSourceBuffer  *buffer,
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return _gtk_source_search_forward_finish (buffer->priv->search,
-						  result,
-						  match_start,
-						  match_end,
-						  error);
+	return gtk_source_search_context_forward_finish (buffer->priv->search,
+							 result,
+							 match_start,
+							 match_end,
+							 error);
 }
 
 /**
@@ -3215,10 +3215,10 @@ gtk_source_buffer_backward_search (GtkSourceBuffer   *buffer,
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	return _gtk_source_search_backward (buffer->priv->search,
-					    iter,
-					    match_start,
-					    match_end);
+	return gtk_source_search_context_backward (buffer->priv->search,
+						   iter,
+						   match_start,
+						   match_end);
 }
 
 /**
@@ -3248,11 +3248,11 @@ gtk_source_buffer_backward_search_async (GtkSourceBuffer     *buffer,
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
 
-	_gtk_source_search_backward_async (buffer->priv->search,
-					   iter,
-					   cancellable,
-					   callback,
-					   user_data);
+	gtk_source_search_context_backward_async (buffer->priv->search,
+						  iter,
+						  cancellable,
+						  callback,
+						  user_data);
 }
 
 /**
@@ -3278,11 +3278,11 @@ gtk_source_buffer_backward_search_finish (GtkSourceBuffer  *buffer,
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return _gtk_source_search_backward_finish (buffer->priv->search,
-						   result,
-						   match_start,
-						   match_end,
-						   error);
+	return gtk_source_search_context_backward_finish (buffer->priv->search,
+							  result,
+							  match_start,
+							  match_end,
+							  error);
 }
 
 /**
@@ -3315,11 +3315,11 @@ gtk_source_buffer_search_replace (GtkSourceBuffer   *buffer,
 	g_return_val_if_fail (match_end != NULL, FALSE);
 	g_return_val_if_fail (replace != NULL, FALSE);
 
-	return _gtk_source_search_replace (buffer->priv->search,
-					   match_start,
-					   match_end,
-					   replace,
-					   replace_length);
+	return gtk_source_search_context_replace (buffer->priv->search,
+						  match_start,
+						  match_end,
+						  replace,
+						  replace_length);
 }
 
 /**
@@ -3346,7 +3346,7 @@ gtk_source_buffer_search_replace_all (GtkSourceBuffer *buffer,
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), 0);
 	g_return_val_if_fail (replace != NULL, 0);
 
-	return _gtk_source_search_replace_all (buffer->priv->search,
-					       replace,
-					       replace_length);
+	return gtk_source_search_context_replace_all (buffer->priv->search,
+						      replace,
+						      replace_length);
 }

@@ -39,6 +39,7 @@ libgtksourceview_headers =			\
 	gtksourcemark.h				\
 	gtksourcemarkattributes.h		\
 	gtksourceprintcompositor.h		\
+	gtksourcesearchcontext.h		\
 	gtksourcestyle.h			\
 	gtksourcestylescheme.h			\
 	gtksourcestyleschememanager.h		\
@@ -60,7 +61,6 @@ libgtksourceview_private_headers = \
 	gtksourcelanguage-private.h		\
 	gtksourcepixbufhelper.h			\
 	gtksourceregex.h			\
-	gtksourcesearch.h			\
 	gtksourcestyle-private.h		\
 	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
@@ -77,7 +77,6 @@ libgtksourceview_private_c_files = \
 	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\
 	gtksourceregex.c		\
-	gtksourcesearch.c		\
 	gtksourceundomanager.c 		\
 	gtksourceundomanagerdefault.c	\
 	gtksourceview-i18n.c		\
@@ -103,6 +102,7 @@ libgtksourceview_c_files = \
 	gtksourcemark.c			\
 	gtksourcemarkattributes.c	\
 	gtksourceprintcompositor.c	\
+	gtksourcesearchcontext.c	\
 	gtksourcestyle.c		\
 	gtksourcestylescheme.c		\
 	gtksourcestyleschememanager.c	\

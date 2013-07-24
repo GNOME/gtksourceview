@@ -21,7 +21,7 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourcesearch.h"
+#include "gtksourceview/gtksourcesearchcontext.h"
 
 typedef struct
 {

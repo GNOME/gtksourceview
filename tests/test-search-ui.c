@@ -435,7 +435,7 @@ test_search_ui_init (TestSearchUI *search)
 	gtk_text_view_set_buffer (GTK_TEXT_VIEW (search->priv->source_view),
 				  GTK_TEXT_BUFFER (search->priv->source_buffer));
 
-	open_file (search, TOP_SRCDIR "/gtksourceview/gtksourcesearch.c");
+	open_file (search, TOP_SRCDIR "/gtksourceview/gtksourcesearchcontext.c");
 
 	g_signal_connect_swapped (search->priv->source_buffer,
 				  "notify::search-occurrences-count",
