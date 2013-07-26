@@ -363,9 +363,9 @@ test_search_ui_class_init (TestSearchUIClass *klass)
 	gtk_widget_class_set_template_from_resource (widget_class,
 						     "/org/gnome/gtksourceview/tests/ui/test-search-ui.ui");
 
-	gtk_widget_class_bind_child (widget_class, TestSearchUIPrivate, source_view);
-	gtk_widget_class_bind_child (widget_class, TestSearchUIPrivate, replace_entry);
-	gtk_widget_class_bind_child (widget_class, TestSearchUIPrivate, label_occurrences);
+	gtk_widget_class_bind_child (widget_class, TestSearchUI, source_view);
+	gtk_widget_class_bind_child (widget_class, TestSearchUI, replace_entry);
+	gtk_widget_class_bind_child (widget_class, TestSearchUI, label_occurrences);
 
 	gtk_widget_class_bind_callback (widget_class, search_entry_text_notify_cb);
 	gtk_widget_class_bind_callback (widget_class, button_previous_clicked_cb);
