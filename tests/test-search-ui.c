@@ -363,24 +363,24 @@ test_search_ui_class_init (TestSearchUIClass *klass)
 	gtk_widget_class_set_template_from_resource (widget_class,
 						     "/org/gnome/gtksourceview/tests/ui/test-search-ui.ui");
 
-	gtk_widget_class_bind_child (widget_class, TestSearchUI, source_view);
-	gtk_widget_class_bind_child (widget_class, TestSearchUI, replace_entry);
-	gtk_widget_class_bind_child (widget_class, TestSearchUI, label_occurrences);
+	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, source_view);
+	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, replace_entry);
+	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, label_occurrences);
 
-	gtk_widget_class_bind_callback (widget_class, search_entry_text_notify_cb);
-	gtk_widget_class_bind_callback (widget_class, button_previous_clicked_cb);
-	gtk_widget_class_bind_callback (widget_class, button_next_clicked_cb);
-	gtk_widget_class_bind_callback (widget_class, button_replace_clicked_cb);
-	gtk_widget_class_bind_callback (widget_class, button_replace_all_clicked_cb);
+	gtk_widget_class_bind_template_callback (widget_class, search_entry_text_notify_cb);
+	gtk_widget_class_bind_template_callback (widget_class, button_previous_clicked_cb);
+	gtk_widget_class_bind_template_callback (widget_class, button_next_clicked_cb);
+	gtk_widget_class_bind_template_callback (widget_class, button_replace_clicked_cb);
+	gtk_widget_class_bind_template_callback (widget_class, button_replace_all_clicked_cb);
 
 	/* It is also possible to bind the properties with
 	 * g_object_bind_property(), between the check buttons and the source
 	 * buffer. But GtkBuilder and Glade don't support that yet.
 	 */
-	gtk_widget_class_bind_callback (widget_class, highlight_toggled_cb);
-	gtk_widget_class_bind_callback (widget_class, match_case_toggled_cb);
-	gtk_widget_class_bind_callback (widget_class, at_word_boundaries_toggled_cb);
-	gtk_widget_class_bind_callback (widget_class, wrap_around_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, highlight_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, match_case_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, at_word_boundaries_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, wrap_around_toggled_cb);
 }
 
 static void
