@@ -26,7 +26,7 @@
     <property name="stock">gtk-find-and-replace</property>
     <property name="icon_size">1</property>
   </object>
-  <template class="TestSearchUI" parent="GtkGrid">
+  <template class="TestSearch" parent="GtkGrid">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="border_width">6</property>
@@ -88,7 +88,7 @@
             <property name="primary_icon_name">edit-find-symbolic</property>
             <property name="primary_icon_activatable">False</property>
             <property name="primary_icon_sensitive">False</property>
-            <signal name="notify::text" handler="search_entry_text_notify_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="changed" handler="search_entry_changed_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">1</property>
@@ -118,7 +118,7 @@
             <property name="receives_default">True</property>
             <property name="halign">start</property>
             <property name="image">image1</property>
-            <signal name="clicked" handler="button_previous_clicked_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="clicked" handler="button_previous_clicked_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">2</property>
@@ -134,7 +134,7 @@
             <property name="receives_default">True</property>
             <property name="halign">start</property>
             <property name="image">image2</property>
-            <signal name="clicked" handler="button_next_clicked_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="clicked" handler="button_next_clicked_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">3</property>
@@ -186,7 +186,7 @@
             <property name="receives_default">False</property>
             <property name="xalign">0</property>
             <property name="draw_indicator">True</property>
-            <signal name="toggled" handler="match_case_toggled_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="toggled" handler="match_case_toggled_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -203,7 +203,7 @@
             <property name="receives_default">False</property>
             <property name="xalign">0</property>
             <property name="draw_indicator">True</property>
-            <signal name="toggled" handler="at_word_boundaries_toggled_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="toggled" handler="at_word_boundaries_toggled_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -221,7 +221,7 @@
             <property name="xalign">0</property>
             <property name="active">True</property>
             <property name="draw_indicator">True</property>
-            <signal name="toggled" handler="wrap_around_toggled_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="toggled" handler="wrap_around_toggled_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -239,7 +239,7 @@
             <property name="xalign">0</property>
             <property name="active">True</property>
             <property name="draw_indicator">True</property>
-            <signal name="toggled" handler="highlight_toggled_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="toggled" handler="highlight_toggled_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -256,7 +256,7 @@
             <property name="receives_default">False</property>
             <property name="xalign">0</property>
             <property name="draw_indicator">True</property>
-            <signal name="toggled" handler="regex_toggled_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="toggled" handler="regex_toggled_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -314,7 +314,7 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="image">image3</property>
-            <signal name="clicked" handler="button_replace_clicked_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="clicked" handler="button_replace_clicked_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">2</property>
@@ -331,7 +331,7 @@
             <property name="receives_default">True</property>
             <property name="image">image4</property>
             <property name="always_show_image">True</property>
-            <signal name="clicked" handler="button_replace_all_clicked_cb" object="TestSearchUI" swapped="yes"/>
+            <signal name="clicked" handler="button_replace_all_clicked_cb" object="TestSearch" swapped="yes"/>
           </object>
           <packing>
             <property name="left_attach">3</property>

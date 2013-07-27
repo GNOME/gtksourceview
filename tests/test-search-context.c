@@ -36,10 +36,10 @@ typedef struct
 	guint forward : 1;
 } AsyncData;
 
-static void check_async_search_results (GtkSourceBuffer *source_buffer,
-					SearchResult    *results,
-					gboolean         forward,
-					gboolean         start_check);
+static void check_async_search_results (GtkSourceSearchContext *context,
+					SearchResult           *results,
+					gboolean                forward,
+					gboolean                start_check);
 
 static void
 flush_queue (void)
@@ -54,37 +54,42 @@ flush_queue (void)
 static void
 test_occurrences_count_simple (void)
 {
-	GtkSourceBuffer *buffer = gtk_source_buffer_new (NULL);
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	GtkTextIter iter;
 	gint occurrences_count;
 
-	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
-	gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &iter, "Some foo\nSome bar\n", -1);
+	gtk_text_buffer_get_start_iter (text_buffer, &iter);
+	gtk_text_buffer_insert (text_buffer, &iter, "Some foo\nSome bar\n", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 0);
 
-	gtk_source_buffer_set_search_text (buffer, "world");
+	gtk_source_search_settings_set_search_text (settings, "world");
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 0);
 
-	gtk_source_buffer_set_search_text (buffer, "Some");
+	gtk_source_search_settings_set_search_text (settings, "Some");
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
-	gtk_source_buffer_set_search_text (buffer, "foo");
+	gtk_source_search_settings_set_search_text (settings, "foo");
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
-	gtk_source_buffer_set_search_text (buffer, "world");
+	gtk_source_search_settings_set_search_text (settings, "world");
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 0);
 
-	g_object_unref (buffer);
+	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -92,6 +97,8 @@ test_occurrences_count_with_insert (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	GtkTextIter iter;
 	gint occurrences_count;
 
@@ -99,61 +106,63 @@ test_occurrences_count_with_insert (void)
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
 	gtk_text_buffer_insert (text_buffer, &iter, "foobar", -1);
 
-	gtk_source_buffer_set_search_text (source_buffer, "foo");
+	gtk_source_search_settings_set_search_text (settings, "foo");
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	/* Contents: "foobar " */
 	gtk_text_buffer_get_end_iter (text_buffer, &iter);
 	gtk_text_buffer_insert (text_buffer, &iter, " ", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	/* Contents: "foobar foobeer" */
 	gtk_text_buffer_get_end_iter (text_buffer, &iter);
 	gtk_text_buffer_insert (text_buffer, &iter, "foobeer", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
 	/* Contents: "foo bar foobeer" */
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, 3);
 	gtk_text_buffer_insert (text_buffer, &iter, " ", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
 	/* Contents: "foto bar foobeer" */
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, 2);
 	gtk_text_buffer_insert (text_buffer, &iter, "t", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	/* Contents: "footo bar foobeer" */
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, 2);
 	gtk_text_buffer_insert (text_buffer, &iter, "o", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
 	/* Contents: "foofooto bar foobeer" */
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
 	gtk_text_buffer_insert (text_buffer, &iter, "foo", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 3);
 
 	/* Contents: "fooTfooto bar foobeer" */
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, 3);
 	gtk_text_buffer_insert (text_buffer, &iter, "T", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 3);
 
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -161,61 +170,63 @@ test_occurrences_count_with_delete (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	GtkTextIter start;
 	GtkTextIter end;
 	gint occurrences_count;
 
-	gtk_source_buffer_set_search_text (source_buffer, "foo");
+	gtk_source_search_settings_set_search_text (settings, "foo");
 
 	/* Contents: "foo" -> "" */
 	gtk_text_buffer_set_text (text_buffer, "foo", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	gtk_text_buffer_get_bounds (text_buffer, &start, &end);
 	gtk_text_buffer_delete (text_buffer, &start, &end);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 0);
 
 	/* Contents: "foo" -> "oo" */
 	gtk_text_buffer_set_text (text_buffer, "foo", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 1);
 	gtk_text_buffer_delete (text_buffer, &start, &end);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 0);
 
 	/* Contents: "foobar foobeer" -> "foobar" */
 	gtk_text_buffer_set_text (text_buffer, "foobar foobeer", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 6);
 	gtk_text_buffer_get_end_iter (text_buffer, &end);
 	gtk_text_buffer_delete (text_buffer, &start, &end);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	/* Contents: "foo[foo]foo" -> "foofoo" */
 	gtk_text_buffer_set_text (text_buffer, "foofoofoo", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 3);
 
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 3);
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 6);
 	gtk_text_buffer_delete (text_buffer, &start, &end);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
 	/* Contents: "fo[of]oo" -> "fooo" */
@@ -223,23 +234,25 @@ test_occurrences_count_with_delete (void)
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 4);
 	gtk_text_buffer_delete (text_buffer, &start, &end);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	/* Contents: "foto" -> "foo" */
 	gtk_text_buffer_set_text (text_buffer, "foto", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 0);
 
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 2);
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 3);
 	gtk_text_buffer_delete (text_buffer, &start, &end);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -247,26 +260,30 @@ test_occurrences_count_multiple_lines (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	gint occurrences_count;
 
-	gtk_source_buffer_set_search_text (source_buffer, "world\nhello");
+	gtk_source_search_settings_set_search_text (settings, "world\nhello");
 
 	gtk_text_buffer_set_text (text_buffer, "hello world\nhello world\nhello world\n", -1);
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
-	gtk_source_buffer_set_search_text (source_buffer, "world\n");
+	gtk_source_search_settings_set_search_text (settings, "world\n");
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 3);
 
-	gtk_source_buffer_set_search_text (source_buffer, "\nhello world\n");
+	gtk_source_search_settings_set_search_text (settings, "\nhello world\n");
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -274,29 +291,33 @@ test_case_sensitivity (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	gboolean case_sensitive;
 	gint occurrences_count;
 
 	gtk_text_buffer_set_text (text_buffer, "Case", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "case");
+	gtk_source_search_settings_set_search_text (settings, "case");
 
-	gtk_source_buffer_set_case_sensitive_search (source_buffer, TRUE);
-	case_sensitive = gtk_source_buffer_get_case_sensitive_search (source_buffer);
+	gtk_source_search_settings_set_case_sensitive (settings, TRUE);
+	case_sensitive = gtk_source_search_settings_get_case_sensitive (settings);
 	g_assert (case_sensitive);
 
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 0);
 
-	gtk_source_buffer_set_case_sensitive_search (source_buffer, FALSE);
-	case_sensitive = gtk_source_buffer_get_case_sensitive_search (source_buffer);
+	gtk_source_search_settings_set_case_sensitive (settings, FALSE);
+	case_sensitive = gtk_source_search_settings_get_case_sensitive (settings);
 	g_assert (!case_sensitive);
 
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -304,35 +325,40 @@ test_search_at_word_boundaries (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	gboolean at_word_boundaries;
 	gint occurrences_count;
 
 	gtk_text_buffer_set_text (text_buffer, "AtWordBoundaries AtWord", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "AtWord");
+	gtk_source_search_settings_set_search_text (settings, "AtWord");
 
-	gtk_source_buffer_set_search_at_word_boundaries (source_buffer, TRUE);
-	at_word_boundaries = gtk_source_buffer_get_search_at_word_boundaries (source_buffer);
+	gtk_source_search_settings_set_at_word_boundaries (settings, TRUE);
+	at_word_boundaries = gtk_source_search_settings_get_at_word_boundaries (settings);
 	g_assert (at_word_boundaries);
 
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
-	gtk_source_buffer_set_search_at_word_boundaries (source_buffer, FALSE);
-	at_word_boundaries = gtk_source_buffer_get_search_at_word_boundaries (source_buffer);
+	gtk_source_search_settings_set_at_word_boundaries (settings, FALSE);
+	at_word_boundaries = gtk_source_search_settings_get_at_word_boundaries (settings);
 	g_assert (!at_word_boundaries);
 
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
-check_search_results (GtkSourceBuffer *source_buffer,
-		      SearchResult    *results,
-		      gboolean         forward)
+check_search_results (GtkSourceBuffer        *source_buffer,
+		      GtkSourceSearchContext *context,
+		      SearchResult           *results,
+		      gboolean                forward)
 {
 	GtkTextIter iter;
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
@@ -350,17 +376,17 @@ check_search_results (GtkSourceBuffer *source_buffer,
 
 		if (forward)
 		{
-			found = gtk_source_buffer_forward_search (source_buffer,
-								  &iter,
-								  &match_start,
-								  &match_end);
-		}
-		else
-		{
-			found = gtk_source_buffer_backward_search (source_buffer,
+			found = gtk_source_search_context_forward (context,
 								   &iter,
 								   &match_start,
 								   &match_end);
+		}
+		else
+		{
+			found = gtk_source_search_context_backward (context,
+								    &iter,
+								    &match_start,
+								    &match_end);
 		}
 
 		g_assert (found == results[i].found);
@@ -378,9 +404,9 @@ check_search_results (GtkSourceBuffer *source_buffer,
 }
 
 static void
-finish_check_result (GtkSourceBuffer *source_buffer,
-		     GAsyncResult    *result,
-		     AsyncData       *data)
+finish_check_result (GtkSourceSearchContext *context,
+		     GAsyncResult           *result,
+		     AsyncData              *data)
 {
 	GtkTextIter match_start;
 	GtkTextIter match_end;
@@ -389,19 +415,19 @@ finish_check_result (GtkSourceBuffer *source_buffer,
 
 	if (data->forward)
 	{
-		found = gtk_source_buffer_forward_search_finish (source_buffer,
-								 result,
-								 &match_start,
-								 &match_end,
-								 NULL);
-	}
-	else
-	{
-		found = gtk_source_buffer_backward_search_finish (source_buffer,
+		found = gtk_source_search_context_forward_finish (context,
 								  result,
 								  &match_start,
 								  &match_end,
 								  NULL);
+	}
+	else
+	{
+		found = gtk_source_search_context_backward_finish (context,
+								   result,
+								   &match_start,
+								   &match_end,
+								   NULL);
 	}
 
 	g_assert (found == search_result.found);
@@ -415,7 +441,7 @@ finish_check_result (GtkSourceBuffer *source_buffer,
 		g_assert_cmpint (match_end_offset, ==, search_result.match_end_offset);
 	}
 
-	check_async_search_results (source_buffer,
+	check_async_search_results (context,
 				    data->results,
 				    data->forward,
 				    FALSE);
@@ -424,13 +450,14 @@ finish_check_result (GtkSourceBuffer *source_buffer,
 }
 
 static void
-check_async_search_results (GtkSourceBuffer *source_buffer,
-			    SearchResult    *results,
-			    gboolean         forward,
-			    gboolean         start_check)
+check_async_search_results (GtkSourceSearchContext *context,
+			    SearchResult           *results,
+			    gboolean                forward,
+			    gboolean                start_check)
 {
-	static GtkTextIter iter;
+	GtkSourceBuffer *source_buffer = gtk_source_search_context_get_buffer (context);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	static GtkTextIter iter;
 	AsyncData *data;
 
 	if (start_check)
@@ -450,19 +477,19 @@ check_async_search_results (GtkSourceBuffer *source_buffer,
 
 	if (forward)
 	{
-		gtk_source_buffer_forward_search_async (source_buffer,
-							&iter,
-							NULL,
-							(GAsyncReadyCallback)finish_check_result,
-							data);
-	}
-	else
-	{
-		gtk_source_buffer_backward_search_async (source_buffer,
+		gtk_source_search_context_forward_async (context,
 							 &iter,
 							 NULL,
 							 (GAsyncReadyCallback)finish_check_result,
 							 data);
+	}
+	else
+	{
+		gtk_source_search_context_backward_async (context,
+							  &iter,
+							  NULL,
+							  (GAsyncReadyCallback)finish_check_result,
+							  data);
 	}
 }
 
@@ -471,6 +498,8 @@ test_forward_search (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	gboolean wrap_around;
 
 	static SearchResult results1[] =
@@ -492,31 +521,39 @@ test_forward_search (void)
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "aa");
+	gtk_source_search_settings_set_search_text (settings, "aa");
 
 	/* Wrap around: TRUE */
 
-	gtk_source_buffer_set_search_wrap_around (source_buffer, TRUE);
-	wrap_around = gtk_source_buffer_get_search_wrap_around (source_buffer);
+	gtk_source_search_settings_set_wrap_around (settings, TRUE);
+	wrap_around = gtk_source_search_settings_get_wrap_around (settings);
 	g_assert (wrap_around);
 
-	check_search_results (source_buffer, results1, TRUE);
+	check_search_results (source_buffer, context, results1, TRUE);
 
-	g_test_trap_subprocess ("/Search/forward/subprocess/async-wrap-around", 0, 0);
+	g_test_trap_subprocess ("/Search/forward/subprocess/async-wrap-around",
+				0,
+				G_TEST_SUBPROCESS_INHERIT_STDERR);
+
 	g_test_trap_assert_passed ();
 
 	/* Wrap around: FALSE */
 
-	gtk_source_buffer_set_search_wrap_around (source_buffer, FALSE);
-	wrap_around = gtk_source_buffer_get_search_wrap_around (source_buffer);
+	gtk_source_search_settings_set_wrap_around (settings, FALSE);
+	wrap_around = gtk_source_search_settings_get_wrap_around (settings);
 	g_assert (!wrap_around);
 
-	check_search_results (source_buffer, results2, TRUE);
+	check_search_results (source_buffer, context, results2, TRUE);
 
-	g_test_trap_subprocess ("/Search/forward/subprocess/async-normal", 0, 0);
+	g_test_trap_subprocess ("/Search/forward/subprocess/async-normal",
+				0,
+				G_TEST_SUBPROCESS_INHERIT_STDERR);
+
 	g_test_trap_assert_passed ();
 
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -524,6 +561,8 @@ test_async_forward_search_normal (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 
 	static SearchResult results[] =
 	{
@@ -535,13 +574,15 @@ test_async_forward_search_normal (void)
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "aa");
-	gtk_source_buffer_set_search_wrap_around (source_buffer, FALSE);
+	gtk_source_search_settings_set_search_text (settings, "aa");
+	gtk_source_search_settings_set_wrap_around (settings, FALSE);
 
-	check_async_search_results (source_buffer, results, TRUE, TRUE);
+	check_async_search_results (context, results, TRUE, TRUE);
 
 	gtk_main ();
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -549,6 +590,8 @@ test_async_forward_search_wrap_around (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 
 	static SearchResult results[] =
 	{
@@ -560,13 +603,15 @@ test_async_forward_search_wrap_around (void)
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "aa");
-	gtk_source_buffer_set_search_wrap_around (source_buffer, TRUE);
+	gtk_source_search_settings_set_search_text (settings, "aa");
+	gtk_source_search_settings_set_wrap_around (settings, TRUE);
 
-	check_async_search_results (source_buffer, results, TRUE, TRUE);
+	check_async_search_results (context, results, TRUE, TRUE);
 
 	gtk_main ();
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -574,6 +619,8 @@ test_backward_search (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 
 	static SearchResult results1[] =
 	{
@@ -594,25 +641,33 @@ test_backward_search (void)
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "aa");
+	gtk_source_search_settings_set_search_text (settings, "aa");
 
 	/* Wrap around: TRUE */
 
-	gtk_source_buffer_set_search_wrap_around (source_buffer, TRUE);
-	check_search_results (source_buffer, results1, FALSE);
+	gtk_source_search_settings_set_wrap_around (settings, TRUE);
+	check_search_results (source_buffer, context, results1, FALSE);
 
-	g_test_trap_subprocess ("/Search/backward/subprocess/async-wrap-around", 0, 0);
+	g_test_trap_subprocess ("/Search/backward/subprocess/async-wrap-around",
+				0,
+				G_TEST_SUBPROCESS_INHERIT_STDERR);
+
 	g_test_trap_assert_passed ();
 
 	/* Wrap around: FALSE */
 
-	gtk_source_buffer_set_search_wrap_around (source_buffer, FALSE);
-	check_search_results (source_buffer, results2, FALSE);
+	gtk_source_search_settings_set_wrap_around (settings, FALSE);
+	check_search_results (source_buffer, context, results2, FALSE);
 
-	g_test_trap_subprocess ("/Search/backward/subprocess/async-normal", 0, 0);
+	g_test_trap_subprocess ("/Search/backward/subprocess/async-normal",
+				0,
+				G_TEST_SUBPROCESS_INHERIT_STDERR);
+
 	g_test_trap_assert_passed ();
 
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -620,6 +675,8 @@ test_async_backward_search_normal (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 
 	static SearchResult results[] =
 	{
@@ -631,13 +688,15 @@ test_async_backward_search_normal (void)
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "aa");
-	gtk_source_buffer_set_search_wrap_around (source_buffer, FALSE);
+	gtk_source_search_settings_set_search_text (settings, "aa");
+	gtk_source_search_settings_set_wrap_around (settings, FALSE);
 
-	check_async_search_results (source_buffer, results, FALSE, TRUE);
+	check_async_search_results (context, results, FALSE, TRUE);
 
 	gtk_main ();
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -645,6 +704,8 @@ test_async_backward_search_wrap_around (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 
 	static SearchResult results[] =
 	{
@@ -656,50 +717,41 @@ test_async_backward_search_wrap_around (void)
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "aa");
-	gtk_source_buffer_set_search_wrap_around (source_buffer, TRUE);
+	gtk_source_search_settings_set_search_text (settings, "aa");
+	gtk_source_search_settings_set_wrap_around (settings, TRUE);
 
-	check_async_search_results (source_buffer, results, FALSE, TRUE);
+	check_async_search_results (context, results, FALSE, TRUE);
 
 	gtk_main ();
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
 test_highlight (void)
 {
-	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
-	gboolean highlight;
-
-	gtk_source_buffer_set_highlight_search (source_buffer, TRUE);
-	highlight = gtk_source_buffer_get_highlight_search (source_buffer);
-	g_assert (highlight);
-
-	gtk_source_buffer_set_highlight_search (source_buffer, FALSE);
-	highlight = gtk_source_buffer_get_highlight_search (source_buffer);
-	g_assert (!highlight);
-
-	g_object_unref (source_buffer);
+	/* TODO */
 }
 
 static void
 test_get_search_text (void)
 {
-	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
 	const gchar *search_text;
 
-	search_text = gtk_source_buffer_get_search_text (source_buffer);
+	search_text = gtk_source_search_settings_get_search_text (settings);
 	g_assert (search_text == NULL);
 
-	gtk_source_buffer_set_search_text (source_buffer, "");
-	search_text = gtk_source_buffer_get_search_text (source_buffer);
+	gtk_source_search_settings_set_search_text (settings, "");
+	search_text = gtk_source_search_settings_get_search_text (settings);
 	g_assert (search_text == NULL);
 
-	gtk_source_buffer_set_search_text (source_buffer, "search-text");
-	search_text = gtk_source_buffer_get_search_text (source_buffer);
+	gtk_source_search_settings_set_search_text (settings, "search-text");
+	search_text = gtk_source_search_settings_get_search_text (settings);
 	g_assert_cmpstr (search_text, ==, "search-text");
 
-	g_object_unref (source_buffer);
+	g_object_unref (settings);
 }
 
 static void
@@ -707,32 +759,36 @@ test_occurrence_position (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	GtkTextIter start;
 	GtkTextIter end;
 	gint pos;
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "aa");
+	gtk_source_search_settings_set_search_text (settings, "aa");
 	flush_queue ();
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
 	end = start;
 	gtk_text_iter_forward_chars (&end, 2);
 
-	pos = gtk_source_buffer_get_search_occurrence_position (source_buffer, &start, &end);
+	pos = gtk_source_search_context_get_occurrence_position (context, &start, &end);
 	g_assert_cmpint (pos, ==, 1);
 
 	gtk_text_iter_forward_char (&start);
 	gtk_text_iter_forward_char (&end);
-	pos = gtk_source_buffer_get_search_occurrence_position (source_buffer, &start, &end);
+	pos = gtk_source_search_context_get_occurrence_position (context, &start, &end);
 	g_assert_cmpint (pos, ==, 0);
 
 	gtk_text_iter_forward_char (&start);
 	gtk_text_iter_forward_char (&end);
-	pos = gtk_source_buffer_get_search_occurrence_position (source_buffer, &start, &end);
+	pos = gtk_source_search_context_get_occurrence_position (context, &start, &end);
 	g_assert_cmpint (pos, ==, 2);
 
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -740,25 +796,27 @@ test_replace (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	GtkTextIter start;
 	GtkTextIter end;
 	gboolean replaced;
 	gchar *contents;
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "aa");
+	gtk_source_search_settings_set_search_text (settings, "aa");
 	flush_queue ();
 
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 1);
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 3);
 
-	replaced = gtk_source_buffer_search_replace (source_buffer, &start, &end, "bb", 2);
+	replaced = gtk_source_search_context_replace (context, &start, &end, "bb", 2);
 	g_assert (!replaced);
 
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 2);
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 4);
 
-	replaced = gtk_source_buffer_search_replace (source_buffer, &start, &end, "bb", 2);
+	replaced = gtk_source_search_context_replace (context, &start, &end, "bb", 2);
 	g_assert (replaced);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
@@ -769,6 +827,8 @@ test_replace (void)
 
 	g_free (contents);
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -776,16 +836,18 @@ test_replace_all (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	gint nb_replacements;
 	GtkTextIter start;
 	GtkTextIter end;
 	gchar *contents;
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "aa");
+	gtk_source_search_settings_set_search_text (settings, "aa");
 	flush_queue ();
 
-	nb_replacements = gtk_source_buffer_search_replace_all (source_buffer, "bb", 2);
+	nb_replacements = gtk_source_search_context_replace_all (context, "bb", 2);
 	g_assert_cmpint (nb_replacements, ==, 2);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
@@ -796,6 +858,8 @@ test_replace_all (void)
 
 	g_free (contents);
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 static void
@@ -803,6 +867,8 @@ test_regex (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	gboolean regex_enabled;
 	gint occurrences_count;
 	GtkTextIter start;
@@ -810,33 +876,33 @@ test_regex (void)
 	gchar *contents;
 
 	gtk_text_buffer_set_text (text_buffer, "hello\nworld\n", -1);
-	gtk_source_buffer_set_regex_search (source_buffer, TRUE);
-	regex_enabled = gtk_source_buffer_get_regex_search (source_buffer);
+	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
+	regex_enabled = gtk_source_search_settings_get_regex_enabled (settings);
 	g_assert (regex_enabled);
 
 	/* Simple regex */
 
-	gtk_source_buffer_set_search_text (source_buffer, "\\w+");
+	gtk_source_search_settings_set_search_text (settings, "\\w+");
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
 	/* Test partial matching */
 
-	gtk_source_buffer_set_search_text (source_buffer, "(.*\n)*");
+	gtk_source_search_settings_set_search_text (settings, "(.*\n)*");
 	flush_queue ();
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
 	/* Test replace */
 
 	gtk_text_buffer_set_text (text_buffer, "aa#bb", -1);
-	gtk_source_buffer_set_search_text (source_buffer, "(\\w+)#(\\w+)");
+	gtk_source_search_settings_set_search_text (settings, "(\\w+)#(\\w+)");
 	flush_queue ();
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
 	gtk_text_buffer_get_end_iter (text_buffer, &end);
-	gtk_source_buffer_search_replace (source_buffer, &start, &end, "\\2#\\1", -1);
+	gtk_source_search_context_replace (context, &start, &end, "\\2#\\1", -1);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
 	gtk_text_buffer_get_end_iter (text_buffer, &end);
@@ -847,7 +913,7 @@ test_regex (void)
 	/* Test replace all */
 
 	gtk_text_buffer_set_text (text_buffer, "aa#bb cc#dd", -1);
-	gtk_source_buffer_search_replace_all (source_buffer, "\\2#\\1", -1);
+	gtk_source_search_context_replace_all (context, "\\2#\\1", -1);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
 	gtk_text_buffer_get_end_iter (text_buffer, &end);
@@ -856,6 +922,8 @@ test_regex (void)
 	g_free (contents);
 
 	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
 }
 
 int

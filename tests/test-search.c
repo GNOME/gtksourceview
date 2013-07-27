@@ -22,32 +22,34 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 
-#define TEST_TYPE_SEARCH_UI             (test_search_ui_get_type ())
-#define TEST_SEARCH_UI(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), TEST_TYPE_SEARCH_UI, TestSearchUI))
-#define TEST_SEARCH_UI_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), TEST_TYPE_SEARCH_UI, TestSearchUIClass))
-#define TEST_IS_SEARCH_UI(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TEST_TYPE_SEARCH_UI))
-#define TEST_IS_SEARCH_UI_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), TEST_TYPE_SEARCH_UI))
-#define TEST_SEARCH_UI_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), TEST_TYPE_SEARCH_UI, TestSearchUIClass))
+#define TEST_TYPE_SEARCH             (test_search_get_type ())
+#define TEST_SEARCH(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), TEST_TYPE_SEARCH, TestSearch))
+#define TEST_SEARCH_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), TEST_TYPE_SEARCH, TestSearchClass))
+#define TEST_IS_SEARCH(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TEST_TYPE_SEARCH))
+#define TEST_IS_SEARCH_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), TEST_TYPE_SEARCH))
+#define TEST_SEARCH_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), TEST_TYPE_SEARCH, TestSearchClass))
 
-typedef struct _TestSearchUI        TestSearchUI;
-typedef struct _TestSearchUIClass   TestSearchUIClass;
-typedef struct _TestSearchUIPrivate TestSearchUIPrivate;
+typedef struct _TestSearch        TestSearch;
+typedef struct _TestSearchClass   TestSearchClass;
+typedef struct _TestSearchPrivate TestSearchPrivate;
 
-struct _TestSearchUI
+struct _TestSearch
 {
 	GtkGrid parent;
-	TestSearchUIPrivate *priv;
+	TestSearchPrivate *priv;
 };
 
-struct _TestSearchUIClass
+struct _TestSearchClass
 {
 	GtkGridClass parent_class;
 };
 
-struct _TestSearchUIPrivate
+struct _TestSearchPrivate
 {
 	GtkSourceView *source_view;
 	GtkSourceBuffer *source_buffer;
+	GtkSourceSearchContext *search_context;
+	GtkSourceSearchSettings *search_settings;
 	GtkEntry *replace_entry;
 	GtkLabel *label_occurrences;
 	GtkLabel *label_regex_error;
@@ -55,13 +57,13 @@ struct _TestSearchUIPrivate
 	guint idle_update_label_id;
 };
 
-GType test_search_ui_get_type (void);
+GType test_search_get_type (void);
 
-G_DEFINE_TYPE_WITH_PRIVATE (TestSearchUI, test_search_ui, GTK_TYPE_GRID)
+G_DEFINE_TYPE_WITH_PRIVATE (TestSearch, test_search, GTK_TYPE_GRID)
 
 static void
-open_file (TestSearchUI *search,
-	   const gchar  *filename)
+open_file (TestSearch  *search,
+	   const gchar *filename)
 {
 	gchar *contents;
 	GError *error = NULL;
@@ -93,7 +95,7 @@ open_file (TestSearchUI *search,
 }
 
 static void
-update_label_occurrences (TestSearchUI *search)
+update_label_occurrences (TestSearch *search)
 {
 	gint occurrences_count;
 	GtkTextIter select_start;
@@ -101,15 +103,15 @@ update_label_occurrences (TestSearchUI *search)
 	gint occurrence_pos;
 	gchar *text;
 
-	occurrences_count = gtk_source_buffer_get_search_occurrences_count (search->priv->source_buffer);
+	occurrences_count = gtk_source_search_context_get_occurrences_count (search->priv->search_context);
 
 	gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (search->priv->source_buffer),
 					      &select_start,
 					      &select_end);
 
-	occurrence_pos = gtk_source_buffer_get_search_occurrence_position (search->priv->source_buffer,
-									   &select_start,
-									   &select_end);
+	occurrence_pos = gtk_source_search_context_get_occurrence_position (search->priv->search_context,
+									    &select_start,
+									    &select_end);
 
 	if (occurrences_count == -1)
 	{
@@ -129,11 +131,11 @@ update_label_occurrences (TestSearchUI *search)
 }
 
 static void
-update_label_regex_error (TestSearchUI *search)
+update_label_regex_error (TestSearch *search)
 {
 	GError *error;
 
-	error = gtk_source_buffer_get_regex_search_error (search->priv->source_buffer);
+	error = gtk_source_search_context_get_regex_error (search->priv->search_context);
 
 	if (error == NULL)
 	{
@@ -148,28 +150,19 @@ update_label_regex_error (TestSearchUI *search)
 	}
 }
 
-/* The search entry is a GtkSearchEntry. The "changed" signal is delayed on a
- * GtkSearchEntry (but not with a simple GtkEntry). That's why the
- * "notify::text" signal is used instead.
- * With the "changed" signal, the search highlighting takes some time to be
- * updated, while with the notify signal, it is immediate.
- *
- * See https://bugzilla.gnome.org/show_bug.cgi?id=700229
- */
 static void
-search_entry_text_notify_cb (TestSearchUI *search,
-			     GParamSpec   *spec,
-			     GtkEntry     *entry)
+search_entry_changed_cb (TestSearch *search,
+			 GtkEntry   *entry)
 {
 	const gchar *text = gtk_entry_get_text (entry);
 	gchar *unescaped_text = gtk_source_utils_unescape_search_text (text);
 
-	gtk_source_buffer_set_search_text (search->priv->source_buffer, unescaped_text);
+	gtk_source_search_settings_set_search_text (search->priv->search_settings, unescaped_text);
 	g_free (unescaped_text);
 }
 
 static void
-select_search_occurrence (TestSearchUI      *search,
+select_search_occurrence (TestSearch        *search,
 			  const GtkTextIter *match_start,
 			  const GtkTextIter *match_end)
 {
@@ -186,14 +179,49 @@ select_search_occurrence (TestSearchUI      *search,
 }
 
 static void
-backward_search_finished (GtkSourceBuffer *buffer,
-			  GAsyncResult    *result,
-			  TestSearchUI    *search)
+backward_search_finished (GtkSourceSearchContext *search_context,
+			  GAsyncResult           *result,
+			  TestSearch             *search)
 {
 	GtkTextIter match_start;
 	GtkTextIter match_end;
 
-	if (gtk_source_buffer_backward_search_finish (buffer,
+	if (gtk_source_search_context_backward_finish (search_context,
+						       result,
+						       &match_start,
+						       &match_end,
+						       NULL))
+	{
+		select_search_occurrence (search, &match_start, &match_end);
+	}
+}
+
+static void
+button_previous_clicked_cb (TestSearch *search,
+			    GtkButton  *button)
+{
+	GtkTextIter start_at;
+
+	gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (search->priv->source_buffer),
+					      &start_at,
+					      NULL);
+
+	gtk_source_search_context_backward_async (search->priv->search_context,
+						  &start_at,
+						  NULL,
+						  (GAsyncReadyCallback)backward_search_finished,
+						  search);
+}
+
+static void
+forward_search_finished (GtkSourceSearchContext *search_context,
+			 GAsyncResult           *result,
+			 TestSearch             *search)
+{
+	GtkTextIter match_start;
+	GtkTextIter match_end;
+
+	if (gtk_source_search_context_forward_finish (search_context,
 						      result,
 						      &match_start,
 						      &match_end,
@@ -204,43 +232,8 @@ backward_search_finished (GtkSourceBuffer *buffer,
 }
 
 static void
-button_previous_clicked_cb (TestSearchUI *search,
-			    GtkButton    *button)
-{
-	GtkTextIter start_at;
-
-	gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (search->priv->source_buffer),
-					      &start_at,
-					      NULL);
-
-	gtk_source_buffer_backward_search_async (search->priv->source_buffer,
-						 &start_at,
-						 NULL,
-						 (GAsyncReadyCallback)backward_search_finished,
-						 search);
-}
-
-static void
-forward_search_finished (GtkSourceBuffer *buffer,
-			 GAsyncResult    *result,
-			 TestSearchUI    *search)
-{
-	GtkTextIter match_start;
-	GtkTextIter match_end;
-
-	if (gtk_source_buffer_forward_search_finish (buffer,
-						     result,
-						     &match_start,
-						     &match_end,
-						     NULL))
-	{
-		select_search_occurrence (search, &match_start, &match_end);
-	}
-}
-
-static void
-button_next_clicked_cb (TestSearchUI *search,
-			GtkButton    *button)
+button_next_clicked_cb (TestSearch *search,
+			GtkButton  *button)
 {
 	GtkTextIter start_at;
 
@@ -248,16 +241,16 @@ button_next_clicked_cb (TestSearchUI *search,
 					      NULL,
 					      &start_at);
 
-	gtk_source_buffer_forward_search_async (search->priv->source_buffer,
-						&start_at,
-						NULL,
-						(GAsyncReadyCallback)forward_search_finished,
-						search);
+	gtk_source_search_context_forward_async (search->priv->search_context,
+						 &start_at,
+						 NULL,
+						 (GAsyncReadyCallback)forward_search_finished,
+						 search);
 }
 
 static void
-button_replace_clicked_cb (TestSearchUI *search,
-			   GtkButton    *button)
+button_replace_clicked_cb (TestSearch *search,
+			   GtkButton  *button)
 {
 	GtkTextIter match_start;
 	GtkTextIter match_end;
@@ -272,37 +265,37 @@ button_replace_clicked_cb (TestSearchUI *search,
 	entry_buffer = gtk_entry_get_buffer (search->priv->replace_entry);
 	replace_length = gtk_entry_buffer_get_bytes (entry_buffer);
 
-	gtk_source_buffer_search_replace (search->priv->source_buffer,
-					  &match_start,
-					  &match_end,
-					  gtk_entry_get_text (search->priv->replace_entry),
-					  replace_length);
+	gtk_source_search_context_replace (search->priv->search_context,
+					   &match_start,
+					   &match_end,
+					   gtk_entry_get_text (search->priv->replace_entry),
+					   replace_length);
 
 	gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (search->priv->source_buffer),
 					      NULL,
 					      &iter);
 
-	gtk_source_buffer_forward_search_async (search->priv->source_buffer,
-						&iter,
-						NULL,
-						(GAsyncReadyCallback)forward_search_finished,
-						search);
+	gtk_source_search_context_forward_async (search->priv->search_context,
+						 &iter,
+						 NULL,
+						 (GAsyncReadyCallback)forward_search_finished,
+						 search);
 }
 
 static void
-button_replace_all_clicked_cb (TestSearchUI *search,
-			       GtkButton    *button)
+button_replace_all_clicked_cb (TestSearch *search,
+			       GtkButton  *button)
 {
 	GtkEntryBuffer *entry_buffer = gtk_entry_get_buffer (search->priv->replace_entry);
 	gint replace_length = gtk_entry_buffer_get_bytes (entry_buffer);
 
-	gtk_source_buffer_search_replace_all (search->priv->source_buffer,
-					      gtk_entry_get_text (search->priv->replace_entry),
-					      replace_length);
+	gtk_source_search_context_replace_all (search->priv->search_context,
+					       gtk_entry_get_text (search->priv->replace_entry),
+					       replace_length);
 }
 
 static gboolean
-update_label_idle_cb (TestSearchUI *search)
+update_label_idle_cb (TestSearch *search)
 {
 	search->priv->idle_update_label_id = 0;
 
@@ -315,7 +308,7 @@ static void
 mark_set_cb (GtkTextBuffer *buffer,
 	     GtkTextIter   *location,
 	     GtkTextMark   *mark,
-	     TestSearchUI  *search)
+	     TestSearch    *search)
 {
 	GtkTextMark *insert;
 	GtkTextMark *selection_bound;
@@ -332,72 +325,73 @@ mark_set_cb (GtkTextBuffer *buffer,
 }
 
 static void
-highlight_toggled_cb (TestSearchUI    *search,
+highlight_toggled_cb (TestSearch      *search,
 		      GtkToggleButton *button)
 {
-	gtk_source_buffer_set_highlight_search (search->priv->source_buffer,
-						gtk_toggle_button_get_active (button));
+	/* TODO */
 }
 
 static void
-match_case_toggled_cb (TestSearchUI    *search,
+match_case_toggled_cb (TestSearch      *search,
 		       GtkToggleButton *button)
 {
-	gtk_source_buffer_set_case_sensitive_search (search->priv->source_buffer,
-						     gtk_toggle_button_get_active (button));
+	gtk_source_search_settings_set_case_sensitive (search->priv->search_settings,
+						       gtk_toggle_button_get_active (button));
 }
 
 static void
-at_word_boundaries_toggled_cb (TestSearchUI    *search,
+at_word_boundaries_toggled_cb (TestSearch      *search,
 			       GtkToggleButton *button)
 {
-	gtk_source_buffer_set_search_at_word_boundaries (search->priv->source_buffer,
-							 gtk_toggle_button_get_active (button));
+	gtk_source_search_settings_set_at_word_boundaries (search->priv->search_settings,
+							   gtk_toggle_button_get_active (button));
 }
 
 static void
-wrap_around_toggled_cb (TestSearchUI    *search,
-		        GtkToggleButton *button)
+wrap_around_toggled_cb (TestSearch      *search,
+			GtkToggleButton *button)
 {
-	gtk_source_buffer_set_search_wrap_around (search->priv->source_buffer,
-						  gtk_toggle_button_get_active (button));
+	gtk_source_search_settings_set_wrap_around (search->priv->search_settings,
+						    gtk_toggle_button_get_active (button));
 }
 
 static void
-regex_toggled_cb (TestSearchUI    *search,
+regex_toggled_cb (TestSearch      *search,
 		  GtkToggleButton *button)
 {
-	gtk_source_buffer_set_regex_search (search->priv->source_buffer,
-					    gtk_toggle_button_get_active (button));
+	gtk_source_search_settings_set_regex_enabled (search->priv->search_settings,
+						      gtk_toggle_button_get_active (button));
 }
 
 static void
-test_search_ui_dispose (GObject *object)
+test_search_dispose (GObject *object)
 {
-	TestSearchUI *search = TEST_SEARCH_UI (object);
+	TestSearch *search = TEST_SEARCH (object);
 
 	g_clear_object (&search->priv->source_buffer);
+	g_clear_object (&search->priv->search_context);
+	g_clear_object (&search->priv->search_settings);
 
-	G_OBJECT_CLASS (test_search_ui_parent_class)->dispose (object);
+	G_OBJECT_CLASS (test_search_parent_class)->dispose (object);
 }
 
 static void
-test_search_ui_class_init (TestSearchUIClass *klass)
+test_search_class_init (TestSearchClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-	object_class->dispose = test_search_ui_dispose;
+	object_class->dispose = test_search_dispose;
 
 	gtk_widget_class_set_template_from_resource (widget_class,
 						     "/org/gnome/gtksourceview/tests/ui/test-search.ui");
 
-	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, source_view);
-	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, replace_entry);
-	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, label_occurrences);
-	gtk_widget_class_bind_template_child_private (widget_class, TestSearchUI, label_regex_error);
+	gtk_widget_class_bind_template_child_private (widget_class, TestSearch, source_view);
+	gtk_widget_class_bind_template_child_private (widget_class, TestSearch, replace_entry);
+	gtk_widget_class_bind_template_child_private (widget_class, TestSearch, label_occurrences);
+	gtk_widget_class_bind_template_child_private (widget_class, TestSearch, label_regex_error);
 
-	gtk_widget_class_bind_template_callback (widget_class, search_entry_text_notify_cb);
+	gtk_widget_class_bind_template_callback (widget_class, search_entry_changed_cb);
 	gtk_widget_class_bind_template_callback (widget_class, button_previous_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, button_next_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, button_replace_clicked_cb);
@@ -415,11 +409,11 @@ test_search_ui_class_init (TestSearchUIClass *klass)
 }
 
 static void
-test_search_ui_init (TestSearchUI *search)
+test_search_init (TestSearch *search)
 {
 	PangoFontDescription *font;
 
-	search->priv = test_search_ui_get_instance_private (search);
+	search->priv = test_search_get_instance_private (search);
 
 	gtk_widget_init_template (GTK_WIDGET (search));
 
@@ -437,8 +431,13 @@ test_search_ui_init (TestSearchUI *search)
 
 	open_file (search, TOP_SRCDIR "/gtksourceview/gtksourcesearchcontext.c");
 
-	g_signal_connect_swapped (search->priv->source_buffer,
-				  "notify::search-occurrences-count",
+	search->priv->search_settings = gtk_source_search_settings_new ();
+
+	search->priv->search_context = gtk_source_search_context_new (search->priv->source_buffer,
+								      search->priv->search_settings);
+
+	g_signal_connect_swapped (search->priv->search_context,
+				  "notify::occurrences-count",
 				  G_CALLBACK (update_label_occurrences),
 				  search);
 
@@ -447,25 +446,25 @@ test_search_ui_init (TestSearchUI *search)
 			  G_CALLBACK (mark_set_cb),
 			  search);
 
-	g_signal_connect_swapped (search->priv->source_buffer,
-				  "notify::regex-search-error",
+	g_signal_connect_swapped (search->priv->search_context,
+				  "notify::regex-error",
 				  G_CALLBACK (update_label_regex_error),
 				  search);
 
 	update_label_regex_error (search);
 }
 
-static TestSearchUI *
-test_search_ui_new (void)
+static TestSearch *
+test_search_new (void)
 {
-	return g_object_new (test_search_ui_get_type (), NULL);
+	return g_object_new (test_search_get_type (), NULL);
 }
 
 gint
 main (gint argc, gchar *argv[])
 {
 	GtkWidget *window;
-	TestSearchUI *search;
+	TestSearch *search;
 
 	gtk_init (&argc, &argv);
 
@@ -478,7 +477,7 @@ main (gint argc, gchar *argv[])
 			  G_CALLBACK (gtk_main_quit),
 			  NULL);
 
-	search = test_search_ui_new ();
+	search = test_search_new ();
 	gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (search));
 
 	gtk_widget_show (window);

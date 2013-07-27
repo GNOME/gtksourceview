@@ -33,9 +33,9 @@
  */
 
 static void
-on_notify_search_occurrences_count_cb (GtkSourceBuffer *buffer,
-				       GParamSpec      *spec,
-				       GTimer          *timer)
+on_notify_search_occurrences_count_cb (GtkSourceSearchContext *search_context,
+				       GParamSpec             *spec,
+				       GTimer                 *timer)
 {
 	g_print ("smart asynchronous search, case sensitive: %lf seconds.\n",
 		 g_timer_elapsed (timer, NULL));
@@ -47,6 +47,8 @@ int
 main (int argc, char *argv[])
 {
 	GtkSourceBuffer *buffer;
+	GtkSourceSearchContext *search_context;
+	GtkSourceSearchSettings *search_settings;
 	GtkTextIter iter;
 	GtkTextIter match_end;
 	GTimer *timer;
@@ -124,14 +126,17 @@ main (int argc, char *argv[])
 
 	/* Smart forward search, with default flags in gsv */
 
+	search_settings = gtk_source_search_settings_new ();
+	search_context = gtk_source_search_context_new (buffer, search_settings);
+
 	g_timer_start (timer);
 
-	gtk_source_buffer_set_search_wrap_around (buffer, FALSE);
-	gtk_source_buffer_set_search_text (buffer, "foo");
+	gtk_source_search_settings_set_wrap_around (search_settings, FALSE);
+	gtk_source_search_settings_set_search_text (search_settings, "foo");
 
 	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
 
-	while (gtk_source_buffer_forward_search (buffer, &iter, NULL, &match_end))
+	while (gtk_source_search_context_forward (search_context, &iter, NULL, &match_end))
 	{
 		iter = match_end;
 	}
@@ -144,13 +149,13 @@ main (int argc, char *argv[])
 
 	g_timer_start (timer);
 
-	gtk_source_buffer_set_search_text (buffer, NULL);
-	gtk_source_buffer_set_case_sensitive_search (buffer, TRUE);
-	gtk_source_buffer_set_search_text (buffer, "foo");
+	gtk_source_search_settings_set_search_text (search_settings, NULL);
+	gtk_source_search_settings_set_case_sensitive (search_settings, TRUE);
+	gtk_source_search_settings_set_search_text (search_settings, "foo");
 
 	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
 
-	while (gtk_source_buffer_forward_search (buffer, &iter, NULL, &match_end))
+	while (gtk_source_search_context_forward (search_context, &iter, NULL, &match_end))
 	{
 		iter = match_end;
 	}
@@ -168,15 +173,15 @@ main (int argc, char *argv[])
 	 * difference in the overhead.
 	 */
 
-	g_signal_connect (buffer,
-			  "notify::search-occurrences-count",
+	g_signal_connect (search_context,
+			  "notify::occurrences-count",
 			  G_CALLBACK (on_notify_search_occurrences_count_cb),
 			  timer);
 
 	g_timer_start (timer);
 
-	gtk_source_buffer_set_search_text (buffer, NULL);
-	gtk_source_buffer_set_search_text (buffer, "foo");
+	gtk_source_search_settings_set_search_text (search_settings, NULL);
+	gtk_source_search_settings_set_search_text (search_settings, "foo");
 
 	gtk_main ();
 	return 0;

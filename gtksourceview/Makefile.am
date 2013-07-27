@@ -40,6 +40,7 @@ libgtksourceview_headers =			\
 	gtksourcemarkattributes.h		\
 	gtksourceprintcompositor.h		\
 	gtksourcesearchcontext.h		\
+	gtksourcesearchsettings.h		\
 	gtksourcestyle.h			\
 	gtksourcestylescheme.h			\
 	gtksourcestyleschememanager.h		\
@@ -103,6 +104,7 @@ libgtksourceview_c_files = \
 	gtksourcemarkattributes.c	\
 	gtksourceprintcompositor.c	\
 	gtksourcesearchcontext.c	\
+	gtksourcesearchsettings.c	\
 	gtksourcestyle.c		\
 	gtksourcestylescheme.c		\
 	gtksourcestyleschememanager.c	\

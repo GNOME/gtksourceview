@@ -47,98 +47,79 @@ struct _GtkSourceSearchContext
 struct _GtkSourceSearchContextClass
 {
 	GObjectClass parent_class;
+
+	gpointer padding[10];
 };
 
-GType			gtk_source_search_context_get_type			(void) G_GNUC_CONST;
+GType			 gtk_source_search_context_get_type			(void) G_GNUC_CONST;
 
-GtkSourceSearchContext *gtk_source_search_context_new				(GtkSourceBuffer	*buffer);
+GtkSourceSearchContext	*gtk_source_search_context_new				(GtkSourceBuffer	 *buffer,
+										 GtkSourceSearchSettings *settings);
 
-void			gtk_source_search_context_set_text			(GtkSourceSearchContext	*search,
-										 const gchar		*text);
+GtkSourceBuffer		*gtk_source_search_context_get_buffer			(GtkSourceSearchContext  *search);
 
-const gchar *		gtk_source_search_context_get_text			(GtkSourceSearchContext	*search);
+GtkSourceSearchSettings	*gtk_source_search_context_get_settings			(GtkSourceSearchContext	 *search);
 
-void			gtk_source_search_context_set_case_sensitive		(GtkSourceSearchContext	*search,
-										 gboolean		 case_sensitive);
+void			 gtk_source_search_context_set_settings			(GtkSourceSearchContext  *search,
+										 GtkSourceSearchSettings *settings);
 
-gboolean		gtk_source_search_context_get_case_sensitive		(GtkSourceSearchContext	*search);
+GError			*gtk_source_search_context_get_regex_error		(GtkSourceSearchContext	 *search);
 
-void			gtk_source_search_context_set_at_word_boundaries	(GtkSourceSearchContext	*search,
-										 gboolean		 at_word_boundaries);
+gint			 gtk_source_search_context_get_occurrences_count	(GtkSourceSearchContext	 *search);
 
-gboolean		gtk_source_search_context_get_at_word_boundaries	(GtkSourceSearchContext	*search);
+gint			 gtk_source_search_context_get_occurrence_position	(GtkSourceSearchContext	 *search,
+										 const GtkTextIter	 *match_start,
+										 const GtkTextIter	 *match_end);
 
-void			gtk_source_search_context_set_wrap_around		(GtkSourceSearchContext	*search,
-										 gboolean		 wrap_around);
+gboolean		 gtk_source_search_context_forward			(GtkSourceSearchContext	 *search,
+										 const GtkTextIter	 *iter,
+										 GtkTextIter		 *match_start,
+										 GtkTextIter		 *match_end);
 
-gboolean		gtk_source_search_context_get_wrap_around		(GtkSourceSearchContext	*search);
+void			 gtk_source_search_context_forward_async		(GtkSourceSearchContext	 *search,
+										 const GtkTextIter	 *iter,
+										 GCancellable		 *cancellable,
+										 GAsyncReadyCallback	  callback,
+										 gpointer		  user_data);
 
-void			gtk_source_search_context_set_regex_enabled		(GtkSourceSearchContext	*search,
-										 gboolean		 regex_enabled);
+gboolean		 gtk_source_search_context_forward_finish		(GtkSourceSearchContext	 *search,
+										 GAsyncResult		 *result,
+										 GtkTextIter		 *match_start,
+										 GtkTextIter		 *match_end,
+										 GError		        **error);
 
-gboolean		gtk_source_search_context_get_regex_enabled		(GtkSourceSearchContext	*search);
+gboolean		 gtk_source_search_context_backward			(GtkSourceSearchContext	 *search,
+										 const GtkTextIter	 *iter,
+										 GtkTextIter		 *match_start,
+										 GtkTextIter		 *match_end);
 
-GError *		gtk_source_search_context_get_regex_error		(GtkSourceSearchContext	*search);
+void			 gtk_source_search_context_backward_async		(GtkSourceSearchContext	 *search,
+										 const GtkTextIter	 *iter,
+										 GCancellable		 *cancellable,
+										 GAsyncReadyCallback	  callback,
+										 gpointer		  user_data);
 
-void			gtk_source_search_context_set_highlight			(GtkSourceSearchContext	*search,
-										 gboolean		 highlight);
+gboolean		 gtk_source_search_context_backward_finish		(GtkSourceSearchContext	 *search,
+										 GAsyncResult		 *result,
+										 GtkTextIter		 *match_start,
+										 GtkTextIter		 *match_end,
+										 GError		        **error);
 
-gboolean		gtk_source_search_context_get_highlight			(GtkSourceSearchContext	*search);
+gboolean		 gtk_source_search_context_replace			(GtkSourceSearchContext	 *search,
+										 const GtkTextIter	 *match_start,
+										 const GtkTextIter	 *match_end,
+										 const gchar		 *replace,
+										 gint			  replace_length);
 
-gint			gtk_source_search_context_get_occurrences_count		(GtkSourceSearchContext	*search);
+guint			 gtk_source_search_context_replace_all			(GtkSourceSearchContext	 *search,
+										 const gchar		 *replace,
+										 gint			  replace_length);
 
-gint			gtk_source_search_context_get_occurrence_position	(GtkSourceSearchContext	*search,
-										 const GtkTextIter	*match_start,
-										 const GtkTextIter	*match_end);
-
-void			gtk_source_search_context_update_highlight		(GtkSourceSearchContext	*search,
-										 const GtkTextIter	*start,
-										 const GtkTextIter	*end,
-										 gboolean		 synchronous);
-
-gboolean		gtk_source_search_context_forward			(GtkSourceSearchContext	*search,
-										 const GtkTextIter	*iter,
-										 GtkTextIter		*match_start,
-										 GtkTextIter		*match_end);
-
-void			gtk_source_search_context_forward_async			(GtkSourceSearchContext	*search,
-										 const GtkTextIter	*iter,
-										 GCancellable		*cancellable,
-										 GAsyncReadyCallback	 callback,
-										 gpointer		 user_data);
-
-gboolean		gtk_source_search_context_forward_finish		(GtkSourceSearchContext	*search,
-										 GAsyncResult		*result,
-										 GtkTextIter		*match_start,
-										 GtkTextIter		*match_end,
-										 GError		       **error);
-
-gboolean		gtk_source_search_context_backward			(GtkSourceSearchContext	*search,
-										 const GtkTextIter	*iter,
-										 GtkTextIter		*match_start,
-										 GtkTextIter		*match_end);
-
-void			gtk_source_search_context_backward_async		(GtkSourceSearchContext	*search,
-										 const GtkTextIter	*iter,
-										 GCancellable		*cancellable,
-										 GAsyncReadyCallback	 callback,
-										 gpointer		 user_data);
-
-gboolean		gtk_source_search_context_backward_finish		(GtkSourceSearchContext	*search,
-										 GAsyncResult		*result,
-										 GtkTextIter		*match_start,
-										 GtkTextIter		*match_end,
-										 GError		       **error);
-
-gboolean		gtk_source_search_context_replace			(GtkSourceSearchContext	*search,
-										 const GtkTextIter	*match_start,
-										 const GtkTextIter	*match_end,
-										 const gchar		*replace,
-										 gint			 replace_length);
-
-guint			gtk_source_search_context_replace_all			(GtkSourceSearchContext	*search,
-										 const gchar		*replace,
-										 gint			 replace_length);
+G_GNUC_INTERNAL
+void			 _gtk_source_search_context_update_highlight		(GtkSourceSearchContext	 *search,
+										 const GtkTextIter	 *start,
+										 const GtkTextIter	 *end,
+										 gboolean		  synchronous);
 
 G_END_DECLS
 
