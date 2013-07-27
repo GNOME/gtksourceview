@@ -15,13 +15,13 @@ TESTS = $(UNIT_TEST_PROGS)
 
 BUILT_SOURCES =				\
 	test-completion-resources.c	\
-	test-search-ui-resources.c
+	test-search-resources.c
 
 test-completion-resources.c: test-completion.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-completion.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-completion.gresource.xml
 
-test-search-ui-resources.c: test-search-ui.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-search-ui.gresource.xml)
-	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-search-ui.gresource.xml
+test-search-resources.c: test-search.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-search.gresource.xml)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-search.gresource.xml
 
 TEST_PROGS = test-widget
 test_widget_SOURCES = test-widget.c
@@ -39,11 +39,11 @@ test_completion_LDADD = 		\
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
-TEST_PROGS += test-search-ui
-test_search_ui_SOURCES =		\
-	test-search-ui.c		\
-	test-search-ui-resources.c
-test_search_ui_LDADD =						\
+TEST_PROGS += test-search
+test_search_SOURCES =		\
+	test-search.c		\
+	test-search-resources.c
+test_search_LDADD =						\
 	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
 	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
@@ -140,9 +140,9 @@ test_undo_manager_LDADD =					\
 	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
 
-UNIT_TEST_PROGS += test-search
-test_search_SOURCES = test-search.c
-test_search_LDADD =							\
+UNIT_TEST_PROGS += test-search-context
+test_search_context_SOURCES = test-search-context.c
+test_search_context_LDADD =						\
 	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la		\
 	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
 	$(DEP_LIBS)							\
@@ -165,8 +165,8 @@ EXTRA_DIST =				\
 	styles/classic.xml		\
 	test-completion.gresource.xml	\
 	test-completion.ui		\
-	test-search-ui.gresource.xml	\
-	test-search-ui.ui		\
+	test-search.gresource.xml	\
+	test-search.ui			\
 	$(python_tests)
 
 -include $(top_srcdir)/git.mk

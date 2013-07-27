@@ -123,7 +123,7 @@
  *   </para>
  *   <para>
  *     In the GtkSourceView source code, there is an example of how to use the
- *     search and replace API: see the tests/test-search-ui.c file. It is a mini
+ *     search and replace API: see the tests/test-search.c file. It is a mini
  *     application for the search and replace, with a basic user interface.
  *   </para>
  * </refsect2>
