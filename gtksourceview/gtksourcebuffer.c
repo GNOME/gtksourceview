@@ -88,6 +88,12 @@
  * </refsect2>
  * <refsect2>
  *   <title>Search and Replace</title>
+ *   <warning>
+ *     <para>
+ *       The search and replace API is unstable and will most probably
+ *       change in the near future.
+ *     </para>
+ *   </warning>
  *   <para>
  *     To set the text to search, use gtk_source_buffer_set_search_text(). The
  *     search occurrences will be highlighted, and the total number of
