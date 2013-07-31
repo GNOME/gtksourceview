@@ -330,23 +330,6 @@ sync_found_tag (GtkSourceSearchContext *search)
 	_gtk_source_style_apply (style, search->priv->found_tag);
 }
 
-/* Make sure to call this function when the buffer is constructed, else the tag
- * table is created too early.
- */
-static void
-init_found_tag (GtkSourceSearchContext *search)
-{
-	search->priv->found_tag = gtk_text_buffer_create_tag (search->priv->buffer, NULL, NULL);
-
-	sync_found_tag (search);
-
-	g_signal_connect_object (search->priv->buffer,
-				 "notify::style-scheme",
-				 G_CALLBACK (sync_found_tag),
-				 search,
-				 G_CONNECT_SWAPPED);
-}
-
 static void
 text_tag_set_highest_priority (GtkTextTag    *tag,
 			       GtkTextBuffer *buffer)
@@ -1032,11 +1015,6 @@ smart_forward_search_async (GtkSourceSearchContext *search,
 {
 	GtkTextIter iter = *start_at;
 
-	if (search->priv->found_tag == NULL)
-	{
-		init_found_tag (search);
-	}
-
 	/* A recursive function would have been more natural, but a loop is
 	 * better to avoid stack overflows.
 	 */
@@ -1173,11 +1151,6 @@ smart_backward_search_async (GtkSourceSearchContext *search,
 			     gboolean                wrapped_around)
 {
 	GtkTextIter iter = *start_at;
-
-	if (search->priv->found_tag == NULL)
-	{
-		init_found_tag (search);
-	}
 
 	/* A recursive function would have been more natural, but a loop is
 	 * better to avoid stack overflows.
@@ -1353,11 +1326,6 @@ smart_forward_search_without_scanning (GtkSourceSearchContext *search,
 		return FALSE;
 	}
 
-	if (search->priv->found_tag == NULL)
-	{
-		init_found_tag (search);
-	}
-
 	while (gtk_text_iter_compare (&iter, stop_at) < 0)
 	{
 		GtkTextIter limit;
@@ -1406,11 +1374,6 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 	GtkTextIter iter;
 	GtkTextIter match_start;
 	GtkTextIter match_end;
-
-	if (search->priv->found_tag == NULL)
-	{
-		init_found_tag (search);
-	}
 
 	if (gtk_text_iter_has_tag (start, search->priv->found_tag) &&
 	    !gtk_text_iter_begins_tag (start, search->priv->found_tag))
@@ -1470,11 +1433,6 @@ scan_subregion (GtkSourceSearchContext *search,
 	gboolean found = TRUE;
 	GtkSourceSearchSettings *settings = get_settings (search);
 	const gchar *search_text = gtk_source_search_settings_get_search_text (settings);
-
-	if (search->priv->found_tag == NULL)
-	{
-		init_found_tag (search);
-	}
 
 	/* Make sure the 'found' tag has the priority over syntax highlighting
 	 * tags. */
@@ -1934,11 +1892,6 @@ regex_search_scan_chunk (GtkSourceSearchContext *search,
 {
 	GtkTextIter segment_start = *chunk_start;
 
-	if (search->priv->found_tag == NULL)
-	{
-		init_found_tag (search);
-	}
-
 	while (gtk_text_iter_compare (&segment_start, chunk_end) < 0)
 	{
 		GtkTextIter segment_end;
@@ -2122,11 +2075,6 @@ smart_forward_search (GtkSourceSearchContext *search,
 		return FALSE;
 	}
 
-	if (search->priv->found_tag == NULL)
-	{
-		init_found_tag (search);
-	}
-
 	while (!gtk_text_iter_is_end (&iter))
 	{
 		if (smart_forward_search_step (search, &iter, match_start, match_end))
@@ -2213,11 +2161,6 @@ smart_backward_search (GtkSourceSearchContext *search,
 	if (search_text == NULL)
 	{
 		return FALSE;
-	}
-
-	if (search->priv->found_tag == NULL)
-	{
-		init_found_tag (search);
 	}
 
 	while (!gtk_text_iter_is_start (&iter))
@@ -2483,6 +2426,16 @@ set_buffer (GtkSourceSearchContext *search,
 				 G_CALLBACK (delete_range_after_cb),
 				 search,
 				 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
+
+	search->priv->found_tag = gtk_text_buffer_create_tag (search->priv->buffer, NULL, NULL);
+
+	sync_found_tag (search);
+
+	g_signal_connect_object (search->priv->buffer,
+				 "notify::style-scheme",
+				 G_CALLBACK (sync_found_tag),
+				 search,
+				 G_CONNECT_SWAPPED);
 }
 
 static gint
