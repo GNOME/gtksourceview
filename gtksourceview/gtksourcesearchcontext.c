@@ -30,6 +30,38 @@
 
 #include <string.h>
 
+/**
+ * SECTION:searchcontext
+ * @Short_description: The context of a search
+ * @Title: GtkSourceSearchContext
+ * @See_also: #GtkSourceBuffer, #GtkSourceSearchSettings
+ *
+ * A #GtkSourceSearchContext is used for the search and replace in a
+ * #GtkSourceBuffer. The search settings are represented by a
+ * #GtkSourceSearchSettings object, that can be shared between several
+ * #GtkSourceSearchContext<!-- -->s. A buffer can contain several search
+ * contexts at the same time, but at most one search context per buffer can
+ * highlight its search occurrences.
+ *
+ * The total number of search occurrences can be retrieved with
+ * gtk_source_search_context_get_occurrences_count(). To know the position of a
+ * certain match, use gtk_source_search_context_get_occurrence_position().
+ *
+ * The buffer is scanned asynchronously, so it doesn't block the user interface.
+ * For each search, the buffer is scanned at most once. After that, navigating
+ * through the occurrences doesn't require to re-scan the buffer entirely.
+ *
+ * To search forward, use gtk_source_search_context_forward() or
+ * gtk_source_search_context_forward_async() for the asynchronous version.
+ * The backward search is done similarly. To replace a search match, or all
+ * matches, use gtk_source_search_context_replace() and
+ * gtk_source_search_context_replace_all().
+ *
+ * In the GtkSourceView source code, there is an example of how to use the
+ * search and replace API: see the tests/test-search.c file. It is a mini
+ * application for the search and replace, with a basic user interface.
+ */
+
 /* Implementation overview:
  *
  * When the state of the search changes (the text to search or the options), we
@@ -2705,6 +2737,19 @@ gtk_source_search_context_init (GtkSourceSearchContext *search)
 	search->priv = gtk_source_search_context_get_instance_private (search);
 }
 
+/**
+ * gtk_source_search_context_new:
+ * @buffer: a #GtkSourceBuffer.
+ * @settings: (allow-none): a #GtkSourceSearchSettings, or %NULL.
+ *
+ * Creates a new search context, associated with @buffer, and customized with
+ * @settings. If @settings is %NULL, a new #GtkSourceSearchSettings object will
+ * be created, that you can retrieve with
+ * gtk_source_search_context_get_settings().
+ *
+ * Returns: a new search context.
+ * Since: 3.10
+ */
 GtkSourceSearchContext *
 gtk_source_search_context_new (GtkSourceBuffer         *buffer,
 			       GtkSourceSearchSettings *settings)
@@ -2718,6 +2763,13 @@ gtk_source_search_context_new (GtkSourceBuffer         *buffer,
 			     NULL);
 }
 
+/**
+ * gtk_source_search_context_get_buffer:
+ * @search: a #GtkSourceSearchContext.
+ *
+ * Returns: (transfer none): the associated buffer.
+ * Since: 3.10
+ */
 GtkSourceBuffer *
 gtk_source_search_context_get_buffer (GtkSourceSearchContext *search)
 {
@@ -2726,6 +2778,13 @@ gtk_source_search_context_get_buffer (GtkSourceSearchContext *search)
 	return GTK_SOURCE_BUFFER (search->priv->buffer);
 }
 
+/**
+ * gtk_source_search_context_get_settings:
+ * @search: a #GtkSourceSearchContext.
+ *
+ * Returns: (transfer none): the search settings.
+ * Since: 3.10
+ */
 GtkSourceSearchSettings *
 gtk_source_search_context_get_settings (GtkSourceSearchContext *search)
 {
@@ -2734,6 +2793,17 @@ gtk_source_search_context_get_settings (GtkSourceSearchContext *search)
 	return get_settings (search);
 }
 
+/**
+ * gtk_source_search_context_set_settings:
+ * @search: a #GtkSourceSearchContext.
+ * @settings: the new #GtkSourceSearchSettings.
+ *
+ * Associate a #GtkSourceSearchSettings with the search context.
+ *
+ * The search context holds a reference to @settings.
+ *
+ * Since: 3.10
+ */
 void
 gtk_source_search_context_set_settings (GtkSourceSearchContext  *search,
 					GtkSourceSearchSettings *settings)
@@ -2770,7 +2840,7 @@ gtk_source_search_context_set_settings (GtkSourceSearchContext  *search,
  * @search: a #GtkSourceSearchContext.
  *
  * Regular expression patterns must follow certain rules. If
- * #GtkSourceSearchContext:search-text breaks a rule, the error can be retrieved
+ * #GtkSourceSearchSettings:search-text breaks a rule, the error can be retrieved
  * with this function. The error domain is #G_REGEX_ERROR.
  *
  * Free the return value with g_error_free().

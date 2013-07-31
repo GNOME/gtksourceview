@@ -35,9 +35,9 @@
  * gtk_source_utils_unescape_search_text:
  * @text: the text to unescape.
  *
- * Use this function before gtk_source_buffer_set_search_text(), to unescape
- * certain sequences of characters: \n, \r, \t and \\. The purpose is to easily
- * write those characters in a search entry.
+ * Use this function before gtk_source_search_settings_set_search_text(), to
+ * unescape certain sequences of characters: \n, \r, \t and \\. The purpose is
+ * to easily write those characters in a search entry.
  *
  * See also: gtk_source_utils_escape_search_text().
  *
@@ -124,8 +124,8 @@ gtk_source_utils_unescape_search_text (const gchar *text)
  * gtk_source_utils_escape_search_text:
  * @text: the text to escape.
  *
- * Use this function after gtk_source_buffer_get_search_text(), to escape
- * certain characters: \n, \r, \t and \.
+ * Use this function after gtk_source_search_settings_get_search_text(), to
+ * escape certain characters: \n, \r, \t and \.
  *
  * See also: gtk_source_utils_unescape_search_text().
  *

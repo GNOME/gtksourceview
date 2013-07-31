@@ -22,6 +22,17 @@
 #include "gtksourcesearchsettings.h"
 #include "gtksourceview-i18n.h"
 
+/**
+ * SECTION:searchsettings
+ * @Short_description: The settings of a search
+ * @Title: GtkSourceSearchSettings
+ * @See_also: #GtkSourceSearchContext
+ *
+ * A #GtkSourceSearchSettings object represents the settings of a search. The
+ * search settings can be associated with one or several
+ * #GtkSourceSearchContext<!-- -->s.
+ */
+
 enum
 {
 	PROP_0,

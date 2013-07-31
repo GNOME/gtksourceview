@@ -86,47 +86,6 @@
  *     and gtk_text_buffer_set_modified().
  *   </para>
  * </refsect2>
- * <refsect2>
- *   <title>Search and Replace</title>
- *   <warning>
- *     <para>
- *       The search and replace API is unstable and will most probably
- *       change in the near future.
- *     </para>
- *   </warning>
- *   <para>
- *     To set the text to search, use gtk_source_buffer_set_search_text(). The
- *     search occurrences will be highlighted, and the total number of
- *     occurrences can be retrieved with
- *     gtk_source_buffer_get_search_occurrences_count(). The buffer is scanned
- *     asynchronously, so it doesn't block the user interface. For each search,
- *     the buffer is scanned at most once. After that, navigating through the
- *     occurrences doesn't require to re-scan the buffer entirely.
- *   </para>
- *   <para>
- *     You can tune the search with the following properties:
- *     #GtkSourceBuffer:case-sensitive-search,
- *     #GtkSourceBuffer:search-at-word-boundaries,
- *     #GtkSourceBuffer:search-wrap-around and
- *     #GtkSourceBuffer:regex-search.
- *   </para>
- *   <para>
- *     To search forward, use gtk_source_buffer_forward_search() or
- *     gtk_source_buffer_forward_search_async() for the asynchronous version.
- *     The backward search is done similarly. To replace a search match, or all
- *     matches, use gtk_source_buffer_search_replace() and
- *     gtk_source_buffer_search_replace_all().
- *   </para>
- *   <para>
- *     To know the position of a certain match, use
- *     gtk_source_buffer_get_search_occurrence_position().
- *   </para>
- *   <para>
- *     In the GtkSourceView source code, there is an example of how to use the
- *     search and replace API: see the tests/test-search.c file. It is a mini
- *     application for the search and replace, with a basic user interface.
- *   </para>
- * </refsect2>
  */
 
 /*
