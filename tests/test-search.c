@@ -328,7 +328,8 @@ static void
 highlight_toggled_cb (TestSearch      *search,
 		      GtkToggleButton *button)
 {
-	/* TODO */
+	gtk_source_search_context_set_highlight (search->priv->search_context,
+						 gtk_toggle_button_get_active (button));
 }
 
 static void
