@@ -2789,9 +2789,10 @@ gtk_source_search_context_get_settings (GtkSourceSearchContext *search)
 /**
  * gtk_source_search_context_set_settings:
  * @search: a #GtkSourceSearchContext.
- * @settings: the new #GtkSourceSearchSettings.
+ * @settings: (allow-none): the new #GtkSourceSearchSettings, or %NULL.
  *
- * Associate a #GtkSourceSearchSettings with the search context.
+ * Associate a #GtkSourceSearchSettings with the search context. If @settings is
+ * %NULL, a new one will be created.
  *
  * The search context holds a reference to @settings.
  *
@@ -2802,7 +2803,7 @@ gtk_source_search_context_set_settings (GtkSourceSearchContext  *search,
 					GtkSourceSearchSettings *settings)
 {
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
-	g_return_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings));
+	g_return_if_fail (settings == NULL || GTK_SOURCE_IS_SEARCH_SETTINGS (settings));
 
 	if (search->priv->settings != NULL)
 	{
@@ -2813,9 +2814,16 @@ gtk_source_search_context_set_settings (GtkSourceSearchContext  *search,
 		g_object_unref (search->priv->settings);
 	}
 
-	search->priv->settings = g_object_ref (settings);
+	if (settings != NULL)
+	{
+		search->priv->settings = g_object_ref (settings);
+	}
+	else
+	{
+		search->priv->settings = gtk_source_search_settings_new ();
+	}
 
-	g_signal_connect_object (settings,
+	g_signal_connect_object (search->priv->settings,
 				 "notify",
 				 G_CALLBACK (settings_notify_cb),
 				 search,
