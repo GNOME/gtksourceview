@@ -222,6 +222,7 @@ enum
 	PROP_0,
 	PROP_BUFFER,
 	PROP_SETTINGS,
+	PROP_HIGHLIGHT,
 	PROP_OCCURRENCES_COUNT,
 	PROP_REGEX_ERROR
 };
@@ -260,6 +261,8 @@ struct _GtkSourceSearchContextPrivate
 
 	gint occurrences_count;
 	gulong idle_scan_id;
+
+	guint highlight : 1;
 };
 
 /* Data for the asynchronous forward and backward search tasks. */
@@ -307,13 +310,11 @@ sync_found_tag (GtkSourceSearchContext *search)
 		return;
 	}
 
-	/*
 	if (!search->priv->highlight)
 	{
 		_gtk_source_style_apply (NULL, search->priv->found_tag);
 		return;
 	}
-	*/
 
 	style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (search->priv->buffer));
 
@@ -2565,6 +2566,10 @@ gtk_source_search_context_get_property (GObject    *object,
 			g_value_set_object (value, get_settings (search));
 			break;
 
+		case PROP_HIGHLIGHT:
+			g_value_set_boolean (value, search->priv->highlight);
+			break;
+
 		case PROP_OCCURRENCES_COUNT:
 			g_value_set_int (value, gtk_source_search_context_get_occurrences_count (search));
 			break;
@@ -2599,6 +2604,10 @@ gtk_source_search_context_set_property (GObject      *object,
 
 		case PROP_SETTINGS:
 			gtk_source_search_context_set_settings (search, g_value_get_object (value));
+			break;
+
+		case PROP_HIGHLIGHT:
+			gtk_source_search_context_set_highlight (search, g_value_get_boolean (value));
 			break;
 
 		default:
@@ -2646,6 +2655,21 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 							      _("The associated GtkSourceSearchSettings"),
 							      GTK_SOURCE_TYPE_SEARCH_SETTINGS,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	/**
+	 * GtkSourceSearchContext:highlight:
+	 *
+	 * Highlight the search occurrences.
+	 *
+	 * Since: 3.10
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_HIGHLIGHT,
+					 g_param_spec_boolean ("highlight",
+							       _("Highlight"),
+							       _("Highlight search occurrences"),
+							       TRUE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	/**
 	 * GtkSourceSearchContext:occurrences-count:
@@ -2786,6 +2810,47 @@ gtk_source_search_context_set_settings (GtkSourceSearchContext  *search,
 	update (search);
 
 	g_object_notify (G_OBJECT (search), "settings");
+}
+
+/**
+ * gtk_source_search_context_get_highlight:
+ * @search: a #GtkSourceSearchContext.
+ *
+ * Returns: whether to highlight the search occurrences.
+ * Since: 3.10
+ */
+gboolean
+gtk_source_search_context_get_highlight (GtkSourceSearchContext *search)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), FALSE);
+
+	return search->priv->highlight;
+}
+
+/**
+ * gtk_source_search_context_set_highlight:
+ * @search: a #GtkSourceSearchContext.
+ * @highlight: the setting.
+ *
+ * Enables or disables the search occurrences highlighting.
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_search_context_set_highlight (GtkSourceSearchContext *search,
+					 gboolean                highlight)
+{
+	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
+
+	highlight = highlight != FALSE;
+
+	if (search->priv->highlight != highlight)
+	{
+		search->priv->highlight = highlight;
+		sync_found_tag (search);
+
+		g_object_notify (G_OBJECT (search), "highlight");
+	}
 }
 
 /**

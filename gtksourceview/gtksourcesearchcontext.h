@@ -63,6 +63,11 @@ GtkSourceSearchSettings	*gtk_source_search_context_get_settings			(GtkSourceSear
 void			 gtk_source_search_context_set_settings			(GtkSourceSearchContext  *search,
 										 GtkSourceSearchSettings *settings);
 
+gboolean		 gtk_source_search_context_get_highlight		(GtkSourceSearchContext  *search);
+
+void			 gtk_source_search_context_set_highlight		(GtkSourceSearchContext  *search,
+										 gboolean                 highlight);
+
 GError			*gtk_source_search_context_get_regex_error		(GtkSourceSearchContext	 *search);
 
 gint			 gtk_source_search_context_get_occurrences_count	(GtkSourceSearchContext	 *search);
