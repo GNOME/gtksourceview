@@ -22,6 +22,7 @@
 #include "gtksourcesearchcontext.h"
 #include "gtksourcesearchsettings.h"
 #include "gtksourcebuffer.h"
+#include "gtksourcebuffer-private.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourcestyle-private.h"
 #include "gtksourceutils.h"
@@ -56,6 +57,19 @@
  * The backward search is done similarly. To replace a search match, or all
  * matches, use gtk_source_search_context_replace() and
  * gtk_source_search_context_replace_all().
+ *
+ * The search occurrences are highlighted by default. To disable it, use
+ * gtk_source_search_context_set_highlight(). The
+ * gtk_source_buffer_disable_search_highlighting() convenience function permits
+ * to disable the search highlighting in a buffer. The
+ * #GtkSourceSearchContext:highlight property is in the #GtkSourceSearchContext
+ * class. If the property was in #GtkSourceSearchSettings, calling
+ * gtk_source_buffer_disable_search_highlighting() might disable the
+ * highlighting in other buffers, which would be undesirable. It is therefore
+ * better to have the appearance settings in the #GtkSourceSearchContext class.
+ * You can enable the search highlighting for several
+ * #GtkSourceSearchContext<!-- -->s attached to the same buffer. But, currently,
+ * the same highlighting style is applied.
  *
  * In the GtkSourceView source code, there is an example of how to use the
  * search and replace API: see the tests/test-search.c file. It is a mini
@@ -2437,6 +2451,8 @@ set_buffer (GtkSourceSearchContext *search,
 				 G_CALLBACK (sync_found_tag),
 				 search,
 				 G_CONNECT_SWAPPED);
+
+	_gtk_source_buffer_add_search_context (buffer, search);
 }
 
 static gint
@@ -3492,7 +3508,8 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 	g_return_if_fail (end != NULL);
 
 	if (dispose_has_run (search) ||
-	    is_text_region_empty (search->priv->scan_region))
+	    is_text_region_empty (search->priv->scan_region) ||
+	    !search->priv->highlight)
 	{
 		return;
 	}

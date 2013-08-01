@@ -153,6 +153,8 @@ struct _GtkSourceBufferPrivate
 	GtkSourceUndoManager  *undo_manager;
 	gint                   max_undo_levels;
 
+	GList                 *search_contexts;
+
 	guint                  highlight_syntax : 1;
 	guint                  highlight_brackets : 1;
 	guint                  constructed : 1;
@@ -467,6 +469,14 @@ set_undo_manager (GtkSourceBuffer      *buffer,
 }
 
 static void
+search_context_weak_notify_cb (GtkSourceBuffer *buffer,
+			       GObject         *search_context)
+{
+	buffer->priv->search_contexts = g_list_remove (buffer->priv->search_contexts,
+						       search_context);
+}
+
+static void
 gtk_source_buffer_init (GtkSourceBuffer *buffer)
 {
 	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
@@ -509,6 +519,7 @@ static void
 gtk_source_buffer_dispose (GObject *object)
 {
 	GtkSourceBuffer *buffer;
+	GList *l;
 
 	g_return_if_fail (object != NULL);
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (object));
@@ -528,6 +539,18 @@ gtk_source_buffer_dispose (GObject *object)
 	g_clear_object (&buffer->priv->highlight_engine);
 	g_clear_object (&buffer->priv->language);
 	g_clear_object (&buffer->priv->style_scheme);
+
+	for (l = buffer->priv->search_contexts; l != NULL; l = l->next)
+	{
+		GtkSourceSearchContext *search_context = l->data;
+
+		g_object_weak_unref (G_OBJECT (search_context),
+				     (GWeakNotify)search_context_weak_notify_cb,
+				     buffer);
+	}
+
+	g_list_free (buffer->priv->search_contexts);
+	buffer->priv->search_contexts = NULL;
 
 	G_OBJECT_CLASS (gtk_source_buffer_parent_class)->dispose (object);
 }
@@ -1539,6 +1562,8 @@ _gtk_source_buffer_update_highlight (GtkSourceBuffer   *buffer,
 				     const GtkTextIter *end,
 				     gboolean           synchronous)
 {
+	GList *l;
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	if (buffer->priv->highlight_engine != NULL)
@@ -1549,8 +1574,15 @@ _gtk_source_buffer_update_highlight (GtkSourceBuffer   *buffer,
 						     synchronous);
 	}
 
-	/* TODO: update highlighting for the currently highlighted search
-	 * context. */
+	for (l = buffer->priv->search_contexts; l != NULL; l = l->next)
+	{
+		GtkSourceSearchContext *search_context = l->data;
+
+		_gtk_source_search_context_update_highlight (search_context,
+							     start,
+							     end,
+							     synchronous);
+	}
 }
 
 /**
@@ -2492,4 +2524,50 @@ gtk_source_buffer_get_undo_manager (GtkSourceBuffer *buffer)
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
 	return buffer->priv->undo_manager;
+}
+
+void
+_gtk_source_buffer_add_search_context (GtkSourceBuffer        *buffer,
+				       GtkSourceSearchContext *search_context)
+{
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search_context));
+	g_return_if_fail (gtk_source_search_context_get_buffer (search_context) == buffer);
+
+	if (g_list_find (buffer->priv->search_contexts, search_context) != NULL)
+	{
+		return;
+	}
+
+	buffer->priv->search_contexts = g_list_prepend (buffer->priv->search_contexts,
+							search_context);
+
+	g_object_weak_ref (G_OBJECT (search_context),
+			   (GWeakNotify)search_context_weak_notify_cb,
+			   buffer);
+}
+
+/**
+ * gtk_source_buffer_disable_search_highlighting:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Disables the search occurrences highlighting, for all
+ * #GtkSourceSearchContext<!-- -->s attached to @buffer. The search highlighting
+ * can be activated again with gtk_source_search_context_set_highlight().
+ *
+ * Since: 3.10
+ */
+void
+gtk_source_buffer_disable_search_highlighting (GtkSourceBuffer *buffer)
+{
+	GList *l;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	for (l = buffer->priv->search_contexts; l != NULL; l = l->next)
+	{
+		GtkSourceSearchContext *search_context = l->data;
+
+		gtk_source_search_context_set_highlight (search_context, FALSE);
+	}
 }

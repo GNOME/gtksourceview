@@ -46,6 +46,10 @@ GtkSourceMark		*_gtk_source_buffer_source_mark_prev		(GtkSourceBuffer        *bu
 G_GNUC_INTERNAL
 GtkTextTag		*_gtk_source_buffer_get_bracket_match_tag	(GtkSourceBuffer        *buffer);
 
+G_GNUC_INTERNAL
+void			 _gtk_source_buffer_add_search_context		(GtkSourceBuffer        *buffer,
+									 GtkSourceSearchContext *search_context);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_BUFFER_PRIVATE_H__ */
