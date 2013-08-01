@@ -32,13 +32,14 @@
 #include <gdk/gdkkeysyms.h>
 #include <pango/pango-tabs.h>
 
+#include "gtksourceview.h"
+#include "gtksourcebuffer.h"
+#include "gtksourcebuffer-private.h"
 #include "gtksourceview-i18n.h"
-
 #include "gtksourceview-marshal.h"
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"
-#include "gtksourceview.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcecompletion-private.h"

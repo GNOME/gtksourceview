@@ -34,6 +34,7 @@
 #include "gtksourceprintcompositor.h"
 #include "gtksourceview.h"
 #include "gtksourcebuffer.h"
+#include "gtksourcebuffer-private.h"
 
 /**
  * SECTION:printcompositor

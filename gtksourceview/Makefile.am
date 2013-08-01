@@ -50,6 +50,7 @@ libgtksourceview_headers =			\
 	gtksourceview.h
 
 libgtksourceview_private_headers = \
+	gtksourcebuffer-private.h		\
 	gtksourcecompletioncontainer.h		\
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletion-private.h		\

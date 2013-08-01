@@ -31,6 +31,7 @@
 #include <gtk/gtk.h>
 
 #include "gtksourcebuffer.h"
+#include "gtksourcebuffer-private.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"

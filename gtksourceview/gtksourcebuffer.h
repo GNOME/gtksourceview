@@ -180,27 +180,6 @@ GtkSourceUndoManager	*gtk_source_buffer_get_undo_manager			(GtkSourceBuffer	*buf
 void			 gtk_source_buffer_set_undo_manager			(GtkSourceBuffer	*buffer,
 										 GtkSourceUndoManager	*manager);
 
-/* private */
-
-G_GNUC_INTERNAL
-void			 _gtk_source_buffer_update_highlight			(GtkSourceBuffer        *buffer,
-										 const GtkTextIter      *start,
-										 const GtkTextIter      *end,
-										 gboolean                synchronous);
-
-G_GNUC_INTERNAL
-GtkSourceMark		*_gtk_source_buffer_source_mark_next			(GtkSourceBuffer        *buffer,
-										 GtkSourceMark          *mark,
-										 const gchar            *category);
-
-G_GNUC_INTERNAL
-GtkSourceMark		*_gtk_source_buffer_source_mark_prev			(GtkSourceBuffer        *buffer,
-										 GtkSourceMark          *mark,
-										 const gchar            *category);
-
-G_GNUC_INTERNAL
-GtkTextTag		*_gtk_source_buffer_get_bracket_match_tag		(GtkSourceBuffer        *buffer);
-
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_BUFFER_H__ */

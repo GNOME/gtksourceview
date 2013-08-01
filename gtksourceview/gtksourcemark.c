@@ -21,6 +21,7 @@
 
 #include "gtksourcemark.h"
 #include "gtksourcebuffer.h"
+#include "gtksourcebuffer-private.h"
 #include "gtksourceview-i18n.h"
 
 /**

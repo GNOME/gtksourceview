@@ -21,6 +21,7 @@ CFILE_GLOB = $(top_srcdir)/gtksourceview/*.c
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code
 IGNORE_HFILES =					\
 	config.h				\
+	gtksourcebuffer-private.h		\
 	gtksourcecompletioncontainer.h		\
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletion-private.h		\
