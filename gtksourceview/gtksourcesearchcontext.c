@@ -2414,6 +2414,7 @@ set_buffer (GtkSourceSearchContext *search,
 				 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
 	search->priv->found_tag = gtk_text_buffer_create_tag (search->priv->buffer, NULL, NULL);
+	g_object_ref (search->priv->found_tag);
 
 	sync_found_tag (search);
 
@@ -2504,6 +2505,15 @@ gtk_source_search_context_dispose (GObject *object)
 	GtkSourceSearchContext *search = GTK_SOURCE_SEARCH_CONTEXT (object);
 
 	clear_search (search);
+
+	if (search->priv->found_tag != NULL)
+	{
+		GtkTextTagTable *tag_table = gtk_text_buffer_get_tag_table (search->priv->buffer);
+
+		gtk_text_tag_table_remove (tag_table, search->priv->found_tag);
+
+		g_clear_object (&search->priv->found_tag);
+	}
 
 	g_clear_object (&search->priv->buffer);
 	g_clear_object (&search->priv->settings);
