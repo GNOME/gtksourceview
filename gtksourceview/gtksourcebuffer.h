@@ -180,8 +180,6 @@ GtkSourceUndoManager	*gtk_source_buffer_get_undo_manager			(GtkSourceBuffer	*buf
 void			 gtk_source_buffer_set_undo_manager			(GtkSourceBuffer	*buffer,
 										 GtkSourceUndoManager	*manager);
 
-void			 gtk_source_buffer_disable_search_highlighting		(GtkSourceBuffer	*buffer);
-
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_BUFFER_H__ */

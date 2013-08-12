@@ -2546,28 +2546,3 @@ _gtk_source_buffer_add_search_context (GtkSourceBuffer        *buffer,
 			   (GWeakNotify)search_context_weak_notify_cb,
 			   buffer);
 }
-
-/**
- * gtk_source_buffer_disable_search_highlighting:
- * @buffer: a #GtkSourceBuffer.
- *
- * Disables the search occurrences highlighting, for all
- * #GtkSourceSearchContext<!-- -->s attached to @buffer. The search highlighting
- * can be activated again with gtk_source_search_context_set_highlight().
- *
- * Since: 3.10
- */
-void
-gtk_source_buffer_disable_search_highlighting (GtkSourceBuffer *buffer)
-{
-	GList *l;
-
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-
-	for (l = buffer->priv->search_contexts; l != NULL; l = l->next)
-	{
-		GtkSourceSearchContext *search_context = l->data;
-
-		gtk_source_search_context_set_highlight (search_context, FALSE);
-	}
-}

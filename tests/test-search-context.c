@@ -744,16 +744,6 @@ test_highlight (void)
 	highlight = gtk_source_search_context_get_highlight (context2);
 	g_assert (!highlight);
 
-	gtk_source_search_context_set_highlight (context2, TRUE);
-	highlight = gtk_source_search_context_get_highlight (context2);
-	g_assert (highlight);
-
-	gtk_source_buffer_disable_search_highlighting (source_buffer);
-	highlight = gtk_source_search_context_get_highlight (context1);
-	g_assert (!highlight);
-	highlight = gtk_source_search_context_get_highlight (context2);
-	g_assert (!highlight);
-
 	g_object_unref (source_buffer);
 	g_object_unref (context1);
 	g_object_unref (context2);
