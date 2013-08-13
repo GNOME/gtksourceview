@@ -179,7 +179,9 @@
  * match nor a partial match), we take the next segment, with the last
  * max_lookbehind characters from the previous segment.
  *
- * TODO/idea:
+ * Improvement idea
+ * ----------------
+ *
  * What we would like to support in applications is the incremental search:
  * while we type the pattern, the buffer is scanned and the matches are
  * highlighted. When the pattern is not fully typed, strange things can happen,
@@ -196,13 +198,32 @@
  *   completely, we launch the regex matching in a thread. (3) Once the thread
  *   is finished, we highlight the matches in the buffer. And voilà.
  *
- * Known issue:
+ * But in practice, when trying a pattern that match the entire buffer, we
+ * quickly get an error like:
+ *
+ * 	Regex matching error: Error while matching regular expression (.*\n)*:
+ * 	recursion limit reached
+ *
+ * It happens with test-search, with this file as the buffer (~3500 lines).
+ *
+ * Improvement idea
+ * ----------------
+ *
+ * GRegex currently doesn't support JIT pattern compilation:
+ * https://bugzilla.gnome.org/show_bug.cgi?id=679155
+ *
+ * Once available, it can be a nice performance improvement (but it must be
+ * measured, since g_regex_new() is slower with JIT enabled).
+ *
+ * Known issue
+ * -----------
+ *
  * To search at word boundaries, \b is added at the beginning and at the
  * end of the pattern. But \b is not the same as
  * gtk_text_iter_starts_word() and gtk_text_iter_ends_word(). \b for
  * example doesn't take the underscore as a word boundary.
  * Using gtk_text_iter_starts_word() and ends_word() for regex searches
- * is not easily possible: if the GRegex return a match, but doesn't
+ * is not easily possible: if the GRegex returns a match, but doesn't
  * start and end a word, maybe a shorter match (for a greedy pattern)
  * start and end a word, or a longer match (for an ungreedy pattern). To
  * be able to use the gtk_text_iter_starts_word() and ends_word()
@@ -1899,6 +1920,10 @@ regex_search_scan_chunk (GtkSourceSearchContext *search,
 						   &segment_end,
 						   &stopped_at))
 		{
+			/* TODO: performance improvement. On partial match, use
+			 * a GString to grow the subject.
+			 */
+
 			segment_start = stopped_at;
 			gtk_text_iter_forward_lines (&segment_end, nb_lines);
 			nb_lines <<= 1;
