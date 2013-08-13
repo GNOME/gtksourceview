@@ -22,15 +22,19 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 
-/* This measures the execution times for basic search (with
- * gtk_text_iter_forward_search()), and "smart" search (the first search with
- * gtk_text_iter_forward_search(), later searches with
- * gtk_text_iter_forward_to_tag_toggle()).
+/* This measures the execution times for:
+ * - basic search: with gtk_text_iter_forward_search();
+ * - "smart" search: the first search with gtk_text_iter_forward_search(), later
+ *   searches with gtk_text_iter_forward_to_tag_toggle();
+ * - regex search.
+ *
  * For the "smart" search, only the first search is measured. Later searches
  * are really fast (going to the previous/next occurrence is done in O(1)).
  * Different search flags are also tested. We can see a big difference between
  * the case sensitive search and case insensitive.
  */
+
+#define NB_LINES 100000
 
 static void
 on_notify_search_occurrences_count_cb (GtkSourceSearchContext *search_context,
@@ -54,6 +58,7 @@ main (int argc, char *argv[])
 	GTimer *timer;
 	gint i;
 	GtkTextSearchFlags flags;
+	gchar *regex_pattern;
 
 	gtk_init (&argc, &argv);
 
@@ -61,7 +66,7 @@ main (int argc, char *argv[])
 
 	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
 
-	for (i = 0; i < 1000000; i++)
+	for (i = 0; i < NB_LINES; i++)
 	{
 		gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer),
 					&iter,
@@ -164,6 +169,99 @@ main (int argc, char *argv[])
 	g_print ("smart synchronous forward search, case sensitive: %lf seconds.\n",
 		 g_timer_elapsed (timer, NULL));
 
+	/* Regex search: search "foo" */
+
+	g_timer_start (timer);
+
+	gtk_source_search_settings_set_search_text (search_settings, NULL);
+	gtk_source_search_settings_set_regex_enabled (search_settings, TRUE);
+	gtk_source_search_settings_set_search_text (search_settings, "foo");
+
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
+
+	while (gtk_source_search_context_forward (search_context, &iter, NULL, &match_end))
+	{
+		iter = match_end;
+	}
+
+	g_timer_stop (timer);
+	g_print ("regex search: 'foo' (no partial matches): %lf seconds.\n",
+		 g_timer_elapsed (timer, NULL));
+
+	/* Regex search: search "fill" */
+
+	g_timer_start (timer);
+
+	gtk_source_search_settings_set_search_text (search_settings, "fill");
+
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
+
+	while (gtk_source_search_context_forward (search_context, &iter, NULL, &match_end))
+	{
+		iter = match_end;
+	}
+
+	g_timer_stop (timer);
+	g_print ("regex search: 'fill' (no partial matches): %lf seconds.\n",
+		 g_timer_elapsed (timer, NULL));
+
+	/* Regex search: search single lines */
+
+	g_timer_start (timer);
+
+	gtk_source_search_settings_set_search_text (search_settings, ".*");
+
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
+
+	while (gtk_source_search_context_forward (search_context, &iter, NULL, &match_end))
+	{
+		iter = match_end;
+	}
+
+	g_timer_stop (timer);
+	g_print ("regex search: match single lines (no partial matches): %lf seconds.\n",
+		 g_timer_elapsed (timer, NULL));
+
+	/* Regex search: search matches of 3 lines */
+
+	g_timer_start (timer);
+
+	/* The space at the beginning of the pattern permits to not have contiguous
+	 * matches. There is a performance issue with contiguous matches.
+	 */
+	gtk_source_search_settings_set_search_text (search_settings, " (.*\n){3}");
+
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
+
+	while (gtk_source_search_context_forward (search_context, &iter, NULL, &match_end))
+	{
+		iter = match_end;
+	}
+
+	g_timer_stop (timer);
+	g_print ("regex search: matches of 3 lines (small partial matches): %lf seconds.\n",
+		 g_timer_elapsed (timer, NULL));
+
+	/* Regex search: search matches of really big chunks */
+
+	g_timer_start (timer);
+
+	regex_pattern = g_strdup_printf (" (.*\n){%d}", NB_LINES / 10);
+	gtk_source_search_settings_set_search_text (search_settings, regex_pattern);
+	g_free (regex_pattern);
+
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
+
+	while (gtk_source_search_context_forward (search_context, &iter, NULL, &match_end))
+	{
+		iter = match_end;
+	}
+
+	g_timer_stop (timer);
+	g_print ("regex search: 10 matches of %d lines (big partial matches): %lf seconds.\n",
+		 NB_LINES / 10,
+		 g_timer_elapsed (timer, NULL));
+
 	/* Smart search, case sensitive, asynchronous */
 
 	/* The asynchronous overhead doesn't depend on the search flags, it
@@ -181,6 +279,7 @@ main (int argc, char *argv[])
 	g_timer_start (timer);
 
 	gtk_source_search_settings_set_search_text (search_settings, NULL);
+	gtk_source_search_settings_set_regex_enabled (search_settings, FALSE);
 	gtk_source_search_settings_set_search_text (search_settings, "foo");
 
 	gtk_main ();
