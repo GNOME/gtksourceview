@@ -1974,9 +1974,16 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 
 	regex_search_scan_next_chunk (search);
 
-	if (search->priv->task != NULL &&
-	    is_text_region_empty (search->priv->task_region))
+	if (search->priv->task != NULL)
 	{
+		/* Always resume the task, even if the task region has not been
+		 * fully scanned. The task region can be huge (the whole
+		 * buffer), and an occurrence can be found earlier. Obviously it
+		 * would be better to resume the task only if an occurrence has
+		 * been found in the task region. But it would be a little more
+		 * complicated to implement, for not a big performance
+		 * improvement.
+		 */
 		resume_task (search);
 		return G_SOURCE_CONTINUE;
 	}
