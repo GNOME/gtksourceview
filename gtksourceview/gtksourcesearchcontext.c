@@ -2074,8 +2074,20 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 		return FALSE;
 	}
 
-	scan_all_region (search, region);
+	/* Scan a chunk of the buffer, not the whole 'region'. An occurrence can
+	 * be found before the 'region' is scanned entirely.
+	 */
+	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	{
+		regex_search_scan_next_chunk (search);
+	}
+	else
+	{
+		scan_region_forward (search, region);
+	}
+
 	gtk_text_region_destroy (region, TRUE);
+
 	return FALSE;
 }
 
@@ -2161,8 +2173,20 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 		return FALSE;
 	}
 
-	scan_all_region (search, region);
+	/* Scan a chunk of the buffer, not the whole 'region'. An occurrence can
+	 * be found before the 'region' is scanned entirely.
+	 */
+	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	{
+		regex_search_scan_next_chunk (search);
+	}
+	else
+	{
+		scan_region_forward (search, region);
+	}
+
 	gtk_text_region_destroy (region, TRUE);
+
 	return FALSE;
 }
 
