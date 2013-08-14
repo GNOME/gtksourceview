@@ -534,6 +534,13 @@ clear_search (GtkSourceSearchContext *search)
 		search->priv->idle_scan_id = 0;
 	}
 
+	if (search->priv->regex_error != NULL)
+	{
+		g_error_free (search->priv->regex_error);
+		search->priv->regex_error = NULL;
+		g_object_notify (G_OBJECT (search), "regex-error");
+	}
+
 	clear_task (search);
 
 	search->priv->occurrences_count = 0;
@@ -662,12 +669,12 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 	gssize subject_length;
 	GRegexMatchFlags match_options;
 	GMatchInfo *match_info;
-	GError *error = NULL;
 	GtkTextIter iter;
 	gint iter_byte_pos;
 	gboolean found;
 
-	if (search->priv->regex == NULL)
+	if (search->priv->regex == NULL ||
+	    search->priv->regex_error != NULL)
 	{
 		return FALSE;
 	}
@@ -694,7 +701,7 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 			    start_pos,
 			    match_options,
 			    &match_info,
-			    &error);
+			    &search->priv->regex_error);
 
 	iter = real_start;
 	iter_byte_pos = 0;
@@ -707,10 +714,9 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 					  match_start,
 					  match_end);
 
-	if (error != NULL)
+	if (search->priv->regex_error != NULL)
 	{
-		g_warning ("Regex matching error: %s", error->message);
-		g_error_free (error);
+		g_object_notify (G_OBJECT (search), "regex-error");
 		found = FALSE;
 	}
 
@@ -789,14 +795,14 @@ basic_backward_regex_search (GtkSourceSearchContext *search,
 	gssize subject_length;
 	GRegexMatchFlags match_options;
 	GMatchInfo *match_info;
-	GError *error = NULL;
 	GtkTextIter iter;
 	gint iter_byte_pos;
 	gboolean found;
 	GtkTextIter tmp_match_start;
 	GtkTextIter tmp_match_end;
 
-	if (search->priv->regex == NULL)
+	if (search->priv->regex == NULL ||
+	    search->priv->regex_error != NULL)
 	{
 		return FALSE;
 	}
@@ -825,7 +831,7 @@ basic_backward_regex_search (GtkSourceSearchContext *search,
 			    start_pos,
 			    match_options,
 			    &match_info,
-			    &error);
+			    &search->priv->regex_error);
 
 	iter = real_start;
 	iter_byte_pos = 0;
@@ -843,13 +849,12 @@ basic_backward_regex_search (GtkSourceSearchContext *search,
 		*match_start = tmp_match_start;
 		*match_end = tmp_match_end;
 
-		g_match_info_next (match_info, &error);
+		g_match_info_next (match_info, &search->priv->regex_error);
 	}
 
-	if (error != NULL)
+	if (search->priv->regex_error != NULL)
 	{
-		g_warning ("Regex matching error: %s", error->message);
-		g_error_free (error);
+		g_object_notify (G_OBJECT (search), "regex-error");
 		found = FALSE;
 	}
 
@@ -1788,7 +1793,6 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 	gssize subject_length;
 	GRegexMatchFlags match_options;
 	GMatchInfo *match_info;
-	GError *error = NULL;
 	GtkTextIter iter;
 	gint iter_byte_pos;
 	gboolean segment_finished;
@@ -1802,7 +1806,8 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 				    segment_start,
 				    segment_end);
 
-	if (search->priv->regex == NULL)
+	if (search->priv->regex == NULL ||
+	    search->priv->regex_error != NULL)
 	{
 		*stopped_at = *segment_end;
 		return TRUE;
@@ -1858,7 +1863,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 			    start_pos,
 			    match_options,
 			    &match_info,
-			    &error);
+			    &search->priv->regex_error);
 
 	iter = real_start;
 	iter_byte_pos = 0;
@@ -1886,13 +1891,12 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 
 		search->priv->occurrences_count++;
 
-		g_match_info_next (match_info, &error);
+		g_match_info_next (match_info, &search->priv->regex_error);
 	}
 
-	if (error != NULL)
+	if (search->priv->regex_error != NULL)
 	{
-		g_warning ("Regex matching error: %s", error->message);
-		g_error_free (error);
+		g_object_notify (G_OBJECT (search), "regex-error");
 	}
 
 	if (g_match_info_is_partial_match (match_info))
@@ -2343,6 +2347,7 @@ update (GtkSourceSearchContext *search)
 	}
 
 	clear_search (search);
+	update_regex (search);
 
 	search->priv->scan_region = gtk_text_region_new (search->priv->buffer);
 
@@ -2553,18 +2558,11 @@ settings_notify_cb (GtkSourceSearchContext  *search,
 {
 	const gchar *property = g_param_spec_get_name (pspec);
 
-	if (g_str_equal (property, "wrap-around"))
-	{
-		update (search);
-		return;
-	}
-
 	if (g_str_equal (property, "search-text"))
 	{
 		search_text_updated (search);
 	}
 
-	update_regex (search);
 	update (search);
 }
 
@@ -2878,7 +2876,6 @@ gtk_source_search_context_set_settings (GtkSourceSearchContext  *search,
 				 G_CONNECT_SWAPPED);
 
 	search_text_updated (search);
-	update_regex (search);
 	update (search);
 
 	g_object_notify (G_OBJECT (search), "settings");
@@ -3345,7 +3342,11 @@ regex_replace (GtkSourceSearchContext *search,
 	GRegexMatchFlags match_options;
 	GError *error = NULL;
 
-	g_assert (search->priv->regex != NULL);
+	if (search->priv->regex == NULL ||
+	    search->priv->regex_error != NULL)
+	{
+		return FALSE;
+	}
 
 	regex_search_get_real_start (search, match_start, &real_start, &start_pos);
 
