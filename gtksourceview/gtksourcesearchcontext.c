@@ -3340,7 +3340,6 @@ regex_replace (GtkSourceSearchContext *search,
 	gchar *subject;
 	gchar *subject_replaced;
 	GRegexMatchFlags match_options;
-	GError *error = NULL;
 
 	if (search->priv->regex == NULL ||
 	    search->priv->regex_error != NULL)
@@ -3360,14 +3359,13 @@ regex_replace (GtkSourceSearchContext *search,
 					    start_pos,
 					    replace,
 					    match_options,
-					    &error);
+					    &search->priv->regex_error);
 
 	g_free (subject);
 
-	if (error != NULL)
+	if (search->priv->regex_error != NULL)
 	{
-		g_warning ("Regex replace error: %s", error->message);
-		g_error_free (error);
+		g_object_notify (G_OBJECT (search), "regex-error");
 		g_free (subject_replaced);
 		return FALSE;
 	}
@@ -3479,10 +3477,23 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext *search,
 		return 0;
 	}
 
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings) &&
-	    !g_regex_check_replacement (replace, &has_regex_references, NULL))
+	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
 	{
-		return 0;
+		if (search->priv->regex == NULL ||
+		    search->priv->regex_error != NULL)
+		{
+			return 0;
+		}
+
+		g_regex_check_replacement (replace,
+					   &has_regex_references,
+					   &search->priv->regex_error);
+
+		if (search->priv->regex_error != NULL)
+		{
+			g_object_notify (G_OBJECT (search), "regex-error");
+			return 0;
+		}
 	}
 
 	g_signal_handlers_block_by_func (search->priv->buffer, insert_text_before_cb, search);
