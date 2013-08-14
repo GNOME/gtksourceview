@@ -142,6 +142,23 @@
  * choices:
  * - Write more unit tests, understand correctly the code and fix it.
  * - Rewrite the code to implement the simpler solution explained above :-)
+ *
+ * Known issue
+ * -----------
+ *
+ * Contiguous matches have a performance problem. In some cases it can lead to
+ * an O(N^2) time complexity. For example if the buffer is full of contiguous
+ * matches, and we want to navigate through all of them. If an iter is in the
+ * middle of a found_tag region, we don't know where are the nearest occurrence
+ * boundaries. Take for example the buffer "aaaa" with the search text "aa". The
+ * two occurrences are at positions [0:2] and [2:4]. If we begin to search at
+ * position 1, we can not take [1:3] as an occurrence. So what the code do is to
+ * go backward to the start of the found_tag region, and do a basic search
+ * inside the found_tag region to find the occurrence boundaries.
+ *
+ * So this is really a corner case, but it's better to be aware of that.
+ * To fix the problem, one solution would be to have two found_tag, and
+ * alternate them for contiguous matches.
  */
 
 /* Regex search:
