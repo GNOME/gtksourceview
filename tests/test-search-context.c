@@ -531,6 +531,10 @@ test_forward_search (void)
 
 	check_search_results (source_buffer, context, results1, TRUE);
 
+	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
+	check_search_results (source_buffer, context, results1, TRUE);
+	gtk_source_search_settings_set_regex_enabled (settings, FALSE);
+
 	g_test_trap_subprocess ("/Search/forward/subprocess/async-wrap-around",
 				0,
 				G_TEST_SUBPROCESS_INHERIT_STDERR);
@@ -544,6 +548,10 @@ test_forward_search (void)
 	g_assert (!wrap_around);
 
 	check_search_results (source_buffer, context, results2, TRUE);
+
+	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
+	check_search_results (source_buffer, context, results2, TRUE);
+	gtk_source_search_settings_set_regex_enabled (settings, FALSE);
 
 	g_test_trap_subprocess ("/Search/forward/subprocess/async-normal",
 				0,
@@ -648,6 +656,10 @@ test_backward_search (void)
 	gtk_source_search_settings_set_wrap_around (settings, TRUE);
 	check_search_results (source_buffer, context, results1, FALSE);
 
+	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
+	check_search_results (source_buffer, context, results1, FALSE);
+	gtk_source_search_settings_set_regex_enabled (settings, FALSE);
+
 	g_test_trap_subprocess ("/Search/backward/subprocess/async-wrap-around",
 				0,
 				G_TEST_SUBPROCESS_INHERIT_STDERR);
@@ -658,6 +670,10 @@ test_backward_search (void)
 
 	gtk_source_search_settings_set_wrap_around (settings, FALSE);
 	check_search_results (source_buffer, context, results2, FALSE);
+
+	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
+	check_search_results (source_buffer, context, results2, FALSE);
+	gtk_source_search_settings_set_regex_enabled (settings, FALSE);
 
 	g_test_trap_subprocess ("/Search/backward/subprocess/async-normal",
 				0,
@@ -941,6 +957,46 @@ test_regex (void)
 	g_object_unref (context);
 }
 
+static void
+test_regex_at_word_boundaries (void)
+{
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
+	GtkTextIter iter;
+	GtkTextIter match_start;
+	GtkTextIter match_end;
+	gint offset;
+
+	gtk_text_buffer_set_text (text_buffer, "1234\n12345\n1234", -1);
+
+	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
+	gtk_source_search_settings_set_at_word_boundaries (settings, TRUE);
+	gtk_source_search_settings_set_search_text (settings, "\\d{4}");
+
+	gtk_text_buffer_get_start_iter (text_buffer, &iter);
+
+	gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
+
+	offset = gtk_text_iter_get_offset (&match_start);
+	g_assert_cmpint (offset, ==, 0);
+	offset = gtk_text_iter_get_offset (&match_end);
+	g_assert_cmpint (offset, ==, 4);
+
+	iter = match_end;
+	gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
+
+	offset = gtk_text_iter_get_offset (&match_start);
+	g_assert_cmpint (offset, ==, 11);
+	offset = gtk_text_iter_get_offset (&match_end);
+	g_assert_cmpint (offset, ==, 15);
+
+	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -964,6 +1020,7 @@ main (int argc, char **argv)
 	g_test_add_func ("/Search/replace", test_replace);
 	g_test_add_func ("/Search/replace", test_replace_all);
 	g_test_add_func ("/Search/regex", test_regex);
+	g_test_add_func ("/Search/regex-at-word-boundaries", test_regex_at_word_boundaries);
 
 	return g_test_run ();
 }
