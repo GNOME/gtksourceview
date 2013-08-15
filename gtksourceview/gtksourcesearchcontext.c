@@ -797,7 +797,7 @@ basic_backward_regex_search (GtkSourceSearchContext *search,
 	GMatchInfo *match_info;
 	GtkTextIter iter;
 	gint iter_byte_pos;
-	gboolean found;
+	gboolean found = FALSE;
 	GtkTextIter tmp_match_start;
 	GtkTextIter tmp_match_end;
 
