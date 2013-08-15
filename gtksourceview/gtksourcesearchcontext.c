@@ -1593,6 +1593,8 @@ scan_region_forward (GtkSourceSearchContext *search,
 
 		scan_subregion (search, &start, &limit);
 
+		gtk_text_region_subtract (region, &start, &limit);
+
 		start_line = gtk_text_iter_get_line (&start);
 		limit_line = gtk_text_iter_get_line (&limit);
 
@@ -1624,6 +1626,8 @@ scan_region_backward (GtkSourceSearchContext *search,
 		}
 
 		scan_subregion (search, &limit, &end);
+
+		gtk_text_region_subtract (region, &limit, &end);
 
 		limit_line = gtk_text_iter_get_line (&limit);
 		end_line = gtk_text_iter_get_line (&end);
