@@ -1905,8 +1905,16 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 
 	if (g_match_info_is_partial_match (match_info))
 	{
-		*stopped_at = iter;
 		segment_finished = FALSE;
+
+		if (gtk_text_iter_compare (segment_start, &iter) < 0)
+		{
+			*stopped_at = iter;
+		}
+		else
+		{
+			*stopped_at = *segment_start;
+		}
 
 		DEBUG ({
 		       g_print ("partial match\n");
