@@ -87,6 +87,32 @@
  *     and gtk_text_buffer_set_modified().
  *   </para>
  * </refsect2>
+ * <refsect2>
+ *   <title>Context Classes</title>
+ *   <para>
+ *     It is possible to retrieve some information from the syntax highlighting
+ *     engine. There are currently three context classes, that are applied to
+ *     regions of a #GtkSourceBuffer:
+ *   </para>
+ *   <itemizedlist>
+ *     <listitem>
+ *       <para>
+ *         <emphasis>comment</emphasis>: the region delimits a comment;
+ *       </para>
+ *     </listitem>
+ *     <listitem>
+ *       <para>
+ *         <emphasis>string</emphasis>: the region delimits a string;
+ *       </para>
+ *     </listitem>
+ *     <listitem>
+ *       <para>
+ *         <emphasis>no-spell-check</emphasis>: the region should not be spell
+ *         checked.
+ *       </para>
+ *     </listitem>
+ *   </itemizedlist>
+ * </refsect2>
  */
 
 /*
@@ -2308,7 +2334,9 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
  * @iter: a #GtkTextIter.
  * @context_class: class to search for.
  *
- * Check if the class @context_klass is set on @iter.
+ * Check if the class @context_class is set on @iter.
+ *
+ * See the #GtkSourceBuffer description for the list of context classes.
  *
  * Since: 2.10
  **/
@@ -2347,6 +2375,8 @@ gtk_source_buffer_iter_has_context_class (GtkSourceBuffer   *buffer,
  * @iter: a #GtkTextIter.
  *
  * Get all defined context classes at @iter.
+ *
+ * See the #GtkSourceBuffer description for the list of context classes.
  *
  * Returns: (array zero-terminated=1) (transfer full): a new %NULL
  * terminated array of context class names.
@@ -2397,6 +2427,8 @@ gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
  * @iter to the location of the toggle, or to the end of the buffer if no
  * toggle is found.
  *
+ * See the #GtkSourceBuffer description for the list of context classes.
+ *
  * Returns: whether we found a context class toggle after @iter
  *
  * Since: 2.10
@@ -2441,6 +2473,8 @@ gtk_source_buffer_iter_forward_to_context_class_toggle (GtkSourceBuffer *buffer,
  * Does not return toggles located at @iter, only toggles after @iter. Sets
  * @iter to the location of the toggle, or to the end of the buffer if no
  * toggle is found.
+ *
+ * See the #GtkSourceBuffer description for the list of context classes.
  *
  * Returns: whether we found a context class toggle before @iter
  *
