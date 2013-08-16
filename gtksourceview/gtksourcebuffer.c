@@ -2540,6 +2540,8 @@ gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
 		}
 	}
 
+	g_slist_free (tags);
+
 	g_ptr_array_add (ret, NULL);
 	return (gchar **) g_ptr_array_free (ret, FALSE);
 }
