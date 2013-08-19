@@ -19,6 +19,7 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#include "gtksourcestyle.h"
 #include "gtksourcestyle-private.h"
 #include "gtksourceview-i18n.h"
 
@@ -41,7 +42,6 @@ static void	gtk_source_style_get_property	(GObject      *object,
 						 GValue       *value,
 						 GParamSpec   *pspec);
 
-typedef GObjectClass GtkSourceStyleClass;
 G_DEFINE_TYPE (GtkSourceStyle, gtk_source_style, G_TYPE_OBJECT)
 
 enum {

@@ -27,10 +27,6 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_STYLE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_STYLE, GtkSourceStyleClass))
-#define GTK_SOURCE_IS_STYLE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_STYLE))
-#define GTK_SOURCE_STYLE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_STYLE, GtkSourceStyleClass))
-
 enum {
 	GTK_SOURCE_STYLE_USE_LINE_BACKGROUND = 1 << 0,	/*< nick=use_line_background >*/
 	GTK_SOURCE_STYLE_USE_BACKGROUND      = 1 << 1,	/*< nick=use_background >*/
@@ -60,7 +56,6 @@ struct _GtkSourceStyle
 G_GNUC_INTERNAL
 void		 _gtk_source_style_apply	(const GtkSourceStyle *style,
 						 GtkTextTag           *tag);
-
 
 G_END_DECLS
 
