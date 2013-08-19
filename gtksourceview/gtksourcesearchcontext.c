@@ -3460,6 +3460,21 @@ regex_replace (GtkSourceSearchContext *search,
 	return TRUE;
 }
 
+static void
+clear_replace_error (GtkSourceSearchContext *search)
+{
+	if (search->priv->regex_state == GTK_SOURCE_REGEX_SEARCH_REPLACE_ERROR)
+	{
+		search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_NO_ERROR;
+
+		g_error_free (search->priv->regex_error);
+		search->priv->regex_error = NULL;
+
+		g_object_notify (G_OBJECT (search), "regex-error");
+		g_object_notify (G_OBJECT (search), "regex-state");
+	}
+}
+
 /**
  * gtk_source_search_context_replace:
  * @search: a #GtkSourceSearchContext.
@@ -3497,6 +3512,8 @@ gtk_source_search_context_replace (GtkSourceSearchContext *search,
 	{
 		return FALSE;
 	}
+
+	clear_replace_error (search);
 
 	if (!smart_forward_search (search, match_start, &start, &end))
 	{
@@ -3557,6 +3574,8 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext *search,
 	{
 		return 0;
 	}
+
+	clear_replace_error (search);
 
 	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
 	{
