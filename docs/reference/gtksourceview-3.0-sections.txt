@@ -473,6 +473,7 @@ GtkSourcePrintCompositorClass
 <FILE>searchcontext</FILE>
 <TITLE>GtkSourceSearchContext</TITLE>
 GtkSourceSearchContext
+GtkSourceRegexSearchState
 gtk_source_search_context_new
 gtk_source_search_context_get_buffer
 gtk_source_search_context_get_settings
@@ -490,6 +491,7 @@ gtk_source_search_context_backward_finish
 gtk_source_search_context_replace
 gtk_source_search_context_replace_all
 gtk_source_search_context_get_regex_error
+gtk_source_search_context_get_regex_state
 <SUBSECTION Standard>
 GTK_SOURCE_IS_SEARCH_CONTEXT
 GTK_SOURCE_IS_SEARCH_CONTEXT_CLASS
