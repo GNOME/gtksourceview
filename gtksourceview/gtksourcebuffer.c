@@ -2338,6 +2338,7 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
  *
  * See the #GtkSourceBuffer description for the list of context classes.
  *
+ * Returns: whether @iter has the context class.
  * Since: 2.10
  **/
 gboolean
