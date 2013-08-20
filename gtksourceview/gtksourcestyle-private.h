@@ -27,7 +27,8 @@
 
 G_BEGIN_DECLS
 
-enum {
+enum
+{
 	GTK_SOURCE_STYLE_USE_LINE_BACKGROUND = 1 << 0,	/*< nick=use_line_background >*/
 	GTK_SOURCE_STYLE_USE_BACKGROUND      = 1 << 1,	/*< nick=use_background >*/
 	GTK_SOURCE_STYLE_USE_FOREGROUND      = 1 << 2,	/*< nick=use_foreground >*/
@@ -40,12 +41,14 @@ enum {
 struct _GtkSourceStyle
 {
 	GObject base_instance;
-	/* foreground and background are strings interned with
-	 * with g_intern_string(), so we don't need to copy/free
-	 * them. */
+
+	/* These fields are strings interned with g_intern_string(), so we don't
+	 * need to copy/free them.
+	 */
 	const gchar *foreground;
 	const gchar *background;
 	const gchar *line_background;
+
 	guint italic : 1;
 	guint bold : 1;
 	guint underline : 1;

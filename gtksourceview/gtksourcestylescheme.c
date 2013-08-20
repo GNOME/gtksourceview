@@ -19,11 +19,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include "gtksourceview-i18n.h"
+#include "gtksourcestylescheme.h"
 #include "gtksourcestyleschememanager.h"
+#include "gtksourcestyle-private.h"
 #include "gtksourceview.h"
 #include "gtksourcelanguage-private.h"
-#include "gtksourcestyle-private.h"
+#include "gtksourceview-i18n.h"
 #include <libxml/parser.h>
 #include <string.h>
 

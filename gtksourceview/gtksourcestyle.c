@@ -37,6 +37,7 @@ static void	gtk_source_style_set_property	(GObject      *object,
 						 guint         prop_id,
 						 const GValue *value,
 						 GParamSpec   *pspec);
+
 static void	gtk_source_style_get_property	(GObject      *object,
 						 guint         prop_id,
 						 GValue       *value,
@@ -44,7 +45,8 @@ static void	gtk_source_style_get_property	(GObject      *object,
 
 G_DEFINE_TYPE (GtkSourceStyle, gtk_source_style, G_TYPE_OBJECT)
 
-enum {
+enum
+{
 	PROP_0,
 	PROP_LINE_BACKGROUND,
 	PROP_LINE_BACKGROUND_SET,
@@ -266,14 +268,17 @@ gtk_source_style_set_property (GObject      *object,
 			style->bold = g_value_get_boolean (value) != 0;
 			SET_MASK (style, BOLD);
 			break;
+
 		case PROP_ITALIC:
 			style->italic = g_value_get_boolean (value) != 0;
 			SET_MASK (style, ITALIC);
 			break;
+
 		case PROP_UNDERLINE:
 			style->underline = g_value_get_boolean (value) != 0;
 			SET_MASK (style, UNDERLINE);
 			break;
+
 		case PROP_STRIKETHROUGH:
 			style->strikethrough = g_value_get_boolean (value) != 0;
 			SET_MASK (style, STRIKETHROUGH);
@@ -282,21 +287,27 @@ gtk_source_style_set_property (GObject      *object,
 		case PROP_FOREGROUND_SET:
 			MODIFY_MASK (style, value, FOREGROUND);
 			break;
+
 		case PROP_BACKGROUND_SET:
 			MODIFY_MASK (style, value, BACKGROUND);
 			break;
+
 		case PROP_LINE_BACKGROUND_SET:
 			MODIFY_MASK (style, value, LINE_BACKGROUND);
 			break;
+
 		case PROP_BOLD_SET:
 			MODIFY_MASK (style, value, BOLD);
 			break;
+
 		case PROP_ITALIC_SET:
 			MODIFY_MASK (style, value, ITALIC);
 			break;
+
 		case PROP_UNDERLINE_SET:
 			MODIFY_MASK (style, value, UNDERLINE);
 			break;
+
 		case PROP_STRIKETHROUGH_SET:
 			MODIFY_MASK (style, value, STRIKETHROUGH);
 			break;
@@ -320,21 +331,27 @@ gtk_source_style_get_property (GObject      *object,
 		case PROP_FOREGROUND:
 			g_value_set_string (value, style->foreground);
 			break;
+
 		case PROP_BACKGROUND:
 			g_value_set_string (value, style->background);
 			break;
+
 		case PROP_LINE_BACKGROUND:
 			g_value_set_string (value, style->line_background);
 			break;
+
 		case PROP_BOLD:
 			g_value_set_boolean (value, style->bold);
 			break;
+
 		case PROP_ITALIC:
 			g_value_set_boolean (value, style->italic);
 			break;
+
 		case PROP_UNDERLINE:
 			g_value_set_boolean (value, style->underline);
 			break;
+
 		case PROP_STRIKETHROUGH:
 			g_value_set_boolean (value, style->strikethrough);
 			break;
@@ -342,21 +359,27 @@ gtk_source_style_get_property (GObject      *object,
 		case PROP_FOREGROUND_SET:
 			GET_MASK (style, value, FOREGROUND);
 			break;
+
 		case PROP_BACKGROUND_SET:
 			GET_MASK (style, value, BACKGROUND);
 			break;
+
 		case PROP_LINE_BACKGROUND_SET:
 			GET_MASK (style, value, LINE_BACKGROUND);
 			break;
+
 		case PROP_BOLD_SET:
 			GET_MASK (style, value, BOLD);
 			break;
+
 		case PROP_ITALIC_SET:
 			GET_MASK (style, value, ITALIC);
 			break;
+
 		case PROP_UNDERLINE_SET:
 			GET_MASK (style, value, UNDERLINE);
 			break;
+
 		case PROP_STRIKETHROUGH_SET:
 			GET_MASK (style, value, STRIKETHROUGH);
 			break;
@@ -366,7 +389,6 @@ gtk_source_style_get_property (GObject      *object,
 			break;
 	}
 }
-
 
 /**
  * gtk_source_style_copy:
@@ -424,39 +446,67 @@ _gtk_source_style_apply (const GtkSourceStyle *style,
 		g_object_freeze_notify (G_OBJECT (tag));
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_BACKGROUND)
+		{
 			g_object_set (tag, "background", style->background, NULL);
+		}
 		else
+		{
 			g_object_set (tag, "background-set", FALSE, NULL);
+		}
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_FOREGROUND)
+		{
 			g_object_set (tag, "foreground", style->foreground, NULL);
+		}
 		else
+		{
 			g_object_set (tag, "foreground-set", FALSE, NULL);
+		}
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_LINE_BACKGROUND)
+		{
 			g_object_set (tag, "paragraph-background", style->line_background, NULL);
+		}
 		else
+		{
 			g_object_set (tag, "paragraph-background-set", FALSE, NULL);
+		}
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_ITALIC)
+		{
 			g_object_set (tag, "style", style->italic ? PANGO_STYLE_ITALIC : PANGO_STYLE_NORMAL, NULL);
+		}
 		else
+		{
 			g_object_set (tag, "style-set", FALSE, NULL);
+		}
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_BOLD)
+		{
 			g_object_set (tag, "weight", style->bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL, NULL);
+		}
 		else
+		{
 			g_object_set (tag, "weight-set", FALSE, NULL);
+		}
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_UNDERLINE)
+		{
 			g_object_set (tag, "underline", style->underline ? PANGO_UNDERLINE_SINGLE : PANGO_UNDERLINE_NONE, NULL);
+		}
 		else
+		{
 			g_object_set (tag, "underline-set", FALSE, NULL);
+		}
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_STRIKETHROUGH)
+		{
 			g_object_set (tag, "strikethrough", style->strikethrough != 0, NULL);
+		}
 		else
+		{
 			g_object_set (tag, "strikethrough-set", FALSE, NULL);
+		}
 
 		g_object_thaw_notify (G_OBJECT (tag));
 	}

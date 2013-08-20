@@ -52,41 +52,58 @@ struct _GtkSourceStyleSchemeClass
 	void (*_gtk_source_reserved2) (void);
 };
 
-GType			 gtk_source_style_scheme_get_type	(void) G_GNUC_CONST;
+GType			 gtk_source_style_scheme_get_type			(void) G_GNUC_CONST;
 
-GtkSourceStyleScheme	*_gtk_source_style_scheme_new		(const gchar          *id,
-								 const gchar          *name);
+G_GNUC_INTERNAL
+GtkSourceStyleScheme	*_gtk_source_style_scheme_new				(const gchar          *id,
+										 const gchar          *name);
 
-const gchar             *gtk_source_style_scheme_get_id         (GtkSourceStyleScheme *scheme);
-const gchar             *gtk_source_style_scheme_get_name       (GtkSourceStyleScheme *scheme);
-const gchar             *gtk_source_style_scheme_get_description(GtkSourceStyleScheme *scheme);
+const gchar             *gtk_source_style_scheme_get_id				(GtkSourceStyleScheme *scheme);
 
-const gchar * const *	 gtk_source_style_scheme_get_authors	(GtkSourceStyleScheme *scheme);
+const gchar             *gtk_source_style_scheme_get_name			(GtkSourceStyleScheme *scheme);
 
-const gchar             *gtk_source_style_scheme_get_filename	(GtkSourceStyleScheme *scheme);
+const gchar             *gtk_source_style_scheme_get_description		(GtkSourceStyleScheme *scheme);
 
-GtkSourceStyle		*gtk_source_style_scheme_get_style	(GtkSourceStyleScheme *scheme,
-								 const gchar          *style_id);
-GtkSourceStyleScheme	*_gtk_source_style_scheme_new_from_file (const gchar          *filename);
-GtkSourceStyleScheme	*_gtk_source_style_scheme_get_default	(void);
-const gchar		*_gtk_source_style_scheme_get_parent_id	(GtkSourceStyleScheme *scheme);
-void			 _gtk_source_style_scheme_set_parent	(GtkSourceStyleScheme *scheme,
-								 GtkSourceStyleScheme *parent_scheme);
+const gchar * const *	 gtk_source_style_scheme_get_authors			(GtkSourceStyleScheme *scheme);
 
-/* private */
-void			 _gtk_source_style_scheme_apply		(GtkSourceStyleScheme *scheme,
-								 GtkWidget            *widget);
-void			 _gtk_source_style_scheme_unapply	(GtkSourceStyleScheme *scheme,
-                                                                 GtkWidget            *widget);
-GtkSourceStyle		*_gtk_source_style_scheme_get_matching_brackets_style
-								(GtkSourceStyleScheme *scheme);
-GtkSourceStyle		*_gtk_source_style_scheme_get_right_margin_style
-								(GtkSourceStyleScheme *scheme);
-GtkSourceStyle          *_gtk_source_style_scheme_get_draw_spaces_style
-								(GtkSourceStyleScheme *scheme);
-gboolean		 _gtk_source_style_scheme_get_current_line_color
-								(GtkSourceStyleScheme *scheme,
-								 GdkRGBA              *color);
+const gchar             *gtk_source_style_scheme_get_filename			(GtkSourceStyleScheme *scheme);
+
+GtkSourceStyle		*gtk_source_style_scheme_get_style			(GtkSourceStyleScheme *scheme,
+										 const gchar          *style_id);
+
+G_GNUC_INTERNAL
+GtkSourceStyleScheme	*_gtk_source_style_scheme_new_from_file			(const gchar          *filename);
+
+G_GNUC_INTERNAL
+GtkSourceStyleScheme	*_gtk_source_style_scheme_get_default			(void);
+
+G_GNUC_INTERNAL
+const gchar		*_gtk_source_style_scheme_get_parent_id			(GtkSourceStyleScheme *scheme);
+
+G_GNUC_INTERNAL
+void			 _gtk_source_style_scheme_set_parent			(GtkSourceStyleScheme *scheme,
+										 GtkSourceStyleScheme *parent_scheme);
+
+G_GNUC_INTERNAL
+void			 _gtk_source_style_scheme_apply				(GtkSourceStyleScheme *scheme,
+										 GtkWidget            *widget);
+
+G_GNUC_INTERNAL
+void			 _gtk_source_style_scheme_unapply			(GtkSourceStyleScheme *scheme,
+										 GtkWidget            *widget);
+
+G_GNUC_INTERNAL
+GtkSourceStyle		*_gtk_source_style_scheme_get_matching_brackets_style	(GtkSourceStyleScheme *scheme);
+
+G_GNUC_INTERNAL
+GtkSourceStyle		*_gtk_source_style_scheme_get_right_margin_style	(GtkSourceStyleScheme *scheme);
+
+G_GNUC_INTERNAL
+GtkSourceStyle          *_gtk_source_style_scheme_get_draw_spaces_style		(GtkSourceStyleScheme *scheme);
+
+G_GNUC_INTERNAL
+gboolean		 _gtk_source_style_scheme_get_current_line_color	(GtkSourceStyleScheme *scheme,
+										 GdkRGBA              *color);
 G_END_DECLS
 
 #endif  /* __GTK_SOURCE_STYLE_SCHEME_H__ */

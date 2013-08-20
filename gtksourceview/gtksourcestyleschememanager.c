@@ -20,6 +20,7 @@
  */
 
 #include "gtksourcestyleschememanager.h"
+#include "gtksourcestylescheme.h"
 #include "gtksourceview-marshal.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourceview-utils.h"
@@ -30,6 +31,8 @@
  * @Short_description: Object which provides access to #GtkSourceStyleScheme<!-- -->s
  * @Title: GtkSourceStyleSchemeManager
  * @See_also: #GtkSourceStyleScheme
+ *
+ * Object which provides access to #GtkSourceStyleScheme<!-- -->s.
  */
 
 #define SCHEME_FILE_SUFFIX	".xml"

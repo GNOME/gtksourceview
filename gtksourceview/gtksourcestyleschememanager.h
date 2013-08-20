@@ -24,7 +24,6 @@
 
 #include <glib-object.h>
 #include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcestylescheme.h>
 
 G_BEGIN_DECLS
 
@@ -34,7 +33,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_STYLE_SCHEME_MANAGER(obj)		(G_TYPE_CHECK_INSTANCE_TYPE((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER))
 #define GTK_SOURCE_IS_STYLE_SCHEME_MANAGER_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER))
 #define GTK_SOURCE_STYLE_SCHEME_MANAGER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER, GtkSourceStyleSchemeManagerClass))
-
 
 typedef struct _GtkSourceStyleSchemeManagerClass	GtkSourceStyleSchemeManagerClass;
 typedef struct _GtkSourceStyleSchemeManagerPrivate	GtkSourceStyleSchemeManagerPrivate;
@@ -57,7 +55,6 @@ struct _GtkSourceStyleSchemeManagerClass
 	void (*_gtk_source_reserved4) (void);
 };
 
-
 GType			 gtk_source_style_scheme_manager_get_type		(void) G_GNUC_CONST;
 
 GtkSourceStyleSchemeManager *
@@ -69,10 +66,10 @@ GtkSourceStyleSchemeManager *
 void			 gtk_source_style_scheme_manager_set_search_path	(GtkSourceStyleSchemeManager	*manager,
 						    				 gchar			       **path);
 
-void 			 gtk_source_style_scheme_manager_append_search_path    (GtkSourceStyleSchemeManager	*manager,
+void 			 gtk_source_style_scheme_manager_append_search_path	(GtkSourceStyleSchemeManager	*manager,
 						    				 const gchar			*path);
 
-void 			 gtk_source_style_scheme_manager_prepend_search_path   (GtkSourceStyleSchemeManager	*manager,
+void 			 gtk_source_style_scheme_manager_prepend_search_path	(GtkSourceStyleSchemeManager	*manager,
 						    				 const gchar			*path);
 
 const gchar * const *	 gtk_source_style_scheme_manager_get_search_path	(GtkSourceStyleSchemeManager	*manager);
@@ -87,4 +84,3 @@ GtkSourceStyleScheme	*gtk_source_style_scheme_manager_get_scheme		(GtkSourceStyl
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_STYLE_SCHEME_MANAGER_H__ */
-
