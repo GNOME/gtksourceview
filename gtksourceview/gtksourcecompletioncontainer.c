@@ -181,6 +181,38 @@ _gtk_source_completion_container_get_preferred_width (GtkWidget *widget,
 	}
 }
 
+static gint
+get_row_height (GtkSourceCompletionContainer *container)
+{
+	GList *columns = gtk_tree_view_get_columns (container->priv->tree_view);
+	GList *l;
+	gint max_row_height = 0;
+	gint vertical_separator = 0;
+
+	for (l = columns; l != NULL; l = l->next)
+	{
+		GtkTreeViewColumn *column = l->data;
+		gint row_height;
+
+		gtk_tree_view_column_cell_get_size (column, NULL, NULL, NULL, NULL, &row_height);
+
+		if (row_height > max_row_height)
+		{
+			max_row_height = row_height;
+		}
+	}
+
+	gtk_widget_style_get (GTK_WIDGET (container->priv->tree_view),
+			      "vertical-separator", &vertical_separator,
+			      NULL);
+
+	max_row_height += vertical_separator;
+
+	g_list_free (columns);
+
+	return max_row_height;
+}
+
 /* Return a height at a row boundary of the GtkTreeView. */
 static void
 _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
@@ -188,12 +220,10 @@ _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
 						       gint	 *nat_height)
 {
 	GtkSourceCompletionContainer *container = GTK_SOURCE_COMPLETION_CONTAINER (widget);
-	GtkTreeViewColumn *column;
 	GtkTreeModel *model;
 	GtkRequisition nat_size;
 	gint nb_rows = 0;
 	gint row_height = 0;
-	gint vertical_separator = 0;
 	gint scrollbar_height = 0;
 	gint total_height = 0;
 	gint ret_height = 0;
@@ -208,27 +238,14 @@ _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
 		*nat_height = 0;
 	}
 
-	column = gtk_tree_view_get_column (container->priv->tree_view, 0);
-
-	if (column == NULL)
-	{
-		return;
-	}
-
-	gtk_tree_view_column_cell_get_size (column, NULL, NULL, NULL, NULL, &row_height);
-
-	gtk_widget_style_get (GTK_WIDGET (container->priv->tree_view),
-			      "vertical-separator", &vertical_separator,
-			      NULL);
-
-	row_height += vertical_separator;
-
 	model = gtk_tree_view_get_model (container->priv->tree_view);
 
 	if (model == NULL)
 	{
 		return;
 	}
+
+	row_height = get_row_height (container);
 
 	nb_rows = gtk_tree_model_iter_n_children (model, NULL);
 
