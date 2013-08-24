@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-30 21:34+0200\n"
-"PO-Revision-Date: 2013-07-30 21:41+0200\n"
+"POT-Creation-Date: 2013-08-24 18:59+0200\n"
+"PO-Revision-Date: 2013-08-24 18:58+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -75,7 +75,7 @@ msgstr "Finale"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:718
+#: ../gtksourceview/gtksourcecompletion.c:705
 msgid "All"
 msgstr "Tutte"
 
@@ -2439,13 +2439,13 @@ msgstr "Sezione 4"
 msgid "Section 5"
 msgstr "Sezione 5"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:112
-#: ../gtksourceview/gtksourcestyle.c:113
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:114
+#: ../gtksourceview/gtksourcestyle.c:115
 msgid "Italic"
 msgstr "Corsivo"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:106
+#: ../gtksourceview/gtksourcestyle.c:107
 msgid "Bold"
 msgstr "Grassetto"
 
@@ -2655,190 +2655,151 @@ msgstr "Attivazione"
 msgid "The type of activation"
 msgstr "Il tipo di attivazione"
 
-#: ../gtksourceview/gtksourcebuffer.c:311
-#: ../gtksourceview/gtksourceprintcompositor.c:504
+#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Evidenzia sintassi"
 
-#: ../gtksourceview/gtksourcebuffer.c:312
+#: ../gtksourceview/gtksourcebuffer.c:294
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Indica se evidenziare la sintassi nel buffer"
 
-#: ../gtksourceview/gtksourcebuffer.c:325
+#: ../gtksourceview/gtksourcebuffer.c:307
 msgid "Highlight Matching Brackets"
 msgstr "Evidenzia le parentesi corrispondenti"
 
-#: ../gtksourceview/gtksourcebuffer.c:326
+#: ../gtksourceview/gtksourcebuffer.c:308
 msgid "Whether to highlight matching brackets"
 msgstr "Indica se evidenziare le parentesi corrispondenti"
 
-#: ../gtksourceview/gtksourcebuffer.c:338
-msgid "Highlight Search"
-msgstr "Evidenzia ricerca"
-
-#: ../gtksourceview/gtksourcebuffer.c:339
-msgid "Whether to highlight search occurrences"
-msgstr "Indica se evidenziare le occorrenze della ricerca"
-
-#: ../gtksourceview/gtksourcebuffer.c:352
+#: ../gtksourceview/gtksourcebuffer.c:321
 #: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Maximum Undo Levels"
 msgstr "Massimo livello di annullamento"
 
-#: ../gtksourceview/gtksourcebuffer.c:353
+#: ../gtksourceview/gtksourcebuffer.c:322
 #: ../gtksourceview/gtksourceundomanagerdefault.c:415
 msgid "Number of undo levels for the buffer"
 msgstr "Numero di livelli di annullamento per il buffer"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:365
+#: ../gtksourceview/gtksourcebuffer.c:334
 msgid "Language"
 msgstr "Linguaggio"
 
-#: ../gtksourceview/gtksourcebuffer.c:366
+#: ../gtksourceview/gtksourcebuffer.c:335
 msgid "Language object to get highlighting patterns from"
 msgstr "Oggetto linguaggio da cui prendere le regole di evidenziazione"
 
-#: ../gtksourceview/gtksourcebuffer.c:374
+#: ../gtksourceview/gtksourcebuffer.c:343
 msgid "Can undo"
 msgstr "Può annullare"
 
-#: ../gtksourceview/gtksourcebuffer.c:375
+#: ../gtksourceview/gtksourcebuffer.c:344
 msgid "Whether Undo operation is possible"
 msgstr "Indica se è possibile l'azione di annullamento"
 
-#: ../gtksourceview/gtksourcebuffer.c:382
+#: ../gtksourceview/gtksourcebuffer.c:351
 msgid "Can redo"
 msgstr "Può ripetere"
 
-#: ../gtksourceview/gtksourcebuffer.c:383
+#: ../gtksourceview/gtksourcebuffer.c:352
 msgid "Whether Redo operation is possible"
 msgstr "Indica se è possibile l'azione di ripetizione"
 
-#: ../gtksourceview/gtksourcebuffer.c:397
-#: ../gtksourceview/gtksourcebuffer.c:398
+#: ../gtksourceview/gtksourcebuffer.c:366
+#: ../gtksourceview/gtksourcebuffer.c:367
 msgid "Style scheme"
 msgstr "Schema di stile"
 
-#: ../gtksourceview/gtksourcebuffer.c:405
+#: ../gtksourceview/gtksourcebuffer.c:374
 msgid "Undo manager"
 msgstr "Gestore azione di annullamento"
 
-#: ../gtksourceview/gtksourcebuffer.c:406
+#: ../gtksourceview/gtksourcebuffer.c:375
 msgid "The buffer undo manager"
 msgstr "Il gestore del buffer dell'azione di annullamento"
 
-#: ../gtksourceview/gtksourcebuffer.c:420
-msgid "Search text"
-msgstr "Testo di ricerca"
-
-#: ../gtksourceview/gtksourcebuffer.c:421
-msgid "The text to search"
-msgstr "Il testo da cercare"
-
-#: ../gtksourceview/gtksourcebuffer.c:437
-msgid "Search occurrences count"
-msgstr "Conteggio occorrenze ricerca"
-
-#: ../gtksourceview/gtksourcebuffer.c:438
-msgid "Total number of search occurrences"
-msgstr "Numore totale di occorrenze della ricerca"
-
-#: ../gtksourceview/gtksourcebuffer.c:454
-#: ../gtksourceview/gtksourcebuffer.c:455
-msgid "Case sensitive search"
-msgstr "Ricerca con differenza minuscole/maiuscole"
-
-#: ../gtksourceview/gtksourcebuffer.c:470
-#: ../gtksourceview/gtksourcebuffer.c:471
-msgid "Search at word boundaries"
-msgstr "Ricerca parole esatte"
-
-#: ../gtksourceview/gtksourcebuffer.c:487
-#: ../gtksourceview/gtksourcebuffer.c:488
-msgid "Search: wrap around"
-msgstr "Ricerca al contrario"
-
-#: ../gtksourceview/gtksourcecompletion.c:1731
+#: ../gtksourceview/gtksourcecompletion.c:1714
 #: ../gtksourceview/gtksourcegutter.c:546
 msgid "View"
 msgstr "Vista"
 
-#: ../gtksourceview/gtksourcecompletion.c:1732
+#: ../gtksourceview/gtksourcecompletion.c:1715
 msgid "The GtkSourceView bound to the completion"
 msgstr "L'oggetto GtkSourceView legato al completamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:1746
+#: ../gtksourceview/gtksourcecompletion.c:1729
 msgid "Remember Info Visibility"
 msgstr "Ricorda visibilità informazioni"
 
-#: ../gtksourceview/gtksourcecompletion.c:1747
+#: ../gtksourceview/gtksourcecompletion.c:1730
 msgid "Remember the last info window visibility state"
 msgstr "Ricorda l'ultimo stato di visibilità della finestra delle informazioni"
 
-#: ../gtksourceview/gtksourcecompletion.c:1759
+#: ../gtksourceview/gtksourcecompletion.c:1742
 msgid "Select on Show"
 msgstr "Seleziona quando mostrato"
 
-#: ../gtksourceview/gtksourcecompletion.c:1760
+#: ../gtksourceview/gtksourcecompletion.c:1743
 msgid "Select first proposal when completion is shown"
 msgstr "Seleziona la prima proposta quando viene mostrato il completamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:1773
+#: ../gtksourceview/gtksourcecompletion.c:1756
 msgid "Show Headers"
 msgstr "Mostra le intestazioni"
 
-#: ../gtksourceview/gtksourcecompletion.c:1774
+#: ../gtksourceview/gtksourcecompletion.c:1757
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Mostra le intestazioni dei provider quando sono disponibili proposte da "
 "molteplici provider."
 
-#: ../gtksourceview/gtksourcecompletion.c:1787
+#: ../gtksourceview/gtksourcecompletion.c:1770
 msgid "Show Icons"
 msgstr "Mostra le icone"
 
-#: ../gtksourceview/gtksourcecompletion.c:1788
+#: ../gtksourceview/gtksourcecompletion.c:1771
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Mostra le icone del provider e della proposta nel popup del completamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:1802
+#: ../gtksourceview/gtksourcecompletion.c:1785
 msgid "Accelerators"
 msgstr "Acceleratori"
 
-#: ../gtksourceview/gtksourcecompletion.c:1803
+#: ../gtksourceview/gtksourcecompletion.c:1786
 msgid "Number of proposal accelerators to show"
 msgstr "Numero di acceleratori delle proposte da mostrare"
 
-#: ../gtksourceview/gtksourcecompletion.c:1818
+#: ../gtksourceview/gtksourcecompletion.c:1801
 msgid "Auto Complete Delay"
 msgstr "Ritardo dell'autocompletamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:1819
+#: ../gtksourceview/gtksourcecompletion.c:1802
 msgid "Completion popup delay for interactive completion"
 msgstr "Ritardo del popup di completamento per il completamento interattivo"
 
-#: ../gtksourceview/gtksourcecompletion.c:1835
+#: ../gtksourceview/gtksourcecompletion.c:1818
 msgid "Provider Page Size"
 msgstr "Dimensione pagina del provider"
 
-#: ../gtksourceview/gtksourcecompletion.c:1836
+#: ../gtksourceview/gtksourcecompletion.c:1819
 msgid "Provider scrolling page size"
 msgstr "Dimensione scorrimento pagina del provider"
 
-#: ../gtksourceview/gtksourcecompletion.c:1856
+#: ../gtksourceview/gtksourcecompletion.c:1839
 msgid "Proposal Page Size"
 msgstr "Dimensione pagina delle proposte"
 
-#: ../gtksourceview/gtksourcecompletion.c:1857
+#: ../gtksourceview/gtksourcecompletion.c:1840
 msgid "Proposal scrolling page size"
 msgstr "Dimensione scorrimento della pagina delle proposte"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:272
-#: ../gtksourceview/gtksourceview.c:307
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Completion"
 msgstr "Completamento"
 
@@ -3147,7 +3108,7 @@ msgstr ""
 "nell'espressione regolare «%s»: riferimenti all'indietro non sono supportati"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:288
-#: ../gtksourceview/gtksourcestyle.c:88
+#: ../gtksourceview/gtksourcestyle.c:90
 msgid "Background"
 msgstr "Sfondo"
 
@@ -3160,109 +3121,109 @@ msgstr "Lo sfondo"
 msgid "The GIcon"
 msgstr "Il GIcon"
 
-#: ../gtksourceview/gtksourcemark.c:139
+#: ../gtksourceview/gtksourcemark.c:140
 msgid "category"
 msgstr "categoria"
 
-#: ../gtksourceview/gtksourcemark.c:140
+#: ../gtksourceview/gtksourcemark.c:141
 msgid "The mark category"
 msgstr "La categoria mark"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:444
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
 msgstr "Buffer sorgente"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "The GtkSourceBuffer object to print"
 msgstr "Oggetto GtkSourceBuffer da stampare"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceview.c:346
 msgid "Tab Width"
 msgstr "Larghezza tabulazione"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:346
+#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Width of a tab character expressed in spaces"
 msgstr "Larghezza di un carattere di tabulazione espressa in spazi"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:483
+#: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid "Wrap Mode"
 msgstr "A capo automatico"
 
 # (ndt) aggiungo i due punti per spezzare
-#: ../gtksourceview/gtksourceprintcompositor.c:484
+#: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr ""
 "Indica se andare a capo automaticamente: mai, al limite della parola o del "
 "carattere."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:505
+#: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Indica se stampare il documento con la sintassi evidenziata"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:526
+#: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Print Line Numbers"
 msgstr "Stampa numeri di riga"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:527
+#: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Intervallo di numeri di riga stampati (0 significa nessun numero)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:549
+#: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Print Header"
 msgstr "Stampa intestazione"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:550
+#: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Whether to print a header in each page"
 msgstr "Indica se stampare un'intestazione per ogni pagina"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:572
+#: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Print Footer"
 msgstr "Stampa piè di pagina"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:573
+#: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Whether to print a footer in each page"
 msgstr "Indica se stampare un piè di pagina per ogni pagina"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:595
+#: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Body Font Name"
 msgstr "Tipo di carattere per il corpo del testo"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:596
+#: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "Tipo di carattere da usare nel corpo del testo (es. «Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:619
+#: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
 msgstr "Tipo di carattere per i numeri di riga"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:620
+#: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "Tipo di carattere da usare per i numeri di riga (es. «Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:643
+#: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
 msgstr "Tipo di carattere per l'intestazione"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:644
+#: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "Tipo di carattere da usare per l'intestazione (es. «Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:667
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
 msgstr "Tipo di carattere per il piè di pagina"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "Tipo di carattere da usare per il piè di pagina (es. «Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:684
+#: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
 msgstr "Numero di pagine"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:685
+#: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -3274,201 +3235,281 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "usare \\C non è supportato nelle definizioni del linguaggio"
 
-# (ndt) non so cosa sia...
-#: ../gtksourceview/gtksourcestyle.c:80
-msgid "Line background"
-msgstr "Sfondo della riga"
-
-#: ../gtksourceview/gtksourcestyle.c:81
-msgid "Line background color"
-msgstr "Colore di sfondo della riga"
-
-#: ../gtksourceview/gtksourcestyle.c:89
-msgid "Background color"
-msgstr "Colore di sfondo"
-
-#: ../gtksourceview/gtksourcestyle.c:96
-msgid "Foreground"
-msgstr "Primo piano"
-
-#: ../gtksourceview/gtksourcestyle.c:97
-msgid "Foreground color"
-msgstr "Colore di primo piano"
-
-#: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
-msgid "Underline"
-msgstr "Sottolineato"
-
-#: ../gtksourceview/gtksourcestyle.c:128 ../gtksourceview/gtksourcestyle.c:129
-msgid "Strikethrough"
-msgstr "Barrato"
-
-#: ../gtksourceview/gtksourcestyle.c:136
-msgid "Line background set"
-msgstr "Colore di sfondo della riga impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:137
-msgid "Whether line background color is set"
-msgstr "Indica se il colore di sfondo della riga è impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:144
-msgid "Foreground set"
-msgstr "Primo piano impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:145
-msgid "Whether foreground color is set"
-msgstr "Indica se il colore di primo piano è impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:152
-msgid "Background set"
-msgstr "Sfondo impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:153
-msgid "Whether background color is set"
-msgstr "Indica se il colore di sfondo è impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:160
-msgid "Bold set"
-msgstr "Grassetto impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:161
-msgid "Whether bold attribute is set"
-msgstr "Indica se l'attributo grassetto è impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:168
-msgid "Italic set"
-msgstr "Corsivo impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:169
-msgid "Whether italic attribute is set"
-msgstr "Indica se l'attributo corsivo è impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:176
-msgid "Underline set"
-msgstr "Sottolineato impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:177
-msgid "Whether underline attribute is set"
-msgstr "Indica se l'attributo sottolineato è impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:184
-msgid "Strikethrough set"
-msgstr "Barrato impostato"
-
-#: ../gtksourceview/gtksourcestyle.c:185
-msgid "Whether strikethrough attribute is set"
-msgstr "Indica se l'attributo barrato è impostato"
-
-#: ../gtksourceview/gtksourcestylescheme.c:212
-#: ../gtksourceview/gtksourcestylescheme.c:213
-msgid "Style scheme id"
-msgstr "ID schema di stile"
-
-#: ../gtksourceview/gtksourcestylescheme.c:225
-#: ../gtksourceview/gtksourcestylescheme.c:226
-msgid "Style scheme name"
-msgstr "Nome schema di stile"
-
-#: ../gtksourceview/gtksourcestylescheme.c:238
-#: ../gtksourceview/gtksourcestylescheme.c:239
-msgid "Style scheme description"
-msgstr "Descrizione dello schema di stile"
-
-#: ../gtksourceview/gtksourcestylescheme.c:251
-#: ../gtksourceview/gtksourcestylescheme.c:252
-msgid "Style scheme filename"
-msgstr "Nome file dello schema di stile"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:150
-msgid "Style scheme search path"
-msgstr "Percorso di ricerca schemi di stile"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:151
-msgid "List of directories and files where the style schemes are located"
-msgstr "Elenco di directory e file dove si trovano gli schemi di stile"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:159
-msgid "Scheme ids"
-msgstr "ID schemi"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:160
-msgid "List of the ids of the available style schemes"
-msgstr "Elenco di ID degli schemi di stile disponibili"
-
+#: ../gtksourceview/gtksourcesearchcontext.c:2745
 #: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "Buffer"
+
+# (ndt) pare che il gutter sia qualche cosa di Eclipse: dove vengono visualizzati i risultati di una ricerca per un facile accesso... è tipo una 'colonna' da una parte della finestra. sul wiki di gnome c'è un'immagine. in tipografia è definito come il profilo interno.
+#: ../gtksourceview/gtksourcesearchcontext.c:2746
+msgid "The associated GtkSourceBuffer"
+msgstr "Il GtkSourceBuffer associato"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2760
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2761
+msgid "The associated GtkSourceSearchSettings"
+msgstr "Il GtkSourceSearchSettings associato"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2775
+msgid "Highlight"
+msgstr "Evidenzia"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2776
+msgid "Highlight search occurrences"
+msgstr "Evidenzia le occorrenze della ricerca"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2792
+msgid "Occurrences count"
+msgstr "Conteggio occorrenze"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2793
+msgid "Total number of search occurrences"
+msgstr "Numore totale di occorrenze della ricerca"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2812
+msgid "Regex error"
+msgstr "Errore espressione regolare"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2813
+msgid "Regular expression error"
+msgstr "Errore espressione regolare"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2826
+msgid "Regex state"
+msgstr "Stato espressione regolare"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2827
+msgid "State of the regular expression search"
+msgstr "Lo stato dell'espressione regolare di ricerca"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:169
+msgid "Search text"
+msgstr "Testo di ricerca"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:170
+msgid "The text to search"
+msgstr "Il testo da cercare"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:184
+#: ../gtksourceview/gtksourcesearchsettings.c:185
+msgid "Case sensitive"
+msgstr "Differenza minuscole/maiuscole"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:200
+msgid "At word boundaries"
+msgstr "Parole esatte"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:201
+msgid "Search at word boundaries"
+msgstr "Ricerca parole esatte"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:217
+#: ../gtksourceview/gtksourcesearchsettings.c:218
+msgid "Wrap around"
+msgstr "Ricomincia da capo"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:233
+msgid "Regex enabled"
+msgstr "Espressione regolare abilitata"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:234
+msgid "Whether to search by regular expression"
+msgstr "Indica se la ricerca per espressione regolare è abilitata"
+
+# (ndt) non so cosa sia...
+#: ../gtksourceview/gtksourcestyle.c:82
+msgid "Line background"
+msgstr "Sfondo della riga"
+
+#: ../gtksourceview/gtksourcestyle.c:83
+msgid "Line background color"
+msgstr "Colore di sfondo della riga"
+
+#: ../gtksourceview/gtksourcestyle.c:91
+msgid "Background color"
+msgstr "Colore di sfondo"
+
+#: ../gtksourceview/gtksourcestyle.c:98
+msgid "Foreground"
+msgstr "Primo piano"
+
+#: ../gtksourceview/gtksourcestyle.c:99
+msgid "Foreground color"
+msgstr "Colore di primo piano"
+
+#: ../gtksourceview/gtksourcestyle.c:122 ../gtksourceview/gtksourcestyle.c:123
+msgid "Underline"
+msgstr "Sottolineato"
+
+#: ../gtksourceview/gtksourcestyle.c:130 ../gtksourceview/gtksourcestyle.c:131
+msgid "Strikethrough"
+msgstr "Barrato"
+
+#: ../gtksourceview/gtksourcestyle.c:138
+msgid "Line background set"
+msgstr "Colore di sfondo della riga impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:139
+msgid "Whether line background color is set"
+msgstr "Indica se il colore di sfondo della riga è impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:146
+msgid "Foreground set"
+msgstr "Primo piano impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:147
+msgid "Whether foreground color is set"
+msgstr "Indica se il colore di primo piano è impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:154
+msgid "Background set"
+msgstr "Sfondo impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:155
+msgid "Whether background color is set"
+msgstr "Indica se il colore di sfondo è impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:162
+msgid "Bold set"
+msgstr "Grassetto impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:163
+msgid "Whether bold attribute is set"
+msgstr "Indica se l'attributo grassetto è impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:170
+msgid "Italic set"
+msgstr "Corsivo impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:171
+msgid "Whether italic attribute is set"
+msgstr "Indica se l'attributo corsivo è impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:178
+msgid "Underline set"
+msgstr "Sottolineato impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:179
+msgid "Whether underline attribute is set"
+msgstr "Indica se l'attributo sottolineato è impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:186
+msgid "Strikethrough set"
+msgstr "Barrato impostato"
+
+#: ../gtksourceview/gtksourcestyle.c:187
+msgid "Whether strikethrough attribute is set"
+msgstr "Indica se l'attributo barrato è impostato"
+
+#: ../gtksourceview/gtksourcestylescheme.c:211
+#: ../gtksourceview/gtksourcestylescheme.c:212
+msgid "Style scheme id"
+msgstr "ID schema di stile"
+
+#: ../gtksourceview/gtksourcestylescheme.c:224
+#: ../gtksourceview/gtksourcestylescheme.c:225
+msgid "Style scheme name"
+msgstr "Nome schema di stile"
+
+#: ../gtksourceview/gtksourcestylescheme.c:237
+#: ../gtksourceview/gtksourcestylescheme.c:238
+msgid "Style scheme description"
+msgstr "Descrizione dello schema di stile"
+
+#: ../gtksourceview/gtksourcestylescheme.c:250
+#: ../gtksourceview/gtksourcestylescheme.c:251
+msgid "Style scheme filename"
+msgstr "Nome file dello schema di stile"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:153
+msgid "Style scheme search path"
+msgstr "Percorso di ricerca schemi di stile"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
+msgid "List of directories and files where the style schemes are located"
+msgstr "Elenco di directory e file dove si trovano gli schemi di stile"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:162
+msgid "Scheme ids"
+msgstr "ID schemi"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:163
+msgid "List of the ids of the available style schemes"
+msgstr "Elenco di ID degli schemi di stile disponibili"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:407
 msgid "The text buffer to add undo support on"
 msgstr ""
 "Il buffer di testo a cui aggiungere il supporto per l'azione di annullamento"
 
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:309
 msgid "The completion object associated with the view"
 msgstr "L'oggetto completamento associato con la vista"
 
-#: ../gtksourceview/gtksourceview.c:320
+#: ../gtksourceview/gtksourceview.c:321
 msgid "Show Line Numbers"
 msgstr "Mostra numeri di riga"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Whether to display line numbers"
 msgstr "Indica se mostrare i numeri di riga"
 
-#: ../gtksourceview/gtksourceview.c:332
+#: ../gtksourceview/gtksourceview.c:333
 msgid "Show Line Marks"
 msgstr "Mostra i marcatori di riga"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Whether to display line mark pixbufs"
 msgstr "Indica se mostrare i marcatori di riga"
 
-#: ../gtksourceview/gtksourceview.c:360
+#: ../gtksourceview/gtksourceview.c:361
 msgid "Indent Width"
 msgstr "Ampiezza rientro"
 
-#: ../gtksourceview/gtksourceview.c:361
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Number of spaces to use for each step of indent"
 msgstr "Numero di spazi da usare per ogni passo di rientro"
 
-#: ../gtksourceview/gtksourceview.c:370
+#: ../gtksourceview/gtksourceview.c:371
 msgid "Auto Indentation"
 msgstr "Rientro automatico"
 
-#: ../gtksourceview/gtksourceview.c:371
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Whether to enable auto indentation"
 msgstr "Indica se abilitare il rientro automatico"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Inserisci spazi invece dei caratteri di tabulazione"
 
-#: ../gtksourceview/gtksourceview.c:379
+#: ../gtksourceview/gtksourceview.c:380
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Indica se inserire spazi invece dei caratteri di tabulazione"
 
-#: ../gtksourceview/gtksourceview.c:391
+#: ../gtksourceview/gtksourceview.c:392
 msgid "Show Right Margin"
 msgstr "Mostra il margine destro"
 
-#: ../gtksourceview/gtksourceview.c:392
+#: ../gtksourceview/gtksourceview.c:393
 msgid "Whether to display the right margin"
 msgstr "Indica se mostrare il margine di destra"
 
-#: ../gtksourceview/gtksourceview.c:404
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Right Margin Position"
 msgstr "Posizione margine destro"
 
-#: ../gtksourceview/gtksourceview.c:405
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Position of the right margin"
 msgstr "Posizione del margine destro"
 
-#: ../gtksourceview/gtksourceview.c:421
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Smart Home/End"
 msgstr "Tasti Inizio/Fine intelligenti"
 
-#: ../gtksourceview/gtksourceview.c:422
+#: ../gtksourceview/gtksourceview.c:423
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3476,45 +3517,42 @@ msgstr ""
 "I tasti INIZIO e FINE muovono al primo/ultimo carattere diverso da uno "
 "spazio sulla riga prima di andare all'inizio/fine della riga stessa"
 
-#: ../gtksourceview/gtksourceview.c:432
+#: ../gtksourceview/gtksourceview.c:433
 msgid "Highlight current line"
 msgstr "Evidenzia la riga corrente"
 
-#: ../gtksourceview/gtksourceview.c:433
+#: ../gtksourceview/gtksourceview.c:434
 msgid "Whether to highlight the current line"
 msgstr "Indica se evidenziare la riga corrente"
 
-#: ../gtksourceview/gtksourceview.c:440
+#: ../gtksourceview/gtksourceview.c:441
 msgid "Indent on tab"
 msgstr "Applica rientro con tab"
 
-#: ../gtksourceview/gtksourceview.c:441
+#: ../gtksourceview/gtksourceview.c:442
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Indica se applicare un rientro al testo selezionato alla pressione del tasto "
 "tab"
 
-#: ../gtksourceview/gtksourceview.c:455
+#: ../gtksourceview/gtksourceview.c:456
 msgid "Draw Spaces"
 msgstr "Disegna spazi"
 
-#: ../gtksourceview/gtksourceview.c:456
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Set if and how the spaces should be visualized"
 msgstr "Imposta se e come gli spazi debbano essere visualizzati"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1325
+#: ../gtksourceview/gtksourceview.c:1326
 msgid "_Redo"
 msgstr "_Ripeti"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1336
+#: ../gtksourceview/gtksourceview.c:1337
 msgid "_Undo"
 msgstr "A_nnulla"
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
 msgstr "Milo Casagrande <milo@ubuntu.com>"
-
-msgid "No extra information available"
-msgstr "Nessuna informazione aggiuntiva disponibile"
