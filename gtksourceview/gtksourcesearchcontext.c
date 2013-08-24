@@ -519,6 +519,9 @@ clear_task (GtkSourceSearchContext *search)
 static void
 clear_search (GtkSourceSearchContext *search)
 {
+	gboolean regex_state_changed = FALSE;
+	gboolean regex_error_changed = FALSE;
+
 	if (search->priv->scan_region != NULL)
 	{
 		gtk_text_region_destroy (search->priv->scan_region, TRUE);
@@ -541,12 +544,25 @@ clear_search (GtkSourceSearchContext *search)
 	{
 		g_error_free (search->priv->regex_error);
 		search->priv->regex_error = NULL;
-		g_object_notify (G_OBJECT (search), "regex-error");
+		regex_error_changed = TRUE;
 	}
 
 	if (search->priv->regex_state != GTK_SOURCE_REGEX_SEARCH_NO_ERROR)
 	{
 		search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_NO_ERROR;
+		regex_state_changed = TRUE;
+	}
+
+	/* Notify the regex-error and the regex-state after clearing both
+	 * values, to be in a consistent state.
+	 */
+	if (regex_error_changed)
+	{
+		g_object_notify (G_OBJECT (search), "regex-error");
+	}
+
+	if (regex_state_changed)
+	{
 		g_object_notify (G_OBJECT (search), "regex-state");
 	}
 
