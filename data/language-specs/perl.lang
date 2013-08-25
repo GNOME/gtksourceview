@@ -172,7 +172,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
          please look at it, it seems wrong. It probably should be a positive
          look-behind. -->
     <define-regex id="pattern-before" extended="true">
-      (?&lt;![a-zA-Z0-9@%{(])
+      (?&lt;![a-zA-Z0-9@%{(_])
     </define-regex>
 
     <context id="in-pattern">
