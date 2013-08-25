@@ -218,7 +218,8 @@ test_provider_set_random (TestProvider *provider,
 
 	for (i = 0; i < nb_proposals; i++)
 	{
-		gchar *name = g_strdup_printf ("Proposal %d", i);
+		gchar *padding = g_strnfill ((i * 3) % 10, 'o');
+		gchar *name = g_strdup_printf ("Propo%ssal %d", padding, i);
 
 		proposals = g_list_prepend (proposals,
 					    gtk_source_completion_item_new (name,
@@ -226,6 +227,7 @@ test_provider_set_random (TestProvider *provider,
 									    icon,
 									    NULL));
 
+		g_free (padding);
 		g_free (name);
 	}
 
