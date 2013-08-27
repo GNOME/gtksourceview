@@ -151,6 +151,8 @@ struct _GtkSourceCompletionPrivate
 	/* List of proposals */
 	GtkTreeView *tree_view_proposals;
 
+	GtkCellRenderer *cell_renderer_proposal;
+
 	/* Completion management */
 
 	GtkSourceCompletionModel *model_proposals;
@@ -1445,6 +1447,21 @@ update_bottom_bar_visibility (GtkSourceCompletion *completion)
 }
 
 static void
+style_context_changed (GtkStyleContext     *style_context,
+		       GtkSourceCompletion *completion)
+{
+	PangoFontDescription *font_desc = NULL;
+
+	gtk_style_context_get (style_context, GTK_STATE_FLAG_NORMAL,
+			       GTK_STYLE_PROPERTY_FONT, &font_desc,
+			       NULL);
+	g_object_set (completion->priv->cell_renderer_proposal,
+		      "font-desc", font_desc,
+		      NULL);
+	pango_font_description_free (font_desc);
+}
+
+static void
 populating_done (GtkSourceCompletion        *completion,
                  GtkSourceCompletionContext *context)
 {
@@ -1508,6 +1525,7 @@ static void
 connect_view (GtkSourceCompletion *completion)
 {
 	GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+	GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->priv->view));
 
 	g_signal_connect_object (completion->priv->view,
 				 "focus-out-event",
@@ -1582,6 +1600,14 @@ connect_view (GtkSourceCompletion *completion)
 					 G_CALLBACK (buffer_insert_text_cb),
 					 completion,
 					 G_CONNECT_AFTER);
+
+	g_signal_connect_object (style_context,
+				 "changed",
+				 G_CALLBACK (style_context_changed),
+				 completion,
+				 G_CONNECT_AFTER);
+
+	style_context_changed (style_context, completion);
 }
 
 static void
@@ -2193,6 +2219,7 @@ init_tree_view (GtkSourceCompletion *completion,
 	/* Proposal text cell renderer */
 
 	cell_renderer = GTK_CELL_RENDERER (gtk_builder_get_object (builder, "cell_renderer_proposal"));
+	completion->priv->cell_renderer_proposal = cell_renderer;
 
 	gtk_tree_view_column_set_attributes (column, cell_renderer,
 					     "markup", GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP,
