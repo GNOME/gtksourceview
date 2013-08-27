@@ -1371,8 +1371,9 @@ adjust_subregion (GtkSourceSearchContext *search,
 	});
 }
 
-/* Do not take into account the scan_region. Search just with
- * forward_to_tag_toggle(), and checks that it is not an old match.
+/* Do not take into account the scan_region. Take the result with a grain of
+ * salt. You should verify before or after calling this function that the
+ * region has been scanned, to be sure that the returned occurrence is correct.
  */
 static gboolean
 smart_forward_search_without_scanning (GtkSourceSearchContext *search,
@@ -3067,11 +3068,12 @@ gtk_source_search_context_get_occurrences_count (GtkSourceSearchContext *search)
  * @match_end: the end of the occurrence.
  *
  * Gets the position of a search occurrence. If the buffer is not already fully
- * scanned, the position may be unknown, and -1 is returned. Therefore you
- * should call this function when you know that the buffer is fully scanned.
+ * scanned, the position may be unknown, and -1 is returned. If 0 is returned,
+ * it means that this part of the buffer has already been scanned, and that
+ * @match_start and @match_end don't delimit an occurrence.
  *
  * Returns: the position of the search occurrence. The first occurrence has the
- * position 1 (not 0). Returns 0 if @match_start and @match_end doesn't delimit
+ * position 1 (not 0). Returns 0 if @match_start and @match_end don't delimit
  * an occurrence. Returns -1 if the position is not yet known.
  *
  * Since: 3.10
@@ -3086,6 +3088,8 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 	GtkTextIter iter;
 	gboolean found;
 	gint position = 0;
+	GtkTextRegion *region;
+	gboolean empty;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), -1);
 	g_return_val_if_fail (match_start != NULL, -1);
@@ -3094,6 +3098,27 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 	if (dispose_has_run (search))
 	{
 		return -1;
+	}
+
+	/* Verify that the [match_start; match_end] region has been scanned. */
+
+	if (search->priv->scan_region != NULL)
+	{
+		region = gtk_text_region_intersect (search->priv->scan_region,
+						    match_start,
+						    match_end);
+
+		empty = is_text_region_empty (region);
+
+		if (region != NULL)
+		{
+			gtk_text_region_destroy (region, TRUE);
+		}
+
+		if (!empty)
+		{
+			return -1;
+		}
 	}
 
 	/* Verify that the occurrence is correct. */
@@ -3119,11 +3144,11 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 
 	if (search->priv->scan_region != NULL)
 	{
-		GtkTextRegion *region = gtk_text_region_intersect (search->priv->scan_region,
-								   &iter,
-								   match_end);
+		region = gtk_text_region_intersect (search->priv->scan_region,
+						    &iter,
+						    match_end);
 
-		gboolean empty = is_text_region_empty (region);
+		empty = is_text_region_empty (region);
 
 		if (region != NULL)
 		{
