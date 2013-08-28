@@ -136,6 +136,8 @@ AS_IF([ test "$glade_catalog" = "yes" ],
 
 # i18N stuff
 IT_PROG_INTLTOOL([0.40])
+AS_IF([test "$USE_NLS" = "yes"],
+      [AC_DEFINE([ENABLE_NLS], [1], [Defined if native language support should be enabled.])])
 
 AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-3.0])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gettext package name.])
