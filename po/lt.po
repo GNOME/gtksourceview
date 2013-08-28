@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-07-25 13:00+0000\n"
-"PO-Revision-Date: 2013-08-11 21:13+0300\n"
+"POT-Creation-Date: 2013-08-19 19:21+0000\n"
+"PO-Revision-Date: 2013-08-28 23:23+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -2641,114 +2641,71 @@ msgstr "Aktyvavimas"
 msgid "The type of activation"
 msgstr "Aktyvavimo tipas"
 
-#: ../gtksourceview/gtksourcebuffer.c:305
-#: ../gtksourceview/gtksourceprintcompositor.c:504
+#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Ryškinti sintaksę"
 
-#: ../gtksourceview/gtksourcebuffer.c:306
+#: ../gtksourceview/gtksourcebuffer.c:294
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Ar sužymėti buferyje išvedamo kodo sintaksę"
 
-#: ../gtksourceview/gtksourcebuffer.c:319
+#: ../gtksourceview/gtksourcebuffer.c:307
 msgid "Highlight Matching Brackets"
 msgstr "Ryškinti skliaustus"
 
-#: ../gtksourceview/gtksourcebuffer.c:320
+#: ../gtksourceview/gtksourcebuffer.c:308
 msgid "Whether to highlight matching brackets"
 msgstr "Ar ryškinti skliaustus"
 
-#: ../gtksourceview/gtksourcebuffer.c:332
-#| msgid "Highlight Syntax"
-msgid "Highlight Search"
-msgstr "Paryškinti paiešką"
-
-#: ../gtksourceview/gtksourcebuffer.c:333
-#| msgid "Whether to highlight the current line"
-msgid "Whether to highlight search occurrences"
-msgstr "Ar paryškinti paieškos pasikartojimus"
-
-#: ../gtksourceview/gtksourcebuffer.c:346
+#: ../gtksourceview/gtksourcebuffer.c:321
 #: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Maximum Undo Levels"
 msgstr "Atšaukimo lygių skaičius"
 
-#: ../gtksourceview/gtksourcebuffer.c:347
+#: ../gtksourceview/gtksourcebuffer.c:322
 #: ../gtksourceview/gtksourceundomanagerdefault.c:415
 msgid "Number of undo levels for the buffer"
 msgstr "Buferyje galimas didžiausias atgalinių žingsnių skaičius"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:359
+#: ../gtksourceview/gtksourcebuffer.c:334
 msgid "Language"
 msgstr "Kalba"
 
-#: ../gtksourceview/gtksourcebuffer.c:360
+#: ../gtksourceview/gtksourcebuffer.c:335
 msgid "Language object to get highlighting patterns from"
 msgstr "Kalbos objektas, kuris nurodo žymėjimo požymius"
 
-#: ../gtksourceview/gtksourcebuffer.c:368
+#: ../gtksourceview/gtksourcebuffer.c:343
 msgid "Can undo"
 msgstr "Įmanoma atšaukti"
 
-#: ../gtksourceview/gtksourcebuffer.c:369
+#: ../gtksourceview/gtksourcebuffer.c:344
 msgid "Whether Undo operation is possible"
 msgstr "Ar įmanoma atšaukti veiksmą"
 
-#: ../gtksourceview/gtksourcebuffer.c:376
+#: ../gtksourceview/gtksourcebuffer.c:351
 msgid "Can redo"
 msgstr "Įmanoma grąžinti"
 
-#: ../gtksourceview/gtksourcebuffer.c:377
+#: ../gtksourceview/gtksourcebuffer.c:352
 msgid "Whether Redo operation is possible"
 msgstr "Ar įmanoma grąžinti atšaukimą"
 
-#: ../gtksourceview/gtksourcebuffer.c:391
-#: ../gtksourceview/gtksourcebuffer.c:392
+#: ../gtksourceview/gtksourcebuffer.c:366
+#: ../gtksourceview/gtksourcebuffer.c:367
 msgid "Style scheme"
 msgstr "Stiliaus schema"
 
-#: ../gtksourceview/gtksourcebuffer.c:399
+#: ../gtksourceview/gtksourcebuffer.c:374
 msgid "Undo manager"
 msgstr "Atšaukimų tvarkytuvė"
 
-#: ../gtksourceview/gtksourcebuffer.c:400
+#: ../gtksourceview/gtksourcebuffer.c:375
 msgid "The buffer undo manager"
 msgstr "Buferio atšaukimų tvarkytuvė"
-
-#: ../gtksourceview/gtksourcebuffer.c:414
-#| msgid "The text"
-msgid "Search text"
-msgstr "Paieškos tekstas"
-
-#: ../gtksourceview/gtksourcebuffer.c:415
-#| msgid "The text"
-msgid "The text to search"
-msgstr "Ieškomas tekstas"
-
-#: ../gtksourceview/gtksourcebuffer.c:431
-msgid "Search occurrences count"
-msgstr "Paieškos pasikartojimų skaičius"
-
-#: ../gtksourceview/gtksourcebuffer.c:432
-msgid "Total number of search occurrences"
-msgstr "Visas paieškos pasikartojimų skaičius"
-
-#: ../gtksourceview/gtksourcebuffer.c:448
-#: ../gtksourceview/gtksourcebuffer.c:449
-msgid "Case sensitive search"
-msgstr "Paieška skiriant raidžių registrą"
-
-#: ../gtksourceview/gtksourcebuffer.c:464
-#: ../gtksourceview/gtksourcebuffer.c:465
-msgid "Search at word boundaries"
-msgstr "Paieško ties žodžių ribomis"
-
-#: ../gtksourceview/gtksourcebuffer.c:481
-#: ../gtksourceview/gtksourcebuffer.c:482
-msgid "Search: wrap around"
-msgstr "Paieška: apsukti ratu"
 
 #: ../gtksourceview/gtksourcecompletion.c:1731
 #: ../gtksourceview/gtksourcegutter.c:546
@@ -2825,7 +2782,7 @@ msgid "Proposal scrolling page size"
 msgstr "Pasiūlymo slenkamo puslapio dydis"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:272
-#: ../gtksourceview/gtksourceview.c:307
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Completion"
 msgstr "Užbaigimas"
 
@@ -3138,108 +3095,108 @@ msgstr "Fonas"
 msgid "The GIcon"
 msgstr "GIcon"
 
-#: ../gtksourceview/gtksourcemark.c:139
+#: ../gtksourceview/gtksourcemark.c:140
 msgid "category"
 msgstr "kategorija"
 
-#: ../gtksourceview/gtksourcemark.c:140
+#: ../gtksourceview/gtksourcemark.c:141
 msgid "The mark category"
 msgstr "Žymės kategorija"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:444
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
 msgstr "Pradinių tekstų buferis"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "The GtkSourceBuffer object to print"
 msgstr "Spausdintinas GtkSourceBuffer objektas"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceview.c:346
 msgid "Tab Width"
 msgstr "Tabuliacijos plotis"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:346
+#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Width of a tab character expressed in spaces"
 msgstr "Tabuliatoriaus plotis, išreikštas tarpo simboliais"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:483
+#: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid "Wrap Mode"
 msgstr "Laužymo veiksena"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:484
+#: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "Ar laužyti eilutes žodžiais, simboliais, ar apskritai nelaužyti."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:505
+#: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Ar spausdinti dokumentą su ryškinta sintakse"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:526
+#: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Print Line Numbers"
 msgstr "Spausdinti eilučių numerius"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:527
+#: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Spausdintų eilučių numerių intervalas (0 reiškia jokių numerių)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:549
+#: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Print Header"
 msgstr "Spausdinti antraštę"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:550
+#: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Whether to print a header in each page"
 msgstr "Ar spausdinti antraštę kiekviename puslapyje"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:572
+#: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Print Footer"
 msgstr "Spausdinti poraštę"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:573
+#: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Whether to print a footer in each page"
 msgstr "Ar spausdinti poraštę kiekviename puslapyje"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:595
+#: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Body Font Name"
 msgstr "Teksto šrifto pavadinimas"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:596
+#: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
 "Šrifto, naudojamo pagrindiniam tekstui, pavadinimas (pvz., „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:619
+#: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
 msgstr "Eilučių numerių šrifto pavadinimas"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:620
+#: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr ""
 "Šrifto, naudojamo eilučių numeriams, pavadinimas (pvz., „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:643
+#: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
 msgstr "Antraštės šrifto pavadinimas"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:644
+#: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "Šrifto, naudojamo antraštei, pavadinimas (pvz., „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:667
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
 msgstr "Poraštės šrifto pavadinimas"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "Šrifto, naudojamo poraštei, pavadinimas (pvz., „Monospace 10“)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:684
+#: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
 msgstr "Puslapių skaičius"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:685
+#: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -3250,6 +3207,99 @@ msgstr ""
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C naudojimas nepalaikomas kalbų aprašyme"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2745
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
+msgid "Buffer"
+msgstr "Buferis"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2746
+#| msgid "The gutters' GtkSourceView"
+msgid "The associated GtkSourceBuffer"
+msgstr "Susietas GtkSourceBuffer"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2760
+msgid "Settings"
+msgstr "Nustatymai"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2761
+msgid "The associated GtkSourceSearchSettings"
+msgstr "Susietas GtkSourceSearchSettings"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2775
+#| msgid "Highlight Syntax"
+msgid "Highlight"
+msgstr "Paryškinti"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2776
+#| msgid "Whether to highlight search occurrences"
+msgid "Highlight search occurrences"
+msgstr "Paryškinti paieškos pasikartojimus"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2792
+#| msgid "Search occurrences count"
+msgid "Occurrences count"
+msgstr "Pasikartojimų skaičius"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2793
+msgid "Total number of search occurrences"
+msgstr "Visas paieškos pasikartojimų skaičius"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2812
+#| msgid "error"
+msgid "Regex error"
+msgstr "Regex klaida"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2813
+#| msgid "Regular Expression"
+msgid "Regular expression error"
+msgstr "Reguliarios išraiškos klaida"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2826
+#| msgid "Widget State"
+msgid "Regex state"
+msgstr "Regex būsena"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2827
+msgid "State of the regular expression search"
+msgstr "Reguliariosios išraiškos paieškos būsena"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:169
+msgid "Search text"
+msgstr "Paieškos tekstas"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:170
+msgid "The text to search"
+msgstr "Ieškomas tekstas"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:184
+#: ../gtksourceview/gtksourcesearchsettings.c:185
+#| msgid "Case sensitive search"
+msgid "Case sensitive"
+msgstr "Skirti raidžių registrą"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:200
+#| msgid "Search at word boundaries"
+msgid "At word boundaries"
+msgstr "Ties žodžių ribomis"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:201
+msgid "Search at word boundaries"
+msgstr "Paieško ties žodžių ribomis"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:217
+#: ../gtksourceview/gtksourcesearchsettings.c:218
+#| msgid "Wrap Mode"
+msgid "Wrap around"
+msgstr "Apsukti"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:233
+msgid "Regex enabled"
+msgstr "Regex įjungta"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:234
+msgid "Whether to search by regular expression"
+msgstr "Ar ieškoti naudojant reguliariąsias išraiškas"
 
 #: ../gtksourceview/gtksourcestyle.c:80
 msgid "Line background"
@@ -3371,79 +3421,75 @@ msgstr "Schemų identifikatoriai"
 msgid "List of the ids of the available style schemes"
 msgstr "Prieinamų stilių schemų identifikatorių sąrašas"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:406
-msgid "Buffer"
-msgstr "Buferis"
-
 #: ../gtksourceview/gtksourceundomanagerdefault.c:407
 msgid "The text buffer to add undo support on"
 msgstr "Teksto buferis, kuriam pridėti atšaukimo palaikymą"
 
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:309
 msgid "The completion object associated with the view"
 msgstr "Užbaigimo objektas, susietas su rodiniu"
 
-#: ../gtksourceview/gtksourceview.c:320
+#: ../gtksourceview/gtksourceview.c:321
 msgid "Show Line Numbers"
 msgstr "Rodyti eilučių numerius"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Whether to display line numbers"
 msgstr "Ar rodyti eilučių numerius"
 
-#: ../gtksourceview/gtksourceview.c:332
+#: ../gtksourceview/gtksourceview.c:333
 msgid "Show Line Marks"
 msgstr "Rodyti eilučių žymes"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Whether to display line mark pixbufs"
 msgstr "Ar rodyti eilučių žymių pikselių buferius"
 
-#: ../gtksourceview/gtksourceview.c:360
+#: ../gtksourceview/gtksourceview.c:361
 msgid "Indent Width"
 msgstr "Įtraukos plotis"
 
-#: ../gtksourceview/gtksourceview.c:361
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Number of spaces to use for each step of indent"
 msgstr "Tarpų skaičius įtraukos žingsniui"
 
-#: ../gtksourceview/gtksourceview.c:370
+#: ../gtksourceview/gtksourceview.c:371
 msgid "Auto Indentation"
 msgstr "Automatinis atitraukimas"
 
-#: ../gtksourceview/gtksourceview.c:371
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Whether to enable auto indentation"
 msgstr "Ar naudoti automatinį atitraukimą"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Įterpti tarpus vietoj tabuliacijos"
 
-#: ../gtksourceview/gtksourceview.c:379
+#: ../gtksourceview/gtksourceview.c:380
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Ar vietoj tabuliacijos įterpti tarpus"
 
-#: ../gtksourceview/gtksourceview.c:391
+#: ../gtksourceview/gtksourceview.c:392
 msgid "Show Right Margin"
 msgstr "Rodyti dešinę paraštę"
 
-#: ../gtksourceview/gtksourceview.c:392
+#: ../gtksourceview/gtksourceview.c:393
 msgid "Whether to display the right margin"
 msgstr "Ar rodyti dešinę paraštę"
 
-#: ../gtksourceview/gtksourceview.c:404
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Right Margin Position"
 msgstr "Dešiniosios paraštės padėtis"
 
-#: ../gtksourceview/gtksourceview.c:405
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Position of the right margin"
 msgstr "Dešinės paraštės padėtis"
 
-#: ../gtksourceview/gtksourceview.c:421
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Smart Home/End"
 msgstr "Protingi Home/End klavišai"
 
-#: ../gtksourceview/gtksourceview.c:422
+#: ../gtksourceview/gtksourceview.c:423
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3451,37 +3497,37 @@ msgstr ""
 "HOME ir END klavišai pereina prie pirmo/paskutinio ne tarpo simbolio prieš "
 "eidami į eilutės pradžią/pabaigą"
 
-#: ../gtksourceview/gtksourceview.c:432
+#: ../gtksourceview/gtksourceview.c:433
 msgid "Highlight current line"
 msgstr "Ryškinti esamą eilutę"
 
-#: ../gtksourceview/gtksourceview.c:433
+#: ../gtksourceview/gtksourceview.c:434
 msgid "Whether to highlight the current line"
 msgstr "Ar ryškinti esamą eilutę"
 
-#: ../gtksourceview/gtksourceview.c:440
+#: ../gtksourceview/gtksourceview.c:441
 msgid "Indent on tab"
 msgstr "Įtraukti paspaudus Tab"
 
-#: ../gtksourceview/gtksourceview.c:441
+#: ../gtksourceview/gtksourceview.c:442
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Ar įtraukti pažymėtą tekstą paspaudus Tab klavišą"
 
-#: ../gtksourceview/gtksourceview.c:455
+#: ../gtksourceview/gtksourceview.c:456
 msgid "Draw Spaces"
 msgstr "Rodyti tarpus"
 
-#: ../gtksourceview/gtksourceview.c:456
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Set if and how the spaces should be visualized"
 msgstr "Nurodo, kaip turėtų būti rodomi tarpai"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1325
+#: ../gtksourceview/gtksourceview.c:1326
 msgid "_Redo"
 msgstr "Paka_rtoti"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1336
+#: ../gtksourceview/gtksourceview.c:1337
 msgid "_Undo"
 msgstr "_Atšaukti"
 
@@ -3490,3 +3536,4 @@ msgid "translator-credits"
 msgstr ""
 "Vytautas Liuolia <vytautas.liuolia@gmail.com>\n"
 "Aurimas Černius <aurisc4@gmail.com>"
+
