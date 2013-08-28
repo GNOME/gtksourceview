@@ -62,6 +62,10 @@ void		 gtk_source_completion_info_move_to_iter	(GtkSourceCompletionInfo *info,
 								 GtkTextView             *view,
 								 GtkTextIter             *iter);
 
+G_GNUC_INTERNAL
+void		 _gtk_source_completion_info_set_xoffset	(GtkSourceCompletionInfo *info,
+								 gint                     xoffset);
+
 G_DEPRECATED_FOR (gtk_container_add)
 void		 gtk_source_completion_info_set_widget		(GtkSourceCompletionInfo *info,
 								 GtkWidget               *widget);

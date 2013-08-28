@@ -60,6 +60,9 @@
  * displayed in a #GtkSourceCompletionInfo window, which appears when
  * the "Details" button is clicked.
  *
+ * The #GtkSourceCompletionInfo window for proposals will try to align the
+ * proposal text with the #GtkSourceView<!-- -->'s cursor.
+ *
  * A #GtkSourceCompletionInfo window can also be used to display
  * calltips. When no proposals are available, it can be useful to
  * display extra information like a function's prototype (number of
@@ -569,6 +572,52 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 {
 	gtk_widget_hide (GTK_WIDGET (completion->priv->info_window));
 	gtk_widget_hide (GTK_WIDGET (completion->priv->main_window));
+}
+
+static void
+gtk_source_completion_proposals_size_allocate (GtkSourceCompletion *completion,
+					       GtkAllocation       *allocation,
+					       GtkWidget           *widget)
+{
+	GtkTreeViewColumn *column;
+	gint cell_offset = 0;
+	gint column_offset;
+	gint focus_padding;
+	gint horizontal_separator;
+	gint x_offset = 0;
+
+	if (!gtk_widget_get_realized (GTK_WIDGET (completion->priv->tree_view_proposals)))
+	{
+		return;
+	}
+
+	gtk_widget_style_get (GTK_WIDGET (completion->priv->tree_view_proposals),
+	                      "focus-padding", &focus_padding,
+	                      "horizontal-separator", &horizontal_separator,
+	                      NULL);
+
+	column = gtk_tree_view_get_column (completion->priv->tree_view_proposals, 1);
+	column_offset = gtk_tree_view_column_get_x_offset (column);
+	gtk_tree_view_column_cell_get_position (column,
+	                                        completion->priv->cell_renderer_proposal,
+	                                        &cell_offset,
+	                                        NULL);
+
+	x_offset = column_offset + cell_offset + horizontal_separator + focus_padding;
+
+	gtk_tree_view_convert_bin_window_to_widget_coords (completion->priv->tree_view_proposals,
+	                                                   x_offset,
+	                                                   0,
+	                                                   &x_offset,
+	                                                   NULL);
+	gtk_widget_translate_coordinates (GTK_WIDGET (completion->priv->tree_view_proposals),
+	                                  GTK_WIDGET (completion->priv->main_window),
+	                                  x_offset,
+	                                  0,
+	                                  &x_offset,
+	                                  NULL);
+
+	_gtk_source_completion_info_set_xoffset (completion->priv->main_window, -x_offset);
 }
 
 static void
@@ -2178,6 +2227,11 @@ init_tree_view (GtkSourceCompletion *completion,
 				  G_CALLBACK (gtk_source_completion_activate_proposal),
 				  completion);
 
+	g_signal_connect_swapped (completion->priv->tree_view_proposals,
+				  "size-allocate",
+				  G_CALLBACK (gtk_source_completion_proposals_size_allocate),
+				  completion);
+
 	/* Selection */
 
 	selection = gtk_tree_view_get_selection (completion->priv->tree_view_proposals);
@@ -2196,7 +2250,7 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	cell_renderer = GTK_CELL_RENDERER (gtk_builder_get_object (builder, "cell_renderer_icon"));
 
-	column = GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder, "tree_view_column_proposal"));
+	column = GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder, "tree_view_column_icon"));
 
 	gtk_tree_view_column_set_attributes (column, cell_renderer,
 					     "pixbuf", GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON,
@@ -2220,6 +2274,8 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	cell_renderer = GTK_CELL_RENDERER (gtk_builder_get_object (builder, "cell_renderer_proposal"));
 	completion->priv->cell_renderer_proposal = cell_renderer;
+
+	column = GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder, "tree_view_column_proposal"));
 
 	gtk_tree_view_column_set_attributes (column, cell_renderer,
 					     "markup", GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP,

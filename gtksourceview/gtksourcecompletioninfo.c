@@ -65,6 +65,8 @@ struct _GtkSourceCompletionInfoPrivate
 
 	GtkWidget *attached_to;
 	gulong focus_out_event_handler;
+
+	gint xoffset;
 };
 
 /* Signals */
@@ -327,6 +329,15 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 		              0);
 }
 
+void
+_gtk_source_completion_info_set_xoffset (GtkSourceCompletionInfo *window,
+					 gint                     xoffset)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (window));
+
+	window->priv->xoffset = xoffset;
+}
+
 /* Move to iter */
 
 static void
@@ -477,6 +488,8 @@ move_to_iter (GtkSourceCompletionInfo *window,
 	{
 		overlapup = TRUE;
 	}
+
+	x += window->priv->xoffset;
 
 	/* Make sure that text is still readable */
 	move_overlap (&y, h, oy, cy, height, overlapup);
