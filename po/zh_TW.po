@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 3.3.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-25 20:59+0800\n"
-"PO-Revision-Date: 2013-07-22 13:25+0800\n"
+"POT-Creation-Date: 2013-08-29 21:58+0800\n"
+"PO-Revision-Date: 2013-08-28 09:41+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (traditional)\n"
 "Language: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -75,7 +75,7 @@ msgstr "結尾"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:718
+#: ../gtksourceview/gtksourcecompletion.c:753
 msgid "All"
 msgstr "全部"
 
@@ -780,7 +780,7 @@ msgstr "內建"
 #: ../data/language-specs/yacc.lang.h:1
 #: ../gtksourceview/gtksourcelanguage.c:55
 msgid "Others"
-msgstr "其它"
+msgstr "其他"
 
 #: ../data/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
@@ -2424,13 +2424,13 @@ msgstr "第 4 節"
 msgid "Section 5"
 msgstr "第 5 節"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:112
-#: ../gtksourceview/gtksourcestyle.c:113
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:114
+#: ../gtksourceview/gtksourcestyle.c:115
 msgid "Italic"
 msgstr "斜體"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:106
+#: ../gtksourceview/gtksourcestyle.c:107
 msgid "Bold"
 msgstr "粗體"
 
@@ -2639,187 +2639,148 @@ msgstr "啟用"
 msgid "The type of activation"
 msgstr "啟用的類型"
 
-#: ../gtksourceview/gtksourcebuffer.c:305
-#: ../gtksourceview/gtksourceprintcompositor.c:504
+#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "語法高亮度顯示"
 
-#: ../gtksourceview/gtksourcebuffer.c:306
+#: ../gtksourceview/gtksourcebuffer.c:294
 msgid "Whether to highlight syntax in the buffer"
 msgstr "是否加強顯示緩衝區內容中的語法"
 
-#: ../gtksourceview/gtksourcebuffer.c:319
+#: ../gtksourceview/gtksourcebuffer.c:307
 msgid "Highlight Matching Brackets"
 msgstr "高亮度顯示成對的括號"
 
-#: ../gtksourceview/gtksourcebuffer.c:320
+#: ../gtksourceview/gtksourcebuffer.c:308
 msgid "Whether to highlight matching brackets"
 msgstr "是否高亮度顯示成對的括號"
 
-#: ../gtksourceview/gtksourcebuffer.c:332
-msgid "Highlight Search"
-msgstr "突顯搜尋"
-
-#: ../gtksourceview/gtksourcebuffer.c:333
-msgid "Whether to highlight search occurrences"
-msgstr "是否高亮度顯示搜尋發生處"
-
-#: ../gtksourceview/gtksourcebuffer.c:346
+#: ../gtksourceview/gtksourcebuffer.c:321
 #: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Maximum Undo Levels"
 msgstr "復原次數上限"
 
-#: ../gtksourceview/gtksourcebuffer.c:347
+#: ../gtksourceview/gtksourcebuffer.c:322
 #: ../gtksourceview/gtksourceundomanagerdefault.c:415
 msgid "Number of undo levels for the buffer"
 msgstr "緩衝區內容可以復原的次數"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:359
+#: ../gtksourceview/gtksourcebuffer.c:334
 msgid "Language"
 msgstr "程式語言"
 
-#: ../gtksourceview/gtksourcebuffer.c:360
+#: ../gtksourceview/gtksourcebuffer.c:335
 msgid "Language object to get highlighting patterns from"
 msgstr "從指定語言讀取會加強顯示的樣式"
 
-#: ../gtksourceview/gtksourcebuffer.c:368
+#: ../gtksourceview/gtksourcebuffer.c:343
 msgid "Can undo"
 msgstr "可復原"
 
-#: ../gtksourceview/gtksourcebuffer.c:369
+#: ../gtksourceview/gtksourcebuffer.c:344
 msgid "Whether Undo operation is possible"
 msgstr "是否可進行復原動作"
 
-#: ../gtksourceview/gtksourcebuffer.c:376
+#: ../gtksourceview/gtksourcebuffer.c:351
 msgid "Can redo"
 msgstr "可重做"
 
-#: ../gtksourceview/gtksourcebuffer.c:377
+#: ../gtksourceview/gtksourcebuffer.c:352
 msgid "Whether Redo operation is possible"
 msgstr "是否可進行重做動作"
 
-#: ../gtksourceview/gtksourcebuffer.c:391
-#: ../gtksourceview/gtksourcebuffer.c:392
+#: ../gtksourceview/gtksourcebuffer.c:366
+#: ../gtksourceview/gtksourcebuffer.c:367
 msgid "Style scheme"
 msgstr "樣式架構"
 
-#: ../gtksourceview/gtksourcebuffer.c:399
+#: ../gtksourceview/gtksourcebuffer.c:374
 msgid "Undo manager"
 msgstr "復原管理員"
 
-#: ../gtksourceview/gtksourcebuffer.c:400
+#: ../gtksourceview/gtksourcebuffer.c:375
 msgid "The buffer undo manager"
 msgstr "緩衝區復原管理員"
 
-#: ../gtksourceview/gtksourcebuffer.c:414
-msgid "Search text"
-msgstr "搜尋文字"
-
-#: ../gtksourceview/gtksourcebuffer.c:415
-msgid "The text to search"
-msgstr "要搜尋的文字"
-
-#: ../gtksourceview/gtksourcebuffer.c:431
-msgid "Search occurrences count"
-msgstr "搜尋發生次數"
-
-#: ../gtksourceview/gtksourcebuffer.c:432
-msgid "Total number of search occurrences"
-msgstr "搜尋結果發生的總次數"
-
-#: ../gtksourceview/gtksourcebuffer.c:448
-#: ../gtksourceview/gtksourcebuffer.c:449
-msgid "Case sensitive search"
-msgstr "區分大小寫搜尋"
-
-#: ../gtksourceview/gtksourcebuffer.c:464
-#: ../gtksourceview/gtksourcebuffer.c:465
-msgid "Search at word boundaries"
-msgstr "古文字邊界搜尋"
-
-#: ../gtksourceview/gtksourcebuffer.c:481
-#: ../gtksourceview/gtksourcebuffer.c:482
-msgid "Search: wrap around"
-msgstr "搜尋：到結尾折返"
-
-#: ../gtksourceview/gtksourcecompletion.c:1731
+#: ../gtksourceview/gtksourcecompletion.c:1786
 #: ../gtksourceview/gtksourcegutter.c:546
 msgid "View"
 msgstr "檢視"
 
-#: ../gtksourceview/gtksourcecompletion.c:1732
+#: ../gtksourceview/gtksourcecompletion.c:1787
 msgid "The GtkSourceView bound to the completion"
 msgstr "與這個補齊關聯的 GtkSourceView"
 
-#: ../gtksourceview/gtksourcecompletion.c:1746
+#: ../gtksourceview/gtksourcecompletion.c:1801
 msgid "Remember Info Visibility"
 msgstr "記住資訊的可視性"
 
-#: ../gtksourceview/gtksourcecompletion.c:1747
+#: ../gtksourceview/gtksourcecompletion.c:1802
 msgid "Remember the last info window visibility state"
 msgstr "記住上次資訊視窗的可視性狀態"
 
-#: ../gtksourceview/gtksourcecompletion.c:1759
+#: ../gtksourceview/gtksourcecompletion.c:1814
 msgid "Select on Show"
 msgstr "顯示即選擇"
 
-#: ../gtksourceview/gtksourcecompletion.c:1760
+#: ../gtksourceview/gtksourcecompletion.c:1815
 msgid "Select first proposal when completion is shown"
 msgstr "在自動補齊顯示時選擇第一個建議"
 
-#: ../gtksourceview/gtksourcecompletion.c:1773
+#: ../gtksourceview/gtksourcecompletion.c:1828
 msgid "Show Headers"
 msgstr "顯示標頭"
 
-#: ../gtksourceview/gtksourcecompletion.c:1774
+#: ../gtksourceview/gtksourcecompletion.c:1829
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "當建議來自多個提供者時顯示提供者標頭"
 
-#: ../gtksourceview/gtksourcecompletion.c:1787
+#: ../gtksourceview/gtksourcecompletion.c:1842
 msgid "Show Icons"
 msgstr "顯示圖示"
 
-#: ../gtksourceview/gtksourcecompletion.c:1788
+#: ../gtksourceview/gtksourcecompletion.c:1843
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "在自動補齊彈出視窗中顯示提供者和建議的圖示"
 
-#: ../gtksourceview/gtksourcecompletion.c:1802
+#: ../gtksourceview/gtksourcecompletion.c:1857
 msgid "Accelerators"
 msgstr "捷徑鍵"
 
-#: ../gtksourceview/gtksourcecompletion.c:1803
+#: ../gtksourceview/gtksourcecompletion.c:1858
 msgid "Number of proposal accelerators to show"
 msgstr "要顯示的建議加速選單數目"
 
-#: ../gtksourceview/gtksourcecompletion.c:1818
+#: ../gtksourceview/gtksourcecompletion.c:1873
 msgid "Auto Complete Delay"
 msgstr "自動補齊延遲"
 
-#: ../gtksourceview/gtksourcecompletion.c:1819
+#: ../gtksourceview/gtksourcecompletion.c:1874
 msgid "Completion popup delay for interactive completion"
 msgstr "互動式補齊彈出視窗前的延遲"
 
-#: ../gtksourceview/gtksourcecompletion.c:1835
+#: ../gtksourceview/gtksourcecompletion.c:1890
 msgid "Provider Page Size"
 msgstr "提供者頁面大小"
 
-#: ../gtksourceview/gtksourcecompletion.c:1836
+#: ../gtksourceview/gtksourcecompletion.c:1891
 msgid "Provider scrolling page size"
 msgstr "提供者捲動頁面大小"
 
-#: ../gtksourceview/gtksourcecompletion.c:1856
+#: ../gtksourceview/gtksourcecompletion.c:1911
 msgid "Proposal Page Size"
 msgstr "建議頁面大小"
 
-#: ../gtksourceview/gtksourcecompletion.c:1857
+#: ../gtksourceview/gtksourcecompletion.c:1912
 msgid "Proposal scrolling page size"
 msgstr "建議捲動頁面大小"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:272
-#: ../gtksourceview/gtksourceview.c:307
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Completion"
 msgstr "自動補齊"
 
@@ -2837,7 +2798,7 @@ msgid "The GtkTextIter at which the completion was invoked"
 msgstr "呼叫自動補齊時的 GtkTextIter"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:238
+#: ../gtksourceview/gtksourcecompletioninfo.c:240
 msgid "Completion Info"
 msgstr "自動補齊資訊"
 
@@ -3116,7 +3077,7 @@ msgid "in regex '%s': backreferences are not supported"
 msgstr "於正規表示式「%s」：不支援後方參照"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:288
-#: ../gtksourceview/gtksourcestyle.c:88
+#: ../gtksourceview/gtksourcestyle.c:90
 msgid "Background"
 msgstr "背景"
 
@@ -3128,106 +3089,106 @@ msgstr "背景"
 msgid "The GIcon"
 msgstr "GIcon"
 
-#: ../gtksourceview/gtksourcemark.c:139
+#: ../gtksourceview/gtksourcemark.c:140
 msgid "category"
 msgstr "分類"
 
-#: ../gtksourceview/gtksourcemark.c:140
+#: ../gtksourceview/gtksourcemark.c:141
 msgid "The mark category"
 msgstr "標記的分類"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:444
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
 msgstr "原始碼緩衝區內容"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "The GtkSourceBuffer object to print"
 msgstr "準備列印的 GtkSourceBuffer 物件"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:345
+#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceview.c:346
 msgid "Tab Width"
 msgstr "Tab 字元寬度"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:346
+#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Width of a tab character expressed in spaces"
 msgstr "tab 字元轉為空白字元時的寬度"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:483
+#: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid "Wrap Mode"
 msgstr "換列模式"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:484
+#: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "不使用文字換列，或依文字換列，或依字元換列。"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:505
+#: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Whether to print the document with highlighted syntax"
 msgstr "列印文件時是否加強顯示不同的語法"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:526
+#: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Print Line Numbers"
 msgstr "列印列號"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:527
+#: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "列印列號的間隔 (0 表示不使用列號)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:549
+#: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Print Header"
 msgstr "列印頁首"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:550
+#: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Whether to print a header in each page"
 msgstr "是否每頁都印出頁首"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:572
+#: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Print Footer"
 msgstr "列印頁尾"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:573
+#: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Whether to print a footer in each page"
 msgstr "是否每頁都印出頁尾"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:595
+#: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Body Font Name"
 msgstr "內文字體名稱"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:596
+#: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "文件內容所使用的字型名稱 (例如 “Monospace 10”)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:619
+#: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
 msgstr "列號字型名稱"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:620
+#: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "列號所使用的字型名稱 (例如 “Monospace 10”)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:643
+#: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
 msgstr "頁首字型名稱"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:644
+#: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "頁首所使用的字型名稱 (例如 “Monospace 10”)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:667
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
 msgstr "頁尾字型名稱"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "頁尾所使用的字型名稱 (例如 “Monospace 10”)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:684
+#: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
 msgstr "頁數"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:685
+#: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -3237,199 +3198,278 @@ msgstr "文件中的頁數（-1 表示該文件尚未完整的標上頁數）"
 msgid "using \\C is not supported in language definitions"
 msgstr "在語言定義中不支援使用 \\C"
 
-#: ../gtksourceview/gtksourcestyle.c:80
-msgid "Line background"
-msgstr "行的背景"
-
-#: ../gtksourceview/gtksourcestyle.c:81
-msgid "Line background color"
-msgstr "行的背景顏色"
-
-#: ../gtksourceview/gtksourcestyle.c:89
-msgid "Background color"
-msgstr "背景顏色"
-
-#: ../gtksourceview/gtksourcestyle.c:96
-msgid "Foreground"
-msgstr "前景"
-
-#: ../gtksourceview/gtksourcestyle.c:97
-msgid "Foreground color"
-msgstr "前景顏色"
-
-#: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
-msgid "Underline"
-msgstr "底線"
-
-#: ../gtksourceview/gtksourcestyle.c:128 ../gtksourceview/gtksourcestyle.c:129
-msgid "Strikethrough"
-msgstr "刪除線"
-
-#: ../gtksourceview/gtksourcestyle.c:136
-msgid "Line background set"
-msgstr "行的背景設定"
-
-#: ../gtksourceview/gtksourcestyle.c:137
-msgid "Whether line background color is set"
-msgstr "行的背景顏色是否設定"
-
-#: ../gtksourceview/gtksourcestyle.c:144
-msgid "Foreground set"
-msgstr "前景設定"
-
-#: ../gtksourceview/gtksourcestyle.c:145
-msgid "Whether foreground color is set"
-msgstr "前景顏色是否設定"
-
-#: ../gtksourceview/gtksourcestyle.c:152
-msgid "Background set"
-msgstr "背景設定"
-
-#: ../gtksourceview/gtksourcestyle.c:153
-msgid "Whether background color is set"
-msgstr "背景顏色是否設定"
-
-#: ../gtksourceview/gtksourcestyle.c:160
-msgid "Bold set"
-msgstr "粗體設定"
-
-#: ../gtksourceview/gtksourcestyle.c:161
-msgid "Whether bold attribute is set"
-msgstr "是否設定粗體屬性"
-
-#: ../gtksourceview/gtksourcestyle.c:168
-msgid "Italic set"
-msgstr "斜體設定"
-
-#: ../gtksourceview/gtksourcestyle.c:169
-msgid "Whether italic attribute is set"
-msgstr "是否設定斜體屬性"
-
-#: ../gtksourceview/gtksourcestyle.c:176
-msgid "Underline set"
-msgstr "底線設定"
-
-#: ../gtksourceview/gtksourcestyle.c:177
-msgid "Whether underline attribute is set"
-msgstr "是否設定加底線屬性"
-
-#: ../gtksourceview/gtksourcestyle.c:184
-msgid "Strikethrough set"
-msgstr "刪除線設定"
-
-#: ../gtksourceview/gtksourcestyle.c:185
-msgid "Whether strikethrough attribute is set"
-msgstr "是否設定刪除線屬性"
-
-#: ../gtksourceview/gtksourcestylescheme.c:212
-#: ../gtksourceview/gtksourcestylescheme.c:213
-msgid "Style scheme id"
-msgstr "樣式架構 id"
-
-#: ../gtksourceview/gtksourcestylescheme.c:225
-#: ../gtksourceview/gtksourcestylescheme.c:226
-msgid "Style scheme name"
-msgstr "樣式架構名稱"
-
-#: ../gtksourceview/gtksourcestylescheme.c:238
-#: ../gtksourceview/gtksourcestylescheme.c:239
-msgid "Style scheme description"
-msgstr "樣式架構描述"
-
-#: ../gtksourceview/gtksourcestylescheme.c:251
-#: ../gtksourceview/gtksourcestylescheme.c:252
-msgid "Style scheme filename"
-msgstr "樣式架構檔案名稱"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:150
-msgid "Style scheme search path"
-msgstr "樣式架構搜尋路徑"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:151
-msgid "List of directories and files where the style schemes are located"
-msgstr "樣式架構所在的目錄和檔案的清單"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:159
-msgid "Scheme ids"
-msgstr "架構 ids"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:160
-msgid "List of the ids of the available style schemes"
-msgstr "可用樣式架構的 id 清單"
-
+#: ../gtksourceview/gtksourcesearchcontext.c:2762
 #: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "緩衝區"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2763
+msgid "The associated GtkSourceBuffer"
+msgstr "已關連的 GtkSourceBuffer"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2777
+msgid "Settings"
+msgstr "設定值"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2778
+msgid "The associated GtkSourceSearchSettings"
+msgstr "已關連的 GtkSourceSearchSettings"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2792
+msgid "Highlight"
+msgstr "標示"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2793
+msgid "Highlight search occurrences"
+msgstr "標示搜尋出現的地方"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2809
+msgid "Occurrences count"
+msgstr "出現次數計數"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2810
+msgid "Total number of search occurrences"
+msgstr "搜尋結果發生的總次數"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2829
+msgid "Regex error"
+msgstr "正規表示式錯誤"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2830
+msgid "Regular expression error"
+msgstr "正規表示式錯誤"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2843
+msgid "Regex state"
+msgstr "正規表示式狀態"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2844
+msgid "State of the regular expression search"
+msgstr "正規表示式搜尋的狀態"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:169
+msgid "Search text"
+msgstr "搜尋文字"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:170
+msgid "The text to search"
+msgstr "要搜尋的文字"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:184
+#: ../gtksourceview/gtksourcesearchsettings.c:185
+msgid "Case sensitive"
+msgstr "區分大小寫"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:200
+msgid "At word boundaries"
+msgstr "於字詞邊界"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:201
+msgid "Search at word boundaries"
+msgstr "古文字邊界搜尋"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:217
+#: ../gtksourceview/gtksourcesearchsettings.c:218
+msgid "Wrap around"
+msgstr "折返搜尋"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:233
+msgid "Regex enabled"
+msgstr "已啟用正規表示式"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:234
+msgid "Whether to search by regular expression"
+msgstr "是否以正規表示式搜尋"
+
+#: ../gtksourceview/gtksourcestyle.c:82
+msgid "Line background"
+msgstr "行的背景"
+
+#: ../gtksourceview/gtksourcestyle.c:83
+msgid "Line background color"
+msgstr "行的背景顏色"
+
+#: ../gtksourceview/gtksourcestyle.c:91
+msgid "Background color"
+msgstr "背景顏色"
+
+#: ../gtksourceview/gtksourcestyle.c:98
+msgid "Foreground"
+msgstr "前景"
+
+#: ../gtksourceview/gtksourcestyle.c:99
+msgid "Foreground color"
+msgstr "前景顏色"
+
+#: ../gtksourceview/gtksourcestyle.c:122 ../gtksourceview/gtksourcestyle.c:123
+msgid "Underline"
+msgstr "底線"
+
+#: ../gtksourceview/gtksourcestyle.c:130 ../gtksourceview/gtksourcestyle.c:131
+msgid "Strikethrough"
+msgstr "刪除線"
+
+#: ../gtksourceview/gtksourcestyle.c:138
+msgid "Line background set"
+msgstr "行的背景設定"
+
+#: ../gtksourceview/gtksourcestyle.c:139
+msgid "Whether line background color is set"
+msgstr "行的背景顏色是否設定"
+
+#: ../gtksourceview/gtksourcestyle.c:146
+msgid "Foreground set"
+msgstr "前景設定"
+
+#: ../gtksourceview/gtksourcestyle.c:147
+msgid "Whether foreground color is set"
+msgstr "前景顏色是否設定"
+
+#: ../gtksourceview/gtksourcestyle.c:154
+msgid "Background set"
+msgstr "背景設定"
+
+#: ../gtksourceview/gtksourcestyle.c:155
+msgid "Whether background color is set"
+msgstr "背景顏色是否設定"
+
+#: ../gtksourceview/gtksourcestyle.c:162
+msgid "Bold set"
+msgstr "粗體設定"
+
+#: ../gtksourceview/gtksourcestyle.c:163
+msgid "Whether bold attribute is set"
+msgstr "是否設定粗體屬性"
+
+#: ../gtksourceview/gtksourcestyle.c:170
+msgid "Italic set"
+msgstr "斜體設定"
+
+#: ../gtksourceview/gtksourcestyle.c:171
+msgid "Whether italic attribute is set"
+msgstr "是否設定斜體屬性"
+
+#: ../gtksourceview/gtksourcestyle.c:178
+msgid "Underline set"
+msgstr "底線設定"
+
+#: ../gtksourceview/gtksourcestyle.c:179
+msgid "Whether underline attribute is set"
+msgstr "是否設定加底線屬性"
+
+#: ../gtksourceview/gtksourcestyle.c:186
+msgid "Strikethrough set"
+msgstr "刪除線設定"
+
+#: ../gtksourceview/gtksourcestyle.c:187
+msgid "Whether strikethrough attribute is set"
+msgstr "是否設定刪除線屬性"
+
+#: ../gtksourceview/gtksourcestylescheme.c:211
+#: ../gtksourceview/gtksourcestylescheme.c:212
+msgid "Style scheme id"
+msgstr "樣式架構 id"
+
+#: ../gtksourceview/gtksourcestylescheme.c:224
+#: ../gtksourceview/gtksourcestylescheme.c:225
+msgid "Style scheme name"
+msgstr "樣式架構名稱"
+
+#: ../gtksourceview/gtksourcestylescheme.c:237
+#: ../gtksourceview/gtksourcestylescheme.c:238
+msgid "Style scheme description"
+msgstr "樣式架構描述"
+
+#: ../gtksourceview/gtksourcestylescheme.c:250
+#: ../gtksourceview/gtksourcestylescheme.c:251
+msgid "Style scheme filename"
+msgstr "樣式架構檔案名稱"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:153
+msgid "Style scheme search path"
+msgstr "樣式架構搜尋路徑"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
+msgid "List of directories and files where the style schemes are located"
+msgstr "樣式架構所在的目錄和檔案的清單"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:162
+msgid "Scheme ids"
+msgstr "架構 ids"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:163
+msgid "List of the ids of the available style schemes"
+msgstr "可用樣式架構的 id 清單"
 
 #: ../gtksourceview/gtksourceundomanagerdefault.c:407
 msgid "The text buffer to add undo support on"
 msgstr "要加入復原支援的文字緩衝區"
 
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:309
 msgid "The completion object associated with the view"
 msgstr "與這個檢視關聯的自動補齊物件"
 
-#: ../gtksourceview/gtksourceview.c:320
+#: ../gtksourceview/gtksourceview.c:321
 msgid "Show Line Numbers"
 msgstr "顯示列號"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Whether to display line numbers"
 msgstr "是否顯示列號"
 
-#: ../gtksourceview/gtksourceview.c:332
+#: ../gtksourceview/gtksourceview.c:333
 msgid "Show Line Marks"
 msgstr "每列顯示標記"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Whether to display line mark pixbufs"
 msgstr "是否顯示表示每列開始的 pixbuf 標記"
 
-#: ../gtksourceview/gtksourceview.c:360
+#: ../gtksourceview/gtksourceview.c:361
 msgid "Indent Width"
 msgstr "縮排寬度"
 
-#: ../gtksourceview/gtksourceview.c:361
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Number of spaces to use for each step of indent"
 msgstr "每一階縮排要使用的空白數"
 
-#: ../gtksourceview/gtksourceview.c:370
+#: ../gtksourceview/gtksourceview.c:371
 msgid "Auto Indentation"
 msgstr "自動縮排"
 
-#: ../gtksourceview/gtksourceview.c:371
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Whether to enable auto indentation"
 msgstr "是否啟用自動縮排"
 
-#: ../gtksourceview/gtksourceview.c:378
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Insert Spaces Instead of Tabs"
 msgstr "使用空格代替 Tab 字元"
 
-#: ../gtksourceview/gtksourceview.c:379
+#: ../gtksourceview/gtksourceview.c:380
 msgid "Whether to insert spaces instead of tabs"
 msgstr "是否使用空格代替 Tab 字元"
 
-#: ../gtksourceview/gtksourceview.c:391
+#: ../gtksourceview/gtksourceview.c:392
 msgid "Show Right Margin"
 msgstr "顯示右邊邊界"
 
-#: ../gtksourceview/gtksourceview.c:392
+#: ../gtksourceview/gtksourceview.c:393
 msgid "Whether to display the right margin"
 msgstr "是否顯示右邊邊界"
 
-#: ../gtksourceview/gtksourceview.c:404
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Right Margin Position"
 msgstr "右邊界位置"
 
-#: ../gtksourceview/gtksourceview.c:405
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Position of the right margin"
 msgstr "右邊邊界的位置"
 
-#: ../gtksourceview/gtksourceview.c:421
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Smart Home/End"
 msgstr "智慧式 Home/End"
 
-#: ../gtksourceview/gtksourceview.c:422
+#: ../gtksourceview/gtksourceview.c:423
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3437,37 +3477,37 @@ msgstr ""
 "HOME 或 END 鍵會先令游標移至該行第一個/最後一個非空格的字元，然後才會移至該行"
 "的開始或結束位置"
 
-#: ../gtksourceview/gtksourceview.c:432
+#: ../gtksourceview/gtksourceview.c:433
 msgid "Highlight current line"
 msgstr "加強標示所在行"
 
-#: ../gtksourceview/gtksourceview.c:433
+#: ../gtksourceview/gtksourceview.c:434
 msgid "Whether to highlight the current line"
 msgstr "是否加強顯示游標所在的一列"
 
-#: ../gtksourceview/gtksourceview.c:440
+#: ../gtksourceview/gtksourceview.c:441
 msgid "Indent on tab"
 msgstr "按下 tab 鍵縮排"
 
-#: ../gtksourceview/gtksourceview.c:441
+#: ../gtksourceview/gtksourceview.c:442
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "按下 tab 鍵時已選的文字是否縮排"
 
-#: ../gtksourceview/gtksourceview.c:455
+#: ../gtksourceview/gtksourceview.c:456
 msgid "Draw Spaces"
 msgstr "繪出空白字元"
 
-#: ../gtksourceview/gtksourceview.c:456
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Set if and how the spaces should be visualized"
 msgstr "設定是否以視覺化的方式表現空白字元"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1325
+#: ../gtksourceview/gtksourceview.c:1326
 msgid "_Redo"
 msgstr "重複(_R)"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1336
+#: ../gtksourceview/gtksourceview.c:1337
 msgid "_Undo"
 msgstr "復原(_U)"
 
@@ -3481,6 +3521,12 @@ msgstr ""
 " Woodman Tuen <wmtuen@gmail.com>, 2007.\n"
 "Anthony Tang <tkyanthony@yahoo.com.hk>, 2004.\n"
 "Abel Cheung <abel@oaka.org>, 2003, 05."
+
+#~ msgid "Highlight Search"
+#~ msgstr "突顯搜尋"
+
+#~ msgid "Search: wrap around"
+#~ msgstr "搜尋：到結尾折返"
 
 #~ msgid "No extra information available"
 #~ msgstr "沒有額外的資訊"
