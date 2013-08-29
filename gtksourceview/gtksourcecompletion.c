@@ -60,9 +60,6 @@
  * displayed in a #GtkSourceCompletionInfo window, which appears when
  * the "Details" button is clicked.
  *
- * The #GtkSourceCompletionInfo window for proposals will try to align the
- * proposal text with the #GtkSourceView<!-- -->'s cursor.
- *
  * A #GtkSourceCompletionInfo window can also be used to display
  * calltips. When no proposals are available, it can be useful to
  * display extra information like a function's prototype (number of

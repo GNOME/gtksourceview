@@ -293,9 +293,13 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
  * @iter: a #GtkTextIter.
  *
  * Get the #GtkTextIter at which the completion for @proposal starts. When
- * implemented, the completion can use this information to position the
- * completion window accordingly when a proposal is selected in the completion
- * window.
+ * implemented, this information is used to position the completion window
+ * accordingly when a proposal is selected in the completion window. The
+ * @proposal text inside the completion window is aligned on @iter.
+ *
+ * If this function is not implemented, the word boundary is taken to position
+ * the completion window. See gtk_source_completion_provider_activate_proposal()
+ * for an explanation on the word boundaries.
  *
  * When the @proposal is activated, the default handler uses @iter as the start
  * of the word to replace. See
