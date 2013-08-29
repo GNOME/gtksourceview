@@ -35,8 +35,8 @@
 
 #include "gtksourcecompletioncontainer.h"
 
-#define MAX_WIDTH  350
-#define MAX_HEIGHT 180
+#define UNREALIZED_WIDTH  350
+#define MAX_HEIGHT        180
 
 struct _GtkSourceCompletionContainerPrivate
 {
@@ -45,6 +45,30 @@ struct _GtkSourceCompletionContainerPrivate
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionContainer, _gtk_source_completion_container, GTK_TYPE_BIN);
+
+static gint
+get_max_width (GtkSourceCompletionContainer *container)
+{
+	if (gtk_widget_get_realized (GTK_WIDGET (container)))
+	{
+		GtkWidget *toplevel;
+		GdkWindow *window;
+		GdkScreen *screen;
+		gint max_width;
+		gint xorigin;
+
+		toplevel = gtk_widget_get_toplevel (GTK_WIDGET (container));
+		window = gtk_widget_get_window (toplevel);
+		screen = gdk_window_get_screen (window);
+
+		gdk_window_get_origin (window, &xorigin, NULL);
+		max_width = gdk_screen_get_width (screen) - xorigin;
+
+		return MAX (max_width, UNREALIZED_WIDTH);
+	}
+
+	return UNREALIZED_WIDTH;
+}
 
 /* gtk_container_add() is overridden. This function calls the GtkBin's add(). */
 static void
@@ -124,7 +148,7 @@ static void
 check_scrolled_window (GtkSourceCompletionContainer *container,
 		       GtkRequisition                child_size)
 {
-	if (child_size.width <= MAX_WIDTH &&
+	if (child_size.width <= get_max_width (container) &&
 	    child_size.height <= MAX_HEIGHT)
 	{
 		remove_scrolled_window (container);
@@ -168,7 +192,7 @@ _gtk_source_completion_container_get_preferred_width (GtkWidget *widget,
 		width += get_vertical_scrollbar_width ();
 	}
 
-	width = MIN (width, MAX_WIDTH);
+	width = MIN (width, get_max_width (container));
 
 	if (min_width != NULL)
 	{
@@ -257,7 +281,7 @@ _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
 
 	check_scrolled_window (container, nat_size);
 
-	if (MAX_WIDTH < nat_size.width)
+	if (get_max_width (container) < nat_size.width)
 	{
 		scrollbar_height = get_horizontal_scrollbar_height ();
 		total_height += scrollbar_height;

@@ -461,6 +461,8 @@ move_to_iter (GtkSourceCompletionInfo *window,
 	get_iter_pos (view, iter, &x, &y, &height);
 	gtk_window_get_size (GTK_WINDOW (window), &w, &h);
 
+	x += window->priv->xoffset;
+
 	oy = y;
 	compensate_for_gravity (window, &cx, &cy, w, h);
 
@@ -488,8 +490,6 @@ move_to_iter (GtkSourceCompletionInfo *window,
 	{
 		overlapup = TRUE;
 	}
-
-	x += window->priv->xoffset;
 
 	/* Make sure that text is still readable */
 	move_overlap (&y, h, oy, cy, height, overlapup);
