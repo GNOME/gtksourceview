@@ -57,7 +57,6 @@ struct _GtkSourceSearchContextClass
  * disabled.
  * @GTK_SOURCE_REGEX_SEARCH_COMPILATION_ERROR: pattern compilation error.
  * @GTK_SOURCE_REGEX_SEARCH_MATCHING_ERROR: error while matching the buffer.
- * @GTK_SOURCE_REGEX_SEARCH_REPLACE_ERROR: replace error.
  *
  * Regular expression search state.
  *
@@ -67,8 +66,7 @@ typedef enum
 {
 	GTK_SOURCE_REGEX_SEARCH_NO_ERROR,
 	GTK_SOURCE_REGEX_SEARCH_COMPILATION_ERROR,
-	GTK_SOURCE_REGEX_SEARCH_MATCHING_ERROR,
-	GTK_SOURCE_REGEX_SEARCH_REPLACE_ERROR
+	GTK_SOURCE_REGEX_SEARCH_MATCHING_ERROR
 } GtkSourceRegexSearchState;
 
 GType			 gtk_source_search_context_get_type			(void) G_GNUC_CONST;
@@ -136,11 +134,13 @@ gboolean		 gtk_source_search_context_replace			(GtkSourceSearchContext	 *search,
 										 const GtkTextIter	 *match_start,
 										 const GtkTextIter	 *match_end,
 										 const gchar		 *replace,
-										 gint			  replace_length);
+										 gint			  replace_length,
+										 GError			**error);
 
 guint			 gtk_source_search_context_replace_all			(GtkSourceSearchContext	 *search,
 										 const gchar		 *replace,
-										 gint			  replace_length);
+										 gint			  replace_length,
+										 GError			**error);
 
 G_GNUC_INTERNAL
 void			 _gtk_source_search_context_update_highlight		(GtkSourceSearchContext	 *search,

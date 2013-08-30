@@ -841,13 +841,13 @@ test_replace (void)
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 1);
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 3);
 
-	replaced = gtk_source_search_context_replace (context, &start, &end, "bb", 2);
+	replaced = gtk_source_search_context_replace (context, &start, &end, "bb", 2, NULL);
 	g_assert (!replaced);
 
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 2);
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 4);
 
-	replaced = gtk_source_search_context_replace (context, &start, &end, "bb", 2);
+	replaced = gtk_source_search_context_replace (context, &start, &end, "bb", 2, NULL);
 	g_assert (replaced);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
@@ -878,7 +878,7 @@ test_replace_all (void)
 	gtk_source_search_settings_set_search_text (settings, "aa");
 	flush_queue ();
 
-	nb_replacements = gtk_source_search_context_replace_all (context, "bb", 2);
+	nb_replacements = gtk_source_search_context_replace_all (context, "bb", 2, NULL);
 	g_assert_cmpint (nb_replacements, ==, 2);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
@@ -933,7 +933,7 @@ test_regex (void)
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
 	gtk_text_buffer_get_end_iter (text_buffer, &end);
-	gtk_source_search_context_replace (context, &start, &end, "\\2#\\1", -1);
+	gtk_source_search_context_replace (context, &start, &end, "\\2#\\1", -1, NULL);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
 	gtk_text_buffer_get_end_iter (text_buffer, &end);
@@ -944,7 +944,7 @@ test_regex (void)
 	/* Test replace all */
 
 	gtk_text_buffer_set_text (text_buffer, "aa#bb cc#dd", -1);
-	gtk_source_search_context_replace_all (context, "\\2#\\1", -1);
+	gtk_source_search_context_replace_all (context, "\\2#\\1", -1, NULL);
 
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
 	gtk_text_buffer_get_end_iter (text_buffer, &end);

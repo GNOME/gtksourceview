@@ -269,7 +269,8 @@ button_replace_clicked_cb (TestSearch *search,
 					   &match_start,
 					   &match_end,
 					   gtk_entry_get_text (search->priv->replace_entry),
-					   replace_length);
+					   replace_length,
+					   NULL);
 
 	gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (search->priv->source_buffer),
 					      NULL,
@@ -291,7 +292,8 @@ button_replace_all_clicked_cb (TestSearch *search,
 
 	gtk_source_search_context_replace_all (search->priv->search_context,
 					       gtk_entry_get_text (search->priv->replace_entry),
-					       replace_length);
+					       replace_length,
+					       NULL);
 }
 
 static gboolean

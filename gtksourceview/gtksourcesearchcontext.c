@@ -3448,16 +3448,18 @@ gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
 
 /* Returns %TRUE if replaced. */
 static gboolean
-regex_replace (GtkSourceSearchContext *search,
-	       GtkTextIter            *match_start,
-	       GtkTextIter            *match_end,
-	       const gchar            *replace)
+regex_replace (GtkSourceSearchContext  *search,
+	       GtkTextIter             *match_start,
+	       GtkTextIter             *match_end,
+	       const gchar             *replace,
+	       GError                 **error)
 {
 	GtkTextIter real_start;
 	gint start_pos;
 	gchar *subject;
 	gchar *subject_replaced;
 	GRegexMatchFlags match_options;
+	GError *tmp_error = NULL;
 
 	if (search->priv->regex == NULL ||
 	    search->priv->regex_error != NULL)
@@ -3477,17 +3479,13 @@ regex_replace (GtkSourceSearchContext *search,
 					    start_pos,
 					    replace,
 					    match_options,
-					    &search->priv->regex_error);
+					    &tmp_error);
 
 	g_free (subject);
 
-	if (search->priv->regex_error != NULL)
+	if (tmp_error != NULL)
 	{
-		search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_REPLACE_ERROR;
-
-		g_object_notify (G_OBJECT (search), "regex-error");
-		g_object_notify (G_OBJECT (search), "regex-state");
-
+		g_propagate_error (error, tmp_error);
 		g_free (subject_replaced);
 		return FALSE;
 	}
@@ -3501,21 +3499,6 @@ regex_replace (GtkSourceSearchContext *search,
 	return TRUE;
 }
 
-static void
-clear_replace_error (GtkSourceSearchContext *search)
-{
-	if (search->priv->regex_state == GTK_SOURCE_REGEX_SEARCH_REPLACE_ERROR)
-	{
-		search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_NO_ERROR;
-
-		g_error_free (search->priv->regex_error);
-		search->priv->regex_error = NULL;
-
-		g_object_notify (G_OBJECT (search), "regex-error");
-		g_object_notify (G_OBJECT (search), "regex-state");
-	}
-}
-
 /**
  * gtk_source_search_context_replace:
  * @search: a #GtkSourceSearchContext.
@@ -3523,6 +3506,7 @@ clear_replace_error (GtkSourceSearchContext *search)
  * @match_end: the end of the match to replace.
  * @replace: the replacement text.
  * @replace_length: the length of @replace in bytes, or -1.
+ * @error: location to a #GError, or %NULL to ignore errors.
  *
  * Replaces a search match by another text. If @match_start and @match_end
  * doesn't correspond to a search match, %FALSE is returned.
@@ -3535,11 +3519,12 @@ clear_replace_error (GtkSourceSearchContext *search)
  * Since: 3.10
  */
 gboolean
-gtk_source_search_context_replace (GtkSourceSearchContext *search,
-				   const GtkTextIter      *match_start,
-				   const GtkTextIter      *match_end,
-				   const gchar            *replace,
-				   gint                    replace_length)
+gtk_source_search_context_replace (GtkSourceSearchContext  *search,
+				   const GtkTextIter       *match_start,
+				   const GtkTextIter       *match_end,
+				   const gchar             *replace,
+				   gint                     replace_length,
+				   GError                 **error)
 {
 	GtkTextIter start;
 	GtkTextIter end;
@@ -3548,13 +3533,12 @@ gtk_source_search_context_replace (GtkSourceSearchContext *search,
 	g_return_val_if_fail (match_start != NULL, FALSE);
 	g_return_val_if_fail (match_end != NULL, FALSE);
 	g_return_val_if_fail (replace != NULL, FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
 	if (dispose_has_run (search))
 	{
 		return FALSE;
 	}
-
-	clear_replace_error (search);
 
 	if (!smart_forward_search (search, match_start, &start, &end))
 	{
@@ -3569,7 +3553,7 @@ gtk_source_search_context_replace (GtkSourceSearchContext *search,
 
 	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
 	{
-		return regex_replace (search, &start, &end, replace);
+		return regex_replace (search, &start, &end, replace, error);
 	}
 
 	gtk_text_buffer_begin_user_action (search->priv->buffer);
@@ -3585,6 +3569,7 @@ gtk_source_search_context_replace (GtkSourceSearchContext *search,
  * @search: a #GtkSourceSearchContext.
  * @replace: the replacement text.
  * @replace_length: the length of @replace in bytes, or -1.
+ * @error: location to a #GError, or %NULL to ignore errors.
  *
  * Replaces all search matches by another text. It is a synchronous function, so
  * it can block the user interface.
@@ -3597,9 +3582,10 @@ gtk_source_search_context_replace (GtkSourceSearchContext *search,
  * Since: 3.10
  */
 guint
-gtk_source_search_context_replace_all (GtkSourceSearchContext *search,
-				       const gchar            *replace,
-				       gint                    replace_length)
+gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
+				       const gchar             *replace,
+				       gint                     replace_length,
+				       GError                 **error)
 {
 	GtkTextIter iter;
 	GtkTextIter match_start;
@@ -3610,16 +3596,17 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext *search,
 
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), 0);
 	g_return_val_if_fail (replace != NULL, 0);
+	g_return_val_if_fail (error == NULL || *error == NULL, 0);
 
 	if (dispose_has_run (search))
 	{
 		return 0;
 	}
 
-	clear_replace_error (search);
-
 	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
 	{
+		GError *tmp_error = NULL;
+
 		if (search->priv->regex == NULL ||
 		    search->priv->regex_error != NULL)
 		{
@@ -3628,15 +3615,11 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext *search,
 
 		g_regex_check_replacement (replace,
 					   &has_regex_references,
-					   &search->priv->regex_error);
+					   &tmp_error);
 
-		if (search->priv->regex_error != NULL)
+		if (tmp_error != NULL)
 		{
-			search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_REPLACE_ERROR;
-
-			g_object_notify (G_OBJECT (search), "regex-error");
-			g_object_notify (G_OBJECT (search), "regex-state");
-
+			g_propagate_error (error, tmp_error);
 			return 0;
 		}
 	}
@@ -3658,25 +3641,20 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext *search,
 
 	while (smart_forward_search (search, &iter, &match_start, &match_end))
 	{
-		gboolean replaced = FALSE;
-
 		if (has_regex_references)
 		{
-			replaced = regex_replace (search, &match_start, &match_end, replace);
+			if (!regex_replace (search, &match_start, &match_end, replace, error))
+			{
+				break;
+			}
 		}
 		else
 		{
 			gtk_text_buffer_delete (search->priv->buffer, &match_start, &match_end);
 			gtk_text_buffer_insert (search->priv->buffer, &match_end, replace, replace_length);
-
-			replaced = TRUE;
 		}
 
-		if (replaced)
-		{
-			nb_matches_replaced++;
-		}
-
+		nb_matches_replaced++;
 		iter = match_end;
 	}
 
