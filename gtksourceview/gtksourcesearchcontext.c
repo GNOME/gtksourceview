@@ -273,8 +273,7 @@ enum
 	PROP_SETTINGS,
 	PROP_HIGHLIGHT,
 	PROP_OCCURRENCES_COUNT,
-	PROP_REGEX_ERROR,
-	PROP_REGEX_STATE
+	PROP_REGEX_ERROR
 };
 
 struct _GtkSourceSearchContextPrivate
@@ -308,7 +307,6 @@ struct _GtkSourceSearchContextPrivate
 
 	GRegex *regex;
 	GError *regex_error;
-	GtkSourceRegexSearchState regex_state;
 
 	gint occurrences_count;
 	gulong idle_scan_id;
@@ -519,9 +517,6 @@ clear_task (GtkSourceSearchContext *search)
 static void
 clear_search (GtkSourceSearchContext *search)
 {
-	gboolean regex_state_changed = FALSE;
-	gboolean regex_error_changed = FALSE;
-
 	if (search->priv->scan_region != NULL)
 	{
 		gtk_text_region_destroy (search->priv->scan_region, TRUE);
@@ -544,26 +539,7 @@ clear_search (GtkSourceSearchContext *search)
 	{
 		g_error_free (search->priv->regex_error);
 		search->priv->regex_error = NULL;
-		regex_error_changed = TRUE;
-	}
-
-	if (search->priv->regex_state != GTK_SOURCE_REGEX_SEARCH_NO_ERROR)
-	{
-		search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_NO_ERROR;
-		regex_state_changed = TRUE;
-	}
-
-	/* Notify the regex-error and the regex-state after clearing both
-	 * values, to be in a consistent state.
-	 */
-	if (regex_error_changed)
-	{
 		g_object_notify (G_OBJECT (search), "regex-error");
-	}
-
-	if (regex_state_changed)
-	{
-		g_object_notify (G_OBJECT (search), "regex-state");
 	}
 
 	clear_task (search);
@@ -741,11 +717,7 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 
 	if (search->priv->regex_error != NULL)
 	{
-		search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_MATCHING_ERROR;
-
 		g_object_notify (G_OBJECT (search), "regex-error");
-		g_object_notify (G_OBJECT (search), "regex-state");
-
 		found = FALSE;
 	}
 
@@ -883,11 +855,7 @@ basic_backward_regex_search (GtkSourceSearchContext *search,
 
 	if (search->priv->regex_error != NULL)
 	{
-		search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_MATCHING_ERROR;
-
 		g_object_notify (G_OBJECT (search), "regex-error");
-		g_object_notify (G_OBJECT (search), "regex-state");
-
 		found = FALSE;
 	}
 
@@ -1934,10 +1902,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 
 	if (search->priv->regex_error != NULL)
 	{
-		search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_MATCHING_ERROR;
-
 		g_object_notify (G_OBJECT (search), "regex-error");
-		g_object_notify (G_OBJECT (search), "regex-state");
 	}
 
 	if (g_match_info_is_partial_match (match_info))
@@ -2329,7 +2294,6 @@ static void
 update_regex (GtkSourceSearchContext *search)
 {
 	gboolean regex_error_changed = FALSE;
-	GtkSourceRegexSearchState new_regex_state = GTK_SOURCE_REGEX_SEARCH_NO_ERROR;
 	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
 
 	if (search->priv->regex != NULL)
@@ -2370,7 +2334,6 @@ update_regex (GtkSourceSearchContext *search)
 
 		if (search->priv->regex_error != NULL)
 		{
-			new_regex_state = GTK_SOURCE_REGEX_SEARCH_COMPILATION_ERROR;
 			regex_error_changed = TRUE;
 		}
 
@@ -2378,12 +2341,6 @@ update_regex (GtkSourceSearchContext *search)
 		{
 			g_free (pattern);
 		}
-	}
-
-	if (search->priv->regex_state != new_regex_state)
-	{
-		search->priv->regex_state = new_regex_state;
-		g_object_notify (G_OBJECT (search), "regex-state");
 	}
 
 	if (regex_error_changed)
@@ -2697,10 +2654,6 @@ gtk_source_search_context_get_property (GObject    *object,
 			g_value_set_pointer (value, gtk_source_search_context_get_regex_error (search));
 			break;
 
-		case PROP_REGEX_STATE:
-			g_value_set_enum (value, gtk_source_search_context_get_regex_state (search));
-			break;
-
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -2829,30 +2782,12 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 							       _("Regex error"),
 							       _("Regular expression error"),
 							       G_PARAM_READABLE));
-
-	/**
-	 * GtkSourceSearchContext:regex-state:
-	 *
-	 * The regex search state.
-	 *
-	 * Since: 3.10
-	 */
-	g_object_class_install_property (object_class,
-					 PROP_REGEX_STATE,
-					 g_param_spec_enum ("regex-state",
-							    _("Regex state"),
-							    _("State of the regular expression search"),
-							    GTK_SOURCE_TYPE_REGEX_SEARCH_STATE,
-							    GTK_SOURCE_REGEX_SEARCH_NO_ERROR,
-							    G_PARAM_READABLE));
 }
 
 static void
 gtk_source_search_context_init (GtkSourceSearchContext *search)
 {
 	search->priv = gtk_source_search_context_get_instance_private (search);
-
-	search->priv->regex_state = GTK_SOURCE_REGEX_SEARCH_NO_ERROR;
 }
 
 /**
@@ -3025,21 +2960,6 @@ gtk_source_search_context_get_regex_error (GtkSourceSearchContext *search)
 	}
 
 	return g_error_copy (search->priv->regex_error);
-}
-
-/**
- * gtk_source_search_context_get_regex_state:
- * @search: a #GtkSourceSearchContext.
- *
- * Returns: the regex search state.
- * Since: 3.10
- */
-GtkSourceRegexSearchState
-gtk_source_search_context_get_regex_state (GtkSourceSearchContext *search)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), GTK_SOURCE_REGEX_SEARCH_NO_ERROR);
-
-	return search->priv->regex_state;
 }
 
 /**
