@@ -281,34 +281,35 @@ gtk_source_buffer_load_file (GtkSourceBuffer *buffer,
 static void
 remove_all_marks (GtkSourceBuffer *buffer)
 {
-	GtkTextIter s, e;
+	GtkTextIter start;
+	GtkTextIter end;
 
-	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &s, &e);
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
 
-	gtk_source_buffer_remove_source_marks (buffer, &s, &e, NULL);
+	gtk_source_buffer_remove_source_marks (buffer, &start, &end, NULL);
 }
 
 static GtkSourceLanguage *
-get_language_for_file (GtkTextBuffer *buffer, const gchar *filename)
+get_language_for_file (GtkTextBuffer *buffer,
+		       const gchar   *filename)
 {
 	GtkSourceLanguageManager *manager;
 	GtkSourceLanguage *language;
-	GtkTextIter start, end;
+	GtkTextIter start;
+	GtkTextIter end;
 	gchar *text;
 	gchar *content_type;
 	gboolean result_uncertain;
 
 	gtk_text_buffer_get_start_iter (buffer, &start);
-	if (gtk_text_buffer_get_char_count (buffer) < 1024)
-		gtk_text_buffer_get_end_iter (buffer, &end);
-	else
-		gtk_text_buffer_get_iter_at_offset (buffer, &end, 1024);
+	gtk_text_buffer_get_iter_at_offset (buffer, &end, 1024);
 	text = gtk_text_buffer_get_slice (buffer, &start, &end, TRUE);
 
 	content_type = g_content_type_guess (filename,
 					     (guchar*) text,
 					     strlen (text),
 					     &result_uncertain);
+
 	if (result_uncertain)
 	{
 		g_free (content_type);
@@ -321,9 +322,9 @@ get_language_for_file (GtkTextBuffer *buffer, const gchar *filename)
 							       content_type);
 
 	g_message ("Detected '%s' mime type for file %s, chose language %s",
-		   content_type ? content_type : "(null)",
+		   content_type != NULL ? content_type : "(null)",
 		   filename,
-		   language ? gtk_source_language_get_id (language) : "(none)");
+		   language != NULL ? gtk_source_language_get_id (language) : "(none)");
 
 	g_free (content_type);
 	g_free (text);
@@ -339,10 +340,12 @@ get_language_by_id (const gchar *id)
 }
 
 static GtkSourceLanguage *
-get_language (GtkTextBuffer *buffer, const gchar *filename)
+get_language (GtkTextBuffer *buffer,
+	      const gchar   *filename)
 {
 	GtkSourceLanguage *language = NULL;
-	GtkTextIter start, end;
+	GtkTextIter start;
+	GtkTextIter end;
 	gchar *text;
 	gchar *lang_string;
 
@@ -351,8 +354,10 @@ get_language (GtkTextBuffer *buffer, const gchar *filename)
 	gtk_text_iter_forward_line (&end);
 
 #define LANG_STRING "gtk-source-lang:"
+
 	text = gtk_text_iter_get_slice (&start, &end);
 	lang_string = strstr (text, LANG_STRING);
+
 	if (lang_string != NULL)
 	{
 		gchar **tokens;
@@ -363,84 +368,96 @@ get_language (GtkTextBuffer *buffer, const gchar *filename)
 		tokens = g_strsplit_set (lang_string, " \t\n", 2);
 
 		if (tokens != NULL && tokens[0] != NULL)
+		{
 			language = get_language_by_id (tokens[0]);
+		}
 
 		g_strfreev (tokens);
 	}
 
-	if (!language)
+	if (language == NULL)
+	{
 		language = get_language_for_file (buffer, filename);
+	}
 
 	g_free (text);
 	return language;
 }
 
-static gboolean
-open_file (GtkSourceBuffer *buffer, const gchar *filename)
+static void
+print_language_style_ids (GtkSourceLanguage *language)
+{
+	gchar **styles;
+
+	g_assert (language != NULL);
+
+	styles = gtk_source_language_get_style_ids (language);
+
+	if (styles == NULL)
+	{
+		g_print ("No styles in language '%s'\n",
+			 gtk_source_language_get_name (language));
+	}
+	else
+	{
+		gchar **ids;
+		g_print ("Styles in language '%s':\n",
+			 gtk_source_language_get_name (language));
+
+		for (ids = styles; *ids != NULL; ids++)
+		{
+			const gchar *name = gtk_source_language_get_style_name (language, *ids);
+
+			g_print ("- %s (name: '%s')\n", *ids, name);
+		}
+
+		g_strfreev (styles);
+	}
+
+	g_print ("\n");
+}
+
+static void
+open_file (GtkSourceBuffer *buffer,
+	   const gchar     *filename)
 {
 	GtkSourceLanguage *language = NULL;
-	gchar *freeme = NULL;
-	gboolean success = FALSE;
+	gchar *absolute_filename;
 
-	if (!g_path_is_absolute (filename))
+	if (g_path_is_absolute (filename))
+	{
+		absolute_filename = g_strdup (filename);
+	}
+	else
 	{
 		gchar *curdir = g_get_current_dir ();
-		freeme = g_build_filename (curdir, filename, NULL);
-		filename = freeme;
+		absolute_filename = g_build_filename (curdir, filename, NULL);
 		g_free (curdir);
 	}
 
 	remove_all_marks (buffer);
 
-	success = gtk_source_buffer_load_file (buffer, filename);
+	if (!gtk_source_buffer_load_file (buffer, absolute_filename))
+	{
+		g_free (absolute_filename);
+		return;
+	}
 
-	if (!success)
-		goto out;
-
-	language = get_language (GTK_TEXT_BUFFER (buffer), filename);
-
-	if (language == NULL)
-		g_print ("No language found for file `%s'\n", filename);
-
-	gtk_source_buffer_set_language (buffer, language);
 	g_object_set_data_full (G_OBJECT (buffer),
-				"filename", g_strdup (filename),
+				"filename", absolute_filename,
 				(GDestroyNotify) g_free);
+
+	language = get_language (GTK_TEXT_BUFFER (buffer), absolute_filename);
+	gtk_source_buffer_set_language (buffer, language);
 
 	if (language != NULL)
 	{
-		gchar **styles;
-
-		styles = gtk_source_language_get_style_ids (language);
-
-		if (styles == NULL)
-			g_print ("No styles in language '%s'\n", gtk_source_language_get_name (language));
-		else
-		{
-			gchar **ids;
-			g_print ("Styles in in language '%s':\n", gtk_source_language_get_name (language));
-
-			ids = styles;
-
-			while (*ids != NULL)
-			{
-				const gchar *name;
-
-				name = gtk_source_language_get_style_name (language, *ids);
-
-				g_print ("- %s (name: '%s')\n", *ids, name);
-
-				++ids;
-			}
-
-			g_strfreev (styles);
-		}
-
-		g_print("\n");
+		print_language_style_ids (language);
 	}
-out:
-	g_free (freeme);
-	return success;
+	else
+	{
+		g_print ("No language found for file '%s'\n", absolute_filename);
+	}
 }
 
 
@@ -674,11 +691,15 @@ open_file_cb (GtkAction *action, gpointer user_data)
 					       NULL);
 
 	if (last_dir == NULL)
+	{
 		last_dir = g_strdup (TOP_SRCDIR "/gtksourceview");
+	}
 
 	if (last_dir != NULL && g_path_is_absolute (last_dir))
+	{
 		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (chooser),
 						     last_dir);
+	}
 
 	response = gtk_dialog_run (GTK_DIALOG (chooser));
 
@@ -736,8 +757,6 @@ paginate (GtkPrintOperation        *operation,
 
 		n_pages = gtk_source_print_compositor_get_n_pages (compositor);
 		gtk_print_operation_set_n_pages (operation, n_pages);
-
-
 
 		return TRUE;
 	}
