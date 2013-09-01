@@ -20,7 +20,6 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
@@ -28,13 +27,9 @@
 #include <gtksourceview/gtksource.h>
 
 /* Global list of open windows */
-
 static GList *windows = NULL;
+
 static GtkSourceStyleScheme *style_scheme = NULL;
-
-/* Private data structures */
-
-#define READ_BUFFER_SIZE   4096
 
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
@@ -242,66 +237,44 @@ static const gchar *buffer_ui_description =
 
 /* File loading code ----------------------------------------------------------------- */
 
-static void
-error_dialog (GtkWindow *parent, const gchar *msg, ...)
-{
-	va_list ap;
-	gchar *tmp;
-	GtkWidget *dialog;
-
-	va_start (ap, msg);
-	tmp = g_strdup_vprintf (msg, ap);
-	va_end (ap);
-
-	dialog = gtk_message_dialog_new (parent,
-					 GTK_DIALOG_DESTROY_WITH_PARENT,
-					 GTK_MESSAGE_ERROR,
-					 GTK_BUTTONS_OK,
-					 "%s", tmp);
-	g_free (tmp);
-
-	gtk_dialog_run (GTK_DIALOG (dialog));
-	gtk_widget_destroy (dialog);
-}
-
 static gboolean
-gtk_source_buffer_load_file (GtkSourceBuffer *source_buffer,
-			     const gchar     *filename,
-			     GError         **error)
+gtk_source_buffer_load_file (GtkSourceBuffer *buffer,
+			     const gchar     *filename)
 {
 	GtkTextIter iter;
-	gchar *buffer;
-	GError *error_here = NULL;
+	gchar *contents;
+	GError *error = NULL;
 
-	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (source_buffer), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 	g_return_val_if_fail (filename != NULL, FALSE);
 
-	if (!g_file_get_contents (filename, &buffer, NULL, &error_here))
+	if (!g_file_get_contents (filename, &contents, NULL, &error))
 	{
-		error_dialog (NULL, "%s\nFile %s", error_here->message, filename);
-		g_propagate_error (error, error_here);
+		GtkWidget *dialog = gtk_message_dialog_new (NULL,
+							    0,
+							    GTK_MESSAGE_ERROR,
+							    GTK_BUTTONS_OK,
+							    "%s\nFile %s",
+							    error->message,
+							    filename);
+
+		gtk_dialog_run (GTK_DIALOG (dialog));
+		gtk_widget_destroy (dialog);
+
+		g_error_free (error);
 		return FALSE;
 	}
 
-	gtk_source_buffer_begin_not_undoable_action (source_buffer);
-	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (source_buffer), buffer, -1);
-	gtk_source_buffer_end_not_undoable_action (source_buffer);
-	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (source_buffer), FALSE);
+	gtk_source_buffer_begin_not_undoable_action (buffer);
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), contents, -1);
+	gtk_source_buffer_end_not_undoable_action (buffer);
+	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (buffer), FALSE);
 
 	/* move cursor to the beginning */
-	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (source_buffer), &iter);
-	gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (source_buffer), &iter);
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
+	gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (buffer), &iter);
 
-	{
-		GtkTextIter start, end;
-		char *text;
-		gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (source_buffer), &start, &end);
-		text = gtk_text_buffer_get_text (GTK_TEXT_BUFFER (source_buffer), &start, &end, TRUE);
-		g_assert (!strcmp (text, buffer));
-		g_free (text);
-	}
-
-	g_free (buffer);
+	g_free (contents);
 	return TRUE;
 }
 
@@ -419,7 +392,7 @@ open_file (GtkSourceBuffer *buffer, const gchar *filename)
 
 	remove_all_marks (buffer);
 
-	success = gtk_source_buffer_load_file (buffer, filename, NULL);
+	success = gtk_source_buffer_load_file (buffer, filename);
 
 	if (!success)
 		goto out;
