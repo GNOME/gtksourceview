@@ -20,21 +20,12 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-/* If TEST_XML_MEM is defined the test program will try to detect memory
- * allocated by xmlMalloc() but not freed by xmlFree() or freed by xmlFree()
- * but not allocated by xmlMalloc(). */
-#define TEST_XML_MEM
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <gio/gio.h>
 #include <gtksourceview/gtksource.h>
-
-#ifdef TEST_XML_MEM
-#include <libxml/xmlreader.h>
-#endif
 
 /* Global list of open windows */
 
@@ -1391,84 +1382,6 @@ create_main_window (GtkSourceBuffer *buffer)
 	return window;
 }
 
-
-/* XML memory management and verification functions ----------------------------- */
-
-#ifdef TEST_XML_MEM
-
-#define ALIGN 8
-
-/* my_free(malloc(n)) and free(my_malloc(n)) are invalid and
- * abort on glibc */
-
-static gpointer
-my_malloc (gsize n_bytes)
-{
-	char *mem = malloc (n_bytes + ALIGN);
-	return mem ? mem + ALIGN : NULL;
-}
-
-static gpointer
-my_realloc (gpointer mem,
-	    gsize    n_bytes)
-{
-	if (mem)
-	{
-		char *new_mem = realloc ((char*) mem - ALIGN, n_bytes + ALIGN);
-		return new_mem ? new_mem + ALIGN : NULL;
-	}
-	else
-	{
-		return my_malloc (n_bytes);
-	}
-}
-
-static char *
-my_strdup (const char *s)
-{
-	if (s)
-	{
-		char *new_s = my_malloc (strlen (s) + 1);
-		strcpy (new_s, s);
-		return new_s;
-	}
-	else
-	{
-		return NULL;
-	}
-}
-
-static void
-my_free (gpointer mem)
-{
-	if (mem)
-		free ((char*) mem - ALIGN);
-}
-
-static void
-init_mem_stuff (void)
-{
-	if (1)
-	{
-		if (xmlMemSetup (my_free, my_malloc, my_realloc, my_strdup) != 0)
-			g_warning ("xmlMemSetup() failed");
-	}
-	else
-	{
-		GMemVTable mem_table = {
-			my_malloc,
-			my_realloc,
-			my_free,
-			NULL, NULL, NULL
-		};
-
-		g_mem_set_vtable (&mem_table);
-	}
-}
-
-#endif /* TEST_XML_MEM */
-
-
 /* Program entry point ------------------------------------------------------------ */
 
 int
@@ -1495,10 +1408,6 @@ main (int argc, char *argv[])
 	  { "default-paths", 'd', 0, G_OPTION_ARG_NONE, &use_default_paths, "Use default search paths", NULL},
 	  { NULL }
 	};
-
-#ifdef TEST_XML_MEM
-	init_mem_stuff ();
-#endif
 
 	context = g_option_context_new ("- test GtkSourceView widget");
 	g_option_context_add_main_entries (context, entries, NULL);
