@@ -55,10 +55,6 @@ static void       open_file_cb                   (GtkAction       *action,
 						  gpointer         user_data);
 static void       print_file_cb                  (GtkAction       *action,
 						  gpointer         user_data);
-static void       find_cb			 (GtkAction       *action,
-						  gpointer         user_data);
-static void       replace_cb			 (GtkAction       *action,
-						  gpointer         user_data);
 
 static void       new_view_cb                    (GtkAction       *action,
 						  gpointer         user_data);
@@ -119,10 +115,6 @@ static GtkActionEntry view_action_entries[] = {
 	{ "TabWidth", NULL, "_Tab Width", NULL, NULL, NULL },
 	{ "IndentWidth", NULL, "I_ndent Width", NULL, NULL, NULL },
 	{ "SmartHomeEnd", NULL, "_Smart Home/End", NULL, NULL, NULL },
-	{ "Find", GTK_STOCK_FIND, "_Find", "<control>F",
-	  "Find", G_CALLBACK (find_cb) },
-	{ "Replace", GTK_STOCK_FIND_AND_REPLACE, "Search and _Replace", "<control>R",
-	  "Search and Replace", G_CALLBACK (replace_cb) },
 	{ "ForwardString", NULL, "_Forward to string toggle", "<control>S",
 	  "Forward to the start or end of the next string", G_CALLBACK (forward_string_cb) },
 	{ "BackwardString", NULL, "_Backward to string toggle", "<control><shift>S",
@@ -248,8 +240,6 @@ static const gchar *buffer_ui_description =
 "    <menu action=\"FileMenu\">"
 "      <menuitem action=\"Open\"/>"
 "      <menuitem action=\"Print\"/>"
-"      <menuitem action=\"Find\"/>"
-"      <menuitem action=\"Replace\"/>"
 "      <separator/>"
 "      <menuitem action=\"Quit\"/>"
 "    </menu>"
@@ -702,150 +692,6 @@ backward_string_cb (GtkAction *action,
 }
 
 /* Buffer action callbacks ------------------------------------------------------------ */
-
-static struct {
-	char *what;
-	char *replacement;
-	GtkTextSearchFlags flags;
-} search_data = {
-	NULL,
-	NULL,
-	GTK_TEXT_SEARCH_CASE_INSENSITIVE
-};
-
-static gboolean
-search_dialog (GtkWidget            *widget,
-	       gboolean              replace,
-	       char                **what_p,
-	       char                **replacement_p,
-	       GtkTextSearchFlags   *flags_p)
-{
-	GtkWidget *dialog;
-	GtkEntry *entry1, *entry2;
-	GtkToggleButton *case_sensitive;
-
-	dialog = gtk_dialog_new_with_buttons (replace ? "Replace" : "Find",
-					      GTK_WINDOW (gtk_widget_get_toplevel (widget)),
-					      GTK_DIALOG_MODAL,
-					      GTK_STOCK_CANCEL,
-					      GTK_RESPONSE_CANCEL,
-					      GTK_STOCK_OK,
-					      GTK_RESPONSE_OK,
-					      NULL);
-	gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
-
-	entry1 = g_object_new (GTK_TYPE_ENTRY,
-			       "visible", TRUE,
-			       "text", search_data.what ? search_data.what : "",
-			       "activates-default", TRUE,
-			       NULL);
-	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
-				     GTK_WIDGET (entry1), TRUE, TRUE, 0);
-	entry2 = g_object_new (GTK_TYPE_ENTRY,
-			       "visible", replace,
-			       "text", search_data.replacement ? search_data.replacement : "",
-			       "activates-default", TRUE,
-			       NULL);
-	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
-				     GTK_WIDGET (entry2), TRUE, TRUE, 0);
-
-	case_sensitive = g_object_new (GTK_TYPE_CHECK_BUTTON,
-				       "visible", TRUE,
-				       "label", "Case sensitive",
-				       "active", !(search_data.flags & GTK_TEXT_SEARCH_CASE_INSENSITIVE),
-				       NULL);
-	gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dialog))),
-			    GTK_WIDGET (case_sensitive), FALSE, FALSE, 0);
-
-	while (TRUE)
-	{
-		if (gtk_dialog_run (GTK_DIALOG (dialog)) != GTK_RESPONSE_OK)
-		{
-			gtk_widget_destroy (dialog);
-			return FALSE;
-		}
-
-		if (*gtk_entry_get_text (entry1))
-			break;
-	}
-
-	g_free (search_data.what);
-	*what_p = search_data.what = g_strdup (gtk_entry_get_text (entry1));
-	g_free (search_data.replacement);
-	*replacement_p = search_data.replacement = g_strdup (gtk_entry_get_text (entry2));
-	*flags_p = search_data.flags = gtk_toggle_button_get_active (case_sensitive) ?
-					0 : GTK_TEXT_SEARCH_CASE_INSENSITIVE;
-
-	gtk_widget_destroy (dialog);
-	return TRUE;
-}
-
-static void
-do_search_replace (GtkTextView *view,
-		   gboolean     replace)
-{
-	GtkTextBuffer *buffer = gtk_text_view_get_buffer (view);
-	GtkTextIter iter;
-	char *what, *replacement;
-	GtkTextSearchFlags flags;
-
-	if (!search_dialog (GTK_WIDGET (view), replace, &what, &replacement, &flags))
-		return;
-
-	if (replace)
-	{
-		gtk_text_buffer_get_iter_at_offset (buffer, &iter, 0);
-
-		while (TRUE)
-		{
-			GtkTextIter match_start, match_end;
-
-			if (!gtk_text_iter_forward_search (&iter, what, flags,
-							   &match_start,
-							   &match_end,
-							   NULL))
-			{
-				break;
-			}
-
-			gtk_text_buffer_delete (buffer, &match_start, &match_end);
-			gtk_text_buffer_insert (buffer, &match_start, replacement, -1);
-			iter = match_start;
-		}
-	}
-	else
-	{
-		GtkTextIter match_start, match_end;
-
-		gtk_text_buffer_get_iter_at_mark (buffer, &iter, gtk_text_buffer_get_insert (buffer));
-
-		if (gtk_text_iter_forward_search (&iter, what, flags, &match_start, &match_end, NULL))
-		{
-			gtk_text_buffer_select_range (buffer, &match_start, &match_end);
-		}
-		else
-		{
-			GtkTextIter insert = iter;
-			gtk_text_buffer_get_start_iter (buffer, &iter);
-			if (gtk_text_iter_forward_search (&iter, what, flags, &match_start, &match_end, &insert))
-				gtk_text_buffer_select_range (buffer, &match_start, &match_end);
-		}
-	}
-}
-
-static void
-find_cb (GtkAction *action,
-	 gpointer   user_data)
-{
-	do_search_replace (user_data, FALSE);
-}
-
-static void
-replace_cb (GtkAction *action,
-	    gpointer   user_data)
-{
-	do_search_replace (user_data, TRUE);
-}
 
 static void
 open_file_cb (GtkAction *action, gpointer user_data)
