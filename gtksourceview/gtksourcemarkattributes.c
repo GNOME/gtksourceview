@@ -294,6 +294,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	 * GtkSourceMarkAttributes:stock-id:
 	 *
 	 * A stock id that may be a base of a rendered icon.
+	 *
+	 * Deprecated: 3.10: Don't use this property.
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_STOCK_ID,
@@ -454,6 +456,8 @@ gtk_source_mark_attributes_get_background (GtkSourceMarkAttributes *attributes,
  * @stock_id: a stock id.
  *
  * Sets stock id to be used as a base for rendered icon.
+ *
+ * Deprecated: 3.10: Don't use this function.
  */
 void
 gtk_source_mark_attributes_set_stock_id (GtkSourceMarkAttributes *attributes,
@@ -473,6 +477,8 @@ gtk_source_mark_attributes_set_stock_id (GtkSourceMarkAttributes *attributes,
  *
  * Returns: (transfer none): Stock id. Returned string is owned by @attributes and
  * shouldn't be freed.
+ *
+ * Deprecated: 3.10: Don't use this function.
  */
 const gchar *
 gtk_source_mark_attributes_get_stock_id (GtkSourceMarkAttributes *attributes)

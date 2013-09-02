@@ -66,8 +66,11 @@ void             gtk_source_mark_attributes_set_background      (GtkSourceMarkAt
 gboolean         gtk_source_mark_attributes_get_background      (GtkSourceMarkAttributes *attributes,
                                                                  GdkRGBA                 *background);
 
+G_DEPRECATED
 void             gtk_source_mark_attributes_set_stock_id        (GtkSourceMarkAttributes *attributes,
                                                                  const gchar             *stock_id);
+
+G_DEPRECATED
 const gchar     *gtk_source_mark_attributes_get_stock_id        (GtkSourceMarkAttributes *attributes);
 
 void             gtk_source_mark_attributes_set_icon_name       (GtkSourceMarkAttributes *attributes,
