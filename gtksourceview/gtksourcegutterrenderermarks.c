@@ -418,6 +418,7 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
                              GtkTextView             *old_view)
 {
 	GtkSourceView *view;
+	GtkSourceGutterRendererClass *parent_class;
 
 	view = GTK_SOURCE_VIEW (gtk_source_gutter_renderer_get_view (renderer));
 
@@ -426,6 +427,9 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 		gtk_source_gutter_renderer_set_size (renderer,
 		                                     measure_line_height (view));
 	}
+
+	parent_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_marks_parent_class);
+	parent_class->change_view (renderer, old_view);
 }
 
 static void
