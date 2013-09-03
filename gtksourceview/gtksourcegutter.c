@@ -31,21 +31,23 @@
  * SECTION:gutter
  * @Short_description: Gutter object for #GtkSourceView
  * @Title: GtkSourceGutter
- * @See_also:#GtkSourceView
+ * @See_also: #GtkSourceView, #GtkSourceMark
  *
- * The #GtkSourceGutter object represents the left and right gutters of the text
- * view. It is used by #GtkSourceView to draw the line numbers and category
- * marks that might be present on a line. By packing additional #GtkSourceGutterRenderer
- * objects in the gutter, you can extend the gutter with your own custom
- * drawings.
+ * The #GtkSourceGutter object represents the left or right gutter of the text
+ * view. It is used by #GtkSourceView to draw the line numbers and
+ * #GtkSourceMark<!-- -->s that might be present on a line. By packing
+ * additional #GtkSourceGutterRenderer objects in the gutter, you can extend the
+ * gutter with your own custom drawings.
+ *
+ * To get a #GtkSourceGutter, use the gtk_source_view_get_gutter() function.
  *
  * The gutter works very much the same way as cells rendered in a #GtkTreeView.
  * The concept is similar, with the exception that the gutter does not have an
  * underlying #GtkTreeModel. The builtin line number renderer is at position
  * #GTK_SOURCE_VIEW_GUTTER_POSITION_LINES (-30) and the marks renderer is at
- * #GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS (-20). You can use these values to
- * position custom renderers accordingly.
- *
+ * #GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS (-20). The gutter sorts the renderers
+ * in ascending order, from left to right. So the marks are displayed on the
+ * right of the line numbers.
  */
 
 /* Properties */
@@ -529,7 +531,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	/**
 	 * GtkSourceGutter:view:
 	 *
-	 * The #GtkSourceView of the gutter
+	 * The #GtkSourceView of the gutter.
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_VIEW,
@@ -545,7 +547,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	/**
 	 * GtkSourceGutter:window-type:
 	 *
-	 * The text window type on which the window is placed
+	 * The text window type on which the window is placed.
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_WINDOW_TYPE,
@@ -565,7 +567,6 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                                   G_MAXINT,
 	                                                   0,
 	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
 
 	g_object_class_install_property (object_class,
 	                                 PROP_YPAD,
@@ -640,6 +641,8 @@ gtk_source_gutter_new (GtkSourceView     *view,
  *
  * Since: 2.8
  */
+/* Note: this function should maybe be private. It is not really useful, and it
+ * is used nowhere in gedit. */
 GdkWindow *
 gtk_source_gutter_get_window (GtkSourceGutter *gutter)
 {
@@ -1612,6 +1615,9 @@ gtk_source_gutter_get_padding (GtkSourceGutter *gutter,
  * Finds the #GtkSourceGutterRenderer at (x, y).
  *
  * Returns: (transfer none): the renderer at (x, y) or %NULL.
+ */
+/* FIXME: to insert a renderer in a gutter, only one position is needed. Here to
+ * retrieve a renderer, two positions are needed? Document why.
  */
 GtkSourceGutterRenderer *
 gtk_source_gutter_get_renderer_at_pos (GtkSourceGutter *gutter,
