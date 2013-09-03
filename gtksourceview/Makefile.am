@@ -24,16 +24,16 @@ BUILT_SOURCES = 			\
 libgtksourceview_headers =			\
 	gtksource.h				\
 	gtksourcebuffer.h			\
-	gtksourcecompletioncontext.h		\
 	gtksourcecompletion.h			\
+	gtksourcecompletioncontext.h		\
 	gtksourcecompletioninfo.h		\
 	gtksourcecompletionitem.h		\
 	gtksourcecompletionproposal.h		\
 	gtksourcecompletionprovider.h		\
 	gtksourcegutter.h			\
 	gtksourcegutterrenderer.h		\
-	gtksourcegutterrenderertext.h		\
 	gtksourcegutterrendererpixbuf.h		\
+	gtksourcegutterrenderertext.h		\
 	gtksourcelanguage.h			\
 	gtksourcelanguagemanager.h		\
 	gtksourcemark.h				\
@@ -75,9 +75,11 @@ libgtksourceview_private_c_files = \
 	gtksourcecompletionmodel.c	\
 	gtksourcecontextengine.c	\
 	gtksourceengine.c		\
-	gtksourcepixbufhelper.c		\
+	gtksourcegutterrendererlines.c	\
+	gtksourcegutterrenderermarks.c	\
 	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\
+	gtksourcepixbufhelper.c		\
 	gtksourceregex.c		\
 	gtksourceundomanager.c 		\
 	gtksourceundomanagerdefault.c	\
@@ -95,10 +97,8 @@ libgtksourceview_c_files = \
 	gtksourcecompletionprovider.c	\
 	gtksourcegutter.c		\
 	gtksourcegutterrenderer.c	\
-	gtksourcegutterrenderertext.c	\
 	gtksourcegutterrendererpixbuf.c	\
-	gtksourcegutterrendererlines.c	\
-	gtksourcegutterrenderermarks.c	\
+	gtksourcegutterrenderertext.c	\
 	gtksourcelanguage.c 		\
 	gtksourcelanguagemanager.c 	\
 	gtksourcemark.c			\

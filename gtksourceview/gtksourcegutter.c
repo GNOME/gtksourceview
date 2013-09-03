@@ -27,8 +27,6 @@
 #include "gtksourcegutterrenderer.h"
 #include "gtksourcegutterrenderer-private.h"
 
-#include <gobject/gvaluecollector.h>
-
 /**
  * SECTION:gutter
  * @Short_description: Gutter object for #GtkSourceView
@@ -242,12 +240,6 @@ renderer_free (Renderer *renderer)
 
 	g_object_unref (renderer->renderer);
 	g_slice_free (Renderer, renderer);
-}
-
-static void
-gtk_source_gutter_finalize (GObject *object)
-{
-	G_OBJECT_CLASS (gtk_source_gutter_parent_class)->finalize (object);
 }
 
 static void
@@ -531,7 +523,6 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	object_class->set_property = gtk_source_gutter_set_property;
 	object_class->get_property = gtk_source_gutter_get_property;
 
-	object_class->finalize = gtk_source_gutter_finalize;
 	object_class->dispose = gtk_source_gutter_dispose;
 	object_class->constructed = gtk_source_gutter_constructed;
 
@@ -674,7 +665,6 @@ gtk_source_gutter_get_window (GtkSourceGutter *gutter)
  * Since: 3.0
  *
  **/
-
 gboolean
 gtk_source_gutter_insert (GtkSourceGutter         *gutter,
                           GtkSourceGutterRenderer *renderer,

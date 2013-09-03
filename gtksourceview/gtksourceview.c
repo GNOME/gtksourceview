@@ -2556,18 +2556,14 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 		              "yalign", 0.5,
 		              "xalign", 1.0,
 		              "xpad", 3,
-		              "visible", show,
 		              NULL);
 
 		gtk_source_gutter_insert (gutter,
 		                          view->priv->line_renderer,
 		                          GTK_SOURCE_VIEW_GUTTER_POSITION_LINES);
 	}
-	else
-	{
-		gtk_source_gutter_renderer_set_visible (view->priv->line_renderer, show);
-	}
 
+	gtk_source_gutter_renderer_set_visible (view->priv->line_renderer, show);
 	view->priv->show_line_numbers = show;
 
 	g_object_notify (G_OBJECT (view), "show_line_numbers");
@@ -2634,9 +2630,6 @@ gtk_source_view_set_show_line_marks (GtkSourceView *view,
 		gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
 
 		view->priv->marks_renderer = gtk_source_gutter_renderer_marks_new ();
-		g_object_set (view->priv->marks_renderer,
-		              "visible", show,
-		              NULL);
 
 		gtk_source_gutter_insert (gutter,
 		                          view->priv->marks_renderer,
@@ -2647,11 +2640,8 @@ gtk_source_view_set_show_line_marks (GtkSourceView *view,
 		                  G_CALLBACK (gutter_renderer_marks_activate),
 		                  view);
 	}
-	else
-	{
-		gtk_source_gutter_renderer_set_visible (view->priv->marks_renderer, show);
-	}
 
+	gtk_source_gutter_renderer_set_visible (view->priv->marks_renderer, show);
 	view->priv->show_line_marks = show;
 
 	g_object_notify (G_OBJECT (view), "show_line_marks");

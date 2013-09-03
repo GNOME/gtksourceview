@@ -28,7 +28,6 @@
 enum
 {
 	ACTIVATE,
-	SIZE_CHANGED,
 	QUEUE_DRAW,
 	QUERY_TOOLTIP,
 	QUERY_DATA,
@@ -95,13 +94,6 @@ set_buffer (GtkSourceGutterRenderer *renderer,
 	}
 
 	renderer->priv->buffer = buffer;
-
-}
-
-static void
-gtk_source_gutter_renderer_finalize (GObject *object)
-{
-	G_OBJECT_CLASS (gtk_source_gutter_renderer_parent_class)->finalize (object);
 }
 
 static void
@@ -173,23 +165,20 @@ gtk_source_gutter_renderer_dispose (GObject *object)
 	G_OBJECT_CLASS (gtk_source_gutter_renderer_parent_class)->dispose (object);
 }
 
-static gboolean
+static void
 set_visible (GtkSourceGutterRenderer *renderer,
              gboolean                 visible)
 {
-	if (renderer->priv->visible == visible)
+	visible = visible != FALSE;
+
+	if (renderer->priv->visible != visible)
 	{
-		return FALSE;
+		renderer->priv->visible = visible;
+		g_object_notify (G_OBJECT (renderer), "visible");
+
+		gtk_source_gutter_renderer_queue_draw (renderer);
 	}
-
-	renderer->priv->visible = visible;
-	g_object_notify (G_OBJECT (renderer), "visible");
-
-	gtk_source_gutter_renderer_queue_draw (renderer);
-
-	return TRUE;
 }
-
 
 static gboolean
 set_padding (GtkSourceGutterRenderer *renderer,
@@ -459,7 +448,6 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->finalize = gtk_source_gutter_renderer_finalize;
 	object_class->dispose = gtk_source_gutter_renderer_dispose;
 
 	object_class->get_property = gtk_source_gutter_renderer_get_property;
@@ -1029,14 +1017,7 @@ gtk_source_gutter_renderer_set_visible (GtkSourceGutterRenderer *renderer,
 {
 	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
-	if (visible != renderer->priv->visible)
-	{
-		renderer->priv->visible = visible;
-
-		g_object_notify (G_OBJECT (renderer), "visible");
-
-		gtk_source_gutter_renderer_queue_draw (renderer);
-	}
+	set_visible (renderer, visible);
 }
 
 /**
@@ -1322,15 +1303,7 @@ _gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
 	old_view = renderer->priv->view;
 
 	renderer->priv->window_type = window_type;
-
-	if (view)
-	{
-		renderer->priv->view = g_object_ref (view);
-	}
-	else
-	{
-		renderer->priv->view = NULL;
-	}
+	renderer->priv->view = view != NULL ? g_object_ref (view) : NULL;
 
 	if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_view)
 	{

@@ -31,12 +31,6 @@ struct _GtkSourceGutterRendererLinesPrivate
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererLines, gtk_source_gutter_renderer_lines, GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT)
 
-static void
-gtk_source_gutter_renderer_lines_finalize (GObject *object)
-{
-	G_OBJECT_CLASS (gtk_source_gutter_renderer_lines_parent_class)->finalize (object);
-}
-
 static GtkTextBuffer *
 get_buffer (GtkSourceGutterRendererLines *renderer)
 {
@@ -315,10 +309,7 @@ gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
 static void
 gtk_source_gutter_renderer_lines_class_init (GtkSourceGutterRendererLinesClass *klass)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkSourceGutterRendererClass *renderer_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (klass);
-
-	object_class->finalize = gtk_source_gutter_renderer_lines_finalize;
 
 	renderer_class->query_data = gutter_renderer_query_data;
 	renderer_class->query_activatable = gutter_renderer_query_activatable;
