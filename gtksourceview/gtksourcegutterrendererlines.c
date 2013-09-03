@@ -134,6 +134,43 @@ gutter_renderer_change_buffer (GtkSourceGutterRenderer *renderer,
 }
 
 static void
+on_view_style_updated (GtkTextView                  *view,
+		       GtkSourceGutterRendererLines *renderer)
+{
+	/* Force to recalculate the size. */
+	renderer->priv->num_line_digits = -1;
+	recalculate_size (renderer);
+}
+
+static void
+gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
+			     GtkTextView             *old_view)
+{
+	GtkSourceGutterRendererClass *parent_class;
+	GtkTextView *new_view;
+
+	if (old_view != NULL)
+	{
+		g_signal_handlers_disconnect_by_func (old_view,
+						      on_view_style_updated,
+						      renderer);
+	}
+
+	new_view = gtk_source_gutter_renderer_get_view (renderer);
+
+	if (new_view != NULL)
+	{
+		g_signal_connect (new_view,
+				  "style-updated",
+				  G_CALLBACK (on_view_style_updated),
+				  renderer);
+	}
+
+	parent_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class);
+	parent_class->change_view (renderer, old_view);
+}
+
+static void
 gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
                             GtkTextIter                  *start,
                             GtkTextIter                  *end,
@@ -287,6 +324,7 @@ gtk_source_gutter_renderer_lines_class_init (GtkSourceGutterRendererLinesClass *
 	renderer_class->query_activatable = gutter_renderer_query_activatable;
 	renderer_class->activate = gutter_renderer_activate;
 	renderer_class->change_buffer = gutter_renderer_change_buffer;
+	renderer_class->change_view = gutter_renderer_change_view;
 }
 
 static void
