@@ -25,6 +25,50 @@
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourceview-i18n.h"
 
+/**
+ * SECTION:gutterrenderer
+ * @Short_description: Gutter cell renderer
+ * @Title: GtkSourceGutterRenderer
+ * @See_also: #GtkSourceGutter
+ *
+ * A #GtkSourceGutterRenderer represents a column in a #GtkSourceGutter. The
+ * column contains one cell for each visible line of the #GtkTextBuffer. Due to
+ * text wrapping, a cell can thus span multiple lines of the #GtkTextView. In
+ * this case, #GtkSourceGutterRendererAlignmentMode controls the alignment of
+ * the cell.
+ *
+ * The gutter renderer must announce its #GtkSourceGutterRenderer:size. The
+ * height is determined by the text view height. The width must be determined by
+ * the gutter renderer. The width generally takes into account the entire text
+ * buffer. For instance, to display the line numbers, if the buffer contains 100
+ * lines, the gutter renderer will always set its width such as three digits can
+ * be printed, even if only the first 20 lines are shown. Another strategy is to
+ * take into account only the visible lines.  In this case, only two digits are
+ * necessary to display the line numbers of the first 20 lines. To take another
+ * example, the gutter renderer for #GtkSourceMark<!-- -->s doesn't need to take
+ * into account the text buffer to announce its width. It only depends on the
+ * icons size displayed in the gutter column.
+ *
+ * An horizontal and vertical padding can be added with
+ * gtk_source_gutter_renderer_set_padding().  The total width of a gutter
+ * renderer is its size (#GtkSourceGutterRenderer:size) plus two times the
+ * horizontal padding (#GtkSourceGutterRenderer:xpad).
+ *
+ * When the available size to render a cell is greater than the required size to
+ * render the cell contents, the cell contents can be aligned horizontally and
+ * vertically with gtk_source_gutter_renderer_set_alignment().
+ *
+ * The cells rendering occurs in three phases:
+ * - begin: the gtk_source_gutter_renderer_begin() function is called when some
+ *   cells need to be redrawn. It provides the associated region of the
+ *   #GtkTextBuffer. The cells need to be redrawn when the #GtkTextView is
+ *   scrolled, or when the state of the cells change (see
+ *   #GtkSourceGutterRendererState).
+ * - draw: gtk_source_gutter_renderer_draw() is called for each cell that needs
+ *   to be drawn.
+ * - end: finally, gtk_source_gutter_renderer_end() is called.
+ */
+
 enum
 {
 	ACTIVATE,
@@ -473,9 +517,8 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	/**
 	 * GtkSourceGutterRenderer:xpad:
 	 *
-	 * The x-padding of the renderer.
-	 *
-	 **/
+	 * The left and right padding of the renderer.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_XPAD,
 	                                 g_param_spec_int ("xpad",
@@ -489,9 +532,8 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	/**
 	 * GtkSourceGutterRenderer:ypad:
 	 *
-	 * The y-padding of the renderer.
-	 *
-	 **/
+	 * The top and bottom padding of the renderer.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_YPAD,
 	                                 g_param_spec_int ("ypad",
@@ -505,9 +547,10 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	/**
 	 * GtkSourceGutterRenderer:xalign:
 	 *
-	 * The x-alignment of the renderer.
-	 *
-	 **/
+	 * The horizontal alignment of the renderer. Set to 0 for a left
+	 * alignment. 1 for a right alignment. And 0.5 for centering the cells.
+	 * A value lower than 0 doesn't modify the alignment.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_XALIGN,
 	                                 g_param_spec_float ("xalign",
@@ -521,9 +564,10 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	/**
 	 * GtkSourceGutterRenderer:yalign:
 	 *
-	 * The y-alignment of the renderer.
-	 *
-	 **/
+	 * The vertical alignment of the renderer. Set to 0 for a top
+	 * alignment. 1 for a bottom alignment. And 0.5 for centering the cells.
+	 * A value lower than 0 doesn't modify the alignment.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_YALIGN,
 	                                 g_param_spec_float ("yalign",
@@ -752,9 +796,8 @@ gtk_source_gutter_renderer_init (GtkSourceGutterRenderer *self)
  *
  * Called when drawing a region begins. The region to be drawn is indicated
  * by @start and @end. The purpose is to allow the implementation to precompute
- * some state before the ::draw method is called for each cell.
- *
- **/
+ * some state before the draw method is called for each cell.
+ */
 void
 gtk_source_gutter_renderer_begin (GtkSourceGutterRenderer *renderer,
                                   cairo_t                 *cr,
@@ -896,9 +939,8 @@ gtk_source_gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
  * @area: a #GdkRectangle of the cell area where the renderer is activated
  * @event: the event that triggered the activation
  *
- * Emits the ::activate signal of the renderer. This is called from
- * #GtkSourceGutter and should never have to be called manually.
- *
+ * Emits the #GtkSourceGutterRenderer::activate signal of the renderer. This is
+ * called from #GtkSourceGutter and should never have to be called manually.
  */
 void
 gtk_source_gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
@@ -918,11 +960,10 @@ gtk_source_gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
  * gtk_source_gutter_renderer_queue_draw:
  * @renderer: a #GtkSourceGutterRenderer
  *
- * Emits the ::queue-draw signal of the renderer. Call this from an
- * implementation to inform that the renderer has changed such that it needs
- * to redraw.
- *
- **/
+ * Emits the #GtkSourceGutterRenderer::queue-draw signal of the renderer. Call
+ * this from an implementation to inform that the renderer has changed such that
+ * it needs to redraw.
+ */
 void
 gtk_source_gutter_renderer_queue_draw (GtkSourceGutterRenderer *renderer)
 {
@@ -940,13 +981,12 @@ gtk_source_gutter_renderer_queue_draw (GtkSourceGutterRenderer *renderer)
  * @y: The y position of the tooltip.
  * @tooltip: a #GtkTooltip.
  *
- * Emits the ::query-tooltip signal. This function is called from
- * #GtkSourceGutter. Implementations can override the default signal handler
- * or can connect to the signal externally.
+ * Emits the #GtkSourceGutterRenderer::query-tooltip signal. This function is
+ * called from #GtkSourceGutter. Implementations can override the default signal
+ * handler or can connect to the signal externally.
  *
  * Returns: %TRUE if the tooltip has been set, %FALSE otherwise
- *
- **/
+ */
 gboolean
 gtk_source_gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
                                           GtkTextIter             *iter,
@@ -984,12 +1024,12 @@ gtk_source_gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
  * @end: a #GtkTextIter.
  * @state: a #GtkSourceGutterRendererState.
  *
- * Emit the ::query-data signal. This function is called to query for data
- * just before rendering a cell. This is called from the #GtkSourceGutter.
- * Implementations can override the default signal handler or can connect
- * a signal handler externally to the ::query-data signal.
- *
- **/
+ * Emit the #GtkSourceGutterRenderer::query-data signal. This function is called
+ * to query for data just before rendering a cell. This is called from the
+ * #GtkSourceGutter.  Implementations can override the default signal handler or
+ * can connect a signal handler externally to the
+ * #GtkSourceGutterRenderer::query-data signal.
+ */
 void
 gtk_source_gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
                                        GtkTextIter                  *start,
@@ -1047,7 +1087,8 @@ gtk_source_gutter_renderer_get_visible (GtkSourceGutterRenderer *renderer)
  * -1, which means the values will not be changed (this allows changing only
  * one of the values).
  *
- **/
+ * @xpad is the left and right padding. @ypad is the top and bottom padding.
+ */
 void
 gtk_source_gutter_renderer_set_padding (GtkSourceGutterRenderer *renderer,
                                         gint                     xpad,
@@ -1096,7 +1137,10 @@ gtk_source_gutter_renderer_get_padding (GtkSourceGutterRenderer *renderer,
  * -1, which means the values will not be changed (this allows changing only
  * one of the values).
  *
- **/
+ * @xalign is the horizontal alignment. Set to 0 for a left alignment. 1 for a
+ * right alignment. And 0.5 for centering the cells. @yalign is the vertical
+ * alignment. Set to 0 for a top alignment. 1 for a bottom alignment.
+ */
 void
 gtk_source_gutter_renderer_set_alignment (GtkSourceGutterRenderer *renderer,
                                           gfloat                   xalign,
