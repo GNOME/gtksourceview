@@ -406,12 +406,7 @@ calculate_gutter_size (GtkSourceGutter  *gutter,
 			g_array_append_val (sizes, width);
 		}
 
-		total_width += width + gutter->priv->xpad;
-	}
-
-	if (gutter->priv->renderers)
-	{
-		total_width += gutter->priv->xpad;
+		total_width += width;
 	}
 
 	return total_width;
@@ -558,6 +553,14 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                                    0,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
+	/**
+	 * GtkSourceGutter:xpad:
+	 *
+	 * The x-padding.
+	 *
+	 * Deprecated: 3.12: Use the #GtkSourceGutterRenderer:xpad property
+	 * instead.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_XPAD,
 	                                 g_param_spec_int ("xpad",
@@ -568,6 +571,14 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                                   0,
 	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+	/**
+	 * GtkSourceGutter:ypad:
+	 *
+	 * The y-padding.
+	 *
+	 * Deprecated: 3.12: Use the #GtkSourceGutterRenderer:ypad property
+	 * instead.
+	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_YPAD,
 	                                 g_param_spec_int ("ypad",
@@ -1001,7 +1012,7 @@ on_view_draw (GtkSourceView   *view,
 	                                    &start,
 	                                    &end);
 
-	cell_area.x = gutter->priv->xpad;
+	cell_area.x = 0;
 	cell_area.height = background_area.height;
 
 	gtk_text_view_buffer_to_window_coords (text_view,
@@ -1575,6 +1586,14 @@ on_view_style_updated (GtkSourceView   *view,
 	gtk_source_gutter_queue_draw (gutter);
 }
 
+/**
+ * gtk_source_gutter_set_padding:
+ * @gutter:
+ * @xpad:
+ * @ypad:
+ *
+ * Deprecated: 3.12: Use gtk_source_gutter_renderer_set_padding() instead.
+ */
 void
 gtk_source_gutter_set_padding (GtkSourceGutter *gutter,
                                gint             xpad,
@@ -1588,6 +1607,14 @@ gtk_source_gutter_set_padding (GtkSourceGutter *gutter,
 	}
 }
 
+/**
+ * gtk_source_gutter_get_padding:
+ * @gutter:
+ * @xpad:
+ * @ypad:
+ *
+ * Deprecated: 3.12: Use gtk_source_gutter_renderer_get_padding() instead.
+ */
 void
 gtk_source_gutter_get_padding (GtkSourceGutter *gutter,
                                gint            *xpad,
