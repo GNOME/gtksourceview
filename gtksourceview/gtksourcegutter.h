@@ -52,6 +52,7 @@ struct _GtkSourceGutterClass
 
 GType gtk_source_gutter_get_type 		(void) G_GNUC_CONST;
 
+G_DEPRECATED_FOR (gtk_text_view_get_window)
 GdkWindow *gtk_source_gutter_get_window 	(GtkSourceGutter         *gutter);
 
 gboolean gtk_source_gutter_insert               (GtkSourceGutter         *gutter,

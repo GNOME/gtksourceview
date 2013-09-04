@@ -638,6 +638,13 @@ gtk_source_gutter_new (GtkSourceView     *view,
 	                     NULL);
 }
 
+static GdkWindow *
+get_window (GtkSourceGutter *gutter)
+{
+	return gtk_text_view_get_window (GTK_TEXT_VIEW (gutter->priv->view),
+	                                 gutter->priv->window_type);
+}
+
 /* Public API */
 
 /**
@@ -651,17 +658,15 @@ gtk_source_gutter_new (GtkSourceView     *view,
  * if the gutter has no window.
  *
  * Since: 2.8
+ * Deprecated: 3.12: Use gtk_text_view_get_window() instead.
  */
-/* Note: this function should maybe be private. It is not really useful, and it
- * is used nowhere in gedit. */
 GdkWindow *
 gtk_source_gutter_get_window (GtkSourceGutter *gutter)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER (gutter), NULL);
 	g_return_val_if_fail (gutter->priv->view != NULL, NULL);
 
-	return gtk_text_view_get_window (GTK_TEXT_VIEW (gutter->priv->view),
-	                                 gutter->priv->window_type);
+	return get_window (gutter);
 }
 
 /**
@@ -949,7 +954,7 @@ on_view_draw (GtkSourceView   *view,
 	GdkDeviceManager *device_manager;
 	GdkDevice *pointer;
 
-	window = gtk_source_gutter_get_window (gutter);
+	window = get_window (gutter);
 
 	if (window == NULL || !gtk_cairo_should_draw_window (cr, window))
 	{
@@ -1383,7 +1388,7 @@ redraw_for_window (GtkSourceGutter *gutter,
 	gboolean redraw;
 	gint start;
 
-	if (event->window != gtk_source_gutter_get_window (gutter) && act_on_window)
+	if (event->window != get_window (gutter) && act_on_window)
 	{
 		return FALSE;
 	}
@@ -1484,7 +1489,7 @@ on_view_button_press_event (GtkSourceView    *view,
 	gint start = -1;
 	GdkRectangle rect;
 
-	if (event->window != gtk_source_gutter_get_window (gutter))
+	if (event->window != get_window (gutter))
 	{
 		return FALSE;
 	}
