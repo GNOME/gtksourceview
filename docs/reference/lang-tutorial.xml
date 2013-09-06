@@ -525,7 +525,7 @@ differently the included file:
 
 <programlisting>
 &lt;context id="include" style-ref="preprocessor"&gt;
-    &lt;match&gt;^#include (".*"|&lt;.*&gt;)&lt;/match&gt;
+    &lt;match&gt;^#include (".*"|&amp;lt;.*&amp;gt;)&lt;/match&gt;
     &lt;include&gt;
 </programlisting>
 
@@ -536,7 +536,7 @@ associating them with a context with the <code>sub-pattern</code> attribute:
 
 <programlisting>
         &lt;context id="included-file" sub-pattern="1"
-                 style-ref="package"/&gt;
+                 style-ref="included-file"/&gt;
 </programlisting>
 
 <para>
