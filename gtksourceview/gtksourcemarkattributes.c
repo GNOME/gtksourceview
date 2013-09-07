@@ -625,7 +625,7 @@ gtk_source_mark_attributes_render_icon (GtkSourceMarkAttributes *attributes,
  * @mark: a #GtkSourceMark.
  *
  * Queries for a tooltip by emitting
- * a GtkSourceMarkAttributes::query-tooltip-text signal. The tooltip is a plain
+ * a #GtkSourceMarkAttributes::query-tooltip-text signal. The tooltip is a plain
  * text.
  *
  * Returns: (transfer full): A tooltip. The returned string should be freed by
@@ -652,7 +652,7 @@ gtk_source_mark_attributes_get_tooltip_text (GtkSourceMarkAttributes *attributes
  * @mark: a #GtkSourceMark.
  *
  * Queries for a tooltip by emitting
- * a GtkSourceMarkAttributes::query-tooltip-markup signal. The tooltip may contain
+ * a #GtkSourceMarkAttributes::query-tooltip-markup signal. The tooltip may contain
  * a markup.
  *
  * Returns: (transfer full): A tooltip. The returned string should be freed by
