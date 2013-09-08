@@ -221,11 +221,15 @@ gtk_source_mark_next (GtkSourceMark *mark,
 	g_return_val_if_fail (GTK_SOURCE_IS_MARK (mark), NULL);
 
 	buffer = gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark));
-	if (buffer != NULL)
-		return _gtk_source_buffer_source_mark_next (GTK_SOURCE_BUFFER (buffer),
-							    mark, category);
-	else
+
+	if (buffer == NULL)
+	{
 		return NULL;
+	}
+
+	return _gtk_source_buffer_source_mark_next (GTK_SOURCE_BUFFER (buffer),
+						    mark,
+						    category);
 }
 
 /**
@@ -251,10 +255,14 @@ gtk_source_mark_prev (GtkSourceMark *mark,
 	g_return_val_if_fail (GTK_SOURCE_IS_MARK (mark), NULL);
 
 	buffer = gtk_text_mark_get_buffer (GTK_TEXT_MARK (mark));
-	if (buffer != NULL)
-		return _gtk_source_buffer_source_mark_prev (GTK_SOURCE_BUFFER (buffer),
-							    mark, category);
-	else
+
+	if (buffer == NULL)
+	{
 		return NULL;
+	}
+
+	return _gtk_source_buffer_source_mark_prev (GTK_SOURCE_BUFFER (buffer),
+						    mark,
+						    category);
 }
 

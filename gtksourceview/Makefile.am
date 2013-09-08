@@ -61,6 +61,7 @@ libgtksourceview_private_headers = \
 	gtksourcegutterrenderermarks.h		\
 	gtksourcegutterrenderer-private.h	\
 	gtksourcelanguage-private.h		\
+	gtksourcemarkssequence.h		\
 	gtksourcepixbufhelper.h			\
 	gtksourceregex.h			\
 	gtksourcestyle-private.h		\
@@ -79,6 +80,7 @@ libgtksourceview_private_c_files = \
 	gtksourcegutterrenderermarks.c	\
 	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\
+	gtksourcemarkssequence.c	\
 	gtksourcepixbufhelper.c		\
 	gtksourceregex.c		\
 	gtksourceundomanager.c 		\

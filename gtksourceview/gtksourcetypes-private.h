@@ -32,6 +32,7 @@ typedef struct _GtkSourceContextEngine		GtkSourceContextEngine;
 typedef struct _GtkSourceEngine			GtkSourceEngine;
 typedef struct _GtkSourceGutterRendererLines	GtkSourceGutterRendererLines;
 typedef struct _GtkSourceGutterRendererMarks	GtkSourceGutterRendererMarks;
+typedef struct _GtkSourceMarksSequence		GtkSourceMarksSequence;
 typedef struct _GtkSourcePixbufHelper		GtkSourcePixbufHelper;
 typedef struct _GtkSourceRegex			GtkSourceRegex;
 typedef struct _GtkSourceUndoManagerDefault	GtkSourceUndoManagerDefault;

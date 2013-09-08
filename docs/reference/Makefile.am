@@ -36,6 +36,7 @@ IGNORE_HFILES =					\
 	gtksourcegutterrenderermarks.h		\
 	gtksourcegutterrenderer-private.h	\
 	gtksourcelanguage-private.h		\
+	gtksourcemarkssequence.h		\
 	gtksourcepixbufhelper.h			\
 	gtksourceregex.h			\
 	gtksourcestyle-private.h		\
