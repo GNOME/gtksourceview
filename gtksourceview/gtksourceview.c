@@ -1694,6 +1694,15 @@ gtk_source_view_get_lines (GtkTextView  *text_view,
 	*countp = count;
 }
 
+/* Another solution to paint the line background is to use the
+ * GtkTextTag:paragraph-background property. But there are several issues:
+ * - GtkTextTags are per buffer, not per view. It's better to keep the line
+ *   highlighting per view.
+ * - There is a problem for empty lines: a text tag can not be applied to an
+ *   empty region. And it can not be worked around easily for the last line.
+ *
+ * See https://bugzilla.gnome.org/show_bug.cgi?id=310847 for more details.
+ */
 static void
 gtk_source_view_paint_line_background (GtkTextView    *text_view,
 				       cairo_t        *cr,
