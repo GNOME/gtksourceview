@@ -2404,7 +2404,14 @@ install_first_update (GtkSourceContextEngine *ce)
 
 /* GtkSourceContextEngine class ------------------------------------------- */
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceContextEngine, _gtk_source_context_engine, GTK_SOURCE_TYPE_ENGINE)
+static void _gtk_source_engine_interface_init (GtkSourceEngineInterface *iface);
+
+G_DEFINE_TYPE_WITH_CODE (GtkSourceContextEngine,
+			 _gtk_source_context_engine,
+			 G_TYPE_OBJECT,
+			 G_ADD_PRIVATE (GtkSourceContextEngine)
+			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_ENGINE,
+						_gtk_source_engine_interface_init))
 
 static GQuark
 gtk_source_context_engine_error_quark (void)
@@ -2684,19 +2691,22 @@ gtk_source_context_engine_get_context_class_tag (GtkSourceEngine *engine,
 }
 
 static void
+_gtk_source_engine_interface_init (GtkSourceEngineInterface *iface)
+{
+	iface->attach_buffer = gtk_source_context_engine_attach_buffer;
+	iface->text_inserted = gtk_source_context_engine_text_inserted;
+	iface->text_deleted = gtk_source_context_engine_text_deleted;
+	iface->update_highlight = gtk_source_context_engine_update_highlight;
+	iface->set_style_scheme = gtk_source_context_engine_set_style_scheme;
+	iface->get_context_class_tag = gtk_source_context_engine_get_context_class_tag;
+}
+
+static void
 _gtk_source_context_engine_class_init (GtkSourceContextEngineClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	GtkSourceEngineClass *engine_class = GTK_SOURCE_ENGINE_CLASS (klass);
 
 	object_class->finalize = gtk_source_context_engine_finalize;
-
-	engine_class->attach_buffer = gtk_source_context_engine_attach_buffer;
-	engine_class->text_inserted = gtk_source_context_engine_text_inserted;
-	engine_class->text_deleted = gtk_source_context_engine_text_deleted;
-	engine_class->update_highlight = gtk_source_context_engine_update_highlight;
-	engine_class->set_style_scheme = gtk_source_context_engine_set_style_scheme;
-	engine_class->get_context_class_tag = gtk_source_context_engine_get_context_class_tag;
 }
 
 static void

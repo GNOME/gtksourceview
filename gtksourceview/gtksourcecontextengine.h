@@ -44,7 +44,7 @@ typedef struct _GtkSourceContextEnginePrivate GtkSourceContextEnginePrivate;
 
 struct _GtkSourceContextEngine
 {
-	GtkSourceEngine parent_instance;
+	GObject parent_instance;
 
 	/*< private >*/
 	GtkSourceContextEnginePrivate *priv;
@@ -52,7 +52,7 @@ struct _GtkSourceContextEngine
 
 struct _GtkSourceContextEngineClass
 {
-	GtkSourceEngineClass parent_class;
+	GObjectClass parent_class;
 };
 
 typedef enum {
