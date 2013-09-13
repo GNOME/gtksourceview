@@ -583,7 +583,6 @@ test_async_forward_search_normal (void)
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
 	gtk_source_search_settings_set_search_text (settings, "aa");
-	gtk_source_search_settings_set_wrap_around (settings, FALSE);
 
 	check_async_search_results (context, results, TRUE, TRUE);
 
@@ -705,7 +704,6 @@ test_async_backward_search_normal (void)
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
 	gtk_source_search_settings_set_search_text (settings, "aa");
-	gtk_source_search_settings_set_wrap_around (settings, FALSE);
 
 	check_async_search_results (context, results, FALSE, TRUE);
 

@@ -219,7 +219,6 @@
             <property name="can_focus">True</property>
             <property name="receives_default">False</property>
             <property name="xalign">0</property>
-            <property name="active">True</property>
             <property name="draw_indicator">True</property>
             <signal name="toggled" handler="wrap_around_toggled_cb" object="TestSearch" swapped="yes"/>
           </object>

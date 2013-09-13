@@ -216,7 +216,7 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 					 g_param_spec_boolean ("wrap-around",
 							       _("Wrap around"),
 							       _("Wrap around"),
-							       TRUE,
+							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	/**

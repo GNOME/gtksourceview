@@ -136,7 +136,6 @@ main (int argc, char *argv[])
 
 	g_timer_start (timer);
 
-	gtk_source_search_settings_set_wrap_around (search_settings, FALSE);
 	gtk_source_search_settings_set_search_text (search_settings, "foo");
 
 	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
