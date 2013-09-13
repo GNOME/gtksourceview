@@ -601,9 +601,13 @@ for this tutorial:
 
 <programlisting>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;language id="c" _name="C" version="2.0" _section="Sources"
-        mimetypes="text/x-c;text/x-chdr;text/x-csrc"&gt;
+&lt;language id="c" _name="C" version="2.0" _section="Sources"&gt;
+    &lt;metadata&gt;
+      &lt;property name="mimetypes"&gt;text/x-c;text/x-csrc&lt;/property&gt;
+      &lt;property name="globs"&gt;*.c&lt;/property&gt;
+    &lt;/metadata&gt;
     &lt;styles&gt;
+      &lt;style id="comment" _name="Comment" map-to="def:comment"/&gt;
       &lt;style id="string" _name="String" map-to="def:string"/&gt;
       &lt;style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/&gt;
       &lt;style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/&gt;
@@ -626,7 +630,7 @@ for this tutorial:
                     &lt;start&gt;"&lt;/start&gt;
                     &lt;end&gt;"&lt;/end&gt;
                     &lt;include&gt;
-                        &lt;context id="escaped-character" style-ref="escaped-character"&gt;
+                        &lt;context id="escape" style-ref="escaped-character"&gt;
                             &lt;match&gt;\\.&lt;/match&gt;
                         &lt;/context&gt;
                     &lt;/include&gt;
@@ -641,11 +645,11 @@ for this tutorial:
                     &lt;/include&gt;
                 &lt;/context&gt;
 
-                &lt;context id="char" end-at-line-end="true" style-ref="char"&gt;
+                &lt;context id="char" end-at-line-end="true" style-ref="string"&gt;
                     &lt;start&gt;'&lt;/start&gt;
                     &lt;end&gt;'&lt;/end&gt;
                     &lt;include&gt;
-                        &lt;context ref="escaped-character"/&gt;
+                        &lt;context ref="escape"/&gt;
                     &lt;/include&gt;
                 &lt;/context&gt;
 
@@ -686,18 +690,6 @@ for this tutorial:
                     &lt;keyword&gt;void&lt;/keyword&gt;
                 &lt;/context&gt;
 
-                &lt;context id="preprocessor"
-                            style-ref="preprocessor"&gt;
-                    &lt;prefix&gt;^#&lt;/prefix&gt;
-
-                    &lt;keyword&gt;define&lt;/keyword&gt;
-                    &lt;keyword&gt;undef&lt;/keyword&gt;
-                    &lt;keyword&gt;if(n?def)?&lt;/keyword&gt;
-                    &lt;keyword&gt;else&lt;/keyword&gt;
-                    &lt;keyword&gt;elif&lt;/keyword&gt;
-                    &lt;keyword&gt;endif&lt;/keyword&gt;
-                &lt;/context&gt;
-
                 &lt;context id="if0-comment" style-ref="comment"&gt;
                     &lt;start&gt;^#if 0\b&lt;/start&gt;
                     &lt;end&gt;^#(endif|else|elif)\b&lt;/end&gt;
@@ -712,12 +704,22 @@ for this tutorial:
                     &lt;/include&gt;
                 &lt;/context&gt;
 
+                &lt;context id="preprocessor" style-ref="preprocessor"&gt;
+                    &lt;prefix&gt;^#&lt;/prefix&gt;
+                    &lt;keyword&gt;define&lt;/keyword&gt;
+                    &lt;keyword&gt;undef&lt;/keyword&gt;
+                    &lt;keyword&gt;if(n?def)?&lt;/keyword&gt;
+                    &lt;keyword&gt;else&lt;/keyword&gt;
+                    &lt;keyword&gt;elif&lt;/keyword&gt;
+                    &lt;keyword&gt;endif&lt;/keyword&gt;
+                &lt;/context&gt;
+
                 &lt;context id="include" style-ref="preprocessor"&gt;
-                    &lt;match&gt;^#include (".*"|&lt;.*&gt;)&lt;/match&gt;
+                    &lt;match&gt;^#include (".*"|&amp;lt;.*&amp;gt;)&lt;/match&gt;
                     &lt;include&gt;
                         &lt;context id="included-file" 
                                 sub-pattern="1"
-                                style-ref="inlcuded-file"/&gt;
+                                style-ref="included-file"/&gt;
                     &lt;/include&gt;
                 &lt;/context&gt;
 
