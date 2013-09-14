@@ -93,9 +93,12 @@ idle_resize (GtkSourceCompletionInfo *info)
 	gint cur_window_width;
 	gint cur_window_height;
 
-	g_assert (child != NULL);
-
 	info->priv->idle_resize = 0;
+
+	if (child == NULL)
+	{
+		return G_SOURCE_REMOVE;
+	}
 
 	gtk_widget_get_preferred_size (child, NULL, &nat_size);
 
@@ -149,18 +152,23 @@ gtk_source_completion_info_get_preferred_width (GtkWidget *widget,
 						gint	  *nat_width)
 {
 	GtkWidget *child = gtk_bin_get_child (GTK_BIN (widget));
-	GtkRequisition nat_size;
+	gint width = 0;
 
-	gtk_widget_get_preferred_size (child, NULL, &nat_size);
+	if (child != NULL)
+	{
+		GtkRequisition nat_size;
+		gtk_widget_get_preferred_size (child, NULL, &nat_size);
+		width = nat_size.width;
+	}
 
 	if (min_width != NULL)
 	{
-		*min_width = nat_size.width;
+		*min_width = width;
 	}
 
 	if (nat_width != NULL)
 	{
-		*nat_width = nat_size.width;
+		*nat_width = width;
 	}
 }
 
@@ -170,18 +178,23 @@ gtk_source_completion_info_get_preferred_height (GtkWidget *widget,
 						 gint	   *nat_height)
 {
 	GtkWidget *child = gtk_bin_get_child (GTK_BIN (widget));
-	GtkRequisition nat_size;
+	gint height = 0;
 
-	gtk_widget_get_preferred_size (child, NULL, &nat_size);
+	if (child != NULL)
+	{
+		GtkRequisition nat_size;
+		gtk_widget_get_preferred_size (child, NULL, &nat_size);
+		height = nat_size.height;
+	}
 
 	if (min_height != NULL)
 	{
-		*min_height = nat_size.height;
+		*min_height = height;
 	}
 
 	if (nat_height != NULL)
 	{
-		*nat_height = nat_size.height;
+		*nat_height = height;
 	}
 }
 
