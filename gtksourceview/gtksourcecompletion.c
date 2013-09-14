@@ -627,7 +627,7 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 
 	if (!get_selected_proposal (completion, &provider, &proposal))
 	{
-		g_return_if_reached ();
+		return;
 	}
 
 	get_iter_at_insert (completion, &insert_iter);
