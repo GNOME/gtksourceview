@@ -1484,7 +1484,7 @@ handle_keyword_char_class_element (ParserState *parser_state)
 	g_free (parser_state->opening_delimiter);
 	g_free (parser_state->closing_delimiter);
 
-	parser_state->opening_delimiter = g_strdup_printf ("(?!<%s)(?=%s)",
+	parser_state->opening_delimiter = g_strdup_printf ("(?<!%s)(?=%s)",
 							   char_class, char_class);
 	parser_state->closing_delimiter = g_strdup_printf ("(?<=%s)(?!%s)",
 							   char_class, char_class);
