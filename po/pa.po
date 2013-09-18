@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-09 20:56+0000\n"
-"PO-Revision-Date: 2013-03-17 19:38+0530\n"
+"POT-Creation-Date: 2013-08-31 19:40+0000\n"
+"PO-Revision-Date: 2013-09-18 09:09-0500\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
@@ -66,8 +66,8 @@ msgid "Leading"
 msgstr "ਲੀਡਿੰਗ"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:264
-#: ../gtksourceview/gtksourcegutterrenderertext.c:403
+#: ../gtksourceview/gtksourcecompletionitem.c:262
+#: ../gtksourceview/gtksourcegutterrenderertext.c:399
 msgid "Text"
 msgstr "ਟੈਕਸਟ"
 
@@ -78,7 +78,7 @@ msgstr "ਟਰੇਲਿੰਗ"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:537
+#: ../gtksourceview/gtksourcecompletion.c:753
 msgid "All"
 msgstr "ਸਭ"
 
@@ -107,6 +107,7 @@ msgstr "ਸਭ"
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
 #: ../data/language-specs/pascal.lang.h:1
 #: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/scala.lang.h:1
 #: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
 #: ../data/language-specs/systemverilog.lang.h:1
@@ -149,6 +150,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
 #: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
@@ -172,7 +174,7 @@ msgstr "ਟਿੱਪਣੀ"
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
 #: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
 #: ../data/language-specs/verilog.lang.h:7
 #: ../data/language-specs/xml.lang.h:13
 msgid "Error"
@@ -198,7 +200,7 @@ msgstr "ਗਲਤੀ"
 #: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/lua.lang.h:4
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4
@@ -212,7 +214,7 @@ msgstr "ਗਲਤੀ"
 #: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
@@ -227,11 +229,13 @@ msgstr "ਸਤਰ"
 #. allow to get external functionalities
 #: ../data/language-specs/actionscript.lang.h:6
 #: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/scala.lang.h:4
 msgid "External"
 msgstr "ਬਾਹਰੀ"
 
 #: ../data/language-specs/actionscript.lang.h:7
 #: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/scala.lang.h:8
 msgid "Declaration"
 msgstr "ਐਲਾਨ"
 
@@ -270,7 +274,8 @@ msgstr "ਸਕੋਪ ਐਲਾਨ"
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
 #: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/modelica.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
@@ -284,7 +289,8 @@ msgstr "ਸਕੋਪ ਐਲਾਨ"
 #: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
+#: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
 #: ../data/language-specs/sql.lang.h:6
@@ -335,8 +341,10 @@ msgstr "ਬੂਲੀਅਨ ਮੁੱਲ"
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/j.lang.h:14 ../data/language-specs/netrexx.lang.h:16
+#: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
+#: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/scala.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
 msgstr "ਨੰਬਰ"
@@ -372,9 +380,9 @@ msgstr "ਭਵਿੱਖ ਰਾਖਵੇ ਸ਼ਬਦ"
 #: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
 #: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
-#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
+#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "ਮਿਤੀ ਟਾਈਪ"
 
@@ -440,7 +448,8 @@ msgstr "ਰੀਅਲ ਨੰਬਰ"
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python3.lang.h:7
 #: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/sml.lang.h:8 ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/texinfo.lang.h:4
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "ਅਸਕੇਪ ਅੱਖਰ"
@@ -451,7 +460,7 @@ msgstr "ASP"
 
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/changelog.lang.h:9
 #: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
 #: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
 #: ../data/language-specs/gtk-doc.lang.h:10
@@ -469,10 +478,12 @@ msgstr "ਫੰਕਸ਼ਨ"
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/julia.lang.h:9
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
 #: ../data/language-specs/prolog.lang.h:8
+#: ../data/language-specs/scala.lang.h:13
 #: ../data/language-specs/sparql.lang.h:15
 msgid "Operator"
 msgstr "ਓਪਰੇਟਰ"
@@ -611,11 +622,12 @@ msgstr "ਹੈਕਸਾਡੈਸੀਮਲ ਨੰਬਰ"
 #: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
+#: ../data/language-specs/mediawiki.lang.h:1
 #: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:251
-#: ../gtksourceview/gtksourcegutterrenderertext.c:395
+#: ../gtksourceview/gtksourcecompletionitem.c:249
+#: ../gtksourceview/gtksourcegutterrenderertext.c:391
 msgid "Markup"
 msgstr "ਮਾਰਕਅੱਪ"
 
@@ -654,6 +666,7 @@ msgstr "BVI ਇੰਪੋਰਟ"
 
 #: ../data/language-specs/bluespec.lang.h:8
 #: ../data/language-specs/gtk-doc.lang.h:9
+#: ../data/language-specs/julia.lang.h:15
 #: ../data/language-specs/systemverilog.lang.h:6
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:7
@@ -694,6 +707,7 @@ msgstr "ਖਾਸ ਵੇਰੀਬਲ"
 #: ../data/language-specs/boo.lang.h:13
 #: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/imagej.lang.h:4
+#: ../data/language-specs/julia.lang.h:6
 #: ../data/language-specs/libtool.lang.h:4
 #: ../data/language-specs/modelica.lang.h:9
 #: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
@@ -779,24 +793,24 @@ msgstr "ChangeLog"
 msgid "Date"
 msgstr "ਮਿਤੀ"
 
-#: ../data/language-specs/changelog.lang.h:4
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#. Translators: the name of a person, not an object.
+#: ../data/language-specs/changelog.lang.h:5
 msgid "Name"
 msgstr "ਨਾਂ"
 
-#: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/changelog.lang.h:6
 msgid "E-mail address"
 msgstr "ਈਮੇਲ ਐਡਰੈੱਸ"
 
-#: ../data/language-specs/changelog.lang.h:6
+#: ../data/language-specs/changelog.lang.h:7
 msgid "File"
 msgstr "ਫਾਇਲ"
 
-#: ../data/language-specs/changelog.lang.h:7
+#: ../data/language-specs/changelog.lang.h:8
 msgid "Bullet"
 msgstr "ਬਿੰਦੀਆਂ"
 
-#: ../data/language-specs/changelog.lang.h:9
+#: ../data/language-specs/changelog.lang.h:10
 msgid "Release"
 msgstr "ਰੀਲਿਜ਼"
 
@@ -818,7 +832,7 @@ msgstr "ਆਮ ਪਰਿਭਾਸ਼ਾ"
 #: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
@@ -1246,6 +1260,7 @@ msgstr "ਕੰਪਾਇਲਰ ਡਾਈਰੈਕਟਿਵ"
 #: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
 #: ../data/language-specs/idl-exelis.lang.h:1
 #: ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/julia.lang.h:1
 #: ../data/language-specs/matlab.lang.h:1
 #: ../data/language-specs/modelica.lang.h:1
 #: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
@@ -1508,6 +1523,7 @@ msgstr "ਪ੍ਰਭਾਸ਼ਾ ਲਿਸਟ"
 
 #: ../data/language-specs/haddock.lang.h:15
 #: ../data/language-specs/markdown.lang.h:8
+#: ../data/language-specs/mediawiki.lang.h:6
 msgid "URL"
 msgstr "URL"
 
@@ -1658,6 +1674,40 @@ msgstr "ਪ੍ਰੀਮੀਟਿਵ"
 #: ../data/language-specs/j.lang.h:18
 msgid "Verb"
 msgstr "ਵਰਬ"
+
+#: ../data/language-specs/julia.lang.h:2
+msgid "Julia"
+msgstr "ਜੂਲੀਆ"
+
+#: ../data/language-specs/julia.lang.h:7
+#| msgid "Constant"
+msgid "Math Constant"
+msgstr "ਗਣਿਤ ਸਥਿਰ"
+
+#: ../data/language-specs/julia.lang.h:8 ../data/language-specs/R.lang.h:7
+#: ../data/language-specs/scala.lang.h:11
+msgid "Special Constant"
+msgstr "ਖਾਸ ਸਥਿਰ"
+
+#: ../data/language-specs/julia.lang.h:11
+#| msgid "Macros"
+msgid "Macro"
+msgstr "ਮਾਈਕਰੋ"
+
+#: ../data/language-specs/julia.lang.h:12
+#| msgid "External"
+msgid "External Command"
+msgstr "ਬਾਹਰੀ ਕਮਾਂਡ"
+
+#: ../data/language-specs/julia.lang.h:13
+#| msgid "Builtin Function"
+msgid "Built-in Function"
+msgstr "ਸ਼ਾਮਿਲ ਫੰਕਸ਼ਨ"
+
+#: ../data/language-specs/julia.lang.h:14
+#| msgid "Module Path"
+msgid "Module"
+msgstr "ਮੋਡੀਊਲ"
 
 #: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
@@ -1810,7 +1860,7 @@ msgid "Link Text"
 msgstr "ਲਿੰਕ ਟੈਕਸਟ"
 
 #: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:238
+#: ../gtksourceview/gtksourcecompletionitem.c:236
 msgid "Label"
 msgstr "ਲੇਬਲ"
 
@@ -1819,6 +1869,7 @@ msgid "Image Marker"
 msgstr "ਚਿੱਤਰ ਮਾਰਕਰ"
 
 #: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/mediawiki.lang.h:3
 msgid "Strong Emphasis"
 msgstr "ਸਟੋਰੇਜ਼ ਨਿਸ਼ਾਨ"
 
@@ -1833,6 +1884,61 @@ msgstr "ਲਾਈਨ ਬਰੇਕਰ"
 #: ../data/language-specs/matlab.lang.h:2
 msgid "Matlab"
 msgstr "ਮੇਟਲੈਬ"
+
+#: ../data/language-specs/mediawiki.lang.h:2
+msgid "MediaWiki"
+msgstr "MediaWiki"
+
+#: ../data/language-specs/mediawiki.lang.h:4
+#| msgid "Emphasis"
+msgid "Light Emphasis"
+msgstr "ਹਲਕਾ ਨਿਸ਼ਾਨ"
+
+#: ../data/language-specs/mediawiki.lang.h:5
+#| msgid "Signal name"
+msgid "Signature"
+msgstr "ਦਸਤਖਤ"
+
+#: ../data/language-specs/mediawiki.lang.h:7
+#| msgid "Link Text"
+msgid "Link"
+msgstr "ਲਿੰਕ"
+
+#: ../data/language-specs/mediawiki.lang.h:8
+msgid "Symbol on a Link"
+msgstr "ਲਿੰਕ ਉੱਤੇ ਨਿਸ਼ਾਨ"
+
+#: ../data/language-specs/mediawiki.lang.h:9
+msgid "Line"
+msgstr "ਲਾਈਨ"
+
+#: ../data/language-specs/mediawiki.lang.h:10
+msgid "List"
+msgstr "ਲਿਸਟ"
+
+#: ../data/language-specs/mediawiki.lang.h:11
+msgid "Magic Word"
+msgstr "ਮੈਜਿਕ ਵਰਡ"
+
+#: ../data/language-specs/mediawiki.lang.h:12
+msgid "Symbol of a Table"
+msgstr "ਟੇਬਲ ਲਈ ਨਿਸ਼ਾਨ"
+
+#: ../data/language-specs/mediawiki.lang.h:13
+msgid "Preformatted"
+msgstr "ਪਹਿਲਾਂ-ਫਾਰਮੈਟ ਕੀਤਾ"
+
+#: ../data/language-specs/mediawiki.lang.h:14
+msgid "Redirect"
+msgstr "ਮੁੜ-ਡਾਇਰੈਕਟ"
+
+#: ../data/language-specs/mediawiki.lang.h:15
+msgid "Title"
+msgstr "ਟਾਈਟਲ"
+
+#: ../data/language-specs/mediawiki.lang.h:16
+msgid "Template"
+msgstr "ਟੈਪਲੇਟ"
 
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
@@ -2132,10 +2238,6 @@ msgstr "ਜਾਰੀ ਓਪਰੇਟਰ"
 msgid "Delimiter"
 msgstr "ਡੀਲਿਮਿਟਰ"
 
-#: ../data/language-specs/R.lang.h:7
-msgid "Special Constant"
-msgstr "ਖਾਸ ਸਥਿਰ"
-
 #: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:16
 msgid "Integer Number"
 msgstr "ਪੂਰਨ ਅੰਕ"
@@ -2208,6 +2310,29 @@ msgstr "ਨੰਬਰ ਲਿਟਰਲ"
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Literal"
 msgstr "ਲਿਟਰਲ"
+
+#: ../data/language-specs/scala.lang.h:2
+msgid "Scala"
+msgstr "Scala"
+
+#: ../data/language-specs/scala.lang.h:9
+#| msgid "Modifiers"
+msgid "Modifier"
+msgstr "ਸੋਧਕ"
+
+#: ../data/language-specs/scala.lang.h:15
+#| msgid "Builtin"
+msgid "Built In"
+msgstr "ਬਿਲਟ-ਇਨ"
+
+#: ../data/language-specs/scala.lang.h:16
+#| msgid "Others"
+msgid "Other"
+msgstr "ਹੋਰ"
+
+#: ../data/language-specs/scala.lang.h:17
+msgid "XML Tag"
+msgstr "XML ਟੈਗ"
 
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
@@ -2310,13 +2435,13 @@ msgstr "ਸ਼ੈਕਸ਼ਨ ੪"
 msgid "Section 5"
 msgstr "ਸ਼ੈਕਸ਼ਨ ੫"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:112
-#: ../gtksourceview/gtksourcestyle.c:113
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:114
+#: ../gtksourceview/gtksourcestyle.c:115
 msgid "Italic"
 msgstr "ਤਿਰਛੇ"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:106
+#: ../gtksourceview/gtksourcestyle.c:107
 msgid "Bold"
 msgstr "ਗੂੜ੍ਹੇ"
 
@@ -2452,264 +2577,267 @@ msgstr "ਟਾਂਗੋ"
 msgid "Color scheme using Tango color palette"
 msgstr "ਟਾਂਗੋ ਰੰਗ ਪਲੈਅਟ ਦੀ ਵਰਤੋਂ ਕਰਕੇ ਰੰਗ ਸਕੀਮ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:381
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:327
 msgid "Document Words"
 msgstr "ਡੌਕੂਮੈਂਟ ਸ਼ਬਦ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
+#| msgid "Name"
+msgctxt "Object"
+msgid "Name"
+msgstr "ਨਾਂ"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
 msgid "The provider name"
 msgstr "ਪਰੋਵਾਇਡਰ ਨਾਂ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
-#: ../gtksourceview/gtksourcecompletionitem.c:277
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:437
+#: ../gtksourceview/gtksourcecompletionitem.c:275
 msgid "Icon"
 msgstr "ਆਈਕਾਨ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:474
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
 msgid "The provider icon"
 msgstr "ਪਰੋਵਾਇਡਰ ਆਈਕਾਨ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:445
 msgid "Proposals Batch Size"
 msgstr "ਸੁਝਾਅ ਬੈਚ ਆਕਾਰ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
 msgid "Number of proposals added in one batch"
 msgstr "ਬੈਚ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਸੁਝਾਆਵਾਂ ਦੀ ਨੰਬਰ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
 msgid "Scan Batch Size"
 msgstr "ਸਕੈਨ ਬੈਚ ਸਾਈਜ਼"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
 msgid "Number of lines scanned in one batch"
 msgstr "ਇੱਕ ਬੈਚ ਵਿੱਚ ਸਕੈਨ ਕਰਨ ਲਈ ਲਾਈਨਾਂ ਦੀ ਗਿਣਤੀ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "Minimum Word Size"
 msgstr "ਘੱਟੋ-ਘੱਟ ਸ਼ਬਦ ਸਾਈਜ਼"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
 msgid "The minimum word size to complete"
 msgstr "ਪੂਰਾ ਕਰਨ ਥਈ ਘੱਟੋ-ਘੱਟ ਸਾਈਜ਼"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
 msgid "Interactive Delay"
 msgstr "ਇੰਟਰਐਕਟਿਵ ਦੇਰੀ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
 msgid "The delay before initiating interactive completion"
 msgstr "ਸ਼ੁਰੂਆਤੀ ਇੰਟਰਐਕਟਿਵ ਪੂਰਨ ਤੋਂ ਪਹਿਲਾਂ ਦੇਰੀ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
 msgid "Priority"
 msgstr "ਤਰਜੀਹ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:522
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
 msgid "Provider priority"
 msgstr "ਪਰੋਵਾਇਡਰ ਤਰਜੀਹ"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
-#: ../gtksourceview/gtksourceprintcompositor.c:504
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/gtksourcecompletioncontext.c:299
+msgid "Activation"
+msgstr "ਐਕਟੀਵੇਸ਼ਨ"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
+#: ../gtksourceview/gtksourcecompletioncontext.c:300
+msgid "The type of activation"
+msgstr "ਐਕਟੀਵੇਸ਼ਨ ਦੀ ਕਿਸਮ"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "ਸੰਟੈਕਸ ਹਾਈਲਾਈਟ"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:294
 msgid "Whether to highlight syntax in the buffer"
 msgstr "ਕੀ ਬਫ਼ਰ ਵਿੱਚ ਸੰਟੈਕਸਟ ਨੂੰ ਉਭਾਰਨਾ ਹੈ"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:307
 msgid "Highlight Matching Brackets"
 msgstr "ਮਿਲਦੀਆਂ ਬਰੈਕਟਾਂ ਹਾਈਲਾਈਟ"
 
-#: ../gtksourceview/gtksourcebuffer.c:252
+#: ../gtksourceview/gtksourcebuffer.c:308
 msgid "Whether to highlight matching brackets"
 msgstr "ਕੀ ਮਿਲਦੀਆਂ ਬਰੈਕਟਾਂ ਹਾਈਲਾਈਟ ਕਰਨੀਆਂ ਹਨ"
 
-#: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:413
+#: ../gtksourceview/gtksourcebuffer.c:321
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Maximum Undo Levels"
 msgstr "ਵੱਧ ਤੋਂ ਵੱਧ ਮੁੜ ਕਰਨ ਯੋਗ ਪਗ"
 
-#: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:414
+#: ../gtksourceview/gtksourcebuffer.c:322
+#: ../gtksourceview/gtksourceundomanagerdefault.c:415
 msgid "Number of undo levels for the buffer"
 msgstr "ਬਫ਼ਰ ਵਿੱਚੋ ਮੁੜ ਕਰਨ ਯੋਗ ਪਗਾਂ ਦੀ ਗਿਣਤੀ"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:278
+#: ../gtksourceview/gtksourcebuffer.c:334
 msgid "Language"
 msgstr "ਲੈਗੂਏਜ਼"
 
-#: ../gtksourceview/gtksourcebuffer.c:279
+#: ../gtksourceview/gtksourcebuffer.c:335
 msgid "Language object to get highlighting patterns from"
 msgstr "ਲੈਗੂਏਜ਼ ਇਕਾਈ, ਉਭਾਰਵੀ ਪੈਟਰਨ ਲੈਣ ਲਈ"
 
-#: ../gtksourceview/gtksourcebuffer.c:287
+#: ../gtksourceview/gtksourcebuffer.c:343
 msgid "Can undo"
 msgstr "ਵਾਪਸ ਲਿਆ ਜਾ ਸਕਦਾ"
 
-#: ../gtksourceview/gtksourcebuffer.c:288
+#: ../gtksourceview/gtksourcebuffer.c:344
 msgid "Whether Undo operation is possible"
 msgstr "ਕੀ ਵਾਪਸ ਲੈਣਾ ਸੰਭਵ ਹੈ"
 
-#: ../gtksourceview/gtksourcebuffer.c:295
+#: ../gtksourceview/gtksourcebuffer.c:351
 msgid "Can redo"
 msgstr "ਪਰਤਾਇਆ ਜਾ ਸਕਦਾ"
 
-#: ../gtksourceview/gtksourcebuffer.c:296
+#: ../gtksourceview/gtksourcebuffer.c:352
 msgid "Whether Redo operation is possible"
 msgstr "ਕੀ ਮੁੜ-ਵਾਪਸ ਲਿਆ ਜਾ ਸਕਦਾ ਹੈ"
 
-#: ../gtksourceview/gtksourcebuffer.c:310
-#: ../gtksourceview/gtksourcebuffer.c:311
+#: ../gtksourceview/gtksourcebuffer.c:366
+#: ../gtksourceview/gtksourcebuffer.c:367
 msgid "Style scheme"
 msgstr "ਸਟਾਇਲ ਸਕੀਮ"
 
-#: ../gtksourceview/gtksourcebuffer.c:318
+#: ../gtksourceview/gtksourcebuffer.c:374
 msgid "Undo manager"
 msgstr "ਵਾਪਸੀ ਮੈਨੇਜਰ"
 
-#: ../gtksourceview/gtksourcebuffer.c:319
+#: ../gtksourceview/gtksourcebuffer.c:375
 msgid "The buffer undo manager"
 msgstr "ਬਫ਼ਰ ਵਾਪਸੀ ਮੈਨੇਜਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:627
-#: ../gtksourceview/gtksourcecompletion.c:658
-msgid "No extra information available"
-msgstr "ਕੋਈ ਵਾਧੂ ਜਾਣਕਾਰੀ ਉਪਲੱਬਧ ਨਹੀਂ"
-
-#: ../gtksourceview/gtksourcecompletion.c:1527
-#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcecompletion.c:1786
+#: ../gtksourceview/gtksourcegutter.c:546
 msgid "View"
 msgstr "ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1528
+#: ../gtksourceview/gtksourcecompletion.c:1787
 msgid "The GtkSourceView bound to the completion"
 msgstr "ਪੂਰਾ ਕਰਨ ਲਈ GtkSourceView ਆਬਜੈਕਟ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1542
+#: ../gtksourceview/gtksourcecompletion.c:1801
 msgid "Remember Info Visibility"
 msgstr "ਜਾਣਾਕਰੀ ਦਿੱਖ ਯਾਦ ਰੱਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1543
+#: ../gtksourceview/gtksourcecompletion.c:1802
 msgid "Remember the last info window visibility state"
 msgstr "ਆਖਰੀ ਜਾਣਕਾਰੀ ਵਿੰਡੋ ਦਿੱਖ ਹਾਲਤ ਯਾਦ ਰੱਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1555
+#: ../gtksourceview/gtksourcecompletion.c:1814
 msgid "Select on Show"
 msgstr "ਵੇਖਾਉਣ ਉੱਤੇ ਚੁਣੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1556
+#: ../gtksourceview/gtksourcecompletion.c:1815
 msgid "Select first proposal when completion is shown"
 msgstr "ਜਦੋਂ ਪੂਰਨਤਾ ਵੇਖਾਇਆ ਜਾਵੇ ਤਾਂ ਪਹਿਲਾਂ ਚੁਣੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1569
+#: ../gtksourceview/gtksourcecompletion.c:1828
 msgid "Show Headers"
 msgstr "ਹੈੱਡਰ ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1570
+#: ../gtksourceview/gtksourcecompletion.c:1829
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "ਪਰੋਵਾਇਡਰ ਹੈੱਡਰ ਵੇਖੋ, ਜਦੋਂ ਕੋਈ ਪਰੋਵਾਇਡਰਾਂ ਵਲੋਂ ਸੁਝਾਅ ਉਪਲੱਬਧ ਹੋਣ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1583
+#: ../gtksourceview/gtksourcecompletion.c:1842
 msgid "Show Icons"
 msgstr "ਆਈਕਾਨ ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1584
+#: ../gtksourceview/gtksourcecompletion.c:1843
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "ਪੂਰਨ ਪੋਪਅੱਪ ਵਿੱਚ ਪਰੋਵਾਇਡਰ ਅਤੇ ਸੁਝਾਅ ਆਈਕਾਨ ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1598
+#: ../gtksourceview/gtksourcecompletion.c:1857
 msgid "Accelerators"
 msgstr "ਐਕਸਰਲੇਟਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1599
+#: ../gtksourceview/gtksourcecompletion.c:1858
 msgid "Number of proposal accelerators to show"
 msgstr "ਵੇਖਾਉਣ ਨੂੰ ਤੇਜ਼ ਕਰਨ ਸੁਝਾਆਵਾਂ ਦੀ ਗਿਣਤੀ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1614
+#: ../gtksourceview/gtksourcecompletion.c:1873
 msgid "Auto Complete Delay"
 msgstr "ਆਟੋ ਪੂਰਨ ਦੇਰੀ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1615
+#: ../gtksourceview/gtksourcecompletion.c:1874
 msgid "Completion popup delay for interactive completion"
 msgstr "ਇੰਟਰਐਕਟਿਵ ਪੂਰਨਤਾ ਲਈ ਪੂਰਨਤਾ ਪੋਪਅੱਪ ਦੇਰੀ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1631
+#: ../gtksourceview/gtksourcecompletion.c:1890
 msgid "Provider Page Size"
 msgstr "ਪਰੋਵਾਇਡਰ ਪੇਜ਼ ਆਕਾਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1632
+#: ../gtksourceview/gtksourcecompletion.c:1891
 msgid "Provider scrolling page size"
 msgstr "ਪਰੋਵਾਇਡਰ ਸਕਰੋਲਿੰਗ ਪੇਪਰ ਆਕਾਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1652
+#: ../gtksourceview/gtksourcecompletion.c:1911
 msgid "Proposal Page Size"
 msgstr "ਸੁਝਾਅ ਪੇਜ਼ ਆਕਾਰ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1653
+#: ../gtksourceview/gtksourcecompletion.c:1912
 msgid "Proposal scrolling page size"
 msgstr "ਸੁਝਾਅ ਸਕਰੋਲਿੰਗ ਪੇਜ਼ ਆਕਾਰ"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:255
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourcecompletioncontext.c:272
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Completion"
 msgstr "ਪੂਰਨਤਾ"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:256
+#: ../gtksourceview/gtksourcecompletioncontext.c:273
 msgid "The completion object to which the context belongs"
 msgstr "ਪ੍ਰਸੰਗ ਜਿਸ ਨਾਲ ਸਬੰਧਿਤ ਹੈ, ਉਹ ਪੂਰਨਤਾ ਆਬਜੈਕਟ"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:269
+#: ../gtksourceview/gtksourcecompletioncontext.c:286
 msgid "Iterator"
 msgstr "ਇਟੀਰਾਟੇਰ"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:270
+#: ../gtksourceview/gtksourcecompletioncontext.c:287
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter, ਜਿਸ ਉੱਤੇ ਪੂਰਨਤਾ ਸ਼ਾਮਲ ਹੋ ਸਕਦੀ ਹੈ"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:282
-msgid "Activation"
-msgstr "ਐਕਟੀਵੇਸ਼ਨ"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:283
-msgid "The type of activation"
-msgstr "ਐਕਟੀਵੇਸ਼ਨ ਦੀ ਕਿਸਮ"
-
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:193
+#: ../gtksourceview/gtksourcecompletioninfo.c:240
 msgid "Completion Info"
 msgstr "ਪੂਰਨਤਾ ਜਾਣਕਾਰੀ"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:239
+#: ../gtksourceview/gtksourcecompletionitem.c:237
 msgid "Label to be shown for this item"
 msgstr "ਇਹ ਆਈਟਮ ਲਈ ਵੇਖਾਉਣ ਲਈ ਲੇਬਲ"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:252
+#: ../gtksourceview/gtksourcecompletionitem.c:250
 msgid "Markup to be shown for this item"
 msgstr "ਇਸ ਆਈਟਮ ਲਈ ਵੇਖਾਉਣ ਵਾਸਤੇ ਮਾਰਕਅੱਪ"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:265
+#: ../gtksourceview/gtksourcecompletionitem.c:263
 msgid "Item text"
 msgstr "ਆਈਟਮ ਟੈਕਸਟ"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:278
+#: ../gtksourceview/gtksourcecompletionitem.c:276
 msgid "Icon to be shown for this item"
 msgstr "ਇਸ ਆਈਟਮ ਲਈ ਵੇਖਾਉਣ ਲਈ ਆਈਕਾਨ"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:290
+#: ../gtksourceview/gtksourcecompletionitem.c:288
 msgid "Info"
 msgstr "ਜਾਣਕਾਰੀ"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:291
+#: ../gtksourceview/gtksourcecompletionitem.c:289
 msgid "Info to be shown for this item"
 msgstr "ਇਹ ਆਈਟਮ ਲਈ ਵੇਖਾਉਣ ਲਈ ਜਾਣਕਾਰੀ"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:492
+#: ../gtksourceview/gtksourcecompletionmodel.c:491
 msgid "Provider"
 msgstr "ਪਰੋਵਾਇਡਰ"
 
@@ -2725,7 +2853,7 @@ msgstr "ਵੇਰਵਾ(_D)..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3122
+#: ../gtksourceview/gtksourcecontextengine.c:3119
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2737,26 +2865,26 @@ msgstr ""
 "ਜਾਵੇਗਾ।\n"
 "ਗਲਤੀ ਸੀ: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4445
+#: ../gtksourceview/gtksourcecontextengine.c:4442
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
 "ਇੱਕ ਇੱਕਲੀ ਲਾਈਨ ਨੂੰ ਹਾਈਲਾਈਟ ਕਰਨ ਲਈ ਬਹੁਤ ਸਮਾਂ ਲੱਗਾ, ਸੰਟੈਕਸ ਹਾਈਲਾਈਟ ਕਰਨਾ ਆਯੋਗ"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5689
+#: ../gtksourceview/gtksourcecontextengine.c:5686
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "ਕੰਟੈਕਸਟ '%s' ਵਿੱਚ ਇੱਕ \\%%{...@start} ਕਮਾਂਡ ਨਹੀਂ ਹੈ"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5850
-#: ../gtksourceview/gtksourcecontextengine.c:5939
+#: ../gtksourceview/gtksourcecontextengine.c:5847
+#: ../gtksourceview/gtksourcecontextengine.c:5936
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "ਡੁਪਲੀਕੇਟ ਕੰਟੈਕਸਟ id '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6053
-#: ../gtksourceview/gtksourcecontextengine.c:6113
+#: ../gtksourceview/gtksourcecontextengine.c:6050
+#: ../gtksourceview/gtksourcecontextengine.c:6110
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2765,148 +2893,152 @@ msgstr ""
 "ਲੈਗੂਇਜ਼ '%s' ਵਿੱਚ ਰੈਫਰੈਂਸ '%s' ਲਈ ਵਾਈਲਡ ਕਾਰਡ ਪਰਸੰਗ ਰੈਫਰੈਂਸ ਲਈ ਅਣਡਿੱਠਾ ਕੀਤਾ "
 "ਸਟਾਈਲ"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
+#: ../gtksourceview/gtksourcecontextengine.c:6124
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "ਗਲਤ ਕੰਟੈਕਸਟ ਰੈਂਫਰੈਂਸ '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6146
-#: ../gtksourceview/gtksourcecontextengine.c:6156
+#: ../gtksourceview/gtksourcecontextengine.c:6143
+#: ../gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ਅਣਜਾਣ ਕੰਟੈਕਸਟ '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6255
+#: ../gtksourceview/gtksourcecontextengine.c:6252
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "ਮੇਨ ਲੈਗੂਏਜ਼ ਪਰਿਭਾਸ਼ਾ (id = \"%s\".) ਗੁੰਮ ਹੈ"
 
-#: ../gtksourceview/gtksourcegutter.c:549
+#. Translators: gutters can be used to display information
+#. * on the left or on the right of the text view. To draw the
+#. * line numbers for example.
+#: ../gtksourceview/gtksourcegutter.c:550
 msgid "The gutters' GtkSourceView"
 msgstr "ਗੁੱਟਰਸ GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:561
-#: ../gtksourceview/gtksourcegutterrenderer.c:723
+#: ../gtksourceview/gtksourcegutter.c:562
+#: ../gtksourceview/gtksourcegutterrenderer.c:717
 msgid "Window Type"
 msgstr "ਵਿੰਡੋ ਟਾਈਪ"
 
-#: ../gtksourceview/gtksourcegutter.c:562
-msgid "The gutters text window type"
-msgstr "ਗੁੱਟਰਸ ਟੈਕਸਟ ਵਿੰਡੋ ਟਾਈਪ"
+#: ../gtksourceview/gtksourcegutter.c:563
+#| msgid "The gutters text window type"
+msgid "The gutters' text window type"
+msgstr "ਗੁੱਟਰਸ ਦੀ ਟੈਕਸਟ ਵਿੰਡੋ ਕਿਸਮ"
 
-#: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
+#: ../gtksourceview/gtksourcegutter.c:571
+#: ../gtksourceview/gtksourcegutterrenderer.c:494
 msgid "X Padding"
 msgstr "X ਪੈਡਿੰਗ"
 
-#: ../gtksourceview/gtksourcegutter.c:574
-#: ../gtksourceview/gtksourcegutterrenderer.c:501
+#: ../gtksourceview/gtksourcegutter.c:572
+#: ../gtksourceview/gtksourcegutterrenderer.c:495
 msgid "The x-padding"
 msgstr "x-ਪੈਡਿੰਗ"
 
-#: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
+#: ../gtksourceview/gtksourcegutter.c:582
+#: ../gtksourceview/gtksourcegutterrenderer.c:510
 msgid "Y Padding"
 msgstr "Y ਪੈਡਿੰਗ"
 
-#: ../gtksourceview/gtksourcegutter.c:585
-#: ../gtksourceview/gtksourcegutterrenderer.c:517
+#: ../gtksourceview/gtksourcegutter.c:583
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 msgid "The y-padding"
 msgstr "y-ਪੈਡਿੰਗ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:486
-#: ../gtksourceview/gtksourcegutterrenderer.c:487
+#: ../gtksourceview/gtksourcegutterrenderer.c:480
+#: ../gtksourceview/gtksourcegutterrenderer.c:481
 msgid "Visible"
 msgstr "ਦਿੱਖ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:532
+#: ../gtksourceview/gtksourcegutterrenderer.c:526
 msgid "X Alignment"
 msgstr "X ਇਕਸਾਰ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:533
+#: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "The x-alignment"
 msgstr "x-ਇਕਸਾਰ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:548
+#: ../gtksourceview/gtksourcegutterrenderer.c:542
 msgid "Y Alignment"
 msgstr "Y ਇਕਸਾਰ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:549
+#: ../gtksourceview/gtksourcegutterrenderer.c:543
 msgid "The y-alignment"
 msgstr "y-ਇਕਸਾਰ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:690
+#: ../gtksourceview/gtksourcegutterrenderer.c:684
 msgid "The View"
 msgstr "ਵਿਊ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutterrenderer.c:685
 msgid "The view"
 msgstr "ਵਿਊ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:707
+#: ../gtksourceview/gtksourcegutterrenderer.c:701
 msgid "Alignment Mode"
 msgstr "ਇਕਸਾਰ ਮੋਡ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:708
+#: ../gtksourceview/gtksourcegutterrenderer.c:702
 msgid "The alignment mode"
 msgstr "ਇਕਸਾਰ ਮੋਡ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:724
+#: ../gtksourceview/gtksourcegutterrenderer.c:718
 msgid "The window type"
 msgstr "ਵਿੰਡੋ ਕਿਸਮ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:732
+#: ../gtksourceview/gtksourcegutterrenderer.c:726
 msgid "Size"
 msgstr "ਆਕਾਰ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:733
+#: ../gtksourceview/gtksourcegutterrenderer.c:727
 msgid "The size"
 msgstr "ਆਕਾਰ"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkattributes.c:318
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:289
+#: ../gtksourceview/gtksourcemarkattributes.c:314
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkattributes.c:319
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:290
+#: ../gtksourceview/gtksourcemarkattributes.c:315
 msgid "The pixbuf"
 msgstr "pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkattributes.c:305
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:304
+#: ../gtksourceview/gtksourcemarkattributes.c:301
 msgid "Stock Id"
 msgstr "ਸਟਾਕ Id"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkattributes.c:306
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:305
+#: ../gtksourceview/gtksourcemarkattributes.c:302
 msgid "The stock id"
 msgstr "ਸਟਾਕ id"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkattributes.c:331
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:312
+#: ../gtksourceview/gtksourcemarkattributes.c:327
 msgid "Icon Name"
 msgstr "ਆਈਕਾਨ ਨਾਂ"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkattributes.c:332
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
+#: ../gtksourceview/gtksourcemarkattributes.c:328
 msgid "The icon name"
 msgstr "ਆਈਕਾਨ ਨਾਂ"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkattributes.c:344
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:320
+#: ../gtksourceview/gtksourcemarkattributes.c:340
 msgid "GIcon"
 msgstr "GIcon"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:318
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
 msgid "The gicon"
 msgstr "gicon"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:396
+#: ../gtksourceview/gtksourcegutterrenderertext.c:392
 msgid "The markup"
 msgstr "ਮਾਰਕਅੱਪ"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:404
+#: ../gtksourceview/gtksourcegutterrenderertext.c:400
 msgid "The text"
 msgstr "ਟੈਕਸਟ"
 
@@ -2933,21 +3065,21 @@ msgstr "ਲੁਕਵਾਂ"
 msgid "Whether the language should be hidden from the user"
 msgstr "ਕੀ ਲੈਗੂਏਜ਼ ਯੂਜ਼ਰ ਤੋਂ ਲੁਕਵੀਂ ਹੋਵੇ"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
+#: ../gtksourceview/gtksourcelanguagemanager.c:149
 msgid "Language specification directories"
 msgstr "ਲੈਗੂਏਜ਼  ਸਥਾਪਨ ਡਾਇਰੈਕਟਰੀਆਂ"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:151
+#: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "ਡਾਇਰੈਕਟਰੀ ਦੀ ਸੂਚੀ, ਜਿੱਥੇ ਕਿ ਲੈਗੂਏਜ਼ ਹਦਾਇਤਾਂ ਫਾਇਲ(.lang) ਸਥਿਤ ਹਨ"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
+#: ../gtksourceview/gtksourcelanguagemanager.c:159
 msgid "Language ids"
 msgstr "ਲੈਗੂਏਜ਼ id"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:161
+#: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "List of the ids of the available languages"
 msgstr "ਉਪਲੱਬਧ ਲੈਗੂਏਜ਼ ਲਈ id ਦੀ ਲਿਸਟ"
 
@@ -2961,16 +3093,16 @@ msgstr "regex '%2$s' ਵਿੱਚ ਅਣਜਾਣ id '%1$s'"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "regex '%s' ਵਿੱਚ: ਬੈਕ-ਰੈਫਰੈਂਸ ਸਹਾਇਕ ਨਹੀਂ"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:292
-#: ../gtksourceview/gtksourcestyle.c:88
+#: ../gtksourceview/gtksourcemarkattributes.c:288
+#: ../gtksourceview/gtksourcestyle.c:90
 msgid "Background"
 msgstr "ਬੈਕਗਰਾਊਂਡ"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:293
+#: ../gtksourceview/gtksourcemarkattributes.c:289
 msgid "The background"
 msgstr "ਬੈਕਗਰਾਊਂਡ"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:345
+#: ../gtksourceview/gtksourcemarkattributes.c:341
 msgid "The GIcon"
 msgstr "GIcon"
 
@@ -2982,98 +3114,98 @@ msgstr "ਕੈਟਾਗਰੀ"
 msgid "The mark category"
 msgstr "ਮਾਰਕ ਕੈਟਾਗਰੀ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:444
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
 msgstr "ਸਰੋਤ ਬਫ਼ਰ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "The GtkSourceBuffer object to print"
 msgstr "ਪਰਿੰਟ ਕਰਨ ਲਈ GtkSourceBuffer ਆਬਜੈਕਟ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceview.c:346
 msgid "Tab Width"
 msgstr "ਟੈਬ ਚੌੜਾਈ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Width of a tab character expressed in spaces"
 msgstr "ਇੱਕ ਟੈਬ ਅੱਖਰ ਲਈ ਸਪੇਸ ਦੇ ਰੂਪ ਵਿੱਚ ਚੌੜਾਈ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:483
+#: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid "Wrap Mode"
 msgstr "ਸਮੇਟਣ ਮੋਡ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:484
+#: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "ਕੀ ਲਾਈਨ ਨੂੰ ਕਦੇ ਨਹੀਂ ਸਮੇਟਣਾ, ਸ਼ਬਦ ਬੌਡਰੀ ਉੱਤੇ ਜਾਂ ਅੱਖਰ ਬੌਡਰੀ ਉੱਤੇ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:505
+#: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Whether to print the document with highlighted syntax"
 msgstr "ਕੀ ਡੌਕੂਮੈਂਟ ਨੂੰ ਹਾਈਲਾਈਟ ਸੰਟੈਕਸ ਨਾਲ ਪਰਿੰਟ ਕਰਨਾ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:526
+#: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Print Line Numbers"
 msgstr "ਲਾਈਨ ਨੰਬਰ ਪਰਿੰਟ ਕਰੋ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:527
+#: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "ਲਾਈਨ ਨੰਬਰ ਪਰਿੰਟ ਕਰਨ ਵਾਸਤੇ ਇੰਟਰਵਲ (0 ਮਤਲਬ ਕੋਈ ਨੰਬਰ ਨਹੀਂ)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:549
+#: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Print Header"
 msgstr "ਪਰਿੰਟ ਹੈੱਡਰ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:550
+#: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Whether to print a header in each page"
 msgstr "ਕੀ ਹਰੇਕ ਪੇਜ਼ ਵਿੱਚ ਹੈੱਡਰ ਪਰਿੰਟ ਕਰਨਾ ਹੈ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:572
+#: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Print Footer"
 msgstr "ਫੁੱਟਰ ਪਰਿੰਟ ਕਰੋ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:573
+#: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Whether to print a footer in each page"
 msgstr "ਕੀ ਹਰੇਕ ਪੇਜ਼ ਵਿੱਚ ਇੱਕ ਫੁੱਟਰ ਪਰਿੰਟ ਕਰੋ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:595
+#: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Body Font Name"
 msgstr "ਬੌਡੀ ਫੋਂਟ ਨਾਂ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:596
+#: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "ਟੈਕਸਟ ਬਾਡੀ ਲਈ ਵਰਤਣ ਵਾਸਤੇ ਫੋੰਟ ਨਾਂ (ਜਿਵੇਂ ਕਿ \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:619
+#: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
 msgstr "ਲਾਈਨ ਨੰਬਰ ਫੋਂਟ ਨਾਂ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:620
+#: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "ਲਾਈਨ ਨੰਬਰ ਵਾਸਤੇ ਵਰਤਣ ਲਈ ਫੋਂਟ ਨੰਬਰ (ਜਿਵੇਂ ਕਿ \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:643
+#: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
 msgstr "ਹੈੱਡਰ ਫੋਂਟ ਨਾਂ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:644
+#: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "ਪੇਜ਼ ਹੈੱਡਰ ਵਾਸਤੇ ਵਰਤਣ ਲਈ ਫੋਂਟ ਦਾ ਨਾਂ (ਜਿਵੇਂ ਕਿ \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:667
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
 msgstr "ਫੁੱਟਰ ਫੋਂਟ ਨਾਂ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "ਪੇਜ਼ ਫੁੱਟਰ ਲਈ ਵਰਤਣ ਵਾਸਤੇ ਫੋਂਟ ਦਾ ਨਾਂ (ਜਿਵੇਂ \"Monospace 10\")"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:684
+#: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
 msgstr "ਪੇਜ਼ਾਂ ਦੀ ਗਿਣਤੀ"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:685
+#: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -3085,199 +3217,278 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "ਵਰਤੋਂ \\C ਲੈਗੂਇਜ਼ ਪਰਿਭਾਸ਼ਾ ਲਈ ਸਹਾਇਕ ਨਹੀਂ ਹੈ"
 
-#: ../gtksourceview/gtksourcestyle.c:80
-msgid "Line background"
-msgstr "ਲਾਈਨ ਬੈਕਗਰਾਊਂਡ"
-
-#: ../gtksourceview/gtksourcestyle.c:81
-msgid "Line background color"
-msgstr "ਲਾਈਨ ਬੈਕਗਰਾਊਂਡ ਰੰਗ"
-
-#: ../gtksourceview/gtksourcestyle.c:89
-msgid "Background color"
-msgstr "ਬੈਕਗਰਾਊਂਡ ਰੰਗ"
-
-#: ../gtksourceview/gtksourcestyle.c:96
-msgid "Foreground"
-msgstr "ਫਾਰਗਰਾਊਂਡ"
-
-#: ../gtksourceview/gtksourcestyle.c:97
-msgid "Foreground color"
-msgstr "ਫਾਰਗਰਾਊਂਡ ਰੰਗ"
-
-#: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
-msgid "Underline"
-msgstr "ਹੇਠਾਂ ਲਾਈਨ"
-
-#: ../gtksourceview/gtksourcestyle.c:128 ../gtksourceview/gtksourcestyle.c:129
-msgid "Strikethrough"
-msgstr "ਵਿੰਨ੍ਹੋ"
-
-#: ../gtksourceview/gtksourcestyle.c:136
-msgid "Line background set"
-msgstr "ਲਾਈਨ ਬੈਕਗਰਾਊਂਡ ਸੈੱਟ"
-
-#: ../gtksourceview/gtksourcestyle.c:137
-msgid "Whether line background color is set"
-msgstr "ਕੀ ਲਾਈਨ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਸੈੱਟ ਕਰਨਾ ਹੈ"
-
-#: ../gtksourceview/gtksourcestyle.c:144
-msgid "Foreground set"
-msgstr "ਫਾਰਗਰਾਊਂਡ ਸੈੱਟ"
-
-#: ../gtksourceview/gtksourcestyle.c:145
-msgid "Whether foreground color is set"
-msgstr "ਕੀ ਲਾਈਨ ਫਾਰਗਰਾਊਂਡ ਰੰਗ ਸੈੱਟ ਕਰਨਾ"
-
-#: ../gtksourceview/gtksourcestyle.c:152
-msgid "Background set"
-msgstr "ਬੈਕਗਰਾਊਂਡ ਸੈੱਟ"
-
-#: ../gtksourceview/gtksourcestyle.c:153
-msgid "Whether background color is set"
-msgstr "ਕੀ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਸੈੱਟ ਕਰਨਾ ਹੈ"
-
-#: ../gtksourceview/gtksourcestyle.c:160
-msgid "Bold set"
-msgstr "ਗੂੜਾ ਸੈੱਟ"
-
-#: ../gtksourceview/gtksourcestyle.c:161
-msgid "Whether bold attribute is set"
-msgstr "ਕੀ ਗੂੜਾ ਗੁਣ ਸੈੱਟ ਕਰਨਾ ਹੈ"
-
-#: ../gtksourceview/gtksourcestyle.c:168
-msgid "Italic set"
-msgstr "ਤਿਰਛਾ ਸੈੱਟ"
-
-#: ../gtksourceview/gtksourcestyle.c:169
-msgid "Whether italic attribute is set"
-msgstr "ਕੀ ਤਿਰਛਾ ਗੁਣ ਸੈੱਟ ਕਰਨਾ ਹੈ"
-
-#: ../gtksourceview/gtksourcestyle.c:176
-msgid "Underline set"
-msgstr "ਹੇਠਾਂ-ਲਾਈਨ ਸੈੱਟ"
-
-#: ../gtksourceview/gtksourcestyle.c:177
-msgid "Whether underline attribute is set"
-msgstr "ਕੀ ਹੇਠਾਂ-ਲਾਈਨ ਗੁਣ ਸੈੱਟ ਕਰਨਾ ਹੈ"
-
-#: ../gtksourceview/gtksourcestyle.c:184
-msgid "Strikethrough set"
-msgstr "ਵਿੰਨ੍ਹਣਾ ਸੈੱਟ"
-
-#: ../gtksourceview/gtksourcestyle.c:185
-msgid "Whether strikethrough attribute is set"
-msgstr "ਕੀ ਵਿੰਨ੍ਹਣਾ ਗੁਣ ਸੈੱਟ ਕਰਨਾ ਹੈ"
-
-#: ../gtksourceview/gtksourcestylescheme.c:212
-#: ../gtksourceview/gtksourcestylescheme.c:213
-msgid "Style scheme id"
-msgstr "ਸਟਾਇਲ ਸਕੀਮ id"
-
-#: ../gtksourceview/gtksourcestylescheme.c:225
-#: ../gtksourceview/gtksourcestylescheme.c:226
-msgid "Style scheme name"
-msgstr "ਸਟਾਇਲ ਸਕੀਮ ਨਾਂ"
-
-#: ../gtksourceview/gtksourcestylescheme.c:238
-#: ../gtksourceview/gtksourcestylescheme.c:239
-msgid "Style scheme description"
-msgstr "ਸਟਾਇਲ ਸਕੀਮ ਵੇਰਵਾ"
-
-#: ../gtksourceview/gtksourcestylescheme.c:251
-#: ../gtksourceview/gtksourcestylescheme.c:252
-msgid "Style scheme filename"
-msgstr "ਸਟਾਇਲ ਸਕੀਮ ਫਾਇਲ-ਨਾਂ"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:152
-msgid "Style scheme search path"
-msgstr "ਸਟਾਇਲ ਸਕੀਮ ਖੋਜ ਪਾਥ"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
-msgid "List of directories and files where the style schemes are located"
-msgstr "ਡਾਇਰੈਕਟਰੀਆਂ ਅਤੇ ਫਾਇਲਾਂ ਦੀ ਲਿਸਟ, ਜਿਥੇ ਕਿ ਸਟਾਇਲ ਸਕੀਮਾਂ ਮੌਜੂਦ ਹਨ"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:161
-msgid "Scheme ids"
-msgstr "ਸਕੀਮ id"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
-msgid "List of the ids of the available style schemes"
-msgstr "ਉਪਲੱਬਧ ਸਟਾਇਲ ਸਕੀਮਾਂ ਲਈ id ਦੀ ਲਿਸਟ"
-
-#: ../gtksourceview/gtksourceundomanagerdefault.c:405
+#: ../gtksourceview/gtksourcesearchcontext.c:2715
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "ਬਫ਼ਰ"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:406
+#: ../gtksourceview/gtksourcesearchcontext.c:2716
+#| msgid "The gutters' GtkSourceView"
+msgid "The associated GtkSourceBuffer"
+msgstr "ਸਬੰਧਿਤ GtkSourceBuffer"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2730
+msgid "Settings"
+msgstr "ਸੈਟਿੰਗ"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2731
+msgid "The associated GtkSourceSearchSettings"
+msgstr "ਸਬੰਧਿਤ GtkSourceSearchSettings"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2745
+#| msgid "Highlight Syntax"
+msgid "Highlight"
+msgstr "ਹਾਈਲਾਈਟ"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2746
+#| msgid "Highlight current line"
+msgid "Highlight search occurrences"
+msgstr "ਮੌਜੂਦਾ ਖੋਜ ਮੌਜੂਦਗੀਆਂ"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2762
+msgid "Occurrences count"
+msgstr "ਮੌਜੂਦਗੀ ਗਿਣਤੀ"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2763
+msgid "Total number of search occurrences"
+msgstr "ਖੋਜ ਮੌਜੂਦਗੀਆਂ ਦੀ ਕੁੱਲ ਗਿਣਤੀ"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2782
+#| msgid "error"
+msgid "Regex error"
+msgstr "Regex ਗਲਤੀ"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2783
+#| msgid "Regular Expression"
+msgid "Regular expression error"
+msgstr "ਰੈਗੂਲਰ ਸਮੀਕਰਨ ਗਲਤੀ"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:169
+#| msgid "The text"
+msgid "Search text"
+msgstr "ਟੈਕਸਟ ਖੋਜੋ"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:170
+#| msgid "The text"
+msgid "The text to search"
+msgstr "ਖੋਜਣ ਲਈ ਸ਼ਬਦ"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:184
+#: ../gtksourceview/gtksourcesearchsettings.c:185
+msgid "Case sensitive"
+msgstr "ਅੱਖਰ ਆਖਾਰ ਸੰਵੇਦਨਸ਼ੀਲ"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:200
+msgid "At word boundaries"
+msgstr "ਸ਼ਬਦ ਹੱਦਾਂ ਉੱਤੇ"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:201
+msgid "Search at word boundaries"
+msgstr "ਸ਼ਬਦ ਹੱਦਾਂ ਉੱਤੇ ਖੋਜ"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:217
+#: ../gtksourceview/gtksourcesearchsettings.c:218
+#| msgid "Wrap Mode"
+msgid "Wrap around"
+msgstr "ਸਮੇਟੋ"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:233
+msgid "Regex enabled"
+msgstr "Regex ਚਾਲੂ"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:234
+msgid "Whether to search by regular expression"
+msgstr "ਕੀ ਖੋਜ ਰੈਗੂਲਰ ਸਮੀਕਰਨ ਰਾਹੀਂ ਕਰਨੀ ਹੈ"
+
+#: ../gtksourceview/gtksourcestyle.c:82
+msgid "Line background"
+msgstr "ਲਾਈਨ ਬੈਕਗਰਾਊਂਡ"
+
+#: ../gtksourceview/gtksourcestyle.c:83
+msgid "Line background color"
+msgstr "ਲਾਈਨ ਬੈਕਗਰਾਊਂਡ ਰੰਗ"
+
+#: ../gtksourceview/gtksourcestyle.c:91
+msgid "Background color"
+msgstr "ਬੈਕਗਰਾਊਂਡ ਰੰਗ"
+
+#: ../gtksourceview/gtksourcestyle.c:98
+msgid "Foreground"
+msgstr "ਫਾਰਗਰਾਊਂਡ"
+
+#: ../gtksourceview/gtksourcestyle.c:99
+msgid "Foreground color"
+msgstr "ਫਾਰਗਰਾਊਂਡ ਰੰਗ"
+
+#: ../gtksourceview/gtksourcestyle.c:122 ../gtksourceview/gtksourcestyle.c:123
+msgid "Underline"
+msgstr "ਹੇਠਾਂ ਲਾਈਨ"
+
+#: ../gtksourceview/gtksourcestyle.c:130 ../gtksourceview/gtksourcestyle.c:131
+msgid "Strikethrough"
+msgstr "ਵਿੰਨ੍ਹੋ"
+
+#: ../gtksourceview/gtksourcestyle.c:138
+msgid "Line background set"
+msgstr "ਲਾਈਨ ਬੈਕਗਰਾਊਂਡ ਸੈੱਟ"
+
+#: ../gtksourceview/gtksourcestyle.c:139
+msgid "Whether line background color is set"
+msgstr "ਕੀ ਲਾਈਨ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਸੈੱਟ ਕਰਨਾ ਹੈ"
+
+#: ../gtksourceview/gtksourcestyle.c:146
+msgid "Foreground set"
+msgstr "ਫਾਰਗਰਾਊਂਡ ਸੈੱਟ"
+
+#: ../gtksourceview/gtksourcestyle.c:147
+msgid "Whether foreground color is set"
+msgstr "ਕੀ ਲਾਈਨ ਫਾਰਗਰਾਊਂਡ ਰੰਗ ਸੈੱਟ ਕਰਨਾ"
+
+#: ../gtksourceview/gtksourcestyle.c:154
+msgid "Background set"
+msgstr "ਬੈਕਗਰਾਊਂਡ ਸੈੱਟ"
+
+#: ../gtksourceview/gtksourcestyle.c:155
+msgid "Whether background color is set"
+msgstr "ਕੀ ਬੈਕਗਰਾਊਂਡ ਰੰਗ ਸੈੱਟ ਕਰਨਾ ਹੈ"
+
+#: ../gtksourceview/gtksourcestyle.c:162
+msgid "Bold set"
+msgstr "ਗੂੜਾ ਸੈੱਟ"
+
+#: ../gtksourceview/gtksourcestyle.c:163
+msgid "Whether bold attribute is set"
+msgstr "ਕੀ ਗੂੜਾ ਗੁਣ ਸੈੱਟ ਕਰਨਾ ਹੈ"
+
+#: ../gtksourceview/gtksourcestyle.c:170
+msgid "Italic set"
+msgstr "ਤਿਰਛਾ ਸੈੱਟ"
+
+#: ../gtksourceview/gtksourcestyle.c:171
+msgid "Whether italic attribute is set"
+msgstr "ਕੀ ਤਿਰਛਾ ਗੁਣ ਸੈੱਟ ਕਰਨਾ ਹੈ"
+
+#: ../gtksourceview/gtksourcestyle.c:178
+msgid "Underline set"
+msgstr "ਹੇਠਾਂ-ਲਾਈਨ ਸੈੱਟ"
+
+#: ../gtksourceview/gtksourcestyle.c:179
+msgid "Whether underline attribute is set"
+msgstr "ਕੀ ਹੇਠਾਂ-ਲਾਈਨ ਗੁਣ ਸੈੱਟ ਕਰਨਾ ਹੈ"
+
+#: ../gtksourceview/gtksourcestyle.c:186
+msgid "Strikethrough set"
+msgstr "ਵਿੰਨ੍ਹਣਾ ਸੈੱਟ"
+
+#: ../gtksourceview/gtksourcestyle.c:187
+msgid "Whether strikethrough attribute is set"
+msgstr "ਕੀ ਵਿੰਨ੍ਹਣਾ ਗੁਣ ਸੈੱਟ ਕਰਨਾ ਹੈ"
+
+#: ../gtksourceview/gtksourcestylescheme.c:211
+#: ../gtksourceview/gtksourcestylescheme.c:212
+msgid "Style scheme id"
+msgstr "ਸਟਾਇਲ ਸਕੀਮ id"
+
+#: ../gtksourceview/gtksourcestylescheme.c:224
+#: ../gtksourceview/gtksourcestylescheme.c:225
+msgid "Style scheme name"
+msgstr "ਸਟਾਇਲ ਸਕੀਮ ਨਾਂ"
+
+#: ../gtksourceview/gtksourcestylescheme.c:237
+#: ../gtksourceview/gtksourcestylescheme.c:238
+msgid "Style scheme description"
+msgstr "ਸਟਾਇਲ ਸਕੀਮ ਵੇਰਵਾ"
+
+#: ../gtksourceview/gtksourcestylescheme.c:250
+#: ../gtksourceview/gtksourcestylescheme.c:251
+msgid "Style scheme filename"
+msgstr "ਸਟਾਇਲ ਸਕੀਮ ਫਾਇਲ-ਨਾਂ"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:153
+msgid "Style scheme search path"
+msgstr "ਸਟਾਇਲ ਸਕੀਮ ਖੋਜ ਪਾਥ"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
+msgid "List of directories and files where the style schemes are located"
+msgstr "ਡਾਇਰੈਕਟਰੀਆਂ ਅਤੇ ਫਾਇਲਾਂ ਦੀ ਲਿਸਟ, ਜਿਥੇ ਕਿ ਸਟਾਇਲ ਸਕੀਮਾਂ ਮੌਜੂਦ ਹਨ"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:162
+msgid "Scheme ids"
+msgstr "ਸਕੀਮ id"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:163
+msgid "List of the ids of the available style schemes"
+msgstr "ਉਪਲੱਬਧ ਸਟਾਇਲ ਸਕੀਮਾਂ ਲਈ id ਦੀ ਲਿਸਟ"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:407
 msgid "The text buffer to add undo support on"
 msgstr "ਸਹਿਯੋਗ ਵਾਪਸੀ ਲਈ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਟੈਕਸਟ ਬਫ਼ਰ"
 
-#: ../gtksourceview/gtksourceview.c:311
+#: ../gtksourceview/gtksourceview.c:309
 msgid "The completion object associated with the view"
 msgstr "ਝਲਕ ਨਾਲ ਸਬੰਧਤ ਪੂਰਨਤਾ ਆਬਜੈਕਟ"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:321
 msgid "Show Line Numbers"
 msgstr "ਲਾਈਨ ਨੰਬਰ ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Whether to display line numbers"
 msgstr "ਕੀ ਲਾਈਨ ਨੰਬਰ ਨੂੰ ਵੇਖਣਾ ਹੈ"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:333
 msgid "Show Line Marks"
 msgstr "ਲਾਈਨ ਮਾਰਕਰ ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Whether to display line mark pixbufs"
 msgstr "ਕੀ ਲਾਈਨ ਮਾਰਕਰ ਪਿਕਬਫ਼ ਨੂੰ ਵੇਖਣਾ ਹੈ"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:361
 msgid "Indent Width"
 msgstr "ਹਾਸ਼ੀਆ ਚੌੜਾਈ"
 
-#: ../gtksourceview/gtksourceview.c:364
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Number of spaces to use for each step of indent"
 msgstr "ਹਾਸ਼ੀਏ ਤੋਂ ਦੂਰੀ ਦੇ ਹਰੇਕ ਸਟੈਪ ਦੀ ਵਰਤੋਂ ਲਈ ਸਪੇਸਾਂ ਦੀ ਗਿਣਤੀ"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:371
 msgid "Auto Indentation"
 msgstr "ਆਟੋ ਹਾਸ਼ੀਏ ਤੋਂ ਦੂਰ"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Whether to enable auto indentation"
 msgstr "ਕੀ ਆਟੋ ਹਾਸ਼ੀਏ ਤੋਂ ਦੂਰ ਨੂੰ ਯੋਗ ਕਰਨਾ ਹੈ"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Insert Spaces Instead of Tabs"
 msgstr "ਟੈਬ ਦੀ ਬਜਾਏ ਖਾਲੀ ਥਾਂ ਦਿਓ"
 
-#: ../gtksourceview/gtksourceview.c:382
+#: ../gtksourceview/gtksourceview.c:380
 msgid "Whether to insert spaces instead of tabs"
 msgstr "ਕੀ ਟੈਬ ਦੀ ਬਜਾਏ ਖਾਲੀ ਥਾਂ ਦੇਣੀ ਹੈ"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:392
 msgid "Show Right Margin"
 msgstr "ਸੱਜਾ ਹਾਸ਼ੀਆ ਵੇਖੋ"
 
-#: ../gtksourceview/gtksourceview.c:395
+#: ../gtksourceview/gtksourceview.c:393
 msgid "Whether to display the right margin"
 msgstr "ਕੀ ਸੱਜਾ ਹਾਸ਼ੀਆ ਵੇਖਣਾ ਹੈ"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Right Margin Position"
 msgstr "ਸੱਜਾ ਹਾਸ਼ੀਆ ਸਥਿਤੀ"
 
-#: ../gtksourceview/gtksourceview.c:408
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Position of the right margin"
 msgstr "ਸੱਜੇ ਹਾਸ਼ੀਏ ਦੀ ਸਥਿਤੀ"
 
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Smart Home/End"
 msgstr "ਕੁਸ਼ਲ ਘਰ/ਖਤਮ"
 
-#: ../gtksourceview/gtksourceview.c:425
+#: ../gtksourceview/gtksourceview.c:423
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3285,33 +3496,46 @@ msgstr ""
 "HOME ਅਤੇ END ਕੀ, ਸਤਰ ਵਿੱਚ ਪਹਿਲੇ/ਆਖਰੀ ਅੱਖਰਾਂ ਤੇ ਭੇਜਦੀਆਂ ਹਨ, ਸਤਰ ਦੇ ਸ਼ੁਰੂ/ਖਤਮ "
 "ਹੋਣ ਤੋ ਪਹਿਲਾਂ"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:433
 msgid "Highlight current line"
 msgstr "ਮੌਜੂਦਾ ਲਾਈਨ ਉਭਾਰੋ"
 
-#: ../gtksourceview/gtksourceview.c:436
+#: ../gtksourceview/gtksourceview.c:434
 msgid "Whether to highlight the current line"
 msgstr "ਕੀ ਮੌਜੂਦਾ ਲਾਈਨ ਵਿੱਚ ਹਾਈਲਾਈਟ ਨੂੰ ਉਭਾਰਨਾ ਹੈ"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:441
 msgid "Indent on tab"
 msgstr "ਟੈਬ ਉੱਤੇ ਦੂਰੀ"
 
-#: ../gtksourceview/gtksourceview.c:444
+#: ../gtksourceview/gtksourceview.c:442
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "ਜਦੋਂ ਟੈਬ ਸਵਿੱਚ ਦੱਬੀ ਜਾਵੇ ਤਾਂ ਕੀ ਚੁਣੇ ਪਾਠ ਲਈ ਹਾਸ਼ੀਏ ਤੋਂ ਦੂਰੀ ਰੱਖਣੀ ਹੈ"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:456
 msgid "Draw Spaces"
 msgstr "ਸਪੇਸ ਬਣਾਉ"
 
-#: ../gtksourceview/gtksourceview.c:459
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Set if and how the spaces should be visualized"
 msgstr "ਸੈੱਟ ਕਰੋ ਕਿ ਸਪੇਸ ਨੂੰ ਕਦੋਂ ਅਤੇ ਕਿਵੇਂ ਵੇਖਾਇਆ ਜਾਵੇ"
+
+#. create redo menu_item.
+#: ../gtksourceview/gtksourceview.c:1326
+msgid "_Redo"
+msgstr "ਪਰਤਾਓ(_R)"
+
+#. create undo menu_item.
+#: ../gtksourceview/gtksourceview.c:1337
+msgid "_Undo"
+msgstr "ਵਾਪਸ(_U)"
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
 msgstr "ਅਨੁਵਾਦ-ਮਾਣ"
+
+#~ msgid "No extra information available"
+#~ msgstr "ਕੋਈ ਵਾਧੂ ਜਾਣਕਾਰੀ ਉਪਲੱਬਧ ਨਹੀਂ"
 
 #~ msgid "Objective Caml"
 #~ msgstr "ਆਬਜੈਕਟਿਵ Caml"
