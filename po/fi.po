@@ -8,21 +8,22 @@
 # Ilkka Tuohela <hile@iki.fi>, 2005-2009.
 # Tommi Vainikainen <thv@iki.fi>, 2009.
 # Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-09 20:56+0000\n"
-"PO-Revision-Date: 2013-03-23 14:26+0200\n"
+"POT-Creation-Date: 2013-08-31 19:40+0000\n"
+"PO-Revision-Date: 2013-09-16 23:34+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
-"Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-02-19 15:25:15+0000\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Gtranslator 2.91.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -68,8 +69,8 @@ msgid "Leading"
 msgstr "POD-otsake"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:264
-#: ../gtksourceview/gtksourcegutterrenderertext.c:403
+#: ../gtksourceview/gtksourcecompletionitem.c:262
+#: ../gtksourceview/gtksourcegutterrenderertext.c:399
 msgid "Text"
 msgstr "Teksti"
 
@@ -80,7 +81,7 @@ msgstr "Seuraava"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:537
+#: ../gtksourceview/gtksourcecompletion.c:753
 msgid "All"
 msgstr "Kaikki"
 
@@ -109,6 +110,7 @@ msgstr "Kaikki"
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
 #: ../data/language-specs/pascal.lang.h:1
 #: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/scala.lang.h:1
 #: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
 #: ../data/language-specs/systemverilog.lang.h:1
@@ -119,7 +121,6 @@ msgid "Sources"
 msgstr "Lähdekoodit"
 
 #: ../data/language-specs/actionscript.lang.h:2
-#| msgid "Scripts"
 msgid "ActionScript"
 msgstr "ActionScript"
 
@@ -152,6 +153,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
 #: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
@@ -175,7 +177,7 @@ msgstr "Kommentti"
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
 #: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
 #: ../data/language-specs/verilog.lang.h:7
 #: ../data/language-specs/xml.lang.h:13
 msgid "Error"
@@ -201,7 +203,7 @@ msgstr "Virhe"
 #: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/lua.lang.h:4
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4
@@ -215,7 +217,7 @@ msgstr "Virhe"
 #: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
@@ -230,11 +232,13 @@ msgstr "Merkkijono"
 #. allow to get external functionalities
 #: ../data/language-specs/actionscript.lang.h:6
 #: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/scala.lang.h:4
 msgid "External"
 msgstr "Ulkoinen"
 
 #: ../data/language-specs/actionscript.lang.h:7
 #: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/scala.lang.h:8
 msgid "Declaration"
 msgstr "Määrittely"
 
@@ -273,7 +277,8 @@ msgstr "Alueen määrittely"
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
 #: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/modelica.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
@@ -287,7 +292,8 @@ msgstr "Alueen määrittely"
 #: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
+#: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
 #: ../data/language-specs/sql.lang.h:6
@@ -338,8 +344,10 @@ msgstr "Totuusarvo"
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/j.lang.h:14 ../data/language-specs/netrexx.lang.h:16
+#: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
+#: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/scala.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
 msgstr "Numero"
@@ -375,9 +383,9 @@ msgstr "Tulevaan käyttöön varatut sanat"
 #: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
 #: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
-#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
+#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Tietotyyppi"
 
@@ -443,7 +451,8 @@ msgstr "Reaaliluku"
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python3.lang.h:7
 #: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/sml.lang.h:8 ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/texinfo.lang.h:4
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "Suojattu merkkijono"
@@ -454,7 +463,7 @@ msgstr "ASP"
 
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/changelog.lang.h:9
 #: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
 #: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
 #: ../data/language-specs/gtk-doc.lang.h:10
@@ -472,10 +481,12 @@ msgstr "Funktio"
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/julia.lang.h:9
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
 #: ../data/language-specs/prolog.lang.h:8
+#: ../data/language-specs/scala.lang.h:13
 #: ../data/language-specs/sparql.lang.h:15
 msgid "Operator"
 msgstr "Operaattori"
@@ -615,11 +626,12 @@ msgstr "Heksadesimaaliluku"
 #: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
+#: ../data/language-specs/mediawiki.lang.h:1
 #: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:251
-#: ../gtksourceview/gtksourcegutterrenderertext.c:395
+#: ../gtksourceview/gtksourcecompletionitem.c:249
+#: ../gtksourceview/gtksourcegutterrenderertext.c:391
 msgid "Markup"
 msgstr "Merkintä"
 
@@ -665,6 +677,7 @@ msgstr ""
 
 #: ../data/language-specs/bluespec.lang.h:8
 #: ../data/language-specs/gtk-doc.lang.h:9
+#: ../data/language-specs/julia.lang.h:15
 #: ../data/language-specs/systemverilog.lang.h:6
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:7
@@ -705,6 +718,7 @@ msgstr "Erityinen muuttuja"
 #: ../data/language-specs/boo.lang.h:13
 #: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/imagej.lang.h:4
+#: ../data/language-specs/julia.lang.h:6
 #: ../data/language-specs/libtool.lang.h:4
 #: ../data/language-specs/modelica.lang.h:9
 #: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
@@ -790,24 +804,24 @@ msgstr "ChangeLog"
 msgid "Date"
 msgstr "Päiväys"
 
-#: ../data/language-specs/changelog.lang.h:4
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#. Translators: the name of a person, not an object.
+#: ../data/language-specs/changelog.lang.h:5
 msgid "Name"
 msgstr "Nimi"
 
-#: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/changelog.lang.h:6
 msgid "E-mail address"
 msgstr "Sähköpostiosoite"
 
-#: ../data/language-specs/changelog.lang.h:6
+#: ../data/language-specs/changelog.lang.h:7
 msgid "File"
 msgstr "Tiedosto"
 
-#: ../data/language-specs/changelog.lang.h:7
+#: ../data/language-specs/changelog.lang.h:8
 msgid "Bullet"
 msgstr "Luoti"
 
-#: ../data/language-specs/changelog.lang.h:9
+#: ../data/language-specs/changelog.lang.h:10
 msgid "Release"
 msgstr "Julkaisu"
 
@@ -829,7 +843,7 @@ msgstr "Yleiset määrittelyt"
 #: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
@@ -1258,6 +1272,7 @@ msgstr "Kääntäjävihje"
 #: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
 #: ../data/language-specs/idl-exelis.lang.h:1
 #: ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/julia.lang.h:1
 #: ../data/language-specs/matlab.lang.h:1
 #: ../data/language-specs/modelica.lang.h:1
 #: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
@@ -1418,7 +1433,6 @@ msgid "Go"
 msgstr "Go"
 
 #: ../data/language-specs/go.lang.h:12
-#| msgid "Binary number"
 msgid "Imaginary number"
 msgstr "Imaginaariluku"
 
@@ -1525,6 +1539,7 @@ msgstr "Määrittelyluettelo"
 
 #: ../data/language-specs/haddock.lang.h:15
 #: ../data/language-specs/markdown.lang.h:8
+#: ../data/language-specs/mediawiki.lang.h:6
 msgid "URL"
 msgstr "URL"
 
@@ -1688,6 +1703,42 @@ msgstr ""
 msgid "Verb"
 msgstr "Muotoilematon"
 
+#: ../data/language-specs/julia.lang.h:2
+msgid "Julia"
+msgstr ""
+
+#: ../data/language-specs/julia.lang.h:7
+#, fuzzy
+#| msgid "Constant"
+msgid "Math Constant"
+msgstr "Vakio"
+
+#: ../data/language-specs/julia.lang.h:8 ../data/language-specs/R.lang.h:7
+#: ../data/language-specs/scala.lang.h:11
+msgid "Special Constant"
+msgstr "Erikoisvakio"
+
+#: ../data/language-specs/julia.lang.h:11
+#, fuzzy
+#| msgid "Macros"
+msgid "Macro"
+msgstr "Makrot"
+
+#: ../data/language-specs/julia.lang.h:12
+#| msgid "External"
+msgid "External Command"
+msgstr "Ulkoinen komento"
+
+#: ../data/language-specs/julia.lang.h:13
+#| msgid "Builtin Function"
+msgid "Built-in Function"
+msgstr "Sisäänrakennettu funktio"
+
+#: ../data/language-specs/julia.lang.h:14
+#| msgid "Module Path"
+msgid "Module"
+msgstr "Moduuli"
+
 #: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
 msgstr "LaTeX"
@@ -1839,7 +1890,7 @@ msgid "Link Text"
 msgstr "Linkin teksti"
 
 #: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:238
+#: ../gtksourceview/gtksourcecompletionitem.c:236
 msgid "Label"
 msgstr "Nimiö"
 
@@ -1848,6 +1899,7 @@ msgid "Image Marker"
 msgstr "Kuvan merkintä"
 
 #: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/mediawiki.lang.h:3
 msgid "Strong Emphasis"
 msgstr "Vahva korostus"
 
@@ -1862,6 +1914,64 @@ msgstr "Rivin katkaisu"
 #: ../data/language-specs/matlab.lang.h:2
 msgid "Matlab"
 msgstr "Matlab"
+
+#: ../data/language-specs/mediawiki.lang.h:2
+msgid "MediaWiki"
+msgstr ""
+
+#: ../data/language-specs/mediawiki.lang.h:4
+#, fuzzy
+#| msgid "Emphasis"
+msgid "Light Emphasis"
+msgstr "Korostus"
+
+#: ../data/language-specs/mediawiki.lang.h:5
+#, fuzzy
+#| msgid "Signal name"
+msgid "Signature"
+msgstr "Signaalin nimi"
+
+#: ../data/language-specs/mediawiki.lang.h:7
+#, fuzzy
+#| msgid "Link Text"
+msgid "Link"
+msgstr "Linkin teksti"
+
+#: ../data/language-specs/mediawiki.lang.h:8
+msgid "Symbol on a Link"
+msgstr ""
+
+#: ../data/language-specs/mediawiki.lang.h:9
+msgid "Line"
+msgstr ""
+
+#: ../data/language-specs/mediawiki.lang.h:10
+msgid "List"
+msgstr ""
+
+#: ../data/language-specs/mediawiki.lang.h:11
+msgid "Magic Word"
+msgstr ""
+
+#: ../data/language-specs/mediawiki.lang.h:12
+msgid "Symbol of a Table"
+msgstr ""
+
+#: ../data/language-specs/mediawiki.lang.h:13
+msgid "Preformatted"
+msgstr ""
+
+#: ../data/language-specs/mediawiki.lang.h:14
+msgid "Redirect"
+msgstr ""
+
+#: ../data/language-specs/mediawiki.lang.h:15
+msgid "Title"
+msgstr ""
+
+#: ../data/language-specs/mediawiki.lang.h:16
+msgid "Template"
+msgstr ""
 
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
@@ -1936,10 +2046,9 @@ msgid "Modifiers"
 msgstr "Tunniste"
 
 #: ../data/language-specs/netrexx.lang.h:13
-#, fuzzy
 #| msgid "Keyword"
 msgid "Keywords"
-msgstr "Avainsana"
+msgstr "Avainsanat"
 
 #: ../data/language-specs/netrexx.lang.h:14
 #, fuzzy
@@ -2119,10 +2228,9 @@ msgid "Puppet"
 msgstr ""
 
 #: ../data/language-specs/puppet.lang.h:3
-#, fuzzy
 #| msgid "Sources"
 msgid "Resources"
-msgstr "Lähdekoodit"
+msgstr "Resurssit"
 
 #: ../data/language-specs/puppet.lang.h:4
 #, fuzzy
@@ -2137,23 +2245,19 @@ msgid "Metaparameters"
 msgstr "Suoritusparametri"
 
 #: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
-#, fuzzy
 #| msgid "Function"
 msgid "Functions"
-msgstr "Funktio"
+msgstr "Funktiot"
 
 #: ../data/language-specs/puppet.lang.h:7
-#| msgid "Null Value"
 msgid "Values"
 msgstr "Arvot"
 
 #: ../data/language-specs/puppet.lang.h:8
-#| msgid "Variable"
 msgid "Variables"
 msgstr "Muuttujat"
 
 #: ../data/language-specs/puppet.lang.h:9
-#| msgid "Class"
 msgid "Class names"
 msgstr "Luokkanimet"
 
@@ -2194,10 +2298,6 @@ msgstr "Sijoitusoperaattori"
 #: ../data/language-specs/R.lang.h:6
 msgid "Delimiter"
 msgstr "Erotin"
-
-#: ../data/language-specs/R.lang.h:7
-msgid "Special Constant"
-msgstr "Erikoisvakio"
 
 #: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:16
 msgid "Integer Number"
@@ -2271,6 +2371,30 @@ msgstr "Lukuarvot"
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Literal"
 msgstr "Literaali"
+
+#: ../data/language-specs/scala.lang.h:2
+msgid "Scala"
+msgstr ""
+
+#: ../data/language-specs/scala.lang.h:9
+#, fuzzy
+#| msgid "Identifier"
+msgid "Modifier"
+msgstr "Tunniste"
+
+#: ../data/language-specs/scala.lang.h:15
+#| msgid "Builtin"
+msgid "Built In"
+msgstr "Sisäänrakennettu"
+
+#: ../data/language-specs/scala.lang.h:16
+#| msgid "Others"
+msgid "Other"
+msgstr "Muu"
+
+#: ../data/language-specs/scala.lang.h:17
+msgid "XML Tag"
+msgstr ""
 
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
@@ -2373,13 +2497,13 @@ msgstr "Osio 4"
 msgid "Section 5"
 msgstr "Osio 5"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:112
-#: ../gtksourceview/gtksourcestyle.c:113
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:114
+#: ../gtksourceview/gtksourcestyle.c:115
 msgid "Italic"
 msgstr "Kursiivi"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:106
+#: ../gtksourceview/gtksourcestyle.c:107
 msgid "Bold"
 msgstr "Lihavoitu"
 
@@ -2515,266 +2639,269 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Tango-väripaletissa käytetty värimalli"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:381
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:327
 msgid "Document Words"
 msgstr "Asiakirjan sanat"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
+#| msgid "Name"
+msgctxt "Object"
+msgid "Name"
+msgstr "Nimi"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
 msgid "The provider name"
 msgstr "Tarjoajan nimi"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
-#: ../gtksourceview/gtksourcecompletionitem.c:277
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:437
+#: ../gtksourceview/gtksourcecompletionitem.c:275
 msgid "Icon"
 msgstr "Kuvake"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:474
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
 msgid "The provider icon"
 msgstr "Tarjoajan kuvake"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:445
 msgid "Proposals Batch Size"
 msgstr "Ehdotusten eräkoko"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
 msgid "Number of proposals added in one batch"
 msgstr "Ehdotusten lukumäärä, joka lisätään yhdessä erässä"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
 msgid "Scan Batch Size"
 msgstr "Tarkastuksen eräkoko"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
 msgid "Number of lines scanned in one batch"
 msgstr "Rivien määrä, joka tarkastetaan kerralla"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "Minimum Word Size"
 msgstr "Lyhin sanan pituus"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
 msgid "The minimum word size to complete"
 msgstr "Lyhin sanan pituus, joka täydennetään"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
 msgid "Interactive Delay"
 msgstr "Interaktiivisuusviive"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
 msgid "The delay before initiating interactive completion"
 msgstr "Viive ennen kuin aloitetaan interaktiivinen täydennys"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
 msgid "Priority"
 msgstr "Prioriteetti"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:522
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
 msgid "Provider priority"
 msgstr "Tarjoajan prioriteetti"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
-#: ../gtksourceview/gtksourceprintcompositor.c:504
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/gtksourcecompletioncontext.c:299
+msgid "Activation"
+msgstr "Aktivointi"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
+#: ../gtksourceview/gtksourcecompletioncontext.c:300
+msgid "The type of activation"
+msgstr "Aktivoinnin tyyppi"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Korosta syntaksi"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:294
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Korostuuko syntaksi puskurissa"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:307
 msgid "Highlight Matching Brackets"
 msgstr "Korosta vastakkaiset sulkeet"
 
-#: ../gtksourceview/gtksourcebuffer.c:252
+#: ../gtksourceview/gtksourcebuffer.c:308
 msgid "Whether to highlight matching brackets"
 msgstr "Korostetaanko parin muodostavat sulkeet"
 
-#: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:413
+#: ../gtksourceview/gtksourcebuffer.c:321
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Maximum Undo Levels"
 msgstr "Kumoamiskertojen suurin määrä"
 
-#: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:414
+#: ../gtksourceview/gtksourcebuffer.c:322
+#: ../gtksourceview/gtksourceundomanagerdefault.c:415
 msgid "Number of undo levels for the buffer"
 msgstr "Kumoamiskertojen määrä puskurissa"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:278
+#: ../gtksourceview/gtksourcebuffer.c:334
 msgid "Language"
 msgstr "Kieli"
 
-#: ../gtksourceview/gtksourcebuffer.c:279
+#: ../gtksourceview/gtksourcebuffer.c:335
 msgid "Language object to get highlighting patterns from"
 msgstr "Kieliolio, josta korostushahmot saadaan"
 
-#: ../gtksourceview/gtksourcebuffer.c:287
+#: ../gtksourceview/gtksourcebuffer.c:343
 msgid "Can undo"
 msgstr "Voidaan perua"
 
-#: ../gtksourceview/gtksourcebuffer.c:288
+#: ../gtksourceview/gtksourcebuffer.c:344
 msgid "Whether Undo operation is possible"
 msgstr "Onko peruminen mahdollista"
 
-#: ../gtksourceview/gtksourcebuffer.c:295
+#: ../gtksourceview/gtksourcebuffer.c:351
 msgid "Can redo"
 msgstr "Voidaan tehdä uudestaan"
 
-#: ../gtksourceview/gtksourcebuffer.c:296
+#: ../gtksourceview/gtksourcebuffer.c:352
 msgid "Whether Redo operation is possible"
 msgstr "Onko uudestaan tekeminen mahdollista"
 
-#: ../gtksourceview/gtksourcebuffer.c:310
-#: ../gtksourceview/gtksourcebuffer.c:311
+#: ../gtksourceview/gtksourcebuffer.c:366
+#: ../gtksourceview/gtksourcebuffer.c:367
 msgid "Style scheme"
 msgstr "Tyylimalli"
 
-#: ../gtksourceview/gtksourcebuffer.c:318
+#: ../gtksourceview/gtksourcebuffer.c:374
 msgid "Undo manager"
 msgstr "Kumoamisen hallinta"
 
-#: ../gtksourceview/gtksourcebuffer.c:319
+#: ../gtksourceview/gtksourcebuffer.c:375
 msgid "The buffer undo manager"
 msgstr "Puskurin kumoamisen hallinta"
 
-#: ../gtksourceview/gtksourcecompletion.c:627
-#: ../gtksourceview/gtksourcecompletion.c:658
-msgid "No extra information available"
-msgstr "Ei lisätietoa saatavilla"
-
-#: ../gtksourceview/gtksourcecompletion.c:1527
-#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcecompletion.c:1786
+#: ../gtksourceview/gtksourcegutter.c:546
 msgid "View"
 msgstr "Näkymä"
 
-#: ../gtksourceview/gtksourcecompletion.c:1528
+#: ../gtksourceview/gtksourcecompletion.c:1787
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView, joka on sidottu täydennykseen"
 
-#: ../gtksourceview/gtksourcecompletion.c:1542
+#: ../gtksourceview/gtksourcecompletion.c:1801
 msgid "Remember Info Visibility"
 msgstr "Muista tietojen näkyvyys"
 
-#: ../gtksourceview/gtksourcecompletion.c:1543
+#: ../gtksourceview/gtksourcecompletion.c:1802
 msgid "Remember the last info window visibility state"
 msgstr "Muista edellinen tietoikkunan näkyvyyden tila"
 
-#: ../gtksourceview/gtksourcecompletion.c:1555
+#: ../gtksourceview/gtksourcecompletion.c:1814
 msgid "Select on Show"
 msgstr "Valitse näytettäessä"
 
-#: ../gtksourceview/gtksourcecompletion.c:1556
+#: ../gtksourceview/gtksourcecompletion.c:1815
 msgid "Select first proposal when completion is shown"
 msgstr "Valitse ensimmäinen ehdotus kun täydennys näytetään"
 
-#: ../gtksourceview/gtksourcecompletion.c:1569
+#: ../gtksourceview/gtksourcecompletion.c:1828
 msgid "Show Headers"
 msgstr "Näytä otsakkeet"
 
-#: ../gtksourceview/gtksourcecompletion.c:1570
+#: ../gtksourceview/gtksourcecompletion.c:1829
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Näytä tarjoajien otsakkeen kun ehdotuksia useilta tarjoajilta on "
 "käytettävissä"
 
-#: ../gtksourceview/gtksourcecompletion.c:1583
+#: ../gtksourceview/gtksourcecompletion.c:1842
 msgid "Show Icons"
 msgstr "Näytä kuvakkeet"
 
-#: ../gtksourceview/gtksourcecompletion.c:1584
+#: ../gtksourceview/gtksourcecompletion.c:1843
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Näytä tarjoaja- ja ehdotuskuvakkeet täydennysikkunassa"
 
-#: ../gtksourceview/gtksourcecompletion.c:1598
+#: ../gtksourceview/gtksourcecompletion.c:1857
 msgid "Accelerators"
 msgstr "Pikanäppäimet"
 
-#: ../gtksourceview/gtksourcecompletion.c:1599
+#: ../gtksourceview/gtksourcecompletion.c:1858
 msgid "Number of proposal accelerators to show"
 msgstr "Näytettävien ehdotuspikanäppäinten lukumäärä"
 
-#: ../gtksourceview/gtksourcecompletion.c:1614
+#: ../gtksourceview/gtksourcecompletion.c:1873
 msgid "Auto Complete Delay"
 msgstr "Autotäydennysviive"
 
-#: ../gtksourceview/gtksourcecompletion.c:1615
+#: ../gtksourceview/gtksourcecompletion.c:1874
 msgid "Completion popup delay for interactive completion"
 msgstr "Täydennysikkunan viive interaktiivisessa täydennyksessä"
 
-#: ../gtksourceview/gtksourcecompletion.c:1631
+#: ../gtksourceview/gtksourcecompletion.c:1890
 msgid "Provider Page Size"
 msgstr "Tarjoajan sivukoko"
 
-#: ../gtksourceview/gtksourcecompletion.c:1632
+#: ../gtksourceview/gtksourcecompletion.c:1891
 msgid "Provider scrolling page size"
 msgstr "Tarjoajan vierityssivun koko"
 
-#: ../gtksourceview/gtksourcecompletion.c:1652
+#: ../gtksourceview/gtksourcecompletion.c:1911
 msgid "Proposal Page Size"
 msgstr "Ehdotusten sivukoko"
 
-#: ../gtksourceview/gtksourcecompletion.c:1653
+#: ../gtksourceview/gtksourcecompletion.c:1912
 msgid "Proposal scrolling page size"
 msgstr "Tarjoajan vierityssivun koko"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:255
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourcecompletioncontext.c:272
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Completion"
 msgstr "Täydennys"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:256
+#: ../gtksourceview/gtksourcecompletioncontext.c:273
 msgid "The completion object to which the context belongs"
 msgstr "Täydennysolio, johon asiayhteys kuuluu"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:269
+#: ../gtksourceview/gtksourcecompletioncontext.c:286
 msgid "Iterator"
 msgstr "Iteraattori"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:270
+#: ../gtksourceview/gtksourcecompletioncontext.c:287
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter, jonka täydennystä käytettiin"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:282
-msgid "Activation"
-msgstr "Aktivointi"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:283
-msgid "The type of activation"
-msgstr "Aktivoinnin tyyppi"
-
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:193
+#: ../gtksourceview/gtksourcecompletioninfo.c:240
 msgid "Completion Info"
 msgstr "Täydennystieto"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:239
+#: ../gtksourceview/gtksourcecompletionitem.c:237
 msgid "Label to be shown for this item"
 msgstr "Nimiö, joka tälle kohteelle näytetään"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:252
+#: ../gtksourceview/gtksourcecompletionitem.c:250
 msgid "Markup to be shown for this item"
 msgstr "Merkintä, joka tälle kohteelle näytetään"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:265
+#: ../gtksourceview/gtksourcecompletionitem.c:263
 msgid "Item text"
 msgstr "Kohteen teksti"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:278
+#: ../gtksourceview/gtksourcecompletionitem.c:276
 msgid "Icon to be shown for this item"
 msgstr "Kuvake, joka näytetään tälle kohteelle"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:290
+#: ../gtksourceview/gtksourcecompletionitem.c:288
 msgid "Info"
 msgstr "Tieto"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:291
+#: ../gtksourceview/gtksourcecompletionitem.c:289
 msgid "Info to be shown for this item"
 msgstr "Tieto, joka näytetään tälle kohteelle"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:492
+#: ../gtksourceview/gtksourcecompletionmodel.c:491
 msgid "Provider"
 msgstr "Tarjoaja"
 
@@ -2792,7 +2919,7 @@ msgstr "_Tiedot..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3122
+#: ../gtksourceview/gtksourcecontextengine.c:3119
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2803,7 +2930,7 @@ msgstr ""
 "korostustoiminto saattaa olla hitaampi kuin yleensä.\n"
 "Virhe oli: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4445
+#: ../gtksourceview/gtksourcecontextengine.c:4442
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2811,19 +2938,19 @@ msgstr ""
 "Yhden rivin korostaminen kesti liian pitkään, syntaksin korostus on pois "
 "päältä"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5689
+#: ../gtksourceview/gtksourcecontextengine.c:5686
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "konteksti ”%s” ei voi sisältää \\%%{…@start} -komentoa"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5850
-#: ../gtksourceview/gtksourcecontextengine.c:5939
+#: ../gtksourceview/gtksourcecontextengine.c:5847
+#: ../gtksourceview/gtksourcecontextengine.c:5936
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "kahdennettu kontekstin tunniste ”%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6053
-#: ../gtksourceview/gtksourcecontextengine.c:6113
+#: ../gtksourceview/gtksourcecontextengine.c:6050
+#: ../gtksourceview/gtksourcecontextengine.c:6110
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2832,155 +2959,160 @@ msgstr ""
 "tyylin ohitusta käytettiin jokerimerkillisessä kontekstiviitteessä kielellä "
 "”%s” viitteessä ”%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
+#: ../gtksourceview/gtksourcecontextengine.c:6124
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "virheellinen kontekstiviite ”%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6146
-#: ../gtksourceview/gtksourcecontextengine.c:6156
+#: ../gtksourceview/gtksourcecontextengine.c:6143
+#: ../gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "unknown context '%s'"
 msgstr "tuntematon konteksti ”%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6255
+#: ../gtksourceview/gtksourcecontextengine.c:6252
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Kielen päämäärittly puuttuu (tunniste = ”%s”.)"
 
-#: ../gtksourceview/gtksourcegutter.c:549
+#. Translators: gutters can be used to display information
+#. * on the left or on the right of the text view. To draw the
+#. * line numbers for example.
+#: ../gtksourceview/gtksourcegutter.c:550
 msgid "The gutters' GtkSourceView"
 msgstr "Kourun GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:561
-#: ../gtksourceview/gtksourcegutterrenderer.c:723
+#: ../gtksourceview/gtksourcegutter.c:562
+#: ../gtksourceview/gtksourcegutterrenderer.c:717
 msgid "Window Type"
 msgstr "Ikkunatyyppi"
 
-#: ../gtksourceview/gtksourcegutter.c:562
-msgid "The gutters text window type"
+#: ../gtksourceview/gtksourcegutter.c:563
+#, fuzzy
+#| msgid "The gutters text window type"
+msgid "The gutters' text window type"
 msgstr "Kourun teksti-ikkunatyyppi"
 
-#: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
+#: ../gtksourceview/gtksourcegutter.c:571
+#: ../gtksourceview/gtksourcegutterrenderer.c:494
 #, fuzzy
 msgid "X Padding"
 msgstr "POD-otsake"
 
-#: ../gtksourceview/gtksourcegutter.c:574
-#: ../gtksourceview/gtksourcegutterrenderer.c:501
+#: ../gtksourceview/gtksourcegutter.c:572
+#: ../gtksourceview/gtksourcegutterrenderer.c:495
 msgid "The x-padding"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
+#: ../gtksourceview/gtksourcegutter.c:582
+#: ../gtksourceview/gtksourcegutterrenderer.c:510
 #, fuzzy
 msgid "Y Padding"
 msgstr "POD-otsake"
 
-#: ../gtksourceview/gtksourcegutter.c:585
-#: ../gtksourceview/gtksourcegutterrenderer.c:517
+#: ../gtksourceview/gtksourcegutter.c:583
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 msgid "The y-padding"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:486
-#: ../gtksourceview/gtksourcegutterrenderer.c:487
+#: ../gtksourceview/gtksourcegutterrenderer.c:480
+#: ../gtksourceview/gtksourcegutterrenderer.c:481
 msgid "Visible"
 msgstr "Näkyvä"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:532
+#: ../gtksourceview/gtksourcegutterrenderer.c:526
 msgid "X Alignment"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:533
+#: ../gtksourceview/gtksourcegutterrenderer.c:527
 msgid "The x-alignment"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:548
+#: ../gtksourceview/gtksourcegutterrenderer.c:542
 msgid "Y Alignment"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:549
+#: ../gtksourceview/gtksourcegutterrenderer.c:543
 msgid "The y-alignment"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:690
+#: ../gtksourceview/gtksourcegutterrenderer.c:684
 #, fuzzy
 msgid "The View"
 msgstr "Näkymä"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutterrenderer.c:685
 msgid "The view"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:707
+#: ../gtksourceview/gtksourcegutterrenderer.c:701
 #, fuzzy
 msgid "Alignment Mode"
 msgstr "Sisäkkäinen matematiikkatila"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:708
+#: ../gtksourceview/gtksourcegutterrenderer.c:702
 msgid "The alignment mode"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:724
+#: ../gtksourceview/gtksourcegutterrenderer.c:718
 msgid "The window type"
 msgstr "Ikkunan tyyppi"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:732
+#: ../gtksourceview/gtksourcegutterrenderer.c:726
 msgid "Size"
 msgstr "Koko"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:733
+#: ../gtksourceview/gtksourcegutterrenderer.c:727
 msgid "The size"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkattributes.c:318
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:289
+#: ../gtksourceview/gtksourcemarkattributes.c:314
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkattributes.c:319
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:290
+#: ../gtksourceview/gtksourcemarkattributes.c:315
 msgid "The pixbuf"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkattributes.c:305
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:304
+#: ../gtksourceview/gtksourcemarkattributes.c:301
 msgid "Stock Id"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkattributes.c:306
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:305
+#: ../gtksourceview/gtksourcemarkattributes.c:302
 msgid "The stock id"
 msgstr ""
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkattributes.c:331
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:312
+#: ../gtksourceview/gtksourcemarkattributes.c:327
 msgid "Icon Name"
 msgstr "Kuvakkeen nimi"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkattributes.c:332
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
+#: ../gtksourceview/gtksourcemarkattributes.c:328
 msgid "The icon name"
 msgstr "Kuvakkeen nimi"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkattributes.c:344
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:320
+#: ../gtksourceview/gtksourcemarkattributes.c:340
 #, fuzzy
 msgid "GIcon"
 msgstr "Kuvake"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:318
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
 #, fuzzy
 msgid "The gicon"
 msgstr "Tarjoajan kuvake"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:396
+#: ../gtksourceview/gtksourcegutterrenderertext.c:392
 #, fuzzy
 msgid "The markup"
 msgstr "Merkintä"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:404
+#: ../gtksourceview/gtksourcegutterrenderertext.c:400
 #, fuzzy
 msgid "The text"
 msgstr "Kohteen teksti"
@@ -3008,21 +3140,21 @@ msgstr "Piilotettu"
 msgid "Whether the language should be hidden from the user"
 msgstr "Piilotetaanko kieli käyttäjältä"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
+#: ../gtksourceview/gtksourcelanguagemanager.c:149
 msgid "Language specification directories"
 msgstr "Kielimääritelmien hakemisto"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:151
+#: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
 msgstr "Luettelo hakemistoista, joissa kielimäärittelytiedostot (.lang) ovat"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
+#: ../gtksourceview/gtksourcelanguagemanager.c:159
 msgid "Language ids"
 msgstr "Kielitunnisteet"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:161
+#: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "List of the ids of the available languages"
 msgstr "Luettelo saatavilla olevien kielten tunnisteista"
 
@@ -3036,16 +3168,16 @@ msgstr "Tuntematon tunniste ”%s” säännöllisessä lauseessa ”%s”"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "lausekkeessa ”%s”: takaisinviittauksia ei tueta"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:292
-#: ../gtksourceview/gtksourcestyle.c:88
+#: ../gtksourceview/gtksourcemarkattributes.c:288
+#: ../gtksourceview/gtksourcestyle.c:90
 msgid "Background"
 msgstr "Tausta"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:293
+#: ../gtksourceview/gtksourcemarkattributes.c:289
 msgid "The background"
 msgstr "Tausta"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:345
+#: ../gtksourceview/gtksourcemarkattributes.c:341
 #, fuzzy
 msgid "The GIcon"
 msgstr "Näytä kuvakkeet"
@@ -3058,98 +3190,98 @@ msgstr "luokka"
 msgid "The mark category"
 msgstr "Merkinnän luokka"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:444
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
 msgstr "Lähdepuskuri"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "The GtkSourceBuffer object to print"
 msgstr "Tulostettava GtkSourceBuffer-olio"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceview.c:346
 msgid "Tab Width"
 msgstr "Sarkaimen leveys"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Width of a tab character expressed in spaces"
 msgstr "Sarkaimen leveys välilyönteinä esitettynä"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:483
+#: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid "Wrap Mode"
 msgstr "Rivitystila"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:484
+#: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr "Kuinka rivit rivitetään: ei koskaa, sanojen kohdalta vai merkeittäin."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:505
+#: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Tulostetaanko asiakirja syntaksivärityksellä"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:526
+#: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Print Line Numbers"
 msgstr "Tulosta rivinumerot"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:527
+#: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr "Tulostettavien rivinumeroiden väli (0 ei tulosta rivinumeroita)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:549
+#: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Print Header"
 msgstr "Tulosta otsake"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:550
+#: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Whether to print a header in each page"
 msgstr "Tulostetaanko kullekin sivulle otsake"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:572
+#: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Print Footer"
 msgstr "Tulosta alaotsake"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:573
+#: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Whether to print a footer in each page"
 msgstr "Tulostetaanko kullekin sivulla alaotsake"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:595
+#: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Body Font Name"
 msgstr "Rungon kirjasimen nimi"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:596
+#: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr "Tekstin rungossa käytettävän kirjasimen nimi, esim. ”Monospace 10”"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:619
+#: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
 msgstr "Rivinumeroiden kirjasimen nimi"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:620
+#: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr "Rivinumeroissa käytettävän kirjasimen nimi, esim. ”Monospace 10”"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:643
+#: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
 msgstr "Otsakkeen kirjasimen nimi"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:644
+#: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr "Otsakkeessa käytettävän kirjasimen nimi, esim. ”Monospace 10”"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:667
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
 msgstr "Alaotsakkeen kirjasimen nimi"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr "Alaotsakkeessa käytettävän kirjasimen nimi, esim. ”Monospace 10”"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:684
+#: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
 msgstr "Sivujen lukumäärä"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:685
+#: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -3161,199 +3293,280 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "Käytetään arvoa \\C tukemattomissa kielimäärittelyissä"
 
-#: ../gtksourceview/gtksourcestyle.c:80
-msgid "Line background"
-msgstr "Rivin tausta"
-
-#: ../gtksourceview/gtksourcestyle.c:81
-msgid "Line background color"
-msgstr "Rivin austaväri"
-
-#: ../gtksourceview/gtksourcestyle.c:89
-msgid "Background color"
-msgstr "Taustaväri"
-
-#: ../gtksourceview/gtksourcestyle.c:96
-msgid "Foreground"
-msgstr "Edusta"
-
-#: ../gtksourceview/gtksourcestyle.c:97
-msgid "Foreground color"
-msgstr "Edustaväri"
-
-#: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
-msgid "Underline"
-msgstr "Alleviivattu"
-
-#: ../gtksourceview/gtksourcestyle.c:128 ../gtksourceview/gtksourcestyle.c:129
-msgid "Strikethrough"
-msgstr "Yliviivattu"
-
-#: ../gtksourceview/gtksourcestyle.c:136
-msgid "Line background set"
-msgstr "Rivin tausta asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:137
-msgid "Whether line background color is set"
-msgstr "Onko rivin taustaväri asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:144
-msgid "Foreground set"
-msgstr "Edusta asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:145
-msgid "Whether foreground color is set"
-msgstr "Onko edustaväri asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:152
-msgid "Background set"
-msgstr "Tausta asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:153
-msgid "Whether background color is set"
-msgstr "Onko taustaväri asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:160
-msgid "Bold set"
-msgstr "Lihavoitu asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:161
-msgid "Whether bold attribute is set"
-msgstr "Onko lihavointimääre asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:168
-msgid "Italic set"
-msgstr "Kursiivi asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:169
-msgid "Whether italic attribute is set"
-msgstr "Onko kursiivimääre asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:176
-msgid "Underline set"
-msgstr "Alleviivaus asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:177
-msgid "Whether underline attribute is set"
-msgstr "Onko alleviivausmääre asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:184
-msgid "Strikethrough set"
-msgstr "Yliviivaus asetettu"
-
-#: ../gtksourceview/gtksourcestyle.c:185
-msgid "Whether strikethrough attribute is set"
-msgstr "Onko yliviivausmääre asetettu"
-
-#: ../gtksourceview/gtksourcestylescheme.c:212
-#: ../gtksourceview/gtksourcestylescheme.c:213
-msgid "Style scheme id"
-msgstr "Tyylimallin tunniste"
-
-#: ../gtksourceview/gtksourcestylescheme.c:225
-#: ../gtksourceview/gtksourcestylescheme.c:226
-msgid "Style scheme name"
-msgstr "Tyylimallin nimi"
-
-#: ../gtksourceview/gtksourcestylescheme.c:238
-#: ../gtksourceview/gtksourcestylescheme.c:239
-msgid "Style scheme description"
-msgstr "Tyylimallin kuvaus"
-
-#: ../gtksourceview/gtksourcestylescheme.c:251
-#: ../gtksourceview/gtksourcestylescheme.c:252
-msgid "Style scheme filename"
-msgstr "Tyylimallin tiedostonimi"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:152
-msgid "Style scheme search path"
-msgstr "Tyylimallien hakupolku"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
-msgid "List of directories and files where the style schemes are located"
-msgstr "Luettelo kansioista ja tiedostoista, joissa tyylimallit voivat sijaita"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:161
-msgid "Scheme ids"
-msgstr "Mallitunnisteet"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
-msgid "List of the ids of the available style schemes"
-msgstr "Luettelo saatavilla olevista tyylimallien tunnisteista"
-
-#: ../gtksourceview/gtksourceundomanagerdefault.c:405
+#: ../gtksourceview/gtksourcesearchcontext.c:2715
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "Puskuri"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:406
+#: ../gtksourceview/gtksourcesearchcontext.c:2716
+#, fuzzy
+#| msgid "The gutters' GtkSourceView"
+msgid "The associated GtkSourceBuffer"
+msgstr "Kourun GtkSourceView"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2730
+msgid "Settings"
+msgstr "Asetukset"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2731
+msgid "The associated GtkSourceSearchSettings"
+msgstr ""
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2745
+#, fuzzy
+#| msgid "Highlight Syntax"
+msgid "Highlight"
+msgstr "Korosta syntaksi"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2746
+#, fuzzy
+#| msgid "Highlight current line"
+msgid "Highlight search occurrences"
+msgstr "Korosta nykyinen rivi"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2762
+msgid "Occurrences count"
+msgstr ""
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2763
+msgid "Total number of search occurrences"
+msgstr ""
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2782
+#| msgid "error"
+msgid "Regex error"
+msgstr "Regex-virhe"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2783
+#| msgid "Regular Expression"
+msgid "Regular expression error"
+msgstr "Säännöllisen lausekkeen virhe"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:169
+msgid "Search text"
+msgstr "Hakuteksti"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:170
+msgid "The text to search"
+msgstr "Haettava teksti"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:184
+#: ../gtksourceview/gtksourcesearchsettings.c:185
+msgid "Case sensitive"
+msgstr "Huomioi kirjainkoko"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:200
+msgid "At word boundaries"
+msgstr ""
+
+#: ../gtksourceview/gtksourcesearchsettings.c:201
+msgid "Search at word boundaries"
+msgstr ""
+
+#: ../gtksourceview/gtksourcesearchsettings.c:217
+#: ../gtksourceview/gtksourcesearchsettings.c:218
+#, fuzzy
+#| msgid "Wrap Mode"
+msgid "Wrap around"
+msgstr "Rivitystila"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:233
+msgid "Regex enabled"
+msgstr ""
+
+#: ../gtksourceview/gtksourcesearchsettings.c:234
+msgid "Whether to search by regular expression"
+msgstr ""
+
+#: ../gtksourceview/gtksourcestyle.c:82
+msgid "Line background"
+msgstr "Rivin tausta"
+
+#: ../gtksourceview/gtksourcestyle.c:83
+msgid "Line background color"
+msgstr "Rivin austaväri"
+
+#: ../gtksourceview/gtksourcestyle.c:91
+msgid "Background color"
+msgstr "Taustaväri"
+
+#: ../gtksourceview/gtksourcestyle.c:98
+msgid "Foreground"
+msgstr "Edusta"
+
+#: ../gtksourceview/gtksourcestyle.c:99
+msgid "Foreground color"
+msgstr "Edustaväri"
+
+#: ../gtksourceview/gtksourcestyle.c:122 ../gtksourceview/gtksourcestyle.c:123
+msgid "Underline"
+msgstr "Alleviivattu"
+
+#: ../gtksourceview/gtksourcestyle.c:130 ../gtksourceview/gtksourcestyle.c:131
+msgid "Strikethrough"
+msgstr "Yliviivattu"
+
+#: ../gtksourceview/gtksourcestyle.c:138
+msgid "Line background set"
+msgstr "Rivin tausta asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:139
+msgid "Whether line background color is set"
+msgstr "Onko rivin taustaväri asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:146
+msgid "Foreground set"
+msgstr "Edusta asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:147
+msgid "Whether foreground color is set"
+msgstr "Onko edustaväri asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:154
+msgid "Background set"
+msgstr "Tausta asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:155
+msgid "Whether background color is set"
+msgstr "Onko taustaväri asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:162
+msgid "Bold set"
+msgstr "Lihavoitu asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:163
+msgid "Whether bold attribute is set"
+msgstr "Onko lihavointimääre asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:170
+msgid "Italic set"
+msgstr "Kursiivi asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:171
+msgid "Whether italic attribute is set"
+msgstr "Onko kursiivimääre asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:178
+msgid "Underline set"
+msgstr "Alleviivaus asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:179
+msgid "Whether underline attribute is set"
+msgstr "Onko alleviivausmääre asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:186
+msgid "Strikethrough set"
+msgstr "Yliviivaus asetettu"
+
+#: ../gtksourceview/gtksourcestyle.c:187
+msgid "Whether strikethrough attribute is set"
+msgstr "Onko yliviivausmääre asetettu"
+
+#: ../gtksourceview/gtksourcestylescheme.c:211
+#: ../gtksourceview/gtksourcestylescheme.c:212
+msgid "Style scheme id"
+msgstr "Tyylimallin tunniste"
+
+#: ../gtksourceview/gtksourcestylescheme.c:224
+#: ../gtksourceview/gtksourcestylescheme.c:225
+msgid "Style scheme name"
+msgstr "Tyylimallin nimi"
+
+#: ../gtksourceview/gtksourcestylescheme.c:237
+#: ../gtksourceview/gtksourcestylescheme.c:238
+msgid "Style scheme description"
+msgstr "Tyylimallin kuvaus"
+
+#: ../gtksourceview/gtksourcestylescheme.c:250
+#: ../gtksourceview/gtksourcestylescheme.c:251
+msgid "Style scheme filename"
+msgstr "Tyylimallin tiedostonimi"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:153
+msgid "Style scheme search path"
+msgstr "Tyylimallien hakupolku"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
+msgid "List of directories and files where the style schemes are located"
+msgstr "Luettelo kansioista ja tiedostoista, joissa tyylimallit voivat sijaita"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:162
+msgid "Scheme ids"
+msgstr "Mallitunnisteet"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:163
+msgid "List of the ids of the available style schemes"
+msgstr "Luettelo saatavilla olevista tyylimallien tunnisteista"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:407
 msgid "The text buffer to add undo support on"
 msgstr "Tekstipuskuri, jolle lisätään kumoamistuki"
 
-#: ../gtksourceview/gtksourceview.c:311
+#: ../gtksourceview/gtksourceview.c:309
 msgid "The completion object associated with the view"
 msgstr "Täydennysolio, joka on liitetty näkymään"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:321
 msgid "Show Line Numbers"
 msgstr "Näytä rivinumerot"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Whether to display line numbers"
 msgstr "Näkyvätkö rivinumerot"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:333
 msgid "Show Line Marks"
 msgstr "Näytä rivimerkit"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Whether to display line mark pixbufs"
 msgstr "Näytetäänkö rivimerkkien kuvapuskurit"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:361
 msgid "Indent Width"
 msgstr "Sisennyksen leveys"
 
-#: ../gtksourceview/gtksourceview.c:364
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Number of spaces to use for each step of indent"
 msgstr "Kullakin sisennystasolla käytetty leveys välilyönteinä"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:371
 msgid "Auto Indentation"
 msgstr "Automaattinen sisennys"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Whether to enable auto indentation"
 msgstr "Onko automaattinen sisennys käytössä"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Lisää välilyöntejä sarkainten sijaan"
 
-#: ../gtksourceview/gtksourceview.c:382
+#: ../gtksourceview/gtksourceview.c:380
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Lisätäänkö välilyöntejä sarkainten sijaan"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:392
 msgid "Show Right Margin"
 msgstr "Näytä oikea reunus"
 
-#: ../gtksourceview/gtksourceview.c:395
+#: ../gtksourceview/gtksourceview.c:393
 msgid "Whether to display the right margin"
 msgstr "Näkyykö oikea reunus"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Right Margin Position"
 msgstr "Oikean reunuksen sijainti"
 
-#: ../gtksourceview/gtksourceview.c:408
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Position of the right margin"
 msgstr "Oikean reunuksen sijainti"
 
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Smart Home/End"
 msgstr "Älykkäät home- ja end-näppäimet"
 
-#: ../gtksourceview/gtksourceview.c:425
+#: ../gtksourceview/gtksourceview.c:423
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3361,29 +3574,39 @@ msgstr ""
 "Home- ja End-näppäimet siirtävät kohdistimen rivin ensimmäisen tai viimeisen "
 "merkin kohdalle ennen koko rivin alkuun tai loppuun siirtämistä."
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:433
 msgid "Highlight current line"
 msgstr "Korosta nykyinen rivi"
 
-#: ../gtksourceview/gtksourceview.c:436
+#: ../gtksourceview/gtksourceview.c:434
 msgid "Whether to highlight the current line"
 msgstr "Korostetaanko nykyinen rivi"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:441
 msgid "Indent on tab"
 msgstr "Sisennä sarkaimella"
 
-#: ../gtksourceview/gtksourceview.c:444
+#: ../gtksourceview/gtksourceview.c:442
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Sisennetäänkö valittu teksti painettaessa sarkainnäppäintä"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:456
 msgid "Draw Spaces"
 msgstr "Piirrä tyhjeet"
 
-#: ../gtksourceview/gtksourceview.c:459
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Set if and how the spaces should be visualized"
 msgstr "Aseta kuinka tyhjeet esitetään"
+
+#. create redo menu_item.
+#: ../gtksourceview/gtksourceview.c:1326
+msgid "_Redo"
+msgstr "_Tee uudelleen"
+
+#. create undo menu_item.
+#: ../gtksourceview/gtksourceview.c:1337
+msgid "_Undo"
+msgstr "_Kumoa"
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
@@ -3392,6 +3615,9 @@ msgstr ""
 "Pauli Virtanen, 2003-2005\n"
 "\n"
 "http://gnome.fi/"
+
+#~ msgid "No extra information available"
+#~ msgstr "Ei lisätietoa saatavilla"
 
 #~ msgid "Objective Caml"
 #~ msgstr "Objective Caml"
