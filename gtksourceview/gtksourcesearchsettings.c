@@ -119,8 +119,7 @@ gtk_source_search_settings_set_property (GObject      *object,
 	switch (prop_id)
 	{
 		case PROP_SEARCH_TEXT:
-			g_free (settings->priv->search_text);
-			settings->priv->search_text = g_value_dup_string (value);
+			gtk_source_search_settings_set_search_text (settings, g_value_get_string (value));
 			break;
 
 		case PROP_CASE_SENSITIVE:
