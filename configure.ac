@@ -3,8 +3,8 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.64)
 
 m4_define(gtksourceview_major_version, 3)
-m4_define(gtksourceview_minor_version, 9)
-m4_define(gtksourceview_micro_version, 93)
+m4_define(gtksourceview_minor_version, 10)
+m4_define(gtksourceview_micro_version, 0)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
 AC_INIT([gtksourceview],
@@ -30,9 +30,9 @@ AC_INIT([gtksourceview],
 #
 # (From the book Autotools, by John Calcote)
 
-GSV_LT_CURRENT=1
+GSV_LT_CURRENT=2
 GSV_LT_REVISION=0
-GSV_LT_AGE=0
+GSV_LT_AGE=1
 GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
 AC_SUBST(GSV_LT_VERSION)
 
