@@ -46,9 +46,9 @@
     </styles>
 
     <definitions>
-        <define-regex id="prefix">[a-zA-Z_][a-zA-Z0-9._-]*</define-regex>
+        <define-regex id="prefix">[[:alpha:]_][[:alnum:]._-]*</define-regex>
 
-        <define-regex id="name">[a-zA-Z_][a-zA-Z0-9.:_-]*</define-regex>
+        <define-regex id="name">[[:alpha:]_][[:alnum:].:_-]*</define-regex>
 
         <context id="entity" style-ref="entity" class="no-spell-check">
             <match>&amp;\%{name};</match>
