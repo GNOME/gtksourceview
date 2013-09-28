@@ -2773,6 +2773,10 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
  * completion when inserting or deleting text from the buffer associated with
  * the completion. Use gtk_source_completion_unblock_interactive() to enable
  * interactive completion again.
+ *
+ * This function may be called multiple times. It will continue to block
+ * interactive completion until gtk_source_completion_unblock_interactive()
+ * has been called the same number of times.
  */
 void
 gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
