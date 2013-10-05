@@ -136,13 +136,13 @@ gtk_text_region_new (GtkTextBuffer *buffer)
 }
 
 void
-gtk_text_region_destroy (GtkTextRegion *region, gboolean delete_marks)
+gtk_text_region_destroy (GtkTextRegion *region)
 {
 	g_return_if_fail (region != NULL);
 
 	while (region->subregions) {
 		Subregion *sr = region->subregions->data;
-		if (delete_marks && region->buffer != NULL) {
+		if (region->buffer != NULL) {
 			gtk_text_buffer_delete_mark (region->buffer, sr->start);
 			gtk_text_buffer_delete_mark (region->buffer, sr->end);
 		}

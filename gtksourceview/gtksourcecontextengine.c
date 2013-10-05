@@ -935,7 +935,7 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 		gtk_text_region_iterator_next (&reg_iter);
 	}
 
-	gtk_text_region_destroy (region, TRUE);
+	gtk_text_region_destroy (region);
 
 	/* Remove the just highlighted region. */
 	gtk_text_region_subtract (ce->priv->refresh_region, start, end);
@@ -2535,7 +2535,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		destroy_context_classes_hash (ce);
 
 		if (ce->priv->refresh_region != NULL)
-			gtk_text_region_destroy (ce->priv->refresh_region, FALSE);
+			gtk_text_region_destroy (ce->priv->refresh_region);
 		ce->priv->refresh_region = NULL;
 	}
 

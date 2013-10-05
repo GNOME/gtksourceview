@@ -44,8 +44,7 @@ G_GNUC_INTERNAL
 GtkTextRegion *gtk_text_region_new                          (GtkTextBuffer *buffer);
 
 G_GNUC_INTERNAL
-void           gtk_text_region_destroy                      (GtkTextRegion *region,
-							     gboolean       delete_marks);
+void           gtk_text_region_destroy                      (GtkTextRegion *region);
 
 G_GNUC_INTERNAL
 GtkTextBuffer *gtk_text_region_get_buffer                   (GtkTextRegion *region);
