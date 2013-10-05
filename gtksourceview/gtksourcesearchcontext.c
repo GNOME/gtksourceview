@@ -278,13 +278,24 @@ enum
 
 struct _GtkSourceSearchContextPrivate
 {
+	/* Weak ref to the buffer. The buffer has also a weak ref to the search
+	 * context. A strong ref in either direction would prevent the pointed
+	 * object to be finalized.
+	 */
 	GtkTextBuffer *buffer;
+
 	GtkSourceSearchSettings *settings;
 
 	/* The tag to apply to search occurrences. Even if the highlighting is
 	 * disabled, the tag is applied.
 	 */
 	GtkTextTag *found_tag;
+
+	/* A reference to the tag table where the found_tag is added. The sole
+	 * purpose is to remove the found_tag in dispose(). We can not rely on
+	 * 'buffer' since it is a weak reference.
+	 */
+	GtkTextTagTable *tag_table;
 
 	/* The region to scan and highlight. If NULL, the scan is finished. */
 	GtkTextRegion *scan_region;
@@ -2473,9 +2484,15 @@ set_buffer (GtkSourceSearchContext *search,
 	    GtkSourceBuffer        *buffer)
 {
 	g_assert (search->priv->buffer == NULL);
+	g_assert (search->priv->tag_table == NULL);
 
 	search->priv->buffer = GTK_TEXT_BUFFER (buffer);
-	g_object_ref (search->priv->buffer);
+
+	g_object_add_weak_pointer (G_OBJECT (buffer),
+				   (gpointer *)&search->priv->buffer);
+
+	search->priv->tag_table = gtk_text_buffer_get_tag_table (search->priv->buffer);
+	g_object_ref (search->priv->tag_table);
 
 	g_signal_connect_object (buffer,
 				 "insert-text",
@@ -2587,16 +2604,24 @@ gtk_source_search_context_dispose (GObject *object)
 
 	clear_search (search);
 
-	if (search->priv->found_tag != NULL)
+	if (search->priv->found_tag != NULL &&
+	    search->priv->tag_table != NULL)
 	{
-		GtkTextTagTable *tag_table = gtk_text_buffer_get_tag_table (search->priv->buffer);
-
-		gtk_text_tag_table_remove (tag_table, search->priv->found_tag);
+		gtk_text_tag_table_remove (search->priv->tag_table,
+					   search->priv->found_tag);
 
 		g_clear_object (&search->priv->found_tag);
+		g_clear_object (&search->priv->tag_table);
 	}
 
-	g_clear_object (&search->priv->buffer);
+	if (search->priv->buffer != NULL)
+	{
+		g_object_remove_weak_pointer (G_OBJECT (search->priv->buffer),
+					      (gpointer *)&search->priv->buffer);
+
+		search->priv->buffer = NULL;
+	}
+
 	g_clear_object (&search->priv->settings);
 
 	G_OBJECT_CLASS (gtk_source_search_context_parent_class)->dispose (object);
