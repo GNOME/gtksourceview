@@ -104,7 +104,8 @@
  * through the occurrences. But we can do better than that!
  * forward_to_tag_toggle() and backward_to_tag_toggle() are far more efficient:
  * once the buffer has been scanned, going to the previous or the next
- * occurrence is done in O(1). We must just pay attention to contiguous matches.
+ * occurrence is done in O(log n), with n the length of the buffer. We must just
+ * pay attention to contiguous matches.
  *
  * While the user is typing the text in the search entry, the buffer is scanned
  * to count the number of occurrences. And when the user wants to do an

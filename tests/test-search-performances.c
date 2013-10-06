@@ -29,7 +29,7 @@
  * - regex search.
  *
  * For the "smart" search, only the first search is measured. Later searches
- * are really fast (going to the previous/next occurrence is done in O(1)).
+ * are really fast (going to the previous/next occurrence is done in O(log n)).
  * Different search flags are also tested. We can see a big difference between
  * the case sensitive search and case insensitive.
  */
