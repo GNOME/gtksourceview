@@ -1,4 +1,4 @@
-<refentry id="style-reference" revision="27 December 2009">
+<refentry id="style-reference" revision="6 October 2013">
 <refmeta>
 <refentrytitle>Style Scheme Definition Reference</refentrytitle>
 </refmeta>
@@ -194,6 +194,19 @@ drawn</para></listitem>
 <varlistentry>
 <term><code>bracket-mismatch</code></term>
 <listitem><para>Style to use for mismatching brackets.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><code>right-margin</code></term>
+<listitem><para>Style to use for the right margin. The <code>foreground</code> attribute is used for
+drawing the vertical line. And the <code>background</code> attribute is used for the background on
+the right side of the margin. An alpha channel is applied to the two colors. For a light style
+scheme, a good color for both attributes is black. For a dark style scheme, white is a good
+choice.</para></listitem>
+</varlistentry>
+<varlistentry>
+<term><code>draw-spaces</code></term>
+<listitem><para>Style to use for drawing spaces (special symbols for a space, a tabulation, etc).
+Only the <code>foreground</code> attribute is used.</para></listitem>
 </varlistentry>
 </variablelist>
 </para>
