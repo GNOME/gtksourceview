@@ -742,9 +742,20 @@ update_selection_label (GtkSourceCompletion *completion)
 	guint pos;
 	guint num;
 	gchar *name;
-	GtkSourceCompletionProvider *visible = get_visible_provider (completion);
+	gchar *selection_text;
+	GtkSourceCompletionProvider *visible;
 
 	get_num_visible_providers (completion, &num, &pos);
+
+	if (num <= 1)
+	{
+		/* At most one provider. All the proposals are shown. */
+		gtk_image_clear (completion->priv->selection_image);
+		gtk_widget_hide (GTK_WIDGET (completion->priv->selection_label));
+		return;
+	}
+
+	visible = get_visible_provider (completion);
 
 	if (visible == NULL)
 	{
@@ -764,19 +775,11 @@ update_selection_label (GtkSourceCompletion *completion)
 					   gtk_source_completion_provider_get_icon (visible));
 	}
 
-	if (num > 1)
-	{
-		gchar *tmp = g_strdup_printf ("<small>%s (%d/%d)</small>", name, pos + 1, num + 1);
-		gtk_label_set_markup (completion->priv->selection_label, tmp);
-		g_free (tmp);
-	}
-	else
-	{
-		gchar *tmp = g_strdup_printf ("<small>%s</small>", name);
-		gtk_label_set_markup (completion->priv->selection_label, tmp);
-		g_free (tmp);
-	}
+	selection_text = g_strdup_printf ("<small>%s (%d/%d)</small>", name, pos + 1, num + 1);
+	gtk_label_set_markup (completion->priv->selection_label, selection_text);
+	gtk_widget_show (GTK_WIDGET (completion->priv->selection_label));
 
+	g_free (selection_text);
 	g_free (name);
 }
 
