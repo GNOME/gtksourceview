@@ -345,6 +345,11 @@ gtk_source_gutter_renderer_pixbuf_new ()
 	return g_object_new (GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF, NULL);
 }
 
+/**
+ * gtk_source_gutter_renderer_pixbuf_set_pixbuf:
+ * @renderer: a #GtkSourceGutterRendererPixbuf
+ * @pixbuf: (allow-none): the pixbuf
+ */
 void
 gtk_source_gutter_renderer_pixbuf_set_pixbuf (GtkSourceGutterRendererPixbuf *renderer,
                                               GdkPixbuf                     *pixbuf)
@@ -376,7 +381,7 @@ gtk_source_gutter_renderer_pixbuf_get_pixbuf (GtkSourceGutterRendererPixbuf *ren
 /**
  * gtk_source_gutter_renderer_pixbuf_set_stock_id:
  * @renderer: a #GtkSourceGutterRendererPixbuf
- * @stock_id: the stock id
+ * @stock_id: (allow-none): the stock id
  *
  * Deprecated: 3.10: Don't use this function.
  */
@@ -404,6 +409,11 @@ gtk_source_gutter_renderer_pixbuf_get_stock_id (GtkSourceGutterRendererPixbuf *r
 	return gtk_source_pixbuf_helper_get_stock_id (renderer->priv->helper);
 }
 
+/**
+ * gtk_source_gutter_renderer_pixbuf_set_gicon:
+ * @renderer: a #GtkSourceGutterRendererPixbuf
+ * @icon: (allow-none): the icon
+ */
 void
 gtk_source_gutter_renderer_pixbuf_set_gicon (GtkSourceGutterRendererPixbuf *renderer,
                                              GIcon                         *icon)
@@ -431,6 +441,11 @@ gtk_source_gutter_renderer_pixbuf_get_gicon (GtkSourceGutterRendererPixbuf *rend
 	return gtk_source_pixbuf_helper_get_gicon (renderer->priv->helper);
 }
 
+/**
+ * gtk_source_gutter_renderer_pixbuf_set_icon_name:
+ * @renderer: a #GtkSourceGutterRendererPixbuf
+ * @icon_name: (allow-none): the icon name
+ */
 void
 gtk_source_gutter_renderer_pixbuf_set_icon_name (GtkSourceGutterRendererPixbuf *renderer,
                                                  const gchar                   *icon_name)
