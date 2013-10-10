@@ -145,7 +145,7 @@ void
 gtk_source_pixbuf_helper_set_icon_name (GtkSourcePixbufHelper *helper,
                                         const gchar           *icon_name)
 {
-	helper->type = ICON_TYPE_STOCK;
+	helper->type = ICON_TYPE_NAME;
 
 	if (helper->icon_name)
 	{
