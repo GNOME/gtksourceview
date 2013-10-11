@@ -380,6 +380,16 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	param_types[0] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
 	param_types[1] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
 
+	/**
+	 * GtkSourceBuffer::highlight-updated:
+	 * @buffer: the buffer that received the signal
+	 * @start: the start of the updated region
+	 * @end: the end of the updated region
+	 *
+	 * The ::highlight-updated signal is emitted when the highlighting is
+	 * updated in a certain region of the @buffer. It can be the syntax
+	 * highlighting, the search highlighting, etc.
+	 */
 	buffer_signals[HIGHLIGHT_UPDATED] =
 	    g_signal_newv ("highlight_updated",
 			   G_OBJECT_CLASS_TYPE (object_class),
@@ -408,6 +418,13 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			   G_TYPE_NONE,
 			   1, GTK_TYPE_TEXT_MARK);
 
+	/**
+	 * GtkSourceBuffer::undo:
+	 * @buffer: the buffer that received the signal
+	 *
+	 * The ::undo signal is emitted to undo the last user action which
+	 * modified the buffer.
+	 */
 	buffer_signals[UNDO] =
 	    g_signal_new ("undo",
 			  G_OBJECT_CLASS_TYPE (object_class),
@@ -418,6 +435,12 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_TYPE_NONE,
 			  0);
 
+	/**
+	 * GtkSourceBuffer::redo:
+	 * @buffer: the buffer that received the signal
+	 *
+	 * The ::redo signal is emitted to redo the last undo operation.
+	 */
 	buffer_signals[REDO] =
 	    g_signal_new ("redo",
 			  G_OBJECT_CLASS_TYPE (object_class),
@@ -1282,6 +1305,8 @@ gtk_source_buffer_can_redo (GtkSourceBuffer *buffer)
  * Undoes the last user action which modified the buffer.  Use
  * gtk_source_buffer_can_undo() to check whether a call to this
  * function will have any effect.
+ *
+ * This function emits the #GtkSourceBuffer::undo signal.
  **/
 void
 gtk_source_buffer_undo (GtkSourceBuffer *buffer)
@@ -1297,6 +1322,8 @@ gtk_source_buffer_undo (GtkSourceBuffer *buffer)
  *
  * Redoes the last undo operation.  Use gtk_source_buffer_can_redo()
  * to check whether a call to this function will have any effect.
+ *
+ * This function emits the #GtkSourceBuffer::redo signal.
  **/
 void
 gtk_source_buffer_redo (GtkSourceBuffer *buffer)
