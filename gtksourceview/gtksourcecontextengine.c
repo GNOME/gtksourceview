@@ -2663,8 +2663,18 @@ gtk_source_context_engine_finalize (GObject *object)
 	g_assert (!ce->priv->tags);
 	g_assert (!ce->priv->root_context);
 	g_assert (!ce->priv->root_segment);
-	g_assert (!ce->priv->first_update);
-	g_assert (!ce->priv->incremental_update);
+
+	if (ce->priv->first_update != 0)
+	{
+		g_source_remove (ce->priv->first_update);
+		ce->priv->first_update = 0;
+	}
+
+	if (ce->priv->incremental_update != 0)
+	{
+		g_source_remove (ce->priv->incremental_update);
+		ce->priv->incremental_update = 0;
+	}
 
 	_gtk_source_context_data_unref (ce->priv->ctx_data);
 
