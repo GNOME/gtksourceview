@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-16 01:29+0100\n"
-"PO-Revision-Date: 2013-02-15 23:31+0100\n"
-"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
+"POT-Creation-Date: 2013-10-14 00:02+0200\n"
+"PO-Revision-Date: 2013-09-25 00:52+0200\n"
+"Last-Translator: Josep Sanchez Mesegue <papapep@gmx.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca-XV\n"
 "MIME-Version: 1.0\n"
@@ -61,8 +61,8 @@ msgid "Leading"
 msgstr "Al principi"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:264
-#: ../gtksourceview/gtksourcegutterrenderertext.c:403
+#: ../gtksourceview/gtksourcecompletionitem.c:262
+#: ../gtksourceview/gtksourcegutterrenderertext.c:399
 msgid "Text"
 msgstr "Text"
 
@@ -73,7 +73,7 @@ msgstr "Al final"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:635
+#: ../gtksourceview/gtksourcecompletion.c:764
 msgid "All"
 msgstr "Totes"
 
@@ -102,6 +102,7 @@ msgstr "Totes"
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
 #: ../data/language-specs/pascal.lang.h:1
 #: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/scala.lang.h:1
 #: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
 #: ../data/language-specs/systemverilog.lang.h:1
@@ -144,6 +145,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
 #: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
@@ -167,7 +169,7 @@ msgstr "Comentari"
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
 #: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
 #: ../data/language-specs/verilog.lang.h:7
 #: ../data/language-specs/xml.lang.h:13
 msgid "Error"
@@ -193,7 +195,7 @@ msgstr "Error"
 #: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/lua.lang.h:4
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4
@@ -207,7 +209,7 @@ msgstr "Error"
 #: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
@@ -222,11 +224,13 @@ msgstr "Cadena"
 #. allow to get external functionalities
 #: ../data/language-specs/actionscript.lang.h:6
 #: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/scala.lang.h:4
 msgid "External"
 msgstr "Extern"
 
 #: ../data/language-specs/actionscript.lang.h:7
 #: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/scala.lang.h:8
 msgid "Declaration"
 msgstr "Declaració"
 
@@ -265,7 +269,8 @@ msgstr "Declaració d'àmbit"
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
 #: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/modelica.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
@@ -279,7 +284,8 @@ msgstr "Declaració d'àmbit"
 #: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
+#: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
 #: ../data/language-specs/sql.lang.h:6
@@ -330,8 +336,10 @@ msgstr "Valor booleà"
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/j.lang.h:14 ../data/language-specs/netrexx.lang.h:16
+#: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
+#: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/scala.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
 msgstr "Nombre"
@@ -367,9 +375,9 @@ msgstr "Paraules clau reservades per al futur"
 #: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
 #: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
-#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
+#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Tipus de dada"
 
@@ -435,7 +443,8 @@ msgstr "Nombre real"
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python3.lang.h:7
 #: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/sml.lang.h:8 ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/texinfo.lang.h:4
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "Caràcter d'escapada"
@@ -446,7 +455,7 @@ msgstr "ASP"
 
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/changelog.lang.h:9
 #: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
 #: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
 #: ../data/language-specs/gtk-doc.lang.h:10
@@ -464,10 +473,12 @@ msgstr "Funció"
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/julia.lang.h:9
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
 #: ../data/language-specs/prolog.lang.h:8
+#: ../data/language-specs/scala.lang.h:13
 #: ../data/language-specs/sparql.lang.h:15
 msgid "Operator"
 msgstr "Operador"
@@ -606,11 +617,12 @@ msgstr "Nombre hexadecimal"
 #: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
+#: ../data/language-specs/mediawiki.lang.h:1
 #: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:251
-#: ../gtksourceview/gtksourcegutterrenderertext.c:395
+#: ../gtksourceview/gtksourcecompletionitem.c:249
+#: ../gtksourceview/gtksourcegutterrenderertext.c:391
 msgid "Markup"
 msgstr "Marcatge"
 
@@ -649,6 +661,7 @@ msgstr "Importació BVI"
 
 #: ../data/language-specs/bluespec.lang.h:8
 #: ../data/language-specs/gtk-doc.lang.h:9
+#: ../data/language-specs/julia.lang.h:15
 #: ../data/language-specs/systemverilog.lang.h:6
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:7
@@ -689,6 +702,7 @@ msgstr "Variable especial"
 #: ../data/language-specs/boo.lang.h:13
 #: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/imagej.lang.h:4
+#: ../data/language-specs/julia.lang.h:6
 #: ../data/language-specs/libtool.lang.h:4
 #: ../data/language-specs/modelica.lang.h:9
 #: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
@@ -774,24 +788,24 @@ msgstr "Registre de canvis"
 msgid "Date"
 msgstr "Data"
 
-#: ../data/language-specs/changelog.lang.h:4
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#. Translators: the name of a person, not an object.
+#: ../data/language-specs/changelog.lang.h:5
 msgid "Name"
 msgstr "Nom"
 
-#: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/changelog.lang.h:6
 msgid "E-mail address"
 msgstr "Adreça electrònica"
 
-#: ../data/language-specs/changelog.lang.h:6
+#: ../data/language-specs/changelog.lang.h:7
 msgid "File"
 msgstr "Fitxer"
 
-#: ../data/language-specs/changelog.lang.h:7
+#: ../data/language-specs/changelog.lang.h:8
 msgid "Bullet"
 msgstr "Punt"
 
-#: ../data/language-specs/changelog.lang.h:9
+#: ../data/language-specs/changelog.lang.h:10
 msgid "Release"
 msgstr "Alliberament"
 
@@ -813,7 +827,7 @@ msgstr "Definicions comunes"
 #: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5
+#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
@@ -1157,7 +1171,7 @@ msgstr "DPatch"
 
 #: ../data/language-specs/dpatch.lang.h:3
 msgid "patch-start"
-msgstr "inici-pedaç"
+msgstr "Inici del pedaç"
 
 #: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
 msgid "DTD"
@@ -1177,7 +1191,7 @@ msgstr "error"
 
 #: ../data/language-specs/dtd.lang.h:6
 msgid "quoted-value"
-msgstr "valor entre cometes"
+msgstr "Valor entre cometes"
 
 #: ../data/language-specs/eiffel.lang.h:2
 msgid "Eiffel"
@@ -1242,6 +1256,7 @@ msgstr "Directiva de compilació"
 #: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
 #: ../data/language-specs/idl-exelis.lang.h:1
 #: ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/julia.lang.h:1
 #: ../data/language-specs/matlab.lang.h:1
 #: ../data/language-specs/modelica.lang.h:1
 #: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
@@ -1504,6 +1519,7 @@ msgstr "Llista de definició"
 
 #: ../data/language-specs/haddock.lang.h:15
 #: ../data/language-specs/markdown.lang.h:8
+#: ../data/language-specs/mediawiki.lang.h:6
 msgid "URL"
 msgstr "URL"
 
@@ -1655,6 +1671,35 @@ msgstr "Primitiva"
 msgid "Verb"
 msgstr "Verb"
 
+#: ../data/language-specs/julia.lang.h:2
+msgid "Julia"
+msgstr "Julia"
+
+#: ../data/language-specs/julia.lang.h:7
+msgid "Math Constant"
+msgstr "Constant matemàtica"
+
+#: ../data/language-specs/julia.lang.h:8 ../data/language-specs/R.lang.h:7
+#: ../data/language-specs/scala.lang.h:11
+msgid "Special Constant"
+msgstr "Constant especial"
+
+#: ../data/language-specs/julia.lang.h:11
+msgid "Macro"
+msgstr "Macroinstrucció"
+
+#: ../data/language-specs/julia.lang.h:12
+msgid "External Command"
+msgstr "Orde externa"
+
+#: ../data/language-specs/julia.lang.h:13
+msgid "Built-in Function"
+msgstr "Funció integrada"
+
+#: ../data/language-specs/julia.lang.h:14
+msgid "Module"
+msgstr "Mòdul"
+
 #: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
 msgstr "LaTeX"
@@ -1669,7 +1714,7 @@ msgstr "Mode matemàtic en línia"
 
 #: ../data/language-specs/latex.lang.h:6
 msgid "math-bound"
-msgstr "límit-matemàtic"
+msgstr "Límit matemàtic"
 
 #: ../data/language-specs/latex.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:11
@@ -1702,7 +1747,7 @@ msgstr "m4"
 
 #: ../data/language-specs/m4.lang.h:3
 msgid "m4-comment"
-msgstr "comentari de l'm4"
+msgstr "Comentari de l'm4"
 
 #: ../data/language-specs/m4.lang.h:4
 msgid "m4 Macro"
@@ -1806,7 +1851,7 @@ msgid "Link Text"
 msgstr "Text d'enllaç"
 
 #: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:238
+#: ../gtksourceview/gtksourcecompletionitem.c:236
 msgid "Label"
 msgstr "Etiqueta"
 
@@ -1815,6 +1860,7 @@ msgid "Image Marker"
 msgstr "Marcador d'imatge"
 
 #: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/mediawiki.lang.h:3
 msgid "Strong Emphasis"
 msgstr "Èmfasi fort"
 
@@ -1829,6 +1875,58 @@ msgstr "Salt de línia"
 #: ../data/language-specs/matlab.lang.h:2
 msgid "Matlab"
 msgstr "Matlab"
+
+#: ../data/language-specs/mediawiki.lang.h:2
+msgid "MediaWiki"
+msgstr "MediaWiki"
+
+#: ../data/language-specs/mediawiki.lang.h:4
+msgid "Light Emphasis"
+msgstr "Èmfasi lleuger"
+
+#: ../data/language-specs/mediawiki.lang.h:5
+msgid "Signature"
+msgstr "Signatura"
+
+#: ../data/language-specs/mediawiki.lang.h:7
+msgid "Link"
+msgstr "Enllaç"
+
+#: ../data/language-specs/mediawiki.lang.h:8
+msgid "Symbol on a Link"
+msgstr "Símbol en un enllaç"
+
+#: ../data/language-specs/mediawiki.lang.h:9
+msgid "Line"
+msgstr "Línia"
+
+#: ../data/language-specs/mediawiki.lang.h:10
+msgid "List"
+msgstr "Llista"
+
+#: ../data/language-specs/mediawiki.lang.h:11
+msgid "Magic Word"
+msgstr "Paraula màgica"
+
+#: ../data/language-specs/mediawiki.lang.h:12
+msgid "Symbol of a Table"
+msgstr "Símbol d'una taula"
+
+#: ../data/language-specs/mediawiki.lang.h:13
+msgid "Preformatted"
+msgstr "Preformatat"
+
+#: ../data/language-specs/mediawiki.lang.h:14
+msgid "Redirect"
+msgstr "Redirecció"
+
+#: ../data/language-specs/mediawiki.lang.h:15
+msgid "Title"
+msgstr "Títol"
+
+#: ../data/language-specs/mediawiki.lang.h:16
+msgid "Template"
+msgstr "Plantilla"
 
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
@@ -2110,7 +2208,7 @@ msgstr "Python"
 
 #: ../data/language-specs/python.lang.h:9
 msgid "string-conversion"
-msgstr "conversió-de-cadena"
+msgstr "Conversió de  cadena"
 
 #: ../data/language-specs/R.lang.h:2
 msgid "R"
@@ -2127,10 +2225,6 @@ msgstr "Operador d'assignació"
 #: ../data/language-specs/R.lang.h:6
 msgid "Delimiter"
 msgstr "Delimitador"
-
-#: ../data/language-specs/R.lang.h:7
-msgid "Special Constant"
-msgstr "Constant especial"
 
 #: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:16
 msgid "Integer Number"
@@ -2204,6 +2298,26 @@ msgstr "Literal numèric"
 #: ../data/language-specs/sparql.lang.h:10
 msgid "Literal"
 msgstr "Literal"
+
+#: ../data/language-specs/scala.lang.h:2
+msgid "Scala"
+msgstr "Scala"
+
+#: ../data/language-specs/scala.lang.h:9
+msgid "Modifier"
+msgstr "Modificador"
+
+#: ../data/language-specs/scala.lang.h:15
+msgid "Built In"
+msgstr "Integrat"
+
+#: ../data/language-specs/scala.lang.h:16
+msgid "Other"
+msgstr "Altre"
+
+#: ../data/language-specs/scala.lang.h:17
+msgid "XML Tag"
+msgstr "Etiqueta XML"
 
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
@@ -2306,13 +2420,13 @@ msgstr "Secció 4"
 msgid "Section 5"
 msgstr "Secció 5"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:112
-#: ../gtksourceview/gtksourcestyle.c:113
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:119
+#: ../gtksourceview/gtksourcestyle.c:120
 msgid "Italic"
 msgstr "Cursiva"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:111
+#: ../gtksourceview/gtksourcestyle.c:112
 msgid "Bold"
 msgstr "Negreta"
 
@@ -2449,267 +2563,269 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Esquema de color que utilitza la paleta de colors del Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:381
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:327
 msgid "Document Words"
 msgstr "Paraules del document"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
+msgctxt "Object"
+msgid "Name"
+msgstr "Nom"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
 msgid "The provider name"
 msgstr "El nom del proveïdor"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
-#: ../gtksourceview/gtksourcecompletionitem.c:277
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:437
+#: ../gtksourceview/gtksourcecompletionitem.c:275
 msgid "Icon"
 msgstr "Icona"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:474
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
 msgid "The provider icon"
 msgstr "La icona del proveïdor"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:445
 msgid "Proposals Batch Size"
 msgstr "Mida del lot de propostes"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
 msgid "Number of proposals added in one batch"
 msgstr "Nombre de propostes afegides en un sol lot"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
 msgid "Scan Batch Size"
 msgstr "Mida del lot d'escaneig"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
 msgid "Number of lines scanned in one batch"
 msgstr "Nombre de línies escanejades en un sol lot"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "Minimum Word Size"
 msgstr "Mida mínima de la paraula"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
 msgid "The minimum word size to complete"
 msgstr "La mida mínima de la paraula a completar"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
 msgid "Interactive Delay"
 msgstr "Retard interactiu"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
 msgid "The delay before initiating interactive completion"
 msgstr "El retard abans d'iniciar la compleció interactiva"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
 msgid "Priority"
 msgstr "Prioritat"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:522
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
 msgid "Provider priority"
 msgstr "Prioritat del proveïdor"
 
-#: ../gtksourceview/gtksourcebuffer.c:237
-#: ../gtksourceview/gtksourceprintcompositor.c:504
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/gtksourcecompletioncontext.c:299
+msgid "Activation"
+msgstr "Activació"
+
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
+#: ../gtksourceview/gtksourcecompletioncontext.c:300
+msgid "The type of activation"
+msgstr "El tipus d'activació"
+
+#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Ressalta la sintaxi"
 
-#: ../gtksourceview/gtksourcebuffer.c:238
+#: ../gtksourceview/gtksourcebuffer.c:294
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Si s'ha de ressaltar la sintaxi de la memòria intermèdia"
 
-#: ../gtksourceview/gtksourcebuffer.c:251
+#: ../gtksourceview/gtksourcebuffer.c:307
 msgid "Highlight Matching Brackets"
 msgstr "Ressalta els claudàtors coincidents"
 
-#: ../gtksourceview/gtksourcebuffer.c:252
+#: ../gtksourceview/gtksourcebuffer.c:308
 msgid "Whether to highlight matching brackets"
 msgstr "Si s'han de ressaltar els claudàtors coincidents"
 
-#: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:413
+#: ../gtksourceview/gtksourcebuffer.c:321
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Maximum Undo Levels"
 msgstr "Nombre màxim de nivells a desfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:414
+#: ../gtksourceview/gtksourcebuffer.c:322
+#: ../gtksourceview/gtksourceundomanagerdefault.c:415
 msgid "Number of undo levels for the buffer"
 msgstr "Nombre de nivells a desfer per a la memòria intermèdia"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:278
+#: ../gtksourceview/gtksourcebuffer.c:334
 msgid "Language"
 msgstr "Llenguatge"
 
-#: ../gtksourceview/gtksourcebuffer.c:279
+#: ../gtksourceview/gtksourcebuffer.c:335
 msgid "Language object to get highlighting patterns from"
 msgstr "Objecte de llenguatge d'on obtindre els patrons de ressaltat"
 
-#: ../gtksourceview/gtksourcebuffer.c:287
+#: ../gtksourceview/gtksourcebuffer.c:343
 msgid "Can undo"
 msgstr "Es pot desfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:288
+#: ../gtksourceview/gtksourcebuffer.c:344
 msgid "Whether Undo operation is possible"
 msgstr "Si l'operació de desfer és possible"
 
-#: ../gtksourceview/gtksourcebuffer.c:295
+#: ../gtksourceview/gtksourcebuffer.c:351
 msgid "Can redo"
 msgstr "Es pot tornar a fer"
 
-#: ../gtksourceview/gtksourcebuffer.c:296
+#: ../gtksourceview/gtksourcebuffer.c:352
 msgid "Whether Redo operation is possible"
 msgstr "Si l'operació de tornar a fer és possible"
 
-#: ../gtksourceview/gtksourcebuffer.c:310
-#: ../gtksourceview/gtksourcebuffer.c:311
+#: ../gtksourceview/gtksourcebuffer.c:366
+#: ../gtksourceview/gtksourcebuffer.c:367
 msgid "Style scheme"
 msgstr "Esquema d'estil"
 
-#: ../gtksourceview/gtksourcebuffer.c:318
+#: ../gtksourceview/gtksourcebuffer.c:374
 msgid "Undo manager"
 msgstr "Gestor de desfer"
 
-#: ../gtksourceview/gtksourcebuffer.c:319
+#: ../gtksourceview/gtksourcebuffer.c:375
 msgid "The buffer undo manager"
 msgstr "La memòria intermèdia del gestor de desfer"
 
-#: ../gtksourceview/gtksourcecompletion.c:545
-#: ../gtksourceview/gtksourcecompletion.c:576
-msgid "No extra information available"
-msgstr "No hi ha més informació disponible"
-
-#: ../gtksourceview/gtksourcecompletion.c:1593
-#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcecompletion.c:1789
+#: ../gtksourceview/gtksourcegutter.c:537
 msgid "View"
 msgstr "Visualitza"
 
-#: ../gtksourceview/gtksourcecompletion.c:1594
+#: ../gtksourceview/gtksourcecompletion.c:1790
 msgid "The GtkSourceView bound to the completion"
 msgstr "El GtkSourceView vinculat a la compleció"
 
-#: ../gtksourceview/gtksourcecompletion.c:1608
+#: ../gtksourceview/gtksourcecompletion.c:1804
 msgid "Remember Info Visibility"
 msgstr "Recorda la informació de visibilitat"
 
-#: ../gtksourceview/gtksourcecompletion.c:1609
+#: ../gtksourceview/gtksourcecompletion.c:1805
 msgid "Remember the last info window visibility state"
 msgstr "Recorda l'estat de visibilitat de l'última finestra d'informació"
 
-#: ../gtksourceview/gtksourcecompletion.c:1621
+#: ../gtksourceview/gtksourcecompletion.c:1817
 msgid "Select on Show"
 msgstr "Selecciona en mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:1622
+#: ../gtksourceview/gtksourcecompletion.c:1818
 msgid "Select first proposal when completion is shown"
 msgstr "Selecciona la primera proposta quan es mostre la compleció"
 
-#: ../gtksourceview/gtksourcecompletion.c:1635
+#: ../gtksourceview/gtksourcecompletion.c:1831
 msgid "Show Headers"
 msgstr "Mostra les capçaleres"
 
-#: ../gtksourceview/gtksourcecompletion.c:1636
+#: ../gtksourceview/gtksourcecompletion.c:1832
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Mostra les capçaleres del proveïdor quan hi haja propostes de diversos "
 "proveïdors"
 
-#: ../gtksourceview/gtksourcecompletion.c:1649
+#: ../gtksourceview/gtksourcecompletion.c:1845
 msgid "Show Icons"
 msgstr "Mostra les icones"
 
-#: ../gtksourceview/gtksourcecompletion.c:1650
+#: ../gtksourceview/gtksourcecompletion.c:1846
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Mostra les icones del proveïdor i de la proposta en l'emergent de compleció"
 
-#: ../gtksourceview/gtksourcecompletion.c:1664
+#: ../gtksourceview/gtksourcecompletion.c:1860
 msgid "Accelerators"
 msgstr "Acceleradors"
 
-#: ../gtksourceview/gtksourcecompletion.c:1665
+#: ../gtksourceview/gtksourcecompletion.c:1861
 msgid "Number of proposal accelerators to show"
 msgstr "Nombre d'acceleradors de proposta a mostrar"
 
-#: ../gtksourceview/gtksourcecompletion.c:1680
+#: ../gtksourceview/gtksourcecompletion.c:1876
 msgid "Auto Complete Delay"
 msgstr "Retard en la compleció automàtica"
 
-#: ../gtksourceview/gtksourcecompletion.c:1681
+#: ../gtksourceview/gtksourcecompletion.c:1877
 msgid "Completion popup delay for interactive completion"
 msgstr "El retard de l'emergent de compleció per a la compleció interactiva"
 
-#: ../gtksourceview/gtksourcecompletion.c:1697
+#: ../gtksourceview/gtksourcecompletion.c:1893
 msgid "Provider Page Size"
 msgstr "Mida de la pàgina del proveïdor"
 
-#: ../gtksourceview/gtksourcecompletion.c:1698
+#: ../gtksourceview/gtksourcecompletion.c:1894
 msgid "Provider scrolling page size"
 msgstr "Mida de la paginació del proveïdor"
 
-#: ../gtksourceview/gtksourcecompletion.c:1718
+#: ../gtksourceview/gtksourcecompletion.c:1914
 msgid "Proposal Page Size"
 msgstr "Mida de pàgina de la proposta"
 
-#: ../gtksourceview/gtksourcecompletion.c:1719
+#: ../gtksourceview/gtksourcecompletion.c:1915
 msgid "Proposal scrolling page size"
 msgstr "Mida de la paginació de la proposta"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:255
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourcecompletioncontext.c:272
+#: ../gtksourceview/gtksourceview.c:308
 msgid "Completion"
 msgstr "Compleció"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:256
+#: ../gtksourceview/gtksourcecompletioncontext.c:273
 msgid "The completion object to which the context belongs"
 msgstr "L'objecte de compleció al qual pertany el context"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:269
+#: ../gtksourceview/gtksourcecompletioncontext.c:286
 msgid "Iterator"
 msgstr "Iterador"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:270
+#: ../gtksourceview/gtksourcecompletioncontext.c:287
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "El GtkTextIter on es va invocar la compleció"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:282
-msgid "Activation"
-msgstr "Activació"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:283
-msgid "The type of activation"
-msgstr "El tipus d'activació"
-
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:193
+#: ../gtksourceview/gtksourcecompletioninfo.c:253
 msgid "Completion Info"
 msgstr "Informació de compleció"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:239
+#: ../gtksourceview/gtksourcecompletionitem.c:237
 msgid "Label to be shown for this item"
 msgstr "L'etiqueta que s'ha de mostrar per a este element"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:252
+#: ../gtksourceview/gtksourcecompletionitem.c:250
 msgid "Markup to be shown for this item"
 msgstr "Marcatge que s'ha de mostrar per a este element"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:265
+#: ../gtksourceview/gtksourcecompletionitem.c:263
 msgid "Item text"
 msgstr "Text de l'element"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:278
+#: ../gtksourceview/gtksourcecompletionitem.c:276
 msgid "Icon to be shown for this item"
 msgstr "Icona que es mostrarà per a este element"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:290
+#: ../gtksourceview/gtksourcecompletionitem.c:288
 msgid "Info"
 msgstr "Informació"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:291
+#: ../gtksourceview/gtksourcecompletionitem.c:289
 msgid "Info to be shown for this item"
 msgstr "Informació que es mostrarà per a este element"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:492
+#: ../gtksourceview/gtksourcecompletionmodel.c:491
 msgid "Provider"
 msgstr "Proveïdor"
 
@@ -2725,7 +2841,7 @@ msgstr "_Detalls..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3122
+#: ../gtksourceview/gtksourcecontextengine.c:3129
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2736,7 +2852,7 @@ msgstr ""
 "procés de ressaltat serà més lent de l'habitual.\n"
 "L'error ha sigut: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4445
+#: ../gtksourceview/gtksourcecontextengine.c:4452
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2744,19 +2860,19 @@ msgstr ""
 "S'ha trigat massa en ressaltar una sola línia, per la qual cosa "
 "s'inhabilitarà el ressaltat de la sintaxi"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5689
+#: ../gtksourceview/gtksourcecontextengine.c:5696
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "en el context «%s» no hi pot haver l'orde \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5850
-#: ../gtksourceview/gtksourcecontextengine.c:5939
+#: ../gtksourceview/gtksourcecontextengine.c:5857
+#: ../gtksourceview/gtksourcecontextengine.c:5946
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "identificador de context duplicat «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6053
-#: ../gtksourceview/gtksourcecontextengine.c:6113
+#: ../gtksourceview/gtksourcecontextengine.c:6060
+#: ../gtksourceview/gtksourcecontextengine.c:6120
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2765,148 +2881,151 @@ msgstr ""
 "s'ha utilitzat la sobreescriptura d'estil amb una referència de context "
 "comodí en el llenguatge «%s» a la referència «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
+#: ../gtksourceview/gtksourcecontextengine.c:6134
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "referència de context «%s» no vàlida"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6146
-#: ../gtksourceview/gtksourcecontextengine.c:6156
+#: ../gtksourceview/gtksourcecontextengine.c:6153
+#: ../gtksourceview/gtksourcecontextengine.c:6163
 #, c-format
 msgid "unknown context '%s'"
 msgstr "context desconegut «%s»"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6255
+#: ../gtksourceview/gtksourcecontextengine.c:6262
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Falta la definició del llenguatge principal (id = «%s».)"
 
-#: ../gtksourceview/gtksourcegutter.c:549
+#. Translators: gutters can be used to display information
+#. * on the left or on the right of the text view. To draw the
+#. * line numbers for example.
+#: ../gtksourceview/gtksourcegutter.c:541
 msgid "The gutters' GtkSourceView"
 msgstr "Les entranyes del GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:561
-#: ../gtksourceview/gtksourcegutterrenderer.c:723
+#: ../gtksourceview/gtksourcegutter.c:553
+#: ../gtksourceview/gtksourcegutterrenderer.c:705
 msgid "Window Type"
 msgstr "Tipus de finestra"
 
-#: ../gtksourceview/gtksourcegutter.c:562
-msgid "The gutters text window type"
+#: ../gtksourceview/gtksourcegutter.c:554
+msgid "The gutters' text window type"
 msgstr "El tipus de finestra de text de les entranyes"
 
-#: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
+#: ../gtksourceview/gtksourcegutter.c:562
+#: ../gtksourceview/gtksourcegutterrenderer.c:482
 msgid "X Padding"
 msgstr "Desplaçament X"
 
-#: ../gtksourceview/gtksourcegutter.c:574
-#: ../gtksourceview/gtksourcegutterrenderer.c:501
+#: ../gtksourceview/gtksourcegutter.c:563
+#: ../gtksourceview/gtksourcegutterrenderer.c:483
 msgid "The x-padding"
 msgstr "El desplaçament x"
 
-#: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
+#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutterrenderer.c:498
 msgid "Y Padding"
 msgstr "Desplaçament Y"
 
-#: ../gtksourceview/gtksourcegutter.c:585
-#: ../gtksourceview/gtksourcegutterrenderer.c:517
+#: ../gtksourceview/gtksourcegutter.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:499
 msgid "The y-padding"
 msgstr "El desplaçament y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:486
-#: ../gtksourceview/gtksourcegutterrenderer.c:487
+#: ../gtksourceview/gtksourcegutterrenderer.c:468
+#: ../gtksourceview/gtksourcegutterrenderer.c:469
 msgid "Visible"
 msgstr "Visible"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:532
+#: ../gtksourceview/gtksourcegutterrenderer.c:514
 msgid "X Alignment"
 msgstr "Alineació X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:533
+#: ../gtksourceview/gtksourcegutterrenderer.c:515
 msgid "The x-alignment"
 msgstr "L'alineació x"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:548
+#: ../gtksourceview/gtksourcegutterrenderer.c:530
 msgid "Y Alignment"
 msgstr "Alineació Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:549
+#: ../gtksourceview/gtksourcegutterrenderer.c:531
 msgid "The y-alignment"
 msgstr "L'alineació y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:690
+#: ../gtksourceview/gtksourcegutterrenderer.c:672
 msgid "The View"
 msgstr "La visualització"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutterrenderer.c:673
 msgid "The view"
 msgstr "La visualització"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:707
+#: ../gtksourceview/gtksourcegutterrenderer.c:689
 msgid "Alignment Mode"
 msgstr "Mode d'alineació"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:708
+#: ../gtksourceview/gtksourcegutterrenderer.c:690
 msgid "The alignment mode"
 msgstr "El mode d'alineació"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:724
+#: ../gtksourceview/gtksourcegutterrenderer.c:706
 msgid "The window type"
 msgstr "El tipus de finestra"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:732
+#: ../gtksourceview/gtksourcegutterrenderer.c:714
 msgid "Size"
 msgstr "Mida"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:733
+#: ../gtksourceview/gtksourcegutterrenderer.c:715
 msgid "The size"
 msgstr "La mida"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkattributes.c:318
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:289
+#: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "Pixbuf"
 msgstr "Memòria de píxels"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkattributes.c:319
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:290
+#: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "The pixbuf"
 msgstr "La memòria de píxels"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkattributes.c:305
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:304
+#: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "Stock Id"
 msgstr "Identificador d'estoc"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkattributes.c:306
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:305
+#: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "The stock id"
 msgstr "L'identificador d'estoc"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkattributes.c:331
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:312
+#: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "Icon Name"
 msgstr "Nom de la icona"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkattributes.c:332
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
+#: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
 msgstr "El nom de la icona"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkattributes.c:344
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:320
+#: ../gtksourceview/gtksourcemarkattributes.c:342
 msgid "GIcon"
 msgstr "GIcon"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:318
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
 msgid "The gicon"
 msgstr "La GIcon"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:396
+#: ../gtksourceview/gtksourcegutterrenderertext.c:392
 msgid "The markup"
 msgstr "El marcatge"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:404
+#: ../gtksourceview/gtksourcegutterrenderertext.c:400
 msgid "The text"
 msgstr "El text"
 
@@ -2933,11 +3052,11 @@ msgstr "Ocult"
 msgid "Whether the language should be hidden from the user"
 msgstr "Si s'hauria d'ocultar el llenguatge a l'usuari"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
+#: ../gtksourceview/gtksourcelanguagemanager.c:149
 msgid "Language specification directories"
 msgstr "Directoris d'especificació del llenguatge"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:151
+#: ../gtksourceview/gtksourcelanguagemanager.c:150
 msgid ""
 "List of directories where the language specification files (.lang) are "
 "located"
@@ -2945,11 +3064,11 @@ msgstr ""
 "Llistat de directoris on hi ha els fitxers d'especificació del llenguatge (."
 "lang)"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
+#: ../gtksourceview/gtksourcelanguagemanager.c:159
 msgid "Language ids"
 msgstr "Identificadors de llenguatge"
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:161
+#: ../gtksourceview/gtksourcelanguagemanager.c:160
 msgid "List of the ids of the available languages"
 msgstr "Llista d'identificadors dels llenguatges disponibles"
 
@@ -2963,16 +3082,16 @@ msgstr "Identificador «%s» desconegut en l'expressió regular «%s»"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "en l'expressió regular «%s»: no es permeten les referències anteriors"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:292
-#: ../gtksourceview/gtksourcestyle.c:88
+#: ../gtksourceview/gtksourcemarkattributes.c:288
+#: ../gtksourceview/gtksourcestyle.c:95
 msgid "Background"
 msgstr "Fons"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:293
+#: ../gtksourceview/gtksourcemarkattributes.c:289
 msgid "The background"
 msgstr "El fons"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:345
+#: ../gtksourceview/gtksourcemarkattributes.c:343
 msgid "The GIcon"
 msgstr "El GIcon"
 
@@ -2984,110 +3103,110 @@ msgstr "categoria"
 msgid "The mark category"
 msgstr "La categoria de la marca"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:444
+#: ../gtksourceview/gtksourceprintcompositor.c:445
 msgid "Source Buffer"
 msgstr "Memòria intermèdia del codi font"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:445
+#: ../gtksourceview/gtksourceprintcompositor.c:446
 msgid "The GtkSourceBuffer object to print"
 msgstr "L'objecte GtkSourceBuffer a imprimir"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceprintcompositor.c:463
+#: ../gtksourceview/gtksourceview.c:346
 msgid "Tab Width"
 msgstr "Amplada de tabulació"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceprintcompositor.c:464
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Width of a tab character expressed in spaces"
 msgstr "Amplada del caràcter de tabulació expressat en espais"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:483
+#: ../gtksourceview/gtksourceprintcompositor.c:484
 msgid "Wrap Mode"
 msgstr "Mode d'ajustament"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:484
+#: ../gtksourceview/gtksourceprintcompositor.c:485
 msgid ""
 "Whether to wrap lines never, at word boundaries, or at character boundaries."
 msgstr ""
 "Com s'han d'ajustar les línies: mai, al final de la paraula o al final del "
 "caràcter."
 
-#: ../gtksourceview/gtksourceprintcompositor.c:505
+#: ../gtksourceview/gtksourceprintcompositor.c:506
 msgid "Whether to print the document with highlighted syntax"
 msgstr "Si s'ha d'imprimir el document amb la sintaxi ressaltada"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:526
+#: ../gtksourceview/gtksourceprintcompositor.c:527
 msgid "Print Line Numbers"
 msgstr "Imprimeix els números de línia"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:527
+#: ../gtksourceview/gtksourceprintcompositor.c:528
 msgid "Interval of printed line numbers (0 means no numbers)"
 msgstr ""
 "Interval dels números de línia en la impressió (el 0 indica que no "
 "s'imprimirà el número de línia)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:549
+#: ../gtksourceview/gtksourceprintcompositor.c:550
 msgid "Print Header"
 msgstr "Imprimeix la capçalera"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:550
+#: ../gtksourceview/gtksourceprintcompositor.c:551
 msgid "Whether to print a header in each page"
 msgstr "Si s'ha d'imprimir la capçalera a cada pàgina"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:572
+#: ../gtksourceview/gtksourceprintcompositor.c:573
 msgid "Print Footer"
 msgstr "Imprimeix el peu de pàgina"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:573
+#: ../gtksourceview/gtksourceprintcompositor.c:574
 msgid "Whether to print a footer in each page"
 msgstr "Si s'ha d'imprimir el peu de pàgina a cada pàgina"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:595
+#: ../gtksourceview/gtksourceprintcompositor.c:596
 msgid "Body Font Name"
 msgstr "Nom del tipus de lletra del cos"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:596
+#: ../gtksourceview/gtksourceprintcompositor.c:597
 msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
 msgstr ""
 "El nom del tipus de lletra que s'utilitzarà per al cos del text (p. ex. "
 "«Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:619
+#: ../gtksourceview/gtksourceprintcompositor.c:620
 msgid "Line Numbers Font Name"
 msgstr "Tipus de lletra dels números de línia"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:620
+#: ../gtksourceview/gtksourceprintcompositor.c:621
 msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
 msgstr ""
 "Nom del tipus de lletra que s'utilitzarà per als nombres de línia (p. ex. "
 "«Monospace 10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:643
+#: ../gtksourceview/gtksourceprintcompositor.c:644
 msgid "Header Font Name"
 msgstr "Nom del tipus de lletra per a la capçalera"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:644
+#: ../gtksourceview/gtksourceprintcompositor.c:645
 msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
 msgstr ""
 "Nom del tipus de lletra que s'utilitzarà a la capçalera (p. ex. «Monospace "
 "10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:667
+#: ../gtksourceview/gtksourceprintcompositor.c:668
 msgid "Footer Font Name"
 msgstr "Nom del tipus de lletra del peu de pàgina"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:668
+#: ../gtksourceview/gtksourceprintcompositor.c:669
 msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
 msgstr ""
 "Nom del tipus de lletra que s'utilitzarà al peu de pàgina (p. ex. «Monospace "
 "10»)"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:684
+#: ../gtksourceview/gtksourceprintcompositor.c:685
 msgid "Number of pages"
 msgstr "Nombre de pàgines"
 
-#: ../gtksourceview/gtksourceprintcompositor.c:685
+#: ../gtksourceview/gtksourceprintcompositor.c:686
 msgid ""
 "The number of pages in the document (-1 means the document has not been "
 "completely paginated)."
@@ -3099,201 +3218,272 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "no es pot utilitzar \\C en les definicions de llenguatges"
 
-#: ../gtksourceview/gtksourcestyle.c:80
-msgid "Line background"
-msgstr "Fons de la línia"
-
-#: ../gtksourceview/gtksourcestyle.c:81
-msgid "Line background color"
-msgstr "Color de fons de la línia"
-
-#: ../gtksourceview/gtksourcestyle.c:89
-msgid "Background color"
-msgstr "Color de fons"
-
-#: ../gtksourceview/gtksourcestyle.c:96
-msgid "Foreground"
-msgstr "Primer pla"
-
-#: ../gtksourceview/gtksourcestyle.c:97
-msgid "Foreground color"
-msgstr "Color del primer pla"
-
-#: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
-msgid "Underline"
-msgstr "Subratllat"
-
-#: ../gtksourceview/gtksourcestyle.c:128 ../gtksourceview/gtksourcestyle.c:129
-msgid "Strikethrough"
-msgstr "Barrat"
-
-#: ../gtksourceview/gtksourcestyle.c:136
-msgid "Line background set"
-msgstr "S'ha establit el fons de la línia"
-
-#: ../gtksourceview/gtksourcestyle.c:137
-msgid "Whether line background color is set"
-msgstr "Si s'ha establit el color de fons de la línia"
-
-#: ../gtksourceview/gtksourcestyle.c:144
-msgid "Foreground set"
-msgstr "S'ha establit el primer pla"
-
-#: ../gtksourceview/gtksourcestyle.c:145
-msgid "Whether foreground color is set"
-msgstr "Si s'ha establit el color del primer pla"
-
-#: ../gtksourceview/gtksourcestyle.c:152
-msgid "Background set"
-msgstr "S'ha establit el fons"
-
-#: ../gtksourceview/gtksourcestyle.c:153
-msgid "Whether background color is set"
-msgstr "Si s'ha establit el color de fons"
-
-#: ../gtksourceview/gtksourcestyle.c:160
-msgid "Bold set"
-msgstr "S'ha establit la negreta"
-
-#: ../gtksourceview/gtksourcestyle.c:161
-msgid "Whether bold attribute is set"
-msgstr "Si s'ha establit l'atribut de negreta"
-
-#: ../gtksourceview/gtksourcestyle.c:168
-msgid "Italic set"
-msgstr "S'ha establit la cursiva"
-
-#: ../gtksourceview/gtksourcestyle.c:169
-msgid "Whether italic attribute is set"
-msgstr "Si s'ha establit l'atribut de cursiva"
-
-#: ../gtksourceview/gtksourcestyle.c:176
-msgid "Underline set"
-msgstr "S'ha establit el subratllat"
-
-#: ../gtksourceview/gtksourcestyle.c:177
-msgid "Whether underline attribute is set"
-msgstr "Si s'ha establit l'atribut de subratllat"
-
-#: ../gtksourceview/gtksourcestyle.c:184
-msgid "Strikethrough set"
-msgstr "S'ha establit el barrat"
-
-#: ../gtksourceview/gtksourcestyle.c:185
-msgid "Whether strikethrough attribute is set"
-msgstr "Si s'ha establit l'atribut de barrat"
-
-#: ../gtksourceview/gtksourcestylescheme.c:212
-#: ../gtksourceview/gtksourcestylescheme.c:213
-msgid "Style scheme id"
-msgstr "Identificador d'esquema d'estil"
-
-#: ../gtksourceview/gtksourcestylescheme.c:225
-#: ../gtksourceview/gtksourcestylescheme.c:226
-msgid "Style scheme name"
-msgstr "Nom de l'esquema d'estil"
-
-#: ../gtksourceview/gtksourcestylescheme.c:238
-#: ../gtksourceview/gtksourcestylescheme.c:239
-msgid "Style scheme description"
-msgstr "Descripció de l'esquema d'estil"
-
-#: ../gtksourceview/gtksourcestylescheme.c:251
-#: ../gtksourceview/gtksourcestylescheme.c:252
-msgid "Style scheme filename"
-msgstr "Nom de fitxer de l'esquema d'estil"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:152
-msgid "Style scheme search path"
-msgstr "Camí de cerca de l'esquema d'estil"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
-msgid "List of directories and files where the style schemes are located"
-msgstr "Llista de directoris i fitxers on hi ha els esquemes d'estil"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:161
-msgid "Scheme ids"
-msgstr "Identificadors d'esquemes"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
-msgid "List of the ids of the available style schemes"
-msgstr "Llista dels identificadors d'esquemes d'estil disponibles"
-
-#: ../gtksourceview/gtksourceundomanagerdefault.c:405
+#: ../gtksourceview/gtksourcesearchcontext.c:2740
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "Memòria intermèdia"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:406
+#: ../gtksourceview/gtksourcesearchcontext.c:2741
+msgid "The associated GtkSourceBuffer"
+msgstr "El GtkSourceView associat"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2755
+msgid "Settings"
+msgstr "Paràmetres"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2756
+msgid "The associated GtkSourceSearchSettings"
+msgstr "Els GtkSourceSearchSettings associats"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2770
+msgid "Highlight"
+msgstr "Ressalta"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2771
+msgid "Highlight search occurrences"
+msgstr "Ressalta les coincidències de la cerca"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2787
+msgid "Occurrences count"
+msgstr "Comptador de coincidències"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2788
+msgid "Total number of search occurrences"
+msgstr "Nombre total de coincidències de la cerca"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2807
+msgid "Regex error"
+msgstr "Error en l'expressió regular"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2808
+msgid "Regular expression error"
+msgstr "L'error en l'expressió regular"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:168
+msgid "Search text"
+msgstr "Text de cerca"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:169
+msgid "The text to search"
+msgstr "El text a cercar"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:183
+#: ../gtksourceview/gtksourcesearchsettings.c:184
+msgid "Case sensitive"
+msgstr "Distingeix entre majúscules i minúscules"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:199
+msgid "At word boundaries"
+msgstr "Als límits de la paraula"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:200
+msgid "Search at word boundaries"
+msgstr "Cerca paraules senceres"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:216
+#: ../gtksourceview/gtksourcesearchsettings.c:217
+msgid "Wrap around"
+msgstr "Continua des de l'inici"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:232
+msgid "Regex enabled"
+msgstr "Habilita les expressions regulars"
+
+#: ../gtksourceview/gtksourcesearchsettings.c:233
+msgid "Whether to search by regular expression"
+msgstr "Si la cerca es fa amb expressions regulars"
+
+#: ../gtksourceview/gtksourcestyle.c:87
+msgid "Line background"
+msgstr "Fons de la línia"
+
+#: ../gtksourceview/gtksourcestyle.c:88
+msgid "Line background color"
+msgstr "Color de fons de la línia"
+
+#: ../gtksourceview/gtksourcestyle.c:96
+msgid "Background color"
+msgstr "Color de fons"
+
+#: ../gtksourceview/gtksourcestyle.c:103
+msgid "Foreground"
+msgstr "Primer pla"
+
+#: ../gtksourceview/gtksourcestyle.c:104
+msgid "Foreground color"
+msgstr "Color del primer pla"
+
+#: ../gtksourceview/gtksourcestyle.c:127 ../gtksourceview/gtksourcestyle.c:128
+msgid "Underline"
+msgstr "Subratllat"
+
+#: ../gtksourceview/gtksourcestyle.c:135 ../gtksourceview/gtksourcestyle.c:136
+msgid "Strikethrough"
+msgstr "Barrat"
+
+#: ../gtksourceview/gtksourcestyle.c:143
+msgid "Line background set"
+msgstr "S'ha establit el fons de la línia"
+
+#: ../gtksourceview/gtksourcestyle.c:144
+msgid "Whether line background color is set"
+msgstr "Si s'ha establit el color de fons de la línia"
+
+#: ../gtksourceview/gtksourcestyle.c:151
+msgid "Foreground set"
+msgstr "S'ha establit el primer pla"
+
+#: ../gtksourceview/gtksourcestyle.c:152
+msgid "Whether foreground color is set"
+msgstr "Si s'ha establit el color del primer pla"
+
+#: ../gtksourceview/gtksourcestyle.c:159
+msgid "Background set"
+msgstr "S'ha establit el fons"
+
+#: ../gtksourceview/gtksourcestyle.c:160
+msgid "Whether background color is set"
+msgstr "Si s'ha establit el color de fons"
+
+#: ../gtksourceview/gtksourcestyle.c:167
+msgid "Bold set"
+msgstr "S'ha establit la negreta"
+
+#: ../gtksourceview/gtksourcestyle.c:168
+msgid "Whether bold attribute is set"
+msgstr "Si s'ha establit l'atribut de negreta"
+
+#: ../gtksourceview/gtksourcestyle.c:175
+msgid "Italic set"
+msgstr "S'ha establit la cursiva"
+
+#: ../gtksourceview/gtksourcestyle.c:176
+msgid "Whether italic attribute is set"
+msgstr "Si s'ha establit l'atribut de cursiva"
+
+#: ../gtksourceview/gtksourcestyle.c:183
+msgid "Underline set"
+msgstr "S'ha establit el subratllat"
+
+#: ../gtksourceview/gtksourcestyle.c:184
+msgid "Whether underline attribute is set"
+msgstr "Si s'ha establit l'atribut de subratllat"
+
+#: ../gtksourceview/gtksourcestyle.c:191
+msgid "Strikethrough set"
+msgstr "S'ha establit el barrat"
+
+#: ../gtksourceview/gtksourcestyle.c:192
+msgid "Whether strikethrough attribute is set"
+msgstr "Si s'ha establit l'atribut de barrat"
+
+#: ../gtksourceview/gtksourcestylescheme.c:211
+#: ../gtksourceview/gtksourcestylescheme.c:212
+msgid "Style scheme id"
+msgstr "Identificador d'esquema d'estil"
+
+#: ../gtksourceview/gtksourcestylescheme.c:224
+#: ../gtksourceview/gtksourcestylescheme.c:225
+msgid "Style scheme name"
+msgstr "Nom de l'esquema d'estil"
+
+#: ../gtksourceview/gtksourcestylescheme.c:237
+#: ../gtksourceview/gtksourcestylescheme.c:238
+msgid "Style scheme description"
+msgstr "Descripció de l'esquema d'estil"
+
+#: ../gtksourceview/gtksourcestylescheme.c:250
+#: ../gtksourceview/gtksourcestylescheme.c:251
+msgid "Style scheme filename"
+msgstr "Nom de fitxer de l'esquema d'estil"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:153
+msgid "Style scheme search path"
+msgstr "Camí de cerca de l'esquema d'estil"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:154
+msgid "List of directories and files where the style schemes are located"
+msgstr "Llista de directoris i fitxers on hi ha els esquemes d'estil"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:162
+msgid "Scheme ids"
+msgstr "Identificadors d'esquemes"
+
+#: ../gtksourceview/gtksourcestyleschememanager.c:163
+msgid "List of the ids of the available style schemes"
+msgstr "Llista dels identificadors d'esquemes d'estil disponibles"
+
+#: ../gtksourceview/gtksourceundomanagerdefault.c:407
 msgid "The text buffer to add undo support on"
 msgstr ""
 "La memòria intermèdia de text a la qual s'afegirà la capacitat de poder "
 "desfer"
 
-#: ../gtksourceview/gtksourceview.c:311
+#: ../gtksourceview/gtksourceview.c:309
 msgid "The completion object associated with the view"
 msgstr "L'objecte de compleció associat amb la visualització"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:321
 msgid "Show Line Numbers"
 msgstr "Mostra els números de línia"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Whether to display line numbers"
 msgstr "Si s'han de mostrar els números de línia"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:333
 msgid "Show Line Marks"
 msgstr "Mostra els marcadors de línia"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Whether to display line mark pixbufs"
 msgstr "Si s'han de mostrar les imatges dels marcadors de línia"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:361
 msgid "Indent Width"
 msgstr "Amplada del sagnat"
 
-#: ../gtksourceview/gtksourceview.c:364
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Number of spaces to use for each step of indent"
 msgstr "Nombre d'espais per utilitzar per a cada passa de sagnat"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:371
 msgid "Auto Indentation"
 msgstr "Sagnat automàtic"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Whether to enable auto indentation"
 msgstr "Si s'ha d'habilitar el sagnat automàtic"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:379
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Insereix espais en comptes de tabulacions"
 
-#: ../gtksourceview/gtksourceview.c:382
+#: ../gtksourceview/gtksourceview.c:380
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Si s'han d'inserir espais en comptes de tabulacions"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:392
 msgid "Show Right Margin"
 msgstr "Mostra el marge dret"
 
-#: ../gtksourceview/gtksourceview.c:395
+#: ../gtksourceview/gtksourceview.c:393
 msgid "Whether to display the right margin"
 msgstr "Si s'ha de mostrar el marge dret"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Right Margin Position"
 msgstr "Posició del marge dret"
 
-#: ../gtksourceview/gtksourceview.c:408
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Position of the right margin"
 msgstr "Posició del marge dret"
 
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:422
 msgid "Smart Home/End"
 msgstr "Inici/final intel·ligent"
 
-#: ../gtksourceview/gtksourceview.c:425
+#: ../gtksourceview/gtksourceview.c:423
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3301,30 +3491,40 @@ msgstr ""
 "Les tecles d'INICI i FINAL mouen cap al primer/últim caràcter de la línia "
 "que no siga un espai en blanc abans d'anar al principi/final de la línia"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:433
 msgid "Highlight current line"
 msgstr "Ressalta la línia actual"
 
-#: ../gtksourceview/gtksourceview.c:436
+#: ../gtksourceview/gtksourceview.c:434
 msgid "Whether to highlight the current line"
 msgstr "Si s'ha de ressaltar la línia actual"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:441
 msgid "Indent on tab"
 msgstr "Sagna amb el tabulador"
 
-#: ../gtksourceview/gtksourceview.c:444
+#: ../gtksourceview/gtksourceview.c:442
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Si s'ha de sagnar el text seleccionat quan es prem la tecla de tabulació"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:456
 msgid "Draw Spaces"
 msgstr "Dibuixa els espais"
 
-#: ../gtksourceview/gtksourceview.c:459
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Set if and how the spaces should be visualized"
 msgstr "Establiu si s'haurien de visualitzar, i com, els espais"
+
+#. create redo menu_item.
+#: ../gtksourceview/gtksourceview.c:1326
+msgid "_Redo"
+msgstr "_Refés"
+
+#. create undo menu_item.
+#: ../gtksourceview/gtksourceview.c:1337
+msgid "_Undo"
+msgstr "_Desfés"
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
@@ -3332,497 +3532,3 @@ msgstr ""
 "Aleix Badia i Bosch <abadia@ica.es>\n"
 "Josep Puigdemont i Casamajó <josep.puigdemont@gmail.com>\n"
 "Gil Forcada <gilforcada@guifi.net>"
-
-#~ msgid "Objective Caml"
-#~ msgstr "Objective Caml"
-
-#~ msgid "Docbook"
-#~ msgstr "DocBook"
-
-#~ msgid "Object"
-#~ msgstr "Objecte"
-
-#~ msgid "Text2Tags"
-#~ msgstr "Text2Tags"
-
-#~ msgid "Maximum width"
-#~ msgstr "Amplada màxima"
-
-#~ msgid "The maximum allowed width"
-#~ msgstr "L'amplada màxima permesa"
-
-#~ msgid "Maximum height"
-#~ msgstr "Alçada màxima"
-
-#~ msgid "The maximum allowed height"
-#~ msgstr "L'alçada màxima permesa"
-
-#~ msgid "Shrink width"
-#~ msgstr "Encongir d'amplada"
-
-#~ msgid "Whether the window should shrink width to fit the contents"
-#~ msgstr ""
-#~ "Si la finestra hauria d'encongir-se (d'amplada) per ajustar-se al "
-#~ "contingut"
-
-#~ msgid "Shrink height"
-#~ msgstr "Encongir d'alçada"
-
-#~ msgid "Whether the window should shrink height to fit the contents"
-#~ msgstr ""
-#~ "Si la finestra hauria d'encongir-se (d'alçada) per ajustar-se al contingut"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
-
-#~ msgid "Inline C Code"
-#~ msgstr "Codi C en línia"
-
-#~ msgid "grammar"
-#~ msgstr "gramàtica"
-
-#~ msgid "Escaping character for syntax patterns"
-#~ msgstr "Caràcter d'escapada pels patrons de sintaxi"
-
-#~ msgid "Check Brackets"
-#~ msgstr "Comprova els claudàtors"
-
-#~ msgid "Configuration"
-#~ msgstr "Configuració"
-
-#~ msgid "Configuration options for the print job"
-#~ msgstr "Opcions de configuració de la tasca d'impressió"
-
-#~ msgid "Width in equivalent space characters of tabs"
-#~ msgstr "Amplada equivalent de les tabulacions en caràcters d'espai"
-
-#~ msgid "Word wrapping mode"
-#~ msgstr "Mode d'ajustament de paraula"
-
-#~ msgid "Font"
-#~ msgstr "Tipus de lletra"
-
-#~ msgid "GnomeFont name to use for the document text (deprecated)"
-#~ msgstr ""
-#~ "El tipus de lletra del Gnome s'utilitzarà en el document (desaconsellat)"
-
-#~ msgid "GnomeFont name to use for the line numbers (deprecated)"
-#~ msgstr ""
-#~ "Nom del GnomeFont que es farà servir en els números de línia "
-#~ "(desaconsellat)"
-
-#~ msgid "Font description to use for the line numbers"
-#~ msgstr "Descripció del tipus de lletra a fer servir en els números de línia"
-
-#~ msgid "Header and Footer Font"
-#~ msgstr "Tipus de lletra de la capçalera i del peu de pàgina"
-
-#~ msgid "GnomeFont name to use for the header and footer (deprecated)"
-#~ msgstr ""
-#~ "Nom del GnomeFont que s'utilitzarà per a la capçalera i el peu de pàgina "
-#~ "(desaconsellat)"
-
-#~ msgid "Header and Footer Font Description"
-#~ msgstr "Descripció del tipus de lletra de la capçalera i del peu de pàgina"
-
-#~ msgid "Tag ID"
-#~ msgstr "Identificador del marcador"
-
-#~ msgid "ID used to refer to the source tag"
-#~ msgstr ""
-#~ "Identificador que heu utilitzat per fer referència al marcador del codi "
-#~ "font"
-
-#~ msgid "Tag style"
-#~ msgstr "Estil del marcador"
-
-#~ msgid "Margin Line Alpha"
-#~ msgstr "Transparència de la línia de marge"
-
-#~ msgid "Transparency of the margin line"
-#~ msgstr "Transparència de la línia de marge"
-
-#~ msgid "Margin Line Color"
-#~ msgstr "Color de la línia de marge"
-
-#~ msgid "Color to use for the right margin line"
-#~ msgstr "Color per a la línia del marge esquerre"
-
-#~ msgid "Margin Overlay Toggle"
-#~ msgstr "Commutador del marge de superposició"
-
-#~ msgid "Whether to draw the right margin overlay"
-#~ msgstr "Si s'ha de mostrar el marge de superposició"
-
-#~ msgid "Margin Overlay Alpha"
-#~ msgstr "Transparència del marge de superposició"
-
-#~ msgid "Transparency of the margin overlay"
-#~ msgstr "Transparència del marge de superposició"
-
-#~ msgid "Margin Overlay Color"
-#~ msgstr "Color del marge de superposició"
-
-#~ msgid "Color to use for drawing the margin overlay"
-#~ msgstr "Color a utilitazar per a dibuixar el marge de superposició"
-
-#~ msgid "Character Constant"
-#~ msgstr "Constant de caràcter"
-
-# FIXME
-#~ msgid "Line Comment"
-#~ msgstr "Línia amb comentari"
-
-#~ msgid "Preprocessor Keyword"
-#~ msgstr "Paraula clau del preprocessador"
-
-#~ msgid "True And False"
-#~ msgstr "Cert i fals"
-
-#~ msgid "'#if 0' Comment"
-#~ msgstr "'#if 0' Comentari"
-
-#~ msgid "Include/Pragma"
-#~ msgstr "Include/Pragma"
-
-#~ msgid "Preprocessor Definitions"
-#~ msgstr "Definicions del preprocessador"
-
-#~ msgid "Types"
-#~ msgstr "Tipus"
-
-#~ msgid "Primitives"
-#~ msgstr "Primitives"
-
-#~ msgid "Attribute Value Delimiters"
-#~ msgstr "Delimitadors dels atributs de valor"
-
-#~ msgid "Hexadecimal Color"
-#~ msgstr "Color hexadecimal"
-
-#~ msgid "Importance Modifier"
-#~ msgstr "Modificador de rellevància"
-
-#~ msgid "Punctuators"
-#~ msgstr "Puntuadors"
-
-# FIXME:
-#       si hagués de ser "selector de la gramàtica" diria "grammar selector"
-#       per això ho he deixat sintètic. (josep)
-#~ msgid "Selector Grammar"
-#~ msgstr "Selector gramàtica"
-
-#~ msgid "Unicode Character Reference"
-#~ msgstr "Referència de caràcters unicode"
-
-#~ msgid "Char Literal"
-#~ msgstr "Carter literal"
-
-# FIXME
-#~ msgid "Grave Literal"
-#~ msgstr "Literal greu"
-
-#~ msgid "Nested Comment"
-#~ msgstr "Comentari imbricat"
-
-#~ msgid "String Literal"
-#~ msgstr "Cadena literal"
-
-#~ msgid "Diff file"
-#~ msgstr "Fitxer de diferències"
-
-#~ msgid "Closing Bracket"
-#~ msgstr "Claudàtor de tancament"
-
-#~ msgid "Hexadecimal"
-#~ msgstr "Hexadecimal"
-
-#~ msgid "Structural Elements 2"
-#~ msgstr "Elements estructurals 2"
-
-#~ msgid "Input/Output"
-#~ msgstr "Entrada/Sortida"
-
-#~ msgid "Intrinsics"
-#~ msgstr "Intrínsecs"
-
-#~ msgid "Read/Write"
-#~ msgstr "Lectura/Escriptura"
-
-#~ msgid "Double Quoted String"
-#~ msgstr "Cadena entre cometes dobles"
-
-#~ msgid "Single Quoted String"
-#~ msgstr "Cadena entre cometes simples"
-
-#~ msgid "State"
-#~ msgstr "Estat"
-
-#~ msgid "Type or Constructor"
-#~ msgstr "Tipus o constructor"
-
-#~ msgid "Sectional"
-#~ msgstr "Seccional"
-
-#~ msgid "Integer"
-#~ msgstr "Enter"
-
-#~ msgid "Flow"
-#~ msgstr "Flux"
-
-#~ msgid "Memory"
-#~ msgstr "Memòria"
-
-#~ msgid "Numeric"
-#~ msgstr "Numèric"
-
-#~ msgid "Array Operators"
-#~ msgstr "Operadors de matrius"
-
-#~ msgid "Floating-Point Number"
-#~ msgstr "Nombre en coma flotant"
-
-#~ msgid "Flow Keywords"
-#~ msgstr "Paraules clau de flux"
-
-#~ msgid "Global Properties"
-#~ msgstr "Propietats globals"
-
-#~ msgid "Math Value Properties"
-#~ msgstr "Propietats d'un valor matemàtic"
-
-#~ msgid "Object Functions"
-#~ msgstr "Funcions d'objecte"
-
-#~ msgid "Object Properties"
-#~ msgstr "Propietats d'objecte"
-
-# FIXME
-#~ msgid "Word Operators"
-#~ msgstr "Operadors de paraules"
-
-#~ msgid "Math"
-#~ msgstr "Math"
-
-#~ msgid "Line Comment 2"
-#~ msgstr "Comentari de línia 2"
-
-#~ msgid "Multiline String 2"
-#~ msgstr "Cadena en línies múltiples 2"
-
-#~ msgid "Backtick String"
-#~ msgstr "Cadena amb cometes inverses"
-
-#~ msgid "Variable1"
-#~ msgstr "Variable1"
-
-#~ msgid "Variable2"
-#~ msgstr "Variable2"
-
-#~ msgid "Keywords Defined by Macros"
-#~ msgstr "Paraules clau definides per macroinstruccions"
-
-#~ msgid "Multiline Double Quoted String"
-#~ msgstr "Cadena multi-línia entre cometes dobles"
-
-#~ msgid "Multiline Single Quoted String"
-#~ msgstr "Cadena multi-línia entre cometes simples"
-
-#~ msgid "Block Comment 1"
-#~ msgstr "Bloc de comentari 1"
-
-#~ msgid "Block Comment 2"
-#~ msgstr "Bloc de comentari 2"
-
-# FIXME
-#~ msgid "Boolean Bitwise Operators"
-#~ msgstr "Operadors booleans lògics"
-
-#~ msgid "Functions and Function Modifiers"
-#~ msgstr "Funcions i modificadors de funcions"
-
-#~ msgid "General Format"
-#~ msgstr "Format general"
-
-# FIXME
-#~ msgid "Loop, Flow, and Exceptions Keywords"
-#~ msgstr "Paraules clau Loop, Flow i Exceptions"
-
-#~ msgid "Method Call"
-#~ msgstr "Crida a un mètode"
-
-#~ msgid "String2"
-#~ msgstr "Cadena2"
-
-#~ msgid "String3"
-#~ msgstr "Cadena3"
-
-# FIXME
-#~ msgid "Bash Line Comment"
-#~ msgstr "Línia de comentari del bash"
-
-#~ msgid "C Block Comment"
-#~ msgstr "Bloc de comentari del C"
-
-#~ msgid "C++ Line Comment"
-#~ msgstr "Línia de comentari del C++"
-
-#~ msgid "Case Insensitive Keyword"
-#~ msgstr "Teclat que no distingeix majúscules i minúscules"
-
-#~ msgid "Case Sensitive Keyword"
-#~ msgstr "Teclat que distingeix majúscules i minúscules"
-
-#~ msgid "First Open PHP Tag"
-#~ msgstr "Primer marcador d'obertura del PHP"
-
-#~ msgid "Instance Variables"
-#~ msgstr "Variables de la instància"
-
-#~ msgid "Module Handlers"
-#~ msgstr "Gestor del mòdul"
-
-#~ msgid "Multiline Comment"
-#~ msgstr "Comentari multi-línia"
-
-# En el gnome-utils es fa servir "expreg" per traduir "expreg"
-#~ msgid "RegExp Variables"
-#~ msgstr "Variables expreg"
-
-#~ msgid "Punctuator"
-#~ msgstr "Puntuador"
-
-#~ msgid "Redirection"
-#~ msgstr "Redirecció"
-
-#~ msgid "Self"
-#~ msgstr "Auto"
-
-#~ msgid "ANSI Datatypes"
-#~ msgstr "Tipus de dades ANSI"
-
-#~ msgid "Aggregate Functions"
-#~ msgstr "Funcions agregades"
-
-#~ msgid "Character Functions Returning Character Values"
-#~ msgstr "Funcions de caràcter que retornen valors de caràcter"
-
-#~ msgid "Character Functions Returning Number Values"
-#~ msgstr "Funcions de caràcter que retornen valors numèrics"
-
-#~ msgid "Conditions"
-#~ msgstr "Condicions"
-
-#~ msgid "Data Mining Functions"
-#~ msgstr "Funcions d'explotació de dades"
-
-#~ msgid "Encoding and Decoding Functions"
-#~ msgstr "Funcions de codificació i descodificació"
-
-#~ msgid "Environment and Identifier Functions"
-#~ msgstr "Funcions d'entorn i identificació"
-
-#~ msgid "General Comparison Functions"
-#~ msgstr "Funcions de comparació general"
-
-#~ msgid "Hierarchical Function"
-#~ msgstr "Funcions jeràrquiques"
-
-#~ msgid "Integer Literals"
-#~ msgstr "Literals enters"
-
-#~ msgid "Large Object Functions"
-#~ msgstr "Funcions d'objecte grans"
-
-# Modals? jm
-#~ msgid "Model Functions"
-#~ msgstr "Funcions de models"
-
-#~ msgid "NLS Character Functions"
-#~ msgstr "Funcions de caràcters NLS"
-
-#~ msgid "NULL-Related Functions"
-#~ msgstr "Funcions relacionades amb NULL"
-
-# FIXME
-#~ msgid "Null"
-#~ msgstr "Nul"
-
-#~ msgid "Numeric Functions"
-#~ msgstr "Funcions numèriques"
-
-#~ msgid "Object Reference Functions"
-#~ msgstr "Funcions de referència d'objecte"
-
-#~ msgid "Oracle Built-in Datatypes"
-#~ msgstr "Tipus de dades integrats de l'Oracle"
-
-#~ msgid "Oracle Reserved Words"
-#~ msgstr "Paraules reservades de l'Oracle"
-
-#~ msgid "Oracle-Supplied Types"
-#~ msgstr "Tipus proveïts per Oracle"
-
-#~ msgid "SQL*Plus At Sign"
-#~ msgstr "Signe arrova de l'SQL*Plus"
-
-#~ msgid "SQL*Plus Commands"
-#~ msgstr "Ordres de l'SQL*Plus"
-
-#~ msgid "SQL*Plus Double At Sign"
-#~ msgstr "Signe doble arrova de l'SQL*Plus"
-
-#~ msgid "SQL*Plus Slash"
-#~ msgstr "Barra inclinada de l'SQL*Plus"
-
-#~ msgid "SQL/DS and DB2 Datatypes"
-#~ msgstr "Tipus de dades de DB2 i SQL/DS"
-
-#~ msgid "Size Clause"
-#~ msgstr "Clàusula de mida"
-
-#~ msgid "Text Literals"
-#~ msgstr "Literals de text"
-
-#~ msgid "XML Functions"
-#~ msgstr "Funcions XML"
-
-#~ msgid "Characters"
-#~ msgstr "Caràcters"
-
-#~ msgid "Formatting"
-#~ msgstr "Format"
-
-#~ msgid "Indexing"
-#~ msgstr "Indexació"
-
-#~ msgid "Markup (block)"
-#~ msgstr "Etiquetatge (bloc)"
-
-# FIXME
-#~ msgid "Markup (inline)"
-#~ msgstr "Etiquetatge (en línia)"
-
-#~ msgid "Sectioning"
-#~ msgstr "Seccionament"
-
-#~ msgid "Old Style Comment"
-#~ msgstr "Comentari en estil antic"
-
-#~ msgid "True and False"
-#~ msgstr "Cert i fals"
-
-#~ msgid "Keysymbols"
-#~ msgstr "Símbols clau"
-
-#~ msgid "Double Quote String"
-#~ msgstr "Cadena entre cometes dobles"
-
-#~ msgid "Single Quote String"
-#~ msgstr "Cadena entre cometes simples"
-
-#~ msgid "Regular Expression 2"
-#~ msgstr "Expressió regular 2"
-
-#~ msgid "Miscellaneous Single-Row Functions"
-#~ msgstr "Funcions de fila única diverses"
