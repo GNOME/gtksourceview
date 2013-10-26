@@ -733,7 +733,10 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	                                GTK_STYLE_PROVIDER (scheme->priv->css),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
+	/* See https://bugzilla.gnome.org/show_bug.cgi?id=708583 */
 	gtk_style_context_invalidate (context);
+	G_GNUC_END_IGNORE_DEPRECATIONS;
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 	set_line_numbers_style (widget, style);
@@ -764,7 +767,12 @@ _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
 	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
 	gtk_style_context_remove_provider (context,
 	                                   GTK_STYLE_PROVIDER (scheme->priv->css));
+
+	G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
+	/* See https://bugzilla.gnome.org/show_bug.cgi?id=708583 */
 	gtk_style_context_invalidate (context);
+	G_GNUC_END_IGNORE_DEPRECATIONS;
+
 	set_line_numbers_style (widget, NULL);
 	update_cursor_colors (widget, NULL, NULL);
 }
