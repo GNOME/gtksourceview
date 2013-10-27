@@ -25,8 +25,6 @@
 struct _GtkSourceGutterRendererLinesPrivate
 {
 	gint num_line_digits;
-
-	guint changed_handler_id;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererLines, gtk_source_gutter_renderer_lines, GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT)
@@ -38,7 +36,7 @@ get_buffer (GtkSourceGutterRendererLines *renderer)
 
 	view = gtk_source_gutter_renderer_get_view (GTK_SOURCE_GUTTER_RENDERER (renderer));
 
-	return gtk_text_view_get_buffer (view);
+	return view != NULL ? gtk_text_view_get_buffer (view) : NULL;
 }
 
 static void
@@ -95,35 +93,29 @@ static void
 gutter_renderer_change_buffer (GtkSourceGutterRenderer *renderer,
                                GtkTextBuffer           *old_buffer)
 {
-	GtkTextView *view;
 	GtkSourceGutterRendererLines *lines;
+	GtkTextBuffer *buffer;
 
 	lines = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
 
-	if (old_buffer)
+	if (old_buffer != NULL)
 	{
-		g_signal_handler_disconnect (old_buffer,
-		                             lines->priv->changed_handler_id);
+		g_signal_handlers_disconnect_by_func (old_buffer,
+						      on_buffer_changed,
+						      lines);
 	}
 
-	view = gtk_source_gutter_renderer_get_view (renderer);
+	buffer = get_buffer (lines);
 
-	if (view)
+	if (buffer != NULL)
 	{
-		GtkTextBuffer *buffer;
+		g_signal_connect_object (buffer,
+					 "changed",
+					 G_CALLBACK (on_buffer_changed),
+					 lines,
+					 0);
 
-		buffer = gtk_text_view_get_buffer (view);
-
-		if (buffer)
-		{
-			lines->priv->changed_handler_id =
-				g_signal_connect (buffer,
-				                  "changed",
-				                  G_CALLBACK (on_buffer_changed),
-				                  lines);
-
-			recalculate_size (lines);
-		}
+		recalculate_size (lines);
 	}
 }
 
@@ -154,10 +146,11 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 
 	if (new_view != NULL)
 	{
-		g_signal_connect (new_view,
-				  "style-updated",
-				  G_CALLBACK (on_view_style_updated),
-				  renderer);
+		g_signal_connect_object (new_view,
+					 "style-updated",
+					 G_CALLBACK (on_view_style_updated),
+					 renderer,
+					 0);
 	}
 
 	parent_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class);
