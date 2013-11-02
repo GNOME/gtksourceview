@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-26 17:44+0000\n"
+"POT-Creation-Date: 2013-07-24 07:16+0000\n"
 "PO-Revision-Date: 2012-10-11 19:44+0900\n"
 "Last-Translator: Nishio Futoshi <fut_nis@d3.dion.ne.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -62,7 +62,7 @@ msgid "Leading"
 msgstr "行頭の空間"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:255
+#: ../gtksourceview/gtksourcecompletionitem.c:264
 #: ../gtksourceview/gtksourcegutterrenderertext.c:403
 msgid "Text"
 msgstr "テキスト"
@@ -72,10 +72,10 @@ msgstr "テキスト"
 msgid "Trailing"
 msgstr "行末の空間"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:653
+#: ../gtksourceview/gtksourcecompletion.c:644
 msgid "All"
 msgstr "すべて"
 
@@ -95,9 +95,8 @@ msgstr "すべて"
 #: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
 #: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
-#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/j.lang.h:1
-#: ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
+#: ../data/language-specs/j.lang.h:1 ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
@@ -133,11 +132,12 @@ msgstr "ActionScript"
 #: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:4
-#: ../data/language-specs/html.lang.h:3 ../data/language-specs/idl.lang.h:3
+#: ../data/language-specs/html.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:3
-#: ../data/language-specs/ini.lang.h:3 ../data/language-specs/j.lang.h:4
-#: ../data/language-specs/latex.lang.h:3 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
+#: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
+#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/modelica.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/netrexx.lang.h:6
 #: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
@@ -189,12 +189,14 @@ msgstr "エラー"
 #: ../data/language-specs/fsharp.lang.h:7
 #: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/gtkrc.lang.h:4
-#: ../data/language-specs/haskell.lang.h:9 ../data/language-specs/idl.lang.h:7
+#: ../data/language-specs/haskell.lang.h:9
 #: ../data/language-specs/idl-exelis.lang.h:7
-#: ../data/language-specs/imagej.lang.h:10 ../data/language-specs/ini.lang.h:5
-#: ../data/language-specs/j.lang.h:17 ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
+#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
-#: ../data/language-specs/json.lang.h:4 ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
+#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4
 #: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
@@ -205,8 +207,8 @@ msgstr "エラー"
 #: ../data/language-specs/php.lang.h:9 ../data/language-specs/po.lang.h:5
 #: ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/protobuf.lang.h:6
-#: ../data/language-specs/python.lang.h:6
 #: ../data/language-specs/python3.lang.h:6
+#: ../data/language-specs/python.lang.h:6
 #: ../data/language-specs/ruby.lang.h:14
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
@@ -260,12 +262,13 @@ msgstr "スコープの宣言"
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
 #: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:5
-#: ../data/language-specs/haskell.lang.h:7 ../data/language-specs/idl.lang.h:6
+#: ../data/language-specs/haskell.lang.h:7
 #: ../data/language-specs/idl-exelis.lang.h:6
-#: ../data/language-specs/imagej.lang.h:8 ../data/language-specs/ini.lang.h:6
-#: ../data/language-specs/java.lang.h:12
+#: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
 #: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/modelica.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
@@ -276,8 +279,8 @@ msgstr "スコープの宣言"
 #: ../data/language-specs/php.lang.h:12 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
 #: ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/python.lang.h:4
-#: ../data/language-specs/python3.lang.h:4 ../data/language-specs/R.lang.h:3
+#: ../data/language-specs/python3.lang.h:4
+#: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
 #: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
@@ -328,9 +331,8 @@ msgstr "論理値"
 #: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/j.lang.h:14
-#: ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/netrexx.lang.h:16
+#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/j.lang.h:14 ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -355,9 +357,10 @@ msgstr "予約済みのキーワード"
 #: ../data/language-specs/fsharp.lang.h:11
 #: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:7
-#: ../data/language-specs/haskell.lang.h:8 ../data/language-specs/idl.lang.h:4
+#: ../data/language-specs/haskell.lang.h:8
 #: ../data/language-specs/idl-exelis.lang.h:4
-#: ../data/language-specs/ini.lang.h:9 ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
+#: ../data/language-specs/java.lang.h:17
 #: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
@@ -389,8 +392,8 @@ msgstr "Ada"
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
 #: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python.lang.h:13
 #: ../data/language-specs/python3.lang.h:12
+#: ../data/language-specs/python.lang.h:13
 #: ../data/language-specs/ruby.lang.h:11
 msgid "Decimal number"
 msgstr "10進数"
@@ -401,9 +404,9 @@ msgstr "10進数"
 #: ../data/language-specs/forth.lang.h:5
 #: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/glsl.lang.h:3
-#: ../data/language-specs/haskell.lang.h:3 ../data/language-specs/idl.lang.h:5
+#: ../data/language-specs/haskell.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:5
+#: ../data/language-specs/idl.lang.h:5 ../data/language-specs/nemerle.lang.h:5
 #: ../data/language-specs/objj.lang.h:6 ../data/language-specs/pascal.lang.h:8
 #: ../data/language-specs/vbnet.lang.h:5
 msgid "Preprocessor"
@@ -432,10 +435,9 @@ msgstr "実数"
 #: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
 #: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/python.lang.h:7
 #: ../data/language-specs/python3.lang.h:7
-#: ../data/language-specs/ruby.lang.h:3 ../data/language-specs/sml.lang.h:8
-#: ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
+#: ../data/language-specs/sml.lang.h:8 ../data/language-specs/texinfo.lang.h:4
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "エスケープした文字"
@@ -463,8 +465,9 @@ msgstr "関数"
 #: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
-#: ../data/language-specs/imagej.lang.h:9 ../data/language-specs/nsis.lang.h:3
-#: ../data/language-specs/octave.lang.h:5
+#: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/modelica.lang.h:5
+#: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
 #: ../data/language-specs/prolog.lang.h:8
 #: ../data/language-specs/sparql.lang.h:15
@@ -527,10 +530,9 @@ msgstr "置換"
 #: ../data/language-specs/javascript.lang.h:1
 #: ../data/language-specs/lua.lang.h:1 ../data/language-specs/m4.lang.h:1
 #: ../data/language-specs/perl.lang.h:1 ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/python.lang.h:1
 #: ../data/language-specs/python3.lang.h:1
-#: ../data/language-specs/ruby.lang.h:1 ../data/language-specs/sh.lang.h:1
-#: ../data/language-specs/tcl.lang.h:1
+#: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
+#: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
 msgid "Scripts"
 msgstr "スクリプト"
 
@@ -552,7 +554,7 @@ msgstr "パターン"
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:21 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
 msgstr "変数"
@@ -561,8 +563,8 @@ msgstr "変数"
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
 #: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
-#: ../data/language-specs/python.lang.h:18
 #: ../data/language-specs/python3.lang.h:17
+#: ../data/language-specs/python.lang.h:18
 msgid "Builtin Function"
 msgstr "組み込みの関数"
 
@@ -585,8 +587,8 @@ msgstr "識別子"
 #: ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
 #: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/python.lang.h:12
-#: ../data/language-specs/python3.lang.h:11 ../data/language-specs/R.lang.h:10
+#: ../data/language-specs/python3.lang.h:11
+#: ../data/language-specs/python.lang.h:12 ../data/language-specs/R.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "浮動小数点数"
@@ -610,7 +612,7 @@ msgstr "16 進数"
 #: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:242
+#: ../gtksourceview/gtksourcecompletionitem.c:251
 #: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "マークアップ"
@@ -628,10 +630,8 @@ msgid "Field"
 msgstr "フィールド"
 
 #: ../data/language-specs/bluespec.lang.h:2
-#, fuzzy
-#| msgid "SystemVerilog"
 msgid "Bluespec SystemVerilog"
-msgstr "SystemVerilog"
+msgstr "Bluespec SystemVerilog"
 
 #: ../data/language-specs/bluespec.lang.h:3
 #: ../data/language-specs/systemverilog.lang.h:4
@@ -639,20 +639,16 @@ msgid "System Task"
 msgstr "システムタスク"
 
 #: ../data/language-specs/bluespec.lang.h:4
-#, fuzzy
-#| msgid "Activation"
 msgid "Annotation"
-msgstr "アクティベーション"
+msgstr "注釈"
 
 #: ../data/language-specs/bluespec.lang.h:5
-#, fuzzy
-#| msgid "Attribute name"
 msgid "Attribute"
-msgstr "属性名"
+msgstr "属性"
 
 #: ../data/language-specs/bluespec.lang.h:6
 msgid "Import BVI"
-msgstr ""
+msgstr "BVI をインポート"
 
 #: ../data/language-specs/bluespec.lang.h:8
 #: ../data/language-specs/gtk-doc.lang.h:9
@@ -666,14 +662,14 @@ msgstr "型"
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python.lang.h:5
-#: ../data/language-specs/python3.lang.h:5
+#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python3.lang.h:5
+#: ../data/language-specs/python.lang.h:5
 msgid "Multiline string"
 msgstr "複数行の文字列"
 
 #: ../data/language-specs/boo.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:24
+#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "正規表現"
 
@@ -687,9 +683,9 @@ msgid "Definition"
 msgstr "定義"
 
 #: ../data/language-specs/boo.lang.h:11
-#: ../data/language-specs/python.lang.h:10
 #: ../data/language-specs/python3.lang.h:9
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "特別な変数"
 
@@ -697,9 +693,10 @@ msgstr "特別な変数"
 #: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
 #: ../data/language-specs/imagej.lang.h:4
 #: ../data/language-specs/libtool.lang.h:4
+#: ../data/language-specs/modelica.lang.h:9
 #: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
-#: ../data/language-specs/python.lang.h:11
 #: ../data/language-specs/python3.lang.h:10
+#: ../data/language-specs/python.lang.h:11
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:8
 #: ../data/language-specs/sparql.lang.h:9
@@ -735,8 +732,9 @@ msgstr "Swizzle オペレーター"
 #: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
+#: ../data/language-specs/modelica.lang.h:14
 #: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "組み込み"
 
@@ -781,7 +779,7 @@ msgid "Date"
 msgstr "日付"
 
 #: ../data/language-specs/changelog.lang.h:4
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
 msgid "Name"
 msgstr "名前"
 
@@ -856,7 +854,7 @@ msgstr "組み込みの変数"
 #: ../data/language-specs/def.lang.h:13
 #: ../data/language-specs/gtk-doc.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Constant"
 msgstr "定数"
 
@@ -908,6 +906,7 @@ msgstr "その他 3"
 #: ../data/language-specs/gtkrc.lang.h:6
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
+#: ../data/language-specs/modelica.lang.h:10
 #: ../data/language-specs/octave.lang.h:9
 #: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
 #: ../data/language-specs/sql.lang.h:8
@@ -984,16 +983,16 @@ msgstr "特殊な文字 (文字列の内部にある)"
 
 #. A base-N number: 0xFFFF
 #: ../data/language-specs/def.lang.h:28
-#: ../data/language-specs/python.lang.h:14
 #: ../data/language-specs/python3.lang.h:13
+#: ../data/language-specs/python.lang.h:14
 #: ../data/language-specs/ruby.lang.h:12
 msgid "Base-N number"
 msgstr "N 進数"
 
 #. A complex number
 #: ../data/language-specs/def.lang.h:30
-#: ../data/language-specs/python.lang.h:15
 #: ../data/language-specs/python3.lang.h:14
+#: ../data/language-specs/python.lang.h:15
 msgid "Complex number"
 msgstr "複素数"
 
@@ -1004,7 +1003,9 @@ msgid "Built-in identifier"
 msgstr "組み込みの識別子"
 
 #. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:49 ../data/language-specs/octave.lang.h:6
+#: ../data/language-specs/def.lang.h:49
+#: ../data/language-specs/modelica.lang.h:7
+#: ../data/language-specs/octave.lang.h:6
 msgid "Data type"
 msgstr "データ型"
 
@@ -1013,18 +1014,23 @@ msgstr "データ型"
 msgid "Preprocessor directive"
 msgstr "プリプロセッサ命令"
 
-#. Reserved keywords: like "const" and "goto" in Java
+#. to mark possibily errors or unrecommended syntax
 #: ../data/language-specs/def.lang.h:55
+msgid "Warning"
+msgstr "警告"
+
+#. Reserved keywords: like "const" and "goto" in Java
+#: ../data/language-specs/def.lang.h:57
 msgid "Reserved keyword"
 msgstr "予約語"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/def.lang.h:59
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "注記 (FIXME、TODO、XXX など)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:59
+#: ../data/language-specs/def.lang.h:61
 msgid "Underlined"
 msgstr "下線付き"
 
@@ -1198,7 +1204,7 @@ msgid "Exception Handling"
 msgstr "例外処理"
 
 #: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Predefined Variable"
 msgstr "予め定義した変数"
 
@@ -1222,6 +1228,7 @@ msgstr "Atom"
 
 #: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
+#: ../data/language-specs/modelica.lang.h:12
 #: ../data/language-specs/ocaml.lang.h:5
 #: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
 #: ../data/language-specs/verilog.lang.h:14
@@ -1240,6 +1247,7 @@ msgstr "コンパイラのディレクティブ"
 #: ../data/language-specs/idl-exelis.lang.h:1
 #: ../data/language-specs/imagej.lang.h:1
 #: ../data/language-specs/matlab.lang.h:1
+#: ../data/language-specs/modelica.lang.h:1
 #: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
 #: ../data/language-specs/scilab.lang.h:1
 msgid "Scientific"
@@ -1250,7 +1258,9 @@ msgid "FCL"
 msgstr "FCL"
 
 #: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:4
-#: ../data/language-specs/ini.lang.h:4 ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/ini.lang.h:4
+#: ../data/language-specs/modelica.lang.h:11
+#: ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "浮動小数点数"
@@ -1378,8 +1388,8 @@ msgid "OpenGL Shading Language"
 msgstr "OpenGL シェーディング言語"
 
 #: ../data/language-specs/glsl.lang.h:7 ../data/language-specs/go.lang.h:17
-#: ../data/language-specs/python.lang.h:16
 #: ../data/language-specs/python3.lang.h:15
+#: ../data/language-specs/python.lang.h:16
 msgid "Builtin Constant"
 msgstr "組み込みの定数"
 
@@ -1511,7 +1521,7 @@ msgid "Haskell"
 msgstr "Haskell"
 
 #: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "シンボル"
 
@@ -1548,13 +1558,13 @@ msgstr "属性名"
 msgid "Attribute Value"
 msgstr "属性値"
 
+#: ../data/language-specs/idl-exelis.lang.h:2
+msgid "IDL-Exelis"
+msgstr "IDL-Exelis"
+
 #: ../data/language-specs/idl.lang.h:2
 msgid "IDL"
 msgstr "IDL"
-
-#: ../data/language-specs/idl-exelis.lang.h:2
-msgid "IDL-Exelis"
-msgstr ""
 
 #: ../data/language-specs/imagej.lang.h:2
 msgid "ImageJ"
@@ -1576,6 +1586,26 @@ msgstr "エスケープ文字"
 #: ../data/language-specs/ini.lang.h:2
 msgid ".ini"
 msgstr ".ini"
+
+#: ../data/language-specs/java.lang.h:2
+msgid "Java"
+msgstr "Java"
+
+#: ../data/language-specs/javascript.lang.h:2
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#: ../data/language-specs/javascript.lang.h:5
+msgid "Undefined Value"
+msgstr "未定義の変数"
+
+#: ../data/language-specs/javascript.lang.h:10
+msgid "Properties"
+msgstr "プロパティ"
+
+#: ../data/language-specs/javascript.lang.h:11
+msgid "Constructors"
+msgstr "コンストラクター"
 
 #: ../data/language-specs/j.lang.h:2
 msgid "J"
@@ -1628,26 +1658,6 @@ msgstr "プリミティブ"
 #: ../data/language-specs/j.lang.h:18
 msgid "Verb"
 msgstr "動詞"
-
-#: ../data/language-specs/java.lang.h:2
-msgid "Java"
-msgstr "Java"
-
-#: ../data/language-specs/javascript.lang.h:2
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#: ../data/language-specs/javascript.lang.h:5
-msgid "Undefined Value"
-msgstr "未定義の変数"
-
-#: ../data/language-specs/javascript.lang.h:10
-msgid "Properties"
-msgstr "プロパティ"
-
-#: ../data/language-specs/javascript.lang.h:11
-msgid "Constructors"
-msgstr "コンストラクター"
 
 #: ../data/language-specs/latex.lang.h:2
 msgid "LaTeX"
@@ -1800,7 +1810,7 @@ msgid "Link Text"
 msgstr "リンクテキスト"
 
 #: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:229
+#: ../gtksourceview/gtksourcecompletionitem.c:238
 msgid "Label"
 msgstr "ラベル"
 
@@ -1823,6 +1833,18 @@ msgstr "改行"
 #: ../data/language-specs/matlab.lang.h:2
 msgid "Matlab"
 msgstr "Matlab"
+
+#: ../data/language-specs/modelica.lang.h:2
+msgid "Modelica"
+msgstr "Modelica"
+
+#: ../data/language-specs/modelica.lang.h:6
+msgid "Class type"
+msgstr "クラス型"
+
+#: ../data/language-specs/modelica.lang.h:8
+msgid "Default Attribute"
+msgstr "デフォルト属性"
 
 #: ../data/language-specs/mxml.lang.h:2
 msgid "MXML"
@@ -1889,8 +1911,8 @@ msgid "Objective-J"
 msgstr "Objective-J"
 
 #: ../data/language-specs/ocaml.lang.h:2
-msgid "Objective Caml"
-msgstr "Objective Caml"
+msgid "OCaml"
+msgstr "OCaml"
 
 #: ../data/language-specs/ocaml.lang.h:4
 msgid "Ocamldoc Comments"
@@ -1928,8 +1950,9 @@ msgstr "OOC"
 msgid "Opal"
 msgstr "Opal"
 
-#: ../data/language-specs/opal.lang.h:3 ../data/language-specs/python.lang.h:3
+#: ../data/language-specs/opal.lang.h:3
 #: ../data/language-specs/python3.lang.h:3
+#: ../data/language-specs/python.lang.h:3
 msgid "Module Handler"
 msgstr "モジュールのハンドラー"
 
@@ -1978,12 +2001,12 @@ msgid "Include Statement"
 msgstr "インクルード文"
 
 #: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Heredoc"
 msgstr "ヒアドキュメント"
 
 #: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:12
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
 msgid "Heredoc Bound"
 msgstr "ヒアドキュメントの境界"
 
@@ -2055,7 +2078,7 @@ msgstr "パラメーター"
 msgid "Metaparameters"
 msgstr "メタパラメーター"
 
-#: ../data/language-specs/puppet.lang.h:6
+#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
 msgid "Functions"
 msgstr "関数"
 
@@ -2071,27 +2094,27 @@ msgstr "変数"
 msgid "Class names"
 msgstr "クラス名"
 
+#: ../data/language-specs/python3.lang.h:2
+msgid "Python 3"
+msgstr "Python 3"
+
+#: ../data/language-specs/python3.lang.h:8
+#: ../data/language-specs/python.lang.h:8
+msgid "Format"
+msgstr "書式"
+
+#: ../data/language-specs/python3.lang.h:16
+#: ../data/language-specs/python.lang.h:17
+msgid "Builtin Object"
+msgstr "組み込みのオブジェクト"
+
 #: ../data/language-specs/python.lang.h:2
 msgid "Python"
 msgstr "Python"
 
-#: ../data/language-specs/python.lang.h:8
-#: ../data/language-specs/python3.lang.h:8
-msgid "Format"
-msgstr "書式"
-
 #: ../data/language-specs/python.lang.h:9
 msgid "string-conversion"
 msgstr "文字列の変換"
-
-#: ../data/language-specs/python.lang.h:17
-#: ../data/language-specs/python3.lang.h:16
-msgid "Builtin Object"
-msgstr "組み込みのオブジェクト"
-
-#: ../data/language-specs/python3.lang.h:2
-msgid "Python 3"
-msgstr "Python 3"
 
 #: ../data/language-specs/R.lang.h:2
 msgid "R"
@@ -2181,6 +2204,11 @@ msgstr "モジュールのハンドラー"
 msgid "Numeric literal"
 msgstr "数字リテラル"
 
+#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/sparql.lang.h:10
+msgid "Literal"
+msgstr "リテラル"
+
 # 言語名なので、カタカナ表記しない
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
@@ -2228,10 +2256,6 @@ msgstr "クラス"
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "個別の定数"
-
-#: ../data/language-specs/sparql.lang.h:10
-msgid "Literal"
-msgstr "リテラル"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
@@ -2432,60 +2456,60 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Tango 系の配色を使った色のスキーム"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:371
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:381
 msgid "Document Words"
 msgstr "ドキュメントの単語"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
 msgid "The provider name"
 msgstr "プロバイダー名"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:463
-#: ../gtksourceview/gtksourcecompletionitem.c:268
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
+#: ../gtksourceview/gtksourcecompletionitem.c:277
 msgid "Icon"
 msgstr "アイコン"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:464
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:474
 msgid "The provider icon"
 msgstr "プロバイダーのアイコン"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:471
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
 msgid "Proposals Batch Size"
 msgstr "補完の提案のバッチサイズ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:472
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
 msgid "Number of proposals added in one batch"
 msgstr "一つのバッチに追加する補完の提案の数です"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
 msgid "Scan Batch Size"
 msgstr "バッチサイズのスキャン"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
 msgid "Number of lines scanned in one batch"
 msgstr "一つのバッチ内でスキャンされる行数です"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
 msgid "Minimum Word Size"
 msgstr "最小単語サイズ"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
 msgid "The minimum word size to complete"
 msgstr "補完する最小単語サイズです"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
 msgid "Interactive Delay"
 msgstr "対話型の遅延"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
 msgid "The delay before initiating interactive completion"
 msgstr "対話型補完開始前の遅延時間"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
 msgid "Priority"
 msgstr "優先度"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:522
 msgid "Provider priority"
 msgstr "プロバーダーの優先度です"
 
@@ -2507,12 +2531,12 @@ msgid "Whether to highlight matching brackets"
 msgstr "対になる括弧を強調表示するかどうかを設定します"
 
 #: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:418
+#: ../gtksourceview/gtksourceundomanagerdefault.c:413
 msgid "Maximum Undo Levels"
 msgstr "最大アンドゥレベル"
 
 #: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:419
+#: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Number of undo levels for the buffer"
 msgstr "バッファーのアンドゥ回数です"
 
@@ -2555,86 +2579,141 @@ msgstr "アンドゥーマネジャー"
 msgid "The buffer undo manager"
 msgstr "アンドゥーバッファーのマネジャーです"
 
-#: ../gtksourceview/gtksourcecompletion.c:940
-#: ../gtksourceview/gtksourcecompletion.c:963
+#: ../gtksourceview/gtksourcecompletion.c:554
+#: ../gtksourceview/gtksourcecompletion.c:585
 msgid "No extra information available"
 msgstr "追加情報は利用できません"
 
-#: ../gtksourceview/gtksourcecompletion.c:2218
-#: ../gtksourceview/gtksourcegutter.c:547
+#: ../gtksourceview/gtksourcecompletion.c:1627
+#: ../gtksourceview/gtksourcegutter.c:548
 msgid "View"
 msgstr "表示"
 
-#: ../gtksourceview/gtksourcecompletion.c:2219
+#: ../gtksourceview/gtksourcecompletion.c:1628
 msgid "The GtkSourceView bound to the completion"
 msgstr "補完に割り当てられた GtkSourceView です"
 
-#: ../gtksourceview/gtksourcecompletion.c:2234
+#: ../gtksourceview/gtksourcecompletion.c:1642
 msgid "Remember Info Visibility"
 msgstr "情報表示を記憶する"
 
-#: ../gtksourceview/gtksourcecompletion.c:2235
+#: ../gtksourceview/gtksourcecompletion.c:1643
 msgid "Remember the last info window visibility state"
 msgstr "直前の情報ウィンドウの表示状態を記憶する"
 
-#: ../gtksourceview/gtksourcecompletion.c:2248
+#: ../gtksourceview/gtksourcecompletion.c:1655
 msgid "Select on Show"
 msgstr "表示の選択"
 
-#: ../gtksourceview/gtksourcecompletion.c:2249
+#: ../gtksourceview/gtksourcecompletion.c:1656
 msgid "Select first proposal when completion is shown"
 msgstr "表示された補完の最初の提案を選択する"
 
-#: ../gtksourceview/gtksourcecompletion.c:2263
+#: ../gtksourceview/gtksourcecompletion.c:1669
 msgid "Show Headers"
 msgstr "ヘッダーの表示"
 
-#: ../gtksourceview/gtksourcecompletion.c:2264
+#: ../gtksourceview/gtksourcecompletion.c:1670
 msgid "Show provider headers when proposals from multiple providers are available"
 msgstr "複数のプロバイダーからの提案が利用可能なとき、プロバイダーのヘッダーを表示する"
 
-#: ../gtksourceview/gtksourcecompletion.c:2278
+#: ../gtksourceview/gtksourcecompletion.c:1683
 msgid "Show Icons"
 msgstr "アイコンの表示"
 
-#: ../gtksourceview/gtksourcecompletion.c:2279
+#: ../gtksourceview/gtksourcecompletion.c:1684
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "補完のポップアップにプロバイダーと提案アイコンを表示する"
 
-#: ../gtksourceview/gtksourcecompletion.c:2294
+#: ../gtksourceview/gtksourcecompletion.c:1698
 msgid "Accelerators"
 msgstr "アクセラレータ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2295
+#: ../gtksourceview/gtksourcecompletion.c:1699
 msgid "Number of proposal accelerators to show"
 msgstr "表示する提案のアクセラレーター数です"
 
-#: ../gtksourceview/gtksourcecompletion.c:2311
+#: ../gtksourceview/gtksourcecompletion.c:1714
 msgid "Auto Complete Delay"
 msgstr "自動補完の遅延"
 
-#: ../gtksourceview/gtksourcecompletion.c:2312
+#: ../gtksourceview/gtksourcecompletion.c:1715
 msgid "Completion popup delay for interactive completion"
 msgstr "対話型補完での補完ポップアップが表示されるまでの遅延時間です"
 
-#: ../gtksourceview/gtksourcecompletion.c:2328
+#: ../gtksourceview/gtksourcecompletion.c:1731
 msgid "Provider Page Size"
 msgstr "プロバイダーのページサイズ"
 
 # スクロールバーが表示されるページサイズだと思う。
-#: ../gtksourceview/gtksourcecompletion.c:2329
+#: ../gtksourceview/gtksourcecompletion.c:1732
 msgid "Provider scrolling page size"
 msgstr "プロバイダーでスクロールバーを表示するページサイズ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2348
+#: ../gtksourceview/gtksourcecompletion.c:1752
 msgid "Proposal Page Size"
 msgstr "提案のページサイズ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2349
+#: ../gtksourceview/gtksourcecompletion.c:1753
 msgid "Proposal scrolling page size"
 msgstr "提案でスクロールバーを表示するページサイズ"
 
-#: ../gtksourceview/gtksourcecompletion.c:2710
+#: ../gtksourceview/gtksourcecompletioncontext.c:261
+#: ../gtksourceview/gtksourceview.c:310
+msgid "Completion"
+msgstr "補完"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:262
+msgid "The completion object to which the context belongs"
+msgstr "コンテキストが属する補完オブジェクト"
+
+#. Translators: The GtkTextIter at which the completion was invoked
+#: ../gtksourceview/gtksourcecompletioncontext.c:275
+msgid "Iterator"
+msgstr "イテレーター"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:276
+msgid "The GtkTextIter at which the completion was invoked"
+msgstr "補完が呼び出された GtkTextIter です"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:288
+msgid "Activation"
+msgstr "アクティベーション"
+
+#: ../gtksourceview/gtksourcecompletioncontext.c:289
+msgid "The type of activation"
+msgstr "アクティベーションの型"
+
+#. Tooltip style
+#: ../gtksourceview/gtksourcecompletioninfo.c:193
+msgid "Completion Info"
+msgstr "補完の情報"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:239
+msgid "Label to be shown for this item"
+msgstr "この項目で表示されるラベル"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:252
+msgid "Markup to be shown for this item"
+msgstr "この項目で表示されるマークアップ"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:265
+msgid "Item text"
+msgstr "項目のテキスト"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:278
+msgid "Icon to be shown for this item"
+msgstr "この項目で表示されるアイコンです"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:290
+msgid "Info"
+msgstr "情報"
+
+#: ../gtksourceview/gtksourcecompletionitem.c:291
+msgid "Info to be shown for this item"
+msgstr "この項目で表示される情報です"
+
+#: ../gtksourceview/gtksourcecompletionmodel.c:492
 msgid "Provider"
 msgstr "プロバイダー"
 
@@ -2645,61 +2724,6 @@ msgstr "提案情報の詳細を表示します"
 #: ../gtksourceview/gtksourcecompletion.ui.h:2
 msgid "_Details..."
 msgstr "詳細(_D)..."
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:255
-#: ../gtksourceview/gtksourceview.c:309
-msgid "Completion"
-msgstr "補完"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:256
-msgid "The completion object to which the context belongs"
-msgstr "コンテキストが属する補完オブジェクト"
-
-#. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:269
-msgid "Iterator"
-msgstr "イテレーター"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:270
-msgid "The GtkTextIter at which the completion was invoked"
-msgstr "補完が呼び出された GtkTextIter です"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:282
-msgid "Activation"
-msgstr "アクティベーション"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:283
-msgid "The type of activation"
-msgstr "アクティベーションの型"
-
-#. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:61
-msgid "Completion Info"
-msgstr "補完の情報"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:230
-msgid "Label to be shown for this item"
-msgstr "この項目で表示されるラベル"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:243
-msgid "Markup to be shown for this item"
-msgstr "この項目で表示されるマークアップ"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:256
-msgid "Item text"
-msgstr "項目のテキスト"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:269
-msgid "Icon to be shown for this item"
-msgstr "この項目で表示されるアイコンです"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:281
-msgid "Info"
-msgstr "情報"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:282
-msgid "Info to be shown for this item"
-msgstr "この項目で表示される情報です"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -2732,7 +2756,7 @@ msgstr "コンテキスト ID '%s' が重複しています"
 # GTK_SOURCE_CONTEXT_IGNORE_STYLE または  GTK_SOURCE_CONTEXT_OVERRIDE_STYLE が設定されている時のエラー。
 #: ../gtksourceview/gtksourcecontextengine.c:6053
 #: ../gtksourceview/gtksourcecontextengine.c:6113
-#, fuzzy, c-format
+#, c-format
 msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
 msgstr "言語 '%s' の参照 '%s' のワイルドカードの前後関係でスタイルを上書きします"
 
@@ -2752,35 +2776,35 @@ msgstr "不明なコンテキスト '%s'"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "主要な言語定義がありません (id = \"%s\")"
 
-#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "The gutters' GtkSourceView"
 msgstr "ガーターの GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:560
-#: ../gtksourceview/gtksourcegutterrenderer.c:724
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:723
 msgid "Window Type"
 msgstr "ウィンドウの型"
 
-#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutter.c:562
 msgid "The gutters text window type"
 msgstr "ガーターテキストのウィンドウの型です"
 
-#: ../gtksourceview/gtksourcegutter.c:572
+#: ../gtksourceview/gtksourcegutter.c:573
 #: ../gtksourceview/gtksourcegutterrenderer.c:500
 msgid "X Padding"
 msgstr "X パディング"
 
-#: ../gtksourceview/gtksourcegutter.c:573
+#: ../gtksourceview/gtksourcegutter.c:574
 #: ../gtksourceview/gtksourcegutterrenderer.c:501
 msgid "The x-padding"
 msgstr "X 軸のパディングです"
 
-#: ../gtksourceview/gtksourcegutter.c:583
+#: ../gtksourceview/gtksourcegutter.c:584
 #: ../gtksourceview/gtksourcegutterrenderer.c:516
 msgid "Y Padding"
 msgstr "Y パディング"
 
-#: ../gtksourceview/gtksourcegutter.c:584
+#: ../gtksourceview/gtksourcegutter.c:585
 #: ../gtksourceview/gtksourcegutterrenderer.c:517
 msgid "The y-padding"
 msgstr "Y 軸のパティングです"
@@ -2806,66 +2830,66 @@ msgstr "Y アライメント"
 msgid "The y-alignment"
 msgstr "Y 軸のアライメントです"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
+#: ../gtksourceview/gtksourcegutterrenderer.c:690
 msgid "The View"
 msgstr "表示"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:692
+#: ../gtksourceview/gtksourcegutterrenderer.c:691
 msgid "The view"
 msgstr "表示です"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:708
+#: ../gtksourceview/gtksourcegutterrenderer.c:707
 msgid "Alignment Mode"
 msgstr "アライメントモード"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:709
+#: ../gtksourceview/gtksourcegutterrenderer.c:708
 msgid "The alignment mode"
 msgstr "アライメントモードです"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:725
+#: ../gtksourceview/gtksourcegutterrenderer.c:724
 msgid "The window type"
 msgstr "ウィンドウの型"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:733
+#: ../gtksourceview/gtksourcegutterrenderer.c:732
 msgid "Size"
 msgstr "サイズ"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:734
+#: ../gtksourceview/gtksourcegutterrenderer.c:733
 msgid "The size"
 msgstr "サイズです"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkattributes.c:317
+#: ../gtksourceview/gtksourcemarkattributes.c:318
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkattributes.c:318
+#: ../gtksourceview/gtksourcemarkattributes.c:319
 msgid "The pixbuf"
 msgstr "Pixbuf です"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkattributes.c:304
+#: ../gtksourceview/gtksourcemarkattributes.c:305
 msgid "Stock Id"
 msgstr "ストック ID"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkattributes.c:305
+#: ../gtksourceview/gtksourcemarkattributes.c:306
 msgid "The stock id"
 msgstr "ストック ID です"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkattributes.c:330
+#: ../gtksourceview/gtksourcemarkattributes.c:331
 msgid "Icon Name"
 msgstr "アイコン名"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkattributes.c:331
+#: ../gtksourceview/gtksourcemarkattributes.c:332
 msgid "The icon name"
 msgstr "アイコンの名前です"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkattributes.c:343
+#: ../gtksourceview/gtksourcemarkattributes.c:344
 msgid "GIcon"
 msgstr "GIcon"
 
@@ -2930,16 +2954,16 @@ msgstr "正規表現 '%2$s' の中に不明な ID '%1$s' があります"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "正規表現 '%s': 後方参照はサポートしていません"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:291
+#: ../gtksourceview/gtksourcemarkattributes.c:292
 #: ../gtksourceview/gtksourcestyle.c:88
 msgid "Background"
 msgstr "背景色"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:292
+#: ../gtksourceview/gtksourcemarkattributes.c:293
 msgid "The background"
 msgstr "背景色です"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:344
+#: ../gtksourceview/gtksourcemarkattributes.c:345
 msgid "The GIcon"
 msgstr "GIcon です"
 
@@ -2960,12 +2984,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "印刷する GtkSourceBuffer 型のオブジェクトです"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:347
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Tab Width"
 msgstr "タブの幅です"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceview.c:349
 msgid "Width of a tab character expressed in spaces"
 msgstr "タブ文字をスペースで置き換えた時の幅です"
 
@@ -3169,103 +3193,103 @@ msgstr "スキームの ID"
 msgid "List of the ids of the available style schemes"
 msgstr "利用可能なスタイルに対するスキーム ID のリストです"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:410
+#: ../gtksourceview/gtksourceundomanagerdefault.c:405
 msgid "Buffer"
 msgstr "バッファー"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
+#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "The text buffer to add undo support on"
 msgstr "アンドゥーをサポートするために追加するテキストバッファー"
 
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:311
 msgid "The completion object associated with the view"
 msgstr "ビューに対応付けられた補完オブジェクト"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Show Line Numbers"
 msgstr "行番号の表示"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:324
 msgid "Whether to display line numbers"
 msgstr "行番号を表示するかどうかを設定します"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Show Line Marks"
 msgstr "行マークの表示"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:336
 msgid "Whether to display line mark pixbufs"
 msgstr "行マークを表す画像 (Pixbuf) を表示するかどうかを設定します"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Indent Width"
 msgstr "インデントの幅"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:364
 msgid "Number of spaces to use for each step of indent"
 msgstr "インデントをスペースで置き換えた時の文字数です"
 
-#: ../gtksourceview/gtksourceview.c:372
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Auto Indentation"
 msgstr "自動インデント"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:374
 msgid "Whether to enable auto indentation"
 msgstr "自動的にインデントするかどうかを設定します"
 
-#: ../gtksourceview/gtksourceview.c:380
+#: ../gtksourceview/gtksourceview.c:381
 msgid "Insert Spaces Instead of Tabs"
 msgstr "タブのかわりにスペースを挿入する"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:382
 msgid "Whether to insert spaces instead of tabs"
 msgstr "タブのかわりに空白を挿入するかどうかを設定します"
 
-#: ../gtksourceview/gtksourceview.c:393
+#: ../gtksourceview/gtksourceview.c:394
 msgid "Show Right Margin"
 msgstr "右マージンの表示"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:395
 msgid "Whether to display the right margin"
 msgstr "右側に余白を表示するかどうかを設定します"
 
-#: ../gtksourceview/gtksourceview.c:406
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Right Margin Position"
 msgstr "右マージンの位置"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:408
 msgid "Position of the right margin"
 msgstr "右側の余白の位置です"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:424
 msgid "Smart Home/End"
 msgstr "スマート [Home]/[End] キー"
 
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:425
 msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
 msgstr "[Home] と [End] キーを押すと先頭行/最終行へジャンプする前に、ホワイトスペースを除く行の行頭/行末の文字にジャンプします"
 
-#: ../gtksourceview/gtksourceview.c:434
+#: ../gtksourceview/gtksourceview.c:435
 msgid "Highlight current line"
 msgstr "この行の強調表示"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:436
 msgid "Whether to highlight the current line"
 msgstr "現在の行を強調表示するかどうかを設定します"
 
-#: ../gtksourceview/gtksourceview.c:442
+#: ../gtksourceview/gtksourceview.c:443
 msgid "Indent on tab"
 msgstr "タブでインデントする"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:444
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "タブキーを押下したら選択している文字列をインデントするかどうかです"
 
-#: ../gtksourceview/gtksourceview.c:457
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Draw Spaces"
 msgstr "スペースを描画する"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:459
 msgid "Set if and how the spaces should be visualized"
 msgstr "スペース (空白文字) を視覚的に表示するかどうかです"
 
@@ -3274,3 +3298,6 @@ msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "Satoru SATOH <ss@gnome.gr.jp>"
+
+#~ msgid "Objective Caml"
+#~ msgstr "Objective Caml"
