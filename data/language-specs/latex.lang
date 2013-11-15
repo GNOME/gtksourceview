@@ -311,15 +311,14 @@
       </include>
     </context>
 
+    <context id="include" style-ref="include" class="no-spell-check">
+      <prefix>\\</prefix>
 
-  <context id="include" style-ref="include" class="no-spell-check">
-    <prefix>\\</prefix>
-
-    <keyword>input</keyword>
-    <keyword>include</keyword>
-    <keyword>includeonly</keyword>
-    <keyword>usepackage</keyword>
-  </context>
+      <keyword>input</keyword>
+      <keyword>include</keyword>
+      <keyword>includeonly</keyword>
+      <keyword>usepackage</keyword>
+    </context>
 
     <context id="latex">
       <include>
