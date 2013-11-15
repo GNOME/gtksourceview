@@ -88,6 +88,7 @@ LANGUAGES =			\
 	puppet.lang		\
 	R.lang			\
 	rpmspec.lang		\
+	rst.lang		\
 	ruby.lang		\
 	scala.lang		\
 	scheme.lang		\
