@@ -143,7 +143,7 @@
         ICONV|
         INIT_AUTOMAKE|
         MAINTAINER_MODE|
-        PROG_(?:UPC|VALAC)|
+        PROG_UPC|
         SUBST_NOTMAKE|
         XGETTEXT_OPTION)|
       LT_(?:INIT|LANG|PREREQ)|
@@ -237,7 +237,7 @@
         ERLANG_CHECK_LIB|
         FC_(?:LINE_LENGTH|SRCEXT))|
       AS_VAR_SET_IF|
-      AM_(?:COND_IF|PATH_PYTHON)|
+      AM_(?:COND_IF|PATH_PYTHON|PROG_VALAC)|
       PKG_CHECK_EXISTS
     </define-regex>
     <define-regex id="macros-mmmm" extended="true">
