@@ -83,7 +83,7 @@ The <code>&lt;language&gt;</code> element contains three sections:
 <para>
 The <code>&lt;metadata&gt;</code> element is optional and provides a collection
 of properties which specify arbitrary information about the language definition
-file itself. It is particularly important to specify the conventional 
+file itself. It is particularly important to specify the conventional
 <code>mimetypes</code> and <code>globs</code> properties that
 GtkSourceView uses to automatically detect which syntax highlighting to use
 for a given file. They respectively contain a semi-colon separated list of
@@ -135,8 +135,8 @@ contexts, so they will share the same appearance.
 </programlisting>
 
 <para>
-Following the <code>&lt;styles&gt;</code> element there is the 
-<code>&lt;definitions&gt;</code> element, which contains the 
+Following the <code>&lt;styles&gt;</code> element there is the
+<code>&lt;definitions&gt;</code> element, which contains the
 description proper of the syntax:
 </para>
 

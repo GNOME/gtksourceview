@@ -112,7 +112,7 @@ to #GtkSourceStyle object). It has the following attributes:
 <varlistentry>
 <term><code>name</code> (mandatory)</term>
 <listitem><para>
-Name of the style. It can be anything, syntax highlighting uses <emphasis>lang-id:style-id</emphasis>, 
+Name of the style. It can be anything, syntax highlighting uses <emphasis>lang-id:style-id</emphasis>,
 and there are few special styles which are used to control general appearance
 of the text. Style scheme may contain other names to be used in an application. For instance,
 it may define color to highlight compilation errors in a build log or a color for
@@ -122,7 +122,7 @@ bookmarks.
 <varlistentry>
 <term><code>foreground</code></term>
 <listitem><para>
-Foreground color. It may be name defined in one of <code>color</code> tags, or value in 
+Foreground color. It may be name defined in one of <code>color</code> tags, or value in
 hexadecimal format, e.g. "&num;000000", or symbolic name understood
 by Gdk, prefixed with "&num;", e.g. "&num;magenta" or "&num;darkred".
 </para></listitem>
@@ -184,7 +184,7 @@ and cursor colors is chosen, so it is enough to use "cursor" style only.</para><
 </varlistentry>
 <varlistentry>
 <term><code>line-numbers</code></term>
-<listitem><para>Text and background colors for the left margin, on which line numbers are 
+<listitem><para>Text and background colors for the left margin, on which line numbers are
 drawn</para></listitem>
 </varlistentry>
 <varlistentry>
@@ -210,5 +210,5 @@ Only the <code>foreground</code> attribute is used.</para></listitem>
 </varlistentry>
 </variablelist>
 </para>
- 
+
 </refentry>

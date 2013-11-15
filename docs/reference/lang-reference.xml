@@ -252,7 +252,7 @@ Contained elements: none.
 <varlistentry>
 <term><code>case-sensitive</code> (optional)</term>
 <listitem><para>Set to <code>false</code> to make regular expressions
-ignore case.  
+ignore case.
 Defaults to <code>true</code>.
 </para></listitem>
 </varlistentry>
@@ -667,10 +667,10 @@ Contained elements:
 <title>Tag <code>&lt;match&gt;</code></title>
 
 <para>
-Contains the regular expression for the current simple context. 
+Contains the regular expression for the current simple context.
 The expression is in the same form used in
 <code>&lt;define-regex&gt;</code> elements.
-It is allowed to use any of the attributes from 
+It is allowed to use any of the attributes from
 <code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
 </para>
 
@@ -687,7 +687,7 @@ Contained elements: none.
 Contains the starting regular expression for the current container context.
 The expression is in the same form used in <code>&lt;define-regex&gt;</code>
 elements.
-It is allowed to use any of the attributes from 
+It is allowed to use any of the attributes from
 <code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
 </para>
 
@@ -718,7 +718,7 @@ implement shell-style here-documents with this code:
 </programlisting>
 
 <para>
-It is also possible to use any of the attributes from 
+It is also possible to use any of the attributes from
 <code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
 </para>
 <para>
@@ -777,13 +777,13 @@ Contained elements: none.
 <title>Tag <code>&lt;replace&gt;</code></title>
 
 <para>
-The replace tag allows you to change one context so it functions as 
-another context.  For example, in the <code>html.lang</code> definition, 
-there are a few references to a null context with id 
-"<code>external</code>".  In <code>php.lang</code>, that context is 
-replaced like this: <code>&lt;replace id="html:external" 
-ref="php-block"&gt;</code>, so that php blocks are recognized within the 
-<code>html:html</code> context at the points where the 
+The replace tag allows you to change one context so it functions as
+another context.  For example, in the <code>html.lang</code> definition,
+there are a few references to a null context with id
+"<code>external</code>".  In <code>php.lang</code>, that context is
+replaced like this: <code>&lt;replace id="html:external"
+ref="php-block"&gt;</code>, so that php blocks are recognized within the
+<code>html:html</code> context at the points where the
 <code>external</code> context appears.
 </para>
 
@@ -811,5 +811,5 @@ The id of the context to put in place of the context being replaced. Ex: <code>r
 </variablelist>
 
 </refsect1>
- 
+
 </refentry>
