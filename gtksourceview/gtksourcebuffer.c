@@ -2004,7 +2004,7 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
  * @category: (allow-none): category to search for, or %NULL
  *
  * Returns the list of marks of the given category at @line.
- * If @category is NULL, all marks at @line are returned.
+ * If @category is %NULL, all marks at @line are returned.
  *
  * Returns: (element-type GtkSource.Mark) (transfer container):
  * a newly allocated #GSList.

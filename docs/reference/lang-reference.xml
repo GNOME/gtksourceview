@@ -175,7 +175,7 @@ Contained elements:
 <title>Tag <code>&lt;style&gt;</code></title>
 
 <para>
-Defines a style, associating it's id with a user visible translatable
+Defines a style, associating its id with a user visible translatable
 name and a default style.
 </para>
 
@@ -212,7 +212,7 @@ font properties defined for those default styles.
 The id of the default style has to be preceded with the id of the
 language where it is defined, separated with a semicolon ":".
 When omitted the style is not considered derived from any style and will
-be not highlighted until the user specifies a color scheme for this
+not be highlighted until the user specifies a color scheme for this
 style.
 </para></listitem>
 </varlistentry>
@@ -605,7 +605,7 @@ in the referenced context.
 <varlistentry>
 <term><code>ignore-style</code> (optional)</term>
 <listitem><para>
-If this attribute it "true" then the referenced context will not
+If this attribute is "true" then the referenced context will not
 be highlighted. It does not affect child contexts and their styles.
 </para></listitem></varlistentry>
 </variablelist>
