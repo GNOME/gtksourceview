@@ -33,6 +33,53 @@ should be installed on your system in the directory
 </refsect1>
 
 <refsect1>
+<title>Best practices</title>
+
+<para>
+It is better to follow the following rules, especially if you want to
+contribute upstream, and get your language definition file included in
+GtkSourceView.
+</para>
+
+<itemizedlist>
+  <listitem>
+    <para>
+      Indentation: 2 spaces.
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      Have the main context at the bottom.
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      Use references to def.lang.
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      LGPL v2+ license (copy/paste the license header from c.lang, for
+      example).
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      Add the e-mail address of the language definition file author(s).
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      Refer to the HACKING file for submitting your language definition
+      file upstream. If the file is not included upstream, you can also
+      add the language definition file to the GtkSourceView wiki, so
+      users can easily find it.
+    </para>
+  </listitem>
+</itemizedlist>
+</refsect1>
+
+<refsect1>
 <title>Tag <code>&lt;language&gt;</code></title>
 <para>
 The root element for Language Definition files.
