@@ -107,7 +107,8 @@ LANGUAGES =			\
 	vhdl.lang		\
 	xml.lang		\
 	xslt.lang		\
-	yacc.lang
+	yacc.lang		\
+	yaml.lang
 
 languagesdir = $(datadir)/gtksourceview-3.0/language-specs
 languages_DATA = $(LANGUAGES) language.rng language2.rng language.dtd
