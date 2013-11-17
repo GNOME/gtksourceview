@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksou"
 "rceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-10 21:24+0000\n"
-"PO-Revision-Date: 2013-11-12 17:35+0300\n"
+"POT-Creation-Date: 2013-11-16 13:08+0000\n"
+"PO-Revision-Date: 2013-11-17 22:34+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
-msgstr "GtkSourceView"
+msgstr "GtkSourceView (προβολή πόρου Gtk)"
 
 #. Translators: It is related to an option of a set of values
 #: ../data/glade/gtksourceview.xml.in.h:3
@@ -63,7 +63,7 @@ msgstr "Νέα γραμμή"
 
 #: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Non Breaking Whitespace"
-msgstr "Non Breaking Whitespace"
+msgstr "Αχώριστος κενός χώρος"
 
 #: ../data/glade/gtksourceview.xml.in.h:11
 msgid "Leading"
@@ -123,7 +123,7 @@ msgstr "Κώδικας"
 
 #: ../data/language-specs/actionscript.lang.h:2
 msgid "ActionScript"
-msgstr "ActionScript"
+msgstr "ActionScript (σενάριο ενέργειας)"
 
 #. Any comment
 #: ../data/language-specs/actionscript.lang.h:3
@@ -153,8 +153,8 @@ msgstr "ActionScript"
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
 #: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
-#: ../data/language-specs/scala.lang.h:5
+#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/rst.lang.h:8
+#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
@@ -162,6 +162,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
 #: ../data/language-specs/verilog.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
+#: ../data/language-specs/yaml.lang.h:4
 msgid "Comment"
 msgstr "Σχόλιο"
 
@@ -225,7 +226,7 @@ msgstr "Σφάλμα"
 #: ../data/language-specs/texinfo.lang.h:6
 #: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:4
-#: ../data/language-specs/vhdl.lang.h:4
+#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
 msgid "String"
 msgstr "Αλφαριθμητικό"
 
@@ -539,6 +540,7 @@ msgid "Other Keyword"
 msgstr "Άλλη λέξη κλειδί"
 
 #: ../data/language-specs/automake.lang.h:10
+#: ../data/language-specs/rst.lang.h:10
 msgid "Substitution"
 msgstr "Αντικατάσταση"
 
@@ -627,9 +629,9 @@ msgstr "Δεκαεξαδικός αριθμός"
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
 #: ../data/language-specs/mediawiki.lang.h:1
-#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
-#: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
-#: ../data/language-specs/xslt.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/rst.lang.h:1
+#: ../data/language-specs/t2t.lang.h:1 ../data/language-specs/texinfo.lang.h:1
+#: ../data/language-specs/xml.lang.h:1 ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:249
 #: ../gtksourceview/gtksourcegutterrenderertext.c:391
 msgid "Markup"
@@ -720,6 +722,7 @@ msgstr "Ειδική μεταβλητή"
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:8
 #: ../data/language-specs/sparql.lang.h:9
+#: ../data/language-specs/yaml.lang.h:12
 msgid "Boolean"
 msgstr "Λογική τιμή"
 
@@ -734,7 +737,7 @@ msgstr "Συνδέσεις"
 #: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
 #: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
-msgstr "Included File"
+msgstr "Περιλαμβανόμενο αρχείο"
 
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
 #: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
@@ -811,6 +814,7 @@ msgid "File"
 msgstr "Αρχείο"
 
 #: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/rst.lang.h:6
 msgid "Bullet"
 msgstr "Κουκίδα"
 
@@ -1178,7 +1182,6 @@ msgid "DPatch"
 msgstr "DPatch"
 
 #: ../data/language-specs/dpatch.lang.h:3
-#| msgid "patch-start"
 msgid "Patch Start"
 msgstr "Έναρξη διόρθωσης"
 
@@ -1199,7 +1202,6 @@ msgid "error"
 msgstr "σφάλμα"
 
 #: ../data/language-specs/dtd.lang.h:6
-#| msgid "quoted-value"
 msgid "Quoted Value"
 msgstr "Τιμή με εισαγωγικά"
 
@@ -1500,6 +1502,7 @@ msgstr "Escape"
 
 #: ../data/language-specs/haddock.lang.h:8
 #: ../data/language-specs/markdown.lang.h:13
+#: ../data/language-specs/rst.lang.h:4
 msgid "Emphasis"
 msgstr "Έμφαση"
 
@@ -1534,7 +1537,7 @@ msgid "URL"
 msgstr "URL"
 
 #: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/t2t.lang.h:13
+#: ../data/language-specs/t2t.lang.h:13 ../data/language-specs/yaml.lang.h:6
 msgid "Anchor"
 msgstr "Άγκυρα"
 
@@ -1568,6 +1571,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
+#: ../data/language-specs/yaml.lang.h:7
 msgid "Tag"
 msgstr "Tag"
 
@@ -1686,7 +1690,6 @@ msgid "Julia"
 msgstr "Τζούλια"
 
 #: ../data/language-specs/julia.lang.h:7
-#| msgid "Constant"
 msgid "Math Constant"
 msgstr "Σταθερά μαθηματικών"
 
@@ -1696,22 +1699,18 @@ msgid "Special Constant"
 msgstr "Ειδική σταθερά"
 
 #: ../data/language-specs/julia.lang.h:11
-#| msgid "Macros"
 msgid "Macro"
 msgstr "Μακροεντολή"
 
 #: ../data/language-specs/julia.lang.h:12
-#| msgid "External"
 msgid "External Command"
 msgstr "Εξωτερική εντολή"
 
 #: ../data/language-specs/julia.lang.h:13
-#| msgid "Builtin Function"
 msgid "Built-in Function"
 msgstr "Ενσωματωμένη συνάρτηση"
 
 #: ../data/language-specs/julia.lang.h:14
-#| msgid "Module Path"
 msgid "Module"
 msgstr "Άρθρωμα"
 
@@ -1728,7 +1727,6 @@ msgid "Inline Math Mode"
 msgstr "Inline Math Mode"
 
 #: ../data/language-specs/latex.lang.h:6
-#| msgid "Math Mode"
 msgid "Math Bound"
 msgstr "Μαθηματικό όριο"
 
@@ -1762,8 +1760,6 @@ msgid "m4"
 msgstr "m4"
 
 #: ../data/language-specs/m4.lang.h:3
-#, fuzzy
-#| msgid "Comment"
 msgid "m4 Comment"
 msgstr "Σχόλιο m4"
 
@@ -1844,7 +1840,8 @@ msgid "Markdown"
 msgstr "Markdown"
 
 #: ../data/language-specs/markdown.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/t2t.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/rst.lang.h:3
+#: ../data/language-specs/t2t.lang.h:6
 msgid "Header"
 msgstr "Κεφαλίδα"
 
@@ -1857,6 +1854,7 @@ msgid "List Marker"
 msgstr "Επισήμανση λίστας"
 
 #: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rst.lang.h:11
 msgid "Code"
 msgstr "Κώδικας"
 
@@ -1879,6 +1877,7 @@ msgstr "Επισήμανση εικόνας"
 
 #: ../data/language-specs/markdown.lang.h:14
 #: ../data/language-specs/mediawiki.lang.h:3
+#: ../data/language-specs/rst.lang.h:5
 msgid "Strong Emphasis"
 msgstr "Ιδιαίτερη έμφαση"
 
@@ -1896,20 +1895,18 @@ msgstr "Matlab"
 
 #: ../data/language-specs/mediawiki.lang.h:2
 msgid "MediaWiki"
-msgstr "Μέσα βίκι"
+msgstr "MediaWiki"
 
 #: ../data/language-specs/mediawiki.lang.h:4
-#| msgid "Emphasis"
 msgid "Light Emphasis"
 msgstr "Φωτεινή έμφαση"
 
 #: ../data/language-specs/mediawiki.lang.h:5
-#| msgid "Signal name"
 msgid "Signature"
 msgstr "Υπογραφή"
 
 #: ../data/language-specs/mediawiki.lang.h:7
-#| msgid "Link Text"
+#: ../data/language-specs/rst.lang.h:9
 msgid "Link"
 msgstr "Σύνδεσμος"
 
@@ -1938,7 +1935,6 @@ msgid "Preformatted"
 msgstr "Προμορφοποιημένο"
 
 #: ../data/language-specs/mediawiki.lang.h:14
-#| msgid "Redirection"
 msgid "Redirect"
 msgstr "Ανακατεύθυνση"
 
@@ -2229,7 +2225,6 @@ msgid "Python"
 msgstr "Python"
 
 #: ../data/language-specs/python.lang.h:9
-#| msgid "printf Conversion"
 msgid "String Conversion"
 msgstr "Μετατροπή συμβολοσειράς"
 
@@ -2295,11 +2290,19 @@ msgstr "Μεταβλητή RPM"
 
 #: ../data/language-specs/rpmspec.lang.h:13
 msgid "Switch"
-msgstr "Switch"
+msgstr "Εναλλαγή"
 
 #: ../data/language-specs/rpmspec.lang.h:15
 msgid "Email"
 msgstr "Email"
+
+#: ../data/language-specs/rst.lang.h:2
+msgid "reStructuredText"
+msgstr "Αναδομημένο κείμενο (reStructuredText)"
+
+#: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
+msgid "Directive"
+msgstr "Οδηγία"
 
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Ruby"
@@ -2327,17 +2330,14 @@ msgid "Scala"
 msgstr "Scala"
 
 #: ../data/language-specs/scala.lang.h:9
-#| msgid "Modifiers"
 msgid "Modifier"
 msgstr "Τροποποιητής"
 
 #: ../data/language-specs/scala.lang.h:15
-#| msgid "Builtin"
 msgid "Built In"
 msgstr "Ενσωματωμένες"
 
-#: ../data/language-specs/scala.lang.h:16
-#| msgid "Others"
+#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yaml.lang.h:1
 msgid "Other"
 msgstr "Άλλες"
 
@@ -2541,13 +2541,42 @@ msgid "Yacc"
 msgstr "Yacc"
 
 #: ../data/language-specs/yacc.lang.h:5
-#| msgid "token-type"
 msgid "token type"
 msgstr "τύπος διακριτικού"
 
 #: ../data/language-specs/yacc.lang.h:6
 msgid "rule"
 msgstr "κανόνας"
+
+#: ../data/language-specs/yaml.lang.h:2
+msgid "YAML"
+msgstr "YAML"
+
+#: ../data/language-specs/yaml.lang.h:3
+#| msgid "BOZ Literal"
+msgid "Block literal"
+msgstr "Κυριολεκτική ομάδα"
+
+#: ../data/language-specs/yaml.lang.h:8
+msgid "Alias"
+msgstr "Ψευδώνυμο"
+
+#: ../data/language-specs/yaml.lang.h:9
+msgid "Map key"
+msgstr "Κλειδί απεικόνισης"
+
+#: ../data/language-specs/yaml.lang.h:11
+msgid "Null"
+msgstr "Null"
+
+#: ../data/language-specs/yaml.lang.h:13
+msgid "Integer"
+msgstr "Ακέραιος"
+
+#: ../data/language-specs/yaml.lang.h:14
+#| msgid "Floating Point"
+msgid "Floating point"
+msgstr "Κινητή υποδιαστολή"
 
 #: ../data/styles/classic.xml.h:1
 msgid "Classic"
@@ -2594,7 +2623,6 @@ msgid "Document Words"
 msgstr "Λέξεις εγγράφων"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
-#| msgid "Name"
 msgctxt "Object"
 msgid "Name"
 msgstr "Όνομα"
@@ -2871,7 +2899,7 @@ msgstr "Λ_επτομέρειες..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3129
+#: ../gtksourceview/gtksourcecontextengine.c:3139
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2882,7 +2910,7 @@ msgstr ""
 "σύνταξης θα έχει αρκετή καθυστέρηση.\n"
 "Το σφάλμα ήταν: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4452
+#: ../gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2890,20 +2918,20 @@ msgstr ""
 "Η επισήμανση μίας γραμμής διήρκεσε υπερβολικά, η επισήμανση της σύνταξης θα "
 "απενεργοποιηθεί"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5696
+#: ../gtksourceview/gtksourcecontextengine.c:5706
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr ""
 "Το πλαίσιο εφαρμογής '%s' δεν μπορεί να περιέχει μια εντολή \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5857
-#: ../gtksourceview/gtksourcecontextengine.c:5946
+#: ../gtksourceview/gtksourcecontextengine.c:5867
+#: ../gtksourceview/gtksourcecontextengine.c:5956
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "διπλότυπη context id '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6060
-#: ../gtksourceview/gtksourcecontextengine.c:6120
+#: ../gtksourceview/gtksourcecontextengine.c:6070
+#: ../gtksourceview/gtksourcecontextengine.c:6130
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2912,18 +2940,18 @@ msgstr ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6134
+#: ../gtksourceview/gtksourcecontextengine.c:6144
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "άκυρη αναφορά περιεχομένου '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6153
 #: ../gtksourceview/gtksourcecontextengine.c:6163
+#: ../gtksourceview/gtksourcecontextengine.c:6173
 #, c-format
 msgid "unknown context '%s'"
 msgstr "άγνωστο πλαίσιο εφαρμογής '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6262
+#: ../gtksourceview/gtksourcecontextengine.c:6272
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Λείπει ο ορισμός κύριας γλώσσας (id = \"%s\".)"
@@ -2941,9 +2969,8 @@ msgid "Window Type"
 msgstr "Τύπος παραθύρου"
 
 #: ../gtksourceview/gtksourcegutter.c:551
-#| msgid "The gutters text window type"
 msgid "The gutters' text window type"
-msgstr "Ο τύπος παραθύρου κειμένου των περιθωρίων βιβλιοδεσίας"
+msgstr "Ο τύπος παραθύρου για το περιθώριο βιβλιοδεσίας του κειμένου"
 
 #: ../gtksourceview/gtksourcegutter.c:567
 #: ../gtksourceview/gtksourcegutterrenderer.c:525
@@ -3247,7 +3274,6 @@ msgid "Buffer"
 msgstr "Ενδιάμεση μνήμη"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2742
-#| msgid "The gutters' GtkSourceView"
 msgid "The associated GtkSourceBuffer"
 msgstr "Το συνδεμένο GtkSourceBuffer"
 
@@ -3260,12 +3286,10 @@ msgid "The associated GtkSourceSearchSettings"
 msgstr "Το συσχετισμένο GtkSourceSearchSettings"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2771
-#| msgid "Highlight Syntax"
 msgid "Highlight"
 msgstr "Επισήμανση"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2772
-#| msgid "Highlight current line"
 msgid "Highlight search occurrences"
 msgstr "Επισήμανση εμφανίσεων αναζήτησης"
 
@@ -3278,28 +3302,23 @@ msgid "Total number of search occurrences"
 msgstr "Συνολικός αριθμός εμφανίσεων αναζήτησης"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2808
-#| msgid "error"
 msgid "Regex error"
 msgstr "Σφάλμα Regex"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2809
-#| msgid "Regular Expression"
 msgid "Regular expression error"
 msgstr "Σφάλμα κανονικής έκφρασης"
 
 #: ../gtksourceview/gtksourcesearchsettings.c:168
-#| msgid "The text"
 msgid "Search text"
-msgstr "Κείμενο αναζήτησης"
+msgstr "Αναζήτηση κειμένου"
 
 #: ../gtksourceview/gtksourcesearchsettings.c:169
-#| msgid "The text"
 msgid "The text to search"
 msgstr "Το κείμενο για αναζήτηση"
 
 #: ../gtksourceview/gtksourcesearchsettings.c:183
 #: ../gtksourceview/gtksourcesearchsettings.c:184
-#| msgid "Case Insensitive Keyword"
 msgid "Case sensitive"
 msgstr "Διάκριση πεζών/κεφαλαίων"
 
@@ -3313,12 +3332,10 @@ msgstr "Αναζήτηση στα όρια λέξης"
 
 #: ../gtksourceview/gtksourcesearchsettings.c:216
 #: ../gtksourceview/gtksourcesearchsettings.c:217
-#| msgid "Wrap Mode"
 msgid "Wrap around"
 msgstr "Αναδίπλωση ολόγυρα"
 
 #: ../gtksourceview/gtksourcesearchsettings.c:232
-#| msgid "RegExp Variables"
 msgid "Regex enabled"
 msgstr "Ενεργοποιημένες οι κανονικές εκφράσεις"
 
@@ -3559,7 +3576,10 @@ msgstr "_Αναίρεση"
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
-msgstr "Δημήτρης Σπίγγος <dmtrs32@gmail.com>"
+msgstr ""
+"Ελληνική μεταφραστική ομάδα GNOME \n"
+" Δημήτρης Σπίγγος <dmtrs32@gmail.com>\n"
+"Για περισσότερες πληροφορίες http://gnome.gr"
 
 #~ msgid "math-bound"
 #~ msgstr "math-bound"
@@ -3781,9 +3801,6 @@ msgstr "Δημήτρης Σπίγγος <dmtrs32@gmail.com>"
 #~ msgid "Type or Constructor"
 #~ msgstr "Type or Constructor"
 
-#~ msgid "Integer"
-#~ msgstr "Ακέραιος"
-
 #~ msgid "Flow"
 #~ msgstr "Ροή"
 
@@ -3939,9 +3956,6 @@ msgstr "Δημήτρης Σπίγγος <dmtrs32@gmail.com>"
 
 #~ msgid "NULL-Related Functions"
 #~ msgstr "NULL-Related Λειτουργίες "
-
-#~ msgid "Null"
-#~ msgstr "Null"
 
 #~ msgid "Numeric Functions"
 #~ msgstr "Αριθμητικές λειτουργίες"
