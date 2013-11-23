@@ -1,4 +1,4 @@
-<refentry id="lang-reference" revision="25 December 2006">
+<refentry id="lang-reference" revision="23 November 2013">
 <refmeta>
 <refentrytitle>Language Definition v2.0 Reference</refentrytitle>
 </refmeta>
@@ -384,6 +384,11 @@ be redefined with the <code>&lt;keyword-char-class&gt;</code> (in contrast with
 </itemizedlist>
 
 <para>
+It is allowed to use any of the attributes from
+<code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
+</para>
+
+<para>
 Contained elements: none.
 </para>
 
@@ -413,6 +418,30 @@ colored differently. Contexts can also contain other contexts.
 There are different kind of context elements: simple contexts, container
 contexts, sub-pattern contexts, reference contexts and keyword contexts.
 </para>
+
+<para>
+Context classes can be enabled or disabled for some contexts, with the
+<code>class</code> and <code>class-disabled</code> attributes:
+</para>
+
+<itemizedlist>
+  <listitem>
+    <para>
+      <emphasis>comment</emphasis>: the context delimits a comment;
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      <emphasis>string</emphasis>: the context delimits a string;
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      <emphasis>no-spell-check</emphasis>: the context's content should
+      not be spell checked.
+    </para>
+  </listitem>
+</itemizedlist>
 
 <refsect2>
 <title>Simple contexts</title>
@@ -477,6 +506,18 @@ on the first line of buffer. If not specified it defaults to <code>false</code>.
 <listitem><para>
 A boolean value telling the engine whether the context can occur only
 once in its parent. If not specified it defaults to <code>false</code>.
+</para></listitem></varlistentry>
+
+<varlistentry>
+<term><code>class</code> (optional)</term>
+<listitem><para>
+A space-separated list of context classes to enable.
+</para></listitem></varlistentry>
+
+<varlistentry>
+<term><code>class-disabled</code> (optional)</term>
+<listitem><para>
+A space-separated list of context classes to disable.
 </para></listitem></varlistentry>
 </variablelist>
 
@@ -568,6 +609,18 @@ on the first line of buffer. If not specified it defaults to <code>false</code>.
 A boolean value telling the engine whether the context can occur only
 once in its parent. If not specified it defaults to <code>false</code>.
 </para></listitem></varlistentry>
+
+<varlistentry>
+<term><code>class</code> (optional)</term>
+<listitem><para>
+A space-separated list of context classes to enable.
+</para></listitem></varlistentry>
+
+<varlistentry>
+<term><code>class-disabled</code> (optional)</term>
+<listitem><para>
+A space-separated list of context classes to disable.
+</para></listitem></varlistentry>
 </variablelist>
 </refsect2>
 
@@ -612,6 +665,18 @@ sub-pattern is in the regular
 expression of the <code>&lt;start&gt;</code> or the <code>&lt;end&gt;</code>
 element. In simple contexts it must be omitted.
 </para></listitem></varlistentry>
+
+<varlistentry>
+<term><code>class</code> (optional)</term>
+<listitem><para>
+A space-separated list of context classes to enable.
+</para></listitem></varlistentry>
+
+<varlistentry>
+<term><code>class-disabled</code> (optional)</term>
+<listitem><para>
+A space-separated list of context classes to disable.
+</para></listitem></varlistentry>
 </variablelist>
 
 </refsect2>
@@ -654,6 +719,13 @@ in the referenced context.
 <listitem><para>
 If this attribute is "true" then the referenced context will not
 be highlighted. It does not affect child contexts and their styles.
+</para></listitem></varlistentry>
+
+<varlistentry>
+<term><code>original</code> (optional)</term>
+<listitem><para>
+If this attribute is "true", it references the original context, if it
+has been replaced with the <code>&lt;replace&gt;</code> tag.
 </para></listitem></varlistentry>
 </variablelist>
 
