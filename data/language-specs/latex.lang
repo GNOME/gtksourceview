@@ -197,19 +197,23 @@
       </include>
     </context>
 
-    <context id="comment" style-ref="comment">
-      <start>%</start>
-      <end>$</end>
+    <context id="comment">
       <include>
-        <context ref="def:in-comment"/>
-      </include>
-    </context>
+        <context id="end-line-comment" style-ref="comment">
+          <start>%</start>
+          <end>$</end>
+          <include>
+            <context ref="def:in-comment"/>
+          </include>
+        </context>
 
-    <context id="verbatim-comment" style-ref="comment" class="no-spell-check">
-      <start>\\begin\{comment\}</start>
-      <end>\\end\{comment\}</end>
-      <include>
-        <context ref="def:in-comment"/>
+        <context id="comment-env" style-ref="comment" class="no-spell-check">
+          <start>\\begin\{comment\}</start>
+          <end>\\end\{comment\}</end>
+          <include>
+            <context ref="def:in-comment"/>
+          </include>
+        </context>
       </include>
     </context>
 
@@ -323,7 +327,6 @@
     <context id="latex">
       <include>
         <context ref="comment"/>
-        <context ref="verbatim-comment"/>
         <context ref="math-1"/>
         <context ref="math-2"/>
         <context ref="inline-math-1"/>
