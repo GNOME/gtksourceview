@@ -164,8 +164,6 @@
       <!-- added in D2 -->
       <keyword>pure</keyword>
       <keyword>nothrow</keyword>
-      <keyword>shared</keyword>
-      <keyword>immutable</keyword>
     </context>
 
     <context id="types" style-ref="type">
@@ -212,6 +210,11 @@
       <keyword>extern</keyword>
       <keyword>static</keyword>
       <keyword>volatile</keyword>
+
+      <!-- added in D2 -->
+      <keyword>__gshared</keyword>
+      <keyword>shared</keyword>
+      <keyword>immutable</keyword>
     </context>
 
     <context id="special-tokens" style-ref="special-token">
