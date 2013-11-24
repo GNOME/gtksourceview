@@ -4,6 +4,28 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 
+static const char *c_snippet =
+	"#include <foo.h>\n"
+	"\n"
+	"/* this is a comment */\n"
+	"int main() {\n"
+	"}\n";
+
+static void
+init_default_manager (void)
+{
+	GtkSourceLanguageManager *lm;
+	gchar **lang_dirs;
+
+	lm = gtk_source_language_manager_get_default ();
+
+	lang_dirs = g_new0 (gchar *, 2);
+	lang_dirs[0] = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
+
+	gtk_source_language_manager_set_search_path (lm, lang_dirs);
+	g_strfreev (lang_dirs);
+}
+
 static void
 test_get_buffer (void)
 {
@@ -30,6 +52,52 @@ test_get_buffer (void)
 }
 
 static void
+test_get_context_classes (void)
+{
+	GtkSourceLanguageManager *lm;
+	GtkSourceBuffer *buffer;
+	GtkSourceLanguage *lang;
+	GtkTextIter start, end, i;
+	char **classes;
+
+	/* test plain text */
+	buffer = gtk_source_buffer_new (NULL);
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), "some text", -1);
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
+	gtk_source_buffer_ensure_highlight (buffer, &start, &end);
+
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &i);
+	classes = gtk_source_buffer_get_context_classes_at_iter (buffer, &i);
+	g_assert_cmpuint (g_strv_length (classes), ==, 0);
+	g_strfreev (classes);
+
+	g_object_unref (buffer);
+
+	/* test C */
+	lm = gtk_source_language_manager_get_default ();
+	lang = gtk_source_language_manager_get_language (lm, "c");
+	g_assert (GTK_SOURCE_IS_LANGUAGE (lang));
+	buffer = gtk_source_buffer_new_with_language (lang);
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), c_snippet, -1);
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
+	gtk_source_buffer_ensure_highlight (buffer, &start, &end);
+
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &i);
+	classes = gtk_source_buffer_get_context_classes_at_iter (buffer, &i);
+	g_assert_cmpuint (g_strv_length (classes), ==, 1);
+	g_assert_cmpstr (classes[0], ==, "no-spell-check");
+	g_strfreev (classes);
+
+	gtk_text_buffer_get_iter_at_line_offset (GTK_TEXT_BUFFER (buffer), &i, 2, 5);
+	classes = gtk_source_buffer_get_context_classes_at_iter (buffer, &i);
+	g_assert_cmpuint (g_strv_length (classes), ==, 1);
+	g_assert_cmpstr (classes[0], ==, "comment");
+	g_strfreev (classes);
+
+	g_object_unref (buffer);
+}
+
+static void
 do_test_change_case (GtkSourceBuffer         *buffer,
                      GtkSourceChangeCaseType  case_type,
                      const char              *text,
@@ -50,7 +118,7 @@ do_test_change_case (GtkSourceBuffer         *buffer,
 static void
 test_change_case (void)
 {
-	GtkSourceBuffer* buffer;
+	GtkSourceBuffer *buffer;
 
 	buffer = gtk_source_buffer_new (NULL);
 
@@ -58,6 +126,8 @@ test_change_case (void)
 	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_UPPER, "some TEXT", "SOME TEXT");
 	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TOGGLE, "some TEXT", "SOME text");
 	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TITLE, "some TEXT", "Some Text");
+
+	g_object_unref (buffer);
 }
 
 int
@@ -65,7 +135,10 @@ main (int argc, char** argv)
 {
 	gtk_test_init (&argc, &argv);
 
+	init_default_manager ();
+
 	g_test_add_func ("/Buffer/bug-634510", test_get_buffer);
+	g_test_add_func ("/Buffer/get-context-classes", test_get_context_classes);
 	g_test_add_func ("/Buffer/change-case", test_change_case);
 
 	return g_test_run();
