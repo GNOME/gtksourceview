@@ -3,8 +3,9 @@
 
  This file is part of GtkSourceView
 
- Author: Marco Barisione <barisione@gmail.com>
- Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
+ Copyright (C) 2005-2007 - Marco Barisione <barisione@gmail.com>
+ Copyright (C) 2012-2013 - Tobias Marczewski <tmarczewski@ed-alumni.net>
+ Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -43,6 +44,7 @@
     <style id="common-commands"    _name="Command"    map-to="def:keyword"/>
     <style id="command"            _name="Command"    map-to="def:keyword"/>
     <style id="verbatim"           _name="Verbatim"   map-to="def:comment"/>
+    <style id="special-char"       _name="Special Character" map-to="def:special-char"/>
   </styles>
 
   <definitions>
@@ -161,20 +163,46 @@
       <keyword>zeta</keyword>
     </context>
 
-    <context id="specials-symbol" style-ref="command" class="no-spell-check">
-      <prefix>\\</prefix>
-      <suffix></suffix>
+    <define-regex id="accents" extended="true">
+      (\\(                                      #leading backslash
+         (                                      #1-Accents-
+          [bcdHruv\.\^'`~"=]                    #  accent symbol
+          \s*\{([a-zA-Z] | \\i | \\j)\} |       #  letter (\i \j for i,j without dot)
+          [\.\^'`~"=]\s*([a-zA-Z] | \\i | \\j) |#  non-letter accents without braces
+          t\s*\{([a-zA-Z] | \\i | \\j){2}\}     #  special accent over two letters
+         ) | (                                  #2-Special letters-
+          (aa|AA | ae|AE | oe|OE | ss|SS |      #  letters followed by a non-word
+          [oO] | [lL])(?![a-zA-Z_@])            #  character or e.g. \l causes
+         )                                      #  unwanted behaviour (i.e. \label)
+        )) | (!` | \?`)                         #3-Spanish punctuation
+    </define-regex>
 
-      <keyword>\$</keyword>
-      <keyword>&amp;</keyword>
-      <keyword>%</keyword>
-      <keyword>#</keyword>
-      <keyword>_</keyword>
-      <keyword>\{</keyword>
-      <keyword>\}</keyword>
-      <keyword>~</keyword>
-      <keyword>\^</keyword>
-      <keyword>\\</keyword>
+    <context id="special-char">
+      <include>
+        <!-- Include accents here before the escaped command symbols because for
+             example the hat (^) can be used as an accent and will be placed over
+             the following letter (e.g. \^o will NOT produce ^o) -->
+        <context id="accents" style-ref="special-char" class="no-spell-check">
+          <match>\%{accents}</match>
+        </context>
+
+        <context id="special-symbols" style-ref="special-char" class="no-spell-check">
+          <prefix>\\</prefix>
+          <suffix></suffix>
+
+          <keyword>\$</keyword>
+          <keyword>&amp;</keyword>
+          <keyword>%</keyword>
+          <keyword>#</keyword>
+          <keyword>_</keyword>
+          <keyword>\{</keyword>
+          <keyword>\}</keyword>
+          <keyword>~</keyword>
+          <keyword>\^</keyword>
+          <!-- TODO create a spacing context -->
+          <keyword>\\</keyword>
+        </context>
+      </include>
     </context>
 
     <context id="command" style-ref="command" class="no-spell-check">
@@ -184,7 +212,7 @@
     <context id="in-math" class="no-spell-check">
       <include>
         <context ref="common-commands"/>
-        <context ref="specials-symbol"/>
+        <context ref="special-char"/>
         <context ref="command"/>
       </include>
     </context>
@@ -192,7 +220,7 @@
     <context id="in-inline-math" class="no-spell-check">
       <include>
         <context ref="common-commands"/>
-        <context ref="specials-symbol"/>
+        <context ref="special-char"/>
         <context ref="command"/>
       </include>
     </context>
@@ -338,7 +366,7 @@
         <context ref="verbatim-inline"/>
         <context ref="include"/>
         <context ref="common-commands"/>
-        <context ref="specials-symbol"/>
+        <context ref="special-char"/>
         <context ref="command"/>
       </include>
     </context>
