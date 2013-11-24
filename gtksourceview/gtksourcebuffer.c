@@ -2383,7 +2383,7 @@ do_title_case (GtkTextBuffer *buffer,
  * @buffer: a #GtkSourceBuffer.
  * @case_type: how to change the case.
  * @start: a #GtkTextIter.
- * @end: a #GtkTextI
+ * @end: a #GtkTextIter.
  *
  * Changes the case of the text between the specified iterators.
  *

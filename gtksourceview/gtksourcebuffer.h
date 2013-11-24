@@ -62,6 +62,8 @@ typedef enum
  * @GTK_SOURCE_CHANGE_CASE_UPPER: change case to uppercase.
  * @GTK_SOURCE_CHANGE_CASE_TOGGLE: toggle case of each character.
  * @GTK_SOURCE_CHANGE_CASE_TITLE: capitalize each word.
+ *
+ * Since: 3.12
  */
 typedef enum
 {
