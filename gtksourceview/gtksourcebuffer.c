@@ -2295,6 +2295,142 @@ gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer
 	}
 }
 
+static void
+do_lower_case (GtkTextBuffer *buffer,
+               GtkTextIter   *start,
+               GtkTextIter   *end,
+               GString       *str)
+{
+	while (!gtk_text_iter_is_end (start) &&
+	       !gtk_text_iter_equal (start, end))
+	{
+		gunichar c, nc;
+
+		c = gtk_text_iter_get_char (start);
+		nc = g_unichar_tolower (c);
+		g_string_append_unichar (str, nc);
+
+		gtk_text_iter_forward_char (start);
+	}
+}
+
+static void
+do_upper_case (GtkTextBuffer *buffer,
+               GtkTextIter   *start,
+               GtkTextIter   *end,
+               GString       *str)
+{
+	while (!gtk_text_iter_is_end (start) &&
+	       !gtk_text_iter_equal (start, end))
+	{
+		gunichar c, nc;
+
+		c = gtk_text_iter_get_char (start);
+		nc = g_unichar_toupper (c);
+		g_string_append_unichar (str, nc);
+
+		gtk_text_iter_forward_char (start);
+	}
+}
+
+static void
+do_toggle_case (GtkTextBuffer *buffer,
+                GtkTextIter   *start,
+                GtkTextIter   *end,
+                GString       *str)
+{
+	while (!gtk_text_iter_is_end (start) &&
+	       !gtk_text_iter_equal (start, end))
+	{
+		gunichar c, nc;
+
+		c = gtk_text_iter_get_char (start);
+		if (g_unichar_islower (c))
+			nc = g_unichar_toupper (c);
+		else
+			nc = g_unichar_tolower (c);
+		g_string_append_unichar (str, nc);
+
+		gtk_text_iter_forward_char (start);
+	}
+}
+
+static void
+do_title_case (GtkTextBuffer *buffer,
+               GtkTextIter   *start,
+               GtkTextIter   *end,
+               GString       *str)
+{
+
+	while (!gtk_text_iter_is_end (start) &&
+	       !gtk_text_iter_equal (start, end))
+	{
+		gunichar c, nc;
+
+		c = gtk_text_iter_get_char (start);
+		if (gtk_text_iter_starts_word (start))
+			nc = g_unichar_totitle (c);
+		else
+			nc = g_unichar_tolower (c);
+		g_string_append_unichar (str, nc);
+
+		gtk_text_iter_forward_char (start);
+	}
+}
+
+/**
+ * gtk_source_buffer_change_case:
+ * @buffer: a #GtkSourceBuffer.
+ * @case_type: how to change the case.
+ * @start: a #GtkTextIter.
+ * @end: a #GtkTextI
+ *
+ * Changes the case of the text between the specified iterators.
+ *
+ * Since: 3.12
+ **/
+void
+gtk_source_buffer_change_case (GtkSourceBuffer         *buffer,
+                               GtkSourceChangeCaseType  case_type,
+                               GtkTextIter             *start,
+                               GtkTextIter             *end)
+{
+	GtkTextIter i;
+	GString *s;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (start != NULL);
+	g_return_if_fail (end != NULL);
+
+	i = *start;
+	s = g_string_new (NULL);
+
+	switch (case_type)
+	{
+	case GTK_SOURCE_CHANGE_CASE_UPPER:
+		do_upper_case (GTK_TEXT_BUFFER (buffer), &i, end, s);
+		break;
+	case GTK_SOURCE_CHANGE_CASE_LOWER:
+		do_lower_case (GTK_TEXT_BUFFER (buffer), &i, end, s);
+		break;
+	case GTK_SOURCE_CHANGE_CASE_TOGGLE:
+		do_toggle_case (GTK_TEXT_BUFFER (buffer), &i, end, s);
+		break;
+	case GTK_SOURCE_CHANGE_CASE_TITLE:
+		do_title_case (GTK_TEXT_BUFFER (buffer), &i, end, s);
+		break;
+	default:
+		g_return_if_reached ();
+	}
+
+	gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
+	gtk_text_buffer_delete_interactive (GTK_TEXT_BUFFER (buffer), start, end, TRUE);
+	gtk_text_buffer_insert_interactive (GTK_TEXT_BUFFER (buffer), start, s->str, s->len, TRUE);
+	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+
+	g_string_free (s, TRUE);
+}
+
 /**
  * gtk_source_buffer_set_undo_manager:
  * @buffer: a #GtkSourceBuffer.

@@ -56,6 +56,21 @@ typedef enum
 	GTK_SOURCE_BRACKET_MATCH_FOUND
 } GtkSourceBracketMatchType;
 
+/**
+ * GtkSourceChangeCaseType:
+ * @GTK_SOURCE_CHANGE_CASE_LOWER: change case to lowercase.
+ * @GTK_SOURCE_CHANGE_CASE_UPPER: change case to uppercase.
+ * @GTK_SOURCE_CHANGE_CASE_TOGGLE: toggle case of each character.
+ * @GTK_SOURCE_CHANGE_CASE_TITLE: capitalize each word.
+ */
+typedef enum
+{
+	GTK_SOURCE_CHANGE_CASE_LOWER,
+	GTK_SOURCE_CHANGE_CASE_UPPER,
+	GTK_SOURCE_CHANGE_CASE_TOGGLE,
+	GTK_SOURCE_CHANGE_CASE_TITLE
+} GtkSourceChangeCaseType;
+
 struct _GtkSourceBuffer
 {
 	GtkTextBuffer parent_instance;
@@ -174,6 +189,11 @@ gboolean		 gtk_source_buffer_iter_backward_to_context_class_toggle
 										(GtkSourceBuffer	*buffer,
 										 GtkTextIter		*iter,
 										 const gchar		*context_class);
+
+void			 gtk_source_buffer_change_case				(GtkSourceBuffer        *buffer,
+										 GtkSourceChangeCaseType case_type,
+										 GtkTextIter            *start,
+										 GtkTextIter            *end);
 
 GtkSourceUndoManager	*gtk_source_buffer_get_undo_manager			(GtkSourceBuffer	*buffer);
 
