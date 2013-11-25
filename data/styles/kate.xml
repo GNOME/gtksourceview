@@ -126,10 +126,7 @@
   <style name="latex:math-bound"            bold="true"/>
   <style name="latex:common-commands"       foreground="dark-red"/>
   <style name="latex:command"               foreground="#7000DF"/>
-  <style name="latex:structure"             bold="true"/>
-  <style name="latex:section"               foreground="#7000DF" bold="true"/>
   <style name="latex:include"               use-style="latex:common-commands"/>
-  <style name="latex:use-package"           use-style="latex:common-commands"/>
 
   <style name="changelog:date"              use-style="def:type"/>
   <style name="changelog:email"             use-style="c:preprocessor"/>

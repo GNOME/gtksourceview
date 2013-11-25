@@ -31,13 +31,8 @@
 
   <styles>
     <style id="comment"            _name="Comment"    map-to="def:comment"/>
-    <style id="documentclass"      _name="Comment"    map-to="def:keyword"/>
-    <style id="usepackage"         _name="Comment"    map-to="def:keyword"/>
-    <style id="newcommand"         _name="Comment"    map-to="def:keyword"/>
     <style id="display-math"       _name="Math Mode"/>
     <style id="inline-math"        _name="Inline Math Mode" map-to="latex:display-math"/>
-    <style id="structure"          _name="Inline Math Mode"/>
-    <style id="section"            _name="Inline Math Mode"/>
     <style id="math"               _name="Math Mode"  map-to="latex:display-math"/>
     <style id="math-bound"         _name="Math Bound" map-to="latex:display-math"/>
     <style id="include"            _name="Include"    map-to="def:keyword"/>
