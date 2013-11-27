@@ -31,7 +31,7 @@
 
   <styles>
     <style id="comment"            _name="Comment"    map-to="def:comment"/>
-    <style id="display-math"       _name="Math Mode"/>
+    <style id="display-math"       _name="Math Mode"  map-to="def:string"/>
     <style id="inline-math"        _name="Inline Math Mode" map-to="latex:display-math"/>
     <style id="math"               _name="Math Mode"  map-to="latex:display-math"/>
     <style id="math-bound"         _name="Math Bound" map-to="latex:display-math"/>
