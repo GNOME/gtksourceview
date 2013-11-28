@@ -79,7 +79,7 @@
   <style name="def:special-char"            foreground="plum3"/>
 
   <!-- Identifiers -->
-  <style name="def:identifier"              foreground="skyblue1"/>
+  <style name="def:identifier"              foreground="skyblue2"/>
 
   <!-- Statements -->
   <style name="def:statement"               foreground="scarletred3" bold="true"/>
@@ -111,6 +111,7 @@
   <style name="latex:display-math"          foreground="plum3"/>
   <style name="latex:command"               foreground="chameleon3" bold="true"/>
   <style name="latex:include"               use-style="def:preprocessor"/>
+  <style name="latex:special-char"          use-style="def:constant"/>
 
   <style name="sh:variable"                 foreground="plum3"/>
   <style name="sh:variable-definition"      foreground="chameleon3"/>
