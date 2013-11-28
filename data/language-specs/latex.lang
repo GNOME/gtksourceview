@@ -382,14 +382,20 @@
       </include>
     </context>
 
-    <context id="latex">
+    <context id="math">
       <include>
-        <context ref="comment"/>
-        <context ref="verbatim"/>
         <context ref="math-1"/>
         <context ref="math-2"/>
         <context ref="inline-math-1"/>
         <context ref="inline-math-2"/>
+      </include>
+    </context>
+
+    <context id="latex">
+      <include>
+        <context ref="comment"/>
+        <context ref="verbatim"/>
+        <context ref="math"/>
         <context ref="usepackage"/>
         <context ref="include"/>
         <context ref="common-commands"/>
