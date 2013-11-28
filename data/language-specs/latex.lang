@@ -46,6 +46,104 @@
   </styles>
 
   <definitions>
+
+    <!-- comment -->
+
+    <context id="comment">
+      <include>
+        <context id="end-line-comment" style-ref="comment">
+          <start>%</start>
+          <end>$</end>
+          <include>
+            <context ref="def:in-comment"/>
+          </include>
+        </context>
+
+        <context id="comment-env" style-ref="comment" class="no-spell-check">
+          <start>\\begin\{comment\}</start>
+          <end>\\end\{comment\}</end>
+          <include>
+            <context ref="def:in-comment"/>
+          </include>
+        </context>
+      </include>
+    </context>
+
+    <!-- verbatim -->
+
+    <context id="verbatim-env" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+      <start>(\\begin)\{(verbatim\*?|lstlisting|alltt)\}</start>
+      <end>(\\end)\{\%{2@start}\}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="common-commands" class="no-spell-check"/>
+        <context sub-pattern="1" where="end" style-ref="common-commands" class="no-spell-check"/>
+      </include>
+    </context>
+
+    <!--using brackets is an experimental feature from the listings package. The
+        following must support these cases:
+
+          \lstinline[]{code in here}
+          \lstinline[key=val, key=val]{code in here}
+          \lstinline[key=val, key=val]!code in here!
+          \lstinline[]!code in here!
+          \lstinline[][code in here[
+          \lstinline[NOT code in here, must specify empty optional argument to use square brackets[
+          \lstinline{code in here}
+          \lstinline{code in {here} but NOT in here}  % brackets do not nest
+          \lstinline!code in here!
+          \lstinline=code in here=
+          \lstinline{this needs to fail{
+
+          If using \verb instead of \lstinline, the brackets cannot be used
+        -->
+    <context id="lstinline-curly-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+      <start>(\\lstinline)(\[.*?\])?{</start>
+      <end>}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
+      </include>
+    </context>
+
+    <context id="lstinline-square-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+      <!-- square brackets don't match with the pair, and they require an
+           optional argument, even if empty -->
+      <start>(\\lstinline)(\[.*?\])\[</start>
+      <end>\[</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
+      </include>
+    </context>
+
+    <context id="lstinline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+      <start>(\\lstinline)(\[.*?\])?((?!\[)\S)</start>  <!-- ignore when starting with [ -->
+      <end>\%{3@start}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
+      </include>
+    </context>
+
+    <!-- If using \verb instead of \lstinline, the brackets cannot be used -->
+    <context id="verbatim-inline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+      <start>(\\verb)\*?(\S)</start>
+      <end>\%{2@start}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
+      </include>
+    </context>
+
+    <context id="verbatim">
+      <include>
+        <context ref="verbatim-env"/>
+        <context ref="verbatim-inline"/>
+        <context ref="lstinline-curly-brackets"/>
+        <context ref="lstinline-square-brackets"/>
+        <context ref="lstinline"/>
+      </include>
+    </context>
+
+    <!-- commands -->
+
     <context id="common-commands" style-ref="common-commands" class="no-spell-check">
       <prefix>\\</prefix>
       <!-- We need to special case "_" since it is not considered a
@@ -161,6 +259,29 @@
       <keyword>zeta</keyword>
     </context>
 
+    <context id="command" style-ref="command" class="no-spell-check">
+      <match>\\[a-zA-Z]+\*?</match>
+    </context>
+
+    <context id="usepackage">
+      <match>(\\usepackage)(\[.*\])?\{([0-9a-zA-Z,\s]+)\}</match>
+        <include>
+          <context sub-pattern="1" style-ref="include"/>
+          <context sub-pattern="3" style-ref="name"/>
+        </include>
+    </context>
+
+    <context id="include" style-ref="include" class="no-spell-check">
+      <prefix>\\</prefix>
+
+      <keyword>input</keyword>
+      <keyword>include</keyword>
+      <keyword>includeonly</keyword>
+      <keyword>usepackage</keyword>
+    </context>
+
+    <!-- special characters -->
+
     <define-regex id="accents" extended="true">
       (\\(                                      #leading backslash
          (                                      #1-Accents-
@@ -203,9 +324,7 @@
       </include>
     </context>
 
-    <context id="command" style-ref="command" class="no-spell-check">
-      <match>\\[a-zA-Z]+\*?</match>
-    </context>
+    <!-- math -->
 
     <context id="in-math" class="no-spell-check">
       <include>
@@ -220,26 +339,6 @@
         <context ref="common-commands"/>
         <context ref="special-char"/>
         <context ref="command"/>
-      </include>
-    </context>
-
-    <context id="comment">
-      <include>
-        <context id="end-line-comment" style-ref="comment">
-          <start>%</start>
-          <end>$</end>
-          <include>
-            <context ref="def:in-comment"/>
-          </include>
-        </context>
-
-        <context id="comment-env" style-ref="comment" class="no-spell-check">
-          <start>\\begin\{comment\}</start>
-          <end>\\end\{comment\}</end>
-          <include>
-            <context ref="def:in-comment"/>
-          </include>
-        </context>
       </include>
     </context>
 
@@ -283,102 +382,14 @@
       </include>
     </context>
 
-    <context id="verbatim-env" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
-      <start>(\\begin)\{(verbatim\*?|lstlisting|alltt)\}</start>
-      <end>(\\end)\{\%{2@start}\}</end>
-      <include>
-        <context sub-pattern="1" where="start" style-ref="common-commands" class="no-spell-check"/>
-        <context sub-pattern="1" where="end" style-ref="common-commands" class="no-spell-check"/>
-      </include>
-    </context>
-
-    <!--using brackets is an experimental feature from the listings package. The
-        following must support these cases:
-
-          \lstinline[]{code in here}
-          \lstinline[key=val, key=val]{code in here}
-          \lstinline[key=val, key=val]!code in here!
-          \lstinline[]!code in here!
-          \lstinline[][code in here[
-          \lstinline[NOT code in here, must specify empty optional argument to use square brackets[
-          \lstinline{code in here}
-          \lstinline{code in {here} but NOT in here}  % brackets do not nest
-          \lstinline!code in here!
-          \lstinline=code in here=
-          \lstinline{this needs to fail{
-
-          If using \verb instead of \lstinline, the brackets cannot be used
-        -->
-    <context id="lstinline-curly-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
-      <start>(\\lstinline)(\[.*?\])?{</start>
-      <end>}</end>
-      <include>
-        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
-      </include>
-    </context>
-
-    <context id="lstinline-square-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
-      <!-- square brackets don't match with the pair, and they require an
-           optional argument, even if empty -->
-      <start>(\\lstinline)(\[.*?\])\[</start>
-      <end>\[</end>
-      <include>
-        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
-      </include>
-    </context>
-
-    <context id="lstinline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
-      <start>(\\lstinline)(\[.*?\])?((?!\[)\S)</start>  <!-- ignore when starting with [ -->
-      <end>\%{3@start}</end>
-      <include>
-        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
-      </include>
-    </context>
-
-    <!-- If using \verb instead of \lstinline, the brackets cannot be used -->
-    <context id="verbatim-inline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
-      <start>(\\verb)\*?(\S)</start>
-      <end>\%{2@start}</end>
-      <include>
-        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
-      </include>
-    </context>
-
-    <context id="verbatim">
-      <include>
-        <context ref="verbatim-env"/>
-        <context ref="verbatim-inline"/>
-        <context ref="lstinline-curly-brackets"/>
-        <context ref="lstinline-square-brackets"/>
-        <context ref="lstinline"/>
-      </include>
-    </context>
-
-    <context id="usepackage">
-      <match>(\\usepackage)(\[.*\])?\{([0-9a-zA-Z,\s]+)\}</match>
-        <include>
-          <context sub-pattern="1" style-ref="include"/>
-          <context sub-pattern="3" style-ref="name"/>
-        </include>
-    </context>
-
-    <context id="include" style-ref="include" class="no-spell-check">
-      <prefix>\\</prefix>
-
-      <keyword>input</keyword>
-      <keyword>include</keyword>
-      <keyword>includeonly</keyword>
-      <keyword>usepackage</keyword>
-    </context>
-
     <context id="latex">
       <include>
         <context ref="comment"/>
+        <context ref="verbatim"/>
         <context ref="math-1"/>
         <context ref="math-2"/>
         <context ref="inline-math-1"/>
         <context ref="inline-math-2"/>
-        <context ref="verbatim"/>
         <context ref="usepackage"/>
         <context ref="include"/>
         <context ref="common-commands"/>
