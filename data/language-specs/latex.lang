@@ -354,14 +354,6 @@
       </include>
     </context>
 
-    <context id="in-inline-math" class="no-spell-check">
-      <include>
-        <context ref="common-commands"/>
-        <context ref="special-char"/>
-        <context ref="generic-command"/>
-      </include>
-    </context>
-
     <context id="math-1" style-ref="math" class="no-spell-check">
       <start>\$\$</start>
       <end>\$\$</end>
@@ -388,7 +380,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="math-bound"/>
         <context sub-pattern="0" where="end" style-ref="math-bound"/>
-        <context ref="in-inline-math"/>
+        <context ref="in-math"/>
       </include>
     </context>
 
@@ -398,7 +390,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="math-bound"/>
         <context sub-pattern="0" where="end" style-ref="math-bound"/>
-        <context ref="in-inline-math"/>
+        <context ref="in-math"/>
       </include>
     </context>
 
