@@ -259,18 +259,6 @@
       <keyword>zeta</keyword>
     </context>
 
-    <context id="command" style-ref="command" class="no-spell-check">
-      <match>\\[a-zA-Z]+\*?</match>
-    </context>
-
-    <context id="usepackage">
-      <match>(\\usepackage)(\[.*\])?\{([0-9a-zA-Z,\s]+)\}</match>
-        <include>
-          <context sub-pattern="1" style-ref="include"/>
-          <context sub-pattern="3" style-ref="name"/>
-        </include>
-    </context>
-
     <context id="include" style-ref="include" class="no-spell-check">
       <prefix>\\</prefix>
 
@@ -278,6 +266,38 @@
       <keyword>include</keyword>
       <keyword>includeonly</keyword>
       <keyword>usepackage</keyword>
+    </context>
+
+    <context id="generic-command" style-ref="command" class="no-spell-check">
+      <match>\\[a-zA-Z]+\*?</match>
+    </context>
+
+    <context id="specific-commands">
+      <include>
+        <context id="documentclass" class="no-spell-check">
+          <match>(\\documentclass)(\[.*\])?\{([a-zA-Z]+)\}</match>
+          <include>
+            <context sub-pattern="1" style-ref="common-commands"/>
+            <context sub-pattern="3" style-ref="name"/>
+          </include>
+        </context>
+
+        <context id="usepackage" class="no-spell-check">
+          <match>(\\usepackage)(\[.*\])?\{([0-9a-zA-Z,\s]+)\}</match>
+          <include>
+            <context sub-pattern="1" style-ref="include"/>
+            <context sub-pattern="3" style-ref="name"/>
+          </include>
+        </context>
+
+        <context id="begin-end-command" class="no-spell-check">
+          <match>(\\(begin|end))\{([a-zA-Z0-9]+\*?)\}</match>
+          <include>
+            <context sub-pattern="1" style-ref="common-commands"/>
+            <context sub-pattern="3" style-ref="name"/>
+          </include>
+        </context>
+      </include>
     </context>
 
     <!-- special characters -->
@@ -330,7 +350,7 @@
       <include>
         <context ref="common-commands"/>
         <context ref="special-char"/>
-        <context ref="command"/>
+        <context ref="generic-command"/>
       </include>
     </context>
 
@@ -338,7 +358,7 @@
       <include>
         <context ref="common-commands"/>
         <context ref="special-char"/>
-        <context ref="command"/>
+        <context ref="generic-command"/>
       </include>
     </context>
 
@@ -396,11 +416,11 @@
         <context ref="comment"/>
         <context ref="verbatim"/>
         <context ref="math"/>
-        <context ref="usepackage"/>
+        <context ref="specific-commands"/>
         <context ref="include"/>
         <context ref="common-commands"/>
         <context ref="special-char"/>
-        <context ref="command"/>
+        <context ref="generic-command"/>
       </include>
     </context>
   </definitions>
