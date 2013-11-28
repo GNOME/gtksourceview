@@ -316,6 +316,7 @@
         <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
       </include>
     </context>
+
     <context id="lstinline-square-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
       <!-- square brackets don't match with the pair, and they require an
            optional argument, even if empty -->
@@ -325,6 +326,7 @@
         <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
       </include>
     </context>
+
     <context id="lstinline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
       <start>(\\lstinline)(\[.*?\])?((?!\[)\S)</start>  <!-- ignore when starting with [ -->
       <end>\%{3@start}</end>
@@ -332,12 +334,23 @@
         <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
       </include>
     </context>
+
     <!-- If using \verb instead of \lstinline, the brackets cannot be used -->
     <context id="verbatim-inline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
       <start>(\\verb)\*?(\S)</start>
       <end>\%{2@start}</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
+      </include>
+    </context>
+
+    <context id="verbatim">
+      <include>
+        <context ref="verbatim-env"/>
+        <context ref="verbatim-inline"/>
+        <context ref="lstinline-curly-brackets"/>
+        <context ref="lstinline-square-brackets"/>
+        <context ref="lstinline"/>
       </include>
     </context>
 
@@ -365,11 +378,7 @@
         <context ref="math-2"/>
         <context ref="inline-math-1"/>
         <context ref="inline-math-2"/>
-        <context ref="verbatim-env"/>
-        <context ref="lstinline-curly-brackets"/>
-        <context ref="lstinline-square-brackets"/>
-        <context ref="lstinline"/>
-        <context ref="verbatim-inline"/>
+        <context ref="verbatim"/>
         <context ref="usepackage"/>
         <context ref="include"/>
         <context ref="common-commands"/>
