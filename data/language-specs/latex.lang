@@ -40,6 +40,9 @@
     <style id="command"            _name="Command"              map-to="def:keyword"/>
     <style id="verbatim"           _name="Verbatim"             map-to="def:comment"/>
     <style id="special-char"       _name="Special Character"    map-to="def:special-char"/>
+
+    <!-- names, e.g., name of package, name of environment, name of class -->
+    <style id="name"               _name="Name"                 map-to="def:identifier"/>
   </styles>
 
   <definitions>
@@ -338,6 +341,14 @@
       </include>
     </context>
 
+    <context id="usepackage">
+      <match>(\\usepackage)(\[.*\])?\{([0-9a-zA-Z,\s]+)\}</match>
+        <include>
+          <context sub-pattern="1" style-ref="include"/>
+          <context sub-pattern="3" style-ref="name"/>
+        </include>
+    </context>
+
     <context id="include" style-ref="include" class="no-spell-check">
       <prefix>\\</prefix>
 
@@ -359,6 +370,7 @@
         <context ref="lstinline-square-brackets"/>
         <context ref="lstinline"/>
         <context ref="verbatim-inline"/>
+        <context ref="usepackage"/>
         <context ref="include"/>
         <context ref="common-commands"/>
         <context ref="special-char"/>
