@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-11-16 13:08+0000\n"
-"PO-Revision-Date: 2013-11-16 18:05+0100\n"
+"POT-Creation-Date: 2013-11-28 20:10+0000\n"
+"PO-Revision-Date: 2013-11-29 18:19+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.6\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 2.91.5\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -793,7 +793,9 @@ msgid "Date"
 msgstr "Fecha"
 
 #. Translators: the name of a person, not an object.
+#. names, e.g., name of package, name of environment, name of class
 #: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/latex.lang.h:12
 msgid "Name"
 msgstr "Nombre"
 
@@ -1731,6 +1733,11 @@ msgstr "Include"
 msgid "Verbatim"
 msgstr "Verbatim"
 
+#: ../data/language-specs/latex.lang.h:10
+#| msgid "Special Variable"
+msgid "Special Character"
+msgstr "Carácter especial"
+
 #: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "libtool"
@@ -2289,12 +2296,10 @@ msgid "Email"
 msgstr "Correo-e"
 
 #: ../data/language-specs/rst.lang.h:2
-#| msgid "Structural Elements"
 msgid "reStructuredText"
 msgstr "TextoRestructurado"
 
 #: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
-#| msgid "Line Directive"
 msgid "Directive"
 msgstr "Directiva"
 
@@ -2547,7 +2552,6 @@ msgid "YAML"
 msgstr "YAML"
 
 #: ../data/language-specs/yaml.lang.h:3
-#| msgid "BOZ Literal"
 msgid "Block literal"
 msgstr "Bloque literal"
 
@@ -2564,12 +2568,10 @@ msgid "Null"
 msgstr "Nulo"
 
 #: ../data/language-specs/yaml.lang.h:13
-#| msgid "Base-N Integer"
 msgid "Integer"
 msgstr "Entero"
 
 #: ../data/language-specs/yaml.lang.h:14
-#| msgid "Floating Point"
 msgid "Floating point"
 msgstr "Coma flotante"
 
