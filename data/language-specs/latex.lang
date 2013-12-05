@@ -338,7 +338,6 @@
           <keyword>\}</keyword>
           <keyword>~</keyword>
           <keyword>\^</keyword>
-          <!-- TODO create a spacing context -->
           <keyword>\\</keyword>
         </context>
       </include>
@@ -382,11 +381,36 @@
       </match>
     </context>
 
+    <context id="math-spacing" style-ref="special-char">
+      <match>\\[;:!]</match>
+    </context>
+
+    <context id="math-brackets" style-ref="common-commands">
+      <match extended="true">
+        \\(left | right | [bB]igg?[lr])  (      # bracket size specifier
+          \(|\) | \[|\] | \\\{|\\\}   |         # normal brackets (curly escaped)
+          \|  |  \\\|  |  /  |  \\backslash |   # pipe and slashes
+          \\(                                   #-symbol commands
+            [lr]floor | [lr]ceil | [lr]angle |  ##
+            ([uU]p(down)?|[dD]own)arrow         ##
+          )                                     ##
+        )
+      </match>
+    </context>
+
+    <context id="math-super-sub-script" style-ref="common-commands">
+      <match>\^|_</match>
+    </context>
+
     <context id="in-math" class="no-spell-check">
       <include>
+        <context ref="comment"/>
         <context ref="math-command"/>
+        <context ref="math-spacing"/>
+        <context ref="math-brackets"/>
+        <context ref="special-char"/>
+        <context ref="math-super-sub-script"/>
         <context ref="generic-command"/>
-        <!-- more to come -->
       </include>
     </context>
 
