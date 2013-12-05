@@ -268,7 +268,7 @@
       <keyword>usepackage</keyword>
     </context>
 
-    <context id="generic-command" style-ref="command" class="no-spell-check">
+    <context id="generic-command" style-ref="command" class="no-spell-check" extend-parent="false">
       <match>\\[a-zA-Z]+\*?</match>
     </context>
 
@@ -385,6 +385,7 @@
     <context id="in-math" class="no-spell-check">
       <include>
         <context ref="math-command"/>
+        <context ref="generic-command"/>
         <!-- more to come -->
       </include>
     </context>
