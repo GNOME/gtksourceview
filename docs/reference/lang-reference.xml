@@ -577,7 +577,7 @@ whole context will be highlighted.
 <term><code>extend-parent</code> (optional)</term>
 <listitem><para>
 A boolean value telling the engine whether the context has a higher
-priority than the end of he parent. If not specified it defaults to
+priority than the end of its parent. If not specified it defaults to
 <code>true</code>.
 </para></listitem></varlistentry>
 
@@ -585,8 +585,8 @@ priority than the end of he parent. If not specified it defaults to
 <term><code>end-at-line-end</code> (optional)</term>
 <listitem><para>
 A boolean value telling the engine whether the context must be forced
-to end at the end of the line, displaying an error ???? XXX. If not specified
-it defaults to <code>false</code>.
+to end at the end of the line. If not specified it defaults to
+<code>false</code>.
 </para></listitem></varlistentry>
 
 <varlistentry>
