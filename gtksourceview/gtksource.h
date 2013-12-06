@@ -28,6 +28,10 @@
 #include <gtksourceview/gtksourcecompletionitem.h>
 #include <gtksourceview/gtksourcecompletionproposal.h>
 #include <gtksourceview/gtksourcecompletionprovider.h>
+#include <gtksourceview/gtksourceencoding.h>
+#include <gtksourceview/gtksourcefile.h>
+#include <gtksourceview/gtksourcefileloader.h>
+#include <gtksourceview/gtksourcefilesaver.h>
 #include <gtksourceview/gtksourcegutter.h>
 #include <gtksourceview/gtksourcegutterrenderer.h>
 #include <gtksourceview/gtksourcegutterrenderertext.h>

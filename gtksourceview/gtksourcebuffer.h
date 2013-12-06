@@ -6,6 +6,7 @@
  *                           Chris Phelps <chicane@reninet.com> and
  *                           Jeroen Zwartepoorte <jeroen@xs4all.nl>
  * Copyright (C) 2003 - Paolo Maggi, Gustavo Giráldez
+ * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -201,6 +202,11 @@ GtkSourceUndoManager	*gtk_source_buffer_get_undo_manager			(GtkSourceBuffer	*buf
 
 void			 gtk_source_buffer_set_undo_manager			(GtkSourceBuffer	*buffer,
 										 GtkSourceUndoManager	*manager);
+
+void			 gtk_source_buffer_set_implicit_trailing_newline	(GtkSourceBuffer        *buffer,
+										 gboolean                implicit_trailing_newline);
+
+gboolean		 gtk_source_buffer_get_implicit_trailing_newline	(GtkSourceBuffer        *buffer);
 
 G_END_DECLS
 

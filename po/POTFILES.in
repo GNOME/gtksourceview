@@ -120,6 +120,8 @@ data/styles/solarized-light.xml
 data/styles/tango.xml
 gtksourceview/completion-providers/words/gtksourcecompletionwords.c
 gtksourceview/gtksourcebuffer.c
+gtksourceview/gtksourcebufferinputstream.c
+gtksourceview/gtksourcebufferoutputstream.c
 gtksourceview/gtksourcecompletion.c
 gtksourceview/gtksourcecompletioncontainer.c
 gtksourceview/gtksourcecompletioncontext.c
@@ -128,6 +130,10 @@ gtksourceview/gtksourcecompletionitem.c
 gtksourceview/gtksourcecompletionmodel.c
 [type: gettext/glade]gtksourceview/gtksourcecompletion.ui
 gtksourceview/gtksourcecontextengine.c
+gtksourceview/gtksourceencoding.c
+gtksourceview/gtksourcefile.c
+gtksourceview/gtksourcefileloader.c
+gtksourceview/gtksourcefilesaver.c
 gtksourceview/gtksourcegutter.c
 gtksourceview/gtksourcegutterrenderer.c
 gtksourceview/gtksourcegutterrendererpixbuf.c

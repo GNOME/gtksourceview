@@ -50,6 +50,14 @@ G_GNUC_INTERNAL
 void			 _gtk_source_buffer_add_search_context		(GtkSourceBuffer        *buffer,
 									 GtkSourceSearchContext *search_context);
 
+G_GNUC_INTERNAL
+void			 _gtk_source_buffer_set_as_invalid_character	(GtkSourceBuffer        *buffer,
+									 const GtkTextIter      *start,
+									 const GtkTextIter      *end);
+
+G_GNUC_INTERNAL
+gboolean		 _gtk_source_buffer_has_invalid_chars		(GtkSourceBuffer        *buffer);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_BUFFER_PRIVATE_H__ */

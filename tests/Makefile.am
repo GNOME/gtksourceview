@@ -68,6 +68,20 @@ test_buffer_LDADD = 		\
 	$(DEP_LIBS)			\
 	$(TESTS_LIBS)
 
+UNIT_TEST_PROGS += test-buffer-input-stream
+test_buffer_input_stream_SOURCES = test-buffer-input-stream.c
+test_buffer_input_stream_LDADD =				\
+	$(top_builddir)/gtksourceview/libgtksourceview-core.la	\
+	$(DEP_LIBS)						\
+	$(TESTS_LIBS)
+
+UNIT_TEST_PROGS += test-buffer-output-stream
+test_buffer_output_stream_SOURCES = test-buffer-output-stream.c
+test_buffer_output_stream_LDADD =				\
+	$(top_builddir)/gtksourceview/libgtksourceview-core.la	\
+	$(DEP_LIBS)						\
+	$(TESTS_LIBS)
+
 UNIT_TEST_PROGS += test-completion-model
 test_completion_model_SOURCES =	test-completion-model.c
 test_completion_model_LDADD =					\
@@ -79,6 +93,20 @@ UNIT_TEST_PROGS += test-completion-words
 test_completion_words_SOURCES = test-completion-words.c
 test_completion_words_LDADD =					\
 	$(top_builddir)/gtksourceview/completion-providers/words/libgtksourcecompletionwords.la	\
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
+	$(DEP_LIBS)						\
+	$(TESTS_LIBS)
+
+UNIT_TEST_PROGS += test-file-loader
+test_file_loader_SOURCES = test-file-loader.c
+test_file_loader_LDADD =					\
+	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
+	$(DEP_LIBS)						\
+	$(TESTS_LIBS)
+
+UNIT_TEST_PROGS += test-file-saver
+test_file_saver_SOURCES = test-file-saver.c
+test_file_saver_LDADD =						\
 	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
 	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
@@ -168,6 +196,7 @@ TESTS = $(UNIT_TEST_PROGS)
 EXTRA_DIST =				\
 	language-specs/test-empty.lang	\
 	language-specs/test-full.lang	\
+	setup-file-saver.sh		\
 	styles/classic.xml		\
 	test-completion.gresource.xml	\
 	test-completion.ui		\

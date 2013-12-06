@@ -140,7 +140,8 @@ enum {
 	PROP_MAX_UNDO_LEVELS,
 	PROP_LANGUAGE,
 	PROP_STYLE_SCHEME,
-	PROP_UNDO_MANAGER
+	PROP_UNDO_MANAGER,
+	PROP_IMPLICIT_TRAILING_NEWLINE
 };
 
 struct _GtkSourceBufferPrivate
@@ -164,10 +165,13 @@ struct _GtkSourceBufferPrivate
 
 	GList                 *search_contexts;
 
+	GtkTextTag            *invalid_char_tag;
+
 	guint                  highlight_syntax : 1;
 	guint                  highlight_brackets : 1;
 	guint                  constructed : 1;
 	guint                  allow_bracket_match : 1;
+	guint                  implicit_trailing_newline : 1;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
@@ -356,6 +360,22 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	                                                      _("The buffer undo manager"),
 	                                                      GTK_SOURCE_TYPE_UNDO_MANAGER,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	/**
+	 * GtkSourceBuffer:implicit-trailing-newline:
+	 *
+	 * Whether the buffer has an implicit trailing newline.
+	 *
+	 * Since: 3.14
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_IMPLICIT_TRAILING_NEWLINE,
+					 g_param_spec_boolean ("implicit-trailing-newline",
+							       _("Implicit trailing newline"),
+							       "",
+							       TRUE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 
 	param_types[0] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
 	param_types[1] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
@@ -627,6 +647,11 @@ gtk_source_buffer_set_property (GObject      *object,
 			                                    g_value_get_object (value));
 			break;
 
+		case PROP_IMPLICIT_TRAILING_NEWLINE:
+			gtk_source_buffer_set_implicit_trailing_newline (source_buffer,
+									 g_value_get_boolean (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -680,6 +705,10 @@ gtk_source_buffer_get_property (GObject    *object,
 
 		case PROP_UNDO_MANAGER:
 			g_value_set_object (value, source_buffer->priv->undo_manager);
+			break;
+
+		case PROP_IMPLICIT_TRAILING_NEWLINE:
+			g_value_set_boolean (value, source_buffer->priv->implicit_trailing_newline);
 			break;
 
 		default:
@@ -2482,4 +2511,138 @@ _gtk_source_buffer_add_search_context (GtkSourceBuffer        *buffer,
 	g_object_weak_ref (G_OBJECT (search_context),
 			   (GWeakNotify)search_context_weak_notify_cb,
 			   buffer);
+}
+
+static void
+sync_invalid_char_tag (GtkSourceBuffer *buffer,
+		       GParamSpec      *pspec,
+		       gpointer         data)
+{
+	GtkSourceStyle *style = NULL;
+
+	if (buffer->priv->style_scheme != NULL)
+	{
+		style = gtk_source_style_scheme_get_style (buffer->priv->style_scheme, "def:error");
+	}
+
+	_gtk_source_style_apply (style, buffer->priv->invalid_char_tag);
+}
+
+static void
+text_tag_set_highest_priority (GtkTextTag    *tag,
+			       GtkTextBuffer *buffer)
+{
+	GtkTextTagTable *table;
+	gint n;
+
+	table = gtk_text_buffer_get_tag_table (buffer);
+	n = gtk_text_tag_table_get_size (table);
+	gtk_text_tag_set_priority (tag, n - 1);
+}
+
+void
+_gtk_source_buffer_set_as_invalid_character (GtkSourceBuffer   *buffer,
+					     const GtkTextIter *start,
+					     const GtkTextIter *end)
+{
+	if (buffer->priv->invalid_char_tag == NULL)
+	{
+		buffer->priv->invalid_char_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (buffer),
+									     "invalid-char-style",
+									     NULL);
+
+		sync_invalid_char_tag (buffer, NULL, NULL);
+
+		g_signal_connect (buffer,
+		                  "notify::style-scheme",
+		                  G_CALLBACK (sync_invalid_char_tag),
+		                  NULL);
+	}
+
+	/* Make sure the 'error' tag has the priority over
+	 * syntax highlighting tags.
+	 */
+	text_tag_set_highest_priority (buffer->priv->invalid_char_tag,
+	                               GTK_TEXT_BUFFER (buffer));
+
+	gtk_text_buffer_apply_tag (GTK_TEXT_BUFFER (buffer),
+	                           buffer->priv->invalid_char_tag,
+	                           start,
+	                           end);
+}
+
+gboolean
+_gtk_source_buffer_has_invalid_chars (GtkSourceBuffer *buffer)
+{
+	GtkTextIter start;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	if (buffer->priv->invalid_char_tag == NULL)
+	{
+		return FALSE;
+	}
+
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &start);
+
+	if (gtk_text_iter_begins_tag (&start, buffer->priv->invalid_char_tag) ||
+	    gtk_text_iter_forward_to_tag_toggle (&start, buffer->priv->invalid_char_tag))
+	{
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+/**
+ * gtk_source_buffer_set_implicit_trailing_newline:
+ * @buffer: a #GtkSourceBuffer.
+ * @implicit_trailing_newline: the new value.
+ *
+ * Sets whether the @buffer has an implicit trailing newline.
+ *
+ * If an explicit trailing newline is present in a #GtkTextBuffer, #GtkTextView
+ * shows it as an empty line. This is generally not what the user expects.
+ *
+ * If @implicit_trailing_newline is %TRUE (the default value):
+ *  - when a #GtkSourceFileLoader loads the content of a file into the @buffer,
+ *    the trailing newline (if present in the file) is not inserted into the
+ *    @buffer.
+ *  - when a #GtkSourceFileSaver saves the content of the @buffer into a file, a
+ *    trailing newline is added to the file.
+ *
+ * On the other hand, if @implicit_trailing_newline is %FALSE, the file's
+ * content is not modified when loaded into the @buffer, and the @buffer's
+ * content is not modified when saved into a file.
+ *
+ * Since: 3.14
+ */
+void
+gtk_source_buffer_set_implicit_trailing_newline (GtkSourceBuffer *buffer,
+						 gboolean         implicit_trailing_newline)
+{
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	implicit_trailing_newline = implicit_trailing_newline != FALSE;
+
+	if (buffer->priv->implicit_trailing_newline != implicit_trailing_newline)
+	{
+		buffer->priv->implicit_trailing_newline = implicit_trailing_newline;
+		g_object_notify (G_OBJECT (buffer), "implicit-trailing-newline");
+	}
+}
+
+/**
+ * gtk_source_buffer_get_implicit_trailing_newline:
+ * @buffer: a #GtkSourceBuffer.
+ *
+ * Returns: whether the @buffer has an implicit trailing newline.
+ * Since: 3.14
+ */
+gboolean
+gtk_source_buffer_get_implicit_trailing_newline (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), TRUE);
+
+	return buffer->priv->implicit_trailing_newline;
 }
