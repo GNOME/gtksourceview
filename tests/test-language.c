@@ -34,10 +34,18 @@ test_fixture_setup (TestFixture   *fixture,
 	}
 	else
 	{
+		const gchar * const *current;
+		int i;
+
 		g_free (dir);
 
-		lang_dirs = g_new0 (gchar *, 2);
-		lang_dirs[0] = g_test_build_filename (G_TEST_DIST, "language-specs", NULL);
+		current = gtk_source_language_manager_get_search_path (fixture->manager);
+		lang_dirs = g_new0 (gchar *, g_strv_length ((gchar **)current) + 2);
+		for (i = 0; current[i] != NULL; i++)
+		{
+			lang_dirs[i] = g_strdup(current[i]);
+		}
+		lang_dirs[i] = g_test_build_filename (G_TEST_DIST, "language-specs", NULL);
 	}
 
 	gtk_source_language_manager_set_search_path (fixture->manager, lang_dirs);
