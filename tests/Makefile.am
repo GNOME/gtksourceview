@@ -169,4 +169,22 @@ EXTRA_DIST =				\
 	test-search.ui			\
 	$(python_tests)
 
+if INSTALLED_TESTS
+insttestdir = ${libexecdir}/installed-tests/$(PACKAGE)
+insttest_PROGRAMS = $(UNIT_TEST_PROGS)
+
+%.test: %$(EXEEXT) Makefile
+	$(AM_V_GEN) (echo '[Test]' > $@.tmp; \
+	echo 'Type=session' >> $@.tmp; \
+	echo 'Exec=$(insttestdir)/$<' >> $@.tmp; \
+	mv $@.tmp $@)
+
+test_files = $(UNIT_TEST_PROGS:=.test)
+
+DISTCLEANFILES = $(test_files)
+
+testmetadir = $(datadir)/installed-tests/$(PACKAGE)
+testmeta_DATA = $(test_files)
+endif
+
 -include $(top_srcdir)/git.mk

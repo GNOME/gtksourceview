@@ -145,6 +145,13 @@ AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gette
 # Documentation
 GTK_DOC_CHECK([1.11], [--flavour=no-tmpl])
 
+# Installed Tests for gnome continous integration
+AC_ARG_ENABLE(installed_tests,
+	AS_HELP_STRING([--enable-installed-tests],
+		[Install test programs (default: no)]),,
+		[enable_installed_tests=no])
+AM_CONDITIONAL(INSTALLED_TESTS, test "$enable_installed_tests" = "yes")
+
 GLIB_PREFIX="`$PKG_CONFIG --variable=prefix glib-2.0`"
 GTK_PREFIX="`$PKG_CONFIG --variable=prefix gtk+-3.0`"
 PANGO_PREFIX="`$PKG_CONFIG --variable=prefix pango`"
