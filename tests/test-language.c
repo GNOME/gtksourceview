@@ -12,17 +12,33 @@ struct _TestFixture {
 	GtkSourceLanguageManager *manager;
 };
 
+/* If we are running from the source dir (e.g. during make check)
+ * we override the path to read from the data dir
+ */
 static void
 test_fixture_setup (TestFixture   *fixture,
                     gconstpointer  data)
 {
+	gchar *dir;
 	gchar **lang_dirs;
+
+	dir = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
 
 	fixture->manager = gtk_source_language_manager_get_default ();
 
-	lang_dirs = g_new0 (gchar *, 3);
-	lang_dirs[0] = g_build_filename (TOP_SRCDIR, "tests", "language-specs", NULL);
-	lang_dirs[1] = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
+	if (g_file_test (dir, G_FILE_TEST_IS_DIR))
+	{
+		lang_dirs = g_new0 (gchar *, 3);
+		lang_dirs[0] = dir;
+		lang_dirs[1] = g_test_build_filename (G_TEST_DIST, "language-specs", NULL);
+	}
+	else
+	{
+		g_free (dir);
+
+		lang_dirs = g_new0 (gchar *, 2);
+		lang_dirs[0] = g_test_build_filename (G_TEST_DIST, "language-specs", NULL);
+	}
 
 	gtk_source_language_manager_set_search_path (fixture->manager, lang_dirs);
 	g_strfreev (lang_dirs);
@@ -64,7 +80,7 @@ check_language (GtkSourceLanguage  *language,
                 gchar             **expected_mime,
                 gchar             **expected_glob,
                 gchar             **expected_styles,
-		const char         *style_id,
+                const char         *style_id,
                 const char         *expected_style_name)
 {
 	gchar **mime;

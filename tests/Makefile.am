@@ -11,7 +11,6 @@ AM_CPPFLAGS = 				\
 	$(TESTS_CFLAGS)
 
 noinst_PROGRAMS = $(TEST_PROGS) $(UNIT_TEST_PROGS)
-TESTS = $(UNIT_TEST_PROGS)
 
 BUILT_SOURCES =				\
 	test-completion-resources.c	\
@@ -159,6 +158,9 @@ python_tests =			\
 	test-completion.py	\
 	test-widget.py
 
+TESTS_ENVIRONMENT = G_TEST_SRCDDIR="$(top_srcdir)/tests"
+TESTS = $(UNIT_TEST_PROGS)
+
 EXTRA_DIST =				\
 	language-specs/test-empty.lang	\
 	language-specs/test-full.lang	\
@@ -172,6 +174,15 @@ EXTRA_DIST =				\
 if INSTALLED_TESTS
 insttestdir = ${libexecdir}/installed-tests/$(PACKAGE)
 insttest_PROGRAMS = $(UNIT_TEST_PROGS)
+
+instteslangdir = ${libexecdir}/installed-tests/$(PACKAGE)/language-specs
+instteslang_DATA = 			\
+	language-specs/test-empty.lang	\
+	language-specs/test-full.lang
+
+insttesstyledir = ${libexecdir}/installed-tests/$(PACKAGE)/styles
+insttesstyle_DATA = 			\
+	styles/classic.xml
 
 %.test: %$(EXEEXT) Makefile
 	$(AM_V_GEN) (echo '[Test]' > $@.tmp; \

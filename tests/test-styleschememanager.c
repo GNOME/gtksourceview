@@ -22,7 +22,7 @@ test_prepend_search_path (void)
 
 	sm = gtk_source_style_scheme_manager_get_default ();
 
-	style_dir = g_build_filename (TOP_SRCDIR, "tests", "styles", NULL);
+	style_dir = g_test_build_filename (G_TEST_DIST, "styles", NULL);
 	gtk_source_style_scheme_manager_prepend_search_path (sm, style_dir);
 
 	scheme = gtk_source_style_scheme_manager_get_scheme (sm, "classic");

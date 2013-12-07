@@ -11,19 +11,33 @@ static const char *c_snippet =
 	"int main() {\n"
 	"}\n";
 
+/* If we are running from the source dir (e.g. during make check)
+ * we override the path to read from the data dir
+ */
 static void
 init_default_manager (void)
 {
-	GtkSourceLanguageManager *lm;
-	gchar **lang_dirs;
+	gchar *dir;
 
-	lm = gtk_source_language_manager_get_default ();
+	dir = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
 
-	lang_dirs = g_new0 (gchar *, 2);
-	lang_dirs[0] = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
+	if (g_file_test (dir, G_FILE_TEST_IS_DIR))
+	{
+		GtkSourceLanguageManager *lm;
+		gchar **lang_dirs;
 
-	gtk_source_language_manager_set_search_path (lm, lang_dirs);
-	g_strfreev (lang_dirs);
+		lm = gtk_source_language_manager_get_default ();
+
+		lang_dirs = g_new0 (gchar *, 2);
+		lang_dirs[0] = dir;
+
+		gtk_source_language_manager_set_search_path (lm, lang_dirs);
+		g_strfreev (lang_dirs);
+	}
+	else
+	{
+		g_free (dir);
+	}
 }
 
 static void
