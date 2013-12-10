@@ -65,8 +65,17 @@
  * same buffer. But currently, the same highlighting style is applied.
  * Note that the #GtkSourceSearchContext:highlight property is in the
  * #GtkSourceSearchContext class, not #GtkSourceSearchSettings. The purpose is
- * to bind the appearance settings to only one buffer. A
- * #GtkSourceSearchSettings object can be bound to several buffers.
+ * to bind the appearance settings to only one buffer (a
+ * #GtkSourceSearchSettings object can be bound indirectly to several buffers).
+ *
+ * A search occurrence's position doesn't depend on the cursor position or other
+ * parameters. Take for instance the buffer "aaaa" with the search text "aa".
+ * The two occurrences are at positions [0:2] and [2:4]. If you begin to search
+ * at position 1, you will get the occurrence [2:4], not [1:3]. This is a
+ * prerequisite for regular expression searches. The pattern ".*" matches the
+ * entire line. If the cursor is at the middle of the line, you don't want the
+ * rest of the line as the occurrence, you want an entire line. As a side note,
+ * regular expression searches can also match multiple lines.
  *
  * In the GtkSourceView source code, there is an example of how to use the
  * search and replace API: see the tests/test-search.c file. It is a mini
