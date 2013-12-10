@@ -40,10 +40,10 @@
  *
  * A #GtkSourceSearchContext is used for the search and replace in a
  * #GtkSourceBuffer. The search settings are represented by a
- * #GtkSourceSearchSettings object, that can be shared between several
- * #GtkSourceSearchContext<!-- -->s. A buffer can contain several search
- * contexts at the same time, but at most one search context per buffer can
- * highlight its search occurrences.
+ * #GtkSourceSearchSettings object. There can be a many-to-many relationship
+ * between buffers and search settings, with the search contexts in-between: a
+ * search settings object can be shared between several search contexts; and a
+ * buffer can contain several search contexts at the same time.
  *
  * The total number of search occurrences can be retrieved with
  * gtk_source_search_context_get_occurrences_count(). To know the position of a
