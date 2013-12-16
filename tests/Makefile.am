@@ -158,7 +158,7 @@ python_tests =			\
 	test-completion.py	\
 	test-widget.py
 
-TESTS_ENVIRONMENT = G_TEST_SRCDDIR="$(top_srcdir)/tests"
+TESTS_ENVIRONMENT = G_TEST_SRCDIR="$(abs_srcdir)"
 TESTS = $(UNIT_TEST_PROGS)
 
 EXTRA_DIST =				\
