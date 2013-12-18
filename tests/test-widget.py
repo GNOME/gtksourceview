@@ -73,7 +73,7 @@ class AboutDialog(Gtk.AboutDialog):
         Gtk.AboutDialog.__init__(self)
         self.set_name('GtkSourceView Test')
         self.set_copyright('Copyright (c) 2010 Ignacio Casal Quinteiro')
-        self.set_website_label('http://projects.gnome.org/gtksourceview/')
+        self.set_website_label('https://wiki.gnome.org/Projects/GtkSourceView')
         self.set_authors(['Ignacio Casal Quinteiro', 'Paolo Borelli'])
         self.set_transient_for(parent)
         self.connect("response", lambda d, r: d.destroy())

@@ -11,7 +11,7 @@ AC_INIT([gtksourceview],
         [gtksourceview_version],
 	[http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview],
 	[gtksourceview],
-	[http://projects.gnome.org/gtksourceview/])
+	[https://wiki.gnome.org/Projects/GtkSourceView])
 
 # Libtool versioning
 #
