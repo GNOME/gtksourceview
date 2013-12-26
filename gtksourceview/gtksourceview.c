@@ -1299,12 +1299,35 @@ gtk_source_view_show_completion_real (GtkSourceView *view)
 }
 
 static void
+menu_item_activate_change_case_cb (GtkWidget   *menu_item,
+                                   GtkTextView *text_view)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter start, end;
+
+	buffer = gtk_text_view_get_buffer (text_view);
+	if (!GTK_SOURCE_IS_BUFFER (buffer))
+	{
+		return;
+	}
+
+	if (gtk_text_buffer_get_selection_bounds (buffer, &start, &end))
+	{
+		GtkSourceChangeCaseType case_type;
+
+		case_type = GPOINTER_TO_INT(g_object_get_data (G_OBJECT (menu_item), "change-case"));
+		gtk_source_buffer_change_case (GTK_SOURCE_BUFFER (buffer), case_type, &start, &end);
+	}
+}
+
+static void
 gtk_source_view_populate_popup (GtkTextView *text_view,
 				GtkWidget   *popup)
 {
 	GtkTextBuffer *buffer;
 	GtkMenuShell *menu;
 	GtkWidget *menu_item;
+	GtkMenuShell *case_menu;
 
 	buffer = gtk_text_view_get_buffer (text_view);
 	if (!GTK_SOURCE_IS_BUFFER (buffer))
@@ -1344,6 +1367,62 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 	gtk_widget_set_sensitive (menu_item,
 				  (gtk_text_view_get_editable (text_view) &&
 				   gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer))));
+	gtk_widget_show (menu_item);
+
+	/* separator */
+	menu_item = gtk_separator_menu_item_new ();
+	gtk_menu_shell_append (menu, menu_item);
+	gtk_widget_show (menu_item);
+
+	/* create change case menu */
+	case_menu = GTK_MENU_SHELL (gtk_menu_new ());
+
+	menu_item = gtk_menu_item_new_with_mnemonic (_("All _Upper Case"));
+	g_object_set_data (G_OBJECT (menu_item), "change-case", GINT_TO_POINTER(GTK_SOURCE_CHANGE_CASE_UPPER));
+	g_signal_connect (G_OBJECT (menu_item), "activate",
+			  G_CALLBACK (menu_item_activate_change_case_cb), text_view);
+	gtk_menu_shell_append (case_menu, menu_item);
+	gtk_widget_set_sensitive (menu_item,
+				  (gtk_text_view_get_editable (text_view) &&
+				   gtk_text_buffer_get_has_selection (buffer)));
+	gtk_widget_show (menu_item);
+
+	menu_item = gtk_menu_item_new_with_mnemonic (_("All _Lower Case"));
+	g_object_set_data (G_OBJECT (menu_item), "change-case", GINT_TO_POINTER(GTK_SOURCE_CHANGE_CASE_LOWER));
+	g_signal_connect (G_OBJECT (menu_item), "activate",
+			  G_CALLBACK (menu_item_activate_change_case_cb), text_view);
+	gtk_menu_shell_append (case_menu, menu_item);
+	gtk_widget_set_sensitive (menu_item,
+				  (gtk_text_view_get_editable (text_view) &&
+				   gtk_text_buffer_get_has_selection (buffer)));
+	gtk_widget_show (menu_item);
+
+	menu_item = gtk_menu_item_new_with_mnemonic (_("_Invert Case"));
+	g_object_set_data (G_OBJECT (menu_item), "change-case", GINT_TO_POINTER(GTK_SOURCE_CHANGE_CASE_TOGGLE));
+	g_signal_connect (G_OBJECT (menu_item), "activate",
+			  G_CALLBACK (menu_item_activate_change_case_cb), text_view);
+	gtk_menu_shell_append (case_menu, menu_item);
+	gtk_widget_set_sensitive (menu_item,
+				  (gtk_text_view_get_editable (text_view) &&
+				   gtk_text_buffer_get_has_selection (buffer)));
+	gtk_widget_show (menu_item);
+
+	menu_item = gtk_menu_item_new_with_mnemonic (_("_Title Case"));
+	g_object_set_data (G_OBJECT (menu_item), "change-case", GINT_TO_POINTER(GTK_SOURCE_CHANGE_CASE_TITLE));
+	g_signal_connect (G_OBJECT (menu_item), "activate",
+			  G_CALLBACK (menu_item_activate_change_case_cb), text_view);
+	gtk_menu_shell_append (case_menu, menu_item);
+	gtk_widget_set_sensitive (menu_item,
+				  (gtk_text_view_get_editable (text_view) &&
+				   gtk_text_buffer_get_has_selection (buffer)));
+	gtk_widget_show (menu_item);
+
+	menu_item = gtk_menu_item_new_with_mnemonic (_("C_hange Case"));
+	gtk_menu_item_set_submenu (GTK_MENU_ITEM (menu_item), GTK_WIDGET (case_menu));
+	gtk_menu_shell_append (menu, menu_item);
+	gtk_widget_set_sensitive (menu_item,
+				  (gtk_text_view_get_editable (text_view) &&
+				   gtk_text_buffer_get_has_selection (buffer)));
 	gtk_widget_show (menu_item);
 }
 
