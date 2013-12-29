@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-29 00:57+0100\n"
-"PO-Revision-Date: 2013-11-29 00:58+0200\n"
+"POT-Creation-Date: 2013-12-30 00:25+0100\n"
+"PO-Revision-Date: 2013-12-30 00:28+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -3275,44 +3275,44 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "non é compatíbel o uso de \\C nas definicións da linguaxe"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2741
+#: ../gtksourceview/gtksourcesearchcontext.c:2753
 #: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "Búfer"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2742
+#: ../gtksourceview/gtksourcesearchcontext.c:2754
 msgid "The associated GtkSourceBuffer"
 msgstr "O GtkSourceBuffer asociado"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2756
+#: ../gtksourceview/gtksourcesearchcontext.c:2768
 msgid "Settings"
 msgstr "Preferencias"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2757
+#: ../gtksourceview/gtksourcesearchcontext.c:2769
 msgid "The associated GtkSourceSearchSettings"
 msgstr "O GtkSourceSearchSettings asociado"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2771
+#: ../gtksourceview/gtksourcesearchcontext.c:2783
 msgid "Highlight"
 msgstr "Realzar"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2772
+#: ../gtksourceview/gtksourcesearchcontext.c:2784
 msgid "Highlight search occurrences"
 msgstr "Realzar aparicións da busca"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2788
+#: ../gtksourceview/gtksourcesearchcontext.c:2800
 msgid "Occurrences count"
 msgstr "Contía de aparicións"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2789
+#: ../gtksourceview/gtksourcesearchcontext.c:2801
 msgid "Total number of search occurrences"
 msgstr "Número total de aparicións da busca"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2808
+#: ../gtksourceview/gtksourcesearchcontext.c:2820
 msgid "Regex error"
 msgstr "Erro na Regex"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2809
+#: ../gtksourceview/gtksourcesearchcontext.c:2821
 msgid "Regular expression error"
 msgstr "Erro na expresión regular"
 
@@ -3573,28 +3573,45 @@ msgid "Set if and how the spaces should be visualized"
 msgstr "Estabelecer se e como se deben visualizar os espazos"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1328
+#: ../gtksourceview/gtksourceview.c:1351
 msgid "_Redo"
 msgstr "_Refacer"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1339
+#: ../gtksourceview/gtksourceview.c:1362
 msgid "_Undo"
 msgstr "_Desfacer"
+
+#: ../gtksourceview/gtksourceview.c:1380
+msgid "All _Upper Case"
+msgstr "Todo en _maiúsculas"
+
+#: ../gtksourceview/gtksourceview.c:1390
+msgid "All _Lower Case"
+msgstr "Todo en m_inúsculas"
+
+#: ../gtksourceview/gtksourceview.c:1400
+msgid "_Invert Case"
+msgstr "_Inverter capitalización"
+
+#: ../gtksourceview/gtksourceview.c:1410
+msgid "_Title Case"
+msgstr "Capitalización como _título"
+
+#: ../gtksourceview/gtksourceview.c:1420
+msgid "C_hange Case"
+msgstr "C_ambiar capitalización"
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
 msgstr ""
+"Fran Diéguez <frandieguez@ubuntu.com>, 2009-2013.\n"
 "Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.\n"
-"Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010, 2011, 2012.\n"
 "Antón Méixome <meixome@certima.net>, 2009, 2010.\n"
-"Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun."
-"org>, 2009.\n"
+"Mancomún - Centro de Referencia e Servizos de Software Libre "
+"<g11n@mancomun.org>, 2009.\n"
 "Suso Baleato <suso.baleato@xunta.es>, 2009.\n"
-"Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.\n"
-"\n"
-"Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas\n"
-"colaborar connosco, podes atopar máis información en http://www.trasno.net"
+"Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006."
 
 #~ msgid "math-bound"
 #~ msgstr "math-bound"
