@@ -74,8 +74,8 @@
  * at position 1, you will get the occurrence [2:4], not [1:3]. This is a
  * prerequisite for regular expression searches. The pattern ".*" matches the
  * entire line. If the cursor is at the middle of the line, you don't want the
- * rest of the line as the occurrence, you want an entire line. As a side note,
- * regular expression searches can also match multiple lines.
+ * rest of the line as the occurrence, you want an entire line. (As a side note,
+ * regular expression searches can also match multiple lines.)
  *
  * In the GtkSourceView source code, there is an example of how to use the
  * search and replace API: see the tests/test-search.c file. It is a mini
@@ -153,6 +153,9 @@
  * choices:
  * - Write more unit tests, understand correctly the code and fix it.
  * - Rewrite the code to implement the simpler solution explained above :-)
+ *   But with the simpler solution, multiple-lines regex search matches (see
+ *   below) would not be possible for going to the previous occurrence (or the
+ *   buffer must always be scanned from the beginning).
  *
  * Known issue
  * -----------
