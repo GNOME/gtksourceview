@@ -3,6 +3,7 @@ TESTS = check-language.sh
 LANGUAGES =			\
 	actionscript.lang	\
 	ada.lang		\
+	ansforth94.lang		\
 	asp.lang		\
 	automake.lang		\
 	awk.lang		\
