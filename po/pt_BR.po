@@ -1,5 +1,5 @@
 # Brazilian Portuguese translation of gtksourceview
-# Copyright (C) 2013 Free Software Foundation, Inc.
+# Copyright (C) 2014 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 # Fabio Rafael da Rosa <f2r@users.sourceforge.net>, 2003.
 # Afonso Celso Medina <medina@maua.br>, 2005.
@@ -13,24 +13,25 @@
 # Fábio Nogueira <fnogueira@gnome.org>, 2009.
 # Rodrigo Flores <rlmflores@gnome.org>, 2010.
 # Antonio Fernandes C. Neto <fernandesn@gnome.org>, 2011, 2012.
-# Rafael Ferreira <rafael.f.f1@gmail.com>, 2013.
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2013, 2014.
 # Georges Basile Stavracas Neto <georges.stavracas@gmail.com>, 2013.
+# Enrico Nicoletto <liverig@gmail.com>, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-15 07:15+0000\n"
-"PO-Revision-Date: 2013-10-16 15:08-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2014-01-02 16:09+0000\n"
+"PO-Revision-Date: 2014-01-03 06:02-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.3\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -91,7 +92,9 @@ msgid "All"
 msgstr "Todas"
 
 #: ../data/language-specs/actionscript.lang.h:1
-#: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/ada.lang.h:1
+#: ../data/language-specs/ansforth94.lang.h:1
+#: ../data/language-specs/asp.lang.h:1
 #: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
 #: ../data/language-specs/bluespec.lang.h:1
@@ -131,10 +134,11 @@ msgstr "ActionScript"
 
 #. Any comment
 #: ../data/language-specs/actionscript.lang.h:3
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/ada.lang.h:3
+#: ../data/language-specs/ansforth94.lang.h:5
+#: ../data/language-specs/asp.lang.h:3 ../data/language-specs/bennugd.lang.h:3
+#: ../data/language-specs/boo.lang.h:3 ../data/language-specs/cg.lang.h:3
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/cobol.lang.h:3
 #: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
 #: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
 #: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
@@ -157,8 +161,8 @@ msgstr "ActionScript"
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
 #: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
-#: ../data/language-specs/scala.lang.h:5
+#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/rst.lang.h:8
+#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
@@ -166,6 +170,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
 #: ../data/language-specs/verilog.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
+#: ../data/language-specs/yaml.lang.h:4
 msgid "Comment"
 msgstr "Comentário"
 
@@ -190,9 +195,10 @@ msgstr "Erro"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/actionscript.lang.h:5
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/ada.lang.h:4
+#: ../data/language-specs/ansforth94.lang.h:9
+#: ../data/language-specs/asp.lang.h:4 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cobol.lang.h:8
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
 #: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
 #: ../data/language-specs/dosbatch.lang.h:4
@@ -229,7 +235,7 @@ msgstr "Erro"
 #: ../data/language-specs/texinfo.lang.h:6
 #: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:4
-#: ../data/language-specs/vhdl.lang.h:4
+#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
 msgid "String"
 msgstr "Texto"
 
@@ -261,8 +267,10 @@ msgstr "Declaração de escopo"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/actionscript.lang.h:10
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
-#: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/ada.lang.h:5
+#: ../data/language-specs/ansforth94.lang.h:3
+#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/awk.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:7
 #: ../data/language-specs/bluespec.lang.h:7
 #: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
 #: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
@@ -462,6 +470,83 @@ msgstr "Número real"
 msgid "Escaped Character"
 msgstr "Caractere de escape"
 
+#: ../data/language-specs/ansforth94.lang.h:2
+#| msgid "Forth"
+msgid "ANS-Forth94"
+msgstr "ANS-Forth94"
+
+#: ../data/language-specs/ansforth94.lang.h:4
+#| msgid "Other Keyword"
+msgid "Obsolete Keyword"
+msgstr "Palavra-chave obsoleta"
+
+#: ../data/language-specs/ansforth94.lang.h:6
+msgid "Alert"
+msgstr "Alerta"
+
+#. A character constant: 'c'
+#: ../data/language-specs/ansforth94.lang.h:7
+#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
+msgid "Character"
+msgstr "Caractere"
+
+#: ../data/language-specs/ansforth94.lang.h:8
+msgid "Word"
+msgstr "Palavra"
+
+#. Any constant
+#: ../data/language-specs/ansforth94.lang.h:10
+#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:18
+msgid "Constant"
+msgstr "Constante"
+
+#: ../data/language-specs/ansforth94.lang.h:11
+#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
+#: ../data/language-specs/pkgconfig.lang.h:3
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+msgid "Variable"
+msgstr "Variável"
+
+#: ../data/language-specs/ansforth94.lang.h:12
+#| msgid "Global Variable"
+msgid "Local Variable"
+msgstr "Variável local"
+
+#: ../data/language-specs/ansforth94.lang.h:13
+#| msgid "Integer Number"
+msgid "Single Number"
+msgstr "Número singular"
+
+#: ../data/language-specs/ansforth94.lang.h:14
+#| msgid "Complex number"
+msgid "Double Number"
+msgstr "Número duplo"
+
+#: ../data/language-specs/ansforth94.lang.h:15
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "Flutuante"
+
 #: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
 msgstr "ASP"
@@ -543,6 +628,7 @@ msgid "Other Keyword"
 msgstr "Outra palavra-chave"
 
 #: ../data/language-specs/automake.lang.h:10
+#: ../data/language-specs/rst.lang.h:10
 msgid "Substitution"
 msgstr "Substituição"
 
@@ -564,21 +650,6 @@ msgstr "awk"
 #: ../data/language-specs/awk.lang.h:4
 msgid "Pattern"
 msgstr "Padrão"
-
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
-msgid "Variable"
-msgstr "Variável"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
@@ -631,9 +702,9 @@ msgstr "Número hexadecimal"
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
 #: ../data/language-specs/mediawiki.lang.h:1
-#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
-#: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
-#: ../data/language-specs/xslt.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/rst.lang.h:1
+#: ../data/language-specs/t2t.lang.h:1 ../data/language-specs/texinfo.lang.h:1
+#: ../data/language-specs/xml.lang.h:1 ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:249
 #: ../gtksourceview/gtksourcegutterrenderertext.c:391
 msgid "Markup"
@@ -724,6 +795,7 @@ msgstr "Variável especial"
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:8
 #: ../data/language-specs/sparql.lang.h:9
+#: ../data/language-specs/yaml.lang.h:12
 msgid "Boolean"
 msgstr "Booleano"
 
@@ -802,7 +874,9 @@ msgid "Date"
 msgstr "Data"
 
 #. Translators: the name of a person, not an object.
+#. names, e.g., name of package, name of environment, name of class
 #: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/latex.lang.h:12
 msgid "Name"
 msgstr "Nome"
 
@@ -815,6 +889,7 @@ msgid "File"
 msgstr "Arquivo"
 
 #: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/rst.lang.h:6
 msgid "Bullet"
 msgstr "Marcador"
 
@@ -834,18 +909,6 @@ msgstr "C"
 #: ../data/language-specs/objc.lang.h:5 ../data/language-specs/opal.lang.h:5
 msgid "Common Defines"
 msgstr "Definições comuns"
-
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
-msgid "Character"
-msgstr "Caractere"
 
 #: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
 #: ../data/language-specs/verilog.lang.h:5
@@ -871,15 +934,6 @@ msgstr "Comando predefinido"
 #: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
 msgid "Builtin Variable"
 msgstr "Variável predefinida"
-
-#. Any constant
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13
-#: ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:18
-msgid "Constant"
-msgstr "Constante"
 
 #: ../data/language-specs/cmake.lang.h:7
 msgid "Control Keyword"
@@ -1502,6 +1556,7 @@ msgstr "Escape"
 
 #: ../data/language-specs/haddock.lang.h:8
 #: ../data/language-specs/markdown.lang.h:13
+#: ../data/language-specs/rst.lang.h:4
 msgid "Emphasis"
 msgstr "Ênfase"
 
@@ -1536,7 +1591,7 @@ msgid "URL"
 msgstr "URL"
 
 #: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/t2t.lang.h:13
+#: ../data/language-specs/t2t.lang.h:13 ../data/language-specs/yaml.lang.h:6
 msgid "Anchor"
 msgstr "Âncora"
 
@@ -1548,10 +1603,6 @@ msgstr "Haskell"
 #: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "Símbolo"
-
-#: ../data/language-specs/haskell.lang.h:12
-msgid "Float"
-msgstr "Flutuante"
 
 #: ../data/language-specs/haskell.lang.h:14
 msgid "Octal"
@@ -1570,6 +1621,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
+#: ../data/language-specs/yaml.lang.h:7
 msgid "Tag"
 msgstr "Marca"
 
@@ -1737,6 +1789,10 @@ msgstr "Incluir"
 msgid "Verbatim"
 msgstr "Verbatim"
 
+#: ../data/language-specs/latex.lang.h:10
+msgid "Special Character"
+msgstr "Caractere especial"
+
 #: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "libtool"
@@ -1838,7 +1894,8 @@ msgid "Markdown"
 msgstr "Markdown"
 
 #: ../data/language-specs/markdown.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/t2t.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/rst.lang.h:3
+#: ../data/language-specs/t2t.lang.h:6
 msgid "Header"
 msgstr "Cabeçalho"
 
@@ -1851,6 +1908,7 @@ msgid "List Marker"
 msgstr "Listar marcador"
 
 #: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rst.lang.h:11
 msgid "Code"
 msgstr "Código"
 
@@ -1873,6 +1931,7 @@ msgstr "Marcador de imagem"
 
 #: ../data/language-specs/markdown.lang.h:14
 #: ../data/language-specs/mediawiki.lang.h:3
+#: ../data/language-specs/rst.lang.h:5
 msgid "Strong Emphasis"
 msgstr "Ênfases forte"
 
@@ -1901,6 +1960,7 @@ msgid "Signature"
 msgstr "Assinatura"
 
 #: ../data/language-specs/mediawiki.lang.h:7
+#: ../data/language-specs/rst.lang.h:9
 msgid "Link"
 msgstr "Link"
 
@@ -2291,6 +2351,14 @@ msgstr "Switch"
 msgid "Email"
 msgstr "E-mail"
 
+#: ../data/language-specs/rst.lang.h:2
+msgid "reStructuredText"
+msgstr "reStructuredText"
+
+#: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
+msgid "Directive"
+msgstr "Diretiva"
+
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Ruby"
 msgstr "Ruby"
@@ -2324,7 +2392,7 @@ msgstr "Modificador"
 msgid "Built In"
 msgstr "Predefinido"
 
-#: ../data/language-specs/scala.lang.h:16
+#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yaml.lang.h:1
 msgid "Other"
 msgstr "Outro"
 
@@ -2534,6 +2602,34 @@ msgstr "tipo de token"
 #: ../data/language-specs/yacc.lang.h:6
 msgid "rule"
 msgstr "regra"
+
+#: ../data/language-specs/yaml.lang.h:2
+msgid "YAML"
+msgstr "YAML"
+
+#: ../data/language-specs/yaml.lang.h:3
+msgid "Block literal"
+msgstr "Bloco literal"
+
+#: ../data/language-specs/yaml.lang.h:8
+msgid "Alias"
+msgstr "Alias"
+
+#: ../data/language-specs/yaml.lang.h:9
+msgid "Map key"
+msgstr "Chave de mapa"
+
+#: ../data/language-specs/yaml.lang.h:11
+msgid "Null"
+msgstr "Nulo"
+
+#: ../data/language-specs/yaml.lang.h:13
+msgid "Integer"
+msgstr "Inteiro"
+
+#: ../data/language-specs/yaml.lang.h:14
+msgid "Floating point"
+msgstr "Ponto flutuante"
 
 #: ../data/styles/classic.xml.h:1
 msgid "Classic"
@@ -3220,44 +3316,44 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "usar \\C não é suportado em definições de linguagem"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2741
+#: ../gtksourceview/gtksourcesearchcontext.c:2753
 #: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "Buffer"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2742
+#: ../gtksourceview/gtksourcesearchcontext.c:2754
 msgid "The associated GtkSourceBuffer"
 msgstr "O GtkSourceBuffer associado"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2756
+#: ../gtksourceview/gtksourcesearchcontext.c:2768
 msgid "Settings"
 msgstr "Configurações"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2757
+#: ../gtksourceview/gtksourcesearchcontext.c:2769
 msgid "The associated GtkSourceSearchSettings"
 msgstr "O GtkSourceSearchSettings associado"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2771
+#: ../gtksourceview/gtksourcesearchcontext.c:2783
 msgid "Highlight"
 msgstr "Destacar"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2772
+#: ../gtksourceview/gtksourcesearchcontext.c:2784
 msgid "Highlight search occurrences"
 msgstr "Destaca ocorrências de pesquisa"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2788
+#: ../gtksourceview/gtksourcesearchcontext.c:2800
 msgid "Occurrences count"
 msgstr "Quantidade de ocorrências"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2789
+#: ../gtksourceview/gtksourcesearchcontext.c:2801
 msgid "Total number of search occurrences"
 msgstr "Número total de ocorrências de pesquisa"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2808
+#: ../gtksourceview/gtksourcesearchcontext.c:2820
 msgid "Regex error"
 msgstr "Erro de expressão regular"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2809
+#: ../gtksourceview/gtksourcesearchcontext.c:2821
 msgid "Regular expression error"
 msgstr "Erro de expressão regular"
 
@@ -3517,14 +3613,36 @@ msgid "Set if and how the spaces should be visualized"
 msgstr "Define se e como os espaços deverão ser visualizados"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1328
+#: ../gtksourceview/gtksourceview.c:1351
 msgid "_Redo"
 msgstr "_Refazer"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1339
+#: ../gtksourceview/gtksourceview.c:1362
 msgid "_Undo"
 msgstr "_Desfazer"
+
+#: ../gtksourceview/gtksourceview.c:1380
+msgid "All _Upper Case"
+msgstr "Todas letras m_aiúsculas"
+
+#: ../gtksourceview/gtksourceview.c:1390
+msgid "All _Lower Case"
+msgstr "Todas letras mi_núsculas"
+
+#: ../gtksourceview/gtksourceview.c:1400
+msgid "_Invert Case"
+msgstr "_Inverter maiusculização"
+
+#: ../gtksourceview/gtksourceview.c:1410
+#| msgid "Title"
+msgid "_Title Case"
+msgstr "Ini_ciais maiúsculas"
+
+#: ../gtksourceview/gtksourceview.c:1420
+#| msgid "Changed line"
+msgid "C_hange Case"
+msgstr "A_lterar maiusculização "
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
@@ -3540,7 +3658,8 @@ msgstr ""
 "Fábio Nogueira <fnogueira@gnome.org>\n"
 "Rodrigo Flores <rlmflores@gnome.org>\n"
 "Henrique P. Machado <hpmachado@gnome.org>\n"
-"Antonio Fernandes C. Neto <fernandesn@gnome.org>"
+"Antonio Fernandes C. Neto <fernandesn@gnome.org>\n"
+"Rafael Ferreira <rafael.f.f1@gmail.com>"
 
 #~ msgid "math-bound"
 #~ msgstr "math-bound"
