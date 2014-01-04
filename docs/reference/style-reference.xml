@@ -149,6 +149,15 @@ Background color.
 <term><code>strikethrough</code></term>
 <listitem><para>"true" or "false"</para></listitem>
 </varlistentry>
+<varlistentry>
+<term><code>scale</code></term>
+<listitem><para>
+Scale the matched text block. Possible values are a float number as factor
+(e.g. <code>"1.75"</code>) or one of the values <code>"xx-small"</code>,
+<code>"x-small"</code>, <code>"small"</code>, <code>"medium"</code>,
+<code>"large"</code>,<code>"x-large"</code>,<code>"xx-large"</code>.
+</para></listitem>
+</varlistentry>
 </variablelist>
 </para>
 
