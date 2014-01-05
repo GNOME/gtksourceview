@@ -436,6 +436,18 @@ update_window_position (GtkSourceCompletion *completion)
 	GtkTextIter iter;
 	gboolean iter_set = FALSE;
 
+	/* The model can be modified while there is no completion context, for
+	 * example when the headers are shown or hidden. This triggers a signal
+	 * to update the window position, but if there is no completion context,
+	 * no need to update the window position (the window is normally hidden
+	 * in this case). When a new population is done, this function will be
+	 * called again, so no problem.
+	 */
+	if (completion->priv->context == NULL)
+	{
+		return;
+	}
+
 	if (get_selected_proposal (completion, &provider, &proposal))
 	{
 		if (gtk_source_completion_provider_get_start_iter (provider,
