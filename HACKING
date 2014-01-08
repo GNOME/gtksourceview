@@ -10,9 +10,9 @@ Or if you have an account on GNOME servers:
 
     ssh://USERNAME@git.gnome.org/git/gtksourceview
 
-A Web Interface is available at:
+A web interface is available at:
 
-    http://git.gnome.org/cgit/gtksourceview
+    https://git.gnome.org/browse/gtksourceview/
 
 Please don't commit directly to the git repository unless
 you have been given the green light to commit freely to gtksourceview.
@@ -21,6 +21,8 @@ When in doubt assume you haven't ;-).
 Please attach patches in bugzilla (http://bugzilla.gnome.org).
 If the patch fixes a bug that is not reported yet in bugzilla or is
 an enhancement, create a new bugreport.
+
+Please create patches with the git format-patch command.
 
 If you are a translator feel free to mark strings for translation,
 fix typos in the code, etc.
@@ -63,4 +65,3 @@ tracker reference if applicable) and so forth. Be concise but not too brief.
 Thanks,
 
   The GtkSourceView team.
-

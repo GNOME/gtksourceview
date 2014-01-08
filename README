@@ -3,11 +3,15 @@ General Information
 
 This is version 3.11.3 of GtkSourceView.
 
-GtkSourceView is a text widget that extends the standard gtk+ 3.x
-text widget GtkTextView.
+GtkSourceView is a text widget that extends the standard GTK+ text widget
+GtkTextView.
 
 It improves GtkTextView by implementing syntax highlighting and other
 features typical of a source code editor.
+
+The official web site is:
+
+    https://wiki.gnome.org/Projects/GtkSourceView
 
 You can download the latest GtkSourceView tarball from the gnome ftp server:
 
@@ -18,8 +22,8 @@ mailing list.  You can subscribe and get further information here:
 
     http://mail.gnome.org/mailman/listinfo/gnome-devtools
 
-GtkSourceView library is free software and is released under the terms of
-GNU General Lesser Public License. Some language specification files are
+The GtkSourceView library is free software and is released under the terms of
+GNU Lesser General Public License. Some language specification files are
 released under the GNU General Public License (see the files for exact terms).
 We are in the process of relicensing the whole package under the LGPL.
 All future contributions to the project must be LGPL-licensed.
@@ -49,16 +53,13 @@ Bugs should be reported to the GNOME bug tracking system.
 (http://bugzilla.gnome.org, product gtksourceview).
 You will need to create an account for yourself.
 
-You can also report bugs using the GNOME program bug-buddy.
-  
 In the bug report please include:
   
 * Information about your system. For instance:
 
+   - What version of GtkSourceView
    - What operating system and version
-   - What version of X
    - What version of the gtk+, glib and gnome libraries
-   - For Linux, what version of the C library
 
   And anything else you think is relevant.
 
@@ -74,7 +75,7 @@ In the bug report please include:
 
 Please check the bugzilla pages for the list of known bugs.
 
-http://bugzilla.gnome.org/buglist.cgi?product=gtksourceview&bug_status=UNCONFIRMED&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED
+https://bugzilla.gnome.org/browse.cgi?product=gtksourceview
 
 
 Patches
@@ -87,16 +88,13 @@ report.
 Otherwise, enter a new bug report that describes the problem the patch
 fixes, and attach it to that bug report.
 
-Patches should be in unified diff form (use the -up options of GNU
-diff) or even better should be created using git format-patch.
+Patches should be created with the git format-patch command.
 Please follow the coding style described in the HACKING file.
 
 If you are interested in helping us to develop GtkSourceView, please see the 
 file 'MAINTAINERS' for contact information and/or send a message to
 the GtkSourceView mailing list. See also the file 'HACKING' for
-information about our git guidelines and the file 'TODO' for a list of
-pending tasks.
-
+information about our git guidelines.
 
 
 The GtkSourceView team.
