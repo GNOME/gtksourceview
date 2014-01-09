@@ -62,6 +62,118 @@ tracker reference if applicable) and so forth. Be concise but not too brief.
     git commit -a --author "Joe Coder <joe@coder.org>" and --signoff.
 
 
+Code conventions
+================
+
+You may encounter old code that doesn't follow all the following code
+conventions, but for new code it is better to follow them, for consistency.
+
+  - Avoid trailing whitespace.
+
+  - Indent the C code with tabulations with a width of eight characters.
+
+  - The files should have a modeline for the indentation style.
+
+  - All blocks should be surrounded by curly braces, even one-line blocks. It
+    spaces out the code, and it is more convenient when some code must be added
+    or removed without the need to add or remove the curly braces.
+
+  - Follow the C89 standard. In particular, no "//"-style comments.
+
+  - As a general rule of thumb, follow the same coding style as the surrounding
+    code.
+
+  - Do not be cheap about blank lines, spacing the code vertically help
+    readability. However never use two consecutive blank lines, there is really
+    no need.
+
+
+Programming best practices
+==========================
+
+GtkSourceView is a pretty big piece of software, developed over the years by
+different people and GNOME technologies. Some parts of the code may be a little
+old. So when editing the code, we should try to make it better, not worse.
+
+Here are some general advices.
+
+  - Simplicity: the simpler code the better. Any trick that seem smart when you
+    write it is going to bite your ass later when reading the code. Given that
+    you spend 90% of the time staring at the code and 10% writing it, making
+    reading the code harder is a net loss.
+
+  - Brevity: make an effort to refactor common code into utility functions and
+    use library function whenever is possible: every time you cut and paste a
+    line of code you are throwing away all the precious seconds of your life
+    that you will later spend trying to figure out the differences among the two
+    copies that will have surely diverged.
+
+  - Code for change: code is bound to contain bugs no matter how well it is
+    written. A good coding style allows to fix these bugs with minimal changes
+    instead of reformatting a whole section of unrelated code, this is
+    especially important to make patch review easier and to easily understand
+    the commit history. Some practical examples are:
+
+      - Factor code into self contained functions so that changing a function
+	does not require to change all the callers.
+
+      - Do not align variable declaration, "case" statements etc, since this
+	will inevitably mean that when a line will change you'll have to
+	reformat all the surrounding ones.
+
+      - Declare variables in the strictest scope as possible.
+
+      - Reorder functions so that you do not need prototypes for static
+	functions so that when you change them you need to change them only in
+	one place.
+
+  - Self documentation and code comments: use code comments parsimoniously. Code
+    should be written so that it is clear and evident without the need of
+    comments. Besides, comments usually get outdated when the code is changed
+    and they become misleading. In particular avoid stating the obvious e.g. "a
+    = 1; /* assign 1 to a */". Use good function names and variables to make the
+    code self-documented.
+
+    A good function name is one that explain clearly all what its code really
+    does. There shouldn't be hidden features. If you can not find easily a good
+    function name, you should probably split the function in smaller pieces. A
+    function should do only one thing, but do it well.
+
+    Please avoid lots of one-letter variables. And a variable should be used for
+    only one purpose.
+
+    Self-documentation is obviously not always possible, so when a comment is
+    needed, it is needed. In those cases make sure to explain why and not only
+    how a specific thing is done: you can deduce the "how" from the code, but
+    not the "why".  Public library functions should always be documented and in
+    particular should include the calling conventions, e.g. if the result should
+    be freed by the caller.
+
+    Do not use fancy frames around comments like a line full of
+    /*---------------*/ etc.
+
+  - Contribute below on the stack. Fix a problem at the right place, instead of
+    writing hacks to work around a bug or a lack of feature in an underlying
+    library.
+
+
+See also
+========
+
+https://wiki.gnome.org/Apps/Gedit/DevGettingStarted
+https://wiki.gnome.org/Projects/GTK%2B/BestPractices
+ftp://ftp.gnome.org/pub/GNOME/teams/docs/devel/guides/programming_guidelines/
+http://ometer.com/hacking.html
+http://blogs.gnome.org/swilmet/2012/08/01/about-code-quality-and-maintainability/
+
+For a shared library:
+
+http://davidz25.blogspot.be/2011/07/writing-c-library-intro-conclusion-and.html
+http://akkadia.org/drepper/
+	- How to Write Shared Libraries
+	- Good Practices in Library Design, Implementation, and Maintenance
+
+
 Thanks,
 
   The GtkSourceView team.
