@@ -4,21 +4,21 @@
 # Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2003
 # Yair Hershkovitz <yairhr@gmail.com>, 2008
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2013.
-# Yosef Or Boczko <yoseforb@gmail.com>, 2013.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-26 14:25+0200\n"
-"PO-Revision-Date: 2013-12-26 14:48+0200\n"
+"POT-Creation-Date: 2014-01-13 08:35+0200\n"
+"PO-Revision-Date: 2014-01-13 08:42+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n>2||n==0) ? 1 : 2;\n"
 "X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -75,12 +75,14 @@ msgstr "עוקב"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:764
+#: ../gtksourceview/gtksourcecompletion.c:776
 msgid "All"
 msgstr "הכול"
 
 #: ../data/language-specs/actionscript.lang.h:1
-#: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/ada.lang.h:1
+#: ../data/language-specs/ansforth94.lang.h:1
+#: ../data/language-specs/asp.lang.h:1
 #: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
 #: ../data/language-specs/bluespec.lang.h:1
@@ -120,10 +122,11 @@ msgstr "ActionScript"
 
 #. Any comment
 #: ../data/language-specs/actionscript.lang.h:3
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/ada.lang.h:3
+#: ../data/language-specs/ansforth94.lang.h:5
+#: ../data/language-specs/asp.lang.h:3 ../data/language-specs/bennugd.lang.h:3
+#: ../data/language-specs/boo.lang.h:3 ../data/language-specs/cg.lang.h:3
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/cobol.lang.h:3
 #: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
 #: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
 #: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
@@ -180,9 +183,10 @@ msgstr "שגיאות"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/actionscript.lang.h:5
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/ada.lang.h:4
+#: ../data/language-specs/ansforth94.lang.h:9
+#: ../data/language-specs/asp.lang.h:4 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cobol.lang.h:8
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
 #: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
 #: ../data/language-specs/dosbatch.lang.h:4
@@ -251,8 +255,10 @@ msgstr "Scope Declaration"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/actionscript.lang.h:10
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
-#: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/ada.lang.h:5
+#: ../data/language-specs/ansforth94.lang.h:3
+#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/awk.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:7
 #: ../data/language-specs/bluespec.lang.h:7
 #: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
 #: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
@@ -452,6 +458,78 @@ msgstr "מספר ממשי"
 msgid "Escaped Character"
 msgstr "Escaped Character"
 
+#: ../data/language-specs/ansforth94.lang.h:2
+msgid "ANS-Forth94"
+msgstr "ANS-Forth94"
+
+#: ../data/language-specs/ansforth94.lang.h:4
+msgid "Obsolete Keyword"
+msgstr "מילת מפתח מיושנת"
+
+#: ../data/language-specs/ansforth94.lang.h:6
+msgid "Alert"
+msgstr "Alert"
+
+#. A character constant: 'c'
+#: ../data/language-specs/ansforth94.lang.h:7
+#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
+msgid "Character"
+msgstr "תו"
+
+#: ../data/language-specs/ansforth94.lang.h:8
+msgid "Word"
+msgstr "מילה"
+
+#. Any constant
+#: ../data/language-specs/ansforth94.lang.h:10
+#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:18
+msgid "Constant"
+msgstr "קבוע"
+
+#: ../data/language-specs/ansforth94.lang.h:11
+#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
+#: ../data/language-specs/pkgconfig.lang.h:3
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+msgid "Variable"
+msgstr "משתנה"
+
+#: ../data/language-specs/ansforth94.lang.h:12
+msgid "Local Variable"
+msgstr "משתנה מקומי"
+
+#: ../data/language-specs/ansforth94.lang.h:13
+msgid "Single Number"
+msgstr "מספר אי־זוגי"
+
+#: ../data/language-specs/ansforth94.lang.h:14
+msgid "Double Number"
+msgstr "מספר זוגי"
+
+#: ../data/language-specs/ansforth94.lang.h:15
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "Float"
+
 #: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
 msgstr "ASP"
@@ -555,21 +633,6 @@ msgstr "awk"
 #: ../data/language-specs/awk.lang.h:4
 msgid "Pattern"
 msgstr "תבנית"
-
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
-msgid "Variable"
-msgstr "משתנה"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
@@ -796,7 +859,7 @@ msgstr "תאריך"
 #. Translators: the name of a person, not an object.
 #. names, e.g., name of package, name of environment, name of class
 #: ../data/language-specs/changelog.lang.h:5
-#: ../data/language-specs/latex.lang.h:12
+#: ../data/language-specs/latex.lang.h:19
 msgid "Name"
 msgstr "שם"
 
@@ -830,18 +893,6 @@ msgstr "C"
 msgid "Common Defines"
 msgstr "Define נפוצות"
 
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
-msgid "Character"
-msgstr "תו"
-
 #: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
 #: ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
@@ -866,15 +917,6 @@ msgstr "פקודה מובנית"
 #: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
 msgid "Builtin Variable"
 msgstr "משתנה מובנה"
-
-#. Any constant
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13
-#: ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:18
-msgid "Constant"
-msgstr "קבוע"
 
 #: ../data/language-specs/cmake.lang.h:7
 msgid "Control Keyword"
@@ -1050,6 +1092,35 @@ msgstr "Note (FIXME, TODO, XXX, etc.)"
 #: ../data/language-specs/def.lang.h:61
 msgid "Underlined"
 msgstr "Underlined"
+
+#. Text that acts as some kind of heading, such as h1, h2, ... in html.
+#: ../data/language-specs/def.lang.h:63
+msgid "Heading 0"
+msgstr "כותרת  0"
+
+#: ../data/language-specs/def.lang.h:64
+msgid "Heading 1"
+msgstr "כותרת 1"
+
+#: ../data/language-specs/def.lang.h:65
+msgid "Heading 2"
+msgstr "כותרת 2"
+
+#: ../data/language-specs/def.lang.h:66
+msgid "Heading 3"
+msgstr "כותרת 3"
+
+#: ../data/language-specs/def.lang.h:67
+msgid "Heading 4"
+msgstr "כותרת 4"
+
+#: ../data/language-specs/def.lang.h:68
+msgid "Heading 5"
+msgstr "כותרת 5"
+
+#: ../data/language-specs/def.lang.h:69
+msgid "Heading 6"
+msgstr "כותרת 6"
 
 #: ../data/language-specs/desktop.lang.h:2
 msgid ".desktop"
@@ -1545,10 +1616,6 @@ msgstr "Haskell"
 msgid "Symbol"
 msgstr "Symbol"
 
-#: ../data/language-specs/haskell.lang.h:12
-msgid "Float"
-msgstr "Float"
-
 #: ../data/language-specs/haskell.lang.h:14
 msgid "Octal"
 msgstr "Octal"
@@ -1578,6 +1645,30 @@ msgstr "Attribute Name"
 #: ../data/language-specs/markdown.lang.h:11
 msgid "Attribute Value"
 msgstr "Attribute Value"
+
+#: ../data/language-specs/html.lang.h:9
+msgid "Page title"
+msgstr "כותרת עמוד"
+
+#: ../data/language-specs/html.lang.h:10
+msgid "Heading level 1"
+msgstr "כותרת רמה 1"
+
+#: ../data/language-specs/html.lang.h:11
+msgid "Heading level 2"
+msgstr "כותרת רמה 2"
+
+#: ../data/language-specs/html.lang.h:12
+msgid "Heading level 3"
+msgstr "כותרת רמה 3"
+
+#: ../data/language-specs/html.lang.h:13
+msgid "Heading level 4"
+msgstr "כותרת רמה 4"
+
+#: ../data/language-specs/html.lang.h:14
+msgid "Heading level 5"
+msgstr "כותרת רמה 5"
 
 #: ../data/language-specs/idl-exelis.lang.h:2
 msgid "IDL-Exelis"
@@ -1737,6 +1828,34 @@ msgstr "Verbatim"
 #: ../data/language-specs/latex.lang.h:10
 msgid "Special Character"
 msgstr "תו מיוחד"
+
+#: ../data/language-specs/latex.lang.h:11
+msgid "Part Heading"
+msgstr "כותרת משנה"
+
+#: ../data/language-specs/latex.lang.h:12
+msgid "Chapter Heading"
+msgstr "כותרת הפרק"
+
+#: ../data/language-specs/latex.lang.h:13
+msgid "Section Heading"
+msgstr "כותרת סעיף"
+
+#: ../data/language-specs/latex.lang.h:14
+msgid "SubSection Heading"
+msgstr "טיפול בחריגות"
+
+#: ../data/language-specs/latex.lang.h:15
+msgid "SubSubSection Heading"
+msgstr "תת־תת כותרת"
+
+#: ../data/language-specs/latex.lang.h:16
+msgid "Paragraph Heading"
+msgstr "כותרת סעיף"
+
+#: ../data/language-specs/latex.lang.h:17
+msgid "SubParagraph Heading"
+msgstr "כותרת תת־סעיף"
 
 #: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
@@ -2445,13 +2564,13 @@ msgstr "סעיף 4"
 msgid "Section 5"
 msgstr "סעיף 5"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:119
-#: ../gtksourceview/gtksourcestyle.c:120
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:121
+#: ../gtksourceview/gtksourcestyle.c:122
 msgid "Italic"
 msgstr "Italic"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:111
-#: ../gtksourceview/gtksourcestyle.c:112
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:113
+#: ../gtksourceview/gtksourcestyle.c:114
 msgid "Bold"
 msgstr "Bold"
 
@@ -2753,77 +2872,77 @@ msgstr "מנהל הביטולים"
 msgid "The buffer undo manager"
 msgstr "מנהל חוצץ הביטולים"
 
-#: ../gtksourceview/gtksourcecompletion.c:1789
+#: ../gtksourceview/gtksourcecompletion.c:1801
 #: ../gtksourceview/gtksourcegutter.c:534
 msgid "View"
 msgstr "תצוגה"
 
-#: ../gtksourceview/gtksourcecompletion.c:1790
+#: ../gtksourceview/gtksourcecompletion.c:1802
 msgid "The GtkSourceView bound to the completion"
 msgstr "ה־GtkSourceView מחויב להשלמה"
 
-#: ../gtksourceview/gtksourcecompletion.c:1804
+#: ../gtksourceview/gtksourcecompletion.c:1816
 msgid "Remember Info Visibility"
 msgstr "שמירת חזות המידע"
 
-#: ../gtksourceview/gtksourcecompletion.c:1805
+#: ../gtksourceview/gtksourcecompletion.c:1817
 msgid "Remember the last info window visibility state"
 msgstr "שמירת מצב החזות האחרון של חלון המידע"
 
-#: ../gtksourceview/gtksourcecompletion.c:1817
+#: ../gtksourceview/gtksourcecompletion.c:1829
 msgid "Select on Show"
 msgstr "בחירה בעת ההצגה"
 
-#: ../gtksourceview/gtksourcecompletion.c:1818
+#: ../gtksourceview/gtksourcecompletion.c:1830
 msgid "Select first proposal when completion is shown"
 msgstr "בחירת ההצעה הראשונה כשההשלמה מופיעה"
 
-#: ../gtksourceview/gtksourcecompletion.c:1831
+#: ../gtksourceview/gtksourcecompletion.c:1843
 msgid "Show Headers"
 msgstr "הצגת Headers"
 
-#: ../gtksourceview/gtksourcecompletion.c:1832
+#: ../gtksourceview/gtksourcecompletion.c:1844
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "הצגת כותרות הספק כאשר ישנן הצעות זמינות ממספר ספקים"
 
-#: ../gtksourceview/gtksourcecompletion.c:1845
+#: ../gtksourceview/gtksourcecompletion.c:1857
 msgid "Show Icons"
 msgstr "הצגת סמלים"
 
-#: ../gtksourceview/gtksourcecompletion.c:1846
+#: ../gtksourceview/gtksourcecompletion.c:1858
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "הצגת סמלי ספק והצעה בחלונית ההשלמה"
 
-#: ../gtksourceview/gtksourcecompletion.c:1860
+#: ../gtksourceview/gtksourcecompletion.c:1872
 msgid "Accelerators"
 msgstr "מאיצים"
 
-#: ../gtksourceview/gtksourcecompletion.c:1861
+#: ../gtksourceview/gtksourcecompletion.c:1873
 msgid "Number of proposal accelerators to show"
 msgstr "מספק מאיצי ההצעות להצגה"
 
-#: ../gtksourceview/gtksourcecompletion.c:1876
+#: ../gtksourceview/gtksourcecompletion.c:1888
 msgid "Auto Complete Delay"
 msgstr "השהיית ההשלמה האוטומטית"
 
-#: ../gtksourceview/gtksourcecompletion.c:1877
+#: ../gtksourceview/gtksourcecompletion.c:1889
 msgid "Completion popup delay for interactive completion"
 msgstr "השהיית חלונית ההשלמה עבור השלמה אינטראקטביית"
 
-#: ../gtksourceview/gtksourcecompletion.c:1893
+#: ../gtksourceview/gtksourcecompletion.c:1905
 msgid "Provider Page Size"
 msgstr "גודל עמוד הספק"
 
-#: ../gtksourceview/gtksourcecompletion.c:1894
+#: ../gtksourceview/gtksourcecompletion.c:1906
 msgid "Provider scrolling page size"
 msgstr "גודל העמוד הנגלל של הספק"
 
-#: ../gtksourceview/gtksourcecompletion.c:1914
+#: ../gtksourceview/gtksourcecompletion.c:1926
 msgid "Proposal Page Size"
 msgstr "גודל עמוד ההצעה"
 
-#: ../gtksourceview/gtksourcecompletion.c:1915
+#: ../gtksourceview/gtksourcecompletion.c:1927
 msgid "Proposal scrolling page size"
 msgstr "גודל עמוד הנגלל של ההצעה"
 
@@ -3130,7 +3249,7 @@ msgid "in regex '%s': backreferences are not supported"
 msgstr "in regex '%s': backreferences are not supported"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:288
-#: ../gtksourceview/gtksourcestyle.c:95
+#: ../gtksourceview/gtksourcestyle.c:97
 msgid "Background"
 msgstr "Background"
 
@@ -3254,44 +3373,44 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "using \\C is not supported in language definitions"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2750
+#: ../gtksourceview/gtksourcesearchcontext.c:2753
 #: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "חוצץ"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2751
+#: ../gtksourceview/gtksourcesearchcontext.c:2754
 msgid "The associated GtkSourceBuffer"
 msgstr "The associated GtkSourceBuffer"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2765
+#: ../gtksourceview/gtksourcesearchcontext.c:2768
 msgid "Settings"
 msgstr "הגדרות"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2766
+#: ../gtksourceview/gtksourcesearchcontext.c:2769
 msgid "The associated GtkSourceSearchSettings"
 msgstr "The associated GtkSourceSearchSettings"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2780
+#: ../gtksourceview/gtksourcesearchcontext.c:2783
 msgid "Highlight"
 msgstr "הדגשה"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2781
+#: ../gtksourceview/gtksourcesearchcontext.c:2784
 msgid "Highlight search occurrences"
 msgstr "האם להדגיש את מופעי החיפוש"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2797
+#: ../gtksourceview/gtksourcesearchcontext.c:2800
 msgid "Occurrences count"
 msgstr "ספירת מופעים"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2798
+#: ../gtksourceview/gtksourcesearchcontext.c:2801
 msgid "Total number of search occurrences"
 msgstr "מספר חיפושי המופעים הכללי"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2817
+#: ../gtksourceview/gtksourcesearchcontext.c:2820
 msgid "Regex error"
 msgstr "שגיאת ביטוי רגולרי"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2818
+#: ../gtksourceview/gtksourcesearchcontext.c:2821
 msgid "Regular expression error"
 msgstr "שגיאת ביטוי רגולרי"
 
@@ -3329,89 +3448,105 @@ msgstr "אפשור ביטוי רגולרי"
 msgid "Whether to search by regular expression"
 msgstr "אם לחפש על ידי ביטוי רגולרי"
 
-#: ../gtksourceview/gtksourcestyle.c:87
+#: ../gtksourceview/gtksourcestyle.c:89
 msgid "Line background"
 msgstr "Line background"
 
-#: ../gtksourceview/gtksourcestyle.c:88
+#: ../gtksourceview/gtksourcestyle.c:90
 msgid "Line background color"
 msgstr "Line background color"
 
-#: ../gtksourceview/gtksourcestyle.c:96
+#: ../gtksourceview/gtksourcestyle.c:98
 msgid "Background color"
 msgstr "Background color"
 
-#: ../gtksourceview/gtksourcestyle.c:103
+#: ../gtksourceview/gtksourcestyle.c:105
 msgid "Foreground"
 msgstr "Foreground"
 
-#: ../gtksourceview/gtksourcestyle.c:104
+#: ../gtksourceview/gtksourcestyle.c:106
 msgid "Foreground color"
 msgstr "Foreground color"
 
-#: ../gtksourceview/gtksourcestyle.c:127 ../gtksourceview/gtksourcestyle.c:128
+#: ../gtksourceview/gtksourcestyle.c:129 ../gtksourceview/gtksourcestyle.c:130
 msgid "Underline"
 msgstr "Underline"
 
-#: ../gtksourceview/gtksourcestyle.c:135 ../gtksourceview/gtksourcestyle.c:136
+#: ../gtksourceview/gtksourcestyle.c:137 ../gtksourceview/gtksourcestyle.c:138
 msgid "Strikethrough"
 msgstr "Strikethrough"
 
-#: ../gtksourceview/gtksourcestyle.c:143
+#: ../gtksourceview/gtksourcestyle.c:145
+msgid "Scale"
+msgstr "Scale"
+
+#: ../gtksourceview/gtksourcestyle.c:146
+msgid "Text scale factor"
+msgstr "Text scale factor"
+
+#: ../gtksourceview/gtksourcestyle.c:153
 msgid "Line background set"
 msgstr "Line background set"
 
-#: ../gtksourceview/gtksourcestyle.c:144
+#: ../gtksourceview/gtksourcestyle.c:154
 msgid "Whether line background color is set"
 msgstr "Whether line background color is set"
 
-#: ../gtksourceview/gtksourcestyle.c:151
+#: ../gtksourceview/gtksourcestyle.c:161
 msgid "Foreground set"
 msgstr "Foreground set"
 
-#: ../gtksourceview/gtksourcestyle.c:152
+#: ../gtksourceview/gtksourcestyle.c:162
 msgid "Whether foreground color is set"
 msgstr "Whether foreground color is set"
 
-#: ../gtksourceview/gtksourcestyle.c:159
+#: ../gtksourceview/gtksourcestyle.c:169
 msgid "Background set"
 msgstr "Background set"
 
-#: ../gtksourceview/gtksourcestyle.c:160
+#: ../gtksourceview/gtksourcestyle.c:170
 msgid "Whether background color is set"
 msgstr "Whether background color is set"
 
-#: ../gtksourceview/gtksourcestyle.c:167
+#: ../gtksourceview/gtksourcestyle.c:177
 msgid "Bold set"
 msgstr "Bold set"
 
-#: ../gtksourceview/gtksourcestyle.c:168
+#: ../gtksourceview/gtksourcestyle.c:178
 msgid "Whether bold attribute is set"
 msgstr "Whether bold attribute is set"
 
-#: ../gtksourceview/gtksourcestyle.c:175
+#: ../gtksourceview/gtksourcestyle.c:185
 msgid "Italic set"
 msgstr "Italic set"
 
-#: ../gtksourceview/gtksourcestyle.c:176
+#: ../gtksourceview/gtksourcestyle.c:186
 msgid "Whether italic attribute is set"
 msgstr "Whether italic attribute is set"
 
-#: ../gtksourceview/gtksourcestyle.c:183
+#: ../gtksourceview/gtksourcestyle.c:193
 msgid "Underline set"
 msgstr "Underline set"
 
-#: ../gtksourceview/gtksourcestyle.c:184
+#: ../gtksourceview/gtksourcestyle.c:194
 msgid "Whether underline attribute is set"
 msgstr "Whether underline attribute is set"
 
-#: ../gtksourceview/gtksourcestyle.c:191
+#: ../gtksourceview/gtksourcestyle.c:201
 msgid "Strikethrough set"
 msgstr "Strikethrough set"
 
-#: ../gtksourceview/gtksourcestyle.c:192
+#: ../gtksourceview/gtksourcestyle.c:202
 msgid "Whether strikethrough attribute is set"
 msgstr "Whether strikethrough attribute is set"
+
+#: ../gtksourceview/gtksourcestyle.c:209
+msgid "Scale set"
+msgstr "Scale set"
+
+#: ../gtksourceview/gtksourcestyle.c:210
+msgid "Whether scale attribute is set"
+msgstr "Whether scale attribute is set"
 
 #: ../gtksourceview/gtksourcestylescheme.c:211
 #: ../gtksourceview/gtksourcestylescheme.c:212
