@@ -7,15 +7,15 @@
 # Žygimantas Beručka <zygis@gnome.org>, 2003-2006.
 # Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
 # Vytautas Liuolia <vytautas.liuolia@gmail.com>, 2007.
-# Aurimas Černius <aurisc4@gmail.com>, 2013.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-11-28 20:10+0000\n"
-"PO-Revision-Date: 2013-12-01 18:11+0200\n"
+"POT-Creation-Date: 2014-01-12 23:51+0000\n"
+"PO-Revision-Date: 2014-01-14 23:17+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -80,12 +80,14 @@ msgstr "Galinis"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:764
+#: ../gtksourceview/gtksourcecompletion.c:776
 msgid "All"
 msgstr "Visi"
 
 #: ../data/language-specs/actionscript.lang.h:1
-#: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/ada.lang.h:1
+#: ../data/language-specs/ansforth94.lang.h:1
+#: ../data/language-specs/asp.lang.h:1
 #: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
 #: ../data/language-specs/bluespec.lang.h:1
@@ -125,10 +127,11 @@ msgstr "ActionScript"
 
 #. Any comment
 #: ../data/language-specs/actionscript.lang.h:3
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/ada.lang.h:3
+#: ../data/language-specs/ansforth94.lang.h:5
+#: ../data/language-specs/asp.lang.h:3 ../data/language-specs/bennugd.lang.h:3
+#: ../data/language-specs/boo.lang.h:3 ../data/language-specs/cg.lang.h:3
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/cobol.lang.h:3
 #: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
 #: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
 #: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
@@ -185,9 +188,10 @@ msgstr "Klaida"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/actionscript.lang.h:5
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/ada.lang.h:4
+#: ../data/language-specs/ansforth94.lang.h:9
+#: ../data/language-specs/asp.lang.h:4 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cobol.lang.h:8
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
 #: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
 #: ../data/language-specs/dosbatch.lang.h:4
@@ -256,8 +260,10 @@ msgstr "Galiojimo srities apibrėžtis"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/actionscript.lang.h:10
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
-#: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/ada.lang.h:5
+#: ../data/language-specs/ansforth94.lang.h:3
+#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/awk.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:7
 #: ../data/language-specs/bluespec.lang.h:7
 #: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
 #: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
@@ -457,6 +463,83 @@ msgstr "Realusis skaičius"
 msgid "Escaped Character"
 msgstr "Simbolis kaitos sekoje"
 
+#: ../data/language-specs/ansforth94.lang.h:2
+#| msgid "Forth"
+msgid "ANS-Forth94"
+msgstr "ANS-Forth94"
+
+#: ../data/language-specs/ansforth94.lang.h:4
+#| msgid "Other Keyword"
+msgid "Obsolete Keyword"
+msgstr "Pasenęs raktažodis"
+
+#: ../data/language-specs/ansforth94.lang.h:6
+msgid "Alert"
+msgstr "Įspėjimas"
+
+#. A character constant: 'c'
+#: ../data/language-specs/ansforth94.lang.h:7
+#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
+msgid "Character"
+msgstr "Simbolis"
+
+#: ../data/language-specs/ansforth94.lang.h:8
+msgid "Word"
+msgstr "Žodis"
+
+#. Any constant
+#: ../data/language-specs/ansforth94.lang.h:10
+#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:18
+msgid "Constant"
+msgstr "Konstanta"
+
+#: ../data/language-specs/ansforth94.lang.h:11
+#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
+#: ../data/language-specs/pkgconfig.lang.h:3
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+msgid "Variable"
+msgstr "Kintamasis"
+
+#: ../data/language-specs/ansforth94.lang.h:12
+#| msgid "Global Variable"
+msgid "Local Variable"
+msgstr "Vietinis kintamasis"
+
+#: ../data/language-specs/ansforth94.lang.h:13
+#| msgid "Integer Number"
+msgid "Single Number"
+msgstr "Viengubo tikslumo skaičius"
+
+#: ../data/language-specs/ansforth94.lang.h:14
+#| msgid "Complex number"
+msgid "Double Number"
+msgstr "Dvigubo tikslumo skaičius"
+
+#: ../data/language-specs/ansforth94.lang.h:15
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "Slankaus kablelio skaičius"
+
 #: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
 msgstr "ASP"
@@ -560,21 +643,6 @@ msgstr "awk"
 #: ../data/language-specs/awk.lang.h:4
 msgid "Pattern"
 msgstr "Raštas"
-
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
-msgid "Variable"
-msgstr "Kintamasis"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
@@ -801,7 +869,7 @@ msgstr "Data"
 #. Translators: the name of a person, not an object.
 #. names, e.g., name of package, name of environment, name of class
 #: ../data/language-specs/changelog.lang.h:5
-#: ../data/language-specs/latex.lang.h:12
+#: ../data/language-specs/latex.lang.h:19
 msgid "Name"
 msgstr "Vardas"
 
@@ -835,18 +903,6 @@ msgstr "C"
 msgid "Common Defines"
 msgstr "Įprastinės apibrėžtys"
 
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
-msgid "Character"
-msgstr "Simbolis"
-
 #: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
 #: ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
@@ -871,15 +927,6 @@ msgstr "Integruota komanda"
 #: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
 msgid "Builtin Variable"
 msgstr "Integruotas kintamasis"
-
-#. Any constant
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13
-#: ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:18
-msgid "Constant"
-msgstr "Konstanta"
 
 #: ../data/language-specs/cmake.lang.h:7
 msgid "Control Keyword"
@@ -1056,6 +1103,42 @@ msgstr "Pastaba (FIXME, TODO, XXX, ir t.t.)"
 msgid "Underlined"
 msgstr "Pabrauktas"
 
+#. Text that acts as some kind of heading, such as h1, h2, ... in html.
+#: ../data/language-specs/def.lang.h:63
+#| msgid "Leading"
+msgid "Heading 0"
+msgstr "Kryptis 0"
+
+#: ../data/language-specs/def.lang.h:64
+#| msgid "Leading"
+msgid "Heading 1"
+msgstr "Kryptis 1"
+
+#: ../data/language-specs/def.lang.h:65
+#| msgid "Leading"
+msgid "Heading 2"
+msgstr "Kryptis 2"
+
+#: ../data/language-specs/def.lang.h:66
+#| msgid "Leading"
+msgid "Heading 3"
+msgstr "Kryptis 3"
+
+#: ../data/language-specs/def.lang.h:67
+#| msgid "Leading"
+msgid "Heading 4"
+msgstr "Kryptis 4"
+
+#: ../data/language-specs/def.lang.h:68
+#| msgid "Leading"
+msgid "Heading 5"
+msgstr "Kryptis 5"
+
+#: ../data/language-specs/def.lang.h:69
+#| msgid "Leading"
+msgid "Heading 6"
+msgstr "Kryptis 6"
+
 #: ../data/language-specs/desktop.lang.h:2
 msgid ".desktop"
 msgstr ".desktop"
@@ -1182,7 +1265,6 @@ msgid "DPatch"
 msgstr "DPatch"
 
 #: ../data/language-specs/dpatch.lang.h:3
-#| msgid "patch-start"
 msgid "Patch Start"
 msgstr "Pataisos pradžia"
 
@@ -1203,7 +1285,6 @@ msgid "error"
 msgstr "klaida"
 
 #: ../data/language-specs/dtd.lang.h:6
-#| msgid "quoted-value"
 msgid "Quoted Value"
 msgstr "Reikšmė tarp kabučių"
 
@@ -1552,10 +1633,6 @@ msgstr "Haskell"
 msgid "Symbol"
 msgstr "Simbolis"
 
-#: ../data/language-specs/haskell.lang.h:12
-msgid "Float"
-msgstr "Slankaus kablelio skaičius"
-
 #: ../data/language-specs/haskell.lang.h:14
 msgid "Octal"
 msgstr "Aštuntainis"
@@ -1585,6 +1662,31 @@ msgstr "Požymio pavadinimas"
 #: ../data/language-specs/markdown.lang.h:11
 msgid "Attribute Value"
 msgstr "Požymio reikšmė"
+
+#: ../data/language-specs/html.lang.h:9
+#| msgid "Page Elements"
+msgid "Page title"
+msgstr "Puslapinio pavadinimas"
+
+#: ../data/language-specs/html.lang.h:10
+msgid "Heading level 1"
+msgstr "Antraštės lygis 1"
+
+#: ../data/language-specs/html.lang.h:11
+msgid "Heading level 2"
+msgstr "Antraštės lygis 2"
+
+#: ../data/language-specs/html.lang.h:12
+msgid "Heading level 3"
+msgstr "Antraštės lygis 3"
+
+#: ../data/language-specs/html.lang.h:13
+msgid "Heading level 4"
+msgstr "Antraštės lygis 4"
+
+#: ../data/language-specs/html.lang.h:14
+msgid "Heading level 5"
+msgstr "Antraštės lygis 5"
 
 #: ../data/language-specs/idl-exelis.lang.h:2
 msgid "IDL-Exelis"
@@ -1729,7 +1831,6 @@ msgid "Inline Math Mode"
 msgstr "Įterptoji matematikos veiksena"
 
 #: ../data/language-specs/latex.lang.h:6
-#| msgid "Math Mode"
 msgid "Math Bound"
 msgstr "Matematikos veiksena"
 
@@ -1743,9 +1844,40 @@ msgid "Verbatim"
 msgstr "Pažodžiui"
 
 #: ../data/language-specs/latex.lang.h:10
-#| msgid "Special Variable"
 msgid "Special Character"
 msgstr "Specialus simbolis"
+
+#: ../data/language-specs/latex.lang.h:11
+#| msgid "POD heading"
+msgid "Part Heading"
+msgstr "Dalies antraštė"
+
+#: ../data/language-specs/latex.lang.h:12
+msgid "Chapter Heading"
+msgstr "Skyriaus antraštė"
+
+#: ../data/language-specs/latex.lang.h:13
+#| msgid "Exception Handling"
+msgid "Section Heading"
+msgstr "Skilties antraštė"
+
+#: ../data/language-specs/latex.lang.h:14
+#| msgid "Exception Handling"
+msgid "SubSection Heading"
+msgstr "Poskilties antraštė"
+
+#: ../data/language-specs/latex.lang.h:15
+#| msgid "Exception Handling"
+msgid "SubSubSection Heading"
+msgstr "Po-poskilties antraštė"
+
+#: ../data/language-specs/latex.lang.h:16
+msgid "Paragraph Heading"
+msgstr "Pastraipos antraštė"
+
+#: ../data/language-specs/latex.lang.h:17
+msgid "SubParagraph Heading"
+msgstr "Po-pastraipos antraštė"
 
 #: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
@@ -1768,7 +1900,6 @@ msgid "m4"
 msgstr "m4"
 
 #: ../data/language-specs/m4.lang.h:3
-#| msgid "Comment"
 msgid "m4 Comment"
 msgstr "m4 komentaras"
 
@@ -2235,7 +2366,6 @@ msgid "Python"
 msgstr "Python"
 
 #: ../data/language-specs/python.lang.h:9
-#| msgid "printf Conversion"
 msgid "String Conversion"
 msgstr "Simbolių eilutės konvertavimas"
 
@@ -2308,12 +2438,10 @@ msgid "Email"
 msgstr "El. paštas"
 
 #: ../data/language-specs/rst.lang.h:2
-#| msgid "Structural Elements"
 msgid "reStructuredText"
 msgstr "reStructuredText"
 
 #: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
-#| msgid "Line Directive"
 msgid "Directive"
 msgstr "Direktyva"
 
@@ -2459,13 +2587,13 @@ msgstr "Sekcija 4"
 msgid "Section 5"
 msgstr "Sekcija 5"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:119
-#: ../gtksourceview/gtksourcestyle.c:120
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:121
+#: ../gtksourceview/gtksourcestyle.c:122
 msgid "Italic"
 msgstr "Kursyvas"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:111
-#: ../gtksourceview/gtksourcestyle.c:112
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:113
+#: ../gtksourceview/gtksourcestyle.c:114
 msgid "Bold"
 msgstr "Pusjuodis"
 
@@ -2554,7 +2682,6 @@ msgid "Yacc"
 msgstr "Yacc"
 
 #: ../data/language-specs/yacc.lang.h:5
-#| msgid "token-type"
 msgid "token type"
 msgstr "leksemos tipas"
 
@@ -2567,7 +2694,6 @@ msgid "YAML"
 msgstr "YAML"
 
 #: ../data/language-specs/yaml.lang.h:3
-#| msgid "BOZ Literal"
 msgid "Block literal"
 msgstr "Bloko simbolis"
 
@@ -2584,12 +2710,10 @@ msgid "Null"
 msgstr "Null"
 
 #: ../data/language-specs/yaml.lang.h:13
-#| msgid "Base-N Integer"
 msgid "Integer"
 msgstr "Sveikasis skaičius"
 
 #: ../data/language-specs/yaml.lang.h:14
-#| msgid "Floating Point"
 msgid "Floating point"
 msgstr "Slankaus kablelio skaičius"
 
@@ -2771,77 +2895,77 @@ msgstr "Atšaukimų tvarkytuvė"
 msgid "The buffer undo manager"
 msgstr "Buferio atšaukimų tvarkytuvė"
 
-#: ../gtksourceview/gtksourcecompletion.c:1789
+#: ../gtksourceview/gtksourcecompletion.c:1801
 #: ../gtksourceview/gtksourcegutter.c:534
 msgid "View"
 msgstr "Rodymas"
 
-#: ../gtksourceview/gtksourcecompletion.c:1790
+#: ../gtksourceview/gtksourcecompletion.c:1802
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView riba užbaigimui"
 
-#: ../gtksourceview/gtksourcecompletion.c:1804
+#: ../gtksourceview/gtksourcecompletion.c:1816
 msgid "Remember Info Visibility"
 msgstr "Įsiminti informacijos matomumą"
 
-#: ../gtksourceview/gtksourcecompletion.c:1805
+#: ../gtksourceview/gtksourcecompletion.c:1817
 msgid "Remember the last info window visibility state"
 msgstr "Atsiminti paskutinę informacijos lango matomumo būseną"
 
-#: ../gtksourceview/gtksourcecompletion.c:1817
+#: ../gtksourceview/gtksourcecompletion.c:1829
 msgid "Select on Show"
 msgstr "Pažymėti parodant"
 
-#: ../gtksourceview/gtksourcecompletion.c:1818
+#: ../gtksourceview/gtksourcecompletion.c:1830
 msgid "Select first proposal when completion is shown"
 msgstr "Pažymėti pirmą pasiūlymą, kai užbaigimas yra rodomas"
 
-#: ../gtksourceview/gtksourcecompletion.c:1831
+#: ../gtksourceview/gtksourcecompletion.c:1843
 msgid "Show Headers"
 msgstr "Rodyti antraštes"
 
-#: ../gtksourceview/gtksourcecompletion.c:1832
+#: ../gtksourceview/gtksourcecompletion.c:1844
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "Rodyti tiekėjų antraštes, kai yra pasiūlymų iš daugelio tiekėjų"
 
-#: ../gtksourceview/gtksourcecompletion.c:1845
+#: ../gtksourceview/gtksourcecompletion.c:1857
 msgid "Show Icons"
 msgstr "Rodyti piktogramas"
 
-#: ../gtksourceview/gtksourcecompletion.c:1846
+#: ../gtksourceview/gtksourcecompletion.c:1858
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Rodyti tiekėjo ir pasiūlymo piktogramas iššokančiame užbaigimo lange"
 
-#: ../gtksourceview/gtksourcecompletion.c:1860
+#: ../gtksourceview/gtksourcecompletion.c:1872
 msgid "Accelerators"
 msgstr "Prieigos klavišai"
 
-#: ../gtksourceview/gtksourcecompletion.c:1861
+#: ../gtksourceview/gtksourcecompletion.c:1873
 msgid "Number of proposal accelerators to show"
 msgstr "Rodytinų pasiūlymų prieigos klavišų skaičius"
 
-#: ../gtksourceview/gtksourcecompletion.c:1876
+#: ../gtksourceview/gtksourcecompletion.c:1888
 msgid "Auto Complete Delay"
 msgstr "Automatinio užbaigimo uždelsimas"
 
-#: ../gtksourceview/gtksourcecompletion.c:1877
+#: ../gtksourceview/gtksourcecompletion.c:1889
 msgid "Completion popup delay for interactive completion"
 msgstr "Užbaigimo iššokančio lango uždelsimas interaktyviam užbaigimui"
 
-#: ../gtksourceview/gtksourcecompletion.c:1893
+#: ../gtksourceview/gtksourcecompletion.c:1905
 msgid "Provider Page Size"
 msgstr "Tiekėjo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:1894
+#: ../gtksourceview/gtksourcecompletion.c:1906
 msgid "Provider scrolling page size"
 msgstr "Tiekėjo slenkamo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:1914
+#: ../gtksourceview/gtksourcecompletion.c:1926
 msgid "Proposal Page Size"
 msgstr "Pasiūlymo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:1915
+#: ../gtksourceview/gtksourcecompletion.c:1927
 msgid "Proposal scrolling page size"
 msgstr "Pasiūlymo slenkamo puslapio dydis"
 
@@ -3147,7 +3271,7 @@ msgid "in regex '%s': backreferences are not supported"
 msgstr "reguliariajame reiškinyje „%s“: kartotinės nuorodos nepalaikomos"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:288
-#: ../gtksourceview/gtksourcestyle.c:95
+#: ../gtksourceview/gtksourcestyle.c:97
 msgid "Background"
 msgstr "Fonas"
 
@@ -3272,44 +3396,44 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C naudojimas nepalaikomas kalbų aprašyme"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2741
+#: ../gtksourceview/gtksourcesearchcontext.c:2753
 #: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "Buferis"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2742
+#: ../gtksourceview/gtksourcesearchcontext.c:2754
 msgid "The associated GtkSourceBuffer"
 msgstr "Susietas GtkSourceBuffer"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2756
+#: ../gtksourceview/gtksourcesearchcontext.c:2768
 msgid "Settings"
 msgstr "Nustatymai"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2757
+#: ../gtksourceview/gtksourcesearchcontext.c:2769
 msgid "The associated GtkSourceSearchSettings"
 msgstr "Susietas GtkSourceSearchSettings"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2771
+#: ../gtksourceview/gtksourcesearchcontext.c:2783
 msgid "Highlight"
 msgstr "Paryškinti"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2772
+#: ../gtksourceview/gtksourcesearchcontext.c:2784
 msgid "Highlight search occurrences"
 msgstr "Paryškinti paieškos pasikartojimus"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2788
+#: ../gtksourceview/gtksourcesearchcontext.c:2800
 msgid "Occurrences count"
 msgstr "Pasikartojimų skaičius"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2789
+#: ../gtksourceview/gtksourcesearchcontext.c:2801
 msgid "Total number of search occurrences"
 msgstr "Visas paieškos pasikartojimų skaičius"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2808
+#: ../gtksourceview/gtksourcesearchcontext.c:2820
 msgid "Regex error"
 msgstr "Regex klaida"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2809
+#: ../gtksourceview/gtksourcesearchcontext.c:2821
 msgid "Regular expression error"
 msgstr "Reguliarios išraiškos klaida"
 
@@ -3347,89 +3471,108 @@ msgstr "Regex įjungta"
 msgid "Whether to search by regular expression"
 msgstr "Ar ieškoti naudojant reguliariąsias išraiškas"
 
-#: ../gtksourceview/gtksourcestyle.c:87
+#: ../gtksourceview/gtksourcestyle.c:89
 msgid "Line background"
 msgstr "Linijos fonas"
 
-#: ../gtksourceview/gtksourcestyle.c:88
+#: ../gtksourceview/gtksourcestyle.c:90
 msgid "Line background color"
 msgstr "Linijos fono spalva"
 
-#: ../gtksourceview/gtksourcestyle.c:96
+#: ../gtksourceview/gtksourcestyle.c:98
 msgid "Background color"
 msgstr "Fono spalva"
 
-#: ../gtksourceview/gtksourcestyle.c:103
+#: ../gtksourceview/gtksourcestyle.c:105
 msgid "Foreground"
 msgstr "Priekinis planas"
 
-#: ../gtksourceview/gtksourcestyle.c:104
+#: ../gtksourceview/gtksourcestyle.c:106
 msgid "Foreground color"
 msgstr "Priekinio plano spalva"
 
-#: ../gtksourceview/gtksourcestyle.c:127 ../gtksourceview/gtksourcestyle.c:128
+#: ../gtksourceview/gtksourcestyle.c:129 ../gtksourceview/gtksourcestyle.c:130
 msgid "Underline"
 msgstr "Pabraukimas"
 
-#: ../gtksourceview/gtksourcestyle.c:135 ../gtksourceview/gtksourcestyle.c:136
+#: ../gtksourceview/gtksourcestyle.c:137 ../gtksourceview/gtksourcestyle.c:138
 msgid "Strikethrough"
 msgstr "Perbraukimas"
 
-#: ../gtksourceview/gtksourcestyle.c:143
+#: ../gtksourceview/gtksourcestyle.c:145
+#| msgid "Scala"
+msgid "Scale"
+msgstr "Skalė"
+
+#: ../gtksourceview/gtksourcestyle.c:146
+msgid "Text scale factor"
+msgstr "Teksto skalės faktorius"
+
+#: ../gtksourceview/gtksourcestyle.c:153
 msgid "Line background set"
 msgstr "Nustatyta eilutės fono spalva"
 
-#: ../gtksourceview/gtksourcestyle.c:144
+#: ../gtksourceview/gtksourcestyle.c:154
 msgid "Whether line background color is set"
 msgstr "Ar nustatyta eilutės fono spalva"
 
-#: ../gtksourceview/gtksourcestyle.c:151
+#: ../gtksourceview/gtksourcestyle.c:161
 msgid "Foreground set"
 msgstr "Nustatyta priekinio plano spalva"
 
-#: ../gtksourceview/gtksourcestyle.c:152
+#: ../gtksourceview/gtksourcestyle.c:162
 msgid "Whether foreground color is set"
 msgstr "Ar nustatyta priekinio plano spalva"
 
-#: ../gtksourceview/gtksourcestyle.c:159
+#: ../gtksourceview/gtksourcestyle.c:169
 msgid "Background set"
 msgstr "Nustatyta fono spalva"
 
-#: ../gtksourceview/gtksourcestyle.c:160
+#: ../gtksourceview/gtksourcestyle.c:170
 msgid "Whether background color is set"
 msgstr "Ar nustatyta fono spalva"
 
-#: ../gtksourceview/gtksourcestyle.c:167
+#: ../gtksourceview/gtksourcestyle.c:177
 msgid "Bold set"
 msgstr "Nustatytas pusjuodis šriftas"
 
-#: ../gtksourceview/gtksourcestyle.c:168
+#: ../gtksourceview/gtksourcestyle.c:178
 msgid "Whether bold attribute is set"
 msgstr "Ar nustatytas pusjuodžio šrifto požymis"
 
-#: ../gtksourceview/gtksourcestyle.c:175
+#: ../gtksourceview/gtksourcestyle.c:185
 msgid "Italic set"
 msgstr "Nustatytas kursyvas"
 
-#: ../gtksourceview/gtksourcestyle.c:176
+#: ../gtksourceview/gtksourcestyle.c:186
 msgid "Whether italic attribute is set"
 msgstr "Ar nustatytas kursyvo požymis"
 
-#: ../gtksourceview/gtksourcestyle.c:183
+#: ../gtksourceview/gtksourcestyle.c:193
 msgid "Underline set"
 msgstr "Nustatytas pabraukimas"
 
-#: ../gtksourceview/gtksourcestyle.c:184
+#: ../gtksourceview/gtksourcestyle.c:194
 msgid "Whether underline attribute is set"
 msgstr "Ar nustatytas pabraukimo požymis"
 
-#: ../gtksourceview/gtksourcestyle.c:191
+#: ../gtksourceview/gtksourcestyle.c:201
 msgid "Strikethrough set"
 msgstr "Nustatytas perbraukimas"
 
-#: ../gtksourceview/gtksourcestyle.c:192
+#: ../gtksourceview/gtksourcestyle.c:202
 msgid "Whether strikethrough attribute is set"
 msgstr "Ar nustatytas perbraukimo požymis"
+
+#: ../gtksourceview/gtksourcestyle.c:209
+#| msgid "Italic set"
+msgid "Scale set"
+msgstr "Skalė nustatyta"
+
+#: ../gtksourceview/gtksourcestyle.c:210
+#| msgid "Whether italic attribute is set"
+msgid "Whether scale attribute is set"
+msgstr "Ar nustatytas skalės atributas"
 
 #: ../gtksourceview/gtksourcestylescheme.c:211
 #: ../gtksourceview/gtksourcestylescheme.c:212
@@ -3568,18 +3711,39 @@ msgid "Set if and how the spaces should be visualized"
 msgstr "Nurodo, kaip turėtų būti rodomi tarpai"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1328
+#: ../gtksourceview/gtksourceview.c:1351
 msgid "_Redo"
 msgstr "Paka_rtoti"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1339
+#: ../gtksourceview/gtksourceview.c:1362
 msgid "_Undo"
 msgstr "_Atšaukti"
+
+#: ../gtksourceview/gtksourceview.c:1380
+msgid "All _Upper Case"
+msgstr "Viskas _didžiosiomis"
+
+#: ../gtksourceview/gtksourceview.c:1390
+msgid "All _Lower Case"
+msgstr "Viskas _mažosiomis"
+
+#: ../gtksourceview/gtksourceview.c:1400
+msgid "_Invert Case"
+msgstr "_Invertuoti raidžių registrą"
+
+#: ../gtksourceview/gtksourceview.c:1410
+#| msgid "Title"
+msgid "_Title Case"
+msgstr "_Pavadinimo registras"
+
+#: ../gtksourceview/gtksourceview.c:1420
+#| msgid "Changed line"
+msgid "C_hange Case"
+msgstr "Pa_keisti registrą"
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
 msgstr ""
 "Vytautas Liuolia <vytautas.liuolia@gmail.com>\n"
 "Aurimas Černius <aurisc4@gmail.com>"
-
