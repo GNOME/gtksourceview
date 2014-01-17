@@ -74,19 +74,6 @@ typedef struct
 	guint notify_visible_handler;
 } Renderer;
 
-enum
-{
-	DRAW,
-	MOTION_NOTIFY_EVENT,
-	BUTTON_PRESS_EVENT,
-	ENTER_NOTIFY_EVENT,
-	LEAVE_NOTIFY_EVENT,
-	QUERY_TOOLTIP_EVENT,
-	REALIZE,
-	STYLE_UPDATED,
-	LAST_EXTERNAL_SIGNAL
-};
-
 struct _GtkSourceGutterPrivate
 {
 	GtkSourceView *view;
@@ -97,8 +84,6 @@ struct _GtkSourceGutterPrivate
 
 	gint xpad;
 	gint ypad;
-
-	guint signals[LAST_EXTERNAL_SIGNAL];
 
 	guint is_drawing : 1;
 };
@@ -248,21 +233,11 @@ static void
 gtk_source_gutter_dispose (GObject *object)
 {
 	GtkSourceGutter *gutter = GTK_SOURCE_GUTTER (object);
-	gint i;
 
 	g_list_free_full (gutter->priv->renderers, (GDestroyNotify)renderer_free);
 	gutter->priv->renderers = NULL;
 
-	if (gutter->priv->view)
-	{
-		for (i = 0; i < LAST_EXTERNAL_SIGNAL; ++i)
-		{
-			g_signal_handler_disconnect (gutter->priv->view,
-				                     gutter->priv->signals[i]);
-		}
-
-		gutter->priv->view = NULL;
-	}
+	gutter->priv->view = NULL;
 
 	G_OBJECT_CLASS (gtk_source_gutter_parent_class)->dispose (object);
 }
@@ -308,53 +283,53 @@ set_view (GtkSourceGutter *gutter,
 {
 	gutter->priv->view = view;
 
-	gutter->priv->signals[DRAW] =
-		g_signal_connect (view,
-		                  "draw",
-		                  G_CALLBACK (on_view_draw),
-		                  gutter);
+	g_signal_connect_object (view,
+				 "draw",
+				 G_CALLBACK (on_view_draw),
+				 gutter,
+				 0);
 
-	gutter->priv->signals[MOTION_NOTIFY_EVENT] =
-		g_signal_connect (view,
-		                  "motion-notify-event",
-		                  G_CALLBACK (on_view_motion_notify_event),
-		                  gutter);
+	g_signal_connect_object (view,
+				 "motion-notify-event",
+				 G_CALLBACK (on_view_motion_notify_event),
+				 gutter,
+				 0);
 
-	gutter->priv->signals[ENTER_NOTIFY_EVENT] =
-		g_signal_connect (view,
-		                  "enter-notify-event",
-		                  G_CALLBACK (on_view_enter_notify_event),
-		                  gutter);
+	g_signal_connect_object (view,
+				 "enter-notify-event",
+				 G_CALLBACK (on_view_enter_notify_event),
+				 gutter,
+				 0);
 
-	gutter->priv->signals[LEAVE_NOTIFY_EVENT] =
-		g_signal_connect (view,
-		                  "leave-notify-event",
-		                  G_CALLBACK (on_view_leave_notify_event),
-		                  gutter);
+	g_signal_connect_object (view,
+				 "leave-notify-event",
+				 G_CALLBACK (on_view_leave_notify_event),
+				 gutter,
+				 0);
 
-	gutter->priv->signals[BUTTON_PRESS_EVENT] =
-		g_signal_connect (view,
-		                  "button-press-event",
-		                  G_CALLBACK (on_view_button_press_event),
-		                  gutter);
+	g_signal_connect_object (view,
+				 "button-press-event",
+				 G_CALLBACK (on_view_button_press_event),
+				 gutter,
+				 0);
 
-	gutter->priv->signals[QUERY_TOOLTIP_EVENT] =
-		g_signal_connect (view,
-		                  "query-tooltip",
-		                  G_CALLBACK (on_view_query_tooltip),
-		                  gutter);
+	g_signal_connect_object (view,
+				 "query-tooltip",
+				 G_CALLBACK (on_view_query_tooltip),
+				 gutter,
+				 0);
 
-	gutter->priv->signals[REALIZE] =
-		g_signal_connect (view,
-		                  "realize",
-		                  G_CALLBACK (on_view_realize),
-		                  gutter);
+	g_signal_connect_object (view,
+				 "realize",
+				 G_CALLBACK (on_view_realize),
+				 gutter,
+				 0);
 
-	gutter->priv->signals[STYLE_UPDATED] =
-		g_signal_connect (view,
-		                  "style-updated",
-		                  G_CALLBACK (on_view_style_updated),
-		                  gutter);
+	g_signal_connect_object (view,
+				 "style-updated",
+				 G_CALLBACK (on_view_style_updated),
+				 gutter,
+				 0);
 }
 
 static void
