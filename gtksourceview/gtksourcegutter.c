@@ -251,6 +251,7 @@ gtk_source_gutter_dispose (GObject *object)
 	gint i;
 
 	g_list_free_full (gutter->priv->renderers, (GDestroyNotify)renderer_free);
+	gutter->priv->renderers = NULL;
 
 	if (gutter->priv->view)
 	{
@@ -263,7 +264,7 @@ gtk_source_gutter_dispose (GObject *object)
 		gutter->priv->view = NULL;
 	}
 
-	gutter->priv->renderers = NULL;
+	G_OBJECT_CLASS (gtk_source_gutter_parent_class)->dispose (object);
 }
 
 static void
