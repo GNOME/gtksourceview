@@ -156,23 +156,24 @@
  *   But with the simpler solution, multiple-lines regex search matches (see
  *   below) would not be possible for going to the previous occurrence (or the
  *   buffer must always be scanned from the beginning).
+ */
+
+/* Contiguous matches:
  *
- * Known issue
- * -----------
- *
- * Contiguous matches have a performance problem. In some cases it can lead to
- * an O(N^2) time complexity. For example if the buffer is full of contiguous
- * matches, and we want to navigate through all of them. If an iter is in the
- * middle of a found_tag region, we don't know where are the nearest occurrence
- * boundaries. Take for example the buffer "aaaa" with the search text "aa". The
- * two occurrences are at positions [0:2] and [2:4]. If we begin to search at
+ * Without paying attention, contiguous matches can lead to O(N^2) time
+ * complexity. For example if the buffer is full of contiguous matches, and we
+ * want to navigate through all of them. If an iter is in the middle of a
+ * found_tag region, we don't know where are the nearest occurrence boundaries.
+ * Take for example the buffer "aaaa" with the search text "aa". The two
+ * occurrences are at positions [0:2] and [2:4]. If we begin to search at
  * position 1, we can not take [1:3] as an occurrence. So what the code do is to
  * go backward to the start of the found_tag region, and do a basic search
  * inside the found_tag region to find the occurrence boundaries.
  *
- * So this is really a corner case, but it's better to be aware of that.
- * To fix the problem, one solution would be to have two found_tag, and
- * alternate them for contiguous matches.
+ * To avoid this problem, two found_tags are interlaced, so the found_tag
+ * regions are smaller. It doesn't matter if the two tags are not interlaced
+ * perfectly (it can happen e.g. on text insertion or deletion). A few
+ * contiguous matches with the same found_tag is perfectly fine.
  */
 
 /* Regex search:
@@ -299,10 +300,14 @@ struct _GtkSourceSearchContextPrivate
 
 	GtkSourceSearchSettings *settings;
 
-	/* The tag to apply to search occurrences. Even if the highlighting is
+	/* The two tags to apply to search occurrences. Only one tag is applied
+	 * per occurrence. The found_tag_num field is used to know which tag to
+	 * apply to the next occurrence found. Even if the highlighting is
 	 * disabled, the tag is applied.
+	 * See the "contiguous matches" documentation section above.
 	 */
-	GtkTextTag *found_tag;
+	GtkTextTag *found_tag0;
+	GtkTextTag *found_tag1;
 
 	/* A reference to the tag table where the found_tag is added. The sole
 	 * purpose is to remove the found_tag in dispose(). We can not rely on
@@ -336,6 +341,7 @@ struct _GtkSourceSearchContextPrivate
 	gulong idle_scan_id;
 
 	guint highlight : 1;
+	guint found_tag_num : 1;
 };
 
 /* Data for the asynchronous forward and backward search tasks. */
@@ -362,7 +368,7 @@ dispose_has_run (GtkSourceSearchContext *search)
 }
 
 static void
-sync_found_tag (GtkSourceSearchContext *search)
+sync_found_tags (GtkSourceSearchContext *search)
 {
 	GtkSourceStyleScheme *style_scheme;
 	GtkSourceStyle *style = NULL;
@@ -374,7 +380,8 @@ sync_found_tag (GtkSourceSearchContext *search)
 
 	if (!search->priv->highlight)
 	{
-		_gtk_source_style_apply (NULL, search->priv->found_tag);
+		_gtk_source_style_apply (NULL, search->priv->found_tag0);
+		_gtk_source_style_apply (NULL, search->priv->found_tag1);
 		return;
 	}
 
@@ -390,7 +397,8 @@ sync_found_tag (GtkSourceSearchContext *search)
 		g_warning ("search-match style not available.");
 	}
 
-	_gtk_source_style_apply (style, search->priv->found_tag);
+	_gtk_source_style_apply (style, search->priv->found_tag0);
+	_gtk_source_style_apply (style, search->priv->found_tag1);
 }
 
 static void
@@ -403,6 +411,114 @@ text_tag_set_highest_priority (GtkTextTag    *tag,
 	table = gtk_text_buffer_get_tag_table (buffer);
 	n = gtk_text_tag_table_get_size (table);
 	gtk_text_tag_set_priority (tag, n - 1);
+}
+
+static gboolean
+iter_has_found_tag (GtkSourceSearchContext *search,
+		    const GtkTextIter      *iter)
+{
+	return gtk_text_iter_has_tag (iter, search->priv->found_tag0) ||
+	       gtk_text_iter_has_tag (iter, search->priv->found_tag1);
+}
+
+static gboolean
+iter_begins_found_tag (GtkSourceSearchContext *search,
+		       const GtkTextIter      *iter)
+{
+	return gtk_text_iter_begins_tag (iter, search->priv->found_tag0) ||
+	       gtk_text_iter_begins_tag (iter, search->priv->found_tag1);
+}
+
+static gboolean
+iter_ends_found_tag (GtkSourceSearchContext *search,
+		     const GtkTextIter      *iter)
+{
+	return gtk_text_iter_ends_tag (iter, search->priv->found_tag0) ||
+	       gtk_text_iter_ends_tag (iter, search->priv->found_tag1);
+}
+
+static gboolean
+iter_forward_to_found_tag_toggle (GtkSourceSearchContext *search,
+				  GtkTextIter            *iter)
+{
+	GtkTextIter iter0 = *iter;
+	GtkTextIter iter1 = *iter;
+	gboolean ret0;
+	gboolean ret1;
+
+	ret0 = gtk_text_iter_forward_to_tag_toggle (&iter0, search->priv->found_tag0);
+	ret1 = gtk_text_iter_forward_to_tag_toggle (&iter1, search->priv->found_tag1);
+
+	if (gtk_text_iter_compare (&iter0, &iter1) < 0)
+	{
+		*iter = iter0;
+		return ret0;
+	}
+
+	*iter = iter1;
+	return ret1;
+}
+
+static gboolean
+iter_backward_to_found_tag_toggle (GtkSourceSearchContext *search,
+				   GtkTextIter            *iter)
+{
+	GtkTextIter iter0 = *iter;
+	GtkTextIter iter1 = *iter;
+	gboolean ret0;
+	gboolean ret1;
+
+	ret0 = gtk_text_iter_backward_to_tag_toggle (&iter0, search->priv->found_tag0);
+	ret1 = gtk_text_iter_backward_to_tag_toggle (&iter1, search->priv->found_tag1);
+
+	if (gtk_text_iter_compare (&iter0, &iter1) < 0)
+	{
+		*iter = iter1;
+		return ret1;
+	}
+
+	*iter = iter0;
+	return ret0;
+}
+
+static void
+remove_found_tags (GtkSourceSearchContext *search,
+		   const GtkTextIter      *start,
+		   const GtkTextIter      *end)
+{
+	gtk_text_buffer_remove_tag (search->priv->buffer,
+				    search->priv->found_tag0,
+				    start,
+				    end);
+
+	gtk_text_buffer_remove_tag (search->priv->buffer,
+				    search->priv->found_tag1,
+				    start,
+				    end);
+}
+
+static void
+apply_found_tag (GtkSourceSearchContext *search,
+		 const GtkTextIter      *start,
+		 const GtkTextIter      *end)
+{
+	GtkTextTag *found_tag;
+
+	if (search->priv->found_tag_num == 0)
+	{
+		found_tag = search->priv->found_tag0;
+		search->priv->found_tag_num = 1;
+	}
+	else
+	{
+		found_tag = search->priv->found_tag1;
+		search->priv->found_tag_num = 0;
+	}
+
+	gtk_text_buffer_apply_tag (search->priv->buffer,
+				   found_tag,
+				   start,
+				   end);
 }
 
 /* A TextRegion can contain empty subregions. So checking the number of
@@ -989,18 +1105,18 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 		return TRUE;
 	}
 
-	if (!gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+	if (!iter_has_found_tag (search, &iter))
 	{
-		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+		iter_forward_to_found_tag_toggle (search, &iter);
 	}
-	else if (!gtk_text_iter_begins_tag (&iter, search->priv->found_tag))
+	else if (!iter_begins_found_tag (search, &iter))
 	{
-		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+		iter_backward_to_found_tag_toggle (search, &iter);
 		region_start = iter;
 	}
 
 	limit = iter;
-	gtk_text_iter_forward_to_tag_toggle (&limit, search->priv->found_tag);
+	iter_forward_to_found_tag_toggle (search, &limit);
 
 	if (search->priv->scan_region != NULL)
 	{
@@ -1123,20 +1239,23 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 		return TRUE;
 	}
 
-	if (gtk_text_iter_begins_tag (&iter, search->priv->found_tag) ||
-	    (!gtk_text_iter_has_tag (&iter, search->priv->found_tag) &&
-	     !gtk_text_iter_ends_tag (&iter, search->priv->found_tag)))
+	if (iter_ends_found_tag (search, &iter))
 	{
-		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+		/* do nothing */
 	}
-	else if (gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+	else if (iter_begins_found_tag (search, &iter) ||
+		 !iter_has_found_tag (search, &iter))
 	{
-		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+		iter_backward_to_found_tag_toggle (search, &iter);
+	}
+	else
+	{
+		iter_forward_to_found_tag_toggle (search, &iter);
 		region_end = iter;
 	}
 
 	limit = iter;
-	gtk_text_iter_backward_to_tag_toggle (&limit, search->priv->found_tag);
+	iter_backward_to_found_tag_toggle (search, &limit);
 
 	if (search->priv->scan_region != NULL)
 	{
@@ -1248,112 +1367,16 @@ adjust_subregion (GtkSourceSearchContext *search,
 		gtk_text_iter_forward_to_line_end (end);
 	}
 
-	/* When we are in the middle of a found_tag, a simple solution is to
-	 * always backward_to_tag_toggle(). The problem is that occurrences can
-	 * be contiguous. So a full scan of the buffer can have a O(n^2) in the
-	 * worst case, if we use the simple solution. Therefore we use a more
-	 * complicated solution, that checks if we are in an old found_tag or
-	 * not.
-	 */
-
-	if (gtk_text_iter_has_tag (start, search->priv->found_tag))
+	if (iter_has_found_tag (search, start) &&
+	    !iter_begins_found_tag (search, start))
 	{
-		if (is_text_region_empty (search->priv->scan_region))
-		{
-			/* 'start' is in a correct match, we can skip it. */
-			gtk_text_iter_forward_to_tag_toggle (start, search->priv->found_tag);
-		}
-		else
-		{
-			GtkTextIter tag_start = *start;
-			GtkTextIter tag_end = *start;
-			GtkTextRegion *region;
-
-			if (!gtk_text_iter_begins_tag (&tag_start, search->priv->found_tag))
-			{
-				gtk_text_iter_backward_to_tag_toggle (&tag_start, search->priv->found_tag);
-			}
-
-			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->priv->found_tag);
-
-			region = gtk_text_region_intersect (search->priv->scan_region,
-							    &tag_start,
-							    &tag_end);
-
-			if (is_text_region_empty (region))
-			{
-				/* 'region' has already been scanned, so 'start' is in a
-				 * correct match, we can skip it.
-				 */
-				*start = tag_end;
-			}
-			else
-			{
-				/* 'region' has not already been scanned completely, so
-				 * 'start' is most probably in an old match that must be
-				 * removed.
-				 */
-				*start = tag_start;
-			}
-
-			if (region != NULL)
-			{
-				gtk_text_region_destroy (region);
-			}
-		}
+		iter_backward_to_found_tag_toggle (search, start);
 	}
 
-	/* Symmetric for 'end'. */
-
-	if (gtk_text_iter_has_tag (end, search->priv->found_tag))
+	if (iter_has_found_tag (search, end) &&
+	    !iter_begins_found_tag (search, end))
 	{
-		if (is_text_region_empty (search->priv->scan_region))
-		{
-			/* 'end' is in a correct match, we can skip it. */
-
-			if (!gtk_text_iter_begins_tag (end, search->priv->found_tag))
-			{
-				gtk_text_iter_backward_to_tag_toggle (end, search->priv->found_tag);
-			}
-		}
-		else
-		{
-			GtkTextIter tag_start = *end;
-			GtkTextIter tag_end = *end;
-			GtkTextRegion *region;
-
-			if (!gtk_text_iter_begins_tag (&tag_start, search->priv->found_tag))
-			{
-				gtk_text_iter_backward_to_tag_toggle (&tag_start, search->priv->found_tag);
-			}
-
-			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->priv->found_tag);
-
-			region = gtk_text_region_intersect (search->priv->scan_region,
-							    &tag_start,
-							    &tag_end);
-
-			if (is_text_region_empty (region))
-			{
-				/* 'region' has already been scanned, so 'end' is in a
-				 * correct match, we can skip it.
-				 */
-				*end = tag_start;
-			}
-			else
-			{
-				/* 'region' has not already been scanned completely, so
-				 * 'end' is most probably in an old match that must be
-				 * removed.
-				 */
-				*end = tag_end;
-			}
-
-			if (region != NULL)
-			{
-				gtk_text_region_destroy (region);
-			}
-		}
+		iter_forward_to_found_tag_toggle (search, end);
 	}
 
 	DEBUG ({
@@ -1393,17 +1416,17 @@ smart_forward_search_without_scanning (GtkSourceSearchContext *search,
 	{
 		GtkTextIter limit;
 
-		if (!gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+		if (!iter_has_found_tag (search, &iter))
 		{
-			gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+			iter_forward_to_found_tag_toggle (search, &iter);
 		}
-		else if (!gtk_text_iter_begins_tag (&iter, search->priv->found_tag))
+		else if (!iter_begins_found_tag (search, &iter))
 		{
-			gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+			iter_backward_to_found_tag_toggle (search, &iter);
 		}
 
 		limit = iter;
-		gtk_text_iter_forward_to_tag_toggle (&limit, search->priv->found_tag);
+		iter_forward_to_found_tag_toggle (search, &limit);
 
 		if (gtk_text_iter_compare (stop_at, &limit) < 0)
 		{
@@ -1438,16 +1461,16 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 	GtkTextIter match_start;
 	GtkTextIter match_end;
 
-	if (gtk_text_iter_has_tag (start, search->priv->found_tag) &&
-	    !gtk_text_iter_begins_tag (start, search->priv->found_tag))
+	if (iter_has_found_tag (search, start) &&
+	    !iter_begins_found_tag (search, start))
 	{
-		gtk_text_iter_backward_to_tag_toggle (start, search->priv->found_tag);
+		iter_backward_to_found_tag_toggle (search, start);
 	}
 
-	if (gtk_text_iter_has_tag (end, search->priv->found_tag) &&
-	    !gtk_text_iter_begins_tag (end, search->priv->found_tag))
+	if (iter_has_found_tag (search, end) &&
+	    !iter_begins_found_tag (search, end))
 	{
-		gtk_text_iter_forward_to_tag_toggle (end, search->priv->found_tag);
+		iter_forward_to_found_tag_toggle (search, end);
 	}
 
 	iter = *start;
@@ -1480,10 +1503,7 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 		iter = match_end;
 	}
 
-	gtk_text_buffer_remove_tag (search->priv->buffer,
-				    search->priv->found_tag,
-				    start,
-				    end);
+	remove_found_tags (search, start, end);
 }
 
 static void
@@ -1496,9 +1516,12 @@ scan_subregion (GtkSourceSearchContext *search,
 	gboolean found = TRUE;
 	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
 
-	/* Make sure the 'found' tag has the priority over syntax highlighting
-	 * tags. */
-	text_tag_set_highest_priority (search->priv->found_tag,
+	/* Make sure the 'found' tags have the priority over syntax highlighting
+	 * tags.
+	 */
+	text_tag_set_highest_priority (search->priv->found_tag0,
+				       search->priv->buffer);
+	text_tag_set_highest_priority (search->priv->found_tag1,
 				       search->priv->buffer);
 
 	adjust_subregion (search, start, end);
@@ -1526,7 +1549,7 @@ scan_subregion (GtkSourceSearchContext *search,
 
 	if (search_text == NULL)
 	{
-		/* We have removed the found_tag, we are done. */
+		/* We have removed the found_tags, we are done. */
 		return;
 	}
 
@@ -1550,11 +1573,7 @@ scan_subregion (GtkSourceSearchContext *search,
 
 		if (found)
 		{
-			gtk_text_buffer_apply_tag (search->priv->buffer,
-						   search->priv->found_tag,
-						   &match_start,
-						   &match_end);
-
+			apply_found_tag (search, &match_start, &match_end);
 			search->priv->occurrences_count++;
 		}
 
@@ -1799,10 +1818,7 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 							&subregion_start,
 							&subregion_end);
 
-		gtk_text_buffer_remove_tag (search->priv->buffer,
-					    search->priv->found_tag,
-					    &subregion_start,
-					    &subregion_end);
+		remove_found_tags (search, &subregion_start, &subregion_end);
 
 		gtk_text_region_iterator_next (&region_iter);
 	}
@@ -1831,10 +1847,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 
 	g_assert (stopped_at != NULL);
 
-	gtk_text_buffer_remove_tag (search->priv->buffer,
-				    search->priv->found_tag,
-				    segment_start,
-				    segment_end);
+	remove_found_tags (search, segment_start, segment_end);
 
 	if (search->priv->regex == NULL ||
 	    search->priv->regex_error != NULL)
@@ -1906,10 +1919,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 					 &match_start,
 					 &match_end))
 	{
-		gtk_text_buffer_apply_tag (search->priv->buffer,
-					   search->priv->found_tag,
-					   &match_start,
-					   &match_end);
+		apply_found_tag (search, &match_start, &match_end);
 
 		DEBUG ({
 			 gchar *match_text = gtk_text_iter_get_visible_text (&match_start, &match_end);
@@ -2094,18 +2104,18 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 	GtkTextIter region_start = *start_at;
 	GtkTextRegion *region = NULL;
 
-	if (!gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+	if (!iter_has_found_tag (search, &iter))
 	{
-		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+		iter_forward_to_found_tag_toggle (search, &iter);
 	}
-	else if (!gtk_text_iter_begins_tag (&iter, search->priv->found_tag))
+	else if (!iter_begins_found_tag (search, &iter))
 	{
-		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+		iter_backward_to_found_tag_toggle (search, &iter);
 		region_start = iter;
 	}
 
 	limit = iter;
-	gtk_text_iter_forward_to_tag_toggle (&limit, search->priv->found_tag);
+	iter_forward_to_found_tag_toggle (search, &limit);
 
 	if (search->priv->scan_region != NULL)
 	{
@@ -2191,20 +2201,23 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 	GtkTextIter region_end = *start_at;
 	GtkTextRegion *region = NULL;
 
-	if (gtk_text_iter_begins_tag (&iter, search->priv->found_tag) ||
-	    (!gtk_text_iter_has_tag (&iter, search->priv->found_tag) &&
-	     !gtk_text_iter_ends_tag (&iter, search->priv->found_tag)))
+	if (iter_ends_found_tag (search, &iter))
 	{
-		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+		/* do nothing */
 	}
-	else if (gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+	else if (iter_begins_found_tag (search, &iter) ||
+		 !iter_has_found_tag (search, &iter))
 	{
-		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+		iter_backward_to_found_tag_toggle (search, &iter);
+	}
+	else
+	{
+		iter_forward_to_found_tag_toggle (search, &iter);
 		region_end = iter;
 	}
 
 	limit = iter;
-	gtk_text_iter_backward_to_tag_toggle (&limit, search->priv->found_tag);
+	iter_backward_to_found_tag_toggle (search, &limit);
 
 	if (search->priv->scan_region != NULL)
 	{
@@ -2531,14 +2544,17 @@ set_buffer (GtkSourceSearchContext *search,
 				 search,
 				 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
-	search->priv->found_tag = gtk_text_buffer_create_tag (search->priv->buffer, NULL, NULL);
-	g_object_ref (search->priv->found_tag);
+	search->priv->found_tag0 = gtk_text_buffer_create_tag (search->priv->buffer, NULL, NULL);
+	search->priv->found_tag1 = gtk_text_buffer_create_tag (search->priv->buffer, NULL, NULL);
 
-	sync_found_tag (search);
+	g_object_ref (search->priv->found_tag0);
+	g_object_ref (search->priv->found_tag1);
+
+	sync_found_tags (search);
 
 	g_signal_connect_object (search->priv->buffer,
 				 "notify::style-scheme",
-				 G_CALLBACK (sync_found_tag),
+				 G_CALLBACK (sync_found_tags),
 				 search,
 				 G_CONNECT_SWAPPED);
 
@@ -2617,13 +2633,22 @@ gtk_source_search_context_dispose (GObject *object)
 
 	clear_search (search);
 
-	if (search->priv->found_tag != NULL &&
-	    search->priv->tag_table != NULL)
+	if (search->priv->tag_table != NULL)
 	{
-		gtk_text_tag_table_remove (search->priv->tag_table,
-					   search->priv->found_tag);
+		if (search->priv->found_tag0 != NULL)
+		{
+			gtk_text_tag_table_remove (search->priv->tag_table,
+						   search->priv->found_tag0);
+		}
 
-		g_clear_object (&search->priv->found_tag);
+		if (search->priv->found_tag1 != NULL)
+		{
+			gtk_text_tag_table_remove (search->priv->tag_table,
+						   search->priv->found_tag1);
+		}
+
+		g_clear_object (&search->priv->found_tag0);
+		g_clear_object (&search->priv->found_tag1);
 		g_clear_object (&search->priv->tag_table);
 	}
 
@@ -2968,7 +2993,7 @@ gtk_source_search_context_set_highlight (GtkSourceSearchContext *search,
 	if (search->priv->highlight != highlight)
 	{
 		search->priv->highlight = highlight;
-		sync_found_tag (search);
+		sync_found_tags (search);
 
 		g_object_notify (G_OBJECT (search), "highlight");
 	}
