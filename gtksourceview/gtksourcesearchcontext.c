@@ -2298,14 +2298,6 @@ add_subregion_to_scan (GtkSourceSearchContext *search,
 	});
 
 	install_idle_scan (search);
-
-	/* The highlighting can be modified a bit backward and forward the
-	 * region.
-	 */
-	gtk_text_iter_backward_lines (&start, search->priv->text_nb_lines);
-	gtk_text_iter_forward_lines (&end, search->priv->text_nb_lines);
-
-	g_signal_emit_by_name (search->priv->buffer, "highlight-updated", &start, &end);
 }
 
 static void

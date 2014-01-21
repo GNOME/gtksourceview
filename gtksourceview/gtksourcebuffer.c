@@ -386,9 +386,10 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * @start: the start of the updated region
 	 * @end: the end of the updated region
 	 *
-	 * The ::highlight-updated signal is emitted when the highlighting is
-	 * updated in a certain region of the @buffer. It can be the syntax
-	 * highlighting, the search highlighting, etc.
+	 * The ::highlight-updated signal is emitted when the syntax
+	 * highlighting is updated in a certain region of the @buffer. This
+	 * signal is useful to be notified when a context class region is
+	 * updated (e.g. the no-spell-check context class).
 	 */
 	buffer_signals[HIGHLIGHT_UPDATED] =
 	    g_signal_newv ("highlight_updated",
