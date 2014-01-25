@@ -355,19 +355,13 @@ G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceSearchContext, gtk_source_search_context, G
 
 static void		install_idle_scan		(GtkSourceSearchContext *search);
 
-static gboolean
-dispose_has_run (GtkSourceSearchContext *search)
-{
-	return search->priv->buffer == NULL;
-}
-
 static void
 sync_found_tag (GtkSourceSearchContext *search)
 {
 	GtkSourceStyleScheme *style_scheme;
 	GtkSourceStyle *style = NULL;
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return;
 	}
@@ -2379,7 +2373,7 @@ update (GtkSourceSearchContext *search)
 	GtkTextIter start;
 	GtkTextIter end;
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return;
 	}
@@ -3053,7 +3047,7 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 	g_return_val_if_fail (match_start != NULL, -1);
 	g_return_val_if_fail (match_end != NULL, -1);
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return -1;
 	}
@@ -3157,7 +3151,7 @@ gtk_source_search_context_forward (GtkSourceSearchContext *search,
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return FALSE;
 	}
@@ -3212,7 +3206,7 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
 	g_return_if_fail (iter != NULL);
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return;
 	}
@@ -3249,7 +3243,7 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
 
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), FALSE);
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return FALSE;
 	}
@@ -3309,7 +3303,7 @@ gtk_source_search_context_backward (GtkSourceSearchContext *search,
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return FALSE;
 	}
@@ -3365,7 +3359,7 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
 	g_return_if_fail (iter != NULL);
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return;
 	}
@@ -3493,7 +3487,7 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
 	g_return_val_if_fail (replace != NULL, FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return FALSE;
 	}
@@ -3556,7 +3550,7 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 	g_return_val_if_fail (replace != NULL, 0);
 	g_return_val_if_fail (error == NULL || *error == NULL, 0);
 
-	if (dispose_has_run (search))
+	if (search->priv->buffer == NULL)
 	{
 		return 0;
 	}
@@ -3643,7 +3637,7 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 	g_return_if_fail (start != NULL);
 	g_return_if_fail (end != NULL);
 
-	if (dispose_has_run (search) ||
+	if (search->priv->buffer == NULL ||
 	    is_text_region_empty (search->priv->scan_region) ||
 	    !search->priv->highlight)
 	{
