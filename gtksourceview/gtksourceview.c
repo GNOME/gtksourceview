@@ -163,7 +163,6 @@ struct _GtkSourceViewPrivate
 	guint            show_right_margin  : 1;
 	guint            style_scheme_applied : 1;
 	guint            current_line_color_set : 1;
-	guint            dispose_has_run : 1;
 };
 
 typedef struct _MarkCategory MarkCategory;
@@ -985,8 +984,6 @@ gtk_source_view_dispose (GObject *object)
 	g_clear_object (&view->priv->completion);
 	g_clear_object (&view->priv->left_gutter);
 	g_clear_object (&view->priv->right_gutter);
-
-	view->priv->dispose_has_run = 1;
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->dispose (object);
 }
@@ -4193,7 +4190,7 @@ gtk_source_view_get_completion (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
 
-	if (view->priv->completion == NULL && !view->priv->dispose_has_run)
+	if (view->priv->completion == NULL)
 	{
 		view->priv->completion = gtk_source_completion_new (view);
 	}
