@@ -172,6 +172,9 @@ struct _GtkSourceCompletionPrivate
 
 	/* Properties */
 
+	/* Weak reference to the view. You must check if view != NULL before
+	 * using it.
+	 */
 	GtkSourceView *view;
 	guint num_accelerators;
 	guint auto_complete_delay;
@@ -292,6 +295,8 @@ get_iter_at_insert (GtkSourceCompletion *completion,
                     GtkTextIter         *iter)
 {
 	GtkTextBuffer *buffer;
+
+	g_return_if_fail (GTK_IS_TEXT_VIEW (completion->priv->view));
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 	gtk_text_buffer_get_iter_at_mark (buffer,
@@ -436,6 +441,11 @@ update_window_position (GtkSourceCompletion *completion)
 	GtkTextIter iter;
 	gboolean iter_set = FALSE;
 
+	if (completion->priv->view == NULL)
+	{
+		return;
+	}
+
 	/* The model can be modified while there is no completion context, for
 	 * example when the headers are shown or hidden. This triggers a signal
 	 * to update the window position, but if there is no completion context,
@@ -564,6 +574,11 @@ update_proposal_info (GtkSourceCompletion *completion)
 static void
 gtk_source_completion_show_default (GtkSourceCompletion *completion)
 {
+	if (completion->priv->view == NULL)
+	{
+		return;
+	}
+
 	gtk_widget_show (GTK_WIDGET (completion->priv->main_window));
 
 	/* Do the autosize when the widget is visible. It doesn't work if it is
@@ -641,6 +656,11 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 	GtkSourceCompletionProposal *proposal = NULL;
 	GtkTextIter insert_iter;
 	gboolean activated;
+
+	if (completion->priv->view == NULL)
+	{
+		return;
+	}
 
 	if (!get_selected_proposal (completion, &provider, &proposal))
 	{
@@ -1565,7 +1585,14 @@ gtk_source_completion_dispose (GObject *object)
 
 	reset_completion (completion);
 
-	g_clear_object (&completion->priv->view);
+	if (completion->priv->view != NULL)
+	{
+		g_object_remove_weak_pointer (G_OBJECT (completion->priv->view),
+					      (gpointer *)&completion->priv->view);
+
+		completion->priv->view = NULL;
+	}
+
 	g_clear_object (&completion->priv->default_info);
 	g_clear_object (&completion->priv->model_proposals);
 
@@ -1588,10 +1615,17 @@ gtk_source_completion_dispose (GObject *object)
 }
 
 static void
-connect_view (GtkSourceCompletion *completion)
+connect_view (GtkSourceCompletion *completion,
+	      GtkSourceView       *view)
 {
-	GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
-	GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->priv->view));
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
+
+	g_assert (completion->priv->view == NULL);
+	completion->priv->view = view;
+
+	g_object_add_weak_pointer (G_OBJECT (view),
+				   (gpointer *)&completion->priv->view);
 
 	g_signal_connect_object (completion->priv->view,
 				 "focus-out-event",
@@ -1738,9 +1772,7 @@ gtk_source_completion_set_property (GObject      *object,
 	switch (prop_id)
 	{
 		case PROP_VIEW:
-			/* On construction only */
-			completion->priv->view = g_value_dup_object (value);
-			connect_view (completion);
+			connect_view (completion, g_value_get_object (value));
 			break;
 		case PROP_REMEMBER_INFO_VISIBILITY:
 			completion->priv->remember_info_visibility = g_value_get_boolean (value);
@@ -2342,6 +2374,11 @@ static void
 init_main_window (GtkSourceCompletion *completion,
 		  GtkBuilder          *builder)
 {
+	if (completion->priv->view == NULL)
+	{
+		return;
+	}
+
 	completion->priv->main_window = GTK_SOURCE_COMPLETION_INFO (gtk_builder_get_object (builder, "main_window"));
 	completion->priv->info_button = GTK_TOGGLE_BUTTON (gtk_builder_get_object (builder, "info_button"));
 	completion->priv->selection_image = GTK_IMAGE (gtk_builder_get_object (builder, "selection_image"));
@@ -2495,6 +2532,11 @@ gtk_source_completion_show (GtkSourceCompletion        *completion,
 
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), FALSE);
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context), FALSE);
+
+	if (completion->priv->view == NULL)
+	{
+		return FALSE;
+	}
 
 	/* Make sure to clear any active completion */
 	reset_completion (completion);
@@ -2747,6 +2789,11 @@ gtk_source_completion_create_context (GtkSourceCompletion *completion,
 
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), NULL);
 
+	if (completion->priv->view == NULL)
+	{
+		return NULL;
+	}
+
 	if (position == NULL)
 	{
 		get_iter_at_insert (completion, &iter);
@@ -2774,6 +2821,11 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 	g_return_if_fail (iter != NULL);
+
+	if (completion->priv->view == NULL)
+	{
+		return;
+	}
 
 	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
 	{
@@ -2805,6 +2857,11 @@ gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 
+	if (completion->priv->view == NULL)
+	{
+		return;
+	}
+
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 
 	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
@@ -2825,6 +2882,11 @@ gtk_source_completion_unblock_interactive (GtkSourceCompletion *completion)
 	GtkTextBuffer *buffer;
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
+
+	if (completion->priv->view == NULL)
+	{
+		return;
+	}
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 
