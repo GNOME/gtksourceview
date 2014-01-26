@@ -121,13 +121,6 @@ enum
 	PROP_PROPOSAL_PAGE_SIZE
 };
 
-enum
-{
-	TEXT_BUFFER_DELETE_RANGE,
-	TEXT_BUFFER_INSERT_TEXT,
-	LAST_EXTERNAL_SIGNAL
-};
-
 struct _GtkSourceCompletionPrivate
 {
 	GtkSourceCompletionInfo *main_window;
@@ -165,7 +158,7 @@ struct _GtkSourceCompletionPrivate
 
 	guint show_timed_out_id;
 
-	gulong signals_ids[LAST_EXTERNAL_SIGNAL];
+	GtkTextBuffer *buffer;
 
 	GList *auto_completion_selection;
 	GtkSourceCompletionContext *auto_completion_context;
@@ -294,14 +287,9 @@ static void
 get_iter_at_insert (GtkSourceCompletion *completion,
                     GtkTextIter         *iter)
 {
-	GtkTextBuffer *buffer;
-
-	g_return_if_fail (GTK_IS_TEXT_VIEW (completion->priv->view));
-
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
-	gtk_text_buffer_get_iter_at_mark (buffer,
+	gtk_text_buffer_get_iter_at_mark (completion->priv->buffer,
 	                                  iter,
-	                                  gtk_text_buffer_get_insert (buffer));
+	                                  gtk_text_buffer_get_insert (completion->priv->buffer));
 }
 
 static GList *
@@ -475,9 +463,7 @@ update_window_position (GtkSourceCompletion *completion)
 	if (!iter_set)
 	{
 		GtkTextIter end_word;
-		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
-
-		get_word_iter (buffer, &iter, &end_word);
+		get_word_iter (completion->priv->buffer, &iter, &end_word);
 	}
 
 	gtk_source_completion_info_move_to_iter (completion->priv->main_window,
@@ -676,7 +662,6 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 	if (!activated)
 	{
 		GtkTextIter start_iter;
-		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
 		gchar *text = gtk_source_completion_proposal_get_text (proposal);
 
 		gboolean has_start = gtk_source_completion_provider_get_start_iter (provider,
@@ -686,14 +671,14 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 
 		if (has_start)
 		{
-			gtk_text_buffer_begin_user_action (buffer);
-			gtk_text_buffer_delete (buffer, &start_iter, &insert_iter);
-			gtk_text_buffer_insert (buffer, &start_iter, text, -1);
-			gtk_text_buffer_end_user_action (buffer);
+			gtk_text_buffer_begin_user_action (completion->priv->buffer);
+			gtk_text_buffer_delete (completion->priv->buffer, &start_iter, &insert_iter);
+			gtk_text_buffer_insert (completion->priv->buffer, &start_iter, text, -1);
+			gtk_text_buffer_end_user_action (completion->priv->buffer);
 		}
 		else
 		{
-			replace_current_word (buffer, text);
+			replace_current_word (completion->priv->buffer, text);
 		}
 
 		g_free (text);
@@ -1593,6 +1578,7 @@ gtk_source_completion_dispose (GObject *object)
 		completion->priv->view = NULL;
 	}
 
+	g_clear_object (&completion->priv->buffer);
 	g_clear_object (&completion->priv->default_info);
 	g_clear_object (&completion->priv->model_proposals);
 
@@ -1615,11 +1601,104 @@ gtk_source_completion_dispose (GObject *object)
 }
 
 static void
+connect_buffer (GtkSourceCompletion *completion)
+{
+	GtkTextBuffer *new_buffer = NULL;
+
+	if (completion->priv->view != NULL)
+	{
+		new_buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+	}
+
+	if (completion->priv->buffer == new_buffer)
+	{
+		return;
+	}
+
+	if (completion->priv->buffer != NULL)
+	{
+		g_signal_handlers_disconnect_by_func (completion->priv->buffer,
+						      buffer_mark_set_cb,
+						      completion);
+
+		g_signal_handlers_disconnect_by_func (completion->priv->buffer,
+						      gtk_source_completion_block_interactive,
+						      completion);
+
+		g_signal_handlers_disconnect_by_func (completion->priv->buffer,
+						      gtk_source_completion_unblock_interactive,
+						      completion);
+
+		g_signal_handlers_disconnect_by_func (completion->priv->buffer,
+						      buffer_delete_range_cb,
+						      completion);
+
+		g_signal_handlers_disconnect_by_func (completion->priv->buffer,
+						      buffer_insert_text_cb,
+						      completion);
+
+		reset_completion (completion);
+
+		g_object_unref (completion->priv->buffer);
+	}
+
+	completion->priv->buffer = new_buffer;
+
+	if (new_buffer == NULL)
+	{
+		return;
+	}
+
+	g_object_ref (completion->priv->buffer);
+
+	g_signal_connect_object (new_buffer,
+				 "mark-set",
+				 G_CALLBACK (buffer_mark_set_cb),
+				 completion,
+				 G_CONNECT_AFTER);
+
+	g_signal_connect_object (new_buffer,
+		                 "undo",
+		                 G_CALLBACK (gtk_source_completion_block_interactive),
+		                 completion,
+		                 G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (new_buffer,
+		                 "undo",
+		                 G_CALLBACK (gtk_source_completion_unblock_interactive),
+		                 completion,
+		                 G_CONNECT_SWAPPED | G_CONNECT_AFTER);
+
+	g_signal_connect_object (new_buffer,
+		                 "redo",
+		                 G_CALLBACK (gtk_source_completion_block_interactive),
+		                 completion,
+		                 G_CONNECT_SWAPPED);
+
+	g_signal_connect_object (new_buffer,
+		                 "redo",
+		                 G_CALLBACK (gtk_source_completion_unblock_interactive),
+		                 completion,
+		                 G_CONNECT_SWAPPED | G_CONNECT_AFTER);
+
+	g_signal_connect_object (new_buffer,
+				 "delete-range",
+				 G_CALLBACK (buffer_delete_range_cb),
+				 completion,
+				 G_CONNECT_AFTER);
+
+	g_signal_connect_object (new_buffer,
+				 "insert-text",
+				 G_CALLBACK (buffer_insert_text_cb),
+				 completion,
+				 G_CONNECT_AFTER);
+}
+
+static void
 connect_view (GtkSourceCompletion *completion,
 	      GtkSourceView       *view)
 {
-	GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-	GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
+	GtkStyleContext *style_context;
 
 	g_assert (completion->priv->view == NULL);
 	completion->priv->view = view;
@@ -1657,49 +1736,15 @@ connect_view (GtkSourceCompletion *completion,
 				 completion,
 				 G_CONNECT_SWAPPED | G_CONNECT_AFTER);
 
-	g_signal_connect_object (buffer,
-				 "mark-set",
-				 G_CALLBACK (buffer_mark_set_cb),
+	connect_buffer (completion);
+
+	g_signal_connect_object (completion->priv->view,
+				 "notify::buffer",
+				 G_CALLBACK (connect_buffer),
 				 completion,
-				 G_CONNECT_AFTER);
+				 G_CONNECT_SWAPPED);
 
-	g_signal_connect_object (buffer,
-		                 "undo",
-		                 G_CALLBACK (gtk_source_completion_block_interactive),
-		                 completion,
-		                 G_CONNECT_SWAPPED);
-
-	g_signal_connect_object (buffer,
-		                 "undo",
-		                 G_CALLBACK (gtk_source_completion_unblock_interactive),
-		                 completion,
-		                 G_CONNECT_SWAPPED | G_CONNECT_AFTER);
-
-	g_signal_connect_object (buffer,
-		                 "redo",
-		                 G_CALLBACK (gtk_source_completion_block_interactive),
-		                 completion,
-		                 G_CONNECT_SWAPPED);
-
-	g_signal_connect_object (buffer,
-		                 "redo",
-		                 G_CALLBACK (gtk_source_completion_unblock_interactive),
-		                 completion,
-		                 G_CONNECT_SWAPPED | G_CONNECT_AFTER);
-
-	completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE] =
-		g_signal_connect_object (buffer,
-					 "delete-range",
-					 G_CALLBACK (buffer_delete_range_cb),
-					 completion,
-					 G_CONNECT_AFTER);
-
-	completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT] =
-		g_signal_connect_object (buffer,
-					 "insert-text",
-					 G_CALLBACK (buffer_insert_text_cb),
-					 completion,
-					 G_CONNECT_AFTER);
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
 
 	g_signal_connect_object (style_context,
 				 "changed",
@@ -2853,8 +2898,6 @@ gtk_source_completion_move_window (GtkSourceCompletion *completion,
 void
 gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 {
-	GtkTextBuffer *buffer;
-
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 
 	if (completion->priv->view == NULL)
@@ -2862,10 +2905,13 @@ gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 		return;
 	}
 
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+	g_signal_handlers_block_by_func (completion->priv->buffer,
+					 buffer_insert_text_cb,
+					 completion);
 
-	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
-	g_signal_handler_block (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+	g_signal_handlers_block_by_func (completion->priv->buffer,
+					 buffer_delete_range_cb,
+					 completion);
 }
 
 /**
@@ -2879,8 +2925,6 @@ gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 void
 gtk_source_completion_unblock_interactive (GtkSourceCompletion *completion)
 {
-	GtkTextBuffer *buffer;
-
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
 
 	if (completion->priv->view == NULL)
@@ -2888,8 +2932,11 @@ gtk_source_completion_unblock_interactive (GtkSourceCompletion *completion)
 		return;
 	}
 
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (completion->priv->view));
+	g_signal_handlers_unblock_by_func (completion->priv->buffer,
+					   buffer_insert_text_cb,
+					   completion);
 
-	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_INSERT_TEXT]);
-	g_signal_handler_unblock (buffer, completion->priv->signals_ids[TEXT_BUFFER_DELETE_RANGE]);
+	g_signal_handlers_unblock_by_func (completion->priv->buffer,
+					   buffer_delete_range_cb,
+					   completion);
 }
