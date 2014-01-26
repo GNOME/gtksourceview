@@ -184,6 +184,9 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT)
 
+/* Prototypes */
+static void gtk_source_completion_constructed (GObject *object);
+
 static void
 scroll_to_iter (GtkSourceCompletion *completion,
                 GtkTreeIter         *iter)
@@ -1698,8 +1701,6 @@ static void
 connect_view (GtkSourceCompletion *completion,
 	      GtkSourceView       *view)
 {
-	GtkStyleContext *style_context;
-
 	g_assert (completion->priv->view == NULL);
 	completion->priv->view = view;
 
@@ -1743,16 +1744,6 @@ connect_view (GtkSourceCompletion *completion,
 				 G_CALLBACK (connect_buffer),
 				 completion,
 				 G_CONNECT_SWAPPED);
-
-	style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
-
-	g_signal_connect_object (style_context,
-				 "changed",
-				 G_CALLBACK (style_context_changed),
-				 completion,
-				 G_CONNECT_AFTER);
-
-	style_context_changed (style_context, completion);
 }
 
 static void
@@ -1864,6 +1855,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	object_class->get_property = gtk_source_completion_get_property;
 	object_class->set_property = gtk_source_completion_set_property;
 	object_class->dispose = gtk_source_completion_dispose;
+	object_class->constructed = gtk_source_completion_constructed;
 
 	klass->show = gtk_source_completion_show_default;
 	klass->hide = gtk_source_completion_hide_default;
@@ -2482,14 +2474,34 @@ init_info_window (GtkSourceCompletion *completion)
 }
 
 static void
-gtk_source_completion_init (GtkSourceCompletion *completion)
+connect_style_context (GtkSourceCompletion *completion)
 {
+	GtkStyleContext *style_context;
+
+	if (completion->priv->view == NULL)
+	{
+		return;
+	}
+
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->priv->view));
+
+	g_signal_connect_object (style_context,
+				 "changed",
+				 G_CALLBACK (style_context_changed),
+				 completion,
+				 G_CONNECT_AFTER);
+
+	style_context_changed (style_context, completion);
+}
+
+static void
+gtk_source_completion_constructed (GObject *object)
+{
+	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
 	GError *error = NULL;
 	GtkBuilder *builder = gtk_builder_new ();
 	GtkSourceCompletionContainer *container = _gtk_source_completion_container_new ();
 	g_object_ref_sink (container);
-
-	completion->priv = gtk_source_completion_get_instance_private (completion);
 
 	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
 
@@ -2508,9 +2520,18 @@ gtk_source_completion_init (GtkSourceCompletion *completion)
 	init_tree_view (completion, builder);
 	init_main_window (completion, builder);
 	init_info_window (completion);
+	connect_style_context (completion);
 
 	g_object_unref (builder);
 	g_object_unref (container);
+
+	G_OBJECT_CLASS (gtk_source_completion_parent_class)->constructed (object);
+}
+
+static void
+gtk_source_completion_init (GtkSourceCompletion *completion)
+{
+	completion->priv = gtk_source_completion_get_instance_private (completion);
 }
 
 void
