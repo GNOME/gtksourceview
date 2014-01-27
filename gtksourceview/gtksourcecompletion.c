@@ -566,6 +566,11 @@ gtk_source_completion_show_default (GtkSourceCompletion *completion)
 {
 	gtk_widget_show (GTK_WIDGET (completion->priv->main_window));
 
+	/* Do the autosize when the widget is visible. It doesn't work if it is
+	 * done before.
+	 */
+	gtk_tree_view_columns_autosize (completion->priv->tree_view_proposals);
+
 	if (!completion->priv->remember_info_visibility)
 	{
 		gtk_toggle_button_set_active (completion->priv->info_button, FALSE);
