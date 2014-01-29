@@ -163,6 +163,9 @@ struct _GtkSourceCompletionPrivate
 	GList *auto_completion_selection;
 	GtkSourceCompletionContext *auto_completion_context;
 
+	/* Number of times the interactive completion is blocked */
+	guint block_interactive_num;
+
 	/* Properties */
 
 	/* Weak reference to the view. You must check if view != NULL before
@@ -1600,6 +1603,24 @@ gtk_source_completion_dispose (GObject *object)
 	G_OBJECT_CLASS (gtk_source_completion_parent_class)->dispose (object);
 }
 
+/* Unconditionnally block interactive completion, without taking into account
+ * priv->block_interactive_num.
+ * g_signal_handlers_block_by_func() has a counter too, so you may think that
+ * block_interactive_num is useless. But it is useful when the buffer changes,
+ * to keep the signal handler blocked on the new buffer.
+ */
+static void
+block_interactive (GtkSourceCompletion *completion)
+{
+	g_signal_handlers_block_by_func (completion->priv->buffer,
+					 buffer_insert_text_cb,
+					 completion);
+
+	g_signal_handlers_block_by_func (completion->priv->buffer,
+					 buffer_delete_range_cb,
+					 completion);
+}
+
 static void
 connect_buffer (GtkSourceCompletion *completion)
 {
@@ -1692,6 +1713,11 @@ connect_buffer (GtkSourceCompletion *completion)
 				 G_CALLBACK (buffer_insert_text_cb),
 				 completion,
 				 G_CONNECT_AFTER);
+
+	if (completion->priv->block_interactive_num > 0)
+	{
+		block_interactive (completion);
+	}
 }
 
 static void
@@ -2923,13 +2949,12 @@ gtk_source_completion_block_interactive (GtkSourceCompletion *completion)
 		return;
 	}
 
-	g_signal_handlers_block_by_func (completion->priv->buffer,
-					 buffer_insert_text_cb,
-					 completion);
+	if (completion->priv->block_interactive_num == 0)
+	{
+		block_interactive (completion);
+	}
 
-	g_signal_handlers_block_by_func (completion->priv->buffer,
-					 buffer_delete_range_cb,
-					 completion);
+	completion->priv->block_interactive_num++;
 }
 
 /**
@@ -2950,11 +2975,19 @@ gtk_source_completion_unblock_interactive (GtkSourceCompletion *completion)
 		return;
 	}
 
-	g_signal_handlers_unblock_by_func (completion->priv->buffer,
-					   buffer_insert_text_cb,
-					   completion);
+	if (completion->priv->block_interactive_num == 1)
+	{
+		g_signal_handlers_unblock_by_func (completion->priv->buffer,
+						   buffer_insert_text_cb,
+						   completion);
 
-	g_signal_handlers_unblock_by_func (completion->priv->buffer,
-					   buffer_delete_range_cb,
-					   completion);
+		g_signal_handlers_unblock_by_func (completion->priv->buffer,
+						   buffer_delete_range_cb,
+						   completion);
+	}
+
+	if (completion->priv->block_interactive_num > 0)
+	{
+		completion->priv->block_interactive_num--;
+	}
 }
