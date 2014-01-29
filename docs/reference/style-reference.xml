@@ -220,4 +220,14 @@ Only the <code>foreground</code> attribute is used.</para></listitem>
 </variablelist>
 </para>
 
+<refsect1>
+<title>Default style schemes</title>
+<para>
+The GtkSourceView team prefers to just keep a small number of style schemes
+distributed with the library. To add a new style scheme in GtkSourceView
+itself, the style scheme must be very popular, and ideally a
+GtkSourceView-based application must use it by default.
+</para>
+</refsect1>
+
 </refentry>
