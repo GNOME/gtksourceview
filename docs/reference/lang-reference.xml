@@ -421,7 +421,9 @@ contexts, sub-pattern contexts, reference contexts and keyword contexts.
 
 <para>
 Context classes can be enabled or disabled for some contexts, with the
-<code>class</code> and <code>class-disabled</code> attributes:
+<code>class</code> and <code>class-disabled</code> attributes. You can create
+your own context classes in custom language definition files. Here are the
+default context classes:
 </para>
 
 <itemizedlist>
