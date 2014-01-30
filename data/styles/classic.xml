@@ -81,6 +81,17 @@
   <style name="def:note"                    foreground="blue" background="yellow" bold="true"/>
   <style name="def:underlined"              italic="true" underline="true"/>
 
+  <!-- Heading styles, uncomment to enable -->
+  <!--
+  <style name="def:heading0"                scale="5.0"/>
+  <style name="def:heading1"                scale="2.5"/>
+  <style name="def:heading2"                scale="2.0"/>
+  <style name="def:heading3"                scale="1.7"/>
+  <style name="def:heading4"                scale="1.5"/>
+  <style name="def:heading5"                scale="1.3"/>
+  <style name="def:heading6"                scale="1.2"/>
+  -->
+
   <!-- Language specific styles -->
   <style name="diff:added-line"             foreground="#008B8B"/>
   <style name="diff:removed-line"           foreground="#6A5ACD"/>
