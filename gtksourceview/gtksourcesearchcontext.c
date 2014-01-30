@@ -68,6 +68,9 @@
  * to bind the appearance settings to only one buffer (a
  * #GtkSourceSearchSettings object can be bound indirectly to several buffers).
  *
+ * The concept of "current match" doesn't exist yet. A way to highlight
+ * differently the current match is to select it.
+ *
  * A search occurrence's position doesn't depend on the cursor position or other
  * parameters. Take for instance the buffer "aaaa" with the search text "aa".
  * The two occurrences are at positions [0:2] and [2:4]. If you begin to search
