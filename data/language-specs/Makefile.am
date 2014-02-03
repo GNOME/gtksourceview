@@ -100,6 +100,7 @@ LANGUAGES =			\
 	sml.lang		\
 	sparql.lang		\
 	sql.lang		\
+	sweave.lang		\
 	systemverilog.lang	\
 	t2t.lang		\
 	tcl.lang		\
