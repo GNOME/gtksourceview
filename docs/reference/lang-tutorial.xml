@@ -48,7 +48,7 @@ After the usual preamble, the main tag is the <code>&lt;language&gt;</code> elem
 </para>
 
 <programlisting>
-&lt;language id="c" _name="C" version="2.0" _section="Sources"&gt;
+&lt;language id="c" _name="C" version="2.0" _section="Source"&gt;
 </programlisting>
 
 <para>
@@ -61,8 +61,8 @@ the name presented to the user (it is translatable using gettext prepending a
 <para>
 The attribute <code>section</code>, also translatable, tells the category where
 this language should be grouped when it is presented to the user. Currently
-available categories in GtkSourceView are "Sources", "Scripts", "Markup",
-"Scientific" and "Others".
+available categories in GtkSourceView are "Source", "Script", "Markup",
+"Scientific" and "Other".
 </para>
 
 <para>
@@ -599,7 +599,7 @@ for this tutorial:
 
 <programlisting>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;language id="c" _name="C" version="2.0" _section="Sources"&gt;
+&lt;language id="c" _name="C" version="2.0" _section="Source"&gt;
   &lt;metadata&gt;
     &lt;property name="mimetypes"&gt;text/x-c;text/x-csrc&lt;/property&gt;
     &lt;property name="globs"&gt;*.c&lt;/property&gt;
