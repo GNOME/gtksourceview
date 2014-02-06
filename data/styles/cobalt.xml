@@ -62,7 +62,7 @@
   <!-- Bracket Matching -->
   <style name="bracket-match"               background="steelblue3"/>
   <style name="bracket-mismatch"            background="dark_red" bold="true"/>
-  
+
   <!-- Search Matching -->
   <style name="search-match"                foreground="white" background="sea_green"/>
 
@@ -84,7 +84,7 @@
   <style name="def:keyword"                 foreground="bright_orange" bold="true"/>
   <style name="def:builtin"                 foreground="bright_orange" bold="true"/>
   <style name="def:variable"                foreground="light_grey"/>
-  
+
   <!-- Identifiers -->
   <style name="def:identifier"              foreground="light_grey"/>
   <style name="def:function"                use-style="def:identifier"/>
@@ -94,7 +94,7 @@
 
   <!-- Types -->
   <style name="def:type"                    foreground="teal_blue"/>
-  
+
   <!-- Others -->
   <style name="def:error"                   foreground="white" background="dark_red" bold="true"/>
   <style name="def:warning"                 foreground="white" background="nail_polish_pink"/>
@@ -138,7 +138,7 @@
 
   <!-- SH Styles -->
   <style name="sh:function"                 foreground="neon_pink"/>
-  
+
   <!-- XML Styles -->
   <style name="xml:attribute-name"          foreground="light_grey"/>
   <style name="xml:element-name"            foreground="teal_blue"/>
