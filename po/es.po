@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-05 12:00+0000\n"
-"PO-Revision-Date: 2014-02-05 16:40+0100\n"
+"POT-Creation-Date: 2014-02-05 22:37+0000\n"
+"PO-Revision-Date: 2014-02-06 09:52+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -113,8 +113,9 @@ msgstr "Todo"
 #: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
-msgid "Sources"
-msgstr "Fuentes"
+#| msgid "Sources"
+msgid "Source"
+msgstr "Fuente"
 
 #: ../data/language-specs/actionscript.lang.h:2
 msgid "ActionScript"
@@ -623,8 +624,9 @@ msgstr "Sustitución"
 #: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
 #: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-msgid "Scripts"
-msgstr "Scripts"
+#| msgid "Scripts"
+msgid "Script"
+msgstr "Script"
 
 #: ../data/language-specs/awk.lang.h:2
 msgid "awk"
@@ -816,17 +818,6 @@ msgstr "Operador de reorganización («swizzle»)"
 msgid "Builtin"
 msgstr "Integrado"
 
-#. *
-#. * SECTION:language
-#. * @Short_description: Object representing a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
-#. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
-#.
 #: ../data/language-specs/changelog.lang.h:1
 #: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
 #: ../data/language-specs/desktop.lang.h:1
@@ -840,11 +831,10 @@ msgstr "Integrado"
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
 #: ../data/language-specs/puppet.lang.h:1
-#: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:5
-#: ../data/language-specs/yacc.lang.h:1
-#: ../gtksourceview/gtksourcelanguage.c:55
-msgid "Others"
+#: ../data/language-specs/rpmspec.lang.h:1
+#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yacc.lang.h:1
+#: ../data/language-specs/yaml.lang.h:1
+msgid "Other"
 msgstr "Otros"
 
 #: ../data/language-specs/changelog.lang.h:2
@@ -859,7 +849,7 @@ msgstr "Fecha"
 #. Translators: the name of a person, not an object.
 #. names, e.g., name of package, name of environment, name of class
 #: ../data/language-specs/changelog.lang.h:5
-#: ../data/language-specs/latex.lang.h:19
+#: ../data/language-specs/latex.lang.h:20
 msgid "Name"
 msgstr "Nombre"
 
@@ -1231,7 +1221,7 @@ msgid "DOS Batch"
 msgstr "Batch de DOS"
 
 #: ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/latex.lang.h:8
+#: ../data/language-specs/latex.lang.h:9
 msgid "Command"
 msgstr "Comando"
 
@@ -1812,53 +1802,53 @@ msgstr "Modo matemático"
 msgid "Inline Math Mode"
 msgstr "Modo matemático en línea"
 
-#: ../data/language-specs/latex.lang.h:6
+#. Translators: a math boundary in LaTeX, such as $, $$, \[ ... \], etc.
+#: ../data/language-specs/latex.lang.h:7
 msgid "Math Bound"
 msgstr "Límite matemático"
 
-#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/latex.lang.h:8
 #: ../data/language-specs/texinfo.lang.h:11
 msgid "Include"
 msgstr "Include"
 
-#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:10 ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
 msgstr "Verbatim"
 
-#: ../data/language-specs/latex.lang.h:10
+#: ../data/language-specs/latex.lang.h:11
 msgid "Special Character"
 msgstr "Carácter especial"
 
-#: ../data/language-specs/latex.lang.h:11
+#: ../data/language-specs/latex.lang.h:12
 msgid "Part Heading"
 msgstr "Encabezado de la parte"
 
-#: ../data/language-specs/latex.lang.h:12
+#: ../data/language-specs/latex.lang.h:13
 msgid "Chapter Heading"
 msgstr "Encabezado de capítulo"
 
-#: ../data/language-specs/latex.lang.h:13
+#: ../data/language-specs/latex.lang.h:14
 msgid "Section Heading"
 msgstr "Encabezado de sección"
 
-#: ../data/language-specs/latex.lang.h:14
+#: ../data/language-specs/latex.lang.h:15
 msgid "SubSection Heading"
 msgstr "Encabezado de subsección"
 
-#: ../data/language-specs/latex.lang.h:15
+#: ../data/language-specs/latex.lang.h:16
 msgid "SubSubSection Heading"
 msgstr "Encabezado de sub-subsección"
 
-#: ../data/language-specs/latex.lang.h:16
+#: ../data/language-specs/latex.lang.h:17
 msgid "Paragraph Heading"
 msgstr "Encabezado de párrafo"
 
-#: ../data/language-specs/latex.lang.h:17
+#: ../data/language-specs/latex.lang.h:18
 msgid "SubParagraph Heading"
 msgstr "Encabezado de subpárrafo"
 
 #: ../data/language-specs/lex.lang.h:2
-#| msgid "Hex"
 msgid "Lex"
 msgstr "Lex"
 
@@ -1867,7 +1857,6 @@ msgid "Token"
 msgstr "Token"
 
 #: ../data/language-specs/lex.lang.h:6
-#| msgid "Regular Expression"
 msgid "Expression"
 msgstr "Expresión"
 
@@ -2469,10 +2458,6 @@ msgstr "Modificador"
 msgid "Built In"
 msgstr "Integrado"
 
-#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yaml.lang.h:1
-msgid "Other"
-msgstr "Otros"
-
 #: ../data/language-specs/scala.lang.h:17
 msgid "XML Tag"
 msgstr "Etiqueta XML"
@@ -2493,6 +2478,22 @@ msgstr "sh"
 #: ../data/language-specs/sh.lang.h:9
 msgid "Variable Definition"
 msgstr "Definición de variable"
+
+#. *
+#. * SECTION:language
+#. * @Short_description: Object representing a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
+#. * particular language. Use #GtkSourceLanguageManager to obtain a
+#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
+#. * to a #GtkSourceBuffer.
+#.
+#: ../data/language-specs/sh.lang.h:10 ../data/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/gtksourcelanguage.c:55
+msgid "Others"
+msgstr "Otros"
 
 #: ../data/language-specs/sh.lang.h:11
 msgid "Common Commands"
@@ -2739,6 +2740,24 @@ msgstr "Oblivion"
 #: ../data/styles/oblivion.xml.h:2
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Esquema de colores oscuro usando la paleta de colores de Tango"
+
+#: ../data/styles/solarized-dark.xml.h:1
+msgid "Solarized Dark"
+msgstr "Solar oscuro"
+
+#: ../data/styles/solarized-dark.xml.h:2
+#| msgid "Color scheme using Tango color palette"
+msgid "Color scheme using Solarized dark color palette"
+msgstr "Esquema de colores usando la paleta de colores solar oscuro"
+
+#: ../data/styles/solarized-light.xml.h:1
+msgid "Solarized Light"
+msgstr "Solar claro"
+
+#: ../data/styles/solarized-light.xml.h:2
+#| msgid "Color scheme using Tango color palette"
+msgid "Color scheme using Solarized light color palette"
+msgstr "Esquema de colores usando la paleta de colores solar claro"
 
 #: ../data/styles/tango.xml.h:1
 msgid "Tango"
