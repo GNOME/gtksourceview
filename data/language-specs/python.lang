@@ -3,11 +3,12 @@
 
  This file is part of GtkSourceView
 
- Author: Gustavo Giráldez <gustavo.giraldez@gmx.net>
  Copyright (C) 2003 Gustavo Giráldez <gustavo.giraldez@gmx.net>
  Copyright (C) 2004 Benoît Dejean <TaZForEver@free.fr>
  Copyright (C) 2006 Steve Frécinaux <nud@apinc.org>
  Copyright (C) 2012 Stefano Palazzo <stefano-palazzo@ubuntu.com>
+ Copyright (C) 2014 Patryk Zawadzki <patrys@pld-linux.org>
+ Copyright (C) 2014 Sébastien Wilmet <swilmet@gnome.org>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -48,11 +49,21 @@
     <style id="builtin-constant"  _name="Builtin Constant"      map-to="def:special-constant"/>
     <style id="builtin-object"    _name="Builtin Object"        map-to="def:type"/>
     <style id="builtin-function"  _name="Builtin Function"      map-to="def:builtin"/>
+    <style id="function-name"     _name="Function Name"         map-to="def:function"/>
+    <style id="class-name"        _name="Class Name"            map-to="def:function"/>
+    <style id="decorator"         _name="Decorator"             map-to="def:preprocessor"/>
   </styles>
 
   <definitions>
     <define-regex id="identifier">[_a-zA-Z][_a-zA-Z0-9]*</define-regex>
     <define-regex id="number">[1-9][0-9]*</define-regex>
+
+    <define-regex id="identifier-path" extended="true">
+      (\%{identifier}\.)*\%{identifier}
+    </define-regex>
+    <define-regex id="relative-path" extended="true">
+      (\.*\%{identifier-path}|\.+)
+    </define-regex>
 
     <!-- http://docs.python.org/lib/typesseq-strings.html -->
     <context id="format" style-ref="format" extend-parent="false">
@@ -202,10 +213,54 @@
       <match>(?&lt;![\w\.])0[xX][0-9A-Fa-f]+[lL]?(?![\w\.])</match>
     </context>
 
+    <context id="module-handler-from">
+      <match extended="true">
+        (from)
+        \s+
+        (\%{relative-path})
+      </match>
+      <include>
+        <context sub-pattern="1" style-ref="module-handler"/>
+        <context sub-pattern="2" style-ref="class-name"/>
+      </include>
+    </context>
+
     <context id="module-handler" style-ref="module-handler">
       <keyword>import</keyword>
       <keyword>from</keyword>
       <keyword>as</keyword>
+    </context>
+
+    <!-- 'def' is also present in the 'keyword' context, but has a lower
+         priority, so 'def' is highlighted even if the function name doesn't match. -->
+    <context id="function-definition">
+      <match extended="true">
+        (def)
+        \s+
+        (\%{identifier})
+      </match>
+      <include>
+        <context sub-pattern="1" style-ref="keyword"/>
+        <context sub-pattern="2" style-ref="function-name"/>
+      </include>
+    </context>
+
+    <!-- 'class' is also present in the 'keyword' context, but has a lower
+         priority, so 'class' is highlighted even if the class name doesn't match. -->
+    <context id="class-definition">
+      <match extended="true">
+        (class)
+        \s+
+        (\%{identifier})
+      </match>
+      <include>
+        <context sub-pattern="1" style-ref="keyword"/>
+        <context sub-pattern="2" style-ref="class-name"/>
+      </include>
+    </context>
+
+    <context id="decorator" style-ref="decorator">
+      <match>@\%{identifier-path}</match>
     </context>
 
     <context id="keywords" style-ref="keyword">
@@ -400,7 +455,11 @@
         <context ref="decimal"/>
         <context ref="octal"/>
         <context ref="hex"/>
+        <context ref="module-handler-from"/>
         <context ref="module-handler"/>
+        <context ref="function-definition"/>
+        <context ref="class-definition"/>
+        <context ref="decorator"/>
         <context ref="keywords"/>
         <context ref="2x-only-keywords"/>
         <context ref="builtin-constants"/>
