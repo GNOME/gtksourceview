@@ -88,6 +88,20 @@
       </include>
     </context>
 
+    <!-- Embedded R Code (Sweave package) -->
+
+    <context id="R-block" class="no-spell-check">
+      <start>(\\begin)\{(Scode|Sinput|Soutput)\}</start>
+      <end>(\\end)\{(\%{2@start})\}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="common-commands"/>
+        <context sub-pattern="2" where="start" style-ref="name"/>
+        <context sub-pattern="1" where="end" style-ref="common-commands"/>
+        <context sub-pattern="2" where="end" style-ref="name"/>
+        <context ref="r:r"/>
+      </include>
+    </context>
+
     <!--using brackets is an experimental feature from the listings package. The
         following must support these cases:
 
@@ -564,6 +578,7 @@
       <include>
         <context ref="comment"/>
         <context ref="verbatim"/>
+        <context ref="R-block"/>
         <context ref="headings"/>
         <context ref="math"/>
         <context ref="specific-commands"/>
