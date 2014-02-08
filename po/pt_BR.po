@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-06 14:51+0000\n"
-"PO-Revision-Date: 2014-02-06 16:14-0300\n"
+"POT-Creation-Date: 2014-02-08 16:18+0000\n"
+"PO-Revision-Date: 2014-02-08 17:09-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -127,7 +127,6 @@ msgstr "Todas"
 #: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
-#| msgid "Sources"
 msgid "Source"
 msgstr "Fonte"
 
@@ -170,7 +169,8 @@ msgstr "ActionScript"
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
-#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:3
+#: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
+#: ../data/language-specs/texinfo.lang.h:3
 #: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
 #: ../data/language-specs/verilog.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
@@ -646,7 +646,6 @@ msgstr "Substituição"
 #: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
 #: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-#| msgid "Scripts"
 msgid "Script"
 msgstr "Script"
 
@@ -711,8 +710,9 @@ msgstr "Número hexadecimal"
 #: ../data/language-specs/markdown.lang.h:1
 #: ../data/language-specs/mediawiki.lang.h:1
 #: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/rst.lang.h:1
-#: ../data/language-specs/t2t.lang.h:1 ../data/language-specs/texinfo.lang.h:1
-#: ../data/language-specs/xml.lang.h:1 ../data/language-specs/xslt.lang.h:1
+#: ../data/language-specs/sweave.lang.h:1 ../data/language-specs/t2t.lang.h:1
+#: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
+#: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:249
 #: ../gtksourceview/gtksourcegutterrenderertext.c:391
 msgid "Markup"
@@ -872,7 +872,7 @@ msgstr "Data"
 #. Translators: the name of a person, not an object.
 #. names, e.g., name of package, name of environment, name of class
 #: ../data/language-specs/changelog.lang.h:5
-#: ../data/language-specs/latex.lang.h:20
+#: ../data/language-specs/latex.lang.h:19
 msgid "Name"
 msgstr "Nome"
 
@@ -1244,7 +1244,8 @@ msgid "DOS Batch"
 msgstr "Batch do DOS"
 
 #: ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/latex.lang.h:8
+#: ../data/language-specs/sweave.lang.h:4
 msgid "Command"
 msgstr "Comando"
 
@@ -1826,54 +1827,54 @@ msgstr "Modo matemático"
 msgid "Inline Math Mode"
 msgstr "Modo de matemática embutido"
 
-#. Translators: a math boundary in LaTeX, such as $, $$, \[ ... \], etc.
-#: ../data/language-specs/latex.lang.h:7
-msgid "Math Bound"
+#: ../data/language-specs/latex.lang.h:6
+#| msgid "Math Bound"
+msgid "Math Boundary"
 msgstr "Limite matemático"
 
-#: ../data/language-specs/latex.lang.h:8
+#: ../data/language-specs/latex.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:11
 msgid "Include"
 msgstr "Incluir"
 
-#: ../data/language-specs/latex.lang.h:10 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/sweave.lang.h:5 ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
 msgstr "Verbatim"
 
-#: ../data/language-specs/latex.lang.h:11
+#: ../data/language-specs/latex.lang.h:10
 msgid "Special Character"
 msgstr "Caractere especial"
 
-#: ../data/language-specs/latex.lang.h:12
+#: ../data/language-specs/latex.lang.h:11
 msgid "Part Heading"
 msgstr "Título de parte"
 
-#: ../data/language-specs/latex.lang.h:13
+#: ../data/language-specs/latex.lang.h:12
 msgid "Chapter Heading"
 msgstr "Título de capítulo"
 
-#: ../data/language-specs/latex.lang.h:14
+#: ../data/language-specs/latex.lang.h:13
 msgid "Section Heading"
 msgstr "Título de seção"
 
-#: ../data/language-specs/latex.lang.h:15
+#: ../data/language-specs/latex.lang.h:14
 msgid "SubSection Heading"
 msgstr "Título de subseção"
 
-#: ../data/language-specs/latex.lang.h:16
+#: ../data/language-specs/latex.lang.h:15
 msgid "SubSubSection Heading"
 msgstr "Título de subsubseção"
 
-#: ../data/language-specs/latex.lang.h:17
+#: ../data/language-specs/latex.lang.h:16
 msgid "Paragraph Heading"
 msgstr "Título de parágrafo"
 
-#: ../data/language-specs/latex.lang.h:18
+#: ../data/language-specs/latex.lang.h:17
 msgid "SubParagraph Heading"
 msgstr "Título de subparágrafo"
 
 #: ../data/language-specs/lex.lang.h:2
-#| msgid "Hex"
 msgid "Lex"
 msgstr "Lex"
 
@@ -1882,7 +1883,6 @@ msgid "Token"
 msgstr "Token"
 
 #: ../data/language-specs/lex.lang.h:6
-#| msgid "Regular Expression"
 msgid "Expression"
 msgstr "Expressão"
 
@@ -1895,7 +1895,6 @@ msgid "LLVM IR"
 msgstr "LLVM IR"
 
 #: ../data/language-specs/llvm.lang.h:7
-#| msgid "Constant"
 msgid "Constants"
 msgstr "Constantes"
 
@@ -2386,12 +2385,10 @@ msgid "String Conversion"
 msgstr "Conversão de string"
 
 #: ../data/language-specs/python.lang.h:20
-#| msgid "Class names"
 msgid "Class Name"
 msgstr "Nome da classe"
 
 #: ../data/language-specs/python.lang.h:21
-#| msgid "Operator"
 msgid "Decorator"
 msgstr "Decorador"
 
@@ -2588,6 +2585,10 @@ msgstr "SQL"
 #: ../data/language-specs/sql.lang.h:10
 msgid "No idea what it is"
 msgstr "Não faço idéia"
+
+#: ../data/language-specs/sweave.lang.h:2
+msgid "Sweave"
+msgstr "Sweave"
 
 #: ../data/language-specs/systemverilog.lang.h:2
 msgid "SystemVerilog"
@@ -2792,7 +2793,6 @@ msgid "Solarized Dark"
 msgstr "Solarizado escuro"
 
 #: ../data/styles/solarized-dark.xml.h:2
-#| msgid "Color scheme using Tango color palette"
 msgid "Color scheme using Solarized dark color palette"
 msgstr "Esquema de cor usando a paleta de cor solarizado escuro"
 
@@ -2801,7 +2801,6 @@ msgid "Solarized Light"
 msgstr "Solarizado claro"
 
 #: ../data/styles/solarized-light.xml.h:2
-#| msgid "Color scheme using Tango color palette"
 msgid "Color scheme using Solarized light color palette"
 msgstr "Esquema de cor usando a paleta de cor solarizado claro"
 
