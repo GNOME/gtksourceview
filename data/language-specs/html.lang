@@ -167,14 +167,15 @@
     <context id="generic-tag">
       <include>
         <!-- Attribute in the form: name="value" -->
-        <context id="attrib-quoted" style-ref="attrib-name" class="no-spell-check">
+        <context id="attrib-quoted" class="no-spell-check">
           <start extended="true">
-            [A-Za-z0-9:_-]+ # attribute name
-            \s*=\s*         # "="
-            (\")            # string beginning
+            ([A-Za-z0-9:_-]+ # attribute name
+            \s*=\s*)         # "="
+            (\")             # string beginning
           </start>
           <include>
-            <context sub-pattern="1" where="start" style-ref="attrib-value"/>
+            <context sub-pattern="1" where="start" style-ref="attrib-name"/>
+            <context sub-pattern="2" where="start" style-ref="attrib-value"/>
             <context id="string" end-parent="true" end-at-line-end="true" style-ref="attrib-value" class="string" class-disabled="no-spell-check">
               <start>\%{def:always-match}</start>
               <end>\"</end>
