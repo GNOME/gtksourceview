@@ -198,6 +198,7 @@
             <context sub-pattern="0" where="start" style-ref="attrib-name"/>
             <context ref="xml:entity"/>
             <context ref="xml:character-reference"/>
+            <context ref="embedded-lang-hook"/>
           </include>
         </context>
 
