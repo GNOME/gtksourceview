@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-01-05 14:31+0000\n"
-"PO-Revision-Date: 2014-01-19 15:26+0100\n"
+"POT-Creation-Date: 2014-02-08 10:37+0000\n"
+"PO-Revision-Date: 2014-02-08 12:03+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -81,7 +81,7 @@ msgstr "Koncové"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:764
+#: ../gtksourceview/gtksourcecompletion.c:789
 msgid "All"
 msgstr "Vše"
 
@@ -104,7 +104,9 @@ msgstr "Vše"
 #: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
 #: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/j.lang.h:1 ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
+#: ../data/language-specs/llvm.lang.h:1
+#: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
@@ -119,8 +121,8 @@ msgstr "Vše"
 #: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
-msgid "Sources"
-msgstr "Zdrojové kódy"
+msgid "Source"
+msgstr "Zdrojový kód"
 
 #: ../data/language-specs/actionscript.lang.h:2
 msgid "ActionScript"
@@ -146,7 +148,8 @@ msgstr "ActionScript"
 #: ../data/language-specs/idl-exelis.lang.h:3
 #: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
 #: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/llvm.lang.h:3 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/modelica.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/netrexx.lang.h:6
@@ -208,7 +211,8 @@ msgstr "Chyba"
 #: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
+#: ../data/language-specs/lua.lang.h:4
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4
@@ -284,7 +288,8 @@ msgstr "Deklarace oboru platnosti"
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
 #: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lex.lang.h:4
+#: ../data/language-specs/llvm.lang.h:5 ../data/language-specs/lua.lang.h:5
 #: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/modelica.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:8
@@ -334,7 +339,8 @@ msgstr "Nenastavená hodnota"
 #: ../data/language-specs/def.lang.h:34
 #: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
 #: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/java.lang.h:14 ../data/language-specs/llvm.lang.h:11
+#: ../data/language-specs/lua.lang.h:10
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
 #: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:17
@@ -352,6 +358,7 @@ msgstr "Pravdivostní hodnota"
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
+#: ../data/language-specs/llvm.lang.h:12
 #: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/scala.lang.h:12
@@ -383,6 +390,7 @@ msgstr "Budoucí rezervovaná slova"
 #: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
 #: ../data/language-specs/java.lang.h:17
 #: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/llvm.lang.h:10
 #: ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
 #: ../data/language-specs/ocaml.lang.h:12 ../data/language-specs/ocl.lang.h:7
@@ -507,6 +515,7 @@ msgstr "Konstanta"
 #: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
 #: ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/llvm.lang.h:8
 #: ../data/language-specs/makefile.lang.h:3
 #: ../data/language-specs/nsis.lang.h:6
 #: ../data/language-specs/octave.lang.h:14
@@ -548,7 +557,8 @@ msgstr "ASP"
 #: ../data/language-specs/gtk-doc.lang.h:10
 #: ../data/language-specs/idl-exelis.lang.h:10
 #: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/lua.lang.h:8 ../data/language-specs/scheme.lang.h:7
+#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
 #: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
 msgid "Function"
@@ -629,14 +639,14 @@ msgstr "Substituce"
 #: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
 #: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-msgid "Scripts"
-msgstr "Skripty"
+msgid "Script"
+msgstr "Skript"
 
 #: ../data/language-specs/awk.lang.h:2
 msgid "awk"
 msgstr "awk"
 
-#: ../data/language-specs/awk.lang.h:4
+#: ../data/language-specs/awk.lang.h:4 ../data/language-specs/lex.lang.h:5
 msgid "Pattern"
 msgstr "Vzor"
 
@@ -655,7 +665,8 @@ msgstr "BennuGD"
 
 #. Any variable name
 #: ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/def.lang.h:36 ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/def.lang.h:36 ../data/language-specs/llvm.lang.h:9
+#: ../data/language-specs/php.lang.h:6
 msgid "Identifier"
 msgstr "Identifikátor"
 
@@ -822,17 +833,6 @@ msgstr "Operátor swizzle"
 msgid "Builtin"
 msgstr "Vestavěné"
 
-#. *
-#. * SECTION:language
-#. * @Short_description: Object representing a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
-#. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
-#.
 #: ../data/language-specs/changelog.lang.h:1
 #: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
 #: ../data/language-specs/desktop.lang.h:1
@@ -846,12 +846,11 @@ msgstr "Vestavěné"
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
 #: ../data/language-specs/puppet.lang.h:1
-#: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:5
-#: ../data/language-specs/yacc.lang.h:1
-#: ../gtksourceview/gtksourcelanguage.c:55
-msgid "Others"
-msgstr "Jiné"
+#: ../data/language-specs/rpmspec.lang.h:1
+#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yacc.lang.h:1
+#: ../data/language-specs/yaml.lang.h:1
+msgid "Other"
+msgstr "Ostatní"
 
 #: ../data/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
@@ -865,7 +864,7 @@ msgstr "Datum"
 #. Translators: the name of a person, not an object.
 #. names, e.g., name of package, name of environment, name of class
 #: ../data/language-specs/changelog.lang.h:5
-#: ../data/language-specs/latex.lang.h:19
+#: ../data/language-specs/latex.lang.h:20
 msgid "Name"
 msgstr "Název"
 
@@ -1237,7 +1236,7 @@ msgid "DOS Batch"
 msgstr "Dávka systému DOS"
 
 #: ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/latex.lang.h:8
+#: ../data/language-specs/latex.lang.h:9
 msgid "Command"
 msgstr "Příkaz"
 
@@ -1509,6 +1508,7 @@ msgid "Inline Documentation Section"
 msgstr "Oddíl řádkové dokumentace"
 
 #: ../data/language-specs/gtk-doc.lang.h:4
+#: ../data/language-specs/python.lang.h:19
 msgid "Function Name"
 msgstr "Název funkce"
 
@@ -1818,54 +1818,75 @@ msgstr "Matematický režim"
 msgid "Inline Math Mode"
 msgstr "Vložený matematický režim"
 
-#: ../data/language-specs/latex.lang.h:6
+#. Translators: a math boundary in LaTeX, such as $, $$, \[ ... \], etc.
+#: ../data/language-specs/latex.lang.h:7
 msgid "Math Bound"
 msgstr "Hranice matematického výrazu"
 
-#: ../data/language-specs/latex.lang.h:7
+#: ../data/language-specs/latex.lang.h:8
 #: ../data/language-specs/texinfo.lang.h:11
 msgid "Include"
 msgstr "Include"
 
-#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:10 ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
 msgstr "Doslovně"
 
-#: ../data/language-specs/latex.lang.h:10
+#: ../data/language-specs/latex.lang.h:11
 msgid "Special Character"
 msgstr "Speciální znak"
 
-#: ../data/language-specs/latex.lang.h:11
+#: ../data/language-specs/latex.lang.h:12
 msgid "Part Heading"
 msgstr "Nadpis části"
 
-#: ../data/language-specs/latex.lang.h:12
+#: ../data/language-specs/latex.lang.h:13
 msgid "Chapter Heading"
 msgstr "Nadpis kapitoly"
 
-#: ../data/language-specs/latex.lang.h:13
+#: ../data/language-specs/latex.lang.h:14
 msgid "Section Heading"
 msgstr "Nadpis oddílu"
 
-#: ../data/language-specs/latex.lang.h:14
+#: ../data/language-specs/latex.lang.h:15
 msgid "SubSection Heading"
 msgstr "Nadpis pododdílu"
 
-#: ../data/language-specs/latex.lang.h:15
+#: ../data/language-specs/latex.lang.h:16
 msgid "SubSubSection Heading"
 msgstr "Nadpis podpododdílu"
 
-#: ../data/language-specs/latex.lang.h:16
+#: ../data/language-specs/latex.lang.h:17
 msgid "Paragraph Heading"
 msgstr "Nadpis odstavce"
 
-#: ../data/language-specs/latex.lang.h:17
+#: ../data/language-specs/latex.lang.h:18
 msgid "SubParagraph Heading"
 msgstr "Nadpis pododstavce"
+
+#: ../data/language-specs/lex.lang.h:2
+msgid "Lex"
+msgstr "Lex"
+
+#: ../data/language-specs/lex.lang.h:3
+msgid "Token"
+msgstr "Symbol"
+
+#: ../data/language-specs/lex.lang.h:6
+msgid "Expression"
+msgstr "Výraz"
 
 #: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "libtool"
+
+#: ../data/language-specs/llvm.lang.h:2
+msgid "LLVM IR"
+msgstr "LLVM IR"
+
+#: ../data/language-specs/llvm.lang.h:7
+msgid "Constants"
+msgstr "Konstanty"
 
 #: ../data/language-specs/lua.lang.h:2
 msgid "Lua"
@@ -2352,6 +2373,14 @@ msgstr "Python"
 msgid "String Conversion"
 msgstr "Převod řetězce"
 
+#: ../data/language-specs/python.lang.h:20
+msgid "Class Name"
+msgstr "Názvy třídy"
+
+#: ../data/language-specs/python.lang.h:21
+msgid "Decorator"
+msgstr "Dekorátor"
+
 #: ../data/language-specs/R.lang.h:2
 msgid "R"
 msgstr "R"
@@ -2421,7 +2450,6 @@ msgid "Email"
 msgstr "E-mail"
 
 #: ../data/language-specs/rst.lang.h:2
-#| msgid "Structural Elements"
 msgid "reStructuredText"
 msgstr "reStructuredText"
 
@@ -2462,10 +2490,6 @@ msgstr "Modifikátor"
 msgid "Built In"
 msgstr "Vestavěné"
 
-#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yaml.lang.h:1
-msgid "Other"
-msgstr "Ostatní"
-
 #: ../data/language-specs/scala.lang.h:17
 msgid "XML Tag"
 msgstr "Značka XML"
@@ -2486,6 +2510,22 @@ msgstr "sh"
 #: ../data/language-specs/sh.lang.h:9
 msgid "Variable Definition"
 msgstr "Definice proměnné"
+
+#. *
+#. * SECTION:language
+#. * @Short_description: Object representing a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
+#. * particular language. Use #GtkSourceLanguageManager to obtain a
+#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
+#. * to a #GtkSourceBuffer.
+#.
+#: ../data/language-specs/sh.lang.h:10 ../data/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/gtksourcelanguage.c:55
+msgid "Others"
+msgstr "Jiné"
 
 #: ../data/language-specs/sh.lang.h:11
 msgid "Common Commands"
@@ -2733,6 +2773,22 @@ msgstr "Oblivion"
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Tmavé barevné schéma dle barevné palety Tango"
 
+#: ../data/styles/solarized-dark.xml.h:1
+msgid "Solarized Dark"
+msgstr "Osluněná tmavá"
+
+#: ../data/styles/solarized-dark.xml.h:2
+msgid "Color scheme using Solarized dark color palette"
+msgstr "Barevné schéma využívající barevnou paletu Osluněná tmavá"
+
+#: ../data/styles/solarized-light.xml.h:1
+msgid "Solarized Light"
+msgstr "Osluněná světlá"
+
+#: ../data/styles/solarized-light.xml.h:2
+msgid "Color scheme using Solarized light color palette"
+msgstr "Barevné schéma využívající barevnou paletu Osluněná světlá"
+
 #: ../data/styles/tango.xml.h:1
 msgid "Tango"
 msgstr "Tango"
@@ -2813,151 +2869,151 @@ msgstr "Aktivace"
 msgid "The type of activation"
 msgstr "Typ aktivace"
 
-#: ../gtksourceview/gtksourcebuffer.c:294
+#: ../gtksourceview/gtksourcebuffer.c:299
 #: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Zvýrazňovat syntaxi"
 
-#: ../gtksourceview/gtksourcebuffer.c:295
+#: ../gtksourceview/gtksourcebuffer.c:300
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Zda zvýrazňovat syntax ve vyrovnávací paměti"
 
-#: ../gtksourceview/gtksourcebuffer.c:308
+#: ../gtksourceview/gtksourcebuffer.c:313
 msgid "Highlight Matching Brackets"
 msgstr "Zvýrazňovat odpovídající závorky"
 
-#: ../gtksourceview/gtksourcebuffer.c:309
+#: ../gtksourceview/gtksourcebuffer.c:314
 msgid "Whether to highlight matching brackets"
 msgstr "Zda zvýrazňovat závorky, které si odpovídají"
 
-#: ../gtksourceview/gtksourcebuffer.c:322
+#: ../gtksourceview/gtksourcebuffer.c:327
 #: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Maximum Undo Levels"
 msgstr "Maximum úrovní vracení zpět"
 
-#: ../gtksourceview/gtksourcebuffer.c:323
+#: ../gtksourceview/gtksourcebuffer.c:328
 #: ../gtksourceview/gtksourceundomanagerdefault.c:415
 msgid "Number of undo levels for the buffer"
 msgstr "Počet kroků, o které se lze ve vyrovnávací paměti vrátit zpět"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:335
+#: ../gtksourceview/gtksourcebuffer.c:340
 msgid "Language"
 msgstr "Jazyk"
 
-#: ../gtksourceview/gtksourcebuffer.c:336
+#: ../gtksourceview/gtksourcebuffer.c:341
 msgid "Language object to get highlighting patterns from"
 msgstr "Objekt jazyka, ze kterého se mají brát vzory pro zvýrazňovací"
 
-#: ../gtksourceview/gtksourcebuffer.c:344
+#: ../gtksourceview/gtksourcebuffer.c:349
 msgid "Can undo"
 msgstr "Lze vrátit"
 
-#: ../gtksourceview/gtksourcebuffer.c:345
+#: ../gtksourceview/gtksourcebuffer.c:350
 msgid "Whether Undo operation is possible"
 msgstr "Zdali je možné provádět vracení zpět"
 
-#: ../gtksourceview/gtksourcebuffer.c:352
+#: ../gtksourceview/gtksourcebuffer.c:357
 msgid "Can redo"
 msgstr "Lze zopakovat"
 
-#: ../gtksourceview/gtksourcebuffer.c:353
+#: ../gtksourceview/gtksourcebuffer.c:358
 msgid "Whether Redo operation is possible"
 msgstr "Zdali je možné provádět opakování vrácených úkonů"
 
-#: ../gtksourceview/gtksourcebuffer.c:367
-#: ../gtksourceview/gtksourcebuffer.c:368
+#: ../gtksourceview/gtksourcebuffer.c:372
+#: ../gtksourceview/gtksourcebuffer.c:373
 msgid "Style scheme"
 msgstr "Schéma stylu"
 
-#: ../gtksourceview/gtksourcebuffer.c:375
+#: ../gtksourceview/gtksourcebuffer.c:380
 msgid "Undo manager"
 msgstr "Správce vracení akcí"
 
-#: ../gtksourceview/gtksourcebuffer.c:376
+#: ../gtksourceview/gtksourcebuffer.c:381
 msgid "The buffer undo manager"
 msgstr "Správce vyrovnávací paměti pro vracení akcí"
 
-#: ../gtksourceview/gtksourcecompletion.c:1789
-#: ../gtksourceview/gtksourcegutter.c:534
+#: ../gtksourceview/gtksourcecompletion.c:2163
+#: ../gtksourceview/gtksourcegutter.c:510
 msgid "View"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:1790
+#: ../gtksourceview/gtksourcecompletion.c:2164
 msgid "The GtkSourceView bound to the completion"
 msgstr "Objekt GtkSourceView vázající se k dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:1804
+#: ../gtksourceview/gtksourcecompletion.c:2178
 msgid "Remember Info Visibility"
 msgstr "Zapamatovat viditelnost informací"
 
-#: ../gtksourceview/gtksourcecompletion.c:1805
+#: ../gtksourceview/gtksourcecompletion.c:2179
 msgid "Remember the last info window visibility state"
 msgstr "Zapamatovat poslední stav viditelnosti okna s informacemi"
 
-#: ../gtksourceview/gtksourcecompletion.c:1817
+#: ../gtksourceview/gtksourcecompletion.c:2191
 msgid "Select on Show"
 msgstr "Vybrat po zobrazení"
 
-#: ../gtksourceview/gtksourcecompletion.c:1818
+#: ../gtksourceview/gtksourcecompletion.c:2192
 msgid "Select first proposal when completion is shown"
 msgstr "Po zobrazení dokončování označit první návrh jako vybraný"
 
-#: ../gtksourceview/gtksourcecompletion.c:1831
+#: ../gtksourceview/gtksourcecompletion.c:2205
 msgid "Show Headers"
 msgstr "Zobrazovat hlavičky"
 
-#: ../gtksourceview/gtksourcecompletion.c:1832
+#: ../gtksourceview/gtksourcecompletion.c:2206
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Zobrazovat hlavičky poskytovatele, když jsou dostupné návrhy od více "
 "poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:1845
+#: ../gtksourceview/gtksourcecompletion.c:2219
 msgid "Show Icons"
 msgstr "Zobrazovat ikony"
 
-#: ../gtksourceview/gtksourcecompletion.c:1846
+#: ../gtksourceview/gtksourcecompletion.c:2220
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Zobrazovat ikony návrhu a poskytovatele ve vyskakovací nabídce dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:1860
+#: ../gtksourceview/gtksourcecompletion.c:2234
 msgid "Accelerators"
 msgstr "Klávesové zkratky"
 
-#: ../gtksourceview/gtksourcecompletion.c:1861
+#: ../gtksourceview/gtksourcecompletion.c:2235
 msgid "Number of proposal accelerators to show"
 msgstr "Počet klávesových zkratek návrhů, které se mají zobrazit"
 
-#: ../gtksourceview/gtksourcecompletion.c:1876
+#: ../gtksourceview/gtksourcecompletion.c:2250
 msgid "Auto Complete Delay"
 msgstr "Zpoždění automatického dokončování"
 
-#: ../gtksourceview/gtksourcecompletion.c:1877
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Completion popup delay for interactive completion"
 msgstr "Prodleva než vyskočí nabídka interaktivního dokončování slov"
 
-#: ../gtksourceview/gtksourcecompletion.c:1893
+#: ../gtksourceview/gtksourcecompletion.c:2267
 msgid "Provider Page Size"
 msgstr "Délka stránky poskytovatelů"
 
-#: ../gtksourceview/gtksourcecompletion.c:1894
+#: ../gtksourceview/gtksourcecompletion.c:2268
 msgid "Provider scrolling page size"
 msgstr "Délka posuvné stránky s poskytovateli"
 
-#: ../gtksourceview/gtksourcecompletion.c:1914
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Proposal Page Size"
 msgstr "Délka stránky návrhů"
 
-#: ../gtksourceview/gtksourcecompletion.c:1915
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Proposal scrolling page size"
 msgstr "Délka posuvné stránky s návrhy"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:272
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:309
 msgid "Completion"
 msgstr "Dokončování"
 
@@ -3078,35 +3134,35 @@ msgstr "Chybí hlavní definice jazyka (id = „%s“)."
 #. Translators: gutters can be used to display information
 #. * on the left or on the right of the text view. To draw the
 #. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:538
+#: ../gtksourceview/gtksourcegutter.c:514
 msgid "The gutters' GtkSourceView"
 msgstr "Objekt GtkSourceView sloupců okolo textu"
 
-#: ../gtksourceview/gtksourcegutter.c:550
+#: ../gtksourceview/gtksourcegutter.c:526
 #: ../gtksourceview/gtksourcegutterrenderer.c:749
 msgid "Window Type"
 msgstr "Typ okna"
 
-#: ../gtksourceview/gtksourcegutter.c:551
+#: ../gtksourceview/gtksourcegutter.c:527
 msgid "The gutters' text window type"
 msgstr "Typ textového okna se sloupci okolo"
 
-#: ../gtksourceview/gtksourcegutter.c:567
+#: ../gtksourceview/gtksourcegutter.c:543
 #: ../gtksourceview/gtksourcegutterrenderer.c:525
 msgid "X Padding"
 msgstr "Odsazení X"
 
-#: ../gtksourceview/gtksourcegutter.c:568
+#: ../gtksourceview/gtksourcegutter.c:544
 #: ../gtksourceview/gtksourcegutterrenderer.c:526
 msgid "The x-padding"
 msgstr "Odsazení ve směru osy X"
 
-#: ../gtksourceview/gtksourcegutter.c:585
+#: ../gtksourceview/gtksourcegutter.c:561
 #: ../gtksourceview/gtksourcegutterrenderer.c:540
 msgid "Y Padding"
 msgstr "Odsazení Y"
 
-#: ../gtksourceview/gtksourcegutter.c:586
+#: ../gtksourceview/gtksourcegutter.c:562
 #: ../gtksourceview/gtksourcegutterrenderer.c:541
 msgid "The y-padding"
 msgstr "Odsazení ve směru osy Y"
@@ -3288,12 +3344,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Objekt GtkSourceBuffer k vytištění"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Tab Width"
 msgstr "Šířka tabulátoru"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:349
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Width of a tab character expressed in spaces"
 msgstr "Šířka tabulátoru v mezerách"
 
@@ -3382,44 +3438,44 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "užití \\C není podporováno v definici jazyka"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2753
+#: ../gtksourceview/gtksourcesearchcontext.c:2742
 #: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "Vyrovnávací paměť"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2754
+#: ../gtksourceview/gtksourcesearchcontext.c:2743
 msgid "The associated GtkSourceBuffer"
 msgstr "Přidružený objekt GtkSourceBuffer"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2768
+#: ../gtksourceview/gtksourcesearchcontext.c:2757
 msgid "Settings"
 msgstr "Nastavení"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2769
+#: ../gtksourceview/gtksourcesearchcontext.c:2758
 msgid "The associated GtkSourceSearchSettings"
 msgstr "Přidružený objekt GtkSourceSearchSettings"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2783
+#: ../gtksourceview/gtksourcesearchcontext.c:2772
 msgid "Highlight"
 msgstr "Zvýrazňování"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2784
+#: ../gtksourceview/gtksourcesearchcontext.c:2773
 msgid "Highlight search occurrences"
 msgstr "Zvýrazňovat nalezené výskyty"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2800
+#: ../gtksourceview/gtksourcesearchcontext.c:2789
 msgid "Occurrences count"
 msgstr "Počet nalezených výskytů"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2801
+#: ../gtksourceview/gtksourcesearchcontext.c:2790
 msgid "Total number of search occurrences"
 msgstr "Celkový počet nalezených výskytů"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2820
+#: ../gtksourceview/gtksourcesearchcontext.c:2809
 msgid "Regex error"
 msgstr "Chyba regex"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2821
+#: ../gtksourceview/gtksourcesearchcontext.c:2810
 msgid "Regular expression error"
 msgstr "Chyba regulárního výrazu"
 
@@ -3597,72 +3653,72 @@ msgstr "Seznam ID dostupných schémat stylů"
 msgid "The text buffer to add undo support on"
 msgstr "Textová vyrovnávací paměť přidávající podporu vracení akcí"
 
-#: ../gtksourceview/gtksourceview.c:311
+#: ../gtksourceview/gtksourceview.c:310
 msgid "The completion object associated with the view"
 msgstr "Objekt dokončování přidružený k zobrazení"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Show Line Numbers"
 msgstr "Zobrazovat čísla řádků"
 
-#: ../gtksourceview/gtksourceview.c:324
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Whether to display line numbers"
 msgstr "Zda zobrazovat čísla řádků"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Show Line Marks"
 msgstr "Zobrazovat značky řádků"
 
-#: ../gtksourceview/gtksourceview.c:336
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Whether to display line mark pixbufs"
 msgstr "Zda zobrazovat obrázkové značky řádků"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Indent Width"
 msgstr "Šířka odsazení"
 
-#: ../gtksourceview/gtksourceview.c:364
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Number of spaces to use for each step of indent"
 msgstr "Počet mezer, který se má použít na jeden stupeň odsazení"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Auto Indentation"
 msgstr "Automatické odsazování"
 
-#: ../gtksourceview/gtksourceview.c:374
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Whether to enable auto indentation"
 msgstr "Zda povolit automatické odsazování"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:380
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Vkládat mezery místo tabulátorů"
 
-#: ../gtksourceview/gtksourceview.c:382
+#: ../gtksourceview/gtksourceview.c:381
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Zda vkládat mezery místo tabulátorů"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:393
 msgid "Show Right Margin"
 msgstr "Zobrazovat pravý okraj"
 
-#: ../gtksourceview/gtksourceview.c:395
+#: ../gtksourceview/gtksourceview.c:394
 msgid "Whether to display the right margin"
 msgstr "Zda zobrazovat pravý okraj"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Right Margin Position"
 msgstr "Poloha pravého okraje"
 
-#: ../gtksourceview/gtksourceview.c:408
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Position of the right margin"
 msgstr "Poloha pravého okraje"
 
 # Upravil jsem predhozi preklad, verim, ze "chytre" je tedy na miste.
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:423
 msgid "Smart Home/End"
 msgstr "Chytré Home/End"
 
-#: ../gtksourceview/gtksourceview.c:425
+#: ../gtksourceview/gtksourceview.c:424
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3670,57 +3726,57 @@ msgstr ""
 "Klávesy HOME a END přesunují kurzor na první/poslední neprázdný znak řádku a "
 "až potom na začátek/konec řádku"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:434
 msgid "Highlight current line"
 msgstr "Zvýrazňovat aktuální řádek"
 
-#: ../gtksourceview/gtksourceview.c:436
+#: ../gtksourceview/gtksourceview.c:435
 msgid "Whether to highlight the current line"
 msgstr "Zda zvýrazňovat aktuální řádek"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:442
 msgid "Indent on tab"
 msgstr "Odsazení tabulátorem"
 
-#: ../gtksourceview/gtksourceview.c:444
+#: ../gtksourceview/gtksourceview.c:443
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Zda odsadit označený text při stisku tabulátoru"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Draw Spaces"
 msgstr "Vykreslovat mezery"
 
-#: ../gtksourceview/gtksourceview.c:459
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Set if and how the spaces should be visualized"
 msgstr "Nastavuje zda a jak by se měly zviditelnit mezery"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1351
+#: ../gtksourceview/gtksourceview.c:1272
 msgid "_Redo"
 msgstr "Zn_ovu"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1362
+#: ../gtksourceview/gtksourceview.c:1283
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: ../gtksourceview/gtksourceview.c:1380
+#: ../gtksourceview/gtksourceview.c:1301
 msgid "All _Upper Case"
 msgstr "Vše _velkými písmeny"
 
-#: ../gtksourceview/gtksourceview.c:1390
+#: ../gtksourceview/gtksourceview.c:1311
 msgid "All _Lower Case"
 msgstr "Vše ma_lými písmeny"
 
-#: ../gtksourceview/gtksourceview.c:1400
+#: ../gtksourceview/gtksourceview.c:1321
 msgid "_Invert Case"
 msgstr "Přehod_it velikost písmen"
 
-#: ../gtksourceview/gtksourceview.c:1410
+#: ../gtksourceview/gtksourceview.c:1331
 msgid "_Title Case"
 msgstr "_První písmena velká"
 
-#: ../gtksourceview/gtksourceview.c:1420
+#: ../gtksourceview/gtksourceview.c:1341
 msgid "C_hange Case"
 msgstr "Změni_t velikost písmen"
 
