@@ -164,15 +164,13 @@
       </include>
     </context>
 
+    <define-regex id="attribute-name">[a-z0-9:_-]+</define-regex>
+
     <context id="generic-tag">
       <include>
         <!-- Attribute in the form: name="value" -->
         <context id="attrib-quoted" class="no-spell-check">
-          <start extended="true">
-            ([A-Za-z0-9:_-]+ # attribute name
-            \s*=\s*)         # "="
-            (\")             # string beginning
-          </start>
+          <start>(\%{attribute-name}\s*=\s*)(\")</start>
           <include>
             <context sub-pattern="1" where="start" style-ref="attrib-name"/>
             <context sub-pattern="2" where="start" style-ref="attrib-value"/>
@@ -190,10 +188,7 @@
 
         <!-- Attribute in the form: name=value -->
         <context id="attrib-unquoted" style-ref="attrib-value" class="no-spell-check">
-          <start extended="true">
-            [a-z0-9:_-]+ # attribute name
-            \s*=\s*      # "="
-          </start>
+          <start>\%{attribute-name}\s*=\s*</start>
           <end>(?=&gt;|\s)</end>
           <include>
             <context sub-pattern="0" where="start" style-ref="attrib-name"/>
@@ -205,9 +200,7 @@
 
         <!-- Attribute in the form: name -->
         <context id="attrib-no-value" style-ref="attrib-name" class="no-spell-check">
-          <match extended="true">
-            [a-z0-9:_-]+  # attribute name
-          </match>
+          <match>\%{attribute-name}</match>
         </context>
 
         <context ref="embedded-lang-hook"/>
