@@ -52,73 +52,48 @@
  * @Title: GtkSourceBuffer
  * @See_also: #GtkTextBuffer, #GtkSourceView
  *
- * <para>
- *   The #GtkSourceBuffer object is the model for #GtkSourceView widgets.
- *   It extends the #GtkTextBuffer object by adding features useful to display
- *   and edit source code such as syntax highlighting and bracket matching. It
- *   also implements support for undo/redo operations, and for the search and
- *   replace.
- * </para>
- * <para>
- *   To create a #GtkSourceBuffer use gtk_source_buffer_new() or
- *   gtk_source_buffer_new_with_language(). The second form is just a convenience
- *   function which allows you to initially set a #GtkSourceLanguage.
- * </para>
- * <para>
- *   By default highlighting is enabled, but you can disable it with
- *   gtk_source_buffer_set_highlight_syntax().
- * </para>
- * <refsect2>
- *   <title>Undo and Redo</title>
- *   <para>
- *     A custom #GtkSourceUndoManager can be implemented and set with
- *     gtk_source_buffer_set_undo_manager(). However the default implementation
- *     should be suitable for most uses. By default, actions that can be undone or
- *     redone are defined as groups of operations between a call to
- *     gtk_text_buffer_begin_user_action() and gtk_text_buffer_end_user_action(). In
- *     general, this happens whenever the user presses any key which modifies the
- *     buffer. But the default undo manager will try to merge similar consecutive
- *     actions, such as multiple character insertions on the same line, into one
- *     action. But, inserting a newline starts a new action.
- *   </para>
- *   <para>
- *     The default undo manager remembers the "modified" state of the buffer, and
- *     restore it when an action is undone or redone. It can be useful in a text
- *     editor to know whether the file is saved. See gtk_text_buffer_get_modified()
- *     and gtk_text_buffer_set_modified().
- *   </para>
- * </refsect2>
- * <refsect2>
- *   <title>Context Classes</title>
- *   <para>
- *     It is possible to retrieve some information from the syntax highlighting
- *     engine. There are currently three default context classes that are
- *     applied to regions of a #GtkSourceBuffer:
- *   </para>
- *   <itemizedlist>
- *     <listitem>
- *       <para>
- *         <emphasis>comment</emphasis>: the region delimits a comment;
- *       </para>
- *     </listitem>
- *     <listitem>
- *       <para>
- *         <emphasis>string</emphasis>: the region delimits a string;
- *       </para>
- *     </listitem>
- *     <listitem>
- *       <para>
- *         <emphasis>no-spell-check</emphasis>: the region should not be spell
- *         checked.
- *       </para>
- *     </listitem>
- *   </itemizedlist>
- *   <para>
- *     Custom language definition files can create their own context classes,
- *     since the functions like gtk_source_buffer_iter_has_context_class() take
- *     a string parameter as the context class.
- *   </para>
- * </refsect2>
+ * The #GtkSourceBuffer object is the model for #GtkSourceView widgets.
+ * It extends the #GtkTextBuffer object by adding features useful to display
+ * and edit source code such as syntax highlighting and bracket matching. It
+ * also implements support for undo/redo operations, and for the search and
+ * replace.
+ *
+ * To create a #GtkSourceBuffer use gtk_source_buffer_new() or
+ * gtk_source_buffer_new_with_language(). The second form is just a convenience
+ * function which allows you to initially set a #GtkSourceLanguage.
+ *
+ * By default highlighting is enabled, but you can disable it with
+ * gtk_source_buffer_set_highlight_syntax().
+ *
+ * # Undo and Redo #
+ *
+ * A custom #GtkSourceUndoManager can be implemented and set with
+ * gtk_source_buffer_set_undo_manager(). However the default implementation
+ * should be suitable for most uses. By default, actions that can be undone or
+ * redone are defined as groups of operations between a call to
+ * gtk_text_buffer_begin_user_action() and gtk_text_buffer_end_user_action(). In
+ * general, this happens whenever the user presses any key which modifies the
+ * buffer. But the default undo manager will try to merge similar consecutive
+ * actions, such as multiple character insertions on the same line, into one
+ * action. But, inserting a newline starts a new action.
+ *
+ * The default undo manager remembers the "modified" state of the buffer, and
+ * restore it when an action is undone or redone. It can be useful in a text
+ * editor to know whether the file is saved. See gtk_text_buffer_get_modified()
+ * and gtk_text_buffer_set_modified().
+ *
+ * # Context Classes #
+ *
+ * It is possible to retrieve some information from the syntax highlighting
+ * engine. There are currently three default context classes that are
+ * applied to regions of a #GtkSourceBuffer:
+ *  - <emphasis>comment</emphasis>: the region delimits a comment;
+ *  - <emphasis>string</emphasis>: the region delimits a string;
+ *  - <emphasis>no-spell-check</emphasis>: the region should not be spell checked.
+ *
+ * Custom language definition files can create their own context classes,
+ * since the functions like gtk_source_buffer_iter_has_context_class() take
+ * a string parameter as the context class.
  */
 
 /*
