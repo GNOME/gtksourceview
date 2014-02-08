@@ -223,6 +223,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context sub-pattern="0" where="end" style-ref="tag"/>
+            <context ref="embedded-lang-hook"/>
             <context ref="css:css"/>
           </include>
         </context>
@@ -245,6 +246,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context sub-pattern="0" where="end" style-ref="tag"/>
+            <context ref="embedded-lang-hook"/>
             <context ref="js:js"/>
           </include>
         </context>
