@@ -35,7 +35,7 @@
   </styles>
 
   <definitions>
-    <context id="inline-R">
+    <context id="inline-R" class="no-spell-check">
       <match>(\\Sexpr)\{([^\}]*)\}</match>
       <include>
         <context sub-pattern="1" style-ref="command"/>
@@ -43,7 +43,7 @@
       </include>
     </context>
 
-    <context id="R-block">
+    <context id="R-block" class="no-spell-check">
       <start>^&lt;&lt;.*&gt;&gt;=</start>
       <end>@</end>
       <include>
