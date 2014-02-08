@@ -171,14 +171,13 @@
           <start extended="true">
             [A-Za-z0-9:_-]+ # attribute name
             \s*=\s*         # "="
-            (\")            # string beginning
           </start>
-          <end>\"</end>
           <include>
             <context sub-pattern="1" where="start" style-ref="attrib-value"/>
             <context sub-pattern="0" where="end" style-ref="attrib-value"/>
-            <context id="string" extend-parent="false" end-at-line-end="true" style-ref="attrib-value" class="string" class-disabled="no-spell-check">
-              <start>\%{def:always-match}</start>
+            <context id="string" end-parent="true" end-at-line-end="true" style-ref="attrib-value" class="string" class-disabled="no-spell-check">
+              <start>\"</start>
+              <end>\"</end>
               <include>
                 <context ref="xml:entity"/>
                 <context ref="xml:character-reference"/>
