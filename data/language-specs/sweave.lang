@@ -31,19 +31,19 @@
   <styles>
     <style id="comment"            _name="Comment"    map-to="latex:comment"/>
     <style id="command"            _name="Command"    map-to="latex:command"/>
-    <style id="verbatim"           _name="Command"    map-to="latex:verbatim"/>
+    <style id="verbatim"           _name="Verbatim"   map-to="latex:verbatim"/>
   </styles>
 
   <definitions>
     <context id="inline-R">
-      <match>(\\Sexpr)(\{)([^\}]*)(\})</match>
-        <include>
+      <match>(\\Sexpr)\{([^\}]*)\}</match>
+      <include>
         <context sub-pattern="1" style-ref="command"/>
-        <context sub-pattern="3" style-ref="verbatim"/>
+        <context sub-pattern="2" style-ref="verbatim"/>
       </include>
     </context>
 
-    <context id="R-block" extend-parent="false" style-inside="true">
+    <context id="R-block">
       <start>^&lt;&lt;.*&gt;&gt;=</start>
       <end>@</end>
       <include>
