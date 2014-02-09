@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
- Authors: Fernando Brito
- Copyright (C) 2010 Fernando Brito <email@fernandobrito.com>
+ Copyright (C) 2010 - Fernando Brito <email@fernandobrito.com>
+ Copyright (C) 2011 - Daniel Bader <bugs.bader@googlemail.com>
 
  Credits:
   Based on prolog.lang by Ignacio Casal Quinteiro <icq@gnome.org>
   Cobol keywords taken from cobol.vim by Tim Pope <vimNOSPAM@tpope.info>
+  and the COBOL2000 (BS2000) V1.2 compiler description by Fujitsu Siemens.
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -15,7 +16,7 @@
 
  GtkSourceView is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  Lesser General Public License for more details.
 
  You should have received a copy of the GNU Lesser General Public
@@ -23,10 +24,10 @@
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 -->
-<language id="cobol" _name="Cobol" version="2.0" _section="Source">
+<language id="cobol" _name="COBOL" version="2.0" _section="Source">
   <metadata>
     <property name="mimetype">text/x-cobol</property>
-    <property name="globs">*.cbl;*.cob</property>
+    <property name="globs">*.cbl;*.cob;*.cbd;*.cdb;*.cdc</property>
     <property name="line-comment-start">*</property>
   </metadata>
 
@@ -42,6 +43,8 @@
     <style id="error"             _name="Error"             map-to="def:error"/>
   </styles>
 
+  <default-regex-options case-sensitive="false"/>
+
   <definitions>
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>^\s{0,6}\*</start>
@@ -50,16 +53,19 @@
       </include>
     </context>
 
+    <!-- everything must start at the 8th column, except the line comment, that is indicated ONLY by a * in the 7th -->
     <context id="bad-ident" style-ref="error" end-at-line-end="true" class="error" class-disabled="no-spell-check">
-      <start>^\s{0,6}\w</start>      <!-- everything must start at the 8th column, except the line comment, that is indicated ONLY by a * in the 7th -->
+      <start>^\s{0,6}\w</start>
     </context>
 
+    <!-- http://docs.hp.com/en/65/books/lrintr.htm -->
     <context id="bad-long-line" style-ref="error">
-      <match>.{74,}</match>  <!-- http://docs.hp.com/en/65/books/lrintr.htm -->
+      <match>.{74,}</match>
     </context>
 
+    <!-- Credits: http://stackoverflow.com/questions/632475/regex-to-pick-commas-outside-of-quotes -->
     <context id="bad-comment-line" style-ref="error" end-at-line-end="true" class="error" class-disabled="no-spell-check">
-      <start>(\*)(?=(?:[^"']|["|'][^"']*")*$)</start> <!-- Credits: http://stackoverflow.com/questions/632475/regex-to-pick-commas-outside-of-quotes -->
+      <start>(\*)(?=(?:[^"']|["|'][^"']*")*$)</start>
     </context>
 
     <context id="variable" style-ref="variable">
@@ -83,355 +89,540 @@
     </context>
 
     <context id="constant" style-ref="constant">
-      <keyword>SPACE</keyword>
-      <keyword>SPACES</keyword>
-      <keyword>NULL</keyword>
-      <keyword>ZERO</keyword>
-      <keyword>ZEROES</keyword>
-      <keyword>ZEROS</keyword>
-      <keyword>LOW-VALUES</keyword>
-      <keyword>LOW-VALUE</keyword>
-      <keyword>HIGH-VALUES</keyword>
-      <keyword>HIGH-VALUE</keyword>
-      <keyword>QUOTE</keyword>
-      <keyword>QUOTES</keyword>
+      <keyword>space</keyword>
+      <keyword>spaces</keyword>
+      <keyword>null</keyword>
+      <keyword>zero</keyword>
+      <keyword>zeroes</keyword>
+      <keyword>zeros</keyword>
+      <keyword>low-values</keyword>
+      <keyword>low-value</keyword>
+      <keyword>high-values</keyword>
+      <keyword>high-value</keyword>
+      <keyword>quotes</keyword>
+      <keyword>quote</keyword>
     </context>
 
     <context id="keyword" style-ref="keyword">
-      <keyword>ACCEPT</keyword>
-      <keyword>ACCESS</keyword>
-      <keyword>ADD</keyword>
-      <keyword>ADDRESS</keyword>
-      <keyword>ADVANCING</keyword>
-      <keyword>AFTER</keyword>
-      <keyword>ALPHABET</keyword>
-      <keyword>ALPHABETIC</keyword>
-      <keyword>ALPHABETIC-LOWER</keyword>
-      <keyword>ALPHABETIC-UPPER</keyword>
-      <keyword>ALPHANUMERIC</keyword>
-      <keyword>ALPHANUMERIC-EDITED</keyword>
-      <keyword>ALS</keyword>
-      <keyword>ALTERNATE</keyword>
-      <keyword>AND</keyword>
-      <keyword>ANY</keyword>
-      <keyword>ARE</keyword>
-      <keyword>AREA</keyword>
-      <keyword>AREAS</keyword>
-      <keyword>ASCENDING</keyword>
-      <keyword>ASSIGN</keyword>
-      <keyword>AT</keyword>
-      <keyword>AUTHOR</keyword>
-      <keyword>BEFORE</keyword>
-      <keyword>BINARY</keyword>
-      <keyword>BLANK</keyword>
-      <keyword>BLOCK</keyword>
-      <keyword>BOTTOM</keyword>
-      <keyword>BY</keyword>
-      <keyword>CANCEL</keyword>
-      <keyword>CBLL</keyword>
-      <keyword>CD</keyword>
-      <keyword>CF</keyword>
-      <keyword>CH</keyword>
-      <keyword>CHARACTER</keyword>
-      <keyword>CHARACTERS</keyword>
-      <keyword>CLASS</keyword>
-      <keyword>CLOCK-UNITS</keyword>
-      <keyword>CLOSE</keyword>
-      <keyword>COBOL</keyword>
-      <keyword>CODE</keyword>
-      <keyword>CODE-SET</keyword>
-      <keyword>COLLATING</keyword>
-      <keyword>COLUMN</keyword>
-      <keyword>COMMA</keyword>
-      <keyword>COMMON</keyword>
-      <keyword>COMMUNICATIONS</keyword>
-      <keyword>COMPUTATIONAL</keyword>
-      <keyword>COMPUTE</keyword>
-      <keyword>CONTENT</keyword>
-      <keyword>CONTINUE</keyword>
-      <keyword>CONTROL</keyword>
-      <keyword>CONVERTING</keyword>
-      <keyword>CORR</keyword>
-      <keyword>CORRESPONDING</keyword>
-      <keyword>COUNT</keyword>
-      <keyword>CURRENCY</keyword>
-      <keyword>DATE</keyword>
-      <keyword>DATE-COMPILED</keyword>
-      <keyword>DATE-WRITTEN</keyword>
-      <keyword>DAY</keyword>
-      <keyword>DAY-OF-WEEK</keyword>
-      <keyword>DE</keyword>
-      <keyword>DEBUG-CONTENTS</keyword>
-      <keyword>DEBUG-ITEM</keyword>
-      <keyword>DEBUG-LINE</keyword>
-      <keyword>DEBUG-NAME</keyword>
-      <keyword>DEBUG-SUB-1</keyword>
-      <keyword>DEBUG-SUB-2</keyword>
-      <keyword>DEBUG-SUB-3</keyword>
-      <keyword>DEBUGGING</keyword>
-      <keyword>DECIMAL-POINT</keyword>
-      <keyword>DELARATIVES</keyword>
-      <keyword>DELETE</keyword>
-      <keyword>DELIMITED</keyword>
-      <keyword>DELIMITER</keyword>
-      <keyword>DEPENDING</keyword>
-      <keyword>DESCENDING</keyword>
-      <keyword>DESTINATION</keyword>
-      <keyword>DETAIL</keyword>
-      <keyword>DISABLE</keyword>
-      <keyword>DISPLAY</keyword>
-      <keyword>DIVIDE</keyword>
-      <keyword>DIVISION</keyword>
-      <keyword>DOWN</keyword>
-      <keyword>DUPLICATES</keyword>
-      <keyword>DYNAMIC</keyword>
-      <keyword>EGI</keyword>
-      <keyword>ELSE</keyword>
-      <keyword>EMI</keyword>
-      <keyword>ENABLE</keyword>
-      <keyword>END-ADD</keyword>
-      <keyword>END-COMPUTE</keyword>
-      <keyword>END-DELETE</keyword>
-      <keyword>END-DIVIDE</keyword>
-      <keyword>END-EVALUATE</keyword>
-      <keyword>END-MULTIPLY</keyword>
-      <keyword>END-OF-PAGE</keyword>
-      <keyword>END-READ</keyword>
-      <keyword>END-RECEIVE</keyword>
-      <keyword>END-RETURN</keyword>
-      <keyword>END-REWRITE</keyword>
-      <keyword>END-SEARCH</keyword>
-      <keyword>END-START</keyword>
-      <keyword>END-STRING</keyword>
-      <keyword>END-SUBTRACT</keyword>
-      <keyword>END-UNSTRING</keyword>
-      <keyword>END-WRITE</keyword>
-      <keyword>EQUAL</keyword>
-      <keyword>ERROR</keyword>
-      <keyword>ESI</keyword>
-      <keyword>EVALUATE</keyword>
-      <keyword>EVERY</keyword>
-      <keyword>EXCEPTION</keyword>
-      <keyword>EXIT</keyword>
-      <keyword>EXTEND</keyword>
-      <keyword>EXTERNAL</keyword>
-      <keyword>FALSE</keyword>
-      <keyword>FD</keyword>
-      <keyword>FILLER</keyword>
-      <keyword>FINAL</keyword>
-      <keyword>FIRST</keyword>
-      <keyword>FOOTING</keyword>
-      <keyword>FOR</keyword>
-      <keyword>FROM</keyword>
-      <keyword>GENERATE</keyword>
-      <keyword>GIVING</keyword>
-      <keyword>GLOBAL</keyword>
-      <keyword>GREATER</keyword>
-      <keyword>GROUP</keyword>
-      <keyword>HEADING</keyword>
-      <keyword>I-O</keyword>
-      <keyword>IN</keyword>
-      <keyword>INDEX</keyword>
-      <keyword>INDEXED</keyword>
-      <keyword>INDICATE</keyword>
-      <keyword>INITIAL</keyword>
-      <keyword>INITIALIZE</keyword>
-      <keyword>INITIATE</keyword>
-      <keyword>INPUT</keyword>
-      <keyword>INSPECT</keyword>
-      <keyword>INSTALLATION</keyword>
-      <keyword>INTO</keyword>
-      <keyword>IS</keyword>
-      <keyword>JUST</keyword>
-      <keyword>JUSTIFIED</keyword>
-      <keyword>KEY</keyword>
-      <keyword>LABEL</keyword>
-      <keyword>LAST</keyword>
-      <keyword>LEADING</keyword>
-      <keyword>LEFT</keyword>
-      <keyword>LENGTH</keyword>
-      <keyword>LOCK</keyword>
-      <keyword>MEMORY</keyword>
-      <keyword>MERGE</keyword>
-      <keyword>MESSAGE</keyword>
-      <keyword>MODE</keyword>
-      <keyword>MODULES</keyword>
-      <keyword>MOVE</keyword>
-      <keyword>MULTIPLE</keyword>
-      <keyword>MULTIPLY</keyword>
-      <keyword>NATIVE</keyword>
-      <keyword>NEGATIVE</keyword>
-      <keyword>NEXT</keyword>
-      <keyword>NO</keyword>
-      <keyword>NOT</keyword>
-      <keyword>NUMBER</keyword>
-      <keyword>NUMERIC</keyword>
-      <keyword>NUMERIC-EDITED</keyword>
-      <keyword>OCCURS</keyword>
-      <keyword>OF</keyword>
-      <keyword>OFF</keyword>
-      <keyword>OMITTED</keyword>
-      <keyword>ON</keyword>
-      <keyword>OPEN</keyword>
-      <keyword>OPTIONAL</keyword>
-      <keyword>OR</keyword>
-      <keyword>ORDER</keyword>
-      <keyword>ORGANIZATION</keyword>
-      <keyword>OTHER</keyword>
-      <keyword>OUTPUT</keyword>
-      <keyword>OVERFLOW</keyword>
-      <keyword>PACKED-DECIMAL</keyword>
-      <keyword>PADDING</keyword>
-      <keyword>PAGE</keyword>
-      <keyword>PAGE-COUNTER</keyword>
-      <keyword>PF</keyword>
-      <keyword>PH</keyword>
-      <keyword>PIC</keyword>
-      <keyword>PICTURE</keyword>
-      <keyword>PLUS</keyword>
-      <keyword>POINTER</keyword>
-      <keyword>POSITION</keyword>
-      <keyword>POSITIVE</keyword>
-      <keyword>PRINTING</keyword>
-      <keyword>PROCEDURES</keyword>
-      <keyword>PROCEDD</keyword>
-      <keyword>PROGRAM-ID</keyword>
-      <keyword>PROGRAM</keyword>
-      <keyword>PURGE</keyword>
-      <keyword>QUEUE</keyword>
-      <keyword>RANDOM</keyword>
-      <keyword>RD</keyword>
-      <keyword>READ</keyword>
-      <keyword>RECEIVE</keyword>
-      <keyword>RECORD</keyword>
-      <keyword>RECORDS</keyword>
-      <keyword>REDEFINES</keyword>
-      <keyword>REEL</keyword>
-      <keyword>REFERENCE</keyword>
-      <keyword>REFERENCES</keyword>
-      <keyword>RELATIVE</keyword>
-      <keyword>RELEASE</keyword>
-      <keyword>REMAINDER</keyword>
-      <keyword>REMOVAL</keyword>
-      <keyword>REPLACE</keyword>
-      <keyword>REPLACING</keyword>
-      <keyword>REPORT</keyword>
-      <keyword>REPORTING</keyword>
-      <keyword>REPORTS</keyword>
-      <keyword>RERUN</keyword>
-      <keyword>RESERVE</keyword>
-      <keyword>RESET</keyword>
-      <keyword>RETURN</keyword>
-      <keyword>RETURNING</keyword>
-      <keyword>REVERSED</keyword>
-      <keyword>REWIND</keyword>
-      <keyword>REWRITE</keyword>
-      <keyword>RF</keyword>
-      <keyword>RH</keyword>
-      <keyword>RIGHT</keyword>
-      <keyword>ROUNDED</keyword>
-      <keyword>RUN</keyword>
-      <keyword>SAME</keyword>
-      <keyword>SD</keyword>
-      <keyword>SEARCH</keyword>
-      <keyword>SECTION</keyword>
-      <keyword>SECURITY</keyword>
-      <keyword>SEGMENT-LIMITED</keyword>
-      <keyword>SEGMENT</keyword>
-      <keyword>SELECT</keyword>
-      <keyword>SEND</keyword>
-      <keyword>SENTENCE</keyword>
-      <keyword>SEPARATE</keyword>
-      <keyword>SEQUENCE</keyword>
-      <keyword>SEQUENTIAL</keyword>
-      <keyword>SET</keyword>
-      <keyword>SIGN</keyword>
-      <keyword>SIZE</keyword>
-      <keyword>SORT-MERGE</keyword>
-      <keyword>SORT</keyword>
-      <keyword>SOURCE-COMPUTER</keyword>
-      <keyword>SOURCE</keyword>
-      <keyword>STANDARD</keyword>
-      <keyword>STANDARD-1</keyword>
-      <keyword>STANDARD-2</keyword>
-      <keyword>START</keyword>
-      <keyword>STATUS</keyword>
-      <keyword>STOP</keyword>
-      <keyword>STRING</keyword>
-      <keyword>SUB-QUEUE-1</keyword>
-      <keyword>SUB-QUEUE-2</keyword>
-      <keyword>SUB-QUEUE-3</keyword>
-      <keyword>SUBTRACT</keyword>
-      <keyword>SUM</keyword>
-      <keyword>SUPPRESS</keyword>
-      <keyword>SYMBOLIC</keyword>
-      <keyword>SYNC</keyword>
-      <keyword>SYNCHRONIZED</keyword>
-      <keyword>TABLE</keyword>
-      <keyword>TALLYING</keyword>
-      <keyword>TAPE</keyword>
-      <keyword>TERMINAL</keyword>
-      <keyword>TERMINATE</keyword>
-      <keyword>TEST</keyword>
-      <keyword>TEXT</keyword>
-      <keyword>THAN</keyword>
-      <keyword>THEN</keyword>
-      <keyword>THROUGH</keyword>
-      <keyword>THRU</keyword>
-      <keyword>TIME</keyword>
-      <keyword>TIMES</keyword>
-      <keyword>TO</keyword>
-      <keyword>TOP</keyword>
-      <keyword>TRAILING</keyword>
-      <keyword>TRUE</keyword>
-      <keyword>TYPE</keyword>
-      <keyword>UNIT</keyword>
-      <keyword>UNSTRING</keyword>
-      <keyword>UNTIL</keyword>
-      <keyword>UP</keyword>
-      <keyword>UPON</keyword>
-      <keyword>USAGE</keyword>
-      <keyword>USE</keyword>
-      <keyword>USING</keyword>
-      <keyword>VALUE</keyword>
-      <keyword>VALUES</keyword>
-      <keyword>VARYING</keyword>
-      <keyword>WHEN</keyword>
-      <keyword>WITH</keyword>
-      <keyword>WORDS</keyword>
-      <keyword>WRITE</keyword>
-      <keyword>OBJECT-COMPUTER</keyword>
-      <keyword>SPECIAL-NAMES</keyword>
-      <keyword>FILE-CONTROL</keyword>
-      <keyword>I-O-CONTROL</keyword>
+      <keyword>accept</keyword>
+      <keyword>access</keyword>
+      <keyword>active-class</keyword>
+      <keyword>add</keyword>
+      <keyword>address</keyword>
+      <keyword>advancing</keyword>
+      <keyword>after</keyword>
+      <keyword>all</keyword>
+      <keyword>allocate</keyword>
+      <keyword>alphabet</keyword>
+      <keyword>alphabetic-lower</keyword>
+      <keyword>alphabetic-upper</keyword>
+      <keyword>alphabetic</keyword>
+      <keyword>alphanumeric-edited</keyword>
+      <keyword>alphanumeric</keyword>
+      <keyword>also</keyword>
+      <keyword>alter</keyword>
+      <keyword>alternate</keyword>
+      <keyword>and</keyword>
+      <keyword>any</keyword>
+      <keyword>anycase</keyword>
+      <keyword>are</keyword>
+      <keyword>area</keyword>
+      <keyword>areas</keyword>
+      <keyword>as</keyword>
+      <keyword>ascending</keyword>
+      <keyword>assign</keyword>
+      <keyword>at</keyword>
+      <keyword>author</keyword>
+
+      <keyword>b-and</keyword>
+      <keyword>b-not</keyword>
+      <keyword>b-or</keyword>
+      <keyword>b-xor</keyword>
+      <keyword>based</keyword>
+      <keyword>before</keyword>
+      <keyword>beginning</keyword>
+      <keyword>binary-char</keyword>
+      <keyword>binary-double</keyword>
+      <keyword>binary-long</keyword>
+      <keyword>binary-short</keyword>
+      <keyword>binary</keyword>
+      <keyword>bit</keyword>
+      <keyword>blank</keyword>
+      <keyword>block</keyword>
+      <keyword>boolean</keyword>
+      <keyword>bottom</keyword>
+      <keyword>by</keyword>
+
+      <keyword>case</keyword>
+      <keyword>cbl-ctr</keyword>
+      <keyword>cf</keyword>
+      <keyword>ch</keyword>
+      <keyword>character</keyword>
+      <keyword>characters</keyword>
+      <keyword>checking</keyword>
+      <keyword>class-id</keyword>
+      <keyword>class-units</keyword>
+      <keyword>class</keyword>
+      <keyword>close</keyword>
+      <keyword>code</keyword>
+      <keyword>code-set</keyword>
+      <keyword>col</keyword>
+      <keyword>collating</keyword>
+      <keyword>cols</keyword>
+      <keyword>column</keyword>
+      <keyword>columns</keyword>
+      <keyword>comma</keyword>
+      <keyword>commit</keyword>
+      <keyword>common</keyword>
+      <keyword>communication</keyword>
+      <keyword>comp-1</keyword>
+      <keyword>comp-2</keyword>
+      <keyword>comp-3</keyword>
+      <keyword>comp-5</keyword>
+      <keyword>comp</keyword>
+      <keyword>computational-1</keyword>
+      <keyword>computational-2</keyword>
+      <keyword>computational-3</keyword>
+      <keyword>computational-5</keyword>
+      <keyword>computational</keyword>
+      <keyword>compute</keyword>
+      <keyword>condition</keyword>
+      <keyword>connect</keyword>
+      <keyword>console</keyword>
+      <keyword>constant</keyword>
+      <keyword>contains</keyword>
+      <keyword>content</keyword>
+      <keyword>continue</keyword>
+      <keyword>control</keyword>
+      <keyword>controls</keyword>
+      <keyword>converting</keyword>
+      <keyword>copy</keyword>
+      <keyword>corr</keyword>
+      <keyword>corresponding</keyword>
+      <keyword>count</keyword>
+      <keyword>creating</keyword>
+      <keyword>crt</keyword>
+      <keyword>currency</keyword>
+      <keyword>current</keyword>
+      <keyword>cursor</keyword>
+
+      <keyword>data-pointer</keyword>
+      <keyword>database-exception</keyword>
+      <keyword>database-key-long</keyword>
+      <keyword>database-key</keyword>
+      <keyword>date-compiled</keyword>
+      <keyword>date-written</keyword>
+      <keyword>date</keyword>
+      <keyword>day</keyword>
+      <keyword>day-of-week</keyword>
+      <keyword>db</keyword>
+      <keyword>de</keyword>
+      <keyword>debug-contents</keyword>
+      <keyword>debug-item</keyword>
+      <keyword>debug-line</keyword>
+      <keyword>debug-name</keyword>
+      <keyword>debug-sub-1</keyword>
+      <keyword>debug-sub-2</keyword>
+      <keyword>debug-sub-3</keyword>
+      <keyword>debugging</keyword>
+      <keyword>decimal-point</keyword>
+      <keyword>declaratives</keyword>
+      <keyword>default</keyword>
+      <keyword>delete</keyword>
+      <keyword>delimited</keyword>
+      <keyword>delimiter</keyword>
+      <keyword>depending</keyword>
+      <keyword>descending</keyword>
+      <keyword>detail</keyword>
+      <keyword>disable</keyword>
+      <keyword>disc</keyword>
+      <keyword>disconnect</keyword>
+      <keyword>display</keyword>
+      <keyword>divide</keyword>
+      <keyword>division</keyword>
+      <keyword>down</keyword>
+      <keyword>duplicate</keyword>
+      <keyword>duplicates</keyword>
+      <keyword>dynamic</keyword>
+
+      <keyword>ebcdic</keyword>
+      <keyword>ec</keyword>
+      <keyword>else</keyword>
+      <keyword>empty</keyword>
+      <keyword>enable</keyword>
+      <keyword>end-accept</keyword>
+      <keyword>end-add</keyword>
+      <keyword>end-compute</keyword>
+      <keyword>end-delete</keyword>
+      <keyword>end-display</keyword>
+      <keyword>end-divide</keyword>
+      <keyword>end-evaluate</keyword>
+      <keyword>end-invoke</keyword>
+      <keyword>end-multiply</keyword>
+      <keyword>end-of-page</keyword>
+      <keyword>end-read</keyword>
+      <keyword>end-receive</keyword>
+      <keyword>end-return</keyword>
+      <keyword>end-rewrite</keyword>
+      <keyword>end-search</keyword>
+      <keyword>end-start</keyword>
+      <keyword>end-string</keyword>
+      <keyword>end-subtract</keyword>
+      <keyword>end-unstring</keyword>
+      <keyword>end-write</keyword>
+      <keyword>end</keyword>
+      <keyword>ending</keyword>
+      <keyword>entry</keyword>
+      <keyword>eo</keyword>
+      <keyword>eop</keyword>
+      <keyword>equal</keyword>
+      <keyword>equals</keyword>
+      <keyword>erase</keyword>
+      <keyword>error</keyword>
+      <keyword>escape</keyword>
+      <keyword>evaluate</keyword>
+      <keyword>every</keyword>
+      <keyword>exception-object</keyword>
+      <keyword>exception</keyword>
+      <keyword>exclusive</keyword>
+      <keyword>exit</keyword>
+      <keyword>extend</keyword>
+      <keyword>extended</keyword>
+      <keyword>external</keyword>
+
+      <keyword>factory</keyword>
+      <keyword>false</keyword>
+      <keyword>fd</keyword>
+      <keyword>fetch</keyword>
+      <keyword>file-control</keyword>
+      <keyword>filler</keyword>
+      <keyword>final</keyword>
+      <keyword>find</keyword>
+      <keyword>finish</keyword>
+      <keyword>first</keyword>
+      <keyword>float-extended</keyword>
+      <keyword>float-long</keyword>
+      <keyword>float-short</keyword>
+      <keyword>footing</keyword>
+      <keyword>for</keyword>
+      <keyword>format</keyword>
+      <keyword>free</keyword>
+      <keyword>from</keyword>
+      <keyword>function-id</keyword>
+      <keyword>function</keyword>
+
+      <keyword>generate</keyword>
+      <keyword>get</keyword>
+      <keyword>giving</keyword>
+      <keyword>global</keyword>
+      <keyword>go</keyword>
+      <keyword>greater</keyword>
+      <keyword>group-usage</keyword>
+      <keyword>group</keyword>
+
+      <keyword>heading</keyword>
+
+      <keyword>i-o-control</keyword>
+      <keyword>i-o</keyword>
+      <keyword>id</keyword>
+      <keyword>ignoring</keyword>
+      <keyword>in</keyword>
+      <keyword>including</keyword>
+      <keyword>index</keyword>
+      <keyword>indexed</keyword>
+      <keyword>indicate</keyword>
+      <keyword>inherits</keyword>
+      <keyword>initial</keyword>
+      <keyword>initialize</keyword>
+      <keyword>initiate</keyword>
+      <keyword>input</keyword>
+      <keyword>inspect</keyword>
+      <keyword>installation</keyword>
+      <keyword>interface</keyword>
+      <keyword>interface-id</keyword>
+      <keyword>into</keyword>
+      <keyword>invalid</keyword>
+      <keyword>is</keyword>
+
+      <keyword>just</keyword>
+      <keyword>justified</keyword>
+
+      <keyword>keep</keyword>
+      <keyword>key</keyword>
+
+      <keyword>label</keyword>
+      <keyword>last</keyword>
+      <keyword>leading</keyword>
+      <keyword>left</keyword>
+      <keyword>length</keyword>
+      <keyword>less</keyword>
+      <keyword>limit</keyword>
+      <keyword>limited</keyword>
+      <keyword>limits</keyword>
+      <keyword>linage</keyword>
+      <keyword>line</keyword>
+      <keyword>line-counter</keyword>
+      <keyword>lines</keyword>
+      <keyword>locale</keyword>
+      <keyword>lock</keyword>
+
+      <keyword>mask</keyword>
+      <keyword>matching</keyword>
+      <keyword>member</keyword>
+      <keyword>members</keyword>
+      <keyword>membership</keyword>
+      <keyword>memory</keyword>
+      <keyword>merge</keyword>
+      <keyword>message</keyword>
+      <keyword>method</keyword>
+      <keyword>method-id</keyword>
+      <keyword>minus</keyword>
+      <keyword>mode</keyword>
+      <keyword>modify</keyword>
+      <keyword>modules</keyword>
+      <keyword>more-labels</keyword>
+      <keyword>move</keyword>
+      <keyword>multiple</keyword>
+      <keyword>multiply</keyword>
+
+      <keyword>national-edited</keyword>
+      <keyword>national</keyword>
+      <keyword>native</keyword>
+      <keyword>negative</keyword>
+      <keyword>nested</keyword>
+      <keyword>next</keyword>
+      <keyword>no</keyword>
+      <keyword>not</keyword>
+      <keyword>number</keyword>
+      <keyword>numeric-edited</keyword>
+      <keyword>numeric</keyword>
+
+      <keyword>object-computer</keyword>
+      <keyword>object-reference</keyword>
+      <keyword>object</keyword>
+      <keyword>occurence</keyword>
+      <keyword>occurs</keyword>
+      <keyword>of</keyword>
+      <keyword>off</keyword>
+      <keyword>omitted</keyword>
+      <keyword>on</keyword>
+      <keyword>open</keyword>
+      <keyword>optional</keyword>
+      <keyword>options</keyword>
+      <keyword>or</keyword>
+      <keyword>order</keyword>
+      <keyword>organization</keyword>
+      <keyword>other</keyword>
+      <keyword>output</keyword>
+      <keyword>overflow</keyword>
+      <keyword>override</keyword>
+      <keyword>owner</keyword>
+
+      <keyword>packed-decimal</keyword>
+      <keyword>padding</keyword>
+      <keyword>page-counter</keyword>
+      <keyword>page</keyword>
+      <keyword>permanent</keyword>
+      <keyword>pf</keyword>
+      <keyword>ph</keyword>
+      <keyword>pic</keyword>
+      <keyword>picture</keyword>
+      <keyword>plus</keyword>
+      <keyword>pointer</keyword>
+      <keyword>position</keyword>
+      <keyword>positive</keyword>
+      <keyword>present</keyword>
+      <keyword>print-switch</keyword>
+      <keyword>printing</keyword>
+      <keyword>prior</keyword>
+      <keyword>proceed</keyword>
+      <keyword>program-begin</keyword>
+      <keyword>program-done</keyword>
+      <keyword>program-id</keyword>
+      <keyword>program-pointer</keyword>
+      <keyword>program</keyword>
+      <keyword>property</keyword>
+      <keyword>protected</keyword>
+      <keyword>prototype</keyword>
+      <keyword>purge</keyword>
+
+      <keyword>raise</keyword>
+      <keyword>raising</keyword>
+      <keyword>random</keyword>
+      <keyword>rd</keyword>
+      <keyword>read</keyword>
+      <keyword>ready</keyword>
+      <keyword>realm-name</keyword>
+      <keyword>realm</keyword>
+      <keyword>receive</keyword>
+      <keyword>record</keyword>
+      <keyword>recording</keyword>
+      <keyword>records</keyword>
+      <keyword>redefines</keyword>
+      <keyword>reel</keyword>
+      <keyword>reference</keyword>
+      <keyword>relative</keyword>
+      <keyword>release</keyword>
+      <keyword>remainder</keyword>
+      <keyword>removal</keyword>
+      <keyword>renames</keyword>
+      <keyword>repeated</keyword>
+      <keyword>replace</keyword>
+      <keyword>replacing</keyword>
+      <keyword>report</keyword>
+      <keyword>reporting</keyword>
+      <keyword>reports</keyword>
+      <keyword>repository</keyword>
+      <keyword>rerun</keyword>
+      <keyword>reserve</keyword>
+      <keyword>reset</keyword>
+      <keyword>result</keyword>
+      <keyword>resume</keyword>
+      <keyword>retaining</keyword>
+      <keyword>retrieval</keyword>
+      <keyword>retry</keyword>
+      <keyword>return</keyword>
+      <keyword>returning</keyword>
+      <keyword>reversed</keyword>
+      <keyword>rewind</keyword>
+      <keyword>rewrite</keyword>
+      <keyword>rf</keyword>
+      <keyword>rh</keyword>
+      <keyword>right</keyword>
+      <keyword>rollback</keyword>
+      <keyword>rounded</keyword>
+      <keyword>run</keyword>
+
+      <keyword>same</keyword>
+      <keyword>screen</keyword>
+      <keyword>sd</keyword>
+      <keyword>search</keyword>
+      <keyword>section</keyword>
+      <keyword>security</keyword>
+      <keyword>segment-limit</keyword>
+      <keyword>select</keyword>
+      <keyword>selective</keyword>
+      <keyword>self</keyword>
+      <keyword>send</keyword>
+      <keyword>sentence</keyword>
+      <keyword>separate</keyword>
+      <keyword>sequence</keyword>
+      <keyword>sequential</keyword>
+      <keyword>set-selection</keyword>
+      <keyword>set</keyword>
+      <keyword>sets</keyword>
+      <keyword>sharing</keyword>
+      <keyword>sign</keyword>
+      <keyword>size</keyword>
+      <keyword>sort-merge</keyword>
+      <keyword>sort-tape</keyword>
+      <keyword>sort-tapes</keyword>
+      <keyword>sort</keyword>
+      <keyword>sorted</keyword>
+      <keyword>source-computer</keyword>
+      <keyword>source</keyword>
+      <keyword>sources</keyword>
+      <keyword>special-names</keyword>
+      <keyword>standard-1</keyword>
+      <keyword>standard-2</keyword>
+      <keyword>standard</keyword>
+      <keyword>start</keyword>
+      <keyword>status</keyword>
+      <keyword>stop</keyword>
+      <keyword>store</keyword>
+      <keyword>string</keyword>
+      <keyword>sub-schema</keyword>
+      <keyword>subtract</keyword>
+      <keyword>sum</keyword>
+      <keyword>super</keyword>
+      <keyword>suppress</keyword>
+      <keyword>suppressing</keyword>
+      <keyword>symbolic</keyword>
+      <keyword>sync</keyword>
+      <keyword>synchronized</keyword>
+      <keyword>system-default</keyword>
+      <keyword>system</keyword>
+
+      <keyword>table</keyword>
+      <keyword>tally</keyword>
+      <keyword>tallying</keyword>
+      <keyword>tape</keyword>
+      <keyword>tapes</keyword>
+      <keyword>tenant</keyword>
+      <keyword>terminal</keyword>
+      <keyword>terminate</keyword>
+      <keyword>test</keyword>
+      <keyword>than</keyword>
+      <keyword>then</keyword>
+      <keyword>through</keyword>
+      <keyword>thru</keyword>
+      <keyword>time</keyword>
+      <keyword>times</keyword>
+      <keyword>to</keyword>
+      <keyword>top</keyword>
+      <keyword>trailing</keyword>
+      <keyword>true</keyword>
+      <keyword>try</keyword>
+      <keyword>type</keyword>
+      <keyword>typedef</keyword>
+
+      <keyword>unit</keyword>
+      <keyword>units</keyword>
+      <keyword>universal</keyword>
+      <keyword>unlock</keyword>
+      <keyword>unstring</keyword>
+      <keyword>until</keyword>
+      <keyword>up</keyword>
+      <keyword>update</keyword>
+      <keyword>upon</keyword>
+      <keyword>usage-mode</keyword>
+      <keyword>usage</keyword>
+      <keyword>use</keyword>
+      <keyword>user-default</keyword>
+      <keyword>using</keyword>
+
+      <keyword>val-status</keyword>
+      <keyword>valid</keyword>
+      <keyword>validate-status</keyword>
+      <keyword>validate</keyword>
+      <keyword>value</keyword>
+      <keyword>values</keyword>
+      <keyword>varying</keyword>
+      <keyword>via</keyword>
+
+      <keyword>when</keyword>
+      <keyword>with</keyword>
+      <keyword>within</keyword>
+      <keyword>words</keyword>
+      <keyword>write</keyword>
     </context>
 
     <context id="section-name" style-ref="keyword">
-      <keyword>CONFIGURATION</keyword>
-      <keyword>INPUT-OUTPUT</keyword>
-      <keyword>FILE</keyword>
-      <keyword>WORKING-STORAGE</keyword>
-      <keyword>LOCAL-STORAGE</keyword>
-      <keyword>LINKAGE</keyword>
+      <keyword>configuration</keyword>
+      <keyword>input-output</keyword>
+      <keyword>file</keyword>
+      <keyword>working-storage</keyword>
+      <keyword>local-storage</keyword>
+      <keyword>linkage</keyword>
     </context>
 
     <context id="division-name" style-ref="keyword">
-      <keyword>IDENTIFICATION</keyword>
-      <keyword>ENVIRONMENT</keyword>
-      <keyword>DATA</keyword>
-      <keyword>PROCEDURE</keyword>
+      <keyword>identification</keyword>
+      <keyword>environment</keyword>
+      <keyword>data</keyword>
+      <keyword>procedure</keyword>
     </context>
 
     <context id="call" style-ref="statement">
-      <keyword>END-CALL</keyword>
-      <keyword>CALL</keyword>
-      <keyword>CANCEL</keyword>
-      <keyword>GOBACK</keyword>
-      <keyword>END-PERFORM</keyword>
-      <keyword>PERFORM</keyword>
-      <keyword>INVOKE</keyword>
-      <keyword>END-IF</keyword>
-      <keyword>IF</keyword>
+      <keyword>end-call</keyword>
+      <keyword>call</keyword>
+      <keyword>cancel</keyword>
+      <keyword>goback</keyword>
+      <keyword>end-perform</keyword>
+      <keyword>perform</keyword>
+      <keyword>invoke</keyword>
+      <keyword>end-if</keyword>
+      <keyword>if</keyword>
     </context>
 
     <context id="cobol" class="no-spell-check">
