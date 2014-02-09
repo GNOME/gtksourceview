@@ -37,6 +37,7 @@
   </metadata>
 
   <styles>
+    <style id="preprocessor" _name="Preprocessor tags" map-to="def:preprocessor"/>
     <style id="comment" _name="Comment" map-to="def:comment"/>
     <style id="error" _name="Error" map-to="def:error"/>
     <style id="variable" _name="Variable" map-to="def:identifier"/>
@@ -325,8 +326,8 @@
       <start>&lt;([?](php)?)</start>
       <end>[?]&gt;</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="keyword"/>
-        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context sub-pattern="0" where="start" style-ref="preprocessor"/>
+        <context sub-pattern="0" where="end" style-ref="preprocessor"/>
         <context ref="cpp-line-comment"/>
         <context ref="bash-line-comment"/>
         <context ref="c-block-comment"/>
@@ -346,7 +347,7 @@
         <context ref="decimal-number"/>
         <context ref="octal-number"/>
         <context ref="hexadecimal-number"/>
-	<context ref="identifier"/>
+        <context ref="identifier"/>
       </include>
     </context>
 
