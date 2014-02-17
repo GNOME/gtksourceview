@@ -4,7 +4,7 @@ AC_PREREQ(2.64)
 
 m4_define(gtksourceview_major_version, 3)
 m4_define(gtksourceview_minor_version, 11)
-m4_define(gtksourceview_micro_version, 5)
+m4_define(gtksourceview_micro_version, 90)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
 AC_INIT([gtksourceview],
