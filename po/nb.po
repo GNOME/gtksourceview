@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 3.11.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-12 19:26+0100\n"
-"PO-Revision-Date: 2014-02-12 19:33+0100\n"
+"POT-Creation-Date: 2014-02-19 23:59+0100\n"
+"PO-Revision-Date: 2014-02-20 00:04+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -1561,7 +1561,7 @@ msgstr "Hyperlenket modulnavn"
 
 #: ../data/language-specs/haddock.lang.h:7
 msgid "Escape"
-msgstr ""
+msgstr "Escape"
 
 #: ../data/language-specs/haddock.lang.h:8
 #: ../data/language-specs/markdown.lang.h:13
@@ -1810,9 +1810,8 @@ msgid "Inline Math Mode"
 msgstr "Innebygget matematikkmodus"
 
 #: ../data/language-specs/latex.lang.h:6
-#, fuzzy
 msgid "Math Boundary"
-msgstr "Mattemodus"
+msgstr "Matematisk grenseverdi"
 
 #: ../data/language-specs/latex.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:11
@@ -1839,34 +1838,31 @@ msgstr "Kapitteloverskrift"
 
 #: ../data/language-specs/latex.lang.h:13
 msgid "Section Heading"
-msgstr ""
+msgstr "Overskrift for seksjon"
 
 #: ../data/language-specs/latex.lang.h:14
-#, fuzzy
 msgid "SubSection Heading"
-msgstr "Unntakshåndtering"
+msgstr "Overskrift for underseksjon"
 
 #: ../data/language-specs/latex.lang.h:15
-#, fuzzy
 msgid "SubSubSection Heading"
-msgstr "Unntakshåndtering"
+msgstr "Overskrift for under-underseksjon"
 
 #: ../data/language-specs/latex.lang.h:16
 msgid "Paragraph Heading"
-msgstr ""
+msgstr "Overskrift for avsnitt"
 
 #: ../data/language-specs/latex.lang.h:17
 msgid "SubParagraph Heading"
-msgstr ""
+msgstr "Overskrift for underavsnitt"
 
 #: ../data/language-specs/lex.lang.h:2
-#, fuzzy
 msgid "Lex"
-msgstr "Heksadesimal"
+msgstr "Lex"
 
 #: ../data/language-specs/lex.lang.h:3
 msgid "Token"
-msgstr ""
+msgstr "Pollett"
 
 #: ../data/language-specs/lex.lang.h:6
 msgid "Expression"
@@ -2292,9 +2288,8 @@ msgid "PHP"
 msgstr "PHP"
 
 #: ../data/language-specs/php.lang.h:3
-#, fuzzy
 msgid "Preprocessor tags"
-msgstr "Preprosessor"
+msgstr "Preprosessor-tags"
 
 #: ../data/language-specs/php.lang.h:14
 msgid "Common Function"
@@ -2451,9 +2446,8 @@ msgid "Email"
 msgstr "E-post"
 
 #: ../data/language-specs/rst.lang.h:2
-#, fuzzy
 msgid "reStructuredText"
-msgstr "Strukturelle elementer"
+msgstr "reStructuredText"
 
 #: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
 msgid "Directive"
@@ -2724,9 +2718,8 @@ msgid "YAML"
 msgstr "YAML"
 
 #: ../data/language-specs/yaml.lang.h:3
-#, fuzzy
 msgid "Block literal"
-msgstr "BOZ-literal"
+msgstr ""
 
 #: ../data/language-specs/yaml.lang.h:8
 msgid "Alias"
@@ -3450,9 +3443,8 @@ msgid "Buffer"
 msgstr "Buffer"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2743
-#, fuzzy
 msgid "The associated GtkSourceBuffer"
-msgstr "GtkSourceView for «gutter»"
+msgstr "Assosiert GtkSourceBuffer"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2757
 msgid "Settings"
@@ -3460,16 +3452,15 @@ msgstr "Innstillinger"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2758
 msgid "The associated GtkSourceSearchSettings"
-msgstr ""
+msgstr "Assosiert GtkSourceSearchSettings"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2772
 msgid "Highlight"
 msgstr "Uthev"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2773
-#, fuzzy
 msgid "Highlight search occurrences"
-msgstr "Uthev aktiv linje"
+msgstr "Uthev treff på søk"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2789
 msgid "Occurrences count"
@@ -3477,16 +3468,15 @@ msgstr "Antall oppføringer"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2790
 msgid "Total number of search occurrences"
-msgstr ""
+msgstr "Totalt antall treff på søk"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2809
 msgid "Regex error"
 msgstr "Feil i vanlig uttrykk"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2810
-#, fuzzy
 msgid "Regular expression error"
-msgstr "Vanlig uttrykk"
+msgstr "Feil i vanlig uttrykk"
 
 #: ../gtksourceview/gtksourcesearchsettings.c:168
 msgid "Search text"
