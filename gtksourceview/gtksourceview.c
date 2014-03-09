@@ -339,7 +339,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	/**
 	 * GtkSourceView:tab-width:
 	 *
-	 * Width of an tab character expressed in number of spaces.
+	 * Width of a tab character expressed in number of spaces.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_TAB_WIDTH,
@@ -2829,12 +2829,12 @@ gtk_source_view_get_tab_width (GtkSourceView *view)
  * @width: indent width in characters.
  *
  * Sets the number of spaces to use for each step of indent.
- * If @width is -1, the value of the GtkSourceView::tab-width property
+ * If @width is -1, the value of the #GtkSourceView:tab-width property
  * will be used.
  */
 void
 gtk_source_view_set_indent_width (GtkSourceView *view,
-				  gint          width)
+				  gint           width)
 {
 	g_return_if_fail (GTK_SOURCE_VIEW (view));
 	g_return_if_fail ((width == -1) || (width > 0 && width <= MAX_INDENT_WIDTH));
