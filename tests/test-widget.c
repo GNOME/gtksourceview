@@ -25,24 +25,18 @@
 #include <gio/gio.h>
 #include <gtksourceview/gtksource.h>
 
-/* Global list of open windows */
-static GList *windows = NULL;
-
 static GtkSourceStyleScheme *style_scheme = NULL;
 
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
 
-
-/* Private prototypes -------------------------------------------------------- */
+/* Private prototypes */
 
 static void       open_file_cb                   (GtkAction       *action,
 						  gpointer         user_data);
 static void       print_file_cb                  (GtkAction       *action,
 						  gpointer         user_data);
 
-static void       new_view_cb                    (GtkAction       *action,
-						  gpointer         user_data);
 static void       numbers_toggled_cb             (GtkAction       *action,
 						  gpointer         user_data);
 static void       marks_toggled_cb               (GtkAction       *action,
@@ -76,12 +70,7 @@ static void       forward_string_cb              (GtkAction       *action,
 static void       backward_string_cb             (GtkAction       *action,
 						  gpointer         user_data);
 
-
-static GtkWidget *create_view_window             (GtkSourceBuffer *buffer,
-						  GtkSourceView   *from);
-
-
-/* Actions & UI definition ---------------------------------------------------- */
+/* Actions & UI definition */
 
 static GtkActionEntry buffer_action_entries[] = {
 	{ "Open", GTK_STOCK_OPEN, "_Open", "<control>O",
@@ -95,8 +84,6 @@ static GtkActionEntry view_action_entries[] = {
 	{ "Print", GTK_STOCK_PRINT, "_Print", "<control>P",
 	  "Print the current file", G_CALLBACK (print_file_cb) },
 	{ "ViewMenu", NULL, "_View", NULL, NULL, NULL },
-	{ "NewView", GTK_STOCK_NEW, "_New View", NULL,
-	  "Create a new view of the file", G_CALLBACK (new_view_cb) },
 	{ "TabWidth", NULL, "_Tab Width", NULL, NULL, NULL },
 	{ "IndentWidth", NULL, "I_ndent Width", NULL, NULL, NULL },
 	{ "SmartHomeEnd", NULL, "_Smart Home/End", NULL, NULL, NULL },
@@ -176,8 +163,6 @@ static const gchar *view_ui_description =
 "      -->"
 "    </menu>"
 "    <menu action=\"ViewMenu\">"
-"      <menuitem action=\"NewView\"/>"
-"      <separator/>"
 "      <menuitem action=\"HlSyntax\"/>"
 "      <menuitem action=\"HlBracket\"/>"
 "      <menuitem action=\"ShowNumbers\"/>"
@@ -233,8 +218,7 @@ static const gchar *buffer_ui_description =
 "  </menubar>"
 "</ui>";
 
-
-/* File loading code ----------------------------------------------------------------- */
+/* File loading code */
 
 static gboolean
 gtk_source_buffer_load_file (GtkSourceBuffer *buffer,
@@ -459,8 +443,7 @@ open_file (GtkSourceBuffer *buffer,
 	}
 }
 
-
-/* View action callbacks -------------------------------------------------------- */
+/* View action callbacks */
 
 static void
 numbers_toggled_cb (GtkAction *action,
@@ -611,24 +594,6 @@ smart_home_end_toggled_cb (GtkAction *action,
 }
 
 static void
-new_view_cb (GtkAction *action,
-	     gpointer   user_data)
-{
-	GtkSourceBuffer *buffer;
-	GtkSourceView *view;
-	GtkWidget *window;
-
-	g_return_if_fail (GTK_SOURCE_IS_VIEW (user_data));
-
-	view = GTK_SOURCE_VIEW (user_data);
-	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-
-	window = create_view_window (buffer, view);
-	gtk_window_set_default_size (GTK_WINDOW (window), 400, 400);
-	gtk_widget_show (window);
-}
-
-static void
 forward_string_cb (GtkAction *action,
 		   gpointer   user_data)
 {
@@ -684,7 +649,7 @@ backward_string_cb (GtkAction *action,
 	}
 }
 
-/* Buffer action callbacks ------------------------------------------------------------ */
+/* Buffer action callbacks */
 
 static void
 open_file_cb (GtkAction *action,
@@ -855,7 +820,6 @@ end_print (GtkPrintOperation        *operation,
 
 #undef SETUP_FROM_VIEW
 
-
 static void
 print_file_cb (GtkAction *action,
 	       gpointer   user_data)
@@ -944,7 +908,7 @@ print_file_cb (GtkAction *action,
 	g_free (basename);
 }
 
-/* View UI callbacks ------------------------------------------------------------------ */
+/* View UI callbacks */
 
 static void
 update_cursor_position_info (GtkTextBuffer *buffer,
@@ -1015,32 +979,7 @@ window_deleted_cb (GtkWidget     *widget,
 		   GdkEvent      *event,
 		   GtkSourceView *view)
 {
-	if (g_list_nth_data (windows, 0) == widget)
-	{
-		/* Main (first in the list) window was closed, so exit
-		 * the application */
-		gtk_main_quit ();
-	}
-	else
-	{
-		GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (
-			gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-
-		windows = g_list_remove (windows, widget);
-
-		/* deinstall buffer motion signal handlers */
-		g_signal_handlers_disconnect_matched (buffer,
-						      G_SIGNAL_MATCH_DATA,
-						      0, /* signal_id */
-						      0, /* detail */
-						      NULL, /* closure */
-						      NULL, /* func */
-						      view);
-
-		/* we return FALSE since we want the window destroyed */
-		return FALSE;
-	}
-
+	gtk_main_quit ();
 	return TRUE;
 }
 
@@ -1107,7 +1046,7 @@ bracket_matched (GtkSourceBuffer           *buffer,
 	g_type_class_unref (eclass);
 }
 
-/* Window creation functions -------------------------------------------------------- */
+/* Window creation functions */
 
 static gchar *
 mark_tooltip_func (GtkSourceMarkAttributes *attrs,
@@ -1198,7 +1137,6 @@ create_view_window (GtkSourceBuffer *buffer,
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_container_set_border_width (GTK_CONTAINER (window), 0);
 	gtk_window_set_title (GTK_WINDOW (window), "GtkSourceView Demo");
-	windows = g_list_append (windows, window);
 
 	/* view */
 	view = gtk_source_view_new_with_buffer (buffer);
@@ -1224,9 +1162,9 @@ create_view_window (GtkSourceBuffer *buffer,
 			  view);
 
 	g_signal_connect (window,
-			  "delete-event",
-			  G_CALLBACK (window_deleted_cb),
-			  view);
+			  "destroy",
+			  gtk_main_quit,
+			  NULL);
 
 	g_signal_connect (buffer,
 			  "bracket-matched",
@@ -1408,7 +1346,7 @@ create_main_window (GtkSourceBuffer *buffer)
 	return window;
 }
 
-/* Program entry point ------------------------------------------------------------ */
+/* Program entry point */
 
 int
 main (int argc, char *argv[])
@@ -1518,8 +1456,6 @@ main (int argc, char *argv[])
 	gtk_main ();
 
 	/* cleanup */
-	g_list_foreach (windows, (GFunc) gtk_widget_destroy, NULL);
-	g_list_free (windows);
 	g_object_unref (buffer);
 
 	g_free (style_scheme_id);
