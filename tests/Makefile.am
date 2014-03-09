@@ -14,13 +14,17 @@ noinst_PROGRAMS = $(TEST_PROGS) $(UNIT_TEST_PROGS)
 
 BUILT_SOURCES =				\
 	test-completion-resources.c	\
-	test-search-resources.c
+	test-search-resources.c		\
+	test-widget-resources.c
 
 test-completion-resources.c: test-completion.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-completion.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-completion.gresource.xml
 
 test-search-resources.c: test-search.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-search.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-search.gresource.xml
+
+test-widget-resources.c: test-widget.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-widget.gresource.xml)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-widget.gresource.xml
 
 TEST_PROGS = test-completion
 test_completion_SOURCES =		\
@@ -49,7 +53,9 @@ test_search_performances_LDADD =				\
 	$(TESTS_LIBS)
 
 TEST_PROGS += test-widget
-test_widget_SOURCES = test-widget.c
+test_widget_SOURCES =		\
+	test-widget.c		\
+	test-widget-resources.c
 test_widget_LDADD = 			\
 	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
 	$(DEP_LIBS)			\
