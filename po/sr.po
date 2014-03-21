@@ -1,19 +1,19 @@
 # Serbian translation of gtksourceview
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003 - 2013.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003 — 2014.
 # This file is distributed under the same license as the gtksourceview package.
 # Maintainer: Данило Шеган <dsegan@gmx.net>
 # Reviewed on 2005-09-03 by: Данило Шеган <dsegan@gmx.net>
 # Translate on 2009-21-09 by: Бранко Кокановић <branko.kokanovic@gmail.com>
 # Бранко Кокановић <branko.kokanovic@gmail.com>, 2010.
 # Милош Поповић <gpopac@gmail.com>, 2010.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011, 2012, 2013.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011 — 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksou"
 "rceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-31 19:40+0000\n"
-"PO-Revision-Date: 2013-09-10 18:26+0200\n"
+"POT-Creation-Date: 2014-03-20 22:14+0000\n"
+"PO-Revision-Date: 2014-03-21 05:25+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -78,12 +78,14 @@ msgstr "Пратећи"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:753
+#: ../gtksourceview/gtksourcecompletion.c:789
 msgid "All"
 msgstr "Све"
 
 #: ../data/language-specs/actionscript.lang.h:1
-#: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/ada.lang.h:1
+#: ../data/language-specs/ansforth94.lang.h:1
+#: ../data/language-specs/asp.lang.h:1
 #: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
 #: ../data/language-specs/bluespec.lang.h:1
@@ -99,7 +101,9 @@ msgstr "Све"
 #: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
 #: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/j.lang.h:1 ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
+#: ../data/language-specs/llvm.lang.h:1
+#: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
@@ -114,8 +118,9 @@ msgstr "Све"
 #: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
-msgid "Sources"
-msgstr "Извори"
+#| msgid "Sources"
+msgid "Source"
+msgstr "Извор"
 
 #: ../data/language-specs/actionscript.lang.h:2
 msgid "ActionScript"
@@ -123,10 +128,11 @@ msgstr "Скрипта радње"
 
 #. Any comment
 #: ../data/language-specs/actionscript.lang.h:3
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/ada.lang.h:3
+#: ../data/language-specs/ansforth94.lang.h:5
+#: ../data/language-specs/asp.lang.h:3 ../data/language-specs/bennugd.lang.h:3
+#: ../data/language-specs/boo.lang.h:3 ../data/language-specs/cg.lang.h:3
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/cobol.lang.h:3
 #: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
 #: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
 #: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
@@ -140,7 +146,8 @@ msgstr "Скрипта радње"
 #: ../data/language-specs/idl-exelis.lang.h:3
 #: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
 #: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/llvm.lang.h:3 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/modelica.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/netrexx.lang.h:6
@@ -148,16 +155,18 @@ msgstr "Скрипта радње"
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
-#: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
-#: ../data/language-specs/scala.lang.h:5
+#: ../data/language-specs/php.lang.h:4 ../data/language-specs/po.lang.h:3
+#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/rst.lang.h:8
+#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
-#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:3
+#: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
+#: ../data/language-specs/texinfo.lang.h:3
 #: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
 #: ../data/language-specs/verilog.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
+#: ../data/language-specs/yaml.lang.h:4
 msgid "Comment"
 msgstr "Примедба"
 
@@ -173,7 +182,7 @@ msgstr "Примедба"
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/php.lang.h:5 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
 #: ../data/language-specs/verilog.lang.h:7
 #: ../data/language-specs/xml.lang.h:13
@@ -182,9 +191,10 @@ msgstr "Грешка"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/actionscript.lang.h:5
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/ada.lang.h:4
+#: ../data/language-specs/ansforth94.lang.h:9
+#: ../data/language-specs/asp.lang.h:4 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cobol.lang.h:8
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
 #: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
 #: ../data/language-specs/dosbatch.lang.h:4
@@ -200,7 +210,8 @@ msgstr "Грешка"
 #: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
+#: ../data/language-specs/lua.lang.h:4
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4
@@ -209,7 +220,7 @@ msgstr "Грешка"
 #: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
 #: ../data/language-specs/ooc.lang.h:6 ../data/language-specs/opal.lang.h:7
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
-#: ../data/language-specs/php.lang.h:9 ../data/language-specs/po.lang.h:5
+#: ../data/language-specs/php.lang.h:10 ../data/language-specs/po.lang.h:5
 #: ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:6
@@ -221,7 +232,7 @@ msgstr "Грешка"
 #: ../data/language-specs/texinfo.lang.h:6
 #: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:4
-#: ../data/language-specs/vhdl.lang.h:4
+#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
 msgid "String"
 msgstr "Ниска"
 
@@ -253,8 +264,10 @@ msgstr "Декларација опсега"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/actionscript.lang.h:10
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
-#: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/ada.lang.h:5
+#: ../data/language-specs/ansforth94.lang.h:3
+#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/awk.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:7
 #: ../data/language-specs/bluespec.lang.h:7
 #: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
 #: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
@@ -274,7 +287,8 @@ msgstr "Декларација опсега"
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
 #: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lex.lang.h:4
+#: ../data/language-specs/llvm.lang.h:5 ../data/language-specs/lua.lang.h:5
 #: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/modelica.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:8
@@ -284,7 +298,7 @@ msgstr "Декларација опсега"
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
 #: ../data/language-specs/opencl.lang.h:3
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
-#: ../data/language-specs/php.lang.h:12 ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
 #: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/python3.lang.h:4
@@ -311,7 +325,7 @@ msgstr "Кључна реч"
 #: ../data/language-specs/json.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
 #: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/php.lang.h:16 ../data/language-specs/vala.lang.h:9
+#: ../data/language-specs/php.lang.h:17 ../data/language-specs/vala.lang.h:9
 msgid "Null Value"
 msgstr "Без вредности"
 
@@ -324,10 +338,11 @@ msgstr "Без вредности"
 #: ../data/language-specs/def.lang.h:34
 #: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
 #: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/java.lang.h:14 ../data/language-specs/llvm.lang.h:11
+#: ../data/language-specs/lua.lang.h:10
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:17
+#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
 #: ../data/language-specs/protobuf.lang.h:5 ../data/language-specs/R.lang.h:8
 #: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
 #: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
@@ -342,6 +357,7 @@ msgstr "Логичка вредност"
 #: ../data/language-specs/desktop.lang.h:8
 #: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
 #: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
+#: ../data/language-specs/llvm.lang.h:12
 #: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/scala.lang.h:12
@@ -373,12 +389,13 @@ msgstr "Резервисане речи за будућност"
 #: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
 #: ../data/language-specs/java.lang.h:17
 #: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/llvm.lang.h:10
 #: ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
 #: ../data/language-specs/ocaml.lang.h:12 ../data/language-specs/ocl.lang.h:7
 #: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
 #: ../data/language-specs/opencl.lang.h:4
-#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
+#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
 #: ../data/language-specs/protobuf.lang.h:3
 #: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
@@ -402,7 +419,7 @@ msgstr "Ада"
 #: ../data/language-specs/idl-exelis.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:20
 #: ../data/language-specs/python3.lang.h:12
 #: ../data/language-specs/python.lang.h:13
 #: ../data/language-specs/ruby.lang.h:11
@@ -445,7 +462,7 @@ msgstr "Реалан број"
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
+#: ../data/language-specs/php.lang.h:9 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python3.lang.h:7
 #: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
 #: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
@@ -453,6 +470,84 @@ msgstr "Реалан број"
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "Знак новог реда"
+
+#: ../data/language-specs/ansforth94.lang.h:2
+#| msgid "Forth"
+msgid "ANS-Forth94"
+msgstr "АНС-Форт94"
+
+#: ../data/language-specs/ansforth94.lang.h:4
+#| msgid "Other Keyword"
+msgid "Obsolete Keyword"
+msgstr "Застарела кључна реч"
+
+#: ../data/language-specs/ansforth94.lang.h:6
+msgid "Alert"
+msgstr "Упозорење"
+
+#. A character constant: 'c'
+#: ../data/language-specs/ansforth94.lang.h:7
+#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
+msgid "Character"
+msgstr "Знак"
+
+#: ../data/language-specs/ansforth94.lang.h:8
+msgid "Word"
+msgstr "Реч"
+
+#. Any constant
+#: ../data/language-specs/ansforth94.lang.h:10
+#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:18
+msgid "Constant"
+msgstr "Константа"
+
+#: ../data/language-specs/ansforth94.lang.h:11
+#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/llvm.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
+#: ../data/language-specs/nsis.lang.h:6
+#: ../data/language-specs/octave.lang.h:14
+#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/pkgconfig.lang.h:3
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+msgid "Variable"
+msgstr "Променљива"
+
+#: ../data/language-specs/ansforth94.lang.h:12
+#| msgid "Global Variable"
+msgid "Local Variable"
+msgstr "Месна променљива"
+
+#: ../data/language-specs/ansforth94.lang.h:13
+#| msgid "Integer Number"
+msgid "Single Number"
+msgstr "Један број"
+
+#: ../data/language-specs/ansforth94.lang.h:14
+#| msgid "Complex number"
+msgid "Double Number"
+msgstr "Двоструки број"
+
+#: ../data/language-specs/ansforth94.lang.h:15
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "Покретни"
 
 #: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
@@ -466,7 +561,8 @@ msgstr "АСП"
 #: ../data/language-specs/gtk-doc.lang.h:10
 #: ../data/language-specs/idl-exelis.lang.h:10
 #: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/lua.lang.h:8 ../data/language-specs/scheme.lang.h:7
+#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
 #: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
 msgid "Function"
@@ -481,7 +577,7 @@ msgstr "Функција"
 #: ../data/language-specs/julia.lang.h:9
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
-#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
+#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:15
 #: ../data/language-specs/prolog.lang.h:8
 #: ../data/language-specs/scala.lang.h:13
 #: ../data/language-specs/sparql.lang.h:15
@@ -535,6 +631,7 @@ msgid "Other Keyword"
 msgstr "Друга кључна реч"
 
 #: ../data/language-specs/automake.lang.h:10
+#: ../data/language-specs/rst.lang.h:10
 msgid "Substitution"
 msgstr "Замена"
 
@@ -546,31 +643,17 @@ msgstr "Замена"
 #: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
 #: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-msgid "Scripts"
-msgstr "Скрипте"
+#| msgid "Scripts"
+msgid "Script"
+msgstr "Скрипта"
 
 #: ../data/language-specs/awk.lang.h:2
 msgid "awk"
 msgstr "awk"
 
-#: ../data/language-specs/awk.lang.h:4
+#: ../data/language-specs/awk.lang.h:4 ../data/language-specs/lex.lang.h:5
 msgid "Pattern"
 msgstr "Образац"
-
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
-msgid "Variable"
-msgstr "Променљива"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
@@ -587,7 +670,8 @@ msgstr "Бену ГД"
 
 #. Any variable name
 #: ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/def.lang.h:36 ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/def.lang.h:36 ../data/language-specs/llvm.lang.h:9
+#: ../data/language-specs/php.lang.h:7
 msgid "Identifier"
 msgstr "Идентификатор"
 
@@ -599,7 +683,7 @@ msgstr "Идентификатор"
 #: ../data/language-specs/idl-exelis.lang.h:8
 #: ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python3.lang.h:11
 #: ../data/language-specs/python.lang.h:12 ../data/language-specs/R.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
@@ -611,7 +695,7 @@ msgstr "Број у покретном зарезу"
 #: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
 #: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/nemerle.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:21
+#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:22
 msgid "Hexadecimal number"
 msgstr "Хексадецимални број"
 
@@ -623,7 +707,8 @@ msgstr "Хексадецимални број"
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
 #: ../data/language-specs/mediawiki.lang.h:1
-#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/rst.lang.h:1
+#: ../data/language-specs/sweave.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:249
@@ -716,6 +801,7 @@ msgstr "Посебна променљива"
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:8
 #: ../data/language-specs/sparql.lang.h:9
+#: ../data/language-specs/yaml.lang.h:12
 msgid "Boolean"
 msgstr "Логичка вредност"
 
@@ -735,7 +821,7 @@ msgstr "Укључена датотека"
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
 #: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
 #: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:20
+#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:21
 msgid "Octal number"
 msgstr "Октални број"
 
@@ -753,17 +839,6 @@ msgstr "Свизл оператор"
 msgid "Builtin"
 msgstr "Уграђено"
 
-#. *
-#. * SECTION:language
-#. * @Short_description: Object representing a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
-#. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
-#.
 #: ../data/language-specs/changelog.lang.h:1
 #: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
 #: ../data/language-specs/desktop.lang.h:1
@@ -777,11 +852,10 @@ msgstr "Уграђено"
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
 #: ../data/language-specs/puppet.lang.h:1
-#: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:5
-#: ../data/language-specs/yacc.lang.h:1
-#: ../gtksourceview/gtksourcelanguage.c:55
-msgid "Others"
+#: ../data/language-specs/rpmspec.lang.h:1
+#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yacc.lang.h:1
+#: ../data/language-specs/yaml.lang.h:1
+msgid "Other"
 msgstr "Остали"
 
 #: ../data/language-specs/changelog.lang.h:2
@@ -794,7 +868,9 @@ msgid "Date"
 msgstr "Датум"
 
 #. Translators: the name of a person, not an object.
+#. names, e.g., name of package, name of environment, name of class
 #: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/latex.lang.h:19
 msgid "Name"
 msgstr "Назив"
 
@@ -807,6 +883,7 @@ msgid "File"
 msgstr "Датотека"
 
 #: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/rst.lang.h:6
 msgid "Bullet"
 msgstr "Метак"
 
@@ -826,18 +903,6 @@ msgstr "Ц"
 #: ../data/language-specs/objc.lang.h:5 ../data/language-specs/opal.lang.h:5
 msgid "Common Defines"
 msgstr "Заједничке одреднице"
-
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
-msgid "Character"
-msgstr "Знак"
 
 #: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
 #: ../data/language-specs/verilog.lang.h:5
@@ -864,22 +929,13 @@ msgstr "Уграђена наредба"
 msgid "Builtin Variable"
 msgstr "Уграђене променљиве"
 
-#. Any constant
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13
-#: ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:18
-msgid "Constant"
-msgstr "Константа"
-
 #: ../data/language-specs/cmake.lang.h:7
 msgid "Control Keyword"
 msgstr "Контролна кључна реч"
 
 #: ../data/language-specs/cobol.lang.h:2
-msgid "Cobol"
-msgstr "Кобол"
+msgid "COBOL"
+msgstr "КОБОЛ"
 
 #. Any statement
 #: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
@@ -1048,6 +1104,42 @@ msgstr "Белешка (FIXME, TODO, XXX, итд.)"
 msgid "Underlined"
 msgstr "Подвучено"
 
+#. Text that acts as some kind of heading, such as h1, h2, ... in html.
+#: ../data/language-specs/def.lang.h:63
+#| msgid "Leading"
+msgid "Heading 0"
+msgstr "Заглавље 0"
+
+#: ../data/language-specs/def.lang.h:64
+#| msgid "Leading"
+msgid "Heading 1"
+msgstr "Заглавље 1"
+
+#: ../data/language-specs/def.lang.h:65
+#| msgid "Leading"
+msgid "Heading 2"
+msgstr "Заглавље 2"
+
+#: ../data/language-specs/def.lang.h:66
+#| msgid "Leading"
+msgid "Heading 3"
+msgstr "Заглавље 3"
+
+#: ../data/language-specs/def.lang.h:67
+#| msgid "Leading"
+msgid "Heading 4"
+msgstr "Заглавље 4"
+
+#: ../data/language-specs/def.lang.h:68
+#| msgid "Leading"
+msgid "Heading 5"
+msgstr "Заглавље 5"
+
+#: ../data/language-specs/def.lang.h:69
+#| msgid "Leading"
+msgid "Heading 6"
+msgstr "Заглавље 6"
+
 #: ../data/language-specs/desktop.lang.h:2
 msgid ".desktop"
 msgstr ".desktop"
@@ -1158,6 +1250,7 @@ msgstr "ДОС група"
 
 #: ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/latex.lang.h:8
+#: ../data/language-specs/sweave.lang.h:4
 msgid "Command"
 msgstr "Наредба"
 
@@ -1174,8 +1267,9 @@ msgid "DPatch"
 msgstr "DPatch"
 
 #: ../data/language-specs/dpatch.lang.h:3
-msgid "patch-start"
-msgstr "patch-start"
+#| msgid "patch-start"
+msgid "Patch Start"
+msgstr "Почетак закрпе"
 
 #: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
 msgid "DTD"
@@ -1194,8 +1288,9 @@ msgid "error"
 msgstr "грешка"
 
 #: ../data/language-specs/dtd.lang.h:6
-msgid "quoted-value"
-msgstr "цитирана вредност"
+#| msgid "quoted-value"
+msgid "Quoted Value"
+msgstr "Цитирана вредност"
 
 #: ../data/language-specs/eiffel.lang.h:2
 msgid "Eiffel"
@@ -1429,6 +1524,7 @@ msgid "Inline Documentation Section"
 msgstr "Одељак унутрашње документације"
 
 #: ../data/language-specs/gtk-doc.lang.h:4
+#: ../data/language-specs/python.lang.h:19
 msgid "Function Name"
 msgstr "Назив функције"
 
@@ -1494,6 +1590,7 @@ msgstr "Escape"
 
 #: ../data/language-specs/haddock.lang.h:8
 #: ../data/language-specs/markdown.lang.h:13
+#: ../data/language-specs/rst.lang.h:4
 msgid "Emphasis"
 msgstr "Наглашавање"
 
@@ -1528,7 +1625,7 @@ msgid "URL"
 msgstr "Адреса"
 
 #: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/t2t.lang.h:13
+#: ../data/language-specs/t2t.lang.h:13 ../data/language-specs/yaml.lang.h:6
 msgid "Anchor"
 msgstr "Сидро"
 
@@ -1540,10 +1637,6 @@ msgstr "Хаскел"
 #: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "Симбол"
-
-#: ../data/language-specs/haskell.lang.h:12
-msgid "Float"
-msgstr "Покретни"
 
 #: ../data/language-specs/haskell.lang.h:14
 msgid "Octal"
@@ -1562,6 +1655,7 @@ msgid "HTML"
 msgstr "ХТМЛ"
 
 #: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
+#: ../data/language-specs/yaml.lang.h:7
 msgid "Tag"
 msgstr "Ознака"
 
@@ -1573,6 +1667,31 @@ msgstr "Назив особине"
 #: ../data/language-specs/markdown.lang.h:11
 msgid "Attribute Value"
 msgstr "Вредност особине"
+
+#: ../data/language-specs/html.lang.h:9
+#| msgid "Page Elements"
+msgid "Page title"
+msgstr "Наслов странице"
+
+#: ../data/language-specs/html.lang.h:10
+msgid "Heading level 1"
+msgstr "Заглавље нивоа 1"
+
+#: ../data/language-specs/html.lang.h:11
+msgid "Heading level 2"
+msgstr "Заглавље нивоа 2"
+
+#: ../data/language-specs/html.lang.h:12
+msgid "Heading level 3"
+msgstr "Заглавље нивоа 3"
+
+#: ../data/language-specs/html.lang.h:13
+msgid "Heading level 4"
+msgstr "Заглавље нивоа 4"
+
+#: ../data/language-specs/html.lang.h:14
+msgid "Heading level 5"
+msgstr "Заглавље нивоа 5"
 
 #: ../data/language-specs/idl-exelis.lang.h:2
 msgid "IDL-Exelis"
@@ -1680,7 +1799,6 @@ msgid "Julia"
 msgstr "Јулија"
 
 #: ../data/language-specs/julia.lang.h:7
-#| msgid "Constant"
 msgid "Math Constant"
 msgstr "Математичка константа"
 
@@ -1690,22 +1808,18 @@ msgid "Special Constant"
 msgstr "Специјална константа"
 
 #: ../data/language-specs/julia.lang.h:11
-#| msgid "Macros"
 msgid "Macro"
 msgstr "Макро"
 
 #: ../data/language-specs/julia.lang.h:12
-#| msgid "External"
 msgid "External Command"
 msgstr "Спољна наредба"
 
 #: ../data/language-specs/julia.lang.h:13
-#| msgid "Builtin Function"
 msgid "Built-in Function"
 msgstr "Уграђена функција"
 
 #: ../data/language-specs/julia.lang.h:14
-#| msgid "Module Path"
 msgid "Module"
 msgstr "Модул"
 
@@ -1722,21 +1836,83 @@ msgid "Inline Math Mode"
 msgstr "Угњеждени математички начин рада"
 
 #: ../data/language-specs/latex.lang.h:6
-msgid "math-bound"
-msgstr "мат-везица"
+#| msgid "Math Mode"
+msgid "Math Boundary"
+msgstr "Математичке границе"
 
 #: ../data/language-specs/latex.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:11
 msgid "Include"
 msgstr "Укључивање"
 
-#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/sweave.lang.h:5 ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
 msgstr "Вербатим"
+
+#: ../data/language-specs/latex.lang.h:10
+#| msgid "Special Variable"
+msgid "Special Character"
+msgstr "Посебан знак"
+
+#: ../data/language-specs/latex.lang.h:11
+#| msgid "POD heading"
+msgid "Part Heading"
+msgstr "Заглавље дела"
+
+#: ../data/language-specs/latex.lang.h:12
+msgid "Chapter Heading"
+msgstr "Заглавље поглавља"
+
+#: ../data/language-specs/latex.lang.h:13
+#| msgid "Exception Handling"
+msgid "Section Heading"
+msgstr "Заглавље одељка"
+
+#: ../data/language-specs/latex.lang.h:14
+#| msgid "Exception Handling"
+msgid "SubSection Heading"
+msgstr "Заглавље пододељка"
+
+#: ../data/language-specs/latex.lang.h:15
+#| msgid "Exception Handling"
+msgid "SubSubSection Heading"
+msgstr "Заглавље подпододељка"
+
+#: ../data/language-specs/latex.lang.h:16
+msgid "Paragraph Heading"
+msgstr "Заглавље пасуса"
+
+#: ../data/language-specs/latex.lang.h:17
+msgid "SubParagraph Heading"
+msgstr "Заглавље подпасуса"
+
+#: ../data/language-specs/lex.lang.h:2
+#| msgid "Hex"
+msgid "Lex"
+msgstr "Лекс"
+
+#: ../data/language-specs/lex.lang.h:3
+msgid "Token"
+msgstr "Модул"
+
+#: ../data/language-specs/lex.lang.h:6
+#| msgid "Regular Expression"
+msgid "Expression"
+msgstr "Израз"
 
 #: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "либ алат"
+
+#: ../data/language-specs/llvm.lang.h:2
+msgid "LLVM IR"
+msgstr "ЛЛВМ ИР"
+
+#: ../data/language-specs/llvm.lang.h:7
+#| msgid "Constant"
+msgid "Constants"
+msgstr "Константе"
 
 #: ../data/language-specs/lua.lang.h:2
 msgid "Lua"
@@ -1755,8 +1931,9 @@ msgid "m4"
 msgstr "m4"
 
 #: ../data/language-specs/m4.lang.h:3
-msgid "m4-comment"
-msgstr "m4-коментар"
+#| msgid "Comment"
+msgid "m4 Comment"
+msgstr "м4 примедба"
 
 #: ../data/language-specs/m4.lang.h:4
 msgid "m4 Macro"
@@ -1835,7 +2012,8 @@ msgid "Markdown"
 msgstr "Маркдаун"
 
 #: ../data/language-specs/markdown.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/t2t.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/rst.lang.h:3
+#: ../data/language-specs/t2t.lang.h:6
 msgid "Header"
 msgstr "Заглавље"
 
@@ -1848,6 +2026,7 @@ msgid "List Marker"
 msgstr "Означавач списка"
 
 #: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rst.lang.h:11
 msgid "Code"
 msgstr "Код"
 
@@ -1870,6 +2049,7 @@ msgstr "Творац слике"
 
 #: ../data/language-specs/markdown.lang.h:14
 #: ../data/language-specs/mediawiki.lang.h:3
+#: ../data/language-specs/rst.lang.h:5
 msgid "Strong Emphasis"
 msgstr "Снажно наглашавање"
 
@@ -1890,17 +2070,15 @@ msgid "MediaWiki"
 msgstr "Медија вики"
 
 #: ../data/language-specs/mediawiki.lang.h:4
-#| msgid "Emphasis"
 msgid "Light Emphasis"
 msgstr "Лагано наглашавање"
 
 #: ../data/language-specs/mediawiki.lang.h:5
-#| msgid "Signal name"
 msgid "Signature"
 msgstr "Потпис"
 
 #: ../data/language-specs/mediawiki.lang.h:7
-#| msgid "Link Text"
+#: ../data/language-specs/rst.lang.h:9
 msgid "Link"
 msgstr "Веза"
 
@@ -2109,12 +2287,12 @@ msgstr "Директива линије"
 msgid "Include Statement"
 msgstr "Израз укључивања"
 
-#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
+#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:11
 #: ../data/language-specs/ruby.lang.h:23
 msgid "Heredoc"
 msgstr "Хередок"
 
-#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:12
 #: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
 msgid "Heredoc Bound"
 msgstr "Хередок веза"
@@ -2147,7 +2325,12 @@ msgstr "ПОД заглавље"
 msgid "PHP"
 msgstr "ПХП"
 
-#: ../data/language-specs/php.lang.h:13
+#: ../data/language-specs/php.lang.h:3
+#| msgid "Preprocessor"
+msgid "Preprocessor tags"
+msgstr "Ознаке претпроцесора"
+
+#: ../data/language-specs/php.lang.h:14
 msgid "Common Function"
 msgstr "Општа функција"
 
@@ -2224,8 +2407,19 @@ msgid "Python"
 msgstr "Питон"
 
 #: ../data/language-specs/python.lang.h:9
-msgid "string-conversion"
-msgstr "конверзија-ниске"
+#| msgid "printf Conversion"
+msgid "String Conversion"
+msgstr "Претварање ниске"
+
+#: ../data/language-specs/python.lang.h:20
+#| msgid "Class names"
+msgid "Class Name"
+msgstr "Назив разреда"
+
+#: ../data/language-specs/python.lang.h:21
+#| msgid "Operator"
+msgid "Decorator"
+msgstr "Украшивач"
 
 #: ../data/language-specs/R.lang.h:2
 msgid "R"
@@ -2295,6 +2489,16 @@ msgstr "Прекидач"
 msgid "Email"
 msgstr "Ел. пошта"
 
+#: ../data/language-specs/rst.lang.h:2
+#| msgid "Structural Elements"
+msgid "reStructuredText"
+msgstr "Поново структурисани текст"
+
+#: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
+#| msgid "Line Directive"
+msgid "Directive"
+msgstr "Смерница"
+
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Ruby"
 msgstr "Руби"
@@ -2321,19 +2525,12 @@ msgid "Scala"
 msgstr "Размера"
 
 #: ../data/language-specs/scala.lang.h:9
-#| msgid "Modifiers"
 msgid "Modifier"
 msgstr "Измењивач"
 
 #: ../data/language-specs/scala.lang.h:15
-#| msgid "Builtin"
 msgid "Built In"
 msgstr "Уграђено"
-
-#: ../data/language-specs/scala.lang.h:16
-#| msgid "Others"
-msgid "Other"
-msgstr "Остали"
 
 #: ../data/language-specs/scala.lang.h:17
 msgid "XML Tag"
@@ -2355,6 +2552,22 @@ msgstr "sh"
 #: ../data/language-specs/sh.lang.h:9
 msgid "Variable Definition"
 msgstr "Дефиниција променљиве"
+
+#. *
+#. * SECTION:language
+#. * @Short_description: Object representing a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
+#. * particular language. Use #GtkSourceLanguageManager to obtain a
+#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
+#. * to a #GtkSourceBuffer.
+#.
+#: ../data/language-specs/sh.lang.h:10 ../data/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/gtksourcelanguage.c:55
+msgid "Others"
+msgstr "Остали"
 
 #: ../data/language-specs/sh.lang.h:11
 msgid "Common Commands"
@@ -2404,6 +2617,10 @@ msgstr "СКуЛ"
 msgid "No idea what it is"
 msgstr "Немам појма шта је ово"
 
+#: ../data/language-specs/sweave.lang.h:2
+msgid "Sweave"
+msgstr "Звив"
+
 #: ../data/language-specs/systemverilog.lang.h:2
 msgid "SystemVerilog"
 msgstr "Верилог система"
@@ -2440,13 +2657,13 @@ msgstr "Одељак 4"
 msgid "Section 5"
 msgstr "Одељак 5"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:114
-#: ../gtksourceview/gtksourcestyle.c:115
+#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:121
+#: ../gtksourceview/gtksourcestyle.c:122
 msgid "Italic"
 msgstr "Искошено"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:106
-#: ../gtksourceview/gtksourcestyle.c:107
+#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:113
+#: ../gtksourceview/gtksourcestyle.c:114
 msgid "Bold"
 msgstr "Подебљано"
 
@@ -2535,12 +2752,44 @@ msgid "Yacc"
 msgstr "Јак"
 
 #: ../data/language-specs/yacc.lang.h:5
-msgid "token-type"
-msgstr "тип-симбола"
+#| msgid "token-type"
+msgid "token type"
+msgstr "врста модула"
 
 #: ../data/language-specs/yacc.lang.h:6
 msgid "rule"
 msgstr "правило"
+
+#: ../data/language-specs/yaml.lang.h:2
+msgid "YAML"
+msgstr "ЈАМЛ"
+
+#: ../data/language-specs/yaml.lang.h:3
+#| msgid "BOZ Literal"
+msgid "Block literal"
+msgstr "Дословни блока"
+
+#: ../data/language-specs/yaml.lang.h:8
+msgid "Alias"
+msgstr "Псеудоним"
+
+#: ../data/language-specs/yaml.lang.h:9
+msgid "Map key"
+msgstr "Кључ мапе"
+
+#: ../data/language-specs/yaml.lang.h:11
+msgid "Null"
+msgstr "Ништа"
+
+#: ../data/language-specs/yaml.lang.h:13
+#| msgid "Base-N Integer"
+msgid "Integer"
+msgstr "Цео број"
+
+#: ../data/language-specs/yaml.lang.h:14
+#| msgid "Floating Point"
+msgid "Floating point"
+msgstr "Покретни зарез"
 
 #: ../data/styles/classic.xml.h:1
 msgid "Classic"
@@ -2574,6 +2823,24 @@ msgstr "Обливион"
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Тамна шема боја која користи Танго палету боја"
 
+#: ../data/styles/solarized-dark.xml.h:1
+msgid "Solarized Dark"
+msgstr "Тамна осунчана"
+
+#: ../data/styles/solarized-dark.xml.h:2
+#| msgid "Color scheme using Tango color palette"
+msgid "Color scheme using Solarized dark color palette"
+msgstr "Шема боја која користи тамну осунчану палету боја"
+
+#: ../data/styles/solarized-light.xml.h:1
+msgid "Solarized Light"
+msgstr "Светла осунчана"
+
+#: ../data/styles/solarized-light.xml.h:2
+#| msgid "Color scheme using Tango color palette"
+msgid "Color scheme using Solarized light color palette"
+msgstr "Шема боја која користи светлу осунчану палету боја"
+
 #: ../data/styles/tango.xml.h:1
 msgid "Tango"
 msgstr "Танго"
@@ -2587,7 +2854,6 @@ msgid "Document Words"
 msgstr "Речи документа"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
-#| msgid "Name"
 msgctxt "Object"
 msgid "Name"
 msgstr "Назив"
@@ -2655,149 +2921,149 @@ msgstr "Покретање"
 msgid "The type of activation"
 msgstr "Врста активације"
 
-#: ../gtksourceview/gtksourcebuffer.c:293
+#: ../gtksourceview/gtksourcebuffer.c:274
 #: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Истицање синтаксе"
 
-#: ../gtksourceview/gtksourcebuffer.c:294
+#: ../gtksourceview/gtksourcebuffer.c:275
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Одређује да ли да истакне синтаксу при приказу"
 
-#: ../gtksourceview/gtksourcebuffer.c:307
+#: ../gtksourceview/gtksourcebuffer.c:288
 msgid "Highlight Matching Brackets"
 msgstr "Истицање упарених заграда"
 
-#: ../gtksourceview/gtksourcebuffer.c:308
+#: ../gtksourceview/gtksourcebuffer.c:289
 msgid "Whether to highlight matching brackets"
 msgstr "Одређује да ли су истакнуте упарене заграде"
 
-#: ../gtksourceview/gtksourcebuffer.c:321
+#: ../gtksourceview/gtksourcebuffer.c:302
 #: ../gtksourceview/gtksourceundomanagerdefault.c:414
 msgid "Maximum Undo Levels"
 msgstr "Дозвољени број поништавања"
 
-#: ../gtksourceview/gtksourcebuffer.c:322
+#: ../gtksourceview/gtksourcebuffer.c:303
 #: ../gtksourceview/gtksourceundomanagerdefault.c:415
 msgid "Number of undo levels for the buffer"
 msgstr "Дозвољени број поништавања за бафер"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:334
+#: ../gtksourceview/gtksourcebuffer.c:315
 msgid "Language"
 msgstr "Језик"
 
-#: ../gtksourceview/gtksourcebuffer.c:335
+#: ../gtksourceview/gtksourcebuffer.c:316
 msgid "Language object to get highlighting patterns from"
 msgstr "Објекат језика из којег се извлаче шаблони за истицање"
 
-#: ../gtksourceview/gtksourcebuffer.c:343
+#: ../gtksourceview/gtksourcebuffer.c:324
 msgid "Can undo"
 msgstr "Могуће опозивање"
 
-#: ../gtksourceview/gtksourcebuffer.c:344
+#: ../gtksourceview/gtksourcebuffer.c:325
 msgid "Whether Undo operation is possible"
 msgstr "Одређује да ли је операција опозивања могућа"
 
-#: ../gtksourceview/gtksourcebuffer.c:351
+#: ../gtksourceview/gtksourcebuffer.c:332
 msgid "Can redo"
 msgstr "Могуће понављање"
 
-#: ../gtksourceview/gtksourcebuffer.c:352
+#: ../gtksourceview/gtksourcebuffer.c:333
 msgid "Whether Redo operation is possible"
 msgstr "Одређује да ли је операција понављања могућа"
 
-#: ../gtksourceview/gtksourcebuffer.c:366
-#: ../gtksourceview/gtksourcebuffer.c:367
+#: ../gtksourceview/gtksourcebuffer.c:347
+#: ../gtksourceview/gtksourcebuffer.c:348
 msgid "Style scheme"
 msgstr "Шема стила"
 
-#: ../gtksourceview/gtksourcebuffer.c:374
+#: ../gtksourceview/gtksourcebuffer.c:355
 msgid "Undo manager"
 msgstr "Уредник опозивања"
 
-#: ../gtksourceview/gtksourcebuffer.c:375
+#: ../gtksourceview/gtksourcebuffer.c:356
 msgid "The buffer undo manager"
 msgstr "Уредник оставе за опозивања"
 
-#: ../gtksourceview/gtksourcecompletion.c:1786
-#: ../gtksourceview/gtksourcegutter.c:546
+#: ../gtksourceview/gtksourcecompletion.c:2163
+#: ../gtksourceview/gtksourcegutter.c:510
 msgid "View"
 msgstr "Преглед"
 
-#: ../gtksourceview/gtksourcecompletion.c:1787
+#: ../gtksourceview/gtksourcecompletion.c:2164
 msgid "The GtkSourceView bound to the completion"
 msgstr "Преглед Гтк извора привезан на ово допуњавање"
 
-#: ../gtksourceview/gtksourcecompletion.c:1801
+#: ../gtksourceview/gtksourcecompletion.c:2178
 msgid "Remember Info Visibility"
 msgstr "Запамти видљивост података"
 
-#: ../gtksourceview/gtksourcecompletion.c:1802
+#: ../gtksourceview/gtksourcecompletion.c:2179
 msgid "Remember the last info window visibility state"
 msgstr "Памти стање видљивости прозора са подацима"
 
-#: ../gtksourceview/gtksourcecompletion.c:1814
+#: ../gtksourceview/gtksourcecompletion.c:2191
 msgid "Select on Show"
 msgstr "Изабери кад је приказано"
 
-#: ../gtksourceview/gtksourcecompletion.c:1815
+#: ../gtksourceview/gtksourcecompletion.c:2192
 msgid "Select first proposal when completion is shown"
 msgstr "Бира први предлог када је приказано допуњавање"
 
-#: ../gtksourceview/gtksourcecompletion.c:1828
+#: ../gtksourceview/gtksourcecompletion.c:2205
 msgid "Show Headers"
 msgstr "Прикажи заглавља"
 
-#: ../gtksourceview/gtksourcecompletion.c:1829
+#: ../gtksourceview/gtksourcecompletion.c:2206
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Приказује заглавље добављача када су доступни предлози са више добављача"
 
-#: ../gtksourceview/gtksourcecompletion.c:1842
+#: ../gtksourceview/gtksourcecompletion.c:2219
 msgid "Show Icons"
 msgstr "Прикажи иконице"
 
-#: ../gtksourceview/gtksourcecompletion.c:1843
+#: ../gtksourceview/gtksourcecompletion.c:2220
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Приказује иконицу за добављача и предлог у прозорчету за допуњавање"
 
-#: ../gtksourceview/gtksourcecompletion.c:1857
+#: ../gtksourceview/gtksourcecompletion.c:2234
 msgid "Accelerators"
 msgstr "Пречице"
 
-#: ../gtksourceview/gtksourcecompletion.c:1858
+#: ../gtksourceview/gtksourcecompletion.c:2235
 msgid "Number of proposal accelerators to show"
 msgstr "Број предложених пречица за приказ"
 
-#: ../gtksourceview/gtksourcecompletion.c:1873
+#: ../gtksourceview/gtksourcecompletion.c:2250
 msgid "Auto Complete Delay"
 msgstr "Време самодопуњавања"
 
-#: ../gtksourceview/gtksourcecompletion.c:1874
+#: ../gtksourceview/gtksourcecompletion.c:2251
 msgid "Completion popup delay for interactive completion"
 msgstr "Време након кога се искаче прозорче при упитном допуњавању"
 
-#: ../gtksourceview/gtksourcecompletion.c:1890
+#: ../gtksourceview/gtksourcecompletion.c:2267
 msgid "Provider Page Size"
 msgstr "Величина странице добављача"
 
-#: ../gtksourceview/gtksourcecompletion.c:1891
+#: ../gtksourceview/gtksourcecompletion.c:2268
 msgid "Provider scrolling page size"
 msgstr "Величина странице за листање довављача"
 
-#: ../gtksourceview/gtksourcecompletion.c:1911
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Proposal Page Size"
 msgstr "Величина странице предлога"
 
-#: ../gtksourceview/gtksourcecompletion.c:1912
+#: ../gtksourceview/gtksourcecompletion.c:2289
 msgid "Proposal scrolling page size"
 msgstr "Величина странице за листање предлога"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:272
-#: ../gtksourceview/gtksourceview.c:308
+#: ../gtksourceview/gtksourceview.c:309
 msgid "Completion"
 msgstr "Довршавање"
 
@@ -2815,7 +3081,7 @@ msgid "The GtkTextIter at which the completion was invoked"
 msgstr "ГткТекстИтер на који се позива допуњавање"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:240
+#: ../gtksourceview/gtksourcecompletioninfo.c:253
 msgid "Completion Info"
 msgstr "Подаци допуњавања"
 
@@ -2859,7 +3125,7 @@ msgstr "_Појединости..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3119
+#: ../gtksourceview/gtksourcecontextengine.c:3139
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2870,7 +3136,7 @@ msgstr ""
 "ће бити спорији.\n"
 "Грешка: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4442
+#: ../gtksourceview/gtksourcecontextengine.c:4462
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2878,19 +3144,19 @@ msgstr ""
 "Истицање једне линије је трајало предуго, истицање синтаксе ће бити "
 "онемогућено"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5686
+#: ../gtksourceview/gtksourcecontextengine.c:5706
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "контекст „%s“ не може да садржи \\%%{...@start} наредбу"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5847
-#: ../gtksourceview/gtksourcecontextengine.c:5936
+#: ../gtksourceview/gtksourcecontextengine.c:5867
+#: ../gtksourceview/gtksourcecontextengine.c:5956
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "поновљени идентификатор контекста „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6050
-#: ../gtksourceview/gtksourcecontextengine.c:6110
+#: ../gtksourceview/gtksourcecontextengine.c:6070
+#: ../gtksourceview/gtksourcecontextengine.c:6130
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2899,18 +3165,18 @@ msgstr ""
 "преклапање стила коришћено са џокер референцом контекста у језику „%s“ и "
 "референци „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6124
+#: ../gtksourceview/gtksourcecontextengine.c:6144
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "неисправна референца контекста „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6143
-#: ../gtksourceview/gtksourcecontextengine.c:6153
+#: ../gtksourceview/gtksourcecontextengine.c:6163
+#: ../gtksourceview/gtksourcecontextengine.c:6173
 #, c-format
 msgid "unknown context '%s'"
 msgstr "непознати контекст „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6252
+#: ../gtksourceview/gtksourcecontextengine.c:6272
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Недостаје главна дефиниција језика (иб = „%s“.)"
@@ -2918,121 +3184,120 @@ msgstr "Недостаје главна дефиниција језика (иб 
 #. Translators: gutters can be used to display information
 #. * on the left or on the right of the text view. To draw the
 #. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:550
+#: ../gtksourceview/gtksourcegutter.c:514
 msgid "The gutters' GtkSourceView"
 msgstr "Дно прегледа Гтк извора"
 
-#: ../gtksourceview/gtksourcegutter.c:562
-#: ../gtksourceview/gtksourcegutterrenderer.c:717
+#: ../gtksourceview/gtksourcegutter.c:526
+#: ../gtksourceview/gtksourcegutterrenderer.c:749
 msgid "Window Type"
 msgstr "Врста прозора"
 
-#: ../gtksourceview/gtksourcegutter.c:563
-#| msgid "The gutters text window type"
+#: ../gtksourceview/gtksourcegutter.c:527
 msgid "The gutters' text window type"
 msgstr "Врста прозора дна текста"
 
-#: ../gtksourceview/gtksourcegutter.c:571
-#: ../gtksourceview/gtksourcegutterrenderer.c:494
+#: ../gtksourceview/gtksourcegutter.c:543
+#: ../gtksourceview/gtksourcegutterrenderer.c:525
 msgid "X Padding"
 msgstr "Х испуњавање"
 
-#: ../gtksourceview/gtksourcegutter.c:572
-#: ../gtksourceview/gtksourcegutterrenderer.c:495
+#: ../gtksourceview/gtksourcegutter.c:544
+#: ../gtksourceview/gtksourcegutterrenderer.c:526
 msgid "The x-padding"
 msgstr "Водоравно испуњавање"
 
-#: ../gtksourceview/gtksourcegutter.c:582
-#: ../gtksourceview/gtksourcegutterrenderer.c:510
+#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutterrenderer.c:540
 msgid "Y Padding"
 msgstr "Y испуњавање"
 
-#: ../gtksourceview/gtksourcegutter.c:583
-#: ../gtksourceview/gtksourcegutterrenderer.c:511
+#: ../gtksourceview/gtksourcegutter.c:562
+#: ../gtksourceview/gtksourcegutterrenderer.c:541
 msgid "The y-padding"
 msgstr "Усправно испуњавање"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:480
-#: ../gtksourceview/gtksourcegutterrenderer.c:481
+#: ../gtksourceview/gtksourcegutterrenderer.c:512
+#: ../gtksourceview/gtksourcegutterrenderer.c:513
 msgid "Visible"
 msgstr "Видљив"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:526
+#: ../gtksourceview/gtksourcegutterrenderer.c:557
 msgid "X Alignment"
 msgstr "Х поравнање"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:527
+#: ../gtksourceview/gtksourcegutterrenderer.c:558
 msgid "The x-alignment"
 msgstr "Водоравно поравнање"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:542
+#: ../gtksourceview/gtksourcegutterrenderer.c:574
 msgid "Y Alignment"
 msgstr "Y поравнање"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:543
+#: ../gtksourceview/gtksourcegutterrenderer.c:575
 msgid "The y-alignment"
 msgstr "Усправно поравнање"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:684
+#: ../gtksourceview/gtksourcegutterrenderer.c:716
 msgid "The View"
 msgstr "Преглед"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:685
+#: ../gtksourceview/gtksourcegutterrenderer.c:717
 msgid "The view"
 msgstr "Преглед"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:701
+#: ../gtksourceview/gtksourcegutterrenderer.c:733
 msgid "Alignment Mode"
 msgstr "Режим поравнања"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:702
+#: ../gtksourceview/gtksourcegutterrenderer.c:734
 msgid "The alignment mode"
 msgstr "Режим поравнања"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:718
+#: ../gtksourceview/gtksourcegutterrenderer.c:750
 msgid "The window type"
 msgstr "Врста прозора"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:726
+#: ../gtksourceview/gtksourcegutterrenderer.c:758
 msgid "Size"
 msgstr "Величина"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:727
+#: ../gtksourceview/gtksourcegutterrenderer.c:759
 msgid "The size"
 msgstr "Величина"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:289
-#: ../gtksourceview/gtksourcemarkattributes.c:314
+#: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "Pixbuf"
 msgstr "Сличица"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:290
-#: ../gtksourceview/gtksourcemarkattributes.c:315
+#: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "The pixbuf"
 msgstr "Сличица"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:304
-#: ../gtksourceview/gtksourcemarkattributes.c:301
+#: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "Stock Id"
 msgstr "Иб штока"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:305
-#: ../gtksourceview/gtksourcemarkattributes.c:302
+#: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "The stock id"
 msgstr "Иб штока"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:312
-#: ../gtksourceview/gtksourcemarkattributes.c:327
+#: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "Icon Name"
 msgstr "Назив иконице"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
-#: ../gtksourceview/gtksourcemarkattributes.c:328
+#: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
 msgstr "Назив иконице"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:320
-#: ../gtksourceview/gtksourcemarkattributes.c:340
+#: ../gtksourceview/gtksourcemarkattributes.c:342
 msgid "GIcon"
 msgstr "Гномова иконица"
 
@@ -3102,7 +3367,7 @@ msgid "in regex '%s': backreferences are not supported"
 msgstr "у регуларном изразу „%s“: повратне референце нису подржане"
 
 #: ../gtksourceview/gtksourcemarkattributes.c:288
-#: ../gtksourceview/gtksourcestyle.c:90
+#: ../gtksourceview/gtksourcestyle.c:97
 msgid "Background"
 msgstr "Позадина"
 
@@ -3110,7 +3375,7 @@ msgstr "Позадина"
 msgid "The background"
 msgstr "Позадина"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:341
+#: ../gtksourceview/gtksourcemarkattributes.c:343
 msgid "The GIcon"
 msgstr "Гномова иконица"
 
@@ -3131,12 +3396,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Објекат међумеморије Гтк извора за штампу"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:346
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Tab Width"
 msgstr "Ширина табулатора"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:347
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Width of a tab character expressed in spaces"
 msgstr "Ширина табулатора изражена у размацима"
 
@@ -3229,172 +3494,183 @@ msgstr ""
 msgid "using \\C is not supported in language definitions"
 msgstr "коришћење \\C није подржано у дефиницијама језика"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2715
+#: ../gtksourceview/gtksourcesearchcontext.c:2742
 #: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "Приручна меморија"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2716
-#| msgid "The gutters' GtkSourceView"
+#: ../gtksourceview/gtksourcesearchcontext.c:2743
 msgid "The associated GtkSourceBuffer"
 msgstr "Придружена међумеморија Гтк извора"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2730
+#: ../gtksourceview/gtksourcesearchcontext.c:2757
 msgid "Settings"
 msgstr "Подешавања"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2731
+#: ../gtksourceview/gtksourcesearchcontext.c:2758
 msgid "The associated GtkSourceSearchSettings"
 msgstr "Придружена подешавања претраге Гтк извора"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2745
-#| msgid "Highlight Syntax"
+#: ../gtksourceview/gtksourcesearchcontext.c:2772
 msgid "Highlight"
 msgstr "Истакни"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2746
-#| msgid "Highlight current line"
+#: ../gtksourceview/gtksourcesearchcontext.c:2773
 msgid "Highlight search occurrences"
 msgstr "Истакните појављивања претраге"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2762
+#: ../gtksourceview/gtksourcesearchcontext.c:2789
 msgid "Occurrences count"
 msgstr "Број појављивања"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2763
+#: ../gtksourceview/gtksourcesearchcontext.c:2790
 msgid "Total number of search occurrences"
 msgstr "Укупан број појављивања претраге"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2782
-#| msgid "error"
+#: ../gtksourceview/gtksourcesearchcontext.c:2809
 msgid "Regex error"
 msgstr "Грешка регуларног израза"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2783
-#| msgid "Regular Expression"
+#: ../gtksourceview/gtksourcesearchcontext.c:2810
 msgid "Regular expression error"
 msgstr "Грешка регуларног израза"
 
-#: ../gtksourceview/gtksourcesearchsettings.c:169
-#| msgid "The text"
+#: ../gtksourceview/gtksourcesearchsettings.c:168
 msgid "Search text"
 msgstr "Текст претраге"
 
-#: ../gtksourceview/gtksourcesearchsettings.c:170
-#| msgid "The text"
+#: ../gtksourceview/gtksourcesearchsettings.c:169
 msgid "The text to search"
 msgstr "Текст за тражење"
 
+#: ../gtksourceview/gtksourcesearchsettings.c:183
 #: ../gtksourceview/gtksourcesearchsettings.c:184
-#: ../gtksourceview/gtksourcesearchsettings.c:185
 msgid "Case sensitive"
 msgstr "Разликовање величине слова"
 
-#: ../gtksourceview/gtksourcesearchsettings.c:200
+#: ../gtksourceview/gtksourcesearchsettings.c:199
 msgid "At word boundaries"
 msgstr "На крајевима речи"
 
-#: ../gtksourceview/gtksourcesearchsettings.c:201
+#: ../gtksourceview/gtksourcesearchsettings.c:200
 msgid "Search at word boundaries"
 msgstr "Тражи на крајевима речи"
 
+#: ../gtksourceview/gtksourcesearchsettings.c:216
 #: ../gtksourceview/gtksourcesearchsettings.c:217
-#: ../gtksourceview/gtksourcesearchsettings.c:218
-#| msgid "Wrap Mode"
 msgid "Wrap around"
 msgstr "Преламај унаоколо"
 
-#: ../gtksourceview/gtksourcesearchsettings.c:233
+#: ../gtksourceview/gtksourcesearchsettings.c:232
 msgid "Regex enabled"
 msgstr "Укључен регуларни израз"
 
-#: ../gtksourceview/gtksourcesearchsettings.c:234
+#: ../gtksourceview/gtksourcesearchsettings.c:233
 msgid "Whether to search by regular expression"
 msgstr "Да ли да тражи према регуларном изразу"
 
-#: ../gtksourceview/gtksourcestyle.c:82
+#: ../gtksourceview/gtksourcestyle.c:89
 msgid "Line background"
 msgstr "Позадина линије"
 
-#: ../gtksourceview/gtksourcestyle.c:83
+#: ../gtksourceview/gtksourcestyle.c:90
 msgid "Line background color"
 msgstr "Боја позадине линије"
 
-#: ../gtksourceview/gtksourcestyle.c:91
+#: ../gtksourceview/gtksourcestyle.c:98
 msgid "Background color"
 msgstr "Боја позадине"
 
-#: ../gtksourceview/gtksourcestyle.c:98
+#: ../gtksourceview/gtksourcestyle.c:105
 msgid "Foreground"
 msgstr "Текст"
 
-#: ../gtksourceview/gtksourcestyle.c:99
+#: ../gtksourceview/gtksourcestyle.c:106
 msgid "Foreground color"
 msgstr "Боја текста"
 
-#: ../gtksourceview/gtksourcestyle.c:122 ../gtksourceview/gtksourcestyle.c:123
+#: ../gtksourceview/gtksourcestyle.c:129 ../gtksourceview/gtksourcestyle.c:130
 msgid "Underline"
 msgstr "Подвучено"
 
-#: ../gtksourceview/gtksourcestyle.c:130 ../gtksourceview/gtksourcestyle.c:131
+#: ../gtksourceview/gtksourcestyle.c:137 ../gtksourceview/gtksourcestyle.c:138
 msgid "Strikethrough"
 msgstr "Прецртано"
 
-#: ../gtksourceview/gtksourcestyle.c:138
+#: ../gtksourceview/gtksourcestyle.c:145
+#| msgid "Scala"
+msgid "Scale"
+msgstr "Сразмера"
+
+#: ../gtksourceview/gtksourcestyle.c:146
+msgid "Text scale factor"
+msgstr "Чинилац сразмере текста"
+
+#: ../gtksourceview/gtksourcestyle.c:153
 msgid "Line background set"
 msgstr "Постављена позадина линије"
 
-#: ../gtksourceview/gtksourcestyle.c:139
+#: ../gtksourceview/gtksourcestyle.c:154
 msgid "Whether line background color is set"
 msgstr "Да ли је постављена боја позадине линије"
 
-#: ../gtksourceview/gtksourcestyle.c:146
+#: ../gtksourceview/gtksourcestyle.c:161
 msgid "Foreground set"
 msgstr "Постављена боја текста"
 
-#: ../gtksourceview/gtksourcestyle.c:147
+#: ../gtksourceview/gtksourcestyle.c:162
 msgid "Whether foreground color is set"
 msgstr "Да ли је боја текста постављена"
 
-#: ../gtksourceview/gtksourcestyle.c:154
+#: ../gtksourceview/gtksourcestyle.c:169
 msgid "Background set"
 msgstr "Постављена позадина"
 
-#: ../gtksourceview/gtksourcestyle.c:155
+#: ../gtksourceview/gtksourcestyle.c:170
 msgid "Whether background color is set"
 msgstr "Да ли је боја позадине постављена"
 
-#: ../gtksourceview/gtksourcestyle.c:162
+#: ../gtksourceview/gtksourcestyle.c:177
 msgid "Bold set"
 msgstr "Постављено подебљано"
 
-#: ../gtksourceview/gtksourcestyle.c:163
+#: ../gtksourceview/gtksourcestyle.c:178
 msgid "Whether bold attribute is set"
 msgstr "Да ли је постављено да је текст подебљан"
 
-#: ../gtksourceview/gtksourcestyle.c:170
+#: ../gtksourceview/gtksourcestyle.c:185
 msgid "Italic set"
 msgstr "Постављен курзив"
 
-#: ../gtksourceview/gtksourcestyle.c:171
+#: ../gtksourceview/gtksourcestyle.c:186
 msgid "Whether italic attribute is set"
 msgstr "Да ли је постављено да је текст у курзиву"
 
-#: ../gtksourceview/gtksourcestyle.c:178
+#: ../gtksourceview/gtksourcestyle.c:193
 msgid "Underline set"
 msgstr "Постављено подвучено"
 
-#: ../gtksourceview/gtksourcestyle.c:179
+#: ../gtksourceview/gtksourcestyle.c:194
 msgid "Whether underline attribute is set"
 msgstr "Да ли је постављено да је текст подвучен"
 
-#: ../gtksourceview/gtksourcestyle.c:186
+#: ../gtksourceview/gtksourcestyle.c:201
 msgid "Strikethrough set"
 msgstr "Постављено прецртано"
 
-#: ../gtksourceview/gtksourcestyle.c:187
+#: ../gtksourceview/gtksourcestyle.c:202
 msgid "Whether strikethrough attribute is set"
 msgstr "Да ли је постављено да је текст прецртан"
+
+#: ../gtksourceview/gtksourcestyle.c:209
+#| msgid "Italic set"
+msgid "Scale set"
+msgstr "Подешавање сразмере"
+
+#: ../gtksourceview/gtksourcestyle.c:210
+#| msgid "Whether italic attribute is set"
+msgid "Whether scale attribute is set"
+msgstr "Да ли је подешена особина сразмере"
 
 #: ../gtksourceview/gtksourcestylescheme.c:211
 #: ../gtksourceview/gtksourcestylescheme.c:212
@@ -3436,71 +3712,71 @@ msgstr "Списак идентификатора доступних шема с
 msgid "The text buffer to add undo support on"
 msgstr "Остава у коју се додају кораци за опозивање"
 
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:310
 msgid "The completion object associated with the view"
 msgstr "Објекат за допуњавање повезан са овим прегледом"
 
-#: ../gtksourceview/gtksourceview.c:321
+#: ../gtksourceview/gtksourceview.c:322
 msgid "Show Line Numbers"
 msgstr "Прикажи бројеве редова"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:323
 msgid "Whether to display line numbers"
 msgstr "Да ли да приказује бројеве редова"
 
-#: ../gtksourceview/gtksourceview.c:333
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Show Line Marks"
 msgstr "Прикажи ознаке линија"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:335
 msgid "Whether to display line mark pixbufs"
 msgstr "Одређује да ли да се приказују слике (pixbuf) за ознаке линија"
 
-#: ../gtksourceview/gtksourceview.c:361
+#: ../gtksourceview/gtksourceview.c:362
 msgid "Indent Width"
 msgstr "Ширина увлачења"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:363
 msgid "Number of spaces to use for each step of indent"
 msgstr "Број размака које се користе за сваки корак увлачења"
 
-#: ../gtksourceview/gtksourceview.c:371
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Auto Indentation"
 msgstr "Само-увлачење"
 
-#: ../gtksourceview/gtksourceview.c:372
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Whether to enable auto indentation"
 msgstr "Одређује да ли је укључено само-увлачење"
 
-#: ../gtksourceview/gtksourceview.c:379
+#: ../gtksourceview/gtksourceview.c:380
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Убаци размаке уместо табулатора"
 
-#: ../gtksourceview/gtksourceview.c:380
+#: ../gtksourceview/gtksourceview.c:381
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Одређује да ли да умеће размаке уместо табулатора"
 
-#: ../gtksourceview/gtksourceview.c:392
+#: ../gtksourceview/gtksourceview.c:393
 msgid "Show Right Margin"
 msgstr "Прикажи десну маргину"
 
-#: ../gtksourceview/gtksourceview.c:393
+#: ../gtksourceview/gtksourceview.c:394
 msgid "Whether to display the right margin"
 msgstr "Одређује да ли да се приказује десна маргина"
 
-#: ../gtksourceview/gtksourceview.c:405
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Right Margin Position"
 msgstr "Положај десне маргине"
 
-#: ../gtksourceview/gtksourceview.c:406
+#: ../gtksourceview/gtksourceview.c:407
 msgid "Position of the right margin"
 msgstr "Позиција десне маргине"
 
-#: ../gtksourceview/gtksourceview.c:422
+#: ../gtksourceview/gtksourceview.c:423
 msgid "Smart Home/End"
 msgstr "Паметни Home/End"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:424
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3508,39 +3784,61 @@ msgstr ""
 "HOME и END тастери премештају на први/последњи непразан знак у линији пре "
 "него што пребаце на почетак/крај линије"
 
-#: ../gtksourceview/gtksourceview.c:433
+#: ../gtksourceview/gtksourceview.c:434
 msgid "Highlight current line"
 msgstr "Истакни текући ред"
 
-#: ../gtksourceview/gtksourceview.c:434
+#: ../gtksourceview/gtksourceview.c:435
 msgid "Whether to highlight the current line"
 msgstr "Одређује да ли је истакнут текући ред"
 
-#: ../gtksourceview/gtksourceview.c:441
+#: ../gtksourceview/gtksourceview.c:442
 msgid "Indent on tab"
 msgstr "Увлачи на таб"
 
-#: ../gtksourceview/gtksourceview.c:442
+#: ../gtksourceview/gtksourceview.c:443
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Одређује да ли да увлачи означени текст када се притисне табулатор"
 
-#: ../gtksourceview/gtksourceview.c:456
+#: ../gtksourceview/gtksourceview.c:457
 msgid "Draw Spaces"
 msgstr "Цртање размака"
 
-#: ../gtksourceview/gtksourceview.c:457
+#: ../gtksourceview/gtksourceview.c:458
 msgid "Set if and how the spaces should be visualized"
 msgstr "Поставите да ли и како размаци треба да се виде"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1326
+#: ../gtksourceview/gtksourceview.c:1272
 msgid "_Redo"
 msgstr "_Понови"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1337
+#: ../gtksourceview/gtksourceview.c:1283
 msgid "_Undo"
 msgstr "_Опозови"
+
+#: ../gtksourceview/gtksourceview.c:1301
+msgid "All _Upper Case"
+msgstr "Сва _велика слова"
+
+#: ../gtksourceview/gtksourceview.c:1311
+msgid "All _Lower Case"
+msgstr "Сва _мала слова"
+
+#: ../gtksourceview/gtksourceview.c:1321
+msgid "_Invert Case"
+msgstr "_Обрни величину слова"
+
+#: ../gtksourceview/gtksourceview.c:1331
+#| msgid "Title"
+msgid "_Title Case"
+msgstr "Величина слова _наслова"
+
+#: ../gtksourceview/gtksourceview.c:1341
+#| msgid "Changed line"
+msgid "C_hange Case"
+msgstr "_Измени величину слова"
 
 #: ../gtksourceview/gtksourceview-i18n.c:72
 msgid "translator-credits"
@@ -3551,3 +3849,15 @@ msgstr ""
 "Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "\n"
 "http://prevod.org — превод на српски језик."
+
+#~ msgid "Cobol"
+#~ msgstr "Кобол"
+
+#~ msgid "math-bound"
+#~ msgstr "мат-везица"
+
+#~ msgid "m4-comment"
+#~ msgstr "m4-коментар"
+
+#~ msgid "string-conversion"
+#~ msgstr "конверзија-ниске"
