@@ -48,7 +48,7 @@
 
 /**
  * SECTION:buffer
- * @Short_description: Buffer object for #GtkSourceView
+ * @Short_description: Buffer object for GtkSourceView
  * @Title: GtkSourceBuffer
  * @See_also: #GtkTextBuffer, #GtkSourceView
  *

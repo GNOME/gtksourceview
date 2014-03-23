@@ -34,7 +34,7 @@
 
 /**
  * SECTION:searchcontext
- * @Short_description: The context of a search
+ * @Short_description: Search context
  * @Title: GtkSourceSearchContext
  * @See_also: #GtkSourceBuffer, #GtkSourceSearchSettings
  *

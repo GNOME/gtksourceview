@@ -29,7 +29,7 @@
 
 /**
  * SECTION:gutter
- * @Short_description: Gutter object for #GtkSourceView
+ * @Short_description: Gutter object for GtkSourceView
  * @Title: GtkSourceGutter
  * @See_also: #GtkSourceView, #GtkSourceMark
  *

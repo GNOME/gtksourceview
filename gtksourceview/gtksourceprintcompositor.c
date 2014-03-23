@@ -38,7 +38,7 @@
 
 /**
  * SECTION:printcompositor
- * @Short_description: Compose a #GtkSourceBuffer for printing
+ * @Short_description: Compose a GtkSourceBuffer for printing
  * @Title: GtkSourcePrintCompositor
  *
  * The #GtkSourcePrintCompositor object is used to compose a #GtkSourceBuffer

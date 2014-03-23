@@ -24,7 +24,7 @@
 
 /**
  * SECTION:searchsettings
- * @Short_description: The settings of a search
+ * @Short_description: Search settings
  * @Title: GtkSourceSearchSettings
  * @See_also: #GtkSourceSearchContext
  *

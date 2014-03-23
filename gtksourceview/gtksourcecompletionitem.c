@@ -22,7 +22,7 @@
 /**
  * SECTION:completionitem
  * @title: GtkSourceCompletionItem
- * @short_description: Simple implementation of #GtkSourceCompletionProposal
+ * @short_description: Simple implementation of GtkSourceCompletionProposal
  *
  * The #GtkSourceCompletionItem class is a simple implementation of the
  * #GtkSourceCompletionProposal interface.

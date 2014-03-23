@@ -28,7 +28,7 @@
 
 /**
  * SECTION:styleschememanager
- * @Short_description: Object which provides access to #GtkSourceStyleScheme<!-- -->s
+ * @Short_description: Object which provides access to GtkSourceStyleSchemes
  * @Title: GtkSourceStyleSchemeManager
  * @See_also: #GtkSourceStyleScheme
  *

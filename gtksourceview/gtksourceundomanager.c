@@ -35,7 +35,7 @@
 
 /**
  * SECTION:undomanager
- * @short_description: Undo manager interface for #GtkSourceView
+ * @short_description: Undo manager interface for GtkSourceView
  * @title: GtkSourceUndoManager
  * @see_also: #GtkTextBuffer, #GtkSourceView
  *

@@ -26,7 +26,7 @@
 
 /**
  * SECTION:mark
- * @Short_description: mark object for #GtkSourceBuffer
+ * @Short_description: Mark object for GtkSourceBuffer
  * @Title: GtkSourceMark
  * @See_also: #GtkSourceBuffer
  *
