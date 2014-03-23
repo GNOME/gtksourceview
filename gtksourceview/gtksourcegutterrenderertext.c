@@ -22,6 +22,16 @@
 #include "gtksourcegutterrenderertext.h"
 #include "gtksourceview-i18n.h"
 
+/**
+ * SECTION:gutterrenderertext
+ * @Short_description: Renders text in the gutter
+ * @Title: GtkSourceGutterRendererText
+ * @See_also: #GtkSourceGutterRenderer, #GtkSourceGutter
+ *
+ * A #GtkSourceGutterRendererText can be used to render text in a cell of
+ * #GtkSourceGutter.
+ */
+
 struct _GtkSourceGutterRendererTextPrivate
 {
 	gchar *text;

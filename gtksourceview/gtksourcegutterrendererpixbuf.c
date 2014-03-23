@@ -19,10 +19,19 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-
 #include "gtksourcegutterrendererpixbuf.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourcepixbufhelper.h"
+
+/**
+ * SECTION:gutterrendererpixbuf
+ * @Short_description: Renders a pixbuf in the gutter
+ * @Title: GtkSourceGutterRendererPixbuf
+ * @See_also: #GtkSourceGutterRenderer, #GtkSourceGutter
+ *
+ * A #GtkSourceGutterRendererPixbuf can be used to render an image in a cell of
+ * #GtkSourceGutter.
+ */
 
 struct _GtkSourceGutterRendererPixbufPrivate
 {
