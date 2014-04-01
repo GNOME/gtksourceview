@@ -166,7 +166,7 @@ gtksourceview-marshal.c: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) echo "#include \"gtksourceview-marshal.h\"" > $@ && \
 	$(GLIB_GENMARSHAL) $< --body --prefix=_gtksourceview_marshal >> $@
 
-gtksourceview-resources.c: gtksourceview.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/gtksourceview.gresource.xml)
+gtksourceview-resources.c: gtksourceview.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/gtksourceview.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/gtksourceview.gresource.xml
 
 gtksourceview-typebuiltins.c: stamp-gtksourceview-typebuiltins.c
