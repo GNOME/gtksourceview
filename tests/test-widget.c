@@ -721,8 +721,6 @@ print_button_clicked_cb (TestWidget *self)
 	g_free (basename);
 }
 
-/* View UI callbacks */
-
 static void
 update_cursor_position_info (TestWidget *self)
 {
@@ -843,8 +841,6 @@ bracket_matched_cb (GtkSourceBuffer           *buffer,
 	g_type_class_unref (eclass);
 }
 
-/* Window creation functions */
-
 static gchar *
 mark_tooltip_func (GtkSourceMarkAttributes *attrs,
                    GtkSourceMark           *mark,
@@ -905,8 +901,6 @@ add_source_mark_attributes (GtkSourceView *view)
 
 	gtk_source_view_set_mark_attributes (view, MARK_TYPE_2, attrs, 2);
 }
-
-/* Class init, dispose, etc. */
 
 static void
 test_widget_dispose (GObject *object)
@@ -1013,8 +1007,6 @@ test_widget_new (void)
 {
 	return g_object_new (test_widget_get_type (), NULL);
 }
-
-/* Program entry point */
 
 int
 main (int argc, char *argv[])
