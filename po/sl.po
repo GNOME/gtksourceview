@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2014-03-21 21:45+0000\n"
-"PO-Revision-Date: 2014-03-21 22:51+0100\n"
+"PO-Revision-Date: 2014-04-03 20:49+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -1840,9 +1840,8 @@ msgid "Special Character"
 msgstr "Posebni znak"
 
 #: ../data/language-specs/latex.lang.h:11
-#, fuzzy
 msgid "Part Heading"
-msgstr "Naslov (1 raven)"
+msgstr "Delni naslov"
 
 #: ../data/language-specs/latex.lang.h:12
 msgid "Chapter Heading"
@@ -2386,12 +2385,9 @@ msgstr "Pretvorba nizov"
 msgid "Class Name"
 msgstr "Ime razreda"
 
-# operator -> operand
-# ni isto!!! operator je +-/*, operand pa številčna vrednost v izrazu
 #: ../data/language-specs/python.lang.h:21
-#, fuzzy
 msgid "Decorator"
-msgstr "Operator"
+msgstr "Oblikovni vzorec"
 
 #: ../data/language-specs/R.lang.h:2
 msgid "R"
@@ -2462,7 +2458,6 @@ msgid "Email"
 msgstr "Elektronska pošta"
 
 #: ../data/language-specs/rst.lang.h:2
-#, fuzzy
 msgid "reStructuredText"
 msgstr "reStructuredText"
 
@@ -2589,9 +2584,8 @@ msgid "No idea what it is"
 msgstr "Neznan dogodek brez prave osnove"
 
 #: ../data/language-specs/sweave.lang.h:2
-#, fuzzy
 msgid "Sweave"
-msgstr "Sweave"
+msgstr "Zavitek"
 
 #: ../data/language-specs/systemverilog.lang.h:2
 msgid "SystemVerilog"
@@ -2736,18 +2730,16 @@ msgid "YAML"
 msgstr "YAML"
 
 #: ../data/language-specs/yaml.lang.h:3
-#, fuzzy
 msgid "Block literal"
-msgstr "BOZ Literal"
+msgstr "Block literal"
 
 #: ../data/language-specs/yaml.lang.h:8
 msgid "Alias"
 msgstr "Vzdevek"
 
 #: ../data/language-specs/yaml.lang.h:9
-#, fuzzy
 msgid "Map key"
-msgstr "Šifrirni ključ: "
+msgstr "Ključ preslikave"
 
 #: ../data/language-specs/yaml.lang.h:11
 msgid "Null"
@@ -2794,24 +2786,20 @@ msgid "Dark color scheme using the Tango color palette"
 msgstr "Temna barvna shema z barvno paleto tango"
 
 #: ../data/styles/solarized-dark.xml.h:1
-#, fuzzy
 msgid "Solarized Dark"
-msgstr "temo vijolična"
+msgstr "Temna tema"
 
 #: ../data/styles/solarized-dark.xml.h:2
-#, fuzzy
 msgid "Color scheme using Solarized dark color palette"
-msgstr "Temna barvna shema z barvno paleto tango"
+msgstr "Barvna shema s temno barvno paleto"
 
 #: ../data/styles/solarized-light.xml.h:1
-#, fuzzy
 msgid "Solarized Light"
-msgstr "svetlobna leta"
+msgstr "Svetla tema"
 
 #: ../data/styles/solarized-light.xml.h:2
-#, fuzzy
 msgid "Color scheme using Solarized light color palette"
-msgstr "Temna barvna shema z barvno paleto tango"
+msgstr "Barvna shema s svetlo barvno paleto"
 
 #: ../data/styles/tango.xml.h:1
 msgid "Tango"
