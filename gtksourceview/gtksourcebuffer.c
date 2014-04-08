@@ -2185,7 +2185,7 @@ gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
 /**
  * gtk_source_buffer_iter_forward_to_context_class_toggle:
  * @buffer: a #GtkSourceBuffer.
- * @iter: a #GtkTextIter.
+ * @iter: (inout): a #GtkTextIter.
  * @context_class: the context class.
  *
  * Moves forward to the next toggle (on or off) of the context class. If no
@@ -2232,7 +2232,7 @@ gtk_source_buffer_iter_forward_to_context_class_toggle (GtkSourceBuffer *buffer,
 /**
  * gtk_source_buffer_iter_backward_to_context_class_toggle:
  * @buffer: a #GtkSourceBuffer.
- * @iter: a #GtkTextIter.
+ * @iter: (inout): a #GtkTextIter.
  * @context_class: the context class.
  *
  * Moves backward to the next toggle (on or off) of the context class. If no
