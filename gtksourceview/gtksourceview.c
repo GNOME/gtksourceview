@@ -1169,54 +1169,18 @@ gtk_source_view_redo (GtkSourceView *view)
 	}
 }
 
-static GList *
-get_user_requested_providers (GtkSourceCompletion *completion)
-{
-	GList *item;
-	GList *ret = NULL;
-
-	item = gtk_source_completion_get_providers (completion);
-
-	while (item)
-	{
-		GtkSourceCompletionProvider *provider;
-
-		provider = GTK_SOURCE_COMPLETION_PROVIDER (item->data);
-
-		if (gtk_source_completion_provider_get_activation (provider) &
-		    GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED)
-		{
-			ret = g_list_prepend (ret, provider);
-		}
-
-		item = g_list_next (item);
-	}
-
-	return g_list_reverse (ret);
-}
-
 static void
 gtk_source_view_show_completion_real (GtkSourceView *view)
 {
 	GtkSourceCompletion *completion;
 	GtkSourceCompletionContext *context;
-	GList *providers;
 
 	completion = gtk_source_view_get_completion (view);
 	context = gtk_source_completion_create_context (completion, NULL);
 
-	g_object_set (context,
-	              "activation",
-	              GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
-	              NULL);
-
-	providers = get_user_requested_providers (completion);
-
 	gtk_source_completion_show (completion,
-	                            providers,
+	                            gtk_source_completion_get_providers (completion),
 	                            context);
-
-	g_list_free (providers);
 }
 
 static void
