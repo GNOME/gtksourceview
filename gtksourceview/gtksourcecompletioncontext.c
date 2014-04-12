@@ -299,8 +299,8 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                     _("Activation"),
 	                                                     _("The type of activation"),
 	                                                     GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
-	                                                     GTK_SOURCE_COMPLETION_ACTIVATION_NONE,
-	                                                     G_PARAM_READWRITE));
+	                                                     GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
+	                                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
 static void
