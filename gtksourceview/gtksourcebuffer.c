@@ -65,7 +65,7 @@
  * By default highlighting is enabled, but you can disable it with
  * gtk_source_buffer_set_highlight_syntax().
  *
- * # Undo and Redo #
+ * # Undo and Redo
  *
  * A custom #GtkSourceUndoManager can be implemented and set with
  * gtk_source_buffer_set_undo_manager(). However the default implementation
@@ -82,7 +82,7 @@
  * editor to know whether the file is saved. See gtk_text_buffer_get_modified()
  * and gtk_text_buffer_set_modified().
  *
- * # Context Classes #
+ * # Context Classes
  *
  * It is possible to retrieve some information from the syntax highlighting
  * engine. There are currently three default context classes that are
