@@ -2312,18 +2312,32 @@ get_iter_attrs (GtkSourcePrintCompositor *compositor,
 		if (bg_set)
 		{
 			GdkRGBA *color = NULL;
-			if (bg) pango_attribute_destroy (bg);
+
+			if (bg != NULL)
+			{
+				pango_attribute_destroy (bg);
+			}
+
 			g_object_get (tag, "background-rgba", &color, NULL);
-			bg = pango_attr_background_new (color->red, color->green, color->blue);
+			bg = pango_attr_background_new (color->red * 65535,
+							color->green * 65535,
+							color->blue * 65535);
 			gdk_rgba_free (color);
 		}
 
 		if (fg_set)
 		{
 			GdkRGBA *color = NULL;
-			if (fg) pango_attribute_destroy (fg);
+
+			if (fg != NULL)
+			{
+				pango_attribute_destroy (fg);
+			}
+
 			g_object_get (tag, "foreground-rgba", &color, NULL);
-			fg = pango_attr_foreground_new (color->red, color->green, color->blue);
+			fg = pango_attr_foreground_new (color->red * 65535,
+							color->green * 65535,
+							color->blue * 65535);
 			gdk_rgba_free (color);
 		}
 
