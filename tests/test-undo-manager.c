@@ -454,11 +454,6 @@ test_merge_actions (void)
 
 	/* Delete the two words (with backspace) */
 	delete_char_at_offset (buffer, 3);
-
-	/* FIXME when testing with gedit, the deletions of 'i' followed by ' ' are
-	 * merged. Here they are not merged... */
-	contents_history = g_list_append (contents_history, get_contents (buffer));
-
 	delete_char_at_offset (buffer, 2);
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 
