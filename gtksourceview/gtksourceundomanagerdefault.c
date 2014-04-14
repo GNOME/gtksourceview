@@ -68,9 +68,6 @@ struct _GtkSourceUndoInsertAction
 	gchar *text;
 	gint   length;
 	gint   chars;
-
-	gint   selection_start;
-	gint   selection_end;
 };
 
 struct _GtkSourceUndoDeleteAction
@@ -79,9 +76,6 @@ struct _GtkSourceUndoDeleteAction
 	gint      end;
 	gchar    *text;
 	gboolean  forward;
-
-	gint      selection_start;
-	gint      selection_end;
 };
 
 struct _GtkSourceUndoAction
@@ -93,6 +87,9 @@ struct _GtkSourceUndoAction
 		GtkSourceUndoInsertAction  insert;
 		GtkSourceUndoDeleteAction  delete;
 	} action;
+
+	gint selection_insert;
+	gint selection_bound;
 
 	gint order_in_group;
 
@@ -473,23 +470,23 @@ gtk_source_undo_manager_can_redo_impl (GtkSourceUndoManager *manager)
 
 static void
 set_cursor (GtkTextBuffer *buffer,
-            gint           selection_start,
-            gint           selection_end)
+            gint           selection_insert,
+            gint           selection_bound)
 {
-	GtkTextIter start;
-	GtkTextIter end;
+	GtkTextIter insert_iter;
+	GtkTextIter bound_iter;
 
 	/* Place the cursor at the requested position */
-	gtk_text_buffer_get_iter_at_offset (buffer, &start, selection_start);
+	gtk_text_buffer_get_iter_at_offset (buffer, &insert_iter, selection_insert);
 
-	if (selection_start == selection_end)
+	if (selection_insert == selection_bound)
 	{
-		gtk_text_buffer_place_cursor (buffer, &start);
+		gtk_text_buffer_place_cursor (buffer, &insert_iter);
 	}
 	else
 	{
-		gtk_text_buffer_get_iter_at_offset (buffer, &end, selection_end);
-		gtk_text_buffer_select_range (buffer, &start, &end);
+		gtk_text_buffer_get_iter_at_offset (buffer, &bound_iter, selection_bound);
+		gtk_text_buffer_select_range (buffer, &insert_iter, &bound_iter);
 	}
 }
 
@@ -583,13 +580,57 @@ action_list_delete_last (GPtrArray *array)
 }
 
 static void
+selection_bounds_offsets (GtkTextBuffer *buffer,
+                          gint          *insert_offset,
+                          gint          *bound_offset)
+{
+	GtkTextIter insiter, seliter;
+	GtkTextMark *insmark, *selmark;
+
+	insmark = gtk_text_buffer_get_insert (buffer);
+	selmark = gtk_text_buffer_get_selection_bound (buffer);
+
+	gtk_text_buffer_get_iter_at_mark (buffer, &insiter, insmark);
+	gtk_text_buffer_get_iter_at_mark (buffer, &seliter, selmark);
+
+	*insert_offset = gtk_text_iter_get_offset (&insiter);
+	*bound_offset = gtk_text_iter_get_offset (&seliter);
+}
+
+static void
+selection_bounds_to_action (GtkTextBuffer       *buffer,
+                            GtkSourceUndoAction *undo_action)
+{
+	selection_bounds_offsets (buffer,
+	                          &undo_action->selection_insert,
+	                          &undo_action->selection_bound);
+}
+
+static void
+undo_action_swap_selection (GtkSourceUndoAction *action,
+                            gint                *selection_insert,
+                            gint                *selection_bound)
+{
+	gint insert_tmp, bound_tmp;
+
+	insert_tmp = *selection_insert;
+	bound_tmp = *selection_bound;
+
+	*selection_insert = action->selection_insert;
+	*selection_bound = action->selection_bound;
+
+	action->selection_insert = insert_tmp;
+	action->selection_bound = bound_tmp;
+}
+
+static void
 gtk_source_undo_manager_undo_impl (GtkSourceUndoManager *manager)
 {
 	GtkSourceUndoManagerDefault *manager_default;
 	GtkSourceUndoAction *undo_action;
 	gboolean modified = FALSE;
-	gint selection_start = -1;
-	gint selection_end;
+	gint selection_insert;
+	gint selection_bound;
 
 	manager_default = GTK_SOURCE_UNDO_MANAGER_DEFAULT (manager);
 
@@ -598,6 +639,11 @@ gtk_source_undo_manager_undo_impl (GtkSourceUndoManager *manager)
 	manager_default->priv->modified_undoing_group = FALSE;
 
 	gtk_source_undo_manager_begin_not_undoable_action (manager);
+
+	/* Initially obtain restored selection from the buffer. */
+	selection_bounds_offsets (manager_default->priv->buffer,
+	                          &selection_insert,
+	                          &selection_bound);
 
 	do
 	{
@@ -619,6 +665,12 @@ gtk_source_undo_manager_undo_impl (GtkSourceUndoManager *manager)
 			            !manager_default->priv->modified_undoing_group);
 		}
 
+		/* Swap the current selection into the action while obtaining
+		 * the selection after undo from undo_action */
+		undo_action_swap_selection (undo_action,
+		                            &selection_insert,
+		                            &selection_bound);
+
 		switch (undo_action->action_type)
 		{
 			case GTK_SOURCE_UNDO_ACTION_DELETE:
@@ -626,9 +678,6 @@ gtk_source_undo_manager_undo_impl (GtkSourceUndoManager *manager)
 				             undo_action->action.delete.start,
 				             undo_action->action.delete.text,
 				             strlen (undo_action->action.delete.text));
-
-				selection_start = undo_action->action.delete.selection_start;
-				selection_end = undo_action->action.delete.selection_end;
 				break;
 
 			case GTK_SOURCE_UNDO_ACTION_INSERT:
@@ -636,9 +685,6 @@ gtk_source_undo_manager_undo_impl (GtkSourceUndoManager *manager)
 				             undo_action->action.insert.pos,
 				             undo_action->action.insert.pos +
 				             undo_action->action.insert.chars);
-
-				selection_start = undo_action->action.insert.selection_start;
-				selection_end = undo_action->action.insert.selection_end;
 				break;
 
 			default:
@@ -650,11 +696,11 @@ gtk_source_undo_manager_undo_impl (GtkSourceUndoManager *manager)
 
 	} while (undo_action->order_in_group > 1);
 
-	if (selection_start >= 0)
+	if (selection_insert >= 0)
 	{
 		set_cursor (manager_default->priv->buffer,
-		            selection_start,
-		            selection_end);
+		            selection_insert,
+		            selection_bound);
 	}
 
 	if (modified)
@@ -688,12 +734,17 @@ gtk_source_undo_manager_redo_impl (GtkSourceUndoManager *manager)
 	GtkSourceUndoManagerDefault *manager_default;
 	GtkSourceUndoAction *undo_action;
 	gboolean modified = FALSE;
-	gint selection_start = -1;
-	gint selection_end;
+	gint selection_insert;
+	gint selection_bound;
 
 	manager_default = GTK_SOURCE_UNDO_MANAGER_DEFAULT (manager);
 
 	g_return_if_fail (manager_default->priv->can_redo);
+
+	/* Initially obtain restored selection from the buffer. */
+	selection_bounds_offsets (manager_default->priv->buffer,
+	                          &selection_insert,
+	                          &selection_bound);
 
 	undo_action = action_list_nth_data (manager_default->priv->actions,
 	                                    manager_default->priv->next_redo);
@@ -711,6 +762,12 @@ gtk_source_undo_manager_redo_impl (GtkSourceUndoManager *manager)
 
 		--manager_default->priv->next_redo;
 
+		/* Swap the current selection into the action while obtaining
+		 * the selection after undo from undo_action */
+		undo_action_swap_selection (undo_action,
+		                            &selection_insert,
+		                            &selection_bound);
+
 		switch (undo_action->action_type)
 		{
 			case GTK_SOURCE_UNDO_ACTION_DELETE:
@@ -718,15 +775,10 @@ gtk_source_undo_manager_redo_impl (GtkSourceUndoManager *manager)
 				             undo_action->action.delete.start,
 				             undo_action->action.delete.end);
 
-				selection_start = undo_action->action.delete.selection_start;
-				selection_end = undo_action->action.delete.selection_end;
 
 				break;
 
 			case GTK_SOURCE_UNDO_ACTION_INSERT:
-				selection_start = undo_action->action.insert.selection_start;
-				selection_end = undo_action->action.insert.selection_end;
-
 				insert_text (manager_default->priv->buffer,
 				             undo_action->action.insert.pos,
 				             undo_action->action.insert.text,
@@ -748,11 +800,11 @@ gtk_source_undo_manager_redo_impl (GtkSourceUndoManager *manager)
 
 	} while ((undo_action != NULL) && (undo_action->order_in_group > 1));
 
-	if (selection_start >= 0)
+	if (selection_insert >= 0)
 	{
 		set_cursor (manager_default->priv->buffer,
-		            selection_start,
-		            selection_end);
+		            selection_insert,
+		            selection_bound);
 	}
 
 	if (modified)
@@ -841,13 +893,9 @@ insert_text_handler (GtkTextBuffer               *buffer,
                      GtkSourceUndoManagerDefault *manager)
 {
 	GtkSourceUndoAction undo_action;
-	GtkTextIter selstart;
-	GtkTextIter selend;
 
 	if (manager->priv->running_not_undoable_actions > 0)
 		return;
-
-	gtk_text_buffer_get_selection_bounds (buffer, &selstart, &selend);
 
 	undo_action.action_type = GTK_SOURCE_UNDO_ACTION_INSERT;
 
@@ -856,8 +904,7 @@ insert_text_handler (GtkTextBuffer               *buffer,
 	undo_action.action.insert.length = length;
 	undo_action.action.insert.chars  = g_utf8_strlen (text, length);
 
-	undo_action.action.insert.selection_start = gtk_text_iter_get_offset (&selstart);
-	undo_action.action.insert.selection_end = gtk_text_iter_get_offset (&selend);
+	selection_bounds_to_action (buffer, &undo_action);
 
 	if ((undo_action.action.insert.chars > 1) || (g_utf8_get_char (text) == '\n'))
 
@@ -878,13 +925,9 @@ delete_range_handler (GtkTextBuffer               *buffer,
 {
 	GtkSourceUndoAction undo_action;
 	GtkTextIter insert_iter;
-	GtkTextIter selstart;
-	GtkTextIter selend;
 
 	if (um->priv->running_not_undoable_actions > 0)
 		return;
-
-	gtk_text_buffer_get_selection_bounds (buffer, &selstart, &selend);
 
 	undo_action.action_type = GTK_SOURCE_UNDO_ACTION_DELETE;
 
@@ -898,8 +941,7 @@ delete_range_handler (GtkTextBuffer               *buffer,
 						undo_action.action.delete.start,
 						undo_action.action.delete.end);
 
-	undo_action.action.delete.selection_start = gtk_text_iter_get_offset (&selstart);
-	undo_action.action.delete.selection_end = gtk_text_iter_get_offset (&selend);
+	selection_bounds_to_action (buffer, &undo_action);
 
 	/* figure out if the user used the Delete or the Backspace key */
 	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter,
