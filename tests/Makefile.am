@@ -175,6 +175,8 @@ EXTRA_DIST =				\
 	test-completion.ui		\
 	test-search.gresource.xml	\
 	test-search.ui			\
+	test-widget.gresource.xml	\
+	test-widget.ui			\
 	$(python_tests)
 
 if INSTALLED_TESTS
