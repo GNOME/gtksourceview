@@ -816,7 +816,7 @@ gtk_source_print_compositor_new_from_view (GtkSourceView *view)
 	font_desc = pango_context_get_font_description (pango_context);
 
 	compositor->priv->body_font = pango_font_description_copy (font_desc);
-	g_object_notify (G_OBJECT (compositor), "body-font-name"); // FIXME: is this needed?
+	g_object_notify (G_OBJECT (compositor), "body-font-name"); /* FIXME: is this needed? */
 
 	return compositor;
 }
