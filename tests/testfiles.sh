@@ -1077,3 +1077,21 @@ cat > $dir/file.json <<EOFEOF
 	}
 }
 EOFEOF
+
+cat > $dir/file.Rnw <<EOFEOF
+\documentclass{article}
+\begin{document}
+Hi there!
+<<hello>>=
+    # Say hello
+    hello <- setClass("hello", slots = c(a="character", b="character"))
+    sayHi <- hello(a="Hello", b="World")
+    paste(sayHi@a, sayHi@b)
+    rm(hello)
+
+    hello <- list()
+    hello$a <- sayHi@a
+@
+Hi again!
+\end{document}
+EOFEOF
