@@ -50,6 +50,9 @@
         <context sub-pattern="0" where="start" style-ref="command"/>
         <context sub-pattern="0" where="end" style-ref="command"/>
         <context ref="r:r"/>
+        <context id="R-slot" class="no-spell-check">
+          <match>[[:alnum:]]@[[:alnum:]]</match>
+        </context>
       </include>
     </context>
 
