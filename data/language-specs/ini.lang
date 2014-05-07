@@ -40,7 +40,7 @@
 
   <definitions>
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>;</start>
+      <start>;|#</start>
     </context>
     <context id="group" style-ref="keyword">
       <start>^\[</start>
