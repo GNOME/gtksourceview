@@ -25,27 +25,92 @@
 <language id="fortran" _name="Fortran 95" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-fortran</property>
-    <property name="globs">*.f;*.f90;*.f95;*.for</property>
+    <property name="globs">*.f;*.f90;*.f95;*.for;*.F;*.F90</property>
     <property name="line-comment-start">!</property>
   </metadata>
 
   <styles>
     <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="string" _name="String" map-to="def:string"/>
     <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="intrinsic" _name="Intrinsic function" map-to="def:builtin"/>
     <style id="boz-literal" _name="BOZ Literal" map-to="def:base-n-integer"/>
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="type" _name="Data Type" map-to="def:type"/>
+    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="included-file" _name="Included File" map-to="def:string"/>
+    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>
 
   <definitions>
+    <!-- regexs -->
+    <define-regex id="preproc-start">^#</define-regex>
+    <define-regex id="escaped-character" extended="true">
+      \\(                   # leading backslash
+      [\\\"\'nrbtfav\?] |   # escaped character
+      [0-7]{1,3} |          # one, two, or three octal digits
+      x[0-9A-Fa-f]+         # 'x' followed by hex digits
+      )
+    </define-regex>
 
-    <!-- Note: contains an hack to avoid considering ^COMMON a comment -->
+    <!-- Preprocessor -->
+    <context id="if0-comment" style-ref="comment">
+      <start>\%{preproc-start}if\b\s*0\b</start>
+      <end>\%{preproc-start}(endif|else|elif)\b</end>
+      <include>
+        <context id="if-in-if0">
+          <start>\%{preproc-start}if(n?def)?\b</start>
+          <end>\%{preproc-start}endif\b</end>
+          <include>
+            <context ref="if-in-if0"/>
+            <context ref="def:in-comment"/>
+          </include>
+        </context>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
+    <context id="include" style-ref="preprocessor">
+      <match extended="true">
+        \%{preproc-start}
+        (include|import)\s*
+        (".*?"|&lt;.*&gt;)
+      </match>
+      <include>
+        <context id="included-file" sub-pattern="2" style-ref="included-file"/>
+      </include>
+    </context>
+
+    <context id="preprocessor" style-ref="preprocessor" end-at-line-end="true">
+      <start extended="true">
+        \%{preproc-start}
+        (define|undef|error|pragma|ident|if(n?def)?|else|elif|endif|line|warning)
+        \b
+      </start>
+    </context>
+
+    <!--
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <match>(L?'[^']*')|(L?"[^"]*")</match>
+    </context>
+    -->
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <start>L?"</start>
+      <end>"</end>
+      <include>
+        <context id="escaped-character" style-ref="escaped-character">
+          <match>\%{escaped-character}</match>
+        </context>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <!-- Note: contains an hack to avoid considering ^COMMON or ^CHARACTER a comment -->
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>!|(^[Cc](\b|[^OoAaYy]))</start>
+      <start>!|(^[Cc](\b|[^OoAaYyHh]))</start>
       <include>
         <context ref="def:escape"/>
         <context ref="def:in-line-comment"/>
@@ -72,12 +137,14 @@
     </context>
 
     <context id="keywords" style-ref="keyword">
+      <keyword>abstract interface</keyword>
       <keyword>allocate</keyword>
       <keyword>assign</keyword>
       <keyword>assignment</keyword>
       <keyword>block data</keyword>
       <keyword>call</keyword>
       <keyword>case</keyword>
+      <keyword>class</keyword>
       <keyword>common</keyword>
       <keyword>contains</keyword>
       <keyword>continue</keyword>
@@ -86,6 +153,7 @@
       <keyword>deallocate</keyword>
       <keyword>default</keyword>
       <keyword>do</keyword>
+      <keyword>do concurrent</keyword>
       <keyword>elemental</keyword>
       <keyword>elseif</keyword>
       <keyword>else</keyword>
@@ -105,7 +173,7 @@
       <keyword>if</keyword>
       <keyword>implicit none</keyword>
       <keyword>in</keyword>
-      <keyword>include</keyword>
+      <keyword>[^#]include</keyword>
       <keyword>inout</keyword>
       <keyword>interface</keyword>
       <keyword>intrinsic</keyword>
@@ -178,7 +246,6 @@
       <keyword>rec</keyword>
       <keyword>recl</keyword>
       <keyword>sequential</keyword>
-      <keyword>size</keyword>
       <keyword>status</keyword>
       <keyword>unformatted</keyword>
       <keyword>unit</keyword>
@@ -350,6 +417,7 @@
       <keyword>nearest</keyword>
       <keyword>new_line</keyword>
       <keyword>nint</keyword>
+      <keyword>norm2</keyword>
       <keyword>not</keyword>
       <keyword>null</keyword>
       <keyword>or</keyword>
@@ -505,6 +573,9 @@
         <context ref="read-write"/>
         <context ref="input-output"/>
         <context ref="intrinsics"/>
+        <context ref="if0-comment"/>
+        <context ref="include"/>
+        <context ref="preprocessor"/>
       </include>
     </context>
 
