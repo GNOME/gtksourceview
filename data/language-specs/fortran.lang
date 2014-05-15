@@ -39,6 +39,7 @@
     <style id="decimal" _name="Decimal" map-to="def:decimal"/>
     <style id="type" _name="Data Type" map-to="def:type"/>
     <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="openmp-directives" _name="OpenMP directives" map-to="def:preprocessor"/>
     <style id="included-file" _name="Included File" map-to="def:string"/>
     <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
   </styles>
@@ -92,6 +93,12 @@
       </start>
     </context>
 
+    <context id="openmp-directives" style-ref="openmp-directives" end-at-line-end="true">
+      <start extended="true">
+        ((^[Cc])|^\s*!)\$
+      </start>
+    </context>
+
     <!--
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
       <match>(L?'[^']*')|(L?"[^"]*")</match>
@@ -110,7 +117,7 @@
 
     <!-- Note: contains an hack to avoid considering ^COMMON or ^CHARACTER a comment -->
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>!|(^[Cc](\b|[^OoAaYyHh]))</start>
+      <start>(![^$])|(^[Cc](\s|[^$OoAaYyHh]))|(^[Cc]$)</start>
       <include>
         <context ref="def:escape"/>
         <context ref="def:in-line-comment"/>
@@ -576,6 +583,7 @@
         <context ref="if0-comment"/>
         <context ref="include"/>
         <context ref="preprocessor"/>
+        <context ref="openmp-directives"/>
       </include>
     </context>
 
