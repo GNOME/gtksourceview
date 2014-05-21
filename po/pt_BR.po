@@ -22,16 +22,16 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-10 10:04+0000\n"
-"PO-Revision-Date: 2014-02-10 12:33-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"POT-Creation-Date: 2014-05-21 08:45+0000\n"
+"PO-Revision-Date: 2014-05-21 15:52-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.6.5\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -76,7 +76,7 @@ msgstr "Entrelinha"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:399
+#: ../gtksourceview/gtksourcegutterrenderertext.c:409
 msgid "Text"
 msgstr "Texto"
 
@@ -209,6 +209,7 @@ msgstr "Erro"
 #: ../data/language-specs/eiffel.lang.h:4
 #: ../data/language-specs/erlang.lang.h:7
 #: ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/fortran.lang.h:4
 #: ../data/language-specs/fsharp.lang.h:7
 #: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/gtkrc.lang.h:4
@@ -286,7 +287,7 @@ msgstr "Declaração de escopo"
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
 #: ../data/language-specs/forth.lang.h:6
-#: ../data/language-specs/fortran.lang.h:5
+#: ../data/language-specs/fortran.lang.h:6
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
 #: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:5
@@ -388,7 +389,7 @@ msgstr "Palavras-chave reservadas para uso futuro"
 #: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
 #: ../data/language-specs/eiffel.lang.h:8
 #: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:9
+#: ../data/language-specs/fortran.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:11
 #: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:7
@@ -438,6 +439,7 @@ msgstr "Número decimal"
 #: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:5
+#: ../data/language-specs/fortran.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/glsl.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3
@@ -463,6 +465,7 @@ msgstr "Número real"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
+#: ../data/language-specs/fortran.lang.h:14
 #: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/java.lang.h:3
@@ -714,7 +717,7 @@ msgstr "Número hexadecimal"
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:391
+#: ../gtksourceview/gtksourcegutterrenderertext.c:401
 msgid "Markup"
 msgstr "Marcação"
 
@@ -816,6 +819,7 @@ msgid "Bindings"
 msgstr "Bindings"
 
 #: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
+#: ../data/language-specs/fortran.lang.h:13
 #: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Arquivo incluído"
@@ -975,7 +979,7 @@ msgstr "Outros 3"
 
 #. Translator: it is a type of number
 #: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8 ../data/language-specs/gap.lang.h:7
+#: ../data/language-specs/fortran.lang.h:9 ../data/language-specs/gap.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:6
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
@@ -1360,7 +1364,7 @@ msgstr "Científico"
 msgid "FCL"
 msgstr "FCL"
 
-#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:4
+#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:4
 #: ../data/language-specs/modelica.lang.h:11
 #: ../data/language-specs/octave.lang.h:10
@@ -1393,13 +1397,18 @@ msgstr "Texto do erro"
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:6
+#: ../data/language-specs/fortran.lang.h:7
 msgid "Intrinsic function"
 msgstr "Função intrínseca"
 
-#: ../data/language-specs/fortran.lang.h:7
+#: ../data/language-specs/fortran.lang.h:8
 msgid "BOZ Literal"
 msgstr "Literal BOZ"
+
+#: ../data/language-specs/fortran.lang.h:12
+#| msgid "Include directive"
+msgid "OpenMP directives"
+msgstr "Diretivas do OpenMP"
 
 #: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
@@ -2305,7 +2314,6 @@ msgid "PHP"
 msgstr "PHP"
 
 #: ../data/language-specs/php.lang.h:3
-#| msgid "Preprocessor"
 msgid "Preprocessor tags"
 msgstr "Tags de preprocessador"
 
@@ -2906,12 +2914,12 @@ msgid "Whether to highlight matching brackets"
 msgstr "Destacar ou não colchetes equivalentes"
 
 #: ../gtksourceview/gtksourcebuffer.c:302
-#: ../gtksourceview/gtksourceundomanagerdefault.c:414
+#: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "Maximum Undo Levels"
 msgstr "Quantidade máxima de níveis de desfazer"
 
 #: ../gtksourceview/gtksourcebuffer.c:303
-#: ../gtksourceview/gtksourceundomanagerdefault.c:415
+#: ../gtksourceview/gtksourceundomanagerdefault.c:412
 msgid "Number of undo levels for the buffer"
 msgstr "Quantidade máxima de níveis de desfazer para o buffer"
 
@@ -3235,50 +3243,50 @@ msgstr "Tamanho"
 msgid "The size"
 msgstr "O tamanho"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:289
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:298
 #: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:290
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
 #: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "The pixbuf"
 msgstr "O pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:304
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
 #: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "Stock Id"
 msgstr "Stock ID"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:305
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
 #: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "The stock id"
 msgstr "A ID do stock"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:312
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
 #: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "Icon Name"
 msgstr "Nome do ícone"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
 #: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
 msgstr "O nome do ícone"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:320
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:329
 #: ../gtksourceview/gtksourcemarkattributes.c:342
 msgid "GIcon"
 msgstr "GIcon"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
 msgid "The gicon"
 msgstr "O gicon"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:392
+#: ../gtksourceview/gtksourcegutterrenderertext.c:402
 msgid "The markup"
 msgstr "A marcação"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:400
+#: ../gtksourceview/gtksourcegutterrenderertext.c:410
 msgid "The text"
 msgstr "O texto"
 
@@ -3462,7 +3470,7 @@ msgid "using \\C is not supported in language definitions"
 msgstr "usar \\C não é suportado em definições de linguagem"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2742
-#: ../gtksourceview/gtksourceundomanagerdefault.c:406
+#: ../gtksourceview/gtksourceundomanagerdefault.c:403
 msgid "Buffer"
 msgstr "Buffer"
 
@@ -3673,7 +3681,7 @@ msgstr "Identificações de esquema"
 msgid "List of the ids of the available style schemes"
 msgstr "Lista de identificações (ids) dos esquemas de estilo disponíveis"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:407
+#: ../gtksourceview/gtksourceundomanagerdefault.c:404
 msgid "The text buffer to add undo support on"
 msgstr "O buffer de texto para ser adicionado o suporte a ações de desfazer"
 
@@ -3774,32 +3782,32 @@ msgid "Set if and how the spaces should be visualized"
 msgstr "Define se e como os espaços deverão ser visualizados"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1272
+#: ../gtksourceview/gtksourceview.c:1236
 msgid "_Redo"
 msgstr "_Refazer"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1283
+#: ../gtksourceview/gtksourceview.c:1247
 msgid "_Undo"
 msgstr "_Desfazer"
 
-#: ../gtksourceview/gtksourceview.c:1301
+#: ../gtksourceview/gtksourceview.c:1265
 msgid "All _Upper Case"
 msgstr "Todas letras m_aiúsculas"
 
-#: ../gtksourceview/gtksourceview.c:1311
+#: ../gtksourceview/gtksourceview.c:1275
 msgid "All _Lower Case"
 msgstr "Todas letras mi_núsculas"
 
-#: ../gtksourceview/gtksourceview.c:1321
+#: ../gtksourceview/gtksourceview.c:1285
 msgid "_Invert Case"
 msgstr "_Inverter maiusculização"
 
-#: ../gtksourceview/gtksourceview.c:1331
+#: ../gtksourceview/gtksourceview.c:1295
 msgid "_Title Case"
 msgstr "Ini_ciais maiúsculas"
 
-#: ../gtksourceview/gtksourceview.c:1341
+#: ../gtksourceview/gtksourceview.c:1305
 msgid "C_hange Case"
 msgstr "A_lterar maiusculização "
 
