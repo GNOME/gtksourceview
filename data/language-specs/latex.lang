@@ -378,77 +378,70 @@
     <context id="headings">
       <include>
         <context id="part" style-inside="true" style-ref="part" end-at-line-end="true">
-          <start>\\part\{</start>
+          <start>(\\part)\{</start>
           <end>\}</end>
           <include>
-            <context sub-pattern="0" where="start" style-ref="common-commands"/>
-            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context sub-pattern="1" where="start" style-ref="common-commands"/>
             <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
 
         <context id="chapter" style-inside="true" style-ref="chapter" end-at-line-end="true">
-          <start>\\chapter\{</start>
+          <start>(\\chapter)\{</start>
           <end>\}</end>
           <include>
-            <context sub-pattern="0" where="start" style-ref="common-commands"/>
-            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context sub-pattern="1" where="start" style-ref="common-commands"/>
             <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
 
         <context id="section" style-inside="true" style-ref="section" end-at-line-end="true">
-          <start>\\section\{</start>
+          <start>(\\section)\{</start>
           <end>\}</end>
           <include>
-            <context sub-pattern="0" where="start" style-ref="common-commands"/>
-            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context sub-pattern="1" where="start" style-ref="common-commands"/>
             <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
 
         <context id="subsection" style-inside="true" style-ref="subsection" end-at-line-end="true">
-          <start>\\subsection\{</start>
+          <start>(\\subsection)\{</start>
           <end>\}</end>
           <include>
-            <context sub-pattern="0" where="start" style-ref="common-commands"/>
-            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context sub-pattern="1" where="start" style-ref="common-commands"/>
             <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
 
         <context id="subsubsection" style-inside="true" style-ref="subsubsection" end-at-line-end="true">
-          <start>\\subsubsection\{</start>
+          <start>(\\subsubsection)\{</start>
           <end>\}</end>
           <include>
-            <context sub-pattern="0" where="start" style-ref="common-commands"/>
-            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context sub-pattern="1" where="start" style-ref="common-commands"/>
             <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
 
         <context id="paragraph" style-inside="true" style-ref="paragraph" end-at-line-end="true">
-          <start>\\paragraph\{</start>
+          <start>(\\paragraph)\{</start>
           <end>\}</end>
           <include>
-            <context sub-pattern="0" where="start" style-ref="common-commands"/>
-            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context sub-pattern="1" where="start" style-ref="common-commands"/>
             <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
 
         <context id="subparagraph" style-inside="true" style-ref="subparagraph" end-at-line-end="true">
-          <start>\\subparagraph\{</start>
+          <start>(\\subparagraph)\{</start>
           <end>\}</end>
           <include>
-            <context sub-pattern="0" where="start" style-ref="common-commands"/>
-            <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context sub-pattern="1" where="start" style-ref="common-commands"/>
             <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
