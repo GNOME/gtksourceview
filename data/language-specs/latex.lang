@@ -366,6 +366,15 @@
 
     <!-- headings -->
 
+    <context id="curly-braces-pair">
+      <start>\{</start>
+      <end>\}</end>
+      <include>
+        <context ref="curly-braces-pair"/>
+        <context ref="latex"/>
+      </include>
+    </context>
+
     <context id="headings">
       <include>
         <context id="part" style-inside="true" style-ref="part" end-at-line-end="true">
@@ -374,6 +383,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="common-commands"/>
             <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
@@ -384,6 +394,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="common-commands"/>
             <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
@@ -394,6 +405,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="common-commands"/>
             <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
@@ -404,6 +416,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="common-commands"/>
             <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
@@ -414,6 +427,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="common-commands"/>
             <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
@@ -424,6 +438,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="common-commands"/>
             <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
@@ -434,6 +449,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="common-commands"/>
             <context sub-pattern="0" where="end" style-ref="common-commands"/>
+            <context ref="curly-braces-pair"/>
             <context ref="latex"/>
           </include>
         </context>
