@@ -2042,7 +2042,10 @@ get_leading_trailing (GtkTextIter *iter,
 
 	/* Find start of trailing */
 	start = *iter;
-	gtk_text_iter_forward_to_line_end (&start);
+	if (!gtk_text_iter_ends_line (&start))
+	{
+		gtk_text_iter_forward_to_line_end (&start);
+	}
 
 	while (TRUE)
 	{
@@ -2110,7 +2113,10 @@ get_end_iter (GtkTextView *text_view,
 	GdkRectangle rect;
 
 	*end_iter = *start_iter;
-	gtk_text_iter_forward_to_line_end (end_iter);
+	if (!gtk_text_iter_ends_line (end_iter))
+	{
+		gtk_text_iter_forward_to_line_end (end_iter);
+	}
 
 	/* check if end_iter is inside the bounding box anyway */
 	gtk_text_view_get_iter_location (text_view, end_iter, &rect);
