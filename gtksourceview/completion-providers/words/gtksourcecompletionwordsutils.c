@@ -172,3 +172,35 @@ _gtk_source_completion_words_utils_get_end_word (gchar *text)
 
 	return g_strdup (cur_char);
 }
+
+/* Adjust @start and @end to word boundaries, if they touch or are inside a
+ * word. Uses only valid_word_char().
+ */
+void
+_gtk_source_completion_words_utils_adjust_region (GtkTextIter *start,
+						  GtkTextIter *end)
+{
+	g_return_if_fail (gtk_text_iter_compare (start, end) <= 0);
+
+	while (TRUE)
+	{
+		GtkTextIter iter = *start;
+
+		if (!gtk_text_iter_backward_char (&iter))
+		{
+			break;
+		}
+
+		if (!valid_word_char (gtk_text_iter_get_char (&iter)))
+		{
+			break;
+		}
+
+		*start = iter;
+	}
+
+	while (valid_word_char (gtk_text_iter_get_char (end)))
+	{
+		gtk_text_iter_forward_char (end);
+	}
+}

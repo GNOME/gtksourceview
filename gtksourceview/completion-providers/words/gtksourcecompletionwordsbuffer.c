@@ -492,8 +492,9 @@ compute_remove_region (GtkSourceCompletionWordsBuffer *buffer,
 	return remove_region;
 }
 
-/* If some lines between @start and @end are not in the scan region, remove the
- * words in those lines.
+/* Remove the words between @start and @end that are not in the scan region.
+ * @start and @end are adjusted to word boundaries, if they touch or are inside
+ * a word.
  */
 static void
 invalidate_region (GtkSourceCompletionWordsBuffer *buffer,
@@ -504,15 +505,7 @@ invalidate_region (GtkSourceCompletionWordsBuffer *buffer,
 	GtkTextIter end_iter = *end;
 	GtkTextRegion *remove_region;
 
-	if (!gtk_text_iter_starts_line (&start_iter))
-	{
-		gtk_text_iter_set_line_offset (&start_iter, 0);
-	}
-
-	if (!gtk_text_iter_ends_line (&end_iter))
-	{
-		gtk_text_iter_forward_to_line_end (&end_iter);
-	}
+	_gtk_source_completion_words_utils_adjust_region (&start_iter, &end_iter);
 
 	remove_region = compute_remove_region (buffer, &start_iter, &end_iter);
 
@@ -528,15 +521,7 @@ add_to_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 	GtkTextIter start_iter = *start;
 	GtkTextIter end_iter = *end;
 
-	if (!gtk_text_iter_starts_line (&start_iter))
-	{
-		gtk_text_iter_set_line_offset (&start_iter, 0);
-	}
-
-	if (!gtk_text_iter_ends_line (&end_iter))
-	{
-		gtk_text_iter_forward_to_line_end (&end_iter);
-	}
+	_gtk_source_completion_words_utils_adjust_region (&start_iter, &end_iter);
 
 	gtk_text_region_add (buffer->priv->scan_region,
 			     &start_iter,
@@ -567,10 +552,10 @@ on_insert_text_after_cb (GtkTextBuffer                  *textbuffer,
 
 	gtk_text_iter_backward_chars (&start_iter, nb_chars);
 
-	/* If add_to_scan_region() is called before the text insertion, if the
-	 * line is empty, the TextRegion is empty too and it is not added to the
+	/* If add_to_scan_region() is called before the text insertion, the
+	 * created GtkTextRegion can be empty and is thus not added to the
 	 * scan region. After the text insertion, we are sure that the
-	 * TextRegion is not empty and that the words will be scanned.
+	 * GtkTextRegion is not empty and that the words will be scanned.
 	 */
 	add_to_scan_region (buffer, &start_iter, location);
 }
@@ -607,13 +592,14 @@ on_delete_range_after_cb (GtkTextBuffer                  *text_buffer,
 			  GtkTextIter                    *end,
 			  GtkSourceCompletionWordsBuffer *buffer)
 {
-	/* start = end, but add_to_scan_region() moves the iters to the start
-	 * and the end of the line. If the line is empty, the TextRegion won't
-	 * be added to the scan region. If we call add_to_scan_region() when the
-	 * text is not already deleted, the TextRegion is not empty and will be
-	 * added to the scan region, and when the TextRegion becomes empty after
-	 * the text deletion, the TextRegion is not removed from the scan
-	 * region. Hence two callbacks: before and after the text deletion.
+	/* start = end, but add_to_scan_region() adjusts the iters to word
+	 * boundaries if needed. If the adjusted [start,end] region is empty, it
+	 * won't be added to the scan region. If we call add_to_scan_region()
+	 * when the text is not already deleted, the GtkTextRegion is not empty
+	 * and will be added to the scan region, and when the GtkTextRegion
+	 * becomes empty after the text deletion, the GtkTextRegion is not
+	 * removed from the scan region. Hence two callbacks: before and after
+	 * the text deletion.
 	 */
 	add_to_scan_region (buffer, start, end);
 }
