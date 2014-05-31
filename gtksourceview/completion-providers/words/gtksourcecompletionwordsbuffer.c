@@ -154,31 +154,45 @@ gtk_source_completion_words_buffer_init (GtkSourceCompletionWordsBuffer *self)
 	                                           (GDestroyNotify)proposal_cache_free);
 }
 
+/* Starts the scanning at @start, and ends at the line end or @end. So at most
+ * one line is scanned, and the text after @end will never be scanned.
+ */
 static GSList *
 scan_line (GtkSourceCompletionWordsBuffer *buffer,
-           GtkTextIter                    *start)
+	   const GtkTextIter              *start,
+	   const GtkTextIter              *end)
 {
-	GtkTextIter end = *start;
-	gchar *text_line;
+	GtkTextIter line_end;
+	GtkTextIter text_end;
+	gchar *text;
 	GSList *words;
 
-	if (!gtk_text_iter_starts_line (start))
+	if (gtk_text_iter_compare (end, start) <= 0 ||
+	    gtk_text_iter_ends_line (start))
 	{
-		g_warning ("scan line: 'start' doesn't start a line.");
-		gtk_text_iter_set_line_offset (start, 0);
+		return NULL;
 	}
 
-	gtk_text_iter_forward_to_line_end (&end);
+	line_end = *start;
+	gtk_text_iter_forward_to_line_end (&line_end);
 
-	text_line = gtk_text_buffer_get_text (buffer->priv->buffer,
-					      start,
-					      &end,
-					      FALSE);
+	if (gtk_text_iter_compare (end, &line_end) < 0)
+	{
+		text_end = *end;
+	}
+	else
+	{
+		text_end = line_end;
+	}
 
-	words = _gtk_source_completion_words_utils_scan_words (text_line,
-							       buffer->priv->minimum_word_size);
+	text = gtk_text_buffer_get_text (buffer->priv->buffer,
+					 start,
+					 &text_end,
+					 FALSE);
 
-	g_free (text_line);
+	words = _gtk_source_completion_words_utils_scan_words (text, buffer->priv->minimum_word_size);
+
+	g_free (text);
 	return words;
 }
 
@@ -241,49 +255,48 @@ add_words (GtkSourceCompletionWordsBuffer *buffer,
 	g_slist_free (words);
 }
 
-/* Scan words in the region delimited by @start and @end. @start must be at the
- * beginning of a line, and @end must be at the end of a line. Maximum
- * @max_lines are scanned.
- *
- * Returns the number of lines scanned. @stop is set to the next line of the
- * last scanned line.
+/* Scan words in the region delimited by @start and @end.
+ * Maximum @max_lines are scanned.
+ * Returns the number of lines scanned.
+ * @stop is set to the iter where the scanning has stopped.
  */
 static guint
 scan_region (GtkSourceCompletionWordsBuffer *buffer,
-	     GtkTextIter                    *start,
-	     GtkTextIter                    *end,
+	     const GtkTextIter              *start,
+	     const GtkTextIter              *end,
 	     guint                           max_lines,
 	     GtkTextIter                    *stop)
 {
+	GtkTextIter iter = *start;
 	guint nb_lines_scanned = 0;
 
 	g_assert (max_lines != 0);
 
-	if (!gtk_text_iter_starts_line (start))
+	while (TRUE)
 	{
-		g_warning ("scan region: 'start' doesn't start a line.");
-		gtk_text_iter_set_line_offset (start, 0);
-	}
+		GSList *words;
 
-	if (!gtk_text_iter_ends_line (end))
-	{
-		g_warning ("scan region: 'end' doesn't end a line.");
-		gtk_text_iter_forward_to_line_end (end);
-	}
+		if (gtk_text_iter_compare (end, &iter) < 0)
+		{
+			*stop = *end;
+			break;
+		}
 
-	while (nb_lines_scanned < max_lines &&
-	       gtk_text_iter_compare (start, end) < 0)
-	{
-		GSList *words = scan_line (buffer, start);
+		if (nb_lines_scanned >= max_lines)
+		{
+			*stop = iter;
+			break;
+		}
+
+		words = scan_line (buffer, &iter, end);
 
 		/* add_words also frees the list */
 		add_words (buffer, words);
 
 		nb_lines_scanned++;
-		gtk_text_iter_forward_line (start);
+		gtk_text_iter_forward_line (&iter);
 	}
 
-	*stop = *start;
 	return nb_lines_scanned;
 }
 
@@ -400,14 +413,14 @@ install_initiate_scan (GtkSourceCompletionWordsBuffer *buffer)
 
 static void
 remove_words_in_subregion (GtkSourceCompletionWordsBuffer *buffer,
-			   GtkTextIter                    *start,
-			   GtkTextIter                    *end)
+			   const GtkTextIter              *start,
+			   const GtkTextIter              *end)
 {
 	GtkTextIter iter = *start;
 
 	while (gtk_text_iter_compare (&iter, end) < 0)
 	{
-		GSList *words = scan_line (buffer, &iter);
+		GSList *words = scan_line (buffer, &iter, end);
 		GSList *item;
 
 		for (item = words; item != NULL; item = g_slist_next (item))
