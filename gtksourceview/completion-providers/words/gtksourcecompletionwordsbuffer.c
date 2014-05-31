@@ -737,8 +737,10 @@ gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWor
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER (buffer));
 	g_return_if_fail (size != 0);
 
-	buffer->priv->minimum_word_size = size;
-
-	remove_all_words (buffer);
-	scan_all_buffer (buffer);
+	if (buffer->priv->minimum_word_size != size)
+	{
+		buffer->priv->minimum_word_size = size;
+		remove_all_words (buffer);
+		scan_all_buffer (buffer);
+	}
 }
