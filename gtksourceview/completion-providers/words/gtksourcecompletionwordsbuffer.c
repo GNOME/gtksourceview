@@ -323,7 +323,6 @@ is_text_region_empty (GtkTextRegion *region)
 static gboolean
 idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 {
-	gboolean finished = FALSE;
 	guint nb_remaining_lines = buffer->priv->scan_batch_size;
 	GtkTextRegionIterator region_iter;
 	GtkTextIter start;
@@ -359,14 +358,13 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 				  &start,
 				  &stop);
 
-	finished = is_text_region_empty (buffer->priv->scan_region);
-
-	if (finished)
+	if (is_text_region_empty (buffer->priv->scan_region))
 	{
 		buffer->priv->batch_scan_id = 0;
+		return G_SOURCE_REMOVE;
 	}
 
-	return !finished;
+	return G_SOURCE_CONTINUE;
 }
 
 static gboolean
