@@ -41,6 +41,35 @@ static void check_async_search_results (GtkSourceSearchContext *context,
 					gboolean                forward,
 					gboolean                start_check);
 
+/* If we are running from the source dir (e.g. during make check)
+ * we override the path to read from the data dir.
+ */
+static void
+init_style_scheme_manager (void)
+{
+	gchar *dir;
+
+	dir = g_build_filename (TOP_SRCDIR, "data", "styles", NULL);
+
+	if (g_file_test (dir, G_FILE_TEST_IS_DIR))
+	{
+		GtkSourceStyleSchemeManager *manager;
+		gchar **dirs;
+
+		manager = gtk_source_style_scheme_manager_get_default ();
+
+		dirs = g_new0 (gchar *, 2);
+		dirs[0] = dir;
+
+		gtk_source_style_scheme_manager_set_search_path (manager, dirs);
+		g_strfreev (dirs);
+	}
+	else
+	{
+		g_free (dir);
+	}
+}
+
 static void
 flush_queue (void)
 {
@@ -999,6 +1028,8 @@ int
 main (int argc, char **argv)
 {
 	gtk_test_init (&argc, &argv);
+
+	init_style_scheme_manager ();
 
 	g_test_add_func ("/Search/occurrences-count/simple", test_occurrences_count_simple);
 	g_test_add_func ("/Search/occurrences-count/with-insert", test_occurrences_count_with_insert);
