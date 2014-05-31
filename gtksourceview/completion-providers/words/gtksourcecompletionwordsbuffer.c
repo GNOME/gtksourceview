@@ -461,13 +461,13 @@ remove_words_in_region (GtkSourceCompletionWordsBuffer *buffer,
 
 static GtkTextRegion *
 compute_remove_region (GtkSourceCompletionWordsBuffer *buffer,
-		       GtkTextIter                     start,
-		       GtkTextIter                     end)
+		       const GtkTextIter              *start,
+		       const GtkTextIter              *end)
 {
 	GtkTextRegion *remove_region = gtk_text_region_new (buffer->priv->buffer);
 	GtkTextRegionIterator region_iter;
 
-	gtk_text_region_add (remove_region, &start, &end);
+	gtk_text_region_add (remove_region, start, end);
 
 	gtk_text_region_get_iterator (buffer->priv->scan_region,
 				      &region_iter,
@@ -497,8 +497,8 @@ compute_remove_region (GtkSourceCompletionWordsBuffer *buffer,
  */
 static void
 invalidate_region (GtkSourceCompletionWordsBuffer *buffer,
-                   GtkTextIter                    *start,
-                   GtkTextIter                    *end)
+                   const GtkTextIter              *start,
+                   const GtkTextIter              *end)
 {
 	GtkTextIter start_iter = *start;
 	GtkTextIter end_iter = *end;
@@ -514,7 +514,7 @@ invalidate_region (GtkSourceCompletionWordsBuffer *buffer,
 		gtk_text_iter_forward_to_line_end (&end_iter);
 	}
 
-	remove_region = compute_remove_region (buffer, start_iter, end_iter);
+	remove_region = compute_remove_region (buffer, &start_iter, &end_iter);
 
 	remove_words_in_region (buffer, remove_region);
 	gtk_text_region_destroy (remove_region);
@@ -522,8 +522,8 @@ invalidate_region (GtkSourceCompletionWordsBuffer *buffer,
 
 static void
 add_to_scan_region (GtkSourceCompletionWordsBuffer *buffer,
-                    GtkTextIter                    *start,
-                    GtkTextIter                    *end)
+                    const GtkTextIter              *start,
+                    const GtkTextIter              *end)
 {
 	GtkTextIter start_iter = *start;
 	GtkTextIter end_iter = *end;
