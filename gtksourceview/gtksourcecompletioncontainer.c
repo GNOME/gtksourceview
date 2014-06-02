@@ -156,38 +156,39 @@ _gtk_source_completion_container_get_preferred_width (GtkWidget *widget,
 }
 
 static gint
-get_row_height (GtkSourceCompletionContainer *container)
+get_row_height (GtkSourceCompletionContainer *container,
+		gint                          tree_view_height)
 {
 	GtkWidget *tree_view;
-	GList *columns;
-	GList *l;
-	gint max_row_height = 0;
-	gint vertical_separator = 0;
+	GtkTreeModel *model;
+	gint nb_rows;
+
+	/* For another possible implementation, see gtkentrycompletion.c in the
+	 * GTK+ source code (the _gtk_entry_completion_resize_popup() function).
+	 * It uses gtk_tree_view_column_cell_get_size() for retrieving the
+	 * height, plus gtk_widget_style_get() to retrieve the
+	 * "vertical-separator" height (note that the vertical separator must
+	 * probably be counted one less time than the number or rows).
+	 * But using that technique is buggy, it returns a smaller height (it's
+	 * maybe a bug in GtkTreeView, or there are other missing parameters).
+	 *
+	 * Note that the following implementation doesn't take into account
+	 * "vertical-separator". If there are some sizing bugs, it's maybe the
+	 * source of the problem. (note that on my system the separator size was
+	 * 0).
+	 */
 
 	tree_view = gtk_bin_get_child (GTK_BIN (container));
-	columns = gtk_tree_view_get_columns (GTK_TREE_VIEW (tree_view));
+	model = gtk_tree_view_get_model (GTK_TREE_VIEW (tree_view));
 
-	for (l = columns; l != NULL; l = l->next)
+	if (model == NULL)
 	{
-		GtkTreeViewColumn *column = l->data;
-		gint row_height;
-
-		gtk_tree_view_column_cell_get_size (column, NULL, NULL, NULL, NULL, &row_height);
-
-		if (row_height > max_row_height)
-		{
-			max_row_height = row_height;
-		}
+		return 0;
 	}
 
-	gtk_widget_style_get (tree_view,
-			      "vertical-separator", &vertical_separator,
-			      NULL);
+	nb_rows = gtk_tree_model_iter_n_children (model, NULL);
 
-	max_row_height += vertical_separator;
-
-	g_list_free (columns);
-	return max_row_height;
+	return tree_view_height / nb_rows;
 }
 
 /* Return a height at a row boundary of the GtkTreeView. */
@@ -220,7 +221,7 @@ _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
 
 	if (needs_vertical_scrollbar (nat_size.height))
 	{
-		gint row_height = get_row_height (container);
+		gint row_height = get_row_height (container, nat_size.height);
 		gint nb_rows_allowed = MAX_HEIGHT / row_height;
 
 		ret_height = nb_rows_allowed * row_height + scrollbar_height;
