@@ -34,19 +34,16 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_COMPLETION_CONTAINER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_COMPLETION_CONTAINER))
 #define GTK_SOURCE_COMPLETION_CONTAINER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_COMPLETION_CONTAINER, GtkSourceCompletionContainerClass))
 
-typedef struct _GtkSourceCompletionContainerPrivate	GtkSourceCompletionContainerPrivate;
 typedef struct _GtkSourceCompletionContainerClass	GtkSourceCompletionContainerClass;
 
 struct _GtkSourceCompletionContainer
 {
-	GtkBin parent;
-
-	GtkSourceCompletionContainerPrivate *priv;
+	GtkScrolledWindow parent;
 };
 
 struct _GtkSourceCompletionContainerClass
 {
-	GtkBinClass parent_class;
+	GtkScrolledWindowClass parent_class;
 };
 
 G_GNUC_INTERNAL
