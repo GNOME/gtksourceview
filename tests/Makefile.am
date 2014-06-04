@@ -71,8 +71,7 @@ test_buffer_LDADD = 		\
 UNIT_TEST_PROGS += test-completion-model
 test_completion_model_SOURCES =	test-completion-model.c
 test_completion_model_LDADD =					\
-	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
-	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
+	$(top_builddir)/gtksourceview/libgtksourceview-core.la	\
 	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
 
@@ -118,24 +117,23 @@ test_printcompositor_LDADD = 		\
 UNIT_TEST_PROGS += test-regex
 test_regex_SOURCES = test-regex.c
 test_regex_LDADD = 						\
-	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
-	$(DEP_LIBS)			\
-	$(GTK_MAC_LIBS)		\
+	$(top_builddir)/gtksourceview/libgtksourceview-core.la	\
+	$(DEP_LIBS)						\
+	$(GTK_MAC_LIBS)						\
 	$(TESTS_LIBS)
 
 UNIT_TEST_PROGS += test-region
 test_region_SOURCES = test-region.c
 test_region_LDADD = 						\
-	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
-	$(DEP_LIBS)			\
+	$(top_builddir)/gtksourceview/libgtksourceview-core.la	\
+	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
 
 UNIT_TEST_PROGS += test-search-context
 test_search_context_SOURCES = test-search-context.c
-test_search_context_LDADD =						\
-	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la		\
-	$(top_builddir)/gtksourceview/libgtksourceview-private.la	\
-	$(DEP_LIBS)							\
+test_search_context_LDADD =					\
+	$(top_builddir)/gtksourceview/libgtksourceview-core.la	\
+	$(DEP_LIBS)						\
 	$(TESTS_LIBS)
 
 UNIT_TEST_PROGS += test-styleschememanager

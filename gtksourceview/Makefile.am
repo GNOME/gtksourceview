@@ -49,7 +49,7 @@ libgtksourceview_headers =			\
 	gtksourceutils.h			\
 	gtksourceview.h
 
-libgtksourceview_private_headers = \
+libgtksourceview_private_headers =		\
 	gtksourcebuffer-private.h		\
 	gtksourcecompletioncontainer.h		\
 	gtksourcecompletionmodel.h		\
@@ -71,7 +71,7 @@ libgtksourceview_private_headers = \
 	gtksourceview-utils.h			\
 	gtktextregion.h
 
-libgtksourceview_private_c_files = \
+libgtksourceview_private_c_files =	\
 	gtksourcecompletioncontainer.c	\
 	gtksourcecompletionmodel.c	\
 	gtksourcecontextengine.c	\
@@ -89,7 +89,7 @@ libgtksourceview_private_c_files = \
 	gtksourceview-utils.c 		\
 	gtktextregion.c
 
-libgtksourceview_c_files = \
+libgtksourceview_c_files =		\
 	gtksourcebuffer.c 		\
 	gtksourcecompletion.c		\
 	gtksourcecompletioncontext.c	\
@@ -114,33 +114,33 @@ libgtksourceview_c_files = \
 	gtksourceutils.c		\
 	gtksourceview.c
 
-# Split in a helper library for unit tests
-noinst_LTLIBRARIES = libgtksourceview-private.la
+# Split in a helper library, so the private functions can be used in unit tests.
+noinst_LTLIBRARIES = libgtksourceview-core.la
 
-libgtksourceview_private_la_SOURCES =		\
+libgtksourceview_core_la_SOURCES =		\
 	$(libgtksourceview_private_c_files)	\
-	$(libgtksourceview_private_headers)
+	$(libgtksourceview_private_headers)	\
+	$(libgtksourceview_c_files)		\
+	$(libgtksourceview_headers)
 
-libgtksourceview_private_la_CFLAGS = 	\
+# do not distribute generated files
+nodist_libgtksourceview_core_la_SOURCES = \
+	$(BUILT_SOURCES)
+
+libgtksourceview_core_la_CFLAGS = 	\
 	$(CODE_COVERAGE_CFLAGS)
 
-libgtksourceview_private_la_LDFLAGS =		\
-	-no-undefined 				\
+libgtksourceview_core_la_LDFLAGS =	\
+	-no-undefined 			\
 	$(CODE_COVERAGE_LDFLAGS)
 
 # The real library
 lib_LTLIBRARIES = libgtksourceview-3.0.la
 
-libgtksourceview_3_0_la_SOURCES = 	\
-	$(libgtksourceview_c_files)	\
-	$(libgtksourceview_headers)
-
-# do not distribute generated files
-nodist_libgtksourceview_3_0_la_SOURCES =\
-	$(BUILT_SOURCES)
+libgtksourceview_3_0_la_SOURCES =
 
 libgtksourceview_3_0_la_LIBADD = 					\
-	libgtksourceview-private.la					\
+	libgtksourceview-core.la					\
 	completion-providers/words/libgtksourcecompletionwords.la	\
 	$(DEP_LIBS) $(GTK_MAC_LIBS)
 
