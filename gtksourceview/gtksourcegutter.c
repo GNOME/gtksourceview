@@ -287,7 +287,7 @@ set_view (GtkSourceGutter *gutter,
 				 "draw",
 				 G_CALLBACK (on_view_draw),
 				 gutter,
-				 0);
+				 G_CONNECT_AFTER);
 
 	g_signal_connect_object (view,
 				 "motion-notify-event",
