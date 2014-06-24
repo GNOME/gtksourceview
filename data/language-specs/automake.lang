@@ -147,7 +147,8 @@
       (?:OMIT|TAGS)_DEPENDENCIES|
       (?:DIST_)?SUBDIRS|
       SUFFIXES|
-      TESTS(?:_ENVIRONMENT)?|
+      (?:AM_)?TESTS_ENVIRONMENT|
+      TESTS|
       TEXI2(?:DVI|PDF)|
       TEXINFO_TEX|
       VALAC
