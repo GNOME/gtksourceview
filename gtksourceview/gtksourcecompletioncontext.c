@@ -72,8 +72,6 @@ struct _GtkSourceCompletionContextPrivate
 
 	GtkTextMark *mark;
 	GtkSourceCompletionActivation activation;
-
-	gulong mark_set_id;
 };
 
 /* Properties */
@@ -98,10 +96,14 @@ guint context_signals[NUM_SIGNALS] = {0,};
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionContext, gtk_source_completion_context, G_TYPE_INITIALLY_UNOWNED)
 
 /* FIXME: we use this util to get the buffer from the completion
-   but this object is not robust to a change of the buffer associated
-   to the view. Context lifetime should be short enough to not really
-   matter.
-*/
+ * but this object is not robust to a change of the buffer associated
+ * to the view. Context lifetime should be short enough to not really
+ * matter.
+ * (swilmet) This can happen when the GtkSourceView is being destroyed:
+ * GtkTextView set the buffer to NULL, then the code here calls
+ * gtk_text_view_get_buffer() which creates another buffer... So it would be
+ * better to handle buffer changes.
+ */
 
 static GtkTextBuffer *
 get_buffer (GtkSourceCompletionContext *context)
@@ -113,25 +115,21 @@ get_buffer (GtkSourceCompletionContext *context)
 static void
 gtk_source_completion_context_dispose (GObject *object)
 {
-	GtkSourceCompletionContext *context;
-	GtkTextBuffer *buffer;
-
-	context = GTK_SOURCE_COMPLETION_CONTEXT (object);
-	buffer = get_buffer (context);
-
-	if (context->priv->mark_set_id != 0)
-	{
-		g_signal_handler_disconnect (buffer, context->priv->mark_set_id);
-		context->priv->mark_set_id = 0;
-	}
-
-	g_clear_object (&context->priv->completion);
+	GtkSourceCompletionContext *context = GTK_SOURCE_COMPLETION_CONTEXT (object);
 
 	if (context->priv->mark != NULL)
 	{
-		gtk_text_buffer_delete_mark (buffer, context->priv->mark);
+		GtkTextBuffer *buffer = gtk_text_mark_get_buffer (context->priv->mark);
+
+		if (buffer != NULL)
+		{
+			gtk_text_buffer_delete_mark (buffer, context->priv->mark);
+		}
+
 		context->priv->mark = NULL;
 	}
+
+	g_clear_object (&context->priv->completion);
 
 	G_OBJECT_CLASS (gtk_source_completion_context_parent_class)->dispose (object);
 }
@@ -225,10 +223,12 @@ gtk_source_completion_context_constructed (GObject *object)
 	/* we need to connect after the completion property is set */
 	context = GTK_SOURCE_COMPLETION_CONTEXT (object);
 	buffer = get_buffer (context);
-	context->priv->mark_set_id = g_signal_connect (buffer,
-	                                               "mark-set",
-	                                               G_CALLBACK (buffer_mark_set_cb),
-	                                               context);
+
+	g_signal_connect_object (buffer,
+				 "mark-set",
+				 G_CALLBACK (buffer_mark_set_cb),
+				 context,
+				 0);
 
 	G_OBJECT_CLASS (gtk_source_completion_context_parent_class)->constructed (object);
 }
