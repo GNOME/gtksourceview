@@ -126,6 +126,7 @@ gtk_source_completion_context_dispose (GObject *object)
 			gtk_text_buffer_delete_mark (buffer, context->priv->mark);
 		}
 
+		g_object_unref (context->priv->mark);
 		context->priv->mark = NULL;
 	}
 
@@ -143,6 +144,7 @@ gtk_source_completion_context_set_iter (GtkSourceCompletionContext *context,
 	if (context->priv->mark == NULL)
 	{
 		context->priv->mark = gtk_text_buffer_create_mark (buffer, NULL, iter, FALSE);
+		g_object_ref (context->priv->mark);
 	}
 	else
 	{
