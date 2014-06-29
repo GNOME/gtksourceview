@@ -22,17 +22,17 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-12 10:09+0000\n"
-"PO-Revision-Date: 2014-03-12 21:00+0400\n"
-"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
+"POT-Creation-Date: 2014-06-28 21:09+0000\n"
+"PO-Revision-Date: 2014-06-29 10:30+0300\n"
+"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -77,7 +77,7 @@ msgstr "В начале строки"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:399
+#: ../gtksourceview/gtksourcegutterrenderertext.c:409
 msgid "Text"
 msgstr "Текст"
 
@@ -128,7 +128,6 @@ msgstr "Все"
 #: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
-#| msgid "Sources"
 msgid "Source"
 msgstr "Исходный текст"
 
@@ -211,6 +210,7 @@ msgstr "Ошибка"
 #: ../data/language-specs/eiffel.lang.h:4
 #: ../data/language-specs/erlang.lang.h:7
 #: ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/fortran.lang.h:4
 #: ../data/language-specs/fsharp.lang.h:7
 #: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/gtkrc.lang.h:4
@@ -288,7 +288,7 @@ msgstr "Описание области действия"
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
 #: ../data/language-specs/forth.lang.h:6
-#: ../data/language-specs/fortran.lang.h:5
+#: ../data/language-specs/fortran.lang.h:6
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
 #: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:5
@@ -390,7 +390,7 @@ msgstr "Слова, зарезервированные на будущее"
 #: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
 #: ../data/language-specs/eiffel.lang.h:8
 #: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:9
+#: ../data/language-specs/fortran.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:11
 #: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:7
@@ -440,6 +440,7 @@ msgstr "Десятичное число"
 #: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:5
+#: ../data/language-specs/fortran.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/glsl.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3
@@ -465,6 +466,7 @@ msgstr "Действительное число"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
+#: ../data/language-specs/fortran.lang.h:14
 #: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/java.lang.h:3
@@ -542,12 +544,10 @@ msgid "Local Variable"
 msgstr "Локальная переменная"
 
 #: ../data/language-specs/ansforth94.lang.h:13
-#| msgid "Integer Number"
 msgid "Single Number"
 msgstr "Одиночное число"
 
 #: ../data/language-specs/ansforth94.lang.h:14
-#| msgid "Complex number"
 msgid "Double Number"
 msgstr "Двойное число"
 
@@ -650,7 +650,6 @@ msgstr "Подстановка"
 #: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
 #: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-#| msgid "Scripts"
 msgid "Script"
 msgstr "Сценарий"
 
@@ -719,7 +718,7 @@ msgstr "Шестнадцатеричное число"
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:391
+#: ../gtksourceview/gtksourcegutterrenderertext.c:401
 msgid "Markup"
 msgstr "Разметка"
 
@@ -821,6 +820,7 @@ msgid "Bindings"
 msgstr "Привязки"
 
 #: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
+#: ../data/language-specs/fortran.lang.h:13
 #: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Включаемый файл"
@@ -980,7 +980,7 @@ msgstr "Прочее 3"
 
 #. Translator: it is a type of number
 #: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8 ../data/language-specs/gap.lang.h:7
+#: ../data/language-specs/fortran.lang.h:9 ../data/language-specs/gap.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:6
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
@@ -1365,7 +1365,7 @@ msgstr "Научные"
 msgid "FCL"
 msgstr "FCL"
 
-#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:4
+#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:4
 #: ../data/language-specs/modelica.lang.h:11
 #: ../data/language-specs/octave.lang.h:10
@@ -1398,13 +1398,18 @@ msgstr "Текст ошибки"
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:6
+#: ../data/language-specs/fortran.lang.h:7
 msgid "Intrinsic function"
 msgstr "Встроенная функция"
 
-#: ../data/language-specs/fortran.lang.h:7
+#: ../data/language-specs/fortran.lang.h:8
 msgid "BOZ Literal"
 msgstr "BOZ-константа"
+
+#: ../data/language-specs/fortran.lang.h:12
+#| msgid "Include directive"
+msgid "OpenMP directives"
+msgstr "Директивы OpenMP"
 
 #: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
@@ -1667,7 +1672,6 @@ msgid "Attribute Value"
 msgstr "Значение атрибута"
 
 #: ../data/language-specs/html.lang.h:9
-#| msgid "Page Elements"
 msgid "Page title"
 msgstr "Заголовок страницы"
 
@@ -1868,7 +1872,6 @@ msgid "SubSection Heading"
 msgstr "Заголовок подраздела"
 
 #: ../data/language-specs/latex.lang.h:15
-#| msgid "Exception Handling"
 msgid "SubSubSection Heading"
 msgstr "Подзаголовок подраздела"
 
@@ -1881,7 +1884,6 @@ msgid "SubParagraph Heading"
 msgstr "Заголовок подпараграфа"
 
 #: ../data/language-specs/lex.lang.h:2
-#| msgid "Hex"
 msgid "Lex"
 msgstr "Lex"
 
@@ -1890,7 +1892,6 @@ msgid "Token"
 msgstr "Лексема"
 
 #: ../data/language-specs/lex.lang.h:6
-#| msgid "Regular Expression"
 msgid "Expression"
 msgstr "Выражение"
 
@@ -1903,7 +1904,6 @@ msgid "LLVM IR"
 msgstr "LLVM IR"
 
 #: ../data/language-specs/llvm.lang.h:7
-#| msgid "Constant"
 msgid "Constants"
 msgstr "Константы"
 
@@ -2315,7 +2315,6 @@ msgid "PHP"
 msgstr "PHP"
 
 #: ../data/language-specs/php.lang.h:3
-#| msgid "Preprocessor"
 msgid "Preprocessor tags"
 msgstr "Тэги препроцессора"
 
@@ -2398,12 +2397,10 @@ msgid "String Conversion"
 msgstr "Преобразование строк"
 
 #: ../data/language-specs/python.lang.h:20
-#| msgid "Class names"
 msgid "Class Name"
 msgstr "Имя класса"
 
 #: ../data/language-specs/python.lang.h:21
-#| msgid "Operator"
 msgid "Decorator"
 msgstr "Декоратор"
 
@@ -2476,7 +2473,6 @@ msgid "Email"
 msgstr "Эл. почта"
 
 #: ../data/language-specs/rst.lang.h:2
-#| msgid "Structural Elements"
 msgid "reStructuredText"
 msgstr "reStructuredText"
 
@@ -2750,7 +2746,6 @@ msgid "YAML"
 msgstr "YAML"
 
 #: ../data/language-specs/yaml.lang.h:3
-#| msgid "BOZ Literal"
 msgid "Block literal"
 msgstr "Блочный литерал"
 
@@ -2771,7 +2766,6 @@ msgid "Integer"
 msgstr "Целое число"
 
 #: ../data/language-specs/yaml.lang.h:14
-#| msgid "Floating Point"
 msgid "Floating point"
 msgstr "Число с плавающей точкой"
 
@@ -2812,7 +2806,6 @@ msgid "Solarized Dark"
 msgstr "Solarized Dark"
 
 #: ../data/styles/solarized-dark.xml.h:2
-#| msgid "Color scheme using Tango color palette"
 msgid "Color scheme using Solarized dark color palette"
 msgstr "Цветовая схема, использующая тёмную палитру Solarized"
 
@@ -2821,7 +2814,6 @@ msgid "Solarized Light"
 msgstr "Solarized Light"
 
 #: ../data/styles/solarized-light.xml.h:2
-#| msgid "Color scheme using Tango color palette"
 msgid "Color scheme using Solarized light color palette"
 msgstr "Цветовая схема, использующая светлую палитру Solarized"
 
@@ -2896,12 +2888,12 @@ msgid "Provider priority"
 msgstr "Приоритет поставщика услуг"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-#: ../gtksourceview/gtksourcecompletioncontext.c:299
+#: ../gtksourceview/gtksourcecompletioncontext.c:301
 msgid "Activation"
 msgstr "Активация"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
-#: ../gtksourceview/gtksourcecompletioncontext.c:300
+#: ../gtksourceview/gtksourcecompletioncontext.c:302
 msgid "The type of activation"
 msgstr "Тип активации"
 
@@ -2923,12 +2915,12 @@ msgid "Whether to highlight matching brackets"
 msgstr "Подсвечивать ли совпадающие скобки"
 
 #: ../gtksourceview/gtksourcebuffer.c:302
-#: ../gtksourceview/gtksourceundomanagerdefault.c:414
+#: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "Maximum Undo Levels"
 msgstr "Максимальный уровень отката"
 
 #: ../gtksourceview/gtksourcebuffer.c:303
-#: ../gtksourceview/gtksourceundomanagerdefault.c:415
+#: ../gtksourceview/gtksourceundomanagerdefault.c:412
 msgid "Number of undo levels for the buffer"
 msgstr "Установить число уровней отката для буфера"
 
@@ -3049,21 +3041,21 @@ msgstr "Предложенный размер страницы"
 msgid "Proposal scrolling page size"
 msgstr "Предложенный прокручиваемый размер окна"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
+#: ../gtksourceview/gtksourcecompletioncontext.c:274
 #: ../gtksourceview/gtksourceview.c:309
 msgid "Completion"
 msgstr "Завершение"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:273
+#: ../gtksourceview/gtksourcecompletioncontext.c:275
 msgid "The completion object to which the context belongs"
 msgstr "Объект дополнения, которому принадлежит содержимое"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:286
+#: ../gtksourceview/gtksourcecompletioncontext.c:288
 msgid "Iterator"
 msgstr "Итератор "
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:287
+#: ../gtksourceview/gtksourcecompletioncontext.c:289
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter, в котором было активировано автодополнение"
 
@@ -3253,50 +3245,50 @@ msgstr "Размер"
 msgid "The size"
 msgstr "Размер"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:289
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:298
 #: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:290
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
 #: ../gtksourceview/gtksourcemarkattributes.c:317
 msgid "The pixbuf"
 msgstr "The pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:304
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
 #: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "Stock Id"
 msgstr "Встроенное изображение"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:305
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
 #: ../gtksourceview/gtksourcemarkattributes.c:304
 msgid "The stock id"
 msgstr "Встроенное изображение"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:312
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
 #: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "Icon Name"
 msgstr "Имя значка"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
 #: ../gtksourceview/gtksourcemarkattributes.c:330
 msgid "The icon name"
 msgstr "Имя значка"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:320
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:329
 #: ../gtksourceview/gtksourcemarkattributes.c:342
 msgid "GIcon"
 msgstr "GIcon"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
 msgid "The gicon"
 msgstr "Значок GIcon"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:392
+#: ../gtksourceview/gtksourcegutterrenderertext.c:402
 msgid "The markup"
 msgstr "Разметка"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:400
+#: ../gtksourceview/gtksourcegutterrenderertext.c:410
 msgid "The text"
 msgstr "Текст"
 
@@ -3477,7 +3469,7 @@ msgid "using \\C is not supported in language definitions"
 msgstr "Использование \\C не поддерживается в определениях языка"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2742
-#: ../gtksourceview/gtksourceundomanagerdefault.c:406
+#: ../gtksourceview/gtksourceundomanagerdefault.c:403
 msgid "Buffer"
 msgstr "Буфер"
 
@@ -3688,7 +3680,7 @@ msgstr "Идентификатор схемы"
 msgid "List of the ids of the available style schemes"
 msgstr "Список идентификаторов доступных стилевых схем"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:407
+#: ../gtksourceview/gtksourceundomanagerdefault.c:404
 msgid "The text buffer to add undo support on"
 msgstr "Текстовый буфер для поддержки отката изменений"
 
@@ -3789,33 +3781,32 @@ msgid "Set if and how the spaces should be visualized"
 msgstr "Включить отображение пробельных символов и задать его стиль"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1272
+#: ../gtksourceview/gtksourceview.c:1236
 msgid "_Redo"
 msgstr "_Повторить"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1283
+#: ../gtksourceview/gtksourceview.c:1247
 msgid "_Undo"
 msgstr "_Отменить"
 
-#: ../gtksourceview/gtksourceview.c:1301
+#: ../gtksourceview/gtksourceview.c:1265
 msgid "All _Upper Case"
 msgstr "В _верхний регистр"
 
-#: ../gtksourceview/gtksourceview.c:1311
+#: ../gtksourceview/gtksourceview.c:1275
 msgid "All _Lower Case"
 msgstr "В _нижний регистр"
 
-#: ../gtksourceview/gtksourceview.c:1321
+#: ../gtksourceview/gtksourceview.c:1285
 msgid "_Invert Case"
 msgstr "_Инвертировать регистр"
 
-#: ../gtksourceview/gtksourceview.c:1331
-#| msgid "Title"
+#: ../gtksourceview/gtksourceview.c:1295
 msgid "_Title Case"
 msgstr "_Прописная в начале каждого слова"
 
-#: ../gtksourceview/gtksourceview.c:1341
+#: ../gtksourceview/gtksourceview.c:1305
 msgid "C_hange Case"
 msgstr "_Изменить регистр"
 
