@@ -593,12 +593,14 @@ insert_fallback (GtkSourceBufferOutputStream *stream,
 
 static void
 validate_and_insert (GtkSourceBufferOutputStream *stream,
-		     const gchar                 *buffer,
-		     gsize                        count)
+		     gchar                       *buffer,
+		     gsize                        count,
+		     gboolean                     owned)
 {
 	GtkTextBuffer *text_buffer;
 	GtkTextIter *iter;
 	gsize len;
+	gchar *free_text = NULL;
 
 	if (stream->priv->source_buffer == NULL)
 	{
@@ -632,8 +634,9 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 
 			if (ptr && *ptr == '\r' && ptr - buffer == len - 1)
 			{
-				stream->priv->buffer = g_new (gchar, 1);
+				stream->priv->buffer = g_new (gchar, 2);
 				stream->priv->buffer[0] = '\r';
+				stream->priv->buffer[1] = '\0';
 				stream->priv->buflen = 1;
 
 				/* Decrease also the len so in the check
@@ -646,10 +649,42 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 		/* if we've got any valid char we must tag the invalid chars */
 		if (nvalid > 0)
 		{
-			apply_error_tag (stream);
-		}
+			gchar orig_non_null = '\0';
 
-		gtk_text_buffer_insert (text_buffer, iter, buffer, nvalid);
+			apply_error_tag (stream);
+
+			if (nvalid != len && buffer[nvalid] != '\0')
+			{
+				/* make sure the buffer is always properly null
+				 * terminated. This is needed, at least for now,
+				 * to avoid issues with pygobject marshalling of
+				 * the insert-text signal of gtktextbuffer
+				 *
+				 * https://bugzilla.gnome.org/show_bug.cgi?id=726689
+				 */
+				if (!owned)
+				{
+					/* forced to make a copy */
+					free_text = g_new (gchar, len + 1);
+					memcpy (free_text, buffer, len);
+					free_text[len] = '\0';
+
+					buffer = free_text;
+					owned = TRUE;
+				}
+
+				orig_non_null = buffer[nvalid];
+				buffer[nvalid] = '\0';
+			}
+
+			gtk_text_buffer_insert (text_buffer, iter, buffer, nvalid);
+
+			if (orig_non_null != '\0')
+			{
+				/* restore null terminated replaced byte */
+				buffer[nvalid] = orig_non_null;
+			}
+		}
 
 		/* If we inserted all return */
 		if (nvalid == len)
@@ -679,6 +714,8 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 		++buffer;
 		--len;
 	}
+
+	g_free (free_text);
 }
 
 static void
@@ -749,7 +786,9 @@ convert_text (GtkSourceBufferOutputStream  *stream,
 	outbuf_size = (inbuf_len > 0) ? inbuf_len : 100;
 
 	out_left = outbuf_size;
-	out = dest = g_malloc (outbuf_size);
+
+	/* keep room for null termination */
+	out = dest = g_malloc (sizeof (gchar) * (outbuf_size + 1));
 
 	done = FALSE;
 	have_error = FALSE;
@@ -783,7 +822,10 @@ convert_text (GtkSourceBufferOutputStream  *stream,
 						gsize used = out - dest;
 
 						outbuf_size *= 2;
-						dest = g_realloc (dest, outbuf_size);
+
+						/* make sure to allocate room for
+						   terminating null byte */
+						dest = g_realloc (dest, outbuf_size + 1);
 
 						out = dest + used;
 						out_left = outbuf_size - used;
@@ -820,9 +862,10 @@ convert_text (GtkSourceBufferOutputStream  *stream,
 		return FALSE;
 	}
 
-	*outbuf = dest;
 	*outbuf_len = out - dest;
+	dest[*outbuf_len] = '\0';
 
+	*outbuf = dest;
 	return TRUE;
 }
 
@@ -1000,7 +1043,7 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		len = outbuf_len;
 	}
 
-	validate_and_insert (ostream, text, len);
+	validate_and_insert (ostream, text, len, freetext);
 
 	if (freetext)
 	{
@@ -1033,7 +1076,7 @@ gtk_source_buffer_output_stream_flush (GOutputStream  *stream,
 
 		if (convert_text (ostream, NULL, 0, &outbuf, &outbuf_len, error))
 		{
-			validate_and_insert (ostream, outbuf, outbuf_len);
+			validate_and_insert (ostream, outbuf, outbuf_len, TRUE);
 			g_free (outbuf);
 		}
 		else
