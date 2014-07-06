@@ -926,10 +926,9 @@ gtk_source_view_get_property (GObject    *object,
 }
 
 static void
-notify_buffer (GtkSourceView *view)
+notify_buffer_cb (GtkSourceView *view)
 {
-	set_source_buffer (view,
-		gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+	set_source_buffer (view, gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 }
 
 static void
@@ -973,7 +972,7 @@ gtk_source_view_init (GtkSourceView *view)
 
 	g_signal_connect (view,
 			  "notify::buffer",
-			  G_CALLBACK (notify_buffer),
+			  G_CALLBACK (notify_buffer_cb),
 			  NULL);
 }
 
@@ -987,6 +986,14 @@ gtk_source_view_dispose (GObject *object)
 	g_clear_object (&view->priv->right_gutter);
 
 	remove_source_buffer (view);
+
+	/* Disconnect notify buffer because the destroy of the textview will set
+	 * the buffer to NULL, and we call get_buffer in the notify which would
+	 * reinstate a buffer which we don't want.
+	 * There is no problem calling g_signal_handlers_disconnect_by_func()
+	 * several times (if dispose() is called several times).
+	 */
+	g_signal_handlers_disconnect_by_func (view, notify_buffer_cb, NULL);
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->dispose (object);
 }
