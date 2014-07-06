@@ -984,6 +984,7 @@ gtk_source_view_dispose (GObject *object)
 	g_clear_object (&view->priv->completion);
 	g_clear_object (&view->priv->left_gutter);
 	g_clear_object (&view->priv->right_gutter);
+	g_clear_object (&view->priv->source_buffer);
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->dispose (object);
 }
