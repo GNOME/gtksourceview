@@ -2572,14 +2572,11 @@ gtk_source_view_new (void)
 GtkWidget *
 gtk_source_view_new_with_buffer (GtkSourceBuffer *buffer)
 {
-	GtkWidget *view;
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
-	g_return_val_if_fail (buffer != NULL && GTK_SOURCE_IS_BUFFER (buffer), NULL);
-
-	view = g_object_new (GTK_SOURCE_TYPE_VIEW, NULL);
-	gtk_text_view_set_buffer (GTK_TEXT_VIEW (view), GTK_TEXT_BUFFER (buffer));
-
-	return view;
+	return g_object_new (GTK_SOURCE_TYPE_VIEW,
+			     "buffer", buffer,
+			     NULL);
 }
 
 /**
@@ -2593,10 +2590,9 @@ gtk_source_view_new_with_buffer (GtkSourceBuffer *buffer)
 gboolean
 gtk_source_view_get_show_line_numbers (GtkSourceView *view)
 {
-	g_return_val_if_fail (view != NULL, FALSE);
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
-	return (view->priv->show_line_numbers != FALSE);
+	return view->priv->show_line_numbers;
 }
 
 /**
@@ -2610,10 +2606,9 @@ void
 gtk_source_view_set_show_line_numbers (GtkSourceView *view,
                                        gboolean       show)
 {
-	g_return_if_fail (view != NULL);
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	show = (show != FALSE);
+	show = show != FALSE;
 
 	if (show == view->priv->show_line_numbers)
 	{
@@ -2660,7 +2655,7 @@ gtk_source_view_get_show_line_marks (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
-	return (view->priv->show_line_marks != FALSE);
+	return view->priv->show_line_marks;
 }
 
 static void
@@ -2692,7 +2687,7 @@ gtk_source_view_set_show_line_marks (GtkSourceView *view,
 {
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	show = (show != FALSE);
+	show = show != FALSE;
 
 	if (show == view->priv->show_line_marks)
 	{
@@ -2760,7 +2755,7 @@ gtk_source_view_set_tab_width (GtkSourceView *view,
 	guint save_width;
 
 	g_return_if_fail (GTK_SOURCE_VIEW (view));
-	g_return_if_fail (width > 0 && width <= MAX_TAB_WIDTH);
+	g_return_if_fail (0 < width && width <= MAX_TAB_WIDTH);
 
 	if (view->priv->tab_width == width)
 		return;
@@ -2808,7 +2803,7 @@ gtk_source_view_set_indent_width (GtkSourceView *view,
 				  gint           width)
 {
 	g_return_if_fail (GTK_SOURCE_VIEW (view));
-	g_return_if_fail ((width == -1) || (width > 0 && width <= MAX_INDENT_WIDTH));
+	g_return_if_fail ((width == -1) || (0 < width && width <= MAX_INDENT_WIDTH));
 
 	if (view->priv->indent_width != width)
 	{
@@ -2829,7 +2824,7 @@ gtk_source_view_set_indent_width (GtkSourceView *view,
 gint
 gtk_source_view_get_indent_width (GtkSourceView *view)
 {
-	g_return_val_if_fail (view != NULL && GTK_SOURCE_IS_VIEW (view), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), 0);
 
 	return view->priv->indent_width;
 }
