@@ -201,8 +201,9 @@ static void	gtk_source_view_undo 			(GtkSourceView      *view);
 static void	gtk_source_view_redo 			(GtkSourceView      *view);
 static void	gtk_source_view_show_completion_real	(GtkSourceView      *view);
 static GtkTextBuffer * gtk_source_view_create_buffer	(GtkTextView        *view);
-static void 	set_source_buffer 			(GtkSourceView      *view,
-								 GtkTextBuffer      *buffer);
+static void	remove_source_buffer			(GtkSourceView      *view);
+static void	set_source_buffer			(GtkSourceView      *view,
+							 GtkTextBuffer      *buffer);
 static void	gtk_source_view_populate_popup 		(GtkTextView        *view,
 							 GtkWidget          *popup);
 static void	gtk_source_view_move_cursor		(GtkTextView        *text_view,
@@ -984,7 +985,8 @@ gtk_source_view_dispose (GObject *object)
 	g_clear_object (&view->priv->completion);
 	g_clear_object (&view->priv->left_gutter);
 	g_clear_object (&view->priv->right_gutter);
-	g_clear_object (&view->priv->source_buffer);
+
+	remove_source_buffer (view);
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->dispose (object);
 }
@@ -1046,14 +1048,8 @@ buffer_style_scheme_changed_cb (GtkSourceBuffer *buffer,
 }
 
 static void
-set_source_buffer (GtkSourceView *view,
-		   GtkTextBuffer *buffer)
+remove_source_buffer (GtkSourceView *view)
 {
-	if (buffer == (GtkTextBuffer*) view->priv->source_buffer)
-	{
-		return;
-	}
-
 	if (view->priv->source_buffer != NULL)
 	{
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
@@ -1064,24 +1060,35 @@ set_source_buffer (GtkSourceView *view,
 						      buffer_style_scheme_changed_cb,
 						      view);
 
-		g_clear_object (&view->priv->source_buffer);
+		g_object_unref (view->priv->source_buffer);
+		view->priv->source_buffer = NULL;
 	}
+}
+
+static void
+set_source_buffer (GtkSourceView *view,
+		   GtkTextBuffer *buffer)
+{
+	if (buffer == (GtkTextBuffer*) view->priv->source_buffer)
+	{
+		return;
+	}
+
+	remove_source_buffer (view);
 
 	if (GTK_SOURCE_IS_BUFFER (buffer))
 	{
 		view->priv->source_buffer = g_object_ref (buffer);
 
-		g_signal_connect_object (buffer,
-					 "source_mark_updated",
-					 G_CALLBACK (source_mark_updated_cb),
-					 view,
-					 0);
+		g_signal_connect (buffer,
+				  "source_mark_updated",
+				  G_CALLBACK (source_mark_updated_cb),
+				  view);
 
-		g_signal_connect_object (buffer,
-					 "notify::style-scheme",
-					 G_CALLBACK (buffer_style_scheme_changed_cb),
-					 view,
-					 0);
+		g_signal_connect (buffer,
+				  "notify::style-scheme",
+				  G_CALLBACK (buffer_style_scheme_changed_cb),
+				  view);
 	}
 
 	gtk_source_view_update_style_scheme (view);
