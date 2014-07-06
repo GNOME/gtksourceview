@@ -880,12 +880,14 @@ add_source_mark_attributes (GtkSourceView *view)
 
 	gtk_source_mark_attributes_set_icon_name (attrs, "list-add");
 
-	g_signal_connect (attrs,
-	                  "query-tooltip-markup",
-	                  G_CALLBACK (mark_tooltip_func),
-	                  view);
+	g_signal_connect_object (attrs,
+				 "query-tooltip-markup",
+				 G_CALLBACK (mark_tooltip_func),
+				 view,
+				 0);
 
 	gtk_source_view_set_mark_attributes (view, MARK_TYPE_1, attrs, 1);
+	g_object_unref (attrs);
 
 	attrs = gtk_source_mark_attributes_new ();
 
@@ -894,12 +896,14 @@ add_source_mark_attributes (GtkSourceView *view)
 
 	gtk_source_mark_attributes_set_icon_name (attrs, "list-remove");
 
-	g_signal_connect (attrs,
-	                  "query-tooltip-markup",
-	                  G_CALLBACK (mark_tooltip_func),
-	                  view);
+	g_signal_connect_object (attrs,
+				 "query-tooltip-markup",
+				 G_CALLBACK (mark_tooltip_func),
+				 view,
+				 0);
 
 	gtk_source_view_set_mark_attributes (view, MARK_TYPE_2, attrs, 2);
+	g_object_unref (attrs);
 }
 
 static void
