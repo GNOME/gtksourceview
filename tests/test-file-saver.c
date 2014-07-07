@@ -136,14 +136,18 @@ mount_cb (GFile         *location,
 	{
 		g_error_free (error);
 	}
+
+	/* See https://bugzilla.gnome.org/show_bug.cgi?id=621764 */
 	else if (error != NULL && error->code == G_IO_ERROR_NOT_SUPPORTED)
 	{
+		g_printerr ("Ignored error: %s\n", error->message);
 		g_error_free (error);
 
 		/* The unit test can not be run */
 		gtk_main_quit ();
 		return;
 	}
+
 	else
 	{
 		g_assert_no_error (error);
@@ -381,8 +385,10 @@ test_permissions (const gchar *uri,
 	g_file_delete (location, NULL, NULL);
 	stream = g_file_create (location, 0, NULL, &error);
 
+	/* See https://bugzilla.gnome.org/show_bug.cgi?id=621764 */
 	if (error && error->code == G_IO_ERROR_NOT_SUPPORTED)
 	{
+		g_printerr ("Ignored error: %s\n", error->message);
 		g_error_free (error);
 		return;
 	}
