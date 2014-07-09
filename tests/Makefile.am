@@ -22,6 +22,8 @@ BUILT_SOURCES =				\
 	test-search-resources.c		\
 	test-widget-resources.c
 
+CLEANFILES = $(BUILT_SOURCES)
+
 test-completion-resources.c: test-completion.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-completion.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-completion.gresource.xml
 
@@ -32,16 +34,19 @@ test-widget-resources.c: test-widget.gresource.xml $(shell $(GLIB_COMPILE_RESOUR
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-widget.gresource.xml
 
 TEST_PROGS = test-completion
-test_completion_SOURCES = test-completion.c test-completion-resources.c
+test_completion_SOURCES = test-completion.c
+nodist_test_completion_SOURCES = test-completion-resources.c
 
 TEST_PROGS += test-search
-test_search_SOURCES = test-search.c test-search-resources.c
+test_search_SOURCES = test-search.c
+nodist_test_search_SOURCES = test-search-resources.c
 
 TEST_PROGS += test-search-performances
 test_search_performances_SOURCES = test-search-performances.c
 
 TEST_PROGS += test-widget
-test_widget_SOURCES = test-widget.c test-widget-resources.c
+test_widget_SOURCES = test-widget.c
+nodist_test_widget_SOURCES = test-widget-resources.c
 
 UNIT_TEST_PROGS = test-buffer
 test_buffer_SOURCES = test-buffer.c

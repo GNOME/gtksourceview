@@ -167,9 +167,8 @@ libgtksourceview_3_0_la_LDFLAGS =		\
 
 libgtksourceview_3_0_includedir = $(includedir)/gtksourceview-3.0/gtksourceview
 
-libgtksourceview_3_0_include_HEADERS =		\
-	$(libgtksourceview_headers)		\
-	gtksourceview-typebuiltins.h
+libgtksourceview_3_0_include_HEADERS = $(libgtksourceview_headers)
+nodist_libgtksourceview_3_0_include_HEADERS = gtksourceview-typebuiltins.h
 
 gtksourceview-marshal.h: gtksourceview-marshal.list $(GLIB_GENMARSHAL)
 	$(AM_V_GEN) $(GLIB_GENMARSHAL) $< --header --prefix=_gtksourceview_marshal > $@
