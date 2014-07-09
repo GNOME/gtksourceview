@@ -38,7 +38,6 @@
 #include "gtksourceview-i18n.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcelanguage.h"
-#include "gtksourceview-marshal.h"
 
 /**
  * SECTION:language

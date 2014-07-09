@@ -335,11 +335,8 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION | G_SIGNAL_DEPRECATED,
 		              0,
-		              NULL,
-		              NULL,
-		              g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE,
-		              0);
+		              NULL, NULL, NULL,
+		              G_TYPE_NONE, 0);
 }
 
 void

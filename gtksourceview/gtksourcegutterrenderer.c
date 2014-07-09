@@ -21,7 +21,6 @@
 
 #include "gtksourcegutterrenderer.h"
 #include "gtksourcegutterrenderer-private.h"
-#include "gtksourceview-marshal.h"
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourceview-i18n.h"
 
@@ -594,9 +593,7 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 		              G_TYPE_FROM_CLASS (object_class),
 		              G_SIGNAL_RUN_LAST,
 		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, activate),
-		              NULL,
-		              NULL,
-		              _gtksourceview_marshal_VOID__BOXED_BOXED_BOXED,
+		              NULL, NULL, NULL,
 		              G_TYPE_NONE,
 		              3,
 		              GTK_TYPE_TEXT_ITER,
@@ -617,11 +614,8 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 		              G_TYPE_FROM_CLASS (object_class),
 		              G_SIGNAL_RUN_LAST,
 		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, queue_draw),
-		              NULL,
-		              NULL,
-		              g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE,
-		              0);
+		              NULL, NULL, NULL,
+		              G_TYPE_NONE, 0);
 
 	/**
 	 * GtkSourceGutterRenderer::query-tooltip:
@@ -643,7 +637,7 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, query_tooltip),
 		              g_signal_accumulator_true_handled,
 		              NULL,
-		              _gtksourceview_marshal_BOOLEAN__BOXED_BOXED_INT_INT_OBJECT,
+		              NULL,
 		              G_TYPE_BOOLEAN,
 		              5,
 		              GTK_TYPE_TEXT_ITER,
@@ -670,9 +664,7 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 		              G_TYPE_FROM_CLASS (object_class),
 		              G_SIGNAL_RUN_LAST,
 		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, query_data),
-		              NULL,
-		              NULL,
-		              _gtksourceview_marshal_VOID__BOXED_BOXED_FLAGS,
+		              NULL, NULL, NULL,
 		              G_TYPE_NONE,
 		              3,
 		              GTK_TYPE_TEXT_ITER,
@@ -697,7 +689,7 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, query_activatable),
 		              g_signal_accumulator_true_handled,
 		              NULL,
-		              _gtksourceview_marshal_BOOLEAN__BOXED_BOXED_BOXED,
+		              NULL,
 		              G_TYPE_BOOLEAN,
 		              3,
 		              GTK_TYPE_TEXT_ITER,

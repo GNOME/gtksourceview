@@ -84,11 +84,8 @@ gtk_source_completion_words_proposal_class_init (GtkSourceCompletionWordsProposa
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL,
-		              NULL,
-		              g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE,
-		              0);
+		              NULL, NULL, NULL,
+		              G_TYPE_NONE, 0);
 }
 
 static void

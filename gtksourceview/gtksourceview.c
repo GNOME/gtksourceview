@@ -36,7 +36,6 @@
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
 #include "gtksourceview-i18n.h"
-#include "gtksourceview-marshal.h"
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"
@@ -466,22 +465,16 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, undo),
-			      NULL,
-			      NULL,
-			      _gtksourceview_marshal_VOID__VOID,
-			      G_TYPE_NONE,
-			      0);
+			      NULL, NULL, NULL,
+			      G_TYPE_NONE, 0);
 
 	signals [REDO] =
 		g_signal_new ("redo",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, redo),
-			      NULL,
-			      NULL,
-			      _gtksourceview_marshal_VOID__VOID,
-			      G_TYPE_NONE,
-			      0);
+			      NULL, NULL, NULL,
+			      G_TYPE_NONE, 0);
 
 	/**
 	 * GtkSourceView::show-completion:
@@ -503,11 +496,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, show_completion),
-			      NULL,
-			      NULL,
-			      _gtksourceview_marshal_VOID__VOID,
-			      G_TYPE_NONE,
-			      0);
+			      NULL, NULL, NULL,
+			      G_TYPE_NONE, 0);
 
 	/**
 	 * GtkSourceView::line-mark-activated:
@@ -524,9 +514,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, line_mark_activated),
-			      NULL,
-			      NULL,
-			      _gtksourceview_marshal_VOID__BOXED_POINTER,
+			      NULL, NULL, NULL,
 			      G_TYPE_NONE,
 			      2,
 			      GTK_TYPE_TEXT_ITER,
@@ -553,9 +541,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, move_lines),
-			      NULL,
-			      NULL,
-			      _gtksourceview_marshal_VOID__BOOLEAN_INT,
+			      NULL, NULL, NULL,
 			      G_TYPE_NONE, 2,
 			      G_TYPE_BOOLEAN,
 			      G_TYPE_INT);
@@ -577,9 +563,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, move_words),
-			      NULL,
-			      NULL,
-			      _gtksourceview_marshal_VOID__INT,
+			      NULL, NULL, NULL,
 			      G_TYPE_NONE, 1,
 			      G_TYPE_INT);
 
@@ -602,9 +586,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL,
-		              NULL,
-		              _gtksourceview_marshal_VOID__BOXED_INT,
+		              NULL, NULL, NULL,
 		              G_TYPE_NONE,
 		              2,
 		              GTK_TYPE_TEXT_ITER,

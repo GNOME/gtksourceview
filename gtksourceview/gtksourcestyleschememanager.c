@@ -21,7 +21,6 @@
 
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcestylescheme.h"
-#include "gtksourceview-marshal.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourceview-utils.h"
 #include <string.h>

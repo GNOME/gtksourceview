@@ -257,11 +257,8 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		              G_STRUCT_OFFSET (GtkSourceCompletionContextClass, cancelled),
-		              NULL,
-		              NULL,
-		              g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE,
-		              0);
+		              NULL, NULL, NULL,
+		              G_TYPE_NONE, 0);
 
 	/**
 	 * GtkSourceCompletionContext:completion:

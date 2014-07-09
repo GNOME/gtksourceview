@@ -30,9 +30,7 @@
  * should be taken when the completion item is activated.
  */
 
-#include <gtksourceview/gtksourcecompletionproposal.h>
-
-#include "gtksourceview-marshal.h"
+#include "gtksourcecompletionproposal.h"
 
 /* Signals */
 enum
@@ -119,11 +117,8 @@ gtk_source_completion_proposal_default_init (GtkSourceCompletionProposalIface *i
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionProposalIface, changed),
-			      NULL,
-			      NULL,
-			      g_cclosure_marshal_VOID__VOID,
-			      G_TYPE_NONE,
-			      0);
+			      NULL, NULL, NULL,
+			      G_TYPE_NONE, 0);
 
 		initialized = TRUE;
 	}

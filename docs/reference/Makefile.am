@@ -45,7 +45,6 @@ IGNORE_HFILES =					\
 	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
 	gtksourceview-i18n.h			\
-	gtksourceview-marshal.h			\
 	gtksourceview-typebuiltins.h		\
 	gtksourceview-utils.h			\
 	gtktextregion.h

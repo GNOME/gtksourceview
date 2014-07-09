@@ -43,7 +43,6 @@
 #include "gtksourcemarkssequence.h"
 #include "gtksourcesearchcontext.h"
 #include "gtksourceview-i18n.h"
-#include "gtksourceview-marshal.h"
 #include "gtksourceview-typebuiltins.h"
 
 /**
@@ -395,9 +394,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	    g_signal_newv ("highlight_updated",
 			   G_OBJECT_CLASS_TYPE (object_class),
 			   G_SIGNAL_RUN_LAST,
-			   NULL,
-			   NULL, NULL,
-			   _gtksourceview_marshal_VOID__BOXED_BOXED,
+			   NULL, NULL, NULL, NULL,
 			   G_TYPE_NONE,
 			   2, param_types);
 
@@ -414,8 +411,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			   G_OBJECT_CLASS_TYPE (object_class),
 			   G_SIGNAL_RUN_LAST,
 			   0,
-			   NULL, NULL,
-			   g_cclosure_marshal_VOID__OBJECT,
+			   NULL, NULL, NULL,
 			   G_TYPE_NONE,
 			   1, GTK_TYPE_TEXT_MARK);
 
@@ -431,10 +427,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_OBJECT_CLASS_TYPE (object_class),
 			  G_SIGNAL_RUN_LAST,
 			  G_STRUCT_OFFSET (GtkSourceBufferClass, undo),
-			  NULL, NULL,
-			  g_cclosure_marshal_VOID__VOID,
-			  G_TYPE_NONE,
-			  0);
+			  NULL, NULL, NULL,
+			  G_TYPE_NONE, 0);
 
 	/**
 	 * GtkSourceBuffer::redo:
@@ -447,10 +441,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_OBJECT_CLASS_TYPE (object_class),
 			  G_SIGNAL_RUN_LAST,
 			  G_STRUCT_OFFSET (GtkSourceBufferClass, redo),
-			  NULL, NULL,
-			  g_cclosure_marshal_VOID__VOID,
-			  G_TYPE_NONE,
-			  0);
+			  NULL, NULL, NULL,
+			  G_TYPE_NONE, 0);
 
 	/**
 	 * GtkSourceBuffer::bracket-matched:
@@ -469,8 +461,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_OBJECT_CLASS_TYPE (object_class),
 			  G_SIGNAL_RUN_LAST,
 			  G_STRUCT_OFFSET (GtkSourceBufferClass, bracket_matched),
-			  NULL, NULL,
-			  _gtksourceview_marshal_VOID__BOXED_ENUM,
+			  NULL, NULL, NULL,
 			  G_TYPE_NONE, 2,
 			  GTK_TYPE_TEXT_ITER,
 			  GTK_SOURCE_TYPE_BRACKET_MATCH_TYPE);

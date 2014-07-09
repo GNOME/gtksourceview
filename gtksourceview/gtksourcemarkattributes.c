@@ -24,7 +24,6 @@
 #include "gtksourcemark.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourcepixbufhelper.h"
-#include "gtksourceview-marshal.h"
 
 /**
  * SECTION:markattributes
@@ -360,9 +359,7 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL,
-		              NULL,
-		              _gtksourceview_marshal_STRING__OBJECT,
+		              NULL, NULL, NULL,
 		              G_TYPE_STRING,
 		              1,
 		              GTK_SOURCE_TYPE_MARK);
@@ -383,9 +380,7 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL,
-		              NULL,
-		              _gtksourceview_marshal_STRING__OBJECT,
+		              NULL, NULL, NULL,
 		              G_TYPE_STRING,
 		              1,
 		              GTK_SOURCE_TYPE_MARK);

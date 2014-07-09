@@ -89,7 +89,6 @@
 #include "gtksourcecompletioncontainer.h"
 #include "gtksourcebuffer.h"
 #include "gtksourceview.h"
-#include "gtksourceview-marshal.h"
 #include "gtksourceview-i18n.h"
 
 /* Signals */
@@ -2304,11 +2303,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, show),
-			      NULL,
-			      NULL,
-			      g_cclosure_marshal_VOID__VOID,
-			      G_TYPE_NONE,
-			      0);
+			      NULL, NULL, NULL,
+			      G_TYPE_NONE, 0);
 
 
 	/**
@@ -2323,11 +2319,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, hide),
-			      NULL,
-			      NULL,
-			      g_cclosure_marshal_VOID__VOID,
-			      G_TYPE_NONE,
-			      0);
+			      NULL, NULL, NULL,
+			      G_TYPE_NONE, 0);
 
 	/**
 	 * GtkSourceCompletion::populate-context:
@@ -2342,9 +2335,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		              G_STRUCT_OFFSET (GtkSourceCompletionClass, populate_context),
-		              NULL,
-		              NULL,
-		              g_cclosure_marshal_VOID__OBJECT,
+		              NULL, NULL, NULL,
 		              G_TYPE_NONE,
 		              1,
 		              GTK_SOURCE_TYPE_COMPLETION_CONTEXT);
@@ -2379,9 +2370,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, move_cursor),
-			      NULL,
-			      NULL,
-			      _gtksourceview_marshal_VOID__ENUM_INT,
+			      NULL, NULL, NULL,
 			      G_TYPE_NONE,
 			      2,
 			      GTK_TYPE_SCROLL_STEP,
@@ -2418,9 +2407,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, move_page),
-			      NULL,
-			      NULL,
-			      _gtksourceview_marshal_VOID__ENUM_INT,
+			      NULL, NULL, NULL,
 			      G_TYPE_NONE,
 			      2,
 			      GTK_TYPE_SCROLL_STEP,
@@ -2443,11 +2430,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, activate_proposal),
-			      NULL,
-			      NULL,
-			      g_cclosure_marshal_VOID__VOID,
-			      G_TYPE_NONE,
-			      0);
+			      NULL, NULL, NULL,
+			      G_TYPE_NONE, 0);
 
 	/* Key bindings */
 	binding_set = gtk_binding_set_by_class (klass);

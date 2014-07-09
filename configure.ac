@@ -65,8 +65,7 @@ GLADE_UI_REQUIRED=3.9
 AC_SUBST(GTK_REQUIRED_VERSION)
 AC_SUBST(LIBXML_REQUIRED_VERSION)
 
-# Pull glib-genmarshal & co.
-AC_PATH_PROG(GLIB_GENMARSHAL, glib-genmarshal)
+# Pull glib-mkenums & co.
 AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
 

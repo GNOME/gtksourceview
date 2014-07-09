@@ -31,7 +31,6 @@
 #include <string.h>
 
 #include "gtksourceundomanager.h"
-#include "gtksourceview-marshal.h"
 
 /**
  * SECTION:undomanager
@@ -127,9 +126,7 @@ gtk_source_undo_manager_default_init (GtkSourceUndoManagerIface *iface)
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceUndoManagerIface, can_undo_changed),
-			      NULL,
-			      NULL,
-			      g_cclosure_marshal_VOID__VOID,
+			      NULL, NULL, NULL,
 			      G_TYPE_NONE,
 			      0);
 
@@ -147,9 +144,7 @@ gtk_source_undo_manager_default_init (GtkSourceUndoManagerIface *iface)
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceUndoManagerIface, can_redo_changed),
-			      NULL,
-			      NULL,
-			      g_cclosure_marshal_VOID__VOID,
+			      NULL, NULL, NULL,
 			      G_TYPE_NONE,
 			      0);
 
