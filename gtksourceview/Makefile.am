@@ -91,7 +91,6 @@ libgtksourceview_private_c_files =	\
 	gtksourcemarkssequence.c	\
 	gtksourcepixbufhelper.c		\
 	gtksourceregex.c		\
-	gtksourceundomanager.c 		\
 	gtksourceundomanagerdefault.c	\
 	gtksourceview-i18n.c		\
 	gtksourceview-utils.c 		\
@@ -123,6 +122,7 @@ libgtksourceview_c_files =		\
 	gtksourcestyle.c		\
 	gtksourcestylescheme.c		\
 	gtksourcestyleschememanager.c	\
+	gtksourceundomanager.c 		\
 	gtksourceutils.c		\
 	gtksourceview.c
 
