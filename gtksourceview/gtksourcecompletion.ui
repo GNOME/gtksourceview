@@ -24,11 +24,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 <interface>
   <requires lib="gtk+" version="3.0"/>
-  <object class="GtkImage" id="info_button_image">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-info</property>
-  </object>
   <object class="GtkSourceCompletionInfo" id="main_window">
     <property name="type">popup</property>
     <property name="type_hint">combo</property>
@@ -93,7 +88,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
                 <property name="relief">GTK_RELIEF_NONE</property>
                 <property name="label" translatable="yes">_Details...</property>
                 <property name="use_underline">True</property>
-                <property name="image">info_button_image</property>
               </object>
             </child>
             <child>
