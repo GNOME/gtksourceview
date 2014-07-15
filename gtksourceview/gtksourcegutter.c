@@ -905,7 +905,6 @@ on_view_draw (GtkSourceView   *view,
 	GtkTextView *text_view;
 	GArray *sizes;
 	GdkRectangle clip;
-	gint x, y;
 	gint y1, y2;
 	GArray *numbers;
 	GArray *pixels;
@@ -926,8 +925,6 @@ on_view_draw (GtkSourceView   *view,
 	gint idx;
 	GtkStyleContext *style_context;
 	GdkRGBA fg_color;
-	GdkDeviceManager *device_manager;
-	GdkDevice *pointer;
 
 	window = get_window (gutter);
 
@@ -948,10 +945,6 @@ on_view_draw (GtkSourceView   *view,
 	gutter->priv->is_drawing = TRUE;
 
 	buffer = gtk_text_view_get_buffer (text_view);
-
-	device_manager = gdk_display_get_device_manager (gdk_window_get_display (window));
-	pointer = gdk_device_manager_get_client_pointer (device_manager);
-	gdk_window_get_device_position (window, pointer, &x, &y, NULL);
 
 	y1 = clip.y;
 	y2 = y1 + clip.height;
@@ -978,9 +971,6 @@ on_view_draw (GtkSourceView   *view,
 
 	calculate_gutter_size (gutter, sizes);
 
-	i = 0;
-	x = 0;
-
 	background_area.x = 0;
 	background_area.height = get_lines (text_view,
 	                                    y1,
@@ -1004,9 +994,6 @@ on_view_draw (GtkSourceView   *view,
 
 	cell_area.y = background_area.y;
 
-	item = gutter->priv->renderers;
-	idx = 0;
-
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
 
 	gtk_style_context_get_color (style_context,
@@ -1015,13 +1002,15 @@ on_view_draw (GtkSourceView   *view,
 
 	gdk_cairo_set_source_rgba (cr, &fg_color);
 
-	while (item)
+	for (item = gutter->priv->renderers, idx = 0;
+	     item != NULL;
+	     item = g_list_next (item), idx++)
 	{
 		Renderer *renderer = item->data;
 		gint xpad;
 		gint width;
 
-		width = g_array_index (sizes, gint, idx++);
+		width = g_array_index (sizes, gint, idx);
 
 		if (gtk_source_gutter_renderer_get_visible (renderer->renderer))
 		{
@@ -1050,8 +1039,6 @@ on_view_draw (GtkSourceView   *view,
 
 			background_area.x += background_area.width;
 		}
-
-		item = g_list_next (item);
 	}
 
 	gtk_text_buffer_get_iter_at_mark (buffer,
@@ -1104,9 +1091,9 @@ on_view_draw (GtkSourceView   *view,
 		background_area.height = g_array_index (heights, gint, i);
 		background_area.x = 0;
 
-		idx = 0;
-
-		for (item = gutter->priv->renderers; item; item = g_list_next (item))
+		for (item = gutter->priv->renderers, idx = 0;
+		     item != NULL;
+		     item = g_list_next (item), idx++)
 		{
 			Renderer *renderer;
 			gint width;
@@ -1115,7 +1102,7 @@ on_view_draw (GtkSourceView   *view,
 			gint ypad;
 
 			renderer = item->data;
-			width = g_array_index (sizes, gint, idx++);
+			width = g_array_index (sizes, gint, idx);
 
 			if (!gtk_source_gutter_renderer_get_visible (renderer->renderer))
 			{
@@ -1182,7 +1169,7 @@ on_view_draw (GtkSourceView   *view,
 		gtk_text_iter_forward_line (&start);
 	}
 
-	for (item = gutter->priv->renderers; item; item = g_list_next (item))
+	for (item = gutter->priv->renderers; item != NULL; item = g_list_next (item))
 	{
 		Renderer *renderer = item->data;
 
@@ -1195,7 +1182,6 @@ on_view_draw (GtkSourceView   *view,
 	g_array_free (numbers, TRUE);
 	g_array_free (pixels, TRUE);
 	g_array_free (heights, TRUE);
-
 	g_array_free (sizes, TRUE);
 
 	gutter->priv->is_drawing = FALSE;
