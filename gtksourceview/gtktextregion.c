@@ -19,14 +19,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#include <glib.h>
-
 #include "gtktextregion.h"
-
 
 #undef ENABLE_DEBUG
 /*
@@ -620,12 +613,15 @@ gtk_text_region_iterator_next (GtkTextRegionIterator *iter)
 	real = (GtkTextRegionIteratorReal *)iter;
 	g_return_val_if_fail (check_iterator (real), FALSE);
 
-	if (real->subregions != NULL) {
+	if (real->subregions != NULL)
+	{
 		real->subregions = g_list_next (real->subregions);
 		return TRUE;
 	}
 	else
+	{
 		return FALSE;
+	}
 }
 
 void
@@ -669,16 +665,15 @@ gtk_text_region_debug_print (GtkTextRegion *region)
 	}
 
 	g_print ("Subregions: ");
-	l = region->subregions;
-	while (l) {
+
+	for (l = region->subregions; l != NULL; l = l->next)
+	{
 		Subregion *sr = l->data;
 		GtkTextIter iter1, iter2;
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &iter1, sr->start);
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &iter2, sr->end);
 		g_print ("%d-%d ", gtk_text_iter_get_offset (&iter1),
 			 gtk_text_iter_get_offset (&iter2));
-		l = l->next;
 	}
 	g_print ("\n");
 }
-
