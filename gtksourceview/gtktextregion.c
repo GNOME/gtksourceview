@@ -116,7 +116,7 @@ gtk_text_region_new (GtkTextBuffer *buffer)
 
 	g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), NULL);
 
-	region = g_new (GtkTextRegion, 1);
+	region = g_slice_new (GtkTextRegion);
 	region->subregions = NULL;
 	region->time_stamp = 0;
 
@@ -139,7 +139,7 @@ gtk_text_region_destroy (GtkTextRegion *region)
 			gtk_text_buffer_delete_mark (region->buffer, sr->start);
 			gtk_text_buffer_delete_mark (region->buffer, sr->end);
 		}
-		g_free (sr);
+		g_slice_free (Subregion, sr);
 		region->subregions = g_list_delete_link (region->subregions,
 							 region->subregions);
 	}
@@ -152,7 +152,7 @@ gtk_text_region_destroy (GtkTextRegion *region)
 		region->buffer = NULL;
 	}
 
-	g_free (region);
+	g_slice_free (GtkTextRegion, region);
 }
 
 GtkTextBuffer *
@@ -178,7 +178,7 @@ gtk_text_region_clear_zero_length_subregions (GtkTextRegion *region)
 		if (gtk_text_iter_equal (&start, &end)) {
 			gtk_text_buffer_delete_mark (region->buffer, sr->start);
 			gtk_text_buffer_delete_mark (region->buffer, sr->end);
-			g_free (sr);
+			g_slice_free (Subregion, sr);
 			if (node == region->subregions)
 				region->subregions = node = g_list_delete_link (node, node);
 			else
@@ -228,7 +228,7 @@ gtk_text_region_add (GtkTextRegion     *region,
 
 	if (start_node == NULL || end_node == NULL || end_node == start_node->prev) {
 		/* create the new subregion */
-		Subregion *sr = g_new0 (Subregion, 1);
+		Subregion *sr = g_slice_new0 (Subregion);
 		sr->start = gtk_text_buffer_create_mark (region->buffer, NULL, &start, TRUE);
 		sr->end = gtk_text_buffer_create_mark (region->buffer, NULL, &end, FALSE);
 
@@ -259,13 +259,13 @@ gtk_text_region_add (GtkTextRegion     *region,
 				q = l->data;
 				gtk_text_buffer_delete_mark (region->buffer, q->start);
 				gtk_text_buffer_delete_mark (region->buffer, q->end);
-				g_free (q);
+				g_slice_free (Subregion, q);
 				l = g_list_delete_link (l, l);
 			}
 			q = l->data;
 			gtk_text_buffer_delete_mark (region->buffer, q->start);
 			sr->end = q->end;
-			g_free (q);
+			g_slice_free (Subregion, q);
 			l = g_list_delete_link (l, l);
 		}
 		/* now move marks if that action expands the region */
@@ -334,7 +334,7 @@ gtk_text_region_subtract (GtkTextRegion     *region,
 		    !gtk_text_iter_equal (&end, &sr_end_iter)) {
 			/* the ending point is also inside the first
                            subregion: we need to split */
-			Subregion *new_sr = g_new0 (Subregion, 1);
+			Subregion *new_sr = g_slice_new0 (Subregion);
 			new_sr->end = sr->end;
 			new_sr->start = gtk_text_buffer_create_mark (region->buffer,
 								     NULL, &end, TRUE);
@@ -395,7 +395,7 @@ gtk_text_region_subtract (GtkTextRegion     *region,
 			sr = node->data;
 			gtk_text_buffer_delete_mark (region->buffer, sr->start);
 			gtk_text_buffer_delete_mark (region->buffer, sr->end);
-			g_free (sr);
+			g_slice_free (Subregion, sr);
 			region->subregions = g_list_delete_link (region->subregions,
 								 node);
 			node = l;
@@ -488,7 +488,7 @@ gtk_text_region_intersect (GtkTextRegion     *region,
 
 	/* starting node */
 	if (gtk_text_iter_in_range (&start, &sr_start_iter, &sr_end_iter)) {
-		new_sr = g_new0 (Subregion, 1);
+		new_sr = g_slice_new0 (Subregion);
 		new_region->subregions = g_list_prepend (new_region->subregions, new_sr);
 
 		new_sr->start = gtk_text_buffer_create_mark (new_region->buffer, NULL,
@@ -521,7 +521,7 @@ gtk_text_region_intersect (GtkTextRegion     *region,
 							  sr->start);
 			gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
 
-			new_sr = g_new0 (Subregion, 1);
+			new_sr = g_slice_new0 (Subregion);
 			new_region->subregions = g_list_prepend (new_region->subregions, new_sr);
 			new_sr->start = gtk_text_buffer_create_mark (new_region->buffer, NULL,
 								     &sr_start_iter, TRUE);
@@ -536,7 +536,7 @@ gtk_text_region_intersect (GtkTextRegion     *region,
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_start_iter, sr->start);
 		gtk_text_buffer_get_iter_at_mark (region->buffer, &sr_end_iter, sr->end);
 
-		new_sr = g_new0 (Subregion, 1);
+		new_sr = g_slice_new0 (Subregion);
 		new_region->subregions = g_list_prepend (new_region->subregions, new_sr);
 
 		new_sr->start = gtk_text_buffer_create_mark (new_region->buffer, NULL,
