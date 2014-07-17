@@ -123,6 +123,7 @@ EXTRA_DIST =				\
 	language-specs/test-full.lang	\
 	setup-file-saver.sh		\
 	styles/classic.xml		\
+	syntax-highlighting		\
 	test-completion.gresource.xml	\
 	test-completion.ui		\
 	test-search.gresource.xml	\
