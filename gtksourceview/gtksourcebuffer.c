@@ -307,7 +307,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							     "the buffer"),
 							   -1,
 							   G_MAXINT,
-							   1000,
+							   -1,
 							   G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
@@ -530,6 +530,7 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 	priv->bracket_mark_cursor = NULL;
 	priv->bracket_mark_match = NULL;
 	priv->bracket_match = GTK_SOURCE_BRACKET_MATCH_NONE;
+	priv->max_undo_levels = -1;
 
 	priv->source_marks = g_hash_table_new_full (g_str_hash,
 						    g_str_equal,
