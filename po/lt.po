@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-07-05 09:13+0000\n"
-"PO-Revision-Date: 2014-07-05 14:04+0300\n"
+"POT-Creation-Date: 2014-07-20 09:09+0000\n"
+"PO-Revision-Date: 2014-07-20 21:39+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -80,7 +80,7 @@ msgstr "Galinis"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:789
+#: ../gtksourceview/gtksourcecompletion.c:788
 msgid "All"
 msgstr "Visi"
 
@@ -1156,6 +1156,8 @@ msgid "Exec parameter"
 msgstr "Paleidimo parametras"
 
 #: ../data/language-specs/desktop.lang.h:11
+#: ../gtksourceview/gtksourcefile.c:183
+#: ../gtksourceview/gtksourcefilesaver.c:390
 msgid "Encoding"
 msgstr "Koduotė"
 
@@ -1196,6 +1198,9 @@ msgstr "Specialus atvejis"
 
 #. String
 #: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
+#: ../gtksourceview/gtksourcefile.c:167
+#: ../gtksourceview/gtksourcefileloader.c:350
+#: ../gtksourceview/gtksourcefilesaver.c:373
 msgid "Location"
 msgstr "Vieta"
 
@@ -1399,7 +1404,6 @@ msgid "BOZ Literal"
 msgstr "BOZ litera"
 
 #: ../data/language-specs/fortran.lang.h:12
-#| msgid "Include directive"
 msgid "OpenMP directives"
 msgstr "OpenMP direktyvos"
 
@@ -2539,7 +2543,7 @@ msgstr "Kintamojo aprašymas"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/sh.lang.h:10 ../data/language-specs/texinfo.lang.h:5
-#: ../gtksourceview/gtksourcelanguage.c:55
+#: ../gtksourceview/gtksourcelanguage.c:54
 msgid "Others"
 msgstr "Kiti"
 
@@ -2880,170 +2884,204 @@ msgid "Provider priority"
 msgstr "Tiekėjo prioritetas"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-#: ../gtksourceview/gtksourcecompletioncontext.c:301
+#: ../gtksourceview/gtksourcecompletioncontext.c:298
 msgid "Activation"
 msgstr "Aktyvavimas"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
-#: ../gtksourceview/gtksourcecompletioncontext.c:302
+#: ../gtksourceview/gtksourcecompletioncontext.c:299
 msgid "The type of activation"
 msgstr "Aktyvavimo tipas"
 
-#: ../gtksourceview/gtksourcebuffer.c:274
+#: ../gtksourceview/gtksourcebuffer.c:277
 #: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Ryškinti sintaksę"
 
-#: ../gtksourceview/gtksourcebuffer.c:275
+#: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Ar sužymėti buferyje išvedamo kodo sintaksę"
 
-#: ../gtksourceview/gtksourcebuffer.c:288
+#: ../gtksourceview/gtksourcebuffer.c:291
 msgid "Highlight Matching Brackets"
 msgstr "Ryškinti skliaustus"
 
-#: ../gtksourceview/gtksourcebuffer.c:289
+#: ../gtksourceview/gtksourcebuffer.c:292
 msgid "Whether to highlight matching brackets"
 msgstr "Ar ryškinti skliaustus"
 
-#: ../gtksourceview/gtksourcebuffer.c:302
+#: ../gtksourceview/gtksourcebuffer.c:305
 #: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "Maximum Undo Levels"
 msgstr "Atšaukimo lygių skaičius"
 
-#: ../gtksourceview/gtksourcebuffer.c:303
+#: ../gtksourceview/gtksourcebuffer.c:306
 #: ../gtksourceview/gtksourceundomanagerdefault.c:412
 msgid "Number of undo levels for the buffer"
 msgstr "Buferyje galimas didžiausias atgalinių žingsnių skaičius"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:315
+#: ../gtksourceview/gtksourcebuffer.c:318
 msgid "Language"
 msgstr "Kalba"
 
-#: ../gtksourceview/gtksourcebuffer.c:316
+#: ../gtksourceview/gtksourcebuffer.c:319
 msgid "Language object to get highlighting patterns from"
 msgstr "Kalbos objektas, kuris nurodo žymėjimo požymius"
 
-#: ../gtksourceview/gtksourcebuffer.c:324
+#: ../gtksourceview/gtksourcebuffer.c:327
 msgid "Can undo"
 msgstr "Įmanoma atšaukti"
 
-#: ../gtksourceview/gtksourcebuffer.c:325
+#: ../gtksourceview/gtksourcebuffer.c:328
 msgid "Whether Undo operation is possible"
 msgstr "Ar įmanoma atšaukti veiksmą"
 
-#: ../gtksourceview/gtksourcebuffer.c:332
+#: ../gtksourceview/gtksourcebuffer.c:335
 msgid "Can redo"
 msgstr "Įmanoma grąžinti"
 
-#: ../gtksourceview/gtksourcebuffer.c:333
+#: ../gtksourceview/gtksourcebuffer.c:336
 msgid "Whether Redo operation is possible"
 msgstr "Ar įmanoma grąžinti atšaukimą"
 
-#: ../gtksourceview/gtksourcebuffer.c:347
-#: ../gtksourceview/gtksourcebuffer.c:348
+#: ../gtksourceview/gtksourcebuffer.c:350
+#: ../gtksourceview/gtksourcebuffer.c:351
 msgid "Style scheme"
 msgstr "Stiliaus schema"
 
-#: ../gtksourceview/gtksourcebuffer.c:355
+#: ../gtksourceview/gtksourcebuffer.c:358
 msgid "Undo manager"
 msgstr "Atšaukimų tvarkytuvė"
 
-#: ../gtksourceview/gtksourcebuffer.c:356
+#: ../gtksourceview/gtksourcebuffer.c:359
 msgid "The buffer undo manager"
 msgstr "Buferio atšaukimų tvarkytuvė"
 
-#: ../gtksourceview/gtksourcecompletion.c:2163
-#: ../gtksourceview/gtksourcegutter.c:510
+#: ../gtksourceview/gtksourcebuffer.c:373
+msgid "Implicit trailing newline"
+msgstr "Numatyta eilutės pabaiga gale"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:838
+msgid "Invalid byte sequence in conversion input"
+msgstr "Netinkama baitų seka konvertavimo įvestyje"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:844
+#, c-format
+#| msgid "String Conversion"
+msgid "Error during conversion: %s"
+msgstr "Klaida konvertuojant: %s"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:925
+#, c-format
+msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgstr "Konvertavimas iš „%s“ į „UTF-8“ nepalaikomas"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:931
+#, c-format
+msgid "Could not open converter from '%s' to 'UTF-8'"
+msgstr "Nepavyko atverti konverterio iš „%s“ į „UTF-8“"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:986
+msgid "Invalid object, not initialized"
+msgstr "Netinkamas objektas, neįnicializuota"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:1178
+#, c-format
+#| msgid "Incomplete Sequence"
+msgid "Incomplete UTF-8 sequence in input"
+msgstr "Nepilna UTF-8 seka įvestyje"
+
+#: ../gtksourceview/gtksourcecompletion.c:2162
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "View"
 msgstr "Rodymas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2164
+#: ../gtksourceview/gtksourcecompletion.c:2163
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView riba užbaigimui"
 
-#: ../gtksourceview/gtksourcecompletion.c:2178
+#: ../gtksourceview/gtksourcecompletion.c:2177
 msgid "Remember Info Visibility"
 msgstr "Įsiminti informacijos matomumą"
 
-#: ../gtksourceview/gtksourcecompletion.c:2179
+#: ../gtksourceview/gtksourcecompletion.c:2178
 msgid "Remember the last info window visibility state"
 msgstr "Atsiminti paskutinę informacijos lango matomumo būseną"
 
-#: ../gtksourceview/gtksourcecompletion.c:2191
+#: ../gtksourceview/gtksourcecompletion.c:2190
 msgid "Select on Show"
 msgstr "Pažymėti parodant"
 
-#: ../gtksourceview/gtksourcecompletion.c:2192
+#: ../gtksourceview/gtksourcecompletion.c:2191
 msgid "Select first proposal when completion is shown"
 msgstr "Pažymėti pirmą pasiūlymą, kai užbaigimas yra rodomas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2205
+#: ../gtksourceview/gtksourcecompletion.c:2204
 msgid "Show Headers"
 msgstr "Rodyti antraštes"
 
-#: ../gtksourceview/gtksourcecompletion.c:2206
+#: ../gtksourceview/gtksourcecompletion.c:2205
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr "Rodyti tiekėjų antraštes, kai yra pasiūlymų iš daugelio tiekėjų"
 
-#: ../gtksourceview/gtksourcecompletion.c:2219
+#: ../gtksourceview/gtksourcecompletion.c:2218
 msgid "Show Icons"
 msgstr "Rodyti piktogramas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2220
+#: ../gtksourceview/gtksourcecompletion.c:2219
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Rodyti tiekėjo ir pasiūlymo piktogramas iššokančiame užbaigimo lange"
 
-#: ../gtksourceview/gtksourcecompletion.c:2234
+#: ../gtksourceview/gtksourcecompletion.c:2233
 msgid "Accelerators"
 msgstr "Prieigos klavišai"
 
-#: ../gtksourceview/gtksourcecompletion.c:2235
+#: ../gtksourceview/gtksourcecompletion.c:2234
 msgid "Number of proposal accelerators to show"
 msgstr "Rodytinų pasiūlymų prieigos klavišų skaičius"
 
-#: ../gtksourceview/gtksourcecompletion.c:2250
+#: ../gtksourceview/gtksourcecompletion.c:2249
 msgid "Auto Complete Delay"
 msgstr "Automatinio užbaigimo uždelsimas"
 
-#: ../gtksourceview/gtksourcecompletion.c:2251
+#: ../gtksourceview/gtksourcecompletion.c:2250
 msgid "Completion popup delay for interactive completion"
 msgstr "Užbaigimo iššokančio lango uždelsimas interaktyviam užbaigimui"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
+#: ../gtksourceview/gtksourcecompletion.c:2266
 msgid "Provider Page Size"
 msgstr "Tiekėjo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2267
 msgid "Provider scrolling page size"
 msgstr "Tiekėjo slenkamo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2287
 msgid "Proposal Page Size"
 msgstr "Pasiūlymo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2289
+#: ../gtksourceview/gtksourcecompletion.c:2288
 msgid "Proposal scrolling page size"
 msgstr "Pasiūlymo slenkamo puslapio dydis"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:274
+#: ../gtksourceview/gtksourcecompletioncontext.c:271
 #: ../gtksourceview/gtksourceview.c:309
 msgid "Completion"
 msgstr "Užbaigimas"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:275
+#: ../gtksourceview/gtksourcecompletioncontext.c:272
 msgid "The completion object to which the context belongs"
 msgstr "Konteksto užbaigimo objektas"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:288
+#: ../gtksourceview/gtksourcecompletioncontext.c:285
 msgid "Iterator"
 msgstr "Iteratorius"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:289
+#: ../gtksourceview/gtksourcecompletioncontext.c:286
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter, kuriame buvo iššauktas užbaigimas"
 
@@ -3147,123 +3185,282 @@ msgstr "nežinomas kontekstas „%s“"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Trūksta kalbos apibrėžimo (id = \"%s\".)"
 
+#: ../gtksourceview/gtksourceencoding.c:136
+#: ../gtksourceview/gtksourceencoding.c:179
+#: ../gtksourceview/gtksourceencoding.c:181
+#: ../gtksourceview/gtksourceencoding.c:183
+#: ../gtksourceview/gtksourceencoding.c:185
+#: ../gtksourceview/gtksourceencoding.c:187
+#: ../gtksourceview/gtksourceencoding.c:189
+#: ../gtksourceview/gtksourceencoding.c:191
+msgid "Unicode"
+msgstr "Unikodas"
+
+#: ../gtksourceview/gtksourceencoding.c:150
+#: ../gtksourceview/gtksourceencoding.c:174
+#: ../gtksourceview/gtksourceencoding.c:224
+#: ../gtksourceview/gtksourceencoding.c:267
+msgid "Western"
+msgstr "Vakarų Europos"
+
+#: ../gtksourceview/gtksourceencoding.c:152
+#: ../gtksourceview/gtksourceencoding.c:226
+#: ../gtksourceview/gtksourceencoding.c:263
+msgid "Central European"
+msgstr "Centrinės Europos"
+
+#: ../gtksourceview/gtksourceencoding.c:154
+msgid "South European"
+msgstr "Pietų Europos"
+
+#: ../gtksourceview/gtksourceencoding.c:156
+#: ../gtksourceview/gtksourceencoding.c:170
+#: ../gtksourceview/gtksourceencoding.c:277
+msgid "Baltic"
+msgstr "Baltijos šalių"
+
+#: ../gtksourceview/gtksourceencoding.c:158
+#: ../gtksourceview/gtksourceencoding.c:228
+#: ../gtksourceview/gtksourceencoding.c:241
+#: ../gtksourceview/gtksourceencoding.c:245
+#: ../gtksourceview/gtksourceencoding.c:247
+#: ../gtksourceview/gtksourceencoding.c:265
+msgid "Cyrillic"
+msgstr "Kirilica"
+
+#: ../gtksourceview/gtksourceencoding.c:160
+#: ../gtksourceview/gtksourceencoding.c:234
+#: ../gtksourceview/gtksourceencoding.c:275
+msgid "Arabic"
+msgstr "Arabų šalių"
+
+#: ../gtksourceview/gtksourceencoding.c:162
+#: ../gtksourceview/gtksourceencoding.c:269
+msgid "Greek"
+msgstr "Graikų"
+
+#: ../gtksourceview/gtksourceencoding.c:164
+msgid "Hebrew Visual"
+msgstr "Hebrajų vizuali"
+
+#: ../gtksourceview/gtksourceencoding.c:166
+#: ../gtksourceview/gtksourceencoding.c:230
+#: ../gtksourceview/gtksourceencoding.c:271
+msgid "Turkish"
+msgstr "Turkų"
+
+#: ../gtksourceview/gtksourceencoding.c:168
+msgid "Nordic"
+msgstr "Šiaurės šalių"
+
+#: ../gtksourceview/gtksourceencoding.c:172
+msgid "Celtic"
+msgstr "Keltų"
+
+#: ../gtksourceview/gtksourceencoding.c:176
+msgid "Romanian"
+msgstr "Rumunų"
+
+#: ../gtksourceview/gtksourceencoding.c:194
+msgid "Armenian"
+msgstr "Armėnų"
+
+#: ../gtksourceview/gtksourceencoding.c:196
+#: ../gtksourceview/gtksourceencoding.c:198
+#: ../gtksourceview/gtksourceencoding.c:212
+msgid "Chinese Traditional"
+msgstr "Kinų tradicinė"
+
+#: ../gtksourceview/gtksourceencoding.c:200
+msgid "Cyrillic/Russian"
+msgstr "Kirilica/Rusų"
+
+#: ../gtksourceview/gtksourceencoding.c:203
+#: ../gtksourceview/gtksourceencoding.c:205
+#: ../gtksourceview/gtksourceencoding.c:207
+#: ../gtksourceview/gtksourceencoding.c:237
+#: ../gtksourceview/gtksourceencoding.c:252
+msgid "Japanese"
+msgstr "Japonų"
+
+#: ../gtksourceview/gtksourceencoding.c:210
+#: ../gtksourceview/gtksourceencoding.c:239
+#: ../gtksourceview/gtksourceencoding.c:243
+#: ../gtksourceview/gtksourceencoding.c:258
+msgid "Korean"
+msgstr "Korėjiečių"
+
+#: ../gtksourceview/gtksourceencoding.c:215
+#: ../gtksourceview/gtksourceencoding.c:217
+#: ../gtksourceview/gtksourceencoding.c:219
+msgid "Chinese Simplified"
+msgstr "Kinų supaprastinta"
+
+#: ../gtksourceview/gtksourceencoding.c:221
+msgid "Georgian"
+msgstr "Gruzinų"
+
+#: ../gtksourceview/gtksourceencoding.c:232
+#: ../gtksourceview/gtksourceencoding.c:273
+msgid "Hebrew"
+msgstr "Hebrajų"
+
+#: ../gtksourceview/gtksourceencoding.c:249
+msgid "Cyrillic/Ukrainian"
+msgstr "Kirilica/Ukrainiečių"
+
+#: ../gtksourceview/gtksourceencoding.c:254
+#: ../gtksourceview/gtksourceencoding.c:260
+#: ../gtksourceview/gtksourceencoding.c:279
+#| msgid "Filename"
+msgid "Vietnamese"
+msgstr "Vietnamiečių"
+
+#: ../gtksourceview/gtksourceencoding.c:256
+msgid "Thai"
+msgstr "Thai"
+
+#: ../gtksourceview/gtksourceencoding.c:487
+msgid "Unknown"
+msgstr "Nežinoma"
+
+#: ../gtksourceview/gtksourcefile.c:199
+#: ../gtksourceview/gtksourcefilesaver.c:407
+#| msgid "Newline"
+msgid "Newline type"
+msgstr "Naujos eilutės tipas"
+
+#: ../gtksourceview/gtksourcefile.c:216
+#: ../gtksourceview/gtksourcefilesaver.c:425
+#| msgid "Expression"
+msgid "Compression type"
+msgstr "Suspaudimo tipas"
+
+#: ../gtksourceview/gtksourcefileloader.c:367
+msgid "Input stream"
+msgstr "Įvesties srautas"
+
+#: ../gtksourceview/gtksourcefilesaver.c:443
+msgid "Flags"
+msgstr "Požymiai"
+
 #. Translators: gutters can be used to display information
 #. * on the left or on the right of the text view. To draw the
 #. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:514
+#: ../gtksourceview/gtksourcegutter.c:553
 msgid "The gutters' GtkSourceView"
 msgstr "Kraštinio (gutters) lango GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:526
-#: ../gtksourceview/gtksourcegutterrenderer.c:749
+#: ../gtksourceview/gtksourcegutter.c:565
+#: ../gtksourceview/gtksourcegutterrenderer.c:741
 msgid "Window Type"
 msgstr "Lango tipas"
 
-#: ../gtksourceview/gtksourcegutter.c:527
+#: ../gtksourceview/gtksourcegutter.c:566
 msgid "The gutters' text window type"
 msgstr "Kraštinio (gutters) teksto lango tipas"
 
-#: ../gtksourceview/gtksourcegutter.c:543
-#: ../gtksourceview/gtksourcegutterrenderer.c:525
+#: ../gtksourceview/gtksourcegutter.c:582
+#: ../gtksourceview/gtksourcegutterrenderer.c:524
 msgid "X Padding"
 msgstr "X tarpai"
 
-#: ../gtksourceview/gtksourcegutter.c:544
-#: ../gtksourceview/gtksourcegutterrenderer.c:526
+#: ../gtksourceview/gtksourcegutter.c:583
+#: ../gtksourceview/gtksourcegutterrenderer.c:525
 msgid "The x-padding"
 msgstr "x tarpai"
 
-#: ../gtksourceview/gtksourcegutter.c:561
-#: ../gtksourceview/gtksourcegutterrenderer.c:540
+#: ../gtksourceview/gtksourcegutter.c:600
+#: ../gtksourceview/gtksourcegutterrenderer.c:539
 msgid "Y Padding"
 msgstr "Y tarpai"
 
-#: ../gtksourceview/gtksourcegutter.c:562
-#: ../gtksourceview/gtksourcegutterrenderer.c:541
+#: ../gtksourceview/gtksourcegutter.c:601
+#: ../gtksourceview/gtksourcegutterrenderer.c:540
 msgid "The y-padding"
 msgstr "y tarpai"
 
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 #: ../gtksourceview/gtksourcegutterrenderer.c:512
-#: ../gtksourceview/gtksourcegutterrenderer.c:513
 msgid "Visible"
 msgstr "Matomas"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:557
+#: ../gtksourceview/gtksourcegutterrenderer.c:556
 msgid "X Alignment"
 msgstr "X lygiavimas"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:558
+#: ../gtksourceview/gtksourcegutterrenderer.c:557
 msgid "The x-alignment"
 msgstr "x lygiavimas"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:573
 msgid "Y Alignment"
 msgstr "Y lygiavimas"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:575
+#: ../gtksourceview/gtksourcegutterrenderer.c:574
 msgid "The y-alignment"
 msgstr "y lygiavimas"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:716
+#: ../gtksourceview/gtksourcegutterrenderer.c:708
 msgid "The View"
 msgstr "Rodinys"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:717
+#: ../gtksourceview/gtksourcegutterrenderer.c:709
 msgid "The view"
 msgstr "Rodinys"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:733
+#: ../gtksourceview/gtksourcegutterrenderer.c:725
 msgid "Alignment Mode"
 msgstr "Lygiavimo veiksena"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:734
+#: ../gtksourceview/gtksourcegutterrenderer.c:726
 msgid "The alignment mode"
 msgstr "Lygiavimo veiksena"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:750
+#: ../gtksourceview/gtksourcegutterrenderer.c:742
 msgid "The window type"
 msgstr "Lango tipas"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:758
+#: ../gtksourceview/gtksourcegutterrenderer.c:750
 msgid "Size"
 msgstr "Dydis"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:759
+#: ../gtksourceview/gtksourcegutterrenderer.c:751
 msgid "The size"
 msgstr "Dydis"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:298
-#: ../gtksourceview/gtksourcemarkattributes.c:316
+#: ../gtksourceview/gtksourcemarkattributes.c:315
 msgid "Pixbuf"
 msgstr "Taškų buferis"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
-#: ../gtksourceview/gtksourcemarkattributes.c:317
+#: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "The pixbuf"
 msgstr "Taškų buferis"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
-#: ../gtksourceview/gtksourcemarkattributes.c:303
+#: ../gtksourceview/gtksourcemarkattributes.c:302
 msgid "Stock Id"
 msgstr "Saugyklos id"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
-#: ../gtksourceview/gtksourcemarkattributes.c:304
+#: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "The stock id"
 msgstr "Saugyklos id"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
-#: ../gtksourceview/gtksourcemarkattributes.c:329
+#: ../gtksourceview/gtksourcemarkattributes.c:328
 msgid "Icon Name"
 msgstr "Piktogramos pavadinimas"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
-#: ../gtksourceview/gtksourcemarkattributes.c:330
+#: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "The icon name"
 msgstr "Piktogramos pavadinimas"
 
 #: ../gtksourceview/gtksourcegutterrendererpixbuf.c:329
-#: ../gtksourceview/gtksourcemarkattributes.c:342
+#: ../gtksourceview/gtksourcemarkattributes.c:341
 msgid "GIcon"
 msgstr "GIcon"
 
@@ -3279,26 +3476,26 @@ msgstr "Žymėjimas"
 msgid "The text"
 msgstr "Tekstas"
 
+#: ../gtksourceview/gtksourcelanguage.c:227
 #: ../gtksourceview/gtksourcelanguage.c:228
-#: ../gtksourceview/gtksourcelanguage.c:229
 msgid "Language id"
 msgstr "Kalbos identifikatorius"
 
+#: ../gtksourceview/gtksourcelanguage.c:235
 #: ../gtksourceview/gtksourcelanguage.c:236
-#: ../gtksourceview/gtksourcelanguage.c:237
 msgid "Language name"
 msgstr "Kalbos pavadinimas"
 
+#: ../gtksourceview/gtksourcelanguage.c:243
 #: ../gtksourceview/gtksourcelanguage.c:244
-#: ../gtksourceview/gtksourcelanguage.c:245
 msgid "Language section"
 msgstr "Kalbos sekcija"
 
-#: ../gtksourceview/gtksourcelanguage.c:252
+#: ../gtksourceview/gtksourcelanguage.c:251
 msgid "Hidden"
 msgstr "Paslėptas"
 
-#: ../gtksourceview/gtksourcelanguage.c:253
+#: ../gtksourceview/gtksourcelanguage.c:252
 msgid "Whether the language should be hidden from the user"
 msgstr "Ar slėpti kalbą nuo naudotojo"
 
@@ -3330,16 +3527,16 @@ msgstr "Nežinomas identifikatorius „%s“ reguliariajame reiškinyje „%s“
 msgid "in regex '%s': backreferences are not supported"
 msgstr "reguliariajame reiškinyje „%s“: kartotinės nuorodos nepalaikomos"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:288
+#: ../gtksourceview/gtksourcemarkattributes.c:287
 #: ../gtksourceview/gtksourcestyle.c:97
 msgid "Background"
 msgstr "Fonas"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:289
+#: ../gtksourceview/gtksourcemarkattributes.c:288
 msgid "The background"
 msgstr "Fonas"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:343
+#: ../gtksourceview/gtksourcemarkattributes.c:342
 msgid "The GIcon"
 msgstr "GIcon"
 
@@ -3651,19 +3848,19 @@ msgstr "Stiliaus schemos aprašas"
 msgid "Style scheme filename"
 msgstr "Stiliaus schemos failo pavadinimas"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
+#: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "Style scheme search path"
 msgstr "Vietos, kuriose ieškoti stilių schemų"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:154
+#: ../gtksourceview/gtksourcestyleschememanager.c:153
 msgid "List of directories and files where the style schemes are located"
 msgstr "Aplankų ir failų, kuriuose yra stilių schemos, vieta"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
+#: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "Scheme ids"
 msgstr "Schemų identifikatoriai"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:163
+#: ../gtksourceview/gtksourcestyleschememanager.c:162
 msgid "List of the ids of the available style schemes"
 msgstr "Prieinamų stilių schemų identifikatorių sąrašas"
 
@@ -3768,32 +3965,32 @@ msgid "Set if and how the spaces should be visualized"
 msgstr "Nurodo, kaip turėtų būti rodomi tarpai"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1236
+#: ../gtksourceview/gtksourceview.c:1233
 msgid "_Redo"
 msgstr "Paka_rtoti"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1247
+#: ../gtksourceview/gtksourceview.c:1244
 msgid "_Undo"
 msgstr "_Atšaukti"
 
-#: ../gtksourceview/gtksourceview.c:1265
+#: ../gtksourceview/gtksourceview.c:1262
 msgid "All _Upper Case"
 msgstr "Viskas _didžiosiomis"
 
-#: ../gtksourceview/gtksourceview.c:1275
+#: ../gtksourceview/gtksourceview.c:1272
 msgid "All _Lower Case"
 msgstr "Viskas _mažosiomis"
 
-#: ../gtksourceview/gtksourceview.c:1285
+#: ../gtksourceview/gtksourceview.c:1282
 msgid "_Invert Case"
 msgstr "_Invertuoti raidžių registrą"
 
-#: ../gtksourceview/gtksourceview.c:1295
+#: ../gtksourceview/gtksourceview.c:1292
 msgid "_Title Case"
 msgstr "_Pavadinimo registras"
 
-#: ../gtksourceview/gtksourceview.c:1305
+#: ../gtksourceview/gtksourceview.c:1302
 msgid "C_hange Case"
 msgstr "Pa_keisti registrą"
 
