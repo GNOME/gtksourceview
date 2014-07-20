@@ -11,7 +11,7 @@ DOC_MAIN_SGML_FILE = gtksourceview-docs.xml
 SCAN_OPTIONS = --deprecated-guards='GTKSOURCEVIEW_DISABLE_DEPRECATED' --rebuild-types
 
 # The directory containing the source code. Relative to $(srcdir)
-DOC_SOURCE_DIR = $(top_srcdir)
+DOC_SOURCE_DIR = $(top_srcdir)/gtksourceview
 
 # Used for dependencies
 HFILE_GLOB = $(top_srcdir)/gtksourceview/*.h
