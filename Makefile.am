@@ -12,7 +12,6 @@ EXTRA_DIST = \
 	gtksourceview.doap \
 	gtksourceview-3.0.pc.in	\
 	gtksourceview-zip.in \
-	COPYING.lib \
 	HACKING \
 	MAINTAINERS
 
