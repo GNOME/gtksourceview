@@ -229,6 +229,8 @@ if HAVE_INTROSPECTION
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_GIRS = GtkSource-3.0.gir
 
+INTROSPECTION_SCANNER_ENV = CC="$(CC)"
+
 GtkSource-3.0.gir: libgtksourceview-3.0.la $(BUILT_SOURCES)
 INTROSPECTION_SCANNER_ARGS =			\
 	-I$(top_srcdir)				\
@@ -237,6 +239,7 @@ INTROSPECTION_SCANNER_ARGS =			\
 	--warn-all
 GtkSource_3_0_gir_NAMESPACE = GtkSource
 GtkSource_3_0_gir_VERSION = 3.0
+GtkSource_3_0_gir_CFLAGS = $(DEP_CFLAGS)
 GtkSource_3_0_gir_LIBS = libgtksourceview-3.0.la
 GtkSource_3_0_gir_FILES =			\
 	$(libgtksourcecompletionwords_files)	\
