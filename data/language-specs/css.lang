@@ -78,12 +78,22 @@
     <context id="selector-pseudo-classes" style-ref="function">
       <prefix>:</prefix>
       <keyword>first-child</keyword>
-      <keyword>link</keyword>
+      <keyword>last-child</keyword>
+      <keyword>first-of-type</keyword>
+      <keyword>last-of-type</keyword>
+      <keyword>only-child</keyword>
+      <keyword>only-of-type</keyword>
       <keyword>visited</keyword>
+      <keyword>link</keyword>
       <keyword>hover</keyword>
       <keyword>active</keyword>
       <keyword>focus</keyword>
       <keyword>lang</keyword>
+      <keyword>enabled</keyword>
+      <keyword>disabled</keyword>
+      <keyword>checked</keyword>
+      <keyword>target</keyword>
+      <keyword>empty</keyword>
     </context>
 
     <context id="at-rules" style-ref="at-rules">
@@ -93,6 +103,7 @@
       <keyword>media</keyword>
       <keyword>page</keyword>
       <keyword>import</keyword>
+      <keyword>keyframes</keyword>
     </context>
 
     <context id="selector-id" style-ref="selector-id">
@@ -143,7 +154,7 @@
     </context>
 
     <context id="dimension" style-ref="dimension">
-      <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|e(m|x)|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s)</match>
+      <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|(r)?e(m|x)|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s|v(h|w|m(in|ax)))</match>
     </context>
 
     <context id="number" style-ref="decimal">
@@ -161,13 +172,18 @@
     <context id="property-names" style-ref="keyword">
       <suffix>(?=\s*:)</suffix>
       <keyword>azimuth</keyword>
+      <keyword>alternate</keyword>
       <keyword>background-attachment</keyword>
       <keyword>background-color</keyword>
       <keyword>background-image</keyword>
       <keyword>background-position</keyword>
       <keyword>background-repeat</keyword>
+      <keyword>background-size</keyword>
+      <keyword>background-clip</keyword>
       <keyword>background</keyword>
       <keyword>border-bottom-color</keyword>
+      <keyword>border-bottom-left-radius</keyword>
+      <keyword>border-bottom-right-radius</keyword>
       <keyword>border-bottom-style</keyword>
       <keyword>border-bottom-width</keyword>
       <keyword>border-bottom</keyword>
@@ -177,19 +193,25 @@
       <keyword>border-left-style</keyword>
       <keyword>border-left-width</keyword>
       <keyword>border-left</keyword>
+      <keyword>border-image</keyword>
+      <keyword>border-radius</keyword>
       <keyword>border-right-color</keyword>
       <keyword>border-right-style</keyword>
       <keyword>border-right-width</keyword>
       <keyword>border-right</keyword>
       <keyword>border-spacing</keyword>
       <keyword>border-style</keyword>
+      <keyword>border-top-left-radius</keyword>
       <keyword>border-top-color</keyword>
+      <keyword>border-top-right-radius</keyword>
       <keyword>border-top-style</keyword>
       <keyword>border-top-width</keyword>
       <keyword>border-top</keyword>
       <keyword>border-width</keyword>
       <keyword>border</keyword>
       <keyword>bottom</keyword>
+      <keyword>box-shadow</keyword>
+      <keyword>box-sizing</keyword>
       <keyword>caption-side</keyword>
       <keyword>clear</keyword>
       <keyword>clip</keyword>
@@ -197,6 +219,9 @@
       <keyword>content</keyword>
       <keyword>counter-increment</keyword>
       <keyword>counter-reset</keyword>
+      <keyword>column-count</keyword>
+      <keyword>column-gap</keyword>
+      <keyword>column-rule</keyword>
       <keyword>cue-after</keyword>
       <keyword>cue-before</keyword>
       <keyword>cue</keyword>
@@ -205,6 +230,10 @@
       <keyword>display</keyword>
       <keyword>elevation</keyword>
       <keyword>empty-cells</keyword>
+      <keyword>ease</keyword>
+      <keyword>ease-in</keyword>
+      <keyword>ease-in-out</keyword>
+      <keyword>ease-out</keyword>
       <keyword>float</keyword>
       <keyword>font-family</keyword>
       <keyword>font-size-adjust</keyword>
@@ -216,6 +245,8 @@
       <keyword>height</keyword>
       <keyword>left</keyword>
       <keyword>letter-spacing</keyword>
+      <keyword>linear</keyword>
+      <keyword>linear-gradient</keyword>
       <keyword>line-height</keyword>
       <keyword>list-style-image</keyword>
       <keyword>list-style-position</keyword>
@@ -232,6 +263,7 @@
       <keyword>max-width</keyword>
       <keyword>min-height</keyword>
       <keyword>min-width</keyword>
+      <keyword>opacity</keyword>
       <keyword>orphans</keyword>
       <keyword>outline-color</keyword>
       <keyword>outline-style</keyword>
@@ -255,6 +287,8 @@
       <keyword>play-during</keyword>
       <keyword>position</keyword>
       <keyword>quotes</keyword>
+      <keyword>radial-gradient</keyword>
+      <keyword>resize</keyword>
       <keyword>richness</keyword>
       <keyword>right</keyword>
       <keyword>size</keyword>
@@ -271,6 +305,9 @@
       <keyword>text-shadow</keyword>
       <keyword>text-transform</keyword>
       <keyword>top</keyword>
+      <keyword>transform-origin</keyword>
+      <keyword>transform</keyword>
+      <keyword>transition</keyword>
       <keyword>unicode-bidi</keyword>
       <keyword>vertical-align</keyword>
       <keyword>visibility</keyword>
@@ -280,6 +317,7 @@
       <keyword>widows</keyword>
       <keyword>width</keyword>
       <keyword>word-spacing</keyword>
+      <keyword>word-wrap</keyword>
       <keyword>z-index</keyword>
     </context>
 
@@ -298,7 +336,9 @@
       <keyword>block</keyword>
       <keyword>bolder</keyword>
       <keyword>bold</keyword>
+      <keyword>both</keyword>
       <keyword>bottom</keyword>
+      <keyword>break-word</keyword>
       <keyword>capitalize</keyword>
       <keyword>center-left</keyword>
       <keyword>center-right</keyword>
@@ -347,6 +387,7 @@
       <keyword>high</keyword>
       <keyword>hiragana-iroha</keyword>
       <keyword>hiragana</keyword>
+      <keyword>horizontal</keyword>
       <keyword>inherit</keyword>
       <keyword>inline</keyword>
       <keyword>inline-table</keyword>
@@ -402,6 +443,7 @@
       <keyword>pointer</keyword>
       <keyword>portait</keyword>
       <keyword>pre</keyword>
+      <keyword>pre-wrap</keyword>
       <keyword>relative</keyword>
       <keyword>repeat-x</keyword>
       <keyword>repeat-y</keyword>
@@ -460,6 +502,7 @@
       <keyword>uppercase</keyword>
       <keyword>upper-latin</keyword>
       <keyword>upper-roman</keyword>
+      <keyword>vertical</keyword>
       <keyword>visible</keyword>
       <keyword>wait</keyword>
       <keyword>wider</keyword>
