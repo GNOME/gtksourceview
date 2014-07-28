@@ -884,9 +884,6 @@ check_externally_modified_cb (GFile              *location,
 		}
 	}
 
-	/* FIXME for a "save as" it doesn't work, the mtime stored in
-	 * GtkSourceFile is not for the good file.
-	 */
 	if (_gtk_source_file_get_modification_time (saver->priv->file, &old_mtime) &&
 	    info != NULL &&
 	    g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
@@ -920,7 +917,24 @@ check_externally_modified_cb (GFile              *location,
 static void
 check_externally_modified (GtkSourceFileSaver *saver)
 {
-	if (saver->priv->flags & GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME)
+	gboolean save_as = FALSE;
+
+	if (saver->priv->file != NULL)
+	{
+		GFile *prev_location;
+
+		prev_location = gtk_source_file_get_location (saver->priv->file);
+
+		/* Don't check for externally modified for a "save as" operation,
+		 * because the user has normally accepted to overwrite the file if it
+		 * already exists.
+		 */
+		save_as = !g_file_equal (prev_location, saver->priv->location);
+	}
+
+
+	if (saver->priv->flags & GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME ||
+	    save_as)
 	{
 		begin_write (saver);
 		return;
