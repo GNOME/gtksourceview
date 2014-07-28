@@ -249,6 +249,9 @@ static void	gtk_source_view_get_property		(GObject           *object,
 static void	gtk_source_view_style_updated			(GtkWidget         *widget);
 static void	gtk_source_view_realize			(GtkWidget         *widget);
 static void	gtk_source_view_update_style_scheme		(GtkSourceView     *view);
+static void     gtk_source_view_draw_layer              (GtkWidget         *widget,
+							 GtkTextViewLayer   layer,
+							 cairo_t           *cr);
 
 static MarkCategory *mark_category_new                  (GtkSourceMarkAttributes *attributes,
                                                          gint priority);
@@ -291,6 +294,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
 	textview_class->create_buffer = gtk_source_view_create_buffer;
+	textview_class->draw_layer = gtk_source_view_draw_layer;
 
 	klass->undo = gtk_source_view_undo;
 	klass->redo = gtk_source_view_redo;
@@ -1676,6 +1680,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 	GdkRectangle visible_rect;
 	GdkRectangle line_rect;
 	gint win_y;
+	double clip_x1, clip_y1, clip_x2, clip_y2;
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
 
@@ -1685,9 +1690,12 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 					       y,
 					       &line_rect.x,
 					       &win_y);
+	cairo_clip_extents (cr,
+			    &clip_x1, &clip_y1,
+			    &clip_x2, &clip_y2);
 
-	line_rect.x = 0;
-	line_rect.width = visible_rect.width;
+	line_rect.x = clip_x1;
+	line_rect.width = clip_x2 - clip_x1;
 	line_rect.y = win_y;
 	line_rect.height = height;
 
@@ -2266,8 +2274,9 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
                                     cairo_t       *cr)
 {
 	GdkRectangle visible_rect;
-	GdkRectangle redraw_rect;
+	GdkRectangle window_rect;
 	double x;
+	double clip_x1, clip_y1, clip_x2, clip_y2;
 
 	GtkTextView *text_view = GTK_TEXT_VIEW (view);
 
@@ -2291,6 +2300,9 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 
 	g_timer_start (timer);
 #endif
+	cairo_clip_extents (cr,
+			    &clip_x1, &clip_y1,
+			    &clip_x2, &clip_y2);
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
 
@@ -2298,36 +2310,32 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 				       GTK_TEXT_WINDOW_TEXT,
 				       visible_rect.x,
 				       visible_rect.y,
-				       &redraw_rect.x,
-				       &redraw_rect.y);
+				       &window_rect.x,
+				       &window_rect.y);
+	window_rect.width = visible_rect.width;
+	window_rect.height = visible_rect.height;
 
-	redraw_rect.width = visible_rect.width;
-	redraw_rect.height = visible_rect.height;
-
-	/* Offset with 0.5 is needed for a sharp line. */
-	x = view->priv->cached_right_margin_pos -
-		visible_rect.x + redraw_rect.x + 0.5 +
+	x = view->priv->cached_right_margin_pos - visible_rect.x +
 		gtk_text_view_get_left_margin (text_view);
 
 	/* Default line width is 2.0 which is too wide. */
 	cairo_set_line_width (cr, 1.0);
 
-	cairo_move_to (cr, x, redraw_rect.y);
-	cairo_line_to (cr, x, redraw_rect.y + redraw_rect.height);
+	/* Offset with 0.5 is needed for a sharp line. */
+	cairo_move_to (cr, x + 0.5, clip_y1);
+	cairo_line_to (cr, x + 0.5, clip_y2);
 
 	gdk_cairo_set_source_rgba (cr, view->priv->right_margin_line_color);
 
 	cairo_stroke (cr);
 
 	/* Only draw the overlay when the style scheme explicitly sets it. */
-	if (view->priv->right_margin_overlay_color != NULL)
+	if (view->priv->right_margin_overlay_color != NULL && clip_x2 > x + 1)
 	{
-		/* Draw the rectangle next to the line (x+.5). */
+		/* Draw the rectangle next to the line (x+1). */
 		cairo_rectangle (cr,
-				 x + .5,
-				 redraw_rect.y,
-				 redraw_rect.width - x - .5,
-				 redraw_rect.y + redraw_rect.height);
+				 x + 1, clip_y1,
+				 clip_x2 - (x + 1), clip_y2 - clip_y1);
 
 		gdk_cairo_set_source_rgba (cr, view->priv->right_margin_overlay_color);
 
@@ -2342,13 +2350,111 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 	});
 }
 
+static void
+gtk_source_view_draw_layer (GtkWidget *widget,
+			    GtkTextViewLayer layer,
+			    cairo_t *cr)
+{
+	GtkSourceView *view;
+	GtkTextView *text_view;
+	double clip_x1, clip_y1, clip_x2, clip_y2;
+
+	view = GTK_SOURCE_VIEW (widget);
+	text_view = GTK_TEXT_VIEW (widget);
+
+	cairo_save (cr);
+
+	if (layer == GTK_TEXT_VIEW_LAYER_BELOW)
+	{
+		/* check if the draw is for the text window first, and
+		 * make sure the visible region is highlighted */
+		if (view->priv->source_buffer != NULL)
+		{
+			GdkRectangle visible_rect;
+			GtkTextIter iter1, iter2;
+
+			gtk_text_view_get_visible_rect (text_view, &visible_rect);
+			cairo_clip_extents (cr,
+					    &clip_x1, &clip_y1,
+					    &clip_x2, &clip_y2);
+
+			gtk_text_view_get_line_at_y (text_view, &iter1,
+						     visible_rect.y + clip_y1, NULL);
+			gtk_text_iter_backward_line (&iter1);
+			gtk_text_view_get_line_at_y (text_view, &iter2,
+						     visible_rect.y + clip_y2, NULL);
+			gtk_text_iter_forward_line (&iter2);
+
+			DEBUG ({
+				g_print ("    draw area: %d - %d\n", visible_rect.y + clip_y1,
+					 visible_rect.y + clip_y2);
+				g_print ("    lines to update: %d - %d\n",
+					 gtk_text_iter_get_line (&iter1),
+					 gtk_text_iter_get_line (&iter2));
+			});
+
+			_gtk_source_buffer_update_highlight (view->priv->source_buffer,
+							     &iter1, &iter2, FALSE);
+		}
+
+		if (gtk_widget_is_sensitive (widget) && view->priv->highlight_current_line)
+		{
+			GtkTextIter cur;
+			gint y, height;
+			GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
+
+			gtk_text_buffer_get_iter_at_mark (buffer,
+							  &cur,
+							  gtk_text_buffer_get_insert (buffer));
+			gtk_text_view_get_line_yrange (text_view, &cur, &y, &height);
+
+			if (view->priv->current_line_color_set)
+			{
+				gtk_source_view_paint_line_background (text_view,
+								       cr,
+								       y, height,
+								       &view->priv->current_line_color);
+			}
+			else
+			{
+				GtkStyleContext *context;
+				GtkStateFlags state;
+				GdkRGBA color;
+
+				context = gtk_widget_get_style_context (widget);
+				state = gtk_widget_get_state_flags (widget);
+				gtk_style_context_get_background_color (context, state, &color);
+
+				gtk_source_view_paint_line_background (text_view,
+								       cr,
+								       y, height,
+								       &color);
+			}
+		}
+
+		gtk_source_view_paint_marks_background (view, cr);
+	}
+
+	if (layer == GTK_TEXT_VIEW_LAYER_ABOVE)	{
+		/* Draw the right margin vertical line + overlay. */
+		if (view->priv->show_right_margin)
+		{
+			gtk_source_view_paint_right_margin (view, cr);
+		}
+
+		if (view->priv->draw_spaces != 0)
+		{
+			draw_tabs_and_spaces (view, cr);
+		}
+	}
+
+	cairo_restore (cr);
+}
+
 static gboolean
 gtk_source_view_draw (GtkWidget *widget,
 	              cairo_t   *cr)
 {
-	GtkSourceView *view;
-	GtkTextView *text_view;
-	GdkWindow *window;
 	gboolean event_handled;
 
 #ifdef ENABLE_PROFILE
@@ -2363,116 +2469,8 @@ gtk_source_view_draw (GtkWidget *widget,
 		g_print ("> gtk_source_view_draw start\n");
 	});
 
-	view = GTK_SOURCE_VIEW (widget);
-	text_view = GTK_TEXT_VIEW (widget);
-
-	window = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_TEXT);
-
-	cairo_save (cr);
-	gtk_cairo_transform_to_window (cr, widget, window);
-
-	event_handled = FALSE;
-
-	/* check if the draw is for the text window first, and
-	 * make sure the visible region is highlighted */
-	if (gtk_cairo_should_draw_window (cr, window) &&
-	    view->priv->source_buffer != NULL)
-	{
-		GdkRectangle visible_rect;
-		GtkTextIter iter1, iter2;
-
-		gtk_text_view_get_visible_rect (text_view, &visible_rect);
-		gtk_text_view_get_line_at_y (text_view, &iter1,
-					     visible_rect.y, NULL);
-		gtk_text_iter_backward_line (&iter1);
-		gtk_text_view_get_line_at_y (text_view, &iter2,
-					     visible_rect.y
-					     + visible_rect.height, NULL);
-		gtk_text_iter_forward_line (&iter2);
-
-		DEBUG ({
-			g_print ("    draw area: %d - %d\n", visible_rect.y,
-				 visible_rect.y + visible_rect.height);
-			g_print ("    lines to update: %d - %d\n",
-				 gtk_text_iter_get_line (&iter1),
-				 gtk_text_iter_get_line (&iter2));
-		});
-
-		_gtk_source_buffer_update_highlight (view->priv->source_buffer,
-						     &iter1, &iter2, FALSE);
-	}
-
-	if (gtk_widget_is_sensitive (widget) && view->priv->highlight_current_line &&
-	    gtk_cairo_should_draw_window (cr, window))
-	{
-		GtkTextIter cur;
-		gint y, height;
-		GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
-
-		gtk_text_buffer_get_iter_at_mark (buffer,
-						  &cur,
-						  gtk_text_buffer_get_insert (buffer));
-		gtk_text_view_get_line_yrange (text_view, &cur, &y, &height);
-
-		if (view->priv->current_line_color_set)
-		{
-			gtk_source_view_paint_line_background (text_view,
-							       cr,
-							       y, height,
-							       &view->priv->current_line_color);
-		}
-		else
-		{
-			GtkStyleContext *context;
-			GtkStateFlags state;
-			GdkRGBA color;
-
-			context = gtk_widget_get_style_context (widget);
-			state = gtk_widget_get_state_flags (widget);
-			gtk_style_context_get_background_color (context, state, &color);
-
-			gtk_source_view_paint_line_background (text_view,
-							       cr,
-							       y, height,
-							       &color);
-		}
-	}
-
-	if (gtk_cairo_should_draw_window (cr, window))
-	{
-		gtk_source_view_paint_marks_background (view, cr);
-	}
-
-	/* Have GtkTextView draw the text first. */
-	if (GTK_WIDGET_CLASS (gtk_source_view_parent_class)->draw)
-	{
-		/* Need to restore to original state here so the parent draw func
-		* gets the correct context. */
-		cairo_restore (cr);
-
-		cairo_save (cr);
-
-		event_handled =
-			GTK_WIDGET_CLASS (gtk_source_view_parent_class)->draw (widget, cr);
-
-		cairo_restore (cr);
-
-		cairo_save (cr);
-		gtk_cairo_transform_to_window (cr, widget, window);
-	}
-
-	/* Draw the right margin vertical line + overlay. */
-	if (view->priv->show_right_margin &&
-	    gtk_cairo_should_draw_window (cr, window))
-	{
-		gtk_source_view_paint_right_margin (view, cr);
-	}
-
-	if (view->priv->draw_spaces != 0 &&
-	    gtk_cairo_should_draw_window (cr, window))
-	{
-		draw_tabs_and_spaces (view, cr);
-	}
+	event_handled =
+		GTK_WIDGET_CLASS (gtk_source_view_parent_class)->draw (widget, cr);
 
 	PROFILE ({
 		g_timer_stop (timer);
@@ -2482,8 +2480,6 @@ gtk_source_view_draw (GtkWidget *widget,
 	DEBUG ({
 		g_print ("> gtk_source_view_draw end\n");
 	});
-
-	cairo_restore (cr);
 
 	return event_handled;
 }
