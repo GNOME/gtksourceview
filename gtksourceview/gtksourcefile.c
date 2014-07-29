@@ -65,6 +65,9 @@ struct _GtkSourceFilePrivate
 	GTimeVal modification_time;
 
 	guint modification_time_set : 1;
+
+	/* TRUE if the encoding has been set by a FileLoader or a FileSaver. */
+	guint encoding_set : 1;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceFile, gtk_source_file, G_TYPE_OBJECT)
@@ -173,7 +176,7 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	/**
 	 * GtkSourceFile:encoding:
 	 *
-	 * The character encoding.
+	 * The character encoding. UTF-8 by default.
 	 *
 	 * Since: 3.14
 	 */
@@ -227,6 +230,7 @@ gtk_source_file_init (GtkSourceFile *file)
 	file->priv = gtk_source_file_get_instance_private (file);
 
 	file->priv->encoding = gtk_source_encoding_get_utf8 ();
+	file->priv->encoding_set = FALSE;
 }
 
 /**
@@ -295,6 +299,8 @@ _gtk_source_file_set_encoding (GtkSourceFile           *file,
 {
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 
+	file->priv->encoding_set = TRUE;
+
 	if (encoding == NULL)
 	{
 		encoding = gtk_source_encoding_get_utf8 ();
@@ -305,6 +311,13 @@ _gtk_source_file_set_encoding (GtkSourceFile           *file,
 		file->priv->encoding = encoding;
 		g_object_notify (G_OBJECT (file), "encoding");
 	}
+}
+
+/* Returns TRUE if the encoding has been set by a FileLoader or a FileSaver. */
+gboolean
+_gtk_source_file_is_encoding_set (GtkSourceFile *file)
+{
+	return file->priv->encoding_set;
 }
 
 /**

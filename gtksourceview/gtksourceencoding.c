@@ -488,6 +488,46 @@ gtk_source_encoding_get_name (const GtkSourceEncoding* enc)
 }
 
 /**
+ * gtk_source_encoding_get_default_candidates:
+ *
+ * Returns: (transfer container) (element-type GtkSource.Encoding): the list of
+ * default candidates encodings. Free with g_slist_free().
+ */
+GSList *
+gtk_source_encoding_get_default_candidates (void)
+{
+	const gchar *encodings_str;
+	GVariant *encodings_variant;
+	const gchar **encodings_strv;
+	GSList *encodings_list;
+
+	/* Translators: This is the sorted list of encodings used by
+	 * GtkSourceView for automatic detection of the file encoding. You may
+	 * want to customize it adding encodings that are common in your
+	 * country, for instance the GB18030 encoding for the Chinese
+	 * translation. You may also want to remove the ISO-8859-15 encoding
+	 * (covering English and most Western European languages) if you think
+	 * people in your country will rarely use it.  "CURRENT" is a magic
+	 * value used by gedit and it represents the encoding for the current
+	 * locale, so please don't translate the "CURRENT" term.  Only
+	 * recognized encodings are used. See
+	 * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+	 * for a list of supported encodings.
+	 */
+	encodings_str = _("['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']");
+
+	encodings_variant = g_variant_new_parsed (encodings_str);
+	g_variant_ref_sink (encodings_variant);
+
+	encodings_strv = g_variant_get_strv (encodings_variant, NULL);
+
+	encodings_list = _gtk_source_encoding_strv_to_list (encodings_strv);
+
+	g_variant_unref (encodings_variant);
+	return encodings_list;
+}
+
+/**
  * gtk_source_encoding_copy:
  * @enc: a #GtkSourceEncoding.
  *
@@ -518,7 +558,6 @@ gtk_source_encoding_free (GtkSourceEncoding *enc)
 	g_return_if_fail (enc != NULL);
 }
 
-#if 0
 /* Will probably be used in the future. */
 static gboolean
 data_exists (GSList         *list,
@@ -564,6 +603,7 @@ _gtk_source_encoding_strv_to_list (const gchar * const *enc_str)
 	return g_slist_reverse (res);
 }
 
+#if 0
 gchar **
 _gtk_source_encoding_list_to_strv (const GSList *enc_list)
 {

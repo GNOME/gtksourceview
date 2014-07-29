@@ -259,18 +259,57 @@ gtk_source_file_loader_dispose (GObject *object)
 }
 
 static void
+set_default_candidate_encodings (GtkSourceFileLoader *loader)
+{
+	GSList *list;
+	GSList *l;
+	const GtkSourceEncoding *file_encoding;
+
+	/* Get first the default candidates from GtkSourceEncoding. If the
+	 * GtkSourceFile's encoding has been set by a FileLoader or FileSaver,
+	 * put it at the beginning of the list.
+	 */
+	list = gtk_source_encoding_get_default_candidates ();
+
+	if (loader->priv->file == NULL ||
+	    !_gtk_source_file_is_encoding_set (loader->priv->file))
+	{
+		goto end;
+	}
+
+	file_encoding = gtk_source_file_get_encoding (loader->priv->file);
+
+	/* Remove file_encoding from the list, if already present, and prepend
+	 * it to the list.
+	 */
+	for (l = list; l != NULL; l = l->next)
+	{
+		const GtkSourceEncoding *cur_encoding = l->data;
+
+		if (cur_encoding == file_encoding)
+		{
+			list = g_slist_delete_link (list, l);
+
+			/* The list doesn't contain duplicates, normally. */
+			break;
+		}
+	}
+
+	list = g_slist_prepend (list, (gpointer) file_encoding);
+
+end:
+	g_slist_free (loader->priv->candidate_encodings);
+	loader->priv->candidate_encodings = list;
+}
+
+static void
 gtk_source_file_loader_constructed (GObject *object)
 {
 	GtkSourceFileLoader *loader = GTK_SOURCE_FILE_LOADER (object);
 
 	if (loader->priv->file != NULL)
 	{
-		const GtkSourceEncoding *encoding;
-
-		encoding = gtk_source_file_get_encoding (loader->priv->file);
-
-		g_slist_free (loader->priv->candidate_encodings);
-		loader->priv->candidate_encodings = g_slist_prepend (NULL, (gpointer) encoding);
+		set_default_candidate_encodings (loader);
 
 		if (loader->priv->location == NULL &&
 		    loader->priv->input_stream_property == NULL)
