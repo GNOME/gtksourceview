@@ -2274,7 +2274,6 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
                                     cairo_t       *cr)
 {
 	GdkRectangle visible_rect;
-	GdkRectangle window_rect;
 	double x;
 	double clip_x1, clip_y1, clip_x2, clip_y2;
 
@@ -2305,15 +2304,6 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 			    &clip_x2, &clip_y2);
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
-
-	gtk_text_view_buffer_to_window_coords (text_view,
-				       GTK_TEXT_WINDOW_TEXT,
-				       visible_rect.x,
-				       visible_rect.y,
-				       &window_rect.x,
-				       &window_rect.y);
-	window_rect.width = visible_rect.width;
-	window_rect.height = visible_rect.height;
 
 	x = view->priv->cached_right_margin_pos - visible_rect.x +
 		gtk_text_view_get_left_margin (text_view);
@@ -2435,7 +2425,8 @@ gtk_source_view_draw_layer (GtkWidget *widget,
 		gtk_source_view_paint_marks_background (view, cr);
 	}
 
-	if (layer == GTK_TEXT_VIEW_LAYER_ABOVE)	{
+	else if (layer == GTK_TEXT_VIEW_LAYER_ABOVE)
+	{
 		/* Draw the right margin vertical line + overlay. */
 		if (view->priv->show_right_margin)
 		{
