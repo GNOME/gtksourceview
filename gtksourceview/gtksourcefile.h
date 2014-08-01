@@ -92,9 +92,6 @@ void		 _gtk_source_file_set_encoding			(GtkSourceFile           *file,
 								 const GtkSourceEncoding *encoding);
 
 G_GNUC_INTERNAL
-gboolean	 _gtk_source_file_is_encoding_set		(GtkSourceFile *file);
-
-G_GNUC_INTERNAL
 void		 _gtk_source_file_set_newline_type		(GtkSourceFile        *file,
 								 GtkSourceNewlineType  newline_type);
 

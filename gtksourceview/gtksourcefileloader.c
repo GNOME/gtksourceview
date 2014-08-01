@@ -271,13 +271,17 @@ set_default_candidate_encodings (GtkSourceFileLoader *loader)
 	 */
 	list = gtk_source_encoding_get_default_candidates ();
 
-	if (loader->priv->file == NULL ||
-	    !_gtk_source_file_is_encoding_set (loader->priv->file))
+	if (loader->priv->file == NULL)
 	{
 		goto end;
 	}
 
 	file_encoding = gtk_source_file_get_encoding (loader->priv->file);
+
+	if (file_encoding == NULL)
+	{
+		goto end;
+	}
 
 	/* Remove file_encoding from the list, if already present, and prepend
 	 * it to the list.
