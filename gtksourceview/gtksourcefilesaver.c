@@ -929,7 +929,8 @@ check_externally_modified (GtkSourceFileSaver *saver)
 		 * because the user has normally accepted to overwrite the file if it
 		 * already exists.
 		 */
-		save_as = !g_file_equal (prev_location, saver->priv->location);
+		save_as = (prev_location == NULL ||
+			   !g_file_equal (prev_location, saver->priv->location));
 	}
 
 
