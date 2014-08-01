@@ -22,8 +22,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-07-18 09:10+0000\n"
-"PO-Revision-Date: 2014-07-18 16:30-0300\n"
+"POT-Creation-Date: 2014-07-30 15:45+0000\n"
+"PO-Revision-Date: 2014-07-30 16:31-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -1163,7 +1163,7 @@ msgid "Exec parameter"
 msgstr "Parâmetro de execução"
 
 #: ../data/language-specs/desktop.lang.h:11
-#: ../gtksourceview/gtksourcefile.c:183
+#: ../gtksourceview/gtksourcefile.c:186
 #: ../gtksourceview/gtksourcefilesaver.c:390
 msgid "Encoding"
 msgstr "Codificação"
@@ -1205,8 +1205,8 @@ msgstr "Caso especial"
 
 #. String
 #: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
-#: ../gtksourceview/gtksourcefile.c:167
-#: ../gtksourceview/gtksourcefileloader.c:350
+#: ../gtksourceview/gtksourcefile.c:170
+#: ../gtksourceview/gtksourcefileloader.c:389
 #: ../gtksourceview/gtksourcefilesaver.c:373
 msgid "Location"
 msgstr "Localização"
@@ -2976,7 +2976,6 @@ msgstr "Sequência de byte inválida na entrada de conversão"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:844
 #, c-format
-#| msgid "String Conversion"
 msgid "Error during conversion: %s"
 msgstr "Erro durante a conversão: %s"
 
@@ -2996,7 +2995,6 @@ msgstr "Objeto inválido, não inicializado"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:1178
 #, c-format
-#| msgid "Incomplete Sequence"
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Sequência UTF-8 incompleta na entrada"
 
@@ -3078,7 +3076,7 @@ msgid "Proposal scrolling page size"
 msgstr "Tamanho da página de scroll da proposta"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:271
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:313
 msgid "Completion"
 msgstr "Auto completar"
 
@@ -3323,7 +3321,6 @@ msgstr "Cirílico/Ucraniano"
 #: ../gtksourceview/gtksourceencoding.c:254
 #: ../gtksourceview/gtksourceencoding.c:260
 #: ../gtksourceview/gtksourceencoding.c:279
-#| msgid "Filename"
 msgid "Vietnamese"
 msgstr "Vietnamita"
 
@@ -3335,19 +3332,34 @@ msgstr "Tailandês"
 msgid "Unknown"
 msgstr "Desconhecido"
 
-#: ../gtksourceview/gtksourcefile.c:199
+#. Translators: This is the sorted list of encodings used by
+#. * GtkSourceView for automatic detection of the file encoding. You may
+#. * want to customize it adding encodings that are common in your
+#. * country, for instance the GB18030 encoding for the Chinese
+#. * translation. You may also want to remove the ISO-8859-15 encoding
+#. * (covering English and most Western European languages) if you think
+#. * people in your country will rarely use it.  "CURRENT" is a magic
+#. * value used by gedit and it represents the encoding for the current
+#. * locale, so please don't translate the "CURRENT" term.  Only
+#. * recognized encodings are used. See
+#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+#. * for a list of supported encodings.
+#.
+#: ../gtksourceview/gtksourceencoding.c:517
+msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+msgstr "['UTF-8', 'CURRENT', 'ISO-8859-1', 'UTF-16']"
+
+#: ../gtksourceview/gtksourcefile.c:202
 #: ../gtksourceview/gtksourcefilesaver.c:407
-#| msgid "Newline"
 msgid "Newline type"
 msgstr "Tipo da nova linha"
 
-#: ../gtksourceview/gtksourcefile.c:216
+#: ../gtksourceview/gtksourcefile.c:219
 #: ../gtksourceview/gtksourcefilesaver.c:425
-#| msgid "Expression"
 msgid "Compression type"
 msgstr "Tipo de compressão"
 
-#: ../gtksourceview/gtksourcefileloader.c:367
+#: ../gtksourceview/gtksourcefileloader.c:406
 msgid "Input stream"
 msgstr "Fluxo de entrada"
 
@@ -3570,12 +3582,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "O objeto GtkSourceBuffer a ser impresso"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:347
+#: ../gtksourceview/gtksourceview.c:351
 msgid "Tab Width"
 msgstr "Largura de tabulação"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Width of a tab character expressed in spaces"
 msgstr "Largura do caractere de tabulação expressa em espaços"
 
@@ -3882,71 +3894,71 @@ msgstr "Lista de identificações (ids) dos esquemas de estilo disponíveis"
 msgid "The text buffer to add undo support on"
 msgstr "O buffer de texto para ser adicionado o suporte a ações de desfazer"
 
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:314
 msgid "The completion object associated with the view"
 msgstr "O objeto para completar associado com a visualização"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:326
 msgid "Show Line Numbers"
 msgstr "Mostra numeração de linha"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:327
 msgid "Whether to display line numbers"
 msgstr "Mostrar ou não a numeração de linha"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:338
 msgid "Show Line Marks"
 msgstr "Mostrar linhas de marcação"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:339
 msgid "Whether to display line mark pixbufs"
 msgstr "Mostrar ou não os pixbufs marcadores de linha"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Indent Width"
 msgstr "Largura de recuo"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:367
 msgid "Number of spaces to use for each step of indent"
 msgstr "Número de espaços a usar para cada passo de recuo"
 
-#: ../gtksourceview/gtksourceview.c:372
+#: ../gtksourceview/gtksourceview.c:376
 msgid "Auto Indentation"
 msgstr "Recuo automático"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Whether to enable auto indentation"
 msgstr "Habilitar recuo automático"
 
-#: ../gtksourceview/gtksourceview.c:380
+#: ../gtksourceview/gtksourceview.c:384
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Inserir espaços em vez de tabulações"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:385
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Inserir ou não espaços ao invés de tabulações"
 
-#: ../gtksourceview/gtksourceview.c:393
+#: ../gtksourceview/gtksourceview.c:397
 msgid "Show Right Margin"
 msgstr "Mostrar margem direita"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:398
 msgid "Whether to display the right margin"
 msgstr "Mostrar ou não a margem direita"
 
-#: ../gtksourceview/gtksourceview.c:406
+#: ../gtksourceview/gtksourceview.c:410
 msgid "Right Margin Position"
 msgstr "Posição da margem direita"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:411
 msgid "Position of the right margin"
 msgstr "Posição da margem direita"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:427
 msgid "Smart Home/End"
 msgstr "Home/End inteligente"
 
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:428
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3954,57 +3966,57 @@ msgstr ""
 "As teclas HOME e END movem para o primeiro/último caractere não-branco da "
 "linha antes de ir para o início/fim da linha"
 
-#: ../gtksourceview/gtksourceview.c:434
+#: ../gtksourceview/gtksourceview.c:438
 msgid "Highlight current line"
 msgstr "Destaca a linha atual"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:439
 msgid "Whether to highlight the current line"
 msgstr "Destacar ou não linha atual"
 
-#: ../gtksourceview/gtksourceview.c:442
+#: ../gtksourceview/gtksourceview.c:446
 msgid "Indent on tab"
 msgstr "Recuar com tab"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:447
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Recuar ou não o texto selecionado quanto a tecla tab for pressionada"
 
-#: ../gtksourceview/gtksourceview.c:457
+#: ../gtksourceview/gtksourceview.c:461
 msgid "Draw Spaces"
 msgstr "Desenhar espaços"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:462
 msgid "Set if and how the spaces should be visualized"
 msgstr "Define se e como os espaços deverão ser visualizados"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1233
+#: ../gtksourceview/gtksourceview.c:1237
 msgid "_Redo"
 msgstr "_Refazer"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1244
+#: ../gtksourceview/gtksourceview.c:1248
 msgid "_Undo"
 msgstr "_Desfazer"
 
-#: ../gtksourceview/gtksourceview.c:1262
+#: ../gtksourceview/gtksourceview.c:1266
 msgid "All _Upper Case"
 msgstr "Todas letras m_aiúsculas"
 
-#: ../gtksourceview/gtksourceview.c:1272
+#: ../gtksourceview/gtksourceview.c:1276
 msgid "All _Lower Case"
 msgstr "Todas letras mi_núsculas"
 
-#: ../gtksourceview/gtksourceview.c:1282
+#: ../gtksourceview/gtksourceview.c:1286
 msgid "_Invert Case"
 msgstr "_Inverter maiusculização"
 
-#: ../gtksourceview/gtksourceview.c:1292
+#: ../gtksourceview/gtksourceview.c:1296
 msgid "_Title Case"
 msgstr "Ini_ciais maiúsculas"
 
-#: ../gtksourceview/gtksourceview.c:1302
+#: ../gtksourceview/gtksourceview.c:1306
 msgid "C_hange Case"
 msgstr "A_lterar maiusculização "
 
