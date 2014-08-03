@@ -508,8 +508,8 @@ gtk_source_encoding_get_default_candidates (void)
 	 * translation. You may also want to remove the ISO-8859-15 encoding
 	 * (covering English and most Western European languages) if you think
 	 * people in your country will rarely use it.  "CURRENT" is a magic
-	 * value used by gedit and it represents the encoding for the current
-	 * locale, so please don't translate the "CURRENT" term.  Only
+	 * value used by GtkSourceView and it represents the encoding for the
+	 * current locale, so please don't translate the "CURRENT" term.  Only
 	 * recognized encodings are used. See
 	 * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
 	 * for a list of supported encodings.
