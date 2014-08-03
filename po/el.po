@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-07-16 09:09+0000\n"
-"PO-Revision-Date: 2014-07-16 23:51+0200\n"
+"POT-Creation-Date: 2014-08-03 11:56+0000\n"
+"PO-Revision-Date: 2014-08-04 01:23+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: team@lists.gnome.gr\n"
 "Language: el\n"
@@ -1158,7 +1158,7 @@ msgid "Exec parameter"
 msgstr "Παράμετρος Exec"
 
 #: ../data/language-specs/desktop.lang.h:11
-#: ../gtksourceview/gtksourcefile.c:183
+#: ../gtksourceview/gtksourcefile.c:186
 #: ../gtksourceview/gtksourcefilesaver.c:390
 msgid "Encoding"
 msgstr "Κωδικοποίηση"
@@ -1200,8 +1200,8 @@ msgstr "Ειδικός χαρακτήρας"
 
 #. String
 #: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
-#: ../gtksourceview/gtksourcefile.c:167
-#: ../gtksourceview/gtksourcefileloader.c:350
+#: ../gtksourceview/gtksourcefile.c:170
+#: ../gtksourceview/gtksourcefileloader.c:389
 #: ../gtksourceview/gtksourcefilesaver.c:373
 msgid "Location"
 msgstr "Τοποθεσία"
@@ -2993,7 +2993,7 @@ msgid "Incomplete UTF-8 sequence in input"
 msgstr "Ελλιπής σειρά UTF-8 στην είσοδο"
 
 #: ../gtksourceview/gtksourcecompletion.c:2162
-#: ../gtksourceview/gtksourcegutter.c:509
+#: ../gtksourceview/gtksourcegutter.c:549
 msgid "View"
 msgstr "Προβολή"
 
@@ -3073,7 +3073,7 @@ msgid "Proposal scrolling page size"
 msgstr "Μέγεθος κυλιόμενης σελίδας εισήγησης"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:271
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:313
 msgid "Completion"
 msgstr "Συμπλήρωση"
 
@@ -3323,23 +3323,40 @@ msgstr "Βιετναμέζικα"
 
 #: ../gtksourceview/gtksourceencoding.c:256
 msgid "Thai"
-msgstr " \tΤαϊλανδέζικα"
+msgstr "Ταϊλανδέζικα"
 
 #: ../gtksourceview/gtksourceencoding.c:487
 msgid "Unknown"
-msgstr " \tΆγνωστο"
+msgstr "Άγνωστο"
 
-#: ../gtksourceview/gtksourcefile.c:199
+#. Translators: This is the sorted list of encodings used by
+#. * GtkSourceView for automatic detection of the file encoding. You may
+#. * want to customize it adding encodings that are common in your
+#. * country, for instance the GB18030 encoding for the Chinese
+#. * translation. You may also want to remove the ISO-8859-15 encoding
+#. * (covering English and most Western European languages) if you think
+#. * people in your country will rarely use it.  "CURRENT" is a magic
+#. * value used by GtkSourceView and it represents the encoding for the
+#. * current locale, so please don't translate the "CURRENT" term.  Only
+#. * recognized encodings are used. See
+#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+#. * for a list of supported encodings.
+#.
+#: ../gtksourceview/gtksourceencoding.c:517
+msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+msgstr "['UTF-8', 'CURRENT', 'WINDOWS-1253', 'ISO-8859-15', 'UTF-16']"
+
+#: ../gtksourceview/gtksourcefile.c:202
 #: ../gtksourceview/gtksourcefilesaver.c:407
 msgid "Newline type"
 msgstr "Τύπος νέας γραμμής"
 
-#: ../gtksourceview/gtksourcefile.c:216
+#: ../gtksourceview/gtksourcefile.c:219
 #: ../gtksourceview/gtksourcefilesaver.c:425
 msgid "Compression type"
 msgstr "Τύπος συμπίεσης"
 
-#: ../gtksourceview/gtksourcefileloader.c:367
+#: ../gtksourceview/gtksourcefileloader.c:406
 msgid "Input stream"
 msgstr "Ροή εισόδου"
 
@@ -3350,35 +3367,35 @@ msgstr "Σημαίες"
 #. Translators: gutters can be used to display information
 #. * on the left or on the right of the text view. To draw the
 #. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:513
+#: ../gtksourceview/gtksourcegutter.c:553
 msgid "The gutters' GtkSourceView"
 msgstr "Το GtkSourceView του περιθωρίου βιβλιοδεσίας"
 
-#: ../gtksourceview/gtksourcegutter.c:525
+#: ../gtksourceview/gtksourcegutter.c:565
 #: ../gtksourceview/gtksourcegutterrenderer.c:741
 msgid "Window Type"
 msgstr "Τύπος παραθύρου"
 
-#: ../gtksourceview/gtksourcegutter.c:526
+#: ../gtksourceview/gtksourcegutter.c:566
 msgid "The gutters' text window type"
 msgstr "Ο τύπος παραθύρου για το περιθώριο βιβλιοδεσίας του κειμένου"
 
-#: ../gtksourceview/gtksourcegutter.c:542
+#: ../gtksourceview/gtksourcegutter.c:582
 #: ../gtksourceview/gtksourcegutterrenderer.c:524
 msgid "X Padding"
 msgstr "Γέμισμα X"
 
-#: ../gtksourceview/gtksourcegutter.c:543
+#: ../gtksourceview/gtksourcegutter.c:583
 #: ../gtksourceview/gtksourcegutterrenderer.c:525
 msgid "The x-padding"
 msgstr "Το γέμισμα X"
 
-#: ../gtksourceview/gtksourcegutter.c:560
+#: ../gtksourceview/gtksourcegutter.c:600
 #: ../gtksourceview/gtksourcegutterrenderer.c:539
 msgid "Y Padding"
 msgstr "Γέμισμα Y"
 
-#: ../gtksourceview/gtksourcegutter.c:561
+#: ../gtksourceview/gtksourcegutter.c:601
 #: ../gtksourceview/gtksourcegutterrenderer.c:540
 msgid "The y-padding"
 msgstr "Το γέμισμα Y"
@@ -3561,12 +3578,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Αντικείμενο GtkSourceBuffer για εκτύπωση"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:347
+#: ../gtksourceview/gtksourceview.c:351
 msgid "Tab Width"
 msgstr "Πλάτος στηλοθέτη"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Width of a tab character expressed in spaces"
 msgstr "Το πλάτος ενός χαρακτήρα στηλοθέτη εκφρασμένο σε διαστήματα"
 
@@ -3875,71 +3892,71 @@ msgid "The text buffer to add undo support on"
 msgstr ""
 "Η ενδιάμεση μνήμη κειμένου στην οποία θα προστεθεί η δυνατότητα αναίρεσης"
 
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:314
 msgid "The completion object associated with the view"
 msgstr "Το αντικείμενο συμπλήρωσης που συνδέεται με την προβολή"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:326
 msgid "Show Line Numbers"
 msgstr "Εμφάνιση αριθμών γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:327
 msgid "Whether to display line numbers"
 msgstr "Αν θα εμφανίζονται αριθμοί γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:338
 msgid "Show Line Marks"
 msgstr "Εμφάνιση σημάνσεων γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:339
 msgid "Whether to display line mark pixbufs"
 msgstr "Αν θα εμφανίζονται σημάνσεις γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Indent Width"
 msgstr "Πλάτος εσοχής"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:367
 msgid "Number of spaces to use for each step of indent"
 msgstr "Αριθμός διαστημάτων που θα χρησιμοποιείται για κάθε βήμα μιας εσοχής"
 
-#: ../gtksourceview/gtksourceview.c:372
+#: ../gtksourceview/gtksourceview.c:376
 msgid "Auto Indentation"
 msgstr "Αυτόματη εσοχή"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Whether to enable auto indentation"
 msgstr "Αν θα ενεργοποιηθεί η αυτόματη εσοχή"
 
-#: ../gtksourceview/gtksourceview.c:380
+#: ../gtksourceview/gtksourceview.c:384
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Εισαγωγή διαστημάτων αντί για στηλοθέτες"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:385
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Αν θα εισάγονται διαστήματα αντί για στηλοθέτες"
 
-#: ../gtksourceview/gtksourceview.c:393
+#: ../gtksourceview/gtksourceview.c:397
 msgid "Show Right Margin"
 msgstr "Εμφάνιση δεξιού περιθωρίου"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:398
 msgid "Whether to display the right margin"
 msgstr "Αν θα εμφανίζεται το δεξί περιθώριο"
 
-#: ../gtksourceview/gtksourceview.c:406
+#: ../gtksourceview/gtksourceview.c:410
 msgid "Right Margin Position"
 msgstr "Θέση δεξιού περιθωρίου"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:411
 msgid "Position of the right margin"
 msgstr "Θέση του δεξιού περιθωρίου"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:427
 msgid "Smart Home/End"
 msgstr "Έξυπνα Home/End"
 
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:428
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3947,58 +3964,58 @@ msgstr ""
 "Τα πλήκτρα HOME και END μετακινούν στον πρώτο/τελευταίο χαρακτήρα που δεν "
 "είναι κενό διάστημα της γραμμής πριν να πάνε στην αρχή/τέλος της γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:434
+#: ../gtksourceview/gtksourceview.c:438
 msgid "Highlight current line"
 msgstr "Επισήμανση τρέχουσας γραμμής"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:439
 msgid "Whether to highlight the current line"
 msgstr "Αν θα γίνεται επισήμανση στην τρέχουσα γραμμή"
 
-#: ../gtksourceview/gtksourceview.c:442
+#: ../gtksourceview/gtksourceview.c:446
 msgid "Indent on tab"
 msgstr "Εσοχή στο πλήκτρο tab"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:447
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Αν θα γίνεται εσοχή στο επιλεγμένο κείμενο, όταν πατηθεί το πλήκτρο tab"
 
-#: ../gtksourceview/gtksourceview.c:457
+#: ../gtksourceview/gtksourceview.c:461
 msgid "Draw Spaces"
 msgstr "Σχεδίαση διαστημάτων"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:462
 msgid "Set if and how the spaces should be visualized"
 msgstr "Αν και πώς θα αναπαριστώνται τα κενά διαστήματα"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1233
+#: ../gtksourceview/gtksourceview.c:1237
 msgid "_Redo"
 msgstr "Α_κύρωση αναίρεσης"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1244
+#: ../gtksourceview/gtksourceview.c:1248
 msgid "_Undo"
 msgstr "_Αναίρεση"
 
-#: ../gtksourceview/gtksourceview.c:1262
+#: ../gtksourceview/gtksourceview.c:1266
 msgid "All _Upper Case"
 msgstr "Όλα κε_φαλαία"
 
-#: ../gtksourceview/gtksourceview.c:1272
+#: ../gtksourceview/gtksourceview.c:1276
 msgid "All _Lower Case"
 msgstr "Όλα πε_ζά"
 
-#: ../gtksourceview/gtksourceview.c:1282
+#: ../gtksourceview/gtksourceview.c:1286
 msgid "_Invert Case"
 msgstr "Εν_αλλαγή πεζών κεφαλαίων"
 
-#: ../gtksourceview/gtksourceview.c:1292
+#: ../gtksourceview/gtksourceview.c:1296
 msgid "_Title Case"
 msgstr "Γράμματα _τίτλου"
 
-#: ../gtksourceview/gtksourceview.c:1302
+#: ../gtksourceview/gtksourceview.c:1306
 msgid "C_hange Case"
 msgstr "Α_λλαγή κεφαλαίων/πεζών"
 
@@ -4007,7 +4024,7 @@ msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME \n"
 " Δημήτρης Σπίγγος <dmtrs32@gmail.com>\n"
-" Μαυρίδου Μαρία <mavridou@gmail.com>\n"
+" Μαρία Μαυρίδου <mavridou@gmail.com>\n"
 "\n"
 "Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
 "http://gnome.gr/"
