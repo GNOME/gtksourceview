@@ -3621,3 +3621,20 @@ msgstr ""
 
 #~ msgid "Objective Caml"
 #~ msgstr "Objective Caml"
+
+#. Translators: This is the sorted list of encodings used by
+#. * GtkSourceView for automatic detection of the file encoding. You may
+#. * want to customize it adding encodings that are common in your
+#. * country, for instance the GB18030 encoding for the Chinese
+#. * translation. You may also want to remove the ISO-8859-15 encoding
+#. * (covering English and most Western European languages) if you think
+#. * people in your country will rarely use it.  "CURRENT" is a magic
+#. * value used by GtkSourceView and it represents the encoding for the
+#. * current locale, so please don't translate the "CURRENT" term.  Only
+#. * recognized encodings are used. See
+#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+#. * for a list of supported encodings.
+#.
+#: ../gtksourceview/gtksourceencoding.c:517
+msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
