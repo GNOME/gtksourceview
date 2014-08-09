@@ -25,7 +25,7 @@
 <language id="sh" _name="sh" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">text/x-shellscript;application/x-shellscript;text/x-sh</property>
-    <property name="globs">*.sh</property>
+    <property name="globs">*.sh;*bashrc;.profile;.bash_profile</property>
     <property name="line-comment-start">#</property>
   </metadata>
 
