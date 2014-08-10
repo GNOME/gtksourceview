@@ -490,8 +490,14 @@ gtk_source_encoding_get_name (const GtkSourceEncoding* enc)
 /**
  * gtk_source_encoding_get_default_candidates:
  *
+ * Gets the list of default candidate encodings to try when loading a file. See
+ * gtk_source_file_loader_set_candidate_encodings().
+ *
+ * This function returns a different list depending on the current locale (i.e.
+ * language, country and default encoding).
+ *
  * Returns: (transfer container) (element-type GtkSource.Encoding): the list of
- * default candidates encodings. Free with g_slist_free().
+ * default candidate encodings. Free with g_slist_free().
  */
 GSList *
 gtk_source_encoding_get_default_candidates (void)

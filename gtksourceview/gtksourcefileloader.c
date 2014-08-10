@@ -874,8 +874,9 @@ gtk_source_file_loader_new_from_stream (GtkSourceBuffer *buffer,
  * Sets the candidate encodings for the file loading. The encodings are tried in
  * the same order as the list.
  *
- * There is by default only one candidate encoding, the #GtkSourceFile's
- * encoding.
+ * By default the candidate encodings are (in that order):
+ * 1. If set, the #GtkSourceFile's encoding. See gtk_source_file_get_encoding().
+ * 2. The list returned by gtk_source_encoding_get_default_candidates().
  *
  * Since: 3.14
  */
