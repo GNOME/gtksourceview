@@ -498,6 +498,7 @@ gtk_source_encoding_get_name (const GtkSourceEncoding* enc)
  *
  * Returns: (transfer container) (element-type GtkSource.Encoding): the list of
  * default candidate encodings. Free with g_slist_free().
+ * Since: 3.14
  */
 GSList *
 gtk_source_encoding_get_default_candidates (void)
