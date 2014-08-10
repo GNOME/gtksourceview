@@ -613,7 +613,8 @@ _gtk_source_encoding_remove_duplicates (GSList                      *encodings,
  * gtk_source_file_loader_set_candidate_encodings().
  *
  * This function returns a different list depending on the current locale (i.e.
- * language, country and default encoding).
+ * language, country and default encoding). The UTF-8 encoding and the current
+ * locale encoding are guaranteed to be present in the returned list.
  *
  * Returns: (transfer container) (element-type GtkSource.Encoding): the list of
  * default candidate encodings. Free with g_slist_free().
@@ -648,6 +649,16 @@ gtk_source_encoding_get_default_candidates (void)
 	encodings_strv = g_variant_get_strv (encodings_variant, NULL);
 
 	encodings_list = strv_to_list (encodings_strv);
+
+	/* Ensure that UTF-8 and CURRENT are present. */
+	encodings_list = g_slist_prepend (encodings_list,
+					  (gpointer) gtk_source_encoding_get_current ());
+
+	encodings_list = g_slist_prepend (encodings_list,
+					  (gpointer) &utf8_encoding);
+
+	encodings_list = _gtk_source_encoding_remove_duplicates (encodings_list,
+								 GTK_SOURCE_ENCODING_DUPLICATES_KEEP_LAST);
 
 	g_variant_unref (encodings_variant);
 	return encodings_list;
