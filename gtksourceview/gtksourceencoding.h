@@ -70,12 +70,6 @@ void			 gtk_source_encoding_free		(GtkSourceEncoding       *enc);
 G_GNUC_INTERNAL
 GSList			*_gtk_source_encoding_strv_to_list	(const gchar * const     *enc_str);
 
-#if 0
-/* Will probably be used in the future. */
-G_GNUC_INTERNAL
-gchar		       **_gtk_source_encoding_list_to_strv	(const GSList            *enc);
-#endif
-
 G_END_DECLS
 
 #endif  /* __GTK_SOURCE_ENCODING_H__ */

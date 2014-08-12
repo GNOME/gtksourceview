@@ -565,7 +565,6 @@ gtk_source_encoding_free (GtkSourceEncoding *enc)
 	g_return_if_fail (enc != NULL);
 }
 
-/* Will probably be used in the future. */
 static gboolean
 data_exists (GSList         *list,
 	     const gpointer  data)
@@ -609,28 +608,3 @@ _gtk_source_encoding_strv_to_list (const gchar * const *enc_str)
 
 	return g_slist_reverse (res);
 }
-
-#if 0
-gchar **
-_gtk_source_encoding_list_to_strv (const GSList *enc_list)
-{
-	GSList *l;
-	GPtrArray *array;
-
-	array = g_ptr_array_sized_new (g_slist_length ((GSList *)enc_list) + 1);
-
-	for (l = (GSList *)enc_list; l != NULL; l = g_slist_next (l))
-	{
-		const GtkSourceEncoding *enc = l->data;
-		const gchar *charset = gtk_source_encoding_get_charset (enc);
-
-		g_return_val_if_fail (charset != NULL, NULL);
-
-		g_ptr_array_add (array, g_strdup (charset));
-	}
-
-	g_ptr_array_add (array, NULL);
-
-	return (gchar **)g_ptr_array_free (array, FALSE);
-}
-#endif
