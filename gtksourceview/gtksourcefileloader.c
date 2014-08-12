@@ -27,6 +27,7 @@
 #include "gtksourcefile.h"
 #include "gtksourcebufferoutputstream.h"
 #include "gtksourceencoding.h"
+#include "gtksourceencoding-private.h"
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourceview-i18n.h"
 
@@ -878,6 +879,9 @@ gtk_source_file_loader_new_from_stream (GtkSourceBuffer *buffer,
  * Sets the candidate encodings for the file loading. The encodings are tried in
  * the same order as the list.
  *
+ * For convenience, @candidate_encodings can contain duplicates. Only the first
+ * occurrence of a duplicated encoding is kept in the list.
+ *
  * By default the candidate encodings are (in that order):
  * 1. If set, the #GtkSourceFile's encoding. See gtk_source_file_get_encoding().
  * 2. The list returned by gtk_source_encoding_get_default_candidates().
@@ -888,8 +892,13 @@ void
 gtk_source_file_loader_set_candidate_encodings (GtkSourceFileLoader *loader,
 						GSList              *candidate_encodings)
 {
+	GSList *list;
+
+	list = g_slist_copy (candidate_encodings);
+	list = _gtk_source_encoding_remove_duplicates (list, GTK_SOURCE_ENCODING_DUPLICATES_KEEP_FIRST);
+
 	g_slist_free (loader->priv->candidate_encodings);
-	loader->priv->candidate_encodings = g_slist_copy (candidate_encodings);
+	loader->priv->candidate_encodings = list;
 }
 
 /**
