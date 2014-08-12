@@ -75,6 +75,9 @@ test_completion_model_SOURCES =	test-completion-model.c
 UNIT_TEST_PROGS += test-completion-words
 test_completion_words_SOURCES = test-completion-words.c
 
+UNIT_TEST_PROGS += test-encoding
+test_encoding_SOURCES = test-encoding.c
+
 UNIT_TEST_PROGS += test-file-loader
 test_file_loader_SOURCES = test-file-loader.c
 

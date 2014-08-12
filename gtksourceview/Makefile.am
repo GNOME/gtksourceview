@@ -59,6 +59,7 @@ libgtksourceview_private_headers =		\
 	gtksourcecompletionmodel.h		\
 	gtksourcecompletion-private.h		\
 	gtksourcecontextengine.h		\
+	gtksourceencoding-private.h		\
 	gtksourceengine.h			\
 	gtksourcegutter-private.h		\
 	gtksourcegutterrendererlines.h		\

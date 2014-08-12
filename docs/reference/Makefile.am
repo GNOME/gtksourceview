@@ -32,6 +32,7 @@ IGNORE_HFILES =					\
 	gtksourcecompletionwordsproposal.h	\
 	gtksourcecompletionwordsutils.h		\
 	gtksourcecontextengine.h		\
+	gtksourceencoding-private.h		\
 	gtksourceengine.h			\
 	gtksourcegutter-private.h		\
 	gtksourcegutterrendererlines.h		\

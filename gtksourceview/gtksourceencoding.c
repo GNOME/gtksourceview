@@ -21,6 +21,7 @@
  */
 
 #include "gtksourceencoding.h"
+#include "gtksourceencoding-private.h"
 #include "gtksourceview-i18n.h"
 
 /**
@@ -529,6 +530,80 @@ strv_to_list (const gchar * const *enc_str)
 	}
 
 	return g_slist_reverse (res);
+}
+
+static GSList *
+remove_duplicates_keep_first (GSList *encodings)
+{
+	GSList *new_encodings = NULL;
+	GSList *l;
+
+	for (l = encodings; l != NULL; l = l->next)
+	{
+		gpointer cur_encoding = l->data;
+
+		if (!data_exists (new_encodings, cur_encoding))
+		{
+			new_encodings = g_slist_prepend (new_encodings, cur_encoding);
+		}
+	}
+
+	new_encodings = g_slist_reverse (new_encodings);
+
+	g_slist_free (encodings);
+	return new_encodings;
+}
+
+static GSList *
+remove_duplicates_keep_last (GSList *encodings)
+{
+	GSList *new_encodings = NULL;
+	GSList *l;
+
+	encodings = g_slist_reverse (encodings);
+
+	for (l = encodings; l != NULL; l = l->next)
+	{
+		gpointer cur_encoding = l->data;
+
+		if (!data_exists (new_encodings, cur_encoding))
+		{
+			new_encodings = g_slist_prepend (new_encodings, cur_encoding);
+		}
+	}
+
+	g_slist_free (encodings);
+	return new_encodings;
+}
+
+/*
+ * _gtk_source_encoding_remove_duplicates:
+ * @encodings: (element-type GtkSource.Encoding): a list of #GtkSourceEncoding's.
+ * @removal_type: the #GtkSourceEncodingDuplicates.
+ *
+ * A convenience function to remove duplicated encodings in a list.
+ *
+ * Returns: (transfer container) (element-type GtkSource.Encoding): the new
+ * start of the #GSList.
+ * Since: 3.14
+ */
+GSList *
+_gtk_source_encoding_remove_duplicates (GSList                      *encodings,
+					GtkSourceEncodingDuplicates  removal_type)
+{
+	switch (removal_type)
+	{
+		case GTK_SOURCE_ENCODING_DUPLICATES_KEEP_FIRST:
+			return remove_duplicates_keep_first (encodings);
+
+		case GTK_SOURCE_ENCODING_DUPLICATES_KEEP_LAST:
+			return remove_duplicates_keep_last (encodings);
+
+		default:
+			break;
+	}
+
+	g_return_val_if_reached (encodings);
 }
 
 /**
