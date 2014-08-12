@@ -60,9 +60,6 @@ const GtkSourceEncoding	*gtk_source_encoding_get_current	(void);
 void			 gtk_source_encoding_foreach		(GtkSourceEncodingForeachFunc func,
 								 gpointer                     user_data);
 
-GSList			*gtk_source_encoding_get_default_candidates
-								(void);
-
 /* These should not be used, they are just to make python bindings happy */
 GtkSourceEncoding	*gtk_source_encoding_copy		(const GtkSourceEncoding *enc);
 void			 gtk_source_encoding_free		(GtkSourceEncoding       *enc);

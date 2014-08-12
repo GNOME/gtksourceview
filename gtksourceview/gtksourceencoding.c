@@ -606,8 +606,8 @@ _gtk_source_encoding_remove_duplicates (GSList                      *encodings,
 	g_return_val_if_reached (encodings);
 }
 
-/**
- * gtk_source_encoding_get_default_candidates:
+/*
+ * _gtk_source_encoding_get_default_candidates:
  *
  * Gets the list of default candidate encodings to try when loading a file. See
  * gtk_source_file_loader_set_candidate_encodings().
@@ -621,7 +621,7 @@ _gtk_source_encoding_remove_duplicates (GSList                      *encodings,
  * Since: 3.14
  */
 GSList *
-gtk_source_encoding_get_default_candidates (void)
+_gtk_source_encoding_get_default_candidates (void)
 {
 	const gchar *encodings_str;
 	GVariant *encodings_variant;
