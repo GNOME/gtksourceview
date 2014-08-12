@@ -487,6 +487,50 @@ gtk_source_encoding_get_name (const GtkSourceEncoding* enc)
 	return (enc->name == NULL) ? _("Unknown") : _(enc->name);
 }
 
+static gboolean
+data_exists (GSList         *list,
+	     const gpointer  data)
+{
+	for (; list != NULL; list = g_slist_next (list))
+	{
+		if (list->data == data)
+		{
+			return TRUE;
+		}
+	}
+
+	return FALSE;
+}
+
+static GSList *
+strv_to_list (const gchar * const *enc_str)
+{
+	GSList *res = NULL;
+	gchar **p;
+
+	for (p = (gchar **)enc_str; p != NULL && *p != NULL; p++)
+	{
+		const gchar *charset = *p;
+		const GtkSourceEncoding *enc;
+
+		if (g_str_equal (charset, "CURRENT"))
+		{
+			g_get_charset (&charset);
+		}
+
+		g_return_val_if_fail (charset != NULL, NULL);
+		enc = gtk_source_encoding_get_from_charset (charset);
+
+		if (enc != NULL &&
+		    !data_exists (res, (gpointer)enc))
+		{
+			res = g_slist_prepend (res, (gpointer)enc);
+		}
+	}
+
+	return g_slist_reverse (res);
+}
+
 /**
  * gtk_source_encoding_get_default_candidates:
  *
@@ -528,7 +572,7 @@ gtk_source_encoding_get_default_candidates (void)
 
 	encodings_strv = g_variant_get_strv (encodings_variant, NULL);
 
-	encodings_list = _gtk_source_encoding_strv_to_list (encodings_strv);
+	encodings_list = strv_to_list (encodings_strv);
 
 	g_variant_unref (encodings_variant);
 	return encodings_list;
@@ -563,48 +607,4 @@ void
 gtk_source_encoding_free (GtkSourceEncoding *enc)
 {
 	g_return_if_fail (enc != NULL);
-}
-
-static gboolean
-data_exists (GSList         *list,
-	     const gpointer  data)
-{
-	for (; list != NULL; list = g_slist_next (list))
-	{
-		if (list->data == data)
-		{
-			return TRUE;
-		}
-	}
-
-	return FALSE;
-}
-
-GSList *
-_gtk_source_encoding_strv_to_list (const gchar * const *enc_str)
-{
-	GSList *res = NULL;
-	gchar **p;
-
-	for (p = (gchar **)enc_str; p != NULL && *p != NULL; p++)
-	{
-		const gchar *charset = *p;
-		const GtkSourceEncoding *enc;
-
-		if (g_str_equal (charset, "CURRENT"))
-		{
-			g_get_charset (&charset);
-		}
-
-		g_return_val_if_fail (charset != NULL, NULL);
-		enc = gtk_source_encoding_get_from_charset (charset);
-
-		if (enc != NULL &&
-		    !data_exists (res, (gpointer)enc))
-		{
-			res = g_slist_prepend (res, (gpointer)enc);
-		}
-	}
-
-	return g_slist_reverse (res);
 }
