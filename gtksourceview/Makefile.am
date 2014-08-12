@@ -263,4 +263,35 @@ CLEANFILES +=			\
 	$(typelib_DATA)
 endif
 
+if ENABLE_VAPIGEN
+-include $(VAPIGEN_MAKEFILE)
+
+gtksourceview-3.0.vapi: GtkSource-3.0.gir
+
+VAPIGEN_VAPIS = gtksourceview-3.0.vapi
+
+gtksourceview_3_0_vapi_DEPS = atk \
+	gdk-3.0 \
+	gdk-pixbuf-2.0 \
+	gio-2.0 \
+	gtk+-3.0 \
+	pango \
+	cairo
+
+gtksourceview-3.0.deps:
+	$(AM_V_GEN) for pkg in $(gtksourceview_3_0_vapi_DEPS); do \
+		echo $$pkg >> $@; \
+	done
+
+gtksourceview_3_0_vapi_METADATADIRS = $(srcdir)
+gtksourceview_3_0_vapi_FILES = GtkSource-3.0.gir
+
+vapidir = $(datadir)/vala/vapi
+vapi_DATA = $(VAPIGEN_VAPIS) $(VAPIGEN_VAPIS:.vapi=.deps)
+
+CLEANFILES +=	$(vapi_DATA)
+endif
+
+EXTRA_DIST += GtkSource-3.0.metadata
+
 -include $(top_srcdir)/git.mk

@@ -167,6 +167,9 @@ GOBJECT_INTROSPECTION_CHECK([0.9.0])
 # Code coverage
 GNOME_CODE_COVERAGE
 
+# Vala
+VAPIGEN_CHECK
+
 # test-widget uses this to find lang files and gtksourcebuffer.c
 ABS_TOP_SRCDIR=`cd $srcdir && pwd`
 AC_SUBST(ABS_TOP_SRCDIR)
@@ -202,4 +205,5 @@ Configuration:
 	Completion Providers:	${enable_providers}
 	Glade Catalog:		${glade_catalog}
 	GObject introspection:	${found_introspection}
+	Vala:			${enable_vala}
 "
