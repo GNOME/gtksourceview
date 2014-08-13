@@ -2973,7 +2973,7 @@ gtk_source_search_context_set_highlight (GtkSourceSearchContext *search,
  *
  * Free the return value with g_error_free().
  *
- * Returns: the #GError, or %NULL if the pattern is valid.
+ * Returns: (nullable): the #GError, or %NULL if the pattern is valid.
  * Since: 3.10
  */
 GError *

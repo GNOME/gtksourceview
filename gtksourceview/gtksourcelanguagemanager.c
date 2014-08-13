@@ -405,12 +405,11 @@ ensure_languages (GtkSourceLanguageManager *lm)
  *
  * Returns the ids of the available languages.
  *
- * Returns: (transfer none): a %NULL-terminated array of string
- * containing the ids of the available languages or %NULL if
- * no language is available.
- * The array is sorted alphabetically according to the language
- * name.
- * The array is owned by @lm and must not be modified.
+ * Returns: (nullable) (transfer none): a %NULL-terminated array of
+ * string containing the ids of the available languages or %NULL if no
+ * language is available.  The array is sorted alphabetically
+ * according to the language name.  The array is owned by @lm and must
+ * not be modified.
  */
 const gchar * const *
 gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager *lm)
@@ -430,9 +429,9 @@ gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager *lm)
  * Gets the #GtkSourceLanguage identified by the given @id in the language
  * manager.
  *
- * Returns: (transfer none): a #GtkSourceLanguage, or %NULL if there is no language
- * identified by the given @id. Return value is owned by @lm and should not
- * be freed.
+ * Returns: (nullable) (transfer none): a #GtkSourceLanguage, or %NULL
+ * if there is no language identified by the given @id. Return value is
+ * owned by @lm and should not be freed.
  */
 GtkSourceLanguage *
 gtk_source_language_manager_get_language (GtkSourceLanguageManager *lm,
@@ -629,9 +628,9 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  * etc. Use gtk_source_language_get_mime_types() and gtk_source_language_get_globs()
  * if you need full control over file -> language mapping.
  *
- * Returns: (transfer none): a #GtkSourceLanguage, or %NULL if there is no suitable language
- * for given @filename and/or @content_type. Return value is owned by @lm
- * and should not be freed.
+ * Returns: (nullable) (transfer none): a #GtkSourceLanguage, or %NULL if there
+ * is no suitable language for given @filename and/or @content_type. Return
+ * value is owned by @lm and should not be freed.
  *
  * Since: 2.4
  */

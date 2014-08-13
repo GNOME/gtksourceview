@@ -2474,7 +2474,8 @@ gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
  * see gtk_source_buffer_set_undo_manager().  The returned object should not be
  * unreferenced by the user.
  *
- * Returns: (transfer none): the #GtkSourceUndoManager associated with the buffer, or %NULL.
+ * Returns: (nullable) (transfer none): the #GtkSourceUndoManager associated
+ * with the buffer, or %NULL.
  **/
 GtkSourceUndoManager *
 gtk_source_buffer_get_undo_manager (GtkSourceBuffer *buffer)

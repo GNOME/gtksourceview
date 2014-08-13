@@ -306,7 +306,8 @@ gtk_source_encoding_lazy_init (void)
  * Gets a #GtkSourceEncoding from a character set such as "UTF-8" or
  * "ISO-8859-1".
  *
- * Returns: the corresponding #GtkSourceEncoding, or %NULL if not found.
+ * Returns: (nullable): the corresponding #GtkSourceEncoding, or %NULL
+ * if not found.
  * Since: 3.14
  */
 const GtkSourceEncoding *

@@ -306,7 +306,7 @@ gtk_source_search_settings_set_search_text (GtkSourceSearchSettings *settings,
  * You may be interested to call gtk_source_utils_escape_search_text() after
  * this function.
  *
- * Returns: the text to search, or %NULL if the search is disabled.
+ * Returns: (nullable): the text to search, or %NULL if the search is disabled.
  * Since: 3.10
  */
 const gchar *

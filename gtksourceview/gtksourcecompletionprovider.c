@@ -160,7 +160,7 @@ gtk_source_completion_provider_get_name (GtkSourceCompletionProvider *provider)
  *
  * Get the icon of the provider.
  *
- * Returns: (transfer none): The icon to be used for the provider,
+ * Returns: (nullable) (transfer none): The icon to be used for the provider,
  *          or %NULL if the provider does not have a special icon.
  */
 GdkPixbuf *
@@ -245,8 +245,9 @@ gtk_source_completion_provider_match (GtkSourceCompletionProvider *provider,
  *   </para>
  * </note>
  *
- * Returns: (transfer none): a custom #GtkWidget to show extra
- * information about @proposal.
+ * Returns: (nullable) (transfer none): a custom #GtkWidget to show extra
+ * information about @proposal, or %NULL if the provider does not have a special
+ * info widget.
  */
 GtkWidget *
 gtk_source_completion_provider_get_info_widget (GtkSourceCompletionProvider *provider,

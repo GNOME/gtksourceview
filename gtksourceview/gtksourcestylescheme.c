@@ -317,7 +317,7 @@ gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_description:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: @scheme description (if defined), or %NULL.
+ * Returns: (nullable): @scheme description (if defined), or %NULL.
  *
  * Since: 2.0
  */
@@ -333,9 +333,9 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_authors:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: (array zero-terminated=1) (transfer none): a %NULL-terminated
- * array containing the @scheme authors or %NULL if no author
- * is specified by the style scheme.
+ * Returns: (nullable) (array zero-terminated=1) (transfer none): a
+ * %NULL-terminated array containing the @scheme authors or %NULL if
+ * no author is specified by the style scheme.
  *
  * Since: 2.0
  */
@@ -356,8 +356,8 @@ gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
  * gtk_source_style_scheme_get_filename:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: @scheme file name if the scheme was created parsing a
- * style scheme file or %NULL in the other cases.
+ * Returns: (nullable): @scheme file name if the scheme was created
+ * parsing a style scheme file or %NULL in the other cases.
  *
  * Since: 2.0
  */
@@ -496,9 +496,9 @@ fix_style_colors (GtkSourceStyleScheme *scheme,
  * @scheme: a #GtkSourceStyleScheme.
  * @style_id: id of the style to retrieve.
  *
- * Returns: (transfer none): style which corresponds to @style_id
- * in the @scheme, or %NULL when no style with this name found.
- * It is owned by @scheme and may not be unref'ed.
+ * Returns: (nullable) (transfer none): style which corresponds to @style_id in
+ * the @scheme, or %NULL when no style with this name found.  It is owned by
+ * @scheme and may not be unref'ed.
  *
  * Since: 2.0
  */
@@ -1176,8 +1176,8 @@ parse_style_scheme_element (GtkSourceStyleScheme *scheme,
  * _gtk_source_style_scheme_new_from_file:
  * @filename: file to parse.
  *
- * Returns: new #GtkSourceStyleScheme created from file, or
- * %NULL on error.
+ * Returns: (nullable): new #GtkSourceStyleScheme created from file,
+ * or %NULL on error.
  *
  * Since: 2.0
  */
@@ -1257,7 +1257,7 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
  * _gtk_source_style_scheme_get_parent_id:
  * @scheme: a #GtkSourceStyleScheme.
  *
- * Returns: parent style scheme id or %NULL.
+ * Returns: (nullable): parent style scheme id or %NULL.
  *
  * Since: 2.0
  */
