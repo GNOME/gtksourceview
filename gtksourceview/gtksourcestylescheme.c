@@ -792,7 +792,7 @@ get_css_color_style (GtkSourceStyle *style,
 	{
 		gchar *bg_color;
 		bg_color = gdk_rgba_to_string (&color);
-		*bg = g_strdup_printf ("%s: %s;\n", "background-color", bg_color);
+		*bg = g_strdup_printf ("background-color: %s;\n", bg_color);
 		g_free (bg_color);
 	}
 	else
@@ -804,7 +804,7 @@ get_css_color_style (GtkSourceStyle *style,
 	{
 		gchar *text_color;
 		text_color = gdk_rgba_to_string (&color);
-		*text = g_strdup_printf ("%s: %s;\n", "color", text_color);
+		*text = g_strdup_printf ("color: %s;\n", text_color);
 		g_free (text_color);
 	}
 	else

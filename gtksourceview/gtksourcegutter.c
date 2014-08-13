@@ -968,8 +968,6 @@ on_view_draw (GtkSourceView   *view,
 
 	gtk_cairo_transform_to_window (cr, GTK_WIDGET (view), window);
 
-	text_view = GTK_TEXT_VIEW (view);
-
 	if (!gdk_cairo_get_clip_rectangle (cr, &clip))
 	{
 		return FALSE;
@@ -977,6 +975,7 @@ on_view_draw (GtkSourceView   *view,
 
 	gutter->priv->is_drawing = TRUE;
 
+	text_view = GTK_TEXT_VIEW (view);
 	buffer = gtk_text_view_get_buffer (text_view);
 
 	y1 = clip.y;

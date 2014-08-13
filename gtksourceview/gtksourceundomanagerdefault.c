@@ -1,6 +1,6 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*- */
 /*
- * gtksourceundomanager.c
+ * gtksourceundomanagerdefault.c
  * This file is part of GtkSourceView
  *
  * Copyright (C) 1998, 1999 Alex Roberts, Evan Lawrence
@@ -16,7 +16,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
-
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -26,11 +26,12 @@
 #include <config.h>
 #endif
 
+#include "gtksourceundomanagerdefault.h"
+
 #include <glib.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include "gtksourceundomanagerdefault.h"
 #include "gtksourceundomanager.h"
 #include "gtksourceview-i18n.h"
 
@@ -107,6 +108,13 @@ struct _GtkSourceUndoAction
 
 enum
 {
+	PROP_0,
+	PROP_BUFFER,
+	PROP_MAX_UNDO_LEVELS
+};
+
+enum
+{
 	INSERT_TEXT,
 	DELETE_RANGE,
 	BEGIN_USER_ACTION,
@@ -141,41 +149,35 @@ struct _GtkSourceUndoManagerDefaultPrivate
 	guint buffer_signals[NUM_SIGNALS];
 };
 
-/* Properties */
-enum
-{
-	PROP_0,
-	PROP_BUFFER,
-	PROP_MAX_UNDO_LEVELS
-};
+static void insert_text_handler       (GtkTextBuffer               *buffer,
+                                       GtkTextIter                 *pos,
+                                       const gchar                 *text,
+                                       gint                         length,
+                                       GtkSourceUndoManagerDefault *um);
 
-static void insert_text_handler       (GtkTextBuffer             *buffer,
-                                       GtkTextIter               *pos,
-                                       const gchar               *text,
-                                       gint                       length,
-                                       GtkSourceUndoManagerDefault      *um);
+static void delete_range_handler      (GtkTextBuffer               *buffer,
+                                       GtkTextIter                 *start,
+                                       GtkTextIter                 *end,
+                                       GtkSourceUndoManagerDefault *um);
 
-static void delete_range_handler      (GtkTextBuffer             *buffer,
-                                       GtkTextIter               *start,
-                                       GtkTextIter               *end,
-                                       GtkSourceUndoManagerDefault      *um);
+static void begin_user_action_handler (GtkTextBuffer               *buffer,
+                                       GtkSourceUndoManagerDefault *um);
 
-static void begin_user_action_handler (GtkTextBuffer             *buffer,
-                                       GtkSourceUndoManagerDefault      *um);
+static void modified_changed_handler  (GtkTextBuffer               *buffer,
+                                       GtkSourceUndoManagerDefault *um);
 
-static void modified_changed_handler  (GtkTextBuffer             *buffer,
-                                       GtkSourceUndoManagerDefault      *um);
+static void free_action_list          (GtkSourceUndoManagerDefault *um);
 
-static void free_action_list          (GtkSourceUndoManagerDefault      *um);
+static void add_action                (GtkSourceUndoManagerDefault *um,
+                                       const GtkSourceUndoAction   *undo_action);
 
-static void add_action                (GtkSourceUndoManagerDefault      *um,
-                                       const GtkSourceUndoAction *undo_action);
-static void free_first_n_actions      (GtkSourceUndoManagerDefault      *um,
-                                       gint                       n);
-static void check_list_size           (GtkSourceUndoManagerDefault      *um);
+static void free_first_n_actions      (GtkSourceUndoManagerDefault *um,
+                                       gint                         n);
 
-static gboolean merge_action          (GtkSourceUndoManagerDefault      *um,
-                                       const GtkSourceUndoAction *undo_action);
+static void check_list_size           (GtkSourceUndoManagerDefault *um);
+
+static gboolean merge_action          (GtkSourceUndoManagerDefault *um,
+                                       const GtkSourceUndoAction   *undo_action);
 
 static void gtk_source_undo_manager_iface_init (GtkSourceUndoManagerIface *iface);
 
