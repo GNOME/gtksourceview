@@ -214,8 +214,9 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
 EXTRA_DIST = 				\
-	gtksourceview.gresource.xml	\
-	gtksourcecompletion.ui
+	GtkSource-3.0.metadata		\
+	gtksourcecompletion.ui		\
+	gtksourceview.gresource.xml
 
 CLEANFILES = 					\
 	$(BUILT_SOURCES)			\
@@ -253,15 +254,16 @@ GtkSource_3_0_gir_PACKAGES = gtk+-3.0 gdk-3.0
 GtkSource_3_0_gir_EXPORT_PACKAGES = gtksourceview-3.0
 
 girdir = $(datadir)/gir-1.0
-gir_DATA = $(INTROSPECTION_GIRS)
+gir_DATA = GtkSource-3.0.gir
 
 typelibdir = $(libdir)/girepository-1.0
-typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
+typelib_DATA = GtkSource-3.0.typelib
 
-CLEANFILES +=			\
+CLEANFILES +=		\
 	$(gir_DATA)	\
 	$(typelib_DATA)
-endif
+
+endif # HAVE_INTROSPECTION
 
 if ENABLE_VAPIGEN
 -include $(VAPIGEN_MAKEFILE)
@@ -287,11 +289,12 @@ gtksourceview_3_0_vapi_METADATADIRS = $(srcdir)
 gtksourceview_3_0_vapi_FILES = GtkSource-3.0.gir
 
 vapidir = $(datadir)/vala/vapi
-vapi_DATA = $(VAPIGEN_VAPIS) $(VAPIGEN_VAPIS:.vapi=.deps)
+vapi_DATA =			\
+	gtksourceview-3.0.vapi	\
+	gtksourceview-3.0.deps
 
-CLEANFILES +=	$(vapi_DATA)
-endif
+CLEANFILES += $(vapi_DATA)
 
-EXTRA_DIST += GtkSource-3.0.metadata
+endif # ENABLE_VAPIGEN
 
 -include $(top_srcdir)/git.mk
