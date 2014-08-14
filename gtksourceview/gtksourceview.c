@@ -249,7 +249,7 @@ static void	gtk_source_view_get_property		(GObject           *object,
 static void	gtk_source_view_style_updated			(GtkWidget         *widget);
 static void	gtk_source_view_realize			(GtkWidget         *widget);
 static void	gtk_source_view_update_style_scheme		(GtkSourceView     *view);
-static void     gtk_source_view_draw_layer              (GtkWidget         *widget,
+static void	gtk_source_view_draw_layer		(GtkTextView        *view,
 							 GtkTextViewLayer   layer,
 							 cairo_t           *cr);
 
@@ -2341,16 +2341,16 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 }
 
 static void
-gtk_source_view_draw_layer (GtkWidget *widget,
+gtk_source_view_draw_layer (GtkTextView *text_view,
 			    GtkTextViewLayer layer,
 			    cairo_t *cr)
 {
+	GtkWidget *widget;
 	GtkSourceView *view;
-	GtkTextView *text_view;
 	double clip_x1, clip_y1, clip_x2, clip_y2;
 
-	view = GTK_SOURCE_VIEW (widget);
-	text_view = GTK_TEXT_VIEW (widget);
+	widget = GTK_WIDGET (text_view);
+	view = GTK_SOURCE_VIEW (text_view);
 
 	cairo_save (cr);
 
