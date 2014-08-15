@@ -31,20 +31,6 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_ENCODING (gtk_source_encoding_get_type ())
 
-/**
- * GtkSourceEncodingForeachFunc:
- * @encoding: a #GtkSourceEncoding.
- * @userdata: user data.
- *
- * Specifies the type of function passed to gtk_source_encoding_foreach(). The
- * function is called with each encoding, together with the user data passed
- * to gtk_source_encoding_foreach().
- *
- * Since: 3.14
- */
-typedef void (*GtkSourceEncodingForeachFunc) (const GtkSourceEncoding *encoding,
-					      gpointer                 userdata);
-
 GType			 gtk_source_encoding_get_type		(void) G_GNUC_CONST;
 
 const GtkSourceEncoding	*gtk_source_encoding_get_from_charset	(const gchar             *charset);
@@ -57,8 +43,7 @@ const gchar		*gtk_source_encoding_get_charset	(const GtkSourceEncoding *enc);
 const GtkSourceEncoding	*gtk_source_encoding_get_utf8		(void);
 const GtkSourceEncoding	*gtk_source_encoding_get_current	(void);
 
-void			 gtk_source_encoding_foreach		(GtkSourceEncodingForeachFunc func,
-								 gpointer                     user_data);
+GSList			*gtk_source_encoding_get_all		(void);
 
 /* These should not be used, they are just to make python bindings happy */
 GtkSourceEncoding	*gtk_source_encoding_copy		(const GtkSourceEncoding *enc);

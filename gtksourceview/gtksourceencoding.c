@@ -342,26 +342,28 @@ gtk_source_encoding_get_from_charset (const gchar *charset)
 }
 
 /**
- * gtk_source_encoding_foreach:
- * @func: (scope call): the function to call for each encoding
- * @user_data: user data to pass to the function
+ * gtk_source_encoding_get_all:
  *
- * Calls a function for each encoding.
+ * Gets all encodings.
  *
+ * Returns: (transfer container) (element-type GtkSource.Encoding): a list of
+ * all #GtkSourceEncoding's. Free with g_slist_free().
  * Since: 3.14
  */
-void
-gtk_source_encoding_foreach (GtkSourceEncodingForeachFunc func,
-			     gpointer                     user_data)
+GSList *
+gtk_source_encoding_get_all (void)
 {
+	GSList *all = NULL;
 	gint i;
 
-	func (&utf8_encoding, user_data);
-
-	for (i = 0; i < GTK_SOURCE_ENCODING_LAST; i++)
+	for (i = GTK_SOURCE_ENCODING_LAST - 1; i >= 0; i--)
 	{
-		func (&encodings[i], user_data);
+		all = g_slist_prepend (all, (gpointer) &encodings[i]);
 	}
+
+	all = g_slist_prepend (all, (gpointer) &utf8_encoding);
+
+	return all;
 }
 
 /**
