@@ -1412,13 +1412,7 @@ move_to_last_char (GtkTextView *text_view,
 		if (!g_unichar_isspace (c))
 		{
 			/* We've gone one cursor position too far. */
-			if (!gtk_text_iter_forward_visible_cursor_position (iter))
-			{
-				/* There is some kind of bug where it won't move
-				   to the last cursor position... */
-				gtk_text_iter_forward_to_end (iter);
-			}
-
+			gtk_text_iter_forward_visible_cursor_position (iter);
 			break;
 		}
 	}
