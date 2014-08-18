@@ -6,7 +6,7 @@
 # Hendrik Brandt <heb@gnome-de.org>, 2007.
 # Philipp Kerling <k.philipp@gmail.com>, 2008.
 # Andre Klapper <ak-47@gmx.net>, 2008.
-# Wolfgang Stöggl <c72578@yahoo.de>, 2009, 2011-2013.
+# Wolfgang Stöggl <c72578@yahoo.de>, 2009, 2011-2014.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2010-2013.
 # Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>, 2012.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010-2012.
@@ -16,16 +16,16 @@ msgstr ""
 "Project-Id-Version: GtkSourceView master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-05-18 20:56+0000\n"
-"PO-Revision-Date: 2014-05-21 10:58+0100\n"
-"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"POT-Creation-Date: 2014-08-06 21:06+0000\n"
+"PO-Revision-Date: 2014-08-18 07:24+0100\n"
+"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.6.7\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -1270,9 +1270,8 @@ msgid "DPatch"
 msgstr "DPatch"
 
 #: ../data/language-specs/dpatch.lang.h:3
-#, fuzzy
 msgid "Patch Start"
-msgstr "patch-start"
+msgstr "Patch-Start"
 
 #: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
 msgid "DTD"
@@ -1844,9 +1843,8 @@ msgid "Inline Math Mode"
 msgstr "Eingebetteter mathematischer Modus"
 
 #: ../data/language-specs/latex.lang.h:6
-#, fuzzy
 msgid "Math Boundary"
-msgstr "Mathematischer Modus"
+msgstr "Mathematischer Rand"
 
 #: ../data/language-specs/latex.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:11
@@ -1879,10 +1877,8 @@ msgid "SubSection Heading"
 msgstr "Unterabschnittsüberschrift"
 
 #: ../data/language-specs/latex.lang.h:15
-#, fuzzy
-#| msgid "Exception Handling"
 msgid "SubSubSection Heading"
-msgstr "Ausnahmenbehandlung"
+msgstr "Überschrift eines Unterunterabschnitts"
 
 #: ../data/language-specs/latex.lang.h:16
 msgid "Paragraph Heading"
@@ -1893,7 +1889,6 @@ msgid "SubParagraph Heading"
 msgstr "Unterabsatzüberschrift"
 
 #: ../data/language-specs/lex.lang.h:2
-#| msgid "Hex"
 msgid "Lex"
 msgstr "Lex"
 
@@ -1909,9 +1904,10 @@ msgstr "Ausdruck"
 msgid "libtool"
 msgstr "libtool"
 
+# LLVM-Zwischensprache (LLVM Intermediate Representation, LLVM IR)
 #: ../data/language-specs/llvm.lang.h:2
 msgid "LLVM IR"
-msgstr ""
+msgstr "LLVM IR"
 
 #: ../data/language-specs/llvm.lang.h:7
 msgid "Constants"
@@ -2491,10 +2487,10 @@ msgstr "Wechseln"
 msgid "Email"
 msgstr "E-Mail"
 
+# reStructuredText (kurz ReST, reST oder RST) ist eine vereinfachte Auszeichnungssprache (Markup) mit dem Ziel, in der reinen Textform besonders gut lesbar zu sein
 #: ../data/language-specs/rst.lang.h:2
-#, fuzzy
 msgid "reStructuredText"
-msgstr "Strukturierende Elemente"
+msgstr "reStructuredText"
 
 #: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
 msgid "Directive"
@@ -2539,6 +2535,7 @@ msgstr "Eingebaut"
 msgid "XML Tag"
 msgstr "XML-Tag"
 
+# Programmiersprache Scheme (eine LISP-Variante)
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "Scheme"
@@ -2588,7 +2585,7 @@ msgstr "Standard-ML"
 
 #: ../data/language-specs/sml.lang.h:13
 msgid "Module name, Variant, etc"
-msgstr "Modulename, Variante usw."
+msgstr "Modulname, Variante usw."
 
 #: ../data/language-specs/sparql.lang.h:2
 msgid "SPARQL"
@@ -2624,7 +2621,7 @@ msgstr "Unbekannt"
 
 #: ../data/language-specs/sweave.lang.h:2
 msgid "Sweave"
-msgstr ""
+msgstr "Sweave"
 
 #: ../data/language-specs/systemverilog.lang.h:2
 msgid "SystemVerilog"
