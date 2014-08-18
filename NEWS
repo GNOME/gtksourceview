@@ -1,3 +1,14 @@
+News in 3.13.90
+---------------
+* Adjustments to the file loading and saving API:
+  - Make gtk_source_encoding_get_default_candidates() private
+  - Replace gtk_source_encoding_foreach() by gtk_source_encoding_get_all()
+  The file loading and saving API can be considered stable now.
+
+* Add Vala bindings
+* Various other improvements
+* Translation updates
+
 News in 3.13.3
 --------------
 * Extend the api to obtain candidate encodings
