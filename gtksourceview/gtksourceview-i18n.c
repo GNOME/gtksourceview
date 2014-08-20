@@ -23,13 +23,57 @@
 #include <config.h>
 #endif
 
-#ifdef OS_OSX
-#include <gtkosxapplication.h>
-#endif
-
 #include <string.h>
 
 #include "gtksourceview-i18n.h"
+
+#ifdef OS_OSX
+
+#include <Cocoa/Cocoa.h>
+
+static gchar *
+dirs_os_x_get_bundle_resource_dir ()
+{
+  NSAutoreleasePool *pool;
+  gchar *str = NULL;
+  NSString *path;
+
+  pool = [[NSAutoreleasePool alloc] init];
+  path = [[NSBundle mainBundle] resourcePath];
+
+  if (!path)
+    {
+      [pool release];
+      return NULL;
+    }
+
+  str = g_strdup ([path UTF8String]);
+  [pool release];
+  return str;
+}
+
+static gchar *
+dirs_os_x_get_locale_dir ()
+{
+  gchar *res_dir;
+  gchar *ret;
+
+  res_dir = dirs_os_x_get_bundle_resource_dir ();
+
+  if (res_dir == NULL)
+    {
+      ret = g_build_filename (DATADIR, "locale", NULL);
+    }
+  else
+    {
+      ret = g_build_filename (res_dir, "share", "locale", NULL);
+      g_free (res_dir);
+    }
+
+  return ret;
+}
+
+#endif
 
 static gchar *
 get_locale_dir (void)
@@ -45,14 +89,7 @@ get_locale_dir (void)
 
 	g_free (win32_dir);
 #elif defined (OS_OSX)
-	if (gtkosx_application_get_bundle_id () != NULL)
-	{
-		locale_dir = g_build_filename (gtkosx_application_get_resource_path (), "share", "locale", NULL);
-	}
-	else
-	{
-		locale_dir = g_build_filename (DATADIR, "locale", NULL);
-	}
+	locale_dir = dirs_os_x_get_locale_dir ();
 #else
 	locale_dir = g_build_filename (DATADIR, "locale", NULL);
 #endif

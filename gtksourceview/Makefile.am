@@ -145,6 +145,11 @@ libgtksourceview_core_la_LDFLAGS =	\
 	-no-undefined 			\
 	$(CODE_COVERAGE_LDFLAGS)
 
+if OS_OSX
+libgtksourceview_core_la_CFLAGS += -xobjective-c
+libgtksourceview_core_la_LDFLAGS += -framework Cocoa
+endif
+
 # The real library
 lib_LTLIBRARIES = libgtksourceview-3.0.la
 
