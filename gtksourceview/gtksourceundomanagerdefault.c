@@ -28,14 +28,12 @@
 
 #include "gtksourceundomanagerdefault.h"
 
-#include <glib.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "gtksourceundomanager.h"
 #include "gtksourceview-i18n.h"
 
-#define DEFAULT_MAX_UNDO_LEVELS		-1
+#define DEFAULT_MAX_UNDO_LEVELS -1
 
 /*
  * The old code which used a GSList and g_slist_nth_element
@@ -48,9 +46,9 @@
  * structures or something.
  */
 
-typedef struct _GtkSourceUndoAction  			GtkSourceUndoAction;
-typedef struct _GtkSourceUndoInsertAction		GtkSourceUndoInsertAction;
-typedef struct _GtkSourceUndoDeleteAction		GtkSourceUndoDeleteAction;
+typedef struct _GtkSourceUndoAction		GtkSourceUndoAction;
+typedef struct _GtkSourceUndoInsertAction	GtkSourceUndoInsertAction;
+typedef struct _GtkSourceUndoDeleteAction	GtkSourceUndoDeleteAction;
 
 typedef enum
 {
@@ -58,25 +56,24 @@ typedef enum
 	GTK_SOURCE_UNDO_ACTION_DELETE
 } GtkSourceUndoActionType;
 
-/*
- * We use offsets instead of GtkTextIters because the last ones
- * require to much memory in this context without giving us any advantage.
+/* We use offsets instead of GtkTextMarks because the latter require too much
+ * memory in this context without giving us any advantage.
  */
 
 struct _GtkSourceUndoInsertAction
 {
-	gint   pos;
+	gint pos;
 	gchar *text;
-	gint   length;
-	gint   chars;
+	gint length;
+	gint chars;
 };
 
 struct _GtkSourceUndoDeleteAction
 {
-	gint      start;
-	gint      end;
-	gchar    *text;
-	gboolean  forward;
+	gint start;
+	gint end;
+	gchar *text;
+	guint forward : 1;
 };
 
 struct _GtkSourceUndoAction
@@ -85,8 +82,8 @@ struct _GtkSourceUndoAction
 
 	union
 	{
-		GtkSourceUndoInsertAction  insert;
-		GtkSourceUndoDeleteAction  delete;
+		GtkSourceUndoInsertAction insert;
+		GtkSourceUndoDeleteAction delete;
 	} action;
 
 	gint selection_insert;
@@ -103,7 +100,7 @@ struct _GtkSourceUndoAction
 	 * action of a group can be marked as modified.
 	 * There can be a single action marked as "modified" in the actions list.
 	 */
-	guint modified  : 1;
+	guint modified : 1;
 };
 
 enum
@@ -189,9 +186,7 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceUndoManagerDefault, gtk_source_undo_manager_de
 static void
 gtk_source_undo_manager_default_finalize (GObject *object)
 {
-	GtkSourceUndoManagerDefault *manager;
-
-	manager = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
+	GtkSourceUndoManagerDefault *manager = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
 
 	free_action_list (manager);
 	g_ptr_array_free (manager->priv->actions, TRUE);
@@ -330,9 +325,7 @@ set_max_undo_levels (GtkSourceUndoManagerDefault *manager,
 static void
 gtk_source_undo_manager_default_dispose (GObject *object)
 {
-	GtkSourceUndoManagerDefault *manager;
-
-	manager = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
+	GtkSourceUndoManagerDefault *manager = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
 
 	if (manager->priv->buffer != NULL)
 	{
@@ -349,20 +342,21 @@ gtk_source_undo_manager_default_set_property (GObject      *object,
                                               const GValue *value,
                                               GParamSpec   *pspec)
 {
-	GtkSourceUndoManagerDefault *self = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
+	GtkSourceUndoManagerDefault *manager = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
 
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			set_buffer (self, g_value_get_object (value));
-		break;
+			set_buffer (manager, g_value_get_object (value));
+			break;
+
 		case PROP_MAX_UNDO_LEVELS:
-			gtk_source_undo_manager_default_set_max_undo_levels (self,
-			                                                     g_value_get_int (value));
-		break;
+			gtk_source_undo_manager_default_set_max_undo_levels (manager, g_value_get_int (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-		break;
+			break;
 	}
 }
 
@@ -372,19 +366,21 @@ gtk_source_undo_manager_default_get_property (GObject    *object,
                                               GValue     *value,
                                               GParamSpec *pspec)
 {
-	GtkSourceUndoManagerDefault *self = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
+	GtkSourceUndoManagerDefault *manager = GTK_SOURCE_UNDO_MANAGER_DEFAULT (object);
 
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			g_value_set_object (value, self->priv->buffer);
-		break;
+			g_value_set_object (value, manager->priv->buffer);
+			break;
+
 		case PROP_MAX_UNDO_LEVELS:
-			g_value_set_int (value, self->priv->max_undo_levels);
-		break;
+			g_value_set_int (value, manager->priv->max_undo_levels);
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-		break;
+			break;
 	}
 }
 
@@ -402,17 +398,16 @@ gtk_source_undo_manager_default_class_init (GtkSourceUndoManagerDefaultClass *kl
 	g_object_class_install_property (object_class,
 	                                 PROP_BUFFER,
 	                                 g_param_spec_object ("buffer",
-	                                                      _("Buffer"),
-	                                                      _("The text buffer to add undo support on"),
+	                                                      "Buffer",
+	                                                      "The text buffer to add undo support on",
 	                                                      GTK_TYPE_TEXT_BUFFER,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_MAX_UNDO_LEVELS,
 	                                 g_param_spec_int ("max-undo-levels",
-	                                                   _("Maximum Undo Levels"),
-	                                                   _("Number of undo levels for "
-							     "the buffer"),
+	                                                   "Maximum Undo Levels",
+	                                                   "Number of undo levels for the buffer",
 	                                                   -1,
 	                                                   G_MAXINT,
 	                                                   DEFAULT_MAX_UNDO_LEVELS,
