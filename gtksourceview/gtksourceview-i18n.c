@@ -34,43 +34,43 @@
 static gchar *
 dirs_os_x_get_bundle_resource_dir (void)
 {
-  NSAutoreleasePool *pool;
-  gchar *str = NULL;
-  NSString *path;
+	NSAutoreleasePool *pool;
+	gchar *str = NULL;
+	NSString *path;
 
-  pool = [[NSAutoreleasePool alloc] init];
-  path = [[NSBundle mainBundle] resourcePath];
+	pool = [[NSAutoreleasePool alloc] init];
+	path = [[NSBundle mainBundle] resourcePath];
 
-  if (!path)
-    {
-      [pool release];
-      return NULL;
-    }
+	if (!path)
+	{
+		[pool release];
+		return NULL;
+	}
 
-  str = g_strdup ([path UTF8String]);
-  [pool release];
-  return str;
+	str = g_strdup ([path UTF8String]);
+	[pool release];
+	return str;
 }
 
 static gchar *
 dirs_os_x_get_locale_dir (void)
 {
-  gchar *res_dir;
-  gchar *ret;
+	gchar *res_dir;
+	gchar *ret;
 
-  res_dir = dirs_os_x_get_bundle_resource_dir ();
+	res_dir = dirs_os_x_get_bundle_resource_dir ();
 
-  if (res_dir == NULL)
-    {
-      ret = g_build_filename (DATADIR, "locale", NULL);
-    }
-  else
-    {
-      ret = g_build_filename (res_dir, "share", "locale", NULL);
-      g_free (res_dir);
-    }
+	if (res_dir == NULL)
+	{
+		ret = g_build_filename (DATADIR, "locale", NULL);
+	}
+	else
+	{
+		ret = g_build_filename (res_dir, "share", "locale", NULL);
+		g_free (res_dir);
+	}
 
-  return ret;
+	return ret;
 }
 
 #endif
