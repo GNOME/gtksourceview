@@ -135,22 +135,22 @@ struct _GtkSourceUndoManagerDefaultPrivate
 	GtkSourceUndoAction *modified_action;
 };
 
-static void insert_text_handler       (GtkTextBuffer               *buffer,
+static void insert_text_cb            (GtkTextBuffer               *buffer,
                                        GtkTextIter                 *pos,
                                        const gchar                 *text,
                                        gint                         length,
-                                       GtkSourceUndoManagerDefault *um);
+                                       GtkSourceUndoManagerDefault *manager);
 
-static void delete_range_handler      (GtkTextBuffer               *buffer,
+static void delete_range_cb           (GtkTextBuffer               *buffer,
                                        GtkTextIter                 *start,
                                        GtkTextIter                 *end,
-                                       GtkSourceUndoManagerDefault *um);
+                                       GtkSourceUndoManagerDefault *manager);
 
-static void begin_user_action_handler (GtkTextBuffer               *buffer,
-                                       GtkSourceUndoManagerDefault *um);
+static void begin_user_action_cb      (GtkTextBuffer               *buffer,
+                                       GtkSourceUndoManagerDefault *manager);
 
-static void modified_changed_handler  (GtkTextBuffer               *buffer,
-                                       GtkSourceUndoManagerDefault *um);
+static void modified_changed_cb       (GtkTextBuffer               *buffer,
+                                       GtkSourceUndoManagerDefault *manager);
 
 static void free_action_list          (GtkSourceUndoManagerDefault *um);
 
@@ -229,25 +229,25 @@ set_buffer (GtkSourceUndoManagerDefault *manager,
 
 	g_signal_connect_object (buffer,
 				 "insert-text",
-				 G_CALLBACK (insert_text_handler),
+				 G_CALLBACK (insert_text_cb),
 				 manager,
 				 0);
 
 	g_signal_connect_object (buffer,
 				 "delete-range",
-				 G_CALLBACK (delete_range_handler),
+				 G_CALLBACK (delete_range_cb),
 				 manager,
 				 0);
 
 	g_signal_connect_object (buffer,
 				 "begin-user-action",
-				 G_CALLBACK (begin_user_action_handler),
+				 G_CALLBACK (begin_user_action_cb),
 				 manager,
 				 0);
 
 	g_signal_connect_object (buffer,
 				 "modified-changed",
-				 G_CALLBACK (modified_changed_handler),
+				 G_CALLBACK (modified_changed_cb),
 				 manager,
 				 0);
 }
@@ -860,11 +860,11 @@ free_action_list (GtkSourceUndoManagerDefault *um)
 }
 
 static void
-insert_text_handler (GtkTextBuffer               *buffer,
-                     GtkTextIter                 *pos,
-                     const gchar                 *text,
-                     gint                         length,
-                     GtkSourceUndoManagerDefault *manager)
+insert_text_cb (GtkTextBuffer               *buffer,
+		GtkTextIter                 *pos,
+		const gchar                 *text,
+		gint                         length,
+		GtkSourceUndoManagerDefault *manager)
 {
 	GtkSourceUndoAction undo_action;
 
@@ -892,10 +892,10 @@ insert_text_handler (GtkTextBuffer               *buffer,
 }
 
 static void
-delete_range_handler (GtkTextBuffer               *buffer,
-                      GtkTextIter                 *start,
-                      GtkTextIter                 *end,
-                      GtkSourceUndoManagerDefault *um)
+delete_range_cb (GtkTextBuffer               *buffer,
+		 GtkTextIter                 *start,
+		 GtkTextIter                 *end,
+		 GtkSourceUndoManagerDefault *um)
 {
 	GtkSourceUndoAction undo_action;
 	GtkTextIter insert_iter;
@@ -940,8 +940,8 @@ delete_range_handler (GtkTextBuffer               *buffer,
 }
 
 static void
-begin_user_action_handler (GtkTextBuffer               *buffer,
-                           GtkSourceUndoManagerDefault *um)
+begin_user_action_cb (GtkTextBuffer               *buffer,
+		      GtkSourceUndoManagerDefault *um)
 {
 	if (um->priv->running_not_undoable_actions > 0)
 		return;
@@ -1192,8 +1192,8 @@ merge_action (GtkSourceUndoManagerDefault *um,
 }
 
 static void
-modified_changed_handler (GtkTextBuffer               *buffer,
-                          GtkSourceUndoManagerDefault *manager)
+modified_changed_cb (GtkTextBuffer               *buffer,
+		     GtkSourceUndoManagerDefault *manager)
 {
 	GtkSourceUndoAction *action;
 	gint idx;
