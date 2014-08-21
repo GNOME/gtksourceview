@@ -25,7 +25,7 @@
 	D Language specification
 
 	Reference:
-		http://www.digitalmars.com/d/lex.html
+		http://dlang.org/type.html
 -->
 <language id="d" _name="D" version="2.0" _section="Source">
   <metadata>
@@ -146,6 +146,7 @@
       <keyword>private</keyword>
       <keyword>protected</keyword>
       <keyword>public</keyword>
+      <keyword>ref</keyword>
       <keyword>return</keyword>
       <keyword>scope</keyword>
       <keyword>super</keyword>
@@ -162,6 +163,7 @@
       <keyword>with</keyword>
 
       <!-- added in D2 -->
+      <keyword>lazy</keyword>
       <keyword>pure</keyword>
       <keyword>nothrow</keyword>
     </context>
@@ -190,8 +192,10 @@
       <keyword>long</keyword>
       <keyword>module</keyword>
       <keyword>package</keyword>
+      <keyword>ptrdiff_t</keyword>
       <keyword>real</keyword>
       <keyword>short</keyword>
+      <keyword>size_t</keyword>
       <keyword>struct</keyword>
       <keyword>template</keyword>
       <keyword>typedef</keyword>
@@ -213,15 +217,24 @@
 
       <!-- added in D2 -->
       <keyword>__gshared</keyword>
+      <keyword>__traits</keyword>
+      <keyword>__vector</keyword>
+      <keyword>__parameters</keyword>
       <keyword>shared</keyword>
+      <keyword>string</keyword>
+      <keyword>dstring</keyword>
+      <keyword>wstring</keyword>
       <keyword>immutable</keyword>
     </context>
 
     <context id="special-tokens" style-ref="special-token">
       <keyword>#line</keyword>
-      <keyword>__FILE__</keyword>
-      <keyword>__LINE__</keyword>
       <keyword>__DATE__</keyword>
+      <keyword>__FILE__</keyword>
+      <keyword>__FUNCTION__</keyword>
+      <keyword>__LINE__</keyword>
+      <keyword>__MODULE__</keyword>
+      <keyword>__PRETTY_FUNCTION__</keyword>
       <keyword>__TIME__</keyword>
       <keyword>__TIMESTAMP__</keyword>
       <keyword>__VENDOR__</keyword>
