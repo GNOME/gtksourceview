@@ -110,15 +110,6 @@ enum
 	PROP_MAX_UNDO_LEVELS
 };
 
-enum
-{
-	INSERT_TEXT,
-	DELETE_RANGE,
-	BEGIN_USER_ACTION,
-	MODIFIED_CHANGED,
-	NUM_SIGNALS
-};
-
 struct _GtkSourceUndoManagerDefaultPrivate
 {
 	GtkTextBuffer *buffer;
@@ -142,8 +133,6 @@ struct _GtkSourceUndoManagerDefaultPrivate
 	/* Pointer to the action (in the action list) marked as "modified".
 	 * It is NULL when no action is marked as "modified". */
 	GtkSourceUndoAction *modified_action;
-
-	guint buffer_signals[NUM_SIGNALS];
 };
 
 static void insert_text_handler       (GtkTextBuffer               *buffer,
@@ -225,60 +214,42 @@ static void
 set_buffer (GtkSourceUndoManagerDefault *manager,
             GtkTextBuffer               *buffer)
 {
-	if (buffer == manager->priv->buffer)
+	g_assert (manager->priv->buffer == NULL);
+
+	if (buffer == NULL)
 	{
 		return;
 	}
 
-	clear_undo (manager);
+	manager->priv->buffer = buffer;
 
-	if (manager->priv->buffer != NULL)
-	{
-		gint i;
+	g_object_weak_ref (G_OBJECT (buffer),
+			   (GWeakNotify)buffer_notify,
+			   manager);
 
-		for (i = 0; i < NUM_SIGNALS; ++i)
-		{
-			g_signal_handler_disconnect (manager->priv->buffer,
-			                             manager->priv->buffer_signals[i]);
-		}
+	g_signal_connect_object (buffer,
+				 "insert-text",
+				 G_CALLBACK (insert_text_handler),
+				 manager,
+				 0);
 
-		g_object_weak_unref (G_OBJECT (manager->priv->buffer),
-		                     (GWeakNotify)buffer_notify,
-		                     manager);
-		manager->priv->buffer = NULL;
-	}
+	g_signal_connect_object (buffer,
+				 "delete-range",
+				 G_CALLBACK (delete_range_handler),
+				 manager,
+				 0);
 
-	if (buffer != NULL)
-	{
-		manager->priv->buffer = buffer;
-		g_object_weak_ref (G_OBJECT (buffer),
-		                   (GWeakNotify)buffer_notify,
-		                   manager);
+	g_signal_connect_object (buffer,
+				 "begin-user-action",
+				 G_CALLBACK (begin_user_action_handler),
+				 manager,
+				 0);
 
-		manager->priv->buffer_signals[INSERT_TEXT] =
-			g_signal_connect (buffer,
-			                  "insert-text",
-			                  G_CALLBACK (insert_text_handler),
-			                  manager);
-
-		manager->priv->buffer_signals[DELETE_RANGE] =
-			g_signal_connect (buffer,
-			                  "delete-range",
-			                  G_CALLBACK (delete_range_handler),
-			                  manager);
-
-		manager->priv->buffer_signals[BEGIN_USER_ACTION] =
-			g_signal_connect (buffer,
-			                  "begin-user-action",
-			                  G_CALLBACK (begin_user_action_handler),
-			                  manager);
-
-		manager->priv->buffer_signals[MODIFIED_CHANGED] =
-			g_signal_connect (buffer,
-			                  "modified-changed",
-			                  G_CALLBACK (modified_changed_handler),
-			                  manager);
-	}
+	g_signal_connect_object (buffer,
+				 "modified-changed",
+				 G_CALLBACK (modified_changed_handler),
+				 manager,
+				 0);
 }
 
 static void
@@ -329,8 +300,13 @@ gtk_source_undo_manager_default_dispose (GObject *object)
 
 	if (manager->priv->buffer != NULL)
 	{
-		/* Clear the buffer */
-		set_buffer (manager, NULL);
+		clear_undo (manager);
+
+		g_object_weak_unref (G_OBJECT (manager->priv->buffer),
+		                     (GWeakNotify)buffer_notify,
+		                     manager);
+
+		manager->priv->buffer = NULL;
 	}
 
 	G_OBJECT_CLASS (gtk_source_undo_manager_default_parent_class)->dispose (object);
@@ -415,10 +391,11 @@ gtk_source_undo_manager_default_class_init (GtkSourceUndoManagerDefaultClass *kl
 }
 
 static void
-gtk_source_undo_manager_default_init (GtkSourceUndoManagerDefault *um)
+gtk_source_undo_manager_default_init (GtkSourceUndoManagerDefault *manager)
 {
-	um->priv = gtk_source_undo_manager_default_get_instance_private (um);
-	um->priv->actions = g_ptr_array_new ();
+	manager->priv = gtk_source_undo_manager_default_get_instance_private (manager);
+	manager->priv->actions = g_ptr_array_new ();
+	manager->priv->next_redo = -1;
 }
 
 static void
