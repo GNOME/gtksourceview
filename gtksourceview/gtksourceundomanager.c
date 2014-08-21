@@ -99,8 +99,6 @@ gtk_source_undo_manager_end_not_undoable_action_default (GtkSourceUndoManager *m
 static void
 gtk_source_undo_manager_default_init (GtkSourceUndoManagerIface *iface)
 {
-	static gboolean initialized = FALSE;
-
 	iface->can_undo = gtk_source_undo_manager_can_undo_default;
 	iface->can_redo = gtk_source_undo_manager_can_redo_default;
 
@@ -110,19 +108,17 @@ gtk_source_undo_manager_default_init (GtkSourceUndoManagerIface *iface)
 	iface->begin_not_undoable_action = gtk_source_undo_manager_begin_not_undoable_action_default;
 	iface->end_not_undoable_action = gtk_source_undo_manager_end_not_undoable_action_default;
 
-	if (!initialized)
-	{
-		/**
-		 * GtkSourceUndoManager::can-undo-changed:
-		 * @manager: The #GtkSourceUndoManager
-		 *
-		 * Emitted when the ability to undo has changed.
-		 *
-		 * Since: 2.10
-		 *
-		 */
-		signals[CAN_UNDO_CHANGED] =
-			g_signal_new ("can-undo-changed",
+	/**
+	 * GtkSourceUndoManager::can-undo-changed:
+	 * @manager: The #GtkSourceUndoManager
+	 *
+	 * Emitted when the ability to undo has changed.
+	 *
+	 * Since: 2.10
+	 *
+	 */
+	signals[CAN_UNDO_CHANGED] =
+		g_signal_new ("can-undo-changed",
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceUndoManagerIface, can_undo_changed),
@@ -130,26 +126,23 @@ gtk_source_undo_manager_default_init (GtkSourceUndoManagerIface *iface)
 			      G_TYPE_NONE,
 			      0);
 
-		/**
-		 * GtkSourceUndoManager::can-redo-changed:
-		 * @manager: The #GtkSourceUndoManager
-		 *
-		 * Emitted when the ability to redo has changed.
-		 *
-		 * Since: 2.10
-		 *
-		 */
-		signals[CAN_REDO_CHANGED] =
-			g_signal_new ("can-redo-changed",
+	/**
+	 * GtkSourceUndoManager::can-redo-changed:
+	 * @manager: The #GtkSourceUndoManager
+	 *
+	 * Emitted when the ability to redo has changed.
+	 *
+	 * Since: 2.10
+	 *
+	 */
+	signals[CAN_REDO_CHANGED] =
+		g_signal_new ("can-redo-changed",
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceUndoManagerIface, can_redo_changed),
 			      NULL, NULL, NULL,
 			      G_TYPE_NONE,
 			      0);
-
-		initialized = TRUE;
-	}
 }
 
 /**
