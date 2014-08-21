@@ -32,7 +32,7 @@
 #include <Cocoa/Cocoa.h>
 
 static gchar *
-dirs_os_x_get_bundle_resource_dir ()
+dirs_os_x_get_bundle_resource_dir (void)
 {
   NSAutoreleasePool *pool;
   gchar *str = NULL;
@@ -53,7 +53,7 @@ dirs_os_x_get_bundle_resource_dir ()
 }
 
 static gchar *
-dirs_os_x_get_locale_dir ()
+dirs_os_x_get_locale_dir (void)
 {
   gchar *res_dir;
   gchar *ret;
