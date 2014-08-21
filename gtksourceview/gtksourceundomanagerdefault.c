@@ -1050,13 +1050,6 @@ modified_changed_cb (GtkTextBuffer               *buffer,
 }
 
 static void
-buffer_notify (GtkSourceUndoManagerDefault *manager,
-               gpointer                     where_the_object_was)
-{
-	manager->priv->buffer = NULL;
-}
-
-static void
 set_buffer (GtkSourceUndoManagerDefault *manager,
             GtkTextBuffer               *buffer)
 {
@@ -1069,9 +1062,8 @@ set_buffer (GtkSourceUndoManagerDefault *manager,
 
 	manager->priv->buffer = buffer;
 
-	g_object_weak_ref (G_OBJECT (buffer),
-			   (GWeakNotify)buffer_notify,
-			   manager);
+	g_object_add_weak_pointer (G_OBJECT (buffer),
+				   (gpointer *)&manager->priv->buffer);
 
 	g_signal_connect_object (buffer,
 				 "insert-text",
@@ -1107,9 +1099,8 @@ gtk_source_undo_manager_default_dispose (GObject *object)
 	{
 		clear_undo (manager);
 
-		g_object_weak_unref (G_OBJECT (manager->priv->buffer),
-		                     (GWeakNotify)buffer_notify,
-		                     manager);
+		g_object_remove_weak_pointer (G_OBJECT (manager->priv->buffer),
+					      (gpointer *)&manager->priv->buffer);
 
 		manager->priv->buffer = NULL;
 	}
