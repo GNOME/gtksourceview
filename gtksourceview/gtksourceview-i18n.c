@@ -39,6 +39,13 @@ dirs_os_x_get_bundle_resource_dir (void)
 	NSString *path;
 
 	pool = [[NSAutoreleasePool alloc] init];
+
+	if ([[NSBundle mainBundle] bundleIdentifier] == nil)
+	{
+		[pool release];
+		return NULL;
+	}
+
 	path = [[NSBundle mainBundle] resourcePath];
 
 	if (!path)
