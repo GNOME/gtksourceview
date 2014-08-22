@@ -112,9 +112,24 @@ enum
 
 struct _GtkSourceUndoManagerDefaultPrivate
 {
+	/* Weak ref to the buffer. */
 	GtkTextBuffer *buffer;
 
+	/* Array of GtkSourceUndoAction's. The most recent action is at the end
+	 * of the array. But we can be in the middle of the array if there are
+	 * redo actions on the right.
+	 */
 	GPtrArray *actions;
+
+	/* Index of the next redo action. Attention, the index is counted from
+	 * the end of the array:
+	 * - next_redo of -1: there is no redo actions.
+	 * - next_redo of 0: there is one redo action, the last item in
+	 *   'actions'.
+	 * - next_redo of actions->len - 1: there is no undo actions, the next
+	 *   redo action is the first item in 'actions'.
+	 * - the next undo action is located at next_redo + 1.
+	 */
 	gint next_redo;
 
 	gint actions_in_current_group;
@@ -130,8 +145,9 @@ struct _GtkSourceUndoManagerDefaultPrivate
 	 */
 	guint modified_undoing_group : 1;
 
-	/* Pointer to the action (in the action list) marked as "modified".
-	 * It is NULL when no action is marked as "modified". */
+	/* Pointer to the action (in 'actions') marked as "modified".
+	 * It is NULL when no action is marked as "modified".
+	 */
 	GtkSourceUndoAction *modified_action;
 };
 
