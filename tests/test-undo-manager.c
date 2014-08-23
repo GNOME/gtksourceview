@@ -1,8 +1,8 @@
-/*
- * test-undo-manager.c
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
+/* test-undo-manager.c
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2013, 2014 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -24,11 +24,15 @@
 
 static void
 insert_text (GtkSourceBuffer *buffer,
-	     gchar           *text)
+	     const gchar     *text)
 {
-	gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
-	gtk_text_buffer_insert_at_cursor (GTK_TEXT_BUFFER (buffer), text, -1);
-	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (buffer);
+	GtkTextIter iter;
+
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_text_buffer_get_end_iter (text_buffer, &iter);
+	gtk_text_buffer_insert (text_buffer, &iter, text, -1);
+	gtk_text_buffer_end_user_action (text_buffer);
 }
 
 static void
@@ -74,14 +78,15 @@ get_contents (GtkSourceBuffer *buffer)
 }
 
 static void
-check_max_undo_levels (GtkSourceBuffer *buffer)
+check_max_undo_levels (GtkSourceBuffer *buffer,
+		       gboolean         several_user_actions)
 {
 	gint max_levels = gtk_source_buffer_get_max_undo_levels (buffer);
 	gint nb_redos = 0;
 	gint nb_undos = 0;
 	gint i = 0;
 
-	g_assert (max_levels >= 0);
+	g_assert_cmpint (max_levels, >=, 0);
 
 	/* Redo all actions */
 	while (gtk_source_buffer_can_redo (buffer))
@@ -102,7 +107,17 @@ check_max_undo_levels (GtkSourceBuffer *buffer)
 	/* Add max_levels+1 actions */
 	for (i = 0; i <= max_levels; i++)
 	{
-		insert_text (buffer, "foobar\n");
+		if (several_user_actions)
+		{
+			gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
+			insert_text (buffer, "foobar\n");
+			delete_char_at_offset (buffer, 0);
+			gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+		}
+		else
+		{
+			insert_text (buffer, "foobar\n");
+		}
 	}
 
 	/* Check number of possible undos */
@@ -111,7 +126,6 @@ check_max_undo_levels (GtkSourceBuffer *buffer)
 	{
 		gtk_source_buffer_undo (buffer);
 		nb_undos++;
-		g_assert_cmpint (nb_undos, <=, max_levels);
 	}
 
 	g_assert_cmpint (nb_undos, ==, max_levels);
@@ -183,6 +197,10 @@ static void
 test_max_undo_levels (void)
 {
 	GtkSourceBuffer *buffer = gtk_source_buffer_new (NULL);
+
+	/* FIXME max_undo_levels of 0 doesn't work as expected (i.e. undo/redo
+	 * disabled).
+	 */
 #if 0
 	gint min = 0;
 #else
@@ -195,19 +213,22 @@ test_max_undo_levels (void)
 	for (i = min; i <= max; i++)
 	{
 		gtk_source_buffer_set_max_undo_levels (buffer, i);
-		check_max_undo_levels (buffer);
+		check_max_undo_levels (buffer, FALSE);
+		check_max_undo_levels (buffer, TRUE);
 	}
 
 	/* Decrease */
 	for (i = max; i >= min; i--)
 	{
 		gtk_source_buffer_set_max_undo_levels (buffer, i);
-		check_max_undo_levels (buffer);
+		check_max_undo_levels (buffer, FALSE);
+		check_max_undo_levels (buffer, TRUE);
 	}
 
 	/* can redo: TRUE -> FALSE */
 	gtk_source_buffer_set_max_undo_levels (buffer, 3);
-	check_max_undo_levels (buffer);
+	check_max_undo_levels (buffer, FALSE);
+	check_max_undo_levels (buffer, TRUE);
 
 	while (gtk_source_buffer_can_redo (buffer))
 	{
@@ -479,6 +500,104 @@ test_merge_actions (void)
 	g_object_unref (buffer);
 }
 
+static void
+test_several_user_actions (void)
+{
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GList *contents_history = g_list_append (NULL, get_contents (source_buffer));
+	GtkTextIter iter;
+
+	gtk_source_buffer_set_max_undo_levels (source_buffer, -1);
+
+	/* Contiguous insertions */
+	gtk_text_buffer_begin_user_action (text_buffer);
+	insert_text (source_buffer, "hello\n");
+	insert_text (source_buffer, "world\n");
+	gtk_text_buffer_end_user_action (text_buffer);
+
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+	check_contents_history (source_buffer, contents_history);
+
+	/* Non-contiguous insertions */
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, 0);
+	gtk_text_buffer_insert (text_buffer, &iter, "a", -1);
+	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, 2);
+	gtk_text_buffer_insert (text_buffer, &iter, "b", -1);
+	gtk_text_buffer_end_user_action (text_buffer);
+
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+	check_contents_history (source_buffer, contents_history);
+
+	/* Non-contiguous deletions (removes the 'a' and 'b' just inserted). */
+	gtk_text_buffer_begin_user_action (text_buffer);
+	delete_char_at_offset (source_buffer, 2);
+	delete_char_at_offset (source_buffer, 0);
+	gtk_text_buffer_end_user_action (text_buffer);
+
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+	check_contents_history (source_buffer, contents_history);
+
+	/* Contiguous deletions */
+	gtk_text_buffer_begin_user_action (text_buffer);
+	delete_first_line (source_buffer);
+	delete_first_line (source_buffer);
+	gtk_text_buffer_end_user_action (text_buffer);
+
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+	check_contents_history (source_buffer, contents_history);
+
+	/* Mixed insertions/deletions */
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_text_buffer_set_text (text_buffer, "ahbello\n", -1);
+	delete_char_at_offset (source_buffer, 2);
+	delete_char_at_offset (source_buffer, 0);
+	insert_text (source_buffer, "world\n");
+	gtk_text_buffer_end_user_action (text_buffer);
+
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+	check_contents_history (source_buffer, contents_history);
+
+	g_list_free_full (contents_history, g_free);
+	g_object_unref (source_buffer);
+}
+
+static void
+test_modified (void)
+{
+	GtkSourceBuffer *source_buffer;
+	GtkTextBuffer *text_buffer;
+
+	source_buffer = gtk_source_buffer_new (NULL);
+	text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	gtk_source_buffer_set_max_undo_levels (source_buffer, -1);
+
+	gtk_text_buffer_set_modified (text_buffer, FALSE);
+	insert_text (source_buffer, "foo\n");
+
+	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	gtk_source_buffer_undo (source_buffer);
+	g_assert (!gtk_text_buffer_get_modified (text_buffer));
+	gtk_source_buffer_redo (source_buffer);
+	g_assert (gtk_text_buffer_get_modified (text_buffer));
+
+	gtk_text_buffer_set_modified (text_buffer, FALSE);
+	gtk_source_buffer_undo (source_buffer);
+	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	gtk_source_buffer_redo (source_buffer);
+	g_assert (!gtk_text_buffer_get_modified (text_buffer));
+
+	gtk_source_buffer_undo (source_buffer);
+	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	insert_text (source_buffer, "bar\n");
+	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	gtk_source_buffer_undo (source_buffer);
+	g_assert (gtk_text_buffer_get_modified (text_buffer));
+
+	g_object_unref (source_buffer);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -504,6 +623,12 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/UndoManager/test-merge-actions",
 			 test_merge_actions);
+
+	g_test_add_func ("/UndoManager/test-several-user-actions",
+			 test_several_user_actions);
+
+	g_test_add_func ("/UndoManager/test-modified",
+			 test_modified);
 
 	return g_test_run ();
 }
