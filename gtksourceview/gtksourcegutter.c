@@ -957,6 +957,7 @@ on_view_draw (GtkSourceView   *view,
 	gboolean has_selection;
 	gint idx;
 	GtkStyleContext *style_context;
+	const gchar *class;
 	GdkRGBA fg_color;
 
 	window = get_window (gutter);
@@ -1027,6 +1028,30 @@ on_view_draw (GtkSourceView   *view,
 	cell_area.y = background_area.y;
 
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
+
+	gtk_style_context_save (style_context);
+
+	switch (gutter->priv->window_type)
+	{
+		case GTK_TEXT_WINDOW_TOP:
+			class = GTK_STYLE_CLASS_TOP;
+			break;
+		case GTK_TEXT_WINDOW_RIGHT:
+			class = GTK_STYLE_CLASS_RIGHT;
+			break;
+		case GTK_TEXT_WINDOW_BOTTOM:
+			class = GTK_STYLE_CLASS_BOTTOM;
+			break;
+		case GTK_TEXT_WINDOW_LEFT:
+			class = GTK_STYLE_CLASS_LEFT;
+			break;
+		default:
+			g_return_val_if_reached (FALSE);
+	}
+
+	/* Apply classes ourselves, since we are in connect_after and so they
+	 * are not set by gtk */
+	gtk_style_context_add_class (style_context, class);
 
 	gtk_style_context_get_color (style_context,
 	                             gtk_widget_get_state_flags (GTK_WIDGET (view)),
@@ -1217,6 +1242,8 @@ on_view_draw (GtkSourceView   *view,
 	g_array_free (sizes, TRUE);
 
 	gutter->priv->is_drawing = FALSE;
+
+	gtk_style_context_restore (style_context);
 
 	return FALSE;
 }

@@ -636,33 +636,6 @@ _gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
 }
 
 static void
-set_line_numbers_style (GtkWidget      *widget,
-			GtkSourceStyle *style)
-{
-	GdkRGBA *fg_ptr = NULL;
-	GdkRGBA *bg_ptr = NULL;
-	GdkRGBA fg;
-	GdkRGBA bg;
-	GtkStateFlags flags;
-
-	if (get_color (style, TRUE, &fg))
-	{
-		fg_ptr = &fg;
-	}
-
-	if (get_color (style, FALSE, &bg))
-	{
-		bg_ptr = &bg;
-	}
-
-	/* Override the color no matter what the state is */
-	flags = GTK_STATE_FLAG_NORMAL;
-
-	gtk_widget_override_color (widget, flags, fg_ptr);
-	gtk_widget_override_background_color (widget, flags, bg_ptr);
-}
-
-static void
 update_cursor_colors (GtkWidget      *widget,
 		      GtkSourceStyle *style_primary,
 		      GtkSourceStyle *style_secondary)
@@ -738,9 +711,6 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	gtk_style_context_invalidate (context);
 	G_GNUC_END_IGNORE_DEPRECATIONS;
 
-	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
-	set_line_numbers_style (widget, style);
-
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
 	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
 	update_cursor_colors (widget, style, style2);
@@ -773,7 +743,6 @@ _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
 	gtk_style_context_invalidate (context);
 	G_GNUC_END_IGNORE_DEPRECATIONS;
 
-	set_line_numbers_style (widget, NULL);
 	update_cursor_colors (widget, NULL, NULL);
 }
 
@@ -816,20 +785,19 @@ get_css_color_style (GtkSourceStyle *style,
 static void
 append_css_style (GString        *string,
                   GtkSourceStyle *style,
-                  const gchar    *state)
+                  const gchar    *selector)
 {
 	gchar *bg, *text;
 	const gchar css_style[] =
-		".view%s {\n"
+		"%s {\n"
 		"	%s"
 		"	%s"
 		"}\n";
 
 	get_css_color_style (style, &bg, &text);
-
 	if (bg || text)
 	{
-		g_string_append_printf (string, css_style, state,
+		g_string_append_printf (string, css_style, selector,
 		                        bg != NULL ? bg : "",
 		                        text != NULL ? text : "");
 
@@ -847,15 +815,25 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	final_style = g_string_new ("");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
-	append_css_style (final_style, style, "");
+	append_css_style (final_style, style, ".view");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
-	append_css_style (final_style, style, ":selected:focused");
+	append_css_style (final_style, style, ".view:selected:focused");
 
 	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
 	if (style2 == NULL)
 		style2 = style;
-	append_css_style (final_style, style2, ":selected");
+	append_css_style (final_style, style2, ".view:selected");
+
+	/* For now we use "line numbers" colors for all the gutters */
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
+	if (style != NULL)
+	{
+		append_css_style (final_style, style, ".top");
+		append_css_style (final_style, style, ".right");
+		append_css_style (final_style, style, ".bottom");
+		append_css_style (final_style, style, ".left");
+	}
 
 	if (*final_style->str != '\0')
 	{
