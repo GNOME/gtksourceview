@@ -208,17 +208,21 @@ focus_out_event_cb (GtkSourceCompletionInfo *info)
 }
 
 static void
-update_attached_to (GtkSourceCompletionInfo *info)
+set_attached_to (GtkSourceCompletionInfo *info,
+		 GtkWidget               *attached_to)
 {
-	GtkWidget *attached_to = gtk_window_get_attached_to (GTK_WINDOW (info));
-
-	if (info->priv->focus_out_event_handler != 0 &&
-	    info->priv->attached_to != NULL)
+	if (info->priv->attached_to != NULL)
 	{
-		g_signal_handler_disconnect (info->priv->attached_to,
-					     info->priv->focus_out_event_handler);
+		g_object_remove_weak_pointer (G_OBJECT (info->priv->attached_to),
+					      (gpointer *) &info->priv->attached_to);
 
-		info->priv->focus_out_event_handler = 0;
+		if (info->priv->focus_out_event_handler != 0)
+		{
+			g_signal_handler_disconnect (info->priv->attached_to,
+						     info->priv->focus_out_event_handler);
+
+			info->priv->focus_out_event_handler = 0;
+		}
 	}
 
 	info->priv->attached_to = attached_to;
@@ -229,12 +233,19 @@ update_attached_to (GtkSourceCompletionInfo *info)
 	}
 
 	g_object_add_weak_pointer (G_OBJECT (attached_to),
-				   (gpointer) &info->priv->attached_to);
+				   (gpointer *) &info->priv->attached_to);
 
-	info->priv->focus_out_event_handler = g_signal_connect_swapped (attached_to,
-									"focus-out-event",
-									G_CALLBACK (focus_out_event_cb),
-									info);
+	info->priv->focus_out_event_handler =
+		g_signal_connect_swapped (attached_to,
+					  "focus-out-event",
+					  G_CALLBACK (focus_out_event_cb),
+					  info);
+}
+
+static void
+update_attached_to (GtkSourceCompletionInfo *info)
+{
+	set_attached_to (info, gtk_window_get_attached_to (GTK_WINDOW (info)));
 }
 
 static void
@@ -260,23 +271,19 @@ gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 }
 
 static void
-gtk_source_completion_info_finalize (GObject *object)
+gtk_source_completion_info_dispose (GObject *object)
 {
 	GtkSourceCompletionInfo *info = GTK_SOURCE_COMPLETION_INFO (object);
 
 	if (info->priv->idle_resize != 0)
 	{
 		g_source_remove (info->priv->idle_resize);
+		info->priv->idle_resize = 0;
 	}
 
-	if (info->priv->focus_out_event_handler != 0 &&
-	    info->priv->attached_to != NULL)
-	{
-		g_signal_handler_disconnect (info->priv->attached_to,
-					     info->priv->focus_out_event_handler);
-	}
+	set_attached_to (info, NULL);
 
-	G_OBJECT_CLASS (gtk_source_completion_info_parent_class)->finalize (object);
+	G_OBJECT_CLASS (gtk_source_completion_info_parent_class)->dispose (object);
 }
 
 static void
@@ -310,7 +317,7 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 	GtkContainerClass *container_class = GTK_CONTAINER_CLASS (klass);
 
-	object_class->finalize = gtk_source_completion_info_finalize;
+	object_class->dispose = gtk_source_completion_info_dispose;
 
 	widget_class->show = gtk_source_completion_info_show;
 	widget_class->draw = gtk_source_completion_info_draw;
