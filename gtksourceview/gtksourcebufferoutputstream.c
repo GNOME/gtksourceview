@@ -653,7 +653,7 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 
 			apply_error_tag (stream);
 
-			if (nvalid != len && buffer[nvalid] != '\0')
+			if ((nvalid != len || !owned) && buffer[nvalid] != '\0')
 			{
 				/* make sure the buffer is always properly null
 				 * terminated. This is needed, at least for now,
