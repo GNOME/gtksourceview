@@ -49,20 +49,43 @@ delete_first_line (GtkSourceBuffer *buffer)
 	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
 }
 
+/* If forward is FALSE, the Backspace key is simulated. If forward is TRUE, the
+ * Delete key is simulated.
+ */
 static void
-delete_char_at_offset (GtkSourceBuffer *buffer,
-		       gint             offset)
+delete_char_at_offset (GtkSourceBuffer *source_buffer,
+		       gint             offset,
+		       gboolean         forward)
 {
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (source_buffer);
 	GtkTextIter start;
 	GtkTextIter end;
 
-	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &start, offset);
+	gtk_text_buffer_get_iter_at_offset (buffer, &start, offset);
 	end = start;
 	gtk_text_iter_forward_char (&end);
 
-	gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
-	gtk_text_buffer_delete (GTK_TEXT_BUFFER (buffer), &start, &end);
-	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+	if (forward)
+	{
+		gtk_text_buffer_place_cursor (buffer, &start);
+	}
+	else
+	{
+		GtkTextIter start_copy;
+
+		gtk_text_buffer_place_cursor (buffer, &end);
+
+		/* Swap start and end so that start > end, to test if in the
+		 * delete-range callback start and end are reordered.
+		 */
+		start_copy = start;
+		start = end;
+		end = start_copy;
+	}
+
+	gtk_text_buffer_begin_user_action (buffer);
+	gtk_text_buffer_delete (buffer, &start, &end);
+	gtk_text_buffer_end_user_action (buffer);
 }
 
 static gchar *
@@ -111,7 +134,7 @@ check_max_undo_levels (GtkSourceBuffer *buffer,
 		{
 			gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
 			insert_text (buffer, "foobar\n");
-			delete_char_at_offset (buffer, 0);
+			delete_char_at_offset (buffer, 0, FALSE);
 			gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
 		}
 		else
@@ -198,14 +221,7 @@ test_max_undo_levels (void)
 {
 	GtkSourceBuffer *buffer = gtk_source_buffer_new (NULL);
 
-	/* FIXME max_undo_levels of 0 doesn't work as expected (i.e. undo/redo
-	 * disabled).
-	 */
-#if 0
 	gint min = 0;
-#else
-	gint min = 1;
-#endif
 	gint max = 5;
 	gint i;
 
@@ -300,10 +316,12 @@ test_not_undoable_action (void)
 
 	/* Behavior _during_ a not undoable action */
 
-	/* FIXME: the API doesn't explain what should be the behaviors in the
-	 * following situations (also for nested).
+	/* The API doesn't explain what should be the behaviors in the
+	 * following situations (also for nested). So it is just "undefinied
+	 * behavior", and it can change in the future.
 	 * What is certain is that after the last end_not_undoable_action() (if
-	 * the calls are nested), it is not possible to undo or redo.
+	 * the calls are nested), the history is cleared and it is not possible
+	 * to undo or redo.
 	 */
 	insert_text (buffer, "foo\n");
 	insert_text (buffer, "bar\n");
@@ -435,7 +453,7 @@ test_merge_actions (void)
 	insert_text (buffer, "a");
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 
-	delete_char_at_offset (buffer, 0);
+	delete_char_at_offset (buffer, 0, FALSE);
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 	check_contents_history (buffer, contents_history);
 
@@ -446,8 +464,8 @@ test_merge_actions (void)
 	check_contents_history (buffer, contents_history);
 
 	/* Mergeable deletes */
-	delete_char_at_offset (buffer, 1);
-	delete_char_at_offset (buffer, 0);
+	delete_char_at_offset (buffer, 1, FALSE);
+	delete_char_at_offset (buffer, 0, FALSE);
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 	check_contents_history (buffer, contents_history);
 
@@ -455,31 +473,31 @@ test_merge_actions (void)
 	insert_text (buffer, "def");
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 
-	delete_char_at_offset (buffer, 2);
+	delete_char_at_offset (buffer, 2, FALSE);
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 
-	delete_char_at_offset (buffer, 0);
-	delete_char_at_offset (buffer, 0);
+	delete_char_at_offset (buffer, 0, TRUE);
+	delete_char_at_offset (buffer, 0, TRUE);
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 	check_contents_history (buffer, contents_history);
 
 	/* Insert two words */
 	insert_text (buffer, "g");
 	insert_text (buffer, "h");
-	insert_text (buffer, " ");
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 
+	insert_text (buffer, " ");
 	insert_text (buffer, "i");
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 	check_contents_history (buffer, contents_history);
 
 	/* Delete the two words (with backspace) */
-	delete_char_at_offset (buffer, 3);
-	delete_char_at_offset (buffer, 2);
+	delete_char_at_offset (buffer, 3, FALSE);
+	delete_char_at_offset (buffer, 2, FALSE);
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 
-	delete_char_at_offset (buffer, 1);
-	delete_char_at_offset (buffer, 0);
+	delete_char_at_offset (buffer, 1, FALSE);
+	delete_char_at_offset (buffer, 0, FALSE);
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 	check_contents_history (buffer, contents_history);
 
@@ -487,12 +505,12 @@ test_merge_actions (void)
 	insert_text (buffer, "jk l");
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 
-	delete_char_at_offset (buffer, 0);
-	delete_char_at_offset (buffer, 0);
-	delete_char_at_offset (buffer, 0);
+	delete_char_at_offset (buffer, 0, TRUE);
+	delete_char_at_offset (buffer, 0, TRUE);
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 
-	delete_char_at_offset (buffer, 0);
+	delete_char_at_offset (buffer, 0, TRUE);
+	delete_char_at_offset (buffer, 0, TRUE);
 	contents_history = g_list_append (contents_history, get_contents (buffer));
 	check_contents_history (buffer, contents_history);
 
@@ -532,8 +550,8 @@ test_several_user_actions (void)
 
 	/* Non-contiguous deletions (removes the 'a' and 'b' just inserted). */
 	gtk_text_buffer_begin_user_action (text_buffer);
-	delete_char_at_offset (source_buffer, 2);
-	delete_char_at_offset (source_buffer, 0);
+	delete_char_at_offset (source_buffer, 2, FALSE);
+	delete_char_at_offset (source_buffer, 0, FALSE);
 	gtk_text_buffer_end_user_action (text_buffer);
 
 	contents_history = g_list_append (contents_history, get_contents (source_buffer));
@@ -551,8 +569,8 @@ test_several_user_actions (void)
 	/* Mixed insertions/deletions */
 	gtk_text_buffer_begin_user_action (text_buffer);
 	gtk_text_buffer_set_text (text_buffer, "ahbello\n", -1);
-	delete_char_at_offset (source_buffer, 2);
-	delete_char_at_offset (source_buffer, 0);
+	delete_char_at_offset (source_buffer, 2, FALSE);
+	delete_char_at_offset (source_buffer, 0, FALSE);
 	insert_text (source_buffer, "world\n");
 	gtk_text_buffer_end_user_action (text_buffer);
 
