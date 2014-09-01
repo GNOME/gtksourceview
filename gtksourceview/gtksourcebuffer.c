@@ -363,7 +363,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	/**
 	 * GtkSourceBuffer:implicit-trailing-newline:
 	 *
-	 * Whether the buffer has an implicit trailing newline.
+	 * Whether the buffer has an implicit trailing newline. See
+	 * gtk_source_buffer_set_implicit_trailing_newline().
 	 *
 	 * Since: 3.14
 	 */
