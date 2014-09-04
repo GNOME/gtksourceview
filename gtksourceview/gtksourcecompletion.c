@@ -2357,7 +2357,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * <keycap>Home</keycap> and <keycap>End</keycap> keys are bound to the
 	 * normal behavior expected by those keys.
 	 *
-	 * When @step is equal to #GTK_SCROLL_PAGES, the page size is defined by
+	 * When @step is equal to %GTK_SCROLL_PAGES, the page size is defined by
 	 * the #GtkSourceCompletion:proposal-page-size property. It is used for
 	 * the <keycap>PageDown</keycap> and <keycap>PageUp</keycap> keys.
 	 *
