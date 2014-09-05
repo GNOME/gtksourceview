@@ -6,7 +6,7 @@
 # Hendrik Brandt <heb@gnome-de.org>, 2007.
 # Philipp Kerling <k.philipp@gmail.com>, 2008.
 # Andre Klapper <ak-47@gmx.net>, 2008.
-# Wolfgang Stöggl <c72578@yahoo.de>, 2009, 2011-2013.
+# Wolfgang Stöggl <c72578@yahoo.de>, 2009, 2011-2014.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2010-2013.
 # Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>, 2012.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010-2012.
@@ -16,16 +16,16 @@ msgstr ""
 "Project-Id-Version: GtkSourceView master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-07-17 20:31+0000\n"
-"PO-Revision-Date: 2014-07-27 17:22+0100\n"
-"Last-Translator: Benjamin Steinwender <b@stbe.at>\n"
+"POT-Creation-Date: 2014-09-01 14:38+0000\n"
+"PO-Revision-Date: 2014-09-04 15:46+0100\n"
+"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.7\n"
+"X-Generator: Poedit 1.6.9\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -1170,7 +1170,7 @@ msgid "Exec parameter"
 msgstr "Parameter beim Ausführen"
 
 #: ../data/language-specs/desktop.lang.h:11
-#: ../gtksourceview/gtksourcefile.c:183
+#: ../gtksourceview/gtksourcefile.c:184
 #: ../gtksourceview/gtksourcefilesaver.c:390
 msgid "Encoding"
 msgstr "Zeichenkodierung"
@@ -1214,7 +1214,7 @@ msgstr "Sonderfall"
 #. String
 #: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
 #: ../gtksourceview/gtksourcefile.c:167
-#: ../gtksourceview/gtksourcefileloader.c:350
+#: ../gtksourceview/gtksourcefileloader.c:394
 #: ../gtksourceview/gtksourcefilesaver.c:373
 msgid "Location"
 msgstr "Ort"
@@ -1279,9 +1279,8 @@ msgid "DPatch"
 msgstr "DPatch"
 
 #: ../data/language-specs/dpatch.lang.h:3
-#, fuzzy
 msgid "Patch Start"
-msgstr "patch-start"
+msgstr "Patch-Start"
 
 #: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
 msgid "DTD"
@@ -1423,10 +1422,8 @@ msgid "BOZ Literal"
 msgstr "BOZ-Literal"
 
 #: ../data/language-specs/fortran.lang.h:12
-#, fuzzy
-#| msgid "Include directive"
 msgid "OpenMP directives"
-msgstr "Include-Anweisung"
+msgstr "OpenMP-Direktiven"
 
 #: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
@@ -1859,9 +1856,8 @@ msgid "Inline Math Mode"
 msgstr "Eingebetteter mathematischer Modus"
 
 #: ../data/language-specs/latex.lang.h:6
-#, fuzzy
 msgid "Math Boundary"
-msgstr "Mathematischer Modus"
+msgstr "Mathematischer Rand"
 
 #: ../data/language-specs/latex.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:11
@@ -1894,10 +1890,8 @@ msgid "SubSection Heading"
 msgstr "Unterabschnittsüberschrift"
 
 #: ../data/language-specs/latex.lang.h:15
-#, fuzzy
-#| msgid "Exception Handling"
 msgid "SubSubSection Heading"
-msgstr "Ausnahmenbehandlung"
+msgstr "Überschrift eines Unterunterabschnitts"
 
 #: ../data/language-specs/latex.lang.h:16
 msgid "Paragraph Heading"
@@ -2506,9 +2500,8 @@ msgid "Email"
 msgstr "E-Mail"
 
 #: ../data/language-specs/rst.lang.h:2
-#, fuzzy
 msgid "reStructuredText"
-msgstr "Strukturierende Elemente"
+msgstr "reStructuredText"
 
 #: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
 msgid "Directive"
@@ -2602,7 +2595,7 @@ msgstr "Standard-ML"
 
 #: ../data/language-specs/sml.lang.h:13
 msgid "Module name, Variant, etc"
-msgstr "Modulename, Variante usw."
+msgstr "Modulname, Variante usw."
 
 #: ../data/language-specs/sparql.lang.h:2
 msgid "SPARQL"
@@ -2638,7 +2631,7 @@ msgstr "Unbekannt"
 
 #: ../data/language-specs/sweave.lang.h:2
 msgid "Sweave"
-msgstr ""
+msgstr "Sweave"
 
 #: ../data/language-specs/systemverilog.lang.h:2
 msgid "SystemVerilog"
@@ -2961,12 +2954,10 @@ msgid "Whether to highlight matching brackets"
 msgstr "Legt fest, ob zusammengehörige Klammern hervorgehoben werden"
 
 #: ../gtksourceview/gtksourcebuffer.c:305
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
 msgid "Maximum Undo Levels"
 msgstr "Maximale Rückgängig-Ebenen"
 
 #: ../gtksourceview/gtksourcebuffer.c:306
-#: ../gtksourceview/gtksourceundomanagerdefault.c:412
 msgid "Number of undo levels for the buffer"
 msgstr "Anzahl der maximalen Rückgängig-Ebenen des Puffers"
 
@@ -3009,9 +3000,9 @@ msgstr "Rückgängig-Verwaltung"
 msgid "The buffer undo manager"
 msgstr "Der Puffer der Rückgängig-Verwaltung"
 
-#: ../gtksourceview/gtksourcebuffer.c:373
+#: ../gtksourceview/gtksourcebuffer.c:374
 msgid "Implicit trailing newline"
-msgstr ""
+msgstr "Implizierter angehängter Zeilenumbruch"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:838
 msgid "Invalid byte sequence in conversion input"
@@ -3019,7 +3010,6 @@ msgstr "Ungültige Bytesequenz in der Konvertierungseingabe"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:844
 #, c-format
-#| msgid "String Conversion"
 msgid "Error during conversion: %s"
 msgstr "Fehler während der Konvertierung: %s"
 
@@ -3040,7 +3030,6 @@ msgstr "Ungültiges Objekt, nicht initialisiert"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:1178
 #, c-format
-#| msgid "Incomplete Sequence"
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Unvollständige UTF-8-Sequenz in der Eingabe"
 
@@ -3125,7 +3114,7 @@ msgid "Proposal scrolling page size"
 msgstr "Seitengröße des Bildlaufs für Vorschläge"
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:271
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourceview.c:313
 msgid "Completion"
 msgstr "Vervollständigung"
 
@@ -3144,7 +3133,7 @@ msgid "The GtkTextIter at which the completion was invoked"
 msgstr "Der GtkTextIter, für den die Vervollständigung aufgerufen wurde"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:253
+#: ../gtksourceview/gtksourcecompletioninfo.c:264
 msgid "Completion Info"
 msgstr "Info zur Vervollständigung"
 
@@ -3245,160 +3234,172 @@ msgstr "Unbekannter Kontext »%s«"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Hauptsprachendefinition fehlt (id = »%s«)"
 
-#: ../gtksourceview/gtksourceencoding.c:136
-#: ../gtksourceview/gtksourceencoding.c:179
-#: ../gtksourceview/gtksourceencoding.c:181
-#: ../gtksourceview/gtksourceencoding.c:183
-#: ../gtksourceview/gtksourceencoding.c:185
-#: ../gtksourceview/gtksourceencoding.c:187
-#: ../gtksourceview/gtksourceencoding.c:189
-#: ../gtksourceview/gtksourceencoding.c:191
+#: ../gtksourceview/gtksourceencoding.c:137
+#: ../gtksourceview/gtksourceencoding.c:180
+#: ../gtksourceview/gtksourceencoding.c:182
+#: ../gtksourceview/gtksourceencoding.c:184
+#: ../gtksourceview/gtksourceencoding.c:186
+#: ../gtksourceview/gtksourceencoding.c:188
+#: ../gtksourceview/gtksourceencoding.c:190
+#: ../gtksourceview/gtksourceencoding.c:192
 msgid "Unicode"
 msgstr "Unicode"
 
-#: ../gtksourceview/gtksourceencoding.c:150
-#: ../gtksourceview/gtksourceencoding.c:174
-#: ../gtksourceview/gtksourceencoding.c:224
-#: ../gtksourceview/gtksourceencoding.c:267
+#: ../gtksourceview/gtksourceencoding.c:151
+#: ../gtksourceview/gtksourceencoding.c:175
+#: ../gtksourceview/gtksourceencoding.c:225
+#: ../gtksourceview/gtksourceencoding.c:268
 msgid "Western"
 msgstr "Westlich"
 
-#: ../gtksourceview/gtksourceencoding.c:152
-#: ../gtksourceview/gtksourceencoding.c:226
-#: ../gtksourceview/gtksourceencoding.c:263
+#: ../gtksourceview/gtksourceencoding.c:153
+#: ../gtksourceview/gtksourceencoding.c:227
+#: ../gtksourceview/gtksourceencoding.c:264
 msgid "Central European"
 msgstr "Zentraleuropäisch"
 
-#: ../gtksourceview/gtksourceencoding.c:154
+#: ../gtksourceview/gtksourceencoding.c:155
 msgid "South European"
 msgstr "Südeuropäisch"
 
-#: ../gtksourceview/gtksourceencoding.c:156
-#: ../gtksourceview/gtksourceencoding.c:170
-#: ../gtksourceview/gtksourceencoding.c:277
+#: ../gtksourceview/gtksourceencoding.c:157
+#: ../gtksourceview/gtksourceencoding.c:171
+#: ../gtksourceview/gtksourceencoding.c:278
 msgid "Baltic"
 msgstr "Baltisch"
 
-#: ../gtksourceview/gtksourceencoding.c:158
-#: ../gtksourceview/gtksourceencoding.c:228
-#: ../gtksourceview/gtksourceencoding.c:241
-#: ../gtksourceview/gtksourceencoding.c:245
-#: ../gtksourceview/gtksourceencoding.c:247
-#: ../gtksourceview/gtksourceencoding.c:265
+#: ../gtksourceview/gtksourceencoding.c:159
+#: ../gtksourceview/gtksourceencoding.c:229
+#: ../gtksourceview/gtksourceencoding.c:242
+#: ../gtksourceview/gtksourceencoding.c:246
+#: ../gtksourceview/gtksourceencoding.c:248
+#: ../gtksourceview/gtksourceencoding.c:266
 msgid "Cyrillic"
 msgstr "Kyrillisch"
 
-#: ../gtksourceview/gtksourceencoding.c:160
-#: ../gtksourceview/gtksourceencoding.c:234
-#: ../gtksourceview/gtksourceencoding.c:275
+#: ../gtksourceview/gtksourceencoding.c:161
+#: ../gtksourceview/gtksourceencoding.c:235
+#: ../gtksourceview/gtksourceencoding.c:276
 msgid "Arabic"
 msgstr "Arabisch"
 
-#: ../gtksourceview/gtksourceencoding.c:162
-#: ../gtksourceview/gtksourceencoding.c:269
+#: ../gtksourceview/gtksourceencoding.c:163
+#: ../gtksourceview/gtksourceencoding.c:270
 msgid "Greek"
 msgstr "Griechisch"
 
-#: ../gtksourceview/gtksourceencoding.c:164
+#: ../gtksourceview/gtksourceencoding.c:165
 msgid "Hebrew Visual"
 msgstr "Hebräisch (visuell)"
 
-#: ../gtksourceview/gtksourceencoding.c:166
-#: ../gtksourceview/gtksourceencoding.c:230
-#: ../gtksourceview/gtksourceencoding.c:271
+#: ../gtksourceview/gtksourceencoding.c:167
+#: ../gtksourceview/gtksourceencoding.c:231
+#: ../gtksourceview/gtksourceencoding.c:272
 msgid "Turkish"
 msgstr "Türkisch"
 
-#: ../gtksourceview/gtksourceencoding.c:168
+#: ../gtksourceview/gtksourceencoding.c:169
 msgid "Nordic"
 msgstr "Nordisch"
 
-#: ../gtksourceview/gtksourceencoding.c:172
+#: ../gtksourceview/gtksourceencoding.c:173
 msgid "Celtic"
 msgstr "Keltisch"
 
-#: ../gtksourceview/gtksourceencoding.c:176
+#: ../gtksourceview/gtksourceencoding.c:177
 msgid "Romanian"
 msgstr "Rumänisch"
 
-#: ../gtksourceview/gtksourceencoding.c:194
+#: ../gtksourceview/gtksourceencoding.c:195
 msgid "Armenian"
 msgstr "Armenisch"
 
-#: ../gtksourceview/gtksourceencoding.c:196
-#: ../gtksourceview/gtksourceencoding.c:198
-#: ../gtksourceview/gtksourceencoding.c:212
+#: ../gtksourceview/gtksourceencoding.c:197
+#: ../gtksourceview/gtksourceencoding.c:199
+#: ../gtksourceview/gtksourceencoding.c:213
 msgid "Chinese Traditional"
 msgstr "Chinesisch (traditionell)"
 
-#: ../gtksourceview/gtksourceencoding.c:200
+#: ../gtksourceview/gtksourceencoding.c:201
 msgid "Cyrillic/Russian"
 msgstr "Kyrillisch/Russisch"
 
-#: ../gtksourceview/gtksourceencoding.c:203
-#: ../gtksourceview/gtksourceencoding.c:205
-#: ../gtksourceview/gtksourceencoding.c:207
-#: ../gtksourceview/gtksourceencoding.c:237
-#: ../gtksourceview/gtksourceencoding.c:252
+#: ../gtksourceview/gtksourceencoding.c:204
+#: ../gtksourceview/gtksourceencoding.c:206
+#: ../gtksourceview/gtksourceencoding.c:208
+#: ../gtksourceview/gtksourceencoding.c:238
+#: ../gtksourceview/gtksourceencoding.c:253
 msgid "Japanese"
 msgstr "Japanisch"
 
-#: ../gtksourceview/gtksourceencoding.c:210
-#: ../gtksourceview/gtksourceencoding.c:239
-#: ../gtksourceview/gtksourceencoding.c:243
-#: ../gtksourceview/gtksourceencoding.c:258
+#: ../gtksourceview/gtksourceencoding.c:211
+#: ../gtksourceview/gtksourceencoding.c:240
+#: ../gtksourceview/gtksourceencoding.c:244
+#: ../gtksourceview/gtksourceencoding.c:259
 msgid "Korean"
 msgstr "Koreanisch"
 
-#: ../gtksourceview/gtksourceencoding.c:215
-#: ../gtksourceview/gtksourceencoding.c:217
-#: ../gtksourceview/gtksourceencoding.c:219
+#: ../gtksourceview/gtksourceencoding.c:216
+#: ../gtksourceview/gtksourceencoding.c:218
+#: ../gtksourceview/gtksourceencoding.c:220
 msgid "Chinese Simplified"
 msgstr "Chinesisch (vereinfacht)"
 
-#: ../gtksourceview/gtksourceencoding.c:221
+#: ../gtksourceview/gtksourceencoding.c:222
 msgid "Georgian"
 msgstr "Georgisch"
 
-#: ../gtksourceview/gtksourceencoding.c:232
-#: ../gtksourceview/gtksourceencoding.c:273
+#: ../gtksourceview/gtksourceencoding.c:233
+#: ../gtksourceview/gtksourceencoding.c:274
 msgid "Hebrew"
 msgstr "Hebräisch"
 
-#: ../gtksourceview/gtksourceencoding.c:249
+#: ../gtksourceview/gtksourceencoding.c:250
 msgid "Cyrillic/Ukrainian"
 msgstr "Kyrillisch/Ukrainisch"
 
-#: ../gtksourceview/gtksourceencoding.c:254
-#: ../gtksourceview/gtksourceencoding.c:260
-#: ../gtksourceview/gtksourceencoding.c:279
-#| msgid "Filename"
+#: ../gtksourceview/gtksourceencoding.c:255
+#: ../gtksourceview/gtksourceencoding.c:261
+#: ../gtksourceview/gtksourceencoding.c:280
 msgid "Vietnamese"
 msgstr "Vietnamesisch"
 
-#: ../gtksourceview/gtksourceencoding.c:256
+#: ../gtksourceview/gtksourceencoding.c:257
 msgid "Thai"
 msgstr "Thai"
 
-#: ../gtksourceview/gtksourceencoding.c:487
+#: ../gtksourceview/gtksourceencoding.c:491
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: ../gtksourceview/gtksourcefile.c:199
+#. Translators: This is the sorted list of encodings used by
+#. * GtkSourceView for automatic detection of the file encoding. You may
+#. * want to customize it adding encodings that are common in your
+#. * country, for instance the GB18030 encoding for the Chinese
+#. * translation. You may also want to remove the ISO-8859-15 encoding
+#. * (covering English and most Western European languages) if you think
+#. * people in your country will rarely use it.  "CURRENT" is a magic
+#. * value used by GtkSourceView and it represents the encoding for the
+#. * current locale, so please don't translate the "CURRENT" term.  Only
+#. * recognized encodings are used. See
+#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+#. * for a list of supported encodings.
+#.
+#: ../gtksourceview/gtksourceencoding.c:647
+msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+
+#: ../gtksourceview/gtksourcefile.c:200
 #: ../gtksourceview/gtksourcefilesaver.c:407
-#, fuzzy
-#| msgid "Newline"
 msgid "Newline type"
-msgstr "Neue Zeile"
+msgstr "Art des Zeilenumbruchs"
 
-#: ../gtksourceview/gtksourcefile.c:216
+#: ../gtksourceview/gtksourcefile.c:217
 #: ../gtksourceview/gtksourcefilesaver.c:425
-#, fuzzy
-#| msgid "Expression"
 msgid "Compression type"
-msgstr "Ausdruck"
+msgstr "Kompressionstyp"
 
-#: ../gtksourceview/gtksourcefileloader.c:367
+#: ../gtksourceview/gtksourcefileloader.c:411
 msgid "Input stream"
 msgstr "Eingabestrom"
 
@@ -3621,12 +3622,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Zu druckendes GtkSourceBuffer-Objekt"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:347
+#: ../gtksourceview/gtksourceview.c:351
 msgid "Tab Width"
 msgstr "Tabulatorbreite"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceview.c:352
 msgid "Width of a tab character expressed in spaces"
 msgstr "Breite eines Tabulatorzeichens, ausgedrückt in Leerzeichen"
 
@@ -3719,7 +3720,6 @@ msgid "using \\C is not supported in language definitions"
 msgstr "Das Verwenden von \\C ist in Sprachdefinition nicht unterstützt"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2742
-#: ../gtksourceview/gtksourceundomanagerdefault.c:403
 msgid "Buffer"
 msgstr "Puffer"
 
@@ -3930,77 +3930,72 @@ msgstr "Schemen-IDs"
 msgid "List of the ids of the available style schemes"
 msgstr "Liste mit IDs der verfügbaren Stilvorlagen"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:404
-msgid "The text buffer to add undo support on"
-msgstr ""
-"Der Textpuffer, zu dem Rückgängig-Unterstützung hinzugefügt werden soll"
-
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:314
 msgid "The completion object associated with the view"
 msgstr "Das der Ansicht zugeordnete zu vervollständigende Objekt"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:326
 msgid "Show Line Numbers"
 msgstr "Zeilennummern anzeigen"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:327
 msgid "Whether to display line numbers"
 msgstr "Legt fest, ob Zeilennummern angezeigt werden sollen"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:338
 msgid "Show Line Marks"
 msgstr "Zeilenmarkierungen anzeigen"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:339
 msgid "Whether to display line mark pixbufs"
 msgstr "Legt fest, ob Symbole zur Zeilenmarkierung angezeigt werden sollen"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:366
 msgid "Indent Width"
 msgstr "Einrückbreite"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:367
 msgid "Number of spaces to use for each step of indent"
 msgstr "Anzahl an Leerzeichen für jeden Einrückungsschritt"
 
-#: ../gtksourceview/gtksourceview.c:372
+#: ../gtksourceview/gtksourceview.c:376
 msgid "Auto Indentation"
 msgstr "Auto-Einrücken"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:377
 msgid "Whether to enable auto indentation"
 msgstr "Legt fest, ob das Einrücken automatisch erfolgen soll"
 
-#: ../gtksourceview/gtksourceview.c:380
+#: ../gtksourceview/gtksourceview.c:384
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Leerzeichen statt Tabulatoren einfügen"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:385
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Legt fest, ob Leerzeichen statt Tabulatoren eingefügt werden sollen"
 
-#: ../gtksourceview/gtksourceview.c:393
+#: ../gtksourceview/gtksourceview.c:397
 msgid "Show Right Margin"
 msgstr "Rechten Rand anzeigen"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:398
 msgid "Whether to display the right margin"
 msgstr "Legt fest, ob der rechte Rand angezeigt werden soll"
 
-#: ../gtksourceview/gtksourceview.c:406
+#: ../gtksourceview/gtksourceview.c:410
 msgid "Right Margin Position"
 msgstr "Position des rechten Rands"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:411
 msgid "Position of the right margin"
 msgstr "Position des rechten Rands"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:427
 msgid "Smart Home/End"
 msgstr "Intelligentes Pos1/Ende"
 
 # CHECK
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:428
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -4009,63 +4004,63 @@ msgstr ""
 "Zeichen einer Zeile springen soll, bevor sie zum Anfang/Ende der jeweiligen "
 "Zeile springt"
 
-#: ../gtksourceview/gtksourceview.c:434
+#: ../gtksourceview/gtksourceview.c:438
 msgid "Highlight current line"
 msgstr "Aktuelle Zeile hervorheben"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:439
 msgid "Whether to highlight the current line"
 msgstr "Legt fest, ob die aktuelle Zeile hervorgehoben werden soll"
 
-#: ../gtksourceview/gtksourceview.c:442
+#: ../gtksourceview/gtksourceview.c:446
 msgid "Indent on tab"
 msgstr "Einrücken mit Tabulator"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:447
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Legt fest, ob der markierte Text eingerückt werden soll, wenn die Tabulator-"
 "Taste gedrückt wird"
 
-#: ../gtksourceview/gtksourceview.c:457
+#: ../gtksourceview/gtksourceview.c:461
 msgid "Draw Spaces"
 msgstr "Leerzeichen darstellen"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:462
 msgid "Set if and how the spaces should be visualized"
 msgstr "Bestimmen, ob und wie Leerzeichen dargestellt werden sollen"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1233
+#: ../gtksourceview/gtksourceview.c:1237
 msgid "_Redo"
 msgstr "_Wiederholen"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1244
+#: ../gtksourceview/gtksourceview.c:1248
 msgid "_Undo"
 msgstr "_Rückgängig"
 
-#: ../gtksourceview/gtksourceview.c:1262
+#: ../gtksourceview/gtksourceview.c:1266
 msgid "All _Upper Case"
 msgstr "Alles in _Großschreibung"
 
-#: ../gtksourceview/gtksourceview.c:1272
+#: ../gtksourceview/gtksourceview.c:1276
 msgid "All _Lower Case"
 msgstr "Alles in _Kleinschreibung"
 
-#: ../gtksourceview/gtksourceview.c:1282
+#: ../gtksourceview/gtksourceview.c:1286
 msgid "_Invert Case"
 msgstr "Groß-/Kleinschreibung _umkehren"
 
-#: ../gtksourceview/gtksourceview.c:1292
+#: ../gtksourceview/gtksourceview.c:1296
 msgid "_Title Case"
 msgstr "_Anfangsbuchstaben in Großschreibung"
 
-#: ../gtksourceview/gtksourceview.c:1302
+#: ../gtksourceview/gtksourceview.c:1306
 msgid "C_hange Case"
 msgstr "_Groß-/Kleinschreibung ändern"
 
-#: ../gtksourceview/gtksourceview-i18n.c:72
+#: ../gtksourceview/gtksourceview-i18n.c:116
 msgid "translator-credits"
 msgstr ""
 "Hendrik Richter <hendrikr@gnome.org>\n"
@@ -4073,6 +4068,10 @@ msgstr ""
 "Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
 "Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>"
+
+#~ msgid "The text buffer to add undo support on"
+#~ msgstr ""
+#~ "Der Textpuffer, zu dem Rückgängig-Unterstützung hinzugefügt werden soll"
 
 #~ msgid "Cobol"
 #~ msgstr "Cobol"
@@ -4094,20 +4093,3 @@ msgstr ""
 
 #~ msgid "Object"
 #~ msgstr "Objekt"
-
-#. Translators: This is the sorted list of encodings used by
-#. * GtkSourceView for automatic detection of the file encoding. You may
-#. * want to customize it adding encodings that are common in your
-#. * country, for instance the GB18030 encoding for the Chinese
-#. * translation. You may also want to remove the ISO-8859-15 encoding
-#. * (covering English and most Western European languages) if you think
-#. * people in your country will rarely use it.  "CURRENT" is a magic
-#. * value used by GtkSourceView and it represents the encoding for the
-#. * current locale, so please don't translate the "CURRENT" term.  Only
-#. * recognized encodings are used. See
-#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
-#. * for a list of supported encodings.
-#.
-#: ../gtksourceview/gtksourceencoding.c:517
-msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
-msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
