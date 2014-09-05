@@ -833,6 +833,7 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 		append_css_style (final_style, style, ".right");
 		append_css_style (final_style, style, ".bottom");
 		append_css_style (final_style, style, ".left");
+		append_css_style (final_style, style, "GtkSourceView");
 	}
 
 	if (*final_style->str != '\0')
