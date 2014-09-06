@@ -27,6 +27,8 @@
 #include <glib/gprintf.h>
 #include <gtksourceview/gtksource.h>
 
+#define ENABLE_REMOTE_TESTS	FALSE
+
 /* linux/bsd has it. others such as Solaris, do not */
 #ifndef ACCESSPERMS
 #define ACCESSPERMS (S_IRWXU|S_IRWXG|S_IRWXO)
@@ -136,18 +138,6 @@ mount_cb (GFile         *location,
 	{
 		g_error_free (error);
 	}
-
-	/* See https://bugzilla.gnome.org/show_bug.cgi?id=621764 */
-	else if (error != NULL && error->code == G_IO_ERROR_NOT_SUPPORTED)
-	{
-		g_printerr ("Ignored error: %s\n", error->message);
-		g_error_free (error);
-
-		/* The unit test can not be run */
-		gtk_main_quit ();
-		return;
-	}
-
 	else
 	{
 		g_assert_no_error (error);
@@ -384,14 +374,6 @@ test_permissions (const gchar *uri,
 
 	g_file_delete (location, NULL, NULL);
 	stream = g_file_create (location, 0, NULL, &error);
-
-	/* See https://bugzilla.gnome.org/show_bug.cgi?id=621764 */
-	if (error && error->code == G_IO_ERROR_NOT_SUPPORTED)
-	{
-		g_printerr ("Ignored error: %s\n", error->message);
-		g_error_free (error);
-		return;
-	}
 
 	g_assert_no_error (error);
 
@@ -687,33 +669,36 @@ all_tests (void)
 		g_test_trap_assert_passed ();
 	}
 
-	g_test_trap_subprocess ("/file-saver/subprocess/remote",
-				0,
-				G_TEST_SUBPROCESS_INHERIT_STDERR);
-	g_test_trap_assert_passed ();
-
-	g_test_trap_subprocess ("/file-saver/subprocess/remote-new-line",
-				0,
-				G_TEST_SUBPROCESS_INHERIT_STDERR);
-	g_test_trap_assert_passed ();
-
-	if (have_unowned)
+	if (ENABLE_REMOTE_TESTS)
 	{
-		g_test_trap_subprocess ("/file-saver/subprocess/remote-unowned-directory",
+		g_test_trap_subprocess ("/file-saver/subprocess/remote",
 					0,
 					G_TEST_SUBPROCESS_INHERIT_STDERR);
 		g_test_trap_assert_passed ();
-	}
 
-#if 0
-	if (have_unowned_group)
-	{
-		g_test_trap_subprocess ("/file-saver/subprocess/remote-unowned-group",
+		g_test_trap_subprocess ("/file-saver/subprocess/remote-new-line",
 					0,
 					G_TEST_SUBPROCESS_INHERIT_STDERR);
 		g_test_trap_assert_passed ();
+
+		if (have_unowned)
+		{
+			g_test_trap_subprocess ("/file-saver/subprocess/remote-unowned-directory",
+						0,
+						G_TEST_SUBPROCESS_INHERIT_STDERR);
+			g_test_trap_assert_passed ();
+		}
+
+		/*
+		if (have_unowned_group)
+		{
+			g_test_trap_subprocess ("/file-saver/subprocess/remote-unowned-group",
+						0,
+						G_TEST_SUBPROCESS_INHERIT_STDERR);
+			g_test_trap_assert_passed ();
+		}
+		*/
 	}
-#endif
 
 #ifndef G_OS_WIN32
 	g_test_trap_subprocess ("/file-saver/subprocess/local-permissions",
@@ -729,10 +714,13 @@ all_tests (void)
 		g_test_trap_assert_passed ();
 	}
 
-	g_test_trap_subprocess ("/file-saver/subprocess/remote-permissions",
-				0,
-				G_TEST_SUBPROCESS_INHERIT_STDERR);
-	g_test_trap_assert_passed ();
+	if (ENABLE_REMOTE_TESTS)
+	{
+		g_test_trap_subprocess ("/file-saver/subprocess/remote-permissions",
+					0,
+					G_TEST_SUBPROCESS_INHERIT_STDERR);
+		g_test_trap_assert_passed ();
+	}
 #endif
 }
 
@@ -747,17 +735,25 @@ main (gint   argc,
 	g_test_add_func ("/file-saver/subprocess/local", test_local);
 	g_test_add_func ("/file-saver/subprocess/local-new-line", test_local_newline);
 	g_test_add_func ("/file-saver/subprocess/local-unowned-directory", test_local_unowned_directory);
-	g_test_add_func ("/file-saver/subprocess/remote", test_remote);
-	g_test_add_func ("/file-saver/subprocess/remote-new-line", test_remote_newline);
-	g_test_add_func ("/file-saver/subprocess/remote-unowned-directory", test_remote_unowned_directory);
 
-	/* FIXME: there is a bug in gvfs sftp which doesn't pass this test */
-	/* g_test_add_func ("/file-saver/subprocess/remote-unowned-group", test_remote_unowned_group); */
+	if (ENABLE_REMOTE_TESTS)
+	{
+		g_test_add_func ("/file-saver/subprocess/remote", test_remote);
+		g_test_add_func ("/file-saver/subprocess/remote-new-line", test_remote_newline);
+		g_test_add_func ("/file-saver/subprocess/remote-unowned-directory", test_remote_unowned_directory);
+
+		/* FIXME: there is a bug in gvfs sftp which doesn't pass this test */
+		/* g_test_add_func ("/file-saver/subprocess/remote-unowned-group", test_remote_unowned_group); */
+	}
 
 #ifndef G_OS_WIN32
 	g_test_add_func ("/file-saver/subprocess/local-permissions", test_local_permissions);
 	g_test_add_func ("/file-saver/subprocess/local-unowned-group", test_local_unowned_group);
-	g_test_add_func ("/file-saver/subprocess/remote-permissions", test_remote_permissions);
+
+	if (ENABLE_REMOTE_TESTS)
+	{
+		g_test_add_func ("/file-saver/subprocess/remote-permissions", test_remote_permissions);
+	}
 #endif
 
 	return g_test_run ();
