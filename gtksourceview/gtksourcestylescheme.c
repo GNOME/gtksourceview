@@ -833,6 +833,10 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 		append_css_style (final_style, style, ".right");
 		append_css_style (final_style, style, ".bottom");
 		append_css_style (final_style, style, ".left");
+
+		/* For the corners if the top or bottom gutter is also
+		 * displayed.
+		 */
 		append_css_style (final_style, style, "GtkSourceView");
 	}
 
