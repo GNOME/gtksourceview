@@ -903,11 +903,11 @@ Contained elements: none.
 The replace tag allows you to change one context so it functions as
 another context.  For example, in the <code>html.lang</code> definition,
 there are a few references to a null context with id
-"<code>external</code>".  In <code>php.lang</code>, that context is
-replaced like this: <code>&lt;replace id="html:external"
+"<code>embedded-lang-hook</code>".  In <code>php.lang</code>, that context is
+replaced like this: <code>&lt;replace id="html:embedded-lang-hook"
 ref="php-block"&gt;</code>, so that php blocks are recognized within the
 <code>html:html</code> context at the points where the
-<code>external</code> context appears.
+<code>embedded-lang-hook</code> context appears.
 </para>
 
 <para>
