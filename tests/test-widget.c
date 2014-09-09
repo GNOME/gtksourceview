@@ -478,12 +478,15 @@ forward_string_clicked_cb (TestWidget *self)
 static void
 open_button_clicked_cb (TestWidget *self)
 {
+	GtkWidget *main_window;
 	GtkWidget *chooser;
 	gint response;
 	static gchar *last_dir;
 
+	main_window = gtk_widget_get_toplevel (GTK_WIDGET (self->priv->view));
+
 	chooser = gtk_file_chooser_dialog_new ("Open file...",
-					       NULL,
+					       GTK_WINDOW (main_window),
 					       GTK_FILE_CHOOSER_ACTION_OPEN,
 					       "Cancel", GTK_RESPONSE_CANCEL,
 					       "Open", GTK_RESPONSE_OK,
