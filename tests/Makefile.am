@@ -52,6 +52,9 @@ test_search_LDADD =						\
 TEST_PROGS += test-search-performances
 test_search_performances_SOURCES = test-search-performances.c
 
+TEST_PROGS += test-undo-manager-performances
+test_undo_manager_performances_SOURCES = test-undo-manager-performances.c
+
 TEST_PROGS += test-widget
 test_widget_SOURCES = test-widget.c
 nodist_test_widget_SOURCES = test-widget-resources.c
