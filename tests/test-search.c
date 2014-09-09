@@ -71,6 +71,7 @@ open_file (TestSearch  *search,
 	GtkSourceLanguage *language;
 	GtkTextIter iter;
 
+	/* In a realistic application you would use GtkSourceFile of course. */
 	if (!g_file_get_contents (filename, &contents, NULL, &error))
 	{
 		g_error ("Impossible to load file: %s", error->message);
