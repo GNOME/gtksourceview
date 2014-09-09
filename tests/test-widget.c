@@ -921,6 +921,7 @@ test_widget_dispose (GObject *object)
 	TestWidget *self = TEST_WIDGET (object);
 
 	g_clear_object (&self->priv->buffer);
+	g_clear_object (&self->priv->file);
 
 	G_OBJECT_CLASS (test_widget_parent_class)->dispose (object);
 }
