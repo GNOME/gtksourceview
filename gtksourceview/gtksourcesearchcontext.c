@@ -62,11 +62,17 @@
  * The search occurrences are highlighted by default. To disable it, use
  * gtk_source_search_context_set_highlight(). You can enable the search
  * highlighting for several #GtkSourceSearchContext<!-- -->s attached to the
- * same buffer. But currently, the same highlighting style is applied.
- * Note that the #GtkSourceSearchContext:highlight property is in the
- * #GtkSourceSearchContext class, not #GtkSourceSearchSettings. The purpose is
- * to bind the appearance settings to only one buffer (a
- * #GtkSourceSearchSettings object can be bound indirectly to several buffers).
+ * same buffer. Moreover, each of those #GtkSourceSearchContext<!-- -->s can
+ * have a different text style associated. Use
+ * gtk_source_search_context_set_match_style() to specify the #GtkSourceStyle
+ * to apply on search matches.
+ *
+ * Note that the #GtkSourceSearchContext:highlight and
+ * #GtkSourceSearchContext:match-style properties are in the
+ * #GtkSourceSearchContext class, not #GtkSourceSearchSettings. Appearance
+ * settings should be tied to one, and only one buffer, as different buffers can
+ * have different style scheme associated (a #GtkSourceSearchSettings object
+ * can be bound indirectly to several buffers).
  *
  * The concept of "current match" doesn't exist yet. A way to highlight
  * differently the current match is to select it.
@@ -288,6 +294,7 @@ enum
 	PROP_BUFFER,
 	PROP_SETTINGS,
 	PROP_HIGHLIGHT,
+	PROP_MATCH_STYLE,
 	PROP_OCCURRENCES_COUNT,
 	PROP_REGEX_ERROR
 };
@@ -338,6 +345,7 @@ struct _GtkSourceSearchContextPrivate
 	gint occurrences_count;
 	gulong idle_scan_id;
 
+	GtkSourceStyle *match_style;
 	guint highlight : 1;
 };
 
@@ -361,8 +369,8 @@ static void		install_idle_scan		(GtkSourceSearchContext *search);
 static void
 sync_found_tag (GtkSourceSearchContext *search)
 {
+	GtkSourceStyle *style = search->priv->match_style;
 	GtkSourceStyleScheme *style_scheme;
-	GtkSourceStyle *style = NULL;
 
 	if (search->priv->buffer == NULL)
 	{
@@ -375,16 +383,19 @@ sync_found_tag (GtkSourceSearchContext *search)
 		return;
 	}
 
-	style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (search->priv->buffer));
-
-	if (style_scheme != NULL)
+	if (style == NULL)
 	{
-		style = gtk_source_style_scheme_get_style (style_scheme, "search-match");
+		style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (search->priv->buffer));
+
+		if (style_scheme != NULL)
+		{
+			style = gtk_source_style_scheme_get_style (style_scheme, "search-match");
+		}
 	}
 
 	if (style == NULL)
 	{
-		g_warning ("search-match style not available.");
+		g_warning ("No match style defined nor 'search-match' style available.");
 	}
 
 	_gtk_source_style_apply (style, search->priv->found_tag);
@@ -2673,6 +2684,10 @@ gtk_source_search_context_get_property (GObject    *object,
 			g_value_set_boolean (value, search->priv->highlight);
 			break;
 
+		case PROP_MATCH_STYLE:
+			g_value_set_object (value, search->priv->match_style);
+			break;
+
 		case PROP_OCCURRENCES_COUNT:
 			g_value_set_int (value, gtk_source_search_context_get_occurrences_count (search));
 			break;
@@ -2711,6 +2726,10 @@ gtk_source_search_context_set_property (GObject      *object,
 
 		case PROP_HIGHLIGHT:
 			gtk_source_search_context_set_highlight (search, g_value_get_boolean (value));
+			break;
+
+		case PROP_MATCH_STYLE:
+			gtk_source_search_context_set_match_style (search, g_value_get_object (value));
 			break;
 
 		default:
@@ -2773,6 +2792,21 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 							       _("Highlight search occurrences"),
 							       TRUE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+	/**
+	 * GtkSourceSearchContext:match-style:
+	 *
+	 * A #GtkSourceStyle, or %NULL for theme's scheme default style.
+	 *
+	 * Since: 3.16
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_MATCH_STYLE,
+					 g_param_spec_object ("match-style",
+							      _("Match style"),
+							      _("The text style for matches"),
+							      GTK_SOURCE_TYPE_STYLE,
+							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	/**
 	 * GtkSourceSearchContext:occurrences-count:
@@ -2961,6 +2995,61 @@ gtk_source_search_context_set_highlight (GtkSourceSearchContext *search,
 
 		g_object_notify (G_OBJECT (search), "highlight");
 	}
+}
+
+/**
+ * gtk_source_search_context_get_match_style:
+ * @search: a #GtkSourceSearchContext.
+ *
+ * Returns: (transfer none): the #GtkSourceStyle to apply on search matches.
+ *
+ * Since: 3.16
+ */
+GtkSourceStyle *
+gtk_source_search_context_get_match_style (GtkSourceSearchContext *search)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), NULL);
+
+	return search->priv->match_style;
+}
+
+/**
+ * gtk_source_search_context_set_match_style:
+ * @search: a #GtkSourceSearchContext.
+ * @match_style: (allow-none): a #GtkSourceStyle.
+ *
+ * Set the style to apply on search matches. If @match_style is %NULL, default
+ * theme's scheme 'match-style' will be used.
+ * To enable or disable the search highlighting, use
+ * gtk_source_search_context_set_highlight().
+ *
+ * Since: 3.16
+ */
+void
+gtk_source_search_context_set_match_style (GtkSourceSearchContext *search,
+					   GtkSourceStyle         *match_style)
+{
+	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
+	g_return_if_fail (match_style == NULL || GTK_SOURCE_IS_STYLE (match_style));
+
+	if (search->priv->match_style == match_style)
+	{
+		return;
+	}
+
+	if (search->priv->match_style != NULL)
+	{
+		g_object_unref (search->priv->match_style);
+	}
+
+	search->priv->match_style = match_style;
+
+	if (match_style != NULL)
+	{
+		g_object_ref (match_style);
+	}
+
+	g_object_notify (G_OBJECT (search), "match-style");
 }
 
 /**
