@@ -72,6 +72,24 @@
  *
  * A same #GtkSourceCompletionProvider object can be used for several
  * #GtkSourceCompletion.
+ *
+ * # GtkSourceCompletion as GtkBuildable
+ *
+ * The GtkSourceCompletion implementation of the #GtkBuildable interface exposes
+ * the info window object (see gtk_source_completion_get_info_window()) with the
+ * internal-child "info_window".
+ *
+ * An example of a UI definition fragment with GtkSourceCompletion:
+ * |[
+ * <object class="GtkSourceCompletion">
+ *   <property name="select_on_show">False</property>
+ *   <child internal-child="info_window">
+ *     <object class="GtkSourceCompletionInfo">
+ *       <property name="border_width">6</property>
+ *     </object>
+ *   </child>
+ * </object>
+ * ]|
  */
 
 /* Idea to improve the code: use a composite widget template. This class is not
@@ -184,7 +202,12 @@ struct _GtkSourceCompletionPrivate
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT)
+static void	gtk_source_completion_buildable_interface_init (GtkBuildableIface *iface);
+
+G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT,
+			 G_ADD_PRIVATE (GtkSourceCompletion)
+			 G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
+						gtk_source_completion_buildable_interface_init))
 
 static void
 scroll_to_iter (GtkSourceCompletion *completion,
@@ -2539,6 +2562,27 @@ static void
 gtk_source_completion_init (GtkSourceCompletion *completion)
 {
 	completion->priv = gtk_source_completion_get_instance_private (completion);
+}
+
+static GObject *
+gtk_source_completion_buildable_get_internal_child (GtkBuildable *buildable,
+						    GtkBuilder   *builder,
+						    const gchar  *childname)
+{
+	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (buildable);
+
+	if (g_strcmp0 (childname, "info_window") == 0)
+	{
+		return G_OBJECT (gtk_source_completion_get_info_window (completion));
+	}
+
+	return NULL;
+}
+
+static void
+gtk_source_completion_buildable_interface_init (GtkBuildableIface *iface)
+{
+	iface->get_internal_child = gtk_source_completion_buildable_get_internal_child;
 }
 
 void

@@ -353,6 +353,11 @@
                 <child internal-child="completion">
                   <object class="GtkSourceCompletion">
                     <property name="remember_info_visibility">True</property>
+                    <child internal-child="info_window">
+                      <object class="GtkSourceCompletionInfo">
+                        <property name="border_width">3</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>
