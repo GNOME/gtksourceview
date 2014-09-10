@@ -350,6 +350,11 @@
                 <property name="tab_width">4</property>
                 <property name="auto_indent">True</property>
                 <property name="indent_on_tab">False</property>
+                <child internal-child="completion">
+                  <object class="GtkSourceCompletion">
+                    <property name="remember_info_visibility">True</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

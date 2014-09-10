@@ -51,11 +51,29 @@
  * SECTION:view
  * @Short_description: The view object
  * @Title: GtkSourceView
- * @See_also: #GtkTextView,#GtkSourceBuffer
+ * @See_also: #GtkTextView, #GtkSourceBuffer
  *
  * #GtkSourceView is the main object of the GtkSourceView library. It provides
  * a text view with syntax highlighting, undo/redo and text marks. Use a
  * #GtkSourceBuffer to display text with a #GtkSourceView.
+ *
+ * # GtkSourceView as GtkBuildable
+ *
+ * The GtkSourceView implementation of the #GtkBuildable interface exposes the
+ * #GtkSourceView:completion object with the internal-child "completion".
+ *
+ * An example of a UI definition fragment with GtkSourceView:
+ * |[
+ * <object class="GtkSourceView" id="source_view">
+ *   <property name="tab_width">4</property>
+ *   <property name="auto_indent">True</property>
+ *   <child internal-child="completion">
+ *     <object class="GtkSourceCompletion">
+ *       <property name="select_on_show">False</property>
+ *     </object>
+ *   </child>
+ * </object>
+ * ]|
  */
 
 /*
@@ -172,7 +190,12 @@ struct _MarkCategory
 	gint                     priority;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceView, gtk_source_view, GTK_TYPE_TEXT_VIEW)
+static void	gtk_source_view_buildable_interface_init (GtkBuildableIface *iface);
+
+G_DEFINE_TYPE_WITH_CODE (GtkSourceView, gtk_source_view, GTK_TYPE_TEXT_VIEW,
+			 G_ADD_PRIVATE (GtkSourceView)
+			 G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
+						gtk_source_view_buildable_interface_init))
 
 /* Implement DnD for application/x-color drops */
 typedef enum {
@@ -744,6 +767,27 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, 1);
+}
+
+static GObject *
+gtk_source_view_buildable_get_internal_child (GtkBuildable *buildable,
+					      GtkBuilder   *builder,
+					      const gchar  *childname)
+{
+	GtkSourceView *view = GTK_SOURCE_VIEW (buildable);
+
+	if (g_strcmp0 (childname, "completion") == 0)
+	{
+		return G_OBJECT (gtk_source_view_get_completion (view));
+	}
+
+	return NULL;
+}
+
+static void
+gtk_source_view_buildable_interface_init (GtkBuildableIface *iface)
+{
+	iface->get_internal_child = gtk_source_view_buildable_get_internal_child;
 }
 
 static void
