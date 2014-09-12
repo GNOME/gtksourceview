@@ -539,6 +539,7 @@ gtk_source_completion_info_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_INFO,
 	                     "type", GTK_WINDOW_POPUP,
+			     "border-width", 3,
 	                     NULL);
 }
 

@@ -2050,6 +2050,8 @@ init_main_window (GtkSourceCompletion *completion,
 	completion->priv->selection_label = GTK_LABEL (gtk_builder_get_object (builder, "selection_label"));
 	completion->priv->bottom_bar = GTK_WIDGET (gtk_builder_get_object (builder, "bottom_bar"));
 
+	gtk_container_set_border_width (GTK_CONTAINER (completion->priv->main_window), 0);
+
 	gtk_window_set_attached_to (GTK_WINDOW (completion->priv->main_window),
 				    GTK_WIDGET (completion->priv->view));
 
