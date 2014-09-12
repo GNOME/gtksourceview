@@ -25,6 +25,7 @@
 struct _GtkSourceGutterRendererLinesPrivate
 {
 	gint num_line_digits;
+	gint prev_line_num;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererLines, gtk_source_gutter_renderer_lines, GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT)
@@ -117,6 +118,8 @@ gutter_renderer_change_buffer (GtkSourceGutterRenderer *renderer,
 
 		recalculate_size (lines);
 	}
+
+	lines->priv->prev_line_num = 0;
 }
 
 static void
@@ -186,6 +189,77 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
 	                                            -1);
 
 	g_free (text);
+}
+
+static gint
+get_last_visible_line_number (GtkSourceGutterRendererLines *lines)
+{
+	GtkTextView *view;
+	GdkRectangle visible_rect;
+	GtkTextIter iter;
+
+	view = gtk_source_gutter_renderer_get_view (GTK_SOURCE_GUTTER_RENDERER (lines));
+
+	gtk_text_view_get_visible_rect (view, &visible_rect);
+
+	gtk_text_view_get_line_at_y (view,
+				     &iter,
+				     visible_rect.y + visible_rect.height,
+				     NULL);
+
+	gtk_text_iter_forward_line (&iter);
+
+	return gtk_text_iter_get_line (&iter);
+}
+
+static void
+gutter_renderer_end (GtkSourceGutterRenderer *renderer)
+{
+	GtkSourceGutterRendererLines *lines = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
+	GtkTextBuffer *buffer = get_buffer (lines);
+
+	if (buffer != NULL)
+	{
+		gint line_num = get_last_visible_line_number (lines);
+
+		/* When the text is modified in a GtkTextBuffer, GtkTextView tries to
+		 * redraw the smallest required region. But the information displayed in
+		 * the gutter may become invalid in a bigger region.
+		 * See https://bugzilla.gnome.org/show_bug.cgi?id=732418 for an example
+		 * where line numbers are not updated correctly when splitting a wrapped
+		 * line.
+		 * The performances should not be a big problem here. Correctness is
+		 * more important than performances. It just triggers a second
+		 * draw.
+		 * The queue_draw() is called in gutter_renderer_end(), because
+		 * the first draw is anyway needed to avoid flickering (if the
+		 * first draw is not done, there will be a white region in the
+		 * gutter during one frame).
+		 * Another solution that has better performances is to compare
+		 * the total number of lines in the buffer, instead of the last
+		 * visible line. But it has the drawback that the gutter is
+		 * continuously redrawn during file loading.
+		 *
+		 * FIXME A better solution would be to add a vfunc in the
+		 * GutterRenderer so that the Gutter can ask each renderer for
+		 * the invalidation region, before drawing. So that only one
+		 * draw is needed, and the solution would be more generic (if
+		 * other renderers also need a different invalidation region
+		 * than the GtkTextView). But the GutterRendererClass doesn't
+		 * have padding for future expansion, so it must wait for
+		 * GtkSourceView 4.
+		 */
+		if (lines->priv->prev_line_num != line_num)
+		{
+			lines->priv->prev_line_num = line_num;
+			gtk_source_gutter_renderer_queue_draw (renderer);
+		}
+	}
+
+	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class)->end != NULL)
+	{
+		GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class)->end (renderer);
+	}
 }
 
 static void
@@ -305,6 +379,7 @@ gtk_source_gutter_renderer_lines_class_init (GtkSourceGutterRendererLinesClass *
 	GtkSourceGutterRendererClass *renderer_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (klass);
 
 	renderer_class->query_data = gutter_renderer_query_data;
+	renderer_class->end = gutter_renderer_end;
 	renderer_class->query_activatable = gutter_renderer_query_activatable;
 	renderer_class->activate = gutter_renderer_activate;
 	renderer_class->change_buffer = gutter_renderer_change_buffer;

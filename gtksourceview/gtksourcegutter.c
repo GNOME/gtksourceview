@@ -395,48 +395,13 @@ calculate_gutter_size (GtkSourceGutter  *gutter,
 }
 
 static void
-window_invalidate_handler (GdkWindow      *window,
-			   cairo_region_t *region)
-{
-	cairo_rectangle_int_t rect;
-
-	/* Always invalidate the whole window.
-	 * When the text is modified in a GtkTextBuffer, GtkTextView tries to
-	 * redraw the smallest required region. But the information displayed in
-	 * the gutter may become invalid in a bigger region.
-	 * See https://bugzilla.gnome.org/show_bug.cgi?id=732418 for an example
-	 * where line numbers are not updated correctly when splitting a wrapped
-	 * line.
-	 * The performances should not be a big problem here. Correctness is
-	 * more important than performances.
-	 */
-
-	rect.x = 0;
-	rect.y = 0;
-	rect.width = gdk_window_get_width (window);
-	rect.height = gdk_window_get_height (window);
-
-	cairo_region_union_rectangle (region, &rect);
-}
-
-static void
 update_gutter_size (GtkSourceGutter *gutter)
 {
-	gint width;
-	GdkWindow *window;
-
-	width = calculate_gutter_size (gutter, NULL);
+	gint width = calculate_gutter_size (gutter, NULL);
 
 	gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (gutter->priv->view),
 	                                      gutter->priv->window_type,
 	                                      width);
-
-	window = get_window (gutter);
-
-	if (window != NULL)
-	{
-		gdk_window_set_invalidate_handler (window, window_invalidate_handler);
-	}
 }
 
 static gboolean
@@ -1226,6 +1191,9 @@ on_view_draw (GtkSourceView   *view,
 		gtk_text_iter_forward_line (&start);
 	}
 
+	/* Allow to call queue_redraw() in ::end. */
+	gutter->priv->is_drawing = FALSE;
+
 	for (item = gutter->priv->renderers; item != NULL; item = g_list_next (item))
 	{
 		Renderer *renderer = item->data;
@@ -1240,8 +1208,6 @@ on_view_draw (GtkSourceView   *view,
 	g_array_free (pixels, TRUE);
 	g_array_free (heights, TRUE);
 	g_array_free (sizes, TRUE);
-
-	gutter->priv->is_drawing = FALSE;
 
 	gtk_style_context_restore (style_context);
 
