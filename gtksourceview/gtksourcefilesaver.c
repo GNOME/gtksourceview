@@ -107,6 +107,9 @@ struct _GtkSourceFileSaverPrivate
 	gpointer progress_cb_data;
 	GDestroyNotify progress_cb_notify;
 
+	/* Warning: type instances' private data are limited to a total of 64 KiB.
+	 * See the GType documentation.
+	 */
 	gchar chunk_buffer[WRITE_CHUNK_SIZE];
 	gssize chunk_bytes_read;
 	gssize chunk_bytes_written;
