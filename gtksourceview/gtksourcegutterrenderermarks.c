@@ -173,10 +173,10 @@ composite_marks (GtkSourceView *view,
 }
 
 static void
-gutter_renderer_query_data (GtkSourceGutterRenderer *renderer,
-                            GtkTextIter             *start,
-                            GtkTextIter             *end,
-                            GtkSourceGutterRendererState state)
+gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
+			    GtkTextIter                  *start,
+			    GtkTextIter                  *end,
+			    GtkSourceGutterRendererState  state)
 {
 	GSList *marks;
 	GdkPixbuf *pixbuf = NULL;
@@ -377,7 +377,6 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
                              GtkTextView             *old_view)
 {
 	GtkSourceView *view;
-	GtkSourceGutterRendererClass *parent_class;
 
 	view = GTK_SOURCE_VIEW (gtk_source_gutter_renderer_get_view (renderer));
 
@@ -387,8 +386,11 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 		                                     measure_line_height (view));
 	}
 
-	parent_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_marks_parent_class);
-	parent_class->change_view (renderer, old_view);
+	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_marks_parent_class)->change_view != NULL)
+	{
+		GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_marks_parent_class)->change_view (renderer,
+													       old_view);
+	}
 }
 
 static void

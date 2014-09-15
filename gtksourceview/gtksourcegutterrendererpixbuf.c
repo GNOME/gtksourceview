@@ -80,7 +80,7 @@ gutter_renderer_pixbuf_draw (GtkSourceGutterRenderer      *renderer,
                              GtkTextIter                  *end,
                              GtkSourceGutterRendererState  state)
 {
-	GtkSourceGutterRendererPixbuf *pix;
+	GtkSourceGutterRendererPixbuf *pix = GTK_SOURCE_GUTTER_RENDERER_PIXBUF (renderer);
 	gint width;
 	gint height;
 	gfloat xalign;
@@ -92,16 +92,17 @@ gutter_renderer_pixbuf_draw (GtkSourceGutterRenderer      *renderer,
 	GdkPixbuf *pixbuf;
 
 	/* Chain up to draw background */
-	GTK_SOURCE_GUTTER_RENDERER_CLASS (
-		gtk_source_gutter_renderer_pixbuf_parent_class)->draw (renderer,
-		                                                       cr,
-		                                                       background_area,
-		                                                       cell_area,
-		                                                       start,
-		                                                       end,
-		                                                       state);
+	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_pixbuf_parent_class)->draw != NULL)
+	{
+		GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_pixbuf_parent_class)->draw (renderer,
+													 cr,
+													 background_area,
+													 cell_area,
+													 start,
+													 end,
+													 state);
+	}
 
-	pix = GTK_SOURCE_GUTTER_RENDERER_PIXBUF (renderer);
 	view = gtk_source_gutter_renderer_get_view (renderer);
 
 	pixbuf = gtk_source_pixbuf_helper_render (pix->priv->helper,

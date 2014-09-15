@@ -94,10 +94,8 @@ static void
 gutter_renderer_change_buffer (GtkSourceGutterRenderer *renderer,
                                GtkTextBuffer           *old_buffer)
 {
-	GtkSourceGutterRendererLines *lines;
+	GtkSourceGutterRendererLines *lines = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
 	GtkTextBuffer *buffer;
-
-	lines = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
 
 	if (old_buffer != NULL)
 	{
@@ -120,6 +118,12 @@ gutter_renderer_change_buffer (GtkSourceGutterRenderer *renderer,
 	}
 
 	lines->priv->prev_line_num = 0;
+
+	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class)->change_buffer != NULL)
+	{
+		GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class)->change_buffer (renderer,
+														 old_buffer);
+	}
 }
 
 static void
@@ -135,7 +139,6 @@ static void
 gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 			     GtkTextView             *old_view)
 {
-	GtkSourceGutterRendererClass *parent_class;
 	GtkTextView *new_view;
 
 	if (old_view != NULL)
@@ -156,8 +159,11 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 					 0);
 	}
 
-	parent_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class);
-	parent_class->change_view (renderer, old_view);
+	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class)->change_view != NULL)
+	{
+		GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class)->change_view (renderer,
+													       old_view);
+	}
 }
 
 static void
