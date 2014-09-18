@@ -3504,7 +3504,10 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			 * If this function returns TRUE, then no further processing should be done
 			 * for this keystroke. */
 			if (gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (view), event))
+			{
+				g_free (indent);
 				return TRUE;
+			}
 
 			/* If an input method has inserted some text while handling the key press event,
 			 * the cur iterm may be invalid, so get the iter again */
