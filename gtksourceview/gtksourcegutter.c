@@ -66,11 +66,11 @@ typedef struct
 	gint prelit;
 	gint position;
 
-	guint queue_draw_handler;
-	guint size_changed_handler;
-	guint notify_xpad_handler;
-	guint notify_ypad_handler;
-	guint notify_visible_handler;
+	gulong queue_draw_handler;
+	gulong size_changed_handler;
+	gulong notify_xpad_handler;
+	gulong notify_ypad_handler;
+	gulong notify_visible_handler;
 } Renderer;
 
 struct _GtkSourceGutterPrivate
