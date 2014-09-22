@@ -3,8 +3,8 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.64)
 
 m4_define(gtksourceview_major_version, 3)
-m4_define(gtksourceview_minor_version, 13)
-m4_define(gtksourceview_micro_version, 92)
+m4_define(gtksourceview_minor_version, 14)
+m4_define(gtksourceview_micro_version, 0)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
 AC_INIT([gtksourceview],
@@ -30,9 +30,9 @@ AC_INIT([gtksourceview],
 #
 # (From the book Autotools, by John Calcote)
 
-GSV_LT_CURRENT=3
+GSV_LT_CURRENT=4
 GSV_LT_REVISION=0
-GSV_LT_AGE=2
+GSV_LT_AGE=3
 GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
 AC_SUBST(GSV_LT_VERSION)
 
@@ -57,7 +57,7 @@ LT_INIT([disable-static])
 AC_CHECK_HEADERS([unistd.h])
 
 # Dependencies
-GLIB_REQUIRED_VERSION=2.37.3
+GLIB_REQUIRED_VERSION=2.38
 GTK_REQUIRED_VERSION=3.13.7
 LIBXML_REQUIRED_VERSION=2.6.0
 GLADE_UI_REQUIRED=3.9
