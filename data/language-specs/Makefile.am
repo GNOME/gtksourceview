@@ -82,6 +82,7 @@ LANGUAGES =			\
 	pascal.lang		\
 	perl.lang		\
 	php.lang		\
+	pig.lang		\
 	pkgconfig.lang		\
 	po.lang			\
 	python.lang		\
