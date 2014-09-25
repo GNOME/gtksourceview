@@ -160,9 +160,7 @@ struct _GtkSourceViewPrivate
 
 	GdkRGBA          current_line_color;
 
-	GtkSourceCompletion	*completion;
-
-	gint             num_line_digits;
+	GtkSourceCompletion *completion;
 
 	guint		 right_margin_pos;
 	gint             cached_right_margin_pos;
@@ -3809,7 +3807,7 @@ gtk_source_view_get_show_right_margin (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
-	return (view->priv->show_right_margin != FALSE);
+	return view->priv->show_right_margin;
 }
 
 /**
@@ -4284,8 +4282,7 @@ gtk_source_view_get_completion (GtkSourceView *view)
  * Returns the #GtkSourceGutter object associated with @window_type for @view.
  * Only GTK_TEXT_WINDOW_LEFT and GTK_TEXT_WINDOW_RIGHT are supported,
  * respectively corresponding to the left and right gutter. The line numbers
- * and mark category icons are rendered in the gutter corresponding to
- * GTK_TEXT_WINDOW_LEFT.
+ * and mark category icons are rendered in the left gutter.
  *
  * Since: 2.8
  *
