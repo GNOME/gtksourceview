@@ -2298,102 +2298,158 @@ gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer
 	}
 }
 
-static void
+static gchar *
 do_lower_case (GtkTextBuffer     *buffer,
 	       const GtkTextIter *start,
-	       const GtkTextIter *end,
-	       GString           *str)
+	       const GtkTextIter *end)
 {
-	GtkTextIter iter = *start;
+	gchar *text;
+	gchar *new_text;
 
-	while (!gtk_text_iter_is_end (&iter) &&
-	       !gtk_text_iter_equal (&iter, end))
-	{
-		gunichar c, nc;
+	text = gtk_text_buffer_get_text (buffer, start, end, TRUE);
+	new_text = g_utf8_strdown (text, -1);
 
-		c = gtk_text_iter_get_char (&iter);
-		nc = g_unichar_tolower (c);
-		g_string_append_unichar (str, nc);
-
-		gtk_text_iter_forward_char (&iter);
-	}
+	g_free (text);
+	return new_text;
 }
 
-static void
+static gchar *
 do_upper_case (GtkTextBuffer     *buffer,
 	       const GtkTextIter *start,
-	       const GtkTextIter *end,
-	       GString           *str)
+	       const GtkTextIter *end)
 {
-	GtkTextIter iter = *start;
+	gchar *text;
+	gchar *new_text;
 
-	while (!gtk_text_iter_is_end (&iter) &&
-	       !gtk_text_iter_equal (&iter, end))
-	{
-		gunichar c, nc;
+	text = gtk_text_buffer_get_text (buffer, start, end, TRUE);
+	new_text = g_utf8_strup (text, -1);
 
-		c = gtk_text_iter_get_char (&iter);
-		nc = g_unichar_toupper (c);
-		g_string_append_unichar (str, nc);
-
-		gtk_text_iter_forward_char (&iter);
-	}
+	g_free (text);
+	return new_text;
 }
 
-static void
+static gchar *
 do_toggle_case (GtkTextBuffer     *buffer,
 		const GtkTextIter *start,
-		const GtkTextIter *end,
-		GString           *str)
+		const GtkTextIter *end)
 {
-	GtkTextIter iter = *start;
+	GString *str;
+	GtkTextIter iter_start;
 
-	while (!gtk_text_iter_is_end (&iter) &&
-	       !gtk_text_iter_equal (&iter, end))
+	str = g_string_new (NULL);
+	iter_start = *start;
+
+	while (!gtk_text_iter_is_end (&iter_start))
 	{
-		gunichar c, nc;
+		GtkTextIter iter_end;
+		gchar *text;
+		gchar *text_down;
+		gchar *text_up;
 
-		c = gtk_text_iter_get_char (&iter);
-		if (g_unichar_islower (c))
+		iter_end = iter_start;
+		gtk_text_iter_forward_cursor_position (&iter_end);
+
+		if (gtk_text_iter_compare (end, &iter_end) < 0)
 		{
-			nc = g_unichar_toupper (c);
+			break;
+		}
+
+		text = gtk_text_buffer_get_text (buffer, &iter_start, &iter_end, TRUE);
+		text_down = g_utf8_strdown (text, -1);
+		text_up = g_utf8_strup (text, -1);
+
+		if (g_strcmp0 (text, text_down) == 0)
+		{
+			g_string_append (str, text_up);
+		}
+		else if (g_strcmp0 (text, text_up) == 0)
+		{
+			g_string_append (str, text_down);
 		}
 		else
 		{
-			nc = g_unichar_tolower (c);
+			g_string_append (str, text);
 		}
-		g_string_append_unichar (str, nc);
 
-		gtk_text_iter_forward_char (&iter);
+		g_free (text);
+		g_free (text_down);
+		g_free (text_up);
+
+		iter_start = iter_end;
 	}
+
+	return g_string_free (str, FALSE);
 }
 
-static void
+static gchar *
 do_title_case (GtkTextBuffer     *buffer,
 	       const GtkTextIter *start,
-	       const GtkTextIter *end,
-	       GString           *str)
+	       const GtkTextIter *end)
 {
-	GtkTextIter iter = *start;
+	GString *str;
+	GtkTextIter iter_start;
 
-	while (!gtk_text_iter_is_end (&iter) &&
-	       !gtk_text_iter_equal (&iter, end))
+	str = g_string_new (NULL);
+	iter_start = *start;
+
+	while (!gtk_text_iter_is_end (&iter_start))
 	{
-		gunichar c, nc;
+		GtkTextIter iter_end;
+		gchar *text;
 
-		c = gtk_text_iter_get_char (&iter);
-		if (gtk_text_iter_starts_word (&iter))
+		iter_end = iter_start;
+		gtk_text_iter_forward_cursor_position (&iter_end);
+
+		if (gtk_text_iter_compare (end, &iter_end) < 0)
 		{
-			nc = g_unichar_totitle (c);
+			break;
+		}
+
+		text = gtk_text_buffer_get_text (buffer, &iter_start, &iter_end, TRUE);
+
+		if (gtk_text_iter_starts_word (&iter_start))
+		{
+			gchar *text_normalized;
+
+			text_normalized = g_utf8_normalize (text, -1, G_NORMALIZE_DEFAULT);
+
+			if (g_utf8_strlen (text_normalized, -1) == 1)
+			{
+				gunichar c;
+				gunichar new_c;
+
+				c = gtk_text_iter_get_char (&iter_start);
+				new_c = g_unichar_totitle (c);
+
+				g_string_append_unichar (str, new_c);
+			}
+			else
+			{
+				gchar *text_up;
+
+				text_up = g_utf8_strup (text, -1);
+				g_string_append (str, text_up);
+
+				g_free (text_up);
+			}
+
+			g_free (text_normalized);
 		}
 		else
 		{
-			nc = g_unichar_tolower (c);
-		}
-		g_string_append_unichar (str, nc);
+			gchar *text_down;
 
-		gtk_text_iter_forward_char (&iter);
+			text_down = g_utf8_strdown (text, -1);
+			g_string_append (str, text_down);
+
+			g_free (text_down);
+		}
+
+		g_free (text);
+		iter_start = iter_end;
 	}
+
+	return g_string_free (str, FALSE);
 }
 
 /**
@@ -2414,31 +2470,32 @@ gtk_source_buffer_change_case (GtkSourceBuffer         *buffer,
                                GtkTextIter             *end)
 {
 	GtkTextBuffer *text_buffer;
-	GString *str;
+	gchar *new_text;
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (start != NULL);
 	g_return_if_fail (end != NULL);
 
+	gtk_text_iter_order (start, end);
+
 	text_buffer = GTK_TEXT_BUFFER (buffer);
-	str = g_string_new (NULL);
 
 	switch (case_type)
 	{
-		case GTK_SOURCE_CHANGE_CASE_UPPER:
-			do_upper_case (text_buffer, start, end, str);
+		case GTK_SOURCE_CHANGE_CASE_LOWER:
+			new_text = do_lower_case (text_buffer, start, end);
 			break;
 
-		case GTK_SOURCE_CHANGE_CASE_LOWER:
-			do_lower_case (text_buffer, start, end, str);
+		case GTK_SOURCE_CHANGE_CASE_UPPER:
+			new_text = do_upper_case (text_buffer, start, end);
 			break;
 
 		case GTK_SOURCE_CHANGE_CASE_TOGGLE:
-			do_toggle_case (text_buffer, start, end, str);
+			new_text = do_toggle_case (text_buffer, start, end);
 			break;
 
 		case GTK_SOURCE_CHANGE_CASE_TITLE:
-			do_title_case (text_buffer, start, end, str);
+			new_text = do_title_case (text_buffer, start, end);
 			break;
 
 		default:
@@ -2446,11 +2503,11 @@ gtk_source_buffer_change_case (GtkSourceBuffer         *buffer,
 	}
 
 	gtk_text_buffer_begin_user_action (text_buffer);
-	gtk_text_buffer_delete_interactive (text_buffer, start, end, TRUE);
-	gtk_text_buffer_insert_interactive (text_buffer, start, str->str, str->len, TRUE);
+	gtk_text_buffer_delete (text_buffer, start, end);
+	gtk_text_buffer_insert (text_buffer, start, new_text, -1);
 	gtk_text_buffer_end_user_action (text_buffer);
 
-	g_string_free (str, TRUE);
+	g_free (new_text);
 }
 
 /**

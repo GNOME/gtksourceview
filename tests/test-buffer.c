@@ -43,8 +43,8 @@ init_default_manager (void)
 static void
 test_get_buffer (void)
 {
-	GtkWidget* view;
-	GtkSourceBuffer* buffer;
+	GtkWidget *view;
+	GtkSourceBuffer *buffer;
 
 	view = gtk_source_view_new ();
 
@@ -113,20 +113,32 @@ test_get_context_classes (void)
 
 static void
 do_test_change_case (GtkSourceBuffer         *buffer,
-                     GtkSourceChangeCaseType  case_type,
-                     const char              *text,
-                     const char              *expected)
+		     GtkSourceChangeCaseType  case_type,
+		     const gchar             *text,
+		     const gchar             *expected)
 {
-	GtkTextIter start, end;
-	char *changed;
+	GtkTextIter start;
+	GtkTextIter end;
+	gchar *changed;
+	gchar *changed_normalized;
+	gchar *expected_normalized;
 
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
+
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
 	gtk_source_buffer_change_case (buffer, case_type, &start, &end);
+
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
 	changed = gtk_text_buffer_get_text (GTK_TEXT_BUFFER (buffer), &start, &end, TRUE);
-	g_assert_cmpstr (changed, ==, expected);
+
+	changed_normalized = g_utf8_normalize (changed, -1, G_NORMALIZE_DEFAULT);
+	expected_normalized = g_utf8_normalize (expected, -1, G_NORMALIZE_DEFAULT);
+
+	g_assert_cmpstr (changed_normalized, ==, expected_normalized);
+
 	g_free (changed);
+	g_free (changed_normalized);
+	g_free (expected_normalized);
 }
 
 static void
@@ -140,6 +152,24 @@ test_change_case (void)
 	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_UPPER, "some TEXT", "SOME TEXT");
 	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TOGGLE, "some TEXT", "SOME text");
 	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TITLE, "some TEXT", "Some Text");
+
+	/* https://bugzilla.gnome.org/show_bug.cgi?id=416390 */
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_LOWER, "T̈OME", "ẗome");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_UPPER, "ẗome", "T̈OME");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TOGGLE, "ẗome", "T̈OME");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TOGGLE, "T̈OME", "ẗome");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TITLE, "ẗome", "T̈ome");
+
+	/* test g_unichar_totitle */
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_LOWER, "\307\261adzíki", "\307\263adzíki");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_LOWER, "\307\262adzíki", "\307\263adzíki");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_LOWER, "\307\263adzíki", "\307\263adzíki");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_UPPER, "\307\263adzíki", "\307\261ADZÍKI");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_UPPER, "\307\262adzíki", "\307\261ADZÍKI");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TOGGLE, "\307\263adzíki", "\307\261ADZÍKI");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TITLE, "\307\263adzíki", "\307\262adzíki");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TITLE, "\307\261ADZÍKI", "\307\262adzíki");
+	do_test_change_case (buffer, GTK_SOURCE_CHANGE_CASE_TITLE, "\307\262ADZÍKI", "\307\262adzíki");
 
 	g_object_unref (buffer);
 }
