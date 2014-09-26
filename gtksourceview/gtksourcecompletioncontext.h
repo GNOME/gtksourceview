@@ -78,7 +78,7 @@ void 		 gtk_source_completion_context_add_proposals 	(GtkSourceCompletionContext
 								 GList                        *proposals,
 								 gboolean                      finished);
 
-void		 gtk_source_completion_context_get_iter		(GtkSourceCompletionContext   *context,
+gboolean	 gtk_source_completion_context_get_iter		(GtkSourceCompletionContext   *context,
 								 GtkTextIter                  *iter);
 
 GtkSourceCompletionActivation

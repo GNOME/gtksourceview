@@ -217,7 +217,11 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 	GtkTextIter iter;
 	gchar *word;
 
-	gtk_source_completion_context_get_iter (context, &iter);
+	if (!gtk_source_completion_context_get_iter (context, &iter))
+	{
+		gtk_source_completion_context_add_proposals (context, provider, NULL, TRUE);
+		return;
+	}
 
 	g_free (words->priv->word);
 	words->priv->word = NULL;
@@ -231,10 +235,7 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 	     g_utf8_strlen (word, -1) < words->priv->minimum_word_size))
 	{
 		g_free (word);
-		gtk_source_completion_context_add_proposals (context,
-		                                             provider,
-		                                             NULL,
-		                                             TRUE);
+		gtk_source_completion_context_add_proposals (context, provider, NULL, TRUE);
 		return;
 	}
 
@@ -516,7 +517,10 @@ gtk_source_completion_words_get_start_iter (GtkSourceCompletionProvider *provide
 	gchar *word;
 	glong nb_chars;
 
-	gtk_source_completion_context_get_iter (context, iter);
+	if (!gtk_source_completion_context_get_iter (context, iter))
+	{
+		return FALSE;
+	}
 
 	word = get_word_at_iter (iter);
 	g_return_val_if_fail (word != NULL, FALSE);
