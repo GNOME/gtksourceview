@@ -2873,10 +2873,11 @@ gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
  * gtk_source_completion_get_view:
  * @completion: a #GtkSourceCompletion.
  *
- * The #GtkSourceView associated with @completion.
+ * The #GtkSourceView associated with @completion, or %NULL if the view has been
+ * destroyed.
  *
  * Returns: (type GtkSource.View) (transfer none):
- * The #GtkSourceView associated with @completion.
+ * The #GtkSourceView associated with @completion, or %NULL.
  */
 GtkSourceView *
 gtk_source_completion_get_view (GtkSourceCompletion *completion)

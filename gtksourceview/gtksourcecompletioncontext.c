@@ -379,7 +379,8 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
 GtkSourceCompletionActivation
 gtk_source_completion_context_get_activation (GtkSourceCompletionContext *context)
 {
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context), FALSE);
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context),
+			      GTK_SOURCE_COMPLETION_ACTIVATION_NONE);
 
 	return context->priv->activation;
 }
@@ -393,7 +394,8 @@ _gtk_source_completion_context_cancel (GtkSourceCompletionContext *context)
 }
 
 GtkSourceCompletionContext *
-_gtk_source_completion_context_new (GtkSourceCompletion *completion, GtkTextIter *position)
+_gtk_source_completion_context_new (GtkSourceCompletion *completion,
+				    GtkTextIter         *position)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), NULL);
 	g_return_val_if_fail (position != NULL, NULL);
