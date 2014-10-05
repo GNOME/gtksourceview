@@ -3,23 +3,23 @@
 # This file is distributed under the same license as the gtksourceview package.
 # Stefano Canepa <sc@linux.it>, 2003, 2004, 2005, 2006.
 # Francesco Marletta <francesco.marletta@tiscali.it>, 2006, 2007.
-# Milo Casagrande <milo@ubuntu.com>, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
+# Milo Casagrande <milo@milo.name>, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-16 10:08+0000\n"
-"PO-Revision-Date: 2014-02-16 12:15+0100\n"
-"Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
+"POT-Creation-Date: 2014-10-05 09:25+0000\n"
+"PO-Revision-Date: 2014-10-05 14:29+0100\n"
+"Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.6.4\n"
+"X-Generator: Poedit 1.6.9\n"
 
 # (ndt) pare che il gutter sia qualche cosa di Eclipse: dove vengono visualizzati i risultati di una ricerca per un facile accesso… è tipo una ‘colonna’ da una parte della finestra. sul wiki di gnome c’è un’immagine. in tipografia è definito come il profilo interno.
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -65,7 +65,7 @@ msgstr "Iniziale"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:399
+#: ../gtksourceview/gtksourcegutterrenderertext.c:421
 msgid "Text"
 msgstr "Testo"
 
@@ -76,7 +76,7 @@ msgstr "Finale"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:789
+#: ../gtksourceview/gtksourcecompletion.c:811
 msgid "All"
 msgstr "Tutte"
 
@@ -198,6 +198,7 @@ msgstr "Errore"
 #: ../data/language-specs/eiffel.lang.h:4
 #: ../data/language-specs/erlang.lang.h:7
 #: ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/fortran.lang.h:4
 #: ../data/language-specs/fsharp.lang.h:7
 #: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/gtkrc.lang.h:4
@@ -275,7 +276,7 @@ msgstr "Dichiarazione scope"
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
 #: ../data/language-specs/forth.lang.h:6
-#: ../data/language-specs/fortran.lang.h:5
+#: ../data/language-specs/fortran.lang.h:6
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
 #: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:5
@@ -377,7 +378,7 @@ msgstr "Parole riservate future"
 #: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
 #: ../data/language-specs/eiffel.lang.h:8
 #: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:9
+#: ../data/language-specs/fortran.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:11
 #: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
 #: ../data/language-specs/gtkrc.lang.h:7
@@ -427,6 +428,7 @@ msgstr "Numero decimale"
 #: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:5
+#: ../data/language-specs/fortran.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/glsl.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3
@@ -452,6 +454,7 @@ msgstr "Numero reale"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
+#: ../data/language-specs/fortran.lang.h:14
 #: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
 #: ../data/language-specs/java.lang.h:3
@@ -703,7 +706,7 @@ msgstr "Numero esadecimale"
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:391
+#: ../gtksourceview/gtksourcegutterrenderertext.c:413
 msgid "Markup"
 msgstr "Markup"
 
@@ -805,6 +808,7 @@ msgid "Bindings"
 msgstr "Binding"
 
 #: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
+#: ../data/language-specs/fortran.lang.h:13
 #: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "File incluso"
@@ -965,7 +969,7 @@ msgstr "Altri 3"
 
 #. Translator: it is a type of number
 #: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8 ../data/language-specs/gap.lang.h:7
+#: ../data/language-specs/fortran.lang.h:9 ../data/language-specs/gap.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:6
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
@@ -1150,6 +1154,8 @@ msgid "Exec parameter"
 msgstr "Parametro di esecuzione"
 
 #: ../data/language-specs/desktop.lang.h:11
+#: ../gtksourceview/gtksourcefile.c:184
+#: ../gtksourceview/gtksourcefilesaver.c:393
 msgid "Encoding"
 msgstr "Codifica"
 
@@ -1190,6 +1196,9 @@ msgstr "Caso speciale"
 
 #. String
 #: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
+#: ../gtksourceview/gtksourcefile.c:167
+#: ../gtksourceview/gtksourcefileloader.c:397
+#: ../gtksourceview/gtksourcefilesaver.c:376
 msgid "Location"
 msgstr "Posizione"
 
@@ -1356,7 +1365,7 @@ msgstr "Scientifica"
 msgid "FCL"
 msgstr "FCL"
 
-#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:4
+#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:4
 #: ../data/language-specs/modelica.lang.h:11
 #: ../data/language-specs/octave.lang.h:10
@@ -1389,14 +1398,18 @@ msgstr "Testo errore"
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:6
+#: ../data/language-specs/fortran.lang.h:7
 msgid "Intrinsic function"
 msgstr "Funzione intrinseca"
 
 # (ndT) Binary Octal Z(hexadecimal)
-#: ../data/language-specs/fortran.lang.h:7
+#: ../data/language-specs/fortran.lang.h:8
 msgid "BOZ Literal"
 msgstr "Letterale BOZ"
+
+#: ../data/language-specs/fortran.lang.h:12
+msgid "OpenMP directives"
+msgstr "Direttive OpenMP"
 
 #: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
@@ -2312,7 +2325,6 @@ msgid "PHP"
 msgstr "PHP"
 
 #: ../data/language-specs/php.lang.h:3
-#| msgid "Preprocessor"
 msgid "Preprocessor tags"
 msgstr "Etichette preprocessore"
 
@@ -2545,7 +2557,7 @@ msgstr "Definizione variabile"
 #. * to a #GtkSourceBuffer.
 #.
 #: ../data/language-specs/sh.lang.h:10 ../data/language-specs/texinfo.lang.h:5
-#: ../gtksourceview/gtksourcelanguage.c:55
+#: ../gtksourceview/gtksourcelanguage.c:54
 msgid "Others"
 msgstr "Altri"
 
@@ -2889,178 +2901,208 @@ msgid "Provider priority"
 msgstr "La priorità del provider"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-#: ../gtksourceview/gtksourcecompletioncontext.c:299
+#: ../gtksourceview/gtksourcecompletioncontext.c:298
 msgid "Activation"
 msgstr "Attivazione"
 
 #: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
-#: ../gtksourceview/gtksourcecompletioncontext.c:300
+#: ../gtksourceview/gtksourcecompletioncontext.c:299
 msgid "The type of activation"
 msgstr "Il tipo di attivazione"
 
-#: ../gtksourceview/gtksourcebuffer.c:274
+#: ../gtksourceview/gtksourcebuffer.c:277
 #: ../gtksourceview/gtksourceprintcompositor.c:505
 msgid "Highlight Syntax"
 msgstr "Evidenzia sintassi"
 
-#: ../gtksourceview/gtksourcebuffer.c:275
+#: ../gtksourceview/gtksourcebuffer.c:278
 msgid "Whether to highlight syntax in the buffer"
 msgstr "Indica se evidenziare la sintassi nel buffer"
 
-#: ../gtksourceview/gtksourcebuffer.c:288
+#: ../gtksourceview/gtksourcebuffer.c:291
 msgid "Highlight Matching Brackets"
 msgstr "Evidenzia le parentesi corrispondenti"
 
-#: ../gtksourceview/gtksourcebuffer.c:289
+#: ../gtksourceview/gtksourcebuffer.c:292
 msgid "Whether to highlight matching brackets"
 msgstr "Indica se evidenziare le parentesi corrispondenti"
 
-#: ../gtksourceview/gtksourcebuffer.c:302
-#: ../gtksourceview/gtksourceundomanagerdefault.c:414
+#: ../gtksourceview/gtksourcebuffer.c:305
 msgid "Maximum Undo Levels"
 msgstr "Massimo livello di annullamento"
 
-#: ../gtksourceview/gtksourcebuffer.c:303
-#: ../gtksourceview/gtksourceundomanagerdefault.c:415
+#: ../gtksourceview/gtksourcebuffer.c:306
 msgid "Number of undo levels for the buffer"
 msgstr "Numero di livelli di annullamento per il buffer"
 
 #. Translators: throughout GtkSourceView "language" stands
 #. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:315
+#: ../gtksourceview/gtksourcebuffer.c:318
 msgid "Language"
 msgstr "Linguaggio"
 
-#: ../gtksourceview/gtksourcebuffer.c:316
+#: ../gtksourceview/gtksourcebuffer.c:319
 msgid "Language object to get highlighting patterns from"
 msgstr "Oggetto linguaggio da cui prendere le regole di evidenziazione"
 
-#: ../gtksourceview/gtksourcebuffer.c:324
+#: ../gtksourceview/gtksourcebuffer.c:327
 msgid "Can undo"
 msgstr "Può annullare"
 
-#: ../gtksourceview/gtksourcebuffer.c:325
+#: ../gtksourceview/gtksourcebuffer.c:328
 msgid "Whether Undo operation is possible"
 msgstr "Indica se è possibile l'azione di annullamento"
 
-#: ../gtksourceview/gtksourcebuffer.c:332
+#: ../gtksourceview/gtksourcebuffer.c:335
 msgid "Can redo"
 msgstr "Può ripetere"
 
-#: ../gtksourceview/gtksourcebuffer.c:333
+#: ../gtksourceview/gtksourcebuffer.c:336
 msgid "Whether Redo operation is possible"
 msgstr "Indica se è possibile l'azione di ripetizione"
 
-#: ../gtksourceview/gtksourcebuffer.c:347
-#: ../gtksourceview/gtksourcebuffer.c:348
+#: ../gtksourceview/gtksourcebuffer.c:350
+#: ../gtksourceview/gtksourcebuffer.c:351
 msgid "Style scheme"
 msgstr "Schema di stile"
 
-#: ../gtksourceview/gtksourcebuffer.c:355
+#: ../gtksourceview/gtksourcebuffer.c:358
 msgid "Undo manager"
 msgstr "Gestore azione di annullamento"
 
-#: ../gtksourceview/gtksourcebuffer.c:356
+#: ../gtksourceview/gtksourcebuffer.c:359
 msgid "The buffer undo manager"
 msgstr "Il gestore del buffer dell'azione di annullamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:2163
-#: ../gtksourceview/gtksourcegutter.c:510
+#: ../gtksourceview/gtksourcebuffer.c:374
+msgid "Implicit trailing newline"
+msgstr "A capo terminante implicito"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:838
+msgid "Invalid byte sequence in conversion input"
+msgstr "Sequenza di byte non valida nell'input di conversione"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:844
+#, c-format
+msgid "Error during conversion: %s"
+msgstr "Errore nel convertire: %s"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:925
+#, c-format
+msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgstr "La conversione dal set di caratteri «%s» a «UTF-8» non è supportato"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:931
+#, c-format
+msgid "Could not open converter from '%s' to 'UTF-8'"
+msgstr "Impossibile aprire il convertitore da «%s» a «UTF-8»"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:986
+msgid "Invalid object, not initialized"
+msgstr "Oggetto non valido, non inizializzato"
+
+#: ../gtksourceview/gtksourcebufferoutputstream.c:1178
+#, c-format
+msgid "Incomplete UTF-8 sequence in input"
+msgstr "Sequenza di input UTF-8 incompleta"
+
+#: ../gtksourceview/gtksourcecompletion.c:2187
+#: ../gtksourceview/gtksourcegutter.c:514
 msgid "View"
 msgstr "Vista"
 
-#: ../gtksourceview/gtksourcecompletion.c:2164
+#: ../gtksourceview/gtksourcecompletion.c:2188
 msgid "The GtkSourceView bound to the completion"
 msgstr "L'oggetto GtkSourceView legato al completamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:2178
+#: ../gtksourceview/gtksourcecompletion.c:2202
 msgid "Remember Info Visibility"
 msgstr "Ricorda visibilità informazioni"
 
-#: ../gtksourceview/gtksourcecompletion.c:2179
+#: ../gtksourceview/gtksourcecompletion.c:2203
 msgid "Remember the last info window visibility state"
 msgstr "Ricorda l'ultimo stato di visibilità della finestra delle informazioni"
 
-#: ../gtksourceview/gtksourcecompletion.c:2191
+#: ../gtksourceview/gtksourcecompletion.c:2215
 msgid "Select on Show"
 msgstr "Seleziona quando mostrato"
 
-#: ../gtksourceview/gtksourcecompletion.c:2192
+#: ../gtksourceview/gtksourcecompletion.c:2216
 msgid "Select first proposal when completion is shown"
 msgstr "Seleziona la prima proposta quando viene mostrato il completamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:2205
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Show Headers"
 msgstr "Mostra le intestazioni"
 
-#: ../gtksourceview/gtksourcecompletion.c:2206
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Mostra le intestazioni dei provider quando sono disponibili proposte da "
 "molteplici provider."
 
-#: ../gtksourceview/gtksourcecompletion.c:2219
+#: ../gtksourceview/gtksourcecompletion.c:2243
 msgid "Show Icons"
 msgstr "Mostra le icone"
 
-#: ../gtksourceview/gtksourcecompletion.c:2220
+#: ../gtksourceview/gtksourcecompletion.c:2244
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Mostra le icone del provider e della proposta nel popup del completamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:2234
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid "Accelerators"
 msgstr "Acceleratori"
 
-#: ../gtksourceview/gtksourcecompletion.c:2235
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Number of proposal accelerators to show"
 msgstr "Numero di acceleratori delle proposte da mostrare"
 
-#: ../gtksourceview/gtksourcecompletion.c:2250
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Auto Complete Delay"
 msgstr "Ritardo dell'autocompletamento"
 
-#: ../gtksourceview/gtksourcecompletion.c:2251
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid "Completion popup delay for interactive completion"
 msgstr "Ritardo del popup di completamento per il completamento interattivo"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
+#: ../gtksourceview/gtksourcecompletion.c:2291
 msgid "Provider Page Size"
 msgstr "Dimensione pagina del provider"
 
-#: ../gtksourceview/gtksourcecompletion.c:2268
+#: ../gtksourceview/gtksourcecompletion.c:2292
 msgid "Provider scrolling page size"
 msgstr "Dimensione scorrimento pagina del provider"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Proposal Page Size"
 msgstr "Dimensione pagina delle proposte"
 
-#: ../gtksourceview/gtksourcecompletion.c:2289
+#: ../gtksourceview/gtksourcecompletion.c:2313
 msgid "Proposal scrolling page size"
 msgstr "Dimensione scorrimento della pagina delle proposte"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
-#: ../gtksourceview/gtksourceview.c:309
+#: ../gtksourceview/gtksourcecompletioncontext.c:271
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Completion"
 msgstr "Completamento"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:273
+#: ../gtksourceview/gtksourcecompletioncontext.c:272
 msgid "The completion object to which the context belongs"
 msgstr "L'oggetto completamento di cui fa parte il contesto"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:286
+#: ../gtksourceview/gtksourcecompletioncontext.c:285
 msgid "Iterator"
 msgstr "Iteratore"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:287
+#: ../gtksourceview/gtksourcecompletioncontext.c:286
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "L'elemento GtkTextIter in cui è stato invocato il completamento"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:253
+#: ../gtksourceview/gtksourcecompletioninfo.c:264
 msgid "Completion Info"
 msgstr "Informazioni di completamento"
 
@@ -3161,159 +3203,332 @@ msgstr "contesto «%s» sconosciuto"
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Definizione linguaggio principale mancante (ID = «%s»)."
 
+#: ../gtksourceview/gtksourceencoding.c:137
+#: ../gtksourceview/gtksourceencoding.c:180
+#: ../gtksourceview/gtksourceencoding.c:182
+#: ../gtksourceview/gtksourceencoding.c:184
+#: ../gtksourceview/gtksourceencoding.c:186
+#: ../gtksourceview/gtksourceencoding.c:188
+#: ../gtksourceview/gtksourceencoding.c:190
+#: ../gtksourceview/gtksourceencoding.c:192
+msgid "Unicode"
+msgstr "Unicode"
+
+#: ../gtksourceview/gtksourceencoding.c:151
+#: ../gtksourceview/gtksourceencoding.c:175
+#: ../gtksourceview/gtksourceencoding.c:225
+#: ../gtksourceview/gtksourceencoding.c:268
+msgid "Western"
+msgstr "Occidentale"
+
+#: ../gtksourceview/gtksourceencoding.c:153
+#: ../gtksourceview/gtksourceencoding.c:227
+#: ../gtksourceview/gtksourceencoding.c:264
+msgid "Central European"
+msgstr "Centro Europea"
+
+#: ../gtksourceview/gtksourceencoding.c:155
+msgid "South European"
+msgstr "Sud Europea"
+
+#: ../gtksourceview/gtksourceencoding.c:157
+#: ../gtksourceview/gtksourceencoding.c:171
+#: ../gtksourceview/gtksourceencoding.c:278
+msgid "Baltic"
+msgstr "Baltica"
+
+#: ../gtksourceview/gtksourceencoding.c:159
+#: ../gtksourceview/gtksourceencoding.c:229
+#: ../gtksourceview/gtksourceencoding.c:242
+#: ../gtksourceview/gtksourceencoding.c:246
+#: ../gtksourceview/gtksourceencoding.c:248
+#: ../gtksourceview/gtksourceencoding.c:266
+msgid "Cyrillic"
+msgstr "Cirillica"
+
+#: ../gtksourceview/gtksourceencoding.c:161
+#: ../gtksourceview/gtksourceencoding.c:235
+#: ../gtksourceview/gtksourceencoding.c:276
+msgid "Arabic"
+msgstr "Araba"
+
+#: ../gtksourceview/gtksourceencoding.c:163
+#: ../gtksourceview/gtksourceencoding.c:270
+msgid "Greek"
+msgstr "Greca"
+
+#: ../gtksourceview/gtksourceencoding.c:165
+msgid "Hebrew Visual"
+msgstr "Ebraica visuale"
+
+#: ../gtksourceview/gtksourceencoding.c:167
+#: ../gtksourceview/gtksourceencoding.c:231
+#: ../gtksourceview/gtksourceencoding.c:272
+msgid "Turkish"
+msgstr "Turca"
+
+#: ../gtksourceview/gtksourceencoding.c:169
+msgid "Nordic"
+msgstr "Nordica"
+
+#: ../gtksourceview/gtksourceencoding.c:173
+msgid "Celtic"
+msgstr "Celtica"
+
+#: ../gtksourceview/gtksourceencoding.c:177
+msgid "Romanian"
+msgstr "Rumena"
+
+#: ../gtksourceview/gtksourceencoding.c:195
+msgid "Armenian"
+msgstr "Armena"
+
+#: ../gtksourceview/gtksourceencoding.c:197
+#: ../gtksourceview/gtksourceencoding.c:199
+#: ../gtksourceview/gtksourceencoding.c:213
+msgid "Chinese Traditional"
+msgstr "Cinese tradizionale"
+
+#: ../gtksourceview/gtksourceencoding.c:201
+msgid "Cyrillic/Russian"
+msgstr "Cirillica/Russa"
+
+#: ../gtksourceview/gtksourceencoding.c:204
+#: ../gtksourceview/gtksourceencoding.c:206
+#: ../gtksourceview/gtksourceencoding.c:208
+#: ../gtksourceview/gtksourceencoding.c:238
+#: ../gtksourceview/gtksourceencoding.c:253
+msgid "Japanese"
+msgstr "Giapponese"
+
+#: ../gtksourceview/gtksourceencoding.c:211
+#: ../gtksourceview/gtksourceencoding.c:240
+#: ../gtksourceview/gtksourceencoding.c:244
+#: ../gtksourceview/gtksourceencoding.c:259
+msgid "Korean"
+msgstr "Coreana"
+
+#: ../gtksourceview/gtksourceencoding.c:216
+#: ../gtksourceview/gtksourceencoding.c:218
+#: ../gtksourceview/gtksourceencoding.c:220
+msgid "Chinese Simplified"
+msgstr "Cinese semplificata"
+
+#: ../gtksourceview/gtksourceencoding.c:222
+msgid "Georgian"
+msgstr "Georgiana"
+
+#: ../gtksourceview/gtksourceencoding.c:233
+#: ../gtksourceview/gtksourceencoding.c:274
+msgid "Hebrew"
+msgstr "Ebraica"
+
+#: ../gtksourceview/gtksourceencoding.c:250
+msgid "Cyrillic/Ukrainian"
+msgstr "Cirillica/Ucraina"
+
+#: ../gtksourceview/gtksourceencoding.c:255
+#: ../gtksourceview/gtksourceencoding.c:261
+#: ../gtksourceview/gtksourceencoding.c:280
+msgid "Vietnamese"
+msgstr "Vietnamita"
+
+#: ../gtksourceview/gtksourceencoding.c:257
+msgid "Thai"
+msgstr "Tailandese"
+
+#: ../gtksourceview/gtksourceencoding.c:491
+msgid "Unknown"
+msgstr "Sconosciuta"
+
+#. Translators: This is the sorted list of encodings used by
+#. * GtkSourceView for automatic detection of the file encoding. You may
+#. * want to customize it adding encodings that are common in your
+#. * country, for instance the GB18030 encoding for the Chinese
+#. * translation. You may also want to remove the ISO-8859-15 encoding
+#. * (covering English and most Western European languages) if you think
+#. * people in your country will rarely use it.  "CURRENT" is a magic
+#. * value used by GtkSourceView and it represents the encoding for the
+#. * current locale, so please don't translate the "CURRENT" term.  Only
+#. * recognized encodings are used. See
+#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+#. * for a list of supported encodings.
+#.
+#: ../gtksourceview/gtksourceencoding.c:647
+msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+
+#: ../gtksourceview/gtksourcefile.c:200
+#: ../gtksourceview/gtksourcefilesaver.c:410
+msgid "Newline type"
+msgstr "Tipo di a capo"
+
+#: ../gtksourceview/gtksourcefile.c:217
+#: ../gtksourceview/gtksourcefilesaver.c:428
+msgid "Compression type"
+msgstr "Tipo di compressione"
+
+#: ../gtksourceview/gtksourcefileloader.c:414
+msgid "Input stream"
+msgstr "Stream di input"
+
+#: ../gtksourceview/gtksourcefilesaver.c:446
+msgid "Flags"
+msgstr "Etichette"
+
 # (ndt) pare che il gutter sia qualche cosa di Eclipse: dove vengono visualizzati i risultati di una ricerca per un facile accesso... è tipo una 'colonna' da una parte della finestra. sul wiki di gnome c'è un'immagine. in tipografia è definito come il profilo interno.
 #. Translators: gutters can be used to display information
 #. * on the left or on the right of the text view. To draw the
 #. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:514
+#: ../gtksourceview/gtksourcegutter.c:518
 msgid "The gutters' GtkSourceView"
 msgstr "Il profilo interno GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:526
-#: ../gtksourceview/gtksourcegutterrenderer.c:749
+#: ../gtksourceview/gtksourcegutter.c:530
+#: ../gtksourceview/gtksourcegutterrenderer.c:741
 msgid "Window Type"
 msgstr "Tipo di finestra"
 
-#: ../gtksourceview/gtksourcegutter.c:527
+#: ../gtksourceview/gtksourcegutter.c:531
 msgid "The gutters' text window type"
 msgstr "Il testo del tipo di finestra del profilo interno"
 
-#: ../gtksourceview/gtksourcegutter.c:543
-#: ../gtksourceview/gtksourcegutterrenderer.c:525
+#: ../gtksourceview/gtksourcegutter.c:547
+#: ../gtksourceview/gtksourcegutterrenderer.c:524
 msgid "X Padding"
 msgstr "Riempimento X"
 
-#: ../gtksourceview/gtksourcegutter.c:544
-#: ../gtksourceview/gtksourcegutterrenderer.c:526
+#: ../gtksourceview/gtksourcegutter.c:548
+#: ../gtksourceview/gtksourcegutterrenderer.c:525
 msgid "The x-padding"
 msgstr "Il riempimento orizzontale"
 
-#: ../gtksourceview/gtksourcegutter.c:561
-#: ../gtksourceview/gtksourcegutterrenderer.c:540
+#: ../gtksourceview/gtksourcegutter.c:565
+#: ../gtksourceview/gtksourcegutterrenderer.c:539
 msgid "Y Padding"
 msgstr "Riempimento Y"
 
-#: ../gtksourceview/gtksourcegutter.c:562
-#: ../gtksourceview/gtksourcegutterrenderer.c:541
+#: ../gtksourceview/gtksourcegutter.c:566
+#: ../gtksourceview/gtksourcegutterrenderer.c:540
 msgid "The y-padding"
 msgstr "Il riempimento verticale"
 
+#: ../gtksourceview/gtksourcegutterrenderer.c:511
 #: ../gtksourceview/gtksourcegutterrenderer.c:512
-#: ../gtksourceview/gtksourcegutterrenderer.c:513
 msgid "Visible"
 msgstr "Visibile"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:557
+#: ../gtksourceview/gtksourcegutterrenderer.c:556
 msgid "X Alignment"
 msgstr "Allineamento X"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:558
+#: ../gtksourceview/gtksourcegutterrenderer.c:557
 msgid "The x-alignment"
 msgstr "L'allineamento orizzontale"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:574
+#: ../gtksourceview/gtksourcegutterrenderer.c:573
 msgid "Y Alignment"
 msgstr "Allineamento Y"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:575
+#: ../gtksourceview/gtksourcegutterrenderer.c:574
 msgid "The y-alignment"
 msgstr "L'allineamento"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:716
+#: ../gtksourceview/gtksourcegutterrenderer.c:708
 msgid "The View"
 msgstr "La vista"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:717
+#: ../gtksourceview/gtksourcegutterrenderer.c:709
 msgid "The view"
 msgstr "La vista"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:733
+#: ../gtksourceview/gtksourcegutterrenderer.c:725
 msgid "Alignment Mode"
 msgstr "Modalità allineamento"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:734
+#: ../gtksourceview/gtksourcegutterrenderer.c:726
 msgid "The alignment mode"
 msgstr "La modalità di allineamento"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:750
+#: ../gtksourceview/gtksourcegutterrenderer.c:742
 msgid "The window type"
 msgstr "Il tipo di finestra"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:758
+#: ../gtksourceview/gtksourcegutterrenderer.c:750
 msgid "Size"
 msgstr "Dimensione"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:759
+#: ../gtksourceview/gtksourcegutterrenderer.c:751
 msgid "The size"
 msgstr "La dimensione"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:289
-#: ../gtksourceview/gtksourcemarkattributes.c:316
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
+#: ../gtksourceview/gtksourcemarkattributes.c:315
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:290
-#: ../gtksourceview/gtksourcemarkattributes.c:317
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:300
+#: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "The pixbuf"
 msgstr "Il pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:304
-#: ../gtksourceview/gtksourcemarkattributes.c:303
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
+#: ../gtksourceview/gtksourcemarkattributes.c:302
 msgid "Stock Id"
 msgstr "ID stock"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:305
-#: ../gtksourceview/gtksourcemarkattributes.c:304
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:315
+#: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "The stock id"
 msgstr "L'ID dello stock"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:312
-#: ../gtksourceview/gtksourcemarkattributes.c:329
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
+#: ../gtksourceview/gtksourcemarkattributes.c:328
 msgid "Icon Name"
 msgstr "Nome icona"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
-#: ../gtksourceview/gtksourcemarkattributes.c:330
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:323
+#: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "The icon name"
 msgstr "Il nome dell'icona"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:320
-#: ../gtksourceview/gtksourcemarkattributes.c:342
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
+#: ../gtksourceview/gtksourcemarkattributes.c:341
 msgid "GIcon"
 msgstr "Icona"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:331
 msgid "The gicon"
 msgstr "Il GIcon"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:392
+#: ../gtksourceview/gtksourcegutterrenderertext.c:414
 msgid "The markup"
 msgstr "Il markup"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:400
+#: ../gtksourceview/gtksourcegutterrenderertext.c:422
 msgid "The text"
 msgstr "Il testo"
 
+#: ../gtksourceview/gtksourcelanguage.c:227
 #: ../gtksourceview/gtksourcelanguage.c:228
-#: ../gtksourceview/gtksourcelanguage.c:229
 msgid "Language id"
 msgstr "ID linguaggio"
 
+#: ../gtksourceview/gtksourcelanguage.c:235
 #: ../gtksourceview/gtksourcelanguage.c:236
-#: ../gtksourceview/gtksourcelanguage.c:237
 msgid "Language name"
 msgstr "Nome linguaggio"
 
+#: ../gtksourceview/gtksourcelanguage.c:243
 #: ../gtksourceview/gtksourcelanguage.c:244
-#: ../gtksourceview/gtksourcelanguage.c:245
 msgid "Language section"
 msgstr "Sezione linguaggio"
 
-#: ../gtksourceview/gtksourcelanguage.c:252
+#: ../gtksourceview/gtksourcelanguage.c:251
 msgid "Hidden"
 msgstr "Nascosto"
 
-#: ../gtksourceview/gtksourcelanguage.c:253
+#: ../gtksourceview/gtksourcelanguage.c:252
 msgid "Whether the language should be hidden from the user"
 msgstr "Indica se il linguaggio debba essere nascosto all'utente"
 
@@ -3350,17 +3565,17 @@ msgid "in regex '%s': backreferences are not supported"
 msgstr ""
 "nell'espressione regolare «%s»: riferimenti all'indietro non sono supportati"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:288
+#: ../gtksourceview/gtksourcemarkattributes.c:287
 #: ../gtksourceview/gtksourcestyle.c:97
 msgid "Background"
 msgstr "Sfondo"
 
 # (ndt) non so cosa sia...
-#: ../gtksourceview/gtksourcemarkattributes.c:289
+#: ../gtksourceview/gtksourcemarkattributes.c:288
 msgid "The background"
 msgstr "Lo sfondo"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:343
+#: ../gtksourceview/gtksourcemarkattributes.c:342
 msgid "The GIcon"
 msgstr "Il GIcon"
 
@@ -3381,12 +3596,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Oggetto GtkSourceBuffer da stampare"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:347
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Tab Width"
 msgstr "Larghezza tabulazione"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:348
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Width of a tab character expressed in spaces"
 msgstr "Larghezza di un carattere di tabulazione espressa in spazi"
 
@@ -3479,7 +3694,6 @@ msgid "using \\C is not supported in language definitions"
 msgstr "usare \\C non è supportato nelle definizioni del linguaggio"
 
 #: ../gtksourceview/gtksourcesearchcontext.c:2742
-#: ../gtksourceview/gtksourceundomanagerdefault.c:406
 msgid "Buffer"
 msgstr "Buffer"
 
@@ -3675,92 +3889,87 @@ msgstr "Descrizione dello schema di stile"
 msgid "Style scheme filename"
 msgstr "Nome file dello schema di stile"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
+#: ../gtksourceview/gtksourcestyleschememanager.c:152
 msgid "Style scheme search path"
 msgstr "Percorso di ricerca schemi di stile"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:154
+#: ../gtksourceview/gtksourcestyleschememanager.c:153
 msgid "List of directories and files where the style schemes are located"
 msgstr "Elenco di directory e file dove si trovano gli schemi di stile"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
+#: ../gtksourceview/gtksourcestyleschememanager.c:161
 msgid "Scheme ids"
 msgstr "ID schemi"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:163
+#: ../gtksourceview/gtksourcestyleschememanager.c:162
 msgid "List of the ids of the available style schemes"
 msgstr "Elenco di ID degli schemi di stile disponibili"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:407
-msgid "The text buffer to add undo support on"
-msgstr ""
-"Il buffer di testo a cui aggiungere il supporto per l'azione di annullamento"
-
-#: ../gtksourceview/gtksourceview.c:310
+#: ../gtksourceview/gtksourceview.c:335
 msgid "The completion object associated with the view"
 msgstr "L'oggetto completamento associato con la vista"
 
-#: ../gtksourceview/gtksourceview.c:322
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Show Line Numbers"
 msgstr "Mostra numeri di riga"
 
-#: ../gtksourceview/gtksourceview.c:323
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Whether to display line numbers"
 msgstr "Indica se mostrare i numeri di riga"
 
-#: ../gtksourceview/gtksourceview.c:334
+#: ../gtksourceview/gtksourceview.c:359
 msgid "Show Line Marks"
 msgstr "Mostra i marcatori di riga"
 
-#: ../gtksourceview/gtksourceview.c:335
+#: ../gtksourceview/gtksourceview.c:360
 msgid "Whether to display line mark pixbufs"
 msgstr "Indica se mostrare i marcatori di riga"
 
-#: ../gtksourceview/gtksourceview.c:362
+#: ../gtksourceview/gtksourceview.c:387
 msgid "Indent Width"
 msgstr "Ampiezza rientro"
 
-#: ../gtksourceview/gtksourceview.c:363
+#: ../gtksourceview/gtksourceview.c:388
 msgid "Number of spaces to use for each step of indent"
 msgstr "Numero di spazi da usare per ogni passo di rientro"
 
-#: ../gtksourceview/gtksourceview.c:372
+#: ../gtksourceview/gtksourceview.c:397
 msgid "Auto Indentation"
 msgstr "Rientro automatico"
 
-#: ../gtksourceview/gtksourceview.c:373
+#: ../gtksourceview/gtksourceview.c:398
 msgid "Whether to enable auto indentation"
 msgstr "Indica se abilitare il rientro automatico"
 
-#: ../gtksourceview/gtksourceview.c:380
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Inserisci spazi invece dei caratteri di tabulazione"
 
-#: ../gtksourceview/gtksourceview.c:381
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Indica se inserire spazi invece dei caratteri di tabulazione"
 
-#: ../gtksourceview/gtksourceview.c:393
+#: ../gtksourceview/gtksourceview.c:418
 msgid "Show Right Margin"
 msgstr "Mostra il margine destro"
 
-#: ../gtksourceview/gtksourceview.c:394
+#: ../gtksourceview/gtksourceview.c:419
 msgid "Whether to display the right margin"
 msgstr "Indica se mostrare il margine di destra"
 
-#: ../gtksourceview/gtksourceview.c:406
+#: ../gtksourceview/gtksourceview.c:431
 msgid "Right Margin Position"
 msgstr "Posizione margine destro"
 
-#: ../gtksourceview/gtksourceview.c:407
+#: ../gtksourceview/gtksourceview.c:432
 msgid "Position of the right margin"
 msgstr "Posizione del margine destro"
 
-#: ../gtksourceview/gtksourceview.c:423
+#: ../gtksourceview/gtksourceview.c:448
 msgid "Smart Home/End"
 msgstr "Tasti Inizio/Fine intelligenti"
 
-#: ../gtksourceview/gtksourceview.c:424
+#: ../gtksourceview/gtksourceview.c:449
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3768,79 +3977,67 @@ msgstr ""
 "I tasti INIZIO e FINE muovono al primo/ultimo carattere diverso da uno "
 "spazio sulla riga prima di andare all'inizio/fine della riga stessa"
 
-#: ../gtksourceview/gtksourceview.c:434
+#: ../gtksourceview/gtksourceview.c:459
 msgid "Highlight current line"
 msgstr "Evidenzia la riga corrente"
 
-#: ../gtksourceview/gtksourceview.c:435
+#: ../gtksourceview/gtksourceview.c:460
 msgid "Whether to highlight the current line"
 msgstr "Indica se evidenziare la riga corrente"
 
-#: ../gtksourceview/gtksourceview.c:442
+#: ../gtksourceview/gtksourceview.c:467
 msgid "Indent on tab"
 msgstr "Applica rientro con tab"
 
-#: ../gtksourceview/gtksourceview.c:443
+#: ../gtksourceview/gtksourceview.c:468
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr ""
 "Indica se applicare un rientro al testo selezionato alla pressione del tasto "
 "tab"
 
-#: ../gtksourceview/gtksourceview.c:457
+#: ../gtksourceview/gtksourceview.c:482
 msgid "Draw Spaces"
 msgstr "Disegna spazi"
 
-#: ../gtksourceview/gtksourceview.c:458
+#: ../gtksourceview/gtksourceview.c:483
 msgid "Set if and how the spaces should be visualized"
 msgstr "Imposta se e come gli spazi debbano essere visualizzati"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1272
+#: ../gtksourceview/gtksourceview.c:1279
 msgid "_Redo"
 msgstr "_Ripeti"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1283
+#: ../gtksourceview/gtksourceview.c:1290
 msgid "_Undo"
 msgstr "A_nnulla"
 
-#: ../gtksourceview/gtksourceview.c:1301
+#: ../gtksourceview/gtksourceview.c:1308
 msgid "All _Upper Case"
 msgstr "Tutto _maiuscolo"
 
-#: ../gtksourceview/gtksourceview.c:1311
+#: ../gtksourceview/gtksourceview.c:1318
 msgid "All _Lower Case"
 msgstr "Tutto mi_nuscolo"
 
-#: ../gtksourceview/gtksourceview.c:1321
+#: ../gtksourceview/gtksourceview.c:1328
 msgid "_Invert Case"
 msgstr "_Inverti maiuscole/minuscole"
 
-#: ../gtksourceview/gtksourceview.c:1331
+#: ../gtksourceview/gtksourceview.c:1338
 msgid "_Title Case"
 msgstr "_Titolo"
 
-#: ../gtksourceview/gtksourceview.c:1341
+#: ../gtksourceview/gtksourceview.c:1348
 msgid "C_hange Case"
 msgstr "Mo_difica tipologia"
 
-#: ../gtksourceview/gtksourceview-i18n.c:72
+#: ../gtksourceview/gtksourceview-i18n.c:116
 msgid "translator-credits"
 msgstr "Milo Casagrande <milo@ubuntu.com>"
 
-#. Translators: This is the sorted list of encodings used by
-#. * GtkSourceView for automatic detection of the file encoding. You may
-#. * want to customize it adding encodings that are common in your
-#. * country, for instance the GB18030 encoding for the Chinese
-#. * translation. You may also want to remove the ISO-8859-15 encoding
-#. * (covering English and most Western European languages) if you think
-#. * people in your country will rarely use it.  "CURRENT" is a magic
-#. * value used by GtkSourceView and it represents the encoding for the
-#. * current locale, so please don't translate the "CURRENT" term.  Only
-#. * recognized encodings are used. See
-#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
-#. * for a list of supported encodings.
-#.
-#: ../gtksourceview/gtksourceencoding.c:517
-msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
-msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+#~ msgid "The text buffer to add undo support on"
+#~ msgstr ""
+#~ "Il buffer di testo a cui aggiungere il supporto per l'azione di "
+#~ "annullamento"
