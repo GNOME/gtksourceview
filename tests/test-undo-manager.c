@@ -616,6 +616,54 @@ test_modified (void)
 	g_object_unref (source_buffer);
 }
 
+static void
+empty_user_actions (GtkTextBuffer *text_buffer,
+		    gint           count)
+{
+	gint i;
+
+	for (i = 0; i < count; i++)
+	{
+		gtk_text_buffer_begin_user_action (text_buffer);
+		gtk_text_buffer_end_user_action (text_buffer);
+	}
+}
+
+static void
+test_empty_user_actions (void)
+{
+	GtkSourceBuffer *source_buffer;
+	GtkTextBuffer *text_buffer;
+	GList *contents_history = NULL;
+
+	source_buffer = gtk_source_buffer_new (NULL);
+	text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	gtk_source_buffer_set_max_undo_levels (source_buffer, -1);
+
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	empty_user_actions (text_buffer, 3);
+	check_contents_history (source_buffer, contents_history);
+
+	insert_text (source_buffer, "foo\n");
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+	check_contents_history (source_buffer, contents_history);
+
+	empty_user_actions (text_buffer, 1);
+	check_contents_history (source_buffer, contents_history);
+
+	insert_text (source_buffer, "bar\n");
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+	check_contents_history (source_buffer, contents_history);
+
+	gtk_source_buffer_undo (source_buffer);
+	empty_user_actions (text_buffer, 1);
+	check_contents_history (source_buffer, contents_history);
+
+	g_object_unref (source_buffer);
+	g_list_free_full (contents_history, g_free);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -647,6 +695,9 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/UndoManager/test-modified",
 			 test_modified);
+
+	g_test_add_func ("/UndoManager/test-empty-user-actions",
+			 test_empty_user_actions);
 
 	return g_test_run ();
 }

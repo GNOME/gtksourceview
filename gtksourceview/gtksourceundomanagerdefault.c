@@ -419,17 +419,20 @@ action_group_merge (ActionGroup *group,
 	Action *action;
 	Action *new_action;
 
+	g_assert (group != NULL);
+	g_assert (new_group != NULL);
+
+	if (new_group->actions->length == 0)
+	{
+		return TRUE;
+	}
+
 	if (group->force_not_mergeable ||
 	    new_group->force_not_mergeable ||
 	    group->actions->length > 1 ||
 	    new_group->actions->length > 1)
 	{
 		return FALSE;
-	}
-
-	if (new_group->actions->length == 0)
-	{
-		return TRUE;
 	}
 
 	action = g_queue_peek_head (group->actions);
@@ -459,21 +462,19 @@ try_merge_current_action_group (GtkSourceUndoManagerDefault *manager)
 	}
 
 	g_assert (new_node != NULL);
+	new_group = new_node->data;
 
 	prev_node = new_node->prev;
 
-	if (prev_node == NULL)
+	if (prev_node != NULL)
 	{
-		goto end;
+		prev_group = prev_node->data;
+
+		/* If the previous group is empty, it means that it was not correctly
+		 * merged.
+		 */
+		g_assert_cmpuint (prev_group->actions->length, >, 0);
 	}
-
-	new_group = new_node->data;
-	prev_group = prev_node->data;
-
-	/* If the previous group is empty, it means that it was not correctly
-	 * merged.
-	 */
-	g_assert_cmpuint (prev_group->actions->length, >, 0);
 
 	/* If the saved_location is between the two nodes, the two nodes cannot
 	 * be merged. Except if the new node is empty.
@@ -485,7 +486,8 @@ try_merge_current_action_group (GtkSourceUndoManagerDefault *manager)
 		goto end;
 	}
 
-	if (action_group_merge (prev_group, new_group))
+	if ((prev_group == NULL && new_group->actions->length == 0) ||
+	    (prev_group != NULL && action_group_merge (prev_group, new_group)))
 	{
 		if (manager->priv->has_saved_location &&
 		    manager->priv->saved_location == new_node)
@@ -500,6 +502,9 @@ try_merge_current_action_group (GtkSourceUndoManagerDefault *manager)
 
 		action_group_free (new_group);
 		g_queue_delete_link (manager->priv->action_groups, new_node);
+
+		check_history_size (manager);
+		update_can_undo_can_redo (manager);
 		return;
 	}
 
