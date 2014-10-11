@@ -321,8 +321,14 @@ static GList *
 select_providers (GList                      *providers,
                   GtkSourceCompletionContext *context)
 {
+	GtkTextIter context_iter;
 	GList *selection = NULL;
 	GList *l;
+
+	if (!gtk_source_completion_context_get_iter (context, &context_iter))
+	{
+		return NULL;
+	}
 
 	for (l = providers; l != NULL; l = l->next)
 	{
@@ -473,7 +479,14 @@ update_window_position (GtkSourceCompletion *completion)
 
 	if (get_selected_proposal (completion, &provider, &proposal))
 	{
-		if (gtk_source_completion_provider_get_start_iter (provider,
+		GtkTextIter context_iter;
+		gboolean valid_context;
+
+		valid_context = gtk_source_completion_context_get_iter (completion->priv->context,
+									&context_iter);
+
+		if (valid_context &&
+		    gtk_source_completion_provider_get_start_iter (provider,
 		                                                   completion->priv->context,
 		                                                   proposal,
 		                                                   &iter))
@@ -666,6 +679,8 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 	GtkSourceCompletionProvider *provider = NULL;
 	GtkSourceCompletionProposal *proposal = NULL;
 	GtkTextIter insert_iter;
+	GtkTextIter context_iter;
+	gboolean valid_context;
 	gboolean activated;
 
 	if (completion->priv->view == NULL)
@@ -684,7 +699,10 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 
 	activated = gtk_source_completion_provider_activate_proposal (provider, proposal, &insert_iter);
 
-	if (!activated)
+	valid_context = gtk_source_completion_context_get_iter (completion->priv->context,
+								&context_iter);
+
+	if (!activated && valid_context)
 	{
 		GtkTextIter start_iter;
 		gchar *text = gtk_source_completion_proposal_get_text (proposal);
@@ -1356,6 +1374,8 @@ update_completion (GtkSourceCompletion        *completion,
                    GtkSourceCompletionContext *context)
 {
 	GList *item;
+	GtkTextIter context_iter;
+	gboolean valid_context;
 
 	/* Copy the parameters, because they can be freed by reset_completion(). */
 	GList *providers_copy = g_list_copy (providers);
@@ -1374,10 +1394,15 @@ update_completion (GtkSourceCompletion        *completion,
 
 	replace_model (completion);
 
-	for (item = providers_copy; item != NULL; item = g_list_next (item))
+	valid_context = gtk_source_completion_context_get_iter (context_copy, &context_iter);
+
+	if (valid_context)
 	{
-		GtkSourceCompletionProvider *provider = item->data;
-		gtk_source_completion_provider_populate (provider, context_copy);
+		for (item = providers_copy; item != NULL; item = g_list_next (item))
+		{
+			GtkSourceCompletionProvider *provider = item->data;
+			gtk_source_completion_provider_populate (provider, context_copy);
+		}
 	}
 
 	g_list_free (providers_copy);
