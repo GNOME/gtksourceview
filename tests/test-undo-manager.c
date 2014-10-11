@@ -664,6 +664,61 @@ test_empty_user_actions (void)
 	g_list_free_full (contents_history, g_free);
 }
 
+/* Test for https://bugzilla.gnome.org/show_bug.cgi?id=672893
+ * TODO More complete unit tests for selection restoring would be better.
+ */
+static void
+test_bug_672893_selection_restoring (void)
+{
+	GtkSourceBuffer *source_buffer;
+	GtkTextBuffer *text_buffer;
+	GtkTextIter start;
+	GtkTextIter end;
+	GtkTextIter iter;
+
+	source_buffer = gtk_source_buffer_new (NULL);
+	text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	gtk_source_buffer_set_max_undo_levels (source_buffer, -1);
+
+	gtk_text_buffer_set_text (text_buffer, "What if it's just all green cheese.", -1);
+
+	/* Delete selection */
+	gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 0);
+	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 8);
+	gtk_text_buffer_select_range (text_buffer, &start, &end);
+	gtk_text_buffer_delete_selection (text_buffer, TRUE, TRUE);
+
+	gtk_text_buffer_get_selection_bounds (text_buffer, &start, &end);
+	g_assert_cmpint (0, ==, gtk_text_iter_get_offset (&start));
+	g_assert_cmpint (0, ==, gtk_text_iter_get_offset (&end));
+
+	/* Undo -> selection restored */
+	gtk_source_buffer_undo (source_buffer);
+	gtk_text_buffer_get_selection_bounds (text_buffer, &start, &end);
+	g_assert_cmpint (0, ==, gtk_text_iter_get_offset (&start));
+	g_assert_cmpint (8, ==, gtk_text_iter_get_offset (&end));
+
+	/* Click somewhere else */
+	gtk_text_buffer_get_end_iter (text_buffer, &iter);
+	gtk_text_buffer_place_cursor (text_buffer, &iter);
+
+	/* Redo the deletion -> no selection */
+	gtk_source_buffer_redo (source_buffer);
+	gtk_text_buffer_get_selection_bounds (text_buffer, &start, &end);
+	g_assert_cmpint (0, ==, gtk_text_iter_get_offset (&start));
+	g_assert_cmpint (0, ==, gtk_text_iter_get_offset (&end));
+
+	/* Undo -> selection still restored correctly, even if we clicked
+	 * somewhere else.
+	 */
+	gtk_source_buffer_undo (source_buffer);
+	gtk_text_buffer_get_selection_bounds (text_buffer, &start, &end);
+	g_assert_cmpint (0, ==, gtk_text_iter_get_offset (&start));
+	g_assert_cmpint (8, ==, gtk_text_iter_get_offset (&end));
+
+	g_object_unref (source_buffer);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -698,6 +753,9 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/UndoManager/test-empty-user-actions",
 			 test_empty_user_actions);
+
+	g_test_add_func ("/UndoManager/test-bug-672893-selection-restoring",
+			 test_bug_672893_selection_restoring);
 
 	return g_test_run ();
 }

@@ -39,6 +39,19 @@ typedef enum
 	ACTION_TYPE_DELETE
 } ActionType;
 
+/* A more precise deletion type. But currently it's only a guess, we are not
+ * 100% sure of the deletion type. To be sure, we would need to listen to key
+ * events on the GtkSourceView widget, which is more complicated than simply
+ * listening to the insert-text and delete-range GtkTextBuffer signals.
+ */
+typedef enum
+{
+	DELETION_TYPE_SELECTION_DELETED,
+	DELETION_TYPE_BACKSPACE_KEY,
+	DELETION_TYPE_DELETE_KEY,
+	DELETION_TYPE_PROGRAMMATICALLY
+} DeletionType;
+
 struct _Action
 {
 	ActionType type;
@@ -58,11 +71,21 @@ struct _Action
 	 */
 	gchar *text;
 
-	/* Used only for a deletion. If forward is TRUE, the Delete key was
-	 * probably used. If forward is FALSE, the Backspace key was probably
-	 * used.
+	/* Character offsets of the insert and selection bound marks.
+	 * They are both -1 or they both match @start or @end.
+	 * If the text cursor or the selected text is not related to the action,
+	 * the selection is not stored (i.e. -1).
+	 * If not -1, when undoing or redoing an action, the insert and
+	 * selection bound marks are restored to where they were.
+	 * For an insert, @selection_insert and @selection_bound must match
+	 * @start, otherwise the selection or cursor position is unrelated to
+	 * the insertion.
+	 * For a deletion, if @selection_insert and @selection_bound are -1, it
+	 * corresponds to DELETION_TYPE_PROGRAMMATICALLY. For all the other
+	 * deletion types, the selection is stored.
 	 */
-	guint forward : 1;
+	gint selection_insert;
+	gint selection_bound;
 };
 
 struct _ActionGroup
@@ -162,7 +185,14 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceUndoManagerDefault,
 static Action *
 action_new (void)
 {
-	return g_slice_new0 (Action);
+	Action *action;
+
+	action = g_slice_new0 (Action);
+
+	action->selection_insert = -1;
+	action->selection_bound = -1;
+
+	return action;
 }
 
 static void
@@ -662,17 +692,34 @@ action_insert_merge (Action *action,
 
 	action->end = new_action->end;
 
+	/* No need to update the selection, action->start is not modified. */
+	g_assert ((action->selection_insert == -1 &&
+		   action->selection_bound == -1) ||
+		  (action->selection_insert == action->start &&
+		   action->selection_bound == action->start));
+
 	return TRUE;
 }
 
 static void
-action_insert_set_cursor_position (GtkTextBuffer *buffer,
-				   Action        *action,
-				   gboolean       undo)
+action_insert_restore_selection (GtkTextBuffer *buffer,
+				 Action        *action,
+				 gboolean       undo)
 {
 	GtkTextIter iter;
 
 	g_assert_cmpint (action->type, ==, ACTION_TYPE_INSERT);
+
+	/* No need to take into account action->selection_insert and
+	 * action->selection_bound, because:
+	 * - If they are both -1, we still want to place the cursor correctly,
+	 *   as done below, because if the cursor is not moved the user won't
+	 *   see the modification.
+	 * - If they are set, their values are both action->start, so the undo
+	 *   works as expeceted in this case. The redo is also the expected
+	 *   behavior because after inserting a character the cursor is _after_
+	 *   the character, not before.
+	 */
 
 	if (undo)
 	{
@@ -706,12 +753,45 @@ action_delete_redo (GtkTextBuffer *buffer,
 	delete_text (buffer, action->start, action->end);
 }
 
+static DeletionType
+get_deletion_type (Action *action)
+{
+	g_assert_cmpint (action->type, ==, ACTION_TYPE_DELETE);
+
+	if (action->selection_insert == -1)
+	{
+		g_assert_cmpint (action->selection_bound, ==, -1);
+		return DELETION_TYPE_PROGRAMMATICALLY;
+	}
+
+	if (action->selection_insert == action->end &&
+	    action->selection_bound == action->end)
+	{
+		return DELETION_TYPE_BACKSPACE_KEY;
+	}
+
+	if (action->selection_insert == action->start &&
+	    action->selection_bound == action->start)
+	{
+		return DELETION_TYPE_DELETE_KEY;
+	}
+
+	g_assert (action->selection_insert == action->start ||
+		  action->selection_insert == action->end);
+	g_assert (action->selection_bound == action->start ||
+		  action->selection_bound == action->end);
+
+	return DELETION_TYPE_SELECTION_DELETED;
+}
+
 static gboolean
 action_delete_merge (Action *action,
 		     Action *new_action)
 {
 	gint new_text_length;
 	gunichar new_char;
+	DeletionType deletion_type;
+	DeletionType new_deletion_type;
 
 	g_assert_cmpint (action->type, ==, ACTION_TYPE_DELETE);
 	g_assert_cmpint (new_action->type, ==, ACTION_TYPE_DELETE);
@@ -722,21 +802,57 @@ action_delete_merge (Action *action,
 	new_char = g_utf8_get_char (new_action->text);
 	g_assert (new_char != '\n');
 
-	/* A Backspace can not be merged with a Delete.
-	 * Two Backspaces or two Deletes must follow each other.
-	 * In "abc", if the cursor is at offset 2 and I press the Backspace key,
-	 * then move the cursor after 'c' and press Backspace again, the two
-	 * deletes won't be merged, since there was a cursor movement in
-	 * between.
-	 */
-	if ((action->forward != new_action->forward) ||
-	    (action->forward && action->start != new_action->start) ||
-	    (!action->forward && action->start != new_action->end))
+	deletion_type = get_deletion_type (action);
+	new_deletion_type = get_deletion_type (new_action);
+
+	if (deletion_type != new_deletion_type)
 	{
 		return FALSE;
 	}
 
-	/* forward, Delete key pressed several times */
+	switch (deletion_type)
+	{
+		/* If the user has selected some text and then has deleted it,
+		 * it should be seen as a single action group, not mergeable.  A
+		 * good reason for that is to correctly restore the selection.
+		 */
+		case DELETION_TYPE_SELECTION_DELETED:
+			return FALSE;
+
+		/* For memory use it would be better to take it into account,
+		 * but the code is simpler like that.
+		 */
+		case DELETION_TYPE_PROGRAMMATICALLY:
+			return FALSE;
+
+		/* Two Backspaces or two Deletes must follow each other. In
+		 * "abc", if the cursor is at offset 2 and I press the Backspace
+		 * key, then move the cursor after 'c' and press Backspace
+		 * again, the two deletes won't be merged, since there was a
+		 * cursor movement in between.
+		 */
+
+		case DELETION_TYPE_DELETE_KEY:
+			/* Not consecutive deletes. */
+			if (action->start != new_action->start)
+			{
+				return FALSE;
+			}
+			break;
+
+		case DELETION_TYPE_BACKSPACE_KEY:
+			/* Not consecutive backspaces. */
+			if (action->start != new_action->end)
+			{
+				return FALSE;
+			}
+			break;
+
+		default:
+			g_assert_not_reached ();
+	}
+
+	/* Delete key pressed several times. */
 	if (action->start == new_action->start)
 	{
 		gunichar last_char;
@@ -758,10 +874,16 @@ action_delete_merge (Action *action,
 
 		action->end += new_text_length;
 
+		/* No need to update the selection, action->start is not
+		 * modified.
+		 */
+		g_assert_cmpint (action->selection_insert, ==, action->start);
+		g_assert_cmpint (action->selection_bound, ==, action->start);
+
 		return TRUE;
 	}
 
-	/* backward, Backspace key pressed several times */
+	/* Backspace key pressed several times. */
 	if (action->start == new_action->end)
 	{
 		gunichar last_char;
@@ -786,6 +908,10 @@ action_delete_merge (Action *action,
 
 		action->start = new_action->start;
 
+		/* No need to update the selection, action->end is not modified. */
+		g_assert_cmpint (action->selection_insert, ==, action->end);
+		g_assert_cmpint (action->selection_bound, ==, action->end);
+
 		return TRUE;
 	}
 
@@ -794,24 +920,47 @@ action_delete_merge (Action *action,
 }
 
 static void
-action_delete_set_cursor_position (GtkTextBuffer *buffer,
-				   Action        *action,
-				   gboolean       undo)
+action_delete_restore_selection (GtkTextBuffer *buffer,
+				 Action        *action,
+				 gboolean       undo)
 {
-	GtkTextIter iter;
 
 	g_assert_cmpint (action->type, ==, ACTION_TYPE_DELETE);
 
 	if (undo)
 	{
-		gtk_text_buffer_get_iter_at_offset (buffer, &iter, action->end);
+		if (action->selection_insert == -1)
+		{
+			GtkTextIter iter;
+
+			g_assert_cmpint (action->selection_bound, ==, -1);
+
+			gtk_text_buffer_get_iter_at_offset (buffer, &iter, action->end);
+			gtk_text_buffer_place_cursor (buffer, &iter);
+		}
+		else
+		{
+			GtkTextIter insert_iter;
+			GtkTextIter bound_iter;
+
+			gtk_text_buffer_get_iter_at_offset (buffer,
+							    &insert_iter,
+							    action->selection_insert);
+
+			gtk_text_buffer_get_iter_at_offset (buffer,
+							    &bound_iter,
+							    action->selection_bound);
+
+			gtk_text_buffer_select_range (buffer, &insert_iter, &bound_iter);
+		}
 	}
 	else /* redo */
 	{
-		gtk_text_buffer_get_iter_at_offset (buffer, &iter, action->start);
-	}
+		GtkTextIter iter;
 
-	gtk_text_buffer_place_cursor (buffer, &iter);
+		gtk_text_buffer_get_iter_at_offset (buffer, &iter, action->start);
+		gtk_text_buffer_place_cursor (buffer, &iter);
+	}
 }
 
 /* Action interface.
@@ -893,25 +1042,25 @@ action_merge (Action *action,
 	}
 }
 
-/* Set the cursor position according to @action.
+/* Restore the selection (or cursor position) according to @action.
  * If @undo is TRUE, @action has just been undone. If @undo is FALSE, @action
  * has just been redone.
  */
 static void
-action_set_cursor_position (GtkTextBuffer *buffer,
-			    Action        *action,
-			    gboolean       undo)
+action_restore_selection (GtkTextBuffer *buffer,
+			  Action        *action,
+			  gboolean       undo)
 {
 	g_assert (action != NULL);
 
 	switch (action->type)
 	{
 		case ACTION_TYPE_INSERT:
-			action_insert_set_cursor_position (buffer, action, undo);
+			action_insert_restore_selection (buffer, action, undo);
 			break;
 
 		case ACTION_TYPE_DELETE:
-			action_delete_set_cursor_position (buffer, action, undo);
+			action_delete_restore_selection (buffer, action, undo);
 			break;
 
 		default:
@@ -921,6 +1070,25 @@ action_set_cursor_position (GtkTextBuffer *buffer,
 }
 
 /* Buffer signal handlers */
+
+static void
+set_selection_bounds (GtkTextBuffer *buffer,
+		      Action        *action)
+{
+	GtkTextMark *insert_mark;
+	GtkTextMark *bound_mark;
+	GtkTextIter insert_iter;
+	GtkTextIter bound_iter;
+
+	insert_mark = gtk_text_buffer_get_insert (buffer);
+	bound_mark = gtk_text_buffer_get_selection_bound (buffer);
+
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter, insert_mark);
+	gtk_text_buffer_get_iter_at_mark (buffer, &bound_iter, bound_mark);
+
+	action->selection_insert = gtk_text_iter_get_offset (&insert_iter);
+	action->selection_bound = gtk_text_iter_get_offset (&bound_iter);
+}
 
 static void
 insert_text_cb (GtkTextBuffer               *buffer,
@@ -936,6 +1104,21 @@ insert_text_cb (GtkTextBuffer               *buffer,
 	action->text = g_strndup (text, length);
 	action->end = action->start + g_utf8_strlen (action->text, -1);
 
+	set_selection_bounds (buffer, action);
+
+	if (action->selection_insert != action->selection_bound ||
+	    action->selection_insert != action->start)
+	{
+		action->selection_insert = -1;
+		action->selection_bound = -1;
+	}
+	else
+	{
+		/* The insertion occurred at the cursor. */
+		g_assert_cmpint (action->selection_insert, ==, action->start);
+		g_assert_cmpint (action->selection_bound, ==, action->start);
+	}
+
 	insert_action (manager, action);
 }
 
@@ -946,7 +1129,6 @@ delete_range_cb (GtkTextBuffer               *buffer,
 		 GtkSourceUndoManagerDefault *manager)
 {
 	Action *action = action_new ();
-	GtkTextIter cursor_pos;
 
 	action->type = ACTION_TYPE_DELETE;
 	action->start = gtk_text_iter_get_offset (start);
@@ -955,10 +1137,16 @@ delete_range_cb (GtkTextBuffer               *buffer,
 
 	g_assert_cmpint (action->start, <, action->end);
 
-	gtk_text_buffer_get_iter_at_mark (buffer, &cursor_pos,
-					  gtk_text_buffer_get_insert (buffer));
+	set_selection_bounds (buffer, action);
 
-	action->forward = gtk_text_iter_equal (&cursor_pos, start);
+	if ((action->selection_insert != action->start &&
+	     action->selection_insert != action->end) ||
+	    (action->selection_bound != action->start &&
+	     action->selection_bound != action->end))
+	{
+		action->selection_insert = -1;
+		action->selection_bound = -1;
+	}
 
 	insert_action (manager, action);
 }
@@ -1318,7 +1506,7 @@ gtk_source_undo_manager_undo_impl (GtkSourceUndoManager *undo_manager)
 	 * a search and replace, it will be the first occurrence in the buffer.
 	 */
 	action = g_queue_peek_head (group->actions);
-	action_set_cursor_position (manager->priv->buffer, action, TRUE);
+	action_restore_selection (manager->priv->buffer, action, TRUE);
 
 	unblock_signal_handlers (manager);
 
@@ -1363,7 +1551,7 @@ gtk_source_undo_manager_redo_impl (GtkSourceUndoManager *undo_manager)
 		 */
 		if (l == group->actions->head)
 		{
-			action_set_cursor_position (manager->priv->buffer, action, FALSE);
+			action_restore_selection (manager->priv->buffer, action, FALSE);
 		}
 	}
 
