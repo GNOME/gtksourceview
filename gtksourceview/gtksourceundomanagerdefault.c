@@ -58,18 +58,6 @@ struct _Action
 	 */
 	gchar *text;
 
-#if 0
-	/* Character offsets of the insert and selection bound marks.
-	 * -1 if it doesn't match @start or @end. If the text cursor or the
-	 * selected text is not related to the action, the selection is not
-	 * stored.
-	 * If not -1, when undoing or redoing an action, the insert and
-	 * selection bound marks are restored to where they were.
-	 */
-	gint selection_insert;
-	gint selection_bound;
-#endif
-
 	/* Used only for a deletion. If forward is TRUE, the Delete key was
 	 * probably used. If forward is FALSE, the Backspace key was probably
 	 * used.
@@ -174,16 +162,7 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceUndoManagerDefault,
 static Action *
 action_new (void)
 {
-	Action *action;
-
-	action = g_slice_new0 (Action);
-
-#if 0
-	action->selection_insert = -1;
-	action->selection_bound = -1;
-#endif
-
-	return action;
+	return g_slice_new0 (Action);
 }
 
 static void
@@ -943,27 +922,6 @@ action_set_cursor_position (GtkTextBuffer *buffer,
 
 /* Buffer signal handlers */
 
-#if 0
-static void
-set_selection_bounds (GtkTextBuffer *buffer,
-		      Action        *action)
-{
-	GtkTextMark *insert_mark;
-	GtkTextMark *selection_mark;
-	GtkTextIter insert_iter;
-	GtkTextIter selection_iter;
-
-	insert_mark = gtk_text_buffer_get_insert (buffer);
-	selection_mark = gtk_text_buffer_get_selection_bound (buffer);
-
-	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter, insert_mark);
-	gtk_text_buffer_get_iter_at_mark (buffer, &selection_iter, selection_mark);
-
-	action->selection_insert = gtk_text_iter_get_offset (&insert_iter);
-	action->selection_bound = gtk_text_iter_get_offset (&selection_iter);
-}
-#endif
-
 static void
 insert_text_cb (GtkTextBuffer               *buffer,
 		GtkTextIter                 *location,
@@ -977,23 +935,6 @@ insert_text_cb (GtkTextBuffer               *buffer,
 	action->start = gtk_text_iter_get_offset (location);
 	action->text = g_strndup (text, length);
 	action->end = action->start + g_utf8_strlen (action->text, -1);
-
-#if 0
-	set_selection_bounds (buffer, action);
-
-	if (action->selection_insert != action->selection_bound ||
-	    action->selection_insert != action->start)
-	{
-		action->selection_insert = -1;
-		action->selection_bound = -1;
-	}
-	else
-	{
-		/* The insertion occurred at the cursor. */
-		g_assert_cmpint (action->selection_insert, ==, action->start);
-		g_assert_cmpint (action->selection_bound, ==, action->start);
-	}
-#endif
 
 	insert_action (manager, action);
 }
@@ -1018,19 +959,6 @@ delete_range_cb (GtkTextBuffer               *buffer,
 					  gtk_text_buffer_get_insert (buffer));
 
 	action->forward = gtk_text_iter_equal (&cursor_pos, start);
-
-#if 0
-	set_selection_bounds (buffer, action);
-
-	if ((action->selection_insert != action->start &&
-	     action->selection_insert != action->end) ||
-	    (action->selection_bound != action->start &&
-	     action->selection_bound != action->end))
-	{
-		action->selection_insert = -1;
-		action->selection_bound = -1;
-	}
-#endif
 
 	insert_action (manager, action);
 }
