@@ -68,10 +68,10 @@ gboolean		 gtk_source_search_context_get_highlight		(GtkSourceSearchContext  *se
 void			 gtk_source_search_context_set_highlight		(GtkSourceSearchContext  *search,
 										 gboolean                 highlight);
 
-GtkSourceStyle		*gtk_source_search_context_get_match_style		(GtkSourceSearchContext *search);
+GtkSourceStyle		*gtk_source_search_context_get_match_style		(GtkSourceSearchContext  *search);
 
-void			 gtk_source_search_context_set_match_style		(GtkSourceSearchContext *search,
-										 GtkSourceStyle         *match_style);
+void			 gtk_source_search_context_set_match_style		(GtkSourceSearchContext  *search,
+										 GtkSourceStyle          *match_style);
 
 GError			*gtk_source_search_context_get_regex_error		(GtkSourceSearchContext	 *search);
 
