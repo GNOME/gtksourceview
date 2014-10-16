@@ -699,8 +699,9 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 
 	activated = gtk_source_completion_provider_activate_proposal (provider, proposal, &insert_iter);
 
-	valid_context = gtk_source_completion_context_get_iter (completion->priv->context,
-								&context_iter);
+	valid_context = (completion->priv->context != NULL &&
+			 gtk_source_completion_context_get_iter (completion->priv->context,
+								 &context_iter));
 
 	if (!activated && valid_context)
 	{
