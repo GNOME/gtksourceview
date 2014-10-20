@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 3.13.x\n"
+"Project-Id-Version: gtksourceview 3.14.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-06 14:06+0200\n"
-"PO-Revision-Date: 2014-09-06 14:09+0200\n"
+"POT-Creation-Date: 2014-10-20 19:10+0200\n"
+"PO-Revision-Date: 2014-10-20 19:13+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -58,7 +58,7 @@ msgstr "Innledende"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:409
+#: ../gtksourceview/gtksourcegutterrenderertext.c:421
 msgid "Text"
 msgstr "Tekst"
 
@@ -69,7 +69,7 @@ msgstr "Etterfølgende"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:788
+#: ../gtksourceview/gtksourcecompletion.c:811
 msgid "All"
 msgstr "Alle"
 
@@ -699,7 +699,7 @@ msgstr "Heksadesimalt tall"
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:401
+#: ../gtksourceview/gtksourcegutterrenderertext.c:413
 msgid "Markup"
 msgstr "Merking"
 
@@ -1146,7 +1146,7 @@ msgstr "Exec-parameter"
 
 #: ../data/language-specs/desktop.lang.h:11
 #: ../gtksourceview/gtksourcefile.c:184
-#: ../gtksourceview/gtksourcefilesaver.c:390
+#: ../gtksourceview/gtksourcefilesaver.c:393
 msgid "Encoding"
 msgstr "Koding"
 
@@ -1188,8 +1188,8 @@ msgstr "Spesialtilfelle"
 #. String
 #: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
 #: ../gtksourceview/gtksourcefile.c:167
-#: ../gtksourceview/gtksourcefileloader.c:394
-#: ../gtksourceview/gtksourcefilesaver.c:373
+#: ../gtksourceview/gtksourcefileloader.c:397
+#: ../gtksourceview/gtksourcefilesaver.c:376
 msgid "Location"
 msgstr "Lokasjon"
 
@@ -1596,11 +1596,11 @@ msgstr "Header-egenskap"
 
 #: ../data/language-specs/haddock.lang.h:12
 msgid "Itemized list"
-msgstr ""
+msgstr "Spesifisert liste"
 
 #: ../data/language-specs/haddock.lang.h:13
 msgid "Enumerated list"
-msgstr ""
+msgstr "Nummerert liste"
 
 #: ../data/language-specs/haddock.lang.h:14
 msgid "Definition list"
@@ -2978,82 +2978,82 @@ msgstr ""
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Ufullstendig UTF-8 sekvens i inndata"
 
-#: ../gtksourceview/gtksourcecompletion.c:2162
-#: ../gtksourceview/gtksourcegutter.c:549
+#: ../gtksourceview/gtksourcecompletion.c:2187
+#: ../gtksourceview/gtksourcegutter.c:514
 msgid "View"
 msgstr "Vis"
 
-#: ../gtksourceview/gtksourcecompletion.c:2163
+#: ../gtksourceview/gtksourcecompletion.c:2188
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView-objekt som er bundet til fullføring"
 
-#: ../gtksourceview/gtksourcecompletion.c:2177
+#: ../gtksourceview/gtksourcecompletion.c:2202
 msgid "Remember Info Visibility"
 msgstr "Husk synlighet for informasjon"
 
-#: ../gtksourceview/gtksourcecompletion.c:2178
+#: ../gtksourceview/gtksourcecompletion.c:2203
 msgid "Remember the last info window visibility state"
 msgstr "Husk synlighetstilstand for siste informasjonsvindu"
 
-#: ../gtksourceview/gtksourcecompletion.c:2190
+#: ../gtksourceview/gtksourcecompletion.c:2215
 msgid "Select on Show"
 msgstr "Velg ved visning"
 
-#: ../gtksourceview/gtksourcecompletion.c:2191
+#: ../gtksourceview/gtksourcecompletion.c:2216
 msgid "Select first proposal when completion is shown"
 msgstr "Velg første forslag når fullføring vises"
 
-#: ../gtksourceview/gtksourcecompletion.c:2204
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Show Headers"
 msgstr "Vis hoder"
 
-#: ../gtksourceview/gtksourcecompletion.c:2205
+#: ../gtksourceview/gtksourcecompletion.c:2230
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2218
+#: ../gtksourceview/gtksourcecompletion.c:2243
 msgid "Show Icons"
 msgstr "Vis ikoner"
 
-#: ../gtksourceview/gtksourcecompletion.c:2219
+#: ../gtksourceview/gtksourcecompletion.c:2244
 msgid "Show provider and proposal icons in the completion popup"
 msgstr "Vis tilbyder og foreslåtte ikoner i fullføringsdialogen"
 
-#: ../gtksourceview/gtksourcecompletion.c:2233
+#: ../gtksourceview/gtksourcecompletion.c:2258
 msgid "Accelerators"
 msgstr "Akselleratorer"
 
-#: ../gtksourceview/gtksourcecompletion.c:2234
+#: ../gtksourceview/gtksourcecompletion.c:2259
 msgid "Number of proposal accelerators to show"
 msgstr "Antall foreslåtte hurtigtaster som skal vises"
 
-#: ../gtksourceview/gtksourcecompletion.c:2249
+#: ../gtksourceview/gtksourcecompletion.c:2274
 msgid "Auto Complete Delay"
 msgstr "Pause før automatisk fullføring"
 
-#: ../gtksourceview/gtksourcecompletion.c:2250
+#: ../gtksourceview/gtksourcecompletion.c:2275
 msgid "Completion popup delay for interactive completion"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2266
+#: ../gtksourceview/gtksourcecompletion.c:2291
 msgid "Provider Page Size"
 msgstr "Sidestørrelse for tilbyder"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
+#: ../gtksourceview/gtksourcecompletion.c:2292
 msgid "Provider scrolling page size"
 msgstr ""
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2312
 msgid "Proposal Page Size"
 msgstr "Sidestørrelse for forslag"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2313
 msgid "Proposal scrolling page size"
 msgstr ""
 
 #: ../gtksourceview/gtksourcecompletioncontext.c:271
-#: ../gtksourceview/gtksourceview.c:313
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Completion"
 msgstr "Fullføring"
 
@@ -3327,57 +3327,56 @@ msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
 #: ../gtksourceview/gtksourcefile.c:200
-#: ../gtksourceview/gtksourcefilesaver.c:407
-#, fuzzy
+#: ../gtksourceview/gtksourcefilesaver.c:410
 msgid "Newline type"
-msgstr "Linjeskift"
+msgstr "Type linjeskift"
 
 #: ../gtksourceview/gtksourcefile.c:217
-#: ../gtksourceview/gtksourcefilesaver.c:425
+#: ../gtksourceview/gtksourcefilesaver.c:428
 msgid "Compression type"
 msgstr "Type komprimering"
 
-#: ../gtksourceview/gtksourcefileloader.c:411
+#: ../gtksourceview/gtksourcefileloader.c:414
 msgid "Input stream"
-msgstr ""
+msgstr "Inndatastrøm"
 
-#: ../gtksourceview/gtksourcefilesaver.c:443
+#: ../gtksourceview/gtksourcefilesaver.c:446
 msgid "Flags"
 msgstr "Flagg"
 
 #. Translators: gutters can be used to display information
 #. * on the left or on the right of the text view. To draw the
 #. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:553
+#: ../gtksourceview/gtksourcegutter.c:518
 msgid "The gutters' GtkSourceView"
 msgstr "GtkSourceView for «gutter»"
 
-#: ../gtksourceview/gtksourcegutter.c:565
+#: ../gtksourceview/gtksourcegutter.c:530
 #: ../gtksourceview/gtksourcegutterrenderer.c:741
 msgid "Window Type"
 msgstr "Vindustype"
 
-#: ../gtksourceview/gtksourcegutter.c:566
+#: ../gtksourceview/gtksourcegutter.c:531
 #, fuzzy
 msgid "The gutters' text window type"
 msgstr "Tekstvindutype for «gutter»"
 
-#: ../gtksourceview/gtksourcegutter.c:582
+#: ../gtksourceview/gtksourcegutter.c:547
 #: ../gtksourceview/gtksourcegutterrenderer.c:524
 msgid "X Padding"
 msgstr "X-fyll"
 
-#: ../gtksourceview/gtksourcegutter.c:583
+#: ../gtksourceview/gtksourcegutter.c:548
 #: ../gtksourceview/gtksourcegutterrenderer.c:525
 msgid "The x-padding"
 msgstr "X-fyll"
 
-#: ../gtksourceview/gtksourcegutter.c:600
+#: ../gtksourceview/gtksourcegutter.c:565
 #: ../gtksourceview/gtksourcegutterrenderer.c:539
 msgid "Y Padding"
 msgstr "Y-fyll"
 
-#: ../gtksourceview/gtksourcegutter.c:601
+#: ../gtksourceview/gtksourcegutter.c:566
 #: ../gtksourceview/gtksourcegutterrenderer.c:540
 msgid "The y-padding"
 msgstr "Y-fyll"
@@ -3431,50 +3430,50 @@ msgstr "Størrelse"
 msgid "The size"
 msgstr "Størrelsen"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:298
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
 #: ../gtksourceview/gtksourcemarkattributes.c:315
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:300
 #: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "The pixbuf"
 msgstr "Pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
 #: ../gtksourceview/gtksourcemarkattributes.c:302
 msgid "Stock Id"
 msgstr "Standard-ID"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:315
 #: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "The stock id"
 msgstr "Standard-ID"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
 #: ../gtksourceview/gtksourcemarkattributes.c:328
 msgid "Icon Name"
 msgstr "Navn på ikon"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:323
 #: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "The icon name"
 msgstr "Navn på ikonet"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:329
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
 #: ../gtksourceview/gtksourcemarkattributes.c:341
 msgid "GIcon"
 msgstr "GIcon"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:331
 msgid "The gicon"
 msgstr "GIcon"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:402
+#: ../gtksourceview/gtksourcegutterrenderertext.c:414
 msgid "The markup"
 msgstr "Merking"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:410
+#: ../gtksourceview/gtksourcegutterrenderertext.c:422
 msgid "The text"
 msgstr "Teksten"
 
@@ -3559,12 +3558,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "GtkSourceBuffer-objekt som skal skrives ut"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:351
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Tab Width"
 msgstr "Tabulatorbredde"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:352
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Width of a tab character expressed in spaces"
 msgstr "Bredde på et tabulatortegn uttrykt i mellomrom"
 
@@ -3819,14 +3818,12 @@ msgid "Whether strikethrough attribute is set"
 msgstr "Om attributten gjennomstreket er satt"
 
 #: ../gtksourceview/gtksourcestyle.c:209
-#, fuzzy
 msgid "Scale set"
-msgstr "Kursiv satt"
+msgstr "Skalering satt"
 
 #: ../gtksourceview/gtksourcestyle.c:210
-#, fuzzy
 msgid "Whether scale attribute is set"
-msgstr "Om attributten kursiv er satt"
+msgstr "Om attributten skalering er satt"
 
 #: ../gtksourceview/gtksourcestylescheme.c:211
 #: ../gtksourceview/gtksourcestylescheme.c:212
@@ -3864,71 +3861,71 @@ msgstr "Schema-ID"
 msgid "List of the ids of the available style schemes"
 msgstr "Liste med IDer for tilgjengelige stil-schema"
 
-#: ../gtksourceview/gtksourceview.c:314
+#: ../gtksourceview/gtksourceview.c:335
 msgid "The completion object associated with the view"
 msgstr "Fullføringsobjekt assosiert med visningen"
 
-#: ../gtksourceview/gtksourceview.c:326
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Show Line Numbers"
 msgstr "Vis linjenummer"
 
-#: ../gtksourceview/gtksourceview.c:327
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Whether to display line numbers"
 msgstr "Om linjenummer skal vises"
 
-#: ../gtksourceview/gtksourceview.c:338
+#: ../gtksourceview/gtksourceview.c:359
 msgid "Show Line Marks"
 msgstr "Vis linjemarkører"
 
-#: ../gtksourceview/gtksourceview.c:339
+#: ../gtksourceview/gtksourceview.c:360
 msgid "Whether to display line mark pixbufs"
 msgstr "Om bilder skal vises for linjemarkører"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:387
 msgid "Indent Width"
 msgstr "Bredde for innrykk"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:388
 msgid "Number of spaces to use for each step of indent"
 msgstr "Antall mellomrom som skal brukes for hvert steg med innrykk"
 
-#: ../gtksourceview/gtksourceview.c:376
+#: ../gtksourceview/gtksourceview.c:397
 msgid "Auto Indentation"
 msgstr "Automatisk innrykk"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:398
 msgid "Whether to enable auto indentation"
 msgstr "Om automatisk innrykk skal aktiveres"
 
-#: ../gtksourceview/gtksourceview.c:384
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Sett inn mellomrom i stedet for tabulator"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Om mellomrom skal settes inn i stedet for tabulator"
 
-#: ../gtksourceview/gtksourceview.c:397
+#: ../gtksourceview/gtksourceview.c:418
 msgid "Show Right Margin"
 msgstr "Vis høyre marg"
 
-#: ../gtksourceview/gtksourceview.c:398
+#: ../gtksourceview/gtksourceview.c:419
 msgid "Whether to display the right margin"
 msgstr "Om høyre marg skal vises"
 
-#: ../gtksourceview/gtksourceview.c:410
+#: ../gtksourceview/gtksourceview.c:431
 msgid "Right Margin Position"
 msgstr "Posisjon for høyre marg"
 
-#: ../gtksourceview/gtksourceview.c:411
+#: ../gtksourceview/gtksourceview.c:432
 msgid "Position of the right margin"
 msgstr "Posisjon for høyre marg"
 
-#: ../gtksourceview/gtksourceview.c:427
+#: ../gtksourceview/gtksourceview.c:448
 msgid "Smart Home/End"
 msgstr "Smart home/end"
 
-#: ../gtksourceview/gtksourceview.c:428
+#: ../gtksourceview/gtksourceview.c:449
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3936,58 +3933,58 @@ msgstr ""
 "HOME- og END-tastene flytter til første/siste tegn som ikke er mellomrom på "
 "linjen før de går til begynnelsen/slutten på linjen"
 
-#: ../gtksourceview/gtksourceview.c:438
+#: ../gtksourceview/gtksourceview.c:459
 msgid "Highlight current line"
 msgstr "Uthev aktiv linje"
 
-#: ../gtksourceview/gtksourceview.c:439
+#: ../gtksourceview/gtksourceview.c:460
 msgid "Whether to highlight the current line"
 msgstr "Om aktiv linje skal utheves"
 
-#: ../gtksourceview/gtksourceview.c:446
+#: ../gtksourceview/gtksourceview.c:467
 msgid "Indent on tab"
 msgstr "Rykk inn ved tabulator"
 
-#: ../gtksourceview/gtksourceview.c:447
+#: ../gtksourceview/gtksourceview.c:468
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Om valgt tekst skal rykkes inn når tabulatortasten trykkes ned"
 
-#: ../gtksourceview/gtksourceview.c:461
+#: ../gtksourceview/gtksourceview.c:482
 msgid "Draw Spaces"
 msgstr "Tegn mellomrom"
 
-#: ../gtksourceview/gtksourceview.c:462
+#: ../gtksourceview/gtksourceview.c:483
 msgid "Set if and how the spaces should be visualized"
 msgstr "Sett hvis og hvordan mellomrom skal visualiseres"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1237
+#: ../gtksourceview/gtksourceview.c:1279
 msgid "_Redo"
 msgstr "Gjenopp_rett"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1248
+#: ../gtksourceview/gtksourceview.c:1290
 msgid "_Undo"
 msgstr "A_ngre"
 
-#: ../gtksourceview/gtksourceview.c:1266
+#: ../gtksourceview/gtksourceview.c:1308
 msgid "All _Upper Case"
 msgstr "K_un store bokstaver"
 
-#: ../gtksourceview/gtksourceview.c:1276
+#: ../gtksourceview/gtksourceview.c:1318
 msgid "All _Lower Case"
 msgstr "Kun små _bokstaver"
 
-#: ../gtksourceview/gtksourceview.c:1286
+#: ../gtksourceview/gtksourceview.c:1328
 msgid "_Invert Case"
 msgstr ""
 
-#: ../gtksourceview/gtksourceview.c:1296
+#: ../gtksourceview/gtksourceview.c:1338
 #, fuzzy
 msgid "_Title Case"
 msgstr "Tittel"
 
-#: ../gtksourceview/gtksourceview.c:1306
+#: ../gtksourceview/gtksourceview.c:1348
 #, fuzzy
 msgid "C_hange Case"
 msgstr "Endret linje"
