@@ -104,31 +104,169 @@
 
     <context id="functions" style-ref="function">
       <keyword>assert</keyword>
+      <keyword>bit32\.arshift</keyword>
+      <keyword>bit32\.band</keyword>
+      <keyword>bit32\.bnot</keyword>
+      <keyword>bit32\.bor</keyword>
+      <keyword>bit32\.btest</keyword>
+      <keyword>bit32\.bxor</keyword>
+      <keyword>bit32\.extract</keyword>
+      <keyword>bit32\.lrotate</keyword>
+      <keyword>bit32\.lshift</keyword>
+      <keyword>bit32\.replace</keyword>
+      <keyword>bit32\.rrotate</keyword>
+      <keyword>bit32\.rshift</keyword>
       <keyword>collectgarbage</keyword>
+      <keyword>coroutine\.create</keyword>
+      <keyword>coroutine\.resume</keyword>
+      <keyword>coroutine\.running</keyword>
+      <keyword>coroutine\.status</keyword>
+      <keyword>coroutine\.wrap</keyword>
+      <keyword>coroutine\.yield</keyword>
+      <keyword>debug\.debug</keyword>
+      <keyword>debug\.gethook</keyword>
+      <keyword>debug\.getinfo</keyword>
+      <keyword>debug\.getlocal</keyword>
+      <keyword>debug\.getmetatable</keyword>
+      <keyword>debug\.getregistry</keyword>
+      <keyword>debug\.getupvalue</keyword>
+      <keyword>debug\.getuservalue</keyword>
+      <keyword>debug\.sethook</keyword>
+      <keyword>debug\.setlocal</keyword>
+      <keyword>debug\.setmetatable</keyword>
+      <keyword>debug\.setupvalue</keyword>
+      <keyword>debug\.setuservalue</keyword>
+      <keyword>debug\.traceback</keyword>
+      <keyword>debug\.upvalueid</keyword>
+      <keyword>debug\.upvaluejoin</keyword>
       <keyword>dofile</keyword>
       <keyword>error</keyword>
-      <keyword>getfenv</keyword>
       <keyword>getmetatable</keyword>
-      <keyword>gcinfo</keyword>
+      <keyword>io\.close</keyword>
+      <keyword>io\.flush</keyword>
+      <keyword>io\.input</keyword>
+      <keyword>io\.lines</keyword>
+      <keyword>io\.open</keyword>
+      <keyword>io\.output</keyword>
+      <keyword>io\.popen</keyword>
+      <keyword>io\.read</keyword>
+      <keyword>io\.tmpfile</keyword>
+      <keyword>io\.type</keyword>
+      <keyword>io\.write</keyword>
       <keyword>ipairs</keyword>
+      <keyword>load</keyword>
       <keyword>loadfile</keyword>
-      <keyword>loadlib</keyword>
       <keyword>loadstring</keyword>
+      <keyword>math\.abs</keyword>
+      <keyword>math\.acos</keyword>
+      <keyword>math\.asin</keyword>
+      <keyword>math\.atan</keyword>
+      <keyword>math\.atan2</keyword>
+      <keyword>math\.ceil</keyword>
+      <keyword>math\.cos</keyword>
+      <keyword>math\.cosh</keyword>
+      <keyword>math\.deg</keyword>
+      <keyword>math\.exp</keyword>
+      <keyword>math\.floor</keyword>
+      <keyword>math\.fmod</keyword>
+      <keyword>math\.frexp</keyword>
+      <keyword>math\.ldexp</keyword>
+      <keyword>math\.log</keyword>
+      <keyword>math\.log10</keyword>
+      <keyword>math\.max</keyword>
+      <keyword>math\.min</keyword>
+      <keyword>math\.modf</keyword>
+      <keyword>math\.pow</keyword>
+      <keyword>math\.rad</keyword>
+      <keyword>math\.random</keyword>
+      <keyword>math\.randomseed</keyword>
+      <keyword>math\.sin</keyword>
+      <keyword>math\.sinh</keyword>
+      <keyword>math\.sqrt</keyword>
+      <keyword>math\.tan</keyword>
+      <keyword>math\.tanh</keyword>
+      <keyword>module</keyword>
       <keyword>next</keyword>
+      <keyword>os\.clock</keyword>
+      <keyword>os\.date</keyword>
+      <keyword>os\.difftime</keyword>
+      <keyword>os\.execute</keyword>
+      <keyword>os\.exit</keyword>
+      <keyword>os\.getenv</keyword>
+      <keyword>os\.remove</keyword>
+      <keyword>os\.rename</keyword>
+      <keyword>os\.setlocale</keyword>
+      <keyword>os\.time</keyword>
+      <keyword>os\.tmpname</keyword>
+      <keyword>package\.loadlib</keyword>
+      <keyword>package\.searchpath</keyword>
+      <keyword>package\.seeall</keyword>
       <keyword>pairs</keyword>
       <keyword>pcall</keyword>
       <keyword>print</keyword>
       <keyword>rawequal</keyword>
       <keyword>rawget</keyword>
+      <keyword>rawlen</keyword>
       <keyword>rawset</keyword>
       <keyword>require</keyword>
-      <keyword>setfenv</keyword>
+      <keyword>select</keyword>
       <keyword>setmetatable</keyword>
+      <keyword>string\.byte</keyword>
+      <keyword>string\.char</keyword>
+      <keyword>string\.dump</keyword>
+      <keyword>string\.find</keyword>
+      <keyword>string\.format</keyword>
+      <keyword>string\.gmatch</keyword>
+      <keyword>string\.gsub</keyword>
+      <keyword>string\.len</keyword>
+      <keyword>string\.lower</keyword>
+      <keyword>string\.match</keyword>
+      <keyword>string\.rep</keyword>
+      <keyword>string\.reverse</keyword>
+      <keyword>string\.sub</keyword>
+      <keyword>string\.upper</keyword>
+      <keyword>table\.concat</keyword>
+      <keyword>table\.insert</keyword>
+      <keyword>table\.maxn</keyword>
+      <keyword>table\.pack</keyword>
+      <keyword>table\.remove</keyword>
+      <keyword>table\.sort</keyword>
+      <keyword>table\.unpack</keyword>
       <keyword>tonumber</keyword>
       <keyword>tostring</keyword>
       <keyword>type</keyword>
       <keyword>unpack</keyword>
       <keyword>xpcall</keyword>
+
+      <!-- Lua <= 5.1 -->
+      <keyword>getfenv</keyword>
+      <keyword>gcinfo</keyword>
+      <keyword>loadlib</keyword>
+      <keyword>setfenv</keyword>
+
+      <!-- table mode -->
+      <keyword>__mode</keyword>
+
+      <!-- metamethods -->
+      <keyword>__index</keyword>
+      <keyword>__newindex</keyword>
+      <keyword>__mode</keyword>
+      <keyword>__call</keyword>
+      <keyword>__metatable</keyword>
+      <keyword>__tostring</keyword>
+      <keyword>__len</keyword>
+      <keyword>__gc</keyword>
+      <keyword>__unm</keyword>
+      <keyword>__add</keyword>
+      <keyword>__sub</keyword>
+      <keyword>__mul</keyword>
+      <keyword>__div</keyword>
+      <keyword>__mod</keyword>
+      <keyword>__pow</keyword>
+      <keyword>__concat</keyword>
+      <keyword>__eq</keyword>
+      <keyword>__lt</keyword>
+      <keyword>__le</keyword>
     </context>
 
     <context id="lua-reserved" style-ref="reserved">
