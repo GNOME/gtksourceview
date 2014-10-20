@@ -36,6 +36,7 @@
     <style id="keyword" _name="Keyword" map-to="def:keyword"/>
     <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
     <style id="reserved" _name="Reserved Identifier" map-to="def:keyword"/>
+    <style id="label" _name="Label" map-to="def:keyword"/>
     <style id="function" _name="Function" map-to="def:function"/>
     <style id="nil-value" _name="Nil Constant" map-to="def:special-constant"/>
     <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
@@ -44,6 +45,10 @@
   <definitions>
     <context id="lua-escape" style-ref="escape">
       <match>\\(\d\d?\d?|.)</match>
+    </context>
+
+    <context id="label" style-ref="label">
+      <match>\:\:[A-Za-z_][A-Za-z0-9_]*\:\:</match>
     </context>
 
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
@@ -84,6 +89,7 @@
       <keyword>end</keyword>
       <keyword>for</keyword>
       <keyword>function</keyword>
+      <keyword>goto</keyword>
       <keyword>if</keyword>
       <keyword>in</keyword>
       <keyword>local</keyword>
@@ -142,6 +148,7 @@
       <include>
         <context ref="def:shebang"/>
         <context ref="multi-line-string"/>
+        <context ref="label"/>
         <context ref="string"/>
         <context ref="block-comment"/>
         <context ref="line-comment"/>
