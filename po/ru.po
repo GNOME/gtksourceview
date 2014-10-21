@@ -16,23 +16,24 @@
 # Артём Попов <artfwo@gmail.com>, 2011.
 # Stas Solovey <whats_up@tut.by>, 2011.
 # Yuri Myasoedov <ymyasoedov@yandex.ru>, 2012-2014.
+# Andrew Razumnov <razandale@gmail.com>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-09 09:12+0000\n"
-"PO-Revision-Date: 2014-09-09 16:46+0300\n"
-"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
+"POT-Creation-Date: 2014-10-16 14:56+0000\n"
+"PO-Revision-Date: 2014-10-21 22:43+0400\n"
+"Last-Translator: Andrew Razumnov <razandale@gmail.com>\n"
 "Language-Team: русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.5.4\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -77,7 +78,7 @@ msgstr "В начале строки"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
 #: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:409
+#: ../gtksourceview/gtksourcegutterrenderertext.c:421
 msgid "Text"
 msgstr "Текст"
 
@@ -88,7 +89,7 @@ msgstr "В конце строки"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:788
+#: ../gtksourceview/gtksourcecompletion.c:830
 msgid "All"
 msgstr "Все"
 
@@ -718,7 +719,7 @@ msgstr "Шестнадцатеричное число"
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
 #: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:401
+#: ../gtksourceview/gtksourcegutterrenderertext.c:413
 msgid "Markup"
 msgstr "Разметка"
 
@@ -1165,7 +1166,7 @@ msgstr "Параметр запуска"
 
 #: ../data/language-specs/desktop.lang.h:11
 #: ../gtksourceview/gtksourcefile.c:184
-#: ../gtksourceview/gtksourcefilesaver.c:390
+#: ../gtksourceview/gtksourcefilesaver.c:393
 msgid "Encoding"
 msgstr "Кодировка"
 
@@ -1207,8 +1208,8 @@ msgstr "Специальный случай"
 #. String
 #: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
 #: ../gtksourceview/gtksourcefile.c:167
-#: ../gtksourceview/gtksourcefileloader.c:394
-#: ../gtksourceview/gtksourcefilesaver.c:373
+#: ../gtksourceview/gtksourcefileloader.c:397
+#: ../gtksourceview/gtksourcefilesaver.c:376
 msgid "Location"
 msgstr "Местоположение"
 
@@ -2829,75 +2830,75 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Цветовая схема, использующая палитру Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:327
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:328
 msgid "Document Words"
 msgstr "Слова в документе"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
 msgctxt "Object"
 msgid "Name"
 msgstr "Имя"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:431
 msgid "The provider name"
 msgstr "Имя поставщика услуг"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:437
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
 #: ../gtksourceview/gtksourcecompletionitem.c:275
 msgid "Icon"
 msgstr "Значок"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:439
 msgid "The provider icon"
 msgstr "Значок поставщика услуг"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:445
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
 msgid "Proposals Batch Size"
 msgstr "Предложенный размер группы"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:447
 msgid "Number of proposals added in one batch"
 msgstr "Количество предложенных вставок в одну группу"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
 msgid "Scan Batch Size"
 msgstr "Размер группы сканирования"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:457
 msgid "Number of lines scanned in one batch"
 msgstr "Количество строк, сканируемых в одном пакете"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
 msgid "Minimum Word Size"
 msgstr "Минимальная длина слова"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:467
 msgid "The minimum word size to complete"
 msgstr "Минимальная длина слова для завершения"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
 msgid "Interactive Delay"
 msgstr "Интерактивная задержка"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:477
 msgid "The delay before initiating interactive completion"
 msgstr "Задержка перед интерактивным дополнением"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
 msgid "Priority"
 msgstr "Приоритет"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:487
 msgid "Provider priority"
 msgstr "Приоритет поставщика услуг"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-#: ../gtksourceview/gtksourcecompletioncontext.c:298
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
+#: ../gtksourceview/gtksourcecompletioncontext.c:272
 msgid "Activation"
 msgstr "Активация"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
-#: ../gtksourceview/gtksourcecompletioncontext.c:299
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:504
+#: ../gtksourceview/gtksourcecompletioncontext.c:273
 msgid "The type of activation"
 msgstr "Тип активации"
 
@@ -2975,7 +2976,6 @@ msgstr "Недопустимая последовательность байт �
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:844
 #, c-format
-#| msgid "String Conversion"
 msgid "Error during conversion: %s"
 msgstr "Ошибка преобразования: %s"
 
@@ -2995,103 +2995,102 @@ msgstr "Недопустимый неинициализированный объ
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:1178
 #, c-format
-#| msgid "Incomplete Sequence"
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Незавершённая последовательность UTF-8 на входе"
 
-#: ../gtksourceview/gtksourcecompletion.c:2162
-#: ../gtksourceview/gtksourcegutter.c:549
+#: ../gtksourceview/gtksourcecompletion.c:2213
+#: ../gtksourceview/gtksourcegutter.c:514
 msgid "View"
 msgstr "Вид"
 
-#: ../gtksourceview/gtksourcecompletion.c:2163
+#: ../gtksourceview/gtksourcecompletion.c:2214
 msgid "The GtkSourceView bound to the completion"
 msgstr "GtkSourceView, связанный с объектом дополнения"
 
-#: ../gtksourceview/gtksourcecompletion.c:2177
+#: ../gtksourceview/gtksourcecompletion.c:2228
 msgid "Remember Info Visibility"
 msgstr "Запомнить отображение информации"
 
-#: ../gtksourceview/gtksourcecompletion.c:2178
+#: ../gtksourceview/gtksourcecompletion.c:2229
 msgid "Remember the last info window visibility state"
 msgstr "Запомнить последнее состояние отображения информации"
 
-#: ../gtksourceview/gtksourcecompletion.c:2190
+#: ../gtksourceview/gtksourcecompletion.c:2241
 msgid "Select on Show"
 msgstr "Выбор при отображении"
 
-#: ../gtksourceview/gtksourcecompletion.c:2191
+#: ../gtksourceview/gtksourcecompletion.c:2242
 msgid "Select first proposal when completion is shown"
 msgstr "Выбрать первый предложенный вариант при отображении списка дополнений"
 
-#: ../gtksourceview/gtksourcecompletion.c:2204
+#: ../gtksourceview/gtksourcecompletion.c:2255
 msgid "Show Headers"
 msgstr "Показывать заголовки"
 
-#: ../gtksourceview/gtksourcecompletion.c:2205
+#: ../gtksourceview/gtksourcecompletion.c:2256
 msgid ""
 "Show provider headers when proposals from multiple providers are available"
 msgstr ""
 "Показывать заголовки поставщика услуг, если  доступны предложения нескольких "
 "поставщиков"
 
-#: ../gtksourceview/gtksourcecompletion.c:2218
+#: ../gtksourceview/gtksourcecompletion.c:2269
 msgid "Show Icons"
 msgstr "Показывать значки"
 
-#: ../gtksourceview/gtksourcecompletion.c:2219
+#: ../gtksourceview/gtksourcecompletion.c:2270
 msgid "Show provider and proposal icons in the completion popup"
 msgstr ""
 "Показывать поставщиков услуг и предложенные значки в всплывающем окне "
 "подстановок"
 
-#: ../gtksourceview/gtksourcecompletion.c:2233
+#: ../gtksourceview/gtksourcecompletion.c:2284
 msgid "Accelerators"
 msgstr "Ускорители"
 
-#: ../gtksourceview/gtksourcecompletion.c:2234
+#: ../gtksourceview/gtksourcecompletion.c:2285
 msgid "Number of proposal accelerators to show"
 msgstr "Количество предложенных ускорителей для отображения"
 
-#: ../gtksourceview/gtksourcecompletion.c:2249
+#: ../gtksourceview/gtksourcecompletion.c:2300
 msgid "Auto Complete Delay"
 msgstr "Задержка автодополнения"
 
-#: ../gtksourceview/gtksourcecompletion.c:2250
+#: ../gtksourceview/gtksourcecompletion.c:2301
 msgid "Completion popup delay for interactive completion"
 msgstr "Задержка всплывающего окна дополнений при интерактивном дополнении"
 
-#: ../gtksourceview/gtksourcecompletion.c:2266
+#: ../gtksourceview/gtksourcecompletion.c:2317
 msgid "Provider Page Size"
 msgstr "Размер страницы поставщика услуг"
 
-#: ../gtksourceview/gtksourcecompletion.c:2267
+#: ../gtksourceview/gtksourcecompletion.c:2318
 msgid "Provider scrolling page size"
 msgstr "Прокручиваемый размер окна поставщика услуг"
 
-#: ../gtksourceview/gtksourcecompletion.c:2287
+#: ../gtksourceview/gtksourcecompletion.c:2338
 msgid "Proposal Page Size"
 msgstr "Предложенный размер страницы"
 
-#: ../gtksourceview/gtksourcecompletion.c:2288
+#: ../gtksourceview/gtksourcecompletion.c:2339
 msgid "Proposal scrolling page size"
 msgstr "Предложенный прокручиваемый размер окна"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:271
-#: ../gtksourceview/gtksourceview.c:313
+#: ../gtksourceview/gtksourcecompletioncontext.c:245
+#: ../gtksourceview/gtksourceview.c:334
 msgid "Completion"
 msgstr "Завершение"
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
+#: ../gtksourceview/gtksourcecompletioncontext.c:246
 msgid "The completion object to which the context belongs"
 msgstr "Объект дополнения, которому принадлежит содержимое"
 
 #. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:285
+#: ../gtksourceview/gtksourcecompletioncontext.c:259
 msgid "Iterator"
 msgstr "Итератор "
 
-#: ../gtksourceview/gtksourcecompletioncontext.c:286
+#: ../gtksourceview/gtksourcecompletioncontext.c:260
 msgid "The GtkTextIter at which the completion was invoked"
 msgstr "GtkTextIter, в котором было активировано автодополнение"
 
@@ -3323,7 +3322,6 @@ msgstr "Кириллица/Украинская"
 #: ../gtksourceview/gtksourceencoding.c:255
 #: ../gtksourceview/gtksourceencoding.c:261
 #: ../gtksourceview/gtksourceencoding.c:280
-#| msgid "Filename"
 msgid "Vietnamese"
 msgstr "Вьетнамская"
 
@@ -3354,57 +3352,55 @@ msgstr ""
 "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16', 'CP-1251', 'KOI8-R', 'KOI8-U']"
 
 #: ../gtksourceview/gtksourcefile.c:200
-#: ../gtksourceview/gtksourcefilesaver.c:407
-#| msgid "Newline"
+#: ../gtksourceview/gtksourcefilesaver.c:410
 msgid "Newline type"
 msgstr "Тип перевода строки"
 
 #: ../gtksourceview/gtksourcefile.c:217
-#: ../gtksourceview/gtksourcefilesaver.c:425
-#| msgid "Expression"
+#: ../gtksourceview/gtksourcefilesaver.c:428
 msgid "Compression type"
 msgstr "Тип сжатия"
 
-#: ../gtksourceview/gtksourcefileloader.c:411
+#: ../gtksourceview/gtksourcefileloader.c:414
 msgid "Input stream"
 msgstr "Поток ввода"
 
-#: ../gtksourceview/gtksourcefilesaver.c:443
+#: ../gtksourceview/gtksourcefilesaver.c:446
 msgid "Flags"
 msgstr "Флаги"
 
 #. Translators: gutters can be used to display information
 #. * on the left or on the right of the text view. To draw the
 #. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:553
+#: ../gtksourceview/gtksourcegutter.c:518
 msgid "The gutters' GtkSourceView"
 msgstr "Поля GtkSourceView"
 
-#: ../gtksourceview/gtksourcegutter.c:565
+#: ../gtksourceview/gtksourcegutter.c:530
 #: ../gtksourceview/gtksourcegutterrenderer.c:741
 msgid "Window Type"
 msgstr "Тип окна"
 
-#: ../gtksourceview/gtksourcegutter.c:566
+#: ../gtksourceview/gtksourcegutter.c:531
 msgid "The gutters' text window type"
 msgstr "Тип текстового окна программы gutter"
 
-#: ../gtksourceview/gtksourcegutter.c:582
+#: ../gtksourceview/gtksourcegutter.c:547
 #: ../gtksourceview/gtksourcegutterrenderer.c:524
 msgid "X Padding"
 msgstr "Дополнение по X"
 
-#: ../gtksourceview/gtksourcegutter.c:583
+#: ../gtksourceview/gtksourcegutter.c:548
 #: ../gtksourceview/gtksourcegutterrenderer.c:525
 msgid "The x-padding"
 msgstr "Дополнение по X"
 
-#: ../gtksourceview/gtksourcegutter.c:600
+#: ../gtksourceview/gtksourcegutter.c:565
 #: ../gtksourceview/gtksourcegutterrenderer.c:539
 msgid "Y Padding"
 msgstr "Дополнение по Y"
 
-#: ../gtksourceview/gtksourcegutter.c:601
+#: ../gtksourceview/gtksourcegutter.c:566
 #: ../gtksourceview/gtksourcegutterrenderer.c:540
 msgid "The y-padding"
 msgstr "Дополнение по Y"
@@ -3458,50 +3454,50 @@ msgstr "Размер"
 msgid "The size"
 msgstr "Размер"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:298
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
 #: ../gtksourceview/gtksourcemarkattributes.c:315
 msgid "Pixbuf"
 msgstr "Pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:300
 #: ../gtksourceview/gtksourcemarkattributes.c:316
 msgid "The pixbuf"
 msgstr "The pixbuf"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
 #: ../gtksourceview/gtksourcemarkattributes.c:302
 msgid "Stock Id"
 msgstr "Встроенное изображение"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:315
 #: ../gtksourceview/gtksourcemarkattributes.c:303
 msgid "The stock id"
 msgstr "Встроенное изображение"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
 #: ../gtksourceview/gtksourcemarkattributes.c:328
 msgid "Icon Name"
 msgstr "Имя значка"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:323
 #: ../gtksourceview/gtksourcemarkattributes.c:329
 msgid "The icon name"
 msgstr "Имя значка"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:329
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
 #: ../gtksourceview/gtksourcemarkattributes.c:341
 msgid "GIcon"
 msgstr "GIcon"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
+#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:331
 msgid "The gicon"
 msgstr "Значок GIcon"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:402
+#: ../gtksourceview/gtksourcegutterrenderertext.c:414
 msgid "The markup"
 msgstr "Разметка"
 
-#: ../gtksourceview/gtksourcegutterrenderertext.c:410
+#: ../gtksourceview/gtksourcegutterrenderertext.c:422
 msgid "The text"
 msgstr "Текст"
 
@@ -3586,12 +3582,12 @@ msgid "The GtkSourceBuffer object to print"
 msgstr "Объект GtkSourceBuffer для печати"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:351
+#: ../gtksourceview/gtksourceview.c:372
 msgid "Tab Width"
 msgstr "Шаг табуляции"
 
 #: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:352
+#: ../gtksourceview/gtksourceview.c:373
 msgid "Width of a tab character expressed in spaces"
 msgstr "Ширина табуляции в пробелах"
 
@@ -3681,43 +3677,53 @@ msgstr "Включить нумерацию страниц в (значение 
 msgid "using \\C is not supported in language definitions"
 msgstr "Использование \\C не поддерживается в определениях языка"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2742
+#: ../gtksourceview/gtksourcesearchcontext.c:2761
 msgid "Buffer"
 msgstr "Буфер"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2743
+#: ../gtksourceview/gtksourcesearchcontext.c:2762
 msgid "The associated GtkSourceBuffer"
 msgstr "Ассоциированный GtkSourceBuffer"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2757
+#: ../gtksourceview/gtksourcesearchcontext.c:2776
 msgid "Settings"
 msgstr "Параметры"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2758
+#: ../gtksourceview/gtksourcesearchcontext.c:2777
 msgid "The associated GtkSourceSearchSettings"
 msgstr "Ассоциированный GtkSourceSearchSettings"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2772
+#: ../gtksourceview/gtksourcesearchcontext.c:2791
 msgid "Highlight"
 msgstr "Подсветка"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2773
+#: ../gtksourceview/gtksourcesearchcontext.c:2792
 msgid "Highlight search occurrences"
 msgstr "Подсвечивать найденные вхождения"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2789
+#: ../gtksourceview/gtksourcesearchcontext.c:2806
+msgid "Match style"
+msgstr "Подобрать стиль"
+
+# При использовании меню поиска, для найденных совпадений можно установить стиль отображения.
+#: ../gtksourceview/gtksourcesearchcontext.c:2807
+#| msgid "The text to search"
+msgid "The text style for matches"
+msgstr "Стиль текста для найденных совпадений поиска"
+
+#: ../gtksourceview/gtksourcesearchcontext.c:2823
 msgid "Occurrences count"
 msgstr "Число вхождений"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2790
+#: ../gtksourceview/gtksourcesearchcontext.c:2824
 msgid "Total number of search occurrences"
 msgstr "Общее число вхождений при поиске"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2809
+#: ../gtksourceview/gtksourcesearchcontext.c:2843
 msgid "Regex error"
 msgstr "Ошибка регулярного выражения"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2810
+#: ../gtksourceview/gtksourcesearchcontext.c:2844
 msgid "Regular expression error"
 msgstr "Ошибка регулярного выражения"
 
@@ -3892,71 +3898,71 @@ msgstr "Идентификатор схемы"
 msgid "List of the ids of the available style schemes"
 msgstr "Список идентификаторов доступных стилевых схем"
 
-#: ../gtksourceview/gtksourceview.c:314
+#: ../gtksourceview/gtksourceview.c:335
 msgid "The completion object associated with the view"
 msgstr "Объект дополнения, связанный с данным видом"
 
-#: ../gtksourceview/gtksourceview.c:326
+#: ../gtksourceview/gtksourceview.c:347
 msgid "Show Line Numbers"
 msgstr "Показывать номера строк"
 
-#: ../gtksourceview/gtksourceview.c:327
+#: ../gtksourceview/gtksourceview.c:348
 msgid "Whether to display line numbers"
 msgstr "Следует ли отображать номера строк"
 
-#: ../gtksourceview/gtksourceview.c:338
+#: ../gtksourceview/gtksourceview.c:359
 msgid "Show Line Marks"
 msgstr "Показывать маркеры строк"
 
-#: ../gtksourceview/gtksourceview.c:339
+#: ../gtksourceview/gtksourceview.c:360
 msgid "Whether to display line mark pixbufs"
 msgstr "Следует ли отображать маркеры pixbuf"
 
-#: ../gtksourceview/gtksourceview.c:366
+#: ../gtksourceview/gtksourceview.c:387
 msgid "Indent Width"
 msgstr "Ширина отступа"
 
-#: ../gtksourceview/gtksourceview.c:367
+#: ../gtksourceview/gtksourceview.c:388
 msgid "Number of spaces to use for each step of indent"
 msgstr "Число пробелов, используемых для выравнивая текста"
 
-#: ../gtksourceview/gtksourceview.c:376
+#: ../gtksourceview/gtksourceview.c:397
 msgid "Auto Indentation"
 msgstr "Расставлять отступы автоматически"
 
-#: ../gtksourceview/gtksourceview.c:377
+#: ../gtksourceview/gtksourceview.c:398
 msgid "Whether to enable auto indentation"
 msgstr "Следует ли автоматически расставлять отступы"
 
-#: ../gtksourceview/gtksourceview.c:384
+#: ../gtksourceview/gtksourceview.c:405
 msgid "Insert Spaces Instead of Tabs"
 msgstr "Вставлять пробелы вместо табуляций"
 
-#: ../gtksourceview/gtksourceview.c:385
+#: ../gtksourceview/gtksourceview.c:406
 msgid "Whether to insert spaces instead of tabs"
 msgstr "Следует ли заменять табуляции пробелами"
 
-#: ../gtksourceview/gtksourceview.c:397
+#: ../gtksourceview/gtksourceview.c:418
 msgid "Show Right Margin"
 msgstr "Показывать правую границу"
 
-#: ../gtksourceview/gtksourceview.c:398
+#: ../gtksourceview/gtksourceview.c:419
 msgid "Whether to display the right margin"
 msgstr "Следует ли отображать правую границу"
 
-#: ../gtksourceview/gtksourceview.c:410
+#: ../gtksourceview/gtksourceview.c:431
 msgid "Right Margin Position"
 msgstr "Позиция правой границы"
 
-#: ../gtksourceview/gtksourceview.c:411
+#: ../gtksourceview/gtksourceview.c:432
 msgid "Position of the right margin"
 msgstr "Позиция правой границы"
 
-#: ../gtksourceview/gtksourceview.c:427
+#: ../gtksourceview/gtksourceview.c:448
 msgid "Smart Home/End"
 msgstr "Интеллектуальные клавиши «Home»/«End»"
 
-#: ../gtksourceview/gtksourceview.c:428
+#: ../gtksourceview/gtksourceview.c:449
 msgid ""
 "HOME and END keys move to first/last non whitespace characters on line "
 "before going to the start/end of the line"
@@ -3964,57 +3970,57 @@ msgstr ""
 "Kлавиши «Home» и «End» перемещают курсор к первому/последнему непробельному "
 "символу в строке перед переходом к началу/концу строки"
 
-#: ../gtksourceview/gtksourceview.c:438
+#: ../gtksourceview/gtksourceview.c:459
 msgid "Highlight current line"
 msgstr "Подсвечивать текущую строку"
 
-#: ../gtksourceview/gtksourceview.c:439
+#: ../gtksourceview/gtksourceview.c:460
 msgid "Whether to highlight the current line"
 msgstr "Следует ли подсвечивать текущую строку"
 
-#: ../gtksourceview/gtksourceview.c:446
+#: ../gtksourceview/gtksourceview.c:467
 msgid "Indent on tab"
 msgstr "Выравнивать по табуляции"
 
-#: ../gtksourceview/gtksourceview.c:447
+#: ../gtksourceview/gtksourceview.c:468
 msgid "Whether to indent the selected text when the tab key is pressed"
 msgstr "Выравнивать ли выделенный текст при нажатии клавиши «Tab»"
 
-#: ../gtksourceview/gtksourceview.c:461
+#: ../gtksourceview/gtksourceview.c:482
 msgid "Draw Spaces"
 msgstr "Отображать пробелы"
 
-#: ../gtksourceview/gtksourceview.c:462
+#: ../gtksourceview/gtksourceview.c:483
 msgid "Set if and how the spaces should be visualized"
 msgstr "Включить отображение пробельных символов и задать его стиль"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1237
+#: ../gtksourceview/gtksourceview.c:1279
 msgid "_Redo"
 msgstr "_Повторить"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1248
+#: ../gtksourceview/gtksourceview.c:1290
 msgid "_Undo"
 msgstr "_Отменить"
 
-#: ../gtksourceview/gtksourceview.c:1266
+#: ../gtksourceview/gtksourceview.c:1308
 msgid "All _Upper Case"
 msgstr "В _верхний регистр"
 
-#: ../gtksourceview/gtksourceview.c:1276
+#: ../gtksourceview/gtksourceview.c:1318
 msgid "All _Lower Case"
 msgstr "В _нижний регистр"
 
-#: ../gtksourceview/gtksourceview.c:1286
+#: ../gtksourceview/gtksourceview.c:1328
 msgid "_Invert Case"
 msgstr "_Инвертировать регистр"
 
-#: ../gtksourceview/gtksourceview.c:1296
+#: ../gtksourceview/gtksourceview.c:1338
 msgid "_Title Case"
 msgstr "_Прописная в начале каждого слова"
 
-#: ../gtksourceview/gtksourceview.c:1306
+#: ../gtksourceview/gtksourceview.c:1348
 msgid "C_hange Case"
 msgstr "_Изменить регистр"
 
