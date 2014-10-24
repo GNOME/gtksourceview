@@ -627,9 +627,11 @@ GSList *
 _gtk_source_encoding_get_default_candidates (void)
 {
 	const gchar *encodings_str;
+	const gchar *encodings_str_translated;
 	GVariant *encodings_variant;
 	const gchar **encodings_strv;
 	GSList *encodings_list;
+	GError *error = NULL;
 
 	/* Translators: This is the sorted list of encodings used by
 	 * GtkSourceView for automatic detection of the file encoding. You may
@@ -643,10 +645,41 @@ _gtk_source_encoding_get_default_candidates (void)
 	 * recognized encodings are used. See
 	 * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
 	 * for a list of supported encodings.
+	 * Keep the same format: square brackets, single quotes, commas.
 	 */
-	encodings_str = _("['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']");
+	encodings_str = N_("['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']");
 
-	encodings_variant = g_variant_new_parsed (encodings_str);
+	encodings_str_translated = _(encodings_str);
+
+	encodings_variant = g_variant_parse (G_VARIANT_TYPE_STRING_ARRAY,
+					     encodings_str_translated,
+					     NULL,
+					     NULL,
+					     &error);
+
+	if (error != NULL)
+	{
+		const gchar * const *language_names = g_get_language_names ();
+
+		g_warning ("Error while parsing encodings list for locale %s:\n"
+			   "Translated list: %s\n"
+			   "Error message: %s",
+			   language_names[0],
+			   encodings_str_translated,
+			   error->message);
+
+		g_error_free (error);
+		error = NULL;
+
+		encodings_variant = g_variant_parse (G_VARIANT_TYPE_STRING_ARRAY,
+						     encodings_str,
+						     NULL,
+						     NULL,
+						     &error);
+
+		g_assert_no_error (error);
+	}
+
 	g_variant_ref_sink (encodings_variant);
 
 	encodings_strv = g_variant_get_strv (encodings_variant, NULL);
