@@ -43,7 +43,7 @@
 script:   program           { _ms_parser_set_top_node (parser, $1); }
 ;
 
-program:  stmt_or_error             { $$ = node_list_add (parser, NULL, $1); }
+program:  stmt_or_error             { $$ = node_list_add (parser, NULL, $1234); }
         | program stmt_or_error     { $$ = node_list_add (parser, MS_NODE_LIST ($1), $2); }
 ;
 
