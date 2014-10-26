@@ -1,3 +1,12 @@
+News in 3.15.1
+--------------
+* Search: allow caller to choose a style for text matches
+* gtk_source_completion_context_get_iter() now returns a gboolean to tell if
+  the GtkTextIter is correctly set. For a more robust code, it is recommended
+  to use the return value.
+* Improvements to the Lua and Yacc syntax highlighting
+* Translation updates
+
 News in 3.14.1
 --------------
 * Fix UndoManager with a new implementation
