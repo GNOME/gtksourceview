@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- * gtksourceengine.c - Abstract base class for highlighting engines
+ * gtksourceengine.c
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2003 - Gustavo Giráldez
@@ -18,6 +18,8 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+
+/* Interface for syntax highlighting engines. */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>

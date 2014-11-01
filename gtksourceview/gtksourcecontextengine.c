@@ -20,10 +20,10 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#include "gtksourcecontextengine.h"
 #include <string.h>
 #include <glib.h>
 #include "gtksourceview-i18n.h"
-#include "gtksourcecontextengine.h"
 #include "gtktextregion.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
@@ -56,24 +56,31 @@
 
 /* Priority of one-time idle which is installed after buffer is modified. */
 #define FIRST_UPDATE_PRIORITY		G_PRIORITY_HIGH_IDLE
-/* Maximal amount of time allowed to spent in this first idle. Should be
- * small enough, since in worst case we block ui for this time after each keypress.
+
+/* Maximal amount of time (in milliseconds) allowed to spend in the first idle.
+ * Should be small enough, since in worst case we block ui for this time after
+ * each keypress.
  */
 #define FIRST_UPDATE_TIME_SLICE		10
 
 /* Priority of long running idle which is used to analyze whole buffer, if
- * the engine wasn't quick enough to analyze it in one shot. */
+ * the engine wasn't quick enough to analyze it in one shot.
+ */
 /* FIXME this priority is low, since we don't want to block other gui stuff.
  * But, e.g. if we have a big file, and scroll down, we do want the engine
  * to analyze quickly. Perhaps we want to reinstall first_update in case
- * of expose events or something. */
+ * of expose events or something.
+ */
 #define INCREMENTAL_UPDATE_PRIORITY	G_PRIORITY_LOW
 
-/* Maximal amount of time allowed to spent in one cycle of background idle. */
+/* Maximal amount of time (in milliseconds) allowed to spend in one cycle of
+ * background idle.
+ */
 #define INCREMENTAL_UPDATE_TIME_SLICE	30
 
-/* Maximal amount of time allowed to spent highlihting a single line. If it
- * is not enough, then highlighting is disabled. */
+/* Maximal amount of time (in milliseconds) allowed to spend highlihting a
+ * single line. If it is not enough, then highlighting is disabled.
+ */
 #define MAX_TIME_FOR_ONE_LINE		2000
 
 #define GTK_SOURCE_CONTEXT_ENGINE_ERROR (gtk_source_context_engine_error_quark ())
@@ -82,24 +89,25 @@
 
 /* Can the context be terminated by ancestor? */
 /* Root context can't be terminated; its child may not be terminated by it;
- * grandchildren look at the flag */
+ * grandchildren look at the flag.
+ */
 #define ANCESTOR_CAN_END_CONTEXT(ctx) \
 	((ctx)->parent != NULL && (ctx)->parent->parent != NULL && \
 		(!HAS_OPTION ((ctx)->definition, EXTEND_PARENT) || !(ctx)->all_ancestors_extend))
 
-/* Root context and its children have this TRUE; grandchildren use the flag */
+/* Root context and its children have this TRUE; grandchildren use the flag. */
 #define CONTEXT_EXTENDS_PARENT(ctx) \
 	((ctx)->parent == NULL || (ctx)->parent->parent == NULL || \
 		HAS_OPTION ((ctx)->definition, EXTEND_PARENT))
 
-/* Root and its children have this FALSE; grandchildren use the flag */
+/* Root and its children have this FALSE; grandchildren use the flag. */
 #define CONTEXT_ENDS_PARENT(ctx) \
 	((ctx)->parent != NULL && (ctx)->parent->parent != NULL && \
 		HAS_OPTION ((ctx)->definition, END_PARENT))
 #define SEGMENT_ENDS_PARENT(s) CONTEXT_ENDS_PARENT ((s)->context)
 
 /* Does the segment terminate at line end? */
-/* Root segment doesn't, children look at the flag */
+/* Root segment doesn't, children look at the flag. */
 #define CONTEXT_END_AT_LINE_END(ctx) \
 	((ctx)->parent != NULL && HAS_OPTION ((ctx)->definition, END_AT_LINE_END))
 #define SEGMENT_END_AT_LINE_END(s) CONTEXT_END_AT_LINE_END((s)->context)
@@ -149,9 +157,9 @@ typedef enum {
 
 struct _ContextDefinition
 {
-	gchar			*id;
+	gchar *id;
 
-	ContextType		 type;
+	ContextType type;
 	union
 	{
 		GtkSourceRegex *match;
@@ -162,165 +170,179 @@ struct _ContextDefinition
 	} u;
 
 	/* Name of the style used for contexts of this type. */
-	gchar			*default_style;
+	gchar *default_style;
 
-	/* This is a list of DefinitionChild pointers. */
-	GSList			*children;
+	/* List of DefinitionChild pointers. */
+	GSList *children;
 
-	/* Sub patterns (list of SubPatternDefinition pointers.) */
-	GSList			*sub_patterns;
-	guint			 n_sub_patterns;
+	/* Sub-patterns (list of SubPatternDefinition pointers). */
+	GSList *sub_patterns;
+	guint n_sub_patterns;
 
-	/* List of class definitions */
-	GSList			*context_classes;
+	/* List of class definitions. */
+	GSList *context_classes;
 
-	/* Union of every regular expression we can find from this
-	 * context. */
-	GtkSourceRegex		*reg_all;
+	/* Union of every regular expression we can find from this context. */
+	GtkSourceRegex *reg_all;
 
-	guint			flags : 8;
-	guint			ref_count : 24;
+	guint flags : 8;
+	guint ref_count : 24;
 };
 
 struct _SubPatternDefinition
 {
 #ifdef NEED_DEBUG_ID
 	/* We need the id only for debugging. */
-	gchar			*id;
+	gchar *id;
 #endif
-	gchar			*style;
-	SubPatternWhere		 where;
+	gchar *style;
+	SubPatternWhere where;
 
 	/* List of class definitions */
-	GSList                  *context_classes;
+	GSList *context_classes;
 
 	/* index in the ContextDefinition's list */
-	guint			 index;
+	guint index;
 
 	union
 	{
-		gint	 	 num;
-		gchar		*name;
+		gint num;
+		gchar *name;
 	} u;
-	guint			 is_named : 1;
+	guint is_named : 1;
 };
 
 struct _DefinitionChild
 {
 	union
 	{
-		/* Equal to definition->id, used when it's not resolved yet */
-		gchar			*id;
-		ContextDefinition	*definition;
+		/* Equal to definition->id, used when it's not resolved yet. */
+		gchar *id;
+		ContextDefinition *definition;
 	} u;
 
-	gchar			*style;
+	gchar *style;
 
 	/* Whether this child is a reference to all child contexts of
-	 * <definition>. */
-	guint			 is_ref_all : 1;
+	 * <definition>.
+	 */
+	guint is_ref_all : 1;
+
 	/* Whether it is resolved, i.e. points to actual context definition. */
-	guint			 resolved : 1;
-	/* Whether style is overridden, i.e. use child->style instead of what definition says. */
-	guint			 override_style : 1;
+	guint resolved : 1;
+
+	/* Whether style is overridden, i.e. use child->style instead of what
+	 * definition says.
+	 */
+	guint override_style : 1;
+
 	/* Whether style should be ignored for this and all child contexts. */
-	guint			 override_style_deep : 1;
+	guint override_style_deep : 1;
 };
 
 struct _DefinitionsIter
 {
-	GSList			*children_stack;
+	GSList *children_stack;
 };
 
 struct _Context
 {
 	/* Definition for the context. */
-	ContextDefinition	*definition;
+	ContextDefinition *definition;
 
-	Context			*parent;
-	ContextPtr		*children;
+	Context *parent;
+	ContextPtr *children;
 
 	/* This is the regex returned by regex_resolve() called on
-	 * definition->start_end.end. */
-	GtkSourceRegex		*end;
-	/* The regular expression containing every regular expression that
-	 * could be matched in this context. */
-	GtkSourceRegex		*reg_all;
+	 * definition->start_end.end.
+	 */
+	GtkSourceRegex *end;
+
+	/* The regular expression containing every regular expression that could
+	 * be matched in this context.
+	 */
+	GtkSourceRegex *reg_all;
 
 	/* Either definition->default_style or child_def->style, not copied. */
-	const gchar		*style;
-	GtkTextTag		*tag;
-	GtkTextTag	       **subpattern_tags;
+	const gchar *style;
+	GtkTextTag *tag;
+	GtkTextTag **subpattern_tags;
 
 	/* Cache for generated list of class tags */
-	GSList                  *context_classes;
+	GSList *context_classes;
 
 	/* Cache for generated list of subpattern class tags */
-	GSList                 **subpattern_context_classes;
+	GSList **subpattern_context_classes;
 
-	guint			 ref_count;
+	guint ref_count;
+
 	/* see context_freeze() */
-	guint                    frozen : 1;
+	guint frozen : 1;
+
 	/* Do all the ancestors extend their parent? */
-	guint			 all_ancestors_extend : 1;
+	guint all_ancestors_extend : 1;
+
 	/* Do not apply styles to children contexts */
-	guint			 ignore_children_style : 1;
+	guint ignore_children_style : 1;
 };
 
 struct _ContextPtr
 {
-	ContextDefinition	*definition;
+	ContextDefinition *definition;
 
-	ContextPtr		*next;
+	ContextPtr *next;
 
 	union {
-		Context		*context;
-		GHashTable	*hash; /* char* -> Context* */
+		Context *context;
+		GHashTable *hash; /* char* -> Context* */
 	} u;
-	guint			 fixed : 1;
+	guint fixed : 1;
 };
 
 struct _GtkSourceContextReplace
 {
-	gchar			*id;
-	gchar			*replace_with;
+	gchar *id;
+	gchar *replace_with;
 };
 
 struct _Segment
 {
-	Segment			*parent;
-	Segment			*next;
-	Segment			*prev;
-	Segment			*children;
-	Segment			*last_child;
+	Segment *parent;
+	Segment *next;
+	Segment *prev;
+	Segment *children;
+	Segment *last_child;
 
 	/* This is NULL if and only if it's a dummy segment which denotes
-	 * inserted or deleted text. */
-	Context			*context;
+	 * inserted or deleted text.
+	 */
+	Context *context;
 
 	/* Subpatterns found in this segment. */
-	SubPattern		*sub_patterns;
+	SubPattern *sub_patterns;
 
 	/* The context is used in the interval [start_at; end_at). */
-	gint			 start_at;
-	gint			 end_at;
+	gint start_at;
+	gint end_at;
 
 	/* In case of container contexts, start_len/end_len is length in chars
-	 * of start/end match. */
-	gint			 start_len;
-	gint			 end_len;
+	 * of start/end match.
+	 */
+	gint start_len;
+	gint end_len;
 
-	/* Whether this segment is a whole good segment, or it's an
-	 * an end of bigger one left after erase_segments() call. */
-	guint			 is_start : 1;
+	/* Whether this segment is a whole good segment, or it's an end of
+	 * a bigger one left after erase_segments() call.
+	 */
+	guint is_start : 1;
 };
 
 struct _SubPattern
 {
-	SubPatternDefinition	*definition;
-	gint			 start_at;
-	gint			 end_at;
-	SubPattern		*next;
+	SubPatternDefinition *definition;
+	gint start_at;
+	gint end_at;
+	SubPattern *next;
 };
 
 /* Line terminator characters (\n, \r, \r\n, or unicode paragraph separator)
@@ -344,31 +366,35 @@ struct _SubPattern
 struct _LineInfo
 {
 	/* Line text. */
-	gchar			*text;
+	gchar *text;
+
 	/* Character offset of the line in text buffer. */
-	gint			 start_at;
-	/* Character length of line terminator, or 0 if it's the
-	 * last line in buffer. */
-	gint			 eol_length;
-	/* Length of the line text not including line terminator */
-	gint			 char_length;
-	gint			 byte_length;
+	gint start_at;
+
+	/* Character length of line terminator, or 0 if it's the last line in
+	 * buffer.
+	 */
+	gint eol_length;
+
+	/* Length of the line text not including line terminator. */
+	gint char_length;
+	gint byte_length;
 };
 
 struct _InvalidRegion
 {
-	gboolean		 empty;
-	GtkTextMark		*start;
-	GtkTextMark		*end;
-	/* offset_at(end) - delta == original offset,
-	 * i.e. offset in the tree */
-	gint			 delta;
+	gboolean empty;
+	GtkTextMark *start;
+	GtkTextMark *end;
+
+	/* offset_at(end) - delta == original offset, i.e. offset in the tree. */
+	gint delta;
 };
 
 struct _GtkSourceContextClass
 {
-	gchar    *name;
-	gboolean  enabled;
+	gchar *name;
+	gboolean enabled;
 };
 
 struct _ContextClassTag
@@ -379,50 +405,52 @@ struct _ContextClassTag
 
 struct _GtkSourceContextData
 {
-	guint			 ref_count;
+	guint ref_count;
 
-	GtkSourceLanguage	*lang;
+	GtkSourceLanguage *lang;
 
 	/* Contains every ContextDefinition indexed by its id. */
-	GHashTable		*definitions;
+	GHashTable *definitions;
 };
 
 struct _GtkSourceContextEnginePrivate
 {
-	GtkSourceContextData	*ctx_data;
+	GtkSourceContextData *ctx_data;
 
-	GtkTextBuffer		*buffer;
-	GtkSourceStyleScheme	*style_scheme;
+	GtkTextBuffer *buffer;
+	GtkSourceStyleScheme *style_scheme;
 
 	/* All tags indexed by style name: values are GSList's of tags, ref()'ed. */
-	GHashTable		*tags;
-	/* Number of all syntax tags created by the engine, needed to set correct
-	 * tag priorities */
-	guint			 n_tags;
+	GHashTable *tags;
 
-	GHashTable		*context_classes;
+	/* Number of all syntax tags created by the engine, needed to set
+	 * correct tag priorities.
+	 */
+	guint n_tags;
+
+	GHashTable *context_classes;
 
 	/* Whether or not to actually highlight the buffer. */
-	gboolean		 highlight;
+	gboolean highlight;
 
 	/* Whether syntax analysis was disabled because of errors. */
-	gboolean		 disabled;
+	gboolean disabled;
 
 	/* Region covering the unhighlighted text. */
-	GtkTextRegion		*refresh_region;
+	GtkTextRegion *refresh_region;
 
 	/* Tree of contexts. */
-	Context			*root_context;
-	Segment			*root_segment;
-	Segment			*hint;
-	Segment			*hint2;
+	Context *root_context;
+	Segment *root_segment;
+	Segment *hint;
+	Segment *hint2;
 
 	/* list of Segment* */
-	GSList			*invalid;
-	InvalidRegion		 invalid_region;
+	GSList *invalid;
+	InvalidRegion invalid_region;
 
-	guint			 first_update;
-	guint			 incremental_update;
+	guint first_update;
+	guint incremental_update;
 };
 
 #ifdef ENABLE_CHECK_TREE
@@ -496,7 +524,8 @@ static void		install_idle_worker	(GtkSourceContextEngine	*ce);
 static void		install_first_update	(GtkSourceContextEngine	*ce);
 
 static ContextDefinition *
-gtk_source_context_data_lookup (GtkSourceContextData *ctx_data, const char *id)
+gtk_source_context_data_lookup (GtkSourceContextData *ctx_data,
+				const gchar          *id)
 {
 	return g_hash_table_lookup (ctx_data->definitions, id);
 }
@@ -5303,7 +5332,7 @@ erase_segments (GtkSourceContextEngine *ce,
  * when time elapsed is greater than @time, so analyzed region is
  * not necessarily what's requested (unless @time is 0).
  */
-/* XXX it must be refactored. */
+/* TODO it must be refactored. */
 static void
 update_syntax (GtkSourceContextEngine *ce,
 	       const GtkTextIter      *end,

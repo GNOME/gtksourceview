@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- * gtksourceengine.h - Abstract base class for highlighting engines
+ * gtksourceengine.h
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2003 - Gustavo Giráldez
