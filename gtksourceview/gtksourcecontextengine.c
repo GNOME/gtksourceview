@@ -574,7 +574,7 @@ gtk_source_context_class_free (GtkSourceContextClass *cclass)
 
 static ContextClassTag *
 context_class_tag_new (GtkTextTag *tag,
-                       gboolean    enabled)
+		       gboolean    enabled)
 {
 	ContextClassTag *attrtag = g_slice_new (ContextClassTag);
 
@@ -596,9 +596,9 @@ struct BufAndIters {
 };
 
 static void
-unhighlight_region_cb (G_GNUC_UNUSED gpointer style,
-		       GSList   *tags,
-		       gpointer  user_data)
+unhighlight_region_cb (G_GNUC_UNUSED gpointer  style,
+		       GSList                 *tags,
+		       gpointer                user_data)
 {
 	struct BufAndIters *data = user_data;
 
@@ -996,7 +996,7 @@ get_context_class_tag (GtkSourceContextEngine *ce,
 
 static GSList *
 extend_context_classes (GtkSourceContextEngine *ce,
-                        GSList                 *definitions)
+			GSList                 *definitions)
 {
 	GSList *item;
 	GSList *ret = NULL;
@@ -1015,8 +1015,8 @@ extend_context_classes (GtkSourceContextEngine *ce,
 
 static GSList *
 get_subpattern_context_classes (GtkSourceContextEngine *ce,
-                                Context                *context,
-                                SubPatternDefinition   *sp_def)
+				Context                *context,
+				SubPatternDefinition   *sp_def)
 {
 	g_assert (sp_def->index < context->definition->n_sub_patterns);
 
@@ -1035,7 +1035,7 @@ get_subpattern_context_classes (GtkSourceContextEngine *ce,
 
 static GSList *
 get_context_classes (GtkSourceContextEngine *ce,
-                     Context                *context)
+		     Context                *context)
 {
 	if (context->context_classes == NULL)
 	{
@@ -1049,9 +1049,9 @@ get_context_classes (GtkSourceContextEngine *ce,
 
 static void
 apply_context_classes (GtkSourceContextEngine *ce,
-                       GSList                 *context_classes,
-                       gint                    start,
-                       gint                    end)
+		       GSList                 *context_classes,
+		       gint                    start,
+		       gint                    end)
 {
 	GtkTextIter start_iter;
 	GtkTextIter end_iter;
@@ -1084,9 +1084,9 @@ apply_context_classes (GtkSourceContextEngine *ce,
 
 static void
 add_region_context_classes (GtkSourceContextEngine *ce,
-                            Segment                *segment,
-                            gint                    start_offset,
-                            gint                    end_offset)
+			    Segment                *segment,
+			    gint                    start_offset,
+			    gint                    end_offset)
 {
 	SubPattern *sp;
 	Segment *child;
@@ -1150,7 +1150,7 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 }
 
 static void
-remove_region_context_class_cb (G_GNUC_UNUSED gpointer class,
+remove_region_context_class_cb (G_GNUC_UNUSED gpointer  class,
                                 GtkTextTag             *tag,
                                 gpointer                user_data)
 {
@@ -1163,8 +1163,8 @@ remove_region_context_class_cb (G_GNUC_UNUSED gpointer class,
 
 static void
 remove_region_context_classes (GtkSourceContextEngine *ce,
-                               const GtkTextIter      *start,
-                               const GtkTextIter      *end)
+			       const GtkTextIter      *start,
+			       const GtkTextIter      *end)
 {
 	struct BufAndIters data;
 
@@ -1182,8 +1182,8 @@ remove_region_context_classes (GtkSourceContextEngine *ce,
 
 static void
 refresh_context_classes (GtkSourceContextEngine *ce,
-                         const GtkTextIter      *start,
-                         const GtkTextIter      *end)
+			 const GtkTextIter      *start,
+			 const GtkTextIter      *end)
 {
 #ifdef ENABLE_PROFILE
 	GTimer *timer;
@@ -1996,8 +1996,8 @@ gtk_source_context_engine_text_inserted (GtkSourceEngine *engine,
  */
 static inline gint
 fix_offset_delete_one_ (gint offset,
-		        gint start,
-		        gint length)
+			gint start,
+			gint length)
 {
 	if (offset > start)
 	{
@@ -2452,9 +2452,9 @@ gtk_source_context_engine_error_quark (void)
 }
 
 static void
-remove_tags_hash_cb (G_GNUC_UNUSED gpointer style,
-		     GSList          *tags,
-		     GtkTextTagTable *table)
+remove_tags_hash_cb (G_GNUC_UNUSED gpointer  style,
+		     GSList                 *tags,
+		     GtkTextTagTable        *table)
 {
 	GSList *l = tags;
 
@@ -2469,7 +2469,7 @@ remove_tags_hash_cb (G_GNUC_UNUSED gpointer style,
 }
 
 static void
-remove_context_classes_hash_cb (G_GNUC_UNUSED gpointer class,
+remove_context_classes_hash_cb (G_GNUC_UNUSED gpointer  class,
                                 GtkTextTag             *tag,
                                 GtkTextTagTable        *table)
 {
@@ -3256,17 +3256,17 @@ context_new (Context           *parent,
 }
 
 static void
-context_unref_hash_cb (G_GNUC_UNUSED gpointer text,
-		       Context *context)
+context_unref_hash_cb (G_GNUC_UNUSED gpointer  text,
+		       Context                *context)
 {
 	context->parent = NULL;
 	context_unref (context);
 }
 
 static gboolean
-remove_context_cb (G_GNUC_UNUSED gpointer text,
-		   Context *context,
-		   Context *target)
+remove_context_cb (G_GNUC_UNUSED gpointer  text,
+		   Context                *context,
+		   Context                *target)
 {
 	return context == target;
 }
@@ -3388,8 +3388,8 @@ context_unref (Context *context)
 }
 
 static void
-context_freeze_hash_cb (G_GNUC_UNUSED gpointer text,
-		        Context *context)
+context_freeze_hash_cb (G_GNUC_UNUSED gpointer  text,
+		        Context                *context)
 {
 	context_freeze (context);
 }
@@ -3437,9 +3437,9 @@ context_freeze (Context *ctx)
 }
 
 static void
-get_child_contexts_hash_cb (G_GNUC_UNUSED gpointer text,
-			    Context *context,
-			    GSList **list)
+get_child_contexts_hash_cb (G_GNUC_UNUSED gpointer   text,
+			    Context                 *context,
+			    GSList                 **list)
 {
 	*list = g_slist_prepend (*list, context);
 }
@@ -3487,9 +3487,9 @@ context_thaw (Context *ctx)
 }
 
 static Context *
-create_child_context (Context           *parent,
-		      DefinitionChild   *child_def,
-		      const gchar       *line_text)
+create_child_context (Context         *parent,
+		      DefinitionChild *child_def,
+		      const gchar     *line_text)
 {
 	Context *context;
 	ContextPtr *ptr;
@@ -4047,12 +4047,12 @@ simple_context_starts_here (GtkSourceContextEngine *ce,
  * Returns: %TRUE if the context starts here.
  */
 static gboolean
-child_starts_here (GtkSourceContextEngine *ce,
-		   Segment                *state,
-		   DefinitionChild        *child_def,
-		   LineInfo               *line,
-		   gint                   *line_pos,
-		   Segment               **new_state)
+child_starts_here (GtkSourceContextEngine  *ce,
+		   Segment                 *state,
+		   DefinitionChild         *child_def,
+		   LineInfo                *line,
+		   gint                    *line_pos,
+		   Segment                **new_state)
 {
 	g_return_val_if_fail (child_def->resolved, FALSE);
 
@@ -4114,9 +4114,9 @@ segment_ends_here (Segment  *state,
  * Returns: the ancestor context that terminates here or %NULL.
  */
 static Context *
-ancestor_context_ends_here (Context                *state,
-			    LineInfo               *line,
-			    gint                    line_pos)
+ancestor_context_ends_here (Context  *state,
+			    LineInfo *line,
+			    gint      line_pos)
 {
 	Context *current_context;
 	GSList *current_context_list;
@@ -4177,10 +4177,10 @@ ancestor_context_ends_here (Context                *state,
  * Returns: %TRUE if an ancestor ends at the given position.
  */
 static gboolean
-ancestor_ends_here (Segment                *state,
-		    LineInfo               *line,
-		    gint                    line_pos,
-		    Segment               **new_state)
+ancestor_ends_here (Segment   *state,
+		    LineInfo  *line,
+		    gint       line_pos,
+		    Segment  **new_state)
 {
 	Context *terminating_context;
 
@@ -4354,7 +4354,7 @@ next_segment (GtkSourceContextEngine  *ce,
  */
 static Segment *
 check_line_end (GtkSourceContextEngine *ce,
-                Segment                *state)
+		Segment                *state)
 {
 	Segment *current_segment;
 	Segment *terminating_segment;
@@ -5655,15 +5655,15 @@ copy_context_classes (GSList *context_classes)
 }
 
 static ContextDefinition *
-context_definition_new (const gchar        *id,
-			ContextType         type,
-			const gchar        *match,
-			const gchar        *start,
-			const gchar        *end,
-			const gchar        *style,
-			GSList             *context_classes,
-			GtkSourceContextFlags flags,
-			GError            **error)
+context_definition_new (const gchar            *id,
+			ContextType             type,
+			const gchar            *match,
+			const gchar            *start,
+			const gchar            *end,
+			const gchar            *style,
+			GSList                 *context_classes,
+			GtkSourceContextFlags   flags,
+			GError                **error)
 {
 	ContextDefinition *definition;
 	gboolean regex_error = FALSE;
@@ -5866,16 +5866,16 @@ definition_iter_next (DefinitionsIter *iter)
 }
 
 gboolean
-_gtk_source_context_data_define_context (GtkSourceContextData *ctx_data,
-					 const gchar          *id,
-					 const gchar          *parent_id,
-					 const gchar          *match_regex,
-					 const gchar          *start_regex,
-					 const gchar          *end_regex,
-					 const gchar          *style,
-					 GSList               *context_classes,
-					 GtkSourceContextFlags flags,
-					 GError              **error)
+_gtk_source_context_data_define_context (GtkSourceContextData   *ctx_data,
+					 const gchar            *id,
+					 const gchar            *parent_id,
+					 const gchar            *match_regex,
+					 const gchar            *start_regex,
+					 const gchar            *end_regex,
+					 const gchar            *style,
+					 GSList                 *context_classes,
+					 GtkSourceContextFlags   flags,
+					 GError                **error)
 {
 	ContextDefinition *definition, *parent = NULL;
 	ContextType type;
@@ -5955,14 +5955,14 @@ _gtk_source_context_data_define_context (GtkSourceContextData *ctx_data,
 }
 
 gboolean
-_gtk_source_context_data_add_sub_pattern (GtkSourceContextData *ctx_data,
-					  const gchar          *id,
-					  const gchar          *parent_id,
-					  const gchar          *name,
-					  const gchar          *where,
-					  const gchar          *style,
-					  GSList               *context_classes,
-					  GError              **error)
+_gtk_source_context_data_add_sub_pattern (GtkSourceContextData  *ctx_data,
+					  const gchar           *id,
+					  const gchar           *parent_id,
+					  const gchar           *name,
+					  const gchar           *where,
+					  const gchar           *style,
+					  GSList                *context_classes,
+					  GError               **error)
 {
 	ContextDefinition *parent;
 	SubPatternDefinition *sp_def;
@@ -6058,13 +6058,13 @@ context_is_pure_container (ContextDefinition *def)
 }
 
 gboolean
-_gtk_source_context_data_add_ref (GtkSourceContextData *ctx_data,
-				  const gchar          *parent_id,
-				  const gchar          *ref_id,
-				  GtkSourceContextRefOptions options,
-				  const gchar          *style,
-				  gboolean              all,
-				  GError              **error)
+_gtk_source_context_data_add_ref (GtkSourceContextData        *ctx_data,
+				  const gchar                 *parent_id,
+				  const gchar                 *ref_id,
+				  GtkSourceContextRefOptions   options,
+				  const gchar                 *style,
+				  gboolean                     all,
+				  GError                     **error)
 {
 	ContextDefinition *parent;
 	ContextDefinition *ref;
@@ -6124,8 +6124,8 @@ struct ResolveRefData {
 
 static void
 resolve_reference (G_GNUC_UNUSED const gchar *id,
-		   ContextDefinition *definition,
-		   gpointer           user_data)
+		   ContextDefinition         *definition,
+		   gpointer                   user_data)
 {
 	GSList *l;
 
@@ -6176,10 +6176,10 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
 }
 
 static gboolean
-process_replace (GtkSourceContextData *ctx_data,
-		 const gchar          *id,
-		 const gchar          *replace_with,
-		 GError              **error)
+process_replace (GtkSourceContextData  *ctx_data,
+		 const gchar           *id,
+		 const gchar           *replace_with,
+		 GError               **error)
 {
 	ContextDefinition *to_replace, *new;
 
@@ -6254,9 +6254,9 @@ _gtk_source_context_replace_free (GtkSourceContextReplace *repl)
  * references.
  */
 gboolean
-_gtk_source_context_data_finish_parse (GtkSourceContextData *ctx_data,
-				       GList                *overrides,
-				       GError		   **error)
+_gtk_source_context_data_finish_parse (GtkSourceContextData  *ctx_data,
+				       GList                 *overrides,
+				       GError               **error)
 {
 	struct ResolveRefData data;
 	gchar *root_id;
@@ -6336,9 +6336,9 @@ out:
 }
 
 static void
-prepend_definition (G_GNUC_UNUSED gchar *id,
-		    ContextDefinition *definition,
-		    GSList **list)
+prepend_definition (G_GNUC_UNUSED gchar  *id,
+		    ContextDefinition    *definition,
+		    GSList              **list)
 {
 	*list = g_slist_prepend (*list, definition);
 }
