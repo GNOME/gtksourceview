@@ -349,7 +349,6 @@ create_window (void)
 	GtkCheckButton *enable_random_provider;
 	GtkSpinButton *nb_fixed_proposals;
 	GtkSpinButton *nb_random_proposals;
-	PangoFontDescription *font_desc;
 
 	builder = gtk_builder_new ();
 
@@ -375,13 +374,6 @@ create_window (void)
 	nb_random_proposals = GTK_SPIN_BUTTON (gtk_builder_get_object (builder, "spinbutton_nb_random_proposals"));
 
 	completion = gtk_source_view_get_completion (source_view);
-
-	font_desc = pango_font_description_from_string ("monospace");
-	if (font_desc != NULL)
-	{
-		gtk_widget_override_font (GTK_WIDGET (source_view), font_desc);
-		pango_font_description_free (font_desc);
-	}
 
 	g_signal_connect (window,
 			  "destroy",

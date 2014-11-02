@@ -964,8 +964,6 @@ test_widget_class_init (TestWidgetClass *klass)
 static void
 test_widget_init (TestWidget *self)
 {
-	PangoFontDescription *font_desc;
-
 	self->priv = test_widget_get_instance_private (self);
 
 	gtk_widget_init_template (GTK_WIDGET (self));
@@ -1006,13 +1004,6 @@ test_widget_init (TestWidget *self)
 			  "line-mark-activated",
 			  G_CALLBACK (line_mark_activated_cb),
 			  self);
-
-	font_desc = pango_font_description_from_string ("monospace");
-	if (font_desc != NULL)
-	{
-		gtk_widget_override_font (GTK_WIDGET (self->priv->view), font_desc);
-		pango_font_description_free (font_desc);
-	}
 
 	open_file (self, TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
 }

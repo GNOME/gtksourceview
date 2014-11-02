@@ -415,15 +415,9 @@ test_search_class_init (TestSearchClass *klass)
 static void
 test_search_init (TestSearch *search)
 {
-	PangoFontDescription *font;
-
 	search->priv = test_search_get_instance_private (search);
 
 	gtk_widget_init_template (GTK_WIDGET (search));
-
-	font = pango_font_description_from_string ("Monospace 10");
-	gtk_widget_override_font (GTK_WIDGET (search->priv->source_view), font);
-	pango_font_description_free (font);
 
 	search->priv->source_buffer = GTK_SOURCE_BUFFER (
 		gtk_text_view_get_buffer (GTK_TEXT_VIEW (search->priv->source_view)));
