@@ -27,14 +27,21 @@ AC_INIT([gtksourceview],
 #    public release, increment AGE.
 # 4. If any exported functions or data have been removed since the last
 #    public release, set AGE to 0.
-#
-# (From the book Autotools, by John Calcote)
 
 GSV_LT_CURRENT=4
 GSV_LT_REVISION=0
 GSV_LT_AGE=3
 GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
 AC_SUBST(GSV_LT_VERSION)
+
+# Dependencies
+GLIB_REQUIRED_VERSION=2.38
+GTK_REQUIRED_VERSION=3.15.0
+LIBXML_REQUIRED_VERSION=2.6.0
+GLADE_UI_REQUIRED=3.9
+
+AC_SUBST(GTK_REQUIRED_VERSION)
+AC_SUBST(LIBXML_REQUIRED_VERSION)
 
 AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
 AC_CONFIG_HEADER([config.h])
@@ -55,15 +62,6 @@ LT_INIT([disable-static])
 
 # Check for header files
 AC_CHECK_HEADERS([unistd.h])
-
-# Dependencies
-GLIB_REQUIRED_VERSION=2.38
-GTK_REQUIRED_VERSION=3.15.0
-LIBXML_REQUIRED_VERSION=2.6.0
-GLADE_UI_REQUIRED=3.9
-
-AC_SUBST(GTK_REQUIRED_VERSION)
-AC_SUBST(LIBXML_REQUIRED_VERSION)
 
 # Pull glib-mkenums & co.
 AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
