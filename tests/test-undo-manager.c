@@ -2,7 +2,7 @@
 /* test-undo-manager.c
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2013, 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2013, 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -719,6 +719,141 @@ test_bug_672893_selection_restoring (void)
 	g_object_unref (source_buffer);
 }
 
+static void
+test_mix_user_action_and_not_undoable_action (void)
+{
+	GtkSourceBuffer *source_buffer;
+	GtkTextBuffer *text_buffer;
+	GList *contents_history = NULL;
+
+	source_buffer = gtk_source_buffer_new (NULL);
+	text_buffer = GTK_TEXT_BUFFER (source_buffer);
+
+	gtk_source_buffer_set_max_undo_levels (source_buffer, -1);
+
+	/* Case 1 */
+	gtk_text_buffer_set_text (text_buffer, "", -1);
+
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_source_buffer_begin_not_undoable_action (source_buffer);
+	gtk_source_buffer_end_not_undoable_action (source_buffer);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	gtk_text_buffer_insert_at_cursor (text_buffer, "a\n", -1);
+	gtk_text_buffer_end_user_action (text_buffer);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	check_contents_history (source_buffer, contents_history);
+
+	g_list_free_full (contents_history, g_free);
+	contents_history = NULL;
+
+	/* Case 2 */
+	gtk_text_buffer_set_text (text_buffer, "", -1);
+
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_source_buffer_begin_not_undoable_action (source_buffer);
+	gtk_text_buffer_end_user_action (text_buffer);
+	gtk_source_buffer_end_not_undoable_action (source_buffer);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	gtk_text_buffer_insert_at_cursor (text_buffer, "a\n", -1);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	check_contents_history (source_buffer, contents_history);
+
+	g_list_free_full (contents_history, g_free);
+	contents_history = NULL;
+
+	/* Case 3 */
+	gtk_text_buffer_set_text (text_buffer, "", -1);
+
+	gtk_source_buffer_begin_not_undoable_action (source_buffer);
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_text_buffer_insert_at_cursor (text_buffer, "a\n", -1);
+	gtk_text_buffer_end_user_action (text_buffer);
+	gtk_source_buffer_end_not_undoable_action (source_buffer);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	check_contents_history (source_buffer, contents_history);
+
+	g_list_free_full (contents_history, g_free);
+	contents_history = NULL;
+
+	/* Case 4 */
+	gtk_text_buffer_set_text (text_buffer, "", -1);
+
+	gtk_source_buffer_begin_not_undoable_action (source_buffer);
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_text_buffer_insert_at_cursor (text_buffer, "a\n", -1);
+	gtk_source_buffer_end_not_undoable_action (source_buffer);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+	gtk_text_buffer_end_user_action (text_buffer);
+
+	gtk_text_buffer_insert_at_cursor (text_buffer, "b\n", -1);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	check_contents_history (source_buffer, contents_history);
+
+	g_list_free_full (contents_history, g_free);
+	contents_history = NULL;
+
+	/* Case 5 */
+	gtk_text_buffer_set_text (text_buffer, "", -1);
+
+	gtk_source_buffer_begin_not_undoable_action (source_buffer);
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_source_buffer_end_not_undoable_action (source_buffer);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	gtk_text_buffer_insert_at_cursor (text_buffer, "a\n", -1);
+	gtk_text_buffer_end_user_action (text_buffer);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	check_contents_history (source_buffer, contents_history);
+
+	g_list_free_full (contents_history, g_free);
+	contents_history = NULL;
+
+	/* Case 6 */
+	gtk_text_buffer_set_text (text_buffer, "", -1);
+
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_text_buffer_insert_at_cursor (text_buffer, "a\n", -1);
+	gtk_source_buffer_begin_not_undoable_action (source_buffer);
+	gtk_text_buffer_end_user_action (text_buffer);
+	gtk_source_buffer_end_not_undoable_action (source_buffer);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	gtk_text_buffer_insert_at_cursor (text_buffer, "b\n", -1);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	check_contents_history (source_buffer, contents_history);
+
+	g_list_free_full (contents_history, g_free);
+	contents_history = NULL;
+
+	/* Case 7 */
+	gtk_text_buffer_set_text (text_buffer, "", -1);
+
+	gtk_text_buffer_begin_user_action (text_buffer);
+	gtk_text_buffer_insert_at_cursor (text_buffer, "a\n", -1);
+	gtk_source_buffer_begin_not_undoable_action (source_buffer);
+	gtk_source_buffer_end_not_undoable_action (source_buffer);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+	gtk_text_buffer_end_user_action (text_buffer);
+
+	gtk_text_buffer_insert_at_cursor (text_buffer, "b\n", -1);
+	contents_history = g_list_append (contents_history, get_contents (source_buffer));
+
+	check_contents_history (source_buffer, contents_history);
+
+	g_list_free_full (contents_history, g_free);
+	contents_history = NULL;
+
+	g_object_unref (source_buffer);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -756,6 +891,9 @@ main (int argc, char **argv)
 
 	g_test_add_func ("/UndoManager/test-bug-672893-selection-restoring",
 			 test_bug_672893_selection_restoring);
+
+	g_test_add_func ("/UndoManager/mix-user-action-and-not-undoable-action",
+			 test_mix_user_action_and_not_undoable_action);
 
 	return g_test_run ();
 }
