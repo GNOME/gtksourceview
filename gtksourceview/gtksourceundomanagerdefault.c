@@ -380,17 +380,9 @@ insert_new_action_group (GtkSourceUndoManagerDefault *manager)
 {
 	ActionGroup *group = action_group_new ();
 
-	if (manager->priv->location != NULL)
-	{
-		g_queue_insert_before (manager->priv->action_groups,
-				       manager->priv->location,
-				       group);
-	}
-	else
-	{
-		g_queue_push_tail (manager->priv->action_groups,
-				   group);
-	}
+	g_queue_insert_before (manager->priv->action_groups,
+			       manager->priv->location,
+			       group);
 
 	if (manager->priv->has_saved_location &&
 	    manager->priv->saved_location == manager->priv->location)
