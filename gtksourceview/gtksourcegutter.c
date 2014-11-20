@@ -538,8 +538,8 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	 *
 	 * The x-padding.
 	 *
-	 * Deprecated: 3.12: Use the #GtkSourceGutterRenderer:xpad property
-	 * instead.
+	 * Deprecated: 3.12: Use the #GtkSourceGutterRenderer's
+	 * #GtkSourceGutterRenderer:xpad property instead.
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_XPAD,
@@ -549,15 +549,17 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                                   -1,
 	                                                   G_MAXINT,
 	                                                   0,
-	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	                                                   G_PARAM_READWRITE |
+							   G_PARAM_CONSTRUCT |
+							   G_PARAM_DEPRECATED));
 
 	/**
 	 * GtkSourceGutter:ypad:
 	 *
 	 * The y-padding.
 	 *
-	 * Deprecated: 3.12: Use the #GtkSourceGutterRenderer:ypad property
-	 * instead.
+	 * Deprecated: 3.12: Use the #GtkSourceGutterRenderer's
+	 * #GtkSourceGutterRenderer:ypad property instead.
 	 */
 	g_object_class_install_property (object_class,
 	                                 PROP_YPAD,
@@ -567,7 +569,9 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                                   -1,
 	                                                   G_MAXINT,
 	                                                   0,
-	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	                                                   G_PARAM_READWRITE |
+							   G_PARAM_CONSTRUCT |
+							   G_PARAM_DEPRECATED));
 }
 
 static void

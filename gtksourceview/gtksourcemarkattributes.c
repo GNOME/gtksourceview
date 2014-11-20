@@ -302,7 +302,7 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	                                                      _("Stock Id"),
 	                                                      _("The stock id"),
 	                                                      NULL,
-	                                                      G_PARAM_READWRITE));
+	                                                      G_PARAM_READWRITE | G_PARAM_DEPRECATED));
 
 	/**
 	 * GtkSourceMarkAttributes:pixbuf:
