@@ -66,6 +66,9 @@
  *  - A way to visualize white spaces (by drawing symbols);
  *  - And a few other things.
  *
+ * An easy way to test all these features is to use the test-widget mini-program
+ * provided in the GtkSourceView repository, in the tests/ directory.
+ *
  * # GtkSourceView as GtkBuildable
  *
  * The GtkSourceView implementation of the #GtkBuildable interface exposes the
@@ -2774,7 +2777,9 @@ set_tab_stops_internal (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @width: width of tab in characters.
  *
- * Sets the width of tabulation in characters.
+ * Sets the width of tabulation in characters. The #GtkTextBuffer still contains
+ * \t characters, but they can take a different visual width in a #GtkSourceView
+ * widget.
  */
 void
 gtk_source_view_set_tab_width (GtkSourceView *view,
@@ -2822,9 +2827,26 @@ gtk_source_view_get_tab_width (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @width: indent width in characters.
  *
- * Sets the number of spaces to use for each step of indent.
- * If @width is -1, the value of the #GtkSourceView:tab-width property
+ * Sets the number of spaces to use for each step of indent when the tab key is
+ * pressed. If @width is -1, the value of the #GtkSourceView:tab-width property
  * will be used.
+ *
+ * The #GtkSourceView:indent-width interacts with the
+ * #GtkSourceView:insert-spaces-instead-of-tabs property and
+ * #GtkSourceView:tab-width. An example will be clearer: if the
+ * #GtkSourceView:indent-width is 4 and
+ * #GtkSourceView:tab-width is 8 and
+ * #GtkSourceView:insert-spaces-instead-of-tabs is %FALSE, then pressing the tab
+ * key at the beginning of a line will insert 4 spaces. So far so good. Pressing
+ * the tab key a second time will remove the 4 spaces and insert a \t character
+ * instead (since #GtkSourceView:tab-width is 8). On the other hand, if
+ * #GtkSourceView:insert-spaces-instead-of-tabs is %TRUE, the second tab key
+ * pressed will insert 4 more spaces for a total of 8 spaces in the
+ * #GtkTextBuffer.
+ *
+ * The test-widget program (available in the GtkSourceView repository) may be
+ * useful to better understand the indentation settings (enable the space
+ * drawing!).
  */
 void
 gtk_source_view_set_indent_width (GtkSourceView *view,
@@ -3578,7 +3600,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
  * gtk_source_view_get_auto_indent:
  * @view: a #GtkSourceView.
  *
- * Returns whether auto indentation of text is enabled.
+ * Returns whether auto-indentation of text is enabled.
  *
  * Return value: %TRUE if auto indentation is enabled.
  **/
@@ -3595,21 +3617,26 @@ gtk_source_view_get_auto_indent (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @enable: whether to enable auto indentation.
  *
- * If %TRUE auto indentation of text is enabled.
- **/
+ * If %TRUE auto-indentation of text is enabled.
+ *
+ * When Enter is pressed to create a new line, the auto-indentation inserts the
+ * same indentation as the previous line. This is <emphasis>not</emphasis> a
+ * "smart indentation" where an indentation level is added or removed depending
+ * on the context.
+ */
 void
-gtk_source_view_set_auto_indent (GtkSourceView *view, gboolean enable)
+gtk_source_view_set_auto_indent (GtkSourceView *view,
+				 gboolean       enable)
 {
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	enable = (enable != FALSE);
+	enable = enable != FALSE;
 
-	if (view->priv->auto_indent == enable)
-		return;
-
-	view->priv->auto_indent = enable;
-
-	g_object_notify (G_OBJECT (view), "auto_indent");
+	if (view->priv->auto_indent != enable)
+	{
+		view->priv->auto_indent = enable;
+		g_object_notify (G_OBJECT (view), "auto_indent");
+	}
 }
 
 /**
@@ -3634,22 +3661,22 @@ gtk_source_view_get_insert_spaces_instead_of_tabs (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @enable: whether to insert spaces instead of tabs.
  *
- * If %TRUE any tabulator character inserted is replaced by a group
- * of space characters.
- **/
+ * If %TRUE a tab key pressed is replaced by a group of space characters. Of
+ * course it is still possible to insert a real \t programmatically with the
+ * #GtkTextBuffer API.
+ */
 void
 gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView *view, gboolean enable)
 {
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	enable = (enable != FALSE);
+	enable = enable != FALSE;
 
-	if (view->priv->insert_spaces == enable)
-		return;
-
-	view->priv->insert_spaces = enable;
-
-	g_object_notify (G_OBJECT (view), "insert_spaces_instead_of_tabs");
+	if (view->priv->insert_spaces != enable)
+	{
+		view->priv->insert_spaces = enable;
+		g_object_notify (G_OBJECT (view), "insert_spaces_instead_of_tabs");
+	}
 }
 
 /**
@@ -3676,25 +3703,31 @@ gtk_source_view_get_indent_on_tab (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @enable: whether to indent a block when tab is pressed.
  *
- * If %TRUE, when the tab key is pressed and there is a selection, the
- * selected text is indented of one level instead of being replaced with
- * the \t characters. Shift+Tab unindents the selection.
+ * If %TRUE, when the tab key is pressed when several lines are selected, the
+ * selected lines are indented of one level instead of being replaced with a \t
+ * character. Shift+Tab unindents the selection.
+ *
+ * If the first or last line is not selected completely, it is also indented or
+ * unindented.
+ *
+ * When the selection doesn't span several lines, the tab key always replaces
+ * the selection with a normal \t character.
  *
  * Since: 1.8
- **/
+ */
 void
-gtk_source_view_set_indent_on_tab (GtkSourceView *view, gboolean enable)
+gtk_source_view_set_indent_on_tab (GtkSourceView *view,
+				   gboolean       enable)
 {
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	enable = (enable != FALSE);
+	enable = enable != FALSE;
 
-	if (view->priv->indent_on_tab == enable)
-		return;
-
-	view->priv->indent_on_tab = enable;
-
-	g_object_notify (G_OBJECT (view), "indent_on_tab");
+	if (view->priv->indent_on_tab != enable)
+	{
+		view->priv->indent_on_tab = enable;
+		g_object_notify (G_OBJECT (view), "indent_on_tab");
+	}
 }
 
 static void
@@ -3782,25 +3815,26 @@ gtk_source_view_get_highlight_current_line (GtkSourceView *view)
 /**
  * gtk_source_view_set_highlight_current_line:
  * @view: a #GtkSourceView.
- * @hl: whether to highlight the current line.
+ * @highlight: whether to highlight the current line.
  *
- * If @hl is %TRUE the current line is highlighted.
- **/
+ * If @highlight is %TRUE the current line will be highlighted.
+ */
 void
-gtk_source_view_set_highlight_current_line (GtkSourceView *view, gboolean hl)
+gtk_source_view_set_highlight_current_line (GtkSourceView *view,
+					    gboolean       highlight)
 {
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	hl = (hl != FALSE);
+	highlight = highlight != FALSE;
 
-	if (view->priv->highlight_current_line == hl)
-		return;
+	if (view->priv->highlight_current_line != highlight)
+	{
+		view->priv->highlight_current_line = highlight;
 
-	view->priv->highlight_current_line = hl;
+		gtk_widget_queue_draw (GTK_WIDGET (view));
 
-	gtk_widget_queue_draw (GTK_WIDGET (view));
-
-	g_object_notify (G_OBJECT (view), "highlight_current_line");
+		g_object_notify (G_OBJECT (view), "highlight_current_line");
+	}
 }
 
 /**
@@ -3971,8 +4005,8 @@ gtk_source_view_get_draw_spaces (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @iter: a position in @view.
  *
- * Determines the visual column at @iter taking into
- * consideration the indent width of @view.
+ * Determines the visual column at @iter taking into consideration the
+ * #GtkSourceView:tab-width of @view.
  *
  * Return value: the visual column at @iter.
  */
