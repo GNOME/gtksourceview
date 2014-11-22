@@ -73,13 +73,23 @@
  * gtk_text_buffer_begin_user_action() and gtk_text_buffer_end_user_action(). In
  * general, this happens whenever the user presses any key which modifies the
  * buffer. But the default undo manager will try to merge similar consecutive
- * actions, such as multiple character insertions on the same line, into one
- * action. But, inserting a newline starts a new action.
+ * actions into one undo/redo level. The merging is done word by word, so after
+ * writing a new sentence (character by character), each undo will remove the
+ * previous word.
  *
  * The default undo manager remembers the "modified" state of the buffer, and
- * restore it when an action is undone or redone. It can be useful in a text
+ * restores it when an action is undone or redone. It can be useful in a text
  * editor to know whether the file is saved. See gtk_text_buffer_get_modified()
  * and gtk_text_buffer_set_modified().
+ *
+ * The default undo manager also restores the selected text (or cursor
+ * position), if the selection was related to the action. For example if the
+ * user selects some text and deletes it, an undo will restore the selection. On
+ * the other hand, if some text is selected but a deletion occurs elsewhere (the
+ * deletion was done programmatically), an undo will not restore the selection,
+ * it will only moves the cursor (the cursor is moved so that the user sees the
+ * undo's effect). Warning: the selection restoring behavior might change in the
+ * future.
  *
  * # Context Classes
  *
