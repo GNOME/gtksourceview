@@ -40,8 +40,7 @@
  * non-highlighted text, color for the line numbers, etc.
  *
  * Style schemes are stored in XML files. The format of a scheme file is
- * documented in the
- * <link linkend="style-reference">style scheme reference</link>.
+ * documented in the [style scheme reference][style-reference].
  */
 
 #define STYLE_TEXT			"text"

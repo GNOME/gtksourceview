@@ -138,7 +138,7 @@ AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-3.0])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gettext package name.])
 
 # Documentation
-GTK_DOC_CHECK([1.11], [--flavour=no-tmpl])
+GTK_DOC_CHECK([1.18], [--flavour=no-tmpl])
 
 # Installed Tests for gnome continous integration
 AC_ARG_ENABLE(installed_tests,
