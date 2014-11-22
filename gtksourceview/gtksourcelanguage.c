@@ -41,7 +41,7 @@
 
 /**
  * SECTION:language
- * @Short_description: Object representing a syntax highlighted language
+ * @Short_description: Represents a syntax highlighted language
  * @Title: GtkSourceLanguage
  * @See_also: #GtkSourceLanguageManager
  *

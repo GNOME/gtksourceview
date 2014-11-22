@@ -32,7 +32,7 @@
 
 /**
  * SECTION:languagemanager
- * @Short_description: Object which provides access to GtkSourceLanguages
+ * @Short_description: Provides access to GtkSourceLanguages
  * @Title: GtkSourceLanguageManager
  * @See_also: #GtkSourceLanguage
  *

@@ -25,7 +25,7 @@
 
 /**
  * SECTION:style
- * @Short_description: Object representyng a style
+ * @Short_description: Represents a style
  * @Title: GtkSourceStyle
  * @See_also: #GtkSourceStyleScheme, #GtkSourceStyleSchemeManager
  *

@@ -30,7 +30,7 @@
 
 /**
  * SECTION:stylescheme
- * @Short_description: Object controlling the appearance of GtkSourceView
+ * @Short_description: Controls the appearance of GtkSourceView
  * @Title: GtkSourceStyleScheme
  * @See_also: #GtkSourceStyle, #GtkSourceStyleSchemeManager
  *
