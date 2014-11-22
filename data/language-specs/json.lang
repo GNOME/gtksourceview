@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+
  This file is part of GtkSourceView
 
  Author: Sapphire Becker <guess@logicplace.com>
@@ -28,7 +29,8 @@
 -->
 <language id="json" name="JSON" version="2.0" _section="Other">
   <metadata>
-    <property name="globs">*.json</property>
+    <property name="mimetypes">application/json</property>
+    <property name="globs">*.json;*.geojson;*.topojson</property>
   </metadata>
 
   <styles>
