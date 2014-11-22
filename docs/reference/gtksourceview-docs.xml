@@ -14,46 +14,77 @@
     <releaseinfo>for GtkSourceView &version;</releaseinfo>
   </bookinfo>
 
-  <chapter>
+  <part>
     <title>API reference</title>
-    <xi:include href="xml/buffer.xml"/>
-    <xi:include href="xml/completion.xml"/>
-    <xi:include href="xml/completioncontext.xml"/>
-    <xi:include href="xml/completioninfo.xml"/>
-    <xi:include href="xml/completionitem.xml"/>
-    <xi:include href="xml/completionproposal.xml"/>
-    <xi:include href="xml/completionprovider.xml"/>
-    <xi:include href="xml/completionwords.xml"/>
-    <xi:include href="xml/encoding.xml"/>
-    <xi:include href="xml/file.xml"/>
-    <xi:include href="xml/fileloader.xml"/>
-    <xi:include href="xml/filesaver.xml"/>
-    <xi:include href="xml/gutter.xml"/>
-    <xi:include href="xml/gutterrenderer.xml"/>
-    <xi:include href="xml/gutterrendererpixbuf.xml"/>
-    <xi:include href="xml/gutterrenderertext.xml"/>
-    <xi:include href="xml/language.xml"/>
-    <xi:include href="xml/languagemanager.xml"/>
-    <xi:include href="xml/mark.xml"/>
-    <xi:include href="xml/markattributes.xml"/>
-    <xi:include href="xml/printcompositor.xml"/>    
-    <xi:include href="xml/searchcontext.xml"/>
-    <xi:include href="xml/searchsettings.xml"/>
-    <xi:include href="xml/style.xml"/>
-    <xi:include href="xml/stylescheme.xml"/>
-    <xi:include href="xml/styleschememanager.xml"/>
-    <xi:include href="xml/undomanager.xml"/>
-    <xi:include href="xml/utils.xml"/>
-    <xi:include href="xml/view.xml"/>
-  </chapter>
 
-  <chapter>
+    <chapter>
+      <title>Main Classes</title>
+      <xi:include href="xml/buffer.xml"/>
+      <xi:include href="xml/view.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>Syntax Highlighting</title>
+      <xi:include href="xml/language.xml"/>
+      <xi:include href="xml/languagemanager.xml"/>
+      <xi:include href="xml/style.xml"/>
+      <xi:include href="xml/stylescheme.xml"/>
+      <xi:include href="xml/styleschememanager.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>Completion</title>
+      <xi:include href="xml/completion.xml"/>
+      <xi:include href="xml/completioncontext.xml"/>
+      <xi:include href="xml/completioninfo.xml"/>
+      <xi:include href="xml/completionitem.xml"/>
+      <xi:include href="xml/completionproposal.xml"/>
+      <xi:include href="xml/completionprovider.xml"/>
+      <xi:include href="xml/completionwords.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>File Loading and Saving</title>
+      <xi:include href="xml/encoding.xml"/>
+      <xi:include href="xml/file.xml"/>
+      <xi:include href="xml/fileloader.xml"/>
+      <xi:include href="xml/filesaver.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>Gutter and Marks</title>
+      <xi:include href="xml/gutter.xml"/>
+      <xi:include href="xml/gutterrenderer.xml"/>
+      <xi:include href="xml/gutterrendererpixbuf.xml"/>
+      <xi:include href="xml/gutterrenderertext.xml"/>
+      <xi:include href="xml/mark.xml"/>
+      <xi:include href="xml/markattributes.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>Printing</title>
+      <xi:include href="xml/printcompositor.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>Search and Replace</title>
+      <xi:include href="xml/searchcontext.xml"/>
+      <xi:include href="xml/searchsettings.xml"/>
+    </chapter>
+
+    <chapter>
+      <title>Others</title>
+      <xi:include href="xml/undomanager.xml"/>
+      <xi:include href="xml/utils.xml"/>
+    </chapter>
+  </part>
+
+  <part>
     <title>Syntax highlighting reference</title>
-
     &tutorial;
     &reference;
     &stylereference;
-  </chapter>
+  </part>
 
   <chapter id="object-tree">
     <title>Object Hierarchy</title>
