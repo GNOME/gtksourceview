@@ -49,13 +49,22 @@
 
 /**
  * SECTION:view
- * @Short_description: The view object
+ * @Short_description: Widget that displays a GtkSourceBuffer
  * @Title: GtkSourceView
  * @See_also: #GtkTextView, #GtkSourceBuffer
  *
- * #GtkSourceView is the main object of the GtkSourceView library. It provides
- * a text view with syntax highlighting, undo/redo and text marks. Use a
- * #GtkSourceBuffer to display text with a #GtkSourceView.
+ * #GtkSourceView is the main class of the GtkSourceView library.
+ * Use a #GtkSourceBuffer to display text with a #GtkSourceView.
+ *
+ * This class provides:
+ *  - Show the line numbers;
+ *  - Show a right margin;
+ *  - Highlight the current line;
+ *  - Indentation settings;
+ *  - Configuration for the Home and End keyboard keys;
+ *  - Configure and show line marks;
+ *  - A way to visualize white spaces (by drawing symbols);
+ *  - And a few other things.
  *
  * # GtkSourceView as GtkBuildable
  *
@@ -2561,12 +2570,12 @@ gtk_source_view_create_buffer (GtkTextView *text_view)
 /**
  * gtk_source_view_new:
  *
- * Creates a new #GtkSourceView. An empty default buffer will be
- * created for you. If you want to specify your own buffer, consider
- * gtk_source_view_new_with_buffer().
+ * Creates a new #GtkSourceView. An empty default #GtkSourceBuffer will be
+ * created for you and can be retrieved with gtk_text_view_get_buffer(). If you
+ * want to specify your own buffer, consider gtk_source_view_new_with_buffer().
  *
- * Return value: a new #GtkSourceView.
- **/
+ * Returns: a new #GtkSourceView.
+ */
 GtkWidget *
 gtk_source_view_new (void)
 {
@@ -2586,8 +2595,8 @@ gtk_source_view_new (void)
  * Creates a new #GtkSourceView widget displaying the buffer
  * @buffer. One buffer can be shared among many widgets.
  *
- * Return value: a new #GtkSourceView.
- **/
+ * Returns: a new #GtkSourceView.
+ */
 GtkWidget *
 gtk_source_view_new_with_buffer (GtkSourceBuffer *buffer)
 {

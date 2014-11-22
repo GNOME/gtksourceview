@@ -47,35 +47,37 @@
 
 /**
  * SECTION:buffer
- * @Short_description: Buffer object for GtkSourceView
+ * @Short_description: Stores the text for display in a GtkSourceView
  * @Title: GtkSourceBuffer
  * @See_also: #GtkTextBuffer, #GtkSourceView
  *
- * The #GtkSourceBuffer object is the model for #GtkSourceView widgets.
- * It extends the #GtkTextBuffer object by adding features useful to display
+ * A #GtkSourceBuffer object is the model for #GtkSourceView widgets.
+ * It extends the #GtkTextBuffer class by adding features useful to display
  * and edit source code such as syntax highlighting and bracket matching. It
- * also implements support for undo/redo operations, and for the search and
- * replace.
+ * also implements support for the undo/redo.
  *
  * To create a #GtkSourceBuffer use gtk_source_buffer_new() or
  * gtk_source_buffer_new_with_language(). The second form is just a convenience
- * function which allows you to initially set a #GtkSourceLanguage.
+ * function which allows you to initially set a #GtkSourceLanguage. You can also
+ * directly create a #GtkSourceView and get its #GtkSourceBuffer with
+ * gtk_text_view_get_buffer().
  *
- * By default highlighting is enabled, but you can disable it with
+ * The highlighting is enabled by default, but you can disable it with
  * gtk_source_buffer_set_highlight_syntax().
  *
- * # Undo and Redo
+ * # Undo/Redo
  *
  * A custom #GtkSourceUndoManager can be implemented and set with
  * gtk_source_buffer_set_undo_manager(). However the default implementation
- * should be suitable for most uses. By default, actions that can be undone or
- * redone are defined as groups of operations between a call to
- * gtk_text_buffer_begin_user_action() and gtk_text_buffer_end_user_action(). In
- * general, this happens whenever the user presses any key which modifies the
- * buffer. But the default undo manager will try to merge similar consecutive
- * actions into one undo/redo level. The merging is done word by word, so after
- * writing a new sentence (character by character), each undo will remove the
- * previous word.
+ * should be suitable for most uses, so you can use the API provided by
+ * #GtkSourceBuffer instead of using #GtkSourceUndoManager. By default, actions
+ * that can be undone or redone are defined as groups of operations between a
+ * call to gtk_text_buffer_begin_user_action() and
+ * gtk_text_buffer_end_user_action(). In general, this happens whenever the user
+ * presses any key which modifies the buffer. But the default undo manager will
+ * try to merge similar consecutive actions into one undo/redo level. The
+ * merging is done word by word, so after writing a new sentence (character by
+ * character), each undo will remove the previous word.
  *
  * The default undo manager remembers the "modified" state of the buffer, and
  * restores it when an action is undone or redone. It can be useful in a text
