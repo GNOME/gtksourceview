@@ -38,10 +38,12 @@
  * @title: GtkSourceUndoManager
  * @see_also: #GtkTextBuffer, #GtkSourceView
  *
- * The #GtkSourceUndoManager interface can be implemented to provide custom
- * undo management to a #GtkSourceBuffer. Use
- * gtk_source_buffer_set_undo_manager() to install a custom undo manager for
- * a particular source buffer.
+ * For most uses it isn't needed to use #GtkSourceUndoManager. #GtkSourceBuffer
+ * already provides an API and a default implementation for the undo/redo.
+ *
+ * For specific needs, the #GtkSourceUndoManager interface can be implemented to
+ * provide custom undo management. Use gtk_source_buffer_set_undo_manager() to
+ * install a custom undo manager for a particular #GtkSourceBuffer.
  *
  * Use gtk_source_undo_manager_can_undo_changed() and
  * gtk_source_undo_manager_can_redo_changed() when respectively the undo state
