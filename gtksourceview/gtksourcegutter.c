@@ -353,8 +353,8 @@ do_redraw (GtkSourceGutter *gutter)
 }
 
 static gint
-calculate_gutter_size (GtkSourceGutter  *gutter,
-                       GArray           *sizes)
+calculate_gutter_size (GtkSourceGutter *gutter,
+		       GArray          *sizes)
 {
 	GList *item;
 	gint total_width = 0;
@@ -966,7 +966,7 @@ apply_style (GtkSourceGutter *gutter,
  */
 static void
 begin_draw (GtkSourceGutter *gutter,
-	    GArray          *sizes,
+	    GArray          *renderer_widths,
 	    GdkRectangle     background_area,
 	    GtkTextIter     *start,
 	    GtkTextIter     *end,
@@ -974,24 +974,25 @@ begin_draw (GtkSourceGutter *gutter,
 {
 	GdkRectangle cell_area;
 	GList *l;
-	gint idx;
+	gint renderer_num;
 
 	cell_area = background_area;
 
-	for (l = gutter->priv->renderers, idx = 0;
+	for (l = gutter->priv->renderers, renderer_num = 0;
 	     l != NULL;
-	     l = l->next, idx++)
+	     l = l->next, renderer_num++)
 	{
 		Renderer *renderer = l->data;
 		gint width;
 		gint xpad;
 
+		width = g_array_index (renderer_widths, gint, renderer_num);
+
 		if (!gtk_source_gutter_renderer_get_visible (renderer->renderer))
 		{
+			g_assert_cmpint (width, ==, 0);
 			continue;
 		}
-
-		width = g_array_index (sizes, gint, idx);
 
 		gtk_source_gutter_renderer_get_padding (renderer->renderer,
 							&xpad,
@@ -999,7 +1000,7 @@ begin_draw (GtkSourceGutter *gutter,
 
 		background_area.width = width;
 
-		cell_area.width = width - 2 * xpad;
+		cell_area.width = background_area.width - 2 * xpad;
 		cell_area.x = background_area.x + xpad;
 
 		cairo_save (cr);
@@ -1023,11 +1024,11 @@ begin_draw (GtkSourceGutter *gutter,
 static void
 draw_cells (GtkSourceGutter *gutter,
 	    GtkTextView     *view,
-	    GArray          *sizes,
+	    GArray          *renderer_widths,
 	    GArray          *pixels,
 	    GArray          *heights,
-	    GArray          *numbers,
-	    gint             count,
+	    GArray          *line_numbers,
+	    gint             lines_count,
 	    GtkTextIter     *first_line,
 	    cairo_t         *cr)
 {
@@ -1068,15 +1069,16 @@ draw_cells (GtkSourceGutter *gutter,
 	}
 
 	start = *first_line;
+	i = 0;
 
-	for (i = 0; i < count; i++)
+	while (i < lines_count)
 	{
 		GtkTextIter end;
 		GdkRectangle background_area;
 		gint pos;
 		gint line_to_paint;
+		gint renderer_num;
 		GList *l;
-		gint idx;
 
 		end = start;
 
@@ -1092,15 +1094,15 @@ draw_cells (GtkSourceGutter *gutter,
 		                                       NULL,
 		                                       &pos);
 
-		line_to_paint = g_array_index (numbers, gint, i);
+		line_to_paint = g_array_index (line_numbers, gint, i);
 
 		background_area.y = pos;
 		background_area.height = g_array_index (heights, gint, i);
 		background_area.x = 0;
 
-		for (l = gutter->priv->renderers, idx = 0;
+		for (l = gutter->priv->renderers, renderer_num = 0;
 		     l != NULL;
-		     l = l->next, idx++)
+		     l = l->next, renderer_num++)
 		{
 			Renderer *renderer;
 			GdkRectangle cell_area;
@@ -1110,10 +1112,11 @@ draw_cells (GtkSourceGutter *gutter,
 			gint ypad;
 
 			renderer = l->data;
-			width = g_array_index (sizes, gint, idx);
+			width = g_array_index (renderer_widths, gint, renderer_num);
 
 			if (!gtk_source_gutter_renderer_get_visible (renderer->renderer))
 			{
+				g_assert_cmpint (width, ==, 0);
 				continue;
 			}
 
@@ -1175,6 +1178,7 @@ draw_cells (GtkSourceGutter *gutter,
 			background_area.x += background_area.width;
 		}
 
+		i++;
 		gtk_text_iter_forward_line (&start);
 	}
 }
@@ -1204,11 +1208,11 @@ on_view_draw (GtkSourceView   *view,
 	GtkTextView *text_view;
 	gint y1;
 	gint y2;
-	GArray *sizes;
+	GArray *renderer_widths;
 	GArray *pixels;
 	GArray *heights;
-	GArray *numbers;
-	gint count;
+	GArray *line_numbers;
+	gint lines_count;
 	GtkTextIter start;
 	GtkTextIter end;
 	GdkRectangle background_area;
@@ -1241,12 +1245,12 @@ on_view_draw (GtkSourceView   *view,
 	                                       NULL,
 	                                       &y2);
 
-	sizes = g_array_new (FALSE, FALSE, sizeof (gint));
-	calculate_gutter_size (gutter, sizes);
+	renderer_widths = g_array_new (FALSE, FALSE, sizeof (gint));
+	calculate_gutter_size (gutter, renderer_widths);
 
 	pixels = g_array_new (FALSE, FALSE, sizeof (gint));
 	heights = g_array_new (FALSE, FALSE, sizeof (gint));
-	numbers = g_array_new (FALSE, FALSE, sizeof (gint));
+	line_numbers = g_array_new (FALSE, FALSE, sizeof (gint));
 
 	background_area.x = 0;
 	background_area.height = get_lines (text_view,
@@ -1254,8 +1258,8 @@ on_view_draw (GtkSourceView   *view,
 	                                    y2,
 	                                    pixels,
 	                                    heights,
-	                                    numbers,
-	                                    &count,
+	                                    line_numbers,
+	                                    &lines_count,
 	                                    &start,
 	                                    &end);
 
@@ -1270,9 +1274,22 @@ on_view_draw (GtkSourceView   *view,
 	gtk_style_context_save (style_context);
 	apply_style (gutter, view, style_context, cr);
 
-	begin_draw (gutter, sizes, background_area, &start, &end, cr);
+	begin_draw (gutter,
+		    renderer_widths,
+		    background_area,
+		    &start,
+		    &end,
+		    cr);
 
-	draw_cells (gutter, text_view, sizes, pixels, heights, numbers, count, &start, cr);
+	draw_cells (gutter,
+		    text_view,
+		    renderer_widths,
+		    pixels,
+		    heights,
+		    line_numbers,
+		    lines_count,
+		    &start,
+		    cr);
 
 	/* Allow to call queue_redraw() in ::end. */
 	gutter->priv->is_drawing = FALSE;
@@ -1281,10 +1298,10 @@ on_view_draw (GtkSourceView   *view,
 
 	gtk_style_context_restore (style_context);
 
-	g_array_free (sizes, TRUE);
+	g_array_free (renderer_widths, TRUE);
 	g_array_free (pixels, TRUE);
 	g_array_free (heights, TRUE);
-	g_array_free (numbers, TRUE);
+	g_array_free (line_numbers, TRUE);
 
 	return GDK_EVENT_PROPAGATE;
 }
