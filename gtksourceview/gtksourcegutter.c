@@ -1020,6 +1020,22 @@ begin_draw (GtkSourceGutter *gutter,
 	}
 }
 
+static void
+end_draw (GtkSourceGutter *gutter)
+{
+	GList *l;
+
+	for (l = gutter->priv->renderers; l != NULL; l = l->next)
+	{
+		Renderer *renderer = l->data;
+
+		if (gtk_source_gutter_renderer_get_visible (renderer->renderer))
+		{
+			gtk_source_gutter_renderer_end (renderer->renderer);
+		}
+	}
+}
+
 static gboolean
 on_view_draw (GtkSourceView   *view,
               cairo_t         *cr,
@@ -1038,7 +1054,6 @@ on_view_draw (GtkSourceView   *view,
 	gint cur_line;
 	gint count;
 	gint i;
-	GList *item;
 	GtkTextIter start;
 	GtkTextIter end;
 	GdkRectangle background_area;
@@ -1135,6 +1150,7 @@ on_view_draw (GtkSourceView   *view,
 	{
 		gint pos;
 		gint line_to_paint;
+		GList *item;
 		gint idx;
 
 		end = start;
@@ -1239,15 +1255,7 @@ on_view_draw (GtkSourceView   *view,
 	/* Allow to call queue_redraw() in ::end. */
 	gutter->priv->is_drawing = FALSE;
 
-	for (item = gutter->priv->renderers; item != NULL; item = g_list_next (item))
-	{
-		Renderer *renderer = item->data;
-
-		if (gtk_source_gutter_renderer_get_visible (renderer->renderer))
-		{
-			gtk_source_gutter_renderer_end (renderer->renderer);
-		}
-	}
+	end_draw (gutter);
 
 	g_array_free (numbers, TRUE);
 	g_array_free (pixels, TRUE);
