@@ -787,22 +787,22 @@ gtk_source_gutter_queue_draw (GtkSourceGutter *gutter)
 /* This function is taken from gtk+/tests/testtext.c */
 static gint
 get_lines (GtkTextView  *text_view,
-           gint          first_y,
-           gint          last_y,
+           gint          first_y_buffer_coord,
+           gint          last_y_buffer_coord,
            GArray       *buffer_coords,
            GArray       *line_heights,
-           GArray       *numbers,
-           gint         *countp,
+           GArray       *line_numbers,
+           gint         *lines_countp,
            GtkTextIter  *start,
            GtkTextIter  *end)
 {
 	GtkTextIter iter;
-	gint count;
+	gint lines_count;
 	gint last_line_num = -1;
 	gint total_height = 0;
 
 	g_array_set_size (buffer_coords, 0);
-	g_array_set_size (numbers, 0);
+	g_array_set_size (line_numbers, 0);
 
 	if (line_heights != NULL)
 	{
@@ -810,35 +810,40 @@ get_lines (GtkTextView  *text_view,
 	}
 
 	/* Get iter at first y */
-	gtk_text_view_get_line_at_y (text_view, &iter, first_y, NULL);
+	gtk_text_view_get_line_at_y (text_view, &iter, first_y_buffer_coord, NULL);
 
 	/* For each iter, get its location and add it to the arrays.
-	 * Stop when we pass last_y */
-	count = 0;
+	 * Stop when we pass last_y_buffer_coord.
+	 */
+	lines_count = 0;
 
 	*start = iter;
 
 	while (!gtk_text_iter_is_end (&iter))
 	{
-		gint y, height;
+		gint y;
+		gint height;
+		gint line_num;
 
 		gtk_text_view_get_line_yrange (text_view, &iter, &y, &height);
 
 		g_array_append_val (buffer_coords, y);
 
-		if (line_heights)
+		if (line_heights != NULL)
 		{
 			g_array_append_val (line_heights, height);
 		}
 
 		total_height += height;
 
-		last_line_num = gtk_text_iter_get_line (&iter);
-		g_array_append_val (numbers, last_line_num);
+		line_num = gtk_text_iter_get_line (&iter);
+		g_array_append_val (line_numbers, line_num);
 
-		++count;
+		last_line_num = line_num;
 
-		if ((y + height) >= last_y)
+		lines_count++;
+
+		if (last_y_buffer_coord <= (y + height))
 		{
 			break;
 		}
@@ -848,7 +853,8 @@ get_lines (GtkTextView  *text_view,
 
 	if (gtk_text_iter_is_end (&iter))
 	{
-		gint y, height;
+		gint y;
+		gint height;
 		gint line_num;
 
 		gtk_text_view_get_line_yrange (text_view, &iter, &y, &height);
@@ -859,33 +865,31 @@ get_lines (GtkTextView  *text_view,
 		{
 			g_array_append_val (buffer_coords, y);
 
-			if (line_heights)
+			if (line_heights != NULL)
 			{
 				g_array_append_val (line_heights, height);
 			}
 
 			total_height += height;
 
-			g_array_append_val (numbers, line_num);
-			++count;
+			g_array_append_val (line_numbers, line_num);
+			lines_count++;
 		}
 	}
 
-	*countp = count;
-
-	if (count == 0)
+	if (lines_count == 0)
 	{
 		gint y = 0;
 		gint n = 0;
-		gint height;
-
-		*countp = 1;
+		lines_count = 1;
 
 		g_array_append_val (buffer_coords, y);
-		g_array_append_val (numbers, n);
+		g_array_append_val (line_numbers, n);
 
-		if (line_heights)
+		if (line_heights != NULL)
 		{
+			gint height;
+
 			gtk_text_view_get_line_yrange (text_view, &iter, &y, &height);
 			g_array_append_val (line_heights, height);
 
@@ -893,6 +897,7 @@ get_lines (GtkTextView  *text_view,
 		}
 	}
 
+	*lines_countp = lines_count;
 	*end = iter;
 
 	return total_height;
@@ -1025,8 +1030,8 @@ static void
 draw_cells (GtkSourceGutter *gutter,
 	    GtkTextView     *view,
 	    GArray          *renderer_widths,
-	    GArray          *pixels,
-	    GArray          *heights,
+	    GArray          *buffer_coords,
+	    GArray          *line_heights,
 	    GArray          *line_numbers,
 	    gint             lines_count,
 	    GtkTextIter     *first_line,
@@ -1087,17 +1092,22 @@ draw_cells (GtkSourceGutter *gutter,
 			gtk_text_iter_forward_to_line_end (&end);
 		}
 
+		/* Possible improvement: if buffer and window coords have the
+		 * same unit, there are probably some possible performance
+		 * improvements by avoiding some buffer <-> window coords
+		 * conversions.
+		 */
 		gtk_text_view_buffer_to_window_coords (view,
 		                                       gutter->priv->window_type,
 		                                       0,
-		                                       g_array_index (pixels, gint, i),
+		                                       g_array_index (buffer_coords, gint, i),
 		                                       NULL,
 		                                       &pos);
 
 		line_to_paint = g_array_index (line_numbers, gint, i);
 
 		background_area.y = pos;
-		background_area.height = g_array_index (heights, gint, i);
+		background_area.height = g_array_index (line_heights, gint, i);
 		background_area.x = 0;
 
 		for (l = gutter->priv->renderers, renderer_num = 0;
@@ -1206,11 +1216,13 @@ on_view_draw (GtkSourceView   *view,
 {
 	GdkRectangle clip;
 	GtkTextView *text_view;
-	gint y1;
-	gint y2;
+	gint first_y_window_coord;
+	gint last_y_window_coord;
+	gint first_y_buffer_coord;
+	gint last_y_buffer_coord;
 	GArray *renderer_widths;
-	GArray *pixels;
-	GArray *heights;
+	GArray *buffer_coords;
+	GArray *line_heights;
 	GArray *line_numbers;
 	gint lines_count;
 	GtkTextIter start;
@@ -1225,39 +1237,39 @@ on_view_draw (GtkSourceView   *view,
 
 	gutter->priv->is_drawing = TRUE;
 
+	renderer_widths = g_array_new (FALSE, FALSE, sizeof (gint));
+	calculate_gutter_size (gutter, renderer_widths);
+
 	text_view = GTK_TEXT_VIEW (view);
 
-	y1 = clip.y;
-	y2 = y1 + clip.height;
+	first_y_window_coord = clip.y;
+	last_y_window_coord = first_y_window_coord + clip.height;
 
 	/* get the extents of the line printing */
 	gtk_text_view_window_to_buffer_coords (text_view,
 	                                       gutter->priv->window_type,
 	                                       0,
-	                                       y1,
+	                                       first_y_window_coord,
 	                                       NULL,
-	                                       &y1);
+	                                       &first_y_buffer_coord);
 
 	gtk_text_view_window_to_buffer_coords (text_view,
 	                                       gutter->priv->window_type,
 	                                       0,
-	                                       y2,
+	                                       last_y_window_coord,
 	                                       NULL,
-	                                       &y2);
+	                                       &last_y_buffer_coord);
 
-	renderer_widths = g_array_new (FALSE, FALSE, sizeof (gint));
-	calculate_gutter_size (gutter, renderer_widths);
-
-	pixels = g_array_new (FALSE, FALSE, sizeof (gint));
-	heights = g_array_new (FALSE, FALSE, sizeof (gint));
+	buffer_coords = g_array_new (FALSE, FALSE, sizeof (gint));
+	line_heights = g_array_new (FALSE, FALSE, sizeof (gint));
 	line_numbers = g_array_new (FALSE, FALSE, sizeof (gint));
 
 	background_area.x = 0;
 	background_area.height = get_lines (text_view,
-	                                    y1,
-	                                    y2,
-	                                    pixels,
-	                                    heights,
+	                                    first_y_buffer_coord,
+	                                    last_y_buffer_coord,
+	                                    buffer_coords,
+	                                    line_heights,
 	                                    line_numbers,
 	                                    &lines_count,
 	                                    &start,
@@ -1266,7 +1278,7 @@ on_view_draw (GtkSourceView   *view,
 	gtk_text_view_buffer_to_window_coords (text_view,
 	                                       gutter->priv->window_type,
 	                                       0,
-	                                       g_array_index (pixels, gint, 0),
+	                                       g_array_index (buffer_coords, gint, 0),
 	                                       NULL,
 	                                       &background_area.y);
 
@@ -1284,8 +1296,8 @@ on_view_draw (GtkSourceView   *view,
 	draw_cells (gutter,
 		    text_view,
 		    renderer_widths,
-		    pixels,
-		    heights,
+		    buffer_coords,
+		    line_heights,
 		    line_numbers,
 		    lines_count,
 		    &start,
@@ -1299,8 +1311,8 @@ on_view_draw (GtkSourceView   *view,
 	gtk_style_context_restore (style_context);
 
 	g_array_free (renderer_widths, TRUE);
-	g_array_free (pixels, TRUE);
-	g_array_free (heights, TRUE);
+	g_array_free (buffer_coords, TRUE);
+	g_array_free (line_heights, TRUE);
 	g_array_free (line_numbers, TRUE);
 
 	return GDK_EVENT_PROPAGATE;
