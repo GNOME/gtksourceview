@@ -1021,6 +1021,165 @@ begin_draw (GtkSourceGutter *gutter,
 }
 
 static void
+draw_cells (GtkSourceGutter *gutter,
+	    GtkTextView     *view,
+	    GArray          *sizes,
+	    GArray          *pixels,
+	    GArray          *heights,
+	    GArray          *numbers,
+	    gint             count,
+	    GtkTextIter     *first_line,
+	    cairo_t         *cr)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter insert_iter;
+	gint cur_line;
+	GtkTextIter selection_start;
+	GtkTextIter selection_end;
+	gboolean has_selection;
+	GtkTextIter start;
+	gint i;
+
+	buffer = gtk_text_view_get_buffer (view);
+
+	gtk_text_buffer_get_iter_at_mark (buffer,
+	                                  &insert_iter,
+	                                  gtk_text_buffer_get_insert (buffer));
+
+	cur_line = gtk_text_iter_get_line (&insert_iter);
+
+	gtk_text_buffer_get_selection_bounds (buffer,
+	                                      &selection_start,
+	                                      &selection_end);
+
+	has_selection = !gtk_text_iter_equal (&selection_start, &selection_end);
+
+	if (has_selection)
+	{
+		if (!gtk_text_iter_starts_line (&selection_start))
+		{
+			gtk_text_iter_set_line_offset (&selection_start, 0);
+		}
+
+		if (!gtk_text_iter_ends_line (&selection_end))
+		{
+			gtk_text_iter_forward_to_line_end (&selection_end);
+		}
+	}
+
+	start = *first_line;
+
+	for (i = 0; i < count; i++)
+	{
+		GtkTextIter end;
+		GdkRectangle background_area;
+		gint pos;
+		gint line_to_paint;
+		GList *l;
+		gint idx;
+
+		end = start;
+
+		if (!gtk_text_iter_ends_line (&end))
+		{
+			gtk_text_iter_forward_to_line_end (&end);
+		}
+
+		gtk_text_view_buffer_to_window_coords (view,
+		                                       gutter->priv->window_type,
+		                                       0,
+		                                       g_array_index (pixels, gint, i),
+		                                       NULL,
+		                                       &pos);
+
+		line_to_paint = g_array_index (numbers, gint, i);
+
+		background_area.y = pos;
+		background_area.height = g_array_index (heights, gint, i);
+		background_area.x = 0;
+
+		for (l = gutter->priv->renderers, idx = 0;
+		     l != NULL;
+		     l = l->next, idx++)
+		{
+			Renderer *renderer;
+			GdkRectangle cell_area;
+			gint width;
+			GtkSourceGutterRendererState state;
+			gint xpad;
+			gint ypad;
+
+			renderer = l->data;
+			width = g_array_index (sizes, gint, idx);
+
+			if (!gtk_source_gutter_renderer_get_visible (renderer->renderer))
+			{
+				continue;
+			}
+
+			gtk_source_gutter_renderer_get_padding (renderer->renderer,
+			                                        &xpad,
+			                                        &ypad);
+
+			background_area.width = width;
+
+			cell_area.y = background_area.y + ypad;
+			cell_area.height = background_area.height - 2 * ypad;
+
+			cell_area.x = background_area.x + xpad;
+			cell_area.width = background_area.width - 2 * xpad;
+
+			state = GTK_SOURCE_GUTTER_RENDERER_STATE_NORMAL;
+
+			if (line_to_paint == cur_line)
+			{
+				state |= GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR;
+			}
+
+			if (has_selection &&
+			    gtk_text_iter_in_range (&start,
+			                            &selection_start,
+			                            &selection_end))
+			{
+				state |= GTK_SOURCE_GUTTER_RENDERER_STATE_SELECTED;
+			}
+
+			if (renderer->prelit >= 0 &&
+			    cell_area.y <= renderer->prelit && renderer->prelit <= cell_area.y + cell_area.height)
+			{
+				state |= GTK_SOURCE_GUTTER_RENDERER_STATE_PRELIT;
+			}
+
+			gtk_source_gutter_renderer_query_data (renderer->renderer,
+			                                       &start,
+			                                       &end,
+			                                       state);
+
+			cairo_save (cr);
+
+			gdk_cairo_rectangle (cr, &background_area);
+
+			cairo_clip (cr);
+
+			/* Call render with correct area */
+			gtk_source_gutter_renderer_draw (renderer->renderer,
+			                                 cr,
+			                                 &background_area,
+			                                 &cell_area,
+			                                 &start,
+			                                 &end,
+			                                 state);
+
+			cairo_restore (cr);
+
+			background_area.x += background_area.width;
+		}
+
+		gtk_text_iter_forward_line (&start);
+	}
+}
+
+static void
 end_draw (GtkSourceGutter *gutter)
 {
 	GList *l;
@@ -1043,23 +1202,16 @@ on_view_draw (GtkSourceView   *view,
 {
 	GdkRectangle clip;
 	GtkTextView *text_view;
-	GtkTextBuffer *buffer;
+	gint y1;
+	gint y2;
 	GArray *sizes;
 	GArray *pixels;
 	GArray *heights;
 	GArray *numbers;
-	gint y1;
-	gint y2;
-	GtkTextIter cur;
-	gint cur_line;
 	gint count;
-	gint i;
 	GtkTextIter start;
 	GtkTextIter end;
 	GdkRectangle background_area;
-	GtkTextIter selection_start;
-	GtkTextIter selection_end;
-	gboolean has_selection;
 	GtkStyleContext *style_context;
 
 	if (!get_clip_rectangle (gutter, view, cr, &clip))
@@ -1070,7 +1222,6 @@ on_view_draw (GtkSourceView   *view,
 	gutter->priv->is_drawing = TRUE;
 
 	text_view = GTK_TEXT_VIEW (view);
-	buffer = gtk_text_view_get_buffer (text_view);
 
 	y1 = clip.y;
 	y2 = y1 + clip.height;
@@ -1121,148 +1272,19 @@ on_view_draw (GtkSourceView   *view,
 
 	begin_draw (gutter, sizes, background_area, &start, &end, cr);
 
-	gtk_text_buffer_get_iter_at_mark (buffer,
-	                                  &cur,
-	                                  gtk_text_buffer_get_insert (buffer));
-
-	cur_line = gtk_text_iter_get_line (&cur);
-
-	gtk_text_buffer_get_selection_bounds (buffer,
-	                                      &selection_start,
-	                                      &selection_end);
-
-	has_selection = !gtk_text_iter_equal (&selection_start, &selection_end);
-
-	if (has_selection)
-	{
-		if (!gtk_text_iter_starts_line (&selection_start))
-		{
-			gtk_text_iter_set_line_offset (&selection_start, 0);
-		}
-
-		if (!gtk_text_iter_ends_line (&selection_end))
-		{
-			gtk_text_iter_forward_to_line_end (&selection_end);
-		}
-	}
-
-	for (i = 0; i < count; ++i)
-	{
-		gint pos;
-		gint line_to_paint;
-		GList *item;
-		gint idx;
-
-		end = start;
-
-		if (!gtk_text_iter_ends_line (&end))
-		{
-			gtk_text_iter_forward_to_line_end (&end);
-		}
-
-		gtk_text_view_buffer_to_window_coords (text_view,
-		                                       gutter->priv->window_type,
-		                                       0,
-		                                       g_array_index (pixels, gint, i),
-		                                       NULL,
-		                                       &pos);
-
-		line_to_paint = g_array_index (numbers, gint, i);
-
-		background_area.y = pos;
-		background_area.height = g_array_index (heights, gint, i);
-		background_area.x = 0;
-
-		for (item = gutter->priv->renderers, idx = 0;
-		     item != NULL;
-		     item = g_list_next (item), idx++)
-		{
-			Renderer *renderer;
-			GdkRectangle cell_area;
-			gint width;
-			GtkSourceGutterRendererState state;
-			gint xpad;
-			gint ypad;
-
-			renderer = item->data;
-			width = g_array_index (sizes, gint, idx);
-
-			if (!gtk_source_gutter_renderer_get_visible (renderer->renderer))
-			{
-				continue;
-			}
-
-			gtk_source_gutter_renderer_get_padding (renderer->renderer,
-			                                        &xpad,
-			                                        &ypad);
-
-			background_area.width = width;
-
-			cell_area.y = background_area.y + ypad;
-			cell_area.height = background_area.height - 2 * ypad;
-
-			cell_area.x = background_area.x + xpad;
-			cell_area.width = background_area.width - 2 * xpad;
-
-			state = GTK_SOURCE_GUTTER_RENDERER_STATE_NORMAL;
-
-			if (line_to_paint == cur_line)
-			{
-				state |= GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR;
-			}
-
-			if (has_selection &&
-			    gtk_text_iter_in_range (&start,
-			                            &selection_start,
-			                            &selection_end))
-			{
-				state |= GTK_SOURCE_GUTTER_RENDERER_STATE_SELECTED;
-			}
-
-			if (renderer->prelit >= 0 && cell_area.y <= renderer->prelit && cell_area.y + cell_area.height >= renderer->prelit)
-			{
-				state |= GTK_SOURCE_GUTTER_RENDERER_STATE_PRELIT;
-			}
-
-			gtk_source_gutter_renderer_query_data (renderer->renderer,
-			                                       &start,
-			                                       &end,
-			                                       state);
-
-			cairo_save (cr);
-
-			gdk_cairo_rectangle (cr, &background_area);
-
-			cairo_clip (cr);
-
-			/* Call render with correct area */
-			gtk_source_gutter_renderer_draw (renderer->renderer,
-			                                 cr,
-			                                 &background_area,
-			                                 &cell_area,
-			                                 &start,
-			                                 &end,
-			                                 state);
-
-			cairo_restore (cr);
-
-			background_area.x += background_area.width;
-		}
-
-		gtk_text_iter_forward_line (&start);
-	}
+	draw_cells (gutter, text_view, sizes, pixels, heights, numbers, count, &start, cr);
 
 	/* Allow to call queue_redraw() in ::end. */
 	gutter->priv->is_drawing = FALSE;
 
 	end_draw (gutter);
 
-	g_array_free (numbers, TRUE);
+	gtk_style_context_restore (style_context);
+
+	g_array_free (sizes, TRUE);
 	g_array_free (pixels, TRUE);
 	g_array_free (heights, TRUE);
-	g_array_free (sizes, TRUE);
-
-	gtk_style_context_restore (style_context);
+	g_array_free (numbers, TRUE);
 
 	return GDK_EVENT_PROPAGATE;
 }
