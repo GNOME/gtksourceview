@@ -949,7 +949,7 @@ on_view_draw (GtkSourceView   *view,
 
 	if (!get_clip_rectangle (gutter, view, cr, &clip))
 	{
-		return FALSE;
+		return GDK_EVENT_PROPAGATE;
 	}
 
 	gutter->priv->is_drawing = TRUE;
@@ -1024,7 +1024,7 @@ on_view_draw (GtkSourceView   *view,
 			class = GTK_STYLE_CLASS_LEFT;
 			break;
 		default:
-			g_return_val_if_reached (FALSE);
+			g_return_val_if_reached (GDK_EVENT_PROPAGATE);
 	}
 
 	/* Apply classes ourselves, since we are in connect_after and so they
@@ -1224,7 +1224,7 @@ on_view_draw (GtkSourceView   *view,
 
 	gtk_style_context_restore (style_context);
 
-	return FALSE;
+	return GDK_EVENT_PROPAGATE;
 }
 
 static Renderer *
