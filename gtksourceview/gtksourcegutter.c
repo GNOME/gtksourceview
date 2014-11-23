@@ -898,15 +898,33 @@ get_lines (GtkTextView  *text_view,
 	return total_height;
 }
 
+/* Returns %TRUE if @clip is set. @clip contains the area that should be drawn. */
+static gboolean
+get_clip_rectangle (GtkSourceGutter *gutter,
+		    GtkSourceView   *view,
+		    cairo_t         *cr,
+		    GdkRectangle    *clip)
+{
+	GdkWindow *window = get_window (gutter);
+
+	if (window == NULL || !gtk_cairo_should_draw_window (cr, window))
+	{
+		return FALSE;
+	}
+
+	gtk_cairo_transform_to_window (cr, GTK_WIDGET (view), window);
+
+	return gdk_cairo_get_clip_rectangle (cr, clip);
+}
+
 static gboolean
 on_view_draw (GtkSourceView   *view,
               cairo_t         *cr,
               GtkSourceGutter *gutter)
 {
-	GdkWindow *window;
+	GdkRectangle clip;
 	GtkTextView *text_view;
 	GArray *sizes;
-	GdkRectangle clip;
 	gint y1, y2;
 	GArray *numbers;
 	GArray *pixels;
@@ -929,16 +947,7 @@ on_view_draw (GtkSourceView   *view,
 	const gchar *class;
 	GdkRGBA fg_color;
 
-	window = get_window (gutter);
-
-	if (window == NULL || !gtk_cairo_should_draw_window (cr, window))
-	{
-		return FALSE;
-	}
-
-	gtk_cairo_transform_to_window (cr, GTK_WIDGET (view), window);
-
-	if (!gdk_cairo_get_clip_rectangle (cr, &clip))
+	if (!get_clip_rectangle (gutter, view, cr, &clip))
 	{
 		return FALSE;
 	}
