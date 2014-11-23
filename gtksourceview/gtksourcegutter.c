@@ -1042,7 +1042,6 @@ on_view_draw (GtkSourceView   *view,
 	GtkTextIter start;
 	GtkTextIter end;
 	GdkRectangle background_area;
-	GdkRectangle cell_area;
 	GtkTextIter selection_start;
 	GtkTextIter selection_end;
 	gboolean has_selection;
@@ -1094,17 +1093,12 @@ on_view_draw (GtkSourceView   *view,
 	                                    &start,
 	                                    &end);
 
-	cell_area.x = 0;
-	cell_area.height = background_area.height;
-
 	gtk_text_view_buffer_to_window_coords (text_view,
 	                                       gutter->priv->window_type,
 	                                       0,
 	                                       g_array_index (pixels, gint, 0),
 	                                       NULL,
 	                                       &background_area.y);
-
-	cell_area.y = background_area.y;
 
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
 	gtk_style_context_save (style_context);
@@ -1168,6 +1162,7 @@ on_view_draw (GtkSourceView   *view,
 		     item = g_list_next (item), idx++)
 		{
 			Renderer *renderer;
+			GdkRectangle cell_area;
 			gint width;
 			GtkSourceGutterRendererState state;
 			gint xpad;
