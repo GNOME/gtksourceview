@@ -960,6 +960,66 @@ apply_style (GtkSourceGutter *gutter,
 	gdk_cairo_set_source_rgba (cr, &fg_color);
 }
 
+/* Call gtk_source_gutter_renderer_begin() on each renderer. */
+/* FIXME @start and @end should be of type "const GtkTextIter *", but
+ * the iter paramaters of gtk_source_gutter_renderer_begin() are not const.
+ */
+static void
+begin_draw (GtkSourceGutter *gutter,
+	    GArray          *sizes,
+	    GdkRectangle     background_area,
+	    GtkTextIter     *start,
+	    GtkTextIter     *end,
+	    cairo_t         *cr)
+{
+	GdkRectangle cell_area;
+	GList *l;
+	gint idx;
+
+	cell_area = background_area;
+
+	for (l = gutter->priv->renderers, idx = 0;
+	     l != NULL;
+	     l = l->next, idx++)
+	{
+		Renderer *renderer = l->data;
+		gint width;
+		gint xpad;
+
+		if (!gtk_source_gutter_renderer_get_visible (renderer->renderer))
+		{
+			continue;
+		}
+
+		width = g_array_index (sizes, gint, idx);
+
+		gtk_source_gutter_renderer_get_padding (renderer->renderer,
+							&xpad,
+							NULL);
+
+		background_area.width = width;
+
+		cell_area.width = width - 2 * xpad;
+		cell_area.x = background_area.x + xpad;
+
+		cairo_save (cr);
+
+		gdk_cairo_rectangle (cr, &background_area);
+		cairo_clip (cr);
+
+		gtk_source_gutter_renderer_begin (renderer->renderer,
+						  cr,
+						  &background_area,
+						  &cell_area,
+						  start,
+						  end);
+
+		cairo_restore (cr);
+
+		background_area.x += background_area.width;
+	}
+}
+
 static gboolean
 on_view_draw (GtkSourceView   *view,
               cairo_t         *cr,
@@ -967,11 +1027,13 @@ on_view_draw (GtkSourceView   *view,
 {
 	GdkRectangle clip;
 	GtkTextView *text_view;
+	GtkTextBuffer *buffer;
 	GArray *sizes;
-	gint y1, y2;
-	GArray *numbers;
 	GArray *pixels;
 	GArray *heights;
+	GArray *numbers;
+	gint y1;
+	gint y2;
 	GtkTextIter cur;
 	gint cur_line;
 	gint count;
@@ -979,13 +1041,11 @@ on_view_draw (GtkSourceView   *view,
 	GList *item;
 	GtkTextIter start;
 	GtkTextIter end;
-	GtkTextBuffer *buffer;
 	GdkRectangle background_area;
 	GdkRectangle cell_area;
 	GtkTextIter selection_start;
 	GtkTextIter selection_end;
 	gboolean has_selection;
-	gint idx;
 	GtkStyleContext *style_context;
 
 	if (!get_clip_rectangle (gutter, view, cr, &clip))
@@ -1016,12 +1076,12 @@ on_view_draw (GtkSourceView   *view,
 	                                       NULL,
 	                                       &y2);
 
-	numbers = g_array_new (FALSE, FALSE, sizeof (gint));
+	sizes = g_array_new (FALSE, FALSE, sizeof (gint));
+	calculate_gutter_size (gutter, sizes);
+
 	pixels = g_array_new (FALSE, FALSE, sizeof (gint));
 	heights = g_array_new (FALSE, FALSE, sizeof (gint));
-	sizes = g_array_new (FALSE, FALSE, sizeof (gint));
-
-	calculate_gutter_size (gutter, sizes);
+	numbers = g_array_new (FALSE, FALSE, sizeof (gint));
 
 	background_area.x = 0;
 	background_area.height = get_lines (text_view,
@@ -1050,44 +1110,7 @@ on_view_draw (GtkSourceView   *view,
 	gtk_style_context_save (style_context);
 	apply_style (gutter, view, style_context, cr);
 
-	for (item = gutter->priv->renderers, idx = 0;
-	     item != NULL;
-	     item = g_list_next (item), idx++)
-	{
-		Renderer *renderer = item->data;
-		gint xpad;
-		gint width;
-
-		width = g_array_index (sizes, gint, idx);
-
-		if (gtk_source_gutter_renderer_get_visible (renderer->renderer))
-		{
-			gtk_source_gutter_renderer_get_padding (renderer->renderer,
-			                                        &xpad,
-			                                        NULL);
-
-			background_area.width = width;
-
-			cell_area.width = width - 2 * xpad;
-			cell_area.x = background_area.x + xpad;
-
-			cairo_save (cr);
-
-			gdk_cairo_rectangle (cr, &background_area);
-			cairo_clip (cr);
-
-			gtk_source_gutter_renderer_begin (renderer->renderer,
-			                                  cr,
-			                                  &background_area,
-			                                  &cell_area,
-			                                  &start,
-			                                  &end);
-
-			cairo_restore (cr);
-
-			background_area.x += background_area.width;
-		}
-	}
+	begin_draw (gutter, sizes, background_area, &start, &end, cr);
 
 	gtk_text_buffer_get_iter_at_mark (buffer,
 	                                  &cur,
@@ -1118,6 +1141,7 @@ on_view_draw (GtkSourceView   *view,
 	{
 		gint pos;
 		gint line_to_paint;
+		gint idx;
 
 		end = start;
 
