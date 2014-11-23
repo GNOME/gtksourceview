@@ -34,5 +34,3 @@ GtkSourceGutter *gtk_source_gutter_new (GtkSourceView     *view,
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_GUTTER_PRIVATE_H__ */
-
-/* vi:ts=8 */
