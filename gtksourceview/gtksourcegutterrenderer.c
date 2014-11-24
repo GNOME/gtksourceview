@@ -827,16 +827,20 @@ gtk_source_gutter_renderer_begin (GtkSourceGutterRenderer *renderer,
  * @end: a #GtkTextIter
  * @state: a #GtkSourceGutterRendererState
  *
- * Main renderering method. Implementations should implement this method to
- * draw onto the cairo context. The @background_area indicates total area of
- * the cell (without padding or margin) to be drawn. The @cell_area indicates
- * the area where content can be drawn (text, images, etc).
+ * Main renderering method. Implementations should implement this method to draw
+ * onto the cairo context. The @background_area indicates the total area of the
+ * cell to be drawn. The @cell_area indicates the area where content can be
+ * drawn (text, images, etc).
+ *
+ * The @background_area is the @cell_area plus the padding on each side (two
+ * times the #GtkSourceGutterRenderer:xpad horizontally and two times the
+ * #GtkSourceGutterRenderer:ypad vertically, so that the @cell_area is centered
+ * inside @background_area).
  *
  * The @state argument indicates the current state of the renderer and should
  * be taken into account to properly draw the different possible states
  * (cursor, prelit, selected) if appropriate.
- *
- **/
+ */
 void
 gtk_source_gutter_renderer_draw (GtkSourceGutterRenderer      *renderer,
                                  cairo_t                      *cr,
