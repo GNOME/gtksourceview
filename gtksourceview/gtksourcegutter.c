@@ -981,14 +981,25 @@ apply_style (GtkSourceGutter *gutter,
 /* Call gtk_source_gutter_renderer_begin() on each renderer. */
 static void
 begin_draw (GtkSourceGutter *gutter,
+	    GtkTextView     *view,
 	    GArray          *renderer_widths,
-	    GdkRectangle     background_area,
 	    LinesInfo       *info,
 	    cairo_t         *cr)
 {
+	GdkRectangle background_area;
 	GdkRectangle cell_area;
 	GList *l;
 	gint renderer_num;
+
+	background_area.x = 0;
+	background_area.height = info->total_height;
+
+	gtk_text_view_buffer_to_window_coords (view,
+	                                       gutter->priv->window_type,
+	                                       0,
+	                                       g_array_index (info->buffer_coords, gint, 0),
+	                                       NULL,
+	                                       &background_area.y);
 
 	cell_area = background_area;
 
@@ -1227,7 +1238,6 @@ on_view_draw (GtkSourceView   *view,
 	gint last_y_buffer_coord;
 	GArray *renderer_widths;
 	LinesInfo *info;
-	GdkRectangle background_area;
 	GtkStyleContext *style_context;
 
 	if (!get_clip_rectangle (gutter, view, cr, &clip))
@@ -1264,23 +1274,13 @@ on_view_draw (GtkSourceView   *view,
 			       first_y_buffer_coord,
 			       last_y_buffer_coord);
 
-	background_area.x = 0;
-	background_area.height = info->total_height;
-
-	gtk_text_view_buffer_to_window_coords (text_view,
-	                                       gutter->priv->window_type,
-	                                       0,
-	                                       g_array_index (info->buffer_coords, gint, 0),
-	                                       NULL,
-	                                       &background_area.y);
-
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
 	gtk_style_context_save (style_context);
 	apply_style (gutter, view, style_context, cr);
 
 	begin_draw (gutter,
+		    text_view,
 		    renderer_widths,
-		    background_area,
 		    info,
 		    cr);
 
