@@ -1058,6 +1058,8 @@ draw_cells (GtkSourceGutter *gutter,
 	gint cur_line;
 	GtkTextIter selection_start;
 	GtkTextIter selection_end;
+	gint selection_start_line = 0;
+	gint selection_end_line = 0;
 	gboolean has_selection;
 	GtkTextIter start;
 	gint i;
@@ -1070,23 +1072,14 @@ draw_cells (GtkSourceGutter *gutter,
 
 	cur_line = gtk_text_iter_get_line (&insert_iter);
 
-	gtk_text_buffer_get_selection_bounds (buffer,
-	                                      &selection_start,
-	                                      &selection_end);
-
-	has_selection = !gtk_text_iter_equal (&selection_start, &selection_end);
+	has_selection = gtk_text_buffer_get_selection_bounds (buffer,
+	                                                      &selection_start,
+	                                                      &selection_end);
 
 	if (has_selection)
 	{
-		if (!gtk_text_iter_starts_line (&selection_start))
-		{
-			gtk_text_iter_set_line_offset (&selection_start, 0);
-		}
-
-		if (!gtk_text_iter_ends_line (&selection_end))
-		{
-			gtk_text_iter_forward_to_line_end (&selection_end);
-		}
+		selection_start_line = gtk_text_iter_get_line (&selection_start);
+		selection_end_line = gtk_text_iter_get_line (&selection_end);
 	}
 
 	start = info->start;
@@ -1135,7 +1128,7 @@ draw_cells (GtkSourceGutter *gutter,
 		}
 
 		if (has_selection &&
-		    gtk_text_iter_in_range (&start, &selection_start, &selection_end))
+		    selection_start_line <= line_to_paint && line_to_paint <= selection_end_line)
 		{
 			state |= GTK_SOURCE_GUTTER_RENDERER_STATE_SELECTED;
 		}
