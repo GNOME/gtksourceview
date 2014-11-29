@@ -188,10 +188,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 		                        pango_attribute_copy (text->priv->fg_attr));
 	}
 
-	pango_layout_get_size (text->priv->cached_layout, &width, &height);
-
-	width /= PANGO_SCALE;
-	height /= PANGO_SCALE;
+	pango_layout_get_pixel_size (text->priv->cached_layout, &width, &height);
 
 	gtk_source_gutter_renderer_get_alignment (renderer,
 	                                          &xalign,
@@ -238,8 +235,7 @@ gutter_renderer_text_end (GtkSourceGutterRenderer *renderer)
 {
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
 
-	g_object_unref (text->priv->cached_layout);
-	text->priv->cached_layout = NULL;
+	g_clear_object (&text->priv->cached_layout);
 
 	pango_attr_list_unref (text->priv->cached_attr_list);
 	text->priv->cached_attr_list = NULL;
@@ -283,17 +279,7 @@ measure_text (GtkSourceGutterRendererText *renderer,
 		                       -1);
 	}
 
-	pango_layout_get_size (layout, &w, &h);
-
-	if (width)
-	{
-		*width = w / PANGO_SCALE;
-	}
-
-	if (height)
-	{
-		*height = h / PANGO_SCALE;
-	}
+	pango_layout_get_pixel_size (layout, width, height);
 
 	g_object_unref (layout);
 }
