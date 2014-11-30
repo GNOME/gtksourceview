@@ -21,6 +21,7 @@
 
 #include "gtksourcegutterrenderer.h"
 #include "gtksourcegutterrenderer-private.h"
+#include "gtksourcestylescheme.h"
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourceview-i18n.h"
 
@@ -483,6 +484,35 @@ renderer_draw_impl (GtkSourceGutterRenderer      *renderer,
 
 		cairo_fill (cr);
 		cairo_restore (cr);
+	}
+	else if ((state & GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR) != 0)
+	{
+		GtkSourceStyleScheme *style_scheme;
+		GtkTextBuffer *buffer;
+		GtkTextView *view;
+		GdkRGBA line_color;
+
+		view = gtk_source_gutter_renderer_get_view (renderer);
+		if (!gtk_source_view_get_highlight_current_line (GTK_SOURCE_VIEW (view)))
+			return;
+
+		buffer = gtk_text_iter_get_buffer (start);
+		if (!GTK_SOURCE_IS_BUFFER (buffer))
+			return;
+
+		style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer));
+		if (!GTK_SOURCE_IS_STYLE_SCHEME (style_scheme))
+			return;
+
+		if (_gtk_source_style_scheme_get_current_line_color (style_scheme, &line_color))
+		{
+			cairo_save (cr);
+			gdk_cairo_rectangle (cr, background_area);
+			gdk_cairo_set_source_rgba (cr, &line_color);
+			cairo_fill (cr);
+			cairo_restore (cr);
+		}
+
 	}
 }
 
