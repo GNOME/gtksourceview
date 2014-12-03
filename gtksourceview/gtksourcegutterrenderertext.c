@@ -256,8 +256,6 @@ measure_text (GtkSourceGutterRendererText *renderer,
               gint                        *height)
 {
 	PangoLayout *layout;
-	gint w;
-	gint h;
 	GtkSourceGutterRenderer *r;
 	GtkTextView *view;
 
