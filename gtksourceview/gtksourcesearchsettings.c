@@ -165,8 +165,8 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SEARCH_TEXT,
 					 g_param_spec_string ("search-text",
-							      _("Search text"),
-							      _("The text to search"),
+							      "Search text",
+							      "The text to search",
 							      NULL,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
@@ -180,8 +180,8 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_CASE_SENSITIVE,
 					 g_param_spec_boolean ("case-sensitive",
-							       _("Case sensitive"),
-							       _("Case sensitive"),
+							       "Case sensitive",
+							       "Case sensitive",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
@@ -196,8 +196,8 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_AT_WORD_BOUNDARIES,
 					 g_param_spec_boolean ("at-word-boundaries",
-							       _("At word boundaries"),
-							       _("Search at word boundaries"),
+							       "At word boundaries",
+							       "Search at word boundaries",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
@@ -213,8 +213,8 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_WRAP_AROUND,
 					 g_param_spec_boolean ("wrap-around",
-							       _("Wrap around"),
-							       _("Wrap around"),
+							       "Wrap around",
+							       "Wrap around",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
@@ -229,8 +229,8 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_REGEX_ENABLED,
 					 g_param_spec_boolean ("regex-enabled",
-							       _("Regex enabled"),
-							       _("Whether to search by regular expression"),
+							       "Regex enabled",
+							       "Whether to search by regular expression",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }

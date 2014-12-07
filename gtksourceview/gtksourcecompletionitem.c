@@ -233,8 +233,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_LABEL,
 					 g_param_spec_string ("label",
-							      _("Label"),
-							      _("Label to be shown for this item"),
+							      "Label",
+							      "Label to be shown for this item",
 							      NULL,
 							      G_PARAM_READWRITE));
 
@@ -246,8 +246,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_MARKUP,
 					 g_param_spec_string ("markup",
-							      _("Markup"),
-							      _("Markup to be shown for this item"),
+							      "Markup",
+							      "Markup to be shown for this item",
 							      NULL,
 							      G_PARAM_READWRITE));
 
@@ -259,8 +259,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_TEXT,
 					 g_param_spec_string ("text",
-							      _("Text"),
-							      _("Item text"),
+							      "Text",
+							      "Item text",
 							      NULL,
 							      G_PARAM_READWRITE));
 
@@ -272,8 +272,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_ICON,
 					 g_param_spec_object ("icon",
-							      _("Icon"),
-							      _("Icon to be shown for this item"),
+							      "Icon",
+							      "Icon to be shown for this item",
 							      GDK_TYPE_PIXBUF,
 							      G_PARAM_READWRITE));
 
@@ -285,8 +285,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_INFO,
 					 g_param_spec_string ("info",
-							      _("Info"),
-							      _("Info to be shown for this item"),
+							      "Info",
+							      "Info to be shown for this item",
 							      NULL,
 							      G_PARAM_READWRITE));
 }

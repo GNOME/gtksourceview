@@ -284,8 +284,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_BACKGROUND,
 	                                 g_param_spec_boxed ("background",
-	                                                     _("Background"),
-	                                                     _("The background"),
+	                                                     "Background",
+	                                                     "The background",
 	                                                     GDK_TYPE_RGBA,
 	                                                     G_PARAM_READWRITE));
 
@@ -299,8 +299,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_STOCK_ID,
 	                                 g_param_spec_string ("stock-id",
-	                                                      _("Stock Id"),
-	                                                      _("The stock id"),
+	                                                      "Stock Id",
+	                                                      "The stock id",
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE | G_PARAM_DEPRECATED));
 
@@ -312,8 +312,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_PIXBUF,
 	                                 g_param_spec_object ("pixbuf",
-	                                                      _("Pixbuf"),
-	                                                      _("The pixbuf"),
+	                                                      "Pixbuf",
+	                                                      "The pixbuf",
 	                                                      GDK_TYPE_PIXBUF,
 	                                                      G_PARAM_READWRITE));
 
@@ -325,8 +325,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_ICON_NAME,
 	                                 g_param_spec_string ("icon-name",
-	                                                      _("Icon Name"),
-	                                                      _("The icon name"),
+	                                                      "Icon Name",
+	                                                      "The icon name",
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE));
 
@@ -338,8 +338,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_GICON,
 	                                 g_param_spec_object ("gicon",
-	                                                      _("GIcon"),
-	                                                      _("The GIcon"),
+	                                                      "GIcon",
+	                                                      "The GIcon",
 	                                                      G_TYPE_ICON,
 	                                                      G_PARAM_READWRITE));
 

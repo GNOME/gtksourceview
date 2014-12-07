@@ -137,8 +137,8 @@ gtk_source_mark_class_init (GtkSourceMarkClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_CATEGORY,
 					 g_param_spec_string ("category",
-							      _("category"),
-							      _("The mark category"),
+							      "Category",
+							      "The mark category",
 							      NULL,
 							      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
 }

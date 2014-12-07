@@ -511,11 +511,8 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_VIEW,
 	                                 g_param_spec_object ("view",
-	                                                      _("View"),
-							      /* Translators: gutters can be used to display information
-							       * on the left or on the right of the text view. To draw the
-							       * line numbers for example. */
-	                                                      _("The gutters' GtkSourceView"),
+	                                                      "View",
+	                                                      "",
 	                                                      GTK_SOURCE_TYPE_VIEW,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
@@ -527,8 +524,8 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_WINDOW_TYPE,
 	                                 g_param_spec_enum ("window_type",
-	                                                    _("Window Type"),
-	                                                    _("The gutters' text window type"),
+	                                                    "Window Type",
+	                                                    "The gutters' text window type",
 	                                                    GTK_TYPE_TEXT_WINDOW_TYPE,
 	                                                    0,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
@@ -544,8 +541,8 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_XPAD,
 	                                 g_param_spec_int ("xpad",
-	                                                   _("X Padding"),
-	                                                   _("The x-padding"),
+	                                                   "X Padding",
+	                                                   "The x-padding",
 	                                                   -1,
 	                                                   G_MAXINT,
 	                                                   0,
@@ -564,8 +561,8 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_YPAD,
 	                                 g_param_spec_int ("ypad",
-	                                                   _("Y Padding"),
-	                                                   _("The y-padding"),
+	                                                   "Y Padding",
+	                                                   "The y-padding",
 	                                                   -1,
 	                                                   G_MAXINT,
 	                                                   0,

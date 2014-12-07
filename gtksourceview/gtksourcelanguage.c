@@ -224,32 +224,32 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_ID,
 					 g_param_spec_string ("id",
-						 	      _("Language id"),
-							      _("Language id"),
+						 	      "Language id",
+							      "Language id",
 							      NULL,
 							      G_PARAM_READABLE));
 
 	g_object_class_install_property (object_class,
 					 PROP_NAME,
 					 g_param_spec_string ("name",
-						 	      _("Language name"),
-							      _("Language name"),
+						 	      "Language name",
+							      "Language name",
 							      NULL,
 							      G_PARAM_READABLE));
 
 	g_object_class_install_property (object_class,
 					 PROP_SECTION,
 					 g_param_spec_string ("section",
-						 	      _("Language section"),
-							      _("Language section"),
+						 	      "Language section",
+							      "Language section",
 							      NULL,
 							      G_PARAM_READABLE));
 
 	g_object_class_install_property (object_class,
 					 PROP_HIDDEN,
 					 g_param_spec_boolean ("hidden",
-							       _("Hidden"),
-							       _("Whether the language should be hidden from the user"),
+							       "Hidden",
+							       "Whether the language should be hidden from the user",
 							       FALSE,
 							       G_PARAM_READABLE));
 }

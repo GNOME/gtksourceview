@@ -2193,8 +2193,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_VIEW,
 					 g_param_spec_object ("view",
-							      _("View"),
-							      _("The GtkSourceView bound to the completion"),
+							      "View",
+							      "The GtkSourceView bound to the completion",
 							      GTK_SOURCE_TYPE_VIEW,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
@@ -2208,10 +2208,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_REMEMBER_INFO_VISIBILITY,
 					 g_param_spec_boolean ("remember-info-visibility",
-							      _("Remember Info Visibility"),
-							      _("Remember the last info window visibility state"),
-							      FALSE,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       "Remember Info Visibility",
+							       "Remember the last info window visibility state",
+							       FALSE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 	/**
 	 * GtkSourceCompletion:select-on-show:
 	 *
@@ -2221,10 +2221,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SELECT_ON_SHOW,
 					 g_param_spec_boolean ("select-on-show",
-							      _("Select on Show"),
-							      _("Select first proposal when completion is shown"),
-							      TRUE,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       "Select on Show",
+							       "Select first proposal when completion is shown",
+							       TRUE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	/**
 	 * GtkSourceCompletion:show-headers:
@@ -2235,10 +2235,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SHOW_HEADERS,
 					 g_param_spec_boolean ("show-headers",
-							      _("Show Headers"),
-							      _("Show provider headers when proposals from multiple providers are available"),
-							      TRUE,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       "Show Headers",
+							       "Show provider headers when proposals from multiple providers are available",
+							       TRUE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	/**
 	 * GtkSourceCompletion:show-icons:
@@ -2249,10 +2249,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SHOW_ICONS,
 					 g_param_spec_boolean ("show-icons",
-							      _("Show Icons"),
-							      _("Show provider and proposal icons in the completion popup"),
-							      TRUE,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       "Show Icons",
+							       "Show provider and proposal icons in the completion popup",
+							       TRUE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	/**
 	 * GtkSourceCompletion:accelerators:
@@ -2264,8 +2264,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_ACCELERATORS,
 	                                 g_param_spec_uint ("accelerators",
-	                                                    _("Accelerators"),
-	                                                    _("Number of proposal accelerators to show"),
+	                                                    "Accelerators",
+	                                                    "Number of proposal accelerators to show",
 	                                                    0,
 	                                                    10,
 	                                                    5,
@@ -2280,8 +2280,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_AUTO_COMPLETE_DELAY,
 					 g_param_spec_uint ("auto-complete-delay",
-							    _("Auto Complete Delay"),
-							    _("Completion popup delay for interactive completion"),
+							    "Auto Complete Delay",
+							    "Completion popup delay for interactive completion",
 							    0,
 							    G_MAXUINT,
 							    250,
@@ -2297,8 +2297,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_PROVIDER_PAGE_SIZE,
 	                                 g_param_spec_uint ("provider-page-size",
-	                                                    _("Provider Page Size"),
-	                                                    _("Provider scrolling page size"),
+	                                                    "Provider Page Size",
+	                                                    "Provider scrolling page size",
 	                                                    1,
 	                                                    G_MAXUINT,
 	                                                    5,
@@ -2318,8 +2318,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	g_object_class_install_property (object_class,
 	                                 PROP_PROPOSAL_PAGE_SIZE,
 	                                 g_param_spec_uint ("proposal-page-size",
-	                                                    _("Proposal Page Size"),
-	                                                    _("Proposal scrolling page size"),
+	                                                    "Proposal Page Size",
+	                                                    "Proposal scrolling page size",
 	                                                    1,
 	                                                    G_MAXUINT,
 	                                                    5,

@@ -394,16 +394,16 @@ gtk_source_gutter_renderer_text_class_init (GtkSourceGutterRendererTextClass *kl
 	g_object_class_install_property (object_class,
 	                                 PROP_MARKUP,
 	                                 g_param_spec_string ("markup",
-	                                                      _("Markup"),
-	                                                      _("The markup"),
+	                                                      "Markup",
+	                                                      "The markup",
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_TEXT,
 	                                 g_param_spec_string ("text",
-	                                                      _("Text"),
-	                                                      _("The text"),
+	                                                      "Text",
+	                                                      "The text",
 	                                                      NULL,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }

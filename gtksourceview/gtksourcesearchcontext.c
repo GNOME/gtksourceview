@@ -2758,8 +2758,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_BUFFER,
 					 g_param_spec_object ("buffer",
-							      _("Buffer"),
-							      _("The associated GtkSourceBuffer"),
+							      "Buffer",
+							      "The associated GtkSourceBuffer",
 							      GTK_SOURCE_TYPE_BUFFER,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
@@ -2773,8 +2773,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SETTINGS,
 					 g_param_spec_object ("settings",
-							      _("Settings"),
-							      _("The associated GtkSourceSearchSettings"),
+							      "Settings",
+							      "The associated GtkSourceSearchSettings",
 							      GTK_SOURCE_TYPE_SEARCH_SETTINGS,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
@@ -2788,8 +2788,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_HIGHLIGHT,
 					 g_param_spec_boolean ("highlight",
-							       _("Highlight"),
-							       _("Highlight search occurrences"),
+							       "Highlight",
+							       "Highlight search occurrences",
 							       TRUE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
@@ -2803,8 +2803,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_MATCH_STYLE,
 					 g_param_spec_object ("match-style",
-							      _("Match style"),
-							      _("The text style for matches"),
+							      "Match style",
+							      "The text style for matches",
 							      GTK_SOURCE_TYPE_STYLE,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
@@ -2820,8 +2820,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_OCCURRENCES_COUNT,
 					 g_param_spec_int ("occurrences-count",
-							   _("Occurrences count"),
-							   _("Total number of search occurrences"),
+							   "Occurrences count",
+							   "Total number of search occurrences",
 							   -1,
 							   G_MAXINT,
 							   0,
@@ -2840,8 +2840,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_REGEX_ERROR,
 					 g_param_spec_pointer ("regex-error",
-							       _("Regex error"),
-							       _("Regular expression error"),
+							       "Regex error",
+							       "Regular expression error",
 							       G_PARAM_READABLE));
 }
 

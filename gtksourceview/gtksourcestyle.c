@@ -86,128 +86,128 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_LINE_BACKGROUND,
 					 g_param_spec_string ("line-background",
-							      _("Line background"),
-							      _("Line background color"),
+							      "Line background",
+							      "Line background color",
 							      NULL,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_BACKGROUND,
 					 g_param_spec_string ("background",
-							      _("Background"),
-							      _("Background color"),
+							      "Background",
+							      "Background color",
 							      NULL,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_FOREGROUND,
 					 g_param_spec_string ("foreground",
-							      _("Foreground"),
-							      _("Foreground color"),
+							      "Foreground",
+							      "Foreground color",
 							      NULL,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_BOLD,
 					 g_param_spec_boolean ("bold",
-							       _("Bold"),
-							       _("Bold"),
+							       "Bold",
+							       "Bold",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_ITALIC,
 					 g_param_spec_boolean ("italic",
-							       _("Italic"),
-							       _("Italic"),
+							       "Italic",
+							       "Italic",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE,
 					 g_param_spec_boolean ("underline",
-							       _("Underline"),
-							       _("Underline"),
+							       "Underline",
+							       "Underline",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_STRIKETHROUGH,
 					 g_param_spec_boolean ("strikethrough",
-							       _("Strikethrough"),
-							       _("Strikethrough"),
+							       "Strikethrough",
+							       "Strikethrough",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_SCALE,
 					 g_param_spec_string ("scale",
-							      _("Scale"),
-							      _("Text scale factor"),
+							      "Scale",
+							      "Text scale factor",
 							      NULL,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_LINE_BACKGROUND_SET,
 					 g_param_spec_boolean ("line-background-set",
-							       _("Line background set"),
-							       _("Whether line background color is set"),
+							       "Line background set",
+							       "Whether line background color is set",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_FOREGROUND_SET,
 					 g_param_spec_boolean ("foreground-set",
-							       _("Foreground set"),
-							       _("Whether foreground color is set"),
+							       "Foreground set",
+							       "Whether foreground color is set",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_BACKGROUND_SET,
 					 g_param_spec_boolean ("background-set",
-							       _("Background set"),
-							       _("Whether background color is set"),
+							       "Background set",
+							       "Whether background color is set",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_BOLD_SET,
 					 g_param_spec_boolean ("bold-set",
-							       _("Bold set"),
-							       _("Whether bold attribute is set"),
+							       "Bold set",
+							       "Whether bold attribute is set",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_ITALIC_SET,
 					 g_param_spec_boolean ("italic-set",
-							       _("Italic set"),
-							       _("Whether italic attribute is set"),
+							       "Italic set",
+							       "Whether italic attribute is set",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE_SET,
 					 g_param_spec_boolean ("underline-set",
-							       _("Underline set"),
-							       _("Whether underline attribute is set"),
+							       "Underline set",
+							       "Whether underline attribute is set",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_STRIKETHROUGH_SET,
 					 g_param_spec_boolean ("strikethrough-set",
-							       _("Strikethrough set"),
-							       _("Whether strikethrough attribute is set"),
+							       "Strikethrough set",
+							       "Whether strikethrough attribute is set",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_SCALE_SET,
 					 g_param_spec_boolean ("scale-set",
-							       _("Scale set"),
-							       _("Whether scale attribute is set"),
+							       "Scale set",
+							       "Whether scale attribute is set",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 }

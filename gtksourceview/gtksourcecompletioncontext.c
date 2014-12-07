@@ -242,8 +242,8 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	g_object_class_install_property (object_class,
 	                                 PROP_COMPLETION,
 	                                 g_param_spec_object ("completion",
-	                                                      _("Completion"),
-	                                                      _("The completion object to which the context belongs"),
+	                                                      "Completion",
+	                                                      "The completion object to which the context belongs",
 	                                                      GTK_SOURCE_TYPE_COMPLETION,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
@@ -254,12 +254,11 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	 **/
 	g_object_class_install_property (object_class,
 	                                 PROP_ITER,
-	                                 g_param_spec_boxed ("iter",
-	/* Translators: The GtkTextIter at which the completion was invoked */
-	                                                      _("Iterator"),
-	                                                      _("The GtkTextIter at which the completion was invoked"),
-	                                                      GTK_TYPE_TEXT_ITER,
-	                                                      G_PARAM_READWRITE));
+					 g_param_spec_boxed ("iter",
+							     "Iterator",
+							     "The GtkTextIter at which the completion was invoked",
+							     GTK_TYPE_TEXT_ITER,
+							     G_PARAM_READWRITE));
 
 	/**
 	 * GtkSourceCompletionContext:activation:
@@ -269,8 +268,8 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	g_object_class_install_property (object_class,
 	                                 PROP_ACTIVATION,
 	                                 g_param_spec_flags ("activation",
-	                                                     _("Activation"),
-	                                                     _("The type of activation"),
+	                                                     "Activation",
+	                                                     "The type of activation",
 	                                                     GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
 	                                                     GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
 	                                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT));

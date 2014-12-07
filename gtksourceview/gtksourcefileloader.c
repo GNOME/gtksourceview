@@ -394,7 +394,7 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 */
 	g_object_class_install_property (object_class, PROP_LOCATION,
 					 g_param_spec_object ("location",
-							      _("Location"),
+							      "Location",
 							      "",
 							      G_TYPE_FILE,
 							      G_PARAM_READWRITE |
@@ -411,7 +411,7 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 */
 	g_object_class_install_property (object_class, PROP_INPUT_STREAM,
 					 g_param_spec_object ("input-stream",
-							      _("Input stream"),
+							      "Input stream",
 							      "",
 							      G_TYPE_INPUT_STREAM,
 							      G_PARAM_READWRITE |

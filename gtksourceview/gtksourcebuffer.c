@@ -286,9 +286,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_HIGHLIGHT_SYNTAX,
 					 g_param_spec_boolean ("highlight-syntax",
-							       _("Highlight Syntax"),
-							       _("Whether to highlight syntax "
-								 "in the buffer"),
+							       "Highlight Syntax",
+							       "Whether to highlight syntax in the buffer",
 							       TRUE,
 							       G_PARAM_READWRITE));
 
@@ -300,8 +299,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_HIGHLIGHT_MATCHING_BRACKETS,
 					 g_param_spec_boolean ("highlight-matching-brackets",
-							       _("Highlight Matching Brackets"),
-							       _("Whether to highlight matching brackets"),
+							       "Highlight Matching Brackets",
+							       "Whether to highlight matching brackets",
 							       TRUE,
 							       G_PARAM_READWRITE));
 
@@ -314,9 +313,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_MAX_UNDO_LEVELS,
 					 g_param_spec_int ("max-undo-levels",
-							   _("Maximum Undo Levels"),
-							   _("Number of undo levels for "
-							     "the buffer"),
+							   "Maximum Undo Levels",
+							   "Number of undo levels for the buffer",
 							   -1,
 							   G_MAXINT,
 							   -1,
@@ -325,27 +323,24 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_LANGUAGE,
 					 g_param_spec_object ("language",
-							      /* Translators: throughout GtkSourceView "language" stands
-							       * for "programming language", not "spoken language" */
-							      _("Language"),
-							      _("Language object to get "
-								"highlighting patterns from"),
+							      "Language",
+							      "Language object to get highlighting patterns from",
 							      GTK_SOURCE_TYPE_LANGUAGE,
 							      G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_CAN_UNDO,
 					 g_param_spec_boolean ("can-undo",
-							       _("Can undo"),
-							       _("Whether Undo operation is possible"),
+							       "Can undo",
+							       "Whether Undo operation is possible",
 							       FALSE,
 							       G_PARAM_READABLE));
 
 	g_object_class_install_property (object_class,
 					 PROP_CAN_REDO,
 					 g_param_spec_boolean ("can-redo",
-							       _("Can redo"),
-							       _("Whether Redo operation is possible"),
+							       "Can redo",
+							       "Whether Redo operation is possible",
 							       FALSE,
 							       G_PARAM_READABLE));
 
@@ -359,16 +354,16 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_STYLE_SCHEME,
 					 g_param_spec_object ("style_scheme",
-							      _("Style scheme"),
-							      _("Style scheme"),
+							      "Style scheme",
+							      "Style scheme",
 							      GTK_SOURCE_TYPE_STYLE_SCHEME,
 							      G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_UNDO_MANAGER,
 	                                 g_param_spec_object ("undo-manager",
-	                                                      _("Undo manager"),
-	                                                      _("The buffer undo manager"),
+	                                                      "Undo manager",
+	                                                      "The buffer undo manager",
 	                                                      GTK_SOURCE_TYPE_UNDO_MANAGER,
 	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
@@ -383,7 +378,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_IMPLICIT_TRAILING_NEWLINE,
 					 g_param_spec_boolean ("implicit-trailing-newline",
-							       _("Implicit trailing newline"),
+							       "Implicit trailing newline",
 							       "",
 							       TRUE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT |

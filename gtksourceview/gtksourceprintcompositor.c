@@ -442,8 +442,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_BUFFER,
 					 g_param_spec_object ("buffer",
-							      _("Source Buffer"),
-							      _("The GtkSourceBuffer object to print"),
+							      "Source Buffer",
+							      "The GtkSourceBuffer object to print",
 							      GTK_SOURCE_TYPE_BUFFER,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
@@ -460,8 +460,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_TAB_WIDTH,
 					 g_param_spec_uint ("tab-width",
-							    _("Tab Width"),
-							    _("Width of a tab character expressed in spaces"),
+							    "Tab Width",
+							    "Width of a tab character expressed in spaces",
 							    1,
 							    MAX_TAB_WIDTH,
 							    DEFAULT_TAB_WIDTH,
@@ -481,10 +481,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_WRAP_MODE,
 					 g_param_spec_enum ("wrap-mode",
-							    _("Wrap Mode"),
-							    _("Whether to wrap lines never, "
-							      "at word boundaries, or at "
-							      "character boundaries."),
+							    "Wrap Mode",
+							    "",
 							    GTK_TYPE_WRAP_MODE,
 							    GTK_WRAP_NONE,
 							    G_PARAM_READWRITE));
@@ -502,10 +500,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_HIGHLIGHT_SYNTAX,
 					 g_param_spec_boolean ("highlight-syntax",
-							       _("Highlight Syntax"),
-							       _("Whether to print the "
-								 "document with highlighted "
-								 "syntax"),
+							       "Highlight Syntax",
+							       "",
 							       TRUE,
 							       G_PARAM_READWRITE));
 
@@ -524,9 +520,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_PRINT_LINE_NUMBERS,
 					 g_param_spec_uint ("print-line-numbers",
-							    _("Print Line Numbers"),
-							    _("Interval of printed line numbers "
-							      "(0 means no numbers)"),
+							    "Print Line Numbers",
+							    "",
 							    0, 100, 1,
 							    G_PARAM_READWRITE));
 
@@ -547,9 +542,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_PRINT_HEADER,
 					 g_param_spec_boolean ("print-header",
-							       _("Print Header"),
-							       _("Whether to print a header "
-								 "in each page"),
+							       "Print Header",
+							       "",
 							       FALSE,
 							       G_PARAM_READWRITE));
 
@@ -570,9 +564,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_PRINT_FOOTER,
 					 g_param_spec_boolean ("print-footer",
-							       _("Print Footer"),
-							       _("Whether to print a footer "
-								 "in each page"),
+							       "Print Footer",
+							       "",
 							       FALSE,
 							       G_PARAM_READWRITE));
 
@@ -593,9 +586,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_BODY_FONT_NAME,
 					 g_param_spec_string ("body-font-name",
-							      _("Body Font Name"),
-							      _("Name of the font to use for the text body "
-							        "(e.g. \"Monospace 10\")"),
+							      "Body Font Name",
+							      "",
 							      NULL,
 							      G_PARAM_READWRITE));
 
@@ -617,9 +609,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_LINE_NUMBERS_FONT_NAME,
 					 g_param_spec_string ("line-numbers-font-name",
-							      _("Line Numbers Font Name"),
-							      _("Name of the font to use for the line numbers "
-							        "(e.g. \"Monospace 10\")"),
+							      "Line Numbers Font Name",
+							      "",
 							      NULL,
 							      G_PARAM_READWRITE));
 
@@ -641,9 +632,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_HEADER_FONT_NAME,
 					 g_param_spec_string ("header-font-name",
-							      _("Header Font Name"),
-							      _("Name of the font to use for the page header "
-							        "(e.g. \"Monospace 10\")"),
+							      "Header Font Name",
+							      "",
 							      NULL,
 							      G_PARAM_READWRITE));
 
@@ -665,9 +655,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_FOOTER_FONT_NAME,
 					 g_param_spec_string ("footer-font-name",
-							      _("Footer Font Name"),
-							      _("Name of the font to use for the page footer "
-							        "(e.g. \"Monospace 10\")"),
+							      "Footer Font Name",
+							      "",
 							      NULL,
 							      G_PARAM_READWRITE));
 
@@ -682,10 +671,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_N_PAGES,
 					 g_param_spec_int ("n-pages",
-							   _("Number of pages"),
-							   _("The number of pages in the document "
-							     "(-1 means the document has not been "
-							     "completely paginated)."),
+							   "Number of pages",
+							   "",
 							   -1, G_MAXINT, -1,
 							   G_PARAM_READABLE));
 }

@@ -149,18 +149,16 @@ gtk_source_style_scheme_manager_class_init (GtkSourceStyleSchemeManagerClass *kl
 	g_object_class_install_property (object_class,
 					 PROP_SEARCH_PATH,
 					 g_param_spec_boxed ("search-path",
-						 	     _("Style scheme search path"),
-							     _("List of directories and files where the "
-							       "style schemes are located"),
+						 	     "Style scheme search path",
+							     "List of directories and files where the style schemes are located",
 							     G_TYPE_STRV,
 							     G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_SCHEME_IDS,
 					 g_param_spec_boxed ("scheme-ids",
-						 	     _("Scheme ids"),
-							     _("List of the ids of the available "
-							       "style schemes"),
+						 	     "Scheme ids",
+							     "List of the ids of the available style schemes",
 							     G_TYPE_STRV,
 							     G_PARAM_READABLE));
 }

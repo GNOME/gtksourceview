@@ -343,8 +343,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_COMPLETION,
 					 g_param_spec_object ("completion",
-							      _("Completion"),
-							      _("The completion object associated with the view"),
+							      "Completion",
+							      "The completion object associated with the view",
 							      GTK_SOURCE_TYPE_COMPLETION,
 							      G_PARAM_READABLE));
 
@@ -356,8 +356,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SHOW_LINE_NUMBERS,
 					 g_param_spec_boolean ("show-line-numbers",
-							       _("Show Line Numbers"),
-							       _("Whether to display line numbers"),
+							       "Show Line Numbers",
+							       "Whether to display line numbers",
 							       FALSE,
 							       G_PARAM_READWRITE));
 	/**
@@ -368,8 +368,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SHOW_LINE_MARKS,
 					 g_param_spec_boolean ("show-line-marks",
-							       _("Show Line Marks"),
-							       _("Whether to display line mark pixbufs"),
+							       "Show Line Marks",
+							       "Whether to display line mark pixbufs",
 							       FALSE,
 							       G_PARAM_READWRITE));
 
@@ -381,8 +381,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_TAB_WIDTH,
 					 g_param_spec_uint ("tab-width",
-							    _("Tab Width"),
-							    _("Width of a tab character expressed in spaces"),
+							    "Tab Width",
+							    "Width of a tab character expressed in spaces",
 							    1,
 							    MAX_TAB_WIDTH,
 							    DEFAULT_TAB_WIDTH,
@@ -396,8 +396,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_INDENT_WIDTH,
 					 g_param_spec_int ("indent-width",
-							   _("Indent Width"),
-							   _("Number of spaces to use for each step of indent"),
+							   "Indent Width",
+							   "Number of spaces to use for each step of indent",
 							   -1,
 							   MAX_INDENT_WIDTH,
 							   -1,
@@ -406,16 +406,16 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_AUTO_INDENT,
 					 g_param_spec_boolean ("auto_indent",
-							       _("Auto Indentation"),
-							       _("Whether to enable auto indentation"),
+							       "Auto Indentation",
+							       "Whether to enable auto indentation",
 							       FALSE,
 							       G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_INSERT_SPACES,
 					 g_param_spec_boolean ("insert_spaces_instead_of_tabs",
-							       _("Insert Spaces Instead of Tabs"),
-							       _("Whether to insert spaces instead of tabs"),
+							       "Insert Spaces Instead of Tabs",
+							       "Whether to insert spaces instead of tabs",
 							       FALSE,
 							       G_PARAM_READWRITE));
 
@@ -427,8 +427,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SHOW_RIGHT_MARGIN,
 					 g_param_spec_boolean ("show-right-margin",
-							       _("Show Right Margin"),
-							       _("Whether to display the right margin"),
+							       "Show Right Margin",
+							       "Whether to display the right margin",
 							       FALSE,
 							       G_PARAM_READWRITE));
 
@@ -440,8 +440,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_RIGHT_MARGIN_POSITION,
 					 g_param_spec_uint ("right-margin-position",
-							    _("Right Margin Position"),
-							    _("Position of the right margin"),
+							    "Right Margin Position",
+							    "Position of the right margin",
 							    1,
 							    MAX_RIGHT_MARGIN_POSITION,
 							    DEFAULT_RIGHT_MARGIN_POSITION,
@@ -457,10 +457,10 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SMART_HOME_END,
 					 g_param_spec_enum ("smart_home_end",
-							    _("Smart Home/End"),
-							    _("HOME and END keys move to first/last "
-							      "non whitespace characters on line before going "
-							      "to the start/end of the line"),
+							    "Smart Home/End",
+							    "HOME and END keys move to first/last "
+							    "non whitespace characters on line before going "
+							    "to the start/end of the line",
 							    GTK_SOURCE_TYPE_SMART_HOME_END_TYPE,
 							    GTK_SOURCE_SMART_HOME_END_DISABLED,
 							    G_PARAM_READWRITE));
@@ -468,16 +468,16 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_HIGHLIGHT_CURRENT_LINE,
 					 g_param_spec_boolean ("highlight_current_line",
-							       _("Highlight current line"),
-							       _("Whether to highlight the current line"),
+							       "Highlight current line",
+							       "Whether to highlight the current line",
 							       FALSE,
 							       G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_INDENT_ON_TAB,
 					 g_param_spec_boolean ("indent_on_tab",
-							       _("Indent on tab"),
-							       _("Whether to indent the selected text when the tab key is pressed"),
+							       "Indent on tab",
+							       "Whether to indent the selected text when the tab key is pressed",
 							       TRUE,
 							       G_PARAM_READWRITE));
 
@@ -491,11 +491,11 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_DRAW_SPACES,
 					 g_param_spec_flags ("draw-spaces",
-							    _("Draw Spaces"),
-							    _("Set if and how the spaces should be visualized"),
-							    GTK_SOURCE_TYPE_DRAW_SPACES_FLAGS,
-							    0,
-							    G_PARAM_READWRITE));
+							     "Draw Spaces",
+							     "Set if and how the spaces should be visualized",
+							     GTK_SOURCE_TYPE_DRAW_SPACES_FLAGS,
+							     0,
+							     G_PARAM_READWRITE));
 
 	signals [UNDO] =
 		g_signal_new ("undo",

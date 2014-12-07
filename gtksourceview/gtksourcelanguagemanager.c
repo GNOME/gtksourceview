@@ -146,19 +146,18 @@ gtk_source_language_manager_class_init (GtkSourceLanguageManagerClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_SEARCH_PATH,
 					 g_param_spec_boxed ("search-path",
-						 	     _("Language specification directories"),
-							     _("List of directories where the "
-							       "language specification files (.lang) "
-							       "are located"),
+						 	     "Language specification directories",
+							     "List of directories where the "
+							     "language specification files (.lang) "
+							     "are located",
 							     G_TYPE_STRV,
 							     G_PARAM_READWRITE));
 
 	g_object_class_install_property (object_class,
 					 PROP_LANGUAGE_IDS,
 					 g_param_spec_boxed ("language-ids",
-						 	     _("Language ids"),
-							     _("List of the ids of the available "
-							       "languages"),
+						 	     "Language ids",
+							     "List of the ids of the available languages",
 							     G_TYPE_STRV,
 							     G_PARAM_READABLE));
 }

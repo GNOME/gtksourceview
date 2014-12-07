@@ -207,8 +207,8 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_ID,
 					 g_param_spec_string ("id",
-						 	      _("Style scheme id"),
-							      _("Style scheme id"),
+						 	      "Style scheme id",
+							      "Style scheme id",
 							      NULL,
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
@@ -220,8 +220,8 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_NAME,
 					 g_param_spec_string ("name",
-						 	      _("Style scheme name"),
-							      _("Style scheme name"),
+						 	      "Style scheme name",
+							      "Style scheme name",
 							      NULL,
 							      G_PARAM_READABLE));
 
@@ -233,8 +233,8 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_DESCRIPTION,
 					 g_param_spec_string ("description",
-						 	      _("Style scheme description"),
-							      _("Style scheme description"),
+						 	      "Style scheme description",
+							      "Style scheme description",
 							      NULL,
 							      G_PARAM_READABLE));
 
@@ -246,8 +246,8 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 	g_object_class_install_property (object_class,
 					 PROP_FILENAME,
 					 g_param_spec_string ("filename",
-						 	      _("Style scheme filename"),
-							      _("Style scheme filename"),
+						 	      "Style scheme filename",
+							      "Style scheme filename",
 							      NULL,
 							      G_PARAM_READABLE));
 }
