@@ -87,6 +87,9 @@ test_file_loader_SOURCES = test-file-loader.c
 UNIT_TEST_PROGS += test-file-saver
 test_file_saver_SOURCES = test-file-saver.c
 
+UNIT_TEST_PROGS += test-iter
+test_iter_SOURCES = test-iter.c
+
 UNIT_TEST_PROGS += test-language
 test_language_SOURCES = test-language.c
 
