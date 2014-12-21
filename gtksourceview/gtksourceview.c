@@ -46,6 +46,7 @@
 #include "gtksourcegutter-private.h"
 #include "gtksourcegutterrendererlines.h"
 #include "gtksourcegutterrenderermarks.h"
+#include "gtksourceiter.h"
 
 /**
  * SECTION:view
@@ -239,9 +240,14 @@ static void	set_source_buffer			(GtkSourceView      *view,
 static void	gtk_source_view_populate_popup 		(GtkTextView        *view,
 							 GtkWidget          *popup);
 static void	gtk_source_view_move_cursor		(GtkTextView        *text_view,
-								 GtkMovementStep     step,
-								 gint                count,
-								 gboolean            extend_selection);
+							 GtkMovementStep     step,
+							 gint                count,
+							 gboolean            extend_selection);
+static gboolean gtk_source_view_extend_selection	(GtkTextView            *text_view,
+							 GtkTextExtendSelection  granularity,
+							 const GtkTextIter      *location,
+							 GtkTextIter            *start,
+							 GtkTextIter            *end);
 static void 	menu_item_activate_cb 			(GtkWidget          *menu_item,
 								 GtkTextView        *text_view);
 static void 	gtk_source_view_get_lines			(GtkTextView       *text_view,
@@ -326,6 +332,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
+	textview_class->extend_selection = gtk_source_view_extend_selection;
 	textview_class->create_buffer = gtk_source_view_create_buffer;
 	textview_class->draw_layer = gtk_source_view_draw_layer;
 
@@ -1629,6 +1636,26 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 									 step,
 									 count,
 									 extend_selection);
+}
+
+static gboolean
+gtk_source_view_extend_selection (GtkTextView            *text_view,
+				  GtkTextExtendSelection  granularity,
+				  const GtkTextIter      *location,
+				  GtkTextIter            *start,
+				  GtkTextIter            *end)
+{
+	if (granularity == GTK_TEXT_EXTEND_SELECTION_WORD)
+	{
+		_gtk_source_iter_extend_selection_word (location, start, end);
+		return GDK_EVENT_STOP;
+	}
+
+	return GTK_TEXT_VIEW_CLASS (gtk_source_view_parent_class)->extend_selection (text_view,
+										     granularity,
+										     location,
+										     start,
+										     end);
 }
 
 static void
