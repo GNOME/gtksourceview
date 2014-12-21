@@ -1637,6 +1637,41 @@ move_cursor_smart_home_end (GtkTextView     *text_view,
 }
 
 static void
+move_cursor_words (GtkTextView *text_view,
+		   gint         count,
+		   gboolean     extend_selection)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter insert;
+	GtkTextIter newplace;
+
+	buffer = gtk_text_view_get_buffer (text_view);
+
+	gtk_text_buffer_get_iter_at_mark (buffer,
+					  &insert,
+					  gtk_text_buffer_get_insert (buffer));
+
+	newplace = insert;
+
+	if (count < 0)
+	{
+		if (!_gtk_source_iter_backward_visible_word_starts (&newplace, -count))
+		{
+			gtk_text_iter_set_line_offset (&newplace, 0);
+		}
+	}
+	else if (count > 0)
+	{
+		if (!_gtk_source_iter_forward_visible_word_ends (&newplace, count))
+		{
+			gtk_text_iter_forward_to_line_end (&newplace);
+		}
+	}
+
+	move_cursor (text_view, &newplace, extend_selection);
+}
+
+static void
 gtk_source_view_move_cursor (GtkTextView    *text_view,
 			     GtkMovementStep step,
 			     gint            count,
@@ -1651,6 +1686,10 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 				return;
 			}
 			break;
+
+		case GTK_MOVEMENT_WORDS:
+			move_cursor_words (text_view, count, extend_selection);
+			return;
 
 		default:
 			break;
