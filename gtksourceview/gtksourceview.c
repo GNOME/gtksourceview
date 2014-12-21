@@ -243,6 +243,9 @@ static void	gtk_source_view_move_cursor		(GtkTextView        *text_view,
 							 GtkMovementStep     step,
 							 gint                count,
 							 gboolean            extend_selection);
+static void	gtk_source_view_delete_from_cursor	(GtkTextView        *text_view,
+							 GtkDeleteType       type,
+							 gint                count);
 static gboolean gtk_source_view_extend_selection	(GtkTextView            *text_view,
 							 GtkTextExtendSelection  granularity,
 							 const GtkTextIter      *location,
@@ -332,6 +335,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
+	textview_class->delete_from_cursor = gtk_source_view_delete_from_cursor;
 	textview_class->extend_selection = gtk_source_view_extend_selection;
 	textview_class->create_buffer = gtk_source_view_create_buffer;
 	textview_class->draw_layer = gtk_source_view_draw_layer;
@@ -1699,6 +1703,50 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 									 step,
 									 count,
 									 extend_selection);
+}
+
+static void
+gtk_source_view_delete_from_cursor (GtkTextView   *text_view,
+				    GtkDeleteType  type,
+				    gint           count)
+{
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
+	GtkTextIter insert;
+	GtkTextIter start;
+	GtkTextIter end;
+
+	if (type != GTK_DELETE_WORD_ENDS)
+	{
+		GTK_TEXT_VIEW_CLASS (gtk_source_view_parent_class)->delete_from_cursor (text_view,
+											type,
+											count);
+		return;
+	}
+
+	gtk_text_buffer_get_iter_at_mark (buffer,
+					  &insert,
+					  gtk_text_buffer_get_insert (buffer));
+
+	start = insert;
+	end = insert;
+
+	if (count > 0)
+	{
+		if (!_gtk_source_iter_forward_visible_word_ends (&end, count))
+		{
+			gtk_text_iter_forward_to_line_end (&end);
+		}
+	}
+	else
+	{
+		if (!_gtk_source_iter_backward_visible_word_starts (&start, -count))
+		{
+			gtk_text_iter_set_line_offset (&start, 0);
+		}
+	}
+
+	gtk_text_buffer_delete_interactive (buffer, &start, &end,
+					    gtk_text_view_get_editable (text_view));
 }
 
 static gboolean
