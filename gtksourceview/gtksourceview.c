@@ -1372,15 +1372,18 @@ move_cursor (GtkTextView       *text_view,
 	     gboolean           extend_selection)
 {
 	GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
+	GtkTextMark *insert = gtk_text_buffer_get_insert (buffer);
 
 	if (extend_selection)
-		gtk_text_buffer_move_mark_by_name (buffer, "insert",
-						   new_location);
+	{
+		gtk_text_buffer_move_mark (buffer, insert, new_location);
+	}
 	else
+	{
 		gtk_text_buffer_place_cursor (buffer, new_location);
+	}
 
-	gtk_text_view_scroll_mark_onscreen (text_view,
-					    gtk_text_buffer_get_insert (buffer));
+	gtk_text_view_scroll_mark_onscreen (text_view, insert);
 }
 
 static void
