@@ -692,6 +692,55 @@ gtk_source_style_scheme_get_type
 </SECTION>
 
 <SECTION>
+<FILE>styleschemechooser</FILE>
+<TITLE>GtkSourceStyleSchemeChooser</TITLE>
+GtkSourceStyleSchemeChooser
+gtk_source_style_scheme_chooser_get_style_scheme
+gtk_source_style_scheme_chooser_set_style_scheme
+<SUBSECTION Standard>
+GtkSourceStyleSchemeChooserInterface
+GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER
+GTK_SOURCE_STYLE_SCHEME_CHOOSER
+GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER
+GTK_SOURCE_STYLE_SCHEME_CHOOSER_GET_IFACE
+gtk_source_style_scheme_chooser_get_type
+</SECTION>
+
+<SECTION>
+<FILE>styleschemechooserbutton</FILE>
+<TITLE>GtkSourceStyleSchemeChooserButton</TITLE>
+GtkSourceStyleSchemeChooserButton
+gtk_source_style_scheme_chooser_button_new
+<SUBSECTION Standard>
+GtkSourceStyleSchemeChooserButtonClass
+GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON
+GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON
+GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_CONST
+GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_CLASS
+GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER_BUTTON
+GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER_BUTTON_CLASS
+GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_GET_CLASS
+gtk_source_style_scheme_chooser_button_get_type
+</SECTION>
+
+<SECTION>
+<FILE>styleschemechooserwidget</FILE>
+<TITLE>GtkSourceStyleSchemeChooserWidget</TITLE>
+GtkSourceStyleSchemeChooserWidget
+gtk_source_style_scheme_chooser_widget_new
+<SUBSECTION Standard>
+GtkSourceStyleSchemeChooserWidgetClass
+GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET
+GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET
+GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET_CONST
+GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET_CLASS
+GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER_WIDGET
+GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER_WIDGET_CLASS
+GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET_GET_CLASS
+gtk_source_style_scheme_chooser_widget_get_type
+</SECTION>
+
+<SECTION>
 <FILE>styleschememanager</FILE>
 <TITLE>GtkSourceStyleSchemeManager</TITLE>
 GtkSourceStyleSchemeManager

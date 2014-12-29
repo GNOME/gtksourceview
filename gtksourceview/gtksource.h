@@ -45,6 +45,9 @@
 #include <gtksourceview/gtksourcesearchsettings.h>
 #include <gtksourceview/gtksourcestyle.h>
 #include <gtksourceview/gtksourcestylescheme.h>
+#include <gtksourceview/gtksourcestyleschemechooser.h>
+#include <gtksourceview/gtksourcestyleschemechooserbutton.h>
+#include <gtksourceview/gtksourcestyleschemechooserwidget.h>
 #include <gtksourceview/gtksourcestyleschememanager.h>
 #include <gtksourceview/gtksourceundomanager.h>
 #include <gtksourceview/gtksourceutils.h>

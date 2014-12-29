@@ -35,9 +35,15 @@
         </property>
       </properties>
     </glade-widget-class>
+    <glade-widget-class name="GtkSourceStyleSchemeChooserWidget" _title="GtkSourceStyleSchemeChooserWidget" generic-name="gtksourcestyleschemechooserwidget">
+    </glade-widget-class>
+    <glade-widget-class name="GtkSourceStyleSchemeChooserButton" _title="GtkSourceStyleSchemeChooserButton" generic-name="gtksourcestyleschemechooserbutton">
+    </glade-widget-class>
   </glade-widget-classes>
 
   <glade-widget-group name="GtkSourceView" _title="GtkSourceView">
     <glade-widget-class-ref name="GtkSourceView" />
+    <glade-widget-class-ref name="GtkSourceStyleSchemeChooserWidget" />
+    <glade-widget-class-ref name="GtkSourceStyleSchemeChooserButton" />
   </glade-widget-group>
 </glade-catalog>

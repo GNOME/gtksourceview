@@ -1,0 +1,56 @@
+/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
+ * gtksourcestyleschemechooserwidget.h
+ * This file is part of gtksourceview
+ *
+ * Copyright (C) 2014 - Christian Hergert
+ *               2014 - Ignacio Casal Quinteiro
+ *
+ * gtksourceview is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * gtksourceview is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with gtksourceview. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#ifndef GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET_H
+#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET_H
+
+#include <gtk/gtk.h>
+
+G_BEGIN_DECLS
+
+#define GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET            (gtk_source_style_scheme_chooser_widget_get_type())
+#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET, GtkSourceStyleSchemeChooserWidget))
+#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET_CONST(obj)      (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET, GtkSourceStyleSchemeChooserWidget const))
+#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET, GtkSourceStyleSchemeChooserWidgetClass))
+#define GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER_WIDGET(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET))
+#define GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER_WIDGET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET))
+#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET, GtkSourceStyleSchemeChooserWidgetClass))
+
+typedef struct _GtkSourceStyleSchemeChooserWidget        GtkSourceStyleSchemeChooserWidget;
+typedef struct _GtkSourceStyleSchemeChooserWidgetClass   GtkSourceStyleSchemeChooserWidgetClass;
+
+struct _GtkSourceStyleSchemeChooserWidget
+{
+	GtkBin parent;
+};
+
+struct _GtkSourceStyleSchemeChooserWidgetClass
+{
+	GtkBinClass parent;
+};
+
+GType        gtk_source_style_scheme_chooser_widget_get_type              (void);
+
+GtkWidget   *gtk_source_style_scheme_chooser_widget_new                   (void);
+
+G_END_DECLS
+
+#endif /* GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET_H */

@@ -55,6 +55,7 @@ struct _TestWidgetPrivate
 	GtkCheckButton *indent_width_checkbutton;
 	GtkSpinButton *indent_width_spinbutton;
 	GtkLabel *cursor_position_info;
+	GtkSourceStyleSchemeChooserButton *chooser_button;
 };
 
 GType test_widget_get_type (void);
@@ -959,6 +960,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_spinbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, cursor_position_info);
+	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, chooser_button);
 }
 
 static void
@@ -1004,6 +1006,12 @@ test_widget_init (TestWidget *self)
 			  "line-mark-activated",
 			  G_CALLBACK (line_mark_activated_cb),
 			  self);
+
+	g_object_bind_property (self->priv->chooser_button,
+	                        "style-scheme",
+	                        self->priv->buffer,
+	                        "style-scheme",
+	                        G_BINDING_SYNC_CREATE);
 
 	open_file (self, TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
 }

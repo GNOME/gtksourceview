@@ -45,6 +45,9 @@ libgtksourceview_headers =			\
 	gtksourcesearchsettings.h		\
 	gtksourcestyle.h			\
 	gtksourcestylescheme.h			\
+	gtksourcestyleschemechooser.h		\
+	gtksourcestyleschemechooserbutton.h	\
+	gtksourcestyleschemechooserwidget.h	\
 	gtksourcestyleschememanager.h		\
 	gtksourcetypes.h			\
 	gtksourceundomanager.h			\
@@ -97,34 +100,37 @@ libgtksourceview_private_c_files =	\
 	gtksourceview-utils.c 		\
 	gtktextregion.c
 
-libgtksourceview_c_files =		\
-	gtksourcebuffer.c 		\
-	gtksourcecompletion.c		\
-	gtksourcecompletioncontext.c	\
-	gtksourcecompletioninfo.c	\
-	gtksourcecompletionitem.c	\
-	gtksourcecompletionproposal.c	\
-	gtksourcecompletionprovider.c	\
-	gtksourceencoding.c		\
-	gtksourcefile.c			\
-	gtksourcefileloader.c		\
-	gtksourcefilesaver.c		\
-	gtksourcegutter.c		\
-	gtksourcegutterrenderer.c	\
-	gtksourcegutterrendererpixbuf.c	\
-	gtksourcegutterrenderertext.c	\
-	gtksourcelanguage.c 		\
-	gtksourcelanguagemanager.c 	\
-	gtksourcemark.c			\
-	gtksourcemarkattributes.c	\
-	gtksourceprintcompositor.c	\
-	gtksourcesearchcontext.c	\
-	gtksourcesearchsettings.c	\
-	gtksourcestyle.c		\
-	gtksourcestylescheme.c		\
-	gtksourcestyleschememanager.c	\
-	gtksourceundomanager.c 		\
-	gtksourceutils.c		\
+libgtksourceview_c_files =			\
+	gtksourcebuffer.c 			\
+	gtksourcecompletion.c			\
+	gtksourcecompletioncontext.c		\
+	gtksourcecompletioninfo.c		\
+	gtksourcecompletionitem.c		\
+	gtksourcecompletionproposal.c		\
+	gtksourcecompletionprovider.c		\
+	gtksourceencoding.c			\
+	gtksourcefile.c				\
+	gtksourcefileloader.c			\
+	gtksourcefilesaver.c			\
+	gtksourcegutter.c			\
+	gtksourcegutterrenderer.c		\
+	gtksourcegutterrendererpixbuf.c		\
+	gtksourcegutterrenderertext.c		\
+	gtksourcelanguage.c 			\
+	gtksourcelanguagemanager.c 		\
+	gtksourcemark.c				\
+	gtksourcemarkattributes.c		\
+	gtksourceprintcompositor.c		\
+	gtksourcesearchcontext.c		\
+	gtksourcesearchsettings.c		\
+	gtksourcestyle.c			\
+	gtksourcestylescheme.c			\
+	gtksourcestyleschemechooser.c		\
+	gtksourcestyleschemechooserbutton.c	\
+	gtksourcestyleschemechooserwidget.c	\
+	gtksourcestyleschememanager.c		\
+	gtksourceundomanager.c 			\
+	gtksourceutils.c			\
 	gtksourceview.c
 
 # Split in a helper library, so the private functions can be used in unit tests.
@@ -220,9 +226,10 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 	&& (cmp -s xgen-gth gtksourceview-typebuiltins.h || cp xgen-gth gtksourceview-typebuiltins.h) \
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
-EXTRA_DIST = 				\
-	GtkSource-3.0.metadata		\
-	gtksourcecompletion.ui		\
+EXTRA_DIST = 					\
+	GtkSource-3.0.metadata			\
+	gtksourcecompletion.ui			\
+	gtksourcestyleschemechooserwidget.ui	\
 	gtksourceview.gresource.xml
 
 CLEANFILES = 					\
