@@ -114,8 +114,15 @@ gtk_source_style_scheme_chooser_widget_populate (GtkSourceStyleSchemeChooserWidg
 	GtkSourceLanguageManager *lm;
 	GtkSourceLanguage *lang;
 	GtkSourceStyleSchemeManager *manager;
+	GtkSourceStyleScheme *selected_scheme;
 	const gchar * const *scheme_ids;
 	guint i;
+
+	selected_scheme = gtk_source_style_scheme_chooser_get_style_scheme (GTK_SOURCE_STYLE_SCHEME_CHOOSER (widget));
+
+	gtk_container_foreach (GTK_CONTAINER (priv->list_box),
+	                       (GtkCallback)gtk_widget_destroy,
+	                       NULL);
 
 	manager = gtk_source_style_scheme_manager_get_default ();
 	scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (manager);
@@ -131,13 +138,34 @@ gtk_source_style_scheme_chooser_widget_populate (GtkSourceStyleSchemeChooserWidg
 		scheme = gtk_source_style_scheme_manager_get_scheme (manager, scheme_ids [i]);
 		row = make_row (scheme, lang);
 		gtk_container_add (GTK_CONTAINER (priv->list_box), GTK_WIDGET (row));
+
+		if (scheme == selected_scheme)
+		{
+			gtk_list_box_select_row (priv->list_box, GTK_LIST_BOX_ROW (row));
+		}
 	}
+}
+
+static void
+on_scheme_ids_changed (GtkSourceStyleSchemeManager       *manager,
+                       GParamSpec                        *pspec,
+                       GtkSourceStyleSchemeChooserWidget *widget)
+{
+	gtk_source_style_scheme_chooser_widget_populate (widget);
 }
 
 static void
 gtk_source_style_scheme_chooser_widget_constructed (GObject *object)
 {
+	GtkSourceStyleSchemeManager *manager;
+
 	G_OBJECT_CLASS (gtk_source_style_scheme_chooser_widget_parent_class)->constructed (object);
+
+	manager = gtk_source_style_scheme_manager_get_default ();
+	g_signal_connect (manager,
+	                  "notify::scheme-ids",
+	                  G_CALLBACK (on_scheme_ids_changed),
+	                  object);
 
 	gtk_source_style_scheme_chooser_widget_populate (GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET (object));
 }
