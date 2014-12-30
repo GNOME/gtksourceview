@@ -196,6 +196,7 @@ gtk_source_style_scheme_chooser_widget_populate (GtkSourceStyleSchemeChooserWidg
 	GtkSourceStyleSchemeManager *manager;
 	const gchar * const *scheme_ids;
 	guint i;
+	gboolean row_selected = FALSE;
 
 	gtk_container_foreach (GTK_CONTAINER (priv->list_box),
 	                       (GtkCallback)gtk_widget_destroy,
@@ -221,7 +222,16 @@ gtk_source_style_scheme_chooser_widget_populate (GtkSourceStyleSchemeChooserWidg
 			g_signal_handlers_block_by_func (priv->list_box, on_row_selected, widget);
 			gtk_list_box_select_row (priv->list_box, GTK_LIST_BOX_ROW (row));
 			g_signal_handlers_unblock_by_func (priv->list_box, on_row_selected, widget);
+
+			row_selected = TRUE;
 		}
+	}
+
+	/* The current scheme may have been removed so select the default one */
+	if (!row_selected)
+	{
+		gtk_source_style_scheme_chooser_set_style_scheme (GTK_SOURCE_STYLE_SCHEME_CHOOSER (widget),
+		                                                  _gtk_source_style_scheme_get_default ());
 	}
 }
 
