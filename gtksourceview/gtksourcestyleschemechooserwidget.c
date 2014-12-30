@@ -182,24 +182,22 @@ static void
 gtk_source_style_scheme_chooser_widget_class_init (GtkSourceStyleSchemeChooserWidgetClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
 	object_class->get_property = gtk_source_style_scheme_chooser_widget_get_property;
 	object_class->set_property = gtk_source_style_scheme_chooser_widget_set_property;
 	object_class->constructed = gtk_source_style_scheme_chooser_widget_constructed;
 
 	g_object_class_override_property (object_class, PROP_STYLE_SCHEME, "style-scheme");
-
-	/* Bind class to template */
-	gtk_widget_class_set_template_from_resource (widget_class,
-	                                             "/org/gnome/gtksourceview/ui/gtksourcestyleschemechooserwidget.ui");
-	gtk_widget_class_bind_template_child_private (widget_class, GtkSourceStyleSchemeChooserWidget, list_box);
 }
 
 static void
 gtk_source_style_scheme_chooser_widget_init (GtkSourceStyleSchemeChooserWidget *widget)
 {
-	gtk_widget_init_template (GTK_WIDGET (widget));
+	GtkSourceStyleSchemeChooserWidgetPrivate *priv = GET_PRIV (widget);
+
+	priv->list_box = GTK_LIST_BOX (gtk_list_box_new ());
+	gtk_widget_show (GTK_WIDGET (priv->list_box));
+	gtk_container_add (GTK_CONTAINER (widget), GTK_WIDGET (priv->list_box));
 }
 
 static GtkSourceStyleScheme *

@@ -229,7 +229,6 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 EXTRA_DIST = 					\
 	GtkSource-3.0.metadata			\
 	gtksourcecompletion.ui			\
-	gtksourcestyleschemechooserwidget.ui	\
 	gtksourceview.gresource.xml
 
 CLEANFILES = 					\

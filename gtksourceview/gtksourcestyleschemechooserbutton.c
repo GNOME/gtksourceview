@@ -168,7 +168,7 @@ static void
 ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 {
 	GtkSourceStyleSchemeChooserButtonPrivate *priv = GET_PRIV (button);
-	GtkWidget *parent, *dialog;
+	GtkWidget *parent, *dialog, *scrolled_window;
 	GtkWidget *content_area;
 
 	if (priv->dialog != NULL)
@@ -188,15 +188,20 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 	                                                     NULL);
 	gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
-	priv->chooser = g_object_new (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET,
-	                              "height-request", 325,
-	                              "style-scheme", priv->scheme,
-	                              "visible", TRUE,
-	                              "width-request", 450,
-	                              NULL);
-
+	scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+	gtk_widget_set_size_request (scrolled_window, 325, 450);
+	gtk_widget_show (scrolled_window);
+	gtk_widget_set_hexpand (scrolled_window, TRUE);
+	gtk_widget_set_vexpand (scrolled_window, TRUE);
 	content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-	gtk_container_add (GTK_CONTAINER (content_area), GTK_WIDGET (priv->chooser));
+	gtk_container_add (GTK_CONTAINER (content_area), scrolled_window);
+
+	priv->chooser = GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET (gtk_source_style_scheme_chooser_widget_new ());
+	gtk_widget_show (GTK_WIDGET (priv->chooser));
+	gtk_source_style_scheme_chooser_set_style_scheme (GTK_SOURCE_STYLE_SCHEME_CHOOSER (priv->chooser),
+	                                                  priv->scheme);
+
+	gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (priv->chooser));
 
 	if (gtk_widget_is_toplevel (parent) && GTK_IS_WINDOW (parent))
 	{
