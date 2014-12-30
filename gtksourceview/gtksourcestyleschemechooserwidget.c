@@ -37,17 +37,13 @@
  * @See_also: #GtkSourceStyleSchemeChooserButton
  *
  * The #GtkSourceStyleSchemeChooserWidget widget lets the user select a
- * style scheme. By default, the chooser presents a prefined list
+ * style scheme. By default, the chooser presents a predefined list
  * of style schemes.
  *
  * To change the initially selected style scheme,
  * use gtk_source_style_scheme_chooser_set_style_scheme().
  * To get the selected style scheme
  * use gtk_source_style_scheme_chooser_get_style_scheme().
- *
- * The #GtkSourceStyleSchemeChooserWidget is used in the
- * #GtkSourceStyleSchemeChooserButton
- * to provide a dialog for selecting style schemes.
  *
  * Since: 3.16
  */

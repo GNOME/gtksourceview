@@ -33,9 +33,14 @@
  * @See_also: #GtkSourceStyleSchemeChooserWidget
  *
  * The #GtkSourceStyleSchemeChooserButton is a button which displays
- * the currently selected style scheme an allows to open a style scheme
+ * the currently selected style scheme and allows to open a style scheme
  * selection dialog to change the style scheme.
  * It is suitable widget for selecting a style scheme in a preference dialog.
+ *
+ * In #GtkSourceStyleSchemeChooserButton, a #GtkSourceStyleSchemeChooserWidget
+ * is used to provide a dialog for selecting style schemes.
+ *
+ * Since: 3.16
  */
 
 typedef struct
