@@ -161,6 +161,7 @@ make_row (GtkSourceStyleScheme *scheme,
 	                     "show-line-numbers", TRUE,
 	                     "right-margin-position", 30,
 	                     "show-right-margin", TRUE,
+	                     "margin", 2,
 	                     NULL);
 	gtk_container_add (GTK_CONTAINER (row), GTK_WIDGET (view));
 
