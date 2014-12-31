@@ -183,8 +183,8 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 	                                                     GTK_WINDOW (parent),
 	                                                     GTK_DIALOG_DESTROY_WITH_PARENT |
 	                                                     GTK_DIALOG_USE_HEADER_BAR,
-	                                                     _("Cancel"), GTK_RESPONSE_CANCEL,
-	                                                     _("Select"), GTK_RESPONSE_OK,
+	                                                     _("_Cancel"), GTK_RESPONSE_CANCEL,
+	                                                     _("_Select"), GTK_RESPONSE_OK,
 	                                                     NULL);
 	gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
