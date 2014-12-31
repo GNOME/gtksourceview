@@ -161,6 +161,7 @@ make_row (GtkSourceStyleScheme *scheme,
 	text = g_strdup_printf ("/* %s */\n#include <gtksourceview/gtksource.h>",
 	                        gtk_source_style_scheme_get_name (scheme));
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
+	g_free (text);
 
 	view = g_object_new (GTK_SOURCE_TYPE_VIEW,
 	                     "buffer", buffer,
