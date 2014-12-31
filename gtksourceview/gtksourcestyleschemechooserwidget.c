@@ -135,14 +135,20 @@ make_row (GtkSourceStyleScheme *scheme,
           GtkSourceLanguage    *language)
 {
 	GtkWidget *row;
+	GtkWidget *event;
 	GtkSourceBuffer *buffer;
-	GtkSourceView *view;
+	GtkWidget *view;
 	gchar *text;
 
 	row = gtk_list_box_row_new ();
 	gtk_widget_show (row);
 
 	g_object_set_data (G_OBJECT (row), "scheme", scheme);
+
+	event = gtk_event_box_new ();
+	gtk_event_box_set_above_child (GTK_EVENT_BOX (event), TRUE);
+	gtk_widget_show (event);
+	gtk_container_add (GTK_CONTAINER (row), event);
 
 	buffer = gtk_source_buffer_new_with_language (language);
 	gtk_source_buffer_set_highlight_matching_brackets (buffer, FALSE);
@@ -163,7 +169,7 @@ make_row (GtkSourceStyleScheme *scheme,
 	                     "show-right-margin", TRUE,
 	                     "margin", 2,
 	                     NULL);
-	gtk_container_add (GTK_CONTAINER (row), GTK_WIDGET (view));
+	gtk_container_add (GTK_CONTAINER (event), view);
 
 	return row;
 }
