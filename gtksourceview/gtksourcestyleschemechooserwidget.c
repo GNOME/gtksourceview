@@ -135,12 +135,16 @@ make_row (GtkSourceStyleScheme *scheme,
           GtkSourceLanguage    *language)
 {
 	GtkWidget *row;
+	AtkObject *accessible;
 	GtkWidget *event;
 	GtkSourceBuffer *buffer;
 	GtkWidget *view;
 	gchar *text;
 
 	row = gtk_list_box_row_new ();
+	accessible = gtk_widget_get_accessible (row);
+	atk_object_set_name (accessible,
+	                     gtk_source_style_scheme_get_name (scheme));
 	gtk_widget_show (row);
 
 	g_object_set_data (G_OBJECT (row), "scheme", scheme);
