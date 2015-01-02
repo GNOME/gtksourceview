@@ -1540,6 +1540,7 @@ gtk_source_undo_manager_end_not_undoable_action_impl (GtkSourceUndoManager *undo
 	{
 		unblock_signal_handlers (manager);
 		clear_all (manager);
+		modified_changed_cb (manager->priv->buffer, manager);
 	}
 }
 
@@ -1573,6 +1574,7 @@ gtk_source_undo_manager_default_set_max_undo_levels (GtkSourceUndoManagerDefault
 		else if (manager->priv->max_undo_levels == 0)
 		{
 			unblock_signal_handlers (manager);
+			modified_changed_cb (manager->priv->buffer, manager);
 		}
 
 		manager->priv->max_undo_levels = max_undo_levels;
