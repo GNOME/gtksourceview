@@ -6,7 +6,7 @@
  * Copyright (C) 1998, 1999 - Alex Roberts, Evan Lawrence
  * Copyright (C) 2000, 2001 - Chema Celorio, Paolo Maggi
  * Copyright (C) 2002-2005  - Paolo Maggi
- * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -125,6 +125,16 @@ struct _GtkSourceUndoManagerDefaultPrivate
 	 * characters.
 	 */
 	GList *location;
+
+	/* A new ActionGroup that is created when some text is inserted or
+	 * deleted in the buffer. As long as a user action is running (when
+	 * 'running_user_action' is TRUE) the new actions are inserted into
+	 * 'new_action_group'. When the user action ends, we try to merge
+	 * 'new_action_group' with the previous ActionGroup in 'action_groups'
+	 * (the node on the left of 'location'). If the merging fails, a new
+	 * node is inserted on the left of 'location'.
+	 */
+	ActionGroup *new_action_group;
 
 	/* The number of nested calls to
 	 * gtk_source_buffer_begin_not_undoable_action().
@@ -283,6 +293,9 @@ clear_all (GtkSourceUndoManagerDefault *manager)
 	manager->priv->location = NULL;
 	manager->priv->saved_location = NULL;
 
+	action_group_free (manager->priv->new_action_group);
+	manager->priv->new_action_group = NULL;
+
 	update_can_undo_can_redo (manager);
 }
 
@@ -376,32 +389,6 @@ check_history_size (GtkSourceUndoManagerDefault *manager)
 }
 
 static void
-insert_new_action_group (GtkSourceUndoManagerDefault *manager)
-{
-	ActionGroup *group = action_group_new ();
-
-	g_queue_insert_before (manager->priv->action_groups,
-			       manager->priv->location,
-			       group);
-
-	if (manager->priv->has_saved_location &&
-	    manager->priv->saved_location == manager->priv->location)
-	{
-		if (manager->priv->saved_location != NULL)
-		{
-			manager->priv->saved_location = manager->priv->saved_location->prev;
-		}
-		else
-		{
-			manager->priv->saved_location = manager->priv->action_groups->tail;
-		}
-
-		g_assert (manager->priv->saved_location != NULL);
-		g_assert (manager->priv->saved_location->data == group);
-	}
-}
-
-static void
 remove_redo_action_groups (GtkSourceUndoManagerDefault *manager)
 {
 	while (manager->priv->location != NULL)
@@ -442,74 +429,69 @@ action_group_merge (ActionGroup *group,
 	return action_merge (action, new_action);
 }
 
-/* Try to merge the current action group with the previous one. The "current
- * action group" is the node on the left of location.
+/* Try to merge the new action group with the previous one (the one located on
+ * the left of priv->location). If the merge fails, a new node is inserted into
+ * the history.
  */
 static void
-try_merge_current_action_group (GtkSourceUndoManagerDefault *manager)
+insert_new_action_group (GtkSourceUndoManagerDefault *manager)
 {
-	GList *new_node = NULL;
 	GList *prev_node = NULL;
-	ActionGroup *new_group = NULL;
 	ActionGroup *prev_group = NULL;
+	ActionGroup *new_group = manager->priv->new_action_group;
+	gboolean can_merge = TRUE;
 
-	if (manager->priv->location != NULL)
+	if (new_group == NULL || new_group->actions->length == 0)
 	{
-		new_node = manager->priv->location->prev;
-	}
-	else
-	{
-		new_node = manager->priv->action_groups->tail;
+		return;
 	}
 
-	g_assert (new_node != NULL);
-	new_group = new_node->data;
+	remove_redo_action_groups (manager);
+	g_assert (manager->priv->location == NULL);
 
-	prev_node = new_node->prev;
+	prev_node = manager->priv->action_groups->tail;
 
 	if (prev_node != NULL)
 	{
 		prev_group = prev_node->data;
 
 		/* If the previous group is empty, it means that it was not correctly
-		 * merged.
+		 * inserted into the history.
 		 */
 		g_assert_cmpuint (prev_group->actions->length, >, 0);
 	}
 
-	/* If the saved_location is between the two nodes, the two nodes cannot
-	 * be merged. Except if the new node is empty.
+	/* If the saved_location is equal to the current location, the two
+	 * ActionGroups cannot be merged, to not lose the saved_location.
 	 */
 	if (manager->priv->has_saved_location &&
-	    manager->priv->saved_location == new_node &&
-	    new_group->actions->length > 0)
+	    manager->priv->saved_location == manager->priv->location)
 	{
-		goto end;
+		g_assert (manager->priv->saved_location == NULL);
+		can_merge = FALSE;
 	}
 
-	if ((prev_group == NULL && new_group->actions->length == 0) ||
-	    (prev_group != NULL && action_group_merge (prev_group, new_group)))
+	if (can_merge &&
+	    prev_group != NULL &&
+	    action_group_merge (prev_group, new_group))
 	{
-		if (manager->priv->has_saved_location &&
-		    manager->priv->saved_location == new_node)
-		{
-			manager->priv->saved_location = new_node->next;
-		}
+		/* new_group merged into prev_group */
+		action_group_free (manager->priv->new_action_group);
+		manager->priv->new_action_group = NULL;
 
-		/* Of course, no need to update location, since new_node is on
-		 * the left of location.
-		 */
-		g_assert (manager->priv->location != new_node);
-
-		action_group_free (new_group);
-		g_queue_delete_link (manager->priv->action_groups, new_node);
-
-		check_history_size (manager);
 		update_can_undo_can_redo (manager);
 		return;
 	}
 
-end:
+	g_queue_push_tail (manager->priv->action_groups, new_group);
+	manager->priv->new_action_group = NULL;
+
+	if (manager->priv->has_saved_location &&
+	    manager->priv->saved_location == NULL)
+	{
+		manager->priv->saved_location = manager->priv->action_groups->tail;
+	}
+
 	/* "Archive" prev_group. It will never be mergeable again. If the user
 	 * does some undo's to return to this location, a new action won't be
 	 * merged with an "archived" action group.
@@ -527,20 +509,16 @@ static void
 insert_action (GtkSourceUndoManagerDefault *manager,
 	       Action                      *new_action)
 {
-	ActionGroup *group;
+	ActionGroup *new_group;
 
 	g_assert (new_action != NULL);
 
-	remove_redo_action_groups (manager);
-	g_assert (manager->priv->location == NULL);
-
-	if (!manager->priv->running_user_action)
+	if (manager->priv->new_action_group == NULL)
 	{
-		insert_new_action_group (manager);
+		manager->priv->new_action_group = action_group_new ();
 	}
 
-	group = g_queue_peek_tail (manager->priv->action_groups);
-	g_assert (group != NULL);
+	new_group = manager->priv->new_action_group;
 
 	/* Inside a group, don't try to merge the actions. It is needed to keep
 	 * them separate so when undoing or redoing, the cursor position is set
@@ -550,7 +528,7 @@ insert_action (GtkSourceUndoManagerDefault *manager,
 	 * undo, the cursor position should be placed at "a|aba", not "aa|ba"
 	 * (but it's a detail).
 	 */
-	g_queue_push_tail (group->actions, new_action);
+	g_queue_push_tail (new_group->actions, new_action);
 
 	/* An action is mergeable only for an insertion or deletion of a single
 	 * character. If the text contains several characters, the new_action
@@ -559,12 +537,12 @@ insert_action (GtkSourceUndoManagerDefault *manager,
 	if (new_action->end - new_action->start > 1 ||
 	    g_str_equal (new_action->text, "\n"))
 	{
-		group->force_not_mergeable = TRUE;
+		new_group->force_not_mergeable = TRUE;
 	}
 
 	if (!manager->priv->running_user_action)
 	{
-		try_merge_current_action_group (manager);
+		insert_new_action_group (manager);
 	}
 }
 
@@ -1147,8 +1125,6 @@ static void
 begin_user_action_cb (GtkTextBuffer               *buffer,
 		      GtkSourceUndoManagerDefault *manager)
 {
-	insert_new_action_group (manager);
-
 	manager->priv->running_user_action = TRUE;
 	update_can_undo_can_redo (manager);
 }
@@ -1157,7 +1133,7 @@ static void
 end_user_action_cb (GtkTextBuffer               *buffer,
 		    GtkSourceUndoManagerDefault *manager)
 {
-	try_merge_current_action_group (manager);
+	insert_new_action_group (manager);
 
 	manager->priv->running_user_action = FALSE;
 	update_can_undo_can_redo (manager);
@@ -1173,7 +1149,9 @@ modified_changed_cb (GtkTextBuffer               *buffer,
 		 * deleted.
 		 */
 		if (manager->priv->has_saved_location &&
-		    manager->priv->saved_location == manager->priv->location)
+		    manager->priv->saved_location == manager->priv->location &&
+		    (manager->priv->new_action_group == NULL ||
+		     manager->priv->new_action_group->actions->length == 0))
 		{
 			manager->priv->has_saved_location = FALSE;
 		}
@@ -1182,18 +1160,17 @@ modified_changed_cb (GtkTextBuffer               *buffer,
 	/* saved */
 	else
 	{
-		manager->priv->saved_location = manager->priv->location;
-		manager->priv->has_saved_location = TRUE;
-
 		/* Saving a buffer during a user action is allowed, the user
 		 * action is split.
 		 * FIXME and/or a warning should be printed?
 		 */
 		if (manager->priv->running_user_action)
 		{
-			try_merge_current_action_group (manager);
 			insert_new_action_group (manager);
 		}
+
+		manager->priv->saved_location = manager->priv->location;
+		manager->priv->has_saved_location = TRUE;
 	}
 }
 
@@ -1211,14 +1188,6 @@ block_signal_handlers (GtkSourceUndoManagerDefault *manager)
 
 	g_signal_handlers_block_by_func (manager->priv->buffer,
 					 delete_range_cb,
-					 manager);
-
-	g_signal_handlers_block_by_func (manager->priv->buffer,
-					 begin_user_action_cb,
-					 manager);
-
-	g_signal_handlers_block_by_func (manager->priv->buffer,
-					 end_user_action_cb,
 					 manager);
 
 	g_signal_handlers_block_by_func (manager->priv->buffer,
@@ -1240,14 +1209,6 @@ unblock_signal_handlers (GtkSourceUndoManagerDefault *manager)
 
 	g_signal_handlers_unblock_by_func (manager->priv->buffer,
 					   delete_range_cb,
-					   manager);
-
-	g_signal_handlers_unblock_by_func (manager->priv->buffer,
-					   begin_user_action_cb,
-					   manager);
-
-	g_signal_handlers_unblock_by_func (manager->priv->buffer,
-					   end_user_action_cb,
 					   manager);
 
 	g_signal_handlers_unblock_by_func (manager->priv->buffer,
@@ -1378,6 +1339,8 @@ gtk_source_undo_manager_default_finalize (GObject *object)
 	g_queue_free_full (manager->priv->action_groups,
 			   (GDestroyNotify) action_group_free);
 
+	action_group_free (manager->priv->new_action_group);
+
 	G_OBJECT_CLASS (gtk_source_undo_manager_default_parent_class)->finalize (object);
 }
 
@@ -1477,11 +1440,8 @@ gtk_source_undo_manager_undo_impl (GtkSourceUndoManager *undo_manager)
 	}
 
 	g_assert (new_location != NULL);
-	group = new_location->data;
 
-	/* Empty groups are inserted at the beginning of a user action, but
-	 * during a user action can_undo is FALSE.
-	 */
+	group = new_location->data;
 	g_assert_cmpuint (group->actions->length, >, 0);
 
 	block_signal_handlers (manager);
