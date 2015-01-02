@@ -3528,7 +3528,7 @@ regex_replace (GtkSourceSearchContext  *search,
 
 	gtk_text_buffer_begin_user_action (search->priv->buffer);
 	gtk_text_buffer_delete (search->priv->buffer, match_start, match_end);
-	gtk_text_buffer_insert (search->priv->buffer, match_end, subject_replaced, -1);
+	gtk_text_buffer_insert (search->priv->buffer, match_end, subject_replaced + start_pos, -1);
 	gtk_text_buffer_end_user_action (search->priv->buffer);
 
 	g_free (subject_replaced);

@@ -2,7 +2,7 @@
  * test-search-context.c
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2013, 2015 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -994,7 +994,10 @@ test_regex_at_word_boundaries (void)
 	GtkTextIter iter;
 	GtkTextIter match_start;
 	GtkTextIter match_end;
+	GtkTextIter start;
+	GtkTextIter end;
 	gint offset;
+	gchar *content;
 
 	gtk_text_buffer_set_text (text_buffer, "1234\n12345\n1234", -1);
 
@@ -1018,6 +1021,22 @@ test_regex_at_word_boundaries (void)
 	g_assert_cmpint (offset, ==, 11);
 	offset = gtk_text_iter_get_offset (&match_end);
 	g_assert_cmpint (offset, ==, 15);
+
+	/* Test replace, see https://bugzilla.gnome.org/show_bug.cgi?id=740810 */
+
+	gtk_text_buffer_set_text (text_buffer, "&aa", -1);
+	gtk_source_search_settings_set_search_text (settings, "aa");
+	flush_queue ();
+
+	gtk_text_buffer_get_iter_at_offset (text_buffer, &match_start, 1);
+	gtk_text_buffer_get_end_iter (text_buffer, &match_end);
+	gtk_source_search_context_replace (context, &match_start, &match_end, "bb", -1, NULL);
+
+	gtk_text_buffer_get_start_iter (text_buffer, &start);
+	gtk_text_buffer_get_end_iter (text_buffer, &end);
+	content = gtk_text_iter_get_visible_text (&start, &end);
+	g_assert_cmpstr (content, ==, "&bb");
+	g_free (content);
 
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
