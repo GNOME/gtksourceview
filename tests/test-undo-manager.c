@@ -614,6 +614,26 @@ test_modified (void)
 	g_assert (gtk_text_buffer_get_modified (text_buffer));
 
 	g_object_unref (source_buffer);
+
+	/* Inside not undoable action. */
+	source_buffer = gtk_source_buffer_new (NULL);
+	text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	gtk_source_buffer_set_max_undo_levels (source_buffer, -1);
+
+	gtk_text_buffer_set_modified (text_buffer, TRUE);
+
+	gtk_source_buffer_begin_not_undoable_action (source_buffer);
+	insert_text (source_buffer, "a\n");
+	gtk_text_buffer_set_modified (text_buffer, FALSE);
+	gtk_source_buffer_end_not_undoable_action (source_buffer);
+
+	insert_text (source_buffer, "b\n");
+	g_assert (gtk_text_buffer_get_modified (text_buffer));
+
+	gtk_source_buffer_undo (source_buffer);
+	g_assert (!gtk_text_buffer_get_modified (text_buffer));
+
+	g_object_unref (source_buffer);
 }
 
 static void
