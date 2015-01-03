@@ -204,3 +204,46 @@ _gtk_source_completion_words_utils_adjust_region (GtkTextIter *start,
 		gtk_text_iter_forward_char (end);
 	}
 }
+
+/* @iter here is a vertical bar between two characters, not the character
+ * pointed by @iter. So "inside word" means really "inside word", not the
+ * definition used by gtk_text_iter_inside_word().
+ */
+static gboolean
+iter_inside_word (const GtkTextIter *iter)
+{
+	GtkTextIter prev;
+
+	if (gtk_text_iter_is_start (iter) || gtk_text_iter_is_end (iter))
+	{
+		return FALSE;
+	}
+
+	prev = *iter;
+	gtk_text_iter_backward_char (&prev);
+
+	return (valid_word_char (gtk_text_iter_get_char (&prev)) &&
+		valid_word_char (gtk_text_iter_get_char (iter)));
+}
+
+/* Checks if @start and @end are well placed for scanning the region between the
+ * two iters.
+ * If an iter isn't well placed, then the library of words will maybe be
+ * inconsistent with the words present in the text buffer.
+ */
+void
+_gtk_source_completion_words_utils_check_scan_region (const GtkTextIter *start,
+						      const GtkTextIter *end)
+{
+	g_return_if_fail (gtk_text_iter_compare (start, end) <= 0);
+
+	if (iter_inside_word (start))
+	{
+		g_warning ("Words completion: 'start' iter not well placed.");
+	}
+
+	if (iter_inside_word (end))
+	{
+		g_warning ("Words completion: 'end' iter not well placed.");
+	}
+}
