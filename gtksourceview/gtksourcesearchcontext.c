@@ -581,6 +581,7 @@ get_text_search_flags (GtkSourceSearchContext *search)
 	return flags;
 }
 
+/* @start_pos is in bytes. */
 static void
 regex_search_get_real_start (GtkSourceSearchContext *search,
 			     const GtkTextIter      *start,
@@ -588,16 +589,23 @@ regex_search_get_real_start (GtkSourceSearchContext *search,
 			     gint                   *start_pos)
 {
 	gint max_lookbehind = g_regex_get_max_lookbehind (search->priv->regex);
+	gint i;
+	gchar *text;
 
 	*real_start = *start;
 
-	for (*start_pos = 0; *start_pos < max_lookbehind; (*start_pos)++)
+	for (i = 0; i < max_lookbehind; i++)
 	{
 		if (!gtk_text_iter_backward_char (real_start))
 		{
 			break;
 		}
 	}
+
+	text = gtk_text_iter_get_visible_text (real_start, start);
+	*start_pos = strlen (text);
+
+	g_free (text);
 }
 
 static GRegexMatchFlags
@@ -1847,7 +1855,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 
 	DEBUG ({
 	       g_print ("\n*** regex search - scan segment ***\n");
-	       g_print ("start position in the subject: %d\n", start_pos);
+	       g_print ("start position in the subject (in bytes): %d\n", start_pos);
 	});
 
 	match_options = regex_search_get_match_options (&real_start, segment_end);
