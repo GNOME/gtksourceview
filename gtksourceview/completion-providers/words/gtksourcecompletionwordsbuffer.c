@@ -164,8 +164,6 @@ scan_line (GtkSourceCompletionWordsBuffer *buffer,
 {
 	GtkTextIter line_end;
 	GtkTextIter text_end;
-	GtkTextIter check_start;
-	GtkTextIter check_end;
 	gchar *text;
 	GSList *words;
 
@@ -187,19 +185,7 @@ scan_line (GtkSourceCompletionWordsBuffer *buffer,
 		text_end = line_end;
 	}
 
-	check_start = *start;
-	check_end = text_end;
-	_gtk_source_completion_words_utils_adjust_region (&check_start, &check_end);
-
-	if (!gtk_text_iter_equal (start, &check_start))
-	{
-		g_warning ("words completion scan_line(): 'start' iter not adjusted.");
-	}
-
-	if (!gtk_text_iter_equal (&text_end, &check_end))
-	{
-		g_warning ("words completion scan_line(): 'text_end' iter not adjusted.");
-	}
+	_gtk_source_completion_words_utils_check_scan_region (start, &text_end);
 
 	text = gtk_text_buffer_get_text (buffer->priv->buffer,
 					 start,
