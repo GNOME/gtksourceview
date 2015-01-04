@@ -106,6 +106,7 @@ LANGUAGES =			\
 	t2t.lang		\
 	tcl.lang		\
 	texinfo.lang		\
+	thrift.lang		\
 	vala.lang		\
 	vbnet.lang		\
 	verilog.lang		\
