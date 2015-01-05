@@ -5,14 +5,14 @@
 # Andras Timar <timar at gnome dot hu>, 2003.
 # Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
-# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-31 10:55+0000\n"
-"PO-Revision-Date: 2014-12-31 12:02+0100\n"
+"POT-Creation-Date: 2015-01-05 10:18+0000\n"
+"PO-Revision-Date: 2015-01-05 13:27+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -167,7 +167,8 @@ msgstr "ActionScript"
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
 #: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
 #: ../data/language-specs/texinfo.lang.h:3
-#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/thrift.lang.h:3 ../data/language-specs/vala.lang.h:3
+#: ../data/language-specs/vbnet.lang.h:3
 #: ../data/language-specs/verilog.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
 #: ../data/language-specs/yaml.lang.h:4
@@ -235,7 +236,8 @@ msgstr "Hiba"
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
 #: ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/thrift.lang.h:6 ../data/language-specs/vala.lang.h:6
+#: ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:4
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
 msgid "String"
@@ -315,7 +317,8 @@ msgstr "Hatókör-deklaráció"
 #: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:5
 #: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/thrift.lang.h:5 ../data/language-specs/vala.lang.h:7
+#: ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
@@ -405,7 +408,8 @@ msgstr "Jövőbeli védett kulcsszavak"
 #: ../data/language-specs/protobuf.lang.h:3
 #: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/thrift.lang.h:4 ../data/language-specs/vala.lang.h:5
+#: ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Adattípus"
 
@@ -2683,6 +2687,15 @@ msgstr "Fájlattribútumok"
 msgid "Generated Content"
 msgstr "Védett tartalom"
 
+#: ../data/language-specs/thrift.lang.h:1
+#| msgid "Source"
+msgid "Sources"
+msgstr "Források"
+
+#: ../data/language-specs/thrift.lang.h:2
+msgid "Thrift"
+msgstr "Thrift"
+
 #: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
 msgstr "Vala"
@@ -3115,7 +3128,6 @@ msgstr "A \\C használata nem támogatott a nyelvmeghatározásokban"
 
 #. TODO: have a ChooserDialog?
 #: ../gtksourceview/gtksourcestyleschemechooserbutton.c:182
-#| msgid "Select on Show"
 msgid "Select a Style"
 msgstr "Stílus kiválasztása"
 
@@ -3124,7 +3136,6 @@ msgid "_Cancel"
 msgstr "_Mégse"
 
 #: ../gtksourceview/gtksourcestyleschemechooserbutton.c:187
-#| msgid "ID Selector"
 msgid "_Select"
 msgstr "_Kiválasztás"
 
