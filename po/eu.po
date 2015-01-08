@@ -4,14 +4,15 @@
 #
 # Piarres Beobide <pi@beobide.net>, 2003.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2011, 2012, 2013, 2014.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2011, 2012, 2013, 2014, 2015.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-07 13:48+0200\n"
-"PO-Revision-Date: 2014-08-07 13:50+0200\n"
+"POT-Creation-Date: 2015-01-08 18:37+0100\n"
+"PO-Revision-Date: 2015-01-08 18:39+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
@@ -63,8 +64,6 @@ msgid "Leading"
 msgstr "Lerro arteko tartea"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:409
 msgid "Text"
 msgstr "Testua"
 
@@ -75,9 +74,17 @@ msgstr "Lerroaren amaiera"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:788
+#: ../gtksourceview/gtksourcecompletion.c:830
 msgid "All"
 msgstr "Denak"
+
+#: ../data/glade/gtksourceview.xml.in.h:15
+msgid "GtkSourceStyleSchemeChooserWidget"
+msgstr "GtkSourceStyleSchemeChooserWidget"
+
+#: ../data/glade/gtksourceview.xml.in.h:16
+msgid "GtkSourceStyleSchemeChooserButton"
+msgstr "GtkSourceStyleSchemeChooserButton"
 
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1
@@ -106,7 +113,7 @@ msgstr "Denak"
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:1
+#: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/pig.lang.h:1
 #: ../data/language-specs/prolog.lang.h:1
 #: ../data/language-specs/scala.lang.h:1
 #: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
@@ -151,15 +158,17 @@ msgstr "ActionSkript-ak"
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/rst.lang.h:8
-#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/scala.lang.h:5
+#: ../data/language-specs/php.lang.h:4 ../data/language-specs/pig.lang.h:8
+#: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/rst.lang.h:8 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
 #: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
 #: ../data/language-specs/texinfo.lang.h:3
-#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/thrift.lang.h:3 ../data/language-specs/vala.lang.h:3
+#: ../data/language-specs/vbnet.lang.h:3
 #: ../data/language-specs/verilog.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
 #: ../data/language-specs/yaml.lang.h:4
@@ -227,7 +236,8 @@ msgstr "Errorea"
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
 #: ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/thrift.lang.h:6 ../data/language-specs/vala.lang.h:6
+#: ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:4
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
 msgid "String"
@@ -307,7 +317,8 @@ msgstr "Deklarazioaren esparrua"
 #: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:5
 #: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/thrift.lang.h:5 ../data/language-specs/vala.lang.h:7
+#: ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
@@ -336,7 +347,7 @@ msgstr "NULUA balioa"
 #: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
 #: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
 #: ../data/language-specs/java.lang.h:14 ../data/language-specs/llvm.lang.h:11
-#: ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/lua.lang.h:11
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
 #: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
@@ -393,10 +404,12 @@ msgstr "Etorkizunerako gordetako gako-hitzak"
 #: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
 #: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/pig.lang.h:3
 #: ../data/language-specs/protobuf.lang.h:3
 #: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/thrift.lang.h:4 ../data/language-specs/vala.lang.h:5
+#: ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Datu mota"
 
@@ -555,7 +568,7 @@ msgstr "ASP"
 #: ../data/language-specs/gtk-doc.lang.h:10
 #: ../data/language-specs/idl-exelis.lang.h:10
 #: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:9
 #: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
 #: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
@@ -704,8 +717,6 @@ msgstr "Hamaseitar zenbakia"
 #: ../data/language-specs/sweave.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:401
 msgid "Markup"
 msgstr "Marka"
 
@@ -1151,8 +1162,6 @@ msgid "Exec parameter"
 msgstr "Exekuzioaren parametroa"
 
 #: ../data/language-specs/desktop.lang.h:11
-#: ../gtksourceview/gtksourcefile.c:186
-#: ../gtksourceview/gtksourcefilesaver.c:390
 msgid "Encoding"
 msgstr "Kodeketa"
 
@@ -1193,9 +1202,6 @@ msgstr "Kasu berezia"
 
 #. String
 #: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
-#: ../gtksourceview/gtksourcefile.c:170
-#: ../gtksourceview/gtksourcefileloader.c:389
-#: ../gtksourceview/gtksourcefilesaver.c:373
 msgid "Location"
 msgstr "Kokalekua"
 
@@ -1906,7 +1912,12 @@ msgstr "Lua"
 msgid "Reserved Identifier"
 msgstr "Identifikatzaile erreserbatua"
 
-#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/ruby.lang.h:8
+#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Label"
+msgstr "Etiketa"
+
+#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/ruby.lang.h:8
 msgid "Nil Constant"
 msgstr "Konstante nulua"
 
@@ -2020,11 +2031,6 @@ msgstr "Aipu-blokearen markatzailea"
 #: ../data/language-specs/markdown.lang.h:9
 msgid "Link Text"
 msgstr "Estekaren testua"
-
-#: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:236
-msgid "Label"
-msgstr "Etiketa"
 
 #: ../data/language-specs/markdown.lang.h:12
 msgid "Image Marker"
@@ -2313,6 +2319,26 @@ msgstr "Preprozesadorearen etiketak"
 msgid "Common Function"
 msgstr "Funtzio arrunta"
 
+#: ../data/language-specs/pig.lang.h:2
+msgid "Pig"
+msgstr "Pig"
+
+#: ../data/language-specs/pig.lang.h:4
+msgid "Reserved Words"
+msgstr "Babestutako hitzak"
+
+#: ../data/language-specs/pig.lang.h:5
+msgid "Built In Functions"
+msgstr "Funtzio barneratua"
+
+#: ../data/language-specs/pig.lang.h:6
+msgid "Boolean values"
+msgstr "Balio boolearrak"
+
+#: ../data/language-specs/pig.lang.h:7 ../data/language-specs/yaml.lang.h:11
+msgid "Null"
+msgstr "Nulua"
+
 #: ../data/language-specs/pkgconfig.lang.h:2
 msgid "pkg-config"
 msgstr "pkg-config"
@@ -2527,7 +2553,7 @@ msgstr "Aldagaiaren definizioa"
 
 #. *
 #. * SECTION:language
-#. * @Short_description: Object representing a syntax highlighted language
+#. * @Short_description: Represents a syntax highlighted language
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
@@ -2629,13 +2655,11 @@ msgstr "4. atala"
 msgid "Section 5"
 msgstr "5. atala"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:121
-#: ../gtksourceview/gtksourcestyle.c:122
+#: ../data/language-specs/t2t.lang.h:14
 msgid "Italic"
 msgstr "Etzana"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:113
-#: ../gtksourceview/gtksourcestyle.c:114
+#: ../data/language-specs/t2t.lang.h:15
 msgid "Bold"
 msgstr "Lodia"
 
@@ -2662,6 +2686,14 @@ msgstr "Fitxategiaren atributuak"
 #: ../data/language-specs/texinfo.lang.h:10
 msgid "Generated Content"
 msgstr "Sortutako edukia"
+
+#: ../data/language-specs/thrift.lang.h:1
+msgid "Sources"
+msgstr "Iturburuak"
+
+#: ../data/language-specs/thrift.lang.h:2
+msgid "Thrift"
+msgstr "Thrift"
 
 #: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
@@ -2747,10 +2779,6 @@ msgstr "Aliasa"
 msgid "Map key"
 msgstr "Korrespondentziaren gakoa"
 
-#: ../data/language-specs/yaml.lang.h:11
-msgid "Null"
-msgstr "Nulua"
-
 #: ../data/language-specs/yaml.lang.h:13
 msgid "Integer"
 msgstr "Osokoa"
@@ -2815,147 +2843,9 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Tango kolore-paleta darabilen kolore-eskema"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:327
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:328
 msgid "Document Words"
 msgstr "Dokumentuko hitzak"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
-msgctxt "Object"
-msgid "Name"
-msgstr "Izena"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
-msgid "The provider name"
-msgstr "Hornitzailearen izena"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:437
-#: ../gtksourceview/gtksourcecompletionitem.c:275
-msgid "Icon"
-msgstr "Ikonoa"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
-msgid "The provider icon"
-msgstr "Hornitzailearen ikonoa"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:445
-msgid "Proposals Batch Size"
-msgstr "Proposameneko batch-aren tamaina"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
-msgid "Number of proposals added in one batch"
-msgstr "Batch bati gehitutako proposamen kopurua"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
-msgid "Scan Batch Size"
-msgstr "Batch-a eskaneatzeko tamaina"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
-msgid "Number of lines scanned in one batch"
-msgstr "Batch batean eskaneatutako lerro kopurua"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
-msgid "Minimum Word Size"
-msgstr "Hitzaren gutxieneko tamaina"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
-msgid "The minimum word size to complete"
-msgstr "Hitzaren gutxieneko tamaina osaketarako"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
-msgid "Interactive Delay"
-msgstr "Atzerapen elkarreragilea"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
-msgid "The delay before initiating interactive completion"
-msgstr "Osaketa elkarreragilea hasi aurreko atzerapena"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
-msgid "Priority"
-msgstr "Lehentasuna"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
-msgid "Provider priority"
-msgstr "Hornitzailearen lehentasuna"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-#: ../gtksourceview/gtksourcecompletioncontext.c:298
-msgid "Activation"
-msgstr "Aktibazioa"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
-#: ../gtksourceview/gtksourcecompletioncontext.c:299
-msgid "The type of activation"
-msgstr "Aktibazio mota"
-
-#: ../gtksourceview/gtksourcebuffer.c:277
-#: ../gtksourceview/gtksourceprintcompositor.c:505
-msgid "Highlight Syntax"
-msgstr "Nabarmendu sintaxia"
-
-#: ../gtksourceview/gtksourcebuffer.c:278
-msgid "Whether to highlight syntax in the buffer"
-msgstr "Bufferreko sintaxia nabarmenduko den ala ez"
-
-#: ../gtksourceview/gtksourcebuffer.c:291
-msgid "Highlight Matching Brackets"
-msgstr "Nabarmendu kortxete bikoteak"
-
-#: ../gtksourceview/gtksourcebuffer.c:292
-msgid "Whether to highlight matching brackets"
-msgstr "Kortxete bikoteak nabarmenduko diren ala ez"
-
-#: ../gtksourceview/gtksourcebuffer.c:305
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
-msgid "Maximum Undo Levels"
-msgstr "Gehienezko desegite maila"
-
-#: ../gtksourceview/gtksourcebuffer.c:306
-#: ../gtksourceview/gtksourceundomanagerdefault.c:412
-msgid "Number of undo levels for the buffer"
-msgstr "Bufferrean egin daitezken desegite mailaren kopurua"
-
-#. Translators: throughout GtkSourceView "language" stands
-#. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:318
-msgid "Language"
-msgstr "Hizkuntza"
-
-#: ../gtksourceview/gtksourcebuffer.c:319
-msgid "Language object to get highlighting patterns from"
-msgstr "Hizkuntz-objektuak, nabarmendutako ereduak lortzeko"
-
-#: ../gtksourceview/gtksourcebuffer.c:327
-msgid "Can undo"
-msgstr "Desegin daiteke"
-
-#: ../gtksourceview/gtksourcebuffer.c:328
-msgid "Whether Undo operation is possible"
-msgstr "Desegitea posible den ala ez"
-
-#: ../gtksourceview/gtksourcebuffer.c:335
-msgid "Can redo"
-msgstr "Berregin daiteke"
-
-#: ../gtksourceview/gtksourcebuffer.c:336
-msgid "Whether Redo operation is possible"
-msgstr "Berregitea posible den ala ez"
-
-#: ../gtksourceview/gtksourcebuffer.c:350
-#: ../gtksourceview/gtksourcebuffer.c:351
-msgid "Style scheme"
-msgstr "Estilo-eskema"
-
-#: ../gtksourceview/gtksourcebuffer.c:358
-msgid "Undo manager"
-msgstr "Desegite-kudeatzailea"
-
-#: ../gtksourceview/gtksourcebuffer.c:359
-msgid "The buffer undo manager"
-msgstr "Desegitearen bufferraren kudeatzailea"
-
-#: ../gtksourceview/gtksourcebuffer.c:373
-msgid "Implicit trailing newline"
-msgstr "Lerro-jauziaren amaiera inplizitoa"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:838
 msgid "Invalid byte sequence in conversion input"
@@ -2985,128 +2875,10 @@ msgstr "Objektu baliogabea, ez da hasieratu"
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Osatu gabeko UTF-8 sekuentzia sarreran"
 
-#: ../gtksourceview/gtksourcecompletion.c:2162
-#: ../gtksourceview/gtksourcegutter.c:549
-msgid "View"
-msgstr "Ikusi"
-
-#: ../gtksourceview/gtksourcecompletion.c:2163
-msgid "The GtkSourceView bound to the completion"
-msgstr "GtkSourceView osaketara lotuta"
-
-#: ../gtksourceview/gtksourcecompletion.c:2177
-msgid "Remember Info Visibility"
-msgstr "Gogoratu informazioaren ikusgaitasuna"
-
-#: ../gtksourceview/gtksourcecompletion.c:2178
-msgid "Remember the last info window visibility state"
-msgstr "Gogoratu informazioaren leihoaren ikusgaitasunaren azken egoera"
-
-#: ../gtksourceview/gtksourcecompletion.c:2190
-msgid "Select on Show"
-msgstr "Hautatu erakustean"
-
-#: ../gtksourceview/gtksourcecompletion.c:2191
-msgid "Select first proposal when completion is shown"
-msgstr "Hautatu aurreneko proposamena osaketa erakustean"
-
-#: ../gtksourceview/gtksourcecompletion.c:2204
-msgid "Show Headers"
-msgstr "Erakutsi goiburukoak"
-
-#: ../gtksourceview/gtksourcecompletion.c:2205
-msgid ""
-"Show provider headers when proposals from multiple providers are available"
-msgstr ""
-"Erakutsi hornitzailearen goiburukoak hainbat hornitzailetik proposamenak "
-"erabilgarri daudenean"
-
-#: ../gtksourceview/gtksourcecompletion.c:2218
-msgid "Show Icons"
-msgstr "Erakutsi ikonoak"
-
-#: ../gtksourceview/gtksourcecompletion.c:2219
-msgid "Show provider and proposal icons in the completion popup"
-msgstr "Erakutsi hornitzaile eta proposamenen ikonoak osaketako laster-menuan"
-
-#: ../gtksourceview/gtksourcecompletion.c:2233
-msgid "Accelerators"
-msgstr "Bizkortzaileak"
-
-#: ../gtksourceview/gtksourcecompletion.c:2234
-msgid "Number of proposal accelerators to show"
-msgstr "Proposamenen bizkortzaile kopurua erakusteko"
-
-#: ../gtksourceview/gtksourcecompletion.c:2249
-msgid "Auto Complete Delay"
-msgstr "Auto-osaketaren atzerapena"
-
-#: ../gtksourceview/gtksourcecompletion.c:2250
-msgid "Completion popup delay for interactive completion"
-msgstr "Osaketaren laster-menuaren atzerapena osaketa elkarreragilean"
-
-#: ../gtksourceview/gtksourcecompletion.c:2266
-msgid "Provider Page Size"
-msgstr "Hornitzailearen orrialde-tamaina"
-
-#: ../gtksourceview/gtksourcecompletion.c:2267
-msgid "Provider scrolling page size"
-msgstr "Hornitzailearen orrialdearen korritze-tamaina"
-
-#: ../gtksourceview/gtksourcecompletion.c:2287
-msgid "Proposal Page Size"
-msgstr "Proposamenaren orrialde-tamaina"
-
-#: ../gtksourceview/gtksourcecompletion.c:2288
-msgid "Proposal scrolling page size"
-msgstr "Proposamenaren orrialdearen korritze-tamaina"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:271
-#: ../gtksourceview/gtksourceview.c:313
-msgid "Completion"
-msgstr "Osaketa"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
-msgid "The completion object to which the context belongs"
-msgstr "Testuingurua dagokion osaketaren objektua"
-
-#. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:285
-msgid "Iterator"
-msgstr "Iteratzailea"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:286
-msgid "The GtkTextIter at which the completion was invoked"
-msgstr "Osaketa deitu den GtkTextIter objektua"
-
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:253
+#: ../gtksourceview/gtksourcecompletioninfo.c:264
 msgid "Completion Info"
 msgstr "Osaketaren informazioa"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:237
-msgid "Label to be shown for this item"
-msgstr "Etiketa elementu honetan erakusteko"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:250
-msgid "Markup to be shown for this item"
-msgstr "Marka elementu honetan erakusteko"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:263
-msgid "Item text"
-msgstr "Elementuaren testua"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:276
-msgid "Icon to be shown for this item"
-msgstr "Ikonoa elementu honetan erakusteko"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:288
-msgid "Info"
-msgstr "Informazioa"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:289
-msgid "Info to be shown for this item"
-msgstr "Informazioa elementu honetan erakusteko"
 
 #: ../gtksourceview/gtksourcecompletionmodel.c:491
 msgid "Provider"
@@ -3124,7 +2896,7 @@ msgstr "_Xehetasunak..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3139
+#: ../gtksourceview/gtksourcecontextengine.c:3167
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3135,7 +2907,7 @@ msgstr ""
 "nabarmentzeko prozesua ohizkoa baino motelagoa izango da.\n"
 "Errorea: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4462
+#: ../gtksourceview/gtksourcecontextengine.c:4490
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -3143,19 +2915,19 @@ msgstr ""
 "Lerro bakarra nabarmentzeak denbora asko hartu du, sintaxia nabarmentzea "
 "desgaitu egingo da"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5706
+#: ../gtksourceview/gtksourcecontextengine.c:5734
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "'%s' testuinguruak ezin du \\%%{...@start} komandorik eduki"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5867
-#: ../gtksourceview/gtksourcecontextengine.c:5956
+#: ../gtksourceview/gtksourcecontextengine.c:5895
+#: ../gtksourceview/gtksourcecontextengine.c:5984
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "testuinguruko '%s' id-a bikoiztuta"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6070
-#: ../gtksourceview/gtksourcecontextengine.c:6130
+#: ../gtksourceview/gtksourcecontextengine.c:6098
+#: ../gtksourceview/gtksourcecontextengine.c:6158
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -3164,157 +2936,157 @@ msgstr ""
 "estiloa gainjartzea testuinguruko erreferentziako komodinarekin erabilita "
 "'%s' hizkuntzako '%s' erreferentzian"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6144
+#: ../gtksourceview/gtksourcecontextengine.c:6172
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "baliogabeko testuinguruko '%s' erreferentzia"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6163
-#: ../gtksourceview/gtksourcecontextengine.c:6173
+#: ../gtksourceview/gtksourcecontextengine.c:6191
+#: ../gtksourceview/gtksourcecontextengine.c:6201
 #, c-format
 msgid "unknown context '%s'"
 msgstr "'%s' testuinguru ezezaguna"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6272
+#: ../gtksourceview/gtksourcecontextengine.c:6300
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Hizkuntza nagusiaren definizioa falta da (id=\"%s\")"
 
-#: ../gtksourceview/gtksourceencoding.c:136
-#: ../gtksourceview/gtksourceencoding.c:179
-#: ../gtksourceview/gtksourceencoding.c:181
-#: ../gtksourceview/gtksourceencoding.c:183
-#: ../gtksourceview/gtksourceencoding.c:185
-#: ../gtksourceview/gtksourceencoding.c:187
-#: ../gtksourceview/gtksourceencoding.c:189
-#: ../gtksourceview/gtksourceencoding.c:191
+#: ../gtksourceview/gtksourceencoding.c:137
+#: ../gtksourceview/gtksourceencoding.c:180
+#: ../gtksourceview/gtksourceencoding.c:182
+#: ../gtksourceview/gtksourceencoding.c:184
+#: ../gtksourceview/gtksourceencoding.c:186
+#: ../gtksourceview/gtksourceencoding.c:188
+#: ../gtksourceview/gtksourceencoding.c:190
+#: ../gtksourceview/gtksourceencoding.c:192
 msgid "Unicode"
 msgstr "Unicode"
 
-#: ../gtksourceview/gtksourceencoding.c:150
-#: ../gtksourceview/gtksourceencoding.c:174
-#: ../gtksourceview/gtksourceencoding.c:224
-#: ../gtksourceview/gtksourceencoding.c:267
+#: ../gtksourceview/gtksourceencoding.c:151
+#: ../gtksourceview/gtksourceencoding.c:175
+#: ../gtksourceview/gtksourceencoding.c:225
+#: ../gtksourceview/gtksourceencoding.c:268
 msgid "Western"
 msgstr "Mendebaldekoa"
 
-#: ../gtksourceview/gtksourceencoding.c:152
-#: ../gtksourceview/gtksourceencoding.c:226
-#: ../gtksourceview/gtksourceencoding.c:263
+#: ../gtksourceview/gtksourceencoding.c:153
+#: ../gtksourceview/gtksourceencoding.c:227
+#: ../gtksourceview/gtksourceencoding.c:264
 msgid "Central European"
 msgstr "Europako erdialdekoa"
 
-#: ../gtksourceview/gtksourceencoding.c:154
+#: ../gtksourceview/gtksourceencoding.c:155
 msgid "South European"
 msgstr "Europako hegoaldekoa"
 
-#: ../gtksourceview/gtksourceencoding.c:156
-#: ../gtksourceview/gtksourceencoding.c:170
-#: ../gtksourceview/gtksourceencoding.c:277
+#: ../gtksourceview/gtksourceencoding.c:157
+#: ../gtksourceview/gtksourceencoding.c:171
+#: ../gtksourceview/gtksourceencoding.c:278
 msgid "Baltic"
 msgstr "Baltikokoa"
 
-#: ../gtksourceview/gtksourceencoding.c:158
-#: ../gtksourceview/gtksourceencoding.c:228
-#: ../gtksourceview/gtksourceencoding.c:241
-#: ../gtksourceview/gtksourceencoding.c:245
-#: ../gtksourceview/gtksourceencoding.c:247
-#: ../gtksourceview/gtksourceencoding.c:265
+#: ../gtksourceview/gtksourceencoding.c:159
+#: ../gtksourceview/gtksourceencoding.c:229
+#: ../gtksourceview/gtksourceencoding.c:242
+#: ../gtksourceview/gtksourceencoding.c:246
+#: ../gtksourceview/gtksourceencoding.c:248
+#: ../gtksourceview/gtksourceencoding.c:266
 msgid "Cyrillic"
 msgstr "Zirilikoa"
 
-#: ../gtksourceview/gtksourceencoding.c:160
-#: ../gtksourceview/gtksourceencoding.c:234
-#: ../gtksourceview/gtksourceencoding.c:275
+#: ../gtksourceview/gtksourceencoding.c:161
+#: ../gtksourceview/gtksourceencoding.c:235
+#: ../gtksourceview/gtksourceencoding.c:276
 msgid "Arabic"
 msgstr "Arabiarra"
 
-#: ../gtksourceview/gtksourceencoding.c:162
-#: ../gtksourceview/gtksourceencoding.c:269
+#: ../gtksourceview/gtksourceencoding.c:163
+#: ../gtksourceview/gtksourceencoding.c:270
 msgid "Greek"
 msgstr "Grekoa"
 
-#: ../gtksourceview/gtksourceencoding.c:164
+#: ../gtksourceview/gtksourceencoding.c:165
 msgid "Hebrew Visual"
 msgstr "Hebrear bisuala"
 
-#: ../gtksourceview/gtksourceencoding.c:166
-#: ../gtksourceview/gtksourceencoding.c:230
-#: ../gtksourceview/gtksourceencoding.c:271
+#: ../gtksourceview/gtksourceencoding.c:167
+#: ../gtksourceview/gtksourceencoding.c:231
+#: ../gtksourceview/gtksourceencoding.c:272
 msgid "Turkish"
 msgstr "Turkiarra"
 
-#: ../gtksourceview/gtksourceencoding.c:168
+#: ../gtksourceview/gtksourceencoding.c:169
 msgid "Nordic"
 msgstr "Nordikoa"
 
-#: ../gtksourceview/gtksourceencoding.c:172
+#: ../gtksourceview/gtksourceencoding.c:173
 msgid "Celtic"
 msgstr "Zelta"
 
-#: ../gtksourceview/gtksourceencoding.c:176
+#: ../gtksourceview/gtksourceencoding.c:177
 msgid "Romanian"
 msgstr "Errumaniarra"
 
-#: ../gtksourceview/gtksourceencoding.c:194
+#: ../gtksourceview/gtksourceencoding.c:195
 msgid "Armenian"
 msgstr "Armeniarra"
 
-#: ../gtksourceview/gtksourceencoding.c:196
-#: ../gtksourceview/gtksourceencoding.c:198
-#: ../gtksourceview/gtksourceencoding.c:212
+#: ../gtksourceview/gtksourceencoding.c:197
+#: ../gtksourceview/gtksourceencoding.c:199
+#: ../gtksourceview/gtksourceencoding.c:213
 msgid "Chinese Traditional"
 msgstr "Txinatar tradizionala"
 
-#: ../gtksourceview/gtksourceencoding.c:200
+#: ../gtksourceview/gtksourceencoding.c:201
 msgid "Cyrillic/Russian"
 msgstr "Zirilikoa/errusiarra"
 
-#: ../gtksourceview/gtksourceencoding.c:203
-#: ../gtksourceview/gtksourceencoding.c:205
-#: ../gtksourceview/gtksourceencoding.c:207
-#: ../gtksourceview/gtksourceencoding.c:237
-#: ../gtksourceview/gtksourceencoding.c:252
+#: ../gtksourceview/gtksourceencoding.c:204
+#: ../gtksourceview/gtksourceencoding.c:206
+#: ../gtksourceview/gtksourceencoding.c:208
+#: ../gtksourceview/gtksourceencoding.c:238
+#: ../gtksourceview/gtksourceencoding.c:253
 msgid "Japanese"
 msgstr "Japoniarra"
 
-#: ../gtksourceview/gtksourceencoding.c:210
-#: ../gtksourceview/gtksourceencoding.c:239
-#: ../gtksourceview/gtksourceencoding.c:243
-#: ../gtksourceview/gtksourceencoding.c:258
+#: ../gtksourceview/gtksourceencoding.c:211
+#: ../gtksourceview/gtksourceencoding.c:240
+#: ../gtksourceview/gtksourceencoding.c:244
+#: ../gtksourceview/gtksourceencoding.c:259
 msgid "Korean"
 msgstr "Korearra"
 
-#: ../gtksourceview/gtksourceencoding.c:215
-#: ../gtksourceview/gtksourceencoding.c:217
-#: ../gtksourceview/gtksourceencoding.c:219
+#: ../gtksourceview/gtksourceencoding.c:216
+#: ../gtksourceview/gtksourceencoding.c:218
+#: ../gtksourceview/gtksourceencoding.c:220
 msgid "Chinese Simplified"
 msgstr "Txinatar erraztua"
 
-#: ../gtksourceview/gtksourceencoding.c:221
+#: ../gtksourceview/gtksourceencoding.c:222
 msgid "Georgian"
 msgstr "Georgiarra"
 
-#: ../gtksourceview/gtksourceencoding.c:232
-#: ../gtksourceview/gtksourceencoding.c:273
+#: ../gtksourceview/gtksourceencoding.c:233
+#: ../gtksourceview/gtksourceencoding.c:274
 msgid "Hebrew"
 msgstr "Hebrearra"
 
-#: ../gtksourceview/gtksourceencoding.c:249
+#: ../gtksourceview/gtksourceencoding.c:250
 msgid "Cyrillic/Ukrainian"
 msgstr "Zirilikoa/Ukrainarra"
 
-#: ../gtksourceview/gtksourceencoding.c:254
-#: ../gtksourceview/gtksourceencoding.c:260
-#: ../gtksourceview/gtksourceencoding.c:279
+#: ../gtksourceview/gtksourceencoding.c:255
+#: ../gtksourceview/gtksourceencoding.c:261
+#: ../gtksourceview/gtksourceencoding.c:280
 msgid "Vietnamese"
 msgstr "Vietnamdarra"
 
-#: ../gtksourceview/gtksourceencoding.c:256
+#: ../gtksourceview/gtksourceencoding.c:257
 msgid "Thai"
 msgstr "Thailandiarra"
 
-#: ../gtksourceview/gtksourceencoding.c:487
+#: ../gtksourceview/gtksourceencoding.c:491
 msgid "Unknown"
 msgstr "Ezezaguna"
 
@@ -3330,203 +3102,11 @@ msgstr "Ezezaguna"
 #. * recognized encodings are used. See
 #. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
 #. * for a list of supported encodings.
+#. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:517
+#: ../gtksourceview/gtksourceencoding.c:650
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
-
-#: ../gtksourceview/gtksourcefile.c:202
-#: ../gtksourceview/gtksourcefilesaver.c:407
-msgid "Newline type"
-msgstr "Lerro-jauzi mota"
-
-#: ../gtksourceview/gtksourcefile.c:219
-#: ../gtksourceview/gtksourcefilesaver.c:425
-msgid "Compression type"
-msgstr "Konpresio mota"
-
-#: ../gtksourceview/gtksourcefileloader.c:406
-msgid "Input stream"
-msgstr "Sarrerako korrontea"
-
-#: ../gtksourceview/gtksourcefilesaver.c:443
-msgid "Flags"
-msgstr "Banderak"
-
-#. Translators: gutters can be used to display information
-#. * on the left or on the right of the text view. To draw the
-#. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:553
-msgid "The gutters' GtkSourceView"
-msgstr "Erretenaren GtkSourceView"
-
-#: ../gtksourceview/gtksourcegutter.c:565
-#: ../gtksourceview/gtksourcegutterrenderer.c:741
-msgid "Window Type"
-msgstr "Leiho mota"
-
-#: ../gtksourceview/gtksourcegutter.c:566
-msgid "The gutters' text window type"
-msgstr "Erreteneko testuaren leiho mota"
-
-#: ../gtksourceview/gtksourcegutter.c:582
-#: ../gtksourceview/gtksourcegutterrenderer.c:524
-msgid "X Padding"
-msgstr "X betegarria"
-
-#: ../gtksourceview/gtksourcegutter.c:583
-#: ../gtksourceview/gtksourcegutterrenderer.c:525
-msgid "The x-padding"
-msgstr "X ardatzeko betegarria"
-
-#: ../gtksourceview/gtksourcegutter.c:600
-#: ../gtksourceview/gtksourcegutterrenderer.c:539
-msgid "Y Padding"
-msgstr "Y betegarria"
-
-#: ../gtksourceview/gtksourcegutter.c:601
-#: ../gtksourceview/gtksourcegutterrenderer.c:540
-msgid "The y-padding"
-msgstr "Y ardatzeko betegarria"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:511
-#: ../gtksourceview/gtksourcegutterrenderer.c:512
-msgid "Visible"
-msgstr "Ikusgai"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:556
-msgid "X Alignment"
-msgstr "X lerrokadura"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:557
-msgid "The x-alignment"
-msgstr "X ardatzean lerrokatzea"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:573
-msgid "Y Alignment"
-msgstr "Y lerrokadura"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:574
-msgid "The y-alignment"
-msgstr "Y ardatzean lerrokatzea"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:708
-msgid "The View"
-msgstr "Ikuspegia"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:709
-msgid "The view"
-msgstr "Ikuspegia"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:725
-msgid "Alignment Mode"
-msgstr "Lerrokatze modua"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:726
-msgid "The alignment mode"
-msgstr "Lerrokatze modua"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:742
-msgid "The window type"
-msgstr "Leiho mota"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:750
-msgid "Size"
-msgstr "Tamaina"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:751
-msgid "The size"
-msgstr "Tamaina"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:298
-#: ../gtksourceview/gtksourcemarkattributes.c:315
-msgid "Pixbuf"
-msgstr "Pixbuf"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
-#: ../gtksourceview/gtksourcemarkattributes.c:316
-msgid "The pixbuf"
-msgstr "Pixelen bufferra"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
-#: ../gtksourceview/gtksourcemarkattributes.c:302
-msgid "Stock Id"
-msgstr "Bildumaren IDa"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
-#: ../gtksourceview/gtksourcemarkattributes.c:303
-msgid "The stock id"
-msgstr "Bildumaren identifikatzailea"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
-#: ../gtksourceview/gtksourcemarkattributes.c:328
-msgid "Icon Name"
-msgstr "Ikonoaren izena"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
-#: ../gtksourceview/gtksourcemarkattributes.c:329
-msgid "The icon name"
-msgstr "Ikonoaren izena"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:329
-#: ../gtksourceview/gtksourcemarkattributes.c:341
-msgid "GIcon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
-msgid "The gicon"
-msgstr "Gicon objketua"
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:402
-msgid "The markup"
-msgstr "Marka"
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:410
-msgid "The text"
-msgstr "Testua"
-
-#: ../gtksourceview/gtksourcelanguage.c:227
-#: ../gtksourceview/gtksourcelanguage.c:228
-msgid "Language id"
-msgstr "Hizkuntzaren IDa"
-
-#: ../gtksourceview/gtksourcelanguage.c:235
-#: ../gtksourceview/gtksourcelanguage.c:236
-msgid "Language name"
-msgstr "Hizkuntzaren izena"
-
-#: ../gtksourceview/gtksourcelanguage.c:243
-#: ../gtksourceview/gtksourcelanguage.c:244
-msgid "Language section"
-msgstr "Hizkuntzaren atala"
-
-#: ../gtksourceview/gtksourcelanguage.c:251
-msgid "Hidden"
-msgstr "Ezkutatua"
-
-#: ../gtksourceview/gtksourcelanguage.c:252
-msgid "Whether the language should be hidden from the user"
-msgstr "Hizkuntza erabiltzaileari ezkutatu behar zaion ala ez"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:149
-msgid "Language specification directories"
-msgstr "Hizkuntzen espezifikazioen direktorioak"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
-msgstr ""
-"Direktorioen zerrenda, hizkuntzen espezifikazioen fitxategien (.lang) "
-"kokapena"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:159
-msgid "Language ids"
-msgstr "Hizkuntzaren IDak"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
-msgid "List of the ids of the available languages"
-msgstr "Hizkuntza erabilgarrien IDen zerrenda"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
@@ -3538,481 +3118,704 @@ msgstr "'%s' ID ezezaguna '%s' adi. erregularrean"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "'%s' adi. erregularrean: atzerako erreferentziak ez daude onartuta"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:287
-#: ../gtksourceview/gtksourcestyle.c:97
-msgid "Background"
-msgstr "Atzeko planoa"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:288
-msgid "The background"
-msgstr "Atzeko planoa"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:342
-msgid "The GIcon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcemark.c:140
-msgid "category"
-msgstr "kategoria"
-
-#: ../gtksourceview/gtksourcemark.c:141
-msgid "The mark category"
-msgstr "Kategoriaren marka"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:445
-msgid "Source Buffer"
-msgstr "Iturburuko bufferra"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:446
-msgid "The GtkSourceBuffer object to print"
-msgstr "GtkSourceBuffer objektua inprimatzeko"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:351
-msgid "Tab Width"
-msgstr "Tabuladorearen zabalera"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:352
-msgid "Width of a tab character expressed in spaces"
-msgstr "Tabuladorearen karaktereen zabalera (zuriunetan)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:484
-msgid "Wrap Mode"
-msgstr "Itzulbiratze-modua"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:485
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr ""
-"Lerroak inoiz ez itzulbiratu, hitzen mugei edo karaktereen mugei itzulbiratu "
-"behar den adierazten du."
-
-#: ../gtksourceview/gtksourceprintcompositor.c:506
-msgid "Whether to print the document with highlighted syntax"
-msgstr "Nabarmendutako sintaxiarekin dokumentua inprimatuko den ala ez"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:527
-msgid "Print Line Numbers"
-msgstr "Inprimatu lerro-zenbakiak"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:528
-msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Lerro-zenbakiak inprimatzeko bitartea (0 zenbakirik ez)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:550
-msgid "Print Header"
-msgstr "Inprimatu goiburua"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:551
-msgid "Whether to print a header in each page"
-msgstr "Orrialde bakoitzean goiburua inprimatuko den ala ez"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:573
-msgid "Print Footer"
-msgstr "Inprimatu orri-oina"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:574
-msgid "Whether to print a footer in each page"
-msgstr "Orrialde bakoitzean orri-oina inprimatuko den ala ez"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:596
-msgid "Body Font Name"
-msgstr "Gorputzaren letra-tipoa"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:597
-msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "Gorputzaren testuan erabiliko den letra-tipoa (adib: \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:620
-msgid "Line Numbers Font Name"
-msgstr "Lerro-zenbakien letra-tipoa"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:621
-msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr "Lerro-zenbakietan erabiliko den letra-tipoa (adib: \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:644
-msgid "Header Font Name"
-msgstr "Goiburuaren letra-tipoa"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:645
-msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr ""
-"Orrialdeko goiburuan erabiliko den letra-tipoa (adib: \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:668
-msgid "Footer Font Name"
-msgstr "Orri-oinaren letra-tipoa"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:669
-msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr ""
-"Orrialdeko orri-oinean erabiliko den letra-tipoa (adib: \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:685
-msgid "Number of pages"
-msgstr "Orrialde-kopurua"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:686
-msgid ""
-"The number of pages in the document (-1 means the document has not been "
-"completely paginated)."
-msgstr ""
-"Dokumentuaren orrialde-kopurua (-1 balioak dokumentua ez dela erabat "
-"orrikatu adierazten du)"
-
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
 msgstr "\\C erabiltzea ez dago onartuta hizkuntzen definizioetan"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2742
-#: ../gtksourceview/gtksourceundomanagerdefault.c:403
-msgid "Buffer"
-msgstr "Bufferra"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2743
-msgid "The associated GtkSourceBuffer"
-msgstr "Esleitutako GtkSourceBuffer"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2757
-msgid "Settings"
-msgstr "Ezarpenak"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2758
-msgid "The associated GtkSourceSearchSettings"
-msgstr "Esleitutako GtkSourceSearchSettings"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2772
-msgid "Highlight"
-msgstr "Nabarmendu"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2773
-msgid "Highlight search occurrences"
-msgstr "Nabarmendu bilaketaren agerpenak"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2789
-msgid "Occurrences count"
-msgstr "Agerpenen kopurua"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2790
-msgid "Total number of search occurrences"
-msgstr "Bilaketaren agerpenen kopuru osoa"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2809
-msgid "Regex error"
-msgstr "Errorea adierazpen erregularrean"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2810
-msgid "Regular expression error"
-msgstr "Errorea adierazpen erregularrean"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:168
-msgid "Search text"
-msgstr "Bilatu testua"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:169
-msgid "The text to search"
-msgstr "Testua bilatzeko"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:183
-#: ../gtksourceview/gtksourcesearchsettings.c:184
-msgid "Case sensitive"
-msgstr "Maiuskula/minuskula"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:199
-msgid "At word boundaries"
-msgstr "Hitzaren mugetan"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:200
-msgid "Search at word boundaries"
-msgstr "Bilatu hitzaren mugetan"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:216
-#: ../gtksourceview/gtksourcesearchsettings.c:217
-msgid "Wrap around"
-msgstr "Itzulbiratu"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:232
-msgid "Regex enabled"
-msgstr "Adierazpen erregularra gaituta"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:233
-msgid "Whether to search by regular expression"
-msgstr "Adierazpen erregularren arabera bilatzea edo ez"
-
-#: ../gtksourceview/gtksourcestyle.c:89
-msgid "Line background"
-msgstr "Lerroaren atzeko planoa"
-
-#: ../gtksourceview/gtksourcestyle.c:90
-msgid "Line background color"
-msgstr "Lerroaren atzeko planoko kolorea"
-
-#: ../gtksourceview/gtksourcestyle.c:98
-msgid "Background color"
-msgstr "Atzeko planoko kolorea"
-
-#: ../gtksourceview/gtksourcestyle.c:105
-msgid "Foreground"
-msgstr "Aurreko planoa"
-
-#: ../gtksourceview/gtksourcestyle.c:106
-msgid "Foreground color"
-msgstr "Aurreko planoko kolorea"
-
-#: ../gtksourceview/gtksourcestyle.c:129 ../gtksourceview/gtksourcestyle.c:130
-msgid "Underline"
-msgstr "Azpimarratua"
-
-#: ../gtksourceview/gtksourcestyle.c:137 ../gtksourceview/gtksourcestyle.c:138
-msgid "Strikethrough"
-msgstr "Marratua"
-
-#: ../gtksourceview/gtksourcestyle.c:145
-msgid "Scale"
-msgstr "Eskala"
-
-#: ../gtksourceview/gtksourcestyle.c:146
-msgid "Text scale factor"
-msgstr "Testuaren eskala-faktorea"
-
-#: ../gtksourceview/gtksourcestyle.c:153
-msgid "Line background set"
-msgstr "Lerroaren atzeko planoaren ezarpena"
-
-#: ../gtksourceview/gtksourcestyle.c:154
-msgid "Whether line background color is set"
-msgstr "Lerroaren atzeko planoaren kolorea ezarrita dagoen ala ez"
-
-#: ../gtksourceview/gtksourcestyle.c:161
-msgid "Foreground set"
-msgstr "Aurreko planoaren ezarpena"
-
-#: ../gtksourceview/gtksourcestyle.c:162
-msgid "Whether foreground color is set"
-msgstr "Aurreko planoaren kolorea ezarrita dagoen ala ez"
-
-#: ../gtksourceview/gtksourcestyle.c:169
-msgid "Background set"
-msgstr "Atzeko planoaren ezarpena"
-
-#: ../gtksourceview/gtksourcestyle.c:170
-msgid "Whether background color is set"
-msgstr "Atzeko planoaren kolorea ezarrita dagoen ala ez"
-
-#: ../gtksourceview/gtksourcestyle.c:177
-msgid "Bold set"
-msgstr "Lodiaren ezarpena"
-
-#: ../gtksourceview/gtksourcestyle.c:178
-msgid "Whether bold attribute is set"
-msgstr "Lodia atributua ezarrita dagoen ala ez"
-
-#: ../gtksourceview/gtksourcestyle.c:185
-msgid "Italic set"
-msgstr "Etzanaren ezarpena"
-
-#: ../gtksourceview/gtksourcestyle.c:186
-msgid "Whether italic attribute is set"
-msgstr "Etzana atributua ezarrita dagoen ala ez"
-
-#: ../gtksourceview/gtksourcestyle.c:193
-msgid "Underline set"
-msgstr "Azpimarraren ezarpena"
-
-#: ../gtksourceview/gtksourcestyle.c:194
-msgid "Whether underline attribute is set"
-msgstr "Azpimarra atributua ezarrita dagoen ala ez"
-
-#: ../gtksourceview/gtksourcestyle.c:201
-msgid "Strikethrough set"
-msgstr "Marratuaren ezarpena"
-
-#: ../gtksourceview/gtksourcestyle.c:202
-msgid "Whether strikethrough attribute is set"
-msgstr "Marratua atributua ezarrita dagoen ala ez"
-
-#: ../gtksourceview/gtksourcestyle.c:209
-msgid "Scale set"
-msgstr "Eskala ezarrita"
-
-#: ../gtksourceview/gtksourcestyle.c:210
-msgid "Whether scale attribute is set"
-msgstr "Eskala atributua ezarrita dagoen ala ez"
-
-#: ../gtksourceview/gtksourcestylescheme.c:211
-#: ../gtksourceview/gtksourcestylescheme.c:212
-msgid "Style scheme id"
-msgstr "Estilo-eskemaren IDa"
-
-#: ../gtksourceview/gtksourcestylescheme.c:224
-#: ../gtksourceview/gtksourcestylescheme.c:225
-msgid "Style scheme name"
-msgstr "Estilo-eskemaren izena"
-
-#: ../gtksourceview/gtksourcestylescheme.c:237
-#: ../gtksourceview/gtksourcestylescheme.c:238
-msgid "Style scheme description"
-msgstr "Estilo-eskemaren azalpena"
-
-#: ../gtksourceview/gtksourcestylescheme.c:250
-#: ../gtksourceview/gtksourcestylescheme.c:251
-msgid "Style scheme filename"
-msgstr "Estilo-eskemaren fitxategia"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:152
-msgid "Style scheme search path"
-msgstr "Estilo-eskema bilatzeko bide-izena"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
-msgid "List of directories and files where the style schemes are located"
-msgstr "Estilo-eskemak kokatuta dauden direktorioen eta fitxategien zerrenda"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:161
-msgid "Scheme ids"
-msgstr "Eskemen IDak"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
-msgid "List of the ids of the available style schemes"
-msgstr "Estilo-eskema erabilgarrien IDen zerrenda"
-
-#: ../gtksourceview/gtksourceundomanagerdefault.c:404
-msgid "The text buffer to add undo support on"
-msgstr "Testuaren bufferra 'desegin' euskarria gehitzeko"
-
-#: ../gtksourceview/gtksourceview.c:314
-msgid "The completion object associated with the view"
-msgstr "Ikuspegiarekin esleitutako osaketaren objektua"
-
-#: ../gtksourceview/gtksourceview.c:326
-msgid "Show Line Numbers"
-msgstr "Erakutsi lerro-zenbakiak"
-
-#: ../gtksourceview/gtksourceview.c:327
-msgid "Whether to display line numbers"
-msgstr "Lerro-zenbakiak bistaratuko diren ala ez"
-
-#: ../gtksourceview/gtksourceview.c:338
-msgid "Show Line Marks"
-msgstr "Erakutsi lerro-markak"
-
-#: ../gtksourceview/gtksourceview.c:339
-msgid "Whether to display line mark pixbufs"
-msgstr "Lerroen pixel-bufferren markak erakutsiko diren ala ez"
-
-#: ../gtksourceview/gtksourceview.c:366
-msgid "Indent Width"
-msgstr "Koskaren zabalera"
-
-#: ../gtksourceview/gtksourceview.c:367
-msgid "Number of spaces to use for each step of indent"
-msgstr "Koska bakoitzak erabiliko duen zuriune-kopurua"
-
-#: ../gtksourceview/gtksourceview.c:376
-msgid "Auto Indentation"
-msgstr "Auto-koskatzea"
-
-#: ../gtksourceview/gtksourceview.c:377
-msgid "Whether to enable auto indentation"
-msgstr "Automatikoki koskatzea gaituko den ala ez"
-
-#: ../gtksourceview/gtksourceview.c:384
-msgid "Insert Spaces Instead of Tabs"
-msgstr "Txertatu zuriuneak tabuladoreen ordez"
-
-#: ../gtksourceview/gtksourceview.c:385
-msgid "Whether to insert spaces instead of tabs"
-msgstr "Tabuladoreen ordez zuriuneak txertatuko diren ala ez"
-
-#: ../gtksourceview/gtksourceview.c:397
-msgid "Show Right Margin"
-msgstr "Erakutsi eskuineko marjina"
-
-#: ../gtksourceview/gtksourceview.c:398
-msgid "Whether to display the right margin"
-msgstr "Eskuineko marjina erakutsiko den ala ez"
-
-#: ../gtksourceview/gtksourceview.c:410
-msgid "Right Margin Position"
-msgstr "Eskuineko marjinaren posizioa"
-
-#: ../gtksourceview/gtksourceview.c:411
-msgid "Position of the right margin"
-msgstr "Eskuineko marjinaren posizioa"
-
-#: ../gtksourceview/gtksourceview.c:427
-msgid "Smart Home/End"
-msgstr "Hasiera/Amaiera azkarra"
-
-#: ../gtksourceview/gtksourceview.c:428
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr ""
-"HASIERA eta AMAIERA teklek kurtsorea lerroaren lehenengo/azkenengo zuriuneak "
-"ez diren karakterera mugituko dute, lerroaren hasiera/amaierara joan baino "
-"lehen."
-
-#: ../gtksourceview/gtksourceview.c:438
-msgid "Highlight current line"
-msgstr "Nabarmendu uneko lerroa"
-
-#: ../gtksourceview/gtksourceview.c:439
-msgid "Whether to highlight the current line"
-msgstr "Uneko lerroa nabarmenduko den ala ez"
-
-#: ../gtksourceview/gtksourceview.c:446
-msgid "Indent on tab"
-msgstr "Koskatu tabuladorearekin"
-
-#: ../gtksourceview/gtksourceview.c:447
-msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "Tabuladorea sakatzean hautatutako testua koskatuko den ala ez"
-
-#: ../gtksourceview/gtksourceview.c:461
-msgid "Draw Spaces"
-msgstr "Marraztu tarteak"
-
-#: ../gtksourceview/gtksourceview.c:462
-msgid "Set if and how the spaces should be visualized"
-msgstr "Ezarri tarteak erakutsiko eta nola bistaratuko diren"
+#. TODO: have a ChooserDialog?
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:182
+msgid "Select a Style"
+msgstr "Hautatu estiloa"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
+msgid "_Cancel"
+msgstr "_Utzi"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:187
+msgid "_Select"
+msgstr "_Hautatu"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1237
+#: ../gtksourceview/gtksourceview.c:1302
 msgid "_Redo"
 msgstr "_Berregin"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1248
+#: ../gtksourceview/gtksourceview.c:1313
 msgid "_Undo"
 msgstr "_Desegin"
 
-#: ../gtksourceview/gtksourceview.c:1266
+#: ../gtksourceview/gtksourceview.c:1331
 msgid "All _Upper Case"
 msgstr "Guztiak m_aiuskuletan"
 
-#: ../gtksourceview/gtksourceview.c:1276
+#: ../gtksourceview/gtksourceview.c:1341
 msgid "All _Lower Case"
 msgstr "Guztiak m_inuskuletan"
 
-#: ../gtksourceview/gtksourceview.c:1286
+#: ../gtksourceview/gtksourceview.c:1351
 msgid "_Invert Case"
 msgstr "_Alderantzikatu maiuskulak eta minuskulak"
 
-#: ../gtksourceview/gtksourceview.c:1296
+#: ../gtksourceview/gtksourceview.c:1361
 msgid "_Title Case"
 msgstr "_Izenburua maiuskuletan"
 
-#: ../gtksourceview/gtksourceview.c:1306
+#: ../gtksourceview/gtksourceview.c:1371
 msgid "C_hange Case"
 msgstr "_Aldatu maiuskulak/minuskulak"
 
-#: ../gtksourceview/gtksourceview-i18n.c:72
+#: ../gtksourceview/gtksourceview-i18n.c:116
 msgid "translator-credits"
 msgstr ""
 "Piarres Beobide <pi@beobide.net>\n"
 "Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.com>"
+
+#~ msgctxt "Object"
+#~ msgid "Name"
+#~ msgstr "Izena"
+
+#~ msgid "The provider name"
+#~ msgstr "Hornitzailearen izena"
+
+#~ msgid "Icon"
+#~ msgstr "Ikonoa"
+
+#~ msgid "The provider icon"
+#~ msgstr "Hornitzailearen ikonoa"
+
+#~ msgid "Proposals Batch Size"
+#~ msgstr "Proposameneko batch-aren tamaina"
+
+#~ msgid "Number of proposals added in one batch"
+#~ msgstr "Batch bati gehitutako proposamen kopurua"
+
+#~ msgid "Scan Batch Size"
+#~ msgstr "Batch-a eskaneatzeko tamaina"
+
+#~ msgid "Number of lines scanned in one batch"
+#~ msgstr "Batch batean eskaneatutako lerro kopurua"
+
+#~ msgid "Minimum Word Size"
+#~ msgstr "Hitzaren gutxieneko tamaina"
+
+#~ msgid "The minimum word size to complete"
+#~ msgstr "Hitzaren gutxieneko tamaina osaketarako"
+
+#~ msgid "Interactive Delay"
+#~ msgstr "Atzerapen elkarreragilea"
+
+#~ msgid "The delay before initiating interactive completion"
+#~ msgstr "Osaketa elkarreragilea hasi aurreko atzerapena"
+
+#~ msgid "Priority"
+#~ msgstr "Lehentasuna"
+
+#~ msgid "Provider priority"
+#~ msgstr "Hornitzailearen lehentasuna"
+
+#~ msgid "Activation"
+#~ msgstr "Aktibazioa"
+
+#~ msgid "The type of activation"
+#~ msgstr "Aktibazio mota"
+
+#~ msgid "Highlight Syntax"
+#~ msgstr "Nabarmendu sintaxia"
+
+#~ msgid "Whether to highlight syntax in the buffer"
+#~ msgstr "Bufferreko sintaxia nabarmenduko den ala ez"
+
+#~ msgid "Highlight Matching Brackets"
+#~ msgstr "Nabarmendu kortxete bikoteak"
+
+#~ msgid "Whether to highlight matching brackets"
+#~ msgstr "Kortxete bikoteak nabarmenduko diren ala ez"
+
+#~ msgid "Maximum Undo Levels"
+#~ msgstr "Gehienezko desegite maila"
+
+#~ msgid "Number of undo levels for the buffer"
+#~ msgstr "Bufferrean egin daitezken desegite mailaren kopurua"
+
+#~ msgid "Language"
+#~ msgstr "Hizkuntza"
+
+#~ msgid "Language object to get highlighting patterns from"
+#~ msgstr "Hizkuntz-objektuak, nabarmendutako ereduak lortzeko"
+
+#~ msgid "Can undo"
+#~ msgstr "Desegin daiteke"
+
+#~ msgid "Whether Undo operation is possible"
+#~ msgstr "Desegitea posible den ala ez"
+
+#~ msgid "Can redo"
+#~ msgstr "Berregin daiteke"
+
+#~ msgid "Whether Redo operation is possible"
+#~ msgstr "Berregitea posible den ala ez"
+
+#~ msgid "Style scheme"
+#~ msgstr "Estilo-eskema"
+
+#~ msgid "Undo manager"
+#~ msgstr "Desegite-kudeatzailea"
+
+#~ msgid "The buffer undo manager"
+#~ msgstr "Desegitearen bufferraren kudeatzailea"
+
+#~ msgid "Implicit trailing newline"
+#~ msgstr "Lerro-jauziaren amaiera inplizitoa"
+
+#~ msgid "View"
+#~ msgstr "Ikusi"
+
+#~ msgid "The GtkSourceView bound to the completion"
+#~ msgstr "GtkSourceView osaketara lotuta"
+
+#~ msgid "Remember Info Visibility"
+#~ msgstr "Gogoratu informazioaren ikusgaitasuna"
+
+#~ msgid "Remember the last info window visibility state"
+#~ msgstr "Gogoratu informazioaren leihoaren ikusgaitasunaren azken egoera"
+
+#~ msgid "Select first proposal when completion is shown"
+#~ msgstr "Hautatu aurreneko proposamena osaketa erakustean"
+
+#~ msgid "Show Headers"
+#~ msgstr "Erakutsi goiburukoak"
+
+#~ msgid ""
+#~ "Show provider headers when proposals from multiple providers are available"
+#~ msgstr ""
+#~ "Erakutsi hornitzailearen goiburukoak hainbat hornitzailetik proposamenak "
+#~ "erabilgarri daudenean"
+
+#~ msgid "Show Icons"
+#~ msgstr "Erakutsi ikonoak"
+
+#~ msgid "Show provider and proposal icons in the completion popup"
+#~ msgstr ""
+#~ "Erakutsi hornitzaile eta proposamenen ikonoak osaketako laster-menuan"
+
+#~ msgid "Accelerators"
+#~ msgstr "Bizkortzaileak"
+
+#~ msgid "Number of proposal accelerators to show"
+#~ msgstr "Proposamenen bizkortzaile kopurua erakusteko"
+
+#~ msgid "Auto Complete Delay"
+#~ msgstr "Auto-osaketaren atzerapena"
+
+#~ msgid "Completion popup delay for interactive completion"
+#~ msgstr "Osaketaren laster-menuaren atzerapena osaketa elkarreragilean"
+
+#~ msgid "Provider Page Size"
+#~ msgstr "Hornitzailearen orrialde-tamaina"
+
+#~ msgid "Provider scrolling page size"
+#~ msgstr "Hornitzailearen orrialdearen korritze-tamaina"
+
+#~ msgid "Proposal Page Size"
+#~ msgstr "Proposamenaren orrialde-tamaina"
+
+#~ msgid "Proposal scrolling page size"
+#~ msgstr "Proposamenaren orrialdearen korritze-tamaina"
+
+#~ msgid "Completion"
+#~ msgstr "Osaketa"
+
+#~ msgid "The completion object to which the context belongs"
+#~ msgstr "Testuingurua dagokion osaketaren objektua"
+
+#~ msgid "Iterator"
+#~ msgstr "Iteratzailea"
+
+#~ msgid "The GtkTextIter at which the completion was invoked"
+#~ msgstr "Osaketa deitu den GtkTextIter objektua"
+
+#~ msgid "Label to be shown for this item"
+#~ msgstr "Etiketa elementu honetan erakusteko"
+
+#~ msgid "Markup to be shown for this item"
+#~ msgstr "Marka elementu honetan erakusteko"
+
+#~ msgid "Item text"
+#~ msgstr "Elementuaren testua"
+
+#~ msgid "Icon to be shown for this item"
+#~ msgstr "Ikonoa elementu honetan erakusteko"
+
+#~ msgid "Info"
+#~ msgstr "Informazioa"
+
+#~ msgid "Info to be shown for this item"
+#~ msgstr "Informazioa elementu honetan erakusteko"
+
+#~ msgid "Newline type"
+#~ msgstr "Lerro-jauzi mota"
+
+#~ msgid "Compression type"
+#~ msgstr "Konpresio mota"
+
+#~ msgid "Input stream"
+#~ msgstr "Sarrerako korrontea"
+
+#~ msgid "Flags"
+#~ msgstr "Banderak"
+
+#~ msgid "The gutters' GtkSourceView"
+#~ msgstr "Erretenaren GtkSourceView"
+
+#~ msgid "Window Type"
+#~ msgstr "Leiho mota"
+
+#~ msgid "The gutters' text window type"
+#~ msgstr "Erreteneko testuaren leiho mota"
+
+#~ msgid "X Padding"
+#~ msgstr "X betegarria"
+
+#~ msgid "The x-padding"
+#~ msgstr "X ardatzeko betegarria"
+
+#~ msgid "Y Padding"
+#~ msgstr "Y betegarria"
+
+#~ msgid "The y-padding"
+#~ msgstr "Y ardatzeko betegarria"
+
+#~ msgid "Visible"
+#~ msgstr "Ikusgai"
+
+#~ msgid "X Alignment"
+#~ msgstr "X lerrokadura"
+
+#~ msgid "The x-alignment"
+#~ msgstr "X ardatzean lerrokatzea"
+
+#~ msgid "Y Alignment"
+#~ msgstr "Y lerrokadura"
+
+#~ msgid "The y-alignment"
+#~ msgstr "Y ardatzean lerrokatzea"
+
+#~ msgid "The View"
+#~ msgstr "Ikuspegia"
+
+#~ msgid "The view"
+#~ msgstr "Ikuspegia"
+
+#~ msgid "Alignment Mode"
+#~ msgstr "Lerrokatze modua"
+
+#~ msgid "The alignment mode"
+#~ msgstr "Lerrokatze modua"
+
+#~ msgid "The window type"
+#~ msgstr "Leiho mota"
+
+#~ msgid "Size"
+#~ msgstr "Tamaina"
+
+#~ msgid "The size"
+#~ msgstr "Tamaina"
+
+#~ msgid "Pixbuf"
+#~ msgstr "Pixbuf"
+
+#~ msgid "The pixbuf"
+#~ msgstr "Pixelen bufferra"
+
+#~ msgid "Stock Id"
+#~ msgstr "Bildumaren IDa"
+
+#~ msgid "The stock id"
+#~ msgstr "Bildumaren identifikatzailea"
+
+#~ msgid "Icon Name"
+#~ msgstr "Ikonoaren izena"
+
+#~ msgid "The icon name"
+#~ msgstr "Ikonoaren izena"
+
+#~ msgid "GIcon"
+#~ msgstr "GIcon"
+
+#~ msgid "The gicon"
+#~ msgstr "Gicon objketua"
+
+#~ msgid "The markup"
+#~ msgstr "Marka"
+
+#~ msgid "The text"
+#~ msgstr "Testua"
+
+#~ msgid "Language id"
+#~ msgstr "Hizkuntzaren IDa"
+
+#~ msgid "Language name"
+#~ msgstr "Hizkuntzaren izena"
+
+#~ msgid "Language section"
+#~ msgstr "Hizkuntzaren atala"
+
+#~ msgid "Hidden"
+#~ msgstr "Ezkutatua"
+
+#~ msgid "Whether the language should be hidden from the user"
+#~ msgstr "Hizkuntza erabiltzaileari ezkutatu behar zaion ala ez"
+
+#~ msgid "Language specification directories"
+#~ msgstr "Hizkuntzen espezifikazioen direktorioak"
+
+#~ msgid ""
+#~ "List of directories where the language specification files (.lang) are "
+#~ "located"
+#~ msgstr ""
+#~ "Direktorioen zerrenda, hizkuntzen espezifikazioen fitxategien (.lang) "
+#~ "kokapena"
+
+#~ msgid "Language ids"
+#~ msgstr "Hizkuntzaren IDak"
+
+#~ msgid "List of the ids of the available languages"
+#~ msgstr "Hizkuntza erabilgarrien IDen zerrenda"
+
+#~ msgid "Background"
+#~ msgstr "Atzeko planoa"
+
+#~ msgid "The background"
+#~ msgstr "Atzeko planoa"
+
+#~ msgid "The GIcon"
+#~ msgstr "GIcon"
+
+#~ msgid "category"
+#~ msgstr "kategoria"
+
+#~ msgid "The mark category"
+#~ msgstr "Kategoriaren marka"
+
+#~ msgid "Source Buffer"
+#~ msgstr "Iturburuko bufferra"
+
+#~ msgid "The GtkSourceBuffer object to print"
+#~ msgstr "GtkSourceBuffer objektua inprimatzeko"
+
+#~ msgid "Tab Width"
+#~ msgstr "Tabuladorearen zabalera"
+
+#~ msgid "Width of a tab character expressed in spaces"
+#~ msgstr "Tabuladorearen karaktereen zabalera (zuriunetan)"
+
+#~ msgid "Wrap Mode"
+#~ msgstr "Itzulbiratze-modua"
+
+#~ msgid ""
+#~ "Whether to wrap lines never, at word boundaries, or at character "
+#~ "boundaries."
+#~ msgstr ""
+#~ "Lerroak inoiz ez itzulbiratu, hitzen mugei edo karaktereen mugei "
+#~ "itzulbiratu behar den adierazten du."
+
+#~ msgid "Whether to print the document with highlighted syntax"
+#~ msgstr "Nabarmendutako sintaxiarekin dokumentua inprimatuko den ala ez"
+
+#~ msgid "Print Line Numbers"
+#~ msgstr "Inprimatu lerro-zenbakiak"
+
+#~ msgid "Interval of printed line numbers (0 means no numbers)"
+#~ msgstr "Lerro-zenbakiak inprimatzeko bitartea (0 zenbakirik ez)"
+
+#~ msgid "Print Header"
+#~ msgstr "Inprimatu goiburua"
+
+#~ msgid "Whether to print a header in each page"
+#~ msgstr "Orrialde bakoitzean goiburua inprimatuko den ala ez"
+
+#~ msgid "Print Footer"
+#~ msgstr "Inprimatu orri-oina"
+
+#~ msgid "Whether to print a footer in each page"
+#~ msgstr "Orrialde bakoitzean orri-oina inprimatuko den ala ez"
+
+#~ msgid "Body Font Name"
+#~ msgstr "Gorputzaren letra-tipoa"
+
+#~ msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
+#~ msgstr ""
+#~ "Gorputzaren testuan erabiliko den letra-tipoa (adib: \"Monospace 10\")"
+
+#~ msgid "Line Numbers Font Name"
+#~ msgstr "Lerro-zenbakien letra-tipoa"
+
+#~ msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
+#~ msgstr ""
+#~ "Lerro-zenbakietan erabiliko den letra-tipoa (adib: \"Monospace 10\")"
+
+#~ msgid "Header Font Name"
+#~ msgstr "Goiburuaren letra-tipoa"
+
+#~ msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
+#~ msgstr ""
+#~ "Orrialdeko goiburuan erabiliko den letra-tipoa (adib: \"Monospace 10\")"
+
+#~ msgid "Footer Font Name"
+#~ msgstr "Orri-oinaren letra-tipoa"
+
+#~ msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
+#~ msgstr ""
+#~ "Orrialdeko orri-oinean erabiliko den letra-tipoa (adib: \"Monospace 10\")"
+
+#~ msgid "Number of pages"
+#~ msgstr "Orrialde-kopurua"
+
+#~ msgid ""
+#~ "The number of pages in the document (-1 means the document has not been "
+#~ "completely paginated)."
+#~ msgstr ""
+#~ "Dokumentuaren orrialde-kopurua (-1 balioak dokumentua ez dela erabat "
+#~ "orrikatu adierazten du)"
+
+#~ msgid "Buffer"
+#~ msgstr "Bufferra"
+
+#~ msgid "The associated GtkSourceBuffer"
+#~ msgstr "Esleitutako GtkSourceBuffer"
+
+#~ msgid "Settings"
+#~ msgstr "Ezarpenak"
+
+#~ msgid "The associated GtkSourceSearchSettings"
+#~ msgstr "Esleitutako GtkSourceSearchSettings"
+
+#~ msgid "Highlight"
+#~ msgstr "Nabarmendu"
+
+#~ msgid "Highlight search occurrences"
+#~ msgstr "Nabarmendu bilaketaren agerpenak"
+
+#~ msgid "Match style"
+#~ msgstr "Bat etorri estiloarekin"
+
+#~| msgid "The text to search"
+#~ msgid "The text style for matches"
+#~ msgstr "Testuaren estiloa bat etortzeko"
+
+#~ msgid "Occurrences count"
+#~ msgstr "Agerpenen kopurua"
+
+#~ msgid "Total number of search occurrences"
+#~ msgstr "Bilaketaren agerpenen kopuru osoa"
+
+#~ msgid "Regex error"
+#~ msgstr "Errorea adierazpen erregularrean"
+
+#~ msgid "Regular expression error"
+#~ msgstr "Errorea adierazpen erregularrean"
+
+#~ msgid "Search text"
+#~ msgstr "Bilatu testua"
+
+#~ msgid "The text to search"
+#~ msgstr "Testua bilatzeko"
+
+#~ msgid "Case sensitive"
+#~ msgstr "Maiuskula/minuskula"
+
+#~ msgid "At word boundaries"
+#~ msgstr "Hitzaren mugetan"
+
+#~ msgid "Search at word boundaries"
+#~ msgstr "Bilatu hitzaren mugetan"
+
+#~ msgid "Wrap around"
+#~ msgstr "Itzulbiratu"
+
+#~ msgid "Regex enabled"
+#~ msgstr "Adierazpen erregularra gaituta"
+
+#~ msgid "Whether to search by regular expression"
+#~ msgstr "Adierazpen erregularren arabera bilatzea edo ez"
+
+#~ msgid "Line background"
+#~ msgstr "Lerroaren atzeko planoa"
+
+#~ msgid "Line background color"
+#~ msgstr "Lerroaren atzeko planoko kolorea"
+
+#~ msgid "Background color"
+#~ msgstr "Atzeko planoko kolorea"
+
+#~ msgid "Foreground"
+#~ msgstr "Aurreko planoa"
+
+#~ msgid "Foreground color"
+#~ msgstr "Aurreko planoko kolorea"
+
+#~ msgid "Underline"
+#~ msgstr "Azpimarratua"
+
+#~ msgid "Strikethrough"
+#~ msgstr "Marratua"
+
+#~ msgid "Scale"
+#~ msgstr "Eskala"
+
+#~ msgid "Text scale factor"
+#~ msgstr "Testuaren eskala-faktorea"
+
+#~ msgid "Line background set"
+#~ msgstr "Lerroaren atzeko planoaren ezarpena"
+
+#~ msgid "Whether line background color is set"
+#~ msgstr "Lerroaren atzeko planoaren kolorea ezarrita dagoen ala ez"
+
+#~ msgid "Foreground set"
+#~ msgstr "Aurreko planoaren ezarpena"
+
+#~ msgid "Whether foreground color is set"
+#~ msgstr "Aurreko planoaren kolorea ezarrita dagoen ala ez"
+
+#~ msgid "Background set"
+#~ msgstr "Atzeko planoaren ezarpena"
+
+#~ msgid "Whether background color is set"
+#~ msgstr "Atzeko planoaren kolorea ezarrita dagoen ala ez"
+
+#~ msgid "Bold set"
+#~ msgstr "Lodiaren ezarpena"
+
+#~ msgid "Whether bold attribute is set"
+#~ msgstr "Lodia atributua ezarrita dagoen ala ez"
+
+#~ msgid "Italic set"
+#~ msgstr "Etzanaren ezarpena"
+
+#~ msgid "Whether italic attribute is set"
+#~ msgstr "Etzana atributua ezarrita dagoen ala ez"
+
+#~ msgid "Underline set"
+#~ msgstr "Azpimarraren ezarpena"
+
+#~ msgid "Whether underline attribute is set"
+#~ msgstr "Azpimarra atributua ezarrita dagoen ala ez"
+
+#~ msgid "Strikethrough set"
+#~ msgstr "Marratuaren ezarpena"
+
+#~ msgid "Whether strikethrough attribute is set"
+#~ msgstr "Marratua atributua ezarrita dagoen ala ez"
+
+#~ msgid "Scale set"
+#~ msgstr "Eskala ezarrita"
+
+#~ msgid "Whether scale attribute is set"
+#~ msgstr "Eskala atributua ezarrita dagoen ala ez"
+
+#~ msgid "Style scheme id"
+#~ msgstr "Estilo-eskemaren IDa"
+
+#~ msgid "Style scheme name"
+#~ msgstr "Estilo-eskemaren izena"
+
+#~ msgid "Style scheme description"
+#~ msgstr "Estilo-eskemaren azalpena"
+
+#~ msgid "Style scheme filename"
+#~ msgstr "Estilo-eskemaren fitxategia"
+
+#~ msgid "Style scheme search path"
+#~ msgstr "Estilo-eskema bilatzeko bide-izena"
+
+#~ msgid "List of directories and files where the style schemes are located"
+#~ msgstr ""
+#~ "Estilo-eskemak kokatuta dauden direktorioen eta fitxategien zerrenda"
+
+#~ msgid "Scheme ids"
+#~ msgstr "Eskemen IDak"
+
+#~ msgid "List of the ids of the available style schemes"
+#~ msgstr "Estilo-eskema erabilgarrien IDen zerrenda"
+
+#~ msgid "The completion object associated with the view"
+#~ msgstr "Ikuspegiarekin esleitutako osaketaren objektua"
+
+#~ msgid "Show Line Numbers"
+#~ msgstr "Erakutsi lerro-zenbakiak"
+
+#~ msgid "Whether to display line numbers"
+#~ msgstr "Lerro-zenbakiak bistaratuko diren ala ez"
+
+#~ msgid "Show Line Marks"
+#~ msgstr "Erakutsi lerro-markak"
+
+#~ msgid "Whether to display line mark pixbufs"
+#~ msgstr "Lerroen pixel-bufferren markak erakutsiko diren ala ez"
+
+#~ msgid "Indent Width"
+#~ msgstr "Koskaren zabalera"
+
+#~ msgid "Number of spaces to use for each step of indent"
+#~ msgstr "Koska bakoitzak erabiliko duen zuriune-kopurua"
+
+#~ msgid "Auto Indentation"
+#~ msgstr "Auto-koskatzea"
+
+#~ msgid "Whether to enable auto indentation"
+#~ msgstr "Automatikoki koskatzea gaituko den ala ez"
+
+#~ msgid "Insert Spaces Instead of Tabs"
+#~ msgstr "Txertatu zuriuneak tabuladoreen ordez"
+
+#~ msgid "Whether to insert spaces instead of tabs"
+#~ msgstr "Tabuladoreen ordez zuriuneak txertatuko diren ala ez"
+
+#~ msgid "Show Right Margin"
+#~ msgstr "Erakutsi eskuineko marjina"
+
+#~ msgid "Whether to display the right margin"
+#~ msgstr "Eskuineko marjina erakutsiko den ala ez"
+
+#~ msgid "Right Margin Position"
+#~ msgstr "Eskuineko marjinaren posizioa"
+
+#~ msgid "Position of the right margin"
+#~ msgstr "Eskuineko marjinaren posizioa"
+
+#~ msgid "Smart Home/End"
+#~ msgstr "Hasiera/Amaiera azkarra"
+
+#~ msgid ""
+#~ "HOME and END keys move to first/last non whitespace characters on line "
+#~ "before going to the start/end of the line"
+#~ msgstr ""
+#~ "HASIERA eta AMAIERA teklek kurtsorea lerroaren lehenengo/azkenengo "
+#~ "zuriuneak ez diren karakterera mugituko dute, lerroaren hasiera/amaierara "
+#~ "joan baino lehen."
+
+#~ msgid "Highlight current line"
+#~ msgstr "Nabarmendu uneko lerroa"
+
+#~ msgid "Whether to highlight the current line"
+#~ msgstr "Uneko lerroa nabarmenduko den ala ez"
+
+#~ msgid "Indent on tab"
+#~ msgstr "Koskatu tabuladorearekin"
+
+#~ msgid "Whether to indent the selected text when the tab key is pressed"
+#~ msgstr "Tabuladorea sakatzean hautatutako testua koskatuko den ala ez"
+
+#~ msgid "Draw Spaces"
+#~ msgstr "Marraztu tarteak"
+
+#~ msgid "Set if and how the spaces should be visualized"
+#~ msgstr "Ezarri tarteak erakutsiko eta nola bistaratuko diren"
+
+#~ msgid "The text buffer to add undo support on"
+#~ msgstr "Testuaren bufferra 'desegin' euskarria gehitzeko"
 
 #~ msgid "Cobol"
 #~ msgstr "Cobol"
