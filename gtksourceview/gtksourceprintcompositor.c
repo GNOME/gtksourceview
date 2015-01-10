@@ -2696,7 +2696,7 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
 					double layout_line_height;
 
 					pango_layout_iter_get_line_extents (layout_iter, NULL, &logical_rect);
-					layout_line_height = logical_rect.height / PANGO_SCALE;
+					layout_line_height = (double) logical_rect.height / PANGO_SCALE;
 
 					if (is_first_line &&
 					    line_is_numbered (compositor, line_number))
