@@ -115,7 +115,7 @@ gutter_renderer_pixbuf_draw (GtkSourceGutterRenderer      *renderer,
 	}
 
 	width = gdk_pixbuf_get_width (pixbuf);
-	height = gdk_pixbuf_get_width (pixbuf);
+	height = gdk_pixbuf_get_height (pixbuf);
 
 	gtk_source_gutter_renderer_get_alignment (renderer,
 	                                          &xalign,
