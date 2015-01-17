@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-01 16:09+0200\n"
-"PO-Revision-Date: 2015-01-01 16:13+0200\n"
+"POT-Creation-Date: 2015-01-18 00:21+0200\n"
+"PO-Revision-Date: 2015-01-18 00:21+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -79,11 +79,11 @@ msgstr "הכול"
 
 #: ../data/glade/gtksourceview.xml.in.h:15
 msgid "GtkSourceStyleSchemeChooserWidget"
-msgstr ""
+msgstr "GtkSourceStyleSchemeChooserWidget"
 
 #: ../data/glade/gtksourceview.xml.in.h:16
 msgid "GtkSourceStyleSchemeChooserButton"
-msgstr ""
+msgstr "GtkSourceStyleSchemeChooserButton"
 
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1
@@ -166,7 +166,8 @@ msgstr "ActionScript"
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
 #: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
 #: ../data/language-specs/texinfo.lang.h:3
-#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/thrift.lang.h:3 ../data/language-specs/vala.lang.h:3
+#: ../data/language-specs/vbnet.lang.h:3
 #: ../data/language-specs/verilog.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
 #: ../data/language-specs/yaml.lang.h:4
@@ -234,7 +235,8 @@ msgstr "שגיאות"
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
 #: ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/thrift.lang.h:6 ../data/language-specs/vala.lang.h:6
+#: ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:4
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
 msgid "String"
@@ -314,7 +316,8 @@ msgstr "Scope Declaration"
 #: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:5
 #: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/thrift.lang.h:5 ../data/language-specs/vala.lang.h:7
+#: ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
@@ -404,7 +407,8 @@ msgstr "Future Reserved Keywords"
 #: ../data/language-specs/protobuf.lang.h:3
 #: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/thrift.lang.h:4 ../data/language-specs/vala.lang.h:5
+#: ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "סוג הנתון"
 
@@ -2682,6 +2686,14 @@ msgstr "File Attributes"
 msgid "Generated Content"
 msgstr "Generated Content"
 
+#: ../data/language-specs/thrift.lang.h:1
+msgid "Sources"
+msgstr "מקורות"
+
+#: ../data/language-specs/thrift.lang.h:2
+msgid "Thrift"
+msgstr "חסכון"
+
 #: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
 msgstr "Vala"
@@ -3121,32 +3133,32 @@ msgid "_Select"
 msgstr "ב_חירה"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1302
+#: ../gtksourceview/gtksourceview.c:1369
 msgid "_Redo"
 msgstr "ח_זרה"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1313
+#: ../gtksourceview/gtksourceview.c:1380
 msgid "_Undo"
 msgstr "_ביטול"
 
-#: ../gtksourceview/gtksourceview.c:1331
+#: ../gtksourceview/gtksourceview.c:1398
 msgid "All _Upper Case"
 msgstr "הכול לאותיות _רישיות"
 
-#: ../gtksourceview/gtksourceview.c:1341
+#: ../gtksourceview/gtksourceview.c:1408
 msgid "All _Lower Case"
 msgstr "הכול לאותיות _קטנות"
 
-#: ../gtksourceview/gtksourceview.c:1351
+#: ../gtksourceview/gtksourceview.c:1418
 msgid "_Invert Case"
 msgstr "_החלפה בין אותיות רישיות וקטנות"
 
-#: ../gtksourceview/gtksourceview.c:1361
+#: ../gtksourceview/gtksourceview.c:1428
 msgid "_Title Case"
 msgstr "_אות רישית בראש מילה"
 
-#: ../gtksourceview/gtksourceview.c:1371
+#: ../gtksourceview/gtksourceview.c:1438
 msgid "C_hange Case"
 msgstr "_שינוי גודל האותיות"
 
