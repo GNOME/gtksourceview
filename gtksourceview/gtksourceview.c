@@ -131,6 +131,7 @@ enum {
 	MOVE_LINES,
 	MOVE_WORDS,
 	SMART_HOME_END,
+	MOVE_TO_MATCHING_BRACKET,
 	LAST_SIGNAL
 };
 
@@ -309,7 +310,42 @@ gtk_source_view_constructed (GObject *object)
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->constructed (object);
 }
 
-/* Private functions. */
+/* we have to do it this way since we do not have any more vfunc slots */
+static void
+move_to_matching_bracket_marshal (GClosure     *closure,
+                                  GValue       *return_value,
+                                  guint         n_param_values,
+                                  const GValue *param_values,
+                                  gpointer      invocation_hint,
+                                  gpointer      marshal_data)
+{
+	GtkSourceView *view;
+	gboolean extend_selection;
+	GtkTextBuffer *buffer;
+	GtkTextIter iter;
+
+	view = g_value_get_object (param_values + 0);
+	extend_selection = g_value_get_boolean (param_values + 1);
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	gtk_text_buffer_get_iter_at_mark (buffer, &iter, gtk_text_buffer_get_insert (buffer));
+
+	if (_gtk_source_buffer_find_bracket_match (GTK_SOURCE_BUFFER (buffer),
+						   &iter) == GTK_SOURCE_BRACKET_MATCH_FOUND)
+	{
+		if (extend_selection)
+		{
+			gtk_text_buffer_move_mark_by_name (buffer,
+			                                   "insert",
+			                                   &iter);
+		}
+		else
+		{
+			gtk_text_buffer_place_cursor (buffer, &iter);
+		}
+	}
+}
+
 static void
 gtk_source_view_class_init (GtkSourceViewClass *klass)
 {
@@ -317,6 +353,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	GtkTextViewClass *textview_class;
 	GtkBindingSet    *binding_set;
 	GtkWidgetClass   *widget_class;
+	GClosure         *closure;
+	GType             move_to_matching_bracket_params[1];
 
 	object_class 	 = G_OBJECT_CLASS (klass);
 	textview_class 	 = GTK_TEXT_VIEW_CLASS (klass);
@@ -640,6 +678,29 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		              GTK_TYPE_TEXT_ITER,
 		              G_TYPE_INT);
 
+	closure = g_closure_new_simple (sizeof (GClosure), NULL);
+	g_closure_set_marshal (closure, move_to_matching_bracket_marshal);
+	move_to_matching_bracket_params[0] = G_TYPE_BOOLEAN;
+
+	/**
+	 * GtkSourceView::move-to-matching-bracket:
+	 * @view: the #GtkSourceView
+	 * @extend_selection: %TRUE if the move should extend the selection
+	 *
+	 * Keybinding signal to move the cursor to the matching bracket.
+	 *
+	 * Since: 3.16
+	 */
+	signals[MOVE_TO_MATCHING_BRACKET] =
+		g_signal_newv ("move-to-matching-bracket",
+		               G_TYPE_FROM_CLASS (klass),
+		               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		               closure,
+		               NULL, NULL, NULL,
+		               G_TYPE_NONE,
+		               1,
+		               move_to_matching_bracket_params);
+
 	binding_set = gtk_binding_set_by_class (klass);
 
 	gtk_binding_entry_add_signal (binding_set,
@@ -788,6 +849,12 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 				      "move_viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, 1);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KEY_percent,
+				      GDK_CONTROL_MASK,
+				      "move_to_matching_bracket", 1,
+				      G_TYPE_BOOLEAN, FALSE);
 }
 
 static GObject *

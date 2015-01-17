@@ -226,10 +226,6 @@ static void 	 gtk_source_buffer_real_apply_tag	(GtkTextBuffer		 *buffer,
 
 static void 	 gtk_source_buffer_real_mark_deleted	(GtkTextBuffer		 *buffer,
 							 GtkTextMark		 *mark);
-static gboolean	 gtk_source_buffer_find_bracket_match_with_limit (GtkSourceBuffer *buffer,
-								  GtkTextIter     *orig,
-								  GtkSourceBracketMatchType *result,
-								  gint             max_chars);
 
 static void	 gtk_source_buffer_real_undo		(GtkSourceBuffer	 *buffer);
 static void	 gtk_source_buffer_real_redo		(GtkSourceBuffer	 *buffer);
@@ -909,10 +905,9 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 
 	start = *iter;
 	previous_state = source_buffer->priv->bracket_match;
-	if (!gtk_source_buffer_find_bracket_match_with_limit (source_buffer,
-	                                                      &start,
-	                                                      &source_buffer->priv->bracket_match,
-	                                                      MAX_CHARS_BEFORE_FINDING_A_MATCH))
+	source_buffer->priv->bracket_match = _gtk_source_buffer_find_bracket_match (source_buffer, &start);
+
+	if (source_buffer->priv->bracket_match != GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
 		/* don't emit the signal at all if chars at previous and current
 		   positions are nonbrackets. */
@@ -1154,11 +1149,10 @@ get_context_class_mask (GtkSourceBuffer *buffer,
 	return ret;
 }
 
-static gboolean
-gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer           *buffer,
-                                           GtkTextIter               *orig,
-					   GtkSourceBracketMatchType *result,
-                                           gint                       max_chars)
+/* note that we only look MAX_CHARS_BEFORE_FINDING_A_MATCH at the most */
+static GtkSourceBracketMatchType
+gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
+                                           GtkTextIter     *orig)
 {
 	GtkTextIter iter;
 
@@ -1184,8 +1178,7 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer           *buffer,
 
 	if (addition == 0)
 	{
-		*result = GTK_SOURCE_BRACKET_MATCH_NONE;
-		return FALSE;
+		return GTK_SOURCE_BRACKET_MATCH_NONE;
 	}
 
 	counter = 0;
@@ -1225,54 +1218,52 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer           *buffer,
 		}
 	}
 	while (!gtk_text_iter_is_end (&iter) && !gtk_text_iter_is_start (&iter) &&
-		((char_cont < max_chars) || (max_chars < 0)));
+		(char_cont < MAX_CHARS_BEFORE_FINDING_A_MATCH));
 
 	if (found)
 	{
 		*orig = iter;
-		*result = GTK_SOURCE_BRACKET_MATCH_FOUND;
-	}
-	else if (char_cont >= max_chars && max_chars >= 0)
-	{
-		*result = GTK_SOURCE_BRACKET_MATCH_OUT_OF_RANGE;
-	}
-	else
-	{
-		*result = GTK_SOURCE_BRACKET_MATCH_NOT_FOUND;
+		return GTK_SOURCE_BRACKET_MATCH_FOUND;
 	}
 
-	return found;
+	if (char_cont >= MAX_CHARS_BEFORE_FINDING_A_MATCH)
+	{
+		return GTK_SOURCE_BRACKET_MATCH_OUT_OF_RANGE;
+	}
+
+	return GTK_SOURCE_BRACKET_MATCH_NOT_FOUND;
 }
 
 /* Note that we take into account both the character following the cursor and the
  * one preceding it. If there are brackets on both sides the one following the
  * cursor takes precedence.
  */
-static gboolean
-gtk_source_buffer_find_bracket_match_with_limit (GtkSourceBuffer           *buffer,
-                                                 GtkTextIter               *orig,
-                                                 GtkSourceBracketMatchType *result,
-                                                 gint                       max_chars)
+GtkSourceBracketMatchType
+_gtk_source_buffer_find_bracket_match (GtkSourceBuffer *buffer,
+                                       GtkTextIter     *orig)
 {
-	GtkTextIter iter;
+	GtkSourceBracketMatchType res;
 
-	if (gtk_source_buffer_find_bracket_match_real (buffer, orig, result, max_chars))
-	{
-		return TRUE;
-	}
+	res = gtk_source_buffer_find_bracket_match_real (buffer, orig);
 
-	iter = *orig;
-	if (!gtk_text_iter_starts_line (&iter) &&
-	    gtk_text_iter_backward_char (&iter))
+	if (res != GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
-		if (gtk_source_buffer_find_bracket_match_real (buffer, &iter, result, max_chars))
+		GtkTextIter iter;
+		iter = *orig;
+
+		if (!gtk_text_iter_starts_line (&iter) &&
+		    gtk_text_iter_backward_char (&iter))
 		{
-			*orig = iter;
-			return TRUE;
+			res = gtk_source_buffer_find_bracket_match_real (buffer, &iter);
+
+			if (res == GTK_SOURCE_BRACKET_MATCH_FOUND)
+			{
+				*orig = iter;
+			}
 		}
 	}
 
-	return FALSE;
+	return res;
 }
 
 /**
