@@ -162,6 +162,13 @@ void		 gtk_source_view_set_indent_on_tab 	(GtkSourceView   *view,
 							 gboolean         enable);
 gboolean	 gtk_source_view_get_indent_on_tab 	(GtkSourceView   *view);
 
+void		 gtk_source_view_indent_lines		(GtkSourceView   *view,
+							 GtkTextIter     *start,
+							 GtkTextIter     *end);
+void		 gtk_source_view_unindent_lines		(GtkSourceView   *view,
+							 GtkTextIter     *start,
+							 GtkTextIter     *end);
+
 void		 gtk_source_view_set_highlight_current_line
 							(GtkSourceView   *view,
 							 gboolean         highlight);

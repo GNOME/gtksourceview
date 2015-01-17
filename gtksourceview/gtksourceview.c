@@ -3080,8 +3080,21 @@ get_indent_string (guint tabs, guint spaces)
 	return str;
 }
 
-static void
-indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
+/**
+ * gtk_source_view_indent_lines:
+ * @view: a #GtkSourceView.
+ * @start: #GtkTextIter of the first line to indent
+ * @end: #GtkTextIter of the last line to indent
+ *
+ * Insert one indentation level at the beginning of the
+ * specified lines.
+ *
+ * Since: 3.16
+ */
+void
+gtk_source_view_indent_lines (GtkSourceView *view,
+                              GtkTextIter   *start,
+                              GtkTextIter   *end)
 {
 	GtkTextBuffer *buf;
 	gint start_line, end_line;
@@ -3184,8 +3197,21 @@ indent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
 					    gtk_text_buffer_get_insert (buf));
 }
 
-static void
-unindent_lines (GtkSourceView *view, GtkTextIter *start, GtkTextIter *end)
+/**
+ * gtk_source_view_unindent_lines:
+ * @view: a #GtkSourceView.
+ * @start: #GtkTextIter of the first line to indent
+ * @end: #GtkTextIter of the last line to indent
+ *
+ * Removes one indentation level at the beginning of the
+ * specified lines.
+ *
+ * Since: 3.16
+ */
+void
+gtk_source_view_unindent_lines (GtkSourceView *view,
+                                GtkTextIter   *start,
+                                GtkTextIter   *end)
 {
 	GtkTextBuffer *buf;
 	gint start_line, end_line;
@@ -3713,7 +3739,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			/* shift+tab: always unindent */
 			if (event->state & GDK_SHIFT_MASK)
 			{
-				unindent_lines (view, &s, &e);
+				gtk_source_view_unindent_lines (view, &s, &e);
 				return TRUE;
 			}
 
@@ -3725,7 +3751,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			    ((gtk_text_iter_starts_line (&s) && gtk_text_iter_ends_line (&e)) ||
 			     (gtk_text_iter_get_line (&s) != gtk_text_iter_get_line (&e))))
 			{
-				indent_lines (view, &s, &e);
+				gtk_source_view_indent_lines (view, &s, &e);
 				return TRUE;
 			}
 		}
