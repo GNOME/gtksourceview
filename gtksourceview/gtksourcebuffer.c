@@ -252,7 +252,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 {
 	GObjectClass        *object_class;
 	GtkTextBufferClass  *tb_class;
-	GType                param_types[2];
 
 	object_class 	= G_OBJECT_CLASS (klass);
 	tb_class	= GTK_TEXT_BUFFER_CLASS (klass);
@@ -380,9 +379,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
 							       G_PARAM_STATIC_STRINGS));
 
-	param_types[0] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
-	param_types[1] = GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE;
-
 	/**
 	 * GtkSourceBuffer::highlight-updated:
 	 * @buffer: the buffer that received the signal
@@ -395,12 +391,14 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * updated (e.g. the no-spell-check context class).
 	 */
 	buffer_signals[HIGHLIGHT_UPDATED] =
-	    g_signal_newv ("highlight_updated",
-			   G_OBJECT_CLASS_TYPE (object_class),
-			   G_SIGNAL_RUN_LAST,
-			   NULL, NULL, NULL, NULL,
-			   G_TYPE_NONE,
-			   2, param_types);
+	    g_signal_new_class_handler ("highlight_updated",
+	                                G_OBJECT_CLASS_TYPE (object_class),
+	                                G_SIGNAL_RUN_LAST,
+	                                NULL, NULL, NULL, NULL,
+	                                G_TYPE_NONE,
+	                                2,
+	                                GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
+	                                GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE);
 
 	/**
 	 * GtkSourceBuffer::source-mark-updated:
