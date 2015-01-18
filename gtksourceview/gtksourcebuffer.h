@@ -198,6 +198,10 @@ void			 gtk_source_buffer_change_case				(GtkSourceBuffer        *buffer,
 										 GtkTextIter            *start,
 										 GtkTextIter            *end);
 
+void			 gtk_source_buffer_join_lines				(GtkSourceBuffer        *buffer,
+										 GtkTextIter            *start,
+										 GtkTextIter            *end);
+
 GtkSourceUndoManager	*gtk_source_buffer_get_undo_manager			(GtkSourceBuffer	*buffer);
 
 void			 gtk_source_buffer_set_undo_manager			(GtkSourceBuffer	*buffer,

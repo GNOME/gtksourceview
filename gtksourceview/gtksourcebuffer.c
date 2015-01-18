@@ -2506,6 +2506,102 @@ gtk_source_buffer_change_case (GtkSourceBuffer         *buffer,
 	g_free (new_text);
 }
 
+/* move to the end of the line excluding trailing spaces */
+static void
+move_to_line_text_end(GtkTextIter *iter)
+{
+	gint line;
+
+	line = gtk_text_iter_get_line (iter);
+
+	if (!gtk_text_iter_ends_line (iter))
+	{
+		gtk_text_iter_forward_to_line_end (iter);
+	}
+
+	while (gtk_text_iter_backward_char (iter) &&
+	       (gtk_text_iter_get_line (iter) == line))
+	{
+		gunichar ch;
+
+		ch = gtk_text_iter_get_char (iter);
+		if (!g_unichar_isspace (ch))
+		{
+			break;
+		}
+	}
+
+	gtk_text_iter_forward_char (iter);
+}
+
+/**
+ * gtk_source_buffer_join_lines:
+ * @buffer: a #GtkSourceBuffer.
+ * @start: a #GtkTextIter.
+ * @end: a #GtkTextIter.
+ *
+ * Joins the lines of text between the specified iterators.
+ *
+ * Since: 3.16
+ **/
+void
+gtk_source_buffer_join_lines (GtkSourceBuffer *buffer,
+                              GtkTextIter     *start,
+                              GtkTextIter     *end)
+{
+	GtkTextBuffer *text_buffer;
+	GtkTextMark *end_mark;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (start != NULL);
+	g_return_if_fail (end != NULL);
+
+	if (gtk_text_iter_get_line (start) == gtk_text_iter_get_line (end))
+	{
+		return;
+	}
+
+	gtk_text_iter_order (start, end);
+
+	text_buffer = GTK_TEXT_BUFFER (buffer);
+	end_mark = gtk_text_buffer_create_mark (text_buffer, NULL, end, FALSE);
+
+	gtk_text_buffer_begin_user_action (text_buffer);
+
+	move_to_line_text_end (start);
+
+	while (gtk_text_iter_compare (start, end) < 0)
+	{
+		GtkTextIter iter;
+		gunichar ch;
+
+		iter = *start;
+
+		do
+		{
+			ch = gtk_text_iter_get_char (&iter);
+			if (!g_unichar_isspace (ch))
+			{
+				break;
+			}
+		} while (gtk_text_iter_forward_char (&iter));
+
+		if (!gtk_text_iter_is_end (&iter))
+		{
+			gtk_text_buffer_delete (text_buffer, start, &iter);
+			gtk_text_buffer_insert (text_buffer, start, " ", 1);
+		}
+
+		move_to_line_text_end (start);
+
+		gtk_text_buffer_get_iter_at_mark (text_buffer, end, end_mark);
+	}
+
+	gtk_text_buffer_end_user_action (text_buffer);
+
+	gtk_text_buffer_delete_mark (text_buffer, end_mark);
+}
+
 /**
  * gtk_source_buffer_set_undo_manager:
  * @buffer: a #GtkSourceBuffer.
