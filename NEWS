@@ -1,3 +1,17 @@
+News in 3.15.3
+--------------
+* Better word boundaries for word selection (double-click) and word movements
+  (ctrl+arrow, shift+ctrl+arrow, ctrl+backspace, etc).
+* Add style scheme chooser widgets: GtkSourceStyleSchemeChooser (interface),
+  GtkSourceStyleSchemeChooserButton and GtkSourceStyleSchemeChooserWidget.
+* Add gtk_source_view_indent_lines() and gtk_source_view_unindent_lines().
+* Add the GtkSourceView::move-to-matching-bracket action signal.
+* Add gtk_source_buffer_join_lines().
+* Gutter: use current line background color for current line.
+* Add syntax highlighting support for Apache Thrift.
+* Various other improvements and bug fixes
+* Translation updates
+
 News in 3.15.2
 --------------
 * Undo/Redo: restore selection
