@@ -49,11 +49,13 @@
 
     <context id="elements" once-only="true" style-ref="element">
       <suffix>\b(?!\s*=)</suffix>
+      <keyword>analyze-string</keyword>
       <keyword>apply-imports</keyword>
       <keyword>apply-templates</keyword>
       <keyword>attribute-set</keyword>
       <keyword>attribute</keyword>
       <keyword>call-template</keyword>
+      <keyword>character-map</keyword>
       <keyword>choose</keyword>
       <keyword>comment</keyword>
       <keyword>copy-of</keyword>
@@ -62,20 +64,31 @@
       <keyword>document</keyword>
       <keyword>element</keyword>
       <keyword>fallback</keyword>
+      <keyword>for-each-group</keyword>
       <keyword>for-each</keyword>
+      <keyword>function</keyword>
       <keyword>if</keyword>
+      <keyword>import-schema</keyword>
       <keyword>import</keyword>
       <keyword>include</keyword>
       <keyword>key</keyword>
+      <keyword>matching-substring</keyword>
       <keyword>message</keyword>
       <keyword>namespace-alias</keyword>
+      <keyword>namespace</keyword>
       <keyword>number</keyword>
+      <keyword>next-match</keyword>
+      <keyword>non-matching-substring</keyword>
       <keyword>otherwise</keyword>
+      <keyword>output-character</keyword>
       <keyword>output</keyword>
       <keyword>param</keyword>
+      <keyword>perform-sort</keyword>
       <keyword>preserve-space</keyword>
       <keyword>processing-instruction</keyword>
+      <keyword>result-document</keyword>
       <keyword>script</keyword>
+      <keyword>sequence</keyword>
       <keyword>sort</keyword>
       <keyword>strip-space</keyword>
       <keyword>stylesheet</keyword>
