@@ -54,6 +54,7 @@
 #define STYLE_LINE_NUMBERS		"line-numbers"
 #define STYLE_RIGHT_MARGIN		"right-margin"
 #define STYLE_DRAW_SPACES		"draw-spaces"
+#define STYLE_BACKGROUND_PATTERN	"background-pattern"
 
 #define STYLE_SCHEME_VERSION		"1.0"
 
@@ -630,6 +631,23 @@ _gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
 	g_return_val_if_fail (color != NULL, FALSE);
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE);
+
+	return get_color (style, FALSE, color);
+}
+
+/*
+ * Returns TRUE if the style for background-pattern-color is set in the scheme
+ */
+gboolean
+_gtk_source_style_scheme_get_background_pattern_color (GtkSourceStyleScheme *scheme,
+                                                       GdkRGBA              *color)
+{
+	GtkSourceStyle *style;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
+	g_return_val_if_fail (color != NULL, FALSE);
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_BACKGROUND_PATTERN);
 
 	return get_color (style, FALSE, color);
 }

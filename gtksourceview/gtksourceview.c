@@ -150,7 +150,8 @@ enum {
 	PROP_SMART_HOME_END,
 	PROP_HIGHLIGHT_CURRENT_LINE,
 	PROP_INDENT_ON_TAB,
-	PROP_DRAW_SPACES
+	PROP_DRAW_SPACES,
+	PROP_BACKGROUND_PATTERN
 };
 
 struct _GtkSourceViewPrivate
@@ -181,6 +182,8 @@ struct _GtkSourceViewPrivate
 	guint		 tab_width;
 	gint		 indent_width;
 	GtkSourceSmartHomeEndType smart_home_end;
+	GtkSourceBackgroundPatternType background_pattern;
+	GdkRGBA background_pattern_color;
 
 	guint            tabs_set : 1;
 	guint            show_line_numbers : 1;
@@ -192,6 +195,7 @@ struct _GtkSourceViewPrivate
 	guint            show_right_margin  : 1;
 	guint            style_scheme_applied : 1;
 	guint            current_line_color_set : 1;
+	guint            background_pattern_color_set : 1;
 };
 
 typedef struct _MarkCategory MarkCategory;
@@ -538,6 +542,22 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							     GTK_SOURCE_TYPE_DRAW_SPACES_FLAGS,
 							     0,
 							     G_PARAM_READWRITE));
+
+	/**
+	 * GtkSourceView:background-pattern:
+	 *
+	 * Set to draw a specific background pattern on the view.
+	 *
+	 * Since: 3.16
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_BACKGROUND_PATTERN,
+					 g_param_spec_enum ("background-pattern",
+							    "Background pattern",
+							    "Set to draw a specific background pattern on the view",
+							    GTK_SOURCE_TYPE_BACKGROUND_PATTERN_TYPE,
+							    0,
+							    G_PARAM_READWRITE));
 
 	signals [UNDO] =
 		g_signal_new ("undo",
@@ -942,6 +962,11 @@ gtk_source_view_set_property (GObject      *object,
 							 g_value_get_flags (value));
 			break;
 
+		case PROP_BACKGROUND_PATTERN:
+			gtk_source_view_set_background_pattern (view,
+			                                        g_value_get_enum (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -1024,6 +1049,11 @@ gtk_source_view_get_property (GObject    *object,
 		case PROP_DRAW_SPACES:
 			g_value_set_flags (value,
 					   gtk_source_view_get_draw_spaces (view));
+			break;
+
+		case PROP_BACKGROUND_PATTERN:
+			g_value_set_enum (value,
+					  gtk_source_view_get_background_pattern (view));
 			break;
 
 		default:
@@ -2667,6 +2697,58 @@ gtk_source_view_draw_layer (GtkTextView *text_view,
 			}
 		}
 
+		if (view->priv->background_pattern == GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID &&
+		    view->priv->background_pattern_color_set)
+		{
+			GdkRectangle clip;
+			GdkRectangle vis;
+			gdouble x;
+			gdouble y;
+			PangoContext *context;
+			PangoLayout *layout;
+			int grid_width = 16;
+			int grid_height = 16;
+
+			context = gtk_widget_get_pango_context (GTK_WIDGET (view));
+			layout = pango_layout_new (context);
+			pango_layout_set_text (layout, "X", 1);
+			pango_layout_get_pixel_size (layout, &grid_width, &grid_height);
+			g_object_unref (layout);
+
+			/* each character becomes 2 stacked boxes. */
+			grid_height /= 2;
+
+			cairo_save (cr);
+			cairo_set_line_width (cr, 1.0);
+			gdk_cairo_get_clip_rectangle (cr, &clip);
+			gtk_text_view_get_visible_rect (text_view, &vis);
+
+			gdk_cairo_set_source_rgba (cr, &view->priv->background_pattern_color);
+
+			/*
+			 * The following constants come from gtktextview.c pixel cache
+			 * settings. Sadly, they are not exposed in the public API,
+			 * just keep them in sync here. 64 for X, height/2 for Y.
+			 */
+			x = (grid_width - (vis.x % grid_width)) - (64 / grid_width * grid_width) - grid_width + 2;
+			y = (grid_height - (vis.y % grid_height)) - (vis.height / 2 / grid_height * grid_height) - grid_height;
+
+			for (; x <= clip.x + clip.width; x += grid_width)
+			{
+				cairo_move_to (cr, x + .5, clip.y - .5);
+				cairo_line_to (cr, x + .5, clip.y + clip.height - .5);
+			}
+
+			for (; y <= clip.y + clip.height; y += grid_height)
+			{
+				cairo_move_to (cr, clip.x + .5, y - .5);
+				cairo_line_to (cr, clip.x + clip.width + .5, y - .5);
+			}
+
+			cairo_stroke (cr);
+			cairo_restore (cr);
+		}
+
 		gtk_source_view_paint_marks_background (view, cr);
 	}
 
@@ -4294,6 +4376,17 @@ gtk_source_view_style_updated (GtkWidget *widget)
 }
 
 static void
+update_background_pattern_color (GtkSourceView *view)
+{
+	if (view->priv->style_scheme)
+	{
+		view->priv->background_pattern_color_set =
+			_gtk_source_style_scheme_get_background_pattern_color (view->priv->style_scheme,
+			                                                       &view->priv->background_pattern_color);
+	}
+}
+
+static void
 update_current_line_color (GtkSourceView *view)
 {
 	if (view->priv->style_scheme)
@@ -4445,6 +4538,7 @@ gtk_source_view_realize (GtkWidget *widget)
 		view->priv->style_scheme_applied = TRUE;
 	}
 
+	update_background_pattern_color (view);
 	update_current_line_color (view);
 	update_right_margin_colors (view);
 	update_spaces_color (view);
@@ -4484,6 +4578,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 		if (gtk_widget_get_realized (GTK_WIDGET (view)))
 		{
 			_gtk_source_style_scheme_apply (new_scheme, GTK_WIDGET (view));
+			update_background_pattern_color (view);
 			update_current_line_color (view);
 			update_right_margin_colors (view);
 			update_spaces_color (view);
@@ -4645,4 +4740,49 @@ gtk_source_view_get_mark_attributes (GtkSourceView           *view,
 		return mark_category->attributes;
 	}
 	return NULL;
+}
+
+/**
+ * gtk_source_view_set_background_pattern:
+ * @view: a #GtkSourceView.
+ * @background_pattern: #GtkSourceBackgroundPatternType specifing how
+ * the background pattern should be be displayed.
+ *
+ * Set if and how the background pattern should be displayed.
+ *
+ * Since: 3.16
+ **/
+void
+gtk_source_view_set_background_pattern (GtkSourceView                  *view,
+                                        GtkSourceBackgroundPatternType  background_pattern)
+{
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+
+	if (view->priv->background_pattern == background_pattern)
+		return;
+
+	view->priv->background_pattern = background_pattern;
+
+	gtk_widget_queue_draw (GTK_WIDGET (view));
+
+	g_object_notify (G_OBJECT (view), "background-pattern");
+}
+
+/**
+ * gtk_source_view_get_background_pattern:
+ * @view: a #GtkSourceView
+ *
+ * Returns the #GtkSourceBackgroundPatternType specifying if and how
+ * the background pattern should be displayed for this @view.
+ *
+ * Returns: the #GtkSourceBackgroundPatternType.
+ *
+ * Since: 3.16
+ **/
+GtkSourceBackgroundPatternType
+gtk_source_view_get_background_pattern (GtkSourceView *view)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), 0);
+
+	return view->priv->background_pattern;
 }

@@ -56,6 +56,7 @@ struct _TestWidgetPrivate
 	GtkSpinButton *indent_width_spinbutton;
 	GtkLabel *cursor_position_info;
 	GtkSourceStyleSchemeChooserButton *chooser_button;
+	GtkComboBoxText *background_pattern;
 };
 
 GType test_widget_get_type (void);
@@ -917,6 +918,26 @@ add_source_mark_attributes (GtkSourceView *view)
 }
 
 static void
+on_background_pattern_changed (GtkComboBox *combobox,
+                               TestWidget  *self)
+{
+	gchar *text;
+
+	text = gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT (combobox));
+
+	if (g_str_equal (text, "Grid"))
+	{
+		gtk_source_view_set_background_pattern (self->priv->view,
+		                                        GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID);
+	}
+	else
+	{
+		gtk_source_view_set_background_pattern (self->priv->view,
+		                                        GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE);
+	}
+}
+
+static void
 test_widget_dispose (GObject *object)
 {
 	TestWidget *self = TEST_WIDGET (object);
@@ -961,6 +982,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_spinbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, cursor_position_info);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, chooser_button);
+	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, background_pattern);
 }
 
 static void
@@ -1012,6 +1034,11 @@ test_widget_init (TestWidget *self)
 	                        self->priv->buffer,
 	                        "style-scheme",
 	                        G_BINDING_SYNC_CREATE);
+
+	g_signal_connect (self->priv->background_pattern,
+	                  "changed",
+	                  G_CALLBACK (on_background_pattern_changed),
+	                  self);
 
 	open_file (self, TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
 }

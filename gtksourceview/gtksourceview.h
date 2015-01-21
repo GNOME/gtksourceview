@@ -216,5 +216,10 @@ GtkSourceCompletion *
 GtkSourceGutter *gtk_source_view_get_gutter		(GtkSourceView     *view,
                                                          GtkTextWindowType  window_type);
 
+void		 gtk_source_view_set_background_pattern	(GtkSourceView                  *view,
+                                                         GtkSourceBackgroundPatternType  background_pattern);
+GtkSourceBackgroundPatternType
+		 gtk_source_view_get_background_pattern	(GtkSourceView   *view);
+
 G_END_DECLS
 #endif				/* end of SOURCE_VIEW_H__ */

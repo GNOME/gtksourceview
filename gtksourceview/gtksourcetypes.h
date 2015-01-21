@@ -96,6 +96,19 @@ typedef enum
 	GTK_SOURCE_COMPRESSION_TYPE_GZIP
 } GtkSourceCompressionType;
 
+/**
+ * GtkSourceBackgroundPatternType:
+ * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE: no pattern
+ * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID: grid pattern
+ *
+ * Since: 3.16
+ */
+typedef enum
+{
+	GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE,
+	GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID
+} GtkSourceBackgroundPatternType;
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_TYPES_H__ */

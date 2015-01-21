@@ -104,6 +104,11 @@ GtkSourceStyle          *_gtk_source_style_scheme_get_draw_spaces_style		(GtkSou
 G_GNUC_INTERNAL
 gboolean		 _gtk_source_style_scheme_get_current_line_color	(GtkSourceStyleScheme *scheme,
 										 GdkRGBA              *color);
+
+G_GNUC_INTERNAL
+gboolean		 _gtk_source_style_scheme_get_background_pattern_color	(GtkSourceStyleScheme *scheme,
+										 GdkRGBA              *color);
+
 G_END_DECLS
 
 #endif  /* __GTK_SOURCE_STYLE_SCHEME_H__ */
