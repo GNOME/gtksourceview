@@ -52,6 +52,7 @@
 #define STYLE_SECONDARY_CURSOR		"secondary-cursor"
 #define STYLE_CURRENT_LINE		"current-line"
 #define STYLE_LINE_NUMBERS		"line-numbers"
+#define STYLE_CURRENT_LINE_NUMBER	"current-line-number"
 #define STYLE_RIGHT_MARGIN		"right-margin"
 #define STYLE_DRAW_SPACES		"draw-spaces"
 #define STYLE_BACKGROUND_PATTERN	"background-pattern"
@@ -855,6 +856,12 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 		 * displayed.
 		 */
 		append_css_style (final_style, style, "GtkSourceView");
+	}
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE_NUMBER);
+	if (style != NULL)
+	{
+		append_css_style (final_style, style, ".current-line-number");
 	}
 
 	if (*final_style->str != '\0')

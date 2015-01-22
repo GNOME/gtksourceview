@@ -475,39 +475,37 @@ renderer_draw_impl (GtkSourceGutterRenderer      *renderer,
                     GtkTextIter                  *end,
                     GtkSourceGutterRendererState  state)
 {
+	gboolean draw_background = FALSE;
+	GdkRGBA background_color;
+
 	if (renderer->priv->background_set)
 	{
-		cairo_save (cr);
-		gdk_cairo_rectangle (cr, background_area);
-		gdk_cairo_set_source_rgba (cr, &renderer->priv->background_color);
-		cairo_fill (cr);
-		cairo_restore (cr);
+		background_color = renderer->priv->background_color;
+		draw_background = TRUE;
 	}
 	else if ((state & GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR) != 0 &&
 		 GTK_SOURCE_IS_VIEW (renderer->priv->view))
 	{
-		GtkSourceBuffer *buffer;
-		GtkSourceStyleScheme *style_scheme;
-		GdkRGBA line_color;
+		GtkStyleContext *context;
 
-		if (!gtk_source_view_get_highlight_current_line (GTK_SOURCE_VIEW (renderer->priv->view)))
-		{
-			return;
-		}
+		context = gtk_widget_get_style_context (GTK_WIDGET (renderer->priv->view));
+		gtk_style_context_save (context);
+		gtk_style_context_add_class (context, "current-line-number");
+		gtk_style_context_get_background_color (context,
+		                                        gtk_style_context_get_state (context),
+		                                        &background_color);
+		gtk_style_context_restore (context);
 
-		buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (renderer->priv->view));
-		style_scheme = gtk_source_buffer_get_style_scheme (buffer);
+		draw_background = TRUE;
+	}
 
-		if (style_scheme != NULL &&
-		    _gtk_source_style_scheme_get_current_line_color (style_scheme, &line_color))
-		{
-			cairo_save (cr);
-			gdk_cairo_rectangle (cr, background_area);
-			gdk_cairo_set_source_rgba (cr, &line_color);
-			cairo_fill (cr);
-			cairo_restore (cr);
-		}
-
+	if (draw_background)
+	{
+		cairo_save (cr);
+		gdk_cairo_rectangle (cr, background_area);
+		gdk_cairo_set_source_rgba (cr, &background_color);
+		cairo_fill (cr);
+		cairo_restore (cr);
 	}
 }
 
