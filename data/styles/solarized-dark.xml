@@ -43,13 +43,15 @@
   <color name="cyan"    value="#2AA198"/>
   <color name="green"   value="#859900"/>
 
+  <color name="base03-02-blend" value="#032F3B"/>
+
   <!-- Global Settings -->
   <style name="text"                        foreground="base1" background="base03"/>
   <style name="selection"                   foreground="base03" background="base00"/>
   <style name="cursor"                      foreground="base1"/>
   <style name="current-line"                background="base02"/>
   <style name="line-numbers"                foreground="base01" background="base02"/>
-
+  <style name="background-pattern"          background="base03-02-blend"/>
 
   <!-- Bracket Matching -->
   <style name="bracket-match"               foreground="base03" background="base01"/>

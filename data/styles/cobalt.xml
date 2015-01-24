@@ -49,6 +49,8 @@
   <color name="bluish_grey"                 value="#777777"/>
   <color name="steelblue3"                  value="#4f94cd"/>
 
+  <color name="dark_medium_blue_blend"      value="#00213F"/>
+
   <!-- Global Settings -->
 
   <style name="text"                        foreground="white" background="dark_blue"/>
@@ -58,6 +60,7 @@
   <style name="line-numbers"                foreground="light_blue" background="black_blue"/>
   <style name="draw-spaces"                 foreground="bluish_grey"/>
   <style name="right-margin"                foreground="light_grey" background="light_grey"/>
+  <style name="background-pattern"          background="dark_medium_blue_blend"/>
 
   <!-- Bracket Matching -->
   <style name="bracket-match"               background="steelblue3"/>
