@@ -2616,15 +2616,101 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 }
 
 static void
+gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
+                                               cairo_t       *cr)
+{
+	GdkRectangle clip;
+	GdkRectangle vis;
+	gdouble x;
+	gdouble y;
+	PangoContext *context;
+	PangoLayout *layout;
+	int grid_width = 16;
+	int grid_height = 16;
+
+	context = gtk_widget_get_pango_context (GTK_WIDGET (view));
+	layout = pango_layout_new (context);
+	pango_layout_set_text (layout, "X", 1);
+	pango_layout_get_pixel_size (layout, &grid_width, &grid_height);
+	g_object_unref (layout);
+
+	/* each character becomes 2 stacked boxes. */
+	grid_height /= 2;
+
+	cairo_save (cr);
+
+	cairo_set_line_width (cr, 1.0);
+	gdk_cairo_get_clip_rectangle (cr, &clip);
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &vis);
+
+	gdk_cairo_set_source_rgba (cr, &view->priv->background_pattern_color);
+
+	/*
+	 * The following constants come from gtktextview.c pixel cache
+	 * settings. Sadly, they are not exposed in the public API,
+	 * just keep them in sync here. 64 for X, height/2 for Y.
+	 */
+	x = (grid_width - (vis.x % grid_width)) - (64 / grid_width * grid_width) - grid_width + 2;
+	y = (grid_height - (vis.y % grid_height)) - (vis.height / 2 / grid_height * grid_height) - grid_height;
+
+	for (; x <= clip.x + clip.width; x += grid_width)
+	{
+		cairo_move_to (cr, x + .5, clip.y - .5);
+		cairo_line_to (cr, x + .5, clip.y + clip.height - .5);
+	}
+
+	for (; y <= clip.y + clip.height; y += grid_height)
+	{
+		cairo_move_to (cr, clip.x + .5, y - .5);
+		cairo_line_to (cr, clip.x + clip.width + .5, y - .5);
+	}
+
+	cairo_stroke (cr);
+	cairo_restore (cr);
+}
+
+static void
+gtk_source_view_paint_current_line_highlight (GtkSourceView *view,
+                                              cairo_t       *cr)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter cur;
+	gint y, height;
+	GdkRGBA color;
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	gtk_text_buffer_get_iter_at_mark (buffer,
+					  &cur,
+					  gtk_text_buffer_get_insert (buffer));
+	gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view), &cur, &y, &height);
+
+	if (view->priv->current_line_color_set)
+	{
+		color = view->priv->current_line_color;
+	}
+	else
+	{
+		GtkStyleContext *context;
+		GtkStateFlags state;
+
+		context = gtk_widget_get_style_context (GTK_WIDGET (view));
+		state = gtk_widget_get_state_flags (GTK_WIDGET (view));
+		gtk_style_context_get_background_color (context, state, &color);
+	}
+
+	gtk_source_view_paint_line_background (GTK_TEXT_VIEW (view),
+					       cr,
+					       y, height,
+					       &color);
+}
+
+static void
 gtk_source_view_draw_layer (GtkTextView *text_view,
 			    GtkTextViewLayer layer,
 			    cairo_t *cr)
 {
-	GtkWidget *widget;
 	GtkSourceView *view;
-	double clip_x1, clip_y1, clip_x2, clip_y2;
 
-	widget = GTK_WIDGET (text_view);
 	view = GTK_SOURCE_VIEW (text_view);
 
 	cairo_save (cr);
@@ -2636,6 +2722,7 @@ gtk_source_view_draw_layer (GtkTextView *text_view,
 		if (view->priv->source_buffer != NULL)
 		{
 			GdkRectangle visible_rect;
+			double clip_x1, clip_y1, clip_x2, clip_y2;
 			GtkTextIter iter1, iter2;
 
 			gtk_text_view_get_visible_rect (text_view, &visible_rect);
@@ -2662,96 +2749,20 @@ gtk_source_view_draw_layer (GtkTextView *text_view,
 							     &iter1, &iter2, FALSE);
 		}
 
-		if (gtk_widget_is_sensitive (widget) && view->priv->highlight_current_line)
-		{
-			GtkTextIter cur;
-			gint y, height;
-			GtkTextBuffer *buffer = gtk_text_view_get_buffer (text_view);
-
-			gtk_text_buffer_get_iter_at_mark (buffer,
-							  &cur,
-							  gtk_text_buffer_get_insert (buffer));
-			gtk_text_view_get_line_yrange (text_view, &cur, &y, &height);
-
-			if (view->priv->current_line_color_set)
-			{
-				gtk_source_view_paint_line_background (text_view,
-								       cr,
-								       y, height,
-								       &view->priv->current_line_color);
-			}
-			else
-			{
-				GtkStyleContext *context;
-				GtkStateFlags state;
-				GdkRGBA color;
-
-				context = gtk_widget_get_style_context (widget);
-				state = gtk_widget_get_state_flags (widget);
-				gtk_style_context_get_background_color (context, state, &color);
-
-				gtk_source_view_paint_line_background (text_view,
-								       cr,
-								       y, height,
-								       &color);
-			}
-		}
-
 		if (view->priv->background_pattern == GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID &&
 		    view->priv->background_pattern_color_set)
 		{
-			GdkRectangle clip;
-			GdkRectangle vis;
-			gdouble x;
-			gdouble y;
-			PangoContext *context;
-			PangoLayout *layout;
-			int grid_width = 16;
-			int grid_height = 16;
+			gtk_source_view_paint_background_pattern_grid (view, cr);
+		}
 
-			context = gtk_widget_get_pango_context (GTK_WIDGET (view));
-			layout = pango_layout_new (context);
-			pango_layout_set_text (layout, "X", 1);
-			pango_layout_get_pixel_size (layout, &grid_width, &grid_height);
-			g_object_unref (layout);
-
-			/* each character becomes 2 stacked boxes. */
-			grid_height /= 2;
-
-			cairo_save (cr);
-			cairo_set_line_width (cr, 1.0);
-			gdk_cairo_get_clip_rectangle (cr, &clip);
-			gtk_text_view_get_visible_rect (text_view, &vis);
-
-			gdk_cairo_set_source_rgba (cr, &view->priv->background_pattern_color);
-
-			/*
-			 * The following constants come from gtktextview.c pixel cache
-			 * settings. Sadly, they are not exposed in the public API,
-			 * just keep them in sync here. 64 for X, height/2 for Y.
-			 */
-			x = (grid_width - (vis.x % grid_width)) - (64 / grid_width * grid_width) - grid_width + 2;
-			y = (grid_height - (vis.y % grid_height)) - (vis.height / 2 / grid_height * grid_height) - grid_height;
-
-			for (; x <= clip.x + clip.width; x += grid_width)
-			{
-				cairo_move_to (cr, x + .5, clip.y - .5);
-				cairo_line_to (cr, x + .5, clip.y + clip.height - .5);
-			}
-
-			for (; y <= clip.y + clip.height; y += grid_height)
-			{
-				cairo_move_to (cr, clip.x + .5, y - .5);
-				cairo_line_to (cr, clip.x + clip.width + .5, y - .5);
-			}
-
-			cairo_stroke (cr);
-			cairo_restore (cr);
+		if (gtk_widget_is_sensitive (GTK_WIDGET (view)) &&
+		    view->priv->highlight_current_line)
+		{
+			gtk_source_view_paint_current_line_highlight (view, cr);
 		}
 
 		gtk_source_view_paint_marks_background (view, cr);
 	}
-
 	else if (layer == GTK_TEXT_VIEW_LAYER_ABOVE)
 	{
 		/* Draw the right margin vertical line + overlay. */
