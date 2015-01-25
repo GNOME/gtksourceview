@@ -546,7 +546,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	/**
 	 * GtkSourceView:background-pattern:
 	 *
-	 * Set to draw a specific background pattern on the view.
+	 * Draw a specific background pattern on the view.
 	 *
 	 * Since: 3.16
 	 */
@@ -554,9 +554,9 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 					 PROP_BACKGROUND_PATTERN,
 					 g_param_spec_enum ("background-pattern",
 							    "Background pattern",
-							    "Set to draw a specific background pattern on the view",
+							    "Draw a specific background pattern on the view",
 							    GTK_SOURCE_TYPE_BACKGROUND_PATTERN_TYPE,
-							    0,
+							    GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE,
 							    G_PARAM_READWRITE));
 
 	signals [UNDO] =
@@ -4756,8 +4756,7 @@ gtk_source_view_get_mark_attributes (GtkSourceView           *view,
 /**
  * gtk_source_view_set_background_pattern:
  * @view: a #GtkSourceView.
- * @background_pattern: #GtkSourceBackgroundPatternType specifing how
- * the background pattern should be be displayed.
+ * @background_pattern: the #GtkSourceBackgroundPatternType.
  *
  * Set if and how the background pattern should be displayed.
  *
@@ -4793,7 +4792,7 @@ gtk_source_view_set_background_pattern (GtkSourceView                  *view,
 GtkSourceBackgroundPatternType
 gtk_source_view_get_background_pattern (GtkSourceView *view)
 {
-	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), 0);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE);
 
 	return view->priv->background_pattern;
 }

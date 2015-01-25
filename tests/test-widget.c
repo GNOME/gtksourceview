@@ -925,7 +925,7 @@ on_background_pattern_changed (GtkComboBox *combobox,
 
 	text = gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT (combobox));
 
-	if (g_str_equal (text, "Grid"))
+	if (g_strcmp0 (text, "Grid") == 0)
 	{
 		gtk_source_view_set_background_pattern (self->priv->view,
 		                                        GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID);
@@ -935,6 +935,8 @@ on_background_pattern_changed (GtkComboBox *combobox,
 		gtk_source_view_set_background_pattern (self->priv->view,
 		                                        GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE);
 	}
+
+	g_free (text);
 }
 
 static void
