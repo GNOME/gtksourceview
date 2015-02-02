@@ -132,6 +132,7 @@ enum {
 	MOVE_WORDS,
 	SMART_HOME_END,
 	MOVE_TO_MATCHING_BRACKET,
+	CHANGE_NUMBER,
 	LAST_SIGNAL
 };
 
@@ -342,6 +343,68 @@ gtk_source_view_move_to_matching_bracket (GtkSourceView *view,
 		}
 
 		gtk_text_view_scroll_mark_onscreen (text_view, insert_mark);
+	}
+}
+
+static void
+gtk_source_view_change_number (GtkSourceView *view,
+                               gint           count)
+{
+	GtkTextView *text_view = GTK_TEXT_VIEW (view);
+	GtkTextBuffer *buffer;
+	GtkTextIter start, end;
+	gchar *str;
+
+	buffer = gtk_text_view_get_buffer (text_view);
+	if (!GTK_SOURCE_IS_BUFFER (buffer))
+	{
+		return;
+	}
+
+	if (!gtk_text_buffer_get_selection_bounds (buffer, &start, &end))
+	{
+		if (!gtk_text_iter_starts_word (&start))
+		{
+			gtk_text_iter_backward_word_start (&start);
+		}
+
+		if (!gtk_text_iter_ends_word (&end))
+		{
+			gtk_text_iter_forward_word_end (&end);
+		}
+	}
+
+	str = gtk_text_buffer_get_text (buffer, &start, &end, FALSE);
+
+	if (str != NULL && *str != '\0')
+	{
+		gchar *p;
+		gint64 n;
+		gsize len;
+
+		len = gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&start);
+		g_assert (len > 0);
+
+		n = g_ascii_strtoll (str, &p, 10);
+
+		/* do the action only if strtoll succeeds (p != str) and
+		 * the whole string is the number, e.g. not 123abc
+		 */
+		if ((p - str) == len)
+		{
+			gchar *newstr;
+
+			newstr = g_strdup_printf ("%"G_GINT64_FORMAT, (n + count));
+
+			gtk_text_buffer_begin_user_action (buffer);
+			gtk_text_buffer_delete (buffer, &start, &end);
+			gtk_text_buffer_insert (buffer, &start, newstr, -1);
+			gtk_text_buffer_end_user_action (buffer);
+
+			g_free (newstr);
+		}
+
+		g_free (str);
 	}
 }
 
@@ -710,6 +773,25 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                            1,
 		                            G_TYPE_BOOLEAN);
 
+	/**
+	 * GtkSourceView::change-number:
+	 * @view: the #GtkSourceView
+	 * @count: the number to add to the number at the current position
+	 *
+	 * Keybinding signal to edit a number at the current cursor position.
+	 *
+	 * Since: 3.16
+	 */
+	signals[CHANGE_NUMBER] =
+		g_signal_new_class_handler ("change-number",
+		                            G_TYPE_FROM_CLASS (klass),
+		                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		                            G_CALLBACK (gtk_source_view_change_number),
+		                            NULL, NULL, NULL,
+		                            G_TYPE_NONE,
+		                            1,
+		                            G_TYPE_INT);
+
 	binding_set = gtk_binding_set_by_class (klass);
 
 	gtk_binding_entry_add_signal (binding_set,
@@ -864,6 +946,17 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 				      GDK_CONTROL_MASK,
 				      "move_to_matching_bracket", 1,
 				      G_TYPE_BOOLEAN, FALSE);
+
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KEY_a,
+				      GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+				      "change-number", 1,
+				      G_TYPE_INT, 1);
+	gtk_binding_entry_add_signal (binding_set,
+				      GDK_KEY_x,
+				      GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+				      "change-number", 1,
+				      G_TYPE_INT, -1);
 }
 
 static GObject *
