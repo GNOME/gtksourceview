@@ -176,6 +176,10 @@ test_forward_extra_natural_word_end (void)
 	check_extra_natural_word_boundaries (TRUE, "a_ ", 2, 2);
 	check_extra_natural_word_boundaries (TRUE, "ab \ncd", 2, 6);
 	check_extra_natural_word_boundaries (TRUE, "a_ \n_d", 2, 6);
+
+	check_extra_natural_word_boundaries (TRUE, "__ ab", 0, 2);
+	check_extra_natural_word_boundaries (TRUE, "--__--", 0, 4);
+	check_extra_natural_word_boundaries (TRUE, "--__-- ab", 0, 4);
 }
 
 static void
@@ -195,6 +199,10 @@ test_backward_extra_natural_word_start (void)
 	check_extra_natural_word_boundaries (FALSE, " _d", 1, 1);
 	check_extra_natural_word_boundaries (FALSE, "ab\n cd", 4, 0);
 	check_extra_natural_word_boundaries (FALSE, "_b\n c_", 4, 0);
+
+	check_extra_natural_word_boundaries (FALSE, "ab __", 5, 3);
+	check_extra_natural_word_boundaries (FALSE, "--__--", 6, 2);
+	check_extra_natural_word_boundaries (FALSE, "ab --__--", 9, 5);
 }
 
 static void
@@ -353,6 +361,10 @@ test_forward_word_end (void)
 	check_word_boundaries_movement (TRUE, "ab ", 2, 2, FALSE);
 	check_word_boundaries_movement (TRUE, "ab \n", 2, 2, FALSE);
 	check_word_boundaries_movement (TRUE, "ab \ncd", 2, 6, FALSE);
+
+	check_word_boundaries_movement (TRUE, "--__--", 0, 2, TRUE);
+	check_word_boundaries_movement (TRUE, "--__--", 2, 4, TRUE);
+	check_word_boundaries_movement (TRUE, "--__--", 4, 6, FALSE);
 }
 
 static void
@@ -377,6 +389,10 @@ test_backward_word_start (void)
 	check_word_boundaries_movement (FALSE, " cd", 1, 1, FALSE);
 	check_word_boundaries_movement (FALSE, "\n cd", 2, 2, FALSE);
 	check_word_boundaries_movement (FALSE, "ab\n cd", 4, 0, TRUE);
+
+	check_word_boundaries_movement (FALSE, "--__--", 6, 4, TRUE);
+	check_word_boundaries_movement (FALSE, "--__--", 4, 2, TRUE);
+	check_word_boundaries_movement (FALSE, "--__--", 2, 0, TRUE);
 }
 
 int

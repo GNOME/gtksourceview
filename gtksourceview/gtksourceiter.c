@@ -158,7 +158,31 @@ _gtk_source_iter_ends_full_word (const GtkTextIter *iter)
 void
 _gtk_source_iter_forward_extra_natural_word_end (GtkTextIter *iter)
 {
-	gtk_text_iter_forward_visible_word_end (iter);
+	GtkTextIter next_word_end = *iter;
+	GtkTextIter next_underscore_end = *iter;
+	GtkTextIter *limit = NULL;
+	gboolean found;
+
+	if (gtk_text_iter_forward_visible_word_end (&next_word_end))
+	{
+		limit = &next_word_end;
+	}
+
+	found = gtk_text_iter_forward_search (iter,
+					      "_",
+					      GTK_TEXT_SEARCH_VISIBLE_ONLY | GTK_TEXT_SEARCH_TEXT_ONLY,
+					      NULL,
+					      &next_underscore_end,
+					      limit);
+
+	if (found)
+	{
+		*iter = next_underscore_end;
+	}
+	else
+	{
+		*iter = next_word_end;
+	}
 
 	while (TRUE)
 	{
@@ -181,7 +205,31 @@ _gtk_source_iter_forward_extra_natural_word_end (GtkTextIter *iter)
 void
 _gtk_source_iter_backward_extra_natural_word_start (GtkTextIter *iter)
 {
-	gtk_text_iter_backward_visible_word_start (iter);
+	GtkTextIter prev_word_start = *iter;
+	GtkTextIter prev_underscore_start = *iter;
+	GtkTextIter *limit = NULL;
+	gboolean found;
+
+	if (gtk_text_iter_backward_visible_word_start (&prev_word_start))
+	{
+		limit = &prev_word_start;
+	}
+
+	found = gtk_text_iter_backward_search (iter,
+					       "_",
+					       GTK_TEXT_SEARCH_VISIBLE_ONLY | GTK_TEXT_SEARCH_TEXT_ONLY,
+					       &prev_underscore_start,
+					       NULL,
+					       limit);
+
+	if (found)
+	{
+		*iter = prev_underscore_start;
+	}
+	else
+	{
+		*iter = prev_word_start;
+	}
 
 	while (!gtk_text_iter_is_start (iter))
 	{
