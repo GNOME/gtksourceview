@@ -197,10 +197,10 @@ test_provider_set_fixed (TestProvider *provider,
 	}
 
 	proposals = g_list_prepend (proposals,
-				    gtk_source_completion_item_new ("A very long proposal. I repeat, a very long proposal!",
-								    "A very long proposal. I repeat, a very long proposal!",
-								    icon,
-								    "To test the horizontal scrollbar."));
+				    gtk_source_completion_item_new_with_markup ("A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!",
+										"A very long proposal. I repeat, a very long proposal!",
+										icon,
+										"To test the horizontal scrollbar and the markup."));
 
 	provider->proposals = proposals;
 	provider->is_random = 0;
