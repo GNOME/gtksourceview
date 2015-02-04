@@ -1860,6 +1860,13 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 			     gint            count,
 			     gboolean        extend_selection)
 {
+	if (!gtk_text_view_get_cursor_visible (text_view))
+	{
+		goto chain_up;
+	}
+
+	gtk_text_view_reset_im_context (text_view);
+
 	switch (step)
 	{
 		case GTK_MOVEMENT_DISPLAY_LINE_ENDS:
@@ -1878,6 +1885,7 @@ gtk_source_view_move_cursor (GtkTextView    *text_view,
 			break;
 	}
 
+chain_up:
 	GTK_TEXT_VIEW_CLASS (gtk_source_view_parent_class)->move_cursor (text_view,
 									 step,
 									 count,
@@ -1901,6 +1909,8 @@ gtk_source_view_delete_from_cursor (GtkTextView   *text_view,
 											count);
 		return;
 	}
+
+	gtk_text_view_reset_im_context (text_view);
 
 	gtk_text_buffer_get_iter_at_mark (buffer,
 					  &insert,
