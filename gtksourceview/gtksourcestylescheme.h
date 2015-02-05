@@ -54,10 +54,6 @@ struct _GtkSourceStyleSchemeClass
 
 GType			 gtk_source_style_scheme_get_type			(void) G_GNUC_CONST;
 
-G_GNUC_INTERNAL
-GtkSourceStyleScheme	*_gtk_source_style_scheme_new				(const gchar          *id,
-										 const gchar          *name);
-
 const gchar             *gtk_source_style_scheme_get_id				(GtkSourceStyleScheme *scheme);
 
 const gchar             *gtk_source_style_scheme_get_name			(GtkSourceStyleScheme *scheme);

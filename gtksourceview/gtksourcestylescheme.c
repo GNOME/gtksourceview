@@ -370,32 +370,6 @@ gtk_source_style_scheme_get_filename (GtkSourceStyleScheme *scheme)
 	return scheme->priv->filename;
 }
 
-/**
- * _gtk_source_style_scheme_new:
- * @id: scheme id.
- * @name: scheme name.
- *
- * Returns: new empty #GtkSourceStyleScheme.
- *
- * Since: 2.0
- */
-GtkSourceStyleScheme *
-_gtk_source_style_scheme_new (const gchar *id,
-			      const gchar *name)
-{
-	GtkSourceStyleScheme *scheme;
-
-	g_return_val_if_fail (id != NULL, NULL);
-	g_return_val_if_fail (name != NULL, NULL);
-
-	scheme = g_object_new (GTK_SOURCE_TYPE_STYLE_SCHEME,
-			       "id", id,
-			       "name", name,
-			       NULL);
-
-	return scheme;
-}
-
 /*
  * get_color_by_name:
  * @scheme: a #GtkSourceStyleScheme.
