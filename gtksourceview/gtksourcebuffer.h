@@ -101,12 +101,10 @@ struct _GtkSourceBufferClass
 
 GType           	 gtk_source_buffer_get_type				(void) G_GNUC_CONST;
 
-/* Constructor */
 GtkSourceBuffer	 	*gtk_source_buffer_new					(GtkTextTagTable        *table);
 
 GtkSourceBuffer 	*gtk_source_buffer_new_with_language			(GtkSourceLanguage      *language);
 
-/* Properties */
 gboolean		 gtk_source_buffer_get_highlight_syntax			(GtkSourceBuffer        *buffer);
 
 void			 gtk_source_buffer_set_highlight_syntax			(GtkSourceBuffer        *buffer,
@@ -136,12 +134,10 @@ GtkSourceStyleScheme    *gtk_source_buffer_get_style_scheme			(GtkSourceBuffer  
 void			 gtk_source_buffer_set_style_scheme			(GtkSourceBuffer        *buffer,
 										 GtkSourceStyleScheme   *scheme);
 
-/* Force highlighting */
 void			 gtk_source_buffer_ensure_highlight			(GtkSourceBuffer        *buffer,
 										 const GtkTextIter      *start,
 										 const GtkTextIter      *end);
 
-/* Undo/redo methods */
 void			 gtk_source_buffer_undo					(GtkSourceBuffer        *buffer);
 
 void			 gtk_source_buffer_redo					(GtkSourceBuffer        *buffer);
@@ -150,7 +146,6 @@ void			 gtk_source_buffer_begin_not_undoable_action		(GtkSourceBuffer	*buffer);
 
 void			 gtk_source_buffer_end_not_undoable_action		(GtkSourceBuffer	*buffer);
 
-/* Mark methods */
 GtkSourceMark		*gtk_source_buffer_create_source_mark			(GtkSourceBuffer        *buffer,
 										 const gchar            *name,
 										 const gchar            *category,
