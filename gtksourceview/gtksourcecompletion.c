@@ -1957,6 +1957,7 @@ init_tree_view (GtkSourceCompletion *completion,
 	GtkTreeViewColumn *column;
 	GtkCellRenderer *cell_renderer;
 	GtkStyleContext *style_context;
+	GdkRGBA background_color;
 	GdkRGBA foreground_color;
 
 	completion->priv->tree_view_proposals = GTK_TREE_VIEW (gtk_builder_get_object (builder, "tree_view_proposals"));
@@ -1993,7 +1994,17 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	gtk_tree_view_column_set_attributes (column, cell_renderer,
 					     "pixbuf", GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON,
+					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
 					     NULL);
+
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->priv->tree_view_proposals));
+	gtk_style_context_get_background_color (style_context,
+	                                        GTK_STATE_FLAG_INSENSITIVE,
+	                                        &background_color);
+
+	g_object_set (cell_renderer,
+	              "cell-background-rgba", &background_color,
+	              NULL);
 
 	g_object_bind_property (completion, "show-icons",
 				cell_renderer, "visible",
@@ -2008,10 +2019,9 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	gtk_tree_view_column_set_attributes (column, cell_renderer,
 					     "markup", GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP,
+					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
 					     "foreground-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
 					     NULL);
-
-	style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->priv->tree_view_proposals));
 
 	gtk_style_context_get_color (style_context,
 	                             GTK_STATE_FLAG_INSENSITIVE,
@@ -2019,6 +2029,7 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	g_object_set (cell_renderer,
 	              "foreground-rgba", &foreground_color,
+	              "cell-background-rgba", &background_color,
 	              NULL);
 
 	/* Accelerators cell renderer */
@@ -2027,8 +2038,14 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	cell_renderer = GTK_CELL_RENDERER (gtk_builder_get_object (builder, "cell_renderer_accelerator"));
 
+	gtk_tree_view_column_set_attributes (column,
+					     cell_renderer,
+					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
+					     NULL);
+
 	g_object_set (cell_renderer,
 	              "foreground-rgba", &foreground_color,
+	              "cell-background-rgba", &background_color,
 		      NULL);
 
 	gtk_tree_view_column_set_cell_data_func (column,
