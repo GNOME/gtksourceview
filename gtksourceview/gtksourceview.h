@@ -36,26 +36,25 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_VIEW_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_VIEW))
 #define GTK_SOURCE_VIEW_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_VIEW, GtkSourceViewClass))
 
+typedef struct _GtkSourceViewClass GtkSourceViewClass;
+typedef struct _GtkSourceViewPrivate GtkSourceViewPrivate;
+
 /**
  * GtkSourceViewGutterPosition:
  * @GTK_SOURCE_VIEW_GUTTER_POSITION_LINES: the gutter position of the lines
  * renderer
  * @GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS: the gutter position of the marks
  * renderer
- **/
+ */
 typedef enum
 {
 	GTK_SOURCE_VIEW_GUTTER_POSITION_LINES = -30,
 	GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS = -20
 } GtkSourceViewGutterPosition;
 
-typedef struct _GtkSourceViewClass GtkSourceViewClass;
-
-typedef struct _GtkSourceViewPrivate GtkSourceViewPrivate;
-
 struct _GtkSourceView
 {
-	GtkTextView           parent;
+	GtkTextView parent;
 
 	GtkSourceViewPrivate *priv;
 };
@@ -91,7 +90,7 @@ struct _GtkSourceViewClass
  * non-whitespace character on the second press.
  * @GTK_SOURCE_SMART_HOME_END_ALWAYS: always move to the first/last
  * non-whitespace character when the HOME/END keys are pressed.
- **/
+ */
 typedef enum
 {
 	GTK_SOURCE_SMART_HOME_END_DISABLED,
@@ -131,40 +130,46 @@ typedef enum
 
 GType		 gtk_source_view_get_type 		(void) G_GNUC_CONST;
 
-/* Constructors */
 GtkWidget 	*gtk_source_view_new 			(void);
+
 GtkWidget 	*gtk_source_view_new_with_buffer	(GtkSourceBuffer *buffer);
 
-/* Properties */
 void 		 gtk_source_view_set_show_line_numbers 	(GtkSourceView   *view,
 							 gboolean         show);
+
 gboolean 	 gtk_source_view_get_show_line_numbers 	(GtkSourceView   *view);
 
 void 		 gtk_source_view_set_tab_width          (GtkSourceView   *view,
 							 guint            width);
+
 guint            gtk_source_view_get_tab_width          (GtkSourceView   *view);
 
 void		 gtk_source_view_set_indent_width 	(GtkSourceView   *view,
 							 gint             width);
+
 gint		 gtk_source_view_get_indent_width	(GtkSourceView   *view);
 
 void		 gtk_source_view_set_auto_indent 	(GtkSourceView   *view,
 							 gboolean         enable);
+
 gboolean	 gtk_source_view_get_auto_indent 	(GtkSourceView   *view);
 
 void		 gtk_source_view_set_insert_spaces_instead_of_tabs
 							(GtkSourceView   *view,
 							 gboolean         enable);
+
 gboolean	 gtk_source_view_get_insert_spaces_instead_of_tabs
 							(GtkSourceView   *view);
 
 void		 gtk_source_view_set_indent_on_tab 	(GtkSourceView   *view,
 							 gboolean         enable);
+
 gboolean	 gtk_source_view_get_indent_on_tab 	(GtkSourceView   *view);
 
 void		 gtk_source_view_indent_lines		(GtkSourceView   *view,
 							 GtkTextIter     *start,
 							 GtkTextIter     *end);
+
 void		 gtk_source_view_unindent_lines		(GtkSourceView   *view,
 							 GtkTextIter     *start,
 							 GtkTextIter     *end);
@@ -172,21 +177,25 @@ void		 gtk_source_view_unindent_lines		(GtkSourceView   *view,
 void		 gtk_source_view_set_highlight_current_line
 							(GtkSourceView   *view,
 							 gboolean         highlight);
+
 gboolean 	 gtk_source_view_get_highlight_current_line
 							(GtkSourceView   *view);
 
 void		 gtk_source_view_set_show_right_margin 	(GtkSourceView   *view,
 							 gboolean         show);
+
 gboolean 	 gtk_source_view_get_show_right_margin 	(GtkSourceView   *view);
 
 void		 gtk_source_view_set_right_margin_position
 					 		(GtkSourceView   *view,
 							 guint            pos);
+
 guint		 gtk_source_view_get_right_margin_position
 					 		(GtkSourceView   *view);
 
 void 		 gtk_source_view_set_show_line_marks    (GtkSourceView   *view,
 							 gboolean         show);
+
 gboolean	 gtk_source_view_get_show_line_marks    (GtkSourceView   *view);
 
 void             gtk_source_view_set_mark_attributes    (GtkSourceView           *view,
@@ -200,16 +209,20 @@ GtkSourceMarkAttributes *
                                                          gint                    *priority);
 
 void		 gtk_source_view_set_smart_home_end	(GtkSourceView             *view,
-							 GtkSourceSmartHomeEndType  smart_he);
+							 GtkSourceSmartHomeEndType  smart_home_end);
+
 GtkSourceSmartHomeEndType
 		 gtk_source_view_get_smart_home_end	(GtkSourceView   *view);
 
-void		 gtk_source_view_set_draw_spaces	(GtkSourceView   *view,
-							 GtkSourceDrawSpacesFlags flags);
+void		 gtk_source_view_set_draw_spaces	(GtkSourceView            *view,
+							 GtkSourceDrawSpacesFlags  flags);
+
 GtkSourceDrawSpacesFlags
 		 gtk_source_view_get_draw_spaces	(GtkSourceView   *view);
+
 guint		 gtk_source_view_get_visual_column	(GtkSourceView     *view,
 							 const GtkTextIter *iter);
+
 GtkSourceCompletion *
 		 gtk_source_view_get_completion		(GtkSourceView   *view);
 
@@ -218,8 +231,10 @@ GtkSourceGutter *gtk_source_view_get_gutter		(GtkSourceView     *view,
 
 void		 gtk_source_view_set_background_pattern	(GtkSourceView                  *view,
                                                          GtkSourceBackgroundPatternType  background_pattern);
+
 GtkSourceBackgroundPatternType
 		 gtk_source_view_get_background_pattern	(GtkSourceView   *view);
 
 G_END_DECLS
-#endif				/* end of SOURCE_VIEW_H__ */
+
+#endif /* end of __GTK_SOURCE_VIEW_H__ */
