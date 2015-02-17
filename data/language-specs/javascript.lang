@@ -51,7 +51,7 @@
   <definitions>
 
     <!--regex-->
-    <define-regex id="regex-opts">[iomx]*[neus]?[iomx]*</define-regex>
+    <define-regex id="regex-opts">[gim]*</define-regex>
 
     <!--contexts NOT used in the main context-->
     <context id="escape" style-ref="escape">
