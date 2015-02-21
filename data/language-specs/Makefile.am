@@ -38,6 +38,7 @@ LANGUAGES =			\
 	fsharp.lang		\
 	gap.lang		\
 	gdb-log.lang		\
+	genie.lang		\
 	glsl.lang		\
 	go.lang			\
 	gtk-doc.lang		\
