@@ -303,9 +303,9 @@
     <context id="c" class="no-spell-check">
       <include>
         <context ref="gtk-doc:inline-docs-section"/>
-        <context ref="def:c-like-comment"/>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="def:c-like-comment" style-ref="comment"/>
+        <context ref="def:c-like-comment-multiline" style-ref="comment"/>
+        <context ref="def:c-like-close-comment-outside-comment" style-ref="comment"/>
         <context ref="if0-comment"/>
         <context ref="include"/>
         <context ref="preprocessor"/>

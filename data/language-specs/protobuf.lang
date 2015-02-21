@@ -26,6 +26,7 @@
   </metadata>
 
   <styles>
+    <style id="comment"  _name="Comment"       map-to="def:comment"/>
     <style id="variable" _name="Variable"      map-to="def:type"/>
     <style id="type"     _name="Data Type"     map-to="def:type"/>
     <style id="keyword"  _name="Keyword"       map-to="def:keyword"/>
@@ -89,7 +90,7 @@
 
     <context id="proto" class="no-spell-check">
       <include>
-        <context ref="def:c-like-comment"/>
+        <context ref="def:c-like-comment" style-ref="comment"/>
         <context ref="variable"/>
         <context ref="string"/>
         <context ref="keywords"/>

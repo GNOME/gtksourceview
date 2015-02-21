@@ -32,6 +32,7 @@
   </metadata>
 
   <styles>
+    <style id="comment"           _name="Comment"                   map-to="def:comment"/>
     <style id="escaped-character" _name="Escaped Character"         map-to="def:special-char"/>
     <style id="string"            _name="String"                    map-to="def:string"/>
     <style id="char"              _name="Character"                 map-to="def:character"/>
@@ -167,11 +168,11 @@
 
     <context id="java" class="no-spell-check">
       <include>
+        <context ref="def:c-like-comment" style-ref="comment"/>
+        <context ref="def:c-like-comment-multiline" style-ref="comment"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="string"/>
         <context ref="char"/>
-        <context ref="def:c-like-comment"/>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="externals"/>
         <context ref="declarations"/>
         <context ref="primitive-types"/>
