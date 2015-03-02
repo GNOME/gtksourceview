@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-01-07 10:14+0000\n"
-"PO-Revision-Date: 2015-01-07 22:01+0100\n"
+"POT-Creation-Date: 2015-03-02 10:30+0000\n"
+"PO-Revision-Date: 2015-03-02 21:28+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -83,14 +83,6 @@ msgstr "Koncové"
 msgid "All"
 msgstr "Vše"
 
-#: ../data/glade/gtksourceview.xml.in.h:15
-msgid "GtkSourceStyleSchemeChooserWidget"
-msgstr "GtkSourceStyleSchemeChooserWidget"
-
-#: ../data/glade/gtksourceview.xml.in.h:16
-msgid "GtkSourceStyleSchemeChooserButton"
-msgstr "GtkSourceStyleSchemeChooserButton"
-
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1
 #: ../data/language-specs/ansforth94.lang.h:1
@@ -148,14 +140,15 @@ msgstr "ActionScript"
 #: ../data/language-specs/forth.lang.h:3
 #: ../data/language-specs/fortran.lang.h:3
 #: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/genie.lang.h:3 ../data/language-specs/go.lang.h:3
+#: ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:4
 #: ../data/language-specs/html.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:3
 #: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
-#: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/llvm.lang.h:3 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/java.lang.h:3 ../data/language-specs/j.lang.h:4
+#: ../data/language-specs/latex.lang.h:3 ../data/language-specs/llvm.lang.h:3
+#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/modelica.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/netrexx.lang.h:6
@@ -165,6 +158,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
 #: ../data/language-specs/php.lang.h:4 ../data/language-specs/pig.lang.h:8
 #: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:2
 #: ../data/language-specs/rst.lang.h:8 ../data/language-specs/ruby.lang.h:4
 #: ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
@@ -213,12 +207,13 @@ msgstr "Chyba"
 #: ../data/language-specs/forth.lang.h:4
 #: ../data/language-specs/fortran.lang.h:4
 #: ../data/language-specs/fsharp.lang.h:7
-#: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
+#: ../data/language-specs/gdb-log.lang.h:8
+#: ../data/language-specs/genie.lang.h:5 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:9
 #: ../data/language-specs/idl-exelis.lang.h:7
 #: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
 #: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
@@ -233,7 +228,7 @@ msgstr "Chyba"
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
 #: ../data/language-specs/php.lang.h:10 ../data/language-specs/po.lang.h:5
 #: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:6
+#: ../data/language-specs/protobuf.lang.h:7
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6
 #: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
@@ -251,26 +246,26 @@ msgstr "Řetězec"
 #. Translators: refered to some specific keywords of the language that
 #. allow to get external functionalities
 #: ../data/language-specs/actionscript.lang.h:6
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:7
 #: ../data/language-specs/scala.lang.h:4
 msgid "External"
 msgstr "Externí"
 
 #: ../data/language-specs/actionscript.lang.h:7
-#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/java.lang.h:10 ../data/language-specs/ooc.lang.h:8
 #: ../data/language-specs/scala.lang.h:8
 msgid "Declaration"
 msgstr "Deklarace"
 
 #: ../data/language-specs/actionscript.lang.h:8
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:11
 #: ../data/language-specs/ooc.lang.h:9
 msgid "Storage Class"
 msgstr "Třída úložiště"
 
 #: ../data/language-specs/actionscript.lang.h:9
-#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
+#: ../data/language-specs/java.lang.h:12 ../data/language-specs/ooc.lang.h:10
 msgid "Scope Declaration"
 msgstr "Deklarace oboru platnosti"
 
@@ -292,12 +287,12 @@ msgstr "Deklarace oboru platnosti"
 #: ../data/language-specs/forth.lang.h:6
 #: ../data/language-specs/fortran.lang.h:6
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/genie.lang.h:10 ../data/language-specs/glsl.lang.h:5
+#: ../data/language-specs/go.lang.h:7 ../data/language-specs/gtkrc.lang.h:5
 #: ../data/language-specs/haskell.lang.h:7
 #: ../data/language-specs/idl-exelis.lang.h:6
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:13
 #: ../data/language-specs/javascript.lang.h:7
 #: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lex.lang.h:4
 #: ../data/language-specs/llvm.lang.h:5 ../data/language-specs/lua.lang.h:5
@@ -312,7 +307,7 @@ msgstr "Deklarace oboru platnosti"
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
 #: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:5
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
 #: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
@@ -333,7 +328,8 @@ msgstr "Klíčové slovo"
 #: ../data/language-specs/boo.lang.h:12
 #: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/genie.lang.h:12
+#: ../data/language-specs/java.lang.h:14
 #: ../data/language-specs/javascript.lang.h:4
 #: ../data/language-specs/json.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
@@ -351,12 +347,12 @@ msgstr "Nenastavená hodnota"
 #: ../data/language-specs/def.lang.h:34
 #: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
 #: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/llvm.lang.h:11
+#: ../data/language-specs/java.lang.h:15 ../data/language-specs/llvm.lang.h:11
 #: ../data/language-specs/lua.lang.h:11
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
 #: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/protobuf.lang.h:5 ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/protobuf.lang.h:6 ../data/language-specs/R.lang.h:8
 #: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
 #: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:8
@@ -368,9 +364,10 @@ msgstr "Pravdivostní hodnota"
 #: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
-#: ../data/language-specs/llvm.lang.h:12
+#: ../data/language-specs/forth.lang.h:8
+#: ../data/language-specs/genie.lang.h:14
+#: ../data/language-specs/java.lang.h:16 ../data/language-specs/j.lang.h:14
+#: ../data/language-specs/julia.lang.h:5 ../data/language-specs/llvm.lang.h:12
 #: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/scala.lang.h:12
@@ -379,7 +376,7 @@ msgid "Number"
 msgstr "Číslo"
 
 #: ../data/language-specs/actionscript.lang.h:14
-#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/java.lang.h:17
 #: ../data/language-specs/javascript.lang.h:12
 #: ../data/language-specs/ooc.lang.h:18
 msgid "Future Reserved Keywords"
@@ -395,12 +392,12 @@ msgstr "Budoucí rezervovaná slova"
 #: ../data/language-specs/forth.lang.h:7
 #: ../data/language-specs/fortran.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
-#: ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/genie.lang.h:8 ../data/language-specs/glsl.lang.h:4
+#: ../data/language-specs/go.lang.h:8 ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:8
 #: ../data/language-specs/idl-exelis.lang.h:4
 #: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/java.lang.h:18
 #: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/llvm.lang.h:10
 #: ../data/language-specs/nemerle.lang.h:9
@@ -410,7 +407,7 @@ msgstr "Budoucí rezervovaná slova"
 #: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
 #: ../data/language-specs/pig.lang.h:3
-#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
 #: ../data/language-specs/thrift.lang.h:4 ../data/language-specs/vala.lang.h:5
@@ -474,7 +471,7 @@ msgstr "Reálné číslo"
 #: ../data/language-specs/fortran.lang.h:14
 #: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
-#: ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:3
@@ -506,7 +503,7 @@ msgstr "Upozornění"
 #: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
+#: ../data/language-specs/java.lang.h:6 ../data/language-specs/julia.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
@@ -538,7 +535,7 @@ msgstr "Konstanta"
 #: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/protobuf.lang.h:3
 #: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
@@ -667,7 +664,8 @@ msgid "Pattern"
 msgstr "Vzor"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/genie.lang.h:15 ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/go.lang.h:18
 #: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python3.lang.h:17
@@ -771,27 +769,29 @@ msgstr "Typ"
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python3.lang.h:5
+#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/genie.lang.h:4
+#: ../data/language-specs/python3.lang.h:5
 #: ../data/language-specs/python.lang.h:5
 msgid "Multiline string"
 msgstr "Víceřádkový řetězec"
 
-#: ../data/language-specs/boo.lang.h:6
+#: ../data/language-specs/boo.lang.h:6 ../data/language-specs/genie.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
 #: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "Regulární výraz"
 
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/sparql.lang.h:8
-#: ../data/language-specs/xml.lang.h:12 ../data/language-specs/xslt.lang.h:4
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/genie.lang.h:7
+#: ../data/language-specs/sparql.lang.h:8 ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/xslt.lang.h:4
 msgid "Namespace"
 msgstr "Jmenný prostor"
 
-#: ../data/language-specs/boo.lang.h:9
+#: ../data/language-specs/boo.lang.h:9 ../data/language-specs/genie.lang.h:9
 msgid "Definition"
 msgstr "Definice"
 
-#: ../data/language-specs/boo.lang.h:11
+#: ../data/language-specs/boo.lang.h:11 ../data/language-specs/genie.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/python.lang.h:10
 #: ../data/language-specs/ruby.lang.h:20
@@ -800,6 +800,7 @@ msgstr "Speciální proměnná"
 
 #: ../data/language-specs/boo.lang.h:13
 #: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
+#: ../data/language-specs/genie.lang.h:13
 #: ../data/language-specs/imagej.lang.h:4
 #: ../data/language-specs/julia.lang.h:6
 #: ../data/language-specs/libtool.lang.h:4
@@ -914,8 +915,8 @@ msgstr "C"
 msgid "Common Defines"
 msgstr "Obecné definice"
 
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
-#: ../data/language-specs/verilog.lang.h:5
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/genie.lang.h:16
+#: ../data/language-specs/go.lang.h:9 ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
 msgstr "Konverze printf"
 
@@ -1497,6 +1498,15 @@ msgstr "Neúplná sekvence"
 #: ../data/language-specs/gdb-log.lang.h:12
 msgid "Prompt"
 msgstr "Výzva"
+
+#: ../data/language-specs/genie.lang.h:1
+#: ../data/language-specs/thrift.lang.h:1
+msgid "Sources"
+msgstr "Zdrojové kódy"
+
+#: ../data/language-specs/genie.lang.h:2
+msgid "Genie"
+msgstr "Genie"
 
 #: ../data/language-specs/glsl.lang.h:2
 msgid "OpenGL Shading Language"
@@ -2692,11 +2702,6 @@ msgstr "Atributy souboru"
 msgid "Generated Content"
 msgstr "Generovaný obsah"
 
-#: ../data/language-specs/thrift.lang.h:1
-#| msgid "Source"
-msgid "Sources"
-msgstr "Zdrojové kódy"
-
 #: ../data/language-specs/thrift.lang.h:2
 msgid "Thrift"
 msgstr "Thrift"
@@ -3130,7 +3135,6 @@ msgstr "užití \\C není podporováno v definici jazyka"
 
 #. TODO: have a ChooserDialog?
 #: ../gtksourceview/gtksourcestyleschemechooserbutton.c:182
-#| msgid "Select on Show"
 msgid "Select a Style"
 msgstr "Výběr stylu"
 
@@ -3139,37 +3143,36 @@ msgid "_Cancel"
 msgstr "_Zrušit"
 
 #: ../gtksourceview/gtksourcestyleschemechooserbutton.c:187
-#| msgid "ID Selector"
 msgid "_Select"
 msgstr "_Vybrat"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1302
+#: ../gtksourceview/gtksourceview.c:1448
 msgid "_Redo"
 msgstr "Zn_ovu"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1313
+#: ../gtksourceview/gtksourceview.c:1459
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: ../gtksourceview/gtksourceview.c:1331
+#: ../gtksourceview/gtksourceview.c:1477
 msgid "All _Upper Case"
 msgstr "Vše _velkými písmeny"
 
-#: ../gtksourceview/gtksourceview.c:1341
+#: ../gtksourceview/gtksourceview.c:1487
 msgid "All _Lower Case"
 msgstr "Vše ma_lými písmeny"
 
-#: ../gtksourceview/gtksourceview.c:1351
+#: ../gtksourceview/gtksourceview.c:1497
 msgid "_Invert Case"
 msgstr "Přehod_it velikost písmen"
 
-#: ../gtksourceview/gtksourceview.c:1361
+#: ../gtksourceview/gtksourceview.c:1507
 msgid "_Title Case"
 msgstr "_První písmena velká"
 
-#: ../gtksourceview/gtksourceview.c:1371
+#: ../gtksourceview/gtksourceview.c:1517
 msgid "C_hange Case"
 msgstr "Změni_t velikost písmen"
 
@@ -3181,6 +3184,12 @@ msgstr ""
 "Lucas Lommer <llommer@svn.gnome.org>\n"
 "Lukáš Ručka <lukassoftwares@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
+
+#~ msgid "GtkSourceStyleSchemeChooserWidget"
+#~ msgstr "GtkSourceStyleSchemeChooserWidget"
+
+#~ msgid "GtkSourceStyleSchemeChooserButton"
+#~ msgstr "GtkSourceStyleSchemeChooserButton"
 
 #~ msgctxt "Object"
 #~ msgid "Name"
