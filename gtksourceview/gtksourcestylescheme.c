@@ -84,6 +84,7 @@ struct _GtkSourceStyleSchemePrivate
 	GHashTable *named_colors;
 
 	GtkCssProvider *css;
+	GtkCssProvider *css_provider_cursors;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceStyleScheme, gtk_source_style_scheme, G_TYPE_OBJECT)
@@ -113,6 +114,7 @@ gtk_source_style_scheme_dispose (GObject *object)
 
 	g_clear_object (&scheme->priv->parent);
 	g_clear_object (&scheme->priv->css);
+	g_clear_object (&scheme->priv->css_provider_cursors);
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_parent_class)->dispose (object);
 }
@@ -627,50 +629,95 @@ _gtk_source_style_scheme_get_background_pattern_color (GtkSourceStyleScheme *sch
 	return get_color (style, FALSE, color);
 }
 
-static void
-update_cursor_colors (GtkWidget      *widget,
-		      GtkSourceStyle *style_primary,
-		      GtkSourceStyle *style_secondary)
+static gchar *
+get_cursors_css_style (GtkSourceStyleScheme *scheme,
+		       GtkWidget            *widget)
 {
+	GtkSourceStyle *primary_style;
+	GtkSourceStyle *secondary_style;
 	GdkRGBA primary_color;
 	GdkRGBA secondary_color;
-	GdkRGBA *primary = NULL;
-	GdkRGBA *secondary = NULL;
+	gchar *primary_color_str;
+	gchar *secondary_color_str;
+	gchar *css;
 
-	if (get_color (style_primary, TRUE, &primary_color))
+	primary_style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
+	secondary_style = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
+
+	if (!get_color (primary_style, TRUE, &primary_color))
 	{
-		primary = &primary_color;
+		return NULL;
 	}
 
-	if (get_color (style_secondary, TRUE, &secondary_color))
-	{
-		secondary = &secondary_color;
-	}
-
-	if (primary != NULL && secondary == NULL)
+	if (!get_color (secondary_style, TRUE, &secondary_color))
 	{
 		GtkStyleContext *context;
 
 		context = gtk_widget_get_style_context (widget);
-		gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL,
+
+		gtk_style_context_get_background_color (context,
+							GTK_STATE_FLAG_NORMAL,
 		                                        &secondary_color);
 
 		/* shade the secondary cursor */
 		secondary_color.red *= 0.5;
 		secondary_color.green *= 0.5;
 		secondary_color.blue *= 0.5;
-
-		secondary = &secondary_color;
 	}
 
-	if (primary != NULL)
+	primary_color_str = gdk_rgba_to_string (&primary_color);
+	secondary_color_str = gdk_rgba_to_string (&secondary_color);
+
+	css = g_strdup_printf ("GtkSourceView {\n"
+			       "\t-GtkWidget-cursor-color: %s;\n"
+			       "\t-GtkWidget-secondary-cursor-color: %s;\n"
+			       "}\n",
+			       primary_color_str,
+			       secondary_color_str);
+
+	g_free (primary_color_str);
+	g_free (secondary_color_str);
+
+	return css;
+}
+
+/* The CssProvider for the cursors depends only on @scheme, but it needs a
+ * @widget to shade the background color in case the secondary cursor color
+ * isn't defined. The background color is normally defined by @scheme, or if
+ * it's not defined it is taken from the GTK+ theme. So ideally, if the GTK+
+ * theme changes at runtime, we should regenerate the CssProvider for the
+ * cursors, but it isn't done.
+ */
+static GtkCssProvider *
+get_css_provider_cursors (GtkSourceStyleScheme *scheme,
+			  GtkWidget            *widget)
+{
+	gchar *css;
+	GtkCssProvider *provider;
+	GError *error = NULL;
+
+	css = get_cursors_css_style (scheme, widget);
+
+	if (css == NULL)
 	{
-		gtk_widget_override_cursor (widget, primary, secondary);
+		return NULL;
 	}
-	else
+
+	provider = gtk_css_provider_new ();
+
+	gtk_css_provider_load_from_data (provider, css, -1, &error);
+	g_free (css);
+
+	if (error != NULL)
 	{
-		gtk_widget_override_cursor (widget, NULL, NULL);
+		g_warning ("Error when loading CSS for cursors: %s", error->message);
+		g_error_free (error);
+
+		g_object_unref (provider);
+		return NULL;
 	}
+
+	return provider;
 }
 
 /**
@@ -686,7 +733,6 @@ void
 _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 				GtkWidget            *widget)
 {
-	GtkSourceStyle *style, *style2;
 	GtkStyleContext *context;
 
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
@@ -703,9 +749,24 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	gtk_style_context_invalidate (context);
 	G_GNUC_END_IGNORE_DEPRECATIONS;
 
-	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
-	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
-	update_cursor_colors (widget, style, style2);
+	/* The CssProvider for the cursors needs that the first provider is
+	 * applied, to get the background color.
+	 */
+	if (scheme->priv->css_provider_cursors == NULL)
+	{
+		scheme->priv->css_provider_cursors = get_css_provider_cursors (scheme, widget);
+	}
+
+	if (scheme->priv->css_provider_cursors != NULL)
+	{
+		gtk_style_context_add_provider (context,
+						GTK_STYLE_PROVIDER (scheme->priv->css_provider_cursors),
+						GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+		G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
+		gtk_style_context_invalidate (context);
+		G_GNUC_END_IGNORE_DEPRECATIONS;
+	}
 }
 
 /**
@@ -730,12 +791,16 @@ _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
 	gtk_style_context_remove_provider (context,
 	                                   GTK_STYLE_PROVIDER (scheme->priv->css));
 
+	if (scheme->priv->css_provider_cursors != NULL)
+	{
+		gtk_style_context_remove_provider (context,
+						   GTK_STYLE_PROVIDER (scheme->priv->css_provider_cursors));
+	}
+
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 	/* See https://bugzilla.gnome.org/show_bug.cgi?id=708583 */
 	gtk_style_context_invalidate (context);
 	G_GNUC_END_IGNORE_DEPRECATIONS;
-
-	update_cursor_colors (widget, NULL, NULL);
 }
 
 /* --- PARSER ---------------------------------------------------------------- */
