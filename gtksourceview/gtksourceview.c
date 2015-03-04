@@ -2741,8 +2741,8 @@ gtk_source_view_paint_current_line_highlight (GtkSourceView *view,
 {
 	GtkTextBuffer *buffer;
 	GtkTextIter cur;
-	gint y, height;
-	GdkRGBA color;
+	gint y;
+	gint height;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 	gtk_text_buffer_get_iter_at_mark (buffer,
@@ -2750,24 +2750,10 @@ gtk_source_view_paint_current_line_highlight (GtkSourceView *view,
 					  gtk_text_buffer_get_insert (buffer));
 	gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view), &cur, &y, &height);
 
-	if (view->priv->current_line_color_set)
-	{
-		color = view->priv->current_line_color;
-	}
-	else
-	{
-		GtkStyleContext *context;
-		GtkStateFlags state;
-
-		context = gtk_widget_get_style_context (GTK_WIDGET (view));
-		state = gtk_widget_get_state_flags (GTK_WIDGET (view));
-		gtk_style_context_get_background_color (context, state, &color);
-	}
-
 	gtk_source_view_paint_line_background (GTK_TEXT_VIEW (view),
 					       cr,
 					       y, height,
-					       &color);
+					       &view->priv->current_line_color);
 }
 
 static void
@@ -2822,7 +2808,8 @@ gtk_source_view_draw_layer (GtkTextView      *text_view,
 		}
 
 		if (gtk_widget_is_sensitive (GTK_WIDGET (view)) &&
-		    view->priv->highlight_current_line)
+		    view->priv->highlight_current_line &&
+		    view->priv->current_line_color_set)
 		{
 			gtk_source_view_paint_current_line_highlight (view, cr);
 		}
