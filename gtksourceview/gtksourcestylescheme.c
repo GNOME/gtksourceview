@@ -83,7 +83,7 @@ struct _GtkSourceStyleSchemePrivate
 	GHashTable *style_cache;
 	GHashTable *named_colors;
 
-	GtkCssProvider *css;
+	GtkCssProvider *css_provider;
 	GtkCssProvider *css_provider_cursors;
 };
 
@@ -113,7 +113,7 @@ gtk_source_style_scheme_dispose (GObject *object)
 	}
 
 	g_clear_object (&scheme->priv->parent);
-	g_clear_object (&scheme->priv->css);
+	g_clear_object (&scheme->priv->css_provider);
 	g_clear_object (&scheme->priv->css_provider_cursors);
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_parent_class)->dispose (object);
@@ -279,7 +279,7 @@ gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
 	scheme->priv->named_colors = g_hash_table_new_full (g_str_hash, g_str_equal,
 							    g_free, g_free);
 
-	scheme->priv->css = gtk_css_provider_new ();
+	scheme->priv->css_provider = gtk_css_provider_new ();
 }
 
 /**
@@ -741,7 +741,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	/* we need to translate some of the style scheme properties in a CSS override */
 	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
 	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (scheme->priv->css),
+	                                GTK_STYLE_PROVIDER (scheme->priv->css_provider),
 	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
@@ -789,7 +789,7 @@ _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
 
 	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
 	gtk_style_context_remove_provider (context,
-	                                   GTK_STYLE_PROVIDER (scheme->priv->css));
+	                                   GTK_STYLE_PROVIDER (scheme->priv->css_provider));
 
 	if (scheme->priv->css_provider_cursors != NULL)
 	{
@@ -878,9 +878,9 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	append_css_style (final_style, style, ".view:selected:focused");
 
 	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
-	if (style2 == NULL)
-		style2 = style;
-	append_css_style (final_style, style2, ".view:selected");
+	append_css_style (final_style,
+			  style2 != NULL ? style2 : style,
+			  ".view:selected");
 
 	/* For now we use "line numbers" colors for all the gutters */
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
@@ -907,8 +907,10 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	{
 		GError *error = NULL;
 
-		if (!gtk_css_provider_load_from_data (scheme->priv->css, final_style->str,
-		                                      final_style->len, &error))
+		if (!gtk_css_provider_load_from_data (scheme->priv->css_provider,
+						      final_style->str,
+		                                      final_style->len,
+						      &error))
 		{
 			g_warning ("%s", error->message);
 			g_error_free (error);
