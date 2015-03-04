@@ -475,13 +475,13 @@ renderer_draw_impl (GtkSourceGutterRenderer      *renderer,
                     GtkTextIter                  *end,
                     GtkSourceGutterRendererState  state)
 {
-	gboolean draw_background = FALSE;
-	GdkRGBA background_color;
-
 	if (renderer->priv->background_set)
 	{
-		background_color = renderer->priv->background_color;
-		draw_background = TRUE;
+		cairo_save (cr);
+		gdk_cairo_rectangle (cr, background_area);
+		gdk_cairo_set_source_rgba (cr, &renderer->priv->background_color);
+		cairo_fill (cr);
+		cairo_restore (cr);
 	}
 	else if ((state & GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR) != 0 &&
 		 GTK_SOURCE_IS_VIEW (renderer->priv->view))
@@ -489,23 +489,18 @@ renderer_draw_impl (GtkSourceGutterRenderer      *renderer,
 		GtkStyleContext *context;
 
 		context = gtk_widget_get_style_context (GTK_WIDGET (renderer->priv->view));
+
 		gtk_style_context_save (context);
 		gtk_style_context_add_class (context, "current-line-number");
-		gtk_style_context_get_background_color (context,
-		                                        gtk_style_context_get_state (context),
-		                                        &background_color);
+
+		gtk_render_background (context,
+				       cr,
+				       background_area->x,
+				       background_area->y,
+				       background_area->width,
+				       background_area->height);
+
 		gtk_style_context_restore (context);
-
-		draw_background = TRUE;
-	}
-
-	if (draw_background)
-	{
-		cairo_save (cr);
-		gdk_cairo_rectangle (cr, background_area);
-		gdk_cairo_set_source_rgba (cr, &background_color);
-		cairo_fill (cr);
-		cairo_restore (cr);
 	}
 }
 
