@@ -484,7 +484,8 @@ renderer_draw_impl (GtkSourceGutterRenderer      *renderer,
 		cairo_restore (cr);
 	}
 	else if ((state & GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR) != 0 &&
-		 GTK_SOURCE_IS_VIEW (renderer->priv->view))
+		 GTK_SOURCE_IS_VIEW (renderer->priv->view) &&
+		 gtk_source_view_get_highlight_current_line (GTK_SOURCE_VIEW (renderer->priv->view)))
 	{
 		GtkStyleContext *context;
 
