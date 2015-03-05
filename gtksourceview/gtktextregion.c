@@ -624,7 +624,7 @@ gtk_text_region_iterator_next (GtkTextRegionIterator *iter)
 	}
 }
 
-void
+gboolean
 gtk_text_region_iterator_get_subregion (GtkTextRegionIterator *iter,
 					GtkTextIter           *start,
 					GtkTextIter           *end)
@@ -632,24 +632,31 @@ gtk_text_region_iterator_get_subregion (GtkTextRegionIterator *iter,
 	GtkTextRegionIteratorReal *real;
 	Subregion *sr;
 
-	g_return_if_fail (iter != NULL);
+	g_return_val_if_fail (iter != NULL, FALSE);
 
 	real = (GtkTextRegionIteratorReal *)iter;
-	g_return_if_fail (check_iterator (real));
-	g_return_if_fail (real->subregions != NULL);
+	g_return_val_if_fail (check_iterator (real), FALSE);
+	g_return_val_if_fail (real->subregions != NULL, FALSE);
 
 	if (real->region->buffer == NULL)
 	{
-		return;
+		return FALSE;
 	}
 
 	sr = (Subregion*)real->subregions->data;
-	g_return_if_fail (sr != NULL);
+	g_return_val_if_fail (sr != NULL, FALSE);
 
-	if (start)
+	if (start != NULL)
+	{
 		gtk_text_buffer_get_iter_at_mark (real->region->buffer, start, sr->start);
-	if (end)
+	}
+
+	if (end != NULL)
+	{
 		gtk_text_buffer_get_iter_at_mark (real->region->buffer, end, sr->end);
+	}
+
+	return TRUE;
 }
 
 void

@@ -86,7 +86,7 @@ G_GNUC_INTERNAL
 gboolean       gtk_text_region_iterator_next	            (GtkTextRegionIterator *iter);
 
 G_GNUC_INTERNAL
-void           gtk_text_region_iterator_get_subregion       (GtkTextRegionIterator *iter,
+gboolean       gtk_text_region_iterator_get_subregion       (GtkTextRegionIterator *iter,
 							     GtkTextIter           *start,
 							     GtkTextIter           *end);
 
