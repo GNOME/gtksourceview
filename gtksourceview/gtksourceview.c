@@ -136,6 +136,7 @@ enum
 	MOVE_TO_MATCHING_BRACKET,
 	CHANGE_NUMBER,
 	CHANGE_CASE,
+	JOIN_LINES,
 	LAST_SIGNAL
 };
 
@@ -419,6 +420,22 @@ gtk_source_view_change_case (GtkSourceView           *view,
 	}
 
 	gtk_source_buffer_change_case (buffer, case_type, &start, &end);
+}
+
+static void
+gtk_source_view_join_lines (GtkSourceView *view)
+{
+	GtkSourceBuffer *buffer;
+	GtkTextIter start;
+	GtkTextIter end;
+
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+
+	gtk_text_view_reset_im_context (GTK_TEXT_VIEW (view));
+
+	gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
+
+	gtk_source_buffer_join_lines (buffer, &start, &end);
 }
 
 static void
@@ -824,6 +841,23 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                            G_TYPE_NONE,
 		                            1,
 		                            GTK_SOURCE_TYPE_CHANGE_CASE_TYPE);
+
+	/**
+	 * GtkSourceView::join-lines:
+	 * @view: the #GtkSourceView
+	 *
+	 * Keybinding signal to join the lines currently selected.
+	 *
+	 * Since: 3.16
+	 */
+	signals[JOIN_LINES] =
+		g_signal_new_class_handler ("join-lines",
+		                            G_TYPE_FROM_CLASS (klass),
+		                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		                            G_CALLBACK (gtk_source_view_join_lines),
+		                            NULL, NULL, NULL,
+		                            G_TYPE_NONE,
+		                            0);
 
 	binding_set = gtk_binding_set_by_class (klass);
 
