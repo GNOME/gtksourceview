@@ -2111,6 +2111,13 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 static gboolean
 idle_scan_cb (GtkSourceSearchContext *search)
 {
+	if (search->priv->buffer == NULL)
+	{
+		search->priv->idle_scan_id = 0;
+		clear_search (search);
+		return G_SOURCE_REMOVE;
+	}
+
 	return gtk_source_search_settings_get_regex_enabled (search->priv->settings) ?
 	       idle_scan_regex_search (search) :
 	       idle_scan_normal_search (search);
