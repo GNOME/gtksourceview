@@ -1581,15 +1581,21 @@ scan_all_region (GtkSourceSearchContext *search,
 		return;
 	}
 
-	gtk_text_region_nth_subregion (region_to_highlight,
-				       0,
-				       &start_search,
-				       NULL);
+	if (!gtk_text_region_nth_subregion (region_to_highlight,
+					    0,
+					    &start_search,
+					    NULL))
+	{
+		return;
+	}
 
-	gtk_text_region_nth_subregion (region_to_highlight,
-				       nb_subregions - 1,
-				       NULL,
-				       &end_search);
+	if (!gtk_text_region_nth_subregion (region_to_highlight,
+					    nb_subregions - 1,
+					    NULL,
+					    &end_search))
+	{
+		return;
+	}
 
 	gtk_text_iter_order (&start_search, &end_search);
 
@@ -1779,15 +1785,21 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 		return;
 	}
 
-	gtk_text_region_nth_subregion (search->priv->high_priority_region,
-				       0,
-				       &start,
-				       NULL);
+	if (!gtk_text_region_nth_subregion (search->priv->high_priority_region,
+					    0,
+					    &start,
+					    NULL))
+	{
+		return;
+	}
 
-	gtk_text_region_nth_subregion (search->priv->high_priority_region,
-				       nb_subregions - 1,
-				       NULL,
-				       &end);
+	if (!gtk_text_region_nth_subregion (search->priv->high_priority_region,
+					    nb_subregions - 1,
+					    NULL,
+					    &end))
+	{
+		return;
+	}
 
 	region = gtk_text_region_intersect (search->priv->scan_region,
 					    &start,
@@ -2015,7 +2027,10 @@ regex_search_scan_next_chunk (GtkSourceSearchContext *search)
 		return;
 	}
 
-	gtk_text_region_nth_subregion (search->priv->scan_region, 0, &chunk_start, NULL);
+	if (!gtk_text_region_nth_subregion (search->priv->scan_region, 0, &chunk_start, NULL))
+	{
+		return;
+	}
 
 	chunk_end = chunk_start;
 	gtk_text_iter_forward_lines (&chunk_end, SCAN_BATCH_SIZE);
@@ -3682,10 +3697,13 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 	{
 		GtkTextIter start;
 
-		gtk_text_region_nth_subregion (search->priv->scan_region,
-					       0,
-					       &start,
-					       NULL);
+		if (!gtk_text_region_nth_subregion (search->priv->scan_region,
+						    0,
+						    &start,
+						    NULL))
+		{
+			return;
+		}
 
 		regex_search_scan_chunk (search, &start, end);
 	}
