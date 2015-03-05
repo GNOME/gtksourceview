@@ -2111,13 +2111,6 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 static gboolean
 idle_scan_cb (GtkSourceSearchContext *search)
 {
-	if (search->priv->buffer == NULL)
-	{
-		search->priv->idle_scan_id = 0;
-		clear_search (search);
-		return G_SOURCE_REMOVE;
-	}
-
 	return gtk_source_search_settings_get_regex_enabled (search->priv->settings) ?
 	       idle_scan_regex_search (search) :
 	       idle_scan_normal_search (search);
@@ -2535,6 +2528,14 @@ delete_range_after_cb (GtkSourceSearchContext *search,
 }
 
 static void
+buffer_destroyed_cb (GtkSourceSearchContext *search,
+		     GObject                *where_the_object_was)
+{
+	search->priv->buffer = NULL;
+	clear_search (search);
+}
+
+static void
 set_buffer (GtkSourceSearchContext *search,
 	    GtkSourceBuffer        *buffer)
 {
@@ -2543,8 +2544,9 @@ set_buffer (GtkSourceSearchContext *search,
 
 	search->priv->buffer = GTK_TEXT_BUFFER (buffer);
 
-	g_object_add_weak_pointer (G_OBJECT (buffer),
-				   (gpointer *)&search->priv->buffer);
+	g_object_weak_ref (G_OBJECT (buffer),
+			   (GWeakNotify) buffer_destroyed_cb,
+			   search);
 
 	search->priv->tag_table = gtk_text_buffer_get_tag_table (search->priv->buffer);
 	g_object_ref (search->priv->tag_table);
@@ -2671,8 +2673,9 @@ gtk_source_search_context_dispose (GObject *object)
 
 	if (search->priv->buffer != NULL)
 	{
-		g_object_remove_weak_pointer (G_OBJECT (search->priv->buffer),
-					      (gpointer *)&search->priv->buffer);
+		g_object_weak_unref (G_OBJECT (search->priv->buffer),
+				     (GWeakNotify) buffer_destroyed_cb,
+				     search);
 
 		search->priv->buffer = NULL;
 	}
