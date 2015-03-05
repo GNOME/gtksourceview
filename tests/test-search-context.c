@@ -1059,6 +1059,29 @@ test_regex_at_word_boundaries (void)
 	g_object_unref (context);
 }
 
+static void
+test_destroy_buffer_during_search (void)
+{
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
+
+	gtk_text_buffer_set_text (text_buffer, "y", -1);
+	gtk_source_search_settings_set_search_text (settings, "y");
+
+	/* Destroy buffer during search. */
+	g_object_unref (source_buffer);
+	flush_queue ();
+
+	/* Test also a new search when buffer already destroyed. */
+	gtk_source_search_settings_set_search_text (settings, "x");
+	flush_queue ();
+
+	g_object_unref (settings);
+	g_object_unref (context);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -1085,6 +1108,7 @@ main (int argc, char **argv)
 	g_test_add_func ("/Search/replace", test_replace_all);
 	g_test_add_func ("/Search/regex", test_regex);
 	g_test_add_func ("/Search/regex-at-word-boundaries", test_regex_at_word_boundaries);
+	g_test_add_func ("/Search/destroy-buffer-during-search", test_destroy_buffer_during_search);
 
 	return g_test_run ();
 }
