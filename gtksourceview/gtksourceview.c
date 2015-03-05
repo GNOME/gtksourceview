@@ -135,6 +135,7 @@ enum
 	SMART_HOME_END,
 	MOVE_TO_MATCHING_BRACKET,
 	CHANGE_NUMBER,
+	CHANGE_CASE,
 	LAST_SIGNAL
 };
 
@@ -398,6 +399,26 @@ gtk_source_view_change_number (GtkSourceView *view,
 
 		g_free (str);
 	}
+}
+
+static void
+gtk_source_view_change_case (GtkSourceView           *view,
+			     GtkSourceChangeCaseType  case_type)
+{
+	GtkSourceBuffer *buffer;
+	GtkTextIter start, end;
+
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+
+	gtk_text_view_reset_im_context (GTK_TEXT_VIEW (view));
+
+	if (!gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (buffer), &start, &end))
+	{
+		/* if no selection, change the current char */
+		gtk_text_iter_forward_char (&end);
+	}
+
+	gtk_source_buffer_change_case (buffer, case_type, &start, &end);
 }
 
 static void
@@ -784,6 +805,25 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                            G_TYPE_NONE,
 		                            1,
 		                            G_TYPE_INT);
+
+	/**
+	 * GtkSourceView::change-case:
+	 * @view: the #GtkSourceView
+	 * @case_type: the case to use
+	 *
+	 * Keybinding signal to change case of the text at the current cursor position.
+	 *
+	 * Since: 3.16
+	 */
+	signals[CHANGE_CASE] =
+		g_signal_new_class_handler ("change-case",
+		                            G_TYPE_FROM_CLASS (klass),
+		                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+		                            G_CALLBACK (gtk_source_view_change_case),
+		                            NULL, NULL, NULL,
+		                            G_TYPE_NONE,
+		                            1,
+		                            GTK_SOURCE_TYPE_CHANGE_CASE_TYPE);
 
 	binding_set = gtk_binding_set_by_class (klass);
 
