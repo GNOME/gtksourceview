@@ -436,9 +436,12 @@ is_text_region_empty (GtkTextRegion *region)
 		GtkTextIter region_start;
 		GtkTextIter region_end;
 
-		gtk_text_region_iterator_get_subregion (&region_iter,
-							&region_start,
-							&region_end);
+		if (!gtk_text_region_iterator_get_subregion (&region_iter,
+							     &region_start,
+							     &region_end))
+		{
+			return TRUE;
+		}
 
 		if (!gtk_text_iter_equal (&region_start, &region_end))
 		{
@@ -470,7 +473,10 @@ get_first_subregion (GtkTextRegion *region,
 
 	while (!gtk_text_region_iterator_is_end (&region_iter))
 	{
-		gtk_text_region_iterator_get_subregion (&region_iter, start, end);
+		if (!gtk_text_region_iterator_get_subregion (&region_iter, start, end))
+		{
+			return FALSE;
+		}
 
 		if (!gtk_text_iter_equal (start, end))
 		{
@@ -506,9 +512,12 @@ get_last_subregion (GtkTextRegion *region,
 		GtkTextIter start_subregion;
 		GtkTextIter end_subregion;
 
-		gtk_text_region_iterator_get_subregion (&region_iter,
-							&start_subregion,
-							&end_subregion);
+		if (!gtk_text_region_iterator_get_subregion (&region_iter,
+							     &start_subregion,
+							     &end_subregion))
+		{
+			return FALSE;
+		}
 
 		if (!gtk_text_iter_equal (&start_subregion, &end_subregion))
 		{
@@ -1823,9 +1832,12 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 		GtkTextIter subregion_start;
 		GtkTextIter subregion_end;
 
-		gtk_text_region_iterator_get_subregion (&region_iter,
-							&subregion_start,
-							&subregion_end);
+		if (!gtk_text_region_iterator_get_subregion (&region_iter,
+							     &subregion_start,
+							     &subregion_end))
+		{
+			return;
+		}
 
 		gtk_text_buffer_remove_tag (search->priv->buffer,
 					    search->priv->found_tag,
