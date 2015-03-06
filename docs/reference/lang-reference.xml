@@ -30,6 +30,44 @@ should be installed on your system in the directory
 <filename>${PREFIX}</filename> can be <filename>/usr/</filename> or
 <filename>/usr/local/</filename> if you have installed from source.
 </para>
+
+<para>
+The preinstalled language files are located in
+<filename>${PREFIX}/share/gtksourceview-3.0/language-specs/</filename>. Custom
+user languages are usually placed in
+<filename>~/.local/share/gtksourceview-3.0/language-specs/</filename>. Note:
+replace 3 with 2 in the path for GtkSourceView version 2.
+</para>
+</refsect1>
+
+<refsect1>
+<title>Some advices</title>
+
+<para>
+The easiest way to start a new language definition is to copy a preinstalled
+language definition from a language that has similar constructs as the one you
+want to write a specification for. You can copy and rename a file from the
+systems directory to the local user one (create the directory if it doesn't
+exist yet) and edit the file accordingly.
+</para>
+
+<para>
+The important thing you need to change are the <code>id</code> and
+<code>name</code> of the language and the metadata properties
+<code>mimetypes</code> and <code>globs</code> in the language spec. These
+should resemble your new language. It might be that your files do not have an
+appropriate mimetype associated yet. You can either in that case leave it
+empty, or add a new mimetype (see below).
+</para>
+
+<para>
+If for some reason your language spec doesn't show up in an application like
+gedit, it might be a good idea to start the application from a terminal window
+and see if any errors/warnings appear for your language file. This usually
+gives good clues what's wrong with the specification. Note that you need to
+restart the application to take into account changes in a language definition
+file.
+</para>
 </refsect1>
 
 <refsect1>
@@ -168,7 +206,13 @@ Recognized elements are (all optional):
 <varlistentry>
 <term><code>mimetypes</code></term>
 <listitem><para>
-The semicolon-separated list of mimetypes associated to the language.
+The semicolon-separated list of mimetypes associated to the language. See the
+<ulink url="http://www.freedesktop.org/wiki/Specifications/shared-mime-info-spec/">shared-mime-info</ulink>
+freedesktop.org specification. A language definition file shipped by
+GtkSourceView needs to have a mimetype defined in the shared-mime-info
+database. If the language definition file is not shipped by GtkSourceView, you
+can also create the mimetype locally, usually in
+<filename>~/.local/share/mime/packages/</filename>.
 </para></listitem>
 </varlistentry>
 
