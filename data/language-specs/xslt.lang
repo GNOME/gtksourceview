@@ -88,26 +88,9 @@
       <keyword>with-param</keyword>
     </context>
 
-    <context id="xslt2-elements" once-only="true" style-ref="element">
-      <keyword>analyze-string</keyword>
-      <keyword>character-map</keyword>
-      <keyword>for-each-group</keyword>
-      <keyword>function</keyword>
-      <keyword>import-schema</keyword>
-      <keyword>matching-substring</keyword>
-      <keyword>namespace</keyword>
-      <keyword>next-match</keyword>
-      <keyword>non-matching-substring</keyword>
-      <keyword>output-character</keyword>
-      <keyword>perform-sort</keyword>
-      <keyword>result-document</keyword>
-      <keyword>sequence</keyword>
-    </context>
-
     <context id="xslt-tags">
       <include>
         <context ref="elements"/>
-        <context ref="xslt2-elements"/>
         <context ref="xml:element-name" original="true"/>
       </include>
     </context>
