@@ -1,4 +1,4 @@
-<refentry id="lang-reference" revision="23 November 2013">
+<refentry id="lang-reference" revision="6 March 2015">
 <refmeta>
 <refentrytitle>Language Definition v2.0 Reference</refentrytitle>
 </refmeta>
@@ -615,7 +615,9 @@ on the first line of buffer. If not specified it defaults to <code>false</code>.
 <term><code>once-only</code> (optional)</term>
 <listitem><para>
 A boolean value telling the engine whether the context can occur only
-once in its parent. If not specified it defaults to <code>false</code>.
+once in its parent. For a container context, it means that
+<emphasis>each</emphasis> included context can occur once.
+If not specified it defaults to <code>false</code>.
 </para></listitem></varlistentry>
 
 <varlistentry>
@@ -762,7 +764,9 @@ Contained elements:
 </para>
 
 <para>
-The attributes are the same used in simple contexts.
+The attributes are the same used in simple contexts. If the
+<code>once-only</code> attribute is <code>true</code>, it means that
+<emphasis>each</emphasis> keyword can occur once.
 </para>
 
 </refsect2>
