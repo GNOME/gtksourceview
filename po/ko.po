@@ -3,7 +3,7 @@
 # gtksourceview
 # This file is distributed under the same license as the gtksourceview package.
 #
-# Changwoo Ryu <cwryu@debian.org>, 2003-2009, 2011-2014.
+# Changwoo Ryu <cwryu@debian.org>, 2003-2009, 2011-2015.
 #
 # 새로 번역하시는 분은 아래 translator-credits에 추가하세요.
 #
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-06 09:12+0000\n"
-"PO-Revision-Date: 2014-09-06 18:26+0900\n"
+"POT-Creation-Date: 2015-03-07 10:26+0000\n"
+"PO-Revision-Date: 2015-03-08 03:48+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -63,8 +63,6 @@ msgid "Leading"
 msgstr "앞에"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:409
 msgid "Text"
 msgstr "텍스트"
 
@@ -75,7 +73,7 @@ msgstr "뒤에"
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
 #: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:788
+#: ../gtksourceview/gtksourcecompletion.c:830
 msgid "All"
 msgstr "모두"
 
@@ -94,7 +92,8 @@ msgstr "모두"
 #: ../data/language-specs/erlang.lang.h:1
 #: ../data/language-specs/forth.lang.h:1
 #: ../data/language-specs/fortran.lang.h:1
-#: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
+#: ../data/language-specs/fsharp.lang.h:1
+#: ../data/language-specs/genie.lang.h:1 ../data/language-specs/glsl.lang.h:1
 #: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
 #: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
@@ -106,13 +105,14 @@ msgstr "모두"
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:1
+#: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/pig.lang.h:1
 #: ../data/language-specs/prolog.lang.h:1
 #: ../data/language-specs/scala.lang.h:1
 #: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
 #: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
+#: ../data/language-specs/thrift.lang.h:1 ../data/language-specs/vala.lang.h:1
+#: ../data/language-specs/vbnet.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
 msgid "Source"
@@ -137,14 +137,15 @@ msgstr "액션스크립트"
 #: ../data/language-specs/forth.lang.h:3
 #: ../data/language-specs/fortran.lang.h:3
 #: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/genie.lang.h:3 ../data/language-specs/go.lang.h:3
+#: ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:4
 #: ../data/language-specs/html.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:3
 #: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
-#: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/llvm.lang.h:3 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/java.lang.h:3 ../data/language-specs/j.lang.h:4
+#: ../data/language-specs/latex.lang.h:3 ../data/language-specs/llvm.lang.h:3
+#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/modelica.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/netrexx.lang.h:6
@@ -152,15 +153,18 @@ msgstr "액션스크립트"
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/rst.lang.h:8
-#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/scala.lang.h:5
+#: ../data/language-specs/php.lang.h:4 ../data/language-specs/pig.lang.h:8
+#: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/rst.lang.h:8 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
 #: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
 #: ../data/language-specs/texinfo.lang.h:3
-#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/thrift.lang.h:3 ../data/language-specs/vala.lang.h:3
+#: ../data/language-specs/vbnet.lang.h:3
 #: ../data/language-specs/verilog.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
 #: ../data/language-specs/yaml.lang.h:4
@@ -200,12 +204,13 @@ msgstr "오류"
 #: ../data/language-specs/forth.lang.h:4
 #: ../data/language-specs/fortran.lang.h:4
 #: ../data/language-specs/fsharp.lang.h:7
-#: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
+#: ../data/language-specs/gdb-log.lang.h:8
+#: ../data/language-specs/genie.lang.h:5 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:9
 #: ../data/language-specs/idl-exelis.lang.h:7
 #: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
 #: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
@@ -220,7 +225,7 @@ msgstr "오류"
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
 #: ../data/language-specs/php.lang.h:10 ../data/language-specs/po.lang.h:5
 #: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:6
+#: ../data/language-specs/protobuf.lang.h:7
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6
 #: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
@@ -228,7 +233,8 @@ msgstr "오류"
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
 #: ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/thrift.lang.h:6 ../data/language-specs/vala.lang.h:6
+#: ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:4
 #: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
 msgid "String"
@@ -237,26 +243,26 @@ msgstr "문자열"
 #. Translators: refered to some specific keywords of the language that
 #. allow to get external functionalities
 #: ../data/language-specs/actionscript.lang.h:6
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:7
 #: ../data/language-specs/scala.lang.h:4
 msgid "External"
 msgstr "외부"
 
 #: ../data/language-specs/actionscript.lang.h:7
-#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/java.lang.h:10 ../data/language-specs/ooc.lang.h:8
 #: ../data/language-specs/scala.lang.h:8
 msgid "Declaration"
 msgstr "선언"
 
 #: ../data/language-specs/actionscript.lang.h:8
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:11
 #: ../data/language-specs/ooc.lang.h:9
 msgid "Storage Class"
 msgstr "저장 클래스"
 
 #: ../data/language-specs/actionscript.lang.h:9
-#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
+#: ../data/language-specs/java.lang.h:12 ../data/language-specs/ooc.lang.h:10
 msgid "Scope Declaration"
 msgstr "범위 선언"
 
@@ -278,12 +284,12 @@ msgstr "범위 선언"
 #: ../data/language-specs/forth.lang.h:6
 #: ../data/language-specs/fortran.lang.h:6
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/genie.lang.h:10 ../data/language-specs/glsl.lang.h:5
+#: ../data/language-specs/go.lang.h:7 ../data/language-specs/gtkrc.lang.h:5
 #: ../data/language-specs/haskell.lang.h:7
 #: ../data/language-specs/idl-exelis.lang.h:6
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:13
 #: ../data/language-specs/javascript.lang.h:7
 #: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lex.lang.h:4
 #: ../data/language-specs/llvm.lang.h:5 ../data/language-specs/lua.lang.h:5
@@ -298,7 +304,7 @@ msgstr "범위 선언"
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
 #: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:5
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
 #: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
@@ -308,7 +314,8 @@ msgstr "범위 선언"
 #: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:5
 #: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/thrift.lang.h:5 ../data/language-specs/vala.lang.h:7
+#: ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
@@ -318,7 +325,8 @@ msgstr "키워드"
 #: ../data/language-specs/boo.lang.h:12
 #: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/genie.lang.h:12
+#: ../data/language-specs/java.lang.h:14
 #: ../data/language-specs/javascript.lang.h:4
 #: ../data/language-specs/json.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
@@ -336,12 +344,12 @@ msgstr "Null 값"
 #: ../data/language-specs/def.lang.h:34
 #: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
 #: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/llvm.lang.h:11
-#: ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/java.lang.h:15 ../data/language-specs/llvm.lang.h:11
+#: ../data/language-specs/lua.lang.h:11
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
 #: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/protobuf.lang.h:5 ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/protobuf.lang.h:6 ../data/language-specs/R.lang.h:8
 #: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
 #: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
 #: ../data/language-specs/vhdl.lang.h:8
@@ -353,9 +361,10 @@ msgstr "불리언 값"
 #: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
-#: ../data/language-specs/llvm.lang.h:12
+#: ../data/language-specs/forth.lang.h:8
+#: ../data/language-specs/genie.lang.h:14
+#: ../data/language-specs/java.lang.h:16 ../data/language-specs/j.lang.h:14
+#: ../data/language-specs/julia.lang.h:5 ../data/language-specs/llvm.lang.h:12
 #: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
 #: ../data/language-specs/scala.lang.h:12
@@ -364,7 +373,7 @@ msgid "Number"
 msgstr "숫자"
 
 #: ../data/language-specs/actionscript.lang.h:14
-#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/java.lang.h:17
 #: ../data/language-specs/javascript.lang.h:12
 #: ../data/language-specs/ooc.lang.h:18
 msgid "Future Reserved Keywords"
@@ -380,12 +389,12 @@ msgstr "향후 예약어"
 #: ../data/language-specs/forth.lang.h:7
 #: ../data/language-specs/fortran.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
-#: ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/genie.lang.h:8 ../data/language-specs/glsl.lang.h:4
+#: ../data/language-specs/go.lang.h:8 ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:8
 #: ../data/language-specs/idl-exelis.lang.h:4
 #: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/java.lang.h:18
 #: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/llvm.lang.h:10
 #: ../data/language-specs/nemerle.lang.h:9
@@ -394,10 +403,12 @@ msgstr "향후 예약어"
 #: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
 #: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
-#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/pig.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
 #: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/thrift.lang.h:4 ../data/language-specs/vala.lang.h:5
+#: ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "데이터 타입"
 
@@ -457,7 +468,7 @@ msgstr "실수"
 #: ../data/language-specs/fortran.lang.h:14
 #: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
-#: ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:3
@@ -489,7 +500,7 @@ msgstr "알림"
 #: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
 #: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
 #: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
+#: ../data/language-specs/java.lang.h:6 ../data/language-specs/julia.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
@@ -521,7 +532,7 @@ msgstr "상수"
 #: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/protobuf.lang.h:3
 #: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
@@ -556,7 +567,7 @@ msgstr "ASP"
 #: ../data/language-specs/gtk-doc.lang.h:10
 #: ../data/language-specs/idl-exelis.lang.h:10
 #: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:9
 #: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
 #: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
@@ -650,7 +661,8 @@ msgid "Pattern"
 msgstr "패턴"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/genie.lang.h:15 ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/go.lang.h:18
 #: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python3.lang.h:17
@@ -705,8 +717,6 @@ msgstr "16진수"
 #: ../data/language-specs/sweave.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:401
 msgid "Markup"
 msgstr "마크업"
 
@@ -756,27 +766,29 @@ msgstr "타입"
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python3.lang.h:5
+#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/genie.lang.h:4
+#: ../data/language-specs/python3.lang.h:5
 #: ../data/language-specs/python.lang.h:5
 msgid "Multiline string"
 msgstr "여러 줄 문자열"
 
-#: ../data/language-specs/boo.lang.h:6
+#: ../data/language-specs/boo.lang.h:6 ../data/language-specs/genie.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
 #: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "정규식"
 
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/sparql.lang.h:8
-#: ../data/language-specs/xml.lang.h:12 ../data/language-specs/xslt.lang.h:4
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/genie.lang.h:7
+#: ../data/language-specs/sparql.lang.h:8 ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/xslt.lang.h:4
 msgid "Namespace"
 msgstr "네임스페이스"
 
-#: ../data/language-specs/boo.lang.h:9
+#: ../data/language-specs/boo.lang.h:9 ../data/language-specs/genie.lang.h:9
 msgid "Definition"
 msgstr "정의"
 
-#: ../data/language-specs/boo.lang.h:11
+#: ../data/language-specs/boo.lang.h:11 ../data/language-specs/genie.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/python.lang.h:10
 #: ../data/language-specs/ruby.lang.h:20
@@ -785,6 +797,7 @@ msgstr "특수 변수"
 
 #: ../data/language-specs/boo.lang.h:13
 #: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
+#: ../data/language-specs/genie.lang.h:13
 #: ../data/language-specs/imagej.lang.h:4
 #: ../data/language-specs/julia.lang.h:6
 #: ../data/language-specs/libtool.lang.h:4
@@ -899,8 +912,8 @@ msgstr "C"
 msgid "Common Defines"
 msgstr "자주 사용하는 정의"
 
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
-#: ../data/language-specs/verilog.lang.h:5
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/genie.lang.h:16
+#: ../data/language-specs/go.lang.h:9 ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
 msgstr "printf 변환"
 
@@ -1153,8 +1166,6 @@ msgid "Exec parameter"
 msgstr "실행 파라미터"
 
 #: ../data/language-specs/desktop.lang.h:11
-#: ../gtksourceview/gtksourcefile.c:184
-#: ../gtksourceview/gtksourcefilesaver.c:390
 msgid "Encoding"
 msgstr "인코딩"
 
@@ -1195,9 +1206,6 @@ msgstr "특수한 경우"
 
 #. String
 #: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
-#: ../gtksourceview/gtksourcefile.c:167
-#: ../gtksourceview/gtksourcefileloader.c:394
-#: ../gtksourceview/gtksourcefilesaver.c:373
 msgid "Location"
 msgstr "위치"
 
@@ -1489,6 +1497,10 @@ msgstr "불완전한 시퀀스"
 #: ../data/language-specs/gdb-log.lang.h:12
 msgid "Prompt"
 msgstr "프롬프트"
+
+#: ../data/language-specs/genie.lang.h:2
+msgid "Genie"
+msgstr "지니"
 
 #: ../data/language-specs/glsl.lang.h:2
 msgid "OpenGL Shading Language"
@@ -1911,7 +1923,12 @@ msgstr "lua"
 msgid "Reserved Identifier"
 msgstr "예약 식별어"
 
-#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/ruby.lang.h:8
+#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Label"
+msgstr "레이블"
+
+#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/ruby.lang.h:8
 msgid "Nil Constant"
 msgstr "Nil 상수"
 
@@ -2025,11 +2042,6 @@ msgstr "블럭 따옴표 표시"
 #: ../data/language-specs/markdown.lang.h:9
 msgid "Link Text"
 msgstr "링크 텍스트"
-
-#: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:236
-msgid "Label"
-msgstr "레이블"
 
 #: ../data/language-specs/markdown.lang.h:12
 msgid "Image Marker"
@@ -2321,6 +2333,26 @@ msgstr "전처리기 태그"
 msgid "Common Function"
 msgstr "일반 함수"
 
+#: ../data/language-specs/pig.lang.h:2
+msgid "Pig"
+msgstr "Pig"
+
+#: ../data/language-specs/pig.lang.h:4
+msgid "Reserved Words"
+msgstr "예약어"
+
+#: ../data/language-specs/pig.lang.h:5
+msgid "Built In Functions"
+msgstr "내장 함수"
+
+#: ../data/language-specs/pig.lang.h:6
+msgid "Boolean values"
+msgstr "불리언 값"
+
+#: ../data/language-specs/pig.lang.h:7 ../data/language-specs/yaml.lang.h:11
+msgid "Null"
+msgstr "널"
+
 #: ../data/language-specs/pkgconfig.lang.h:2
 msgid "pkg-config"
 msgstr "pkg-config"
@@ -2535,7 +2567,7 @@ msgstr "변수 정의"
 
 #. *
 #. * SECTION:language
-#. * @Short_description: Object representing a syntax highlighted language
+#. * @Short_description: Represents a syntax highlighted language
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
@@ -2638,13 +2670,11 @@ msgstr "섹션 4"
 msgid "Section 5"
 msgstr "섹션 5"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:121
-#: ../gtksourceview/gtksourcestyle.c:122
+#: ../data/language-specs/t2t.lang.h:14
 msgid "Italic"
 msgstr "기울임"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:113
-#: ../gtksourceview/gtksourcestyle.c:114
+#: ../data/language-specs/t2t.lang.h:15
 msgid "Bold"
 msgstr "굵게"
 
@@ -2671,6 +2701,10 @@ msgstr "파일 속성"
 #: ../data/language-specs/texinfo.lang.h:10
 msgid "Generated Content"
 msgstr "만들어진 내용"
+
+#: ../data/language-specs/thrift.lang.h:2
+msgid "Thrift"
+msgstr "Thrift"
 
 #: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
@@ -2756,10 +2790,6 @@ msgstr "별명"
 msgid "Map key"
 msgstr "매핑 키"
 
-#: ../data/language-specs/yaml.lang.h:11
-msgid "Null"
-msgstr "널"
-
 #: ../data/language-specs/yaml.lang.h:13
 msgid "Integer"
 msgstr "정수"
@@ -2824,145 +2854,9 @@ msgstr "탱고"
 msgid "Color scheme using Tango color palette"
 msgstr "탱고 컬러 팔레트를 사용한 색 양식"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:327
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:328
 msgid "Document Words"
 msgstr "문서화 부분"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
-msgctxt "Object"
-msgid "Name"
-msgstr "이름"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
-msgid "The provider name"
-msgstr "완성 방법 이름"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:437
-#: ../gtksourceview/gtksourcecompletionitem.c:275
-msgid "Icon"
-msgstr "아이콘"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
-msgid "The provider icon"
-msgstr "완성 방법 아이콘"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:445
-msgid "Proposals Batch Size"
-msgstr "연속 제안 크기"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
-msgid "Number of proposals added in one batch"
-msgstr "한 번에 추가할 제안의 개수"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
-msgid "Scan Batch Size"
-msgstr "연속 검색 크기"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
-msgid "Number of lines scanned in one batch"
-msgstr "한 번에 검색할 줄 수"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
-msgid "Minimum Word Size"
-msgstr "최소 단어 크기"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
-msgid "The minimum word size to complete"
-msgstr "자동 완성할 최소 단어 크기"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
-msgid "Interactive Delay"
-msgstr "대화형 지연 시간"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
-msgid "The delay before initiating interactive completion"
-msgstr "대화형 자동 완성을 시작하기 전의 지연 시간"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
-msgid "Priority"
-msgstr "우선 순위"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
-msgid "Provider priority"
-msgstr "완성 방법 우선 순위"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-#: ../gtksourceview/gtksourcecompletioncontext.c:298
-msgid "Activation"
-msgstr "활성화"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
-#: ../gtksourceview/gtksourcecompletioncontext.c:299
-msgid "The type of activation"
-msgstr "동작의 활성화"
-
-#: ../gtksourceview/gtksourcebuffer.c:277
-#: ../gtksourceview/gtksourceprintcompositor.c:505
-msgid "Highlight Syntax"
-msgstr "구문 강조"
-
-#: ../gtksourceview/gtksourcebuffer.c:278
-msgid "Whether to highlight syntax in the buffer"
-msgstr "버퍼에서 구문 강조할 지 여부"
-
-#: ../gtksourceview/gtksourcebuffer.c:291
-msgid "Highlight Matching Brackets"
-msgstr "맞는 괄호 구문 강조"
-
-#: ../gtksourceview/gtksourcebuffer.c:292
-msgid "Whether to highlight matching brackets"
-msgstr "맞는 괄호를 구문 강조할 지 여부"
-
-#: ../gtksourceview/gtksourcebuffer.c:305
-msgid "Maximum Undo Levels"
-msgstr "최대 실행 취소 개수"
-
-#: ../gtksourceview/gtksourcebuffer.c:306
-msgid "Number of undo levels for the buffer"
-msgstr "버퍼에서 가능한 실행 취소 개수"
-
-#. Translators: throughout GtkSourceView "language" stands
-#. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:318
-msgid "Language"
-msgstr "언어"
-
-#: ../gtksourceview/gtksourcebuffer.c:319
-msgid "Language object to get highlighting patterns from"
-msgstr "강조 패턴을 얻어올 언어 오브젝트"
-
-#: ../gtksourceview/gtksourcebuffer.c:327
-msgid "Can undo"
-msgstr "실행 취소 가능"
-
-#: ../gtksourceview/gtksourcebuffer.c:328
-msgid "Whether Undo operation is possible"
-msgstr "실행 취소 동작이 가능한지 여부"
-
-#: ../gtksourceview/gtksourcebuffer.c:335
-msgid "Can redo"
-msgstr "다시 실행 가능"
-
-#: ../gtksourceview/gtksourcebuffer.c:336
-msgid "Whether Redo operation is possible"
-msgstr "다시 실행 동작이 가능한지 여부"
-
-#: ../gtksourceview/gtksourcebuffer.c:350
-#: ../gtksourceview/gtksourcebuffer.c:351
-msgid "Style scheme"
-msgstr "스타일 양식"
-
-#: ../gtksourceview/gtksourcebuffer.c:358
-msgid "Undo manager"
-msgstr "실행 취소 관리자"
-
-#: ../gtksourceview/gtksourcebuffer.c:359
-msgid "The buffer undo manager"
-msgstr "버퍼 실행 취소 관리자"
-
-#: ../gtksourceview/gtksourcebuffer.c:374
-msgid "Implicit trailing newline"
-msgstr "맨 끝에 줄바꿈 있다고 가정"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:838
 msgid "Invalid byte sequence in conversion input"
@@ -2992,126 +2886,10 @@ msgstr "오브젝트가 잘못되었습니다. 초기화하지 않습니다"
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "입력에서 불완전한 UTF-8 시퀀스"
 
-#: ../gtksourceview/gtksourcecompletion.c:2162
-#: ../gtksourceview/gtksourcegutter.c:549
-msgid "View"
-msgstr "보기"
-
-#: ../gtksourceview/gtksourcecompletion.c:2163
-msgid "The GtkSourceView bound to the completion"
-msgstr "자동 완성할 GtkSourceView"
-
-#: ../gtksourceview/gtksourcecompletion.c:2177
-msgid "Remember Info Visibility"
-msgstr "정보 표시를 저장합니다"
-
-#: ../gtksourceview/gtksourcecompletion.c:2178
-msgid "Remember the last info window visibility state"
-msgstr "최근의 정보 창의 표시 여부 상태를 저장합니다"
-
-#: ../gtksourceview/gtksourcecompletion.c:2190
-msgid "Select on Show"
-msgstr "표시할 때 선택"
-
-#: ../gtksourceview/gtksourcecompletion.c:2191
-msgid "Select first proposal when completion is shown"
-msgstr "자동 완성을 표시할 때 처음 제안을 선택합니다"
-
-#: ../gtksourceview/gtksourcecompletion.c:2204
-msgid "Show Headers"
-msgstr "헤더 표시"
-
-#: ../gtksourceview/gtksourcecompletion.c:2205
-msgid ""
-"Show provider headers when proposals from multiple providers are available"
-msgstr "여러 개의 완성 방법이 있을 때 완성 방법 헤더를 표시합니다"
-
-#: ../gtksourceview/gtksourcecompletion.c:2218
-msgid "Show Icons"
-msgstr "아이콘 표시"
-
-#: ../gtksourceview/gtksourcecompletion.c:2219
-msgid "Show provider and proposal icons in the completion popup"
-msgstr "자동 완성 팝업에서 자동 완성 방법과 제안 아이콘을 표시합니다"
-
-#: ../gtksourceview/gtksourcecompletion.c:2233
-msgid "Accelerators"
-msgstr "단축키"
-
-#: ../gtksourceview/gtksourcecompletion.c:2234
-msgid "Number of proposal accelerators to show"
-msgstr "표시할 제안 단축키의 개수"
-
-#: ../gtksourceview/gtksourcecompletion.c:2249
-msgid "Auto Complete Delay"
-msgstr "자동 완성 지연 시간"
-
-#: ../gtksourceview/gtksourcecompletion.c:2250
-msgid "Completion popup delay for interactive completion"
-msgstr "자동 완성 팝업 창이 나타나기 전의 지연 시간"
-
-#: ../gtksourceview/gtksourcecompletion.c:2266
-msgid "Provider Page Size"
-msgstr "완성 방법 페이지 크기"
-
-#: ../gtksourceview/gtksourcecompletion.c:2267
-msgid "Provider scrolling page size"
-msgstr "완성 방법 페이지의 스크롤 크기"
-
-#: ../gtksourceview/gtksourcecompletion.c:2287
-msgid "Proposal Page Size"
-msgstr "제안 페이지 크기"
-
-#: ../gtksourceview/gtksourcecompletion.c:2288
-msgid "Proposal scrolling page size"
-msgstr "제안 페이지의 스크롤 크기"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:271
-#: ../gtksourceview/gtksourceview.c:313
-msgid "Completion"
-msgstr "자동 완성"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
-msgid "The completion object to which the context belongs"
-msgstr "컨텍스트의 자동 완성 오브젝트"
-
-#. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:285
-msgid "Iterator"
-msgstr "이터레이터"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:286
-msgid "The GtkTextIter at which the completion was invoked"
-msgstr "자동 완성이 실행되는 GtkTextIter"
-
 #. Tooltip style
 #: ../gtksourceview/gtksourcecompletioninfo.c:264
 msgid "Completion Info"
 msgstr "자동 완성 정보"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:237
-msgid "Label to be shown for this item"
-msgstr "이 항목에 대해 표시할 레이블"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:250
-msgid "Markup to be shown for this item"
-msgstr "이 항목에 대해 표시할 마크업"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:263
-msgid "Item text"
-msgstr "항목 텍스트"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:276
-msgid "Icon to be shown for this item"
-msgstr "이 항목에 대해 표시할 아이콘"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:288
-msgid "Info"
-msgstr "정보"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:289
-msgid "Info to be shown for this item"
-msgstr "이 항목에 대해 표시할 정보"
 
 #: ../gtksourceview/gtksourcecompletionmodel.c:491
 msgid "Provider"
@@ -3129,7 +2907,7 @@ msgstr "자세히(_D)..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3139
+#: ../gtksourceview/gtksourcecontextengine.c:3167
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3140,26 +2918,26 @@ msgstr ""
 "집니다.\n"
 "오류는: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4462
+#: ../gtksourceview/gtksourcecontextengine.c:4490
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr "한 줄을 강조하는 데 너무 오래 걸렸습니다. 구문 분석을 하지 않습니다."
 
-#: ../gtksourceview/gtksourcecontextengine.c:5706
+#: ../gtksourceview/gtksourcecontextengine.c:5734
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "컨텍스트에는('%s') \\%%{...@start} 명령이 들어갈 수 없습니다"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5867
-#: ../gtksourceview/gtksourcecontextengine.c:5956
+#: ../gtksourceview/gtksourcecontextengine.c:5895
+#: ../gtksourceview/gtksourcecontextengine.c:5984
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "컨텍스트 ID가 중복되었습니다('%s')"
 
 # FIXME: 뭔소리여
-#: ../gtksourceview/gtksourcecontextengine.c:6070
-#: ../gtksourceview/gtksourcecontextengine.c:6130
+#: ../gtksourceview/gtksourcecontextengine.c:6098
+#: ../gtksourceview/gtksourcecontextengine.c:6158
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -3168,18 +2946,18 @@ msgstr ""
 "스타일 무시를 와일드카드 컨텍스트 참조와 같이 사용했습니다. (언어 '%s', 참조 "
 "'%s')"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6144
+#: ../gtksourceview/gtksourcecontextengine.c:6172
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "컨텍스트 참조가 잘못되었습니다('%s')"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6163
-#: ../gtksourceview/gtksourcecontextengine.c:6173
+#: ../gtksourceview/gtksourcecontextengine.c:6191
+#: ../gtksourceview/gtksourcecontextengine.c:6201
 #, c-format
 msgid "unknown context '%s'"
 msgstr "컨텍스트를 알 수 없습니다('%s')"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6272
+#: ../gtksourceview/gtksourcecontextengine.c:6300
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "주 언어 정의가 없습니다. (ID = \"%s\")"
@@ -3334,201 +3112,11 @@ msgstr "알 수 없음"
 #. * recognized encodings are used. See
 #. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
 #. * for a list of supported encodings.
+#. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:647
+#: ../gtksourceview/gtksourceencoding.c:650
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'CP949', 'UTF-16']"
-
-#: ../gtksourceview/gtksourcefile.c:200
-#: ../gtksourceview/gtksourcefilesaver.c:407
-msgid "Newline type"
-msgstr "줄 바꿈 종류"
-
-#: ../gtksourceview/gtksourcefile.c:217
-#: ../gtksourceview/gtksourcefilesaver.c:425
-msgid "Compression type"
-msgstr "압축 종류"
-
-#: ../gtksourceview/gtksourcefileloader.c:411
-msgid "Input stream"
-msgstr "입력 스트림"
-
-#: ../gtksourceview/gtksourcefilesaver.c:443
-msgid "Flags"
-msgstr "플래그"
-
-#. Translators: gutters can be used to display information
-#. * on the left or on the right of the text view. To draw the
-#. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:553
-msgid "The gutters' GtkSourceView"
-msgstr "gutter GtkSourceView"
-
-#: ../gtksourceview/gtksourcegutter.c:565
-#: ../gtksourceview/gtksourcegutterrenderer.c:741
-msgid "Window Type"
-msgstr "창 종류"
-
-#: ../gtksourceview/gtksourcegutter.c:566
-msgid "The gutters' text window type"
-msgstr "gutters 텍스트 창 종류"
-
-#: ../gtksourceview/gtksourcegutter.c:582
-#: ../gtksourceview/gtksourcegutterrenderer.c:524
-msgid "X Padding"
-msgstr "가로 채움"
-
-#: ../gtksourceview/gtksourcegutter.c:583
-#: ../gtksourceview/gtksourcegutterrenderer.c:525
-msgid "The x-padding"
-msgstr "가로 채움"
-
-#: ../gtksourceview/gtksourcegutter.c:600
-#: ../gtksourceview/gtksourcegutterrenderer.c:539
-msgid "Y Padding"
-msgstr "세로 채움"
-
-#: ../gtksourceview/gtksourcegutter.c:601
-#: ../gtksourceview/gtksourcegutterrenderer.c:540
-msgid "The y-padding"
-msgstr "세로 채움"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:511
-#: ../gtksourceview/gtksourcegutterrenderer.c:512
-msgid "Visible"
-msgstr "표시"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:556
-msgid "X Alignment"
-msgstr "가로 맞춤"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:557
-msgid "The x-alignment"
-msgstr "가로 맞춤"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:573
-msgid "Y Alignment"
-msgstr "세로 맞춤"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:574
-msgid "The y-alignment"
-msgstr "세로 맞춤"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:708
-msgid "The View"
-msgstr "보기"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:709
-msgid "The view"
-msgstr "보기"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:725
-msgid "Alignment Mode"
-msgstr "맞춤 모드"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:726
-msgid "The alignment mode"
-msgstr "맞춤 모드"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:742
-msgid "The window type"
-msgstr "창 종류"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:750
-msgid "Size"
-msgstr "크기"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:751
-msgid "The size"
-msgstr "크기"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:298
-#: ../gtksourceview/gtksourcemarkattributes.c:315
-msgid "Pixbuf"
-msgstr "픽스버퍼"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
-#: ../gtksourceview/gtksourcemarkattributes.c:316
-msgid "The pixbuf"
-msgstr "픽스버퍼"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
-#: ../gtksourceview/gtksourcemarkattributes.c:302
-msgid "Stock Id"
-msgstr "스톡 ID"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
-#: ../gtksourceview/gtksourcemarkattributes.c:303
-msgid "The stock id"
-msgstr "스톡 ID"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
-#: ../gtksourceview/gtksourcemarkattributes.c:328
-msgid "Icon Name"
-msgstr "아이콘 이름"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
-#: ../gtksourceview/gtksourcemarkattributes.c:329
-msgid "The icon name"
-msgstr "아이콘 이름"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:329
-#: ../gtksourceview/gtksourcemarkattributes.c:341
-msgid "GIcon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
-msgid "The gicon"
-msgstr "gicon"
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:402
-msgid "The markup"
-msgstr "마크업"
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:410
-msgid "The text"
-msgstr "텍스트"
-
-#: ../gtksourceview/gtksourcelanguage.c:227
-#: ../gtksourceview/gtksourcelanguage.c:228
-msgid "Language id"
-msgstr "언어 ID"
-
-#: ../gtksourceview/gtksourcelanguage.c:235
-#: ../gtksourceview/gtksourcelanguage.c:236
-msgid "Language name"
-msgstr "언어 이름"
-
-#: ../gtksourceview/gtksourcelanguage.c:243
-#: ../gtksourceview/gtksourcelanguage.c:244
-msgid "Language section"
-msgstr "언어 섹션"
-
-#: ../gtksourceview/gtksourcelanguage.c:251
-msgid "Hidden"
-msgstr "숨김"
-
-#: ../gtksourceview/gtksourcelanguage.c:252
-msgid "Whether the language should be hidden from the user"
-msgstr "언어를 사용자에게 숨길 지 여부"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:149
-msgid "Language specification directories"
-msgstr "언어 명세 디렉토리"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
-msgstr "언어 명세 파일(.lang)이 들어 있는 디렉토리의 목록"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:159
-msgid "Language ids"
-msgstr "언어 ID 목록"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
-msgid "List of the ids of the available languages"
-msgstr "사용 가능한 언어의 ID 목록"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
@@ -3540,466 +3128,677 @@ msgstr "알 수 없는 ID '%s' (정규식 '%s')"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "정규식 '%s': 후위 참조는 지원하지 않습니다"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:287
-#: ../gtksourceview/gtksourcestyle.c:97
-msgid "Background"
-msgstr "배경"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:288
-msgid "The background"
-msgstr "배경"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:342
-msgid "The GIcon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcemark.c:140
-msgid "category"
-msgstr "분류"
-
-#: ../gtksourceview/gtksourcemark.c:141
-msgid "The mark category"
-msgstr "표시 분류"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:445
-msgid "Source Buffer"
-msgstr "소스 버퍼"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:446
-msgid "The GtkSourceBuffer object to print"
-msgstr "인쇄할 GtkSourceBuffer 오브젝트"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:351
-msgid "Tab Width"
-msgstr "탭 너비"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:352
-msgid "Width of a tab character expressed in spaces"
-msgstr "탭 문자를 공백으로 바꿨을 때 너비"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:484
-msgid "Wrap Mode"
-msgstr "줄 바꾸기 모드"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:485
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr ""
-"줄 바꾸기를 하지 않을 지, 단어 경계에서 할 지, 문자 경계에서 할 지 지정합니"
-"다."
-
-#: ../gtksourceview/gtksourceprintcompositor.c:506
-msgid "Whether to print the document with highlighted syntax"
-msgstr "구문 강조된 문서를 인쇄할 지 여부"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:527
-msgid "Print Line Numbers"
-msgstr "줄 번호 인쇄"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:528
-msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "줄번호 인쇄 간격(0은 번호 없음)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:550
-msgid "Print Header"
-msgstr "글머리 인쇄"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:551
-msgid "Whether to print a header in each page"
-msgstr "각 페이지에 글머리를 인쇄할 지 여부"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:573
-msgid "Print Footer"
-msgstr "글꼬리 인쇄"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:574
-msgid "Whether to print a footer in each page"
-msgstr "각 페이지에 글꼬리를 인쇄할 지 여부"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:596
-msgid "Body Font Name"
-msgstr "본문 글꼴 이름"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:597
-msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "본문에 사용할 글꼴의 이름(예를 들어 \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:620
-msgid "Line Numbers Font Name"
-msgstr "줄 번호 글꼴 이름"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:621
-msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr "줄번호에 사용할 글꼴의 이름(예를 들어 \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:644
-msgid "Header Font Name"
-msgstr "헤더 글꼴 이름"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:645
-msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr "페이지 머리에 사용할 글꼴 이름(예를 들어 \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:668
-msgid "Footer Font Name"
-msgstr "꼬리말 글꼴 이름"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:669
-msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr "페이지 꼬리에 사용할 글꼴(예를 들어 \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:685
-msgid "Number of pages"
-msgstr "페이지 수"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:686
-msgid ""
-"The number of pages in the document (-1 means the document has not been "
-"completely paginated)."
-msgstr "문서의 페이지 수(-1이면 문서 페이지를 아직 다 만들지 않았다는 뜻입니다)"
-
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
 msgstr "언어 정의에서 \\C 사용은 지원하지 않습니다"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2742
-msgid "Buffer"
-msgstr "버퍼"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2743
-msgid "The associated GtkSourceBuffer"
-msgstr "관련 GtkSourceBuffer"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2757
-msgid "Settings"
-msgstr "설정"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2758
-msgid "The associated GtkSourceSearchSettings"
-msgstr "관련 GtkSourceSearchSettings"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2772
-msgid "Highlight"
-msgstr "강조"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2773
-msgid "Highlight search occurrences"
-msgstr "검색 항목을 강조"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2789
-msgid "Occurrences count"
-msgstr "검색된 개수"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2790
-msgid "Total number of search occurrences"
-msgstr "검색된 전체 개수"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2809
-msgid "Regex error"
-msgstr "정규식 오류"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2810
-msgid "Regular expression error"
-msgstr "정규식 오류"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:168
-msgid "Search text"
-msgstr "검색 텍스트"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:169
-msgid "The text to search"
-msgstr "검색할 텍스트"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:183
-#: ../gtksourceview/gtksourcesearchsettings.c:184
-msgid "Case sensitive"
-msgstr "대소문자 구별"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:199
-msgid "At word boundaries"
-msgstr "단어 경계에"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:200
-msgid "Search at word boundaries"
-msgstr "단어 경계에서 검색"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:216
-#: ../gtksourceview/gtksourcesearchsettings.c:217
-msgid "Wrap around"
-msgstr "넘어가기"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:232
-msgid "Regex enabled"
-msgstr "정규식 사용"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:233
-msgid "Whether to search by regular expression"
-msgstr "정규식으로 검색할지 여부"
-
-#: ../gtksourceview/gtksourcestyle.c:89
-msgid "Line background"
-msgstr "선 배경"
-
-#: ../gtksourceview/gtksourcestyle.c:90
-msgid "Line background color"
-msgstr "선 배경 색"
-
-#: ../gtksourceview/gtksourcestyle.c:98
-msgid "Background color"
-msgstr "배경 색"
-
-#: ../gtksourceview/gtksourcestyle.c:105
-msgid "Foreground"
-msgstr "전경"
-
-#: ../gtksourceview/gtksourcestyle.c:106
-msgid "Foreground color"
-msgstr "전경 색"
-
-#: ../gtksourceview/gtksourcestyle.c:129 ../gtksourceview/gtksourcestyle.c:130
-msgid "Underline"
-msgstr "밑줄"
-
-#: ../gtksourceview/gtksourcestyle.c:137 ../gtksourceview/gtksourcestyle.c:138
-msgid "Strikethrough"
-msgstr "취소선"
-
-#: ../gtksourceview/gtksourcestyle.c:145
-msgid "Scale"
-msgstr "확대 수준"
-
-#: ../gtksourceview/gtksourcestyle.c:146
-msgid "Text scale factor"
-msgstr "글자 확대 수준"
-
-#: ../gtksourceview/gtksourcestyle.c:153
-msgid "Line background set"
-msgstr "선 배경 색"
-
-#: ../gtksourceview/gtksourcestyle.c:154
-msgid "Whether line background color is set"
-msgstr "선 배경 색을 설정했는 지 여부"
-
-#: ../gtksourceview/gtksourcestyle.c:161
-msgid "Foreground set"
-msgstr "전경 설정"
-
-#: ../gtksourceview/gtksourcestyle.c:162
-msgid "Whether foreground color is set"
-msgstr "전경 색을 설정했는 지 여부"
-
-#: ../gtksourceview/gtksourcestyle.c:169
-msgid "Background set"
-msgstr "배경 설정"
-
-#: ../gtksourceview/gtksourcestyle.c:170
-msgid "Whether background color is set"
-msgstr "배경 색을 설정했는 지 여부"
-
-#: ../gtksourceview/gtksourcestyle.c:177
-msgid "Bold set"
-msgstr "굵게 설정"
-
-#: ../gtksourceview/gtksourcestyle.c:178
-msgid "Whether bold attribute is set"
-msgstr "굵게 속성을 설정했는 지 여부"
-
-#: ../gtksourceview/gtksourcestyle.c:185
-msgid "Italic set"
-msgstr "기울임 설정"
-
-#: ../gtksourceview/gtksourcestyle.c:186
-msgid "Whether italic attribute is set"
-msgstr "기울임 속성을 설정했는 지 여부"
-
-#: ../gtksourceview/gtksourcestyle.c:193
-msgid "Underline set"
-msgstr "밑줄 설정"
-
-#: ../gtksourceview/gtksourcestyle.c:194
-msgid "Whether underline attribute is set"
-msgstr "밑줄 속성을 설정했는 지 여부"
-
-#: ../gtksourceview/gtksourcestyle.c:201
-msgid "Strikethrough set"
-msgstr "취소선 설정"
-
-#: ../gtksourceview/gtksourcestyle.c:202
-msgid "Whether strikethrough attribute is set"
-msgstr "취소선 속성을 설정했는 지 여부"
-
-#: ../gtksourceview/gtksourcestyle.c:209
-msgid "Scale set"
-msgstr "확대 수준 설정"
-
-#: ../gtksourceview/gtksourcestyle.c:210
-msgid "Whether scale attribute is set"
-msgstr "확대 수준 속성을 설정했는 지 여부"
-
-#: ../gtksourceview/gtksourcestylescheme.c:211
-#: ../gtksourceview/gtksourcestylescheme.c:212
-msgid "Style scheme id"
-msgstr "스타일 양식 ID"
-
-#: ../gtksourceview/gtksourcestylescheme.c:224
-#: ../gtksourceview/gtksourcestylescheme.c:225
-msgid "Style scheme name"
-msgstr "스타일 양식 이름"
-
-#: ../gtksourceview/gtksourcestylescheme.c:237
-#: ../gtksourceview/gtksourcestylescheme.c:238
-msgid "Style scheme description"
-msgstr "스타일 양식 설명"
-
-#: ../gtksourceview/gtksourcestylescheme.c:250
-#: ../gtksourceview/gtksourcestylescheme.c:251
-msgid "Style scheme filename"
-msgstr "스타일 양식 파일 이름"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:152
-msgid "Style scheme search path"
-msgstr "스타일 양식 검색 경로"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
-msgid "List of directories and files where the style schemes are located"
-msgstr "스타일 양식이 들어 있는 디렉토리와 파일의 목록"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:161
-msgid "Scheme ids"
-msgstr "양식 ID 목록"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
-msgid "List of the ids of the available style schemes"
-msgstr "사용 가능한 스타일 양식의 ID 목록"
-
-#: ../gtksourceview/gtksourceview.c:314
-msgid "The completion object associated with the view"
-msgstr "뷰의 자동 완성 오브젝트"
-
-#: ../gtksourceview/gtksourceview.c:326
-msgid "Show Line Numbers"
-msgstr "줄 번호 보이기"
-
-#: ../gtksourceview/gtksourceview.c:327
-msgid "Whether to display line numbers"
-msgstr "줄 번호를 보여줄 지 여부"
-
-#: ../gtksourceview/gtksourceview.c:338
-msgid "Show Line Marks"
-msgstr "줄 표시 보기"
-
-#: ../gtksourceview/gtksourceview.c:339
-msgid "Whether to display line mark pixbufs"
-msgstr "줄 표시 그림을 표시할 지 여부"
-
-#: ../gtksourceview/gtksourceview.c:366
-msgid "Indent Width"
-msgstr "들여쓰기 너비"
-
-#: ../gtksourceview/gtksourceview.c:367
-msgid "Number of spaces to use for each step of indent"
-msgstr "들여쓰기 한 단계마다 사용할 공백 수"
-
-#: ../gtksourceview/gtksourceview.c:376
-msgid "Auto Indentation"
-msgstr "자동 들여쓰기"
-
-#: ../gtksourceview/gtksourceview.c:377
-msgid "Whether to enable auto indentation"
-msgstr "자동 들여 쓰기를 사용할 지 여부"
-
-#: ../gtksourceview/gtksourceview.c:384
-msgid "Insert Spaces Instead of Tabs"
-msgstr "탭 대신에 스페이스 넣기"
-
-#: ../gtksourceview/gtksourceview.c:385
-msgid "Whether to insert spaces instead of tabs"
-msgstr "탭 대신에 스페이스를 넣을 지 여부"
-
-#: ../gtksourceview/gtksourceview.c:397
-msgid "Show Right Margin"
-msgstr "오른쪽 여백 보이기"
-
-#: ../gtksourceview/gtksourceview.c:398
-msgid "Whether to display the right margin"
-msgstr "오른쪽 여백을 보여줄 지 여부"
-
-#: ../gtksourceview/gtksourceview.c:410
-msgid "Right Margin Position"
-msgstr "오른쪽 여백 위치"
-
-#: ../gtksourceview/gtksourceview.c:411
-msgid "Position of the right margin"
-msgstr "오른쪽 여백의 위치"
-
-#: ../gtksourceview/gtksourceview.c:427
-msgid "Smart Home/End"
-msgstr "똑똑한 <Home>/<End>"
-
-#: ../gtksourceview/gtksourceview.c:428
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr ""
-"<Home>/<End> 키를 누르면 그 줄에 공백문자가 아닌 맨 첫번째/마지막 글자로 이동"
-"합니다.  한 번 더 눌러야 줄의 처음/끝으로 이동합니다."
-
-#: ../gtksourceview/gtksourceview.c:438
-msgid "Highlight current line"
-msgstr "현재 줄 강조"
-
-#: ../gtksourceview/gtksourceview.c:439
-msgid "Whether to highlight the current line"
-msgstr "현재 줄을 강조할 지 여부"
-
-#: ../gtksourceview/gtksourceview.c:446
-msgid "Indent on tab"
-msgstr "탭을 누르면 들여쓰기"
-
-#: ../gtksourceview/gtksourceview.c:447
-msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "탭을 눌렀을 때 선택한 텍스트를 들여 쓸 지 여부"
-
-#: ../gtksourceview/gtksourceview.c:461
-msgid "Draw Spaces"
-msgstr "공백 표시"
-
-#: ../gtksourceview/gtksourceview.c:462
-msgid "Set if and how the spaces should be visualized"
-msgstr "공백을 보이게 하고 싶으면 설정"
+#. TODO: have a ChooserDialog?
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:182
+msgid "Select a Style"
+msgstr "모양 선택"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
+msgid "_Cancel"
+msgstr "취소(_C)"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:187
+msgid "_Select"
+msgstr "선택(_S)"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1237
+#: ../gtksourceview/gtksourceview.c:1522
 msgid "_Redo"
 msgstr "다시 실행(_R)"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1248
+#: ../gtksourceview/gtksourceview.c:1533
 msgid "_Undo"
 msgstr "실행 취소(_U)"
 
-#: ../gtksourceview/gtksourceview.c:1266
+#: ../gtksourceview/gtksourceview.c:1551
 msgid "All _Upper Case"
 msgstr "모두 대문자(_U)"
 
-#: ../gtksourceview/gtksourceview.c:1276
+#: ../gtksourceview/gtksourceview.c:1561
 msgid "All _Lower Case"
 msgstr "모두 소문자(_L)"
 
-#: ../gtksourceview/gtksourceview.c:1286
+#: ../gtksourceview/gtksourceview.c:1571
 msgid "_Invert Case"
 msgstr "대소문자 뒤바꾸기(_I)"
 
-#: ../gtksourceview/gtksourceview.c:1296
+#: ../gtksourceview/gtksourceview.c:1581
 msgid "_Title Case"
 msgstr "제목 대소문자(_T)"
 
-#: ../gtksourceview/gtksourceview.c:1306
+#: ../gtksourceview/gtksourceview.c:1591
 msgid "C_hange Case"
 msgstr "대소문자 바꾸기(_H)"
 
 #: ../gtksourceview/gtksourceview-i18n.c:116
 msgid "translator-credits"
 msgstr "류창우 <cwryu@debian.org>"
+
+#~ msgctxt "Object"
+#~ msgid "Name"
+#~ msgstr "이름"
+
+#~ msgid "The provider name"
+#~ msgstr "완성 방법 이름"
+
+#~ msgid "Icon"
+#~ msgstr "아이콘"
+
+#~ msgid "The provider icon"
+#~ msgstr "완성 방법 아이콘"
+
+#~ msgid "Proposals Batch Size"
+#~ msgstr "연속 제안 크기"
+
+#~ msgid "Number of proposals added in one batch"
+#~ msgstr "한 번에 추가할 제안의 개수"
+
+#~ msgid "Scan Batch Size"
+#~ msgstr "연속 검색 크기"
+
+#~ msgid "Number of lines scanned in one batch"
+#~ msgstr "한 번에 검색할 줄 수"
+
+#~ msgid "Minimum Word Size"
+#~ msgstr "최소 단어 크기"
+
+#~ msgid "The minimum word size to complete"
+#~ msgstr "자동 완성할 최소 단어 크기"
+
+#~ msgid "Interactive Delay"
+#~ msgstr "대화형 지연 시간"
+
+#~ msgid "The delay before initiating interactive completion"
+#~ msgstr "대화형 자동 완성을 시작하기 전의 지연 시간"
+
+#~ msgid "Priority"
+#~ msgstr "우선 순위"
+
+#~ msgid "Provider priority"
+#~ msgstr "완성 방법 우선 순위"
+
+#~ msgid "Activation"
+#~ msgstr "활성화"
+
+#~ msgid "The type of activation"
+#~ msgstr "동작의 활성화"
+
+#~ msgid "Highlight Syntax"
+#~ msgstr "구문 강조"
+
+#~ msgid "Whether to highlight syntax in the buffer"
+#~ msgstr "버퍼에서 구문 강조할 지 여부"
+
+#~ msgid "Highlight Matching Brackets"
+#~ msgstr "맞는 괄호 구문 강조"
+
+#~ msgid "Whether to highlight matching brackets"
+#~ msgstr "맞는 괄호를 구문 강조할 지 여부"
+
+#~ msgid "Maximum Undo Levels"
+#~ msgstr "최대 실행 취소 개수"
+
+#~ msgid "Number of undo levels for the buffer"
+#~ msgstr "버퍼에서 가능한 실행 취소 개수"
+
+#~ msgid "Language"
+#~ msgstr "언어"
+
+#~ msgid "Language object to get highlighting patterns from"
+#~ msgstr "강조 패턴을 얻어올 언어 오브젝트"
+
+#~ msgid "Can undo"
+#~ msgstr "실행 취소 가능"
+
+#~ msgid "Whether Undo operation is possible"
+#~ msgstr "실행 취소 동작이 가능한지 여부"
+
+#~ msgid "Can redo"
+#~ msgstr "다시 실행 가능"
+
+#~ msgid "Whether Redo operation is possible"
+#~ msgstr "다시 실행 동작이 가능한지 여부"
+
+#~ msgid "Style scheme"
+#~ msgstr "스타일 양식"
+
+#~ msgid "Undo manager"
+#~ msgstr "실행 취소 관리자"
+
+#~ msgid "The buffer undo manager"
+#~ msgstr "버퍼 실행 취소 관리자"
+
+#~ msgid "Implicit trailing newline"
+#~ msgstr "맨 끝에 줄바꿈 있다고 가정"
+
+#~ msgid "View"
+#~ msgstr "보기"
+
+#~ msgid "The GtkSourceView bound to the completion"
+#~ msgstr "자동 완성할 GtkSourceView"
+
+#~ msgid "Remember Info Visibility"
+#~ msgstr "정보 표시를 저장합니다"
+
+#~ msgid "Remember the last info window visibility state"
+#~ msgstr "최근의 정보 창의 표시 여부 상태를 저장합니다"
+
+#~ msgid "Select first proposal when completion is shown"
+#~ msgstr "자동 완성을 표시할 때 처음 제안을 선택합니다"
+
+#~ msgid "Show Headers"
+#~ msgstr "헤더 표시"
+
+#~ msgid ""
+#~ "Show provider headers when proposals from multiple providers are available"
+#~ msgstr "여러 개의 완성 방법이 있을 때 완성 방법 헤더를 표시합니다"
+
+#~ msgid "Show Icons"
+#~ msgstr "아이콘 표시"
+
+#~ msgid "Show provider and proposal icons in the completion popup"
+#~ msgstr "자동 완성 팝업에서 자동 완성 방법과 제안 아이콘을 표시합니다"
+
+#~ msgid "Accelerators"
+#~ msgstr "단축키"
+
+#~ msgid "Number of proposal accelerators to show"
+#~ msgstr "표시할 제안 단축키의 개수"
+
+#~ msgid "Auto Complete Delay"
+#~ msgstr "자동 완성 지연 시간"
+
+#~ msgid "Completion popup delay for interactive completion"
+#~ msgstr "자동 완성 팝업 창이 나타나기 전의 지연 시간"
+
+#~ msgid "Provider Page Size"
+#~ msgstr "완성 방법 페이지 크기"
+
+#~ msgid "Provider scrolling page size"
+#~ msgstr "완성 방법 페이지의 스크롤 크기"
+
+#~ msgid "Proposal Page Size"
+#~ msgstr "제안 페이지 크기"
+
+#~ msgid "Proposal scrolling page size"
+#~ msgstr "제안 페이지의 스크롤 크기"
+
+#~ msgid "Completion"
+#~ msgstr "자동 완성"
+
+#~ msgid "The completion object to which the context belongs"
+#~ msgstr "컨텍스트의 자동 완성 오브젝트"
+
+#~ msgid "Iterator"
+#~ msgstr "이터레이터"
+
+#~ msgid "The GtkTextIter at which the completion was invoked"
+#~ msgstr "자동 완성이 실행되는 GtkTextIter"
+
+#~ msgid "Label to be shown for this item"
+#~ msgstr "이 항목에 대해 표시할 레이블"
+
+#~ msgid "Markup to be shown for this item"
+#~ msgstr "이 항목에 대해 표시할 마크업"
+
+#~ msgid "Item text"
+#~ msgstr "항목 텍스트"
+
+#~ msgid "Icon to be shown for this item"
+#~ msgstr "이 항목에 대해 표시할 아이콘"
+
+#~ msgid "Info"
+#~ msgstr "정보"
+
+#~ msgid "Info to be shown for this item"
+#~ msgstr "이 항목에 대해 표시할 정보"
+
+#~ msgid "Newline type"
+#~ msgstr "줄 바꿈 종류"
+
+#~ msgid "Compression type"
+#~ msgstr "압축 종류"
+
+#~ msgid "Input stream"
+#~ msgstr "입력 스트림"
+
+#~ msgid "Flags"
+#~ msgstr "플래그"
+
+#~ msgid "The gutters' GtkSourceView"
+#~ msgstr "gutter GtkSourceView"
+
+#~ msgid "Window Type"
+#~ msgstr "창 종류"
+
+#~ msgid "The gutters' text window type"
+#~ msgstr "gutters 텍스트 창 종류"
+
+#~ msgid "X Padding"
+#~ msgstr "가로 채움"
+
+#~ msgid "The x-padding"
+#~ msgstr "가로 채움"
+
+#~ msgid "Y Padding"
+#~ msgstr "세로 채움"
+
+#~ msgid "The y-padding"
+#~ msgstr "세로 채움"
+
+#~ msgid "Visible"
+#~ msgstr "표시"
+
+#~ msgid "X Alignment"
+#~ msgstr "가로 맞춤"
+
+#~ msgid "The x-alignment"
+#~ msgstr "가로 맞춤"
+
+#~ msgid "Y Alignment"
+#~ msgstr "세로 맞춤"
+
+#~ msgid "The y-alignment"
+#~ msgstr "세로 맞춤"
+
+#~ msgid "The View"
+#~ msgstr "보기"
+
+#~ msgid "The view"
+#~ msgstr "보기"
+
+#~ msgid "Alignment Mode"
+#~ msgstr "맞춤 모드"
+
+#~ msgid "The alignment mode"
+#~ msgstr "맞춤 모드"
+
+#~ msgid "The window type"
+#~ msgstr "창 종류"
+
+#~ msgid "Size"
+#~ msgstr "크기"
+
+#~ msgid "The size"
+#~ msgstr "크기"
+
+#~ msgid "Pixbuf"
+#~ msgstr "픽스버퍼"
+
+#~ msgid "The pixbuf"
+#~ msgstr "픽스버퍼"
+
+#~ msgid "Stock Id"
+#~ msgstr "스톡 ID"
+
+#~ msgid "The stock id"
+#~ msgstr "스톡 ID"
+
+#~ msgid "Icon Name"
+#~ msgstr "아이콘 이름"
+
+#~ msgid "The icon name"
+#~ msgstr "아이콘 이름"
+
+#~ msgid "GIcon"
+#~ msgstr "GIcon"
+
+#~ msgid "The gicon"
+#~ msgstr "gicon"
+
+#~ msgid "The markup"
+#~ msgstr "마크업"
+
+#~ msgid "The text"
+#~ msgstr "텍스트"
+
+#~ msgid "Language id"
+#~ msgstr "언어 ID"
+
+#~ msgid "Language name"
+#~ msgstr "언어 이름"
+
+#~ msgid "Language section"
+#~ msgstr "언어 섹션"
+
+#~ msgid "Hidden"
+#~ msgstr "숨김"
+
+#~ msgid "Whether the language should be hidden from the user"
+#~ msgstr "언어를 사용자에게 숨길 지 여부"
+
+#~ msgid "Language specification directories"
+#~ msgstr "언어 명세 디렉토리"
+
+#~ msgid ""
+#~ "List of directories where the language specification files (.lang) are "
+#~ "located"
+#~ msgstr "언어 명세 파일(.lang)이 들어 있는 디렉토리의 목록"
+
+#~ msgid "Language ids"
+#~ msgstr "언어 ID 목록"
+
+#~ msgid "List of the ids of the available languages"
+#~ msgstr "사용 가능한 언어의 ID 목록"
+
+#~ msgid "Background"
+#~ msgstr "배경"
+
+#~ msgid "The background"
+#~ msgstr "배경"
+
+#~ msgid "The GIcon"
+#~ msgstr "GIcon"
+
+#~ msgid "category"
+#~ msgstr "분류"
+
+#~ msgid "The mark category"
+#~ msgstr "표시 분류"
+
+#~ msgid "Source Buffer"
+#~ msgstr "소스 버퍼"
+
+#~ msgid "The GtkSourceBuffer object to print"
+#~ msgstr "인쇄할 GtkSourceBuffer 오브젝트"
+
+#~ msgid "Tab Width"
+#~ msgstr "탭 너비"
+
+#~ msgid "Width of a tab character expressed in spaces"
+#~ msgstr "탭 문자를 공백으로 바꿨을 때 너비"
+
+#~ msgid "Wrap Mode"
+#~ msgstr "줄 바꾸기 모드"
+
+#~ msgid ""
+#~ "Whether to wrap lines never, at word boundaries, or at character "
+#~ "boundaries."
+#~ msgstr ""
+#~ "줄 바꾸기를 하지 않을 지, 단어 경계에서 할 지, 문자 경계에서 할 지 지정합"
+#~ "니다."
+
+#~ msgid "Whether to print the document with highlighted syntax"
+#~ msgstr "구문 강조된 문서를 인쇄할 지 여부"
+
+#~ msgid "Print Line Numbers"
+#~ msgstr "줄 번호 인쇄"
+
+#~ msgid "Interval of printed line numbers (0 means no numbers)"
+#~ msgstr "줄번호 인쇄 간격(0은 번호 없음)"
+
+#~ msgid "Print Header"
+#~ msgstr "글머리 인쇄"
+
+#~ msgid "Whether to print a header in each page"
+#~ msgstr "각 페이지에 글머리를 인쇄할 지 여부"
+
+#~ msgid "Print Footer"
+#~ msgstr "글꼬리 인쇄"
+
+#~ msgid "Whether to print a footer in each page"
+#~ msgstr "각 페이지에 글꼬리를 인쇄할 지 여부"
+
+#~ msgid "Body Font Name"
+#~ msgstr "본문 글꼴 이름"
+
+#~ msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
+#~ msgstr "본문에 사용할 글꼴의 이름(예를 들어 \"Monospace 10\")"
+
+#~ msgid "Line Numbers Font Name"
+#~ msgstr "줄 번호 글꼴 이름"
+
+#~ msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
+#~ msgstr "줄번호에 사용할 글꼴의 이름(예를 들어 \"Monospace 10\")"
+
+#~ msgid "Header Font Name"
+#~ msgstr "헤더 글꼴 이름"
+
+#~ msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
+#~ msgstr "페이지 머리에 사용할 글꼴 이름(예를 들어 \"Monospace 10\")"
+
+#~ msgid "Footer Font Name"
+#~ msgstr "꼬리말 글꼴 이름"
+
+#~ msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
+#~ msgstr "페이지 꼬리에 사용할 글꼴(예를 들어 \"Monospace 10\")"
+
+#~ msgid "Number of pages"
+#~ msgstr "페이지 수"
+
+#~ msgid ""
+#~ "The number of pages in the document (-1 means the document has not been "
+#~ "completely paginated)."
+#~ msgstr ""
+#~ "문서의 페이지 수(-1이면 문서 페이지를 아직 다 만들지 않았다는 뜻입니다)"
+
+#~ msgid "Buffer"
+#~ msgstr "버퍼"
+
+#~ msgid "The associated GtkSourceBuffer"
+#~ msgstr "관련 GtkSourceBuffer"
+
+#~ msgid "Settings"
+#~ msgstr "설정"
+
+#~ msgid "The associated GtkSourceSearchSettings"
+#~ msgstr "관련 GtkSourceSearchSettings"
+
+#~ msgid "Highlight"
+#~ msgstr "강조"
+
+#~ msgid "Highlight search occurrences"
+#~ msgstr "검색 항목을 강조"
+
+#~ msgid "Occurrences count"
+#~ msgstr "검색된 개수"
+
+#~ msgid "Total number of search occurrences"
+#~ msgstr "검색된 전체 개수"
+
+#~ msgid "Regex error"
+#~ msgstr "정규식 오류"
+
+#~ msgid "Regular expression error"
+#~ msgstr "정규식 오류"
+
+#~ msgid "Search text"
+#~ msgstr "검색 텍스트"
+
+#~ msgid "The text to search"
+#~ msgstr "검색할 텍스트"
+
+#~ msgid "Case sensitive"
+#~ msgstr "대소문자 구별"
+
+#~ msgid "At word boundaries"
+#~ msgstr "단어 경계에"
+
+#~ msgid "Search at word boundaries"
+#~ msgstr "단어 경계에서 검색"
+
+#~ msgid "Wrap around"
+#~ msgstr "넘어가기"
+
+#~ msgid "Regex enabled"
+#~ msgstr "정규식 사용"
+
+#~ msgid "Whether to search by regular expression"
+#~ msgstr "정규식으로 검색할지 여부"
+
+#~ msgid "Line background"
+#~ msgstr "선 배경"
+
+#~ msgid "Line background color"
+#~ msgstr "선 배경 색"
+
+#~ msgid "Background color"
+#~ msgstr "배경 색"
+
+#~ msgid "Foreground"
+#~ msgstr "전경"
+
+#~ msgid "Foreground color"
+#~ msgstr "전경 색"
+
+#~ msgid "Underline"
+#~ msgstr "밑줄"
+
+#~ msgid "Strikethrough"
+#~ msgstr "취소선"
+
+#~ msgid "Scale"
+#~ msgstr "확대 수준"
+
+#~ msgid "Text scale factor"
+#~ msgstr "글자 확대 수준"
+
+#~ msgid "Line background set"
+#~ msgstr "선 배경 색"
+
+#~ msgid "Whether line background color is set"
+#~ msgstr "선 배경 색을 설정했는 지 여부"
+
+#~ msgid "Foreground set"
+#~ msgstr "전경 설정"
+
+#~ msgid "Whether foreground color is set"
+#~ msgstr "전경 색을 설정했는 지 여부"
+
+#~ msgid "Background set"
+#~ msgstr "배경 설정"
+
+#~ msgid "Whether background color is set"
+#~ msgstr "배경 색을 설정했는 지 여부"
+
+#~ msgid "Bold set"
+#~ msgstr "굵게 설정"
+
+#~ msgid "Whether bold attribute is set"
+#~ msgstr "굵게 속성을 설정했는 지 여부"
+
+#~ msgid "Italic set"
+#~ msgstr "기울임 설정"
+
+#~ msgid "Whether italic attribute is set"
+#~ msgstr "기울임 속성을 설정했는 지 여부"
+
+#~ msgid "Underline set"
+#~ msgstr "밑줄 설정"
+
+#~ msgid "Whether underline attribute is set"
+#~ msgstr "밑줄 속성을 설정했는 지 여부"
+
+#~ msgid "Strikethrough set"
+#~ msgstr "취소선 설정"
+
+#~ msgid "Whether strikethrough attribute is set"
+#~ msgstr "취소선 속성을 설정했는 지 여부"
+
+#~ msgid "Scale set"
+#~ msgstr "확대 수준 설정"
+
+#~ msgid "Whether scale attribute is set"
+#~ msgstr "확대 수준 속성을 설정했는 지 여부"
+
+#~ msgid "Style scheme id"
+#~ msgstr "스타일 양식 ID"
+
+#~ msgid "Style scheme name"
+#~ msgstr "스타일 양식 이름"
+
+#~ msgid "Style scheme description"
+#~ msgstr "스타일 양식 설명"
+
+#~ msgid "Style scheme filename"
+#~ msgstr "스타일 양식 파일 이름"
+
+#~ msgid "Style scheme search path"
+#~ msgstr "스타일 양식 검색 경로"
+
+#~ msgid "List of directories and files where the style schemes are located"
+#~ msgstr "스타일 양식이 들어 있는 디렉토리와 파일의 목록"
+
+#~ msgid "Scheme ids"
+#~ msgstr "양식 ID 목록"
+
+#~ msgid "List of the ids of the available style schemes"
+#~ msgstr "사용 가능한 스타일 양식의 ID 목록"
+
+#~ msgid "The completion object associated with the view"
+#~ msgstr "뷰의 자동 완성 오브젝트"
+
+#~ msgid "Show Line Numbers"
+#~ msgstr "줄 번호 보이기"
+
+#~ msgid "Whether to display line numbers"
+#~ msgstr "줄 번호를 보여줄 지 여부"
+
+#~ msgid "Show Line Marks"
+#~ msgstr "줄 표시 보기"
+
+#~ msgid "Whether to display line mark pixbufs"
+#~ msgstr "줄 표시 그림을 표시할 지 여부"
+
+#~ msgid "Indent Width"
+#~ msgstr "들여쓰기 너비"
+
+#~ msgid "Number of spaces to use for each step of indent"
+#~ msgstr "들여쓰기 한 단계마다 사용할 공백 수"
+
+#~ msgid "Auto Indentation"
+#~ msgstr "자동 들여쓰기"
+
+#~ msgid "Whether to enable auto indentation"
+#~ msgstr "자동 들여 쓰기를 사용할 지 여부"
+
+#~ msgid "Insert Spaces Instead of Tabs"
+#~ msgstr "탭 대신에 스페이스 넣기"
+
+#~ msgid "Whether to insert spaces instead of tabs"
+#~ msgstr "탭 대신에 스페이스를 넣을 지 여부"
+
+#~ msgid "Show Right Margin"
+#~ msgstr "오른쪽 여백 보이기"
+
+#~ msgid "Whether to display the right margin"
+#~ msgstr "오른쪽 여백을 보여줄 지 여부"
+
+#~ msgid "Right Margin Position"
+#~ msgstr "오른쪽 여백 위치"
+
+#~ msgid "Position of the right margin"
+#~ msgstr "오른쪽 여백의 위치"
+
+#~ msgid "Smart Home/End"
+#~ msgstr "똑똑한 <Home>/<End>"
+
+#~ msgid ""
+#~ "HOME and END keys move to first/last non whitespace characters on line "
+#~ "before going to the start/end of the line"
+#~ msgstr ""
+#~ "<Home>/<End> 키를 누르면 그 줄에 공백문자가 아닌 맨 첫번째/마지막 글자로 "
+#~ "이동합니다.  한 번 더 눌러야 줄의 처음/끝으로 이동합니다."
+
+#~ msgid "Highlight current line"
+#~ msgstr "현재 줄 강조"
+
+#~ msgid "Whether to highlight the current line"
+#~ msgstr "현재 줄을 강조할 지 여부"
+
+#~ msgid "Indent on tab"
+#~ msgstr "탭을 누르면 들여쓰기"
+
+#~ msgid "Whether to indent the selected text when the tab key is pressed"
+#~ msgstr "탭을 눌렀을 때 선택한 텍스트를 들여 쓸 지 여부"
+
+#~ msgid "Draw Spaces"
+#~ msgstr "공백 표시"
+
+#~ msgid "Set if and how the spaces should be visualized"
+#~ msgstr "공백을 보이게 하고 싶으면 설정"
