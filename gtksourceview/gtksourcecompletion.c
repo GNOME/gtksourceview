@@ -1998,9 +1998,11 @@ init_tree_view (GtkSourceCompletion *completion,
 					     NULL);
 
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->priv->tree_view_proposals));
-	gtk_style_context_get_background_color (style_context,
-	                                        GTK_STATE_FLAG_INSENSITIVE,
-	                                        &background_color);
+
+	gtk_style_context_get (style_context,
+			       GTK_STATE_FLAG_INSENSITIVE,
+			       "background-color", &background_color,
+			       NULL);
 
 	g_object_set (cell_renderer,
 	              "cell-background-rgba", &background_color,

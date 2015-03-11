@@ -655,9 +655,10 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 
 		context = gtk_widget_get_style_context (widget);
 
-		gtk_style_context_get_background_color (context,
-							GTK_STATE_FLAG_NORMAL,
-		                                        &secondary_color);
+		gtk_style_context_get (context,
+				       GTK_STATE_FLAG_NORMAL,
+				       "background-color", &secondary_color,
+				       NULL);
 
 		/* shade the secondary cursor */
 		secondary_color.red *= 0.5;
