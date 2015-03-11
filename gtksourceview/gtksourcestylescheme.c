@@ -635,8 +635,8 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 {
 	GtkSourceStyle *primary_style;
 	GtkSourceStyle *secondary_style;
-	GdkRGBA primary_color;
-	GdkRGBA secondary_color;
+	GdkRGBA primary_color = { 0 };
+	GdkRGBA secondary_color = { 0 };
 	gchar *primary_color_str;
 	gchar *secondary_color_str;
 	gchar *css;
