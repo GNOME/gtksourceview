@@ -2588,8 +2588,12 @@ gtk_source_buffer_join_lines (GtkSourceBuffer *buffer,
 	gtk_text_buffer_begin_user_action (text_buffer);
 
 	move_to_line_text_end (start);
+	if (!gtk_text_iter_ends_line (end))
+	{
+		gtk_text_iter_forward_to_line_end (end);
+	}
 
-	while (gtk_text_iter_get_line (start) < gtk_text_iter_get_line (end))
+	while (gtk_text_iter_compare (start, end) < 0)
 	{
 		GtkTextIter iter;
 		gunichar ch;

@@ -215,6 +215,8 @@ test_join_lines (void)
 	do_test_join_lines (buffer, "some\ntext", "some\ntext", 6, -1);
 	do_test_join_lines (buffer, "some\ntext\nmore", "some text\nmore", 0, 6);
 	do_test_join_lines (buffer, "some\ntext\nmore", "some\ntext more", 6, -1);
+	do_test_join_lines (buffer, "some\n   text\nmore", "some text\nmore", 0, 5);
+	do_test_join_lines (buffer, "some\ntext\n\n\nmore", "some text\n\nmore", 0, 10);
 
 	g_object_unref (buffer);
 }
