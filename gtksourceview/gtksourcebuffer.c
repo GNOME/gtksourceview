@@ -2580,11 +2580,6 @@ gtk_source_buffer_join_lines (GtkSourceBuffer *buffer,
 	g_return_if_fail (start != NULL);
 	g_return_if_fail (end != NULL);
 
-	if (gtk_text_iter_get_line (start) == gtk_text_iter_get_line (end))
-	{
-		return;
-	}
-
 	gtk_text_iter_order (start, end);
 
 	text_buffer = GTK_TEXT_BUFFER (buffer);
@@ -2594,10 +2589,11 @@ gtk_source_buffer_join_lines (GtkSourceBuffer *buffer,
 
 	move_to_line_text_end (start);
 
-	while (gtk_text_iter_compare (start, end) < 0)
+	while (gtk_text_iter_get_line (start) < gtk_text_iter_get_line (end))
 	{
 		GtkTextIter iter;
 		gunichar ch;
+		gboolean insert_space = FALSE;
 
 		iter = *start;
 
@@ -2606,14 +2602,19 @@ gtk_source_buffer_join_lines (GtkSourceBuffer *buffer,
 			ch = gtk_text_iter_get_char (&iter);
 			if (!g_unichar_isspace (ch))
 			{
+				insert_space = TRUE;
 				break;
 			}
-		} while (gtk_text_iter_forward_char (&iter));
+		} while (gtk_text_iter_forward_char (&iter) &&
+			 gtk_text_iter_compare (&iter, end) < 0);
 
 		if (!gtk_text_iter_is_end (&iter))
 		{
 			gtk_text_buffer_delete (text_buffer, start, &iter);
-			gtk_text_buffer_insert (text_buffer, start, " ", 1);
+			if (insert_space)
+			{
+				gtk_text_buffer_insert (text_buffer, start, " ", 1);
+			}
 		}
 
 		move_to_line_text_end (start);
