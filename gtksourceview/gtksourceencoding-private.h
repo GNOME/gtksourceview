@@ -46,10 +46,6 @@ G_GNUC_INTERNAL
 GSList *		_gtk_source_encoding_remove_duplicates		(GSList                      *encodings,
 									 GtkSourceEncodingDuplicates  removal_type);
 
-G_GNUC_INTERNAL
-GSList *		_gtk_source_encoding_get_default_candidates	(void);
-
-
 G_END_DECLS
 
 #endif  /* __GTK_SOURCE_ENCODING_PRIVATE_H__ */

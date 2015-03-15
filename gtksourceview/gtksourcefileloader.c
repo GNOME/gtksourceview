@@ -273,7 +273,7 @@ set_default_candidate_encodings (GtkSourceFileLoader *loader)
 	 * GtkSourceFile's encoding has been set by a FileLoader or FileSaver,
 	 * put it at the beginning of the list.
 	 */
-	list = _gtk_source_encoding_get_default_candidates ();
+	list = gtk_source_encoding_get_default_candidates ();
 
 	if (loader->priv->file == NULL)
 	{
@@ -885,11 +885,11 @@ gtk_source_file_loader_new_from_stream (GtkSourceBuffer *buffer,
  * For convenience, @candidate_encodings can contain duplicates. Only the first
  * occurrence of a duplicated encoding is kept in the list.
  *
- * By default the candidate encodings are (in that order):
- * 1. If set, the #GtkSourceFile's encoding. See gtk_source_file_get_encoding().
- * 2. Depending on the current locale (language and country), a list of common
- * encodings are added. The UTF-8 encoding and the current locale encoding are
- * always present.
+ * By default the candidate encodings are (in that order in the list):
+ * 1. If set, the #GtkSourceFile's encoding as returned by
+ * gtk_source_file_get_encoding().
+ * 2. The default candidates as returned by
+ * gtk_source_encoding_get_default_candidates().
  *
  * Since: 3.14
  */

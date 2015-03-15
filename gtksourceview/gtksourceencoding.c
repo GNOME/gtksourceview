@@ -3,7 +3,7 @@
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2002-2005 - Paolo Maggi
- * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -609,8 +609,8 @@ _gtk_source_encoding_remove_duplicates (GSList                      *encodings,
 	g_return_val_if_reached (encodings);
 }
 
-/*
- * _gtk_source_encoding_get_default_candidates:
+/**
+ * gtk_source_encoding_get_default_candidates:
  *
  * Gets the list of default candidate encodings to try when loading a file. See
  * gtk_source_file_loader_set_candidate_encodings().
@@ -621,10 +621,10 @@ _gtk_source_encoding_remove_duplicates (GSList                      *encodings,
  *
  * Returns: (transfer container) (element-type GtkSource.Encoding): the list of
  * default candidate encodings. Free with g_slist_free().
- * Since: 3.14
+ * Since: 3.18
  */
 GSList *
-_gtk_source_encoding_get_default_candidates (void)
+gtk_source_encoding_get_default_candidates (void)
 {
 	const gchar *encodings_str;
 	const gchar *encodings_str_translated;
