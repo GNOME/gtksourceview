@@ -29,6 +29,7 @@
 
   <styles>
     <style id="builtin-command" _name="Builtin Command" map-to="def:function"/>
+    <style id="deprecated-builtin-command" _name="Deprecated Builtin Command" map-to="def:warning"/>
     <style id="builtin-variable" _name="Builtin Variable" map-to="def:builtin"/>
     <style id="constant" _name="Constant" map-to="def:constant"/>
     <style id="operator" _name="Operator" map-to="def:operator"/>
@@ -51,7 +52,6 @@
       <keyword>ADD_TEST</keyword>
       <keyword>AUX_SOURCE_DIRECTORY</keyword>
       <keyword>BUILD_COMMAND</keyword>
-      <keyword>BUILD_NAME</keyword>
       <keyword>CMAKE_HOST_SYSTEM_INFORMATION</keyword>
       <keyword>CMAKE_MINIMUM_REQUIRED</keyword>
       <keyword>CMAKE_POLICY</keyword>
@@ -61,9 +61,7 @@
       <keyword>ENABLE_LANGUAGE</keyword>
       <keyword>ENABLE_TESTING</keyword>
       <keyword>EXECUTE_PROCESS</keyword>
-      <keyword>EXEC_PROGRAM</keyword>
       <keyword>EXPORT</keyword>
-      <keyword>EXPORT_LIBRARY_DEPENDENCIES</keyword>
       <keyword>FILE</keyword>
       <keyword>FIND_FILE</keyword>
       <keyword>FIND_LIBRARY</keyword>
@@ -83,24 +81,18 @@
       <keyword>INCLUDE_EXTERNAL_MSPROJECT</keyword>
       <keyword>INCLUDE_REGULAR_EXPRESSION</keyword>
       <keyword>INSTALL</keyword>
-      <keyword>INSTALL_FILES</keyword>
-      <keyword>INSTALL_PROGRAMS</keyword>
-      <keyword>INSTALL_TARGETS</keyword>
       <keyword>LINK_DIRECTORIES</keyword>
       <keyword>LINK_LIBRARIES</keyword>
       <keyword>LIST</keyword>
       <keyword>LOAD_CACHE</keyword>
       <keyword>LOAD_COMMAND</keyword>
-      <keyword>MAKE_DIRECTORY</keyword>
       <keyword>MARK_AS_ADVANCED</keyword>
       <keyword>MATH</keyword>
       <keyword>MESSAGE</keyword>
       <keyword>OPTION</keyword>
-      <keyword>OUTPUT_REQUIRED_FILES</keyword>
       <keyword>PROJECT</keyword>
       <keyword>QT_WRAP_CPP</keyword>
       <keyword>QT_WRAP_UI</keyword>
-      <keyword>REMOVE</keyword>
       <keyword>REMOVE_DEFINITIONS</keyword>
       <keyword>SEPARATE_ARGUMENTS</keyword>
       <keyword>SET</keyword>
@@ -112,8 +104,6 @@
       <keyword>SITE_NAME</keyword>
       <keyword>SOURCE_GROUP</keyword>
       <keyword>STRING</keyword>
-      <keyword>SUBDIRS</keyword>
-      <keyword>SUBDIR_DEPENDS</keyword>
       <keyword>TARGET_COMPILE_DEFINITIONS</keyword>
       <keyword>TARGET_COMPILE_FEATURES</keyword>
       <keyword>TARGET_COMPILE_OPTIONS</keyword>
@@ -123,10 +113,25 @@
       <keyword>TRY_COMPILE</keyword>
       <keyword>TRY_RUN</keyword>
       <keyword>UNSET</keyword>
+      <keyword>VARIABLE_WATCH</keyword>
+    </context>
+
+    <context id="deprecated-builtin-command" style-ref="deprecated-builtin-command">
+      <prefix>(?i)\b</prefix> <!-- case insensitive -->
+      <keyword>BUILD_NAME</keyword>
+      <keyword>EXEC_PROGRAM</keyword>
+      <keyword>EXPORT_LIBRARY_DEPENDENCIES</keyword>
+      <keyword>INSTALL_FILES</keyword>
+      <keyword>INSTALL_PROGRAMS</keyword>
+      <keyword>INSTALL_TARGETS</keyword>
+      <keyword>MAKE_DIRECTORY</keyword>
+      <keyword>OUTPUT_REQUIRED_FILES</keyword>
+      <keyword>REMOVE</keyword>
+      <keyword>SUBDIR_DEPENDS</keyword>
+      <keyword>SUBDIRS</keyword>
       <keyword>USE_MANGLED_MESA</keyword>
       <keyword>UTILITY_SOURCE</keyword>
       <keyword>VARIABLE_REQUIRES</keyword>
-      <keyword>VARIABLE_WATCH</keyword>
       <keyword>WRITE_FILE</keyword>
     </context>
 
@@ -508,6 +513,7 @@
         <context ref="def:shell-like-comment"/>
         <context ref="constant"/>
         <context ref="builtin-command"/>
+        <context ref="deprecated-builtin-command"/>
         <context ref="operator"/>
         <context ref="control"/>
       </include>
