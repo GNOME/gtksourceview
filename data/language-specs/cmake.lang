@@ -144,192 +144,286 @@
     </context>
 
     <context id="builtin-variable" style-ref="builtin-variable">
+      <keyword>\w+_BINARY_DIR</keyword>
+      <keyword>\w+_SOURCE_DIR</keyword>
+      <keyword>\w+_VERSION</keyword>
+      <keyword>\w+_VERSION_MAJOR</keyword>
+      <keyword>\w+_VERSION_MINOR</keyword>
+      <keyword>\w+_VERSION_PATCH</keyword>
+      <keyword>\w+_VERSION_TWEAK</keyword>
       <keyword>APPLE</keyword>
       <keyword>BORLAND</keyword>
+      <keyword>BUILD_SHARED_LIBS</keyword>
+      <keyword>CMAKE_\w+_POSTFIX</keyword>
+      <keyword>CMAKE_\w+_ARCHIVE_APPEND</keyword>
+      <keyword>CMAKE_\w+_ARCHIVE_CREATE</keyword>
+      <keyword>CMAKE_\w+_ARCHIVE_FINISH</keyword>
+      <keyword>CMAKE_\w+_COMPILER</keyword>
+      <keyword>CMAKE_\w+_COMPILER_ABI</keyword>
+      <keyword>CMAKE_\w+_COMPILER_EXTERNAL_TOOLCHAIN</keyword>
+      <keyword>CMAKE_\w+_COMPILER_ID</keyword>
+      <keyword>CMAKE_\w+_COMPILER_LOADED</keyword>
+      <keyword>CMAKE_\w+_COMPILER_TARGET</keyword>
+      <keyword>CMAKE_\w+_COMPILER_VERSION</keyword>
+      <keyword>CMAKE_\w+_COMPILE_OBJECT</keyword>
+      <keyword>CMAKE_\w+_CREATE_SHARED_LIBRARY</keyword>
+      <keyword>CMAKE_\w+_CREATE_SHARED_MODULE</keyword>
+      <keyword>CMAKE_\w+_CREATE_STATIC_LIBRARY</keyword>
+      <keyword>CMAKE_\w+_FLAGS</keyword>
+      <keyword>CMAKE_\w+_FLAGS_DEBUG</keyword>
+      <keyword>CMAKE_\w+_FLAGS_MINSIZEREL</keyword>
+      <keyword>CMAKE_\w+_FLAGS_RELEASE</keyword>
+      <keyword>CMAKE_\w+_FLAGS_RELWITHDEBINFO</keyword>
+      <keyword>CMAKE_\w+_IGNORE_EXTENSIONS</keyword>
+      <keyword>CMAKE_\w+_IMPLICIT_INCLUDE_DIRECTORIES</keyword>
+      <keyword>CMAKE_\w+_IMPLICIT_LINK_DIRECTORIES</keyword>
+      <keyword>CMAKE_\w+_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES</keyword>
+      <keyword>CMAKE_\w+_IMPLICIT_LINK_LIBRARIES</keyword>
+      <keyword>CMAKE_\w+_LIBRARY_ARCHITECTURE</keyword>
+      <keyword>CMAKE_\w+_LINKER_PREFERENCE</keyword>
+      <keyword>CMAKE_\w+_LINKER_PREFERENCE_PROPAGATES</keyword>
+      <keyword>CMAKE_\w+_LINK_EXECUTABLE</keyword>
+      <keyword>CMAKE_\w+_OUTPUT_EXTENSION</keyword>
+      <keyword>CMAKE_\w+_PLATFORM_ID</keyword>
+      <keyword>CMAKE_\w+_SIMULATE_ID</keyword>
+      <keyword>CMAKE_\w+_SIMULATE_VERSION</keyword>
+      <keyword>CMAKE_\w+_SIZEOF_DATA_PTR</keyword>
+      <keyword>CMAKE_\w+_SOURCE_FILE_EXTENSIONS</keyword>
+      <keyword>CMAKE_\w+_VISIBILITY_PRESET</keyword>
+      <keyword>CMAKE_ABSOLUTE_DESTINATION_FILES</keyword>
+      <keyword>CMAKE_ANDROID_API</keyword>
+      <keyword>CMAKE_ANDROID_API_MIN</keyword>
+      <keyword>CMAKE_ANDROID_GUI</keyword>
+      <keyword>CMAKE_APPBUNDLE_PATH</keyword>
       <keyword>CMAKE_AR</keyword>
+      <keyword>CMAKE_ARCHIVE_OUTPUT_DIRECTORY</keyword>
+      <keyword>CMAKE_ARGC</keyword>
+      <keyword>CMAKE_ARGV0</keyword>
+      <keyword>CMAKE_AUTOMOC</keyword>
+      <keyword>CMAKE_AUTOMOC_MOC_OPTIONS</keyword>
+      <keyword>CMAKE_AUTOMOC_RELAXED_MODE</keyword>
+      <keyword>CMAKE_AUTORCC</keyword>
+      <keyword>CMAKE_AUTORCC_OPTIONS</keyword>
+      <keyword>CMAKE_AUTOUIC</keyword>
+      <keyword>CMAKE_AUTOUIC_OPTIONS</keyword>
       <keyword>CMAKE_BACKWARDS_COMPATIBILITY</keyword>
-      <keyword>CMAKE_BASE_NAME</keyword>
       <keyword>CMAKE_BINARY_DIR</keyword>
       <keyword>CMAKE_BUILD_TOOL</keyword>
       <keyword>CMAKE_BUILD_TYPE</keyword>
+      <keyword>CMAKE_BUILD_WITH_INSTALL_RPATH</keyword>
       <keyword>CMAKE_CACHEFILE_DIR</keyword>
       <keyword>CMAKE_CACHE_MAJOR_VERSION</keyword>
       <keyword>CMAKE_CACHE_MINOR_VERSION</keyword>
-      <keyword>CMAKE_CACHE_RELEASE_VERSION</keyword>
+      <keyword>CMAKE_CACHE_PATCH_VERSION</keyword>
       <keyword>CMAKE_CFG_INTDIR</keyword>
+      <keyword>CMAKE_CL_64</keyword>
       <keyword>CMAKE_COLOR_MAKEFILE</keyword>
       <keyword>CMAKE_COMMAND</keyword>
-      <keyword>CMAKE_COMPILER_IS_GNUCC</keyword>
-      <keyword>CMAKE_COMPILER_IS_GNUCC_RUN</keyword>
-      <keyword>CMAKE_COMPILER_IS_GNUCXX</keyword>
-      <keyword>CMAKE_COMPILER_IS_GNUCXX_RUN</keyword>
+      <keyword>CMAKE_COMPILER_2005</keyword>
+      <keyword>CMAKE_COMPILER_IS_GNU\w+</keyword>
+      <keyword>CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY</keyword>
+      <keyword>CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY_\w+</keyword>
+      <keyword>CMAKE_CONFIGURATION_TYPES</keyword>
+      <keyword>CMAKE_CROSSCOMPILING</keyword>
       <keyword>CMAKE_CTEST_COMMAND</keyword>
       <keyword>CMAKE_CURRENT_BINARY_DIR</keyword>
+      <keyword>CMAKE_CURRENT_LIST_DIR</keyword>
+      <keyword>CMAKE_CURRENT_LIST_FILE</keyword>
+      <keyword>CMAKE_CURRENT_LIST_LINE</keyword>
       <keyword>CMAKE_CURRENT_SOURCE_DIR</keyword>
-      <keyword>CMAKE_CXX_COMPILER</keyword>
-      <keyword>CMAKE_CXX_COMPILER_ARG1</keyword>
-      <keyword>CMAKE_CXX_COMPILER_ENV_VAR</keyword>
-      <keyword>CMAKE_CXX_COMPILER_FULLPATH</keyword>
-      <keyword>CMAKE_CXX_COMPILER_LOADED</keyword>
-      <keyword>CMAKE_CXX_COMPILER_WORKS</keyword>
-      <keyword>CMAKE_CXX_COMPILE_OBJECT</keyword>
-      <keyword>CMAKE_CXX_CREATE_SHARED_LIBRARY</keyword>
-      <keyword>CMAKE_CXX_CREATE_SHARED_LIBRARY_FORBIDDEN_FLAGS</keyword>
-      <keyword>CMAKE_CXX_CREATE_SHARED_MODULE</keyword>
-      <keyword>CMAKE_CXX_CREATE_STATIC_LIBRARY</keyword>
-      <keyword>CMAKE_CXX_FLAGS</keyword>
-      <keyword>CMAKE_CXX_FLAGS_DEBUG</keyword>
-      <keyword>CMAKE_CXX_FLAGS_DEBUG_INIT</keyword>
-      <keyword>CMAKE_CXX_FLAGS_INIT</keyword>
-      <keyword>CMAKE_CXX_FLAGS_MINSIZEREL</keyword>
-      <keyword>CMAKE_CXX_FLAGS_MINSIZEREL_INIT</keyword>
-      <keyword>CMAKE_CXX_FLAGS_RELEASE</keyword>
-      <keyword>CMAKE_CXX_FLAGS_RELEASE_INIT</keyword>
-      <keyword>CMAKE_CXX_FLAGS_RELWITHDEBINFO</keyword>
-      <keyword>CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT</keyword>
-      <keyword>CMAKE_CXX_IGNORE_EXTENSIONS</keyword>
-      <keyword>CMAKE_CXX_INFORMATION_LOADED</keyword>
-      <keyword>CMAKE_CXX_LINKER_PREFERENCE</keyword>
-      <keyword>CMAKE_CXX_LINK_EXECUTABLE</keyword>
-      <keyword>CMAKE_CXX_LINK_FLAGS</keyword>
-      <keyword>CMAKE_CXX_OUTPUT_EXTENSION</keyword>
-      <keyword>CMAKE_CXX_SOURCE_FILE_EXTENSIONS</keyword>
-      <keyword>CMAKE_C_COMPILER</keyword>
-      <keyword>CMAKE_C_COMPILER_ARG1</keyword>
-      <keyword>CMAKE_C_COMPILER_ENV_VAR</keyword>
-      <keyword>CMAKE_C_COMPILER_FULLPATH</keyword>
-      <keyword>CMAKE_C_COMPILER_LOADED</keyword>
-      <keyword>CMAKE_C_COMPILER_WORKS</keyword>
-      <keyword>CMAKE_C_COMPILE_OBJECT</keyword>
-      <keyword>CMAKE_C_CREATE_SHARED_LIBRARY</keyword>
-      <keyword>CMAKE_C_CREATE_SHARED_LIBRARY_FORBIDDEN_FLAGS</keyword>
-      <keyword>CMAKE_C_CREATE_SHARED_MODULE</keyword>
-      <keyword>CMAKE_C_CREATE_STATIC_LIBRARY</keyword>
-      <keyword>CMAKE_C_FLAGS</keyword>
-      <keyword>CMAKE_C_FLAGS_DEBUG</keyword>
-      <keyword>CMAKE_C_FLAGS_DEBUG_INIT</keyword>
-      <keyword>CMAKE_C_FLAGS_INIT</keyword>
-      <keyword>CMAKE_C_FLAGS_MINSIZEREL</keyword>
-      <keyword>CMAKE_C_FLAGS_MINSIZEREL_INIT</keyword>
-      <keyword>CMAKE_C_FLAGS_RELEASE</keyword>
-      <keyword>CMAKE_C_FLAGS_RELEASE_INIT</keyword>
-      <keyword>CMAKE_C_FLAGS_RELWITHDEBINFO</keyword>
-      <keyword>CMAKE_C_FLAGS_RELWITHDEBINFO_INIT</keyword>
-      <keyword>CMAKE_C_IGNORE_EXTENSIONS</keyword>
-      <keyword>CMAKE_C_INFORMATION_LOADED</keyword>
-      <keyword>CMAKE_C_LINKER_PREFERENCE</keyword>
-      <keyword>CMAKE_C_LINK_EXECUTABLE</keyword>
-      <keyword>CMAKE_C_LINK_FLAGS</keyword>
-      <keyword>CMAKE_C_OUTPUT_EXTENSION</keyword>
-      <keyword>CMAKE_C_SOURCE_FILE_EXTENSIONS</keyword>
+      <keyword>CMAKE_CXX_COMPILE_FEATURES</keyword>
+      <keyword>CMAKE_CXX_EXTENSIONS</keyword>
+      <keyword>CMAKE_CXX_STANDARD</keyword>
+      <keyword>CMAKE_CXX_STANDARD_REQUIRED</keyword>
+      <keyword>CMAKE_C_COMPILE_FEATURES</keyword>
+      <keyword>CMAKE_C_EXTENSIONS</keyword>
+      <keyword>CMAKE_C_STANDARD</keyword>
+      <keyword>CMAKE_C_STANDARD_REQUIRED</keyword>
+      <keyword>CMAKE_DEBUG_POSTFIX</keyword>
+      <keyword>CMAKE_DEBUG_TARGET_PROPERTIES</keyword>
+      <keyword>CMAKE_DISABLE_FIND_PACKAGE_\w+</keyword>
       <keyword>CMAKE_DL_LIBS</keyword>
       <keyword>CMAKE_EDIT_COMMAND</keyword>
+      <keyword>CMAKE_ERROR_DEPRECATED</keyword>
+      <keyword>CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION</keyword>
       <keyword>CMAKE_EXECUTABLE_SUFFIX</keyword>
       <keyword>CMAKE_EXE_LINKER_FLAGS</keyword>
-      <keyword>CMAKE_EXE_LINKER_FLAGS_DEBUG</keyword>
-      <keyword>CMAKE_EXE_LINKER_FLAGS_MINSIZEREL</keyword>
-      <keyword>CMAKE_EXE_LINKER_FLAGS_RELEASE</keyword>
-      <keyword>CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO</keyword>
-      <keyword>CMAKE_FILES_DIRECTORY</keyword>
-      <keyword>CMAKE_FIND_APPBUNDLE</keyword>
-      <keyword>CMAKE_FIND_FRAMEWORK</keyword>
+      <keyword>CMAKE_EXE_LINKER_FLAGS_\w+</keyword>
+      <keyword>CMAKE_EXPORT_NO_PACKAGE_REGISTRY</keyword>
+      <keyword>CMAKE_EXTRA_GENERATOR</keyword>
+      <keyword>CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES</keyword>
       <keyword>CMAKE_FIND_LIBRARY_PREFIXES</keyword>
       <keyword>CMAKE_FIND_LIBRARY_SUFFIXES</keyword>
+      <keyword>CMAKE_FIND_NO_INSTALL_PREFIX</keyword>
+      <keyword>CMAKE_FIND_PACKAGE_NAME</keyword>
+      <keyword>CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY</keyword>
+      <keyword>CMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY</keyword>
+      <keyword>CMAKE_FIND_PACKAGE_WARN_NO_MODULE</keyword>
+      <keyword>CMAKE_FIND_ROOT_PATH</keyword>
+      <keyword>CMAKE_FIND_ROOT_PATH_MODE_INCLUDE</keyword>
+      <keyword>CMAKE_FIND_ROOT_PATH_MODE_LIBRARY</keyword>
+      <keyword>CMAKE_FIND_ROOT_PATH_MODE_PACKAGE</keyword>
+      <keyword>CMAKE_FIND_ROOT_PATH_MODE_PROGRAM</keyword>
+      <keyword>CMAKE_FRAMEWORK_PATH</keyword>
+      <keyword>CMAKE_Fortran_FORMAT</keyword>
+      <keyword>CMAKE_Fortran_MODDIR_DEFAULT</keyword>
+      <keyword>CMAKE_Fortran_MODDIR_FLAG</keyword>
+      <keyword>CMAKE_Fortran_MODOUT_FLAG</keyword>
+      <keyword>CMAKE_Fortran_MODULE_DIRECTORY</keyword>
       <keyword>CMAKE_GENERATOR</keyword>
+      <keyword>CMAKE_GENERATOR_PLATFORM</keyword>
+      <keyword>CMAKE_GENERATOR_TOOLSET</keyword>
+      <keyword>CMAKE_GNUtoMS</keyword>
       <keyword>CMAKE_HOME_DIRECTORY</keyword>
-      <keyword>CMAKE_INCLUDE_FLAG_C</keyword>
-      <keyword>CMAKE_INCLUDE_FLAG_CXX</keyword>
-      <keyword>CMAKE_INCLUDE_FLAG_C_SEP</keyword>
-      <keyword>CMAKE_INIT_VALUE</keyword>
+      <keyword>CMAKE_HOST_APPLE</keyword>
+      <keyword>CMAKE_HOST_SYSTEM</keyword>
+      <keyword>CMAKE_HOST_SYSTEM_NAME</keyword>
+      <keyword>CMAKE_HOST_SYSTEM_PROCESSOR</keyword>
+      <keyword>CMAKE_HOST_SYSTEM_VERSION</keyword>
+      <keyword>CMAKE_HOST_UNIX</keyword>
+      <keyword>CMAKE_HOST_WIN32</keyword>
+      <keyword>CMAKE_IGNORE_PATH</keyword>
+      <keyword>CMAKE_IMPORT_LIBRARY_PREFIX</keyword>
+      <keyword>CMAKE_IMPORT_LIBRARY_SUFFIX</keyword>
+      <keyword>CMAKE_INCLUDE_CURRENT_DIR</keyword>
+      <keyword>CMAKE_INCLUDE_CURRENT_DIR_IN_INTERFACE</keyword>
+      <keyword>CMAKE_INCLUDE_DIRECTORIES_BEFORE</keyword>
+      <keyword>CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE</keyword>
+      <keyword>CMAKE_INCLUDE_PATH</keyword>
+      <keyword>CMAKE_INSTALL_DEFAULT_COMPONENT_NAME</keyword>
+      <keyword>CMAKE_INSTALL_MESSAGE</keyword>
+      <keyword>CMAKE_INSTALL_NAME_DIR</keyword>
       <keyword>CMAKE_INSTALL_PREFIX</keyword>
+      <keyword>CMAKE_INSTALL_RPATH</keyword>
+      <keyword>CMAKE_INSTALL_RPATH_USE_LINK_PATH</keyword>
+      <keyword>CMAKE_INTERNAL_PLATFORM_ABI</keyword>
+      <keyword>CMAKE_JOB_POOL_COMPILE</keyword>
+      <keyword>CMAKE_JOB_POOL_LINK</keyword>
+      <keyword>CMAKE_LIBRARY_ARCHITECTURE</keyword>
+      <keyword>CMAKE_LIBRARY_ARCHITECTURE_REGEX</keyword>
+      <keyword>CMAKE_LIBRARY_OUTPUT_DIRECTORY</keyword>
+      <keyword>CMAKE_LIBRARY_PATH</keyword>
       <keyword>CMAKE_LIBRARY_PATH_FLAG</keyword>
+      <keyword>CMAKE_LINK_DEF_FILE_FLAG</keyword>
+      <keyword>CMAKE_LINK_DEPENDS_NO_SHARED</keyword>
+      <keyword>CMAKE_LINK_INTERFACE_LIBRARIES</keyword>
+      <keyword>CMAKE_LINK_LIBRARY_FILE_FLAG</keyword>
       <keyword>CMAKE_LINK_LIBRARY_FLAG</keyword>
       <keyword>CMAKE_LINK_LIBRARY_SUFFIX</keyword>
+      <keyword>CMAKE_MACOSX_BUNDLE</keyword>
+      <keyword>CMAKE_MACOSX_RPATH</keyword>
       <keyword>CMAKE_MAJOR_VERSION</keyword>
       <keyword>CMAKE_MAKE_PROGRAM</keyword>
+      <keyword>CMAKE_MAP_IMPORTED_CONFIG_\w+</keyword>
+      <keyword>CMAKE_MATCH_COUNT</keyword>
+      <keyword>CMAKE_MFC_FLAG</keyword>
+      <keyword>CMAKE_MINIMUM_REQUIRED_VERSION</keyword>
       <keyword>CMAKE_MINOR_VERSION</keyword>
-      <keyword>CMAKE_MODULE_EXISTS</keyword>
       <keyword>CMAKE_MODULE_LINKER_FLAGS</keyword>
-      <keyword>CMAKE_MODULE_LINKER_FLAGS_DEBUG</keyword>
-      <keyword>CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL</keyword>
-      <keyword>CMAKE_MODULE_LINKER_FLAGS_RELEASE</keyword>
-      <keyword>CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO</keyword>
-      <keyword>CMAKE_MacOSX_Content_COMPILE_OBJECT</keyword>
-      <keyword>CMAKE_NUMBER_OF_LOCAL_GENERATORS</keyword>
+      <keyword>CMAKE_MODULE_LINKER_FLAGS_\w+</keyword>
+      <keyword>CMAKE_MODULE_PATH</keyword>
+      <keyword>CMAKE_NOT_USING_CONFIG_FLAGS</keyword>
+      <keyword>CMAKE_NO_BUILTIN_CHRPATH</keyword>
+      <keyword>CMAKE_NO_SYSTEM_FROM_IMPORTED</keyword>
+      <keyword>CMAKE_OBJECT_PATH_MAX</keyword>
       <keyword>CMAKE_OSX_ARCHITECTURES</keyword>
+      <keyword>CMAKE_OSX_DEPLOYMENT_TARGET</keyword>
       <keyword>CMAKE_OSX_SYSROOT</keyword>
       <keyword>CMAKE_PARENT_LIST_FILE</keyword>
       <keyword>CMAKE_PATCH_VERSION</keyword>
-      <keyword>CMAKE_PLATFORM_HAS_INSTALLNAME</keyword>
-      <keyword>CMAKE_PLATFORM_IMPLICIT_INCLUDE_DIRECTORIES</keyword>
-      <keyword>CMAKE_PLATFORM_ROOT_BIN</keyword>
+      <keyword>CMAKE_PDB_OUTPUT_DIRECTORY</keyword>
+      <keyword>CMAKE_PDB_OUTPUT_DIRECTORY_\w+</keyword>
+      <keyword>CMAKE_POLICY_DEFAULT_CMP\d{4}</keyword>
+      <keyword>CMAKE_POLICY_WARNING_CMP\d{4}</keyword>
+      <keyword>CMAKE_POSITION_INDEPENDENT_CODE</keyword>
+      <keyword>CMAKE_PREFIX_PATH</keyword>
+      <keyword>CMAKE_PROGRAM_PATH</keyword>
+      <keyword>CMAKE_PROJECT_\w+_INCLUDE</keyword>
       <keyword>CMAKE_PROJECT_NAME</keyword>
       <keyword>CMAKE_RANLIB</keyword>
       <keyword>CMAKE_ROOT</keyword>
-      <keyword>CMAKE_SHARED_LIBRARY_CREATE_CXX_FLAGS</keyword>
-      <keyword>CMAKE_SHARED_LIBRARY_CREATE_C_FLAGS</keyword>
-      <keyword>CMAKE_SHARED_LIBRARY_CXX_FLAGS</keyword>
-      <keyword>CMAKE_SHARED_LIBRARY_C_FLAGS</keyword>
-      <keyword>CMAKE_SHARED_LIBRARY_LINK_C_FLAGS</keyword>
+      <keyword>CMAKE_RUNTIME_OUTPUT_DIRECTORY</keyword>
+      <keyword>CMAKE_SCRIPT_MODE_FILE</keyword>
       <keyword>CMAKE_SHARED_LIBRARY_PREFIX</keyword>
-      <keyword>CMAKE_SHARED_LIBRARY_RUNTIME_C_FLAG</keyword>
-      <keyword>CMAKE_SHARED_LIBRARY_RUNTIME_C_FLAG_SEP</keyword>
-      <keyword>CMAKE_SHARED_LIBRARY_SONAME_CXX_FLAG</keyword>
-      <keyword>CMAKE_SHARED_LIBRARY_SONAME_C_FLAG</keyword>
       <keyword>CMAKE_SHARED_LIBRARY_SUFFIX</keyword>
       <keyword>CMAKE_SHARED_LINKER_FLAGS</keyword>
-      <keyword>CMAKE_SHARED_LINKER_FLAGS_DEBUG</keyword>
-      <keyword>CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL</keyword>
-      <keyword>CMAKE_SHARED_LINKER_FLAGS_RELEASE</keyword>
-      <keyword>CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO</keyword>
-      <keyword>CMAKE_SHARED_MODULE_CREATE_CXX_FLAGS</keyword>
-      <keyword>CMAKE_SHARED_MODULE_CREATE_C_FLAGS</keyword>
+      <keyword>CMAKE_SHARED_LINKER_FLAGS_\w+</keyword>
       <keyword>CMAKE_SHARED_MODULE_PREFIX</keyword>
       <keyword>CMAKE_SHARED_MODULE_SUFFIX</keyword>
       <keyword>CMAKE_SIZEOF_VOID_P</keyword>
+      <keyword>CMAKE_SKIP_BUILD_RPATH</keyword>
+      <keyword>CMAKE_SKIP_INSTALL_ALL_DEPENDENCY</keyword>
+      <keyword>CMAKE_SKIP_INSTALL_RPATH</keyword>
+      <keyword>CMAKE_SKIP_INSTALL_RULES</keyword>
       <keyword>CMAKE_SKIP_RPATH</keyword>
       <keyword>CMAKE_SOURCE_DIR</keyword>
+      <keyword>CMAKE_STAGING_PREFIX</keyword>
+      <keyword>CMAKE_STANDARD_LIBRARIES</keyword>
       <keyword>CMAKE_STATIC_LIBRARY_PREFIX</keyword>
       <keyword>CMAKE_STATIC_LIBRARY_SUFFIX</keyword>
+      <keyword>CMAKE_STATIC_LINKER_FLAGS</keyword>
+      <keyword>CMAKE_STATIC_LINKER_FLAGS_\w+</keyword>
+      <keyword>CMAKE_SYSROOT</keyword>
       <keyword>CMAKE_SYSTEM</keyword>
-      <keyword>CMAKE_SYSTEM_AND_CXX_COMPILER_INFO_FILE</keyword>
-      <keyword>CMAKE_SYSTEM_AND_C_COMPILER_INFO_FILE</keyword>
-      <keyword>CMAKE_SYSTEM_APPBUNDLE_PATH</keyword>
-      <keyword>CMAKE_SYSTEM_FRAMEWORK_PATH</keyword>
+      <keyword>CMAKE_SYSTEM_IGNORE_PATH</keyword>
       <keyword>CMAKE_SYSTEM_INCLUDE_PATH</keyword>
-      <keyword>CMAKE_SYSTEM_INFO_FILE</keyword>
       <keyword>CMAKE_SYSTEM_LIBRARY_PATH</keyword>
-      <keyword>CMAKE_SYSTEM_LOADED</keyword>
       <keyword>CMAKE_SYSTEM_NAME</keyword>
+      <keyword>CMAKE_SYSTEM_PREFIX_PATH</keyword>
       <keyword>CMAKE_SYSTEM_PROCESSOR</keyword>
       <keyword>CMAKE_SYSTEM_PROGRAM_PATH</keyword>
-      <keyword>CMAKE_SYSTEM_SPECIFIC_INFORMATION_LOADED</keyword>
       <keyword>CMAKE_SYSTEM_VERSION</keyword>
-      <keyword>CMAKE_UNAME</keyword>
+      <keyword>CMAKE_TOOLCHAIN_FILE</keyword>
+      <keyword>CMAKE_TRY_COMPILE_CONFIGURATION</keyword>
+      <keyword>CMAKE_TWEAK_VERSION</keyword>
+      <keyword>CMAKE_USER_MAKE_RULES_OVERRIDE</keyword>
+      <keyword>CMAKE_USER_MAKE_RULES_OVERRIDE_\w+</keyword>
       <keyword>CMAKE_USE_RELATIVE_PATHS</keyword>
       <keyword>CMAKE_VERBOSE_MAKEFILE</keyword>
+      <keyword>CMAKE_VERSION</keyword>
+      <keyword>CMAKE_VISIBILITY_INLINES_HIDDEN</keyword>
+      <keyword>CMAKE_VS_DEVENV_COMMAND</keyword>
+      <keyword>CMAKE_VS_INTEL_Fortran_PROJECT_VERSION</keyword>
+      <keyword>CMAKE_VS_MSBUILD_COMMAND</keyword>
+      <keyword>CMAKE_VS_MSDEV_COMMAND</keyword>
+      <keyword>CMAKE_VS_NsightTegra_VERSION</keyword>
+      <keyword>CMAKE_VS_PLATFORM_NAME</keyword>
+      <keyword>CMAKE_VS_PLATFORM_TOOLSET</keyword>
+      <keyword>CMAKE_WARN_DEPRECATED</keyword>
+      <keyword>CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION</keyword>
+      <keyword>CMAKE_WIN32_EXECUTABLE</keyword>
+      <keyword>CMAKE_XCODE_ATTRIBUTE_\w+</keyword>
+      <keyword>CMAKE_XCODE_PLATFORM_TOOLSET</keyword>
       <keyword>CYGWIN</keyword>
       <keyword>EXECUTABLE_OUTPUT_PATH</keyword>
-      <keyword>FORCE</keyword>
-      <keyword>HAVE_CMAKE_SIZEOF_VOID_P</keyword>
       <keyword>LIBRARY_OUTPUT_PATH</keyword>
-      <keyword>MACOSX_BUNDLE</keyword>
       <keyword>MINGW</keyword>
+      <keyword>MSVC</keyword>
+      <keyword>MSVC10</keyword>
+      <keyword>MSVC11</keyword>
+      <keyword>MSVC12</keyword>
+      <keyword>MSVC14</keyword>
       <keyword>MSVC60</keyword>
       <keyword>MSVC70</keyword>
       <keyword>MSVC71</keyword>
       <keyword>MSVC80</keyword>
-      <keyword>MSVC</keyword>
+      <keyword>MSVC90</keyword>
       <keyword>MSVC_IDE</keyword>
+      <keyword>MSVC_VERSION</keyword>
       <keyword>PROJECT_BINARY_DIR</keyword>
       <keyword>PROJECT_NAME</keyword>
       <keyword>PROJECT_SOURCE_DIR</keyword>
-      <keyword>Project_BINARY_DIR</keyword>
-      <keyword>Project_SOURCE_DIR</keyword>
-      <keyword>RUN_CONFIGURE</keyword>
+      <keyword>PROJECT_VERSION</keyword>
+      <keyword>PROJECT_VERSION_MAJOR</keyword>
+      <keyword>PROJECT_VERSION_MINOR</keyword>
+      <keyword>PROJECT_VERSION_PATCH</keyword>
+      <keyword>PROJECT_VERSION_TWEAK</keyword>
       <keyword>UNIX</keyword>
       <keyword>WIN32</keyword>
-      <keyword>_CMAKE_OSX_MACHINE</keyword>
+      <keyword>WINCE</keyword>
+      <keyword>WINDOWS_PHONE</keyword>
+      <keyword>WINDOWS_STORE</keyword>
+      <keyword>XCODE_VERSION</keyword>
     </context>
 
     <context id="builtin-variable-2" style-ref="builtin-variable">
