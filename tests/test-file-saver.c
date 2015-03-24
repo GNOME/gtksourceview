@@ -644,11 +644,15 @@ static void
 all_tests (void)
 {
 	gboolean have_unowned;
+#ifndef G_OS_WIN32
 	gboolean have_unowned_group;
+#endif
 
 	g_printf ("\n***\n");
 	have_unowned = check_unowned_directory ();
+#ifndef G_OS_WIN32
 	have_unowned_group = check_unowned_group ();
+#endif
 	g_printf ("***\n\n");
 
 	g_test_trap_subprocess ("/file-saver/subprocess/local",
