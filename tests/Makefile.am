@@ -24,13 +24,13 @@ BUILT_SOURCES =				\
 
 CLEANFILES = $(BUILT_SOURCES)
 
-test-completion-resources.c: test-completion.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-completion.gresource.xml)
+test-completion-resources.c: test-completion.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/test-completion.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-completion.gresource.xml
 
-test-search-resources.c: test-search.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-search.gresource.xml)
+test-search-resources.c: test-search.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/test-search.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-search.gresource.xml
 
-test-widget-resources.c: test-widget.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(srcdir)/test-widget.gresource.xml)
+test-widget-resources.c: test-widget.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/test-widget.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-widget.gresource.xml
 
 TEST_PROGS = test-completion
