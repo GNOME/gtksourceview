@@ -81,7 +81,7 @@
         (".*?"|&lt;.*&gt;)
       </match>
       <include>
-        <context id="included-file" sub-pattern="2" style-ref="included-file"/>
+        <context id="included-file" sub-pattern="2" style-ref="included-file" class="path"/>
       </include>
     </context>
 
