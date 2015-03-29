@@ -3713,6 +3713,8 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->priv->buffer),
 							   FALSE);
 
+	_gtk_source_buffer_save_and_clear_selection (GTK_SOURCE_BUFFER (search->priv->buffer));
+
 	gtk_text_buffer_get_start_iter (search->priv->buffer, &iter);
 
 	gtk_text_buffer_begin_user_action (search->priv->buffer);
@@ -3737,6 +3739,8 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 	}
 
 	gtk_text_buffer_end_user_action (search->priv->buffer);
+
+	_gtk_source_buffer_restore_selection GTK_SOURCE_BUFFER ((search->priv->buffer));
 
 	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->priv->buffer),
 							   highlight_matching_brackets);

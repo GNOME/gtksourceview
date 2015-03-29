@@ -4109,7 +4109,9 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			/* shift+tab: always unindent */
 			if (event->state & GDK_SHIFT_MASK)
 			{
+				_gtk_source_buffer_save_and_clear_selection (GTK_SOURCE_BUFFER (buf));
 				gtk_source_view_unindent_lines (view, &s, &e);
+				_gtk_source_buffer_restore_selection (GTK_SOURCE_BUFFER (buf));
 				return TRUE;
 			}
 
@@ -4121,7 +4123,9 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			    ((gtk_text_iter_starts_line (&s) && gtk_text_iter_ends_line (&e)) ||
 			     (gtk_text_iter_get_line (&s) != gtk_text_iter_get_line (&e))))
 			{
+				_gtk_source_buffer_save_and_clear_selection (GTK_SOURCE_BUFFER (buf));
 				gtk_source_view_indent_lines (view, &s, &e);
+				_gtk_source_buffer_restore_selection (GTK_SOURCE_BUFFER (buf));
 				return TRUE;
 			}
 		}

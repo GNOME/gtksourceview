@@ -177,6 +177,9 @@ struct _GtkSourceBufferPrivate
 	GtkSourceUndoManager *undo_manager;
 	gint max_undo_levels;
 
+	GtkTextMark *tmp_insert_mark;
+	GtkTextMark *tmp_selection_bound_mark;
+
 	GList *search_contexts;
 
 	GtkTextTag *invalid_char_tag;
@@ -2318,6 +2321,68 @@ gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer
 	}
 }
 
+/*
+ * GtkTextView wastes a lot of time tracking the clipboard content if
+ * we do insert/delete operations while there is a selection.
+ * These two utilities store the current selection with marks before
+ * doing an edit operation and restore it at the end.
+ */
+void
+_gtk_source_buffer_save_and_clear_selection (GtkSourceBuffer *buffer)
+{
+	GtkTextBuffer *buf;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	buf = GTK_TEXT_BUFFER (buffer);
+
+	/* Note we cannot use buffer_get_selection_bounds since it
+	 * orders the iters while we want to know the position of
+	 * each mark.
+	 */
+	if (gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER (buffer)))
+	{
+		GtkTextIter insert_iter;
+		GtkTextIter selection_bound_iter;
+
+		g_assert (buffer->priv->tmp_insert_mark == NULL);
+		g_assert (buffer->priv->tmp_selection_bound_mark == NULL);
+
+		gtk_text_buffer_get_iter_at_mark (buf, &insert_iter, gtk_text_buffer_get_insert (buf));
+		gtk_text_buffer_get_iter_at_mark (buf, &selection_bound_iter, gtk_text_buffer_get_selection_bound (buf));
+		buffer->priv->tmp_insert_mark = gtk_text_buffer_create_mark (buf, NULL, &insert_iter, FALSE);
+		buffer->priv->tmp_selection_bound_mark = gtk_text_buffer_create_mark (buf, NULL, &selection_bound_iter, FALSE);
+
+		gtk_text_buffer_place_cursor (buf, &insert_iter);
+	}
+}
+
+void
+_gtk_source_buffer_restore_selection (GtkSourceBuffer *buffer)
+{
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+
+	if (buffer->priv->tmp_insert_mark != NULL &&
+	    buffer->priv->tmp_selection_bound_mark != NULL)
+	{
+		GtkTextBuffer *buf;
+		GtkTextIter insert_iter;
+		GtkTextIter selection_bound_iter;
+
+		buf = GTK_TEXT_BUFFER (buffer);
+
+		gtk_text_buffer_get_iter_at_mark (buf, &insert_iter, buffer->priv->tmp_insert_mark);
+		gtk_text_buffer_get_iter_at_mark (buf, &selection_bound_iter, buffer->priv->tmp_selection_bound_mark);
+
+		gtk_text_buffer_select_range (buf, &insert_iter, &selection_bound_iter);
+
+		gtk_text_buffer_delete_mark (buf, buffer->priv->tmp_insert_mark);
+		gtk_text_buffer_delete_mark (buf, buffer->priv->tmp_selection_bound_mark);
+		buffer->priv->tmp_insert_mark = NULL;
+		buffer->priv->tmp_selection_bound_mark = NULL;
+	}
+}
+
 static gchar *
 do_lower_case (GtkTextBuffer     *buffer,
 	       const GtkTextIter *start,
@@ -2585,6 +2650,7 @@ gtk_source_buffer_join_lines (GtkSourceBuffer *buffer,
 	text_buffer = GTK_TEXT_BUFFER (buffer);
 	end_mark = gtk_text_buffer_create_mark (text_buffer, NULL, end, FALSE);
 
+	_gtk_source_buffer_save_and_clear_selection (buffer);
 	gtk_text_buffer_begin_user_action (text_buffer);
 
 	move_to_line_text_end (start);
@@ -2625,6 +2691,7 @@ gtk_source_buffer_join_lines (GtkSourceBuffer *buffer,
 	}
 
 	gtk_text_buffer_end_user_action (text_buffer);
+	_gtk_source_buffer_restore_selection (buffer);
 
 	gtk_text_buffer_delete_mark (text_buffer, end_mark);
 }

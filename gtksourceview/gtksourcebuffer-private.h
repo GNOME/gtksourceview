@@ -63,6 +63,12 @@ GtkSourceBracketMatchType
 			 _gtk_source_buffer_find_bracket_match		(GtkSourceBuffer         *buffer,
 									 GtkTextIter             *orig);
 
+G_GNUC_INTERNAL
+void			 _gtk_source_buffer_save_and_clear_selection	(GtkSourceBuffer         *buffer);
+
+G_GNUC_INTERNAL
+void			 _gtk_source_buffer_restore_selection		(GtkSourceBuffer         *buffer);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_BUFFER_PRIVATE_H__ */
