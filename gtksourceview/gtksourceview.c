@@ -3396,13 +3396,22 @@ gtk_source_view_indent_lines (GtkSourceView *view,
 			      GtkTextIter   *end)
 {
 	GtkTextBuffer *buf;
+	gboolean bracket_hl;
 	gint start_line, end_line;
 	gchar *tab_buffer = NULL;
 	guint tabs = 0;
 	guint spaces = 0;
 	gint i;
 
+	if (view->priv->completion != NULL)
+	{
+		gtk_source_completion_block_interactive (view->priv->completion);
+	}
+
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	bracket_hl = gtk_source_buffer_get_highlight_matching_brackets (GTK_SOURCE_BUFFER (buf));
+	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (buf), FALSE);
 
 	start_line = gtk_text_iter_get_line (start);
 	end_line = gtk_text_iter_get_line (end);
@@ -3494,6 +3503,13 @@ gtk_source_view_indent_lines (GtkSourceView *view,
 
 	g_free (tab_buffer);
 
+	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (buf), bracket_hl);
+
+	if (view->priv->completion != NULL)
+	{
+		gtk_source_completion_unblock_interactive (view->priv->completion);
+	}
+
 	gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
 					    gtk_text_buffer_get_insert (buf));
 }
@@ -3515,12 +3531,21 @@ gtk_source_view_unindent_lines (GtkSourceView *view,
 				GtkTextIter   *end)
 {
 	GtkTextBuffer *buf;
+	gboolean bracket_hl;
 	gint start_line, end_line;
 	gint tab_width;
 	gint indent_width;
 	gint i;
 
+	if (view->priv->completion != NULL)
+	{
+		gtk_source_completion_block_interactive (view->priv->completion);
+	}
+
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	bracket_hl = gtk_source_buffer_get_highlight_matching_brackets (GTK_SOURCE_BUFFER (buf));
+	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (buf), FALSE);
 
 	start_line = gtk_text_iter_get_line (start);
 	end_line = gtk_text_iter_get_line (end);
@@ -3578,6 +3603,13 @@ gtk_source_view_unindent_lines (GtkSourceView *view,
 	}
 
 	gtk_text_buffer_end_user_action (buf);
+
+	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (buf), bracket_hl);
+
+	if (view->priv->completion != NULL)
+	{
+		gtk_source_completion_unblock_interactive (view->priv->completion);
+	}
 
 	gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
 					    gtk_text_buffer_get_insert (buf));
