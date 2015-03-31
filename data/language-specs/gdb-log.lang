@@ -36,7 +36,7 @@
 
   <definitions>
     <define-regex id="identifier">[A-Za-z_][A-Za-z0-9_]*(?:@@[A-Za-z0-9_\.]+)?</define-regex>
-    <define-regex id="filename">[A-Za-z0-9_/\-\.]+</define-regex>
+    <define-regex id="filename">.+?</define-regex>
 
     <!-- Either a decimal number (single to multi-digit, signed or unsigned) or a standard hexadecimal number -->
     <define-regex id="thread-number">(?:-?[1-9][0-9]*|\%{def:hexadecimal})</define-regex>
