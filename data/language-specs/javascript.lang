@@ -73,7 +73,8 @@
           [^/]*
           \/
           \%{regex-opts}
-          ([),;.]|\s|$)
+          \s*
+          ([),;.\/\]:}]|$)
         )</start>
       <end>\/\%{regex-opts}</end>
       <include>
