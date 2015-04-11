@@ -292,7 +292,21 @@ from_name (GtkSourcePixbufHelper *helper,
 
 	if (info)
 	{
-		set_cache (helper, gtk_icon_info_load_icon (info, NULL));
+		GdkPixbuf *pixbuf;
+
+		if (gtk_icon_info_is_symbolic (info))
+		{
+			GtkStyleContext *context;
+
+			context = gtk_widget_get_style_context (widget);
+			pixbuf = gtk_icon_info_load_symbolic_for_context (info, context, NULL, NULL);
+		}
+		else
+		{
+			pixbuf = gtk_icon_info_load_icon (info, NULL);
+		}
+
+		set_cache (helper, pixbuf);
 	}
 }
 
