@@ -20,6 +20,7 @@ LANGUAGES =			\
 	cpp.lang		\
 	csharp.lang		\
 	css.lang		\
+	csv.lang		\
 	cuda.lang		\
 	def.lang		\
 	desktop.lang		\
