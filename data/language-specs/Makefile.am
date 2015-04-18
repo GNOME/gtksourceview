@@ -53,6 +53,7 @@ LANGUAGES =			\
 	imagej.lang		\
 	ini.lang		\
 	j.lang			\
+	jade.lang		\
 	java.lang		\
 	javascript.lang		\
 	json.lang		\
