@@ -21,6 +21,7 @@ BUILT_SOURCES = 			\
 
 libgtksourceview_headers =			\
 	gtksource.h				\
+	gtksourceautocleanups.h			\
 	gtksourcebuffer.h			\
 	gtksourcecompletion.h			\
 	gtksourcecompletioncontext.h		\

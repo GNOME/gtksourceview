@@ -53,5 +53,6 @@
 #include <gtksourceview/gtksourceutils.h>
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourceview-typebuiltins.h>
+#include <gtksourceview/gtksourceautocleanups.h>
 
 #endif /* __GTK_SOURCE_H__ */
