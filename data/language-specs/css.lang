@@ -77,12 +77,29 @@
 
     <context id="selector-pseudo-classes" style-ref="function">
       <prefix>:</prefix>
+      <keyword>enabled</keyword>
+      <keyword>disabled</keyword>
+      <keyword>checked</keyword>
+      <keyword>indeterminate</keyword>
+      <keyword>root</keyword>
+      <keyword>nth-child</keyword>
+      <keyword>nth-last-child</keyword>
+      <keyword>nth-of-type</keyword>
+      <keyword>nth-last-of-type</keyword>
       <keyword>first-child</keyword>
+      <keyword>last-child</keyword>
+      <keyword>first-of-type</keyword>
+      <keyword>last-of-type</keyword>
+      <keyword>only-child</keyword>
+      <keyword>only-of-type</keyword>
+      <keyword>empty</keyword>
+      <keyword>not</keyword>
       <keyword>link</keyword>
       <keyword>visited</keyword>
       <keyword>hover</keyword>
       <keyword>active</keyword>
       <keyword>focus</keyword>
+      <keyword>target</keyword>
       <keyword>lang</keyword>
     </context>
 
