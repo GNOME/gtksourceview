@@ -4,13 +4,11 @@
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
-PKG_NAME="gtksourceview"
-
 (test -f $srcdir/configure.ac \
   && test -f $srcdir/README \
   && test -d $srcdir/gtksourceview) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
-    echo " top-level $PKG_NAME directory"
+    echo " top-level GtkSourceView directory"
     exit 1
 }
 
