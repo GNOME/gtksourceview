@@ -23,6 +23,7 @@ DISTCLEANFILES = \
 MAINTAINERCLEANFILES = 		\
 	ABOUT-NLS		\
 	aclocal.m4		\
+	compile			\
 	config.guess		\
 	config.h.in		\
 	config.rpath		\
