@@ -4,9 +4,6 @@
 [
   <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
   <!ENTITY version SYSTEM "version.xml">
-  <!ENTITY tutorial SYSTEM "lang-tutorial.xml">
-  <!ENTITY reference SYSTEM "lang-reference.xml">
-  <!ENTITY stylereference SYSTEM "style-reference.xml">
 ]>
 <book id="index">
   <bookinfo>
@@ -84,9 +81,9 @@
 
   <part>
     <title>Syntax highlighting reference</title>
-    &tutorial;
-    &reference;
-    &stylereference;
+    <xi:include href="lang-tutorial.xml"/>
+    <xi:include href="lang-reference.xml"/>
+    <xi:include href="style-reference.xml"/>
   </part>
 
   <chapter id="object-tree">
