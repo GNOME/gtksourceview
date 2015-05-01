@@ -12,6 +12,7 @@ AM_CPPFLAGS = 				\
 
 LDADD = $(top_builddir)/gtksourceview/completion-providers/words/libgtksourcecompletionwords.la \
 	$(top_builddir)/gtksourceview/libgtksourceview-core.la \
+	-lm \
 	$(DEP_LIBS) \
 	$(TESTS_LIBS)
 

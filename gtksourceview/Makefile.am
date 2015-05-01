@@ -39,6 +39,7 @@ libgtksourceview_headers =			\
 	gtksourcegutterrenderertext.h		\
 	gtksourcelanguage.h			\
 	gtksourcelanguagemanager.h		\
+	gtksourcemap.h				\
 	gtksourcemark.h				\
 	gtksourcemarkattributes.h		\
 	gtksourceprintcompositor.h		\
@@ -119,6 +120,7 @@ libgtksourceview_c_files =			\
 	gtksourcegutterrenderertext.c		\
 	gtksourcelanguage.c 			\
 	gtksourcelanguagemanager.c 		\
+	gtksourcemap.c				\
 	gtksourcemark.c				\
 	gtksourcemarkattributes.c		\
 	gtksourceprintcompositor.c		\
@@ -165,6 +167,7 @@ lib_LTLIBRARIES = libgtksourceview-3.0.la
 libgtksourceview_3_0_la_SOURCES =
 
 libgtksourceview_3_0_la_LIBADD = 					\
+	-lm								\
 	libgtksourceview-core.la					\
 	completion-providers/words/libgtksourcecompletionwords.la	\
 	$(DEP_LIBS) $(GTK_MAC_LIBS)

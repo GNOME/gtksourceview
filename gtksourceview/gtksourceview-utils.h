@@ -23,6 +23,7 @@
 #define __GTK_SOURCE_VIEW_UTILS_H__
 
 #include <glib.h>
+#include <pango/pango.h>
 
 G_BEGIN_DECLS
 
@@ -37,6 +38,9 @@ GSList 	 *_gtk_source_view_get_file_list    (gchar       **path,
 
 G_GNUC_INTERNAL
 gint	 _gtk_source_string_to_int	    (const gchar *str);
+
+G_GNUC_INTERNAL
+gchar	*_gtk_source_pango_font_description_to_css (const PangoFontDescription *font_desc);
 
 G_END_DECLS
 

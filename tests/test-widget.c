@@ -52,6 +52,8 @@ struct _TestWidgetPrivate
 	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
 	GtkSourceFile *file;
+	GtkSourceMap *map;
+	GtkCheckButton *show_map_checkbutton;
 	GtkCheckButton *indent_width_checkbutton;
 	GtkSpinButton *indent_width_spinbutton;
 	GtkLabel *cursor_position_info;
@@ -980,6 +982,8 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_changed_cb);
 
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, view);
+	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, map);
+	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, show_map_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_spinbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, cursor_position_info);
@@ -1035,6 +1039,12 @@ test_widget_init (TestWidget *self)
 	                        "style-scheme",
 	                        self->priv->buffer,
 	                        "style-scheme",
+	                        G_BINDING_SYNC_CREATE);
+
+	g_object_bind_property (self->priv->show_map_checkbutton,
+	                        "active",
+	                        self->priv->map,
+	                        "visible",
 	                        G_BINDING_SYNC_CREATE);
 
 	g_signal_connect (self->priv->background_pattern,

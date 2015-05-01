@@ -491,6 +491,25 @@ gtk_source_language_manager_get_type
 </SECTION>
 
 <SECTION>
+<FILE>map</FILE>
+<TITLE>GtkSourceMap</TITLE>
+GtkSourceMap
+gtk_source_map_new
+gtk_source_map_set_view
+gtk_source_map_get_view
+gtk_source_map_get_child_view
+<SUBSECTION Standard>
+GtkSourceMapClass
+GTK_SOURCE_IS_MAP
+GTK_SOURCE_IS_MAP_CLASS
+GTK_SOURCE_MAP
+GTK_SOURCE_MAP_CLASS
+GTK_SOURCE_MAP_GET_CLASS
+GTK_SOURCE_TYPE_MAP
+gtk_source_map_get_type
+</SECTION>
+
+<SECTION>
 <FILE>mark</FILE>
 <TITLE>GtkSourceMark</TITLE>
 GtkSourceMark
