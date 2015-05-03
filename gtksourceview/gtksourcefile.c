@@ -168,6 +168,7 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 							      "",
 							      G_TYPE_FILE,
 							      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT |
 							      G_PARAM_STATIC_STRINGS));
 
 	/**
@@ -228,6 +229,8 @@ gtk_source_file_init (GtkSourceFile *file)
 	file->priv = gtk_source_file_get_instance_private (file);
 
 	file->priv->encoding = NULL;
+	file->priv->newline_type = GTK_SOURCE_NEWLINE_TYPE_LF;
+	file->priv->compression_type = GTK_SOURCE_COMPRESSION_TYPE_NONE;
 }
 
 /**
