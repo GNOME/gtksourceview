@@ -1,5 +1,4 @@
 /*
- * gtksource.h
  * This file is part of gtksourceview
  *
  * gtksourceview is free software; you can redistribute it and/or
