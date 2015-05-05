@@ -67,7 +67,7 @@
     <context id="ocaml" class="no-spell-check">
       <include>
 	<context id="ocamldoc" style-ref="ocamldoc">
-	  <start>\(\*\*</start>
+	  <start>\(\*\*(?!\))</start>
 	  <end>\*\)</end>
 	  <include>
 	    <context id="comment-in-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
