@@ -106,6 +106,17 @@
  * Custom language definition files can create their own context classes,
  * since the functions like gtk_source_buffer_iter_has_context_class() take
  * a string parameter as the context class.
+ *
+ * Each context class has an associated #GtkTextTag with the name
+ * <emphasis>gtksourceview:context-classes:&lt;name&gt;</emphasis>. For example to
+ * retrieve the #GtkTextTag for the string context class, one can write:
+ * |[
+ * GtkTextTagTable *tag_table;
+ * GtkTextTag *tag;
+ *
+ * tag_table = gtk_text_buffer_get_tag_table (buffer);
+ * tag = gtk_text_tag_table_lookup (tag_table, "gtksourceview:context-classes:string");
+ * ]|
  */
 
 /*

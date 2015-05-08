@@ -979,7 +979,11 @@ get_context_class_tag (GtkSourceContextEngine *ce,
 
 	if (ret == NULL)
 	{
-		ret = gtk_text_buffer_create_tag (ce->priv->buffer, NULL, NULL);
+		gchar *tag_name;
+
+		tag_name = g_strdup_printf ("gtksourceview:context-classes:%s", name);
+
+		ret = gtk_text_buffer_create_tag (ce->priv->buffer, tag_name, NULL);
 		g_object_set_data_full (G_OBJECT (ret),
 		                        TAG_CONTEXT_CLASS_NAME,
 		                        g_strdup (name),
@@ -988,6 +992,8 @@ get_context_class_tag (GtkSourceContextEngine *ce,
 		g_hash_table_insert (ce->priv->context_classes,
 		                     g_strdup (name),
 		                     ret);
+
+		g_free (tag_name);
 	}
 
 	return ret;
