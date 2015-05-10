@@ -141,6 +141,8 @@
 /* For bracket matching */
 #define MAX_CHARS_BEFORE_FINDING_A_MATCH    10000
 
+#define CONTEXT_CLASSES_PREFIX "gtksourceview:context-classes:"
+
 /* Signals */
 enum
 {
@@ -2148,6 +2150,23 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
 	g_slist_free (list);
 }
 
+static GtkTextTag *
+get_context_class_tag (GtkSourceBuffer *buffer,
+		       const gchar     *context_class)
+{
+	gchar *tag_name;
+	GtkTextTagTable *tag_table;
+	GtkTextTag *tag;
+
+	tag_name = g_strdup_printf (CONTEXT_CLASSES_PREFIX "%s", context_class);
+
+	tag_table = gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (buffer));
+	tag = gtk_text_tag_table_lookup (tag_table, tag_name);
+
+	g_free (tag_name);
+	return tag;
+}
+
 /**
  * gtk_source_buffer_iter_has_context_class:
  * @buffer: a #GtkSourceBuffer.
@@ -2172,22 +2191,14 @@ gtk_source_buffer_iter_has_context_class (GtkSourceBuffer   *buffer,
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (context_class != NULL, FALSE);
 
-	if (buffer->priv->highlight_engine == NULL)
-	{
-		return FALSE;
-	}
-
-	tag = _gtk_source_engine_get_context_class_tag (buffer->priv->highlight_engine,
-							context_class);
+	tag = get_context_class_tag (buffer, context_class);
 
 	if (tag != NULL)
 	{
 		return gtk_text_iter_has_tag (iter, tag);
 	}
-	else
-	{
-		return FALSE;
-	}
+
+	return FALSE;
 }
 
 /**
@@ -2209,11 +2220,10 @@ gchar **
 gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
                                                const GtkTextIter *iter)
 {
+	const gsize prefix_len = strlen (CONTEXT_CLASSES_PREFIX);
 	GSList *tags;
 	GSList *l;
 	GPtrArray *ret;
-	const gchar prefix[] = "gtksourceview:context-classes:";
-	const gsize prefix_len = strlen (prefix);
 
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 	g_return_val_if_fail (iter != NULL, NULL);
@@ -2228,7 +2238,8 @@ gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
 
 		g_object_get (tag, "name", &tag_name, NULL);
 
-		if (tag_name != NULL && g_str_has_prefix (tag_name, prefix))
+		if (tag_name != NULL &&
+		    g_str_has_prefix (tag_name, CONTEXT_CLASSES_PREFIX))
 		{
 			gchar *context_class_name = g_strdup (tag_name + prefix_len);
 
@@ -2273,22 +2284,14 @@ gtk_source_buffer_iter_forward_to_context_class_toggle (GtkSourceBuffer *buffer,
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (context_class != NULL, FALSE);
 
-	if (buffer->priv->highlight_engine == NULL)
-	{
-		return FALSE;
-	}
+	tag = get_context_class_tag (buffer, context_class);
 
-	tag = _gtk_source_engine_get_context_class_tag (buffer->priv->highlight_engine,
-							context_class);
-
-	if (tag == NULL)
-	{
-		return FALSE;
-	}
-	else
+	if (tag != NULL)
 	{
 		return gtk_text_iter_forward_to_tag_toggle (iter, tag);
 	}
+
+	return FALSE;
 }
 
 /**
@@ -2320,22 +2323,14 @@ gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (context_class != NULL, FALSE);
 
-	if (buffer->priv->highlight_engine == NULL)
-	{
-		return FALSE;
-	}
+	tag = get_context_class_tag (buffer, context_class);
 
-	tag = _gtk_source_engine_get_context_class_tag (buffer->priv->highlight_engine,
-							context_class);
-
-	if (tag == NULL)
-	{
-		return FALSE;
-	}
-	else
+	if (tag != NULL)
 	{
 		return gtk_text_iter_backward_to_tag_toggle (iter, tag);
 	}
+
+	return FALSE;
 }
 
 /*
