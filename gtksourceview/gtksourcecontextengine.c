@@ -118,8 +118,6 @@
 #define SEGMENT_IS_SIMPLE(s) CONTEXT_IS_SIMPLE ((s)->context)
 #define SEGMENT_IS_CONTAINER(s) CONTEXT_IS_CONTAINER ((s)->context)
 
-#define TAG_CONTEXT_CLASS_NAME "GtkSourceViewTagContextClassName"
-
 typedef struct _SubPatternDefinition SubPatternDefinition;
 typedef struct _SubPattern SubPattern;
 typedef struct _Segment Segment;
@@ -984,10 +982,6 @@ get_context_class_tag (GtkSourceContextEngine *ce,
 		tag_name = g_strdup_printf ("gtksourceview:context-classes:%s", name);
 
 		ret = gtk_text_buffer_create_tag (ce->priv->buffer, tag_name, NULL);
-		g_object_set_data_full (G_OBJECT (ret),
-		                        TAG_CONTEXT_CLASS_NAME,
-		                        g_strdup (name),
-		                        (GDestroyNotify)g_free);
 
 		g_hash_table_insert (ce->priv->context_classes,
 		                     g_strdup (name),

@@ -141,8 +141,6 @@
 /* For bracket matching */
 #define MAX_CHARS_BEFORE_FINDING_A_MATCH    10000
 
-#define TAG_CONTEXT_CLASS_NAME "GtkSourceViewTagContextClassName"
-
 /* Signals */
 enum
 {
@@ -2212,8 +2210,10 @@ gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
                                                const GtkTextIter *iter)
 {
 	GSList *tags;
-	GSList *item;
+	GSList *l;
 	GPtrArray *ret;
+	const gchar prefix[] = "gtksourceview:context-classes:";
+	const gsize prefix_len = strlen (prefix);
 
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 	g_return_val_if_fail (iter != NULL, NULL);
@@ -2221,15 +2221,21 @@ gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
 	tags = gtk_text_iter_get_tags (iter);
 	ret = g_ptr_array_new ();
 
-	for (item = tags; item != NULL; item = g_slist_next (item))
+	for (l = tags; l != NULL; l = l->next)
 	{
-		gchar const *name = g_object_get_data (G_OBJECT (item->data),
-		                                       TAG_CONTEXT_CLASS_NAME);
+		GtkTextTag *tag = l->data;
+		gchar *tag_name;
 
-		if (name != NULL)
+		g_object_get (tag, "name", &tag_name, NULL);
+
+		if (tag_name != NULL && g_str_has_prefix (tag_name, prefix))
 		{
-			g_ptr_array_add (ret, g_strdup (name));
+			gchar *context_class_name = g_strdup (tag_name + prefix_len);
+
+			g_ptr_array_add (ret, context_class_name);
 		}
+
+		g_free (tag_name);
 	}
 
 	g_slist_free (tags);
