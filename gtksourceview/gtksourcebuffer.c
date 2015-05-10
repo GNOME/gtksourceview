@@ -100,8 +100,9 @@
  * engine. There are currently three default context classes that are
  * applied to regions of a #GtkSourceBuffer:
  *  - <emphasis>comment</emphasis>: the region delimits a comment;
- *  - <emphasis>string</emphasis>: the region delimits a string;
- *  - <emphasis>no-spell-check</emphasis>: the region should not be spell checked.
+ *  - <emphasis>no-spell-check</emphasis>: the region should not be spell checked;
+ *  - <emphasis>path</emphasis>: the region delimits a path to a file;
+ *  - <emphasis>string</emphasis>: the region delimits a string.
  *
  * Custom language definition files can create their own context classes,
  * since the functions like gtk_source_buffer_iter_has_context_class() take
