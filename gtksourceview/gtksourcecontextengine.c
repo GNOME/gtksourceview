@@ -425,7 +425,8 @@ struct _GtkSourceContextEnginePrivate
 	 */
 	guint n_tags;
 
-	GHashTable *context_classes;
+	/* List of GtkTextTag* for context classes. */
+	GSList *context_classes;
 
 	/* Whether or not to actually highlight the buffer. */
 	gboolean highlight;
@@ -971,26 +972,26 @@ static GtkTextTag *
 get_context_class_tag (GtkSourceContextEngine *ce,
 		       gchar const            *name)
 {
-	GtkTextTag *ret;
+	gchar *tag_name;
+	GtkTextTagTable *tag_table;
+	GtkTextTag *tag;
 
-	ret = g_hash_table_lookup (ce->priv->context_classes, name);
+	tag_name = g_strdup_printf ("gtksourceview:context-classes:%s", name);
 
-	if (ret == NULL)
+	tag_table = gtk_text_buffer_get_tag_table (ce->priv->buffer);
+	tag = gtk_text_tag_table_lookup (tag_table, tag_name);
+
+	if (tag == NULL)
 	{
-		gchar *tag_name;
+		tag = gtk_text_buffer_create_tag (ce->priv->buffer, tag_name, NULL);
+		g_return_val_if_fail (tag != NULL, NULL);
 
-		tag_name = g_strdup_printf ("gtksourceview:context-classes:%s", name);
-
-		ret = gtk_text_buffer_create_tag (ce->priv->buffer, tag_name, NULL);
-
-		g_hash_table_insert (ce->priv->context_classes,
-		                     g_strdup (name),
-		                     ret);
-
-		g_free (tag_name);
+		ce->priv->context_classes = g_slist_prepend (ce->priv->context_classes,
+							     g_object_ref (tag));
 	}
 
-	return ret;
+	g_free (tag_name);
+	return tag;
 }
 
 static GSList *
@@ -1149,34 +1150,23 @@ add_region_context_classes (GtkSourceContextEngine *ce,
 }
 
 static void
-remove_region_context_class_cb (G_GNUC_UNUSED gpointer  class,
-                                GtkTextTag             *tag,
-                                gpointer                user_data)
-{
-	struct BufAndIters *data = user_data;
-	gtk_text_buffer_remove_tag (data->buffer,
-	                            tag,
-	                            data->start,
-	                            data->end);
-}
-
-static void
 remove_region_context_classes (GtkSourceContextEngine *ce,
 			       const GtkTextIter      *start,
 			       const GtkTextIter      *end)
 {
-	struct BufAndIters data;
-
-	data.buffer = ce->priv->buffer;
-	data.start = start;
-	data.end = end;
+	GSList *l;
 
 	if (gtk_text_iter_equal (start, end))
+	{
 		return;
+	}
 
-	g_hash_table_foreach (ce->priv->context_classes,
-	                      (GHFunc) remove_region_context_class_cb,
-	                      &data);
+	for (l = ce->priv->context_classes; l != NULL; l = l->next)
+	{
+		GtkTextTag *tag = l->data;
+
+		gtk_text_buffer_remove_tag (ce->priv->buffer, tag, start, end);
+	}
 }
 
 static void
@@ -2467,14 +2457,6 @@ remove_tags_hash_cb (G_GNUC_UNUSED gpointer  style,
 	g_slist_free (tags);
 }
 
-static void
-remove_context_classes_hash_cb (G_GNUC_UNUSED gpointer  class,
-                                GtkTextTag             *tag,
-                                GtkTextTagTable        *table)
-{
-	gtk_text_tag_table_remove (table, tag);
-}
-
 /**
  * destroy_tags_hash:
  * @ce: #GtkSourceContextEngine.
@@ -2491,11 +2473,22 @@ destroy_tags_hash (GtkSourceContextEngine *ce)
 }
 
 static void
-destroy_context_classes_hash (GtkSourceContextEngine *ce)
+destroy_context_classes_list (GtkSourceContextEngine *ce)
 {
-	g_hash_table_foreach (ce->priv->context_classes, (GHFunc) remove_context_classes_hash_cb,
-	                      gtk_text_buffer_get_tag_table (ce->priv->buffer));
-	g_hash_table_destroy (ce->priv->context_classes);
+	GtkTextTagTable *table;
+	GSList *l;
+
+	table = gtk_text_buffer_get_tag_table (ce->priv->buffer);
+
+	for (l = ce->priv->context_classes; l != NULL; l = l->next)
+	{
+		GtkTextTag *tag = l->data;
+
+		gtk_text_tag_table_remove (table, tag);
+		g_object_unref (tag);
+	}
+
+	g_slist_free (ce->priv->context_classes);
 	ce->priv->context_classes = NULL;
 }
 
@@ -2560,7 +2553,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		destroy_tags_hash (ce);
 		ce->priv->n_tags = 0;
 
-		destroy_context_classes_hash (ce);
+		destroy_context_classes_list (ce);
 
 		if (ce->priv->refresh_region != NULL)
 			gtk_text_region_destroy (ce->priv->refresh_region);
@@ -2584,7 +2577,7 @@ gtk_source_context_engine_attach_buffer (GtkSourceEngine *engine,
 		ce->priv->root_segment = create_segment (ce, NULL, ce->priv->root_context, 0, 0, TRUE, NULL);
 
 		ce->priv->tags = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-		ce->priv->context_classes = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+		ce->priv->context_classes = NULL;
 
 		gtk_text_buffer_get_bounds (buffer, &start, &end);
 		ce->priv->invalid_region.start = gtk_text_buffer_create_mark (buffer, NULL,
