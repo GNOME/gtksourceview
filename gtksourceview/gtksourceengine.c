@@ -97,14 +97,3 @@ _gtk_source_engine_set_style_scheme (GtkSourceEngine      *engine,
 
 	GTK_SOURCE_ENGINE_GET_INTERFACE (engine)->set_style_scheme (engine, scheme);
 }
-
-GtkTextTag *
-_gtk_source_engine_get_context_class_tag (GtkSourceEngine *engine,
-					  const gchar     *context_class)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_ENGINE (engine), NULL);
-	g_return_val_if_fail (context_class != NULL, NULL);
-
-	return GTK_SOURCE_ENGINE_GET_INTERFACE (engine)->get_context_class_tag (engine,
-										context_class);
-}

@@ -2712,22 +2712,6 @@ gtk_source_context_engine_finalize (GObject *object)
 	G_OBJECT_CLASS (_gtk_source_context_engine_parent_class)->finalize (object);
 }
 
-static GtkTextTag *
-gtk_source_context_engine_get_context_class_tag (GtkSourceEngine *engine,
-						 const gchar     *context_class)
-{
-	GHashTable *hash_table = GTK_SOURCE_CONTEXT_ENGINE (engine)->priv->context_classes;
-
-	if (hash_table == NULL)
-	{
-		/* This happens when highlighting is disabled */
-		return NULL;
-	}
-
-	return g_hash_table_lookup (hash_table,
-				    context_class);
-}
-
 static void
 _gtk_source_engine_interface_init (GtkSourceEngineInterface *iface)
 {
@@ -2736,7 +2720,6 @@ _gtk_source_engine_interface_init (GtkSourceEngineInterface *iface)
 	iface->text_deleted = gtk_source_context_engine_text_deleted;
 	iface->update_highlight = gtk_source_context_engine_update_highlight;
 	iface->set_style_scheme = gtk_source_context_engine_set_style_scheme;
-	iface->get_context_class_tag = gtk_source_context_engine_get_context_class_tag;
 }
 
 static void

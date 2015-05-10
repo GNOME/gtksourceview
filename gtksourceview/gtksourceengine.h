@@ -56,10 +56,6 @@ struct _GtkSourceEngineInterface
 
 	void     (* set_style_scheme) (GtkSourceEngine      *engine,
 				       GtkSourceStyleScheme *scheme);
-
-	GtkTextTag *(* get_context_class_tag)
-				      (GtkSourceEngine      *engine,
-				       const gchar          *context_class);
 };
 
 G_GNUC_INTERNAL
@@ -88,11 +84,6 @@ void        _gtk_source_engine_update_highlight	(GtkSourceEngine      *engine,
 G_GNUC_INTERNAL
 void        _gtk_source_engine_set_style_scheme	(GtkSourceEngine      *engine,
 						 GtkSourceStyleScheme *scheme);
-
-G_GNUC_INTERNAL
-GtkTextTag *_gtk_source_engine_get_context_class_tag
-						 (GtkSourceEngine     *engine,
-						  const gchar         *context_class);
 
 G_END_DECLS
 
