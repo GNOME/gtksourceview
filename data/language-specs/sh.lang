@@ -180,8 +180,26 @@
       <keyword>\-ge\b</keyword>
     </context>
 
-    <context id="variable" style-ref="variable">
-      <match>\$+[!@?*#\${a-zA-Z0-9_][}a-zA-Z0-9_]*</match>
+    <context id="short-parameter-expansion" style-ref="variable">
+      <match>\$([!@?*#\$0-9]|[a-zA-Z0-9_]+)</match>
+    </context>
+
+    <context id="parameter-expansion" style-ref="variable">
+      <start>\$\{</start>
+      <end>\}</end>
+      <include>
+        <context ref="single-quoted-string"/>
+        <context ref="double-quoted-string"/>
+        <context ref="variable"/>
+        <context ref="backtick-subshell"/>
+      </include>
+    </context>
+
+    <context id="variable">
+      <include>
+        <context ref="short-parameter-expansion"/>
+        <context ref="parameter-expansion"/>
+      </include>
     </context>
 
     <context id="variable-definition">
