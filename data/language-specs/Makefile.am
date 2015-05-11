@@ -18,6 +18,7 @@ LANGUAGES =			\
 	cmake.lang		\
 	cobol.lang		\
 	cpp.lang		\
+	cpphdr.lang		\
 	csharp.lang		\
 	css.lang		\
 	csv.lang		\
