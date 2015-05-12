@@ -45,7 +45,7 @@ static void	gtk_source_style_get_property	(GObject      *object,
 
 struct _GtkSourceStyleClass
 {
-  GObjectClass parent_class;
+	GObjectClass parent_class;
 };
 
 G_DEFINE_TYPE (GtkSourceStyle, gtk_source_style, G_TYPE_OBJECT)
@@ -64,6 +64,7 @@ enum
 	PROP_ITALIC,
 	PROP_ITALIC_SET,
 	PROP_UNDERLINE,
+	PROP_PANGO_UNDERLINE,
 	PROP_UNDERLINE_SET,
 	PROP_STRIKETHROUGH,
 	PROP_STRIKETHROUGH_SET,
@@ -123,6 +124,11 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
+	/**
+	 * GtkSourceStyle:underline
+	 *
+	 * Deprecated: 3.18: Use pango-underline.
+	 */
 	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE,
 					 g_param_spec_boolean ("underline",
@@ -130,6 +136,15 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Underline",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+
+	g_object_class_install_property (object_class,
+					 PROP_PANGO_UNDERLINE,
+					 g_param_spec_enum ("pango-underline",
+							    "Pango Underline",
+							    "Pango Underline",
+							    PANGO_TYPE_UNDERLINE,
+							    PANGO_UNDERLINE_NONE,
+							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
 					 PROP_STRIKETHROUGH,
@@ -298,7 +313,12 @@ gtk_source_style_set_property (GObject      *object,
 			break;
 
 		case PROP_UNDERLINE:
-			style->underline = g_value_get_boolean (value) != 0;
+			style->underline = g_value_get_boolean (value) ? PANGO_UNDERLINE_SINGLE : PANGO_UNDERLINE_NONE;
+			SET_MASK (style, UNDERLINE);
+			break;
+
+		case PROP_PANGO_UNDERLINE:
+			style->underline = (PangoUnderline) g_value_get_enum (value);
 			SET_MASK (style, UNDERLINE);
 			break;
 
@@ -389,12 +409,17 @@ gtk_source_style_get_property (GObject      *object,
 			break;
 
 		case PROP_UNDERLINE:
-			g_value_set_boolean (value, style->underline);
+			g_value_set_boolean (value, style->underline != PANGO_UNDERLINE_NONE);
+			break;
+
+		case PROP_PANGO_UNDERLINE:
+			g_value_set_enum (value, style->underline);
 			break;
 
 		case PROP_STRIKETHROUGH:
 			g_value_set_boolean (value, style->strikethrough);
 			break;
+
 		case PROP_SCALE:
 			g_value_set_string (value, style->scale);
 			break;
@@ -426,6 +451,7 @@ gtk_source_style_get_property (GObject      *object,
 		case PROP_STRIKETHROUGH_SET:
 			GET_MASK (style, value, STRIKETHROUGH);
 			break;
+
 		case PROP_SCALE_SET:
 			GET_MASK (style, value, SCALE);
 			break;
@@ -539,7 +565,7 @@ _gtk_source_style_apply (const GtkSourceStyle *style,
 
 		if (style->mask & GTK_SOURCE_STYLE_USE_UNDERLINE)
 		{
-			g_object_set (tag, "underline", style->underline ? PANGO_UNDERLINE_SINGLE : PANGO_UNDERLINE_NONE, NULL);
+			g_object_set (tag, "underline", style->underline, NULL);
 		}
 		else
 		{

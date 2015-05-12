@@ -143,7 +143,12 @@ Background color.
 </varlistentry>
 <varlistentry>
 <term><code>underline</code></term>
-<listitem><para>"true" or "false"</para></listitem>
+<listitem><para>
+Accepts the values supported by PangoUnderline ("none", "single",
+"double", "low", "error"). Up until version 3.18 it only
+supported "true" or "false" and such value are still accepted
+for backward compatibility.
+</para></listitem>
 </varlistentry>
 <varlistentry>
 <term><code>strikethrough</code></term>

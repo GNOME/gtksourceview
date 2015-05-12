@@ -921,6 +921,14 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	g_string_free (final_style, TRUE);
 }
 
+static gboolean
+parse_bool (char *value)
+{
+	return (g_ascii_strcasecmp (value, "true") == 0 ||
+	        g_ascii_strcasecmp (value, "yes") == 0 ||
+	        g_ascii_strcasecmp (value, "1") == 0);
+}
+
 static void
 get_bool (xmlNode    *node,
 	  const char *propname,
@@ -933,9 +941,7 @@ get_bool (xmlNode    *node,
 	if (tmp != NULL)
 	{
 		*mask |= mask_value;
-		*value = g_ascii_strcasecmp ((char*) tmp, "true") == 0 ||
-			 g_ascii_strcasecmp ((char*) tmp, "yes") == 0 ||
-			 g_ascii_strcasecmp ((char*) tmp, "1") == 0;
+		*value = parse_bool ((char*) tmp);
 	}
 
 	xmlFree (tmp);
@@ -957,8 +963,8 @@ parse_style (GtkSourceStyleScheme *scheme,
 	guint mask = 0;
 	gboolean bold = FALSE;
 	gboolean italic = FALSE;
-	gboolean underline = FALSE;
 	gboolean strikethrough = FALSE;
+	xmlChar *underline = NULL;
 	xmlChar *scale = NULL;
 	xmlChar *tmp;
 
@@ -1004,13 +1010,13 @@ parse_style (GtkSourceStyleScheme *scheme,
 	line_bg = xmlGetProp (node, BAD_CAST "line-background");
 	get_bool (node, "italic", &mask, GTK_SOURCE_STYLE_USE_ITALIC, &italic);
 	get_bool (node, "bold", &mask, GTK_SOURCE_STYLE_USE_BOLD, &bold);
-	get_bool (node, "underline", &mask, GTK_SOURCE_STYLE_USE_UNDERLINE, &underline);
 	get_bool (node, "strikethrough", &mask, GTK_SOURCE_STYLE_USE_STRIKETHROUGH, &strikethrough);
+	underline = xmlGetProp (node, BAD_CAST "underline");
 	scale = xmlGetProp (node, BAD_CAST "scale");
 
 	if (use_style)
 	{
-		if (fg != NULL || bg != NULL || line_bg != NULL || mask != 0 || scale != NULL)
+		if (fg != NULL || bg != NULL || line_bg != NULL || mask != 0 || underline != NULL || scale != NULL)
 		{
 			g_set_error (error, ERROR_QUARK, 0,
 				     "in style '%s': style attributes used along with use-style",
@@ -1033,7 +1039,6 @@ parse_style (GtkSourceStyleScheme *scheme,
 		result->mask = mask;
 		result->bold = bold;
 		result->italic = italic;
-		result->underline = underline;
 		result->strikethrough = strikethrough;
 
 		if (fg != NULL)
@@ -1053,6 +1058,39 @@ parse_style (GtkSourceStyleScheme *scheme,
 			result->line_background = g_intern_string ((char*) line_bg);
 			result->mask |= GTK_SOURCE_STYLE_USE_LINE_BACKGROUND;
 		}
+
+		if (underline != NULL)
+		{
+			/* Up until 3.16 underline was a "bool", so for backward
+			 * compat we accept underline="true" and map it to "single"
+			 */
+			if (parse_bool ((char *) underline))
+			{
+				result->underline = PANGO_UNDERLINE_SINGLE;
+				result->mask |= GTK_SOURCE_STYLE_USE_UNDERLINE;
+			}
+			else
+			{
+				GEnumClass *eclass;
+				GEnumValue *evalue;
+				gchar *tmp;
+
+				eclass = G_ENUM_CLASS (g_type_class_ref (PANGO_TYPE_UNDERLINE));
+
+				tmp = g_ascii_strdown ((char*) underline, -1);
+				evalue = g_enum_get_value_by_nick (eclass, tmp);
+				g_free (tmp);
+
+				if (evalue != NULL)
+				{
+					result->underline = evalue->value;
+					result->mask |= GTK_SOURCE_STYLE_USE_UNDERLINE;
+				}
+
+				g_type_class_unref (eclass);
+			}
+		}
+
 		if (scale != NULL)
 		{
 			result->scale = g_intern_string ((char*) scale);
