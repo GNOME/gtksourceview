@@ -440,7 +440,8 @@ fix_style_colors (GtkSourceStyleScheme *scheme,
 	} attributes[] = {
 		{ GTK_SOURCE_STYLE_USE_BACKGROUND, G_STRUCT_OFFSET (GtkSourceStyle, background) },
 		{ GTK_SOURCE_STYLE_USE_FOREGROUND, G_STRUCT_OFFSET (GtkSourceStyle, foreground) },
-		{ GTK_SOURCE_STYLE_USE_LINE_BACKGROUND, G_STRUCT_OFFSET (GtkSourceStyle, line_background) }
+		{ GTK_SOURCE_STYLE_USE_LINE_BACKGROUND, G_STRUCT_OFFSET (GtkSourceStyle, line_background) },
+		{ GTK_SOURCE_STYLE_USE_UNDERLINE_COLOR, G_STRUCT_OFFSET (GtkSourceStyle, underline_color) }
 	};
 
 	style = gtk_source_style_copy (real_style);
@@ -965,6 +966,7 @@ parse_style (GtkSourceStyleScheme *scheme,
 	gboolean italic = FALSE;
 	gboolean strikethrough = FALSE;
 	xmlChar *underline = NULL;
+	xmlChar *underline_color = NULL;
 	xmlChar *scale = NULL;
 	xmlChar *tmp;
 
@@ -1012,11 +1014,18 @@ parse_style (GtkSourceStyleScheme *scheme,
 	get_bool (node, "bold", &mask, GTK_SOURCE_STYLE_USE_BOLD, &bold);
 	get_bool (node, "strikethrough", &mask, GTK_SOURCE_STYLE_USE_STRIKETHROUGH, &strikethrough);
 	underline = xmlGetProp (node, BAD_CAST "underline");
+	underline_color = xmlGetProp (node, BAD_CAST "underline-color");
 	scale = xmlGetProp (node, BAD_CAST "scale");
 
 	if (use_style)
 	{
-		if (fg != NULL || bg != NULL || line_bg != NULL || mask != 0 || underline != NULL || scale != NULL)
+		if (fg != NULL ||
+		    bg != NULL ||
+		    line_bg != NULL ||
+		    mask != 0 ||
+		    underline != NULL ||
+		    underline_color != NULL ||
+		    scale != NULL)
 		{
 			g_set_error (error, ERROR_QUARK, 0,
 				     "in style '%s': style attributes used along with use-style",
@@ -1026,6 +1035,9 @@ parse_style (GtkSourceStyleScheme *scheme,
 			xmlFree (fg);
 			xmlFree (bg);
 			xmlFree (line_bg);
+			xmlFree (underline);
+			xmlFree (underline_color);
+			xmlFree (scale);
 			return FALSE;
 		}
 
@@ -1091,6 +1103,12 @@ parse_style (GtkSourceStyleScheme *scheme,
 			}
 		}
 
+		if (underline_color != NULL)
+		{
+			result->underline_color = g_intern_string ((char*) underline_color);
+			result->mask |= GTK_SOURCE_STYLE_USE_UNDERLINE_COLOR;
+		}
+
 		if (scale != NULL)
 		{
 			result->scale = g_intern_string ((char*) scale);
@@ -1101,10 +1119,12 @@ parse_style (GtkSourceStyleScheme *scheme,
 	*style_p = result;
 	*style_name_p = style_name;
 
-	xmlFree (scale);
-	xmlFree (line_bg);
-	xmlFree (bg);
 	xmlFree (fg);
+	xmlFree (bg);
+	xmlFree (line_bg);
+	xmlFree (underline);
+	xmlFree (underline_color);
+	xmlFree (scale);
 
 	return TRUE;
 }
