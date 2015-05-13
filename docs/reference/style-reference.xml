@@ -145,7 +145,7 @@ Background color.
 <term><code>underline</code></term>
 <listitem><para>
 Accepts the values supported by PangoUnderline ("none", "single",
-"double", "low", "error"). Up until version 3.18 it only
+"double", "low", "error"). GtkSourceView versions &lt;= 3.16 only
 supported "true" or "false" and such value are still accepted
 for backward compatibility.
 </para></listitem>
