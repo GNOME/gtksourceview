@@ -1083,23 +1083,23 @@ parse_style (GtkSourceStyleScheme *scheme,
 			}
 			else
 			{
-				GEnumClass *eclass;
-				GEnumValue *evalue;
-				gchar *tmp;
+				GEnumClass *enum_class;
+				GEnumValue *enum_value;
+				gchar *underline_lowercase;
 
-				eclass = G_ENUM_CLASS (g_type_class_ref (PANGO_TYPE_UNDERLINE));
+				enum_class = G_ENUM_CLASS (g_type_class_ref (PANGO_TYPE_UNDERLINE));
 
-				tmp = g_ascii_strdown ((char*) underline, -1);
-				evalue = g_enum_get_value_by_nick (eclass, tmp);
-				g_free (tmp);
+				underline_lowercase = g_ascii_strdown ((char*) underline, -1);
+				enum_value = g_enum_get_value_by_nick (enum_class, underline_lowercase);
+				g_free (underline_lowercase);
 
-				if (evalue != NULL)
+				if (enum_value != NULL)
 				{
-					result->underline = evalue->value;
+					result->underline = enum_value->value;
 					result->mask |= GTK_SOURCE_STYLE_USE_UNDERLINE;
 				}
 
-				g_type_class_unref (eclass);
+				g_type_class_unref (enum_class);
 			}
 		}
 
