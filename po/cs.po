@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-04-24 21:51+0000\n"
-"PO-Revision-Date: 2015-04-25 11:28+0200\n"
+"POT-Creation-Date: 2015-05-13 21:51+0000\n"
+"PO-Revision-Date: 2015-05-14 22:31+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -93,6 +93,7 @@ msgstr "Vše"
 #: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
 #: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
 #: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/cpphdr.lang.h:1
 #: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
 #: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
 #: ../data/language-specs/erlang.lang.h:1
@@ -964,6 +965,12 @@ msgstr "Složený příkaz"
 #: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
 msgstr "C++"
+
+#: ../data/language-specs/cpphdr.lang.h:2
+#, fuzzy
+#| msgid "Header"
+msgid "C++ Header"
+msgstr "Hlavička"
 
 #: ../data/language-specs/csharp.lang.h:2
 msgid "C#"
@@ -2928,7 +2935,7 @@ msgstr "Po_drobnosti…"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3167
+#: ../gtksourceview/gtksourcecontextengine.c:3143
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2939,7 +2946,7 @@ msgstr ""
 "pomalejší než obvykle.\n"
 "Chyba je: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4490
+#: ../gtksourceview/gtksourcecontextengine.c:4466
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2947,19 +2954,19 @@ msgstr ""
 "Zvýrazňování každé řádky je příliš časově náročné, zvýrazňování syntaxe bude "
 "zakázáno"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5734
+#: ../gtksourceview/gtksourcecontextengine.c:5710
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "kontext „%s“ nemůže obsahovat příkaz \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5895
-#: ../gtksourceview/gtksourcecontextengine.c:5984
+#: ../gtksourceview/gtksourcecontextengine.c:5871
+#: ../gtksourceview/gtksourcecontextengine.c:5960
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplicitní id kontextu „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6098
-#: ../gtksourceview/gtksourcecontextengine.c:6158
+#: ../gtksourceview/gtksourcecontextengine.c:6074
+#: ../gtksourceview/gtksourcecontextengine.c:6134
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2968,18 +2975,18 @@ msgstr ""
 "přepisování stylu použité s odkazy na kontext pomocí divokých znaků v jazyce "
 "„%s“ v odkazu „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6172
+#: ../gtksourceview/gtksourcecontextengine.c:6148
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "chybný kontextový odkaz „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6191
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6167
+#: ../gtksourceview/gtksourcecontextengine.c:6177
 #, c-format
 msgid "unknown context '%s'"
 msgstr "neznámý kontext „%s“"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6300
+#: ../gtksourceview/gtksourcecontextengine.c:6276
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Chybí hlavní definice jazyka (id = „%s“)."
@@ -3149,6 +3156,23 @@ msgstr "Neznámé ID „%s“ v regulárním výrazu „%s“"
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "pro regulární výraz „%s“: zpětné odkazy nejsou podporovány"
+
+#: ../gtksourceview/gtksourcemap.c:729
+msgid "View"
+msgstr "Zobrazení"
+
+#: ../gtksourceview/gtksourcemap.c:730
+msgid "The view this widget is mapping."
+msgstr "Zobrazení tohoto widgetu je mapa."
+
+#: ../gtksourceview/gtksourcemap.c:736
+#| msgid "File Descriptor"
+msgid "Font Description"
+msgstr "Popis písma"
+
+#: ../gtksourceview/gtksourcemap.c:737
+msgid "The Pango font description to use."
+msgstr "Popis Pango pro písmo, které se má použít."
 
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
