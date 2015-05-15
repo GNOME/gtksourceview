@@ -74,6 +74,24 @@ typedef enum
 	GTK_SOURCE_CHANGE_CASE_TITLE
 } GtkSourceChangeCaseType;
 
+/**
+ * GtkSourceSortFlags:
+ * @GTK_SOURCE_SORT_FLAGS_NONE: no flags specified
+ * @GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE: case sensitive sort
+ * @GTK_SOURCE_SORT_FLAGS_REVERSE_ORDER: sort in reverse order
+ * @GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES: remove duplicates
+ *
+ * Since: 3.18
+ */
+typedef enum
+{
+	GTK_SOURCE_SORT_FLAGS_NONE              = 0,
+	GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE    = 1 << 0,
+	GTK_SOURCE_SORT_FLAGS_REVERSE_ORDER     = 1 << 1,
+	GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES = 1 << 2,
+} GtkSourceSortFlags;
+
+
 struct _GtkSourceBuffer
 {
 	GtkTextBuffer parent_instance;
@@ -196,6 +214,12 @@ void			 gtk_source_buffer_change_case				(GtkSourceBuffer        *buffer,
 void			 gtk_source_buffer_join_lines				(GtkSourceBuffer        *buffer,
 										 GtkTextIter            *start,
 										 GtkTextIter            *end);
+
+void			 gtk_source_buffer_sort_lines				(GtkSourceBuffer        *buffer,
+										 GtkTextIter            *start,
+										 GtkTextIter            *end,
+										 GtkSourceSortFlags     flags,
+										 gint                   column);
 
 GtkSourceUndoManager	*gtk_source_buffer_get_undo_manager			(GtkSourceBuffer	*buffer);
 

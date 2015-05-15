@@ -31,6 +31,7 @@
 #include "gtksourcebuffer-private.h"
 
 #include <string.h>
+#include <stdlib.h>
 #include <gtk/gtk.h>
 
 #include "gtksourcelanguage.h"
@@ -2707,6 +2708,183 @@ gtk_source_buffer_join_lines (GtkSourceBuffer *buffer,
 	_gtk_source_buffer_restore_selection (buffer);
 
 	gtk_text_buffer_delete_mark (text_buffer, end_mark);
+}
+
+static gchar *
+get_line_slice (GtkTextBuffer *buf,
+		gint           line)
+{
+	GtkTextIter start, end;
+
+	gtk_text_buffer_get_iter_at_line (buf, &start, line);
+	end = start;
+
+	if (!gtk_text_iter_ends_line (&start))
+	{
+		gtk_text_iter_forward_to_line_end (&end);
+	}
+
+	return gtk_text_buffer_get_slice (buf, &start, &end, TRUE);
+}
+
+typedef struct {
+	gchar *line; /* the original text to re-insert */
+	gchar *key;  /* the key to use for the comparison */
+} SortLine;
+
+static gint
+compare_line (gconstpointer aptr,
+              gconstpointer bptr)
+{
+	const SortLine *a = aptr;
+	const SortLine *b = bptr;
+
+	return g_strcmp0 (a->key, b->key);
+}
+
+static gint
+compare_line_reversed (gconstpointer aptr,
+                       gconstpointer bptr)
+{
+	const SortLine *a = aptr;
+	const SortLine *b = bptr;
+
+	return g_strcmp0 (b->key, a->key);
+}
+
+/**
+ * gtk_source_buffer_sort_lines:
+ * @buffer: a #GtkSourceBuffer.
+ * @start: a #GtkTextIter.
+ * @end: a #GtkTextIter.
+ * @flags: #GtkSourceSortFlags specifying how the sort should behave
+ * @column: sort considering the text starting at the given column
+ *
+ * Sort the lines of text between the specified iterators.
+ *
+ * Since: 3.18
+ */
+void
+gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
+                              GtkTextIter        *start,
+                              GtkTextIter        *end,
+                              GtkSourceSortFlags  flags,
+                              gint                column)
+{
+	GtkTextBuffer *text_buffer;
+	gint start_line;
+	gint end_line;
+	gint num_lines;
+	SortLine *lines;
+	gchar *last_line = NULL;
+	gint i;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
+	g_return_if_fail (start != NULL);
+	g_return_if_fail (end != NULL);
+
+	text_buffer = GTK_TEXT_BUFFER (buffer);
+
+	gtk_text_iter_order (start, end);
+
+	start_line = gtk_text_iter_get_line (start);
+	end_line = gtk_text_iter_get_line (end);
+
+	/* if we are at line start our last line is the previus one.
+	 * Otherwise the last line is the current one but we try to
+	 * move the iter after the line terminator */
+	if (gtk_text_iter_get_line_offset (end) == 0)
+	{
+		end_line = MAX (start_line, end_line - 1);
+	}
+	else
+	{
+		gtk_text_iter_forward_line (end);
+	}
+
+	num_lines = end_line - start_line + 1;
+	lines = g_new0 (SortLine, num_lines);
+
+	for (i = 0; i < num_lines; i++)
+	{
+		gchar *line;
+		gboolean free_line = FALSE;
+		glong length;
+
+		lines[i].line = get_line_slice (text_buffer, start_line + i);
+
+		if ((flags & GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE) != 0)
+		{
+			line = lines[i].line;
+		}
+		else
+		{
+			line = g_utf8_casefold (lines[i].line, -1);
+			free_line = TRUE;
+		}
+
+		length = g_utf8_strlen (line, -1);
+
+		if (length < column)
+		{
+			lines[i].key = NULL;
+		}
+		else if (column > 0)
+		{
+			gchar *substring;
+
+			substring = g_utf8_offset_to_pointer (line, column);
+			lines[i].key = g_utf8_collate_key (substring, -1);
+		}
+		else
+		{
+			lines[i].key = g_utf8_collate_key (line, -1);
+		}
+
+		if (free_line)
+		{
+			g_free (line);
+		}
+	}
+
+	if ((flags & GTK_SOURCE_SORT_FLAGS_REVERSE_ORDER) != 0)
+	{
+		qsort (lines, num_lines, sizeof (SortLine), compare_line_reversed);
+	}
+	else
+	{
+		qsort (lines, num_lines, sizeof (SortLine), compare_line);
+	}
+
+	_gtk_source_buffer_save_and_clear_selection (buffer);
+	gtk_text_buffer_begin_user_action (text_buffer);
+
+	gtk_text_buffer_delete (text_buffer, start, end);
+
+	for (i = 0; i < num_lines; i++)
+	{
+		if ((flags & GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES) != 0 &&
+		    g_strcmp0 (last_line, lines[i].line) == 0)
+		{
+			continue;
+		}
+
+		gtk_text_buffer_insert (text_buffer, start, lines[i].line, -1);
+		gtk_text_buffer_insert (text_buffer, start, "\n", -1);
+
+		last_line = lines[i].line;
+	}
+
+	gtk_text_buffer_end_user_action (text_buffer);
+	_gtk_source_buffer_restore_selection (buffer);
+
+	for (i = 0; i < num_lines; i++)
+	{
+		g_free (lines[i].line);
+		g_free (lines[i].key);
+	}
+
+	g_free (lines);
 }
 
 /**

@@ -221,6 +221,51 @@ test_join_lines (void)
 	g_object_unref (buffer);
 }
 
+static void
+do_test_sort_lines (GtkSourceBuffer    *buffer,
+		    const gchar        *text,
+		    const gchar        *expected,
+		    gint                start_offset,
+		    gint                end_offset,
+		    GtkSourceSortFlags  flags,
+		    gint                column)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+	gchar *changed;
+
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
+
+	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &start, start_offset);
+	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &end, end_offset);
+
+	gtk_source_buffer_sort_lines (buffer, &start, &end, flags, column);
+
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
+	changed = gtk_text_buffer_get_text (GTK_TEXT_BUFFER (buffer), &start, &end, TRUE);
+
+	g_assert_cmpstr (changed, ==, expected);
+
+	g_free (changed);
+}
+
+static void
+test_sort_lines (void)
+{
+	GtkSourceBuffer *buffer;
+
+	buffer = gtk_source_buffer_new (NULL);
+
+	do_test_sort_lines (buffer, "aaa\nbbb\n", "aaa\nbbb\n", 0, -1, 0, 0);
+	do_test_sort_lines (buffer, "bbb\naaa\n", "aaa\nbbb\n", 0, -1, 0, 0);
+	do_test_sort_lines (buffer, "aaa\nbbb\n", "bbb\naaa\n", 0, -1, GTK_SOURCE_SORT_FLAGS_REVERSE_ORDER, 0);
+	do_test_sort_lines (buffer, "aaa\nbbb\naaa\n", "aaa\nbbb\n", 0, -1, GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES, 0);
+	do_test_sort_lines (buffer, "bbb\naaa\nCCC\n", "CCC\naaa\nbbb\n", 0, -1, GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE, 0);
+	do_test_sort_lines (buffer, "aaabbb\nbbbaaa\n", "bbbaaa\naaabbb\n", 0, -1, 0, 3);
+
+	g_object_unref (buffer);
+}
+
 int
 main (int argc, char** argv)
 {
@@ -232,6 +277,7 @@ main (int argc, char** argv)
 	g_test_add_func ("/Buffer/get-context-classes", test_get_context_classes);
 	g_test_add_func ("/Buffer/change-case", test_change_case);
 	g_test_add_func ("/Buffer/join-lines", test_join_lines);
+	g_test_add_func ("/Buffer/sort-lines", test_sort_lines);
 
 	return g_test_run();
 }
