@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-29 14:13+0300\n"
-"PO-Revision-Date: 2015-04-29 14:13+0300\n"
+"POT-Creation-Date: 2015-05-15 10:09+0300\n"
+"PO-Revision-Date: 2015-05-15 10:09+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -87,6 +87,7 @@ msgstr "הכול"
 #: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
 #: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
 #: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/cpphdr.lang.h:1
 #: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
 #: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
 #: ../data/language-specs/erlang.lang.h:1
@@ -958,6 +959,10 @@ msgstr "Statement"
 #: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
 msgstr "C++"
+
+#: ../data/language-specs/cpphdr.lang.h:2
+msgid "C++ Header"
+msgstr "כותר C++‎"
 
 #: ../data/language-specs/csharp.lang.h:2
 msgid "C#"
@@ -2922,7 +2927,7 @@ msgstr "_פרטים..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3167
+#: ../gtksourceview/gtksourcecontextengine.c:3143
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2933,25 +2938,25 @@ msgstr ""
 "process will be slower than usual.\n"
 "The error was: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4490
+#: ../gtksourceview/gtksourcecontextengine.c:4466
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr "הדגשת שורה אחת לקחה זמן כל כך רב, הדגשת תחביר תבוטל"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5734
+#: ../gtksourceview/gtksourcecontextengine.c:5710
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "context '%s' cannot contain a \\%%{...@start} command"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5895
-#: ../gtksourceview/gtksourcecontextengine.c:5984
+#: ../gtksourceview/gtksourcecontextengine.c:5871
+#: ../gtksourceview/gtksourcecontextengine.c:5960
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplicated context id '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6098
-#: ../gtksourceview/gtksourcecontextengine.c:6158
+#: ../gtksourceview/gtksourcecontextengine.c:6074
+#: ../gtksourceview/gtksourcecontextengine.c:6134
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2960,18 +2965,18 @@ msgstr ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6172
+#: ../gtksourceview/gtksourcecontextengine.c:6148
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "invalid context reference '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6191
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6167
+#: ../gtksourceview/gtksourcecontextengine.c:6177
 #, c-format
 msgid "unknown context '%s'"
 msgstr "unknown context '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6300
+#: ../gtksourceview/gtksourcecontextengine.c:6276
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Missing main language definition (id = \"%s\".)"
@@ -3142,6 +3147,22 @@ msgstr "Unknown id '%s' in regex '%s'"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "in regex '%s': backreferences are not supported"
 
+#: ../gtksourceview/gtksourcemap.c:729
+msgid "View"
+msgstr "תצוגה"
+
+#: ../gtksourceview/gtksourcemap.c:730
+msgid "The view this widget is mapping."
+msgstr "The view this widget is mapping."
+
+#: ../gtksourceview/gtksourcemap.c:736
+msgid "Font Description"
+msgstr "Font Description"
+
+#: ../gtksourceview/gtksourcemap.c:737
+msgid "The Pango font description to use."
+msgstr "The Pango font description to use."
+
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
 msgstr "using \\C is not supported in language definitions"
@@ -3300,9 +3321,6 @@ msgstr ""
 
 #~ msgid "Implicit trailing newline"
 #~ msgstr "Implicit trailing newline"
-
-#~ msgid "View"
-#~ msgstr "תצוגה"
 
 #~ msgid "The GtkSourceView bound to the completion"
 #~ msgstr "ה־GtkSourceView מחויב להשלמה"
