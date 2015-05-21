@@ -744,7 +744,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
 	gtk_style_context_add_provider (context,
 	                                GTK_STYLE_PROVIDER (scheme->priv->css_provider),
-	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
 
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 	/* See https://bugzilla.gnome.org/show_bug.cgi?id=708583 */
@@ -763,7 +763,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	{
 		gtk_style_context_add_provider (context,
 						GTK_STYLE_PROVIDER (scheme->priv->css_provider_cursors),
-						GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+						GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
 
 		G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 		gtk_style_context_invalidate (context);
