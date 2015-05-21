@@ -21,19 +21,35 @@
 #ifndef __GTK_SOURCE_MAP_H__
 #define __GTK_SOURCE_MAP_H__
 
-#include <gtksourceview/gtksource.h>
+#include <gtk/gtk.h>
+#include <gtksourceview/gtksourceview.h>
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_MAP (gtk_source_map_get_type ())
-G_DECLARE_DERIVABLE_TYPE (GtkSourceMap, gtk_source_map, GTK_SOURCE, MAP, GtkBin)
+#define GTK_SOURCE_TYPE_MAP            (gtk_source_map_get_type())
+#define GTK_SOURCE_MAP(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_MAP, GtkSourceMap))
+#define GTK_SOURCE_MAP_CONST(obj)      (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_MAP, GtkSourceMap const))
+#define GTK_SOURCE_MAP_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GTK_SOURCE_TYPE_MAP, GtkSourceMapClass))
+#define GTK_SOURCE_IS_MAP(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_MAP))
+#define GTK_SOURCE_IS_MAP_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_SOURCE_TYPE_MAP))
+#define GTK_SOURCE_MAP_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GTK_SOURCE_TYPE_MAP, GtkSourceMapClass))
+
+typedef struct _GtkSourceMap        GtkSourceMap;
+typedef struct _GtkSourceMapClass   GtkSourceMapClass;
+
+struct _GtkSourceMap
+{
+	GtkSourceView parent_instance;
+};
 
 struct _GtkSourceMapClass
 {
-	GtkBinClass parent_class;
+	GtkSourceViewClass parent_class;
 
 	gpointer padding[10];
 };
+
+GType                    gtk_source_map_get_type	(void);
 
 GtkWidget		*gtk_source_map_new		(void);
 
@@ -41,8 +57,6 @@ void			 gtk_source_map_set_view	(GtkSourceMap  *map,
                                                          GtkSourceView *view);
 
 GtkSourceView		*gtk_source_map_get_view	(GtkSourceMap  *map);
-
-GtkSourceView		*gtk_source_map_get_child_view	(GtkSourceMap  *map);
 
 G_END_DECLS
 

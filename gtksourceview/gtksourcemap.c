@@ -18,7 +18,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "gtksourcebuffer.h"
+#include "gtksourcecompletion.h"
 #include "gtksourcemap.h"
+#include "gtksourcestyle-private.h"
+#include "gtksourcestylescheme.h"
 #include "gtksourceview-utils.h"
 
 #include <glib/gi18n.h>
@@ -36,8 +40,7 @@
  * Call gtk_source_map_set_view() or set the #GtkSourceMap:view property
  * to set the view that the #GtkSourceMap should do the mapping from.
  *
- * #GtkSourceMap uses another #GtkSourceView object to do the mapping. It can be
- * retrieved with gtk_source_map_get_child_view() in order to extend it. For
+ * #GtkSourceMap is a #GtkSourceView object to do the mapping, so for
  * example, one could extend it by adding a gutter that shows the changes done
  * while editing the document.
  *
@@ -97,11 +100,25 @@
  * embedding fonts in the application, so it is at least possible to bundle
  * our own font as a resource.
  *
+ * By default we use a 1pt Monospace font. However, if the Gtksourcemap:font-desc
+ * property is set, we will use that instead.
+ *
+ * We do not render the background grid as it requires a bunch of
+ * cpu time for something that will essentially just create a solid
+ * color background.
+ *
+ * The width of the view is determined by the
+ * #GtkSourceView:right-margin-position. We cache the width of a
+ * single "X" character and multiple that by the right-margin-position.
+ * That becomes our size-request width.
+ *
+ * We do not allow horizontal scrolling so that the overflow text
+ * is simply not visible in the minimap.
+ *
  * -- Christian
  */
 
 #define DEFAULT_WIDTH 100
-#define CSS_PRIORITY (GTK_STYLE_PROVIDER_PRIORITY_APPLICATION - 1)
 
 typedef struct
 {
@@ -123,28 +140,9 @@ typedef struct
 	/*
 	 * The easiest way to style the scrubber and the sourceview is
 	 * by using CSS. This is necessary since we can't mess with the
-         * fonts used in the textbuffer (as one might using GtkTextTag).
+	 * fonts used in the textbuffer (as one might using GtkTextTag).
 	 */
 	GtkCssProvider *css_provider;
-
-	/*
-	 * This is our minimap widget. By default we use a 1pt Monospace
-	 * font. However, if the Gtksourcemap:font-desc property is set,
-	 * we will use that instead.
-	 *
-	 * We do not render the background grid as it requires a bunch of
-	 * cpu time for something that will essentially just create a solid
-	 * color background.
-	 *
-	 * The width of the view is determined by the
-	 * #GtkSourceView:right-margin-position. We cache the width of a
-	 * single "X" character and multiple that by the right-margin-position.
-	 * That becomes our size-request width.
-	 *
-	 * We do not allow horizontal scrolling so that the overflow text
-	 * is simply not visible in the minimap.
-	 */
-	GtkSourceView *child_view;
 
 	/* The GtkSourceView we are providing a map of */
 	GtkSourceView *view;
@@ -180,7 +178,7 @@ enum
 	LAST_PROP
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMap, gtk_source_map, GTK_TYPE_BIN)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMap, gtk_source_map, GTK_SOURCE_TYPE_VIEW)
 
 static GParamSpec *pspecs[LAST_PROP];
 
@@ -209,13 +207,13 @@ update_scrubber_position (GtkSourceMap *map)
 	gtk_widget_get_allocation (GTK_WIDGET (map), &alloc);
 
 	gtk_widget_get_preferred_height (GTK_WIDGET (priv->view), NULL, &view_height);
-	gtk_widget_get_preferred_height (GTK_WIDGET (priv->child_view), NULL, &child_height);
+	gtk_widget_get_preferred_height (GTK_WIDGET (map), NULL, &child_height);
 
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (priv->view), &visible_area);
 	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (priv->view), &iter,
 	                                    visible_area.x, visible_area.y);
-	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (priv->child_view), &iter, &iter_area);
-	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (priv->child_view),
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &iter, &iter_area);
+	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (map),
 	                                       GTK_TEXT_WINDOW_WIDGET,
 	                                       iter_area.x, iter_area.y,
 	                                       NULL, &y);
@@ -227,8 +225,25 @@ update_scrubber_position (GtkSourceMap *map)
 
 	if (memcmp (&scrubber_area, &priv->scrubber_area, sizeof scrubber_area) != 0)
 	{
+		GdkWindow *window;
+
+		/*
+		 * NOTE:
+		 *
+		 * Initially we had a gtk_widget_queue_draw() here thinking
+		 * that we would hit the pixel cache and everything would be
+		 * fine. However, it actually has a noticible improvement on
+		 * interactivity to simply invalidate the old and new region
+		 * in the widgets primary GdkWindow. Since the window is
+		 * not the GTK_TEXT_WINDOW_TEXT, we don't seem to invalidate
+		 * the pixel cache. This makes things as interactive as they
+		 * were when drawing the scrubber from a parent widget.
+		 */
+		window = gtk_text_view_get_window (GTK_TEXT_VIEW (map), GTK_TEXT_WINDOW_WIDGET);
+		gdk_window_invalidate_rect (window, &priv->scrubber_area, FALSE);
+		gdk_window_invalidate_rect (window, &scrubber_area, FALSE);
+
 		priv->scrubber_area = scrubber_area;
-		gtk_widget_queue_draw (GTK_WIDGET (map));
 	}
 }
 
@@ -257,7 +272,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	 * The font is calculated from #GtkSourceMap:font-desc. We convert this
 	 * to CSS using _gtk_source_pango_font_description_to_css(). It gets
 	 * applied to the minimap widget via the CSS style provider which we
-	 * attach to the child widget in gtk_source_map_init().
+	 * attach to the view in gtk_source_map_init().
 	 *
 	 * The rules for calculating the style for the scrubber are as follows.
 	 *
@@ -283,7 +298,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		gchar *css;
 
 		css = _gtk_source_pango_font_description_to_css (priv->font_desc);
-		g_string_append_printf (gstr, "GtkSourceView { %s }\n", css != NULL ? css : "");
+		g_string_append_printf (gstr, "GtkSourceMap { %s }\n", css != NULL ? css : "");
 		g_free (css);
 	}
 
@@ -399,7 +414,7 @@ update_child_vadjustment (GtkSourceMap *map)
 	              "page-size", &page_size,
 	              NULL);
 
-	child_vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->child_view));
+	child_vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (map));
 	g_object_get (child_vadj,
 	              "upper", &child_upper,
 	              "page-size", &child_page_size,
@@ -407,7 +422,7 @@ update_child_vadjustment (GtkSourceMap *map)
 
 	/*
 	 * FIXME:
-         * Technically we should take into account lower here, but in practice
+	 * Technically we should take into account lower here, but in practice
 	 *       it is always 0.0.
 	 */
 	if (child_page_size < child_upper)
@@ -572,7 +587,7 @@ gtk_source_map_get_preferred_width (GtkWidget *widget,
 	 * rebuilding our CSS since it gets used a bunch and changes
 	 * very little.
 	 */
-	layout = gtk_widget_create_pango_layout (GTK_WIDGET (priv->child_view), "X");
+	layout = gtk_widget_create_pango_layout (GTK_WIDGET (map), "X");
 	pango_layout_get_pixel_size (layout, &width, &height);
 	g_object_unref (layout);
 
@@ -597,11 +612,13 @@ gtk_source_map_get_preferred_height (GtkWidget *widget,
 		return;
 	}
 
-	gtk_widget_get_preferred_height (GTK_WIDGET (priv->child_view),
-	                                 minimum_height, natural_height);
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->get_preferred_height (widget,
+	                                                                      minimum_height,
+	                                                                      natural_height);
 
 	*minimum_height = 0;
 }
+
 
 /*
  * This scrolls using buffer coordinates.
@@ -623,118 +640,12 @@ scroll_to_child_point (GtkSourceMap   *map,
 
 		gtk_widget_get_allocation (GTK_WIDGET (map), &alloc);
 
-		gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (priv->child_view),
+		gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (map),
 		                                    &iter, point->x, point->y);
 
 		gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->view), &iter,
 		                              0.0, TRUE, 1.0, 0.5);
 	}
-}
-
-static void
-child_view_state_flags_changed (GtkWidget     *widget,
-                                GtkStateFlags  flags,
-                                GtkWidget     *child_view)
-{
-	GdkWindow *window;
-
-	window = gtk_text_view_get_window (GTK_TEXT_VIEW (child_view),
-	                                   GTK_TEXT_WINDOW_TEXT);
-	if (window != NULL)
-	{
-		gdk_window_set_cursor (window, NULL);
-	}
-}
-
-static void
-child_view_realize_after (GtkWidget *widget,
-                          GtkWidget *child_view)
-{
-	child_view_state_flags_changed (widget, 0, child_view);
-}
-
-static gboolean
-child_view_button_press_event (GtkSourceMap   *map,
-                               GdkEventButton *event,
-                               GtkSourceView  *child_view)
-{
-	GtkSourceMapPrivate *priv;
-	GdkPoint point;
-
-	priv = gtk_source_map_get_instance_private (map);
-
-	point.x = event->x;
-	point.y = event->y;
-
-	gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (priv->child_view),
-	                                       GTK_TEXT_WINDOW_WIDGET,
-	                                       event->x, event->y,
-	                                       &point.x, &point.y);
-
-	scroll_to_child_point (map, &point);
-
-	gtk_grab_add (GTK_WIDGET (child_view));
-
-	priv->in_press = TRUE;
-
-	return GDK_EVENT_STOP;
-}
-
-static gboolean
-child_view_button_release_event (GtkSourceMap   *map,
-                                 GdkEventButton *event,
-                                 GtkSourceView  *child_view)
-{
-	GtkSourceMapPrivate *priv;
-
-	priv = gtk_source_map_get_instance_private (map);
-
-	gtk_grab_remove (GTK_WIDGET (child_view));
-
-	priv->in_press = FALSE;
-
-	return GDK_EVENT_STOP;
-}
-
-static gboolean
-child_view_motion_notify_event (GtkSourceMap   *map,
-                                GdkEventMotion *event,
-                                GtkSourceView  *child_view)
-{
-	GtkSourceMapPrivate *priv;
-
-	priv = gtk_source_map_get_instance_private (map);
-
-	if (priv->in_press && (priv->view != NULL))
-	{
-		GtkTextBuffer *buffer;
-		GtkAllocation alloc;
-		GdkRectangle area;
-		GtkTextIter iter;
-		GdkPoint point;
-		gdouble yratio;
-		gint height;
-
-		gtk_widget_get_allocation (GTK_WIDGET (child_view), &alloc);
-		gtk_widget_get_preferred_height (GTK_WIDGET (child_view), NULL, &height);
-		if (height > 0)
-		{
-			height = MIN (height, alloc.height);
-		}
-
-		buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (child_view));
-		gtk_text_buffer_get_end_iter (buffer, &iter);
-		gtk_text_view_get_iter_location (GTK_TEXT_VIEW (child_view), &iter, &area);
-
-		yratio = CLAMP (event->y - alloc.y, 0, height) / (gdouble)height;
-
-		point.x = 0;
-		point.y = (area.y + area.height) * yratio;
-
-		scroll_to_child_point (map, &point);
-	}
-
-	return GDK_EVENT_STOP;
 }
 
 static void
@@ -746,61 +657,6 @@ gtk_source_map_size_allocate (GtkWidget     *widget,
 	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->size_allocate (widget, alloc);
 
 	update_scrubber_position (map);
-}
-
-static gboolean
-child_view_scroll_event (GtkSourceMap   *map,
-                         GdkEventScroll *event,
-                         GtkWidget      *widget)
-{
-	GtkSourceMapPrivate *priv;
-	static const gint scroll_acceleration = 4;
-
-	priv = gtk_source_map_get_instance_private (map);
-
-	/*
-	 * FIXME:
-	 *
-	 * This doesn't propagate kinetic scrolling or anything.
-	 * We should probably make something that does that.
-	 */
-	if (priv->view != NULL)
-	{
-		gdouble x;
-		gdouble y;
-		gint count = 0;
-
-		if (event->direction == GDK_SCROLL_UP)
-		{
-			count = -scroll_acceleration;
-		}
-		else if (event->direction == GDK_SCROLL_DOWN)
-		{
-			count = scroll_acceleration;
-		}
-		else
-		{
-			gdk_event_get_scroll_deltas ((GdkEvent *)event, &x, &y);
-
-			if (y > 0)
-			{
-				count = scroll_acceleration;
-			}
-			else if (y < 0)
-			{
-				count = -scroll_acceleration;
-			}
-		}
-
-		if (count != 0)
-		{
-			g_signal_emit_by_name (priv->view, "move-viewport",
-			                       GTK_SCROLL_STEPS, count);
-			return GDK_EVENT_STOP;
-		}
-	}
-
-	return GDK_EVENT_PROPAGATE;
 }
 
 static void
@@ -819,21 +675,21 @@ connect_view (GtkSourceMap  *map,
 
 	priv->buffer_binding =
 		g_object_bind_property (view, "buffer",
-		                        priv->child_view, "buffer",
+		                        map, "buffer",
 		                        G_BINDING_SYNC_CREATE);
 	g_object_add_weak_pointer (G_OBJECT (priv->buffer_binding),
 	                           (gpointer *)&priv->buffer_binding);
 
 	priv->indent_width_binding =
 		g_object_bind_property (view, "indent-width",
-		                        priv->child_view, "indent-width",
+		                        map, "indent-width",
 		                        G_BINDING_SYNC_CREATE);
 	g_object_add_weak_pointer (G_OBJECT (priv->indent_width_binding),
 	                           (gpointer *)&priv->indent_width_binding);
 
 	priv->tab_width_binding =
 		g_object_bind_property (view, "tab-width",
-		                        priv->child_view, "tab-width",
+		                        map, "tab-width",
 		                        G_BINDING_SYNC_CREATE);
 	g_object_add_weak_pointer (G_OBJECT (priv->tab_width_binding),
 	                           (gpointer *)&priv->tab_width_binding);
@@ -959,12 +815,9 @@ gtk_source_map_draw (GtkWidget *widget,
 
 	priv = gtk_source_map_get_instance_private (map);
 
-	if (GTK_WIDGET_CLASS (gtk_source_map_parent_class)->draw (widget, cr))
-	{
-		return TRUE;
-	}
-
 	style_context = gtk_widget_get_style_context (widget);
+
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->draw (widget, cr);
 
 	gtk_style_context_save (style_context);
 	gtk_style_context_add_class (style_context, "scrubber");
@@ -1025,6 +878,176 @@ gtk_source_map_set_property (GObject      *object,
 	}
 }
 
+static gboolean
+gtk_source_map_button_press_event (GtkWidget      *widget,
+                                   GdkEventButton *event)
+{
+	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
+	GtkSourceMapPrivate *priv;
+	GdkPoint point;
+
+	priv = gtk_source_map_get_instance_private (map);
+
+	point.x = event->x;
+	point.y = event->y;
+
+	gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (map),
+	                                       GTK_TEXT_WINDOW_WIDGET,
+	                                       event->x, event->y,
+	                                       &point.x, &point.y);
+
+	scroll_to_child_point (map, &point);
+
+	gtk_grab_add (widget);
+
+	priv->in_press = TRUE;
+
+	return GDK_EVENT_STOP;
+}
+
+static gboolean
+gtk_source_map_button_release_event (GtkWidget      *widget,
+                                     GdkEventButton *event)
+{
+	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
+	GtkSourceMapPrivate *priv;
+
+	priv = gtk_source_map_get_instance_private (map);
+
+	gtk_grab_remove (widget);
+
+	priv->in_press = FALSE;
+
+	return GDK_EVENT_STOP;
+}
+
+
+static gboolean
+gtk_source_map_motion_notify_event (GtkWidget      *widget,
+                                    GdkEventMotion *event)
+{
+	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
+	GtkSourceMapPrivate *priv;
+
+	priv = gtk_source_map_get_instance_private (map);
+
+	if (priv->in_press && (priv->view != NULL))
+	{
+		GtkTextBuffer *buffer;
+		GtkAllocation alloc;
+		GdkRectangle area;
+		GtkTextIter iter;
+		GdkPoint point;
+		gdouble yratio;
+		gint height;
+
+		gtk_widget_get_allocation (widget, &alloc);
+		gtk_widget_get_preferred_height (widget, NULL, &height);
+		if (height > 0)
+		{
+			height = MIN (height, alloc.height);
+		}
+
+		buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (map));
+		gtk_text_buffer_get_end_iter (buffer, &iter);
+		gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &iter, &area);
+
+		yratio = CLAMP (event->y - alloc.y, 0, height) / (gdouble)height;
+
+		point.x = 0;
+		point.y = (area.y + area.height) * yratio;
+
+		scroll_to_child_point (map, &point);
+	}
+
+	return GDK_EVENT_STOP;
+}
+
+static gboolean
+gtk_source_map_scroll_event (GtkWidget      *widget,
+                             GdkEventScroll *event)
+{
+	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
+	GtkSourceMapPrivate *priv;
+	static const gint scroll_acceleration = 4;
+
+	priv = gtk_source_map_get_instance_private (map);
+
+	/*
+	 * FIXME:
+	 *
+	 * This doesn't propagate kinetic scrolling or anything.
+	 * We should probably make something that does that.
+	 */
+	if (priv->view != NULL)
+	{
+		gdouble x;
+		gdouble y;
+		gint count = 0;
+
+		if (event->direction == GDK_SCROLL_UP)
+		{
+			count = -scroll_acceleration;
+		}
+		else if (event->direction == GDK_SCROLL_DOWN)
+		{
+			count = scroll_acceleration;
+		}
+		else
+		{
+			gdk_event_get_scroll_deltas ((GdkEvent *)event, &x, &y);
+
+			if (y > 0)
+			{
+				count = scroll_acceleration;
+			}
+			else if (y < 0)
+			{
+				count = -scroll_acceleration;
+			}
+		}
+
+		if (count != 0)
+		{
+			g_signal_emit_by_name (priv->view, "move-viewport",
+			                       GTK_SCROLL_STEPS, count);
+			return GDK_EVENT_STOP;
+		}
+	}
+
+	return GDK_EVENT_PROPAGATE;
+}
+
+static void
+set_view_cursor (GtkSourceMap *map)
+{
+	GdkWindow *window;
+
+	window = gtk_text_view_get_window (GTK_TEXT_VIEW (map),
+	                                   GTK_TEXT_WINDOW_TEXT);
+	if (window != NULL)
+	{
+		gdk_window_set_cursor (window, NULL);
+	}
+}
+
+static void
+gtk_source_map_state_flags_changed (GtkWidget     *widget,
+                                    GtkStateFlags  flags)
+{
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->state_flags_changed (widget, flags);
+
+	set_view_cursor (GTK_SOURCE_MAP (widget));
+}
+
+static void
+gtk_source_map_realize (GtkWidget *widget)
+{
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->realize (widget);
+
+	set_view_cursor (GTK_SOURCE_MAP (widget));
+}
+
 static void
 gtk_source_map_class_init (GtkSourceMapClass *klass)
 {
@@ -1039,6 +1062,12 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 	widget_class->get_preferred_height = gtk_source_map_get_preferred_height;
 	widget_class->get_preferred_width = gtk_source_map_get_preferred_width;
 	widget_class->size_allocate = gtk_source_map_size_allocate;
+	widget_class->button_press_event = gtk_source_map_button_press_event;
+	widget_class->button_release_event = gtk_source_map_button_release_event;
+	widget_class->motion_notify_event = gtk_source_map_motion_notify_event;
+	widget_class->scroll_event = gtk_source_map_scroll_event;
+	widget_class->state_flags_changed = gtk_source_map_state_flags_changed;
+	widget_class->realize = gtk_source_map_realize;
 
 	pspecs[PROP_VIEW] =
 		g_param_spec_object ("view",
@@ -1071,66 +1100,24 @@ gtk_source_map_init (GtkSourceMap *map)
 	context = gtk_widget_get_style_context (GTK_WIDGET (map));
 	gtk_style_context_add_provider (context,
 	                                GTK_STYLE_PROVIDER (priv->css_provider),
-	                                CSS_PRIORITY);
+	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY + 1);
 
-	priv->child_view = g_object_new (GTK_SOURCE_TYPE_VIEW,
-	                                 "auto-indent", FALSE,
-	                                 "can-focus", FALSE,
-	                                 "draw-spaces", 0,
-	                                 "editable", FALSE,
-	                                 "expand", FALSE,
-	                                 "monospace", TRUE,
-	                                 "show-line-numbers", FALSE,
-	                                 "show-line-marks", FALSE,
-	                                 "show-right-margin", FALSE,
-	                                 "visible", TRUE,
-	                                 NULL);
+	g_object_set (map,
+	              "auto-indent", FALSE,
+	              "can-focus", FALSE,
+	              "draw-spaces", 0,
+	              "editable", FALSE,
+	              "expand", FALSE,
+	              "monospace", TRUE,
+	              "show-line-numbers", FALSE,
+	              "show-line-marks", FALSE,
+	              "show-right-margin", FALSE,
+	              "visible", TRUE,
+	              NULL);
 
-	context = gtk_widget_get_style_context (GTK_WIDGET (priv->child_view));
-	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (priv->css_provider),
-	                                CSS_PRIORITY);
+	gtk_widget_add_events (GTK_WIDGET (map), GDK_SCROLL_MASK);
 
-	g_signal_connect_object (priv->child_view,
-	                         "button-press-event",
-	                         G_CALLBACK (child_view_button_press_event),
-	                         map,
-	                         G_CONNECT_SWAPPED);
-	gtk_widget_add_events (GTK_WIDGET (priv->child_view), GDK_SCROLL_MASK);
-	g_signal_connect_object (priv->child_view,
-	                         "scroll-event",
-	                         G_CALLBACK (child_view_scroll_event),
-	                         map,
-	                         G_CONNECT_SWAPPED);
-	g_signal_connect_object (priv->child_view,
-	                         "state-flags-changed",
-	                         G_CALLBACK (child_view_state_flags_changed),
-	                         map,
-	                         G_CONNECT_SWAPPED | G_CONNECT_AFTER);
-	g_signal_connect_object (priv->child_view,
-	                         "realize",
-	                         G_CALLBACK (child_view_realize_after),
-	                         map,
-	                         G_CONNECT_SWAPPED | G_CONNECT_AFTER);
-	g_signal_connect_object (priv->child_view,
-	                         "button-press-event",
-	                         G_CALLBACK (child_view_button_press_event),
-	                         map,
-	                         G_CONNECT_SWAPPED);
-	g_signal_connect_object (priv->child_view,
-	                         "button-release-event",
-	                         G_CALLBACK (child_view_button_release_event),
-	                         map,
-	                         G_CONNECT_SWAPPED);
-	g_signal_connect_object (priv->child_view,
-	                         "motion-notify-event",
-	                         G_CALLBACK (child_view_motion_notify_event),
-	                         map,
-	                         G_CONNECT_SWAPPED);
-
-	gtk_container_add (GTK_CONTAINER (map), GTK_WIDGET (priv->child_view));
-
-	completion = gtk_source_view_get_completion (priv->child_view);
+	completion = gtk_source_view_get_completion (GTK_SOURCE_VIEW (map));
 	gtk_source_completion_block_interactive (completion);
 
 	gtk_source_map_set_font_name (map, "Monospace 1");
@@ -1209,26 +1196,4 @@ gtk_source_map_get_view (GtkSourceMap *map)
 	priv = gtk_source_map_get_instance_private (map);
 
 	return priv->view;
-}
-
-/**
- * gtk_source_map_get_child_view:
- * @map: a #GtkSourceMap.
- *
- * Gets the internal #GtkSourceView in case further tweaking is required.
- *
- * Returns: (transfer none): the internal #GtkSourceView.
- *
- * Since: 3.18
- */
-GtkSourceView *
-gtk_source_map_get_child_view (GtkSourceMap *map)
-{
-	GtkSourceMapPrivate *priv;
-
-	g_return_val_if_fail (GTK_SOURCE_IS_MAP (map), NULL);
-
-	priv = gtk_source_map_get_instance_private (map);
-
-	return priv->child_view;
 }
