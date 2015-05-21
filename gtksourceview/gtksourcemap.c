@@ -37,23 +37,21 @@
  * #GtkSourceMap is a widget that maps the content of a #GtkSourceView into
  * a smaller view so the user can have a quick overview of the whole document.
  *
- * Call gtk_source_map_set_view() or set the #GtkSourceMap:view property
- * to set the view that the #GtkSourceMap should do the mapping from.
+ * This works by connecting a #GtkSourceView to to the #GtkSourceMap using
+ * the #GtkSourceMap:view property or gtk_source_map_set_view().
  *
- * #GtkSourceMap is a #GtkSourceView object to do the mapping, so for
- * example, one could extend it by adding a gutter that shows the changes done
- * while editing the document.
- *
- * #GtkSourceMap derives from #GtkBin only as an implementation detail. Applications
- * should not use any API specific to #GtkBin to operate on this object. It should
- * be treated as a normal #GtkWidget.
+ * #GtkSourceMap is a #GtkSourceView object. This means that you can add a
+ * #GtkSourceGutterRenderer to a gutter in the same way you would for a
+ * #GtkSourceView. One example might be a #GtkSourceGutterRenderer that shows
+ * which lines have changed in the document.
  *
  * Additionally, it is desirable to match the font of the #GtkSourceMap and
  * the #GtkSourceView used for editing. Therefore, #GtkSourceMap:font-desc
  * should be used to set the target font. You will need to adjust this to the
- * desired font size for the map. A 1pt generally seems to be an appropriate
- * font size. See pango_font_description_set_size() for how to alter the size
- * of an existing #PangoFontDescription.
+ * desired font size for the map. A 1pt font generally seems to be an
+ * appropriate font size. "Monospace 1" is the default. See
+ * pango_font_description_set_size() for how to alter the size of an existing
+ * #PangoFontDescription.
  */
 
 /*
