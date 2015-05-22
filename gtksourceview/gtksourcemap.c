@@ -238,8 +238,11 @@ update_scrubber_position (GtkSourceMap *map)
 		 * were when drawing the scrubber from a parent widget.
 		 */
 		window = gtk_text_view_get_window (GTK_TEXT_VIEW (map), GTK_TEXT_WINDOW_WIDGET);
-		gdk_window_invalidate_rect (window, &priv->scrubber_area, FALSE);
-		gdk_window_invalidate_rect (window, &scrubber_area, FALSE);
+		if (window != NULL)
+		{
+			gdk_window_invalidate_rect (window, &priv->scrubber_area, FALSE);
+			gdk_window_invalidate_rect (window, &scrubber_area, FALSE);
+		}
 
 		priv->scrubber_area = scrubber_area;
 	}
