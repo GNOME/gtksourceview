@@ -1,3 +1,14 @@
+News in 3.17.2
+--------------
+* New widget: GtkSourceMap
+* Set a GtkTextTag name for context classes (no-spell-check, etc)
+* Add gtk_source_buffer_sort_lines()
+* Style schemes:
+	* Support "single", "double" etc for the underline attribute
+	* Support underline-color
+* Improvements to lang files: Ocaml, C++ header and Shell
+* Translation updates
+
 News in 3.17.1
 --------------
 * New public function: gtk_source_encoding_get_default_candidates()
