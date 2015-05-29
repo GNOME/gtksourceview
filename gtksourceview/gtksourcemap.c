@@ -219,7 +219,10 @@ update_scrubber_position (GtkSourceMap *map)
 	scrubber_area.x = 0;
 	scrubber_area.width = alloc.width;
 	scrubber_area.y = y;
-	scrubber_area.height = (gdouble)view_alloc.height / (gdouble)view_height * (gdouble)child_height;
+	scrubber_area.height = ((gdouble)view_alloc.height /
+	                        (gdouble)view_height *
+	                        (gdouble)child_height) +
+	                       iter_area.height;
 
 	if (memcmp (&scrubber_area, &priv->scrubber_area, sizeof scrubber_area) != 0)
 	{
