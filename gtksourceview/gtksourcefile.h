@@ -2,7 +2,7 @@
 /* gtksourcefile.h
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -87,6 +87,10 @@ void		 gtk_source_file_set_mount_operation_factory	(GtkSourceFile               
 								 gpointer                        user_data,
 								 GDestroyNotify                  notify);
 
+gboolean	 gtk_source_file_is_externally_modified		(GtkSourceFile *file);
+
+gboolean	 gtk_source_file_is_deleted			(GtkSourceFile *file);
+
 G_GNUC_INTERNAL
 void		 _gtk_source_file_set_encoding			(GtkSourceFile           *file,
 								 const GtkSourceEncoding *encoding);
@@ -109,6 +113,14 @@ gboolean	 _gtk_source_file_get_modification_time		(GtkSourceFile *file,
 G_GNUC_INTERNAL
 void		 _gtk_source_file_set_modification_time		(GtkSourceFile *file,
 								 GTimeVal       modification_time);
+
+G_GNUC_INTERNAL
+void		 _gtk_source_file_set_externally_modified	(GtkSourceFile *file,
+								 gboolean       externally_modified);
+
+G_GNUC_INTERNAL
+void		 _gtk_source_file_set_deleted			(GtkSourceFile *file,
+								 gboolean       deleted);
 
 G_END_DECLS
 

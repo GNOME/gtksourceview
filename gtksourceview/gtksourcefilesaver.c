@@ -1404,6 +1404,9 @@ gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
 		_gtk_source_file_set_compression_type (saver->priv->file,
 						       saver->priv->compression_type);
 
+		_gtk_source_file_set_externally_modified (saver->priv->file, FALSE);
+		_gtk_source_file_set_deleted (saver->priv->file, FALSE);
+
 		if (g_file_info_has_attribute (saver->priv->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 		{
 			GTimeVal modification_time;

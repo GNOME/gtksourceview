@@ -1131,6 +1131,9 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 		_gtk_source_file_set_compression_type (loader->priv->file,
 						       loader->priv->auto_detected_compression_type);
 
+		_gtk_source_file_set_externally_modified (loader->priv->file, FALSE);
+		_gtk_source_file_set_deleted (loader->priv->file, FALSE);
+
 		if (g_file_info_has_attribute (loader->priv->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 		{
 			GTimeVal modification_time;

@@ -2,7 +2,7 @@
 /* gtksourcefile.c
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -65,6 +65,9 @@ struct _GtkSourceFilePrivate
 	GTimeVal modification_time;
 
 	guint modification_time_set : 1;
+
+	guint externally_modified : 1;
+	guint deleted : 1;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceFile, gtk_source_file, G_TYPE_OBJECT)
@@ -275,6 +278,9 @@ gtk_source_file_set_location (GtkSourceFile *file,
 
 		/* The modification_time is for the old location. */
 		file->priv->modification_time_set = FALSE;
+
+		file->priv->externally_modified = FALSE;
+		file->priv->deleted = FALSE;
 	}
 }
 
@@ -456,4 +462,108 @@ _gtk_source_file_set_modification_time (GtkSourceFile *file,
 		file->priv->modification_time = modification_time;
 		file->priv->modification_time_set = TRUE;
 	}
+}
+
+static void
+check_file_on_disk (GtkSourceFile *file)
+{
+	GFileInfo *info;
+
+	if (file->priv->location == NULL)
+	{
+		return;
+	}
+
+	info = g_file_query_info (file->priv->location,
+				  G_FILE_ATTRIBUTE_TIME_MODIFIED,
+				  G_FILE_QUERY_INFO_NONE,
+				  NULL,
+				  NULL);
+
+	if (info == NULL)
+	{
+		file->priv->deleted = TRUE;
+	}
+	else if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED) &&
+		 file->priv->modification_time_set)
+	{
+		GTimeVal timeval;
+
+		g_file_info_get_modification_time (info, &timeval);
+
+		/* Note that the modification time can even go backwards if the
+		 * user is copying over an old file.
+		 */
+		if (timeval.tv_sec != file->priv->modification_time.tv_sec ||
+		    timeval.tv_usec != file->priv->modification_time.tv_usec)
+		{
+			file->priv->externally_modified = TRUE;
+		}
+	}
+
+	g_clear_object (&info);
+}
+
+void
+_gtk_source_file_set_externally_modified (GtkSourceFile *file,
+					  gboolean       externally_modified)
+{
+	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
+
+	file->priv->externally_modified = externally_modified != FALSE;
+}
+
+/**
+ * gtk_source_file_is_externally_modified:
+ * @file: a #GtkSourceFile.
+ *
+ * Checks synchronously whether the file is externally modified. If the
+ * #GtkSourceFile:location is %NULL, returns FALSE.
+ *
+ * Returns: whether the file is externally modified.
+ * Since: 3.18
+ */
+gboolean
+gtk_source_file_is_externally_modified (GtkSourceFile *file)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
+
+	if (!file->priv->externally_modified)
+	{
+		check_file_on_disk (file);
+	}
+
+	return file->priv->externally_modified;
+}
+
+void
+_gtk_source_file_set_deleted (GtkSourceFile *file,
+			      gboolean       deleted)
+{
+	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
+
+	file->priv->deleted = deleted != FALSE;
+}
+
+/**
+ * gtk_source_file_is_deleted:
+ * @file: a #GtkSourceFile.
+ *
+ * Checks synchronously whether the file has been deleted. If the
+ * #GtkSourceFile:location is %NULL, returns FALSE.
+ *
+ * Returns: whether the file has been deleted.
+ * Since: 3.18
+ */
+gboolean
+gtk_source_file_is_deleted (GtkSourceFile *file)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
+
+	if (!file->priv->deleted)
+	{
+		check_file_on_disk (file);
+	}
+
+	return file->priv->deleted;
 }

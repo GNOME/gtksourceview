@@ -250,6 +250,8 @@ gtk_source_file_set_location
 gtk_source_file_get_encoding
 gtk_source_file_get_newline_type
 gtk_source_file_get_compression_type
+gtk_source_file_is_externally_modified
+gtk_source_file_is_deleted
 gtk_source_file_set_mount_operation_factory
 <SUBSECTION Standard>
 GTK_SOURCE_FILE
