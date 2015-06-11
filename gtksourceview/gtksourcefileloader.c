@@ -1090,7 +1090,7 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 				    GError              **error)
 {
 	gboolean ok;
-	gboolean update_buffer_properties;
+	gboolean update_file_properties;
 	GError *real_error = NULL;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader), FALSE);
@@ -1112,11 +1112,11 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 	 * With the other errors, normally the contents hasn't been loaded into
 	 * the buffer, i.e. the buffer is still empty.
 	 */
-	update_buffer_properties = ok || (real_error != NULL &&
-					  real_error->domain == GTK_SOURCE_FILE_LOADER_ERROR &&
-					  real_error->code == GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK);
+	update_file_properties = ok || (real_error != NULL &&
+					real_error->domain == GTK_SOURCE_FILE_LOADER_ERROR &&
+					real_error->code == GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK);
 
-	if (update_buffer_properties && loader->priv->file != NULL)
+	if (update_file_properties && loader->priv->file != NULL)
 	{
 		/* The location is already updated at the beginning of the
 		 * operation.
