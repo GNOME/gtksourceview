@@ -264,16 +264,8 @@ gtk_source_file_set_location (GtkSourceFile *file,
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 	g_return_if_fail (location == NULL || G_IS_FILE (location));
 
-	if (file->priv->location != location)
+	if (g_set_object (&file->priv->location, location))
 	{
-		g_clear_object (&file->priv->location);
-		file->priv->location = location;
-
-		if (location != NULL)
-		{
-			g_object_ref (location);
-		}
-
 		g_object_notify (G_OBJECT (file), "location");
 
 		/* The modification_time is for the old location. */
