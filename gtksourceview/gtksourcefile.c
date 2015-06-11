@@ -479,8 +479,21 @@ _gtk_source_file_set_modification_time (GtkSourceFile *file,
 	}
 }
 
-static void
-check_file_on_disk (GtkSourceFile *file)
+/**
+ * gtk_source_file_check_file_on_disk:
+ * @file: a #GtkSourceFile.
+ *
+ * Checks synchronously the file on disk, to know whether the file is externally
+ * modified, or has been deleted, and whether the file is read-only.
+ *
+ * #GtkSourceFile doesn't create a #GFileMonitor to track those properties, so
+ * this function needs to be called instead. Creating lots of #GFileMonitor's
+ * would take lots of resources.
+ *
+ * Since: 3.18
+ */
+void
+gtk_source_file_check_file_on_disk (GtkSourceFile *file)
 {
 	GFileInfo *info;
 
@@ -544,8 +557,11 @@ _gtk_source_file_set_externally_modified (GtkSourceFile *file,
  * gtk_source_file_is_externally_modified:
  * @file: a #GtkSourceFile.
  *
- * Checks synchronously whether the file is externally modified. If the
- * #GtkSourceFile:location is %NULL, returns FALSE.
+ * Returns whether the file is externally modified. If the
+ * #GtkSourceFile:location is %NULL, returns %FALSE.
+ *
+ * To have an up-to-date value, you must first call
+ * gtk_source_file_check_file_on_disk().
  *
  * Returns: whether the file is externally modified.
  * Since: 3.18
@@ -554,11 +570,6 @@ gboolean
 gtk_source_file_is_externally_modified (GtkSourceFile *file)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
-
-	if (!file->priv->externally_modified)
-	{
-		check_file_on_disk (file);
-	}
 
 	return file->priv->externally_modified;
 }
@@ -576,8 +587,11 @@ _gtk_source_file_set_deleted (GtkSourceFile *file,
  * gtk_source_file_is_deleted:
  * @file: a #GtkSourceFile.
  *
- * Checks synchronously whether the file has been deleted. If the
- * #GtkSourceFile:location is %NULL, returns FALSE.
+ * Returns whether the file has been deleted. If the
+ * #GtkSourceFile:location is %NULL, returns %FALSE.
+ *
+ * To have an up-to-date value, you must first call
+ * gtk_source_file_check_file_on_disk().
  *
  * Returns: whether the file has been deleted.
  * Since: 3.18
@@ -586,11 +600,6 @@ gboolean
 gtk_source_file_is_deleted (GtkSourceFile *file)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
-
-	if (!file->priv->deleted)
-	{
-		check_file_on_disk (file);
-	}
 
 	return file->priv->deleted;
 }
@@ -614,8 +623,11 @@ _gtk_source_file_set_readonly (GtkSourceFile *file,
  * gtk_source_file_is_readonly:
  * @file: a #GtkSourceFile.
  *
- * Checks synchronously whether the file is read-only. If the
- * #GtkSourceFile:location is %NULL, returns FALSE.
+ * Returns whether the file is read-only. If the
+ * #GtkSourceFile:location is %NULL, returns %FALSE.
+ *
+ * To have an up-to-date value, you must first call
+ * gtk_source_file_check_file_on_disk().
  *
  * Returns: whether the file is read-only.
  * Since: 3.18
@@ -624,8 +636,6 @@ gboolean
 gtk_source_file_is_readonly (GtkSourceFile *file)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
-
-	check_file_on_disk (file);
 
 	return file->priv->readonly;
 }
