@@ -45,7 +45,8 @@ enum
 	PROP_LOCATION,
 	PROP_ENCODING,
 	PROP_NEWLINE_TYPE,
-	PROP_COMPRESSION_TYPE
+	PROP_COMPRESSION_TYPE,
+	PROP_READ_ONLY
 };
 
 struct _GtkSourceFilePrivate
@@ -68,6 +69,7 @@ struct _GtkSourceFilePrivate
 
 	guint externally_modified : 1;
 	guint deleted : 1;
+	guint readonly : 1;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceFile, gtk_source_file, G_TYPE_OBJECT)
@@ -100,6 +102,10 @@ gtk_source_file_get_property (GObject    *object,
 
 		case PROP_COMPRESSION_TYPE:
 			g_value_set_enum (value, file->priv->compression_type);
+			break;
+
+		case PROP_READ_ONLY:
+			g_value_set_boolean (value, file->priv->readonly);
 			break;
 
 		default:
@@ -224,6 +230,23 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 							    GTK_SOURCE_COMPRESSION_TYPE_NONE,
 							    G_PARAM_READABLE |
 							    G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GtkSourceFile:read-only:
+	 *
+	 * Whether the file is read-only or not. The value of this property is
+	 * not updated automatically (there is no file monitors).
+	 *
+	 * Since: 3.18
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_READ_ONLY,
+					 g_param_spec_boolean ("read-only",
+							       "Read Only",
+							       "",
+							       FALSE,
+							       G_PARAM_READABLE |
+							       G_PARAM_STATIC_STRINGS));
 }
 
 static void
@@ -467,7 +490,8 @@ check_file_on_disk (GtkSourceFile *file)
 	}
 
 	info = g_file_query_info (file->priv->location,
-				  G_FILE_ATTRIBUTE_TIME_MODIFIED,
+				  G_FILE_ATTRIBUTE_TIME_MODIFIED ","
+				  G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
 				  G_FILE_QUERY_INFO_NONE,
 				  NULL,
 				  NULL);
@@ -475,9 +499,11 @@ check_file_on_disk (GtkSourceFile *file)
 	if (info == NULL)
 	{
 		file->priv->deleted = TRUE;
+		return;
 	}
-	else if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED) &&
-		 file->priv->modification_time_set)
+
+	if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED) &&
+	    file->priv->modification_time_set)
 	{
 		GTimeVal timeval;
 
@@ -493,7 +519,16 @@ check_file_on_disk (GtkSourceFile *file)
 		}
 	}
 
-	g_clear_object (&info);
+	if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
+	{
+		gboolean readonly;
+
+		readonly = !g_file_info_get_attribute_boolean (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
+
+		_gtk_source_file_set_readonly (file, readonly);
+	}
+
+	g_object_unref (info);
 }
 
 void
@@ -558,4 +593,39 @@ gtk_source_file_is_deleted (GtkSourceFile *file)
 	}
 
 	return file->priv->deleted;
+}
+
+void
+_gtk_source_file_set_readonly (GtkSourceFile *file,
+			       gboolean       readonly)
+{
+	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
+
+	readonly = readonly != FALSE;
+
+	if (file->priv->readonly != readonly)
+	{
+		file->priv->readonly = readonly;
+		g_object_notify (G_OBJECT (file), "read-only");
+	}
+}
+
+/**
+ * gtk_source_file_is_readonly:
+ * @file: a #GtkSourceFile.
+ *
+ * Checks synchronously whether the file is read-only. If the
+ * #GtkSourceFile:location is %NULL, returns FALSE.
+ *
+ * Returns: whether the file is read-only.
+ * Since: 3.18
+ */
+gboolean
+gtk_source_file_is_readonly (GtkSourceFile *file)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
+
+	check_file_on_disk (file);
+
+	return file->priv->readonly;
 }

@@ -91,6 +91,8 @@ gboolean	 gtk_source_file_is_externally_modified		(GtkSourceFile *file);
 
 gboolean	 gtk_source_file_is_deleted			(GtkSourceFile *file);
 
+gboolean	 gtk_source_file_is_readonly			(GtkSourceFile *file);
+
 G_GNUC_INTERNAL
 void		 _gtk_source_file_set_encoding			(GtkSourceFile           *file,
 								 const GtkSourceEncoding *encoding);
@@ -121,6 +123,10 @@ void		 _gtk_source_file_set_externally_modified	(GtkSourceFile *file,
 G_GNUC_INTERNAL
 void		 _gtk_source_file_set_deleted			(GtkSourceFile *file,
 								 gboolean       deleted);
+
+G_GNUC_INTERNAL
+void		 _gtk_source_file_set_readonly			(GtkSourceFile *file,
+								 gboolean       readonly);
 
 G_END_DECLS
 

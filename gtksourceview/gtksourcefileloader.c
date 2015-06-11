@@ -1140,6 +1140,20 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 			g_file_info_get_modification_time (loader->priv->info, &modification_time);
 			_gtk_source_file_set_modification_time (loader->priv->file, modification_time);
 		}
+
+		if (g_file_info_has_attribute (loader->priv->info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
+		{
+			gboolean readonly;
+
+			readonly = !g_file_info_get_attribute_boolean (loader->priv->info,
+								       G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
+
+			_gtk_source_file_set_readonly (loader->priv->file, readonly);
+		}
+		else
+		{
+			_gtk_source_file_set_readonly (loader->priv->file, FALSE);
+		}
 	}
 
 	reset (loader);
