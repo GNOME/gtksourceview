@@ -761,9 +761,6 @@ end_append_text_to_document (GtkSourceBufferOutputStream *stream)
 		remove_trailing_newline (stream);
 	}
 
-	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->priv->source_buffer),
-	                              FALSE);
-
 	gtk_source_buffer_end_not_undoable_action (stream->priv->source_buffer);
 }
 

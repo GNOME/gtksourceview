@@ -1079,7 +1079,8 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
  *
  * If the contents has been loaded, the following #GtkSourceFile properties will
  * be updated: the location, the encoding, the newline type and the compression
- * type.
+ * type. Additionally, gtk_text_buffer_set_modified() is called with %FALSE when
+ * loading from a #GFile, and %TRUE when loading from a #GInputStream.
  *
  * Returns: whether the contents has been loaded successfully.
  * Since: 3.14
@@ -1154,6 +1155,12 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 		{
 			_gtk_source_file_set_readonly (loader->priv->file, FALSE);
 		}
+	}
+
+	if (loader->priv->source_buffer != NULL)
+	{
+		gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (loader->priv->source_buffer),
+					      loader->priv->input_stream_property != NULL);
 	}
 
 	reset (loader);
