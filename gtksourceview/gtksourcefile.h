@@ -89,6 +89,8 @@ void		 gtk_source_file_set_mount_operation_factory	(GtkSourceFile               
 
 void		 gtk_source_file_check_file_on_disk		(GtkSourceFile *file);
 
+gboolean	 gtk_source_file_is_local			(GtkSourceFile *file);
+
 gboolean	 gtk_source_file_is_externally_modified		(GtkSourceFile *file);
 
 gboolean	 gtk_source_file_is_deleted			(GtkSourceFile *file);

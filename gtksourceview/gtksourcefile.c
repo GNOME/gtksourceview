@@ -480,6 +480,29 @@ _gtk_source_file_set_modification_time (GtkSourceFile *file,
 }
 
 /**
+ * gtk_source_file_is_local:
+ * @file: a #GtkSourceFile.
+ *
+ * Returns whether the file is local. If the #GtkSourceFile:location is %NULL,
+ * returns %FALSE.
+ *
+ * Returns: whether the file is local.
+ * Since: 3.18
+ */
+gboolean
+gtk_source_file_is_local (GtkSourceFile *file)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
+
+	if (file->priv->location == NULL)
+	{
+		return FALSE;
+	}
+
+	return g_file_has_uri_scheme (file->priv->location, "file");
+}
+
+/**
  * gtk_source_file_check_file_on_disk:
  * @file: a #GtkSourceFile.
  *
@@ -489,6 +512,9 @@ _gtk_source_file_set_modification_time (GtkSourceFile *file,
  * #GtkSourceFile doesn't create a #GFileMonitor to track those properties, so
  * this function needs to be called instead. Creating lots of #GFileMonitor's
  * would take lots of resources.
+ *
+ * Since this function is synchronous, it is advised to call it only on local
+ * files. See gtk_source_file_is_local().
  *
  * Since: 3.18
  */
