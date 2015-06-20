@@ -43,6 +43,18 @@
  * A file loader should be used only for one load operation, including errors
  * handling. If an error occurs, you can reconfigure the loader and relaunch the
  * operation with gtk_source_file_loader_load_async().
+ *
+ * Running a #GtkSourceFileLoader is an undoable action for the
+ * #GtkSourceBuffer. That is, gtk_source_buffer_begin_not_undoable_action() and
+ * gtk_source_buffer_end_not_undoable_action() are called, which delete the
+ * undo/redo history.
+ *
+ * After a file loading, the buffer is reset to the contents provided by the
+ * #GFile or #GInputStream, so the buffer is set as “unmodified”, that is,
+ * gtk_text_buffer_set_modified() is called with %FALSE. If the contents isn't
+ * saved somewhere (for example if you load from stdin), then you should
+ * probably call gtk_text_buffer_set_modified() with %TRUE after calling
+ * gtk_source_file_loader_load_finish().
  */
 
 #if 0
