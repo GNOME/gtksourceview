@@ -73,6 +73,8 @@ test_consecutive_write (const gchar          *inbuf,
 	g_assert_cmpstr (outbuf, ==, b);
 	g_free (b);
 
+	g_assert (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (source_buffer)) == FALSE);
+
 	g_object_unref (source_buffer);
 	g_object_unref (out);
 }

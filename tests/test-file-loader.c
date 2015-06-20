@@ -46,19 +46,19 @@ load_file_cb (GtkSourceFileLoader *loader,
 	      GAsyncResult        *result,
 	      LoaderTestData      *data)
 {
-	GtkSourceBuffer *buffer;
 	GError *error = NULL;
 
 	gtk_source_file_loader_load_finish (loader, result, &error);
 	g_assert_no_error (error);
 
-	buffer = gtk_source_file_loader_get_buffer (loader);
-
 	if (data->expected_buffer_contents != NULL)
 	{
+		GtkSourceBuffer *buffer;
 		GtkTextIter start;
 		GtkTextIter end;
 		gchar *buffer_contents;
+
+		buffer = gtk_source_file_loader_get_buffer (loader);
 
 		gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
 		buffer_contents = gtk_text_iter_get_slice (&start, &end);
@@ -74,11 +74,6 @@ load_file_cb (GtkSourceFileLoader *loader,
 		                 ==,
 		                 data->newline_type);
 	}
-
-	/* The tests load from a GFile, so the buffer is set as not modified.
-	 * But the result would be different if a unit test loads from a stream.
-	 */
-	g_assert (!gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (buffer)));
 
 	/* finished */
 	gtk_main_quit ();
