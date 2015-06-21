@@ -208,6 +208,11 @@ GtkSourceMarkAttributes *
                                                          const gchar             *category,
                                                          gint                    *priority);
 
+void		 gtk_source_view_set_smart_backspace	(GtkSourceView   *view,
+							 gboolean        smart_backspace);
+
+gboolean	 gtk_source_view_get_smart_backspace	(GtkSourceView   *view);
+
 void		 gtk_source_view_set_smart_home_end	(GtkSourceView             *view,
 							 GtkSourceSmartHomeEndType  smart_home_end);
 

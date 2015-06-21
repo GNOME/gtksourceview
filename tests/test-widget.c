@@ -54,6 +54,7 @@ struct _TestWidgetPrivate
 	GtkSourceFile *file;
 	GtkSourceMap *map;
 	GtkCheckButton *show_map_checkbutton;
+	GtkCheckButton *smart_backspace_checkbutton;
 	GtkCheckButton *indent_width_checkbutton;
 	GtkSpinButton *indent_width_spinbutton;
 	GtkLabel *cursor_position_info;
@@ -984,6 +985,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, view);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, map);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, show_map_checkbutton);
+	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, smart_backspace_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_spinbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, cursor_position_info);
@@ -1045,6 +1047,12 @@ test_widget_init (TestWidget *self)
 	                        "active",
 	                        self->priv->map,
 	                        "visible",
+	                        G_BINDING_SYNC_CREATE);
+
+	g_object_bind_property (self->priv->smart_backspace_checkbutton,
+	                        "active",
+	                        self->priv->view,
+	                        "smart-backspace",
 	                        G_BINDING_SYNC_CREATE);
 
 	g_signal_connect (self->priv->background_pattern,

@@ -157,7 +157,8 @@ enum
 	PROP_HIGHLIGHT_CURRENT_LINE,
 	PROP_INDENT_ON_TAB,
 	PROP_DRAW_SPACES,
-	PROP_BACKGROUND_PATTERN
+	PROP_BACKGROUND_PATTERN,
+	PROP_SMART_BACKSPACE
 };
 
 struct _GtkSourceViewPrivate
@@ -202,6 +203,7 @@ struct _GtkSourceViewPrivate
 	guint style_scheme_applied : 1;
 	guint current_line_color_set : 1;
 	guint background_pattern_color_set : 1;
+	guint smart_backspace : 1;
 };
 
 typedef struct _MarkCategory MarkCategory;
@@ -651,6 +653,14 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							    GTK_SOURCE_TYPE_BACKGROUND_PATTERN_TYPE,
 							    GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE,
 							    G_PARAM_READWRITE));
+
+	g_object_class_install_property (object_class,
+					 PROP_SMART_BACKSPACE,
+					 g_param_spec_boolean ("smart-backspace",
+							       _("Smart Backspace"),
+							       _("Whether smart Backspace should be used."),
+							       FALSE,
+							       G_PARAM_READWRITE));
 
 	signals[UNDO] =
 		g_signal_new ("undo",
@@ -1114,6 +1124,10 @@ gtk_source_view_set_property (GObject      *object,
 			gtk_source_view_set_background_pattern (view, g_value_get_enum (value));
 			break;
 
+		case PROP_SMART_BACKSPACE:
+			gtk_source_view_set_smart_backspace (view, g_value_get_boolean (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -1137,6 +1151,7 @@ gtk_source_view_get_property (GObject    *object,
 		case PROP_COMPLETION:
 			g_value_set_object (value, gtk_source_view_get_completion (view));
 			break;
+
 		case PROP_SHOW_LINE_NUMBERS:
 			g_value_set_boolean (value, gtk_source_view_get_show_line_numbers (view));
 			break;
@@ -1187,6 +1202,10 @@ gtk_source_view_get_property (GObject    *object,
 
 		case PROP_BACKGROUND_PATTERN:
 			g_value_set_enum (value, gtk_source_view_get_background_pattern (view));
+			break;
+
+		case PROP_SMART_BACKSPACE:
+			g_value_set_boolean (value, gtk_source_view_get_smart_backspace (view));
 			break;
 
 		default:
@@ -4025,6 +4044,128 @@ gtk_source_view_move_lines (GtkSourceView *view,
 }
 
 static gboolean
+gtk_source_view_do_smart_backspace (GtkSourceView *view,
+                                    guint          modifiers)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter insert;
+	GtkTextIter end;
+	GtkTextIter tmp;
+	guint visual_column;
+	gint indent_width;
+	gint tab_width;
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	if (gtk_text_buffer_get_selection_bounds (buffer, &insert, &end))
+	{
+		return FALSE;
+	}
+
+	if ((modifiers & GDK_CONTROL_MASK) != 0)
+	{
+		/*
+		 * A <Control>BackSpace at the beginning of the line should only move us to the
+		 * end of the previous line. Anything more than that is non-obvious because it requires
+		 * looking in a position other than where the cursor is.
+		 */
+		if ((gtk_text_iter_get_line_offset (&insert) == 0) && (gtk_text_iter_get_line (&insert) > 0))
+		{
+			gtk_text_buffer_begin_user_action (buffer);
+			gtk_text_iter_backward_char (&insert);
+			gtk_text_buffer_delete (buffer, &insert, &end);
+			gtk_text_buffer_end_user_action (buffer);
+
+			return TRUE;
+		}
+	}
+
+	/* if the line isn't empty up to our cursor, ignore */
+	tmp = insert;
+	while (TRUE)
+	{
+		gunichar ch;
+
+		ch = gtk_text_iter_get_char (&tmp);
+
+		if ((ch != 0) && !g_unichar_isspace (ch))
+		{
+			return FALSE;
+		}
+
+		if (gtk_text_iter_starts_line (&tmp))
+		{
+			break;
+		}
+
+		gtk_text_iter_backward_char (&tmp);
+	}
+
+	/*
+	 * If <Control>BackSpace was specified, delete up to the zero position.
+	 */
+	if ((modifiers & GDK_CONTROL_MASK) != 0)
+	{
+		gtk_text_buffer_begin_user_action (buffer);
+		gtk_text_iter_set_line_offset (&insert, 0);
+		gtk_text_buffer_delete (buffer, &insert, &end);
+		gtk_text_buffer_end_user_action (buffer);
+
+		return TRUE;
+	}
+
+	visual_column = gtk_source_view_get_visual_column (view, &insert);
+	indent_width = gtk_source_view_get_indent_width (view);
+	tab_width = gtk_source_view_get_tab_width (view);
+	if (indent_width <= 0)
+	{
+		indent_width = tab_width;
+	}
+
+	if (visual_column < indent_width)
+	{
+		return FALSE;
+	}
+
+	if ((visual_column % indent_width) == 0)
+	{
+		gint target_column = visual_column - indent_width;
+		gunichar ch;
+
+		g_assert (target_column >= 0);
+
+		while (gtk_source_view_get_visual_column (view, &insert) > target_column)
+		{
+			gtk_text_iter_backward_char (&insert);
+			ch = gtk_text_iter_get_char (&insert);
+
+			if (!g_unichar_isspace (ch))
+			{
+				return FALSE;
+			}
+		}
+
+		ch = gtk_text_iter_get_char (&insert);
+		if (!g_unichar_isspace (ch))
+		{
+			return FALSE;
+		}
+
+		gtk_text_buffer_begin_user_action (buffer);
+		gtk_text_buffer_delete (buffer, &insert, &end);
+		while (gtk_source_view_get_visual_column (view, &insert) < target_column)
+		{
+			gtk_text_buffer_insert (buffer, &insert, " ", 1);
+		}
+		gtk_text_buffer_end_user_action (buffer);
+
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+static gboolean
 gtk_source_view_key_press_event (GtkWidget   *widget,
 				 GdkEventKey *event)
 {
@@ -4131,7 +4272,15 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 		}
 
 		insert_tab_or_spaces (view, &s, &e);
- 		return TRUE;
+		return TRUE;
+	}
+
+	if ((key == GDK_KEY_BackSpace) && view->priv->smart_backspace)
+	{
+		if (gtk_source_view_do_smart_backspace (view, (event->state & modifiers)))
+		{
+			return TRUE;
+		}
 	}
 
 	return GTK_WIDGET_CLASS (gtk_source_view_parent_class)->key_press_event (widget, event);
@@ -4461,6 +4610,50 @@ gtk_source_view_set_right_margin_position (GtkSourceView *view,
 
 		g_object_notify (G_OBJECT (view), "right-margin-position");
 	}
+}
+
+/**
+ * gtk_source_view_set_smart_backspace:
+ * @view: a #GtkSourceView.
+ * @smart_backspace: whether to enable smart Backspace handling.
+ *
+ * When set to %TRUE, pressing the Backspace key will try to delete spaces
+ * up to the previous tab stop.
+ *
+ * Since: 3.18
+ */
+void
+gtk_source_view_set_smart_backspace (GtkSourceView *view,
+                                     gboolean       smart_backspace)
+{
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+
+	smart_backspace = smart_backspace != FALSE;
+
+	if (smart_backspace != view->priv->smart_backspace)
+	{
+		view->priv->smart_backspace = smart_backspace;
+		g_object_notify (G_OBJECT (view), "smart-backspace");
+	}
+}
+
+/**
+ * gtk_source_view_get_smart_backspace:
+ * @view: a #GtkSourceView.
+ *
+ * Returns %TRUE if pressing the Backspace key will try to delete spaces
+ * up to the previous tab stop.
+ *
+ * Returns: %TRUE if smart Backspace handling is enabled.
+ *
+ * Since: 3.18
+ */
+gboolean
+gtk_source_view_get_smart_backspace (GtkSourceView *view)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
+
+	return view->priv->smart_backspace;
 }
 
 /**
