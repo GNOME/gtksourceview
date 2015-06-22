@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-06-04 09:59+0000\n"
-"PO-Revision-Date: 2015-06-04 22:03+0200\n"
+"POT-Creation-Date: 2015-06-22 21:56+0000\n"
+"PO-Revision-Date: 2015-06-23 00:03+0200\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -962,7 +962,6 @@ msgid "C++"
 msgstr "C++"
 
 #: ../data/language-specs/cpphdr.lang.h:2
-#| msgid "Header"
 msgid "C++ Header"
 msgstr "C++ fejléc"
 
@@ -2097,11 +2096,11 @@ msgstr "Képjelölő"
 #: ../data/language-specs/mediawiki.lang.h:3
 #: ../data/language-specs/rst.lang.h:5
 msgid "Strong Emphasis"
-msgstr "Strong kiemelés"
+msgstr "Erős kiemelés"
 
 #: ../data/language-specs/markdown.lang.h:15
 msgid "Backslash Escape"
-msgstr "Backslash escape"
+msgstr "Backslash elfedés"
 
 #: ../data/language-specs/markdown.lang.h:16
 msgid "Line Break"
@@ -3187,33 +3186,42 @@ msgstr "_Mégse"
 msgid "_Select"
 msgstr "_Kiválasztás"
 
+#: ../gtksourceview/gtksourceview.c:660
+msgid "Smart Backspace"
+msgstr "Intelligens backspace"
+
+#: ../gtksourceview/gtksourceview.c:661
+#| msgid "Whether the language should be hidden from the user"
+msgid "Whether smart Backspace should be used."
+msgstr "Kell-e intelligens backspace-t használni."
+
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1522
+#: ../gtksourceview/gtksourceview.c:1541
 msgid "_Redo"
 msgstr "Új_ra"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1533
+#: ../gtksourceview/gtksourceview.c:1552
 msgid "_Undo"
 msgstr "_Visszavonás"
 
-#: ../gtksourceview/gtksourceview.c:1551
+#: ../gtksourceview/gtksourceview.c:1570
 msgid "All _Upper Case"
 msgstr "Mind _nagybetűs"
 
-#: ../gtksourceview/gtksourceview.c:1561
+#: ../gtksourceview/gtksourceview.c:1580
 msgid "All _Lower Case"
 msgstr "Mind _kisbetűs"
 
-#: ../gtksourceview/gtksourceview.c:1571
+#: ../gtksourceview/gtksourceview.c:1590
 msgid "_Invert Case"
 msgstr "Kis- és nagybetű _invertálása"
 
-#: ../gtksourceview/gtksourceview.c:1581
+#: ../gtksourceview/gtksourceview.c:1600
 msgid "_Title Case"
 msgstr "Szó_kezdő"
 
-#: ../gtksourceview/gtksourceview.c:1591
+#: ../gtksourceview/gtksourceview.c:1610
 msgid "C_hange Case"
 msgstr "Kis- és nagybetű mó_dosítása"
 
@@ -3521,9 +3529,6 @@ msgstr ""
 
 #~ msgid "Hidden"
 #~ msgstr "Rejtett"
-
-#~ msgid "Whether the language should be hidden from the user"
-#~ msgstr "A nyelv elrejtésre kerüljön-e a felhasználó elől"
 
 #~ msgid "Language specification directories"
 #~ msgstr "Nyelvmeghatározási könyvtárak"
