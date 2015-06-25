@@ -23,8 +23,8 @@
 -->
 <language id="diff" _name="Diff" version="2.0" _section="Other">
   <metadata>
-    <property name="mimetypes">text/x-diff;text/x-patch</property>
-    <property name="globs">*.diff;*.patch</property>
+    <property name="mimetypes">text/x-diff;text/x-patch;text/x-reject</property>
+    <property name="globs">*.diff;*.patch;*.rej</property>
   </metadata>
 
   <styles>
