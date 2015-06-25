@@ -282,6 +282,16 @@ measure_text (GtkSourceGutterRendererText *renderer,
 	g_object_unref (layout);
 }
 
+/**
+ * gtk_source_gutter_renderer_text_measure:
+ * @renderer: A #GtkSourceGutterRendererText
+ * @text: the text to measure
+ * @width: (out): The width of the text in pixels
+ * @height: (out): The height of the text in pixels
+ *
+ * Measures the text provided using the pango layout used by the
+ * #GtkSourceGutterRendererText.
+ */
 void
 gtk_source_gutter_renderer_text_measure (GtkSourceGutterRendererText *renderer,
                                          const gchar                 *text,
@@ -294,6 +304,16 @@ gtk_source_gutter_renderer_text_measure (GtkSourceGutterRendererText *renderer,
 	measure_text (renderer, NULL, text, width, height);
 }
 
+/**
+ * gtk_source_gutter_renderer_text_measure_markup:
+ * @renderer: A #GtkSourceGutterRendererText.
+ * @markup: the pango markup to measure
+ * @width: (out): The width of the text in pixels
+ * @height: (out): The height of the text in pixels
+ *
+ * Measures the pango markup provided using the pango layout used by the
+ * #GtkSourceGutterRendererText.
+ */
 void
 gtk_source_gutter_renderer_text_measure_markup (GtkSourceGutterRendererText *renderer,
                                                 const gchar                 *markup,
