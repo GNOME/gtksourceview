@@ -3,10 +3,10 @@
 
   This file is part of GtkSourceView
 
-  Syntax highlighting for Pig Latin 0.12
+  Syntax highlighting for Pig Latin 0.15
 
   Author: Eyal Allweil <eallweil@paypal.com>
-  Copyright (C) 2014 Eyal Allweil <eallweil@paypal.com>
+  Copyright (C) 2014-2015 Eyal Allweil <eallweil@paypal.com>
 
   GtkSourceView is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -173,11 +173,13 @@
     <context id="builtin-functions" style-ref="builtin-functions">
       <keyword>ABS</keyword>
       <keyword>ACOS</keyword>
+      <keyword>AccumuloStorage</keyword>
       <keyword>AddDuration</keyword>
       <keyword>ASIN</keyword>
       <keyword>ATAN</keyword>
       <keyword>AVG</keyword>
       <keyword>AvroStorage</keyword>
+      <keyword>BagToString</keyword>
       <keyword>BinStorage</keyword>
       <keyword>CBRT</keyword>
       <keyword>CEIL</keyword>
@@ -203,6 +205,9 @@
       <keyword>GetWeekYear</keyword>
       <keyword>GetYear</keyword>
       <keyword>HBaseStorage</keyword>
+      <keyword>HiveUDAF</keyword>
+      <keyword>HiveUDF</keyword>
+      <keyword>HiveUDTF</keyword>
       <keyword>HoursBetween</keyword>
       <keyword>INDEXOF</keyword>
       <keyword>IsEmpty</keyword>
@@ -219,6 +224,7 @@
       <keyword>MIN</keyword>
       <keyword>MinutesBetween</keyword>
       <keyword>MonthsBetween</keyword>
+      <keyword>OrcStorage</keyword>
       <keyword>PigDump</keyword>
       <keyword>PigStorage</keyword>
       <keyword>PluckTuple</keyword>
@@ -226,14 +232,17 @@
       <keyword>REGEX_EXTRACT_ALL</keyword>
       <keyword>REGEX_EXTRACT</keyword>
       <keyword>REPLACE</keyword>
+      <keyword>ROUND_TO</keyword>
       <keyword>ROUND</keyword>
       <keyword>RTRIM</keyword>
       <keyword>SecondsBetween</keyword>
       <keyword>SINH</keyword>
       <keyword>SIN</keyword>
       <keyword>SIZE</keyword>
+      <keyword>SPRINTF</keyword>
       <keyword>SQRT</keyword>
       <keyword>STARTSWITH</keyword>
+      <keyword>STRSPLITTOBAG</keyword>
       <keyword>STRSPLIT</keyword>
       <keyword>SUBSTRING</keyword>
       <keyword>SubtractDuration</keyword>
@@ -255,6 +264,7 @@
       <keyword>TRIM</keyword>
       <keyword>TrevniStrorage</keyword>
       <keyword>UCFIRST</keyword>
+      <keyword>UniqueID</keyword>
       <keyword>UPPER</keyword>
       <keyword>Usage</keyword>
       <keyword>WeeksBetween</keyword>
