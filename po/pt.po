@@ -2,7 +2,6 @@
 # Copyright © 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014 gtksourceview
 # This file is distributed under the same license as the gtksourceview package.
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
-# 
 # Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
 #
 msgid ""
@@ -10,8 +9,8 @@ msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-06-07 21:58+0000\n"
-"PO-Revision-Date: 2015-06-26 08:41+0100\n"
+"POT-Creation-Date: 2015-07-03 21:56+0000\n"
+"PO-Revision-Date: 2015-07-04 09:02+0100\n"
 "Last-Translator: Pedro Albuquerque <palbuquerque73@openmailbox.com>\n"
 "Language-Team: Português <palbuquerque73@openmailbox.com>\n"
 "Language: pt\n"
@@ -936,7 +935,6 @@ msgid "Builtin Command"
 msgstr "Comando embutido"
 
 #: ../data/language-specs/cmake.lang.h:4
-#| msgid "Builtin Command"
 msgid "Deprecated Builtin Command"
 msgstr "Comando embutido"
 
@@ -962,7 +960,6 @@ msgid "C++"
 msgstr "C++"
 
 #: ../data/language-specs/cpphdr.lang.h:2
-#| msgid "Header"
 msgid "C++ Header"
 msgstr "Cabeçalho C++"
 
@@ -1029,12 +1026,10 @@ msgid "Tag Name Selector"
 msgstr "Seletor de nome de etiqueta"
 
 #: ../data/language-specs/csv.lang.h:2
-#| msgid "CSS"
 msgid "CSV"
 msgstr "CSV"
 
 #: ../data/language-specs/csv.lang.h:4
-#| msgid "Escaped Character"
 msgid "Escaped character"
 msgstr "Carácter escapado"
 
@@ -1431,7 +1426,6 @@ msgid "BOZ Literal"
 msgstr "Literal BOZ"
 
 #: ../data/language-specs/fortran.lang.h:12
-#| msgid "Include directive"
 msgid "OpenMP directives"
 msgstr "Diretivas OpenMP"
 
@@ -1774,7 +1768,6 @@ msgid "Attribute value"
 msgstr "Valor do atributo"
 
 #: ../data/language-specs/jade.lang.h:9
-#| msgid "Text2Tags"
 msgid "Tags"
 msgstr "Etiquetas"
 
@@ -2383,17 +2376,14 @@ msgid "Pig"
 msgstr "Pig"
 
 #: ../data/language-specs/pig.lang.h:4
-#| msgid "Reserved Keywords"
 msgid "Reserved Words"
 msgstr "Palavras reservadas"
 
 #: ../data/language-specs/pig.lang.h:5
-#| msgid "Builtin Function"
 msgid "Built In Functions"
 msgstr "Funções internas"
 
 #: ../data/language-specs/pig.lang.h:6
-#| msgid "Boolean value"
 msgid "Boolean values"
 msgstr "Valores lógicos"
 
@@ -2897,7 +2887,6 @@ msgstr "Sequência de bytes inválida na conversão da entrada"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:844
 #, c-format
-#| msgid "String Conversion"
 msgid "Error during conversion: %s"
 msgstr "Erro durante a conversão: %s"
 
@@ -2918,7 +2907,6 @@ msgstr "Objeto inválido, não inicializado"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:1178
 #, c-format
-#| msgid "Incomplete Sequence"
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Sequência UTF-8 incompleta na entrada"
 
@@ -3126,7 +3114,6 @@ msgstr "Cirílico/Ucraniano"
 #: ../gtksourceview/gtksourceencoding.c:255
 #: ../gtksourceview/gtksourceencoding.c:261
 #: ../gtksourceview/gtksourceencoding.c:280
-#| msgid "Filename"
 msgid "Vietnamese"
 msgstr "Vietnamita"
 
@@ -3176,7 +3163,6 @@ msgid "The view this widget is mapping."
 msgstr "A vista que este widget está a mapear."
 
 #: ../gtksourceview/gtksourcemap.c:1085
-#| msgid "File Descriptor"
 msgid "Font Description"
 msgstr "Descrição de letra"
 
@@ -3190,7 +3176,6 @@ msgstr "utilizar \\C não é suportado nas definições de linguagem"
 
 #. TODO: have a ChooserDialog?
 #: ../gtksourceview/gtksourcestyleschemechooserbutton.c:182
-#| msgid "Select on Show"
 msgid "Select a Style"
 msgstr "Selecionar um estilo"
 
@@ -3199,37 +3184,45 @@ msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: ../gtksourceview/gtksourcestyleschemechooserbutton.c:187
-#| msgid "ID Selector"
 msgid "_Select"
 msgstr "_Selecionar"
 
+#: ../gtksourceview/gtksourceview.c:660
+msgid "Smart Backspace"
+msgstr "Recuo inteligente"
+
+#: ../gtksourceview/gtksourceview.c:661
+#| msgid "Whether the language should be hidden from the user"
+msgid "Whether smart Backspace should be used."
+msgstr "Se o recuo (Backspace) inteligente deve ser usado."
+
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1522
+#: ../gtksourceview/gtksourceview.c:1541
 msgid "_Redo"
 msgstr "_Refazer"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1533
+#: ../gtksourceview/gtksourceview.c:1552
 msgid "_Undo"
 msgstr "_Desfazer"
 
-#: ../gtksourceview/gtksourceview.c:1551
+#: ../gtksourceview/gtksourceview.c:1570
 msgid "All _Upper Case"
 msgstr "Tudo em _Maiúsculas"
 
-#: ../gtksourceview/gtksourceview.c:1561
+#: ../gtksourceview/gtksourceview.c:1580
 msgid "All _Lower Case"
 msgstr "Tudo em mi_Núsculas"
 
-#: ../gtksourceview/gtksourceview.c:1571
+#: ../gtksourceview/gtksourceview.c:1590
 msgid "_Invert Case"
 msgstr "_iNVERTER lETRAS"
 
-#: ../gtksourceview/gtksourceview.c:1581
+#: ../gtksourceview/gtksourceview.c:1600
 msgid "_Title Case"
 msgstr "_Letras do título "
 
-#: ../gtksourceview/gtksourceview.c:1591
+#: ../gtksourceview/gtksourceview.c:1610
 msgid "C_hange Case"
 msgstr "Alterar maiúsculas/minúsculas"
 
@@ -3513,9 +3506,6 @@ msgstr ""
 
 #~ msgid "Hidden"
 #~ msgstr "Escondido"
-
-#~ msgid "Whether the language should be hidden from the user"
-#~ msgstr "Se a linguagem deverá ou não ser escondida do utilizador"
 
 #~ msgid "Language specification directories"
 #~ msgstr "Diretórios de especificação de linguagens"
