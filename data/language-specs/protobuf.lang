@@ -45,24 +45,24 @@
     </context>
 
     <context id="keywords" style-ref="keyword">
-      <keyword>message</keyword>
-      <keyword>enum</keyword>
-      <keyword>package</keyword>
-      <keyword>required</keyword>
-      <keyword>optional</keyword>
-      <keyword>repeated</keyword>
-      <keyword>import</keyword>
-      <keyword>extensions</keyword>
-      <keyword>to</keyword>
-      <keyword>extend</keyword>
-      <keyword>service</keyword>
-      <keyword>rpc</keyword>
-      <keyword>returns</keyword>
-      <keyword>option</keyword>
-
       <keyword>default</keyword>
-      <keyword>packed</keyword>
       <keyword>deprecated</keyword>
+      <keyword>enum</keyword>
+      <keyword>extend</keyword>
+      <keyword>extensions</keyword>
+      <keyword>import</keyword>
+      <keyword>message</keyword>
+      <keyword>optional</keyword>
+      <keyword>option</keyword>
+      <keyword>package</keyword>
+      <keyword>packed</keyword>
+      <keyword>repeated</keyword>
+      <keyword>required</keyword>
+      <keyword>returns</keyword>
+      <keyword>rpc</keyword>
+      <keyword>service</keyword>
+      <keyword>syntax</keyword>
+      <keyword>to</keyword>
     </context>
 
     <context id="types" style-ref="type">
@@ -91,6 +91,7 @@
     <context id="proto" class="no-spell-check">
       <include>
         <context ref="def:c-like-comment" style-ref="comment"/>
+        <context ref="def:c-like-comment-multiline" style-ref="comment"/>
         <context ref="variable"/>
         <context ref="string"/>
         <context ref="keywords"/>
