@@ -70,6 +70,7 @@ LANGUAGES =			\
 	markdown.lang		\
 	matlab.lang		\
 	mediawiki.lang		\
+	meson.lang		\
 	modelica.lang		\
 	mxml.lang		\
 	nemerle.lang		\
