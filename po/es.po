@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-05-27 21:54+0000\n"
-"PO-Revision-Date: 2015-05-28 \n"
+"POT-Creation-Date: 2015-07-12 21:58+0000\n"
+"PO-Revision-Date: 2015-07-13 \n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -935,7 +935,6 @@ msgid "Builtin Command"
 msgstr "Comando integrado"
 
 #: ../data/language-specs/cmake.lang.h:4
-#| msgid "Builtin Command"
 msgid "Deprecated Builtin Command"
 msgstr "Comando de construcción obsoleto"
 
@@ -961,7 +960,6 @@ msgid "C++"
 msgstr "C++"
 
 #: ../data/language-specs/cpphdr.lang.h:2
-#| msgid "Header"
 msgid "C++ Header"
 msgstr "Cabecera C++"
 
@@ -1028,12 +1026,10 @@ msgid "Tag Name Selector"
 msgstr "Selector de nombre de etiqueta"
 
 #: ../data/language-specs/csv.lang.h:2
-#| msgid "CSS"
 msgid "CSV"
 msgstr "CSV"
 
 #: ../data/language-specs/csv.lang.h:4
-#| msgid "Escaped Character"
 msgid "Escaped character"
 msgstr "Carácter escapado"
 
@@ -3153,20 +3149,19 @@ msgstr "Id «%s» desconocido en la expresión regular «%s»"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "en la expresión regular «%s»: las retroreferencias no se soportan"
 
-#: ../gtksourceview/gtksourcemap.c:1075
+#: ../gtksourceview/gtksourcemap.c:1078
 msgid "View"
 msgstr "Ver"
 
-#: ../gtksourceview/gtksourcemap.c:1076
+#: ../gtksourceview/gtksourcemap.c:1079
 msgid "The view this widget is mapping."
 msgstr "La vista que este widget está mapeando."
 
-#: ../gtksourceview/gtksourcemap.c:1082
-#| msgid "File Descriptor"
+#: ../gtksourceview/gtksourcemap.c:1085
 msgid "Font Description"
 msgstr "Descripción de la tipografía"
 
-#: ../gtksourceview/gtksourcemap.c:1083
+#: ../gtksourceview/gtksourcemap.c:1086
 msgid "The Pango font description to use."
 msgstr "La descripción de la tipografía Pango que usar."
 
@@ -3187,33 +3182,42 @@ msgstr "_Cancelar"
 msgid "_Select"
 msgstr "_Seleccionar"
 
+#: ../gtksourceview/gtksourceview.c:660
+msgid "Smart Backspace"
+msgstr "Retroceso inteligente"
+
+#: ../gtksourceview/gtksourceview.c:661
+#| msgid "Whether the language should be hidden from the user"
+msgid "Whether smart Backspace should be used."
+msgstr "Indica si se debe usar el retroceso inteligente."
+
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1522
+#: ../gtksourceview/gtksourceview.c:1541
 msgid "_Redo"
 msgstr "_Rehacer"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1533
+#: ../gtksourceview/gtksourceview.c:1552
 msgid "_Undo"
 msgstr "_Deshacer"
 
-#: ../gtksourceview/gtksourceview.c:1551
+#: ../gtksourceview/gtksourceview.c:1570
 msgid "All _Upper Case"
 msgstr "Todo en m_ayúsculas"
 
-#: ../gtksourceview/gtksourceview.c:1561
+#: ../gtksourceview/gtksourceview.c:1580
 msgid "All _Lower Case"
 msgstr "Todo en _minúsculas"
 
-#: ../gtksourceview/gtksourceview.c:1571
+#: ../gtksourceview/gtksourceview.c:1590
 msgid "_Invert Case"
 msgstr "_Invertir capitalización"
 
-#: ../gtksourceview/gtksourceview.c:1581
+#: ../gtksourceview/gtksourceview.c:1600
 msgid "_Title Case"
 msgstr "Capitalización del _título"
 
-#: ../gtksourceview/gtksourceview.c:1591
+#: ../gtksourceview/gtksourceview.c:1610
 msgid "C_hange Case"
 msgstr "Ca_mbiar capitalización"
 
@@ -3525,9 +3529,6 @@ msgstr ""
 
 #~ msgid "Hidden"
 #~ msgstr "Oculto"
-
-#~ msgid "Whether the language should be hidden from the user"
-#~ msgstr "Indica si se debería ocultar el lenguaje al usuario"
 
 #~ msgid "Language specification directories"
 #~ msgstr "Carpetas de especificaciones de lenguajes"
