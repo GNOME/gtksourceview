@@ -188,6 +188,11 @@ get_row_height (GtkSourceCompletionContainer *container,
 
 	nb_rows = gtk_tree_model_iter_n_children (model, NULL);
 
+	if (nb_rows == 0)
+	{
+		return 0;
+	}
+
 	return tree_view_height / nb_rows;
 }
 
@@ -222,7 +227,7 @@ _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
 	if (needs_vertical_scrollbar (nat_size.height))
 	{
 		gint row_height = get_row_height (container, nat_size.height);
-		gint nb_rows_allowed = MAX_HEIGHT / row_height;
+		gint nb_rows_allowed = row_height != 0 ? MAX_HEIGHT / row_height : 0;
 
 		ret_height = nb_rows_allowed * row_height + scrollbar_height;
 	}
