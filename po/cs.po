@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-05-13 21:51+0000\n"
-"PO-Revision-Date: 2015-05-14 22:31+0200\n"
+"POT-Creation-Date: 2015-07-25 10:02+0000\n"
+"PO-Revision-Date: 2015-07-25 13:40+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/glade/gtksourceview.xml.in.h:1
 msgid "GtkSourceView"
@@ -107,6 +107,7 @@ msgstr "Vše"
 #: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
 #: ../data/language-specs/llvm.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/meson.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
@@ -221,7 +222,7 @@ msgstr "Chyba"
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
 #: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
-#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/meson.lang.h:5
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4
@@ -587,7 +588,7 @@ msgstr "Funkce"
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9
-#: ../data/language-specs/julia.lang.h:9
+#: ../data/language-specs/julia.lang.h:9 ../data/language-specs/meson.lang.h:4
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:15
@@ -937,7 +938,7 @@ msgstr "Název signálu"
 msgid "CMake"
 msgstr "CMake"
 
-#: ../data/language-specs/cmake.lang.h:3
+#: ../data/language-specs/cmake.lang.h:3 ../data/language-specs/meson.lang.h:3
 msgid "Builtin Command"
 msgstr "Vestavěný příkaz"
 
@@ -2168,6 +2169,10 @@ msgstr "Název"
 msgid "Template"
 msgstr "Šablona"
 
+#: ../data/language-specs/meson.lang.h:2
+msgid "Meson"
+msgstr "Meson"
+
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
 msgstr "Modelica"
@@ -3155,19 +3160,19 @@ msgstr "Neznámé ID „%s“ v regulárním výrazu „%s“"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "pro regulární výraz „%s“: zpětné odkazy nejsou podporovány"
 
-#: ../gtksourceview/gtksourcemap.c:729
+#: ../gtksourceview/gtksourcemap.c:1078
 msgid "View"
 msgstr "Zobrazení"
 
-#: ../gtksourceview/gtksourcemap.c:730
+#: ../gtksourceview/gtksourcemap.c:1079
 msgid "The view this widget is mapping."
 msgstr "Zobrazení tohoto widgetu je mapa."
 
-#: ../gtksourceview/gtksourcemap.c:736
+#: ../gtksourceview/gtksourcemap.c:1085
 msgid "Font Description"
 msgstr "Popis písma"
 
-#: ../gtksourceview/gtksourcemap.c:737
+#: ../gtksourceview/gtksourcemap.c:1086
 msgid "The Pango font description to use."
 msgstr "Popis Pango pro písmo, které se má použít."
 
@@ -3188,33 +3193,41 @@ msgstr "_Zrušit"
 msgid "_Select"
 msgstr "_Vybrat"
 
+#: ../gtksourceview/gtksourceview.c:660
+msgid "Smart Backspace"
+msgstr "Chytrý Backspace"
+
+#: ../gtksourceview/gtksourceview.c:661
+msgid "Whether smart Backspace should be used."
+msgstr "Jestli se má používat chytrý Backspace."
+
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1522
+#: ../gtksourceview/gtksourceview.c:1541
 msgid "_Redo"
 msgstr "Zn_ovu"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1533
+#: ../gtksourceview/gtksourceview.c:1552
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: ../gtksourceview/gtksourceview.c:1551
+#: ../gtksourceview/gtksourceview.c:1570
 msgid "All _Upper Case"
 msgstr "Vše _velkými písmeny"
 
-#: ../gtksourceview/gtksourceview.c:1561
+#: ../gtksourceview/gtksourceview.c:1580
 msgid "All _Lower Case"
 msgstr "Vše ma_lými písmeny"
 
-#: ../gtksourceview/gtksourceview.c:1571
+#: ../gtksourceview/gtksourceview.c:1590
 msgid "_Invert Case"
 msgstr "Přehod_it velikost písmen"
 
-#: ../gtksourceview/gtksourceview.c:1581
+#: ../gtksourceview/gtksourceview.c:1600
 msgid "_Title Case"
 msgstr "_První písmena velká"
 
-#: ../gtksourceview/gtksourceview.c:1591
+#: ../gtksourceview/gtksourceview.c:1610
 msgid "C_hange Case"
 msgstr "Změni_t velikost písmen"
 
