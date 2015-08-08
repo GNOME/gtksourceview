@@ -4378,8 +4378,6 @@ gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView *view,
  * should get indented instead of replaced with the \t character.
  *
  * Return value: %TRUE if the selection is indented when tab is pressed.
- *
- * Since: 1.8
  */
 gboolean
 gtk_source_view_get_indent_on_tab (GtkSourceView *view)
@@ -4403,8 +4401,6 @@ gtk_source_view_get_indent_on_tab (GtkSourceView *view)
  *
  * When the selection doesn't span several lines, the tab key always replaces
  * the selection with a normal \t character.
- *
- * Since: 1.8
  */
 void
 gtk_source_view_set_indent_on_tab (GtkSourceView *view,
