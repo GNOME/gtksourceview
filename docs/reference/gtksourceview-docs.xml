@@ -1,14 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
-               "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+   "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
 [
-  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
-  <!ENTITY version SYSTEM "version.xml">
+ <!ENTITY % local.common.attrib "xmlns:xi CDATA #FIXED 'http://www.w3.org/2003/XInclude'">
+ <!ENTITY % gtkdocentities SYSTEM "xml/gtkdocentities.ent">
+ %gtkdocentities;
 ]>
 <book id="index">
   <bookinfo>
     <title>GtkSourceView 3 Reference Manual</title>
-    <releaseinfo>for GtkSourceView &version;</releaseinfo>
+    <releaseinfo>for GtkSourceView &package_version;</releaseinfo>
   </bookinfo>
 
   <part>

@@ -136,7 +136,8 @@ AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-3.0])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gettext package name.])
 
 # Documentation
-GTK_DOC_CHECK([1.18], [--flavour=no-tmpl])
+# TODO bump to 1.25 once released.
+GTK_DOC_CHECK([1.24], [--flavour=no-tmpl])
 
 # Installed Tests for gnome continous integration
 AC_ARG_ENABLE(installed_tests,
@@ -179,7 +180,6 @@ data/language-specs/Makefile
 data/styles/Makefile
 docs/Makefile
 docs/reference/Makefile
-docs/reference/version.xml
 gtksourceview/Makefile
 gtksourceview/completion-providers/Makefile
 gtksourceview/completion-providers/words/Makefile
