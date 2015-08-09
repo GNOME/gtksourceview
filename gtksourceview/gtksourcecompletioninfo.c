@@ -410,6 +410,10 @@ compensate_for_gravity (GtkSourceCompletionInfo *window,
 		case GDK_GRAVITY_EAST:
 			*x = w;
 			break;
+		case GDK_GRAVITY_NORTH_WEST:
+		case GDK_GRAVITY_WEST:
+		case GDK_GRAVITY_SOUTH_WEST:
+		case GDK_GRAVITY_STATIC:
 		default:
 			*x = 0;
 			break;
@@ -428,6 +432,10 @@ compensate_for_gravity (GtkSourceCompletionInfo *window,
 		case GDK_GRAVITY_SOUTH_WEST:
 			*y = w;
 			break;
+		case GDK_GRAVITY_NORTH:
+		case GDK_GRAVITY_NORTH_EAST:
+		case GDK_GRAVITY_NORTH_WEST:
+		case GDK_GRAVITY_STATIC:
 		default:
 			*y = 0;
 			break;
