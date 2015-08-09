@@ -13,6 +13,8 @@ AC_INIT([gtksourceview],
 	[gtksourceview],
 	[https://wiki.gnome.org/Projects/GtkSourceView])
 
+AX_IS_RELEASE([git-directory])
+
 # Libtool versioning
 #
 # For development releases, keep the same numbers.
