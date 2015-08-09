@@ -1155,7 +1155,7 @@ static gint
 get_context_class_mask (GtkSourceBuffer *buffer,
                         GtkTextIter     *iter)
 {
-	gint i;
+	guint i;
 	gint ret = 0;
 
 	for (i = 0; i < sizeof (cclass_mask_definitions) / sizeof (gchar *); ++i)
