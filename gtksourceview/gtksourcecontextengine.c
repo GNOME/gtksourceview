@@ -3303,7 +3303,7 @@ static void
 context_unref (Context *context)
 {
 	ContextPtr *children;
-	gint i;
+	guint i;
 
 	if (context == NULL || --context->ref_count != 0)
 		return;
@@ -5372,11 +5372,13 @@ update_syntax (GtkSourceContextEngine *ce,
 
 	if (0 == start_offset)
 	{
+		gunichar c;
+
 		first_line = TRUE;
 
 		/* If it is the first line and it starts with BOM, skip it
 		 * since regexes in lang files do not take it into account */
-		gunichar c = gtk_text_iter_get_char (&start_iter);
+		c = gtk_text_iter_get_char (&start_iter);
 		if (IS_BOM (c))
 		{
 			gtk_text_iter_forward_char (&start_iter);
@@ -5656,6 +5658,8 @@ context_definition_new (const gchar            *id,
 			g_return_val_if_fail (!match, NULL);
 			g_return_val_if_fail (!end || start, NULL);
 			break;
+		default:
+			g_assert_not_reached ();
 	}
 
 	definition = g_slice_new0 (ContextDefinition);
@@ -5757,6 +5761,8 @@ context_definition_unref (ContextDefinition *definition)
 			_gtk_source_regex_unref (definition->u.start_end.start);
 			_gtk_source_regex_unref (definition->u.start_end.end);
 			break;
+		default:
+			g_assert_not_reached ();
 	}
 
 	sub_pattern_list = definition->sub_patterns;
@@ -5888,6 +5894,8 @@ _gtk_source_context_data_define_context (GtkSourceContextData   *ctx_data,
 			if (match_regex != NULL)
 				wrong_args = TRUE;
 			break;
+		default:
+			g_assert_not_reached ();
 	}
 
 	if (wrong_args)
