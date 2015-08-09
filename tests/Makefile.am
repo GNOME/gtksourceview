@@ -1,4 +1,4 @@
-@GNOME_CODE_COVERAGE_RULES@
+@CODE_COVERAGE_RULES@
 
 AM_CPPFLAGS = 				\
 	-DDATADIR=\""$(datadir)"\" 	\

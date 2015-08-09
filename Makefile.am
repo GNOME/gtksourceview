@@ -84,6 +84,6 @@ MAINTAINERCLEANFILES = 		\
 
 DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-glade-catalog
 
-@GNOME_CODE_COVERAGE_RULES@
+@CODE_COVERAGE_RULES@
 
 -include $(top_srcdir)/git.mk

@@ -2,7 +2,7 @@ if ENABLE_PROVIDERS
 SUBDIRS = completion-providers
 endif
 
-@GNOME_CODE_COVERAGE_RULES@
+@CODE_COVERAGE_RULES@
 
 AM_CPPFLAGS = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
