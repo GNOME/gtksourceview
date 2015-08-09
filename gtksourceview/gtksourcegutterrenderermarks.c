@@ -413,7 +413,7 @@ gtk_source_gutter_renderer_marks_init (GtkSourceGutterRendererMarks *self)
 }
 
 GtkSourceGutterRenderer *
-gtk_source_gutter_renderer_marks_new ()
+gtk_source_gutter_renderer_marks_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_GUTTER_RENDERER_MARKS, NULL);
 }

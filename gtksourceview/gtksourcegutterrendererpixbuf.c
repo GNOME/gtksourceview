@@ -151,6 +151,8 @@ gutter_renderer_pixbuf_draw (GtkSourceGutterRenderer      *renderer,
 			           &x,
 			           &y);
 			break;
+		default:
+			g_assert_not_reached ();
 	}
 
 	gdk_cairo_set_source_pixbuf (cr, pixbuf, x, y);
@@ -350,7 +352,7 @@ gtk_source_gutter_renderer_pixbuf_init (GtkSourceGutterRendererPixbuf *self)
  *
  **/
 GtkSourceGutterRenderer *
-gtk_source_gutter_renderer_pixbuf_new ()
+gtk_source_gutter_renderer_pixbuf_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF, NULL);
 }

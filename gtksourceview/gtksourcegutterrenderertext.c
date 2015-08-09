@@ -201,7 +201,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL:
 			x = cell_area->x + (cell_area->width - width) * xalign;
 			y = cell_area->y + (cell_area->height - height) * yalign;
-		break;
+			break;
 		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST:
 			center_on (renderer,
 			           cell_area,
@@ -212,7 +212,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 			           yalign,
 			           &x,
 			           &y);
-		break;
+			break;
 		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_LAST:
 			center_on (renderer,
 			           cell_area,
@@ -223,7 +223,9 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 			           yalign,
 			           &x,
 			           &y);
-		break;
+			break;
+		default:
+			g_assert_not_reached ();
 	}
 
 	context = gtk_widget_get_style_context (GTK_WIDGET (view));
@@ -445,7 +447,7 @@ gtk_source_gutter_renderer_text_init (GtkSourceGutterRendererText *self)
  *
  **/
 GtkSourceGutterRenderer *
-gtk_source_gutter_renderer_text_new ()
+gtk_source_gutter_renderer_text_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT, NULL);
 }

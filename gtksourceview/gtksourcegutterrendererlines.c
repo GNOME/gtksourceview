@@ -399,7 +399,7 @@ gtk_source_gutter_renderer_lines_init (GtkSourceGutterRendererLines *self)
 }
 
 GtkSourceGutterRenderer *
-gtk_source_gutter_renderer_lines_new ()
+gtk_source_gutter_renderer_lines_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_GUTTER_RENDERER_LINES, NULL);
 }
