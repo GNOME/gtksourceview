@@ -167,7 +167,7 @@ test_invalid_utf8 (void)
 
 static gchar *
 get_encoded_text (const gchar             *text,
-		  gsize                    nread,
+		  gint                     nread,
 		  const GtkSourceEncoding *to,
 		  const GtkSourceEncoding *from,
 		  gsize                   *bytes_written_aux,
