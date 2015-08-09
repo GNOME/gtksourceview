@@ -402,7 +402,7 @@ gtk_source_mark_attributes_init (GtkSourceMarkAttributes *self)
  * Returns: (transfer full): a new source mark attributes.
  */
 GtkSourceMarkAttributes *
-gtk_source_mark_attributes_new ()
+gtk_source_mark_attributes_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_MARK_ATTRIBUTES, NULL);
 }
