@@ -372,7 +372,9 @@ check_history_size (GtkSourceUndoManagerDefault *manager)
 		return;
 	}
 
-	while (manager->priv->action_groups->length > manager->priv->max_undo_levels)
+	g_return_if_fail (manager->priv->max_undo_levels > 0);
+
+	while (manager->priv->action_groups->length > (guint)manager->priv->max_undo_levels)
 	{
 		/* Strip redo action groups first. */
 		if (manager->priv->location != NULL)
