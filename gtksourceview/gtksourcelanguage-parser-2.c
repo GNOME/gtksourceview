@@ -1090,6 +1090,8 @@ replace_delimiter (const GMatchInfo *match_info,
 			g_string_append (expanded_regex,
 					parser_state->closing_delimiter);
 			break;
+		default:
+			break;
 	}
 
 	g_free (delim);
@@ -1677,6 +1679,8 @@ file_parse (gchar                     *filename,
 				break;
 			case XML_READER_TYPE_END_ELEMENT:
 				element_end (parser_state);
+				break;
+			default:
 				break;
 		}
 	}
