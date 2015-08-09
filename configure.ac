@@ -70,8 +70,7 @@ AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
 
 # Compile warnings
-AX_REQUIRE_DEFINED([GNOME_COMPILE_WARNINGS])
-GNOME_COMPILE_WARNINGS([maximum])
+AX_COMPILER_FLAGS([WARN_CFLAGS], [WARN_LDFLAGS])
 
 AC_ARG_ENABLE(deprecations,
               [AS_HELP_STRING([--disable-deprecations],

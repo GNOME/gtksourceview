@@ -10,6 +10,8 @@ AM_CPPFLAGS = 				\
 	$(DEP_CFLAGS)			\
 	$(TESTS_CFLAGS)
 
+AM_LDFLAGS = $(WARN_LDFLAGS)
+
 LDADD = $(top_builddir)/gtksourceview/completion-providers/words/libgtksourcecompletionwords.la \
 	$(top_builddir)/gtksourceview/libgtksourceview-core.la \
 	-lm \

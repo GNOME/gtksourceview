@@ -32,6 +32,7 @@ libgtksourcecompletionwords_la_CFLAGS =		\
 	$(CODE_COVERAGE_CFLAGS)
 
 libgtksourcecompletionwords_la_LDFLAGS =	\
+	$(WARN_LDFLAGS)				\
 	$(CODE_COVERAGE_LDFLAGS)
 
 libgtksourcecompletionwords_includedir = \

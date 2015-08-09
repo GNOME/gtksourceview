@@ -154,6 +154,7 @@ libgtksourceview_core_la_CFLAGS = 	\
 
 libgtksourceview_core_la_LDFLAGS =	\
 	-no-undefined 			\
+	$(WARN_LDFLAGS)			\
 	$(CODE_COVERAGE_LDFLAGS)
 
 if OS_OSX
@@ -179,6 +180,7 @@ libgtksourceview_3_0_la_LDFLAGS =		\
 	-version-info $(GSV_LT_VERSION)		\
 	-no-undefined 				\
 	-export-symbols-regex "^gtk_source_.*"	\
+	$(WARN_LDFLAGS)				\
 	$(CODE_COVERAGE_LDFLAGS)
 
 libgtksourceview_3_0_includedir = $(includedir)/gtksourceview-3.0/gtksourceview
@@ -259,6 +261,7 @@ INTROSPECTION_SCANNER_ARGS =			\
 GtkSource_3_0_gir_NAMESPACE = GtkSource
 GtkSource_3_0_gir_VERSION = 3.0
 GtkSource_3_0_gir_CFLAGS = $(DEP_CFLAGS)
+GtkSource_3_0_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
 GtkSource_3_0_gir_LIBS = libgtksourceview-3.0.la
 GtkSource_3_0_gir_FILES =			\
 	$(libgtksourcecompletionwords_files)	\
