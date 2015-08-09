@@ -109,10 +109,13 @@ _gtk_source_completion_words_utils_scan_words (gchar *text,
 
 	while (find_next_word (text, &start_idx, &end_idx))
 	{
-		gint word_size = end_idx - start_idx;
-		gunichar ch = g_utf8_get_char (text + start_idx);
+		guint word_size;
+		gunichar ch;
 
-		g_assert (word_size >= 0);
+		g_assert (end_idx >= start_idx);
+
+		word_size = end_idx - start_idx;
+		ch = g_utf8_get_char (text + start_idx);
 
 		if (word_size >= minimum_word_size &&
 		    valid_start_char (ch))
