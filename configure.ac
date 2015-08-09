@@ -68,6 +68,7 @@ AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
 
 # Compile warnings
+AX_REQUIRE_DEFINED([GNOME_COMPILE_WARNINGS])
 GNOME_COMPILE_WARNINGS([maximum])
 
 AC_ARG_ENABLE(deprecations,
@@ -103,6 +104,7 @@ AM_CONDITIONAL([ENABLE_PROVIDERS], [ test "$enable_providers" = "yes" ])
 
 dnl check for native osx
 AC_MSG_CHECKING([for native Mac OS X])
+AX_REQUIRE_DEFINED([GTK_CHECK_BACKEND])
 GTK_CHECK_BACKEND([quartz], [3.0.0], [os_osx=yes], [os_osx=no])
 AC_MSG_RESULT([$os_osx])
 AM_CONDITIONAL([OS_OSX], [ test "$os_osx" = "yes" ])
@@ -128,6 +130,7 @@ AS_IF([ test "$glade_catalog" = "yes" ],
 	 AC_SUBST(GLADE_CATALOG_DIR)])
 
 # i18N stuff
+AX_REQUIRE_DEFINED([IT_PROG_INTLTOOL])
 IT_PROG_INTLTOOL([0.40])
 AS_IF([test "$USE_NLS" = "yes"],
       [AC_DEFINE([ENABLE_NLS], [1], [Defined if native language support should be enabled.])])
@@ -136,6 +139,7 @@ AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-3.0])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gettext package name.])
 
 # Documentation
+AX_REQUIRE_DEFINED([GTK_DOC_CHECK])
 # TODO bump to 1.25 once released.
 GTK_DOC_CHECK([1.24], [--flavour=no-tmpl])
 
@@ -157,12 +161,15 @@ AC_SUBST(PANGO_PREFIX)
 AC_SUBST(GDK_PIXBUF_PREFIX)
 
 # Introspection
+AX_REQUIRE_DEFINED([GOBJECT_INTROSPECTION_CHECK])
 GOBJECT_INTROSPECTION_CHECK([1.42.0])
 
 # Code coverage
+AX_REQUIRE_DEFINED([GNOME_CODE_COVERAGE])
 GNOME_CODE_COVERAGE
 
 # Vala
+AX_REQUIRE_DEFINED([VAPIGEN_CHECK])
 VAPIGEN_CHECK
 
 # test-widget uses this to find lang files and gtksourcebuffer.c
