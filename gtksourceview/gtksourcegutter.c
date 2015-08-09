@@ -959,6 +959,9 @@ apply_style (GtkSourceGutter *gutter,
 			class = GTK_STYLE_CLASS_LEFT;
 			break;
 
+		case GTK_TEXT_WINDOW_PRIVATE:
+		case GTK_TEXT_WINDOW_WIDGET:
+		case GTK_TEXT_WINDOW_TEXT:
 		default:
 			g_return_if_reached ();
 	}
