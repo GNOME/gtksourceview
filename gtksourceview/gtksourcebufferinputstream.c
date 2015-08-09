@@ -164,14 +164,14 @@ read_line (GtkSourceBufferInputStream *stream,
 		gchar *ptr;
 		gint char_offset;
 		gint written;
-		gsize to_write;
+		glong to_write;
 
 		/* Here the line does not fit in the buffer, we thus write
 		   the amount of bytes we can still fit, storing the position
 		   for the next read with the mark. Do not try to write the
 		   new newline in this case, it will be handled in the next
 		   iteration */
-		to_write = MIN (space_left, bytes);
+		to_write = MIN ((glong)space_left, bytes);
 		ptr = buf;
 		written = 0;
 		char_offset = 0;
