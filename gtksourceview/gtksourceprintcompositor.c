@@ -1839,6 +1839,8 @@ setup_pango_layouts (GtkSourcePrintCompositor *compositor,
 			 */
 			pango_layout_set_ellipsize (layout, PANGO_ELLIPSIZE_END);
 			break;
+		default:
+			g_return_if_reached ();
 	}
 
 	set_layout_tab_width (compositor, layout);
