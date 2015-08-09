@@ -80,7 +80,7 @@ test_region (void)
 	}
 
 	for (i = 0; i < NUM_OPS; i++) {
-		gchar *op_name;
+		const gchar *op_name;
 
 		gtk_text_buffer_get_iter_at_offset (buffer, &iter1, ops [i][1]);
 		gtk_text_buffer_get_iter_at_offset (buffer, &iter2, ops [i][2]);
