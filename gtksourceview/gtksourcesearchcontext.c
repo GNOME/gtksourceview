@@ -3807,17 +3807,17 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 
 	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
 	{
-		GtkTextIter start;
+		GtkTextIter region_start;
 
 		if (!gtk_text_region_nth_subregion (search->priv->scan_region,
 						    0,
-						    &start,
+						    &region_start,
 						    NULL))
 		{
 			return;
 		}
 
-		regex_search_scan_chunk (search, &start, end);
+		regex_search_scan_chunk (search, &region_start, end);
 	}
 	else
 	{
