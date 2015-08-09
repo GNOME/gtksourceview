@@ -335,6 +335,8 @@ gtk_source_pixbuf_helper_render (GtkSourcePixbufHelper *helper,
 		case ICON_TYPE_NAME:
 			from_name (helper, widget, size);
 			break;
+		default:
+			g_assert_not_reached ();
 	}
 
 	return helper->cached_pixbuf;
