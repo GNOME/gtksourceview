@@ -1155,7 +1155,7 @@ get_accel_at_iter (GtkSourceCompletion *completion,
                    GtkTreeIter         *iter)
 {
 	GtkTreeIter it;
-	gint accel;
+	guint accel;
 
 	if (gtk_source_completion_model_iter_is_header (completion->priv->model_proposals, iter))
 	{
@@ -1219,7 +1219,7 @@ activate_by_accelerator (GtkSourceCompletion *completion,
 
 	num = num == 0 ? 9 : num - 1;
 
-	if (num < 0 || completion->priv->num_accelerators <= num)
+	if (num < 0 || completion->priv->num_accelerators <= (guint)num)
 	{
 		return FALSE;
 	}
