@@ -536,52 +536,52 @@ strv_to_list (const gchar * const *enc_str)
 }
 
 static GSList *
-remove_duplicates_keep_first (GSList *encodings)
+remove_duplicates_keep_first (GSList *list)
 {
-	GSList *new_encodings = NULL;
+	GSList *new_list = NULL;
 	GSList *l;
 
-	for (l = encodings; l != NULL; l = l->next)
+	for (l = list; l != NULL; l = l->next)
 	{
 		gpointer cur_encoding = l->data;
 
-		if (!data_exists (new_encodings, cur_encoding))
+		if (!data_exists (new_list, cur_encoding))
 		{
-			new_encodings = g_slist_prepend (new_encodings, cur_encoding);
+			new_list = g_slist_prepend (new_list, cur_encoding);
 		}
 	}
 
-	new_encodings = g_slist_reverse (new_encodings);
+	new_list = g_slist_reverse (new_list);
 
-	g_slist_free (encodings);
-	return new_encodings;
+	g_slist_free (list);
+	return new_list;
 }
 
 static GSList *
-remove_duplicates_keep_last (GSList *encodings)
+remove_duplicates_keep_last (GSList *list)
 {
-	GSList *new_encodings = NULL;
+	GSList *new_list = NULL;
 	GSList *l;
 
-	encodings = g_slist_reverse (encodings);
+	list = g_slist_reverse (list);
 
-	for (l = encodings; l != NULL; l = l->next)
+	for (l = list; l != NULL; l = l->next)
 	{
 		gpointer cur_encoding = l->data;
 
-		if (!data_exists (new_encodings, cur_encoding))
+		if (!data_exists (new_list, cur_encoding))
 		{
-			new_encodings = g_slist_prepend (new_encodings, cur_encoding);
+			new_list = g_slist_prepend (new_list, cur_encoding);
 		}
 	}
 
-	g_slist_free (encodings);
-	return new_encodings;
+	g_slist_free (list);
+	return new_list;
 }
 
 /*
  * _gtk_source_encoding_remove_duplicates:
- * @encodings: (element-type GtkSource.Encoding): a list of #GtkSourceEncoding's.
+ * @list: (element-type GtkSource.Encoding): a list of #GtkSourceEncoding's.
  * @removal_type: the #GtkSourceEncodingDuplicates.
  *
  * A convenience function to remove duplicated encodings in a list.
@@ -591,22 +591,22 @@ remove_duplicates_keep_last (GSList *encodings)
  * Since: 3.14
  */
 GSList *
-_gtk_source_encoding_remove_duplicates (GSList                      *encodings,
+_gtk_source_encoding_remove_duplicates (GSList                      *list,
 					GtkSourceEncodingDuplicates  removal_type)
 {
 	switch (removal_type)
 	{
 		case GTK_SOURCE_ENCODING_DUPLICATES_KEEP_FIRST:
-			return remove_duplicates_keep_first (encodings);
+			return remove_duplicates_keep_first (list);
 
 		case GTK_SOURCE_ENCODING_DUPLICATES_KEEP_LAST:
-			return remove_duplicates_keep_last (encodings);
+			return remove_duplicates_keep_last (list);
 
 		default:
 			break;
 	}
 
-	g_return_val_if_reached (encodings);
+	g_return_val_if_reached (list);
 }
 
 /**
