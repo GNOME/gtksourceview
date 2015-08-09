@@ -673,6 +673,9 @@ create_input_stream (GtkSourceFileLoader *loader)
 			case GTK_SOURCE_COMPRESSION_TYPE_NONE:
 				/* NOOP */
 				break;
+
+			default:
+				g_assert_not_reached ();
 		}
 	}
 
