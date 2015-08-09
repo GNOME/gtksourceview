@@ -59,14 +59,14 @@ test_fixture_teardown (TestFixture   *fixture,
 }
 
 static void
-compare_strv (gchar **strv,
-              gchar **expected_strv)
+compare_strv (const gchar **strv,
+	      const gchar **expected_strv)
 {
 	if (expected_strv != NULL)
 	{
 		guint n, i;
 
-		n = g_strv_length (expected_strv);
+		n = g_strv_length ((gchar **) expected_strv);
 		for (i = 0; i < n; i++)
 		{
 			g_assert_cmpstr (strv[i], ==, expected_strv[i]);
@@ -80,16 +80,16 @@ compare_strv (gchar **strv,
 
 static void
 check_language (GtkSourceLanguage  *language,
-                const char         *id,
-                const char         *expected_name,
-                const char         *expected_section,
-                gboolean            expected_hidden,
-                const char         *expected_extra_meta,
-                gchar             **expected_mime,
-                gchar             **expected_glob,
-                gchar             **expected_styles,
-                const char         *style_id,
-                const char         *expected_style_name)
+		const gchar        *id,
+		const gchar        *expected_name,
+		const gchar        *expected_section,
+		gboolean            expected_hidden,
+		const gchar        *expected_extra_meta,
+		const gchar       **expected_mime,
+		const gchar       **expected_glob,
+		const gchar       **expected_styles,
+		const gchar        *style_id,
+		const gchar        *expected_style_name)
 {
 	gchar **mime;
 	gchar **glob;
@@ -102,15 +102,15 @@ check_language (GtkSourceLanguage  *language,
 	g_assert_cmpstr (gtk_source_language_get_metadata (language, "extra-meta"), ==, expected_extra_meta);
 
 	mime = gtk_source_language_get_mime_types (language);
-	compare_strv (mime, expected_mime);
+	compare_strv ((const gchar **) mime, expected_mime);
 	g_strfreev (mime);
 
 	glob = gtk_source_language_get_globs (language);
-	compare_strv (glob, expected_glob);
+	compare_strv ((const gchar **) glob, expected_glob);
 	g_strfreev (glob);
 
 	styles = gtk_source_language_get_style_ids (language);
-	compare_strv (styles, expected_styles);
+	compare_strv ((const gchar **) styles, expected_styles);
 	g_strfreev (styles);
 
 	if (expected_style_name != NULL)
@@ -124,11 +124,11 @@ test_language (TestFixture   *fixture,
                gconstpointer  data)
 {
 	GtkSourceLanguage *language;
+	const gchar *mime[] = { "text/x-test", "application/x-test", NULL};
+	const gchar *glob[] = { "*.test", "*.tst", NULL};
+	const gchar *styles[] = { "test-full:keyword", "test-full:string", NULL};
 
 	language = gtk_source_language_manager_get_language (fixture->manager, "test-full");
-	gchar *mime[] = { "text/x-test", "application/x-test", NULL};
-	gchar *glob[] = { "*.test", "*.tst", NULL};
-	gchar *styles[] = { "test-full:keyword", "test-full:string", NULL};
 	check_language (language, "test-full", "Test Full", "Sources", FALSE, "extra", mime, glob, styles, "test-full:string", "String");
 
 	language = gtk_source_language_manager_get_language (fixture->manager, "test-empty");
