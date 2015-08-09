@@ -229,7 +229,7 @@ typedef enum {
 } GtkSourceViewDropTypes;
 
 static const GtkTargetEntry drop_types[] = {
-	{"application/x-color", 0, TARGET_COLOR}
+	{(gchar *)"application/x-color", 0, TARGET_COLOR}
 };
 
 /* Prototypes. */
@@ -376,7 +376,7 @@ gtk_source_view_change_number (GtkSourceView *view,
 	{
 		gchar *p;
 		gint64 n;
-		gsize len;
+		glong len;
 
 		len = gtk_text_iter_get_offset (&end) - gtk_text_iter_get_offset (&start);
 		g_assert (len > 0);
@@ -1539,7 +1539,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 
 	/* create redo menu_item. */
 	menu_item = gtk_menu_item_new_with_mnemonic (_("_Redo"));
-	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", "redo");
+	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", (gpointer)"redo");
 	g_signal_connect (G_OBJECT (menu_item), "activate",
 			  G_CALLBACK (menu_item_activate_cb), text_view);
 	gtk_menu_shell_prepend (menu, menu_item);
@@ -1550,7 +1550,7 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 
 	/* create undo menu_item. */
 	menu_item = gtk_menu_item_new_with_mnemonic (_("_Undo"));
-	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", "undo");
+	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", (gpointer)"undo");
 	g_signal_connect (G_OBJECT (menu_item), "activate",
 			  G_CALLBACK (menu_item_activate_cb), text_view);
 	gtk_menu_shell_prepend (menu, menu_item);
@@ -1814,6 +1814,7 @@ move_cursor_smart_home_end (GtkTextView     *text_view,
 				                         count);
 				return TRUE;
 
+			case GTK_SOURCE_SMART_HOME_END_DISABLED:
 			default:
 				break;
 		}
@@ -1871,6 +1872,7 @@ move_cursor_smart_home_end (GtkTextView     *text_view,
 				                         count);
 				return TRUE;
 
+			case GTK_SOURCE_SMART_HOME_END_DISABLED:
 			default:
 				break;
 		}
@@ -1941,6 +1943,13 @@ gtk_source_view_move_cursor (GtkTextView     *text_view,
 			move_cursor_words (text_view, count, extend_selection);
 			return;
 
+		case GTK_MOVEMENT_LOGICAL_POSITIONS:
+		case GTK_MOVEMENT_VISUAL_POSITIONS:
+		case GTK_MOVEMENT_DISPLAY_LINES:
+		case GTK_MOVEMENT_PARAGRAPHS:
+		case GTK_MOVEMENT_PAGES:
+		case GTK_MOVEMENT_BUFFER_ENDS:
+		case GTK_MOVEMENT_HORIZONTAL_PAGES:
 		default:
 			break;
 	}
@@ -4122,7 +4131,7 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 		indent_width = tab_width;
 	}
 
-	if (visual_column < indent_width)
+	if ((gint)visual_column < indent_width)
 	{
 		return FALSE;
 	}
@@ -4134,7 +4143,7 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 
 		g_assert (target_column >= 0);
 
-		while (gtk_source_view_get_visual_column (view, &insert) > target_column)
+		while ((gint)gtk_source_view_get_visual_column (view, &insert) > target_column)
 		{
 			gtk_text_iter_backward_char (&insert);
 			ch = gtk_text_iter_get_char (&insert);
@@ -4153,7 +4162,7 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 
 		gtk_text_buffer_begin_user_action (buffer);
 		gtk_text_buffer_delete (buffer, &insert, &end);
-		while (gtk_source_view_get_visual_column (view, &insert) < target_column)
+		while ((gint)gtk_source_view_get_visual_column (view, &insert) < target_column)
 		{
 			gtk_text_buffer_insert (buffer, &insert, " ", 1);
 		}
