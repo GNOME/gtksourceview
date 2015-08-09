@@ -632,7 +632,7 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 
 			ptr = g_utf8_find_prev_char (buffer, buffer + len);
 
-			if (ptr && *ptr == '\r' && ptr - buffer == len - 1)
+			if (ptr && *ptr == '\r' && ptr - buffer == (glong)len - 1)
 			{
 				stream->priv->buffer = g_new (gchar, 2);
 				stream->priv->buffer[0] = '\r';
