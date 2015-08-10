@@ -4458,7 +4458,7 @@ view_dnd_drop (GtkTextView      *view,
 			return;
 		}
 
-		vals = (guint16 *) gtk_selection_data_get_data (selection_data);
+		vals = (gpointer) gtk_selection_data_get_data (selection_data);
 
 		vals[0] /= 256;
 	        vals[1] /= 256;
