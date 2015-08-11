@@ -1950,6 +1950,42 @@ accelerators_notify_cb (GtkSourceCompletion *completion,
 }
 
 static void
+cell_icon_func (GtkTreeViewColumn *column,
+                GtkCellRenderer   *cell,
+                GtkTreeModel      *model,
+                GtkTreeIter       *iter,
+                gpointer           data)
+{
+	GdkPixbuf *pixbuf;
+	gchar *icon_name;
+	GIcon *gicon;
+
+	gtk_tree_model_get (model, iter,
+	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON, &pixbuf,
+	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON_NAME, &icon_name,
+	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_GICON, &gicon,
+	                    -1);
+
+	if (pixbuf != NULL)
+	{
+		g_object_set (cell, "pixbuf", pixbuf, NULL);
+		g_object_unref (pixbuf);
+	}
+
+	if (icon_name != NULL)
+	{
+		g_object_set (cell, "icon-name", icon_name, NULL);
+		g_free (icon_name);
+	}
+
+	if (gicon != NULL)
+	{
+		g_object_set (cell, "gicon", gicon, NULL);
+		g_object_unref (gicon);
+	}
+}
+
+static void
 init_tree_view (GtkSourceCompletion *completion,
 		GtkBuilder          *builder)
 {
@@ -1992,8 +2028,17 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	column = GTK_TREE_VIEW_COLUMN (gtk_builder_get_object (builder, "tree_view_column_icon"));
 
+	/* We use a cell function instead of plain attributes for the icon since
+	 * the pixbuf renderer will not renderer any icon if pixbuf is set to NULL.
+	 * See https://bugzilla.gnome.org/show_bug.cgi?id=753510
+	 */
+	gtk_tree_view_column_set_cell_data_func (column,
+	                                         cell_renderer,
+	                                         cell_icon_func,
+	                                         NULL,
+	                                         NULL);
+
 	gtk_tree_view_column_set_attributes (column, cell_renderer,
-					     "pixbuf", GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON,
 					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
 					     NULL);
 

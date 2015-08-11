@@ -520,6 +520,32 @@ tree_model_get_value (GtkTreeModel *tree_model,
 			}
 			break;
 
+		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON_NAME:
+			if (is_header (proposal_info))
+			{
+				const gchar *icon_name = gtk_source_completion_provider_get_icon_name (completion_provider);
+				g_value_set_string (value, (gpointer)icon_name);
+			}
+			else
+			{
+				const gchar *icon_name = gtk_source_completion_proposal_get_icon_name (completion_proposal);
+				g_value_set_string (value, (gpointer)icon_name);
+			}
+			break;
+
+		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_GICON:
+			if (is_header (proposal_info))
+			{
+				GIcon *icon = gtk_source_completion_provider_get_gicon (completion_provider);
+				g_value_set_object (value, (gpointer)icon);
+			}
+			else
+			{
+				GIcon *icon = gtk_source_completion_proposal_get_gicon (completion_proposal);
+				g_value_set_object (value, (gpointer)icon);
+			}
+			break;
+
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER:
 			g_value_set_boolean (value, is_header (proposal_info));
 			break;
@@ -724,6 +750,8 @@ gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP] = G_TYPE_STRING;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON] = GDK_TYPE_PIXBUF;
+	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON_NAME] = G_TYPE_STRING;
+	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_GICON] = G_TYPE_ICON;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL] = G_TYPE_OBJECT;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER] = G_TYPE_OBJECT;
 	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER] = G_TYPE_BOOLEAN;

@@ -69,6 +69,18 @@ gtk_source_completion_proposal_get_icon_default (GtkSourceCompletionProposal *pr
 	return NULL;
 }
 
+static const gchar *
+gtk_source_completion_proposal_get_icon_name_default (GtkSourceCompletionProposal *proposal)
+{
+	return NULL;
+}
+
+static GIcon *
+gtk_source_completion_proposal_get_gicon_default (GtkSourceCompletionProposal *proposal)
+{
+	return NULL;
+}
+
 static gchar *
 gtk_source_completion_proposal_get_info_default (GtkSourceCompletionProposal *proposal)
 {
@@ -96,8 +108,9 @@ gtk_source_completion_proposal_default_init (GtkSourceCompletionProposalIface *i
 	iface->get_label = gtk_source_completion_proposal_get_label_default;
 	iface->get_markup = gtk_source_completion_proposal_get_markup_default;
 	iface->get_text = gtk_source_completion_proposal_get_text_default;
-
 	iface->get_icon = gtk_source_completion_proposal_get_icon_default;
+	iface->get_icon_name = gtk_source_completion_proposal_get_icon_name_default;
+	iface->get_gicon = gtk_source_completion_proposal_get_gicon_default;
 	iface->get_info = gtk_source_completion_proposal_get_info_default;
 	iface->hash = gtk_source_completion_proposal_hash_default;
 	iface->equal = gtk_source_completion_proposal_equal_default;
@@ -187,9 +200,9 @@ gtk_source_completion_proposal_get_text (GtkSourceCompletionProposal *proposal)
  * gtk_source_completion_proposal_get_icon:
  * @proposal: a #GtkSourceCompletionProposal.
  *
- * Gets the icon of @proposal.
+ * Gets the #GdkPixbuf for the icon of @proposal.
  *
- * Returns: (transfer none): The icon of @proposal.
+ * Returns: (nullable) (transfer none): A #GdkPixbuf with the icon of @proposal.
  */
 GdkPixbuf *
 gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
@@ -197,6 +210,42 @@ gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
 
 	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_icon (proposal);
+}
+
+/**
+ * gtk_source_completion_proposal_get_icon_name:
+ * @proposal: a #GtkSourceCompletionProposal.
+ *
+ * Gets the icon name of @proposal.
+ *
+ * Returns: (nullable) (transfer none): The icon name of @proposal.
+ *
+ * Since: 3.18
+ */
+const gchar *
+gtk_source_completion_proposal_get_icon_name (GtkSourceCompletionProposal *proposal)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
+
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_icon_name (proposal);
+}
+
+/**
+ * gtk_source_completion_proposal_get_gicon:
+ * @proposal: a #GtkSourceCompletionProposal.
+ *
+ * Gets the #GIcon for the icon of @proposal.
+ *
+ * Returns: (nullable) (transfer none): A #GIcon with the icon of @proposal.
+ *
+ * Since: 3.18
+ */
+GIcon *
+gtk_source_completion_proposal_get_gicon (GtkSourceCompletionProposal *proposal)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
+
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_gicon (proposal);
 }
 
 /**

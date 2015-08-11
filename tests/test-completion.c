@@ -39,7 +39,10 @@ struct _TestProvider
 	gint priority;
 	gchar *name;
 
-	GdkPixbuf *icon;
+	GdkPixbuf *provider_icon;
+
+	GdkPixbuf *item_icon;
+	GIcon *item_gicon;
 
 	/* If it's a random provider, a subset of 'proposals' are choosen on
 	 * each populate. Otherwise, all the proposals are shown. */
@@ -116,13 +119,7 @@ test_provider_get_icon (GtkSourceCompletionProvider *provider)
 {
 	TestProvider *tp = (TestProvider *)provider;
 
-	if (tp->icon == NULL)
-	{
-		GtkIconTheme *theme = gtk_icon_theme_get_default ();
-		tp->icon = gtk_icon_theme_load_icon (theme, "dialog-information", 16, 0, NULL);
-	}
-
-	return tp->icon;
+	return tp->is_random ? NULL : tp->provider_icon;
 }
 
 static void
@@ -131,7 +128,7 @@ test_provider_iface_init (GtkSourceCompletionProviderIface *iface)
 	iface->get_name = test_provider_get_name;
 	iface->populate = test_provider_populate;
 	iface->get_priority = test_provider_get_priority;
-	/* iface->get_icon = test_provider_get_icon; */
+	iface->get_icon = test_provider_get_icon;
 }
 
 static void
@@ -142,7 +139,9 @@ test_provider_dispose (GObject *gobject)
 	g_list_free_full (self->proposals, g_object_unref);
 	self->proposals = NULL;
 
-	g_clear_object (&self->icon);
+	g_clear_object (&self->provider_icon);
+	g_clear_object (&self->item_icon);
+	g_clear_object (&self->item_gicon);
 
 	G_OBJECT_CLASS (test_provider_parent_class)->dispose (gobject);
 }
@@ -170,17 +169,55 @@ test_provider_class_init (TestProviderClass *klass)
 static void
 test_provider_init (TestProvider *self)
 {
+	GtkIconTheme *theme;
+	GIcon *icon;
+	GIcon *emblem_icon;
+	GEmblem *emblem;
+
+	theme = gtk_icon_theme_get_default ();
+	self->provider_icon = gtk_icon_theme_load_icon (theme, "dialog-information", 16, 0, NULL);
+
+	self->item_icon = gtk_icon_theme_load_icon (theme, "trophy-gold", 16, 0, NULL);
+
+	icon = g_themed_icon_new ("trophy-silver");
+	emblem_icon = g_themed_icon_new ("emblem-urgent");
+	emblem = g_emblem_new (emblem_icon);
+	self->item_gicon = g_emblemed_icon_new (icon, emblem);
+	g_object_unref (icon);
+	g_object_unref (emblem_icon);
+	g_object_unref (emblem);
 }
 
 static void
 test_provider_set_fixed (TestProvider *provider,
 			 gint          nb_proposals)
 {
-	GdkPixbuf *icon = test_provider_get_icon (GTK_SOURCE_COMPLETION_PROVIDER (provider));
 	GList *proposals = NULL;
 	gint i;
 
 	g_list_free_full (provider->proposals, g_object_unref);
+
+	proposals = g_list_prepend (proposals,
+				    gtk_source_completion_item_new_with_markup ("A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!",
+										"A very long proposal. I repeat, a very long proposal!",
+										provider->item_icon,
+										"To test the horizontal scrollbar and the markup."));
+
+
+
+	proposals = g_list_prepend (proposals,
+				    g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM,
+						  "markup", "A proposal with a <b>symbolic</b> icon",
+						  "text", "Test setting the icon-name property",
+						  "icon-name", "face-cool-symbolic",
+						  NULL));
+
+	proposals = g_list_prepend (proposals,
+				    g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM,
+						  "markup", "A proposal with an emblem <b>GIcon</b>",
+						  "text", "Test setting the GIcon property",
+						  "gicon", provider->item_gicon,
+						  NULL));
 
 	for (i = nb_proposals - 1; i > 0; i--)
 	{
@@ -189,18 +226,12 @@ test_provider_set_fixed (TestProvider *provider,
 		proposals = g_list_prepend (proposals,
 					    gtk_source_completion_item_new (name,
 									    name,
-									    icon,
+									    provider->item_icon,
 									    "The extra info of the proposal.\n"
 									    "A second line."));
 
 		g_free (name);
 	}
-
-	proposals = g_list_prepend (proposals,
-				    gtk_source_completion_item_new_with_markup ("A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!",
-										"A very long proposal. I repeat, a very long proposal!",
-										icon,
-										"To test the horizontal scrollbar and the markup."));
 
 	provider->proposals = proposals;
 	provider->is_random = 0;
@@ -210,7 +241,6 @@ static void
 test_provider_set_random (TestProvider *provider,
 			  gint          nb_proposals)
 {
-	GdkPixbuf *icon = test_provider_get_icon (GTK_SOURCE_COMPLETION_PROVIDER (provider));
 	GList *proposals = NULL;
 	gint i;
 
@@ -224,7 +254,7 @@ test_provider_set_random (TestProvider *provider,
 		proposals = g_list_prepend (proposals,
 					    gtk_source_completion_item_new (name,
 									    name,
-									    icon,
+									    provider->item_icon,
 									    NULL));
 
 		g_free (padding);

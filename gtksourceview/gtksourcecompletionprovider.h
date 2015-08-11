@@ -43,6 +43,10 @@ typedef struct _GtkSourceCompletionProviderIface GtkSourceCompletionProviderIfac
  * Must be implemented.
  * @get_icon: The virtual function pointer for gtk_source_completion_provider_get_icon().
  * By default, %NULL is returned.
+ * @get_icon_name: The virtual function pointer for gtk_source_completion_provider_get_icon_name().
+ * By default, %NULL is returned.
+ * @get_gicon: The virtual function pointer for gtk_source_completion_provider_get_gicon().
+ * By default, %NULL is returned.
  * @populate: The virtual function pointer for gtk_source_completion_provider_populate().
  * Add no proposals by default.
  * @match: The virtual function pointer for gtk_source_completion_provider_match().
@@ -69,7 +73,11 @@ struct _GtkSourceCompletionProviderIface
 	GTypeInterface g_iface;
 
 	gchar		*(*get_name)       	(GtkSourceCompletionProvider *provider);
+
 	GdkPixbuf	*(*get_icon)       	(GtkSourceCompletionProvider *provider);
+	const gchar	*(*get_icon_name)   (GtkSourceCompletionProvider *provider);
+	GIcon		*(*get_gicon)       (GtkSourceCompletionProvider *provider);
+
 	void 		 (*populate) 		(GtkSourceCompletionProvider *provider,
 						 GtkSourceCompletionContext  *context);
 
@@ -103,6 +111,10 @@ GType		 gtk_source_completion_provider_get_type	(void);
 gchar		*gtk_source_completion_provider_get_name	(GtkSourceCompletionProvider *provider);
 
 GdkPixbuf	*gtk_source_completion_provider_get_icon	(GtkSourceCompletionProvider *provider);
+
+const gchar	*gtk_source_completion_provider_get_icon_name	(GtkSourceCompletionProvider *provider);
+
+GIcon		*gtk_source_completion_provider_get_gicon	(GtkSourceCompletionProvider *provider);
 
 void		 gtk_source_completion_provider_populate	(GtkSourceCompletionProvider *provider,
 								 GtkSourceCompletionContext  *context);

@@ -47,6 +47,10 @@ typedef struct _GtkSourceCompletionProposalIface	GtkSourceCompletionProposalIfac
  * By default, %NULL is returned.
  * @get_icon: The virtual function pointer for gtk_source_completion_proposal_get_icon().
  * By default, %NULL is returned.
+ * @get_icon_name: The virtual function pointer for gtk_source_completion_proposal_get_icon_name().
+ * By default, %NULL is returned.
+ * @get_gicon: The virtual function pointer for gtk_source_completion_proposal_get_gicon().
+ * By default, %NULL is returned.
  * @get_info: The virtual function pointer for gtk_source_completion_proposal_get_info().
  * By default, %NULL is returned.
  * @hash: The virtual function pointer for gtk_source_completion_proposal_hash().
@@ -62,19 +66,22 @@ struct _GtkSourceCompletionProposalIface
 	GTypeInterface parent;
 
 	/* Interface functions */
-	gchar		*(*get_label)	(GtkSourceCompletionProposal *proposal);
-	gchar		*(*get_markup)	(GtkSourceCompletionProposal *proposal);
-	gchar		*(*get_text)	(GtkSourceCompletionProposal *proposal);
+	gchar		*(*get_label)		(GtkSourceCompletionProposal *proposal);
+	gchar		*(*get_markup)		(GtkSourceCompletionProposal *proposal);
+	gchar		*(*get_text)		(GtkSourceCompletionProposal *proposal);
 
-	GdkPixbuf	*(*get_icon)	(GtkSourceCompletionProposal *proposal);
-	gchar		*(*get_info)	(GtkSourceCompletionProposal *proposal);
+	GdkPixbuf	*(*get_icon)		(GtkSourceCompletionProposal *proposal);
+	const gchar	*(*get_icon_name)	(GtkSourceCompletionProposal *proposal);
+	GIcon		*(*get_gicon)		(GtkSourceCompletionProposal *proposal);
 
-	guint		 (*hash)	(GtkSourceCompletionProposal *proposal);
-	gboolean	 (*equal)	(GtkSourceCompletionProposal *proposal,
-					 GtkSourceCompletionProposal *other);
+	gchar		*(*get_info)		(GtkSourceCompletionProposal *proposal);
+
+	guint		 (*hash)		(GtkSourceCompletionProposal *proposal);
+	gboolean	 (*equal)		(GtkSourceCompletionProposal *proposal,
+						 GtkSourceCompletionProposal *other);
 
 	/* Signals */
-	void		 (*changed)	(GtkSourceCompletionProposal *proposal);
+	void		 (*changed)		(GtkSourceCompletionProposal *proposal);
 };
 
 GType 			 gtk_source_completion_proposal_get_type 	(void) G_GNUC_CONST;
@@ -84,6 +91,9 @@ gchar			*gtk_source_completion_proposal_get_markup	(GtkSourceCompletionProposal 
 gchar			*gtk_source_completion_proposal_get_text	(GtkSourceCompletionProposal *proposal);
 
 GdkPixbuf		*gtk_source_completion_proposal_get_icon	(GtkSourceCompletionProposal *proposal);
+const gchar		*gtk_source_completion_proposal_get_icon_name	(GtkSourceCompletionProposal *proposal);
+GIcon			*gtk_source_completion_proposal_get_gicon	(GtkSourceCompletionProposal *proposal);
+
 gchar			*gtk_source_completion_proposal_get_info	(GtkSourceCompletionProposal *proposal);
 
 void			 gtk_source_completion_proposal_changed		(GtkSourceCompletionProposal *proposal);

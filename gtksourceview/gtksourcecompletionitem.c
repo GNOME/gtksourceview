@@ -39,6 +39,8 @@ struct _GtkSourceCompletionItemPrivate
 	gchar *text;
 	gchar *info;
 	GdkPixbuf *icon;
+	gchar *icon_name;
+	GIcon *gicon;
 };
 
 /* Properties */
@@ -49,6 +51,8 @@ enum
 	PROP_MARKUP,
 	PROP_TEXT,
 	PROP_ICON,
+	PROP_ICON_NAME,
+	PROP_GICON,
 	PROP_INFO
 };
 
@@ -85,6 +89,18 @@ gtk_source_completion_proposal_get_icon_impl (GtkSourceCompletionProposal *self)
 	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->icon;
 }
 
+static const gchar *
+gtk_source_completion_proposal_get_icon_name_impl (GtkSourceCompletionProposal *self)
+{
+	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->icon_name;
+}
+
+static GIcon *
+gtk_source_completion_proposal_get_gicon_impl (GtkSourceCompletionProposal *self)
+{
+	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->gicon;
+}
+
 static gchar *
 gtk_source_completion_proposal_get_info_impl (GtkSourceCompletionProposal *self)
 {
@@ -102,6 +118,8 @@ gtk_source_completion_proposal_iface_init (gpointer g_iface,
 	iface->get_markup = gtk_source_completion_proposal_get_markup_impl;
 	iface->get_text = gtk_source_completion_proposal_get_text_impl;
 	iface->get_icon = gtk_source_completion_proposal_get_icon_impl;
+	iface->get_icon_name = gtk_source_completion_proposal_get_icon_name_impl;
+	iface->get_gicon = gtk_source_completion_proposal_get_gicon_impl;
 	iface->get_info = gtk_source_completion_proposal_get_info_impl;
 }
 
@@ -119,6 +137,13 @@ gtk_source_completion_item_finalize (GObject *object)
 	if (self->priv->icon != NULL)
 	{
 		g_object_unref (self->priv->icon);
+	}
+
+	g_free (self->priv->icon_name);
+
+	if (self->priv->gicon != NULL)
+	{
+		g_object_unref (self->priv->gicon);
 	}
 
 	G_OBJECT_CLASS (gtk_source_completion_item_parent_class)->finalize (object);
@@ -153,6 +178,12 @@ gtk_source_completion_item_get_property (GObject    *object,
 		case PROP_ICON:
 			g_value_set_object (value, self->priv->icon);
 			break;
+		case PROP_ICON_NAME:
+			g_value_set_string (value, self->priv->icon_name);
+			break;
+		case PROP_GICON:
+			g_value_set_object (value, self->priv->gicon);
+			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -182,13 +213,11 @@ gtk_source_completion_item_set_property (GObject      *object,
 		case PROP_LABEL:
 			g_free (self->priv->label);
 			self->priv->label = g_value_dup_string (value);
-
 			emit_changed (self);
 			break;
 		case PROP_MARKUP:
 			g_free (self->priv->markup);
 			self->priv->markup = g_value_dup_string (value);
-
 			emit_changed (self);
 			break;
 		case PROP_TEXT:
@@ -198,7 +227,6 @@ gtk_source_completion_item_set_property (GObject      *object,
 		case PROP_INFO:
 			g_free (self->priv->info);
 			self->priv->info = g_value_dup_string (value);
-
 			emit_changed (self);
 			break;
 		case PROP_ICON:
@@ -208,6 +236,20 @@ gtk_source_completion_item_set_property (GObject      *object,
 			}
 
 			self->priv->icon = GDK_PIXBUF (g_value_dup_object (value));
+			emit_changed (self);
+			break;
+		case PROP_ICON_NAME:
+			g_free (self->priv->icon_name);
+			self->priv->icon_name = g_value_dup_string (value);
+			emit_changed (self);
+			break;
+		case PROP_GICON:
+			if (self->priv->gicon != NULL)
+			{
+				g_object_unref (self->priv->gicon);
+			}
+
+			self->priv->gicon = G_ICON (g_value_dup_object (value));
 			emit_changed (self);
 			break;
 		default:
@@ -267,16 +309,45 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	/**
 	 * GtkSourceCompletionItem:icon:
 	 *
-	 * Icon to be shown for this proposal.
+	 * The #GdkPixbuf for the icon to be shown for this proposal.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_ICON,
 					 g_param_spec_object ("icon",
 							      "Icon",
-							      "Icon to be shown for this item",
+							      "Pixbuf of the icon to be shown for this item",
 							      GDK_TYPE_PIXBUF,
 							      G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceCompletionItem:icon-name:
+	 *
+	 * The icon name for the icon to be shown for this proposal.
+	 *
+	 * Since: 3.18
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_ICON_NAME,
+					 g_param_spec_string ("icon-name",
+							      "Icon Name",
+							      "Icon name of the icon to be shown for this item",
+							      NULL,
+							      G_PARAM_READWRITE));
+
+	/**
+	 * GtkSourceCompletionItem:gicon:
+	 *
+	 * The #GIcon for the icon to be shown for this proposal.
+	 *
+	 * Since: 3.18
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_GICON,
+					 g_param_spec_object ("gicon",
+							      "GIcon",
+							      "GIcon of the icon to be shown for this item",
+							      G_TYPE_ICON,
+							      G_PARAM_READWRITE));
 	/**
 	 * GtkSourceCompletionItem:info:
 	 *
