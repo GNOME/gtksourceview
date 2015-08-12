@@ -3,19 +3,11 @@ SUBDIRS = gtksourceview po data docs tests
 pkgconfig_DATA = gtksourceview-3.0.pc
 
 EXTRA_DIST = \
-	intltool-extract.in \
-	intltool-merge.in \
-	intltool-update.in \
 	gtksourceview.doap \
 	gtksourceview-3.0.pc.in	\
 	gtksourceview-zip.in \
 	HACKING \
 	MAINTAINERS
-
-DISTCLEANFILES = \
-	intltool-extract \
-	intltool-merge \
-	intltool-update
 
 MAINTAINERCLEANFILES = 		\
 	ABOUT-NLS		\
@@ -54,7 +46,6 @@ MAINTAINERCLEANFILES = 		\
 	m4/intldir.m4		\
 	m4/intl.m4		\
 	m4/intlmacosx.m4	\
-	m4/intltool.m4		\
 	m4/intmax.m4		\
 	m4/introspection.m4	\
 	m4/inttypes_h.m4	\

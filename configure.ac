@@ -132,9 +132,10 @@ AS_IF([ test "$glade_catalog" = "yes" ],
 	 AC_MSG_RESULT([$GLADE_CATALOG_DIR])
 	 AC_SUBST(GLADE_CATALOG_DIR)])
 
-# i18N stuff
-AX_REQUIRE_DEFINED([IT_PROG_INTLTOOL])
-IT_PROG_INTLTOOL([0.40])
+# i18n
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.4])
+
 AS_IF([test "$USE_NLS" = "yes"],
       [AC_DEFINE([ENABLE_NLS], [1], [Defined if native language support should be enabled.])])
 
