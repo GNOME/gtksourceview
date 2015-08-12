@@ -125,6 +125,13 @@ LANGUAGES =			\
 languagesdir = $(datadir)/gtksourceview-3.0/language-specs
 languages_DATA = $(LANGUAGES) language.rng language2.rng language.dtd
 
-EXTRA_DIST = $(languages_DATA) check-language.sh
+EXTRA_DIST =			\
+	$(languages_DATA)	\
+	check-language.sh	\
+	language-specs.its	\
+	language-specs.pot
+
+$(srcdir)/language-specs.pot: $(LANGUAGES) language-specs.its
+	$(ITSTOOL) -i language-specs.its -o $@ $(LANGUAGES)
 
 -include $(top_srcdir)/git.mk
