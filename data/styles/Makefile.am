@@ -12,6 +12,13 @@ STYLES =			\
 stylesdir = $(datadir)/gtksourceview-3.0/styles
 styles_DATA = $(STYLES) styles.rng
 
-EXTRA_DIST = $(styles_DATA) check-style.sh
+EXTRA_DIST =		\
+	$(styles_DATA)	\
+	check-style.sh	\
+	styles.its	\
+	styles.pot
+
+$(srcdir)/styles.pot: $(STYLES) styles.its
+	$(ITSTOOL) -i styles.its -o $@ $(STYLES)
 
 -include $(top_srcdir)/git.mk
