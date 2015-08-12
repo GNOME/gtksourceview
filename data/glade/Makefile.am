@@ -6,15 +6,17 @@
 # and want to use the catalog in glade, you will need to set
 # the GLADE_CATALOG_SEARCH_PATH environment variable.
 catalogdir = $(datadir)/glade/catalogs
-catalog_in_files = gtksourceview.xml.in
-catalog_DATA = $(catalog_in_files:.xml.in=.xml)
-
-EXTRA_DIST = \
-	$(catalog_in_files)
+catalog_DATA = gtksourceview.xml
 
 validate: $(catalog_DATA)
 	xmllint --dtdvalid $(GLADE_CATALOG_DIR)/glade-catalog.dtd --noout $<
 
-CLEANFILES = $(catalog_DATA)
+EXTRA_DIST =			\
+	gtksourceview.xml	\
+	glade.its		\
+	glade.pot
+
+$(srcdir)/glade.pot: $(catalog_DATA) glade.its
+	$(ITSTOOL) -i glade.its -o $@ $(catalog_DATA)
 
 -include $(top_srcdir)/git.mk
