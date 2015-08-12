@@ -24,7 +24,9 @@ MAINTAINERCLEANFILES = 		\
 	ltmain.sh		\
 	m4/ax_append_compile_flags.m4 \
 	m4/ax_append_flag.m4	\
+	m4/ax_append_link_flags.m4 \
 	m4/ax_check_compile_flag.m4 \
+	m4/ax_check_link_flag.m4 \
 	m4/ax_code_coverage.m4	\
 	m4/ax_compiler_flags_cflags.m4 \
 	m4/ax_compiler_flags_gir.m4 \
@@ -83,7 +85,9 @@ MAINTAINERCLEANFILES = 		\
 	po/en@quot.header	\
 	po/insert-header.sin	\
 	po/quot.sed		\
+	po/remove-potcdate.sed	\
 	po/remove-potcdate.sin	\
+	po/stamp-po		\
 	test-driver		\
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
