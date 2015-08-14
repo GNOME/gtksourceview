@@ -654,11 +654,18 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							    GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE,
 							    G_PARAM_READWRITE));
 
+	/**
+	 * GtkSourceView:smart-backspace:
+	 *
+	 * Whether smart Backspace should be used.
+	 *
+	 * Since: 3.18
+	 */
 	g_object_class_install_property (object_class,
 					 PROP_SMART_BACKSPACE,
 					 g_param_spec_boolean ("smart-backspace",
-							       _("Smart Backspace"),
-							       _("Whether smart Backspace should be used."),
+							       "Smart Backspace",
+							       "",
 							       FALSE,
 							       G_PARAM_READWRITE));
 
