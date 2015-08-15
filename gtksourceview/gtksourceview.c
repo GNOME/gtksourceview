@@ -4229,7 +4229,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			if (gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (view), event))
 			{
 				g_free (indent);
-				return TRUE;
+				return GDK_EVENT_STOP;
 			}
 
 			/* If an input method has inserted some text while handling the key press event,
@@ -4244,7 +4244,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 			gtk_text_buffer_end_user_action (buf);
 			gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (widget),
 							    mark);
-			return TRUE;
+			return GDK_EVENT_STOP;
 		}
 	}
 
@@ -4269,7 +4269,7 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 				_gtk_source_buffer_save_and_clear_selection (GTK_SOURCE_BUFFER (buf));
 				gtk_source_view_unindent_lines (view, &s, &e);
 				_gtk_source_buffer_restore_selection (GTK_SOURCE_BUFFER (buf));
-				return TRUE;
+				return GDK_EVENT_STOP;
 			}
 
 			/* tab: if we have a selection which spans one whole line
@@ -4283,19 +4283,19 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 				_gtk_source_buffer_save_and_clear_selection (GTK_SOURCE_BUFFER (buf));
 				gtk_source_view_indent_lines (view, &s, &e);
 				_gtk_source_buffer_restore_selection (GTK_SOURCE_BUFFER (buf));
-				return TRUE;
+				return GDK_EVENT_STOP;
 			}
 		}
 
 		insert_tab_or_spaces (view, &s, &e);
-		return TRUE;
+		return GDK_EVENT_STOP;
 	}
 
 	if ((key == GDK_KEY_BackSpace) && view->priv->smart_backspace)
 	{
 		if (gtk_source_view_do_smart_backspace (view, (event->state & modifiers)))
 		{
-			return TRUE;
+			return GDK_EVENT_STOP;
 		}
 	}
 
