@@ -31,8 +31,9 @@
  * The provider may be displayed in the completion window as a header row, showing
  * its name and optionally an icon.
  * The icon may be specified as a #GdkPixbuf, as an icon name or as a #GIcon by
- * implementing the corresponding get function. Only one of those get functions
- * should return a value different from %NULL.
+ * implementing the corresponding get function. At most one of those get functions
+ * should return a value different from %NULL, if they all return %NULL no icon
+ * will be used.
  */
 
 #include "gtksourcecompletionprovider.h"
