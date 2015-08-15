@@ -28,6 +28,15 @@
  * The proposal interface represents a completion item in the completion window.
  * It provides information on how to display the completion item and what action
  * should be taken when the completion item is activated.
+ *
+ * The proposal is displayed in the completion window with a label and
+ * optionally an icon.
+ * The label may be specified using plain text or markup by implementing
+ * the corresponding get function. Only one of those get functions
+ * should return a value different from %NULL.
+ * The icon may be specified as a #GdkPixbuf, as an icon name or as a #GIcon by
+ * implementing the corresponding get function. Only one of those get functions
+ * should return a value different from %NULL.
  */
 
 #include "gtksourcecompletionproposal.h"

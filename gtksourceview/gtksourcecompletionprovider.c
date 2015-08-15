@@ -27,6 +27,12 @@
  * @short_description: Completion provider interface
  *
  * You must implement this interface to provide proposals to #GtkSourceCompletion
+ *
+ * The provider may be displayed in the completion window as a header row, showing
+ * its name and optionally an icon.
+ * The icon may be specified as a #GdkPixbuf, as an icon name or as a #GIcon by
+ * implementing the corresponding get function. Only one of those get functions
+ * should return a value different from %NULL.
  */
 
 #include "gtksourcecompletionprovider.h"
