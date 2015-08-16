@@ -1124,8 +1124,11 @@ gtk_source_print_compositor_get_print_footer (GtkSourcePrintCompositor *composit
  * Sets strftime like header format strings, to be printed on the
  * left, center and right of the top of each page.  The strings may
  * include strftime(3) codes which will be expanded at print time.
- * All strftime() codes are accepted, with the addition of #N for the
- * page number and #Q for the page count.
+ * A subset of strftime() codes are accepted, see g_date_time_format()
+ * for more details on the accepted format specifiers.
+ * Additionally the following format specifiers are accepted:
+ * - #N: the page number
+ * - #Q: the page count.
  *
  * @separator specifies if a solid line should be drawn to separate
  * the header from the document text.
@@ -1172,24 +1175,8 @@ gtk_source_print_compositor_set_header_format (GtkSourcePrintCompositor *composi
  * @center: (allow-none): a format string to print on the center of the footer.
  * @right: (allow-none): a format string to print on the right of the footer.
  *
- * Sets strftime like header format strings, to be printed on the
- * left, center and right of the bottom of each page. The strings may
- * include strftime(3) codes which will be expanded at print time.
- * All strftime() codes are accepted, with the addition of #N for the
- * page number and #Q for the page count.
- *
- * @separator specifies if a solid line should be drawn to separate
- * the footer from the document text.
- *
- * If %NULL is given for any of the three arguments, that particular
- * string will not be printed.
- *
- * For the footer to be printed, in
- * addition to specifying format strings, you need to enable footer
- * printing with gtk_source_print_compositor_set_print_footer().
- *
- * This function cannot be called anymore after the first call to the
- * gtk_source_print_compositor_paginate() function.
+ * See gtk_source_print_compositor_set_header_format() for more information
+ * about the parameters.
  *
  * Since: 2.2
  **/
@@ -1891,95 +1878,16 @@ setup_pango_layouts (GtkSourcePrintCompositor *compositor,
 	}
 }
 
-/* ---- Header and footer ---- */
-
-/* Most of this code taken from GLib's g_date_strftime() in gdate.c
- * GLIB - Library of useful routines for C programming
- * Copyright (C) 1995-1997  Peter Mattis, Spencer Kimball and Josh MacDonald */
-
-static gchar *
-strdup_strftime (const gchar *format, const struct tm *tm)
-{
-	gsize locale_format_len = 0;
-	gchar *locale_format;
-	gsize tmplen;
-	gchar *tmpbuf;
-	gsize tmpbufsize;
-	gchar *convbuf;
-	gsize convlen = 0;
-	GError *error = NULL;
-
-	g_return_val_if_fail (format != NULL, NULL);
-	g_return_val_if_fail (tm != NULL, NULL);
-
-	locale_format = g_locale_from_utf8 (format, -1, NULL, &locale_format_len, &error);
-
-	if (error)
-	{
-		g_warning (G_STRLOC "Error converting format to locale encoding: %s",
-			   error->message);
-		g_error_free (error);
-
-		return NULL;
-	}
-
-	tmpbufsize = MAX (128, locale_format_len * 2);
-	while (TRUE)
-	{
-		tmpbuf = g_malloc (tmpbufsize);
-
-		/* Set the first byte to something other than '\0', to be able to
-		 * recognize whether strftime actually failed or just returned "".
-		 */
-		tmpbuf[0] = '\1';
-		tmplen = strftime (tmpbuf, tmpbufsize, locale_format, tm);
-
-		if (tmplen == 0 && tmpbuf[0] != '\0')
-		{
-			g_free (tmpbuf);
-			tmpbufsize *= 2;
-
-			if (tmpbufsize > 65536)
-			{
-				g_warning (G_STRLOC "Maximum buffer size for strdup_strftime "
-					   "exceeded: giving up");
-				g_free (locale_format);
-				return NULL;
-			}
-		}
-		else
-			break;
-	}
-	g_free (locale_format);
-
-	convbuf = g_locale_to_utf8 (tmpbuf, tmplen, NULL, &convlen, &error);
-	g_free (tmpbuf);
-
-	if (error)
-	{
-		g_warning (G_STRLOC "Error converting results of strftime to UTF-8: %s",
-			   error->message);
-		g_error_free (error);
-
-		return NULL;
-	}
-
-	return convbuf;
-}
-
 static gchar *
 evaluate_format_string (GtkSourcePrintCompositor *compositor,
 			const gchar              *format)
 {
+	GDateTime *now;
 	GString *eval;
 	gchar *eval_str, *retval;
-	const struct tm *tm;
-	time_t now;
 	gunichar ch;
 
-	/* get time */
-	time (&now);
-	tm = localtime (&now);
+	now = g_date_time_new_now_local ();
 
 	/* analyze format string and replace the codes we know */
 	eval = g_string_new_len (NULL, strlen (format));
@@ -2010,8 +1918,10 @@ evaluate_format_string (GtkSourcePrintCompositor *compositor,
 	}
 
 	eval_str = g_string_free (eval, FALSE);
-	retval = strdup_strftime (eval_str, tm);
+	retval = g_date_time_format (now, eval_str);
 	g_free (eval_str);
+
+	g_date_time_unref (now);
 
 	return retval;
 }
