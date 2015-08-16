@@ -2470,47 +2470,50 @@ get_leading_trailing (const GtkTextIter *iter,
 		      GtkTextIter       *leading,
 		      GtkTextIter       *trailing)
 {
-	g_assert (leading != NULL);
-	g_assert (trailing != NULL);
-
-	/* Find end of leading */
-	*leading = *iter;
-	gtk_text_iter_set_line_offset (leading, 0);
-
-	while (!gtk_text_iter_is_end (leading))
+	/* Find end of leading whitespaces */
+	if (leading != NULL)
 	{
-		gunichar ch = gtk_text_iter_get_char (leading);
+		*leading = *iter;
+		gtk_text_iter_set_line_offset (leading, 0);
 
-		if (!g_unichar_isspace (ch))
+		while (!gtk_text_iter_is_end (leading))
 		{
-			break;
-		}
+			gunichar ch = gtk_text_iter_get_char (leading);
 
-		gtk_text_iter_forward_char (leading);
+			if (!g_unichar_isspace (ch))
+			{
+				break;
+			}
+
+			gtk_text_iter_forward_char (leading);
+		}
 	}
 
-	/* Find start of trailing */
-	*trailing = *iter;
-	if (!gtk_text_iter_ends_line (trailing))
+	/* Find start of trailing whitespaces */
+	if (trailing != NULL)
 	{
-		gtk_text_iter_forward_to_line_end (trailing);
-	}
-
-	while (!gtk_text_iter_starts_line (trailing))
-	{
-		GtkTextIter prev;
-		gunichar ch;
-
-		prev = *trailing;
-		gtk_text_iter_backward_char (&prev);
-
-		ch = gtk_text_iter_get_char (&prev);
-		if (!g_unichar_isspace (ch))
+		*trailing = *iter;
+		if (!gtk_text_iter_ends_line (trailing))
 		{
-			break;
+			gtk_text_iter_forward_to_line_end (trailing);
 		}
 
-		*trailing = prev;
+		while (!gtk_text_iter_starts_line (trailing))
+		{
+			GtkTextIter prev;
+			gunichar ch;
+
+			prev = *trailing;
+			gtk_text_iter_backward_char (&prev);
+
+			ch = gtk_text_iter_get_char (&prev);
+			if (!g_unichar_isspace (ch))
+			{
+				break;
+			}
+
+			*trailing = prev;
+		}
 	}
 }
 
@@ -4069,7 +4072,6 @@ do_smart_backspace (GtkSourceView *view)
 	GtkTextIter insert;
 	GtkTextIter end;
 	GtkTextIter leading;
-	GtkTextIter trailing;
 	guint visual_column;
 	gint indent_width;
 
@@ -4082,7 +4084,7 @@ do_smart_backspace (GtkSourceView *view)
 	}
 
 	/* If the line isn't empty up to our cursor, ignore. */
-	get_leading_trailing (&insert, &leading, &trailing);
+	get_leading_trailing (&insert, &leading, NULL);
 	if (gtk_text_iter_compare (&leading, &insert) < 0)
 	{
 		return FALSE;
@@ -4154,7 +4156,6 @@ do_ctrl_backspace (GtkSourceView *view)
 	GtkTextIter insert;
 	GtkTextIter end;
 	GtkTextIter leading;
-	GtkTextIter trailing;
 	gboolean default_editable;
 
 	buffer = GTK_TEXT_BUFFER (view->priv->source_buffer);
@@ -4180,7 +4181,7 @@ do_ctrl_backspace (GtkSourceView *view)
 	/* If only leading whitespaces are on the left of the cursor, delete up
 	 * to the zero position.
 	 */
-	get_leading_trailing (&insert, &leading, &trailing);
+	get_leading_trailing (&insert, &leading, NULL);
 	if (gtk_text_iter_compare (&insert, &leading) <= 0)
 	{
 		gtk_text_iter_set_line_offset (&insert, 0);
