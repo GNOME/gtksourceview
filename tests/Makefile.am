@@ -114,6 +114,9 @@ test_region_SOURCES = test-region.c
 UNIT_TEST_PROGS += test-search-context
 test_search_context_SOURCES = test-search-context.c
 
+UNIT_TEST_PROGS += test-stylescheme
+test_stylescheme_SOURCES = test-stylescheme.c
+
 UNIT_TEST_PROGS += test-styleschememanager
 test_styleschememanager_SOURCES = test-styleschememanager.c
 
@@ -135,6 +138,7 @@ EXTRA_DIST =				\
 	language-specs/test-full.lang	\
 	setup-file-saver.sh		\
 	styles/classic.xml		\
+	styles/test.xml			\
 	syntax-highlighting		\
 	test-completion.gresource.xml	\
 	test-completion.ui		\
@@ -155,7 +159,8 @@ instteslang_DATA = 			\
 
 insttesstyledir = ${libexecdir}/installed-tests/$(PACKAGE)/styles
 insttesstyle_DATA = 			\
-	styles/classic.xml
+	styles/classic.xml		\
+	styles/test.xml
 
 %.test: %$(EXEEXT) Makefile
 	$(AM_V_GEN) (echo '[Test]' > $@.tmp; \

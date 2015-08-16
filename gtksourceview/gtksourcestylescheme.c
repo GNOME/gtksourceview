@@ -373,6 +373,29 @@ gtk_source_style_scheme_get_filename (GtkSourceStyleScheme *scheme)
 }
 
 /*
+ * Try to parse a color string.
+ * If the color can be parsed, return the offset in the string
+ * with the real start of the color (either the string itself, or after
+ * the initial '#' character).
+ */
+static const gchar *
+color_parse (const gchar *color,
+             GdkRGBA     *rgba)
+{
+	if ((*color == '#') && gdk_rgba_parse (rgba, color + 1))
+	{
+		return color + 1;
+	}
+
+	if (gdk_rgba_parse (rgba, color))
+	{
+		return color;
+	}
+
+	return NULL;
+}
+
+/*
  * get_color_by_name:
  * @scheme: a #GtkSourceStyleScheme.
  * @name: color name to find.
@@ -396,15 +419,9 @@ get_color_by_name (GtkSourceStyleScheme *scheme,
 	{
 		GdkRGBA dummy;
 
-		if (gdk_rgba_parse (&dummy, name + 1))
-		{
-			color = name + 1;
-		}
-		else if (gdk_rgba_parse (&dummy, name))
-		{
-			color = name;
-		}
-		else
+		color = color_parse (name, &dummy);
+
+		if (color == NULL)
 		{
 			g_warning ("could not parse color '%s'", name);
 		}
@@ -582,7 +599,7 @@ get_color (GtkSourceStyle *style,
 
 		if (style->mask & mask)
 		{
-			if (color == NULL || !gdk_rgba_parse (dest, color))
+			if (color == NULL || !color_parse (color, dest))
 			{
 				g_warning ("%s: invalid color '%s'", G_STRLOC,
 					   color != NULL ? color : "(null)");
