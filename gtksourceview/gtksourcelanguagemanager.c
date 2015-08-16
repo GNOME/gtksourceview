@@ -404,11 +404,11 @@ ensure_languages (GtkSourceLanguageManager *lm)
  *
  * Returns the ids of the available languages.
  *
- * Returns: (nullable) (transfer none): a %NULL-terminated array of
- * string containing the ids of the available languages or %NULL if no
- * language is available.  The array is sorted alphabetically
- * according to the language name.  The array is owned by @lm and must
- * not be modified.
+ * Returns: (nullable) (array zero-terminated=1) (transfer none):
+ * a %NULL-terminated array of strings containing the ids of the available
+ * languages or %NULL if no language is available.
+ * The array is sorted alphabetically according to the language name.
+ * The array is owned by @lm and must not be modified.
  */
 const gchar * const *
 gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager *lm)

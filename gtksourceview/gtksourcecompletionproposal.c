@@ -266,8 +266,9 @@ gtk_source_completion_proposal_get_gicon (GtkSourceCompletionProposal *proposal)
  * used to present the user with extra, detailed information about the
  * selected proposal. The returned string must be freed with g_free().
  *
- * Returns: a new string containing extra information of @proposal or %NULL if
- *          no extra information is associated to @proposal.
+ * Returns: (nullable) (transfer full): a newly-allocated string containing
+ * extra information of @proposal or %NULL if no extra information is associated
+ * to @proposal.
  */
 gchar *
 gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)

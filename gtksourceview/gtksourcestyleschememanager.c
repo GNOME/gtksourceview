@@ -541,9 +541,9 @@ gtk_source_style_scheme_manager_force_rescan (GtkSourceStyleSchemeManager *manag
  *
  * Returns the ids of the available style schemes.
  *
- * Returns: (array zero-terminated=1) (transfer none): a %NULL-terminated array
- * of string containing the ids of the available style schemes or %NULL if no
- * style scheme is available.
+ * Returns: (nullable) (array zero-terminated=1) (transfer none):
+ * a %NULL-terminated array of strings containing the ids of the available
+ * style schemes or %NULL if no style scheme is available.
  * The array is sorted alphabetically according to the scheme name.
  * The array is owned by the @manager and must not be modified.
  */

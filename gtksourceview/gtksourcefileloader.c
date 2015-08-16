@@ -955,8 +955,8 @@ gtk_source_file_loader_get_file (GtkSourceFileLoader *loader)
  * gtk_source_file_loader_get_location:
  * @loader: a #GtkSourceFileLoader.
  *
- * Returns: (transfer none): the #GFile to load, or %NULL if an input stream is
- *   used.
+ * Returns: (nullable) (transfer none): the #GFile to load, or %NULL
+ * if an input stream is used.
  * Since: 3.14
  */
 GFile *
@@ -971,8 +971,8 @@ gtk_source_file_loader_get_location (GtkSourceFileLoader *loader)
  * gtk_source_file_loader_get_input_stream:
  * @loader: a #GtkSourceFileLoader.
  *
- * Returns: (transfer none): the #GInputStream to load, or %NULL if a #GFile is
- *   used.
+ * Returns: (nullabe) (transfer none): the #GInputStream to load, or %NULL
+ * if a #GFile is used.
  * Since: 3.14
  */
 GInputStream *

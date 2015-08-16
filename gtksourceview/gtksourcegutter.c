@@ -1713,7 +1713,7 @@ gtk_source_gutter_get_padding (GtkSourceGutter *gutter,
  *
  * Finds the #GtkSourceGutterRenderer at (x, y).
  *
- * Returns: (transfer none): the renderer at (x, y) or %NULL.
+ * Returns: (nullable) (transfer none): the renderer at (x, y) or %NULL.
  */
 /* FIXME: to insert a renderer in a gutter, only one position is needed. Here to
  * retrieve a renderer, two positions are needed? Document why.

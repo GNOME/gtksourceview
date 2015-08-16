@@ -548,8 +548,9 @@ gtk_source_language_get_hidden (GtkSourceLanguage *language)
  * @language: a #GtkSourceLanguage.
  * @name: metadata property name.
  *
- * Returns: value of property @name stored in the metadata of @language
- * or %NULL if language doesn't contain that metadata property.
+ * Returns: (nullable) (transfer none): value of property @name stored in
+ * the metadata of @language or %NULL if language does not contain the
+ * specified metadata property.
  * The returned string is owned by @language and should not be freed
  * or modified.
  **/
@@ -572,9 +573,9 @@ gtk_source_language_get_metadata (GtkSourceLanguage *language,
  * retrieve the "mimetypes" metadata property and split it into an
  * array.
  *
- * Returns: (array zero-terminated=1) (transfer full): a newly-allocated
- * %NULL terminated array containing the mime types or %NULL if no
- * mime types are found.
+ * Returns: (nullable) (array zero-terminated=1) (transfer full):
+ * a newly-allocated %NULL terminated array containing the mime types
+ * or %NULL if no mime types are found.
  * The returned array must be freed with g_strfreev().
  **/
 gchar **
@@ -599,8 +600,9 @@ gtk_source_language_get_mime_types (GtkSourceLanguage *language)
  * an utility wrapper around gtk_source_language_get_metadata() to
  * retrieve the "globs" metadata property and split it into an array.
  *
- * Returns: (array zero-terminated=1) (transfer full): a newly-allocated
- * %NULL terminated array containing the globs or %NULL if no globs are found.
+ * Returns: (nullable) (array zero-terminated=1) (transfer full):
+ * a newly-allocated %NULL terminated array containing the globs or %NULL
+ * if no globs are found.
  * The returned array must be freed with g_strfreev().
  **/
 gchar **
@@ -833,9 +835,9 @@ force_styles (GtkSourceLanguage *language)
  *
  * Returns the ids of the styles defined by this @language.
  *
- * Returns: (array zero-terminated=1) (transfer full): a  %NULL terminated
- * array containing ids of the styles defined by this @language or
- * %NULL if no style is defined.
+ * Returns: (nullable) (array zero-terminated=1) (transfer full):
+ * a newly-allocated %NULL terminated array containing ids of the
+ * styles defined by this @language or %NULL if no style is defined.
  * The returned array must be freed with g_strfreev().
 */
 gchar **
@@ -872,10 +874,10 @@ get_style_info (GtkSourceLanguage *language, const char *style_id)
  *
  * Returns the name of the style with ID @style_id defined by this @language.
  *
- * Returns: the name of the style with ID @style_id defined by this @language or
- * %NULL if the style has no name or there is no style with ID @style_id defined
- * by this @language. The returned string is owned by the @language and must
- * not be modified.
+ * Returns: (nullable) (transfer none): the name of the style with ID @style_id
+ * defined by this @language or %NULL if the style has no name or there is no
+ * style with ID @style_id defined by this @language.
+ * The returned string is owned by the @language and must not be modified.
  */
 const gchar *
 gtk_source_language_get_style_name (GtkSourceLanguage *language,
@@ -900,9 +902,9 @@ gtk_source_language_get_style_name (GtkSourceLanguage *language,
  * Returns the ID of the style to use if the specified @style_id
  * is not present in the current style scheme.
  *
- * Returns: the ID of the style to use if the specified @style_id
- * is not present in the current style scheme or %NULL if the style has
- * no fallback defined.
+ * Returns: (nullable) (transfer none): the ID of the style to use if the
+ * specified @style_id is not present in the current style scheme or %NULL
+ * if the style has no fallback defined.
  * The returned string is owned by the @language and must not be modified.
  *
  * Since: 3.4

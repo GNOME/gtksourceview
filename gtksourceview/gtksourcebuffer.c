@@ -1619,7 +1619,8 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
  * see gtk_source_buffer_set_language().  The returned object should not be
  * unreferenced by the user.
  *
- * Returns: (transfer none): the #GtkSourceLanguage associated with the buffer, or %NULL.
+ * Returns: (nullable) (transfer none): the #GtkSourceLanguage associated
+ * with the buffer, or %NULL.
  */
 GtkSourceLanguage *
 gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
@@ -1738,8 +1739,8 @@ gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
  * see gtk_source_buffer_set_style_scheme().
  * The returned object should not be unreferenced by the user.
  *
- * Returns: (transfer none): the #GtkSourceStyleScheme associated
- * with the buffer, or %NULL.
+ * Returns: (nullable) (transfer none): the #GtkSourceStyleScheme
+ * associated with the buffer, or %NULL.
  */
 GtkSourceStyleScheme *
 gtk_source_buffer_get_style_scheme (GtkSourceBuffer *buffer)
