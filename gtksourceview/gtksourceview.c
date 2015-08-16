@@ -4062,18 +4062,18 @@ gtk_source_view_move_lines (GtkSourceView *view,
 }
 
 static gboolean
-gtk_source_view_do_smart_backspace (GtkSourceView *view,
-                                    guint          modifiers)
+do_smart_backspace (GtkSourceView *view)
 {
 	GtkTextBuffer *buffer;
 	gboolean default_editable;
 	GtkTextIter insert;
 	GtkTextIter end;
-	GtkTextIter iter;
+	GtkTextIter leading;
+	GtkTextIter trailing;
 	guint visual_column;
 	gint indent_width;
 
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	buffer = GTK_TEXT_BUFFER (view->priv->source_buffer);
 	default_editable = gtk_text_view_get_editable (GTK_TEXT_VIEW (view));
 
 	if (gtk_text_buffer_get_selection_bounds (buffer, &insert, &end))
@@ -4081,43 +4081,11 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 		return FALSE;
 	}
 
-	if ((modifiers & GDK_CONTROL_MASK) != 0)
-	{
-		/*
-		 * A <Control>BackSpace at the beginning of the line should only move us to the
-		 * end of the previous line. Anything more than that is non-obvious because it requires
-		 * looking in a position other than where the cursor is.
-		 */
-		if ((gtk_text_iter_get_line_offset (&insert) == 0) &&
-		    (gtk_text_iter_get_line (&insert) > 0))
-		{
-			gtk_text_iter_backward_cursor_position (&insert);
-			gtk_text_buffer_delete_interactive (buffer, &insert, &end, default_editable);
-			return TRUE;
-		}
-	}
-
 	/* If the line isn't empty up to our cursor, ignore. */
-	iter = insert;
-	gtk_text_iter_set_line_offset (&iter, 0);
-	while (gtk_text_iter_compare (&iter, &insert) < 0)
+	get_leading_trailing (&insert, &leading, &trailing);
+	if (gtk_text_iter_compare (&leading, &insert) < 0)
 	{
-		gunichar ch = gtk_text_iter_get_char (&iter);
-
-		if (!g_unichar_isspace (ch))
-		{
-			return FALSE;
-		}
-
-		gtk_text_iter_forward_char (&iter);
-	}
-
-	/* If <Control>BackSpace was specified, delete up to the zero position. */
-	if ((modifiers & GDK_CONTROL_MASK) != 0)
-	{
-		gtk_text_iter_set_line_offset (&insert, 0);
-		gtk_text_buffer_delete_interactive (buffer, &insert, &end, default_editable);
-		return TRUE;
+		return FALSE;
 	}
 
 	visual_column = gtk_source_view_get_visual_column (view, &insert);
@@ -4173,6 +4141,50 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 		}
 		gtk_text_buffer_end_user_action (buffer);
 
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+static gboolean
+do_ctrl_backspace (GtkSourceView *view)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter insert;
+	GtkTextIter end;
+	GtkTextIter leading;
+	GtkTextIter trailing;
+	gboolean default_editable;
+
+	buffer = GTK_TEXT_BUFFER (view->priv->source_buffer);
+	default_editable = gtk_text_view_get_editable (GTK_TEXT_VIEW (view));
+
+	if (gtk_text_buffer_get_selection_bounds (buffer, &insert, &end))
+	{
+		return FALSE;
+	}
+
+	/* A <Control>BackSpace at the beginning of the line should only move us to the
+	 * end of the previous line. Anything more than that is non-obvious because it requires
+	 * looking in a position other than where the cursor is.
+	 */
+	if ((gtk_text_iter_get_line_offset (&insert) == 0) &&
+	    (gtk_text_iter_get_line (&insert) > 0))
+	{
+		gtk_text_iter_backward_cursor_position (&insert);
+		gtk_text_buffer_delete_interactive (buffer, &insert, &end, default_editable);
+		return TRUE;
+	}
+
+	/* If only leading whitespaces are on the left of the cursor, delete up
+	 * to the zero position.
+	 */
+	get_leading_trailing (&insert, &leading, &trailing);
+	if (gtk_text_iter_compare (&insert, &leading) <= 0)
+	{
+		gtk_text_iter_set_line_offset (&insert, 0);
+		gtk_text_buffer_delete_interactive (buffer, &insert, &end, default_editable);
 		return TRUE;
 	}
 
@@ -4289,11 +4301,21 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 		return GDK_EVENT_STOP;
 	}
 
-	if ((key == GDK_KEY_BackSpace) && view->priv->smart_backspace)
+	if (key == GDK_KEY_BackSpace)
 	{
-		if (gtk_source_view_do_smart_backspace (view, (event->state & modifiers)))
+		if ((event->state & modifiers) == 0)
 		{
-			return GDK_EVENT_STOP;
+			if (view->priv->smart_backspace && do_smart_backspace (view))
+			{
+				return GDK_EVENT_STOP;
+			}
+		}
+		else if ((event->state & modifiers) == GDK_CONTROL_MASK)
+		{
+			if (do_ctrl_backspace (view))
+			{
+				return GDK_EVENT_STOP;
+			}
 		}
 	}
 
