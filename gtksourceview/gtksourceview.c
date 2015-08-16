@@ -2466,49 +2466,51 @@ space_needs_drawing (GtkSourceView *view,
 }
 
 static void
-get_leading_trailing (GtkTextIter *iter,
-		      GtkTextIter *leading,
-		      GtkTextIter *trailing)
+get_leading_trailing (const GtkTextIter *iter,
+		      GtkTextIter       *leading,
+		      GtkTextIter       *trailing)
 {
-	GtkTextIter start;
+	g_assert (leading != NULL);
+	g_assert (trailing != NULL);
 
 	/* Find end of leading */
-	start = *iter;
-	gtk_text_iter_set_line_offset (&start, 0);
+	*leading = *iter;
+	gtk_text_iter_set_line_offset (leading, 0);
 
-	while (TRUE)
+	while (!gtk_text_iter_is_end (leading))
 	{
-		gunichar ch = gtk_text_iter_get_char (&start);
+		gunichar ch = gtk_text_iter_get_char (leading);
 
-		if (!g_unichar_isspace (ch) ||
-		    gtk_text_iter_ends_line (&start) ||
-		    !gtk_text_iter_forward_char (&start))
+		if (!g_unichar_isspace (ch))
 		{
-			*leading = start;
 			break;
 		}
+
+		gtk_text_iter_forward_char (leading);
 	}
 
 	/* Find start of trailing */
-	start = *iter;
-	if (!gtk_text_iter_ends_line (&start))
+	*trailing = *iter;
+	if (!gtk_text_iter_ends_line (trailing))
 	{
-		gtk_text_iter_forward_to_line_end (&start);
+		gtk_text_iter_forward_to_line_end (trailing);
 	}
 
-	while (TRUE)
+	while (!gtk_text_iter_starts_line (trailing))
 	{
-		gunichar ch = gtk_text_iter_get_char (&start);
+		GtkTextIter prev;
+		gunichar ch;
 
-		/* NOTE: ch can be 0 when iter is at the end
-		   of the buffer */
-		if (!(g_unichar_isspace (ch) || ch == 0) ||
-		     gtk_text_iter_starts_line (&start) ||
-		    !gtk_text_iter_backward_char (&start))
+		prev = *trailing;
+		gtk_text_iter_backward_char (&prev);
+
+		ch = gtk_text_iter_get_char (&prev);
+		if (!g_unichar_isspace (ch))
 		{
-			*trailing = start;
 			break;
 		}
+
+		*trailing = prev;
 	}
 }
 
