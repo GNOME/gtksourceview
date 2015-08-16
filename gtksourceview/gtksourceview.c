@@ -4110,7 +4110,6 @@ do_smart_backspace (GtkSourceView *view)
 	if ((visual_column % indent_width) == 0)
 	{
 		guint target_column;
-		gunichar ch;
 
 		g_assert ((gint)visual_column >= indent_width);
 		target_column = visual_column - indent_width;
@@ -4118,18 +4117,6 @@ do_smart_backspace (GtkSourceView *view)
 		while (gtk_source_view_get_visual_column (view, &insert) > target_column)
 		{
 			gtk_text_iter_backward_cursor_position (&insert);
-			ch = gtk_text_iter_get_char (&insert);
-
-			if (!g_unichar_isspace (ch))
-			{
-				return FALSE;
-			}
-		}
-
-		ch = gtk_text_iter_get_char (&insert);
-		if (!g_unichar_isspace (ch))
-		{
-			return FALSE;
 		}
 
 		gtk_text_buffer_begin_user_action (buffer);
