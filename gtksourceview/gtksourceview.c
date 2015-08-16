@@ -4068,7 +4068,7 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 	GtkTextBuffer *buffer;
 	GtkTextIter insert;
 	GtkTextIter end;
-	GtkTextIter tmp;
+	GtkTextIter iter;
 	guint visual_column;
 	gint indent_width;
 	gint tab_width;
@@ -4098,25 +4098,19 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 		}
 	}
 
-	/* if the line isn't empty up to our cursor, ignore */
-	tmp = insert;
-	while (TRUE)
+	/* If the line isn't empty up to our cursor, ignore. */
+	iter = insert;
+	gtk_text_iter_set_line_offset (&iter, 0);
+	while (gtk_text_iter_compare (&iter, &insert) < 0)
 	{
-		gunichar ch;
+		gunichar ch = gtk_text_iter_get_char (&iter);
 
-		ch = gtk_text_iter_get_char (&tmp);
-
-		if ((ch != 0) && !g_unichar_isspace (ch))
+		if (!g_unichar_isspace (ch))
 		{
 			return FALSE;
 		}
 
-		if (gtk_text_iter_starts_line (&tmp))
-		{
-			break;
-		}
-
-		gtk_text_iter_backward_char (&tmp);
+		gtk_text_iter_forward_char (&iter);
 	}
 
 	/*
