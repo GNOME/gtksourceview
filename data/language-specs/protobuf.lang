@@ -23,18 +23,47 @@
     <property name="mimetypes">text/x-protobuf</property>
     <property name="globs">*.proto</property>
     <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
   </metadata>
 
   <styles>
-    <style id="comment"  _name="Comment"       map-to="def:comment"/>
-    <style id="variable" _name="Variable"      map-to="def:type"/>
-    <style id="type"     _name="Data Type"     map-to="def:type"/>
-    <style id="keyword"  _name="Keyword"       map-to="def:keyword"/>
-    <style id="boolean"  _name="Boolean value" map-to="def:boolean"/>
-    <style id="string"   _name="String"        map-to="def:string"/>
+    <style id="comment" _name="Comment" map-to="def:comment"/>
+    <style id="statement" _name="Statement" map-to="def:preprocessor"/>
+    <style id="variable" _name="Variable" map-to="def:type"/>
+    <style id="type" _name="Data Type" map-to="def:type"/>
+    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
+    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
+    <style id="string" _name="String" map-to="def:string"/>
   </styles>
 
   <definitions>
+
+    <context id="syntax">
+      <match>(syntax)\s+=\s+("proto2"|"proto3");</match>
+      <include>
+        <context sub-pattern="1" style-ref="statement"/>
+        <context sub-pattern="2" style-ref="string"/>
+      </include>
+    </context>
+
+    <context id="package">
+      <match>(package)\s+(.*);</match>
+      <include>
+        <context sub-pattern="1" style-ref="statement"/>
+        <context sub-pattern="2" style-ref="string"/>
+      </include>
+    </context>
+
+    <context id="import">
+      <match>(import)(\s+(weak|public))?\s+(".*");</match>
+      <include>
+        <context sub-pattern="1" style-ref="statement"/>
+        <context sub-pattern="2" style-ref="statement"/>
+        <context sub-pattern="4" style-ref="string"/>
+      </include>
+    </context>
+
     <context id="variable" style-ref="variable">
       <match>[$@%][$]?[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
@@ -50,7 +79,6 @@
       <keyword>enum</keyword>
       <keyword>extend</keyword>
       <keyword>extensions</keyword>
-      <keyword>import</keyword>
       <keyword>message</keyword>
       <keyword>optional</keyword>
       <keyword>option</keyword>
@@ -61,7 +89,6 @@
       <keyword>returns</keyword>
       <keyword>rpc</keyword>
       <keyword>service</keyword>
-      <keyword>syntax</keyword>
       <keyword>to</keyword>
     </context>
 
@@ -92,6 +119,9 @@
       <include>
         <context ref="def:c-like-comment" style-ref="comment"/>
         <context ref="def:c-like-comment-multiline" style-ref="comment"/>
+        <context ref="syntax"/>
+        <context ref="package"/>
+        <context ref="import"/>
         <context ref="variable"/>
         <context ref="string"/>
         <context ref="keywords"/>
