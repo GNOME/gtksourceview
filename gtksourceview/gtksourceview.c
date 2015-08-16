@@ -4066,14 +4066,15 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
                                     guint          modifiers)
 {
 	GtkTextBuffer *buffer;
+	gboolean default_editable;
 	GtkTextIter insert;
 	GtkTextIter end;
 	GtkTextIter iter;
 	guint visual_column;
 	gint indent_width;
-	gint tab_width;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+	default_editable = gtk_text_view_get_editable (GTK_TEXT_VIEW (view));
 
 	if (gtk_text_buffer_get_selection_bounds (buffer, &insert, &end))
 	{
@@ -4087,13 +4088,11 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 		 * end of the previous line. Anything more than that is non-obvious because it requires
 		 * looking in a position other than where the cursor is.
 		 */
-		if ((gtk_text_iter_get_line_offset (&insert) == 0) && (gtk_text_iter_get_line (&insert) > 0))
+		if ((gtk_text_iter_get_line_offset (&insert) == 0) &&
+		    (gtk_text_iter_get_line (&insert) > 0))
 		{
-			gtk_text_buffer_begin_user_action (buffer);
-			gtk_text_iter_backward_char (&insert);
-			gtk_text_buffer_delete (buffer, &insert, &end);
-			gtk_text_buffer_end_user_action (buffer);
-
+			gtk_text_iter_backward_cursor_position (&insert);
+			gtk_text_buffer_delete_interactive (buffer, &insert, &end, default_editable);
 			return TRUE;
 		}
 	}
@@ -4113,27 +4112,26 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 		gtk_text_iter_forward_char (&iter);
 	}
 
-	/*
-	 * If <Control>BackSpace was specified, delete up to the zero position.
-	 */
+	/* If <Control>BackSpace was specified, delete up to the zero position. */
 	if ((modifiers & GDK_CONTROL_MASK) != 0)
 	{
-		gtk_text_buffer_begin_user_action (buffer);
 		gtk_text_iter_set_line_offset (&insert, 0);
-		gtk_text_buffer_delete (buffer, &insert, &end);
-		gtk_text_buffer_end_user_action (buffer);
-
+		gtk_text_buffer_delete_interactive (buffer, &insert, &end, default_editable);
 		return TRUE;
 	}
 
 	visual_column = gtk_source_view_get_visual_column (view, &insert);
-	indent_width = gtk_source_view_get_indent_width (view);
-	tab_width = gtk_source_view_get_tab_width (view);
+	indent_width = view->priv->indent_width;
 	if (indent_width <= 0)
 	{
-		indent_width = tab_width;
+		indent_width = view->priv->tab_width;
 	}
 
+	g_return_val_if_fail (indent_width > 0, FALSE);
+
+	/* If the cursor is not at an indent_width boundary, it probably means
+	 * that we want to adjust the spaces.
+	 */
 	if ((gint)visual_column < indent_width)
 	{
 		return FALSE;
@@ -4141,14 +4139,15 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 
 	if ((visual_column % indent_width) == 0)
 	{
-		gint target_column = visual_column - indent_width;
+		guint target_column;
 		gunichar ch;
 
-		g_assert (target_column >= 0);
+		g_assert ((gint)visual_column >= indent_width);
+		target_column = visual_column - indent_width;
 
-		while ((gint)gtk_source_view_get_visual_column (view, &insert) > target_column)
+		while (gtk_source_view_get_visual_column (view, &insert) > target_column)
 		{
-			gtk_text_iter_backward_char (&insert);
+			gtk_text_iter_backward_cursor_position (&insert);
 			ch = gtk_text_iter_get_char (&insert);
 
 			if (!g_unichar_isspace (ch))
@@ -4164,10 +4163,13 @@ gtk_source_view_do_smart_backspace (GtkSourceView *view,
 		}
 
 		gtk_text_buffer_begin_user_action (buffer);
-		gtk_text_buffer_delete (buffer, &insert, &end);
-		while ((gint)gtk_source_view_get_visual_column (view, &insert) < target_column)
+		gtk_text_buffer_delete_interactive (buffer, &insert, &end, default_editable);
+		while (gtk_source_view_get_visual_column (view, &insert) < target_column)
 		{
-			gtk_text_buffer_insert (buffer, &insert, " ", 1);
+			if (!gtk_text_buffer_insert_interactive (buffer, &insert, " ", 1, default_editable))
+			{
+				break;
+			}
 		}
 		gtk_text_buffer_end_user_action (buffer);
 
