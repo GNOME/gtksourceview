@@ -1080,9 +1080,11 @@ test_regex_look_behind (void)
 	gtk_source_search_settings_set_search_text (settings, "(?<=1)23");
 	flush_queue ();
 
+	/* Occurrences count */
 	count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (count, ==, 1);
 
+	/* Forward search */
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
 	found = gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
 	g_assert (found);
@@ -1092,6 +1094,17 @@ test_regex_look_behind (void)
 	offset = gtk_text_iter_get_offset (&match_end);
 	g_assert_cmpint (offset, ==, 9);
 
+	/* Backward search */
+	gtk_text_buffer_get_end_iter (text_buffer, &iter);
+	found = gtk_source_search_context_backward (context, &iter, &match_start, &match_end);
+	g_assert (found);
+
+	offset = gtk_text_iter_get_offset (&match_start);
+	g_assert_cmpint (offset, ==, 7);
+	offset = gtk_text_iter_get_offset (&match_end);
+	g_assert_cmpint (offset, ==, 9);
+
+	/* Occurrence position */
 	pos = gtk_source_search_context_get_occurrence_position (context, &match_start, &match_end);
 	g_assert_cmpint (pos, ==, 1);
 
@@ -1120,9 +1133,12 @@ test_regex_look_ahead (void)
 	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
 	gtk_source_search_settings_set_search_text (settings, "12(?=3)");
 	flush_queue ();
+
+	/* Occurrences count */
 	count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (count, ==, 1);
 
+	/* Forward search */
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
 	found = gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
 	g_assert (found);
@@ -1132,6 +1148,17 @@ test_regex_look_ahead (void)
 	offset = gtk_text_iter_get_offset (&match_end);
 	g_assert_cmpint (offset, ==, 8);
 
+	/* Backward search */
+	gtk_text_buffer_get_end_iter (text_buffer, &iter);
+	found = gtk_source_search_context_backward (context, &iter, &match_start, &match_end);
+	g_assert (found);
+
+	offset = gtk_text_iter_get_offset (&match_start);
+	g_assert_cmpint (offset, ==, 6);
+	offset = gtk_text_iter_get_offset (&match_end);
+	g_assert_cmpint (offset, ==, 8);
+
+	/* Occurrence position */
 	pos = gtk_source_search_context_get_occurrence_position (context, &match_start, &match_end);
 	g_assert_cmpint (pos, ==, 1);
 
