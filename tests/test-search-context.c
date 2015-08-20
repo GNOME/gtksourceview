@@ -41,6 +41,16 @@ static void check_async_search_results (GtkSourceSearchContext *context,
 					gboolean                forward,
 					gboolean                start_check);
 
+static gchar *
+get_buffer_contents (GtkTextBuffer *buffer)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+
+	gtk_text_buffer_get_bounds (buffer, &start, &end);
+	return gtk_text_iter_get_visible_text (&start, &end);
+}
+
 /* If we are running from the source dir (e.g. during make check)
  * we override the path to read from the data dir.
  */
@@ -877,13 +887,10 @@ test_replace (void)
 	replaced = gtk_source_search_context_replace (context, &start, &end, "bb", 2, NULL);
 	g_assert (replaced);
 
-	gtk_text_buffer_get_start_iter (text_buffer, &start);
-	gtk_text_buffer_get_end_iter (text_buffer, &end);
-
-	contents = gtk_text_iter_get_visible_text (&start, &end);
+	contents = get_buffer_contents (text_buffer);
 	g_assert_cmpstr (contents, ==, "aabb");
-
 	g_free (contents);
+
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
 	g_object_unref (context);
@@ -897,8 +904,6 @@ test_replace_all (void)
 	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
 	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
 	gint nb_replacements;
-	GtkTextIter start;
-	GtkTextIter end;
 	gchar *contents;
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
@@ -908,13 +913,10 @@ test_replace_all (void)
 	nb_replacements = gtk_source_search_context_replace_all (context, "bb", 2, NULL);
 	g_assert_cmpint (nb_replacements, ==, 2);
 
-	gtk_text_buffer_get_start_iter (text_buffer, &start);
-	gtk_text_buffer_get_end_iter (text_buffer, &end);
-
-	contents = gtk_text_iter_get_visible_text (&start, &end);
+	contents = get_buffer_contents (text_buffer);
 	g_assert_cmpstr (contents, ==, "bbbb");
-
 	g_free (contents);
+
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
 	g_object_unref (context);
@@ -962,9 +964,7 @@ test_regex_basics (void)
 	gtk_text_buffer_get_end_iter (text_buffer, &end);
 	gtk_source_search_context_replace (context, &start, &end, "\\2#\\1", -1, NULL);
 
-	gtk_text_buffer_get_start_iter (text_buffer, &start);
-	gtk_text_buffer_get_end_iter (text_buffer, &end);
-	contents = gtk_text_iter_get_visible_text (&start, &end);
+	contents = get_buffer_contents (text_buffer);
 	g_assert_cmpstr (contents, ==, "bb#aa");
 	g_free (contents);
 
@@ -973,9 +973,7 @@ test_regex_basics (void)
 	gtk_text_buffer_set_text (text_buffer, "aa#bb cc#dd", -1);
 	gtk_source_search_context_replace_all (context, "\\2#\\1", -1, NULL);
 
-	gtk_text_buffer_get_start_iter (text_buffer, &start);
-	gtk_text_buffer_get_end_iter (text_buffer, &end);
-	contents = gtk_text_iter_get_visible_text (&start, &end);
+	contents = get_buffer_contents (text_buffer);
 	g_assert_cmpstr (contents, ==, "bb#aa dd#cc");
 	g_free (contents);
 
@@ -994,8 +992,6 @@ test_regex_at_word_boundaries (void)
 	GtkTextIter iter;
 	GtkTextIter match_start;
 	GtkTextIter match_end;
-	GtkTextIter start;
-	GtkTextIter end;
 	gint offset;
 	gchar *content;
 
@@ -1032,9 +1028,7 @@ test_regex_at_word_boundaries (void)
 	gtk_text_buffer_get_end_iter (text_buffer, &match_end);
 	gtk_source_search_context_replace (context, &match_start, &match_end, "bb", -1, NULL);
 
-	gtk_text_buffer_get_start_iter (text_buffer, &start);
-	gtk_text_buffer_get_end_iter (text_buffer, &end);
-	content = gtk_text_iter_get_visible_text (&start, &end);
+	content = get_buffer_contents (text_buffer);
 	g_assert_cmpstr (content, ==, "&bb");
 	g_free (content);
 
@@ -1048,9 +1042,7 @@ test_regex_at_word_boundaries (void)
 	gtk_text_buffer_get_end_iter (text_buffer, &match_end);
 	gtk_source_search_context_replace (context, &match_start, &match_end, "bb", -1, NULL);
 
-	gtk_text_buffer_get_start_iter (text_buffer, &start);
-	gtk_text_buffer_get_end_iter (text_buffer, &end);
-	content = gtk_text_iter_get_visible_text (&start, &end);
+	content = get_buffer_contents (text_buffer);
 	g_assert_cmpstr (content, ==, "–bb");
 	g_free (content);
 
