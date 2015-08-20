@@ -921,7 +921,7 @@ test_replace_all (void)
 }
 
 static void
-test_regex (void)
+test_regex_basics (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
@@ -1060,6 +1060,87 @@ test_regex_at_word_boundaries (void)
 }
 
 static void
+test_regex_look_behind (void)
+{
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
+	GtkTextIter iter;
+	GtkTextIter match_start;
+	GtkTextIter match_end;
+	gint count;
+	gint pos;
+	gint offset;
+	gboolean found;
+
+	gtk_text_buffer_set_text (text_buffer, "12\n23\n123\n23\n12", -1);
+
+	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
+	gtk_source_search_settings_set_search_text (settings, "(?<=1)23");
+	flush_queue ();
+
+	count = gtk_source_search_context_get_occurrences_count (context);
+	g_assert_cmpint (count, ==, 1);
+
+	gtk_text_buffer_get_start_iter (text_buffer, &iter);
+	found = gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
+	g_assert (found);
+
+	offset = gtk_text_iter_get_offset (&match_start);
+	g_assert_cmpint (offset, ==, 7);
+	offset = gtk_text_iter_get_offset (&match_end);
+	g_assert_cmpint (offset, ==, 9);
+
+	pos = gtk_source_search_context_get_occurrence_position (context, &match_start, &match_end);
+	g_assert_cmpint (pos, ==, 1);
+
+	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
+}
+
+static void
+test_regex_look_ahead (void)
+{
+	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
+	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
+	GtkTextIter iter;
+	GtkTextIter match_start;
+	GtkTextIter match_end;
+	gint count;
+	gint pos;
+	gint offset;
+	gboolean found;
+
+	gtk_text_buffer_set_text (text_buffer, "12\n23\n123\n23\n12", -1);
+
+	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
+	gtk_source_search_settings_set_search_text (settings, "12(?=3)");
+	flush_queue ();
+	count = gtk_source_search_context_get_occurrences_count (context);
+	g_assert_cmpint (count, ==, 1);
+
+	gtk_text_buffer_get_start_iter (text_buffer, &iter);
+	found = gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
+	g_assert (found);
+
+	offset = gtk_text_iter_get_offset (&match_start);
+	g_assert_cmpint (offset, ==, 6);
+	offset = gtk_text_iter_get_offset (&match_end);
+	g_assert_cmpint (offset, ==, 8);
+
+	pos = gtk_source_search_context_get_occurrence_position (context, &match_start, &match_end);
+	g_assert_cmpint (pos, ==, 1);
+
+	g_object_unref (source_buffer);
+	g_object_unref (settings);
+	g_object_unref (context);
+}
+
+static void
 test_destroy_buffer_during_search (void)
 {
 	GtkSourceBuffer *source_buffer = gtk_source_buffer_new (NULL);
@@ -1106,8 +1187,10 @@ main (int argc, char **argv)
 	g_test_add_func ("/Search/occurrence-position", test_occurrence_position);
 	g_test_add_func ("/Search/replace", test_replace);
 	g_test_add_func ("/Search/replace", test_replace_all);
-	g_test_add_func ("/Search/regex", test_regex);
-	g_test_add_func ("/Search/regex-at-word-boundaries", test_regex_at_word_boundaries);
+	g_test_add_func ("/Search/regex/basics", test_regex_basics);
+	g_test_add_func ("/Search/regex/at-word-boundaries", test_regex_at_word_boundaries);
+	g_test_add_func ("/Search/regex/look-behind", test_regex_look_behind);
+	g_test_add_func ("/Search/regex/look-ahead", test_regex_look_ahead);
 	g_test_add_func ("/Search/destroy-buffer-during-search", test_destroy_buffer_during_search);
 
 	return g_test_run ();
