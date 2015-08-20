@@ -1065,6 +1065,8 @@ test_regex_look_behind (void)
 	gint pos;
 	gint offset;
 	gboolean found;
+	gchar *contents;
+	GError *error = NULL;
 
 	gtk_text_buffer_set_text (text_buffer, "12\n23\n123\n23\n12", -1);
 
@@ -1100,6 +1102,25 @@ test_regex_look_behind (void)
 	pos = gtk_source_search_context_get_occurrence_position (context, &match_start, &match_end);
 	g_assert_cmpint (pos, ==, 1);
 
+	/* Replace */
+	gtk_source_search_context_replace (context, &match_start, &match_end, "R", -1, &error);
+	g_assert_no_error (error);
+
+	contents = get_buffer_contents (text_buffer);
+	g_assert_cmpstr (contents, ==, "12\n23\n1R\n23\n12");
+	g_free (contents);
+
+	/* Replace all */
+	gtk_text_buffer_set_text (text_buffer, "12\n23\n123 123\n23\n12", -1);
+	flush_queue ();
+
+	gtk_source_search_context_replace_all (context, "R", -1, &error);
+	g_assert_no_error (error);
+
+	contents = get_buffer_contents (text_buffer);
+	g_assert_cmpstr (contents, ==, "12\n23\n1R 1R\n23\n12");
+	g_free (contents);
+
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
 	g_object_unref (context);
@@ -1119,6 +1140,8 @@ test_regex_look_ahead (void)
 	gint pos;
 	gint offset;
 	gboolean found;
+	gchar *contents;
+	GError *error = NULL;
 
 	gtk_text_buffer_set_text (text_buffer, "12\n23\n123\n23\n12", -1);
 
@@ -1153,6 +1176,25 @@ test_regex_look_ahead (void)
 	/* Occurrence position */
 	pos = gtk_source_search_context_get_occurrence_position (context, &match_start, &match_end);
 	g_assert_cmpint (pos, ==, 1);
+
+	/* Replace */
+	gtk_source_search_context_replace (context, &match_start, &match_end, "R", -1, &error);
+	g_assert_no_error (error);
+
+	contents = get_buffer_contents (text_buffer);
+	g_assert_cmpstr (contents, ==, "12\n23\nR3\n23\n12");
+	g_free (contents);
+
+	/* Replace all */
+	gtk_text_buffer_set_text (text_buffer, "12\n23\n123 123\n23\n12", -1);
+	flush_queue ();
+
+	gtk_source_search_context_replace_all (context, "R", -1, &error);
+	g_assert_no_error (error);
+
+	contents = get_buffer_contents (text_buffer);
+	g_assert_cmpstr (contents, ==, "12\n23\nR3 R3\n23\n12");
+	g_free (contents);
 
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
