@@ -633,6 +633,11 @@ regex_search_get_match_options (const GtkTextIter *real_start,
 		match_options |= G_REGEX_MATCH_NOTEOL;
 	}
 
+	if (!gtk_text_iter_is_end (end))
+	{
+		match_options |= G_REGEX_MATCH_PARTIAL_HARD;
+	}
+
 	return match_options;
 }
 
@@ -694,11 +699,20 @@ regex_search_fetch_match (GMatchInfo  *match_info,
 	return TRUE;
 }
 
+/* If you retrieve only [match_start, match_end] from the GtkTextBuffer, it
+ * does not match the regex if the regex contains look-ahead assertions. For
+ * that, get the @real_end. Note that [match_start, real_end] is not the minimum
+ * amount of text that still matches the regex, it can contain several
+ * occurrences, so you can add the G_REGEX_MATCH_ANCHORED option to match only
+ * the first occurrence.
+ * Note that @limit is the limit for @match_end, not @real_end.
+ */
 static gboolean
 basic_forward_regex_search (GtkSourceSearchContext *search,
 			    const GtkTextIter      *start_at,
 			    GtkTextIter            *match_start,
 			    GtkTextIter            *match_end,
+			    GtkTextIter            *real_end,
 			    const GtkTextIter      *limit)
 {
 	GtkTextIter real_start;
@@ -736,12 +750,6 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 		GtkTextIter m_end;
 
 		match_options = regex_search_get_match_options (&real_start, &end);
-
-		if (!gtk_text_iter_is_end (&end))
-		{
-			match_options |= G_REGEX_MATCH_PARTIAL_HARD;
-		}
-
 		subject = gtk_text_iter_get_visible_text (&real_start, &end);
 		subject_length = strlen (subject);
 
@@ -801,6 +809,11 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 			{
 				*match_end = m_end;
 			}
+
+			if (real_end != NULL)
+			{
+				*real_end = end;
+			}
 		}
 
 		g_free (subject);
@@ -833,6 +846,7 @@ basic_forward_search (GtkSourceSearchContext *search,
 						   iter,
 						   match_start,
 						   match_end,
+						   NULL,
 						   limit);
 	}
 
@@ -892,7 +906,7 @@ basic_backward_regex_search (GtkSourceSearchContext *search,
 		lower_bound = *limit;
 	}
 
-	while (basic_forward_regex_search (search, &lower_bound, &m_start, &m_end, start_at))
+	while (basic_forward_regex_search (search, &lower_bound, &m_start, &m_end, NULL, start_at))
 	{
 		found = TRUE;
 
@@ -1907,10 +1921,8 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 		});
 	}
 
-	if (!gtk_text_iter_is_end (segment_end))
+	if (match_options & G_REGEX_MATCH_PARTIAL_HARD)
 	{
-		match_options |= G_REGEX_MATCH_PARTIAL_HARD;
-
 		DEBUG ({
 		       g_print ("match partial hard\n");
 		});
@@ -3444,7 +3456,9 @@ gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
 							 error);
 }
 
-/* Returns %TRUE if replaced. */
+/* If correctly replaced, returns %TRUE and @match_end is updated to point to
+ * the replacement end.
+ */
 static gboolean
 regex_replace (GtkSourceSearchContext  *search,
 	       GtkTextIter             *match_start,
@@ -3453,11 +3467,16 @@ regex_replace (GtkSourceSearchContext  *search,
 	       GError                 **error)
 {
 	GtkTextIter real_start;
+	GtkTextIter real_end;
+	GtkTextIter match_start_check;
+	GtkTextIter match_end_check;
 	gint start_pos;
 	gchar *subject;
+	gchar *suffix;
 	gchar *subject_replaced;
 	GRegexMatchFlags match_options;
 	GError *tmp_error = NULL;
+	gboolean replaced = FALSE;
 
 	if (search->priv->regex == NULL ||
 	    search->priv->regex_error != NULL)
@@ -3466,10 +3485,31 @@ regex_replace (GtkSourceSearchContext  *search,
 	}
 
 	regex_search_get_real_start (search, match_start, &real_start, &start_pos);
+	g_assert_cmpint (start_pos, >=, 0);
 
-	subject = gtk_text_iter_get_visible_text (&real_start, match_end);
+	if (!basic_forward_regex_search (search,
+					 match_start,
+					 &match_start_check,
+					 &match_end_check,
+					 &real_end,
+					 match_end))
+	{
+		g_assert_not_reached ();
+	}
 
-	match_options = regex_search_get_match_options (&real_start, match_end);
+	g_assert (gtk_text_iter_equal (match_start, &match_start_check));
+	g_assert (gtk_text_iter_equal (match_end, &match_end_check));
+
+	subject = gtk_text_iter_get_visible_text (&real_start, &real_end);
+
+	suffix = gtk_text_iter_get_visible_text (match_end, &real_end);
+	if (suffix == NULL)
+	{
+		suffix = g_strdup ("");
+	}
+
+	match_options = regex_search_get_match_options (&real_start, &real_end);
+	match_options |= G_REGEX_MATCH_ANCHORED;
 
 	subject_replaced = g_regex_replace (search->priv->regex,
 					    subject,
@@ -3479,22 +3519,35 @@ regex_replace (GtkSourceSearchContext  *search,
 					    match_options,
 					    &tmp_error);
 
-	g_free (subject);
-
 	if (tmp_error != NULL)
 	{
 		g_propagate_error (error, tmp_error);
-		g_free (subject_replaced);
-		return FALSE;
+		goto end;
 	}
+
+	g_return_val_if_fail (g_str_has_suffix (subject_replaced, suffix), FALSE);
+
+	/* Truncate subject_replaced to not contain the suffix, so we can
+	 * replace only [match_start, match_end], not [match_start, real_end].
+	 * The first solution is slightly simpler, and avoids the need to
+	 * re-scan [match_end, real_end] for matches, which is convenient for a
+	 * replace all.
+	 */
+	subject_replaced[strlen (subject_replaced) - strlen (suffix)] = '\0';
+	g_return_val_if_fail (strlen (subject_replaced) >= (guint)start_pos, FALSE);
 
 	gtk_text_buffer_begin_user_action (search->priv->buffer);
 	gtk_text_buffer_delete (search->priv->buffer, match_start, match_end);
 	gtk_text_buffer_insert (search->priv->buffer, match_end, subject_replaced + start_pos, -1);
 	gtk_text_buffer_end_user_action (search->priv->buffer);
 
+	replaced = TRUE;
+
+end:
+	g_free (subject);
+	g_free (suffix);
 	g_free (subject_replaced);
-	return TRUE;
+	return replaced;
 }
 
 /**
