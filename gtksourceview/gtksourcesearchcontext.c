@@ -715,13 +715,8 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 	GtkTextIter real_start;
 	GtkTextIter end;
 	gint start_pos;
-	gchar *subject;
-	gssize subject_length;
-	GRegexMatchFlags match_options;
-	GMatchInfo *match_info;
-	GtkTextIter iter;
-	gint iter_byte_pos;
-	gboolean found;
+	gboolean found = FALSE;
+	gint nb_lines = 1;
 
 	if (search->priv->regex == NULL ||
 	    search->priv->regex_error != NULL)
@@ -740,38 +735,89 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 		end = *limit;
 	}
 
-	match_options = regex_search_get_match_options (&real_start, &end);
-
-	subject = gtk_text_iter_get_visible_text (&real_start, &end);
-	subject_length = strlen (subject);
-
-	g_regex_match_full (search->priv->regex,
-			    subject,
-			    subject_length,
-			    start_pos,
-			    match_options,
-			    &match_info,
-			    &search->priv->regex_error);
-
-	iter = real_start;
-	iter_byte_pos = 0;
-
-	found = regex_search_fetch_match (match_info,
-					  subject,
-					  subject_length,
-					  &iter,
-					  &iter_byte_pos,
-					  match_start,
-					  match_end);
-
-	if (search->priv->regex_error != NULL)
+	while (TRUE)
 	{
-		g_object_notify (G_OBJECT (search), "regex-error");
-		found = FALSE;
-	}
+		GRegexMatchFlags match_options;
+		gchar *subject;
+		gssize subject_length;
+		GMatchInfo *match_info;
+		GtkTextIter iter;
+		gint iter_byte_pos;
+		GtkTextIter m_start;
+		GtkTextIter m_end;
 
-	g_free (subject);
-	g_match_info_free (match_info);
+		match_options = regex_search_get_match_options (&real_start, &end);
+
+		if (!gtk_text_iter_is_end (&end))
+		{
+			match_options |= G_REGEX_MATCH_PARTIAL_HARD;
+		}
+
+		subject = gtk_text_iter_get_visible_text (&real_start, &end);
+		subject_length = strlen (subject);
+
+		g_regex_match_full (search->priv->regex,
+				    subject,
+				    subject_length,
+				    start_pos,
+				    match_options,
+				    &match_info,
+				    &search->priv->regex_error);
+
+		iter = real_start;
+		iter_byte_pos = 0;
+
+		found = regex_search_fetch_match (match_info,
+						  subject,
+						  subject_length,
+						  &iter,
+						  &iter_byte_pos,
+						  &m_start,
+						  &m_end);
+
+		if (!found && g_match_info_is_partial_match (match_info))
+		{
+			gtk_text_iter_forward_lines (&end, nb_lines);
+			nb_lines <<= 1;
+
+			g_free (subject);
+			g_match_info_free (match_info);
+			continue;
+		}
+
+		/* Check that the match is not beyond the limit. This can happen
+		 * if a partial match is found on the first iteration. Then the
+		 * partial match was actually not a good match, but a second
+		 * good match is found.
+		 */
+		if (found && limit != NULL && gtk_text_iter_compare (limit, &m_end) < 0)
+		{
+			found = FALSE;
+		}
+
+		if (search->priv->regex_error != NULL)
+		{
+			g_object_notify (G_OBJECT (search), "regex-error");
+			found = FALSE;
+		}
+
+		if (found)
+		{
+			if (match_start != NULL)
+			{
+				*match_start = m_start;
+			}
+
+			if (match_end != NULL)
+			{
+				*match_end = m_end;
+			}
+		}
+
+		g_free (subject);
+		g_match_info_free (match_info);
+		break;
+	}
 
 	return found;
 }
