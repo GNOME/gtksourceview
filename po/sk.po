@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-09 22:26+0000\n"
-"PO-Revision-Date: 2015-03-10 10:48+0100\n"
+"POT-Creation-Date: 2015-08-20 22:03+0000\n"
+"PO-Revision-Date: 2015-08-21 11:52+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.4\n"
 
 # widget group title
 #: ../data/glade/gtksourceview.xml.in.h:1
@@ -264,7 +264,6 @@ msgstr "Špeciálne zapísaný znak (escaped)"
 
 # language name
 #: ../data/language-specs/ansforth94.lang.h:2
-#| msgid "Forth"
 msgid "ANS-Forth94"
 msgstr "ANS-Forth94"
 
@@ -3333,18 +3332,16 @@ msgstr "Všetko _malým písmom"
 
 #: ../gtksourceview/gtksourceview.c:1571
 msgid "_Invert Case"
-msgstr ""
+msgstr "Ob_rátiť veľkosť písma"
 
 #: ../gtksourceview/gtksourceview.c:1581
 msgid "_Title Case"
-msgstr ""
+msgstr "_Počiatočné písmeno veľkým"
 
 #  style name
 #: ../gtksourceview/gtksourceview.c:1591
-#, fuzzy
-#| msgid "Changed line"
 msgid "C_hange Case"
-msgstr "Zmenený riadok"
+msgstr "Z_meniť veľkosť písma"
 
 #: ../gtksourceview/gtksourceview-i18n.c:116
 msgid "translator-credits"
