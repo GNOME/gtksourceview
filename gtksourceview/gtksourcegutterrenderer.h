@@ -103,7 +103,7 @@ struct _GtkSourceGutterRendererClass
 	void (*end)                 (GtkSourceGutterRenderer      *renderer);
 
 	/**
-	 * GtkSourceGutterRendererClass::change_view
+	 * GtkSourceGutterRendererClass::change_view:
 	 * @renderer: a #GtkSourceGutterRenderer.
 	 * @old_view: (allow-none): the old #GtkTextView.
 	 *
@@ -112,6 +112,13 @@ struct _GtkSourceGutterRendererClass
 	void (*change_view)         (GtkSourceGutterRenderer      *renderer,
 	                             GtkTextView                  *old_view);
 
+	/**
+	 * GtkSourceGutterRendererClass::change_buffer:
+	 * @renderer: a #GtkSourceGutterRenderer.
+	 * @old_buffer: (allow-none): the old #GtkTextBuffer.
+	 *
+	 * This is called when the text buffer changes for @renderer.
+	 */
 	void (*change_buffer)       (GtkSourceGutterRenderer      *renderer,
 	                             GtkTextBuffer                *old_buffer);
 
