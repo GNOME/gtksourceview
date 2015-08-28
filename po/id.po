@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-06 22:04+0000\n"
-"PO-Revision-Date: 2015-08-07 15:47+0700\n"
+"POT-Creation-Date: 2015-08-28 10:06+0000\n"
+"PO-Revision-Date: 2015-08-28 20:54+0800\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "Language: id_ID\n"
@@ -110,7 +110,7 @@ msgstr "Semua"
 #: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
 #: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/pig.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/rust.lang.h:1
 #: ../data/language-specs/scala.lang.h:1
 #: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
@@ -161,7 +161,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/protobuf.lang.h:2
 #: ../data/language-specs/rst.lang.h:8 ../data/language-specs/ruby.lang.h:4
-#: ../data/language-specs/scala.lang.h:5
+#: ../data/language-specs/rust.lang.h:3 ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
@@ -229,10 +229,11 @@ msgstr "Galat"
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
 #: ../data/language-specs/php.lang.h:10 ../data/language-specs/po.lang.h:5
 #: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:7
+#: ../data/language-specs/protobuf.lang.h:8
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
+#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/rust.lang.h:4
+#: ../data/language-specs/scala.lang.h:6
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
@@ -308,10 +309,11 @@ msgstr "Deklarasi Scope"
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
 #: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/rust.lang.h:6
+#: ../data/language-specs/scala.lang.h:10
 #: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
@@ -353,10 +355,10 @@ msgstr "Nilai Null"
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
 #: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/protobuf.lang.h:6 ../data/language-specs/R.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:8
+#: ../data/language-specs/protobuf.lang.h:7 ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/rust.lang.h:8
+#: ../data/language-specs/sml.lang.h:11 ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/vbnet.lang.h:9 ../data/language-specs/vhdl.lang.h:8
 msgid "Boolean value"
 msgstr "Nilai boolean"
 
@@ -371,6 +373,7 @@ msgstr "Nilai boolean"
 #: ../data/language-specs/julia.lang.h:5 ../data/language-specs/llvm.lang.h:12
 #: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/rust.lang.h:10
 #: ../data/language-specs/scala.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -408,11 +411,11 @@ msgstr "Kata Kunci Cadangan Masa Depan"
 #: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
 #: ../data/language-specs/pig.lang.h:3
-#: ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
-#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/thrift.lang.h:4 ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/rust.lang.h:7 ../data/language-specs/scala.lang.h:14
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
+#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/thrift.lang.h:4
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Tipe Data"
 
@@ -506,7 +509,8 @@ msgstr "Waspada"
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:6 ../data/language-specs/julia.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5
+#: ../data/language-specs/rust.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "Karakter"
@@ -536,7 +540,7 @@ msgstr "Konstanta"
 #: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
@@ -681,7 +685,7 @@ msgstr "BennuGD"
 #. Any variable name
 #: ../data/language-specs/bennugd.lang.h:5
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/llvm.lang.h:9
-#: ../data/language-specs/php.lang.h:7
+#: ../data/language-specs/php.lang.h:7 ../data/language-specs/rust.lang.h:9
 msgid "Identifier"
 msgstr "Identifier"
 
@@ -751,6 +755,7 @@ msgid "Annotation"
 msgstr "Anotasi"
 
 #: ../data/language-specs/bluespec.lang.h:5
+#: ../data/language-specs/rust.lang.h:12
 msgid "Attribute"
 msgstr "Atribut"
 
@@ -956,6 +961,7 @@ msgstr "COBOL"
 
 #. Any statement
 #: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
+#: ../data/language-specs/protobuf.lang.h:3
 msgid "Statement"
 msgstr "Pernyataan"
 
@@ -1865,6 +1871,7 @@ msgid "Special Constant"
 msgstr "Konstanta Khusus"
 
 #: ../data/language-specs/julia.lang.h:11
+#: ../data/language-specs/rust.lang.h:13
 msgid "Macro"
 msgstr "Makro"
 
@@ -2576,6 +2583,14 @@ msgstr "Literal angka"
 msgid "Literal"
 msgstr "Literal"
 
+#: ../data/language-specs/rust.lang.h:2
+msgid "Rust"
+msgstr "Rust"
+
+#: ../data/language-specs/rust.lang.h:11
+msgid "Scope"
+msgstr "Cakupan"
+
 #: ../data/language-specs/scala.lang.h:2
 msgid "Scala"
 msgstr "Scala"
@@ -2594,7 +2609,7 @@ msgstr "Tag XML"
 
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
-msgstr "Skema"
+msgstr "Scheme"
 
 #: ../data/language-specs/scilab.lang.h:2
 msgid "Scilab"
@@ -2922,14 +2937,6 @@ msgstr "Info Pelengkapan"
 msgid "Provider"
 msgstr "Penyedia"
 
-#: ../gtksourceview/gtksourcecompletion.ui.h:1
-msgid "Show detailed proposal information"
-msgstr "Tampilkan informasi proposal terinci"
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:2
-msgid "_Details..."
-msgstr "_Rincian..."
-
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
@@ -2953,19 +2960,19 @@ msgstr ""
 "Penandaan suatu baris makan waktu terlalu lama, penandaan sintaks akan "
 "dimatikan"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5710
+#: ../gtksourceview/gtksourcecontextengine.c:5714
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "konteks '%s' tak boleh memuat suatu perintah \\%%{...@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5871
-#: ../gtksourceview/gtksourcecontextengine.c:5960
+#: ../gtksourceview/gtksourcecontextengine.c:5877
+#: ../gtksourceview/gtksourcecontextengine.c:5968
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "id konteks '%s' duplikat"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6074
-#: ../gtksourceview/gtksourcecontextengine.c:6134
+#: ../gtksourceview/gtksourcecontextengine.c:6082
+#: ../gtksourceview/gtksourcecontextengine.c:6142
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2974,18 +2981,18 @@ msgstr ""
 "penimpaan gaya dipakai dengan acuan konteks wildcard pada bahasa '%s' di "
 "acuan '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6148
+#: ../gtksourceview/gtksourcecontextengine.c:6156
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "acuan konteks '%s' tak valid"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6167
-#: ../gtksourceview/gtksourcecontextengine.c:6177
+#: ../gtksourceview/gtksourcecontextengine.c:6175
+#: ../gtksourceview/gtksourcecontextengine.c:6185
 #, c-format
 msgid "unknown context '%s'"
 msgstr "konteks '%s' tak dikenal"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6276
+#: ../gtksourceview/gtksourcecontextengine.c:6284
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Kehilangan definisi bahasa utama (id = \"%s\")."
@@ -3151,7 +3158,7 @@ msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Id '%s' tak dikenal di regex '%s'"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "di regex '%s': acuan balik tak didukung"
@@ -3189,41 +3196,33 @@ msgstr "_Batal"
 msgid "_Select"
 msgstr "_Pilih"
 
-#: ../gtksourceview/gtksourceview.c:660
-msgid "Smart Backspace"
-msgstr "Backspace Cerdas"
-
-#: ../gtksourceview/gtksourceview.c:661
-msgid "Whether smart Backspace should be used."
-msgstr "Apakah Backspace cerdas mesti dipakai."
-
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1541
+#: ../gtksourceview/gtksourceview.c:1548
 msgid "_Redo"
 msgstr "_Jadi Lagi"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1552
+#: ../gtksourceview/gtksourceview.c:1559
 msgid "_Undo"
 msgstr "_Tak Jadi"
 
-#: ../gtksourceview/gtksourceview.c:1570
+#: ../gtksourceview/gtksourceview.c:1577
 msgid "All _Upper Case"
 msgstr "Semua H_uruf Besar"
 
-#: ../gtksourceview/gtksourceview.c:1580
+#: ../gtksourceview/gtksourceview.c:1587
 msgid "All _Lower Case"
 msgstr "Semua Huruf Keci_l"
 
-#: ../gtksourceview/gtksourceview.c:1590
+#: ../gtksourceview/gtksourceview.c:1597
 msgid "_Invert Case"
 msgstr "Balikkan Besar Kecil Huruf"
 
-#: ../gtksourceview/gtksourceview.c:1600
+#: ../gtksourceview/gtksourceview.c:1607
 msgid "_Title Case"
 msgstr "Huruf Besar _Judul"
 
-#: ../gtksourceview/gtksourceview.c:1610
+#: ../gtksourceview/gtksourceview.c:1617
 msgid "C_hange Case"
 msgstr "Uba_h Besar Kecil Huruf"
 
