@@ -1,4 +1,4 @@
-ACLOCAL_AMFLAGS = --install -I m4 ${ACLOCAL_FLAGS}
+ACLOCAL_AMFLAGS  = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS = gtksourceview po data docs tests
 
