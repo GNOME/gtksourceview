@@ -21,7 +21,6 @@ if [ "$#" = 0 -a "x$NOCONFIGURE" = "x" ]; then
 	echo "" >&2
 fi
 
-set -x
 aclocal --install || exit 1
 gtkdocize --copy || exit 1
 intltoolize --force --copy --automake || exit 1
@@ -37,5 +36,3 @@ if [ "$NOCONFIGURE" = "" ]; then
 else
 	echo "Skipping configure process."
 fi
-
-{ set +x; } 2>/dev/null
