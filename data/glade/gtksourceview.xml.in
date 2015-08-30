@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <glade-catalog version="3.0" supports="gtkbuilder" name="gtksourceview" library="gtksourceview-3.0" domain="gtksourceview-3.0" depends="gtk+" book="gtksourceview-3.0">
   <glade-widget-classes>
-    <glade-widget-class name="GtkSourceView" _title="GtkSourceView" generic-name="gtksourceview">
+    <glade-widget-class name="GtkSourceView" title="GtkSourceView" generic-name="gtksourceview">
       <properties>
         <property id="auto-indent" default="False" />
         <property id="highlight-current-line" default="False" />
@@ -43,7 +43,7 @@
     </glade-widget-class>
   </glade-widget-classes>
 
-  <glade-widget-group name="GtkSourceView" _title="GtkSourceView">
+  <glade-widget-group name="GtkSourceView" title="GtkSourceView">
     <glade-widget-class-ref name="GtkSourceView" />
     <glade-widget-class-ref name="GtkSourceMap" />
     <glade-widget-class-ref name="GtkSourceStyleSchemeChooserWidget" />
