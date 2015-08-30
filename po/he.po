@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.HEAD.he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-16 14:35+0300\n"
-"PO-Revision-Date: 2015-07-16 14:35+0300\n"
+"POT-Creation-Date: 2015-08-30 10:35+0300\n"
+"PO-Revision-Date: 2015-08-30 10:35+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -98,15 +98,17 @@ msgstr "הכול"
 #: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
 #: ../data/language-specs/llvm.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/meson.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/netrexx.lang.h:1 ../data/language-specs/objc.lang.h:1
 #: ../data/language-specs/objj.lang.h:1 ../data/language-specs/ocaml.lang.h:1
 #: ../data/language-specs/ooc.lang.h:1 ../data/language-specs/opal.lang.h:1
 #: ../data/language-specs/opencl.lang.h:1
 #: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/pig.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/scala.lang.h:1
-#: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
-#: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/rust.lang.h:1
+#: ../data/language-specs/scala.lang.h:1 ../data/language-specs/scheme.lang.h:1
+#: ../data/language-specs/sml.lang.h:1 ../data/language-specs/sparql.lang.h:1
+#: ../data/language-specs/sql.lang.h:1
 #: ../data/language-specs/systemverilog.lang.h:1
 #: ../data/language-specs/thrift.lang.h:1 ../data/language-specs/vala.lang.h:1
 #: ../data/language-specs/vbnet.lang.h:1
@@ -151,8 +153,8 @@ msgstr "ActionScript"
 #: ../data/language-specs/pig.lang.h:8 ../data/language-specs/po.lang.h:3
 #: ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/protobuf.lang.h:2 ../data/language-specs/rst.lang.h:8
-#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/scala.lang.h:5
-#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/rust.lang.h:3
+#: ../data/language-specs/scala.lang.h:5 ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
 #: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
@@ -205,7 +207,8 @@ msgstr "שגיאות"
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
 #: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
-#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/modelica.lang.h:4
+#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/meson.lang.h:5
+#: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4 ../data/language-specs/nsis.lang.h:5
 #: ../data/language-specs/objc.lang.h:6 ../data/language-specs/objj.lang.h:8
@@ -214,10 +217,11 @@ msgstr "שגיאות"
 #: ../data/language-specs/opal.lang.h:7 ../data/language-specs/pascal.lang.h:4
 #: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
 #: ../data/language-specs/po.lang.h:5 ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:7
+#: ../data/language-specs/protobuf.lang.h:8
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6 ../data/language-specs/ruby.lang.h:14
-#: ../data/language-specs/scala.lang.h:6 ../data/language-specs/scheme.lang.h:5
+#: ../data/language-specs/rust.lang.h:4 ../data/language-specs/scala.lang.h:6
+#: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
 #: ../data/language-specs/texinfo.lang.h:6
@@ -291,10 +295,11 @@ msgstr "Scope Declaration"
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
 #: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/rust.lang.h:6
+#: ../data/language-specs/scala.lang.h:10
 #: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
@@ -332,10 +337,10 @@ msgstr "ערך מאופס"
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
 #: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/protobuf.lang.h:6 ../data/language-specs/R.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:8
+#: ../data/language-specs/protobuf.lang.h:7 ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/rust.lang.h:8
+#: ../data/language-specs/sml.lang.h:11 ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/vbnet.lang.h:9 ../data/language-specs/vhdl.lang.h:8
 msgid "Boolean value"
 msgstr "ערך בוליאני"
 
@@ -348,7 +353,7 @@ msgstr "ערך בוליאני"
 #: ../data/language-specs/java.lang.h:16 ../data/language-specs/j.lang.h:14
 #: ../data/language-specs/julia.lang.h:5 ../data/language-specs/llvm.lang.h:12
 #: ../data/language-specs/netrexx.lang.h:16
-#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/prolog.lang.h:7 ../data/language-specs/rust.lang.h:10
 #: ../data/language-specs/scala.lang.h:12 ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
 msgstr "מספר"
@@ -382,11 +387,11 @@ msgstr "Future Reserved Keywords"
 #: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/ooc.lang.h:19
 #: ../data/language-specs/opal.lang.h:11 ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
-#: ../data/language-specs/pig.lang.h:3 ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
-#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/thrift.lang.h:4 ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/pig.lang.h:3 ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/rust.lang.h:7 ../data/language-specs/scala.lang.h:14
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
+#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/thrift.lang.h:4
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "סוג הנתון"
 
@@ -476,8 +481,8 @@ msgstr "Alert"
 #: ../data/language-specs/go.lang.h:6 ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:6 ../data/language-specs/julia.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/rust.lang.h:5
+#: ../data/language-specs/sml.lang.h:6 ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "תו"
 
@@ -504,7 +509,7 @@ msgstr "קבוע"
 #: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
@@ -552,6 +557,7 @@ msgstr "פוקנציה"
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9 ../data/language-specs/julia.lang.h:9
+#: ../data/language-specs/meson.lang.h:4
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:15
@@ -646,6 +652,7 @@ msgstr "BennuGD"
 #. Any variable name
 #: ../data/language-specs/bennugd.lang.h:5 ../data/language-specs/def.lang.h:36
 #: ../data/language-specs/llvm.lang.h:9 ../data/language-specs/php.lang.h:7
+#: ../data/language-specs/rust.lang.h:9
 msgid "Identifier"
 msgstr "Identifier"
 
@@ -713,6 +720,7 @@ msgid "Annotation"
 msgstr "הערה"
 
 #: ../data/language-specs/bluespec.lang.h:5
+#: ../data/language-specs/rust.lang.h:12
 msgid "Attribute"
 msgstr "תכונה"
 
@@ -892,7 +900,7 @@ msgstr "שם האות"
 msgid "CMake"
 msgstr "CMake"
 
-#: ../data/language-specs/cmake.lang.h:3
+#: ../data/language-specs/cmake.lang.h:3 ../data/language-specs/meson.lang.h:3
 msgid "Builtin Command"
 msgstr "פקודה מובנית"
 
@@ -914,6 +922,7 @@ msgstr "COBOL"
 
 #. Any statement
 #: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
+#: ../data/language-specs/protobuf.lang.h:3
 msgid "Statement"
 msgstr "Statement"
 
@@ -1819,7 +1828,7 @@ msgstr "קבוע מתמטי"
 msgid "Special Constant"
 msgstr "Special Constant"
 
-#: ../data/language-specs/julia.lang.h:11
+#: ../data/language-specs/julia.lang.h:11 ../data/language-specs/rust.lang.h:13
 msgid "Macro"
 msgstr "מאקרו"
 
@@ -2119,6 +2128,10 @@ msgstr "כותרת"
 #: ../data/language-specs/mediawiki.lang.h:16
 msgid "Template"
 msgstr "תבנית"
+
+#: ../data/language-specs/meson.lang.h:2
+msgid "Meson"
+msgstr "Meson"
 
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
@@ -2526,6 +2539,14 @@ msgstr "Numeric literal"
 msgid "Literal"
 msgstr "ביטוי"
 
+#: ../data/language-specs/rust.lang.h:2
+msgid "Rust"
+msgstr "Rust"
+
+#: ../data/language-specs/rust.lang.h:11
+msgid "Scope"
+msgstr "Scope"
+
 #: ../data/language-specs/scala.lang.h:2
 msgid "Scala"
 msgstr "Scala"
@@ -2872,14 +2893,6 @@ msgstr "מידע ההשלמה"
 msgid "Provider"
 msgstr "ספק"
 
-#: ../gtksourceview/gtksourcecompletion.ui.h:1
-msgid "Show detailed proposal information"
-msgstr "הצגת פרטי ההצעה בפירוט"
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:2
-msgid "_Details..."
-msgstr "_פרטים..."
-
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
@@ -2901,19 +2914,19 @@ msgid ""
 "disabled"
 msgstr "הדגשת שורה אחת לקחה זמן כל כך רב, הדגשת תחביר תבוטל"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5710
+#: ../gtksourceview/gtksourcecontextengine.c:5714
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "context '%s' cannot contain a \\%%{...@start} command"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5871
-#: ../gtksourceview/gtksourcecontextengine.c:5960
+#: ../gtksourceview/gtksourcecontextengine.c:5877
+#: ../gtksourceview/gtksourcecontextengine.c:5968
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplicated context id '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6074
-#: ../gtksourceview/gtksourcecontextengine.c:6134
+#: ../gtksourceview/gtksourcecontextengine.c:6082
+#: ../gtksourceview/gtksourcecontextengine.c:6142
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2922,18 +2935,18 @@ msgstr ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6148
+#: ../gtksourceview/gtksourcecontextengine.c:6156
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "invalid context reference '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6167
-#: ../gtksourceview/gtksourcecontextengine.c:6177
+#: ../gtksourceview/gtksourcecontextengine.c:6175
+#: ../gtksourceview/gtksourcecontextengine.c:6185
 #, c-format
 msgid "unknown context '%s'"
 msgstr "unknown context '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6276
+#: ../gtksourceview/gtksourcecontextengine.c:6284
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Missing main language definition (id = \"%s\".)"
@@ -3099,7 +3112,7 @@ msgstr "['UTF-8','CURRENT','ISO-8859-8','WINDOWS-1255','UTF-16']"
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Unknown id '%s' in regex '%s'"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "in regex '%s': backreferences are not supported"
@@ -3137,41 +3150,33 @@ msgstr "_ביטול"
 msgid "_Select"
 msgstr "ב_חירה"
 
-#: ../gtksourceview/gtksourceview.c:660
-msgid "Smart Backspace"
-msgstr "Smart Backspace"
-
-#: ../gtksourceview/gtksourceview.c:661
-msgid "Whether smart Backspace should be used."
-msgstr "Whether smart Backspace should be used."
-
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1541
+#: ../gtksourceview/gtksourceview.c:1548
 msgid "_Redo"
 msgstr "ח_זרה"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1552
+#: ../gtksourceview/gtksourceview.c:1559
 msgid "_Undo"
 msgstr "_ביטול"
 
-#: ../gtksourceview/gtksourceview.c:1570
+#: ../gtksourceview/gtksourceview.c:1577
 msgid "All _Upper Case"
 msgstr "הכול לאותיות _רישיות"
 
-#: ../gtksourceview/gtksourceview.c:1580
+#: ../gtksourceview/gtksourceview.c:1587
 msgid "All _Lower Case"
 msgstr "הכול לאותיות _קטנות"
 
-#: ../gtksourceview/gtksourceview.c:1590
+#: ../gtksourceview/gtksourceview.c:1597
 msgid "_Invert Case"
 msgstr "_החלפה בין אותיות רישיות וקטנות"
 
-#: ../gtksourceview/gtksourceview.c:1600
+#: ../gtksourceview/gtksourceview.c:1607
 msgid "_Title Case"
 msgstr "_אות רישית בראש מילה"
 
-#: ../gtksourceview/gtksourceview.c:1610
+#: ../gtksourceview/gtksourceview.c:1617
 msgid "C_hange Case"
 msgstr "_שינוי גודל האותיות"
 
@@ -3180,6 +3185,18 @@ msgid "translator-credits"
 msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
 "יוסף אור בוצ׳קו <yoseforb@gmail.com>"
+
+#~ msgid "Show detailed proposal information"
+#~ msgstr "הצגת פרטי ההצעה בפירוט"
+
+#~ msgid "_Details..."
+#~ msgstr "_פרטים..."
+
+#~ msgid "Smart Backspace"
+#~ msgstr "Smart Backspace"
+
+#~ msgid "Whether smart Backspace should be used."
+#~ msgstr "Whether smart Backspace should be used."
 
 #~ msgid "Sources"
 #~ msgstr "מקורות"
