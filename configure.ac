@@ -37,13 +37,10 @@ GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
 AC_SUBST(GSV_LT_VERSION)
 
 # Dependencies
-GLIB_REQUIRED_VERSION=2.44
-GTK_REQUIRED_VERSION=3.16
-LIBXML_REQUIRED_VERSION=2.6.0
-GLADE_UI_REQUIRED=3.9
-
-AC_SUBST(GTK_REQUIRED_VERSION)
-AC_SUBST(LIBXML_REQUIRED_VERSION)
+glib_req=2.44
+gtk_req=3.16
+libxml_req=2.6.0
+gladeui_req=3.9
 
 AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
 AC_CONFIG_HEADER([config.h])
@@ -88,12 +85,9 @@ if test "$enable_deprecations" = "no"; then
 	AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
 fi
 
-PKG_CHECK_MODULES(DEP, [
-	glib-2.0 >= $GLIB_REQUIRED_VERSION
-	gio-2.0 >= $GLIB_REQUIRED_VERSION
-	gtk+-3.0 >= $GTK_REQUIRED_VERSION
-	libxml-2.0 >= $LIBXML_REQUIRED_VERSION
-])
+AX_PKG_CHECK_MODULES(DEP,
+		     [glib-2.0 >= $glib_req  gio-2.0 >= $glib_req  gtk+-3.0 >= $gtk_req],
+		     [libxml-2.0 >= $libxml_req])
 
 dnl Check to enable completion providers
 AC_ARG_ENABLE(providers,
@@ -124,7 +118,7 @@ AC_ARG_ENABLE([glade-catalog],
 AM_CONDITIONAL([GLADE_CATALOG], [ test "$glade_catalog" = "yes" ])
 
 AS_IF([ test "$glade_catalog" = "yes" ],
-	[PKG_CHECK_MODULES(GLADE, [gladeui-2.0 >= $GLADE_UI_REQUIRED])
+	[PKG_CHECK_MODULES(GLADE, [gladeui-2.0 >= $gladeui_req])
 	 AC_MSG_CHECKING([whether to install Glade catalog])
 	 GLADE_CATALOG_DIR=`$PKG_CONFIG --variable=catalogdir gladeui-2.0 2>&AS_MESSAGE_LOG_FD`
 	 AC_MSG_RESULT([$GLADE_CATALOG_DIR])

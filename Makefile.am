@@ -40,6 +40,7 @@ MAINTAINERCLEANFILES = 		\
 	m4/ax_compiler_flags_ldflags.m4 \
 	m4/ax_compiler_flags.m4	\
 	m4/ax_is_release.m4	\
+	m4/ax_pkg_check_modules.m4 \
 	m4/ax_require_defined.m4 \
 	m4/codeset.m4		\
 	m4/extern-inline.m4	\
