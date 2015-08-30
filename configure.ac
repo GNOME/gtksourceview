@@ -54,8 +54,10 @@ m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 # Check for programs
 AC_PROG_CC
 AC_PROG_INSTALL
+PKG_PROG_PKG_CONFIG
+PKG_INSTALLDIR
 
-#Initialize libtool
+# Initialize libtool
 LT_PREREQ([2.2.6])
 LT_INIT([disable-static])
 

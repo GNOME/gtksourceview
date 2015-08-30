@@ -1,6 +1,5 @@
 SUBDIRS = gtksourceview po data docs tests
 
-pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = gtksourceview-3.0.pc
 
 EXTRA_DIST = \
