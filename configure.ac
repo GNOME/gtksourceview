@@ -87,7 +87,7 @@ if test "$enable_deprecations" = "no"; then
 	AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
 fi
 
-AX_PKG_CHECK_MODULES(DEP,
+AX_PKG_CHECK_MODULES([DEP],
 		     [glib-2.0 >= $glib_req  gio-2.0 >= $glib_req  gtk+-3.0 >= $gtk_req],
 		     [libxml-2.0 >= $libxml_req])
 
