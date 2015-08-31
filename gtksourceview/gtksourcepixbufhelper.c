@@ -279,16 +279,19 @@ from_name (GtkSourcePixbufHelper *helper,
 	GtkIconTheme *icon_theme;
 	GtkIconInfo *info;
 	GtkIconLookupFlags flags;
+	gint scale;
 
 	screen = gtk_widget_get_screen (widget);
 	icon_theme = gtk_icon_theme_get_for_screen (screen);
 
 	flags = GTK_ICON_LOOKUP_USE_BUILTIN;
+        scale = gtk_widget_get_scale_factor (widget);
 
-	info = gtk_icon_theme_lookup_icon (icon_theme,
-	                                   helper->icon_name,
-	                                   size,
-	                                   flags);
+	info = gtk_icon_theme_lookup_icon_for_scale (icon_theme,
+	                                             helper->icon_name,
+	                                             size,
+	                                             scale,
+	                                             flags);
 
 	if (info)
 	{

@@ -87,9 +87,11 @@ gutter_renderer_pixbuf_draw (GtkSourceGutterRenderer      *renderer,
 	gfloat yalign;
 	GtkSourceGutterRendererAlignmentMode mode;
 	GtkTextView *view;
+	gint scale;
 	gint x = 0;
 	gint y = 0;
 	GdkPixbuf *pixbuf;
+	cairo_surface_t *surface;
 
 	/* Chain up to draw background */
 	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_pixbuf_parent_class)->draw != NULL)
@@ -116,6 +118,22 @@ gutter_renderer_pixbuf_draw (GtkSourceGutterRenderer      *renderer,
 
 	width = gdk_pixbuf_get_width (pixbuf);
 	height = gdk_pixbuf_get_height (pixbuf);
+
+	/*
+	 * We might have gotten a pixbuf back from the helper that will allow
+	 * us to render for HiDPI. If we detect this, we pretend that we got a
+	 * different size back and then gdk_cairo_surface_create_from_pixbuf()
+	 * will take care of the rest.
+	 */
+	scale = gtk_widget_get_scale_factor (GTK_WIDGET (view));
+	if ((scale > 1) &&
+	    ((width > cell_area->width) || (height > cell_area->height)) &&
+	    (width <= (cell_area->width * scale)) &&
+	    (height <= (cell_area->height * scale)))
+	{
+		width = width / scale;
+		height = height / scale;
+	}
 
 	gtk_source_gutter_renderer_get_alignment (renderer,
 	                                          &xalign,
@@ -155,8 +173,12 @@ gutter_renderer_pixbuf_draw (GtkSourceGutterRenderer      *renderer,
 			g_assert_not_reached ();
 	}
 
-	gdk_cairo_set_source_pixbuf (cr, pixbuf, x, y);
+	surface = gdk_cairo_surface_create_from_pixbuf (pixbuf, scale, NULL);
+	cairo_set_source_surface (cr, surface, x, y);
+
 	cairo_paint (cr);
+
+	cairo_surface_destroy (surface);
 }
 
 static void
