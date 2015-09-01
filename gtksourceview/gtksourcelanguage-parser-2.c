@@ -1102,13 +1102,13 @@ replace_delimiter (const GMatchInfo *match_info,
 
 static gchar *
 expand_regex_delimiters (ParserState *parser_state,
-		gchar *regex,
-		gint len)
+			 gchar       *regex,
+			 gint         len)
 {
 	/* This is the commented regex without the doubled escape needed
 	 * in a C string:
 	 *
-	 * (?<!\\)(\\\\)*\\%([\[|\])
+	 * (?<!\\)(\\\\)*\\%(\[|\])
 	 * |------------||---------|
 	 *      |             |
 	 *      |        the strings
