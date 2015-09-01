@@ -6,7 +6,7 @@
  Authors: Søren Hauberg, Muthiah Annamalai, Carnë Draug
  Copyright (C) 2006 Søren Hauberg <soren@hauberg.org>
  Copyright (C) 2006 Muthiah Annamalai <gnumuthu@users.sf.net>
- Copyright (C) 2010 Carnë Draug <carandraug+dev@gmail.com>
+ Copyright (C) 2010-2015 Carnë Draug <carandraug+dev@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -45,7 +45,8 @@
 
   <definitions>
 
-    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
+    <context id="block-comment" style-ref="comment" class="comment"
+             class-disabled="no-spell-check">
       <start>^\s*%{\s*$</start>
       <end>^\s*%}\s*$</end>
       <include>
@@ -54,31 +55,11 @@
       </include>
     </context>
 
-    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+    <context id="line-comment" style-ref="comment" end-at-line-end="true"
+             class="comment" class-disabled="no-spell-check">
       <start>%</start>
       <include>
         <context ref="def:in-comment"/>
-      </include>
-    </context>
-
-    <context id="keyword">
-      <include>
-        <context style-ref="keyword">
-          <!--Only Matlab specific keywords. -->
-          <keyword>classdef</keyword>
-          <keyword>enumeration</keyword>
-          <keyword>events</keyword>
-          <keyword>methods</keyword>
-          <keyword>properties</keyword>
-        </context>
-        <!--
-          Octave and Matlab have already implemented most of each others keywords
-          but not all. Both Octave and Matlab are still missing keywords from the
-          other. As such, this block only has the keywords already implemented in
-          both. When adding a new keyword, make sure you place it on the right
-          place.
-        -->
-        <context ref="octave:octave-matlab-keyword" style-ref="keyword"/>
       </include>
     </context>
 
@@ -156,13 +137,9 @@
         <context ref="octave:function-handle"/>
         <context ref="octave:storage-type"/>
         <context ref="octave:boolean"/>
-        <context ref="octave:decimal"/>
-        <context ref="octave:floating-point-number"/>
-        <context ref="octave:octal-number"/>
-        <context ref="octave:hex-number"/>
-        <context ref="octave:variables"/>
+        <context ref="def:decimal"/>
         <context ref="octave:reserved-constant"/>
-        <context ref="keyword"/>
+        <context ref="octave:octave-matlab-keyword"/>
         <context ref="builtin"/>
       </include>
     </context>

@@ -6,7 +6,7 @@
  Authors: Søren Hauberg, Muthiah Annamalai, Carnë Draug
  Copyright (C) 2006 Søren Hauberg <soren@hauberg.org>
  Copyright (C) 2006 Muthiah Annamalai <gnumuthu@users.sf.net>
- Copyright (C) 2010 Carnë Draug <carandraug+dev@gmail.com>
+ Copyright (C) 2010-2015 Carnë Draug <carandraug+dev@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -44,24 +44,29 @@
     <style id="data-type"         _name="Data type"         map-to="def:type"/>
     <style id="storage-type"      _name="Storage Type"      map-to="def:type"/>
     <style id="boolean"           _name="Boolean"           map-to="def:boolean"/>
-    <style id="decimal"           _name="Decimal"           map-to="def:decimal"/>
-    <style id="floating-point"    _name="Floating Point"    map-to="def:floating-point"/>
-    <style id="base-n-integer"    _name="Base-N Integer"    map-to="def:base-n-integer"/>
     <style id="package-manager"   _name="Package Manager"   map-to="def:preprocessor"/>
     <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
-    <style id="variable"          _name="Variable"          map-to="def:identifier"/>
     <style id="reserved-constant" _name="Reserved Constant" map-to="def:special-constant"/>
     <style id="builtin"           _name="Builtin"           map-to="def:builtin"/>
   </styles>
 
   <definitions>
 
+    <!--
+      Many variable looking things such as NaN, NA, true, ones, and zeros,
+      are actually functions that take dimensions, and even class name as
+      argument.  However, are often used as a scalar variables since they
+      default to (1, 1) dimensions.  In such cases, when they are not
+      followed by parentheses, we highlight them as variables.
+    -->
+    <define-regex id="function-as-variable-suffix">\%](?!\s*\()</define-regex>
+
     <context id="block-comment" style-ref="comment" class="comment"
              class-disabled="no-spell-check">
       <start>^\s*[#%]{\s*$</start>
       <end>^\s*[#%]}\s*$</end>
       <include>
-        <context ref="block-comment"/>
+        <context ref="block-comment"/>  <!-- Nested block comments are real -->
         <context ref="def:in-comment"/>
       </include>
     </context>
@@ -75,12 +80,14 @@
     </context>
 
     <!--
-      Line continue in Octave are different from the one in def.lang. They can
-      either be  ... or \ optionally followed by whitespace only.
+      A backslash as line continuation can only be used within double
+      quoted strings.  An ellipsis as line continuation can be used
+      anywhere else to continue statements and anything that follows
+      a "..." is ignored, treated as a comment.
     -->
     <context id="line-continue" style-ref="comment">
-      <start>(\.\.\.|\\)(\s)*?$</start>
-      <end>^</end>
+      <start>\.\.\.</start>
+      <end>$</end>
       <include>
         <context ref="def:in-comment"/>
       </include>
@@ -90,7 +97,7 @@
              end-at-line-end="true" class="string"
              class-disabled="no-spell-check">
       <!--
-         To do not misdetect the transpose operator ' as the start of a string
+         To not misdetect the transpose operator ' as the start of a string
          we assert to not follow a variable name (letters, digits and underscores)
          or a closing bracket (round, square or curly) or a dot (to form the
          array transpose operator ".'" ).
@@ -110,20 +117,24 @@
       </include>
     </context>
 
-    <!--To see the list of operators, use the function __operators__-->
+    <!--
+      The Octave function __operators__ does not return an exhaustive list
+      of operators.  Do not forget that all operators can now be preceded
+      by "." to perform automatic broadcasting, including comparison.
+      Autoincrement operators are also not listed there.
+    -->
     <context id="operator" style-ref="operator">
       <match extended="true">
-        (\.)?\+{1,2}?(?!\+) |   # arithmetic operators
-        (\.)?\-{1,2}?(?!\-) |   # already counting
-        (\.)?\*{1,2}?(?!\*) |   # with auto increment,
-        (\.)?\/(?!\^) |         # element by element,
-        (\.)?\\(?!\^) |         # left division
-        (\.)?\^(?!\^) |         # and both exp
-        (?&lt;=[0-9a-zA-Z_)\]}])(\.)?' |                  # transpose operator
-        &lt;=? | &gt;=? | != | ~= | == | &lt;&gt; |       # comparison operators
-        &amp;{1,2}?(?!&amp;) | \|{1,2}?(?!\|) | ! | ~ |   # boolean operators
-        = |                                               # assignment operator
-        : |                                               # range operator
+        ## The operators, +, -, *, /, \, ^, and **, support both element by
+        ## element-by-element and automatic broadcasting (preceded by .),
+        ## compound assignment, as well both in one (".**=" is real).
+        (\.)?(\+|\-|\*|\/|\\|\^|\*\*) |
+
+        (?&lt;=[0-9a-zA-Z_)\]}])(\.)?' |  # transpose operator
+        \+\+ | \-\- |                     # auto-increment/decrement
+        \| | &amp; |                      # boolean operators
+        ! | ~ | = | &lt; | &gt; |         # comparison operators
+        :                                 # range operator
       </match>
     </context>
 
@@ -147,41 +158,13 @@
     </context>
 
     <context id="boolean" style-ref="boolean">
-      <!--
-        false and true are actually functions but let's ignore that
-        unless there are parentheses.
-      -->
-      <suffix>\b(?!(\s)*\()</suffix>
+      <suffix>\%{function-as-variable-suffix}</suffix>
       <keyword>false</keyword>
       <keyword>true</keyword>
     </context>
 
-    <context id="decimal" style-ref="decimal">
-      <match>\b([1-9][0-9]*|0)([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</match>
-    </context>
-
-    <context id="floating-point-number" style-ref="floating-point">
-      <match>\b([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFlL]?</match>
-    </context>
-
-    <context id="octal-number" style-ref="base-n-integer">
-      <match>\b0[0-7]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</match>
-    </context>
-
-    <context id="hex-number" style-ref="base-n-integer">
-      <match>\b0[xX][0-9a-fA-F]+([Uu]([Ll]|LL|ll)?|([Ll]|LL|ll)[Uu]?)?\b</match>
-    </context>
-
-    <context id="variables" style-ref="variable">
-      <keyword>ans</keyword>
-    </context>
-
     <context id="reserved-constant" style-ref="reserved-constant">
-      <!--
-        Most of the constants are actually functions. Do not highlight as
-        constants if followed by parentheses.
-      -->
-      <suffix>\b(?!(\s)*\()</suffix>
+      <suffix>\%{function-as-variable-suffix}</suffix>
       <keyword>e</keyword>
       <keyword>eps</keyword>
       <keyword>(J|j|I|i)</keyword>
@@ -195,25 +178,34 @@
     </context>
 
     <context id="package-manager" style-ref="package-manager">
-      <!--
-        The list of pkg commands is optional to the match so that at least pkg
-        is highlighted when new commands get implemented.
-      -->
       <match extended="true">
-        \bpkg(?!(\s)*\()(\s)+
-        ((un)?install|update|(un)?load|list|(global|local)_list|describe|prefix|(re)?build)?\b
+        \%[
+        pkg\%{function-as-variable-suffix}
+        \ +
+        (install|uninstall|update|unload|load|list|global_list|local_list|
+         describe|prefix|rebuild|build)
+        \%]
       </match>
     </context>
 
     <context id="keyword">
       <include>
         <context style-ref="keyword">
-          <!--
-            Only Octave specific keywords. To see a complete list of keywords in
-            Octave, use __keywords__ at the Octave prompt.
-          -->
-          <keyword>end(_try_catch|_unwind_protect|for|function|if|parfor|switch|while)</keyword>
-          <keyword>unwind_protect(_cleanup)?</keyword>
+          <keyword>end_try_catch</keyword>
+          <keyword>end_unwind_protect</keyword>
+          <keyword>endclassdef</keyword>
+          <keyword>endenumeration</keyword>
+          <keyword>endevents</keyword>
+          <keyword>endfor</keyword>
+          <keyword>endfunction</keyword>
+          <keyword>endif</keyword>
+          <keyword>endmethods</keyword>
+          <keyword>endparfor</keyword>
+          <keyword>endproperties</keyword>
+          <keyword>endswitch</keyword>
+          <keyword>endwhile</keyword>
+          <keyword>unwind_protect_cleanup</keyword>
+          <keyword>unwind_protect_cleanup</keyword>
         </context>
         <context id="octave-matlab-keyword" style-ref="keyword">
           <!--
@@ -226,26 +218,34 @@
           <keyword>break</keyword>
           <keyword>case</keyword>
           <keyword>catch</keyword>
+          <keyword>classdef</keyword>
           <keyword>continue</keyword>
           <keyword>do</keyword>
-          <keyword>else(if)?</keyword>
+          <keyword>else</keyword>
+          <keyword>elseif</keyword>
           <keyword>end</keyword>
+          <keyword>enumeration</keyword>
+          <keyword>events</keyword>
           <keyword>for</keyword>
           <keyword>function</keyword>
           <keyword>if</keyword>
+          <keyword>methods</keyword>
           <keyword>otherwise</keyword>
           <keyword>parfor</keyword>
+          <keyword>properties</keyword>
           <keyword>return</keyword>
           <keyword>switch</keyword>
           <keyword>try</keyword>
           <keyword>until</keyword>
-          <keyword>vararg(in|out)</keyword>
+          <keyword>varargin</keyword>
+          <keyword>varargout</keyword>
           <keyword>while</keyword>
         </context>
       </include>
     </context>
 
     <context id="builtin" style-ref="builtin">
+      <!--  If any of these is between "." it's a struct.  -->
       <prefix>(?&lt;!\.)\%[</prefix>
       <suffix>\%](?!\.)</suffix>
 
@@ -1745,11 +1745,8 @@
         <context ref="function-handle"/>
         <context ref="storage-type"/>
         <context ref="boolean"/>
-        <context ref="decimal"/>
-        <context ref="floating-point-number"/>
-        <context ref="octal-number"/>
-        <context ref="hex-number"/>
-        <context ref="variables"/>
+        <context ref="def:decimal"/>
+        <context ref="def:hexadecimal"/>
         <context ref="reserved-constant"/>
         <context ref="package-manager"/>
         <context ref="keyword"/>
