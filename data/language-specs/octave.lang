@@ -86,19 +86,6 @@
       </include>
     </context>
 
-    <context id="double-quoted-string" style-ref="string"
-             end-at-line-end="true" class="string"
-             class-disabled="no-spell-check">
-      <start>"</start>
-      <end>"</end>
-      <include>
-         <!-- octave uses the same printf format and escape chars as C -->
-        <context ref="c:printf"/>
-        <context ref="c:escaped-character"/>
-        <context ref="line-continue"/>
-      </include>
-    </context>
-
     <context id="single-quoted-string" style-ref="string"
              end-at-line-end="true" class="string"
              class-disabled="no-spell-check">
@@ -1751,7 +1738,7 @@
         <context ref="block-comment"/>
         <context ref="line-comment"/>
         <context ref="line-continue"/>
-        <context ref="double-quoted-string"/>
+        <context ref="c:string"/>
         <context ref="single-quoted-string"/>
         <context ref="operator"/>
         <context ref="data-type"/>
