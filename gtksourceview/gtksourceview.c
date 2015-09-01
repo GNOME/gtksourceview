@@ -2815,7 +2815,8 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 	g_object_unref (layout);
 
 	/* each character becomes 2 stacked boxes. */
-	grid_height /= 2;
+	grid_height = MAX (1, grid_height / 2);
+	grid_width = MAX (1, grid_width);
 
 	cairo_save (cr);
 
