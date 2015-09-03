@@ -26,9 +26,6 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-#ifdef G_OS_WIN32
-#include <io.h>
-#endif
 
 #include <string.h>
 #include <fcntl.h>
@@ -38,6 +35,10 @@
 #include "gtksourceview-i18n.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcelanguage.h"
+
+#ifdef G_OS_WIN32
+#include <io.h>
+#endif
 
 /**
  * SECTION:language
