@@ -38,14 +38,13 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_GUTTER_RENDERER_MARKS_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_GUTTER_RENDERER_MARKS, GtkSourceGutterRendererMarksClass))
 
 typedef struct _GtkSourceGutterRendererMarksClass	GtkSourceGutterRendererMarksClass;
-typedef struct _GtkSourceGutterRendererMarksPrivate	GtkSourceGutterRendererMarksPrivate;
 
 struct _GtkSourceGutterRendererMarks
 {
 	/*< private >*/
 	GtkSourceGutterRendererPixbuf parent;
 
-	GtkSourceGutterRendererMarksPrivate *priv;
+	gpointer priv; /* unused for now */
 
 	/*< public >*/
 };
