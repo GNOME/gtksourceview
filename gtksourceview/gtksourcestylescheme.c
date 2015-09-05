@@ -670,18 +670,21 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 	if (!get_color (secondary_style, TRUE, &secondary_color))
 	{
 		GtkStyleContext *context;
+		GdkRGBA *rgba;
 
 		context = gtk_widget_get_style_context (widget);
 
 		gtk_style_context_get (context,
 				       GTK_STATE_FLAG_NORMAL,
-				       "background-color", &secondary_color,
+				       "background-color", &rgba,
 				       NULL);
 
 		/* shade the secondary cursor */
-		secondary_color.red *= 0.5;
-		secondary_color.green *= 0.5;
-		secondary_color.blue *= 0.5;
+		secondary_color.red = rgba->red * 0.5;
+		secondary_color.green = rgba->green * 0.5;
+		secondary_color.blue = rgba->blue * 0.5;
+
+		gdk_rgba_free (rgba);
 	}
 
 	primary_color_str = gdk_rgba_to_string (&primary_color);
