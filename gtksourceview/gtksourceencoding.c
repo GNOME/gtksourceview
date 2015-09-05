@@ -683,8 +683,8 @@ gtk_source_encoding_get_default_candidates (void)
 	g_variant_ref_sink (encodings_variant);
 
 	encodings_strv = g_variant_get_strv (encodings_variant, NULL);
-
 	encodings_list = strv_to_list (encodings_strv);
+	g_free (encodings_strv);
 
 	/* Ensure that UTF-8 and CURRENT are present. */
 	encodings_list = g_slist_prepend (encodings_list,
