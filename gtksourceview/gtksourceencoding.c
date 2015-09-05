@@ -491,21 +491,6 @@ gtk_source_encoding_get_name (const GtkSourceEncoding* enc)
 	return (enc->name == NULL) ? _("Unknown") : _(enc->name);
 }
 
-static gboolean
-data_exists (GSList         *list,
-	     const gpointer  data)
-{
-	for (; list != NULL; list = g_slist_next (list))
-	{
-		if (list->data == data)
-		{
-			return TRUE;
-		}
-	}
-
-	return FALSE;
-}
-
 static GSList *
 strv_to_list (const gchar * const *enc_str)
 {
@@ -526,7 +511,7 @@ strv_to_list (const gchar * const *enc_str)
 		enc = gtk_source_encoding_get_from_charset (charset);
 
 		if (enc != NULL &&
-		    !data_exists (res, (gpointer)enc))
+		    g_slist_find (res, enc) == NULL)
 		{
 			res = g_slist_prepend (res, (gpointer)enc);
 		}
@@ -545,7 +530,7 @@ remove_duplicates_keep_first (GSList *list)
 	{
 		gpointer cur_encoding = l->data;
 
-		if (!data_exists (new_list, cur_encoding))
+		if (g_slist_find (new_list, cur_encoding) == NULL)
 		{
 			new_list = g_slist_prepend (new_list, cur_encoding);
 		}
@@ -569,7 +554,7 @@ remove_duplicates_keep_last (GSList *list)
 	{
 		gpointer cur_encoding = l->data;
 
-		if (!data_exists (new_list, cur_encoding))
+		if (g_slist_find (new_list, cur_encoding) == NULL)
 		{
 			new_list = g_slist_prepend (new_list, cur_encoding);
 		}
