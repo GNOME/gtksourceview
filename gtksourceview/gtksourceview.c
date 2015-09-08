@@ -48,6 +48,7 @@
 #include "gtksourcegutterrendererlines.h"
 #include "gtksourcegutterrenderermarks.h"
 #include "gtksourceiter.h"
+#include "gtksourcetag.h"
 
 /**
  * SECTION:view
@@ -626,6 +627,9 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * GtkSourceView:draw-spaces:
 	 *
 	 * Set if and how the spaces should be visualized.
+	 *
+	 * For a finer-grained method, there is also the GtkSourceTag's
+	 * #GtkSourceTag:draw-spaces property.
 	 *
 	 * Since: 2.4
 	 */
@@ -2447,13 +2451,144 @@ draw_spaces_at_iter (cairo_t     *cr,
 	}
 }
 
-static gboolean
-space_needs_drawing (GtkSourceView *view,
-		     GtkTextIter   *iter)
+static void
+draw_spaces_tag_foreach (GtkTextTag *tag,
+			 gboolean   *found)
 {
-	gint draw_spaces = view->priv->draw_spaces;
+	if (GTK_SOURCE_IS_TAG (tag))
+	{
+		gboolean draw_spaces_set;
+
+		g_object_get (tag,
+			      "draw-spaces-set", &draw_spaces_set,
+			      NULL);
+
+		if (draw_spaces_set)
+		{
+			*found = TRUE;
+		}
+	}
+}
+
+static gboolean
+buffer_has_draw_spaces_tag (GtkSourceBuffer *buffer)
+{
+	GtkTextTagTable *table;
+	gboolean found = FALSE;
+
+	table = gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (buffer));
+	gtk_text_tag_table_foreach (table,
+				    (GtkTextTagTableForeach) draw_spaces_tag_foreach,
+				    &found);
+
+	return found;
+}
+
+static void
+space_needs_drawing_according_to_tag (const GtkTextIter *iter,
+				      gboolean          *has_tag,
+				      gboolean          *needs_drawing)
+{
+	GSList *tags;
+	GSList *l;
+
+	*has_tag = FALSE;
+	*needs_drawing = FALSE;
+
+	tags = gtk_text_iter_get_tags (iter);
+	tags = g_slist_reverse (tags);
+
+	for (l = tags; l != NULL; l = l->next)
+	{
+		GtkTextTag *tag = l->data;
+
+		if (GTK_SOURCE_IS_TAG (tag))
+		{
+			gboolean draw_spaces_set;
+			gboolean draw_spaces;
+
+			g_object_get (tag,
+				      "draw-spaces-set", &draw_spaces_set,
+				      "draw-spaces", &draw_spaces,
+				      NULL);
+
+			if (draw_spaces_set)
+			{
+				*has_tag = TRUE;
+				*needs_drawing = draw_spaces;
+				break;
+			}
+		}
+	}
+
+	g_slist_free (tags);
+}
+
+static gboolean
+check_location (GtkSourceView     *view,
+		const GtkTextIter *iter,
+		const GtkTextIter *leading,
+		const GtkTextIter *trailing)
+{
+	gint flags = 0;
+	gint location = view->priv->draw_spaces & (GTK_SOURCE_DRAW_SPACES_LEADING |
+	                                           GTK_SOURCE_DRAW_SPACES_TEXT |
+	                                           GTK_SOURCE_DRAW_SPACES_TRAILING);
+
+	/* Draw all by default */
+	if (location == 0)
+	{
+		return TRUE;
+	}
+
+	if (gtk_text_iter_compare (iter, trailing) >= 0)
+	{
+		flags |= GTK_SOURCE_DRAW_SPACES_TRAILING;
+	}
+
+	if (gtk_text_iter_compare (iter, leading) < 0)
+	{
+		flags |= GTK_SOURCE_DRAW_SPACES_LEADING;
+	}
+
+	if (flags == 0)
+	{
+		/* Neither leading nor trailing, must be in text */
+		return location & GTK_SOURCE_DRAW_SPACES_TEXT;
+	}
+	else
+	{
+		return location & flags;
+	}
+}
+
+static gboolean
+space_needs_drawing (GtkSourceView     *view,
+		     const GtkTextIter *iter,
+		     const GtkTextIter *leading,
+		     const GtkTextIter *trailing)
+{
+	gboolean has_tag;
+	gboolean needs_drawing;
+	gint draw_spaces;
 	gunichar c;
 
+	/* Check the GtkSourceTag:draw-spaces property */
+
+	space_needs_drawing_according_to_tag (iter, &has_tag, &needs_drawing);
+	if (has_tag)
+	{
+		return needs_drawing;
+	}
+
+	/* Check the GtkSourceView:draw-spaces property */
+
+	if (!check_location (view, iter, leading, trailing))
+	{
+		return FALSE;
+	}
+
+	draw_spaces = view->priv->draw_spaces;
 	c = gtk_text_iter_get_char (iter);
 
 	return ((draw_spaces & GTK_SOURCE_DRAW_SPACES_TAB && c == '\t') ||
@@ -2514,44 +2649,6 @@ get_leading_trailing (const GtkTextIter *iter,
 
 			*trailing = prev;
 		}
-	}
-}
-
-static gboolean
-check_location (GtkSourceView *view,
-		GtkTextIter   *iter,
-		GtkTextIter   *leading,
-		GtkTextIter   *trailing)
-{
-	gint flags = 0;
-	gint location = view->priv->draw_spaces & (GTK_SOURCE_DRAW_SPACES_LEADING |
-	                                           GTK_SOURCE_DRAW_SPACES_TEXT |
-	                                           GTK_SOURCE_DRAW_SPACES_TRAILING);
-
-	/* Draw all by default */
-	if (location == 0)
-	{
-		return TRUE;
-	}
-
-	if (gtk_text_iter_compare (iter, trailing) >= 0)
-	{
-		flags |= GTK_SOURCE_DRAW_SPACES_TRAILING;
-	}
-
-	if (gtk_text_iter_compare (iter, leading) < 0)
-	{
-		flags |= GTK_SOURCE_DRAW_SPACES_LEADING;
-	}
-
-	if (flags == 0)
-	{
-		/* Neither leading nor trailing, must be in text */
-		return location & GTK_SOURCE_DRAW_SPACES_TEXT;
-	}
-	else
-	{
-		return location & flags;
 	}
 }
 
@@ -2669,8 +2766,7 @@ draw_tabs_and_spaces (GtkSourceView *view,
 	while (TRUE)
 	{
 		gint ly;
-		if (check_location (view, &s, &leading, &trailing) &&
-		    space_needs_drawing (view, &s))
+		if (space_needs_drawing (view, &s, &leading, &trailing))
 		{
 			draw_spaces_at_iter (cr, text_view, &s);
 		}
@@ -2939,7 +3035,8 @@ gtk_source_view_draw_layer (GtkTextView      *text_view,
 			gtk_source_view_paint_right_margin (view, cr);
 		}
 
-		if (view->priv->draw_spaces != 0)
+		if (view->priv->draw_spaces != 0 ||
+		    buffer_has_draw_spaces_tag (view->priv->source_buffer))
 		{
 			draw_tabs_and_spaces (view, cr);
 		}
@@ -4723,6 +4820,9 @@ gtk_source_view_get_smart_home_end (GtkSourceView *view)
  *
  * Set if and how the spaces should be visualized. Specifying @flags as 0 will
  * disable display of spaces.
+ *
+ * For a finer-grained method, there is also the GtkSourceTag's
+ * #GtkSourceTag:draw-spaces property.
  */
 void
 gtk_source_view_set_draw_spaces (GtkSourceView            *view,

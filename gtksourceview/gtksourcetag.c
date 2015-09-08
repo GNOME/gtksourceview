@@ -37,15 +37,118 @@ typedef struct _GtkSourceTagPrivate GtkSourceTagPrivate;
 
 struct _GtkSourceTagPrivate
 {
-	gint something;
+	guint draw_spaces : 1;
+	guint draw_spaces_set : 1;
+};
+
+enum
+{
+	PROP_0,
+	PROP_DRAW_SPACES,
+	PROP_DRAW_SPACES_SET,
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceTag, gtk_source_tag, GTK_TYPE_TEXT_TAG)
 
 static void
+gtk_source_tag_get_property (GObject    *object,
+			     guint       prop_id,
+			     GValue     *value,
+			     GParamSpec *pspec)
+{
+	GtkSourceTagPrivate *priv;
+
+	priv = gtk_source_tag_get_instance_private (GTK_SOURCE_TAG (object));
+
+	switch (prop_id)
+	{
+		case PROP_DRAW_SPACES:
+			g_value_set_boolean (value, priv->draw_spaces);
+			break;
+
+		case PROP_DRAW_SPACES_SET:
+			g_value_set_boolean (value, priv->draw_spaces_set);
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
+	}
+}
+
+static void
+gtk_source_tag_set_property (GObject      *object,
+			     guint         prop_id,
+			     const GValue *value,
+			     GParamSpec   *pspec)
+{
+	GtkSourceTagPrivate *priv;
+
+	priv = gtk_source_tag_get_instance_private (GTK_SOURCE_TAG (object));
+
+	switch (prop_id)
+	{
+		case PROP_DRAW_SPACES:
+			priv->draw_spaces = g_value_get_boolean (value);
+			priv->draw_spaces_set = TRUE;
+			g_object_notify (object, "draw-spaces-set");
+			break;
+
+		case PROP_DRAW_SPACES_SET:
+			priv->draw_spaces_set = g_value_get_boolean (value);
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
+	}
+}
+
+static void
 gtk_source_tag_class_init (GtkSourceTagClass *klass)
 {
-	/*GObjectClass *object_class = G_OBJECT_CLASS (klass);*/
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+	object_class->get_property = gtk_source_tag_get_property;
+	object_class->set_property = gtk_source_tag_set_property;
+
+	/**
+	 * GtkSourceTag:draw-spaces:
+	 *
+	 * Whether to draw spaces. This property takes precedence over the value
+	 * defined by the GtkSourceView's #GtkSourceView:draw-spaces property
+	 * (only where the tag is applied).
+	 *
+	 * Setting this property also changes #GtkSourceTag:draw-spaces-set to
+	 * %TRUE.
+	 *
+	 * Since: 3.20
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_DRAW_SPACES,
+					 g_param_spec_boolean ("draw-spaces",
+							       "Draw Spaces",
+							       "",
+							       FALSE,
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GtkSourceTag:draw-spaces-set:
+	 *
+	 * Whether the #GtkSourceTag:draw-spaces property is set and must be
+	 * taken into account.
+	 *
+	 * Since: 3.20
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_DRAW_SPACES_SET,
+					 g_param_spec_boolean ("draw-spaces-set",
+							       "Draw Spaces Set",
+							       "",
+							       FALSE,
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 }
 
 static void
