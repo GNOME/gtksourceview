@@ -50,6 +50,7 @@
 #include <gtksourceview/gtksourcestyleschemechooserbutton.h>
 #include <gtksourceview/gtksourcestyleschemechooserwidget.h>
 #include <gtksourceview/gtksourcestyleschememanager.h>
+#include <gtksourceview/gtksourcetag.h>
 #include <gtksourceview/gtksourceundomanager.h>
 #include <gtksourceview/gtksourceutils.h>
 #include <gtksourceview/gtksourceview.h>

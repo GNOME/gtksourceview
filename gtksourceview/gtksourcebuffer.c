@@ -44,6 +44,7 @@
 #include "gtksourcemark.h"
 #include "gtksourcemarkssequence.h"
 #include "gtksourcesearchcontext.h"
+#include "gtksourcetag.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourceview-typebuiltins.h"
 
@@ -3093,4 +3094,63 @@ gtk_source_buffer_get_implicit_trailing_newline (GtkSourceBuffer *buffer)
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), TRUE);
 
 	return buffer->priv->implicit_trailing_newline;
+}
+
+/**
+ * gtk_source_buffer_create_tag:
+ * @buffer: a #GtkSourceBuffer
+ * @tag_name: (nullable): name of the new tag, or %NULL
+ * @first_property_name: (nullable): name of first property to set, or %NULL
+ * @...: %NULL-terminated list of property names and values
+ *
+ * In short, this is the same function as gtk_text_buffer_create_tag(), but
+ * instead of creating a #GtkTextTag, this function creates a #GtkSourceTag.
+ *
+ * This function creates a #GtkSourceTag and adds it to the tag table for
+ * @buffer.  Equivalent to calling gtk_text_tag_new() and then adding the tag to
+ * the buffer’s tag table. The returned tag is owned by the buffer’s tag table,
+ * so the ref count will be equal to one.
+ *
+ * If @tag_name is %NULL, the tag is anonymous.
+ *
+ * If @tag_name is non-%NULL, a tag called @tag_name must not already
+ * exist in the tag table for this buffer.
+ *
+ * The @first_property_name argument and subsequent arguments are a list
+ * of properties to set on the tag, as with g_object_set().
+ *
+ * Returns: (transfer none): a new #GtkSourceTag.
+ * Since: 3.20
+ */
+GtkTextTag *
+gtk_source_buffer_create_tag (GtkSourceBuffer *buffer,
+			      const gchar     *tag_name,
+			      const gchar     *first_property_name,
+			      ...)
+{
+	GtkTextTag *tag;
+	GtkTextTagTable *table;
+	va_list list;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
+
+	tag = gtk_source_tag_new (tag_name);
+
+	table = gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (buffer));
+	if (!gtk_text_tag_table_add (table, tag))
+	{
+		g_object_unref (tag);
+		return NULL;
+	}
+
+	if (first_property_name != NULL)
+	{
+		va_start (list, first_property_name);
+		g_object_set_valist (G_OBJECT (tag), first_property_name, list);
+		va_end (list);
+	}
+
+	g_object_unref (tag);
+
+	return tag;
 }

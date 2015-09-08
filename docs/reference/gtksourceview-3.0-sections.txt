@@ -9,6 +9,7 @@ GtkSourceChangeCaseType
 GtkSourceSortFlags
 gtk_source_buffer_new
 gtk_source_buffer_new_with_language
+gtk_source_buffer_create_tag
 <SUBSECTION Syntax Highlighting>
 gtk_source_buffer_set_highlight_syntax
 gtk_source_buffer_get_highlight_syntax
@@ -795,6 +796,16 @@ GTK_SOURCE_STYLE_SCHEME_MANAGER_GET_CLASS
 GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER
 gtk_source_style_scheme_manager_get_type
 GtkSourceStyleSchemeManagerPrivate
+</SECTION>
+
+<SECTION>
+<FILE>tag</FILE>
+<TITLE>GtkSourceTag</TITLE>
+GtkSourceTag
+gtk_source_tag_new
+<SUBSECTION Standard>
+GTK_SOURCE_TYPE_TAG
+GtkSourceTagClass
 </SECTION>
 
 <SECTION>

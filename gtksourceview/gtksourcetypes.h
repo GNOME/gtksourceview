@@ -51,6 +51,7 @@ typedef struct _GtkSourceSearchSettings		GtkSourceSearchSettings;
 typedef struct _GtkSourceStyle			GtkSourceStyle;
 typedef struct _GtkSourceStyleScheme		GtkSourceStyleScheme;
 typedef struct _GtkSourceStyleSchemeManager	GtkSourceStyleSchemeManager;
+typedef struct _GtkSourceTag			GtkSourceTag;
 typedef struct _GtkSourceUndoManager		GtkSourceUndoManager;
 typedef struct _GtkSourceView			GtkSourceView;
 
