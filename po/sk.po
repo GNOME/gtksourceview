@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-21 10:07+0000\n"
-"PO-Revision-Date: 2015-08-21 19:09+0200\n"
+"POT-Creation-Date: 2015-09-11 10:13+0000\n"
+"PO-Revision-Date: 2015-09-11 13:00+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -19,66 +19,61 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Gtranslator 2.91.7\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-
-# widget group title
-#: ../data/glade/gtksourceview.xml.in.h:1
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0\n"
 
 # PM: Inteligentný Home/End
 # value name
 #. Translators: It is related to an option of a set of values
-#: ../data/glade/gtksourceview.xml.in.h:3
+#: ../data/glade/gtksourceview.xml.in.h:2
 msgid "Disabled"
 msgstr "Zakázaný"
 
 # Klávesy HOME a END najskôr presunú na prvý/posledný znak, ktorý nie je medzerou, a až potom na začiatok/koniec riadka
 # value name
-#: ../data/glade/gtksourceview.xml.in.h:4
+#: ../data/glade/gtksourceview.xml.in.h:3
 msgid "Before"
 msgstr "Najkôr"
 
 # Klávesy HOME a END najskôr presunú na začiatok/koniec riadka, a až potom prvý/posledný zank, ktorý nie je medzerou
 # value name
-#: ../data/glade/gtksourceview.xml.in.h:5
+#: ../data/glade/gtksourceview.xml.in.h:4
 msgid "After"
 msgstr "Potom"
 
 # Klávesy HOME a END vždy presunú na prvý/posledný zank, ktorý nie je medzerou
 # value name
-#: ../data/glade/gtksourceview.xml.in.h:6
+#: ../data/glade/gtksourceview.xml.in.h:5
 msgid "Always"
 msgstr "Vždy"
 
 # PM: či sa majú špeciálnym spôsobom vykreslovať nasledujúce typy medzier
-#: ../data/glade/gtksourceview.xml.in.h:7
+#: ../data/glade/gtksourceview.xml.in.h:6
 msgid "Space"
 msgstr "Medzera"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#: ../data/glade/gtksourceview.xml.in.h:7
 msgid "Tab"
 msgstr "Tabulátor"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#: ../data/glade/gtksourceview.xml.in.h:8
 msgid "Newline"
 msgstr "Nový riadok"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Non Breaking Whitespace"
 msgstr "Nedeliteľná medzera"
 
 # PM: myslia sa leading whitespaces
-#: ../data/glade/gtksourceview.xml.in.h:11
+#: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Leading"
 msgstr "Úvodné"
 
 #  PM: minimálne raz je to tu ako prídavné meno "text whitespaces" - treba preveriť ostatné prípady a v prípade potreby požiadať o rozdelenie
-#: ../data/glade/gtksourceview.xml.in.h:12
+#: ../data/glade/gtksourceview.xml.in.h:11
 msgid "Text"
 msgstr "Text"
 
-#: ../data/glade/gtksourceview.xml.in.h:13
+#: ../data/glade/gtksourceview.xml.in.h:12
 msgid "Trailing"
 msgstr "Koncové"
 
@@ -86,7 +81,7 @@ msgstr "Koncové"
 # MČ: ku súboru „../gtksourceview/gtksourcecompletion.c:648“ je zase poznámka, že všetky skompletované strany sú zobrazené, takže „Všetky“.
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: ../data/glade/gtksourceview.xml.in.h:14
+#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletion.c:830
 msgid "All"
 msgstr "Všetky"
@@ -321,7 +316,7 @@ msgstr "Deklarácia rozsahu"
 #: ../data/language-specs/modelica.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/objc.lang.h:3
 #: ../data/language-specs/objj.lang.h:4 ../data/language-specs/ocaml.lang.h:9
-#: ../data/language-specs/ocl.lang.h:5 ../data/language-specs/octave.lang.h:13
+#: ../data/language-specs/ocl.lang.h:5 ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
 #: ../data/language-specs/opencl.lang.h:3
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
@@ -555,8 +550,8 @@ msgstr "Konštanta"
 #: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
 #: ../data/language-specs/llvm.lang.h:8
 #: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:13
+#: ../data/language-specs/php.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:4
@@ -572,17 +567,15 @@ msgstr "Lokálna premenná"
 
 #  style name
 #: ../data/language-specs/ansforth94.lang.h:13
-#, fuzzy
 #| msgid "Integer Number"
 msgid "Single Number"
-msgstr "Celé číslo"
+msgstr "Číslo s jednoduchou presnosťou"
 
 #  style name
 #: ../data/language-specs/ansforth94.lang.h:14
-#, fuzzy
 #| msgid "Complex number"
 msgid "Double Number"
-msgstr "Komplexné číslo"
+msgstr "Číslo s dvojitou presnosťou"
 
 # PM: je to tu v rôznych obmenách pohladaj všetko čo začína na float a opýtaj sa vývojárov či to nemôžu spojiž do jedného reťazca
 #  style name
@@ -938,7 +931,7 @@ msgstr "Operátor swizzle"
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
-#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/octave.lang.h:12
 #: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "Vstavaný"
@@ -1049,10 +1042,9 @@ msgstr "Vstavaný príkaz"
 
 #  style name
 #: ../data/language-specs/cmake.lang.h:4
-#, fuzzy
 #| msgid "Builtin Command"
 msgid "Deprecated Builtin Command"
-msgstr "Vstavaný príkaz"
+msgstr "Zastaralý vstavaný príkaz"
 
 #  style name
 #: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/glsl.lang.h:8
@@ -1126,7 +1118,6 @@ msgstr "Ostatné 3"
 #: ../data/language-specs/haskell.lang.h:13 ../data/language-specs/ini.lang.h:7
 #: ../data/language-specs/json.lang.h:8
 #: ../data/language-specs/modelica.lang.h:10
-#: ../data/language-specs/octave.lang.h:9
 #: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
 #: ../data/language-specs/sql.lang.h:8
 msgid "Decimal"
@@ -1486,9 +1477,8 @@ msgstr "DPatch"
 # https://bugzilla.gnome.org/show_bug.cgi?id=629284
 #  style name
 #: ../data/language-specs/dpatch.lang.h:3
-#, fuzzy
 msgid "Patch Start"
-msgstr "patch-start"
+msgstr "Začiatok záplaty"
 
 # language name
 #: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
@@ -1513,9 +1503,8 @@ msgstr "chyba"
 # https://bugzilla.gnome.org/show_bug.cgi?id=629284
 #  style name
 #: ../data/language-specs/dtd.lang.h:6
-#, fuzzy
 msgid "Quoted Value"
-msgstr "quoted-value"
+msgstr "Hodnota v úvodzovkách"
 
 # language name
 #: ../data/language-specs/eiffel.lang.h:2
@@ -1536,7 +1525,6 @@ msgstr "Tvrdenie"
 # http://docs.eiffel.com/book/platform-specifics/design-contract-and-assertions
 #  style name
 #: ../data/language-specs/eiffel.lang.h:9
-#, fuzzy
 msgid "Design by Contract"
 msgstr "Design by Contract"
 
@@ -1571,7 +1559,6 @@ msgstr "Erlang"
 
 # PM: dal by som atomická konštanta
 #: ../data/language-specs/erlang.lang.h:6
-#, fuzzy
 msgid "Atom"
 msgstr "Atom"
 
@@ -1579,8 +1566,7 @@ msgstr "Atom"
 #: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/modelica.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/sml.lang.h:9
 #: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "Base-N Integer"
@@ -1615,7 +1601,6 @@ msgstr "FCL"
 #: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:4
 #: ../data/language-specs/modelica.lang.h:11
-#: ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "Pohyblivá desatinná čiarka"
@@ -1626,7 +1611,7 @@ msgid "Block"
 msgstr "Blok"
 
 #  style name
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
+#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:11
 #: ../data/language-specs/scilab.lang.h:9
 msgid "Reserved Constant"
 msgstr "Rezervovaná konštanta"
@@ -1661,16 +1646,14 @@ msgstr "Vstavaná funkcia"
 # PM: čo tak koštanta s označením sústavy/základu
 #  style name
 #: ../data/language-specs/fortran.lang.h:8
-#, fuzzy
 msgid "BOZ Literal"
-msgstr "BOZ literál"
+msgstr "Literál BOZ"
 
 #  style name
 #: ../data/language-specs/fortran.lang.h:12
-#, fuzzy
 #| msgid "Include directive"
 msgid "OpenMP directives"
-msgstr "Direktíva vloženia"
+msgstr "Direktíva OpenMP"
 
 # language name
 #: ../data/language-specs/fsharp.lang.h:2
@@ -1780,7 +1763,7 @@ msgstr "Výzva"
 
 #: ../data/language-specs/genie.lang.h:2
 msgid "Genie"
-msgstr ""
+msgstr "Genie"
 
 # language name
 #: ../data/language-specs/glsl.lang.h:2
@@ -1903,7 +1886,6 @@ msgstr "Odkazovaný názov modulu"
 # v dokumentácii k Haddock sa hovorí o special characters, takže navrhujem Špeciálne znaky
 #  style name
 #: ../data/language-specs/haddock.lang.h:7
-#, fuzzy
 msgid "Escape"
 msgstr "Escape"
 
@@ -1917,9 +1899,8 @@ msgstr "Zvýraznenie"
 # PM aké prvky to bude zvýrazňovať? som za to aby to používateľovi z prekladu bolo jasné
 #  style name
 #: ../data/language-specs/haddock.lang.h:9
-#, fuzzy
 msgid "Monospace"
-msgstr "Monospace"
+msgstr "Písmo s pevnou šírkou"
 
 #  style name
 #: ../data/language-specs/haddock.lang.h:10
@@ -1929,7 +1910,6 @@ msgstr "Blok kódu"
 # PM: nemalo by byť skôr vlastnosť v hlavičke alebo z hlavičky?
 #  style name
 #: ../data/language-specs/haddock.lang.h:11
-#, fuzzy
 msgid "Header Property"
 msgstr "Vlastnosť hlavičky"
 
@@ -1975,9 +1955,8 @@ msgstr "Symbol"
 #  PM: aj tu
 #  style name
 #: ../data/language-specs/haskell.lang.h:14
-#, fuzzy
 msgid "Octal"
-msgstr "Octal"
+msgstr "Osmičkové číslo"
 
 # PM: aj tu
 #  style name
@@ -2039,7 +2018,7 @@ msgstr "Nadpis úrovne 5"
 
 #: ../data/language-specs/idl-exelis.lang.h:2
 msgid "IDL-Exelis"
-msgstr ""
+msgstr "IDL-Exelis"
 
 # language name
 #: ../data/language-specs/idl.lang.h:2
@@ -2074,7 +2053,7 @@ msgstr ".ini"
 
 #: ../data/language-specs/jade.lang.h:2
 msgid "Jade"
-msgstr ""
+msgstr "Jade"
 
 #  PM: navrhujeme Typ dokumentu DOCTYPE
 #  style name
@@ -2142,7 +2121,6 @@ msgstr "J"
 # http://www.jsoftware.com/help/primer/adverb.htm
 #  style name
 #: ../data/language-specs/j.lang.h:3
-#, fuzzy
 msgid "Adverb"
 msgstr "Adverbium"
 
@@ -2167,34 +2145,29 @@ msgstr "Explicitný parameter"
 # http://www.jsoftware.com/help/primer/global.htm
 #  style name
 #: ../data/language-specs/j.lang.h:9
-#, fuzzy
 msgid "Global"
-msgstr "Globálny"
+msgstr "Globálne"
 
 # PM: navrhujem Text celku Lab
 # http://www.jsoftware.com/help/user/lab_sections.htm
 #  style name
 #: ../data/language-specs/j.lang.h:10
-#, fuzzy
 msgid "Lab Text"
 msgstr "Text návestia"
 
 # http://www.jsoftware.com/help/primer/local.htm
 #  style name
 #: ../data/language-specs/j.lang.h:11
-#, fuzzy
 msgid "Local"
 msgstr "Lokálne"
 
 #  style name
 #: ../data/language-specs/j.lang.h:12
-#, fuzzy
 msgid "Noun"
 msgstr "Substantívum"
 
 #  style name
 #: ../data/language-specs/j.lang.h:13
-#, fuzzy
 msgid "Explicit Noun Definition"
 msgstr "Explicitná definícia substantíva"
 
@@ -2205,13 +2178,11 @@ msgstr "Zátvorky"
 #  PM: navrhujem Prvok jazyka
 #  style name
 #: ../data/language-specs/j.lang.h:16
-#, fuzzy
 msgid "Primitive"
 msgstr "Primitívum"
 
 #  style name
 #: ../data/language-specs/j.lang.h:18
-#, fuzzy
 msgid "Verb"
 msgstr "Verbum"
 
@@ -2268,10 +2239,9 @@ msgstr "Vložený matematický režim"
 
 #  style name
 #: ../data/language-specs/latex.lang.h:6
-#, fuzzy
 #| msgid "Math Mode"
 msgid "Math Boundary"
-msgstr "Matematický režim"
+msgstr "Hranica matematického výrazu"
 
 # PM: nejde o to isté ako pri Include directive - opýtaj sa vývojárov a keď hej nech to spoja do jedného reťazca
 #  style name
@@ -2290,17 +2260,15 @@ msgstr "Doslovne"
 
 #  style name
 #: ../data/language-specs/latex.lang.h:10
-#, fuzzy
 #| msgid "Special Variable"
 msgid "Special Character"
-msgstr "Špeciálna premenná"
+msgstr "Špeciálny znak"
 
 #  style name
 #: ../data/language-specs/latex.lang.h:11
-#, fuzzy
 #| msgid "POD heading"
 msgid "Part Heading"
-msgstr "Hlavička dokumentácie POD"
+msgstr "Nadpis časti"
 
 #: ../data/language-specs/latex.lang.h:12
 msgid "Chapter Heading"
@@ -2308,24 +2276,21 @@ msgstr "Nadpis kapitoly"
 
 #  style name
 #: ../data/language-specs/latex.lang.h:13
-#, fuzzy
 #| msgid "Exception Handling"
 msgid "Section Heading"
-msgstr "Spracovanie výnimiek"
+msgstr "Nadpis sekcie"
 
 #  style name
 #: ../data/language-specs/latex.lang.h:14
-#, fuzzy
 #| msgid "Exception Handling"
 msgid "SubSection Heading"
-msgstr "Spracovanie výnimiek"
+msgstr "Nadpis pododdielu"
 
 #  style name
 #: ../data/language-specs/latex.lang.h:15
-#, fuzzy
 #| msgid "Exception Handling"
 msgid "SubSubSection Heading"
-msgstr "Spracovanie výnimiek"
+msgstr "Nadpis podpododdiel"
 
 #: ../data/language-specs/latex.lang.h:16
 msgid "Paragraph Heading"
@@ -2612,11 +2577,11 @@ msgstr "Šablóna"
 
 #: ../data/language-specs/meson.lang.h:2
 msgid "Meson"
-msgstr ""
+msgstr "Meson"
 
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
-msgstr ""
+msgstr "Modelica"
 
 #  style name
 #: ../data/language-specs/modelica.lang.h:6
@@ -2742,7 +2707,7 @@ msgid "Octave"
 msgstr "Octave"
 
 #  style name
-#: ../data/language-specs/octave.lang.h:12
+#: ../data/language-specs/octave.lang.h:9
 msgid "Package Manager"
 msgstr "Správca balíkov"
 
@@ -2828,7 +2793,6 @@ msgstr "Viacriadkový text (heredoc)"
 #  style name
 #: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:12
 #: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
-#, fuzzy
 msgid "Heredoc Bound"
 msgstr "Napojenie na Heredoc"
 
@@ -2870,42 +2834,37 @@ msgstr "PHP"
 # PM: nemyslí sa týmto vlastne Preprocessor directive?  skús sa opýtať vývojárov a ked hej nech tie reťazce spoja
 # style name
 #: ../data/language-specs/php.lang.h:3
-#, fuzzy
 msgid "Preprocessor tags"
-msgstr "Preprocesor"
+msgstr "Značky preprocesoru"
 
 # PM: čo to zvýrazňuje? nemyslí sa tým bežná funkcia?
 #  style name
 #: ../data/language-specs/php.lang.h:14
-#, fuzzy
 msgid "Common Function"
-msgstr "Spoločná funkcia"
+msgstr "Bežná funkcia"
 
 #: ../data/language-specs/pig.lang.h:2
 msgid "Pig"
-msgstr ""
+msgstr "Pig"
 
 #  style name
 #: ../data/language-specs/pig.lang.h:4
-#| msgid "Reserved Keywords"
 msgid "Reserved Words"
 msgstr "Rezervované slová"
 
 #  style name
 #: ../data/language-specs/pig.lang.h:5
-#| msgid "Builtin Function"
 msgid "Built In Functions"
 msgstr "Vstavané funkcie"
 
 # style name
 #: ../data/language-specs/pig.lang.h:6
-#| msgid "Boolean value"
 msgid "Boolean values"
 msgstr "Booleovské hodnoty"
 
 #: ../data/language-specs/pig.lang.h:7 ../data/language-specs/yaml.lang.h:11
 msgid "Null"
-msgstr ""
+msgstr "Prázdna hodnota"
 
 # language name
 #: ../data/language-specs/pkgconfig.lang.h:2
@@ -2999,7 +2958,6 @@ msgstr "Python"
 
 #  style name
 #: ../data/language-specs/python.lang.h:9
-#| msgid "printf Conversion"
 msgid "String Conversion"
 msgstr "Konverzia reťazcov"
 
@@ -3105,10 +3063,9 @@ msgstr "E-mail"
 
 #  style name
 #: ../data/language-specs/rst.lang.h:2
-#, fuzzy
 #| msgid "Structural Elements"
 msgid "reStructuredText"
-msgstr "Prvky štruktúry"
+msgstr "reStructuredText"
 
 #  style name
 #: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
@@ -3144,7 +3101,7 @@ msgstr "Literál"
 
 #: ../data/language-specs/rust.lang.h:2
 msgid "Rust"
-msgstr ""
+msgstr "Rust"
 
 #: ../data/language-specs/rust.lang.h:11
 msgid "Scope"
@@ -3152,7 +3109,7 @@ msgstr ""
 
 #: ../data/language-specs/scala.lang.h:2
 msgid "Scala"
-msgstr ""
+msgstr "Scala"
 
 #  style name
 #: ../data/language-specs/scala.lang.h:9
@@ -3278,7 +3235,7 @@ msgstr "Nedá sa zistiť čo to je"
 
 #: ../data/language-specs/sweave.lang.h:2
 msgid "Sweave"
-msgstr ""
+msgstr "Sweave"
 
 # language name
 #: ../data/language-specs/systemverilog.lang.h:2
@@ -3367,7 +3324,7 @@ msgstr "Generovaný obsah"
 
 #: ../data/language-specs/thrift.lang.h:2
 msgid "Thrift"
-msgstr ""
+msgstr "Thrift"
 
 # language name
 #: ../data/language-specs/vala.lang.h:2
@@ -3442,9 +3399,8 @@ msgstr "YAML"
 # PM: čo tak koštanta s označením sústavy/základu
 #  style name
 #: ../data/language-specs/yaml.lang.h:3
-#, fuzzy
 msgid "Block literal"
-msgstr "BOZ literál"
+msgstr "Doslovný blok"
 
 #: ../data/language-specs/yaml.lang.h:8
 msgid "Alias"
@@ -3452,7 +3408,7 @@ msgstr "Prezývka"
 
 #: ../data/language-specs/yaml.lang.h:9
 msgid "Map key"
-msgstr ""
+msgstr "Kľúč mapy"
 
 #  style name
 #: ../data/language-specs/yaml.lang.h:13
@@ -3541,7 +3497,7 @@ msgstr "Slová dokumentu"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:838
 msgid "Invalid byte sequence in conversion input"
-msgstr ""
+msgstr "Neplatná postupnosť znakov vo vstupe konverzie"
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=629284
 #: ../gtksourceview/gtksourcebufferoutputstream.c:844
@@ -3552,7 +3508,7 @@ msgstr "Chyba počas konverzie: %s"
 #: ../gtksourceview/gtksourcebufferoutputstream.c:925
 #, c-format
 msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
-msgstr ""
+msgstr "Konverzia zo znakovej sady „%s“ na „UTF-8“ nie je podporovaná"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:931
 #, c-format
@@ -3794,7 +3750,7 @@ msgstr "Neznáme"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:650
+#: ../gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-2', 'ISO-8859-15']"
 
@@ -3815,11 +3771,10 @@ msgstr "Zobraziť"
 
 #: ../gtksourceview/gtksourcemap.c:1079
 msgid "The view this widget is mapping."
-msgstr ""
+msgstr "Zobrazenie, ktoré mapuje tento ovládací prvok."
 
 #  style name
 #: ../gtksourceview/gtksourcemap.c:1085
-#| msgid "File Descriptor"
 msgid "Font Description"
 msgstr "Popis písma"
 
@@ -3880,6 +3835,10 @@ msgstr "Z_meniť veľkosť písma"
 #: ../gtksourceview/gtksourceview-i18n.c:116
 msgid "translator-credits"
 msgstr "Roman Mátyus <romanmatyus@gmail.com>"
+
+# widget group title
+#~ msgid "GtkSourceView"
+#~ msgstr "GtkSourceView"
 
 # GtkToggleButton tooltip
 #~ msgid "Show detailed proposal information"
