@@ -79,6 +79,7 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context sub-pattern="0" where="end" style-ref="tag"/>
+            <context ref="embedded-lang-hook"/>
           </include>
         </context>
         <context id="h1" end-at-line-end="true">
@@ -92,6 +93,7 @@
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context ref="embedded-lang-hook"/>
                 <!-- We cannot match any further here, because matching to tag will override our end-match -->
               </include>
             </context>
@@ -108,6 +110,7 @@
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context ref="embedded-lang-hook"/>
                 <!-- We cannot match any further here, because matching to tag will override our end-match -->
               </include>
             </context>
@@ -124,6 +127,7 @@
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context ref="embedded-lang-hook"/>
                 <!-- We cannot match any further here, because matching to tag will override our end-match -->
               </include>
             </context>
@@ -140,6 +144,7 @@
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context ref="embedded-lang-hook"/>
                 <!-- We cannot match any further here, because matching to tag will override our end-match -->
               </include>
             </context>
@@ -156,6 +161,7 @@
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context ref="embedded-lang-hook"/>
                 <!-- We cannot match any further here, because matching to tag will override our end-match -->
               </include>
             </context>
