@@ -290,7 +290,7 @@
     </context>
 
     <context id="generic-command" style-ref="command" class="no-spell-check" extend-parent="false">
-      <match>\\[a-zA-Z@]+\*?</match>
+      <match>\\\@?[[:alnum:]]+\*?</match>
     </context>
 
     <context id="specific-commands">
