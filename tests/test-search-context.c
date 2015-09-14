@@ -1247,7 +1247,7 @@ main (int argc, char **argv)
 	g_test_add_func ("/Search/get-search-text", test_get_search_text);
 	g_test_add_func ("/Search/occurrence-position", test_occurrence_position);
 	g_test_add_func ("/Search/replace", test_replace);
-	g_test_add_func ("/Search/replace", test_replace_all);
+	g_test_add_func ("/Search/replace_all", test_replace_all);
 	g_test_add_func ("/Search/regex/basics", test_regex_basics);
 	g_test_add_func ("/Search/regex/at-word-boundaries", test_regex_at_word_boundaries);
 	g_test_add_func ("/Search/regex/look-behind", test_regex_look_behind);
