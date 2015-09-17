@@ -13,70 +13,66 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-22 10:25+0000\n"
-"PO-Revision-Date: 2015-03-22 16:21+0200\n"
+"POT-Creation-Date: 2015-09-17 10:18+0000\n"
+"PO-Revision-Date: 2015-09-17 20:32+0300\n"
 "Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
-"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "X-POOTLE-MTIME: 1419203099.000000\n"
 
-#: ../data/glade/gtksourceview.xml.in.h:1
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
-
 #. Translators: It is related to an option of a set of values
-#: ../data/glade/gtksourceview.xml.in.h:3
+#: ../data/glade/gtksourceview.xml.in.h:2
 msgid "Disabled"
 msgstr "Devre Dışı"
 
-#: ../data/glade/gtksourceview.xml.in.h:4
+#: ../data/glade/gtksourceview.xml.in.h:3
 msgid "Before"
 msgstr "Önce"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
+#: ../data/glade/gtksourceview.xml.in.h:4
 msgid "After"
 msgstr "Sonra"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
+#: ../data/glade/gtksourceview.xml.in.h:5
 msgid "Always"
 msgstr "Her zaman"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#: ../data/glade/gtksourceview.xml.in.h:6
 msgid "Space"
 msgstr "Boşluk"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#: ../data/glade/gtksourceview.xml.in.h:7
 msgid "Tab"
 msgstr "Sekme"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#: ../data/glade/gtksourceview.xml.in.h:8
 msgid "Newline"
 msgstr "Yeni satır"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Non Breaking Whitespace"
 msgstr "Ayrılmaz Boşluk"
 
-#: ../data/glade/gtksourceview.xml.in.h:11
+#: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Leading"
 msgstr "Önünde"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
+#: ../data/glade/gtksourceview.xml.in.h:11
 msgid "Text"
 msgstr "Metin"
 
-#: ../data/glade/gtksourceview.xml.in.h:13
+#: ../data/glade/gtksourceview.xml.in.h:12
 msgid "Trailing"
 msgstr "Sondaki"
 
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: ../data/glade/gtksourceview.xml.in.h:14
+#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletion.c:830
 msgid "All"
 msgstr "Tümü"
@@ -91,6 +87,7 @@ msgstr "Tümü"
 #: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
 #: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
 #: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/cpphdr.lang.h:1
 #: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
 #: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
 #: ../data/language-specs/erlang.lang.h:1
@@ -104,13 +101,14 @@ msgstr "Tümü"
 #: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
 #: ../data/language-specs/llvm.lang.h:1
 #: ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/meson.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
 #: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/pig.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/rust.lang.h:1
 #: ../data/language-specs/scala.lang.h:1
 #: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
@@ -146,9 +144,10 @@ msgstr "ActionScript"
 #: ../data/language-specs/html.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:3
 #: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
-#: ../data/language-specs/java.lang.h:3 ../data/language-specs/j.lang.h:4
-#: ../data/language-specs/latex.lang.h:3 ../data/language-specs/llvm.lang.h:3
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/jade.lang.h:3 ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
+#: ../data/language-specs/llvm.lang.h:3 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/modelica.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/netrexx.lang.h:6
@@ -160,7 +159,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:3
 #: ../data/language-specs/protobuf.lang.h:2
 #: ../data/language-specs/rst.lang.h:8 ../data/language-specs/ruby.lang.h:4
-#: ../data/language-specs/scala.lang.h:5
+#: ../data/language-specs/rust.lang.h:3 ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
@@ -181,8 +180,8 @@ msgstr "Açıklama"
 #: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
 #: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
 #: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/j.lang.h:7
-#: ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/html.lang.h:8 ../data/language-specs/jade.lang.h:11
+#: ../data/language-specs/j.lang.h:7 ../data/language-specs/json.lang.h:7
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
@@ -200,8 +199,8 @@ msgstr "Hata"
 #: ../data/language-specs/asp.lang.h:4 ../data/language-specs/boo.lang.h:5
 #: ../data/language-specs/c.lang.h:4 ../data/language-specs/cobol.lang.h:8
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
-#: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
-#: ../data/language-specs/dosbatch.lang.h:4
+#: ../data/language-specs/csv.lang.h:6 ../data/language-specs/def.lang.h:17
+#: ../data/language-specs/d.lang.h:5 ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/eiffel.lang.h:4
 #: ../data/language-specs/erlang.lang.h:7
 #: ../data/language-specs/forth.lang.h:4
@@ -217,7 +216,7 @@ msgstr "Hata"
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
 #: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
-#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/meson.lang.h:5
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4
@@ -228,10 +227,11 @@ msgstr "Hata"
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
 #: ../data/language-specs/php.lang.h:10 ../data/language-specs/po.lang.h:5
 #: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:7
+#: ../data/language-specs/protobuf.lang.h:8
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
+#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/rust.lang.h:4
+#: ../data/language-specs/scala.lang.h:6
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
@@ -301,16 +301,17 @@ msgstr "Kapsam Tanımı"
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
-#: ../data/language-specs/octave.lang.h:13
+#: ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
 #: ../data/language-specs/opencl.lang.h:3
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
 #: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/rust.lang.h:6
+#: ../data/language-specs/scala.lang.h:10
 #: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
@@ -352,10 +353,10 @@ msgstr "Null Değeri"
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
 #: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/protobuf.lang.h:6 ../data/language-specs/R.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:8
+#: ../data/language-specs/protobuf.lang.h:7 ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/rust.lang.h:8
+#: ../data/language-specs/sml.lang.h:11 ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/vbnet.lang.h:9 ../data/language-specs/vhdl.lang.h:8
 msgid "Boolean value"
 msgstr "Mantıksal değer"
 
@@ -370,6 +371,7 @@ msgstr "Mantıksal değer"
 #: ../data/language-specs/julia.lang.h:5 ../data/language-specs/llvm.lang.h:12
 #: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/rust.lang.h:10
 #: ../data/language-specs/scala.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
@@ -407,11 +409,11 @@ msgstr "İlerisi İçin Ayrılmış Sözcükler"
 #: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
 #: ../data/language-specs/pig.lang.h:3
-#: ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
-#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/thrift.lang.h:4 ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/rust.lang.h:7 ../data/language-specs/scala.lang.h:14
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
+#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/thrift.lang.h:4
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Veri Türü"
 
@@ -423,7 +425,7 @@ msgstr "Ada"
 #: ../data/language-specs/ada.lang.h:6
 #: ../data/language-specs/bennugd.lang.h:10
 #: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/csharp.lang.h:15 ../data/language-specs/csv.lang.h:3
 #: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:10
@@ -505,7 +507,8 @@ msgstr "Alarm"
 #: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:6 ../data/language-specs/julia.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5
+#: ../data/language-specs/rust.lang.h:5 ../data/language-specs/sml.lang.h:6
 #: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "Karakter"
@@ -516,7 +519,7 @@ msgstr "Sözcük"
 
 #. Any constant
 #: ../data/language-specs/ansforth94.lang.h:10
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
 #: ../data/language-specs/def.lang.h:13
 #: ../data/language-specs/gtk-doc.lang.h:8
 #: ../data/language-specs/libtool.lang.h:3
@@ -525,17 +528,16 @@ msgid "Constant"
 msgstr "Sabit"
 
 #: ../data/language-specs/ansforth94.lang.h:11
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
+#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:9
 #: ../data/language-specs/cobol.lang.h:5
 #: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
 #: ../data/language-specs/llvm.lang.h:8
 #: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:13
+#: ../data/language-specs/php.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:4
 #: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
 #: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
 msgid "Variable"
@@ -579,11 +581,11 @@ msgstr "Fonksiyon"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:7
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9
-#: ../data/language-specs/julia.lang.h:9
+#: ../data/language-specs/julia.lang.h:9 ../data/language-specs/meson.lang.h:4
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:15
@@ -680,15 +682,15 @@ msgstr "BennuGD"
 #. Any variable name
 #: ../data/language-specs/bennugd.lang.h:5
 #: ../data/language-specs/def.lang.h:36 ../data/language-specs/llvm.lang.h:9
-#: ../data/language-specs/php.lang.h:7
+#: ../data/language-specs/php.lang.h:7 ../data/language-specs/rust.lang.h:9
 msgid "Identifier"
 msgstr "Tanımlayıcı"
 
 #. A floating point constant: 2.3e10
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
-#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/c.lang.h:15 ../data/language-specs/csv.lang.h:5
+#: ../data/language-specs/def.lang.h:24 ../data/language-specs/d.lang.h:11
+#: ../data/language-specs/erlang.lang.h:9 ../data/language-specs/go.lang.h:11
 #: ../data/language-specs/idl-exelis.lang.h:8
 #: ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
@@ -712,7 +714,8 @@ msgstr "Onaltılık sayı"
 #: ../data/language-specs/docbook.lang.h:1 ../data/language-specs/dtd.lang.h:1
 #: ../data/language-specs/gtk-doc.lang.h:1
 #: ../data/language-specs/haddock.lang.h:1
-#: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
+#: ../data/language-specs/html.lang.h:1 ../data/language-specs/jade.lang.h:1
+#: ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
 #: ../data/language-specs/mediawiki.lang.h:1
@@ -749,6 +752,7 @@ msgid "Annotation"
 msgstr "Belirtim"
 
 #: ../data/language-specs/bluespec.lang.h:5
+#: ../data/language-specs/rust.lang.h:12
 msgid "Attribute"
 msgstr "Öznitelik"
 
@@ -845,14 +849,14 @@ msgstr "Swizzle işleci"
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
-#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/octave.lang.h:12
 #: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "Yapısal"
 
 #: ../data/language-specs/changelog.lang.h:1
 #: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
-#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/csv.lang.h:1 ../data/language-specs/desktop.lang.h:1
 #: ../data/language-specs/diff.lang.h:1 ../data/language-specs/dot.lang.h:1
 #: ../data/language-specs/dpatch.lang.h:1
 #: ../data/language-specs/gdb-log.lang.h:1
@@ -932,15 +936,20 @@ msgstr "Sinyal adı"
 msgid "CMake"
 msgstr "CMake"
 
-#: ../data/language-specs/cmake.lang.h:3
+#: ../data/language-specs/cmake.lang.h:3 ../data/language-specs/meson.lang.h:3
 msgid "Builtin Command"
 msgstr "Dahili Komut"
 
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
+#: ../data/language-specs/cmake.lang.h:4
+#| msgid "Builtin Command"
+msgid "Deprecated Builtin Command"
+msgstr "Kullanımdan Kaldırılmış Yerleşik Komut"
+
+#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/glsl.lang.h:8
 msgid "Builtin Variable"
 msgstr "Dahili Değişken"
 
-#: ../data/language-specs/cmake.lang.h:7
+#: ../data/language-specs/cmake.lang.h:8
 msgid "Control Keyword"
 msgstr "Kontrol Anahtar Kelimesi"
 
@@ -950,12 +959,18 @@ msgstr "COBOL"
 
 #. Any statement
 #: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
+#: ../data/language-specs/protobuf.lang.h:3
 msgid "Statement"
 msgstr "Belirtim"
 
 #: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
 msgstr "C++"
+
+#: ../data/language-specs/cpphdr.lang.h:2
+#| msgid "Header"
+msgid "C++ Header"
+msgstr "C++ Üstbilgisi"
 
 #: ../data/language-specs/csharp.lang.h:2
 msgid "C#"
@@ -989,7 +1004,6 @@ msgstr "Diğerleri 3"
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
 #: ../data/language-specs/modelica.lang.h:10
-#: ../data/language-specs/octave.lang.h:9
 #: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
 #: ../data/language-specs/sql.lang.h:8
 msgid "Decimal"
@@ -1018,6 +1032,16 @@ msgstr "Sınıf Seçici"
 #: ../data/language-specs/css.lang.h:17
 msgid "Tag Name Selector"
 msgstr "Etiket Adı Seçici"
+
+#: ../data/language-specs/csv.lang.h:2
+#| msgid "CSS"
+msgid "CSV"
+msgstr "CSV"
+
+#: ../data/language-specs/csv.lang.h:4
+#| msgid "Escaped Character"
+msgid "Escaped character"
+msgstr "İşlenmeyen karakter"
 
 #: ../data/language-specs/cuda.lang.h:2
 msgid "CUDA"
@@ -1262,7 +1286,8 @@ msgstr "Komut"
 msgid "Graphviz Dot"
 msgstr "Graphviz Nokta"
 
-#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/xml.lang.h:8
+#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/jade.lang.h:7
+#: ../data/language-specs/xml.lang.h:8
 msgid "Attribute name"
 msgstr "Öznitelik ismi"
 
@@ -1340,8 +1365,7 @@ msgstr "Atom"
 #: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/modelica.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/sml.lang.h:9
 #: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "Base-N Integer"
@@ -1372,7 +1396,6 @@ msgstr "FCL"
 #: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:4
 #: ../data/language-specs/modelica.lang.h:11
-#: ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "Reel Sayı"
@@ -1381,7 +1404,7 @@ msgstr "Reel Sayı"
 msgid "Block"
 msgstr "Blok"
 
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
+#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:11
 #: ../data/language-specs/scilab.lang.h:9
 msgid "Reserved Constant"
 msgstr "Ayrılmış Sabit"
@@ -1568,7 +1591,7 @@ msgstr "GtkRC"
 
 #: ../data/language-specs/gtkrc.lang.h:8
 msgid "Widget State"
-msgstr "Parça Durumu"
+msgstr "Gereç Durumu"
 
 #: ../data/language-specs/gtkrc.lang.h:9
 msgid "Include directive"
@@ -1731,6 +1754,36 @@ msgstr "Çıkarılmış Karakterler"
 msgid ".ini"
 msgstr ".ini"
 
+#: ../data/language-specs/jade.lang.h:2
+msgid "Jade"
+msgstr "Jade"
+
+#: ../data/language-specs/jade.lang.h:4 ../data/language-specs/xml.lang.h:4
+msgid "DOCTYPE"
+msgstr "DOCTYPE"
+
+#: ../data/language-specs/jade.lang.h:5 ../data/language-specs/xml.lang.h:6
+msgid "Processing instruction"
+msgstr "İşleme yönergesi"
+
+#: ../data/language-specs/jade.lang.h:6 ../data/language-specs/mxml.lang.h:3
+#: ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "Öğe ismi"
+
+#: ../data/language-specs/jade.lang.h:8 ../data/language-specs/xml.lang.h:9
+msgid "Attribute value"
+msgstr "Öznitelik değeri"
+
+#: ../data/language-specs/jade.lang.h:9
+#| msgid "Text2Tags"
+msgid "Tags"
+msgstr "Etiketler"
+
+#: ../data/language-specs/jade.lang.h:10 ../data/language-specs/xml.lang.h:10
+msgid "Entity"
+msgstr "İçerik"
+
 #: ../data/language-specs/java.lang.h:2
 msgid "Java"
 msgstr "Java"
@@ -1817,6 +1870,7 @@ msgid "Special Constant"
 msgstr "Özel Sabit"
 
 #: ../data/language-specs/julia.lang.h:11
+#: ../data/language-specs/rust.lang.h:13
 msgid "Macro"
 msgstr "Makro"
 
@@ -2117,6 +2171,10 @@ msgstr "Başlık"
 msgid "Template"
 msgstr "Şablon"
 
+#: ../data/language-specs/meson.lang.h:2
+msgid "Meson"
+msgstr "Meson"
+
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
 msgstr "Modelica"
@@ -2132,10 +2190,6 @@ msgstr "Öntanımlı Nitelik"
 #: ../data/language-specs/mxml.lang.h:2
 msgid "MXML"
 msgstr "MXML"
-
-#: ../data/language-specs/mxml.lang.h:3 ../data/language-specs/xml.lang.h:7
-msgid "Element name"
-msgstr "Öğe ismi"
 
 #: ../data/language-specs/mxml.lang.h:4 ../data/language-specs/xml.lang.h:5
 msgid "CDATA delimiter"
@@ -2221,7 +2275,7 @@ msgstr "İşlem işleçleri"
 msgid "Octave"
 msgstr "Oktav"
 
-#: ../data/language-specs/octave.lang.h:12
+#: ../data/language-specs/octave.lang.h:9
 msgid "Package Manager"
 msgstr "Paket Yöneticisi"
 
@@ -2528,6 +2582,14 @@ msgstr "Yalın sayı"
 msgid "Literal"
 msgstr "Literal"
 
+#: ../data/language-specs/rust.lang.h:2
+msgid "Rust"
+msgstr "Pas"
+
+#: ../data/language-specs/rust.lang.h:11
+msgid "Scope"
+msgstr "Kapsam"
+
 #: ../data/language-specs/scala.lang.h:2
 msgid "Scala"
 msgstr "Scala"
@@ -2733,22 +2795,6 @@ msgstr "VHDL"
 msgid "XML"
 msgstr "XML"
 
-#: ../data/language-specs/xml.lang.h:4
-msgid "DOCTYPE"
-msgstr "DOCTYPE"
-
-#: ../data/language-specs/xml.lang.h:6
-msgid "Processing instruction"
-msgstr "İşleme yönergesi"
-
-#: ../data/language-specs/xml.lang.h:9
-msgid "Attribute value"
-msgstr "Öznitelik değeri"
-
-#: ../data/language-specs/xml.lang.h:10
-msgid "Entity"
-msgstr "İçerik"
-
 #: ../data/language-specs/xslt.lang.h:2
 msgid "XSLT"
 msgstr "XSLT"
@@ -2890,19 +2936,11 @@ msgstr "Tamamlama Bilgisi"
 msgid "Provider"
 msgstr "Sağlayıcı"
 
-#: ../gtksourceview/gtksourcecompletion.ui.h:1
-msgid "Show detailed proposal information"
-msgstr "Ayrıntılı teklif bilgilerini göster"
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:2
-msgid "_Details..."
-msgstr "_Ayrıntılar..."
-
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3167
+#: ../gtksourceview/gtksourcecontextengine.c:3143
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2913,7 +2951,7 @@ msgstr ""
 "olağandan daha uzun sürecek.\n"
 "Hata: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4490
+#: ../gtksourceview/gtksourcecontextengine.c:4466
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2921,19 +2959,19 @@ msgstr ""
 "Tek bir satırı vurgulamak çok fazla zaman aldı, söz dizimi vurgulama "
 "kapatılacak"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5734
+#: ../gtksourceview/gtksourcecontextengine.c:5714
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "bağlam '%s' bir \\%%{...@start} komutu içeremiyor"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5895
-#: ../gtksourceview/gtksourcecontextengine.c:5984
+#: ../gtksourceview/gtksourcecontextengine.c:5877
+#: ../gtksourceview/gtksourcecontextengine.c:5968
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "birden fazla bağlam etiketi '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6098
-#: ../gtksourceview/gtksourcecontextengine.c:6158
+#: ../gtksourceview/gtksourcecontextengine.c:6082
+#: ../gtksourceview/gtksourcecontextengine.c:6142
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2942,18 +2980,18 @@ msgstr ""
 "'%s' dilinde '%s' referansında master bağlam referansı ile kullanılan "
 "biçemin yerine geçer"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6172
+#: ../gtksourceview/gtksourcecontextengine.c:6156
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "geçersiz bağlam referansı '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6191
-#: ../gtksourceview/gtksourcecontextengine.c:6201
+#: ../gtksourceview/gtksourcecontextengine.c:6175
+#: ../gtksourceview/gtksourcecontextengine.c:6185
 #, c-format
 msgid "unknown context '%s'"
 msgstr "bilinmeyen bağlam '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6300
+#: ../gtksourceview/gtksourcecontextengine.c:6284
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Eksik ana dil tanımı (kimlikd = \"%s\" )"
@@ -3110,7 +3148,7 @@ msgstr "Bilinmeyen"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:650
+#: ../gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-9', 'UTF-16', 'WINDOWS-1254']"
 
@@ -3119,10 +3157,27 @@ msgstr "['UTF-8', 'CURRENT', 'ISO-8859-9', 'UTF-16', 'WINDOWS-1254']"
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Bilinmeyen kimlik '%s' bulunduğu regex '%s'"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "regex '%s': geri referanslar desteklenmiyor"
+
+#: ../gtksourceview/gtksourcemap.c:1078
+msgid "View"
+msgstr "Görünüm"
+
+#: ../gtksourceview/gtksourcemap.c:1079
+msgid "The view this widget is mapping."
+msgstr "Bu görünümün eşleştiği gereç."
+
+#: ../gtksourceview/gtksourcemap.c:1085
+#| msgid "File Descriptor"
+msgid "Font Description"
+msgstr "Yazıtipi Açıklaması"
+
+#: ../gtksourceview/gtksourcemap.c:1086
+msgid "The Pango font description to use."
+msgstr "Kullanılacak Pango yazıtipi açıklaması."
 
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
@@ -3142,32 +3197,32 @@ msgid "_Select"
 msgstr "_Seç"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1522
+#: ../gtksourceview/gtksourceview.c:1548
 msgid "_Redo"
 msgstr "_Yeniden Yap"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1533
+#: ../gtksourceview/gtksourceview.c:1559
 msgid "_Undo"
 msgstr "_Geri al"
 
-#: ../gtksourceview/gtksourceview.c:1551
+#: ../gtksourceview/gtksourceview.c:1577
 msgid "All _Upper Case"
 msgstr "Hepsi _Büyük Harf"
 
-#: ../gtksourceview/gtksourceview.c:1561
+#: ../gtksourceview/gtksourceview.c:1587
 msgid "All _Lower Case"
 msgstr "Hepsi _Küçük Harf"
 
-#: ../gtksourceview/gtksourceview.c:1571
+#: ../gtksourceview/gtksourceview.c:1597
 msgid "_Invert Case"
 msgstr "Durum Değ_iştir"
 
-#: ../gtksourceview/gtksourceview.c:1581
+#: ../gtksourceview/gtksourceview.c:1607
 msgid "_Title Case"
 msgstr "Başlık _Durumu"
 
-#: ../gtksourceview/gtksourceview.c:1591
+#: ../gtksourceview/gtksourceview.c:1617
 msgid "C_hange Case"
 msgstr "Büyük/Küçük Harf _Değiştir"
 
@@ -3177,6 +3232,15 @@ msgstr ""
 "Barış Çiçek <baris@teamforce.name.tr>\n"
 "Necdet Yücel <necdetyucel@gmail.com>\n"
 "Muhammet Kara <muhammetk@gmail.com>"
+
+#~ msgid "GtkSourceView"
+#~ msgstr "GtkSourceView"
+
+#~ msgid "Show detailed proposal information"
+#~ msgstr "Ayrıntılı teklif bilgilerini göster"
+
+#~ msgid "_Details..."
+#~ msgstr "_Ayrıntılar..."
 
 #~ msgid "GtkSourceStyleSchemeChooserWidget"
 #~ msgstr "GtkSourceStyleSchemeChooserWidget"
@@ -3281,9 +3345,6 @@ msgstr ""
 
 #~ msgid "The buffer undo manager"
 #~ msgstr "Tamponu geri alma yöneticisi"
-
-#~ msgid "View"
-#~ msgstr "Görünüm"
 
 #~ msgid "Remember Info Visibility"
 #~ msgstr "Bilgi Görünürlüğünü Hatırla"
@@ -3806,9 +3867,6 @@ msgstr ""
 
 #~ msgid "No extra information available"
 #~ msgstr "Kullanılabilir ek bilgi yok"
-
-#~ msgid "Text2Tags"
-#~ msgstr "Text2Tags"
 
 #~ msgid "Object"
 #~ msgstr "Nesne"
