@@ -4,13 +4,14 @@
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2009.
 # Satoru SATOH <ss@gnome.gr.jp>, 2006.
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2012.
+# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-16 08:32+0000\n"
-"PO-Revision-Date: 2013-09-01 04:40+0900\n"
+"POT-Creation-Date: 2015-09-14 10:16+0000\n"
+"PO-Revision-Date: 2015-09-18 02:44+0900\n"
 "Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -19,99 +20,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/glade/gtksourceview.xml.in.h:1
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
-
 #. Translators: It is related to an option of a set of values
-#: ../data/glade/gtksourceview.xml.in.h:3
+#: ../data/glade/gtksourceview.xml.in.h:2
 msgid "Disabled"
 msgstr "利用不可"
 
-#: ../data/glade/gtksourceview.xml.in.h:4
+#: ../data/glade/gtksourceview.xml.in.h:3
 msgid "Before"
 msgstr "前"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
+#: ../data/glade/gtksourceview.xml.in.h:4
 msgid "After"
 msgstr "後"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
+#: ../data/glade/gtksourceview.xml.in.h:5
 msgid "Always"
 msgstr "常に"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#: ../data/glade/gtksourceview.xml.in.h:6
 msgid "Space"
 msgstr "スペース"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#: ../data/glade/gtksourceview.xml.in.h:7
 msgid "Tab"
 msgstr "タブ"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#: ../data/glade/gtksourceview.xml.in.h:8
 msgid "Newline"
 msgstr "改行"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Non Breaking Whitespace"
 msgstr "開業されない空白"
 
 # GTK_SOURCE_DRAW_SPACES_LEADING なので、行頭の空間とした。
-#: ../data/glade/gtksourceview.xml.in.h:11
+#: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Leading"
 msgstr "行頭の空間"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:399
+#: ../data/glade/gtksourceview.xml.in.h:11
 msgid "Text"
 msgstr "テキスト"
 
 # 文末のことだと思われる。
-#: ../data/glade/gtksourceview.xml.in.h:13
+#: ../data/glade/gtksourceview.xml.in.h:12
 msgid "Trailing"
 msgstr "行末の空間"
 
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:753
+#: ../data/glade/gtksourceview.xml.in.h:13
+#: ../gtksourceview/gtksourcecompletion.c:830
 msgid "All"
 msgstr "すべて"
 
 #: ../data/language-specs/actionscript.lang.h:1
-#: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/ada.lang.h:1
+#: ../data/language-specs/ansforth94.lang.h:1
+#: ../data/language-specs/asp.lang.h:1
 #: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
 #: ../data/language-specs/bluespec.lang.h:1
 #: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
 #: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
 #: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/cpphdr.lang.h:1
 #: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
 #: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
 #: ../data/language-specs/erlang.lang.h:1
 #: ../data/language-specs/forth.lang.h:1
 #: ../data/language-specs/fortran.lang.h:1
-#: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
+#: ../data/language-specs/fsharp.lang.h:1
+#: ../data/language-specs/genie.lang.h:1 ../data/language-specs/glsl.lang.h:1
 #: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
 #: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/j.lang.h:1 ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
+#: ../data/language-specs/llvm.lang.h:1
+#: ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/meson.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
 #: ../data/language-specs/netrexx.lang.h:1
 #: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
 #: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
 #: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1
+#: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/pig.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/rust.lang.h:1
 #: ../data/language-specs/scala.lang.h:1
 #: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
 #: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
 #: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
+#: ../data/language-specs/thrift.lang.h:1 ../data/language-specs/vala.lang.h:1
+#: ../data/language-specs/vbnet.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
-msgid "Sources"
+msgid "Source"
 msgstr "ソース"
 
 #: ../data/language-specs/actionscript.lang.h:2
@@ -120,10 +123,11 @@ msgstr "ActionScript"
 
 #. Any comment
 #: ../data/language-specs/actionscript.lang.h:3
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/ada.lang.h:3
+#: ../data/language-specs/ansforth94.lang.h:5
+#: ../data/language-specs/asp.lang.h:3 ../data/language-specs/bennugd.lang.h:3
+#: ../data/language-specs/boo.lang.h:3 ../data/language-specs/cg.lang.h:3
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/cobol.lang.h:3
 #: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
 #: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
 #: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
@@ -131,13 +135,16 @@ msgstr "ActionScript"
 #: ../data/language-specs/forth.lang.h:3
 #: ../data/language-specs/fortran.lang.h:3
 #: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/genie.lang.h:3 ../data/language-specs/go.lang.h:3
+#: ../data/language-specs/gtkrc.lang.h:3
 #: ../data/language-specs/haskell.lang.h:4
 #: ../data/language-specs/html.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:3
 #: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
+#: ../data/language-specs/jade.lang.h:3 ../data/language-specs/java.lang.h:3
 #: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/llvm.lang.h:3 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/modelica.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
 #: ../data/language-specs/netrexx.lang.h:6
@@ -145,16 +152,21 @@ msgstr "ActionScript"
 #: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
 #: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
 #: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
-#: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
-#: ../data/language-specs/scala.lang.h:5
+#: ../data/language-specs/php.lang.h:4 ../data/language-specs/pig.lang.h:8
+#: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/rst.lang.h:8 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/rust.lang.h:3 ../data/language-specs/scala.lang.h:5
 #: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
-#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:3
-#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
+#: ../data/language-specs/texinfo.lang.h:3
+#: ../data/language-specs/thrift.lang.h:3 ../data/language-specs/vala.lang.h:3
+#: ../data/language-specs/vbnet.lang.h:3
 #: ../data/language-specs/verilog.lang.h:3
 #: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
+#: ../data/language-specs/yaml.lang.h:4
 msgid "Comment"
 msgstr "コメント"
 
@@ -165,12 +177,12 @@ msgstr "コメント"
 #: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
 #: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
 #: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/j.lang.h:7
-#: ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/html.lang.h:8 ../data/language-specs/jade.lang.h:11
+#: ../data/language-specs/j.lang.h:7 ../data/language-specs/json.lang.h:7
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/php.lang.h:5 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
 #: ../data/language-specs/verilog.lang.h:7
 #: ../data/language-specs/xml.lang.h:13
@@ -179,25 +191,29 @@ msgstr "エラー"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/actionscript.lang.h:5
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/ada.lang.h:4
+#: ../data/language-specs/ansforth94.lang.h:9
+#: ../data/language-specs/asp.lang.h:4 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cobol.lang.h:8
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
-#: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
-#: ../data/language-specs/dosbatch.lang.h:4
+#: ../data/language-specs/csv.lang.h:6 ../data/language-specs/def.lang.h:17
+#: ../data/language-specs/d.lang.h:5 ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/eiffel.lang.h:4
 #: ../data/language-specs/erlang.lang.h:7
 #: ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/fortran.lang.h:4
 #: ../data/language-specs/fsharp.lang.h:7
-#: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
+#: ../data/language-specs/gdb-log.lang.h:8
+#: ../data/language-specs/genie.lang.h:5 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:9
 #: ../data/language-specs/idl-exelis.lang.h:7
 #: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
+#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/meson.lang.h:5
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
 #: ../data/language-specs/netrexx.lang.h:4
@@ -206,52 +222,56 @@ msgstr "エラー"
 #: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
 #: ../data/language-specs/ooc.lang.h:6 ../data/language-specs/opal.lang.h:7
 #: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
-#: ../data/language-specs/php.lang.h:9 ../data/language-specs/po.lang.h:5
+#: ../data/language-specs/php.lang.h:10 ../data/language-specs/po.lang.h:5
 #: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:6
+#: ../data/language-specs/protobuf.lang.h:8
 #: ../data/language-specs/python3.lang.h:6
 #: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
+#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/rust.lang.h:4
+#: ../data/language-specs/scala.lang.h:6
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
 #: ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/thrift.lang.h:6 ../data/language-specs/vala.lang.h:6
+#: ../data/language-specs/vbnet.lang.h:4
 #: ../data/language-specs/verilog.lang.h:4
-#: ../data/language-specs/vhdl.lang.h:4
+#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
 msgid "String"
 msgstr "文字列"
 
 #. Translators: refered to some specific keywords of the language that
 #. allow to get external functionalities
 #: ../data/language-specs/actionscript.lang.h:6
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:7
 #: ../data/language-specs/scala.lang.h:4
 msgid "External"
 msgstr "外部"
 
 #: ../data/language-specs/actionscript.lang.h:7
-#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/java.lang.h:10 ../data/language-specs/ooc.lang.h:8
 #: ../data/language-specs/scala.lang.h:8
 msgid "Declaration"
 msgstr "宣言"
 
 #: ../data/language-specs/actionscript.lang.h:8
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:11
 #: ../data/language-specs/ooc.lang.h:9
 msgid "Storage Class"
 msgstr "ストレージクラス"
 
 #: ../data/language-specs/actionscript.lang.h:9
-#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
+#: ../data/language-specs/java.lang.h:12 ../data/language-specs/ooc.lang.h:10
 msgid "Scope Declaration"
 msgstr "スコープの宣言"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/actionscript.lang.h:10
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
-#: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/ada.lang.h:5
+#: ../data/language-specs/ansforth94.lang.h:3
+#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/awk.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:7
 #: ../data/language-specs/bluespec.lang.h:7
 #: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
 #: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
@@ -262,38 +282,41 @@ msgstr "スコープの宣言"
 #: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
 #: ../data/language-specs/forth.lang.h:6
-#: ../data/language-specs/fortran.lang.h:5
+#: ../data/language-specs/fortran.lang.h:6
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/genie.lang.h:10 ../data/language-specs/glsl.lang.h:5
+#: ../data/language-specs/go.lang.h:7 ../data/language-specs/gtkrc.lang.h:5
 #: ../data/language-specs/haskell.lang.h:7
 #: ../data/language-specs/idl-exelis.lang.h:6
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:13
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lex.lang.h:4
+#: ../data/language-specs/llvm.lang.h:5 ../data/language-specs/lua.lang.h:5
 #: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/modelica.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:8
 #: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
-#: ../data/language-specs/octave.lang.h:13
+#: ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
 #: ../data/language-specs/opencl.lang.h:3
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
-#: ../data/language-specs/php.lang.h:12 ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/rust.lang.h:6
+#: ../data/language-specs/scala.lang.h:10
 #: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
 #: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:5
 #: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/thrift.lang.h:5 ../data/language-specs/vala.lang.h:7
+#: ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
@@ -303,12 +326,13 @@ msgstr "キーワード"
 #: ../data/language-specs/boo.lang.h:12
 #: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
 #: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/genie.lang.h:12
+#: ../data/language-specs/java.lang.h:14
 #: ../data/language-specs/javascript.lang.h:4
 #: ../data/language-specs/json.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
 #: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/php.lang.h:16 ../data/language-specs/vala.lang.h:9
+#: ../data/language-specs/php.lang.h:17 ../data/language-specs/vala.lang.h:9
 msgid "Null Value"
 msgstr "NULL 値"
 
@@ -321,14 +345,15 @@ msgstr "NULL 値"
 #: ../data/language-specs/def.lang.h:34
 #: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
 #: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/java.lang.h:15 ../data/language-specs/llvm.lang.h:11
+#: ../data/language-specs/lua.lang.h:11
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:17
-#: ../data/language-specs/protobuf.lang.h:5 ../data/language-specs/R.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:8
+#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/protobuf.lang.h:7 ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/rust.lang.h:8
+#: ../data/language-specs/sml.lang.h:11 ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/vbnet.lang.h:9 ../data/language-specs/vhdl.lang.h:8
 msgid "Boolean value"
 msgstr "論理値"
 
@@ -337,17 +362,20 @@ msgstr "論理値"
 #: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
+#: ../data/language-specs/forth.lang.h:8
+#: ../data/language-specs/genie.lang.h:14
+#: ../data/language-specs/java.lang.h:16 ../data/language-specs/j.lang.h:14
+#: ../data/language-specs/julia.lang.h:5 ../data/language-specs/llvm.lang.h:12
 #: ../data/language-specs/netrexx.lang.h:16
 #: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/rust.lang.h:10
 #: ../data/language-specs/scala.lang.h:12
 #: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
 msgstr "数値"
 
 #: ../data/language-specs/actionscript.lang.h:14
-#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/java.lang.h:17
 #: ../data/language-specs/javascript.lang.h:12
 #: ../data/language-specs/ooc.lang.h:18
 msgid "Future Reserved Keywords"
@@ -361,24 +389,27 @@ msgstr "予約済みのキーワード"
 #: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
 #: ../data/language-specs/eiffel.lang.h:8
 #: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:9
+#: ../data/language-specs/fortran.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
-#: ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/genie.lang.h:8 ../data/language-specs/glsl.lang.h:4
+#: ../data/language-specs/go.lang.h:8 ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:8
 #: ../data/language-specs/idl-exelis.lang.h:4
 #: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/java.lang.h:18
 #: ../data/language-specs/javascript.lang.h:8
+#: ../data/language-specs/llvm.lang.h:10
 #: ../data/language-specs/nemerle.lang.h:9
 #: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
 #: ../data/language-specs/ocaml.lang.h:12 ../data/language-specs/ocl.lang.h:7
 #: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
 #: ../data/language-specs/opencl.lang.h:4
-#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
-#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
+#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/pig.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/rust.lang.h:7 ../data/language-specs/scala.lang.h:14
+#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
+#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/thrift.lang.h:4
 #: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "データ型"
@@ -391,7 +422,7 @@ msgstr "Ada"
 #: ../data/language-specs/ada.lang.h:6
 #: ../data/language-specs/bennugd.lang.h:10
 #: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/csharp.lang.h:15 ../data/language-specs/csv.lang.h:3
 #: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:10
@@ -399,7 +430,7 @@ msgstr "Ada"
 #: ../data/language-specs/idl-exelis.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:20
 #: ../data/language-specs/python3.lang.h:12
 #: ../data/language-specs/python.lang.h:13
 #: ../data/language-specs/ruby.lang.h:11
@@ -410,6 +441,7 @@ msgstr "10進数"
 #: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:5
+#: ../data/language-specs/fortran.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:20
 #: ../data/language-specs/glsl.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3
@@ -435,14 +467,15 @@ msgstr "実数"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
+#: ../data/language-specs/fortran.lang.h:14
 #: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
-#: ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
+#: ../data/language-specs/php.lang.h:9 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python3.lang.h:7
 #: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
 #: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
@@ -450,6 +483,79 @@ msgstr "実数"
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "エスケープした文字"
+
+#: ../data/language-specs/ansforth94.lang.h:2
+msgid "ANS-Forth94"
+msgstr "ANS-Forth94"
+
+#: ../data/language-specs/ansforth94.lang.h:4
+msgid "Obsolete Keyword"
+msgstr "廃止されたキーワード"
+
+#: ../data/language-specs/ansforth94.lang.h:6
+msgid "Alert"
+msgstr "アラート"
+
+#. A character constant: 'c'
+#: ../data/language-specs/ansforth94.lang.h:7
+#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:6 ../data/language-specs/julia.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5
+#: ../data/language-specs/rust.lang.h:5 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
+msgid "Character"
+msgstr "文字"
+
+#: ../data/language-specs/ansforth94.lang.h:8
+msgid "Word"
+msgstr "ワード"
+
+#. Any constant
+#: ../data/language-specs/ansforth94.lang.h:10
+#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:18
+msgid "Constant"
+msgstr "定数"
+
+#: ../data/language-specs/ansforth94.lang.h:11
+#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:9
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/llvm.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
+#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:13
+#: ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/pkgconfig.lang.h:3
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+msgid "Variable"
+msgstr "変数"
+
+#: ../data/language-specs/ansforth94.lang.h:12
+msgid "Local Variable"
+msgstr "ローカル変数"
+
+#: ../data/language-specs/ansforth94.lang.h:13
+msgid "Single Number"
+msgstr "単精度数"
+
+#: ../data/language-specs/ansforth94.lang.h:14
+msgid "Double Number"
+msgstr "倍精度数"
+
+#: ../data/language-specs/ansforth94.lang.h:15
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "Float 型"
 
 #: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
@@ -463,7 +569,8 @@ msgstr "ASP"
 #: ../data/language-specs/gtk-doc.lang.h:10
 #: ../data/language-specs/idl-exelis.lang.h:10
 #: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/lua.lang.h:8 ../data/language-specs/scheme.lang.h:7
+#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:9
+#: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
 #: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
 msgid "Function"
@@ -471,14 +578,14 @@ msgstr "関数"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:7
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
 #: ../data/language-specs/imagej.lang.h:9
-#: ../data/language-specs/julia.lang.h:9
+#: ../data/language-specs/julia.lang.h:9 ../data/language-specs/meson.lang.h:4
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
-#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
+#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:15
 #: ../data/language-specs/prolog.lang.h:8
 #: ../data/language-specs/scala.lang.h:13
 #: ../data/language-specs/sparql.lang.h:15
@@ -533,6 +640,7 @@ msgstr "その他のキーワード"
 
 # Autoconf の AC_SUBST
 #: ../data/language-specs/automake.lang.h:10
+#: ../data/language-specs/rst.lang.h:10
 msgid "Substitution"
 msgstr "置換"
 
@@ -544,34 +652,20 @@ msgstr "置換"
 #: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
 #: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-msgid "Scripts"
+msgid "Script"
 msgstr "スクリプト"
 
 #: ../data/language-specs/awk.lang.h:2
 msgid "awk"
 msgstr "awk"
 
-#: ../data/language-specs/awk.lang.h:4
+#: ../data/language-specs/awk.lang.h:4 ../data/language-specs/lex.lang.h:5
 msgid "Pattern"
 msgstr "パターン"
 
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
-msgid "Variable"
-msgstr "変数"
-
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/genie.lang.h:15 ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/go.lang.h:18
 #: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python3.lang.h:17
@@ -585,19 +679,20 @@ msgstr "BennuGD"
 
 #. Any variable name
 #: ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/def.lang.h:36 ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/def.lang.h:36 ../data/language-specs/llvm.lang.h:9
+#: ../data/language-specs/php.lang.h:7 ../data/language-specs/rust.lang.h:9
 msgid "Identifier"
 msgstr "識別子"
 
 #. A floating point constant: 2.3e10
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
-#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/c.lang.h:15 ../data/language-specs/csv.lang.h:5
+#: ../data/language-specs/def.lang.h:24 ../data/language-specs/d.lang.h:11
+#: ../data/language-specs/erlang.lang.h:9 ../data/language-specs/go.lang.h:11
 #: ../data/language-specs/idl-exelis.lang.h:8
 #: ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python3.lang.h:11
 #: ../data/language-specs/python.lang.h:12 ../data/language-specs/R.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
@@ -609,7 +704,7 @@ msgstr "浮動小数点数"
 #: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
 #: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
 #: ../data/language-specs/nemerle.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:21
+#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:22
 msgid "Hexadecimal number"
 msgstr "16 進数"
 
@@ -617,15 +712,15 @@ msgstr "16 進数"
 #: ../data/language-specs/docbook.lang.h:1 ../data/language-specs/dtd.lang.h:1
 #: ../data/language-specs/gtk-doc.lang.h:1
 #: ../data/language-specs/haddock.lang.h:1
-#: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
+#: ../data/language-specs/html.lang.h:1 ../data/language-specs/jade.lang.h:1
+#: ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
 #: ../data/language-specs/mediawiki.lang.h:1
-#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/rst.lang.h:1
+#: ../data/language-specs/sweave.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:391
 msgid "Markup"
 msgstr "マークアップ"
 
@@ -655,6 +750,7 @@ msgid "Annotation"
 msgstr "注釈"
 
 #: ../data/language-specs/bluespec.lang.h:5
+#: ../data/language-specs/rust.lang.h:12
 msgid "Attribute"
 msgstr "属性"
 
@@ -675,27 +771,29 @@ msgstr "型"
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python3.lang.h:5
+#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/genie.lang.h:4
+#: ../data/language-specs/python3.lang.h:5
 #: ../data/language-specs/python.lang.h:5
 msgid "Multiline string"
 msgstr "複数行の文字列"
 
-#: ../data/language-specs/boo.lang.h:6
+#: ../data/language-specs/boo.lang.h:6 ../data/language-specs/genie.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
 #: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "正規表現"
 
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/sparql.lang.h:8
-#: ../data/language-specs/xml.lang.h:12 ../data/language-specs/xslt.lang.h:4
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/genie.lang.h:7
+#: ../data/language-specs/sparql.lang.h:8 ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/xslt.lang.h:4
 msgid "Namespace"
 msgstr "名前空間"
 
-#: ../data/language-specs/boo.lang.h:9
+#: ../data/language-specs/boo.lang.h:9 ../data/language-specs/genie.lang.h:9
 msgid "Definition"
 msgstr "定義"
 
-#: ../data/language-specs/boo.lang.h:11
+#: ../data/language-specs/boo.lang.h:11 ../data/language-specs/genie.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/python.lang.h:10
 #: ../data/language-specs/ruby.lang.h:20
@@ -704,6 +802,7 @@ msgstr "特別な変数"
 
 #: ../data/language-specs/boo.lang.h:13
 #: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
+#: ../data/language-specs/genie.lang.h:13
 #: ../data/language-specs/imagej.lang.h:4
 #: ../data/language-specs/julia.lang.h:6
 #: ../data/language-specs/libtool.lang.h:4
@@ -714,6 +813,7 @@ msgstr "特別な変数"
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:8
 #: ../data/language-specs/sparql.lang.h:9
+#: ../data/language-specs/yaml.lang.h:12
 msgid "Boolean"
 msgstr "論理値"
 
@@ -727,6 +827,7 @@ msgid "Bindings"
 msgstr "バインディング"
 
 #: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
+#: ../data/language-specs/fortran.lang.h:13
 #: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "インクルードファイル"
@@ -734,7 +835,7 @@ msgstr "インクルードファイル"
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
 #: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
 #: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:20
+#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:21
 msgid "Octal number"
 msgstr "8進数"
 
@@ -747,25 +848,14 @@ msgstr "Swizzle オペレーター"
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
-#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/octave.lang.h:12
 #: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "組み込み"
 
-#. *
-#. * SECTION:language
-#. * @Short_description: Object representing a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
-#. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
-#.
 #: ../data/language-specs/changelog.lang.h:1
 #: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
-#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/csv.lang.h:1 ../data/language-specs/desktop.lang.h:1
 #: ../data/language-specs/diff.lang.h:1 ../data/language-specs/dot.lang.h:1
 #: ../data/language-specs/dpatch.lang.h:1
 #: ../data/language-specs/gdb-log.lang.h:1
@@ -776,11 +866,10 @@ msgstr "組み込み"
 #: ../data/language-specs/pkgconfig.lang.h:1
 #: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
 #: ../data/language-specs/puppet.lang.h:1
-#: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:5
-#: ../data/language-specs/yacc.lang.h:1
-#: ../gtksourceview/gtksourcelanguage.c:55
-msgid "Others"
+#: ../data/language-specs/rpmspec.lang.h:1
+#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yacc.lang.h:1
+#: ../data/language-specs/yaml.lang.h:1
+msgid "Other"
 msgstr "その他"
 
 #: ../data/language-specs/changelog.lang.h:2
@@ -793,7 +882,9 @@ msgid "Date"
 msgstr "日付"
 
 #. Translators: the name of a person, not an object.
+#. names, e.g., name of package, name of environment, name of class
 #: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/latex.lang.h:19
 msgid "Name"
 msgstr "名前"
 
@@ -806,6 +897,7 @@ msgid "File"
 msgstr "ファイル"
 
 #: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/rst.lang.h:6
 msgid "Bullet"
 msgstr "箇条書きの黒丸"
 
@@ -826,20 +918,8 @@ msgstr "C"
 msgid "Common Defines"
 msgstr "共通の定義"
 
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
-msgid "Character"
-msgstr "文字"
-
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
-#: ../data/language-specs/verilog.lang.h:5
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/genie.lang.h:16
+#: ../data/language-specs/go.lang.h:9 ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
 msgstr "printf の書式指定子"
 
@@ -855,39 +935,39 @@ msgstr "シグナル名"
 msgid "CMake"
 msgstr "CMake"
 
-#: ../data/language-specs/cmake.lang.h:3
+#: ../data/language-specs/cmake.lang.h:3 ../data/language-specs/meson.lang.h:3
 msgid "Builtin Command"
-msgstr "組み込みのコマンド"
+msgstr "組み込みコマンド"
 
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
+#: ../data/language-specs/cmake.lang.h:4
+msgid "Deprecated Builtin Command"
+msgstr "非推奨の組み込みコマンド"
+
+#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/glsl.lang.h:8
 msgid "Builtin Variable"
 msgstr "組み込みの変数"
 
-#. Any constant
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13
-#: ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:18
-msgid "Constant"
-msgstr "定数"
-
-#: ../data/language-specs/cmake.lang.h:7
+#: ../data/language-specs/cmake.lang.h:8
 msgid "Control Keyword"
 msgstr "制御キーワード"
 
 #: ../data/language-specs/cobol.lang.h:2
-msgid "Cobol"
-msgstr "Cobol"
+msgid "COBOL"
+msgstr "COBOL"
 
 #. Any statement
 #: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
+#: ../data/language-specs/protobuf.lang.h:3
 msgid "Statement"
 msgstr "文"
 
 #: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
 msgstr "C++"
+
+#: ../data/language-specs/cpphdr.lang.h:2
+msgid "C++ Header"
+msgstr "C++ ヘッダー"
 
 #: ../data/language-specs/csharp.lang.h:2
 msgid "C#"
@@ -916,12 +996,11 @@ msgstr "その他 3"
 
 #. Translator: it is a type of number
 #: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8 ../data/language-specs/gap.lang.h:7
+#: ../data/language-specs/fortran.lang.h:9 ../data/language-specs/gap.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:6
 #: ../data/language-specs/haskell.lang.h:13
 #: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
 #: ../data/language-specs/modelica.lang.h:10
-#: ../data/language-specs/octave.lang.h:9
 #: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
 #: ../data/language-specs/sql.lang.h:8
 msgid "Decimal"
@@ -950,6 +1029,14 @@ msgstr "クラスセレクター"
 #: ../data/language-specs/css.lang.h:17
 msgid "Tag Name Selector"
 msgstr "タグ名のセレクター"
+
+#: ../data/language-specs/csv.lang.h:2
+msgid "CSV"
+msgstr "CSV"
+
+#: ../data/language-specs/csv.lang.h:4
+msgid "Escaped character"
+msgstr "エスケープした文字"
 
 # NVIDIA の開発環境らしい
 #: ../data/language-specs/cuda.lang.h:2
@@ -1047,6 +1134,35 @@ msgstr "注記 (FIXME、TODO、XXX など)"
 #: ../data/language-specs/def.lang.h:61
 msgid "Underlined"
 msgstr "下線付き"
+
+#. Text that acts as some kind of heading, such as h1, h2, ... in html.
+#: ../data/language-specs/def.lang.h:63
+msgid "Heading 0"
+msgstr "見出し 0"
+
+#: ../data/language-specs/def.lang.h:64
+msgid "Heading 1"
+msgstr "見出し 1"
+
+#: ../data/language-specs/def.lang.h:65
+msgid "Heading 2"
+msgstr "見出し 2"
+
+#: ../data/language-specs/def.lang.h:66
+msgid "Heading 3"
+msgstr "見出し 3"
+
+#: ../data/language-specs/def.lang.h:67
+msgid "Heading 4"
+msgstr "見出し 4"
+
+#: ../data/language-specs/def.lang.h:68
+msgid "Heading 5"
+msgstr "見出し 5"
+
+#: ../data/language-specs/def.lang.h:69
+msgid "Heading 6"
+msgstr "見出し 6"
 
 #: ../data/language-specs/desktop.lang.h:2
 msgid ".desktop"
@@ -1154,10 +1270,11 @@ msgstr "構造体の要素"
 
 #: ../data/language-specs/dosbatch.lang.h:2
 msgid "DOS Batch"
-msgstr "DOS のバッチファイル"
+msgstr "DOS バッチファイル"
 
 #: ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/latex.lang.h:8
+#: ../data/language-specs/sweave.lang.h:4
 msgid "Command"
 msgstr "コマンド"
 
@@ -1165,7 +1282,8 @@ msgstr "コマンド"
 msgid "Graphviz Dot"
 msgstr "Graphviz Dot"
 
-#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/xml.lang.h:8
+#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/jade.lang.h:7
+#: ../data/language-specs/xml.lang.h:8
 msgid "Attribute name"
 msgstr "属性名"
 
@@ -1174,7 +1292,9 @@ msgid "DPatch"
 msgstr "DPatch"
 
 #: ../data/language-specs/dpatch.lang.h:3
-msgid "patch-start"
+#, fuzzy
+#| msgid "patch-start"
+msgid "Patch Start"
 msgstr "patch-start"
 
 #: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
@@ -1194,7 +1314,9 @@ msgid "error"
 msgstr "エラー"
 
 #: ../data/language-specs/dtd.lang.h:6
-msgid "quoted-value"
+#, fuzzy
+#| msgid "quoted-value"
+msgid "Quoted Value"
 msgstr "引用値"
 
 #: ../data/language-specs/eiffel.lang.h:2
@@ -1243,8 +1365,7 @@ msgstr "Atom"
 #: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/modelica.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/sml.lang.h:9
 #: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "Base-N Integer"
@@ -1272,10 +1393,9 @@ msgstr "科学"
 msgid "FCL"
 msgstr "FCL"
 
-#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:4
+#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:4
 #: ../data/language-specs/modelica.lang.h:11
-#: ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "浮動小数点数"
@@ -1284,7 +1404,7 @@ msgstr "浮動小数点数"
 msgid "Block"
 msgstr "ブロック"
 
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
+#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:11
 #: ../data/language-specs/scilab.lang.h:9
 msgid "Reserved Constant"
 msgstr "予約済みの定数"
@@ -1305,13 +1425,17 @@ msgstr "エラーの文字列"
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:6
+#: ../data/language-specs/fortran.lang.h:7
 msgid "Intrinsic function"
 msgstr "組み込みの関数"
 
-#: ../data/language-specs/fortran.lang.h:7
+#: ../data/language-specs/fortran.lang.h:8
 msgid "BOZ Literal"
 msgstr "BOZ リテラル"
+
+#: ../data/language-specs/fortran.lang.h:12
+msgid "OpenMP directives"
+msgstr "OpenMP ディレクティブ"
 
 #: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
@@ -1398,6 +1522,10 @@ msgstr "不完全シーケンス"
 msgid "Prompt"
 msgstr "プロンプト"
 
+#: ../data/language-specs/genie.lang.h:2
+msgid "Genie"
+msgstr "Genie"
+
 #: ../data/language-specs/glsl.lang.h:2
 msgid "OpenGL Shading Language"
 msgstr "OpenGL シェーディング言語"
@@ -1429,6 +1557,7 @@ msgid "Inline Documentation Section"
 msgstr "ドキュメントのセクション (インライン)"
 
 #: ../data/language-specs/gtk-doc.lang.h:4
+#: ../data/language-specs/python.lang.h:19
 msgid "Function Name"
 msgstr "関数名"
 
@@ -1494,6 +1623,7 @@ msgstr "エスケープ"
 
 #: ../data/language-specs/haddock.lang.h:8
 #: ../data/language-specs/markdown.lang.h:13
+#: ../data/language-specs/rst.lang.h:4
 msgid "Emphasis"
 msgstr "強調"
 
@@ -1528,7 +1658,7 @@ msgid "URL"
 msgstr "URL"
 
 #: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/t2t.lang.h:13
+#: ../data/language-specs/t2t.lang.h:13 ../data/language-specs/yaml.lang.h:6
 msgid "Anchor"
 msgstr "アンカー"
 
@@ -1540,10 +1670,6 @@ msgstr "Haskell"
 #: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "シンボル"
-
-#: ../data/language-specs/haskell.lang.h:12
-msgid "Float"
-msgstr "Float 型"
 
 #: ../data/language-specs/haskell.lang.h:14
 msgid "Octal"
@@ -1562,6 +1688,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
+#: ../data/language-specs/yaml.lang.h:7
 msgid "Tag"
 msgstr "タグ"
 
@@ -1573,6 +1700,30 @@ msgstr "属性名"
 #: ../data/language-specs/markdown.lang.h:11
 msgid "Attribute Value"
 msgstr "属性値"
+
+#: ../data/language-specs/html.lang.h:9
+msgid "Page title"
+msgstr "ページタイトル"
+
+#: ../data/language-specs/html.lang.h:10
+msgid "Heading level 1"
+msgstr "見出しレベル 1"
+
+#: ../data/language-specs/html.lang.h:11
+msgid "Heading level 2"
+msgstr "見出しレベル 2"
+
+#: ../data/language-specs/html.lang.h:12
+msgid "Heading level 3"
+msgstr "見出しレベル 3"
+
+#: ../data/language-specs/html.lang.h:13
+msgid "Heading level 4"
+msgstr "見出しレベル 4"
+
+#: ../data/language-specs/html.lang.h:14
+msgid "Heading level 5"
+msgstr "見出しレベル 5"
 
 #: ../data/language-specs/idl-exelis.lang.h:2
 msgid "IDL-Exelis"
@@ -1602,6 +1753,35 @@ msgstr "エスケープ文字"
 #: ../data/language-specs/ini.lang.h:2
 msgid ".ini"
 msgstr ".ini"
+
+#: ../data/language-specs/jade.lang.h:2
+msgid "Jade"
+msgstr "Jade"
+
+#: ../data/language-specs/jade.lang.h:4 ../data/language-specs/xml.lang.h:4
+msgid "DOCTYPE"
+msgstr "DOCTYPE"
+
+#: ../data/language-specs/jade.lang.h:5 ../data/language-specs/xml.lang.h:6
+msgid "Processing instruction"
+msgstr "処理中の命令"
+
+#: ../data/language-specs/jade.lang.h:6 ../data/language-specs/mxml.lang.h:3
+#: ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "要素名"
+
+#: ../data/language-specs/jade.lang.h:8 ../data/language-specs/xml.lang.h:9
+msgid "Attribute value"
+msgstr "属性値"
+
+#: ../data/language-specs/jade.lang.h:9
+msgid "Tags"
+msgstr "タグ"
+
+#: ../data/language-specs/jade.lang.h:10 ../data/language-specs/xml.lang.h:10
+msgid "Entity"
+msgstr "エンティティ"
 
 #: ../data/language-specs/java.lang.h:2
 msgid "Java"
@@ -1689,6 +1869,7 @@ msgid "Special Constant"
 msgstr "特別な定数"
 
 #: ../data/language-specs/julia.lang.h:11
+#: ../data/language-specs/rust.lang.h:13
 msgid "Macro"
 msgstr "マクロ"
 
@@ -1717,21 +1898,76 @@ msgid "Inline Math Mode"
 msgstr "算術モード (インライン)"
 
 #: ../data/language-specs/latex.lang.h:6
-msgid "math-bound"
-msgstr "math-bound"
+#, fuzzy
+#| msgid "Math Mode"
+msgid "Math Boundary"
+msgstr "算術モード"
 
 #: ../data/language-specs/latex.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:11
 msgid "Include"
 msgstr "インクルード"
 
-#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/sweave.lang.h:5 ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
 msgstr "Verbatim"
+
+#: ../data/language-specs/latex.lang.h:10
+msgid "Special Character"
+msgstr "特殊文字"
+
+#: ../data/language-specs/latex.lang.h:11
+msgid "Part Heading"
+msgstr "部見出し"
+
+#: ../data/language-specs/latex.lang.h:12
+msgid "Chapter Heading"
+msgstr "章見出し"
+
+#: ../data/language-specs/latex.lang.h:13
+msgid "Section Heading"
+msgstr "節見出し"
+
+#: ../data/language-specs/latex.lang.h:14
+msgid "SubSection Heading"
+msgstr "小節見出し"
+
+#: ../data/language-specs/latex.lang.h:15
+msgid "SubSubSection Heading"
+msgstr "小々節見出し"
+
+#: ../data/language-specs/latex.lang.h:16
+msgid "Paragraph Heading"
+msgstr "段落見出し"
+
+#: ../data/language-specs/latex.lang.h:17
+msgid "SubParagraph Heading"
+msgstr "小段落見出し"
+
+#: ../data/language-specs/lex.lang.h:2
+msgid "Lex"
+msgstr "Lex"
+
+#: ../data/language-specs/lex.lang.h:3
+msgid "Token"
+msgstr "トークン"
+
+#: ../data/language-specs/lex.lang.h:6
+msgid "Expression"
+msgstr "式"
 
 #: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "libtool"
+
+#: ../data/language-specs/llvm.lang.h:2
+msgid "LLVM IR"
+msgstr "LLVM IR"
+
+#: ../data/language-specs/llvm.lang.h:7
+msgid "Constants"
+msgstr "定数"
 
 #: ../data/language-specs/lua.lang.h:2
 msgid "Lua"
@@ -1741,7 +1977,12 @@ msgstr "Lua"
 msgid "Reserved Identifier"
 msgstr "予約済みの識別子"
 
-#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/ruby.lang.h:8
+#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Label"
+msgstr "ラベル"
+
+#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/ruby.lang.h:8
 msgid "Nil Constant"
 msgstr "Nil 定数"
 
@@ -1750,8 +1991,8 @@ msgid "m4"
 msgstr "m4"
 
 #: ../data/language-specs/m4.lang.h:3
-msgid "m4-comment"
-msgstr "m4-コメント"
+msgid "m4 Comment"
+msgstr "m4 コメント"
 
 #: ../data/language-specs/m4.lang.h:4
 msgid "m4 Macro"
@@ -1763,7 +2004,7 @@ msgstr "Autoconf のマクロ"
 
 #: ../data/language-specs/m4.lang.h:6
 msgid "Obsolete Autoconf Macro"
-msgstr "廃止になった Autoconf のマクロ"
+msgstr "廃止された Autoconf のマクロ"
 
 #: ../data/language-specs/makefile.lang.h:2
 msgid "Makefile"
@@ -1830,7 +2071,8 @@ msgid "Markdown"
 msgstr "Markdown"
 
 #: ../data/language-specs/markdown.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/t2t.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/rst.lang.h:3
+#: ../data/language-specs/t2t.lang.h:6
 msgid "Header"
 msgstr "ヘッダー"
 
@@ -1843,6 +2085,7 @@ msgid "List Marker"
 msgstr "リストのマーカー"
 
 #: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rst.lang.h:11
 msgid "Code"
 msgstr "コード"
 
@@ -1854,17 +2097,13 @@ msgstr "ブロック引用のマーカー"
 msgid "Link Text"
 msgstr "リンクテキスト"
 
-#: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:236
-msgid "Label"
-msgstr "ラベル"
-
 #: ../data/language-specs/markdown.lang.h:12
 msgid "Image Marker"
 msgstr "画像のマーカー"
 
 #: ../data/language-specs/markdown.lang.h:14
 #: ../data/language-specs/mediawiki.lang.h:3
+#: ../data/language-specs/rst.lang.h:5
 msgid "Strong Emphasis"
 msgstr "より強い強調"
 
@@ -1893,6 +2132,7 @@ msgid "Signature"
 msgstr "署名"
 
 #: ../data/language-specs/mediawiki.lang.h:7
+#: ../data/language-specs/rst.lang.h:9
 msgid "Link"
 msgstr "リンク"
 
@@ -1932,6 +2172,10 @@ msgstr "タイトル"
 msgid "Template"
 msgstr "テンプレート"
 
+#: ../data/language-specs/meson.lang.h:2
+msgid "Meson"
+msgstr "Meson"
+
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
 msgstr "Modelica"
@@ -1947,10 +2191,6 @@ msgstr "デフォルト属性"
 #: ../data/language-specs/mxml.lang.h:2
 msgid "MXML"
 msgstr "MXML"
-
-#: ../data/language-specs/mxml.lang.h:3 ../data/language-specs/xml.lang.h:7
-msgid "Element name"
-msgstr "要素名"
 
 #: ../data/language-specs/mxml.lang.h:4 ../data/language-specs/xml.lang.h:5
 msgid "CDATA delimiter"
@@ -2036,7 +2276,7 @@ msgstr "オペレーション演算子"
 msgid "Octave"
 msgstr "Octave"
 
-#: ../data/language-specs/octave.lang.h:12
+#: ../data/language-specs/octave.lang.h:9
 msgid "Package Manager"
 msgstr "パッケージマネジャー"
 
@@ -2098,12 +2338,12 @@ msgstr "ライン命令"
 msgid "Include Statement"
 msgstr "インクルード文"
 
-#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
+#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:11
 #: ../data/language-specs/ruby.lang.h:23
 msgid "Heredoc"
 msgstr "ヒアドキュメント"
 
-#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:12
 #: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
 msgid "Heredoc Bound"
 msgstr "ヒアドキュメントの境界"
@@ -2136,9 +2376,33 @@ msgstr "POD ヘディング"
 msgid "PHP"
 msgstr "PHP"
 
-#: ../data/language-specs/php.lang.h:13
+#: ../data/language-specs/php.lang.h:3
+msgid "Preprocessor tags"
+msgstr "プリプロセッサタグ"
+
+#: ../data/language-specs/php.lang.h:14
 msgid "Common Function"
 msgstr "共通関数"
+
+#: ../data/language-specs/pig.lang.h:2
+msgid "Pig"
+msgstr "Pig"
+
+#: ../data/language-specs/pig.lang.h:4
+msgid "Reserved Words"
+msgstr "予約語"
+
+#: ../data/language-specs/pig.lang.h:5
+msgid "Built In Functions"
+msgstr "組み込み関数"
+
+#: ../data/language-specs/pig.lang.h:6
+msgid "Boolean values"
+msgstr "論理値"
+
+#: ../data/language-specs/pig.lang.h:7 ../data/language-specs/yaml.lang.h:11
+msgid "Null"
+msgstr "Null"
 
 #: ../data/language-specs/pkgconfig.lang.h:2
 msgid "pkg-config"
@@ -2211,8 +2475,16 @@ msgid "Python"
 msgstr "Python"
 
 #: ../data/language-specs/python.lang.h:9
-msgid "string-conversion"
-msgstr "文字列の変換"
+msgid "String Conversion"
+msgstr "文字列変換"
+
+#: ../data/language-specs/python.lang.h:20
+msgid "Class Name"
+msgstr "クラス名"
+
+#: ../data/language-specs/python.lang.h:21
+msgid "Decorator"
+msgstr "デコレータ"
 
 #: ../data/language-specs/R.lang.h:2
 msgid "R"
@@ -2282,6 +2554,14 @@ msgstr "Switch"
 msgid "Email"
 msgstr "E-メール"
 
+#: ../data/language-specs/rst.lang.h:2
+msgid "reStructuredText"
+msgstr "reStructuredText"
+
+#: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
+msgid "Directive"
+msgstr "ディレクティブ"
+
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Ruby"
 msgstr "Ruby"
@@ -2303,6 +2583,14 @@ msgstr "数字リテラル"
 msgid "Literal"
 msgstr "リテラル"
 
+#: ../data/language-specs/rust.lang.h:2
+msgid "Rust"
+msgstr "Rust"
+
+#: ../data/language-specs/rust.lang.h:11
+msgid "Scope"
+msgstr "スコープ"
+
 #: ../data/language-specs/scala.lang.h:2
 msgid "Scala"
 msgstr "Scala"
@@ -2315,15 +2603,10 @@ msgstr "修飾子"
 msgid "Built In"
 msgstr "組み込み"
 
-#: ../data/language-specs/scala.lang.h:16
-msgid "Other"
-msgstr "その他"
-
 #: ../data/language-specs/scala.lang.h:17
 msgid "XML Tag"
 msgstr "XML タグ"
 
-# 言語名なので、カタカナ表記しない
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "Scheme"
@@ -2341,6 +2624,22 @@ msgstr "シェルスクリプト"
 #: ../data/language-specs/sh.lang.h:9
 msgid "Variable Definition"
 msgstr "変数の定義"
+
+#. *
+#. * SECTION:language
+#. * @Short_description: Represents a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
+#. * particular language. Use #GtkSourceLanguageManager to obtain a
+#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
+#. * to a #GtkSourceBuffer.
+#.
+#: ../data/language-specs/sh.lang.h:10 ../data/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/gtksourcelanguage.c:54
+msgid "Others"
+msgstr "その他"
 
 #: ../data/language-specs/sh.lang.h:11
 msgid "Common Commands"
@@ -2391,6 +2690,10 @@ msgstr "SQL"
 msgid "No idea what it is"
 msgstr "不明"
 
+#: ../data/language-specs/sweave.lang.h:2
+msgid "Sweave"
+msgstr "Sweave"
+
 #: ../data/language-specs/systemverilog.lang.h:2
 msgid "SystemVerilog"
 msgstr "SystemVerilog"
@@ -2427,13 +2730,11 @@ msgstr "セクション 4"
 msgid "Section 5"
 msgstr "セクション 5"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:119
-#: ../gtksourceview/gtksourcestyle.c:120
+#: ../data/language-specs/t2t.lang.h:14
 msgid "Italic"
 msgstr "イタリック"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:111
-#: ../gtksourceview/gtksourcestyle.c:112
+#: ../data/language-specs/t2t.lang.h:15
 msgid "Bold"
 msgstr "太字"
 
@@ -2460,6 +2761,10 @@ msgstr "ファイルの属性"
 #: ../data/language-specs/texinfo.lang.h:10
 msgid "Generated Content"
 msgstr "生成した情報"
+
+#: ../data/language-specs/thrift.lang.h:2
+msgid "Thrift"
+msgstr "Thrift"
 
 #: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
@@ -2494,22 +2799,6 @@ msgstr "VHDL"
 msgid "XML"
 msgstr "XML"
 
-#: ../data/language-specs/xml.lang.h:4
-msgid "DOCTYPE"
-msgstr "DOCTYPE"
-
-#: ../data/language-specs/xml.lang.h:6
-msgid "Processing instruction"
-msgstr "処理中の命令"
-
-#: ../data/language-specs/xml.lang.h:9
-msgid "Attribute value"
-msgstr "属性値"
-
-#: ../data/language-specs/xml.lang.h:10
-msgid "Entity"
-msgstr "エンティティ"
-
 #: ../data/language-specs/xslt.lang.h:2
 msgid "XSLT"
 msgstr "XSLT"
@@ -2523,12 +2812,36 @@ msgid "Yacc"
 msgstr "Yacc"
 
 #: ../data/language-specs/yacc.lang.h:5
-msgid "token-type"
+msgid "token type"
 msgstr "トークンの型"
 
 #: ../data/language-specs/yacc.lang.h:6
 msgid "rule"
 msgstr "ルール"
+
+#: ../data/language-specs/yaml.lang.h:2
+msgid "YAML"
+msgstr "YAML"
+
+#: ../data/language-specs/yaml.lang.h:3
+msgid "Block literal"
+msgstr "ブロックリテラル"
+
+#: ../data/language-specs/yaml.lang.h:8
+msgid "Alias"
+msgstr "エイリアス"
+
+#: ../data/language-specs/yaml.lang.h:9
+msgid "Map key"
+msgstr "マップキー"
+
+#: ../data/language-specs/yaml.lang.h:13
+msgid "Integer"
+msgstr "整数"
+
+#: ../data/language-specs/yaml.lang.h:14
+msgid "Floating point"
+msgstr "浮動小数点数"
 
 #: ../data/styles/classic.xml.h:1
 msgid "Classic"
@@ -2536,7 +2849,7 @@ msgstr "クラシック"
 
 #: ../data/styles/classic.xml.h:2
 msgid "Classic color scheme"
-msgstr "古くから使われている伝統的な色のスキーム"
+msgstr "古くから使われている伝統的なカラースキーム"
 
 #: ../data/styles/cobalt.xml.h:1
 msgid "Cobalt"
@@ -2544,7 +2857,7 @@ msgstr "コバルト"
 
 #: ../data/styles/cobalt.xml.h:2
 msgid "Blue based color scheme"
-msgstr "青をベースにした色のスキーム"
+msgstr "青をベースにしたカラースキーム"
 
 #: ../data/styles/kate.xml.h:1
 msgid "Kate"
@@ -2552,7 +2865,7 @@ msgstr "Kate"
 
 #: ../data/styles/kate.xml.h:2
 msgid "Color scheme used in the Kate text editor"
-msgstr "Kate テキストエディターで使用している色のスキーム"
+msgstr "Kate テキストエディターで使用しているカラースキーム"
 
 #: ../data/styles/oblivion.xml.h:1
 msgid "Oblivion"
@@ -2560,7 +2873,23 @@ msgstr "Oblivion"
 
 #: ../data/styles/oblivion.xml.h:2
 msgid "Dark color scheme using the Tango color palette"
-msgstr "Tango 系の配色を使った暗い色のスキーム"
+msgstr "Tango 系の配色を使った暗いカラースキーム"
+
+#: ../data/styles/solarized-dark.xml.h:1
+msgid "Solarized Dark"
+msgstr "Solarized Dark"
+
+#: ../data/styles/solarized-dark.xml.h:2
+msgid "Color scheme using Solarized dark color palette"
+msgstr "Solarized Dark 配色を使ったカラースキーム"
+
+#: ../data/styles/solarized-light.xml.h:1
+msgid "Solarized Light"
+msgstr "Solarized Light"
+
+#: ../data/styles/solarized-light.xml.h:2
+msgid "Color scheme using Solarized light color palette"
+msgstr "Solarized Light 配色を使ったカラースキーム"
 
 #: ../data/styles/tango.xml.h:1
 msgid "Tango"
@@ -2568,284 +2897,54 @@ msgstr "Tango"
 
 #: ../data/styles/tango.xml.h:2
 msgid "Color scheme using Tango color palette"
-msgstr "Tango 系の配色を使った色のスキーム"
+msgstr "Tango 系の配色を使ったカラースキーム"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:327
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:328
 msgid "Document Words"
 msgstr "ドキュメントの単語"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
-msgctxt "Object"
-msgid "Name"
-msgstr "名前"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:838
+msgid "Invalid byte sequence in conversion input"
+msgstr ""
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
-msgid "The provider name"
-msgstr "プロバイダー名"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:844
+#, c-format
+msgid "Error during conversion: %s"
+msgstr "変換時にエラー: %s"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:437
-#: ../gtksourceview/gtksourcecompletionitem.c:275
-msgid "Icon"
-msgstr "アイコン"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:925
+#, c-format
+msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgstr "文字セット '%s' から 'UTF-8' への変換はサポートしていません"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
-msgid "The provider icon"
-msgstr "プロバイダーのアイコン"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:931
+#, c-format
+msgid "Could not open converter from '%s' to 'UTF-8'"
+msgstr "'%s' から 'UTF-8' への変換器を開けませんでした"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:445
-msgid "Proposals Batch Size"
-msgstr "補完の提案のバッチサイズ"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:986
+msgid "Invalid object, not initialized"
+msgstr "不正なオブジェクト, 未初期化"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
-msgid "Number of proposals added in one batch"
-msgstr "一つのバッチに追加する補完の提案の数です"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
-msgid "Scan Batch Size"
-msgstr "バッチサイズのスキャン"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
-msgid "Number of lines scanned in one batch"
-msgstr "一つのバッチ内でスキャンされる行数です"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
-msgid "Minimum Word Size"
-msgstr "最小単語サイズ"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
-msgid "The minimum word size to complete"
-msgstr "補完する最小単語サイズです"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
-msgid "Interactive Delay"
-msgstr "対話型の遅延"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
-msgid "The delay before initiating interactive completion"
-msgstr "対話型補完開始前の遅延時間"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
-msgid "Priority"
-msgstr "優先度"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
-msgid "Provider priority"
-msgstr "プロバーダーの優先度です"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-#: ../gtksourceview/gtksourcecompletioncontext.c:299
-msgid "Activation"
-msgstr "アクティベーション"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
-#: ../gtksourceview/gtksourcecompletioncontext.c:300
-msgid "The type of activation"
-msgstr "アクティベーションの型"
-
-#: ../gtksourceview/gtksourcebuffer.c:293
-#: ../gtksourceview/gtksourceprintcompositor.c:505
-msgid "Highlight Syntax"
-msgstr "強調表示"
-
-#: ../gtksourceview/gtksourcebuffer.c:294
-msgid "Whether to highlight syntax in the buffer"
-msgstr "バッファー内で強調表示するかどうかを設定します"
-
-#: ../gtksourceview/gtksourcebuffer.c:307
-msgid "Highlight Matching Brackets"
-msgstr "対になる括弧の強調表示"
-
-#: ../gtksourceview/gtksourcebuffer.c:308
-msgid "Whether to highlight matching brackets"
-msgstr "対になる括弧を強調表示するかどうかを設定します"
-
-#: ../gtksourceview/gtksourcebuffer.c:321
-#: ../gtksourceview/gtksourceundomanagerdefault.c:414
-msgid "Maximum Undo Levels"
-msgstr "最大アンドゥレベル"
-
-#: ../gtksourceview/gtksourcebuffer.c:322
-#: ../gtksourceview/gtksourceundomanagerdefault.c:415
-msgid "Number of undo levels for the buffer"
-msgstr "バッファーのアンドゥ回数です"
-
-#. Translators: throughout GtkSourceView "language" stands
-#. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:334
-msgid "Language"
-msgstr "言語"
-
-#: ../gtksourceview/gtksourcebuffer.c:335
-msgid "Language object to get highlighting patterns from"
-msgstr "強調表示するパターンを取得する言語オブジェクトです"
-
-#: ../gtksourceview/gtksourcebuffer.c:343
-msgid "Can undo"
-msgstr "アンドゥ可能"
-
-#: ../gtksourceview/gtksourcebuffer.c:344
-msgid "Whether Undo operation is possible"
-msgstr "アンドゥ操作を利用できるかどうかです"
-
-#: ../gtksourceview/gtksourcebuffer.c:351
-msgid "Can redo"
-msgstr "リドゥ可能"
-
-#: ../gtksourceview/gtksourcebuffer.c:352
-msgid "Whether Redo operation is possible"
-msgstr "リドゥ操作を利用できるかどうかです"
-
-#: ../gtksourceview/gtksourcebuffer.c:366
-#: ../gtksourceview/gtksourcebuffer.c:367
-msgid "Style scheme"
-msgstr "スタイルのスキーム"
-
-#: ../gtksourceview/gtksourcebuffer.c:374
-msgid "Undo manager"
-msgstr "アンドゥーマネジャー"
-
-#: ../gtksourceview/gtksourcebuffer.c:375
-msgid "The buffer undo manager"
-msgstr "アンドゥーバッファーのマネジャーです"
-
-#: ../gtksourceview/gtksourcecompletion.c:1786
-#: ../gtksourceview/gtksourcegutter.c:537
-msgid "View"
-msgstr "表示"
-
-#: ../gtksourceview/gtksourcecompletion.c:1787
-msgid "The GtkSourceView bound to the completion"
-msgstr "補完に割り当てられた GtkSourceView です"
-
-#: ../gtksourceview/gtksourcecompletion.c:1801
-msgid "Remember Info Visibility"
-msgstr "情報表示を記憶する"
-
-#: ../gtksourceview/gtksourcecompletion.c:1802
-msgid "Remember the last info window visibility state"
-msgstr "直前の情報ウィンドウの表示状態を記憶する"
-
-#: ../gtksourceview/gtksourcecompletion.c:1814
-msgid "Select on Show"
-msgstr "表示の選択"
-
-#: ../gtksourceview/gtksourcecompletion.c:1815
-msgid "Select first proposal when completion is shown"
-msgstr "表示された補完の最初の提案を選択する"
-
-#: ../gtksourceview/gtksourcecompletion.c:1828
-msgid "Show Headers"
-msgstr "ヘッダーの表示"
-
-#: ../gtksourceview/gtksourcecompletion.c:1829
-msgid "Show provider headers when proposals from multiple providers are available"
-msgstr "複数のプロバイダーからの提案が利用可能なとき、プロバイダーのヘッダーを表示する"
-
-#: ../gtksourceview/gtksourcecompletion.c:1842
-msgid "Show Icons"
-msgstr "アイコンの表示"
-
-#: ../gtksourceview/gtksourcecompletion.c:1843
-msgid "Show provider and proposal icons in the completion popup"
-msgstr "補完のポップアップにプロバイダーと提案アイコンを表示する"
-
-#: ../gtksourceview/gtksourcecompletion.c:1857
-msgid "Accelerators"
-msgstr "アクセラレータ"
-
-#: ../gtksourceview/gtksourcecompletion.c:1858
-msgid "Number of proposal accelerators to show"
-msgstr "表示する提案のアクセラレーター数です"
-
-#: ../gtksourceview/gtksourcecompletion.c:1873
-msgid "Auto Complete Delay"
-msgstr "自動補完の遅延"
-
-#: ../gtksourceview/gtksourcecompletion.c:1874
-msgid "Completion popup delay for interactive completion"
-msgstr "対話型補完での補完ポップアップが表示されるまでの遅延時間です"
-
-#: ../gtksourceview/gtksourcecompletion.c:1890
-msgid "Provider Page Size"
-msgstr "プロバイダーのページサイズ"
-
-# スクロールバーが表示されるページサイズだと思う。
-#: ../gtksourceview/gtksourcecompletion.c:1891
-msgid "Provider scrolling page size"
-msgstr "プロバイダーでスクロールバーを表示するページサイズ"
-
-#: ../gtksourceview/gtksourcecompletion.c:1911
-msgid "Proposal Page Size"
-msgstr "提案のページサイズ"
-
-#: ../gtksourceview/gtksourcecompletion.c:1912
-msgid "Proposal scrolling page size"
-msgstr "提案でスクロールバーを表示するページサイズ"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
-#: ../gtksourceview/gtksourceview.c:308
-msgid "Completion"
-msgstr "補完"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:273
-msgid "The completion object to which the context belongs"
-msgstr "コンテキストが属する補完オブジェクト"
-
-#. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:286
-msgid "Iterator"
-msgstr "イテレーター"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:287
-msgid "The GtkTextIter at which the completion was invoked"
-msgstr "補完が呼び出された GtkTextIter です"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:1178
+#, c-format
+msgid "Incomplete UTF-8 sequence in input"
+msgstr "入力に不正な UTF-8 シーケンス"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:253
+#: ../gtksourceview/gtksourcecompletioninfo.c:264
 msgid "Completion Info"
 msgstr "補完の情報"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:237
-msgid "Label to be shown for this item"
-msgstr "この項目で表示されるラベル"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:250
-msgid "Markup to be shown for this item"
-msgstr "この項目で表示されるマークアップ"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:263
-msgid "Item text"
-msgstr "項目のテキスト"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:276
-msgid "Icon to be shown for this item"
-msgstr "この項目で表示されるアイコンです"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:288
-msgid "Info"
-msgstr "情報"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:289
-msgid "Info to be shown for this item"
-msgstr "この項目で表示される情報です"
 
 #: ../gtksourceview/gtksourcecompletionmodel.c:491
 msgid "Provider"
 msgstr "プロバイダー"
 
-#: ../gtksourceview/gtksourcecompletion.ui.h:1
-msgid "Show detailed proposal information"
-msgstr "提案情報の詳細を表示します"
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:2
-msgid "_Details..."
-msgstr "詳細(_D)..."
-
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3129
+#: ../gtksourceview/gtksourcecontextengine.c:3143
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
@@ -2854,656 +2953,181 @@ msgstr ""
 "すべての変換に対して正規表現オブジェクトを生成できないので、構文の強調表示が通常よりも遅くなります:\n"
 "エラー: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4452
+#: ../gtksourceview/gtksourcecontextengine.c:4466
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
 msgstr "1行を強調表示するのにとても時間がかかっているので、構文の強調表示を無効にします"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5696
+#: ../gtksourceview/gtksourcecontextengine.c:5714
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "コンテキスト '%s' には \\%%{...@start} コマンドを格納できません"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5857
-#: ../gtksourceview/gtksourcecontextengine.c:5946
+#: ../gtksourceview/gtksourcecontextengine.c:5877
+#: ../gtksourceview/gtksourcecontextengine.c:5968
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "コンテキスト ID '%s' が重複しています"
 
 # GTK_SOURCE_CONTEXT_IGNORE_STYLE または  GTK_SOURCE_CONTEXT_OVERRIDE_STYLE が設定されている時のエラー。
-#: ../gtksourceview/gtksourcecontextengine.c:6060
-#: ../gtksourceview/gtksourcecontextengine.c:6120
+#: ../gtksourceview/gtksourcecontextengine.c:6082
+#: ../gtksourceview/gtksourcecontextengine.c:6142
 #, c-format
 msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
 msgstr "言語 '%s' の参照 '%s' のワイルドカードの前後関係でスタイルを上書きします"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6134
+#: ../gtksourceview/gtksourcecontextengine.c:6156
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "不正なコンテキストのリファレンス '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6153
-#: ../gtksourceview/gtksourcecontextengine.c:6163
+#: ../gtksourceview/gtksourcecontextengine.c:6175
+#: ../gtksourceview/gtksourcecontextengine.c:6185
 #, c-format
 msgid "unknown context '%s'"
 msgstr "不明なコンテキスト '%s'"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6262
+#: ../gtksourceview/gtksourcecontextengine.c:6284
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "主要な言語定義がありません (id = \"%s\")"
 
-#. Translators: gutters can be used to display information
-#. * on the left or on the right of the text view. To draw the
-#. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:541
-msgid "The gutters' GtkSourceView"
-msgstr "ガーターの GtkSourceView"
-
-#: ../gtksourceview/gtksourcegutter.c:553
-#: ../gtksourceview/gtksourcegutterrenderer.c:705
-msgid "Window Type"
-msgstr "ウィンドウの型"
-
-#: ../gtksourceview/gtksourcegutter.c:554
-msgid "The gutters' text window type"
-msgstr "ガーターのテキストウィンドウの型です"
-
-#: ../gtksourceview/gtksourcegutter.c:562
-#: ../gtksourceview/gtksourcegutterrenderer.c:482
-msgid "X Padding"
-msgstr "X パディング"
-
-#: ../gtksourceview/gtksourcegutter.c:563
-#: ../gtksourceview/gtksourcegutterrenderer.c:483
-msgid "The x-padding"
-msgstr "X 軸のパディングです"
-
-#: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:498
-msgid "Y Padding"
-msgstr "Y パディング"
-
-#: ../gtksourceview/gtksourcegutter.c:574
-#: ../gtksourceview/gtksourcegutterrenderer.c:499
-msgid "The y-padding"
-msgstr "Y 軸のパティングです"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:468
-#: ../gtksourceview/gtksourcegutterrenderer.c:469
-msgid "Visible"
-msgstr "可視性"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:514
-msgid "X Alignment"
-msgstr "X アライメント"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:515
-msgid "The x-alignment"
-msgstr "X 軸のアライメントです"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:530
-msgid "Y Alignment"
-msgstr "Y アライメント"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:531
-msgid "The y-alignment"
-msgstr "Y 軸のアライメントです"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:672
-msgid "The View"
-msgstr "表示"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:673
-msgid "The view"
-msgstr "表示です"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:689
-msgid "Alignment Mode"
-msgstr "アライメントモード"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:690
-msgid "The alignment mode"
-msgstr "アライメントモードです"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:706
-msgid "The window type"
-msgstr "ウィンドウの型"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:714
-msgid "Size"
-msgstr "サイズ"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:715
-msgid "The size"
-msgstr "サイズです"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:289
-#: ../gtksourceview/gtksourcemarkattributes.c:316
-msgid "Pixbuf"
-msgstr "Pixbuf"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:290
-#: ../gtksourceview/gtksourcemarkattributes.c:317
-msgid "The pixbuf"
-msgstr "Pixbuf です"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:304
-#: ../gtksourceview/gtksourcemarkattributes.c:303
-msgid "Stock Id"
-msgstr "ストック ID"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:305
-#: ../gtksourceview/gtksourcemarkattributes.c:304
-msgid "The stock id"
-msgstr "ストック ID です"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:312
-#: ../gtksourceview/gtksourcemarkattributes.c:329
-msgid "Icon Name"
-msgstr "アイコン名"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
-#: ../gtksourceview/gtksourcemarkattributes.c:330
-msgid "The icon name"
-msgstr "アイコンの名前です"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:320
-#: ../gtksourceview/gtksourcemarkattributes.c:342
-msgid "GIcon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
-msgid "The gicon"
-msgstr "GIcon です"
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:392
-msgid "The markup"
-msgstr "マークアップです"
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:400
-msgid "The text"
-msgstr "テキストです"
-
-#: ../gtksourceview/gtksourcelanguage.c:228
-#: ../gtksourceview/gtksourcelanguage.c:229
-msgid "Language id"
-msgstr "言語 ID"
-
-#: ../gtksourceview/gtksourcelanguage.c:236
-#: ../gtksourceview/gtksourcelanguage.c:237
-msgid "Language name"
-msgstr "言語の名前"
-
-#: ../gtksourceview/gtksourcelanguage.c:244
-#: ../gtksourceview/gtksourcelanguage.c:245
-msgid "Language section"
-msgstr "言語のセクション"
-
-#: ../gtksourceview/gtksourcelanguage.c:252
-msgid "Hidden"
-msgstr "隠す"
-
-#: ../gtksourceview/gtksourcelanguage.c:253
-msgid "Whether the language should be hidden from the user"
-msgstr "言語をユーザーに表示しないようにするかどうかです"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:149
-msgid "Language specification directories"
-msgstr "言語指定のフォルダー"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
-msgid "List of directories where the language specification files (.lang) are located"
-msgstr "言語指定ファイル (.lang) を格納するフォルダーの一覧です"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:159
-msgid "Language ids"
-msgstr "言語の ID"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
-msgid "List of the ids of the available languages"
-msgstr "利用可能なプログラミング言語の ID のリストです"
-
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
-#, c-format
-msgid "Unknown id '%s' in regex '%s'"
-msgstr "正規表現 '%2$s' の中に不明な ID '%1$s' があります"
-
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
-#, c-format
-msgid "in regex '%s': backreferences are not supported"
-msgstr "正規表現 '%s': 後方参照はサポートしていません"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:288
-#: ../gtksourceview/gtksourcestyle.c:95
-msgid "Background"
-msgstr "背景色"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:289
-msgid "The background"
-msgstr "背景色です"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:343
-msgid "The GIcon"
-msgstr "GIcon です"
-
-#: ../gtksourceview/gtksourcemark.c:140
-msgid "category"
-msgstr "カテゴリ"
-
-#: ../gtksourceview/gtksourcemark.c:141
-msgid "The mark category"
-msgstr "マークのカテゴリです"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:445
-msgid "Source Buffer"
-msgstr "ソースバッファー"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:446
-msgid "The GtkSourceBuffer object to print"
-msgstr "印刷する GtkSourceBuffer 型のオブジェクトです"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:346
-msgid "Tab Width"
-msgstr "タブの幅です"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:347
-msgid "Width of a tab character expressed in spaces"
-msgstr "タブ文字をスペースで置き換えた時の幅です"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:484
-msgid "Wrap Mode"
-msgstr "ラップモード"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:485
-msgid "Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr "単語の境界で行ラップするか、または文字の境界で行ラップするかどうかを設定します"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:506
-msgid "Whether to print the document with highlighted syntax"
-msgstr "強調表示のままドキュメントを印刷するかどうかを設定します"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:527
-msgid "Print Line Numbers"
-msgstr "行番号の印刷"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:528
-msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "印刷する行番号の間隔を指定します (0 では行番号を付けない)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:550
-msgid "Print Header"
-msgstr "ヘッダーの印刷"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:551
-msgid "Whether to print a header in each page"
-msgstr "ページごとにヘッダーを印刷するかどうかを設定します"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:573
-msgid "Print Footer"
-msgstr "フッターの印刷"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:574
-msgid "Whether to print a footer in each page"
-msgstr "ページごとにフッターを印刷するかどうかを設定します"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:596
-msgid "Body Font Name"
-msgstr "本文のフォント名"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:597
-msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "文章に使用するフォントの名前です (例: \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:620
-msgid "Line Numbers Font Name"
-msgstr "行番号のフォント名"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:621
-msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr "行番号で使用するフォントの名前です (例: \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:644
-msgid "Header Font Name"
-msgstr "ヘッダーのフォント名"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:645
-msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr "ページのヘッダーで使用するフォントの名前です (例: \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:668
-msgid "Footer Font Name"
-msgstr "フッターのフォント名"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:669
-msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr "ページのフッターで使用するフォントの名前です (例: \"Monospace 10\")"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:685
-msgid "Number of pages"
-msgstr "ページ数"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:686
-msgid "The number of pages in the document (-1 means the document has not been completely paginated)."
-msgstr "ドキュメントのページ数です (-1 はページ番号を完全に付与していないドキュメントを示します)"
-
-#: ../gtksourceview/gtksourceregex.c:125
-msgid "using \\C is not supported in language definitions"
-msgstr "言語定義では \\C 言語の使用をサポートしていません"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2715
-#: ../gtksourceview/gtksourceundomanagerdefault.c:406
-msgid "Buffer"
-msgstr "バッファー"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2716
-msgid "The associated GtkSourceBuffer"
-msgstr "関連する GtkSourceBuffer"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2730
-msgid "Settings"
-msgstr "設定"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2731
-msgid "The associated GtkSourceSearchSettings"
-msgstr "関連する GtkSourceSearchSettings"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2745
-msgid "Highlight"
-msgstr "強調表示"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2746
-msgid "Highlight search occurrences"
-msgstr "検索語の強調表示"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2762
-msgid "Occurrences count"
-msgstr "検索語のカウント"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2763
-msgid "Total number of search occurrences"
-msgstr "検索結果の検索語総数"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2782
-msgid "Regex error"
-msgstr "正規表現エラー"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2783
-msgid "Regular expression error"
-msgstr "正規表現エラー"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:169
-msgid "Search text"
-msgstr "検索文字列"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:170
-msgid "The text to search"
-msgstr "検索するテキスト"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:184
-#: ../gtksourceview/gtksourcesearchsettings.c:185
-msgid "Case sensitive"
-msgstr "大文字小文字を区別する"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:200
-msgid "At word boundaries"
-msgstr "単語境界"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:201
-msgid "Search at word boundaries"
-msgstr "単語境界で検索"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:217
-#: ../gtksourceview/gtksourcesearchsettings.c:218
-msgid "Wrap around"
-msgstr "ラップ対象"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:233
-msgid "Regex enabled"
-msgstr "正規表現を使う"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:234
-msgid "Whether to search by regular expression"
-msgstr "正規表現を使って検索するかどうか"
-
-#: ../gtksourceview/gtksourcestyle.c:87
-msgid "Line background"
-msgstr "線の背景色"
-
-#: ../gtksourceview/gtksourcestyle.c:88
-msgid "Line background color"
-msgstr "線の背景色です"
-
-#: ../gtksourceview/gtksourcestyle.c:96
-msgid "Background color"
-msgstr "背景色です"
-
-#: ../gtksourceview/gtksourcestyle.c:103
-msgid "Foreground"
-msgstr "前景"
-
-#: ../gtksourceview/gtksourcestyle.c:104
-msgid "Foreground color"
-msgstr "前景色です"
-
-#: ../gtksourceview/gtksourcestyle.c:127 ../gtksourceview/gtksourcestyle.c:128
-msgid "Underline"
-msgstr "下線"
-
-#: ../gtksourceview/gtksourcestyle.c:135 ../gtksourceview/gtksourcestyle.c:136
-msgid "Strikethrough"
-msgstr "打ち消し線"
-
-#: ../gtksourceview/gtksourcestyle.c:143
-msgid "Line background set"
-msgstr "線の背景色の指定"
-
-#: ../gtksourceview/gtksourcestyle.c:144
-msgid "Whether line background color is set"
-msgstr "線の背景色を指定するかどうかです"
-
-#: ../gtksourceview/gtksourcestyle.c:151
-msgid "Foreground set"
-msgstr "前景色の指定"
-
-#: ../gtksourceview/gtksourcestyle.c:152
-msgid "Whether foreground color is set"
-msgstr "前景色を指定するかどうかです"
-
-#: ../gtksourceview/gtksourcestyle.c:159
-msgid "Background set"
-msgstr "背景色の指定"
-
-#: ../gtksourceview/gtksourcestyle.c:160
-msgid "Whether background color is set"
-msgstr "背景色を指定するかどうかです"
-
-#: ../gtksourceview/gtksourcestyle.c:167
-msgid "Bold set"
-msgstr "太字の指定"
-
-#: ../gtksourceview/gtksourcestyle.c:168
-msgid "Whether bold attribute is set"
-msgstr "太字の属性を付与するかどうかです"
-
-#: ../gtksourceview/gtksourcestyle.c:175
-msgid "Italic set"
-msgstr "イタリックの指定"
-
-#: ../gtksourceview/gtksourcestyle.c:176
-msgid "Whether italic attribute is set"
-msgstr "イタリックの属性を付与するかどうかです"
-
-#: ../gtksourceview/gtksourcestyle.c:183
-msgid "Underline set"
-msgstr "下線の指定"
-
-#: ../gtksourceview/gtksourcestyle.c:184
-msgid "Whether underline attribute is set"
-msgstr "下線の属性を付与するかどうかです"
-
-#: ../gtksourceview/gtksourcestyle.c:191
-msgid "Strikethrough set"
-msgstr "打ち消し線の指定"
-
-#: ../gtksourceview/gtksourcestyle.c:192
-msgid "Whether strikethrough attribute is set"
-msgstr "打ち消し線を指定するかどうかです"
-
-#: ../gtksourceview/gtksourcestylescheme.c:211
-#: ../gtksourceview/gtksourcestylescheme.c:212
-msgid "Style scheme id"
-msgstr "スタイルのスキーム ID"
-
-#: ../gtksourceview/gtksourcestylescheme.c:224
-#: ../gtksourceview/gtksourcestylescheme.c:225
-msgid "Style scheme name"
-msgstr "スタイルのスキーム名"
-
-#: ../gtksourceview/gtksourcestylescheme.c:237
-#: ../gtksourceview/gtksourcestylescheme.c:238
-msgid "Style scheme description"
-msgstr "スタイルのスキームの説明"
-
-#: ../gtksourceview/gtksourcestylescheme.c:250
-#: ../gtksourceview/gtksourcestylescheme.c:251
-msgid "Style scheme filename"
-msgstr "スタイルのスキームのファイル名"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
-msgid "Style scheme search path"
-msgstr "スタイルのスキームを検索するパス"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:154
-msgid "List of directories and files where the style schemes are located"
-msgstr "スタイルのスキームを格納しているフォルダーとファイルのリストです"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
-msgid "Scheme ids"
-msgstr "スキームの ID"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:163
-msgid "List of the ids of the available style schemes"
-msgstr "利用可能なスタイルに対するスキーム ID のリストです"
-
-#: ../gtksourceview/gtksourceundomanagerdefault.c:407
-msgid "The text buffer to add undo support on"
-msgstr "アンドゥーをサポートするために追加するテキストバッファー"
-
-#: ../gtksourceview/gtksourceview.c:309
-msgid "The completion object associated with the view"
-msgstr "ビューに対応付けられた補完オブジェクト"
-
-#: ../gtksourceview/gtksourceview.c:321
-msgid "Show Line Numbers"
-msgstr "行番号の表示"
-
-#: ../gtksourceview/gtksourceview.c:322
-msgid "Whether to display line numbers"
-msgstr "行番号を表示するかどうかを設定します"
-
-#: ../gtksourceview/gtksourceview.c:333
-msgid "Show Line Marks"
-msgstr "行マークの表示"
-
-#: ../gtksourceview/gtksourceview.c:334
-msgid "Whether to display line mark pixbufs"
-msgstr "行マークを表す画像 (Pixbuf) を表示するかどうかを設定します"
-
-#: ../gtksourceview/gtksourceview.c:361
-msgid "Indent Width"
-msgstr "インデントの幅"
-
-#: ../gtksourceview/gtksourceview.c:362
-msgid "Number of spaces to use for each step of indent"
-msgstr "インデントをスペースで置き換えた時の文字数です"
-
-#: ../gtksourceview/gtksourceview.c:371
-msgid "Auto Indentation"
-msgstr "自動インデント"
-
-#: ../gtksourceview/gtksourceview.c:372
-msgid "Whether to enable auto indentation"
-msgstr "自動的にインデントするかどうかを設定します"
-
-#: ../gtksourceview/gtksourceview.c:379
-msgid "Insert Spaces Instead of Tabs"
-msgstr "タブのかわりにスペースを挿入する"
-
-#: ../gtksourceview/gtksourceview.c:380
-msgid "Whether to insert spaces instead of tabs"
-msgstr "タブのかわりに空白を挿入するかどうかを設定します"
-
-#: ../gtksourceview/gtksourceview.c:392
-msgid "Show Right Margin"
-msgstr "右マージンの表示"
-
-#: ../gtksourceview/gtksourceview.c:393
-msgid "Whether to display the right margin"
-msgstr "右側に余白を表示するかどうかを設定します"
-
-#: ../gtksourceview/gtksourceview.c:405
-msgid "Right Margin Position"
-msgstr "右マージンの位置"
-
-#: ../gtksourceview/gtksourceview.c:406
-msgid "Position of the right margin"
-msgstr "右側の余白の位置です"
-
-#: ../gtksourceview/gtksourceview.c:422
-msgid "Smart Home/End"
-msgstr "スマート [Home]/[End] キー"
-
-#: ../gtksourceview/gtksourceview.c:423
-msgid "HOME and END keys move to first/last non whitespace characters on line before going to the start/end of the line"
-msgstr "[Home] と [End] キーを押すと先頭行/最終行へジャンプする前に、ホワイトスペースを除く行の行頭/行末の文字にジャンプします"
-
-#: ../gtksourceview/gtksourceview.c:433
-msgid "Highlight current line"
-msgstr "この行の強調表示"
-
-#: ../gtksourceview/gtksourceview.c:434
-msgid "Whether to highlight the current line"
-msgstr "現在の行を強調表示するかどうかを設定します"
-
-#: ../gtksourceview/gtksourceview.c:441
-msgid "Indent on tab"
-msgstr "タブでインデントする"
-
-#: ../gtksourceview/gtksourceview.c:442
-msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "タブキーを押下したら選択している文字列をインデントするかどうかです"
-
-#: ../gtksourceview/gtksourceview.c:456
-msgid "Draw Spaces"
-msgstr "スペースを描画する"
-
-#: ../gtksourceview/gtksourceview.c:457
-msgid "Set if and how the spaces should be visualized"
-msgstr "スペース (空白文字) を視覚的に表示するかどうかです"
-
-#. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1326
-msgid "_Redo"
-msgstr "やり直す(_R)"
-
-#. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1337
-msgid "_Undo"
-msgstr "元に戻す(_U)"
-
-#: ../gtksourceview/gtksourceview-i18n.c:72
-msgid "translator-credits"
-msgstr ""
-"相花 毅 <takeshi.aihana@gmail.com>\n"
-"Satoru SATOH <ss@gnome.gr.jp>"
-
-#~ msgid "Objective Caml"
-#~ msgstr "Objective Caml"
-
-#~ msgid "No extra information available"
-#~ msgstr "追加情報は利用できません"
+#: ../gtksourceview/gtksourceencoding.c:137
+#: ../gtksourceview/gtksourceencoding.c:180
+#: ../gtksourceview/gtksourceencoding.c:182
+#: ../gtksourceview/gtksourceencoding.c:184
+#: ../gtksourceview/gtksourceencoding.c:186
+#: ../gtksourceview/gtksourceencoding.c:188
+#: ../gtksourceview/gtksourceencoding.c:190
+#: ../gtksourceview/gtksourceencoding.c:192
+msgid "Unicode"
+msgstr "Unicode"
+
+#: ../gtksourceview/gtksourceencoding.c:151
+#: ../gtksourceview/gtksourceencoding.c:175
+#: ../gtksourceview/gtksourceencoding.c:225
+#: ../gtksourceview/gtksourceencoding.c:268
+msgid "Western"
+msgstr "西欧諸語"
+
+#: ../gtksourceview/gtksourceencoding.c:153
+#: ../gtksourceview/gtksourceencoding.c:227
+#: ../gtksourceview/gtksourceencoding.c:264
+msgid "Central European"
+msgstr "中欧諸語"
+
+#: ../gtksourceview/gtksourceencoding.c:155
+msgid "South European"
+msgstr "南欧諸語"
+
+#: ../gtksourceview/gtksourceencoding.c:157
+#: ../gtksourceview/gtksourceencoding.c:171
+#: ../gtksourceview/gtksourceencoding.c:278
+msgid "Baltic"
+msgstr "バルト語派"
+
+#: ../gtksourceview/gtksourceencoding.c:159
+#: ../gtksourceview/gtksourceencoding.c:229
+#: ../gtksourceview/gtksourceencoding.c:242
+#: ../gtksourceview/gtksourceencoding.c:246
+#: ../gtksourceview/gtksourceencoding.c:248
+#: ../gtksourceview/gtksourceencoding.c:266
+msgid "Cyrillic"
+msgstr "キリル文字"
+
+#: ../gtksourceview/gtksourceencoding.c:161
+#: ../gtksourceview/gtksourceencoding.c:235
+#: ../gtksourceview/gtksourceencoding.c:276
+msgid "Arabic"
+msgstr "アラビア語"
+
+#: ../gtksourceview/gtksourceencoding.c:163
+#: ../gtksourceview/gtksourceencoding.c:270
+msgid "Greek"
+msgstr "ギリシャ語"
+
+#: ../gtksourceview/gtksourceencoding.c:165
+msgid "Hebrew Visual"
+msgstr "ヘブライ語 (ISO-Visual)"
+
+#: ../gtksourceview/gtksourceencoding.c:167
+#: ../gtksourceview/gtksourceencoding.c:231
+#: ../gtksourceview/gtksourceencoding.c:272
+msgid "Turkish"
+msgstr "トルコ語"
+
+#: ../gtksourceview/gtksourceencoding.c:169
+msgid "Nordic"
+msgstr "北ゲルマン語群"
+
+#: ../gtksourceview/gtksourceencoding.c:173
+msgid "Celtic"
+msgstr "ケルト語派"
+
+#: ../gtksourceview/gtksourceencoding.c:177
+msgid "Romanian"
+msgstr "ルーマニア語"
+
+#: ../gtksourceview/gtksourceencoding.c:195
+msgid "Armenian"
+msgstr "アルメニア語"
+
+#: ../gtksourceview/gtksourceencoding.c:197
+#: ../gtksourceview/gtksourceencoding.c:199
+#: ../gtksourceview/gtksourceencoding.c:213
+msgid "Chinese Traditional"
+msgstr "繁体字中国語"
+
+#: ../gtksourceview/gtksourceencoding.c:201
+msgid "Cyrillic/Russian"
+msgstr "キリル文字/ロシア語"
+
+#: ../gtksourceview/gtksourceencoding.c:204
+#: ../gtksourceview/gtksourceencoding.c:206
+#: ../gtksourceview/gtksourceencoding.c:208
+#: ../gtksourceview/gtksourceencoding.c:238
+#: ../gtksourceview/gtksourceencoding.c:253
+msgid "Japanese"
+msgstr "日本語"
+
+#: ../gtksourceview/gtksourceencoding.c:211
+#: ../gtksourceview/gtksourceencoding.c:240
+#: ../gtksourceview/gtksourceencoding.c:244
+#: ../gtksourceview/gtksourceencoding.c:259
+msgid "Korean"
+msgstr "韓国語"
+
+#: ../gtksourceview/gtksourceencoding.c:216
+#: ../gtksourceview/gtksourceencoding.c:218
+#: ../gtksourceview/gtksourceencoding.c:220
+msgid "Chinese Simplified"
+msgstr "簡体字中国語"
+
+#: ../gtksourceview/gtksourceencoding.c:222
+msgid "Georgian"
+msgstr "グルジア語"
+
+#: ../gtksourceview/gtksourceencoding.c:233
+#: ../gtksourceview/gtksourceencoding.c:274
+msgid "Hebrew"
+msgstr "ヘブライ語"
+
+#: ../gtksourceview/gtksourceencoding.c:250
+msgid "Cyrillic/Ukrainian"
+msgstr "キリル文字/ウクライナ語"
+
+#: ../gtksourceview/gtksourceencoding.c:255
+#: ../gtksourceview/gtksourceencoding.c:261
+#: ../gtksourceview/gtksourceencoding.c:280
+msgid "Vietnamese"
+msgstr "ベトナム語"
+
+#: ../gtksourceview/gtksourceencoding.c:257
+msgid "Thai"
+msgstr "タイ語"
+
+#: ../gtksourceview/gtksourceencoding.c:491
+msgid "Unknown"
+msgstr "不明"
 
 #. Translators: This is the sorted list of encodings used by
 #. * GtkSourceView for automatic detection of the file encoding. You may
@@ -3517,7 +3141,88 @@ msgstr ""
 #. * recognized encodings are used. See
 #. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
 #. * for a list of supported encodings.
+#. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:517
+#: ../gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
-msgstr "['UTF-8', 'CURRENT', 'ISO-2022-JP', 'SHIFT_JIS', 'EUC-JP']"
+msgstr "['UTF-8', 'CURRENT', 'ISO-2022-JP', 'CP932', 'EUC-JP-MS']"
+
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
+#, c-format
+msgid "Unknown id '%s' in regex '%s'"
+msgstr "正規表現 '%2$s' の中に不明な ID '%1$s' があります"
+
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1180
+#, c-format
+msgid "in regex '%s': backreferences are not supported"
+msgstr "正規表現 '%s': 後方参照はサポートしていません"
+
+#: ../gtksourceview/gtksourcemap.c:1078
+msgid "View"
+msgstr "ビュー"
+
+#: ../gtksourceview/gtksourcemap.c:1079
+msgid "The view this widget is mapping."
+msgstr "このウィジェットがマッピングするビュー。"
+
+#: ../gtksourceview/gtksourcemap.c:1085
+msgid "Font Description"
+msgstr "フォント説明"
+
+#: ../gtksourceview/gtksourcemap.c:1086
+msgid "The Pango font description to use."
+msgstr "使用する Pango のフォント説明。"
+
+#: ../gtksourceview/gtksourceregex.c:125
+msgid "using \\C is not supported in language definitions"
+msgstr "言語定義では \\C 言語の使用をサポートしていません"
+
+#. TODO: have a ChooserDialog?
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:182
+msgid "Select a Style"
+msgstr "スタイルの選択"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
+msgid "_Cancel"
+msgstr "キャンセル(_C)"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:187
+msgid "_Select"
+msgstr "選択(_S)"
+
+#. create redo menu_item.
+#: ../gtksourceview/gtksourceview.c:1548
+msgid "_Redo"
+msgstr "やり直す(_R)"
+
+#. create undo menu_item.
+#: ../gtksourceview/gtksourceview.c:1559
+msgid "_Undo"
+msgstr "元に戻す(_U)"
+
+#: ../gtksourceview/gtksourceview.c:1577
+msgid "All _Upper Case"
+msgstr "すべて大文字(_U)"
+
+#: ../gtksourceview/gtksourceview.c:1587
+msgid "All _Lower Case"
+msgstr "すべて小文字(_L)"
+
+#: ../gtksourceview/gtksourceview.c:1597
+msgid "_Invert Case"
+msgstr "大文字/小文字を入れ替え(_I)"
+
+#: ../gtksourceview/gtksourceview.c:1607
+msgid "_Title Case"
+msgstr "タイトルケース(_T)"
+
+#: ../gtksourceview/gtksourceview.c:1617
+msgid "C_hange Case"
+msgstr "大文字/小文字を変更(_H)"
+
+#: ../gtksourceview/gtksourceview-i18n.c:116
+msgid "translator-credits"
+msgstr ""
+"相花 毅 <takeshi.aihana@gmail.com>\n"
+"Satoru SATOH <ss@gnome.gr.jp>\n"
+"松澤 二郎 <jmatsuzawa@gnome.org>"
