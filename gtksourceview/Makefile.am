@@ -19,7 +19,7 @@ BUILT_SOURCES = 			\
 	gtksourceview-typebuiltins.c	\
 	gtksourceview-typebuiltins.h
 
-libgtksourceview_headers =			\
+libgtksourceview_public_headers =		\
 	gtksource.h				\
 	gtksourceautocleanups.h			\
 	gtksourcebuffer.h			\
@@ -55,6 +55,40 @@ libgtksourceview_headers =			\
 	gtksourceundomanager.h			\
 	gtksourceutils.h			\
 	gtksourceview.h
+
+libgtksourceview_public_c_files =		\
+	gtksourcebuffer.c 			\
+	gtksourcecompletion.c			\
+	gtksourcecompletioncontext.c		\
+	gtksourcecompletioninfo.c		\
+	gtksourcecompletionitem.c		\
+	gtksourcecompletionproposal.c		\
+	gtksourcecompletionprovider.c		\
+	gtksourceencoding.c			\
+	gtksourcefile.c				\
+	gtksourcefileloader.c			\
+	gtksourcefilesaver.c			\
+	gtksourcegutter.c			\
+	gtksourcegutterrenderer.c		\
+	gtksourcegutterrendererpixbuf.c		\
+	gtksourcegutterrenderertext.c		\
+	gtksourcelanguage.c 			\
+	gtksourcelanguagemanager.c 		\
+	gtksourcemap.c				\
+	gtksourcemark.c				\
+	gtksourcemarkattributes.c		\
+	gtksourceprintcompositor.c		\
+	gtksourcesearchcontext.c		\
+	gtksourcesearchsettings.c		\
+	gtksourcestyle.c			\
+	gtksourcestylescheme.c			\
+	gtksourcestyleschemechooser.c		\
+	gtksourcestyleschemechooserbutton.c	\
+	gtksourcestyleschemechooserwidget.c	\
+	gtksourcestyleschememanager.c		\
+	gtksourceundomanager.c 			\
+	gtksourceutils.c			\
+	gtksourceview.c
 
 libgtksourceview_private_headers =		\
 	gtksourcebuffer-private.h		\
@@ -102,48 +136,14 @@ libgtksourceview_private_c_files =	\
 	gtksourceview-utils.c 		\
 	gtktextregion.c
 
-libgtksourceview_c_files =			\
-	gtksourcebuffer.c 			\
-	gtksourcecompletion.c			\
-	gtksourcecompletioncontext.c		\
-	gtksourcecompletioninfo.c		\
-	gtksourcecompletionitem.c		\
-	gtksourcecompletionproposal.c		\
-	gtksourcecompletionprovider.c		\
-	gtksourceencoding.c			\
-	gtksourcefile.c				\
-	gtksourcefileloader.c			\
-	gtksourcefilesaver.c			\
-	gtksourcegutter.c			\
-	gtksourcegutterrenderer.c		\
-	gtksourcegutterrendererpixbuf.c		\
-	gtksourcegutterrenderertext.c		\
-	gtksourcelanguage.c 			\
-	gtksourcelanguagemanager.c 		\
-	gtksourcemap.c				\
-	gtksourcemark.c				\
-	gtksourcemarkattributes.c		\
-	gtksourceprintcompositor.c		\
-	gtksourcesearchcontext.c		\
-	gtksourcesearchsettings.c		\
-	gtksourcestyle.c			\
-	gtksourcestylescheme.c			\
-	gtksourcestyleschemechooser.c		\
-	gtksourcestyleschemechooserbutton.c	\
-	gtksourcestyleschemechooserwidget.c	\
-	gtksourcestyleschememanager.c		\
-	gtksourceundomanager.c 			\
-	gtksourceutils.c			\
-	gtksourceview.c
-
 # Split in a helper library, so the private functions can be used in unit tests.
 noinst_LTLIBRARIES = libgtksourceview-core.la
 
 libgtksourceview_core_la_SOURCES =		\
+	$(libgtksourceview_public_c_files)	\
+	$(libgtksourceview_public_headers)	\
 	$(libgtksourceview_private_c_files)	\
-	$(libgtksourceview_private_headers)	\
-	$(libgtksourceview_c_files)		\
-	$(libgtksourceview_headers)
+	$(libgtksourceview_private_headers)
 
 # do not distribute generated files
 nodist_libgtksourceview_core_la_SOURCES = \
@@ -185,7 +185,7 @@ libgtksourceview_3_0_la_LDFLAGS =		\
 
 libgtksourceview_3_0_includedir = $(includedir)/gtksourceview-3.0/gtksourceview
 
-libgtksourceview_3_0_include_HEADERS = $(libgtksourceview_headers)
+libgtksourceview_3_0_include_HEADERS = $(libgtksourceview_public_headers)
 nodist_libgtksourceview_3_0_include_HEADERS = gtksourceview-typebuiltins.h
 
 gtksourceview-resources.c: gtksourceview.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/gtksourceview.gresource.xml)
@@ -193,7 +193,7 @@ gtksourceview-resources.c: gtksourceview.gresource.xml $(shell $(GLIB_COMPILE_RE
 
 gtksourceview-typebuiltins.c: stamp-gtksourceview-typebuiltins.c
 	@true
-stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
+stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_public_headers)
 	$(AM_V_GEN) (cd $(srcdir) \
 	 && $(GLIB_MKENUMS) \
 			--fhead "#include <glib-object.h>\n" \
@@ -207,7 +207,7 @@ stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_headers)
 			--vtail "  if (!type)\n" \
 			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 			--vtail "  return type;\n}\n\n" \
-		$(libgtksourceview_headers) ) > xgen-gtbec \
+		$(libgtksourceview_public_headers) ) > xgen-gtbec \
 	&& (cmp -s xgen-gtbec gtksourceview-typebuiltins.c || cp xgen-gtbec gtksourceview-typebuiltins.c) \
 	&& rm -f xgen-gtbec && echo stamp > $(@F)
 
@@ -216,7 +216,7 @@ gtksourceview-typebuiltins.h: stamp-gtksourceview-typebuiltins.h
 
 # FIXME: we have to sed the file because glib-mkenums does
 #        not recognize GTK_SOURCE as the prefix but instead GTK
-stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
+stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_public_headers)
 	$(AM_V_GEN) (cd $(srcdir) \
 	 && $(GLIB_MKENUMS) \
 			--fhead "#ifndef __GTKSOURCEVIEW_TYPEBUILTINS_H__\n" \
@@ -227,7 +227,7 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_headers)
 			--eprod "#define GTK_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
 			--eprod "GType @enum_name@_get_type (void);\n" \
 			--eprod "G_END_DECLS\n\n" \
-		$(libgtksourceview_headers) ) > xgen-gth \
+		$(libgtksourceview_public_headers) ) > xgen-gth \
 	&& $(SED) -e 's/GTK_TYPE_SOURCE_/GTK_SOURCE_TYPE_/' <xgen-gth >xgen-gth.temp && mv xgen-gth.temp xgen-gth \
 	&& (cmp -s xgen-gth gtksourceview-typebuiltins.h || cp xgen-gth gtksourceview-typebuiltins.h) \
 	&& rm -f xgen-gth && echo stamp > $(@F)
@@ -265,8 +265,8 @@ GtkSource_3_0_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
 GtkSource_3_0_gir_LIBS = libgtksourceview-3.0.la
 GtkSource_3_0_gir_FILES =			\
 	$(libgtksourcecompletionwords_files)	\
-	$(libgtksourceview_headers)		\
-	$(libgtksourceview_c_files)		\
+	$(libgtksourceview_public_headers)	\
+	$(libgtksourceview_public_c_files)	\
 	$(BUILT_SOURCES)
 
 GtkSource_3_0_gir_INCLUDES = Gtk-3.0 Gdk-3.0
