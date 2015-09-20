@@ -3,8 +3,8 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.64)
 
 m4_define(gtksourceview_major_version, 3)
-m4_define(gtksourceview_minor_version, 17)
-m4_define(gtksourceview_micro_version, 8)
+m4_define(gtksourceview_minor_version, 18)
+m4_define(gtksourceview_micro_version, 0)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
 AC_INIT([gtksourceview],
@@ -30,9 +30,9 @@ AX_IS_RELEASE([git-directory])
 # 4. If any exported functions or data have been removed since the last
 #    public release, set AGE to 0.
 
-GSV_LT_CURRENT=5
+GSV_LT_CURRENT=6
 GSV_LT_REVISION=0
-GSV_LT_AGE=4
+GSV_LT_AGE=5
 GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
 AC_SUBST(GSV_LT_VERSION)
 
