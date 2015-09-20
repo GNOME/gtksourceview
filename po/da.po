@@ -7,6 +7,7 @@
 # Kenneth Nielsen <k.nielsen81@gmail.com>, 2008.
 # flemming christensen <fc@stromata.dk>, 2011.
 # Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 09, 10, 11, 12, 13, 14, 15.
+# scootergrisen, 2015.
 #
 # Konventioner:
 #
@@ -22,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-11 10:13+0000\n"
-"PO-Revision-Date: 2015-03-14 17:31+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-20 21:16+0200\n"
+"PO-Revision-Date: 2015-09-20 20:58+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -90,19 +91,22 @@ msgstr "Alle"
 #: ../data/language-specs/actionscript.lang.h:1
 #: ../data/language-specs/ada.lang.h:1
 #: ../data/language-specs/ansforth94.lang.h:1
-#: ../data/language-specs/asp.lang.h:1 ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/asp.lang.h:1
+#: ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
-#: ../data/language-specs/bluespec.lang.h:1 ../data/language-specs/boo.lang.h:1
-#: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
-#: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
-#: ../data/language-specs/cpp.lang.h:1 ../data/language-specs/cpphdr.lang.h:1
+#: ../data/language-specs/bluespec.lang.h:1
+#: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
+#: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
+#: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/cpphdr.lang.h:1
 #: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
 #: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
-#: ../data/language-specs/erlang.lang.h:1 ../data/language-specs/forth.lang.h:1
+#: ../data/language-specs/erlang.lang.h:1
+#: ../data/language-specs/forth.lang.h:1
 #: ../data/language-specs/fortran.lang.h:1
-#: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/genie.lang.h:1
-#: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/go.lang.h:1
-#: ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/fsharp.lang.h:1
+#: ../data/language-specs/genie.lang.h:1 ../data/language-specs/glsl.lang.h:1
+#: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
 #: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
 #: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
@@ -110,19 +114,20 @@ msgstr "Alle"
 #: ../data/language-specs/makefile.lang.h:1
 #: ../data/language-specs/meson.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
-#: ../data/language-specs/netrexx.lang.h:1 ../data/language-specs/objc.lang.h:1
-#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/ooc.lang.h:1 ../data/language-specs/opal.lang.h:1
-#: ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/netrexx.lang.h:1
+#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
+#: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
+#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
 #: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/pig.lang.h:1
 #: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/rust.lang.h:1
-#: ../data/language-specs/scala.lang.h:1 ../data/language-specs/scheme.lang.h:1
-#: ../data/language-specs/sml.lang.h:1 ../data/language-specs/sparql.lang.h:1
-#: ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/scala.lang.h:1
+#: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
+#: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
 #: ../data/language-specs/systemverilog.lang.h:1
 #: ../data/language-specs/thrift.lang.h:1 ../data/language-specs/vala.lang.h:1
 #: ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/verilog.lang.h:1 ../data/language-specs/vhdl.lang.h:1
+#: ../data/language-specs/verilog.lang.h:1
+#: ../data/language-specs/vhdl.lang.h:1
 msgid "Source"
 msgstr "Kilde"
 
@@ -146,7 +151,8 @@ msgstr "ActionScript"
 #: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
 #: ../data/language-specs/genie.lang.h:3 ../data/language-specs/go.lang.h:3
 #: ../data/language-specs/gtkrc.lang.h:3
-#: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/html.lang.h:3
+#: ../data/language-specs/haskell.lang.h:4
+#: ../data/language-specs/html.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:3
 #: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
 #: ../data/language-specs/jade.lang.h:3 ../data/language-specs/java.lang.h:3
@@ -155,24 +161,26 @@ msgstr "ActionScript"
 #: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/modelica.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/netrexx.lang.h:6 ../data/language-specs/nsis.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:3 ../data/language-specs/ocl.lang.h:3
-#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ooc.lang.h:3
-#: ../data/language-specs/opal.lang.h:4 ../data/language-specs/pascal.lang.h:3
-#: ../data/language-specs/perl.lang.h:3 ../data/language-specs/php.lang.h:4
-#: ../data/language-specs/pig.lang.h:8 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/protobuf.lang.h:2 ../data/language-specs/rst.lang.h:8
-#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/rust.lang.h:3
-#: ../data/language-specs/scala.lang.h:5 ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:6
+#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
+#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
+#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
+#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
+#: ../data/language-specs/php.lang.h:4 ../data/language-specs/pig.lang.h:8
+#: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:2
+#: ../data/language-specs/rst.lang.h:8 ../data/language-specs/ruby.lang.h:4
+#: ../data/language-specs/rust.lang.h:3 ../data/language-specs/scala.lang.h:5
+#: ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
 #: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
 #: ../data/language-specs/texinfo.lang.h:3
 #: ../data/language-specs/thrift.lang.h:3 ../data/language-specs/vala.lang.h:3
 #: ../data/language-specs/vbnet.lang.h:3
-#: ../data/language-specs/verilog.lang.h:3 ../data/language-specs/vhdl.lang.h:3
-#: ../data/language-specs/xml.lang.h:3 ../data/language-specs/yaml.lang.h:4
+#: ../data/language-specs/verilog.lang.h:3
+#: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
+#: ../data/language-specs/yaml.lang.h:4
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -190,7 +198,8 @@ msgstr "Kommentar"
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
 #: ../data/language-specs/php.lang.h:5 ../data/language-specs/prolog.lang.h:9
 #: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:7 ../data/language-specs/xml.lang.h:13
+#: ../data/language-specs/verilog.lang.h:7
+#: ../data/language-specs/xml.lang.h:13
 msgid "Error"
 msgstr "Fejl"
 
@@ -204,7 +213,8 @@ msgstr "Fejl"
 #: ../data/language-specs/csv.lang.h:6 ../data/language-specs/def.lang.h:17
 #: ../data/language-specs/d.lang.h:5 ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/eiffel.lang.h:4
-#: ../data/language-specs/erlang.lang.h:7 ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/erlang.lang.h:7
+#: ../data/language-specs/forth.lang.h:4
 #: ../data/language-specs/fortran.lang.h:4
 #: ../data/language-specs/fsharp.lang.h:7
 #: ../data/language-specs/gdb-log.lang.h:8
@@ -220,25 +230,27 @@ msgstr "Fejl"
 #: ../data/language-specs/lua.lang.h:4 ../data/language-specs/meson.lang.h:5
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/netrexx.lang.h:4 ../data/language-specs/nsis.lang.h:5
-#: ../data/language-specs/objc.lang.h:6 ../data/language-specs/objj.lang.h:8
-#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ocl.lang.h:4
-#: ../data/language-specs/octave.lang.h:4 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:7 ../data/language-specs/pascal.lang.h:4
-#: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/po.lang.h:5 ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:4
+#: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
+#: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
+#: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
+#: ../data/language-specs/ooc.lang.h:6 ../data/language-specs/opal.lang.h:7
+#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
+#: ../data/language-specs/php.lang.h:10 ../data/language-specs/po.lang.h:5
+#: ../data/language-specs/prolog.lang.h:6
 #: ../data/language-specs/protobuf.lang.h:8
 #: ../data/language-specs/python3.lang.h:6
-#: ../data/language-specs/python.lang.h:6 ../data/language-specs/ruby.lang.h:14
-#: ../data/language-specs/rust.lang.h:4 ../data/language-specs/scala.lang.h:6
+#: ../data/language-specs/python.lang.h:6
+#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/rust.lang.h:4
+#: ../data/language-specs/scala.lang.h:6
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
 #: ../data/language-specs/texinfo.lang.h:6
 #: ../data/language-specs/thrift.lang.h:6 ../data/language-specs/vala.lang.h:6
 #: ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/vhdl.lang.h:4
-#: ../data/language-specs/yaml.lang.h:5
+#: ../data/language-specs/verilog.lang.h:4
+#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
 msgid "String"
 msgstr "Streng"
 
@@ -282,8 +294,8 @@ msgstr "Skop-erklæring"
 #: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:11
 #: ../data/language-specs/css.lang.h:14 ../data/language-specs/cuda.lang.h:3
 #: ../data/language-specs/def.lang.h:47 ../data/language-specs/d.lang.h:6
-#: ../data/language-specs/dosbatch.lang.h:5 ../data/language-specs/dot.lang.h:5
-#: ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/dosbatch.lang.h:5
+#: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
 #: ../data/language-specs/forth.lang.h:6
 #: ../data/language-specs/fortran.lang.h:6
@@ -299,9 +311,10 @@ msgstr "Skop-erklæring"
 #: ../data/language-specs/llvm.lang.h:5 ../data/language-specs/lua.lang.h:5
 #: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/modelica.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/objc.lang.h:3
-#: ../data/language-specs/objj.lang.h:4 ../data/language-specs/ocaml.lang.h:9
-#: ../data/language-specs/ocl.lang.h:5 ../data/language-specs/octave.lang.h:10
+#: ../data/language-specs/nemerle.lang.h:8
+#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
+#: ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
 #: ../data/language-specs/opencl.lang.h:3
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
@@ -320,14 +333,17 @@ msgstr "Skop-erklæring"
 #: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
 #: ../data/language-specs/thrift.lang.h:5 ../data/language-specs/vala.lang.h:7
 #: ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:11 ../data/language-specs/vhdl.lang.h:6
+#: ../data/language-specs/verilog.lang.h:11
+#: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
 msgstr "Nøgleord"
 
 #: ../data/language-specs/actionscript.lang.h:11
-#: ../data/language-specs/boo.lang.h:12 ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/d.lang.h:9 ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/genie.lang.h:12 ../data/language-specs/java.lang.h:14
+#: ../data/language-specs/boo.lang.h:12
+#: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
+#: ../data/language-specs/fsharp.lang.h:21
+#: ../data/language-specs/genie.lang.h:12
+#: ../data/language-specs/java.lang.h:14
 #: ../data/language-specs/javascript.lang.h:4
 #: ../data/language-specs/json.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
@@ -339,12 +355,14 @@ msgstr "Null-værdi"
 #. A boolean constant: TRUE, false
 #: ../data/language-specs/actionscript.lang.h:12
 #: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/bennugd.lang.h:12 ../data/language-specs/cg.lang.h:16
-#: ../data/language-specs/c.lang.h:19 ../data/language-specs/csharp.lang.h:14
-#: ../data/language-specs/def.lang.h:34 ../data/language-specs/fsharp.lang.h:19
-#: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:10
-#: ../data/language-specs/ini.lang.h:10 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/llvm.lang.h:11 ../data/language-specs/lua.lang.h:11
+#: ../data/language-specs/bennugd.lang.h:12
+#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:19
+#: ../data/language-specs/csharp.lang.h:14
+#: ../data/language-specs/def.lang.h:34
+#: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
+#: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
+#: ../data/language-specs/java.lang.h:15 ../data/language-specs/llvm.lang.h:11
+#: ../data/language-specs/lua.lang.h:11
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
 #: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
@@ -360,12 +378,15 @@ msgstr "Boolesk værdi"
 #: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/genie.lang.h:14
+#: ../data/language-specs/forth.lang.h:8
+#: ../data/language-specs/genie.lang.h:14
 #: ../data/language-specs/java.lang.h:16 ../data/language-specs/j.lang.h:14
 #: ../data/language-specs/julia.lang.h:5 ../data/language-specs/llvm.lang.h:12
 #: ../data/language-specs/netrexx.lang.h:16
-#: ../data/language-specs/prolog.lang.h:7 ../data/language-specs/rust.lang.h:10
-#: ../data/language-specs/scala.lang.h:12 ../data/language-specs/vhdl.lang.h:11
+#: ../data/language-specs/prolog.lang.h:7
+#: ../data/language-specs/rust.lang.h:10
+#: ../data/language-specs/scala.lang.h:12
+#: ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
 msgstr "Tal"
 
@@ -382,7 +403,8 @@ msgstr "Fremtidige reserverede ord"
 #: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/eiffel.lang.h:8 ../data/language-specs/forth.lang.h:7
+#: ../data/language-specs/eiffel.lang.h:8
+#: ../data/language-specs/forth.lang.h:7
 #: ../data/language-specs/fortran.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:11
 #: ../data/language-specs/genie.lang.h:8 ../data/language-specs/glsl.lang.h:4
@@ -393,12 +415,14 @@ msgstr "Fremtidige reserverede ord"
 #: ../data/language-specs/java.lang.h:18
 #: ../data/language-specs/javascript.lang.h:8
 #: ../data/language-specs/llvm.lang.h:10
-#: ../data/language-specs/nemerle.lang.h:9 ../data/language-specs/objc.lang.h:4
-#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ocaml.lang.h:12
-#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/ooc.lang.h:19
-#: ../data/language-specs/opal.lang.h:11 ../data/language-specs/opencl.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:9
+#: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:12 ../data/language-specs/ocl.lang.h:7
+#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
+#: ../data/language-specs/opencl.lang.h:4
 #: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
-#: ../data/language-specs/pig.lang.h:3 ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/pig.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:5
 #: ../data/language-specs/rust.lang.h:7 ../data/language-specs/scala.lang.h:14
 #: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
 #: ../data/language-specs/sql.lang.h:9 ../data/language-specs/thrift.lang.h:4
@@ -411,7 +435,8 @@ msgid "Ada"
 msgstr "Ada"
 
 #. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/ada.lang.h:6
+#: ../data/language-specs/bennugd.lang.h:10
 #: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
 #: ../data/language-specs/csharp.lang.h:15 ../data/language-specs/csv.lang.h:3
 #: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
@@ -423,7 +448,8 @@ msgstr "Ada"
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
 #: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:20
 #: ../data/language-specs/python3.lang.h:12
-#: ../data/language-specs/python.lang.h:13 ../data/language-specs/ruby.lang.h:11
+#: ../data/language-specs/python.lang.h:13
+#: ../data/language-specs/ruby.lang.h:11
 msgid "Decimal number"
 msgstr "Decimaltal"
 
@@ -432,7 +458,8 @@ msgstr "Decimaltal"
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:5
 #: ../data/language-specs/fortran.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:20 ../data/language-specs/glsl.lang.h:3
+#: ../data/language-specs/fsharp.lang.h:20
+#: ../data/language-specs/glsl.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:5
 #: ../data/language-specs/idl.lang.h:5 ../data/language-specs/nemerle.lang.h:5
@@ -445,7 +472,8 @@ msgstr "Præprocessor"
 msgid "Arbitrary base number"
 msgstr "Arbitrært grundtal"
 
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/csharp.lang.h:17
+#: ../data/language-specs/ada.lang.h:12
+#: ../data/language-specs/csharp.lang.h:17
 #: ../data/language-specs/verilog.lang.h:15
 #: ../data/language-specs/vhdl.lang.h:10
 msgid "Real number"
@@ -485,14 +513,16 @@ msgid "Alert"
 msgstr "Påmindelse"
 
 #. A character constant: 'c'
-#: ../data/language-specs/ansforth94.lang.h:7 ../data/language-specs/c.lang.h:8
-#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/def.lang.h:15
-#: ../data/language-specs/erlang.lang.h:8 ../data/language-specs/gap.lang.h:4
-#: ../data/language-specs/go.lang.h:6 ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/ansforth94.lang.h:7
+#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
+#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
+#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
+#: ../data/language-specs/haskell.lang.h:10
 #: ../data/language-specs/java.lang.h:6 ../data/language-specs/julia.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/rust.lang.h:5
-#: ../data/language-specs/sml.lang.h:6 ../data/language-specs/vhdl.lang.h:5
+#: ../data/language-specs/netrexx.lang.h:5
+#: ../data/language-specs/rust.lang.h:5 ../data/language-specs/sml.lang.h:6
+#: ../data/language-specs/vhdl.lang.h:5
 msgid "Character"
 msgstr "Tegn"
 
@@ -503,8 +533,10 @@ msgstr "Ord"
 #. Any constant
 #: ../data/language-specs/ansforth94.lang.h:10
 #: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13 ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3 ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/def.lang.h:13
+#: ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:18
 msgid "Constant"
 msgstr "Konstant"
 
@@ -565,8 +597,8 @@ msgstr "Funktion"
 #: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:7
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
-#: ../data/language-specs/imagej.lang.h:9 ../data/language-specs/julia.lang.h:9
-#: ../data/language-specs/meson.lang.h:4
+#: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/julia.lang.h:9 ../data/language-specs/meson.lang.h:4
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
 #: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:15
@@ -628,7 +660,8 @@ msgstr "Andet nøgleord"
 msgid "Substitution"
 msgstr "Substitution"
 
-#: ../data/language-specs/awk.lang.h:1 ../data/language-specs/dosbatch.lang.h:1
+#: ../data/language-specs/awk.lang.h:1
+#: ../data/language-specs/dosbatch.lang.h:1
 #: ../data/language-specs/javascript.lang.h:1
 #: ../data/language-specs/lua.lang.h:1 ../data/language-specs/m4.lang.h:1
 #: ../data/language-specs/perl.lang.h:1 ../data/language-specs/php.lang.h:1
@@ -648,7 +681,8 @@ msgstr "Mønster"
 
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
 #: ../data/language-specs/genie.lang.h:15 ../data/language-specs/glsl.lang.h:6
-#: ../data/language-specs/go.lang.h:18 ../data/language-specs/netrexx.lang.h:15
+#: ../data/language-specs/go.lang.h:18
+#: ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python3.lang.h:17
 #: ../data/language-specs/python.lang.h:18
@@ -660,9 +694,9 @@ msgid "BennuGD"
 msgstr "BennuGD"
 
 #. Any variable name
-#: ../data/language-specs/bennugd.lang.h:5 ../data/language-specs/def.lang.h:36
-#: ../data/language-specs/llvm.lang.h:9 ../data/language-specs/php.lang.h:7
-#: ../data/language-specs/rust.lang.h:9
+#: ../data/language-specs/bennugd.lang.h:5
+#: ../data/language-specs/def.lang.h:36 ../data/language-specs/llvm.lang.h:9
+#: ../data/language-specs/php.lang.h:7 ../data/language-specs/rust.lang.h:9
 msgid "Identifier"
 msgstr "Variabelnavn"
 
@@ -681,10 +715,11 @@ msgstr "Variabelnavn"
 msgid "Floating point number"
 msgstr "Flydende tal"
 
-#: ../data/language-specs/bennugd.lang.h:11 ../data/language-specs/cg.lang.h:15
-#: ../data/language-specs/c.lang.h:18 ../data/language-specs/csharp.lang.h:16
-#: ../data/language-specs/d.lang.h:15 ../data/language-specs/eiffel.lang.h:16
-#: ../data/language-specs/go.lang.h:15 ../data/language-specs/nemerle.lang.h:16
+#: ../data/language-specs/bennugd.lang.h:11
+#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:18
+#: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
+#: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
+#: ../data/language-specs/nemerle.lang.h:16
 #: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:22
 msgid "Hexadecimal number"
 msgstr "Hexadecimalt tal"
@@ -692,8 +727,9 @@ msgstr "Hexadecimalt tal"
 #: ../data/language-specs/bibtex.lang.h:1
 #: ../data/language-specs/docbook.lang.h:1 ../data/language-specs/dtd.lang.h:1
 #: ../data/language-specs/gtk-doc.lang.h:1
-#: ../data/language-specs/haddock.lang.h:1 ../data/language-specs/html.lang.h:1
-#: ../data/language-specs/jade.lang.h:1 ../data/language-specs/latex.lang.h:1
+#: ../data/language-specs/haddock.lang.h:1
+#: ../data/language-specs/html.lang.h:1 ../data/language-specs/jade.lang.h:1
+#: ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
 #: ../data/language-specs/mediawiki.lang.h:1
@@ -742,7 +778,8 @@ msgstr "Importér BVI"
 #: ../data/language-specs/gtk-doc.lang.h:9
 #: ../data/language-specs/julia.lang.h:15
 #: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:13 ../data/language-specs/vhdl.lang.h:7
+#: ../data/language-specs/verilog.lang.h:13
+#: ../data/language-specs/vhdl.lang.h:7
 msgid "Type"
 msgstr "Type"
 
@@ -774,13 +811,16 @@ msgstr "Definition"
 
 #: ../data/language-specs/boo.lang.h:11 ../data/language-specs/genie.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
-#: ../data/language-specs/python.lang.h:10 ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/python.lang.h:10
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "Speciel variabel"
 
-#: ../data/language-specs/boo.lang.h:13 ../data/language-specs/desktop.lang.h:9
-#: ../data/language-specs/d.lang.h:10 ../data/language-specs/genie.lang.h:13
-#: ../data/language-specs/imagej.lang.h:4 ../data/language-specs/julia.lang.h:6
+#: ../data/language-specs/boo.lang.h:13
+#: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
+#: ../data/language-specs/genie.lang.h:13
+#: ../data/language-specs/imagej.lang.h:4
+#: ../data/language-specs/julia.lang.h:6
 #: ../data/language-specs/libtool.lang.h:4
 #: ../data/language-specs/modelica.lang.h:9
 #: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
@@ -788,7 +828,8 @@ msgstr "Speciel variabel"
 #: ../data/language-specs/python.lang.h:11
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:8
-#: ../data/language-specs/sparql.lang.h:9 ../data/language-specs/yaml.lang.h:12
+#: ../data/language-specs/sparql.lang.h:9
+#: ../data/language-specs/yaml.lang.h:12
 msgid "Boolean"
 msgstr "Boolesk"
 
@@ -801,7 +842,8 @@ msgid "Bindings"
 msgstr "Bindinger"
 
 #: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/fortran.lang.h:13 ../data/language-specs/objj.lang.h:7
+#: ../data/language-specs/fortran.lang.h:13
+#: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Inkluderet fil"
 
@@ -821,7 +863,8 @@ msgstr "Swizzle-operator"
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
-#: ../data/language-specs/octave.lang.h:12 ../data/language-specs/ruby.lang.h:17
+#: ../data/language-specs/octave.lang.h:12
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "Indbygget"
 
@@ -833,10 +876,11 @@ msgstr "Indbygget"
 #: ../data/language-specs/dpatch.lang.h:1
 #: ../data/language-specs/gdb-log.lang.h:1
 #: ../data/language-specs/gtkrc.lang.h:1 ../data/language-specs/ini.lang.h:1
-#: ../data/language-specs/json.lang.h:1 ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/json.lang.h:1
+#: ../data/language-specs/libtool.lang.h:1
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
-#: ../data/language-specs/pkgconfig.lang.h:1 ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/pkgconfig.lang.h:1
+#: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
 #: ../data/language-specs/puppet.lang.h:1
 #: ../data/language-specs/rpmspec.lang.h:1
 #: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yacc.lang.h:1
@@ -868,7 +912,8 @@ msgstr "E-post-adresse"
 msgid "File"
 msgstr "Fil"
 
-#: ../data/language-specs/changelog.lang.h:8 ../data/language-specs/rst.lang.h:6
+#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/rst.lang.h:6
 msgid "Bullet"
 msgstr "Punkt"
 
@@ -912,7 +957,6 @@ msgid "Builtin Command"
 msgstr "Indbygget kommando"
 
 #: ../data/language-specs/cmake.lang.h:4
-#| msgid "Builtin Command"
 msgid "Deprecated Builtin Command"
 msgstr "Forældet indbygget kommando"
 
@@ -940,7 +984,6 @@ msgstr "C++"
 
 # Header-filer ved man hvad er. Vi må hellere kalde det header.
 #: ../data/language-specs/cpphdr.lang.h:2
-#| msgid "Header"
 msgid "C++ Header"
 msgstr "C++-header"
 
@@ -973,8 +1016,8 @@ msgstr "Andre 3"
 #: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
 #: ../data/language-specs/fortran.lang.h:9 ../data/language-specs/gap.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:6
-#: ../data/language-specs/haskell.lang.h:13 ../data/language-specs/ini.lang.h:7
-#: ../data/language-specs/json.lang.h:8
+#: ../data/language-specs/haskell.lang.h:13
+#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
 #: ../data/language-specs/modelica.lang.h:10
 #: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
 #: ../data/language-specs/sql.lang.h:8
@@ -1003,15 +1046,13 @@ msgstr "Klassevælger"
 
 #: ../data/language-specs/css.lang.h:17
 msgid "Tag Name Selector"
-msgstr "Mærkatnavnsvælger"
+msgstr "Mærkenavnsvælger"
 
 #: ../data/language-specs/csv.lang.h:2
-#| msgid "CSS"
 msgid "CSV"
 msgstr "CSV"
 
 #: ../data/language-specs/csv.lang.h:4
-#| msgid "Escaped Character"
 msgid "Escaped character"
 msgstr "Undvegent tegn"
 
@@ -1061,7 +1102,8 @@ msgstr "Specialtegn (i en streng)"
 #. A base-N number: 0xFFFF
 #: ../data/language-specs/def.lang.h:28
 #: ../data/language-specs/python3.lang.h:13
-#: ../data/language-specs/python.lang.h:14 ../data/language-specs/ruby.lang.h:12
+#: ../data/language-specs/python.lang.h:14
+#: ../data/language-specs/ruby.lang.h:12
 msgid "Base-N number"
 msgstr "Heltal med grundtal N"
 
@@ -1149,7 +1191,8 @@ msgstr "Gruppe"
 
 #. Translators: "Key" here means key value, that is the left hand
 #. side in a myoption=something line in a .desktop file
-#: ../data/language-specs/desktop.lang.h:6 ../data/language-specs/json.lang.h:2
+#: ../data/language-specs/desktop.lang.h:6
+#: ../data/language-specs/json.lang.h:2
 msgid "Key"
 msgstr "Nøgle"
 
@@ -1250,7 +1293,8 @@ msgid "DOS Batch"
 msgstr "DOS-Batch"
 
 #: ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/sweave.lang.h:4
+#: ../data/language-specs/latex.lang.h:8
+#: ../data/language-specs/sweave.lang.h:4
 msgid "Command"
 msgstr "Kommando"
 
@@ -1311,7 +1355,8 @@ msgstr "Design efter kontrakt"
 msgid "Exception Handling"
 msgstr "Undtagelses-håndtering"
 
-#: ../data/language-specs/eiffel.lang.h:11 ../data/language-specs/ruby.lang.h:21
+#: ../data/language-specs/eiffel.lang.h:11
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Predefined Variable"
 msgstr "Prædefineret variabel"
 
@@ -1338,7 +1383,8 @@ msgstr "Atom"
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/modelica.lang.h:12
 #: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/sml.lang.h:9
-#: ../data/language-specs/verilog.lang.h:14 ../data/language-specs/vhdl.lang.h:9
+#: ../data/language-specs/verilog.lang.h:14
+#: ../data/language-specs/vhdl.lang.h:9
 msgid "Base-N Integer"
 msgstr "Heltal med grundtal N"
 
@@ -1351,7 +1397,8 @@ msgstr "Kompilerdirektiv"
 
 #: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
 #: ../data/language-specs/idl-exelis.lang.h:1
-#: ../data/language-specs/imagej.lang.h:1 ../data/language-specs/julia.lang.h:1
+#: ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/julia.lang.h:1
 #: ../data/language-specs/matlab.lang.h:1
 #: ../data/language-specs/modelica.lang.h:1
 #: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
@@ -1413,12 +1460,13 @@ msgstr "OpenMP-direktiver"
 msgid "F#"
 msgstr "F#"
 
-#: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/ocaml.lang.h:6
-#: ../data/language-specs/sml.lang.h:12
+#: ../data/language-specs/fsharp.lang.h:5
+#: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/sml.lang.h:12
 msgid "Floating Point number"
 msgstr "Flydende tal"
 
-#: ../data/language-specs/fsharp.lang.h:9 ../data/language-specs/ocaml.lang.h:10
+#: ../data/language-specs/fsharp.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:10
 msgid "Type, module or object keyword"
 msgstr "Type, modul eller objekt-nøgleord"
 
@@ -1598,7 +1646,8 @@ msgid "Escape"
 msgstr "Undvigelse"
 
 #: ../data/language-specs/haddock.lang.h:8
-#: ../data/language-specs/markdown.lang.h:13 ../data/language-specs/rst.lang.h:4
+#: ../data/language-specs/markdown.lang.h:13
+#: ../data/language-specs/rst.lang.h:4
 msgid "Emphasis"
 msgstr "Eftertryk"
 
@@ -1641,7 +1690,8 @@ msgstr "Anker"
 msgid "Haskell"
 msgstr "Haskell"
 
-#: ../data/language-specs/haskell.lang.h:6 ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/haskell.lang.h:6
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "Symbol"
 
@@ -1665,7 +1715,7 @@ msgstr "HTML"
 #: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
 #: ../data/language-specs/yaml.lang.h:7
 msgid "Tag"
-msgstr "Mærkat"
+msgstr "Mærke"
 
 #: ../data/language-specs/html.lang.h:5
 msgid "Attribute Name"
@@ -1716,7 +1766,8 @@ msgstr "ImageJ"
 msgid "Commands"
 msgstr "Kommandoer"
 
-#: ../data/language-specs/imagej.lang.h:6 ../data/language-specs/octave.lang.h:7
+#: ../data/language-specs/imagej.lang.h:6
+#: ../data/language-specs/octave.lang.h:7
 msgid "Storage Type"
 msgstr "Lagringstype"
 
@@ -1751,7 +1802,7 @@ msgstr "Attribut-værdi"
 
 #: ../data/language-specs/jade.lang.h:9
 msgid "Tags"
-msgstr "Mærkater"
+msgstr "Mærker"
 
 #: ../data/language-specs/jade.lang.h:10 ../data/language-specs/xml.lang.h:10
 msgid "Entity"
@@ -1844,7 +1895,8 @@ msgstr "Matematisk konstant"
 msgid "Special Constant"
 msgstr "Speciel konstant"
 
-#: ../data/language-specs/julia.lang.h:11 ../data/language-specs/rust.lang.h:13
+#: ../data/language-specs/julia.lang.h:11
+#: ../data/language-specs/rust.lang.h:13
 msgid "Macro"
 msgstr "Makro"
 
@@ -1881,8 +1933,8 @@ msgstr "Matematik-grænse"
 msgid "Include"
 msgstr "Inkludering"
 
-#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/sweave.lang.h:5
-#: ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:9
+#: ../data/language-specs/sweave.lang.h:5 ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
 msgstr "Verbatim"
 
@@ -1952,7 +2004,8 @@ msgstr "Lua"
 msgid "Reserved Identifier"
 msgstr "Reserveret variabelnavn"
 
-#: ../data/language-specs/lua.lang.h:8 ../data/language-specs/markdown.lang.h:10
+#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/markdown.lang.h:10
 msgid "Label"
 msgstr "Mærkat"
 
@@ -2060,7 +2113,8 @@ msgstr "Vandret lineal"
 msgid "List Marker"
 msgstr "Listemarkør"
 
-#: ../data/language-specs/markdown.lang.h:6 ../data/language-specs/rst.lang.h:11
+#: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rst.lang.h:11
 msgid "Code"
 msgstr "Kode"
 
@@ -2077,7 +2131,8 @@ msgid "Image Marker"
 msgstr "Billedmarkør"
 
 #: ../data/language-specs/markdown.lang.h:14
-#: ../data/language-specs/mediawiki.lang.h:3 ../data/language-specs/rst.lang.h:5
+#: ../data/language-specs/mediawiki.lang.h:3
+#: ../data/language-specs/rst.lang.h:5
 msgid "Strong Emphasis"
 msgstr "Stærk fremhævning"
 
@@ -2105,7 +2160,8 @@ msgstr "Let eftertryk"
 msgid "Signature"
 msgstr "Underskrift"
 
-#: ../data/language-specs/mediawiki.lang.h:7 ../data/language-specs/rst.lang.h:9
+#: ../data/language-specs/mediawiki.lang.h:7
+#: ../data/language-specs/rst.lang.h:9
 msgid "Link"
 msgstr "Henvisning"
 
@@ -2263,7 +2319,8 @@ msgstr "OOC"
 msgid "Opal"
 msgstr "Opal"
 
-#: ../data/language-specs/opal.lang.h:3 ../data/language-specs/python3.lang.h:3
+#: ../data/language-specs/opal.lang.h:3
+#: ../data/language-specs/python3.lang.h:3
 #: ../data/language-specs/python.lang.h:3
 msgid "Module Handler"
 msgstr "Modulstyring"
@@ -2357,7 +2414,7 @@ msgstr "PHP"
 
 #: ../data/language-specs/php.lang.h:3
 msgid "Preprocessor tags"
-msgstr "Præprocessormærkater"
+msgstr "Præprocessormærker"
 
 # kunne også være fælles funktion, men jeg kan ikke finde noget med google der tyder på det
 #: ../data/language-specs/php.lang.h:14
@@ -2565,7 +2622,8 @@ msgstr "Modulhåndtering"
 msgid "Numeric literal"
 msgstr "Talliteral"
 
-#: ../data/language-specs/ruby.lang.h:15 ../data/language-specs/sparql.lang.h:10
+#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/sparql.lang.h:10
 msgid "Literal"
 msgstr "Literal"
 
@@ -2591,9 +2649,8 @@ msgid "Built In"
 msgstr "Indbygget"
 
 #: ../data/language-specs/scala.lang.h:17
-#, fuzzy
 msgid "XML Tag"
-msgstr "XML-tag"
+msgstr "XML-mærke"
 
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
@@ -3158,37 +3215,20 @@ msgstr "Ukendt id \"%s\" i det regulære udtryk \"%s\""
 msgid "in regex '%s': backreferences are not supported"
 msgstr "i det regulære udtryk \"%s\": bagudreferencer understøttes ikke"
 
-#: ../gtksourceview/gtksourcemap.c:1078
-msgid "View"
-msgstr "Vis"
-
-#: ../gtksourceview/gtksourcemap.c:1079
-msgid "The view this widget is mapping."
-msgstr "Visningen som denne kontrol kortlægger."
-
-#: ../gtksourceview/gtksourcemap.c:1085
-#| msgid "File Descriptor"
-msgid "Font Description"
-msgstr "Skrifttypebeskrivelse"
-
-#: ../gtksourceview/gtksourcemap.c:1086
-msgid "The Pango font description to use."
-msgstr "Pango-skrifttypebeskrivelse som skal anvendes."
-
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
 msgstr "brug af \\C er ikke understøttet i sprogdefinitionerne"
 
 #. TODO: have a ChooserDialog?
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:182
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:181
 msgid "Select a Style"
 msgstr "Vælg en stil"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:185
 msgid "_Cancel"
 msgstr "_Annullér"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:187
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
 msgid "_Select"
 msgstr "_Vælg"
 
@@ -3230,6 +3270,19 @@ msgstr ""
 "\n"
 "Dansk-gruppen <dansk@dansk-gruppen.dk\n"
 "Mere info: http://www.dansk-gruppen.dk"
+
+#~ msgid "View"
+#~ msgstr "Vis"
+
+#~ msgid "The view this widget is mapping."
+#~ msgstr "Visningen som denne kontrol kortlægger."
+
+#~| msgid "File Descriptor"
+#~ msgid "Font Description"
+#~ msgstr "Skrifttypebeskrivelse"
+
+#~ msgid "The Pango font description to use."
+#~ msgstr "Pango-skrifttypebeskrivelse som skal anvendes."
 
 #~ msgid "GtkSourceView"
 #~ msgstr "GtkSourceView"
@@ -4005,15 +4058,6 @@ msgstr ""
 #~ msgid "Header and Footer Font Description"
 #~ msgstr "Skrifttypebeskrivelse for sidehoved og -fod"
 
-#~ msgid "Tag ID"
-#~ msgstr "Mærke-id"
-
-#~ msgid "ID used to refer to the source tag"
-#~ msgstr "Id som benyttes til at referere til kildekodemærket"
-
-#~ msgid "Tag style"
-#~ msgstr "Mærkestil"
-
 #~ msgid "Character Constant"
 #~ msgstr "Tegnkonstant"
 
@@ -4180,9 +4224,6 @@ msgstr ""
 #~ msgid "General Format"
 #~ msgstr "Generelt format"
 
-#~ msgid "Loop, Flow, and Exceptions Keywords"
-#~ msgstr "Løkke-, gennemløbs- og undtagelses-nøgleord"
-
 #~ msgid "Method Call"
 #~ msgstr "Metodekald"
 
@@ -4203,9 +4244,6 @@ msgstr ""
 
 #~ msgid "Case Sensitive Keyword"
 #~ msgstr "Versalfølsomt nøgleord"
-
-#~ msgid "First Open PHP Tag"
-#~ msgstr "Første PHP-åbningsmærke"
 
 #~ msgid "HTML Block"
 #~ msgstr "HTML-blok"
