@@ -19,12 +19,11 @@
  * along with GtkSourceView. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <glib/gi18n.h>
-
 #include "gtksourcestyleschemechooserbutton.h"
 #include "gtksourcestyleschemechooser.h"
 #include "gtksourcestyleschemechooserwidget.h"
 #include "gtksourcestylescheme.h"
+#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:styleschemechooserbutton
