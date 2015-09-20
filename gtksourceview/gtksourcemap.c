@@ -18,15 +18,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "gtksourcemap.h"
+#include <string.h>
 #include "gtksourcebuffer.h"
 #include "gtksourcecompletion.h"
-#include "gtksourcemap.h"
 #include "gtksourcestyle-private.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceview-utils.h"
-
-#include <glib/gi18n.h>
-#include <string.h>
 
 /**
  * SECTION:map
@@ -1075,15 +1073,15 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 
 	pspecs[PROP_VIEW] =
 		g_param_spec_object ("view",
-		                     _("View"),
-		                     _("The view this widget is mapping."),
+		                     "View",
+		                     "The view this widget is mapping.",
 		                     GTK_SOURCE_TYPE_VIEW,
 		                     (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
 	pspecs[PROP_FONT_DESC] =
 		g_param_spec_boxed ("font-desc",
-		                    _("Font Description"),
-		                    _("The Pango font description to use."),
+		                    "Font Description",
+		                    "The Pango font description to use.",
 		                    PANGO_TYPE_FONT_DESCRIPTION,
 		                    (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
