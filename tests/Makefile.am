@@ -55,6 +55,9 @@ test_search_LDADD =						\
 TEST_PROGS += test-search-performances
 test_search_performances_SOURCES = test-search-performances.c
 
+TEST_PROGS += test-space-drawing
+test_space_drawing_SOURCES = test-space-drawing.c
+
 TEST_PROGS += test-undo-manager-performances
 test_undo_manager_performances_SOURCES = test-undo-manager-performances.c
 
