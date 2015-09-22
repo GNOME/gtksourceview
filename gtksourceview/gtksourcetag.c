@@ -82,9 +82,12 @@ gtk_source_tag_set_property (GObject      *object,
 			     const GValue *value,
 			     GParamSpec   *pspec)
 {
+	GtkSourceTag *tag;
 	GtkSourceTagPrivate *priv;
+	gboolean size_changed = FALSE;
 
-	priv = gtk_source_tag_get_instance_private (GTK_SOURCE_TAG (object));
+	tag = GTK_SOURCE_TAG (object);
+	priv = gtk_source_tag_get_instance_private (tag);
 
 	switch (prop_id)
 	{
@@ -102,6 +105,8 @@ gtk_source_tag_set_property (GObject      *object,
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
 	}
+
+	gtk_text_tag_changed (GTK_TEXT_TAG (tag), size_changed);
 }
 
 static void
