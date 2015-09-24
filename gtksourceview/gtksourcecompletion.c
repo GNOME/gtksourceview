@@ -1959,6 +1959,7 @@ cell_icon_func (GtkTreeViewColumn *column,
 	GdkPixbuf *pixbuf;
 	gchar *icon_name;
 	GIcon *gicon;
+	gboolean set = FALSE;
 
 	gtk_tree_model_get (model, iter,
 	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON, &pixbuf,
@@ -1970,18 +1971,26 @@ cell_icon_func (GtkTreeViewColumn *column,
 	{
 		g_object_set (cell, "pixbuf", pixbuf, NULL);
 		g_object_unref (pixbuf);
+		set = TRUE;
 	}
 
 	if (icon_name != NULL)
 	{
 		g_object_set (cell, "icon-name", icon_name, NULL);
 		g_free (icon_name);
+		set = TRUE;
 	}
 
 	if (gicon != NULL)
 	{
 		g_object_set (cell, "gicon", gicon, NULL);
 		g_object_unref (gicon);
+		set = TRUE;
+	}
+
+	if (!set)
+	{
+		g_object_set (cell, "icon-name", NULL, NULL);
 	}
 }
 
