@@ -339,23 +339,6 @@ highlight_current_line_toggled_cb (TestWidget     *self,
 }
 
 static void
-draw_spaces_toggled_cb (TestWidget     *self,
-			GtkCheckButton *button)
-{
-	gboolean draw_spaces = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
-
-	if (draw_spaces)
-	{
-		gtk_source_view_set_draw_spaces (self->priv->view,
-						 GTK_SOURCE_DRAW_SPACES_ALL);
-	}
-	else
-	{
-		gtk_source_view_set_draw_spaces (self->priv->view, 0);
-	}
-}
-
-static void
 wrap_lines_toggled_cb (TestWidget     *self,
 		       GtkCheckButton *button)
 {
@@ -973,7 +956,6 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, show_right_margin_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, right_margin_position_value_changed_cb);
 	gtk_widget_class_bind_template_callback (widget_class, highlight_current_line_toggled_cb);
-	gtk_widget_class_bind_template_callback (widget_class, draw_spaces_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, wrap_lines_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, auto_indent_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, indent_spaces_toggled_cb);
