@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets">
+    <Import Project="gtksourceview-build-defines.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros">
+    <GtkSourceviewDoInstall>
+mkdir $(CopyDir)
+mkdir $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\$(GtkSourceviewDllPrefix)gtksourceview$(GtkSourceviewDllSuffix).dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\$(GtkSourceviewDllPrefix)gtksourceview$(GtkSourceviewDllSuffix).pdb $(CopyDir)\bin
+
+mkdir $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words
+#include "gtksourceview.vs10.headers"
+copy ..\..\..\gtksourceview\completion-providers\words\gtksourcecompletionwords.h $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words
+
+mkdir $(CopyDir)\lib
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gtksourceview-$(ApiVersion).lib $(CopyDir)\lib
+
+mkdir $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
+copy ..\..\..\data\language-specs\*.lang $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
+copy ..\..\..\data\language-specs\*.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
+copy ..\..\..\data\language-specs\check-language.sh $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
+copy ..\..\..\data\language-specs\language.dtd $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
+
+mkdir $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
+copy ..\..\..\data\styles\*.xml $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
+copy ..\..\..\data\styles\styles.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
+copy ..\..\..\data\styles\check-style.sh $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
+    </GtkSourceviewDoInstall>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>gtksourceviewinstallprops</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)$(Configuration)\$(PlatformName)\bin\</OutDir>
+    <IntDir>$(SolutionDir)$(Configuration)\$(PlatformName)\obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <BuildMacro Include="GtkSourceviewDoInstall">
+      <Value>$(GtkSourceviewDoInstall)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

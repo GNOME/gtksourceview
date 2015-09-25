@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="gtksourceviewgensrcsprops"
+	InheritedPropertySheets=".\gtksourceview-build-defines.vsprops"
+	>
+	<UserMacro
+		Name="CopyConfigH"
+		Value="copy ..\..\..\config.h.win32 ..\..\..\config.h"
+	/>
+	<UserMacro
+		Name="GenerateEnums"
+		Value="
+cd ..&#x0D;&#x0A;
+CALL gen-enums.bat $(GlibEtcInstallRoot)&#x0D;&#x0A;
+cd $(SolutionDir)&#x0D;&#x0A;
+		      "
+	/>
+	<UserMacro
+		Name="GenerateRsrcSrc"
+		Value="
+$(GlibEtcInstallRoot)\bin\glib-compile-resources --target=..\..\..\gtksourceview\gtksourceview-resources.c --generate-source --sourcedir=..\..\..\gtksourceview ..\..\..\gtksourceview\gtksourceview.gresource.xml&#x0D;&#x0A;
+		      "
+	/>
+	<UserMacro
+		Name="GenGtksourceVersionH"
+		Value="
+$(PythonPath)\python.exe ..\replace.py --action=replace-var --input=..\..\..\gtksourceview\gtksourceversion.h.in --output=..\..\..\gtksourceview\gtksourceversion.h.tmp1 --var=GTK_SOURCE_MAJOR_VERSION --outstring=@GTK_SOURCE_MAJOR_VERSION@&#x0D;&#x0A;
+$(PythonPath)\python.exe ..\replace.py --action=replace-var --input=..\..\..\gtksourceview\gtksourceversion.h.tmp1 --output=..\..\..\gtksourceview\gtksourceversion.h.tmp2 --var=GTK_SOURCE_MINOR_VERSION --outstring=@GTK_SOURCE_MINOR_VERSION@&#x0D;&#x0A;
+$(PythonPath)\python.exe ..\replace.py --action=replace-var --input=..\..\..\gtksourceview\gtksourceversion.h.tmp2 --output=..\..\..\gtksourceview\gtksourceversion.h --var=GTK_SOURCE_MICRO_VERSION --outstring=@GTK_SOURCE_MICRO_VERSION@&#x0D;&#x0A;
+del ..\..\..\gtksourceview\gtksourceversion.h.tmp1 ..\..\..\gtksourceview\gtksourceversion.h.tmp2&#x0D;&#x0A;
+		      "
+	/>
+</VisualStudioPropertySheet>

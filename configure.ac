@@ -223,6 +223,16 @@ AC_CONFIG_FILES([
 gtksourceview-3.0.pc
 gtksourceview-zip
 Makefile
+config.h.win32
+build/Makefile
+build/win32/Makefile
+build/win32/vs9/Makefile
+build/win32/vs9/gtksourceview-gen-srcs.vsprops
+build/win32/vs10/Makefile
+build/win32/vs10/gtksourceview-gen-srcs.props
+build/win32/vs11/Makefile
+build/win32/vs12/Makefile
+build/win32/vs14/Makefile
 data/Makefile
 data/glade/Makefile
 data/language-specs/Makefile

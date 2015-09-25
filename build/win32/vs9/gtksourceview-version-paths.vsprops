@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="gtksourceviewversionpathsprops"
+	>
+	<UserMacro
+		Name="ApiVersion"
+		Value="3.0"
+	/>
+	<UserMacro
+		Name="VSVer"
+		Value="9"
+	/>
+	<UserMacro
+		Name="GlibEtcInstallRoot"
+		Value="$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(PlatformName)"
+	/>
+	<UserMacro
+		Name="GlibMkEnumsPath"
+		Value="..\..\..\vs$(VSVer)\$(PlatformName)"
+	/>
+	<UserMacro
+		Name="DefDir"
+		Value="$(SolutionDir)$(ConfigurationName)\$(PlatformName)\obj\$(ProjectName)"
+	/>
+	<UserMacro
+		Name="CopyDir"
+		Value="$(GlibEtcInstallRoot)"
+	/>
+	<UserMacro
+		Name="GtkSourceviewLibtoolCompatibleDllPrefix"
+		Value="lib"
+	/>
+	<UserMacro
+		Name="GtkSourceviewLibtoolCompatibleDllSuffix"
+		Value="-$(ApiVersion)-0"
+	/>
+	<UserMacro
+		Name="GtkSourceviewSeparateVSDllPrefix"
+		Value=""
+	/>
+	<UserMacro
+		Name="GtkSourceviewSeparateVSDllSuffix"
+		Value="-3-vs$(VSVer)"
+	/>
+	<!-- Change these two to GtkSourceviewLibtoolCompatibleDllPrefix and
+	GtkSourceviewLibtoolCompatibleDllSuffix if that is what you want -->
+	<UserMacro
+		Name="GtkSourceviewDllPrefix"
+		Value="$(GtkSourceviewSeparateVSDllPrefix)"
+	/>
+	<UserMacro
+		Name="GtkSourceviewDllSuffix"
+		Value="$(GtkSourceviewSeparateVSDllSuffix)"
+	/>
+	<UserMacro
+		Name="PythonPath"
+		Value="c:\python27"
+	/>
+</VisualStudioPropertySheet>

@@ -329,4 +329,79 @@ CLEANFILES += $(vapi_DATA)
 
 endif # ENABLE_VAPIGEN
 
+# MSVC items
+
+# Pull in the libgtksourcecompletionwords sources since on MSVC we want to
+# build everything in the same .dll with no intermediate libs
+gtksource_win32_more_sources =						\
+	completion-providers/words/gtksourcecompletionwords.c		\
+	completion-providers/words/gtksourcecompletionwordsbuffer.c	\
+	completion-providers/words/gtksourcecompletionwordslibrary.c	\
+	completion-providers/words/gtksourcecompletionwordsproposal.c	\
+	completion-providers/words/gtksourcecompletionwordsutils.c
+
+MSVCPROJS = gtksourceview
+
+gtksourceview_FILES = 					\
+	$(libgtksourceview_public_c_files)		\
+	$(libgtksourceview_private_c_files)		\
+	$(nodist_libgtksourceview_core_la_SOURCES)	\
+	$(gtksource_win32_more_sources)
+
+gtksourceview_EXCLUDES = dummy
+gtksourceview_HEADERS_DIR = $(libgtksourceview_3_0_includedir)
+gtksourceview_HEADERS_INST = \
+	$(libgtksourceview_public_headers)	\
+	$(nodist_libgtksourceview_3_0_include_HEADERS)
+
+gtksourceview_HEADERS_EXCLUDES = dummy
+
+include $(top_srcdir)/build/Makefile.msvcproj
+
+$(top_builddir)/build/win32/enums.headers: $(libgtksourceview_public_headers)
+	-$(RM) $(top_builddir)/build/win32/enum.headers
+	for F in $(libgtksourceview_public_headers); do \
+		case $$F in \
+		*.h) \
+			echo $$F' ^'>>$(top_builddir)/build/win32/enum.headers \
+			;; \
+		esac \
+	done
+
+# NMake/MSVC introspection
+if HAVE_INTROSPECTION
+NMAKE_INTROSPECTION_FILES = \
+	$(top_builddir)/build/win32/GtkSource-3.0.gir.msvc.introspect	\
+	$(top_builddir)/build/win32/GtkSource_3_0_gir_list
+
+MSVC_INTROSPECT_GIRS = GtkSource-3.0.gir
+
+GtkSource_3_0_gir_MSVC_FILES = \
+	$(libgtksourcecompletionwords_files)	\
+	$(libgtksourceview_public_headers)	\
+	$(libgtksourceview_public_c_files)	\
+	$(BUILT_SOURCES)
+
+GtkSource_3_0_gir_MSVC_INCLUDE_GIRS = Gtk-3.0 Gdk-3.0
+GtkSource_3_0_gir_MSVC_PACKAGES = gtk+-3.0 gdk-3.0
+GtkSource_3_0_gir_MSVC_EXPORT_PACKAGES = gtksourceview-3.0
+GtkSource_3_0_gir_MSVC_LIBS = gtksourceview-3.0
+GtkSource_3_0_gir_MSVC_CFLAGS = -I..\\..
+
+GtkSource_3_0_gir_MSVC_SCANNERFLAGS = \
+	--c-include=gtksourceview/gtksource.h	\
+	--warn-all	\
+	--filelist=GtkSource_3_0_gir_list
+
+include $(top_srcdir)/build/Makefile.msvc-introspection
+else
+NMAKE_INTROSPECTION_FILES =
+endif
+
+dist-hook: \
+	$(top_builddir)/build/win32/enums.headers		\
+	$(top_builddir)/build/win32/vs9/gtksourceview.vcproj	\
+	$(top_builddir)/build/win32/vs9/gtksourceview.headers	\
+	$(NMAKE_INTROSPECTION_FILES)
+
 -include $(top_srcdir)/git.mk
