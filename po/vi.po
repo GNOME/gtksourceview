@@ -1,114 +1,115 @@
 # Vietnamese translation for GTK Source View.
-# Copyright © 2009 GNOME i18n Project for Vietnamese.
+# Bản dịch tiếng Việt dành cho GTK Source View.
+# Copyright © 2015 GNOME i18n Project for Vietnamese.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002,2007,2011-2013.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview 2.5.4\n"
+"Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-02-15 13:41+0000\n"
-"PO-Revision-Date: 2013-03-02 21:02+0700\n"
-"Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
-"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
+"POT-Creation-Date: 2015-09-29 22:47+0000\n"
+"PO-Revision-Date: 2015-09-30 13:58+0700\n"
+"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
+"Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: LocFactoryEditor 1.8\n"
-
-#: ../data/glade/gtksourceview.xml.in.h:1
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #. Translators: It is related to an option of a set of values
-#: ../data/glade/gtksourceview.xml.in.h:3
+#: ../data/glade/gtksourceview.xml.in.h:2
 msgid "Disabled"
 msgstr "Tắt"
 
-#: ../data/glade/gtksourceview.xml.in.h:4
+#: ../data/glade/gtksourceview.xml.in.h:3
 msgid "Before"
 msgstr "Trước"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
+#: ../data/glade/gtksourceview.xml.in.h:4
 msgid "After"
 msgstr "Sau"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
+#: ../data/glade/gtksourceview.xml.in.h:5
 msgid "Always"
 msgstr "Luôn luôn"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#: ../data/glade/gtksourceview.xml.in.h:6
 msgid "Space"
 msgstr "Khoảng trắng"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#: ../data/glade/gtksourceview.xml.in.h:7
 msgid "Tab"
 msgstr "Tab"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#: ../data/glade/gtksourceview.xml.in.h:8
 msgid "Newline"
 msgstr "Dòng mới"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Non Breaking Whitespace"
 msgstr "Khoảng trắng không ngắt"
 
-#: ../data/glade/gtksourceview.xml.in.h:11
+#: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Leading"
 msgstr "Đầu"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:264
-#: ../gtksourceview/gtksourcegutterrenderertext.c:403
+#: ../data/glade/gtksourceview.xml.in.h:11
 msgid "Text"
 msgstr "Văn bản"
 
-#: ../data/glade/gtksourceview.xml.in.h:13
+#: ../data/glade/gtksourceview.xml.in.h:12
 msgid "Trailing"
 msgstr "Đuôi"
 
-#. Translators: "All" is used as a label in thestatus bar of the
-#. popup, telling that all completion pages are shown
-#: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:728
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
+#: ../data/glade/gtksourceview.xml.in.h:13
+#: ../gtksourceview/gtksourcecompletion.c:830
 msgid "All"
 msgstr "Tất cả"
 
 #: ../data/language-specs/actionscript.lang.h:1
-#: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
-#: ../data/language-specs/automake.lang.h:1
+#: ../data/language-specs/ada.lang.h:1
+#: ../data/language-specs/ansforth94.lang.h:1
+#: ../data/language-specs/asp.lang.h:1 ../data/language-specs/automake.lang.h:1
 #: ../data/language-specs/bennugd.lang.h:1
-#: ../data/language-specs/bluespec.lang.h:1
-#: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
-#: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
-#: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
+#: ../data/language-specs/bluespec.lang.h:1 ../data/language-specs/boo.lang.h:1
+#: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
+#: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
+#: ../data/language-specs/cpp.lang.h:1 ../data/language-specs/cpphdr.lang.h:1
 #: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
 #: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
-#: ../data/language-specs/erlang.lang.h:1
-#: ../data/language-specs/forth.lang.h:1
+#: ../data/language-specs/erlang.lang.h:1 ../data/language-specs/forth.lang.h:1
 #: ../data/language-specs/fortran.lang.h:1
-#: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
-#: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
+#: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/genie.lang.h:1
+#: ../data/language-specs/glsl.lang.h:1 ../data/language-specs/go.lang.h:1
+#: ../data/language-specs/haskell.lang.h:1
 #: ../data/language-specs/haskell-literate.lang.h:1
 #: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/j.lang.h:1 ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
+#: ../data/language-specs/llvm.lang.h:1
+#: ../data/language-specs/makefile.lang.h:1
+#: ../data/language-specs/meson.lang.h:1
 #: ../data/language-specs/nemerle.lang.h:1
-#: ../data/language-specs/netrexx.lang.h:1
-#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
-#: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
-#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1
-#: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
-#: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
+#: ../data/language-specs/netrexx.lang.h:1 ../data/language-specs/objc.lang.h:1
+#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/ocaml.lang.h:1
+#: ../data/language-specs/ooc.lang.h:1 ../data/language-specs/opal.lang.h:1
+#: ../data/language-specs/opencl.lang.h:1
+#: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/pig.lang.h:1
+#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/rust.lang.h:1
+#: ../data/language-specs/scala.lang.h:1 ../data/language-specs/scheme.lang.h:1
+#: ../data/language-specs/sml.lang.h:1 ../data/language-specs/sparql.lang.h:1
+#: ../data/language-specs/sql.lang.h:1
 #: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/verilog.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:1
-msgid "Sources"
+#: ../data/language-specs/thrift.lang.h:1 ../data/language-specs/vala.lang.h:1
+#: ../data/language-specs/vbnet.lang.h:1
+#: ../data/language-specs/verilog.lang.h:1 ../data/language-specs/vhdl.lang.h:1
+msgid "Source"
 msgstr "Nguồn"
 
 #: ../data/language-specs/actionscript.lang.h:2
@@ -117,10 +118,11 @@ msgstr "ActionScript"
 
 #. Any comment
 #: ../data/language-specs/actionscript.lang.h:3
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/cobol.lang.h:3
+#: ../data/language-specs/ada.lang.h:3
+#: ../data/language-specs/ansforth94.lang.h:5
+#: ../data/language-specs/asp.lang.h:3 ../data/language-specs/bennugd.lang.h:3
+#: ../data/language-specs/boo.lang.h:3 ../data/language-specs/cg.lang.h:3
+#: ../data/language-specs/c.lang.h:3 ../data/language-specs/cobol.lang.h:3
 #: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
 #: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
 #: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
@@ -128,29 +130,35 @@ msgstr "ActionScript"
 #: ../data/language-specs/forth.lang.h:3
 #: ../data/language-specs/fortran.lang.h:3
 #: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
-#: ../data/language-specs/haskell.lang.h:4
-#: ../data/language-specs/html.lang.h:3
+#: ../data/language-specs/genie.lang.h:3 ../data/language-specs/go.lang.h:3
+#: ../data/language-specs/gtkrc.lang.h:3
+#: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/html.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:3
 #: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
+#: ../data/language-specs/jade.lang.h:3 ../data/language-specs/java.lang.h:3
 #: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
+#: ../data/language-specs/llvm.lang.h:3 ../data/language-specs/lua.lang.h:3
+#: ../data/language-specs/matlab.lang.h:3
 #: ../data/language-specs/modelica.lang.h:3
 #: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/netrexx.lang.h:6
-#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
-#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
-#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
-#: ../data/language-specs/php.lang.h:3 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/ruby.lang.h:4
-#: ../data/language-specs/scheme.lang.h:3
+#: ../data/language-specs/netrexx.lang.h:6 ../data/language-specs/nsis.lang.h:4
+#: ../data/language-specs/ocaml.lang.h:3 ../data/language-specs/ocl.lang.h:3
+#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ooc.lang.h:3
+#: ../data/language-specs/opal.lang.h:4 ../data/language-specs/pascal.lang.h:3
+#: ../data/language-specs/perl.lang.h:3 ../data/language-specs/php.lang.h:4
+#: ../data/language-specs/pig.lang.h:8 ../data/language-specs/po.lang.h:3
+#: ../data/language-specs/prolog.lang.h:3
+#: ../data/language-specs/protobuf.lang.h:2 ../data/language-specs/rst.lang.h:8
+#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/rust.lang.h:3
+#: ../data/language-specs/scala.lang.h:5 ../data/language-specs/scheme.lang.h:3
 #: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
 #: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
-#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:3
-#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
-#: ../data/language-specs/verilog.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
+#: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
+#: ../data/language-specs/texinfo.lang.h:3
+#: ../data/language-specs/thrift.lang.h:3 ../data/language-specs/vala.lang.h:3
+#: ../data/language-specs/vbnet.lang.h:3
+#: ../data/language-specs/verilog.lang.h:3 ../data/language-specs/vhdl.lang.h:3
+#: ../data/language-specs/xml.lang.h:3 ../data/language-specs/yaml.lang.h:4
 msgid "Comment"
 msgstr "Ghi chú"
 
@@ -161,187 +169,197 @@ msgstr "Ghi chú"
 #: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
 #: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
 #: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/j.lang.h:7
-#: ../data/language-specs/json.lang.h:7
+#: ../data/language-specs/html.lang.h:8 ../data/language-specs/jade.lang.h:11
+#: ../data/language-specs/j.lang.h:7 ../data/language-specs/json.lang.h:7
 #: ../data/language-specs/nemerle.lang.h:4
 #: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
 #: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:7
-#: ../data/language-specs/xml.lang.h:13
+#: ../data/language-specs/php.lang.h:5 ../data/language-specs/prolog.lang.h:9
+#: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
+#: ../data/language-specs/verilog.lang.h:7 ../data/language-specs/xml.lang.h:13
 msgid "Error"
 msgstr "Lỗi"
 
 #. A string constant: "this is a string"
 #: ../data/language-specs/actionscript.lang.h:5
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:8
+#: ../data/language-specs/ada.lang.h:4
+#: ../data/language-specs/ansforth94.lang.h:9
+#: ../data/language-specs/asp.lang.h:4 ../data/language-specs/boo.lang.h:5
+#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cobol.lang.h:8
 #: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
-#: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
-#: ../data/language-specs/dosbatch.lang.h:4
+#: ../data/language-specs/csv.lang.h:6 ../data/language-specs/def.lang.h:17
+#: ../data/language-specs/d.lang.h:5 ../data/language-specs/dosbatch.lang.h:4
 #: ../data/language-specs/eiffel.lang.h:4
-#: ../data/language-specs/erlang.lang.h:7
-#: ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/erlang.lang.h:7 ../data/language-specs/forth.lang.h:4
+#: ../data/language-specs/fortran.lang.h:4
 #: ../data/language-specs/fsharp.lang.h:7
-#: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
+#: ../data/language-specs/gdb-log.lang.h:8
+#: ../data/language-specs/genie.lang.h:5 ../data/language-specs/go.lang.h:5
 #: ../data/language-specs/gtkrc.lang.h:4
 #: ../data/language-specs/haskell.lang.h:9
 #: ../data/language-specs/idl-exelis.lang.h:7
 #: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
+#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:5
 #: ../data/language-specs/javascript.lang.h:13
 #: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/lua.lang.h:4
+#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
+#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/meson.lang.h:5
 #: ../data/language-specs/modelica.lang.h:4
 #: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/netrexx.lang.h:4
-#: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
-#: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/ooc.lang.h:6 ../data/language-specs/opal.lang.h:7
-#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
-#: ../data/language-specs/php.lang.h:9 ../data/language-specs/po.lang.h:5
-#: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:4 ../data/language-specs/nsis.lang.h:5
+#: ../data/language-specs/objc.lang.h:6 ../data/language-specs/objj.lang.h:8
+#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ocl.lang.h:4
+#: ../data/language-specs/octave.lang.h:4 ../data/language-specs/ooc.lang.h:6
+#: ../data/language-specs/opal.lang.h:7 ../data/language-specs/pascal.lang.h:4
+#: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:10
+#: ../data/language-specs/po.lang.h:5 ../data/language-specs/prolog.lang.h:6
+#: ../data/language-specs/protobuf.lang.h:8
 #: ../data/language-specs/python3.lang.h:6
-#: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/python.lang.h:6 ../data/language-specs/ruby.lang.h:14
+#: ../data/language-specs/rust.lang.h:4 ../data/language-specs/scala.lang.h:6
 #: ../data/language-specs/scheme.lang.h:5
 #: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
 #: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
 #: ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4
-#: ../data/language-specs/vhdl.lang.h:4
+#: ../data/language-specs/thrift.lang.h:6 ../data/language-specs/vala.lang.h:6
+#: ../data/language-specs/vbnet.lang.h:4
+#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/vhdl.lang.h:4
+#: ../data/language-specs/yaml.lang.h:5
 msgid "String"
 msgstr "Chuỗi"
 
 #. Translators: refered to some specific keywords of the language that
 #. allow to get external functionalities
 #: ../data/language-specs/actionscript.lang.h:6
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:7
+#: ../data/language-specs/scala.lang.h:4
 msgid "External"
 msgstr "Bên ngoài"
 
 #: ../data/language-specs/actionscript.lang.h:7
-#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/java.lang.h:10 ../data/language-specs/ooc.lang.h:8
+#: ../data/language-specs/scala.lang.h:8
 msgid "Declaration"
-msgstr "Lời tuyên bố"
+msgstr "Khai báo"
 
 #: ../data/language-specs/actionscript.lang.h:8
 #: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
+#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:11
 #: ../data/language-specs/ooc.lang.h:9
 msgid "Storage Class"
-msgstr "Hạng cất giữ"
+msgstr "Lớp lưu trữ"
 
 #: ../data/language-specs/actionscript.lang.h:9
-#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
+#: ../data/language-specs/java.lang.h:12 ../data/language-specs/ooc.lang.h:10
 msgid "Scope Declaration"
-msgstr "Lời tuyên bố phạm vi"
+msgstr "Khai báo phạm vi"
 
 #. keywords: "if", "for", "while", etc.
 #: ../data/language-specs/actionscript.lang.h:10
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
-#: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
+#: ../data/language-specs/ada.lang.h:5
+#: ../data/language-specs/ansforth94.lang.h:3
+#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/awk.lang.h:3
+#: ../data/language-specs/bennugd.lang.h:7
 #: ../data/language-specs/bluespec.lang.h:7
 #: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
 #: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
 #: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:11
 #: ../data/language-specs/css.lang.h:14 ../data/language-specs/cuda.lang.h:3
 #: ../data/language-specs/def.lang.h:47 ../data/language-specs/d.lang.h:6
-#: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
+#: ../data/language-specs/dosbatch.lang.h:5 ../data/language-specs/dot.lang.h:5
+#: ../data/language-specs/eiffel.lang.h:7
 #: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
 #: ../data/language-specs/forth.lang.h:6
-#: ../data/language-specs/fortran.lang.h:5
+#: ../data/language-specs/fortran.lang.h:6
 #: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/gtkrc.lang.h:5
+#: ../data/language-specs/genie.lang.h:10 ../data/language-specs/glsl.lang.h:5
+#: ../data/language-specs/go.lang.h:7 ../data/language-specs/gtkrc.lang.h:5
 #: ../data/language-specs/haskell.lang.h:7
 #: ../data/language-specs/idl-exelis.lang.h:6
 #: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
+#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:13
 #: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/lua.lang.h:5 ../data/language-specs/matlab.lang.h:4
+#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lex.lang.h:4
+#: ../data/language-specs/llvm.lang.h:5 ../data/language-specs/lua.lang.h:5
+#: ../data/language-specs/matlab.lang.h:4
 #: ../data/language-specs/modelica.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:8
-#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
-#: ../data/language-specs/octave.lang.h:13
+#: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/objc.lang.h:3
+#: ../data/language-specs/objj.lang.h:4 ../data/language-specs/ocaml.lang.h:9
+#: ../data/language-specs/ocl.lang.h:5 ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
 #: ../data/language-specs/opencl.lang.h:3
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
-#: ../data/language-specs/php.lang.h:12 ../data/language-specs/po.lang.h:7
+#: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
 #: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:6
 #: ../data/language-specs/python3.lang.h:4
 #: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scheme.lang.h:6
+#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/rust.lang.h:6
+#: ../data/language-specs/scala.lang.h:10
+#: ../data/language-specs/scheme.lang.h:6
 #: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
 #: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
 #: ../data/language-specs/sql.lang.h:6
 #: ../data/language-specs/systemverilog.lang.h:5
 #: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
+#: ../data/language-specs/thrift.lang.h:5 ../data/language-specs/vala.lang.h:7
+#: ../data/language-specs/vbnet.lang.h:6
 #: ../data/language-specs/verilog.lang.h:11
 #: ../data/language-specs/vhdl.lang.h:6
 msgid "Keyword"
 msgstr "Từ khóa"
 
 #: ../data/language-specs/actionscript.lang.h:11
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/java.lang.h:13
+#: ../data/language-specs/boo.lang.h:12 ../data/language-specs/csharp.lang.h:13
+#: ../data/language-specs/d.lang.h:9 ../data/language-specs/fsharp.lang.h:21
+#: ../data/language-specs/genie.lang.h:12 ../data/language-specs/java.lang.h:14
 #: ../data/language-specs/javascript.lang.h:4
 #: ../data/language-specs/json.lang.h:5
 #: ../data/language-specs/nemerle.lang.h:10
 #: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/php.lang.h:16 ../data/language-specs/vala.lang.h:9
+#: ../data/language-specs/php.lang.h:17 ../data/language-specs/vala.lang.h:9
 msgid "Null Value"
 msgstr "Vô giá trị"
 
 #. A boolean constant: TRUE, false
 #: ../data/language-specs/actionscript.lang.h:12
 #: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:19
-#: ../data/language-specs/csharp.lang.h:14
-#: ../data/language-specs/def.lang.h:34
-#: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
-#: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/lua.lang.h:10
+#: ../data/language-specs/bennugd.lang.h:12 ../data/language-specs/cg.lang.h:16
+#: ../data/language-specs/c.lang.h:19 ../data/language-specs/csharp.lang.h:14
+#: ../data/language-specs/def.lang.h:34 ../data/language-specs/fsharp.lang.h:19
+#: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:10
+#: ../data/language-specs/ini.lang.h:10 ../data/language-specs/java.lang.h:15
+#: ../data/language-specs/llvm.lang.h:11 ../data/language-specs/lua.lang.h:11
 #: ../data/language-specs/nemerle.lang.h:11
 #: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:17
-#: ../data/language-specs/protobuf.lang.h:5 ../data/language-specs/R.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:8
+#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/protobuf.lang.h:7 ../data/language-specs/R.lang.h:8
+#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/rust.lang.h:8
+#: ../data/language-specs/sml.lang.h:11 ../data/language-specs/vala.lang.h:8
+#: ../data/language-specs/vbnet.lang.h:9 ../data/language-specs/vhdl.lang.h:8
 msgid "Boolean value"
-msgstr "Giá trị lôgic"
+msgstr "Giá trị lôgíc"
 
 #. A generic number constant
 #: ../data/language-specs/actionscript.lang.h:13
 #: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
 #: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
 #: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/j.lang.h:14 ../data/language-specs/netrexx.lang.h:16
-#: ../data/language-specs/prolog.lang.h:7
-#: ../data/language-specs/vhdl.lang.h:11
+#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/genie.lang.h:14
+#: ../data/language-specs/java.lang.h:16 ../data/language-specs/j.lang.h:14
+#: ../data/language-specs/julia.lang.h:5 ../data/language-specs/llvm.lang.h:12
+#: ../data/language-specs/netrexx.lang.h:16
+#: ../data/language-specs/prolog.lang.h:7 ../data/language-specs/rust.lang.h:10
+#: ../data/language-specs/scala.lang.h:12 ../data/language-specs/vhdl.lang.h:11
 msgid "Number"
 msgstr "Số"
 
 #: ../data/language-specs/actionscript.lang.h:14
-#: ../data/language-specs/java.lang.h:16
+#: ../data/language-specs/java.lang.h:17
 #: ../data/language-specs/javascript.lang.h:12
 #: ../data/language-specs/ooc.lang.h:18
 msgid "Future Reserved Keywords"
-msgstr "Từ khoá dành riêng tương lai"
+msgstr "Từ khóa dành riêng tương lai"
 
 #: ../data/language-specs/actionscript.lang.h:15
 #: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:11
@@ -349,27 +367,27 @@ msgstr "Từ khoá dành riêng tương lai"
 #: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
 #: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
 #: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/eiffel.lang.h:8
-#: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:9
+#: ../data/language-specs/eiffel.lang.h:8 ../data/language-specs/forth.lang.h:7
+#: ../data/language-specs/fortran.lang.h:10
 #: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
-#: ../data/language-specs/gtkrc.lang.h:7
+#: ../data/language-specs/genie.lang.h:8 ../data/language-specs/glsl.lang.h:4
+#: ../data/language-specs/go.lang.h:8 ../data/language-specs/gtkrc.lang.h:7
 #: ../data/language-specs/haskell.lang.h:8
 #: ../data/language-specs/idl-exelis.lang.h:4
 #: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
+#: ../data/language-specs/java.lang.h:18
 #: ../data/language-specs/javascript.lang.h:8
-#: ../data/language-specs/nemerle.lang.h:9
-#: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
-#: ../data/language-specs/ocaml.lang.h:12 ../data/language-specs/ocl.lang.h:7
-#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
-#: ../data/language-specs/opencl.lang.h:4
-#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/protobuf.lang.h:3
+#: ../data/language-specs/llvm.lang.h:10
+#: ../data/language-specs/nemerle.lang.h:9 ../data/language-specs/objc.lang.h:4
+#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ocaml.lang.h:12
+#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/ooc.lang.h:19
+#: ../data/language-specs/opal.lang.h:11 ../data/language-specs/opencl.lang.h:4
+#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
+#: ../data/language-specs/pig.lang.h:3 ../data/language-specs/protobuf.lang.h:5
+#: ../data/language-specs/rust.lang.h:7 ../data/language-specs/scala.lang.h:14
 #: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
-#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/vala.lang.h:5
-#: ../data/language-specs/vbnet.lang.h:7
+#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/thrift.lang.h:4
+#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
 msgid "Data Type"
 msgstr "Kiểu dữ liệu"
 
@@ -378,10 +396,9 @@ msgid "Ada"
 msgstr "Ada"
 
 #. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6
-#: ../data/language-specs/bennugd.lang.h:10
+#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:10
 #: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/csharp.lang.h:15
+#: ../data/language-specs/csharp.lang.h:15 ../data/language-specs/csv.lang.h:3
 #: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
 #: ../data/language-specs/eiffel.lang.h:15
 #: ../data/language-specs/erlang.lang.h:10
@@ -389,7 +406,7 @@ msgstr "Ada"
 #: ../data/language-specs/idl-exelis.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:13
 #: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
+#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:20
 #: ../data/language-specs/python3.lang.h:12
 #: ../data/language-specs/python.lang.h:13
 #: ../data/language-specs/ruby.lang.h:11
@@ -400,8 +417,8 @@ msgstr "Số thập phân"
 #: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
 #: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
 #: ../data/language-specs/forth.lang.h:5
-#: ../data/language-specs/fsharp.lang.h:20
-#: ../data/language-specs/glsl.lang.h:3
+#: ../data/language-specs/fortran.lang.h:11
+#: ../data/language-specs/fsharp.lang.h:20 ../data/language-specs/glsl.lang.h:3
 #: ../data/language-specs/haskell.lang.h:3
 #: ../data/language-specs/idl-exelis.lang.h:5
 #: ../data/language-specs/idl.lang.h:5 ../data/language-specs/nemerle.lang.h:5
@@ -414,8 +431,7 @@ msgstr "Bộ tiền xử lý"
 msgid "Arbitrary base number"
 msgstr "Số cơ sở tùy ý"
 
-#: ../data/language-specs/ada.lang.h:12
-#: ../data/language-specs/csharp.lang.h:17
+#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/csharp.lang.h:17
 #: ../data/language-specs/verilog.lang.h:15
 #: ../data/language-specs/vhdl.lang.h:10
 msgid "Real number"
@@ -425,20 +441,92 @@ msgstr "Số thực"
 #: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
 #: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
 #: ../data/language-specs/eiffel.lang.h:12
+#: ../data/language-specs/fortran.lang.h:14
 #: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
 #: ../data/language-specs/haskell.lang.h:11
-#: ../data/language-specs/java.lang.h:3
+#: ../data/language-specs/java.lang.h:4
 #: ../data/language-specs/javascript.lang.h:3
 #: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
 #: ../data/language-specs/netrexx.lang.h:3
 #: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
+#: ../data/language-specs/php.lang.h:9 ../data/language-specs/prolog.lang.h:10
 #: ../data/language-specs/python3.lang.h:7
 #: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/sml.lang.h:8 ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
+#: ../data/language-specs/texinfo.lang.h:4
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "Ký tự đã thoát"
+
+#: ../data/language-specs/ansforth94.lang.h:2
+msgid "ANS-Forth94"
+msgstr "ANS-Forth94"
+
+#: ../data/language-specs/ansforth94.lang.h:4
+msgid "Obsolete Keyword"
+msgstr "Từ khóa cũ"
+
+#: ../data/language-specs/ansforth94.lang.h:6
+msgid "Alert"
+msgstr "Cảnh giác"
+
+#. A character constant: 'c'
+#: ../data/language-specs/ansforth94.lang.h:7 ../data/language-specs/c.lang.h:8
+#: ../data/language-specs/csharp.lang.h:7 ../data/language-specs/def.lang.h:15
+#: ../data/language-specs/erlang.lang.h:8 ../data/language-specs/gap.lang.h:4
+#: ../data/language-specs/go.lang.h:6 ../data/language-specs/haskell.lang.h:10
+#: ../data/language-specs/java.lang.h:6 ../data/language-specs/julia.lang.h:4
+#: ../data/language-specs/nemerle.lang.h:6
+#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/rust.lang.h:5
+#: ../data/language-specs/sml.lang.h:6 ../data/language-specs/vhdl.lang.h:5
+msgid "Character"
+msgstr "Ký tự"
+
+#: ../data/language-specs/ansforth94.lang.h:8
+msgid "Word"
+msgstr "Từ"
+
+#. Any constant
+#: ../data/language-specs/ansforth94.lang.h:10
+#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
+#: ../data/language-specs/def.lang.h:13 ../data/language-specs/gtk-doc.lang.h:8
+#: ../data/language-specs/libtool.lang.h:3
+#: ../data/language-specs/ruby.lang.h:18
+msgid "Constant"
+msgstr "Hằng"
+
+#: ../data/language-specs/ansforth94.lang.h:11
+#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:9
+#: ../data/language-specs/cobol.lang.h:5
+#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
+#: ../data/language-specs/llvm.lang.h:8
+#: ../data/language-specs/makefile.lang.h:3
+#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:13
+#: ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/pkgconfig.lang.h:3
+#: ../data/language-specs/prolog.lang.h:4
+#: ../data/language-specs/protobuf.lang.h:4
+#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
+#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+msgid "Variable"
+msgstr "Biến"
+
+#: ../data/language-specs/ansforth94.lang.h:12
+msgid "Local Variable"
+msgstr "Biến cục bộ"
+
+#: ../data/language-specs/ansforth94.lang.h:13
+msgid "Single Number"
+msgstr "Số nguyên đơn"
+
+#: ../data/language-specs/ansforth94.lang.h:14
+msgid "Double Number"
+msgstr "Số chính đôi"
+
+#: ../data/language-specs/ansforth94.lang.h:15
+#: ../data/language-specs/haskell.lang.h:12
+msgid "Float"
+msgstr "Chấm động"
 
 #: ../data/language-specs/asp.lang.h:2
 msgid "ASP"
@@ -446,13 +534,14 @@ msgstr "ASP"
 
 #. A function name (also: methods for classes)
 #: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/changelog.lang.h:9
 #: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
 #: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
 #: ../data/language-specs/gtk-doc.lang.h:10
 #: ../data/language-specs/idl-exelis.lang.h:10
 #: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/lua.lang.h:8 ../data/language-specs/scheme.lang.h:7
+#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:9
+#: ../data/language-specs/scheme.lang.h:7
 #: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
 #: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
 msgid "Function"
@@ -460,14 +549,16 @@ msgstr "Hàm"
 
 #. Operators: "+", "*", etc.
 #: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
+#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:7
 #: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
 #: ../data/language-specs/erlang.lang.h:5
-#: ../data/language-specs/imagej.lang.h:9
+#: ../data/language-specs/imagej.lang.h:9 ../data/language-specs/julia.lang.h:9
+#: ../data/language-specs/meson.lang.h:4
 #: ../data/language-specs/modelica.lang.h:5
 #: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
-#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
+#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:15
 #: ../data/language-specs/prolog.lang.h:8
+#: ../data/language-specs/scala.lang.h:13
 #: ../data/language-specs/sparql.lang.h:15
 msgid "Operator"
 msgstr "Toán tử"
@@ -508,109 +599,94 @@ msgstr "Tiền tố"
 
 #: ../data/language-specs/automake.lang.h:7
 msgid "Optional Target"
-msgstr "Đích tuỳ chọn"
+msgstr "Đích tùy chọn"
 
 #: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
-msgstr "Đích dựng sẵn"
+msgstr "Đích tích hợp"
 
 #: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
 msgstr "Từ khóa khác"
 
 #: ../data/language-specs/automake.lang.h:10
+#: ../data/language-specs/rst.lang.h:10
 msgid "Substitution"
 msgstr "Thay thế"
 
-#: ../data/language-specs/awk.lang.h:1
-#: ../data/language-specs/dosbatch.lang.h:1
+#: ../data/language-specs/awk.lang.h:1 ../data/language-specs/dosbatch.lang.h:1
 #: ../data/language-specs/javascript.lang.h:1
 #: ../data/language-specs/lua.lang.h:1 ../data/language-specs/m4.lang.h:1
 #: ../data/language-specs/perl.lang.h:1 ../data/language-specs/php.lang.h:1
 #: ../data/language-specs/python3.lang.h:1
 #: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
 #: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-msgid "Scripts"
+msgid "Script"
 msgstr "Văn lệnh"
 
 #: ../data/language-specs/awk.lang.h:2
 msgid "awk"
 msgstr "awk"
 
-#: ../data/language-specs/awk.lang.h:4
+#: ../data/language-specs/awk.lang.h:4 ../data/language-specs/lex.lang.h:5
 msgid "Pattern"
 msgstr "Mẫu"
 
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:21 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
-msgid "Variable"
-msgstr "Biến"
-
 #: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
-#: ../data/language-specs/netrexx.lang.h:15
+#: ../data/language-specs/genie.lang.h:15 ../data/language-specs/glsl.lang.h:6
+#: ../data/language-specs/go.lang.h:18 ../data/language-specs/netrexx.lang.h:15
 #: ../data/language-specs/perl.lang.h:8
 #: ../data/language-specs/python3.lang.h:17
 #: ../data/language-specs/python.lang.h:18
 msgid "Builtin Function"
-msgstr "Hàm dựng sẵn"
+msgstr "Hàm tích hợp"
 
 #: ../data/language-specs/bennugd.lang.h:2
 msgid "BennuGD"
 msgstr "BennuGD"
 
 #. Any variable name
-#: ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/def.lang.h:36 ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/bennugd.lang.h:5 ../data/language-specs/def.lang.h:36
+#: ../data/language-specs/llvm.lang.h:9 ../data/language-specs/php.lang.h:7
+#: ../data/language-specs/rust.lang.h:9
 msgid "Identifier"
-msgstr "Bộ nhận diện"
+msgstr "Định danh"
 
 #. A floating point constant: 2.3e10
 #: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
-#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/go.lang.h:11
+#: ../data/language-specs/c.lang.h:15 ../data/language-specs/csv.lang.h:5
+#: ../data/language-specs/def.lang.h:24 ../data/language-specs/d.lang.h:11
+#: ../data/language-specs/erlang.lang.h:9 ../data/language-specs/go.lang.h:11
 #: ../data/language-specs/idl-exelis.lang.h:8
 #: ../data/language-specs/json.lang.h:9
 #: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
+#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:19
 #: ../data/language-specs/python3.lang.h:11
 #: ../data/language-specs/python.lang.h:12 ../data/language-specs/R.lang.h:10
 #: ../data/language-specs/ruby.lang.h:10
 msgid "Floating point number"
 msgstr "Số chấm động"
 
-#: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:18
-#: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
-#: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
-#: ../data/language-specs/nemerle.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:21
+#: ../data/language-specs/bennugd.lang.h:11 ../data/language-specs/cg.lang.h:15
+#: ../data/language-specs/c.lang.h:18 ../data/language-specs/csharp.lang.h:16
+#: ../data/language-specs/d.lang.h:15 ../data/language-specs/eiffel.lang.h:16
+#: ../data/language-specs/go.lang.h:15 ../data/language-specs/nemerle.lang.h:16
+#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:22
 msgid "Hexadecimal number"
 msgstr "Số thập lục"
 
 #: ../data/language-specs/bibtex.lang.h:1
 #: ../data/language-specs/docbook.lang.h:1 ../data/language-specs/dtd.lang.h:1
 #: ../data/language-specs/gtk-doc.lang.h:1
-#: ../data/language-specs/haddock.lang.h:1
-#: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
+#: ../data/language-specs/haddock.lang.h:1 ../data/language-specs/html.lang.h:1
+#: ../data/language-specs/jade.lang.h:1 ../data/language-specs/latex.lang.h:1
 #: ../data/language-specs/mallard.lang.h:1
 #: ../data/language-specs/markdown.lang.h:1
-#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
+#: ../data/language-specs/mediawiki.lang.h:1
+#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/rst.lang.h:1
+#: ../data/language-specs/sweave.lang.h:1 ../data/language-specs/t2t.lang.h:1
 #: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
 #: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:251
-#: ../gtksourceview/gtksourcegutterrenderertext.c:395
 msgid "Markup"
 msgstr "Mã định dạng"
 
@@ -641,6 +717,7 @@ msgid "Annotation"
 msgstr "Chú thích"
 
 #: ../data/language-specs/bluespec.lang.h:5
+#: ../data/language-specs/rust.lang.h:12
 msgid "Attribute"
 msgstr "Thuộc tính"
 
@@ -650,6 +727,7 @@ msgstr "Nhập BVI"
 
 #: ../data/language-specs/bluespec.lang.h:8
 #: ../data/language-specs/gtk-doc.lang.h:9
+#: ../data/language-specs/julia.lang.h:15
 #: ../data/language-specs/systemverilog.lang.h:6
 #: ../data/language-specs/verilog.lang.h:13
 #: ../data/language-specs/vhdl.lang.h:7
@@ -660,36 +738,38 @@ msgstr "Kiểu"
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python3.lang.h:5
+#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/genie.lang.h:4
+#: ../data/language-specs/python3.lang.h:5
 #: ../data/language-specs/python.lang.h:5
 msgid "Multiline string"
 msgstr "Chuỗi đa dòng"
 
-#: ../data/language-specs/boo.lang.h:6
+#: ../data/language-specs/boo.lang.h:6 ../data/language-specs/genie.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:24
+#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
 msgid "Regular Expression"
 msgstr "Biểu thức chính quy"
 
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/sparql.lang.h:8
-#: ../data/language-specs/xml.lang.h:12 ../data/language-specs/xslt.lang.h:4
+#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/genie.lang.h:7
+#: ../data/language-specs/sparql.lang.h:8 ../data/language-specs/xml.lang.h:12
+#: ../data/language-specs/xslt.lang.h:4
 msgid "Namespace"
 msgstr "Miền tên"
 
-#: ../data/language-specs/boo.lang.h:9
+#: ../data/language-specs/boo.lang.h:9 ../data/language-specs/genie.lang.h:9
 msgid "Definition"
 msgstr "Lời định nghĩa"
 
-#: ../data/language-specs/boo.lang.h:11
+#: ../data/language-specs/boo.lang.h:11 ../data/language-specs/genie.lang.h:11
 #: ../data/language-specs/python3.lang.h:9
 #: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/ruby.lang.h:19
+#: ../data/language-specs/ruby.lang.h:20
 msgid "Special Variable"
 msgstr "Biến đặc biệt"
 
-#: ../data/language-specs/boo.lang.h:13
-#: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
-#: ../data/language-specs/imagej.lang.h:4
+#: ../data/language-specs/boo.lang.h:13 ../data/language-specs/desktop.lang.h:9
+#: ../data/language-specs/d.lang.h:10 ../data/language-specs/genie.lang.h:13
+#: ../data/language-specs/imagej.lang.h:4 ../data/language-specs/julia.lang.h:6
 #: ../data/language-specs/libtool.lang.h:4
 #: ../data/language-specs/modelica.lang.h:9
 #: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
@@ -697,9 +777,9 @@ msgstr "Biến đặc biệt"
 #: ../data/language-specs/python.lang.h:11
 #: ../data/language-specs/scheme.lang.h:4
 #: ../data/language-specs/scilab.lang.h:8
-#: ../data/language-specs/sparql.lang.h:9
+#: ../data/language-specs/sparql.lang.h:9 ../data/language-specs/yaml.lang.h:12
 msgid "Boolean"
-msgstr "Lôgic"
+msgstr "Lôgíc"
 
 #: ../data/language-specs/cg.lang.h:2
 msgid "CG Shader Language"
@@ -710,6 +790,7 @@ msgid "Bindings"
 msgstr "Gắn kết"
 
 #: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
+#: ../data/language-specs/fortran.lang.h:13
 #: ../data/language-specs/objj.lang.h:7
 msgid "Included File"
 msgstr "Tập tin đã gồm"
@@ -717,7 +798,7 @@ msgstr "Tập tin đã gồm"
 #: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
 #: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
 #: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:20
+#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:21
 msgid "Octal number"
 msgstr "Số bát phân"
 
@@ -730,40 +811,27 @@ msgstr "Toán tử Swizzle"
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
-#: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:16
+#: ../data/language-specs/octave.lang.h:12
+#: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "Dựng sẵn"
 
-#. *
-#. * SECTION:language
-#. * @Short_description: Object representing a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
-#. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
-#.
 #: ../data/language-specs/changelog.lang.h:1
 #: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
-#: ../data/language-specs/desktop.lang.h:1
+#: ../data/language-specs/csv.lang.h:1 ../data/language-specs/desktop.lang.h:1
 #: ../data/language-specs/diff.lang.h:1 ../data/language-specs/dot.lang.h:1
 #: ../data/language-specs/dpatch.lang.h:1
 #: ../data/language-specs/gdb-log.lang.h:1
 #: ../data/language-specs/gtkrc.lang.h:1 ../data/language-specs/ini.lang.h:1
-#: ../data/language-specs/json.lang.h:1
-#: ../data/language-specs/libtool.lang.h:1
+#: ../data/language-specs/json.lang.h:1 ../data/language-specs/libtool.lang.h:1
 #: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
-#: ../data/language-specs/pkgconfig.lang.h:1
-#: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
+#: ../data/language-specs/pkgconfig.lang.h:1 ../data/language-specs/po.lang.h:1
+#: ../data/language-specs/protobuf.lang.h:1
 #: ../data/language-specs/puppet.lang.h:1
-#: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:5
-#: ../data/language-specs/yacc.lang.h:1
-#: ../gtksourceview/gtksourcelanguage.c:55
-msgid "Others"
+#: ../data/language-specs/rpmspec.lang.h:1
+#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yacc.lang.h:1
+#: ../data/language-specs/yaml.lang.h:1
+msgid "Other"
 msgstr "Khác"
 
 #: ../data/language-specs/changelog.lang.h:2
@@ -775,24 +843,27 @@ msgstr "Bản ghi đổi"
 msgid "Date"
 msgstr "Ngày"
 
-#: ../data/language-specs/changelog.lang.h:4
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
+#. Translators: the name of a person, not an object.
+#. names, e.g., name of package, name of environment, name of class
+#: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/latex.lang.h:19
 msgid "Name"
 msgstr "Tên"
 
-#: ../data/language-specs/changelog.lang.h:5
+#: ../data/language-specs/changelog.lang.h:6
 msgid "E-mail address"
 msgstr "Đia chỉ thư"
 
-#: ../data/language-specs/changelog.lang.h:6
+#: ../data/language-specs/changelog.lang.h:7
 msgid "File"
 msgstr "Tập tin"
 
-#: ../data/language-specs/changelog.lang.h:7
+#: ../data/language-specs/changelog.lang.h:8
+#: ../data/language-specs/rst.lang.h:6
 msgid "Bullet"
 msgstr "Chấm điểm"
 
-#: ../data/language-specs/changelog.lang.h:9
+#: ../data/language-specs/changelog.lang.h:10
 msgid "Release"
 msgstr "Bản phát hành"
 
@@ -809,20 +880,8 @@ msgstr "C"
 msgid "Common Defines"
 msgstr "Định nghĩa dùng chung"
 
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
-msgid "Character"
-msgstr "Ký tự"
-
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
-#: ../data/language-specs/verilog.lang.h:5
+#: ../data/language-specs/c.lang.h:13 ../data/language-specs/genie.lang.h:16
+#: ../data/language-specs/go.lang.h:9 ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
 msgstr "Chuyển đổi printf"
 
@@ -839,39 +898,39 @@ msgstr "Tên tín hiệu"
 msgid "CMake"
 msgstr "CMake"
 
-#: ../data/language-specs/cmake.lang.h:3
+#: ../data/language-specs/cmake.lang.h:3 ../data/language-specs/meson.lang.h:3
 msgid "Builtin Command"
-msgstr "Lệnh dựng sẵn"
+msgstr "Lệnh tích hợp"
 
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
+#: ../data/language-specs/cmake.lang.h:4
+msgid "Deprecated Builtin Command"
+msgstr "Lệnh tích hợp đã lạc hậu"
+
+#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/glsl.lang.h:8
 msgid "Builtin Variable"
-msgstr "Biến dựng sẵn"
+msgstr "Biến tích hợp"
 
-#. Any constant
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13
-#: ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:17
-msgid "Constant"
-msgstr "Hằng"
-
-#: ../data/language-specs/cmake.lang.h:7
+#: ../data/language-specs/cmake.lang.h:8
 msgid "Control Keyword"
 msgstr "Từ khóa Điều khiển"
 
 #: ../data/language-specs/cobol.lang.h:2
-msgid "Cobol"
-msgstr "Cobol"
+msgid "COBOL"
+msgstr "COBOL"
 
 #. Any statement
 #: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
+#: ../data/language-specs/protobuf.lang.h:3
 msgid "Statement"
-msgstr "Câu lệnh"
+msgstr "Chỉ lệnh"
 
 #: ../data/language-specs/cpp.lang.h:2
 msgid "C++"
 msgstr "C++"
+
+#: ../data/language-specs/cpphdr.lang.h:2
+msgid "C++ Header"
+msgstr "Đầu C++"
 
 #: ../data/language-specs/csharp.lang.h:2
 msgid "C#"
@@ -900,12 +959,11 @@ msgstr "Khác 3"
 
 #. Translator: it is a type of number
 #: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8 ../data/language-specs/gap.lang.h:7
+#: ../data/language-specs/fortran.lang.h:9 ../data/language-specs/gap.lang.h:7
 #: ../data/language-specs/gtkrc.lang.h:6
-#: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
+#: ../data/language-specs/haskell.lang.h:13 ../data/language-specs/ini.lang.h:7
+#: ../data/language-specs/json.lang.h:8
 #: ../data/language-specs/modelica.lang.h:10
-#: ../data/language-specs/octave.lang.h:9
 #: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
 #: ../data/language-specs/sql.lang.h:8
 msgid "Decimal"
@@ -934,6 +992,14 @@ msgstr "Bộ chọn lớp"
 #: ../data/language-specs/css.lang.h:17
 msgid "Tag Name Selector"
 msgstr "Bộ chọn tên thẻ"
+
+#: ../data/language-specs/csv.lang.h:2
+msgid "CSV"
+msgstr "CSV"
+
+#: ../data/language-specs/csv.lang.h:4
+msgid "Escaped character"
+msgstr "Ký tự đã thoát"
 
 #: ../data/language-specs/cuda.lang.h:2
 msgid "CUDA"
@@ -997,7 +1063,7 @@ msgstr "Số phức tạp"
 #. (see http://docs.python.org/lib/built-in-funcs.html)
 #: ../data/language-specs/def.lang.h:41
 msgid "Built-in identifier"
-msgstr "Bộ nhận diện dựng sẵn"
+msgstr "Định danh tích hợp"
 
 #. A primitive data type: int, long, char, etc.
 #: ../data/language-specs/def.lang.h:49
@@ -1011,20 +1077,54 @@ msgstr "Kiểu dữ liệu"
 msgid "Preprocessor directive"
 msgstr "Chỉ thị tiền xử lý"
 
-#. Reserved keywords: like "const" and "goto" in Java
+#. to mark possibily errors or unrecommended syntax
 #: ../data/language-specs/def.lang.h:55
+msgid "Warning"
+msgstr "Cảnh báo"
+
+#. Reserved keywords: like "const" and "goto" in Java
+#: ../data/language-specs/def.lang.h:57
 msgid "Reserved keyword"
-msgstr "Từ khoá dành riêng"
+msgstr "Từ khóa dành riêng"
 
 #. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:57
+#: ../data/language-specs/def.lang.h:59
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "Ghi chú (SỬA ĐI, CẦN LÀM, XXX v.v.)"
 
 #. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:59
+#: ../data/language-specs/def.lang.h:61
 msgid "Underlined"
 msgstr "Gạch dưới"
+
+#. Text that acts as some kind of heading, such as h1, h2, ... in html.
+#: ../data/language-specs/def.lang.h:63
+msgid "Heading 0"
+msgstr "Đầu 0"
+
+#: ../data/language-specs/def.lang.h:64
+msgid "Heading 1"
+msgstr "Đầu 1"
+
+#: ../data/language-specs/def.lang.h:65
+msgid "Heading 2"
+msgstr "Đầu 2"
+
+#: ../data/language-specs/def.lang.h:66
+msgid "Heading 3"
+msgstr "Đầu 3"
+
+#: ../data/language-specs/def.lang.h:67
+msgid "Heading 4"
+msgstr "Đầu 4"
+
+#: ../data/language-specs/def.lang.h:68
+msgid "Heading 5"
+msgstr "Đầu 5"
+
+#: ../data/language-specs/def.lang.h:69
+msgid "Heading 6"
+msgstr "Đầu 6"
 
 #: ../data/language-specs/desktop.lang.h:2
 msgid ".desktop"
@@ -1036,10 +1136,9 @@ msgstr "Nhóm"
 
 #. Translators: "Key" here means key value, that is the left hand
 #. side in a myoption=something line in a .desktop file
-#: ../data/language-specs/desktop.lang.h:6
-#: ../data/language-specs/json.lang.h:2
+#: ../data/language-specs/desktop.lang.h:6 ../data/language-specs/json.lang.h:2
 msgid "Key"
-msgstr "Khoá"
+msgstr "Khóa"
 
 #: ../data/language-specs/desktop.lang.h:7
 msgid "Translation"
@@ -1076,7 +1175,7 @@ msgstr "Dòng bị thêm"
 #. Others 2
 #: ../data/language-specs/diff.lang.h:5
 msgid "Removed line"
-msgstr "Dòng bị xoá"
+msgstr "Dòng bị xóa"
 
 #. Others 3
 #: ../data/language-specs/diff.lang.h:7
@@ -1132,10 +1231,10 @@ msgstr "Phần tử Cấu trúc"
 
 #: ../data/language-specs/dosbatch.lang.h:2
 msgid "DOS Batch"
-msgstr "Bó tập tin DOS"
+msgstr "Văn lệnh DOS"
 
 #: ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/latex.lang.h:8
+#: ../data/language-specs/latex.lang.h:8 ../data/language-specs/sweave.lang.h:4
 msgid "Command"
 msgstr "Lệnh"
 
@@ -1143,7 +1242,8 @@ msgstr "Lệnh"
 msgid "Graphviz Dot"
 msgstr "Graphviz Dot"
 
-#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/xml.lang.h:8
+#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/jade.lang.h:7
+#: ../data/language-specs/xml.lang.h:8
 msgid "Attribute name"
 msgstr "Tên thuộc tính"
 
@@ -1152,8 +1252,8 @@ msgid "DPatch"
 msgstr "Đắp vá D"
 
 #: ../data/language-specs/dpatch.lang.h:3
-msgid "patch-start"
-msgstr "bắt đầu đắp vắ"
+msgid "Patch Start"
+msgstr "Bắt đầu miếng vắ"
 
 #: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
 msgid "DTD"
@@ -1172,8 +1272,8 @@ msgid "error"
 msgstr "lỗi"
 
 #: ../data/language-specs/dtd.lang.h:6
-msgid "quoted-value"
-msgstr "giá-trị-trích_dẫn"
+msgid "Quoted Value"
+msgstr "Giá trị trích dẫn"
 
 #: ../data/language-specs/eiffel.lang.h:2
 msgid "Eiffel"
@@ -1196,7 +1296,7 @@ msgid "Exception Handling"
 msgstr "Quản lý ngoại lệ"
 
 #: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:20
+#: ../data/language-specs/ruby.lang.h:21
 msgid "Predefined Variable"
 msgstr "Biến định sẵn"
 
@@ -1208,7 +1308,7 @@ msgstr "Giá trị bãi bỏ"
 #: ../data/language-specs/javascript.lang.h:6
 #: ../data/language-specs/json.lang.h:6
 msgid "Boolean Value"
-msgstr "Giá trị lôgic"
+msgstr "Giá trị lôgíc"
 
 #: ../data/language-specs/erlang.lang.h:2
 msgid "Erlang"
@@ -1221,8 +1321,7 @@ msgstr "Atom"
 #: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/modelica.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/sml.lang.h:9
 #: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "Base-N Integer"
@@ -1237,7 +1336,7 @@ msgstr "Chỉ thị trình biên dịch"
 
 #: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
 #: ../data/language-specs/idl-exelis.lang.h:1
-#: ../data/language-specs/imagej.lang.h:1
+#: ../data/language-specs/imagej.lang.h:1 ../data/language-specs/julia.lang.h:1
 #: ../data/language-specs/matlab.lang.h:1
 #: ../data/language-specs/modelica.lang.h:1
 #: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
@@ -1249,10 +1348,9 @@ msgstr "Khoa học"
 msgid "FCL"
 msgstr "FCL"
 
-#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:4
+#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:4
 #: ../data/language-specs/modelica.lang.h:11
-#: ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "Chấm động"
@@ -1261,7 +1359,7 @@ msgstr "Chấm động"
 msgid "Block"
 msgstr "Khối"
 
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
+#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:11
 #: ../data/language-specs/scilab.lang.h:9
 msgid "Reserved Constant"
 msgstr "Hằng dành riêng"
@@ -1283,20 +1381,24 @@ msgstr "Chuỗi lỗi"
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:6
-msgid "Intrinsic function"
-msgstr ""
-
 #: ../data/language-specs/fortran.lang.h:7
+msgid "Intrinsic function"
+msgstr "Hàm Intrinsic"
+
+#: ../data/language-specs/fortran.lang.h:8
 msgid "BOZ Literal"
 msgstr "Nghĩa chữ BOZ"
+
+#: ../data/language-specs/fortran.lang.h:12
+msgid "OpenMP directives"
+msgstr "Chỉ thị bao OpenMP"
 
 #: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
 msgstr "F#"
 
-#: ../data/language-specs/fsharp.lang.h:5
-#: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/sml.lang.h:12
+#: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/ocaml.lang.h:6
+#: ../data/language-specs/sml.lang.h:12
 msgid "Floating Point number"
 msgstr "Số chấm động"
 
@@ -1308,7 +1410,7 @@ msgstr "Từ khóa kiểu, mô-đun hay đối tượng"
 #: ../data/language-specs/fsharp.lang.h:10
 #: ../data/language-specs/ocaml.lang.h:11
 msgid "Builtin-function keyword"
-msgstr "Từ khoá hàm dựng sẵn"
+msgstr "Từ khóa hàm tích hợp"
 
 #: ../data/language-specs/fsharp.lang.h:12
 #: ../data/language-specs/ocaml.lang.h:13
@@ -1346,11 +1448,11 @@ msgstr "Log GDB"
 
 #: ../data/language-specs/gdb-log.lang.h:3
 msgid "Thread Action"
-msgstr "Hành động nhánh"
+msgstr "Hành động tiến trình"
 
 #: ../data/language-specs/gdb-log.lang.h:4
 msgid "Thread Header"
-msgstr ""
+msgstr "Phần đầu tuyến trình"
 
 #: ../data/language-specs/gdb-log.lang.h:5
 msgid "Frame Number"
@@ -1376,6 +1478,10 @@ msgstr "Chuỗi không đầy đủ"
 msgid "Prompt"
 msgstr "Dấu nhắc"
 
+#: ../data/language-specs/genie.lang.h:2
+msgid "Genie"
+msgstr "Genie"
+
 #: ../data/language-specs/glsl.lang.h:2
 msgid "OpenGL Shading Language"
 msgstr "Ngôn ngữ OpenGL Shading"
@@ -1384,11 +1490,11 @@ msgstr "Ngôn ngữ OpenGL Shading"
 #: ../data/language-specs/python3.lang.h:15
 #: ../data/language-specs/python.lang.h:16
 msgid "Builtin Constant"
-msgstr "Hằng dựng sẵn"
+msgstr "Hằng tích hợp"
 
 #: ../data/language-specs/glsl.lang.h:9
 msgid "Reserved Keywords"
-msgstr "Từ khoá dành riêng"
+msgstr "Từ khóa dành riêng"
 
 #: ../data/language-specs/go.lang.h:2
 msgid "Go"
@@ -1407,6 +1513,7 @@ msgid "Inline Documentation Section"
 msgstr "Phần tài liệu trực tiếp"
 
 #: ../data/language-specs/gtk-doc.lang.h:4
+#: ../data/language-specs/python.lang.h:19
 msgid "Function Name"
 msgstr "Tên hàm"
 
@@ -1461,7 +1568,7 @@ msgstr "Chỉ thị Haddock"
 
 #: ../data/language-specs/haddock.lang.h:5
 msgid "Hyperlinked Identifier"
-msgstr "Bộ nhận diện đã siêu liên kết"
+msgstr "Định danh đã siêu liên kết"
 
 #: ../data/language-specs/haddock.lang.h:6
 msgid "Hyperlinked Module Name"
@@ -1473,6 +1580,7 @@ msgstr "Thoát"
 
 #: ../data/language-specs/haddock.lang.h:8
 #: ../data/language-specs/markdown.lang.h:13
+#: ../data/language-specs/rst.lang.h:4
 msgid "Emphasis"
 msgstr "Nhấn mạnh"
 
@@ -1502,11 +1610,12 @@ msgstr "Danh sách lời định nghĩa"
 
 #: ../data/language-specs/haddock.lang.h:15
 #: ../data/language-specs/markdown.lang.h:8
+#: ../data/language-specs/mediawiki.lang.h:6
 msgid "URL"
 msgstr "URL"
 
 #: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/t2t.lang.h:13
+#: ../data/language-specs/t2t.lang.h:13 ../data/language-specs/yaml.lang.h:6
 msgid "Anchor"
 msgstr "Neo"
 
@@ -1516,13 +1625,9 @@ msgid "Haskell"
 msgstr "Haskell"
 
 #: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:18
+#: ../data/language-specs/ruby.lang.h:19
 msgid "Symbol"
 msgstr "Ký hiệu"
-
-#: ../data/language-specs/haskell.lang.h:12
-msgid "Float"
-msgstr "Chấm động"
 
 #: ../data/language-specs/haskell.lang.h:14
 msgid "Octal"
@@ -1541,6 +1646,7 @@ msgid "HTML"
 msgstr "HTML"
 
 #: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
+#: ../data/language-specs/yaml.lang.h:7
 msgid "Tag"
 msgstr "Thẻ"
 
@@ -1552,6 +1658,30 @@ msgstr "Tên thuộc tính"
 #: ../data/language-specs/markdown.lang.h:11
 msgid "Attribute Value"
 msgstr "Giá trị thuộc tính"
+
+#: ../data/language-specs/html.lang.h:9
+msgid "Page title"
+msgstr "Tiêu đề trang"
+
+#: ../data/language-specs/html.lang.h:10
+msgid "Heading level 1"
+msgstr "Phần đầu mức 1"
+
+#: ../data/language-specs/html.lang.h:11
+msgid "Heading level 2"
+msgstr "Phần đầu mức 2"
+
+#: ../data/language-specs/html.lang.h:12
+msgid "Heading level 3"
+msgstr "Phần đầu mức 3"
+
+#: ../data/language-specs/html.lang.h:13
+msgid "Heading level 4"
+msgstr "Phần đầu mức 4"
+
+#: ../data/language-specs/html.lang.h:14
+msgid "Heading level 5"
+msgstr "Phần đầu mức 5"
 
 #: ../data/language-specs/idl-exelis.lang.h:2
 msgid "IDL-Exelis"
@@ -1581,6 +1711,35 @@ msgstr "Ký tự thoát"
 #: ../data/language-specs/ini.lang.h:2
 msgid ".ini"
 msgstr ".ini"
+
+#: ../data/language-specs/jade.lang.h:2
+msgid "Jade"
+msgstr "Jade"
+
+#: ../data/language-specs/jade.lang.h:4 ../data/language-specs/xml.lang.h:4
+msgid "DOCTYPE"
+msgstr "DOCTYPE"
+
+#: ../data/language-specs/jade.lang.h:5 ../data/language-specs/xml.lang.h:6
+msgid "Processing instruction"
+msgstr "Câu lệnh xử lý"
+
+#: ../data/language-specs/jade.lang.h:6 ../data/language-specs/mxml.lang.h:3
+#: ../data/language-specs/xml.lang.h:7
+msgid "Element name"
+msgstr "Tên yếu tố"
+
+#: ../data/language-specs/jade.lang.h:8 ../data/language-specs/xml.lang.h:9
+msgid "Attribute value"
+msgstr "Giá trị thuộc tính"
+
+#: ../data/language-specs/jade.lang.h:9
+msgid "Tags"
+msgstr "Thẻ"
+
+#: ../data/language-specs/jade.lang.h:10 ../data/language-specs/xml.lang.h:10
+msgid "Entity"
+msgstr "Thực thể"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/java.lang.h:2
@@ -1630,7 +1789,7 @@ msgstr "Toàn cục"
 
 #: ../data/language-specs/j.lang.h:10
 msgid "Lab Text"
-msgstr ""
+msgstr "Lab Text"
 
 #: ../data/language-specs/j.lang.h:11
 msgid "Local"
@@ -1642,19 +1801,48 @@ msgstr "Danh từ"
 
 #: ../data/language-specs/j.lang.h:13
 msgid "Explicit Noun Definition"
-msgstr ""
+msgstr "Định nghĩa Danh từ Rõ ràng"
 
 #: ../data/language-specs/j.lang.h:15
 msgid "Parens"
-msgstr ""
+msgstr "Parens"
 
 #: ../data/language-specs/j.lang.h:16
 msgid "Primitive"
-msgstr "Nguyên thuỷ"
+msgstr "Nguyên thủy"
 
 #: ../data/language-specs/j.lang.h:18
 msgid "Verb"
 msgstr "Động từ"
+
+#: ../data/language-specs/julia.lang.h:2
+msgid "Julia"
+msgstr "Julia"
+
+#: ../data/language-specs/julia.lang.h:7
+msgid "Math Constant"
+msgstr "Hằng toán học"
+
+#: ../data/language-specs/julia.lang.h:8 ../data/language-specs/R.lang.h:7
+#: ../data/language-specs/scala.lang.h:11
+msgid "Special Constant"
+msgstr "Hằng đặc biệt"
+
+#: ../data/language-specs/julia.lang.h:11 ../data/language-specs/rust.lang.h:13
+msgid "Macro"
+msgstr "Vĩ lệnh"
+
+#: ../data/language-specs/julia.lang.h:12
+msgid "External Command"
+msgstr "Lệnh nội tại"
+
+#: ../data/language-specs/julia.lang.h:13
+msgid "Built-in Function"
+msgstr "Hàm tích hợp"
+
+#: ../data/language-specs/julia.lang.h:14
+msgid "Module"
+msgstr "Mô-đun"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/latex.lang.h:2
@@ -1670,22 +1858,75 @@ msgid "Inline Math Mode"
 msgstr "Chế độ toán học trực tiếp"
 
 #: ../data/language-specs/latex.lang.h:6
-msgid "math-bound"
-msgstr "kết hợp với toán học"
+msgid "Math Boundary"
+msgstr "Biên toán học"
 
 # Literal: don't translate / Nghĩa chữ: đừng dịch
 #: ../data/language-specs/latex.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:11
 msgid "Include"
-msgstr "Include"
+msgstr "Bao gồm"
 
-#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/t2t.lang.h:16
+#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/sweave.lang.h:5
+#: ../data/language-specs/t2t.lang.h:16
 msgid "Verbatim"
 msgstr "Đúng nguyên văn"
+
+#: ../data/language-specs/latex.lang.h:10
+msgid "Special Character"
+msgstr "Ký tự đặc biệt"
+
+#: ../data/language-specs/latex.lang.h:11
+msgid "Part Heading"
+msgstr "Đầu đề bộ phận"
+
+#: ../data/language-specs/latex.lang.h:12
+msgid "Chapter Heading"
+msgstr "Đầu đề chương"
+
+#: ../data/language-specs/latex.lang.h:13
+msgid "Section Heading"
+msgstr "Đầu đề Phần"
+
+#: ../data/language-specs/latex.lang.h:14
+msgid "SubSection Heading"
+msgstr "Đầu đề Phần phụ"
+
+#: ../data/language-specs/latex.lang.h:15
+msgid "SubSubSection Heading"
+msgstr "Đầu đề Phần phụ phụ"
+
+#: ../data/language-specs/latex.lang.h:16
+msgid "Paragraph Heading"
+msgstr "Đầu đề đoạn văn"
+
+#: ../data/language-specs/latex.lang.h:17
+msgid "SubParagraph Heading"
+msgstr "Đầu đề Đoạn văn phụ"
+
+#: ../data/language-specs/lex.lang.h:2
+msgid "Lex"
+msgstr "Lex"
+
+#: ../data/language-specs/lex.lang.h:3
+msgid "Token"
+msgstr "Thẻ bài"
+
+#: ../data/language-specs/lex.lang.h:6
+msgid "Expression"
+msgstr "Biểu thức"
 
 #: ../data/language-specs/libtool.lang.h:2
 msgid "libtool"
 msgstr "libtool"
+
+#: ../data/language-specs/llvm.lang.h:2
+msgid "LLVM IR"
+msgstr "LLVM IR"
+
+#: ../data/language-specs/llvm.lang.h:7
+msgid "Constants"
+msgstr "Hằng"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/lua.lang.h:2
@@ -1694,9 +1935,15 @@ msgstr "Lua"
 
 #: ../data/language-specs/lua.lang.h:7
 msgid "Reserved Identifier"
-msgstr "Bộ nhận diện dành riêng"
+msgstr "Định danh chưa dùng đến"
 
-#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/ruby.lang.h:8
+# Name: don't translate / Tên: đừng dịch
+#: ../data/language-specs/lua.lang.h:8
+#: ../data/language-specs/markdown.lang.h:10
+msgid "Label"
+msgstr "Nhãn"
+
+#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/ruby.lang.h:8
 msgid "Nil Constant"
 msgstr "Hằng rỗng"
 
@@ -1705,12 +1952,12 @@ msgid "m4"
 msgstr "m4"
 
 #: ../data/language-specs/m4.lang.h:3
-msgid "m4-comment"
-msgstr "ghi-chú-m4"
+msgid "m4 Comment"
+msgstr "Ghi chú m4"
 
 #: ../data/language-specs/m4.lang.h:4
 msgid "m4 Macro"
-msgstr "vĩ lệnh m4"
+msgstr "Vĩ lệnh m4"
 
 #: ../data/language-specs/m4.lang.h:5
 msgid "Autoconf Macro"
@@ -1779,14 +2026,15 @@ msgstr "Phần tử khối"
 
 #: ../data/language-specs/mallard.lang.h:6
 msgid "Inline Elements"
-msgstr "Phần tử inline"
+msgstr "Phần tử chung dòng"
 
 #: ../data/language-specs/markdown.lang.h:2
 msgid "Markdown"
 msgstr "Markdown"
 
 #: ../data/language-specs/markdown.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/t2t.lang.h:6
+#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/rst.lang.h:3
+#: ../data/language-specs/t2t.lang.h:6
 msgid "Header"
 msgstr "Đầu trang"
 
@@ -1799,6 +2047,7 @@ msgid "List Marker"
 msgstr "Đánh dấu danh sách"
 
 #: ../data/language-specs/markdown.lang.h:6
+#: ../data/language-specs/rst.lang.h:11
 msgid "Code"
 msgstr "Mã"
 
@@ -1810,17 +2059,13 @@ msgstr "Đánh dấu trích dẫn khối"
 msgid "Link Text"
 msgstr "Văn bản liên kết"
 
-# Name: don't translate / Tên: đừng dịch
-#: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:238
-msgid "Label"
-msgstr "Nhãn"
-
 #: ../data/language-specs/markdown.lang.h:12
 msgid "Image Marker"
 msgstr "Đánh dấu ảnh"
 
 #: ../data/language-specs/markdown.lang.h:14
+#: ../data/language-specs/mediawiki.lang.h:3
+#: ../data/language-specs/rst.lang.h:5
 msgid "Strong Emphasis"
 msgstr "Nhấn mạnh nhiều"
 
@@ -1836,13 +2081,70 @@ msgstr "Ngắt dòng"
 msgid "Matlab"
 msgstr "Matlab"
 
+#: ../data/language-specs/mediawiki.lang.h:2
+msgid "MediaWiki"
+msgstr "MediaWiki"
+
+#: ../data/language-specs/mediawiki.lang.h:4
+msgid "Light Emphasis"
+msgstr "Nhấn nhẹ"
+
+#: ../data/language-specs/mediawiki.lang.h:5
+msgid "Signature"
+msgstr "Chữ ký"
+
+#: ../data/language-specs/mediawiki.lang.h:7
+#: ../data/language-specs/rst.lang.h:9
+msgid "Link"
+msgstr "Liên kết"
+
+#: ../data/language-specs/mediawiki.lang.h:8
+msgid "Symbol on a Link"
+msgstr "Ký hiệu trên một liên kết"
+
+#: ../data/language-specs/mediawiki.lang.h:9
+msgid "Line"
+msgstr "Dòng"
+
+#: ../data/language-specs/mediawiki.lang.h:10
+msgid "List"
+msgstr "Danh sách"
+
+#: ../data/language-specs/mediawiki.lang.h:11
+msgid "Magic Word"
+msgstr "Từ ma thuật"
+
+#: ../data/language-specs/mediawiki.lang.h:12
+msgid "Symbol of a Table"
+msgstr "Ký hiệu của bảng"
+
+#: ../data/language-specs/mediawiki.lang.h:13
+msgid "Preformatted"
+msgstr "Tiền định dạng"
+
+#: ../data/language-specs/mediawiki.lang.h:14
+msgid "Redirect"
+msgstr "Chuyển hướng"
+
+#: ../data/language-specs/mediawiki.lang.h:15
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: ../data/language-specs/mediawiki.lang.h:16
+msgid "Template"
+msgstr "Mẫu"
+
+#: ../data/language-specs/meson.lang.h:2
+msgid "Meson"
+msgstr "Meson"
+
 #: ../data/language-specs/modelica.lang.h:2
 msgid "Modelica"
 msgstr "Modelica"
 
 #: ../data/language-specs/modelica.lang.h:6
 msgid "Class type"
-msgstr "Loại lớp"
+msgstr "Kiểu lớp"
 
 #: ../data/language-specs/modelica.lang.h:8
 msgid "Default Attribute"
@@ -1851,10 +2153,6 @@ msgstr "Thuộc tính mặc định"
 #: ../data/language-specs/mxml.lang.h:2
 msgid "MXML"
 msgstr "MXML"
-
-#: ../data/language-specs/mxml.lang.h:3 ../data/language-specs/xml.lang.h:7
-msgid "Element name"
-msgstr "Tên yếu tố"
 
 #: ../data/language-specs/mxml.lang.h:4 ../data/language-specs/xml.lang.h:5
 msgid "CDATA delimiter"
@@ -1875,7 +2173,7 @@ msgstr "Ngoại"
 
 #: ../data/language-specs/netrexx.lang.h:8
 msgid "Options"
-msgstr "Tuỳ chọn"
+msgstr "Tùy chọn"
 
 #: ../data/language-specs/netrexx.lang.h:9
 msgid "Data Types"
@@ -1941,7 +2239,7 @@ msgstr "Toán tử thao tác"
 msgid "Octave"
 msgstr "Tám câu"
 
-#: ../data/language-specs/octave.lang.h:12
+#: ../data/language-specs/octave.lang.h:9
 msgid "Package Manager"
 msgstr "Trình quản lý gói"
 
@@ -1953,15 +2251,14 @@ msgstr "OOC"
 msgid "Opal"
 msgstr "Opal"
 
-#: ../data/language-specs/opal.lang.h:3
-#: ../data/language-specs/python3.lang.h:3
+#: ../data/language-specs/opal.lang.h:3 ../data/language-specs/python3.lang.h:3
 #: ../data/language-specs/python.lang.h:3
 msgid "Module Handler"
 msgstr "Bộ xử lý mô-đun"
 
 #: ../data/language-specs/opal.lang.h:12
 msgid "Keysymbol"
-msgstr ""
+msgstr "Keysymbol"
 
 #: ../data/language-specs/opencl.lang.h:2
 msgid "OpenCL"
@@ -1977,7 +2274,7 @@ msgstr "Hàm thiết bị"
 
 #: ../data/language-specs/opencl.lang.h:7
 msgid "Device Cast"
-msgstr ""
+msgstr "Device Cast"
 
 #: ../data/language-specs/opencl.lang.h:8
 msgid "OpenCL Constant"
@@ -2005,13 +2302,13 @@ msgstr "Chỉ thị đường"
 msgid "Include Statement"
 msgstr "Câu lệnh Include"
 
-#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:22
+#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:11
+#: ../data/language-specs/ruby.lang.h:23
 msgid "Heredoc"
 msgstr "Heredoc"
 
-#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:23 ../data/language-specs/sh.lang.h:12
+#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:12
+#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
 msgid "Heredoc Bound"
 msgstr "Kết hợp Heradoc"
 
@@ -2043,9 +2340,33 @@ msgstr "Tiêu đề POD"
 msgid "PHP"
 msgstr "PHP"
 
-#: ../data/language-specs/php.lang.h:13
+#: ../data/language-specs/php.lang.h:3
+msgid "Preprocessor tags"
+msgstr "Thẻ tiền xử lý"
+
+#: ../data/language-specs/php.lang.h:14
 msgid "Common Function"
 msgstr "Hàm chung"
+
+#: ../data/language-specs/pig.lang.h:2
+msgid "Pig"
+msgstr "Pig"
+
+#: ../data/language-specs/pig.lang.h:4
+msgid "Reserved Words"
+msgstr "Đảo ngược từ"
+
+#: ../data/language-specs/pig.lang.h:5
+msgid "Built In Functions"
+msgstr "Hàm tích hợp"
+
+#: ../data/language-specs/pig.lang.h:6
+msgid "Boolean values"
+msgstr "Giá trị lôgíc"
+
+#: ../data/language-specs/pig.lang.h:7 ../data/language-specs/yaml.lang.h:11
+msgid "Null"
+msgstr "Null"
 
 #: ../data/language-specs/pkgconfig.lang.h:2
 msgid "pkg-config"
@@ -2082,9 +2403,9 @@ msgstr "Tham số"
 
 #: ../data/language-specs/puppet.lang.h:5
 msgid "Metaparameters"
-msgstr ""
+msgstr "Tham số biến đổi"
 
-#: ../data/language-specs/puppet.lang.h:6
+#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
 msgid "Functions"
 msgstr "Hàm"
 
@@ -2113,7 +2434,7 @@ msgstr "Định dạng"
 #: ../data/language-specs/python3.lang.h:16
 #: ../data/language-specs/python.lang.h:17
 msgid "Builtin Object"
-msgstr "Đối tượng dựng sẵn"
+msgstr "Đối tượng tích hợp"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/python.lang.h:2
@@ -2121,8 +2442,16 @@ msgid "Python"
 msgstr "Python"
 
 #: ../data/language-specs/python.lang.h:9
-msgid "string-conversion"
-msgstr "chuyển đổi chuỗi"
+msgid "String Conversion"
+msgstr "Chuyển đổi chuỗi"
+
+#: ../data/language-specs/python.lang.h:20
+msgid "Class Name"
+msgstr "Tên lớp"
+
+#: ../data/language-specs/python.lang.h:21
+msgid "Decorator"
+msgstr "Trang trí"
 
 #: ../data/language-specs/R.lang.h:2
 msgid "R"
@@ -2130,7 +2459,7 @@ msgstr "R"
 
 #: ../data/language-specs/R.lang.h:4
 msgid "Reserved Class"
-msgstr "Hạng dành riêng"
+msgstr "Lớp chưa dùng"
 
 #: ../data/language-specs/R.lang.h:5
 msgid "Assignment Operator"
@@ -2139,10 +2468,6 @@ msgstr "Toán tử gán"
 #: ../data/language-specs/R.lang.h:6
 msgid "Delimiter"
 msgstr "Bộ giới hạn"
-
-#: ../data/language-specs/R.lang.h:7
-msgid "Special Constant"
-msgstr "Hằng đặc biệt"
 
 #: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:16
 msgid "Integer Number"
@@ -2194,7 +2519,15 @@ msgstr "Cái chuyển"
 
 #: ../data/language-specs/rpmspec.lang.h:15
 msgid "Email"
-msgstr "Thư"
+msgstr "Thư điện tử"
+
+#: ../data/language-specs/rst.lang.h:2
+msgid "reStructuredText"
+msgstr "reStructuredText"
+
+#: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
+msgid "Directive"
+msgstr "Chỉ thị"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/ruby.lang.h:2
@@ -2213,6 +2546,35 @@ msgstr "Bộ xử lý mô-đun"
 msgid "Numeric literal"
 msgstr "Nghĩa chữ thuộc số"
 
+#: ../data/language-specs/ruby.lang.h:15
+#: ../data/language-specs/sparql.lang.h:10
+msgid "Literal"
+msgstr "Nghĩa đen"
+
+#: ../data/language-specs/rust.lang.h:2
+msgid "Rust"
+msgstr "Rust"
+
+#: ../data/language-specs/rust.lang.h:11
+msgid "Scope"
+msgstr "Scope"
+
+#: ../data/language-specs/scala.lang.h:2
+msgid "Scala"
+msgstr "Scala"
+
+#: ../data/language-specs/scala.lang.h:9
+msgid "Modifier"
+msgstr "Bổ từ"
+
+#: ../data/language-specs/scala.lang.h:15
+msgid "Built In"
+msgstr "Dựng sẵn"
+
+#: ../data/language-specs/scala.lang.h:17
+msgid "XML Tag"
+msgstr "Thẻ XML"
+
 #: ../data/language-specs/scheme.lang.h:2
 msgid "Scheme"
 msgstr "Lược đồ"
@@ -2230,13 +2592,29 @@ msgstr "sh"
 msgid "Variable Definition"
 msgstr "Định nghĩa biến"
 
+#. *
+#. * SECTION:language
+#. * @Short_description: Represents a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
+#. * particular language. Use #GtkSourceLanguageManager to obtain a
+#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
+#. * to a #GtkSourceBuffer.
+#.
+#: ../data/language-specs/sh.lang.h:10 ../data/language-specs/texinfo.lang.h:5
+#: ../gtksourceview/gtksourcelanguage.c:54
+msgid "Others"
+msgstr "Khác"
+
 #: ../data/language-specs/sh.lang.h:11
 msgid "Common Commands"
 msgstr "Lệnh thường dùng"
 
 #: ../data/language-specs/sh.lang.h:13
 msgid "Subshell"
-msgstr "Trình bao con"
+msgstr "Hệ vỏ con"
 
 #: ../data/language-specs/sml.lang.h:2
 msgid "Standard ML"
@@ -2244,7 +2622,7 @@ msgstr "ML chuẩn"
 
 #: ../data/language-specs/sml.lang.h:13
 msgid "Module name, Variant, etc"
-msgstr ""
+msgstr "Tên mô-đun, biến v.v.."
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/sparql.lang.h:2
@@ -2258,10 +2636,6 @@ msgstr "Lớp"
 #: ../data/language-specs/sparql.lang.h:6
 msgid "Individual"
 msgstr "Cá thể"
-
-#: ../data/language-specs/sparql.lang.h:10
-msgid "Literal"
-msgstr "Nghĩa đen"
 
 #: ../data/language-specs/sparql.lang.h:11
 msgid "Predicate"
@@ -2284,6 +2658,10 @@ msgstr "SQL"
 msgid "No idea what it is"
 msgstr "Không nhận ra"
 
+#: ../data/language-specs/sweave.lang.h:2
+msgid "Sweave"
+msgstr "Sweave"
+
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/systemverilog.lang.h:2
 msgid "SystemVerilog"
@@ -2295,11 +2673,11 @@ msgstr "txt2tags"
 
 #: ../data/language-specs/t2t.lang.h:4
 msgid "Option"
-msgstr "Tuỳ chọn"
+msgstr "Tùy chọn"
 
 #: ../data/language-specs/t2t.lang.h:5
 msgid "Option Name"
-msgstr "Tên tuỳ chọn"
+msgstr "Tên tùy chọn"
 
 #: ../data/language-specs/t2t.lang.h:8
 msgid "Section 1"
@@ -2321,13 +2699,11 @@ msgstr "Phần 4"
 msgid "Section 5"
 msgstr "Phần 5"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:112
-#: ../gtksourceview/gtksourcestyle.c:113
+#: ../data/language-specs/t2t.lang.h:14
 msgid "Italic"
 msgstr "Nghiêng"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:104
-#: ../gtksourceview/gtksourcestyle.c:105
+#: ../data/language-specs/t2t.lang.h:15
 msgid "Bold"
 msgstr "Đậm"
 
@@ -2357,6 +2733,10 @@ msgstr "Thuộc tính tập tin"
 msgid "Generated Content"
 msgstr "Nội dung đã tạo ra"
 
+#: ../data/language-specs/thrift.lang.h:2
+msgid "Thrift"
+msgstr "Thrift"
+
 #: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
 msgstr "Vala"
@@ -2377,7 +2757,7 @@ msgstr "Tác vụ hệ thống IEEE"
 
 #: ../data/language-specs/verilog.lang.h:10
 msgid "LRM Additional System Task"
-msgstr ""
+msgstr "Tác vụ hệ thống thêm LRM"
 
 # Name: don't translate / Tên: đừng dịch
 #: ../data/language-specs/verilog.lang.h:12
@@ -2394,22 +2774,6 @@ msgstr "VHDL"
 msgid "XML"
 msgstr "XML"
 
-#: ../data/language-specs/xml.lang.h:4
-msgid "DOCTYPE"
-msgstr "DOCTYPE"
-
-#: ../data/language-specs/xml.lang.h:6
-msgid "Processing instruction"
-msgstr "Câu lệnh xử lý"
-
-#: ../data/language-specs/xml.lang.h:9
-msgid "Attribute value"
-msgstr "Giá trị thuộc tính"
-
-#: ../data/language-specs/xml.lang.h:10
-msgid "Entity"
-msgstr "Thực thể"
-
 #: ../data/language-specs/xslt.lang.h:2
 msgid "XSLT"
 msgstr "XSLT"
@@ -2423,12 +2787,36 @@ msgid "Yacc"
 msgstr "Yacc"
 
 #: ../data/language-specs/yacc.lang.h:5
-msgid "token-type"
-msgstr "Kiểu-hiệu-bài"
+msgid "token type"
+msgstr "kiểu hiệu bài"
 
 #: ../data/language-specs/yacc.lang.h:6
 msgid "rule"
 msgstr "quy tắc"
+
+#: ../data/language-specs/yaml.lang.h:2
+msgid "YAML"
+msgstr "YAML"
+
+#: ../data/language-specs/yaml.lang.h:3
+msgid "Block literal"
+msgstr "Đoạn văn"
+
+#: ../data/language-specs/yaml.lang.h:8
+msgid "Alias"
+msgstr "Bí danh"
+
+#: ../data/language-specs/yaml.lang.h:9
+msgid "Map key"
+msgstr "Ánh xạ phím"
+
+#: ../data/language-specs/yaml.lang.h:13
+msgid "Integer"
+msgstr "Số nguyên"
+
+#: ../data/language-specs/yaml.lang.h:14
+msgid "Floating point"
+msgstr "Số thực dấu chấm động"
 
 #: ../data/styles/classic.xml.h:1
 msgid "Classic"
@@ -2462,6 +2850,22 @@ msgstr "Oblivion"
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Lược đồ màu tối dùng bảng chọn màu Tango"
 
+#: ../data/styles/solarized-dark.xml.h:1
+msgid "Solarized Dark"
+msgstr "Solarized tối"
+
+#: ../data/styles/solarized-dark.xml.h:2
+msgid "Color scheme using Solarized dark color palette"
+msgstr "Lược đồ màu dùng bảng chọn màu Solarized tối"
+
+#: ../data/styles/solarized-light.xml.h:1
+msgid "Solarized Light"
+msgstr "Solarized sáng"
+
+#: ../data/styles/solarized-light.xml.h:2
+msgid "Color scheme using Solarized light color palette"
+msgstr "Lược đồ màu dùng bảng chọn màu Solarized sáng"
+
 #: ../data/styles/tango.xml.h:1
 msgid "Tango"
 msgstr "Tango"
@@ -2470,280 +2874,52 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Lược đồ màu dùng bảng chọn màu Tango"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:381
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:328
 msgid "Document Words"
-msgstr ""
+msgstr "Document Words"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
-msgid "The provider name"
-msgstr "Tên nhà cung cấp"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:838
+msgid "Invalid byte sequence in conversion input"
+msgstr "Dãy byte không hợp lệ trong phần đầu vào chuyển đổi"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:473
-#: ../gtksourceview/gtksourcecompletionitem.c:277
-msgid "Icon"
-msgstr "Biểu tượng"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:844
+#, c-format
+msgid "Error during conversion: %s"
+msgstr "Gặp lỗi khi chuyển đổi: %s"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:474
-msgid "The provider icon"
-msgstr "Biểu tượng nhà cung cấp"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:925
+#, c-format
+msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgstr "Chưa hỗ trợ chuyển đổi từ bảng mã “%s” sang “UTF-8”"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:481
-msgid "Proposals Batch Size"
-msgstr ""
+#: ../gtksourceview/gtksourcebufferoutputstream.c:931
+#, c-format
+msgid "Could not open converter from '%s' to 'UTF-8'"
+msgstr "Không thể mở bộ chuyển đổi từ “%s” sang “UTF-8”"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:482
-msgid "Number of proposals added in one batch"
-msgstr ""
+#: ../gtksourceview/gtksourcebufferoutputstream.c:986
+msgid "Invalid object, not initialized"
+msgstr "Đối tượng không hợp lệ, chưa được khởi tạo"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:491
-msgid "Scan Batch Size"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:492
-msgid "Number of lines scanned in one batch"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:501
-msgid "Minimum Word Size"
-msgstr "Kích thước từ tối thiểu"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-msgid "The minimum word size to complete"
-msgstr "Kích thước từ tối thiểu để hoàn thành"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:511
-msgid "Interactive Delay"
-msgstr "Khoảng chờ tương tác"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:512
-msgid "The delay before initiating interactive completion"
-msgstr "Khoảng chờ trước khi khởi động hoàn thành tương tác"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:521
-msgid "Priority"
-msgstr "Độ ưu tiên"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:522
-msgid "Provider priority"
-msgstr "Độ ưu tiên nhà cung cấp"
-
-#: ../gtksourceview/gtksourcebuffer.c:237
-#: ../gtksourceview/gtksourceprintcompositor.c:504
-msgid "Highlight Syntax"
-msgstr "Tô sáng cú pháp"
-
-#: ../gtksourceview/gtksourcebuffer.c:238
-msgid "Whether to highlight syntax in the buffer"
-msgstr "Có nên tô sáng cú pháp trong vùng đệm hay không"
-
-#: ../gtksourceview/gtksourcebuffer.c:251
-msgid "Highlight Matching Brackets"
-msgstr "Tô sáng cặp dấu ngoặc"
-
-#: ../gtksourceview/gtksourcebuffer.c:252
-msgid "Whether to highlight matching brackets"
-msgstr "Có nên tô sáng mỗi cặp dấu ngoặc tương ứng hay không"
-
-#: ../gtksourceview/gtksourcebuffer.c:265
-#: ../gtksourceview/gtksourceundomanagerdefault.c:418
-msgid "Maximum Undo Levels"
-msgstr "Cấp hủy bước tối đa"
-
-#: ../gtksourceview/gtksourcebuffer.c:266
-#: ../gtksourceview/gtksourceundomanagerdefault.c:419
-msgid "Number of undo levels for the buffer"
-msgstr "Số cấp hủy bước trong vùng đệm"
-
-#. Translators: throughout GtkSourceView "language" stands
-#. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:278
-msgid "Language"
-msgstr "Ngôn ngữ"
-
-#: ../gtksourceview/gtksourcebuffer.c:279
-msgid "Language object to get highlighting patterns from"
-msgstr "Đối tượng ngôn ngữ từ đó cần lấy mẫu tô sáng"
-
-#: ../gtksourceview/gtksourcebuffer.c:287
-msgid "Can undo"
-msgstr "Có thể hủy bước"
-
-#: ../gtksourceview/gtksourcebuffer.c:288
-msgid "Whether Undo operation is possible"
-msgstr "Thao tác « Hùy bước » có thể làm không"
-
-#: ../gtksourceview/gtksourcebuffer.c:295
-msgid "Can redo"
-msgstr "Có thể làm lại"
-
-#: ../gtksourceview/gtksourcebuffer.c:296
-msgid "Whether Redo operation is possible"
-msgstr "Thao tác « Làm lại » có thể làm không"
-
-#: ../gtksourceview/gtksourcebuffer.c:310
-#: ../gtksourceview/gtksourcebuffer.c:311
-msgid "Style scheme"
-msgstr "Lược đồ kiểu dáng"
-
-#: ../gtksourceview/gtksourcebuffer.c:318
-msgid "Undo manager"
-msgstr "Trình quản lý hoàn lại"
-
-#: ../gtksourceview/gtksourcebuffer.c:319
-msgid "The buffer undo manager"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1037
-#: ../gtksourceview/gtksourcecompletion.c:1059
-msgid "No extra information available"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2268
-#: ../gtksourceview/gtksourcegutter.c:548
-msgid "View"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2269
-msgid "The GtkSourceView bound to the completion"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2283
-msgid "Remember Info Visibility"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2284
-msgid "Remember the last info window visibility state"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2296
-msgid "Select on Show"
-msgstr "Chọn để hiện"
-
-#: ../gtksourceview/gtksourcecompletion.c:2297
-msgid "Select first proposal when completion is shown"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2310
-msgid "Show Headers"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2311
-msgid ""
-"Show provider headers when proposals from multiple providers are available"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2324
-msgid "Show Icons"
-msgstr "Hiện biểu tượng"
-
-#: ../gtksourceview/gtksourcecompletion.c:2325
-msgid "Show provider and proposal icons in the completion popup"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2339
-msgid "Accelerators"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2340
-msgid "Number of proposal accelerators to show"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2355
-msgid "Auto Complete Delay"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2356
-msgid "Completion popup delay for interactive completion"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2372
-msgid "Provider Page Size"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2373
-msgid "Provider scrolling page size"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2393
-msgid "Proposal Page Size"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:2394
-msgid "Proposal scrolling page size"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:255
-#: ../gtksourceview/gtksourceview.c:310
-msgid "Completion"
-msgstr "Hoàn chỉnh"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:256
-msgid "The completion object to which the context belongs"
-msgstr ""
-
-#. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:269
-msgid "Iterator"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:270
-msgid "The GtkTextIter at which the completion was invoked"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:282
-msgid "Activation"
-msgstr "Kích hoạt"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:283
-msgid "The type of activation"
-msgstr "Loại kích hoạt"
+#: ../gtksourceview/gtksourcebufferoutputstream.c:1178
+#, c-format
+msgid "Incomplete UTF-8 sequence in input"
+msgstr "Chuỗi UTF-8 chưa hoàn thiện ở đầu vào"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:193
+#: ../gtksourceview/gtksourcecompletioninfo.c:264
 msgid "Completion Info"
 msgstr "Thông tin hoàn chỉnh"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:239
-msgid "Label to be shown for this item"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionitem.c:252
-msgid "Markup to be shown for this item"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionitem.c:265
-msgid "Item text"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionitem.c:278
-msgid "Icon to be shown for this item"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionitem.c:290
-msgid "Info"
-msgstr "Thông tin"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:291
-msgid "Info to be shown for this item"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionmodel.c:466
+#: ../gtksourceview/gtksourcecompletionmodel.c:491
 msgid "Provider"
 msgstr "Bộ cung cấp"
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:1
-msgid "Show detailed proposal information"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:2
-msgid "_Details..."
-msgstr "_Chi tiết..."
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3122
+#: ../gtksourceview/gtksourcecontextengine.c:3143
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2754,7 +2930,7 @@ msgstr ""
 "tô sáng cú pháp sẽ chạy chậm hơn trường hợp bình thường.\n"
 "Lỗi: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4445
+#: ../gtksourceview/gtksourcecontextengine.c:4466
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2762,593 +2938,180 @@ msgstr ""
 "Tốn quá nhiều thời gian để tô sáng dòng đơn, tô sáng cú pháp sẽ bị tắt tạm "
 "thời"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5689
+#: ../gtksourceview/gtksourcecontextengine.c:5714
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr "ngữ cảnh « %s » không thể chứa lệnh kiểu \\%%{...@start}"
+msgstr "ngữ cảnh “%s” không thể chứa lệnh kiểu \\%%{…@start}"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5850
-#: ../gtksourceview/gtksourcecontextengine.c:5939
+#: ../gtksourceview/gtksourcecontextengine.c:5877
+#: ../gtksourceview/gtksourcecontextengine.c:5968
 #, c-format
 msgid "duplicated context id '%s'"
-msgstr "id ngữ cảnh trùng « %s »"
+msgstr "id ngữ cảnh trùng “%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6053
-#: ../gtksourceview/gtksourcecontextengine.c:6113
+#: ../gtksourceview/gtksourcecontextengine.c:6082
+#: ../gtksourceview/gtksourcecontextengine.c:6142
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr ""
 "quyền kiểu dáng cao hơn được dùng với tham chiếu ngữ cảnh ký tự đại diện "
-"bằng ngôn ngữ « %s » trong tham chiếu « %s »"
+"bằng ngôn ngữ “%s” trong tham chiếu “%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6127
-#, c-format
-msgid "invalid context reference '%s'"
-msgstr "tham chiếu ngữ cảnh không hợp lệ « %s »"
-
-#: ../gtksourceview/gtksourcecontextengine.c:6146
 #: ../gtksourceview/gtksourcecontextengine.c:6156
 #, c-format
-msgid "unknown context '%s'"
-msgstr "ngữ cảnh không rõ « %s »"
+msgid "invalid context reference '%s'"
+msgstr "tham chiếu ngữ cảnh không hợp lệ “%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6255
+#: ../gtksourceview/gtksourcecontextengine.c:6175
+#: ../gtksourceview/gtksourcecontextengine.c:6185
+#, c-format
+msgid "unknown context '%s'"
+msgstr "ngữ cảnh không rõ “%s”"
+
+#: ../gtksourceview/gtksourcecontextengine.c:6284
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr "Thiếu lời xác định ngôn ngữ chính (id = \"%s\".)"
-
-#: ../gtksourceview/gtksourcegutter.c:549
-msgid "The gutters' GtkSourceView"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutter.c:561
-#: ../gtksourceview/gtksourcegutterrenderer.c:723
-msgid "Window Type"
-msgstr "Loại cửa sổ"
-
-#: ../gtksourceview/gtksourcegutter.c:562
-msgid "The gutters text window type"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:500
-msgid "X Padding"
-msgstr "Đệm X"
-
-#: ../gtksourceview/gtksourcegutter.c:574
-#: ../gtksourceview/gtksourcegutterrenderer.c:501
-msgid "The x-padding"
-msgstr "Đệm X"
-
-#: ../gtksourceview/gtksourcegutter.c:584
-#: ../gtksourceview/gtksourcegutterrenderer.c:516
-msgid "Y Padding"
-msgstr "Đệm Y"
-
-#: ../gtksourceview/gtksourcegutter.c:585
-#: ../gtksourceview/gtksourcegutterrenderer.c:517
-msgid "The y-padding"
-msgstr "Đệm Y"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:486
-#: ../gtksourceview/gtksourcegutterrenderer.c:487
-msgid "Visible"
-msgstr "Thấy"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:532
-msgid "X Alignment"
-msgstr "Canh hàng X"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:533
-msgid "The x-alignment"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:548
-msgid "Y Alignment"
-msgstr "Canh hàng Y"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:549
-msgid "The y-alignment"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:690
-msgid "The View"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:691
-msgid "The view"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:707
-msgid "Alignment Mode"
-msgstr "Chế độ canh hàng"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:708
-msgid "The alignment mode"
-msgstr "Chế độ canh hàng"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:724
-msgid "The window type"
-msgstr "Loại cửa sổ"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:732
-msgid "Size"
-msgstr "Kích thước"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:733
-msgid "The size"
-msgstr "Kích thước"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:293
-#: ../gtksourceview/gtksourcemarkattributes.c:318
-msgid "Pixbuf"
-msgstr "Pixbuf"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:294
-#: ../gtksourceview/gtksourcemarkattributes.c:319
-msgid "The pixbuf"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:301
-#: ../gtksourceview/gtksourcemarkattributes.c:305
-msgid "Stock Id"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:302
-#: ../gtksourceview/gtksourcemarkattributes.c:306
-msgid "The stock id"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:309
-#: ../gtksourceview/gtksourcemarkattributes.c:331
-msgid "Icon Name"
-msgstr "Tên biểu tượng"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:310
-#: ../gtksourceview/gtksourcemarkattributes.c:332
-msgid "The icon name"
-msgstr "Tên biểu tượng"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:317
-#: ../gtksourceview/gtksourcemarkattributes.c:344
-msgid "GIcon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:318
-msgid "The gicon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:396
-msgid "The markup"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:404
-msgid "The text"
-msgstr "Văn bản"
-
-#: ../gtksourceview/gtksourcelanguage.c:228
-#: ../gtksourceview/gtksourcelanguage.c:229
-msgid "Language id"
-msgstr "Mã ngôn ngữ"
-
-#: ../gtksourceview/gtksourcelanguage.c:236
-#: ../gtksourceview/gtksourcelanguage.c:237
-msgid "Language name"
-msgstr "Tên ngôn ngữ"
-
-#: ../gtksourceview/gtksourcelanguage.c:244
-#: ../gtksourceview/gtksourcelanguage.c:245
-msgid "Language section"
-msgstr "Phần ngôn ngữ"
-
-#: ../gtksourceview/gtksourcelanguage.c:252
-msgid "Hidden"
-msgstr "Ẩn"
-
-#: ../gtksourceview/gtksourcelanguage.c:253
-msgid "Whether the language should be hidden from the user"
-msgstr "Có nên ẩn ngôn ngữ khỏi người dùng hay không"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
-msgid "Language specification directories"
-msgstr "Thư mục đặc tả ngôn ngữ"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:151
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
-msgstr "Danh sách các thư mục chứa tập tin đặc tả ngôn ngữ (.lang)"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
-msgid "Language ids"
-msgstr "Các nã ngôn ngữ"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:161
-msgid "List of the ids of the available languages"
-msgstr "Danh sách các mã ngôn ngữ sẵn sàng"
-
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
-#, c-format
-msgid "Unknown id '%s' in regex '%s'"
-msgstr "id không rõ « %s » trong biểu thức chính quy « %s »"
-
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
-#, c-format
-msgid "in regex '%s': backreferences are not supported"
-msgstr "trong biểu thức chính quy « %s »: không hỗ trợ tham chiếu ngược"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:292
-#: ../gtksourceview/gtksourcestyle.c:88
-msgid "Background"
-msgstr "Nền"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:293
-msgid "The background"
-msgstr "Nền"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:345
-msgid "The GIcon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcemark.c:140
-msgid "category"
-msgstr "loại"
-
-#: ../gtksourceview/gtksourcemark.c:141
-msgid "The mark category"
-msgstr "Phân loại dấu"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:444
-msgid "Source Buffer"
-msgstr "Vùng đệm nguồn"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:445
-msgid "The GtkSourceBuffer object to print"
-msgstr "Đối tượng GtkSourceBuffer (vùng đậm nguồn Gtk) cần in"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:462
-#: ../gtksourceview/gtksourceview.c:348
-msgid "Tab Width"
-msgstr "Cột tab"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:349
-msgid "Width of a tab character expressed in spaces"
-msgstr "Chiều rộng của mỗi ký tự Tab, theo dấu cách"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:483
-msgid "Wrap Mode"
-msgstr "Chế độ cuộn"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:484
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr ""
-"Có nên ngắt dòng: không bao giờ, cuốn theo biên từ, hay theo biên ký tự."
-
-#: ../gtksourceview/gtksourceprintcompositor.c:505
-msgid "Whether to print the document with highlighted syntax"
-msgstr "Có nên in tài liệu với cú pháp được tô sáng hay không"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:526
-msgid "Print Line Numbers"
-msgstr "In số thứ tự dòng"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:527
-msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr ""
-"Khoảng cách các số thứ tự dòng được in (0 nghĩa là không in số thứ tự dòng)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:549
-msgid "Print Header"
-msgstr "In đầu trang"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:550
-msgid "Whether to print a header in each page"
-msgstr "Có nên in đầu đặc biệt trên mỗi trang hay không"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:572
-msgid "Print Footer"
-msgstr "In chân trang"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:573
-msgid "Whether to print a footer in each page"
-msgstr "Có nên in chân đặc biệt trên mỗi trang hay không"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:595
-msgid "Body Font Name"
-msgstr "Tên phông thân"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:596
-msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr ""
-"Phông chữ cần dùng cho thân tài liệu (v.d. « Monospace 10 » là phông chữ đơn "
-"cách, kích cỡ 10 điểm)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:619
-msgid "Line Numbers Font Name"
-msgstr "Tên phông số thứ tự dòng"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:620
-msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr ""
-"Phông chữ cần dùng cho các số thứ tự dòng (v.d. « Monospace 10 » là phông "
-"chữ đơn cách, kích cỡ 10 điểm)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:643
-msgid "Header Font Name"
-msgstr "Tên phông đầu trang"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:644
-msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr ""
-"Phông chữ cần dùng cho phần đầu trang (v.d. « Monospace 10 » là phông chữ "
-"đơn cách, kích cỡ 10 điểm)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:667
-msgid "Footer Font Name"
-msgstr "Tên phông chân trang"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:668
-msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr ""
-"Phông chữ cần dùng cho phần chân trang (v.d. « Monospace 10 » là phông chữ "
-"đơn cách, kích cỡ 10 điểm)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:684
-msgid "Number of pages"
-msgstr "Số trang"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:685
-msgid ""
-"The number of pages in the document (-1 means the document has not been "
-"completely paginated)."
-msgstr ""
-"Số các trang trong tài liệu (-1 có nghĩa là tài liệu chưa được dàn trang "
-"hoàn toàn)."
-
-#: ../gtksourceview/gtksourceregex.c:125
-msgid "using \\C is not supported in language definitions"
-msgstr "trong lời xác định ngôn ngữ, không hỗ trợ khả năng sử dụng \\C"
-
-#: ../gtksourceview/gtksourcestyle.c:80
-msgid "Line background"
-msgstr "Nền dòng"
-
-#: ../gtksourceview/gtksourcestyle.c:81
-msgid "Line background color"
-msgstr "Màu nền dòng"
-
-#: ../gtksourceview/gtksourcestyle.c:89
-msgid "Background color"
-msgstr "Màu nền"
-
-#: ../gtksourceview/gtksourcestyle.c:96
-msgid "Foreground"
-msgstr "Cảnh gần"
-
-#: ../gtksourceview/gtksourcestyle.c:97
-msgid "Foreground color"
-msgstr "Màu cảnh gần"
-
-#: ../gtksourceview/gtksourcestyle.c:120 ../gtksourceview/gtksourcestyle.c:121
-msgid "Underline"
-msgstr "Gạch dưới"
-
-#: ../gtksourceview/gtksourcestyle.c:128 ../gtksourceview/gtksourcestyle.c:129
-msgid "Strikethrough"
-msgstr "Gạch đè"
-
-#: ../gtksourceview/gtksourcestyle.c:136
-msgid "Line background set"
-msgstr "Nền dòng đã đặt"
-
-#: ../gtksourceview/gtksourcestyle.c:137
-msgid "Whether line background color is set"
-msgstr "Màu nền dòng đã được đặt chưa"
-
-#: ../gtksourceview/gtksourcestyle.c:144
-msgid "Foreground set"
-msgstr "Cảnh gần đã đặt"
-
-#: ../gtksourceview/gtksourcestyle.c:145
-msgid "Whether foreground color is set"
-msgstr "Màu cảnh gần đã được đặt chưa"
-
-#: ../gtksourceview/gtksourcestyle.c:152
-msgid "Background set"
-msgstr "Nền đã đặt"
-
-#: ../gtksourceview/gtksourcestyle.c:153
-msgid "Whether background color is set"
-msgstr "Màu nền đã được đặt chưa"
-
-#: ../gtksourceview/gtksourcestyle.c:160
-msgid "Bold set"
-msgstr "Đậm đã đặt"
-
-#: ../gtksourceview/gtksourcestyle.c:161
-msgid "Whether bold attribute is set"
-msgstr "Thuộc tính in đậm đã được đặt chưa"
-
-#: ../gtksourceview/gtksourcestyle.c:168
-msgid "Italic set"
-msgstr "Nghiêng đã đặt"
-
-#: ../gtksourceview/gtksourcestyle.c:169
-msgid "Whether italic attribute is set"
-msgstr "Thuộc tính in nghiêng đã được đặt chưa"
-
-#: ../gtksourceview/gtksourcestyle.c:176
-msgid "Underline set"
-msgstr "Gạch dưới đã đặt"
-
-#: ../gtksourceview/gtksourcestyle.c:177
-msgid "Whether underline attribute is set"
-msgstr "Thuộc tính gạch dưới đã được đặt chưa"
-
-#: ../gtksourceview/gtksourcestyle.c:184
-msgid "Strikethrough set"
-msgstr "Gạch đè đã đặt"
-
-#: ../gtksourceview/gtksourcestyle.c:185
-msgid "Whether strikethrough attribute is set"
-msgstr "Thuộc tính gạch đè đã được đặt chưa"
-
-#: ../gtksourceview/gtksourcestylescheme.c:212
-#: ../gtksourceview/gtksourcestylescheme.c:213
-msgid "Style scheme id"
-msgstr "ID lược đồ kiểu dáng"
-
-#: ../gtksourceview/gtksourcestylescheme.c:225
-#: ../gtksourceview/gtksourcestylescheme.c:226
-msgid "Style scheme name"
-msgstr "Tên lược đồ kiểu dáng"
-
-#: ../gtksourceview/gtksourcestylescheme.c:238
-#: ../gtksourceview/gtksourcestylescheme.c:239
-msgid "Style scheme description"
-msgstr "Mô tả lược đồ kiểu dáng"
-
-#: ../gtksourceview/gtksourcestylescheme.c:251
-#: ../gtksourceview/gtksourcestylescheme.c:252
-msgid "Style scheme filename"
-msgstr "Tên tập tin lược đồ kiểu dáng"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:152
-msgid "Style scheme search path"
-msgstr "Đường dẫn tìm lược đồ kiểu dáng"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
-msgid "List of directories and files where the style schemes are located"
-msgstr "Danh sách các thư mục và tập tin chứa lược đồ kiểu dáng"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:161
-msgid "Scheme ids"
-msgstr "ID lược đồ"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
-msgid "List of the ids of the available style schemes"
-msgstr "Danh sách các mã số lược đồ kiểu dáng sẵn sàng"
-
-#: ../gtksourceview/gtksourceundomanagerdefault.c:410
-msgid "Buffer"
-msgstr "Vùng đệm"
-
-#: ../gtksourceview/gtksourceundomanagerdefault.c:411
-msgid "The text buffer to add undo support on"
-msgstr ""
-
-#: ../gtksourceview/gtksourceview.c:311
-msgid "The completion object associated with the view"
-msgstr ""
-
-#: ../gtksourceview/gtksourceview.c:323
-msgid "Show Line Numbers"
-msgstr "Hiện số thứ tự dòng"
-
-#: ../gtksourceview/gtksourceview.c:324
-msgid "Whether to display line numbers"
-msgstr "Có nên hiển thị số thứ tự dòng hay không"
-
-#: ../gtksourceview/gtksourceview.c:335
-msgid "Show Line Marks"
-msgstr "Hiện dấu dòng"
-
-#: ../gtksourceview/gtksourceview.c:336
-msgid "Whether to display line mark pixbufs"
-msgstr "Có nên hiển thị ký hiệu (bộ đệm điểm ảnh) đánh dấu dòng không"
-
-#: ../gtksourceview/gtksourceview.c:363
-msgid "Indent Width"
-msgstr "Khoảng thụt lề"
-
-#: ../gtksourceview/gtksourceview.c:364
-msgid "Number of spaces to use for each step of indent"
-msgstr "Số dấu cách của mỗi bước thụt lề"
-
-#: ../gtksourceview/gtksourceview.c:373
-msgid "Auto Indentation"
-msgstr "Tự động thụt lề"
-
-#: ../gtksourceview/gtksourceview.c:374
-msgid "Whether to enable auto indentation"
-msgstr "Có nên bật khả năng tự động thụt lề hay không"
-
-#: ../gtksourceview/gtksourceview.c:381
-msgid "Insert Spaces Instead of Tabs"
-msgstr "Chèn dấu cách thay cho cột Tab"
-
-#: ../gtksourceview/gtksourceview.c:382
-msgid "Whether to insert spaces instead of tabs"
-msgstr "Có nên chèn dấu cách thay cho khoảng Tab hay không"
-
-#: ../gtksourceview/gtksourceview.c:394
-msgid "Show Right Margin"
-msgstr "Hiện lề bên phải"
-
-#: ../gtksourceview/gtksourceview.c:395
-msgid "Whether to display the right margin"
-msgstr "Có nên hiển thị lề bên phải hay không"
-
-#: ../gtksourceview/gtksourceview.c:407
-msgid "Right Margin Position"
-msgstr "Vị trí lề bên phải"
-
-#: ../gtksourceview/gtksourceview.c:408
-msgid "Position of the right margin"
-msgstr "Vị trí của lề bên phải"
-
-#: ../gtksourceview/gtksourceview.c:424
-msgid "Smart Home/End"
-msgstr "Home/End khéo"
-
-#: ../gtksourceview/gtksourceview.c:425
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr ""
-"Phím HOME và END di chuyển đến ký tự không khoảng trắng thứ nhất/cuối cùng "
-"trên dòng, trước khi chuyển đến đầu/cuối của dòng"
-
-#: ../gtksourceview/gtksourceview.c:435
-msgid "Highlight current line"
-msgstr "Tô sáng dòng hiện tại"
-
-#: ../gtksourceview/gtksourceview.c:436
-msgid "Whether to highlight the current line"
-msgstr "Có nên tô sáng dòng hiện thời hay không"
-
-#: ../gtksourceview/gtksourceview.c:443
-msgid "Indent on tab"
-msgstr "Thụt lề bằng Tab"
-
-#: ../gtksourceview/gtksourceview.c:444
-msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "Có nên thụt lề đoạn đã chọn khi phím Tab được bấm hay không"
-
-#: ../gtksourceview/gtksourceview.c:458
-msgid "Draw Spaces"
-msgstr "Vẽ khoảng trắng"
-
-#: ../gtksourceview/gtksourceview.c:459
-msgid "Set if and how the spaces should be visualized"
-msgstr "Đặt có vẽ khoảng trắng không và vẽ như thế nào"
-
-#: ../gtksourceview/gtksourceview-i18n.c:72
-msgid "translator-credits"
-msgstr "Nhóm Việt hoá GNOME"
-
-#~ msgid "Objective Caml"
-#~ msgstr "Objective Caml"
-
-#~ msgid "Object"
-#~ msgstr "Đối tượng"
-
-#~ msgid "MSIL"
-#~ msgstr "MSIL"
+msgstr "Thiếu định nghĩa ngôn ngữ chính (id = \"%s\".)"
+
+#: ../gtksourceview/gtksourceencoding.c:137
+#: ../gtksourceview/gtksourceencoding.c:180
+#: ../gtksourceview/gtksourceencoding.c:182
+#: ../gtksourceview/gtksourceencoding.c:184
+#: ../gtksourceview/gtksourceencoding.c:186
+#: ../gtksourceview/gtksourceencoding.c:188
+#: ../gtksourceview/gtksourceencoding.c:190
+#: ../gtksourceview/gtksourceencoding.c:192
+msgid "Unicode"
+msgstr "Unicode"
+
+#: ../gtksourceview/gtksourceencoding.c:151
+#: ../gtksourceview/gtksourceencoding.c:175
+#: ../gtksourceview/gtksourceencoding.c:225
+#: ../gtksourceview/gtksourceencoding.c:268
+msgid "Western"
+msgstr "Phương Tây"
+
+#: ../gtksourceview/gtksourceencoding.c:153
+#: ../gtksourceview/gtksourceencoding.c:227
+#: ../gtksourceview/gtksourceencoding.c:264
+msgid "Central European"
+msgstr "Trung Âu"
+
+#: ../gtksourceview/gtksourceencoding.c:155
+msgid "South European"
+msgstr "Nam Âu"
+
+#: ../gtksourceview/gtksourceencoding.c:157
+#: ../gtksourceview/gtksourceencoding.c:171
+#: ../gtksourceview/gtksourceencoding.c:278
+msgid "Baltic"
+msgstr "Ban-tích"
+
+#: ../gtksourceview/gtksourceencoding.c:159
+#: ../gtksourceview/gtksourceencoding.c:229
+#: ../gtksourceview/gtksourceencoding.c:242
+#: ../gtksourceview/gtksourceencoding.c:246
+#: ../gtksourceview/gtksourceencoding.c:248
+#: ../gtksourceview/gtksourceencoding.c:266
+msgid "Cyrillic"
+msgstr "Ki-rin"
+
+#: ../gtksourceview/gtksourceencoding.c:161
+#: ../gtksourceview/gtksourceencoding.c:235
+#: ../gtksourceview/gtksourceencoding.c:276
+msgid "Arabic"
+msgstr "A Rập"
+
+#: ../gtksourceview/gtksourceencoding.c:163
+#: ../gtksourceview/gtksourceencoding.c:270
+msgid "Greek"
+msgstr "Hy Lạp"
+
+#: ../gtksourceview/gtksourceencoding.c:165
+msgid "Hebrew Visual"
+msgstr "Do thái trực quan"
+
+#: ../gtksourceview/gtksourceencoding.c:167
+#: ../gtksourceview/gtksourceencoding.c:231
+#: ../gtksourceview/gtksourceencoding.c:272
+msgid "Turkish"
+msgstr "Thổ Nhĩ Kỳ"
+
+#: ../gtksourceview/gtksourceencoding.c:169
+msgid "Nordic"
+msgstr "Bắc Âu"
+
+#: ../gtksourceview/gtksourceencoding.c:173
+msgid "Celtic"
+msgstr "Tiếng Xen-tơ"
+
+#: ../gtksourceview/gtksourceencoding.c:177
+msgid "Romanian"
+msgstr "Tiếng Ru-ma-ni"
+
+#: ../gtksourceview/gtksourceencoding.c:195
+msgid "Armenian"
+msgstr "Tiếng Ác-mê-ni"
+
+#: ../gtksourceview/gtksourceencoding.c:197
+#: ../gtksourceview/gtksourceencoding.c:199
+#: ../gtksourceview/gtksourceencoding.c:213
+msgid "Chinese Traditional"
+msgstr "Tiếng Hoa truyền thống"
+
+#: ../gtksourceview/gtksourceencoding.c:201
+msgid "Cyrillic/Russian"
+msgstr "Ki-rin/Tiếng Nga"
+
+#: ../gtksourceview/gtksourceencoding.c:204
+#: ../gtksourceview/gtksourceencoding.c:206
+#: ../gtksourceview/gtksourceencoding.c:208
+#: ../gtksourceview/gtksourceencoding.c:238
+#: ../gtksourceview/gtksourceencoding.c:253
+msgid "Japanese"
+msgstr "Tiếng Nhật"
+
+#: ../gtksourceview/gtksourceencoding.c:211
+#: ../gtksourceview/gtksourceencoding.c:240
+#: ../gtksourceview/gtksourceencoding.c:244
+#: ../gtksourceview/gtksourceencoding.c:259
+msgid "Korean"
+msgstr "Tiếng Hàn Quốc"
+
+#: ../gtksourceview/gtksourceencoding.c:216
+#: ../gtksourceview/gtksourceencoding.c:218
+#: ../gtksourceview/gtksourceencoding.c:220
+msgid "Chinese Simplified"
+msgstr "Tiếng Hoa phổ thông"
+
+#: ../gtksourceview/gtksourceencoding.c:222
+msgid "Georgian"
+msgstr "Tiếng Gioóc-gia"
+
+#: ../gtksourceview/gtksourceencoding.c:233
+#: ../gtksourceview/gtksourceencoding.c:274
+msgid "Hebrew"
+msgstr "Tiếng Do Thái"
+
+#: ../gtksourceview/gtksourceencoding.c:250
+msgid "Cyrillic/Ukrainian"
+msgstr "Ki-rin/Tiếng Ucraina"
+
+#: ../gtksourceview/gtksourceencoding.c:255
+#: ../gtksourceview/gtksourceencoding.c:261
+#: ../gtksourceview/gtksourceencoding.c:280
+msgid "Vietnamese"
+msgstr "Tiếng Việt"
+
+#: ../gtksourceview/gtksourceencoding.c:257
+msgid "Thai"
+msgstr "Tiếng Thái Lan"
+
+#: ../gtksourceview/gtksourceencoding.c:491
+msgid "Unknown"
+msgstr "Chưa biết"
 
 #. Translators: This is the sorted list of encodings used by
 #. * GtkSourceView for automatic detection of the file encoding. You may
@@ -3362,7 +3125,527 @@ msgstr "Nhóm Việt hoá GNOME"
 #. * recognized encodings are used. See
 #. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
 #. * for a list of supported encodings.
+#. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:517
+#: ../gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'UTF-16']"
+
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
+#, c-format
+msgid "Unknown id '%s' in regex '%s'"
+msgstr "id không rõ “%s” trong biểu thức chính quy “%s”"
+
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1180
+#, c-format
+msgid "in regex '%s': backreferences are not supported"
+msgstr "trong biểu thức chính quy “%s”: không hỗ trợ tham chiếu ngược"
+
+#: ../gtksourceview/gtksourceregex.c:125
+msgid "using \\C is not supported in language definitions"
+msgstr "trong phần định nghĩa ngôn ngữ, không hỗ trợ khả năng sử dụng \\C"
+
+#. TODO: have a ChooserDialog?
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:181
+msgid "Select a Style"
+msgstr "Chọn một kiểu"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:185
+msgid "_Cancel"
+msgstr "T_hôi"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
+msgid "_Select"
+msgstr "C_họn"
+
+#. create redo menu_item.
+#: ../gtksourceview/gtksourceview.c:1548
+msgid "_Redo"
+msgstr "Hoàn _lại"
+
+#. create undo menu_item.
+#: ../gtksourceview/gtksourceview.c:1559
+msgid "_Undo"
+msgstr "_Hoàn tác"
+
+#: ../gtksourceview/gtksourceview.c:1577
+msgid "All _Upper Case"
+msgstr "Tất cả chữ _hoa"
+
+#: ../gtksourceview/gtksourceview.c:1587
+msgid "All _Lower Case"
+msgstr "Tất cả chữ _thường"
+
+#: ../gtksourceview/gtksourceview.c:1597
+msgid "_Invert Case"
+msgstr "Đả_o HOA/thường"
+
+#: ../gtksourceview/gtksourceview.c:1607
+msgid "_Title Case"
+msgstr "Chữ _Tựa"
+
+#: ../gtksourceview/gtksourceview.c:1617
+msgid "C_hange Case"
+msgstr "C_huyển đổi HOA/thường"
+
+#: ../gtksourceview/gtksourceview-i18n.c:116
+msgid "translator-credits"
+msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
+
+#~ msgid "GtkSourceView"
+#~ msgstr "GtkSourceView"
+
+#~ msgid "Show detailed proposal information"
+#~ msgstr "Hiển thị thông tin đề nghị chi tiết"
+
+#~ msgid "_Details..."
+#~ msgstr "_Chi tiết…"
+
+#~ msgid "Cobol"
+#~ msgstr "Cobol"
+
+#~ msgid "math-bound"
+#~ msgstr "kết hợp với toán học"
+
+#~ msgid "m4-comment"
+#~ msgstr "ghi-chú-m4"
+
+#~ msgid "The provider name"
+#~ msgstr "Tên nhà cung cấp"
+
+#~ msgid "Icon"
+#~ msgstr "Biểu tượng"
+
+#~ msgid "The provider icon"
+#~ msgstr "Biểu tượng nhà cung cấp"
+
+#~ msgid "Minimum Word Size"
+#~ msgstr "Kích thước từ tối thiểu"
+
+#~ msgid "The minimum word size to complete"
+#~ msgstr "Kích thước từ tối thiểu để hoàn thành"
+
+#~ msgid "Interactive Delay"
+#~ msgstr "Khoảng chờ tương tác"
+
+#~ msgid "The delay before initiating interactive completion"
+#~ msgstr "Khoảng chờ trước khi khởi động hoàn thành tương tác"
+
+#~ msgid "Priority"
+#~ msgstr "Độ ưu tiên"
+
+#~ msgid "Provider priority"
+#~ msgstr "Độ ưu tiên nhà cung cấp"
+
+#~ msgid "Highlight Syntax"
+#~ msgstr "Tô sáng cú pháp"
+
+#~ msgid "Whether to highlight syntax in the buffer"
+#~ msgstr "Có nên tô sáng cú pháp trong vùng đệm hay không"
+
+#~ msgid "Highlight Matching Brackets"
+#~ msgstr "Tô sáng cặp dấu ngoặc"
+
+#~ msgid "Whether to highlight matching brackets"
+#~ msgstr "Có nên tô sáng mỗi cặp dấu ngoặc tương ứng hay không"
+
+#~ msgid "Maximum Undo Levels"
+#~ msgstr "Cấp hủy bước tối đa"
+
+#~ msgid "Number of undo levels for the buffer"
+#~ msgstr "Số cấp hủy bước trong vùng đệm"
+
+#~ msgid "Language"
+#~ msgstr "Ngôn ngữ"
+
+#~ msgid "Language object to get highlighting patterns from"
+#~ msgstr "Đối tượng ngôn ngữ từ đó cần lấy mẫu tô sáng"
+
+#~ msgid "Can undo"
+#~ msgstr "Có thể hủy bước"
+
+#~ msgid "Whether Undo operation is possible"
+#~ msgstr "Thao tác “Hùy bước” có thể làm không"
+
+#~ msgid "Can redo"
+#~ msgstr "Có thể làm lại"
+
+#~ msgid "Whether Redo operation is possible"
+#~ msgstr "Thao tác “Làm lại” có thể làm không"
+
+#~ msgid "Style scheme"
+#~ msgstr "Lược đồ kiểu dáng"
+
+#~ msgid "Undo manager"
+#~ msgstr "Trình quản lý hoàn lại"
+
+#~ msgid "Show Icons"
+#~ msgstr "Hiện biểu tượng"
+
+#~ msgid "Completion"
+#~ msgstr "Hoàn chỉnh"
+
+#~ msgid "Activation"
+#~ msgstr "Kích hoạt"
+
+#~ msgid "The type of activation"
+#~ msgstr "Loại kích hoạt"
+
+#~ msgid "Info"
+#~ msgstr "Thông tin"
+
+#~ msgid "Window Type"
+#~ msgstr "Loại cửa sổ"
+
+#~ msgid "X Padding"
+#~ msgstr "Đệm X"
+
+#~ msgid "The x-padding"
+#~ msgstr "Đệm X"
+
+#~ msgid "Y Padding"
+#~ msgstr "Đệm Y"
+
+#~ msgid "The y-padding"
+#~ msgstr "Đệm Y"
+
+#~ msgid "Visible"
+#~ msgstr "Thấy"
+
+#~ msgid "X Alignment"
+#~ msgstr "Canh hàng X"
+
+#~ msgid "Y Alignment"
+#~ msgstr "Canh hàng Y"
+
+#~ msgid "Alignment Mode"
+#~ msgstr "Chế độ canh hàng"
+
+#~ msgid "The alignment mode"
+#~ msgstr "Chế độ canh hàng"
+
+#~ msgid "The window type"
+#~ msgstr "Loại cửa sổ"
+
+#~ msgid "Size"
+#~ msgstr "Kích thước"
+
+#~ msgid "The size"
+#~ msgstr "Kích thước"
+
+#~ msgid "Pixbuf"
+#~ msgstr "Pixbuf"
+
+#~ msgid "Icon Name"
+#~ msgstr "Tên biểu tượng"
+
+#~ msgid "The icon name"
+#~ msgstr "Tên biểu tượng"
+
+#~ msgid "GIcon"
+#~ msgstr "GIcon"
+
+#~ msgid "The gicon"
+#~ msgstr "GIcon"
+
+#~ msgid "The text"
+#~ msgstr "Văn bản"
+
+#~ msgid "Language id"
+#~ msgstr "Mã ngôn ngữ"
+
+#~ msgid "Language name"
+#~ msgstr "Tên ngôn ngữ"
+
+#~ msgid "Language section"
+#~ msgstr "Phần ngôn ngữ"
+
+#~ msgid "Hidden"
+#~ msgstr "Ẩn"
+
+#~ msgid "Whether the language should be hidden from the user"
+#~ msgstr "Có nên ẩn ngôn ngữ khỏi người dùng hay không"
+
+#~ msgid "Language specification directories"
+#~ msgstr "Thư mục đặc tả ngôn ngữ"
+
+#~ msgid ""
+#~ "List of directories where the language specification files (.lang) are "
+#~ "located"
+#~ msgstr "Danh sách các thư mục chứa tập tin đặc tả ngôn ngữ (.lang)"
+
+#~ msgid "Language ids"
+#~ msgstr "Các nã ngôn ngữ"
+
+#~ msgid "List of the ids of the available languages"
+#~ msgstr "Danh sách các mã ngôn ngữ sẵn sàng"
+
+#~ msgid "Background"
+#~ msgstr "Nền"
+
+#~ msgid "The background"
+#~ msgstr "Nền"
+
+#~ msgid "The GIcon"
+#~ msgstr "GIcon"
+
+#~ msgid "category"
+#~ msgstr "loại"
+
+#~ msgid "The mark category"
+#~ msgstr "Phân loại dấu"
+
+#~ msgid "Source Buffer"
+#~ msgstr "Vùng đệm nguồn"
+
+#~ msgid "The GtkSourceBuffer object to print"
+#~ msgstr "Đối tượng GtkSourceBuffer (vùng đậm nguồn Gtk) cần in"
+
+#~ msgid "Tab Width"
+#~ msgstr "Cột tab"
+
+#~ msgid "Width of a tab character expressed in spaces"
+#~ msgstr "Chiều rộng của mỗi ký tự Tab, theo dấu cách"
+
+#~ msgid "Wrap Mode"
+#~ msgstr "Chế độ cuộn"
+
+#~ msgid ""
+#~ "Whether to wrap lines never, at word boundaries, or at character "
+#~ "boundaries."
+#~ msgstr ""
+#~ "Có nên ngắt dòng: không bao giờ, cuốn theo biên từ, hay theo biên ký tự."
+
+#~ msgid "Whether to print the document with highlighted syntax"
+#~ msgstr "Có nên in tài liệu với cú pháp được tô sáng hay không"
+
+#~ msgid "Print Line Numbers"
+#~ msgstr "In số thứ tự dòng"
+
+#~ msgid "Interval of printed line numbers (0 means no numbers)"
+#~ msgstr ""
+#~ "Khoảng cách các số thứ tự dòng được in (0 nghĩa là không in số thứ tự "
+#~ "dòng)"
+
+#~ msgid "Print Header"
+#~ msgstr "In đầu trang"
+
+#~ msgid "Whether to print a header in each page"
+#~ msgstr "Có nên in đầu đặc biệt trên mỗi trang hay không"
+
+#~ msgid "Print Footer"
+#~ msgstr "In chân trang"
+
+#~ msgid "Whether to print a footer in each page"
+#~ msgstr "Có nên in chân đặc biệt trên mỗi trang hay không"
+
+#~ msgid "Body Font Name"
+#~ msgstr "Tên phông thân"
+
+#~ msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
+#~ msgstr ""
+#~ "Phông chữ cần dùng cho thân tài liệu (v.d. “Monospace 10” là phông chữ "
+#~ "đơn cách, kích cỡ 10 điểm)"
+
+#~ msgid "Line Numbers Font Name"
+#~ msgstr "Tên phông số thứ tự dòng"
+
+#~ msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
+#~ msgstr ""
+#~ "Phông chữ cần dùng cho các số thứ tự dòng (v.d. “Monospace 10” là phông "
+#~ "chữ đơn cách, kích cỡ 10 điểm)"
+
+#~ msgid "Header Font Name"
+#~ msgstr "Tên phông đầu trang"
+
+#~ msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
+#~ msgstr ""
+#~ "Phông chữ cần dùng cho phần đầu trang (v.d. “Monospace 10” là phông chữ "
+#~ "đơn cách, kích cỡ 10 điểm)"
+
+#~ msgid "Footer Font Name"
+#~ msgstr "Tên phông chân trang"
+
+#~ msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
+#~ msgstr ""
+#~ "Phông chữ cần dùng cho phần chân trang (v.d. “Monospace 10” là phông chữ "
+#~ "đơn cách, kích cỡ 10 điểm)"
+
+#~ msgid "Number of pages"
+#~ msgstr "Số trang"
+
+#~ msgid ""
+#~ "The number of pages in the document (-1 means the document has not been "
+#~ "completely paginated)."
+#~ msgstr ""
+#~ "Số các trang trong tài liệu (-1 có nghĩa là tài liệu chưa được dàn trang "
+#~ "hoàn toàn)."
+
+#~ msgid "Line background"
+#~ msgstr "Nền dòng"
+
+#~ msgid "Line background color"
+#~ msgstr "Màu nền dòng"
+
+#~ msgid "Background color"
+#~ msgstr "Màu nền"
+
+#~ msgid "Foreground"
+#~ msgstr "Cảnh gần"
+
+#~ msgid "Foreground color"
+#~ msgstr "Màu cảnh gần"
+
+#~ msgid "Underline"
+#~ msgstr "Gạch dưới"
+
+#~ msgid "Strikethrough"
+#~ msgstr "Gạch đè"
+
+#~ msgid "Line background set"
+#~ msgstr "Nền dòng đã đặt"
+
+#~ msgid "Whether line background color is set"
+#~ msgstr "Màu nền dòng đã được đặt chưa"
+
+#~ msgid "Foreground set"
+#~ msgstr "Cảnh gần đã đặt"
+
+#~ msgid "Whether foreground color is set"
+#~ msgstr "Màu cảnh gần đã được đặt chưa"
+
+#~ msgid "Background set"
+#~ msgstr "Nền đã đặt"
+
+#~ msgid "Whether background color is set"
+#~ msgstr "Màu nền đã được đặt chưa"
+
+#~ msgid "Bold set"
+#~ msgstr "Đậm đã đặt"
+
+#~ msgid "Whether bold attribute is set"
+#~ msgstr "Thuộc tính in đậm đã được đặt chưa"
+
+#~ msgid "Italic set"
+#~ msgstr "Nghiêng đã đặt"
+
+#~ msgid "Whether italic attribute is set"
+#~ msgstr "Thuộc tính in nghiêng đã được đặt chưa"
+
+#~ msgid "Underline set"
+#~ msgstr "Gạch dưới đã đặt"
+
+#~ msgid "Whether underline attribute is set"
+#~ msgstr "Thuộc tính gạch dưới đã được đặt chưa"
+
+#~ msgid "Strikethrough set"
+#~ msgstr "Gạch đè đã đặt"
+
+#~ msgid "Whether strikethrough attribute is set"
+#~ msgstr "Thuộc tính gạch đè đã được đặt chưa"
+
+#~ msgid "Style scheme id"
+#~ msgstr "ID lược đồ kiểu dáng"
+
+#~ msgid "Style scheme name"
+#~ msgstr "Tên lược đồ kiểu dáng"
+
+#~ msgid "Style scheme description"
+#~ msgstr "Mô tả lược đồ kiểu dáng"
+
+#~ msgid "Style scheme filename"
+#~ msgstr "Tên tập tin lược đồ kiểu dáng"
+
+#~ msgid "Style scheme search path"
+#~ msgstr "Đường dẫn tìm lược đồ kiểu dáng"
+
+#~ msgid "List of directories and files where the style schemes are located"
+#~ msgstr "Danh sách các thư mục và tập tin chứa lược đồ kiểu dáng"
+
+#~ msgid "Scheme ids"
+#~ msgstr "ID lược đồ"
+
+#~ msgid "List of the ids of the available style schemes"
+#~ msgstr "Danh sách các mã số lược đồ kiểu dáng sẵn sàng"
+
+#~ msgid "Buffer"
+#~ msgstr "Vùng đệm"
+
+#~ msgid "Show Line Numbers"
+#~ msgstr "Hiện số thứ tự dòng"
+
+#~ msgid "Whether to display line numbers"
+#~ msgstr "Có nên hiển thị số thứ tự dòng hay không"
+
+#~ msgid "Show Line Marks"
+#~ msgstr "Hiện dấu dòng"
+
+#~ msgid "Whether to display line mark pixbufs"
+#~ msgstr "Có nên hiển thị ký hiệu (bộ đệm điểm ảnh) đánh dấu dòng không"
+
+#~ msgid "Indent Width"
+#~ msgstr "Khoảng thụt lề"
+
+#~ msgid "Number of spaces to use for each step of indent"
+#~ msgstr "Số dấu cách của mỗi bước thụt lề"
+
+#~ msgid "Auto Indentation"
+#~ msgstr "Tự động thụt lề"
+
+#~ msgid "Whether to enable auto indentation"
+#~ msgstr "Có nên bật khả năng tự động thụt lề hay không"
+
+#~ msgid "Insert Spaces Instead of Tabs"
+#~ msgstr "Chèn dấu cách thay cho cột Tab"
+
+#~ msgid "Whether to insert spaces instead of tabs"
+#~ msgstr "Có nên chèn dấu cách thay cho khoảng Tab hay không"
+
+#~ msgid "Show Right Margin"
+#~ msgstr "Hiện lề bên phải"
+
+#~ msgid "Whether to display the right margin"
+#~ msgstr "Có nên hiển thị lề bên phải hay không"
+
+#~ msgid "Right Margin Position"
+#~ msgstr "Vị trí lề bên phải"
+
+#~ msgid "Position of the right margin"
+#~ msgstr "Vị trí của lề bên phải"
+
+#~ msgid "Smart Home/End"
+#~ msgstr "Home/End khéo"
+
+#~ msgid ""
+#~ "HOME and END keys move to first/last non whitespace characters on line "
+#~ "before going to the start/end of the line"
+#~ msgstr ""
+#~ "Phím HOME và END di chuyển đến ký tự không khoảng trắng thứ nhất/cuối "
+#~ "cùng trên dòng, trước khi chuyển đến đầu/cuối của dòng"
+
+#~ msgid "Highlight current line"
+#~ msgstr "Tô sáng dòng hiện tại"
+
+#~ msgid "Whether to highlight the current line"
+#~ msgstr "Có nên tô sáng dòng hiện thời hay không"
+
+#~ msgid "Indent on tab"
+#~ msgstr "Thụt lề bằng Tab"
+
+#~ msgid "Whether to indent the selected text when the tab key is pressed"
+#~ msgstr "Có nên thụt lề đoạn đã chọn khi phím Tab được bấm hay không"
+
+#~ msgid "Draw Spaces"
+#~ msgstr "Vẽ khoảng trắng"
+
+#~ msgid "Set if and how the spaces should be visualized"
+#~ msgstr "Đặt có vẽ khoảng trắng không và vẽ như thế nào"
+
+#~ msgid "Objective Caml"
+#~ msgstr "Objective Caml"
+
+#~ msgid "Object"
+#~ msgstr "Đối tượng"
+
+#~ msgid "MSIL"
+#~ msgstr "MSIL"
