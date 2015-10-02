@@ -1577,6 +1577,19 @@ style_context_changed (GtkStyleContext     *style_context,
 	gtk_style_context_get (style_context, GTK_STATE_FLAG_NORMAL,
 			       GTK_STYLE_PROPERTY_FONT, &font_desc,
 			       NULL);
+	/*
+	 * Work around issue where when a proposal provides "<b>markup</b>" and
+	 * the weight is set in the font description, the <b> markup will not
+	 * have it's weight respected. This seems to be happening because the
+	 * weight mask is getting set in pango_font_description_from_string()
+	 * even if the the value is set to normal. That matter is complicated
+	 * because PangoAttrFontDesc and PangoAttrWeight will both have the
+	 * same starting offset in the PangoLayout.
+	 */
+	if (PANGO_WEIGHT_NORMAL == pango_font_description_get_weight (font_desc))
+	{
+		pango_font_description_unset_fields (font_desc, PANGO_FONT_MASK_WEIGHT);
+	}
 	g_object_set (completion->priv->cell_renderer_proposal,
 		      "font-desc", font_desc,
 		      NULL);
