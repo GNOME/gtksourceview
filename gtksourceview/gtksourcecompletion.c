@@ -1585,6 +1585,7 @@ style_context_changed (GtkStyleContext     *style_context,
 	 * even if the the value is set to normal. That matter is complicated
 	 * because PangoAttrFontDesc and PangoAttrWeight will both have the
 	 * same starting offset in the PangoLayout.
+	 * https://bugzilla.gnome.org/show_bug.cgi?id=755968
 	 */
 	if (PANGO_WEIGHT_NORMAL == pango_font_description_get_weight (font_desc))
 	{
