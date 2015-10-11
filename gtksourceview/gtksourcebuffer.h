@@ -231,7 +231,7 @@ void			 gtk_source_buffer_set_implicit_trailing_newline	(GtkSourceBuffer        
 
 gboolean		 gtk_source_buffer_get_implicit_trailing_newline	(GtkSourceBuffer        *buffer);
 
-GtkTextTag		*gtk_source_buffer_create_tag				(GtkSourceBuffer        *buffer,
+GtkTextTag		*gtk_source_buffer_create_source_tag			(GtkSourceBuffer        *buffer,
 										 const gchar            *tag_name,
 										 const gchar            *first_property_name,
 										 ...);

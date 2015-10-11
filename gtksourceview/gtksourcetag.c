@@ -168,7 +168,8 @@ gtk_source_tag_init (GtkSourceTag *tag)
  * Creates a #GtkSourceTag. Configure the tag using object arguments,
  * i.e. using g_object_set().
  *
- * For usual cases, gtk_source_buffer_create_tag() is more convenient to use.
+ * For usual cases, gtk_source_buffer_create_source_tag() is more convenient to
+ * use.
  *
  * Returns: a new #GtkSourceTag.
  */

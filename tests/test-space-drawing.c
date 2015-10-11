@@ -96,10 +96,10 @@ create_window (void)
 
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
-	tag = gtk_source_buffer_create_tag (buffer,
-					    NULL,
-					    "draw-spaces", FALSE,
-					    NULL);
+	tag = gtk_source_buffer_create_source_tag (buffer,
+						   NULL,
+						   "draw-spaces", FALSE,
+						   NULL);
 
 	fill_buffer (GTK_TEXT_BUFFER (buffer), tag);
 

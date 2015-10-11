@@ -3097,7 +3097,7 @@ gtk_source_buffer_get_implicit_trailing_newline (GtkSourceBuffer *buffer)
 }
 
 /**
- * gtk_source_buffer_create_tag:
+ * gtk_source_buffer_create_source_tag:
  * @buffer: a #GtkSourceBuffer
  * @tag_name: (nullable): name of the new tag, or %NULL
  * @first_property_name: (nullable): name of first property to set, or %NULL
@@ -3123,10 +3123,10 @@ gtk_source_buffer_get_implicit_trailing_newline (GtkSourceBuffer *buffer)
  * Since: 3.20
  */
 GtkTextTag *
-gtk_source_buffer_create_tag (GtkSourceBuffer *buffer,
-			      const gchar     *tag_name,
-			      const gchar     *first_property_name,
-			      ...)
+gtk_source_buffer_create_source_tag (GtkSourceBuffer *buffer,
+				     const gchar     *tag_name,
+				     const gchar     *first_property_name,
+				     ...)
 {
 	GtkTextTag *tag;
 	GtkTextTagTable *table;
