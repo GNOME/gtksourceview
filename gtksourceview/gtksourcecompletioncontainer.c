@@ -87,6 +87,8 @@ _gtk_source_completion_container_get_preferred_width (GtkWidget *widget,
 	{
 		*nat_width = width;
 	}
+
+	g_return_if_fail (width >= 0);
 }
 
 static gint
@@ -165,6 +167,8 @@ _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
 	{
 		*nat_height = height;
 	}
+
+	g_return_if_fail (height >= 0);
 }
 
 static void
