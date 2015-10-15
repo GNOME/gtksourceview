@@ -63,86 +63,20 @@ get_max_width (GtkSourceCompletionContainer *container)
 	return UNREALIZED_WIDTH;
 }
 
-static gint
-get_vertical_scrollbar_width (void)
-{
-	gint width;
-	GtkWidget *scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_VERTICAL, NULL);
-	g_object_ref_sink (scrollbar);
-	gtk_widget_show (scrollbar);
-
-	gtk_widget_get_preferred_width (scrollbar, NULL, &width);
-
-	g_object_unref (scrollbar);
-	return width;
-}
-
-static gint
-get_horizontal_scrollbar_height (void)
-{
-	gint height;
-	GtkWidget *scrollbar = gtk_scrollbar_new (GTK_ORIENTATION_HORIZONTAL, NULL);
-	g_object_ref_sink (scrollbar);
-	gtk_widget_show (scrollbar);
-
-	gtk_widget_get_preferred_height (scrollbar, NULL, &height);
-
-	g_object_unref (scrollbar);
-	return height;
-}
-
-/* This condition is used at several places, and it is important that it is the
- * same condition. So a function is better.
- */
-static gboolean
-needs_vertical_scrollbar (gint child_natural_height)
-{
-	return MAX_HEIGHT < child_natural_height;
-}
-
-static void
-get_width (GtkSourceCompletionContainer *container,
-	   gint                         *container_width,
-	   gint                         *child_available_width)
-{
-	GtkWidget *child;
-	GtkRequisition nat_size;
-	gint width;
-	gint scrollbar_width = 0;
-
-	child = gtk_bin_get_child (GTK_BIN (container));
-	gtk_widget_get_preferred_size (child, NULL, &nat_size);
-
-	width = nat_size.width;
-
-	if (needs_vertical_scrollbar (nat_size.height))
-	{
-		scrollbar_width = get_vertical_scrollbar_width ();
-		width += scrollbar_width;
-	}
-
-	width = MIN (width, get_max_width (container));
-
-	if (container_width != NULL)
-	{
-		*container_width = width;
-	}
-
-	if (child_available_width != NULL)
-	{
-		*child_available_width = width - scrollbar_width;
-	}
-}
-
 static void
 _gtk_source_completion_container_get_preferred_width (GtkWidget *widget,
 						      gint      *min_width,
 						      gint      *nat_width)
 {
 	GtkSourceCompletionContainer *container = GTK_SOURCE_COMPLETION_CONTAINER (widget);
+	GtkWidget *child;
+	GtkRequisition nat_size;
 	gint width;
 
-	get_width (container, &width, NULL);
+	child = gtk_bin_get_child (GTK_BIN (container));
+	gtk_widget_get_preferred_size (child, NULL, &nat_size);
+
+	width = MIN (nat_size.width, get_max_width (container));
 
 	if (min_width != NULL)
 	{
@@ -205,45 +139,31 @@ _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
 	GtkSourceCompletionContainer *container = GTK_SOURCE_COMPLETION_CONTAINER (widget);
 	GtkWidget *child;
 	GtkRequisition nat_size;
-	gint total_height;
-	gint scrollbar_height = 0;
-	gint child_available_width;
-	gint ret_height;
+	gint height;
 
 	child = gtk_bin_get_child (GTK_BIN (container));
 	gtk_widget_get_preferred_size (child, NULL, &nat_size);
 
-	total_height = nat_size.height;
-
-	get_width (container, NULL, &child_available_width);
-
-	/* Needs horizontal scrollbar */
-	if (child_available_width < nat_size.width)
+	if (nat_size.height <= MAX_HEIGHT)
 	{
-		scrollbar_height = get_horizontal_scrollbar_height ();
-		total_height += scrollbar_height;
-	}
-
-	if (needs_vertical_scrollbar (nat_size.height))
-	{
-		gint row_height = get_row_height (container, nat_size.height);
-		gint nb_rows_allowed = row_height != 0 ? MAX_HEIGHT / row_height : 0;
-
-		ret_height = nb_rows_allowed * row_height + scrollbar_height;
+		height = nat_size.height;
 	}
 	else
 	{
-		ret_height = total_height;
+		gint row_height = get_row_height (container, nat_size.height);
+		gint n_rows_allowed = row_height != 0 ? MAX_HEIGHT / row_height : 0;
+
+		height = n_rows_allowed * row_height;
 	}
 
 	if (min_height != NULL)
 	{
-		*min_height = ret_height;
+		*min_height = height;
 	}
 
 	if (nat_height != NULL)
 	{
-		*nat_height = ret_height;
+		*nat_height = height;
 	}
 }
 
