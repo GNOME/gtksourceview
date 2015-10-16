@@ -472,8 +472,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * @iter: iterator to initialize.
 	 * @state: state of bracket matching
 	 *
-	 * Sets @iter to a valid iterator pointing to the matching bracket
-	 * if @state is #GTK_SOURCE_BRACKET_MATCH_FOUND. Otherwise @iter is
+	 * @iter is set to a valid iterator pointing to the matching bracket
+	 * if @state is %GTK_SOURCE_BRACKET_MATCH_FOUND. Otherwise @iter is
 	 * meaningless.
 	 *
 	 * Since: 2.12
