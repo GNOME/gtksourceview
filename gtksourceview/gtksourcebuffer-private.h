@@ -60,17 +60,17 @@ gboolean		 _gtk_source_buffer_has_invalid_chars		(GtkSourceBuffer        *buffer
 
 G_GNUC_INTERNAL
 GtkSourceBracketMatchType
-			 _gtk_source_buffer_find_bracket_match		(GtkSourceBuffer         *buffer,
-									 GtkTextIter             *orig);
+			 _gtk_source_buffer_find_bracket_match		(GtkSourceBuffer        *buffer,
+									 GtkTextIter            *pos);
 
 G_GNUC_INTERNAL
-void			 _gtk_source_buffer_save_and_clear_selection	(GtkSourceBuffer         *buffer);
+void			 _gtk_source_buffer_save_and_clear_selection	(GtkSourceBuffer        *buffer);
 
 G_GNUC_INTERNAL
-void			 _gtk_source_buffer_restore_selection		(GtkSourceBuffer         *buffer);
+void			 _gtk_source_buffer_restore_selection		(GtkSourceBuffer        *buffer);
 
 G_GNUC_INTERNAL
-gboolean		 _gtk_source_buffer_is_undo_redo_enabled	(GtkSourceBuffer         *buffer);
+gboolean		 _gtk_source_buffer_is_undo_redo_enabled	(GtkSourceBuffer        *buffer);
 
 G_END_DECLS
 
