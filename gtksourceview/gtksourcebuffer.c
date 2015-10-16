@@ -1144,31 +1144,33 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 	}
 }
 
-/* This describes a mask of relevant context classes for highlighting matching
- * brackets. Additional classes can be added below.
- */
-static const gchar *cclass_mask_definitions[] = {
-	"comment",
-	"string",
-};
-
 static gint
-get_context_class_mask (GtkSourceBuffer *buffer,
-                        GtkTextIter     *iter)
+get_bracket_matching_context_class_mask (GtkSourceBuffer *buffer,
+					 GtkTextIter     *iter)
 {
+	gint mask = 0;
 	guint i;
-	gint ret = 0;
 
-	for (i = 0; i < sizeof (cclass_mask_definitions) / sizeof (gchar *); ++i)
+	/* This describes a mask of relevant context classes for highlighting
+	 * matching brackets.
+	 */
+	const gchar *cclass_mask_definitions[] = {
+		"comment",
+		"string",
+	};
+
+	for (i = 0; i < G_N_ELEMENTS (cclass_mask_definitions); ++i)
 	{
-		gboolean hasclass = gtk_source_buffer_iter_has_context_class (buffer,
-		                                                              iter,
-		                                                              cclass_mask_definitions[i]);
+		gboolean has_class;
 
-		ret |= hasclass << i;
+		has_class = gtk_source_buffer_iter_has_context_class (buffer,
+								      iter,
+								      cclass_mask_definitions[i]);
+
+		mask |= has_class << i;
 	}
 
-	return ret;
+	return mask;
 }
 
 /* Note that we only look MAX_CHARS_BEFORE_FINDING_A_MATCH at most. */
@@ -1194,7 +1196,7 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
 	cur_char = gtk_text_iter_get_char (&iter);
 
 	base_char = cur_char;
-	cclass_mask = get_context_class_mask (buffer, &iter);
+	cclass_mask = get_bracket_matching_context_class_mask (buffer, &iter);
 
 	search_char = bracket_pair (base_char, &addition);
 
@@ -1215,7 +1217,7 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
 		cur_char = gtk_text_iter_get_char (&iter);
 		++char_cont;
 
-		current_mask = get_context_class_mask (buffer, &iter);
+		current_mask = get_bracket_matching_context_class_mask (buffer, &iter);
 
 		/* Check if we lost a class, which means we don't look any
 		   further */
