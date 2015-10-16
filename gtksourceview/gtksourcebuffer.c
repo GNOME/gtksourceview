@@ -1386,7 +1386,9 @@ gtk_source_buffer_get_max_undo_levels (GtkSourceBuffer *buffer)
  * track.  If the number of user actions exceeds the limit set by this
  * function, older actions will be discarded.
  *
- * If @max_undo_levels is -1, no limit is set.
+ * If @max_undo_levels is -1, the undo/redo is unlimited.
+ *
+ * If @max_undo_levels is 0, the undo/redo is disabled.
  */
 void
 gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
@@ -1408,6 +1410,25 @@ gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 	}
 
 	g_object_notify (G_OBJECT (buffer), "max-undo-levels");
+}
+
+gboolean
+_gtk_source_buffer_is_undo_redo_enabled (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	if (buffer->priv->undo_manager == NULL)
+	{
+		return FALSE;
+	}
+
+	/* A custom UndoManager is not forced to follow max_undo_levels. */
+	if (!GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (buffer->priv->undo_manager))
+	{
+		return TRUE;
+	}
+
+	return buffer->priv->max_undo_levels != 0;
 }
 
 /**

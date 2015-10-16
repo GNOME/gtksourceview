@@ -69,6 +69,9 @@ void			 _gtk_source_buffer_save_and_clear_selection	(GtkSourceBuffer         *bu
 G_GNUC_INTERNAL
 void			 _gtk_source_buffer_restore_selection		(GtkSourceBuffer         *buffer);
 
+G_GNUC_INTERNAL
+gboolean		 _gtk_source_buffer_is_undo_redo_enabled	(GtkSourceBuffer         *buffer);
+
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_BUFFER_PRIVATE_H__ */

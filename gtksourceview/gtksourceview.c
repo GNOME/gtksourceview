@@ -1543,32 +1543,35 @@ gtk_source_view_populate_popup (GtkTextView *text_view,
 
 	menu = GTK_MENU_SHELL (popup);
 
-	/* separator */
-	menu_item = gtk_separator_menu_item_new ();
-	gtk_menu_shell_prepend (menu, menu_item);
-	gtk_widget_show (menu_item);
+	if (_gtk_source_buffer_is_undo_redo_enabled (GTK_SOURCE_BUFFER (buffer)))
+	{
+		/* separator */
+		menu_item = gtk_separator_menu_item_new ();
+		gtk_menu_shell_prepend (menu, menu_item);
+		gtk_widget_show (menu_item);
 
-	/* create redo menu_item. */
-	menu_item = gtk_menu_item_new_with_mnemonic (_("_Redo"));
-	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", (gpointer)"redo");
-	g_signal_connect (G_OBJECT (menu_item), "activate",
-			  G_CALLBACK (menu_item_activate_cb), text_view);
-	gtk_menu_shell_prepend (menu, menu_item);
-	gtk_widget_set_sensitive (menu_item,
-				  (gtk_text_view_get_editable (text_view) &&
-				   gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer))));
-	gtk_widget_show (menu_item);
+		/* create redo menu_item. */
+		menu_item = gtk_menu_item_new_with_mnemonic (_("_Redo"));
+		g_object_set_data (G_OBJECT (menu_item), "gtk-signal", (gpointer)"redo");
+		g_signal_connect (G_OBJECT (menu_item), "activate",
+				  G_CALLBACK (menu_item_activate_cb), text_view);
+		gtk_menu_shell_prepend (menu, menu_item);
+		gtk_widget_set_sensitive (menu_item,
+					  (gtk_text_view_get_editable (text_view) &&
+					   gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer))));
+		gtk_widget_show (menu_item);
 
-	/* create undo menu_item. */
-	menu_item = gtk_menu_item_new_with_mnemonic (_("_Undo"));
-	g_object_set_data (G_OBJECT (menu_item), "gtk-signal", (gpointer)"undo");
-	g_signal_connect (G_OBJECT (menu_item), "activate",
-			  G_CALLBACK (menu_item_activate_cb), text_view);
-	gtk_menu_shell_prepend (menu, menu_item);
-	gtk_widget_set_sensitive (menu_item,
-				  (gtk_text_view_get_editable (text_view) &&
-				   gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer))));
-	gtk_widget_show (menu_item);
+		/* create undo menu_item. */
+		menu_item = gtk_menu_item_new_with_mnemonic (_("_Undo"));
+		g_object_set_data (G_OBJECT (menu_item), "gtk-signal", (gpointer)"undo");
+		g_signal_connect (G_OBJECT (menu_item), "activate",
+				  G_CALLBACK (menu_item_activate_cb), text_view);
+		gtk_menu_shell_prepend (menu, menu_item);
+		gtk_widget_set_sensitive (menu_item,
+					  (gtk_text_view_get_editable (text_view) &&
+					   gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer))));
+		gtk_widget_show (menu_item);
+	}
 
 	/* separator */
 	menu_item = gtk_separator_menu_item_new ();
