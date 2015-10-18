@@ -3454,15 +3454,10 @@ compute_indentation (GtkSourceView *view,
 {
 	GtkTextIter start;
 	GtkTextIter end;
-
 	gunichar ch;
-	gint line;
 
-	line = gtk_text_iter_get_line (cur);
-
-	gtk_text_buffer_get_iter_at_line (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)),
-					  &start,
-					  line);
+	start = *cur;
+	gtk_text_iter_set_line_offset (&start, 0);
 
 	end = start;
 
