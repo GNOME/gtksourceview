@@ -44,21 +44,13 @@ init_default_manager (void)
 
 	if (g_file_test (dir, G_FILE_TEST_IS_DIR))
 	{
-		GtkSourceLanguageManager *lm;
-		gchar **lang_dirs;
-
-		lm = gtk_source_language_manager_get_default ();
-
-		lang_dirs = g_new0 (gchar *, 2);
-		lang_dirs[0] = dir;
+		GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
+		gchar *lang_dirs[2] = {dir, NULL};
 
 		gtk_source_language_manager_set_search_path (lm, lang_dirs);
-		g_strfreev (lang_dirs);
 	}
-	else
-	{
-		g_free (dir);
-	}
+
+	g_free (dir);
 }
 
 static void
