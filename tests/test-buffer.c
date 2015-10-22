@@ -22,8 +22,8 @@
  */
 
 #include <stdlib.h>
-#include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+#include "gtksourceview/gtksourcebuffer-private.h"
 
 static const char *c_snippet =
 	"#include <foo.h>\n"
@@ -279,6 +279,63 @@ test_sort_lines (void)
 	g_object_unref (buffer);
 }
 
+static void
+do_test_bracket_matching (GtkSourceBuffer           *source_buffer,
+			  const gchar               *text,
+			  gint                       offset_before,
+			  gint                       expected_offset_after,
+			  GtkSourceBracketMatchType  expected_result)
+{
+	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkTextIter iter;
+	GtkSourceBracketMatchType result;
+	gint offset_after;
+
+	gtk_text_buffer_set_text (text_buffer, text, -1);
+
+	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, offset_before);
+
+	result = _gtk_source_buffer_find_bracket_match (source_buffer, &iter);
+	g_assert_cmpint (result, ==, expected_result);
+
+	offset_after = gtk_text_iter_get_offset (&iter);
+	g_assert_cmpint (offset_after, ==, expected_offset_after);
+}
+
+static void
+test_bracket_matching (void)
+{
+	GtkSourceBuffer *buffer;
+	GtkSourceLanguageManager *language_manager;
+	GtkSourceLanguage *c_language;
+
+	buffer = gtk_source_buffer_new (NULL);
+
+	language_manager = gtk_source_language_manager_get_default ();
+	c_language = gtk_source_language_manager_get_language (language_manager, "c");
+	g_assert (c_language != NULL);
+	gtk_source_buffer_set_language (buffer, c_language);
+
+	do_test_bracket_matching (buffer, "(ab)", 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab)", 1, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab)", 2, 2, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "(ab)", 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab)", 4, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+
+	do_test_bracket_matching (buffer, "(ab))", 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab))", 1, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab))", 2, 2, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "(ab))", 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	/* FIXME ok, the bracket at offset 3 (on the left) matches the bracket
+	 * at offset 0. But the highlighting is wrong, the second ) is
+	 * highlighted.
+	 */
+	do_test_bracket_matching (buffer, "(ab))", 4, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab))", 5, 5, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+
+	g_object_unref (buffer);
+}
+
 int
 main (int argc, char** argv)
 {
@@ -291,6 +348,7 @@ main (int argc, char** argv)
 	g_test_add_func ("/Buffer/change-case", test_change_case);
 	g_test_add_func ("/Buffer/join-lines", test_join_lines);
 	g_test_add_func ("/Buffer/sort-lines", test_sort_lines);
+	g_test_add_func ("/Buffer/bracket-matching", test_bracket_matching);
 
 	return g_test_run();
 }
