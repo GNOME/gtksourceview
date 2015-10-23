@@ -141,10 +141,8 @@
 #define PROFILE(x)
 #endif
 
-/* For bracket matching */
-#define MAX_CHARS_BEFORE_FINDING_A_MATCH    10000
-
-#define CONTEXT_CLASSES_PREFIX "gtksourceview:context-classes:"
+#define BRACKET_MATCHING_CHARS_LIMIT	10000
+#define CONTEXT_CLASSES_PREFIX		"gtksourceview:context-classes:"
 
 /* Signals */
 enum
@@ -1174,7 +1172,7 @@ get_bracket_matching_context_class_mask (GtkSourceBuffer *buffer,
 	return mask;
 }
 
-/* Note that we only look MAX_CHARS_BEFORE_FINDING_A_MATCH at most. */
+/* Note that we only look BRACKET_MATCHING_CHARS_LIMIT at most. */
 static GtkSourceBracketMatchType
 gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
                                            GtkTextIter     *pos)
@@ -1245,7 +1243,7 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
 		}
 	}
 	while (!gtk_text_iter_is_end (&iter) && !gtk_text_iter_is_start (&iter) &&
-		(char_cont < MAX_CHARS_BEFORE_FINDING_A_MATCH));
+		(char_cont < BRACKET_MATCHING_CHARS_LIMIT));
 
 	if (found)
 	{
@@ -1253,7 +1251,7 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
 		return GTK_SOURCE_BRACKET_MATCH_FOUND;
 	}
 
-	if (char_cont >= MAX_CHARS_BEFORE_FINDING_A_MATCH)
+	if (char_cont >= BRACKET_MATCHING_CHARS_LIMIT)
 	{
 		return GTK_SOURCE_BRACKET_MATCH_OUT_OF_RANGE;
 	}
