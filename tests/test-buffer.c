@@ -282,24 +282,38 @@ test_sort_lines (void)
 static void
 do_test_bracket_matching (GtkSourceBuffer           *source_buffer,
 			  const gchar               *text,
-			  gint                       offset_before,
-			  gint                       expected_offset_after,
+			  gint                       offset,
+			  gint                       expected_offset_bracket,
+			  gint                       expected_offset_match,
 			  GtkSourceBracketMatchType  expected_result)
 {
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
 	GtkTextIter iter;
+	GtkTextIter bracket;
+	GtkTextIter bracket_match;
 	GtkSourceBracketMatchType result;
-	gint offset_after;
 
 	gtk_text_buffer_set_text (text_buffer, text, -1);
 
-	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, offset_before);
+	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, offset);
 
-	result = _gtk_source_buffer_find_bracket_match (source_buffer, &iter);
+	result = _gtk_source_buffer_find_bracket_match (source_buffer,
+							&iter,
+							&bracket,
+							&bracket_match);
 	g_assert_cmpint (result, ==, expected_result);
 
-	offset_after = gtk_text_iter_get_offset (&iter);
-	g_assert_cmpint (offset_after, ==, expected_offset_after);
+	if (result == GTK_SOURCE_BRACKET_MATCH_FOUND)
+	{
+		gint offset_bracket;
+		gint offset_match;
+
+		offset_bracket = gtk_text_iter_get_offset (&bracket);
+		offset_match = gtk_text_iter_get_offset (&bracket_match);
+
+		g_assert_cmpint (offset_bracket, ==, expected_offset_bracket);
+		g_assert_cmpint (offset_match, ==, expected_offset_match);
+	}
 }
 
 static void
@@ -316,22 +330,18 @@ test_bracket_matching (void)
 	g_assert (c_language != NULL);
 	gtk_source_buffer_set_language (buffer, c_language);
 
-	do_test_bracket_matching (buffer, "(ab)", 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
-	do_test_bracket_matching (buffer, "(ab)", 1, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
-	do_test_bracket_matching (buffer, "(ab)", 2, 2, GTK_SOURCE_BRACKET_MATCH_NONE);
-	do_test_bracket_matching (buffer, "(ab)", 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
-	do_test_bracket_matching (buffer, "(ab)", 4, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab)", 0, 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab)", 1, 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab)", 2, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "(ab)", 3, 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab)", 4, 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
 
-	do_test_bracket_matching (buffer, "(ab))", 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
-	do_test_bracket_matching (buffer, "(ab))", 1, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
-	do_test_bracket_matching (buffer, "(ab))", 2, 2, GTK_SOURCE_BRACKET_MATCH_NONE);
-	do_test_bracket_matching (buffer, "(ab))", 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
-	/* FIXME ok, the bracket at offset 3 (on the left) matches the bracket
-	 * at offset 0. But the highlighting is wrong, the second ) is
-	 * highlighted.
-	 */
-	do_test_bracket_matching (buffer, "(ab))", 4, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
-	do_test_bracket_matching (buffer, "(ab))", 5, 5, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+	do_test_bracket_matching (buffer, "(ab))", 0, 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab))", 1, 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab))", 2, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "(ab))", 3, 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab))", 4, 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(ab))", 5, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 
 	g_object_unref (buffer);
 }

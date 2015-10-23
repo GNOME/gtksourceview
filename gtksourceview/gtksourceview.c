@@ -320,23 +320,28 @@ gtk_source_view_move_to_matching_bracket (GtkSourceView *view,
 	GtkTextView *text_view = GTK_TEXT_VIEW (view);
 	GtkTextBuffer *buffer;
 	GtkTextMark *insert_mark;
-	GtkTextIter iter;
+	GtkTextIter insert;
+	GtkTextIter bracket_match;
+	GtkSourceBracketMatchType result;
 
 	buffer = gtk_text_view_get_buffer (text_view);
 	insert_mark = gtk_text_buffer_get_insert (buffer);
-	gtk_text_buffer_get_iter_at_mark (buffer, &iter, insert_mark);
+	gtk_text_buffer_get_iter_at_mark (buffer, &insert, insert_mark);
 
-	if (_gtk_source_buffer_find_bracket_match (GTK_SOURCE_BUFFER (buffer),
-						   &iter) == GTK_SOURCE_BRACKET_MATCH_FOUND)
+	result = _gtk_source_buffer_find_bracket_match (GTK_SOURCE_BUFFER (buffer),
+							&insert,
+							NULL,
+							&bracket_match);
+
+	if (result == GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
 		if (extend_selection)
 		{
-			gtk_text_buffer_move_mark (buffer, insert_mark,
-			                           &iter);
+			gtk_text_buffer_move_mark (buffer, insert_mark, &bracket_match);
 		}
 		else
 		{
-			gtk_text_buffer_place_cursor (buffer, &iter);
+			gtk_text_buffer_place_cursor (buffer, &bracket_match);
 		}
 
 		gtk_text_view_scroll_mark_onscreen (text_view, insert_mark);

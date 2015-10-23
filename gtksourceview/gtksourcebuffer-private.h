@@ -61,7 +61,9 @@ gboolean		 _gtk_source_buffer_has_invalid_chars		(GtkSourceBuffer        *buffer
 G_GNUC_INTERNAL
 GtkSourceBracketMatchType
 			 _gtk_source_buffer_find_bracket_match		(GtkSourceBuffer        *buffer,
-									 GtkTextIter            *pos);
+									 const GtkTextIter      *pos,
+									 GtkTextIter            *bracket,
+									 GtkTextIter            *bracket_match);
 
 G_GNUC_INTERNAL
 void			 _gtk_source_buffer_save_and_clear_selection	(GtkSourceBuffer        *buffer);

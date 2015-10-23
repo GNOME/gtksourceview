@@ -882,13 +882,15 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 			       GtkTextMark       *mark)
 {
 	GtkSourceBuffer *source_buffer;
-	GtkTextIter start, end;
-	gunichar cursor_char;
+	GtkTextIter start;
+	GtkTextIter end;
+	GtkTextIter bracket;
+	GtkTextIter bracket_match;
 	GtkSourceBracketMatchType previous_state;
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (iter != NULL);
-	g_return_if_fail (mark != NULL);
+	g_return_if_fail (GTK_IS_TEXT_MARK (mark));
 	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
 
 	if (mark != gtk_text_buffer_get_insert (buffer))
@@ -921,21 +923,24 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 		return;
 	}
 
-	start = *iter;
 	previous_state = source_buffer->priv->bracket_match;
-	source_buffer->priv->bracket_match = _gtk_source_buffer_find_bracket_match (source_buffer, &start);
+	source_buffer->priv->bracket_match = _gtk_source_buffer_find_bracket_match (source_buffer,
+										    iter,
+										    &bracket,
+										    &bracket_match);
 
 	if (source_buffer->priv->bracket_match != GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
-		/* don't emit the signal at all if chars at previous and current
-		   positions are nonbrackets. */
+		/* Don't emit the signal at all if chars at previous and current
+		 * positions are nonbrackets.
+		 */
 		if (previous_state != GTK_SOURCE_BRACKET_MATCH_NONE ||
 		    source_buffer->priv->bracket_match != GTK_SOURCE_BRACKET_MATCH_NONE)
 		{
 			g_signal_emit (source_buffer,
 				       buffer_signals[BRACKET_MATCHED],
 				       0,
-				       &end,
+				       &end, /* FIXME end may be uninitialized here... */
 				       source_buffer->priv->bracket_match);
 		}
 	}
@@ -944,31 +949,33 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 		g_signal_emit (source_buffer,
 			       buffer_signals[BRACKET_MATCHED],
 			       0,
-			       &start,
-			       source_buffer->priv->bracket_match);
+			       &bracket_match,
+			       GTK_SOURCE_BRACKET_MATCH_FOUND);
 
 		/* allow_bracket_match will allow the bracket match tag to be
-		   applied to the buffer. See apply_tag_real for more
-		   information */
+		 * applied to the buffer. See apply_tag_real for more
+		 * information.
+		 */
 		source_buffer->priv->allow_bracket_match = TRUE;
 
 		/* Mark matching bracket */
-		if (!source_buffer->priv->bracket_mark_match)
+		if (source_buffer->priv->bracket_mark_match == NULL)
 		{
 			source_buffer->priv->bracket_mark_match =
  				gtk_text_buffer_create_mark (buffer,
 							     NULL,
-							     &start,
+							     &bracket_match,
 							     TRUE);
  		}
  		else
  		{
  			gtk_text_buffer_move_mark (buffer,
 						   source_buffer->priv->bracket_mark_match,
-						   &start);
+						   &bracket_match);
  		}
 
-		end = start;
+		start = bracket_match;
+		end = bracket_match;
 		gtk_text_iter_forward_char (&end);
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (source_buffer),
@@ -976,29 +983,23 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 					   &end);
 
 		/* Mark the bracket near the cursor */
-		start = *iter;
-		cursor_char = gtk_text_iter_get_char (&start);
-		if (bracket_pair (cursor_char, NULL) == 0)
-		{
-			gtk_text_iter_backward_char (&start);
-		}
-
-		if (!source_buffer->priv->bracket_mark_cursor)
+		if (source_buffer->priv->bracket_mark_cursor == NULL)
 		{
 			source_buffer->priv->bracket_mark_cursor =
 				gtk_text_buffer_create_mark (buffer,
 							     NULL,
-							     &start,
+							     &bracket,
 							     FALSE);
 		}
 		else
 		{
 			gtk_text_buffer_move_mark (buffer,
 						   source_buffer->priv->bracket_mark_cursor,
-						   &start);
+						   &bracket);
 		}
 
-		end = start;
+		start = bracket;
+		end = bracket;
 		gtk_text_iter_forward_char (&end);
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (source_buffer),
@@ -1260,35 +1261,50 @@ gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
 	return GTK_SOURCE_BRACKET_MATCH_NOT_FOUND;
 }
 
-/* Moves @pos to the matching bracket, if found.
- * Note that we take into account both the character following @pos and the one
+/* Note that we take into account both the character following @pos and the one
  * preceding it. If there are brackets on both sides, the one following @pos
  * takes precedence.
+ * @bracket and @bracket_match are valid only if GTK_SOURCE_BRACKET_MATCH_FOUND
+ * is returned. @bracket is set either to @pos or @pos-1.
  */
 GtkSourceBracketMatchType
-_gtk_source_buffer_find_bracket_match (GtkSourceBuffer *buffer,
-                                       GtkTextIter     *pos)
+_gtk_source_buffer_find_bracket_match (GtkSourceBuffer   *buffer,
+				       const GtkTextIter *pos,
+				       GtkTextIter       *bracket,
+				       GtkTextIter       *bracket_match)
 {
-	GtkTextIter bracket_match;
 	GtkSourceBracketMatchType result;
+	GtkTextIter prev;
 
-	bracket_match = *pos;
-	result = gtk_source_buffer_find_bracket_match_real (buffer, &bracket_match);
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), GTK_SOURCE_BRACKET_MATCH_NONE);
+	g_return_val_if_fail (pos != NULL, GTK_SOURCE_BRACKET_MATCH_NONE);
+	g_return_val_if_fail (bracket_match != NULL, GTK_SOURCE_BRACKET_MATCH_NONE);
 
-	if (result != GTK_SOURCE_BRACKET_MATCH_FOUND)
-	{
-		bracket_match = *pos;
-
-		if (!gtk_text_iter_starts_line (&bracket_match) &&
-		    gtk_text_iter_backward_char (&bracket_match))
-		{
-			result = gtk_source_buffer_find_bracket_match_real (buffer, &bracket_match);
-		}
-	}
+	*bracket_match = *pos;
+	result = gtk_source_buffer_find_bracket_match_real (buffer, bracket_match);
 
 	if (result == GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
-		*pos = bracket_match;
+		if (bracket != NULL)
+		{
+			*bracket = *pos;
+		}
+
+		return GTK_SOURCE_BRACKET_MATCH_FOUND;
+	}
+
+	prev = *pos;
+	if (!gtk_text_iter_starts_line (&prev) &&
+	    gtk_text_iter_backward_cursor_position (&prev))
+	{
+		*bracket_match = prev;
+		result = gtk_source_buffer_find_bracket_match_real (buffer, bracket_match);
+	}
+
+	if (result == GTK_SOURCE_BRACKET_MATCH_FOUND &&
+	    bracket != NULL)
+	{
+		*bracket = prev;
 	}
 
 	return result;
