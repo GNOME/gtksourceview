@@ -3,7 +3,7 @@
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2010 - Krzesimir Nowak
- * Copyright (C) 2012-2014 - Sébastien Wilmet
+ * Copyright (C) 2012-2015 - Sébastien Wilmet
  * Copyright (C) 2013, 2015 - Paolo Borelli
  *
  * GtkSourceView is free software; you can redistribute it and/or
@@ -31,6 +31,15 @@ static const char *c_snippet =
 	"/* this is a comment */\n"
 	"int main() {\n"
 	"}\n";
+
+static void
+flush_queue (void)
+{
+	while (gtk_events_pending ())
+	{
+		gtk_main_iteration ();
+	}
+}
 
 /* If we are running from the source dir (e.g. during make check)
  * we override the path to read from the data dir
@@ -295,6 +304,11 @@ do_test_bracket_matching (GtkSourceBuffer           *source_buffer,
 
 	gtk_text_buffer_set_text (text_buffer, text, -1);
 
+	/* Ensure that the syntax highlighting engine has finished, and that
+	 * context classes are correctly defined.
+	 */
+	flush_queue ();
+
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, offset);
 
 	result = _gtk_source_buffer_find_bracket_match (source_buffer,
@@ -330,6 +344,8 @@ test_bracket_matching (void)
 	g_assert (c_language != NULL);
 	gtk_source_buffer_set_language (buffer, c_language);
 
+	/* Basics */
+
 	do_test_bracket_matching (buffer, "(ab)", 0, 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
 	do_test_bracket_matching (buffer, "(ab)", 1, 0, 3, GTK_SOURCE_BRACKET_MATCH_FOUND);
 	do_test_bracket_matching (buffer, "(ab)", 2, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
@@ -342,6 +358,39 @@ test_bracket_matching (void)
 	do_test_bracket_matching (buffer, "(ab))", 3, 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
 	do_test_bracket_matching (buffer, "(ab))", 4, 3, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
 	do_test_bracket_matching (buffer, "(ab))", 5, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+
+	do_test_bracket_matching (buffer, "((ab)", 0, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+	do_test_bracket_matching (buffer, "((ab)", 1, 1, 4, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "((ab)", 2, 1, 4, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "((ab)", 3, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "((ab)", 4, 4, 1, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "((ab)", 5, 4, 1, GTK_SOURCE_BRACKET_MATCH_FOUND);
+
+	/* String context class */
+
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 0, 0, 8, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 1, 0, 8, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 2, 2, 5, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 3, 2, 5, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 4, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 5, 5, 2, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 6, 5, 2, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 7, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 8, 8, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+	do_test_bracket_matching (buffer, "(\"(ab))\")", 9, 8, 0, GTK_SOURCE_BRACKET_MATCH_FOUND);
+
+	do_test_bracket_matching (buffer, "((\"(ab))\")", 0, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 0, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	/* FIXME expected NOT_FOUND. */
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 1, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 2, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 3, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 4, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	/* FIXME expected NOT_FOUND. */
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 5, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 6, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 7, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
 
 	g_object_unref (buffer);
 }
