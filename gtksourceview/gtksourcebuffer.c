@@ -1221,17 +1221,14 @@ find_bracket_match_real (GtkSourceBuffer *buffer,
 
 		/* Check if we lost a class, which means we don't look any
 		 * further.
-		 * FIXME: bug if context class changes directly from comment to
-		 * string and then from string to comment. Brackets in the
-		 * second comment will match with brackets in the first comment.
 		 */
-		if (cur_mask < cclass_mask)
+		if ((cclass_mask & cur_mask) != cclass_mask)
 		{
 			found = FALSE;
 			break;
 		}
 
-		if (cur_mask != cclass_mask)
+		if (cclass_mask != cur_mask)
 		{
 			continue;
 		}
