@@ -196,7 +196,6 @@ struct _GtkSourceBufferPrivate
 
 	guint highlight_syntax : 1;
 	guint highlight_brackets : 1;
-	guint constructed : 1;
 	guint implicit_trailing_newline : 1;
 };
 
@@ -245,9 +244,6 @@ static void
 gtk_source_buffer_constructed (GObject *object)
 {
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (object);
-
-	/* we need to know that the tag-table was set */
-	buffer->priv->constructed = TRUE;
 
 	if (buffer->priv->undo_manager == NULL)
 	{
@@ -1492,14 +1488,7 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 	{
 		buffer->priv->highlight_brackets = highlight;
 
-		/* try to see if there is already a bracket match at the
-		 * current position, but only if the tag table is already set
-		 * otherwise we have problems when calling this function
-		 * on init (get_insert creates the tag table as a side effect */
-		if (buffer->priv->constructed)
-		{
-			cursor_moved (buffer);
-		}
+		cursor_moved (buffer);
 
 		g_object_notify (G_OBJECT (buffer), "highlight-matching-brackets");
 	}

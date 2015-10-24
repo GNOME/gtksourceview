@@ -336,6 +336,7 @@ test_bracket_matching (void)
 	GtkSourceBuffer *buffer;
 	GtkSourceLanguageManager *language_manager;
 	GtkSourceLanguage *c_language;
+	GtkTextTagTable *table;
 
 	buffer = gtk_source_buffer_new (NULL);
 
@@ -404,6 +405,26 @@ test_bracket_matching (void)
 	do_test_bracket_matching (buffer, "/*(*/\"a\"/*)*/", 10, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 
 	g_object_unref (buffer);
+
+	/* Test setting the property and a specific tag table. There was a
+	 * hack in the implementation to avoid trying to match brackets before
+	 * the tag-table property is set. But now the hack is no longer needed.
+	 */
+	table = gtk_text_tag_table_new ();
+
+	buffer = g_object_new (GTK_SOURCE_TYPE_BUFFER,
+			       "highlight-matching-brackets", FALSE,
+			       "tag-table", table,
+			       NULL);
+	g_object_unref (buffer);
+
+	buffer = g_object_new (GTK_SOURCE_TYPE_BUFFER,
+			       "highlight-matching-brackets", TRUE,
+			       "tag-table", table,
+			       NULL);
+	g_object_unref (buffer);
+
+	g_object_unref (table);
 }
 
 int
