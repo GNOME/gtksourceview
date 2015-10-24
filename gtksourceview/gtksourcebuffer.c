@@ -882,18 +882,19 @@ cursor_moved (GtkSourceBuffer *source_buffer)
 {
 	GtkTextBuffer *buffer;
 	GtkTextIter insert_iter;
-	GtkTextIter start;
-	GtkTextIter end;
 	GtkTextIter bracket;
 	GtkTextIter bracket_match;
 	GtkSourceBracketMatchType previous_state;
 
 	buffer = GTK_TEXT_BUFFER (source_buffer);
 
-	if (source_buffer->priv->bracket_match == GTK_SOURCE_BRACKET_MATCH_FOUND &&
-	    source_buffer->priv->bracket_match_tag != NULL)
+	if (source_buffer->priv->bracket_match_tag != NULL)
 	{
+		GtkTextIter start;
+		GtkTextIter end;
+
 		gtk_text_buffer_get_bounds (buffer, &start, &end);
+
 		gtk_text_buffer_remove_tag (buffer,
 					    source_buffer->priv->bracket_match_tag,
 					    &start,
@@ -902,6 +903,15 @@ cursor_moved (GtkSourceBuffer *source_buffer)
 
 	if (!source_buffer->priv->highlight_brackets)
 	{
+		if (source_buffer->priv->bracket_match_tag != NULL)
+		{
+			GtkTextTagTable *table;
+
+			table = gtk_text_buffer_get_tag_table (buffer);
+			gtk_text_tag_table_remove (table, source_buffer->priv->bracket_match_tag);
+			source_buffer->priv->bracket_match_tag = NULL;
+		}
+
 		return;
 	}
 
@@ -915,23 +925,10 @@ cursor_moved (GtkSourceBuffer *source_buffer)
 										    &bracket,
 										    &bracket_match);
 
-	if (source_buffer->priv->bracket_match != GTK_SOURCE_BRACKET_MATCH_FOUND)
+	if (source_buffer->priv->bracket_match == GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
-		/* Don't emit the signal at all if chars at previous and current
-		 * positions are nonbrackets.
-		 */
-		if (previous_state != GTK_SOURCE_BRACKET_MATCH_NONE ||
-		    source_buffer->priv->bracket_match != GTK_SOURCE_BRACKET_MATCH_NONE)
-		{
-			g_signal_emit (source_buffer,
-				       buffer_signals[BRACKET_MATCHED],
-				       0,
-				       NULL,
-				       source_buffer->priv->bracket_match);
-		}
-	}
-	else
-	{
+		GtkTextIter next_iter;
+
 		g_signal_emit (source_buffer,
 			       buffer_signals[BRACKET_MATCHED],
 			       0,
@@ -944,21 +941,35 @@ cursor_moved (GtkSourceBuffer *source_buffer)
 		 */
 		source_buffer->priv->allow_bracket_match = TRUE;
 
-		end = bracket_match;
-		gtk_text_iter_forward_char (&end);
+		next_iter = bracket_match;
+		gtk_text_iter_forward_char (&next_iter);
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (source_buffer),
 					   &bracket_match,
-					   &end);
+					   &next_iter);
 
-		end = bracket;
-		gtk_text_iter_forward_char (&end);
+		next_iter = bracket;
+		gtk_text_iter_forward_char (&next_iter);
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (source_buffer),
 					   &bracket,
-					   &end);
+					   &next_iter);
 
 		source_buffer->priv->allow_bracket_match = FALSE;
+		return;
+	}
+
+	/* Don't emit the signal at all if chars at previous and current
+	 * positions are nonbrackets.
+	 */
+	if (previous_state != GTK_SOURCE_BRACKET_MATCH_NONE ||
+	    source_buffer->priv->bracket_match != GTK_SOURCE_BRACKET_MATCH_NONE)
+	{
+		g_signal_emit (source_buffer,
+			       buffer_signals[BRACKET_MATCHED],
+			       0,
+			       NULL,
+			       source_buffer->priv->bracket_match);
 	}
 }
 
