@@ -823,7 +823,7 @@ bracket_pair (gunichar  base_char,
 	gint dir;
 	gunichar pair;
 
-	switch ((gint)base_char)
+	switch (base_char)
 	{
 		case '{':
 			dir = 1;
@@ -1177,7 +1177,9 @@ get_bracket_matching_context_class_mask (GtkSourceBuffer *buffer,
 	return mask;
 }
 
-/* Note that we only look BRACKET_MATCHING_CHARS_LIMIT at most. */
+/* Note that we only look BRACKET_MATCHING_CHARS_LIMIT at most.
+ * @pos is moved to the bracket match, if found.
+ */
 static GtkSourceBracketMatchType
 find_bracket_match_real (GtkSourceBuffer *buffer,
 			 GtkTextIter     *pos)
@@ -1185,70 +1187,73 @@ find_bracket_match_real (GtkSourceBuffer *buffer,
 	GtkTextIter iter;
 	gunichar base_char;
 	gunichar search_char;
-	gunichar cur_char;
-	gint addition;
-	gint char_cont;
-	gint counter;
-	gboolean found;
+	gint direction;
+	gint bracket_count;
+	gint char_count;
 	gint cclass_mask;
+	gboolean found;
 
-	iter = *pos;
+	base_char = gtk_text_iter_get_char (pos);
+	search_char = bracket_pair (base_char, &direction);
 
-	cur_char = gtk_text_iter_get_char (&iter);
-
-	base_char = cur_char;
-	cclass_mask = get_bracket_matching_context_class_mask (buffer, &iter);
-
-	search_char = bracket_pair (base_char, &addition);
-
-	if (addition == 0)
+	if (direction == 0)
 	{
 		return GTK_SOURCE_BRACKET_MATCH_NONE;
 	}
 
-	counter = 0;
+	cclass_mask = get_bracket_matching_context_class_mask (buffer, pos);
+
+	iter = *pos;
+	bracket_count = 0;
+	char_count = 0;
 	found = FALSE;
-	char_cont = 0;
 
 	do
 	{
-		gint current_mask;
+		gunichar cur_char;
+		gint cur_mask;
 
-		gtk_text_iter_forward_chars (&iter, addition);
+		gtk_text_iter_forward_chars (&iter, direction);
 		cur_char = gtk_text_iter_get_char (&iter);
-		++char_cont;
+		char_count++;
 
-		current_mask = get_bracket_matching_context_class_mask (buffer, &iter);
+		cur_mask = get_bracket_matching_context_class_mask (buffer, &iter);
 
 		/* Check if we lost a class, which means we don't look any
-		   further */
-		if (current_mask < cclass_mask)
+		 * further.
+		 * FIXME: bug if context class changes directly from comment to
+		 * string and then from string to comment. Brackets in the
+		 * second comment will match with brackets in the first comment.
+		 */
+		if (cur_mask < cclass_mask)
 		{
 			found = FALSE;
 			break;
 		}
 
-		if ((cur_char == search_char || cur_char == base_char) &&
-		    cclass_mask == current_mask)
+		if (cur_mask != cclass_mask)
 		{
-			if ((cur_char == search_char) && counter == 0)
+			continue;
+		}
+
+		if (cur_char == search_char)
+		{
+			if (bracket_count == 0)
 			{
 				found = TRUE;
 				break;
 			}
 
-			if (cur_char == base_char)
-			{
-				counter++;
-			}
-			else
-			{
-				counter--;
-			}
+			bracket_count--;
+		}
+		else if (cur_char == base_char)
+		{
+			bracket_count++;
 		}
 	}
-	while (!gtk_text_iter_is_end (&iter) && !gtk_text_iter_is_start (&iter) &&
-		(char_cont < BRACKET_MATCHING_CHARS_LIMIT));
+	while (!gtk_text_iter_is_end (&iter) &&
+	       !gtk_text_iter_is_start (&iter) &&
+	       char_count < BRACKET_MATCHING_CHARS_LIMIT);
 
 	if (found)
 	{
@@ -1256,7 +1261,7 @@ find_bracket_match_real (GtkSourceBuffer *buffer,
 		return GTK_SOURCE_BRACKET_MATCH_FOUND;
 	}
 
-	if (char_cont >= BRACKET_MATCHING_CHARS_LIMIT)
+	if (char_count >= BRACKET_MATCHING_CHARS_LIMIT)
 	{
 		return GTK_SOURCE_BRACKET_MATCH_OUT_OF_RANGE;
 	}
