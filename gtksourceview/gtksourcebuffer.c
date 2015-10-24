@@ -878,28 +878,17 @@ bracket_pair (gunichar  base_char,
 }
 
 static void
-gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
-			       const GtkTextIter *iter,
-			       GtkTextMark       *mark)
+cursor_moved (GtkSourceBuffer *source_buffer)
 {
-	GtkSourceBuffer *source_buffer;
+	GtkTextBuffer *buffer;
+	GtkTextIter insert_iter;
 	GtkTextIter start;
 	GtkTextIter end;
 	GtkTextIter bracket;
 	GtkTextIter bracket_match;
 	GtkSourceBracketMatchType previous_state;
 
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-	g_return_if_fail (iter != NULL);
-	g_return_if_fail (GTK_IS_TEXT_MARK (mark));
-	g_return_if_fail (gtk_text_iter_get_buffer (iter) == buffer);
-
-	if (mark != gtk_text_buffer_get_insert (buffer))
-	{
-		return;
-	}
-
-	source_buffer = GTK_SOURCE_BUFFER (buffer);
+	buffer = GTK_TEXT_BUFFER (source_buffer);
 
 	if (source_buffer->priv->bracket_match == GTK_SOURCE_BRACKET_MATCH_FOUND &&
 	    source_buffer->priv->bracket_match_tag != NULL)
@@ -916,9 +905,13 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 		return;
 	}
 
+	gtk_text_buffer_get_iter_at_mark (buffer,
+					  &insert_iter,
+					  gtk_text_buffer_get_insert (buffer));
+
 	previous_state = source_buffer->priv->bracket_match;
 	source_buffer->priv->bracket_match = _gtk_source_buffer_find_bracket_match (source_buffer,
-										    iter,
+										    &insert_iter,
 										    &bracket,
 										    &bracket_match);
 
@@ -974,13 +967,9 @@ gtk_source_buffer_content_inserted (GtkTextBuffer *buffer,
 				    gint           start_offset,
 				    gint           end_offset)
 {
-	GtkTextMark *mark;
-	GtkTextIter insert_iter;
 	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
 
-	mark = gtk_text_buffer_get_insert (buffer);
-	gtk_text_buffer_get_iter_at_mark (buffer, &insert_iter, mark);
-	gtk_source_buffer_move_cursor (buffer, &insert_iter, mark);
+	cursor_moved (source_buffer);
 
 	if (source_buffer->priv->highlight_engine != NULL)
 	{
@@ -1076,8 +1065,6 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 				     GtkTextIter   *end)
 {
 	gint offset, length;
-	GtkTextMark *mark;
-	GtkTextIter iter;
 	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
@@ -1092,9 +1079,7 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 
 	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->delete_range (buffer, start, end);
 
-	mark = gtk_text_buffer_get_insert (buffer);
-	gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
-	gtk_source_buffer_move_cursor (buffer, &iter, mark);
+	cursor_moved (source_buffer);
 
 	/* emit text deleted for engines */
 	if (source_buffer->priv->highlight_engine != NULL)
@@ -1508,9 +1493,6 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 
 	if (highlight != buffer->priv->highlight_brackets)
 	{
-		GtkTextIter iter;
-		GtkTextMark *mark;
-
 		buffer->priv->highlight_brackets = highlight;
 
 		/* try to see if there is already a bracket match at the
@@ -1519,9 +1501,7 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 		 * on init (get_insert creates the tag table as a side effect */
 		if (buffer->priv->constructed)
 		{
-			mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (buffer));
-			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer), &iter, mark);
-			gtk_source_buffer_move_cursor (GTK_TEXT_BUFFER (buffer), &iter, mark);
+			cursor_moved (buffer);
 		}
 
 		g_object_notify (G_OBJECT (buffer), "highlight-matching-brackets");
@@ -1835,11 +1815,9 @@ gtk_source_buffer_real_mark_set	(GtkTextBuffer     *buffer,
 
 		g_signal_emit (buffer, buffer_signals[SOURCE_MARK_UPDATED], 0, mark);
 	}
-
-	/* If the mark is the insert mark, update bracket matching. */
 	else if (mark == gtk_text_buffer_get_insert (buffer))
 	{
-		gtk_source_buffer_move_cursor (buffer, location, mark);
+		cursor_moved (GTK_SOURCE_BUFFER (buffer));
 	}
 
 	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->mark_set (buffer, location, mark);
