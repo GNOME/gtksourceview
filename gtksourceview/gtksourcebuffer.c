@@ -1179,8 +1179,8 @@ get_bracket_matching_context_class_mask (GtkSourceBuffer *buffer,
 
 /* Note that we only look BRACKET_MATCHING_CHARS_LIMIT at most. */
 static GtkSourceBracketMatchType
-gtk_source_buffer_find_bracket_match_real (GtkSourceBuffer *buffer,
-                                           GtkTextIter     *pos)
+find_bracket_match_real (GtkSourceBuffer *buffer,
+			 GtkTextIter     *pos)
 {
 	GtkTextIter iter;
 	gunichar base_char;
@@ -1285,7 +1285,7 @@ _gtk_source_buffer_find_bracket_match (GtkSourceBuffer   *buffer,
 	g_return_val_if_fail (bracket_match != NULL, GTK_SOURCE_BRACKET_MATCH_NONE);
 
 	*bracket_match = *pos;
-	result_right = gtk_source_buffer_find_bracket_match_real (buffer, bracket_match);
+	result_right = find_bracket_match_real (buffer, bracket_match);
 
 	if (result_right == GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
@@ -1302,7 +1302,7 @@ _gtk_source_buffer_find_bracket_match (GtkSourceBuffer   *buffer,
 	    gtk_text_iter_backward_cursor_position (&prev))
 	{
 		*bracket_match = prev;
-		result_left = gtk_source_buffer_find_bracket_match_real (buffer, bracket_match);
+		result_left = find_bracket_match_real (buffer, bracket_match);
 	}
 	else
 	{
