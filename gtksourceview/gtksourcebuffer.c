@@ -1271,7 +1271,8 @@ _gtk_source_buffer_find_bracket_match (GtkSourceBuffer   *buffer,
 				       GtkTextIter       *bracket,
 				       GtkTextIter       *bracket_match)
 {
-	GtkSourceBracketMatchType result;
+	GtkSourceBracketMatchType result_right;
+	GtkSourceBracketMatchType result_left;
 	GtkTextIter prev;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), GTK_SOURCE_BRACKET_MATCH_NONE);
@@ -1279,9 +1280,9 @@ _gtk_source_buffer_find_bracket_match (GtkSourceBuffer   *buffer,
 	g_return_val_if_fail (bracket_match != NULL, GTK_SOURCE_BRACKET_MATCH_NONE);
 
 	*bracket_match = *pos;
-	result = gtk_source_buffer_find_bracket_match_real (buffer, bracket_match);
+	result_right = gtk_source_buffer_find_bracket_match_real (buffer, bracket_match);
 
-	if (result == GTK_SOURCE_BRACKET_MATCH_FOUND)
+	if (result_right == GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
 		if (bracket != NULL)
 		{
@@ -1296,16 +1297,39 @@ _gtk_source_buffer_find_bracket_match (GtkSourceBuffer   *buffer,
 	    gtk_text_iter_backward_cursor_position (&prev))
 	{
 		*bracket_match = prev;
-		result = gtk_source_buffer_find_bracket_match_real (buffer, bracket_match);
+		result_left = gtk_source_buffer_find_bracket_match_real (buffer, bracket_match);
 	}
-
-	if (result == GTK_SOURCE_BRACKET_MATCH_FOUND &&
-	    bracket != NULL)
+	else
 	{
-		*bracket = prev;
+		result_left = GTK_SOURCE_BRACKET_MATCH_NONE;
 	}
 
-	return result;
+	if (result_left == GTK_SOURCE_BRACKET_MATCH_FOUND)
+	{
+		if (bracket != NULL)
+		{
+			*bracket = prev;
+		}
+
+		return GTK_SOURCE_BRACKET_MATCH_FOUND;
+	}
+
+	/* If there is a bracket, the expected return value is for the bracket,
+	 * not the other character.
+	 */
+	if (result_right == GTK_SOURCE_BRACKET_MATCH_NONE)
+	{
+		return result_left;
+	}
+	if (result_left == GTK_SOURCE_BRACKET_MATCH_NONE)
+	{
+		return result_right;
+	}
+
+	/* There are brackets on both sides, and none was successful. The one on
+	 * the right takes precedence.
+	 */
+	return result_right;
 }
 
 /**

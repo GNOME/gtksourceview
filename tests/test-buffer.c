@@ -382,13 +382,11 @@ test_bracket_matching (void)
 	do_test_bracket_matching (buffer, "((\"(ab))\")", 0, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 
 	do_test_bracket_matching (buffer, "\"(\"a\")\"", 0, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
-	/* FIXME expected NOT_FOUND. */
-	do_test_bracket_matching (buffer, "\"(\"a\")\"", 1, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 1, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 	do_test_bracket_matching (buffer, "\"(\"a\")\"", 2, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 	do_test_bracket_matching (buffer, "\"(\"a\")\"", 3, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
 	do_test_bracket_matching (buffer, "\"(\"a\")\"", 4, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
-	/* FIXME expected NOT_FOUND. */
-	do_test_bracket_matching (buffer, "\"(\"a\")\"", 5, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
+	do_test_bracket_matching (buffer, "\"(\"a\")\"", 5, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 	do_test_bracket_matching (buffer, "\"(\"a\")\"", 6, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 	do_test_bracket_matching (buffer, "\"(\"a\")\"", 7, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
 
