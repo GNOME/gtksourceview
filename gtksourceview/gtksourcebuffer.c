@@ -943,7 +943,7 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 			g_signal_emit (source_buffer,
 				       buffer_signals[BRACKET_MATCHED],
 				       0,
-				       &end, /* FIXME end may be uninitialized here... */
+				       NULL,
 				       source_buffer->priv->bracket_match);
 		}
 	}

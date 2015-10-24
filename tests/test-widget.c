@@ -820,22 +820,22 @@ bracket_matched_cb (GtkSourceBuffer           *buffer,
 	GEnumClass *eclass;
 	GEnumValue *evalue;
 
-	g_return_if_fail (iter != NULL);
-
 	eclass = G_ENUM_CLASS (g_type_class_ref (GTK_SOURCE_TYPE_BRACKET_MATCH_TYPE));
 	evalue = g_enum_get_value (eclass, state);
 
 	g_print ("Bracket match state: '%s'\n", evalue->value_nick);
 
+	g_type_class_unref (eclass);
+
 	if (state == GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
+		g_return_if_fail (iter != NULL);
+
 		g_print ("Matched bracket: '%c' at row: %"G_GINT32_FORMAT", col: %"G_GINT32_FORMAT"\n",
 		         gtk_text_iter_get_char (iter),
 		         gtk_text_iter_get_line (iter) + 1,
 		         gtk_text_iter_get_line_offset (iter) + 1);
 	}
-
-	g_type_class_unref (eclass);
 }
 
 static gchar *
