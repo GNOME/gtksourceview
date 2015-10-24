@@ -173,8 +173,6 @@ enum
 struct _GtkSourceBufferPrivate
 {
 	GtkTextTag *bracket_match_tag;
-	GtkTextMark *bracket_mark_cursor;
-	GtkTextMark *bracket_mark_match;
 	GtkSourceBracketMatchType bracket_match;
 
 	/* Hash table: category -> MarksSequence */
@@ -552,8 +550,6 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 
 	priv->highlight_syntax = TRUE;
 	priv->highlight_brackets = TRUE;
-	priv->bracket_mark_cursor = NULL;
-	priv->bracket_mark_match = NULL;
 	priv->bracket_match = GTK_SOURCE_BRACKET_MATCH_NONE;
 	priv->max_undo_levels = -1;
 
@@ -905,18 +901,10 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 
 	source_buffer = GTK_SOURCE_BUFFER (buffer);
 
-	if (source_buffer->priv->bracket_match == GTK_SOURCE_BRACKET_MATCH_FOUND)
+	if (source_buffer->priv->bracket_match == GTK_SOURCE_BRACKET_MATCH_FOUND &&
+	    source_buffer->priv->bracket_match_tag != NULL)
 	{
-		gtk_text_buffer_get_iter_at_mark (buffer,
-						  &start,
-						  source_buffer->priv->bracket_mark_match);
-
-		gtk_text_buffer_get_iter_at_mark (buffer,
-						  &end,
-						  source_buffer->priv->bracket_mark_cursor);
-
-		gtk_text_iter_order (&start, &end);
-		gtk_text_iter_forward_char (&end);
+		gtk_text_buffer_get_bounds (buffer, &start, &end);
 		gtk_text_buffer_remove_tag (buffer,
 					    source_buffer->priv->bracket_match_tag,
 					    &start,
@@ -963,52 +951,18 @@ gtk_source_buffer_move_cursor (GtkTextBuffer     *buffer,
 		 */
 		source_buffer->priv->allow_bracket_match = TRUE;
 
-		/* Mark matching bracket */
-		if (source_buffer->priv->bracket_mark_match == NULL)
-		{
-			source_buffer->priv->bracket_mark_match =
- 				gtk_text_buffer_create_mark (buffer,
-							     NULL,
-							     &bracket_match,
-							     TRUE);
- 		}
- 		else
- 		{
- 			gtk_text_buffer_move_mark (buffer,
-						   source_buffer->priv->bracket_mark_match,
-						   &bracket_match);
- 		}
-
-		start = bracket_match;
 		end = bracket_match;
 		gtk_text_iter_forward_char (&end);
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (source_buffer),
-					   &start,
+					   &bracket_match,
 					   &end);
 
-		/* Mark the bracket near the cursor */
-		if (source_buffer->priv->bracket_mark_cursor == NULL)
-		{
-			source_buffer->priv->bracket_mark_cursor =
-				gtk_text_buffer_create_mark (buffer,
-							     NULL,
-							     &bracket,
-							     FALSE);
-		}
-		else
-		{
-			gtk_text_buffer_move_mark (buffer,
-						   source_buffer->priv->bracket_mark_cursor,
-						   &bracket);
-		}
-
-		start = bracket;
 		end = bracket;
 		gtk_text_iter_forward_char (&end);
 		gtk_text_buffer_apply_tag (buffer,
 					   get_bracket_match_tag (source_buffer),
-					   &start,
+					   &bracket,
 					   &end);
 
 		source_buffer->priv->allow_bracket_match = FALSE;
