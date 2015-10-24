@@ -467,12 +467,17 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	/**
 	 * GtkSourceBuffer::bracket-matched:
 	 * @buffer: a #GtkSourceBuffer.
-	 * @iter: iterator to initialize.
-	 * @state: state of bracket matching
+	 * @iter: if found, the location of the matching bracket.
+	 * @state: state of bracket matching.
 	 *
 	 * @iter is set to a valid iterator pointing to the matching bracket
 	 * if @state is %GTK_SOURCE_BRACKET_MATCH_FOUND. Otherwise @iter is
 	 * meaningless.
+	 *
+	 * The signal is emitted only when the @state changes, typically when
+	 * the cursor moves.
+	 *
+	 * A use-case for this signal is to show messages in a #GtkStatusbar.
 	 *
 	 * Since: 2.12
 	 */
