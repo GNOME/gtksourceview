@@ -778,17 +778,19 @@ gtk_source_buffer_can_redo_handler (GtkSourceUndoManager *manager,
 static void
 update_bracket_match_style (GtkSourceBuffer *buffer)
 {
-	if (buffer->priv->bracket_match_tag != NULL)
+	GtkSourceStyle *style = NULL;
+
+	if (buffer->priv->bracket_match_tag == NULL)
 	{
-		GtkSourceStyle *style = NULL;
-
-		if (buffer->priv->style_scheme != NULL)
-		{
-			style = _gtk_source_style_scheme_get_matching_brackets_style (buffer->priv->style_scheme);
-		}
-
-		_gtk_source_style_apply (style, buffer->priv->bracket_match_tag);
+		return;
 	}
+
+	if (buffer->priv->style_scheme != NULL)
+	{
+		style = _gtk_source_style_scheme_get_matching_brackets_style (buffer->priv->style_scheme);
+	}
+
+	_gtk_source_style_apply (style, buffer->priv->bracket_match_tag);
 }
 
 static GtkTextTag *
