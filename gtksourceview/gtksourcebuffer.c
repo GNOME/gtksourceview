@@ -173,7 +173,7 @@ enum
 struct _GtkSourceBufferPrivate
 {
 	GtkTextTag *bracket_match_tag;
-	GtkSourceBracketMatchType bracket_match;
+	GtkSourceBracketMatchType bracket_match_state;
 
 	/* Hash table: category -> MarksSequence */
 	GHashTable *source_marks;
@@ -543,7 +543,7 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 
 	priv->highlight_syntax = TRUE;
 	priv->highlight_brackets = TRUE;
-	priv->bracket_match = GTK_SOURCE_BRACKET_MATCH_NONE;
+	priv->bracket_match_state = GTK_SOURCE_BRACKET_MATCH_NONE;
 	priv->max_undo_levels = -1;
 
 	priv->source_marks = g_hash_table_new_full (g_str_hash,
@@ -912,13 +912,14 @@ cursor_moved (GtkSourceBuffer *source_buffer)
 					  &insert_iter,
 					  gtk_text_buffer_get_insert (buffer));
 
-	previous_state = source_buffer->priv->bracket_match;
-	source_buffer->priv->bracket_match = _gtk_source_buffer_find_bracket_match (source_buffer,
-										    &insert_iter,
-										    &bracket,
-										    &bracket_match);
+	previous_state = source_buffer->priv->bracket_match_state;
+	source_buffer->priv->bracket_match_state =
+		_gtk_source_buffer_find_bracket_match (source_buffer,
+						       &insert_iter,
+						       &bracket,
+						       &bracket_match);
 
-	if (source_buffer->priv->bracket_match == GTK_SOURCE_BRACKET_MATCH_FOUND)
+	if (source_buffer->priv->bracket_match_state == GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
 		GtkTextIter next_iter;
 
@@ -948,13 +949,13 @@ cursor_moved (GtkSourceBuffer *source_buffer)
 	 * positions are nonbrackets.
 	 */
 	if (previous_state != GTK_SOURCE_BRACKET_MATCH_NONE ||
-	    source_buffer->priv->bracket_match != GTK_SOURCE_BRACKET_MATCH_NONE)
+	    source_buffer->priv->bracket_match_state != GTK_SOURCE_BRACKET_MATCH_NONE)
 	{
 		g_signal_emit (source_buffer,
 			       buffer_signals[BRACKET_MATCHED],
 			       0,
 			       NULL,
-			       source_buffer->priv->bracket_match);
+			       source_buffer->priv->bracket_match_state);
 	}
 }
 
