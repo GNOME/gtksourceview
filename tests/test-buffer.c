@@ -390,6 +390,23 @@ test_bracket_matching (void)
 	do_test_bracket_matching (buffer, "\"(\"a\")\"", 6, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 	do_test_bracket_matching (buffer, "\"(\"a\")\"", 7, -1, -1, GTK_SOURCE_BRACKET_MATCH_NONE);
 
+	/* Comment context class */
+
+	do_test_bracket_matching (buffer, "/*(*/ /*)*/", 2, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+	do_test_bracket_matching (buffer, "/*(*/ /*)*/", 8, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+
+	/* Direct changes: string -> comment -> string */
+	/* FIXME works by chance */
+	do_test_bracket_matching (buffer, "\"(\"/*a*/\")\"", 1, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+	do_test_bracket_matching (buffer, "\"(\"/*a*/\")\"", 9, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+
+	/* Direct changes: comment -> string -> comment */
+	/* FIXME */
+#if 0
+	do_test_bracket_matching (buffer, "/*(*/\"a\"/*)*/", 2, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+	do_test_bracket_matching (buffer, "/*(*/\"a\"/*)*/", 10, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+#endif
+
 	g_object_unref (buffer);
 }
 
