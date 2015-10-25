@@ -1,3 +1,13 @@
+News in 3.19.1
+--------------
+* New class: GtkSourceTag with a draw-spaces property
+* Drop build dependency on intltool, use upstream gettext and ITS Tool instead
+* Completion windows: don't add space for scrollbars
+* Do not show undo/redo in context menu if undo/redo is disabled
+* Bracket matching: several bug fixes, unit tests written, code simplified
+* Other small code improvements
+* Translation updates
+
 News in 3.18.1
 --------------
 * Misc bug fixes
