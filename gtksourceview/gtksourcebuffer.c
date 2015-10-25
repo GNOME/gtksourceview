@@ -240,6 +240,11 @@ static void 	 gtk_source_buffer_real_mark_deleted	(GtkTextBuffer		 *buffer,
 static void	 gtk_source_buffer_real_undo		(GtkSourceBuffer	 *buffer);
 static void	 gtk_source_buffer_real_redo		(GtkSourceBuffer	 *buffer);
 
+static void	 gtk_source_buffer_real_highlight_updated
+							(GtkSourceBuffer         *buffer,
+							 GtkTextIter             *start,
+							 GtkTextIter             *end);
+
 static void
 gtk_source_buffer_constructed (GObject *object)
 {
@@ -399,7 +404,8 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	    g_signal_new_class_handler ("highlight_updated",
 	                                G_OBJECT_CLASS_TYPE (object_class),
 	                                G_SIGNAL_RUN_LAST,
-	                                NULL, NULL, NULL, NULL,
+	                                G_CALLBACK (gtk_source_buffer_real_highlight_updated),
+					NULL, NULL, NULL,
 	                                G_TYPE_NONE,
 	                                2,
 	                                GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
@@ -960,6 +966,14 @@ update_bracket_highlighting (GtkSourceBuffer *source_buffer)
  */
 static void
 cursor_moved (GtkSourceBuffer *buffer)
+{
+	update_bracket_highlighting (buffer);
+}
+
+static void
+gtk_source_buffer_real_highlight_updated (GtkSourceBuffer *buffer,
+					  GtkTextIter     *start,
+					  GtkTextIter     *end)
 {
 	update_bracket_highlighting (buffer);
 }
