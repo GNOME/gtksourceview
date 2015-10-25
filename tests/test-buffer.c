@@ -404,6 +404,10 @@ test_bracket_matching (void)
 	do_test_bracket_matching (buffer, "/*(*/\"a\"/*)*/", 2, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 	do_test_bracket_matching (buffer, "/*(*/\"a\"/*)*/", 10, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
 
+	/* Single char in C */
+	do_test_bracket_matching (buffer, "'(' ')'", 1, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+	do_test_bracket_matching (buffer, "'(' ')'", 5, -1, -1, GTK_SOURCE_BRACKET_MATCH_NOT_FOUND);
+
 	g_object_unref (buffer);
 
 	/* Test setting the property and a specific tag table. There was a

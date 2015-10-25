@@ -136,7 +136,7 @@
       </include>
     </context>
 
-    <context id="char" style-ref="char">
+    <context id="char" style-ref="char" class="string">
       <match>L?'(\%{escaped-character}|.)'</match>
     </context>
 
