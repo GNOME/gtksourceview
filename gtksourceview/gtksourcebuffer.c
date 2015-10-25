@@ -867,7 +867,7 @@ bracket_pair (gunichar  base_char,
 }
 
 static void
-cursor_moved (GtkSourceBuffer *source_buffer)
+update_bracket_highlighting (GtkSourceBuffer *source_buffer)
 {
 	GtkTextBuffer *buffer;
 	GtkTextIter insert_iter;
@@ -953,6 +953,15 @@ cursor_moved (GtkSourceBuffer *source_buffer)
 			       NULL,
 			       source_buffer->priv->bracket_match_state);
 	}
+}
+
+/* Although this function is not really useful (update_bracket_highlighting()
+ * could be called directly), the name cursor_moved() is more meaningful.
+ */
+static void
+cursor_moved (GtkSourceBuffer *buffer)
+{
+	update_bracket_highlighting (buffer);
 }
 
 static void
@@ -1488,7 +1497,7 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 	{
 		buffer->priv->highlight_brackets = highlight;
 
-		cursor_moved (buffer);
+		update_bracket_highlighting (buffer);
 
 		g_object_notify (G_OBJECT (buffer), "highlight-matching-brackets");
 	}
