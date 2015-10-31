@@ -690,7 +690,7 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 	primary_color_str = gdk_rgba_to_string (&primary_color);
 	secondary_color_str = gdk_rgba_to_string (&secondary_color);
 
-	css = g_strdup_printf ("GtkSourceView {\n"
+	css = g_strdup_printf ("textview {\n"
 			       "\t-GtkWidget-cursor-color: %s;\n"
 			       "\t-GtkWidget-secondary-cursor-color: %s;\n"
 			       "}\n",
@@ -894,29 +894,29 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	final_style = g_string_new ("");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
-	append_css_style (final_style, style, ".view");
+	append_css_style (final_style, style, "text");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
-	append_css_style (final_style, style, ".view:selected:focused");
+	append_css_style (final_style, style, "textview:selected:focused");
 
 	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
 	append_css_style (final_style,
 			  style2 != NULL ? style2 : style,
-			  ".view:selected");
+			  "textview:selected");
 
 	/* For now we use "line numbers" colors for all the gutters */
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 	if (style != NULL)
 	{
-		append_css_style (final_style, style, ".top");
-		append_css_style (final_style, style, ".right");
-		append_css_style (final_style, style, ".bottom");
-		append_css_style (final_style, style, ".left");
+		append_css_style (final_style, style, "border.top");
+		append_css_style (final_style, style, "border.right");
+		append_css_style (final_style, style, "border.bottom");
+		append_css_style (final_style, style, "border.left");
 
 		/* For the corners if the top or bottom gutter is also
 		 * displayed.
 		 */
-		append_css_style (final_style, style, "GtkSourceView");
+		append_css_style (final_style, style, "textview");
 	}
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE_NUMBER);
