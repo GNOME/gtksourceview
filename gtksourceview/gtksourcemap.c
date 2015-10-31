@@ -300,7 +300,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		gchar *css;
 
 		css = _gtk_source_pango_font_description_to_css (priv->font_desc);
-		g_string_append_printf (gstr, "GtkSourceMap { %s }\n", css != NULL ? css : "");
+		g_string_append_printf (gstr, "textview { %s }\n", css != NULL ? css : "");
 		g_free (css);
 	}
 
@@ -374,7 +374,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	if (background != NULL)
 	{
 		g_string_append_printf (gstr,
-		                        "GtkSourceMap.scrubber {\n"
+		                        "textview.scrubber {\n"
 		                        "\tbackground-color: %s;\n"
 		                        "\tborder-top: 1px solid shade(%s,0.9);\n"
 		                        "\tborder-bottom: 1px solid shade(%s,0.9);\n"
