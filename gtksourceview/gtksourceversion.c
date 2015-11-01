@@ -27,7 +27,7 @@
 
 /**
  * SECTION:version
- * @short_description: Variables and functions to check the GtkSourceView version
+ * @short_description: Macros and functions to check the GtkSourceView version
  **/
 
 /**
