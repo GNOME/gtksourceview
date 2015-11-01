@@ -90,6 +90,7 @@ libgtksourceview_public_c_files =		\
 	gtksourcetag.c				\
 	gtksourceundomanager.c 			\
 	gtksourceutils.c			\
+	gtksourceversion.c			\
 	gtksourceview.c
 
 libgtksourceview_private_headers =		\
@@ -188,7 +189,10 @@ libgtksourceview_3_0_la_LDFLAGS =		\
 libgtksourceview_3_0_includedir = $(includedir)/gtksourceview-3.0/gtksourceview
 
 libgtksourceview_3_0_include_HEADERS = $(libgtksourceview_public_headers)
-nodist_libgtksourceview_3_0_include_HEADERS = gtksourceview-typebuiltins.h
+
+nodist_libgtksourceview_3_0_include_HEADERS = \
+	gtksourceview-typebuiltins.h \
+	gtksourceversion.h
 
 gtksourceview-resources.c: gtksourceview.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/gtksourceview.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/gtksourceview.gresource.xml

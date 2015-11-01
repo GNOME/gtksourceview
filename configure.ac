@@ -15,6 +15,13 @@ AC_INIT([gtksourceview],
 
 AX_IS_RELEASE([git-directory])
 
+GTK_SOURCE_MAJOR_VERSION=gtksourceview_major_version
+GTK_SOURCE_MINOR_VERSION=gtksourceview_minor_version
+GTK_SOURCE_MICRO_VERSION=gtksourceview_micro_version
+AC_SUBST(GTK_SOURCE_MAJOR_VERSION)
+AC_SUBST(GTK_SOURCE_MINOR_VERSION)
+AC_SUBST(GTK_SOURCE_MICRO_VERSION)
+
 # Libtool versioning
 #
 # For development releases, keep the same numbers.
@@ -193,6 +200,7 @@ data/styles/Makefile
 docs/Makefile
 docs/reference/Makefile
 gtksourceview/Makefile
+gtksourceview/gtksourceversion.h
 gtksourceview/completion-providers/Makefile
 gtksourceview/completion-providers/words/Makefile
 po/Makefile.in
