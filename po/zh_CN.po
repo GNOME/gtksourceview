@@ -4,2534 +4,2757 @@
 #
 # Funda Wang <fundawang@linux.net.cn>, 2003.
 # Eleanor Chen <chenyueg@gmail.com>, 2010.
-# Aron Xu <aronxu@gnome.org>, 2010.
 # Tao Wang <dancefire@gmail.com>, 2010.
 # 李炜 <lw124124@gmail.com>, 2011.
 # YunQiang Su <wzssyqa@gmail.com>, 2011, 2012.
 # Sphinx Jiang <yishanj13@gmail.com>, 2014.
+# Aron Xu <aronxu@gnome.org>, 2010, 2015.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-24 09:14+0000\n"
-"PO-Revision-Date: 2014-09-24 23:23+0800\n"
-"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
+"POT-Creation-Date: 2015-11-11 00:24+0000\n"
+"PO-Revision-Date: 2015-11-12 11:33+0800\n"
+"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese Simplified <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.6.9\n"
 
-#: ../data/glade/gtksourceview.xml.in.h:1
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
-
-#. Translators: It is related to an option of a set of values
-#: ../data/glade/gtksourceview.xml.in.h:3
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:23
 msgid "Disabled"
 msgstr "禁用"
 
-#: ../data/glade/gtksourceview.xml.in.h:4
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:24
 msgid "Before"
 msgstr "之前"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:25
 msgid "After"
 msgstr "之后"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:26
 msgid "Always"
 msgstr "总是"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:32
 msgid "Space"
 msgstr "空格"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:33
 msgid "Tab"
 msgstr "标签"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:34
 msgid "Newline"
 msgstr "新行"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:35
 msgid "Non Breaking Whitespace"
 msgstr "无间断空格"
 
-#: ../data/glade/gtksourceview.xml.in.h:11
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:36
 msgid "Leading"
 msgstr "前导"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:421
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:37
 msgid "Text"
 msgstr "文本"
 
-#: ../data/glade/gtksourceview.xml.in.h:13
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:38
 msgid "Trailing"
 msgstr "尾随"
 
+#. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:811
+#: gtksourceview.xml:39 ../gtksourceview/gtksourcecompletion.c:830
 msgid "All"
 msgstr "全部"
 
-#: ../data/language-specs/actionscript.lang.h:1
-#: ../data/language-specs/ada.lang.h:1
-#: ../data/language-specs/ansforth94.lang.h:1
-#: ../data/language-specs/asp.lang.h:1
-#: ../data/language-specs/automake.lang.h:1
-#: ../data/language-specs/bennugd.lang.h:1
-#: ../data/language-specs/bluespec.lang.h:1
-#: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
-#: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
-#: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
-#: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
-#: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
-#: ../data/language-specs/erlang.lang.h:1
-#: ../data/language-specs/forth.lang.h:1
-#: ../data/language-specs/fortran.lang.h:1
-#: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
-#: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/haskell-literate.lang.h:1
-#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
-#: ../data/language-specs/llvm.lang.h:1
-#: ../data/language-specs/makefile.lang.h:1
-#: ../data/language-specs/nemerle.lang.h:1
-#: ../data/language-specs/netrexx.lang.h:1
-#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
-#: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
-#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1
-#: ../data/language-specs/scala.lang.h:1
-#: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
-#: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
-#: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/verilog.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:1
-msgid "Source"
-msgstr "源代码"
-
-#: ../data/language-specs/actionscript.lang.h:2
+#. (itstool) path: actionscript.lang/language@_name
+#: actionscript.lang:25
 msgid "ActionScript"
 msgstr "ActionScript"
 
-#. Any comment
-#: ../data/language-specs/actionscript.lang.h:3
-#: ../data/language-specs/ada.lang.h:3
-#: ../data/language-specs/ansforth94.lang.h:5
-#: ../data/language-specs/asp.lang.h:3 ../data/language-specs/bennugd.lang.h:3
-#: ../data/language-specs/boo.lang.h:3 ../data/language-specs/cg.lang.h:3
-#: ../data/language-specs/c.lang.h:3 ../data/language-specs/cobol.lang.h:3
-#: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
-#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
-#: ../data/language-specs/erlang.lang.h:3 ../data/language-specs/fcl.lang.h:3
-#: ../data/language-specs/forth.lang.h:3
-#: ../data/language-specs/fortran.lang.h:3
-#: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
-#: ../data/language-specs/haskell.lang.h:4
-#: ../data/language-specs/html.lang.h:3
-#: ../data/language-specs/idl-exelis.lang.h:3
-#: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
-#: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/llvm.lang.h:3 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/matlab.lang.h:3
-#: ../data/language-specs/modelica.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/netrexx.lang.h:6
-#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
-#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
-#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/po.lang.h:3
-#: ../data/language-specs/prolog.lang.h:3 ../data/language-specs/rst.lang.h:8
-#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/scala.lang.h:5
-#: ../data/language-specs/scheme.lang.h:3
-#: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
-#: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
-#: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:3
-#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
-#: ../data/language-specs/verilog.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
-#: ../data/language-specs/yaml.lang.h:4
+#. (itstool) path: actionscript.lang/language@_section
+#. (itstool) path: ada.lang/language@_section
+#. (itstool) path: ansforth94.lang/language@_section
+#. (itstool) path: asp.lang/language@_section
+#. (itstool) path: automake.lang/language@_section
+#. (itstool) path: bennugd.lang/language@_section
+#. (itstool) path: bluespec.lang/language@_section
+#. (itstool) path: boo.lang/language@_section
+#. (itstool) path: c.lang/language@_section
+#. (itstool) path: cg.lang/language@_section
+#. (itstool) path: chdr.lang/language@_section
+#. (itstool) path: cobol.lang/language@_section
+#. (itstool) path: cpp.lang/language@_section
+#. (itstool) path: cpphdr.lang/language@_section
+#. (itstool) path: csharp.lang/language@_section
+#. (itstool) path: cuda.lang/language@_section
+#. (itstool) path: d.lang/language@_section
+#. (itstool) path: eiffel.lang/language@_section
+#. (itstool) path: erlang.lang/language@_section
+#. (itstool) path: forth.lang/language@_section
+#. (itstool) path: fortran.lang/language@_section
+#. (itstool) path: fsharp.lang/language@_section
+#. (itstool) path: genie.lang/language@_section
+#. (itstool) path: glsl.lang/language@_section
+#. (itstool) path: go.lang/language@_section
+#. (itstool) path: haskell.lang/language@_section
+#. (itstool) path: haskell-literate.lang/language@_section
+#. (itstool) path: idl.lang/language@_section
+#. (itstool) path: j.lang/language@_section
+#. (itstool) path: java.lang/language@_section
+#. (itstool) path: lex.lang/language@_section
+#. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: makefile.lang/language@_section
+#. (itstool) path: meson.lang/language@_section
+#. (itstool) path: nemerle.lang/language@_section
+#. (itstool) path: netrexx.lang/language@_section
+#. (itstool) path: objc.lang/language@_section
+#. (itstool) path: objj.lang/language@_section
+#. (itstool) path: ocaml.lang/language@_section
+#. (itstool) path: ooc.lang/language@_section
+#. (itstool) path: opal.lang/language@_section
+#. (itstool) path: opencl.lang/language@_section
+#. (itstool) path: pascal.lang/language@_section
+#. (itstool) path: pig.lang/language@_section
+#. (itstool) path: prolog.lang/language@_section
+#. (itstool) path: rust.lang/language@_section
+#. (itstool) path: scala.lang/language@_section
+#. (itstool) path: scheme.lang/language@_section
+#. (itstool) path: sml.lang/language@_section
+#. (itstool) path: sparql.lang/language@_section
+#. (itstool) path: sql.lang/language@_section
+#. (itstool) path: systemverilog.lang/language@_section
+#. (itstool) path: thrift.lang/language@_section
+#. (itstool) path: vala.lang/language@_section
+#. (itstool) path: vbnet.lang/language@_section
+#. (itstool) path: verilog.lang/language@_section
+#. (itstool) path: vhdl.lang/language@_section
+#: actionscript.lang:25 ada.lang:26 ansforth94.lang:25 asp.lang:24
+#: automake.lang:24 bennugd.lang:23 bluespec.lang:22 boo.lang:24 c.lang:25
+#: cg.lang:24 chdr.lang:25 cobol.lang:27 cpp.lang:25 cpphdr.lang:25
+#: csharp.lang:27 cuda.lang:23 d.lang:30 eiffel.lang:24 erlang.lang:24
+#: forth.lang:24 fortran.lang:25 fsharp.lang:25 genie.lang:24 glsl.lang:31
+#: go.lang:25 haskell.lang:25 haskell-literate.lang:24 idl.lang:24 j.lang:24
+#: java.lang:25 lex.lang:25 llvm.lang:23 makefile.lang:23 meson.lang:24
+#: nemerle.lang:24 netrexx.lang:24 objc.lang:24 objj.lang:26 ocaml.lang:27
+#: ooc.lang:24 opal.lang:24 opencl.lang:24 pascal.lang:25 pig.lang:27
+#: prolog.lang:24 rust.lang:36 scala.lang:25 scheme.lang:24 sml.lang:24
+#: sparql.lang:24 sql.lang:24 systemverilog.lang:22 thrift.lang:21 vala.lang:28
+#: vbnet.lang:24 verilog.lang:24 vhdl.lang:24
+msgid "Source"
+msgstr "源代码"
+
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:35 ada.lang:34 ansforth94.lang:39 asp.lang:32
+#: bennugd.lang:32 boo.lang:34 c.lang:35 cg.lang:33 cobol.lang:35
+#: csharp.lang:37 def.lang:40 d.lang:40 dosbatch.lang:31 dot.lang:34
+#: eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34 fortran.lang:33
+#: fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35 gtkrc.lang:33
+#: haskell.lang:34 html.lang:34 idl.lang:32 idl-exelis.lang:28 ini.lang:31
+#: j.lang:32 jade.lang:33 java.lang:35 latex.lang:33 llvm.lang:30 lua.lang:34
+#: matlab.lang:41 modelica.lang:36 nemerle.lang:34 netrexx.lang:38 nsis.lang:32
+#: ocaml.lang:36 ocl.lang:41 octave.lang:41 ooc.lang:33 opal.lang:34
+#: pascal.lang:33 perl.lang:34 php.lang:40 pig.lang:41 po.lang:32
+#: prolog.lang:34 protobuf.lang:31 rst.lang:36 ruby.lang:36 rust.lang:45
+#: scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33 sml.lang:32
+#: sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33 thrift.lang:30
+#: vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32 xml.lang:35
+#: yaml.lang:31
 msgid "Comment"
 msgstr "注释"
 
-#. Any erroneous construct
-#: ../data/language-specs/actionscript.lang.h:4
-#: ../data/language-specs/cg.lang.h:4 ../data/language-specs/c.lang.h:22
-#: ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
-#: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/j.lang.h:7
-#: ../data/language-specs/json.lang.h:7
-#: ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/php.lang.h:5 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:7
-#: ../data/language-specs/xml.lang.h:13
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:36 c.lang:54 cg.lang:34 cobol.lang:43 csharp.lang:38
+#: css.lang:47 def.lang:102 d.lang:41 dot.lang:35 go.lang:36 html.lang:39
+#: j.lang:35 jade.lang:41 json.lang:42 nemerle.lang:35 ocaml.lang:53
+#: ooc.lang:34 opal.lang:36 perl.lang:48 php.lang:41 prolog.lang:40
+#: scala.lang:36 vala.lang:39 verilog.lang:38 xml.lang:45
 msgid "Error"
 msgstr "错误"
 
-#. A string constant: "this is a string"
-#: ../data/language-specs/actionscript.lang.h:5
-#: ../data/language-specs/ada.lang.h:4
-#: ../data/language-specs/ansforth94.lang.h:9
-#: ../data/language-specs/asp.lang.h:4 ../data/language-specs/boo.lang.h:5
-#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cobol.lang.h:8
-#: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
-#: ../data/language-specs/def.lang.h:17 ../data/language-specs/d.lang.h:5
-#: ../data/language-specs/dosbatch.lang.h:4
-#: ../data/language-specs/eiffel.lang.h:4
-#: ../data/language-specs/erlang.lang.h:7
-#: ../data/language-specs/forth.lang.h:4
-#: ../data/language-specs/fortran.lang.h:4
-#: ../data/language-specs/fsharp.lang.h:7
-#: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
-#: ../data/language-specs/gtkrc.lang.h:4
-#: ../data/language-specs/haskell.lang.h:9
-#: ../data/language-specs/idl-exelis.lang.h:7
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
-#: ../data/language-specs/javascript.lang.h:13
-#: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
-#: ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/modelica.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/netrexx.lang.h:4
-#: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
-#: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/ooc.lang.h:6 ../data/language-specs/opal.lang.h:7
-#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
-#: ../data/language-specs/php.lang.h:10 ../data/language-specs/po.lang.h:5
-#: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:6
-#: ../data/language-specs/python3.lang.h:6
-#: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/scala.lang.h:6
-#: ../data/language-specs/scheme.lang.h:5
-#: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
-#: ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/vala.lang.h:6 ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4
-#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:37 ada.lang:35 ansforth94.lang:43 asp.lang:33 boo.lang:36
+#: c.lang:36 cobol.lang:40 csharp.lang:40 css.lang:49 csv.lang:34 def.lang:57
+#: d.lang:42 dosbatch.lang:32 eiffel.lang:34 erlang.lang:36 forth.lang:35
+#: fortran.lang:34 fsharp.lang:38 gdb-log.lang:30 genie.lang:36 go.lang:37
+#: gtkrc.lang:34 haskell.lang:39 idl.lang:36 idl-exelis.lang:32 imagej.lang:40
+#: ini.lang:33 j.lang:45 java.lang:37 javascript.lang:47 json.lang:39
+#: julia.lang:37 llvm.lang:31 lua.lang:35 meson.lang:34 modelica.lang:37
+#: nemerle.lang:38 netrexx.lang:36 nsis.lang:33 objc.lang:37 objj.lang:41
+#: ocaml.lang:41 ocl.lang:42 octave.lang:42 ooc.lang:36 opal.lang:37
+#: pascal.lang:34 perl.lang:37 php.lang:45 po.lang:34 python.lang:39
+#: python3.lang:34 prolog.lang:37 protobuf.lang:37 ruby.lang:46 rust.lang:46
+#: scala.lang:39 scheme.lang:34 scilab.lang:33 sh.lang:35 sml.lang:36
+#: sql.lang:34 texinfo.lang:36 thrift.lang:33 vala.lang:41 vbnet.lang:33
+#: verilog.lang:35 vhdl.lang:33 yaml.lang:32
 msgid "String"
 msgstr "字符串"
 
-#. Translators: refered to some specific keywords of the language that
-#. allow to get external functionalities
-#: ../data/language-specs/actionscript.lang.h:6
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/scala.lang.h:4
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:38 java.lang:41 ooc.lang:37 scala.lang:37
 msgid "External"
 msgstr "外部"
 
-#: ../data/language-specs/actionscript.lang.h:7
-#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
-#: ../data/language-specs/scala.lang.h:8
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:39 java.lang:42 ooc.lang:38 scala.lang:41
 msgid "Declaration"
 msgstr "声明"
 
-#: ../data/language-specs/actionscript.lang.h:8
-#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
-#: ../data/language-specs/ooc.lang.h:9
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:40 ada.lang:39 c.lang:44 cg.lang:40 java.lang:43
+#: ooc.lang:39
 msgid "Storage Class"
 msgstr "存储类"
 
-#: ../data/language-specs/actionscript.lang.h:9
-#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:41 java.lang:44 ooc.lang:40
 msgid "Scope Declaration"
 msgstr "作用域声明"
 
-#. keywords: "if", "for", "while", etc.
-#: ../data/language-specs/actionscript.lang.h:10
-#: ../data/language-specs/ada.lang.h:5
-#: ../data/language-specs/ansforth94.lang.h:3
-#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/awk.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:7
-#: ../data/language-specs/bluespec.lang.h:7
-#: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
-#: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:11
-#: ../data/language-specs/css.lang.h:14 ../data/language-specs/cuda.lang.h:3
-#: ../data/language-specs/def.lang.h:47 ../data/language-specs/d.lang.h:6
-#: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
-#: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
-#: ../data/language-specs/forth.lang.h:6
-#: ../data/language-specs/fortran.lang.h:6
-#: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/gtkrc.lang.h:5
-#: ../data/language-specs/haskell.lang.h:7
-#: ../data/language-specs/idl-exelis.lang.h:6
-#: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lex.lang.h:4
-#: ../data/language-specs/llvm.lang.h:5 ../data/language-specs/lua.lang.h:5
-#: ../data/language-specs/matlab.lang.h:4
-#: ../data/language-specs/modelica.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:8
-#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
-#: ../data/language-specs/octave.lang.h:13
-#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
-#: ../data/language-specs/opencl.lang.h:3
-#: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
-#: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
-#: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/python3.lang.h:4
-#: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
-#: ../data/language-specs/scheme.lang.h:6
-#: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
-#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
-#: ../data/language-specs/sql.lang.h:6
-#: ../data/language-specs/systemverilog.lang.h:5
-#: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:11
-#: ../data/language-specs/vhdl.lang.h:6
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:42 ada.lang:36 ansforth94.lang:36 asp.lang:35 awk.lang:32
+#: bennugd.lang:36 bluespec.lang:35 boo.lang:41 c.lang:41 cg.lang:38
+#: cobol.lang:38 cpp.lang:35 csharp.lang:45 css.lang:58 cuda.lang:33
+#: def.lang:92 d.lang:43 dosbatch.lang:33 dot.lang:36 eiffel.lang:37
+#: erlang.lang:33 fcl.lang:32 forth.lang:37 fortran.lang:36 fsharp.lang:39
+#: gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39 gtkrc.lang:35
+#: haskell.lang:37 idl.lang:35 idl-exelis.lang:31 imagej.lang:38 ini.lang:34
+#: java.lang:45 javascript.lang:41 julia.lang:44 lex.lang:35 llvm.lang:32
+#: lua.lang:36 matlab.lang:42 modelica.lang:46 nemerle.lang:39 objc.lang:34
+#: objj.lang:37 ocaml.lang:42 ocl.lang:43 octave.lang:48 ooc.lang:41
+#: opal.lang:38 opencl.lang:33 pascal.lang:35 perl.lang:38 php.lang:48
+#: po.lang:36 python.lang:37 python3.lang:32 prolog.lang:36 protobuf.lang:35
+#: R.lang:34 ruby.lang:39 rust.lang:48 scala.lang:43 scheme.lang:35
+#: scilab.lang:34 sh.lang:36 sml.lang:33 sparql.lang:37 sql.lang:35
+#: systemverilog.lang:33 tcl.lang:33 texinfo.lang:37 thrift.lang:32
+#: vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
 msgid "Keyword"
 msgstr "关键字"
 
-#: ../data/language-specs/actionscript.lang.h:11
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/php.lang.h:17 ../data/language-specs/vala.lang.h:9
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:43 boo.lang:43 csharp.lang:47 d.lang:46 fsharp.lang:52
+#: genie.lang:43 java.lang:46 javascript.lang:38 json.lang:40 nemerle.lang:41
+#: objj.lang:42 ooc.lang:42 php.lang:52 vala.lang:44
 msgid "Null Value"
 msgstr "空值"
 
-#. A boolean constant: TRUE, false
-#: ../data/language-specs/actionscript.lang.h:12
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:19
-#: ../data/language-specs/csharp.lang.h:14
-#: ../data/language-specs/def.lang.h:34
-#: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
-#: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/java.lang.h:14 ../data/language-specs/llvm.lang.h:11
-#: ../data/language-specs/lua.lang.h:10
-#: ../data/language-specs/nemerle.lang.h:11
-#: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/protobuf.lang.h:5 ../data/language-specs/R.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:8
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:44 ada.lang:38 asp.lang:42 bennugd.lang:41 c.lang:51
+#: cg.lang:46 csharp.lang:48 def.lang:75 fsharp.lang:50 go.lang:48
+#: gtkrc.lang:40 ini.lang:38 java.lang:47 llvm.lang:38 lua.lang:42
+#: nemerle.lang:42 ocaml.lang:52 ooc.lang:43 opal.lang:39 php.lang:53
+#: protobuf.lang:36 R.lang:39 ruby.lang:41 rust.lang:50 sml.lang:40
+#: vala.lang:43 vbnet.lang:38 vhdl.lang:37
 msgid "Boolean value"
 msgstr "布尔值"
 
-#. A generic number constant
-#: ../data/language-specs/actionscript.lang.h:13
-#: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
-#: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
-#: ../data/language-specs/llvm.lang.h:12
-#: ../data/language-specs/netrexx.lang.h:16
-#: ../data/language-specs/prolog.lang.h:7
-#: ../data/language-specs/scala.lang.h:12
-#: ../data/language-specs/vhdl.lang.h:11
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:45 asp.lang:43 boo.lang:45 cobol.lang:41 def.lang:63
+#: desktop.lang:38 forth.lang:39 genie.lang:45 j.lang:42 java.lang:48
+#: julia.lang:39 llvm.lang:39 netrexx.lang:48 prolog.lang:38 rust.lang:52
+#: scala.lang:45 vhdl.lang:40
 msgid "Number"
 msgstr "数字"
 
-#: ../data/language-specs/actionscript.lang.h:14
-#: ../data/language-specs/java.lang.h:16
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/ooc.lang.h:18
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:46 java.lang:49 javascript.lang:46 ooc.lang:48
 msgid "Future Reserved Keywords"
 msgstr "未来保留字"
 
-#: ../data/language-specs/actionscript.lang.h:15
-#: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:8 ../data/language-specs/boo.lang.h:8
-#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
-#: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
-#: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/eiffel.lang.h:8
-#: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:10
-#: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/glsl.lang.h:4 ../data/language-specs/go.lang.h:8
-#: ../data/language-specs/gtkrc.lang.h:7
-#: ../data/language-specs/haskell.lang.h:8
-#: ../data/language-specs/idl-exelis.lang.h:4
-#: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:8
-#: ../data/language-specs/llvm.lang.h:10
-#: ../data/language-specs/nemerle.lang.h:9
-#: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
-#: ../data/language-specs/ocaml.lang.h:12 ../data/language-specs/ocl.lang.h:7
-#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
-#: ../data/language-specs/opencl.lang.h:4
-#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
-#: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
-#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:47 ada.lang:40 asp.lang:40 bennugd.lang:37 boo.lang:39
+#: c.lang:43 cg.lang:39 cpp.lang:36 csharp.lang:39 cuda.lang:34 d.lang:44
+#: eiffel.lang:38 forth.lang:38 fortran.lang:40 fsharp.lang:42 genie.lang:39
+#: glsl.lang:42 go.lang:40 gtkrc.lang:37 haskell.lang:38 idl.lang:33
+#: idl-exelis.lang:29 ini.lang:37 java.lang:50 javascript.lang:42 llvm.lang:37
+#: nemerle.lang:40 objc.lang:35 objj.lang:38 ocaml.lang:45 ocl.lang:45
+#: ooc.lang:49 opal.lang:41 opencl.lang:34 pascal.lang:37 php.lang:51
+#: pig.lang:36 protobuf.lang:34 rust.lang:49 scala.lang:47 sml.lang:34
+#: sparql.lang:34 sql.lang:38 thrift.lang:31 vala.lang:40 vbnet.lang:36
 msgid "Data Type"
 msgstr "数据类型"
 
-#: ../data/language-specs/ada.lang.h:2
+#. (itstool) path: ada.lang/language@_name
+#: ada.lang:26
 msgid "Ada"
 msgstr "Ada"
 
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6
-#: ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/csharp.lang.h:15
-#: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
-#: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/idl-exelis.lang.h:9
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/python3.lang.h:12
-#: ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/ruby.lang.h:11
+#. (itstool) path: styles/style@_name
+#: ada.lang:37 bennugd.lang:39 c.lang:48 cg.lang:43 csharp.lang:49 csv.lang:31
+#: def.lang:67 d.lang:49 eiffel.lang:45 erlang.lang:39 fsharp.lang:37
+#: go.lang:45 idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40 ooc.lang:45
+#: opal.lang:40 php.lang:55 python.lang:46 python3.lang:40 ruby.lang:43
 msgid "Decimal number"
 msgstr "十进制数"
 
-#: ../data/language-specs/ada.lang.h:10 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
-#: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
-#: ../data/language-specs/forth.lang.h:5
-#: ../data/language-specs/fortran.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:20
-#: ../data/language-specs/glsl.lang.h:3
-#: ../data/language-specs/haskell.lang.h:3
-#: ../data/language-specs/idl-exelis.lang.h:5
-#: ../data/language-specs/idl.lang.h:5 ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objj.lang.h:6 ../data/language-specs/pascal.lang.h:8
-#: ../data/language-specs/vbnet.lang.h:5
+#. (itstool) path: styles/style@_name
+#: ada.lang:41 asp.lang:34 bennugd.lang:33 c.lang:37 cg.lang:35 csharp.lang:46
+#: forth.lang:36 fortran.lang:41 fsharp.lang:51 glsl.lang:41 haskell.lang:33
+#: idl.lang:34 idl-exelis.lang:30 nemerle.lang:36 objj.lang:39 pascal.lang:38
+#: vbnet.lang:34
 msgid "Preprocessor"
 msgstr "预处理器"
 
-#: ../data/language-specs/ada.lang.h:11
+#. (itstool) path: styles/style@_name
+#: ada.lang:42
 msgid "Arbitrary base number"
 msgstr "任意基数"
 
-#: ../data/language-specs/ada.lang.h:12
-#: ../data/language-specs/csharp.lang.h:17
-#: ../data/language-specs/verilog.lang.h:15
-#: ../data/language-specs/vhdl.lang.h:10
+#. (itstool) path: styles/style@_name
+#: ada.lang:43 csharp.lang:51 verilog.lang:46 vhdl.lang:39
 msgid "Real number"
 msgstr "实数"
 
-#. map to nothing
-#: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
-#: ../data/language-specs/eiffel.lang.h:12
-#: ../data/language-specs/fortran.lang.h:14
-#: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
-#: ../data/language-specs/haskell.lang.h:11
-#: ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:3
-#: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
-#: ../data/language-specs/php.lang.h:9 ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/python3.lang.h:7
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
-#: ../data/language-specs/texinfo.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
+#. (itstool) path: styles/style@_name
+#: ada.lang:44 c.lang:46 cg.lang:41 csharp.lang:42 eiffel.lang:42
+#: fortran.lang:44 fsharp.lang:49 go.lang:42 haskell.lang:41 java.lang:36
+#: javascript.lang:37 json.lang:38 lua.lang:37 netrexx.lang:35 ocaml.lang:51
+#: ooc.lang:35 php.lang:44 python.lang:40 python3.lang:35 prolog.lang:41
+#: ruby.lang:35 scala.lang:40 sml.lang:37 texinfo.lang:34 verilog.lang:37
 msgid "Escaped Character"
 msgstr "转码字符"
 
-#: ../data/language-specs/ansforth94.lang.h:2
+#. (itstool) path: ansforth94.lang/language@_name
+#: ansforth94.lang:25
 msgid "ANS-Forth94"
 msgstr "ANS-Forth94"
 
-#: ../data/language-specs/ansforth94.lang.h:4
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:37
 msgid "Obsolete Keyword"
 msgstr "废弃的关键字"
 
-#: ../data/language-specs/ansforth94.lang.h:6
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:40
 msgid "Alert"
 msgstr "警告"
 
-#. A character constant: 'c'
-#: ../data/language-specs/ansforth94.lang.h:7
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:41 c.lang:40 csharp.lang:41 def.lang:55 erlang.lang:37
+#: gap.lang:33 go.lang:38 haskell.lang:40 java.lang:38 julia.lang:38
+#: nemerle.lang:37 netrexx.lang:37 rust.lang:47 sml.lang:35 vhdl.lang:34
 msgid "Character"
 msgstr "字符"
 
-#: ../data/language-specs/ansforth94.lang.h:8
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:42
 msgid "Word"
 msgstr "单词"
 
-#. Any constant
-#: ../data/language-specs/ansforth94.lang.h:10
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13
-#: ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:18
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:44 cmake.lang:34 cobol.lang:39 def.lang:53 gtk-doc.lang:32
+#: libtool.lang:32 ruby.lang:50
 msgid "Constant"
 msgstr "常量"
 
-#: ../data/language-specs/ansforth94.lang.h:11
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/llvm.lang.h:8
-#: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:45 awk.lang:34 cmake.lang:37 cobol.lang:37 haskell.lang:35
+#: ini.lang:36 llvm.lang:35 makefile.lang:31 nsis.lang:34 perl.lang:44
+#: php.lang:42 pkgconfig.lang:31 prolog.lang:35 protobuf.lang:33 ruby.lang:54
+#: sh.lang:37 sparql.lang:44 tcl.lang:32
 msgid "Variable"
 msgstr "变量"
 
-#: ../data/language-specs/ansforth94.lang.h:12
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:46
 msgid "Local Variable"
 msgstr "局部变量"
 
-#: ../data/language-specs/ansforth94.lang.h:13
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:47
 msgid "Single Number"
 msgstr "单数"
 
-#: ../data/language-specs/ansforth94.lang.h:14
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:48
 msgid "Double Number"
 msgstr "双数"
 
-#: ../data/language-specs/ansforth94.lang.h:15
-#: ../data/language-specs/haskell.lang.h:12
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:49 haskell.lang:42
 msgid "Float"
 msgstr "浮点数"
 
-#: ../data/language-specs/asp.lang.h:2
+#. (itstool) path: asp.lang/language@_name
+#: asp.lang:24
 msgid "ASP"
 msgstr "ASP"
 
-#. A function name (also: methods for classes)
-#: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/changelog.lang.h:9
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
-#: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
-#: ../data/language-specs/gtk-doc.lang.h:10
-#: ../data/language-specs/idl-exelis.lang.h:10
-#: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:8
-#: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
-#: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
+#. (itstool) path: styles/style@_name
+#: asp.lang:36 changelog.lang:39 cg.lang:48 css.lang:52 def.lang:81 gap.lang:35
+#: gdb-log.lang:29 gtk-doc.lang:34 idl-exelis.lang:35 javascript.lang:43
+#: llvm.lang:33 lua.lang:40 scheme.lang:36 scilab.lang:35 sh.lang:34
+#: sparql.lang:35 sql.lang:36
 msgid "Function"
 msgstr "函数"
 
-#. Operators: "+", "*", etc.
-#: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
-#: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
-#: ../data/language-specs/erlang.lang.h:5
-#: ../data/language-specs/imagej.lang.h:9
-#: ../data/language-specs/julia.lang.h:9
-#: ../data/language-specs/modelica.lang.h:5
-#: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
-#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scala.lang.h:13
-#: ../data/language-specs/sparql.lang.h:15
+#. (itstool) path: styles/style@_name
+#: asp.lang:37 bennugd.lang:35 c.lang:42 cmake.lang:35 cobol.lang:42
+#: def.lang:90 erlang.lang:34 imagej.lang:39 julia.lang:43 meson.lang:33
+#: modelica.lang:38 nsis.lang:31 octave.lang:43 perl.lang:43 php.lang:50
+#: prolog.lang:39 scala.lang:46 sparql.lang:45
 msgid "Operator"
 msgstr "操作符"
 
-#: ../data/language-specs/asp.lang.h:9
+#. (itstool) path: styles/style@_name
+#: asp.lang:38
 msgid "ASP Object"
 msgstr "ASP 对象"
 
-#: ../data/language-specs/asp.lang.h:10
+#. (itstool) path: styles/style@_name
+#: asp.lang:39
 msgid "VBScript and ADO constants"
 msgstr "VBScript 和 ADO 常数"
 
-#. A special constant like NULL in C or null in Java
-#: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:32
-#: ../data/language-specs/vbnet.lang.h:8
+#. (itstool) path: styles/style@_name
+#: asp.lang:41 def.lang:73 vbnet.lang:37
 msgid "Special constant"
 msgstr "特殊常数"
 
-#: ../data/language-specs/automake.lang.h:2
+#. (itstool) path: automake.lang/language@_name
+#: automake.lang:24
 msgid "Automake"
 msgstr "Automake"
 
-#: ../data/language-specs/automake.lang.h:3
+#. (itstool) path: styles/style@_name
+#: automake.lang:39
 msgid "Automake Variable"
 msgstr "Automake 变量"
 
-#: ../data/language-specs/automake.lang.h:4
+#. (itstool) path: styles/style@_name
+#: automake.lang:40
 msgid "Primary"
 msgstr "主"
 
-#: ../data/language-specs/automake.lang.h:5
+#. (itstool) path: styles/style@_name
+#: automake.lang:41
 msgid "Secondary"
 msgstr "次"
 
-#: ../data/language-specs/automake.lang.h:6
+#. (itstool) path: styles/style@_name
+#: automake.lang:42
 msgid "Prefix"
 msgstr "前缀"
 
-#: ../data/language-specs/automake.lang.h:7
+#. (itstool) path: styles/style@_name
+#: automake.lang:43
 msgid "Optional Target"
 msgstr "可选目标"
 
-#: ../data/language-specs/automake.lang.h:8
+#. (itstool) path: styles/style@_name
+#: automake.lang:44
 msgid "Built-in Target"
 msgstr "内建目标"
 
-#: ../data/language-specs/automake.lang.h:9
+#. (itstool) path: styles/style@_name
+#: automake.lang:45
 msgid "Other Keyword"
 msgstr "其它关键字"
 
-#: ../data/language-specs/automake.lang.h:10
-#: ../data/language-specs/rst.lang.h:10
+#. (itstool) path: styles/style@_name
+#: automake.lang:46 rst.lang:38
 msgid "Substitution"
 msgstr "替换"
 
-#: ../data/language-specs/awk.lang.h:1
-#: ../data/language-specs/dosbatch.lang.h:1
-#: ../data/language-specs/javascript.lang.h:1
-#: ../data/language-specs/lua.lang.h:1 ../data/language-specs/m4.lang.h:1
-#: ../data/language-specs/perl.lang.h:1 ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/python3.lang.h:1
-#: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
-#: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-msgid "Script"
-msgstr "脚本"
-
-#: ../data/language-specs/awk.lang.h:2
+#. (itstool) path: awk.lang/language@_name
+#: awk.lang:24
 msgid "awk"
 msgstr "awk"
 
-#: ../data/language-specs/awk.lang.h:4 ../data/language-specs/lex.lang.h:5
+#. (itstool) path: awk.lang/language@_section
+#. (itstool) path: dosbatch.lang/language@_section
+#. (itstool) path: javascript.lang/language@_section
+#. (itstool) path: lua.lang/language@_section
+#. (itstool) path: m4.lang/language@_section
+#. (itstool) path: perl.lang/language@_section
+#. (itstool) path: php.lang/language@_section
+#. (itstool) path: python.lang/language@_section
+#. (itstool) path: python3.lang/language@_section
+#. (itstool) path: ruby.lang/language@_section
+#. (itstool) path: sh.lang/language@_section
+#. (itstool) path: tcl.lang/language@_section
+#: awk.lang:24 dosbatch.lang:24 javascript.lang:27 lua.lang:24 m4.lang:24
+#: perl.lang:26 php.lang:29 python.lang:28 python3.lang:24 ruby.lang:27
+#: sh.lang:25 tcl.lang:24
+msgid "Script"
+msgstr "脚本"
+
+#. (itstool) path: styles/style@_name
+#: awk.lang:33 lex.lang:36
 msgid "Pattern"
 msgstr "模式"
 
-#: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
-#: ../data/language-specs/netrexx.lang.h:15
-#: ../data/language-specs/perl.lang.h:8
-#: ../data/language-specs/python3.lang.h:17
-#: ../data/language-specs/python.lang.h:18
+#. (itstool) path: styles/style@_name
+#: awk.lang:35 boo.lang:46 genie.lang:46 glsl.lang:44 go.lang:50
+#: netrexx.lang:47 perl.lang:39 python.lang:51 python3.lang:45
 msgid "Builtin Function"
 msgstr "内置函数"
 
-#: ../data/language-specs/bennugd.lang.h:2
+#. (itstool) path: bennugd.lang/language@_name
+#: bennugd.lang:23
 msgid "BennuGD"
 msgstr "BennuGD"
 
-#. Any variable name
-#: ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/def.lang.h:36 ../data/language-specs/llvm.lang.h:9
-#: ../data/language-specs/php.lang.h:7
+#. (itstool) path: styles/style@_name
+#: bennugd.lang:34 def.lang:79 llvm.lang:36 php.lang:43 rust.lang:51
 msgid "Identifier"
 msgstr "标识符"
 
-#. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
-#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/go.lang.h:11
-#: ../data/language-specs/idl-exelis.lang.h:8
-#: ../data/language-specs/json.lang.h:9
-#: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python3.lang.h:11
-#: ../data/language-specs/python.lang.h:12 ../data/language-specs/R.lang.h:10
-#: ../data/language-specs/ruby.lang.h:10
+#. (itstool) path: styles/style@_name
+#: bennugd.lang:38 c.lang:47 cg.lang:42 csv.lang:33 def.lang:65 d.lang:48
+#: erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44 nemerle.lang:43
+#: ooc.lang:44 php.lang:54 python.lang:45 python3.lang:39 R.lang:41
+#: ruby.lang:42
 msgid "Floating point number"
 msgstr "浮点数"
 
-#: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:18
-#: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
-#: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
-#: ../data/language-specs/nemerle.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:22
+#. (itstool) path: styles/style@_name
+#: bennugd.lang:40 c.lang:50 cg.lang:45 csharp.lang:50 d.lang:52 eiffel.lang:46
+#: go.lang:47 nemerle.lang:47 ooc.lang:47 php.lang:57
 msgid "Hexadecimal number"
 msgstr "十六进制数"
 
-#: ../data/language-specs/bibtex.lang.h:1
-#: ../data/language-specs/docbook.lang.h:1 ../data/language-specs/dtd.lang.h:1
-#: ../data/language-specs/gtk-doc.lang.h:1
-#: ../data/language-specs/haddock.lang.h:1
-#: ../data/language-specs/html.lang.h:1 ../data/language-specs/latex.lang.h:1
-#: ../data/language-specs/mallard.lang.h:1
-#: ../data/language-specs/markdown.lang.h:1
-#: ../data/language-specs/mediawiki.lang.h:1
-#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/rst.lang.h:1
-#: ../data/language-specs/sweave.lang.h:1 ../data/language-specs/t2t.lang.h:1
-#: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
-#: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:413
-msgid "Markup"
-msgstr "标记"
-
-#: ../data/language-specs/bibtex.lang.h:2
+#. (itstool) path: bibtex.lang/language@_name
+#: bibtex.lang:24
 msgid "BibTeX"
 msgstr "BibTeX"
 
-#: ../data/language-specs/bibtex.lang.h:3
+#. (itstool) path: bibtex.lang/language@_section
+#. (itstool) path: docbook.lang/language@_section
+#. (itstool) path: dtd.lang/language@_section
+#. (itstool) path: gtk-doc.lang/language@_section
+#. (itstool) path: haddock.lang/language@_section
+#. (itstool) path: html.lang/language@_section
+#. (itstool) path: jade.lang/language@_section
+#. (itstool) path: latex.lang/language@_section
+#. (itstool) path: mallard.lang/language@_section
+#. (itstool) path: markdown.lang/language@_section
+#. (itstool) path: mediawiki.lang/language@_section
+#. (itstool) path: mxml.lang/language@_section
+#. (itstool) path: rst.lang/language@_section
+#. (itstool) path: sweave.lang/language@_section
+#. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: texinfo.lang/language@_section
+#. (itstool) path: xml.lang/language@_section
+#. (itstool) path: xslt.lang/language@_section
+#: bibtex.lang:24 docbook.lang:24 dtd.lang:24 gtk-doc.lang:25 haddock.lang:24
+#: html.lang:25 jade.lang:26 latex.lang:25 mallard.lang:23 markdown.lang:26
+#: mediawiki.lang:23 mxml.lang:24 rst.lang:23 sweave.lang:25 t2t.lang:24
+#: texinfo.lang:25 xml.lang:26 xslt.lang:24
+msgid "Markup"
+msgstr "标记"
+
+#. (itstool) path: styles/style@_name
+#: bibtex.lang:32
 msgid "Entries"
 msgstr "条目"
 
-#: ../data/language-specs/bibtex.lang.h:4
+#. (itstool) path: styles/style@_name
+#: bibtex.lang:33
 msgid "Field"
 msgstr "域"
 
-#: ../data/language-specs/bluespec.lang.h:2
+#. (itstool) path: bluespec.lang/language@_name
+#: bluespec.lang:22
 msgid "Bluespec SystemVerilog"
 msgstr "Bluespec SystemVerilog"
 
-#: ../data/language-specs/bluespec.lang.h:3
-#: ../data/language-specs/systemverilog.lang.h:4
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:31 systemverilog.lang:32
 msgid "System Task"
 msgstr "系统任务"
 
-#: ../data/language-specs/bluespec.lang.h:4
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:32
 msgid "Annotation"
 msgstr "注释"
 
-#: ../data/language-specs/bluespec.lang.h:5
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:33 rust.lang:54
 msgid "Attribute"
 msgstr "属性"
 
-#: ../data/language-specs/bluespec.lang.h:6
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:34
 msgid "Import BVI"
 msgstr "导入 BVI"
 
-#: ../data/language-specs/bluespec.lang.h:8
-#: ../data/language-specs/gtk-doc.lang.h:9
-#: ../data/language-specs/julia.lang.h:15
-#: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:13
-#: ../data/language-specs/vhdl.lang.h:7
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:36 gtk-doc.lang:33 julia.lang:49 systemverilog.lang:34
+#: verilog.lang:44 vhdl.lang:36
 msgid "Type"
 msgstr "类型"
 
-#: ../data/language-specs/boo.lang.h:2
+#. (itstool) path: boo.lang/language@_name
+#: boo.lang:24
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python3.lang.h:5
-#: ../data/language-specs/python.lang.h:5
+#. (itstool) path: styles/style@_name
+#: boo.lang:35 genie.lang:35 python.lang:38 python3.lang:33
 msgid "Multiline string"
 msgstr "多行字符串"
 
-#: ../data/language-specs/boo.lang.h:6
-#: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
+#. (itstool) path: styles/style@_name
+#: boo.lang:37 genie.lang:37 javascript.lang:48 perl.lang:47 ruby.lang:57
 msgid "Regular Expression"
 msgstr "正则表达式"
 
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/sparql.lang.h:8
-#: ../data/language-specs/xml.lang.h:12 ../data/language-specs/xslt.lang.h:4
+#. (itstool) path: styles/style@_name
+#: boo.lang:38 genie.lang:38 sparql.lang:38 xml.lang:44 xslt.lang:34
 msgid "Namespace"
 msgstr "命名空间"
 
-#: ../data/language-specs/boo.lang.h:9
+#. (itstool) path: styles/style@_name
+#: boo.lang:40 genie.lang:40
 msgid "Definition"
 msgstr "定义"
 
-#: ../data/language-specs/boo.lang.h:11
-#: ../data/language-specs/python3.lang.h:9
-#: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/ruby.lang.h:20
+#. (itstool) path: styles/style@_name
+#: boo.lang:42 genie.lang:42 python.lang:43 python3.lang:37 ruby.lang:52
 msgid "Special Variable"
 msgstr "特殊变量"
 
-#: ../data/language-specs/boo.lang.h:13
-#: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
-#: ../data/language-specs/imagej.lang.h:4
-#: ../data/language-specs/julia.lang.h:6
-#: ../data/language-specs/libtool.lang.h:4
-#: ../data/language-specs/modelica.lang.h:9
-#: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
-#: ../data/language-specs/python3.lang.h:10
-#: ../data/language-specs/python.lang.h:11
-#: ../data/language-specs/scheme.lang.h:4
-#: ../data/language-specs/scilab.lang.h:8
-#: ../data/language-specs/sparql.lang.h:9
-#: ../data/language-specs/yaml.lang.h:12
+#. (itstool) path: styles/style@_name
+#: boo.lang:44 desktop.lang:39 d.lang:47 genie.lang:44 imagej.lang:34
+#: julia.lang:40 libtool.lang:33 modelica.lang:42 objj.lang:36 octave.lang:46
+#: python.lang:44 python3.lang:38 scheme.lang:33 scilab.lang:36 sparql.lang:39
+#: yaml.lang:39
 msgid "Boolean"
 msgstr "布尔值"
 
-#: ../data/language-specs/cg.lang.h:2
-msgid "CG Shader Language"
-msgstr "CG Shader 语言"
-
-#: ../data/language-specs/cg.lang.h:6
-msgid "Bindings"
-msgstr "绑定"
-
-#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/fortran.lang.h:13
-#: ../data/language-specs/objj.lang.h:7
-msgid "Included File"
-msgstr "包含了的文件"
-
-#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
-#: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
-#: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:21
-msgid "Octal number"
-msgstr "八进制数"
-
-#: ../data/language-specs/cg.lang.h:17
-msgid "Swizzle operator"
-msgstr "鸡尾酒操作符"
-
-#. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
-#: ../data/language-specs/imagej.lang.h:3
-#: ../data/language-specs/matlab.lang.h:5
-#: ../data/language-specs/modelica.lang.h:14
-#: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:17
-msgid "Builtin"
-msgstr "内置"
-
-#: ../data/language-specs/changelog.lang.h:1
-#: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
-#: ../data/language-specs/desktop.lang.h:1
-#: ../data/language-specs/diff.lang.h:1 ../data/language-specs/dot.lang.h:1
-#: ../data/language-specs/dpatch.lang.h:1
-#: ../data/language-specs/gdb-log.lang.h:1
-#: ../data/language-specs/gtkrc.lang.h:1 ../data/language-specs/ini.lang.h:1
-#: ../data/language-specs/json.lang.h:1
-#: ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
-#: ../data/language-specs/pkgconfig.lang.h:1
-#: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
-#: ../data/language-specs/puppet.lang.h:1
-#: ../data/language-specs/rpmspec.lang.h:1
-#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yacc.lang.h:1
-#: ../data/language-specs/yaml.lang.h:1
-msgid "Other"
-msgstr "其他"
-
-#: ../data/language-specs/changelog.lang.h:2
+#. (itstool) path: changelog.lang/language@_name
+#: changelog.lang:25
 msgid "ChangeLog"
 msgstr "ChangeLog"
 
-#: ../data/language-specs/changelog.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:14
+#. (itstool) path: changelog.lang/language@_section
+#. (itstool) path: cmake.lang/language@_section
+#. (itstool) path: css.lang/language@_section
+#. (itstool) path: csv.lang/language@_section
+#. (itstool) path: desktop.lang/language@_section
+#. (itstool) path: diff.lang/language@_section
+#. (itstool) path: dot.lang/language@_section
+#. (itstool) path: dpatch.lang/language@_section
+#. (itstool) path: gdb-log.lang/language@_section
+#. (itstool) path: gtkrc.lang/language@_section
+#. (itstool) path: ini.lang/language@_section
+#. (itstool) path: json.lang/language@_section
+#. (itstool) path: libtool.lang/language@_section
+#. (itstool) path: nsis.lang/language@_section
+#. (itstool) path: ocl.lang/language@_section
+#. (itstool) path: pkgconfig.lang/language@_section
+#. (itstool) path: po.lang/language@_section
+#. (itstool) path: protobuf.lang/language@_section
+#. (itstool) path: puppet.lang/language@_section
+#. (itstool) path: rpmspec.lang/language@_section
+#. (itstool) path: styles/style@_name
+#. (itstool) path: yacc.lang/language@_section
+#. (itstool) path: yaml.lang/language@_section
+#: changelog.lang:25 cmake.lang:24 css.lang:38 csv.lang:24 desktop.lang:25
+#: diff.lang:24 dot.lang:24 dpatch.lang:24 gdb-log.lang:19 gtkrc.lang:25
+#: ini.lang:23 json.lang:30 libtool.lang:24 nsis.lang:24 ocl.lang:33
+#: pkgconfig.lang:24 po.lang:24 protobuf.lang:21 puppet.lang:24 rpmspec.lang:24
+#: scala.lang:49 yacc.lang:24 yaml.lang:22
+msgid "Other"
+msgstr "其他"
+
+#. (itstool) path: styles/style@_name
+#: changelog.lang:33 rpmspec.lang:43
 msgid "Date"
 msgstr "日期"
 
-#. Translators: the name of a person, not an object.
-#. names, e.g., name of package, name of environment, name of class
-#: ../data/language-specs/changelog.lang.h:5
-#: ../data/language-specs/latex.lang.h:19
+#. (itstool) path: styles/style@_name
+#: changelog.lang:35 latex.lang:52
 msgid "Name"
 msgstr "名称"
 
-#: ../data/language-specs/changelog.lang.h:6
+#. (itstool) path: styles/style@_name
+#: changelog.lang:36
 msgid "E-mail address"
 msgstr "电子邮件地址"
 
-#: ../data/language-specs/changelog.lang.h:7
+#. (itstool) path: styles/style@_name
+#: changelog.lang:37
 msgid "File"
 msgstr "文件"
 
-#: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/rst.lang.h:6
+#. (itstool) path: styles/style@_name
+#: changelog.lang:38 rst.lang:34
 msgid "Bullet"
 msgstr "点句符"
 
-#: ../data/language-specs/changelog.lang.h:10
+#. (itstool) path: styles/style@_name
+#: changelog.lang:40
 msgid "Release"
 msgstr "发行"
 
-#: ../data/language-specs/chdr.lang.h:2
-msgid "C/C++/ObjC Header"
-msgstr "C/C++/ObjC 头文件"
-
-#: ../data/language-specs/c.lang.h:2
+#. (itstool) path: c.lang/language@_name
+#: c.lang:25
 msgid "C"
 msgstr "C"
 
-#: ../data/language-specs/c.lang.h:6 ../data/language-specs/cpp.lang.h:5
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/opal.lang.h:5
+#. (itstool) path: styles/style@_name
+#: c.lang:38 cpp.lang:37 objc.lang:36 opal.lang:35
 msgid "Common Defines"
 msgstr "公共定义"
 
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
-#: ../data/language-specs/verilog.lang.h:5
+#. (itstool) path: styles/style@_name
+#: c.lang:39 cg.lang:37 fortran.lang:43 objj.lang:40
+msgid "Included File"
+msgstr "包含了的文件"
+
+#. (itstool) path: styles/style@_name
+#: c.lang:45 genie.lang:47 go.lang:41 verilog.lang:36
 msgid "printf Conversion"
 msgstr "printf 转换"
 
-#: ../data/language-specs/c.lang.h:20
+#. (itstool) path: styles/style@_name
+#: c.lang:49 cg.lang:44 d.lang:51 go.lang:46 nemerle.lang:46 ooc.lang:46
+#: php.lang:56
+msgid "Octal number"
+msgstr "八进制数"
+
+#. (itstool) path: styles/style@_name
+#: c.lang:52
 msgid "Standard stream"
 msgstr "标准流"
 
-#: ../data/language-specs/c.lang.h:21
+#. (itstool) path: styles/style@_name
+#: c.lang:53
 msgid "Signal name"
 msgstr "信号名称"
 
-#: ../data/language-specs/cmake.lang.h:2
+#. (itstool) path: cg.lang/language@_name
+#: cg.lang:24
+msgid "CG Shader Language"
+msgstr "CG Shader 语言"
+
+#. (itstool) path: styles/style@_name
+#: cg.lang:36
+msgid "Bindings"
+msgstr "绑定"
+
+#. (itstool) path: styles/style@_name
+#: cg.lang:47
+msgid "Swizzle operator"
+msgstr "鸡尾酒操作符"
+
+#. (itstool) path: styles/style@_name
+#: cg.lang:49 erlang.lang:41 imagej.lang:33 matlab.lang:43 modelica.lang:47
+#: octave.lang:50 ruby.lang:49
+msgid "Builtin"
+msgstr "内置"
+
+#. (itstool) path: chdr.lang/language@_name
+#: chdr.lang:25
+msgid "C/C++/ObjC Header"
+msgstr "C/C++/ObjC 头文件"
+
+#. (itstool) path: cmake.lang/language@_name
+#: cmake.lang:24
 msgid "CMake"
 msgstr "CMake"
 
-#: ../data/language-specs/cmake.lang.h:3
+#. (itstool) path: styles/style@_name
+#: cmake.lang:31 meson.lang:32
 msgid "Builtin Command"
 msgstr "内建命令"
 
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
+#. (itstool) path: styles/style@_name
+#: cmake.lang:32
+msgid "Deprecated Builtin Command"
+msgstr "废弃的内建命令"
+
+#. (itstool) path: styles/style@_name
+#: cmake.lang:33 glsl.lang:46
 msgid "Builtin Variable"
 msgstr "内建变量"
 
-#: ../data/language-specs/cmake.lang.h:7
+#. (itstool) path: styles/style@_name
+#: cmake.lang:36
 msgid "Control Keyword"
 msgstr "控制关键字"
 
-#: ../data/language-specs/cobol.lang.h:2
+#. (itstool) path: cobol.lang/language@_name
+#: cobol.lang:27
 msgid "COBOL"
 msgstr "COBOL"
 
-#. Any statement
-#: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
+#. (itstool) path: styles/style@_name
+#: cobol.lang:36 def.lang:88 protobuf.lang:32
 msgid "Statement"
 msgstr "语句"
 
-#: ../data/language-specs/cpp.lang.h:2
+#. (itstool) path: cpp.lang/language@_name
+#: cpp.lang:25
 msgid "C++"
 msgstr "C++"
 
-#: ../data/language-specs/csharp.lang.h:2
+#. (itstool) path: cpphdr.lang/language@_name
+#: cpphdr.lang:25
+msgid "C++ Header"
+msgstr "C++ 头文件"
+
+#. (itstool) path: csharp.lang/language@_name
+#: csharp.lang:27
 msgid "C#"
 msgstr "C#"
 
-#. Translators: this is a format that appears in the strings
-#: ../data/language-specs/csharp.lang.h:10 ../data/language-specs/po.lang.h:8
+#. (itstool) path: styles/style@_name
+#: csharp.lang:44 po.lang:37
 msgid "String Format"
 msgstr "字符串格式"
 
-#: ../data/language-specs/css.lang.h:2
+#. (itstool) path: css.lang/language@_name
+#: css.lang:38
 msgid "CSS"
 msgstr "CSS"
 
-#: ../data/language-specs/css.lang.h:4
+#. (itstool) path: styles/style@_name
+#: css.lang:48
 msgid "Others 2"
 msgstr "其它 2"
 
-#: ../data/language-specs/css.lang.h:6
+#. (itstool) path: styles/style@_name
+#: css.lang:50
 msgid "Color"
 msgstr "色彩"
 
-#: ../data/language-specs/css.lang.h:7
+#. (itstool) path: styles/style@_name
+#: css.lang:51
 msgid "Others 3"
 msgstr "其它 3"
 
-#. Translator: it is a type of number
-#: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
-#: ../data/language-specs/fortran.lang.h:9 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/gtkrc.lang.h:6
-#: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
-#: ../data/language-specs/modelica.lang.h:10
-#: ../data/language-specs/octave.lang.h:9
-#: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
-#: ../data/language-specs/sql.lang.h:8
+#. (itstool) path: styles/style@_name
+#: css.lang:54 fcl.lang:34 fortran.lang:39 gap.lang:36 gtkrc.lang:36
+#: haskell.lang:43 ini.lang:35 json.lang:43 modelica.lang:43 pascal.lang:36
+#: sml.lang:39 sql.lang:37
 msgid "Decimal"
 msgstr "小数"
 
-#: ../data/language-specs/css.lang.h:11
+#. (itstool) path: styles/style@_name
+#: css.lang:55
 msgid "Dimension"
 msgstr "尺寸"
 
-#: ../data/language-specs/css.lang.h:12
+#. (itstool) path: styles/style@_name
+#: css.lang:56
 msgid "Known Property Value"
 msgstr "已知属性名称"
 
-#: ../data/language-specs/css.lang.h:13
+#. (itstool) path: styles/style@_name
+#: css.lang:57
 msgid "at-rules"
 msgstr "at 规则"
 
-#: ../data/language-specs/css.lang.h:15
+#. (itstool) path: styles/style@_name
+#: css.lang:59
 msgid "ID Selector"
 msgstr "ID 选择器"
 
-#: ../data/language-specs/css.lang.h:16
+#. (itstool) path: styles/style@_name
+#: css.lang:60
 msgid "Class Selector"
 msgstr "类选择器"
 
-#: ../data/language-specs/css.lang.h:17
+#. (itstool) path: styles/style@_name
+#: css.lang:61
 msgid "Tag Name Selector"
 msgstr "标记名选择器"
 
-#: ../data/language-specs/cuda.lang.h:2
+#. (itstool) path: csv.lang/language@_name
+#: csv.lang:24
+msgid "CSV"
+msgstr "CSV"
+
+#. (itstool) path: styles/style@_name
+#: csv.lang:32
+msgid "Escaped character"
+msgstr "转码后的字符"
+
+#. (itstool) path: cuda.lang/language@_name
+#: cuda.lang:23
 msgid "CUDA"
 msgstr "CUDA"
 
-#: ../data/language-specs/cuda.lang.h:5
+#. (itstool) path: styles/style@_name
+#: cuda.lang:35
 msgid "Global Functions"
 msgstr "全局函数"
 
-#: ../data/language-specs/cuda.lang.h:6
+#. (itstool) path: styles/style@_name
+#: cuda.lang:36
 msgid "Device Functions"
 msgstr "设备函数"
 
-#: ../data/language-specs/cuda.lang.h:7
+#. (itstool) path: styles/style@_name
+#: cuda.lang:37
 msgid "Global Variables"
 msgstr "全局变量"
 
-#: ../data/language-specs/def.lang.h:1
+#. (itstool) path: def.lang/language@_name
+#: def.lang:25
 msgid "Defaults"
 msgstr "默认值"
 
-#. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:5
+#. (itstool) path: styles/style@_name
+#: def.lang:42
 msgid "Shebang"
 msgstr "Shebang"
 
-#. A special comment containing documentation like in javadoc or
-#. gtk-doc
-#: ../data/language-specs/def.lang.h:8
+#. (itstool) path: styles/style@_name
+#: def.lang:45
 msgid "Documentation comment"
 msgstr "文档注释"
 
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "doc-comment"
-#: ../data/language-specs/def.lang.h:11
+#. (itstool) path: styles/style@_name
+#: def.lang:49
 msgid "Documentation comment element"
 msgstr "文档注释元素"
 
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "string"
-#: ../data/language-specs/def.lang.h:20
+#. (itstool) path: styles/style@_name
+#: def.lang:61
 msgid "Special character (inside a string)"
 msgstr "字符串内部的特殊字符"
 
-#. A base-N number: 0xFFFF
-#: ../data/language-specs/def.lang.h:28
-#: ../data/language-specs/python3.lang.h:13
-#: ../data/language-specs/python.lang.h:14
-#: ../data/language-specs/ruby.lang.h:12
+#. (itstool) path: styles/style@_name
+#: def.lang:69 python.lang:47 python3.lang:41 ruby.lang:44
 msgid "Base-N number"
 msgstr "N 进制整数"
 
-#. A complex number
-#: ../data/language-specs/def.lang.h:30
-#: ../data/language-specs/python3.lang.h:14
-#: ../data/language-specs/python.lang.h:15
+#. (itstool) path: styles/style@_name
+#: def.lang:71 python.lang:48 python3.lang:42
 msgid "Complex number"
 msgstr "复数"
 
-#. A builtin name: like __import__, abs in Python
-#. (see http://docs.python.org/lib/built-in-funcs.html)
-#: ../data/language-specs/def.lang.h:41
+#. (itstool) path: styles/style@_name
+#: def.lang:84
 msgid "Built-in identifier"
 msgstr "内置标识符"
 
-#. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:49
-#: ../data/language-specs/modelica.lang.h:7
-#: ../data/language-specs/octave.lang.h:6
+#. (itstool) path: styles/style@_name
+#: def.lang:96 modelica.lang:40 octave.lang:44
 msgid "Data type"
 msgstr "数据类型"
 
-#. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
-#: ../data/language-specs/def.lang.h:51
+#. (itstool) path: styles/style@_name
+#: def.lang:100
 msgid "Preprocessor directive"
 msgstr "预处理指令"
 
-#. to mark possibily errors or unrecommended syntax
-#: ../data/language-specs/def.lang.h:55
+#. (itstool) path: styles/style@_name
+#: def.lang:104
 msgid "Warning"
 msgstr "警告"
 
-#. Reserved keywords: like "const" and "goto" in Java
-#: ../data/language-specs/def.lang.h:57
+#. (itstool) path: styles/style@_name
+#: def.lang:106
 msgid "Reserved keyword"
 msgstr "保留关键字"
 
-#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:59
+#. (itstool) path: styles/style@_name
+#: def.lang:108
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "注释 (FIXME、TODO、XXX 等)"
 
-#. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:61
+#. (itstool) path: styles/style@_name
+#: def.lang:110
 msgid "Underlined"
 msgstr "加下划线的"
 
-#. Text that acts as some kind of heading, such as h1, h2, ... in html.
-#: ../data/language-specs/def.lang.h:63
+#. (itstool) path: styles/style@_name
+#: def.lang:112
 msgid "Heading 0"
 msgstr "标题 0"
 
-#: ../data/language-specs/def.lang.h:64
+#. (itstool) path: styles/style@_name
+#: def.lang:113
 msgid "Heading 1"
 msgstr "标题 1"
 
-#: ../data/language-specs/def.lang.h:65
+#. (itstool) path: styles/style@_name
+#: def.lang:114
 msgid "Heading 2"
 msgstr "标题 2"
 
-#: ../data/language-specs/def.lang.h:66
+#. (itstool) path: styles/style@_name
+#: def.lang:115
 msgid "Heading 3"
 msgstr "标题 3"
 
-#: ../data/language-specs/def.lang.h:67
+#. (itstool) path: styles/style@_name
+#: def.lang:116
 msgid "Heading 4"
 msgstr "标题 4"
 
-#: ../data/language-specs/def.lang.h:68
+#. (itstool) path: styles/style@_name
+#: def.lang:117
 msgid "Heading 5"
 msgstr "标题 5"
 
-#: ../data/language-specs/def.lang.h:69
+#. (itstool) path: styles/style@_name
+#: def.lang:118
 msgid "Heading 6"
 msgstr "标题 6"
 
-#: ../data/language-specs/desktop.lang.h:2
+#. (itstool) path: desktop.lang/language@_name
+#: desktop.lang:25
 msgid ".desktop"
 msgstr ".desktop"
 
-#: ../data/language-specs/desktop.lang.h:3
+#. (itstool) path: styles/style@_name
+#: desktop.lang:33
 msgid "Group"
 msgstr "组"
 
-#. Translators: "Key" here means key value, that is the left hand
-#. side in a myoption=something line in a .desktop file
-#: ../data/language-specs/desktop.lang.h:6
-#: ../data/language-specs/json.lang.h:2
+#. (itstool) path: styles/style@_name
+#: desktop.lang:36 json.lang:37
 msgid "Key"
 msgstr "关键字"
 
-#: ../data/language-specs/desktop.lang.h:7
+#. (itstool) path: styles/style@_name
+#: desktop.lang:37
 msgid "Translation"
 msgstr "翻译"
 
-#: ../data/language-specs/desktop.lang.h:10
+#. (itstool) path: styles/style@_name
+#: desktop.lang:40
 msgid "Exec parameter"
 msgstr "执行参数"
 
-#: ../data/language-specs/desktop.lang.h:11
-#: ../gtksourceview/gtksourcefile.c:184
-#: ../gtksourceview/gtksourcefilesaver.c:393
+#. (itstool) path: styles/style@_name
+#: desktop.lang:41
 msgid "Encoding"
 msgstr "编码"
 
-#: ../data/language-specs/desktop.lang.h:12
+#. (itstool) path: styles/style@_name
+#: desktop.lang:42
 msgid "Main Category"
 msgstr "主类别"
 
-#: ../data/language-specs/desktop.lang.h:13
+#. (itstool) path: styles/style@_name
+#: desktop.lang:43
 msgid "Additional Category"
 msgstr "附加类别"
 
-#: ../data/language-specs/desktop.lang.h:14
+#. (itstool) path: styles/style@_name
+#: desktop.lang:44
 msgid "Reserved Category"
 msgstr "保留类别"
 
-#: ../data/language-specs/diff.lang.h:2
+#. (itstool) path: diff.lang/language@_name
+#: diff.lang:24
 msgid "Diff"
 msgstr "Diff"
 
-#: ../data/language-specs/diff.lang.h:3
+#. (itstool) path: styles/style@_name
+#: diff.lang:31
 msgid "Added line"
 msgstr "添加的行"
 
-#. Others 2
-#: ../data/language-specs/diff.lang.h:5
+#. (itstool) path: styles/style@_name
+#: diff.lang:32
 msgid "Removed line"
 msgstr "删除的行"
 
-#. Others 3
-#: ../data/language-specs/diff.lang.h:7
+#. (itstool) path: styles/style@_name
+#: diff.lang:33
 msgid "Changed line"
 msgstr "更改的行"
 
-#. Preprocessor
-#: ../data/language-specs/diff.lang.h:9
+#. (itstool) path: styles/style@_name
+#: diff.lang:34
 msgid "Special case"
 msgstr "特例"
 
-#. String
-#: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
-#: ../gtksourceview/gtksourcefile.c:167
-#: ../gtksourceview/gtksourcefileloader.c:397
-#: ../gtksourceview/gtksourcefilesaver.c:376
+#. (itstool) path: styles/style@_name
+#: diff.lang:35 po.lang:33
 msgid "Location"
 msgstr "位置"
 
-#. Keyword
-#: ../data/language-specs/diff.lang.h:13
+#. (itstool) path: styles/style@_name
+#: diff.lang:36
 msgid "Ignore"
 msgstr "忽略"
 
-#: ../data/language-specs/d.lang.h:2
+#. (itstool) path: d.lang/language@_name
+#: d.lang:30
 msgid "D"
 msgstr "D"
 
-#: ../data/language-specs/d.lang.h:8
+#. (itstool) path: styles/style@_name
+#: d.lang:45
 msgid "Special Token"
 msgstr "特殊符号"
 
-#: ../data/language-specs/d.lang.h:13 ../data/language-specs/nemerle.lang.h:14
+#. (itstool) path: styles/style@_name
+#: d.lang:50 nemerle.lang:45
 msgid "Binary number"
 msgstr "二进制数"
 
-#: ../data/language-specs/docbook.lang.h:2
+#. (itstool) path: docbook.lang/language@_name
+#: docbook.lang:24
 msgid "DocBook"
 msgstr "Docbook"
 
-#: ../data/language-specs/docbook.lang.h:3
+#. (itstool) path: styles/style@_name
+#: docbook.lang:33
 msgid "Header Elements"
 msgstr "标题元素"
 
-#: ../data/language-specs/docbook.lang.h:4
+#. (itstool) path: styles/style@_name
+#: docbook.lang:34
 msgid "Formatting Elements"
 msgstr "格式化元素"
 
-#: ../data/language-specs/docbook.lang.h:5
+#. (itstool) path: styles/style@_name
+#: docbook.lang:35
 msgid "GUI Elements"
 msgstr "GUI 元素"
 
-#: ../data/language-specs/docbook.lang.h:6
+#. (itstool) path: styles/style@_name
+#: docbook.lang:36
 msgid "Structural Elements"
 msgstr "结构化元素"
 
-#: ../data/language-specs/dosbatch.lang.h:2
+#. (itstool) path: dosbatch.lang/language@_name
+#: dosbatch.lang:24
 msgid "DOS Batch"
 msgstr "DOS 批处理"
 
-#: ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/latex.lang.h:8
-#: ../data/language-specs/sweave.lang.h:4
+#. (itstool) path: styles/style@_name
+#: dosbatch.lang:34 latex.lang:39 latex.lang:40 sweave.lang:33
 msgid "Command"
 msgstr "命令"
 
-#: ../data/language-specs/dot.lang.h:2
+#. (itstool) path: dot.lang/language@_name
+#: dot.lang:24
 msgid "Graphviz Dot"
 msgstr "Graphviz Dot"
 
-#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/xml.lang.h:8
+#. (itstool) path: styles/style@_name
+#: dot.lang:37 jade.lang:37 xml.lang:40
 msgid "Attribute name"
 msgstr "属性名称"
 
-#: ../data/language-specs/dpatch.lang.h:2
+#. (itstool) path: dpatch.lang/language@_name
+#: dpatch.lang:24
 msgid "DPatch"
 msgstr "DPatch"
 
-#: ../data/language-specs/dpatch.lang.h:3
+#. (itstool) path: styles/style@_name
+#: dpatch.lang:31
 msgid "Patch Start"
 msgstr "Patch Start"
 
-#: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
+#. (itstool) path: dtd.lang/language@_name
+#. (itstool) path: styles/style@_name
+#: dtd.lang:24 html.lang:38
 msgid "DTD"
 msgstr "DTD"
 
-#: ../data/language-specs/dtd.lang.h:3
+#. (itstool) path: styles/style@_name
+#: dtd.lang:33
 msgid "entity"
 msgstr "实体"
 
-#: ../data/language-specs/dtd.lang.h:4
+#. (itstool) path: styles/style@_name
+#: dtd.lang:34
 msgid "decl"
 msgstr "decl"
 
-#: ../data/language-specs/dtd.lang.h:5
+#. (itstool) path: styles/style@_name
+#: dtd.lang:35
 msgid "error"
 msgstr "错误"
 
-#: ../data/language-specs/dtd.lang.h:6
+#. (itstool) path: styles/style@_name
+#: dtd.lang:36
 msgid "Quoted Value"
 msgstr "引用值"
 
-#: ../data/language-specs/eiffel.lang.h:2
+#. (itstool) path: eiffel.lang/language@_name
+#: eiffel.lang:24
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../data/language-specs/eiffel.lang.h:5
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:35
 msgid "Debug"
 msgstr "调试"
 
-#: ../data/language-specs/eiffel.lang.h:6
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:36
 msgid "Assertion"
 msgstr "断言"
 
-#: ../data/language-specs/eiffel.lang.h:9
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:39
 msgid "Design by Contract"
 msgstr "合同设计"
 
-#: ../data/language-specs/eiffel.lang.h:10
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:40
 msgid "Exception Handling"
 msgstr "异常处理"
 
-#: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:21
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:41 ruby.lang:53
 msgid "Predefined Variable"
 msgstr "预定义变量"
 
-#: ../data/language-specs/eiffel.lang.h:13
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:43
 msgid "Void Value"
 msgstr "Void 值"
 
-#: ../data/language-specs/eiffel.lang.h:14
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/json.lang.h:6
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:44 javascript.lang:40 json.lang:41
 msgid "Boolean Value"
 msgstr "布尔值"
 
-#: ../data/language-specs/erlang.lang.h:2
+#. (itstool) path: erlang.lang/language@_name
+#: erlang.lang:24
 msgid "Erlang"
 msgstr "Erlang"
 
-#: ../data/language-specs/erlang.lang.h:6
+#. (itstool) path: styles/style@_name
+#: erlang.lang:35
 msgid "Atom"
 msgstr "原子"
 
-#: ../data/language-specs/erlang.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:4
-#: ../data/language-specs/modelica.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
-#: ../data/language-specs/verilog.lang.h:14
-#: ../data/language-specs/vhdl.lang.h:9
+#. (itstool) path: styles/style@_name
+#: erlang.lang:40 fsharp.lang:35 modelica.lang:45 ocaml.lang:38 sml.lang:38
+#: verilog.lang:45 vhdl.lang:38
 msgid "Base-N Integer"
 msgstr "N 进制整数"
 
-#: ../data/language-specs/erlang.lang.h:13
-#: ../data/language-specs/forth.lang.h:11
-#: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/verilog.lang.h:8
+#. (itstool) path: styles/style@_name
+#: erlang.lang:42 forth.lang:42 systemverilog.lang:31 verilog.lang:39
 msgid "Compiler Directive"
 msgstr "编译器指令"
 
-#: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
-#: ../data/language-specs/idl-exelis.lang.h:1
-#: ../data/language-specs/imagej.lang.h:1
-#: ../data/language-specs/julia.lang.h:1
-#: ../data/language-specs/matlab.lang.h:1
-#: ../data/language-specs/modelica.lang.h:1
-#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
-#: ../data/language-specs/scilab.lang.h:1
-msgid "Scientific"
-msgstr "科学"
-
-#: ../data/language-specs/fcl.lang.h:2
+#. (itstool) path: fcl.lang/language@_name
+#: fcl.lang:23
 msgid "FCL"
 msgstr "FCL"
 
-#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:4
-#: ../data/language-specs/modelica.lang.h:11
-#: ../data/language-specs/octave.lang.h:10
-#: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
+#. (itstool) path: fcl.lang/language@_section
+#. (itstool) path: gap.lang/language@_section
+#. (itstool) path: idl-exelis.lang/language@_section
+#. (itstool) path: imagej.lang/language@_section
+#. (itstool) path: julia.lang/language@_section
+#. (itstool) path: matlab.lang/language@_section
+#. (itstool) path: modelica.lang/language@_section
+#. (itstool) path: octave.lang/language@_section
+#. (itstool) path: R.lang/language@_section
+#. (itstool) path: scilab.lang/language@_section
+#: fcl.lang:23 gap.lang:24 idl-exelis.lang:21 imagej.lang:24 julia.lang:24
+#: matlab.lang:26 modelica.lang:26 octave.lang:26 R.lang:26 scilab.lang:24
+msgid "Scientific"
+msgstr "科学"
+
+#. (itstool) path: styles/style@_name
+#: fcl.lang:31 fortran.lang:35 ini.lang:32 modelica.lang:44 scilab.lang:32
+#: sql.lang:33
 msgid "Floating Point"
 msgstr "浮点数"
 
-#: ../data/language-specs/fcl.lang.h:6
+#. (itstool) path: styles/style@_name
+#: fcl.lang:33
 msgid "Block"
 msgstr "块"
 
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
-#: ../data/language-specs/scilab.lang.h:9
+#. (itstool) path: styles/style@_name
+#: fcl.lang:35 octave.lang:49 scilab.lang:37
 msgid "Reserved Constant"
 msgstr "保留常量"
 
-#: ../data/language-specs/forth.lang.h:2
+#. (itstool) path: forth.lang/language@_name
+#: forth.lang:24
 msgid "Forth"
 msgstr "Forth"
 
-#: ../data/language-specs/forth.lang.h:9
+#. (itstool) path: styles/style@_name
+#: forth.lang:40
 msgid "Debug Code"
 msgstr "调试代码"
 
-#: ../data/language-specs/forth.lang.h:10
+#. (itstool) path: styles/style@_name
+#: forth.lang:41
 msgid "Error Text"
 msgstr "错误文本"
 
-#: ../data/language-specs/fortran.lang.h:2
+#. (itstool) path: fortran.lang/language@_name
+#: fortran.lang:25
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:7
+#. (itstool) path: styles/style@_name
+#: fortran.lang:37
 msgid "Intrinsic function"
 msgstr "固有函数"
 
-#: ../data/language-specs/fortran.lang.h:8
+#. (itstool) path: styles/style@_name
+#: fortran.lang:38
 msgid "BOZ Literal"
 msgstr "BOZ Literal"
 
-#: ../data/language-specs/fortran.lang.h:12
+#. (itstool) path: styles/style@_name
+#: fortran.lang:42
 msgid "OpenMP directives"
 msgstr "OpenMP 指令"
 
-#: ../data/language-specs/fsharp.lang.h:2
+#. (itstool) path: fsharp.lang/language@_name
+#: fsharp.lang:25
 msgid "F#"
 msgstr "F#"
 
-#: ../data/language-specs/fsharp.lang.h:5
-#: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/sml.lang.h:12
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:36 ocaml.lang:39 sml.lang:41
 msgid "Floating Point number"
 msgstr "浮点数"
 
-#: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:10
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:40 ocaml.lang:43
 msgid "Type, module or object keyword"
 msgstr "类型、模块或对象关键字"
 
-#: ../data/language-specs/fsharp.lang.h:10
-#: ../data/language-specs/ocaml.lang.h:11
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:41 ocaml.lang:44
 msgid "Builtin-function keyword"
 msgstr "内嵌函数关键字"
 
-#: ../data/language-specs/fsharp.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:13
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:43 ocaml.lang:46
 msgid "Labeled argument"
 msgstr "加标签的 argument"
 
-#: ../data/language-specs/fsharp.lang.h:13
-#: ../data/language-specs/ocaml.lang.h:14
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:44 ocaml.lang:47
 msgid "Polymorphic Variant"
 msgstr "多态变量"
 
-#: ../data/language-specs/fsharp.lang.h:14
-#: ../data/language-specs/ocaml.lang.h:15
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:45 ocaml.lang:48
 msgid "Variant Constructor"
 msgstr "变种构造器"
 
-#. Translators: this is a specific variable called Type
-#: ../data/language-specs/fsharp.lang.h:16
-#: ../data/language-specs/ocaml.lang.h:16
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:47 ocaml.lang:49
 msgid "Type Variable"
 msgstr "类型变量"
 
-#: ../data/language-specs/fsharp.lang.h:17
-#: ../data/language-specs/ocaml.lang.h:17
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:48 ocaml.lang:50
 msgid "Module Path"
 msgstr "模块路径"
 
-#: ../data/language-specs/gap.lang.h:2
+#. (itstool) path: gap.lang/language@_name
+#: gap.lang:24
 msgid "GAP"
 msgstr "GAP"
 
-#: ../data/language-specs/gdb-log.lang.h:2
+#. (itstool) path: gdb-log.lang/language@_name
+#: gdb-log.lang:19
 msgid "GDB Log"
 msgstr "GDB 日志"
 
-#: ../data/language-specs/gdb-log.lang.h:3
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:25
 msgid "Thread Action"
 msgstr "线程操作"
 
-#: ../data/language-specs/gdb-log.lang.h:4
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:26
 msgid "Thread Header"
 msgstr "线程头"
 
-#: ../data/language-specs/gdb-log.lang.h:5
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:27
 msgid "Frame Number"
 msgstr "帧号"
 
-#: ../data/language-specs/gdb-log.lang.h:6
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:28
 msgid "Address"
 msgstr "地址"
 
-#: ../data/language-specs/gdb-log.lang.h:9
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:31
 msgid "Filename"
 msgstr "文件名"
 
-#: ../data/language-specs/gdb-log.lang.h:10
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:32
 msgid "Optimized Out"
 msgstr "优化出"
 
-#: ../data/language-specs/gdb-log.lang.h:11
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:33
 msgid "Incomplete Sequence"
 msgstr "不完整序列"
 
-#: ../data/language-specs/gdb-log.lang.h:12
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:34
 msgid "Prompt"
 msgstr "提示"
 
-#: ../data/language-specs/glsl.lang.h:2
+#. (itstool) path: genie.lang/language@_name
+#: genie.lang:24
+msgid "Genie"
+msgstr ""
+
+#. (itstool) path: glsl.lang/language@_name
+#: glsl.lang:31
 msgid "OpenGL Shading Language"
 msgstr "OpenGL 着色语言"
 
-#: ../data/language-specs/glsl.lang.h:7 ../data/language-specs/go.lang.h:17
-#: ../data/language-specs/python3.lang.h:15
-#: ../data/language-specs/python.lang.h:16
+#. (itstool) path: styles/style@_name
+#: glsl.lang:45 go.lang:49 python.lang:49 python3.lang:43
 msgid "Builtin Constant"
 msgstr "内置常量"
 
-#: ../data/language-specs/glsl.lang.h:9
+#. (itstool) path: styles/style@_name
+#: glsl.lang:47
 msgid "Reserved Keywords"
 msgstr "保留的关键字"
 
-#: ../data/language-specs/go.lang.h:2
+#. (itstool) path: go.lang/language@_name
+#: go.lang:25
 msgid "Go"
 msgstr "Go"
 
-#: ../data/language-specs/go.lang.h:12
+#. (itstool) path: styles/style@_name
+#: go.lang:44
 msgid "Imaginary number"
 msgstr "虚数"
 
-#: ../data/language-specs/gtk-doc.lang.h:2
+#. (itstool) path: gtk-doc.lang/language@_name
+#: gtk-doc.lang:25
 msgid "gtk-doc"
 msgstr "gtk-doc"
 
-#: ../data/language-specs/gtk-doc.lang.h:3
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:27
 msgid "Inline Documentation Section"
 msgstr "内嵌文档节"
 
-#: ../data/language-specs/gtk-doc.lang.h:4
-#: ../data/language-specs/python.lang.h:19
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:28 python.lang:52
 msgid "Function Name"
 msgstr "函数名"
 
-#: ../data/language-specs/gtk-doc.lang.h:5
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:29
 msgid "Signal Name"
 msgstr "信号名称"
 
-#: ../data/language-specs/gtk-doc.lang.h:6
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:30
 msgid "Property Name"
 msgstr "属性名称"
 
-#: ../data/language-specs/gtk-doc.lang.h:7
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:31
 msgid "Parameter"
 msgstr "参数"
 
-#: ../data/language-specs/gtk-doc.lang.h:11
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:35
 msgid "Return"
 msgstr "返回"
 
-#: ../data/language-specs/gtk-doc.lang.h:12
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:36
 msgid "Since"
 msgstr "自从"
 
-#: ../data/language-specs/gtk-doc.lang.h:13
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:37
 msgid "Deprecated"
 msgstr "已过时的"
 
-#: ../data/language-specs/gtkrc.lang.h:2
+#. (itstool) path: gtkrc.lang/language@_name
+#: gtkrc.lang:25
 msgid "GtkRC"
 msgstr "GtkRC"
 
-#: ../data/language-specs/gtkrc.lang.h:8
+#. (itstool) path: styles/style@_name
+#: gtkrc.lang:38
 msgid "Widget State"
 msgstr "部件状态"
 
-#: ../data/language-specs/gtkrc.lang.h:9
+#. (itstool) path: styles/style@_name
+#: gtkrc.lang:39
 msgid "Include directive"
 msgstr "包含指令"
 
-#: ../data/language-specs/haddock.lang.h:2
+#. (itstool) path: haddock.lang/language@_name
+#: haddock.lang:24
 msgid "Haddock"
 msgstr "Haddock"
 
-#: ../data/language-specs/haddock.lang.h:3
+#. (itstool) path: styles/style@_name
+#: haddock.lang:27
 msgid "Inline Haddock Section"
 msgstr "内嵌 Haddock 节"
 
-#: ../data/language-specs/haddock.lang.h:4
+#. (itstool) path: styles/style@_name
+#: haddock.lang:28
 msgid "Haddock Directive"
 msgstr "Haddock 指令"
 
-#: ../data/language-specs/haddock.lang.h:5
+#. (itstool) path: styles/style@_name
+#: haddock.lang:29
 msgid "Hyperlinked Identifier"
 msgstr "加超链接的标志符"
 
-#: ../data/language-specs/haddock.lang.h:6
+#. (itstool) path: styles/style@_name
+#: haddock.lang:30
 msgid "Hyperlinked Module Name"
 msgstr "加超链接的模块名称"
 
-#: ../data/language-specs/haddock.lang.h:7
+#. (itstool) path: styles/style@_name
+#: haddock.lang:31
 msgid "Escape"
 msgstr "转码"
 
-#: ../data/language-specs/haddock.lang.h:8
-#: ../data/language-specs/markdown.lang.h:13
-#: ../data/language-specs/rst.lang.h:4
+#. (itstool) path: styles/style@_name
+#: haddock.lang:32 markdown.lang:45 rst.lang:32
 msgid "Emphasis"
 msgstr "强调"
 
-#: ../data/language-specs/haddock.lang.h:9
+#. (itstool) path: styles/style@_name
+#: haddock.lang:33
 msgid "Monospace"
 msgstr "Monospace"
 
-#: ../data/language-specs/haddock.lang.h:10
+#. (itstool) path: styles/style@_name
+#: haddock.lang:34
 msgid "Code Block"
 msgstr "代码块"
 
-#: ../data/language-specs/haddock.lang.h:11
+#. (itstool) path: styles/style@_name
+#: haddock.lang:35
 msgid "Header Property"
 msgstr "头属性"
 
-#: ../data/language-specs/haddock.lang.h:12
+#. (itstool) path: styles/style@_name
+#: haddock.lang:36
 msgid "Itemized list"
 msgstr "项目列表"
 
-#: ../data/language-specs/haddock.lang.h:13
+#. (itstool) path: styles/style@_name
+#: haddock.lang:37
 msgid "Enumerated list"
 msgstr "穷举列表"
 
-#: ../data/language-specs/haddock.lang.h:14
+#. (itstool) path: styles/style@_name
+#: haddock.lang:38
 msgid "Definition list"
 msgstr "定义列表"
 
-#: ../data/language-specs/haddock.lang.h:15
-#: ../data/language-specs/markdown.lang.h:8
-#: ../data/language-specs/mediawiki.lang.h:6
+#. (itstool) path: styles/style@_name
+#: haddock.lang:39 markdown.lang:40 mediawiki.lang:33
 msgid "URL"
 msgstr "URL"
 
-#: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/t2t.lang.h:13 ../data/language-specs/yaml.lang.h:6
+#. (itstool) path: styles/style@_name
+#: haddock.lang:40 t2t.lang:41 yaml.lang:33
 msgid "Anchor"
 msgstr "锚"
 
-#: ../data/language-specs/haskell.lang.h:2
+#. (itstool) path: haskell.lang/language@_name
+#: haskell.lang:25
 msgid "Haskell"
 msgstr "Haskell"
 
-#: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:19
+#. (itstool) path: styles/style@_name
+#: haskell.lang:36 ruby.lang:51
 msgid "Symbol"
 msgstr "符号"
 
-#: ../data/language-specs/haskell.lang.h:14
+#. (itstool) path: styles/style@_name
+#: haskell.lang:44
 msgid "Octal"
 msgstr "八进制数"
 
-#: ../data/language-specs/haskell.lang.h:15
+#. (itstool) path: styles/style@_name
+#: haskell.lang:45
 msgid "Hex"
 msgstr "十六进制数"
 
-#: ../data/language-specs/haskell-literate.lang.h:2
+#. (itstool) path: haskell-literate.lang/language@_name
+#: haskell-literate.lang:24
 msgid "Literate Haskell"
 msgstr "字面 Haskell"
 
-#: ../data/language-specs/html.lang.h:2
+#. (itstool) path: html.lang/language@_name
+#: html.lang:25
 msgid "HTML"
 msgstr "HTML"
 
-#: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
-#: ../data/language-specs/yaml.lang.h:7
+#. (itstool) path: styles/style@_name
+#: html.lang:35 xml.lang:43 yaml.lang:34
 msgid "Tag"
 msgstr "标记"
 
-#: ../data/language-specs/html.lang.h:5
+#. (itstool) path: styles/style@_name
+#: html.lang:36
 msgid "Attribute Name"
 msgstr "属性名称"
 
-#: ../data/language-specs/html.lang.h:6
-#: ../data/language-specs/markdown.lang.h:11
+#. (itstool) path: styles/style@_name
+#: html.lang:37 markdown.lang:43
 msgid "Attribute Value"
 msgstr "属性值"
 
-#: ../data/language-specs/html.lang.h:9
+#. (itstool) path: styles/style@_name
+#: html.lang:40
 msgid "Page title"
 msgstr "页面标题"
 
-#: ../data/language-specs/html.lang.h:10
+#. (itstool) path: styles/style@_name
+#: html.lang:41
 msgid "Heading level 1"
 msgstr "1 级标题"
 
-#: ../data/language-specs/html.lang.h:11
+#. (itstool) path: styles/style@_name
+#: html.lang:42
 msgid "Heading level 2"
 msgstr "2 级标题"
 
-#: ../data/language-specs/html.lang.h:12
+#. (itstool) path: styles/style@_name
+#: html.lang:43
 msgid "Heading level 3"
 msgstr "3 级标题"
 
-#: ../data/language-specs/html.lang.h:13
+#. (itstool) path: styles/style@_name
+#: html.lang:44
 msgid "Heading level 4"
 msgstr "4 级标题"
 
-#: ../data/language-specs/html.lang.h:14
+#. (itstool) path: styles/style@_name
+#: html.lang:45
 msgid "Heading level 5"
 msgstr "5 级标题"
 
-#: ../data/language-specs/idl-exelis.lang.h:2
-msgid "IDL-Exelis"
-msgstr "IDL-Exelis"
-
-#: ../data/language-specs/idl.lang.h:2
+#. (itstool) path: idl.lang/language@_name
+#: idl.lang:24
 msgid "IDL"
 msgstr "IDL"
 
-#: ../data/language-specs/imagej.lang.h:2
+#. (itstool) path: idl-exelis.lang/language@_name
+#: idl-exelis.lang:21
+msgid "IDL-Exelis"
+msgstr "IDL-Exelis"
+
+#. (itstool) path: imagej.lang/language@_name
+#: imagej.lang:24
 msgid "ImageJ"
 msgstr "ImageJ"
 
-#: ../data/language-specs/imagej.lang.h:5
+#. (itstool) path: styles/style@_name
+#: imagej.lang:35
 msgid "Commands"
 msgstr "命令"
 
-#: ../data/language-specs/imagej.lang.h:6
-#: ../data/language-specs/octave.lang.h:7
+#. (itstool) path: styles/style@_name
+#: imagej.lang:36 octave.lang:45
 msgid "Storage Type"
 msgstr "存储类型"
 
-#: ../data/language-specs/imagej.lang.h:7
+#. (itstool) path: styles/style@_name
+#: imagej.lang:37
 msgid "Escaped Characters"
 msgstr "转码字符"
 
-#: ../data/language-specs/ini.lang.h:2
+#. (itstool) path: ini.lang/language@_name
+#: ini.lang:23
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/java.lang.h:2
-msgid "Java"
-msgstr "Java"
-
-#: ../data/language-specs/javascript.lang.h:2
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#: ../data/language-specs/javascript.lang.h:5
-msgid "Undefined Value"
-msgstr "未定义值"
-
-#: ../data/language-specs/javascript.lang.h:10
-msgid "Properties"
-msgstr "属性"
-
-#: ../data/language-specs/javascript.lang.h:11
-msgid "Constructors"
-msgstr "构造器"
-
-#: ../data/language-specs/j.lang.h:2
+#. (itstool) path: j.lang/language@_name
+#: j.lang:24
 msgid "J"
 msgstr "J"
 
-#: ../data/language-specs/j.lang.h:3
+#. (itstool) path: styles/style@_name
+#: j.lang:31
 msgid "Adverb"
 msgstr "副词"
 
-#: ../data/language-specs/j.lang.h:5
+#. (itstool) path: styles/style@_name
+#: j.lang:33
 msgid "Conjunction"
 msgstr "连词"
 
-#: ../data/language-specs/j.lang.h:6 ../data/language-specs/perl.lang.h:15
+#. (itstool) path: styles/style@_name
+#: j.lang:34 perl.lang:46
 msgid "Control"
 msgstr "控制"
 
-#: ../data/language-specs/j.lang.h:8
+#. (itstool) path: styles/style@_name
+#: j.lang:36
 msgid "Explicit Argument"
 msgstr "显式参数"
 
-#: ../data/language-specs/j.lang.h:9
+#. (itstool) path: styles/style@_name
+#: j.lang:37
 msgid "Global"
 msgstr "全局"
 
-#: ../data/language-specs/j.lang.h:10
+#. (itstool) path: styles/style@_name
+#: j.lang:38
 msgid "Lab Text"
 msgstr "Lab 文本"
 
-#: ../data/language-specs/j.lang.h:11
+#. (itstool) path: styles/style@_name
+#: j.lang:39
 msgid "Local"
 msgstr "本地"
 
-#: ../data/language-specs/j.lang.h:12
+#. (itstool) path: styles/style@_name
+#: j.lang:40
 msgid "Noun"
 msgstr "名词"
 
-#: ../data/language-specs/j.lang.h:13
+#. (itstool) path: styles/style@_name
+#: j.lang:41
 msgid "Explicit Noun Definition"
 msgstr "显式名词定义"
 
-#: ../data/language-specs/j.lang.h:15
+#. (itstool) path: styles/style@_name
+#: j.lang:43
 msgid "Parens"
 msgstr "人称"
 
-#: ../data/language-specs/j.lang.h:16
+#. (itstool) path: styles/style@_name
+#: j.lang:44
 msgid "Primitive"
 msgstr "根词"
 
-#: ../data/language-specs/j.lang.h:18
+#. (itstool) path: styles/style@_name
+#: j.lang:46
 msgid "Verb"
 msgstr "动词"
 
-#: ../data/language-specs/julia.lang.h:2
-msgid "Julia"
-msgstr "Julia"
-
-#: ../data/language-specs/julia.lang.h:7
-msgid "Math Constant"
-msgstr "数学常量"
-
-#: ../data/language-specs/julia.lang.h:8 ../data/language-specs/R.lang.h:7
-#: ../data/language-specs/scala.lang.h:11
-msgid "Special Constant"
-msgstr "特殊常量"
-
-#: ../data/language-specs/julia.lang.h:11
-msgid "Macro"
-msgstr "宏"
-
-#: ../data/language-specs/julia.lang.h:12
-msgid "External Command"
-msgstr "外部命令"
-
-#: ../data/language-specs/julia.lang.h:13
-msgid "Built-in Function"
-msgstr "内置函数"
-
-#: ../data/language-specs/julia.lang.h:14
-msgid "Module"
-msgstr "模块"
-
-#: ../data/language-specs/latex.lang.h:2
-msgid "LaTeX"
-msgstr "LaTeX"
-
-#: ../data/language-specs/latex.lang.h:4
-msgid "Math Mode"
-msgstr "数学模式"
-
-#: ../data/language-specs/latex.lang.h:5
-msgid "Inline Math Mode"
-msgstr "内嵌数学模式"
-
-#: ../data/language-specs/latex.lang.h:6
-msgid "Math Boundary"
-msgstr "数学边界"
-
-#: ../data/language-specs/latex.lang.h:7
-#: ../data/language-specs/texinfo.lang.h:11
-msgid "Include"
-msgstr "包含"
-
-#: ../data/language-specs/latex.lang.h:9
-#: ../data/language-specs/sweave.lang.h:5 ../data/language-specs/t2t.lang.h:16
-msgid "Verbatim"
-msgstr "摘录"
-
-#: ../data/language-specs/latex.lang.h:10
-msgid "Special Character"
-msgstr "特殊字符"
-
-#: ../data/language-specs/latex.lang.h:11
-msgid "Part Heading"
-msgstr "部 标题"
-
-#: ../data/language-specs/latex.lang.h:12
-msgid "Chapter Heading"
-msgstr "章标题"
-
-#: ../data/language-specs/latex.lang.h:13
-msgid "Section Heading"
-msgstr "节标题"
-
-#: ../data/language-specs/latex.lang.h:14
-msgid "SubSection Heading"
-msgstr "小节标题"
-
-#: ../data/language-specs/latex.lang.h:15
-msgid "SubSubSection Heading"
-msgstr "次小节标题"
-
-#: ../data/language-specs/latex.lang.h:16
-msgid "Paragraph Heading"
-msgstr "段落标题"
-
-#: ../data/language-specs/latex.lang.h:17
-msgid "SubParagraph Heading"
-msgstr "小段落标题"
-
-#: ../data/language-specs/lex.lang.h:2
-msgid "Lex"
-msgstr "Lex"
-
-#: ../data/language-specs/lex.lang.h:3
-msgid "Token"
-msgstr "令牌"
-
-#: ../data/language-specs/lex.lang.h:6
-msgid "Expression"
-msgstr "表达式"
-
-#: ../data/language-specs/libtool.lang.h:2
-msgid "libtool"
-msgstr "libtool"
-
-#: ../data/language-specs/llvm.lang.h:2
-msgid "LLVM IR"
-msgstr "LLVM IR"
-
-#: ../data/language-specs/llvm.lang.h:7
-msgid "Constants"
-msgstr "常量"
-
-#: ../data/language-specs/lua.lang.h:2
-msgid "Lua"
-msgstr "Lua"
-
-#: ../data/language-specs/lua.lang.h:7
-msgid "Reserved Identifier"
-msgstr "保留标识符"
-
-#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/ruby.lang.h:8
-msgid "Nil Constant"
-msgstr "Nil 常量"
-
-#: ../data/language-specs/m4.lang.h:2
-msgid "m4"
-msgstr "m4"
-
-#: ../data/language-specs/m4.lang.h:3
-msgid "m4 Comment"
-msgstr "m4 注释"
-
-#: ../data/language-specs/m4.lang.h:4
-msgid "m4 Macro"
-msgstr "m4 宏"
-
-#: ../data/language-specs/m4.lang.h:5
-msgid "Autoconf Macro"
-msgstr "Autoconf 宏"
-
-#: ../data/language-specs/m4.lang.h:6
-msgid "Obsolete Autoconf Macro"
-msgstr "过时的 Autoconf 宏"
-
-#: ../data/language-specs/makefile.lang.h:2
-msgid "Makefile"
-msgstr "Makefile"
-
-#: ../data/language-specs/makefile.lang.h:4
-msgid "Assignment Right Hand Side"
-msgstr "等号右侧"
-
-#: ../data/language-specs/makefile.lang.h:5
-msgid "Assignment Left Hand Side"
-msgstr "等号左侧"
-
-#: ../data/language-specs/makefile.lang.h:6
-msgid "targets"
-msgstr "目标"
-
-#: ../data/language-specs/makefile.lang.h:7
-msgid "prereq"
-msgstr "条件"
-
-#: ../data/language-specs/makefile.lang.h:8
-msgid "command"
-msgstr "命令"
-
-#. Translators: Trailing Tabs refers to tabulation characters present at
-#. the end of the line
-#: ../data/language-specs/makefile.lang.h:11
-msgid "Trailing Tab"
-msgstr "尾随 Tab"
-
-#: ../data/language-specs/makefile.lang.h:12
-msgid "function"
-msgstr "函数"
-
-#. FIXME make it better names, and make them translatable
-#: ../data/language-specs/makefile.lang.h:13
-#: ../data/language-specs/yacc.lang.h:4
-msgid "keyword"
-msgstr "关键字"
-
-#: ../data/language-specs/mallard.lang.h:2
-msgid "Mallard"
-msgstr "Mallard"
-
-#: ../data/language-specs/mallard.lang.h:3
-msgid "Page Elements"
-msgstr "页面元素"
-
-#: ../data/language-specs/mallard.lang.h:4
-msgid "Section Elements"
-msgstr "章节元素"
-
-#: ../data/language-specs/mallard.lang.h:5
-msgid "Block Elements"
-msgstr "块元素"
-
-#: ../data/language-specs/mallard.lang.h:6
-msgid "Inline Elements"
-msgstr "内联元素"
-
-#: ../data/language-specs/markdown.lang.h:2
-msgid "Markdown"
-msgstr "Markdown"
-
-#: ../data/language-specs/markdown.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/rst.lang.h:3
-#: ../data/language-specs/t2t.lang.h:6
-msgid "Header"
-msgstr "头"
-
-#: ../data/language-specs/markdown.lang.h:4
-msgid "Horizontal Rule"
-msgstr "水平标尺"
-
-#: ../data/language-specs/markdown.lang.h:5
-msgid "List Marker"
-msgstr "列表标记"
-
-#: ../data/language-specs/markdown.lang.h:6
-#: ../data/language-specs/rst.lang.h:11
-msgid "Code"
-msgstr "代码"
-
-#: ../data/language-specs/markdown.lang.h:7
-msgid "Blockquote Marker"
-msgstr "块引用标记"
-
-#: ../data/language-specs/markdown.lang.h:9
-msgid "Link Text"
-msgstr "链接文本"
-
-#: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:236
-msgid "Label"
-msgstr "标签"
-
-#: ../data/language-specs/markdown.lang.h:12
-msgid "Image Marker"
-msgstr "图像标记"
-
-#: ../data/language-specs/markdown.lang.h:14
-#: ../data/language-specs/mediawiki.lang.h:3
-#: ../data/language-specs/rst.lang.h:5
-msgid "Strong Emphasis"
-msgstr "着重强调"
-
-#: ../data/language-specs/markdown.lang.h:15
-msgid "Backslash Escape"
-msgstr "反斜杠转码字符"
-
-#: ../data/language-specs/markdown.lang.h:16
-msgid "Line Break"
-msgstr "换行"
-
-#: ../data/language-specs/matlab.lang.h:2
-msgid "Matlab"
-msgstr "Matlab"
-
-#: ../data/language-specs/mediawiki.lang.h:2
-msgid "MediaWiki"
-msgstr "MediaWiki"
-
-#: ../data/language-specs/mediawiki.lang.h:4
-msgid "Light Emphasis"
-msgstr "轻度强调"
-
-#: ../data/language-specs/mediawiki.lang.h:5
-msgid "Signature"
-msgstr "签名"
-
-#: ../data/language-specs/mediawiki.lang.h:7
-#: ../data/language-specs/rst.lang.h:9
-msgid "Link"
-msgstr "链接"
-
-#: ../data/language-specs/mediawiki.lang.h:8
-msgid "Symbol on a Link"
-msgstr "链接上的符号"
-
-#: ../data/language-specs/mediawiki.lang.h:9
-msgid "Line"
-msgstr "行"
-
-#: ../data/language-specs/mediawiki.lang.h:10
-msgid "List"
-msgstr "列表"
-
-#: ../data/language-specs/mediawiki.lang.h:11
-msgid "Magic Word"
-msgstr "神奇词"
-
-#: ../data/language-specs/mediawiki.lang.h:12
-msgid "Symbol of a Table"
-msgstr "表格的符号"
-
-#: ../data/language-specs/mediawiki.lang.h:13
-msgid "Preformatted"
-msgstr "预格式化的"
-
-#: ../data/language-specs/mediawiki.lang.h:14
-msgid "Redirect"
-msgstr "重定向"
-
-#: ../data/language-specs/mediawiki.lang.h:15
-msgid "Title"
-msgstr "标题"
-
-#: ../data/language-specs/mediawiki.lang.h:16
-msgid "Template"
-msgstr "模板"
-
-#: ../data/language-specs/modelica.lang.h:2
-msgid "Modelica"
-msgstr "Modelica"
-
-#: ../data/language-specs/modelica.lang.h:6
-msgid "Class type"
-msgstr "类类型"
-
-#: ../data/language-specs/modelica.lang.h:8
-msgid "Default Attribute"
-msgstr "默认属性"
-
-#: ../data/language-specs/mxml.lang.h:2
-msgid "MXML"
-msgstr "MXML"
-
-#: ../data/language-specs/mxml.lang.h:3 ../data/language-specs/xml.lang.h:7
+#. (itstool) path: jade.lang/language@_name
+#: jade.lang:26
+msgid "Jade"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:34 xml.lang:36
+msgid "DOCTYPE"
+msgstr "DOCTYPE"
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:35 xml.lang:38
+msgid "Processing instruction"
+msgstr "处理指令"
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:36 mxml.lang:32 xml.lang:39
 msgid "Element name"
 msgstr "元素名称"
 
-#: ../data/language-specs/mxml.lang.h:4 ../data/language-specs/xml.lang.h:5
+#. (itstool) path: styles/style@_name
+#: jade.lang:38 xml.lang:41
+msgid "Attribute value"
+msgstr "属性值"
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:39
+msgid "Tags"
+msgstr "标签"
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:40 xml.lang:42
+msgid "Entity"
+msgstr "实体"
+
+#. (itstool) path: java.lang/language@_name
+#: java.lang:25
+msgid "Java"
+msgstr "Java"
+
+#. (itstool) path: javascript.lang/language@_name
+#: javascript.lang:27
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#. (itstool) path: styles/style@_name
+#: javascript.lang:39
+msgid "Undefined Value"
+msgstr "未定义值"
+
+#. (itstool) path: styles/style@_name
+#: javascript.lang:44
+msgid "Properties"
+msgstr "属性"
+
+#. (itstool) path: styles/style@_name
+#: javascript.lang:45
+msgid "Constructors"
+msgstr "构造器"
+
+#. (itstool) path: julia.lang/language@_name
+#: julia.lang:24
+msgid "Julia"
+msgstr "Julia"
+
+#. (itstool) path: styles/style@_name
+#: julia.lang:41
+msgid "Math Constant"
+msgstr "数学常量"
+
+#. (itstool) path: styles/style@_name
+#: julia.lang:42 R.lang:38 scala.lang:44
+msgid "Special Constant"
+msgstr "特殊常量"
+
+#. (itstool) path: styles/style@_name
+#: julia.lang:45 rust.lang:55
+msgid "Macro"
+msgstr "宏"
+
+#. (itstool) path: styles/style@_name
+#: julia.lang:46
+msgid "External Command"
+msgstr "外部命令"
+
+#. (itstool) path: styles/style@_name
+#: julia.lang:47
+msgid "Built-in Function"
+msgstr "内置函数"
+
+#. (itstool) path: styles/style@_name
+#: julia.lang:48
+msgid "Module"
+msgstr "模块"
+
+#. (itstool) path: latex.lang/language@_name
+#: latex.lang:25
+msgid "LaTeX"
+msgstr "LaTeX"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:34 latex.lang:36
+msgid "Math Mode"
+msgstr "数学模式"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:35
+msgid "Inline Math Mode"
+msgstr "内嵌数学模式"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:37
+msgid "Math Boundary"
+msgstr "数学边界"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:38 texinfo.lang:41
+msgid "Include"
+msgstr "包含"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:41 sweave.lang:34 t2t.lang:44
+msgid "Verbatim"
+msgstr "摘录"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:42
+msgid "Special Character"
+msgstr "特殊字符"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:43
+msgid "Part Heading"
+msgstr "部 标题"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:44
+msgid "Chapter Heading"
+msgstr "章标题"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:45
+msgid "Section Heading"
+msgstr "节标题"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:46
+msgid "SubSection Heading"
+msgstr "小节标题"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:47
+msgid "SubSubSection Heading"
+msgstr "次小节标题"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:48
+msgid "Paragraph Heading"
+msgstr "段落标题"
+
+#. (itstool) path: styles/style@_name
+#: latex.lang:49
+msgid "SubParagraph Heading"
+msgstr "小段落标题"
+
+#. (itstool) path: lex.lang/language@_name
+#: lex.lang:25
+msgid "Lex"
+msgstr "Lex"
+
+#. (itstool) path: styles/style@_name
+#: lex.lang:34
+msgid "Token"
+msgstr "令牌"
+
+#. (itstool) path: styles/style@_name
+#: lex.lang:37
+msgid "Expression"
+msgstr "表达式"
+
+#. (itstool) path: libtool.lang/language@_name
+#: libtool.lang:24
+msgid "libtool"
+msgstr "libtool"
+
+#. (itstool) path: llvm.lang/language@_name
+#: llvm.lang:23
+msgid "LLVM IR"
+msgstr "LLVM IR"
+
+#. (itstool) path: styles/style@_name
+#: llvm.lang:34
+msgid "Constants"
+msgstr "常量"
+
+#. (itstool) path: lua.lang/language@_name
+#: lua.lang:24
+msgid "Lua"
+msgstr "Lua"
+
+#. (itstool) path: styles/style@_name
+#: lua.lang:38
+msgid "Reserved Identifier"
+msgstr "保留标识符"
+
+#. (itstool) path: styles/style@_name
+#: lua.lang:39 markdown.lang:42
+msgid "Label"
+msgstr "标签"
+
+#. (itstool) path: styles/style@_name
+#: lua.lang:41 ruby.lang:40
+msgid "Nil Constant"
+msgstr "Nil 常量"
+
+#. (itstool) path: m4.lang/language@_name
+#: m4.lang:24
+msgid "m4"
+msgstr "m4"
+
+#. (itstool) path: styles/style@_name
+#: m4.lang:32
+msgid "m4 Comment"
+msgstr "m4 注释"
+
+#. (itstool) path: styles/style@_name
+#: m4.lang:33
+msgid "m4 Macro"
+msgstr "m4 宏"
+
+#. (itstool) path: styles/style@_name
+#: m4.lang:34
+msgid "Autoconf Macro"
+msgstr "Autoconf 宏"
+
+#. (itstool) path: styles/style@_name
+#: m4.lang:35
+msgid "Obsolete Autoconf Macro"
+msgstr "过时的 Autoconf 宏"
+
+#. (itstool) path: makefile.lang/language@_name
+#: makefile.lang:23
+msgid "Makefile"
+msgstr "Makefile"
+
+#. (itstool) path: styles/style@_name
+#: makefile.lang:32
+msgid "Assignment Right Hand Side"
+msgstr "等号右侧"
+
+#. (itstool) path: styles/style@_name
+#: makefile.lang:33
+msgid "Assignment Left Hand Side"
+msgstr "等号左侧"
+
+#. (itstool) path: styles/style@_name
+#: makefile.lang:34
+msgid "targets"
+msgstr "目标"
+
+#. (itstool) path: styles/style@_name
+#: makefile.lang:35
+msgid "prereq"
+msgstr "条件"
+
+#. (itstool) path: styles/style@_name
+#: makefile.lang:36
+msgid "command"
+msgstr "命令"
+
+#. (itstool) path: styles/style@_name
+#: makefile.lang:39
+msgid "Trailing Tab"
+msgstr "尾随 Tab"
+
+#. (itstool) path: styles/style@_name
+#: makefile.lang:40
+msgid "function"
+msgstr "函数"
+
+#. (itstool) path: styles/style@_name
+#: makefile.lang:41 yacc.lang:35
+msgid "keyword"
+msgstr "关键字"
+
+#. (itstool) path: mallard.lang/language@_name
+#: mallard.lang:23
+msgid "Mallard"
+msgstr "Mallard"
+
+#. (itstool) path: styles/style@_name
+#: mallard.lang:32
+msgid "Page Elements"
+msgstr "页面元素"
+
+#. (itstool) path: styles/style@_name
+#: mallard.lang:33
+msgid "Section Elements"
+msgstr "章节元素"
+
+#. (itstool) path: styles/style@_name
+#: mallard.lang:34
+msgid "Block Elements"
+msgstr "块元素"
+
+#. (itstool) path: styles/style@_name
+#: mallard.lang:35
+msgid "Inline Elements"
+msgstr "内联元素"
+
+#. (itstool) path: markdown.lang/language@_name
+#: markdown.lang:26
+msgid "Markdown"
+msgstr "Markdown"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:35 rpmspec.lang:33 rst.lang:31 t2t.lang:34
+msgid "Header"
+msgstr "头"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:36
+msgid "Horizontal Rule"
+msgstr "水平标尺"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:37
+msgid "List Marker"
+msgstr "列表标记"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:38 rst.lang:39
+msgid "Code"
+msgstr "代码"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:39
+msgid "Blockquote Marker"
+msgstr "块引用标记"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:41
+msgid "Link Text"
+msgstr "链接文本"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:44
+msgid "Image Marker"
+msgstr "图像标记"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:46 mediawiki.lang:30 rst.lang:33
+msgid "Strong Emphasis"
+msgstr "着重强调"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:47
+msgid "Backslash Escape"
+msgstr "反斜杠转码字符"
+
+#. (itstool) path: styles/style@_name
+#: markdown.lang:48
+msgid "Line Break"
+msgstr "换行"
+
+#. (itstool) path: matlab.lang/language@_name
+#: matlab.lang:26
+msgid "Matlab"
+msgstr "Matlab"
+
+#. (itstool) path: mediawiki.lang/language@_name
+#: mediawiki.lang:23
+msgid "MediaWiki"
+msgstr "MediaWiki"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:31
+msgid "Light Emphasis"
+msgstr "轻度强调"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:32
+msgid "Signature"
+msgstr "签名"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:34 rst.lang:37
+msgid "Link"
+msgstr "链接"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:35
+msgid "Symbol on a Link"
+msgstr "链接上的符号"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:36
+msgid "Line"
+msgstr "行"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:37
+msgid "List"
+msgstr "列表"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:38
+msgid "Magic Word"
+msgstr "神奇词"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:39
+msgid "Symbol of a Table"
+msgstr "表格的符号"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:40
+msgid "Preformatted"
+msgstr "预格式化的"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:41
+msgid "Redirect"
+msgstr "重定向"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:42
+msgid "Title"
+msgstr "标题"
+
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:43
+msgid "Template"
+msgstr "模板"
+
+#. (itstool) path: meson.lang/language@_name
+#: meson.lang:24
+msgid "Meson"
+msgstr ""
+
+#. (itstool) path: modelica.lang/language@_name
+#: modelica.lang:26
+msgid "Modelica"
+msgstr "Modelica"
+
+#. (itstool) path: styles/style@_name
+#: modelica.lang:39
+msgid "Class type"
+msgstr "类类型"
+
+#. (itstool) path: styles/style@_name
+#: modelica.lang:41
+msgid "Default Attribute"
+msgstr "默认属性"
+
+#. (itstool) path: mxml.lang/language@_name
+#: mxml.lang:24
+msgid "MXML"
+msgstr "MXML"
+
+#. (itstool) path: styles/style@_name
+#: mxml.lang:33 xml.lang:37
 msgid "CDATA delimiter"
 msgstr "CDATA 分隔符"
 
-#: ../data/language-specs/nemerle.lang.h:2
+#. (itstool) path: nemerle.lang/language@_name
+#: nemerle.lang:24
 msgid "Nemerle"
 msgstr "Nemerle"
 
-#: ../data/language-specs/netrexx.lang.h:2
+#. (itstool) path: netrexx.lang/language@_name
+#: netrexx.lang:24
 msgid "NetRexx"
 msgstr "NetRexx"
 
-#: ../data/language-specs/netrexx.lang.h:7
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:39
 msgid "Externals"
 msgstr "外部"
 
-#: ../data/language-specs/netrexx.lang.h:8
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:40
 msgid "Options"
 msgstr "选项"
 
-#: ../data/language-specs/netrexx.lang.h:9
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:41
 msgid "Data Types"
 msgstr "数据类型"
 
-#: ../data/language-specs/netrexx.lang.h:10
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:42
 msgid "Special"
 msgstr "特殊"
 
-#: ../data/language-specs/netrexx.lang.h:11
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:43
 msgid "Visibility"
 msgstr "可见性"
 
-#: ../data/language-specs/netrexx.lang.h:12
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:44
 msgid "Modifiers"
 msgstr "修饰符"
 
-#: ../data/language-specs/netrexx.lang.h:13
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:45
 msgid "Keywords"
 msgstr "关键词"
 
-#: ../data/language-specs/netrexx.lang.h:14
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:46
 msgid "Sub Keywords"
 msgstr "次关键词"
 
-#: ../data/language-specs/nsis.lang.h:2
+#. (itstool) path: nsis.lang/language@_name
+#: nsis.lang:24
 msgid "NSIS"
 msgstr "NSIS"
 
-#: ../data/language-specs/objc.lang.h:2
+#. (itstool) path: objc.lang/language@_name
+#: objc.lang:24
 msgid "Objective-C"
 msgstr "Objective-C"
 
-#: ../data/language-specs/objj.lang.h:2
+#. (itstool) path: objj.lang/language@_name
+#: objj.lang:26
 msgid "Objective-J"
 msgstr "Objective-J"
 
-#: ../data/language-specs/ocaml.lang.h:2
+#. (itstool) path: ocaml.lang/language@_name
+#: ocaml.lang:27
 msgid "OCaml"
 msgstr "OCaml"
 
-#: ../data/language-specs/ocaml.lang.h:4
+#. (itstool) path: styles/style@_name
+#: ocaml.lang:37
 msgid "Ocamldoc Comments"
 msgstr "Ocamldoc 块注释"
 
-#: ../data/language-specs/ocaml.lang.h:21
+#. (itstool) path: styles/style@_name
+#: ocaml.lang:54
 msgid "Standard Modules"
 msgstr "标准模块"
 
-#: ../data/language-specs/ocl.lang.h:2
+#. (itstool) path: ocl.lang/language@_name
+#: ocl.lang:33
 msgid "OCL"
 msgstr "OCL"
 
-#: ../data/language-specs/ocl.lang.h:6
+#. (itstool) path: styles/style@_name
+#: ocl.lang:44
 msgid "Type Operators"
 msgstr "类型操作符"
 
-#: ../data/language-specs/ocl.lang.h:8
+#. (itstool) path: styles/style@_name
+#: ocl.lang:46
 msgid "Operation operator"
 msgstr "操作操作符"
 
-#: ../data/language-specs/octave.lang.h:2
+#. (itstool) path: octave.lang/language@_name
+#: octave.lang:26
 msgid "Octave"
 msgstr "Octave"
 
-#: ../data/language-specs/octave.lang.h:12
+#. (itstool) path: styles/style@_name
+#: octave.lang:47
 msgid "Package Manager"
 msgstr "包管理器"
 
-#: ../data/language-specs/ooc.lang.h:2
+#. (itstool) path: ooc.lang/language@_name
+#: ooc.lang:24
 msgid "OOC"
 msgstr "OOC"
 
-#: ../data/language-specs/opal.lang.h:2
+#. (itstool) path: opal.lang/language@_name
+#: opal.lang:24
 msgid "Opal"
 msgstr "Opal"
 
-#: ../data/language-specs/opal.lang.h:3
-#: ../data/language-specs/python3.lang.h:3
-#: ../data/language-specs/python.lang.h:3
+#. (itstool) path: styles/style@_name
+#: opal.lang:33 python.lang:36 python3.lang:31
 msgid "Module Handler"
 msgstr "模块句柄"
 
-#: ../data/language-specs/opal.lang.h:12
+#. (itstool) path: styles/style@_name
+#: opal.lang:42
 msgid "Keysymbol"
 msgstr "键符号"
 
-#: ../data/language-specs/opencl.lang.h:2
+#. (itstool) path: opencl.lang/language@_name
+#: opencl.lang:24
 msgid "OpenCL"
 msgstr "OpenCL"
 
-#: ../data/language-specs/opencl.lang.h:5
+#. (itstool) path: styles/style@_name
+#: opencl.lang:35
 msgid "Global Function"
 msgstr "全局函数"
 
-#: ../data/language-specs/opencl.lang.h:6
+#. (itstool) path: styles/style@_name
+#: opencl.lang:36
 msgid "Device Function"
 msgstr "设备函数"
 
-#: ../data/language-specs/opencl.lang.h:7
+#. (itstool) path: styles/style@_name
+#: opencl.lang:37
 msgid "Device Cast"
 msgstr "设备转换"
 
-#: ../data/language-specs/opencl.lang.h:8
+#. (itstool) path: styles/style@_name
+#: opencl.lang:38
 msgid "OpenCL Constant"
 msgstr "OpenCL 常量"
 
-#: ../data/language-specs/opencl.lang.h:9
+#. (itstool) path: styles/style@_name
+#: opencl.lang:39
 msgid "Global Variable"
 msgstr "全局变量"
 
-#: ../data/language-specs/pascal.lang.h:2
+#. (itstool) path: pascal.lang/language@_name
+#: pascal.lang:25
 msgid "Pascal"
 msgstr "Pascal"
 
-#: ../data/language-specs/perl.lang.h:2
+#. (itstool) path: perl.lang/language@_name
+#: perl.lang:26
 msgid "Perl"
 msgstr "Perl"
 
-#: ../data/language-specs/perl.lang.h:4
+#. (itstool) path: styles/style@_name
+#: perl.lang:35
 msgid "Line Directive"
 msgstr "行指令"
 
-#: ../data/language-specs/perl.lang.h:5
+#. (itstool) path: styles/style@_name
+#: perl.lang:36
 msgid "Include Statement"
 msgstr "包含语句"
 
-#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:23
+#. (itstool) path: styles/style@_name
+#: perl.lang:40 php.lang:46 ruby.lang:55
 msgid "Heredoc"
 msgstr "Heredoc"
 
-#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:12
-#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
+#. (itstool) path: styles/style@_name
+#: perl.lang:41 php.lang:47 ruby.lang:56 sh.lang:41
 msgid "Heredoc Bound"
 msgstr "Heredoc 包围"
 
-#: ../data/language-specs/perl.lang.h:11
+#. (itstool) path: styles/style@_name
+#: perl.lang:42
 msgid "System Command"
 msgstr "系统命令"
 
-#: ../data/language-specs/perl.lang.h:14
+#. (itstool) path: styles/style@_name
+#: perl.lang:45
 msgid "File Descriptor"
 msgstr "文件描述符"
 
-#: ../data/language-specs/perl.lang.h:18
+#. (itstool) path: styles/style@_name
+#: perl.lang:49
 msgid "POD"
 msgstr "简单数据(POD)"
 
-#: ../data/language-specs/perl.lang.h:19
+#. (itstool) path: styles/style@_name
+#: perl.lang:50
 msgid "POD Escape"
 msgstr "POD 转码"
 
-#: ../data/language-specs/perl.lang.h:20
+#. (itstool) path: styles/style@_name
+#: perl.lang:51
 msgid "POD keyword"
 msgstr "POD 关键字"
 
-#: ../data/language-specs/perl.lang.h:21
+#. (itstool) path: styles/style@_name
+#: perl.lang:52
 msgid "POD heading"
 msgstr "POD 标题"
 
-#: ../data/language-specs/php.lang.h:2
+#. (itstool) path: php.lang/language@_name
+#: php.lang:29
 msgid "PHP"
 msgstr "PHP"
 
-#: ../data/language-specs/php.lang.h:3
+#. (itstool) path: styles/style@_name
+#: php.lang:39
 msgid "Preprocessor tags"
 msgstr "预处理器标签"
 
-#: ../data/language-specs/php.lang.h:14
+#. (itstool) path: styles/style@_name
+#: php.lang:49
 msgid "Common Function"
 msgstr "常见功能"
 
-#: ../data/language-specs/pkgconfig.lang.h:2
+#. (itstool) path: pig.lang/language@_name
+#: pig.lang:27
+msgid "Pig"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: pig.lang:37
+msgid "Reserved Words"
+msgstr "保留的关键字"
+
+#. (itstool) path: styles/style@_name
+#: pig.lang:38
+msgid "Built In Functions"
+msgstr "内建函数"
+
+#. (itstool) path: styles/style@_name
+#: pig.lang:39
+msgid "Boolean values"
+msgstr "布尔值"
+
+#. (itstool) path: styles/style@_name
+#: pig.lang:40 yaml.lang:38
+msgid "Null"
+msgstr "空"
+
+#. (itstool) path: pkgconfig.lang/language@_name
+#: pkgconfig.lang:24
 msgid "pkg-config"
 msgstr "pkg-config"
 
-#: ../data/language-specs/pkgconfig.lang.h:4
+#. (itstool) path: styles/style@_name
+#: pkgconfig.lang:32
 msgid "Package Info"
 msgstr "包信息"
 
-#: ../data/language-specs/po.lang.h:2
+#. (itstool) path: po.lang/language@_name
+#: po.lang:24
 msgid "gettext translation"
 msgstr "gettext 翻译"
 
-#: ../data/language-specs/po.lang.h:6
+#. (itstool) path: styles/style@_name
+#: po.lang:35
 msgid "Fuzzy"
 msgstr "模糊"
 
-#: ../data/language-specs/prolog.lang.h:2
-msgid "Prolog"
-msgstr "Prolog"
-
-#: ../data/language-specs/puppet.lang.h:2
-msgid "Puppet"
-msgstr "Puppet"
-
-#: ../data/language-specs/puppet.lang.h:3
-msgid "Resources"
-msgstr "资源"
-
-#: ../data/language-specs/puppet.lang.h:4
-msgid "Parameters"
-msgstr "参数"
-
-#: ../data/language-specs/puppet.lang.h:5
-msgid "Metaparameters"
-msgstr "元参数"
-
-#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
-msgid "Functions"
-msgstr "函数"
-
-#: ../data/language-specs/puppet.lang.h:7
-msgid "Values"
-msgstr "值"
-
-#: ../data/language-specs/puppet.lang.h:8
-msgid "Variables"
-msgstr "变量"
-
-#: ../data/language-specs/puppet.lang.h:9
-msgid "Class names"
-msgstr "类名"
-
-#: ../data/language-specs/python3.lang.h:2
-msgid "Python 3"
-msgstr "Python 3"
-
-#: ../data/language-specs/python3.lang.h:8
-#: ../data/language-specs/python.lang.h:8
-msgid "Format"
-msgstr "格式"
-
-#: ../data/language-specs/python3.lang.h:16
-#: ../data/language-specs/python.lang.h:17
-msgid "Builtin Object"
-msgstr "内置对象"
-
-#: ../data/language-specs/python.lang.h:2
+#. (itstool) path: python.lang/language@_name
+#: python.lang:28
 msgid "Python"
 msgstr "Python"
 
-#: ../data/language-specs/python.lang.h:9
+#. (itstool) path: styles/style@_name
+#: python.lang:41 python3.lang:36
+msgid "Format"
+msgstr "格式"
+
+#. (itstool) path: styles/style@_name
+#: python.lang:42
 msgid "String Conversion"
 msgstr "字符串转换"
 
-#: ../data/language-specs/python.lang.h:20
+#. (itstool) path: styles/style@_name
+#: python.lang:50 python3.lang:44
+msgid "Builtin Object"
+msgstr "内置对象"
+
+#. (itstool) path: styles/style@_name
+#: python.lang:53
 msgid "Class Name"
 msgstr "类名"
 
-#: ../data/language-specs/python.lang.h:21
+#. (itstool) path: styles/style@_name
+#: python.lang:54
 msgid "Decorator"
 msgstr "修饰符"
 
-#: ../data/language-specs/R.lang.h:2
+#. (itstool) path: python3.lang/language@_name
+#: python3.lang:24
+msgid "Python 3"
+msgstr "Python 3"
+
+#. (itstool) path: prolog.lang/language@_name
+#: prolog.lang:24
+msgid "Prolog"
+msgstr "Prolog"
+
+#. (itstool) path: puppet.lang/language@_name
+#: puppet.lang:24
+msgid "Puppet"
+msgstr "Puppet"
+
+#. (itstool) path: styles/style@_name
+#: puppet.lang:31
+msgid "Resources"
+msgstr "资源"
+
+#. (itstool) path: styles/style@_name
+#: puppet.lang:32
+msgid "Parameters"
+msgstr "参数"
+
+#. (itstool) path: styles/style@_name
+#: puppet.lang:33
+msgid "Metaparameters"
+msgstr "元参数"
+
+#. (itstool) path: styles/style@_name
+#: puppet.lang:34 R.lang:42
+msgid "Functions"
+msgstr "函数"
+
+#. (itstool) path: styles/style@_name
+#: puppet.lang:35
+msgid "Values"
+msgstr "值"
+
+#. (itstool) path: styles/style@_name
+#: puppet.lang:36
+msgid "Variables"
+msgstr "变量"
+
+#. (itstool) path: styles/style@_name
+#: puppet.lang:37
+msgid "Class names"
+msgstr "类名"
+
+#. (itstool) path: R.lang/language@_name
+#: R.lang:26
 msgid "R"
 msgstr "R"
 
-#: ../data/language-specs/R.lang.h:4
+#. (itstool) path: styles/style@_name
+#: R.lang:35
 msgid "Reserved Class"
 msgstr "保留类"
 
-#: ../data/language-specs/R.lang.h:5
+#. (itstool) path: styles/style@_name
+#: R.lang:36
 msgid "Assignment Operator"
 msgstr "赋值操作符"
 
-#: ../data/language-specs/R.lang.h:6
+#. (itstool) path: styles/style@_name
+#: R.lang:37
 msgid "Delimiter"
 msgstr "分隔符"
 
-#: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:16
+#. (itstool) path: styles/style@_name
+#: R.lang:40 verilog.lang:47
 msgid "Integer Number"
 msgstr "整数"
 
-#: ../data/language-specs/rpmspec.lang.h:2
+#. (itstool) path: rpmspec.lang/language@_name
+#: rpmspec.lang:24
 msgid "RPM spec"
 msgstr "RPM spec"
 
-#: ../data/language-specs/rpmspec.lang.h:3
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:32
 msgid "Define"
 msgstr "定义"
 
-#: ../data/language-specs/rpmspec.lang.h:5 ../data/language-specs/t2t.lang.h:7
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:34 t2t.lang:35
 msgid "Section"
 msgstr "节"
 
-#: ../data/language-specs/rpmspec.lang.h:6
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:35
 msgid "Spec Macro"
 msgstr "Spec 宏"
 
-#: ../data/language-specs/rpmspec.lang.h:7
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:36
 msgid "Directory Macro"
 msgstr "目录宏"
 
-#: ../data/language-specs/rpmspec.lang.h:8
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:37
 msgid "Command Macro"
 msgstr "命令宏"
 
-#: ../data/language-specs/rpmspec.lang.h:9
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:38
 msgid "Conditional Macro"
 msgstr "条件宏"
 
-#: ../data/language-specs/rpmspec.lang.h:10
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:39
 msgid "Other Macro"
 msgstr "其它宏"
 
-#: ../data/language-specs/rpmspec.lang.h:11
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:40
 msgid "Flow Conditional"
 msgstr "流程条件"
 
-#: ../data/language-specs/rpmspec.lang.h:12
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:41
 msgid "RPM Variable"
 msgstr "RPM 变量"
 
-#: ../data/language-specs/rpmspec.lang.h:13
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:42
 msgid "Switch"
 msgstr "开关"
 
-#: ../data/language-specs/rpmspec.lang.h:15
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:44
 msgid "Email"
 msgstr "电子邮件"
 
-#: ../data/language-specs/rst.lang.h:2
+#. (itstool) path: rst.lang/language@_name
+#: rst.lang:23
 msgid "reStructuredText"
 msgstr "重组的文本"
 
-#: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
+#. (itstool) path: styles/style@_name
+#: rst.lang:35 yaml.lang:37
 msgid "Directive"
 msgstr "指令"
 
-#: ../data/language-specs/ruby.lang.h:2
+#. (itstool) path: ruby.lang/language@_name
+#: ruby.lang:27
 msgid "Ruby"
 msgstr "Ruby"
 
-#: ../data/language-specs/ruby.lang.h:5
+#. (itstool) path: styles/style@_name
+#: ruby.lang:37
 msgid "Attribute Definition"
 msgstr "属性定义"
 
-#: ../data/language-specs/ruby.lang.h:6
+#. (itstool) path: styles/style@_name
+#: ruby.lang:38
 msgid "Module handler"
 msgstr "模块句柄"
 
-#: ../data/language-specs/ruby.lang.h:13
+#. (itstool) path: styles/style@_name
+#: ruby.lang:45
 msgid "Numeric literal"
 msgstr "数字字面值"
 
-#: ../data/language-specs/ruby.lang.h:15
-#: ../data/language-specs/sparql.lang.h:10
+#. (itstool) path: styles/style@_name
+#: ruby.lang:47 sparql.lang:40
 msgid "Literal"
 msgstr "文字"
 
-#: ../data/language-specs/scala.lang.h:2
+#. (itstool) path: rust.lang/language@_name
+#: rust.lang:36
+msgid "Rust"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: rust.lang:53
+msgid "Scope"
+msgstr "范围"
+
+#. (itstool) path: scala.lang/language@_name
+#: scala.lang:25
 msgid "Scala"
 msgstr "Scala"
 
-#: ../data/language-specs/scala.lang.h:9
+#. (itstool) path: styles/style@_name
+#: scala.lang:42
 msgid "Modifier"
 msgstr "修饰符"
 
-#: ../data/language-specs/scala.lang.h:15
+#. (itstool) path: styles/style@_name
+#: scala.lang:48
 msgid "Built In"
 msgstr "内置"
 
-#: ../data/language-specs/scala.lang.h:17
+#. (itstool) path: styles/style@_name
+#: scala.lang:50
 msgid "XML Tag"
 msgstr "XML 标签"
 
-#: ../data/language-specs/scheme.lang.h:2
+#. (itstool) path: scheme.lang/language@_name
+#: scheme.lang:24
 msgid "Scheme"
 msgstr "大纲"
 
-#: ../data/language-specs/scilab.lang.h:2
+#. (itstool) path: scilab.lang/language@_name
+#: scilab.lang:24
 msgid "Scilab"
 msgstr "Scilab"
 
-#: ../data/language-specs/sh.lang.h:2
+#. (itstool) path: sh.lang/language@_name
+#: sh.lang:25
 msgid "sh"
 msgstr "sh"
 
-#. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:9
+#. (itstool) path: styles/style@_name
+#: sh.lang:38
 msgid "Variable Definition"
 msgstr "变量定义"
 
+#. (itstool) path: styles/style@_name
 #. *
 #. * SECTION:language
-#. * @Short_description: Object representing a syntax highlighted language
+#. * @Short_description: Represents a syntax highlighted language
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
@@ -2540,424 +2763,333 @@ msgstr "变量定义"
 #. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
 #. * to a #GtkSourceBuffer.
 #.
-#: ../data/language-specs/sh.lang.h:10 ../data/language-specs/texinfo.lang.h:5
-#: ../gtksourceview/gtksourcelanguage.c:54
+#: sh.lang:39 texinfo.lang:35 ../gtksourceview/gtksourcelanguage.c:54
 msgid "Others"
 msgstr "其他"
 
-#: ../data/language-specs/sh.lang.h:11
+#. (itstool) path: styles/style@_name
+#: sh.lang:40
 msgid "Common Commands"
 msgstr "常用命令"
 
-#: ../data/language-specs/sh.lang.h:13
+#. (itstool) path: styles/style@_name
+#: sh.lang:42
 msgid "Subshell"
 msgstr "子 Shell"
 
-#: ../data/language-specs/sml.lang.h:2
+#. (itstool) path: sml.lang/language@_name
+#: sml.lang:24
 msgid "Standard ML"
 msgstr "标准 ML"
 
-#: ../data/language-specs/sml.lang.h:13
+#. (itstool) path: styles/style@_name
+#: sml.lang:42
 msgid "Module name, Variant, etc"
 msgstr "模块名、变量等"
 
-#: ../data/language-specs/sparql.lang.h:2
+#. (itstool) path: sparql.lang/language@_name
+#: sparql.lang:24
 msgid "SPARQL"
 msgstr "SPARQL"
 
-#: ../data/language-specs/sparql.lang.h:3
+#. (itstool) path: styles/style@_name
+#: sparql.lang:33
 msgid "Class"
 msgstr "类"
 
-#: ../data/language-specs/sparql.lang.h:6
+#. (itstool) path: styles/style@_name
+#: sparql.lang:36
 msgid "Individual"
 msgstr "独有"
 
-#: ../data/language-specs/sparql.lang.h:11
+#. (itstool) path: styles/style@_name
+#: sparql.lang:41
 msgid "Predicate"
 msgstr "预测"
 
-#: ../data/language-specs/sparql.lang.h:12
+#. (itstool) path: styles/style@_name
+#: sparql.lang:42
 msgid "QName"
 msgstr "QName"
 
-#: ../data/language-specs/sparql.lang.h:13
+#. (itstool) path: styles/style@_name
+#: sparql.lang:43
 msgid "IRI"
 msgstr "IRI"
 
-#: ../data/language-specs/sql.lang.h:2
+#. (itstool) path: sql.lang/language@_name
+#: sql.lang:24
 msgid "SQL"
 msgstr "SQL"
 
-#: ../data/language-specs/sql.lang.h:10
+#. (itstool) path: styles/style@_name
+#: sql.lang:39
 msgid "No idea what it is"
 msgstr "不明对象"
 
-#: ../data/language-specs/sweave.lang.h:2
+#. (itstool) path: sweave.lang/language@_name
+#: sweave.lang:25
 msgid "Sweave"
 msgstr "Sweave"
 
-#: ../data/language-specs/systemverilog.lang.h:2
+#. (itstool) path: systemverilog.lang/language@_name
+#: systemverilog.lang:22
 msgid "SystemVerilog"
 msgstr "SystemVerilog"
 
-#: ../data/language-specs/t2t.lang.h:2
+#. (itstool) path: t2t.lang/language@_name
+#: t2t.lang:24
 msgid "txt2tags"
 msgstr "txt2tags"
 
-#: ../data/language-specs/t2t.lang.h:4
+#. (itstool) path: styles/style@_name
+#: t2t.lang:32
 msgid "Option"
 msgstr "选项"
 
-#: ../data/language-specs/t2t.lang.h:5
+#. (itstool) path: styles/style@_name
+#: t2t.lang:33
 msgid "Option Name"
 msgstr "选项名称"
 
-#: ../data/language-specs/t2t.lang.h:8
+#. (itstool) path: styles/style@_name
+#: t2t.lang:36
 msgid "Section 1"
 msgstr "第一节"
 
-#: ../data/language-specs/t2t.lang.h:9
+#. (itstool) path: styles/style@_name
+#: t2t.lang:37
 msgid "Section 2"
 msgstr "第二节"
 
-#: ../data/language-specs/t2t.lang.h:10
+#. (itstool) path: styles/style@_name
+#: t2t.lang:38
 msgid "Section 3"
 msgstr "第三节"
 
-#: ../data/language-specs/t2t.lang.h:11
+#. (itstool) path: styles/style@_name
+#: t2t.lang:39
 msgid "Section 4"
 msgstr "第四节"
 
-#: ../data/language-specs/t2t.lang.h:12
+#. (itstool) path: styles/style@_name
+#: t2t.lang:40
 msgid "Section 5"
 msgstr "第五节"
 
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:121
-#: ../gtksourceview/gtksourcestyle.c:122
+#. (itstool) path: styles/style@_name
+#: t2t.lang:42
 msgid "Italic"
 msgstr "斜体"
 
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:113
-#: ../gtksourceview/gtksourcestyle.c:114
+#. (itstool) path: styles/style@_name
+#: t2t.lang:43
 msgid "Bold"
 msgstr "粗体"
 
-#: ../data/language-specs/t2t.lang.h:17
+#. (itstool) path: styles/style@_name
+#: t2t.lang:45
 msgid "Verbatim Block"
 msgstr "Verbatim 块"
 
-#: ../data/language-specs/tcl.lang.h:2
+#. (itstool) path: tcl.lang/language@_name
+#: tcl.lang:24
 msgid "Tcl"
 msgstr "Tcl"
 
-#: ../data/language-specs/texinfo.lang.h:2
+#. (itstool) path: texinfo.lang/language@_name
+#: texinfo.lang:25
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../data/language-specs/texinfo.lang.h:8
+#. (itstool) path: styles/style@_name
+#: texinfo.lang:38
 msgid "Macros"
 msgstr "宏"
 
-#: ../data/language-specs/texinfo.lang.h:9
+#. (itstool) path: styles/style@_name
+#: texinfo.lang:39
 msgid "File Attributes"
 msgstr "文件属性"
 
-#: ../data/language-specs/texinfo.lang.h:10
+#. (itstool) path: styles/style@_name
+#: texinfo.lang:40
 msgid "Generated Content"
 msgstr "生成的内容"
 
-#: ../data/language-specs/vala.lang.h:2
+#. (itstool) path: thrift.lang/language@_name
+#: thrift.lang:21
+msgid "Thrift"
+msgstr ""
+
+#. (itstool) path: vala.lang/language@_name
+#: vala.lang:28
 msgid "Vala"
 msgstr "Vala"
 
-#: ../data/language-specs/vbnet.lang.h:2
+#. (itstool) path: vbnet.lang/language@_name
+#: vbnet.lang:24
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../data/language-specs/verilog.lang.h:2
+#. (itstool) path: verilog.lang/language@_name
+#: verilog.lang:24
 msgid "Verilog"
 msgstr "Verilog"
 
-#: ../data/language-specs/verilog.lang.h:9
+#. (itstool) path: styles/style@_name
+#: verilog.lang:40
 msgid "IEEE System Task"
 msgstr "IEEE 系统任务"
 
-#: ../data/language-specs/verilog.lang.h:10
+#. (itstool) path: styles/style@_name
+#: verilog.lang:41
 msgid "LRM Additional System Task"
 msgstr "LRM 附加系统任务"
 
-#: ../data/language-specs/verilog.lang.h:12
+#. (itstool) path: styles/style@_name
+#: verilog.lang:43
 msgid "Gate"
 msgstr "门"
 
-#: ../data/language-specs/vhdl.lang.h:2
+#. (itstool) path: vhdl.lang/language@_name
+#: vhdl.lang:24
 msgid "VHDL"
 msgstr "VHDL"
 
-#: ../data/language-specs/xml.lang.h:2
+#. (itstool) path: xml.lang/language@_name
+#: xml.lang:26
 msgid "XML"
 msgstr "XML"
 
-#: ../data/language-specs/xml.lang.h:4
-msgid "DOCTYPE"
-msgstr "DOCTYPE"
-
-#: ../data/language-specs/xml.lang.h:6
-msgid "Processing instruction"
-msgstr "处理指令"
-
-#: ../data/language-specs/xml.lang.h:9
-msgid "Attribute value"
-msgstr "属性值"
-
-#: ../data/language-specs/xml.lang.h:10
-msgid "Entity"
-msgstr "实体"
-
-#: ../data/language-specs/xslt.lang.h:2
+#. (itstool) path: xslt.lang/language@_name
+#: xslt.lang:24
 msgid "XSLT"
 msgstr "XSLT"
 
-#: ../data/language-specs/xslt.lang.h:3
+#. (itstool) path: styles/style@_name
+#: xslt.lang:33
 msgid "Element"
 msgstr "元素"
 
-#: ../data/language-specs/yacc.lang.h:2
+#. (itstool) path: yacc.lang/language@_name
+#: yacc.lang:24
 msgid "Yacc"
 msgstr "Yacc"
 
-#: ../data/language-specs/yacc.lang.h:5
+#. (itstool) path: styles/style@_name
+#: yacc.lang:36
 msgid "token type"
 msgstr "符号类型"
 
-#: ../data/language-specs/yacc.lang.h:6
+#. (itstool) path: styles/style@_name
+#: yacc.lang:37
 msgid "rule"
 msgstr "规则"
 
-#: ../data/language-specs/yaml.lang.h:2
+#. (itstool) path: yaml.lang/language@_name
+#: yaml.lang:22
 msgid "YAML"
 msgstr "YAML"
 
-#: ../data/language-specs/yaml.lang.h:3
+#. (itstool) path: styles/style@_name
+#: yaml.lang:30
 msgid "Block literal"
 msgstr "块字面值"
 
-#: ../data/language-specs/yaml.lang.h:8
+#. (itstool) path: styles/style@_name
+#: yaml.lang:35
 msgid "Alias"
 msgstr "别名"
 
-#: ../data/language-specs/yaml.lang.h:9
+#. (itstool) path: styles/style@_name
+#: yaml.lang:36
 msgid "Map key"
 msgstr "映射键"
 
-#: ../data/language-specs/yaml.lang.h:11
-msgid "Null"
-msgstr "空"
-
-#: ../data/language-specs/yaml.lang.h:13
+#. (itstool) path: styles/style@_name
+#: yaml.lang:40
 msgid "Integer"
 msgstr "整数"
 
-#: ../data/language-specs/yaml.lang.h:14
+#. (itstool) path: styles/style@_name
+#: yaml.lang:41
 msgid "Floating point"
 msgstr "浮点数"
 
-#: ../data/styles/classic.xml.h:1
+#. (itstool) path: classic.xml/style-scheme@_name
+#: classic.xml:24
 msgid "Classic"
 msgstr "经典"
 
-#: ../data/styles/classic.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: classic.xml:26
 msgid "Classic color scheme"
 msgstr "经典配色方案"
 
-#: ../data/styles/cobalt.xml.h:1
+#. (itstool) path: cobalt.xml/style-scheme@_name
+#: cobalt.xml:26
 msgid "Cobalt"
 msgstr "Cobalt"
 
-#: ../data/styles/cobalt.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: cobalt.xml:28
 msgid "Blue based color scheme"
 msgstr "蓝色经典配色方案"
 
-#: ../data/styles/kate.xml.h:1
+#. (itstool) path: kate.xml/style-scheme@_name
+#: kate.xml:24
 msgid "Kate"
 msgstr "Kate"
 
-#: ../data/styles/kate.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: kate.xml:26
 msgid "Color scheme used in the Kate text editor"
 msgstr "使用 Kate 调色板中的配色方案"
 
-#: ../data/styles/oblivion.xml.h:1
+#. (itstool) path: oblivion.xml/style-scheme@_name
+#: oblivion.xml:25
 msgid "Oblivion"
 msgstr "Oblivion"
 
-#: ../data/styles/oblivion.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: oblivion.xml:28
 msgid "Dark color scheme using the Tango color palette"
 msgstr "使用 Tango 调色板的暗配色方案"
 
-#: ../data/styles/solarized-dark.xml.h:1
+#. (itstool) path: solarized-dark.xml/style-scheme@_name
+#: solarized-dark.xml:24
 msgid "Solarized Dark"
 msgstr "Solarized Dark"
 
-#: ../data/styles/solarized-dark.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: solarized-dark.xml:26
 msgid "Color scheme using Solarized dark color palette"
 msgstr "使用 Solarized dark 调色板的配色方案"
 
-#: ../data/styles/solarized-light.xml.h:1
+#. (itstool) path: solarized-light.xml/style-scheme@_name
+#: solarized-light.xml:24
 msgid "Solarized Light"
 msgstr "Solarized Light"
 
-#: ../data/styles/solarized-light.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: solarized-light.xml:26
 msgid "Color scheme using Solarized light color palette"
 msgstr "使用 Solarized light 调色板的配色方案"
 
-#: ../data/styles/tango.xml.h:1
+#. (itstool) path: tango.xml/style-scheme@_name
+#: tango.xml:24
 msgid "Tango"
 msgstr "Tango"
 
-#: ../data/styles/tango.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: tango.xml:26
 msgid "Color scheme using Tango color palette"
 msgstr "使用 Tango 调色板中配色方案"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:327
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:328
 msgid "Document Words"
 msgstr "文档字数"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:429
-msgctxt "Object"
-msgid "Name"
-msgstr "名称"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
-msgid "The provider name"
-msgstr "提供者名称"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:437
-#: ../gtksourceview/gtksourcecompletionitem.c:275
-msgid "Icon"
-msgstr "图标"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
-msgid "The provider icon"
-msgstr "提供者图标"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:445
-msgid "Proposals Batch Size"
-msgstr "提案批次大小"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
-msgid "Number of proposals added in one batch"
-msgstr "一批添加的提案数量"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
-msgid "Scan Batch Size"
-msgstr "扫描批次大小"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
-msgid "Number of lines scanned in one batch"
-msgstr "一批扫描的行数"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
-msgid "Minimum Word Size"
-msgstr "单词大小的下限"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
-msgid "The minimum word size to complete"
-msgstr "补全时单词大小的下限"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
-msgid "Interactive Delay"
-msgstr "交互延时"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
-msgid "The delay before initiating interactive completion"
-msgstr "开始交互式补全前的延时"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
-msgid "Priority"
-msgstr "优先级"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
-msgid "Provider priority"
-msgstr "提供者优先级"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-#: ../gtksourceview/gtksourcecompletioncontext.c:298
-msgid "Activation"
-msgstr "动作"
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
-#: ../gtksourceview/gtksourcecompletioncontext.c:299
-msgid "The type of activation"
-msgstr "动作类型"
-
-#: ../gtksourceview/gtksourcebuffer.c:277
-#: ../gtksourceview/gtksourceprintcompositor.c:505
-msgid "Highlight Syntax"
-msgstr "语法高亮"
-
-#: ../gtksourceview/gtksourcebuffer.c:278
-msgid "Whether to highlight syntax in the buffer"
-msgstr "是否在缓冲区突出显示语法"
-
-#: ../gtksourceview/gtksourcebuffer.c:291
-msgid "Highlight Matching Brackets"
-msgstr "加亮匹配的括号"
-
-#: ../gtksourceview/gtksourcebuffer.c:292
-msgid "Whether to highlight matching brackets"
-msgstr "是否加亮突出显示相匹配的括号"
-
-#: ../gtksourceview/gtksourcebuffer.c:305
-msgid "Maximum Undo Levels"
-msgstr "最多撤消级别"
-
-#: ../gtksourceview/gtksourcebuffer.c:306
-msgid "Number of undo levels for the buffer"
-msgstr "缓冲区中的撤消级别"
-
-#. Translators: throughout GtkSourceView "language" stands
-#. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:318
-msgid "Language"
-msgstr "语言"
-
-#: ../gtksourceview/gtksourcebuffer.c:319
-msgid "Language object to get highlighting patterns from"
-msgstr "用于获得加亮显示模式语言对象"
-
-#: ../gtksourceview/gtksourcebuffer.c:327
-msgid "Can undo"
-msgstr "可以撤消"
-
-#: ../gtksourceview/gtksourcebuffer.c:328
-msgid "Whether Undo operation is possible"
-msgstr "撤消操作是否可能"
-
-#: ../gtksourceview/gtksourcebuffer.c:335
-msgid "Can redo"
-msgstr "可以重做"
-
-#: ../gtksourceview/gtksourcebuffer.c:336
-msgid "Whether Redo operation is possible"
-msgstr "重做操作是否可能"
-
-#: ../gtksourceview/gtksourcebuffer.c:350
-#: ../gtksourceview/gtksourcebuffer.c:351
-msgid "Style scheme"
-msgstr "样式大纲"
-
-#: ../gtksourceview/gtksourcebuffer.c:358
-msgid "Undo manager"
-msgstr "撤销管理器"
-
-#: ../gtksourceview/gtksourcebuffer.c:359
-msgid "The buffer undo manager"
-msgstr "缓冲区撤销管理器"
-
-#: ../gtksourceview/gtksourcebuffer.c:374
-msgid "Implicit trailing newline"
-msgstr "隐藏行尾新行符"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:838
 msgid "Invalid byte sequence in conversion input"
@@ -2987,144 +3119,20 @@ msgstr "无效对象，无法初始化"
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "输入中含有不完整的 UTF-8 序列"
 
-#: ../gtksourceview/gtksourcecompletion.c:2187
-#: ../gtksourceview/gtksourcegutter.c:514
-msgid "View"
-msgstr "查看器"
-
-#: ../gtksourceview/gtksourcecompletion.c:2188
-msgid "The GtkSourceView bound to the completion"
-msgstr "GtkSourceView 补全的界限"
-
-#: ../gtksourceview/gtksourcecompletion.c:2202
-msgid "Remember Info Visibility"
-msgstr "记住信息可见程度"
-
-#: ../gtksourceview/gtksourcecompletion.c:2203
-msgid "Remember the last info window visibility state"
-msgstr "记住最后信息窗口的可见程度"
-
-#: ../gtksourceview/gtksourcecompletion.c:2215
-msgid "Select on Show"
-msgstr "显示时的选择"
-
-#: ../gtksourceview/gtksourcecompletion.c:2216
-msgid "Select first proposal when completion is shown"
-msgstr "在显示自动补全时，选择第一个建议"
-
-#: ../gtksourceview/gtksourcecompletion.c:2229
-msgid "Show Headers"
-msgstr "显示头信息"
-
-#: ../gtksourceview/gtksourcecompletion.c:2230
-msgid ""
-"Show provider headers when proposals from multiple providers are available"
-msgstr "在有多个提供者的建议可用时显示提供者的开头信息"
-
-#: ../gtksourceview/gtksourcecompletion.c:2243
-msgid "Show Icons"
-msgstr "显示图标"
-
-#: ../gtksourceview/gtksourcecompletion.c:2244
-msgid "Show provider and proposal icons in the completion popup"
-msgstr "在补全弹出菜单中显示提供者及建议的图标"
-
-#: ../gtksourceview/gtksourcecompletion.c:2258
-msgid "Accelerators"
-msgstr "加速器"
-
-#: ../gtksourceview/gtksourcecompletion.c:2259
-msgid "Number of proposal accelerators to show"
-msgstr "显示的建议加速器的数目"
-
-#: ../gtksourceview/gtksourcecompletion.c:2274
-msgid "Auto Complete Delay"
-msgstr "自动补全延时"
-
-#: ../gtksourceview/gtksourcecompletion.c:2275
-msgid "Completion popup delay for interactive completion"
-msgstr "交互式补全的补全弹出菜单延时"
-
-#: ../gtksourceview/gtksourcecompletion.c:2291
-msgid "Provider Page Size"
-msgstr "提供者的页面大小"
-
-#: ../gtksourceview/gtksourcecompletion.c:2292
-msgid "Provider scrolling page size"
-msgstr "提供者滚动页面大小"
-
-#: ../gtksourceview/gtksourcecompletion.c:2312
-msgid "Proposal Page Size"
-msgstr "建议的页面大小"
-
-#: ../gtksourceview/gtksourcecompletion.c:2313
-msgid "Proposal scrolling page size"
-msgstr "提案滚动页面大小"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:271
-#: ../gtksourceview/gtksourceview.c:336
-msgid "Completion"
-msgstr "补全"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
-msgid "The completion object to which the context belongs"
-msgstr "上下文属于的补全对象"
-
-#. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:285
-msgid "Iterator"
-msgstr "迭代器"
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:286
-msgid "The GtkTextIter at which the completion was invoked"
-msgstr "GtkTextIter，在其上调用补全"
-
 #. Tooltip style
 #: ../gtksourceview/gtksourcecompletioninfo.c:264
 msgid "Completion Info"
 msgstr "关于补全的信息"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:237
-msgid "Label to be shown for this item"
-msgstr "为此条目显示的标签"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:250
-msgid "Markup to be shown for this item"
-msgstr "为此条目显示的标记"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:263
-msgid "Item text"
-msgstr "条目文本"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:276
-msgid "Icon to be shown for this item"
-msgstr "为此条目显示的图标"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:288
-msgid "Info"
-msgstr "信息"
-
-#: ../gtksourceview/gtksourcecompletionitem.c:289
-msgid "Info to be shown for this item"
-msgstr "为此条目显示的信息"
-
 #: ../gtksourceview/gtksourcecompletionmodel.c:491
 msgid "Provider"
 msgstr "提供者"
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:1
-msgid "Show detailed proposal information"
-msgstr "显示详细建议信息"
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:2
-msgid "_Details..."
-msgstr "详情(_D)..."
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3139
+#: ../gtksourceview/gtksourcecontextengine.c:3143
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3134,43 +3142,43 @@ msgstr ""
 "无法为所有的转换创建正则表达式，语法加亮进程将会比正常情况慢。\n"
 "错误是：%s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4462
+#: ../gtksourceview/gtksourcecontextengine.c:4466
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr "加亮一整行花费的时间太多，语法加亮将被禁用"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5706
+#: ../gtksourceview/gtksourcecontextengine.c:5714
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "上下文“%s”不能包含一个 \\%%{...@start} 命令"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5867
-#: ../gtksourceview/gtksourcecontextengine.c:5956
+#: ../gtksourceview/gtksourcecontextengine.c:5877
+#: ../gtksourceview/gtksourcecontextengine.c:5968
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "重复的上下文 id “%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6070
-#: ../gtksourceview/gtksourcecontextengine.c:6130
+#: ../gtksourceview/gtksourcecontextengine.c:6082
+#: ../gtksourceview/gtksourcecontextengine.c:6142
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr "语言“%s”在参考“%s”中与通配符上下文引用一同使用的样式覆盖"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6144
+#: ../gtksourceview/gtksourcecontextengine.c:6156
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "无效的上下文引用“%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6163
-#: ../gtksourceview/gtksourcecontextengine.c:6173
+#: ../gtksourceview/gtksourcecontextengine.c:6175
+#: ../gtksourceview/gtksourcecontextengine.c:6185
 #, c-format
 msgid "unknown context '%s'"
 msgstr "未知的上下文“%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6272
+#: ../gtksourceview/gtksourcecontextengine.c:6284
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "缺少主要语言定义(id = “%s”)。"
@@ -3325,665 +3333,66 @@ msgstr "未知"
 #. * recognized encodings are used. See
 #. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
 #. * for a list of supported encodings.
+#. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:647
+#: ../gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['CURRENT', 'GBK', 'UTF-8', 'UTF-16']"
-
-#: ../gtksourceview/gtksourcefile.c:200
-#: ../gtksourceview/gtksourcefilesaver.c:410
-msgid "Newline type"
-msgstr "新行类型"
-
-#: ../gtksourceview/gtksourcefile.c:217
-#: ../gtksourceview/gtksourcefilesaver.c:428
-msgid "Compression type"
-msgstr "压缩类型"
-
-#: ../gtksourceview/gtksourcefileloader.c:414
-msgid "Input stream"
-msgstr "输入流"
-
-#: ../gtksourceview/gtksourcefilesaver.c:446
-msgid "Flags"
-msgstr "标识"
-
-#. Translators: gutters can be used to display information
-#. * on the left or on the right of the text view. To draw the
-#. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:518
-msgid "The gutters' GtkSourceView"
-msgstr "gutters 的 GtkSourceView"
-
-#: ../gtksourceview/gtksourcegutter.c:530
-#: ../gtksourceview/gtksourcegutterrenderer.c:741
-msgid "Window Type"
-msgstr "窗口类型"
-
-#: ../gtksourceview/gtksourcegutter.c:531
-msgid "The gutters' text window type"
-msgstr "gutters 的文本窗口类型"
-
-#: ../gtksourceview/gtksourcegutter.c:547
-#: ../gtksourceview/gtksourcegutterrenderer.c:524
-msgid "X Padding"
-msgstr "X 填充"
-
-#: ../gtksourceview/gtksourcegutter.c:548
-#: ../gtksourceview/gtksourcegutterrenderer.c:525
-msgid "The x-padding"
-msgstr "水平填充"
-
-#: ../gtksourceview/gtksourcegutter.c:565
-#: ../gtksourceview/gtksourcegutterrenderer.c:539
-msgid "Y Padding"
-msgstr "Y 填充"
-
-#: ../gtksourceview/gtksourcegutter.c:566
-#: ../gtksourceview/gtksourcegutterrenderer.c:540
-msgid "The y-padding"
-msgstr "竖直填充"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:511
-#: ../gtksourceview/gtksourcegutterrenderer.c:512
-msgid "Visible"
-msgstr "可见"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:556
-msgid "X Alignment"
-msgstr "X 对齐"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:557
-msgid "The x-alignment"
-msgstr "水平对齐"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:573
-msgid "Y Alignment"
-msgstr "Y 对齐"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:574
-msgid "The y-alignment"
-msgstr "竖直对齐"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:708
-msgid "The View"
-msgstr "视图"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:709
-msgid "The view"
-msgstr "视图"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:725
-msgid "Alignment Mode"
-msgstr "对齐模式"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:726
-msgid "The alignment mode"
-msgstr "对齐模式"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:742
-msgid "The window type"
-msgstr "窗口类型"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:750
-msgid "Size"
-msgstr "大小"
-
-#: ../gtksourceview/gtksourcegutterrenderer.c:751
-msgid "The size"
-msgstr "大小"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:299
-#: ../gtksourceview/gtksourcemarkattributes.c:315
-msgid "Pixbuf"
-msgstr "Pixbuf"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:300
-#: ../gtksourceview/gtksourcemarkattributes.c:316
-msgid "The pixbuf"
-msgstr "Pixbuf"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:314
-#: ../gtksourceview/gtksourcemarkattributes.c:302
-msgid "Stock Id"
-msgstr "Stock Id"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:315
-#: ../gtksourceview/gtksourcemarkattributes.c:303
-msgid "The stock id"
-msgstr "Stock 的 ID"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:322
-#: ../gtksourceview/gtksourcemarkattributes.c:328
-msgid "Icon Name"
-msgstr "图标名称"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:323
-#: ../gtksourceview/gtksourcemarkattributes.c:329
-msgid "The icon name"
-msgstr "图标名称"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:330
-#: ../gtksourceview/gtksourcemarkattributes.c:341
-msgid "GIcon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:331
-msgid "The gicon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:414
-msgid "The markup"
-msgstr "标记"
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:422
-msgid "The text"
-msgstr "文本"
-
-#: ../gtksourceview/gtksourcelanguage.c:227
-#: ../gtksourceview/gtksourcelanguage.c:228
-msgid "Language id"
-msgstr "语言 ID"
-
-#: ../gtksourceview/gtksourcelanguage.c:235
-#: ../gtksourceview/gtksourcelanguage.c:236
-msgid "Language name"
-msgstr "语言名称"
-
-#: ../gtksourceview/gtksourcelanguage.c:243
-#: ../gtksourceview/gtksourcelanguage.c:244
-msgid "Language section"
-msgstr "语言部分"
-
-#: ../gtksourceview/gtksourcelanguage.c:251
-msgid "Hidden"
-msgstr "隐藏"
-
-#: ../gtksourceview/gtksourcelanguage.c:252
-msgid "Whether the language should be hidden from the user"
-msgstr "是否向用户隐藏语言"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:149
-msgid "Language specification directories"
-msgstr "语言规范目录"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
-msgstr "列出语言规范文件(.lang)所在的目录"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:159
-msgid "Language ids"
-msgstr "语言 ID"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
-msgid "List of the ids of the available languages"
-msgstr "可用语言的 id 列表"
 
 #: ../gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "正则表达式“%2$s”中的未知 ID “%1$s”"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
+#: ../gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "在正则表达式“%s”中：不支持向后引用"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:287
-#: ../gtksourceview/gtksourcestyle.c:97
-msgid "Background"
-msgstr "背景"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:288
-msgid "The background"
-msgstr "背景"
-
-#: ../gtksourceview/gtksourcemarkattributes.c:342
-msgid "The GIcon"
-msgstr "GIcon"
-
-#: ../gtksourceview/gtksourcemark.c:140
-msgid "category"
-msgstr "类别"
-
-#: ../gtksourceview/gtksourcemark.c:141
-msgid "The mark category"
-msgstr "标记的类别"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:445
-msgid "Source Buffer"
-msgstr "源缓冲区"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:446
-msgid "The GtkSourceBuffer object to print"
-msgstr "待打印的 GtkSourceBuffer 对象"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:374
-msgid "Tab Width"
-msgstr "Tab 宽度"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:375
-msgid "Width of a tab character expressed in spaces"
-msgstr "以空格记的 Tab 字符的宽度"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:484
-msgid "Wrap Mode"
-msgstr "自动换行模式"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:485
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr "是否自动换行，从不、在词边界或在字符边界。"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:506
-msgid "Whether to print the document with highlighted syntax"
-msgstr "是否以语法加亮方式打印文档"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:527
-msgid "Print Line Numbers"
-msgstr "打印行号"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:528
-msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "待打印行号的区间(0 代表无行号)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:550
-msgid "Print Header"
-msgstr "打印页眉"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:551
-msgid "Whether to print a header in each page"
-msgstr "是否打印每页页眉"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:573
-msgid "Print Footer"
-msgstr "打印页脚"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:574
-msgid "Whether to print a footer in each page"
-msgstr "是否打印每页页脚"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:596
-msgid "Body Font Name"
-msgstr "主体字体名"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:597
-msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr "文本主体使用的字体名(如 “Monospace 10”)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:620
-msgid "Line Numbers Font Name"
-msgstr "行号字体名"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:621
-msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr "行号使用的字体名(如 “Monospace 10”)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:644
-msgid "Header Font Name"
-msgstr "页眉字体名"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:645
-msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr "页眉使用的字体名(如 “Monospace 10”)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:668
-msgid "Footer Font Name"
-msgstr "页脚字体名"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:669
-msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr "页脚使用的字体名(如 “Monospace 10”)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:685
-msgid "Number of pages"
-msgstr "页数"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:686
-msgid ""
-"The number of pages in the document (-1 means the document has not been "
-"completely paginated)."
-msgstr "文档的页数(-1代表文档未被完整分页)。"
 
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
 msgstr "语言定义中不支持使用 \\C"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2742
-msgid "Buffer"
-msgstr "缓冲区"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2743
-msgid "The associated GtkSourceBuffer"
-msgstr "关联的 GtkSourceBuffer"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2757
-msgid "Settings"
-msgstr "设置"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2758
-msgid "The associated GtkSourceSearchSettings"
-msgstr "关联的 GtkSourceSearchSettings"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2772
-msgid "Highlight"
-msgstr "高亮"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2773
-msgid "Highlight search occurrences"
-msgstr "高亮搜索内容出现的位置"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2789
-msgid "Occurrences count"
-msgstr "出现次数"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2790
-msgid "Total number of search occurrences"
-msgstr "总计搜索出现次数"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2809
-msgid "Regex error"
-msgstr "正则表达式错误"
-
-#: ../gtksourceview/gtksourcesearchcontext.c:2810
-msgid "Regular expression error"
-msgstr "正则表达式错误"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:168
-msgid "Search text"
-msgstr "搜索文本"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:169
-msgid "The text to search"
-msgstr "待搜索文本"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:183
-#: ../gtksourceview/gtksourcesearchsettings.c:184
-msgid "Case sensitive"
-msgstr "区分大小写"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:199
-msgid "At word boundaries"
-msgstr "字符边界"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:200
-msgid "Search at word boundaries"
-msgstr "搜索时沿字符边界"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:216
-#: ../gtksourceview/gtksourcesearchsettings.c:217
-msgid "Wrap around"
-msgstr "自动折行"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:232
-msgid "Regex enabled"
-msgstr "启用正则表达式"
-
-#: ../gtksourceview/gtksourcesearchsettings.c:233
-msgid "Whether to search by regular expression"
-msgstr "是否按正则表达式搜索"
-
-#: ../gtksourceview/gtksourcestyle.c:89
-msgid "Line background"
-msgstr "行背景"
-
-#: ../gtksourceview/gtksourcestyle.c:90
-msgid "Line background color"
-msgstr "行背景颜色"
-
-#: ../gtksourceview/gtksourcestyle.c:98
-msgid "Background color"
-msgstr "背景颜色"
-
-#: ../gtksourceview/gtksourcestyle.c:105
-msgid "Foreground"
-msgstr "前景"
-
-#: ../gtksourceview/gtksourcestyle.c:106
-msgid "Foreground color"
-msgstr "前景颜色"
-
-#: ../gtksourceview/gtksourcestyle.c:129 ../gtksourceview/gtksourcestyle.c:130
-msgid "Underline"
-msgstr "下划线"
-
-#: ../gtksourceview/gtksourcestyle.c:137 ../gtksourceview/gtksourcestyle.c:138
-msgid "Strikethrough"
-msgstr "删除线"
-
-#: ../gtksourceview/gtksourcestyle.c:145
-msgid "Scale"
-msgstr "比例"
-
-#: ../gtksourceview/gtksourcestyle.c:146
-msgid "Text scale factor"
-msgstr "文本缩放比例"
-
-#: ../gtksourceview/gtksourcestyle.c:153
-msgid "Line background set"
-msgstr "行背景设定"
-
-#: ../gtksourceview/gtksourcestyle.c:154
-msgid "Whether line background color is set"
-msgstr "是否设定行背景颜色"
-
-#: ../gtksourceview/gtksourcestyle.c:161
-msgid "Foreground set"
-msgstr "前景设定"
-
-#: ../gtksourceview/gtksourcestyle.c:162
-msgid "Whether foreground color is set"
-msgstr "是否设定了前景颜色"
-
-#: ../gtksourceview/gtksourcestyle.c:169
-msgid "Background set"
-msgstr "背景设定"
-
-#: ../gtksourceview/gtksourcestyle.c:170
-msgid "Whether background color is set"
-msgstr "是否设定了背景颜色"
-
-#: ../gtksourceview/gtksourcestyle.c:177
-msgid "Bold set"
-msgstr "粗体设定"
-
-#: ../gtksourceview/gtksourcestyle.c:178
-msgid "Whether bold attribute is set"
-msgstr "是否设定粗体属性"
-
-#: ../gtksourceview/gtksourcestyle.c:185
-msgid "Italic set"
-msgstr "斜体设定"
-
-#: ../gtksourceview/gtksourcestyle.c:186
-msgid "Whether italic attribute is set"
-msgstr "是否设定斜体属性"
-
-#: ../gtksourceview/gtksourcestyle.c:193
-msgid "Underline set"
-msgstr "下划线设定"
-
-#: ../gtksourceview/gtksourcestyle.c:194
-msgid "Whether underline attribute is set"
-msgstr "下划线属性是否设定"
-
-#: ../gtksourceview/gtksourcestyle.c:201
-msgid "Strikethrough set"
-msgstr "删除线设定"
-
-#: ../gtksourceview/gtksourcestyle.c:202
-msgid "Whether strikethrough attribute is set"
-msgstr "是否设定删除线属性"
-
-#: ../gtksourceview/gtksourcestyle.c:209
-msgid "Scale set"
-msgstr "比例设定"
-
-#: ../gtksourceview/gtksourcestyle.c:210
-msgid "Whether scale attribute is set"
-msgstr "是否设定比例属性"
-
-#: ../gtksourceview/gtksourcestylescheme.c:211
-#: ../gtksourceview/gtksourcestylescheme.c:212
-msgid "Style scheme id"
-msgstr "样式方案 id"
-
-#: ../gtksourceview/gtksourcestylescheme.c:224
-#: ../gtksourceview/gtksourcestylescheme.c:225
-msgid "Style scheme name"
-msgstr "样式方案名称"
-
-#: ../gtksourceview/gtksourcestylescheme.c:237
-#: ../gtksourceview/gtksourcestylescheme.c:238
-msgid "Style scheme description"
-msgstr "样式方案描述"
-
-#: ../gtksourceview/gtksourcestylescheme.c:250
-#: ../gtksourceview/gtksourcestylescheme.c:251
-msgid "Style scheme filename"
-msgstr "样式方案文件名"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:152
-msgid "Style scheme search path"
-msgstr "样式方案搜索路径"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
-msgid "List of directories and files where the style schemes are located"
-msgstr "样式方案所在的目录与文件的列表"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:161
-msgid "Scheme ids"
-msgstr "方案 id"
-
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
-msgid "List of the ids of the available style schemes"
-msgstr "可用的样式方案的 id 的列表"
-
-#: ../gtksourceview/gtksourceview.c:337
-msgid "The completion object associated with the view"
-msgstr "与此查看器有关的补全对象"
-
-#: ../gtksourceview/gtksourceview.c:349
-msgid "Show Line Numbers"
-msgstr "显示行号"
-
-#: ../gtksourceview/gtksourceview.c:350
-msgid "Whether to display line numbers"
-msgstr "是否显示行号"
-
-#: ../gtksourceview/gtksourceview.c:361
-msgid "Show Line Marks"
-msgstr "显示行标记"
-
-#: ../gtksourceview/gtksourceview.c:362
-msgid "Whether to display line mark pixbufs"
-msgstr "是否显示行标记 pixbuf"
-
-#: ../gtksourceview/gtksourceview.c:389
-msgid "Indent Width"
-msgstr "缩进宽度"
-
-#: ../gtksourceview/gtksourceview.c:390
-msgid "Number of spaces to use for each step of indent"
-msgstr "每级缩进的空格数"
-
-#: ../gtksourceview/gtksourceview.c:399
-msgid "Auto Indentation"
-msgstr "自动缩进"
-
-#: ../gtksourceview/gtksourceview.c:400
-msgid "Whether to enable auto indentation"
-msgstr "是否允许自动缩进"
-
-#: ../gtksourceview/gtksourceview.c:407
-msgid "Insert Spaces Instead of Tabs"
-msgstr "插入空格替代制表符"
-
-#: ../gtksourceview/gtksourceview.c:408
-msgid "Whether to insert spaces instead of tabs"
-msgstr "在插入时是否以空格替代制表符"
-
-#: ../gtksourceview/gtksourceview.c:420
-msgid "Show Right Margin"
-msgstr "显示右边距"
-
-#: ../gtksourceview/gtksourceview.c:421
-msgid "Whether to display the right margin"
-msgstr "是否显示右边界"
-
-#: ../gtksourceview/gtksourceview.c:433
-msgid "Right Margin Position"
-msgstr "右边界位置"
-
-#: ../gtksourceview/gtksourceview.c:434
-msgid "Position of the right margin"
-msgstr "右边界的位置"
-
-#: ../gtksourceview/gtksourceview.c:450
-msgid "Smart Home/End"
-msgstr "智能 Home/End"
-
-#: ../gtksourceview/gtksourceview.c:451
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr "HOME 和 END 键将会跳到行内的第一个/最后一个字符，而不是跳到行首/尾"
-
-#: ../gtksourceview/gtksourceview.c:461
-msgid "Highlight current line"
-msgstr "高亮显示当前行"
-
-#: ../gtksourceview/gtksourceview.c:462
-msgid "Whether to highlight the current line"
-msgstr "是否高亮显示当前行"
-
-#: ../gtksourceview/gtksourceview.c:469
-msgid "Indent on tab"
-msgstr "tab 缩进"
-
-#: ../gtksourceview/gtksourceview.c:470
-msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr "按下 tab 键时缩进选中文本"
-
-#: ../gtksourceview/gtksourceview.c:484
-msgid "Draw Spaces"
-msgstr "绘制空格"
-
-#: ../gtksourceview/gtksourceview.c:485
-msgid "Set if and how the spaces should be visualized"
-msgstr "设定是否将空格可见化"
+#. TODO: have a ChooserDialog?
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:181
+msgid "Select a Style"
+msgstr "选择风格"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:185
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
+msgid "_Select"
+msgstr "选择(_S)"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1281
+#: ../gtksourceview/gtksourceview.c:1559
 msgid "_Redo"
 msgstr "重做(_R)"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1292
+#: ../gtksourceview/gtksourceview.c:1570
 msgid "_Undo"
 msgstr "撤销(_U)"
 
-#: ../gtksourceview/gtksourceview.c:1310
+#: ../gtksourceview/gtksourceview.c:1589
 msgid "All _Upper Case"
 msgstr "全部大写(_U)"
 
-#: ../gtksourceview/gtksourceview.c:1320
+#: ../gtksourceview/gtksourceview.c:1599
 msgid "All _Lower Case"
 msgstr "全部小写(_L)"
 
-#: ../gtksourceview/gtksourceview.c:1330
+#: ../gtksourceview/gtksourceview.c:1609
 msgid "_Invert Case"
 msgstr "反转大小写(_I)"
 
-#: ../gtksourceview/gtksourceview.c:1340
+#: ../gtksourceview/gtksourceview.c:1619
 msgid "_Title Case"
 msgstr "词首字母大写(_T)"
 
-#: ../gtksourceview/gtksourceview.c:1350
+#: ../gtksourceview/gtksourceview.c:1629
 msgid "C_hange Case"
 msgstr "更改大小写(_H)"
 
@@ -3999,6 +3408,634 @@ msgstr ""
 "李炜 <lw124124@gmail.com>, 2011\n"
 "YunQiang Su <wzssyqa@gmail.com>, 2010 - 2014\n"
 "Sphinx Jiang <yishanj13@gmail.com>, 2014"
+
+#~ msgid "GtkSourceView"
+#~ msgstr "GtkSourceView"
+
+#~ msgctxt "Object"
+#~ msgid "Name"
+#~ msgstr "名称"
+
+#~ msgid "The provider name"
+#~ msgstr "提供者名称"
+
+#~ msgid "Icon"
+#~ msgstr "图标"
+
+#~ msgid "The provider icon"
+#~ msgstr "提供者图标"
+
+#~ msgid "Proposals Batch Size"
+#~ msgstr "提案批次大小"
+
+#~ msgid "Number of proposals added in one batch"
+#~ msgstr "一批添加的提案数量"
+
+#~ msgid "Scan Batch Size"
+#~ msgstr "扫描批次大小"
+
+#~ msgid "Number of lines scanned in one batch"
+#~ msgstr "一批扫描的行数"
+
+#~ msgid "Minimum Word Size"
+#~ msgstr "单词大小的下限"
+
+#~ msgid "The minimum word size to complete"
+#~ msgstr "补全时单词大小的下限"
+
+#~ msgid "Interactive Delay"
+#~ msgstr "交互延时"
+
+#~ msgid "The delay before initiating interactive completion"
+#~ msgstr "开始交互式补全前的延时"
+
+#~ msgid "Priority"
+#~ msgstr "优先级"
+
+#~ msgid "Provider priority"
+#~ msgstr "提供者优先级"
+
+#~ msgid "Activation"
+#~ msgstr "动作"
+
+#~ msgid "The type of activation"
+#~ msgstr "动作类型"
+
+#~ msgid "Highlight Syntax"
+#~ msgstr "语法高亮"
+
+#~ msgid "Whether to highlight syntax in the buffer"
+#~ msgstr "是否在缓冲区突出显示语法"
+
+#~ msgid "Highlight Matching Brackets"
+#~ msgstr "加亮匹配的括号"
+
+#~ msgid "Whether to highlight matching brackets"
+#~ msgstr "是否加亮突出显示相匹配的括号"
+
+#~ msgid "Maximum Undo Levels"
+#~ msgstr "最多撤消级别"
+
+#~ msgid "Number of undo levels for the buffer"
+#~ msgstr "缓冲区中的撤消级别"
+
+#~ msgid "Language"
+#~ msgstr "语言"
+
+#~ msgid "Language object to get highlighting patterns from"
+#~ msgstr "用于获得加亮显示模式语言对象"
+
+#~ msgid "Can undo"
+#~ msgstr "可以撤消"
+
+#~ msgid "Whether Undo operation is possible"
+#~ msgstr "撤消操作是否可能"
+
+#~ msgid "Can redo"
+#~ msgstr "可以重做"
+
+#~ msgid "Whether Redo operation is possible"
+#~ msgstr "重做操作是否可能"
+
+#~ msgid "Style scheme"
+#~ msgstr "样式大纲"
+
+#~ msgid "Undo manager"
+#~ msgstr "撤销管理器"
+
+#~ msgid "The buffer undo manager"
+#~ msgstr "缓冲区撤销管理器"
+
+#~ msgid "Implicit trailing newline"
+#~ msgstr "隐藏行尾新行符"
+
+#~ msgid "View"
+#~ msgstr "查看器"
+
+#~ msgid "The GtkSourceView bound to the completion"
+#~ msgstr "GtkSourceView 补全的界限"
+
+#~ msgid "Remember Info Visibility"
+#~ msgstr "记住信息可见程度"
+
+#~ msgid "Remember the last info window visibility state"
+#~ msgstr "记住最后信息窗口的可见程度"
+
+#~ msgid "Select first proposal when completion is shown"
+#~ msgstr "在显示自动补全时，选择第一个建议"
+
+#~ msgid "Show Headers"
+#~ msgstr "显示头信息"
+
+#~ msgid ""
+#~ "Show provider headers when proposals from multiple providers are available"
+#~ msgstr "在有多个提供者的建议可用时显示提供者的开头信息"
+
+#~ msgid "Show Icons"
+#~ msgstr "显示图标"
+
+#~ msgid "Show provider and proposal icons in the completion popup"
+#~ msgstr "在补全弹出菜单中显示提供者及建议的图标"
+
+#~ msgid "Accelerators"
+#~ msgstr "加速器"
+
+#~ msgid "Number of proposal accelerators to show"
+#~ msgstr "显示的建议加速器的数目"
+
+#~ msgid "Auto Complete Delay"
+#~ msgstr "自动补全延时"
+
+#~ msgid "Completion popup delay for interactive completion"
+#~ msgstr "交互式补全的补全弹出菜单延时"
+
+#~ msgid "Provider Page Size"
+#~ msgstr "提供者的页面大小"
+
+#~ msgid "Provider scrolling page size"
+#~ msgstr "提供者滚动页面大小"
+
+#~ msgid "Proposal Page Size"
+#~ msgstr "建议的页面大小"
+
+#~ msgid "Proposal scrolling page size"
+#~ msgstr "提案滚动页面大小"
+
+#~ msgid "Completion"
+#~ msgstr "补全"
+
+#~ msgid "The completion object to which the context belongs"
+#~ msgstr "上下文属于的补全对象"
+
+#~ msgid "Iterator"
+#~ msgstr "迭代器"
+
+#~ msgid "The GtkTextIter at which the completion was invoked"
+#~ msgstr "GtkTextIter，在其上调用补全"
+
+#~ msgid "Label to be shown for this item"
+#~ msgstr "为此条目显示的标签"
+
+#~ msgid "Markup to be shown for this item"
+#~ msgstr "为此条目显示的标记"
+
+#~ msgid "Item text"
+#~ msgstr "条目文本"
+
+#~ msgid "Icon to be shown for this item"
+#~ msgstr "为此条目显示的图标"
+
+#~ msgid "Info"
+#~ msgstr "信息"
+
+#~ msgid "Info to be shown for this item"
+#~ msgstr "为此条目显示的信息"
+
+#~ msgid "Show detailed proposal information"
+#~ msgstr "显示详细建议信息"
+
+#~ msgid "_Details..."
+#~ msgstr "详情(_D)..."
+
+#~ msgid "Newline type"
+#~ msgstr "新行类型"
+
+#~ msgid "Compression type"
+#~ msgstr "压缩类型"
+
+#~ msgid "Input stream"
+#~ msgstr "输入流"
+
+#~ msgid "Flags"
+#~ msgstr "标识"
+
+#~ msgid "The gutters' GtkSourceView"
+#~ msgstr "gutters 的 GtkSourceView"
+
+#~ msgid "Window Type"
+#~ msgstr "窗口类型"
+
+#~ msgid "The gutters' text window type"
+#~ msgstr "gutters 的文本窗口类型"
+
+#~ msgid "X Padding"
+#~ msgstr "X 填充"
+
+#~ msgid "The x-padding"
+#~ msgstr "水平填充"
+
+#~ msgid "Y Padding"
+#~ msgstr "Y 填充"
+
+#~ msgid "The y-padding"
+#~ msgstr "竖直填充"
+
+#~ msgid "Visible"
+#~ msgstr "可见"
+
+#~ msgid "X Alignment"
+#~ msgstr "X 对齐"
+
+#~ msgid "The x-alignment"
+#~ msgstr "水平对齐"
+
+#~ msgid "Y Alignment"
+#~ msgstr "Y 对齐"
+
+#~ msgid "The y-alignment"
+#~ msgstr "竖直对齐"
+
+#~ msgid "The View"
+#~ msgstr "视图"
+
+#~ msgid "The view"
+#~ msgstr "视图"
+
+#~ msgid "Alignment Mode"
+#~ msgstr "对齐模式"
+
+#~ msgid "The alignment mode"
+#~ msgstr "对齐模式"
+
+#~ msgid "The window type"
+#~ msgstr "窗口类型"
+
+#~ msgid "Size"
+#~ msgstr "大小"
+
+#~ msgid "The size"
+#~ msgstr "大小"
+
+#~ msgid "Pixbuf"
+#~ msgstr "Pixbuf"
+
+#~ msgid "The pixbuf"
+#~ msgstr "Pixbuf"
+
+#~ msgid "Stock Id"
+#~ msgstr "Stock Id"
+
+#~ msgid "The stock id"
+#~ msgstr "Stock 的 ID"
+
+#~ msgid "Icon Name"
+#~ msgstr "图标名称"
+
+#~ msgid "The icon name"
+#~ msgstr "图标名称"
+
+#~ msgid "GIcon"
+#~ msgstr "GIcon"
+
+#~ msgid "The gicon"
+#~ msgstr "GIcon"
+
+#~ msgid "The markup"
+#~ msgstr "标记"
+
+#~ msgid "The text"
+#~ msgstr "文本"
+
+#~ msgid "Language id"
+#~ msgstr "语言 ID"
+
+#~ msgid "Language name"
+#~ msgstr "语言名称"
+
+#~ msgid "Language section"
+#~ msgstr "语言部分"
+
+#~ msgid "Hidden"
+#~ msgstr "隐藏"
+
+#~ msgid "Whether the language should be hidden from the user"
+#~ msgstr "是否向用户隐藏语言"
+
+#~ msgid "Language specification directories"
+#~ msgstr "语言规范目录"
+
+#~ msgid ""
+#~ "List of directories where the language specification files (.lang) are "
+#~ "located"
+#~ msgstr "列出语言规范文件(.lang)所在的目录"
+
+#~ msgid "Language ids"
+#~ msgstr "语言 ID"
+
+#~ msgid "List of the ids of the available languages"
+#~ msgstr "可用语言的 id 列表"
+
+#~ msgid "Background"
+#~ msgstr "背景"
+
+#~ msgid "The background"
+#~ msgstr "背景"
+
+#~ msgid "The GIcon"
+#~ msgstr "GIcon"
+
+#~ msgid "category"
+#~ msgstr "类别"
+
+#~ msgid "The mark category"
+#~ msgstr "标记的类别"
+
+#~ msgid "Source Buffer"
+#~ msgstr "源缓冲区"
+
+#~ msgid "The GtkSourceBuffer object to print"
+#~ msgstr "待打印的 GtkSourceBuffer 对象"
+
+#~ msgid "Tab Width"
+#~ msgstr "Tab 宽度"
+
+#~ msgid "Width of a tab character expressed in spaces"
+#~ msgstr "以空格记的 Tab 字符的宽度"
+
+#~ msgid "Wrap Mode"
+#~ msgstr "自动换行模式"
+
+#~ msgid ""
+#~ "Whether to wrap lines never, at word boundaries, or at character "
+#~ "boundaries."
+#~ msgstr "是否自动换行，从不、在词边界或在字符边界。"
+
+#~ msgid "Whether to print the document with highlighted syntax"
+#~ msgstr "是否以语法加亮方式打印文档"
+
+#~ msgid "Print Line Numbers"
+#~ msgstr "打印行号"
+
+#~ msgid "Interval of printed line numbers (0 means no numbers)"
+#~ msgstr "待打印行号的区间(0 代表无行号)"
+
+#~ msgid "Print Header"
+#~ msgstr "打印页眉"
+
+#~ msgid "Whether to print a header in each page"
+#~ msgstr "是否打印每页页眉"
+
+#~ msgid "Print Footer"
+#~ msgstr "打印页脚"
+
+#~ msgid "Whether to print a footer in each page"
+#~ msgstr "是否打印每页页脚"
+
+#~ msgid "Body Font Name"
+#~ msgstr "主体字体名"
+
+#~ msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
+#~ msgstr "文本主体使用的字体名(如 “Monospace 10”)"
+
+#~ msgid "Line Numbers Font Name"
+#~ msgstr "行号字体名"
+
+#~ msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
+#~ msgstr "行号使用的字体名(如 “Monospace 10”)"
+
+#~ msgid "Header Font Name"
+#~ msgstr "页眉字体名"
+
+#~ msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
+#~ msgstr "页眉使用的字体名(如 “Monospace 10”)"
+
+#~ msgid "Footer Font Name"
+#~ msgstr "页脚字体名"
+
+#~ msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
+#~ msgstr "页脚使用的字体名(如 “Monospace 10”)"
+
+#~ msgid "Number of pages"
+#~ msgstr "页数"
+
+#~ msgid ""
+#~ "The number of pages in the document (-1 means the document has not been "
+#~ "completely paginated)."
+#~ msgstr "文档的页数(-1代表文档未被完整分页)。"
+
+#~ msgid "Buffer"
+#~ msgstr "缓冲区"
+
+#~ msgid "The associated GtkSourceBuffer"
+#~ msgstr "关联的 GtkSourceBuffer"
+
+#~ msgid "Settings"
+#~ msgstr "设置"
+
+#~ msgid "The associated GtkSourceSearchSettings"
+#~ msgstr "关联的 GtkSourceSearchSettings"
+
+#~ msgid "Highlight"
+#~ msgstr "高亮"
+
+#~ msgid "Highlight search occurrences"
+#~ msgstr "高亮搜索内容出现的位置"
+
+#~ msgid "Occurrences count"
+#~ msgstr "出现次数"
+
+#~ msgid "Total number of search occurrences"
+#~ msgstr "总计搜索出现次数"
+
+#~ msgid "Regex error"
+#~ msgstr "正则表达式错误"
+
+#~ msgid "Regular expression error"
+#~ msgstr "正则表达式错误"
+
+#~ msgid "Search text"
+#~ msgstr "搜索文本"
+
+#~ msgid "The text to search"
+#~ msgstr "待搜索文本"
+
+#~ msgid "Case sensitive"
+#~ msgstr "区分大小写"
+
+#~ msgid "At word boundaries"
+#~ msgstr "字符边界"
+
+#~ msgid "Search at word boundaries"
+#~ msgstr "搜索时沿字符边界"
+
+#~ msgid "Wrap around"
+#~ msgstr "自动折行"
+
+#~ msgid "Regex enabled"
+#~ msgstr "启用正则表达式"
+
+#~ msgid "Whether to search by regular expression"
+#~ msgstr "是否按正则表达式搜索"
+
+#~ msgid "Line background"
+#~ msgstr "行背景"
+
+#~ msgid "Line background color"
+#~ msgstr "行背景颜色"
+
+#~ msgid "Background color"
+#~ msgstr "背景颜色"
+
+#~ msgid "Foreground"
+#~ msgstr "前景"
+
+#~ msgid "Foreground color"
+#~ msgstr "前景颜色"
+
+#~ msgid "Underline"
+#~ msgstr "下划线"
+
+#~ msgid "Strikethrough"
+#~ msgstr "删除线"
+
+#~ msgid "Scale"
+#~ msgstr "比例"
+
+#~ msgid "Text scale factor"
+#~ msgstr "文本缩放比例"
+
+#~ msgid "Line background set"
+#~ msgstr "行背景设定"
+
+#~ msgid "Whether line background color is set"
+#~ msgstr "是否设定行背景颜色"
+
+#~ msgid "Foreground set"
+#~ msgstr "前景设定"
+
+#~ msgid "Whether foreground color is set"
+#~ msgstr "是否设定了前景颜色"
+
+#~ msgid "Background set"
+#~ msgstr "背景设定"
+
+#~ msgid "Whether background color is set"
+#~ msgstr "是否设定了背景颜色"
+
+#~ msgid "Bold set"
+#~ msgstr "粗体设定"
+
+#~ msgid "Whether bold attribute is set"
+#~ msgstr "是否设定粗体属性"
+
+#~ msgid "Italic set"
+#~ msgstr "斜体设定"
+
+#~ msgid "Whether italic attribute is set"
+#~ msgstr "是否设定斜体属性"
+
+#~ msgid "Underline set"
+#~ msgstr "下划线设定"
+
+#~ msgid "Whether underline attribute is set"
+#~ msgstr "下划线属性是否设定"
+
+#~ msgid "Strikethrough set"
+#~ msgstr "删除线设定"
+
+#~ msgid "Whether strikethrough attribute is set"
+#~ msgstr "是否设定删除线属性"
+
+#~ msgid "Scale set"
+#~ msgstr "比例设定"
+
+#~ msgid "Whether scale attribute is set"
+#~ msgstr "是否设定比例属性"
+
+#~ msgid "Style scheme id"
+#~ msgstr "样式方案 id"
+
+#~ msgid "Style scheme name"
+#~ msgstr "样式方案名称"
+
+#~ msgid "Style scheme description"
+#~ msgstr "样式方案描述"
+
+#~ msgid "Style scheme filename"
+#~ msgstr "样式方案文件名"
+
+#~ msgid "Style scheme search path"
+#~ msgstr "样式方案搜索路径"
+
+#~ msgid "List of directories and files where the style schemes are located"
+#~ msgstr "样式方案所在的目录与文件的列表"
+
+#~ msgid "Scheme ids"
+#~ msgstr "方案 id"
+
+#~ msgid "List of the ids of the available style schemes"
+#~ msgstr "可用的样式方案的 id 的列表"
+
+#~ msgid "The completion object associated with the view"
+#~ msgstr "与此查看器有关的补全对象"
+
+#~ msgid "Show Line Numbers"
+#~ msgstr "显示行号"
+
+#~ msgid "Whether to display line numbers"
+#~ msgstr "是否显示行号"
+
+#~ msgid "Show Line Marks"
+#~ msgstr "显示行标记"
+
+#~ msgid "Whether to display line mark pixbufs"
+#~ msgstr "是否显示行标记 pixbuf"
+
+#~ msgid "Indent Width"
+#~ msgstr "缩进宽度"
+
+#~ msgid "Number of spaces to use for each step of indent"
+#~ msgstr "每级缩进的空格数"
+
+#~ msgid "Auto Indentation"
+#~ msgstr "自动缩进"
+
+#~ msgid "Whether to enable auto indentation"
+#~ msgstr "是否允许自动缩进"
+
+#~ msgid "Insert Spaces Instead of Tabs"
+#~ msgstr "插入空格替代制表符"
+
+#~ msgid "Whether to insert spaces instead of tabs"
+#~ msgstr "在插入时是否以空格替代制表符"
+
+#~ msgid "Show Right Margin"
+#~ msgstr "显示右边距"
+
+#~ msgid "Whether to display the right margin"
+#~ msgstr "是否显示右边界"
+
+#~ msgid "Right Margin Position"
+#~ msgstr "右边界位置"
+
+#~ msgid "Position of the right margin"
+#~ msgstr "右边界的位置"
+
+#~ msgid "Smart Home/End"
+#~ msgstr "智能 Home/End"
+
+#~ msgid ""
+#~ "HOME and END keys move to first/last non whitespace characters on line "
+#~ "before going to the start/end of the line"
+#~ msgstr "HOME 和 END 键将会跳到行内的第一个/最后一个字符，而不是跳到行首/尾"
+
+#~ msgid "Highlight current line"
+#~ msgstr "高亮显示当前行"
+
+#~ msgid "Whether to highlight the current line"
+#~ msgstr "是否高亮显示当前行"
+
+#~ msgid "Indent on tab"
+#~ msgstr "tab 缩进"
+
+#~ msgid "Whether to indent the selected text when the tab key is pressed"
+#~ msgstr "按下 tab 键时缩进选中文本"
+
+#~ msgid "Draw Spaces"
+#~ msgstr "绘制空格"
+
+#~ msgid "Set if and how the spaces should be visualized"
+#~ msgstr "设定是否将空格可见化"
 
 #~ msgid "The text buffer to add undo support on"
 #~ msgstr "用于提供撤销操作支持的文本缓冲区"
