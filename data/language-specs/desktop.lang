@@ -45,15 +45,12 @@
   </styles>
 
   <definitions>
-    <define-regex id="key-suffix">(?=(\[[a-zA-Z_]+\])?\s*=\s*)</define-regex>
+    <define-regex id="language">\[[a-zA-Z_]+@?[a-zA-Z_]*\]</define-regex>
+    <define-regex id="key-suffix">(?=(\%{language})?\s*=\s*)</define-regex>
 
     <context id="group" style-ref="group">
       <start>^\[</start>
       <end>\]$</end>
-    </context>
-
-    <context id="language" style-ref="language">
-      <match>\[[a-zA-Z_]+\]</match>
     </context>
 
     <context id="boolean" style-ref="boolean">
@@ -285,7 +282,7 @@
         <context ref="group"/>
         <context ref="key"/>
         <context id="lang-and-value" end-at-line-end="true">
-          <start>(\[[a-zA-Z_]+\])?\s*=\s*</start>
+          <start>(\%{language})?\s*=\s*</start>
           <include>
             <context sub-pattern="1" where="start" style-ref="language"/>
             <context ref="boolean"/>
