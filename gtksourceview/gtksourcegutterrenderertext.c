@@ -91,12 +91,12 @@ create_layout (GtkSourceGutterRendererText *renderer,
 }
 
 static void
-gutter_renderer_text_begin (GtkSourceGutterRenderer      *renderer,
-                            cairo_t                      *cr,
-                            GdkRectangle                 *background_area,
-                            GdkRectangle                 *cell_area,
-                            GtkTextIter                  *start,
-                            GtkTextIter                  *end)
+gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
+			    cairo_t                 *cr,
+			    GdkRectangle            *background_area,
+			    GdkRectangle            *cell_area,
+			    GtkTextIter             *start,
+			    GtkTextIter             *end)
 {
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
 
@@ -137,12 +137,12 @@ center_on (GtkSourceGutterRenderer *renderer,
 
 static void
 gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
-                           cairo_t                      *cr,
-                           GdkRectangle                 *background_area,
-                           GdkRectangle                 *cell_area,
-                           GtkTextIter                  *start,
-                           GtkTextIter                  *end,
-                           GtkSourceGutterRendererState  state)
+			   cairo_t                      *cr,
+			   GdkRectangle                 *background_area,
+			   GdkRectangle                 *cell_area,
+			   GtkTextIter                  *start,
+			   GtkTextIter                  *end,
+			   GtkSourceGutterRendererState  state)
 {
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
 	gint width;
@@ -185,7 +185,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 
 	attr_list = pango_layout_get_attributes (text->priv->cached_layout);
 
-	if (!attr_list)
+	if (attr_list == NULL)
 	{
 		pango_layout_set_attributes (text->priv->cached_layout,
 		                             pango_attr_list_copy (text->priv->cached_attr_list));
@@ -210,6 +210,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 			x = cell_area->x + (cell_area->width - width) * xalign;
 			y = cell_area->y + (cell_area->height - height) * yalign;
 			break;
+
 		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST:
 			center_on (renderer,
 			           cell_area,
@@ -221,6 +222,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 			           &x,
 			           &y);
 			break;
+
 		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_LAST:
 			center_on (renderer,
 			           cell_area,
@@ -232,6 +234,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 			           &x,
 			           &y);
 			break;
+
 		default:
 			g_assert_not_reached ();
 	}
@@ -265,26 +268,20 @@ measure_text (GtkSourceGutterRendererText *renderer,
               gint                        *width,
               gint                        *height)
 {
-	PangoLayout *layout;
-	GtkSourceGutterRenderer *r;
 	GtkTextView *view;
+	PangoLayout *layout;
 
-	r = GTK_SOURCE_GUTTER_RENDERER (renderer);
-	view = gtk_source_gutter_renderer_get_view (r);
+	view = gtk_source_gutter_renderer_get_view (GTK_SOURCE_GUTTER_RENDERER (renderer));
 
 	layout = gtk_widget_create_pango_layout (GTK_WIDGET (view), NULL);
 
-	if (markup)
+	if (markup != NULL)
 	{
-		pango_layout_set_markup (layout,
-		                         markup,
-		                         -1);
+		pango_layout_set_markup (layout, markup, -1);
 	}
 	else
 	{
-		pango_layout_set_text (layout,
-		                       text,
-		                       -1);
+		pango_layout_set_text (layout, text, -1);
 	}
 
 	pango_layout_get_pixel_size (layout, width, height);
@@ -294,10 +291,12 @@ measure_text (GtkSourceGutterRendererText *renderer,
 
 /**
  * gtk_source_gutter_renderer_text_measure:
- * @renderer: A #GtkSourceGutterRendererText
- * @text: the text to measure
- * @width: (out): The width of the text in pixels
- * @height: (out): The height of the text in pixels
+ * @renderer: a #GtkSourceGutterRendererText.
+ * @text: the text to measure.
+ * @width: (out) (optional): location to store the width of the text in pixels,
+ *   or %NULL.
+ * @height: (out) (optional): location to store the height of the text in
+ *   pixels, or %NULL.
  *
  * Measures the text provided using the pango layout used by the
  * #GtkSourceGutterRendererText.
@@ -316,10 +315,12 @@ gtk_source_gutter_renderer_text_measure (GtkSourceGutterRendererText *renderer,
 
 /**
  * gtk_source_gutter_renderer_text_measure_markup:
- * @renderer: A #GtkSourceGutterRendererText.
- * @markup: the pango markup to measure
- * @width: (out): The width of the text in pixels
- * @height: (out): The height of the text in pixels
+ * @renderer: a #GtkSourceGutterRendererText.
+ * @markup: the pango markup to measure.
+ * @width: (out) (optional): location to store the width of the text in pixels,
+ *   or %NULL.
+ * @height: (out) (optional): location to store the height of the text in
+ *   pixels, or %NULL.
  *
  * Measures the pango markup provided using the pango layout used by the
  * #GtkSourceGutterRendererText.
