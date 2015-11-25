@@ -346,8 +346,11 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		context = gtk_widget_get_style_context (GTK_WIDGET (priv->view));
 		gtk_style_context_save (context);
 		gtk_style_context_add_class (context, "view");
+		gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
 		G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
-		gtk_style_context_get_background_color (context, GTK_STATE_FLAG_SELECTED, &color);
+		gtk_style_context_get_background_color (context,
+							gtk_style_context_get_state (context),
+							&color);
 		G_GNUC_END_IGNORE_DEPRECATIONS;
 		gtk_style_context_restore (context);
 		background = gdk_rgba_to_string (&color);
