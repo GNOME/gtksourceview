@@ -1574,9 +1574,16 @@ style_context_changed (GtkStyleContext     *style_context,
 {
 	PangoFontDescription *font_desc = NULL;
 
-	gtk_style_context_get (style_context, GTK_STATE_FLAG_NORMAL,
+	gtk_style_context_save (style_context);
+	gtk_style_context_set_state (style_context, GTK_STATE_FLAG_NORMAL);
+
+	gtk_style_context_get (style_context,
+			       gtk_style_context_get_state (style_context),
 			       GTK_STYLE_PROPERTY_FONT, &font_desc,
 			       NULL);
+
+	gtk_style_context_restore (style_context);
+
 	/*
 	 * Work around issue where when a proposal provides "<b>markup</b>" and
 	 * the weight is set in the font description, the <b> markup will not
@@ -1591,9 +1598,11 @@ style_context_changed (GtkStyleContext     *style_context,
 	{
 		pango_font_description_unset_fields (font_desc, PANGO_FONT_MASK_WEIGHT);
 	}
+
 	g_object_set (completion->priv->cell_renderer_proposal,
 		      "font-desc", font_desc,
 		      NULL);
+
 	pango_font_description_free (font_desc);
 }
 
@@ -2067,10 +2076,19 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->priv->tree_view_proposals));
 
+	gtk_style_context_save (style_context);
+	gtk_style_context_set_state (style_context, GTK_STATE_FLAG_INSENSITIVE);
+
 	gtk_style_context_get (style_context,
-			       GTK_STATE_FLAG_INSENSITIVE,
+			       gtk_style_context_get_state (style_context),
 			       "background-color", &background_color,
 			       NULL);
+
+	gtk_style_context_get_color (style_context,
+				     gtk_style_context_get_state (style_context),
+				     &foreground_color);
+
+	gtk_style_context_restore (style_context);
 
 	g_object_set (cell_renderer,
 	              "cell-background-rgba", &background_color,
@@ -2092,10 +2110,6 @@ init_tree_view (GtkSourceCompletion *completion,
 					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
 					     "foreground-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
 					     NULL);
-
-	gtk_style_context_get_color (style_context,
-	                             GTK_STATE_FLAG_INSENSITIVE,
-	                             &foreground_color);
 
 	g_object_set (cell_renderer,
 	              "foreground-rgba", &foreground_color,
