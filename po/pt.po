@@ -117,7 +117,7 @@ msgstr "Todas"
 #: ../data/language-specs/verilog.lang.h:1
 #: ../data/language-specs/vhdl.lang.h:1
 msgid "Source"
-msgstr "Fonte"
+msgstr "Origem"
 
 #: ../data/language-specs/actionscript.lang.h:2
 msgid "ActionScript"
@@ -357,7 +357,7 @@ msgstr "Valor nulo"
 #: ../data/language-specs/sml.lang.h:11 ../data/language-specs/vala.lang.h:8
 #: ../data/language-specs/vbnet.lang.h:9 ../data/language-specs/vhdl.lang.h:8
 msgid "Boolean value"
-msgstr "Valor lógico"
+msgstr "Valor booliano"
 
 #. A generic number constant
 #: ../data/language-specs/actionscript.lang.h:13
@@ -817,7 +817,7 @@ msgstr "Variável especial"
 #: ../data/language-specs/sparql.lang.h:9
 #: ../data/language-specs/yaml.lang.h:12
 msgid "Boolean"
-msgstr "Lógico"
+msgstr "Booliano"
 
 #: ../data/language-specs/cg.lang.h:2
 msgid "CG Shader Language"
@@ -942,7 +942,7 @@ msgstr "Comando embutido"
 
 #: ../data/language-specs/cmake.lang.h:4
 msgid "Deprecated Builtin Command"
-msgstr "Comando embutido"
+msgstr "Comando embutido obsoleto"
 
 #: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/glsl.lang.h:8
 msgid "Builtin Variable"
@@ -2912,8 +2912,7 @@ msgstr "Erro durante a conversão: %s"
 #: ../gtksourceview/gtksourcebufferoutputstream.c:925
 #, c-format
 msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
-msgstr ""
-"Conversão do conjunto de caracteres \"%s\" para \"UTF-8\" não é suportada"
+msgstr "Conversão do conjunto de caracteres \"%s\" para \"UTF-8\" não é suportada"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:931
 #, c-format
