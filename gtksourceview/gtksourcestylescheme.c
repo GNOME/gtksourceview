@@ -913,10 +913,10 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 	if (style != NULL)
 	{
-		append_css_style (final_style, style, "border.top");
-		append_css_style (final_style, style, "border.right");
-		append_css_style (final_style, style, "border.bottom");
-		append_css_style (final_style, style, "border.left");
+		append_css_style (final_style, style, ".top");
+		append_css_style (final_style, style, ".right");
+		append_css_style (final_style, style, ".bottom");
+		append_css_style (final_style, style, ".left");
 
 		/* For the corners if the top or bottom gutter is also
 		 * displayed.
