@@ -5108,7 +5108,7 @@ gtk_source_view_realize (GtkWidget *widget)
 
 	if (view->priv->style_scheme != NULL && !view->priv->style_scheme_applied)
 	{
-		_gtk_source_style_scheme_apply (view->priv->style_scheme, widget);
+		_gtk_source_style_scheme_apply (view->priv->style_scheme, view);
 		view->priv->style_scheme_applied = TRUE;
 	}
 
@@ -5139,7 +5139,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 	{
 		if (view->priv->style_scheme != NULL)
 		{
-			_gtk_source_style_scheme_unapply (view->priv->style_scheme, GTK_WIDGET (view));
+			_gtk_source_style_scheme_unapply (view->priv->style_scheme, view);
 			g_object_unref (view->priv->style_scheme);
 		}
 
@@ -5151,7 +5151,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 
 		if (gtk_widget_get_realized (GTK_WIDGET (view)))
 		{
-			_gtk_source_style_scheme_apply (new_scheme, GTK_WIDGET (view));
+			_gtk_source_style_scheme_apply (new_scheme, view);
 			update_background_pattern_color (view);
 			update_current_line_color (view);
 			update_right_margin_colors (view);

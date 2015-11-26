@@ -750,23 +750,22 @@ get_css_provider_cursors (GtkSourceStyleScheme *scheme,
 /**
  * _gtk_source_style_scheme_apply:
  * @scheme:: a #GtkSourceStyleScheme.
- * @widget: a #GtkWidget to apply styles to.
+ * @view: a #GtkSourceView to apply styles to.
  *
- * Sets text colors from @scheme in the @widget.
+ * Sets style colors from @scheme to the @view.
  *
  * Since: 2.0
  */
 void
 _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
-				GtkWidget            *widget)
+				GtkSourceView        *view)
 {
 	GtkStyleContext *context;
 
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
-	g_return_if_fail (GTK_IS_WIDGET (widget));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	/* we need to translate some of the style scheme properties in a CSS override */
-	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
+	context = gtk_widget_get_style_context (GTK_WIDGET (view));
 	gtk_style_context_add_provider (context,
 	                                GTK_STYLE_PROVIDER (scheme->priv->css_provider),
 	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
@@ -781,7 +780,8 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	 */
 	if (scheme->priv->css_provider_cursors == NULL)
 	{
-		scheme->priv->css_provider_cursors = get_css_provider_cursors (scheme, widget);
+		scheme->priv->css_provider_cursors = get_css_provider_cursors (scheme,
+									       GTK_WIDGET (view));
 	}
 
 	if (scheme->priv->css_provider_cursors != NULL)
@@ -799,22 +799,22 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 /**
  * _gtk_source_style_scheme_unapply:
  * @scheme: (allow-none): a #GtkSourceStyleScheme or %NULL.
- * @widget: a #GtkWidget to unapply styles to.
+ * @view: a #GtkSourceView to unapply styles to.
  *
- * Removes the style from @scheme in the @widget.
+ * Removes the styles from @scheme in the @view.
  *
  * Since: 3.0
  */
 void
 _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
-                                  GtkWidget            *widget)
+				  GtkSourceView        *view)
 {
 	GtkStyleContext *context;
 
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
-	g_return_if_fail (GTK_IS_WIDGET (widget));
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	context = gtk_widget_get_style_context (GTK_WIDGET (widget));
+	context = gtk_widget_get_style_context (GTK_WIDGET (view));
 	gtk_style_context_remove_provider (context,
 	                                   GTK_STYLE_PROVIDER (scheme->priv->css_provider));
 
