@@ -1374,6 +1374,9 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
  * properties will be updated: the location, the encoding, the newline type and
  * the compression type.
  *
+ * Since the 3.20 version, gtk_text_buffer_set_modified() is called with %FALSE
+ * if the file has been saved successfully.
+ *
  * Returns: whether the file was saved successfully.
  * Since: 3.14
  */
@@ -1414,6 +1417,12 @@ gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
 			g_file_info_get_modification_time (saver->priv->info, &modification_time);
 			_gtk_source_file_set_modification_time (saver->priv->file, modification_time);
 		}
+	}
+
+	if (ok && saver->priv->source_buffer != NULL)
+	{
+		gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (saver->priv->source_buffer),
+					      FALSE);
 	}
 
 	reset (saver);
