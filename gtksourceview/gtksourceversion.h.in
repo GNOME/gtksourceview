@@ -83,16 +83,114 @@ G_BEGIN_DECLS
 #define _GTK_SOURCE_EXTERN extern
 #endif
 
+/**
+ * GTK_SOURCE_VERSION_3_0:
+ *
+ * A macro that evaluates to the 3.0 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_0 (G_ENCODE_VERSION (3, 0))
+
+/**
+ * GTK_SOURCE_VERSION_3_2:
+ *
+ * A macro that evaluates to the 3.2 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_2 (G_ENCODE_VERSION (3, 2))
+
+/**
+ * GTK_SOURCE_VERSION_3_4:
+ *
+ * A macro that evaluates to the 3.4 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_4 (G_ENCODE_VERSION (3, 4))
+
+/**
+ * GTK_SOURCE_VERSION_3_6:
+ *
+ * A macro that evaluates to the 3.6 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_6 (G_ENCODE_VERSION (3, 6))
+
+/**
+ * GTK_SOURCE_VERSION_3_8:
+ *
+ * A macro that evaluates to the 3.8 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_8 (G_ENCODE_VERSION (3, 8))
+
+/**
+ * GTK_SOURCE_VERSION_3_10:
+ *
+ * A macro that evaluates to the 3.10 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_10 (G_ENCODE_VERSION (3, 10))
+
+/**
+ * GTK_SOURCE_VERSION_3_12:
+ *
+ * A macro that evaluates to the 3.12 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_12 (G_ENCODE_VERSION (3, 12))
+
+/**
+ * GTK_SOURCE_VERSION_3_14:
+ *
+ * A macro that evaluates to the 3.14 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_14 (G_ENCODE_VERSION (3, 14))
+
+/**
+ * GTK_SOURCE_VERSION_3_16:
+ *
+ * A macro that evaluates to the 3.16 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_16 (G_ENCODE_VERSION (3, 16))
+
+/**
+ * GTK_SOURCE_VERSION_3_18:
+ *
+ * A macro that evaluates to the 3.18 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_18 (G_ENCODE_VERSION (3, 18))
+
+/**
+ * GTK_SOURCE_VERSION_3_20:
+ *
+ * A macro that evaluates to the 3.20 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 3.20
+ */
 #define GTK_SOURCE_VERSION_3_20 (G_ENCODE_VERSION (3, 20))
 
 #if (GTK_SOURCE_MINOR_VERSION % 2)
@@ -112,7 +210,7 @@ G_BEGIN_DECLS
  *
  * A macro that should be defined by the user prior to including
  * the gtksource.h header.
- * The definition should be one of the predefined GDK version
+ * The definition should be one of the predefined version
  * macros: %GTK_SOURCE_VERSION_3_0, %GTK_SOURCE_VERSION_3_2,...
  *
  * This macro defines the lower bound for the GtkSourceView API to use.
@@ -132,7 +230,7 @@ G_BEGIN_DECLS
  *
  * A macro that should be defined by the user prior to including
  * the gtksource.h header.
- * The definition should be one of the predefined GDK version
+ * The definition should be one of the predefined version
  * macros: %GTK_SOURCE_VERSION_3_0, %GTK_SOURCE_VERSION_3_2,...
  *
  * This macro defines the upper bound for the GtkSourceView API to use.
