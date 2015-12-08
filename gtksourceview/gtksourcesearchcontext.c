@@ -1045,7 +1045,7 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 	{
 		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
 	}
-	else if (!gtk_text_iter_begins_tag (&iter, search->priv->found_tag))
+	else if (!gtk_text_iter_starts_tag (&iter, search->priv->found_tag))
 	{
 		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
 		region_start = iter;
@@ -1175,7 +1175,7 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 		return TRUE;
 	}
 
-	if (gtk_text_iter_begins_tag (&iter, search->priv->found_tag) ||
+	if (gtk_text_iter_starts_tag (&iter, search->priv->found_tag) ||
 	    (!gtk_text_iter_has_tag (&iter, search->priv->found_tag) &&
 	     !gtk_text_iter_ends_tag (&iter, search->priv->found_tag)))
 	{
@@ -1321,7 +1321,7 @@ adjust_subregion (GtkSourceSearchContext *search,
 			GtkTextIter tag_end = *start;
 			GtkTextRegion *region;
 
-			if (!gtk_text_iter_begins_tag (&tag_start, search->priv->found_tag))
+			if (!gtk_text_iter_starts_tag (&tag_start, search->priv->found_tag))
 			{
 				gtk_text_iter_backward_to_tag_toggle (&tag_start, search->priv->found_tag);
 			}
@@ -1363,7 +1363,7 @@ adjust_subregion (GtkSourceSearchContext *search,
 		{
 			/* 'end' is in a correct match, we can skip it. */
 
-			if (!gtk_text_iter_begins_tag (end, search->priv->found_tag))
+			if (!gtk_text_iter_starts_tag (end, search->priv->found_tag))
 			{
 				gtk_text_iter_backward_to_tag_toggle (end, search->priv->found_tag);
 			}
@@ -1374,7 +1374,7 @@ adjust_subregion (GtkSourceSearchContext *search,
 			GtkTextIter tag_end = *end;
 			GtkTextRegion *region;
 
-			if (!gtk_text_iter_begins_tag (&tag_start, search->priv->found_tag))
+			if (!gtk_text_iter_starts_tag (&tag_start, search->priv->found_tag))
 			{
 				gtk_text_iter_backward_to_tag_toggle (&tag_start, search->priv->found_tag);
 			}
@@ -1449,7 +1449,7 @@ smart_forward_search_without_scanning (GtkSourceSearchContext *search,
 		{
 			gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
 		}
-		else if (!gtk_text_iter_begins_tag (&iter, search->priv->found_tag))
+		else if (!gtk_text_iter_starts_tag (&iter, search->priv->found_tag))
 		{
 			gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
 		}
@@ -1491,13 +1491,13 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 	GtkTextIter match_end;
 
 	if (gtk_text_iter_has_tag (start, search->priv->found_tag) &&
-	    !gtk_text_iter_begins_tag (start, search->priv->found_tag))
+	    !gtk_text_iter_starts_tag (start, search->priv->found_tag))
 	{
 		gtk_text_iter_backward_to_tag_toggle (start, search->priv->found_tag);
 	}
 
 	if (gtk_text_iter_has_tag (end, search->priv->found_tag) &&
-	    !gtk_text_iter_begins_tag (end, search->priv->found_tag))
+	    !gtk_text_iter_starts_tag (end, search->priv->found_tag))
 	{
 		gtk_text_iter_forward_to_tag_toggle (end, search->priv->found_tag);
 	}
@@ -2173,7 +2173,7 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 	{
 		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
 	}
-	else if (!gtk_text_iter_begins_tag (&iter, search->priv->found_tag))
+	else if (!gtk_text_iter_starts_tag (&iter, search->priv->found_tag))
 	{
 		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
 		region_start = iter;
@@ -2266,7 +2266,7 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 	GtkTextIter region_end = *start_at;
 	GtkTextRegion *region = NULL;
 
-	if (gtk_text_iter_begins_tag (&iter, search->priv->found_tag) ||
+	if (gtk_text_iter_starts_tag (&iter, search->priv->found_tag) ||
 	    (!gtk_text_iter_has_tag (&iter, search->priv->found_tag) &&
 	     !gtk_text_iter_ends_tag (&iter, search->priv->found_tag)))
 	{

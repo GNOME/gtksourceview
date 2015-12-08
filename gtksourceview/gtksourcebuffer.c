@@ -3020,7 +3020,7 @@ _gtk_source_buffer_has_invalid_chars (GtkSourceBuffer *buffer)
 
 	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &start);
 
-	if (gtk_text_iter_begins_tag (&start, buffer->priv->invalid_char_tag) ||
+	if (gtk_text_iter_starts_tag (&start, buffer->priv->invalid_char_tag) ||
 	    gtk_text_iter_forward_to_tag_toggle (&start, buffer->priv->invalid_char_tag))
 	{
 		return TRUE;
