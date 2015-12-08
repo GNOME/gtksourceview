@@ -56,6 +56,10 @@
  * #GtkSourceCompletion machinery, you don't need to worry about this.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <gtksourceview/gtksourcecompletioninfo.h>
 #include "gtksourceview-i18n.h"
 

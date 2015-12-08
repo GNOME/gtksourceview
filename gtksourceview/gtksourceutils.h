@@ -23,10 +23,14 @@
 #define __GTK_SOURCE_UTILS_H__
 
 #include <glib-object.h>
+#include <gtksourceview/gtksourceversion.h>
 
 G_BEGIN_DECLS
 
+GTK_SOURCE_AVAILABLE_IN_3_10
 gchar		*gtk_source_utils_unescape_search_text		(const gchar	*text);
+
+GTK_SOURCE_AVAILABLE_IN_3_10
 gchar		*gtk_source_utils_escape_search_text		(const gchar	*text);
 
 G_END_DECLS

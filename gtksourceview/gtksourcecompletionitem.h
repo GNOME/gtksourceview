@@ -47,19 +47,22 @@ struct _GtkSourceCompletionItemClass {
 	GObjectClass parent_class;
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType 			 gtk_source_completion_item_get_type 		(void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompletionItem *gtk_source_completion_item_new 		(const gchar *label,
 									 const gchar *text,
 									 GdkPixbuf   *icon,
 									 const gchar *info);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompletionItem *gtk_source_completion_item_new_with_markup	(const gchar *markup,
 									 const gchar *text,
 									 GdkPixbuf   *icon,
 									 const gchar *info);
 
-G_DEPRECATED_FOR (gtk_source_completion_item_new)
+GTK_SOURCE_DEPRECATED_IN_3_10_FOR (gtk_source_completion_item_new)
 GtkSourceCompletionItem *gtk_source_completion_item_new_from_stock	(const gchar *label,
 								 	 const gchar *text,
 								 	 const gchar *stock,

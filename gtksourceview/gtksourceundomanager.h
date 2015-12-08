@@ -56,18 +56,31 @@ struct _GtkSourceUndoManagerIface
 	void     (*can_redo_changed)          (GtkSourceUndoManager *manager);
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType     gtk_source_undo_manager_get_type                  (void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean  gtk_source_undo_manager_can_undo                  (GtkSourceUndoManager *manager);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean  gtk_source_undo_manager_can_redo                  (GtkSourceUndoManager *manager);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void      gtk_source_undo_manager_undo                      (GtkSourceUndoManager *manager);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 void      gtk_source_undo_manager_redo                      (GtkSourceUndoManager *manager);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void      gtk_source_undo_manager_begin_not_undoable_action (GtkSourceUndoManager *manager);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 void      gtk_source_undo_manager_end_not_undoable_action   (GtkSourceUndoManager *manager);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void      gtk_source_undo_manager_can_undo_changed          (GtkSourceUndoManager *manager);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 void      gtk_source_undo_manager_can_redo_changed          (GtkSourceUndoManager *manager);
 
 G_END_DECLS

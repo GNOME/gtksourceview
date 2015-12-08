@@ -177,12 +177,13 @@ libgtksourceview_3_0_la_LIBADD = 					\
 	$(DEP_LIBS) $(GTK_MAC_LIBS)
 
 libgtksourceview_3_0_la_CFLAGS = 	\
+	$(HIDDEN_VISIBILITY_CFLAGS)	\
 	$(CODE_COVERAGE_CFLAGS)
 
 libgtksourceview_3_0_la_LDFLAGS =		\
 	-version-info $(GSV_LT_VERSION)		\
 	-no-undefined 				\
-	-export-symbols-regex "^gtk_source_.*"	\
+	-export-dynamic				\
 	$(WARN_LDFLAGS)				\
 	$(CODE_COVERAGE_LDFLAGS)
 
@@ -203,6 +204,7 @@ stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_public_header
 	$(AM_V_GEN) (cd $(srcdir) \
 	 && $(GLIB_MKENUMS) \
 			--fhead "#include <glib-object.h>\n" \
+			--fhead "#include \"gtksourceversion.h\"\n" \
 			--fhead "#include \"gtksourceview-typebuiltins.h\"\n\n" \
 			--fprod "\n/* enumerations from \"@filename@\" */" \
 			--vhead "static const G@Type@Value _@enum_name@_values[] = {" \

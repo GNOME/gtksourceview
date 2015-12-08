@@ -20,6 +20,13 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include "gtksourcecompletionprovider.h"
+#include "gtksourcecompletionproposal.h"
+#include "gtksourcecompletioninfo.h"
 
 /**
  * SECTION:completionprovider
@@ -35,10 +42,6 @@
  * should return a value different from %NULL, if they all return %NULL no icon
  * will be used.
  */
-
-#include "gtksourcecompletionprovider.h"
-#include "gtksourcecompletionproposal.h"
-#include "gtksourcecompletioninfo.h"
 
 typedef GtkSourceCompletionProviderIface GtkSourceCompletionProviderInterface;
 

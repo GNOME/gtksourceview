@@ -49,34 +49,40 @@ struct _GtkSourceGutterClass
 	GObjectClass parent_class;
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType gtk_source_gutter_get_type 		(void) G_GNUC_CONST;
 
-G_DEPRECATED_FOR (gtk_text_view_get_window)
+GTK_SOURCE_DEPRECATED_IN_3_10_FOR (gtk_text_view_get_window)
 GdkWindow *gtk_source_gutter_get_window 	(GtkSourceGutter         *gutter);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean gtk_source_gutter_insert               (GtkSourceGutter         *gutter,
                                                  GtkSourceGutterRenderer *renderer,
                                                  gint                     position);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_gutter_reorder			(GtkSourceGutter	 *gutter,
                                                  GtkSourceGutterRenderer *renderer,
                                                  gint                     position);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_gutter_remove			(GtkSourceGutter         *gutter,
                                                  GtkSourceGutterRenderer *renderer);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_gutter_queue_draw		(GtkSourceGutter         *gutter);
 
-G_DEPRECATED_FOR (gtk_source_gutter_renderer_set_padding)
+GTK_SOURCE_DEPRECATED_IN_3_12_FOR (gtk_source_gutter_renderer_set_padding)
 void gtk_source_gutter_set_padding              (GtkSourceGutter         *gutter,
                                                  gint                     xpad,
                                                  gint                     ypad);
 
-G_DEPRECATED_FOR (gtk_source_gutter_renderer_get_padding)
+GTK_SOURCE_DEPRECATED_IN_3_12_FOR (gtk_source_gutter_renderer_get_padding)
 void gtk_source_gutter_get_padding              (GtkSourceGutter         *gutter,
                                                  gint                    *xpad,
                                                  gint                    *ypad);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceGutterRenderer *
      gtk_source_gutter_get_renderer_at_pos      (GtkSourceGutter         *gutter,
                                                  gint                     x,

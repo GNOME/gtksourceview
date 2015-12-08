@@ -36,8 +36,10 @@ G_BEGIN_DECLS
 
 typedef struct _GtkSourceStyleClass GtkSourceStyleClass;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType		 gtk_source_style_get_type	(void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyle	*gtk_source_style_copy		(const GtkSourceStyle *style);
 
 G_END_DECLS

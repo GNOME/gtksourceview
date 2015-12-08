@@ -23,6 +23,7 @@
 #define __GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_H__
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
@@ -47,8 +48,10 @@ struct _GtkSourceStyleSchemeChooserButtonClass
 	GtkButtonClass parent;
 };
 
+GTK_SOURCE_AVAILABLE_IN_3_16
 GType                 gtk_source_style_scheme_chooser_button_get_type              (void);
 
+GTK_SOURCE_AVAILABLE_IN_3_16
 GtkWidget            *gtk_source_style_scheme_chooser_button_new                   (void);
 
 G_END_DECLS

@@ -19,6 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#include "gtksourceiter.h"
+
 /* GtkTextIter functions. Contains forward/backward functions for word
  * movements, with custom word boundaries that are used for word selection
  * (double-click) and cursor movements (Ctrl+left, Ctrl+right, etc).  The
@@ -31,8 +33,6 @@
  * https://mail.gnome.org/archives/gtk-devel-list/2014-September/msg00019.html
  * https://bugzilla.gnome.org/show_bug.cgi?id=111503
  */
-
-#include "gtksourceiter.h"
 
 /* Go to the end of the next or current "full word". A full word is a group of
  * non-blank chars.

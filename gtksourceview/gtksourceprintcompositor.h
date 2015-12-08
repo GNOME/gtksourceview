@@ -54,115 +54,164 @@ struct _GtkSourcePrintCompositorClass
 	void (*_gtk_source_reserved2) (void);
 };
 
-
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType			  gtk_source_print_compositor_get_type		(void) G_GNUC_CONST;
 
-/* Constructors
- */
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourcePrintCompositor *gtk_source_print_compositor_new		(GtkSourceBuffer          *buffer);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourcePrintCompositor *gtk_source_print_compositor_new_from_view	(GtkSourceView            *view);
 
-/* Properties */
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceBuffer   	 *gtk_source_print_compositor_get_buffer	(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_tab_width	(GtkSourcePrintCompositor *compositor,
 									 guint                     width);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 guint			  gtk_source_print_compositor_get_tab_width	(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_wrap_mode	(GtkSourcePrintCompositor *compositor,
 									 GtkWrapMode               wrap_mode);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkWrapMode		  gtk_source_print_compositor_get_wrap_mode	(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_highlight_syntax
 									(GtkSourcePrintCompositor *compositor,
 									 gboolean                  highlight);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean		  gtk_source_print_compositor_get_highlight_syntax
 									(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_print_line_numbers
 									(GtkSourcePrintCompositor *compositor,
 									 guint                     interval);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 guint			  gtk_source_print_compositor_get_print_line_numbers
 									(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_body_font_name
 									(GtkSourcePrintCompositor *compositor,
 									 const gchar              *font_name);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 gchar			 *gtk_source_print_compositor_get_body_font_name
 									(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_line_numbers_font_name
 									(GtkSourcePrintCompositor *compositor,
 									 const gchar              *font_name);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 gchar			 *gtk_source_print_compositor_get_line_numbers_font_name
 									(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_header_font_name
 									(GtkSourcePrintCompositor *compositor,
 									 const gchar              *font_name);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 gchar			 *gtk_source_print_compositor_get_header_font_name
 									(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_footer_font_name
 									(GtkSourcePrintCompositor *compositor,
 									 const gchar              *font_name);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 gchar			 *gtk_source_print_compositor_get_footer_font_name
 									(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gdouble			  gtk_source_print_compositor_get_top_margin	(GtkSourcePrintCompositor *compositor,
 									 GtkUnit                   unit);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_top_margin	(GtkSourcePrintCompositor *compositor,
 									 gdouble                   margin,
 									 GtkUnit                   unit);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gdouble			  gtk_source_print_compositor_get_bottom_margin	(GtkSourcePrintCompositor *compositor,
 									 GtkUnit                   unit);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_bottom_margin	(GtkSourcePrintCompositor *compositor,
 									 gdouble                   margin,
 									 GtkUnit                   unit);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gdouble			  gtk_source_print_compositor_get_left_margin	(GtkSourcePrintCompositor *compositor,
 									 GtkUnit                   unit);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_left_margin	(GtkSourcePrintCompositor *compositor,
 									 gdouble                   margin,
 									 GtkUnit                   unit);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gdouble			  gtk_source_print_compositor_get_right_margin	(GtkSourcePrintCompositor *compositor,
 									 GtkUnit                   unit);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_right_margin	(GtkSourcePrintCompositor *compositor,
 									 gdouble                   margin,
 									 GtkUnit                   unit);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_print_header	(GtkSourcePrintCompositor *compositor,
 									 gboolean                  print);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean		  gtk_source_print_compositor_get_print_header	(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_print_footer	(GtkSourcePrintCompositor *compositor,
 									 gboolean                  print);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean		  gtk_source_print_compositor_get_print_footer	(GtkSourcePrintCompositor *compositor);
 
-/* format strings are strftime like */
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_header_format	(GtkSourcePrintCompositor *compositor,
 									 gboolean                  separator,
 									 const gchar              *left,
 									 const gchar              *center,
 									 const gchar              *right);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_set_footer_format	(GtkSourcePrintCompositor *compositor,
 									 gboolean                  separator,
 									 const gchar              *left,
 									 const gchar              *center,
 									 const gchar              *right);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gint			  gtk_source_print_compositor_get_n_pages	(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean		  gtk_source_print_compositor_paginate		(GtkSourcePrintCompositor *compositor,
 									 GtkPrintContext          *context);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gdouble			  gtk_source_print_compositor_get_pagination_progress
 									(GtkSourcePrintCompositor *compositor);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_print_compositor_draw_page		(GtkSourcePrintCompositor *compositor,
 									 GtkPrintContext          *context,
 									 gint                      page_nr);
@@ -170,6 +219,3 @@ void			  gtk_source_print_compositor_draw_page		(GtkSourcePrintCompositor *compo
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_PRINT_COMPOSITOR_H__ */
-
-
-

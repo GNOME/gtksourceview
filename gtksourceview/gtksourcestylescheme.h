@@ -52,18 +52,25 @@ struct _GtkSourceStyleSchemeClass
 	void (*_gtk_source_reserved2) (void);
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType			 gtk_source_style_scheme_get_type			(void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar             *gtk_source_style_scheme_get_id				(GtkSourceStyleScheme *scheme);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar             *gtk_source_style_scheme_get_name			(GtkSourceStyleScheme *scheme);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar             *gtk_source_style_scheme_get_description		(GtkSourceStyleScheme *scheme);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar * const *	 gtk_source_style_scheme_get_authors			(GtkSourceStyleScheme *scheme);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar             *gtk_source_style_scheme_get_filename			(GtkSourceStyleScheme *scheme);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyle		*gtk_source_style_scheme_get_style			(GtkSourceStyleScheme *scheme,
 										 const gchar          *style_id);
 

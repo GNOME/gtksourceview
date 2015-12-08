@@ -28,6 +28,10 @@
  * #GtkSourceCompletionProposal interface.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "gtksourcecompletionitem.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourceview-i18n.h"

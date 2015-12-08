@@ -49,13 +49,17 @@ struct _GtkSourceMapClass
 	gpointer padding[10];
 };
 
-GType                    gtk_source_map_get_type	(void);
+GTK_SOURCE_AVAILABLE_IN_3_18
+GType			 gtk_source_map_get_type	(void);
 
+GTK_SOURCE_AVAILABLE_IN_3_18
 GtkWidget		*gtk_source_map_new		(void);
 
+GTK_SOURCE_AVAILABLE_IN_3_18
 void			 gtk_source_map_set_view	(GtkSourceMap  *map,
-                                                         GtkSourceView *view);
+							 GtkSourceView *view);
 
+GTK_SOURCE_AVAILABLE_IN_3_18
 GtkSourceView		*gtk_source_map_get_view	(GtkSourceMap  *map);
 
 G_END_DECLS

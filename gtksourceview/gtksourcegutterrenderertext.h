@@ -56,23 +56,29 @@ struct _GtkSourceGutterRendererTextClass
 	/*< public >*/
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType gtk_source_gutter_renderer_text_get_type (void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceGutterRenderer *gtk_source_gutter_renderer_text_new (void);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_gutter_renderer_text_set_markup (GtkSourceGutterRendererText *renderer,
                                                  const gchar                 *markup,
                                                  gint                         length);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_gutter_renderer_text_set_text (GtkSourceGutterRendererText *renderer,
                                                const gchar                 *text,
                                                gint                         length);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_gutter_renderer_text_measure (GtkSourceGutterRendererText *renderer,
                                               const gchar                 *text,
                                               gint                        *width,
                                               gint                        *height);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_gutter_renderer_text_measure_markup (GtkSourceGutterRendererText *renderer,
                                                      const gchar                 *markup,
                                                      gint                        *width,

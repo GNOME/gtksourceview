@@ -8,7 +8,10 @@ DOC_MODULE = gtksourceview-3.0
 DOC_MAIN_SGML_FILE = gtksourceview-docs.xml
 
 # Extra options to supply to gtkdoc-scan
-SCAN_OPTIONS = --deprecated-guards='GTKSOURCEVIEW_DISABLE_DEPRECATED' --rebuild-types
+SCAN_OPTIONS =								\
+	--deprecated-guards='GTKSOURCEVIEW_DISABLE_DEPRECATED' \	\
+	--rebuild-types							\
+	--ignore-decorators='GTK_SOURCE_DEPRECATED\w*\s*\([^)]*\)|GTK_SOURCE_DEPRECATED\w*|GTK_SOURCE_AVAILABLE\w*'
 
 # The directory containing the source code. Relative to $(srcdir)
 DOC_SOURCE_DIR = $(top_srcdir)/gtksourceview

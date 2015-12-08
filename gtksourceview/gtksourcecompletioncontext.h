@@ -71,23 +71,29 @@ struct _GtkSourceCompletionContextClass {
 	void (*_gtk_source_reserved3) (void);
 };
 
-GType gtk_source_completion_context_get_type (void) G_GNUC_CONST;
+GTK_SOURCE_AVAILABLE_IN_ALL
+GType		 gtk_source_completion_context_get_type (void) G_GNUC_CONST;
 
-void 		 gtk_source_completion_context_add_proposals 	(GtkSourceCompletionContext   *context,
+GTK_SOURCE_AVAILABLE_IN_ALL
+void		 gtk_source_completion_context_add_proposals 	(GtkSourceCompletionContext   *context,
 								 GtkSourceCompletionProvider  *provider,
 								 GList                        *proposals,
 								 gboolean                      finished);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean	 gtk_source_completion_context_get_iter		(GtkSourceCompletionContext   *context,
 								 GtkTextIter                  *iter);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompletionActivation
 		 gtk_source_completion_context_get_activation	(GtkSourceCompletionContext   *context);
 
+G_GNUC_INTERNAL
 GtkSourceCompletionContext *
 		_gtk_source_completion_context_new		(GtkSourceCompletion          *completion,
 								 GtkTextIter                  *position);
 
+G_GNUC_INTERNAL
 void		_gtk_source_completion_context_cancel		(GtkSourceCompletionContext   *context);
 
 G_END_DECLS

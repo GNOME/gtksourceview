@@ -54,15 +54,21 @@ struct _GtkSourceMarkClass
 	void (*_gtk_source_reserved2) (void);
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType		 gtk_source_mark_get_type (void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceMark   *gtk_source_mark_new		(const gchar	*name,
 						 const gchar	*category);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar	*gtk_source_mark_get_category	(GtkSourceMark	*mark);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceMark	*gtk_source_mark_next		(GtkSourceMark	*mark,
 						 const gchar	*category);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceMark	*gtk_source_mark_prev		(GtkSourceMark	*mark,
 						 const gchar	*category);
 

@@ -56,42 +56,58 @@ struct _GtkSourceMarkAttributesClass
 	/*< public >*/
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType gtk_source_mark_attributes_get_type (void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceMarkAttributes *gtk_source_mark_attributes_new (void);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void             gtk_source_mark_attributes_set_background      (GtkSourceMarkAttributes *attributes,
                                                                  const GdkRGBA           *background);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean         gtk_source_mark_attributes_get_background      (GtkSourceMarkAttributes *attributes,
                                                                  GdkRGBA                 *background);
 
-G_DEPRECATED
+GTK_SOURCE_DEPRECATED_IN_3_10
 void             gtk_source_mark_attributes_set_stock_id        (GtkSourceMarkAttributes *attributes,
                                                                  const gchar             *stock_id);
 
-G_DEPRECATED
+GTK_SOURCE_DEPRECATED_IN_3_10
 const gchar     *gtk_source_mark_attributes_get_stock_id        (GtkSourceMarkAttributes *attributes);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void             gtk_source_mark_attributes_set_icon_name       (GtkSourceMarkAttributes *attributes,
                                                                  const gchar             *icon_name);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar     *gtk_source_mark_attributes_get_icon_name       (GtkSourceMarkAttributes *attributes);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void             gtk_source_mark_attributes_set_gicon           (GtkSourceMarkAttributes *attributes,
                                                                  GIcon                   *gicon);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 GIcon           *gtk_source_mark_attributes_get_gicon           (GtkSourceMarkAttributes *attributes);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void             gtk_source_mark_attributes_set_pixbuf          (GtkSourceMarkAttributes *attributes,
                                                                  const GdkPixbuf         *pixbuf);
+
+GTK_SOURCE_AVAILABLE_IN_ALL
 const GdkPixbuf *gtk_source_mark_attributes_get_pixbuf          (GtkSourceMarkAttributes *attributes);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const GdkPixbuf *gtk_source_mark_attributes_render_icon         (GtkSourceMarkAttributes *attributes,
                                                                  GtkWidget               *widget,
                                                                  gint                   size);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gchar           *gtk_source_mark_attributes_get_tooltip_text    (GtkSourceMarkAttributes *attributes,
                                                                  GtkSourceMark           *mark);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 gchar           *gtk_source_mark_attributes_get_tooltip_markup  (GtkSourceMarkAttributes *attributes,
                                                                  GtkSourceMark           *mark);
 

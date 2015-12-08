@@ -23,6 +23,7 @@
 #define __GTK_SOURCE_TYPES_H__
 
 #include <gio/gio.h>
+#include <gtksourceview/gtksourceversion.h>
 
 G_BEGIN_DECLS
 

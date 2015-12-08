@@ -60,6 +60,10 @@
  * #GtkTextBuffer with gtk_text_iter_get_buffer().
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "gtksourcecompletioncontext.h"
 #include "gtksourceview-typebuiltins.h"
 #include "gtksourcecompletionprovider.h"
@@ -91,7 +95,7 @@ enum
 	NUM_SIGNALS
 };
 
-guint context_signals[NUM_SIGNALS] = {0,};
+static guint context_signals[NUM_SIGNALS] = {0,};
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionContext, gtk_source_completion_context, G_TYPE_INITIALLY_UNOWNED)
 

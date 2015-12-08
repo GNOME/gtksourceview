@@ -55,30 +55,34 @@ struct _GtkSourceLanguageManagerClass
 	void (*_gtk_source_reserved4) (void);
 };
 
-
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType			  gtk_source_language_manager_get_type			(void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceLanguageManager *gtk_source_language_manager_new			(void);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceLanguageManager *gtk_source_language_manager_get_default		(void);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar * const *	  gtk_source_language_manager_get_search_path		(GtkSourceLanguageManager *lm);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			  gtk_source_language_manager_set_search_path		(GtkSourceLanguageManager *lm,
 										 gchar                   **dirs);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar * const *	  gtk_source_language_manager_get_language_ids		(GtkSourceLanguageManager *lm);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceLanguage	 *gtk_source_language_manager_get_language		(GtkSourceLanguageManager *lm,
 										 const gchar              *id);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceLanguage	 *gtk_source_language_manager_guess_language		(GtkSourceLanguageManager *lm,
 										 const gchar		  *filename,
 										 const gchar		  *content_type);
 
-
-
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_LANGUAGE_MANAGER_H__ */
-

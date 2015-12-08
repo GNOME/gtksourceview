@@ -41,6 +41,7 @@ struct _GtkSourceTagClass
 	gpointer padding[10];
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkTextTag *	gtk_source_tag_new		(const gchar *name);
 
 G_END_DECLS

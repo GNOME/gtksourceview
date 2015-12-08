@@ -18,7 +18,9 @@
  * along with GtkSourceView. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include "gtksourcestyleschemechooser.h"
 #include "gtksourcestylescheme.h"

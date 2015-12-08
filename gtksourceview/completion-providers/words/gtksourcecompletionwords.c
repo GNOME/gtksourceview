@@ -30,6 +30,10 @@
  * appearing in the registered #GtkTextBuffer<!-- -->s.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "gtksourcecompletionwords.h"
 #include "gtksourcecompletionwordslibrary.h"
 #include "gtksourcecompletionwordsbuffer.h"

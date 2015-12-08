@@ -20,6 +20,12 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include "gtksourcecompletionproposal.h"
+
 /**
  * SECTION:completionproposal
  * @title: GtkSourceCompletionProposal
@@ -39,8 +45,6 @@
  * should return a value different from %NULL, if they all return %NULL no icon
  * will be used.
  */
-
-#include "gtksourcecompletionproposal.h"
 
 /* Signals */
 enum

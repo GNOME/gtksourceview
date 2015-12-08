@@ -55,29 +55,39 @@ struct _GtkSourceStyleSchemeManagerClass
 	void (*_gtk_source_reserved4) (void);
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType			 gtk_source_style_scheme_manager_get_type		(void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyleSchemeManager *
 			 gtk_source_style_scheme_manager_new			(void);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyleSchemeManager *
 			 gtk_source_style_scheme_manager_get_default		(void);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			 gtk_source_style_scheme_manager_set_search_path	(GtkSourceStyleSchemeManager	*manager,
 						    				 gchar			       **path);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void 			 gtk_source_style_scheme_manager_append_search_path	(GtkSourceStyleSchemeManager	*manager,
 						    				 const gchar			*path);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void 			 gtk_source_style_scheme_manager_prepend_search_path	(GtkSourceStyleSchemeManager	*manager,
 						    				 const gchar			*path);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar * const *	 gtk_source_style_scheme_manager_get_search_path	(GtkSourceStyleSchemeManager	*manager);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void			 gtk_source_style_scheme_manager_force_rescan		(GtkSourceStyleSchemeManager	*manager);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar * const *	 gtk_source_style_scheme_manager_get_scheme_ids		(GtkSourceStyleSchemeManager	*manager);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyleScheme	*gtk_source_style_scheme_manager_get_scheme		(GtkSourceStyleSchemeManager	*manager,
 										 const gchar			*scheme_id);
 

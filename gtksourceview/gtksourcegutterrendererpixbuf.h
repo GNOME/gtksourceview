@@ -56,30 +56,38 @@ struct _GtkSourceGutterRendererPixbufClass
 	/*< public >*/
 };
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType gtk_source_gutter_renderer_pixbuf_get_type (void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceGutterRenderer *gtk_source_gutter_renderer_pixbuf_new (void);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void         gtk_source_gutter_renderer_pixbuf_set_pixbuf       (GtkSourceGutterRendererPixbuf *renderer,
                                                                  GdkPixbuf                     *pixbuf);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GdkPixbuf   *gtk_source_gutter_renderer_pixbuf_get_pixbuf       (GtkSourceGutterRendererPixbuf *renderer);
 
-G_DEPRECATED
+GTK_SOURCE_DEPRECATED_IN_3_10
 void         gtk_source_gutter_renderer_pixbuf_set_stock_id     (GtkSourceGutterRendererPixbuf *renderer,
                                                                  const gchar                   *stock_id);
 
-G_DEPRECATED
+GTK_SOURCE_DEPRECATED_IN_3_10
 const gchar *gtk_source_gutter_renderer_pixbuf_get_stock_id     (GtkSourceGutterRendererPixbuf *renderer);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void         gtk_source_gutter_renderer_pixbuf_set_gicon        (GtkSourceGutterRendererPixbuf *renderer,
                                                                  GIcon                         *icon);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GIcon       *gtk_source_gutter_renderer_pixbuf_get_gicon        (GtkSourceGutterRendererPixbuf *renderer);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 void         gtk_source_gutter_renderer_pixbuf_set_icon_name    (GtkSourceGutterRendererPixbuf *renderer,
                                                                  const gchar                   *icon_name);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar *gtk_source_gutter_renderer_pixbuf_get_icon_name    (GtkSourceGutterRendererPixbuf *renderer);
 
 G_END_DECLS
