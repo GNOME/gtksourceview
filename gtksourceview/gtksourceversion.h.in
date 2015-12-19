@@ -220,8 +220,13 @@ G_BEGIN_DECLS
  * This macro defines the lower bound for the GtkSourceView API to use.
  *
  * If a function has been deprecated in a newer version of GtkSourceView,
- * it is possible to use this symbol to avoid the compiler warnings
- * without disabling warning for every deprecated function.
+ * defining this symbol hides the compiler warnings for those functions
+ * without disabling warnings for the other deprecated functions.
+ *
+ * <warning>
+ * Warning: if you define this macro, do not forget to update it! Especially
+ * when writing new code. Otherwise you can miss the new deprecations.
+ * </warning>
  *
  * Since: 3.20
  */
