@@ -172,6 +172,7 @@ gtk_source_tag_init (GtkSourceTag *tag)
  * use.
  *
  * Returns: a new #GtkSourceTag.
+ * Since: 3.20
  */
 GtkTextTag *
 gtk_source_tag_new (const gchar *name)
