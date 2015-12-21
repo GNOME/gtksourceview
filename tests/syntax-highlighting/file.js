@@ -13,6 +13,12 @@ var matches = /abc/.exec('Alphabet ... that should contain abc, right?');
 a = [thing / thing, thing / thing];
 x = a /b/ c / d;
 
+// Character groups with backslashes:
+/[ab\\]/ // a, b or \
+/[ab\]]/ // a, b or ]
+/\\[ab]/ // a or b preceded by \
+/\[ab]/  // Literally "[ab]"
+
 // Template strings
 // ----------------
 // Template strings are delimited by back-ticks (grave accent) and

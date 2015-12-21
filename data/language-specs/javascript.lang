@@ -58,8 +58,11 @@
     </context>
 
     <context id="regex-bracketed" style-ref="escape" style-inside="true">
-      <start>(?&lt;!\\)[[]</start>
-      <end>(?&lt;!\\)]</end>
+      <start>\[</start>
+      <end>]</end>
+      <include>
+        <context ref="escape"/>
+      </include>
     </context>
 
     <!--contexts used in the main context-->
