@@ -203,6 +203,9 @@ gtksourceview-typebuiltins.c: stamp-gtksourceview-typebuiltins.c
 stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_public_headers)
 	$(AM_V_GEN) (cd $(srcdir) \
 	 && $(GLIB_MKENUMS) \
+			--fhead "#ifdef HAVE_CONFIG_H\n" \
+			--fhead "#include \"config.h\"\n" \
+			--fhead "#endif\n\n" \
 			--fhead "#include <glib-object.h>\n" \
 			--fhead "#include \"gtksourceversion.h\"\n" \
 			--fhead "#include \"gtksourceview-typebuiltins.h\"\n\n" \
@@ -233,6 +236,7 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_public_header
 			--fprod "#include <gtksourceview/@filename@>\n" \
 			--eprod "G_BEGIN_DECLS\n" \
 			--eprod "#define GTK_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
+			--eprod "GTK_SOURCE_ENUM_EXTERN\n" \
 			--eprod "GType @enum_name@_get_type (void);\n" \
 			--eprod "G_END_DECLS\n\n" \
 		$(libgtksourceview_public_headers) ) > xgen-gth \

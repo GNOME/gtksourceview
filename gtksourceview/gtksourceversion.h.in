@@ -83,6 +83,10 @@ G_BEGIN_DECLS
 #define _GTK_SOURCE_EXTERN extern
 #endif
 
+#ifndef __GTK_DOC_IGNORE__
+#define GTK_SOURCE_ENUM_EXTERN _GTK_SOURCE_EXTERN
+#endif
+
 /**
  * GTK_SOURCE_VERSION_3_0:
  *
