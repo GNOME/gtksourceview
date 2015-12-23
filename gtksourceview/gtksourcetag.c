@@ -21,6 +21,10 @@
  * Author: Sébastien Wilmet
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "gtksourcetag.h"
 
 /**
