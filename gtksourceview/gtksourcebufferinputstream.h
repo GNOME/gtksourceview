@@ -52,19 +52,19 @@ struct _GtkSourceBufferInputStreamClass
 	GInputStreamClass parent_class;
 };
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GType		 _gtk_source_buffer_input_stream_get_type		(void) G_GNUC_CONST;
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GtkSourceBufferInputStream
 		*_gtk_source_buffer_input_stream_new			(GtkTextBuffer              *buffer,
 									 GtkSourceNewlineType        type,
 									 gboolean                    add_trailing_newline);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 gsize		 _gtk_source_buffer_input_stream_get_total_size		(GtkSourceBufferInputStream *stream);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 gsize		 _gtk_source_buffer_input_stream_tell			(GtkSourceBufferInputStream *stream);
 
 G_END_DECLS

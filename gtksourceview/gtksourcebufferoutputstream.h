@@ -52,23 +52,23 @@ struct _GtkSourceBufferOutputStreamClass
 	GOutputStreamClass parent_class;
 };
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GType			 gtk_source_buffer_output_stream_get_type	(void) G_GNUC_CONST;
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GtkSourceBufferOutputStream
 			*gtk_source_buffer_output_stream_new		(GtkSourceBuffer             *buffer,
 									 GSList                      *candidate_encodings,
 									 gboolean                     remove_trailing_newline);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GtkSourceNewlineType	 gtk_source_buffer_output_stream_detect_newline_type
 									(GtkSourceBufferOutputStream *stream);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 const GtkSourceEncoding	*gtk_source_buffer_output_stream_get_guessed	(GtkSourceBufferOutputStream *stream);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 guint			 gtk_source_buffer_output_stream_get_num_fallbacks
 									(GtkSourceBufferOutputStream *stream);
 

@@ -25,6 +25,8 @@
 #include <glib-object.h>
 #include <gtksourceview/gtksourcecompletionproposal.h>
 
+#include "gtksourceview/gtksourcetypes-private.h"
+
 G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL			(gtk_source_completion_words_proposal_get_type ())
@@ -49,20 +51,20 @@ struct _GtkSourceCompletionWordsProposalClass {
 	GObjectClass parent_class;
 };
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GType		 gtk_source_completion_words_proposal_get_type	(void) G_GNUC_CONST;
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GtkSourceCompletionWordsProposal *
 		 gtk_source_completion_words_proposal_new 	(const gchar                      *word);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 const gchar 	*gtk_source_completion_words_proposal_get_word 	(GtkSourceCompletionWordsProposal *proposal);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 void		 gtk_source_completion_words_proposal_use 	(GtkSourceCompletionWordsProposal *proposal);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 void		 gtk_source_completion_words_proposal_unuse 	(GtkSourceCompletionWordsProposal *proposal);
 
 G_END_DECLS

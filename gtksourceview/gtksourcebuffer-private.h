@@ -24,54 +24,55 @@
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes.h"
+#include "gtksourcetypes-private.h"
 
 G_BEGIN_DECLS
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 void			 _gtk_source_buffer_update_highlight		(GtkSourceBuffer        *buffer,
 									 const GtkTextIter      *start,
 									 const GtkTextIter      *end,
 									 gboolean                synchronous);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GtkSourceMark		*_gtk_source_buffer_source_mark_next		(GtkSourceBuffer        *buffer,
 									 GtkSourceMark          *mark,
 									 const gchar            *category);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GtkSourceMark		*_gtk_source_buffer_source_mark_prev		(GtkSourceBuffer        *buffer,
 									 GtkSourceMark          *mark,
 									 const gchar            *category);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GtkTextTag		*_gtk_source_buffer_get_bracket_match_tag	(GtkSourceBuffer        *buffer);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 void			 _gtk_source_buffer_add_search_context		(GtkSourceBuffer        *buffer,
 									 GtkSourceSearchContext *search_context);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 void			 _gtk_source_buffer_set_as_invalid_character	(GtkSourceBuffer        *buffer,
 									 const GtkTextIter      *start,
 									 const GtkTextIter      *end);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 gboolean		 _gtk_source_buffer_has_invalid_chars		(GtkSourceBuffer        *buffer);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GtkSourceBracketMatchType
 			 _gtk_source_buffer_find_bracket_match		(GtkSourceBuffer        *buffer,
 									 const GtkTextIter      *pos,
 									 GtkTextIter            *bracket,
 									 GtkTextIter            *bracket_match);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 void			 _gtk_source_buffer_save_and_clear_selection	(GtkSourceBuffer        *buffer);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 void			 _gtk_source_buffer_restore_selection		(GtkSourceBuffer        *buffer);
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 gboolean		 _gtk_source_buffer_is_undo_redo_enabled	(GtkSourceBuffer        *buffer);
 
 G_END_DECLS

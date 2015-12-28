@@ -23,6 +23,7 @@
 #define __GTK_SOURCE_ENCODING_PRIVATE_H__
 
 #include <glib.h>
+#include "gtksourcetypes-private.h"
 
 G_BEGIN_DECLS
 
@@ -42,7 +43,7 @@ typedef enum _GtkSourceEncodingDuplicates
 	GTK_SOURCE_ENCODING_DUPLICATES_KEEP_LAST
 } GtkSourceEncodingDuplicates;
 
-G_GNUC_INTERNAL
+GTK_SOURCE_INTERNAL
 GSList *		_gtk_source_encoding_remove_duplicates		(GSList                      *encodings,
 									 GtkSourceEncodingDuplicates  removal_type);
 
