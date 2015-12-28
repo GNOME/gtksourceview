@@ -41,20 +41,12 @@ typedef struct _GtkSourceGutterRendererMarksClass	GtkSourceGutterRendererMarksCl
 
 struct _GtkSourceGutterRendererMarks
 {
-	/*< private >*/
 	GtkSourceGutterRendererPixbuf parent;
-
-	gpointer priv; /* unused for now */
-
-	/*< public >*/
 };
 
 struct _GtkSourceGutterRendererMarksClass
 {
-	/*< private >*/
 	GtkSourceGutterRendererPixbufClass parent_class;
-
-	/*< public >*/
 };
 
 G_GNUC_INTERNAL
