@@ -1451,9 +1451,9 @@ redraw_for_window (GtkSourceGutter *gutter,
                    gint             y)
 {
 	Renderer *at_x = NULL;
+	gint start = 0;
 	GList *item;
 	gboolean redraw;
-	gint start;
 
 	if (event->window != get_window (gutter) && act_on_window)
 	{
