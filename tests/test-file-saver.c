@@ -34,19 +34,16 @@
 #define ACCESSPERMS (S_IRWXU|S_IRWXG|S_IRWXO)
 #endif
 
-#define DEFAULT_LOCAL_URI "/tmp/gtksourceview-file-saver-test.txt"
-#define DEFAULT_REMOTE_URI "sftp://localhost/tmp/gtksourceview-file-saver-test.txt"
+#define DEFAULT_REMOTE_URI_DIR "sftp://localhost/tmp/"
+#define DEFAULT_TEST_TEXT_FILE "gtksourceview-file-saver-test.txt"
+#define DEFAULT_TEST_UNOWNED_TEXT_FILE "gtksourceview-file-saver-unowned-group.txt"
+#define DEFAULT_UNOWNED_DIR "gtksourceview-file-saver-unowned"
+
+#define DEFAULT_REMOTE_URI DEFAULT_REMOTE_URI_DIR DEFAULT_TEST_TEXT_FILE
 #define DEFAULT_CONTENT "hello world!"
 #define DEFAULT_CONTENT_RESULT "hello world!\n"
 
-#define UNOWNED_LOCAL_DIRECTORY "/tmp/gtksourceview-file-saver-unowned"
-#define UNOWNED_LOCAL_URI "/tmp/gtksourceview-file-saver-unowned/gtksourceview-file-saver-test.txt"
-
-#define UNOWNED_REMOTE_DIRECTORY "sftp://localhost/tmp/gtksourceview-file-saver-unowned"
-#define UNOWNED_REMOTE_URI "sftp://localhost/tmp/gtksourceview-file-saver-unowned/gtksourceview-file-saver-test.txt"
-
-#define UNOWNED_GROUP_LOCAL_URI "/tmp/gtksourceview-file-saver-unowned-group.txt"
-#define UNOWNED_GROUP_REMOTE_URI "sftp://localhost/tmp/gtksourceview-file-saver-unowned-group.txt"
+#define UNOWNED_REMOTE_DIRECTORY DEFAULT_REMOTE_URI_DIR DEFAULT_UNOWNED_DIR
 
 typedef struct _SaverTestData SaverTestData;
 typedef void (*SavedCallback) (SaverTestData *data);
@@ -272,32 +269,44 @@ test_new_line (const gchar *filename)
 static void
 test_local_newline (void)
 {
-	test_new_line (DEFAULT_LOCAL_URI);
+	gchar *default_local_uri;
+
+	default_local_uri = g_build_filename (g_get_tmp_dir (),
+	                                      DEFAULT_TEST_TEXT_FILE,
+	                                      NULL);
+	test_new_line (default_local_uri);
+	g_free (default_local_uri);
 }
 
 static void
 test_local (void)
 {
-	test_saver (DEFAULT_LOCAL_URI,
+	gchar *default_local_uri;
+
+	default_local_uri = g_build_filename (g_get_tmp_dir (),
+	                                      DEFAULT_TEST_TEXT_FILE,
+	                                      NULL);
+	test_saver (default_local_uri,
 	            "hello world",
 		    "hello world\n",
 	            GTK_SOURCE_NEWLINE_TYPE_LF,
 		    NULL,
 		    NULL);
 
-	test_saver (DEFAULT_LOCAL_URI,
+	test_saver (default_local_uri,
 	            "hello world\r\n",
 		    "hello world\n\n",
 	            GTK_SOURCE_NEWLINE_TYPE_LF,
 		    NULL,
 		    NULL);
 
-	test_saver (DEFAULT_LOCAL_URI,
+	test_saver (default_local_uri,
 	            "hello world\n",
 		    "hello world\n\n",
 	            GTK_SOURCE_NEWLINE_TYPE_LF,
 		    NULL,
 		    NULL);
+	g_free (default_local_uri);
 }
 
 static void
@@ -415,33 +424,52 @@ test_permissions (const gchar *uri,
 static void
 test_local_permissions (void)
 {
-	test_permissions (DEFAULT_LOCAL_URI, 0600);
-	test_permissions (DEFAULT_LOCAL_URI, 0660);
-	test_permissions (DEFAULT_LOCAL_URI, 0666);
-	test_permissions (DEFAULT_LOCAL_URI, 0760);
+	gchar *default_local_uri;
+
+	default_local_uri = g_build_filename (g_get_tmp_dir (),
+	                                      DEFAULT_TEST_TEXT_FILE,
+	                                      NULL);
+	test_permissions (default_local_uri, 0600);
+	test_permissions (default_local_uri, 0660);
+	test_permissions (default_local_uri, 0666);
+	test_permissions (default_local_uri, 0760);
+	g_free (default_local_uri);
 }
 #endif
 
 static void
 test_local_unowned_directory (void)
 {
-	test_saver (UNOWNED_LOCAL_URI,
+	gchar *unowned_local_uri;
+
+	unowned_local_uri = g_build_filename (g_get_tmp_dir (),
+	                                             DEFAULT_UNOWNED_DIR,
+	                                             DEFAULT_TEST_TEXT_FILE,
+                                                 NULL);
+	test_saver (unowned_local_uri,
 	            DEFAULT_CONTENT,
 		    DEFAULT_CONTENT_RESULT,
 	            GTK_SOURCE_NEWLINE_TYPE_LF,
 		    NULL,
 		    NULL);
+	g_free (unowned_local_uri);
 }
 
 static void
 test_remote_unowned_directory (void)
 {
-	test_saver (UNOWNED_REMOTE_URI,
+	gchar *unowned_remote_uri;
+
+	unowned_remote_uri = g_strconcat (UNOWNED_REMOTE_DIRECTORY,
+	                                  DEFAULT_TEST_TEXT_FILE,
+	                                  NULL);
+	test_saver (unowned_remote_uri,
 	            DEFAULT_CONTENT,
 		    DEFAULT_CONTENT_RESULT,
 	            GTK_SOURCE_NEWLINE_TYPE_LF,
 		    NULL,
 		    NULL);
+	g_free (unowned_remote_uri);
 }
 
 #ifndef G_OS_WIN32
@@ -494,14 +522,26 @@ test_unowned_group (const gchar *uri)
 static void
 test_local_unowned_group (void)
 {
-	test_unowned_group (UNOWNED_GROUP_LOCAL_URI);
+	gchar *unowned_group_local_uri;
+
+	unowned_group_local_uri = g_build_filename (g_get_tmp_dir (),
+	                                            DEFAULT_TEST_UNOWNED_TEXT_FILE,
+	                                            NULL);
+	test_unowned_group (unowned_group_local_uri);
+	g_free (unowned_group_local_uri);
 }
 
 #if 0
 static void
 test_remote_unowned_group (void)
 {
-	test_unowned_group (UNOWNED_GROUP_REMOTE_URI);
+	g_char *unowned_group_remote_uri;
+
+	unowned_group_remote_uri = g_strconcat (DEFAULT_REMOTE_URI_DIR,
+	                                        DEFAULT_TEST_UNOWNED_TEXT_FILE,
+	                                        NULL);
+	test_unowned_group ();
+	g_free (unowned_group_remote_uri);
 }
 #endif
 
@@ -510,11 +550,16 @@ test_remote_unowned_group (void)
 static gboolean
 check_unowned_directory (void)
 {
-	GFile *unowned = g_file_new_for_path (UNOWNED_LOCAL_DIRECTORY);
-	GFile *unowned_file;
+	gchar *unowned_local_directory, *unowned_local_uri;
+	GFile *unowned, *unowned_file;
 	GFileInfo *info;
 	GError *error = NULL;
 
+	unowned_local_directory = g_build_filename (g_get_tmp_dir (),
+	                                            DEFAULT_UNOWNED_DIR,
+	                                            NULL);
+	unowned = g_file_new_for_path (unowned_local_directory);
+	g_free (unowned_local_directory);
 	g_printf ("*** Checking for unowned directory test... ");
 
 	info = g_file_query_info (unowned,
@@ -543,14 +588,18 @@ check_unowned_directory (void)
 
 	g_object_unref (info);
 	g_object_unref (unowned);
-
-	unowned_file = g_file_new_for_commandline_arg (UNOWNED_LOCAL_URI);
+	unowned_local_uri = g_build_filename (g_get_tmp_dir (),
+	                                      DEFAULT_UNOWNED_DIR,
+	                                      DEFAULT_TEST_TEXT_FILE,
+	                                      NULL);
+	unowned_file = g_file_new_for_commandline_arg (unowned_local_uri);
 
 	info = g_file_query_info (unowned_file,
 	                          G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
 	                          G_FILE_QUERY_INFO_NONE,
 	                          NULL,
 	                          &error);
+	g_free (unowned_local_uri);
 
 	if (error)
 	{
@@ -580,9 +629,15 @@ check_unowned_directory (void)
 static gboolean
 check_unowned_group (void)
 {
-	GFile *unowned = g_file_new_for_path (UNOWNED_GROUP_LOCAL_URI);
+	gchar *unowned_group_local_uri;
+	GFile *unowned;
 	GFileInfo *info;
 	GError *error = NULL;
+
+	unowned_group_local_uri = g_build_filename (g_get_tmp_dir (),
+	                                            DEFAULT_TEST_UNOWNED_TEXT_FILE,
+	                                            NULL);
+	unowned = g_file_new_for_path (unowned_group_local_uri);
 
 	g_printf ("*** Checking for unowned group test... ");
 
@@ -593,6 +648,7 @@ check_unowned_group (void)
 	                          G_FILE_QUERY_INFO_NONE,
 	                          NULL,
 	                          &error);
+	g_free (unowned_group_local_uri);
 
 	if (error)
 	{
