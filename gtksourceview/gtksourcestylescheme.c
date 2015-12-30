@@ -906,7 +906,7 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	append_css_style (final_style, style, "text, .view");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
-	append_css_style (final_style, style, "textview:selected:focused");
+	append_css_style (final_style, style, "textview:selected:focus");
 
 	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
 	append_css_style (final_style,
