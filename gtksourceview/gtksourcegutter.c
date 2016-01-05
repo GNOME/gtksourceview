@@ -970,9 +970,8 @@ apply_style (GtkSourceGutter *gutter,
 	 * are not set by gtk.
 	 */
 	gtk_style_context_add_class (style_context, class);
-
 	gtk_style_context_get_color (style_context,
-	                             gtk_widget_get_state_flags (GTK_WIDGET (view)),
+	                             gtk_style_context_get_state (style_context),
 	                             &fg_color);
 
 	gdk_cairo_set_source_rgba (cr, &fg_color);
