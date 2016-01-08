@@ -5,18 +5,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <CopyConfigH>copy ..\..\..\config.h.win32 ..\..\..\config.h</CopyConfigH>
-    <GenerateEnums>
-cd ..
-
+    <GenerateEnums>cd ..
 CALL gen-enums.bat $(GlibEtcInstallRoot)
-
 cd $(SolutionDir)
     </GenerateEnums>
-    <GenerateRsrcSrc>
-$(GlibEtcInstallRoot)\bin\glib-compile-resources --target=..\..\..\gtksourceview\gtksourceview-resources.c --generate-source --sourcedir=..\..\..\gtksourceview ..\..\..\gtksourceview\gtksourceview.gresource.xml
-    </GenerateRsrcSrc>
-    <GenGtksourceVersionH>
-$(PythonPath)\python.exe ..\replace.py --action=replace-var --input=..\..\..\gtksourceview\gtksourceversion.h.in --output=..\..\..\gtksourceview\gtksourceversion.h.tmp1 --var=GTK_SOURCE_MAJOR_VERSION --outstring=@GTK_SOURCE_MAJOR_VERSION@
+    <GenerateRsrcSrc>$(GlibEtcInstallRoot)\bin\glib-compile-resources --target=..\..\..\gtksourceview\gtksourceview-resources.c --generate-source --sourcedir=..\..\..\gtksourceview ..\..\..\gtksourceview\gtksourceview.gresource.xml</GenerateRsrcSrc>
+    <GenGtksourceVersionH>$(PythonPath)\python.exe ..\replace.py --action=replace-var --input=..\..\..\gtksourceview\gtksourceversion.h.in --output=..\..\..\gtksourceview\gtksourceversion.h.tmp1 --var=GTK_SOURCE_MAJOR_VERSION --outstring=@GTK_SOURCE_MAJOR_VERSION@
 $(PythonPath)\python.exe ..\replace.py --action=replace-var --input=..\..\..\gtksourceview\gtksourceversion.h.tmp1 --output=..\..\..\gtksourceview\gtksourceversion.h.tmp2 --var=GTK_SOURCE_MINOR_VERSION --outstring=@GTK_SOURCE_MINOR_VERSION@
 $(PythonPath)\python.exe ..\replace.py --action=replace-var --input=..\..\..\gtksourceview\gtksourceversion.h.tmp2 --output=..\..\..\gtksourceview\gtksourceversion.h --var=GTK_SOURCE_MICRO_VERSION --outstring=@GTK_SOURCE_MICRO_VERSION@
 del ..\..\..\gtksourceview\gtksourceversion.h.tmp1 ..\..\..\gtksourceview\gtksourceversion.h.tmp2
