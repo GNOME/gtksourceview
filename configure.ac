@@ -45,7 +45,7 @@ AC_SUBST(GSV_LT_VERSION)
 
 # Dependencies
 glib_req=2.47.0
-gtk_req=3.19.4
+gtk_req=3.19.6
 libxml_req=2.6.0
 gladeui_req=3.9
 

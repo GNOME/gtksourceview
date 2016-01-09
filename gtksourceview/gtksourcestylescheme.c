@@ -700,8 +700,8 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 	secondary_color_str = gdk_rgba_to_string (&secondary_color);
 
 	css = g_strdup_printf ("textview {\n"
-			       "\t-GtkWidget-cursor-color: %s;\n"
-			       "\t-GtkWidget-secondary-cursor-color: %s;\n"
+			       "\t-caret-color: %s;\n"
+			       "\t-gtk-secondary-caret-color: %s;\n"
 			       "}\n",
 			       primary_color_str,
 			       secondary_color_str);
