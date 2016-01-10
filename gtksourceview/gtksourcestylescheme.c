@@ -699,8 +699,8 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 	primary_color_str = gdk_rgba_to_string (&primary_color);
 	secondary_color_str = gdk_rgba_to_string (&secondary_color);
 
-	css = g_strdup_printf ("textview {\n"
-			       "\t-caret-color: %s;\n"
+	css = g_strdup_printf ("textview text {\n"
+			       "\tcaret-color: %s;\n"
 			       "\t-gtk-secondary-caret-color: %s;\n"
 			       "}\n",
 			       primary_color_str,
@@ -903,24 +903,21 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	final_style = g_string_new ("");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
-	append_css_style (final_style, style, "text, .view");
+	append_css_style (final_style, style, "textview text");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
-	append_css_style (final_style, style, "textview:selected:focus");
+	append_css_style (final_style, style, "textview:focused text selection");
 
 	style2 = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED_UNFOCUSED);
 	append_css_style (final_style,
 			  style2 != NULL ? style2 : style,
-			  "textview:selected");
+			  "textview text selection");
 
 	/* For now we use "line numbers" colors for all the gutters */
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 	if (style != NULL)
 	{
-		append_css_style (final_style, style, ".top");
-		append_css_style (final_style, style, ".right");
-		append_css_style (final_style, style, ".bottom");
-		append_css_style (final_style, style, ".left");
+		append_css_style (final_style, style, "textview border");
 
 		/* For the corners if the top or bottom gutter is also
 		 * displayed.
@@ -939,9 +936,9 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 		GError *error = NULL;
 
 		if (!gtk_css_provider_load_from_data (scheme->priv->css_provider,
-						      final_style->str,
+		                                      final_style->str,
 		                                      final_style->len,
-						      &error))
+		                                      &error))
 		{
 			g_warning ("%s", error->message);
 			g_error_free (error);
