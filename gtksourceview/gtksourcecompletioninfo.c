@@ -72,7 +72,7 @@ struct _GtkSourceCompletionInfoPrivate
 
 	gint xoffset;
 
-	gboolean transient_set;
+	guint transient_set : 1;
 };
 
 /* Signals */
@@ -238,7 +238,6 @@ set_attached_to (GtkSourceCompletionInfo *info,
 		return;
 	}
 
-	info->priv->transient_set = FALSE;
 	g_object_add_weak_pointer (G_OBJECT (attached_to),
 				   (gpointer *) &info->priv->attached_to);
 
@@ -247,6 +246,8 @@ set_attached_to (GtkSourceCompletionInfo *info,
 					  "focus-out-event",
 					  G_CALLBACK (focus_out_event_cb),
 					  info);
+
+	info->priv->transient_set = FALSE;
 }
 
 static void
@@ -296,12 +297,11 @@ gtk_source_completion_info_dispose (GObject *object)
 static void
 gtk_source_completion_info_show (GtkWidget *widget)
 {
-	GtkSourceCompletionInfo *info;
+	GtkSourceCompletionInfo *info = GTK_SOURCE_COMPLETION_INFO (widget);
 
 	/* First emit BEFORE_SHOW and then chain up */
-	g_signal_emit (widget, signals[BEFORE_SHOW], 0);
+	g_signal_emit (info, signals[BEFORE_SHOW], 0);
 
-	info = GTK_SOURCE_COMPLETION_INFO (widget);
 	if (info->priv->attached_to != NULL && !info->priv->transient_set)
 	{
 		GtkWidget *toplevel;
@@ -314,6 +314,7 @@ gtk_source_completion_info_show (GtkWidget *widget)
 			info->priv->transient_set = TRUE;
 		}
 	}
+
 	GTK_WIDGET_CLASS (gtk_source_completion_info_parent_class)->show (widget);
 }
 
