@@ -6,6 +6,7 @@
  Author: Scott Martin <scott@coffeeblack.org>
  Copyright (C) 2004 Scott Martin <scott@coffeeblack.org>
  Copyright (C) 2010 Patryk Zawadzki <patrys@pld-linux.org>
+ Copyright (C) 2016 Tobias Schönberg <tobias47n9e@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -53,7 +54,7 @@
     <!-- Translator: it is a type of number -->
     <style id="decimal"               _name="Decimal"               map-to="def:decimal"/>
     <style id="dimension"             _name="Dimension"             map-to="def:floating-point"/>
-    <style id="known-property-values" _name="Known Property Value"  map-to="def:constant"/>
+    <style id="property-values"       _name="Property Value"        map-to="def:constant"/>
     <style id="at-rules"              _name="at-rules"              map-to="def:preprocessor"/>
     <style id="keyword"               _name="Keyword"               map-to="def:keyword"/>
     <style id="selector-id"           _name="ID Selector"           map-to="def:statement"/>
@@ -103,13 +104,25 @@
       <keyword>lang</keyword>
     </context>
 
+    <context id="css3-at-rules" style-ref="at-rules">
+      <prefix>^[ \t]*@</prefix>
+      <keyword>annotation</keyword>
+      <keyword>character-variant</keyword>
+      <keyword>font-face</keyword>
+      <keyword>font-feature-values</keyword>
+      <keyword>keyframes</keyword>
+      <keyword>ornaments</keyword>
+      <keyword>styleset</keyword>
+      <keyword>stylistic</keyword>
+      <keyword>swash</keyword>
+    </context>
+
     <context id="at-rules" style-ref="at-rules">
       <prefix>^[ \t]*@</prefix>
       <keyword>charset</keyword>
-      <keyword>font-face</keyword>
+      <keyword>import</keyword>
       <keyword>media</keyword>
       <keyword>page</keyword>
-      <keyword>import</keyword>
     </context>
 
     <context id="selector-id" style-ref="selector-id">
@@ -129,6 +142,8 @@
     </context>
 
     <context id="named-color" style-ref="color">
+      <prefix>\s</prefix>
+      <suffix>($|(?=[;\s]))</suffix>
       <keyword>aqua</keyword>
       <keyword>black</keyword>
       <keyword>blue</keyword>
@@ -167,12 +182,131 @@
       <match>\b(0|[\+-]?[1-9][0-9]*)</match>
     </context>
 
+    <define-regex id="float" extended="true">
+      ( (\d+)?\.\d+ | \d+\. ) |
+      ( (\d+|(\d+)?\.\d+|\d+\.)[eE][+-]?\d+ )
+    </define-regex>
+
+    <context id="float-number" style-ref="dimension">
+      <match>(?&lt;![\w\.])\%{float}(?![\w\.])</match>
+    </context>
+
     <context id="unicode-range" style-ref="others-2">
       <match>[uU]\+[a-fA-F0-9]{1,6}(-[a-fA-F0-9]{1,6})?</match>
     </context>
 
     <context id="importance-modifier" style-ref="keyword">
       <match>\![ \t]*important</match>
+    </context>
+
+    <context id="css3-property-names" style-ref="keyword">
+      <suffix>(?=\s*:)</suffix>
+      <keyword>align-content</keyword>
+      <keyword>align-items</keyword>
+      <keyword>align-self</keyword>
+      <keyword>animation-delay</keyword>
+      <keyword>animation-direction</keyword>
+      <keyword>animation-duration</keyword>
+      <keyword>animation-fill-mode</keyword>
+      <keyword>animation-iteration-count</keyword>
+      <keyword>animation-name</keyword>
+      <keyword>animation-play-state</keyword>
+      <keyword>animation-timing-function</keyword>
+      <keyword>animation</keyword>
+      <keyword>appearance</keyword>
+      <keyword>backface-visibility</keyword>
+      <keyword>background-blend-mode</keyword>
+      <keyword>background-clip</keyword>
+      <keyword>background-origin</keyword>
+      <keyword>background-size</keyword>
+      <keyword>border-image-outset</keyword>
+      <keyword>border-image-repeat</keyword>
+      <keyword>border-image-slice</keyword>
+      <keyword>border-image-source</keyword>
+      <keyword>border-image-width</keyword>
+      <keyword>border-image</keyword>
+      <keyword>box-decoration-break</keyword>
+      <keyword>box-sizing</keyword>
+      <keyword>break-after</keyword>
+      <keyword>break-before</keyword>
+      <keyword>break-inside</keyword>
+      <keyword>column-count</keyword>
+      <keyword>column-fill</keyword>
+      <keyword>column-gap</keyword>
+      <keyword>column-rule-color</keyword>
+      <keyword>column-rule-style</keyword>
+      <keyword>column-rule-width</keyword>
+      <keyword>column-rule</keyword>
+      <keyword>column-span</keyword>
+      <keyword>column-width</keyword>
+      <keyword>columns</keyword>
+      <keyword>filter</keyword>
+      <keyword>flex-basis</keyword>
+      <keyword>flex-direction</keyword>
+      <keyword>flex-flow</keyword>
+      <keyword>flex-grow</keyword>
+      <keyword>flex-shrink</keyword>
+      <keyword>flex-wrap</keyword>
+      <keyword>flex</keyword>
+      <keyword>font-feature-settings</keyword>
+      <keyword>font-kerning</keyword>
+      <keyword>font-language-override</keyword>
+      <keyword>font-stretch</keyword>
+      <keyword>font-synthesis</keyword>
+      <keyword>font-variant-alternates</keyword>
+      <keyword>font-variant-caps</keyword>
+      <keyword>font-variant-east-asian</keyword>
+      <keyword>font-variant-ligatures</keyword>
+      <keyword>font-variant-numeric</keyword>
+      <keyword>font-variant-position</keyword>
+      <keyword>hanging-punctuation</keyword>
+      <keyword>hyphens</keyword>
+      <keyword>image-orientation</keyword>
+      <keyword>image-rendering</keyword>
+      <keyword>image-resolution</keyword>
+      <keyword>ime-mode</keyword>
+      <keyword>justify-content</keyword>
+      <keyword>line-break</keyword>
+      <keyword>mask-type</keyword>
+      <keyword>mask</keyword>
+      <keyword>nav-down</keyword>
+      <keyword>nav-index</keyword>
+      <keyword>nav-left</keyword>
+      <keyword>nav-right</keyword>
+      <keyword>nav-up</keyword>
+      <keyword>object-fit</keyword>
+      <keyword>object-position</keyword>
+      <keyword>opacity</keyword>
+      <keyword>order</keyword>
+      <keyword>outline-offset</keyword>
+      <keyword>overflow-wrap</keyword>
+      <keyword>overflow-x</keyword>
+      <keyword>overflow-y</keyword>
+      <keyword>perspective-origin</keyword>
+      <keyword>perspective</keyword>
+      <keyword>pointer-events</keyword>
+      <keyword>resize</keyword>
+      <keyword>tab-size</keyword>
+      <keyword>text-align-last</keyword>
+      <keyword>text-combine-upright</keyword>
+      <keyword>text-decoration-color</keyword>
+      <keyword>text-decoration-line</keyword>
+      <keyword>text-decoration-style</keyword>
+      <keyword>text-justify</keyword>
+      <keyword>text-orientation</keyword>
+      <keyword>text-overflow</keyword>
+      <keyword>text-underline-position</keyword>
+      <keyword>transform-origin</keyword>
+      <keyword>transform-style</keyword>
+      <keyword>transform</keyword>
+      <keyword>transition-delay</keyword>
+      <keyword>transition-duration</keyword>
+      <keyword>transition-property</keyword>
+      <keyword>transition-timing-function</keyword>
+      <keyword>transition</keyword>
+      <keyword>word-break</keyword>
+      <keyword>word-wrap</keyword>
+      <keyword>writing-mode</keyword>
     </context>
 
     <context id="property-names" style-ref="keyword">
@@ -306,9 +440,154 @@
       <keyword>z-index</keyword>
     </context>
 
-    <context id="known-property-values" style-ref="known-property-values">
+    <context id="css3-property-values" style-ref="property-values">
+      <prefix>\s</prefix>
+      <suffix>($|(?=[;\s]))</suffix>
+      <keyword>active</keyword>
+      <keyword>add</keyword>
+      <keyword>allow-end</keyword>
+      <keyword>all-petite-caps</keyword>
+      <keyword>all-small-caps</keyword>
+      <keyword>all-scroll</keyword> <!-- css2, but needed for regex -->
+      <keyword>all</keyword>
+      <keyword>alpha</keyword>
+      <keyword>alternate-reverse</keyword>
+      <keyword>alternate</keyword>
+      <keyword>avoid-page</keyword>
+      <keyword>backwards</keyword>
+      <keyword>balance</keyword>
+      <keyword>border-box</keyword>
+      <keyword>break-all</keyword>
+      <keyword>break-word</keyword>
+      <keyword>clip</keyword>
+      <keyword>color-dodge</keyword>
+      <keyword>color</keyword>
+      <keyword>column-reverse</keyword>
+      <keyword>column</keyword>
+      <keyword>common-ligatures</keyword>
+      <keyword>contain</keyword>
+      <keyword>content-box</keyword>
+      <keyword>contextual</keyword>
+      <keyword>cover</keyword>
+      <keyword>crisp-edges</keyword>
+      <keyword>darken</keyword>
+      <keyword>diagonal-fractions</keyword>
+      <keyword>disabled</keyword>
+      <keyword>discretionary-ligatures</keyword>
+      <keyword>distribute</keyword>
+      <keyword>ease-in-out</keyword>
+      <keyword>ease-in</keyword>
+      <keyword>ease-out</keyword>
+      <keyword>ease</keyword>
+      <keyword>ellipsis</keyword>
+      <keyword>end</keyword>
+      <keyword>exclude</keyword>
+      <keyword>fill-box</keyword>
+      <keyword>fill</keyword>
+      <keyword>first</keyword>
+      <keyword>flat</keyword>
+      <keyword>flex-end</keyword>
+      <keyword>flex-start</keyword>
+      <keyword>flex</keyword>
+      <keyword>flip</keyword>
+      <keyword>force-end</keyword>
+      <keyword>forwards</keyword>
+      <keyword>from-image</keyword>
+      <keyword>full-width</keyword>
+      <keyword>historical-forms</keyword>
+      <keyword>historical-ligatures</keyword>
+      <keyword>horizontal-tb</keyword>
+      <keyword>horizontal</keyword>
+      <keyword>inactive</keyword>
+      <keyword>infinite</keyword>
+      <keyword>initial</keyword>
+      <keyword>inline-flex</keyword>
+      <keyword>inter-cluster</keyword>
+      <keyword>inter-ideograph</keyword>
+      <keyword>inter-word</keyword>
+      <keyword>intersect</keyword>
+      <keyword>kashida</keyword>
+      <keyword>keep-all</keyword>
+      <keyword>last</keyword>
+      <keyword>left-side</keyword> <!-- css2, but needed for regex -->
+      <keyword>left</keyword>
+      <keyword>lighten</keyword>
+      <keyword>linear</keyword>
+      <keyword>lining-nums</keyword>
+      <keyword>local</keyword>
+      <keyword>loose</keyword>
+      <keyword>luminance</keyword>
+      <keyword>luminosity</keyword>
+      <keyword>manual</keyword>
+      <keyword>mixed</keyword>
+      <keyword>multiply</keyword>
+      <keyword>no-clip</keyword>
+      <keyword>no-common-ligatures</keyword>
+      <keyword>no-contextual</keyword>
+      <keyword>no-discretionary-ligatures</keyword>
+      <keyword>no-historical-ligatures</keyword>
+      <keyword>oldstyle-nums</keyword>
+      <keyword>ordinal</keyword>
+      <keyword>overlay</keyword>
+      <keyword>padding-box</keyword>
+      <keyword>page</keyword>
+      <keyword>paused</keyword>
+      <keyword>petite-caps</keyword>
+      <keyword>pixelated</keyword>
+      <keyword>preserve-3d</keyword>
+      <keyword>proportional-nums</keyword>
+      <keyword>proportional-width</keyword>
+      <keyword>reverse</keyword>
+      <keyword>round</keyword>
+      <keyword>row-reverse</keyword>
+      <keyword>row</keyword>
+      <keyword>ruby</keyword>
+      <keyword>running</keyword>
+      <keyword>saturation</keyword>
+      <keyword>scale-down</keyword>
+      <keyword>screen</keyword>
+      <keyword>sideways-left</keyword>
+      <keyword>sideways-right</keyword>
+      <keyword>sideways</keyword>
+      <keyword>simplified</keyword>
+      <keyword>slashed-zero</keyword>
+      <keyword>space-around</keyword>
+      <keyword>space-between</keyword>
+      <keyword>space</keyword>
+      <keyword>stacked-fractions</keyword>
+      <keyword>start</keyword>
+      <keyword>stretch</keyword>
+      <keyword>strict</keyword>
+      <keyword>stroke-box</keyword>
+      <keyword>style</keyword>
+      <keyword>stylistic</keyword>
+      <keyword>subtract</keyword>
+      <keyword>tabular-nums</keyword>
+      <keyword>titling-caps</keyword>
+      <keyword>traditional</keyword>
+      <keyword>trim</keyword>
+      <keyword>under</keyword>
+      <keyword>unicase</keyword>
+      <keyword>unset</keyword>
+      <keyword>upright</keyword>
+      <keyword>use-glyph-orientation</keyword>
+      <keyword>vertical-lr</keyword>
+      <keyword>vertical-rl</keyword>
+      <keyword>vertical</keyword>
+      <keyword>view-box</keyword>
+      <keyword>wavy</keyword>
+      <keyword>weight</keyword>
+      <keyword>wrap-reverse</keyword>
+      <keyword>wrap</keyword>
+    </context>
+
+    <context id="property-values" style-ref="property-values">
+      <prefix>\s</prefix>
+      <suffix>($|(?=[;\s]))</suffix>
       <keyword>above</keyword>
       <keyword>absolute</keyword>
+      <keyword>alias</keyword>
+      <keyword>all-scroll</keyword>
       <keyword>always</keyword>
       <keyword>armenian</keyword>
       <keyword>auto</keyword>
@@ -324,6 +603,7 @@
       <keyword>both</keyword>
       <keyword>bottom</keyword>
       <keyword>capitalize</keyword>
+      <keyword>cell</keyword>
       <keyword>center-left</keyword>
       <keyword>center-right</keyword>
       <keyword>center</keyword>
@@ -332,9 +612,12 @@
       <keyword>close-quote</keyword>
       <keyword>code</keyword>
       <keyword>collapse</keyword>
+      <keyword>col-resize</keyword>
       <keyword>compact</keyword>
       <keyword>condensed</keyword>
       <keyword>continuous</keyword>
+      <keyword>context-menu</keyword>
+      <keyword>copy</keyword>
       <keyword>crop</keyword>
       <keyword>crosshair</keyword>
       <keyword>cross</keyword>
@@ -351,6 +634,7 @@
       <keyword>double</keyword>
       <keyword>embed</keyword>
       <keyword>e-resize</keyword>
+      <keyword>ew-resize</keyword>
       <keyword>expanded</keyword>
       <keyword>extra-condensed</keyword>
       <keyword>extra-expanded</keyword>
@@ -360,8 +644,9 @@
       <keyword>faster</keyword>
       <keyword>fast</keyword>
       <keyword>fixed</keyword>
-      <keyword>fixed</keyword>
       <keyword>georgian</keyword>
+      <keyword>grabbing</keyword>
+      <keyword>grab</keyword>
       <keyword>groove</keyword>
       <keyword>hebrew</keyword>
       <keyword>help</keyword>
@@ -372,8 +657,9 @@
       <keyword>hiragana-iroha</keyword>
       <keyword>hiragana</keyword>
       <keyword>inherit</keyword>
-      <keyword>inline</keyword>
+      <keyword>inline-block</keyword>
       <keyword>inline-table</keyword>
+      <keyword>inline</keyword>
       <keyword>inset</keyword>
       <keyword>inside</keyword>
       <keyword>invert</keyword>
@@ -384,7 +670,6 @@
       <keyword>landscape</keyword>
       <keyword>large</keyword>
       <keyword>larger</keyword>
-      <keyword>left</keyword>
       <keyword>left-side</keyword>
       <keyword>leftwards</keyword>
       <keyword>level</keyword>
@@ -402,21 +687,24 @@
       <keyword>ltr</keyword>
       <keyword>marker</keyword>
       <keyword>medium</keyword>
-      <keyword>medium</keyword>
       <keyword>middle</keyword>
       <keyword>mix</keyword>
       <keyword>monospace</keyword>
       <keyword>move</keyword>
       <keyword>narrower</keyword>
       <keyword>ne-resize</keyword>
+      <keyword>nesw-resize</keyword>
       <keyword>no-close-quote</keyword>
-      <keyword>none</keyword>
+      <keyword>no-drop</keyword>
       <keyword>no-open-quote</keyword>
       <keyword>no-repeat</keyword>
+      <keyword>none</keyword>
       <keyword>normal</keyword>
+      <keyword>not-allowed</keyword>
       <keyword>nowrap</keyword>
-      <keyword>n-resize</keyword>
+      <keyword>ns-resize</keyword>
       <keyword>nw-resize</keyword>
+      <keyword>n-resize</keyword>
       <keyword>oblique</keyword>
       <keyword>once</keyword>
       <keyword>open-quote</keyword>
@@ -426,6 +714,7 @@
       <keyword>pointer</keyword>
       <keyword>portait</keyword>
       <keyword>pre</keyword>
+      <keyword>progress</keyword>
       <keyword>relative</keyword>
       <keyword>repeat-x</keyword>
       <keyword>repeat-y</keyword>
@@ -434,10 +723,10 @@
       <keyword>right-side</keyword>
       <keyword>right</keyword>
       <keyword>rightwards</keyword>
+      <keyword>row-resize</keyword>
       <keyword>rtl</keyword>
       <keyword>run-in</keyword>
       <keyword>sans-serif</keyword>
-      <keyword>scroll</keyword>
       <keyword>scroll</keyword>
       <keyword>semi-condensed</keyword>
       <keyword>semi-expanded</keyword>
@@ -455,6 +744,8 @@
       <keyword>solid</keyword>
       <keyword>spell-out</keyword>
       <keyword>square</keyword>
+      <keyword>se-resize</keyword>
+      <keyword>sw-resize</keyword>
       <keyword>s-resize</keyword>
       <keyword>static</keyword>
       <keyword>sub</keyword>
@@ -475,7 +766,6 @@
       <keyword>thick</keyword>
       <keyword>thin</keyword>
       <keyword>top</keyword>
-      <keyword>top</keyword>
       <keyword>transparent</keyword>
       <keyword>ultra-condensed</keyword>
       <keyword>ultra-expanded</keyword>
@@ -484,6 +774,7 @@
       <keyword>uppercase</keyword>
       <keyword>upper-latin</keyword>
       <keyword>upper-roman</keyword>
+      <keyword>vertical-text</keyword>
       <keyword>visible</keyword>
       <keyword>wait</keyword>
       <keyword>wider</keyword>
@@ -498,6 +789,8 @@
       <keyword>x-soft</keyword>
       <keyword>xx-large</keyword>
       <keyword>xx-small</keyword>
+      <keyword>zoom-in</keyword>
+      <keyword>zoom-out</keyword>
     </context>
 
     <context id="style-block">
@@ -506,17 +799,21 @@
       <include>
         <context ref="def:c-like-comment-multiline"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="css3-at-rules"/>
         <context ref="at-rules"/>
         <context ref="style-block"/>
         <context ref="hexadecimal-color"/>
         <context ref="named-color"/>
         <context ref="function"/>
         <context ref="dimension"/>
+        <context ref="float-number"/>
         <context ref="number"/>
         <context ref="unicode-range"/>
         <context ref="importance-modifier"/>
+        <context ref="css3-property-names"/>
         <context ref="property-names"/>
-        <context ref="known-property-values"/>
+        <context ref="css3-property-values"/>
+        <context ref="property-values"/>
       </include>
     </context>
 
@@ -545,6 +842,7 @@
         <context ref="unicode-character-reference"/>
         <context ref="selector-pseudo-elements"/>
         <context ref="selector-pseudo-classes"/>
+        <context ref="css3-at-rules"/>
         <context ref="at-rules"/>
         <context ref="style-block"/>
         <context ref="punctuators"/>
