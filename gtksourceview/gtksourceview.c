@@ -2162,32 +2162,13 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 				       int             height,
 				       const GdkRGBA  *color)
 {
-	GdkRectangle visible_rect;
-	GdkRectangle line_rect;
-	gint win_y;
-	gdouble clip_x1, clip_y1, clip_x2, clip_y2;
+	gdouble x1, y1, x2, y2;
 
-	gtk_text_view_get_visible_rect (text_view, &visible_rect);
-
-	gtk_text_view_buffer_to_window_coords (text_view,
-					       GTK_TEXT_WINDOW_TEXT,
-					       visible_rect.x,
-					       y,
-					       &line_rect.x,
-					       &win_y);
-	cairo_clip_extents (cr,
-			    &clip_x1, &clip_y1,
-			    &clip_x2, &clip_y2);
-
-	line_rect.x = clip_x1;
-	line_rect.width = clip_x2 - clip_x1;
-	line_rect.y = win_y;
-	line_rect.height = height;
+	cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
 
 	gdk_cairo_set_source_rgba (cr, (GdkRGBA *)color);
 	cairo_set_line_width (cr, 1);
-	cairo_rectangle (cr, line_rect.x, line_rect.y + .5,
-			 line_rect.width, line_rect.height - 1);
+	cairo_rectangle (cr, x1, y + .5, x2 - x1, height - 1);
 	cairo_stroke_preserve (cr);
 	cairo_fill (cr);
 }
@@ -2215,21 +2196,6 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 
 	y1 = clip.y;
 	y2 = y1 + clip.height;
-
-	/* get the extents of the line printing */
-	gtk_text_view_window_to_buffer_coords (text_view,
-	                                       GTK_TEXT_WINDOW_TEXT,
-	                                       0,
-	                                       y1,
-	                                       NULL,
-	                                       &y1);
-
-	gtk_text_view_window_to_buffer_coords (text_view,
-	                                       GTK_TEXT_WINDOW_TEXT,
-	                                       0,
-	                                       y2,
-	                                       NULL,
-	                                       &y2);
 
 	numbers = g_array_new (FALSE, FALSE, sizeof (gint));
 	pixels = g_array_new (FALSE, FALSE, sizeof (gint));
@@ -3023,9 +2989,7 @@ gtk_source_view_draw_layer (GtkTextView      *text_view,
 		{
 			gtk_source_view_paint_background_pattern_grid (view, cr);
 		}
-	}
-	else if (layer == GTK_TEXT_VIEW_LAYER_BELOW)
-	{
+
 		if (gtk_widget_is_sensitive (GTK_WIDGET (view)) &&
 		    view->priv->highlight_current_line &&
 		    view->priv->current_line_color_set)
