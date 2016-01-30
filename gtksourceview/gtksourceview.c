@@ -2046,6 +2046,35 @@ gtk_source_view_extend_selection (GtkTextView            *text_view,
 										     end);
 }
 
+static void
+gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
+						    cairo_t       *cr)
+{
+	GdkRectangle clip;
+	GtkTextIter iter1, iter2;
+
+	if (view->priv->source_buffer == NULL ||
+	    !gdk_cairo_get_clip_rectangle (cr, &clip))
+	{
+		return;
+	}
+
+	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter1, clip.y, NULL);
+	gtk_text_iter_backward_line (&iter1);
+	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter2, clip.y + clip.height, NULL);
+	gtk_text_iter_forward_line (&iter2);
+
+	DEBUG ({
+		g_print ("    draw area: %d - %d\n", clip.y, clip.y + clip.height);
+		g_print ("    lines to update: %d - %d\n",
+			 gtk_text_iter_get_line (&iter1),
+			 gtk_text_iter_get_line (&iter2));
+	});
+
+	_gtk_source_buffer_update_highlight (view->priv->source_buffer,
+					     &iter1, &iter2, FALSE);
+}
+
 /* This function is taken from gtk+/tests/testtext.c */
 static void
 gtk_source_view_get_lines (GtkTextView *text_view,
@@ -2986,40 +3015,12 @@ gtk_source_view_draw_layer (GtkTextView      *text_view,
 
 	cairo_save (cr);
 
-	if (layer == GTK_TEXT_VIEW_LAYER_BELOW)
+	if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
 	{
-		/* check if the draw is for the text window first, and
-		 * make sure the visible region is highlighted */
-		if (view->priv->source_buffer != NULL)
-		{
-			GdkRectangle visible_rect;
-			gdouble clip_x1, clip_y1, clip_x2, clip_y2;
-			GtkTextIter iter1, iter2;
-
-			gtk_text_view_get_visible_rect (text_view, &visible_rect);
-			cairo_clip_extents (cr,
-					    &clip_x1, &clip_y1,
-					    &clip_x2, &clip_y2);
-
-			gtk_text_view_get_line_at_y (text_view, &iter1,
-						     visible_rect.y + clip_y1, NULL);
-			gtk_text_iter_backward_line (&iter1);
-			gtk_text_view_get_line_at_y (text_view, &iter2,
-						     visible_rect.y + clip_y2, NULL);
-			gtk_text_iter_forward_line (&iter2);
-
-			DEBUG ({
-				g_print ("    draw area: %d - %d\n", visible_rect.y + clip_y1,
-					 visible_rect.y + clip_y2);
-				g_print ("    lines to update: %d - %d\n",
-					 gtk_text_iter_get_line (&iter1),
-					 gtk_text_iter_get_line (&iter2));
-			});
-
-			_gtk_source_buffer_update_highlight (view->priv->source_buffer,
-							     &iter1, &iter2, FALSE);
-		}
-
+		gtk_source_view_ensure_redrawn_rect_is_highlighted (view, cr);
+	}
+	else if (layer == GTK_TEXT_VIEW_LAYER_BELOW)
+	{
 		if (view->priv->background_pattern == GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID &&
 		    view->priv->background_pattern_color_set)
 		{
