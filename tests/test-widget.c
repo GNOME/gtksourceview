@@ -54,6 +54,7 @@ struct _TestWidgetPrivate
 	GtkSourceFile *file;
 	GtkSourceMap *map;
 	GtkCheckButton *show_map_checkbutton;
+	GtkCheckButton *draw_spaces_checkbutton;
 	GtkCheckButton *smart_backspace_checkbutton;
 	GtkCheckButton *indent_width_checkbutton;
 	GtkSpinButton *indent_width_spinbutton;
@@ -967,12 +968,27 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, view);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, map);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, show_map_checkbutton);
+	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, draw_spaces_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, smart_backspace_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_spinbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, cursor_position_info);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, chooser_button);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, background_pattern);
+}
+
+static gboolean
+tranform_boolean_to_draw_spaces_flags (GBinding *binding,
+                                       const GValue *from_value,
+                                       GValue *to_value,
+                                       gpointer user_data)
+{
+	gboolean active;
+
+	active = g_value_get_boolean (from_value);
+	g_value_set_flags (to_value, active ? GTK_SOURCE_DRAW_SPACES_ALL : 0);
+
+	return TRUE;
 }
 
 static void
@@ -1030,6 +1046,16 @@ test_widget_init (TestWidget *self)
 	                        self->priv->map,
 	                        "visible",
 	                        G_BINDING_SYNC_CREATE);
+
+	g_object_bind_property_full (self->priv->draw_spaces_checkbutton,
+	                             "active",
+	                             self->priv->view,
+	                             "draw-spaces",
+	                             G_BINDING_SYNC_CREATE,
+	                             tranform_boolean_to_draw_spaces_flags,
+	                             NULL,
+	                             NULL,
+	                             NULL);
 
 	g_object_bind_property (self->priv->smart_backspace_checkbutton,
 	                        "active",
