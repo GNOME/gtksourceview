@@ -2933,9 +2933,7 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 					       cairo_t       *cr)
 {
 	GdkRectangle clip;
-	GdkRectangle vis;
-	gdouble x;
-	gdouble y;
+	gdouble x, y, x2, y2;
 	PangoContext *context;
 	PangoLayout *layout;
 	gint grid_width = 16;
@@ -2953,10 +2951,9 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 
 	cairo_save (cr);
 
-	cairo_set_line_width (cr, 1.0);
 	gdk_cairo_get_clip_rectangle (cr, &clip);
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &vis);
 
+	cairo_set_line_width (cr, 1.0);
 	gdk_cairo_set_source_rgba (cr, &view->priv->background_pattern_color);
 
 	/*
@@ -2964,16 +2961,18 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 	 * settings. Sadly, they are not exposed in the public API,
 	 * just keep them in sync here. 64 for X, height/2 for Y.
 	 */
-	x = (grid_width - (vis.x % grid_width)) - (64 / grid_width * grid_width) - grid_width + 2;
-	y = (grid_height - (vis.y % grid_height)) - (vis.height / 2 / grid_height * grid_height) - grid_height;
+	x = (grid_width - (clip.x % grid_width)) - (64 / grid_width * grid_width) - grid_width + 2;
+	y = (grid_height - (clip.y % grid_height)) - (clip.height / 2 / grid_height * grid_height) - grid_height;
+	x2 = clip.x + clip.width;
+	y2 = clip.y + clip.height;
 
-	for (; x <= clip.x + clip.width; x += grid_width)
+	for (; x <= x2; x += grid_width)
 	{
 		cairo_move_to (cr, x + .5, clip.y - .5);
 		cairo_line_to (cr, x + .5, clip.y + clip.height - .5);
 	}
 
-	for (; y <= clip.y + clip.height; y += grid_height)
+	for (; y <= y2; y += grid_height)
 	{
 		cairo_move_to (cr, clip.x + .5, y - .5);
 		cairo_line_to (cr, clip.x + clip.width + .5, y - .5);
@@ -3018,15 +3017,15 @@ gtk_source_view_draw_layer (GtkTextView      *text_view,
 	if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
 	{
 		gtk_source_view_ensure_redrawn_rect_is_highlighted (view, cr);
-	}
-	else if (layer == GTK_TEXT_VIEW_LAYER_BELOW)
-	{
+
 		if (view->priv->background_pattern == GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID &&
 		    view->priv->background_pattern_color_set)
 		{
 			gtk_source_view_paint_background_pattern_grid (view, cr);
 		}
-
+	}
+	else if (layer == GTK_TEXT_VIEW_LAYER_BELOW)
+	{
 		if (gtk_widget_is_sensitive (GTK_WIDGET (view)) &&
 		    view->priv->highlight_current_line &&
 		    view->priv->current_line_color_set)
