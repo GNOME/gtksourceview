@@ -2292,12 +2292,8 @@ draw_space_at_iter (cairo_t      *cr,
 	gint x, y;
 	gdouble w;
 
-	gtk_text_view_buffer_to_window_coords (view,
-					       GTK_TEXT_WINDOW_TEXT,
-					       rect.x,
-					       rect.y + rect.height * 2 / 3,
-					       &x,
-					       &y);
+	x = rect.x;
+	y = rect.y + rect.height * 2 / 3;
 
 	/* if the space is at a line-wrap position we get 0 width
 	 * so we fallback to the height */
@@ -2318,12 +2314,8 @@ draw_tab_at_iter (cairo_t      *cr,
 	gint x, y;
 	gdouble w, h;
 
-	gtk_text_view_buffer_to_window_coords (view,
-					       GTK_TEXT_WINDOW_TEXT,
-					       rect.x,
-					       rect.y + rect.height * 2 / 3,
-					       &x,
-					       &y);
+	x = rect.x;
+	y = rect.y + rect.height * 2 / 3;
 
 	/* if the space is at a line-wrap position we get 0 width
 	 * so we fallback to the height */
@@ -2348,12 +2340,8 @@ draw_newline_at_iter (cairo_t      *cr,
 	gint x, y;
 	gdouble w, h;
 
-	gtk_text_view_buffer_to_window_coords (view,
-					       GTK_TEXT_WINDOW_TEXT,
-					       rect.x,
-					       rect.y + rect.height * 1 / 3,
-					       &x,
-					       &y);
+	x = rect.x;
+	y = rect.y + rect.height / 3;
 
 	/* width for new line is 0, we use 2 * h */
 	w = 2 * rect.height;
@@ -2392,12 +2380,8 @@ draw_nbsp_at_iter (cairo_t      *cr,
 	gint x, y;
 	gdouble w, h;
 
-	gtk_text_view_buffer_to_window_coords (view,
-	                                       GTK_TEXT_WINDOW_TEXT,
-	                                       rect.x,
-	                                       rect.y + rect.height / 2,
-	                                       &x,
-	                                       &y);
+	x = rect.x;
+	y = rect.y + rect.height / 2;
 
 	/* if the space is at a line-wrap position we get 0 width
 	 * so we fallback to the height */
@@ -2741,16 +2725,6 @@ draw_tabs_and_spaces (GtkSourceView *view,
 	x2 = x1 + clip.width;
 	y2 = y1 + clip.height;
 
-	gtk_text_view_window_to_buffer_coords (text_view,
-	                                       GTK_TEXT_WINDOW_TEXT,
-	                                       x1, y1,
-	                                       &x1, &y1);
-
-	gtk_text_view_window_to_buffer_coords (text_view,
-	                                       GTK_TEXT_WINDOW_TEXT,
-	                                       x2, y2,
-	                                       &x2, &y2);
-
 	gtk_text_view_get_iter_at_location  (text_view,
 	                                     &s,
 	                                     x1, y1);
@@ -2795,9 +2769,9 @@ draw_tabs_and_spaces (GtkSourceView *view,
 			}
 			gtk_text_view_get_line_yrange (text_view, &s, &ly, NULL);
 
-			gtk_text_view_get_iter_at_location  (text_view,
-							     &s,
-							     x1, ly);
+			gtk_text_view_get_iter_at_location (text_view,
+							    &s,
+							    x1, ly);
 
 			/* move back one char otherwise tabs may not
 			 * be redrawn */
@@ -3001,9 +2975,7 @@ gtk_source_view_draw_layer (GtkTextView      *text_view,
 		{
 			gtk_source_view_paint_right_margin (view, cr);
 		}
-	}
-	else if (layer == GTK_TEXT_VIEW_LAYER_ABOVE)
-	{
+
 		if (view->priv->draw_spaces != 0 ||
 		    buffer_has_draw_spaces_tag (view->priv->source_buffer))
 		{
