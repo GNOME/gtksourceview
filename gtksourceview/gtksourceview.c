@@ -2825,17 +2825,28 @@ static void
 gtk_source_view_paint_right_margin (GtkSourceView *view,
 				    cairo_t       *cr)
 {
-	GdkRectangle visible_rect;
+	GdkRectangle clip;
 	gdouble x;
-	gdouble clip_x1, clip_y1, clip_x2, clip_y2;
 
 	GtkTextView *text_view = GTK_TEXT_VIEW (view);
 
 #ifdef ENABLE_PROFILE
 	static GTimer *timer = NULL;
+
+	if (timer == NULL)
+	{
+		timer = g_timer_new ();
+	}
+
+	g_timer_start (timer);
 #endif
 
 	g_return_if_fail (view->priv->right_margin_line_color != NULL);
+
+	if (!gdk_cairo_get_clip_rectangle (cr, &clip))
+	{
+		return;
+	}
 
 	if (view->priv->cached_right_margin_pos < 0)
 	{
@@ -2845,44 +2856,28 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 						  '_');
 	}
 
-#ifdef ENABLE_PROFILE
-	if (timer == NULL)
-	{
-		timer = g_timer_new ();
-	}
+	x = view->priv->cached_right_margin_pos + gtk_text_view_get_left_margin (text_view);
 
-	g_timer_start (timer);
-#endif
-	cairo_clip_extents (cr,
-			    &clip_x1, &clip_y1,
-			    &clip_x2, &clip_y2);
-
-	gtk_text_view_get_visible_rect (text_view, &visible_rect);
-
-	x = view->priv->cached_right_margin_pos - visible_rect.x +
-		gtk_text_view_get_left_margin (text_view);
-
-	/* Default line width is 2.0 which is too wide. */
 	cairo_set_line_width (cr, 1.0);
 
-	/* Offset with 0.5 is needed for a sharp line. */
-	cairo_move_to (cr, x + 0.5, clip_y1);
-	cairo_line_to (cr, x + 0.5, clip_y2);
+	if (x + 1 >= clip.x && x <= clip.x + clip.width)
+	{
+		cairo_move_to (cr, x + 0.5, clip.y);
+		cairo_line_to (cr, x + 0.5, clip.y + clip.height);
 
-	gdk_cairo_set_source_rgba (cr, view->priv->right_margin_line_color);
-
-	cairo_stroke (cr);
+		gdk_cairo_set_source_rgba (cr, view->priv->right_margin_line_color);
+		cairo_stroke (cr);
+	}
 
 	/* Only draw the overlay when the style scheme explicitly sets it. */
-	if (view->priv->right_margin_overlay_color != NULL && clip_x2 > x + 1)
+	if (view->priv->right_margin_overlay_color != NULL && clip.x + clip.width > x + 1)
 	{
 		/* Draw the rectangle next to the line (x+1). */
 		cairo_rectangle (cr,
-				 x + 1, clip_y1,
-				 clip_x2 - (x + 1), clip_y2 - clip_y1);
+				 x + 1, clip.y,
+				 clip.x + clip.width - (x + 1), clip.height);
 
 		gdk_cairo_set_source_rgba (cr, view->priv->right_margin_overlay_color);
-
 		cairo_fill (cr);
 	}
 
@@ -2999,14 +2994,16 @@ gtk_source_view_draw_layer (GtkTextView      *text_view,
 
 		gtk_source_view_paint_marks_background (view, cr);
 	}
-	else if (layer == GTK_TEXT_VIEW_LAYER_ABOVE)
+	else if (layer == GTK_TEXT_VIEW_LAYER_ABOVE_TEXT)
 	{
 		/* Draw the right margin vertical line + overlay. */
 		if (view->priv->show_right_margin)
 		{
 			gtk_source_view_paint_right_margin (view, cr);
 		}
-
+	}
+	else if (layer == GTK_TEXT_VIEW_LAYER_ABOVE)
+	{
 		if (view->priv->draw_spaces != 0 ||
 		    buffer_has_draw_spaces_tag (view->priv->source_buffer))
 		{
@@ -4892,7 +4889,7 @@ gtk_source_view_style_updated (GtkWidget *widget)
 		set_tab_stops_internal (view);
 	}
 
-	/* make sure the margin position is recalculated on next expose */
+	/* make sure the margin position is recalculated on next redraw */
 	view->priv->cached_right_margin_pos = -1;
 }
 
