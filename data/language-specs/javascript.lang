@@ -309,6 +309,17 @@
       <keyword>static</keyword>
     </context>
 
+    <context id="template-string" style-ref="string">
+      <start>`</start>
+      <end>`</end>
+      <include>
+        <context id="template-expression" style-ref="function">
+          <start>\$\{</start>
+          <end>\}</end>
+        </context>
+      </include>
+    </context>
+
     <!--main context-->
     <context id="js" class="no-spell-check">
       <include>
@@ -317,6 +328,7 @@
         <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="def:string" style-ref="string"/>
         <context ref="def:single-quoted-string" style-ref="string"/>
+        <context ref="template-string"/>
         <context ref="def:float"/>
         <context ref="def:decimal"/>
         <context ref="def:octal"/>
