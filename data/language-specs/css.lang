@@ -178,6 +178,10 @@
       <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|e(m|x)|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s)</match>
     </context>
 
+    <context id="resolution" style-ref="dimension">
+      <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(dpi|dpcm|dppx)</match>
+    </context>
+
     <context id="number" style-ref="decimal">
       <match>\b(0|[\+-]?[1-9][0-9]*)</match>
     </context>
@@ -197,6 +201,52 @@
 
     <context id="importance-modifier" style-ref="keyword">
       <match>\![ \t]*important</match>
+    </context>
+
+    <context id="css3-media-features" style-ref="keyword">
+      <keyword>aspect-ratio</keyword>
+      <keyword>color-index</keyword>
+      <keyword>color</keyword>
+      <keyword>device-aspect-ratio</keyword>
+      <keyword>device-height</keyword>
+      <keyword>device-width</keyword>
+      <keyword>grid</keyword>
+      <keyword>height</keyword>
+      <keyword>max-aspect-ratio</keyword>
+      <keyword>max-color-index</keyword>
+      <keyword>max-color</keyword>
+      <keyword>max-device-aspect-ratio</keyword>
+      <keyword>max-device-height</keyword>
+      <keyword>max-device-width</keyword>
+      <keyword>max-height</keyword>
+      <keyword>max-monochrome</keyword>
+      <keyword>max-resolution</keyword>
+      <keyword>max-width</keyword>
+      <keyword>min-aspect-ratio</keyword>
+      <keyword>min-color-index</keyword>
+      <keyword>min-color</keyword>
+      <keyword>min-device-aspect-ratio</keyword>
+      <keyword>min-device-width</keyword>
+      <keyword>min-device-height</keyword>
+      <keyword>min-height</keyword>
+      <keyword>min-monochrome</keyword>
+      <keyword>min-resolution</keyword>
+      <keyword>min-width</keyword>
+      <keyword>monochrome</keyword>
+      <keyword>orientation</keyword>
+      <keyword>overflow-block</keyword>
+      <keyword>overflow-inline</keyword>
+      <keyword>resolution</keyword>
+      <keyword>scan</keyword>
+      <keyword>update-frequency</keyword>
+      <keyword>width</keyword>
+    </context>
+
+    <context id="css3-media-feature-values" style-ref="property-values">
+      <keyword>interlace</keyword>
+      <keyword>landscape</keyword>
+      <keyword>portrait</keyword>
+      <keyword>progressive</keyword>
     </context>
 
     <context id="css3-property-names" style-ref="keyword">
@@ -860,6 +910,36 @@
         <context ref="selector-id"/>
         <context ref="selector-class"/>
         <context ref="selector-tagname"/>
+        <context id="at-media-call">
+          <start>(?&lt;=(@media))</start>
+          <end>\{</end>
+          <include>
+            <context id="media-keywords" style-ref="at-rules">
+              <keyword>and</keyword>
+              <keyword>not</keyword>
+              <keyword>only</keyword>
+            </context>
+            <context id="media-types" style-ref="keyword">
+              <keyword>all</keyword>
+              <keyword>print</keyword>
+              <keyword>screen</keyword>
+              <keyword>speech</keyword>
+            </context>
+            <context id="at-media-arguments">
+              <start>\(</start>
+              <end>\)</end>
+              <include>
+                <context ref="css3-media-features"/>
+                <context ref="css3-media-feature-values"/>
+                <context ref="hexadecimal-color"/>
+                <context ref="resolution"/>
+                <context ref="dimension"/>
+                <context ref="float-number"/>
+                <context ref="number"/>
+              </include>
+            </context>
+          </include>
+        </context>
       </include>
     </context>
 

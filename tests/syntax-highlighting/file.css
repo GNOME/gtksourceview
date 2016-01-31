@@ -1,0 +1,35 @@
+#testid[type=text] {
+    font: 12px italic "Overpass";
+}
+
+p + div {
+    color: aqua;
+}
+
+.someclass,
+.otherclass {
+    font-size: 20px;
+}
+
+ul::before {}
+
+link:hover {}
+
+@import url("fineprint.css");
+
+@media all {
+    * ~ ul {
+        padding: 10px;
+    }
+    @media screen and (orientation: portrait) {
+        .heading > .news {
+            background-image: url(image.png);
+        }
+    }
+    @media print and (min-monochrome: 16) {
+        body {
+            color: #000;
+        }
+    }
+}
+
