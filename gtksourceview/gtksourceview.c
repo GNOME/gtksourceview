@@ -1239,6 +1239,8 @@ notify_buffer_cb (GtkSourceView *view)
 static void
 gtk_source_view_init (GtkSourceView *view)
 {
+	GtkStyleContext *context;
+
 	GtkTargetList *target_list;
 
 	view->priv = gtk_source_view_get_instance_private (view);
@@ -1279,6 +1281,9 @@ gtk_source_view_init (GtkSourceView *view)
 			  "notify::buffer",
 			  G_CALLBACK (notify_buffer_cb),
 			  NULL);
+
+	context = gtk_widget_get_style_context (GTK_WIDGET (view));
+	gtk_style_context_add_class (context, "sourceview");
 }
 
 static void
