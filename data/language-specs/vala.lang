@@ -45,12 +45,48 @@
     <style id="directive" name="Directives" map-to="def:preprocessor"/>
     <style id="attributes" name="Vala Attributes" map-to="def:function"/>
     <style id="string-template" name="Vala String template" map-to="def:function"/>
+    <style id="regex" _name="Regular Expression" map-to="def:string"/>
+    <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
   </styles>
 
   <definitions>
     <define-regex id="preproc-start">^\s*#\s*</define-regex>
     <define-regex id="identifier">[_a-zA-Z][_a-zA-Z0-9]*</define-regex>
     <define-regex id="type_name">[_a-zA-Z][_a-zA-Z0-9.]*</define-regex>
+
+    <!--regex-->
+    <define-regex id="regex-opts">[gim]*</define-regex>
+
+    <!--contexts NOT used in the main context-->
+    <context id="escape" style-ref="escape">
+      <match>\\((0-7){3}|(x[a-fA-F0-9]{2})|(c\S)|([CM]-\S)|(M-C-\S)|.)</match>
+    </context>
+
+    <context id="regex-bracketed" style-ref="escape" style-inside="true">
+      <start>(?&lt;!\\)[[]</start>
+      <end>(?&lt;!\\)]</end>
+    </context>
+
+    <!--contexts used in the main context-->
+    <context id="regex-simple" style-ref="regex">
+      <start extended="true">
+        ((?&lt;=([(]|\s))|^)
+        \/
+        (?=
+          ([^/\\]*(\\.))*
+          [^/]*
+          \/
+          \%{regex-opts}
+          \s*
+          ([),;.\/\]:}]|$)
+        )</start>
+      <end>\/\%{regex-opts}</end>
+      <include>
+        <context ref="escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="regex-bracketed"/>
+      </include>
+    </context>
 
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>//</start>
@@ -358,6 +394,7 @@
         <context ref="c:octal"/>
         <context ref="if0-comment"/>
         <context ref="directive"/>
+        <context ref="regex-simple"/>
         <!-- <context ref="function"/> -->
       </include>
     </context>
