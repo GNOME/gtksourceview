@@ -1,4 +1,4 @@
-SUBDIRS = language-specs styles
+SUBDIRS = fonts language-specs styles
 
 if GLADE_CATALOG
 SUBDIRS += glade
