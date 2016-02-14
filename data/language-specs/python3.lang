@@ -163,6 +163,8 @@
 
         <context ref="python:keywords"/>
         <context id="3x-only-keywords" style-ref="keyword">
+          <keyword>async</keyword>
+          <keyword>await</keyword>
           <keyword>nonlocal</keyword>
         </context>
 
