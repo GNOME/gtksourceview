@@ -234,7 +234,6 @@ build/win32/vs11/Makefile
 build/win32/vs12/Makefile
 build/win32/vs14/Makefile
 data/Makefile
-data/fonts/Makefile
 data/glade/Makefile
 data/language-specs/Makefile
 data/styles/Makefile

@@ -29,7 +29,6 @@
 #include "gtksourcestyle-private.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceview-utils.h"
-#include <pango/pangofc-fontmap.h>
 
 /**
  * SECTION:map
@@ -101,8 +100,8 @@
  * embedding fonts in the application, so it is at least possible to bundle
  * our own font as a resource.
  *
- * By default we use a 1pt custom font that shows rectangles. However,
- * if the Gtksourcemap:font-desc property is set, we will use that instead.
+ * By default we use a 1pt Monospace font. However, if the Gtksourcemap:font-desc
+ * property is set, we will use that instead.
  *
  * We do not render the background grid as it requires a bunch of
  * cpu time for something that will essentially just create a solid
@@ -124,15 +123,17 @@
 typedef struct
 {
 	/*
-	 * By default, we use a custom "BuilderBlocks 1pt" font that is
-	 * designed just for the case of drawing the overview.
-	 * However, if an application wants to use another font, it can
-	 * be set here. Generally speaking, you will want to continue using
-	 * a 1pt font, and if you set GtkSourceMap:font-desc, then you
+	 * By default, we use "Monospace 1pt". However, most text editing
+	 * applications will have a custom font, so we allow them to set
+	 * that here. Generally speaking, you will want to continue using
+	 * a 1pt font, but if they set GtkSourceMap:font-desc, then they
 	 * should also shrink the font to the desired size.
 	 *
 	 * For example:
 	 *   pango_font_description_set_size(font_desc, 1 * PANGO_SCALE);
+	 *
+	 * Would set a 1pt font on whatever PangoFontDescription you have
+	 * in your text editor.
 	 */
 	PangoFontDescription *font_desc;
 
@@ -1056,54 +1057,6 @@ gtk_source_map_realize (GtkWidget *widget)
 	set_view_cursor (GTK_SOURCE_MAP (widget));
 }
 
-static PangoFontMap *font_map;
-
-static gchar *
-get_font_path (void)
-{
-	gchar *font_path;
-#ifdef G_OS_WIN32
-	gchar *module_path;
-
-	module_path = g_win32_get_package_installation_directory_of_module (NULL);
-	font_path = g_build_filename (module_path, "share", "gtksourceview-3.0", "fonts", "BuilderBlocks.ttf", NULL);
-	g_free (module_path);
-#else
-	font_path = g_build_filename (DATADIR, "gtksourceview-3.0", "fonts", "BuilderBlocks.ttf", NULL);
-#endif
-
-	if (!g_file_test (font_path, G_FILE_TEST_EXISTS))
-	{
-		g_clear_pointer (&font_path, g_free);
-	}
-
-	return font_path;
-}
-
-static void
-load_custom_font (void)
-{
-	gchar *font_path;
-
-	font_path = get_font_path ();
-
-	if (font_path != NULL)
-	{
-		font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
-		if (font_map != NULL)
-		{
-			FcConfig *config;
-
-			config = FcInitLoadConfigAndFonts ();
-
-			FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
-			g_free (font_path);
-
-			pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), config);
-		}
-	}
-}
-
 static void
 gtk_source_map_class_init (GtkSourceMapClass *klass)
 {
@@ -1140,8 +1093,6 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 		                    (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_properties (object_class, LAST_PROP, pspecs);
-
-	load_custom_font ();
 }
 
 static void
@@ -1178,15 +1129,7 @@ gtk_source_map_init (GtkSourceMap *map)
 	completion = gtk_source_view_get_completion (GTK_SOURCE_VIEW (map));
 	gtk_source_completion_block_interactive (completion);
 
-	if (font_map != NULL)
-	{
-		gtk_widget_set_font_map (GTK_WIDGET (map), font_map);
-		gtk_source_map_set_font_name (map, "BuilderBlocks 1");
-	}
-	else
-	{
-		gtk_source_map_set_font_name (map, "Monospace 1");
-	}
+	gtk_source_map_set_font_name (map, "Monospace 1");
 }
 
 /**
