@@ -167,8 +167,10 @@ insttesstyle_DATA = 			\
 
 %.test: %$(EXEEXT) Makefile
 	$(AM_V_GEN) (echo '[Test]' > $@.tmp; \
-	echo 'Type=session' >> $@.tmp; \
+	echo 'Description=GtkSourceView test' >> $@.tmp; \
 	echo 'Exec=$(insttestdir)/$<' >> $@.tmp; \
+	echo 'Type=session' >> $@.tmp; \
+	echo 'Output=TAP' >> $@.tmp; \
 	mv $@.tmp $@)
 
 test_files = $(UNIT_TEST_PROGS:=.test)
