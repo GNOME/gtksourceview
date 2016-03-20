@@ -1,3 +1,14 @@
+News in 3.20.0
+--------------
+* Improvements to the syntax highlighting of: CSS, JavaScript, protobuf, Vala,
+  imagej, Python 3 and BibTeX
+* Adapt code to use GTK_TEXT_VIEW_LAYER_BELOW_TEXT and
+  GTK_TEXT_VIEW_LAYER_ABOVE_TEXT
+* Add a "sourceview" CSS class to all GtkSourceView's
+* Fixes to the MSVC build system
+* Various other small fixes and improvements
+* Translation updates
+
 News in 3.19.4
 --------------
 * CSS fixes to track GTK+ changes
