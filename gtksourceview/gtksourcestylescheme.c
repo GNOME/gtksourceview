@@ -692,6 +692,7 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 		secondary_color.red = rgba->red * 0.5;
 		secondary_color.green = rgba->green * 0.5;
 		secondary_color.blue = rgba->blue * 0.5;
+		secondary_color.alpha = 1.0;
 
 		gdk_rgba_free (rgba);
 	}
