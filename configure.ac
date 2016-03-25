@@ -182,8 +182,7 @@ AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gette
 
 # Documentation
 AX_REQUIRE_DEFINED([GTK_DOC_CHECK])
-# TODO bump to 1.25 once released.
-GTK_DOC_CHECK([1.24], [--flavour=no-tmpl])
+GTK_DOC_CHECK([1.25], [--flavour=no-tmpl])
 
 GLIB_PREFIX="`$PKG_CONFIG --variable=prefix glib-2.0`"
 GTK_PREFIX="`$PKG_CONFIG --variable=prefix gtk+-3.0`"
