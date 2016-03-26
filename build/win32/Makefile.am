@@ -37,3 +37,5 @@ gen-enums.bat: $(top_srcdir)/build/win32/gen-enums.batin enum.headers
 	$(RM) enum.headers
 
 DISTCLEANFILES = $(GENERATED_ITEMS)
+
+-include $(top_srcdir)/git.mk
