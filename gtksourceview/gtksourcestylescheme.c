@@ -920,6 +920,16 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	{
 		append_css_style (final_style, style, "textview border");
 
+		/* Needed for GtkSourceGutter. In the ::draw callback,
+		 * gtk_style_context_add_class() is called to add e.g. the
+		 * "left" class. Because as of GTK+ 3.20 we cannot do the same
+		 * to add the "border" subnode.
+		 */
+		append_css_style (final_style, style, "textview .left");
+		append_css_style (final_style, style, "textview .right");
+		append_css_style (final_style, style, "textview .top");
+		append_css_style (final_style, style, "textview .bottom");
+
 		/* For the corners if the top or bottom gutter is also
 		 * displayed.
 		 */
