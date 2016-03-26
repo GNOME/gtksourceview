@@ -53,6 +53,7 @@ struct _TestWidgetPrivate
 	GtkSourceBuffer *buffer;
 	GtkSourceFile *file;
 	GtkSourceMap *map;
+	GtkCheckButton *show_top_border_window_checkbutton;
 	GtkCheckButton *show_map_checkbutton;
 	GtkCheckButton *draw_spaces_checkbutton;
 	GtkCheckButton *smart_backspace_checkbutton;
@@ -967,6 +968,7 @@ test_widget_class_init (TestWidgetClass *klass)
 
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, view);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, map);
+	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, show_top_border_window_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, show_map_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, draw_spaces_checkbutton);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, smart_backspace_checkbutton);
@@ -992,6 +994,19 @@ tranform_boolean_to_draw_spaces_flags (GBinding *binding,
 }
 
 static void
+show_top_border_window_toggled_cb (GtkToggleButton *checkbutton,
+				   TestWidget      *self)
+{
+	gint size;
+
+	size = gtk_toggle_button_get_active (checkbutton) ? 20 : 0;
+
+	gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (self->priv->view),
+					      GTK_TEXT_WINDOW_TOP,
+					      size);
+}
+
+static void
 test_widget_init (TestWidget *self)
 {
 	self->priv = test_widget_get_instance_private (self);
@@ -1002,6 +1017,11 @@ test_widget_init (TestWidget *self)
 		gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->priv->view)));
 
 	g_object_ref (self->priv->buffer);
+
+	g_signal_connect (self->priv->show_top_border_window_checkbutton,
+			  "toggled",
+			  G_CALLBACK (show_top_border_window_toggled_cb),
+			  self);
 
 	g_signal_connect_swapped (self->priv->indent_width_checkbutton,
 				  "toggled",
