@@ -152,16 +152,16 @@ EXTRA_DIST =				\
 	$(python_tests)
 
 if INSTALLED_TESTS
-insttestdir = ${libexecdir}/installed-tests/$(PACKAGE)
+insttestdir = $(libexecdir)/installed-tests/$(PACKAGE)-3.0
 insttest_PROGRAMS = $(UNIT_TEST_PROGS)
 
-instteslangdir = ${libexecdir}/installed-tests/$(PACKAGE)/language-specs
-instteslang_DATA = 			\
+insttestlangdir = $(libexecdir)/installed-tests/$(PACKAGE)-3.0/language-specs
+insttestlang_DATA = 			\
 	language-specs/test-empty.lang	\
 	language-specs/test-full.lang
 
-insttesstyledir = ${libexecdir}/installed-tests/$(PACKAGE)/styles
-insttesstyle_DATA = 			\
+instteststyledir = $(libexecdir)/installed-tests/$(PACKAGE)-3.0/styles
+instteststyle_DATA = 			\
 	styles/classic.xml		\
 	styles/test.xml
 
@@ -177,8 +177,9 @@ test_files = $(UNIT_TEST_PROGS:=.test)
 
 DISTCLEANFILES = $(test_files)
 
-testmetadir = $(datadir)/installed-tests/$(PACKAGE)
+testmetadir = $(datadir)/installed-tests/$(PACKAGE)-3.0
 testmeta_DATA = $(test_files)
-endif
+
+endif # INSTALLED_TESTS
 
 -include $(top_srcdir)/git.mk
