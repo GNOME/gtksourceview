@@ -253,6 +253,7 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 void		 gtk_source_view_set_draw_spaces	(GtkSourceView            *view,
 							 GtkSourceDrawSpacesFlags  flags);
 
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceDrawSpacesFlags
 		 gtk_source_view_get_draw_spaces	(GtkSourceView   *view);
 
