@@ -659,22 +659,41 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 	GtkSourceStyle *secondary_style;
 	GdkRGBA primary_color = { 0 };
 	GdkRGBA secondary_color = { 0 };
-	gchar *primary_color_str;
+	gboolean primary_color_set;
+	gboolean secondary_color_set;
 	gchar *secondary_color_str;
-	gchar *css;
+	GString *css;
 
 	primary_style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
 	secondary_style = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
 
-	if (!get_color (primary_style, TRUE, &primary_color))
+	primary_color_set = get_color (primary_style, TRUE, &primary_color);
+	secondary_color_set = get_color (secondary_style, TRUE, &secondary_color);
+
+	if (!primary_color_set && !secondary_color_set)
 	{
 		return NULL;
 	}
 
-	if (!get_color (secondary_style, TRUE, &secondary_color))
+	css = g_string_new ("textview text {\n");
+
+	if (primary_color_set)
+	{
+		gchar *primary_color_str;
+
+		primary_color_str = gdk_rgba_to_string (&primary_color);
+		g_string_append_printf (css,
+					"\tcaret-color: %s;\n",
+					primary_color_str);
+		g_free (primary_color_str);
+	}
+
+	if (!secondary_color_set)
 	{
 		GtkStyleContext *context;
-		GdkRGBA *rgba;
+		GdkRGBA *background_color;
+
+		g_assert (primary_color_set);
 
 		context = gtk_widget_get_style_context (widget);
 
@@ -683,34 +702,29 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 
 		gtk_style_context_get (context,
 				       gtk_style_context_get_state (context),
-				       "background-color", &rgba,
+				       "background-color", &background_color,
 				       NULL);
 
 		gtk_style_context_restore (context);
 
 		/* shade the secondary cursor */
-		secondary_color.red = rgba->red * 0.5;
-		secondary_color.green = rgba->green * 0.5;
-		secondary_color.blue = rgba->blue * 0.5;
+		secondary_color.red = background_color->red * 0.5;
+		secondary_color.green = background_color->green * 0.5;
+		secondary_color.blue = background_color->blue * 0.5;
 		secondary_color.alpha = 1.0;
 
-		gdk_rgba_free (rgba);
+		gdk_rgba_free (background_color);
 	}
 
-	primary_color_str = gdk_rgba_to_string (&primary_color);
 	secondary_color_str = gdk_rgba_to_string (&secondary_color);
-
-	css = g_strdup_printf ("textview text {\n"
-			       "\tcaret-color: %s;\n"
-			       "\t-gtk-secondary-caret-color: %s;\n"
-			       "}\n",
-			       primary_color_str,
-			       secondary_color_str);
-
-	g_free (primary_color_str);
+	g_string_append_printf (css,
+				"\t-gtk-secondary-caret-color: %s;\n",
+				secondary_color_str);
 	g_free (secondary_color_str);
 
-	return css;
+	g_string_append_printf (css, "}\n");
+
+	return g_string_free (css, FALSE);
 }
 
 /* The CssProvider for the cursors depends only on @scheme, but it needs a
