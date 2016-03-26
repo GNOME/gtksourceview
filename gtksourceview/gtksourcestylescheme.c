@@ -707,11 +707,11 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 
 		gtk_style_context_restore (context);
 
-		/* shade the secondary cursor */
-		secondary_color.red = background_color->red * 0.5;
-		secondary_color.green = background_color->green * 0.5;
-		secondary_color.blue = background_color->blue * 0.5;
-		secondary_color.alpha = 1.0;
+		/* Blend primary cursor color with background color. */
+		secondary_color.red = (primary_color.red + background_color->red) * 0.5;
+		secondary_color.green = (primary_color.green + background_color->green) * 0.5;
+		secondary_color.blue = (primary_color.blue + background_color->blue) * 0.5;
+		secondary_color.alpha = (primary_color.alpha + background_color->alpha) * 0.5;
 
 		gdk_rgba_free (background_color);
 	}
