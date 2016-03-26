@@ -57,12 +57,14 @@
   <color name="aluminium6"                  value="#2e3436"/>
   <color name="white"                       value="#ffffff"/>
 
+  <color name="aluminium4-3-blend"          value="#a1a49e"/>
   <color name="aluminium6-5-blend"          value="#34393A"/>
 
   <!-- Global Settings -->
   <style name="text"                        foreground="aluminium2" background="aluminium6"/>
   <style name="selection"                   foreground="aluminium1" background="aluminium4"/>
   <style name="cursor"                      foreground="aluminium2"/>
+  <style name="secondary-cursor"            foreground="aluminium4-3-blend"/>
   <style name="current-line"                background="aluminium5"/>
   <style name="line-numbers"                foreground="aluminium5" background="#black"/>
   <style name="draw-spaces"                 foreground="aluminium4"/>
