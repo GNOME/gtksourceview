@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-11-11 00:24+0000\n"
-"PO-Revision-Date: 2015-11-12 11:33+0800\n"
+"POT-Creation-Date: 2016-03-26 00:57+0000\n"
+"PO-Revision-Date: 2016-03-26 15:42+0800\n"
 "Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese Simplified <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -24,6 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #. (itstool) path: displayable-values/value@name
 #: gtksourceview.xml:23
@@ -83,7 +84,7 @@ msgstr "尾随"
 #. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview.xml:39 ../gtksourceview/gtksourcecompletion.c:830
+#: gtksourceview.xml:39 ../gtksourceview/gtksourcecompletion.c:834
 msgid "All"
 msgstr "全部"
 
@@ -1424,7 +1425,7 @@ msgstr "提示"
 #. (itstool) path: genie.lang/language@_name
 #: genie.lang:24
 msgid "Genie"
-msgstr ""
+msgstr "Genie"
 
 #. (itstool) path: glsl.lang/language@_name
 #: glsl.lang:31
@@ -1764,7 +1765,7 @@ msgstr "动词"
 #. (itstool) path: jade.lang/language@_name
 #: jade.lang:26
 msgid "Jade"
-msgstr ""
+msgstr "Jade"
 
 #. (itstool) path: styles/style@_name
 #: jade.lang:34 xml.lang:36
@@ -2199,7 +2200,7 @@ msgstr "模板"
 #. (itstool) path: meson.lang/language@_name
 #: meson.lang:24
 msgid "Meson"
-msgstr ""
+msgstr "Meson"
 
 #. (itstool) path: modelica.lang/language@_name
 #: modelica.lang:26
@@ -2459,7 +2460,7 @@ msgstr "常见功能"
 #. (itstool) path: pig.lang/language@_name
 #: pig.lang:27
 msgid "Pig"
-msgstr ""
+msgstr "Pig"
 
 #. (itstool) path: styles/style@_name
 #: pig.lang:37
@@ -2704,7 +2705,7 @@ msgstr "文字"
 #. (itstool) path: rust.lang/language@_name
 #: rust.lang:36
 msgid "Rust"
-msgstr ""
+msgstr "Rust"
 
 #. (itstool) path: styles/style@_name
 #: rust.lang:53
@@ -2763,7 +2764,7 @@ msgstr "变量定义"
 #. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
 #. * to a #GtkSourceBuffer.
 #.
-#: sh.lang:39 texinfo.lang:35 ../gtksourceview/gtksourcelanguage.c:54
+#: sh.lang:39 texinfo.lang:35 ../gtksourceview/gtksourcelanguage.c:55
 msgid "Others"
 msgstr "其他"
 
@@ -2920,7 +2921,7 @@ msgstr "生成的内容"
 #. (itstool) path: thrift.lang/language@_name
 #: thrift.lang:21
 msgid "Thrift"
-msgstr ""
+msgstr "Rust"
 
 #. (itstool) path: vala.lang/language@_name
 #: vala.lang:28
@@ -3087,44 +3088,44 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "使用 Tango 调色板中配色方案"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:328
+#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
 msgid "Document Words"
 msgstr "文档字数"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:838
+#: ../gtksourceview/gtksourcebufferoutputstream.c:842
 msgid "Invalid byte sequence in conversion input"
 msgstr "转换输入中的无效字节序列"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:844
+#: ../gtksourceview/gtksourcebufferoutputstream.c:848
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "转换时出错：%s"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:925
+#: ../gtksourceview/gtksourcebufferoutputstream.c:929
 #, c-format
 msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
 msgstr "不支持从字符集“%s”向“UTF-8”转换"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:931
+#: ../gtksourceview/gtksourcebufferoutputstream.c:935
 #, c-format
 msgid "Could not open converter from '%s' to 'UTF-8'"
 msgstr "无法打开从“%s”向“UTF-8”的转换器"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:986
+#: ../gtksourceview/gtksourcebufferoutputstream.c:990
 msgid "Invalid object, not initialized"
 msgstr "无效对象，无法初始化"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:1178
+#: ../gtksourceview/gtksourcebufferoutputstream.c:1182
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "输入中含有不完整的 UTF-8 序列"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:264
+#: ../gtksourceview/gtksourcecompletioninfo.c:272
 msgid "Completion Info"
 msgstr "关于补全的信息"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:491
+#: ../gtksourceview/gtksourcecompletionmodel.c:495
 msgid "Provider"
 msgstr "提供者"
 
@@ -3132,7 +3133,7 @@ msgstr "提供者"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3143
+#: ../gtksourceview/gtksourcecontextengine.c:3147
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3142,182 +3143,182 @@ msgstr ""
 "无法为所有的转换创建正则表达式，语法加亮进程将会比正常情况慢。\n"
 "错误是：%s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4466
+#: ../gtksourceview/gtksourcecontextengine.c:4470
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr "加亮一整行花费的时间太多，语法加亮将被禁用"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5714
+#: ../gtksourceview/gtksourcecontextengine.c:5718
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "上下文“%s”不能包含一个 \\%%{...@start} 命令"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5877
-#: ../gtksourceview/gtksourcecontextengine.c:5968
+#: ../gtksourceview/gtksourcecontextengine.c:5881
+#: ../gtksourceview/gtksourcecontextengine.c:5972
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "重复的上下文 id “%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6082
-#: ../gtksourceview/gtksourcecontextengine.c:6142
+#: ../gtksourceview/gtksourcecontextengine.c:6086
+#: ../gtksourceview/gtksourcecontextengine.c:6146
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
 "'%s'"
 msgstr "语言“%s”在参考“%s”中与通配符上下文引用一同使用的样式覆盖"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6156
+#: ../gtksourceview/gtksourcecontextengine.c:6160
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "无效的上下文引用“%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6175
-#: ../gtksourceview/gtksourcecontextengine.c:6185
+#: ../gtksourceview/gtksourcecontextengine.c:6179
+#: ../gtksourceview/gtksourcecontextengine.c:6189
 #, c-format
 msgid "unknown context '%s'"
 msgstr "未知的上下文“%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6284
+#: ../gtksourceview/gtksourcecontextengine.c:6288
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "缺少主要语言定义(id = “%s”)。"
 
-#: ../gtksourceview/gtksourceencoding.c:137
-#: ../gtksourceview/gtksourceencoding.c:180
-#: ../gtksourceview/gtksourceencoding.c:182
+#: ../gtksourceview/gtksourceencoding.c:141
 #: ../gtksourceview/gtksourceencoding.c:184
 #: ../gtksourceview/gtksourceencoding.c:186
 #: ../gtksourceview/gtksourceencoding.c:188
 #: ../gtksourceview/gtksourceencoding.c:190
 #: ../gtksourceview/gtksourceencoding.c:192
+#: ../gtksourceview/gtksourceencoding.c:194
+#: ../gtksourceview/gtksourceencoding.c:196
 msgid "Unicode"
 msgstr "万国码"
 
-#: ../gtksourceview/gtksourceencoding.c:151
-#: ../gtksourceview/gtksourceencoding.c:175
-#: ../gtksourceview/gtksourceencoding.c:225
-#: ../gtksourceview/gtksourceencoding.c:268
+#: ../gtksourceview/gtksourceencoding.c:155
+#: ../gtksourceview/gtksourceencoding.c:179
+#: ../gtksourceview/gtksourceencoding.c:229
+#: ../gtksourceview/gtksourceencoding.c:272
 msgid "Western"
 msgstr "西文"
 
-#: ../gtksourceview/gtksourceencoding.c:153
-#: ../gtksourceview/gtksourceencoding.c:227
-#: ../gtksourceview/gtksourceencoding.c:264
+#: ../gtksourceview/gtksourceencoding.c:157
+#: ../gtksourceview/gtksourceencoding.c:231
+#: ../gtksourceview/gtksourceencoding.c:268
 msgid "Central European"
 msgstr "中欧"
 
-#: ../gtksourceview/gtksourceencoding.c:155
+#: ../gtksourceview/gtksourceencoding.c:159
 msgid "South European"
 msgstr "南欧"
 
-#: ../gtksourceview/gtksourceencoding.c:157
-#: ../gtksourceview/gtksourceencoding.c:171
-#: ../gtksourceview/gtksourceencoding.c:278
+#: ../gtksourceview/gtksourceencoding.c:161
+#: ../gtksourceview/gtksourceencoding.c:175
+#: ../gtksourceview/gtksourceencoding.c:282
 msgid "Baltic"
 msgstr "波罗的海语"
 
-#: ../gtksourceview/gtksourceencoding.c:159
-#: ../gtksourceview/gtksourceencoding.c:229
-#: ../gtksourceview/gtksourceencoding.c:242
+#: ../gtksourceview/gtksourceencoding.c:163
+#: ../gtksourceview/gtksourceencoding.c:233
 #: ../gtksourceview/gtksourceencoding.c:246
-#: ../gtksourceview/gtksourceencoding.c:248
-#: ../gtksourceview/gtksourceencoding.c:266
+#: ../gtksourceview/gtksourceencoding.c:250
+#: ../gtksourceview/gtksourceencoding.c:252
+#: ../gtksourceview/gtksourceencoding.c:270
 msgid "Cyrillic"
 msgstr "西里尔文"
 
-#: ../gtksourceview/gtksourceencoding.c:161
-#: ../gtksourceview/gtksourceencoding.c:235
-#: ../gtksourceview/gtksourceencoding.c:276
+#: ../gtksourceview/gtksourceencoding.c:165
+#: ../gtksourceview/gtksourceencoding.c:239
+#: ../gtksourceview/gtksourceencoding.c:280
 msgid "Arabic"
 msgstr "阿拉伯语"
 
-#: ../gtksourceview/gtksourceencoding.c:163
-#: ../gtksourceview/gtksourceencoding.c:270
+#: ../gtksourceview/gtksourceencoding.c:167
+#: ../gtksourceview/gtksourceencoding.c:274
 msgid "Greek"
 msgstr "希腊语"
 
-#: ../gtksourceview/gtksourceencoding.c:165
+#: ../gtksourceview/gtksourceencoding.c:169
 msgid "Hebrew Visual"
 msgstr "希伯来视觉"
 
-#: ../gtksourceview/gtksourceencoding.c:167
-#: ../gtksourceview/gtksourceencoding.c:231
-#: ../gtksourceview/gtksourceencoding.c:272
+#: ../gtksourceview/gtksourceencoding.c:171
+#: ../gtksourceview/gtksourceencoding.c:235
+#: ../gtksourceview/gtksourceencoding.c:276
 msgid "Turkish"
 msgstr "土耳其语"
 
-#: ../gtksourceview/gtksourceencoding.c:169
+#: ../gtksourceview/gtksourceencoding.c:173
 msgid "Nordic"
 msgstr "北欧语"
 
-#: ../gtksourceview/gtksourceencoding.c:173
+#: ../gtksourceview/gtksourceencoding.c:177
 msgid "Celtic"
 msgstr "凯尔特语"
 
-#: ../gtksourceview/gtksourceencoding.c:177
+#: ../gtksourceview/gtksourceencoding.c:181
 msgid "Romanian"
 msgstr "罗马尼亚语"
 
-#: ../gtksourceview/gtksourceencoding.c:195
+#: ../gtksourceview/gtksourceencoding.c:199
 msgid "Armenian"
 msgstr "亚美尼亚语"
 
-#: ../gtksourceview/gtksourceencoding.c:197
-#: ../gtksourceview/gtksourceencoding.c:199
-#: ../gtksourceview/gtksourceencoding.c:213
+#: ../gtksourceview/gtksourceencoding.c:201
+#: ../gtksourceview/gtksourceencoding.c:203
+#: ../gtksourceview/gtksourceencoding.c:217
 msgid "Chinese Traditional"
 msgstr "繁体中文"
 
-#: ../gtksourceview/gtksourceencoding.c:201
+#: ../gtksourceview/gtksourceencoding.c:205
 msgid "Cyrillic/Russian"
 msgstr "西里尔文/俄文"
 
-#: ../gtksourceview/gtksourceencoding.c:204
-#: ../gtksourceview/gtksourceencoding.c:206
 #: ../gtksourceview/gtksourceencoding.c:208
-#: ../gtksourceview/gtksourceencoding.c:238
-#: ../gtksourceview/gtksourceencoding.c:253
+#: ../gtksourceview/gtksourceencoding.c:210
+#: ../gtksourceview/gtksourceencoding.c:212
+#: ../gtksourceview/gtksourceencoding.c:242
+#: ../gtksourceview/gtksourceencoding.c:257
 msgid "Japanese"
 msgstr "日语"
 
-#: ../gtksourceview/gtksourceencoding.c:211
-#: ../gtksourceview/gtksourceencoding.c:240
+#: ../gtksourceview/gtksourceencoding.c:215
 #: ../gtksourceview/gtksourceencoding.c:244
-#: ../gtksourceview/gtksourceencoding.c:259
+#: ../gtksourceview/gtksourceencoding.c:248
+#: ../gtksourceview/gtksourceencoding.c:263
 msgid "Korean"
 msgstr "韩语"
 
-#: ../gtksourceview/gtksourceencoding.c:216
-#: ../gtksourceview/gtksourceencoding.c:218
 #: ../gtksourceview/gtksourceencoding.c:220
+#: ../gtksourceview/gtksourceencoding.c:222
+#: ../gtksourceview/gtksourceencoding.c:224
 msgid "Chinese Simplified"
 msgstr "简体中文"
 
-#: ../gtksourceview/gtksourceencoding.c:222
+#: ../gtksourceview/gtksourceencoding.c:226
 msgid "Georgian"
 msgstr "格鲁吉亚语"
 
-#: ../gtksourceview/gtksourceencoding.c:233
-#: ../gtksourceview/gtksourceencoding.c:274
+#: ../gtksourceview/gtksourceencoding.c:237
+#: ../gtksourceview/gtksourceencoding.c:278
 msgid "Hebrew"
 msgstr "希伯来文"
 
-#: ../gtksourceview/gtksourceencoding.c:250
+#: ../gtksourceview/gtksourceencoding.c:254
 msgid "Cyrillic/Ukrainian"
 msgstr "西里尔文/乌克兰语"
 
-#: ../gtksourceview/gtksourceencoding.c:255
-#: ../gtksourceview/gtksourceencoding.c:261
-#: ../gtksourceview/gtksourceencoding.c:280
+#: ../gtksourceview/gtksourceencoding.c:259
+#: ../gtksourceview/gtksourceencoding.c:265
+#: ../gtksourceview/gtksourceencoding.c:284
 msgid "Vietnamese"
 msgstr "越南语"
 
-#: ../gtksourceview/gtksourceencoding.c:257
+#: ../gtksourceview/gtksourceencoding.c:261
 msgid "Thai"
 msgstr "泰语"
 
-#: ../gtksourceview/gtksourceencoding.c:491
+#: ../gtksourceview/gtksourceencoding.c:495
 msgid "Unknown"
 msgstr "未知"
 
@@ -3335,7 +3336,7 @@ msgstr "未知"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:635
+#: ../gtksourceview/gtksourceencoding.c:639
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['CURRENT', 'GBK', 'UTF-8', 'UTF-16']"
 
@@ -3349,50 +3350,50 @@ msgstr "正则表达式“%2$s”中的未知 ID “%1$s”"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "在正则表达式“%s”中：不支持向后引用"
 
-#: ../gtksourceview/gtksourceregex.c:125
+#: ../gtksourceview/gtksourceregex.c:129
 msgid "using \\C is not supported in language definitions"
 msgstr "语言定义中不支持使用 \\C"
 
 #. TODO: have a ChooserDialog?
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:181
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:185
 msgid "Select a Style"
 msgstr "选择风格"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:185
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:189
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:190
 msgid "_Select"
 msgstr "选择(_S)"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1559
+#: ../gtksourceview/gtksourceview.c:1564
 msgid "_Redo"
 msgstr "重做(_R)"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1570
+#: ../gtksourceview/gtksourceview.c:1575
 msgid "_Undo"
 msgstr "撤销(_U)"
 
-#: ../gtksourceview/gtksourceview.c:1589
+#: ../gtksourceview/gtksourceview.c:1594
 msgid "All _Upper Case"
 msgstr "全部大写(_U)"
 
-#: ../gtksourceview/gtksourceview.c:1599
+#: ../gtksourceview/gtksourceview.c:1604
 msgid "All _Lower Case"
 msgstr "全部小写(_L)"
 
-#: ../gtksourceview/gtksourceview.c:1609
+#: ../gtksourceview/gtksourceview.c:1614
 msgid "_Invert Case"
 msgstr "反转大小写(_I)"
 
-#: ../gtksourceview/gtksourceview.c:1619
+#: ../gtksourceview/gtksourceview.c:1624
 msgid "_Title Case"
 msgstr "词首字母大写(_T)"
 
-#: ../gtksourceview/gtksourceview.c:1629
+#: ../gtksourceview/gtksourceview.c:1634
 msgid "C_hange Case"
 msgstr "更改大小写(_H)"
 
