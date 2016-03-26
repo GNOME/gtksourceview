@@ -1,7 +1,6 @@
 @CODE_COVERAGE_RULES@
 
 AM_CPPFLAGS = 				\
-	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	-DTOP_SRCDIR=\""$(ABS_TOP_SRCDIR)"\"\
