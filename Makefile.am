@@ -1,4 +1,4 @@
-SUBDIRS = gtksourceview po data docs tests build
+SUBDIRS = gtksourceview po data docs tests testsuite build
 
 pkgconfig_DATA = gtksourceview-3.0.pc
 

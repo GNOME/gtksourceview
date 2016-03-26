@@ -243,6 +243,7 @@ gtksourceview/completion-providers/Makefile
 gtksourceview/completion-providers/words/Makefile
 po/Makefile.in
 tests/Makefile
+testsuite/Makefile
 ])
 
 AC_OUTPUT
