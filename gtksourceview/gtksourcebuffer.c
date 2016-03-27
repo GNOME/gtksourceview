@@ -99,8 +99,8 @@
  * # Context Classes
  *
  * It is possible to retrieve some information from the syntax highlighting
- * engine. There are currently three default context classes that are
- * applied to regions of a #GtkSourceBuffer:
+ * engine. The default context classes that are applied to regions of a
+ * #GtkSourceBuffer:
  *  - <emphasis>comment</emphasis>: the region delimits a comment;
  *  - <emphasis>no-spell-check</emphasis>: the region should not be spell checked;
  *  - <emphasis>path</emphasis>: the region delimits a path to a file;
@@ -110,7 +110,16 @@
  * since the functions like gtk_source_buffer_iter_has_context_class() take
  * a string parameter as the context class.
  *
- * Each context class has an associated #GtkTextTag with the name
+ * #GtkSourceBuffer provides an API to access the context classes:
+ * gtk_source_buffer_iter_has_context_class(),
+ * gtk_source_buffer_get_context_classes_at_iter(),
+ * gtk_source_buffer_iter_forward_to_context_class_toggle() and
+ * gtk_source_buffer_iter_backward_to_context_class_toggle().
+ *
+ * And the #GtkSourceBuffer::highlight-updated signal permits to be notified
+ * when a context class region changes.
+ *
+ * Each context class has also an associated #GtkTextTag with the name
  * <emphasis>gtksourceview:context-classes:&lt;name&gt;</emphasis>. For example to
  * retrieve the #GtkTextTag for the string context class, one can write:
  * |[
@@ -120,6 +129,20 @@
  * tag_table = gtk_text_buffer_get_tag_table (buffer);
  * tag = gtk_text_tag_table_lookup (tag_table, "gtksourceview:context-classes:string");
  * ]|
+ *
+ * The tag must be used for read-only purposes.
+ *
+ * Accessing a context class via the associated #GtkTextTag is less
+ * convenient than the #GtkSourceBuffer API, because:
+ *  - The tag doesn't always exist, you need to listen to the
+ *    #GtkTextTagTable::tag-added and #GtkTextTagTable::tag-removed signals.
+ *  - Instead of the #GtkSourceBuffer::highlight-updated signal, you can listen
+ *    to the #GtkTextBuffer::apply-tag and #GtkTextBuffer::remove-tag signals.
+ *
+ * A possible use-case for accessing a context class via the associated
+ * #GtkTextTag is to read the region but without adding a hard dependency on the
+ * GtkSourceView library (for example for a spell-checking library that wants to
+ * read the no-spell-check region).
  */
 
 /*

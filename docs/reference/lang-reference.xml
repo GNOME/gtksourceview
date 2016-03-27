@@ -491,13 +491,18 @@ default context classes:
   </listitem>
   <listitem>
     <para>
-      <emphasis>string</emphasis>: the context delimits a string;
+      <emphasis>no-spell-check</emphasis>: the context's content should
+      not be spell checked;
     </para>
   </listitem>
   <listitem>
     <para>
-      <emphasis>no-spell-check</emphasis>: the context's content should
-      not be spell checked.
+      <emphasis>path</emphasis>: the context delimits a path to a file;
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      <emphasis>string</emphasis>: the context delimits a string.
     </para>
   </listitem>
 </itemizedlist>
