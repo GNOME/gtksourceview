@@ -5,7 +5,6 @@ pkgconfig_DATA = gtksourceview-3.0.pc
 EXTRA_DIST = \
 	gtksourceview.doap \
 	gtksourceview-3.0.pc.in	\
-	gtksourceview-zip.in \
 	HACKING \
 	MAINTAINERS \
 	config.h.win32.in \

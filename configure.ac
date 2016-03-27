@@ -220,7 +220,6 @@ AC_SUBST(ABS_TOP_SRCDIR)
 # Output files
 AC_CONFIG_FILES([
 gtksourceview-3.0.pc
-gtksourceview-zip
 Makefile
 config.h.win32
 build/Makefile
