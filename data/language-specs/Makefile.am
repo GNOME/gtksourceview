@@ -129,9 +129,7 @@ EXTRA_DIST =			\
 	$(languages_DATA)	\
 	check-language.sh	\
 	language-specs.its	\
-	language-specs.pot
-
-$(srcdir)/language-specs.pot: $(LANGUAGES) language-specs.its
-	$(ITSTOOL) -i language-specs.its -o $@ $(LANGUAGES)
+	language-specs.pot	\
+	update-pot.sh
 
 -include $(top_srcdir)/git.mk

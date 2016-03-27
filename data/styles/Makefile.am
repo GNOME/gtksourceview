@@ -16,9 +16,7 @@ EXTRA_DIST =		\
 	$(styles_DATA)	\
 	check-style.sh	\
 	styles.its	\
-	styles.pot
-
-$(srcdir)/styles.pot: $(STYLES) styles.its
-	$(ITSTOOL) -i styles.its -o $@ $(STYLES)
+	styles.pot	\
+	update-pot.sh
 
 -include $(top_srcdir)/git.mk

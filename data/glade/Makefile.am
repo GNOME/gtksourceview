@@ -14,9 +14,7 @@ validate: $(catalog_DATA)
 EXTRA_DIST =			\
 	gtksourceview.xml	\
 	glade.its		\
-	glade.pot
-
-$(srcdir)/glade.pot: $(catalog_DATA) glade.its
-	$(ITSTOOL) -i glade.its -o $@ $(catalog_DATA)
+	glade.pot		\
+	update-pot.sh
 
 -include $(top_srcdir)/git.mk
