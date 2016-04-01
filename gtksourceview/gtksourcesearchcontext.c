@@ -30,7 +30,7 @@
 #include "gtksourcestylescheme.h"
 #include "gtksourcestyle-private.h"
 #include "gtksourceutils.h"
-#include "gtktextregion.h"
+#include "gtksourceregion.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourceview-typebuiltins.h"
 

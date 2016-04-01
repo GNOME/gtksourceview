@@ -28,7 +28,7 @@
 #include <string.h>
 #include <glib.h>
 #include "gtksourceview-i18n.h"
-#include "gtktextregion.h"
+#include "gtksourceregion.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"

@@ -22,7 +22,7 @@
  */
 
 #include <gtk/gtk.h>
-#include "gtksourceview/gtktextregion.h"
+#include "gtksourceview/gtksourceregion.h"
 
 static void
 test_region (void)

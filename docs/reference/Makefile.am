@@ -46,13 +46,13 @@ IGNORE_HFILES =					\
 	gtksourcemarkssequence.h		\
 	gtksourcepixbufhelper.h			\
 	gtksourceregex.h			\
+	gtksourceregion.h			\
 	gtksourcestyle-private.h		\
 	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
 	gtksourceview-i18n.h			\
 	gtksourceview-typebuiltins.h		\
-	gtksourceview-utils.h			\
-	gtktextregion.h
+	gtksourceview-utils.h
 
 # Extra options to supply to gtkdoc-mkdb
 MKDB_OPTIONS = --xml-mode --output-format=xml

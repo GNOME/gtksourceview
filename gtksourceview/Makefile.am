@@ -112,12 +112,12 @@ libgtksourceview_private_headers =		\
 	gtksourcemarkssequence.h		\
 	gtksourcepixbufhelper.h			\
 	gtksourceregex.h			\
+	gtksourceregion.h			\
 	gtksourcestyle-private.h		\
 	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
 	gtksourceview-i18n.h			\
-	gtksourceview-utils.h			\
-	gtktextregion.h
+	gtksourceview-utils.h
 
 libgtksourceview_private_c_files =	\
 	gtksourcebufferinputstream.c	\
@@ -134,10 +134,10 @@ libgtksourceview_private_c_files =	\
 	gtksourcemarkssequence.c	\
 	gtksourcepixbufhelper.c		\
 	gtksourceregex.c		\
+	gtksourceregion.c		\
 	gtksourceundomanagerdefault.c	\
 	gtksourceview-i18n.c		\
-	gtksourceview-utils.c 		\
-	gtktextregion.c
+	gtksourceview-utils.c
 
 # Split in a helper library, so the private functions can be used in unit tests.
 noinst_LTLIBRARIES = libgtksourceview-core.la
