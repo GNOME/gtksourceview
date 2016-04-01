@@ -63,6 +63,11 @@ void			gtk_source_region_subtract		(GtkSourceRegion   *region,
 								 const GtkTextIter *_end);
 
 GTK_SOURCE_INTERNAL
+GtkSourceRegion *	gtk_source_region_intersect		(GtkSourceRegion   *region,
+								 const GtkTextIter *_start,
+								 const GtkTextIter *_end);
+
+GTK_SOURCE_INTERNAL
 gint			gtk_source_region_subregions		(GtkSourceRegion *region);
 
 GTK_SOURCE_INTERNAL
@@ -70,11 +75,6 @@ gboolean		gtk_source_region_nth_subregion		(GtkSourceRegion *region,
 								 guint            subregion,
 								 GtkTextIter     *start,
 								 GtkTextIter     *end);
-
-GTK_SOURCE_INTERNAL
-GtkSourceRegion *	gtk_source_region_intersect		(GtkSourceRegion   *region,
-								 const GtkTextIter *_start,
-								 const GtkTextIter *_end);
 
 GTK_SOURCE_INTERNAL
 void			gtk_source_region_get_region_iter	(GtkSourceRegion     *region,
