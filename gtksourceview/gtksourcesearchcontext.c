@@ -426,23 +426,23 @@ text_tag_set_highest_priority (GtkTextTag    *tag,
 static gboolean
 is_text_region_empty (GtkSourceRegion *region)
 {
-	GtkSourceRegionIterator region_iter;
+	GtkSourceRegionIter region_iter;
 
 	if (region == NULL)
 	{
 		return TRUE;
 	}
 
-	gtk_source_region_get_iterator (region, &region_iter, 0);
+	gtk_source_region_get_region_iter (region, &region_iter, 0);
 
-	while (!gtk_source_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
 		GtkTextIter region_start;
 		GtkTextIter region_end;
 
-		if (!gtk_source_region_iterator_get_subregion (&region_iter,
-							       &region_start,
-							       &region_end))
+		if (!gtk_source_region_iter_get_subregion (&region_iter,
+							   &region_start,
+							   &region_end))
 		{
 			return TRUE;
 		}
@@ -452,7 +452,7 @@ is_text_region_empty (GtkSourceRegion *region)
 			return FALSE;
 		}
 
-		gtk_source_region_iterator_next (&region_iter);
+		gtk_source_region_iter_next (&region_iter);
 	}
 
 	return TRUE;
@@ -466,18 +466,18 @@ get_first_subregion (GtkSourceRegion *region,
 		     GtkTextIter   *start,
 		     GtkTextIter   *end)
 {
-	GtkSourceRegionIterator region_iter;
+	GtkSourceRegionIter region_iter;
 
 	if (region == NULL)
 	{
 		return FALSE;
 	}
 
-	gtk_source_region_get_iterator (region, &region_iter, 0);
+	gtk_source_region_get_region_iter (region, &region_iter, 0);
 
-	while (!gtk_source_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
-		if (!gtk_source_region_iterator_get_subregion (&region_iter, start, end))
+		if (!gtk_source_region_iter_get_subregion (&region_iter, start, end))
 		{
 			return FALSE;
 		}
@@ -487,7 +487,7 @@ get_first_subregion (GtkSourceRegion *region,
 			return TRUE;
 		}
 
-		gtk_source_region_iterator_next (&region_iter);
+		gtk_source_region_iter_next (&region_iter);
 	}
 
 	return FALSE;
@@ -501,7 +501,7 @@ get_last_subregion (GtkSourceRegion *region,
 		    GtkTextIter   *start,
 		    GtkTextIter   *end)
 {
-	GtkSourceRegionIterator region_iter;
+	GtkSourceRegionIter region_iter;
 	gboolean found = FALSE;
 
 	if (region == NULL)
@@ -509,16 +509,16 @@ get_last_subregion (GtkSourceRegion *region,
 		return FALSE;
 	}
 
-	gtk_source_region_get_iterator (region, &region_iter, 0);
+	gtk_source_region_get_region_iter (region, &region_iter, 0);
 
-	while (!gtk_source_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
 		GtkTextIter start_subregion;
 		GtkTextIter end_subregion;
 
-		if (!gtk_source_region_iterator_get_subregion (&region_iter,
-							       &start_subregion,
-							       &end_subregion))
+		if (!gtk_source_region_iter_get_subregion (&region_iter,
+							   &start_subregion,
+							   &end_subregion))
 		{
 			return FALSE;
 		}
@@ -530,7 +530,7 @@ get_last_subregion (GtkSourceRegion *region,
 			*end = end_subregion;
 		}
 
-		gtk_source_region_iterator_next (&region_iter);
+		gtk_source_region_iter_next (&region_iter);
 	}
 
 	return found;
@@ -1824,7 +1824,7 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 	GtkTextIter start;
 	GtkTextIter end;
 	GtkSourceRegion *region;
-	GtkSourceRegionIterator region_iter;
+	GtkSourceRegionIter region_iter;
 	gint nb_subregions = gtk_source_region_subregions (search->priv->high_priority_region);
 
 	if (nb_subregions == 0)
@@ -1852,16 +1852,16 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 					      &start,
 					      &end);
 
-	gtk_source_region_get_iterator (region, &region_iter, 0);
+	gtk_source_region_get_region_iter (region, &region_iter, 0);
 
-	while (!gtk_source_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
 		GtkTextIter subregion_start;
 		GtkTextIter subregion_end;
 
-		if (!gtk_source_region_iterator_get_subregion (&region_iter,
-							       &subregion_start,
-							       &subregion_end))
+		if (!gtk_source_region_iter_get_subregion (&region_iter,
+							   &subregion_start,
+							   &subregion_end))
 		{
 			return;
 		}
@@ -1871,7 +1871,7 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 					    &subregion_start,
 					    &subregion_end);
 
-		gtk_source_region_iterator_next (&region_iter);
+		gtk_source_region_iter_next (&region_iter);
 	}
 
 	gtk_source_region_destroy (region);

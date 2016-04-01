@@ -29,12 +29,12 @@
 G_BEGIN_DECLS
 
 typedef struct _GtkSourceRegion		GtkSourceRegion;
-typedef struct _GtkSourceRegionIterator	GtkSourceRegionIterator;
+typedef struct _GtkSourceRegionIter	GtkSourceRegionIter;
 
-struct _GtkSourceRegionIterator
+struct _GtkSourceRegionIter
 {
-	/* GtkSourceRegionIterator is an opaque datatype; ignore all these fields.
-	 * Initialize the iter with gtk_source_region_get_iterator
+	/* GtkSourceRegionIter is an opaque datatype; ignore all these fields.
+	 * Initialize the iter with gtk_source_region_get_region_iter
 	 * function
 	 */
 	/*< private >*/
@@ -77,21 +77,21 @@ GtkSourceRegion *	gtk_source_region_intersect		(GtkSourceRegion   *region,
 								 const GtkTextIter *_end);
 
 GTK_SOURCE_INTERNAL
-void			gtk_source_region_get_iterator		(GtkSourceRegion         *region,
-								 GtkSourceRegionIterator *iter,
-								 guint                    start);
+void			gtk_source_region_get_region_iter	(GtkSourceRegion     *region,
+								 GtkSourceRegionIter *iter,
+								 guint                start);
 
 GTK_SOURCE_INTERNAL
-gboolean		gtk_source_region_iterator_is_end	(GtkSourceRegionIterator *iter);
+gboolean		gtk_source_region_iter_is_end		(GtkSourceRegionIter *iter);
 
 /* Returns FALSE if iterator is the end iterator */
 GTK_SOURCE_INTERNAL
-gboolean		gtk_source_region_iterator_next		(GtkSourceRegionIterator *iter);
+gboolean		gtk_source_region_iter_next		(GtkSourceRegionIter *iter);
 
 GTK_SOURCE_INTERNAL
-gboolean		gtk_source_region_iterator_get_subregion (GtkSourceRegionIterator *iter,
-								  GtkTextIter             *start,
-								  GtkTextIter             *end);
+gboolean		gtk_source_region_iter_get_subregion	(GtkSourceRegionIter *iter,
+								 GtkTextIter         *start,
+								 GtkTextIter         *end);
 
 GTK_SOURCE_INTERNAL
 void			gtk_source_region_debug_print		(GtkSourceRegion *region);

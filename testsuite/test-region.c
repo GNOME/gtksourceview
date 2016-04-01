@@ -29,7 +29,7 @@ test_region (void)
 {
 	GtkTextBuffer *buffer;
 	GtkSourceRegion *region, *intersection;
-	GtkSourceRegionIterator reg_iter;
+	GtkSourceRegionIter reg_iter;
 	GtkTextIter iter1, iter2;
 	gint i;
 
@@ -96,8 +96,8 @@ test_region (void)
 	gtk_text_buffer_get_start_iter (buffer, &iter1);
 	gtk_text_buffer_insert (buffer, &iter1, "This is a test of GtkSourceRegion", -1);
 
-	gtk_source_region_get_iterator (region, &reg_iter, 0);
-	if (!gtk_source_region_iterator_is_end (&reg_iter)) {
+	gtk_source_region_get_region_iter (region, &reg_iter, 0);
+	if (!gtk_source_region_iter_is_end (&reg_iter)) {
 		g_print ("problem fetching iterator for an empty region\n");
 		g_assert_not_reached ();
 	}
@@ -135,14 +135,14 @@ test_region (void)
 	}
 
 	i = 0;
-	gtk_source_region_get_iterator (region, &reg_iter, 0);
+	gtk_source_region_get_region_iter (region, &reg_iter, 0);
 
-	while (!gtk_source_region_iterator_is_end (&reg_iter))
+	while (!gtk_source_region_iter_is_end (&reg_iter))
 	{
 		GtkTextIter s, e, s1, e1;
 
-		gtk_source_region_iterator_get_subregion (&reg_iter,
-							  &s, &e);
+		gtk_source_region_iter_get_subregion (&reg_iter,
+						      &s, &e);
 		gtk_source_region_nth_subregion (region, i, &s1, &e1);
 
 		if (!gtk_text_iter_equal (&s, &s1) ||
@@ -153,7 +153,7 @@ test_region (void)
 		}
 
 		++i;
-		gtk_source_region_iterator_next (&reg_iter);
+		gtk_source_region_iter_next (&reg_iter);
 	}
 
 	if (i != gtk_source_region_subregions (region))

@@ -311,25 +311,25 @@ scan_region (GtkSourceCompletionWordsBuffer *buffer,
 static gboolean
 is_text_region_empty (GtkSourceRegion *region)
 {
-	GtkSourceRegionIterator region_iter;
+	GtkSourceRegionIter region_iter;
 
-	gtk_source_region_get_iterator (region, &region_iter, 0);
+	gtk_source_region_get_region_iter (region, &region_iter, 0);
 
-	while (!gtk_source_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
 		GtkTextIter region_start;
 		GtkTextIter region_end;
 
-		gtk_source_region_iterator_get_subregion (&region_iter,
-							  &region_start,
-							  &region_end);
+		gtk_source_region_iter_get_subregion (&region_iter,
+						      &region_start,
+						      &region_end);
 
 		if (!gtk_text_iter_equal (&region_start, &region_end))
 		{
 			return FALSE;
 		}
 
-		gtk_source_region_iterator_next (&region_iter);
+		gtk_source_region_iter_next (&region_iter);
 	}
 
 	return TRUE;
@@ -339,26 +339,26 @@ static gboolean
 idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 {
 	guint nb_remaining_lines = buffer->priv->scan_batch_size;
-	GtkSourceRegionIterator region_iter;
+	GtkSourceRegionIter region_iter;
 	GtkTextIter start;
 	GtkTextIter stop;
 
 	gtk_text_buffer_get_start_iter (buffer->priv->buffer, &start);
 	stop = start;
 
-	gtk_source_region_get_iterator (buffer->priv->scan_region,
-					&region_iter,
-					0);
+	gtk_source_region_get_region_iter (buffer->priv->scan_region,
+					   &region_iter,
+					   0);
 
 	while (nb_remaining_lines > 0 &&
-	       !gtk_source_region_iterator_is_end (&region_iter))
+	       !gtk_source_region_iter_is_end (&region_iter))
 	{
 		GtkTextIter region_start;
 		GtkTextIter region_end;
 
-		gtk_source_region_iterator_get_subregion (&region_iter,
-							  &region_start,
-							  &region_end);
+		gtk_source_region_iter_get_subregion (&region_iter,
+						      &region_start,
+						      &region_end);
 
 		nb_remaining_lines -= scan_region (buffer,
 						   &region_start,
@@ -366,7 +366,7 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 						   nb_remaining_lines,
 						   &stop);
 
-		gtk_source_region_iterator_next (&region_iter);
+		gtk_source_region_iter_next (&region_iter);
 	}
 
 	gtk_source_region_subtract (buffer->priv->scan_region,
@@ -440,24 +440,24 @@ static void
 remove_words_in_region (GtkSourceCompletionWordsBuffer *buffer,
 			GtkSourceRegion                  *region)
 {
-	GtkSourceRegionIterator region_iter;
+	GtkSourceRegionIter region_iter;
 
-	gtk_source_region_get_iterator (region, &region_iter, 0);
+	gtk_source_region_get_region_iter (region, &region_iter, 0);
 
-	while (!gtk_source_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
 		GtkTextIter subregion_start;
 		GtkTextIter subregion_end;
 
-		gtk_source_region_iterator_get_subregion (&region_iter,
-							  &subregion_start,
-							  &subregion_end);
+		gtk_source_region_iter_get_subregion (&region_iter,
+						      &subregion_start,
+						      &subregion_end);
 
 		remove_words_in_subregion (buffer,
 					   &subregion_start,
 					   &subregion_end);
 
-		gtk_source_region_iterator_next (&region_iter);
+		gtk_source_region_iter_next (&region_iter);
 	}
 }
 
@@ -467,28 +467,28 @@ compute_remove_region (GtkSourceCompletionWordsBuffer *buffer,
 		       const GtkTextIter              *end)
 {
 	GtkSourceRegion *remove_region = gtk_source_region_new (buffer->priv->buffer);
-	GtkSourceRegionIterator region_iter;
+	GtkSourceRegionIter region_iter;
 
 	gtk_source_region_add (remove_region, start, end);
 
-	gtk_source_region_get_iterator (buffer->priv->scan_region,
-					&region_iter,
-					0);
+	gtk_source_region_get_region_iter (buffer->priv->scan_region,
+					   &region_iter,
+					   0);
 
-	while (!gtk_source_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
 		GtkTextIter scan_start;
 		GtkTextIter scan_end;
 
-		gtk_source_region_iterator_get_subregion (&region_iter,
-							  &scan_start,
-							  &scan_end);
+		gtk_source_region_iter_get_subregion (&region_iter,
+						      &scan_start,
+						      &scan_end);
 
 		gtk_source_region_subtract (remove_region,
 					    &scan_start,
 					    &scan_end);
 
-		gtk_source_region_iterator_next (&region_iter);
+		gtk_source_region_iter_next (&region_iter);
 	}
 
 	return remove_region;

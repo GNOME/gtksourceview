@@ -946,7 +946,7 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 		    const GtkTextIter      *end)
 {
 	GtkSourceRegion *region;
-	GtkSourceRegionIterator reg_iter;
+	GtkSourceRegionIter reg_iter;
 
 	/* Get the subregions not yet highlighted. */
 	region = gtk_source_region_intersect (ce->priv->refresh_region, start, end);
@@ -954,16 +954,16 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 	if (region == NULL)
 		return;
 
-	gtk_source_region_get_iterator (region, &reg_iter, 0);
+	gtk_source_region_get_region_iter (region, &reg_iter, 0);
 
 	/* Highlight all subregions from the intersection.
 	 * hopefully this will only be one subregion. */
-	while (!gtk_source_region_iterator_is_end (&reg_iter))
+	while (!gtk_source_region_iter_is_end (&reg_iter))
 	{
 		GtkTextIter s, e;
-		gtk_source_region_iterator_get_subregion (&reg_iter, &s, &e);
+		gtk_source_region_iter_get_subregion (&reg_iter, &s, &e);
 		highlight_region (ce, &s, &e);
-		gtk_source_region_iterator_next (&reg_iter);
+		gtk_source_region_iter_next (&reg_iter);
 	}
 
 	gtk_source_region_destroy (region);

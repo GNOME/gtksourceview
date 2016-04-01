@@ -46,9 +46,9 @@ struct _GtkSourceRegion
 	guint32        time_stamp;
 };
 
-typedef struct _GtkSourceRegionIteratorReal GtkSourceRegionIteratorReal;
+typedef struct _GtkSourceRegionIterReal GtkSourceRegionIterReal;
 
-struct _GtkSourceRegionIteratorReal
+struct _GtkSourceRegionIterReal
 {
 	GtkSourceRegion *region;
 	guint32 region_time_stamp;
@@ -690,7 +690,7 @@ gtk_source_region_intersect (GtkSourceRegion   *region,
 }
 
 static gboolean
-check_iterator (GtkSourceRegionIteratorReal *real)
+check_iterator (GtkSourceRegionIterReal *real)
 {
 	if ((real->region == NULL) ||
 	    (real->region_time_stamp != real->region->time_stamp))
@@ -707,16 +707,16 @@ check_iterator (GtkSourceRegionIteratorReal *real)
 }
 
 void
-gtk_source_region_get_iterator (GtkSourceRegion         *region,
-				GtkSourceRegionIterator *iter,
-				guint                    start)
+gtk_source_region_get_region_iter (GtkSourceRegion     *region,
+				   GtkSourceRegionIter *iter,
+				   guint                start)
 {
-	GtkSourceRegionIteratorReal *real;
+	GtkSourceRegionIterReal *real;
 
 	g_return_if_fail (region != NULL);
 	g_return_if_fail (iter != NULL);
 
-	real = (GtkSourceRegionIteratorReal *)iter;
+	real = (GtkSourceRegionIterReal *)iter;
 
 	/* region->subregions may be NULL, -> end iter */
 
@@ -726,26 +726,26 @@ gtk_source_region_get_iterator (GtkSourceRegion         *region,
 }
 
 gboolean
-gtk_source_region_iterator_is_end (GtkSourceRegionIterator *iter)
+gtk_source_region_iter_is_end (GtkSourceRegionIter *iter)
 {
-	GtkSourceRegionIteratorReal *real;
+	GtkSourceRegionIterReal *real;
 
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	real = (GtkSourceRegionIteratorReal *)iter;
+	real = (GtkSourceRegionIterReal *)iter;
 	g_return_val_if_fail (check_iterator (real), FALSE);
 
 	return real->subregions == NULL;
 }
 
 gboolean
-gtk_source_region_iterator_next (GtkSourceRegionIterator *iter)
+gtk_source_region_iter_next (GtkSourceRegionIter *iter)
 {
-	GtkSourceRegionIteratorReal *real;
+	GtkSourceRegionIterReal *real;
 
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	real = (GtkSourceRegionIteratorReal *)iter;
+	real = (GtkSourceRegionIterReal *)iter;
 	g_return_val_if_fail (check_iterator (real), FALSE);
 
 	if (real->subregions != NULL)
@@ -758,16 +758,16 @@ gtk_source_region_iterator_next (GtkSourceRegionIterator *iter)
 }
 
 gboolean
-gtk_source_region_iterator_get_subregion (GtkSourceRegionIterator *iter,
-					  GtkTextIter             *start,
-					  GtkTextIter             *end)
+gtk_source_region_iter_get_subregion (GtkSourceRegionIter *iter,
+				      GtkTextIter         *start,
+				      GtkTextIter         *end)
 {
-	GtkSourceRegionIteratorReal *real;
+	GtkSourceRegionIterReal *real;
 	Subregion *sr;
 
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	real = (GtkSourceRegionIteratorReal *)iter;
+	real = (GtkSourceRegionIterReal *)iter;
 	g_return_val_if_fail (check_iterator (real), FALSE);
 	g_return_val_if_fail (real->subregions != NULL, FALSE);
 
