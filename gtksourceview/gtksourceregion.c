@@ -707,9 +707,8 @@ check_iterator (GtkSourceRegionIterReal *real)
 }
 
 void
-gtk_source_region_get_region_iter (GtkSourceRegion     *region,
-				   GtkSourceRegionIter *iter,
-				   guint                start)
+gtk_source_region_get_start_region_iter (GtkSourceRegion     *region,
+					 GtkSourceRegionIter *iter)
 {
 	GtkSourceRegionIterReal *real;
 
@@ -721,7 +720,7 @@ gtk_source_region_get_region_iter (GtkSourceRegion     *region,
 	/* region->subregions may be NULL, -> end iter */
 
 	real->region = region;
-	real->subregions = g_list_nth (region->subregions, start);
+	real->subregions = region->subregions;
 	real->region_timestamp = region->timestamp;
 }
 

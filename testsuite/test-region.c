@@ -96,7 +96,7 @@ test_region (void)
 	gtk_text_buffer_get_start_iter (buffer, &iter1);
 	gtk_text_buffer_insert (buffer, &iter1, "This is a test of GtkSourceRegion", -1);
 
-	gtk_source_region_get_region_iter (region, &reg_iter, 0);
+	gtk_source_region_get_start_region_iter (region, &reg_iter);
 	if (!gtk_source_region_iter_is_end (&reg_iter)) {
 		g_print ("problem fetching iterator for an empty region\n");
 		g_assert_not_reached ();
@@ -135,7 +135,7 @@ test_region (void)
 	}
 
 	i = 0;
-	gtk_source_region_get_region_iter (region, &reg_iter, 0);
+	gtk_source_region_get_start_region_iter (region, &reg_iter);
 
 	while (!gtk_source_region_iter_is_end (&reg_iter))
 	{

@@ -433,7 +433,7 @@ is_text_region_empty (GtkSourceRegion *region)
 		return TRUE;
 	}
 
-	gtk_source_region_get_region_iter (region, &region_iter, 0);
+	gtk_source_region_get_start_region_iter (region, &region_iter);
 
 	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
@@ -473,7 +473,7 @@ get_first_subregion (GtkSourceRegion *region,
 		return FALSE;
 	}
 
-	gtk_source_region_get_region_iter (region, &region_iter, 0);
+	gtk_source_region_get_start_region_iter (region, &region_iter);
 
 	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
@@ -509,7 +509,7 @@ get_last_subregion (GtkSourceRegion *region,
 		return FALSE;
 	}
 
-	gtk_source_region_get_region_iter (region, &region_iter, 0);
+	gtk_source_region_get_start_region_iter (region, &region_iter);
 
 	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
@@ -1852,7 +1852,7 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 					      &start,
 					      &end);
 
-	gtk_source_region_get_region_iter (region, &region_iter, 0);
+	gtk_source_region_get_start_region_iter (region, &region_iter);
 
 	while (!gtk_source_region_iter_is_end (&region_iter))
 	{

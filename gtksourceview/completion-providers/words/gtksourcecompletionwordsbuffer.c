@@ -313,7 +313,7 @@ is_text_region_empty (GtkSourceRegion *region)
 {
 	GtkSourceRegionIter region_iter;
 
-	gtk_source_region_get_region_iter (region, &region_iter, 0);
+	gtk_source_region_get_start_region_iter (region, &region_iter);
 
 	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
@@ -346,9 +346,7 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 	gtk_text_buffer_get_start_iter (buffer->priv->buffer, &start);
 	stop = start;
 
-	gtk_source_region_get_region_iter (buffer->priv->scan_region,
-					   &region_iter,
-					   0);
+	gtk_source_region_get_start_region_iter (buffer->priv->scan_region, &region_iter);
 
 	while (nb_remaining_lines > 0 &&
 	       !gtk_source_region_iter_is_end (&region_iter))
@@ -442,7 +440,7 @@ remove_words_in_region (GtkSourceCompletionWordsBuffer *buffer,
 {
 	GtkSourceRegionIter region_iter;
 
-	gtk_source_region_get_region_iter (region, &region_iter, 0);
+	gtk_source_region_get_start_region_iter (region, &region_iter);
 
 	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
@@ -471,9 +469,7 @@ compute_remove_region (GtkSourceCompletionWordsBuffer *buffer,
 
 	gtk_source_region_add (remove_region, start, end);
 
-	gtk_source_region_get_region_iter (buffer->priv->scan_region,
-					   &region_iter,
-					   0);
+	gtk_source_region_get_start_region_iter (buffer->priv->scan_region, &region_iter);
 
 	while (!gtk_source_region_iter_is_end (&region_iter))
 	{

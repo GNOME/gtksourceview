@@ -954,7 +954,7 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 	if (region == NULL)
 		return;
 
-	gtk_source_region_get_region_iter (region, &reg_iter, 0);
+	gtk_source_region_get_start_region_iter (region, &reg_iter);
 
 	/* Highlight all subregions from the intersection.
 	 * hopefully this will only be one subregion. */

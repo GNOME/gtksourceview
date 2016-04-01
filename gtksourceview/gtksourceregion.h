@@ -34,7 +34,7 @@ typedef struct _GtkSourceRegionIter	GtkSourceRegionIter;
 struct _GtkSourceRegionIter
 {
 	/* GtkSourceRegionIter is an opaque datatype; ignore all these fields.
-	 * Initialize the iter with gtk_source_region_get_region_iter
+	 * Initialize the iter with gtk_source_region_get_start_region_iter
 	 * function
 	 */
 	/*< private >*/
@@ -77,9 +77,8 @@ gboolean		gtk_source_region_nth_subregion		(GtkSourceRegion *region,
 								 GtkTextIter     *end);
 
 GTK_SOURCE_INTERNAL
-void			gtk_source_region_get_region_iter	(GtkSourceRegion     *region,
-								 GtkSourceRegionIter *iter,
-								 guint                start);
+void			gtk_source_region_get_start_region_iter	(GtkSourceRegion     *region,
+								 GtkSourceRegionIter *iter);
 
 GTK_SOURCE_INTERNAL
 gboolean		gtk_source_region_iter_is_end		(GtkSourceRegionIter *iter);
