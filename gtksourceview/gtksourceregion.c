@@ -43,7 +43,7 @@ struct _GtkSourceRegion
 {
 	GtkTextBuffer *buffer;
 	GList         *subregions;
-	guint32        time_stamp;
+	guint32        timestamp;
 };
 
 typedef struct _GtkSourceRegionIterReal GtkSourceRegionIterReal;
@@ -51,7 +51,7 @@ typedef struct _GtkSourceRegionIterReal GtkSourceRegionIterReal;
 struct _GtkSourceRegionIterReal
 {
 	GtkSourceRegion *region;
-	guint32 region_time_stamp;
+	guint32 region_timestamp;
 	GList *subregions;
 };
 
@@ -131,7 +131,7 @@ gtk_source_region_new (GtkTextBuffer *buffer)
 
 	region = g_slice_new (GtkSourceRegion);
 	region->subregions = NULL;
-	region->time_stamp = 0;
+	region->timestamp = 0;
 	region->buffer = buffer;
 
 	g_object_add_weak_pointer (G_OBJECT (buffer),
@@ -211,7 +211,7 @@ gtk_source_region_clear_zero_length_subregions (GtkSourceRegion *region)
 				node = g_list_delete_link (node, node);
 			}
 
-			region->time_stamp++;
+			region->timestamp++;
 		}
 		else
 		{
@@ -326,7 +326,7 @@ gtk_source_region_add (GtkSourceRegion   *region,
 		}
 	}
 
-	region->time_stamp++;
+	region->timestamp++;
 
 	DEBUG (gtk_source_region_debug_print (region));
 }
@@ -483,7 +483,7 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 		}
 	}
 
-	region->time_stamp++;
+	region->timestamp++;
 
 	DEBUG (gtk_source_region_debug_print (region));
 
@@ -693,7 +693,7 @@ static gboolean
 check_iterator (GtkSourceRegionIterReal *real)
 {
 	if ((real->region == NULL) ||
-	    (real->region_time_stamp != real->region->time_stamp))
+	    (real->region_timestamp != real->region->timestamp))
 	{
 		g_warning ("Invalid iterator: either the iterator "
 			   "is uninitialized, or the region "
@@ -722,7 +722,7 @@ gtk_source_region_get_region_iter (GtkSourceRegion     *region,
 
 	real->region = region;
 	real->subregions = g_list_nth (region->subregions, start);
-	real->region_time_stamp = region->time_stamp;
+	real->region_timestamp = region->timestamp;
 }
 
 gboolean
