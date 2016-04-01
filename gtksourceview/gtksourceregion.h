@@ -94,7 +94,7 @@ gboolean		gtk_source_region_iter_get_subregion	(GtkSourceRegionIter *iter,
 								 GtkTextIter         *end);
 
 GTK_SOURCE_INTERNAL
-void			gtk_source_region_debug_print		(GtkSourceRegion *region);
+void			_gtk_source_region_debug_print		(GtkSourceRegion *region);
 
 G_END_DECLS
 

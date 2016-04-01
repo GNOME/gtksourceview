@@ -117,7 +117,7 @@ test_region (void)
 		}
 		g_print ("%s %d-%d\n", op_name, ops [i][1], ops [i][2]);
 
-		gtk_source_region_debug_print (region);
+		_gtk_source_region_debug_print (region);
 	}
 
 	for (i = 0; i < NUM_INTERSECTS; i++) {
@@ -127,7 +127,7 @@ test_region (void)
 		g_print ("intersect %d-%d\n", inter [i][0], inter [i][1]);
 		intersection = gtk_source_region_intersect (region, &iter1, &iter2);
 		if (intersection) {
-			gtk_source_region_debug_print (intersection);
+			_gtk_source_region_debug_print (intersection);
 			gtk_source_region_destroy (intersection);
 		} else {
 			g_print ("no intersection\n");

@@ -243,7 +243,7 @@ gtk_source_region_add (GtkSourceRegion   *region,
 	end = *_end;
 
 	DEBUG (g_print ("---\n"));
-	DEBUG (gtk_source_region_debug_print (region));
+	DEBUG (_gtk_source_region_debug_print (region));
 	DEBUG (g_message ("region_add (%d, %d)",
 			  gtk_text_iter_get_offset (&start),
 			  gtk_text_iter_get_offset (&end)));
@@ -328,7 +328,7 @@ gtk_source_region_add (GtkSourceRegion   *region,
 
 	region->timestamp++;
 
-	DEBUG (gtk_source_region_debug_print (region));
+	DEBUG (_gtk_source_region_debug_print (region));
 }
 
 void
@@ -361,7 +361,7 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 	end = *_end;
 
 	DEBUG (g_print ("---\n"));
-	DEBUG (gtk_source_region_debug_print (region));
+	DEBUG (_gtk_source_region_debug_print (region));
 	DEBUG (g_message ("region_substract (%d, %d)",
 			  gtk_text_iter_get_offset (&start),
 			  gtk_text_iter_get_offset (&end)));
@@ -485,12 +485,12 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 
 	region->timestamp++;
 
-	DEBUG (gtk_source_region_debug_print (region));
+	DEBUG (_gtk_source_region_debug_print (region));
 
 	/* Now get rid of empty subregions. */
 	gtk_source_region_clear_zero_length_subregions (region);
 
-	DEBUG (gtk_source_region_debug_print (region));
+	DEBUG (_gtk_source_region_debug_print (region));
 }
 
 gint
@@ -793,7 +793,7 @@ gtk_source_region_iter_get_subregion (GtkSourceRegionIter *iter,
 }
 
 void
-gtk_source_region_debug_print (GtkSourceRegion *region)
+_gtk_source_region_debug_print (GtkSourceRegion *region)
 {
 	GList *l;
 

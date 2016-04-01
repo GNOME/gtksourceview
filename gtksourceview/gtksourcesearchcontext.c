@@ -1560,14 +1560,14 @@ scan_subregion (GtkSourceSearchContext *search,
 	{
 		DEBUG ({
 			g_print ("Region to scan, before:\n");
-			gtk_source_region_debug_print (search->priv->scan_region);
+			_gtk_source_region_debug_print (search->priv->scan_region);
 		});
 
 		gtk_source_region_subtract (search->priv->scan_region, start, end);
 
 		DEBUG ({
 			g_print ("Region to scan, after:\n");
-			gtk_source_region_debug_print (search->priv->scan_region);
+			_gtk_source_region_debug_print (search->priv->scan_region);
 		});
 	}
 
@@ -2368,14 +2368,14 @@ add_subregion_to_scan (GtkSourceSearchContext *search,
 
 	DEBUG ({
 		g_print ("add_subregion_to_scan(): region to scan, before:\n");
-		gtk_source_region_debug_print (search->priv->scan_region);
+		_gtk_source_region_debug_print (search->priv->scan_region);
 	});
 
 	gtk_source_region_add (search->priv->scan_region, &start, &end);
 
 	DEBUG ({
 		g_print ("add_subregion_to_scan(): region to scan, after:\n");
-		gtk_source_region_debug_print (search->priv->scan_region);
+		_gtk_source_region_debug_print (search->priv->scan_region);
 	});
 
 	install_idle_scan (search);
