@@ -41,7 +41,7 @@ struct _GtkSourceCompletionWordsBufferPrivate
 	GtkSourceCompletionWordsLibrary *library;
 	GtkTextBuffer *buffer;
 
-	GtkTextRegion *scan_region;
+	GtkSourceRegion *scan_region;
 	gulong batch_scan_id;
 	gulong initiate_scan_id;
 
@@ -110,7 +110,7 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 
 	if (buffer->priv->scan_region != NULL)
 	{
-		gtk_text_region_destroy (buffer->priv->scan_region);
+		gtk_source_region_destroy (buffer->priv->scan_region);
 		buffer->priv->scan_region = NULL;
 	}
 
@@ -304,32 +304,32 @@ scan_region (GtkSourceCompletionWordsBuffer *buffer,
 
 /* A TextRegion can contain empty subregions. So checking the number of
  * subregions is not sufficient.
- * When calling gtk_text_region_add() with equal iters, the subregion is not
+ * When calling gtk_source_region_add() with equal iters, the subregion is not
  * added. But when a subregion becomes empty, due to text deletion, the
  * subregion is not removed from the TextRegion.
  */
 static gboolean
-is_text_region_empty (GtkTextRegion *region)
+is_text_region_empty (GtkSourceRegion *region)
 {
-	GtkTextRegionIterator region_iter;
+	GtkSourceRegionIterator region_iter;
 
-	gtk_text_region_get_iterator (region, &region_iter, 0);
+	gtk_source_region_get_iterator (region, &region_iter, 0);
 
-	while (!gtk_text_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iterator_is_end (&region_iter))
 	{
 		GtkTextIter region_start;
 		GtkTextIter region_end;
 
-		gtk_text_region_iterator_get_subregion (&region_iter,
-							&region_start,
-							&region_end);
+		gtk_source_region_iterator_get_subregion (&region_iter,
+							  &region_start,
+							  &region_end);
 
 		if (!gtk_text_iter_equal (&region_start, &region_end))
 		{
 			return FALSE;
 		}
 
-		gtk_text_region_iterator_next (&region_iter);
+		gtk_source_region_iterator_next (&region_iter);
 	}
 
 	return TRUE;
@@ -339,26 +339,26 @@ static gboolean
 idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 {
 	guint nb_remaining_lines = buffer->priv->scan_batch_size;
-	GtkTextRegionIterator region_iter;
+	GtkSourceRegionIterator region_iter;
 	GtkTextIter start;
 	GtkTextIter stop;
 
 	gtk_text_buffer_get_start_iter (buffer->priv->buffer, &start);
 	stop = start;
 
-	gtk_text_region_get_iterator (buffer->priv->scan_region,
-				      &region_iter,
-				      0);
+	gtk_source_region_get_iterator (buffer->priv->scan_region,
+					&region_iter,
+					0);
 
 	while (nb_remaining_lines > 0 &&
-	       !gtk_text_region_iterator_is_end (&region_iter))
+	       !gtk_source_region_iterator_is_end (&region_iter))
 	{
 		GtkTextIter region_start;
 		GtkTextIter region_end;
 
-		gtk_text_region_iterator_get_subregion (&region_iter,
-							&region_start,
-							&region_end);
+		gtk_source_region_iterator_get_subregion (&region_iter,
+							  &region_start,
+							  &region_end);
 
 		nb_remaining_lines -= scan_region (buffer,
 						   &region_start,
@@ -366,12 +366,12 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 						   nb_remaining_lines,
 						   &stop);
 
-		gtk_text_region_iterator_next (&region_iter);
+		gtk_source_region_iterator_next (&region_iter);
 	}
 
-	gtk_text_region_subtract (buffer->priv->scan_region,
-				  &start,
-				  &stop);
+	gtk_source_region_subtract (buffer->priv->scan_region,
+				    &start,
+				    &stop);
 
 	if (is_text_region_empty (buffer->priv->scan_region))
 	{
@@ -438,57 +438,57 @@ remove_words_in_subregion (GtkSourceCompletionWordsBuffer *buffer,
 
 static void
 remove_words_in_region (GtkSourceCompletionWordsBuffer *buffer,
-			GtkTextRegion                  *region)
+			GtkSourceRegion                  *region)
 {
-	GtkTextRegionIterator region_iter;
+	GtkSourceRegionIterator region_iter;
 
-	gtk_text_region_get_iterator (region, &region_iter, 0);
+	gtk_source_region_get_iterator (region, &region_iter, 0);
 
-	while (!gtk_text_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iterator_is_end (&region_iter))
 	{
 		GtkTextIter subregion_start;
 		GtkTextIter subregion_end;
 
-		gtk_text_region_iterator_get_subregion (&region_iter,
-							&subregion_start,
-							&subregion_end);
+		gtk_source_region_iterator_get_subregion (&region_iter,
+							  &subregion_start,
+							  &subregion_end);
 
 		remove_words_in_subregion (buffer,
 					   &subregion_start,
 					   &subregion_end);
 
-		gtk_text_region_iterator_next (&region_iter);
+		gtk_source_region_iterator_next (&region_iter);
 	}
 }
 
-static GtkTextRegion *
+static GtkSourceRegion *
 compute_remove_region (GtkSourceCompletionWordsBuffer *buffer,
 		       const GtkTextIter              *start,
 		       const GtkTextIter              *end)
 {
-	GtkTextRegion *remove_region = gtk_text_region_new (buffer->priv->buffer);
-	GtkTextRegionIterator region_iter;
+	GtkSourceRegion *remove_region = gtk_source_region_new (buffer->priv->buffer);
+	GtkSourceRegionIterator region_iter;
 
-	gtk_text_region_add (remove_region, start, end);
+	gtk_source_region_add (remove_region, start, end);
 
-	gtk_text_region_get_iterator (buffer->priv->scan_region,
-				      &region_iter,
-				      0);
+	gtk_source_region_get_iterator (buffer->priv->scan_region,
+					&region_iter,
+					0);
 
-	while (!gtk_text_region_iterator_is_end (&region_iter))
+	while (!gtk_source_region_iterator_is_end (&region_iter))
 	{
 		GtkTextIter scan_start;
 		GtkTextIter scan_end;
 
-		gtk_text_region_iterator_get_subregion (&region_iter,
-							&scan_start,
-							&scan_end);
+		gtk_source_region_iterator_get_subregion (&region_iter,
+							  &scan_start,
+							  &scan_end);
 
-		gtk_text_region_subtract (remove_region,
-					  &scan_start,
-					  &scan_end);
+		gtk_source_region_subtract (remove_region,
+					    &scan_start,
+					    &scan_end);
 
-		gtk_text_region_iterator_next (&region_iter);
+		gtk_source_region_iterator_next (&region_iter);
 	}
 
 	return remove_region;
@@ -505,14 +505,14 @@ invalidate_region (GtkSourceCompletionWordsBuffer *buffer,
 {
 	GtkTextIter start_iter = *start;
 	GtkTextIter end_iter = *end;
-	GtkTextRegion *remove_region;
+	GtkSourceRegion *remove_region;
 
 	_gtk_source_completion_words_utils_adjust_region (&start_iter, &end_iter);
 
 	remove_region = compute_remove_region (buffer, &start_iter, &end_iter);
 
 	remove_words_in_region (buffer, remove_region);
-	gtk_text_region_destroy (remove_region);
+	gtk_source_region_destroy (remove_region);
 }
 
 static void
@@ -525,9 +525,9 @@ add_to_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 
 	_gtk_source_completion_words_utils_adjust_region (&start_iter, &end_iter);
 
-	gtk_text_region_add (buffer->priv->scan_region,
-			     &start_iter,
-			     &end_iter);
+	gtk_source_region_add (buffer->priv->scan_region,
+			       &start_iter,
+			       &end_iter);
 
 	install_initiate_scan (buffer);
 }
@@ -555,9 +555,9 @@ on_insert_text_after_cb (GtkTextBuffer                  *textbuffer,
 	gtk_text_iter_backward_chars (&start_iter, nb_chars);
 
 	/* If add_to_scan_region() is called before the text insertion, the
-	 * created GtkTextRegion can be empty and is thus not added to the
+	 * created GtkSourceRegion can be empty and is thus not added to the
 	 * scan region. After the text insertion, we are sure that the
-	 * GtkTextRegion is not empty and that the words will be scanned.
+	 * GtkSourceRegion is not empty and that the words will be scanned.
 	 */
 	add_to_scan_region (buffer, &start_iter, location);
 }
@@ -579,8 +579,8 @@ on_delete_range_before_cb (GtkTextBuffer                  *text_buffer,
 	{
 		remove_all_words (buffer);
 
-		gtk_text_region_destroy (buffer->priv->scan_region);
-		buffer->priv->scan_region = gtk_text_region_new (text_buffer);
+		gtk_source_region_destroy (buffer->priv->scan_region);
+		buffer->priv->scan_region = gtk_source_region_new (text_buffer);
 	}
 	else
 	{
@@ -597,9 +597,9 @@ on_delete_range_after_cb (GtkTextBuffer                  *text_buffer,
 	/* start = end, but add_to_scan_region() adjusts the iters to word
 	 * boundaries if needed. If the adjusted [start,end] region is empty, it
 	 * won't be added to the scan region. If we call add_to_scan_region()
-	 * when the text is not already deleted, the GtkTextRegion is not empty
-	 * and will be added to the scan region, and when the GtkTextRegion
-	 * becomes empty after the text deletion, the GtkTextRegion is not
+	 * when the text is not already deleted, the GtkSourceRegion is not empty
+	 * and will be added to the scan region, and when the GtkSourceRegion
+	 * becomes empty after the text deletion, the GtkSourceRegion is not
 	 * removed from the scan region. Hence two callbacks: before and after
 	 * the text deletion.
 	 */
@@ -616,9 +616,9 @@ scan_all_buffer (GtkSourceCompletionWordsBuffer *buffer)
 	                            &start,
 	                            &end);
 
-	gtk_text_region_add (buffer->priv->scan_region,
-			     &start,
-			     &end);
+	gtk_source_region_add (buffer->priv->scan_region,
+			       &start,
+			       &end);
 
 	install_initiate_scan (buffer);
 }
@@ -692,7 +692,7 @@ gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library
 	ret->priv->library = g_object_ref (library);
 	ret->priv->buffer = g_object_ref (buffer);
 
-	ret->priv->scan_region = gtk_text_region_new (buffer);
+	ret->priv->scan_region = gtk_source_region_new (buffer);
 
 	g_signal_connect_object (ret->priv->library,
 				 "lock",

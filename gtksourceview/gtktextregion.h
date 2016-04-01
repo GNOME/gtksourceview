@@ -2,7 +2,8 @@
  * gtktextregion.h - GtkTextMark based region utility functions
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2002 Gustavo Gir�ldez <gustavo.giraldez@gmx.net>
+ * Copyright (C) 2002 Gustavo Giráldez <gustavo.giraldez@gmx.net>
+ * Copyright (C) 2016 Sébastien Wilmet <swilmet@gnome.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,20 +20,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_TEXT_REGION_H__
-#define __GTK_TEXT_REGION_H__
+#ifndef __GTK_SOURCE_REGION_H__
+#define __GTK_SOURCE_REGION_H__
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes-private.h"
 
 G_BEGIN_DECLS
 
-typedef struct _GtkTextRegion		GtkTextRegion;
-typedef struct _GtkTextRegionIterator	GtkTextRegionIterator;
+typedef struct _GtkSourceRegion		GtkSourceRegion;
+typedef struct _GtkSourceRegionIterator	GtkSourceRegionIterator;
 
-struct _GtkTextRegionIterator {
-	/* GtkTextRegionIterator is an opaque datatype; ignore all these fields.
-	 * Initialize the iter with gtk_text_region_get_iterator
+struct _GtkSourceRegionIterator
+{
+	/* GtkSourceRegionIterator is an opaque datatype; ignore all these fields.
+	 * Initialize the iter with gtk_source_region_get_iterator
 	 * function
 	 */
 	/*< private >*/
@@ -42,58 +44,58 @@ struct _GtkTextRegionIterator {
 };
 
 GTK_SOURCE_INTERNAL
-GtkTextRegion *gtk_text_region_new                          (GtkTextBuffer *buffer);
+GtkSourceRegion *	gtk_source_region_new			(GtkTextBuffer *buffer);
 
 GTK_SOURCE_INTERNAL
-void           gtk_text_region_destroy                      (GtkTextRegion *region);
+void			gtk_source_region_destroy		(GtkSourceRegion *region);
 
 GTK_SOURCE_INTERNAL
-GtkTextBuffer *gtk_text_region_get_buffer                   (GtkTextRegion *region);
+GtkTextBuffer *		gtk_source_region_get_buffer		(GtkSourceRegion *region);
 
 GTK_SOURCE_INTERNAL
-void           gtk_text_region_add                          (GtkTextRegion     *region,
-							     const GtkTextIter *_start,
-							     const GtkTextIter *_end);
+void			gtk_source_region_add			(GtkSourceRegion   *region,
+								 const GtkTextIter *_start,
+								 const GtkTextIter *_end);
 
 GTK_SOURCE_INTERNAL
-void           gtk_text_region_subtract                     (GtkTextRegion     *region,
-							     const GtkTextIter *_start,
-							     const GtkTextIter *_end);
+void			gtk_source_region_subtract		(GtkSourceRegion   *region,
+								 const GtkTextIter *_start,
+								 const GtkTextIter *_end);
 
 GTK_SOURCE_INTERNAL
-gint           gtk_text_region_subregions                   (GtkTextRegion *region);
+gint			gtk_source_region_subregions		(GtkSourceRegion *region);
 
 GTK_SOURCE_INTERNAL
-gboolean       gtk_text_region_nth_subregion                (GtkTextRegion *region,
-							     guint          subregion,
-							     GtkTextIter   *start,
-							     GtkTextIter   *end);
+gboolean		gtk_source_region_nth_subregion		(GtkSourceRegion *region,
+								 guint            subregion,
+								 GtkTextIter     *start,
+								 GtkTextIter     *end);
 
 GTK_SOURCE_INTERNAL
-GtkTextRegion *gtk_text_region_intersect                    (GtkTextRegion     *region,
-							     const GtkTextIter *_start,
-							     const GtkTextIter *_end);
+GtkSourceRegion *	gtk_source_region_intersect		(GtkSourceRegion   *region,
+								 const GtkTextIter *_start,
+								 const GtkTextIter *_end);
 
 GTK_SOURCE_INTERNAL
-void           gtk_text_region_get_iterator                 (GtkTextRegion         *region,
-                                                             GtkTextRegionIterator *iter,
-                                                             guint                  start);
+void			gtk_source_region_get_iterator		(GtkSourceRegion         *region,
+								 GtkSourceRegionIterator *iter,
+								 guint                    start);
 
 GTK_SOURCE_INTERNAL
-gboolean       gtk_text_region_iterator_is_end              (GtkTextRegionIterator *iter);
+gboolean		gtk_source_region_iterator_is_end	(GtkSourceRegionIterator *iter);
 
 /* Returns FALSE if iterator is the end iterator */
 GTK_SOURCE_INTERNAL
-gboolean       gtk_text_region_iterator_next	            (GtkTextRegionIterator *iter);
+gboolean		gtk_source_region_iterator_next		(GtkSourceRegionIterator *iter);
 
 GTK_SOURCE_INTERNAL
-gboolean       gtk_text_region_iterator_get_subregion       (GtkTextRegionIterator *iter,
-							     GtkTextIter           *start,
-							     GtkTextIter           *end);
+gboolean		gtk_source_region_iterator_get_subregion (GtkSourceRegionIterator *iter,
+								  GtkTextIter             *start,
+								  GtkTextIter             *end);
 
 GTK_SOURCE_INTERNAL
-void           gtk_text_region_debug_print                  (GtkTextRegion *region);
+void			gtk_source_region_debug_print		(GtkSourceRegion *region);
 
 G_END_DECLS
 
-#endif /* __GTK_TEXT_REGION_H__ */
+#endif /* __GTK_SOURCE_REGION_H__ */
