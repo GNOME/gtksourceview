@@ -500,7 +500,7 @@ clear_task (GtkSourceSearchContext *search)
 {
 	if (search->priv->task_region != NULL)
 	{
-		gtk_source_region_destroy (search->priv->task_region);
+		g_object_unref (search->priv->task_region);
 		search->priv->task_region = NULL;
 	}
 
@@ -523,13 +523,13 @@ clear_search (GtkSourceSearchContext *search)
 {
 	if (search->priv->scan_region != NULL)
 	{
-		gtk_source_region_destroy (search->priv->scan_region);
+		g_object_unref (search->priv->scan_region);
 		search->priv->scan_region = NULL;
 	}
 
 	if (search->priv->high_priority_region != NULL)
 	{
-		gtk_source_region_destroy (search->priv->high_priority_region);
+		g_object_unref (search->priv->high_priority_region);
 		search->priv->high_priority_region = NULL;
 	}
 
@@ -1025,7 +1025,7 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 
 		if (region != NULL)
 		{
-			gtk_source_region_destroy (region);
+			g_object_unref (region);
 		}
 
 		while (basic_forward_search (search, &iter, &match_start, &match_end, &limit))
@@ -1069,7 +1069,7 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 
 	if (search->priv->task_region != NULL)
 	{
-		gtk_source_region_destroy (search->priv->task_region);
+		g_object_unref (search->priv->task_region);
 	}
 
 	search->priv->task_region = region;
@@ -1161,7 +1161,7 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 
 		if (region != NULL)
 		{
-			gtk_source_region_destroy (region);
+			g_object_unref (region);
 		}
 
 		while (basic_backward_search (search, &iter, &match_start, &match_end, &limit))
@@ -1205,7 +1205,7 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 
 	if (search->priv->task_region != NULL)
 	{
-		gtk_source_region_destroy (search->priv->task_region);
+		g_object_unref (search->priv->task_region);
 	}
 
 	search->priv->task_region = region;
@@ -1309,7 +1309,7 @@ adjust_subregion (GtkSourceSearchContext *search,
 
 			if (region != NULL)
 			{
-				gtk_source_region_destroy (region);
+				g_object_unref (region);
 			}
 		}
 	}
@@ -1362,7 +1362,7 @@ adjust_subregion (GtkSourceSearchContext *search,
 
 			if (region != NULL)
 			{
-				gtk_source_region_destroy (region);
+				g_object_unref (region);
 			}
 		}
 	}
@@ -1484,7 +1484,7 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 
 			if (region != NULL)
 			{
-				gtk_source_region_destroy (region);
+				g_object_unref (region);
 			}
 		}
 
@@ -1670,7 +1670,7 @@ resume_task (GtkSourceSearchContext *search)
 
 	if (search->priv->task_region != NULL)
 	{
-		gtk_source_region_destroy (search->priv->task_region);
+		g_object_unref (search->priv->task_region);
 		search->priv->task_region = NULL;
 	}
 
@@ -1720,7 +1720,7 @@ idle_scan_normal_search (GtkSourceSearchContext *search)
 		 */
 		scan_all_region (search, search->priv->high_priority_region);
 
-		gtk_source_region_destroy (search->priv->high_priority_region);
+		g_object_unref (search->priv->high_priority_region);
 		search->priv->high_priority_region = NULL;
 
 		return G_SOURCE_CONTINUE;
@@ -1742,7 +1742,7 @@ idle_scan_normal_search (GtkSourceSearchContext *search)
 
 		if (search->priv->scan_region != NULL)
 		{
-			gtk_source_region_destroy (search->priv->scan_region);
+			g_object_unref (search->priv->scan_region);
 			search->priv->scan_region = NULL;
 		}
 
@@ -1806,7 +1806,7 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 		gtk_source_region_iter_next (&region_iter);
 	}
 
-	gtk_source_region_destroy (region);
+	g_object_unref (region);
 }
 
 /* Returns TRUE if the segment is finished, and FALSE on partial match. */
@@ -2025,7 +2025,7 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 	{
 		regex_search_handle_high_priority_region (search);
 
-		gtk_source_region_destroy (search->priv->high_priority_region);
+		g_object_unref (search->priv->high_priority_region);
 		search->priv->high_priority_region = NULL;
 
 		return G_SOURCE_CONTINUE;
@@ -2055,7 +2055,7 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 
 		if (search->priv->scan_region != NULL)
 		{
-			gtk_source_region_destroy (search->priv->scan_region);
+			g_object_unref (search->priv->scan_region);
 			search->priv->scan_region = NULL;
 		}
 
@@ -2123,7 +2123,7 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 	{
 		if (region != NULL)
 		{
-			gtk_source_region_destroy (region);
+			g_object_unref (region);
 		}
 
 		while (basic_forward_search (search, &iter, match_start, match_end, &limit))
@@ -2152,7 +2152,7 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 		scan_region_forward (search, region);
 	}
 
-	gtk_source_region_destroy (region);
+	g_object_unref (region);
 
 	return FALSE;
 }
@@ -2222,7 +2222,7 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 	{
 		if (region != NULL)
 		{
-			gtk_source_region_destroy (region);
+			g_object_unref (region);
 		}
 
 		while (basic_backward_search (search, &iter, match_start, match_end, &limit))
@@ -2251,7 +2251,7 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 		scan_region_forward (search, region);
 	}
 
-	gtk_source_region_destroy (region);
+	g_object_unref (region);
 
 	return FALSE;
 }
@@ -3152,7 +3152,7 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 
 		if (region != NULL)
 		{
-			gtk_source_region_destroy (region);
+			g_object_unref (region);
 		}
 
 		if (!empty)
@@ -3192,7 +3192,7 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 
 		if (region != NULL)
 		{
-			gtk_source_region_destroy (region);
+			g_object_unref (region);
 		}
 
 		if (!empty)
@@ -3785,7 +3785,7 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 	{
 		if (region_to_highlight != NULL)
 		{
-			gtk_source_region_destroy (region_to_highlight);
+			g_object_unref (region_to_highlight);
 		}
 
 		return;
@@ -3800,7 +3800,7 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 			 * means that the visible region has changed. So we can
 			 * destroy the old high_priority_region.
 			 */
-			gtk_source_region_destroy (search->priv->high_priority_region);
+			g_object_unref (search->priv->high_priority_region);
 		}
 
 		search->priv->high_priority_region = region_to_highlight;
@@ -3824,6 +3824,6 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 	else
 	{
 		scan_all_region (search, region_to_highlight);
-		gtk_source_region_destroy (region_to_highlight);
+		g_object_unref (region_to_highlight);
 	}
 }

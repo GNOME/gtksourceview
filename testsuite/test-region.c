@@ -128,7 +128,7 @@ test_region (void)
 		intersection = gtk_source_region_intersect (region, &iter1, &iter2);
 		if (intersection) {
 			_gtk_source_region_debug_print (intersection);
-			gtk_source_region_destroy (intersection);
+			g_object_unref (intersection);
 		} else {
 			g_print ("no intersection\n");
 		}
@@ -150,7 +150,7 @@ test_region (void)
 
 	g_print ("iterated %u subregions\n", i);
 
-	gtk_source_region_destroy (region);
+	g_object_unref (region);
 	g_object_unref (buffer);
 }
 

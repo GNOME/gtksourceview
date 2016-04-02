@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*-
- * gtksourceregion.h - GtkTextMark based region utility functions
+ * gtksourceregion.h - GtkTextMark-based region utility
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2002 Gustavo Giráldez <gustavo.giraldez@gmx.net>
@@ -28,9 +28,22 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GtkSourceRegion		GtkSourceRegion;
-typedef struct _GtkSourceRegionIter	GtkSourceRegionIter;
+#define GTK_SOURCE_TYPE_REGION (gtk_source_region_get_type ())
 
+GTK_SOURCE_INTERNAL
+G_DECLARE_DERIVABLE_TYPE (GtkSourceRegion, gtk_source_region,
+			  GTK_SOURCE, REGION,
+			  GObject)
+
+struct _GtkSourceRegionClass
+{
+	GObjectClass parent_class;
+
+	/* Padding for future expansion */
+	gpointer padding[8];
+};
+
+typedef struct _GtkSourceRegionIter GtkSourceRegionIter;
 struct _GtkSourceRegionIter
 {
 	/* GtkSourceRegionIter is an opaque datatype; ignore all these fields.
@@ -45,9 +58,6 @@ struct _GtkSourceRegionIter
 
 GTK_SOURCE_INTERNAL
 GtkSourceRegion *	gtk_source_region_new			(GtkTextBuffer *buffer);
-
-GTK_SOURCE_INTERNAL
-void			gtk_source_region_destroy		(GtkSourceRegion *region);
 
 GTK_SOURCE_INTERNAL
 GtkTextBuffer *		gtk_source_region_get_buffer		(GtkSourceRegion *region);
