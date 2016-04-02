@@ -463,8 +463,8 @@ is_text_region_empty (GtkSourceRegion *region)
  */
 static gboolean
 get_first_subregion (GtkSourceRegion *region,
-		     GtkTextIter   *start,
-		     GtkTextIter   *end)
+		     GtkTextIter     *start,
+		     GtkTextIter     *end)
 {
 	GtkSourceRegionIter region_iter;
 
@@ -498,8 +498,8 @@ get_first_subregion (GtkSourceRegion *region,
  */
 static gboolean
 get_last_subregion (GtkSourceRegion *region,
-		    GtkTextIter   *start,
-		    GtkTextIter   *end)
+		    GtkTextIter     *start,
+		    GtkTextIter     *end)
 {
 	GtkSourceRegionIter region_iter;
 	gboolean found = FALSE;
@@ -1617,7 +1617,7 @@ scan_subregion (GtkSourceSearchContext *search,
 
 static void
 scan_all_region (GtkSourceSearchContext *search,
-		 GtkSourceRegion          *region_to_highlight)
+		 GtkSourceRegion        *region_to_highlight)
 {
 	guint nb_subregions = gtk_source_region_subregions (region_to_highlight);
 	GtkTextIter start_search;
@@ -1655,7 +1655,7 @@ scan_all_region (GtkSourceSearchContext *search,
  */
 static void
 scan_region_forward (GtkSourceSearchContext *search,
-		     GtkSourceRegion          *region)
+		     GtkSourceRegion        *region)
 {
 	gint nb_remaining_lines = SCAN_BATCH_SIZE;
 	GtkTextIter start;
@@ -1689,7 +1689,7 @@ scan_region_forward (GtkSourceSearchContext *search,
 /* Same as scan_region_forward(), but begins the scan at the end of the region. */
 static void
 scan_region_backward (GtkSourceSearchContext *search,
-		      GtkSourceRegion          *region)
+		      GtkSourceRegion        *region)
 {
 	gint nb_remaining_lines = SCAN_BATCH_SIZE;
 	GtkTextIter start;

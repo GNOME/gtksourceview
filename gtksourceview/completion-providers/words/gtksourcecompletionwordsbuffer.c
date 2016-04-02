@@ -72,8 +72,8 @@ proposal_cache_free (ProposalCache *cache)
 
 static void
 remove_proposal_cache (const gchar                    *key,
-                       ProposalCache                  *cache,
-                       GtkSourceCompletionWordsBuffer *buffer)
+		       ProposalCache                  *cache,
+		       GtkSourceCompletionWordsBuffer *buffer)
 {
 	guint i;
 
@@ -200,7 +200,7 @@ scan_line (GtkSourceCompletionWordsBuffer *buffer,
 
 static void
 remove_word (GtkSourceCompletionWordsBuffer *buffer,
-             const gchar                    *word)
+	     const gchar                    *word)
 {
 	ProposalCache *cache = g_hash_table_lookup (buffer->priv->words, word);
 
@@ -224,7 +224,7 @@ remove_word (GtkSourceCompletionWordsBuffer *buffer,
 
 static void
 add_words (GtkSourceCompletionWordsBuffer *buffer,
-           GSList                         *words)
+	   GSList                         *words)
 {
 	GSList *item;
 
@@ -436,7 +436,7 @@ remove_words_in_subregion (GtkSourceCompletionWordsBuffer *buffer,
 
 static void
 remove_words_in_region (GtkSourceCompletionWordsBuffer *buffer,
-			GtkSourceRegion                  *region)
+			GtkSourceRegion                *region)
 {
 	GtkSourceRegionIter region_iter;
 
@@ -496,8 +496,8 @@ compute_remove_region (GtkSourceCompletionWordsBuffer *buffer,
  */
 static void
 invalidate_region (GtkSourceCompletionWordsBuffer *buffer,
-                   const GtkTextIter              *start,
-                   const GtkTextIter              *end)
+		   const GtkTextIter              *start,
+		   const GtkTextIter              *end)
 {
 	GtkTextIter start_iter = *start;
 	GtkTextIter end_iter = *end;
@@ -513,8 +513,8 @@ invalidate_region (GtkSourceCompletionWordsBuffer *buffer,
 
 static void
 add_to_scan_region (GtkSourceCompletionWordsBuffer *buffer,
-                    const GtkTextIter              *start,
-                    const GtkTextIter              *end)
+		    const GtkTextIter              *start,
+		    const GtkTextIter              *end)
 {
 	GtkTextIter start_iter = *start;
 	GtkTextIter end_iter = *end;
@@ -676,7 +676,7 @@ on_library_unlock (GtkSourceCompletionWordsBuffer *buffer)
 
 GtkSourceCompletionWordsBuffer *
 gtk_source_completion_words_buffer_new (GtkSourceCompletionWordsLibrary *library,
-                                        GtkTextBuffer                   *buffer)
+					GtkTextBuffer                   *buffer)
 {
 	GtkSourceCompletionWordsBuffer *ret;
 
@@ -717,7 +717,7 @@ gtk_source_completion_words_buffer_get_buffer (GtkSourceCompletionWordsBuffer *b
 
 void
 gtk_source_completion_words_buffer_set_scan_batch_size (GtkSourceCompletionWordsBuffer *buffer,
-                                                        guint                           size)
+							guint                           size)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER (buffer));
 	g_return_if_fail (size != 0);
@@ -727,7 +727,7 @@ gtk_source_completion_words_buffer_set_scan_batch_size (GtkSourceCompletionWords
 
 void
 gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWordsBuffer *buffer,
-                                                          guint                           size)
+							  guint                           size)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER (buffer));
 	g_return_if_fail (size != 0);
