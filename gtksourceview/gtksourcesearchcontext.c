@@ -498,11 +498,7 @@ get_last_subregion (GtkSourceRegion *region,
 static void
 clear_task (GtkSourceSearchContext *search)
 {
-	if (search->priv->task_region != NULL)
-	{
-		g_object_unref (search->priv->task_region);
-		search->priv->task_region = NULL;
-	}
+	g_clear_object (&search->priv->task_region);
 
 	if (search->priv->task != NULL)
 	{
@@ -521,17 +517,8 @@ clear_task (GtkSourceSearchContext *search)
 static void
 clear_search (GtkSourceSearchContext *search)
 {
-	if (search->priv->scan_region != NULL)
-	{
-		g_object_unref (search->priv->scan_region);
-		search->priv->scan_region = NULL;
-	}
-
-	if (search->priv->high_priority_region != NULL)
-	{
-		g_object_unref (search->priv->high_priority_region);
-		search->priv->high_priority_region = NULL;
-	}
+	g_clear_object (&search->priv->scan_region);
+	g_clear_object (&search->priv->high_priority_region);
 
 	if (search->priv->idle_scan_id != 0)
 	{
@@ -1023,10 +1010,7 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 		GtkTextIter match_start;
 		GtkTextIter match_end;
 
-		if (region != NULL)
-		{
-			g_object_unref (region);
-		}
+		g_clear_object (&region);
 
 		while (basic_forward_search (search, &iter, &match_start, &match_end, &limit))
 		{
@@ -1067,11 +1051,7 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 			      task_data,
 			      (GDestroyNotify)forward_backward_data_free);
 
-	if (search->priv->task_region != NULL)
-	{
-		g_object_unref (search->priv->task_region);
-	}
-
+	g_clear_object (&search->priv->task_region);
 	search->priv->task_region = region;
 
 	install_idle_scan (search);
@@ -1159,10 +1139,7 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 		GtkTextIter match_start;
 		GtkTextIter match_end;
 
-		if (region != NULL)
-		{
-			g_object_unref (region);
-		}
+		g_clear_object (&region);
 
 		while (basic_backward_search (search, &iter, &match_start, &match_end, &limit))
 		{
@@ -1203,11 +1180,7 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 			      task_data,
 			      (GDestroyNotify)forward_backward_data_free);
 
-	if (search->priv->task_region != NULL)
-	{
-		g_object_unref (search->priv->task_region);
-	}
-
+	g_clear_object (&search->priv->task_region);
 	search->priv->task_region = region;
 
 	install_idle_scan (search);
@@ -1307,10 +1280,7 @@ adjust_subregion (GtkSourceSearchContext *search,
 				*start = tag_start;
 			}
 
-			if (region != NULL)
-			{
-				g_object_unref (region);
-			}
+			g_clear_object (&region);
 		}
 	}
 
@@ -1360,10 +1330,7 @@ adjust_subregion (GtkSourceSearchContext *search,
 				*end = tag_end;
 			}
 
-			if (region != NULL)
-			{
-				g_object_unref (region);
-			}
+			g_clear_object (&region);
 		}
 	}
 
@@ -1482,10 +1449,7 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 				search->priv->occurrences_count--;
 			}
 
-			if (region != NULL)
-			{
-				g_object_unref (region);
-			}
+			g_clear_object (&region);
 		}
 
 		iter = match_end;
@@ -1668,11 +1632,7 @@ resume_task (GtkSourceSearchContext *search)
 	ForwardBackwardData *task_data = g_task_get_task_data (search->priv->task);
 	GtkTextIter start_at;
 
-	if (search->priv->task_region != NULL)
-	{
-		g_object_unref (search->priv->task_region);
-		search->priv->task_region = NULL;
-	}
+	g_clear_object (&search->priv->task_region);
 
 	gtk_text_buffer_get_iter_at_mark (search->priv->buffer,
 					  &start_at,
@@ -1720,9 +1680,7 @@ idle_scan_normal_search (GtkSourceSearchContext *search)
 		 */
 		scan_all_region (search, search->priv->high_priority_region);
 
-		g_object_unref (search->priv->high_priority_region);
-		search->priv->high_priority_region = NULL;
-
+		g_clear_object (&search->priv->high_priority_region);
 		return G_SOURCE_CONTINUE;
 	}
 
@@ -1740,12 +1698,7 @@ idle_scan_normal_search (GtkSourceSearchContext *search)
 
 		g_object_notify (G_OBJECT (search), "occurrences-count");
 
-		if (search->priv->scan_region != NULL)
-		{
-			g_object_unref (search->priv->scan_region);
-			search->priv->scan_region = NULL;
-		}
-
+		g_clear_object (&search->priv->scan_region);
 		return G_SOURCE_REMOVE;
 	}
 
@@ -1806,7 +1759,7 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 		gtk_source_region_iter_next (&region_iter);
 	}
 
-	g_object_unref (region);
+	g_clear_object (&region);
 }
 
 /* Returns TRUE if the segment is finished, and FALSE on partial match. */
@@ -2024,10 +1977,7 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 	if (search->priv->high_priority_region != NULL)
 	{
 		regex_search_handle_high_priority_region (search);
-
-		g_object_unref (search->priv->high_priority_region);
-		search->priv->high_priority_region = NULL;
-
+		g_clear_object (&search->priv->high_priority_region);
 		return G_SOURCE_CONTINUE;
 	}
 
@@ -2053,12 +2003,7 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 
 		g_object_notify (G_OBJECT (search), "occurrences-count");
 
-		if (search->priv->scan_region != NULL)
-		{
-			g_object_unref (search->priv->scan_region);
-			search->priv->scan_region = NULL;
-		}
-
+		g_clear_object (&search->priv->scan_region);
 		return G_SOURCE_REMOVE;
 	}
 
@@ -2121,10 +2066,7 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 
 	if (gtk_source_region_is_empty (region))
 	{
-		if (region != NULL)
-		{
-			g_object_unref (region);
-		}
+		g_clear_object (&region);
 
 		while (basic_forward_search (search, &iter, match_start, match_end, &limit))
 		{
@@ -2152,7 +2094,7 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 		scan_region_forward (search, region);
 	}
 
-	g_object_unref (region);
+	g_clear_object (&region);
 
 	return FALSE;
 }
@@ -2220,10 +2162,7 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 
 	if (gtk_source_region_is_empty (region))
 	{
-		if (region != NULL)
-		{
-			g_object_unref (region);
-		}
+		g_clear_object (&region);
 
 		while (basic_backward_search (search, &iter, match_start, match_end, &limit))
 		{
@@ -2251,7 +2190,7 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 		scan_region_forward (search, region);
 	}
 
-	g_object_unref (region);
+	g_clear_object (&region);
 
 	return FALSE;
 }
@@ -3150,10 +3089,7 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 
 		empty = gtk_source_region_is_empty (region);
 
-		if (region != NULL)
-		{
-			g_object_unref (region);
-		}
+		g_clear_object (&region);
 
 		if (!empty)
 		{
@@ -3190,10 +3126,7 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 
 		empty = gtk_source_region_is_empty (region);
 
-		if (region != NULL)
-		{
-			g_object_unref (region);
-		}
+		g_clear_object (&region);
 
 		if (!empty)
 		{
@@ -3783,25 +3716,18 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 
 	if (gtk_source_region_is_empty (region_to_highlight))
 	{
-		if (region_to_highlight != NULL)
-		{
-			g_object_unref (region_to_highlight);
-		}
-
+		g_clear_object (&region_to_highlight);
 		return;
 	}
 
 	if (!synchronous)
 	{
-		if (search->priv->high_priority_region != NULL)
-		{
-			/* The high priority region is used to highlight the
-			 * region visible on screen. So if we are here, that
-			 * means that the visible region has changed. So we can
-			 * destroy the old high_priority_region.
-			 */
-			g_object_unref (search->priv->high_priority_region);
-		}
+		/* The high priority region is used to highlight the region
+		 * visible on screen. So if we are here, that means that the
+		 * visible region has changed. So we can destroy the old
+		 * high_priority_region.
+		 */
+		g_clear_object (&search->priv->high_priority_region);
 
 		search->priv->high_priority_region = region_to_highlight;
 		install_idle_scan (search);
@@ -3824,6 +3750,6 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 	else
 	{
 		scan_all_region (search, region_to_highlight);
-		g_object_unref (region_to_highlight);
+		g_clear_object (&region_to_highlight);
 	}
 }

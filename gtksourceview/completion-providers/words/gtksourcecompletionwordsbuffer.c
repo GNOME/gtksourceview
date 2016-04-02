@@ -108,12 +108,6 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 		buffer->priv->words = NULL;
 	}
 
-	if (buffer->priv->scan_region != NULL)
-	{
-		g_object_unref (buffer->priv->scan_region);
-		buffer->priv->scan_region = NULL;
-	}
-
 	if (buffer->priv->batch_scan_id != 0)
 	{
 		g_source_remove (buffer->priv->batch_scan_id);
@@ -126,6 +120,7 @@ gtk_source_completion_words_buffer_dispose (GObject *object)
 		buffer->priv->initiate_scan_id = 0;
 	}
 
+	g_clear_object (&buffer->priv->scan_region);
 	g_clear_object (&buffer->priv->buffer);
 	g_clear_object (&buffer->priv->library);
 
@@ -475,7 +470,7 @@ invalidate_region (GtkSourceCompletionWordsBuffer *buffer,
 	remove_region = compute_remove_region (buffer, &start_iter, &end_iter);
 
 	remove_words_in_region (buffer, remove_region);
-	g_object_unref (remove_region);
+	g_clear_object (&remove_region);
 }
 
 static void
@@ -542,7 +537,7 @@ on_delete_range_before_cb (GtkTextBuffer                  *text_buffer,
 	{
 		remove_all_words (buffer);
 
-		g_object_unref (buffer->priv->scan_region);
+		g_clear_object (&buffer->priv->scan_region);
 		buffer->priv->scan_region = gtk_source_region_new (text_buffer);
 	}
 	else
