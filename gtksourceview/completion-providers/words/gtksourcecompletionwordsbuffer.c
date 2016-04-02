@@ -302,39 +302,6 @@ scan_region (GtkSourceCompletionWordsBuffer *buffer,
 	return nb_lines_scanned;
 }
 
-/* A TextRegion can contain empty subregions. So checking the number of
- * subregions is not sufficient.
- * When calling gtk_source_region_add() with equal iters, the subregion is not
- * added. But when a subregion becomes empty, due to text deletion, the
- * subregion is not removed from the TextRegion.
- */
-static gboolean
-is_text_region_empty (GtkSourceRegion *region)
-{
-	GtkSourceRegionIter region_iter;
-
-	gtk_source_region_get_start_region_iter (region, &region_iter);
-
-	while (!gtk_source_region_iter_is_end (&region_iter))
-	{
-		GtkTextIter region_start;
-		GtkTextIter region_end;
-
-		gtk_source_region_iter_get_subregion (&region_iter,
-						      &region_start,
-						      &region_end);
-
-		if (!gtk_text_iter_equal (&region_start, &region_end))
-		{
-			return FALSE;
-		}
-
-		gtk_source_region_iter_next (&region_iter);
-	}
-
-	return TRUE;
-}
-
 static gboolean
 idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 {
@@ -371,7 +338,7 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 				    &start,
 				    &stop);
 
-	if (is_text_region_empty (buffer->priv->scan_region))
+	if (gtk_source_region_is_empty (buffer->priv->scan_region))
 	{
 		buffer->priv->batch_scan_id = 0;
 		return G_SOURCE_REMOVE;
@@ -668,7 +635,7 @@ on_library_lock (GtkSourceCompletionWordsBuffer *buffer)
 static void
 on_library_unlock (GtkSourceCompletionWordsBuffer *buffer)
 {
-	if (!is_text_region_empty (buffer->priv->scan_region))
+	if (!gtk_source_region_is_empty (buffer->priv->scan_region))
 	{
 		install_initiate_scan (buffer);
 	}

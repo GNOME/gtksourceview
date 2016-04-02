@@ -493,6 +493,47 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 	DEBUG (_gtk_source_region_debug_print (region));
 }
 
+/* A #GtkSourceRegion can contain empty subregions. So checking the number of
+ * subregions is not sufficient.
+ * When calling gtk_source_region_add() with equal iters, the subregion is not
+ * added. But when a subregion becomes empty, due to text deletion, the
+ * subregion is not removed from the #GtkSourceRegion.
+ */
+gboolean
+gtk_source_region_is_empty (GtkSourceRegion *region)
+{
+	GtkSourceRegionIter region_iter;
+
+	if (region == NULL)
+	{
+		return TRUE;
+	}
+
+	gtk_source_region_get_start_region_iter (region, &region_iter);
+
+	while (!gtk_source_region_iter_is_end (&region_iter))
+	{
+		GtkTextIter subregion_start;
+		GtkTextIter subregion_end;
+
+		if (!gtk_source_region_iter_get_subregion (&region_iter,
+							   &subregion_start,
+							   &subregion_end))
+		{
+			return TRUE;
+		}
+
+		if (!gtk_text_iter_equal (&subregion_start, &subregion_end))
+		{
+			return FALSE;
+		}
+
+		gtk_source_region_iter_next (&region_iter);
+	}
+
+	return TRUE;
+}
+
 guint
 gtk_source_region_get_subregion_count (GtkSourceRegion *region)
 {

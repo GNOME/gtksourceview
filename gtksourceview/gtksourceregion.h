@@ -68,6 +68,9 @@ GtkSourceRegion *	gtk_source_region_intersect		(GtkSourceRegion   *region,
 								 const GtkTextIter *_end);
 
 GTK_SOURCE_INTERNAL
+gboolean		gtk_source_region_is_empty		(GtkSourceRegion *region);
+
+GTK_SOURCE_INTERNAL
 guint			gtk_source_region_get_subregion_count	(GtkSourceRegion *region);
 
 GTK_SOURCE_INTERNAL
