@@ -494,7 +494,7 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 }
 
 guint
-gtk_source_region_subregions (GtkSourceRegion *region)
+gtk_source_region_get_subregion_count (GtkSourceRegion *region)
 {
 	g_return_val_if_fail (region != NULL, 0);
 

@@ -156,7 +156,7 @@ test_region (void)
 		gtk_source_region_iter_next (&reg_iter);
 	}
 
-	if (i != gtk_source_region_subregions (region))
+	if (i != gtk_source_region_get_subregion_count (region))
 	{
 		g_print ("problem iterating all subregions\n");
 		g_assert_not_reached ();
