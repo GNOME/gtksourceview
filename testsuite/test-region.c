@@ -139,27 +139,13 @@ test_region (void)
 
 	while (!gtk_source_region_iter_is_end (&reg_iter))
 	{
-		GtkTextIter s, e, s1, e1;
+		GtkTextIter s, e;
 
 		gtk_source_region_iter_get_subregion (&reg_iter,
 						      &s, &e);
-		gtk_source_region_nth_subregion (region, i, &s1, &e1);
 
-		if (!gtk_text_iter_equal (&s, &s1) ||
-		    !gtk_text_iter_equal (&e, &e1))
-		{
-			g_print ("problem iterating\n");
-			g_assert_not_reached ();
-		}
-
-		++i;
+		i++;
 		gtk_source_region_iter_next (&reg_iter);
-	}
-
-	if (i != gtk_source_region_get_subregion_count (region))
-	{
-		g_print ("problem iterating all subregions\n");
-		g_assert_not_reached ();
 	}
 
 	g_print ("iterated %u subregions\n", i);

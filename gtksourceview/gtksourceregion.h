@@ -76,15 +76,6 @@ gboolean		gtk_source_region_get_bounds		(GtkSourceRegion *region,
 								 GtkTextIter     *end);
 
 GTK_SOURCE_INTERNAL
-guint			gtk_source_region_get_subregion_count	(GtkSourceRegion *region);
-
-GTK_SOURCE_INTERNAL
-gboolean		gtk_source_region_nth_subregion		(GtkSourceRegion *region,
-								 guint            subregion,
-								 GtkTextIter     *start,
-								 GtkTextIter     *end);
-
-GTK_SOURCE_INTERNAL
 void			gtk_source_region_get_start_region_iter	(GtkSourceRegion     *region,
 								 GtkSourceRegionIter *iter);
 

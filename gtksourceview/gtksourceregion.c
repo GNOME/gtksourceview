@@ -564,47 +564,6 @@ gtk_source_region_get_bounds (GtkSourceRegion *region,
 	return TRUE;
 }
 
-guint
-gtk_source_region_get_subregion_count (GtkSourceRegion *region)
-{
-	g_return_val_if_fail (region != NULL, 0);
-
-	return g_list_length (region->subregions);
-}
-
-gboolean
-gtk_source_region_nth_subregion (GtkSourceRegion *region,
-				 guint            subregion,
-				 GtkTextIter     *start,
-				 GtkTextIter     *end)
-{
-	Subregion *sr;
-
-	g_return_val_if_fail (region != NULL, FALSE);
-
-	if (region->buffer == NULL)
-	{
-		return FALSE;
-	}
-
-	sr = g_list_nth_data (region->subregions, subregion);
-	if (sr == NULL)
-	{
-		return FALSE;
-	}
-
-	if (start != NULL)
-	{
-		gtk_text_buffer_get_iter_at_mark (region->buffer, start, sr->start);
-	}
-	if (end != NULL)
-	{
-		gtk_text_buffer_get_iter_at_mark (region->buffer, end, sr->end);
-	}
-
-	return TRUE;
-}
-
 GtkSourceRegion *
 gtk_source_region_intersect (GtkSourceRegion   *region,
 			     const GtkTextIter *_start,
