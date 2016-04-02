@@ -534,6 +534,36 @@ gtk_source_region_is_empty (GtkSourceRegion *region)
 	return TRUE;
 }
 
+gboolean
+gtk_source_region_get_bounds (GtkSourceRegion *region,
+			      GtkTextIter     *start,
+			      GtkTextIter     *end)
+{
+	g_return_val_if_fail (region != NULL, FALSE);
+
+	if (region->buffer == NULL ||
+	    gtk_source_region_is_empty (region))
+	{
+		return FALSE;
+	}
+
+	g_assert (region->subregions != NULL);
+
+	if (start != NULL)
+	{
+		Subregion *first_subregion = region->subregions->data;
+		gtk_text_buffer_get_iter_at_mark (region->buffer, start, first_subregion->start);
+	}
+
+	if (end != NULL)
+	{
+		Subregion *last_subregion = g_list_last (region->subregions)->data;
+		gtk_text_buffer_get_iter_at_mark (region->buffer, end, last_subregion->end);
+	}
+
+	return TRUE;
+}
+
 guint
 gtk_source_region_get_subregion_count (GtkSourceRegion *region)
 {

@@ -1578,32 +1578,15 @@ static void
 scan_all_region (GtkSourceSearchContext *search,
 		 GtkSourceRegion        *region_to_highlight)
 {
-	guint nb_subregions = gtk_source_region_get_subregion_count (region_to_highlight);
 	GtkTextIter start_search;
 	GtkTextIter end_search;
 
-	if (nb_subregions == 0)
+	if (!gtk_source_region_get_bounds (region_to_highlight,
+					   &start_search,
+					   &end_search))
 	{
 		return;
 	}
-
-	if (!gtk_source_region_nth_subregion (region_to_highlight,
-					      0,
-					      &start_search,
-					      NULL))
-	{
-		return;
-	}
-
-	if (!gtk_source_region_nth_subregion (region_to_highlight,
-					      nb_subregions - 1,
-					      NULL,
-					      &end_search))
-	{
-		return;
-	}
-
-	gtk_text_iter_order (&start_search, &end_search);
 
 	scan_subregion (search, &start_search, &end_search);
 }
@@ -1784,25 +1767,10 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 	GtkTextIter end;
 	GtkSourceRegion *region;
 	GtkSourceRegionIter region_iter;
-	guint nb_subregions = gtk_source_region_get_subregion_count (search->priv->high_priority_region);
 
-	if (nb_subregions == 0)
-	{
-		return;
-	}
-
-	if (!gtk_source_region_nth_subregion (search->priv->high_priority_region,
-					      0,
-					      &start,
-					      NULL))
-	{
-		return;
-	}
-
-	if (!gtk_source_region_nth_subregion (search->priv->high_priority_region,
-					      nb_subregions - 1,
-					      NULL,
-					      &end))
+	if (!gtk_source_region_get_bounds (search->priv->high_priority_region,
+					   &start,
+					   &end))
 	{
 		return;
 	}
@@ -2034,7 +2002,7 @@ regex_search_scan_next_chunk (GtkSourceSearchContext *search)
 		return;
 	}
 
-	if (!gtk_source_region_nth_subregion (search->priv->scan_region, 0, &chunk_start, NULL))
+	if (!gtk_source_region_get_bounds (search->priv->scan_region, &chunk_start, NULL))
 	{
 		return;
 	}
@@ -3839,10 +3807,9 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 	{
 		GtkTextIter region_start;
 
-		if (!gtk_source_region_nth_subregion (search->priv->scan_region,
-						      0,
-						      &region_start,
-						      NULL))
+		if (!gtk_source_region_get_bounds (search->priv->scan_region,
+						   &region_start,
+						   NULL))
 		{
 			return;
 		}
