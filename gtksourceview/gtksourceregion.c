@@ -22,6 +22,36 @@
 
 #include "gtksourceregion.h"
 
+/**
+ * SECTION:region
+ * @Short_description: Region utility
+ * @Title: GtkSourceRegion
+ * @See_also: #GtkTextBuffer
+ *
+ * A #GtkSourceRegion permits to store a group of subregions of a
+ * #GtkTextBuffer. #GtkSourceRegion stores the subregions with pairs of
+ * #GtkTextMark's, so the region is still valid after insertions and deletions
+ * in the #GtkTextBuffer.
+ *
+ * The #GtkTextMark for the start of a subregion has a left gravity, while the
+ * #GtkTextMark for the end of a subregion has a right gravity.
+ */
+
+/* With the gravities of the GtkTextMarks, it is possible for subregions to
+ * become interlaced:
+ * Buffer content:
+ *   "hello world"
+ * Add two subregions:
+ *   "[hello] [world]"
+ * Delete the space:
+ *   "[hello][world]"
+ * Undo:
+ *   "[hello[ ]world]"
+ *
+ * FIXME: when iterating through the subregions, it should simplify them first.
+ * I don't know if it's done (swilmet).
+ */
+
 #undef ENABLE_DEBUG
 /*
 #define ENABLE_DEBUG
@@ -238,6 +268,13 @@ gtk_source_region_init (GtkSourceRegion *region)
 {
 }
 
+/**
+ * gtk_source_region_new:
+ * @buffer: a #GtkTextBuffer.
+ *
+ * Returns: a new #GtkSourceRegion object for @buffer.
+ * Since: 3.22
+ */
 GtkSourceRegion *
 gtk_source_region_new (GtkTextBuffer *buffer)
 {
@@ -248,6 +285,13 @@ gtk_source_region_new (GtkTextBuffer *buffer)
 			     NULL);
 }
 
+/**
+ * gtk_source_region_get_buffer:
+ * @region: a #GtkSourceRegion.
+ *
+ * Returns: (transfer none) (nullable): the #GtkTextBuffer.
+ * Since: 3.22
+ */
 GtkTextBuffer *
 gtk_source_region_get_buffer (GtkSourceRegion *region)
 {
@@ -299,6 +343,16 @@ gtk_source_region_clear_zero_length_subregions (GtkSourceRegion *region)
 	}
 }
 
+/**
+ * gtk_source_region_add:
+ * @region: a #GtkSourceRegion.
+ * @_start: the start of the subregion.
+ * @_end: the end of the subregion.
+ *
+ * Adds the subregion delimited by @_start and @_end to @region.
+ *
+ * Since: 3.22
+ */
 void
 gtk_source_region_add (GtkSourceRegion   *region,
 		       const GtkTextIter *_start,
@@ -413,6 +467,16 @@ gtk_source_region_add (GtkSourceRegion   *region,
 	DEBUG (_gtk_source_region_debug_print (region));
 }
 
+/**
+ * gtk_source_region_subtract:
+ * @region: a #GtkSourceRegion.
+ * @_start: the start of the subregion.
+ * @_end: the end of the subregion.
+ *
+ * Subtracts the subregion delimited by @_start and @_end from @region.
+ *
+ * Since: 3.22
+ */
 void
 gtk_source_region_subtract (GtkSourceRegion   *region,
 			    const GtkTextIter *_start,
@@ -577,11 +641,14 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 	DEBUG (_gtk_source_region_debug_print (region));
 }
 
-/* A #GtkSourceRegion can contain empty subregions. So checking the number of
- * subregions is not sufficient.
- * When calling gtk_source_region_add() with equal iters, the subregion is not
- * added. But when a subregion becomes empty, due to text deletion, the
- * subregion is not removed from the #GtkSourceRegion.
+/**
+ * gtk_source_region_is_empty:
+ * @region: (nullable): a #GtkSourceRegion, or %NULL.
+ *
+ * Returns whether the @region is empty. A %NULL @region is considered empty.
+ *
+ * Returns: whether the @region is empty.
+ * Since: 3.22
  */
 gboolean
 gtk_source_region_is_empty (GtkSourceRegion *region)
@@ -592,6 +659,13 @@ gtk_source_region_is_empty (GtkSourceRegion *region)
 	{
 		return TRUE;
 	}
+
+	/* A #GtkSourceRegion can contain empty subregions. So checking the
+	 * number of subregions is not sufficient.
+	 * When calling gtk_source_region_add() with equal iters, the subregion
+	 * is not added. But when a subregion becomes empty, due to text
+	 * deletion, the subregion is not removed from the #GtkSourceRegion.
+	 */
 
 	gtk_source_region_get_start_region_iter (region, &region_iter);
 
@@ -618,6 +692,20 @@ gtk_source_region_is_empty (GtkSourceRegion *region)
 	return TRUE;
 }
 
+/**
+ * gtk_source_region_get_bounds:
+ * @region: a #GtkSourceRegion.
+ * @start: (out) (optional): iterator to initialize with the start of @region,
+ *   or %NULL.
+ * @end: (out) (optional): iterator to initialize with the end of @region,
+ *   or %NULL.
+ *
+ * Gets the @start and @end bounds of the @region.
+ *
+ * Returns: %TRUE if @start and @end have been set successfully (if non-%NULL),
+ *   or %FALSE if the @region is empty.
+ * Since: 3.22
+ */
 gboolean
 gtk_source_region_get_bounds (GtkSourceRegion *region,
 			      GtkTextIter     *start,
@@ -652,6 +740,19 @@ gtk_source_region_get_bounds (GtkSourceRegion *region,
 	return TRUE;
 }
 
+/**
+ * gtk_source_region_intersect:
+ * @region: a #GtkSourceRegion.
+ * @_start: the start of the subregion.
+ * @_end: the end of the subregion.
+ *
+ * Computes the intersection between @region and the subregion delimited by
+ * @_start and @_end.
+ *
+ * Returns: (transfer full) (nullable): the intersection as a new
+ *   #GtkSourceRegion.
+ * Since: 3.22
+ */
 GtkSourceRegion *
 gtk_source_region_intersect (GtkSourceRegion   *region,
 			     const GtkTextIter *_start,
@@ -837,6 +938,16 @@ invalid:
 	return FALSE;
 }
 
+/**
+ * gtk_source_region_get_start_region_iter:
+ * @region: a #GtkSourceRegion.
+ * @iter: (out): iterator to initialize to the first subregion.
+ *
+ * Initializes a #GtkSourceRegionIter to the first subregion of @region. If
+ * @region is empty, @iter will be initialized to the end iterator.
+ *
+ * Since: 3.22
+ */
 void
 gtk_source_region_get_start_region_iter (GtkSourceRegion     *region,
 					 GtkSourceRegionIter *iter)
@@ -857,6 +968,13 @@ gtk_source_region_get_start_region_iter (GtkSourceRegion     *region,
 	real->region_timestamp = priv->timestamp;
 }
 
+/**
+ * gtk_source_region_iter_is_end:
+ * @iter: a #GtkSourceRegionIter.
+ *
+ * Returns: whether @iter is the end iterator.
+ * Since: 3.22
+ */
 gboolean
 gtk_source_region_iter_is_end (GtkSourceRegionIter *iter)
 {
@@ -870,6 +988,16 @@ gtk_source_region_iter_is_end (GtkSourceRegionIter *iter)
 	return real->subregions == NULL;
 }
 
+/**
+ * gtk_source_region_iter_next:
+ * @iter: a #GtkSourceRegionIter.
+ *
+ * Moves @iter to the next subregion.
+ *
+ * Returns: %TRUE if @iter moved and is dereferenceable, or %FALSE if @iter has
+ *   been set to the end iterator.
+ * Since: 3.22
+ */
 gboolean
 gtk_source_region_iter_next (GtkSourceRegionIter *iter)
 {
@@ -889,6 +1017,18 @@ gtk_source_region_iter_next (GtkSourceRegionIter *iter)
 	return FALSE;
 }
 
+/**
+ * gtk_source_region_iter_get_subregion:
+ * @iter: a #GtkSourceRegionIter.
+ * @start: (out) (optional): iterator to initialize with the subregion start, or %NULL.
+ * @end: (out) (optional): iterator to initialize with the subregion end, or %NULL.
+ *
+ * Gets the subregion at this iterator.
+ *
+ * Returns: %TRUE if @start and @end have been set successfully (if non-%NULL),
+ *   or %FALSE if @iter is the end iterator or if the region is empty.
+ * Since: 3.22
+ */
 gboolean
 gtk_source_region_iter_get_subregion (GtkSourceRegionIter *iter,
 				      GtkTextIter         *start,
@@ -902,7 +1042,11 @@ gtk_source_region_iter_get_subregion (GtkSourceRegionIter *iter,
 
 	real = (GtkSourceRegionIterReal *)iter;
 	g_return_val_if_fail (check_iterator (real), FALSE);
-	g_return_val_if_fail (real->subregions != NULL, FALSE);
+
+	if (real->subregions == NULL)
+	{
+		return FALSE;
+	}
 
 	priv = gtk_source_region_get_instance_private (real->region);
 

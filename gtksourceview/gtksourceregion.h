@@ -92,7 +92,6 @@ void			gtk_source_region_get_start_region_iter	(GtkSourceRegion     *region,
 GTK_SOURCE_INTERNAL
 gboolean		gtk_source_region_iter_is_end		(GtkSourceRegionIter *iter);
 
-/* Returns FALSE if iterator is the end iterator */
 GTK_SOURCE_INTERNAL
 gboolean		gtk_source_region_iter_next		(GtkSourceRegionIter *iter);
 
