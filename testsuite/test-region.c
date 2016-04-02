@@ -31,7 +31,7 @@ test_region (void)
 	GtkSourceRegion *region, *intersection;
 	GtkSourceRegionIter reg_iter;
 	GtkTextIter iter1, iter2;
-	gint i;
+	guint i;
 
 #define NUM_OPS 23
 
@@ -162,7 +162,7 @@ test_region (void)
 		g_assert_not_reached ();
 	}
 
-	g_print ("iterated %d subregions\n", i);
+	g_print ("iterated %u subregions\n", i);
 
 	gtk_source_region_destroy (region);
 	g_object_unref (buffer);

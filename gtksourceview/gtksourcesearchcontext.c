@@ -1619,7 +1619,7 @@ static void
 scan_all_region (GtkSourceSearchContext *search,
 		 GtkSourceRegion          *region_to_highlight)
 {
-	gint nb_subregions = gtk_source_region_subregions (region_to_highlight);
+	guint nb_subregions = gtk_source_region_subregions (region_to_highlight);
 	GtkTextIter start_search;
 	GtkTextIter end_search;
 
@@ -1825,7 +1825,7 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 	GtkTextIter end;
 	GtkSourceRegion *region;
 	GtkSourceRegionIter region_iter;
-	gint nb_subregions = gtk_source_region_subregions (search->priv->high_priority_region);
+	guint nb_subregions = gtk_source_region_subregions (search->priv->high_priority_region);
 
 	if (nb_subregions == 0)
 	{

@@ -493,7 +493,7 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 	DEBUG (_gtk_source_region_debug_print (region));
 }
 
-gint
+guint
 gtk_source_region_subregions (GtkSourceRegion *region)
 {
 	g_return_val_if_fail (region != NULL, 0);
