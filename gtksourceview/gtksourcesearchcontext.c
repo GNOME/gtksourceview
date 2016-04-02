@@ -1779,6 +1779,11 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 					      &start,
 					      &end);
 
+	if (region == NULL)
+	{
+		return;
+	}
+
 	gtk_source_region_get_start_region_iter (region, &region_iter);
 
 	while (!gtk_source_region_iter_is_end (&region_iter))
@@ -1790,7 +1795,7 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 							   &subregion_start,
 							   &subregion_end))
 		{
-			return;
+			break;
 		}
 
 		gtk_text_buffer_remove_tag (search->priv->buffer,
