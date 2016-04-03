@@ -35,6 +35,39 @@
  *
  * The #GtkTextMark for the start of a subregion has a left gravity, while the
  * #GtkTextMark for the end of a subregion has a right gravity.
+ *
+ * The typical use-case of #GtkSourceRegion is to scan a #GtkTextBuffer chunk by
+ * chunk, not the whole buffer at once to not block the user interface. The
+ * #GtkSourceRegion represents in that case the remaining region to scan. You
+ * can listen to the #GtkTextBuffer::insert-text and
+ * #GtkTextBuffer::delete-range signals to update the #GtkSourceRegion
+ * accordingly.
+ *
+ * To iterate through the subregions, you need to use a #GtkSourceRegionIter,
+ * for example:
+ * |[
+ * GtkSourceRegion *region;
+ * GtkSourceRegionIter region_iter;
+ *
+ * gtk_source_region_get_start_region_iter (region, &region_iter);
+ *
+ * while (!gtk_source_region_iter_is_end (&region_iter))
+ * {
+ *         GtkTextIter subregion_start;
+ *         GtkTextIter subregion_end;
+ *
+ *         if (!gtk_source_region_iter_get_subregion (&region_iter,
+ *                                                    &subregion_start,
+ *                                                    &subregion_end))
+ *         {
+ *                 break;
+ *         }
+ *
+ *         // Do something useful with the subregion.
+ *
+ *         gtk_source_region_iter_next (&region_iter);
+ * }
+ * ]|
  */
 
 /* With the gravities of the GtkTextMarks, it is possible for subregions to
@@ -1098,7 +1131,7 @@ gtk_source_region_iter_get_subregion (GtkSourceRegionIter *iter,
  * Gets a string represention of @region, for debugging purposes.
  *
  * The returned string contains the character offsets of the subregions. It
- * doesn't include a newline character.
+ * doesn't include a newline character at the end of the string.
  *
  * Returns: (transfer full) (nullable): a string represention of @region. Free
  *   with g_free() when no longer needed.
