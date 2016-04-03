@@ -251,6 +251,14 @@ gtk_source_region_class_init (GtkSourceRegionClass *klass)
 	object_class->set_property = gtk_source_region_set_property;
 	object_class->dispose = gtk_source_region_dispose;
 
+	/**
+	 * GtkSourceRegion:buffer:
+	 *
+	 * The #GtkTextBuffer. The #GtkSourceRegion has a weak reference to the
+	 * buffer.
+	 *
+	 * Since: 3.22
+	 */
 	properties[PROP_BUFFER] =
 		g_param_spec_object ("buffer",
 				     "Buffer",
