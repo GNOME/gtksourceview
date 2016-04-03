@@ -625,6 +625,28 @@ GtkSourcePrintCompositorClass
 </SECTION>
 
 <SECTION>
+<FILE>region</FILE>
+<TITLE>GtkSourceRegion</TITLE>
+GtkSourceRegion
+GtkSourceRegionIter
+gtk_source_region_new
+gtk_source_region_get_buffer
+gtk_source_region_add
+gtk_source_region_subtract
+gtk_source_region_intersect
+gtk_source_region_is_empty
+gtk_source_region_get_bounds
+gtk_source_region_get_start_region_iter
+gtk_source_region_iter_is_end
+gtk_source_region_iter_next
+gtk_source_region_iter_get_subregion
+gtk_source_region_to_string
+<SUBSECTION Standard>
+GTK_SOURCE_TYPE_REGION
+GtkSourceRegionClass
+</SECTION>
+
+<SECTION>
 <FILE>searchcontext</FILE>
 <TITLE>GtkSourceSearchContext</TITLE>
 GtkSourceSearchContext
