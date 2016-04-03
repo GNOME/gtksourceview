@@ -24,13 +24,13 @@
 #define __GTK_SOURCE_REGION_H__
 
 #include <gtk/gtk.h>
-#include "gtksourcetypes-private.h"
+#include <gtksourceview/gtksourceversion.h>
 
 G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_REGION (gtk_source_region_get_type ())
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 G_DECLARE_DERIVABLE_TYPE (GtkSourceRegion, gtk_source_region,
 			  GTK_SOURCE, REGION,
 			  GObject)
@@ -56,51 +56,51 @@ struct _GtkSourceRegionIter
 	gpointer dummy3;
 };
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 GtkSourceRegion *	gtk_source_region_new			(GtkTextBuffer *buffer);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 GtkTextBuffer *		gtk_source_region_get_buffer		(GtkSourceRegion *region);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 void			gtk_source_region_add			(GtkSourceRegion   *region,
 								 const GtkTextIter *_start,
 								 const GtkTextIter *_end);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 void			gtk_source_region_subtract		(GtkSourceRegion   *region,
 								 const GtkTextIter *_start,
 								 const GtkTextIter *_end);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 GtkSourceRegion *	gtk_source_region_intersect		(GtkSourceRegion   *region,
 								 const GtkTextIter *_start,
 								 const GtkTextIter *_end);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		gtk_source_region_is_empty		(GtkSourceRegion *region);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		gtk_source_region_get_bounds		(GtkSourceRegion *region,
 								 GtkTextIter     *start,
 								 GtkTextIter     *end);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 void			gtk_source_region_get_start_region_iter	(GtkSourceRegion     *region,
 								 GtkSourceRegionIter *iter);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		gtk_source_region_iter_is_end		(GtkSourceRegionIter *iter);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		gtk_source_region_iter_next		(GtkSourceRegionIter *iter);
 
-GTK_SOURCE_INTERNAL
+GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		gtk_source_region_iter_get_subregion	(GtkSourceRegionIter *iter,
 								 GtkTextIter         *start,
 								 GtkTextIter         *end);
 
-GTK_SOURCE_INTERNAL
+G_GNUC_INTERNAL
 void			_gtk_source_region_debug_print		(GtkSourceRegion *region);
 
 G_END_DECLS
