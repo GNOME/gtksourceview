@@ -102,6 +102,18 @@ static GParamSpec *properties[LAST_PROP];
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceRegion, gtk_source_region, G_TYPE_OBJECT)
 
+#ifdef ENABLE_DEBUG
+static void
+print_region (GtkSourceRegion *region)
+{
+	gchar *str;
+
+	str = gtk_source_region_to_string (region);
+	g_print ("%s\n", str);
+	g_free (str);
+}
+#endif
+
 /* Find and return a subregion node which contains the given text
  * iter.  If left_side is TRUE, return the subregion which contains
  * the text iter or which is the leftmost; else return the rightmost
@@ -387,7 +399,7 @@ gtk_source_region_add (GtkSourceRegion   *region,
 	end = *_end;
 
 	DEBUG (g_print ("---\n"));
-	DEBUG (_gtk_source_region_debug_print (region));
+	DEBUG (print_region (region));
 	DEBUG (g_message ("region_add (%d, %d)",
 			  gtk_text_iter_get_offset (&start),
 			  gtk_text_iter_get_offset (&end)));
@@ -472,7 +484,7 @@ gtk_source_region_add (GtkSourceRegion   *region,
 
 	priv->timestamp++;
 
-	DEBUG (_gtk_source_region_debug_print (region));
+	DEBUG (print_region (region));
 }
 
 /**
@@ -518,7 +530,7 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 	end = *_end;
 
 	DEBUG (g_print ("---\n"));
-	DEBUG (_gtk_source_region_debug_print (region));
+	DEBUG (print_region (region));
 	DEBUG (g_message ("region_substract (%d, %d)",
 			  gtk_text_iter_get_offset (&start),
 			  gtk_text_iter_get_offset (&end)));
@@ -641,12 +653,12 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 
 	priv->timestamp++;
 
-	DEBUG (_gtk_source_region_debug_print (region));
+	DEBUG (print_region (region));
 
 	/* Now get rid of empty subregions. */
 	gtk_source_region_clear_zero_length_subregions (region);
 
-	DEBUG (_gtk_source_region_debug_print (region));
+	DEBUG (print_region (region));
 }
 
 /**
@@ -1079,22 +1091,36 @@ gtk_source_region_iter_get_subregion (GtkSourceRegionIter *iter,
 	return TRUE;
 }
 
-void
-_gtk_source_region_debug_print (GtkSourceRegion *region)
+/**
+ * gtk_source_region_to_string:
+ * @region: a #GtkSourceRegion.
+ *
+ * Gets a string represention of @region, for debugging purposes.
+ *
+ * The returned string contains the character offsets of the subregions. It
+ * doesn't include a newline character.
+ *
+ * Returns: (transfer full) (nullable): a string represention of @region. Free
+ *   with g_free() when no longer needed.
+ * Since: 3.22
+ */
+gchar *
+gtk_source_region_to_string (GtkSourceRegion *region)
 {
 	GtkSourceRegionPrivate *priv;
+	GString *string;
 	GList *l;
 
-	g_return_if_fail (GTK_SOURCE_IS_REGION (region));
+	g_return_val_if_fail (GTK_SOURCE_IS_REGION (region), NULL);
 
 	priv = gtk_source_region_get_instance_private (region);
 
 	if (priv->buffer == NULL)
 	{
-		return;
+		return NULL;
 	}
 
-	g_print ("Subregions: ");
+	string = g_string_new ("Subregions:");
 
 	for (l = priv->subregions; l != NULL; l = l->next)
 	{
@@ -1105,9 +1131,11 @@ _gtk_source_region_debug_print (GtkSourceRegion *region)
 		gtk_text_buffer_get_iter_at_mark (priv->buffer, &start, sr->start);
 		gtk_text_buffer_get_iter_at_mark (priv->buffer, &end, sr->end);
 
-		g_print ("%d-%d ",
-			 gtk_text_iter_get_offset (&start),
-			 gtk_text_iter_get_offset (&end));
+		g_string_append_printf (string,
+					" %d-%d",
+					gtk_text_iter_get_offset (&start),
+					gtk_text_iter_get_offset (&end));
 	}
-	g_print ("\n");
+
+	return g_string_free (string, FALSE);
 }

@@ -32,6 +32,7 @@ test_region (void)
 	GtkSourceRegionIter reg_iter;
 	GtkTextIter iter1, iter2;
 	guint i;
+	gchar *region_str = NULL;
 
 #define NUM_OPS 23
 
@@ -117,7 +118,10 @@ test_region (void)
 		}
 		g_print ("%s %d-%d\n", op_name, ops [i][1], ops [i][2]);
 
-		_gtk_source_region_debug_print (region);
+		region_str = gtk_source_region_to_string (region);
+		g_print ("%s\n", region_str);
+		g_free (region_str);
+		region_str = NULL;
 	}
 
 	for (i = 0; i < NUM_INTERSECTS; i++) {
@@ -127,7 +131,11 @@ test_region (void)
 		g_print ("intersect %d-%d\n", inter [i][0], inter [i][1]);
 		intersection = gtk_source_region_intersect (region, &iter1, &iter2);
 		if (intersection) {
-			_gtk_source_region_debug_print (intersection);
+			region_str = gtk_source_region_to_string (region);
+			g_print ("%s\n", region_str);
+			g_free (region_str);
+			region_str = NULL;
+
 			g_clear_object (&intersection);
 		} else {
 			g_print ("no intersection\n");

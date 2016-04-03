@@ -100,8 +100,8 @@ gboolean		gtk_source_region_iter_get_subregion	(GtkSourceRegionIter *iter,
 								 GtkTextIter         *start,
 								 GtkTextIter         *end);
 
-G_GNUC_INTERNAL
-void			_gtk_source_region_debug_print		(GtkSourceRegion *region);
+GTK_SOURCE_AVAILABLE_IN_3_22
+gchar *			gtk_source_region_to_string		(GtkSourceRegion *region);
 
 G_END_DECLS
 
