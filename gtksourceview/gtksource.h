@@ -42,6 +42,7 @@
 #include <gtksourceview/gtksourcemark.h>
 #include <gtksourceview/gtksourcemarkattributes.h>
 #include <gtksourceview/gtksourceprintcompositor.h>
+#include <gtksourceview/gtksourceregion.h>
 #include <gtksourceview/gtksourcesearchcontext.h>
 #include <gtksourceview/gtksourcesearchsettings.h>
 #include <gtksourceview/gtksourcestyle.h>
