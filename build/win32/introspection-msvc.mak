@@ -11,6 +11,21 @@
 PREFIX = ..\..\..\vs$(VSVER)\$(PLAT)
 !endif
 
+!if ![setlocal]		&& \
+    ![set PFX=$(PREFIX)]	&& \
+    ![for %P in (%PFX%) do @echo PREFIX_FULL=%~dpnfP > pfx.x]
+!endif
+!include pfx.x
+
+!if "$(PKG_CONFIG_PATH)" == ""
+PKG_CONFIG_PATH=$(PREFIX_FULL)\lib\pkgconfig
+!else
+PKG_CONFIG_PATH=$(PREFIX_FULL)\lib\pkgconfig;$(PKG_CONFIG_PATH)
+!endif
+
+!if ![del $(ERRNUL) /q/f pfx.x]
+!endif
+
 # Note: The PYTHON must be the Python release series that was used to build
 # the GObject-introspection scanner Python module!
 # Either having python.exe your PATH will work or passing in
@@ -20,6 +35,11 @@ PREFIX = ..\..\..\vs$(VSVER)\$(PLAT)
 # before this can be successfully run.
 !if "$(PYTHON)" == ""
 PYTHON=python
+!endif
+
+# Path to the pkg-config tool, if not already in the PATH
+!if "$(PKG_CONFIG)" == ""
+PKG_CONFIG=pkg-config
 !endif
 
 # Don't change anything following this line!
@@ -40,7 +60,8 @@ ERROR_MSG =
 
 BUILD_INTROSPECTION = TRUE
 
-!if ![pkg-config --print-errors --errors-to-stdout $(CHECK_PACKAGE) > pkgconfig.x]	\
+!if ![set PKG_CONFIG_PATH=$(PKG_CONFIG_PATH)]	\
+	&& ![$(PKG_CONFIG) --print-errors --errors-to-stdout $(CHECK_PACKAGE) > pkgconfig.x]	\
 	&& ![setlocal]	\
 	&& ![set file="pkgconfig.x"]	\
 	&& ![FOR %A IN (%file%) DO @echo PKG_CHECK_SIZE=%~zA > pkgconfig.chksize]	\
@@ -58,7 +79,7 @@ VALID_PKG_CONFIG_PATH = FALSE
 !endif
 
 VALID_CFGSET = FALSE
-!if "$(CFG)" == "release" || "$(CFG)" == "debug"
+!if "$(CFG)" == "release" || "$(CFG)" == "debug" || "$(CFG)" == "Release" || "$(CFG)" == "Debug"
 VALID_CFGSET = TRUE
 !endif
 
