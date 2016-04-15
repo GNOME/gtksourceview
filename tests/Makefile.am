@@ -11,8 +11,7 @@ AM_CPPFLAGS = 				\
 
 AM_LDFLAGS = $(WARN_LDFLAGS)
 
-LDADD = $(top_builddir)/gtksourceview/completion-providers/words/libgtksourcecompletionwords.la \
-	$(top_builddir)/gtksourceview/libgtksourceview-core.la \
+LDADD = $(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
 	-lm \
 	$(DEP_LIBS) \
 	$(TESTS_LIBS)
@@ -38,18 +37,10 @@ test-widget-resources.c: test-widget.gresource.xml $(shell $(GLIB_COMPILE_RESOUR
 TEST_PROGS = test-completion
 test_completion_SOURCES = test-completion.c
 nodist_test_completion_SOURCES = test-completion-resources.c
-test_completion_LDADD =						\
-	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
-	$(DEP_LIBS)						\
-	$(TESTS_LIBS)
 
 TEST_PROGS += test-search
 test_search_SOURCES = test-search.c
 nodist_test_search_SOURCES = test-search-resources.c
-test_search_LDADD =						\
-	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
-	$(DEP_LIBS)						\
-	$(TESTS_LIBS)
 
 TEST_PROGS += test-search-performances
 test_search_performances_SOURCES = test-search-performances.c
@@ -63,10 +54,6 @@ test_undo_manager_performances_SOURCES = test-undo-manager-performances.c
 TEST_PROGS += test-widget
 test_widget_SOURCES = test-widget.c
 nodist_test_widget_SOURCES = test-widget-resources.c
-test_widget_LDADD =						\
-	$(top_builddir)/gtksourceview/libgtksourceview-3.0.la	\
-	$(DEP_LIBS)						\
-	$(TESTS_LIBS)
 
 python_tests =			\
 	test-completion.py	\
