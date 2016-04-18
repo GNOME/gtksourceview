@@ -2868,12 +2868,27 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 	});
 }
 
+static gint
+realign (gint  offset,
+	 guint align)
+{
+	if (offset > 0 && align > 0)
+	{
+		gint padding;
+
+		padding = (align - (offset % align)) % align;
+		return offset + padding;
+	}
+
+	return 0;
+}
+
 static void
 gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 					       cairo_t       *cr)
 {
 	GdkRectangle clip;
-	gdouble x, y, x2, y2;
+	gint x, y, x2, y2;
 	PangoContext *context;
 	PangoLayout *layout;
 	gint grid_width = 16;
@@ -2896,15 +2911,11 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 	cairo_set_line_width (cr, 1.0);
 	gdk_cairo_set_source_rgba (cr, &view->priv->background_pattern_color);
 
-	/*
-	 * The following constants come from gtktextview.c pixel cache
-	 * settings. Sadly, they are not exposed in the public API,
-	 * just keep them in sync here. 64 for X, height/2 for Y.
-	 */
-	x = (grid_width - (clip.x % grid_width)) - (64 / grid_width * grid_width) - grid_width + 2;
-	y = (grid_height - (clip.y % grid_height)) - (clip.height / 2 / grid_height * grid_height) - grid_height;
-	x2 = clip.x + clip.width;
-	y2 = clip.y + clip.height;
+	/* Align our drawing position with a multiple of the grid size. */
+	x = realign (clip.x - grid_width, grid_width);
+	y = realign (clip.y - grid_height, grid_height);
+	x2 = realign (x + clip.width + grid_width * 2, grid_width);
+	y2 = realign (y + clip.height + grid_height * 2, grid_height);
 
 	for (; x <= x2; x += grid_width)
 	{
