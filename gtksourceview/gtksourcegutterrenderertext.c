@@ -78,20 +78,17 @@ gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
 }
 
 static void
-center_on (GtkSourceGutterRenderer *renderer,
-           GdkRectangle            *cell_area,
-           GtkTextIter             *iter,
-           gint                     width,
-           gint                     height,
-           gfloat                   xalign,
-           gfloat                   yalign,
-           gint                    *x,
-           gint                    *y)
+center_on (GtkTextView  *view,
+           GdkRectangle *cell_area,
+           GtkTextIter  *iter,
+           gint          width,
+           gint          height,
+           gfloat        xalign,
+           gfloat        yalign,
+           gint         *x,
+           gint         *y)
 {
 	GdkRectangle location;
-	GtkTextView *view;
-
-	view = gtk_source_gutter_renderer_get_view (renderer);
 
 	gtk_text_view_get_iter_location (view, iter, &location);
 
@@ -109,6 +106,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 			   GtkSourceGutterRendererState  state)
 {
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
+	GtkTextView *view;
 	gint width;
 	gint height;
 	gfloat xalign;
@@ -116,7 +114,6 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 	GtkSourceGutterRendererAlignmentMode mode;
 	gint x = 0;
 	gint y = 0;
-	GtkTextView *view;
 	GtkStyleContext *context;
 
 	/* Chain up to draw background */
@@ -130,6 +127,8 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 												       end,
 												       state);
 	}
+
+	view = gtk_source_gutter_renderer_get_view (renderer);
 
 	if (text->priv->is_markup)
 	{
@@ -160,7 +159,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 			break;
 
 		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST:
-			center_on (renderer,
+			center_on (view,
 			           cell_area,
 			           start,
 			           width,
@@ -172,7 +171,7 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 			break;
 
 		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_LAST:
-			center_on (renderer,
+			center_on (view,
 			           cell_area,
 			           end,
 			           width,
@@ -187,7 +186,6 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 			g_assert_not_reached ();
 	}
 
-	view = gtk_source_gutter_renderer_get_view (renderer);
 	context = gtk_widget_get_style_context (GTK_WIDGET (view));
 	gtk_render_layout (context, cr, x, y, text->priv->cached_layout);
 }
