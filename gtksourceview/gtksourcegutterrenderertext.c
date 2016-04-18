@@ -149,7 +149,11 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 	                                          &xalign,
 	                                          &yalign);
 
-	mode = gtk_source_gutter_renderer_get_alignment_mode (renderer);
+	/* Avoid calculations if we don't wrap text */
+	if (gtk_text_view_get_wrap_mode (view) == GTK_WRAP_NONE)
+		mode = GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL;
+	else
+		mode = gtk_source_gutter_renderer_get_alignment_mode (renderer);
 
 	switch (mode)
 	{
