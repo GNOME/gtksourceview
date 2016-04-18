@@ -2952,6 +2952,7 @@ static gboolean
 gtk_source_view_draw (GtkWidget *widget,
 		      cairo_t   *cr)
 {
+	GtkSourceView *view = (GtkSourceView *)widget;
 	gboolean event_handled;
 
 #ifdef ENABLE_PROFILE
@@ -2969,6 +2970,16 @@ gtk_source_view_draw (GtkWidget *widget,
 	});
 
 	event_handled = GTK_WIDGET_CLASS (gtk_source_view_parent_class)->draw (widget, cr);
+
+	if (view->priv->left_gutter != NULL)
+	{
+		gtk_source_gutter_draw (view->priv->left_gutter, view, cr);
+	}
+
+	if (view->priv->right_gutter != NULL)
+	{
+		gtk_source_gutter_draw (view->priv->right_gutter, view, cr);
+	}
 
 	PROFILE ({
 		g_timer_stop (timer);

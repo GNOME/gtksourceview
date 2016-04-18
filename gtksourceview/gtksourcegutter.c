@@ -89,10 +89,6 @@ struct _GtkSourceGutterPrivate
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutter, gtk_source_gutter, G_TYPE_OBJECT)
 
-static gboolean on_view_draw (GtkSourceView   *view,
-                              cairo_t         *cr,
-                              GtkSourceGutter *gutter);
-
 static gboolean on_view_motion_notify_event (GtkSourceView   *view,
                                              GdkEventMotion  *event,
                                              GtkSourceGutter *gutter);
@@ -288,12 +284,6 @@ set_view (GtkSourceGutter *gutter,
           GtkSourceView   *view)
 {
 	gutter->priv->view = view;
-
-	g_signal_connect_object (view,
-				 "draw",
-				 G_CALLBACK (on_view_draw),
-				 gutter,
-				 G_CONNECT_AFTER);
 
 	g_signal_connect_object (view,
 				 "motion-notify-event",
@@ -1216,10 +1206,10 @@ end_draw (GtkSourceGutter *gutter)
 	}
 }
 
-static gboolean
-on_view_draw (GtkSourceView   *view,
-              cairo_t         *cr,
-              GtkSourceGutter *gutter)
+void
+gtk_source_gutter_draw (GtkSourceGutter *gutter,
+                        GtkSourceView   *view,
+                        cairo_t         *cr)
 {
 	GdkRectangle clip;
 	GtkTextView *text_view;
@@ -1233,7 +1223,7 @@ on_view_draw (GtkSourceView   *view,
 
 	if (!get_clip_rectangle (gutter, view, cr, &clip))
 	{
-		return GDK_EVENT_PROPAGATE;
+		return;
 	}
 
 	gutter->priv->is_drawing = TRUE;
@@ -1290,8 +1280,6 @@ on_view_draw (GtkSourceView   *view,
 
 	g_array_free (renderer_widths, TRUE);
 	lines_info_free (info);
-
-	return GDK_EVENT_PROPAGATE;
 }
 
 static Renderer *
