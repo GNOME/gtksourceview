@@ -2173,7 +2173,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 
 	gdk_cairo_set_source_rgba (cr, (GdkRGBA *)color);
 	cairo_set_line_width (cr, 1);
-	cairo_rectangle (cr, x1, y + .5, x2 - x1, height - 1);
+	cairo_rectangle (cr, x1 + .5, y + .5, x2 - x1 - 1, height - 1);
 	cairo_stroke_preserve (cr);
 	cairo_fill (cr);
 }
