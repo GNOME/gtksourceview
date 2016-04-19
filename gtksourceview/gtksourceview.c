@@ -2952,7 +2952,7 @@ static gboolean
 gtk_source_view_draw (GtkWidget *widget,
 		      cairo_t   *cr)
 {
-	GtkSourceView *view = (GtkSourceView *)widget;
+	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 	gboolean event_handled;
 
 #ifdef ENABLE_PROFILE
