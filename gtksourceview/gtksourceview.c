@@ -2695,6 +2695,14 @@ get_end_iter (GtkTextView *text_view,
 	}
 }
 
+static inline gboolean
+is_space (gunichar c)
+{
+	return (g_unichar_isspace (c) ||
+		(g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE) ||
+		(g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR));
+}
+
 static void
 draw_tabs_and_spaces (GtkSourceView *view,
 		      cairo_t       *cr)
@@ -2747,8 +2755,10 @@ draw_tabs_and_spaces (GtkSourceView *view,
 
 	while (TRUE)
 	{
+		gunichar c = gtk_text_iter_get_char (&s);
 		gint ly;
-		if (space_needs_drawing (view, &s, &leading, &trailing))
+
+		if (is_space (c) && space_needs_drawing (view, &s, &leading, &trailing))
 		{
 			draw_spaces_at_iter (cr, text_view, &s);
 		}
