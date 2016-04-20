@@ -1059,7 +1059,21 @@ gtk_source_gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
 	g_return_if_fail (start != NULL);
 	g_return_if_fail (end != NULL);
 
-	g_signal_emit (renderer, signals[QUERY_DATA], 0, start, end, state);
+
+	/* Signal emission is relatively expensive and this code path is
+	 * frequent enough to optimize the common case where we only have the
+	 * override and no connected handlers.
+	 *
+	 * This is the same trick used by gtk_widget_draw().
+	 */
+	if (G_UNLIKELY (g_signal_has_handler_pending (renderer, signals[QUERY_DATA], 0, FALSE)))
+	{
+		g_signal_emit (renderer, signals[QUERY_DATA], 0, start, end, state);
+	}
+	else if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->query_data)
+	{
+		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->query_data (renderer, start, end, state);
+	}
 }
 
 /**
