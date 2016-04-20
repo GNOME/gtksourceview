@@ -194,7 +194,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(GenGtksourceVersionH)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\gtksourceview\gtksourceversion.h;%(Outputs)</Outputs>
     </CustomBuild>
-    <CustomBuild Include="..\gen_enums_c.bat">
+    <CustomBuild Include="..\gen-enums.bat">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating Enumeration sources...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(GenerateEnums)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\gtksourceview\gtksourceview-typebuiltins.c;..\..\..\gtksourceview\gtksourceview-typebuiltins.h;%(Outputs)</Outputs>
