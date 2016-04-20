@@ -164,6 +164,7 @@
 #define PROFILE(x)
 #endif
 
+#define UPDATE_BRACKET_DELAY		50
 #define BRACKET_MATCHING_CHARS_LIMIT	10000
 #define CONTEXT_CLASSES_PREFIX		"gtksourceview:context-classes:"
 
@@ -216,6 +217,8 @@ struct _GtkSourceBufferPrivate
 	GList *search_contexts;
 
 	GtkTextTag *invalid_char_tag;
+
+	guint bracket_update_handler;
 
 	guint highlight_syntax : 1;
 	guint highlight_brackets : 1;
@@ -591,6 +594,12 @@ gtk_source_buffer_dispose (GObject *object)
 {
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (object);
 	GList *l;
+
+	if (buffer->priv->bracket_update_handler != 0)
+	{
+		g_source_remove (buffer->priv->bracket_update_handler);
+		buffer->priv->bracket_update_handler = 0;
+	}
 
 	if (buffer->priv->undo_manager != NULL)
 	{
@@ -984,13 +993,59 @@ update_bracket_highlighting (GtkSourceBuffer *source_buffer)
 	}
 }
 
+static gboolean
+do_bracket_update (gpointer user_data)
+{
+	GtkSourceBuffer *buffer = user_data;
+
+	buffer->priv->bracket_update_handler = 0;
+
+	update_bracket_highlighting (buffer);
+
+	return G_SOURCE_REMOVE;
+}
+
+static void
+queue_bracket_update (GtkSourceBuffer *buffer)
+{
+	if (buffer->priv->bracket_update_handler != 0)
+	{
+		g_source_remove (buffer->priv->bracket_update_handler);
+	}
+
+	/*
+	 * Queue an update to the bracket location instead of doing it
+	 * immediately. We are likely going to be servicing a draw deadline
+	 * immediately, so blocking to find the match and invalidating
+	 * visible regions causes animations to stutter. Instead, give
+	 * ourself just a little bit of a delay to catch up.
+	 *
+	 * The value for this delay was found experimentally, as 25msec
+	 * resulted in continuing to see frame stutter, but 50 was not
+	 * distinguishable from having matching-brackets disabled.
+	 * The animation in gtkscrolledwindow is 200, but that creates
+	 * an undesireable delay before the match is shown to the user.
+	 * 50msec errors on the side of "immediate", but without the
+	 * frame stutter.
+	 *
+	 * If we had access to a GdkFrameClock, we might consider using
+	 * ::update() or ::after-paint() to synchronize this.
+	 */
+	buffer->priv->bracket_update_handler =
+		gdk_threads_add_timeout_full (G_PRIORITY_LOW,
+					      UPDATE_BRACKET_DELAY,
+					      do_bracket_update,
+					      buffer,
+					      NULL);
+}
+
 /* Although this function is not really useful (update_bracket_highlighting()
  * could be called directly), the name cursor_moved() is more meaningful.
  */
 static void
 cursor_moved (GtkSourceBuffer *buffer)
 {
-	update_bracket_highlighting (buffer);
+	queue_bracket_update (buffer);
 }
 
 static void
@@ -998,7 +1053,7 @@ gtk_source_buffer_real_highlight_updated (GtkSourceBuffer *buffer,
 					  GtkTextIter     *start,
 					  GtkTextIter     *end)
 {
-	update_bracket_highlighting (buffer);
+	queue_bracket_update (buffer);
 }
 
 static void
