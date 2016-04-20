@@ -1092,7 +1092,18 @@ draw_cells (GtkSourceGutter *gutter,
 
 		if (!gtk_text_iter_ends_line (&end))
 		{
-			gtk_text_iter_forward_to_line_end (&end);
+			/*
+			 * It turns out that gtk_text_iter_forward_to_line_end
+			 * is slower than jumping to the next line in the
+			 * btree index and then moving backwards a character.
+			 * We don't really care that we might be after the
+			 * newline breaking characters, since those are part
+			 * of the same line (rather than the next line).
+			 */
+			if (gtk_text_iter_forward_line (&end))
+			{
+				gtk_text_iter_backward_char (&end);
+			}
 		}
 
 		/* Possible improvement: if buffer and window coords have the
