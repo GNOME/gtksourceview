@@ -736,6 +736,13 @@ connect_view (GtkSourceMap  *map,
 		gtk_widget_add_events (GTK_WIDGET (priv->view), GDK_LEAVE_NOTIFY_MASK);
 	}
 
+	/* If we are not visible, we want to block certain signal handlers */
+	if (!gtk_widget_get_visible (GTK_WIDGET (map)))
+	{
+		g_signal_handler_block (vadj, priv->view_vadj_value_changed_handler);
+		g_signal_handler_block (vadj, priv->view_vadj_notify_upper_handler);
+	}
+
 	gtk_source_map_rebuild_css (map);
 }
 
@@ -1059,6 +1066,48 @@ gtk_source_map_realize (GtkWidget *widget)
 }
 
 static void
+gtk_source_map_show (GtkWidget *widget)
+{
+	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
+	GtkSourceMapPrivate *priv;
+	GtkAdjustment *vadj;
+
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->show (widget);
+
+	priv = gtk_source_map_get_instance_private (map);
+
+	if (priv->view != NULL)
+	{
+		vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->view));
+
+		g_signal_handler_unblock (vadj, priv->view_vadj_value_changed_handler);
+		g_signal_handler_unblock (vadj, priv->view_vadj_notify_upper_handler);
+
+		g_object_notify (G_OBJECT (vadj), "upper");
+		g_signal_emit_by_name (vadj, "value-changed");
+	}
+}
+
+static void
+gtk_source_map_hide (GtkWidget *widget)
+{
+	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
+	GtkSourceMapPrivate *priv;
+	GtkAdjustment *vadj;
+
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->hide (widget);
+
+	priv = gtk_source_map_get_instance_private (map);
+
+	if (priv->view != NULL)
+	{
+		vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->view));
+		g_signal_handler_block (vadj, priv->view_vadj_value_changed_handler);
+		g_signal_handler_block (vadj, priv->view_vadj_notify_upper_handler);
+	}
+}
+
+static void
 gtk_source_map_class_init (GtkSourceMapClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -1071,11 +1120,13 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 	widget_class->draw = gtk_source_map_draw;
 	widget_class->get_preferred_height = gtk_source_map_get_preferred_height;
 	widget_class->get_preferred_width = gtk_source_map_get_preferred_width;
+	widget_class->hide = gtk_source_map_hide;
 	widget_class->size_allocate = gtk_source_map_size_allocate;
 	widget_class->button_press_event = gtk_source_map_button_press_event;
 	widget_class->button_release_event = gtk_source_map_button_release_event;
 	widget_class->motion_notify_event = gtk_source_map_motion_notify_event;
 	widget_class->scroll_event = gtk_source_map_scroll_event;
+	widget_class->show = gtk_source_map_show;
 	widget_class->state_flags_changed = gtk_source_map_state_flags_changed;
 	widget_class->realize = gtk_source_map_realize;
 
