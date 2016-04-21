@@ -40,27 +40,47 @@ get_buffer (GtkSourceGutterRendererLines *renderer)
 	return view != NULL ? gtk_text_view_get_buffer (view) : NULL;
 }
 
+static inline gint
+count_num_digits (gint num_lines)
+{
+	if (num_lines < 100)
+	{
+		return 2;
+	}
+	else if (num_lines < 1000)
+	{
+		return 3;
+	}
+	else if (num_lines < 10000)
+	{
+		return 4;
+	}
+	else if (num_lines < 100000)
+	{
+		return 5;
+	}
+	else if (num_lines < 1000000)
+	{
+		return 6;
+	}
+	else
+	{
+		return 10;
+	}
+}
+
 static void
 recalculate_size (GtkSourceGutterRendererLines *renderer)
 {
 	gint num_lines;
 	gint num_digits = 0;
-	gint num;
 	GtkTextBuffer *buffer;
 
 	buffer = get_buffer (renderer);
 
 	num_lines = gtk_text_buffer_get_line_count (buffer);
 
-	num = num_lines;
-
-	while (num > 0)
-	{
-		num /= 10;
-		++num_digits;
-	}
-
-	num_digits = MAX (num_digits, 2);
+	num_digits = count_num_digits (num_lines);
 
 	if (num_digits != renderer->priv->num_line_digits)
 	{
