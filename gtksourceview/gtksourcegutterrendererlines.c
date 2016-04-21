@@ -30,6 +30,7 @@ struct _GtkSourceGutterRendererLinesPrivate
 {
 	gint num_line_digits;
 	gint prev_line_num;
+	guint cursor_visible : 1;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererLines, gtk_source_gutter_renderer_lines, GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT)
@@ -159,6 +160,14 @@ on_view_style_updated (GtkTextView                  *view,
 }
 
 static void
+on_view_notify_cursor_visible (GtkTextView                  *view,
+                               GParamSpec                   *pspec,
+                               GtkSourceGutterRendererLines *renderer)
+{
+	renderer->priv->cursor_visible = gtk_text_view_get_cursor_visible (view);
+}
+
+static void
 gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 			     GtkTextView             *old_view)
 {
@@ -168,6 +177,9 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 	{
 		g_signal_handlers_disconnect_by_func (old_view,
 						      on_view_style_updated,
+						      renderer);
+		g_signal_handlers_disconnect_by_func (old_view,
+						      on_view_notify_cursor_visible,
 						      renderer);
 	}
 
@@ -180,6 +192,14 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 					 G_CALLBACK (on_view_style_updated),
 					 renderer,
 					 0);
+
+		g_signal_connect_object (new_view,
+					 "notify::cursor-visible",
+					 G_CALLBACK (on_view_notify_cursor_visible),
+					 renderer,
+					 0);
+
+		GTK_SOURCE_GUTTER_RENDERER_LINES (renderer)->priv->cursor_visible = gtk_text_view_get_cursor_visible (new_view);
 	}
 
 	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_lines_parent_class)->change_view != NULL)
@@ -195,6 +215,7 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
                             GtkTextIter                  *end,
                             GtkSourceGutterRendererState  state)
 {
+	GtkSourceGutterRendererLines *lines = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
 	gchar text[24];
 	gint line;
 	gint len;
@@ -203,7 +224,7 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
 	line = gtk_text_iter_get_line (start) + 1;
 
 	current_line = (state & GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR) &&
-	               gtk_text_view_get_cursor_visible (gtk_source_gutter_renderer_get_view (renderer));
+	               lines->priv->cursor_visible;
 
 	if (current_line)
 	{
