@@ -88,19 +88,18 @@ recalculate_size (GtkSourceGutterRendererLines *renderer)
 
 	if (num_digits != renderer->priv->num_line_digits)
 	{
-		gchar *markup;
+		gchar markup[24];
 		gint size;
 
 		renderer->priv->num_line_digits = num_digits;
 
 		num_lines = MAX (num_lines, 99);
 
-		markup = g_strdup_printf ("<b>%d</b>", num_lines);
+		g_snprintf (markup, sizeof markup, "<b>%d</b>", num_lines);
 		gtk_source_gutter_renderer_text_measure_markup (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer),
 		                                                markup,
 		                                                &size,
 		                                                NULL);
-		g_free (markup);
 
 		gtk_source_gutter_renderer_set_size (GTK_SOURCE_GUTTER_RENDERER (renderer),
 		                                     size);
@@ -196,8 +195,9 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
                             GtkTextIter                  *end,
                             GtkSourceGutterRendererState  state)
 {
-	gchar *text;
+	gchar text[24];
 	gint line;
+	gint len;
 	gboolean current_line;
 
 	line = gtk_text_iter_get_line (start) + 1;
@@ -207,18 +207,16 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
 
 	if (current_line)
 	{
-		text = g_strdup_printf ("<b>%d</b>", line);
+		len = g_snprintf (text, sizeof text, "<b>%d</b>", line);
 	}
 	else
 	{
-		text = g_strdup_printf ("%d", line);
+		len = g_snprintf (text, sizeof text, "%d", line);
 	}
 
 	gtk_source_gutter_renderer_text_set_markup (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer),
 	                                            text,
-	                                            -1);
-
-	g_free (text);
+	                                            len);
 }
 
 static gint
