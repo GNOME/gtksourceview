@@ -914,12 +914,12 @@ bracket_pair (gunichar  base_char,
  * the GTK+ inspector.
  */
 static void
-remove_tag_with_minimal_damage (GtkSourceBuffer   *buffer,
+remove_tag_with_minimal_damage (GtkTextBuffer     *buffer,
                                 GtkTextTag        *tag,
                                 const GtkTextIter *begin,
                                 const GtkTextIter *end)
 {
-	GtkTextIter tag_begin = *start;
+	GtkTextIter tag_begin = *begin;
 	GtkTextIter tag_end;
 
 	if (!gtk_text_iter_starts_tag (&tag_begin, tag))
@@ -1000,7 +1000,7 @@ update_bracket_highlighting (GtkSourceBuffer *source_buffer)
 
 		gtk_text_buffer_get_bounds (buffer, &start, &end);
 
-		remove_tag_with_minimal_damage (source_buffer,
+		remove_tag_with_minimal_damage (GTK_TEXT_BUFFER (source_buffer),
 		                                source_buffer->priv->bracket_match_tag,
 		                                &start,
 		                                &end);
