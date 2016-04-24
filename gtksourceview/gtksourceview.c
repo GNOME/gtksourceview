@@ -2448,15 +2448,15 @@ static void
 draw_spaces_tag_foreach (GtkTextTag *tag,
 			 gboolean   *found)
 {
-	if (*found == FALSE)
+	if (*found)
 	{
-		if (GTK_SOURCE_IS_TAG (tag))
-		{
-			if (_gtk_source_tag_effects_spaces (GTK_SOURCE_TAG (tag)))
-			{
-				*found = TRUE;
-			}
-		}
+		return;
+	}
+
+	if (GTK_SOURCE_IS_TAG (tag) &&
+	    _gtk_source_tag_effects_spaces (GTK_SOURCE_TAG (tag)))
+	{
+		*found = TRUE;
 	}
 }
 
