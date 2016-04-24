@@ -99,6 +99,7 @@
         <context ref="string"/>
         <context ref="builtin-command"/>
         <context ref="operator"/>
+        <context ref="def:shell-like-comment"/>
       </include>
     </context>
   </definitions>
