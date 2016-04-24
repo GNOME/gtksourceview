@@ -99,6 +99,7 @@ gtk_source_tag_set_property (GObject      *object,
 		case PROP_DRAW_SPACES:
 			priv->draw_spaces = g_value_get_boolean (value);
 			priv->draw_spaces_set = TRUE;
+			g_object_notify (object, "draw-spaces-set");
 			break;
 
 		case PROP_DRAW_SPACES_SET:
