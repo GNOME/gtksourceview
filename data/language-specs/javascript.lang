@@ -134,6 +134,10 @@
       <keyword>void</keyword>
       <keyword>while</keyword>
       <keyword>with</keyword>
+      <keyword>class</keyword>
+      <keyword>extends</keyword>
+      <keyword>super</keyword>
+      <keyword>static</keyword>
     </context>
 
     <context id="unofficial-keywords" style-ref="keyword">
@@ -294,10 +298,7 @@
     </context>
 
     <context id="future-words" style-ref="future-words">
-      <keyword>class</keyword>
       <keyword>enum</keyword>
-      <keyword>extends</keyword>
-      <keyword>super</keyword>
 
       <!-- in strict mode -->
       <keyword>implements</keyword>
@@ -306,7 +307,6 @@
       <keyword>private</keyword>
       <keyword>protected</keyword>
       <keyword>public</keyword>
-      <keyword>static</keyword>
     </context>
 
     <context id="template-string" style-ref="string">
