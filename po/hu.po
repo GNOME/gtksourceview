@@ -11,2614 +11,2741 @@ msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-31 10:04+0000\n"
-"PO-Revision-Date: 2015-06-23 00:03+0200\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-04-25 00:06+0000\n"
+"PO-Revision-Date: 2016-04-25 10:41+0200\n"
+"Last-Translator: Meskó Balázs <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Poedit 1.8.7\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. Translators: It is related to an option of a set of values
-#: ../data/glade/gtksourceview.xml.in.h:2
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:23
 msgid "Disabled"
 msgstr "Tiltva"
 
-#: ../data/glade/gtksourceview.xml.in.h:3
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:24
 msgid "Before"
 msgstr "Előtte"
 
-#: ../data/glade/gtksourceview.xml.in.h:4
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:25
 msgid "After"
 msgstr "Utána"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:26
 msgid "Always"
 msgstr "Mindig"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:32
 msgid "Space"
 msgstr "Szóköz"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:33
 msgid "Tab"
 msgstr "Tab"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:34
 msgid "Newline"
 msgstr "Soremelés"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:35
 msgid "Non Breaking Whitespace"
 msgstr "Nem törő szóköz"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:36
 msgid "Leading"
 msgstr "Kezdő"
 
-#: ../data/glade/gtksourceview.xml.in.h:11
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:37
 msgid "Text"
 msgstr "Szöveg"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:38
 msgid "Trailing"
 msgstr "Záró"
 
+#. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: ../data/glade/gtksourceview.xml.in.h:13
-#: ../gtksourceview/gtksourcecompletion.c:830
+#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:834
 msgid "All"
 msgstr "Mind"
 
-#: ../data/language-specs/actionscript.lang.h:1
-#: ../data/language-specs/ada.lang.h:1
-#: ../data/language-specs/ansforth94.lang.h:1
-#: ../data/language-specs/asp.lang.h:1
-#: ../data/language-specs/automake.lang.h:1
-#: ../data/language-specs/bennugd.lang.h:1
-#: ../data/language-specs/bluespec.lang.h:1
-#: ../data/language-specs/boo.lang.h:1 ../data/language-specs/cg.lang.h:1
-#: ../data/language-specs/chdr.lang.h:1 ../data/language-specs/c.lang.h:1
-#: ../data/language-specs/cobol.lang.h:1 ../data/language-specs/cpp.lang.h:1
-#: ../data/language-specs/cpphdr.lang.h:1
-#: ../data/language-specs/csharp.lang.h:1 ../data/language-specs/cuda.lang.h:1
-#: ../data/language-specs/d.lang.h:1 ../data/language-specs/eiffel.lang.h:1
-#: ../data/language-specs/erlang.lang.h:1
-#: ../data/language-specs/forth.lang.h:1
-#: ../data/language-specs/fortran.lang.h:1
-#: ../data/language-specs/fsharp.lang.h:1
-#: ../data/language-specs/genie.lang.h:1 ../data/language-specs/glsl.lang.h:1
-#: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/haskell-literate.lang.h:1
-#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/j.lang.h:1 ../data/language-specs/lex.lang.h:1
-#: ../data/language-specs/llvm.lang.h:1
-#: ../data/language-specs/makefile.lang.h:1
-#: ../data/language-specs/meson.lang.h:1
-#: ../data/language-specs/nemerle.lang.h:1
-#: ../data/language-specs/netrexx.lang.h:1
-#: ../data/language-specs/objc.lang.h:1 ../data/language-specs/objj.lang.h:1
-#: ../data/language-specs/ocaml.lang.h:1 ../data/language-specs/ooc.lang.h:1
-#: ../data/language-specs/opal.lang.h:1 ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:1 ../data/language-specs/pig.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/rust.lang.h:1
-#: ../data/language-specs/scala.lang.h:1
-#: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
-#: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
-#: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/thrift.lang.h:1 ../data/language-specs/vala.lang.h:1
-#: ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/verilog.lang.h:1
-#: ../data/language-specs/vhdl.lang.h:1
-msgid "Source"
-msgstr "Forrás"
-
-#: ../data/language-specs/actionscript.lang.h:2
+#. (itstool) path: actionscript.lang/language@_name
+#: actionscript.lang:25
 msgid "ActionScript"
 msgstr "ActionScript"
 
-#. Any comment
-#: ../data/language-specs/actionscript.lang.h:3
-#: ../data/language-specs/ada.lang.h:3
-#: ../data/language-specs/ansforth94.lang.h:5
-#: ../data/language-specs/asp.lang.h:3 ../data/language-specs/bennugd.lang.h:3
-#: ../data/language-specs/boo.lang.h:3 ../data/language-specs/cg.lang.h:3
-#: ../data/language-specs/c.lang.h:3 ../data/language-specs/cobol.lang.h:3
-#: ../data/language-specs/csharp.lang.h:3 ../data/language-specs/def.lang.h:3
-#: ../data/language-specs/d.lang.h:3 ../data/language-specs/dosbatch.lang.h:3
-#: ../data/language-specs/dot.lang.h:3 ../data/language-specs/eiffel.lang.h:3
-#: ../data/language-specs/erlang.lang.h:3 ../data/language-specs/fcl.lang.h:3
-#: ../data/language-specs/forth.lang.h:3
-#: ../data/language-specs/fortran.lang.h:3
-#: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/genie.lang.h:3 ../data/language-specs/go.lang.h:3
-#: ../data/language-specs/gtkrc.lang.h:3
-#: ../data/language-specs/haskell.lang.h:4
-#: ../data/language-specs/html.lang.h:3
-#: ../data/language-specs/idl-exelis.lang.h:3
-#: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
-#: ../data/language-specs/jade.lang.h:3 ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/llvm.lang.h:3 ../data/language-specs/lua.lang.h:3
-#: ../data/language-specs/matlab.lang.h:3
-#: ../data/language-specs/modelica.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/netrexx.lang.h:6
-#: ../data/language-specs/nsis.lang.h:4 ../data/language-specs/ocaml.lang.h:3
-#: ../data/language-specs/ocl.lang.h:3 ../data/language-specs/octave.lang.h:3
-#: ../data/language-specs/ooc.lang.h:3 ../data/language-specs/opal.lang.h:4
-#: ../data/language-specs/pascal.lang.h:3 ../data/language-specs/perl.lang.h:3
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/pig.lang.h:8
-#: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/rst.lang.h:8 ../data/language-specs/ruby.lang.h:4
-#: ../data/language-specs/rust.lang.h:3 ../data/language-specs/scala.lang.h:5
-#: ../data/language-specs/scheme.lang.h:3
-#: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
-#: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
-#: ../data/language-specs/sweave.lang.h:3 ../data/language-specs/t2t.lang.h:3
-#: ../data/language-specs/texinfo.lang.h:3
-#: ../data/language-specs/thrift.lang.h:3 ../data/language-specs/vala.lang.h:3
-#: ../data/language-specs/vbnet.lang.h:3
-#: ../data/language-specs/verilog.lang.h:3
-#: ../data/language-specs/vhdl.lang.h:3 ../data/language-specs/xml.lang.h:3
-#: ../data/language-specs/yaml.lang.h:4
+#. (itstool) path: actionscript.lang/language@_section
+#. (itstool) path: ada.lang/language@_section
+#. (itstool) path: ansforth94.lang/language@_section
+#. (itstool) path: asp.lang/language@_section
+#. (itstool) path: automake.lang/language@_section
+#. (itstool) path: bennugd.lang/language@_section
+#. (itstool) path: bluespec.lang/language@_section
+#. (itstool) path: boo.lang/language@_section
+#. (itstool) path: cg.lang/language@_section
+#. (itstool) path: chdr.lang/language@_section
+#. (itstool) path: c.lang/language@_section
+#. (itstool) path: cobol.lang/language@_section
+#. (itstool) path: cpphdr.lang/language@_section
+#. (itstool) path: cpp.lang/language@_section
+#. (itstool) path: csharp.lang/language@_section
+#. (itstool) path: cuda.lang/language@_section
+#. (itstool) path: d.lang/language@_section
+#. (itstool) path: eiffel.lang/language@_section
+#. (itstool) path: erlang.lang/language@_section
+#. (itstool) path: forth.lang/language@_section
+#. (itstool) path: fortran.lang/language@_section
+#. (itstool) path: fsharp.lang/language@_section
+#. (itstool) path: genie.lang/language@_section
+#. (itstool) path: glsl.lang/language@_section
+#. (itstool) path: go.lang/language@_section
+#. (itstool) path: haskell.lang/language@_section
+#. (itstool) path: haskell-literate.lang/language@_section
+#. (itstool) path: idl.lang/language@_section
+#. (itstool) path: java.lang/language@_section
+#. (itstool) path: j.lang/language@_section
+#. (itstool) path: lex.lang/language@_section
+#. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: makefile.lang/language@_section
+#. (itstool) path: meson.lang/language@_section
+#. (itstool) path: nemerle.lang/language@_section
+#. (itstool) path: netrexx.lang/language@_section
+#. (itstool) path: objc.lang/language@_section
+#. (itstool) path: objj.lang/language@_section
+#. (itstool) path: ocaml.lang/language@_section
+#. (itstool) path: ooc.lang/language@_section
+#. (itstool) path: opal.lang/language@_section
+#. (itstool) path: opencl.lang/language@_section
+#. (itstool) path: pascal.lang/language@_section
+#. (itstool) path: pig.lang/language@_section
+#. (itstool) path: prolog.lang/language@_section
+#. (itstool) path: rust.lang/language@_section
+#. (itstool) path: scala.lang/language@_section
+#. (itstool) path: scheme.lang/language@_section
+#. (itstool) path: sml.lang/language@_section
+#. (itstool) path: sparql.lang/language@_section
+#. (itstool) path: sql.lang/language@_section
+#. (itstool) path: systemverilog.lang/language@_section
+#. (itstool) path: thrift.lang/language@_section
+#. (itstool) path: vala.lang/language@_section
+#. (itstool) path: vbnet.lang/language@_section
+#. (itstool) path: verilog.lang/language@_section
+#. (itstool) path: vhdl.lang/language@_section
+#: actionscript.lang:25 ada.lang:26 ansforth94.lang:25 asp.lang:24
+#: automake.lang:24 bennugd.lang:23 bluespec.lang:22 boo.lang:24 cg.lang:24
+#: chdr.lang:25 c.lang:25 cobol.lang:27 cpphdr.lang:25 cpp.lang:25
+#: csharp.lang:27 cuda.lang:23 d.lang:30 eiffel.lang:24 erlang.lang:24
+#: forth.lang:24 fortran.lang:25 fsharp.lang:25 genie.lang:24 glsl.lang:31
+#: go.lang:25 haskell.lang:25 haskell-literate.lang:24 idl.lang:24 java.lang:25
+#: j.lang:24 lex.lang:25 llvm.lang:23 makefile.lang:23 meson.lang:24
+#: nemerle.lang:24 netrexx.lang:24 objc.lang:24 objj.lang:26 ocaml.lang:27
+#: ooc.lang:24 opal.lang:24 opencl.lang:24 pascal.lang:25 pig.lang:27
+#: prolog.lang:24 rust.lang:36 scala.lang:25 scheme.lang:24 sml.lang:24
+#: sparql.lang:24 sql.lang:24 systemverilog.lang:22 thrift.lang:21 vala.lang:28
+#: vbnet.lang:24 verilog.lang:24 vhdl.lang:24
+msgid "Source"
+msgstr "Forrás"
+
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:35 ada.lang:34 ansforth94.lang:39 asp.lang:32
+#: bennugd.lang:32 boo.lang:34 cg.lang:33 c.lang:35 cobol.lang:35
+#: csharp.lang:37 def.lang:40 d.lang:40 dosbatch.lang:31 dot.lang:34
+#: eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34 fortran.lang:33
+#: fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35 gtkrc.lang:33
+#: haskell.lang:34 html.lang:34 idl-exelis.lang:28 idl.lang:32 ini.lang:31
+#: jade.lang:33 java.lang:35 j.lang:32 latex.lang:33 llvm.lang:30 lua.lang:34
+#: matlab.lang:41 modelica.lang:36 nemerle.lang:34 netrexx.lang:38 nsis.lang:32
+#: ocaml.lang:36 ocl.lang:41 octave.lang:41 ooc.lang:33 opal.lang:34
+#: pascal.lang:33 perl.lang:34 php.lang:40 pig.lang:41 po.lang:32
+#: prolog.lang:34 protobuf.lang:31 rst.lang:36 ruby.lang:36 rust.lang:45
+#: scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33 sml.lang:32
+#: sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33 thrift.lang:30
+#: vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32 xml.lang:35
+#: yaml.lang:31
 msgid "Comment"
 msgstr "Megjegyzés"
 
-#. Any erroneous construct
-#: ../data/language-specs/actionscript.lang.h:4
-#: ../data/language-specs/cg.lang.h:4 ../data/language-specs/c.lang.h:22
-#: ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
-#: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/jade.lang.h:11
-#: ../data/language-specs/j.lang.h:7 ../data/language-specs/json.lang.h:7
-#: ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/php.lang.h:5 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:7
-#: ../data/language-specs/xml.lang.h:13
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:36 cg.lang:34 c.lang:54 cobol.lang:43 csharp.lang:38
+#: css.lang:48 def.lang:102 d.lang:41 dot.lang:35 go.lang:36 html.lang:39
+#: jade.lang:41 j.lang:35 json.lang:42 nemerle.lang:35 ocaml.lang:53
+#: ooc.lang:34 opal.lang:36 perl.lang:48 php.lang:41 prolog.lang:40
+#: scala.lang:36 vala.lang:39 verilog.lang:38 xml.lang:45
 msgid "Error"
 msgstr "Hiba"
 
-#. A string constant: "this is a string"
-#: ../data/language-specs/actionscript.lang.h:5
-#: ../data/language-specs/ada.lang.h:4
-#: ../data/language-specs/ansforth94.lang.h:9
-#: ../data/language-specs/asp.lang.h:4 ../data/language-specs/boo.lang.h:5
-#: ../data/language-specs/c.lang.h:4 ../data/language-specs/cobol.lang.h:8
-#: ../data/language-specs/csharp.lang.h:6 ../data/language-specs/css.lang.h:5
-#: ../data/language-specs/csv.lang.h:6 ../data/language-specs/def.lang.h:17
-#: ../data/language-specs/d.lang.h:5 ../data/language-specs/dosbatch.lang.h:4
-#: ../data/language-specs/eiffel.lang.h:4
-#: ../data/language-specs/erlang.lang.h:7
-#: ../data/language-specs/forth.lang.h:4
-#: ../data/language-specs/fortran.lang.h:4
-#: ../data/language-specs/fsharp.lang.h:7
-#: ../data/language-specs/gdb-log.lang.h:8
-#: ../data/language-specs/genie.lang.h:5 ../data/language-specs/go.lang.h:5
-#: ../data/language-specs/gtkrc.lang.h:4
-#: ../data/language-specs/haskell.lang.h:9
-#: ../data/language-specs/idl-exelis.lang.h:7
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:5
-#: ../data/language-specs/javascript.lang.h:13
-#: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/llvm.lang.h:4
-#: ../data/language-specs/lua.lang.h:4 ../data/language-specs/meson.lang.h:5
-#: ../data/language-specs/modelica.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/netrexx.lang.h:4
-#: ../data/language-specs/nsis.lang.h:5 ../data/language-specs/objc.lang.h:6
-#: ../data/language-specs/objj.lang.h:8 ../data/language-specs/ocaml.lang.h:8
-#: ../data/language-specs/ocl.lang.h:4 ../data/language-specs/octave.lang.h:4
-#: ../data/language-specs/ooc.lang.h:6 ../data/language-specs/opal.lang.h:7
-#: ../data/language-specs/pascal.lang.h:4 ../data/language-specs/perl.lang.h:6
-#: ../data/language-specs/php.lang.h:10 ../data/language-specs/po.lang.h:5
-#: ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:8
-#: ../data/language-specs/python3.lang.h:6
-#: ../data/language-specs/python.lang.h:6
-#: ../data/language-specs/ruby.lang.h:14 ../data/language-specs/rust.lang.h:4
-#: ../data/language-specs/scala.lang.h:6
-#: ../data/language-specs/scheme.lang.h:5
-#: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
-#: ../data/language-specs/texinfo.lang.h:6
-#: ../data/language-specs/thrift.lang.h:6 ../data/language-specs/vala.lang.h:6
-#: ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4
-#: ../data/language-specs/vhdl.lang.h:4 ../data/language-specs/yaml.lang.h:5
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:37 ada.lang:35 ansforth94.lang:43 asp.lang:33 boo.lang:36
+#: c.lang:36 cobol.lang:40 csharp.lang:40 css.lang:50 csv.lang:34 def.lang:57
+#: d.lang:42 dosbatch.lang:32 eiffel.lang:34 erlang.lang:36 forth.lang:35
+#: fortran.lang:34 fsharp.lang:38 gdb-log.lang:30 genie.lang:36 go.lang:37
+#: gtkrc.lang:34 haskell.lang:39 idl-exelis.lang:32 idl.lang:36 imagej.lang:40
+#: ini.lang:33 java.lang:37 javascript.lang:47 j.lang:45 json.lang:39
+#: julia.lang:37 llvm.lang:31 lua.lang:35 meson.lang:34 modelica.lang:37
+#: nemerle.lang:38 netrexx.lang:36 nsis.lang:33 objc.lang:37 objj.lang:41
+#: ocaml.lang:41 ocl.lang:42 octave.lang:42 ooc.lang:36 opal.lang:37
+#: pascal.lang:34 perl.lang:37 php.lang:45 po.lang:34 prolog.lang:37
+#: protobuf.lang:37 python3.lang:34 python.lang:39 ruby.lang:46 rust.lang:46
+#: scala.lang:39 scheme.lang:34 scilab.lang:33 sh.lang:35 sml.lang:36
+#: sql.lang:34 texinfo.lang:36 thrift.lang:33 vala.lang:41 vbnet.lang:33
+#: verilog.lang:35 vhdl.lang:33 yaml.lang:32
 msgid "String"
 msgstr "Karakterlánc"
 
-#. Translators: refered to some specific keywords of the language that
-#. allow to get external functionalities
-#: ../data/language-specs/actionscript.lang.h:6
-#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/scala.lang.h:4
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:38 java.lang:41 ooc.lang:37 scala.lang:37
 msgid "External"
 msgstr "Külső"
 
-#: ../data/language-specs/actionscript.lang.h:7
-#: ../data/language-specs/java.lang.h:10 ../data/language-specs/ooc.lang.h:8
-#: ../data/language-specs/scala.lang.h:8
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:39 java.lang:42 ooc.lang:38 scala.lang:41
 msgid "Declaration"
 msgstr "Deklaráció"
 
-#: ../data/language-specs/actionscript.lang.h:8
-#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:11
-#: ../data/language-specs/ooc.lang.h:9
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:40 ada.lang:39 cg.lang:40 c.lang:44 java.lang:43
+#: ooc.lang:39
 msgid "Storage Class"
 msgstr "Tárolóosztály"
 
-#: ../data/language-specs/actionscript.lang.h:9
-#: ../data/language-specs/java.lang.h:12 ../data/language-specs/ooc.lang.h:10
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:41 java.lang:44 ooc.lang:40
 msgid "Scope Declaration"
 msgstr "Hatókör-deklaráció"
 
-#. keywords: "if", "for", "while", etc.
-#: ../data/language-specs/actionscript.lang.h:10
-#: ../data/language-specs/ada.lang.h:5
-#: ../data/language-specs/ansforth94.lang.h:3
-#: ../data/language-specs/asp.lang.h:6 ../data/language-specs/awk.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:7
-#: ../data/language-specs/bluespec.lang.h:7
-#: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
-#: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:11
-#: ../data/language-specs/css.lang.h:14 ../data/language-specs/cuda.lang.h:3
-#: ../data/language-specs/def.lang.h:47 ../data/language-specs/d.lang.h:6
-#: ../data/language-specs/dosbatch.lang.h:5
-#: ../data/language-specs/dot.lang.h:5 ../data/language-specs/eiffel.lang.h:7
-#: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
-#: ../data/language-specs/forth.lang.h:6
-#: ../data/language-specs/fortran.lang.h:6
-#: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
-#: ../data/language-specs/genie.lang.h:10 ../data/language-specs/glsl.lang.h:5
-#: ../data/language-specs/go.lang.h:7 ../data/language-specs/gtkrc.lang.h:5
-#: ../data/language-specs/haskell.lang.h:7
-#: ../data/language-specs/idl-exelis.lang.h:6
-#: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lex.lang.h:4
-#: ../data/language-specs/llvm.lang.h:5 ../data/language-specs/lua.lang.h:5
-#: ../data/language-specs/matlab.lang.h:4
-#: ../data/language-specs/modelica.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:8
-#: ../data/language-specs/objc.lang.h:3 ../data/language-specs/objj.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:9 ../data/language-specs/ocl.lang.h:5
-#: ../data/language-specs/octave.lang.h:13
-#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
-#: ../data/language-specs/opencl.lang.h:3
-#: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
-#: ../data/language-specs/php.lang.h:13 ../data/language-specs/po.lang.h:7
-#: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:6
-#: ../data/language-specs/python3.lang.h:4
-#: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/rust.lang.h:6
-#: ../data/language-specs/scala.lang.h:10
-#: ../data/language-specs/scheme.lang.h:6
-#: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
-#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
-#: ../data/language-specs/sql.lang.h:6
-#: ../data/language-specs/systemverilog.lang.h:5
-#: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
-#: ../data/language-specs/thrift.lang.h:5 ../data/language-specs/vala.lang.h:7
-#: ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:11
-#: ../data/language-specs/vhdl.lang.h:6
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:42 ada.lang:36 ansforth94.lang:36 asp.lang:35 awk.lang:32
+#: bennugd.lang:36 bluespec.lang:35 boo.lang:41 cg.lang:38 c.lang:41
+#: cobol.lang:38 cpp.lang:35 csharp.lang:45 css.lang:59 cuda.lang:33
+#: def.lang:92 d.lang:43 dosbatch.lang:33 dot.lang:36 eiffel.lang:37
+#: erlang.lang:33 fcl.lang:32 forth.lang:37 fortran.lang:36 fsharp.lang:39
+#: gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39 gtkrc.lang:35
+#: haskell.lang:37 idl-exelis.lang:31 idl.lang:35 imagej.lang:38 ini.lang:34
+#: java.lang:45 javascript.lang:41 julia.lang:44 lex.lang:35 llvm.lang:32
+#: lua.lang:36 matlab.lang:42 modelica.lang:46 nemerle.lang:39 objc.lang:34
+#: objj.lang:37 ocaml.lang:42 ocl.lang:43 octave.lang:48 ooc.lang:41
+#: opal.lang:38 opencl.lang:33 pascal.lang:35 perl.lang:38 php.lang:48
+#: po.lang:36 prolog.lang:36 protobuf.lang:35 python3.lang:32 python.lang:37
+#: R.lang:34 ruby.lang:39 rust.lang:48 scala.lang:43 scheme.lang:35
+#: scilab.lang:34 sh.lang:36 sml.lang:33 sparql.lang:37 sql.lang:35
+#: systemverilog.lang:33 tcl.lang:33 texinfo.lang:37 thrift.lang:32
+#: vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
 msgid "Keyword"
 msgstr "Kulcsszó"
 
-#: ../data/language-specs/actionscript.lang.h:11
-#: ../data/language-specs/boo.lang.h:12
-#: ../data/language-specs/csharp.lang.h:13 ../data/language-specs/d.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/genie.lang.h:12
-#: ../data/language-specs/java.lang.h:14
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/php.lang.h:17 ../data/language-specs/vala.lang.h:9
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:43 boo.lang:43 csharp.lang:47 d.lang:46 fsharp.lang:52
+#: genie.lang:43 java.lang:46 javascript.lang:38 json.lang:40 nemerle.lang:41
+#: objj.lang:42 ooc.lang:42 php.lang:52 vala.lang:44
 msgid "Null Value"
 msgstr "Null érték"
 
-#. A boolean constant: TRUE, false
-#: ../data/language-specs/actionscript.lang.h:12
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/bennugd.lang.h:12
-#: ../data/language-specs/cg.lang.h:16 ../data/language-specs/c.lang.h:19
-#: ../data/language-specs/csharp.lang.h:14
-#: ../data/language-specs/def.lang.h:34
-#: ../data/language-specs/fsharp.lang.h:19 ../data/language-specs/go.lang.h:16
-#: ../data/language-specs/gtkrc.lang.h:10 ../data/language-specs/ini.lang.h:10
-#: ../data/language-specs/java.lang.h:15 ../data/language-specs/llvm.lang.h:11
-#: ../data/language-specs/lua.lang.h:11
-#: ../data/language-specs/nemerle.lang.h:11
-#: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/protobuf.lang.h:7 ../data/language-specs/R.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/rust.lang.h:8
-#: ../data/language-specs/sml.lang.h:11 ../data/language-specs/vala.lang.h:8
-#: ../data/language-specs/vbnet.lang.h:9 ../data/language-specs/vhdl.lang.h:8
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:44 ada.lang:38 asp.lang:42 bennugd.lang:41 cg.lang:46
+#: c.lang:51 csharp.lang:48 def.lang:75 fsharp.lang:50 go.lang:48 gtkrc.lang:40
+#: ini.lang:38 java.lang:47 llvm.lang:38 lua.lang:42 nemerle.lang:42
+#: ocaml.lang:52 ooc.lang:43 opal.lang:39 php.lang:53 protobuf.lang:36
+#: R.lang:39 ruby.lang:41 rust.lang:50 sml.lang:40 vala.lang:43 vbnet.lang:38
+#: vhdl.lang:37
 msgid "Boolean value"
 msgstr "Logikai érték"
 
-#. A generic number constant
-#: ../data/language-specs/actionscript.lang.h:13
-#: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
-#: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8
-#: ../data/language-specs/genie.lang.h:14
-#: ../data/language-specs/java.lang.h:16 ../data/language-specs/j.lang.h:14
-#: ../data/language-specs/julia.lang.h:5 ../data/language-specs/llvm.lang.h:12
-#: ../data/language-specs/netrexx.lang.h:16
-#: ../data/language-specs/prolog.lang.h:7
-#: ../data/language-specs/rust.lang.h:10
-#: ../data/language-specs/scala.lang.h:12
-#: ../data/language-specs/vhdl.lang.h:11
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:45 asp.lang:43 boo.lang:45 cobol.lang:41 def.lang:63
+#: desktop.lang:38 forth.lang:39 genie.lang:45 java.lang:48 j.lang:42
+#: julia.lang:39 llvm.lang:39 netrexx.lang:48 prolog.lang:38 rust.lang:52
+#: scala.lang:45 vhdl.lang:40
 msgid "Number"
 msgstr "Szám"
 
-#: ../data/language-specs/actionscript.lang.h:14
-#: ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/ooc.lang.h:18
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:46 java.lang:49 javascript.lang:46 ooc.lang:48
 msgid "Future Reserved Keywords"
 msgstr "Jövőbeli védett kulcsszavak"
 
-#: ../data/language-specs/actionscript.lang.h:15
-#: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:8 ../data/language-specs/boo.lang.h:8
-#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
-#: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
-#: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/eiffel.lang.h:8
-#: ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:10
-#: ../data/language-specs/fsharp.lang.h:11
-#: ../data/language-specs/genie.lang.h:8 ../data/language-specs/glsl.lang.h:4
-#: ../data/language-specs/go.lang.h:8 ../data/language-specs/gtkrc.lang.h:7
-#: ../data/language-specs/haskell.lang.h:8
-#: ../data/language-specs/idl-exelis.lang.h:4
-#: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:18
-#: ../data/language-specs/javascript.lang.h:8
-#: ../data/language-specs/llvm.lang.h:10
-#: ../data/language-specs/nemerle.lang.h:9
-#: ../data/language-specs/objc.lang.h:4 ../data/language-specs/objj.lang.h:5
-#: ../data/language-specs/ocaml.lang.h:12 ../data/language-specs/ocl.lang.h:7
-#: ../data/language-specs/ooc.lang.h:19 ../data/language-specs/opal.lang.h:11
-#: ../data/language-specs/opencl.lang.h:4
-#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:16
-#: ../data/language-specs/pig.lang.h:3
-#: ../data/language-specs/protobuf.lang.h:5
-#: ../data/language-specs/rust.lang.h:7 ../data/language-specs/scala.lang.h:14
-#: ../data/language-specs/sml.lang.h:5 ../data/language-specs/sparql.lang.h:4
-#: ../data/language-specs/sql.lang.h:9 ../data/language-specs/thrift.lang.h:4
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:47 ada.lang:40 asp.lang:40 bennugd.lang:37 boo.lang:39
+#: cg.lang:39 c.lang:43 cpp.lang:36 csharp.lang:39 cuda.lang:34 d.lang:44
+#: eiffel.lang:38 forth.lang:38 fortran.lang:40 fsharp.lang:42 genie.lang:39
+#: glsl.lang:42 go.lang:40 gtkrc.lang:37 haskell.lang:38 idl-exelis.lang:29
+#: idl.lang:33 ini.lang:37 java.lang:50 javascript.lang:42 llvm.lang:37
+#: nemerle.lang:40 objc.lang:35 objj.lang:38 ocaml.lang:45 ocl.lang:45
+#: ooc.lang:49 opal.lang:41 opencl.lang:34 pascal.lang:37 php.lang:51
+#: pig.lang:36 protobuf.lang:34 rust.lang:49 scala.lang:47 sml.lang:34
+#: sparql.lang:34 sql.lang:38 thrift.lang:31 vala.lang:40 vbnet.lang:36
 msgid "Data Type"
 msgstr "Adattípus"
 
-#: ../data/language-specs/ada.lang.h:2
+#. (itstool) path: ada.lang/language@_name
+#: ada.lang:26
 msgid "Ada"
 msgstr "Ada"
 
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6
-#: ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/csharp.lang.h:15 ../data/language-specs/csv.lang.h:3
-#: ../data/language-specs/def.lang.h:26 ../data/language-specs/d.lang.h:12
-#: ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/idl-exelis.lang.h:9
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:20
-#: ../data/language-specs/python3.lang.h:12
-#: ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/ruby.lang.h:11
+#. (itstool) path: styles/style@_name
+#: ada.lang:37 bennugd.lang:39 cg.lang:43 c.lang:48 csharp.lang:49 csv.lang:31
+#: def.lang:67 d.lang:49 eiffel.lang:45 erlang.lang:39 fsharp.lang:37
+#: go.lang:45 idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40 ooc.lang:45
+#: opal.lang:40 php.lang:55 python3.lang:40 python.lang:46 ruby.lang:43
 msgid "Decimal number"
 msgstr "Decimális szám"
 
-#: ../data/language-specs/ada.lang.h:10 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
-#: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
-#: ../data/language-specs/forth.lang.h:5
-#: ../data/language-specs/fortran.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:20
-#: ../data/language-specs/glsl.lang.h:3
-#: ../data/language-specs/haskell.lang.h:3
-#: ../data/language-specs/idl-exelis.lang.h:5
-#: ../data/language-specs/idl.lang.h:5 ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objj.lang.h:6 ../data/language-specs/pascal.lang.h:8
-#: ../data/language-specs/vbnet.lang.h:5
+#. (itstool) path: styles/style@_name
+#: ada.lang:41 asp.lang:34 bennugd.lang:33 cg.lang:35 c.lang:37 csharp.lang:46
+#: forth.lang:36 fortran.lang:41 fsharp.lang:51 glsl.lang:41 haskell.lang:33
+#: idl-exelis.lang:30 idl.lang:34 nemerle.lang:36 objj.lang:39 pascal.lang:38
+#: vbnet.lang:34
 msgid "Preprocessor"
 msgstr "Előfeldolgozó"
 
-#: ../data/language-specs/ada.lang.h:11
+#. (itstool) path: styles/style@_name
+#: ada.lang:42
 msgid "Arbitrary base number"
 msgstr "Tetszőleges alapszám"
 
-#: ../data/language-specs/ada.lang.h:12
-#: ../data/language-specs/csharp.lang.h:17
-#: ../data/language-specs/verilog.lang.h:15
-#: ../data/language-specs/vhdl.lang.h:10
+#. (itstool) path: styles/style@_name
+#: ada.lang:43 csharp.lang:51 verilog.lang:46 vhdl.lang:39
 msgid "Real number"
 msgstr "Valós szám"
 
-#. map to nothing
-#: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
-#: ../data/language-specs/eiffel.lang.h:12
-#: ../data/language-specs/fortran.lang.h:14
-#: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
-#: ../data/language-specs/haskell.lang.h:11
-#: ../data/language-specs/java.lang.h:4
-#: ../data/language-specs/javascript.lang.h:3
-#: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
-#: ../data/language-specs/php.lang.h:9 ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/python3.lang.h:7
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
-#: ../data/language-specs/texinfo.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
+#. (itstool) path: styles/style@_name
+#: ada.lang:44 cg.lang:41 c.lang:46 csharp.lang:42 eiffel.lang:42
+#: fortran.lang:44 fsharp.lang:49 go.lang:42 haskell.lang:41 imagej.lang:37
+#: java.lang:36 javascript.lang:37 json.lang:38 lua.lang:37 netrexx.lang:35
+#: ocaml.lang:51 ooc.lang:35 php.lang:44 prolog.lang:41 python3.lang:35
+#: python.lang:40 ruby.lang:35 scala.lang:40 sml.lang:37 texinfo.lang:34
+#: vala.lang:49 verilog.lang:37
 msgid "Escaped Character"
 msgstr "Escape-elt karakter"
 
-#: ../data/language-specs/ansforth94.lang.h:2
+#. (itstool) path: ansforth94.lang/language@_name
+#: ansforth94.lang:25
 msgid "ANS-Forth94"
 msgstr "ANS-Forth94"
 
-#: ../data/language-specs/ansforth94.lang.h:4
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:37
 msgid "Obsolete Keyword"
 msgstr "Elavult kulcsszó"
 
-#: ../data/language-specs/ansforth94.lang.h:6
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:40
 msgid "Alert"
 msgstr "Figyelmeztetés"
 
-#. A character constant: 'c'
-#: ../data/language-specs/ansforth94.lang.h:7
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:6 ../data/language-specs/julia.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5
-#: ../data/language-specs/rust.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:41 c.lang:40 csharp.lang:41 def.lang:55 erlang.lang:37
+#: gap.lang:33 go.lang:38 haskell.lang:40 java.lang:38 julia.lang:38
+#: nemerle.lang:37 netrexx.lang:37 rust.lang:47 sml.lang:35 vhdl.lang:34
 msgid "Character"
 msgstr "Karakter"
 
-#: ../data/language-specs/ansforth94.lang.h:8
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:42
 msgid "Word"
 msgstr "Szó"
 
-#. Any constant
-#: ../data/language-specs/ansforth94.lang.h:10
-#: ../data/language-specs/cmake.lang.h:6 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13
-#: ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:18
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:44 cmake.lang:34 cobol.lang:39 def.lang:53 gtk-doc.lang:32
+#: libtool.lang:32 ruby.lang:50
 msgid "Constant"
 msgstr "Állandó"
 
-#: ../data/language-specs/ansforth94.lang.h:11
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:9
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/llvm.lang.h:8
-#: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6
-#: ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:45 awk.lang:34 cmake.lang:37 cobol.lang:37 haskell.lang:35
+#: ini.lang:36 llvm.lang:35 makefile.lang:31 nsis.lang:34 perl.lang:44
+#: php.lang:42 pkgconfig.lang:31 prolog.lang:35 protobuf.lang:33 ruby.lang:54
+#: sh.lang:37 sparql.lang:44 tcl.lang:32
 msgid "Variable"
 msgstr "Változó"
 
-#: ../data/language-specs/ansforth94.lang.h:12
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:46
 msgid "Local Variable"
 msgstr "Helyi változó"
 
-#: ../data/language-specs/ansforth94.lang.h:13
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:47
 msgid "Single Number"
 msgstr "Egyszeres szám"
 
-#: ../data/language-specs/ansforth94.lang.h:14
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:48
 msgid "Double Number"
 msgstr "Dupla szám"
 
-#: ../data/language-specs/ansforth94.lang.h:15
-#: ../data/language-specs/haskell.lang.h:12
+#. (itstool) path: styles/style@_name
+#: ansforth94.lang:49 haskell.lang:42
 msgid "Float"
 msgstr "Lebegő"
 
-#: ../data/language-specs/asp.lang.h:2
+#. (itstool) path: asp.lang/language@_name
+#: asp.lang:24
 msgid "ASP"
 msgstr "ASP"
 
-#. A function name (also: methods for classes)
-#: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/changelog.lang.h:9
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
-#: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
-#: ../data/language-specs/gtk-doc.lang.h:10
-#: ../data/language-specs/idl-exelis.lang.h:10
-#: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/llvm.lang.h:6 ../data/language-specs/lua.lang.h:9
-#: ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
-#: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
+#. (itstool) path: styles/style@_name
+#: asp.lang:36 cg.lang:48 changelog.lang:39 css.lang:53 def.lang:81 gap.lang:35
+#: gdb-log.lang:29 gtk-doc.lang:34 idl-exelis.lang:35 javascript.lang:43
+#: llvm.lang:33 lua.lang:40 scheme.lang:36 scilab.lang:35 sh.lang:34
+#: sparql.lang:35 sql.lang:36
 msgid "Function"
 msgstr "Függvény"
 
-#. Operators: "+", "*", etc.
-#: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:7
-#: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
-#: ../data/language-specs/erlang.lang.h:5
-#: ../data/language-specs/imagej.lang.h:9
-#: ../data/language-specs/julia.lang.h:9 ../data/language-specs/meson.lang.h:4
-#: ../data/language-specs/modelica.lang.h:5
-#: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
-#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scala.lang.h:13
-#: ../data/language-specs/sparql.lang.h:15
+#. (itstool) path: styles/style@_name
+#: asp.lang:37 bennugd.lang:35 c.lang:42 cmake.lang:35 cobol.lang:42
+#: def.lang:90 erlang.lang:34 imagej.lang:39 julia.lang:43 meson.lang:33
+#: modelica.lang:38 nsis.lang:31 octave.lang:43 perl.lang:43 php.lang:50
+#: prolog.lang:39 scala.lang:46 sparql.lang:45
 msgid "Operator"
 msgstr "Operátor"
 
-#: ../data/language-specs/asp.lang.h:9
+#. (itstool) path: styles/style@_name
+#: asp.lang:38
 msgid "ASP Object"
 msgstr "ASP objektum"
 
-#: ../data/language-specs/asp.lang.h:10
+#. (itstool) path: styles/style@_name
+#: asp.lang:39
 msgid "VBScript and ADO constants"
 msgstr "VBScript és ADO konstansok"
 
-#. A special constant like NULL in C or null in Java
-#: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:32
-#: ../data/language-specs/vbnet.lang.h:8
+#. (itstool) path: styles/style@_name
+#: asp.lang:41 def.lang:73 vbnet.lang:37
 msgid "Special constant"
 msgstr "Speciális konstans"
 
-#: ../data/language-specs/automake.lang.h:2
+#. (itstool) path: automake.lang/language@_name
+#: automake.lang:24
 msgid "Automake"
 msgstr "Automake"
 
-#: ../data/language-specs/automake.lang.h:3
+#. (itstool) path: styles/style@_name
+#: automake.lang:39
 msgid "Automake Variable"
 msgstr "Automake változó"
 
-#: ../data/language-specs/automake.lang.h:4
+#. (itstool) path: styles/style@_name
+#: automake.lang:40
 msgid "Primary"
 msgstr "Elsődleges"
 
-#: ../data/language-specs/automake.lang.h:5
+#. (itstool) path: styles/style@_name
+#: automake.lang:41
 msgid "Secondary"
 msgstr "Másodlagos"
 
-#: ../data/language-specs/automake.lang.h:6
+#. (itstool) path: styles/style@_name
+#: automake.lang:42
 msgid "Prefix"
 msgstr "Előtag"
 
-#: ../data/language-specs/automake.lang.h:7
+#. (itstool) path: styles/style@_name
+#: automake.lang:43
 msgid "Optional Target"
 msgstr "Elhagyható cél"
 
-#: ../data/language-specs/automake.lang.h:8
+#. (itstool) path: styles/style@_name
+#: automake.lang:44
 msgid "Built-in Target"
 msgstr "Beépített cél"
 
-#: ../data/language-specs/automake.lang.h:9
+#. (itstool) path: styles/style@_name
+#: automake.lang:45
 msgid "Other Keyword"
 msgstr "Egyéb kulcsszó"
 
-#: ../data/language-specs/automake.lang.h:10
-#: ../data/language-specs/rst.lang.h:10
+#. (itstool) path: styles/style@_name
+#: automake.lang:46 rst.lang:38
 msgid "Substitution"
 msgstr "Helyettesítés"
 
-#: ../data/language-specs/awk.lang.h:1
-#: ../data/language-specs/dosbatch.lang.h:1
-#: ../data/language-specs/javascript.lang.h:1
-#: ../data/language-specs/lua.lang.h:1 ../data/language-specs/m4.lang.h:1
-#: ../data/language-specs/perl.lang.h:1 ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/python3.lang.h:1
-#: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
-#: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-msgid "Script"
-msgstr "Parancsfájl"
-
-#: ../data/language-specs/awk.lang.h:2
+#. (itstool) path: awk.lang/language@_name
+#: awk.lang:24
 msgid "awk"
 msgstr "awk"
 
-#: ../data/language-specs/awk.lang.h:4 ../data/language-specs/lex.lang.h:5
+#. (itstool) path: awk.lang/language@_section
+#. (itstool) path: dosbatch.lang/language@_section
+#. (itstool) path: javascript.lang/language@_section
+#. (itstool) path: lua.lang/language@_section
+#. (itstool) path: m4.lang/language@_section
+#. (itstool) path: perl.lang/language@_section
+#. (itstool) path: php.lang/language@_section
+#. (itstool) path: python3.lang/language@_section
+#. (itstool) path: python.lang/language@_section
+#. (itstool) path: ruby.lang/language@_section
+#. (itstool) path: sh.lang/language@_section
+#. (itstool) path: tcl.lang/language@_section
+#: awk.lang:24 dosbatch.lang:24 javascript.lang:27 lua.lang:24 m4.lang:24
+#: perl.lang:26 php.lang:29 python3.lang:24 python.lang:28 ruby.lang:27
+#: sh.lang:25 tcl.lang:24
+msgid "Script"
+msgstr "Parancsfájl"
+
+#. (itstool) path: styles/style@_name
+#: awk.lang:33 lex.lang:36
 msgid "Pattern"
 msgstr "Minta"
 
-#: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/genie.lang.h:15 ../data/language-specs/glsl.lang.h:6
-#: ../data/language-specs/go.lang.h:18
-#: ../data/language-specs/netrexx.lang.h:15
-#: ../data/language-specs/perl.lang.h:8
-#: ../data/language-specs/python3.lang.h:17
-#: ../data/language-specs/python.lang.h:18
+#. (itstool) path: styles/style@_name
+#: awk.lang:35 boo.lang:46 genie.lang:46 glsl.lang:44 go.lang:50
+#: netrexx.lang:47 perl.lang:39 python3.lang:45 python.lang:51
 msgid "Builtin Function"
 msgstr "Beépített függvény"
 
-#: ../data/language-specs/bennugd.lang.h:2
+#. (itstool) path: bennugd.lang/language@_name
+#: bennugd.lang:23
 msgid "BennuGD"
 msgstr "BennuGD"
 
-#. Any variable name
-#: ../data/language-specs/bennugd.lang.h:5
-#: ../data/language-specs/def.lang.h:36 ../data/language-specs/llvm.lang.h:9
-#: ../data/language-specs/php.lang.h:7 ../data/language-specs/rust.lang.h:9
+#. (itstool) path: styles/style@_name
+#: bennugd.lang:34 def.lang:79 llvm.lang:36 php.lang:43 rust.lang:51
 msgid "Identifier"
 msgstr "Azonosító"
 
-#. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:15 ../data/language-specs/csv.lang.h:5
-#: ../data/language-specs/def.lang.h:24 ../data/language-specs/d.lang.h:11
-#: ../data/language-specs/erlang.lang.h:9 ../data/language-specs/go.lang.h:11
-#: ../data/language-specs/idl-exelis.lang.h:8
-#: ../data/language-specs/json.lang.h:9
-#: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python3.lang.h:11
-#: ../data/language-specs/python.lang.h:12 ../data/language-specs/R.lang.h:10
-#: ../data/language-specs/ruby.lang.h:10
+#. (itstool) path: styles/style@_name
+#: bennugd.lang:38 cg.lang:42 c.lang:47 csv.lang:33 def.lang:65 d.lang:48
+#: erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44 nemerle.lang:43
+#: ooc.lang:44 php.lang:54 python3.lang:39 python.lang:45 R.lang:41
+#: ruby.lang:42
 msgid "Floating point number"
 msgstr "Lebegőpontos szám"
 
-#: ../data/language-specs/bennugd.lang.h:11
-#: ../data/language-specs/cg.lang.h:15 ../data/language-specs/c.lang.h:18
-#: ../data/language-specs/csharp.lang.h:16 ../data/language-specs/d.lang.h:15
-#: ../data/language-specs/eiffel.lang.h:16 ../data/language-specs/go.lang.h:15
-#: ../data/language-specs/nemerle.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:22
+#. (itstool) path: styles/style@_name
+#: bennugd.lang:40 cg.lang:45 c.lang:50 csharp.lang:50 d.lang:52 eiffel.lang:46
+#: go.lang:47 nemerle.lang:47 ooc.lang:47 php.lang:57
 msgid "Hexadecimal number"
 msgstr "Hexadecimális szám"
 
-#: ../data/language-specs/bibtex.lang.h:1
-#: ../data/language-specs/docbook.lang.h:1 ../data/language-specs/dtd.lang.h:1
-#: ../data/language-specs/gtk-doc.lang.h:1
-#: ../data/language-specs/haddock.lang.h:1
-#: ../data/language-specs/html.lang.h:1 ../data/language-specs/jade.lang.h:1
-#: ../data/language-specs/latex.lang.h:1
-#: ../data/language-specs/mallard.lang.h:1
-#: ../data/language-specs/markdown.lang.h:1
-#: ../data/language-specs/mediawiki.lang.h:1
-#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/rst.lang.h:1
-#: ../data/language-specs/sweave.lang.h:1 ../data/language-specs/t2t.lang.h:1
-#: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
-#: ../data/language-specs/xslt.lang.h:1
-msgid "Markup"
-msgstr "Leírónyelv"
-
-#: ../data/language-specs/bibtex.lang.h:2
+#. (itstool) path: bibtex.lang/language@_name
+#: bibtex.lang:24
 msgid "BibTeX"
 msgstr "BibTeX"
 
-#: ../data/language-specs/bibtex.lang.h:3
+#. (itstool) path: bibtex.lang/language@_section
+#. (itstool) path: docbook.lang/language@_section
+#. (itstool) path: dtd.lang/language@_section
+#. (itstool) path: gtk-doc.lang/language@_section
+#. (itstool) path: haddock.lang/language@_section
+#. (itstool) path: html.lang/language@_section
+#. (itstool) path: jade.lang/language@_section
+#. (itstool) path: latex.lang/language@_section
+#. (itstool) path: mallard.lang/language@_section
+#. (itstool) path: markdown.lang/language@_section
+#. (itstool) path: mediawiki.lang/language@_section
+#. (itstool) path: mxml.lang/language@_section
+#. (itstool) path: rst.lang/language@_section
+#. (itstool) path: sweave.lang/language@_section
+#. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: texinfo.lang/language@_section
+#. (itstool) path: xml.lang/language@_section
+#. (itstool) path: xslt.lang/language@_section
+#: bibtex.lang:24 docbook.lang:24 dtd.lang:24 gtk-doc.lang:25 haddock.lang:24
+#: html.lang:25 jade.lang:26 latex.lang:25 mallard.lang:23 markdown.lang:26
+#: mediawiki.lang:23 mxml.lang:24 rst.lang:23 sweave.lang:25 t2t.lang:24
+#: texinfo.lang:25 xml.lang:26 xslt.lang:24
+msgid "Markup"
+msgstr "Leírónyelv"
+
+#. (itstool) path: styles/style@_name
+#: bibtex.lang:32
 msgid "Entries"
 msgstr "Bejegyzések"
 
-#: ../data/language-specs/bibtex.lang.h:4
+#. (itstool) path: styles/style@_name
+#: bibtex.lang:33
 msgid "Field"
 msgstr "Mező"
 
-#: ../data/language-specs/bluespec.lang.h:2
+#. (itstool) path: bluespec.lang/language@_name
+#: bluespec.lang:22
 msgid "Bluespec SystemVerilog"
 msgstr "Bluespec SystemVerilog"
 
-#: ../data/language-specs/bluespec.lang.h:3
-#: ../data/language-specs/systemverilog.lang.h:4
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:31 systemverilog.lang:32
 msgid "System Task"
 msgstr "Rendszerfeladat"
 
-#: ../data/language-specs/bluespec.lang.h:4
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:32
 msgid "Annotation"
 msgstr "Feljegyzés"
 
-#: ../data/language-specs/bluespec.lang.h:5
-#: ../data/language-specs/rust.lang.h:12
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:33 rust.lang:54
 msgid "Attribute"
 msgstr "Attribútum"
 
-#: ../data/language-specs/bluespec.lang.h:6
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:34
 msgid "Import BVI"
 msgstr "BVI importálása"
 
-#: ../data/language-specs/bluespec.lang.h:8
-#: ../data/language-specs/gtk-doc.lang.h:9
-#: ../data/language-specs/julia.lang.h:15
-#: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:13
-#: ../data/language-specs/vhdl.lang.h:7
+#. (itstool) path: styles/style@_name
+#: bluespec.lang:36 gtk-doc.lang:33 julia.lang:49 systemverilog.lang:34
+#: verilog.lang:44 vhdl.lang:36
 msgid "Type"
 msgstr "Típus"
 
-#: ../data/language-specs/boo.lang.h:2
+#. (itstool) path: boo.lang/language@_name
+#: boo.lang:24
 msgid "Boo"
 msgstr "Boo"
 
-#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/genie.lang.h:4
-#: ../data/language-specs/python3.lang.h:5
-#: ../data/language-specs/python.lang.h:5
+#. (itstool) path: styles/style@_name
+#: boo.lang:35 genie.lang:35 python3.lang:33 python.lang:38
 msgid "Multiline string"
 msgstr "Többsoros karakterlánc"
 
-#: ../data/language-specs/boo.lang.h:6 ../data/language-specs/genie.lang.h:6
-#: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
+#. (itstool) path: styles/style@_name
+#: boo.lang:37 genie.lang:37 javascript.lang:48 perl.lang:47 ruby.lang:57
+#: vala.lang:48
 msgid "Regular Expression"
 msgstr "Reguláris kifejezés"
 
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/genie.lang.h:7
-#: ../data/language-specs/sparql.lang.h:8 ../data/language-specs/xml.lang.h:12
-#: ../data/language-specs/xslt.lang.h:4
+#. (itstool) path: styles/style@_name
+#: boo.lang:38 genie.lang:38 sparql.lang:38 xml.lang:44 xslt.lang:34
 msgid "Namespace"
 msgstr "Névtér"
 
-#: ../data/language-specs/boo.lang.h:9 ../data/language-specs/genie.lang.h:9
+#. (itstool) path: styles/style@_name
+#: boo.lang:40 genie.lang:40
 msgid "Definition"
 msgstr "Definíció"
 
-#: ../data/language-specs/boo.lang.h:11 ../data/language-specs/genie.lang.h:11
-#: ../data/language-specs/python3.lang.h:9
-#: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/ruby.lang.h:20
+#. (itstool) path: styles/style@_name
+#: boo.lang:42 genie.lang:42 python3.lang:37 python.lang:43 ruby.lang:52
 msgid "Special Variable"
 msgstr "Speciális változó"
 
-#: ../data/language-specs/boo.lang.h:13
-#: ../data/language-specs/desktop.lang.h:9 ../data/language-specs/d.lang.h:10
-#: ../data/language-specs/genie.lang.h:13
-#: ../data/language-specs/imagej.lang.h:4
-#: ../data/language-specs/julia.lang.h:6
-#: ../data/language-specs/libtool.lang.h:4
-#: ../data/language-specs/modelica.lang.h:9
-#: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
-#: ../data/language-specs/python3.lang.h:10
-#: ../data/language-specs/python.lang.h:11
-#: ../data/language-specs/scheme.lang.h:4
-#: ../data/language-specs/scilab.lang.h:8
-#: ../data/language-specs/sparql.lang.h:9
-#: ../data/language-specs/yaml.lang.h:12
+#. (itstool) path: styles/style@_name
+#: boo.lang:44 desktop.lang:39 d.lang:47 genie.lang:44 imagej.lang:34
+#: julia.lang:40 libtool.lang:33 modelica.lang:42 objj.lang:36 octave.lang:46
+#: python3.lang:38 python.lang:44 scheme.lang:33 scilab.lang:36 sparql.lang:39
+#: yaml.lang:39
 msgid "Boolean"
 msgstr "Logikai"
 
-#: ../data/language-specs/cg.lang.h:2
+#. (itstool) path: cg.lang/language@_name
+#: cg.lang:24
 msgid "CG Shader Language"
 msgstr "CG árnyékolónyelv"
 
-#: ../data/language-specs/cg.lang.h:6
+#. (itstool) path: styles/style@_name
+#: cg.lang:36
 msgid "Bindings"
 msgstr "Kötések"
 
-#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/fortran.lang.h:13
-#: ../data/language-specs/objj.lang.h:7
+#. (itstool) path: styles/style@_name
+#: cg.lang:37 c.lang:39 fortran.lang:43 objj.lang:40
 msgid "Included File"
 msgstr "Include-olt fájl"
 
-#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
-#: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
-#: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:21
+#. (itstool) path: styles/style@_name
+#: cg.lang:44 c.lang:49 d.lang:51 go.lang:46 nemerle.lang:46 ooc.lang:46
+#: php.lang:56
 msgid "Octal number"
 msgstr "Oktális szám"
 
-#: ../data/language-specs/cg.lang.h:17
+#. (itstool) path: styles/style@_name
+#: cg.lang:47
 msgid "Swizzle operator"
 msgstr "Feloldási operátor"
 
-#. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
-#: ../data/language-specs/imagej.lang.h:3
-#: ../data/language-specs/matlab.lang.h:5
-#: ../data/language-specs/modelica.lang.h:14
-#: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:17
+#. (itstool) path: styles/style@_name
+#: cg.lang:49 erlang.lang:41 imagej.lang:33 matlab.lang:43 modelica.lang:47
+#: octave.lang:50 ruby.lang:49
 msgid "Builtin"
 msgstr "Beépített"
 
-#: ../data/language-specs/changelog.lang.h:1
-#: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
-#: ../data/language-specs/csv.lang.h:1 ../data/language-specs/desktop.lang.h:1
-#: ../data/language-specs/diff.lang.h:1 ../data/language-specs/dot.lang.h:1
-#: ../data/language-specs/dpatch.lang.h:1
-#: ../data/language-specs/gdb-log.lang.h:1
-#: ../data/language-specs/gtkrc.lang.h:1 ../data/language-specs/ini.lang.h:1
-#: ../data/language-specs/json.lang.h:1
-#: ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
-#: ../data/language-specs/pkgconfig.lang.h:1
-#: ../data/language-specs/po.lang.h:1 ../data/language-specs/protobuf.lang.h:1
-#: ../data/language-specs/puppet.lang.h:1
-#: ../data/language-specs/rpmspec.lang.h:1
-#: ../data/language-specs/scala.lang.h:16 ../data/language-specs/yacc.lang.h:1
-#: ../data/language-specs/yaml.lang.h:1
-msgid "Other"
-msgstr "Egyéb"
-
-#: ../data/language-specs/changelog.lang.h:2
+#. (itstool) path: changelog.lang/language@_name
+#: changelog.lang:25
 msgid "ChangeLog"
 msgstr "ChangeLog"
 
-#: ../data/language-specs/changelog.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:14
+#. (itstool) path: changelog.lang/language@_section
+#. (itstool) path: cmake.lang/language@_section
+#. (itstool) path: css.lang/language@_section
+#. (itstool) path: csv.lang/language@_section
+#. (itstool) path: desktop.lang/language@_section
+#. (itstool) path: diff.lang/language@_section
+#. (itstool) path: dot.lang/language@_section
+#. (itstool) path: dpatch.lang/language@_section
+#. (itstool) path: gdb-log.lang/language@_section
+#. (itstool) path: gtkrc.lang/language@_section
+#. (itstool) path: ini.lang/language@_section
+#. (itstool) path: json.lang/language@_section
+#. (itstool) path: libtool.lang/language@_section
+#. (itstool) path: nsis.lang/language@_section
+#. (itstool) path: ocl.lang/language@_section
+#. (itstool) path: pkgconfig.lang/language@_section
+#. (itstool) path: po.lang/language@_section
+#. (itstool) path: protobuf.lang/language@_section
+#. (itstool) path: puppet.lang/language@_section
+#. (itstool) path: rpmspec.lang/language@_section
+#. (itstool) path: styles/style@_name
+#. (itstool) path: yacc.lang/language@_section
+#. (itstool) path: yaml.lang/language@_section
+#: changelog.lang:25 cmake.lang:24 css.lang:39 csv.lang:24 desktop.lang:25
+#: diff.lang:24 dot.lang:24 dpatch.lang:24 gdb-log.lang:19 gtkrc.lang:25
+#: ini.lang:23 json.lang:30 libtool.lang:24 nsis.lang:24 ocl.lang:33
+#: pkgconfig.lang:24 po.lang:24 protobuf.lang:21 puppet.lang:24 rpmspec.lang:24
+#: scala.lang:49 yacc.lang:24 yaml.lang:22
+msgid "Other"
+msgstr "Egyéb"
+
+#. (itstool) path: styles/style@_name
+#: changelog.lang:33 rpmspec.lang:43
 msgid "Date"
 msgstr "Dátum"
 
-#. Translators: the name of a person, not an object.
-#. names, e.g., name of package, name of environment, name of class
-#: ../data/language-specs/changelog.lang.h:5
-#: ../data/language-specs/latex.lang.h:19
+#. (itstool) path: styles/style@_name
+#: changelog.lang:35 latex.lang:52
 msgid "Name"
 msgstr "Név"
 
-#: ../data/language-specs/changelog.lang.h:6
+#. (itstool) path: styles/style@_name
+#: changelog.lang:36
 msgid "E-mail address"
 msgstr "E-mail cím"
 
-#: ../data/language-specs/changelog.lang.h:7
+#. (itstool) path: styles/style@_name
+#: changelog.lang:37
 msgid "File"
 msgstr "Fájl"
 
-#: ../data/language-specs/changelog.lang.h:8
-#: ../data/language-specs/rst.lang.h:6
+#. (itstool) path: styles/style@_name
+#: changelog.lang:38 rst.lang:34
 msgid "Bullet"
 msgstr "Felsorolásjel"
 
-#: ../data/language-specs/changelog.lang.h:10
+#. (itstool) path: styles/style@_name
+#: changelog.lang:40
 msgid "Release"
 msgstr "Kiadás"
 
-#: ../data/language-specs/chdr.lang.h:2
-msgid "C/C++/ObjC Header"
-msgstr "C/C++/ObjC fejléc"
+#. (itstool) path: chdr.lang/language@_name
+#: chdr.lang:25
+msgid "C/ObjC Header"
+msgstr "C/ObjC fejléc"
 
-#: ../data/language-specs/c.lang.h:2
+#. (itstool) path: c.lang/language@_name
+#: c.lang:25
 msgid "C"
 msgstr "C"
 
-#: ../data/language-specs/c.lang.h:6 ../data/language-specs/cpp.lang.h:5
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/opal.lang.h:5
+#. (itstool) path: styles/style@_name
+#: c.lang:38 cpp.lang:37 objc.lang:36 opal.lang:35
 msgid "Common Defines"
 msgstr "Általános definíció"
 
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/genie.lang.h:16
-#: ../data/language-specs/go.lang.h:9 ../data/language-specs/verilog.lang.h:5
+#. (itstool) path: styles/style@_name
+#: c.lang:45 genie.lang:47 go.lang:41 verilog.lang:36
 msgid "printf Conversion"
 msgstr "printf átalakítás"
 
-#: ../data/language-specs/c.lang.h:20
+#. (itstool) path: styles/style@_name
+#: c.lang:52
 msgid "Standard stream"
 msgstr "Szabványos adatfolyam"
 
-#: ../data/language-specs/c.lang.h:21
+#. (itstool) path: styles/style@_name
+#: c.lang:53
 msgid "Signal name"
 msgstr "Szignálnév"
 
-#: ../data/language-specs/cmake.lang.h:2
+#. (itstool) path: cmake.lang/language@_name
+#: cmake.lang:24
 msgid "CMake"
 msgstr "CMake"
 
-#: ../data/language-specs/cmake.lang.h:3 ../data/language-specs/meson.lang.h:3
+#. (itstool) path: styles/style@_name
+#: cmake.lang:31 meson.lang:32
 msgid "Builtin Command"
 msgstr "Beépített parancs"
 
-#: ../data/language-specs/cmake.lang.h:4
+#. (itstool) path: styles/style@_name
+#: cmake.lang:32
 msgid "Deprecated Builtin Command"
 msgstr "Elavult beépített parancs"
 
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/glsl.lang.h:8
+#. (itstool) path: styles/style@_name
+#: cmake.lang:33 glsl.lang:46
 msgid "Builtin Variable"
 msgstr "Beépített változó"
 
-#: ../data/language-specs/cmake.lang.h:8
+#. (itstool) path: styles/style@_name
+#: cmake.lang:36
 msgid "Control Keyword"
 msgstr "Vezérlő kulcsszó"
 
-#: ../data/language-specs/cobol.lang.h:2
+#. (itstool) path: cobol.lang/language@_name
+#: cobol.lang:27
 msgid "COBOL"
 msgstr "COBOL"
 
-#. Any statement
-#: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
-#: ../data/language-specs/protobuf.lang.h:3
+#. (itstool) path: styles/style@_name
+#: cobol.lang:36 def.lang:88 protobuf.lang:32
 msgid "Statement"
 msgstr "Utasítás"
 
-#: ../data/language-specs/cpp.lang.h:2
-msgid "C++"
-msgstr "C++"
-
-#: ../data/language-specs/cpphdr.lang.h:2
+#. (itstool) path: cpphdr.lang/language@_name
+#: cpphdr.lang:25
 msgid "C++ Header"
 msgstr "C++ fejléc"
 
-#: ../data/language-specs/csharp.lang.h:2
+#. (itstool) path: cpp.lang/language@_name
+#: cpp.lang:25
+msgid "C++"
+msgstr "C++"
+
+#. (itstool) path: csharp.lang/language@_name
+#: csharp.lang:27
 msgid "C#"
 msgstr "C#"
 
-#. Translators: this is a format that appears in the strings
-#: ../data/language-specs/csharp.lang.h:10 ../data/language-specs/po.lang.h:8
+#. (itstool) path: styles/style@_name
+#: csharp.lang:44 po.lang:37
 msgid "String Format"
 msgstr "Karakterlánc formátuma"
 
-#: ../data/language-specs/css.lang.h:2
+#. (itstool) path: css.lang/language@_name
+#: css.lang:39
 msgid "CSS"
 msgstr "CSS"
 
-#: ../data/language-specs/css.lang.h:4
+#. (itstool) path: styles/style@_name
+#: css.lang:49
 msgid "Others 2"
 msgstr "Egyéb 2"
 
-#: ../data/language-specs/css.lang.h:6
+#. (itstool) path: styles/style@_name
+#: css.lang:51
 msgid "Color"
 msgstr "Szín"
 
-#: ../data/language-specs/css.lang.h:7
+#. (itstool) path: styles/style@_name
+#: css.lang:52
 msgid "Others 3"
 msgstr "Egyéb 3"
 
-#. Translator: it is a type of number
-#: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
-#: ../data/language-specs/fortran.lang.h:9 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/gtkrc.lang.h:6
-#: ../data/language-specs/haskell.lang.h:13
-#: ../data/language-specs/ini.lang.h:7 ../data/language-specs/json.lang.h:8
-#: ../data/language-specs/modelica.lang.h:10
-#: ../data/language-specs/octave.lang.h:9
-#: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
-#: ../data/language-specs/sql.lang.h:8
+#. (itstool) path: styles/style@_name
+#: css.lang:55 fcl.lang:34 fortran.lang:39 gap.lang:36 gtkrc.lang:36
+#: haskell.lang:43 ini.lang:35 json.lang:43 modelica.lang:43 pascal.lang:36
+#: sml.lang:39 sql.lang:37
 msgid "Decimal"
 msgstr "Decimális"
 
-#: ../data/language-specs/css.lang.h:11
+#. (itstool) path: styles/style@_name
+#: css.lang:56
 msgid "Dimension"
 msgstr "Dimenzió"
 
-#: ../data/language-specs/css.lang.h:12
-msgid "Known Property Value"
-msgstr "Ismert tulajdonságérték"
+#. (itstool) path: styles/style@_name
+#: css.lang:57
+msgid "Property Value"
+msgstr "Tulajdonságérték"
 
-#: ../data/language-specs/css.lang.h:13
+#. (itstool) path: styles/style@_name
+#: css.lang:58
 msgid "at-rules"
 msgstr "at-szabályok"
 
-#: ../data/language-specs/css.lang.h:15
+#. (itstool) path: styles/style@_name
+#: css.lang:60
 msgid "ID Selector"
 msgstr "Azonosítóválasztó"
 
-#: ../data/language-specs/css.lang.h:16
+#. (itstool) path: styles/style@_name
+#: css.lang:61
 msgid "Class Selector"
 msgstr "Osztályválasztó"
 
-#: ../data/language-specs/css.lang.h:17
+#. (itstool) path: styles/style@_name
+#: css.lang:62
 msgid "Tag Name Selector"
 msgstr "Címkenévválasztó"
 
-#: ../data/language-specs/csv.lang.h:2
+#. (itstool) path: csv.lang/language@_name
+#: csv.lang:24
 msgid "CSV"
 msgstr "CSV"
 
-#: ../data/language-specs/csv.lang.h:4
+#. (itstool) path: styles/style@_name
+#: csv.lang:32
 msgid "Escaped character"
 msgstr "Escape-elt karakter"
 
-#: ../data/language-specs/cuda.lang.h:2
+#. (itstool) path: cuda.lang/language@_name
+#: cuda.lang:23
 msgid "CUDA"
 msgstr "CUDA"
 
-#: ../data/language-specs/cuda.lang.h:5
+#. (itstool) path: styles/style@_name
+#: cuda.lang:35
 msgid "Global Functions"
 msgstr "Globális függvények"
 
-#: ../data/language-specs/cuda.lang.h:6
+#. (itstool) path: styles/style@_name
+#: cuda.lang:36
 msgid "Device Functions"
 msgstr "Eszközfüggvények"
 
-#: ../data/language-specs/cuda.lang.h:7
+#. (itstool) path: styles/style@_name
+#: cuda.lang:37
 msgid "Global Variables"
 msgstr "Globális változók"
 
-#: ../data/language-specs/def.lang.h:1
+#. (itstool) path: def.lang/language@_name
+#: def.lang:25
 msgid "Defaults"
 msgstr "Alapértékek"
 
-#. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:5
+#. (itstool) path: styles/style@_name
+#: def.lang:42
 msgid "Shebang"
 msgstr "Shebang"
 
-#. A special comment containing documentation like in javadoc or
-#. gtk-doc
-#: ../data/language-specs/def.lang.h:8
+#. (itstool) path: styles/style@_name
+#: def.lang:45
 msgid "Documentation comment"
 msgstr "Dokumentációs megjegyzés"
 
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "doc-comment"
-#: ../data/language-specs/def.lang.h:11
+#. (itstool) path: styles/style@_name
+#: def.lang:49
 msgid "Documentation comment element"
 msgstr "Dokumentációs megjegyzés eleme"
 
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "string"
-#: ../data/language-specs/def.lang.h:20
+#. (itstool) path: styles/style@_name
+#: def.lang:61
 msgid "Special character (inside a string)"
 msgstr "Speciális karakter (karakterláncon belül)"
 
-#. A base-N number: 0xFFFF
-#: ../data/language-specs/def.lang.h:28
-#: ../data/language-specs/python3.lang.h:13
-#: ../data/language-specs/python.lang.h:14
-#: ../data/language-specs/ruby.lang.h:12
+#. (itstool) path: styles/style@_name
+#: def.lang:69 python3.lang:41 python.lang:47 ruby.lang:44
 msgid "Base-N number"
 msgstr "N-alapú szám"
 
-#. A complex number
-#: ../data/language-specs/def.lang.h:30
-#: ../data/language-specs/python3.lang.h:14
-#: ../data/language-specs/python.lang.h:15
+#. (itstool) path: styles/style@_name
+#: def.lang:71 python3.lang:42 python.lang:48
 msgid "Complex number"
 msgstr "Komplex szám"
 
-#. A builtin name: like __import__, abs in Python
-#. (see http://docs.python.org/lib/built-in-funcs.html)
-#: ../data/language-specs/def.lang.h:41
+#. (itstool) path: styles/style@_name
+#: def.lang:84
 msgid "Built-in identifier"
 msgstr "Beépített azonosító"
 
-#. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:49
-#: ../data/language-specs/modelica.lang.h:7
-#: ../data/language-specs/octave.lang.h:6
+#. (itstool) path: styles/style@_name
+#: def.lang:96 modelica.lang:40 octave.lang:44
 msgid "Data type"
 msgstr "Adattípus"
 
-#. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
-#: ../data/language-specs/def.lang.h:51
+#. (itstool) path: styles/style@_name
+#: def.lang:100
 msgid "Preprocessor directive"
 msgstr "Előfeldolgozó-direktíva"
 
-#. to mark possibily errors or unrecommended syntax
-#: ../data/language-specs/def.lang.h:55
+#. (itstool) path: styles/style@_name
+#: def.lang:104
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#. Reserved keywords: like "const" and "goto" in Java
-#: ../data/language-specs/def.lang.h:57
+#. (itstool) path: styles/style@_name
+#: def.lang:106
 msgid "Reserved keyword"
 msgstr "Védett kulcsszó"
 
-#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:59
+#. (itstool) path: styles/style@_name
+#: def.lang:108
 msgid "Note (FIXME, TODO, XXX, etc.)"
 msgstr "Megjegyzés (FIXME, TODO, XXX, stb.)"
 
-#. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:61
+#. (itstool) path: styles/style@_name
+#: def.lang:110
 msgid "Underlined"
 msgstr "Aláhúzott"
 
-#. Text that acts as some kind of heading, such as h1, h2, ... in html.
-#: ../data/language-specs/def.lang.h:63
+#. (itstool) path: styles/style@_name
+#: def.lang:112
 msgid "Heading 0"
 msgstr "Címsor 0"
 
-#: ../data/language-specs/def.lang.h:64
+#. (itstool) path: styles/style@_name
+#: def.lang:113
 msgid "Heading 1"
 msgstr "Címsor 1"
 
-#: ../data/language-specs/def.lang.h:65
+#. (itstool) path: styles/style@_name
+#: def.lang:114
 msgid "Heading 2"
 msgstr "Címsor 2"
 
-#: ../data/language-specs/def.lang.h:66
+#. (itstool) path: styles/style@_name
+#: def.lang:115
 msgid "Heading 3"
 msgstr "Címsor 3"
 
-#: ../data/language-specs/def.lang.h:67
+#. (itstool) path: styles/style@_name
+#: def.lang:116
 msgid "Heading 4"
 msgstr "Címsor 4"
 
-#: ../data/language-specs/def.lang.h:68
+#. (itstool) path: styles/style@_name
+#: def.lang:117
 msgid "Heading 5"
 msgstr "Címsor 5"
 
-#: ../data/language-specs/def.lang.h:69
+#. (itstool) path: styles/style@_name
+#: def.lang:118
 msgid "Heading 6"
 msgstr "Címsor 6"
 
-#: ../data/language-specs/desktop.lang.h:2
+#. (itstool) path: desktop.lang/language@_name
+#: desktop.lang:25
 msgid ".desktop"
 msgstr ".desktop"
 
-#: ../data/language-specs/desktop.lang.h:3
+#. (itstool) path: styles/style@_name
+#: desktop.lang:33
 msgid "Group"
 msgstr "Csoport"
 
-#. Translators: "Key" here means key value, that is the left hand
-#. side in a myoption=something line in a .desktop file
-#: ../data/language-specs/desktop.lang.h:6
-#: ../data/language-specs/json.lang.h:2
+#. (itstool) path: styles/style@_name
+#: desktop.lang:36 json.lang:37
 msgid "Key"
 msgstr "Kulcs"
 
-#: ../data/language-specs/desktop.lang.h:7
+#. (itstool) path: styles/style@_name
+#: desktop.lang:37
 msgid "Translation"
 msgstr "Fordítás"
 
-#: ../data/language-specs/desktop.lang.h:10
+#. (itstool) path: styles/style@_name
+#: desktop.lang:40
 msgid "Exec parameter"
 msgstr "Exec paramétere"
 
-#: ../data/language-specs/desktop.lang.h:11
+#. (itstool) path: styles/style@_name
+#: desktop.lang:41
 msgid "Encoding"
 msgstr "Kódolás"
 
-#: ../data/language-specs/desktop.lang.h:12
+#. (itstool) path: styles/style@_name
+#: desktop.lang:42
 msgid "Main Category"
 msgstr "Főkategória"
 
-#: ../data/language-specs/desktop.lang.h:13
+#. (itstool) path: styles/style@_name
+#: desktop.lang:43
 msgid "Additional Category"
 msgstr "További kategória"
 
-#: ../data/language-specs/desktop.lang.h:14
+#. (itstool) path: styles/style@_name
+#: desktop.lang:44
 msgid "Reserved Category"
 msgstr "Védett kategória"
 
-#: ../data/language-specs/diff.lang.h:2
+#. (itstool) path: diff.lang/language@_name
+#: diff.lang:24
 msgid "Diff"
 msgstr "Diff"
 
-#: ../data/language-specs/diff.lang.h:3
+#. (itstool) path: styles/style@_name
+#: diff.lang:31
 msgid "Added line"
 msgstr "Hozzáadott sor"
 
-#. Others 2
-#: ../data/language-specs/diff.lang.h:5
+#. (itstool) path: styles/style@_name
+#: diff.lang:32
 msgid "Removed line"
 msgstr "Eltávolított sor"
 
-#. Others 3
-#: ../data/language-specs/diff.lang.h:7
+#. (itstool) path: styles/style@_name
+#: diff.lang:33
 msgid "Changed line"
 msgstr "Megváltozott sor"
 
-#. Preprocessor
-#: ../data/language-specs/diff.lang.h:9
+#. (itstool) path: styles/style@_name
+#: diff.lang:34
 msgid "Special case"
 msgstr "Speciális eset"
 
-#. String
-#: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
+#. (itstool) path: styles/style@_name
+#: diff.lang:35 po.lang:33
 msgid "Location"
 msgstr "Hely"
 
-#. Keyword
-#: ../data/language-specs/diff.lang.h:13
+#. (itstool) path: styles/style@_name
+#: diff.lang:36
 msgid "Ignore"
 msgstr "Mellőzés"
 
-#: ../data/language-specs/d.lang.h:2
+#. (itstool) path: d.lang/language@_name
+#: d.lang:30
 msgid "D"
 msgstr "D"
 
-#: ../data/language-specs/d.lang.h:8
+#. (itstool) path: styles/style@_name
+#: d.lang:45
 msgid "Special Token"
 msgstr "Speciális jelsor"
 
-#: ../data/language-specs/d.lang.h:13 ../data/language-specs/nemerle.lang.h:14
+#. (itstool) path: styles/style@_name
+#: d.lang:50 nemerle.lang:45
 msgid "Binary number"
 msgstr "Bináris szám"
 
-#: ../data/language-specs/docbook.lang.h:2
+#. (itstool) path: docbook.lang/language@_name
+#: docbook.lang:24
 msgid "DocBook"
 msgstr "DocBook"
 
-#: ../data/language-specs/docbook.lang.h:3
+#. (itstool) path: styles/style@_name
+#: docbook.lang:33
 msgid "Header Elements"
 msgstr "Fejlécelemek"
 
-#: ../data/language-specs/docbook.lang.h:4
+#. (itstool) path: styles/style@_name
+#: docbook.lang:34
 msgid "Formatting Elements"
 msgstr "Formázóelemek"
 
-#: ../data/language-specs/docbook.lang.h:5
+#. (itstool) path: styles/style@_name
+#: docbook.lang:35
 msgid "GUI Elements"
 msgstr "GUI elemek"
 
-#: ../data/language-specs/docbook.lang.h:6
+#. (itstool) path: styles/style@_name
+#: docbook.lang:36
 msgid "Structural Elements"
 msgstr "Szerkezeti elemek"
 
-#: ../data/language-specs/dosbatch.lang.h:2
+#. (itstool) path: dosbatch.lang/language@_name
+#: dosbatch.lang:24
 msgid "DOS Batch"
 msgstr "DOS Batch"
 
-#: ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/latex.lang.h:8
-#: ../data/language-specs/sweave.lang.h:4
+#. (itstool) path: styles/style@_name
+#: dosbatch.lang:34 latex.lang:39 latex.lang:40 sweave.lang:33
 msgid "Command"
 msgstr "Parancs"
 
-#: ../data/language-specs/dot.lang.h:2
+#. (itstool) path: dot.lang/language@_name
+#: dot.lang:24
 msgid "Graphviz Dot"
 msgstr "Graphviz Dot"
 
-#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/jade.lang.h:7
-#: ../data/language-specs/xml.lang.h:8
+#. (itstool) path: styles/style@_name
+#: dot.lang:37 jade.lang:37 xml.lang:40
 msgid "Attribute name"
 msgstr "Attribútumnév"
 
-#: ../data/language-specs/dpatch.lang.h:2
+#. (itstool) path: dpatch.lang/language@_name
+#: dpatch.lang:24
 msgid "DPatch"
 msgstr "DPatch"
 
-#: ../data/language-specs/dpatch.lang.h:3
+#. (itstool) path: styles/style@_name
+#: dpatch.lang:31
 msgid "Patch Start"
 msgstr "Folt kezdete"
 
-#: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
+#. (itstool) path: dtd.lang/language@_name
+#. (itstool) path: styles/style@_name
+#: dtd.lang:24 html.lang:38
 msgid "DTD"
 msgstr "DTD"
 
-#: ../data/language-specs/dtd.lang.h:3
+#. (itstool) path: styles/style@_name
+#: dtd.lang:33
 msgid "entity"
 msgstr "entitás"
 
-#: ../data/language-specs/dtd.lang.h:4
+#. (itstool) path: styles/style@_name
+#: dtd.lang:34
 msgid "decl"
 msgstr "deklaráció"
 
-#: ../data/language-specs/dtd.lang.h:5
+#. (itstool) path: styles/style@_name
+#: dtd.lang:35
 msgid "error"
 msgstr "hiba"
 
-#: ../data/language-specs/dtd.lang.h:6
+#. (itstool) path: styles/style@_name
+#: dtd.lang:36
 msgid "Quoted Value"
 msgstr "Idézett érték"
 
-#: ../data/language-specs/eiffel.lang.h:2
+#. (itstool) path: eiffel.lang/language@_name
+#: eiffel.lang:24
 msgid "Eiffel"
 msgstr "Eiffel"
 
-#: ../data/language-specs/eiffel.lang.h:5
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:35
 msgid "Debug"
 msgstr "Hibakeresés"
 
-#: ../data/language-specs/eiffel.lang.h:6
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:36
 msgid "Assertion"
 msgstr "Kijelentés"
 
-#: ../data/language-specs/eiffel.lang.h:9
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:39
 msgid "Design by Contract"
 msgstr "Szerződéses tervezés"
 
-#: ../data/language-specs/eiffel.lang.h:10
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:40
 msgid "Exception Handling"
 msgstr "Kivételkezelés"
 
-#: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:21
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:41 ruby.lang:53
 msgid "Predefined Variable"
 msgstr "Előre meghatározott változó"
 
-#: ../data/language-specs/eiffel.lang.h:13
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:43
 msgid "Void Value"
 msgstr "Null érték"
 
-#: ../data/language-specs/eiffel.lang.h:14
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/json.lang.h:6
+#. (itstool) path: styles/style@_name
+#: eiffel.lang:44 javascript.lang:40 json.lang:41
 msgid "Boolean Value"
 msgstr "Logikai érték"
 
-#: ../data/language-specs/erlang.lang.h:2
+#. (itstool) path: erlang.lang/language@_name
+#: erlang.lang:24
 msgid "Erlang"
 msgstr "Erlang"
 
-#: ../data/language-specs/erlang.lang.h:6
+#. (itstool) path: styles/style@_name
+#: erlang.lang:35
 msgid "Atom"
 msgstr "Atom"
 
-#: ../data/language-specs/erlang.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:4
-#: ../data/language-specs/modelica.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
-#: ../data/language-specs/verilog.lang.h:14
-#: ../data/language-specs/vhdl.lang.h:9
+#. (itstool) path: styles/style@_name
+#: erlang.lang:40 fsharp.lang:35 modelica.lang:45 ocaml.lang:38 sml.lang:38
+#: verilog.lang:45 vhdl.lang:38
 msgid "Base-N Integer"
 msgstr "N-alapú egész"
 
-#: ../data/language-specs/erlang.lang.h:13
-#: ../data/language-specs/forth.lang.h:11
-#: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/verilog.lang.h:8
+#. (itstool) path: styles/style@_name
+#: erlang.lang:42 forth.lang:42 systemverilog.lang:31 verilog.lang:39
 msgid "Compiler Directive"
 msgstr "Fordítódirektíva"
 
-#: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
-#: ../data/language-specs/idl-exelis.lang.h:1
-#: ../data/language-specs/imagej.lang.h:1
-#: ../data/language-specs/julia.lang.h:1
-#: ../data/language-specs/matlab.lang.h:1
-#: ../data/language-specs/modelica.lang.h:1
-#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
-#: ../data/language-specs/scilab.lang.h:1
-msgid "Scientific"
-msgstr "Tudományos"
-
-#: ../data/language-specs/fcl.lang.h:2
+#. (itstool) path: fcl.lang/language@_name
+#: fcl.lang:23
 msgid "FCL"
 msgstr "FCL"
 
-#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/ini.lang.h:4
-#: ../data/language-specs/modelica.lang.h:11
-#: ../data/language-specs/octave.lang.h:10
-#: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
+#. (itstool) path: fcl.lang/language@_section
+#. (itstool) path: gap.lang/language@_section
+#. (itstool) path: idl-exelis.lang/language@_section
+#. (itstool) path: imagej.lang/language@_section
+#. (itstool) path: julia.lang/language@_section
+#. (itstool) path: matlab.lang/language@_section
+#. (itstool) path: modelica.lang/language@_section
+#. (itstool) path: octave.lang/language@_section
+#. (itstool) path: R.lang/language@_section
+#. (itstool) path: scilab.lang/language@_section
+#: fcl.lang:23 gap.lang:24 idl-exelis.lang:21 imagej.lang:24 julia.lang:24
+#: matlab.lang:26 modelica.lang:26 octave.lang:26 R.lang:26 scilab.lang:24
+msgid "Scientific"
+msgstr "Tudományos"
+
+#. (itstool) path: styles/style@_name
+#: fcl.lang:31 fortran.lang:35 ini.lang:32 modelica.lang:44 scilab.lang:32
+#: sql.lang:33
 msgid "Floating Point"
 msgstr "Lebegőpontos"
 
-#: ../data/language-specs/fcl.lang.h:6
+#. (itstool) path: styles/style@_name
+#: fcl.lang:33
 msgid "Block"
 msgstr "Blokk"
 
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
-#: ../data/language-specs/scilab.lang.h:9
+#. (itstool) path: styles/style@_name
+#: fcl.lang:35 octave.lang:49 scilab.lang:37
 msgid "Reserved Constant"
 msgstr "Védett állandó"
 
-#: ../data/language-specs/forth.lang.h:2
+#. (itstool) path: forth.lang/language@_name
+#: forth.lang:24
 msgid "Forth"
 msgstr "Forth"
 
-#: ../data/language-specs/forth.lang.h:9
+#. (itstool) path: styles/style@_name
+#: forth.lang:40
 msgid "Debug Code"
 msgstr "Hibakeresési kód"
 
-#: ../data/language-specs/forth.lang.h:10
+#. (itstool) path: styles/style@_name
+#: forth.lang:41
 msgid "Error Text"
 msgstr "Hibaszöveg"
 
-#: ../data/language-specs/fortran.lang.h:2
+#. (itstool) path: fortran.lang/language@_name
+#: fortran.lang:25
 msgid "Fortran 95"
 msgstr "Fortran 95"
 
-#: ../data/language-specs/fortran.lang.h:7
+#. (itstool) path: styles/style@_name
+#: fortran.lang:37
 msgid "Intrinsic function"
 msgstr "Belső függvény"
 
-#: ../data/language-specs/fortran.lang.h:8
+#. (itstool) path: styles/style@_name
+#: fortran.lang:38
 msgid "BOZ Literal"
 msgstr "BOZ literál"
 
-#: ../data/language-specs/fortran.lang.h:12
+#. (itstool) path: styles/style@_name
+#: fortran.lang:42
 msgid "OpenMP directives"
 msgstr "OpenMP direktívák"
 
-#: ../data/language-specs/fsharp.lang.h:2
+#. (itstool) path: fsharp.lang/language@_name
+#: fsharp.lang:25
 msgid "F#"
 msgstr "F#"
 
-#: ../data/language-specs/fsharp.lang.h:5
-#: ../data/language-specs/ocaml.lang.h:6 ../data/language-specs/sml.lang.h:12
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:36 ocaml.lang:39 sml.lang:41
 msgid "Floating Point number"
 msgstr "Lebegőpontos szám"
 
-#: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:10
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:40 ocaml.lang:43
 msgid "Type, module or object keyword"
 msgstr "Típus, modul vagy objektum kulcsszó"
 
-#: ../data/language-specs/fsharp.lang.h:10
-#: ../data/language-specs/ocaml.lang.h:11
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:41 ocaml.lang:44
 msgid "Builtin-function keyword"
 msgstr "Beépített függvény kulcsszó"
 
-#: ../data/language-specs/fsharp.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:13
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:43 ocaml.lang:46
 msgid "Labeled argument"
 msgstr "Címkézett argumentum"
 
-#: ../data/language-specs/fsharp.lang.h:13
-#: ../data/language-specs/ocaml.lang.h:14
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:44 ocaml.lang:47
 msgid "Polymorphic Variant"
 msgstr "Polimorf változó"
 
-#: ../data/language-specs/fsharp.lang.h:14
-#: ../data/language-specs/ocaml.lang.h:15
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:45 ocaml.lang:48
 msgid "Variant Constructor"
 msgstr "Változó konstruktor"
 
-#. Translators: this is a specific variable called Type
-#: ../data/language-specs/fsharp.lang.h:16
-#: ../data/language-specs/ocaml.lang.h:16
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:47 ocaml.lang:49
 msgid "Type Variable"
 msgstr "Típusváltozó"
 
-#: ../data/language-specs/fsharp.lang.h:17
-#: ../data/language-specs/ocaml.lang.h:17
+#. (itstool) path: styles/style@_name
+#: fsharp.lang:48 ocaml.lang:50
 msgid "Module Path"
 msgstr "Modulútvonal"
 
-#: ../data/language-specs/gap.lang.h:2
+#. (itstool) path: gap.lang/language@_name
+#: gap.lang:24
 msgid "GAP"
 msgstr "GAP"
 
-#: ../data/language-specs/gdb-log.lang.h:2
+#. (itstool) path: gdb-log.lang/language@_name
+#: gdb-log.lang:19
 msgid "GDB Log"
 msgstr "GDB napló"
 
-#: ../data/language-specs/gdb-log.lang.h:3
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:25
 msgid "Thread Action"
 msgstr "Szálművelet"
 
-#: ../data/language-specs/gdb-log.lang.h:4
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:26
 msgid "Thread Header"
 msgstr "Szálfejléc"
 
-#: ../data/language-specs/gdb-log.lang.h:5
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:27
 msgid "Frame Number"
 msgstr "Keretszám"
 
-#: ../data/language-specs/gdb-log.lang.h:6
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:28
 msgid "Address"
 msgstr "Cím"
 
-#: ../data/language-specs/gdb-log.lang.h:9
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:31
 msgid "Filename"
 msgstr "Fájlnév"
 
-#: ../data/language-specs/gdb-log.lang.h:10
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:32
 msgid "Optimized Out"
 msgstr "Kioptimalizálva"
 
-#: ../data/language-specs/gdb-log.lang.h:11
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:33
 msgid "Incomplete Sequence"
 msgstr "Befejezetlen sorozat"
 
-#: ../data/language-specs/gdb-log.lang.h:12
+#. (itstool) path: styles/style@_name
+#: gdb-log.lang:34
 msgid "Prompt"
 msgstr "Parancssor"
 
-#: ../data/language-specs/genie.lang.h:2
+#. (itstool) path: genie.lang/language@_name
+#: genie.lang:24
 msgid "Genie"
 msgstr "Genie"
 
-#: ../data/language-specs/glsl.lang.h:2
+#. (itstool) path: glsl.lang/language@_name
+#: glsl.lang:31
 msgid "OpenGL Shading Language"
 msgstr "OpenGL árnyékolónyelv"
 
-#: ../data/language-specs/glsl.lang.h:7 ../data/language-specs/go.lang.h:17
-#: ../data/language-specs/python3.lang.h:15
-#: ../data/language-specs/python.lang.h:16
+#. (itstool) path: styles/style@_name
+#: glsl.lang:45 go.lang:49 python3.lang:43 python.lang:49
 msgid "Builtin Constant"
 msgstr "Beépített állandó"
 
-#: ../data/language-specs/glsl.lang.h:9
+#. (itstool) path: styles/style@_name
+#: glsl.lang:47
 msgid "Reserved Keywords"
 msgstr "Védett kulcsszavak"
 
-#: ../data/language-specs/go.lang.h:2
+#. (itstool) path: go.lang/language@_name
+#: go.lang:25
 msgid "Go"
 msgstr "Go"
 
-#: ../data/language-specs/go.lang.h:12
+#. (itstool) path: styles/style@_name
+#: go.lang:44
 msgid "Imaginary number"
 msgstr "Képzetes szám"
 
-#: ../data/language-specs/gtk-doc.lang.h:2
+#. (itstool) path: gtk-doc.lang/language@_name
+#: gtk-doc.lang:25
 msgid "gtk-doc"
 msgstr "gtk-doc"
 
-#: ../data/language-specs/gtk-doc.lang.h:3
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:27
 msgid "Inline Documentation Section"
 msgstr "Beágyazott dokumentációrész"
 
-#: ../data/language-specs/gtk-doc.lang.h:4
-#: ../data/language-specs/python.lang.h:19
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:28 python.lang:52
 msgid "Function Name"
 msgstr "Függvénynév"
 
-#: ../data/language-specs/gtk-doc.lang.h:5
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:29
 msgid "Signal Name"
 msgstr "Szignálnév"
 
-#: ../data/language-specs/gtk-doc.lang.h:6
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:30
 msgid "Property Name"
 msgstr "Tulajdonságnév"
 
-#: ../data/language-specs/gtk-doc.lang.h:7
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:31
 msgid "Parameter"
 msgstr "Paraméter"
 
-#: ../data/language-specs/gtk-doc.lang.h:11
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:35
 msgid "Return"
 msgstr "Enter"
 
-#: ../data/language-specs/gtk-doc.lang.h:12
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:36
 msgid "Since"
 msgstr "Kezdet"
 
-#: ../data/language-specs/gtk-doc.lang.h:13
+#. (itstool) path: styles/style@_name
+#: gtk-doc.lang:37
 msgid "Deprecated"
 msgstr "Elavult"
 
-#: ../data/language-specs/gtkrc.lang.h:2
+#. (itstool) path: gtkrc.lang/language@_name
+#: gtkrc.lang:25
 msgid "GtkRC"
 msgstr "GtkRC"
 
-#: ../data/language-specs/gtkrc.lang.h:8
+#. (itstool) path: styles/style@_name
+#: gtkrc.lang:38
 msgid "Widget State"
 msgstr "Felületi elem állapota"
 
-#: ../data/language-specs/gtkrc.lang.h:9
+#. (itstool) path: styles/style@_name
+#: gtkrc.lang:39
 msgid "Include directive"
 msgstr "Include direktíva"
 
-#: ../data/language-specs/haddock.lang.h:2
+#. (itstool) path: haddock.lang/language@_name
+#: haddock.lang:24
 msgid "Haddock"
 msgstr "Haddock"
 
-#: ../data/language-specs/haddock.lang.h:3
+#. (itstool) path: styles/style@_name
+#: haddock.lang:27
 msgid "Inline Haddock Section"
 msgstr "Beágyazott haddock szakasz"
 
-#: ../data/language-specs/haddock.lang.h:4
+#. (itstool) path: styles/style@_name
+#: haddock.lang:28
 msgid "Haddock Directive"
 msgstr "Haddock direktíva"
 
-#: ../data/language-specs/haddock.lang.h:5
+#. (itstool) path: styles/style@_name
+#: haddock.lang:29
 msgid "Hyperlinked Identifier"
 msgstr "Hiperhivatkozott azonosító"
 
-#: ../data/language-specs/haddock.lang.h:6
+#. (itstool) path: styles/style@_name
+#: haddock.lang:30
 msgid "Hyperlinked Module Name"
 msgstr "Hiperhivatkozott modulnév"
 
-#: ../data/language-specs/haddock.lang.h:7
+#. (itstool) path: styles/style@_name
+#: haddock.lang:31
 msgid "Escape"
 msgstr "Escape"
 
-#: ../data/language-specs/haddock.lang.h:8
-#: ../data/language-specs/markdown.lang.h:13
-#: ../data/language-specs/rst.lang.h:4
+#. (itstool) path: styles/style@_name
+#: haddock.lang:32 markdown.lang:45 rst.lang:32
 msgid "Emphasis"
 msgstr "Kiemelés"
 
-#: ../data/language-specs/haddock.lang.h:9
+#. (itstool) path: styles/style@_name
+#: haddock.lang:33
 msgid "Monospace"
 msgstr "Rögzített szélességű"
 
-#: ../data/language-specs/haddock.lang.h:10
+#. (itstool) path: styles/style@_name
+#: haddock.lang:34
 msgid "Code Block"
 msgstr "Kódblokk"
 
-#: ../data/language-specs/haddock.lang.h:11
+#. (itstool) path: styles/style@_name
+#: haddock.lang:35
 msgid "Header Property"
 msgstr "Fejléctulajdonság"
 
-#: ../data/language-specs/haddock.lang.h:12
+#. (itstool) path: styles/style@_name
+#: haddock.lang:36
 msgid "Itemized list"
 msgstr "Felsorolásos lista"
 
-#: ../data/language-specs/haddock.lang.h:13
+#. (itstool) path: styles/style@_name
+#: haddock.lang:37
 msgid "Enumerated list"
 msgstr "Felsorolásos lista"
 
-#: ../data/language-specs/haddock.lang.h:14
+#. (itstool) path: styles/style@_name
+#: haddock.lang:38
 msgid "Definition list"
 msgstr "Definíciólista"
 
-#: ../data/language-specs/haddock.lang.h:15
-#: ../data/language-specs/markdown.lang.h:8
-#: ../data/language-specs/mediawiki.lang.h:6
+#. (itstool) path: styles/style@_name
+#: haddock.lang:39 markdown.lang:40 mediawiki.lang:33
 msgid "URL"
 msgstr "URL"
 
-#: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/t2t.lang.h:13 ../data/language-specs/yaml.lang.h:6
+#. (itstool) path: styles/style@_name
+#: haddock.lang:40 t2t.lang:41 yaml.lang:33
 msgid "Anchor"
 msgstr "Horgony"
 
-#: ../data/language-specs/haskell.lang.h:2
+#. (itstool) path: haskell.lang/language@_name
+#: haskell.lang:25
 msgid "Haskell"
 msgstr "Haskell"
 
-#: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:19
+#. (itstool) path: styles/style@_name
+#: haskell.lang:36 ruby.lang:51
 msgid "Symbol"
 msgstr "Szimbólum"
 
-#: ../data/language-specs/haskell.lang.h:14
+#. (itstool) path: styles/style@_name
+#: haskell.lang:44
 msgid "Octal"
 msgstr "Oktális"
 
-#: ../data/language-specs/haskell.lang.h:15
+#. (itstool) path: styles/style@_name
+#: haskell.lang:45
 msgid "Hex"
 msgstr "Hexadecimális"
 
-#: ../data/language-specs/haskell-literate.lang.h:2
+#. (itstool) path: haskell-literate.lang/language@_name
+#: haskell-literate.lang:24
 msgid "Literate Haskell"
 msgstr "Irodalmi Haskell"
 
-#: ../data/language-specs/html.lang.h:2
+#. (itstool) path: html.lang/language@_name
+#: html.lang:25
 msgid "HTML"
 msgstr "HTML"
 
-#: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
-#: ../data/language-specs/yaml.lang.h:7
+#. (itstool) path: styles/style@_name
+#: html.lang:35 xml.lang:43 yaml.lang:34
 msgid "Tag"
 msgstr "Tag"
 
-#: ../data/language-specs/html.lang.h:5
+#. (itstool) path: styles/style@_name
+#: html.lang:36
 msgid "Attribute Name"
 msgstr "Attribútumnév"
 
-#: ../data/language-specs/html.lang.h:6
-#: ../data/language-specs/markdown.lang.h:11
+#. (itstool) path: styles/style@_name
+#: html.lang:37 markdown.lang:43
 msgid "Attribute Value"
 msgstr "Attribútumérték"
 
-#: ../data/language-specs/html.lang.h:9
+#. (itstool) path: styles/style@_name
+#: html.lang:40
 msgid "Page title"
 msgstr "Oldalcím"
 
-#: ../data/language-specs/html.lang.h:10
+#. (itstool) path: styles/style@_name
+#: html.lang:41
 msgid "Heading level 1"
 msgstr "1. szintű címsor"
 
-#: ../data/language-specs/html.lang.h:11
+#. (itstool) path: styles/style@_name
+#: html.lang:42
 msgid "Heading level 2"
 msgstr "2. szintű címsor"
 
-#: ../data/language-specs/html.lang.h:12
+#. (itstool) path: styles/style@_name
+#: html.lang:43
 msgid "Heading level 3"
 msgstr "3. szintű címsor"
 
-#: ../data/language-specs/html.lang.h:13
+#. (itstool) path: styles/style@_name
+#: html.lang:44
 msgid "Heading level 4"
 msgstr "4. szintű címsor"
 
-#: ../data/language-specs/html.lang.h:14
+#. (itstool) path: styles/style@_name
+#: html.lang:45
 msgid "Heading level 5"
 msgstr "5. szintű címsor"
 
-#: ../data/language-specs/idl-exelis.lang.h:2
+#. (itstool) path: idl-exelis.lang/language@_name
+#: idl-exelis.lang:21
 msgid "IDL-Exelis"
 msgstr "IDL-Exelis"
 
-#: ../data/language-specs/idl.lang.h:2
+#. (itstool) path: idl.lang/language@_name
+#: idl.lang:24
 msgid "IDL"
 msgstr "IDL"
 
-#: ../data/language-specs/imagej.lang.h:2
+#. (itstool) path: imagej.lang/language@_name
+#: imagej.lang:24
 msgid "ImageJ"
 msgstr "ImageJ"
 
-#: ../data/language-specs/imagej.lang.h:5
+#. (itstool) path: styles/style@_name
+#: imagej.lang:35
 msgid "Commands"
 msgstr "Parancsok"
 
-#: ../data/language-specs/imagej.lang.h:6
-#: ../data/language-specs/octave.lang.h:7
+#. (itstool) path: styles/style@_name
+#: imagej.lang:36 octave.lang:45
 msgid "Storage Type"
 msgstr "Tárolótípus"
 
-#: ../data/language-specs/imagej.lang.h:7
-msgid "Escaped Characters"
-msgstr "Escape-elt karakterek"
-
-#: ../data/language-specs/ini.lang.h:2
+#. (itstool) path: ini.lang/language@_name
+#: ini.lang:23
 msgid ".ini"
 msgstr ".ini"
 
-#: ../data/language-specs/jade.lang.h:2
+#. (itstool) path: jade.lang/language@_name
+#: jade.lang:26
 msgid "Jade"
 msgstr "Jade"
 
-#: ../data/language-specs/jade.lang.h:4 ../data/language-specs/xml.lang.h:4
+#. (itstool) path: styles/style@_name
+#: jade.lang:34 xml.lang:36
 msgid "DOCTYPE"
 msgstr "DOCTYPE"
 
-#: ../data/language-specs/jade.lang.h:5 ../data/language-specs/xml.lang.h:6
+#. (itstool) path: styles/style@_name
+#: jade.lang:35 xml.lang:38
 msgid "Processing instruction"
 msgstr "Feldolgozóutasítás"
 
-#: ../data/language-specs/jade.lang.h:6 ../data/language-specs/mxml.lang.h:3
-#: ../data/language-specs/xml.lang.h:7
+#. (itstool) path: styles/style@_name
+#: jade.lang:36 mxml.lang:32 xml.lang:39
 msgid "Element name"
 msgstr "Elemnév"
 
-#: ../data/language-specs/jade.lang.h:8 ../data/language-specs/xml.lang.h:9
+#. (itstool) path: styles/style@_name
+#: jade.lang:38 xml.lang:41
 msgid "Attribute value"
 msgstr "Attribútumérték"
 
-#: ../data/language-specs/jade.lang.h:9
+#. (itstool) path: styles/style@_name
+#: jade.lang:39
 msgid "Tags"
 msgstr "Címkék"
 
-#: ../data/language-specs/jade.lang.h:10 ../data/language-specs/xml.lang.h:10
+#. (itstool) path: styles/style@_name
+#: jade.lang:40 xml.lang:42
 msgid "Entity"
 msgstr "Entitás"
 
-#: ../data/language-specs/java.lang.h:2
+#. (itstool) path: java.lang/language@_name
+#: java.lang:25
 msgid "Java"
 msgstr "Java"
 
-#: ../data/language-specs/javascript.lang.h:2
+#. (itstool) path: javascript.lang/language@_name
+#: javascript.lang:27
 msgid "JavaScript"
 msgstr "JavaScript"
 
-#: ../data/language-specs/javascript.lang.h:5
+#. (itstool) path: styles/style@_name
+#: javascript.lang:39
 msgid "Undefined Value"
 msgstr "Definiálatlan érték"
 
-#: ../data/language-specs/javascript.lang.h:10
+#. (itstool) path: styles/style@_name
+#: javascript.lang:44
 msgid "Properties"
 msgstr "Tulajdonságok"
 
-#: ../data/language-specs/javascript.lang.h:11
+#. (itstool) path: styles/style@_name
+#: javascript.lang:45
 msgid "Constructors"
 msgstr "Konstruktorok"
 
-#: ../data/language-specs/j.lang.h:2
+#. (itstool) path: j.lang/language@_name
+#: j.lang:24
 msgid "J"
 msgstr "J"
 
-#: ../data/language-specs/j.lang.h:3
+#. (itstool) path: styles/style@_name
+#: j.lang:31
 msgid "Adverb"
 msgstr "Határozószó"
 
-#: ../data/language-specs/j.lang.h:5
+#. (itstool) path: styles/style@_name
+#: j.lang:33
 msgid "Conjunction"
 msgstr "Kötőszó"
 
-#: ../data/language-specs/j.lang.h:6 ../data/language-specs/perl.lang.h:15
+#. (itstool) path: styles/style@_name
+#: j.lang:34 perl.lang:46
 msgid "Control"
 msgstr "Control"
 
-#: ../data/language-specs/j.lang.h:8
+#. (itstool) path: styles/style@_name
+#: j.lang:36
 msgid "Explicit Argument"
 msgstr "Explicit argumentum"
 
-#: ../data/language-specs/j.lang.h:9
+#. (itstool) path: styles/style@_name
+#: j.lang:37
 msgid "Global"
 msgstr "Globális"
 
-#: ../data/language-specs/j.lang.h:10
+#. (itstool) path: styles/style@_name
+#: j.lang:38
 msgid "Lab Text"
 msgstr "Laborszöveg"
 
-#: ../data/language-specs/j.lang.h:11
+#. (itstool) path: styles/style@_name
+#: j.lang:39
 msgid "Local"
 msgstr "Helyi"
 
-#: ../data/language-specs/j.lang.h:12
+#. (itstool) path: styles/style@_name
+#: j.lang:40
 msgid "Noun"
 msgstr "Főnév"
 
-#: ../data/language-specs/j.lang.h:13
+#. (itstool) path: styles/style@_name
+#: j.lang:41
 msgid "Explicit Noun Definition"
 msgstr "Explicit főnév-definíció"
 
-#: ../data/language-specs/j.lang.h:15
+#. (itstool) path: styles/style@_name
+#: j.lang:43
 msgid "Parens"
 msgstr "Zárójelek"
 
-#: ../data/language-specs/j.lang.h:16
+#. (itstool) path: styles/style@_name
+#: j.lang:44
 msgid "Primitive"
 msgstr "Primitív"
 
-#: ../data/language-specs/j.lang.h:18
+#. (itstool) path: styles/style@_name
+#: j.lang:46
 msgid "Verb"
 msgstr "Ige"
 
-#: ../data/language-specs/julia.lang.h:2
+#. (itstool) path: julia.lang/language@_name
+#: julia.lang:24
 msgid "Julia"
 msgstr "Julia"
 
-#: ../data/language-specs/julia.lang.h:7
+#. (itstool) path: styles/style@_name
+#: julia.lang:41
 msgid "Math Constant"
 msgstr "Matematikai állandó"
 
-#: ../data/language-specs/julia.lang.h:8 ../data/language-specs/R.lang.h:7
-#: ../data/language-specs/scala.lang.h:11
+#. (itstool) path: styles/style@_name
+#: julia.lang:42 R.lang:38 scala.lang:44
 msgid "Special Constant"
 msgstr "Speciális állandó"
 
-#: ../data/language-specs/julia.lang.h:11
-#: ../data/language-specs/rust.lang.h:13
+#. (itstool) path: styles/style@_name
+#: julia.lang:45 rust.lang:55
 msgid "Macro"
 msgstr "Makró"
 
-#: ../data/language-specs/julia.lang.h:12
+#. (itstool) path: styles/style@_name
+#: julia.lang:46
 msgid "External Command"
 msgstr "Külső parancs"
 
-#: ../data/language-specs/julia.lang.h:13
+#. (itstool) path: styles/style@_name
+#: julia.lang:47
 msgid "Built-in Function"
 msgstr "Beépített függvény"
 
-#: ../data/language-specs/julia.lang.h:14
+#. (itstool) path: styles/style@_name
+#: julia.lang:48
 msgid "Module"
 msgstr "Modul"
 
-#: ../data/language-specs/latex.lang.h:2
+#. (itstool) path: latex.lang/language@_name
+#: latex.lang:25
 msgid "LaTeX"
 msgstr "LaTeX"
 
-#: ../data/language-specs/latex.lang.h:4
+#. (itstool) path: styles/style@_name
+#: latex.lang:34 latex.lang:36
 msgid "Math Mode"
 msgstr "Matematikai mód"
 
-#: ../data/language-specs/latex.lang.h:5
+#. (itstool) path: styles/style@_name
+#: latex.lang:35
 msgid "Inline Math Mode"
 msgstr "Beágyazott matematikai mód"
 
-#: ../data/language-specs/latex.lang.h:6
+#. (itstool) path: styles/style@_name
+#: latex.lang:37
 msgid "Math Boundary"
 msgstr "Matematikai határ"
 
-#: ../data/language-specs/latex.lang.h:7
-#: ../data/language-specs/texinfo.lang.h:11
+#. (itstool) path: styles/style@_name
+#: latex.lang:38 texinfo.lang:41
 msgid "Include"
 msgstr "Beleértve"
 
-#: ../data/language-specs/latex.lang.h:9
-#: ../data/language-specs/sweave.lang.h:5 ../data/language-specs/t2t.lang.h:16
+#. (itstool) path: styles/style@_name
+#: latex.lang:41 sweave.lang:34 t2t.lang:44
 msgid "Verbatim"
 msgstr "Változatlan"
 
-#: ../data/language-specs/latex.lang.h:10
+#. (itstool) path: styles/style@_name
+#: latex.lang:42
 msgid "Special Character"
 msgstr "Különleges karakter"
 
-#: ../data/language-specs/latex.lang.h:11
+#. (itstool) path: styles/style@_name
+#: latex.lang:43
 msgid "Part Heading"
 msgstr "Rész címsora"
 
-#: ../data/language-specs/latex.lang.h:12
+#. (itstool) path: styles/style@_name
+#: latex.lang:44
 msgid "Chapter Heading"
 msgstr "Fejezet címsora"
 
-#: ../data/language-specs/latex.lang.h:13
+#. (itstool) path: styles/style@_name
+#: latex.lang:45
 msgid "Section Heading"
 msgstr "Szakasz címsora"
 
-#: ../data/language-specs/latex.lang.h:14
+#. (itstool) path: styles/style@_name
+#: latex.lang:46
 msgid "SubSection Heading"
 msgstr "Alszakasz címsora"
 
-#: ../data/language-specs/latex.lang.h:15
+#. (itstool) path: styles/style@_name
+#: latex.lang:47
 msgid "SubSubSection Heading"
 msgstr "Al-alszakasz címsora"
 
-#: ../data/language-specs/latex.lang.h:16
+#. (itstool) path: styles/style@_name
+#: latex.lang:48
 msgid "Paragraph Heading"
 msgstr "Bekezdés címsora"
 
-#: ../data/language-specs/latex.lang.h:17
+#. (itstool) path: styles/style@_name
+#: latex.lang:49
 msgid "SubParagraph Heading"
 msgstr "Albekezdés címsora"
 
-#: ../data/language-specs/lex.lang.h:2
+#. (itstool) path: lex.lang/language@_name
+#: lex.lang:25
 msgid "Lex"
 msgstr "Lex"
 
-#: ../data/language-specs/lex.lang.h:3
+#. (itstool) path: styles/style@_name
+#: lex.lang:34
 msgid "Token"
 msgstr "Jelsor"
 
-#: ../data/language-specs/lex.lang.h:6
+#. (itstool) path: styles/style@_name
+#: lex.lang:37
 msgid "Expression"
 msgstr "Kifejezés"
 
-#: ../data/language-specs/libtool.lang.h:2
+#. (itstool) path: libtool.lang/language@_name
+#: libtool.lang:24
 msgid "libtool"
 msgstr "libtool"
 
-#: ../data/language-specs/llvm.lang.h:2
+#. (itstool) path: llvm.lang/language@_name
+#: llvm.lang:23
 msgid "LLVM IR"
 msgstr "LLVM IR"
 
-#: ../data/language-specs/llvm.lang.h:7
+#. (itstool) path: styles/style@_name
+#: llvm.lang:34
 msgid "Constants"
 msgstr "Állandók"
 
-#: ../data/language-specs/lua.lang.h:2
+#. (itstool) path: lua.lang/language@_name
+#: lua.lang:24
 msgid "Lua"
 msgstr "Lua"
 
-#: ../data/language-specs/lua.lang.h:7
+#. (itstool) path: styles/style@_name
+#: lua.lang:38
 msgid "Reserved Identifier"
 msgstr "Védett azonosító"
 
-#: ../data/language-specs/lua.lang.h:8
-#: ../data/language-specs/markdown.lang.h:10
+#. (itstool) path: styles/style@_name
+#: lua.lang:39 markdown.lang:42
 msgid "Label"
 msgstr "Címke"
 
-#: ../data/language-specs/lua.lang.h:10 ../data/language-specs/ruby.lang.h:8
+#. (itstool) path: styles/style@_name
+#: lua.lang:41 ruby.lang:40
 msgid "Nil Constant"
 msgstr "Nil állandó"
 
-#: ../data/language-specs/m4.lang.h:2
+#. (itstool) path: m4.lang/language@_name
+#: m4.lang:24
 msgid "m4"
 msgstr "m4"
 
-#: ../data/language-specs/m4.lang.h:3
+#. (itstool) path: styles/style@_name
+#: m4.lang:32
 msgid "m4 Comment"
 msgstr "m4 megjegyzés"
 
-#: ../data/language-specs/m4.lang.h:4
+#. (itstool) path: styles/style@_name
+#: m4.lang:33
 msgid "m4 Macro"
 msgstr "m4 makró"
 
-#: ../data/language-specs/m4.lang.h:5
+#. (itstool) path: styles/style@_name
+#: m4.lang:34
 msgid "Autoconf Macro"
 msgstr "Autoconf makró"
 
-#: ../data/language-specs/m4.lang.h:6
+#. (itstool) path: styles/style@_name
+#: m4.lang:35
 msgid "Obsolete Autoconf Macro"
 msgstr "Elavult Autoconf makró"
 
-#: ../data/language-specs/makefile.lang.h:2
+#. (itstool) path: makefile.lang/language@_name
+#: makefile.lang:23
 msgid "Makefile"
 msgstr "Makefile"
 
-#: ../data/language-specs/makefile.lang.h:4
+#. (itstool) path: styles/style@_name
+#: makefile.lang:32
 msgid "Assignment Right Hand Side"
 msgstr "Értékadás jobb oldala"
 
-#: ../data/language-specs/makefile.lang.h:5
+#. (itstool) path: styles/style@_name
+#: makefile.lang:33
 msgid "Assignment Left Hand Side"
 msgstr "Értékadás bal oldala"
 
-#: ../data/language-specs/makefile.lang.h:6
+#. (itstool) path: styles/style@_name
+#: makefile.lang:34
 msgid "targets"
 msgstr "Célok"
 
-#: ../data/language-specs/makefile.lang.h:7
+#. (itstool) path: styles/style@_name
+#: makefile.lang:35
 msgid "prereq"
 msgstr "Előfeltétel"
 
-#: ../data/language-specs/makefile.lang.h:8
+#. (itstool) path: styles/style@_name
+#: makefile.lang:36
 msgid "command"
 msgstr "Parancs"
 
-#. Translators: Trailing Tabs refers to tabulation characters present at
-#. the end of the line
-#: ../data/language-specs/makefile.lang.h:11
+#. (itstool) path: styles/style@_name
+#: makefile.lang:39
 msgid "Trailing Tab"
 msgstr "Záró tab"
 
-#: ../data/language-specs/makefile.lang.h:12
+#. (itstool) path: styles/style@_name
+#: makefile.lang:40
 msgid "function"
 msgstr "Függvény"
 
-#. FIXME make it better names, and make them translatable
-#: ../data/language-specs/makefile.lang.h:13
-#: ../data/language-specs/yacc.lang.h:4
+#. (itstool) path: styles/style@_name
+#: makefile.lang:41 yacc.lang:35
 msgid "keyword"
 msgstr "Kulcsszó"
 
-#: ../data/language-specs/mallard.lang.h:2
+#. (itstool) path: mallard.lang/language@_name
+#: mallard.lang:23
 msgid "Mallard"
 msgstr "Mallard"
 
-#: ../data/language-specs/mallard.lang.h:3
+#. (itstool) path: styles/style@_name
+#: mallard.lang:32
 msgid "Page Elements"
 msgstr "Oldalelemek"
 
-#: ../data/language-specs/mallard.lang.h:4
+#. (itstool) path: styles/style@_name
+#: mallard.lang:33
 msgid "Section Elements"
 msgstr "Szakaszelemek"
 
-#: ../data/language-specs/mallard.lang.h:5
+#. (itstool) path: styles/style@_name
+#: mallard.lang:34
 msgid "Block Elements"
 msgstr "Blokkelemek"
 
-#: ../data/language-specs/mallard.lang.h:6
+#. (itstool) path: styles/style@_name
+#: mallard.lang:35
 msgid "Inline Elements"
 msgstr "Beágyazott elemek"
 
-#: ../data/language-specs/markdown.lang.h:2
+#. (itstool) path: markdown.lang/language@_name
+#: markdown.lang:26
 msgid "Markdown"
 msgstr "Markdown"
 
-#: ../data/language-specs/markdown.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/rst.lang.h:3
-#: ../data/language-specs/t2t.lang.h:6
+#. (itstool) path: styles/style@_name
+#: markdown.lang:35 rpmspec.lang:33 rst.lang:31 t2t.lang:34
 msgid "Header"
 msgstr "Fejléc"
 
-#: ../data/language-specs/markdown.lang.h:4
+#. (itstool) path: styles/style@_name
+#: markdown.lang:36
 msgid "Horizontal Rule"
 msgstr "vízszintes elválasztó"
 
-#: ../data/language-specs/markdown.lang.h:5
+#. (itstool) path: styles/style@_name
+#: markdown.lang:37
 msgid "List Marker"
 msgstr "Listajelölő"
 
-#: ../data/language-specs/markdown.lang.h:6
-#: ../data/language-specs/rst.lang.h:11
+#. (itstool) path: styles/style@_name
+#: markdown.lang:38 rst.lang:39
 msgid "Code"
 msgstr "Kód"
 
-#: ../data/language-specs/markdown.lang.h:7
+#. (itstool) path: styles/style@_name
+#: markdown.lang:39
 msgid "Blockquote Marker"
 msgstr "Idézetblokk-jelölő"
 
-#: ../data/language-specs/markdown.lang.h:9
+#. (itstool) path: styles/style@_name
+#: markdown.lang:41
 msgid "Link Text"
 msgstr "Hivatkozásszöveg"
 
-#: ../data/language-specs/markdown.lang.h:12
+#. (itstool) path: styles/style@_name
+#: markdown.lang:44
 msgid "Image Marker"
 msgstr "Képjelölő"
 
-#: ../data/language-specs/markdown.lang.h:14
-#: ../data/language-specs/mediawiki.lang.h:3
-#: ../data/language-specs/rst.lang.h:5
+#. (itstool) path: styles/style@_name
+#: markdown.lang:46 mediawiki.lang:30 rst.lang:33
 msgid "Strong Emphasis"
 msgstr "Erős kiemelés"
 
-#: ../data/language-specs/markdown.lang.h:15
+#. (itstool) path: styles/style@_name
+#: markdown.lang:47
 msgid "Backslash Escape"
 msgstr "Backslash elfedés"
 
-#: ../data/language-specs/markdown.lang.h:16
+#. (itstool) path: styles/style@_name
+#: markdown.lang:48
 msgid "Line Break"
 msgstr "Sortörés"
 
-#: ../data/language-specs/matlab.lang.h:2
+#. (itstool) path: matlab.lang/language@_name
+#: matlab.lang:26
 msgid "Matlab"
 msgstr "Matlab"
 
-#: ../data/language-specs/mediawiki.lang.h:2
+#. (itstool) path: mediawiki.lang/language@_name
+#: mediawiki.lang:23
 msgid "MediaWiki"
 msgstr "MediaWiki"
 
-#: ../data/language-specs/mediawiki.lang.h:4
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:31
 msgid "Light Emphasis"
 msgstr "Enyhe kiemelés"
 
-#: ../data/language-specs/mediawiki.lang.h:5
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:32
 msgid "Signature"
 msgstr "Aláírás"
 
-#: ../data/language-specs/mediawiki.lang.h:7
-#: ../data/language-specs/rst.lang.h:9
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:34 rst.lang:37
 msgid "Link"
 msgstr "Hivatkozás"
 
-#: ../data/language-specs/mediawiki.lang.h:8
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:35
 msgid "Symbol on a Link"
 msgstr "Szimbólum hivatkozáson"
 
-#: ../data/language-specs/mediawiki.lang.h:9
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:36
 msgid "Line"
 msgstr "Vonal"
 
-#: ../data/language-specs/mediawiki.lang.h:10
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:37
 msgid "List"
 msgstr "Lista"
 
-#: ../data/language-specs/mediawiki.lang.h:11
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:38
 msgid "Magic Word"
 msgstr "Bűvös szó"
 
-#: ../data/language-specs/mediawiki.lang.h:12
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:39
 msgid "Symbol of a Table"
 msgstr "Táblázat szimbóluma"
 
-#: ../data/language-specs/mediawiki.lang.h:13
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:40
 msgid "Preformatted"
 msgstr "Előreformázott"
 
-#: ../data/language-specs/mediawiki.lang.h:14
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:41
 msgid "Redirect"
 msgstr "Átirányítás"
 
-#: ../data/language-specs/mediawiki.lang.h:15
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:42
 msgid "Title"
 msgstr "Cím"
 
-#: ../data/language-specs/mediawiki.lang.h:16
+#. (itstool) path: styles/style@_name
+#: mediawiki.lang:43
 msgid "Template"
 msgstr "Sablon"
 
-#: ../data/language-specs/meson.lang.h:2
+#. (itstool) path: meson.lang/language@_name
+#: meson.lang:24
 msgid "Meson"
 msgstr "Meson"
 
-#: ../data/language-specs/modelica.lang.h:2
+#. (itstool) path: modelica.lang/language@_name
+#: modelica.lang:26
 msgid "Modelica"
 msgstr "Modelica"
 
-#: ../data/language-specs/modelica.lang.h:6
+#. (itstool) path: styles/style@_name
+#: modelica.lang:39
 msgid "Class type"
 msgstr "Osztály típus"
 
-#: ../data/language-specs/modelica.lang.h:8
+#. (itstool) path: styles/style@_name
+#: modelica.lang:41
 msgid "Default Attribute"
 msgstr "Alapértelmezett attribútum"
 
-#: ../data/language-specs/mxml.lang.h:2
+#. (itstool) path: mxml.lang/language@_name
+#: mxml.lang:24
 msgid "MXML"
 msgstr "MXML"
 
-#: ../data/language-specs/mxml.lang.h:4 ../data/language-specs/xml.lang.h:5
+#. (itstool) path: styles/style@_name
+#: mxml.lang:33 xml.lang:37
 msgid "CDATA delimiter"
 msgstr "CDATA elválasztó"
 
-#: ../data/language-specs/nemerle.lang.h:2
+#. (itstool) path: nemerle.lang/language@_name
+#: nemerle.lang:24
 msgid "Nemerle"
 msgstr "Nemerle"
 
-#: ../data/language-specs/netrexx.lang.h:2
+#. (itstool) path: netrexx.lang/language@_name
+#: netrexx.lang:24
 msgid "NetRexx"
 msgstr "NetRexx"
 
-#: ../data/language-specs/netrexx.lang.h:7
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:39
 msgid "Externals"
 msgstr "Külsők"
 
-#: ../data/language-specs/netrexx.lang.h:8
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:40
 msgid "Options"
 msgstr "Beállítások"
 
-#: ../data/language-specs/netrexx.lang.h:9
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:41
 msgid "Data Types"
 msgstr "Adattípusok"
 
-#: ../data/language-specs/netrexx.lang.h:10
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:42
 msgid "Special"
 msgstr "Speciális"
 
-#: ../data/language-specs/netrexx.lang.h:11
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:43
 msgid "Visibility"
 msgstr "Láthatóság"
 
-#: ../data/language-specs/netrexx.lang.h:12
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:44
 msgid "Modifiers"
 msgstr "Módosítók"
 
-#: ../data/language-specs/netrexx.lang.h:13
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:45
 msgid "Keywords"
 msgstr "Kulcsszavak"
 
-#: ../data/language-specs/netrexx.lang.h:14
+#. (itstool) path: styles/style@_name
+#: netrexx.lang:46
 msgid "Sub Keywords"
 msgstr "Alkulcsszavak"
 
-#: ../data/language-specs/nsis.lang.h:2
+#. (itstool) path: nsis.lang/language@_name
+#: nsis.lang:24
 msgid "NSIS"
 msgstr "NSIS"
 
-#: ../data/language-specs/objc.lang.h:2
+#. (itstool) path: objc.lang/language@_name
+#: objc.lang:24
 msgid "Objective-C"
 msgstr "Objective C"
 
-#: ../data/language-specs/objj.lang.h:2
+#. (itstool) path: objj.lang/language@_name
+#: objj.lang:26
 msgid "Objective-J"
 msgstr "Objective-J"
 
-#: ../data/language-specs/ocaml.lang.h:2
+#. (itstool) path: ocaml.lang/language@_name
+#: ocaml.lang:27
 msgid "OCaml"
 msgstr "OCaml"
 
-#: ../data/language-specs/ocaml.lang.h:4
+#. (itstool) path: styles/style@_name
+#: ocaml.lang:37
 msgid "Ocamldoc Comments"
 msgstr "Ocamldoc megjegyzések"
 
-#: ../data/language-specs/ocaml.lang.h:21
+#. (itstool) path: styles/style@_name
+#: ocaml.lang:54
 msgid "Standard Modules"
 msgstr "Szabványos modulok"
 
-#: ../data/language-specs/ocl.lang.h:2
+#. (itstool) path: ocl.lang/language@_name
+#: ocl.lang:33
 msgid "OCL"
 msgstr "OCL"
 
-#: ../data/language-specs/ocl.lang.h:6
+#. (itstool) path: styles/style@_name
+#: ocl.lang:44
 msgid "Type Operators"
 msgstr "Típusoperátorok"
 
-#: ../data/language-specs/ocl.lang.h:8
+#. (itstool) path: styles/style@_name
+#: ocl.lang:46
 msgid "Operation operator"
 msgstr "Műveletoperátor"
 
-#: ../data/language-specs/octave.lang.h:2
+#. (itstool) path: octave.lang/language@_name
+#: octave.lang:26
 msgid "Octave"
 msgstr "Octave"
 
-#: ../data/language-specs/octave.lang.h:12
+#. (itstool) path: styles/style@_name
+#: octave.lang:47
 msgid "Package Manager"
 msgstr "Csomagkezelő"
 
-#: ../data/language-specs/ooc.lang.h:2
+#. (itstool) path: ooc.lang/language@_name
+#: ooc.lang:24
 msgid "OOC"
 msgstr "OOC"
 
-#: ../data/language-specs/opal.lang.h:2
+#. (itstool) path: opal.lang/language@_name
+#: opal.lang:24
 msgid "Opal"
 msgstr "Opal"
 
-#: ../data/language-specs/opal.lang.h:3
-#: ../data/language-specs/python3.lang.h:3
-#: ../data/language-specs/python.lang.h:3
+#. (itstool) path: styles/style@_name
+#: opal.lang:33 python3.lang:31 python.lang:36
 msgid "Module Handler"
 msgstr "Modulkezelő"
 
-#: ../data/language-specs/opal.lang.h:12
+#. (itstool) path: styles/style@_name
+#: opal.lang:42
 msgid "Keysymbol"
 msgstr "Kulcsszimbólum"
 
-#: ../data/language-specs/opencl.lang.h:2
+#. (itstool) path: opencl.lang/language@_name
+#: opencl.lang:24
 msgid "OpenCL"
 msgstr "OpenCL"
 
-#: ../data/language-specs/opencl.lang.h:5
+#. (itstool) path: styles/style@_name
+#: opencl.lang:35
 msgid "Global Function"
 msgstr "Globális függvény"
 
-#: ../data/language-specs/opencl.lang.h:6
+#. (itstool) path: styles/style@_name
+#: opencl.lang:36
 msgid "Device Function"
 msgstr "Eszközfüggvény"
 
-#: ../data/language-specs/opencl.lang.h:7
+#. (itstool) path: styles/style@_name
+#: opencl.lang:37
 msgid "Device Cast"
 msgstr "Eszközkényszerítés"
 
-#: ../data/language-specs/opencl.lang.h:8
+#. (itstool) path: styles/style@_name
+#: opencl.lang:38
 msgid "OpenCL Constant"
 msgstr "OpenCL állandó"
 
-#: ../data/language-specs/opencl.lang.h:9
+#. (itstool) path: styles/style@_name
+#: opencl.lang:39
 msgid "Global Variable"
 msgstr "Globális változó"
 
-#: ../data/language-specs/pascal.lang.h:2
+#. (itstool) path: pascal.lang/language@_name
+#: pascal.lang:25
 msgid "Pascal"
 msgstr "Pascal"
 
-#: ../data/language-specs/perl.lang.h:2
+#. (itstool) path: perl.lang/language@_name
+#: perl.lang:26
 msgid "Perl"
 msgstr "Perl"
 
-#: ../data/language-specs/perl.lang.h:4
+#. (itstool) path: styles/style@_name
+#: perl.lang:35
 msgid "Line Directive"
 msgstr "Sordirektíva"
 
-#: ../data/language-specs/perl.lang.h:5
+#. (itstool) path: styles/style@_name
+#: perl.lang:36
 msgid "Include Statement"
 msgstr "Include utasítás"
 
-#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:23
+#. (itstool) path: styles/style@_name
+#: perl.lang:40 php.lang:46 ruby.lang:55
 msgid "Heredoc"
 msgstr "Heredoc"
 
-#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:12
-#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
+#. (itstool) path: styles/style@_name
+#: perl.lang:41 php.lang:47 ruby.lang:56 sh.lang:41
 msgid "Heredoc Bound"
 msgstr "Heredoc határ"
 
-#: ../data/language-specs/perl.lang.h:11
+#. (itstool) path: styles/style@_name
+#: perl.lang:42
 msgid "System Command"
 msgstr "Rendszerparancs"
 
-#: ../data/language-specs/perl.lang.h:14
+#. (itstool) path: styles/style@_name
+#: perl.lang:45
 msgid "File Descriptor"
 msgstr "Fájlleíró"
 
-#: ../data/language-specs/perl.lang.h:18
+#. (itstool) path: styles/style@_name
+#: perl.lang:49
 msgid "POD"
 msgstr "POD"
 
-#: ../data/language-specs/perl.lang.h:19
+#. (itstool) path: styles/style@_name
+#: perl.lang:50
 msgid "POD Escape"
 msgstr "POD escape"
 
-#: ../data/language-specs/perl.lang.h:20
+#. (itstool) path: styles/style@_name
+#: perl.lang:51
 msgid "POD keyword"
 msgstr "POD kulcsszó"
 
-#: ../data/language-specs/perl.lang.h:21
+#. (itstool) path: styles/style@_name
+#: perl.lang:52
 msgid "POD heading"
 msgstr "POD fejléc"
 
-#: ../data/language-specs/php.lang.h:2
+#. (itstool) path: php.lang/language@_name
+#: php.lang:29
 msgid "PHP"
 msgstr "PHP"
 
-#: ../data/language-specs/php.lang.h:3
+#. (itstool) path: styles/style@_name
+#: php.lang:39
 msgid "Preprocessor tags"
 msgstr "Előfeldolgozó címkék"
 
-#: ../data/language-specs/php.lang.h:14
+#. (itstool) path: styles/style@_name
+#: php.lang:49
 msgid "Common Function"
 msgstr "Általános függvény"
 
-#: ../data/language-specs/pig.lang.h:2
+#. (itstool) path: pig.lang/language@_name
+#: pig.lang:27
 msgid "Pig"
 msgstr "Pig"
 
-#: ../data/language-specs/pig.lang.h:4
+#. (itstool) path: styles/style@_name
+#: pig.lang:37
 msgid "Reserved Words"
 msgstr "Fenntartott szavak"
 
-#: ../data/language-specs/pig.lang.h:5
+#. (itstool) path: styles/style@_name
+#: pig.lang:38
 msgid "Built In Functions"
 msgstr "Beépített függvények"
 
-#: ../data/language-specs/pig.lang.h:6
+#. (itstool) path: styles/style@_name
+#: pig.lang:39
 msgid "Boolean values"
 msgstr "Logikai értékek"
 
-#: ../data/language-specs/pig.lang.h:7 ../data/language-specs/yaml.lang.h:11
+#. (itstool) path: styles/style@_name
+#: pig.lang:40 yaml.lang:38
 msgid "Null"
 msgstr "Null"
 
-#: ../data/language-specs/pkgconfig.lang.h:2
+#. (itstool) path: pkgconfig.lang/language@_name
+#: pkgconfig.lang:24
 msgid "pkg-config"
 msgstr "pkg-config"
 
-#: ../data/language-specs/pkgconfig.lang.h:4
+#. (itstool) path: styles/style@_name
+#: pkgconfig.lang:32
 msgid "Package Info"
 msgstr "Csomaginformációk"
 
-#: ../data/language-specs/po.lang.h:2
+#. (itstool) path: po.lang/language@_name
+#: po.lang:24
 msgid "gettext translation"
 msgstr "gettext fordítás"
 
-#: ../data/language-specs/po.lang.h:6
+#. (itstool) path: styles/style@_name
+#: po.lang:35
 msgid "Fuzzy"
 msgstr "Ellenőrzendő"
 
-#: ../data/language-specs/prolog.lang.h:2
+#. (itstool) path: prolog.lang/language@_name
+#: prolog.lang:24
 msgid "Prolog"
 msgstr "Prolog"
 
-#: ../data/language-specs/puppet.lang.h:2
+#. (itstool) path: puppet.lang/language@_name
+#: puppet.lang:24
 msgid "Puppet"
 msgstr "Puppet"
 
-#: ../data/language-specs/puppet.lang.h:3
+#. (itstool) path: styles/style@_name
+#: puppet.lang:31
 msgid "Resources"
 msgstr "Erőforrások"
 
-#: ../data/language-specs/puppet.lang.h:4
+#. (itstool) path: styles/style@_name
+#: puppet.lang:32
 msgid "Parameters"
 msgstr "Paraméterek"
 
-#: ../data/language-specs/puppet.lang.h:5
+#. (itstool) path: styles/style@_name
+#: puppet.lang:33
 msgid "Metaparameters"
 msgstr "Metaparaméterek"
 
-#: ../data/language-specs/puppet.lang.h:6 ../data/language-specs/R.lang.h:11
+#. (itstool) path: styles/style@_name
+#: puppet.lang:34 R.lang:42
 msgid "Functions"
 msgstr "Függvények"
 
-#: ../data/language-specs/puppet.lang.h:7
+#. (itstool) path: styles/style@_name
+#: puppet.lang:35
 msgid "Values"
 msgstr "Értékek"
 
-#: ../data/language-specs/puppet.lang.h:8
+#. (itstool) path: styles/style@_name
+#: puppet.lang:36
 msgid "Variables"
 msgstr "Változók"
 
-#: ../data/language-specs/puppet.lang.h:9
+#. (itstool) path: styles/style@_name
+#: puppet.lang:37
 msgid "Class names"
 msgstr "Osztálynevek"
 
-#: ../data/language-specs/python3.lang.h:2
+#. (itstool) path: python3.lang/language@_name
+#: python3.lang:24
 msgid "Python 3"
 msgstr "Python 3"
 
-#: ../data/language-specs/python3.lang.h:8
-#: ../data/language-specs/python.lang.h:8
+#. (itstool) path: styles/style@_name
+#: python3.lang:36 python.lang:41
 msgid "Format"
 msgstr "Formátum"
 
-#: ../data/language-specs/python3.lang.h:16
-#: ../data/language-specs/python.lang.h:17
+#. (itstool) path: styles/style@_name
+#: python3.lang:44 python.lang:50
 msgid "Builtin Object"
 msgstr "Beépített objektum"
 
-#: ../data/language-specs/python.lang.h:2
+#. (itstool) path: python.lang/language@_name
+#: python.lang:28
 msgid "Python"
 msgstr "Python"
 
-#: ../data/language-specs/python.lang.h:9
+#. (itstool) path: styles/style@_name
+#: python.lang:42
 msgid "String Conversion"
 msgstr "Karakterlánc-átalakítás"
 
-#: ../data/language-specs/python.lang.h:20
+#. (itstool) path: styles/style@_name
+#: python.lang:53
 msgid "Class Name"
 msgstr "Osztály neve"
 
-#: ../data/language-specs/python.lang.h:21
+#. (itstool) path: styles/style@_name
+#: python.lang:54
 msgid "Decorator"
 msgstr "Dekorátor"
 
-#: ../data/language-specs/R.lang.h:2
+#. (itstool) path: R.lang/language@_name
+#: R.lang:26
 msgid "R"
 msgstr "R"
 
-#: ../data/language-specs/R.lang.h:4
+#. (itstool) path: styles/style@_name
+#: R.lang:35
 msgid "Reserved Class"
 msgstr "Védett osztály"
 
-#: ../data/language-specs/R.lang.h:5
+#. (itstool) path: styles/style@_name
+#: R.lang:36
 msgid "Assignment Operator"
 msgstr "Hozzárendelő operátorok"
 
-#: ../data/language-specs/R.lang.h:6
+#. (itstool) path: styles/style@_name
+#: R.lang:37
 msgid "Delimiter"
 msgstr "Elválasztó"
 
-#: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:16
+#. (itstool) path: styles/style@_name
+#: R.lang:40 verilog.lang:47
 msgid "Integer Number"
 msgstr "Egész szám"
 
-#: ../data/language-specs/rpmspec.lang.h:2
+#. (itstool) path: rpmspec.lang/language@_name
+#: rpmspec.lang:24
 msgid "RPM spec"
 msgstr "RPM spec"
 
-#: ../data/language-specs/rpmspec.lang.h:3
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:32
 msgid "Define"
 msgstr "Definíció"
 
-#: ../data/language-specs/rpmspec.lang.h:5 ../data/language-specs/t2t.lang.h:7
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:34 t2t.lang:35
 msgid "Section"
 msgstr "Fejezet"
 
-#: ../data/language-specs/rpmspec.lang.h:6
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:35
 msgid "Spec Macro"
 msgstr "Spec makró"
 
-#: ../data/language-specs/rpmspec.lang.h:7
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:36
 msgid "Directory Macro"
 msgstr "Könyvtármakró"
 
-#: ../data/language-specs/rpmspec.lang.h:8
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:37
 msgid "Command Macro"
 msgstr "Parancsmakró"
 
-#: ../data/language-specs/rpmspec.lang.h:9
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:38
 msgid "Conditional Macro"
 msgstr "Feltételes makró"
 
-#: ../data/language-specs/rpmspec.lang.h:10
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:39
 msgid "Other Macro"
 msgstr "Egyéb makró"
 
-#: ../data/language-specs/rpmspec.lang.h:11
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:40
 msgid "Flow Conditional"
 msgstr "Feltételes irányítás"
 
-#: ../data/language-specs/rpmspec.lang.h:12
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:41
 msgid "RPM Variable"
 msgstr "RPM változó"
 
-#: ../data/language-specs/rpmspec.lang.h:13
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:42
 msgid "Switch"
 msgstr "Kapcsoló"
 
-#: ../data/language-specs/rpmspec.lang.h:15
+#. (itstool) path: styles/style@_name
+#: rpmspec.lang:44
 msgid "Email"
 msgstr "E-mail"
 
-#: ../data/language-specs/rst.lang.h:2
+#. (itstool) path: rst.lang/language@_name
+#: rst.lang:23
 msgid "reStructuredText"
 msgstr "reStructuredText"
 
-#: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
+#. (itstool) path: styles/style@_name
+#: rst.lang:35 yaml.lang:37
 msgid "Directive"
 msgstr "Direktíva"
 
-#: ../data/language-specs/ruby.lang.h:2
+#. (itstool) path: ruby.lang/language@_name
+#: ruby.lang:27
 msgid "Ruby"
 msgstr "Ruby"
 
-#: ../data/language-specs/ruby.lang.h:5
+#. (itstool) path: styles/style@_name
+#: ruby.lang:37
 msgid "Attribute Definition"
 msgstr "Attribútumdefiníció"
 
-#: ../data/language-specs/ruby.lang.h:6
+#. (itstool) path: styles/style@_name
+#: ruby.lang:38
 msgid "Module handler"
 msgstr "Modulkezelő"
 
-#: ../data/language-specs/ruby.lang.h:13
+#. (itstool) path: styles/style@_name
+#: ruby.lang:45
 msgid "Numeric literal"
 msgstr "Numerikus literál"
 
-#: ../data/language-specs/ruby.lang.h:15
-#: ../data/language-specs/sparql.lang.h:10
+#. (itstool) path: styles/style@_name
+#: ruby.lang:47 sparql.lang:40
 msgid "Literal"
 msgstr "Literál"
 
-#: ../data/language-specs/rust.lang.h:2
+#. (itstool) path: rust.lang/language@_name
+#: rust.lang:36
 msgid "Rust"
 msgstr "Rust"
 
-#: ../data/language-specs/rust.lang.h:11
+#. (itstool) path: styles/style@_name
+#: rust.lang:53
 msgid "Scope"
 msgstr "Hatókör"
 
-#: ../data/language-specs/scala.lang.h:2
+#. (itstool) path: scala.lang/language@_name
+#: scala.lang:25
 msgid "Scala"
 msgstr "Scala"
 
-#: ../data/language-specs/scala.lang.h:9
+#. (itstool) path: styles/style@_name
+#: scala.lang:42
 msgid "Modifier"
 msgstr "Módosító"
 
-#: ../data/language-specs/scala.lang.h:15
+#. (itstool) path: styles/style@_name
+#: scala.lang:48
 msgid "Built In"
 msgstr "Beépített"
 
-#: ../data/language-specs/scala.lang.h:17
+#. (itstool) path: styles/style@_name
+#: scala.lang:50
 msgid "XML Tag"
 msgstr "XML címke"
 
-#: ../data/language-specs/scheme.lang.h:2
+#. (itstool) path: scheme.lang/language@_name
+#: scheme.lang:24
 msgid "Scheme"
 msgstr "Scheme"
 
-#: ../data/language-specs/scilab.lang.h:2
+#. (itstool) path: scilab.lang/language@_name
+#: scilab.lang:24
 msgid "Scilab"
 msgstr "Scilab"
 
-#: ../data/language-specs/sh.lang.h:2
+#. (itstool) path: sh.lang/language@_name
+#: sh.lang:25
 msgid "sh"
 msgstr "sh"
 
-#. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:9
+#. (itstool) path: styles/style@_name
+#: sh.lang:38
 msgid "Variable Definition"
 msgstr "Változódefiníció"
 
+#. (itstool) path: styles/style@_name
 #. *
 #. * SECTION:language
 #. * @Short_description: Represents a syntax highlighted language
@@ -2630,316 +2757,386 @@ msgstr "Változódefiníció"
 #. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
 #. * to a #GtkSourceBuffer.
 #.
-#: ../data/language-specs/sh.lang.h:10 ../data/language-specs/texinfo.lang.h:5
-#: ../gtksourceview/gtksourcelanguage.c:54
+#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:55
 msgid "Others"
 msgstr "Egyéb"
 
-#: ../data/language-specs/sh.lang.h:11
+#. (itstool) path: styles/style@_name
+#: sh.lang:40
 msgid "Common Commands"
 msgstr "Gyakori parancsok"
 
-#: ../data/language-specs/sh.lang.h:13
+#. (itstool) path: styles/style@_name
+#: sh.lang:42
 msgid "Subshell"
 msgstr "Alparancsértelmező"
 
-#: ../data/language-specs/sml.lang.h:2
+#. (itstool) path: sml.lang/language@_name
+#: sml.lang:24
 msgid "Standard ML"
 msgstr "Szabványos ML"
 
-#: ../data/language-specs/sml.lang.h:13
+#. (itstool) path: styles/style@_name
+#: sml.lang:42
 msgid "Module name, Variant, etc"
 msgstr "Modulnév, változat stb."
 
-#: ../data/language-specs/sparql.lang.h:2
+#. (itstool) path: sparql.lang/language@_name
+#: sparql.lang:24
 msgid "SPARQL"
 msgstr "SPARQL"
 
-#: ../data/language-specs/sparql.lang.h:3
+#. (itstool) path: styles/style@_name
+#: sparql.lang:33
 msgid "Class"
 msgstr "Osztály"
 
-#: ../data/language-specs/sparql.lang.h:6
+#. (itstool) path: styles/style@_name
+#: sparql.lang:36
 msgid "Individual"
 msgstr "Önálló"
 
-#: ../data/language-specs/sparql.lang.h:11
+#. (itstool) path: styles/style@_name
+#: sparql.lang:41
 msgid "Predicate"
 msgstr "Predikátum"
 
-#: ../data/language-specs/sparql.lang.h:12
+#. (itstool) path: styles/style@_name
+#: sparql.lang:42
 msgid "QName"
 msgstr "QName"
 
-#: ../data/language-specs/sparql.lang.h:13
+#. (itstool) path: styles/style@_name
+#: sparql.lang:43
 msgid "IRI"
 msgstr "IRI"
 
-#: ../data/language-specs/sql.lang.h:2
+#. (itstool) path: sql.lang/language@_name
+#: sql.lang:24
 msgid "SQL"
 msgstr "SQL"
 
-#: ../data/language-specs/sql.lang.h:10
+#. (itstool) path: styles/style@_name
+#: sql.lang:39
 msgid "No idea what it is"
 msgstr "Nem tudom mi ez"
 
-#: ../data/language-specs/sweave.lang.h:2
+#. (itstool) path: sweave.lang/language@_name
+#: sweave.lang:25
 msgid "Sweave"
 msgstr "Sweave"
 
-#: ../data/language-specs/systemverilog.lang.h:2
+#. (itstool) path: systemverilog.lang/language@_name
+#: systemverilog.lang:22
 msgid "SystemVerilog"
 msgstr "SystemVerilog"
 
-#: ../data/language-specs/t2t.lang.h:2
+#. (itstool) path: t2t.lang/language@_name
+#: t2t.lang:24
 msgid "txt2tags"
 msgstr "txt2tags"
 
-#: ../data/language-specs/t2t.lang.h:4
+#. (itstool) path: styles/style@_name
+#: t2t.lang:32
 msgid "Option"
 msgstr "Kapcsoló"
 
-#: ../data/language-specs/t2t.lang.h:5
+#. (itstool) path: styles/style@_name
+#: t2t.lang:33
 msgid "Option Name"
 msgstr "Kapcsolónév"
 
-#: ../data/language-specs/t2t.lang.h:8
+#. (itstool) path: styles/style@_name
+#: t2t.lang:36
 msgid "Section 1"
 msgstr "1. szakasz"
 
-#: ../data/language-specs/t2t.lang.h:9
+#. (itstool) path: styles/style@_name
+#: t2t.lang:37
 msgid "Section 2"
 msgstr "2. szakasz"
 
-#: ../data/language-specs/t2t.lang.h:10
+#. (itstool) path: styles/style@_name
+#: t2t.lang:38
 msgid "Section 3"
 msgstr "3. szakasz"
 
-#: ../data/language-specs/t2t.lang.h:11
+#. (itstool) path: styles/style@_name
+#: t2t.lang:39
 msgid "Section 4"
 msgstr "4. szakasz"
 
-#: ../data/language-specs/t2t.lang.h:12
+#. (itstool) path: styles/style@_name
+#: t2t.lang:40
 msgid "Section 5"
 msgstr "5. szakasz"
 
-#: ../data/language-specs/t2t.lang.h:14
+#. (itstool) path: styles/style@_name
+#: t2t.lang:42
 msgid "Italic"
 msgstr "Dőlt"
 
-#: ../data/language-specs/t2t.lang.h:15
+#. (itstool) path: styles/style@_name
+#: t2t.lang:43
 msgid "Bold"
 msgstr "Félkövér"
 
-#: ../data/language-specs/t2t.lang.h:17
+#. (itstool) path: styles/style@_name
+#: t2t.lang:45
 msgid "Verbatim Block"
 msgstr "Változatlan blokk"
 
-#: ../data/language-specs/tcl.lang.h:2
+#. (itstool) path: tcl.lang/language@_name
+#: tcl.lang:24
 msgid "Tcl"
 msgstr "Tcl"
 
-#: ../data/language-specs/texinfo.lang.h:2
+#. (itstool) path: texinfo.lang/language@_name
+#: texinfo.lang:25
 msgid "Texinfo"
 msgstr "Texinfo"
 
-#: ../data/language-specs/texinfo.lang.h:8
+#. (itstool) path: styles/style@_name
+#: texinfo.lang:38
 msgid "Macros"
 msgstr "Makrók"
 
-#: ../data/language-specs/texinfo.lang.h:9
+#. (itstool) path: styles/style@_name
+#: texinfo.lang:39
 msgid "File Attributes"
 msgstr "Fájlattribútumok"
 
-#: ../data/language-specs/texinfo.lang.h:10
+#. (itstool) path: styles/style@_name
+#: texinfo.lang:40
 msgid "Generated Content"
 msgstr "Védett tartalom"
 
-#: ../data/language-specs/thrift.lang.h:2
+#. (itstool) path: thrift.lang/language@_name
+#: thrift.lang:21
 msgid "Thrift"
 msgstr "Thrift"
 
-#: ../data/language-specs/vala.lang.h:2
+#. (itstool) path: vala.lang/language@_name
+#: vala.lang:28
 msgid "Vala"
 msgstr "Vala"
 
-#: ../data/language-specs/vbnet.lang.h:2
+#. (itstool) path: vbnet.lang/language@_name
+#: vbnet.lang:24
 msgid "VB.NET"
 msgstr "VB.NET"
 
-#: ../data/language-specs/verilog.lang.h:2
+#. (itstool) path: verilog.lang/language@_name
+#: verilog.lang:24
 msgid "Verilog"
 msgstr "Verilog"
 
-#: ../data/language-specs/verilog.lang.h:9
+#. (itstool) path: styles/style@_name
+#: verilog.lang:40
 msgid "IEEE System Task"
 msgstr "IEEE rendszerfeladat"
 
-#: ../data/language-specs/verilog.lang.h:10
+#. (itstool) path: styles/style@_name
+#: verilog.lang:41
 msgid "LRM Additional System Task"
 msgstr "LRM további rendszerfeladat"
 
-#: ../data/language-specs/verilog.lang.h:12
+#. (itstool) path: styles/style@_name
+#: verilog.lang:43
 msgid "Gate"
 msgstr "Kapu"
 
-#: ../data/language-specs/vhdl.lang.h:2
+#. (itstool) path: vhdl.lang/language@_name
+#: vhdl.lang:24
 msgid "VHDL"
 msgstr "VHDL"
 
-#: ../data/language-specs/xml.lang.h:2
+#. (itstool) path: xml.lang/language@_name
+#: xml.lang:26
 msgid "XML"
 msgstr "XML"
 
-#: ../data/language-specs/xslt.lang.h:2
+#. (itstool) path: xslt.lang/language@_name
+#: xslt.lang:24
 msgid "XSLT"
 msgstr "XSLT"
 
-#: ../data/language-specs/xslt.lang.h:3
+#. (itstool) path: styles/style@_name
+#: xslt.lang:33
 msgid "Element"
 msgstr "Elem"
 
-#: ../data/language-specs/yacc.lang.h:2
+#. (itstool) path: yacc.lang/language@_name
+#: yacc.lang:24
 msgid "Yacc"
 msgstr "Yacc"
 
-#: ../data/language-specs/yacc.lang.h:5
+#. (itstool) path: styles/style@_name
+#: yacc.lang:36
 msgid "token type"
 msgstr "jelsortípus"
 
-#: ../data/language-specs/yacc.lang.h:6
+#. (itstool) path: styles/style@_name
+#: yacc.lang:37
 msgid "rule"
 msgstr "Szabály"
 
-#: ../data/language-specs/yaml.lang.h:2
+#. (itstool) path: yaml.lang/language@_name
+#: yaml.lang:22
 msgid "YAML"
 msgstr "YAML"
 
-#: ../data/language-specs/yaml.lang.h:3
+#. (itstool) path: styles/style@_name
+#: yaml.lang:30
 msgid "Block literal"
 msgstr "Blokkliterál"
 
-#: ../data/language-specs/yaml.lang.h:8
+#. (itstool) path: styles/style@_name
+#: yaml.lang:35
 msgid "Alias"
 msgstr "Álnév"
 
-#: ../data/language-specs/yaml.lang.h:9
+#. (itstool) path: styles/style@_name
+#: yaml.lang:36
 msgid "Map key"
 msgstr "Leképezéskulcs"
 
-#: ../data/language-specs/yaml.lang.h:13
+#. (itstool) path: styles/style@_name
+#: yaml.lang:40
 msgid "Integer"
 msgstr "Egész szám"
 
-#: ../data/language-specs/yaml.lang.h:14
+#. (itstool) path: styles/style@_name
+#: yaml.lang:41
 msgid "Floating point"
 msgstr "Lebegőpontos"
 
-#: ../data/styles/classic.xml.h:1
+#. (itstool) path: classic.xml/style-scheme@_name
+#: classic.xml:24
 msgid "Classic"
 msgstr "Klasszikus"
 
-#: ../data/styles/classic.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: classic.xml:26
 msgid "Classic color scheme"
 msgstr "Klasszikus színséma"
 
-#: ../data/styles/cobalt.xml.h:1
+#. (itstool) path: cobalt.xml/style-scheme@_name
+#: cobalt.xml:26
 msgid "Cobalt"
 msgstr "Kobalt"
 
-#: ../data/styles/cobalt.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: cobalt.xml:28
 msgid "Blue based color scheme"
 msgstr "Kék alapú színséma"
 
-#: ../data/styles/kate.xml.h:1
+#. (itstool) path: kate.xml/style-scheme@_name
+#: kate.xml:24
 msgid "Kate"
 msgstr "Kate"
 
-#: ../data/styles/kate.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: kate.xml:26
 msgid "Color scheme used in the Kate text editor"
 msgstr "A Kate szövegszerkesztőben használt színséma"
 
-#: ../data/styles/oblivion.xml.h:1
+#. (itstool) path: oblivion.xml/style-scheme@_name
+#: oblivion.xml:25
 msgid "Oblivion"
 msgstr "Oblivion"
 
-#: ../data/styles/oblivion.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: oblivion.xml:28
 msgid "Dark color scheme using the Tango color palette"
 msgstr "A Tango színpalettát használó sötét színséma"
 
-#: ../data/styles/solarized-dark.xml.h:1
+#. (itstool) path: solarized-dark.xml/style-scheme@_name
+#: solarized-dark.xml:24
 msgid "Solarized Dark"
 msgstr "Solarized Dark"
 
-#: ../data/styles/solarized-dark.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: solarized-dark.xml:26
 msgid "Color scheme using Solarized dark color palette"
 msgstr "A Solarized Dark színpalettát használó színséma"
 
-#: ../data/styles/solarized-light.xml.h:1
+#. (itstool) path: solarized-light.xml/style-scheme@_name
+#: solarized-light.xml:24
 msgid "Solarized Light"
 msgstr "Solarized Light"
 
-#: ../data/styles/solarized-light.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: solarized-light.xml:26
 msgid "Color scheme using Solarized light color palette"
 msgstr "A Solarized Light színpalettát használó színséma"
 
-#: ../data/styles/tango.xml.h:1
+#. (itstool) path: tango.xml/style-scheme@_name
+#: tango.xml:24
 msgid "Tango"
 msgstr "Tango"
 
-#: ../data/styles/tango.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: tango.xml:26
 msgid "Color scheme using Tango color palette"
 msgstr "A Tango színpalettát használó színséma"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:328
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
 msgid "Document Words"
 msgstr "Dokumentum szavai"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:838
+#: gtksourceview/gtksourcebufferoutputstream.c:842
 msgid "Invalid byte sequence in conversion input"
 msgstr "Érvénytelen bájtsorrend az átalakítás bemenetében"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:844
+#: gtksourceview/gtksourcebufferoutputstream.c:848
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Hiba az átalakítás során: %s"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:925
+#: gtksourceview/gtksourcebufferoutputstream.c:929
 #, c-format
 msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
 msgstr ""
 "A(z) „%s” és az „UTF-8” karakterkészletek közötti átalakítás nem támogatott"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:931
+#: gtksourceview/gtksourcebufferoutputstream.c:935
 #, c-format
 msgid "Could not open converter from '%s' to 'UTF-8'"
 msgstr ""
 "Nem sikerült a(z) „%s” és az „UTF-8” karakterkészletek közötti átalakító "
 "megnyitása"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:986
+#: gtksourceview/gtksourcebufferoutputstream.c:990
 msgid "Invalid object, not initialized"
 msgstr "Érvénytelen objektum, nincs előkészítve"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:1178
-#, c-format
+#: gtksourceview/gtksourcebufferoutputstream.c:1182
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Befejezetlen UTF-8 sorozat a bemenetben"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:264
+#: gtksourceview/gtksourcecompletioninfo.c:272
 msgid "Completion Info"
 msgstr "Kiegészítési információk"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:491
+#: gtksourceview/gtksourcecompletionmodel.c:495
 msgid "Provider"
 msgstr "Szolgáltató"
+
+#: gtksourceview/gtksourcecompletion.ui:87
+msgid "Show detailed proposal information"
+msgstr "Részletes javaslatinformációk megjelenítése"
+
+#: gtksourceview/gtksourcecompletion.ui:89
+msgid "_Details..."
+msgstr "_Részletek…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3143
+#: gtksourceview/gtksourcecontextengine.c:3145
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -2950,7 +3147,7 @@ msgstr ""
 "szintaxiskiemelési folyamat lassabb lesz a megszokottnál.\n"
 "A hiba: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4466
+#: gtksourceview/gtksourcecontextengine.c:4468
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -2958,19 +3155,19 @@ msgstr ""
 "Egyetlen sor kiemelése túl sokáig tartott, a szintaxiskiemelés letiltásra "
 "kerül"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5714
+#: gtksourceview/gtksourcecontextengine.c:5716
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "A(z) „%s” kontextus nem  tartalmazhat \\%%{...@start} parancsot"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5877
-#: ../gtksourceview/gtksourcecontextengine.c:5968
+#: gtksourceview/gtksourcecontextengine.c:5879
+#: gtksourceview/gtksourcecontextengine.c:5970
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "többszörös kontextusazonosító: „%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6082
-#: ../gtksourceview/gtksourcecontextengine.c:6142
+#: gtksourceview/gtksourcecontextengine.c:6084
+#: gtksourceview/gtksourcecontextengine.c:6144
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -2979,157 +3176,135 @@ msgstr ""
 "a helyettesítő karakteres kontextushivatkozáshoz stílus-felülbírálás került "
 "felhasználásra a(z) „%s” nyelv „%s” hivatkozásában."
 
-#: ../gtksourceview/gtksourcecontextengine.c:6156
+#: gtksourceview/gtksourcecontextengine.c:6158
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "érvénytelen kontextushivatkozás („%s”)"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6175
-#: ../gtksourceview/gtksourcecontextengine.c:6185
+#: gtksourceview/gtksourcecontextengine.c:6177
+#: gtksourceview/gtksourcecontextengine.c:6187
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ismeretlen kontextus: „%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6284
+#: gtksourceview/gtksourcecontextengine.c:6286
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Az elsődleges nyelvmeghatározás hiányzik (azonosító: „%s”.)"
 
-#: ../gtksourceview/gtksourceencoding.c:137
-#: ../gtksourceview/gtksourceencoding.c:180
-#: ../gtksourceview/gtksourceencoding.c:182
-#: ../gtksourceview/gtksourceencoding.c:184
-#: ../gtksourceview/gtksourceencoding.c:186
-#: ../gtksourceview/gtksourceencoding.c:188
-#: ../gtksourceview/gtksourceencoding.c:190
-#: ../gtksourceview/gtksourceencoding.c:192
+#: gtksourceview/gtksourceencoding.c:141 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
+#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
+#: gtksourceview/gtksourceencoding.c:194 gtksourceview/gtksourceencoding.c:196
 msgid "Unicode"
 msgstr "Unicode"
 
-#: ../gtksourceview/gtksourceencoding.c:151
-#: ../gtksourceview/gtksourceencoding.c:175
-#: ../gtksourceview/gtksourceencoding.c:225
-#: ../gtksourceview/gtksourceencoding.c:268
+#: gtksourceview/gtksourceencoding.c:155 gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:229 gtksourceview/gtksourceencoding.c:272
 msgid "Western"
 msgstr "Nyugati"
 
-#: ../gtksourceview/gtksourceencoding.c:153
-#: ../gtksourceview/gtksourceencoding.c:227
-#: ../gtksourceview/gtksourceencoding.c:264
+#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:231
+#: gtksourceview/gtksourceencoding.c:268
 msgid "Central European"
 msgstr "Közép-európai"
 
-#: ../gtksourceview/gtksourceencoding.c:155
+#: gtksourceview/gtksourceencoding.c:159
 msgid "South European"
 msgstr "Dél-európai"
 
-#: ../gtksourceview/gtksourceencoding.c:157
-#: ../gtksourceview/gtksourceencoding.c:171
-#: ../gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:282
 msgid "Baltic"
 msgstr "Balti"
 
-#: ../gtksourceview/gtksourceencoding.c:159
-#: ../gtksourceview/gtksourceencoding.c:229
-#: ../gtksourceview/gtksourceencoding.c:242
-#: ../gtksourceview/gtksourceencoding.c:246
-#: ../gtksourceview/gtksourceencoding.c:248
-#: ../gtksourceview/gtksourceencoding.c:266
+#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:233
+#: gtksourceview/gtksourceencoding.c:246 gtksourceview/gtksourceencoding.c:250
+#: gtksourceview/gtksourceencoding.c:252 gtksourceview/gtksourceencoding.c:270
 msgid "Cyrillic"
 msgstr "Cirill"
 
-#: ../gtksourceview/gtksourceencoding.c:161
-#: ../gtksourceview/gtksourceencoding.c:235
-#: ../gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:239
+#: gtksourceview/gtksourceencoding.c:280
 msgid "Arabic"
 msgstr "Arab"
 
-#: ../gtksourceview/gtksourceencoding.c:163
-#: ../gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:274
 msgid "Greek"
 msgstr "Görög"
 
-#: ../gtksourceview/gtksourceencoding.c:165
+#: gtksourceview/gtksourceencoding.c:169
 msgid "Hebrew Visual"
 msgstr "Héber (vizuális)"
 
-#: ../gtksourceview/gtksourceencoding.c:167
-#: ../gtksourceview/gtksourceencoding.c:231
-#: ../gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:171 gtksourceview/gtksourceencoding.c:235
+#: gtksourceview/gtksourceencoding.c:276
 msgid "Turkish"
 msgstr "Török"
 
-#: ../gtksourceview/gtksourceencoding.c:169
+#: gtksourceview/gtksourceencoding.c:173
 msgid "Nordic"
 msgstr "Északi"
 
-#: ../gtksourceview/gtksourceencoding.c:173
+#: gtksourceview/gtksourceencoding.c:177
 msgid "Celtic"
 msgstr "Kelta"
 
-#: ../gtksourceview/gtksourceencoding.c:177
+#: gtksourceview/gtksourceencoding.c:181
 msgid "Romanian"
 msgstr "Román"
 
-#: ../gtksourceview/gtksourceencoding.c:195
+#: gtksourceview/gtksourceencoding.c:199
 msgid "Armenian"
 msgstr "Örmény"
 
-#: ../gtksourceview/gtksourceencoding.c:197
-#: ../gtksourceview/gtksourceencoding.c:199
-#: ../gtksourceview/gtksourceencoding.c:213
+#: gtksourceview/gtksourceencoding.c:201 gtksourceview/gtksourceencoding.c:203
+#: gtksourceview/gtksourceencoding.c:217
 msgid "Chinese Traditional"
 msgstr "Hagyományos kínai"
 
-#: ../gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:205
 msgid "Cyrillic/Russian"
 msgstr "Cirill/orosz"
 
-#: ../gtksourceview/gtksourceencoding.c:204
-#: ../gtksourceview/gtksourceencoding.c:206
-#: ../gtksourceview/gtksourceencoding.c:208
-#: ../gtksourceview/gtksourceencoding.c:238
-#: ../gtksourceview/gtksourceencoding.c:253
+#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:210
+#: gtksourceview/gtksourceencoding.c:212 gtksourceview/gtksourceencoding.c:242
+#: gtksourceview/gtksourceencoding.c:257
 msgid "Japanese"
 msgstr "Japán"
 
-#: ../gtksourceview/gtksourceencoding.c:211
-#: ../gtksourceview/gtksourceencoding.c:240
-#: ../gtksourceview/gtksourceencoding.c:244
-#: ../gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:244
+#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:263
 msgid "Korean"
 msgstr "Koreai"
 
-#: ../gtksourceview/gtksourceencoding.c:216
-#: ../gtksourceview/gtksourceencoding.c:218
-#: ../gtksourceview/gtksourceencoding.c:220
+#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:222
+#: gtksourceview/gtksourceencoding.c:224
 msgid "Chinese Simplified"
 msgstr "Egyszerűsített kínai"
 
-#: ../gtksourceview/gtksourceencoding.c:222
+#: gtksourceview/gtksourceencoding.c:226
 msgid "Georgian"
 msgstr "Grúz"
 
-#: ../gtksourceview/gtksourceencoding.c:233
-#: ../gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:237 gtksourceview/gtksourceencoding.c:278
 msgid "Hebrew"
 msgstr "Héber"
 
-#: ../gtksourceview/gtksourceencoding.c:250
+#: gtksourceview/gtksourceencoding.c:254
 msgid "Cyrillic/Ukrainian"
 msgstr "Cirill/ukrán"
 
-#: ../gtksourceview/gtksourceencoding.c:255
-#: ../gtksourceview/gtksourceencoding.c:261
-#: ../gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:259 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:284
 msgid "Vietnamese"
 msgstr "Vietnami"
 
-#: ../gtksourceview/gtksourceencoding.c:257
+#: gtksourceview/gtksourceencoding.c:261
 msgid "Thai"
 msgstr "Thai"
 
-#: ../gtksourceview/gtksourceencoding.c:491
+#: gtksourceview/gtksourceencoding.c:495
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -3147,98 +3322,91 @@ msgstr "Ismeretlen"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:650
+#: gtksourceview/gtksourceencoding.c:639
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-2', 'WINDOWS-1250', 'IBM852', 'UTF-16']"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
+#: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
 msgstr "Ismeretlen azonosító (%s) a(z) „%s” reguláris kifejezésben"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1180
+#: gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
 msgid "in regex '%s': backreferences are not supported"
 msgstr "„%s” reguláris kifejezés: a visszahivatkozások nem támogatottak"
 
-#: ../gtksourceview/gtksourcemap.c:1078
-msgid "View"
-msgstr "Nézet"
-
-#: ../gtksourceview/gtksourcemap.c:1079
-msgid "The view this widget is mapping."
-msgstr "Felületi elem által leképezett nézet."
-
-#: ../gtksourceview/gtksourcemap.c:1085
-msgid "Font Description"
-msgstr "Betűkészlet-leírás"
-
-#: ../gtksourceview/gtksourcemap.c:1086
-msgid "The Pango font description to use."
-msgstr "A feliratok megjelenítéséhez használt Pango betűkészlet neve."
-
-#: ../gtksourceview/gtksourceregex.c:125
+#: gtksourceview/gtksourceregex.c:129
 msgid "using \\C is not supported in language definitions"
 msgstr "A \\C használata nem támogatott a nyelvmeghatározásokban"
 
 #. TODO: have a ChooserDialog?
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:182
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
 msgid "Select a Style"
 msgstr "Stílus kiválasztása"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:189
 msgid "_Cancel"
 msgstr "_Mégse"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:187
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:190
 msgid "_Select"
 msgstr "_Kiválasztás"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1548
+#: gtksourceview/gtksourceview.c:1565
 msgid "_Redo"
 msgstr "Új_ra"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1559
+#: gtksourceview/gtksourceview.c:1576
 msgid "_Undo"
 msgstr "_Visszavonás"
 
-#: ../gtksourceview/gtksourceview.c:1577
+#: gtksourceview/gtksourceview.c:1595
 msgid "All _Upper Case"
 msgstr "Mind _nagybetűs"
 
-#: ../gtksourceview/gtksourceview.c:1587
+#: gtksourceview/gtksourceview.c:1605
 msgid "All _Lower Case"
 msgstr "Mind _kisbetűs"
 
-#: ../gtksourceview/gtksourceview.c:1597
+#: gtksourceview/gtksourceview.c:1615
 msgid "_Invert Case"
 msgstr "Kis- és nagybetű _invertálása"
 
-#: ../gtksourceview/gtksourceview.c:1607
+#: gtksourceview/gtksourceview.c:1625
 msgid "_Title Case"
 msgstr "Szó_kezdő"
 
-#: ../gtksourceview/gtksourceview.c:1617
+#: gtksourceview/gtksourceview.c:1635
 msgid "C_hange Case"
 msgstr "Kis- és nagybetű mó_dosítása"
 
-#: ../gtksourceview/gtksourceview-i18n.c:116
+#: gtksourceview/gtksourceview-i18n.c:116
 msgid "translator-credits"
 msgstr ""
 "Dvornik László <dvornik at gnome dot hu>\n"
 "Kelemen Gábor <kelemeng at gnome dot hu>\n"
 "Tímár András <timar at gnome dot hu>"
 
+#~ msgid "Escaped Characters"
+#~ msgstr "Escape-elt karakterek"
+
+#~ msgid "View"
+#~ msgstr "Nézet"
+
+#~ msgid "The view this widget is mapping."
+#~ msgstr "Felületi elem által leképezett nézet."
+
+#~ msgid "Font Description"
+#~ msgstr "Betűkészlet-leírás"
+
+#~ msgid "The Pango font description to use."
+#~ msgstr "A feliratok megjelenítéséhez használt Pango betűkészlet neve."
+
 #~ msgid "GtkSourceView"
 #~ msgstr "GtkSourceView"
-
-#~ msgid "Show detailed proposal information"
-#~ msgstr "Részletes javaslatinformációk megjelenítése"
-
-#~ msgid "_Details..."
-#~ msgstr "_Részletek…"
 
 #~ msgid "Smart Backspace"
 #~ msgstr "Intelligens backspace"
