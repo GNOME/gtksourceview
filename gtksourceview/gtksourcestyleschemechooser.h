@@ -18,8 +18,8 @@
  * along with GtkSourceView. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GTK_SOURCE_STYLE_SCHEME_CHOOSER_H__
-#define __GTK_SOURCE_STYLE_SCHEME_CHOOSER_H__
+#ifndef GTK_SOURCE_STYLE_SCHEME_CHOOSER_H
+#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_H
 
 #include <gtksourceview/gtksourcetypes.h>
 
@@ -59,4 +59,4 @@ void                      gtk_source_style_scheme_chooser_set_style_scheme      
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_STYLE_SCHEME_CHOOSER_H__ */
+#endif /* GTK_SOURCE_STYLE_SCHEME_CHOOSER_H */

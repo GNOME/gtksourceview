@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_GUTTER_RENDERER_PRIVATE_H__
-#define __GTK_SOURCE_GUTTER_RENDERER_PRIVATE_H__
+#ifndef GTK_SOURCE_GUTTER_RENDERER_PRIVATE_H
+#define GTK_SOURCE_GUTTER_RENDERER_PRIVATE_H
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes.h"
@@ -34,4 +34,4 @@ void _gtk_source_gutter_renderer_set_view         (GtkSourceGutterRenderer *rend
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_GUTTER_RENDERER_PRIVATE_H__ */
+#endif /* GTK_SOURCE_GUTTER_RENDERER_PRIVATE_H */

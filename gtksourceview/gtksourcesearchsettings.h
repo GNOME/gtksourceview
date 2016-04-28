@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_SEARCH_SETTINGS_H__
-#define __GTK_SOURCE_SEARCH_SETTINGS_H__
+#ifndef GTK_SOURCE_SEARCH_SETTINGS_H
+#define GTK_SOURCE_SEARCH_SETTINGS_H
 
 #include <glib-object.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -94,4 +94,4 @@ gboolean		 gtk_source_search_settings_get_regex_enabled		(GtkSourceSearchSetting
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_SEARCH_SETTINGS_H__ */
+#endif /* GTK_SOURCE_SEARCH_SETTINGS_H */

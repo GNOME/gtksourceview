@@ -22,8 +22,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_FILE_SAVER_H__
-#define __GTK_SOURCE_FILE_SAVER_H__
+#ifndef GTK_SOURCE_FILE_SAVER_H
+#define GTK_SOURCE_FILE_SAVER_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -161,4 +161,4 @@ gboolean		 gtk_source_file_saver_save_finish	(GtkSourceFileSaver       *saver,
 
 G_END_DECLS
 
-#endif  /* __GTK_SOURCE_FILE_SAVER_H__  */
+#endif  /* GTK_SOURCE_FILE_SAVER_H  */

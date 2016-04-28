@@ -20,8 +20,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_BUFFER_INPUT_STREAM_H__
-#define __GTK_SOURCE_BUFFER_INPUT_STREAM_H__
+#ifndef GTK_SOURCE_BUFFER_INPUT_STREAM_H
+#define GTK_SOURCE_BUFFER_INPUT_STREAM_H
 
 #include <gio/gio.h>
 #include <gtk/gtk.h>
@@ -69,4 +69,4 @@ gsize		 _gtk_source_buffer_input_stream_tell			(GtkSourceBufferInputStream *stre
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_BUFFER_INPUT_STREAM_H__ */
+#endif /* GTK_SOURCE_BUFFER_INPUT_STREAM_H */

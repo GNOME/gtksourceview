@@ -20,8 +20,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_COMPLETION_PROVIDER_H__
-#define __GTK_SOURCE_COMPLETION_PROVIDER_H__
+#ifndef GTK_SOURCE_COMPLETION_PROVIDER_H
+#define GTK_SOURCE_COMPLETION_PROVIDER_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcecompletioncontext.h>
@@ -160,4 +160,4 @@ gint		 gtk_source_completion_provider_get_priority	(GtkSourceCompletionProvider 
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_COMPLETION_PROVIDER_H__ */
+#endif /* GTK_SOURCE_COMPLETION_PROVIDER_H */

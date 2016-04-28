@@ -20,8 +20,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_BUFFER_OUTPUT_STREAM_H__
-#define __GTK_SOURCE_BUFFER_OUTPUT_STREAM_H__
+#ifndef GTK_SOURCE_BUFFER_OUTPUT_STREAM_H
+#define GTK_SOURCE_BUFFER_OUTPUT_STREAM_H
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes.h"
@@ -74,4 +74,4 @@ guint			 gtk_source_buffer_output_stream_get_num_fallbacks
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_BUFFER_OUTPUT_STREAM_H__ */
+#endif /* GTK_SOURCE_BUFFER_OUTPUT_STREAM_H */

@@ -231,9 +231,9 @@ gtksourceview-typebuiltins.h: stamp-gtksourceview-typebuiltins.h
 stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_public_headers)
 	$(AM_V_GEN) (cd $(srcdir) \
 	 && $(GLIB_MKENUMS) \
-			--fhead "#ifndef __GTKSOURCEVIEW_TYPEBUILTINS_H__\n" \
-			--fhead "#define __GTKSOURCEVIEW_TYPEBUILTINS_H__\n\n" \
-			--ftail "#endif /* __GTKSOURCEVIEW_TYPEBUILTINS_H__ */\n" \
+			--fhead "#ifndef GTKSOURCEVIEW_TYPEBUILTINS_H\n" \
+			--fhead "#define GTKSOURCEVIEW_TYPEBUILTINS_H\n\n" \
+			--ftail "#endif /* GTKSOURCEVIEW_TYPEBUILTINS_H */\n" \
 			--fprod "#include <gtksourceview/@filename@>\n" \
 			--eprod "G_BEGIN_DECLS\n" \
 			--eprod "#define GTK_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \

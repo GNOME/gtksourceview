@@ -23,8 +23,8 @@
  * Author: Tom Tromey <tromey@creche.cygnus.com>
  */
 
-#ifndef __GTKSOURCEVIEW_18N_H__
-#define __GTKSOURCEVIEW_18N_H__ 1
+#ifndef GTKSOURCEVIEW_18N_H
+#define GTKSOURCEVIEW_18N_H 1
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -81,4 +81,4 @@ gchar *_gtksourceview_dgettext (const char *domain, const char *msgid) G_GNUC_FO
 
 G_END_DECLS
 
-#endif /* __GTKSOURCEVIEW_I18N_H__ */
+#endif /* GTKSOURCEVIEW_I18N_H */

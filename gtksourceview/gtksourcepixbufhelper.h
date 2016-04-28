@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_PIXBUF_HELPER_H__
-#define __GTK_SOURCE_PIXBUF_HELPER_H__
+#ifndef GTK_SOURCE_PIXBUF_HELPER_H
+#define GTK_SOURCE_PIXBUF_HELPER_H
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes-private.h"
@@ -64,5 +64,5 @@ GdkPixbuf *gtk_source_pixbuf_helper_render (GtkSourcePixbufHelper *helper,
                                             GtkWidget             *widget,
                                             gint                   size);
 
-#endif /* __GTK_SOURCE_PIXBUF_HELPER_H__ */
+#endif /* GTK_SOURCE_PIXBUF_HELPER_H */
 

@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_COMPLETION_PIVATE_H__
-#define __GTK_SOURCE_COMPLETION_PIVATE_H__
+#ifndef GTK_SOURCE_COMPLETION_PIVATE_H
+#define GTK_SOURCE_COMPLETION_PIVATE_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -28,5 +28,5 @@
 G_GNUC_INTERNAL
 GtkSourceCompletion *gtk_source_completion_new (GtkSourceView *source_view);
 
-#endif /* __GTK_SOURCE_COMPLETION_PIVATE_H__ */
+#endif /* GTK_SOURCE_COMPLETION_PIVATE_H */
 

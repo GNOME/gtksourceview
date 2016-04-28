@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_SEARCH_CONTEXT_H__
-#define __GTK_SOURCE_SEARCH_CONTEXT_H__
+#ifndef GTK_SOURCE_SEARCH_CONTEXT_H
+#define GTK_SOURCE_SEARCH_CONTEXT_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -155,4 +155,4 @@ void			 _gtk_source_search_context_update_highlight		(GtkSourceSearchContext	 *s
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_SEARCH_CONTEXT_H__ */
+#endif /* GTK_SOURCE_SEARCH_CONTEXT_H */

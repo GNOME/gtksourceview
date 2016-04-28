@@ -20,8 +20,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_CONTEXT_ENGINE_H__
-#define __GTK_SOURCE_CONTEXT_ENGINE_H__
+#ifndef GTK_SOURCE_CONTEXT_ENGINE_H
+#define GTK_SOURCE_CONTEXT_ENGINE_H
 
 #include "gtksourceengine.h"
 #include "gtksourcetypes.h"
@@ -142,4 +142,4 @@ void			 _gtk_source_context_data_set_escape_char	(GtkSourceContextData	 *data,
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_CONTEXT_ENGINE_H__ */
+#endif /* GTK_SOURCE_CONTEXT_ENGINE_H */

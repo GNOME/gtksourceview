@@ -21,8 +21,8 @@
  * Author: Sébastien Wilmet
  */
 
-#ifndef __GTK_SOURCE_TAG_H__
-#define __GTK_SOURCE_TAG_H__
+#ifndef GTK_SOURCE_TAG_H
+#define GTK_SOURCE_TAG_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -48,4 +48,4 @@ GtkTextTag *	gtk_source_tag_new		(const gchar *name);
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_TAG_H__ */
+#endif /* GTK_SOURCE_TAG_H */

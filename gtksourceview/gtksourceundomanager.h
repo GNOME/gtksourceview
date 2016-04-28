@@ -22,8 +22,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_UNDO_MANAGER_H__
-#define __GTK_SOURCE_UNDO_MANAGER_H__
+#ifndef GTK_SOURCE_UNDO_MANAGER_H
+#define GTK_SOURCE_UNDO_MANAGER_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -85,4 +85,4 @@ void      gtk_source_undo_manager_can_redo_changed          (GtkSourceUndoManage
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_UNDO_MANAGER_H__ */
+#endif /* GTK_SOURCE_UNDO_MANAGER_H */

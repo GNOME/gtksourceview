@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_GUTTER_RENDERER_TEXT_H__
-#define __GTK_SOURCE_GUTTER_RENDERER_TEXT_H__
+#ifndef GTK_SOURCE_GUTTER_RENDERER_TEXT_H
+#define GTK_SOURCE_GUTTER_RENDERER_TEXT_H
 
 #include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcegutterrenderer.h>
@@ -86,4 +86,4 @@ void gtk_source_gutter_renderer_text_measure_markup (GtkSourceGutterRendererText
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_GUTTER_RENDERER_TEXT_H__ */
+#endif /* GTK_SOURCE_GUTTER_RENDERER_TEXT_H */

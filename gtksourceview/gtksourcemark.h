@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTKSOURCEMARK_H__
-#define __GTKSOURCEMARK_H__
+#ifndef GTKSOURCEMARK_H
+#define GTKSOURCEMARK_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -74,4 +74,4 @@ GtkSourceMark	*gtk_source_mark_prev		(GtkSourceMark	*mark,
 
 G_END_DECLS
 
-#endif /* __GTKSOURCEMARK_H__ */
+#endif /* GTKSOURCEMARK_H */

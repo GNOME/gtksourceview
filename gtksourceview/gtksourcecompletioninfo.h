@@ -20,8 +20,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_COMPLETION_INFO_H__
-#define __GTK_SOURCE_COMPLETION_INFO_H__
+#ifndef GTK_SOURCE_COMPLETION_INFO_H
+#define GTK_SOURCE_COMPLETION_INFO_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -78,4 +78,4 @@ void		 _gtk_source_completion_info_set_xoffset	(GtkSourceCompletionInfo *info,
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_COMPLETION_INFO_H__ */
+#endif /* GTK_SOURCE_COMPLETION_INFO_H */

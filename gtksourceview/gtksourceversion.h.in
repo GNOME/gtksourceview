@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_VERSION_H__
-#define __GTK_SOURCE_VERSION_H__
+#ifndef GTK_SOURCE_VERSION_H
+#define GTK_SOURCE_VERSION_H
 
 #include <glib.h>
 
@@ -518,4 +518,4 @@ gboolean	gtk_source_check_version		(guint major,
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_VERSION_H__ */
+#endif /* GTK_SOURCE_VERSION_H */

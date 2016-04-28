@@ -19,8 +19,8 @@
  * along with GtkSourceView. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_H__
-#define __GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_H__
+#ifndef GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_H
+#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -56,4 +56,4 @@ GtkWidget            *gtk_source_style_scheme_chooser_button_new                
 
 G_END_DECLS
 
-#endif /* __GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_H__ */
+#endif /* GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_H */

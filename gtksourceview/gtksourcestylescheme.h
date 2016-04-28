@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifndef __GTK_SOURCE_STYLE_SCHEME_H__
-#define __GTK_SOURCE_STYLE_SCHEME_H__
+#ifndef GTK_SOURCE_STYLE_SCHEME_H
+#define GTK_SOURCE_STYLE_SCHEME_H
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
@@ -114,4 +114,4 @@ gboolean		 _gtk_source_style_scheme_get_background_pattern_color	(GtkSourceStyle
 
 G_END_DECLS
 
-#endif  /* __GTK_SOURCE_STYLE_SCHEME_H__ */
+#endif  /* GTK_SOURCE_STYLE_SCHEME_H */
