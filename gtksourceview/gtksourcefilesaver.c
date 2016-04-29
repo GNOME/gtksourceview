@@ -1320,6 +1320,7 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
 	gboolean implicit_trailing_newline;
 
 	g_return_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver));
+	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
 	g_return_if_fail (saver->priv->task == NULL);
 
 	if (saver->priv->source_buffer == NULL ||

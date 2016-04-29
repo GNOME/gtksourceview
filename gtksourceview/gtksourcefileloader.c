@@ -1026,6 +1026,7 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 	gboolean implicit_trailing_newline;
 
 	g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader));
+	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
 	g_return_if_fail (loader->priv->task == NULL);
 
 	if (loader->priv->source_buffer == NULL ||
