@@ -918,6 +918,9 @@ gtk_source_file_loader_set_candidate_encodings (GtkSourceFileLoader *loader,
 {
 	GSList *list;
 
+	g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader));
+	g_return_if_fail (loader->priv->task == NULL);
+
 	list = g_slist_copy (candidate_encodings);
 	list = _gtk_source_encoding_remove_duplicates (list, GTK_SOURCE_ENCODING_DUPLICATES_KEEP_FIRST);
 
