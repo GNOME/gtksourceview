@@ -257,6 +257,9 @@ Configuration:
 	Compiler:		${CC}
 	Completion Providers:	${enable_providers}
 	Glade Catalog:		${glade_catalog}
+	Documentation:		${enable_gtk_doc}
 	GObject introspection:	${found_introspection}
 	Vala:			${enable_vala}
+	Code coverage:		${enable_code_coverage}
+	Installed tests:	${enable_installed_tests}
 "
