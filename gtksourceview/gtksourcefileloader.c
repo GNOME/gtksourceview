@@ -505,8 +505,8 @@ close_input_stream_cb (GObject      *source_object,
 		g_task_return_new_error (task,
 					 GTK_SOURCE_FILE_LOADER_ERROR,
 					 GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK,
-					 "There was an encoding conversion error and it was "
-					 "needed to use a fallback character");
+					 _("There was a character encoding conversion error "
+					   "and it was needed to use a fallback character."));
 		return;
 	}
 
@@ -612,7 +612,7 @@ read_cb (GObject      *source_object,
 		g_task_return_new_error (task,
 					 GTK_SOURCE_FILE_LOADER_ERROR,
 					 GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
-					 "File too big");
+					 _("File too big."));
 		return;
 	}
 
@@ -766,7 +766,7 @@ query_info_cb (GObject      *source_object,
 		g_task_return_new_error (task,
 					 G_IO_ERROR,
 					 G_IO_ERROR_NOT_REGULAR_FILE,
-					 "Not a regular file");
+					 _("Not a regular file."));
 		return;
 	}
 
