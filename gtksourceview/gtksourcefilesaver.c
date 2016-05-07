@@ -1323,13 +1323,6 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
 	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
 	g_return_if_fail (saver->priv->task == NULL);
 
-	if (saver->priv->source_buffer == NULL ||
-	    saver->priv->file == NULL ||
-	    saver->priv->location == NULL)
-	{
-		return;
-	}
-
 	reset (saver);
 
 	saver->priv->task = g_task_new (saver, cancellable, callback, user_data);
@@ -1338,6 +1331,14 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
 	saver->priv->progress_cb = progress_callback;
 	saver->priv->progress_cb_data = progress_callback_data;
 	saver->priv->progress_cb_notify = progress_callback_notify;
+
+	if (saver->priv->source_buffer == NULL ||
+	    saver->priv->file == NULL ||
+	    saver->priv->location == NULL)
+	{
+		g_task_return_boolean (saver->priv->task, FALSE);
+		return;
+	}
 
 	check_invalid_chars = (saver->priv->flags & GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS) == 0;
 
