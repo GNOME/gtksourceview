@@ -5,7 +5,7 @@
  * Copyright (C) 2005 - Paolo Maggi
  * Copyright (C) 2007 - Paolo Maggi, Steve Frécinaux
  * Copyright (C) 2008 - Jesse van den Kieboom
- * Copyright (C) 2014 - Sébastien Wilmet
+ * Copyright (C) 2014, 2016 - Sébastien Wilmet
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -99,37 +99,42 @@ struct _GtkSourceFileLoaderPrivate
 
 	GFile *location;
 
-	/* The value of the "input-stream" property. */
+	/* The value of the :input-stream property. Do not confuse with the
+	 * input_stream field in TaskData.
+	 */
 	GInputStream *input_stream_property;
 
 	GSList *candidate_encodings;
 
-	GFileInfo *info;
 	const GtkSourceEncoding *auto_detected_encoding;
 	GtkSourceNewlineType auto_detected_newline_type;
 	GtkSourceCompressionType auto_detected_compression_type;
 
 	GTask *task;
+};
 
-	goffset total_bytes_read;
-	goffset total_size;
-	GFileProgressCallback progress_cb;
-	gpointer progress_cb_data;
-	GDestroyNotify progress_cb_notify;
-
-	/* Warning: type instances' private data are limited to a total of 64 KiB.
-	 * See the GType documentation.
-	 */
-	gchar chunk_buffer[READ_CHUNK_SIZE];
-	gssize chunk_bytes_read;
-
-	/* The two streams cannot be spliced directly, because
-	 * (1) we need to call the progress callback
-	 * (2) sync methods must be used for the output stream, and async
+typedef struct _TaskData TaskData;
+struct _TaskData
+{
+	/* The two streams cannot be spliced directly, because:
+	 * (1) We need to call the progress callback.
+	 * (2) Sync methods must be used for the output stream, and async
 	 *     methods for the input stream.
 	 */
 	GInputStream *input_stream;
 	GtkSourceBufferOutputStream *output_stream;
+
+	GFileInfo *info;
+
+	GFileProgressCallback progress_cb;
+	gpointer progress_cb_data;
+	GDestroyNotify progress_cb_notify;
+
+	goffset total_bytes_read;
+	goffset total_size;
+
+	gssize chunk_bytes_read;
+	gchar chunk_buffer[READ_CHUNK_SIZE];
 
 	guint guess_content_type_from_content : 1;
 	guint tried_mount : 1;
@@ -137,8 +142,36 @@ struct _GtkSourceFileLoaderPrivate
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceFileLoader, gtk_source_file_loader, G_TYPE_OBJECT)
 
-static void open_file (GtkSourceFileLoader *loader);
-static void read_file_chunk (GtkSourceFileLoader *loader);
+static void open_file (GTask *task);
+static void read_file_chunk (GTask *task);
+
+static TaskData *
+task_data_new (void)
+{
+	return g_new0 (TaskData, 1);
+}
+
+static void
+task_data_free (gpointer data)
+{
+	TaskData *task_data = data;
+
+	if (task_data == NULL)
+	{
+		return;
+	}
+
+	g_clear_object (&task_data->input_stream);
+	g_clear_object (&task_data->output_stream);
+	g_clear_object (&task_data->info);
+
+	if (task_data->progress_cb_notify != NULL)
+	{
+		task_data->progress_cb_notify (task_data->progress_cb_data);
+	}
+
+	g_free (task_data);
+}
 
 static GtkSourceCompressionType
 get_compression_type_from_content_type (const gchar *content_type)
@@ -229,29 +262,9 @@ gtk_source_file_loader_get_property (GObject    *object,
 }
 
 static void
-reset (GtkSourceFileLoader *loader)
-{
-	g_clear_object (&loader->priv->task);
-	g_clear_object (&loader->priv->input_stream);
-	g_clear_object (&loader->priv->output_stream);
-	g_clear_object (&loader->priv->info);
-
-	if (loader->priv->progress_cb_notify != NULL)
-	{
-		loader->priv->progress_cb_notify (loader->priv->progress_cb_data);
-		loader->priv->progress_cb_notify = NULL;
-	}
-
-	loader->priv->progress_cb = NULL;
-	loader->priv->progress_cb_data = NULL;
-}
-
-static void
 gtk_source_file_loader_dispose (GObject *object)
 {
 	GtkSourceFileLoader *loader = GTK_SOURCE_FILE_LOADER (object);
-
-	reset (loader);
 
 	if (loader->priv->source_buffer != NULL)
 	{
@@ -271,6 +284,7 @@ gtk_source_file_loader_dispose (GObject *object)
 
 	g_clear_object (&loader->priv->location);
 	g_clear_object (&loader->priv->input_stream_property);
+	g_clear_object (&loader->priv->task);
 
 	g_slist_free (loader->priv->candidate_encodings);
 	loader->priv->candidate_encodings = NULL;
@@ -442,15 +456,20 @@ gtk_source_file_loader_init (GtkSourceFileLoader *loader)
 }
 
 static void
-close_input_stream_cb (GInputStream        *input_stream,
-		       GAsyncResult        *result,
-		       GtkSourceFileLoader *loader)
+close_input_stream_cb (GObject      *source_object,
+		       GAsyncResult *result,
+		       gpointer      user_data)
 {
+	GInputStream *input_stream = G_INPUT_STREAM (source_object);
+	GTask *task = G_TASK (user_data);
+	TaskData *task_data;
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
+
+	task_data = g_task_get_task_data (task);
 
 	g_input_stream_close_finish (input_stream, result, &error);
 
@@ -460,7 +479,7 @@ close_input_stream_cb (GInputStream        *input_stream,
 		       g_print ("Closing input stream error: %s\n", error->message);
 		});
 
-		g_task_return_error (loader->priv->task, error);
+		g_task_return_error (task, error);
 		return;
 	}
 
@@ -468,22 +487,22 @@ close_input_stream_cb (GInputStream        *input_stream,
 	       g_print ("Close output stream\n");
 	});
 
-	g_output_stream_close (G_OUTPUT_STREAM (loader->priv->output_stream),
-			       g_task_get_cancellable (loader->priv->task),
+	g_output_stream_close (G_OUTPUT_STREAM (task_data->output_stream),
+			       g_task_get_cancellable (task),
 			       &error);
 
 	if (error != NULL)
 	{
-		g_task_return_error (loader->priv->task, error);
+		g_task_return_error (task, error);
 		return;
 	}
 
 	/* Check if we needed some fallback char, if so, check if there was a
 	 * previous error and if not set a fallback used error.
 	 */
-	if (gtk_source_buffer_output_stream_get_num_fallbacks (loader->priv->output_stream) > 0)
+	if (gtk_source_buffer_output_stream_get_num_fallbacks (task_data->output_stream) > 0)
 	{
-		g_task_return_new_error (loader->priv->task,
+		g_task_return_new_error (task,
 					 GTK_SOURCE_FILE_LOADER_ERROR,
 					 GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK,
 					 "There was an encoding conversion error and it was "
@@ -491,25 +510,32 @@ close_input_stream_cb (GInputStream        *input_stream,
 		return;
 	}
 
-	g_task_return_boolean (loader->priv->task, TRUE);
+	g_task_return_boolean (task, TRUE);
 }
 
 static void
-write_complete (GtkSourceFileLoader *loader)
+write_complete (GTask *task)
 {
-	g_input_stream_close_async (loader->priv->input_stream,
-				    g_task_get_priority (loader->priv->task),
-				    g_task_get_cancellable (loader->priv->task),
-				    (GAsyncReadyCallback) close_input_stream_cb,
-				    loader);
+	TaskData *task_data;
+
+	task_data = g_task_get_task_data (task);
+
+	g_input_stream_close_async (task_data->input_stream,
+				    g_task_get_priority (task),
+				    g_task_get_cancellable (task),
+				    close_input_stream_cb,
+				    task);
 }
 
 static void
-write_file_chunk (GtkSourceFileLoader *loader)
+write_file_chunk (GTask *task)
 {
+	TaskData *task_data;
 	gssize chunk_bytes_written = 0;
 
-	while (chunk_bytes_written < loader->priv->chunk_bytes_read)
+	task_data = g_task_get_task_data (task);
+
+	while (chunk_bytes_written < task_data->chunk_bytes_read)
 	{
 		gssize bytes_written;
 		GError *error = NULL;
@@ -517,10 +543,10 @@ write_file_chunk (GtkSourceFileLoader *loader)
 		/* We use sync methods on the buffer stream since it is in memory. Using
 		 * async would be racy and we can end up with invalidated iters.
 		 */
-		bytes_written = g_output_stream_write (G_OUTPUT_STREAM (loader->priv->output_stream),
-						       loader->priv->chunk_buffer + chunk_bytes_written,
-						       loader->priv->chunk_bytes_read - chunk_bytes_written,
-						       g_task_get_cancellable (loader->priv->task),
+		bytes_written = g_output_stream_write (G_OUTPUT_STREAM (task_data->output_stream),
+						       task_data->chunk_buffer + chunk_bytes_written,
+						       task_data->chunk_bytes_read - chunk_bytes_written,
+						       g_task_get_cancellable (task),
 						       &error);
 
 		DEBUG ({
@@ -533,7 +559,7 @@ write_file_chunk (GtkSourceFileLoader *loader)
 			       g_print ("Write error: %s\n", error->message);
 			});
 
-			g_task_return_error (loader->priv->task, error);
+			g_task_return_error (task, error);
 			return;
 		}
 
@@ -543,59 +569,67 @@ write_file_chunk (GtkSourceFileLoader *loader)
 	/* FIXME: note that calling the progress callback blocks the read...
 	 * Check if it isn't a performance problem.
 	 */
-	if (loader->priv->progress_cb != NULL && loader->priv->total_size > 0)
+	if (task_data->progress_cb != NULL &&
+	    task_data->total_size > 0)
 	{
-		loader->priv->progress_cb (loader->priv->total_bytes_read,
-					   loader->priv->total_size,
-					   loader->priv->progress_cb_data);
+		task_data->progress_cb (task_data->total_bytes_read,
+					task_data->total_size,
+					task_data->progress_cb_data);
 	}
 
-	read_file_chunk (loader);
+	read_file_chunk (task);
 }
 
 static void
-read_cb (GInputStream        *input_stream,
-	 GAsyncResult        *result,
-	 GtkSourceFileLoader *loader)
+read_cb (GObject      *source_object,
+	 GAsyncResult *result,
+	 gpointer      user_data)
 {
+	GInputStream *input_stream = G_INPUT_STREAM (source_object);
+	GTask *task = G_TASK (user_data);
+	GtkSourceFileLoader *loader;
+	TaskData *task_data;
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	loader->priv->chunk_bytes_read = g_input_stream_read_finish (input_stream, result, &error);
+	loader = g_task_get_source_object (task);
+	task_data = g_task_get_task_data (task);
+
+	task_data->chunk_bytes_read = g_input_stream_read_finish (input_stream, result, &error);
 
 	if (error != NULL)
 	{
-		g_task_return_error (loader->priv->task, error);
+		g_task_return_error (task, error);
 		return;
 	}
 
 	/* Check for the extremely unlikely case where the file size overflows. */
-	if (loader->priv->total_bytes_read + loader->priv->chunk_bytes_read < loader->priv->total_bytes_read)
+	if (task_data->total_bytes_read + task_data->chunk_bytes_read < task_data->total_bytes_read)
 	{
-		g_task_return_new_error (loader->priv->task,
+		g_task_return_new_error (task,
 					 GTK_SOURCE_FILE_LOADER_ERROR,
 					 GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
 					 "File too big");
 		return;
 	}
 
-	if (loader->priv->guess_content_type_from_content &&
-	    loader->priv->chunk_bytes_read > 0 &&
-	    loader->priv->total_bytes_read == 0)
+	if (task_data->guess_content_type_from_content &&
+	    task_data->chunk_bytes_read > 0 &&
+	    task_data->total_bytes_read == 0)
 	{
 		gchar *guessed;
 
 		guessed = g_content_type_guess (NULL,
-		                                (guchar *)loader->priv->chunk_buffer,
-		                                loader->priv->chunk_bytes_read,
+		                                (guchar *)task_data->chunk_buffer,
+		                                task_data->chunk_bytes_read,
 		                                NULL);
 
 		if (guessed != NULL)
 		{
-			g_file_info_set_attribute_string (loader->priv->info,
+			g_file_info_set_attribute_string (task_data->info,
 			                                  G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
 			                                  guessed);
 
@@ -603,74 +637,86 @@ read_cb (GInputStream        *input_stream,
 		}
 	}
 
-	/* Bump the size. */
-	loader->priv->total_bytes_read += loader->priv->chunk_bytes_read;
-
 	/* End of the file, we are done! */
-	if (loader->priv->chunk_bytes_read == 0)
+	if (task_data->chunk_bytes_read == 0)
 	{
 		/* Flush the stream to ensure proper line ending detection. */
-		g_output_stream_flush (G_OUTPUT_STREAM (loader->priv->output_stream), NULL, NULL);
+		g_output_stream_flush (G_OUTPUT_STREAM (task_data->output_stream), NULL, NULL);
 
 		loader->priv->auto_detected_encoding =
-			gtk_source_buffer_output_stream_get_guessed (loader->priv->output_stream);
+			gtk_source_buffer_output_stream_get_guessed (task_data->output_stream);
 
 		loader->priv->auto_detected_newline_type =
-			gtk_source_buffer_output_stream_detect_newline_type (loader->priv->output_stream);
+			gtk_source_buffer_output_stream_detect_newline_type (task_data->output_stream);
 
-		write_complete (loader);
+		write_complete (task);
 		return;
 	}
 
-	write_file_chunk (loader);
+	task_data->total_bytes_read += task_data->chunk_bytes_read;
+
+	write_file_chunk (task);
 }
 
 static void
-read_file_chunk (GtkSourceFileLoader *loader)
+read_file_chunk (GTask *task)
 {
-	g_input_stream_read_async (loader->priv->input_stream,
-				   loader->priv->chunk_buffer,
+	TaskData *task_data;
+
+	task_data = g_task_get_task_data (task);
+
+	g_input_stream_read_async (task_data->input_stream,
+				   task_data->chunk_buffer,
 				   READ_CHUNK_SIZE,
-				   g_task_get_priority (loader->priv->task),
-				   g_task_get_cancellable (loader->priv->task),
-				   (GAsyncReadyCallback) read_cb,
-				   loader);
+				   g_task_get_priority (task),
+				   g_task_get_cancellable (task),
+				   read_cb,
+				   task);
 }
 
 static void
-add_gzip_decompressor_stream (GtkSourceFileLoader *loader)
+add_gzip_decompressor_stream (GTask *task)
 {
+	TaskData *task_data;
 	GZlibDecompressor *decompressor;
 	GInputStream *new_input_stream;
 
+	task_data = g_task_get_task_data (task);
+
 	decompressor = g_zlib_decompressor_new (G_ZLIB_COMPRESSOR_FORMAT_GZIP);
 
-	new_input_stream = g_converter_input_stream_new (loader->priv->input_stream,
+	new_input_stream = g_converter_input_stream_new (task_data->input_stream,
 							 G_CONVERTER (decompressor));
 
-	g_object_unref (loader->priv->input_stream);
+	g_object_unref (task_data->input_stream);
 	g_object_unref (decompressor);
 
-	loader->priv->input_stream = new_input_stream;
+	task_data->input_stream = new_input_stream;
 }
 
 static void
-create_input_stream (GtkSourceFileLoader *loader)
+create_input_stream (GTask *task)
 {
+	GtkSourceFileLoader *loader;
+	TaskData *task_data;
+
+	loader = g_task_get_source_object (task);
+	task_data = g_task_get_task_data (task);
+
 	loader->priv->auto_detected_compression_type = GTK_SOURCE_COMPRESSION_TYPE_NONE;
 
 	if (loader->priv->input_stream_property != NULL)
 	{
-		loader->priv->input_stream = g_object_ref (loader->priv->input_stream_property);
+		task_data->input_stream = g_object_ref (loader->priv->input_stream_property);
 	}
-	else if (g_file_info_has_attribute (loader->priv->info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE))
+	else if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE))
 	{
-		const gchar *content_type = g_file_info_get_content_type (loader->priv->info);
+		const gchar *content_type = g_file_info_get_content_type (task_data->info);
 
 		switch (get_compression_type_from_content_type (content_type))
 		{
 			case GTK_SOURCE_COMPRESSION_TYPE_GZIP:
-				add_gzip_decompressor_stream (loader);
+				add_gzip_decompressor_stream (task);
 				loader->priv->auto_detected_compression_type = GTK_SOURCE_COMPRESSION_TYPE_GZIP;
 				break;
 
@@ -683,78 +729,91 @@ create_input_stream (GtkSourceFileLoader *loader)
 		}
 	}
 
-	g_return_if_fail (loader->priv->input_stream != NULL);
+	g_return_if_fail (task_data->input_stream != NULL);
 
 	/* start reading */
-	read_file_chunk (loader);
+	read_file_chunk (task);
 }
 
 static void
-query_info_cb (GFile               *file,
-	       GAsyncResult        *result,
-	       GtkSourceFileLoader *loader)
+query_info_cb (GObject      *source_object,
+	       GAsyncResult *result,
+	       gpointer      user_data)
 {
+	GFile *location = G_FILE (source_object);
+	GTask *task = G_TASK (user_data);
+	TaskData *task_data;
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	loader->priv->info = g_file_query_info_finish (file, result, &error);
+	task_data = g_task_get_task_data (task);
+
+	g_clear_object (&task_data->info);
+	task_data->info = g_file_query_info_finish (location, result, &error);
 
 	if (error != NULL)
 	{
-		g_task_return_error (loader->priv->task, error);
+		g_task_return_error (task, error);
 		return;
 	}
 
-	if (g_file_info_has_attribute (loader->priv->info, G_FILE_ATTRIBUTE_STANDARD_TYPE) &&
-	    g_file_info_get_file_type (loader->priv->info) != G_FILE_TYPE_REGULAR)
+	if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_STANDARD_TYPE) &&
+	    g_file_info_get_file_type (task_data->info) != G_FILE_TYPE_REGULAR)
 	{
-		g_task_return_new_error (loader->priv->task,
+		g_task_return_new_error (task,
 					 G_IO_ERROR,
 					 G_IO_ERROR_NOT_REGULAR_FILE,
 					 "Not a regular file");
 		return;
 	}
 
-	if (g_file_info_has_attribute (loader->priv->info, G_FILE_ATTRIBUTE_STANDARD_SIZE))
+	if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_STANDARD_SIZE))
 	{
-		loader->priv->total_size = g_file_info_get_attribute_uint64 (loader->priv->info,
-									     G_FILE_ATTRIBUTE_STANDARD_SIZE);
+		task_data->total_size = g_file_info_get_attribute_uint64 (task_data->info,
+									  G_FILE_ATTRIBUTE_STANDARD_SIZE);
 	}
 
-	create_input_stream (loader);
+	create_input_stream (task);
 }
 
 static void
-mount_cb (GFile               *file,
-	  GAsyncResult        *result,
-	  GtkSourceFileLoader *loader)
+mount_cb (GObject      *source_object,
+	  GAsyncResult *result,
+	  gpointer      user_data)
 {
+	GFile *location = G_FILE (source_object);
+	GTask *task = G_TASK (user_data);
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	g_file_mount_enclosing_volume_finish (file, result, &error);
+	g_file_mount_enclosing_volume_finish (location, result, &error);
 
 	if (error != NULL)
 	{
-		g_task_return_error (loader->priv->task, error);
+		g_task_return_error (task, error);
 	}
 	else
 	{
 		/* Try again to open the file for reading. */
-		open_file (loader);
+		open_file (task);
 	}
 }
 
 static void
-recover_not_mounted (GtkSourceFileLoader *loader)
+recover_not_mounted (GTask *task)
 {
+	GtkSourceFileLoader *loader;
+	TaskData *task_data;
 	GMountOperation *mount_operation;
+
+	loader = g_task_get_source_object (task);
+	task_data = g_task_get_task_data (task);
 
 	mount_operation = _gtk_source_file_create_mount_operation (loader->priv->file);
 
@@ -762,41 +821,48 @@ recover_not_mounted (GtkSourceFileLoader *loader)
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	loader->priv->tried_mount = TRUE;
+	task_data->tried_mount = TRUE;
 
 	g_file_mount_enclosing_volume (loader->priv->location,
 				       G_MOUNT_MOUNT_NONE,
 				       mount_operation,
-				       g_task_get_cancellable (loader->priv->task),
-				       (GAsyncReadyCallback) mount_cb,
-				       loader);
+				       g_task_get_cancellable (task),
+				       mount_cb,
+				       task);
 
 	g_object_unref (mount_operation);
 }
 
 static void
-open_file_cb (GFile               *file,
-	      GAsyncResult        *result,
-	      GtkSourceFileLoader *loader)
+open_file_cb (GObject      *source_object,
+	      GAsyncResult *result,
+	      gpointer      user_data)
 {
+	GFile *location = G_FILE (source_object);
+	GTask *task = G_TASK (user_data);
+	TaskData *task_data;
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	loader->priv->input_stream = G_INPUT_STREAM (g_file_read_finish (file, result, &error));
+	task_data = g_task_get_task_data (task);
+
+	g_clear_object (&task_data->input_stream);
+	task_data->input_stream = G_INPUT_STREAM (g_file_read_finish (location, result, &error));
 
 	if (error != NULL)
 	{
-		if (error->code == G_IO_ERROR_NOT_MOUNTED && !loader->priv->tried_mount)
+		if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_MOUNTED) &&
+		    !task_data->tried_mount)
 		{
-			recover_not_mounted (loader);
+			recover_not_mounted (task);
 			g_error_free (error);
 			return;
 		}
 
-		g_task_return_error (loader->priv->task, error);
+		g_task_return_error (task, error);
 		return;
 	}
 
@@ -806,23 +872,27 @@ open_file_cb (GFile               *file,
 	 * Using the file instead of the stream is slightly racy, but for
 	 * loading this is not too bad...
 	 */
-	g_file_query_info_async (file,
+	g_file_query_info_async (location,
 				 LOADER_QUERY_ATTRIBUTES,
                                  G_FILE_QUERY_INFO_NONE,
-				 g_task_get_priority (loader->priv->task),
-				 g_task_get_cancellable (loader->priv->task),
-				 (GAsyncReadyCallback) query_info_cb,
-				 loader);
+				 g_task_get_priority (task),
+				 g_task_get_cancellable (task),
+				 query_info_cb,
+				 task);
 }
 
 static void
-open_file (GtkSourceFileLoader *loader)
+open_file (GTask *task)
 {
+	GtkSourceFileLoader *loader;
+
+	loader = g_task_get_source_object (task);
+
 	g_file_read_async (loader->priv->location,
-	                   g_task_get_priority (loader->priv->task),
-			   g_task_get_cancellable (loader->priv->task),
-	                   (GAsyncReadyCallback) open_file_cb,
-	                   loader);
+	                   g_task_get_priority (task),
+			   g_task_get_cancellable (task),
+	                   open_file_cb,
+	                   task);
 }
 
 GQuark
@@ -1026,20 +1096,22 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 				   GAsyncReadyCallback    callback,
 				   gpointer               user_data)
 {
+	TaskData *task_data;
 	gboolean implicit_trailing_newline;
 
 	g_return_if_fail (GTK_SOURCE_IS_FILE_LOADER (loader));
 	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
 	g_return_if_fail (loader->priv->task == NULL);
 
-	reset (loader);
-
 	loader->priv->task = g_task_new (loader, cancellable, callback, user_data);
 	g_task_set_priority (loader->priv->task, io_priority);
 
-	loader->priv->progress_cb = progress_callback;
-	loader->priv->progress_cb_data = progress_callback_data;
-	loader->priv->progress_cb_notify = progress_callback_notify;
+	task_data = task_data_new ();
+	g_task_set_task_data (loader->priv->task, task_data, task_data_free);
+
+	task_data->progress_cb = progress_callback;
+	task_data->progress_cb_data = progress_callback_data;
+	task_data->progress_cb_notify = progress_callback_notify;
 
 	if (loader->priv->source_buffer == NULL ||
 	    loader->priv->file == NULL ||
@@ -1076,20 +1148,20 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
          * We create the BufferOutputStream here so we are sure that the
          * buffer will not be destroyed during the file loading.
          */
-	loader->priv->output_stream = gtk_source_buffer_output_stream_new (loader->priv->source_buffer,
-									   loader->priv->candidate_encodings,
-									   implicit_trailing_newline);
+	task_data->output_stream = gtk_source_buffer_output_stream_new (loader->priv->source_buffer,
+									loader->priv->candidate_encodings,
+									implicit_trailing_newline);
 
 	if (loader->priv->input_stream_property != NULL)
 	{
-		loader->priv->guess_content_type_from_content = TRUE;
-		loader->priv->info = g_file_info_new ();
+		task_data->guess_content_type_from_content = TRUE;
+		task_data->info = g_file_info_new ();
 
-		create_input_stream (loader);
+		create_input_stream (loader->priv->task);
 	}
 	else
 	{
-		open_file (loader);
+		open_file (loader->priv->task);
 	}
 }
 
@@ -1142,6 +1214,10 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 
 	if (update_file_properties && loader->priv->file != NULL)
 	{
+		TaskData *task_data;
+
+		task_data = g_task_get_task_data (G_TASK (result));
+
 		/* The location is already updated at the beginning of the
 		 * operation.
 		 */
@@ -1158,18 +1234,19 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 		_gtk_source_file_set_externally_modified (loader->priv->file, FALSE);
 		_gtk_source_file_set_deleted (loader->priv->file, FALSE);
 
-		if (g_file_info_has_attribute (loader->priv->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
+		if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 		{
 			GTimeVal modification_time;
-			g_file_info_get_modification_time (loader->priv->info, &modification_time);
+
+			g_file_info_get_modification_time (task_data->info, &modification_time);
 			_gtk_source_file_set_modification_time (loader->priv->file, modification_time);
 		}
 
-		if (g_file_info_has_attribute (loader->priv->info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
+		if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
 		{
 			gboolean readonly;
 
-			readonly = !g_file_info_get_attribute_boolean (loader->priv->info,
+			readonly = !g_file_info_get_attribute_boolean (task_data->info,
 								       G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE);
 
 			_gtk_source_file_set_readonly (loader->priv->file, readonly);
@@ -1180,7 +1257,7 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 		}
 	}
 
-	reset (loader);
+	g_clear_object (&loader->priv->task);
 
 	if (real_error != NULL)
 	{
