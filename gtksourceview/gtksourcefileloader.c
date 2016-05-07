@@ -1032,13 +1032,6 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
 	g_return_if_fail (loader->priv->task == NULL);
 
-	if (loader->priv->source_buffer == NULL ||
-	    loader->priv->file == NULL ||
-	    (loader->priv->location == NULL && loader->priv->input_stream_property == NULL))
-	{
-		return;
-	}
-
 	reset (loader);
 
 	loader->priv->task = g_task_new (loader, cancellable, callback, user_data);
@@ -1047,6 +1040,14 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 	loader->priv->progress_cb = progress_callback;
 	loader->priv->progress_cb_data = progress_callback_data;
 	loader->priv->progress_cb_notify = progress_callback_notify;
+
+	if (loader->priv->source_buffer == NULL ||
+	    loader->priv->file == NULL ||
+	    (loader->priv->location == NULL && loader->priv->input_stream_property == NULL))
+	{
+		g_task_return_boolean (loader->priv->task, FALSE);
+		return;
+	}
 
 	DEBUG ({
 	       g_print ("Start loading\n");
