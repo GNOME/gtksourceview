@@ -907,7 +907,7 @@ check_externally_modified_cb (GFile              *location,
 			g_task_return_new_error (saver->priv->task,
 						 GTK_SOURCE_FILE_SAVER_ERROR,
 						 GTK_SOURCE_FILE_SAVER_ERROR_EXTERNALLY_MODIFIED,
-						 "The file is externally modified");
+						 _("The file is externally modified."));
 			g_object_unref (info);
 			return;
 		}
@@ -1347,7 +1347,7 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
 		g_task_return_new_error (saver->priv->task,
 					 GTK_SOURCE_FILE_SAVER_ERROR,
 					 GTK_SOURCE_FILE_SAVER_ERROR_INVALID_CHARS,
-					 "The buffer contains invalid characters");
+					 _("The buffer contains invalid characters."));
 		return;
 	}
 
