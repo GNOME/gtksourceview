@@ -5,7 +5,7 @@
  * Copyright (C) 2005-2007 - Paolo Borelli and Paolo Maggi
  * Copyright (C) 2007 - Steve Frécinaux
  * Copyright (C) 2008 - Jesse van den Kieboom
- * Copyright (C) 2014 - Sébastien Wilmet
+ * Copyright (C) 2014, 2016 - Sébastien Wilmet
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -99,6 +99,27 @@ struct _GtkSourceFileSaverPrivate
 	GtkSourceFileSaverFlags flags;
 
 	GTask *task;
+};
+
+typedef struct _TaskData TaskData;
+struct _TaskData
+{
+	/* The output_stream contains the required converter(s) for the encoding
+	 * and the compression type.
+	 * The two streams cannot be spliced directly, because:
+	 * (1) We need to call the progress callback.
+	 * (2) Sync methods must be used for the input stream, and async
+	 *     methods for the output stream.
+	 */
+	GtkSourceBufferInputStream *input_stream;
+	GOutputStream *output_stream;
+
+	GFileInfo *info;
+
+	goffset total_size;
+	GFileProgressCallback progress_cb;
+	gpointer progress_cb_data;
+	GDestroyNotify progress_cb_notify;
 
 	/* This field is used when cancelling the output stream: an error occurs
 	 * and is stored in this field, the output stream is cancelled
@@ -106,38 +127,47 @@ struct _GtkSourceFileSaverPrivate
 	 */
 	GError *error;
 
-	goffset total_size;
-	GFileProgressCallback progress_cb;
-	gpointer progress_cb_data;
-	GDestroyNotify progress_cb_notify;
-
-	/* Warning: type instances' private data are limited to a total of 64 KiB.
-	 * See the GType documentation.
-	 */
-	gchar chunk_buffer[WRITE_CHUNK_SIZE];
 	gssize chunk_bytes_read;
 	gssize chunk_bytes_written;
-
-	/* The output_stream contains the required converter(s) for the encoding
-	 * and the compression type.
-	 * The two streams cannot be spliced directly, because
-	 * (1) we need to call the progress callback
-	 * (2) sync methods must be used for the input stream, and async
-	 *     methods for the output stream.
-	 */
-	GOutputStream *output_stream;
-	GtkSourceBufferInputStream *input_stream;
-
-	GFileInfo *info;
+	gchar chunk_buffer[WRITE_CHUNK_SIZE];
 
 	guint tried_mount : 1;
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceFileSaver, gtk_source_file_saver, G_TYPE_OBJECT)
 
-static void read_file_chunk (GtkSourceFileSaver *saver);
-static void write_file_chunk (GtkSourceFileSaver *saver);
-static void recover_not_mounted (GtkSourceFileSaver *saver);
+static void read_file_chunk (GTask *task);
+static void write_file_chunk (GTask *task);
+static void recover_not_mounted (GTask *task);
+
+static TaskData *
+task_data_new (void)
+{
+	return g_new0 (TaskData, 1);
+}
+
+static void
+task_data_free (gpointer data)
+{
+	TaskData *task_data = data;
+
+	if (task_data == NULL)
+	{
+		return;
+	}
+
+	g_clear_object (&task_data->input_stream);
+	g_clear_object (&task_data->output_stream);
+	g_clear_object (&task_data->info);
+	g_clear_error (&task_data->error);
+
+	if (task_data->progress_cb_notify != NULL)
+	{
+		task_data->progress_cb_notify (task_data->progress_cb_data);
+	}
+
+	g_free (task_data);
+}
 
 static void
 gtk_source_file_saver_set_property (GObject      *object,
@@ -235,30 +265,9 @@ gtk_source_file_saver_get_property (GObject    *object,
 }
 
 static void
-reset (GtkSourceFileSaver *saver)
-{
-	g_clear_object (&saver->priv->task);
-	g_clear_object (&saver->priv->output_stream);
-	g_clear_object (&saver->priv->input_stream);
-	g_clear_object (&saver->priv->info);
-	g_clear_error (&saver->priv->error);
-
-	if (saver->priv->progress_cb_notify != NULL)
-	{
-		saver->priv->progress_cb_notify (saver->priv->progress_cb_data);
-		saver->priv->progress_cb_notify = NULL;
-	}
-
-	saver->priv->progress_cb = NULL;
-	saver->priv->progress_cb_data = NULL;
-}
-
-static void
 gtk_source_file_saver_dispose (GObject *object)
 {
 	GtkSourceFileSaver *saver = GTK_SOURCE_FILE_SAVER (object);
-
-	reset (saver);
 
 	if (saver->priv->source_buffer != NULL)
 	{
@@ -277,6 +286,7 @@ gtk_source_file_saver_dispose (GObject *object)
 	}
 
 	g_clear_object (&saver->priv->location);
+	g_clear_object (&saver->priv->task);
 
 	G_OBJECT_CLASS (gtk_source_file_saver_parent_class)->dispose (object);
 }
@@ -484,41 +494,50 @@ gtk_source_file_saver_init (GtkSourceFileSaver *saver)
  * https://bugzilla.gnome.org/show_bug.cgi?id=602412
  */
 static void
-cancel_output_stream_ready_cb (GOutputStream      *output_stream,
-			       GAsyncResult       *result,
-			       GtkSourceFileSaver *saver)
+cancel_output_stream_ready_cb (GObject      *source_object,
+			       GAsyncResult *result,
+			       gpointer      user_data)
 {
+	GOutputStream *output_stream = G_OUTPUT_STREAM (source_object);
+	GTask *task = G_TASK (user_data);
+	TaskData *task_data;
+
+	task_data = g_task_get_task_data (task);
+
 	g_output_stream_close_finish (output_stream, result, NULL);
 
-	if (saver->priv->error != NULL)
+	if (task_data->error != NULL)
 	{
-		GError *error = saver->priv->error;
-		saver->priv->error = NULL;
-		g_task_return_error (saver->priv->task, error);
+		GError *error = task_data->error;
+		task_data->error = NULL;
+		g_task_return_error (task, error);
 	}
 	else
 	{
-		g_task_return_boolean (saver->priv->task, FALSE);
+		g_task_return_boolean (task, FALSE);
 	}
 }
 
 static void
-cancel_output_stream (GtkSourceFileSaver *saver)
+cancel_output_stream (GTask *task)
 {
+	TaskData *task_data;
 	GCancellable *cancellable;
 
 	DEBUG ({
 	       g_print ("Cancel output stream\n");
 	});
 
+	task_data = g_task_get_task_data (task);
+
 	cancellable = g_cancellable_new ();
 	g_cancellable_cancel (cancellable);
 
-	g_output_stream_close_async (saver->priv->output_stream,
-				     g_task_get_priority (saver->priv->task),
+	g_output_stream_close_async (task_data->output_stream,
+				     g_task_get_priority (task),
 				     cancellable,
-				     (GAsyncReadyCallback) cancel_output_stream_ready_cb,
-				     saver);
+				     cancel_output_stream_ready_cb,
+				     task);
 
 	g_object_unref (cancellable);
 }
@@ -528,18 +547,23 @@ cancel_output_stream (GtkSourceFileSaver *saver)
  */
 
 static void
-query_info_cb (GFile              *file,
-	       GAsyncResult       *result,
-	       GtkSourceFileSaver *saver)
+query_info_cb (GObject      *source_object,
+	       GAsyncResult *result,
+	       gpointer      user_data)
 {
+	GFile *location = G_FILE (source_object);
+	GTask *task = G_TASK (user_data);
+	TaskData *task_data;
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("Finished query info on file\n");
 	});
 
-	g_clear_object (&saver->priv->info);
-	saver->priv->info = g_file_query_info_finish (file, result, &error);
+	task_data = g_task_get_task_data (task);
+
+	g_clear_object (&task_data->info);
+	task_data->info = g_file_query_info_finish (location, result, &error);
 
 	if (error != NULL)
 	{
@@ -547,23 +571,28 @@ query_info_cb (GFile              *file,
 		       g_print ("Query info failed: %s\n", error->message);
 		});
 
-		g_task_return_error (saver->priv->task, error);
+		g_task_return_error (task, error);
 		return;
 	}
 
-	g_task_return_boolean (saver->priv->task, TRUE);
+	g_task_return_boolean (task, TRUE);
 }
 
 static void
-close_output_stream_cb (GOutputStream      *output_stream,
-			GAsyncResult       *result,
-			GtkSourceFileSaver *saver)
+close_output_stream_cb (GObject      *source_object,
+			GAsyncResult *result,
+			gpointer      user_data)
 {
+	GOutputStream *output_stream = G_OUTPUT_STREAM (source_object);
+	GTask *task = G_TASK (user_data);
+	GtkSourceFileSaver *saver;
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
+
+	saver = g_task_get_source_object (task);
 
 	g_output_stream_close_finish (output_stream, result, &error);
 
@@ -573,7 +602,7 @@ close_output_stream_cb (GOutputStream      *output_stream,
 		       g_print ("Closing stream error: %s\n", error->message);
 		});
 
-		g_task_return_error (saver->priv->task, error);
+		g_task_return_error (task, error);
 		return;
 	}
 
@@ -588,23 +617,26 @@ close_output_stream_cb (GOutputStream      *output_stream,
 	g_file_query_info_async (saver->priv->location,
 			         QUERY_ATTRIBUTES,
 			         G_FILE_QUERY_INFO_NONE,
-				 g_task_get_priority (saver->priv->task),
-				 g_task_get_cancellable (saver->priv->task),
-			         (GAsyncReadyCallback) query_info_cb,
-			         saver);
+				 g_task_get_priority (task),
+				 g_task_get_cancellable (task),
+			         query_info_cb,
+			         task);
 }
 
 static void
-write_complete (GtkSourceFileSaver *saver)
+write_complete (GTask *task)
 {
+	TaskData *task_data;
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("Close input stream\n");
 	});
 
-	g_input_stream_close (G_INPUT_STREAM (saver->priv->input_stream),
-			      g_task_get_cancellable (saver->priv->task),
+	task_data = g_task_get_task_data (task);
+
+	g_input_stream_close (G_INPUT_STREAM (task_data->input_stream),
+			      g_task_get_cancellable (task),
 			      &error);
 
 	if (error != NULL)
@@ -613,8 +645,9 @@ write_complete (GtkSourceFileSaver *saver)
 		       g_print ("Closing input stream error: %s\n", error->message);
 		});
 
-		saver->priv->error = error;
-		cancel_output_stream (saver);
+		g_clear_error (&task_data->error);
+		task_data->error = error;
+		cancel_output_stream (task);
 		return;
 	}
 
@@ -622,24 +655,29 @@ write_complete (GtkSourceFileSaver *saver)
 	       g_print ("Close output stream\n");
 	});
 
-	g_output_stream_close_async (saver->priv->output_stream,
-				     g_task_get_priority (saver->priv->task),
-				     g_task_get_cancellable (saver->priv->task),
-				     (GAsyncReadyCallback) close_output_stream_cb,
-				     saver);
+	g_output_stream_close_async (task_data->output_stream,
+				     g_task_get_priority (task),
+				     g_task_get_cancellable (task),
+				     close_output_stream_cb,
+				     task);
 }
 
 static void
-write_file_chunk_cb (GOutputStream      *output_stream,
-		     GAsyncResult       *result,
-		     GtkSourceFileSaver *saver)
+write_file_chunk_cb (GObject      *source_object,
+		     GAsyncResult *result,
+		     gpointer      user_data)
 {
+	GOutputStream *output_stream = G_OUTPUT_STREAM (source_object);
+	GTask *task = G_TASK (user_data);
+	TaskData *task_data;
 	gssize bytes_written;
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
+
+	task_data = g_task_get_task_data (task);
 
 	bytes_written = g_output_stream_write_finish (output_stream, result, &error);
 
@@ -653,95 +691,105 @@ write_file_chunk_cb (GOutputStream      *output_stream,
 		       g_print ("Write error: %s\n", error->message);
 		});
 
-		saver->priv->error = error;
-		cancel_output_stream (saver);
+		g_clear_error (&task_data->error);
+		task_data->error = error;
+		cancel_output_stream (task);
 		return;
 	}
 
-	saver->priv->chunk_bytes_written += bytes_written;
+	task_data->chunk_bytes_written += bytes_written;
 
 	/* Write again */
-	if (saver->priv->chunk_bytes_read != saver->priv->chunk_bytes_written)
+	if (task_data->chunk_bytes_written < task_data->chunk_bytes_read)
 	{
-		write_file_chunk (saver);
+		write_file_chunk (task);
 		return;
 	}
 
-	if (saver->priv->progress_cb != NULL)
+	if (task_data->progress_cb != NULL)
 	{
 		gsize total_chars_written;
 
-		total_chars_written = _gtk_source_buffer_input_stream_tell (saver->priv->input_stream);
+		total_chars_written = _gtk_source_buffer_input_stream_tell (task_data->input_stream);
 
-		saver->priv->progress_cb (total_chars_written,
-					  saver->priv->total_size,
-					  saver->priv->progress_cb_data);
+		task_data->progress_cb (total_chars_written,
+					task_data->total_size,
+					task_data->progress_cb_data);
 	}
 
-	read_file_chunk (saver);
+	read_file_chunk (task);
 }
 
 static void
-write_file_chunk (GtkSourceFileSaver *saver)
+write_file_chunk (GTask *task)
 {
+	TaskData *task_data;
+
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	/* FIXME check if a thread is created each time this function is called.
-	 * If so, this is a performance problem and should be fixed.
-	 */
-	g_output_stream_write_async (saver->priv->output_stream,
-				     saver->priv->chunk_buffer + saver->priv->chunk_bytes_written,
-				     saver->priv->chunk_bytes_read - saver->priv->chunk_bytes_written,
-				     g_task_get_priority (saver->priv->task),
-				     g_task_get_cancellable (saver->priv->task),
-				     (GAsyncReadyCallback) write_file_chunk_cb,
-				     saver);
+	task_data = g_task_get_task_data (task);
+
+	g_output_stream_write_async (task_data->output_stream,
+				     task_data->chunk_buffer + task_data->chunk_bytes_written,
+				     task_data->chunk_bytes_read - task_data->chunk_bytes_written,
+				     g_task_get_priority (task),
+				     g_task_get_cancellable (task),
+				     write_file_chunk_cb,
+				     task);
 }
 
 static void
-read_file_chunk (GtkSourceFileSaver *saver)
+read_file_chunk (GTask *task)
 {
+	TaskData *task_data;
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	saver->priv->chunk_bytes_written = 0;
+	task_data = g_task_get_task_data (task);
+
+	task_data->chunk_bytes_written = 0;
 
 	/* We use sync methods on doc stream since it is in memory. Using async
-	 * would be racy and we can end up with invalid iters.
+	 * would be racy and we could end up with invalid iters.
 	 */
-	saver->priv->chunk_bytes_read = g_input_stream_read (G_INPUT_STREAM (saver->priv->input_stream),
-							     saver->priv->chunk_buffer,
-							     WRITE_CHUNK_SIZE,
-							     g_task_get_cancellable (saver->priv->task),
-							     &error);
+	task_data->chunk_bytes_read = g_input_stream_read (G_INPUT_STREAM (task_data->input_stream),
+							   task_data->chunk_buffer,
+							   WRITE_CHUNK_SIZE,
+							   g_task_get_cancellable (task),
+							   &error);
 
 	if (error != NULL)
 	{
-		saver->priv->error = error;
-		cancel_output_stream (saver);
+		g_clear_error (&task_data->error);
+		task_data->error = error;
+		cancel_output_stream (task);
 		return;
 	}
 
 	/* Check if we finished reading and writing. */
-	if (saver->priv->chunk_bytes_read == 0)
+	if (task_data->chunk_bytes_read == 0)
 	{
-		write_complete (saver);
+		write_complete (task);
 		return;
 	}
 
-	write_file_chunk (saver);
+	write_file_chunk (task);
 }
 
 static void
-replace_file_cb (GFile              *file,
-		 GAsyncResult       *result,
-		 GtkSourceFileSaver *saver)
+replace_file_cb (GObject      *source_object,
+		 GAsyncResult *result,
+		 gpointer      user_data)
 {
+	GFile *location = G_FILE (source_object);
+	GTask *task = G_TASK (user_data);
+	GtkSourceFileSaver *saver;
+	TaskData *task_data;
 	GFileOutputStream *file_output_stream;
 	GOutputStream *output_stream;
 	GError *error = NULL;
@@ -750,24 +798,25 @@ replace_file_cb (GFile              *file,
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	file_output_stream = g_file_replace_finish (file, result, &error);
+	saver = g_task_get_source_object (task);
+	task_data = g_task_get_task_data (task);
 
-	if (error != NULL)
+	file_output_stream = g_file_replace_finish (location, result, &error);
+
+	if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_MOUNTED) &&
+	    !task_data->tried_mount)
 	{
-		if (error->domain == G_IO_ERROR &&
-		    error->code == G_IO_ERROR_NOT_MOUNTED &&
-		    !saver->priv->tried_mount)
-		{
-			recover_not_mounted (saver);
-			g_error_free (error);
-			return;
-		}
-
+		recover_not_mounted (task);
+		g_error_free (error);
+		return;
+	}
+	else if (error != NULL)
+	{
 		DEBUG ({
 		       g_print ("Opening file failed: %s\n", error->message);
 		});
 
-		g_task_return_error (saver->priv->task, error);
+		g_task_return_error (task, error);
 		return;
 	}
 
@@ -807,30 +856,37 @@ replace_file_cb (GFile              *file,
 						     "UTF-8",
 						     NULL);
 
-		saver->priv->output_stream = g_converter_output_stream_new (output_stream,
-									    G_CONVERTER (converter));
+		g_clear_object (&task_data->output_stream);
+		task_data->output_stream = g_converter_output_stream_new (output_stream,
+									  G_CONVERTER (converter));
 
 		g_object_unref (converter);
 		g_object_unref (output_stream);
 	}
 	else
 	{
-		saver->priv->output_stream = G_OUTPUT_STREAM (output_stream);
+		g_clear_object (&task_data->output_stream);
+		task_data->output_stream = G_OUTPUT_STREAM (output_stream);
 	}
 
-	saver->priv->total_size = _gtk_source_buffer_input_stream_get_total_size (saver->priv->input_stream);
+	task_data->total_size = _gtk_source_buffer_input_stream_get_total_size (task_data->input_stream);
 
 	DEBUG ({
-	       g_print ("Total number of characters: %" G_GINT64_FORMAT "\n", saver->priv->total_size);
+	       g_print ("Total number of characters: %" G_GINT64_FORMAT "\n", task_data->total_size);
 	});
 
-	read_file_chunk (saver);
+	read_file_chunk (task);
 }
 
 static void
-begin_write (GtkSourceFileSaver *saver)
+begin_write (GTask *task)
 {
-	gboolean create_backup = (saver->priv->flags & GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP) != 0;
+	GtkSourceFileSaver *saver;
+	gboolean create_backup;
+
+	saver = g_task_get_source_object (task);
+
+	create_backup = (saver->priv->flags & GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP) != 0;
 
 	DEBUG ({
 	       g_print ("Start replacing file contents\n");
@@ -841,17 +897,21 @@ begin_write (GtkSourceFileSaver *saver)
 			      NULL,
 			      create_backup,
 			      G_FILE_CREATE_NONE,
-			      g_task_get_priority (saver->priv->task),
-			      g_task_get_cancellable (saver->priv->task),
-			      (GAsyncReadyCallback) replace_file_cb,
-			      saver);
+			      g_task_get_priority (task),
+			      g_task_get_cancellable (task),
+			      replace_file_cb,
+			      task);
 }
 
 static void
-check_externally_modified_cb (GFile              *location,
-			      GAsyncResult       *result,
-			      GtkSourceFileSaver *saver)
+check_externally_modified_cb (GObject      *source_object,
+			      GAsyncResult *result,
+			      gpointer      user_data)
 {
+	GFile *location = G_FILE (source_object);
+	GTask *task = G_TASK (user_data);
+	GtkSourceFileSaver *saver;
+	TaskData *task_data;
 	GFileInfo *info;
 	GTimeVal old_mtime;
 	GTimeVal cur_mtime;
@@ -861,34 +921,32 @@ check_externally_modified_cb (GFile              *location,
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
+	saver = g_task_get_source_object (task);
+	task_data = g_task_get_task_data (task);
+
 	info = g_file_query_info_finish (location, result, &error);
 
-	if (error != NULL)
+	if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_MOUNTED) &&
+	    !task_data->tried_mount)
 	{
-		if (error->domain == G_IO_ERROR &&
-		    error->code == G_IO_ERROR_NOT_MOUNTED &&
-		    !saver->priv->tried_mount)
-		{
-			recover_not_mounted (saver);
-			g_error_free (error);
-			return;
-		}
+		recover_not_mounted (task);
+		g_error_free (error);
+		return;
+	}
 
-		/* It's perfectly fine if the file doesn't exist yet. */
-		if (error->domain != G_IO_ERROR ||
-		    error->code != G_IO_ERROR_NOT_FOUND)
-		{
-			DEBUG ({
-			       g_print ("Check externally modified failed: %s\n", error->message);
-			});
+	/* It's perfectly fine if the file doesn't exist yet. */
+	if (g_error_matches (error, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
+	{
+		g_clear_error (&error);
+	}
+	else if (error != NULL)
+	{
+		DEBUG ({
+		       g_print ("Check externally modified failed: %s\n", error->message);
+		});
 
-			g_task_return_error (saver->priv->task, error);
-			return;
-		}
-		else
-		{
-			g_error_free (error);
-		}
+		g_task_return_error (task, error);
+		return;
 	}
 
 	if (_gtk_source_file_get_modification_time (saver->priv->file, &old_mtime) &&
@@ -904,7 +962,7 @@ check_externally_modified_cb (GFile              *location,
 			       g_print ("The file is externally modified\n");
 			});
 
-			g_task_return_new_error (saver->priv->task,
+			g_task_return_new_error (task,
 						 GTK_SOURCE_FILE_SAVER_ERROR,
 						 GTK_SOURCE_FILE_SAVER_ERROR_EXTERNALLY_MODIFIED,
 						 _("The file is externally modified."));
@@ -913,7 +971,7 @@ check_externally_modified_cb (GFile              *location,
 		}
 	}
 
-	begin_write (saver);
+	begin_write (task);
 
 	if (info != NULL)
 	{
@@ -922,9 +980,12 @@ check_externally_modified_cb (GFile              *location,
 }
 
 static void
-check_externally_modified (GtkSourceFileSaver *saver)
+check_externally_modified (GTask *task)
 {
+	GtkSourceFileSaver *saver;
 	gboolean save_as = FALSE;
+
+	saver = g_task_get_source_object (task);
 
 	if (saver->priv->file != NULL)
 	{
@@ -940,11 +1001,10 @@ check_externally_modified (GtkSourceFileSaver *saver)
 			   !g_file_equal (prev_location, saver->priv->location));
 	}
 
-
 	if (saver->priv->flags & GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME ||
 	    save_as)
 	{
-		begin_write (saver);
+		begin_write (task);
 		return;
 	}
 
@@ -955,37 +1015,45 @@ check_externally_modified (GtkSourceFileSaver *saver)
 	g_file_query_info_async (saver->priv->location,
 			         G_FILE_ATTRIBUTE_TIME_MODIFIED,
 			         G_FILE_QUERY_INFO_NONE,
-				 g_task_get_priority (saver->priv->task),
-				 g_task_get_cancellable (saver->priv->task),
-			         (GAsyncReadyCallback) check_externally_modified_cb,
-			         saver);
+				 g_task_get_priority (task),
+				 g_task_get_cancellable (task),
+			         check_externally_modified_cb,
+			         task);
 }
 
 static void
-mount_cb (GFile              *file,
-	  GAsyncResult       *result,
-	  GtkSourceFileSaver *saver)
+mount_cb (GObject      *source_object,
+	  GAsyncResult *result,
+	  gpointer      user_data)
 {
+	GFile *location = G_FILE (source_object);
+	GTask *task = G_TASK (user_data);
 	GError *error = NULL;
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	g_file_mount_enclosing_volume_finish (file, result, &error);
+	g_file_mount_enclosing_volume_finish (location, result, &error);
 
 	if (error != NULL)
 	{
-		g_task_return_error (saver->priv->task, error);
+		g_task_return_error (task, error);
+		return;
 	}
 
-	check_externally_modified (saver);
+	check_externally_modified (task);
 }
 
 static void
-recover_not_mounted (GtkSourceFileSaver *saver)
+recover_not_mounted (GTask *task)
 {
+	GtkSourceFileSaver *saver;
+	TaskData *task_data;
 	GMountOperation *mount_operation;
+
+	saver = g_task_get_source_object (task);
+	task_data = g_task_get_task_data (task);
 
 	mount_operation = _gtk_source_file_create_mount_operation (saver->priv->file);
 
@@ -993,14 +1061,14 @@ recover_not_mounted (GtkSourceFileSaver *saver)
 	       g_print ("%s\n", G_STRFUNC);
 	});
 
-	saver->priv->tried_mount = TRUE;
+	task_data->tried_mount = TRUE;
 
 	g_file_mount_enclosing_volume (saver->priv->location,
 				       G_MOUNT_MOUNT_NONE,
 				       mount_operation,
-				       g_task_get_cancellable (saver->priv->task),
-				       (GAsyncReadyCallback) mount_cb,
-				       saver);
+				       g_task_get_cancellable (task),
+				       mount_cb,
+				       task);
 
 	g_object_unref (mount_operation);
 }
@@ -1316,6 +1384,7 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
 				  GAsyncReadyCallback     callback,
 				  gpointer                user_data)
 {
+	TaskData *task_data;
 	gboolean check_invalid_chars;
 	gboolean implicit_trailing_newline;
 
@@ -1323,14 +1392,15 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
 	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
 	g_return_if_fail (saver->priv->task == NULL);
 
-	reset (saver);
-
 	saver->priv->task = g_task_new (saver, cancellable, callback, user_data);
 	g_task_set_priority (saver->priv->task, io_priority);
 
-	saver->priv->progress_cb = progress_callback;
-	saver->priv->progress_cb_data = progress_callback_data;
-	saver->priv->progress_cb_notify = progress_callback_notify;
+	task_data = task_data_new ();
+	g_task_set_task_data (saver->priv->task, task_data, task_data_free);
+
+	task_data->progress_cb = progress_callback;
+	task_data->progress_cb_data = progress_callback_data;
+	task_data->progress_cb_notify = progress_callback_notify;
 
 	if (saver->priv->source_buffer == NULL ||
 	    saver->priv->file == NULL ||
@@ -1361,11 +1431,11 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
 	 * We create the BufferInputStream here so we are sure that the
 	 * buffer will not be destroyed during the file saving.
 	 */
-	saver->priv->input_stream = _gtk_source_buffer_input_stream_new (GTK_TEXT_BUFFER (saver->priv->source_buffer),
-									 saver->priv->newline_type,
-									 implicit_trailing_newline);
+	task_data->input_stream = _gtk_source_buffer_input_stream_new (GTK_TEXT_BUFFER (saver->priv->source_buffer),
+								       saver->priv->newline_type,
+								       implicit_trailing_newline);
 
-	check_externally_modified (saver);
+	check_externally_modified (saver->priv->task);
 }
 
 /**
@@ -1401,6 +1471,8 @@ gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
 
 	if (ok && saver->priv->file != NULL)
 	{
+		TaskData *task_data;
+
 		gtk_source_file_set_location (saver->priv->file,
 					      saver->priv->location);
 
@@ -1417,10 +1489,13 @@ gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
 		_gtk_source_file_set_deleted (saver->priv->file, FALSE);
 		_gtk_source_file_set_readonly (saver->priv->file, FALSE);
 
-		if (g_file_info_has_attribute (saver->priv->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
+		task_data = g_task_get_task_data (G_TASK (result));
+
+		if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 		{
 			GTimeVal modification_time;
-			g_file_info_get_modification_time (saver->priv->info, &modification_time);
+
+			g_file_info_get_modification_time (task_data->info, &modification_time);
 			_gtk_source_file_set_modification_time (saver->priv->file, modification_time);
 		}
 	}
@@ -1431,7 +1506,7 @@ gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
 					      FALSE);
 	}
 
-	reset (saver);
+	g_clear_object (&saver->priv->task);
 
 	return ok;
 }
