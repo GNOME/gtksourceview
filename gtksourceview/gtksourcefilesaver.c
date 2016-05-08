@@ -977,6 +977,7 @@ mount_cb (GFile              *file,
 	if (error != NULL)
 	{
 		g_task_return_error (saver->priv->task, error);
+		return;
 	}
 
 	check_externally_modified (saver);
