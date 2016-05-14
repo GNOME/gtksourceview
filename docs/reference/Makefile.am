@@ -20,6 +20,10 @@ DOC_SOURCE_DIR = $(top_srcdir)/gtksourceview
 HFILE_GLOB = $(top_srcdir)/gtksourceview/*.h
 CFILE_GLOB = $(top_srcdir)/gtksourceview/*.c
 
+# Extra header to include when scanning, which are not under DOC_SOURCE_DIR
+# e.g. EXTRA_HFILES = $(top_srcdir}/contrib/extra.h
+EXTRA_HFILES = $(top_builddir)/gtksourceview/gtksourceversion.h
+
 # Header files or dirs to ignore when scanning. Use base file/dir names
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code
 IGNORE_HFILES =					\
