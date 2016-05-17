@@ -768,6 +768,7 @@ end_append_text_to_document (GtkSourceBufferOutputStream *stream)
 	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->priv->source_buffer),
 	                              FALSE);
 
+	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (stream->priv->source_buffer));
 	gtk_source_buffer_end_not_undoable_action (stream->priv->source_buffer);
 }
 
@@ -945,8 +946,13 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 			g_free (from_charset);
 		}
 
-		/* Init the undoable action */
+		/* Begin not undoable action. Begin also a normal user action,
+		 * since we load the file chunk by chunk and it should be seen
+		 * as only one action, for the features that rely on the user
+		 * action.
+		 */
 		gtk_source_buffer_begin_not_undoable_action (ostream->priv->source_buffer);
+		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (ostream->priv->source_buffer));
 
 		gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (ostream->priv->source_buffer),
 		                                &ostream->priv->pos);
