@@ -3111,22 +3111,21 @@ gtk_source_view_create_buffer (GtkTextView *text_view)
 /**
  * gtk_source_view_new:
  *
- * Creates a new #GtkSourceView. An empty default #GtkSourceBuffer will be
- * created for you and can be retrieved with gtk_text_view_get_buffer(). If you
- * want to specify your own buffer, consider gtk_source_view_new_with_buffer().
+ * Creates a new #GtkSourceView.
+ *
+ * By default, an empty #GtkSourceBuffer will be lazily created and can be
+ * retrieved with gtk_text_view_get_buffer().
+ *
+ * If you want to specify your own buffer, either override the
+ * #GtkTextViewClass create_buffer factory method, or use
+ * gtk_source_view_new_with_buffer().
  *
  * Returns: a new #GtkSourceView.
  */
 GtkWidget *
 gtk_source_view_new (void)
 {
-	GtkWidget *widget;
-	GtkSourceBuffer *buffer;
-
-	buffer = gtk_source_buffer_new (NULL);
-	widget = gtk_source_view_new_with_buffer (buffer);
-	g_object_unref (buffer);
-	return widget;
+	return g_object_new (GTK_SOURCE_TYPE_VIEW, NULL);
 }
 
 /**
