@@ -2,7 +2,7 @@
 /* gtksourcecompletioncontainer.c
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2013, 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2013, 2014, 2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -77,6 +77,17 @@ _gtk_source_completion_container_get_preferred_width (GtkWidget *widget,
 	gtk_widget_get_preferred_size (child, NULL, &nat_size);
 
 	width = MIN (nat_size.width, get_max_width (container));
+
+	if (GTK_WIDGET_CLASS (_gtk_source_completion_container_parent_class)->get_preferred_width != NULL)
+	{
+		gint min_width_parent = 0;
+
+		GTK_WIDGET_CLASS (_gtk_source_completion_container_parent_class)->get_preferred_width (widget,
+												       &min_width_parent,
+												       NULL);
+
+		width = MAX (width, min_width_parent);
+	}
 
 	if (min_width != NULL)
 	{
@@ -156,6 +167,17 @@ _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
 		gint n_rows_allowed = row_height != 0 ? MAX_HEIGHT / row_height : 0;
 
 		height = n_rows_allowed * row_height;
+	}
+
+	if (GTK_WIDGET_CLASS (_gtk_source_completion_container_parent_class)->get_preferred_height != NULL)
+	{
+		gint min_height_parent = 0;
+
+		GTK_WIDGET_CLASS (_gtk_source_completion_container_parent_class)->get_preferred_height (widget,
+													&min_height_parent,
+													NULL);
+
+		height = MAX (height, min_height_parent);
 	}
 
 	if (min_height != NULL)
