@@ -24,7 +24,7 @@
  * the completion proposals. If the GtkTreeView is small enough, the scrolled
  * window returns the natural size of the GtkTreeView. If it exceeds a certain
  * size, the scrolled window returns a smaller size, with the height at a row
- * boundary of the GtkTreeView (plus the size of the scrollbar(s) if needed).
+ * boundary of the GtkTreeView.
  *
  * The purpose is to have a compact completion window, with a certain size
  * limit.
