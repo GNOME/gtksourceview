@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the gtksourceview package.
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
 # Pedro Albuquerque <palbuquerque73@gmail.com>, 2015.
-# Tiago Santos <tiagofsantos81@sapo.pt>, 2016.
+# Tiago Santos <tiagofsantos81@sapo.pt>, 2014 - 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-02 12:13+0000\n"
-"PO-Revision-Date: 2016-05-02 16:47+0100\n"
+"POT-Creation-Date: 2016-05-08 15:21+0000\n"
+"PO-Revision-Date: 2016-05-11 20:48+0100\n"
 "Last-Translator: Tiago Santos <tiagofsantos81@sapo.pt>\n"
 "Language-Team: Português <palbuquerque73@gmail.com>\n"
 "Language: pt\n"
@@ -741,7 +741,6 @@ msgstr "Versão"
 
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:25
-#| msgid "C/C++/ObjC Header"
 msgid "C/ObjC Header"
 msgstr "Cabeçalho C/ObjC"
 
@@ -859,7 +858,6 @@ msgstr "Dimensão"
 
 #. (itstool) path: styles/style@_name
 #: css.lang:57
-#| msgid "Known Property Value"
 msgid "Property Value"
 msgstr "Valor da propriedade"
 
@@ -3328,6 +3326,30 @@ msgstr "Desconhecido"
 #: gtksourceview/gtksourceencoding.c:639
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'ISO-8859-1', 'UTF-16']"
+
+#: gtksourceview/gtksourcefileloader.c:508
+msgid ""
+"There was a character encoding conversion error and it was needed to use a "
+"fallback character."
+msgstr ""
+"Houve um erro de conversão de codificação de carateres e foi necessario "
+"utilizar um caratere de recurso."
+
+#: gtksourceview/gtksourcefileloader.c:615
+msgid "File too big."
+msgstr "Ficheiro demasiado grande."
+
+#: gtksourceview/gtksourcefileloader.c:769
+msgid "Not a regular file."
+msgstr "Não é um ficheiro regular."
+
+#: gtksourceview/gtksourcefilesaver.c:968
+msgid "The file is externally modified."
+msgstr "O ficheiro foi modificado externamente."
+
+#: gtksourceview/gtksourcefilesaver.c:1420
+msgid "The buffer contains invalid characters."
+msgstr "O buffer contém carateres inválidos."
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
