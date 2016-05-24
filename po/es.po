@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-04-28 00:19+0000\n"
-"PO-Revision-Date: 2016-04-28 08:52+0200\n"
+"POT-Creation-Date: 2016-05-22 12:12+0000\n"
+"PO-Revision-Date: 2016-05-24 11:27+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -741,7 +741,6 @@ msgstr "Publicación"
 
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:25
-#| msgid "C/C++/ObjC Header"
 msgid "C/ObjC Header"
 msgstr "Cabecera C/ObjC"
 
@@ -859,7 +858,6 @@ msgstr "Dimensión"
 
 #. (itstool) path: styles/style@_name
 #: css.lang:57
-#| msgid "Known Property Value"
 msgid "Property Value"
 msgstr "Valor de la propiedad"
 
@@ -3086,31 +3084,31 @@ msgstr "Esquema de colores usando la paleta de colores de Tango"
 msgid "Document Words"
 msgstr "Palabras del documento"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:842
+#: gtksourceview/gtksourcebufferoutputstream.c:843
 msgid "Invalid byte sequence in conversion input"
 msgstr "Secuencia de bytes no válida en la entrada de conversión"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:848
+#: gtksourceview/gtksourcebufferoutputstream.c:849
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Error durante la conversión: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:929
+#: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
 msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
 msgstr ""
 "La conversión del conjunto de caracteres «%s» a «UTF-8» no está soportada"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:935
+#: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
 msgid "Could not open converter from '%s' to 'UTF-8'"
 msgstr "No se pudo abrir el convertido de «%s» a «UTF-8»"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:990
+#: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
 msgstr "Objeto no válido, no inicializado"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1182
+#: gtksourceview/gtksourcebufferoutputstream.c:1188
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Secuencia UTF-8 de entrada incompleta"
 
@@ -3324,6 +3322,30 @@ msgstr "Desconocido"
 #: gtksourceview/gtksourceencoding.c:639
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+
+#: gtksourceview/gtksourcefileloader.c:508
+msgid ""
+"There was a character encoding conversion error and it was needed to use a "
+"fallback character."
+msgstr ""
+"Ha habido un error de conversión de la codificación de caracteres y ha sido "
+"necesario usar un carácter alternativo."
+
+#: gtksourceview/gtksourcefileloader.c:615
+msgid "File too big."
+msgstr "El archivo es demasiado grande."
+
+#: gtksourceview/gtksourcefileloader.c:769
+msgid "Not a regular file."
+msgstr "No es un archivo regular."
+
+#: gtksourceview/gtksourcefilesaver.c:968
+msgid "The file is externally modified."
+msgstr "El archivo se ha modificado externamente."
+
+#: gtksourceview/gtksourcefilesaver.c:1420
+msgid "The buffer contains invalid characters."
+msgstr "El búfer contiene caracteres no válidos."
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
