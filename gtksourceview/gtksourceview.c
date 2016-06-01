@@ -2454,15 +2454,13 @@ draw_spaces_tag_foreach (GtkTextTag *tag,
 
 	if (GTK_SOURCE_IS_TAG (tag))
 	{
-		gboolean draw_spaces;
 		gboolean draw_spaces_set;
 
 		g_object_get (tag,
-			      "draw-spaces", &draw_spaces,
 			      "draw-spaces-set", &draw_spaces_set,
 			      NULL);
 
-		if (draw_spaces && draw_spaces_set)
+		if (draw_spaces_set)
 		{
 			*found = TRUE;
 		}
