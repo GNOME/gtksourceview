@@ -35,6 +35,9 @@
  *
  * #GtkSourceTag is a subclass of #GtkTextTag that adds properties useful for
  * the GtkSourceView library.
+ *
+ * If, for a certain tag, #GtkTextTag is sufficient, it's better that you create
+ * a #GtkTextTag, not a #GtkSourceTag.
  */
 
 typedef struct _GtkSourceTagPrivate GtkSourceTagPrivate;
