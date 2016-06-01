@@ -49,7 +49,6 @@
 #include "gtksourcegutterrenderermarks.h"
 #include "gtksourceiter.h"
 #include "gtksourcetag.h"
-#include "gtksourcetag-private.h"
 
 /**
  * SECTION:view
@@ -2453,10 +2452,20 @@ draw_spaces_tag_foreach (GtkTextTag *tag,
 		return;
 	}
 
-	if (GTK_SOURCE_IS_TAG (tag) &&
-	    _gtk_source_tag_effects_spaces (GTK_SOURCE_TAG (tag)))
+	if (GTK_SOURCE_IS_TAG (tag))
 	{
-		*found = TRUE;
+		gboolean draw_spaces;
+		gboolean draw_spaces_set;
+
+		g_object_get (tag,
+			      "draw-spaces", &draw_spaces,
+			      "draw-spaces-set", &draw_spaces_set,
+			      NULL);
+
+		if (draw_spaces && draw_spaces_set)
+		{
+			*found = TRUE;
+		}
 	}
 }
 

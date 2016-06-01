@@ -26,7 +26,6 @@
 #endif
 
 #include "gtksourcetag.h"
-#include "gtksourcetag-private.h"
 
 /**
  * SECTION:tag
@@ -185,16 +184,4 @@ gtk_source_tag_new (const gchar *name)
 	return g_object_new (GTK_SOURCE_TYPE_TAG,
 			     "name", name,
 			     NULL);
-}
-
-gboolean
-_gtk_source_tag_effects_spaces (GtkSourceTag *tag)
-{
-	GtkSourceTagPrivate *priv;
-
-	g_return_val_if_fail (GTK_SOURCE_IS_TAG (tag), FALSE);
-
-	priv = gtk_source_tag_get_instance_private (tag);
-
-	return priv->draw_spaces_set && priv->draw_spaces;
 }
