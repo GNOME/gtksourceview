@@ -31,12 +31,6 @@ G_GNUC_INTERNAL
 GtkSourceGutter *	gtk_source_gutter_new		(GtkSourceView     *view,
 							 GtkTextWindowType  type);
 
-G_GNUC_INTERNAL
-void			gtk_source_gutter_draw		(GtkSourceGutter *gutter,
-							 GtkSourceView   *view,
-							 cairo_t         *cr);
-
-
 G_END_DECLS
 
 #endif /* __GTK_SOURCE_GUTTER_PRIVATE_H__ */
