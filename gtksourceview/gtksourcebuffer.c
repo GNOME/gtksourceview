@@ -38,9 +38,9 @@
 #include "gtksourcelanguage-private.h"
 #include "gtksourceundomanager.h"
 #include "gtksourceundomanagerdefault.h"
+#include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourcestyleschememanager.h"
-#include "gtksourcestyle-private.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkssequence.h"
 #include "gtksourcesearchcontext.h"
@@ -813,7 +813,7 @@ update_bracket_match_style (GtkSourceBuffer *buffer)
 		style = _gtk_source_style_scheme_get_matching_brackets_style (buffer->priv->style_scheme);
 	}
 
-	_gtk_source_style_apply (style, buffer->priv->bracket_match_tag);
+	gtk_source_style_apply (style, buffer->priv->bracket_match_tag);
 }
 
 static GtkTextTag *
@@ -3116,7 +3116,7 @@ sync_invalid_char_tag (GtkSourceBuffer *buffer,
 		style = gtk_source_style_scheme_get_style (buffer->priv->style_scheme, "def:error");
 	}
 
-	_gtk_source_style_apply (style, buffer->priv->invalid_char_tag);
+	gtk_source_style_apply (style, buffer->priv->invalid_char_tag);
 }
 
 static void

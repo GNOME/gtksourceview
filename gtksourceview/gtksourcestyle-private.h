@@ -22,7 +22,6 @@
 #ifndef GTK_SOURCE_STYLE_PRIVATE_H
 #define GTK_SOURCE_STYLE_PRIVATE_H
 
-#include "gtksourcestyle.h"
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
@@ -67,10 +66,6 @@ struct _GtkSourceStyle
 	guint strikethrough : 1;
 	guint mask : 12;
 };
-
-G_GNUC_INTERNAL
-void		 _gtk_source_style_apply	(const GtkSourceStyle *style,
-						 GtkTextTag           *tag);
 
 G_END_DECLS
 

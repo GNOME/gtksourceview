@@ -27,8 +27,8 @@
 #include "gtksourcesearchsettings.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
+#include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
-#include "gtksourcestyle-private.h"
 #include "gtksourceutils.h"
 #include "gtksourceregion.h"
 #include "gtksourceview-i18n.h"
@@ -395,7 +395,7 @@ sync_found_tag (GtkSourceSearchContext *search)
 
 	if (!search->priv->highlight)
 	{
-		_gtk_source_style_apply (NULL, search->priv->found_tag);
+		gtk_source_style_apply (NULL, search->priv->found_tag);
 		return;
 	}
 
@@ -414,7 +414,7 @@ sync_found_tag (GtkSourceSearchContext *search)
 		g_warning ("No match style defined nor 'search-match' style available.");
 	}
 
-	_gtk_source_style_apply (style, search->priv->found_tag);
+	gtk_source_style_apply (style, search->priv->found_tag);
 }
 
 static void

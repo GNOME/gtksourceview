@@ -547,20 +547,23 @@ gtk_source_style_copy (const GtkSourceStyle *style)
 }
 
 /**
- * _gtk_source_style_apply:
- * @style: (allow-none): a #GtkSourceStyle to apply.
+ * gtk_source_style_apply:
+ * @style: (nullable): a #GtkSourceStyle to apply, or %NULL.
  * @tag: a #GtkTextTag to apply styles to.
  *
- * Applies text styles set in @style if it's not %NULL, or
- * unsets style fields in @tag set with _gtk_source_style_apply()
- * if @style is %NULL. Note that it does not touch fields which
- * are not set in @style. To reset everything use @style == %NULL.
+ * This function modifies the #GtkTextTag properties that are related to the
+ * #GtkSourceStyle properties. Other #GtkTextTag properties are left untouched.
  *
- * Since: 2.0
+ * If @style is non-%NULL, applies @style to @tag.
+ *
+ * If @style is %NULL, the related *-set properties of #GtkTextTag are set to
+ * %FALSE.
+ *
+ * Since: 3.22
  */
 void
-_gtk_source_style_apply (const GtkSourceStyle *style,
-			 GtkTextTag           *tag)
+gtk_source_style_apply (const GtkSourceStyle *style,
+			GtkTextTag           *tag)
 {
 	g_return_if_fail (GTK_IS_TEXT_TAG (tag));
 

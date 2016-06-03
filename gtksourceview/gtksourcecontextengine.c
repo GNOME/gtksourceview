@@ -33,9 +33,9 @@
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourceregex.h"
-#include "gtksourcestyle-private.h"
-#include "gtksourceview-utils.h"
+#include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
+#include "gtksourceview-utils.h"
 
 #undef ENABLE_DEBUG
 #undef ENABLE_PROFILE
@@ -645,7 +645,7 @@ set_tag_style (GtkSourceContextEngine *ce,
 	g_return_if_fail (GTK_IS_TEXT_TAG (tag));
 	g_return_if_fail (style_id != NULL);
 
-	_gtk_source_style_apply (NULL, tag);
+	gtk_source_style_apply (NULL, tag);
 
 	if (ce->priv->style_scheme == NULL)
 		return;
@@ -675,7 +675,7 @@ set_tag_style (GtkSourceContextEngine *ce,
 	/* not having style is fine, since parser checks validity of every style reference,
 	 * so we don't need to spit a warning here */
 	if (style != NULL)
-		_gtk_source_style_apply (style, tag);
+		gtk_source_style_apply (style, tag);
 }
 
 static GtkTextTag *
