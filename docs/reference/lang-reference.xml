@@ -414,17 +414,24 @@ Contained elements:
 <title>Tag <code>&lt;define-regex&gt;</code></title>
 
 <para>
-Defines a regular expression that can be reused inside other regular
-expression, to avoid replicating common portions.  Those regular
-expressions are PCRE regular expressions in the form <code>/regex/options</code> (see
-the documentation of PCRE for details). If there are no options to be
-specified and you don't need to match the spaces at the start and at the
-end of the regular expression, you can omit the slashes, putting here only
-<code>regex</code>.  The possible options are those specified above in the description
-of the <code>&lt;default-regex-options&gt;</code> element. To disable a group of
-options, instead, you have to prepend an hyphen <code>-</code> to them.  In
-GtkSourceView are also available some extensions to the standard Perl style
-regular expressions:
+The syntax highlighting engine of GtkSourceView uses
+<link linkend="GRegex"><type>GRegex</type></link>,
+which uses the PCRE library. See the
+<ulink url="https://developer.gnome.org/glib/stable/glib-regex-syntax.html">Regular expression syntax</ulink>
+page in the GLib reference manual.
+</para>
+
+<para>
+The <code>&lt;define-regex&gt;</code> tag defines a regular expression that can
+be reused inside other regular expression, to avoid replicating common portions.
+Those regular expressions are in the form <code>/regex/options</code>.  If there
+are no options to be specified and you don't need to match the spaces at the
+start and at the end of the regular expression, you can omit the slashes,
+putting here only <code>regex</code>.  The possible options are those specified
+above in the description of the <code>&lt;default-regex-options&gt;</code>
+element. To disable a group of options, instead, you have to prepend an hyphen
+<code>-</code> to them.  In GtkSourceView are also available some extensions to
+the standard Perl style regular expressions:
 </para>
 
 <itemizedlist>
