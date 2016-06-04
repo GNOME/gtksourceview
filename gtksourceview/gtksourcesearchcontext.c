@@ -3436,7 +3436,7 @@ gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
  */
 static gboolean
 regex_replace (GtkSourceSearchContext  *search,
-	       GtkTextIter             *match_start,
+	       const GtkTextIter       *match_start,
 	       GtkTextIter             *match_end,
 	       const gchar             *replace,
 	       GError                 **error)
@@ -3445,6 +3445,7 @@ regex_replace (GtkSourceSearchContext  *search,
 	GtkTextIter real_end;
 	GtkTextIter match_start_check;
 	GtkTextIter match_end_check;
+	GtkTextIter match_start_copy;
 	gint start_pos;
 	gchar *subject;
 	gchar *suffix;
@@ -3511,8 +3512,10 @@ regex_replace (GtkSourceSearchContext  *search,
 	subject_replaced[strlen (subject_replaced) - strlen (suffix)] = '\0';
 	g_return_val_if_fail (strlen (subject_replaced) >= (guint)start_pos, FALSE);
 
+	match_start_copy = *match_start;
+
 	gtk_text_buffer_begin_user_action (search->priv->buffer);
-	gtk_text_buffer_delete (search->priv->buffer, match_start, match_end);
+	gtk_text_buffer_delete (search->priv->buffer, &match_start_copy, match_end);
 	gtk_text_buffer_insert (search->priv->buffer, match_end, subject_replaced + start_pos, -1);
 	gtk_text_buffer_end_user_action (search->priv->buffer);
 
