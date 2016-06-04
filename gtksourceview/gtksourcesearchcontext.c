@@ -3555,39 +3555,18 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
 	GtkTextIter start;
 	GtkTextIter end;
 
-	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), FALSE);
 	g_return_val_if_fail (match_start != NULL, FALSE);
 	g_return_val_if_fail (match_end != NULL, FALSE);
-	g_return_val_if_fail (replace != NULL, FALSE);
-	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
-	if (search->priv->buffer == NULL)
-	{
-		return FALSE;
-	}
+	start = *match_start;
+	end = *match_end;
 
-	if (!smart_forward_search (search, match_start, &start, &end))
-	{
-		return FALSE;
-	}
-
-	if (!gtk_text_iter_equal (match_start, &start) ||
-	    !gtk_text_iter_equal (match_end, &end))
-	{
-		return FALSE;
-	}
-
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
-	{
-		return regex_replace (search, &start, &end, replace, error);
-	}
-
-	gtk_text_buffer_begin_user_action (search->priv->buffer);
-	gtk_text_buffer_delete (search->priv->buffer, &start, &end);
-	gtk_text_buffer_insert (search->priv->buffer, &start, replace, replace_length);
-	gtk_text_buffer_end_user_action (search->priv->buffer);
-
-	return TRUE;
+	return gtk_source_search_context_replace2 (search,
+						   &start,
+						   &end,
+						   replace,
+						   replace_length,
+						   error);
 }
 
 /**
