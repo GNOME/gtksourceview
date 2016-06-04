@@ -133,7 +133,7 @@ gboolean		 gtk_source_search_context_backward_finish		(GtkSourceSearchContext	 *
 										 GtkTextIter		 *match_end,
 										 GError		        **error);
 
-GTK_SOURCE_AVAILABLE_IN_3_10
+GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_replace2)
 gboolean		 gtk_source_search_context_replace			(GtkSourceSearchContext	 *search,
 										 const GtkTextIter	 *match_start,
 										 const GtkTextIter	 *match_end,

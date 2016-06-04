@@ -3543,6 +3543,7 @@ end:
  *
  * Returns: whether the match has been replaced.
  * Since: 3.10
+ * Deprecated: 3.22: Use gtk_source_search_context_replace2() instead.
  */
 gboolean
 gtk_source_search_context_replace (GtkSourceSearchContext  *search,
