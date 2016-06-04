@@ -3591,6 +3591,90 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
 }
 
 /**
+ * gtk_source_search_context_replace2:
+ * @search: a #GtkSourceSearchContext.
+ * @match_start: the start of the match to replace.
+ * @match_end: the end of the match to replace.
+ * @replace: the replacement text.
+ * @replace_length: the length of @replace in bytes, or -1.
+ * @error: location to a #GError, or %NULL to ignore errors.
+ *
+ * Replaces a search match by another text. If @match_start and @match_end
+ * doesn't correspond to a search match, %FALSE is returned.
+ *
+ * Unlike with gtk_source_search_context_replace(), the @match_start and
+ * @match_end iters are revalidated to point to the replacement text boundaries.
+ *
+ * For a regular expression replacement, you can check if @replace is valid by
+ * calling g_regex_check_replacement(). The @replace text can contain
+ * backreferences; read the g_regex_replace() documentation for more details.
+ *
+ * Returns: whether the match has been replaced.
+ * Since: 3.22
+ */
+gboolean
+gtk_source_search_context_replace2 (GtkSourceSearchContext  *search,
+				    GtkTextIter             *match_start,
+				    GtkTextIter             *match_end,
+				    const gchar             *replace,
+				    gint                     replace_length,
+				    GError                 **error)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+	GtkTextMark *start_mark;
+	gboolean replaced = FALSE;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), FALSE);
+	g_return_val_if_fail (match_start != NULL, FALSE);
+	g_return_val_if_fail (match_end != NULL, FALSE);
+	g_return_val_if_fail (replace != NULL, FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+
+	if (search->priv->buffer == NULL)
+	{
+		return FALSE;
+	}
+
+	if (!smart_forward_search (search, match_start, &start, &end))
+	{
+		return FALSE;
+	}
+
+	if (!gtk_text_iter_equal (match_start, &start) ||
+	    !gtk_text_iter_equal (match_end, &end))
+	{
+		return FALSE;
+	}
+
+	start_mark = gtk_text_buffer_create_mark (search->priv->buffer, NULL, &start, TRUE);
+
+	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	{
+		replaced = regex_replace (search, &start, &end, replace, error);
+	}
+	else
+	{
+		gtk_text_buffer_begin_user_action (search->priv->buffer);
+		gtk_text_buffer_delete (search->priv->buffer, &start, &end);
+		gtk_text_buffer_insert (search->priv->buffer, &end, replace, replace_length);
+		gtk_text_buffer_end_user_action (search->priv->buffer);
+
+		replaced = TRUE;
+	}
+
+	if (replaced)
+	{
+		gtk_text_buffer_get_iter_at_mark (search->priv->buffer, match_start, start_mark);
+		*match_end = end;
+	}
+
+	gtk_text_buffer_delete_mark (search->priv->buffer, start_mark);
+
+	return replaced;
+}
+
+/**
  * gtk_source_search_context_replace_all:
  * @search: a #GtkSourceSearchContext.
  * @replace: the replacement text.

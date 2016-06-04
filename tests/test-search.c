@@ -266,12 +266,12 @@ button_replace_clicked_cb (TestSearch *search,
 	entry_buffer = gtk_entry_get_buffer (search->priv->replace_entry);
 	replace_length = gtk_entry_buffer_get_bytes (entry_buffer);
 
-	gtk_source_search_context_replace (search->priv->search_context,
-					   &match_start,
-					   &match_end,
-					   gtk_entry_get_text (search->priv->replace_entry),
-					   replace_length,
-					   NULL);
+	gtk_source_search_context_replace2 (search->priv->search_context,
+					    &match_start,
+					    &match_end,
+					    gtk_entry_get_text (search->priv->replace_entry),
+					    replace_length,
+					    NULL);
 
 	gtk_text_buffer_get_selection_bounds (GTK_TEXT_BUFFER (search->priv->source_buffer),
 					      NULL,

@@ -141,6 +141,14 @@ gboolean		 gtk_source_search_context_replace			(GtkSourceSearchContext	 *search,
 										 gint			  replace_length,
 										 GError			**error);
 
+GTK_SOURCE_AVAILABLE_IN_3_22
+gboolean		 gtk_source_search_context_replace2			(GtkSourceSearchContext  *search,
+										 GtkTextIter             *match_start,
+										 GtkTextIter             *match_end,
+										 const gchar             *replace,
+										 gint                     replace_length,
+										 GError                 **error);
+
 GTK_SOURCE_AVAILABLE_IN_3_10
 guint			 gtk_source_search_context_replace_all			(GtkSourceSearchContext	 *search,
 										 const gchar		 *replace,
