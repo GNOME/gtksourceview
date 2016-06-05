@@ -236,7 +236,7 @@ gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
 
 	if (word == NULL ||
 	    (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE &&
-	     g_utf8_strlen (word, -1) < words->priv->minimum_word_size))
+	     g_utf8_strlen (word, -1) < (glong)words->priv->minimum_word_size))
 	{
 		g_free (word);
 		gtk_source_completion_context_add_proposals (context, provider, NULL, TRUE);
