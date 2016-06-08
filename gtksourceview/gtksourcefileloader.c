@@ -352,7 +352,7 @@ gtk_source_file_loader_constructed (GObject *object)
 		}
 	}
 
-	G_OBJECT_CLASS (gtk_source_file_loader_parent_class)->dispose (object);
+	G_OBJECT_CLASS (gtk_source_file_loader_parent_class)->constructed (object);
 }
 
 static void
