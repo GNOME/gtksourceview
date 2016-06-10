@@ -1447,17 +1447,17 @@ renderer_query_activatable (GtkSourceGutter *gutter,
 
 static gboolean
 redraw_for_window (GtkSourceGutter *gutter,
-                   GdkEventAny     *event,
-                   gboolean         act_on_window,
-                   gint             x,
-                   gint             y)
+		   GdkEvent        *event,
+		   gboolean         act_on_window,
+		   gint             x,
+		   gint             y)
 {
 	Renderer *at_x = NULL;
 	gint start = 0;
 	GList *item;
 	gboolean redraw;
 
-	if (event->window != get_window (gutter) && act_on_window)
+	if (event->any.window != get_window (gutter) && act_on_window)
 	{
 		return FALSE;
 	}
@@ -1486,7 +1486,7 @@ redraw_for_window (GtkSourceGutter *gutter,
 			}
 			else if (renderer_query_activatable (gutter,
 			                                     renderer,
-			                                     (GdkEvent *)event,
+			                                     event,
 			                                     x,
 			                                     y,
 			                                     NULL,
@@ -1518,7 +1518,7 @@ on_view_motion_notify_event (GtkSourceView    *view,
                              GtkSourceGutter  *gutter)
 {
 	return redraw_for_window (gutter,
-	                          (GdkEventAny *)event,
+	                          (GdkEvent *)event,
 	                          TRUE,
 	                          (gint)event->x,
 	                          (gint)event->y);
@@ -1530,7 +1530,7 @@ on_view_enter_notify_event (GtkSourceView     *view,
                             GtkSourceGutter   *gutter)
 {
 	return redraw_for_window (gutter,
-	                          (GdkEventAny *)event,
+	                          (GdkEvent *)event,
 	                          TRUE,
 	                          (gint)event->x,
 	                          (gint)event->y);
@@ -1542,7 +1542,7 @@ on_view_leave_notify_event (GtkSourceView     *view,
                             GtkSourceGutter   *gutter)
 {
 	return redraw_for_window (gutter,
-	                          (GdkEventAny *)event,
+	                          (GdkEvent *)event,
 	                          FALSE,
 	                          (gint)event->x,
 	                          (gint)event->y);
