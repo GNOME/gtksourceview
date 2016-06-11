@@ -93,11 +93,18 @@ gint			 gtk_source_search_context_get_occurrence_position	(GtkSourceSearchContex
 										 const GtkTextIter	 *match_start,
 										 const GtkTextIter	 *match_end);
 
-GTK_SOURCE_AVAILABLE_IN_3_10
+GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_forward2)
 gboolean		 gtk_source_search_context_forward			(GtkSourceSearchContext	 *search,
 										 const GtkTextIter	 *iter,
 										 GtkTextIter		 *match_start,
 										 GtkTextIter		 *match_end);
+
+GTK_SOURCE_AVAILABLE_IN_3_22
+gboolean		 gtk_source_search_context_forward2			(GtkSourceSearchContext *search,
+										 const GtkTextIter      *iter,
+										 GtkTextIter            *match_start,
+										 GtkTextIter            *match_end,
+										 gboolean               *has_wrapped_around);
 
 GTK_SOURCE_AVAILABLE_IN_3_10
 void			 gtk_source_search_context_forward_async		(GtkSourceSearchContext	 *search,

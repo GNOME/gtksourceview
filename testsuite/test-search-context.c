@@ -415,10 +415,11 @@ check_search_results (GtkSourceBuffer        *source_buffer,
 
 		if (forward)
 		{
-			found = gtk_source_search_context_forward (context,
-								   &iter,
-								   &match_start,
-								   &match_end);
+			found = gtk_source_search_context_forward2 (context,
+								    &iter,
+								    &match_start,
+								    &match_end,
+								    NULL);
 		}
 		else
 		{
@@ -1010,7 +1011,7 @@ test_regex_at_word_boundaries (void)
 
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
 
-	gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
+	gtk_source_search_context_forward2 (context, &iter, &match_start, &match_end, NULL);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 0);
@@ -1018,7 +1019,7 @@ test_regex_at_word_boundaries (void)
 	g_assert_cmpint (offset, ==, 4);
 
 	iter = match_end;
-	gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
+	gtk_source_search_context_forward2 (context, &iter, &match_start, &match_end, NULL);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 11);
@@ -1093,7 +1094,7 @@ test_regex_look_behind (void)
 
 	/* Forward search */
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
-	found = gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
+	found = gtk_source_search_context_forward2 (context, &iter, &match_start, &match_end, NULL);
 	g_assert (found);
 
 	offset = gtk_text_iter_get_offset (&match_start);
@@ -1168,7 +1169,7 @@ test_regex_look_ahead (void)
 
 	/* Forward search */
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
-	found = gtk_source_search_context_forward (context, &iter, &match_start, &match_end);
+	found = gtk_source_search_context_forward2 (context, &iter, &match_start, &match_end, NULL);
 	g_assert (found);
 
 	offset = gtk_text_iter_get_offset (&match_start);
