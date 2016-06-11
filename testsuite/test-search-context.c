@@ -2,7 +2,7 @@
  * test-search-context.c
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2013, 2015 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2013, 2015, 2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,6 +27,7 @@ typedef struct
 	gint match_start_offset;
 	gint match_end_offset;
 	guint found : 1;
+	guint has_wrapped_around : 1;
 } SearchResult;
 
 typedef struct
@@ -408,6 +409,7 @@ check_search_results (GtkSourceBuffer        *source_buffer,
 	{
 		gint i;
 		gboolean found;
+		gboolean has_wrapped_around;
 		GtkTextIter match_start;
 		GtkTextIter match_end;
 
@@ -419,7 +421,7 @@ check_search_results (GtkSourceBuffer        *source_buffer,
 								    &iter,
 								    &match_start,
 								    &match_end,
-								    NULL);
+								    &has_wrapped_around);
 		}
 		else
 		{
@@ -427,10 +429,11 @@ check_search_results (GtkSourceBuffer        *source_buffer,
 								     &iter,
 								     &match_start,
 								     &match_end,
-								     NULL);
+								     &has_wrapped_around);
 		}
 
-		g_assert (found == results[i].found);
+		g_assert_cmpint (found, ==, results[i].found);
+		g_assert_cmpint (has_wrapped_around, ==, results[i].has_wrapped_around);
 
 		if (found)
 		{
@@ -452,6 +455,7 @@ finish_check_result (GtkSourceSearchContext *context,
 	GtkTextIter match_start;
 	GtkTextIter match_end;
 	gboolean found;
+	gboolean has_wrapped_around;
 	SearchResult search_result = data->results[data->result_num];
 
 	if (data->forward)
@@ -460,7 +464,7 @@ finish_check_result (GtkSourceSearchContext *context,
 								   result,
 								   &match_start,
 								   &match_end,
-								   NULL,
+								   &has_wrapped_around,
 								   NULL);
 	}
 	else
@@ -469,11 +473,12 @@ finish_check_result (GtkSourceSearchContext *context,
 								    result,
 								    &match_start,
 								    &match_end,
-								    NULL,
+								    &has_wrapped_around,
 								    NULL);
 	}
 
-	g_assert (found == search_result.found);
+	g_assert_cmpint (found, ==, search_result.found);
+	g_assert_cmpint (has_wrapped_around, ==, search_result.has_wrapped_around);
 
 	if (found)
 	{
@@ -547,20 +552,20 @@ test_forward_search (void)
 
 	static SearchResult results1[] =
 	{
-		{ 0, 2, TRUE },
-		{ 2, 4, TRUE },
-		{ 2, 4, TRUE },
-		{ 0, 2, TRUE },
-		{ 0, 2, TRUE }
+		{ 0, 2, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE },
+		{ 0, 2, TRUE, TRUE },
+		{ 0, 2, TRUE, TRUE }
 	};
 
 	static SearchResult results2[] =
 	{
-		{ 0, 2, TRUE },
-		{ 2, 4, TRUE },
-		{ 2, 4, TRUE },
-		{ 0, 0, FALSE },
-		{ 0, 0, FALSE }
+		{ 0, 2, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE },
+		{ 0, 0, FALSE, FALSE },
+		{ 0, 0, FALSE, FALSE }
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
@@ -617,11 +622,11 @@ test_async_forward_search_normal (void)
 
 	static SearchResult results[] =
 	{
-		{ 0, 2, TRUE },
-		{ 2, 4, TRUE },
-		{ 2, 4, TRUE },
-		{ 0, 0, FALSE },
-		{ 0, 0, FALSE }
+		{ 0, 2, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE },
+		{ 0, 0, FALSE, FALSE },
+		{ 0, 0, FALSE, FALSE }
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
@@ -645,11 +650,11 @@ test_async_forward_search_wrap_around (void)
 
 	static SearchResult results[] =
 	{
-		{ 0, 2, TRUE },
-		{ 2, 4, TRUE },
-		{ 2, 4, TRUE },
-		{ 0, 2, TRUE },
-		{ 0, 2, TRUE }
+		{ 0, 2, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE },
+		{ 0, 2, TRUE, TRUE },
+		{ 0, 2, TRUE, TRUE }
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
@@ -674,20 +679,20 @@ test_backward_search (void)
 
 	static SearchResult results1[] =
 	{
-		{ 2, 4, TRUE },
-		{ 2, 4, TRUE },
-		{ 0, 2, TRUE },
-		{ 0, 2, TRUE },
-		{ 2, 4, TRUE }
+		{ 2, 4, TRUE, TRUE },
+		{ 2, 4, TRUE, TRUE },
+		{ 0, 2, TRUE, FALSE },
+		{ 0, 2, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE }
 	};
 
 	static SearchResult results2[] =
 	{
-		{ 0, 0, FALSE },
-		{ 0, 0, FALSE },
-		{ 0, 2, TRUE },
-		{ 0, 2, TRUE },
-		{ 2, 4, TRUE }
+		{ 0, 0, FALSE, FALSE },
+		{ 0, 0, FALSE, FALSE },
+		{ 0, 2, TRUE, FALSE },
+		{ 0, 2, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE }
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
@@ -738,11 +743,11 @@ test_async_backward_search_normal (void)
 
 	static SearchResult results[] =
 	{
-		{ 0, 0, FALSE },
-		{ 0, 0, FALSE },
-		{ 0, 2, TRUE },
-		{ 0, 2, TRUE },
-		{ 2, 4, TRUE }
+		{ 0, 0, FALSE, FALSE },
+		{ 0, 0, FALSE, FALSE },
+		{ 0, 2, TRUE, FALSE },
+		{ 0, 2, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE }
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
@@ -766,11 +771,11 @@ test_async_backward_search_wrap_around (void)
 
 	static SearchResult results[] =
 	{
-		{ 2, 4, TRUE },
-		{ 2, 4, TRUE },
-		{ 0, 2, TRUE },
-		{ 0, 2, TRUE },
-		{ 2, 4, TRUE }
+		{ 2, 4, TRUE, TRUE },
+		{ 2, 4, TRUE, TRUE },
+		{ 0, 2, TRUE, FALSE },
+		{ 0, 2, TRUE, FALSE },
+		{ 2, 4, TRUE, FALSE }
 	};
 
 	gtk_text_buffer_set_text (text_buffer, "aaaa", -1);
@@ -1003,6 +1008,8 @@ test_regex_at_word_boundaries (void)
 	GtkTextIter iter;
 	GtkTextIter match_start;
 	GtkTextIter match_end;
+	gboolean has_wrapped_around;
+	gboolean found;
 	gint offset;
 	gchar *content;
 
@@ -1014,7 +1021,13 @@ test_regex_at_word_boundaries (void)
 
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
 
-	gtk_source_search_context_forward2 (context, &iter, &match_start, &match_end, NULL);
+	found = gtk_source_search_context_forward2 (context,
+						    &iter,
+						    &match_start,
+						    &match_end,
+						    &has_wrapped_around);
+	g_assert (found);
+	g_assert (!has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 0);
@@ -1022,7 +1035,13 @@ test_regex_at_word_boundaries (void)
 	g_assert_cmpint (offset, ==, 4);
 
 	iter = match_end;
-	gtk_source_search_context_forward2 (context, &iter, &match_start, &match_end, NULL);
+	found = gtk_source_search_context_forward2 (context,
+						    &iter,
+						    &match_start,
+						    &match_end,
+						    &has_wrapped_around);
+	g_assert (found);
+	g_assert (!has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 11);
@@ -1081,6 +1100,7 @@ test_regex_look_behind (void)
 	gint count;
 	gint pos;
 	gint offset;
+	gboolean has_wrapped_around;
 	gboolean found;
 	gchar *contents;
 	GError *error = NULL;
@@ -1097,8 +1117,13 @@ test_regex_look_behind (void)
 
 	/* Forward search */
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
-	found = gtk_source_search_context_forward2 (context, &iter, &match_start, &match_end, NULL);
+	found = gtk_source_search_context_forward2 (context,
+						    &iter,
+						    &match_start,
+						    &match_end,
+						    &has_wrapped_around);
 	g_assert (found);
+	g_assert (!has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 7);
@@ -1107,8 +1132,13 @@ test_regex_look_behind (void)
 
 	/* Backward search */
 	gtk_text_buffer_get_end_iter (text_buffer, &iter);
-	found = gtk_source_search_context_backward2 (context, &iter, &match_start, &match_end, NULL);
+	found = gtk_source_search_context_backward2 (context,
+						     &iter,
+						     &match_start,
+						     &match_end,
+						     &has_wrapped_around);
 	g_assert (found);
+	g_assert (!has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 7);
@@ -1156,6 +1186,7 @@ test_regex_look_ahead (void)
 	gint count;
 	gint pos;
 	gint offset;
+	gboolean has_wrapped_around;
 	gboolean found;
 	gchar *contents;
 	GError *error = NULL;
@@ -1172,8 +1203,13 @@ test_regex_look_ahead (void)
 
 	/* Forward search */
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
-	found = gtk_source_search_context_forward2 (context, &iter, &match_start, &match_end, NULL);
+	found = gtk_source_search_context_forward2 (context,
+						    &iter,
+						    &match_start,
+						    &match_end,
+						    &has_wrapped_around);
 	g_assert (found);
+	g_assert (!has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 6);
@@ -1182,8 +1218,13 @@ test_regex_look_ahead (void)
 
 	/* Backward search */
 	gtk_text_buffer_get_end_iter (text_buffer, &iter);
-	found = gtk_source_search_context_backward2 (context, &iter, &match_start, &match_end, NULL);
+	found = gtk_source_search_context_backward2 (context,
+						     &iter,
+						     &match_start,
+						     &match_end,
+						     &has_wrapped_around);
 	g_assert (found);
+	g_assert (!has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 6);
