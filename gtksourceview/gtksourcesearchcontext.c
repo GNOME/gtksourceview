@@ -3525,8 +3525,12 @@ gtk_source_search_context_backward2 (GtkSourceSearchContext *search,
  * @callback: a #GAsyncReadyCallback to call when the operation is finished.
  * @user_data: the data to pass to the @callback function.
  *
- * Asynchronous backward search. See the #GAsyncResult documentation to know
- * how to use this function.
+ * The asynchronous version of gtk_source_search_context_backward2().
+ *
+ * See the documentation of gtk_source_search_context_backward2() for more
+ * details.
+ *
+ * See the #GAsyncResult documentation to know how to use this function.
  *
  * If the operation is cancelled, the @callback will only be called if
  * @cancellable was not %NULL. gtk_source_search_context_backward_async() takes
@@ -3568,6 +3572,7 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
  *
  * Returns: whether a match was found.
  * Since: 3.10
+ * Deprecated: 3.22: Use gtk_source_search_context_backward_finish2() instead.
  */
 gboolean
 gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
@@ -3581,6 +3586,41 @@ gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
 							  match_start,
 							  match_end,
 							  NULL,
+							  error);
+}
+
+/**
+ * gtk_source_search_context_backward_finish2:
+ * @search: a #GtkSourceSearchContext.
+ * @result: a #GAsyncResult.
+ * @match_start: (out) (optional): return location for start of match, or %NULL.
+ * @match_end: (out) (optional): return location for end of match, or %NULL.
+ * @has_wrapped_around: (out) (optional): return location to know whether the
+ *   search has wrapped around, or %NULL.
+ * @error: a #GError, or %NULL.
+ *
+ * Finishes a backward search started with
+ * gtk_source_search_context_backward_async().
+ *
+ * See the documentation of gtk_source_search_context_backward2() for more
+ * details.
+ *
+ * Returns: whether a match was found.
+ * Since: 3.22
+ */
+gboolean
+gtk_source_search_context_backward_finish2 (GtkSourceSearchContext  *search,
+					    GAsyncResult            *result,
+					    GtkTextIter             *match_start,
+					    GtkTextIter             *match_end,
+					    gboolean                *has_wrapped_around,
+					    GError                 **error)
+{
+	return gtk_source_search_context_forward_finish2 (search,
+							  result,
+							  match_start,
+							  match_end,
+							  has_wrapped_around,
 							  error);
 }
 
