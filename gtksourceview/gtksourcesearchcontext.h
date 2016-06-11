@@ -2,7 +2,7 @@
  * gtksourcesearchcontext.h
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2013, 2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -113,12 +113,20 @@ void			 gtk_source_search_context_forward_async		(GtkSourceSearchContext	 *searc
 										 GAsyncReadyCallback	  callback,
 										 gpointer		  user_data);
 
-GTK_SOURCE_AVAILABLE_IN_3_10
+GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_forward_finish2)
 gboolean		 gtk_source_search_context_forward_finish		(GtkSourceSearchContext	 *search,
 										 GAsyncResult		 *result,
 										 GtkTextIter		 *match_start,
 										 GtkTextIter		 *match_end,
 										 GError		        **error);
+
+GTK_SOURCE_AVAILABLE_IN_3_22
+gboolean		 gtk_source_search_context_forward_finish2		(GtkSourceSearchContext  *search,
+										 GAsyncResult            *result,
+										 GtkTextIter             *match_start,
+										 GtkTextIter             *match_end,
+										 gboolean                *has_wrapped_around,
+										 GError                 **error);
 
 GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_backward2)
 gboolean		 gtk_source_search_context_backward			(GtkSourceSearchContext	 *search,

@@ -2,7 +2,7 @@
 /* gtksourcesearchcontext.c
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2013-2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -3271,8 +3271,12 @@ gtk_source_search_context_forward2 (GtkSourceSearchContext *search,
  * @callback: a #GAsyncReadyCallback to call when the operation is finished.
  * @user_data: the data to pass to the @callback function.
  *
- * Asynchronous forward search. See the #GAsyncResult documentation to know
- * how to use this function.
+ * The asynchronous version of gtk_source_search_context_forward2().
+ *
+ * See the documentation of gtk_source_search_context_forward2() for more
+ * details.
+ *
+ * See the #GAsyncResult documentation to know how to use this function.
  *
  * If the operation is cancelled, the @callback will only be called if
  * @cancellable was not %NULL. gtk_source_search_context_forward_async() takes
@@ -3314,6 +3318,7 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
  *
  * Returns: whether a match was found.
  * Since: 3.10
+ * Deprecated: 3.22: Use gtk_source_search_context_forward_finish2() instead.
  */
 gboolean
 gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
@@ -3322,10 +3327,50 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
 					  GtkTextIter             *match_end,
 					  GError                 **error)
 {
+	return gtk_source_search_context_forward_finish2 (search,
+							  result,
+							  match_start,
+							  match_end,
+							  NULL,
+							  error);
+}
+
+/**
+ * gtk_source_search_context_forward_finish2:
+ * @search: a #GtkSourceSearchContext.
+ * @result: a #GAsyncResult.
+ * @match_start: (out) (optional): return location for start of match, or %NULL.
+ * @match_end: (out) (optional): return location for end of match, or %NULL.
+ * @has_wrapped_around: (out) (optional): return location to know whether the
+ *   search has wrapped around, or %NULL.
+ * @error: a #GError, or %NULL.
+ *
+ * Finishes a forward search started with
+ * gtk_source_search_context_forward_async().
+ *
+ * See the documentation of gtk_source_search_context_forward2() for more
+ * details.
+ *
+ * Returns: whether a match was found.
+ * Since: 3.22
+ */
+gboolean
+gtk_source_search_context_forward_finish2 (GtkSourceSearchContext  *search,
+					   GAsyncResult            *result,
+					   GtkTextIter             *match_start,
+					   GtkTextIter             *match_end,
+					   gboolean                *has_wrapped_around,
+					   GError                 **error)
+{
 	ForwardBackwardData *data;
 	gboolean found;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), FALSE);
+
+	if (has_wrapped_around != NULL)
+	{
+		*has_wrapped_around = FALSE;
+	}
 
 	if (search->priv->buffer == NULL)
 	{
@@ -3354,6 +3399,11 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
 		{
 			*match_end = data->match_end;
 		}
+	}
+
+	if (has_wrapped_around != NULL)
+	{
+		*has_wrapped_around = data->wrapped_around;
 	}
 
 	forward_backward_data_free (data);
@@ -3526,11 +3576,12 @@ gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
 					   GtkTextIter             *match_end,
 					   GError                 **error)
 {
-	return gtk_source_search_context_forward_finish (search,
-							 result,
-							 match_start,
-							 match_end,
-							 error);
+	return gtk_source_search_context_forward_finish2 (search,
+							  result,
+							  match_start,
+							  match_end,
+							  NULL,
+							  error);
 }
 
 /* If correctly replaced, returns %TRUE and @match_end is updated to point to
