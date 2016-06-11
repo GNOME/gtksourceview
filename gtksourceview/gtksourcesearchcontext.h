@@ -120,11 +120,18 @@ gboolean		 gtk_source_search_context_forward_finish		(GtkSourceSearchContext	 *s
 										 GtkTextIter		 *match_end,
 										 GError		        **error);
 
-GTK_SOURCE_AVAILABLE_IN_3_10
+GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_backward2)
 gboolean		 gtk_source_search_context_backward			(GtkSourceSearchContext	 *search,
 										 const GtkTextIter	 *iter,
 										 GtkTextIter		 *match_start,
 										 GtkTextIter		 *match_end);
+
+GTK_SOURCE_AVAILABLE_IN_3_22
+gboolean		 gtk_source_search_context_backward2			(GtkSourceSearchContext *search,
+										 const GtkTextIter      *iter,
+										 GtkTextIter            *match_start,
+										 GtkTextIter            *match_end,
+										 gboolean               *has_wrapped_around);
 
 GTK_SOURCE_AVAILABLE_IN_3_10
 void			 gtk_source_search_context_backward_async		(GtkSourceSearchContext	 *search,

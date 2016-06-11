@@ -423,10 +423,11 @@ check_search_results (GtkSourceBuffer        *source_buffer,
 		}
 		else
 		{
-			found = gtk_source_search_context_backward (context,
-								    &iter,
-								    &match_start,
-								    &match_end);
+			found = gtk_source_search_context_backward2 (context,
+								     &iter,
+								     &match_start,
+								     &match_end,
+								     NULL);
 		}
 
 		g_assert (found == results[i].found);
@@ -1104,7 +1105,7 @@ test_regex_look_behind (void)
 
 	/* Backward search */
 	gtk_text_buffer_get_end_iter (text_buffer, &iter);
-	found = gtk_source_search_context_backward (context, &iter, &match_start, &match_end);
+	found = gtk_source_search_context_backward2 (context, &iter, &match_start, &match_end, NULL);
 	g_assert (found);
 
 	offset = gtk_text_iter_get_offset (&match_start);
@@ -1179,7 +1180,7 @@ test_regex_look_ahead (void)
 
 	/* Backward search */
 	gtk_text_buffer_get_end_iter (text_buffer, &iter);
-	found = gtk_source_search_context_backward (context, &iter, &match_start, &match_end);
+	found = gtk_source_search_context_backward2 (context, &iter, &match_start, &match_end, NULL);
 	g_assert (found);
 
 	offset = gtk_text_iter_get_offset (&match_start);

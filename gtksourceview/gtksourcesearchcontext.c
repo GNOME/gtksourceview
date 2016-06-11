@@ -3373,6 +3373,7 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
  *
  * Returns: whether a match was found.
  * Since: 3.10
+ * Deprecated: 3.22: Use gtk_source_search_context_backward2() instead.
  */
 gboolean
 gtk_source_search_context_backward (GtkSourceSearchContext *search,
@@ -3380,12 +3381,57 @@ gtk_source_search_context_backward (GtkSourceSearchContext *search,
 				    GtkTextIter            *match_start,
 				    GtkTextIter            *match_end)
 {
+	return gtk_source_search_context_backward2 (search,
+						    iter,
+						    match_start,
+						    match_end,
+						    NULL);
+}
+
+/**
+ * gtk_source_search_context_backward2:
+ * @search: a #GtkSourceSearchContext.
+ * @iter: start of search.
+ * @match_start: (out) (optional): return location for start of match, or %NULL.
+ * @match_end: (out) (optional): return location for end of match, or %NULL.
+ * @has_wrapped_around: (out) (optional): return location to know whether the
+ *   search has wrapped around, or %NULL.
+ *
+ * Synchronous backward search. It is recommended to use the asynchronous
+ * functions instead, to not block the user interface. However, if you are sure
+ * that the @buffer is small, this function is more convenient to use.
+ *
+ * The difference with gtk_source_search_context_backward() is that the
+ * @has_wrapped_around out parameter has been added for convenience.
+ *
+ * If the #GtkSourceSearchSettings:wrap-around property is %FALSE, this function
+ * doesn't try to wrap around.
+ *
+ * The @has_wrapped_around out parameter is set independently of whether a match
+ * is found. So if this function returns %FALSE, @has_wrapped_around will have
+ * the same value as the #GtkSourceSearchSettings:wrap-around property.
+ *
+ * Returns: whether a match was found.
+ * Since: 3.22
+ */
+gboolean
+gtk_source_search_context_backward2 (GtkSourceSearchContext *search,
+				     const GtkTextIter      *iter,
+				     GtkTextIter            *match_start,
+				     GtkTextIter            *match_end,
+				     gboolean               *has_wrapped_around)
+{
 	GtkTextIter m_start;
 	GtkTextIter m_end;
 	gboolean found;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
+
+	if (has_wrapped_around != NULL)
+	{
+		*has_wrapped_around = FALSE;
+	}
 
 	if (search->priv->buffer == NULL)
 	{
@@ -3401,6 +3447,11 @@ gtk_source_search_context_backward (GtkSourceSearchContext *search,
 		gtk_text_buffer_get_end_iter (search->priv->buffer, &end_iter);
 
 		found = smart_backward_search (search, &end_iter, &m_start, &m_end);
+
+		if (has_wrapped_around != NULL)
+		{
+			*has_wrapped_around = TRUE;
+		}
 	}
 
 	if (found && match_start != NULL)
