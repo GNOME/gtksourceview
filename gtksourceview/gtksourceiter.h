@@ -2,7 +2,7 @@
 /* gtksourceiter.h
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2014, 2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -48,6 +48,14 @@ void		_gtk_source_iter_extend_selection_word			(const GtkTextIter *location,
 									 GtkTextIter       *start,
 									 GtkTextIter       *end);
 
+GTK_SOURCE_INTERNAL
+gboolean	_gtk_source_iter_starts_extra_natural_word		(const GtkTextIter *iter,
+									 gboolean           visible);
+
+GTK_SOURCE_INTERNAL
+gboolean	_gtk_source_iter_ends_extra_natural_word		(const GtkTextIter *iter,
+									 gboolean           visible);
+
 /* Internal functions, in the header for unit tests. */
 
 GTK_SOURCE_INTERNAL
@@ -67,12 +75,6 @@ void		_gtk_source_iter_forward_extra_natural_word_end		(GtkTextIter *iter);
 
 GTK_SOURCE_INTERNAL
 void		_gtk_source_iter_backward_extra_natural_word_start	(GtkTextIter *iter);
-
-GTK_SOURCE_INTERNAL
-gboolean	_gtk_source_iter_starts_extra_natural_word		(const GtkTextIter *iter);
-
-GTK_SOURCE_INTERNAL
-gboolean	_gtk_source_iter_ends_extra_natural_word		(const GtkTextIter *iter);
 
 GTK_SOURCE_INTERNAL
 gboolean	_gtk_source_iter_starts_word				(const GtkTextIter *iter);

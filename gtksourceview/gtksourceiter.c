@@ -2,7 +2,7 @@
 /* gtksourceiter.c
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2014, 2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -251,8 +251,21 @@ _gtk_source_iter_backward_extra_natural_word_start (GtkTextIter *iter)
 	}
 }
 
+static gboolean
+backward_cursor_position (GtkTextIter *iter,
+			  gboolean     visible)
+{
+	if (visible)
+	{
+		return gtk_text_iter_backward_visible_cursor_position (iter);
+	}
+
+	return gtk_text_iter_backward_cursor_position (iter);
+}
+
 gboolean
-_gtk_source_iter_starts_extra_natural_word (const GtkTextIter *iter)
+_gtk_source_iter_starts_extra_natural_word (const GtkTextIter *iter,
+					    gboolean           visible)
 {
 	gboolean starts_word;
 	GtkTextIter prev;
@@ -260,7 +273,7 @@ _gtk_source_iter_starts_extra_natural_word (const GtkTextIter *iter)
 	starts_word = gtk_text_iter_starts_word (iter);
 
 	prev = *iter;
-	if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+	if (!backward_cursor_position (&prev, visible))
 	{
 		return starts_word || gtk_text_iter_get_char (iter) == '_';
 	}
@@ -276,13 +289,14 @@ _gtk_source_iter_starts_extra_natural_word (const GtkTextIter *iter)
 }
 
 gboolean
-_gtk_source_iter_ends_extra_natural_word (const GtkTextIter *iter)
+_gtk_source_iter_ends_extra_natural_word (const GtkTextIter *iter,
+					  gboolean           visible)
 {
 	GtkTextIter prev;
 	gboolean ends_word;
 
 	prev = *iter;
-	if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+	if (!backward_cursor_position (&prev, visible))
 	{
 		return FALSE;
 	}
@@ -510,28 +524,28 @@ gboolean
 _gtk_source_iter_starts_word (const GtkTextIter *iter)
 {
 	if (_gtk_source_iter_starts_full_word (iter) ||
-	    _gtk_source_iter_starts_extra_natural_word (iter))
+	    _gtk_source_iter_starts_extra_natural_word (iter, TRUE))
 	{
 		return TRUE;
 	}
 
 	/* Example: "abcd|()", at the start of the word "()". */
 	return (!_gtk_source_iter_ends_full_word (iter) &&
-		_gtk_source_iter_ends_extra_natural_word (iter));
+		_gtk_source_iter_ends_extra_natural_word (iter, TRUE));
 }
 
 gboolean
 _gtk_source_iter_ends_word (const GtkTextIter *iter)
 {
 	if (_gtk_source_iter_ends_full_word (iter) ||
-	    _gtk_source_iter_ends_extra_natural_word (iter))
+	    _gtk_source_iter_ends_extra_natural_word (iter, TRUE))
 	{
 		return TRUE;
 	}
 
 	/* Example: "abcd()|efgh", at the end of the word "()". */
 	return (!_gtk_source_iter_starts_full_word (iter) &&
-		_gtk_source_iter_starts_extra_natural_word (iter));
+		_gtk_source_iter_starts_extra_natural_word (iter, TRUE));
 }
 
 gboolean

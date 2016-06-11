@@ -217,7 +217,7 @@ check_starts_extra_natural_word (const gchar *buffer_text,
 	gtk_text_buffer_set_text (buffer, buffer_text, -1);
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, offset);
-	g_assert_cmpint (starts, ==, _gtk_source_iter_starts_extra_natural_word (&iter));
+	g_assert_cmpint (starts, ==, _gtk_source_iter_starts_extra_natural_word (&iter, TRUE));
 
 	g_object_unref (buffer);
 }
@@ -250,7 +250,7 @@ check_ends_extra_natural_word (const gchar *buffer_text,
 	gtk_text_buffer_set_text (buffer, buffer_text, -1);
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, offset);
-	g_assert_cmpint (ends, ==, _gtk_source_iter_ends_extra_natural_word (&iter));
+	g_assert_cmpint (ends, ==, _gtk_source_iter_ends_extra_natural_word (&iter, TRUE));
 
 	g_object_unref (buffer);
 }
