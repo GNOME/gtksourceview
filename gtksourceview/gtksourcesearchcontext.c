@@ -31,6 +31,7 @@
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils.h"
 #include "gtksourceregion.h"
+#include "gtksourceiter.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourceview-typebuiltins.h"
 
@@ -264,13 +265,14 @@
  *
  * To search at word boundaries, \b is added at the beginning and at the
  * end of the pattern. But \b is not the same as
- * gtk_text_iter_starts_word() and gtk_text_iter_ends_word(). \b for
+ * _gtk_source_iter_starts_extra_natural_word() and
+ * _gtk_source_iter_ends_extra_natural_word(). \b for
  * example doesn't take the underscore as a word boundary.
- * Using gtk_text_iter_starts_word() and ends_word() for regex searches
+ * Using _gtk_source_iter_starts_extra_natural_word() and ends_word() for regex searches
  * is not easily possible: if the GRegex returns a match, but doesn't
  * start and end a word, maybe a shorter match (for a greedy pattern)
  * start and end a word, or a longer match (for an ungreedy pattern). To
- * be able to use the gtk_text_iter_starts_word() and ends_word()
+ * be able to use the _gtk_source_iter_starts_extra_natural_word() and ends_word()
  * functions for regex search, g_regex_match_all_full() must be used, to
  * retrieve _all_ matches, and test the word boundaries until a match is
  * found at word boundaries.
@@ -839,8 +841,8 @@ basic_forward_search (GtkSourceSearchContext *search,
 			return found;
 		}
 
-		if (gtk_text_iter_starts_word (match_start) &&
-		    gtk_text_iter_ends_word (match_end))
+		if (_gtk_source_iter_starts_extra_natural_word (match_start, FALSE) &&
+		    _gtk_source_iter_ends_extra_natural_word (match_end, FALSE))
 		{
 			return TRUE;
 		}
@@ -940,8 +942,8 @@ basic_backward_search (GtkSourceSearchContext *search,
 			return found;
 		}
 
-		if (gtk_text_iter_starts_word (match_start) &&
-		    gtk_text_iter_ends_word (match_end))
+		if (_gtk_source_iter_starts_extra_natural_word (match_start, FALSE) &&
+		    _gtk_source_iter_ends_extra_natural_word (match_end, FALSE))
 		{
 			return TRUE;
 		}

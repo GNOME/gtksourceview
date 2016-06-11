@@ -389,6 +389,21 @@ test_search_at_word_boundaries (void)
 	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 2);
 
+	/* Word with underscores */
+
+	gtk_text_buffer_set_text (text_buffer, "_hello_world_ _hello_", -1);
+	gtk_source_search_settings_set_search_text (settings, "_hello_");
+
+	gtk_source_search_settings_set_at_word_boundaries (settings, TRUE);
+	flush_queue ();
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
+	g_assert_cmpint (occurrences_count, ==, 1);
+
+	gtk_source_search_settings_set_at_word_boundaries (settings, FALSE);
+	flush_queue ();
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
+	g_assert_cmpint (occurrences_count, ==, 2);
+
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
 	g_object_unref (context);
