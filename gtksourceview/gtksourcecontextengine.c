@@ -2660,14 +2660,10 @@ gtk_source_context_engine_set_style_scheme (GtkSourceEngine      *engine,
 
 	ce = GTK_SOURCE_CONTEXT_ENGINE (engine);
 
-	if (scheme == ce->priv->style_scheme)
-		return;
-
-	if (ce->priv->style_scheme != NULL)
-		g_object_unref (ce->priv->style_scheme);
-
-	ce->priv->style_scheme = scheme ? g_object_ref (scheme) : NULL;
-	g_hash_table_foreach (ce->priv->tags, (GHFunc) set_tag_style_hash_cb, ce);
+	if (g_set_object (&ce->priv->style_scheme, scheme))
+	{
+		g_hash_table_foreach (ce->priv->tags, (GHFunc) set_tag_style_hash_cb, ce);
+	}
 }
 
 static void
