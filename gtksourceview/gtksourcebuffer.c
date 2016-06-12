@@ -198,7 +198,7 @@ struct _GtkSourceBufferPrivate
 {
 	GtkTextTag *bracket_match_tag;
 	GtkSourceBracketMatchType bracket_match_state;
-	guint bracket_update_handler;
+	guint bracket_highlighting_timeout_id;
 
 	/* Hash table: category -> MarksSequence */
 	GHashTable *source_marks;
@@ -593,10 +593,10 @@ gtk_source_buffer_dispose (GObject *object)
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (object);
 	GList *l;
 
-	if (buffer->priv->bracket_update_handler != 0)
+	if (buffer->priv->bracket_highlighting_timeout_id != 0)
 	{
-		g_source_remove (buffer->priv->bracket_update_handler);
-		buffer->priv->bracket_update_handler = 0;
+		g_source_remove (buffer->priv->bracket_highlighting_timeout_id);
+		buffer->priv->bracket_highlighting_timeout_id = 0;
 	}
 
 	if (buffer->priv->undo_manager != NULL)
@@ -1070,27 +1070,25 @@ update_bracket_highlighting (GtkSourceBuffer *source_buffer)
 }
 
 static gboolean
-do_bracket_update (gpointer user_data)
+bracket_highlighting_timeout_cb (gpointer user_data)
 {
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (user_data);
 
-	buffer->priv->bracket_update_handler = 0;
-
 	update_bracket_highlighting (buffer);
 
+	buffer->priv->bracket_highlighting_timeout_id = 0;
 	return G_SOURCE_REMOVE;
 }
 
 static void
-queue_bracket_update (GtkSourceBuffer *buffer)
+queue_bracket_highlighting_update (GtkSourceBuffer *buffer)
 {
-	if (buffer->priv->bracket_update_handler != 0)
+	if (buffer->priv->bracket_highlighting_timeout_id != 0)
 	{
-		g_source_remove (buffer->priv->bracket_update_handler);
+		g_source_remove (buffer->priv->bracket_highlighting_timeout_id);
 	}
 
-	/*
-	 * Queue an update to the bracket location instead of doing it
+	/* Queue an update to the bracket location instead of doing it
 	 * immediately. We are likely going to be servicing a draw deadline
 	 * immediately, so blocking to find the match and invalidating
 	 * visible regions causes animations to stutter. Instead, give
@@ -1107,21 +1105,22 @@ queue_bracket_update (GtkSourceBuffer *buffer)
 	 * If we had access to a GdkFrameClock, we might consider using
 	 * ::update() or ::after-paint() to synchronize this.
 	 */
-	buffer->priv->bracket_update_handler =
+	buffer->priv->bracket_highlighting_timeout_id =
 		gdk_threads_add_timeout_full (G_PRIORITY_LOW,
 					      UPDATE_BRACKET_DELAY,
-					      do_bracket_update,
+					      bracket_highlighting_timeout_cb,
 					      buffer,
 					      NULL);
 }
 
-/* Although this function is not really useful (update_bracket_highlighting()
- * could be called directly), the name cursor_moved() is more meaningful.
+/* Although this function is not really useful
+ * (queue_bracket_highlighting_update() could be called directly), the name
+ * cursor_moved() is more meaningful.
  */
 static void
 cursor_moved (GtkSourceBuffer *buffer)
 {
-	queue_bracket_update (buffer);
+	queue_bracket_highlighting_update (buffer);
 }
 
 static void
@@ -1129,7 +1128,7 @@ gtk_source_buffer_real_highlight_updated (GtkSourceBuffer *buffer,
 					  GtkTextIter     *start,
 					  GtkTextIter     *end)
 {
-	queue_bracket_update (buffer);
+	queue_bracket_highlighting_update (buffer);
 }
 
 static void
