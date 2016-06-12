@@ -198,15 +198,15 @@ struct _GtkSourceBufferPrivate
 {
 	GtkTextTag *bracket_match_tag;
 	GtkSourceBracketMatchType bracket_match_state;
+	guint bracket_update_handler;
 
 	/* Hash table: category -> MarksSequence */
 	GHashTable *source_marks;
 	GtkSourceMarksSequence *all_source_marks;
 
-	GtkSourceLanguage *language;
-
-	GtkSourceEngine *highlight_engine;
 	GtkSourceStyleScheme *style_scheme;
+	GtkSourceLanguage *language;
+	GtkSourceEngine *highlight_engine;
 
 	GtkSourceUndoManager *undo_manager;
 	gint max_undo_levels;
@@ -217,8 +217,6 @@ struct _GtkSourceBufferPrivate
 	GList *search_contexts;
 
 	GtkTextTag *invalid_char_tag;
-
-	guint bracket_update_handler;
 
 	guint highlight_syntax : 1;
 	guint highlight_brackets : 1;
@@ -1074,7 +1072,7 @@ update_bracket_highlighting (GtkSourceBuffer *source_buffer)
 static gboolean
 do_bracket_update (gpointer user_data)
 {
-	GtkSourceBuffer *buffer = user_data;
+	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (user_data);
 
 	buffer->priv->bracket_update_handler = 0;
 
