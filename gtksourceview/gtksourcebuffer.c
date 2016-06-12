@@ -1879,25 +1879,17 @@ gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme) || scheme == NULL);
 
-	if (buffer->priv->style_scheme == scheme)
+	if (g_set_object (&buffer->priv->style_scheme, scheme))
 	{
-		return;
+		update_bracket_match_style (buffer);
+
+		if (buffer->priv->highlight_engine != NULL)
+		{
+			_gtk_source_engine_set_style_scheme (buffer->priv->highlight_engine, scheme);
+		}
+
+		g_object_notify (G_OBJECT (buffer), "style-scheme");
 	}
-
-	if (buffer->priv->style_scheme != NULL)
-	{
-		g_object_unref (buffer->priv->style_scheme);
-	}
-
-	buffer->priv->style_scheme = scheme != NULL ? g_object_ref (scheme) : NULL;
-	update_bracket_match_style (buffer);
-
-	if (buffer->priv->highlight_engine != NULL)
-	{
-		_gtk_source_engine_set_style_scheme (buffer->priv->highlight_engine, scheme);
-	}
-
-	g_object_notify (G_OBJECT (buffer), "style-scheme");
 }
 
 /**
