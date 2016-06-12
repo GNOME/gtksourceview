@@ -5004,6 +5004,7 @@ update_background_pattern_color (GtkSourceView *view)
 {
 	if (view->priv->style_scheme == NULL)
 	{
+		view->priv->background_pattern_color_set = FALSE;
 		return;
 	}
 
@@ -5017,6 +5018,7 @@ update_current_line_color (GtkSourceView *view)
 {
 	if (view->priv->style_scheme == NULL)
 	{
+		view->priv->current_line_color_set = FALSE;
 		return;
 	}
 
