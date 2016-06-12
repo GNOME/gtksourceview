@@ -5095,8 +5095,8 @@ gtk_source_view_realize (GtkWidget *widget)
 static void
 gtk_source_view_update_style_scheme (GtkSourceView *view)
 {
-	GtkSourceStyleScheme *new_scheme;
 	GtkTextBuffer *buffer;
+	GtkSourceStyleScheme *new_scheme = NULL;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
@@ -5104,38 +5104,31 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 	{
 		new_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer));
 	}
-	else
+
+	if (view->priv->style_scheme == new_scheme)
 	{
-		new_scheme = NULL;
+		return;
 	}
 
-	if (view->priv->style_scheme != new_scheme)
+	if (view->priv->style_scheme != NULL)
 	{
-		if (view->priv->style_scheme != NULL)
-		{
-			_gtk_source_style_scheme_unapply (view->priv->style_scheme, view);
-			g_object_unref (view->priv->style_scheme);
-		}
+		_gtk_source_style_scheme_unapply (view->priv->style_scheme, view);
+	}
 
-		view->priv->style_scheme = new_scheme;
-		if (new_scheme != NULL)
-		{
-			g_object_ref (new_scheme);
-		}
+	g_set_object (&view->priv->style_scheme, new_scheme);
 
-		if (gtk_widget_get_realized (GTK_WIDGET (view)))
-		{
-			_gtk_source_style_scheme_apply (new_scheme, view);
-			update_background_pattern_color (view);
-			update_current_line_color (view);
-			update_right_margin_colors (view);
-			update_spaces_color (view);
-			view->priv->style_scheme_applied = TRUE;
-		}
-		else
-		{
-			view->priv->style_scheme_applied = FALSE;
-		}
+	if (gtk_widget_get_realized (GTK_WIDGET (view)))
+	{
+		_gtk_source_style_scheme_apply (new_scheme, view);
+		update_background_pattern_color (view);
+		update_current_line_color (view);
+		update_right_margin_colors (view);
+		update_spaces_color (view);
+		view->priv->style_scheme_applied = TRUE;
+	}
+	else
+	{
+		view->priv->style_scheme_applied = FALSE;
 	}
 }
 
