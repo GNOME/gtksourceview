@@ -1734,7 +1734,7 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (GTK_SOURCE_IS_LANGUAGE (language) || language == NULL);
 
-	if (buffer->priv->language == language)
+	if (!g_set_object (&buffer->priv->language, language))
 	{
 		return;
 	}
@@ -1747,26 +1747,17 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 		buffer->priv->highlight_engine = NULL;
 	}
 
-	if (buffer->priv->language != NULL)
-	{
-		g_object_unref (buffer->priv->language);
-	}
-
-	buffer->priv->language = language;
-
 	if (language != NULL)
 	{
-		g_object_ref (language);
-
 		/* get a new engine */
 		buffer->priv->highlight_engine = _gtk_source_language_create_engine (language);
 
-		if (buffer->priv->highlight_engine)
+		if (buffer->priv->highlight_engine != NULL)
 		{
 			_gtk_source_engine_attach_buffer (buffer->priv->highlight_engine,
 							  GTK_TEXT_BUFFER (buffer));
 
-			if (buffer->priv->style_scheme)
+			if (buffer->priv->style_scheme != NULL)
 			{
 				_gtk_source_engine_set_style_scheme (buffer->priv->highlight_engine,
 								     buffer->priv->style_scheme);
