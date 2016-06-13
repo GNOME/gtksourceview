@@ -3141,7 +3141,7 @@ create_reg_all (Context           *context,
 		g_warning (_("Cannot create a regex for all the transitions, "
 			     "the syntax highlighting process will be slower "
 			     "than usual.\nThe error was: %s"), error->message);
-		g_error_free (error);
+		g_clear_error (&error);
 	}
 
 	g_string_free (all, TRUE);
@@ -6312,7 +6312,7 @@ out:
 	if (error)
 	{
 		g_warning ("%s", error->message);
-		g_error_free (error);
+		g_clear_error (&error);
 	}
 }
 
@@ -6374,7 +6374,7 @@ out:
 	if (error)
 	{
 		g_warning ("%s", error->message);
-		g_error_free (error);
+		g_clear_error (&error);
 	}
 
 	g_free (pattern);
