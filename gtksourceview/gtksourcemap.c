@@ -181,7 +181,7 @@ enum
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMap, gtk_source_map, GTK_SOURCE_TYPE_VIEW)
 
-static GParamSpec *pspecs[N_PROPERTIES];
+static GParamSpec *properties[N_PROPERTIES];
 
 static void
 update_scrubber_position (GtkSourceMap *map)
@@ -1130,21 +1130,21 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 	widget_class->state_flags_changed = gtk_source_map_state_flags_changed;
 	widget_class->realize = gtk_source_map_realize;
 
-	pspecs[PROP_VIEW] =
+	properties[PROP_VIEW] =
 		g_param_spec_object ("view",
 		                     "View",
 		                     "The view this widget is mapping.",
 		                     GTK_SOURCE_TYPE_VIEW,
 		                     (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
-	pspecs[PROP_FONT_DESC] =
+	properties[PROP_FONT_DESC] =
 		g_param_spec_boxed ("font-desc",
 		                    "Font Description",
 		                    "The Pango font description to use.",
 		                    PANGO_TYPE_FONT_DESCRIPTION,
 		                    (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
-	g_object_class_install_properties (object_class, N_PROPERTIES, pspecs);
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
 static void
@@ -1234,7 +1234,7 @@ gtk_source_map_set_view (GtkSourceMap  *map,
 		connect_view (map, view);
 	}
 
-	g_object_notify_by_pspec (G_OBJECT (map), pspecs[PROP_VIEW]);
+	g_object_notify_by_pspec (G_OBJECT (map), properties[PROP_VIEW]);
 }
 
 /**
