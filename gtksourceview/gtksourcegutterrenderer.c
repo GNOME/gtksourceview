@@ -1136,12 +1136,13 @@ gtk_source_gutter_renderer_set_padding (GtkSourceGutterRenderer *renderer,
 /**
  * gtk_source_gutter_renderer_get_padding:
  * @renderer: a #GtkSourceGutterRenderer
- * @xpad: (out caller-allocates) (allow-none): return location for the x-padding (can be %NULL)
- * @ypad: (out caller-allocates) (allow-none): return location for the y-padding (can be %NULL)
+ * @xpad: (out caller-allocates) (optional): return location for the x-padding,
+ *   or %NULL to ignore.
+ * @ypad: (out caller-allocates) (optional): return location for the y-padding,
+ *   or %NULL to ignore.
  *
  * Get the x-padding and y-padding of the gutter renderer.
- *
- **/
+ */
 void
 gtk_source_gutter_renderer_get_padding (GtkSourceGutterRenderer *renderer,
                                         gint                    *xpad,
@@ -1196,12 +1197,13 @@ gtk_source_gutter_renderer_set_alignment (GtkSourceGutterRenderer *renderer,
 /**
  * gtk_source_gutter_renderer_get_alignment:
  * @renderer: a #GtkSourceGutterRenderer
- * @xalign: (out caller-allocates) (allow-none): return location for the x-alignment (can be %NULL)
- * @yalign: (out caller-allocates) (allow-none): return location for the y-alignment (can be %NULL)
+ * @xalign: (out caller-allocates) (optional): return location for the x-alignment,
+ *   or %NULL to ignore.
+ * @yalign: (out caller-allocates) (optional): return location for the y-alignment,
+ *   or %NULL to ignore.
  *
  * Get the x-alignment and y-alignment of the gutter renderer.
- *
- **/
+ */
 void
 gtk_source_gutter_renderer_get_alignment (GtkSourceGutterRenderer *renderer,
                                           gfloat                  *xalign,
@@ -1328,7 +1330,7 @@ gtk_source_gutter_renderer_set_size (GtkSourceGutterRenderer *renderer,
 /**
  * gtk_source_gutter_renderer_get_background:
  * @renderer: a #GtkSourceGutterRenderer
- * @color: (out caller-allocates) (allow-none): return value for a #GdkRGBA
+ * @color: (out caller-allocates) (optional): return value for a #GdkRGBA
  *
  * Get the background color of the renderer.
  *
@@ -1352,7 +1354,7 @@ gtk_source_gutter_renderer_get_background (GtkSourceGutterRenderer *renderer,
 /**
  * gtk_source_gutter_renderer_set_background:
  * @renderer: a #GtkSourceGutterRenderer
- * @color: (allow-none): a #GdkRGBA or %NULL
+ * @color: (nullable): a #GdkRGBA or %NULL
  *
  * Set the background color of the renderer. If @color is set to %NULL, the
  * renderer will not have a background color.
