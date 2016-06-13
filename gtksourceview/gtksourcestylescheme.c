@@ -758,10 +758,8 @@ get_css_provider_cursors (GtkSourceStyleScheme *scheme,
 	if (error != NULL)
 	{
 		g_warning ("Error when loading CSS for cursors: %s", error->message);
-		g_error_free (error);
-
-		g_object_unref (provider);
-		return NULL;
+		g_clear_error (&error);
+		g_clear_object (&provider);
 	}
 
 	return provider;
@@ -964,13 +962,15 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	{
 		GError *error = NULL;
 
-		if (!gtk_css_provider_load_from_data (scheme->priv->css_provider,
-		                                      final_style->str,
-		                                      final_style->len,
-		                                      &error))
+		gtk_css_provider_load_from_data (scheme->priv->css_provider,
+						 final_style->str,
+						 final_style->len,
+						 &error);
+
+		if (error != NULL)
 		{
 			g_warning ("%s", error->message);
-			g_error_free (error);
+			g_clear_error (&error);
 		}
 	}
 
@@ -1361,7 +1361,7 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 		g_warning ("could not load style scheme file '%s': %s",
 			   filename_utf8, error->message);
 		g_free (filename_utf8);
-		g_error_free (error);
+		g_clear_error (&error);
 		return NULL;
 	}
 
@@ -1399,9 +1399,8 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 		g_warning ("could not load style scheme file '%s': %s",
 			   filename_utf8, error->message);
 		g_free (filename_utf8);
-		g_error_free (error);
-		g_object_unref (scheme);
-		scheme = NULL;
+		g_clear_error (&error);
+		g_clear_object (&scheme);
 	}
 	else
 	{
