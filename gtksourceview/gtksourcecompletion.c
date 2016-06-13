@@ -204,7 +204,7 @@ struct _GtkSourceCompletionPrivate
 	guint show_icons : 1;
 };
 
-static guint signals[N_SIGNALS] = { 0 };
+static guint signals[N_SIGNALS];
 
 static void	gtk_source_completion_buildable_interface_init (GtkBuildableIface *iface);
 

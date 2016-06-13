@@ -82,7 +82,7 @@ enum
 	N_SIGNALS
 };
 
-static guint signals[N_SIGNALS] = { 0 };
+static guint signals[N_SIGNALS];
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WINDOW);
 

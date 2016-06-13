@@ -215,7 +215,7 @@ struct _MarkCategory
 	gint priority;
 };
 
-static guint signals[N_SIGNALS] = { 0 };
+static guint signals[N_SIGNALS];
 
 static void gtk_source_view_buildable_interface_init (GtkBuildableIface *iface);
 

@@ -111,7 +111,7 @@ enum
 	N_SIGNALS
 };
 
-static guint signals[N_SIGNALS] = {0,};
+static guint signals[N_SIGNALS];
 
 static void
 gtk_source_mark_attributes_finalize (GObject *object)

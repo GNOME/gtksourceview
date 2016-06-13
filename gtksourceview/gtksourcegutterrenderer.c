@@ -105,7 +105,7 @@ struct _GtkSourceGutterRendererPrivate
 	guint visible : 1;
 };
 
-static guint signals[N_SIGNALS] = {0,};
+static guint signals[N_SIGNALS];
 
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (GtkSourceGutterRenderer, gtk_source_gutter_renderer, G_TYPE_INITIALLY_UNOWNED)
 

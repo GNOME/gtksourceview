@@ -60,7 +60,7 @@ enum
 	N_SIGNALS
 };
 
-static guint signals[N_SIGNALS] = {0,};
+static guint signals[N_SIGNALS];
 
 typedef GtkSourceUndoManagerIface GtkSourceUndoManagerInterface;
 

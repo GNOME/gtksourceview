@@ -37,7 +37,7 @@ struct _GtkSourceCompletionWordsLibraryPrivate
 	gboolean locked;
 };
 
-static guint signals[N_SIGNALS] = {0,};
+static guint signals[N_SIGNALS];
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionWordsLibrary, gtk_source_completion_words_library, G_TYPE_OBJECT)
 
