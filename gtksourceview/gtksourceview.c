@@ -1336,6 +1336,92 @@ gtk_source_view_finalize (GObject *object)
 }
 
 static void
+get_visible_region (GtkTextView *text_view,
+		    GtkTextIter *start,
+		    GtkTextIter *end)
+{
+	GdkRectangle visible_rect;
+
+	gtk_text_view_get_visible_rect (text_view, &visible_rect);
+
+	gtk_text_view_get_line_at_y (text_view,
+				     start,
+				     visible_rect.y,
+				     NULL);
+
+	gtk_text_view_get_line_at_y (text_view,
+				     end,
+				     visible_rect.y + visible_rect.height,
+				     NULL);
+
+	gtk_text_iter_backward_line (start);
+	gtk_text_iter_forward_line (end);
+}
+
+static void
+highlight_updated_cb (GtkSourceBuffer *buffer,
+		      GtkTextIter     *_start,
+		      GtkTextIter     *_end,
+		      GtkTextView     *text_view)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+	GtkTextIter visible_start;
+	GtkTextIter visible_end;
+	GtkTextIter intersect_start;
+	GtkTextIter intersect_end;
+
+	start = *_start;
+	end = *_end;
+	gtk_text_iter_order (&start, &end);
+
+	get_visible_region (text_view, &visible_start, &visible_end);
+
+	if (gtk_text_iter_compare (&end, &visible_start) < 0 ||
+	    gtk_text_iter_compare (&visible_end, &start) < 0)
+	{
+		return;
+	}
+
+	if (gtk_text_iter_compare (&start, &visible_start) < 0)
+	{
+		intersect_start = visible_start;
+	}
+	else
+	{
+		intersect_start = start;
+	}
+
+	if (gtk_text_iter_compare (&visible_end, &end) < 0)
+	{
+		intersect_end = visible_end;
+	}
+	else
+	{
+		intersect_end = end;
+	}
+
+	/* GtkSourceContextEngine sends the highlight-updated signal to notify
+	 * the view, and in the view (here) we tell the ContextEngine to update
+	 * the highlighting, but only in the visible area. It seems that the
+	 * purpose is to reduce the number of tags that the ContextEngine
+	 * applies to the buffer.
+	 *
+	 * A previous implementation of this signal handler queued a redraw on
+	 * the view with gtk_widget_queue_draw_area(), instead of calling
+	 * directly _gtk_source_buffer_update_highlight(). The ::draw handler
+	 * also calls _gtk_source_buffer_update_highlight(), so this had the
+	 * desired effect, but it was less clear.
+	 * See the Git commit 949cd128064201935f90d999544e6a19f8e3baa6.
+	 * And: https://bugzilla.gnome.org/show_bug.cgi?id=767565
+	 */
+	_gtk_source_buffer_update_highlight (buffer,
+					     &intersect_start,
+					     &intersect_end,
+					     FALSE);
+}
+
+static void
 source_mark_updated_cb (GtkSourceBuffer *buffer,
 			GtkSourceMark   *mark,
 			GtkTextView     *text_view)
@@ -1358,6 +1444,10 @@ remove_source_buffer (GtkSourceView *view)
 {
 	if (view->priv->source_buffer != NULL)
 	{
+		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
+						      highlight_updated_cb,
+						      view);
+
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
 						      source_mark_updated_cb,
 						      view);
@@ -1385,6 +1475,11 @@ set_source_buffer (GtkSourceView *view,
 	if (GTK_SOURCE_IS_BUFFER (buffer))
 	{
 		view->priv->source_buffer = g_object_ref (buffer);
+
+		g_signal_connect (buffer,
+				  "highlight-updated",
+				  G_CALLBACK (highlight_updated_cb),
+				  view);
 
 		g_signal_connect (buffer,
 				  "source-mark-updated",
