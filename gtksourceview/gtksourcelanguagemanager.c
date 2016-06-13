@@ -220,7 +220,7 @@ notify_search_path (GtkSourceLanguageManager *mgr)
 /**
  * gtk_source_language_manager_set_search_path:
  * @lm: a #GtkSourceLanguageManager.
- * @dirs: (allow-none) (array zero-terminated=1):
+ * @dirs: (nullable) (array zero-terminated=1):
  * a %NULL-terminated array of strings or %NULL.
  *
  * Sets the list of directories where the @lm looks for
@@ -591,8 +591,8 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
 /**
  * gtk_source_language_manager_guess_language:
  * @lm: a #GtkSourceLanguageManager.
- * @filename: (allow-none): a filename in Glib filename encoding, or %NULL.
- * @content_type: (allow-none): a content type (as in GIO API), or %NULL.
+ * @filename: (nullable): a filename in Glib filename encoding, or %NULL.
+ * @content_type: (nullable): a content type (as in GIO API), or %NULL.
  *
  * Picks a #GtkSourceLanguage for given file name and content type,
  * according to the information in lang files. Either @filename or

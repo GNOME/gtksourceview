@@ -818,7 +818,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 
 /**
  * _gtk_source_style_scheme_unapply:
- * @scheme: (allow-none): a #GtkSourceStyleScheme or %NULL.
+ * @scheme: (nullable): a #GtkSourceStyleScheme or %NULL.
  * @view: a #GtkSourceView to unapply styles to.
  *
  * Removes the styles from @scheme in the @view.

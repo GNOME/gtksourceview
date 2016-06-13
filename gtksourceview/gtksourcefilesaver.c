@@ -1194,7 +1194,7 @@ gtk_source_file_saver_get_location (GtkSourceFileSaver *saver)
 /**
  * gtk_source_file_saver_set_encoding:
  * @saver: a #GtkSourceFileSaver.
- * @encoding: (allow-none): the new encoding, or %NULL for UTF-8.
+ * @encoding: (nullable): the new encoding, or %NULL for UTF-8.
  *
  * Sets the encoding. If @encoding is %NULL, the UTF-8 encoding will be set.
  * By default the encoding is taken from the #GtkSourceFile.

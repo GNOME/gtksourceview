@@ -205,7 +205,7 @@ gtk_source_mark_get_category (GtkSourceMark *mark)
 /**
  * gtk_source_mark_next:
  * @mark: a #GtkSourceMark.
- * @category: (allow-none): a string specifying the mark category, or %NULL.
+ * @category: (nullable): a string specifying the mark category, or %NULL.
  *
  * Returns the next #GtkSourceMark in the buffer or %NULL if the mark
  * was not added to a buffer. If there is no next mark, %NULL will be returned.

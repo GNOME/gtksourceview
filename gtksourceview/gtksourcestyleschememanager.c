@@ -401,7 +401,7 @@ notify_search_path (GtkSourceStyleSchemeManager *mgr)
 /**
  * gtk_source_style_scheme_manager_set_search_path:
  * @manager: a #GtkSourceStyleSchemeManager.
- * @path: (array zero-terminated=1) (allow-none):
+ * @path: (array zero-terminated=1) (nullable):
  * a %NULL-terminated array of strings or %NULL.
  *
  * Sets the list of directories where the @manager looks for
