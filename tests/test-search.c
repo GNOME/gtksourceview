@@ -147,7 +147,7 @@ update_label_regex_error (TestSearch *search)
 	{
 		gtk_label_set_text (search->priv->label_regex_error, error->message);
 		gtk_widget_show (GTK_WIDGET (search->priv->label_regex_error));
-		g_error_free (error);
+		g_clear_error (&error);
 	}
 }
 
