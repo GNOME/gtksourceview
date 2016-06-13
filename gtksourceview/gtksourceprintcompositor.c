@@ -1117,9 +1117,9 @@ gtk_source_print_compositor_get_print_footer (GtkSourcePrintCompositor *composit
  * gtk_source_print_compositor_set_header_format:
  * @compositor: a #GtkSourcePrintCompositor.
  * @separator: %TRUE if you want a separator line to be printed.
- * @left: (allow-none): a format string to print on the left of the header.
- * @center: (allow-none): a format string to print on the center of the header.
- * @right: (allow-none): a format string to print on the right of the header.
+ * @left: (nullable): a format string to print on the left of the header.
+ * @center: (nullable): a format string to print on the center of the header.
+ * @right: (nullable): a format string to print on the right of the header.
  *
  * Sets strftime like header format strings, to be printed on the
  * left, center and right of the top of each page.  The strings may
@@ -1171,9 +1171,9 @@ gtk_source_print_compositor_set_header_format (GtkSourcePrintCompositor *composi
  * gtk_source_print_compositor_set_footer_format:
  * @compositor: a #GtkSourcePrintCompositor.
  * @separator: %TRUE if you want a separator line to be printed.
- * @left: (allow-none): a format string to print on the left of the footer.
- * @center: (allow-none): a format string to print on the center of the footer.
- * @right: (allow-none): a format string to print on the right of the footer.
+ * @left: (nullable): a format string to print on the left of the footer.
+ * @center: (nullable): a format string to print on the center of the footer.
+ * @right: (nullable): a format string to print on the right of the footer.
  *
  * See gtk_source_print_compositor_set_header_format() for more information
  * about the parameters.
@@ -1309,7 +1309,7 @@ gtk_source_print_compositor_get_body_font_name (GtkSourcePrintCompositor *compos
 /**
  * gtk_source_print_compositor_set_line_numbers_font_name:
  * @compositor: a #GtkSourcePrintCompositor.
- * @font_name: (allow-none): the name of the font for line numbers, or %NULL.
+ * @font_name: (nullable): the name of the font for line numbers, or %NULL.
  *
  * Sets the font for printing line numbers on the left margin.  If
  * %NULL is supplied, the default font (i.e. the one being used for the
@@ -1370,7 +1370,7 @@ gtk_source_print_compositor_get_line_numbers_font_name (GtkSourcePrintCompositor
 /**
  * gtk_source_print_compositor_set_header_font_name:
  * @compositor: a #GtkSourcePrintCompositor.
- * @font_name: (allow-none): the name of the font for header text, or %NULL.
+ * @font_name: (nullable): the name of the font for header text, or %NULL.
  *
  * Sets the font for printing the page header. If
  * %NULL is supplied, the default font (i.e. the one being used for the
@@ -1432,7 +1432,7 @@ gtk_source_print_compositor_get_header_font_name (GtkSourcePrintCompositor *comp
 /**
  * gtk_source_print_compositor_set_footer_font_name:
  * @compositor: a #GtkSourcePrintCompositor.
- * @font_name: (allow-none): the name of the font for the footer text, or %NULL.
+ * @font_name: (nullable): the name of the font for the footer text, or %NULL.
  *
  * Sets the font for printing the page footer. If
  * %NULL is supplied, the default font (i.e. the one being used for the
