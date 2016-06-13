@@ -542,8 +542,7 @@ clear_search (GtkSourceSearchContext *search)
 
 	if (search->priv->regex_error != NULL)
 	{
-		g_error_free (search->priv->regex_error);
-		search->priv->regex_error = NULL;
+		g_clear_error (&search->priv->regex_error);
 		g_object_notify (G_OBJECT (search), "regex-error");
 	}
 
@@ -2280,8 +2279,7 @@ update_regex (GtkSourceSearchContext *search)
 
 	if (search->priv->regex_error != NULL)
 	{
-		g_error_free (search->priv->regex_error);
-		search->priv->regex_error = NULL;
+		g_clear_error (&search->priv->regex_error);
 		regex_error_changed = TRUE;
 	}
 
@@ -2602,10 +2600,7 @@ gtk_source_search_context_finalize (GObject *object)
 		g_regex_unref (search->priv->regex);
 	}
 
-	if (search->priv->regex_error != NULL)
-	{
-		g_error_free (search->priv->regex_error);
-	}
+	g_clear_error (&search->priv->regex_error);
 
 	G_OBJECT_CLASS (gtk_source_search_context_parent_class)->finalize (object);
 }
