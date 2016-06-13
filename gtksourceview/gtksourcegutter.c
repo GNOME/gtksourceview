@@ -53,7 +53,6 @@
  * right of the line numbers.
  */
 
-/* Properties */
 enum
 {
 	PROP_0,

@@ -78,17 +78,14 @@ struct _GtkSourceCompletionContextPrivate
 	GtkSourceCompletionActivation activation;
 };
 
-/* Properties */
 enum
 {
 	PROP_0,
-
 	PROP_COMPLETION,
 	PROP_ITER,
 	PROP_ACTIVATION
 };
 
-/* Signals */
 enum
 {
 	CANCELLED,

@@ -113,7 +113,6 @@
 #include "gtksourceview.h"
 #include "gtksourceview-i18n.h"
 
-/* Signals */
 enum
 {
 	SHOW,

@@ -47,7 +47,6 @@ struct _GtkSourceCompletionItemPrivate
 	GIcon *gicon;
 };
 
-/* Properties */
 enum
 {
 	PROP_0,

@@ -75,7 +75,6 @@ struct _GtkSourceCompletionInfoPrivate
 	guint transient_set : 1;
 };
 
-/* Signals */
 enum
 {
 	BEFORE_SHOW,

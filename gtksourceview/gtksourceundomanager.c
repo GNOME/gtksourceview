@@ -52,7 +52,6 @@
  * Since: 2.10
  */
 
-/* Signals */
 enum
 {
 	CAN_UNDO_CHANGED,

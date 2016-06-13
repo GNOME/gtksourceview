@@ -124,7 +124,6 @@
 #define RIGHT_MARGIN_LINE_ALPHA		40
 #define RIGHT_MARGIN_OVERLAY_ALPHA	15
 
-/* Signals */
 enum
 {
 	UNDO,
@@ -141,7 +140,6 @@ enum
 	N_SIGNALS
 };
 
-/* Properties */
 enum
 {
 	PROP_0,

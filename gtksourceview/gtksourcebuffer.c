@@ -168,7 +168,6 @@
 #define BRACKET_MATCHING_CHARS_LIMIT	10000
 #define CONTEXT_CLASSES_PREFIX		"gtksourceview:context-classes:"
 
-/* Signals */
 enum
 {
 	HIGHLIGHT_UPDATED,
@@ -179,7 +178,6 @@ enum
 	N_SIGNALS
 };
 
-/* Properties */
 enum
 {
 	PROP_0,

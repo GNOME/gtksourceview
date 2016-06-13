@@ -46,7 +46,6 @@
  * will be used.
  */
 
-/* Signals */
 enum
 {
 	CHANGED,

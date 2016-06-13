@@ -54,7 +54,6 @@
 
 #define DEFAULT_SECTION _("Others")
 
-/* Properties */
 enum {
 	PROP_0,
 	PROP_ID,
