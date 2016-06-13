@@ -576,8 +576,8 @@ gtk_source_completion_words_init (GtkSourceCompletionWords *self)
 
 /**
  * gtk_source_completion_words_new:
- * @name: (allow-none): The name for the provider
- * @icon: (allow-none): A specific icon for the provider
+ * @name: (nullable): The name for the provider, or %NULL.
+ * @icon: (nullable): A specific icon for the provider, or %NULL.
  *
  * Returns: a new #GtkSourceCompletionWords provider
  */
