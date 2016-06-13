@@ -125,7 +125,7 @@ enum
 	MOVE_CURSOR,
 	MOVE_PAGE,
 
-	LAST_SIGNAL
+	N_SIGNALS
 };
 
 enum
@@ -204,7 +204,7 @@ struct _GtkSourceCompletionPrivate
 	guint show_icons : 1;
 };
 
-static guint signals[LAST_SIGNAL] = { 0 };
+static guint signals[N_SIGNALS] = { 0 };
 
 static void	gtk_source_completion_buildable_interface_init (GtkBuildableIface *iface);
 

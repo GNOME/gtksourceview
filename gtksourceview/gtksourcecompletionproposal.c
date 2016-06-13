@@ -50,10 +50,10 @@
 enum
 {
 	CHANGED,
-	NUM_SIGNALS
+	N_SIGNALS
 };
 
-static guint signals[NUM_SIGNALS] = {0,};
+static guint signals[N_SIGNALS] = {0,};
 
 typedef GtkSourceCompletionProposalIface GtkSourceCompletionProposalInterface;
 

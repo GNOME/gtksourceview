@@ -138,7 +138,7 @@ enum
 	CHANGE_NUMBER,
 	CHANGE_CASE,
 	JOIN_LINES,
-	LAST_SIGNAL
+	N_SIGNALS
 };
 
 /* Properties */
@@ -215,7 +215,7 @@ struct _MarkCategory
 	gint priority;
 };
 
-static guint signals[LAST_SIGNAL] = { 0 };
+static guint signals[N_SIGNALS] = { 0 };
 
 static void gtk_source_view_buildable_interface_init (GtkBuildableIface *iface);
 

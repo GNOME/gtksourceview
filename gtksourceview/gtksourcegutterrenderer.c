@@ -80,7 +80,7 @@ enum
 	QUERY_TOOLTIP,
 	QUERY_DATA,
 	QUERY_ACTIVATABLE,
-	NUM_SIGNALS
+	N_SIGNALS
 };
 
 struct _GtkSourceGutterRendererPrivate
@@ -105,7 +105,7 @@ struct _GtkSourceGutterRendererPrivate
 	guint visible : 1;
 };
 
-static guint signals[NUM_SIGNALS] = {0,};
+static guint signals[N_SIGNALS] = {0,};
 
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (GtkSourceGutterRenderer, gtk_source_gutter_renderer, G_TYPE_INITIALLY_UNOWNED)
 

@@ -176,7 +176,7 @@ enum
 	UNDO,
 	REDO,
 	BRACKET_MATCHED,
-	LAST_SIGNAL
+	N_SIGNALS
 };
 
 /* Properties */
@@ -223,7 +223,7 @@ struct _GtkSourceBufferPrivate
 	guint implicit_trailing_newline : 1;
 };
 
-static guint buffer_signals[LAST_SIGNAL];
+static guint buffer_signals[N_SIGNALS];
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
 

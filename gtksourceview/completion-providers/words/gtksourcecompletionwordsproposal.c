@@ -30,10 +30,10 @@ struct _GtkSourceCompletionWordsProposalPrivate
 enum
 {
 	UNUSED,
-	NUM_SIGNALS
+	N_SIGNALS
 };
 
-static guint signals[NUM_SIGNALS] = {0,};
+static guint signals[N_SIGNALS] = {0,};
 
 static void gtk_source_completion_proposal_iface_init (gpointer g_iface, gpointer iface_data);
 

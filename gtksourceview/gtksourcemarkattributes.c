@@ -108,10 +108,10 @@ enum
 {
 	QUERY_TOOLTIP_TEXT,
 	QUERY_TOOLTIP_MARKUP,
-	NUM_SIGNALS
+	N_SIGNALS
 };
 
-static guint signals[NUM_SIGNALS] = {0,};
+static guint signals[N_SIGNALS] = {0,};
 
 static void
 gtk_source_mark_attributes_finalize (GObject *object)

@@ -92,10 +92,10 @@ enum
 enum
 {
 	CANCELLED,
-	NUM_SIGNALS
+	N_SIGNALS
 };
 
-static guint context_signals[NUM_SIGNALS] = {0,};
+static guint context_signals[N_SIGNALS] = {0,};
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionContext, gtk_source_completion_context, G_TYPE_INITIALLY_UNOWNED)
 

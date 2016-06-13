@@ -57,10 +57,10 @@ enum
 {
 	CAN_UNDO_CHANGED,
 	CAN_REDO_CHANGED,
-	NUM_SIGNALS
+	N_SIGNALS
 };
 
-static guint signals[NUM_SIGNALS] = {0,};
+static guint signals[N_SIGNALS] = {0,};
 
 typedef GtkSourceUndoManagerIface GtkSourceUndoManagerInterface;
 
