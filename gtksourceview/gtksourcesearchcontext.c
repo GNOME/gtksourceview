@@ -2806,7 +2806,7 @@ gtk_source_search_context_init (GtkSourceSearchContext *search)
 /**
  * gtk_source_search_context_new:
  * @buffer: a #GtkSourceBuffer.
- * @settings: (allow-none): a #GtkSourceSearchSettings, or %NULL.
+ * @settings: (nullable): a #GtkSourceSearchSettings, or %NULL.
  *
  * Creates a new search context, associated with @buffer, and customized with
  * @settings. If @settings is %NULL, a new #GtkSourceSearchSettings object will
@@ -2862,7 +2862,7 @@ gtk_source_search_context_get_settings (GtkSourceSearchContext *search)
 /**
  * gtk_source_search_context_set_settings:
  * @search: a #GtkSourceSearchContext.
- * @settings: (allow-none): the new #GtkSourceSearchSettings, or %NULL.
+ * @settings: (nullable): the new #GtkSourceSearchSettings, or %NULL.
  *
  * Associate a #GtkSourceSearchSettings with the search context. If @settings is
  * %NULL, a new one will be created.
@@ -2968,7 +2968,7 @@ gtk_source_search_context_get_match_style (GtkSourceSearchContext *search)
 /**
  * gtk_source_search_context_set_match_style:
  * @search: a #GtkSourceSearchContext.
- * @match_style: (allow-none): a #GtkSourceStyle.
+ * @match_style: (nullable): a #GtkSourceStyle, or %NULL.
  *
  * Set the style to apply on search matches. If @match_style is %NULL, default
  * theme's scheme 'match-style' will be used.
@@ -3163,8 +3163,8 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
  * gtk_source_search_context_forward:
  * @search: a #GtkSourceSearchContext.
  * @iter: start of search.
- * @match_start: (out) (allow-none): return location for start of match, or %NULL.
- * @match_end: (out) (allow-none): return location for end of match, or %NULL.
+ * @match_start: (out) (optional): return location for start of match, or %NULL.
+ * @match_end: (out) (optional): return location for end of match, or %NULL.
  *
  * Synchronous forward search. It is recommended to use the asynchronous
  * functions instead, to not block the user interface. However, if you are sure
@@ -3269,7 +3269,7 @@ gtk_source_search_context_forward2 (GtkSourceSearchContext *search,
  * gtk_source_search_context_forward_async:
  * @search: a #GtkSourceSearchContext.
  * @iter: start of search.
- * @cancellable: (allow-none): a #GCancellable, or %NULL.
+ * @cancellable: (nullable): a #GCancellable, or %NULL.
  * @callback: a #GAsyncReadyCallback to call when the operation is finished.
  * @user_data: the data to pass to the @callback function.
  *
@@ -3311,8 +3311,8 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
  * gtk_source_search_context_forward_finish:
  * @search: a #GtkSourceSearchContext.
  * @result: a #GAsyncResult.
- * @match_start: (out) (allow-none): return location for start of match, or %NULL.
- * @match_end: (out) (allow-none): return location for end of match, or %NULL.
+ * @match_start: (out) (optional): return location for start of match, or %NULL.
+ * @match_end: (out) (optional): return location for end of match, or %NULL.
  * @error: a #GError, or %NULL.
  *
  * Finishes a forward search started with
@@ -3416,8 +3416,8 @@ gtk_source_search_context_forward_finish2 (GtkSourceSearchContext  *search,
  * gtk_source_search_context_backward:
  * @search: a #GtkSourceSearchContext.
  * @iter: start of search.
- * @match_start: (out) (allow-none): return location for start of match, or %NULL.
- * @match_end: (out) (allow-none): return location for end of match, or %NULL.
+ * @match_start: (out) (optional): return location for start of match, or %NULL.
+ * @match_end: (out) (optional): return location for end of match, or %NULL.
  *
  * Synchronous backward search. It is recommended to use the asynchronous
  * functions instead, to not block the user interface. However, if you are sure
@@ -3523,7 +3523,7 @@ gtk_source_search_context_backward2 (GtkSourceSearchContext *search,
  * gtk_source_search_context_backward_async:
  * @search: a #GtkSourceSearchContext.
  * @iter: start of search.
- * @cancellable: (allow-none): a #GCancellable, or %NULL.
+ * @cancellable: (nullable): a #GCancellable, or %NULL.
  * @callback: a #GAsyncReadyCallback to call when the operation is finished.
  * @user_data: the data to pass to the @callback function.
  *
@@ -3565,8 +3565,8 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
  * gtk_source_search_context_backward_finish:
  * @search: a #GtkSourceSearchContext.
  * @result: a #GAsyncResult.
- * @match_start: (out) (allow-none): return location for start of match, or %NULL.
- * @match_end: (out) (allow-none): return location for end of match, or %NULL.
+ * @match_start: (out) (optional): return location for start of match, or %NULL.
+ * @match_end: (out) (optional): return location for end of match, or %NULL.
  * @error: a #GError, or %NULL.
  *
  * Finishes a backward search started with

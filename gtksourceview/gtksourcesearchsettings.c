@@ -262,7 +262,7 @@ gtk_source_search_settings_new (void)
 /**
  * gtk_source_search_settings_set_search_text:
  * @settings: a #GtkSourceSearchSettings.
- * @search_text: (allow-none): the nul-terminated text to search, or %NULL to disable the search.
+ * @search_text: (nullable): the nul-terminated text to search, or %NULL to disable the search.
  *
  * Sets the text to search. If @text is %NULL or is empty, the search will be
  * disabled. A copy of @text will be made, so you can safely free @text after
