@@ -742,7 +742,7 @@ gtk_source_buffer_get_property (GObject    *object,
 
 /**
  * gtk_source_buffer_new:
- * @table: (allow-none): a #GtkTextTagTable, or %NULL to create a new one.
+ * @table: (nullable): a #GtkTextTagTable, or %NULL to create a new one.
  *
  * Creates a new source buffer.
  *
@@ -1717,7 +1717,7 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
 /**
  * gtk_source_buffer_set_language:
  * @buffer: a #GtkSourceBuffer.
- * @language: (allow-none): a #GtkSourceLanguage to set, or %NULL.
+ * @language: (nullable): a #GtkSourceLanguage to set, or %NULL.
  *
  * Associate a #GtkSourceLanguage with the buffer. If @language is
  * not-%NULL and syntax highlighting is enabled (see gtk_source_buffer_set_highlight_syntax()),
@@ -1855,7 +1855,7 @@ gtk_source_buffer_ensure_highlight (GtkSourceBuffer   *buffer,
 /**
  * gtk_source_buffer_set_style_scheme:
  * @buffer: a #GtkSourceBuffer.
- * @scheme: (allow-none): a #GtkSourceStyleScheme or %NULL.
+ * @scheme: (nullable): a #GtkSourceStyleScheme or %NULL.
  *
  * Sets style scheme used by the buffer. If @scheme is %NULL no
  * style scheme is used.
@@ -1990,7 +1990,7 @@ gtk_source_buffer_real_redo (GtkSourceBuffer *buffer)
 /**
  * gtk_source_buffer_create_source_mark:
  * @buffer: a #GtkSourceBuffer.
- * @name: (allow-none): the name of the mark, or %NULL.
+ * @name: (nullable): the name of the mark, or %NULL.
  * @category: a string defining the mark category.
  * @where: location to place the mark.
  *
@@ -2089,7 +2089,7 @@ _gtk_source_buffer_source_mark_prev (GtkSourceBuffer *buffer,
  * gtk_source_buffer_forward_iter_to_source_mark:
  * @buffer: a #GtkSourceBuffer.
  * @iter: an iterator.
- * @category: (allow-none): category to search for, or %NULL
+ * @category: (nullable): category to search for, or %NULL
  *
  * Moves @iter to the position of the next #GtkSourceMark of the given
  * @category. Returns %TRUE if @iter was moved. If @category is NULL, the
@@ -2123,7 +2123,7 @@ gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
  * gtk_source_buffer_backward_iter_to_source_mark:
  * @buffer: a #GtkSourceBuffer.
  * @iter: an iterator.
- * @category: (allow-none): category to search for, or %NULL
+ * @category: (nullable): category to search for, or %NULL
  *
  * Moves @iter to the position of the previous #GtkSourceMark of the given
  * category. Returns %TRUE if @iter was moved. If @category is NULL, the
@@ -2157,7 +2157,7 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
  * gtk_source_buffer_get_source_marks_at_iter:
  * @buffer: a #GtkSourceBuffer.
  * @iter: an iterator.
- * @category: (allow-none): category to search for, or %NULL
+ * @category: (nullable): category to search for, or %NULL
  *
  * Returns the list of marks of the given category at @iter. If @category
  * is %NULL it returns all marks at @iter.
@@ -2191,7 +2191,7 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
  * gtk_source_buffer_get_source_marks_at_line:
  * @buffer: a #GtkSourceBuffer.
  * @line: a line number.
- * @category: (allow-none): category to search for, or %NULL
+ * @category: (nullable): category to search for, or %NULL
  *
  * Returns the list of marks of the given category at @line.
  * If @category is %NULL, all marks at @line are returned.
@@ -2238,7 +2238,7 @@ gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
  * @buffer: a #GtkSourceBuffer.
  * @start: a #GtkTextIter.
  * @end: a #GtkTextIter.
- * @category: (allow-none): category to search for, or %NULL.
+ * @category: (nullable): category to search for, or %NULL.
  *
  * Remove all marks of @category between @start and @end from the buffer.
  * If @category is NULL, all marks in the range will be removed.
@@ -3014,7 +3014,7 @@ gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
 /**
  * gtk_source_buffer_set_undo_manager:
  * @buffer: a #GtkSourceBuffer.
- * @manager: (allow-none): A #GtkSourceUndoManager or %NULL.
+ * @manager: (nullable): A #GtkSourceUndoManager or %NULL.
  *
  * Set the buffer undo manager. If @manager is %NULL the default undo manager
  * will be set.
