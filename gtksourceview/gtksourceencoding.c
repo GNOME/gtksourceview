@@ -657,8 +657,7 @@ gtk_source_encoding_get_default_candidates (void)
 			   encodings_str_translated,
 			   error->message);
 
-		g_error_free (error);
-		error = NULL;
+		g_clear_error (&error);
 
 		encodings_variant = g_variant_parse (G_VARIANT_TYPE_STRING_ARRAY,
 						     encodings_str,

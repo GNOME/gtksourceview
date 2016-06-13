@@ -1755,8 +1755,7 @@ parser_state_destroy (ParserState *parser_state)
 	if (parser_state->reader != NULL)
 		xmlFreeTextReader (parser_state->reader);
 
-	if (parser_state->error != NULL)
-		g_error_free (parser_state->error);
+	g_clear_error (&parser_state->error);
 
 	g_queue_free (parser_state->curr_parents);
 	g_free (parser_state->current_lang_id);
@@ -1837,7 +1836,7 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 	{
 		g_warning ("Failed to load '%s': %s",
 			   filename, error->message);
-		g_error_free (error);
+		g_clear_error (&error);
 		return FALSE;
 	}
 
