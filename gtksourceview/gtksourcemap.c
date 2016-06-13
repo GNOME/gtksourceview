@@ -176,12 +176,12 @@ enum
 	PROP_0,
 	PROP_VIEW,
 	PROP_FONT_DESC,
-	LAST_PROP
+	N_PROPERTIES
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMap, gtk_source_map, GTK_SOURCE_TYPE_VIEW)
 
-static GParamSpec *pspecs[LAST_PROP];
+static GParamSpec *pspecs[N_PROPERTIES];
 
 static void
 update_scrubber_position (GtkSourceMap *map)
@@ -1144,7 +1144,7 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 		                    PANGO_TYPE_FONT_DESCRIPTION,
 		                    (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
-	g_object_class_install_properties (object_class, LAST_PROP, pspecs);
+	g_object_class_install_properties (object_class, N_PROPERTIES, pspecs);
 }
 
 static void
