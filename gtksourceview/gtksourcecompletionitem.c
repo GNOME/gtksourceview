@@ -376,8 +376,8 @@ gtk_source_completion_item_init (GtkSourceCompletionItem *self)
  * gtk_source_completion_item_new:
  * @label: The item label.
  * @text: The item text.
- * @icon: (allow-none): The item icon.
- * @info: (allow-none): The item extra information.
+ * @icon: (nullable): The item icon.
+ * @info: (nullable): The item extra information.
  *
  * Create a new #GtkSourceCompletionItem with label @label, icon @icon and
  * extra information @info. Both @icon and @info can be %NULL in which case
@@ -403,8 +403,8 @@ gtk_source_completion_item_new (const gchar *label,
  * gtk_source_completion_item_new_with_markup:
  * @markup: The item markup label.
  * @text: The item text.
- * @icon: (allow-none): The item icon.
- * @info: (allow-none): The item extra information.
+ * @icon: (nullable): The item icon.
+ * @info: (nullable): The item extra information.
  *
  * Create a new #GtkSourceCompletionItem with markup label @markup, icon
  * @icon and extra information @info. Both @icon and @info can be %NULL in
@@ -430,10 +430,10 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 
 /**
  * gtk_source_completion_item_new_from_stock:
- * @label: (allow-none): The item label.
+ * @label: (nullable): The item label.
  * @text: The item text.
  * @stock: The stock icon.
- * @info: (allow-none): The item extra information.
+ * @info: (nullable): The item extra information.
  *
  * Creates a new #GtkSourceCompletionItem from a stock item. If @label is %NULL,
  * the stock label will be used.

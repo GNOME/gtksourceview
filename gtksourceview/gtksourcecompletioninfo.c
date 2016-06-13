@@ -578,7 +578,7 @@ gtk_source_completion_info_new (void)
  * gtk_source_completion_info_move_to_iter:
  * @info: a #GtkSourceCompletionInfo.
  * @view: a #GtkTextView on which the info window should be positioned.
- * @iter: (allow-none): a #GtkTextIter.
+ * @iter: (nullable): a #GtkTextIter.
  *
  * Moves the #GtkSourceCompletionInfo to @iter. If @iter is %NULL @info is
  * moved to the cursor position. Moving will respect the #GdkGravity setting
@@ -606,7 +606,7 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
 /**
  * gtk_source_completion_info_set_widget:
  * @info: a #GtkSourceCompletionInfo.
- * @widget: (allow-none): a #GtkWidget.
+ * @widget: (nullable): a #GtkWidget.
  *
  * Sets the content widget of the info window. See that the previous widget will
  * lose a reference and it can be destroyed, so if you do not want this to

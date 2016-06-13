@@ -2739,7 +2739,7 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
 /**
  * gtk_source_completion_show:
  * @completion: a #GtkSourceCompletion.
- * @providers: (element-type GtkSource.CompletionProvider) (allow-none):
+ * @providers: (element-type GtkSource.CompletionProvider) (nullable):
  * a list of #GtkSourceCompletionProvider, or %NULL.
  * @context: (transfer floating): The #GtkSourceCompletionContext
  * with which to start the completion.
@@ -2857,7 +2857,7 @@ gtk_source_completion_new (GtkSourceView *view)
  * gtk_source_completion_add_provider:
  * @completion: a #GtkSourceCompletion.
  * @provider: a #GtkSourceCompletionProvider.
- * @error: (allow-none): a #GError.
+ * @error: a #GError.
  *
  * Add a new #GtkSourceCompletionProvider to the completion object. This will
  * add a reference @provider, so make sure to unref your own copy when you
@@ -2902,7 +2902,7 @@ gtk_source_completion_add_provider (GtkSourceCompletion          *completion,
  * gtk_source_completion_remove_provider:
  * @completion: a #GtkSourceCompletion.
  * @provider: a #GtkSourceCompletionProvider.
- * @error: (allow-none): a #GError.
+ * @error: a #GError.
  *
  * Remove @provider from the completion.
  *
@@ -3004,7 +3004,7 @@ gtk_source_completion_get_view (GtkSourceCompletion *completion)
 /**
  * gtk_source_completion_create_context:
  * @completion: a #GtkSourceCompletion.
- * @position: (allow-none): a #GtkTextIter, or %NULL.
+ * @position: (nullable): a #GtkTextIter, or %NULL.
  *
  * Create a new #GtkSourceCompletionContext for @completion. The position where
  * the completion occurs can be specified by @position. If @position is %NULL,
