@@ -189,7 +189,8 @@ enum
 	PROP_LANGUAGE,
 	PROP_STYLE_SCHEME,
 	PROP_UNDO_MANAGER,
-	PROP_IMPLICIT_TRAILING_NEWLINE
+	PROP_IMPLICIT_TRAILING_NEWLINE,
+	N_PROPERTIES
 };
 
 struct _GtkSourceBufferPrivate
@@ -222,6 +223,7 @@ struct _GtkSourceBufferPrivate
 };
 
 static guint buffer_signals[N_SIGNALS];
+static GParamSpec *buffer_properties[N_PROPERTIES];
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
 
@@ -310,26 +312,26 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 *
 	 * Whether to highlight syntax in the buffer.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_HIGHLIGHT_SYNTAX,
-					 g_param_spec_boolean ("highlight-syntax",
-							       "Highlight Syntax",
-							       "Whether to highlight syntax in the buffer",
-							       TRUE,
-							       G_PARAM_READWRITE));
+	buffer_properties[PROP_HIGHLIGHT_SYNTAX] =
+		g_param_spec_boolean ("highlight-syntax",
+				      "Highlight Syntax",
+				      "Whether to highlight syntax in the buffer",
+				      TRUE,
+				      G_PARAM_READWRITE |
+				      G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceBuffer:highlight-matching-brackets:
 	 *
 	 * Whether to highlight matching brackets in the buffer.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_HIGHLIGHT_MATCHING_BRACKETS,
-					 g_param_spec_boolean ("highlight-matching-brackets",
-							       "Highlight Matching Brackets",
-							       "Whether to highlight matching brackets",
-							       TRUE,
-							       G_PARAM_READWRITE));
+	buffer_properties[PROP_HIGHLIGHT_MATCHING_BRACKETS] =
+		g_param_spec_boolean ("highlight-matching-brackets",
+				      "Highlight Matching Brackets",
+				      "Whether to highlight matching brackets",
+				      TRUE,
+				      G_PARAM_READWRITE |
+				      G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceBuffer:max-undo-levels:
@@ -337,39 +339,39 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * Number of undo levels for the buffer. -1 means no limit. This property
 	 * will only affect the default undo manager.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_MAX_UNDO_LEVELS,
-					 g_param_spec_int ("max-undo-levels",
-							   "Maximum Undo Levels",
-							   "Number of undo levels for the buffer",
-							   -1,
-							   G_MAXINT,
-							   -1,
-							   G_PARAM_READWRITE));
+	buffer_properties[PROP_MAX_UNDO_LEVELS] =
+		g_param_spec_int ("max-undo-levels",
+				  "Maximum Undo Levels",
+				  "Number of undo levels for the buffer",
+				  -1,
+				  G_MAXINT,
+				  -1,
+				  G_PARAM_READWRITE |
+				  G_PARAM_STATIC_STRINGS);
 
-	g_object_class_install_property (object_class,
-					 PROP_LANGUAGE,
-					 g_param_spec_object ("language",
-							      "Language",
-							      "Language object to get highlighting patterns from",
-							      GTK_SOURCE_TYPE_LANGUAGE,
-							      G_PARAM_READWRITE));
+	buffer_properties[PROP_LANGUAGE] =
+		g_param_spec_object ("language",
+				     "Language",
+				     "Language object to get highlighting patterns from",
+				     GTK_SOURCE_TYPE_LANGUAGE,
+				     G_PARAM_READWRITE |
+				     G_PARAM_STATIC_STRINGS);
 
-	g_object_class_install_property (object_class,
-					 PROP_CAN_UNDO,
-					 g_param_spec_boolean ("can-undo",
-							       "Can undo",
-							       "Whether Undo operation is possible",
-							       FALSE,
-							       G_PARAM_READABLE));
+	buffer_properties[PROP_CAN_UNDO] =
+		g_param_spec_boolean ("can-undo",
+				      "Can undo",
+				      "Whether Undo operation is possible",
+				      FALSE,
+				      G_PARAM_READABLE |
+				      G_PARAM_STATIC_STRINGS);
 
-	g_object_class_install_property (object_class,
-					 PROP_CAN_REDO,
-					 g_param_spec_boolean ("can-redo",
-							       "Can redo",
-							       "Whether Redo operation is possible",
-							       FALSE,
-							       G_PARAM_READABLE));
+	buffer_properties[PROP_CAN_REDO] =
+		g_param_spec_boolean ("can-redo",
+				      "Can redo",
+				      "Whether Redo operation is possible",
+				      FALSE,
+				      G_PARAM_READABLE |
+				      G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceBuffer:style-scheme:
@@ -378,21 +380,22 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * foreground, background, cursor color, current line color, and matching
 	 * brackets style.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_STYLE_SCHEME,
-					 g_param_spec_object ("style_scheme",
-							      "Style scheme",
-							      "Style scheme",
-							      GTK_SOURCE_TYPE_STYLE_SCHEME,
-							      G_PARAM_READWRITE));
+	buffer_properties[PROP_STYLE_SCHEME] =
+		g_param_spec_object ("style-scheme",
+				     "Style scheme",
+				     "Style scheme",
+				     GTK_SOURCE_TYPE_STYLE_SCHEME,
+				     G_PARAM_READWRITE |
+				     G_PARAM_STATIC_STRINGS);
 
-	g_object_class_install_property (object_class,
-	                                 PROP_UNDO_MANAGER,
-	                                 g_param_spec_object ("undo-manager",
-	                                                      "Undo manager",
-	                                                      "The buffer undo manager",
-	                                                      GTK_SOURCE_TYPE_UNDO_MANAGER,
-	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	buffer_properties[PROP_UNDO_MANAGER] =
+		g_param_spec_object ("undo-manager",
+				     "Undo manager",
+				     "The buffer undo manager",
+				     GTK_SOURCE_TYPE_UNDO_MANAGER,
+				     G_PARAM_READWRITE |
+				     G_PARAM_CONSTRUCT |
+				     G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceBuffer:implicit-trailing-newline:
@@ -402,14 +405,16 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_IMPLICIT_TRAILING_NEWLINE,
-					 g_param_spec_boolean ("implicit-trailing-newline",
-							       "Implicit trailing newline",
-							       "",
-							       TRUE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT |
-							       G_PARAM_STATIC_STRINGS));
+	buffer_properties[PROP_IMPLICIT_TRAILING_NEWLINE] =
+		g_param_spec_boolean ("implicit-trailing-newline",
+				      "Implicit trailing newline",
+				      "",
+				      TRUE,
+				      G_PARAM_READWRITE |
+				      G_PARAM_CONSTRUCT |
+				      G_PARAM_STATIC_STRINGS);
+
+	g_object_class_install_properties (object_class, N_PROPERTIES, buffer_properties);
 
 	/**
 	 * GtkSourceBuffer::highlight-updated:
@@ -545,8 +550,8 @@ set_undo_manager (GtkSourceBuffer      *buffer,
 		                  buffer);
 
 		/* Notify possible changes in the can-undo/redo state */
-		g_object_notify (G_OBJECT (buffer), "can-undo");
-		g_object_notify (G_OBJECT (buffer), "can-redo");
+		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_CAN_UNDO]);
+		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_CAN_REDO]);
 	}
 }
 
@@ -782,7 +787,7 @@ gtk_source_buffer_can_undo_handler (GtkSourceUndoManager *manager,
 {
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	g_object_notify (G_OBJECT (buffer), "can-undo");
+	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_CAN_UNDO]);
 }
 
 static void
@@ -791,7 +796,7 @@ gtk_source_buffer_can_redo_handler (GtkSourceUndoManager *manager,
 {
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	g_object_notify (G_OBJECT (buffer), "can-redo");
+	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_CAN_REDO]);
 }
 
 static void
@@ -1563,7 +1568,7 @@ gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 		                                                     max_undo_levels);
 	}
 
-	g_object_notify (G_OBJECT (buffer), "max-undo-levels");
+	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_MAX_UNDO_LEVELS]);
 }
 
 gboolean
@@ -1664,7 +1669,7 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 
 		update_bracket_highlighting (buffer);
 
-		g_object_notify (G_OBJECT (buffer), "highlight-matching-brackets");
+		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_HIGHLIGHT_MATCHING_BRACKETS]);
 	}
 }
 
@@ -1708,7 +1713,7 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
 	if (buffer->priv->highlight_syntax != highlight)
 	{
 		buffer->priv->highlight_syntax = highlight;
-		g_object_notify (G_OBJECT (buffer), "highlight-syntax");
+		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_HIGHLIGHT_SYNTAX]);
 	}
 }
 
@@ -1763,7 +1768,7 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 		}
 	}
 
-	g_object_notify (G_OBJECT (buffer), "language");
+	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_LANGUAGE]);
 }
 
 /**
@@ -1874,7 +1879,7 @@ gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
 			_gtk_source_engine_set_style_scheme (buffer->priv->highlight_engine, scheme);
 		}
 
-		g_object_notify (G_OBJECT (buffer), "style-scheme");
+		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_STYLE_SCHEME]);
 	}
 }
 
@@ -3039,7 +3044,7 @@ gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
 	set_undo_manager (buffer, manager);
 	g_object_unref (manager);
 
-	g_object_notify (G_OBJECT (buffer), "undo-manager");
+	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_UNDO_MANAGER]);
 }
 
 /**
@@ -3197,7 +3202,7 @@ gtk_source_buffer_set_implicit_trailing_newline (GtkSourceBuffer *buffer,
 	if (buffer->priv->implicit_trailing_newline != implicit_trailing_newline)
 	{
 		buffer->priv->implicit_trailing_newline = implicit_trailing_newline;
-		g_object_notify (G_OBJECT (buffer), "implicit-trailing-newline");
+		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_IMPLICIT_TRAILING_NEWLINE]);
 	}
 }
 
