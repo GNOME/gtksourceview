@@ -905,137 +905,137 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Up,
 				      GDK_MOD1_MASK,
-				      "move_lines", 2,
+				      "move-lines", 2,
 				      G_TYPE_BOOLEAN, FALSE,
 				      G_TYPE_INT, -1);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Up,
 				      GDK_MOD1_MASK,
-				      "move_lines", 2,
+				      "move-lines", 2,
 				      G_TYPE_BOOLEAN, FALSE,
 				      G_TYPE_INT, -1);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Down,
 				      GDK_MOD1_MASK,
-				      "move_lines", 2,
+				      "move-lines", 2,
 				      G_TYPE_BOOLEAN, FALSE,
 				      G_TYPE_INT, 1);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Down,
 				      GDK_MOD1_MASK,
-				      "move_lines", 2,
+				      "move-lines", 2,
 				      G_TYPE_BOOLEAN, FALSE,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Left,
 				      GDK_MOD1_MASK,
-				      "move_words", 1,
+				      "move-words", 1,
 				      G_TYPE_INT, -1);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Left,
 				      GDK_MOD1_MASK,
-				      "move_words", 1,
+				      "move-words", 1,
 				      G_TYPE_INT, -1);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Right,
 				      GDK_MOD1_MASK,
-				      "move_words", 1,
+				      "move-words", 1,
 				      G_TYPE_INT, 1);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Right,
 				      GDK_MOD1_MASK,
-				      "move_words", 1,
+				      "move-words", 1,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Up,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Up,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Down,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Down,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Page_Up,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Page_Up,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Page_Down,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Page_Down,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Home,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Home,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, -1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_End,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_End,
 				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move_viewport", 2,
+				      "move-viewport", 2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, 1);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_percent,
 				      GDK_CONTROL_MASK,
-				      "move_to_matching_bracket", 1,
+				      "move-to-matching-bracket", 1,
 				      G_TYPE_BOOLEAN, FALSE);
 
 	gtk_binding_entry_add_signal (binding_set,
