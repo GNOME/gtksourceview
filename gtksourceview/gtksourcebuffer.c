@@ -443,11 +443,11 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * @buffer: the buffer that received the signal
 	 * @mark: the #GtkSourceMark
 	 *
-	 * The ::source_mark_updated signal is emitted each time
+	 * The ::source-mark-updated signal is emitted each time
 	 * a mark is added to, moved or removed from the @buffer.
 	 */
 	buffer_signals[SOURCE_MARK_UPDATED] =
-	    g_signal_new ("source_mark_updated",
+	    g_signal_new ("source-mark-updated",
 			   G_OBJECT_CLASS_TYPE (object_class),
 			   G_SIGNAL_RUN_LAST,
 			   0,
