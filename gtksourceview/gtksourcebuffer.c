@@ -427,7 +427,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * updated (e.g. the no-spell-check context class).
 	 */
 	buffer_signals[HIGHLIGHT_UPDATED] =
-	    g_signal_new_class_handler ("highlight_updated",
+	    g_signal_new_class_handler ("highlight-updated",
 	                                G_OBJECT_CLASS_TYPE (object_class),
 	                                G_SIGNAL_RUN_LAST,
 	                                G_CALLBACK (gtk_source_buffer_real_highlight_updated),

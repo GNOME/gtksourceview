@@ -1247,7 +1247,7 @@ refresh_range (GtkSourceContextEngine *ce,
 	}
 
 	g_signal_emit_by_name (ce->priv->buffer,
-			       "highlight_updated",
+			       "highlight-updated",
 			       start,
 			       &real_end);
 }
