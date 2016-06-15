@@ -1389,7 +1389,7 @@ set_source_buffer (GtkSourceView *view,
 		view->priv->source_buffer = g_object_ref (buffer);
 
 		g_signal_connect (buffer,
-				  "source_mark_updated",
+				  "source-mark-updated",
 				  G_CALLBACK (source_mark_updated_cb),
 				  view);
 
