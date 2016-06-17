@@ -1,7 +1,7 @@
-guidelines for GtkSourceView
+Guidelines for GtkSourceView
 ============================
 
-gtksourceview source code is maintained using the git version control system
+GtkSourceView source code is maintained using the git version control system
 and is available at the following location:
 
     git://git.gnome.org/gtksourceview
@@ -15,7 +15,7 @@ A web interface is available at:
     https://git.gnome.org/browse/gtksourceview/
 
 Please don't commit directly to the git repository unless
-you have been given the green light to commit freely to gtksourceview.
+you have been given the green light to commit freely to GtkSourceView.
 When in doubt assume you haven't ;-).
 
 Please attach patches in bugzilla (http://bugzilla.gnome.org).
@@ -30,10 +30,10 @@ fix typos in the code, etc.
 Please send patches for build & configure fixes too.  I really appreciate
 your help, I just want to review these fixes before applying.
 
-If you are a "build sheriff", feel free to commit fixes for build and 
-configure (please, send me an e-mail with the patch you have applied).
+If you are a "build sheriff", feel free to commit fixes for build and
+configure.
 
-When committing to the gtksourceview git repository make sure to include a
+When committing to the GtkSourceView git repository make sure to include a
 meaningful commit message. Changes without a sufficient commit message
 will be reverted. Commit messages should have the following format:
 
