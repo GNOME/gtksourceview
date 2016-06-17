@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# WARNING: test-completion.c is more complete.
+# WARNING: test-completion.c is more complete and is better maintained.
 
 import os, os.path
 import sys

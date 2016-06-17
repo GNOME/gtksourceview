@@ -2,6 +2,8 @@
 # -*- Mode: Python; py-indent-offset: 4 -*-
 # vim: tabstop=4 shiftwidth=4 expandtab
 
+# WARNING: test-widget.c is more complete and is better maintained.
+
 import os, os.path
 import sys
 
