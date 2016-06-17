@@ -33,12 +33,10 @@ GtkSourceView requires GLib >= 2.48, GTK+ >= 3.20 and libxml2 >= 2.6.
 
 Simple install procedure:
 
-  % tar Jxf gtksourceview-3.21.2.tar.xz    # unpack the sources
-  % cd gtksourceview-3.21.2		   # change to the toplevel directory
-  % ./configure				   # run the `configure' script
-  % make				   # build gtksourceview
+  $ ./configure
+  $ make
   [ Become root if necessary ]
-  % make install			   # install gtksourceview
+  $ make install
 
 See the file 'INSTALL' for more detailed information.
 
