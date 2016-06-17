@@ -39,7 +39,7 @@
 #include "gtksourcecompletionwordsbuffer.h"
 #include "gtksourcecompletionwordsutils.h"
 #include "gtksourceview/gtksource.h"
-#include "gtksourceview/gtksourceview-typebuiltins.h"
+#include "gtksourceview/gtksourceview-enumtypes.h"
 #include "gtksourceview/gtksourceview-i18n.h"
 
 #include <string.h>

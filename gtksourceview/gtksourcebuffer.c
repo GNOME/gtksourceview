@@ -46,7 +46,7 @@
 #include "gtksourcesearchcontext.h"
 #include "gtksourcetag.h"
 #include "gtksourceview-i18n.h"
-#include "gtksourceview-typebuiltins.h"
+#include "gtksourceview-enumtypes.h"
 
 /**
  * SECTION:buffer

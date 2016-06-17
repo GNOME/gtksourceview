@@ -33,7 +33,7 @@
 #include "gtksourceregion.h"
 #include "gtksourceiter.h"
 #include "gtksourceview-i18n.h"
-#include "gtksourceview-typebuiltins.h"
+#include "gtksourceview-enumtypes.h"
 
 #include <string.h>
 

@@ -245,28 +245,28 @@
 					<Tool Name="VCCustomBuildTool"
 						Description="Generating Enumeration sources..."
 						CommandLine="$(GenerateEnums)"
-						Outputs="..\..\..\gtksourceview\gtksourceview-typebuiltins.c;..\..\..\gtksourceview\gtksourceview-typebuiltins.h"
+						Outputs="..\..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\..\gtksourceview\gtksourceview-enumtypes.h"
 					/>
 				</FileConfiguration>
 				<FileConfiguration Name="Release|Win32">
 					<Tool Name="VCCustomBuildTool"
 						Description="Generating Enumeration sources..."
 						CommandLine="$(GenerateEnums)"
-						Outputs="..\..\..\gtksourceview\gtksourceview-typebuiltins.c;..\..\..\gtksourceview\gtksourceview-typebuiltins.h"
+						Outputs="..\..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\..\gtksourceview\gtksourceview-enumtypes.h"
 					/>
 				</FileConfiguration>
 				<FileConfiguration Name="Debug|x64">
 					<Tool Name="VCCustomBuildTool"
 						Description="Generating Enumeration sources..."
 						CommandLine="$(GenerateEnums)"
-						Outputs="..\..\..\gtksourceview\gtksourceview-typebuiltins.c;..\..\..\gtksourceview\gtksourceview-typebuiltins.h"
+						Outputs="..\..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\..\gtksourceview\gtksourceview-enumtypes.h"
 					/>
 				</FileConfiguration>
 				<FileConfiguration Name="Release|x64">
 					<Tool Name="VCCustomBuildTool"
 						Description="Generating Enumeration sources..."
 						CommandLine="$(GenerateEnums)"
-						Outputs="..\..\..\gtksourceview\gtksourceview-typebuiltins.c;..\..\..\gtksourceview\gtksourceview-typebuiltins.h"
+						Outputs="..\..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\..\gtksourceview\gtksourceview-enumtypes.h"
 					/>
 				</FileConfiguration>
 			</File>

@@ -53,8 +53,8 @@ IGNORE_HFILES =					\
 	gtksourcestyle-private.h		\
 	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
+	gtksourceview-enumtypes.h		\
 	gtksourceview-i18n.h			\
-	gtksourceview-typebuiltins.h		\
 	gtksourceview-utils.h
 
 # Extra options to supply to gtkdoc-mkdb

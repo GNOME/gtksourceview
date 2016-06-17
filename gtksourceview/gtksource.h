@@ -56,7 +56,7 @@
 #include <gtksourceview/gtksourceutils.h>
 #include <gtksourceview/gtksourceversion.h>
 #include <gtksourceview/gtksourceview.h>
-#include <gtksourceview/gtksourceview-typebuiltins.h>
+#include <gtksourceview/gtksourceview-enumtypes.h>
 #include <gtksourceview/gtksourceautocleanups.h>
 
 #endif /* GTK_SOURCE_H */

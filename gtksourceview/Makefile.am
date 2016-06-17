@@ -15,9 +15,9 @@ AM_CPPFLAGS = 				\
 	$(DEP_CFLAGS)
 
 BUILT_SOURCES = 			\
-	gtksourceview-resources.c	\
-	gtksourceview-typebuiltins.c	\
-	gtksourceview-typebuiltins.h
+	gtksourceview-enumtypes.c	\
+	gtksourceview-enumtypes.h	\
+	gtksourceview-resources.c
 
 libgtksourceview_public_headers =		\
 	gtksource.h				\
@@ -191,16 +191,16 @@ libgtksourceview_3_0_includedir = $(includedir)/gtksourceview-3.0/gtksourceview
 
 libgtksourceview_3_0_include_HEADERS = $(libgtksourceview_public_headers)
 
-nodist_libgtksourceview_3_0_include_HEADERS = \
-	gtksourceview-typebuiltins.h \
-	gtksourceversion.h
+nodist_libgtksourceview_3_0_include_HEADERS =	\
+	gtksourceversion.h			\
+	gtksourceview-enumtypes.h
 
 gtksourceview-resources.c: gtksourceview.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/gtksourceview.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/gtksourceview.gresource.xml
 
-gtksourceview-typebuiltins.c: stamp-gtksourceview-typebuiltins.c
+gtksourceview-enumtypes.c: stamp-gtksourceview-enumtypes.c
 	@true
-stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_public_headers)
+stamp-gtksourceview-enumtypes.c: Makefile.am $(libgtksourceview_public_headers)
 	$(AM_V_GEN) (cd $(srcdir) \
 	 && $(GLIB_MKENUMS) \
 			--fhead "#ifdef HAVE_CONFIG_H\n" \
@@ -208,7 +208,7 @@ stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_public_header
 			--fhead "#endif\n\n" \
 			--fhead "#include <glib-object.h>\n" \
 			--fhead "#include \"gtksourceversion.h\"\n" \
-			--fhead "#include \"gtksourceview-typebuiltins.h\"\n\n" \
+			--fhead "#include \"gtksourceview-enumtypes.h\"\n\n" \
 			--fprod "\n/* enumerations from \"@filename@\" */" \
 			--vhead "static const G@Type@Value _@enum_name@_values[] = {" \
 			--vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," \
@@ -219,20 +219,20 @@ stamp-gtksourceview-typebuiltins.c: Makefile.am $(libgtksourceview_public_header
 			--vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" \
 			--vtail "  return type;\n}\n\n" \
 		$(libgtksourceview_public_headers) ) > xgen-gtbec \
-	&& (cmp -s xgen-gtbec gtksourceview-typebuiltins.c || cp xgen-gtbec gtksourceview-typebuiltins.c) \
+	&& (cmp -s xgen-gtbec gtksourceview-enumtypes.c || cp xgen-gtbec gtksourceview-enumtypes.c) \
 	&& rm -f xgen-gtbec && echo stamp > $(@F)
 
-gtksourceview-typebuiltins.h: stamp-gtksourceview-typebuiltins.h
+gtksourceview-enumtypes.h: stamp-gtksourceview-enumtypes.h
 	@true
 
 # FIXME: we have to sed the file because glib-mkenums does
 #        not recognize GTK_SOURCE as the prefix but instead GTK
-stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_public_headers)
+stamp-gtksourceview-enumtypes.h: Makefile.am $(libgtksourceview_public_headers)
 	$(AM_V_GEN) (cd $(srcdir) \
 	 && $(GLIB_MKENUMS) \
-			--fhead "#ifndef GTKSOURCEVIEW_TYPEBUILTINS_H\n" \
-			--fhead "#define GTKSOURCEVIEW_TYPEBUILTINS_H\n\n" \
-			--ftail "#endif /* GTKSOURCEVIEW_TYPEBUILTINS_H */\n" \
+			--fhead "#ifndef GTKSOURCEVIEW_ENUMTYPES_H\n" \
+			--fhead "#define GTKSOURCEVIEW_ENUMTYPES_H\n\n" \
+			--ftail "#endif /* GTKSOURCEVIEW_ENUMTYPES_H */\n" \
 			--fprod "#include <gtksourceview/@filename@>\n" \
 			--eprod "G_BEGIN_DECLS\n" \
 			--eprod "#define GTK_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" \
@@ -241,7 +241,7 @@ stamp-gtksourceview-typebuiltins.h: Makefile.am $(libgtksourceview_public_header
 			--eprod "G_END_DECLS\n\n" \
 		$(libgtksourceview_public_headers) ) > xgen-gth \
 	&& $(SED) -e 's/GTK_TYPE_SOURCE_/GTK_SOURCE_TYPE_/' <xgen-gth >xgen-gth.temp && mv xgen-gth.temp xgen-gth \
-	&& (cmp -s xgen-gth gtksourceview-typebuiltins.h || cp xgen-gth gtksourceview-typebuiltins.h) \
+	&& (cmp -s xgen-gth gtksourceview-enumtypes.h || cp xgen-gth gtksourceview-enumtypes.h) \
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
 EXTRA_DIST = 					\
@@ -251,8 +251,8 @@ EXTRA_DIST = 					\
 
 CLEANFILES = 					\
 	$(BUILT_SOURCES)			\
-	stamp-gtksourceview-typebuiltins.h	\
-	stamp-gtksourceview-typebuiltins.c
+	stamp-gtksourceview-enumtypes.c		\
+	stamp-gtksourceview-enumtypes.h
 
 libgtksourcecompletionwords_files =	\
 	./completion-providers/words/gtksourcecompletionwords.h	\

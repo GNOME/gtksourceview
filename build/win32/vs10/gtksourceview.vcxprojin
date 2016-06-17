@@ -197,16 +197,16 @@
     <CustomBuild Include="..\gen-enums.bat">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating Enumeration sources...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(GenerateEnums)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\gtksourceview\gtksourceview-typebuiltins.c;..\..\..\gtksourceview\gtksourceview-typebuiltins.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\..\gtksourceview\gtksourceview-enumtypes.h;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating Enumeration sources...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(GenerateEnums)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\gtksourceview\gtksourceview-typebuiltins.c;..\..\..\gtksourceview\gtksourceview-typebuiltins.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\..\gtksourceview\gtksourceview-enumtypes.h;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Generating Enumeration sources...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(GenerateEnums)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\gtksourceview\gtksourceview-typebuiltins.c;..\..\..\gtksourceview\gtksourceview-typebuiltins.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\..\gtksourceview\gtksourceview-enumtypes.h;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating Enumeration sources...</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(GenerateEnums)</Command>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\gtksourceview\gtksourceview-typebuiltins.c;..\..\..\gtksourceview\gtksourceview-typebuiltins.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\..\gtksourceview\gtksourceview-enumtypes.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\..\..\gtksourceview\gtksourceview.gresource.xml">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Generating GResource sources...</Message>
