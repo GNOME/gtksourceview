@@ -24,9 +24,9 @@ call perl %1\bin\glib-mkenums ^
 &1> gtksourceview-enumtypes.c
 
 call perl %1\bin\glib-mkenums ^
---fhead "#ifndef GTKSOURCEVIEW_TYPEBUILTINS_H\n" ^
---fhead "#define GTKSOURCEVIEW_TYPEBUILTINS_H\n\n" ^
---ftail "#endif /* GTKSOURCEVIEW_TYPEBUILTINS_H */\n" ^
+--fhead "#ifndef GTKSOURCEVIEW_ENUMTYPES_H\n" ^
+--fhead "#define GTKSOURCEVIEW_ENUMTYPES_H\n\n" ^
+--ftail "#endif /* GTKSOURCEVIEW_ENUMTYPES_H */\n" ^
 --fprod "#include <gtksourceview/@filename@>\n" ^
 --eprod "G_BEGIN_DECLS\n" ^
 --eprod "#define GTK_TYPE_@ENUMSHORT@ @enum_name@_get_type()\n" ^
