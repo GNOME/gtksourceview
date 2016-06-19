@@ -5190,6 +5190,8 @@ update_style (GtkSourceView *view)
 	update_current_line_color (view);
 	update_right_margin_colors (view);
 	update_spaces_color (view);
+
+	gtk_widget_queue_draw (GTK_WIDGET (view));
 }
 
 static void
