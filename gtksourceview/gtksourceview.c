@@ -5049,9 +5049,9 @@ update_right_margin_colors (GtkSourceView *view)
 		view->priv->right_margin_overlay_color = NULL;
 	}
 
-	if (view->priv->style_scheme)
+	if (view->priv->style_scheme != NULL)
 	{
-		GtkSourceStyle	*style;
+		GtkSourceStyle *style;
 
 		style = _gtk_source_style_scheme_get_right_margin_style (view->priv->style_scheme);
 
@@ -5127,7 +5127,7 @@ update_spaces_color (GtkSourceView *view)
 		view->priv->spaces_color = NULL;
 	}
 
-	if (view->priv->style_scheme)
+	if (view->priv->style_scheme != NULL)
 	{
 		GtkSourceStyle *style;
 
