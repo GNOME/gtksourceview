@@ -1863,9 +1863,20 @@ gtk_source_buffer_ensure_highlight (GtkSourceBuffer   *buffer,
  * @buffer: a #GtkSourceBuffer.
  * @scheme: (nullable): a #GtkSourceStyleScheme or %NULL.
  *
- * Sets style scheme used by the buffer. If @scheme is %NULL no
- * style scheme is used.
- **/
+ * Sets a #GtkSourceStyleScheme to be used by the buffer and the view.
+ *
+ * Note that a #GtkSourceStyleScheme affects not only the syntax highlighting,
+ * but also other #GtkSourceView features such as highlighting the current line,
+ * matching brackets, the line numbers, etc.
+ *
+ * Instead of setting a %NULL @scheme, it is better to disable syntax
+ * highlighting with gtk_source_buffer_set_highlight_syntax(), and setting the
+ * #GtkSourceStyleScheme with the "classic" or "tango" ID, because those two
+ * style schemes follow more closely the GTK+ theme (for example for the
+ * background color).
+ *
+ * The buffer holds a reference to @scheme.
+ */
 void
 gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
 				    GtkSourceStyleScheme *scheme)

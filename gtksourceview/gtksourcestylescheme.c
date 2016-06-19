@@ -42,10 +42,14 @@
  * #GtkSourceStyleScheme contains all the text styles to be used in
  * #GtkSourceView and #GtkSourceBuffer. For instance, it contains text styles
  * for syntax highlighting, it may contain foreground and background color for
- * non-highlighted text, color for the line numbers, etc.
+ * non-highlighted text, color for the line numbers, current line highlighting,
+ * bracket matching, etc.
  *
  * Style schemes are stored in XML files. The format of a scheme file is
  * documented in the [style scheme reference][style-reference].
+ *
+ * The two style schemes with IDs "classic" and "tango" follow more closely the
+ * GTK+ theme (for example for the background color).
  */
 
 #define STYLE_TEXT			"text"
