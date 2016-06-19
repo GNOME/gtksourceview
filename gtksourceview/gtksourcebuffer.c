@@ -1695,12 +1695,15 @@ gtk_source_buffer_get_highlight_syntax (GtkSourceBuffer *buffer)
  * @buffer: a #GtkSourceBuffer.
  * @highlight: %TRUE to enable syntax highlighting, %FALSE to disable it.
  *
- * Controls whether syntax is highlighted in the buffer. If @highlight
- * is %TRUE, the text will be highlighted according to the syntax
- * patterns specified in the language set with
- * gtk_source_buffer_set_language(). If @highlight is %FALSE, syntax highlighting
- * is disabled and all the GtkTextTag objects that have been added by the
- * syntax highlighting engine are removed from the buffer.
+ * Controls whether syntax is highlighted in the buffer.
+ *
+ * If @highlight is %TRUE, the text will be highlighted according to the syntax
+ * patterns specified in the #GtkSourceLanguage set with
+ * gtk_source_buffer_set_language().
+ *
+ * If @highlight is %FALSE, syntax highlighting is disabled and all the
+ * #GtkTextTag objects that have been added by the syntax highlighting engine
+ * are removed from the buffer.
  */
 void
 gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
