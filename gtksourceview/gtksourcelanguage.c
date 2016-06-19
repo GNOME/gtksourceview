@@ -46,10 +46,11 @@
  * @Title: GtkSourceLanguage
  * @See_also: #GtkSourceLanguageManager
  *
- * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
- * particular language. Use #GtkSourceLanguageManager to obtain a
- * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
- * to a #GtkSourceBuffer.
+ * A #GtkSourceLanguage represents a programming or markup language, affecting
+ * syntax highlighting and [context classes][context-classes].
+ *
+ * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+ * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
  */
 
 #define DEFAULT_SECTION _("Others")

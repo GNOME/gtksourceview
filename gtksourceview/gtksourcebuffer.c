@@ -96,7 +96,7 @@
  * undo's effect). Warning: the selection restoring behavior might change in the
  * future.
  *
- * # Context Classes
+ * # Context Classes # {#context-classes}
  *
  * It is possible to retrieve some information from the syntax highlighting
  * engine. The default context classes that are applied to regions of a
@@ -1722,11 +1722,11 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
  * @buffer: a #GtkSourceBuffer.
  * @language: (nullable): a #GtkSourceLanguage to set, or %NULL.
  *
- * Associate a #GtkSourceLanguage with the buffer. If @language is
- * not-%NULL and syntax highlighting is enabled (see gtk_source_buffer_set_highlight_syntax()),
- * the syntax patterns defined in @language will be used to highlight the text
- * contained in the buffer. If @language is %NULL, the text contained in the
- * buffer is not highlighted.
+ * Associates a #GtkSourceLanguage with the buffer.
+ *
+ * Note that a #GtkSourceLanguage affects not only the syntax highlighting, but
+ * also the [context classes][context-classes]. If you want to disable just the
+ * syntax highlighting, see gtk_source_buffer_set_highlight_syntax().
  *
  * The buffer holds a reference to @language.
  */
