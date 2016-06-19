@@ -5062,11 +5062,13 @@ update_right_margin_colors (GtkSourceView *view)
 			GdkRGBA color;
 
 			g_object_get (style,
-				      "foreground-set", &color_set,
 				      "foreground", &color_str,
+				      "foreground-set", &color_set,
 				      NULL);
 
-			if (color_set && (color_str != NULL) && gdk_rgba_parse (&color, color_str))
+			if (color_set &&
+			    color_str != NULL &&
+			    gdk_rgba_parse (&color, color_str))
 			{
 				view->priv->right_margin_line_color = gdk_rgba_copy (&color);
 				view->priv->right_margin_line_color->alpha =
@@ -5077,11 +5079,13 @@ update_right_margin_colors (GtkSourceView *view)
 			color_str = NULL;
 
 			g_object_get (style,
-				      "background-set", &color_set,
 				      "background", &color_str,
+				      "background-set", &color_set,
 				      NULL);
 
-			if (color_set && (color_str != NULL) && gdk_rgba_parse (&color, color_str))
+			if (color_set &&
+			    color_str != NULL &&
+			    gdk_rgba_parse (&color, color_str))
 			{
 				view->priv->right_margin_overlay_color = gdk_rgba_copy (&color);
 				view->priv->right_margin_overlay_color->alpha =
@@ -5136,13 +5140,17 @@ update_spaces_color (GtkSourceView *view)
 		if (style != NULL)
 		{
 			gchar *color_str = NULL;
+			gboolean color_set;
 			GdkRGBA color;
 
 			g_object_get (style,
 				      "foreground", &color_str,
+				      "foreground-set", &color_set,
 				      NULL);
 
-			if (color_str != NULL && gdk_rgba_parse (&color, color_str))
+			if (color_set &&
+			    color_str != NULL &&
+			    gdk_rgba_parse (&color, color_str))
 			{
 				view->priv->spaces_color = gdk_rgba_copy (&color);
 			}
