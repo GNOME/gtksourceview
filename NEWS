@@ -1,3 +1,15 @@
+News in 3.21.2
+--------------
+* Make gtk_source_style_apply() public
+* GtkSourceSearchContext: add "version 2" of some functions to improve the API,
+  and deprecate the v1's.
+* Fix a critical message when showing a completion window
+* Fix a drawing issue with syntax highlighting
+* Improvements to the syntax highlighting of: Meson, JavaScript
+* Various code improvements and bug fixes
+* Documentation improvements
+* Build fixes on ARM
+
 News in 3.21.1
 --------------
 * Export SourceRegion in the public API
