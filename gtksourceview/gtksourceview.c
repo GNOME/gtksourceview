@@ -491,7 +491,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							      "Completion",
 							      "The completion object associated with the view",
 							      GTK_SOURCE_TYPE_COMPLETION,
-							      G_PARAM_READABLE));
+							      G_PARAM_READABLE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:show-line-numbers:
@@ -504,7 +505,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       "Show Line Numbers",
 							       "Whether to display line numbers",
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 	/**
 	 * GtkSourceView:show-line-marks:
 	 *
@@ -516,7 +518,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       "Show Line Marks",
 							       "Whether to display line mark pixbufs",
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:tab-width:
@@ -531,7 +534,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							    1,
 							    MAX_TAB_WIDTH,
 							    DEFAULT_TAB_WIDTH,
-							    G_PARAM_READWRITE));
+							    G_PARAM_READWRITE |
+							    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:indent-width:
@@ -546,23 +550,26 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							   -1,
 							   MAX_INDENT_WIDTH,
 							   -1,
-							   G_PARAM_READWRITE));
+							   G_PARAM_READWRITE |
+							   G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_AUTO_INDENT,
-					 g_param_spec_boolean ("auto_indent",
+					 g_param_spec_boolean ("auto-indent",
 							       "Auto Indentation",
 							       "Whether to enable auto indentation",
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_INSERT_SPACES,
-					 g_param_spec_boolean ("insert_spaces_instead_of_tabs",
+					 g_param_spec_boolean ("insert-spaces-instead-of-tabs",
 							       "Insert Spaces Instead of Tabs",
 							       "Whether to insert spaces instead of tabs",
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:show-right-margin:
@@ -575,7 +582,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       "Show Right Margin",
 							       "Whether to display the right margin",
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:right-margin-position:
@@ -590,7 +598,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							    1,
 							    MAX_RIGHT_MARGIN_POSITION,
 							    DEFAULT_RIGHT_MARGIN_POSITION,
-							    G_PARAM_READWRITE));
+							    G_PARAM_READWRITE |
+							    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:smart-home-end:
@@ -601,30 +610,33 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_SMART_HOME_END,
-					 g_param_spec_enum ("smart_home_end",
+					 g_param_spec_enum ("smart-home-end",
 							    "Smart Home/End",
 							    "HOME and END keys move to first/last "
 							    "non whitespace characters on line before going "
 							    "to the start/end of the line",
 							    GTK_SOURCE_TYPE_SMART_HOME_END_TYPE,
 							    GTK_SOURCE_SMART_HOME_END_DISABLED,
-							    G_PARAM_READWRITE));
+							    G_PARAM_READWRITE |
+							    G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_HIGHLIGHT_CURRENT_LINE,
-					 g_param_spec_boolean ("highlight_current_line",
+					 g_param_spec_boolean ("highlight-current-line",
 							       "Highlight current line",
 							       "Whether to highlight the current line",
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_INDENT_ON_TAB,
-					 g_param_spec_boolean ("indent_on_tab",
+					 g_param_spec_boolean ("indent-on-tab",
 							       "Indent on tab",
 							       "Whether to indent the selected text when the tab key is pressed",
 							       TRUE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:draw-spaces:
@@ -643,7 +655,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							     "Set if and how the spaces should be visualized",
 							     GTK_SOURCE_TYPE_DRAW_SPACES_FLAGS,
 							     0,
-							     G_PARAM_READWRITE));
+							     G_PARAM_READWRITE |
+							     G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:background-pattern:
@@ -659,7 +672,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							    "Draw a specific background pattern on the view",
 							    GTK_SOURCE_TYPE_BACKGROUND_PATTERN_TYPE,
 							    GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE,
-							    G_PARAM_READWRITE));
+							    G_PARAM_READWRITE |
+							    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:smart-backspace:
@@ -674,7 +688,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       "Smart Backspace",
 							       "",
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	signals[UNDO] =
 		g_signal_new ("undo",
