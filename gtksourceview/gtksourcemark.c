@@ -144,7 +144,9 @@ gtk_source_mark_class_init (GtkSourceMarkClass *klass)
 							      "Category",
 							      "The mark category",
 							      NULL,
-							      G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT_ONLY |
+							      G_PARAM_STATIC_STRINGS));
 }
 
 static void

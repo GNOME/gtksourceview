@@ -291,7 +291,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	                                                     "Background",
 	                                                     "The background",
 	                                                     GDK_TYPE_RGBA,
-	                                                     G_PARAM_READWRITE));
+	                                                     G_PARAM_READWRITE |
+							     G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceMarkAttributes:stock-id:
@@ -306,7 +307,9 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	                                                      "Stock Id",
 	                                                      "The stock id",
 	                                                      NULL,
-	                                                      G_PARAM_READWRITE | G_PARAM_DEPRECATED));
+	                                                      G_PARAM_READWRITE |
+							      G_PARAM_DEPRECATED |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceMarkAttributes:pixbuf:
@@ -319,7 +322,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	                                                      "Pixbuf",
 	                                                      "The pixbuf",
 	                                                      GDK_TYPE_PIXBUF,
-	                                                      G_PARAM_READWRITE));
+	                                                      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceMarkAttributes:icon-name:
@@ -332,7 +336,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	                                                      "Icon Name",
 	                                                      "The icon name",
 	                                                      NULL,
-	                                                      G_PARAM_READWRITE));
+	                                                      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceMarkAttributes:gicon:
@@ -345,7 +350,8 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	                                                      "GIcon",
 	                                                      "The GIcon",
 	                                                      G_TYPE_ICON,
-	                                                      G_PARAM_READWRITE));
+	                                                      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceMarkAttributes::query-tooltip-text:

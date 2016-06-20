@@ -228,7 +228,9 @@ _gtk_source_marks_sequence_class_init (GtkSourceMarksSequenceClass *klass)
 							      "Buffer",
 							      "The text buffer",
 							      GTK_TYPE_TEXT_BUFFER,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT_ONLY |
+							      G_PARAM_STATIC_STRINGS));
 }
 
 static void
