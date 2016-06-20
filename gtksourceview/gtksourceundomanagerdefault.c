@@ -1362,7 +1362,9 @@ gtk_source_undo_manager_default_class_init (GtkSourceUndoManagerDefaultClass *kl
 	                                                      "Buffer",
 	                                                      "The text buffer to add undo support on",
 	                                                      GTK_TYPE_TEXT_BUFFER,
-	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+	                                                      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT_ONLY |
+							      G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_MAX_UNDO_LEVELS,
@@ -1372,7 +1374,8 @@ gtk_source_undo_manager_default_class_init (GtkSourceUndoManagerDefaultClass *kl
 	                                                   -1,
 	                                                   G_MAXINT,
 	                                                   DEFAULT_MAX_UNDO_LEVELS,
-	                                                   G_PARAM_READWRITE));
+	                                                   G_PARAM_READWRITE |
+							   G_PARAM_STATIC_STRINGS));
 }
 
 static void
