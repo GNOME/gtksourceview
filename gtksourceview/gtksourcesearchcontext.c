@@ -2708,7 +2708,9 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 							      "Buffer",
 							      "The associated GtkSourceBuffer",
 							      GTK_SOURCE_TYPE_BUFFER,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT_ONLY |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:settings:
@@ -2723,7 +2725,9 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 							      "Settings",
 							      "The associated GtkSourceSearchSettings",
 							      GTK_SOURCE_TYPE_SEARCH_SETTINGS,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:highlight:
@@ -2738,7 +2742,9 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 							       "Highlight",
 							       "Highlight search occurrences",
 							       TRUE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:match-style:
@@ -2753,7 +2759,9 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 							      "Match style",
 							      "The text style for matches",
 							      GTK_SOURCE_TYPE_STYLE,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:occurrences-count:
@@ -2772,7 +2780,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 							   -1,
 							   G_MAXINT,
 							   0,
-							   G_PARAM_READABLE));
+							   G_PARAM_READABLE |
+							   G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:regex-error:
@@ -2789,7 +2798,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 					 g_param_spec_pointer ("regex-error",
 							       "Regex error",
 							       "Regular expression error",
-							       G_PARAM_READABLE));
+							       G_PARAM_READABLE |
+							       G_PARAM_STATIC_STRINGS));
 }
 
 static void

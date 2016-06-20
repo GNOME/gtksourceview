@@ -172,7 +172,9 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 							      "Search text",
 							      "The text to search",
 							      NULL,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchSettings:case-sensitive:
@@ -187,7 +189,9 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 							       "Case sensitive",
 							       "Case sensitive",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchSettings:at-word-boundaries:
@@ -203,7 +207,9 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 							       "At word boundaries",
 							       "Search at word boundaries",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchSettings:wrap-around:
@@ -220,7 +226,9 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 							       "Wrap around",
 							       "Wrap around",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchSettings:regex-enabled:
@@ -236,7 +244,9 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 							       "Regex enabled",
 							       "Whether to search by regular expression",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 }
 
 static void
