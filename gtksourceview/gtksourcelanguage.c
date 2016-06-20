@@ -228,7 +228,8 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 						 	      "Language id",
 							      "Language id",
 							      NULL,
-							      G_PARAM_READABLE));
+							      G_PARAM_READABLE |
+							      G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_NAME,
@@ -236,7 +237,8 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 						 	      "Language name",
 							      "Language name",
 							      NULL,
-							      G_PARAM_READABLE));
+							      G_PARAM_READABLE |
+							      G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_SECTION,
@@ -244,7 +246,8 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 						 	      "Language section",
 							      "Language section",
 							      NULL,
-							      G_PARAM_READABLE));
+							      G_PARAM_READABLE |
+							      G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_HIDDEN,
@@ -252,7 +255,8 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 							       "Hidden",
 							       "Whether the language should be hidden from the user",
 							       FALSE,
-							       G_PARAM_READABLE));
+							       G_PARAM_READABLE |
+							       G_PARAM_STATIC_STRINGS));
 }
 
 static void

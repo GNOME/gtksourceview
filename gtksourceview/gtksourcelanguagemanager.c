@@ -151,7 +151,8 @@ gtk_source_language_manager_class_init (GtkSourceLanguageManagerClass *klass)
 							     "language specification files (.lang) "
 							     "are located",
 							     G_TYPE_STRV,
-							     G_PARAM_READWRITE));
+							     G_PARAM_READWRITE |
+							     G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 					 PROP_LANGUAGE_IDS,
@@ -159,7 +160,8 @@ gtk_source_language_manager_class_init (GtkSourceLanguageManagerClass *klass)
 						 	     "Language ids",
 							     "List of the ids of the available languages",
 							     G_TYPE_STRV,
-							     G_PARAM_READABLE));
+							     G_PARAM_READABLE |
+							     G_PARAM_STATIC_STRINGS));
 }
 
 static void
