@@ -59,6 +59,12 @@ GTK_SOURCE_BUFFER_GET_CLASS
 GTK_SOURCE_TYPE_BUFFER
 GtkSourceBufferPrivate
 gtk_source_buffer_get_type
+GTK_SOURCE_TYPE_BRACKET_MATCH_TYPE
+gtk_source_bracket_match_type_get_type
+GTK_SOURCE_TYPE_CHANGE_CASE_TYPE
+gtk_source_change_case_type_get_type
+GTK_SOURCE_TYPE_SORT_FLAGS
+gtk_source_sort_flags_get_type
 </SECTION>
 
 <SECTION>
@@ -90,6 +96,8 @@ GtkSourceCompletionPrivate
 GtkSourceCompletionClass
 gtk_source_completion_get_type
 gtk_source_completion_error_quark
+GTK_SOURCE_TYPE_COMPLETION_ERROR
+gtk_source_completion_error_get_type
 </SECTION>
 
 <SECTION>
@@ -110,6 +118,8 @@ GTK_SOURCE_TYPE_COMPLETION_CONTEXT
 GtkSourceCompletionContextPrivate
 gtk_source_completion_context_get_type
 GtkSourceCompletionContextClass
+GTK_SOURCE_TYPE_COMPLETION_ACTIVATION
+gtk_source_completion_activation_get_type
 </SECTION>
 
 <SECTION>
@@ -271,6 +281,10 @@ GTK_SOURCE_TYPE_FILE
 GtkSourceFileClass
 GtkSourceFilePrivate
 gtk_source_file_get_type
+GTK_SOURCE_TYPE_COMPRESSION_TYPE
+gtk_source_compression_type_get_type
+GTK_SOURCE_TYPE_NEWLINE_TYPE
+gtk_source_newline_type_get_type
 </SECTION>
 
 <SECTION>
@@ -302,6 +316,8 @@ GTK_SOURCE_TYPE_FILE_LOADER
 GtkSourceFileLoaderPrivate
 gtk_source_file_loader_get_type
 gtk_source_file_loader_error_quark
+GTK_SOURCE_TYPE_FILE_LOADER_ERROR
+gtk_source_file_loader_error_get_type
 </SECTION>
 
 <SECTION>
@@ -338,6 +354,10 @@ GtkSourceFileSaverClass
 GtkSourceFileSaverPrivate
 gtk_source_file_saver_get_type
 gtk_source_file_saver_error_quark
+GTK_SOURCE_TYPE_FILE_SAVER_ERROR
+gtk_source_file_saver_error_get_type
+GTK_SOURCE_TYPE_FILE_SAVER_FLAGS
+gtk_source_file_saver_flags_get_type
 </SECTION>
 
 <SECTION>
@@ -403,6 +423,10 @@ GTK_SOURCE_GUTTER_RENDERER_GET_CLASS
 GTK_SOURCE_TYPE_GUTTER_RENDERER
 GtkSourceGutterRendererPrivate
 gtk_source_gutter_renderer_get_type
+GTK_SOURCE_TYPE_GUTTER_RENDERER_ALIGNMENT_MODE
+gtk_source_gutter_renderer_alignment_mode_get_type
+GTK_SOURCE_TYPE_GUTTER_RENDERER_STATE
+gtk_source_gutter_renderer_state_get_type
 </SECTION>
 
 <SECTION>
@@ -948,4 +972,12 @@ GTK_SOURCE_VIEW_GET_CLASS
 GTK_SOURCE_TYPE_VIEW
 GtkSourceViewPrivate
 gtk_source_view_get_type
+GTK_SOURCE_TYPE_BACKGROUND_PATTERN_TYPE
+gtk_source_background_pattern_type_get_type
+GTK_SOURCE_TYPE_DRAW_SPACES_FLAGS
+gtk_source_draw_spaces_flags_get_type
+GTK_SOURCE_TYPE_SMART_HOME_END_TYPE
+gtk_source_smart_home_end_type_get_type
+GTK_SOURCE_TYPE_VIEW_GUTTER_POSITION
+gtk_source_view_gutter_position_get_type
 </SECTION>
