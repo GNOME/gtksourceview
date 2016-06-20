@@ -184,16 +184,6 @@ AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gette
 AX_REQUIRE_DEFINED([GTK_DOC_CHECK])
 GTK_DOC_CHECK([1.25], [--flavour=no-tmpl])
 
-GLIB_PREFIX="`$PKG_CONFIG --variable=prefix glib-2.0`"
-GTK_PREFIX="`$PKG_CONFIG --variable=prefix gtk+-3.0`"
-PANGO_PREFIX="`$PKG_CONFIG --variable=prefix pango`"
-GDK_PIXBUF_PREFIX="`$PKG_CONFIG --variable=prefix gdk-pixbuf-2.0`"
-
-AC_SUBST(GLIB_PREFIX)
-AC_SUBST(GTK_PREFIX)
-AC_SUBST(PANGO_PREFIX)
-AC_SUBST(GDK_PIXBUF_PREFIX)
-
 # Installed Tests for gnome continuous integration
 AC_ARG_ENABLE(installed_tests,
               AS_HELP_STRING([--enable-installed-tests],
