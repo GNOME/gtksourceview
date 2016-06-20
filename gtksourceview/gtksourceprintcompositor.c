@@ -445,7 +445,9 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							      "Source Buffer",
 							      "The GtkSourceBuffer object to print",
 							      GTK_SOURCE_TYPE_BUFFER,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT_ONLY |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:tab-width:
@@ -465,7 +467,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							    1,
 							    MAX_TAB_WIDTH,
 							    DEFAULT_TAB_WIDTH,
-							    G_PARAM_READWRITE));
+							    G_PARAM_READWRITE |
+							    G_PARAM_STATIC_STRINGS));
 
 
 	/**
@@ -485,7 +488,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							    "",
 							    GTK_TYPE_WRAP_MODE,
 							    GTK_WRAP_NONE,
-							    G_PARAM_READWRITE));
+							    G_PARAM_READWRITE |
+							    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:highlight-syntax:
@@ -503,7 +507,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							       "Highlight Syntax",
 							       "",
 							       TRUE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:print-line-numbers:
@@ -523,7 +528,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							    "Print Line Numbers",
 							    "",
 							    0, 100, 1,
-							    G_PARAM_READWRITE));
+							    G_PARAM_READWRITE |
+							    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:print-header:
@@ -545,7 +551,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							       "Print Header",
 							       "",
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:print-footer:
@@ -567,7 +574,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							       "Print Footer",
 							       "",
 							       FALSE,
-							       G_PARAM_READWRITE));
+							       G_PARAM_READWRITE |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:body-font-name:
@@ -589,7 +597,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							      "Body Font Name",
 							      "",
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:line-numbers-font-name:
@@ -612,7 +621,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							      "Line Numbers Font Name",
 							      "",
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:header-font-name:
@@ -635,7 +645,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							      "Header Font Name",
 							      "",
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:footer-font-name:
@@ -658,7 +669,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							      "Footer Font Name",
 							      "",
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:n-pages:
@@ -674,7 +686,8 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 							   "Number of pages",
 							   "",
 							   -1, G_MAXINT, -1,
-							   G_PARAM_READABLE));
+							   G_PARAM_READABLE |
+							   G_PARAM_STATIC_STRINGS));
 }
 
 static void
