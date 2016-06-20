@@ -2300,7 +2300,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							      "View",
 							      "The GtkSourceView bound to the completion",
 							      GTK_SOURCE_TYPE_VIEW,
-							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT_ONLY |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletion:remember-info-visibility:
@@ -2315,7 +2317,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							       "Remember Info Visibility",
 							       "Remember the last info window visibility state",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 	/**
 	 * GtkSourceCompletion:select-on-show:
 	 *
@@ -2328,7 +2332,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							       "Select on Show",
 							       "Select first proposal when completion is shown",
 							       TRUE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletion:show-headers:
@@ -2342,7 +2348,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							       "Show Headers",
 							       "Show provider headers when proposals from multiple providers are available",
 							       TRUE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletion:show-icons:
@@ -2356,7 +2364,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							       "Show Icons",
 							       "Show provider and proposal icons in the completion popup",
 							       TRUE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT |
+							       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletion:accelerators:
@@ -2373,7 +2383,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	                                                    0,
 	                                                    10,
 	                                                    5,
-	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	                                                    G_PARAM_READWRITE |
+							    G_PARAM_CONSTRUCT |
+							    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletion:auto-complete-delay:
@@ -2389,7 +2401,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 							    0,
 							    G_MAXUINT,
 							    250,
-							    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+							    G_PARAM_READWRITE |
+							    G_PARAM_CONSTRUCT |
+							    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletion:provider-page-size:
@@ -2406,7 +2420,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	                                                    1,
 	                                                    G_MAXUINT,
 	                                                    5,
-	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	                                                    G_PARAM_READWRITE |
+							    G_PARAM_CONSTRUCT |
+							    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletion:proposal-page-size:
@@ -2427,7 +2443,9 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	                                                    1,
 	                                                    G_MAXUINT,
 	                                                    5,
-	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	                                                    G_PARAM_READWRITE |
+							    G_PARAM_CONSTRUCT |
+							    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletion::show:

@@ -281,7 +281,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 							      "Label",
 							      "Label to be shown for this item",
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:markup:
@@ -294,7 +295,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 							      "Markup",
 							      "Markup to be shown for this item",
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:text:
@@ -307,7 +309,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 							      "Text",
 							      "Item text",
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:icon:
@@ -320,7 +323,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 							      "Icon",
 							      "Pixbuf of the icon to be shown for this item",
 							      GDK_TYPE_PIXBUF,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:icon-name:
@@ -335,7 +339,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 							      "Icon Name",
 							      "Icon name of the icon to be shown for this item",
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:gicon:
@@ -350,7 +355,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 							      "GIcon",
 							      "GIcon of the icon to be shown for this item",
 							      G_TYPE_ICON,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 	/**
 	 * GtkSourceCompletionItem:info:
 	 *
@@ -362,7 +368,8 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 							      "Info",
 							      "Info to be shown for this item",
 							      NULL,
-							      G_PARAM_READWRITE));
+							      G_PARAM_READWRITE |
+							      G_PARAM_STATIC_STRINGS));
 }
 
 static void

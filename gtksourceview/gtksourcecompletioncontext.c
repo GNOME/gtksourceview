@@ -246,7 +246,9 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                      "Completion",
 	                                                      "The completion object to which the context belongs",
 	                                                      GTK_SOURCE_TYPE_COMPLETION,
-	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+	                                                      G_PARAM_READWRITE |
+							      G_PARAM_CONSTRUCT_ONLY |
+							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionContext:iter:
@@ -259,7 +261,8 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 							     "Iterator",
 							     "The GtkTextIter at which the completion was invoked",
 							     GTK_TYPE_TEXT_ITER,
-							     G_PARAM_READWRITE));
+							     G_PARAM_READWRITE |
+							     G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionContext:activation:
@@ -273,7 +276,9 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	                                                     "The type of activation",
 	                                                     GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
 	                                                     GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
-	                                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	                                                     G_PARAM_READWRITE |
+							     G_PARAM_CONSTRUCT |
+							     G_PARAM_STATIC_STRINGS));
 }
 
 static void
