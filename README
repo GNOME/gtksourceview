@@ -43,33 +43,28 @@ To build the latest version of GtkSourceView from Git, Jhbuild can be used:
 How to report bugs
 ==================
 
-Bugs should be reported to the GNOME bug tracking system.
-(http://bugzilla.gnome.org, product gtksourceview).
+Bugs should be reported to the GNOME bug tracking system:
+
+    https://bugzilla.gnome.org/page.cgi?id=browse.html&product=gtksourceview
+
 You will need to create an account for yourself.
 
-In the bug report please include:
+Please search to see if the bug is not already reported. If not, file a new bug
+and include:
   
 * Information about your system. For instance:
 
    - What version of GtkSourceView
    - What operating system and version
-   - What version of the gtk+, glib and gnome libraries
+   - What version of GTK+ and GLib
 
   And anything else you think is relevant.
 
 * How to reproduce the bug. 
 
 * If the bug was a crash, the exact text that was printed out when the
-  crash occurred.
-
-* Further information such as stack traces may be useful, but is not
-  necessary. If you do send a stack trace, and the error is an X error,
-  it will be more useful if the stacktrace is produced running the test
-  program with the --sync command line option.
-
-Please check the bugzilla pages for the list of known bugs.
-
-https://bugzilla.gnome.org/browse.cgi?product=gtksourceview
+  crash occurred, with a backtrace from gdb with debug symbols. See:
+  https://wiki.gnome.org/Community/GettingInTouch/Bugzilla/GettingTraces
 
 
 Patches
