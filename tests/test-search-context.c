@@ -366,6 +366,7 @@ test_search_at_word_boundaries (void)
 	GtkTextBuffer *text_buffer = GTK_TEXT_BUFFER (source_buffer);
 	GtkSourceSearchSettings *settings = gtk_source_search_settings_new ();
 	GtkSourceSearchContext *context = gtk_source_search_context_new (source_buffer, settings);
+	GtkTextIter iter;
 	gboolean at_word_boundaries;
 	gint occurrences_count;
 
@@ -380,13 +381,27 @@ test_search_at_word_boundaries (void)
 	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
 	g_assert_cmpint (occurrences_count, ==, 1);
 
+	/* Contents: "AtWordBoundaries AtWord AtWord" */
+	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, 16);
+	gtk_text_buffer_insert (text_buffer, &iter, " AtWord", -1);
+	flush_queue ();
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
+	g_assert_cmpint (occurrences_count, ==, 2);
+
+	/* Contents: "AtWordBoundaries AtWordd AtWord" */
+	gtk_text_buffer_get_iter_at_offset (text_buffer, &iter, 23);
+	gtk_text_buffer_insert (text_buffer, &iter, "d", -1);
+	flush_queue ();
+	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
+	g_assert_cmpint (occurrences_count, ==, 1);
+
 	gtk_source_search_settings_set_at_word_boundaries (settings, FALSE);
 	at_word_boundaries = gtk_source_search_settings_get_at_word_boundaries (settings);
 	g_assert (!at_word_boundaries);
 
 	flush_queue ();
 	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
-	g_assert_cmpint (occurrences_count, ==, 2);
+	g_assert_cmpint (occurrences_count, ==, 3);
 
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
