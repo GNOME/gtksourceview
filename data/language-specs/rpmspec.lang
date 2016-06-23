@@ -47,14 +47,14 @@
   <definitions>
 
     <context id="define" style-ref="define" end-at-line-end="true">
-      <start>%define</start>
+      <start>%(?:define|global)</start>
       <include>
         <context ref="def:line-continue" ignore-style="true"/>
       </include>
     </context>
 
     <context id="conditional-define" style-ref="define" end-at-line-end="true">
-      <start>%\{\!\?.*%define</start>
+      <start>%\{\!\?.*%(?:define|global)</start>
       <end>\}</end>
       <include>
         <context ref="def:line-continue" ignore-style="true"/>
