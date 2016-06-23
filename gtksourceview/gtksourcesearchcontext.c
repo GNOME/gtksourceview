@@ -201,13 +201,13 @@
  *
  * For non-regex searches, when there is an insertion or deletion in the buffer,
  * we don't need to re-scan all the buffer. If there is an unmodified match in
- * the neighborhood, no need to re-scan it. For a regex search, it is more
- * complicated. An insertion or deletion outside a match can modify a match
- * located in the neighborhood. Take for example the regex "(aa)+" with the
- * buffer contents "aaa". There is one occurrence: the first two letters. If we
- * insert an extra 'a' at the end of the buffer, the occurrence is modified to
- * take the next two letters. That's why the buffer is re-scanned entirely on
- * each insertion or deletion in the buffer.
+ * the neighborhood, no need to re-scan it (unless at_word_boundaries is set).
+ * For a regex search, it is more complicated. An insertion or deletion outside
+ * a match can modify a match located in the neighborhood. Take for example the
+ * regex "(aa)+" with the buffer contents "aaa". There is one occurrence: the
+ * first two letters. If we insert an extra 'a' at the end of the buffer, the
+ * occurrence is modified to take the next two letters. That's why the buffer
+ * is re-scanned entirely on each insertion or deletion in the buffer.
  *
  * For searching the matches, the easiest solution is to retrieve all the buffer
  * contents, and search the occurrences on this big string. But it takes a lot
@@ -1429,14 +1429,18 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 	GtkTextIter match_start;
 	GtkTextIter match_end;
 
-	if (gtk_text_iter_has_tag (start, search->priv->found_tag) &&
-	    !gtk_text_iter_starts_tag (start, search->priv->found_tag))
+	if ((gtk_text_iter_has_tag (start, search->priv->found_tag) &&
+	     !gtk_text_iter_starts_tag (start, search->priv->found_tag)) ||
+	    (gtk_source_search_settings_get_at_word_boundaries (search->priv->settings) &&
+	     gtk_text_iter_ends_tag (start, search->priv->found_tag)))
 	{
 		gtk_text_iter_backward_to_tag_toggle (start, search->priv->found_tag);
 	}
 
-	if (gtk_text_iter_has_tag (end, search->priv->found_tag) &&
-	    !gtk_text_iter_starts_tag (end, search->priv->found_tag))
+	if ((gtk_text_iter_has_tag (end, search->priv->found_tag) &&
+	     !gtk_text_iter_starts_tag (end, search->priv->found_tag)) ||
+	    (gtk_source_search_settings_get_at_word_boundaries (search->priv->settings) &&
+	     gtk_text_iter_starts_tag (end, search->priv->found_tag)))
 	{
 		gtk_text_iter_forward_to_tag_toggle (end, search->priv->found_tag);
 	}
