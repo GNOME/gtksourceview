@@ -22,6 +22,10 @@
 #ifndef GTK_SOURCE_TYPES_H
 #define GTK_SOURCE_TYPES_H
 
+#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
+#warning "Only <gtksourceview/gtksource.h> can be included directly."
+#endif
+
 #include <gio/gio.h>
 #include <gtksourceview/gtksourceversion.h>
 

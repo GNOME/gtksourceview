@@ -22,6 +22,10 @@
 #ifndef GTK_SOURCE_GUTTER_RENDERER_PIXBUF_H
 #define GTK_SOURCE_GUTTER_RENDERER_PIXBUF_H
 
+#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
+#warning "Only <gtksourceview/gtksource.h> can be included directly."
+#endif
+
 #include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcegutterrenderer.h>
 

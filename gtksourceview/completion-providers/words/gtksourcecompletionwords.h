@@ -22,8 +22,12 @@
 #ifndef GTK_SOURCE_COMPLETION_WORDS_H
 #define GTK_SOURCE_COMPLETION_WORDS_H
 
+#define GTK_SOURCE_H_INSIDE
+
 #include <gtksourceview/gtksourcecompletionprovider.h>
 #include <gtk/gtk.h>
+
+#undef GTK_SOURCE_H_INSIDE
 
 G_BEGIN_DECLS
 

@@ -23,6 +23,10 @@
 #ifndef GTK_SOURCE_COMPLETION_PROPOSAL_H
 #define GTK_SOURCE_COMPLETION_PROPOSAL_H
 
+#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
+#warning "Only <gtksourceview/gtksource.h> can be included directly."
+#endif
+
 #include <glib-object.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtksourceview/gtksourcetypes.h>

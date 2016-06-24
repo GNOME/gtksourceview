@@ -19,6 +19,10 @@
 #ifndef GTK_SOURCE_AUTOCLEANUPS_H
 #define GTK_SOURCE_AUTOCLEANUPS_H
 
+#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
+#warning "Only <gtksourceview/gtksource.h> can be included directly."
+#endif
+
 #ifndef __GI_SCANNER__
 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(GtkSourceBuffer, g_object_unref)

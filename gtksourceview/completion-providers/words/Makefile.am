@@ -3,6 +3,7 @@
 AM_CPPFLAGS = 				\
 	-DDATADIR=\""$(datadir)"\" 	\
 	-DG_LOG_DOMAIN=\"GtkSourceView\"\
+	-DGTK_SOURCE_COMPILATION	\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\

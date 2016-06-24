@@ -20,6 +20,8 @@
 #ifndef GTK_SOURCE_H
 #define GTK_SOURCE_H
 
+#define GTK_SOURCE_H_INSIDE
+
 #include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcebuffer.h>
 #include <gtksourceview/gtksourcecompletioncontext.h>
@@ -58,5 +60,7 @@
 #include <gtksourceview/gtksourceview.h>
 #include <gtksourceview/gtksourceview-enumtypes.h>
 #include <gtksourceview/gtksourceautocleanups.h>
+
+#undef GTK_SOURCE_H_INSIDE
 
 #endif /* GTK_SOURCE_H */

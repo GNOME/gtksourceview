@@ -25,6 +25,10 @@
 #ifndef GTK_SOURCE_FILE_SAVER_H
 #define GTK_SOURCE_FILE_SAVER_H
 
+#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
+#warning "Only <gtksourceview/gtksource.h> can be included directly."
+#endif
+
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksourcetypes.h>
 
