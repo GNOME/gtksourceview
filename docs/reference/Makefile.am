@@ -30,6 +30,7 @@ EXTRA_HFILES =								\
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code
 IGNORE_HFILES =					\
 	config.h				\
+	gtksource.h				\
 	gtksourcebuffer-private.h		\
 	gtksourcebufferinputstream.h		\
 	gtksourcebufferoutputstream.h		\
