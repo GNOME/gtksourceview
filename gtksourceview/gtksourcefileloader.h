@@ -26,7 +26,11 @@
 #define GTK_SOURCE_FILE_LOADER_H
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
-#warning "Only <gtksourceview/gtksource.h> can be included directly."
+#  if defined (__GNUC__)
+#    warning "Only <gtksourceview/gtksource.h> can be included directly."
+#  elif defined (G_OS_WIN32)
+#    pragma message("Only <gtksourceview/gtksource.h> can be included directly.")
+#  endif
 #endif
 
 #include <gtk/gtk.h>
