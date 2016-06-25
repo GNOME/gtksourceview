@@ -22,6 +22,7 @@
 
 #define GTK_SOURCE_H_INSIDE
 
+#include <gtksourceview/completion-providers/words/gtksourcecompletionwords.h>
 #include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcebuffer.h>
 #include <gtksourceview/gtksourcecompletioncontext.h>

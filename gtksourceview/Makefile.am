@@ -282,7 +282,10 @@ GtkSource_3_0_gir_VERSION = 3.0
 GtkSource_3_0_gir_CFLAGS = $(DEP_CFLAGS)
 GtkSource_3_0_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
 GtkSource_3_0_gir_LIBS = libgtksourceview-3.0.la
+
+# Ensure that gtksource.h is the first one.
 GtkSource_3_0_gir_FILES =			\
+	gtksource.h				\
 	$(libgtksourcecompletionwords_files)	\
 	$(libgtksourceview_public_headers)	\
 	$(libgtksourceview_public_c_files)	\
@@ -383,7 +386,9 @@ NMAKE_INTROSPECTION_FILES = \
 
 MSVC_INTROSPECT_GIRS = GtkSource-3.0.gir
 
+# Ensure that gtksource.h is the first one.
 GtkSource_3_0_gir_MSVC_FILES = \
+	gtksource.h				\
 	$(libgtksourcecompletionwords_files)	\
 	$(libgtksourceview_public_headers)	\
 	$(libgtksourceview_public_c_files)	\

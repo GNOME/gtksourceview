@@ -22,7 +22,6 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
-#include <gtksourceview/completion-providers/words/gtksourcecompletionwords.h>
 
 typedef struct _TestProvider TestProvider;
 typedef struct _TestProviderClass TestProviderClass;

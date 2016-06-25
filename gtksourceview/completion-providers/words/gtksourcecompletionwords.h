@@ -22,12 +22,16 @@
 #ifndef GTK_SOURCE_COMPLETION_WORDS_H
 #define GTK_SOURCE_COMPLETION_WORDS_H
 
-#define GTK_SOURCE_H_INSIDE
+#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
+#  if defined (__GNUC__)
+#    warning "Only <gtksourceview/gtksource.h> can be included directly."
+#  elif defined (G_OS_WIN32)
+#    pragma message("Only <gtksourceview/gtksource.h> can be included directly.")
+#  endif
+#endif
 
 #include <gtksourceview/gtksourcecompletionprovider.h>
 #include <gtk/gtk.h>
-
-#undef GTK_SOURCE_H_INSIDE
 
 G_BEGIN_DECLS
 
