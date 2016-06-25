@@ -248,7 +248,8 @@ static void 	 gtk_source_buffer_real_insert_text 	(GtkTextBuffer           *buff
 static void	 gtk_source_buffer_real_insert_pixbuf	(GtkTextBuffer           *buffer,
 							 GtkTextIter             *pos,
 							 GdkPixbuf               *pixbuf);
-static void	 gtk_source_buffer_real_insert_anchor	(GtkTextBuffer           *buffer,
+static void	 gtk_source_buffer_real_insert_child_anchor
+							(GtkTextBuffer           *buffer,
 							 GtkTextIter             *pos,
 							 GtkTextChildAnchor      *anchor);
 static void 	 gtk_source_buffer_real_delete_range 	(GtkTextBuffer           *buffer,
@@ -300,7 +301,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	text_buffer_class->delete_range = gtk_source_buffer_real_delete_range;
 	text_buffer_class->insert_text = gtk_source_buffer_real_insert_text;
 	text_buffer_class->insert_pixbuf = gtk_source_buffer_real_insert_pixbuf;
-	text_buffer_class->insert_child_anchor = gtk_source_buffer_real_insert_anchor;
+	text_buffer_class->insert_child_anchor = gtk_source_buffer_real_insert_child_anchor;
 	text_buffer_class->mark_set = gtk_source_buffer_real_mark_set;
 	text_buffer_class->mark_deleted = gtk_source_buffer_real_mark_deleted;
 
@@ -1208,9 +1209,9 @@ gtk_source_buffer_real_insert_pixbuf (GtkTextBuffer *buffer,
 }
 
 static void
-gtk_source_buffer_real_insert_anchor (GtkTextBuffer      *buffer,
-				      GtkTextIter        *iter,
-				      GtkTextChildAnchor *anchor)
+gtk_source_buffer_real_insert_child_anchor (GtkTextBuffer      *buffer,
+					    GtkTextIter        *iter,
+					    GtkTextChildAnchor *anchor)
 {
 	gint start_offset;
 
