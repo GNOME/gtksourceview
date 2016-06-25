@@ -135,14 +135,6 @@ AX_PKG_CHECK_MODULES([DEP],
 		     [glib-2.0 >= $glib_req  gio-2.0 >= $glib_req  gtk+-3.0 >= $gtk_req],
 		     [libxml-2.0 >= $libxml_req])
 
-dnl Check to enable completion providers
-AC_ARG_ENABLE(providers,
-	    AS_HELP_STRING([--enable-completion-providers],
-	    		   [Enable building completion providers (words)]),,
-	    enable_providers=yes)
-
-AM_CONDITIONAL([ENABLE_PROVIDERS], [ test "$enable_providers" = "yes" ])
-
 dnl check for native osx
 AC_MSG_CHECKING([for native Mac OS X])
 AX_REQUIRE_DEFINED([GTK_CHECK_BACKEND])
@@ -246,7 +238,6 @@ Configuration:
 
 	Source code location:	${srcdir}
 	Compiler:		${CC}
-	Completion Providers:	${enable_providers}
 	Glade Catalog:		${glade_catalog}
 	Documentation:		${enable_gtk_doc}
 	GObject introspection:	${found_introspection}

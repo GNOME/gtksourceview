@@ -1,6 +1,4 @@
-if ENABLE_PROVIDERS
 SUBDIRS = completion-providers
-endif
 
 @CODE_COVERAGE_RULES@
 
