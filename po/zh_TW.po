@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview 3.3.4\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-25 14:04+0800\n"
+"POT-Creation-Date: 2016-06-10 12:47+0000\n"
 "PO-Revision-Date: 2015-08-25 14:04+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (traditional)\n"
@@ -22,58 +22,54 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.4\n"
 
-#: ../data/glade/gtksourceview.xml.in.h:1
-msgid "GtkSourceView"
-msgstr "GtkSourceView"
-
 #. Translators: It is related to an option of a set of values
-#: ../data/glade/gtksourceview.xml.in.h:3
+#: ../data/glade/gtksourceview.xml.in.h:2
 msgid "Disabled"
-msgstr "已停用"
+msgstr "停用"
+
+#: ../data/glade/gtksourceview.xml.in.h:3
+msgid "Before"
+msgstr "之前"
 
 #: ../data/glade/gtksourceview.xml.in.h:4
-msgid "Before"
-msgstr "早於"
+msgid "After"
+msgstr "之後"
 
 #: ../data/glade/gtksourceview.xml.in.h:5
-msgid "After"
-msgstr "晚於"
-
-#: ../data/glade/gtksourceview.xml.in.h:6
 msgid "Always"
 msgstr "永遠"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#: ../data/glade/gtksourceview.xml.in.h:6
 msgid "Space"
 msgstr "Space"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#: ../data/glade/gtksourceview.xml.in.h:7
 msgid "Tab"
 msgstr "Tab"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#: ../data/glade/gtksourceview.xml.in.h:8
 msgid "Newline"
 msgstr "換列"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#: ../data/glade/gtksourceview.xml.in.h:9
 msgid "Non Breaking Whitespace"
 msgstr "不斷行空白"
 
-#: ../data/glade/gtksourceview.xml.in.h:11
+#: ../data/glade/gtksourceview.xml.in.h:10
 msgid "Leading"
-msgstr "開頭"
+msgstr "行首空白"
+
+#: ../data/glade/gtksourceview.xml.in.h:11
+msgid "Text"
+msgstr "文字中的空白"
 
 #: ../data/glade/gtksourceview.xml.in.h:12
-msgid "Text"
-msgstr "文字"
-
-#: ../data/glade/gtksourceview.xml.in.h:13
 msgid "Trailing"
-msgstr "結尾"
+msgstr "行尾空白"
 
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: ../data/glade/gtksourceview.xml.in.h:14
+#: ../data/glade/gtksourceview.xml.in.h:13
 #: ../gtksourceview/gtksourcecompletion.c:830
 msgid "All"
 msgstr "全部"
@@ -115,7 +111,7 @@ msgstr "全部"
 #: ../data/language-specs/vbnet.lang.h:1
 #: ../data/language-specs/verilog.lang.h:1 ../data/language-specs/vhdl.lang.h:1
 msgid "Source"
-msgstr "來源"
+msgstr "原始碼"
 
 #: ../data/language-specs/actionscript.lang.h:2
 msgid "ActionScript"
@@ -165,7 +161,7 @@ msgstr "ActionScript"
 #: ../data/language-specs/verilog.lang.h:3 ../data/language-specs/vhdl.lang.h:3
 #: ../data/language-specs/xml.lang.h:3 ../data/language-specs/yaml.lang.h:4
 msgid "Comment"
-msgstr "備註"
+msgstr "註解"
 
 #. Any erroneous construct
 #: ../data/language-specs/actionscript.lang.h:4
@@ -290,7 +286,7 @@ msgstr "範圍宣告"
 #: ../data/language-specs/modelica.lang.h:13
 #: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/objc.lang.h:3
 #: ../data/language-specs/objj.lang.h:4 ../data/language-specs/ocaml.lang.h:9
-#: ../data/language-specs/ocl.lang.h:5 ../data/language-specs/octave.lang.h:13
+#: ../data/language-specs/ocl.lang.h:5 ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
 #: ../data/language-specs/opencl.lang.h:3
 #: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
@@ -324,7 +320,7 @@ msgstr "關鍵字"
 #: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
 #: ../data/language-specs/php.lang.h:17 ../data/language-specs/vala.lang.h:9
 msgid "Null Value"
-msgstr "NULL"
+msgstr "空值(Null Value)"
 
 #. A boolean constant: TRUE, false
 #: ../data/language-specs/actionscript.lang.h:12
@@ -460,6 +456,7 @@ msgstr "實數"
 #: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
 #: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
 #: ../data/language-specs/texinfo.lang.h:4
+#: ../data/language-specs/vala.lang.h:11
 #: ../data/language-specs/verilog.lang.h:6
 msgid "Escaped Character"
 msgstr "跳出字元"
@@ -507,8 +504,8 @@ msgstr "常數"
 #: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
 #: ../data/language-specs/llvm.lang.h:8
 #: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:6
+#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/perl.lang.h:13
+#: ../data/language-specs/php.lang.h:6
 #: ../data/language-specs/pkgconfig.lang.h:3
 #: ../data/language-specs/prolog.lang.h:4
 #: ../data/language-specs/protobuf.lang.h:4
@@ -609,7 +606,7 @@ msgstr "選擇性目標"
 
 #: ../data/language-specs/automake.lang.h:8
 msgid "Built-in Target"
-msgstr "組建目標"
+msgstr "內建目標"
 
 #: ../data/language-specs/automake.lang.h:9
 msgid "Other Keyword"
@@ -702,7 +699,7 @@ msgstr "BibTeX"
 
 #: ../data/language-specs/bibtex.lang.h:3
 msgid "Entries"
-msgstr "項目)"
+msgstr "項目"
 
 #: ../data/language-specs/bibtex.lang.h:4
 msgid "Field"
@@ -752,6 +749,7 @@ msgstr "多行字串"
 #: ../data/language-specs/boo.lang.h:6 ../data/language-specs/genie.lang.h:6
 #: ../data/language-specs/javascript.lang.h:14
 #: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
+#: ../data/language-specs/vala.lang.h:10
 msgid "Regular Expression"
 msgstr "正規表示式"
 
@@ -816,7 +814,7 @@ msgstr "Swizzle operator"
 #: ../data/language-specs/imagej.lang.h:3
 #: ../data/language-specs/matlab.lang.h:5
 #: ../data/language-specs/modelica.lang.h:14
-#: ../data/language-specs/octave.lang.h:16
+#: ../data/language-specs/octave.lang.h:12
 #: ../data/language-specs/ruby.lang.h:17
 msgid "Builtin"
 msgstr "內建"
@@ -841,7 +839,7 @@ msgstr "其他"
 
 #: ../data/language-specs/changelog.lang.h:2
 msgid "ChangeLog"
-msgstr "修改紀錄"
+msgstr "修改紀錄(ChangeLog)"
 
 #: ../data/language-specs/changelog.lang.h:3
 #: ../data/language-specs/rpmspec.lang.h:14
@@ -874,7 +872,7 @@ msgstr "釋出"
 
 #: ../data/language-specs/chdr.lang.h:2
 msgid "C/C++/ObjC Header"
-msgstr "C/C++/ObjC 檔頭"
+msgstr "C/C++/ObjC 標頭檔"
 
 #: ../data/language-specs/c.lang.h:2
 msgid "C"
@@ -883,20 +881,20 @@ msgstr "C"
 #: ../data/language-specs/c.lang.h:6 ../data/language-specs/cpp.lang.h:5
 #: ../data/language-specs/objc.lang.h:5 ../data/language-specs/opal.lang.h:5
 msgid "Common Defines"
-msgstr "一般定義"
+msgstr "常用常數、變數、巨集定義"
 
 #: ../data/language-specs/c.lang.h:13 ../data/language-specs/genie.lang.h:16
 #: ../data/language-specs/go.lang.h:9 ../data/language-specs/verilog.lang.h:5
 msgid "printf Conversion"
-msgstr "printf 交談"
+msgstr "printf 格式指定字串"
 
 #: ../data/language-specs/c.lang.h:20
 msgid "Standard stream"
-msgstr "標準串流"
+msgstr "標準輸入輸出串流"
 
 #: ../data/language-specs/c.lang.h:21
 msgid "Signal name"
-msgstr "單名"
+msgstr "訊號名稱"
 
 #: ../data/language-specs/cmake.lang.h:2
 msgid "CMake"
@@ -916,7 +914,7 @@ msgstr "內建變數"
 
 #: ../data/language-specs/cmake.lang.h:8
 msgid "Control Keyword"
-msgstr "控制鍵盤"
+msgstr "流程控制關鍵字"
 
 #: ../data/language-specs/cobol.lang.h:2
 msgid "COBOL"
@@ -968,7 +966,6 @@ msgstr "其它 3"
 #: ../data/language-specs/haskell.lang.h:13 ../data/language-specs/ini.lang.h:7
 #: ../data/language-specs/json.lang.h:8
 #: ../data/language-specs/modelica.lang.h:10
-#: ../data/language-specs/octave.lang.h:9
 #: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
 #: ../data/language-specs/sql.lang.h:8
 msgid "Decimal"
@@ -980,7 +977,7 @@ msgstr "Dimension"
 
 #: ../data/language-specs/css.lang.h:12
 msgid "Known Property Value"
-msgstr "Known Property Values"
+msgstr "Known Property Value"
 
 #: ../data/language-specs/css.lang.h:13
 msgid "at-rules"
@@ -1080,7 +1077,7 @@ msgstr "資料類型"
 #. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
 #: ../data/language-specs/def.lang.h:51
 msgid "Preprocessor directive"
-msgstr "預先處理器主導"
+msgstr "預先處理器指令"
 
 #. to mark possibily errors or unrecommended syntax
 #: ../data/language-specs/def.lang.h:55
@@ -1171,7 +1168,7 @@ msgstr "保留的分類"
 
 #: ../data/language-specs/diff.lang.h:2
 msgid "Diff"
-msgstr "差異檔"
+msgstr "差異檔(Diff)"
 
 #: ../data/language-specs/diff.lang.h:3
 msgid "Added line"
@@ -1236,7 +1233,7 @@ msgstr "Structural Elements"
 
 #: ../data/language-specs/dosbatch.lang.h:2
 msgid "DOS Batch"
-msgstr "DOS 批次檔"
+msgstr "DOS 批次檔(Batch)"
 
 #: ../data/language-specs/dosbatch.lang.h:6
 #: ../data/language-specs/latex.lang.h:8 ../data/language-specs/sweave.lang.h:4
@@ -1326,8 +1323,7 @@ msgstr "Atom"
 #: ../data/language-specs/erlang.lang.h:11
 #: ../data/language-specs/fsharp.lang.h:4
 #: ../data/language-specs/modelica.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
+#: ../data/language-specs/ocaml.lang.h:5 ../data/language-specs/sml.lang.h:9
 #: ../data/language-specs/verilog.lang.h:14
 #: ../data/language-specs/vhdl.lang.h:9
 msgid "Base-N Integer"
@@ -1338,7 +1334,7 @@ msgstr "N 進制整數"
 #: ../data/language-specs/systemverilog.lang.h:3
 #: ../data/language-specs/verilog.lang.h:8
 msgid "Compiler Directive"
-msgstr "編譯器主導"
+msgstr "編譯器指令"
 
 #: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
 #: ../data/language-specs/idl-exelis.lang.h:1
@@ -1357,7 +1353,6 @@ msgstr "FCL"
 #: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:5
 #: ../data/language-specs/ini.lang.h:4
 #: ../data/language-specs/modelica.lang.h:11
-#: ../data/language-specs/octave.lang.h:10
 #: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
 msgid "Floating Point"
 msgstr "浮點小數"
@@ -1366,7 +1361,7 @@ msgstr "浮點小數"
 msgid "Block"
 msgstr "區塊"
 
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
+#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:11
 #: ../data/language-specs/scilab.lang.h:9
 msgid "Reserved Constant"
 msgstr "常數保留字"
@@ -1397,7 +1392,7 @@ msgstr "BOZ Literal"
 
 #: ../data/language-specs/fortran.lang.h:12
 msgid "OpenMP directives"
-msgstr "OpenMP 管理"
+msgstr "OpenMP 指令"
 
 #: ../data/language-specs/fsharp.lang.h:2
 msgid "F#"
@@ -1466,7 +1461,7 @@ msgstr "Frame 編號"
 
 #: ../data/language-specs/gdb-log.lang.h:6
 msgid "Address"
-msgstr "地址"
+msgstr "位址"
 
 #: ../data/language-specs/gdb-log.lang.h:9
 msgid "Filename"
@@ -1474,7 +1469,7 @@ msgstr "檔案名稱"
 
 #: ../data/language-specs/gdb-log.lang.h:10
 msgid "Optimized Out"
-msgstr "最佳化輸出"
+msgstr "最佳化導致無法得知數值"
 
 #: ../data/language-specs/gdb-log.lang.h:11
 msgid "Incomplete Sequence"
@@ -1482,11 +1477,11 @@ msgstr "不完整序列"
 
 #: ../data/language-specs/gdb-log.lang.h:12
 msgid "Prompt"
-msgstr "提示"
+msgstr "提示字元"
 
 #: ../data/language-specs/genie.lang.h:2
 msgid "Genie"
-msgstr "精靈"
+msgstr "Genie"
 
 #: ../data/language-specs/glsl.lang.h:2
 msgid "OpenGL Shading Language"
@@ -1504,11 +1499,11 @@ msgstr "保留字"
 
 #: ../data/language-specs/go.lang.h:2
 msgid "Go"
-msgstr "前往"
+msgstr "Go"
 
 #: ../data/language-specs/go.lang.h:12
 msgid "Imaginary number"
-msgstr "影像的數目"
+msgstr "虛數"
 
 #: ../data/language-specs/gtk-doc.lang.h:2
 msgid "gtk-doc"
@@ -1639,7 +1634,7 @@ msgstr "8 進位"
 
 #: ../data/language-specs/haskell.lang.h:15
 msgid "Hex"
-msgstr "Hex"
+msgstr "16 進位"
 
 #: ../data/language-specs/haskell-literate.lang.h:2
 msgid "Literate Haskell"
@@ -1718,7 +1713,7 @@ msgstr ".ini"
 
 #: ../data/language-specs/jade.lang.h:2
 msgid "Jade"
-msgstr "玉"
+msgstr "Jade"
 
 #: ../data/language-specs/jade.lang.h:4 ../data/language-specs/xml.lang.h:4
 msgid "DOCTYPE"
@@ -1972,11 +1967,11 @@ msgstr "Makefile"
 
 #: ../data/language-specs/makefile.lang.h:4
 msgid "Assignment Right Hand Side"
-msgstr "分配右手邊"
+msgstr "指定右手邊"
 
 #: ../data/language-specs/makefile.lang.h:5
 msgid "Assignment Left Hand Side"
-msgstr "分配左手邊"
+msgstr "指定左手邊"
 
 #: ../data/language-specs/makefile.lang.h:6
 msgid "targets"
@@ -2085,7 +2080,7 @@ msgstr "MediaWiki"
 
 #: ../data/language-specs/mediawiki.lang.h:4
 msgid "Light Emphasis"
-msgstr "光線強調"
+msgstr "較輕的強調"
 
 #: ../data/language-specs/mediawiki.lang.h:5
 msgid "Signature"
@@ -2236,7 +2231,7 @@ msgstr "數學運算符號"
 msgid "Octave"
 msgstr "Octave"
 
-#: ../data/language-specs/octave.lang.h:12
+#: ../data/language-specs/octave.lang.h:9
 msgid "Package Manager"
 msgstr "套件管理員"
 
@@ -2345,7 +2340,7 @@ msgstr "一般函式"
 
 #: ../data/language-specs/pig.lang.h:2
 msgid "Pig"
-msgstr "豬"
+msgstr "Pig"
 
 #: ../data/language-specs/pig.lang.h:4
 msgid "Reserved Words"
@@ -2381,7 +2376,7 @@ msgstr "模糊"
 
 #: ../data/language-specs/prolog.lang.h:2
 msgid "Prolog"
-msgstr "序言"
+msgstr "Prolog"
 
 #: ../data/language-specs/puppet.lang.h:2
 msgid "Puppet"
@@ -2422,7 +2417,7 @@ msgstr "Python 3"
 #: ../data/language-specs/python3.lang.h:8
 #: ../data/language-specs/python.lang.h:8
 msgid "Format"
-msgstr "格式"
+msgstr "格式指定字串"
 
 #: ../data/language-specs/python3.lang.h:16
 #: ../data/language-specs/python.lang.h:17
@@ -2435,7 +2430,7 @@ msgstr "Python"
 
 #: ../data/language-specs/python.lang.h:9
 msgid "String Conversion"
-msgstr "字串交談"
+msgstr "字串轉換"
 
 #: ../data/language-specs/python.lang.h:20
 msgid "Class Name"
@@ -2469,7 +2464,7 @@ msgstr "整數"
 
 #: ../data/language-specs/rpmspec.lang.h:2
 msgid "RPM spec"
-msgstr "RPM 規格"
+msgstr "RPM 規格(RPM spec)"
 
 #: ../data/language-specs/rpmspec.lang.h:3
 msgid "Define"
@@ -2521,7 +2516,7 @@ msgstr "reStructuredText"
 
 #: ../data/language-specs/rst.lang.h:7 ../data/language-specs/yaml.lang.h:10
 msgid "Directive"
-msgstr "管理的"
+msgstr "指令"
 
 #: ../data/language-specs/ruby.lang.h:2
 msgid "Ruby"
@@ -2723,7 +2718,7 @@ msgstr "Generated Content"
 
 #: ../data/language-specs/thrift.lang.h:2
 msgid "Thrift"
-msgstr "節約"
+msgstr "Thrift"
 
 #: ../data/language-specs/vala.lang.h:2
 msgid "Vala"
@@ -2890,7 +2885,7 @@ msgid "Incomplete UTF-8 sequence in input"
 msgstr "在輸入中出現不完整的 UTF-8 次序"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:264
+#: ../gtksourceview/gtksourcecompletioninfo.c:268
 msgid "Completion Info"
 msgstr "自動補齊資訊"
 
@@ -3105,7 +3100,7 @@ msgstr "不明"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:650
+#: ../gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
@@ -3119,36 +3114,20 @@ msgstr "正規表示式「%s」中的不明 id「%s」"
 msgid "in regex '%s': backreferences are not supported"
 msgstr "於正規表示式「%s」：不支援後方參照"
 
-#: ../gtksourceview/gtksourcemap.c:1078
-msgid "View"
-msgstr "檢視"
-
-#: ../gtksourceview/gtksourcemap.c:1079
-msgid "The view this widget is mapping."
-msgstr "這個元件對映的檢視。"
-
-#: ../gtksourceview/gtksourcemap.c:1085
-msgid "Font Description"
-msgstr "字型描述"
-
-#: ../gtksourceview/gtksourcemap.c:1086
-msgid "The Pango font description to use."
-msgstr "要使用的 Pango 字型描述。"
-
 #: ../gtksourceview/gtksourceregex.c:125
 msgid "using \\C is not supported in language definitions"
 msgstr "在語言定義中不支援使用 \\C"
 
 #. TODO: have a ChooserDialog?
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:182
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:181
 msgid "Select a Style"
 msgstr "選擇樣式"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:185
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:187
+#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:186
 msgid "_Select"
 msgstr "選擇(_S)"
 
@@ -3192,6 +3171,21 @@ msgstr ""
 " Woodman Tuen <wmtuen@gmail.com>, 2007.\n"
 "Anthony Tang <tkyanthony@yahoo.com.hk>, 2004.\n"
 "Abel Cheung <abel@oaka.org>, 2003, 05."
+
+#~ msgid "GtkSourceView"
+#~ msgstr "GtkSourceView"
+
+#~ msgid "View"
+#~ msgstr "檢視"
+
+#~ msgid "The view this widget is mapping."
+#~ msgstr "這個元件對映的檢視。"
+
+#~ msgid "Font Description"
+#~ msgstr "字型描述"
+
+#~ msgid "The Pango font description to use."
+#~ msgstr "要使用的 Pango 字型描述。"
 
 #~ msgid "Show detailed proposal information"
 #~ msgstr "顯示詳細的計畫資訊"
