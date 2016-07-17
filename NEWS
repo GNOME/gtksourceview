@@ -1,3 +1,19 @@
+News in 3.21.3
+--------------
+* Warn when a secondary public header is #included in external code.
+  Only <gtksourceview/gtksource.h> should be #included directly.
+* Remove the --disable-completion-providers configure option, to always build
+  the completion providers. There is currently only one completion provider:
+  GtkSourceCompletionWords, which is not a lot of code and doesn't pull up
+  additional dependencies.
+* Add back the gtksourceview-typebuiltins.h public header, for backward
+  compatibility.
+* Fixes/improvements to the Visual Studio builds
+* Improvements to the syntax highlighting of: rpmspec
+* Fix a bug in GtkSourceSearchContext
+* Various small code and documentation improvements
+* Translation updates
+
 News in 3.21.2
 --------------
 * Make gtk_source_style_apply() public
