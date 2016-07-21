@@ -108,6 +108,19 @@ typedef enum _GtkSourceDrawSpacesFlags
 	GTK_SOURCE_DRAW_SPACES_ALL        = 0x7f
 } GtkSourceDrawSpacesFlags;
 
+/**
+ * GtkSourceBackgroundPatternType:
+ * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE: no pattern
+ * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID: grid pattern
+ *
+ * Since: 3.16
+ */
+typedef enum _GtkSourceBackgroundPatternType
+{
+	GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE,
+	GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID
+} GtkSourceBackgroundPatternType;
+
 struct _GtkSourceView
 {
 	GtkTextView parent;

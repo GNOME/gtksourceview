@@ -27,6 +27,7 @@
 #include "gtksourcetypes.h"
 #include "gtksourcetypes-private.h"
 #include "gtksourcebuffer.h"
+#include "gtksourcefile.h"
 
 G_BEGIN_DECLS
 
