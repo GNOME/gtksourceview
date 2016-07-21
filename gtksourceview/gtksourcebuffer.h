@@ -99,7 +99,6 @@ typedef enum
 	GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES = 1 << 2,
 } GtkSourceSortFlags;
 
-
 struct _GtkSourceBuffer
 {
 	GtkTextBuffer parent_instance;
