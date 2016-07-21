@@ -30,7 +30,7 @@
 #  endif
 #endif
 
-#include <gio/gio.h>
+#include <glib.h>
 #include <gtksourceview/gtksourceversion.h>
 
 G_BEGIN_DECLS
