@@ -48,7 +48,7 @@
 #include "gtksourcegutterrendererlines.h"
 #include "gtksourcegutterrenderermarks.h"
 #include "gtksourceiter.h"
-#include "gtksourcetag.h"
+#include "gtksourcespacedrawer.h"
 
 /**
  * SECTION:view
@@ -166,8 +166,7 @@ struct _GtkSourceViewPrivate
 	GdkRGBA *right_margin_line_color;
 	GdkRGBA *right_margin_overlay_color;
 
-	GtkSourceDrawSpacesFlags draw_spaces;
-	GdkRGBA *spaces_color;
+	GtkSourceSpaceDrawer *space_drawer;
 
 	GHashTable *mark_categories;
 
@@ -1271,7 +1270,8 @@ gtk_source_view_init (GtkSourceView *view)
 
 	view->priv->right_margin_line_color = NULL;
 	view->priv->right_margin_overlay_color = NULL;
-	view->priv->spaces_color = NULL;
+
+	view->priv->space_drawer = _gtk_source_space_drawer_new ();
 
 	view->priv->mark_categories = g_hash_table_new_full (g_str_hash,
 	                                                     g_str_equal,
@@ -1308,6 +1308,7 @@ gtk_source_view_dispose (GObject *object)
 	g_clear_object (&view->priv->left_gutter);
 	g_clear_object (&view->priv->right_gutter);
 	g_clear_object (&view->priv->style_scheme);
+	g_clear_object (&view->priv->space_drawer);
 
 	remove_source_buffer (view);
 
@@ -1335,11 +1336,6 @@ gtk_source_view_finalize (GObject *object)
 	if (view->priv->right_margin_overlay_color != NULL)
 	{
 		gdk_rgba_free (view->priv->right_margin_overlay_color);
-	}
-
-	if (view->priv->spaces_color != NULL)
-	{
-		gdk_rgba_free (view->priv->spaces_color);
 	}
 
 	if (view->priv->mark_categories)
@@ -2397,315 +2393,6 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 }
 
 static void
-draw_space_at_iter (cairo_t      *cr,
-		    GtkTextView  *view,
-		    GtkTextIter  *iter,
-		    GdkRectangle  rect)
-{
-	gint x, y;
-	gdouble w;
-
-	x = rect.x;
-	y = rect.y + rect.height * 2 / 3;
-
-	/* if the space is at a line-wrap position we get 0 width
-	 * so we fallback to the height */
-	w = rect.width ? rect.width : rect.height;
-
-	cairo_save (cr);
-	cairo_move_to (cr, x + w * 0.5, y);
-	cairo_arc (cr, x + w * 0.5, y, 0.8, 0, 2 * G_PI);
-	cairo_restore (cr);
-}
-
-static void
-draw_tab_at_iter (cairo_t      *cr,
-		  GtkTextView  *view,
-		  GtkTextIter  *iter,
-		  GdkRectangle  rect)
-{
-	gint x, y;
-	gdouble w, h;
-
-	x = rect.x;
-	y = rect.y + rect.height * 2 / 3;
-
-	/* if the space is at a line-wrap position we get 0 width
-	 * so we fallback to the height */
-	w = rect.width ? rect.width : rect.height;
-	h = rect.height;
-
-	cairo_save (cr);
-	cairo_move_to (cr, x + w * 1 / 8, y);
-	cairo_rel_line_to (cr, w * 6 / 8, 0);
-	cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
-	cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
-	cairo_rel_line_to (cr, -h * 1 / 4, +h * 1 / 4);
-	cairo_restore (cr);
-}
-
-static void
-draw_newline_at_iter (cairo_t      *cr,
-		      GtkTextView  *view,
-		      GtkTextIter  *iter,
-		      GdkRectangle  rect)
-{
-	gint x, y;
-	gdouble w, h;
-
-	x = rect.x;
-	y = rect.y + rect.height / 3;
-
-	/* width for new line is 0, we use 2 * h */
-	w = 2 * rect.height;
-	h = rect.height;
-
-	cairo_save (cr);
-	if (gtk_widget_get_default_direction () == GTK_TEXT_DIR_LTR)
-	{
-		cairo_move_to (cr, x + w * 7 / 8, y);
-		cairo_rel_line_to (cr, 0, h * 1 / 3);
-		cairo_rel_line_to (cr, -w * 6 / 8, 0);
-		cairo_rel_line_to (cr, +h * 1 / 4, -h * 1 / 4);
-		cairo_rel_move_to (cr, -h * 1 / 4, +h * 1 / 4);
-		cairo_rel_line_to (cr, +h * 1 / 4, +h * 1 / 4);
-	}
-	else
-	{
-		cairo_move_to (cr, x + w * 1 / 8, y);
-		cairo_rel_line_to (cr, 0, h * 1 / 3);
-		cairo_rel_line_to (cr, w * 6 / 8, 0);
-		cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
-		cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
-		cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
-	}
-
-	cairo_restore (cr);
-}
-
-static void
-draw_nbsp_at_iter (cairo_t      *cr,
-		   GtkTextView  *view,
-		   GtkTextIter  *iter,
-		   GdkRectangle  rect,
-		   gboolean      narrowed)
-{
-	gint x, y;
-	gdouble w, h;
-
-	x = rect.x;
-	y = rect.y + rect.height / 2;
-
-	/* if the space is at a line-wrap position we get 0 width
-	 * so we fallback to the height */
-	w = rect.width ? rect.width : rect.height;
-	h = rect.height;
-
-	cairo_save (cr);
-	cairo_move_to (cr, x + w * 1 / 6, y);
-	cairo_rel_line_to (cr, w * 4 / 6, 0);
-	cairo_rel_line_to (cr, -w * 2 / 6, +h * 1 / 4);
-	cairo_rel_line_to (cr, -w * 2 / 6, -h * 1 / 4);
-
-	if (narrowed)
-	{
-		cairo_fill (cr);
-	}
-	else
-	{
-		cairo_stroke (cr);
-	}
-
-	cairo_restore (cr);
-}
-
-static void
-draw_spaces_at_iter (cairo_t     *cr,
-		     GtkTextView *text_view,
-		     GtkTextIter *iter)
-{
-	gunichar c;
-	GdkRectangle rect;
-
-	gtk_text_view_get_iter_location (text_view, iter, &rect);
-
-	c = gtk_text_iter_get_char (iter);
-
-	if (c == '\t')
-	{
-		draw_tab_at_iter (cr, text_view, iter, rect);
-	}
-	else if (g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE)
-	{
-		/* We also need to check if we want to draw a narrowed space */
-		draw_nbsp_at_iter (cr, text_view, iter, rect,
-		                   c == 0x202F);
-	}
-	else if (g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR)
-	{
-		draw_space_at_iter (cr, text_view, iter, rect);
-	}
-	else if (gtk_text_iter_ends_line (iter))
-	{
-		draw_newline_at_iter (cr, text_view, iter, rect);
-	}
-}
-
-static void
-draw_spaces_tag_foreach (GtkTextTag *tag,
-			 gboolean   *found)
-{
-	if (*found)
-	{
-		return;
-	}
-
-	if (GTK_SOURCE_IS_TAG (tag))
-	{
-		gboolean draw_spaces_set;
-
-		g_object_get (tag,
-			      "draw-spaces-set", &draw_spaces_set,
-			      NULL);
-
-		if (draw_spaces_set)
-		{
-			*found = TRUE;
-		}
-	}
-}
-
-static gboolean
-buffer_has_draw_spaces_tag (GtkSourceBuffer *buffer)
-{
-	GtkTextTagTable *table;
-	gboolean found = FALSE;
-
-	table = gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (buffer));
-	gtk_text_tag_table_foreach (table,
-				    (GtkTextTagTableForeach) draw_spaces_tag_foreach,
-				    &found);
-
-	return found;
-}
-
-static void
-space_needs_drawing_according_to_tag (const GtkTextIter *iter,
-				      gboolean          *has_tag,
-				      gboolean          *needs_drawing)
-{
-	GSList *tags;
-	GSList *l;
-
-	*has_tag = FALSE;
-	*needs_drawing = FALSE;
-
-	tags = gtk_text_iter_get_tags (iter);
-	tags = g_slist_reverse (tags);
-
-	for (l = tags; l != NULL; l = l->next)
-	{
-		GtkTextTag *tag = l->data;
-
-		if (GTK_SOURCE_IS_TAG (tag))
-		{
-			gboolean draw_spaces_set;
-			gboolean draw_spaces;
-
-			g_object_get (tag,
-				      "draw-spaces-set", &draw_spaces_set,
-				      "draw-spaces", &draw_spaces,
-				      NULL);
-
-			if (draw_spaces_set)
-			{
-				*has_tag = TRUE;
-				*needs_drawing = draw_spaces;
-				break;
-			}
-		}
-	}
-
-	g_slist_free (tags);
-}
-
-static gboolean
-check_location (GtkSourceView     *view,
-		const GtkTextIter *iter,
-		const GtkTextIter *leading,
-		const GtkTextIter *trailing)
-{
-	gint flags = 0;
-	gint location = view->priv->draw_spaces & (GTK_SOURCE_DRAW_SPACES_LEADING |
-	                                           GTK_SOURCE_DRAW_SPACES_TEXT |
-	                                           GTK_SOURCE_DRAW_SPACES_TRAILING);
-
-	/* Draw all by default */
-	if (location == 0)
-	{
-		return TRUE;
-	}
-
-	if (gtk_text_iter_compare (iter, trailing) >= 0)
-	{
-		flags |= GTK_SOURCE_DRAW_SPACES_TRAILING;
-	}
-
-	if (gtk_text_iter_compare (iter, leading) < 0)
-	{
-		flags |= GTK_SOURCE_DRAW_SPACES_LEADING;
-	}
-
-	if (flags == 0)
-	{
-		/* Neither leading nor trailing, must be in text */
-		return location & GTK_SOURCE_DRAW_SPACES_TEXT;
-	}
-	else
-	{
-		return location & flags;
-	}
-}
-
-static gboolean
-space_needs_drawing (GtkSourceView     *view,
-		     const GtkTextIter *iter,
-		     const GtkTextIter *leading,
-		     const GtkTextIter *trailing)
-{
-	gboolean has_tag;
-	gboolean needs_drawing;
-	gint draw_spaces;
-	gunichar c;
-
-	/* Check the GtkSourceTag:draw-spaces property */
-
-	space_needs_drawing_according_to_tag (iter, &has_tag, &needs_drawing);
-	if (has_tag)
-	{
-		return needs_drawing;
-	}
-
-	/* Check the GtkSourceView:draw-spaces property */
-
-	if (!check_location (view, iter, leading, trailing))
-	{
-		return FALSE;
-	}
-
-	draw_spaces = view->priv->draw_spaces;
-	c = gtk_text_iter_get_char (iter);
-
-	return ((draw_spaces & GTK_SOURCE_DRAW_SPACES_TAB && c == '\t') ||
-		(draw_spaces & GTK_SOURCE_DRAW_SPACES_NBSP &&
-		 g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE) ||
-		(draw_spaces & GTK_SOURCE_DRAW_SPACES_SPACE &&
-		 g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR) ||
-		(draw_spaces & GTK_SOURCE_DRAW_SPACES_NEWLINE &&
-		 gtk_text_iter_ends_line (iter) && !gtk_text_iter_is_end (iter)));
-}
-
-static void
 get_leading_trailing (const GtkTextIter *iter,
 		      GtkTextIter       *leading,
 		      GtkTextIter       *trailing)
@@ -2755,172 +2442,6 @@ get_leading_trailing (const GtkTextIter *iter,
 			*trailing = prev;
 		}
 	}
-}
-
-static void
-get_end_iter (GtkTextView *text_view,
-	      GtkTextIter *start_iter,
-	      GtkTextIter *end_iter,
-	      gint         x,
-	      gint         y,
-	      gboolean     is_wrapping)
-{
-	gint min, max, i;
-	GdkRectangle rect;
-
-	*end_iter = *start_iter;
-	if (!gtk_text_iter_ends_line (end_iter))
-	{
-		gtk_text_iter_forward_to_line_end (end_iter);
-	}
-
-	/* check if end_iter is inside the bounding box anyway */
-	gtk_text_view_get_iter_location (text_view, end_iter, &rect);
-	if (( is_wrapping && rect.y < y) ||
-	    (!is_wrapping && rect.x < x))
-	{
-		return;
-	}
-
-	min = gtk_text_iter_get_line_offset (start_iter);
-	max = gtk_text_iter_get_line_offset (end_iter);
-
-	while (max >= min)
-	{
-		i = (min + max) >> 1;
-		gtk_text_iter_set_line_offset (end_iter, i);
-		gtk_text_view_get_iter_location (text_view, end_iter, &rect);
-
-		if (( is_wrapping && rect.y < y) ||
-		    (!is_wrapping && rect.x < x))
-		{
-			min = i + 1;
-		}
-		else if (( is_wrapping && rect.y > y) ||
-			 (!is_wrapping && rect.x > x))
-		{
-			max = i - 1;
-		}
-		else
-		{
-			break;
-		}
-	}
-}
-
-static inline gboolean
-is_space (gunichar c)
-{
-	return (g_unichar_isspace (c) ||
-		(g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE) ||
-		(g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR));
-}
-
-static void
-draw_tabs_and_spaces (GtkSourceView *view,
-		      cairo_t       *cr)
-{
-	GtkTextView *text_view;
-	GdkRectangle clip;
-	gint x1, y1, x2, y2;
-	GtkTextIter s, e;
-	GtkTextIter leading, trailing, lineend;
-	gboolean is_wrapping;
-
-#ifdef ENABLE_PROFILE
-	static GTimer *timer = NULL;
-	if (timer == NULL)
-	{
-		timer = g_timer_new ();
-	}
-
-	g_timer_start (timer);
-#endif
-
-	if (!gdk_cairo_get_clip_rectangle (cr, &clip))
-	{
-		return;
-	}
-
-	text_view = GTK_TEXT_VIEW (view);
-
-	is_wrapping = gtk_text_view_get_wrap_mode(text_view) != GTK_WRAP_NONE;
-
-	x1 = clip.x;
-	y1 = clip.y;
-	x2 = x1 + clip.width;
-	y2 = y1 + clip.height;
-
-	gtk_text_view_get_iter_at_location  (text_view,
-	                                     &s,
-	                                     x1, y1);
-	gtk_text_view_get_iter_at_location  (text_view,
-	                                     &e,
-	                                     x2, y2);
-
-	gdk_cairo_set_source_rgba (cr, view->priv->spaces_color);
-
-	cairo_set_line_width (cr, 0.8);
-	cairo_translate (cr, -0.5, -0.5);
-
-	get_leading_trailing (&s, &leading, &trailing);
-	get_end_iter (text_view, &s, &lineend, x2, y2, is_wrapping);
-
-	while (TRUE)
-	{
-		gunichar c = gtk_text_iter_get_char (&s);
-		gint ly;
-
-		if (is_space (c) && space_needs_drawing (view, &s, &leading, &trailing))
-		{
-			draw_spaces_at_iter (cr, text_view, &s);
-		}
-
-		if (!gtk_text_iter_forward_char (&s))
-		{
-			break;
-		}
-
-		if (gtk_text_iter_compare (&s, &lineend) > 0)
-		{
-			if (gtk_text_iter_compare (&s, &e) > 0)
-			{
-				break;
-			}
-
-			/* move to the first iter in the exposed area of
-			 * the next line */
-			if (!gtk_text_iter_starts_line (&s) &&
-			    !gtk_text_iter_forward_line (&s))
-			{
-				break;
-			}
-			gtk_text_view_get_line_yrange (text_view, &s, &ly, NULL);
-
-			gtk_text_view_get_iter_at_location (text_view,
-							    &s,
-							    x1, ly);
-
-			/* move back one char otherwise tabs may not
-			 * be redrawn */
-			if (!gtk_text_iter_starts_line (&s))
-			{
-				gtk_text_iter_backward_char (&s);
-			}
-
-			get_leading_trailing (&s, &leading, &trailing);
-			get_end_iter (text_view, &s, &lineend,
-				      x2, y2, is_wrapping);
-		}
-	};
-
-	cairo_stroke (cr);
-
-	PROFILE ({
-		g_timer_stop (timer);
-		g_print ("    draw_tabs_and_spaces time: %g (sec * 1000)\n",
-		         g_timer_elapsed (timer, NULL) * 1000);
-	});
 }
 
 static void
@@ -3115,10 +2636,9 @@ gtk_source_view_draw_layer (GtkTextView      *text_view,
 			gtk_source_view_paint_right_margin (view, cr);
 		}
 
-		if (view->priv->draw_spaces != 0 ||
-		    buffer_has_draw_spaces_tag (view->priv->source_buffer))
+		if (view->priv->space_drawer != NULL)
 		{
-			draw_tabs_and_spaces (view, cr);
+			_gtk_source_space_drawer_draw (view->priv->space_drawer, view, cr);
 		}
 	}
 
@@ -4915,12 +4435,14 @@ gtk_source_view_set_draw_spaces (GtkSourceView            *view,
 {
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	if (view->priv->draw_spaces != flags)
+	if (view->priv->space_drawer == NULL)
 	{
-		view->priv->draw_spaces = flags;
+		return;
+	}
 
+	if (_gtk_source_space_drawer_set_flags (view->priv->space_drawer, flags))
+	{
 		gtk_widget_queue_draw (GTK_WIDGET (view));
-
 		g_object_notify (G_OBJECT (view), "draw-spaces");
 	}
 }
@@ -4939,7 +4461,12 @@ gtk_source_view_get_draw_spaces (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), 0);
 
-	return view->priv->draw_spaces;
+	if (view->priv->space_drawer == NULL)
+	{
+		return 0;
+	}
+
+	return _gtk_source_space_drawer_get_flags (view->priv->space_drawer);
 }
 
 /**
@@ -5131,67 +4658,6 @@ update_right_margin_colors (GtkSourceView *view)
 }
 
 static void
-update_spaces_color (GtkSourceView *view)
-{
-	GtkWidget *widget = GTK_WIDGET (view);
-
-	if (!gtk_widget_get_realized (widget))
-	{
-		return;
-	}
-
-	if (view->priv->spaces_color != NULL)
-	{
-		gdk_rgba_free (view->priv->spaces_color);
-		view->priv->spaces_color = NULL;
-	}
-
-	if (view->priv->style_scheme != NULL)
-	{
-		GtkSourceStyle *style;
-
-		style = _gtk_source_style_scheme_get_draw_spaces_style (view->priv->style_scheme);
-
-		if (style != NULL)
-		{
-			gchar *color_str = NULL;
-			gboolean color_set;
-			GdkRGBA color;
-
-			g_object_get (style,
-				      "foreground", &color_str,
-				      "foreground-set", &color_set,
-				      NULL);
-
-			if (color_set &&
-			    color_str != NULL &&
-			    gdk_rgba_parse (&color, color_str))
-			{
-				view->priv->spaces_color = gdk_rgba_copy (&color);
-			}
-
-			g_free (color_str);
-		}
-	}
-
-	if (view->priv->spaces_color == NULL)
-	{
-		GtkStyleContext *context;
-		GdkRGBA color;
-
-		context = gtk_widget_get_style_context (widget);
-		gtk_style_context_save (context);
-		gtk_style_context_set_state (context, GTK_STATE_FLAG_INSENSITIVE);
-		gtk_style_context_get_color (context,
-					     gtk_style_context_get_state (context),
-					     &color);
-		gtk_style_context_restore (context);
-
-		view->priv->spaces_color = gdk_rgba_copy (&color);
-	}
-}
-
-static void
 update_style (GtkSourceView *view)
 {
 	if (view->priv->style_scheme != NULL &&
@@ -5204,7 +4670,11 @@ update_style (GtkSourceView *view)
 	update_background_pattern_color (view);
 	update_current_line_color (view);
 	update_right_margin_colors (view);
-	update_spaces_color (view);
+
+	if (view->priv->space_drawer != NULL)
+	{
+		_gtk_source_space_drawer_update_color (view->priv->space_drawer, view);
+	}
 
 	gtk_widget_queue_draw (GTK_WIDGET (view));
 }

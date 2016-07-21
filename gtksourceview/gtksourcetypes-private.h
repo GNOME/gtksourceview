@@ -2,7 +2,7 @@
  * gtksourcetypes-private.h
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2012 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2012, 2013, 2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -37,6 +37,7 @@ typedef struct _GtkSourceGutterRendererMarks	GtkSourceGutterRendererMarks;
 typedef struct _GtkSourceMarksSequence		GtkSourceMarksSequence;
 typedef struct _GtkSourcePixbufHelper		GtkSourcePixbufHelper;
 typedef struct _GtkSourceRegex			GtkSourceRegex;
+typedef struct _GtkSourceSpaceDrawer		GtkSourceSpaceDrawer;
 typedef struct _GtkSourceUndoManagerDefault	GtkSourceUndoManagerDefault;
 
 #ifdef _MSC_VER
