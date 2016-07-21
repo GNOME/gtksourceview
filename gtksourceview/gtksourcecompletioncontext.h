@@ -55,7 +55,7 @@ typedef struct _GtkSourceCompletionContextPrivate	GtkSourceCompletionContextPriv
  * By default, it occurs when the user presses
  * <keycombo><keycap>Control</keycap><keycap>space</keycap></keycombo>.
  */
-typedef enum
+typedef enum _GtkSourceCompletionActivation
 {
 	GTK_SOURCE_COMPLETION_ACTIVATION_NONE = 0,
 	GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE = 1 << 0,

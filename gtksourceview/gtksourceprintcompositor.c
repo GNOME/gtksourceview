@@ -91,7 +91,7 @@ static GTimer *pagination_timer = NULL;
 /* Number of pages paginated on each invocation of the paginate() method. */
 #define PAGINATION_CHUNK_SIZE 3
 
-typedef enum
+typedef enum _PaginatorState
 {
 	/* Initial state: properties can be changed only when the paginator
 	   is in the INIT state */

@@ -55,7 +55,7 @@ struct _GtkSourceContextEngineClass
 	GObjectClass parent_class;
 };
 
-typedef enum {
+typedef enum _GtkSourceContextFlags {
 	GTK_SOURCE_CONTEXT_EXTEND_PARENT	= 1 << 0,
 	GTK_SOURCE_CONTEXT_END_PARENT		= 1 << 1,
 	GTK_SOURCE_CONTEXT_END_AT_LINE_END	= 1 << 2,
@@ -64,7 +64,7 @@ typedef enum {
 	GTK_SOURCE_CONTEXT_STYLE_INSIDE		= 1 << 5
 } GtkSourceContextFlags;
 
-typedef enum {
+typedef enum _GtkSourceContextRefOptions {
 	GTK_SOURCE_CONTEXT_IGNORE_STYLE		= 1 << 0,
 	GTK_SOURCE_CONTEXT_OVERRIDE_STYLE	= 1 << 1,
 	GTK_SOURCE_CONTEXT_REF_ORIGINAL		= 1 << 2

@@ -73,7 +73,7 @@ typedef struct _GtkSourceView			GtkSourceView;
  *
  * Since: 3.14
  */
-typedef enum
+typedef enum _GtkSourceNewlineType
 {
 	GTK_SOURCE_NEWLINE_TYPE_LF,
 	GTK_SOURCE_NEWLINE_TYPE_CR,
@@ -100,7 +100,7 @@ typedef enum
  *
  * Since: 3.14
  */
-typedef enum
+typedef enum _GtkSourceCompressionType
 {
 	GTK_SOURCE_COMPRESSION_TYPE_NONE,
 	GTK_SOURCE_COMPRESSION_TYPE_GZIP
@@ -113,7 +113,7 @@ typedef enum
  *
  * Since: 3.16
  */
-typedef enum
+typedef enum _GtkSourceBackgroundPatternType
 {
 	GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE,
 	GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID

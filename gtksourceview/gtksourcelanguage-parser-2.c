@@ -55,7 +55,7 @@
 #define PARSER_ERROR (parser_error_quark ())
 #define ATTR_NO_STYLE ""
 
-typedef enum {
+typedef enum _ParserError {
 	PARSER_ERROR_CANNOT_OPEN     = 0,
 	PARSER_ERROR_CANNOT_VALIDATE,
 	PARSER_ERROR_INVALID_DOC,

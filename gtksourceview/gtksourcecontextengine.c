@@ -134,7 +134,7 @@ typedef struct _LineInfo LineInfo;
 typedef struct _InvalidRegion InvalidRegion;
 typedef struct _ContextClassTag ContextClassTag;
 
-typedef enum {
+typedef enum _GtkSourceContextEngineError {
 	GTK_SOURCE_CONTEXT_ENGINE_ERROR_DUPLICATED_ID = 0,
 	GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_ARGS,
 	GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_PARENT,
@@ -145,12 +145,12 @@ typedef enum {
 	GTK_SOURCE_CONTEXT_ENGINE_ERROR_BAD_FILE
 } GtkSourceContextEngineError;
 
-typedef enum {
+typedef enum _ContextType {
 	CONTEXT_TYPE_SIMPLE = 0,
 	CONTEXT_TYPE_CONTAINER
 } ContextType;
 
-typedef enum {
+typedef enum _SubPatternWhere {
 	SUB_PATTERN_WHERE_DEFAULT = 0,
 	SUB_PATTERN_WHERE_START,
 	SUB_PATTERN_WHERE_END

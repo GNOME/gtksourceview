@@ -21,7 +21,7 @@
 
 #include "gtksourcepixbufhelper.h"
 
-typedef enum
+typedef enum _IconType
 {
 	ICON_TYPE_PIXBUF,
 	ICON_TYPE_STOCK,

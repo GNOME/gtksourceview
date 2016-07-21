@@ -33,7 +33,7 @@
 typedef struct _Action		Action;
 typedef struct _ActionGroup	ActionGroup;
 
-typedef enum
+typedef enum _ActionType
 {
 	ACTION_TYPE_INSERT,
 	ACTION_TYPE_DELETE
@@ -44,7 +44,7 @@ typedef enum
  * events on the GtkSourceView widget, which is more complicated than simply
  * listening to the insert-text and delete-range GtkTextBuffer signals.
  */
-typedef enum
+typedef enum _DeletionType
 {
 	DELETION_TYPE_SELECTION_DELETED,
 	DELETION_TYPE_BACKSPACE_KEY,

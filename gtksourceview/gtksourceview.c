@@ -223,7 +223,7 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceView, gtk_source_view, GTK_TYPE_TEXT_VIEW,
 						gtk_source_view_buildable_interface_init))
 
 /* Implement DnD for application/x-color drops */
-typedef enum {
+typedef enum _GtkSourceViewDropTypes {
 	TARGET_COLOR = 200
 } GtkSourceViewDropTypes;
 

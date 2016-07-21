@@ -57,7 +57,7 @@ typedef struct _GtkSourceBufferPrivate		GtkSourceBufferPrivate;
  * @GTK_SOURCE_BRACKET_MATCH_NOT_FOUND: a matching bracket was not found.
  * @GTK_SOURCE_BRACKET_MATCH_FOUND: a matching bracket was found.
  */
-typedef enum
+typedef enum _GtkSourceBracketMatchType
 {
 	GTK_SOURCE_BRACKET_MATCH_NONE,
 	GTK_SOURCE_BRACKET_MATCH_OUT_OF_RANGE,
@@ -74,7 +74,7 @@ typedef enum
  *
  * Since: 3.12
  */
-typedef enum
+typedef enum _GtkSourceChangeCaseType
 {
 	GTK_SOURCE_CHANGE_CASE_LOWER,
 	GTK_SOURCE_CHANGE_CASE_UPPER,
@@ -91,7 +91,7 @@ typedef enum
  *
  * Since: 3.18
  */
-typedef enum
+typedef enum _GtkSourceSortFlags
 {
 	GTK_SOURCE_SORT_FLAGS_NONE              = 0,
 	GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE    = 1 << 0,

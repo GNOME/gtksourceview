@@ -60,7 +60,7 @@ typedef struct _GtkSourceFileSaverPrivate GtkSourceFileSaverPrivate;
  * An error code used with the %GTK_SOURCE_FILE_SAVER_ERROR domain.
  * Since: 3.14
  */
-typedef enum
+typedef enum _GtkSourceFileSaverError
 {
 	GTK_SOURCE_FILE_SAVER_ERROR_INVALID_CHARS,
 	GTK_SOURCE_FILE_SAVER_ERROR_EXTERNALLY_MODIFIED
@@ -76,7 +76,7 @@ typedef enum
  * Flags to define the behavior of a #GtkSourceFileSaver.
  * Since: 3.14
  */
-typedef enum
+typedef enum _GtkSourceFileSaverFlags
 {
 	GTK_SOURCE_FILE_SAVER_FLAGS_NONE			= 0,
 	GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS	= 1 << 0,

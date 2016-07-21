@@ -56,7 +56,7 @@ G_DEFINE_BOXED_TYPE (GtkSourceEncoding, gtk_source_encoding,
  * Copyright (C) 2002 Red Hat, Inc.
  */
 
-typedef enum
+typedef enum _GtkSourceEncodingIndex
 {
 	GTK_SOURCE_ENCODING_ISO_8859_1,
 	GTK_SOURCE_ENCODING_ISO_8859_2,

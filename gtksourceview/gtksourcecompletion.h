@@ -68,7 +68,7 @@ typedef struct _GtkSourceCompletionClass GtkSourceCompletionClass;
  * An error code used with %GTK_SOURCE_COMPLETION_ERROR in a #GError returned
  * from a completion-related function.
  */
-typedef enum
+typedef enum _GtkSourceCompletionError
 {
 	GTK_SOURCE_COMPLETION_ERROR_ALREADY_BOUND = 0,
 	GTK_SOURCE_COMPLETION_ERROR_NOT_BOUND

@@ -56,7 +56,7 @@ typedef struct _GtkSourceGutterRendererPrivate	GtkSourceGutterRendererPrivate;
  * @GTK_SOURCE_GUTTER_RENDERER_STATE_SELECTED: area in the renderer represents
  * a line in the buffer which contains part of the selection
  **/
-typedef enum
+typedef enum _GtkSourceGutterRendererState
 {
 	GTK_SOURCE_GUTTER_RENDERER_STATE_NORMAL = 0,
 	GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR = 1 << 0,
@@ -73,7 +73,7 @@ typedef enum
  * The alignment mode of the renderer, when a cell spans multiple lines (due to
  * text wrapping).
  **/
-typedef enum
+typedef enum _GtkSourceGutterRendererAlignmentMode
 {
 	GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL,
 	GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,

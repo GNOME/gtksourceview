@@ -54,7 +54,7 @@ typedef struct _GtkSourceViewPrivate GtkSourceViewPrivate;
  * @GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS: the gutter position of the marks
  * renderer
  */
-typedef enum
+typedef enum _GtkSourceViewGutterPosition
 {
 	GTK_SOURCE_VIEW_GUTTER_POSITION_LINES = -30,
 	GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS = -20
@@ -72,7 +72,7 @@ typedef enum
  * @GTK_SOURCE_SMART_HOME_END_ALWAYS: always move to the first/last
  * non-whitespace character when the HOME/END keys are pressed.
  */
-typedef enum
+typedef enum _GtkSourceSmartHomeEndType
 {
 	GTK_SOURCE_SMART_HOME_END_DISABLED,
 	GTK_SOURCE_SMART_HOME_END_BEFORE,
@@ -96,7 +96,7 @@ typedef enum
  * GTK_SOURCE_DRAW_SPACES_TRAILING is specified, whitespaces at any position in
  * the line will be drawn (i.e. it has the same effect as specifying all of them).
  */
-typedef enum
+typedef enum _GtkSourceDrawSpacesFlags
 {
 	GTK_SOURCE_DRAW_SPACES_SPACE      = 1 << 0,
 	GTK_SOURCE_DRAW_SPACES_TAB        = 1 << 1,

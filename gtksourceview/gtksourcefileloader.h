@@ -60,7 +60,7 @@ typedef struct _GtkSourceFileLoaderPrivate GtkSourceFileLoaderPrivate;
  *
  * An error code used with the %GTK_SOURCE_FILE_LOADER_ERROR domain.
  */
-typedef enum
+typedef enum _GtkSourceFileLoaderError
 {
 	GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
 	GTK_SOURCE_FILE_LOADER_ERROR_ENCODING_AUTO_DETECTION_FAILED,
