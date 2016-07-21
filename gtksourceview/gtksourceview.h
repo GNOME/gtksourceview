@@ -60,33 +60,6 @@ typedef enum
 	GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS = -20
 } GtkSourceViewGutterPosition;
 
-struct _GtkSourceView
-{
-	GtkTextView parent;
-
-	GtkSourceViewPrivate *priv;
-};
-
-struct _GtkSourceViewClass
-{
-	GtkTextViewClass parent_class;
-
-	void (*undo) (GtkSourceView *view);
-	void (*redo) (GtkSourceView *view);
-	void (*line_mark_activated) (GtkSourceView *view,
-	                             GtkTextIter   *iter,
-	                             GdkEvent      *event);
-	void (*show_completion) (GtkSourceView *view);
-	void (*move_lines) (GtkSourceView *view,
-	                    gboolean       copy,
-	                    gint           step);
-
-	void (*move_words) (GtkSourceView *view,
-	                    gint           step);
-
-	/* Padding for future expansion */
-};
-
 /**
  * GtkSourceSmartHomeEndType:
  * @GTK_SOURCE_SMART_HOME_END_DISABLED: smart-home-end disabled.
@@ -134,6 +107,33 @@ typedef enum
 	GTK_SOURCE_DRAW_SPACES_TRAILING   = 1 << 6,
 	GTK_SOURCE_DRAW_SPACES_ALL        = 0x7f
 } GtkSourceDrawSpacesFlags;
+
+struct _GtkSourceView
+{
+	GtkTextView parent;
+
+	GtkSourceViewPrivate *priv;
+};
+
+struct _GtkSourceViewClass
+{
+	GtkTextViewClass parent_class;
+
+	void (*undo) (GtkSourceView *view);
+	void (*redo) (GtkSourceView *view);
+	void (*line_mark_activated) (GtkSourceView *view,
+	                             GtkTextIter   *iter,
+	                             GdkEvent      *event);
+	void (*show_completion) (GtkSourceView *view);
+	void (*move_lines) (GtkSourceView *view,
+	                    gboolean       copy,
+	                    gint           step);
+
+	void (*move_words) (GtkSourceView *view,
+	                    gint           step);
+
+	/* Padding for future expansion */
+};
 
 GTK_SOURCE_AVAILABLE_IN_ALL
 GType		 gtk_source_view_get_type		(void) G_GNUC_CONST;
