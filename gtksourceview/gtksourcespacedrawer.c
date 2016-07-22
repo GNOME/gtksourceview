@@ -26,6 +26,7 @@
 
 #include "gtksourcespacedrawer.h"
 #include "gtksourcebuffer.h"
+#include "gtksourceiter.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourcetag.h"
 
@@ -469,59 +470,6 @@ space_needs_drawing (GtkSourceSpaceDrawer *drawer,
 		 gtk_text_iter_ends_line (iter) && !gtk_text_iter_is_end (iter)));
 }
 
-/* TODO share with gtksourceview.c -> private utils function. */
-static void
-get_leading_trailing (const GtkTextIter *iter,
-		      GtkTextIter       *leading,
-		      GtkTextIter       *trailing)
-{
-	/* Find end of leading whitespaces */
-	if (leading != NULL)
-	{
-		*leading = *iter;
-		gtk_text_iter_set_line_offset (leading, 0);
-
-		while (!gtk_text_iter_is_end (leading))
-		{
-			gunichar ch = gtk_text_iter_get_char (leading);
-
-			if (!g_unichar_isspace (ch))
-			{
-				break;
-			}
-
-			gtk_text_iter_forward_char (leading);
-		}
-	}
-
-	/* Find start of trailing whitespaces */
-	if (trailing != NULL)
-	{
-		*trailing = *iter;
-		if (!gtk_text_iter_ends_line (trailing))
-		{
-			gtk_text_iter_forward_to_line_end (trailing);
-		}
-
-		while (!gtk_text_iter_starts_line (trailing))
-		{
-			GtkTextIter prev;
-			gunichar ch;
-
-			prev = *trailing;
-			gtk_text_iter_backward_char (&prev);
-
-			ch = gtk_text_iter_get_char (&prev);
-			if (!g_unichar_isspace (ch))
-			{
-				break;
-			}
-
-			*trailing = prev;
-		}
-	}
-}
-
 static void
 get_end_iter (GtkTextView *text_view,
 	      GtkTextIter *start_iter,
@@ -647,7 +595,8 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	cairo_set_line_width (cr, 0.8);
 	cairo_translate (cr, -0.5, -0.5);
 
-	get_leading_trailing (&s, &leading, &trailing);
+	_gtk_source_iter_get_leading_spaces_end_boundary (&s, &leading);
+	_gtk_source_iter_get_trailing_spaces_start_boundary (&s, &trailing);
 	get_end_iter (text_view, &s, &lineend, x2, y2, is_wrapping);
 
 	while (TRUE)
@@ -692,7 +641,8 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 				gtk_text_iter_backward_char (&s);
 			}
 
-			get_leading_trailing (&s, &leading, &trailing);
+			_gtk_source_iter_get_leading_spaces_end_boundary (&s, &leading);
+			_gtk_source_iter_get_trailing_spaces_start_boundary (&s, &trailing);
 			get_end_iter (text_view, &s, &lineend,
 				      x2, y2, is_wrapping);
 		}

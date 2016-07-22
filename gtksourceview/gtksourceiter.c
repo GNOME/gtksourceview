@@ -636,3 +636,63 @@ _gtk_source_iter_extend_selection_word (const GtkTextIter *location,
 		}
 	}
 }
+
+/* Get the boundary, on @iter's line, between leading spaces (indentation) and
+ * the text.
+ */
+void
+_gtk_source_iter_get_leading_spaces_end_boundary (const GtkTextIter *iter,
+						  GtkTextIter       *leading_end)
+{
+	g_return_if_fail (iter != NULL);
+	g_return_if_fail (leading_end != NULL);
+
+	*leading_end = *iter;
+	gtk_text_iter_set_line_offset (leading_end, 0);
+
+	while (!gtk_text_iter_is_end (leading_end))
+	{
+		gunichar ch = gtk_text_iter_get_char (leading_end);
+
+		if (!g_unichar_isspace (ch))
+		{
+			break;
+		}
+
+		gtk_text_iter_forward_char (leading_end);
+	}
+}
+
+/* Get the boundary, on @iter's line, between the end of the text and trailing
+ * spaces.
+ */
+void
+_gtk_source_iter_get_trailing_spaces_start_boundary (const GtkTextIter *iter,
+						     GtkTextIter       *trailing_start)
+{
+	g_return_if_fail (iter != NULL);
+	g_return_if_fail (trailing_start != NULL);
+
+	*trailing_start = *iter;
+	if (!gtk_text_iter_ends_line (trailing_start))
+	{
+		gtk_text_iter_forward_to_line_end (trailing_start);
+	}
+
+	while (!gtk_text_iter_starts_line (trailing_start))
+	{
+		GtkTextIter prev;
+		gunichar ch;
+
+		prev = *trailing_start;
+		gtk_text_iter_backward_char (&prev);
+
+		ch = gtk_text_iter_get_char (&prev);
+		if (!g_unichar_isspace (ch))
+		{
+			break;
+		}
+
+		*trailing_start = prev;
+	}
+}

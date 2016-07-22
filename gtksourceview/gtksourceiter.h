@@ -56,6 +56,14 @@ GTK_SOURCE_INTERNAL
 gboolean	_gtk_source_iter_ends_extra_natural_word		(const GtkTextIter *iter,
 									 gboolean           visible);
 
+GTK_SOURCE_INTERNAL
+void		_gtk_source_iter_get_leading_spaces_end_boundary	(const GtkTextIter *iter,
+									 GtkTextIter       *leading_end);
+
+GTK_SOURCE_INTERNAL
+void		_gtk_source_iter_get_trailing_spaces_start_boundary	(const GtkTextIter *iter,
+									 GtkTextIter       *trailing_start);
+
 /* Internal functions, in the header for unit tests. */
 
 GTK_SOURCE_INTERNAL
