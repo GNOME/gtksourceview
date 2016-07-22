@@ -396,68 +396,47 @@ space_needs_drawing_according_to_tag (const GtkTextIter *iter,
 }
 
 static gboolean
-check_location (GtkSourceSpaceDrawer *drawer,
-		const GtkTextIter    *iter,
-		const GtkTextIter    *leading,
-		const GtkTextIter    *trailing)
+space_needs_drawing_according_to_location (GtkSourceSpaceDrawer *drawer,
+					   const GtkTextIter    *iter,
+					   const GtkTextIter    *leading_end,
+					   const GtkTextIter    *trailing_start)
 {
-	gint flags = 0;
-	gint location = drawer->priv->flags & (GTK_SOURCE_DRAW_SPACES_LEADING |
-					       GTK_SOURCE_DRAW_SPACES_TEXT |
-					       GTK_SOURCE_DRAW_SPACES_TRAILING);
+	gint iter_locations = 0;
+	gint allowed_locations = drawer->priv->flags & (GTK_SOURCE_DRAW_SPACES_LEADING |
+							GTK_SOURCE_DRAW_SPACES_TEXT |
+							GTK_SOURCE_DRAW_SPACES_TRAILING);
 
 	/* Draw all by default */
-	if (location == 0)
+	if (allowed_locations == 0)
 	{
 		return TRUE;
 	}
 
-	if (gtk_text_iter_compare (iter, trailing) >= 0)
+	if (gtk_text_iter_compare (iter, leading_end) < 0)
 	{
-		flags |= GTK_SOURCE_DRAW_SPACES_TRAILING;
+		iter_locations |= GTK_SOURCE_DRAW_SPACES_LEADING;
 	}
 
-	if (gtk_text_iter_compare (iter, leading) < 0)
+	if (gtk_text_iter_compare (trailing_start, iter) <= 0)
 	{
-		flags |= GTK_SOURCE_DRAW_SPACES_LEADING;
+		iter_locations |= GTK_SOURCE_DRAW_SPACES_TRAILING;
 	}
 
-	if (flags == 0)
+	/* Neither leading nor trailing, must be in text */
+	if (iter_locations == 0)
 	{
-		/* Neither leading nor trailing, must be in text */
-		return location & GTK_SOURCE_DRAW_SPACES_TEXT;
+		iter_locations = GTK_SOURCE_DRAW_SPACES_TEXT;
 	}
-	else
-	{
-		return location & flags;
-	}
+
+	return (iter_locations & allowed_locations) != 0;
 }
 
 static gboolean
-space_needs_drawing (GtkSourceSpaceDrawer *drawer,
-		     const GtkTextIter    *iter,
-		     const GtkTextIter    *leading,
-		     const GtkTextIter    *trailing)
+space_needs_drawing_according_to_whitespace_type (GtkSourceSpaceDrawer *drawer,
+						  const GtkTextIter    *iter)
 {
-	gboolean has_tag;
-	gboolean needs_drawing;
 	gint flags;
 	gunichar c;
-
-	/* Check the GtkSourceTag:draw-spaces property */
-
-	space_needs_drawing_according_to_tag (iter, &has_tag, &needs_drawing);
-	if (has_tag)
-	{
-		return needs_drawing;
-	}
-
-	/* Check the GtkSourceView:draw-spaces property */
-
-	if (!check_location (drawer, iter, leading, trailing))
-	{
-		return FALSE;
-	}
 
 	flags = drawer->priv->flags;
 	c = gtk_text_iter_get_char (iter);
@@ -469,6 +448,29 @@ space_needs_drawing (GtkSourceSpaceDrawer *drawer,
 		 g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR) ||
 		(flags & GTK_SOURCE_DRAW_SPACES_NEWLINE &&
 		 gtk_text_iter_ends_line (iter) && !gtk_text_iter_is_end (iter)));
+}
+
+static gboolean
+space_needs_drawing (GtkSourceSpaceDrawer *drawer,
+		     const GtkTextIter    *iter,
+		     const GtkTextIter    *leading_end,
+		     const GtkTextIter    *trailing_start)
+{
+	gboolean has_tag;
+	gboolean needs_drawing;
+
+	/* Check the GtkSourceTag:draw-spaces property */
+
+	space_needs_drawing_according_to_tag (iter, &has_tag, &needs_drawing);
+	if (has_tag)
+	{
+		return needs_drawing;
+	}
+
+	/* Check the flags */
+
+	return (space_needs_drawing_according_to_location (drawer, iter, leading_end, trailing_start) &&
+		space_needs_drawing_according_to_whitespace_type (drawer, iter));
 }
 
 static void
