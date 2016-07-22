@@ -180,10 +180,7 @@ draw_space_at_pos (cairo_t      *cr,
 	x = rect.x;
 	y = rect.y + rect.height * 2 / 3;
 
-	/* If the space is at a line-wrap position we get 0 width
-	 * so we fallback to the height.
-	 */
-	w = rect.width != 0 ? rect.width : rect.height;
+	w = rect.width;
 
 	cairo_save (cr);
 	cairo_move_to (cr, x + w * 0.5, y);
@@ -201,10 +198,7 @@ draw_tab_at_pos (cairo_t      *cr,
 	x = rect.x;
 	y = rect.y + rect.height * 2 / 3;
 
-	/* If the space is at a line-wrap position we get 0 width
-	 * so we fallback to the height.
-	 */
-	w = rect.width != 0 ? rect.width : rect.height;
+	w = rect.width;
 	h = rect.height;
 
 	cairo_save (cr);
@@ -226,8 +220,7 @@ draw_newline_at_pos (cairo_t      *cr,
 	x = rect.x;
 	y = rect.y + rect.height / 3;
 
-	/* width for new line is 0, we use 2 * h */
-	w = 2 * rect.height;
+	w = 2 * rect.width;
 	h = rect.height;
 
 	cairo_save (cr);
@@ -264,10 +257,7 @@ draw_nbsp_at_pos (cairo_t      *cr,
 	x = rect.x;
 	y = rect.y + rect.height / 2;
 
-	/* If the space is at a line-wrap position we get 0 width
-	 * so we fallback to the height.
-	 */
-	w = rect.width != 0 ? rect.width : rect.height;
+	w = rect.width;
 	h = rect.height;
 
 	cairo_save (cr);
@@ -297,6 +287,14 @@ draw_whitespace_at_iter (GtkTextView *text_view,
 	GdkRectangle rect;
 
 	gtk_text_view_get_iter_location (text_view, iter, &rect);
+
+	/* If the space is at a line-wrap position, or if the character is a
+	 * newline, we get 0 width so we fallback to the height.
+	 */
+	if (rect.width == 0)
+	{
+		rect.width = rect.height;
+	}
 
 	c = gtk_text_iter_get_char (iter);
 
