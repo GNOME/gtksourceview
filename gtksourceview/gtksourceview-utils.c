@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- * gtksourceviewutils.c
+ * gtksourceview-utils.c
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2007 - Gustavo Giráldez and Paolo Maggi
@@ -13,7 +13,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
-
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
@@ -23,12 +23,12 @@
 #include <config.h>
 #endif
 
-#include <errno.h>
-#include <math.h>
 #include "gtksourceview-utils.h"
 
-#define SOURCEVIEW_DIR "gtksourceview-3.0"
+#include <errno.h>
+#include <math.h>
 
+#define SOURCEVIEW_DIR "gtksourceview-3.0"
 
 gchar **
 _gtk_source_view_get_default_dirs (const char *basename,
@@ -64,10 +64,12 @@ _gtk_source_view_get_default_dirs (const char *basename,
 
 	/* system dir */
 	for (xdg_dirs = g_get_system_data_dirs (); xdg_dirs && *xdg_dirs; ++xdg_dirs)
+	{
 		g_ptr_array_add (dirs, g_build_filename (*xdg_dirs,
 							 SOURCEVIEW_DIR,
 							 basename,
 							 NULL));
+	}
 
 	g_ptr_array_add (dirs, NULL);
 
@@ -92,7 +94,9 @@ build_file_listing (const gchar *item,
 	dir = g_dir_open (item, 0, NULL);
 
 	if (dir == NULL)
+	{
 		return filenames;
+	}
 
 	while ((name = g_dir_read_name (dir)) != NULL)
 	{
@@ -122,7 +126,9 @@ _gtk_source_view_get_file_list (gchar       **path,
 	GSList *files = NULL;
 
 	for ( ; path && *path; ++path)
+	{
 		files = build_file_listing (*path, files, suffix, only_dirs);
+	}
 
 	return g_slist_reverse (files);
 }
@@ -139,13 +145,17 @@ _gtk_source_string_to_int (const gchar *str)
 	gchar *end_str;
 
 	if (str == NULL || *str == '\0')
+	{
 		return -1;
+	}
 
 	errno = 0;
 	number = g_ascii_strtoull (str, &end_str, 10);
 
 	if (errno != 0 || number > G_MAXINT || *end_str != '\0')
+	{
 		return -1;
+	}
 
 	return number;
 }
