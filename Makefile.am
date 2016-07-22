@@ -92,7 +92,7 @@ MAINTAINERCLEANFILES = 		\
 	test-driver		\
 	`find "$(srcdir)" -type f -name Makefile.in -print`
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-glade-catalog
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-glade-catalog
 
 @CODE_COVERAGE_RULES@
 
