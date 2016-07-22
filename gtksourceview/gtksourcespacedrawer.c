@@ -171,8 +171,8 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 }
 
 static void
-draw_space_at_iter (cairo_t      *cr,
-		    GdkRectangle  rect)
+draw_space_at_pos (cairo_t      *cr,
+		   GdkRectangle  rect)
 {
 	gint x, y;
 	gdouble w;
@@ -180,9 +180,10 @@ draw_space_at_iter (cairo_t      *cr,
 	x = rect.x;
 	y = rect.y + rect.height * 2 / 3;
 
-	/* if the space is at a line-wrap position we get 0 width
-	 * so we fallback to the height */
-	w = rect.width ? rect.width : rect.height;
+	/* If the space is at a line-wrap position we get 0 width
+	 * so we fallback to the height.
+	 */
+	w = rect.width != 0 ? rect.width : rect.height;
 
 	cairo_save (cr);
 	cairo_move_to (cr, x + w * 0.5, y);
@@ -191,8 +192,8 @@ draw_space_at_iter (cairo_t      *cr,
 }
 
 static void
-draw_tab_at_iter (cairo_t      *cr,
-		  GdkRectangle  rect)
+draw_tab_at_pos (cairo_t      *cr,
+		 GdkRectangle  rect)
 {
 	gint x, y;
 	gdouble w, h;
@@ -200,9 +201,10 @@ draw_tab_at_iter (cairo_t      *cr,
 	x = rect.x;
 	y = rect.y + rect.height * 2 / 3;
 
-	/* if the space is at a line-wrap position we get 0 width
-	 * so we fallback to the height */
-	w = rect.width ? rect.width : rect.height;
+	/* If the space is at a line-wrap position we get 0 width
+	 * so we fallback to the height.
+	 */
+	w = rect.width != 0 ? rect.width : rect.height;
 	h = rect.height;
 
 	cairo_save (cr);
@@ -215,8 +217,8 @@ draw_tab_at_iter (cairo_t      *cr,
 }
 
 static void
-draw_newline_at_iter (cairo_t      *cr,
-		      GdkRectangle  rect)
+draw_newline_at_pos (cairo_t      *cr,
+		     GdkRectangle  rect)
 {
 	gint x, y;
 	gdouble w, h;
@@ -252,9 +254,9 @@ draw_newline_at_iter (cairo_t      *cr,
 }
 
 static void
-draw_nbsp_at_iter (cairo_t      *cr,
-		   GdkRectangle  rect,
-		   gboolean      narrowed)
+draw_nbsp_at_pos (cairo_t      *cr,
+		  GdkRectangle  rect,
+		  gboolean      narrowed)
 {
 	gint x, y;
 	gdouble w, h;
@@ -262,9 +264,10 @@ draw_nbsp_at_iter (cairo_t      *cr,
 	x = rect.x;
 	y = rect.y + rect.height / 2;
 
-	/* if the space is at a line-wrap position we get 0 width
-	 * so we fallback to the height */
-	w = rect.width ? rect.width : rect.height;
+	/* If the space is at a line-wrap position we get 0 width
+	 * so we fallback to the height.
+	 */
+	w = rect.width != 0 ? rect.width : rect.height;
 	h = rect.height;
 
 	cairo_save (cr);
@@ -286,9 +289,9 @@ draw_nbsp_at_iter (cairo_t      *cr,
 }
 
 static void
-draw_spaces_at_iter (cairo_t     *cr,
-		     GtkTextView *text_view,
-		     GtkTextIter *iter)
+draw_whitespace_at_iter (GtkTextView *text_view,
+			 GtkTextIter *iter,
+			 cairo_t     *cr)
 {
 	gunichar c;
 	GdkRectangle rect;
@@ -299,20 +302,20 @@ draw_spaces_at_iter (cairo_t     *cr,
 
 	if (c == '\t')
 	{
-		draw_tab_at_iter (cr, rect);
+		draw_tab_at_pos (cr, rect);
 	}
 	else if (g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE)
 	{
 		/* We also need to check if we want to draw a narrowed space */
-		draw_nbsp_at_iter (cr, rect, c == 0x202F);
+		draw_nbsp_at_pos (cr, rect, c == 0x202F);
 	}
 	else if (g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR)
 	{
-		draw_space_at_iter (cr, rect);
+		draw_space_at_pos (cr, rect);
 	}
 	else if (gtk_text_iter_ends_line (iter))
 	{
-		draw_newline_at_iter (cr, rect);
+		draw_newline_at_pos (cr, rect);
 	}
 }
 
@@ -606,7 +609,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 		if (is_space (c) && space_needs_drawing (drawer, &s, &leading, &trailing))
 		{
-			draw_spaces_at_iter (cr, text_view, &s);
+			draw_whitespace_at_iter (text_view, &s, cr);
 		}
 
 		if (!gtk_text_iter_forward_char (&s))
