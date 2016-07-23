@@ -642,15 +642,14 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	gtk_text_view_get_iter_at_location (text_view, &start, min_x, min_y);
 	gtk_text_view_get_iter_at_location (text_view, &end, max_x, max_y);
 
-	_gtk_source_iter_get_leading_spaces_end_boundary (&start, &leading_end);
-	_gtk_source_iter_get_trailing_spaces_start_boundary (&start, &trailing_start);
-	get_line_end (text_view, &start, &line_end, max_x, max_y, is_wrapping);
-
 	gdk_cairo_set_source_rgba (cr, drawer->priv->color);
 	cairo_set_line_width (cr, 0.8);
 	cairo_translate (cr, -0.5, -0.5);
 
 	iter = start;
+	_gtk_source_iter_get_leading_spaces_end_boundary (&iter, &leading_end);
+	_gtk_source_iter_get_trailing_spaces_start_boundary (&iter, &trailing_start);
+	get_line_end (text_view, &iter, &line_end, max_x, max_y, is_wrapping);
 
 	while (TRUE)
 	{
