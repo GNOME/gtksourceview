@@ -194,11 +194,19 @@ is_space (gunichar ch)
 	return g_unichar_type (ch) == G_UNICODE_SPACE_SEPARATOR;
 }
 
-static inline gboolean
+static gboolean
 is_newline (const GtkTextIter *iter)
 {
-	/* TODO take into account implicit trailing newline. */
-	return gtk_text_iter_ends_line (iter) && !gtk_text_iter_is_end (iter);
+	if (gtk_text_iter_is_end (iter))
+	{
+		GtkSourceBuffer *buffer;
+
+		buffer = GTK_SOURCE_BUFFER (gtk_text_iter_get_buffer (iter));
+
+		return gtk_source_buffer_get_implicit_trailing_newline (buffer);
+	}
+
+	return gtk_text_iter_ends_line (iter);
 }
 
 static inline gboolean
@@ -649,16 +657,19 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 		gunichar ch = gtk_text_iter_get_char (&iter);
 		gint ly;
 
-		if (is_whitespace (ch) &&
+		/* Allow end iter, to draw implicit trailing newline. */
+		if ((is_whitespace (ch) || gtk_text_iter_is_end (&iter)) &&
 		    space_needs_drawing (drawer, &iter, &leading_end, &trailing_start))
 		{
 			draw_whitespace_at_iter (text_view, &iter, cr);
 		}
 
-		if (!gtk_text_iter_forward_char (&iter))
+		if (gtk_text_iter_is_end (&iter))
 		{
 			break;
 		}
+
+		gtk_text_iter_forward_char (&iter);
 
 		if (gtk_text_iter_compare (&iter, &line_end) > 0)
 		{
@@ -670,10 +681,9 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 			/* Move to the first iter in the exposed area of the
 			 * next line.
 			 */
-			if (!gtk_text_iter_starts_line (&iter) &&
-			    !gtk_text_iter_forward_line (&iter))
+			if (!gtk_text_iter_starts_line (&iter))
 			{
-				break;
+				gtk_text_iter_forward_line (&iter);
 			}
 
 			gtk_text_view_get_line_yrange (text_view, &iter, &ly, NULL);

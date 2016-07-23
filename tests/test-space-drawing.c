@@ -75,6 +75,7 @@ create_window (void)
 	GtkWidget *gsv_checkbutton;
 	GtkWidget *tag_set_checkbutton;
 	GtkWidget *tag_checkbutton;
+	GtkWidget *implicit_trailing_newline_checkbutton;
 	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
 	GtkTextTag *tag;
@@ -134,6 +135,13 @@ create_window (void)
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tag_checkbutton), FALSE);
 	g_object_bind_property (tag_checkbutton, "active",
 				tag, "draw-spaces",
+				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
+
+	implicit_trailing_newline_checkbutton = gtk_check_button_new_with_label ("Implicit trailing newline");
+	gtk_widget_set_margin_top (implicit_trailing_newline_checkbutton, 12);
+	gtk_container_add (GTK_CONTAINER (panel_grid), implicit_trailing_newline_checkbutton);
+	g_object_bind_property (buffer, "implicit-trailing-newline",
+				implicit_trailing_newline_checkbutton, "active",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
 	scrolled_window = gtk_scrolled_window_new (NULL, NULL);
