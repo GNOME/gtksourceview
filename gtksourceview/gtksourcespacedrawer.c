@@ -171,21 +171,21 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 }
 
 static inline gboolean
-is_tab (gunichar c)
+is_tab (gunichar ch)
 {
-	return c == '\t';
+	return ch == '\t';
 }
 
 static inline gboolean
-is_nbsp (gunichar c)
+is_nbsp (gunichar ch)
 {
-	return g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE;
+	return g_unichar_break_type (ch) == G_UNICODE_BREAK_NON_BREAKING_GLUE;
 }
 
 static inline gboolean
-is_space (gunichar c)
+is_space (gunichar ch)
 {
-	return g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR;
+	return g_unichar_type (ch) == G_UNICODE_SPACE_SEPARATOR;
 }
 
 static inline gboolean
@@ -196,9 +196,9 @@ is_newline (const GtkTextIter *iter)
 }
 
 static inline gboolean
-is_whitespace (gunichar c)
+is_whitespace (gunichar ch)
 {
-	return (g_unichar_isspace (c) || is_nbsp (c) || is_space (c));
+	return (g_unichar_isspace (ch) || is_nbsp (ch) || is_space (ch));
 }
 
 static void
@@ -314,7 +314,7 @@ draw_whitespace_at_iter (GtkTextView *text_view,
 			 GtkTextIter *iter,
 			 cairo_t     *cr)
 {
-	gunichar c;
+	gunichar ch;
 	GdkRectangle rect;
 
 	gtk_text_view_get_iter_location (text_view, iter, &rect);
@@ -327,18 +327,18 @@ draw_whitespace_at_iter (GtkTextView *text_view,
 		rect.width = rect.height;
 	}
 
-	c = gtk_text_iter_get_char (iter);
+	ch = gtk_text_iter_get_char (iter);
 
-	if (is_tab (c))
+	if (is_tab (ch))
 	{
 		draw_tab_at_pos (cr, rect);
 	}
-	else if (is_nbsp (c))
+	else if (is_nbsp (ch))
 	{
 		/* We also need to check if we want to draw a narrowed space */
-		draw_nbsp_at_pos (cr, rect, c == 0x202F);
+		draw_nbsp_at_pos (cr, rect, ch == 0x202F);
 	}
-	else if (is_space (c))
+	else if (is_space (ch))
 	{
 		draw_space_at_pos (cr, rect);
 	}
@@ -466,19 +466,19 @@ static gboolean
 space_needs_drawing_according_to_whitespace_type (GtkSourceSpaceDrawer *drawer,
 						  const GtkTextIter    *iter)
 {
-	gunichar c;
+	gunichar ch;
 
-	c = gtk_text_iter_get_char (iter);
+	ch = gtk_text_iter_get_char (iter);
 
-	if (is_tab (c))
+	if (is_tab (ch))
 	{
 		return drawer->priv->flags & GTK_SOURCE_DRAW_SPACES_TAB;
 	}
-	else if (is_nbsp (c))
+	else if (is_nbsp (ch))
 	{
 		return drawer->priv->flags & GTK_SOURCE_DRAW_SPACES_NBSP;
 	}
-	else if (is_space (c))
+	else if (is_space (ch))
 	{
 		return drawer->priv->flags & GTK_SOURCE_DRAW_SPACES_SPACE;
 	}
@@ -641,10 +641,10 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 	while (TRUE)
 	{
-		gunichar c = gtk_text_iter_get_char (&iter);
+		gunichar ch = gtk_text_iter_get_char (&iter);
 		gint ly;
 
-		if (is_whitespace (c) &&
+		if (is_whitespace (ch) &&
 		    space_needs_drawing (drawer, &iter, &leading_end, &trailing_start))
 		{
 			draw_whitespace_at_iter (text_view, &iter, cr);
