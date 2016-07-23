@@ -515,13 +515,12 @@ static void
 get_line_end (GtkTextView       *text_view,
 	      const GtkTextIter *start_iter,
 	      GtkTextIter       *line_end,
-	      gint               x,
-	      gint               y,
+	      gint               max_x,
+	      gint               max_y,
 	      gboolean           is_wrapping)
 {
 	gint min;
 	gint max;
-	gint i;
 	GdkRectangle rect;
 
 	*line_end = *start_iter;
@@ -530,10 +529,10 @@ get_line_end (GtkTextView       *text_view,
 		gtk_text_iter_forward_to_line_end (line_end);
 	}
 
-	/* check if line_end is inside the bounding box anyway */
+	/* Check if line_end is inside the bounding box anyway. */
 	gtk_text_view_get_iter_location (text_view, line_end, &rect);
-	if (( is_wrapping && rect.y < y) ||
-	    (!is_wrapping && rect.x < x))
+	if (( is_wrapping && rect.y < max_y) ||
+	    (!is_wrapping && rect.x < max_x))
 	{
 		return;
 	}
@@ -543,17 +542,19 @@ get_line_end (GtkTextView       *text_view,
 
 	while (max >= min)
 	{
+		gint i;
+
 		i = (min + max) >> 1;
 		gtk_text_iter_set_line_offset (line_end, i);
 		gtk_text_view_get_iter_location (text_view, line_end, &rect);
 
-		if (( is_wrapping && rect.y < y) ||
-		    (!is_wrapping && rect.x < x))
+		if (( is_wrapping && rect.y < max_y) ||
+		    (!is_wrapping && rect.x < max_x))
 		{
 			min = i + 1;
 		}
-		else if (( is_wrapping && rect.y > y) ||
-			 (!is_wrapping && rect.x > x))
+		else if (( is_wrapping && rect.y > max_y) ||
+			 (!is_wrapping && rect.x > max_x))
 		{
 			max = i - 1;
 		}
@@ -572,7 +573,10 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	GtkTextView *text_view;
 	GtkTextBuffer *buffer;
 	GdkRectangle clip;
-	gint x1, y1, x2, y2;
+	gint min_x;
+	gint min_y;
+	gint max_x;
+	gint max_y;
 	GtkTextIter start;
 	GtkTextIter end;
 	GtkTextIter leading_end;
@@ -616,17 +620,17 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 	is_wrapping = gtk_text_view_get_wrap_mode (text_view) != GTK_WRAP_NONE;
 
-	x1 = clip.x;
-	y1 = clip.y;
-	x2 = x1 + clip.width;
-	y2 = y1 + clip.height;
+	min_x = clip.x;
+	min_y = clip.y;
+	max_x = min_x + clip.width;
+	max_y = min_y + clip.height;
 
-	gtk_text_view_get_iter_at_location (text_view, &start, x1, y1);
-	gtk_text_view_get_iter_at_location (text_view, &end, x2, y2);
+	gtk_text_view_get_iter_at_location (text_view, &start, min_x, min_y);
+	gtk_text_view_get_iter_at_location (text_view, &end, max_x, max_y);
 
 	_gtk_source_iter_get_leading_spaces_end_boundary (&start, &leading_end);
 	_gtk_source_iter_get_trailing_spaces_start_boundary (&start, &trailing_start);
-	get_line_end (text_view, &start, &line_end, x2, y2, is_wrapping);
+	get_line_end (text_view, &start, &line_end, max_x, max_y, is_wrapping);
 
 	gdk_cairo_set_source_rgba (cr, drawer->priv->color);
 	cairo_set_line_width (cr, 0.8);
@@ -665,7 +669,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 			}
 
 			gtk_text_view_get_line_yrange (text_view, &start, &ly, NULL);
-			gtk_text_view_get_iter_at_location (text_view, &start, x1, ly);
+			gtk_text_view_get_iter_at_location (text_view, &start, min_x, ly);
 
 			/* Move back one char otherwise tabs may not be redrawn. */
 			if (!gtk_text_iter_starts_line (&start))
@@ -675,7 +679,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 			_gtk_source_iter_get_leading_spaces_end_boundary (&start, &leading_end);
 			_gtk_source_iter_get_trailing_spaces_start_boundary (&start, &trailing_start);
-			get_line_end (text_view, &start, &line_end, x2, y2, is_wrapping);
+			get_line_end (text_view, &start, &line_end, max_x, max_y, is_wrapping);
 		}
 	};
 
