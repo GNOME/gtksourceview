@@ -38,6 +38,10 @@
  * @See_also: #GtkSourceView
  */
 
+/* A drawer specially designed for the International Space Station. It comes by
+ * default with a DVD of Matrix, in case the astronauts are bored.
+ */
+
 /*
 #define ENABLE_PROFILE
 */
@@ -45,16 +49,129 @@
 
 struct _GtkSourceSpaceDrawerPrivate
 {
+	GtkSourceSpaceTypeFlags *matrix;
 	GtkSourceDrawSpacesFlags flags;
 	GdkRGBA *color;
 };
 
+enum
+{
+	PROP_0,
+	PROP_MATRIX,
+	N_PROPERTIES
+};
+
+static GParamSpec *properties[N_PROPERTIES];
+
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceSpaceDrawer, gtk_source_space_drawer, G_TYPE_OBJECT)
+
+static gint
+get_number_of_locations (void)
+{
+	gint num;
+	gint flags;
+
+	num = 0;
+	flags = GTK_SOURCE_SPACE_LOCATION_ALL;
+
+	while (flags != 0)
+	{
+		flags >>= 1;
+		num++;
+	}
+
+	return num;
+}
+
+static gboolean
+is_zero_matrix (GtkSourceSpaceDrawer *drawer)
+{
+	gint num_locations;
+	gint i;
+
+	num_locations = get_number_of_locations ();
+
+	for (i = 0; i < num_locations; i++)
+	{
+		if (drawer->priv->matrix[i] != 0)
+		{
+			return FALSE;
+		}
+	}
+
+	return TRUE;
+}
+
+static void
+set_zero_matrix (GtkSourceSpaceDrawer *drawer)
+{
+	gint num_locations;
+	gint i;
+	gboolean changed = FALSE;
+
+	num_locations = get_number_of_locations ();
+
+	for (i = 0; i < num_locations; i++)
+	{
+		if (drawer->priv->matrix[i] != 0)
+		{
+			drawer->priv->matrix[i] = 0;
+			changed = TRUE;
+		}
+	}
+
+	if (changed)
+	{
+		g_object_notify_by_pspec (G_OBJECT (drawer), properties[PROP_MATRIX]);
+	}
+}
+
+static void
+gtk_source_space_drawer_get_property (GObject    *object,
+				      guint       prop_id,
+				      GValue     *value,
+				      GParamSpec *pspec)
+{
+	GtkSourceSpaceDrawer *drawer = GTK_SOURCE_SPACE_DRAWER (object);
+
+	switch (prop_id)
+	{
+		case PROP_MATRIX:
+			g_value_set_variant (value, gtk_source_space_drawer_get_matrix (drawer));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
+	}
+}
+
+static void
+gtk_source_space_drawer_set_property (GObject      *object,
+				      guint         prop_id,
+				      const GValue *value,
+				      GParamSpec   *pspec)
+{
+	GtkSourceSpaceDrawer *drawer = GTK_SOURCE_SPACE_DRAWER (object);
+
+	switch (prop_id)
+	{
+		case PROP_MATRIX:
+			gtk_source_space_drawer_set_matrix (drawer, g_value_get_variant (value));
+			break;
+
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
+	}
+}
 
 static void
 gtk_source_space_drawer_finalize (GObject *object)
 {
 	GtkSourceSpaceDrawer *drawer = GTK_SOURCE_SPACE_DRAWER (object);
+
+	g_free (drawer->priv->matrix);
 
 	if (drawer->priv->color != NULL)
 	{
@@ -69,13 +186,47 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+	object_class->get_property = gtk_source_space_drawer_get_property;
+	object_class->set_property = gtk_source_space_drawer_set_property;
 	object_class->finalize = gtk_source_space_drawer_finalize;
+
+	/**
+	 * GtkSourceSpaceDrawer:matrix:
+	 *
+	 * The :matrix property is a #GVariant property to specify where and
+	 * what kind of whitespaces to draw.
+	 *
+	 * The #GVariant is of type `"au"`, an array of unsigned integers. Each
+	 * integer is a combination of #GtkSourceSpaceTypeFlags. There is one
+	 * integer for each #GtkSourceSpaceLocationFlags, in the same order as
+	 * they are defined in the enum (%GTK_SOURCE_SPACE_LOCATION_NONE and
+	 * %GTK_SOURCE_SPACE_LOCATION_ALL are not taken into account).
+	 *
+	 * If the array is shorter than the number of locations, then the value
+	 * for the missing locations will be %GTK_SOURCE_SPACE_TYPE_NONE.
+	 *
+	 * The default value is the empty array `"[]"`.
+	 *
+	 * Since: 3.24
+	 */
+	properties[PROP_MATRIX] =
+		g_param_spec_variant ("matrix",
+				      "Matrix",
+				      "",
+				      G_VARIANT_TYPE ("au"),
+				      g_variant_new ("au", NULL),
+				      G_PARAM_READWRITE |
+				      G_PARAM_STATIC_STRINGS);
+
+	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
 static void
 gtk_source_space_drawer_init (GtkSourceSpaceDrawer *drawer)
 {
 	drawer->priv = gtk_source_space_drawer_get_instance_private (drawer);
+
+	drawer->priv->matrix = g_new0 (GtkSourceSpaceTypeFlags, get_number_of_locations ());
 }
 
 GtkSourceSpaceDrawer *
@@ -107,6 +258,225 @@ _gtk_source_space_drawer_set_flags (GtkSourceSpaceDrawer     *drawer,
 	}
 
 	return changed;
+}
+
+/**
+ * gtk_source_space_drawer_get_types_for_locations:
+ * @drawer: a #GtkSourceSpaceDrawer.
+ * @locations: one or several #GtkSourceSpaceLocationFlags.
+ *
+ * If only one location is specified, this function returns what kind of
+ * whitespaces are drawn at that location. The value is retrieved from the
+ * #GtkSourceSpaceDrawer:matrix property.
+ *
+ * If several locations are specified, this function returns the logical AND for
+ * those locations. Which means that if a certain kind of whitespace is present
+ * in the return value, then that kind of whitespace is drawn at all the
+ * specified @locations.
+ *
+ * Returns: a combination of #GtkSourceSpaceTypeFlags.
+ * Since: 3.24
+ */
+GtkSourceSpaceTypeFlags
+gtk_source_space_drawer_get_types_for_locations (GtkSourceSpaceDrawer        *drawer,
+						 GtkSourceSpaceLocationFlags  locations)
+{
+	GtkSourceSpaceTypeFlags ret = GTK_SOURCE_SPACE_TYPE_ALL;
+	gint index;
+	gint num_locations;
+	gboolean found;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer), GTK_SOURCE_SPACE_TYPE_NONE);
+
+	index = 0;
+	num_locations = get_number_of_locations ();
+	found = FALSE;
+
+	while (locations != 0 && index < num_locations)
+	{
+		if ((locations & 1) == 1)
+		{
+			ret &= drawer->priv->matrix[index];
+			found = TRUE;
+		}
+
+		locations >>= 1;
+		index++;
+	}
+
+	return found ? ret : GTK_SOURCE_SPACE_TYPE_NONE;
+}
+
+/**
+ * gtk_source_space_drawer_set_types_for_locations:
+ * @drawer: a #GtkSourceSpaceDrawer.
+ * @locations: one or several #GtkSourceSpaceLocationFlags.
+ * @types: a combination of #GtkSourceSpaceTypeFlags.
+ *
+ * Modifies the #GtkSourceSpaceDrawer:matrix property at the specified
+ * @locations.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_space_drawer_set_types_for_locations (GtkSourceSpaceDrawer        *drawer,
+						 GtkSourceSpaceLocationFlags  locations,
+						 GtkSourceSpaceTypeFlags      types)
+{
+	gint index;
+	gint num_locations;
+	gboolean changed = FALSE;
+
+	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
+
+	index = 0;
+	num_locations = get_number_of_locations ();
+
+	while (locations != 0 && index < num_locations)
+	{
+		if ((locations & 1) == 1 &&
+		    drawer->priv->matrix[index] != types)
+		{
+			drawer->priv->matrix[index] = types;
+			changed = TRUE;
+		}
+
+		locations >>= 1;
+		index++;
+	}
+
+	if (changed)
+	{
+		g_object_notify_by_pspec (G_OBJECT (drawer), properties[PROP_MATRIX]);
+	}
+}
+
+/**
+ * gtk_source_space_drawer_get_matrix:
+ * @drawer: a #GtkSourceSpaceDrawer.
+ *
+ * Gets the value of the #GtkSourceSpaceDrawer:matrix property, as a #GVariant.
+ * An empty array can be returned in case the matrix is a zero matrix.
+ *
+ * The gtk_source_space_drawer_get_types_for_locations() function may be more
+ * convenient to use.
+ *
+ * Returns: the #GtkSourceSpaceDrawer:matrix value as a new floating #GVariant
+ *   instance.
+ * Since: 3.24
+ */
+GVariant *
+gtk_source_space_drawer_get_matrix (GtkSourceSpaceDrawer *drawer)
+{
+	GVariantBuilder builder;
+	gint num_locations;
+	gint i;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer), NULL);
+
+	if (is_zero_matrix (drawer))
+	{
+		return g_variant_new ("au", NULL);
+	}
+
+	g_variant_builder_init (&builder, G_VARIANT_TYPE ("au"));
+
+	num_locations = get_number_of_locations ();
+
+	for (i = 0; i < num_locations; i++)
+	{
+		GVariant *space_types;
+
+		space_types = g_variant_new_uint32 (drawer->priv->matrix[i]);
+
+		g_variant_builder_add_value (&builder, space_types);
+	}
+
+	return g_variant_builder_end (&builder);
+}
+
+/**
+ * gtk_source_space_drawer_set_matrix:
+ * @drawer: a #GtkSourceSpaceDrawer.
+ * @matrix: (transfer floating) (nullable): the new matrix value, or %NULL.
+ *
+ * Sets a new value to the #GtkSourceSpaceDrawer:matrix property, as a
+ * #GVariant. If @matrix is %NULL, then an empty array is set.
+ *
+ * If @matrix is floating, it is consumed.
+ *
+ * The gtk_source_space_drawer_set_types_for_locations() function may be more
+ * convenient to use.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_space_drawer_set_matrix (GtkSourceSpaceDrawer *drawer,
+				    GVariant             *matrix)
+{
+	gint num_locations;
+	gint index;
+	GVariantIter iter;
+	gboolean changed = FALSE;
+
+	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
+
+	if (matrix == NULL)
+	{
+		set_zero_matrix (drawer);
+		return;
+	}
+
+	g_return_if_fail (g_variant_is_of_type (matrix, G_VARIANT_TYPE ("au")));
+
+	g_variant_iter_init (&iter, matrix);
+
+	num_locations = get_number_of_locations ();
+	index = 0;
+	while (index < num_locations)
+	{
+		GVariant *child;
+		guint32 space_types;
+
+		child = g_variant_iter_next_value (&iter);
+		if (child == NULL)
+		{
+			break;
+		}
+
+		space_types = g_variant_get_uint32 (child);
+
+		if (drawer->priv->matrix[index] != space_types)
+		{
+			drawer->priv->matrix[index] = space_types;
+			changed = TRUE;
+		}
+
+		g_variant_unref (child);
+		index++;
+	}
+
+	while (index < num_locations)
+	{
+		if (drawer->priv->matrix[index] != 0)
+		{
+			drawer->priv->matrix[index] = 0;
+			changed = TRUE;
+		}
+
+		index++;
+	}
+
+	if (changed)
+	{
+		g_object_notify_by_pspec (G_OBJECT (drawer), properties[PROP_MATRIX]);
+	}
+
+	if (g_variant_is_floating (matrix))
+	{
+		g_variant_ref_sink (matrix);
+		g_variant_unref (matrix);
+	}
 }
 
 void

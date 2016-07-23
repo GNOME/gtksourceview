@@ -59,8 +59,72 @@ struct _GtkSourceSpaceDrawerClass
 	gpointer padding[20];
 };
 
+/**
+ * GtkSourceSpaceTypeFlags:
+ * @GTK_SOURCE_SPACE_TYPE_NONE: No flags.
+ * @GTK_SOURCE_SPACE_TYPE_SPACE: Space character.
+ * @GTK_SOURCE_SPACE_TYPE_TAB: Tab character.
+ * @GTK_SOURCE_SPACE_TYPE_NEWLINE: Line break character.
+ * @GTK_SOURCE_SPACE_TYPE_NBSP: Non-breaking space character.
+ * @GTK_SOURCE_SPACE_TYPE_ALL: All whitespaces.
+ *
+ * #GtkSourceSpaceTypeFlags contains flags for whitespace types.
+ *
+ * Since: 3.24
+ */
+typedef enum _GtkSourceSpaceTypeFlags
+{
+	GTK_SOURCE_SPACE_TYPE_NONE	= 0,
+	GTK_SOURCE_SPACE_TYPE_SPACE	= 1 << 0,
+	GTK_SOURCE_SPACE_TYPE_TAB	= 1 << 1,
+	GTK_SOURCE_SPACE_TYPE_NEWLINE	= 1 << 2,
+	GTK_SOURCE_SPACE_TYPE_NBSP	= 1 << 3,
+	GTK_SOURCE_SPACE_TYPE_ALL	= 0xf
+} GtkSourceSpaceTypeFlags;
+
+/**
+ * GtkSourceSpaceLocationFlags:
+ * @GTK_SOURCE_SPACE_LOCATION_NONE: No flags.
+ * @GTK_SOURCE_SPACE_LOCATION_LEADING: Leading whitespaces on a line, i.e. the
+ *   indentation.
+ * @GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT: Whitespaces inside a line of text.
+ * @GTK_SOURCE_SPACE_LOCATION_TRAILING: Trailing whitespaces on a line.
+ * @GTK_SOURCE_SPACE_LOCATION_ALL: Whitespaces anywhere.
+ *
+ * #GtkSourceSpaceLocationFlags contains flags for whitespace locations.
+ *
+ * If a line contains only whitespaces (no text), the whitespaces match both
+ * %GTK_SOURCE_SPACE_LOCATION_LEADING and %GTK_SOURCE_SPACE_LOCATION_TRAILING.
+ *
+ * Since: 3.24
+ */
+typedef enum _GtkSourceSpaceLocationFlags
+{
+	GTK_SOURCE_SPACE_LOCATION_NONE		= 0,
+	GTK_SOURCE_SPACE_LOCATION_LEADING	= 1 << 0,
+	GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT	= 1 << 1,
+	GTK_SOURCE_SPACE_LOCATION_TRAILING	= 1 << 2,
+	GTK_SOURCE_SPACE_LOCATION_ALL		= 0x7
+} GtkSourceSpaceLocationFlags;
+
 GTK_SOURCE_AVAILABLE_IN_3_24
 GType			gtk_source_space_drawer_get_type		(void) G_GNUC_CONST;
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+GtkSourceSpaceTypeFlags	gtk_source_space_drawer_get_types_for_locations	(GtkSourceSpaceDrawer        *drawer,
+									 GtkSourceSpaceLocationFlags  locations);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			gtk_source_space_drawer_set_types_for_locations	(GtkSourceSpaceDrawer        *drawer,
+									 GtkSourceSpaceLocationFlags  locations,
+									 GtkSourceSpaceTypeFlags      types);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+GVariant *		gtk_source_space_drawer_get_matrix		(GtkSourceSpaceDrawer *drawer);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			gtk_source_space_drawer_set_matrix		(GtkSourceSpaceDrawer *drawer,
+									 GVariant             *matrix);
 
 G_END_DECLS
 

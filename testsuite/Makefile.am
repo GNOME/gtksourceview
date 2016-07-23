@@ -78,6 +78,9 @@ test_region_SOURCES = test-region.c
 UNIT_TEST_PROGS += test-search-context
 test_search_context_SOURCES = test-search-context.c
 
+UNIT_TEST_PROGS += test-space-drawer
+test_space_drawer_SOURCES = test-space-drawer.c
+
 UNIT_TEST_PROGS += test-stylescheme
 test_stylescheme_SOURCES = test-stylescheme.c
 
