@@ -1451,6 +1451,15 @@ buffer_style_scheme_changed_cb (GtkSourceBuffer *buffer,
 }
 
 static void
+implicit_trailing_newline_changed_cb (GtkSourceBuffer *buffer,
+				      GParamSpec      *pspec,
+				      GtkSourceView   *view)
+{
+	/* For drawing or not a trailing newline. */
+	gtk_widget_queue_draw (GTK_WIDGET (view));
+}
+
+static void
 remove_source_buffer (GtkSourceView *view)
 {
 	if (view->priv->source_buffer != NULL)
@@ -1465,6 +1474,10 @@ remove_source_buffer (GtkSourceView *view)
 
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
 						      buffer_style_scheme_changed_cb,
+						      view);
+
+		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
+						      implicit_trailing_newline_changed_cb,
 						      view);
 
 		g_object_unref (view->priv->source_buffer);
@@ -1500,6 +1513,11 @@ set_source_buffer (GtkSourceView *view,
 		g_signal_connect (buffer,
 				  "notify::style-scheme",
 				  G_CALLBACK (buffer_style_scheme_changed_cb),
+				  view);
+
+		g_signal_connect (buffer,
+				  "notify::implicit-trailing-newline",
+				  G_CALLBACK (implicit_trailing_newline_changed_cb),
 				  view);
 	}
 
