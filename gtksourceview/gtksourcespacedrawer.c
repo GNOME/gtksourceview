@@ -512,24 +512,26 @@ space_needs_drawing (GtkSourceSpaceDrawer *drawer,
 }
 
 static void
-get_end_iter (GtkTextView       *text_view,
+get_line_end (GtkTextView       *text_view,
 	      const GtkTextIter *start_iter,
-	      GtkTextIter       *end_iter,
+	      GtkTextIter       *line_end,
 	      gint               x,
 	      gint               y,
 	      gboolean           is_wrapping)
 {
-	gint min, max, i;
+	gint min;
+	gint max;
+	gint i;
 	GdkRectangle rect;
 
-	*end_iter = *start_iter;
-	if (!gtk_text_iter_ends_line (end_iter))
+	*line_end = *start_iter;
+	if (!gtk_text_iter_ends_line (line_end))
 	{
-		gtk_text_iter_forward_to_line_end (end_iter);
+		gtk_text_iter_forward_to_line_end (line_end);
 	}
 
-	/* check if end_iter is inside the bounding box anyway */
-	gtk_text_view_get_iter_location (text_view, end_iter, &rect);
+	/* check if line_end is inside the bounding box anyway */
+	gtk_text_view_get_iter_location (text_view, line_end, &rect);
 	if (( is_wrapping && rect.y < y) ||
 	    (!is_wrapping && rect.x < x))
 	{
@@ -537,13 +539,13 @@ get_end_iter (GtkTextView       *text_view,
 	}
 
 	min = gtk_text_iter_get_line_offset (start_iter);
-	max = gtk_text_iter_get_line_offset (end_iter);
+	max = gtk_text_iter_get_line_offset (line_end);
 
 	while (max >= min)
 	{
 		i = (min + max) >> 1;
-		gtk_text_iter_set_line_offset (end_iter, i);
-		gtk_text_view_get_iter_location (text_view, end_iter, &rect);
+		gtk_text_iter_set_line_offset (line_end, i);
+		gtk_text_view_get_iter_location (text_view, line_end, &rect);
 
 		if (( is_wrapping && rect.y < y) ||
 		    (!is_wrapping && rect.x < x))
@@ -624,7 +626,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 	_gtk_source_iter_get_leading_spaces_end_boundary (&start, &leading_end);
 	_gtk_source_iter_get_trailing_spaces_start_boundary (&start, &trailing_start);
-	get_end_iter (text_view, &start, &line_end, x2, y2, is_wrapping);
+	get_line_end (text_view, &start, &line_end, x2, y2, is_wrapping);
 
 	gdk_cairo_set_source_rgba (cr, drawer->priv->color);
 	cairo_set_line_width (cr, 0.8);
@@ -673,7 +675,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 			_gtk_source_iter_get_leading_spaces_end_boundary (&start, &leading_end);
 			_gtk_source_iter_get_trailing_spaces_start_boundary (&start, &trailing_start);
-			get_end_iter (text_view, &start, &line_end, x2, y2, is_wrapping);
+			get_line_end (text_view, &start, &line_end, x2, y2, is_wrapping);
 		}
 	};
 
