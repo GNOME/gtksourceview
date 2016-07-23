@@ -170,6 +170,37 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 	}
 }
 
+static inline gboolean
+is_tab (gunichar c)
+{
+	return c == '\t';
+}
+
+static inline gboolean
+is_nbsp (gunichar c)
+{
+	return g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE;
+}
+
+static inline gboolean
+is_space (gunichar c)
+{
+	return g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR;
+}
+
+static inline gboolean
+is_newline (const GtkTextIter *iter)
+{
+	/* TODO take into account implicit trailing newline. */
+	return gtk_text_iter_ends_line (iter) && !gtk_text_iter_is_end (iter);
+}
+
+static inline gboolean
+is_whitespace (gunichar c)
+{
+	return (g_unichar_isspace (c) || is_nbsp (c) || is_space (c));
+}
+
 static void
 draw_space_at_pos (cairo_t      *cr,
 		   GdkRectangle  rect)
@@ -298,20 +329,20 @@ draw_whitespace_at_iter (GtkTextView *text_view,
 
 	c = gtk_text_iter_get_char (iter);
 
-	if (c == '\t')
+	if (is_tab (c))
 	{
 		draw_tab_at_pos (cr, rect);
 	}
-	else if (g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE)
+	else if (is_nbsp (c))
 	{
 		/* We also need to check if we want to draw a narrowed space */
 		draw_nbsp_at_pos (cr, rect, c == 0x202F);
 	}
-	else if (g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR)
+	else if (is_space (c))
 	{
 		draw_space_at_pos (cr, rect);
 	}
-	else if (gtk_text_iter_ends_line (iter))
+	else if (is_newline (iter))
 	{
 		draw_newline_at_pos (cr, rect);
 	}
@@ -435,19 +466,28 @@ static gboolean
 space_needs_drawing_according_to_whitespace_type (GtkSourceSpaceDrawer *drawer,
 						  const GtkTextIter    *iter)
 {
-	gint flags;
 	gunichar c;
 
-	flags = drawer->priv->flags;
 	c = gtk_text_iter_get_char (iter);
 
-	return ((flags & GTK_SOURCE_DRAW_SPACES_TAB && c == '\t') ||
-		(flags & GTK_SOURCE_DRAW_SPACES_NBSP &&
-		 g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE) ||
-		(flags & GTK_SOURCE_DRAW_SPACES_SPACE &&
-		 g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR) ||
-		(flags & GTK_SOURCE_DRAW_SPACES_NEWLINE &&
-		 gtk_text_iter_ends_line (iter) && !gtk_text_iter_is_end (iter)));
+	if (is_tab (c))
+	{
+		return drawer->priv->flags & GTK_SOURCE_DRAW_SPACES_TAB;
+	}
+	else if (is_nbsp (c))
+	{
+		return drawer->priv->flags & GTK_SOURCE_DRAW_SPACES_NBSP;
+	}
+	else if (is_space (c))
+	{
+		return drawer->priv->flags & GTK_SOURCE_DRAW_SPACES_SPACE;
+	}
+	else if (is_newline (iter))
+	{
+		return drawer->priv->flags & GTK_SOURCE_DRAW_SPACES_NEWLINE;
+	}
+
+	return FALSE;
 }
 
 static gboolean
@@ -520,14 +560,6 @@ get_end_iter (GtkTextView *text_view,
 			break;
 		}
 	}
-}
-
-static inline gboolean
-is_space (gunichar c)
-{
-	return (g_unichar_isspace (c) ||
-		(g_unichar_break_type (c) == G_UNICODE_BREAK_NON_BREAKING_GLUE) ||
-		(g_unichar_type (c) == G_UNICODE_SPACE_SEPARATOR));
 }
 
 void
@@ -605,7 +637,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 		gunichar c = gtk_text_iter_get_char (&s);
 		gint ly;
 
-		if (is_space (c) && space_needs_drawing (drawer, &s, &leading, &trailing))
+		if (is_whitespace (c) && space_needs_drawing (drawer, &s, &leading, &trailing))
 		{
 			draw_whitespace_at_iter (text_view, &s, cr);
 		}
