@@ -183,6 +183,12 @@ is_nbsp (gunichar ch)
 }
 
 static inline gboolean
+is_narrowed_nbsp (gunichar ch)
+{
+	return ch == 0x202F;
+}
+
+static inline gboolean
 is_space (gunichar ch)
 {
 	return g_unichar_type (ch) == G_UNICODE_SPACE_SEPARATOR;
@@ -335,8 +341,7 @@ draw_whitespace_at_iter (GtkTextView *text_view,
 	}
 	else if (is_nbsp (ch))
 	{
-		/* We also need to check if we want to draw a narrowed space */
-		draw_nbsp_at_pos (cr, rect, ch == 0x202F);
+		draw_nbsp_at_pos (cr, rect, is_narrowed_nbsp (ch));
 	}
 	else if (is_space (ch))
 	{
