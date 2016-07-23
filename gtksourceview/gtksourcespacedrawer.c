@@ -459,8 +459,7 @@ space_needs_drawing (GtkSourceSpaceDrawer *drawer,
 	gboolean has_tag;
 	gboolean needs_drawing;
 
-	/* Check the GtkSourceTag:draw-spaces property */
-
+	/* Check the GtkSourceTag:draw-spaces property (higher priority) */
 	space_needs_drawing_according_to_tag (iter, &has_tag, &needs_drawing);
 	if (has_tag)
 	{
@@ -468,7 +467,6 @@ space_needs_drawing (GtkSourceSpaceDrawer *drawer,
 	}
 
 	/* Check the flags */
-
 	return (space_needs_drawing_according_to_location (drawer, iter, leading_end, trailing_start) &&
 		space_needs_drawing_according_to_whitespace_type (drawer, iter));
 }
