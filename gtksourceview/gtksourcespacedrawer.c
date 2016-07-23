@@ -512,12 +512,12 @@ space_needs_drawing (GtkSourceSpaceDrawer *drawer,
 }
 
 static void
-get_end_iter (GtkTextView *text_view,
-	      GtkTextIter *start_iter,
-	      GtkTextIter *end_iter,
-	      gint         x,
-	      gint         y,
-	      gboolean     is_wrapping)
+get_end_iter (GtkTextView       *text_view,
+	      const GtkTextIter *start_iter,
+	      GtkTextIter       *end_iter,
+	      gint               x,
+	      gint               y,
+	      gboolean           is_wrapping)
 {
 	gint min, max, i;
 	GdkRectangle rect;
