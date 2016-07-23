@@ -84,7 +84,9 @@ typedef enum _GtkSourceSmartHomeEndType
  * GtkSourceDrawSpacesFlags:
  * @GTK_SOURCE_DRAW_SPACES_SPACE: whether the space character should be drawn.
  * @GTK_SOURCE_DRAW_SPACES_TAB: whether the tab character should be drawn.
- * @GTK_SOURCE_DRAW_SPACES_NEWLINE: whether the line breaks should be drawn.
+ * @GTK_SOURCE_DRAW_SPACES_NEWLINE: whether the line breaks should be drawn. If
+ *   the #GtkSourceBuffer:implicit-trailing-newline property is %TRUE, a line
+ *   break is also drawn at the end of the buffer.
  * @GTK_SOURCE_DRAW_SPACES_NBSP: whether the non-breaking whitespaces should be drawn.
  * @GTK_SOURCE_DRAW_SPACES_LEADING: whether leading whitespaces should be drawn.
  * @GTK_SOURCE_DRAW_SPACES_TEXT: whether whitespaces inside text should be drawn.
