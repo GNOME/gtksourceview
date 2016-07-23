@@ -579,6 +579,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	gint max_y;
 	GtkTextIter start;
 	GtkTextIter end;
+	GtkTextIter iter;
 	GtkTextIter leading_end;
 	GtkTextIter trailing_start;
 	GtkTextIter line_end;
@@ -636,25 +637,27 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	cairo_set_line_width (cr, 0.8);
 	cairo_translate (cr, -0.5, -0.5);
 
+	iter = start;
+
 	while (TRUE)
 	{
-		gunichar c = gtk_text_iter_get_char (&start);
+		gunichar c = gtk_text_iter_get_char (&iter);
 		gint ly;
 
 		if (is_whitespace (c) &&
-		    space_needs_drawing (drawer, &start, &leading_end, &trailing_start))
+		    space_needs_drawing (drawer, &iter, &leading_end, &trailing_start))
 		{
-			draw_whitespace_at_iter (text_view, &start, cr);
+			draw_whitespace_at_iter (text_view, &iter, cr);
 		}
 
-		if (!gtk_text_iter_forward_char (&start))
+		if (!gtk_text_iter_forward_char (&iter))
 		{
 			break;
 		}
 
-		if (gtk_text_iter_compare (&start, &line_end) > 0)
+		if (gtk_text_iter_compare (&iter, &line_end) > 0)
 		{
-			if (gtk_text_iter_compare (&start, &end) > 0)
+			if (gtk_text_iter_compare (&iter, &end) > 0)
 			{
 				break;
 			}
@@ -662,24 +665,24 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 			/* Move to the first iter in the exposed area of the
 			 * next line.
 			 */
-			if (!gtk_text_iter_starts_line (&start) &&
-			    !gtk_text_iter_forward_line (&start))
+			if (!gtk_text_iter_starts_line (&iter) &&
+			    !gtk_text_iter_forward_line (&iter))
 			{
 				break;
 			}
 
-			gtk_text_view_get_line_yrange (text_view, &start, &ly, NULL);
-			gtk_text_view_get_iter_at_location (text_view, &start, min_x, ly);
+			gtk_text_view_get_line_yrange (text_view, &iter, &ly, NULL);
+			gtk_text_view_get_iter_at_location (text_view, &iter, min_x, ly);
 
 			/* Move back one char otherwise tabs may not be redrawn. */
-			if (!gtk_text_iter_starts_line (&start))
+			if (!gtk_text_iter_starts_line (&iter))
 			{
-				gtk_text_iter_backward_char (&start);
+				gtk_text_iter_backward_char (&iter);
 			}
 
-			_gtk_source_iter_get_leading_spaces_end_boundary (&start, &leading_end);
-			_gtk_source_iter_get_trailing_spaces_start_boundary (&start, &trailing_start);
-			get_line_end (text_view, &start, &line_end, max_x, max_y, is_wrapping);
+			_gtk_source_iter_get_leading_spaces_end_boundary (&iter, &leading_end);
+			_gtk_source_iter_get_trailing_spaces_start_boundary (&iter, &trailing_start);
+			get_line_end (text_view, &iter, &line_end, max_x, max_y, is_wrapping);
 		}
 	};
 
