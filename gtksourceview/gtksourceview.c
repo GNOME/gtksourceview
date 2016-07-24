@@ -290,7 +290,6 @@ static void	gtk_source_view_get_property		(GObject           *object,
 							 GValue            *value,
 							 GParamSpec        *pspec);
 static void	gtk_source_view_style_updated		(GtkWidget         *widget);
-static void	gtk_source_view_realize			(GtkWidget         *widget);
 static void	gtk_source_view_update_style_scheme	(GtkSourceView     *view);
 static void	gtk_source_view_draw_layer		(GtkTextView        *view,
 							 GtkTextViewLayer   layer,
@@ -464,7 +463,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	widget_class->key_press_event = gtk_source_view_key_press_event;
 	widget_class->draw = gtk_source_view_draw;
 	widget_class->style_updated = gtk_source_view_style_updated;
-	widget_class->realize = gtk_source_view_realize;
 
 	textview_class->populate_popup = gtk_source_view_populate_popup;
 	textview_class->move_cursor = gtk_source_view_move_cursor;
@@ -4487,27 +4485,6 @@ gtk_source_view_get_visual_column (GtkSourceView     *view,
 }
 
 static void
-gtk_source_view_style_updated (GtkWidget *widget)
-{
-	GtkSourceView *view;
-
-	/* call default handler first */
-	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_updated (widget);
-
-	view = GTK_SOURCE_VIEW (widget);
-
-	/* re-set tab stops, but only if we already modified them, i.e.
-	 * do nothing with good old 8-space tabs */
-	if (view->priv->tabs_set)
-	{
-		set_tab_stops_internal (view);
-	}
-
-	/* make sure the margin position is recalculated on next redraw */
-	view->priv->cached_right_margin_pos = -1;
-}
-
-static void
 update_background_pattern_color (GtkSourceView *view)
 {
 	if (view->priv->style_scheme == NULL)
@@ -4539,11 +4516,6 @@ static void
 update_right_margin_colors (GtkSourceView *view)
 {
 	GtkWidget *widget = GTK_WIDGET (view);
-
-	if (!gtk_widget_get_realized (widget))
-	{
-		return;
-	}
 
 	if (view->priv->right_margin_line_color != NULL)
 	{
@@ -4646,14 +4618,6 @@ update_style (GtkSourceView *view)
 }
 
 static void
-gtk_source_view_realize (GtkWidget *widget)
-{
-	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->realize (widget);
-
-	update_style (GTK_SOURCE_VIEW (widget));
-}
-
-static void
 gtk_source_view_update_style_scheme (GtkSourceView *view)
 {
 	GtkTextBuffer *buffer;
@@ -4679,11 +4643,30 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 	g_set_object (&view->priv->style_scheme, new_scheme);
 
 	view->priv->style_scheme_applied = FALSE;
+	update_style (view);
+}
 
-	if (gtk_widget_get_realized (GTK_WIDGET (view)))
+static void
+gtk_source_view_style_updated (GtkWidget *widget)
+{
+	GtkSourceView *view;
+
+	/* call default handler first */
+	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_updated (widget);
+
+	view = GTK_SOURCE_VIEW (widget);
+
+	/* re-set tab stops, but only if we already modified them, i.e.
+	 * do nothing with good old 8-space tabs */
+	if (view->priv->tabs_set)
 	{
-		update_style (view);
+		set_tab_stops_internal (view);
 	}
+
+	/* make sure the margin position is recalculated on next redraw */
+	view->priv->cached_right_margin_pos = -1;
+
+	update_style (view);
 }
 
 static MarkCategory *

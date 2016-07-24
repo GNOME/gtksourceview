@@ -111,11 +111,6 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	if (!gtk_widget_get_realized (GTK_WIDGET (view)))
-	{
-		return;
-	}
-
 	if (drawer->priv->color != NULL)
 	{
 		gdk_rgba_free (drawer->priv->color);
