@@ -4649,21 +4649,23 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 static void
 gtk_source_view_style_updated (GtkWidget *widget)
 {
-	GtkSourceView *view;
+	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 
-	/* call default handler first */
-	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_updated (widget);
+	/* Call default handler first. */
+	if (GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_updated != NULL)
+	{
+		GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_updated (widget);
+	}
 
-	view = GTK_SOURCE_VIEW (widget);
-
-	/* re-set tab stops, but only if we already modified them, i.e.
-	 * do nothing with good old 8-space tabs */
+	/* Re-set tab stops, but only if we already modified them, i.e.
+	 * do nothing with good old 8-space tabs.
+	 */
 	if (view->priv->tabs_set)
 	{
 		set_tab_stops_internal (view);
 	}
 
-	/* make sure the margin position is recalculated on next redraw */
+	/* Make sure the margin position is recalculated on next redraw. */
 	view->priv->cached_right_margin_pos = -1;
 
 	update_style (view);
