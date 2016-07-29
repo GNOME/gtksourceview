@@ -5,7 +5,7 @@
 
  Copyright (C) 2005-2007 - Marco Barisione <barisione@gmail.com>
  Copyright (C) 2012-2013 - Tobias Marczewski <tmarczewski@ed-alumni.net>
- Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
+ Copyright (C) 2013, 2016 - Sébastien Wilmet <swilmet@gnome.org>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -47,9 +47,6 @@
     <style id="subsubsection"      _name="SubSubSection Heading" map-to="def:heading4"/>
     <style id="paragraph"          _name="Paragraph Heading"     map-to="def:heading5"/>
     <style id="subparagraph"       _name="SubParagraph Heading"  map-to="def:heading6"/>
-
-    <!-- names, e.g., name of package, name of environment, name of class -->
-    <style id="name"               _name="Name"                 map-to="def:identifier"/>
   </styles>
 
   <definitions>
@@ -91,12 +88,10 @@
 
     <context id="R-block" class="no-spell-check">
       <start>(\\begin)\{(Scode|Sinput|Soutput)\}</start>
-      <end>(\\end)\{(\%{2@start})\}</end>
+      <end>(\\end)\{\%{2@start}\}</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="common-commands"/>
-        <context sub-pattern="2" where="start" style-ref="name"/>
         <context sub-pattern="1" where="end" style-ref="common-commands"/>
-        <context sub-pattern="2" where="end" style-ref="name"/>
         <context ref="r:r"/>
       </include>
     </context>
@@ -296,26 +291,23 @@
     <context id="specific-commands">
       <include>
         <context id="documentclass" class="no-spell-check">
-          <match>(\\documentclass)(\[.*\])?\{([a-zA-Z]+)\}</match>
+          <match>(\\documentclass)(\[.*\])?\{[a-zA-Z]+\}</match>
           <include>
             <context sub-pattern="1" style-ref="common-commands"/>
-            <context sub-pattern="3" style-ref="name"/>
           </include>
         </context>
 
         <context id="usepackage" class="no-spell-check">
-          <match>(\\usepackage)(\[.*\])?\{([0-9a-zA-Z,\s]+)\}</match>
+          <match>(\\usepackage)(\[.*\])?\{[0-9a-zA-Z,\s]+\}</match>
           <include>
             <context sub-pattern="1" style-ref="include"/>
-            <context sub-pattern="3" style-ref="name"/>
           </include>
         </context>
 
         <context id="begin-end-command" class="no-spell-check">
-          <match>(\\(begin|end))\{([a-zA-Z0-9]+\*?)\}</match>
+          <match>(\\(begin|end))\{[a-zA-Z0-9]+\*?\}</match>
           <include>
             <context sub-pattern="1" style-ref="common-commands"/>
-            <context sub-pattern="3" style-ref="name"/>
           </include>
         </context>
       </include>
@@ -540,14 +532,12 @@
       </include>
     </context>
 
-    <context id="math-env" style-ref="math" class="no-spell-check">
+    <context id="math-env" style-ref="math" style-inside="true" class="no-spell-check">
       <start>(\\begin)\{(math|displaymath|equation\*?|align\*?|eqnarray\*?)\}</start>
-      <end>(\\end)\{(\%{2@start})\}</end>
+      <end>(\\end)\{\%{2@start}\}</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="common-commands"/>
-        <context sub-pattern="2" where="start" style-ref="name"/>
         <context sub-pattern="1" where="end" style-ref="common-commands"/>
-        <context sub-pattern="2" where="end" style-ref="name"/>
         <context ref="in-math"/>
       </include>
     </context>
