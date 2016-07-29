@@ -449,7 +449,7 @@ be redefined with the <code>&lt;keyword-char-class&gt;</code> (in contrast with
 
 <para>
 It is allowed to use any of the attributes from
-<code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
+<code>&lt;default-regex-options&gt;</code> as attributes of this tag.
 </para>
 
 <para>
@@ -862,7 +862,7 @@ Contains the regular expression for the current simple context.
 The expression is in the same form used in
 <code>&lt;define-regex&gt;</code> elements.
 It is allowed to use any of the attributes from
-<code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
+<code>&lt;default-regex-options&gt;</code> as attributes of this tag.
 </para>
 
 <para>
@@ -879,7 +879,7 @@ Contains the starting regular expression for the current container context.
 The expression is in the same form used in <code>&lt;define-regex&gt;</code>
 elements.
 It is allowed to use any of the attributes from
-<code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
+<code>&lt;default-regex-options&gt;</code> as attributes of this tag.
 </para>
 
 <para>
@@ -910,7 +910,7 @@ implement shell-style here-documents with this code:
 
 <para>
 It is also possible to use any of the attributes from
-<code>&lt;default-regex-opts&gt;</code> as attributes of this tag.
+<code>&lt;default-regex-options&gt;</code> as attributes of this tag.
 </para>
 <para>
 Contained elements: none.
