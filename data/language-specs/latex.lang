@@ -76,11 +76,22 @@
     <!-- verbatim -->
 
     <context id="verbatim-env" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
-      <start>(\\begin)\{(verbatim\*?|lstlisting|alltt)\}</start>
-      <end>(\\end)\{\%{2@start}\}</end>
+      <start>(\\begin)\{(verbatim\*?|alltt)\}</start>
+      <end>(\\end)\{(\%{2@start})\}</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="common-commands" class="no-spell-check"/>
         <context sub-pattern="1" where="end" style-ref="common-commands" class="no-spell-check"/>
+        <context sub-pattern="2" where="start" class="no-spell-check"/>
+        <context sub-pattern="2" where="end" class="no-spell-check"/>
+      </include>
+    </context>
+
+    <context id="lstlisting-env" style-inside="true" style-ref="verbatim" class="no-spell-check">
+      <start>(\\begin)\{lstlisting\}</start>
+      <end>(\\end)\{lstlisting\}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="common-commands"/>
+        <context sub-pattern="1" where="end" style-ref="common-commands"/>
       </include>
     </context>
 
@@ -113,29 +124,29 @@
 
           If using \verb instead of \lstinline, the brackets cannot be used
         -->
-    <context id="lstinline-curly-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+    <context id="lstinline-curly-brackets" style-inside="true" style-ref="verbatim" class="no-spell-check">
       <start>(\\lstinline)(\[.*?\])?{</start>
       <end>}</end>
       <include>
-        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
+        <context sub-pattern="1" where="start" style-ref="command"/>
       </include>
     </context>
 
-    <context id="lstinline-square-brackets" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+    <context id="lstinline-square-brackets" style-inside="true" style-ref="verbatim" class="no-spell-check">
       <!-- square brackets don't match with the pair, and they require an
            optional argument, even if empty -->
       <start>(\\lstinline)(\[.*?\])\[</start>
       <end>\[</end>
       <include>
-        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
+        <context sub-pattern="1" where="start" style-ref="command"/>
       </include>
     </context>
 
-    <context id="lstinline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
+    <context id="lstinline" style-inside="true" style-ref="verbatim" class="no-spell-check">
       <start>(\\lstinline)(\[.*?\])?((?!\[)\S)</start>  <!-- ignore when starting with [ -->
       <end>\%{3@start}</end>
       <include>
-        <context sub-pattern="1" where="start" style-ref="command" class="no-spell-check"/>
+        <context sub-pattern="1" where="start" style-ref="command"/>
       </include>
     </context>
 
@@ -151,6 +162,7 @@
     <context id="verbatim">
       <include>
         <context ref="verbatim-env"/>
+        <context ref="lstlisting-env"/>
         <context ref="verbatim-inline"/>
         <context ref="lstinline-curly-brackets"/>
         <context ref="lstinline-square-brackets"/>
