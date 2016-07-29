@@ -291,21 +291,21 @@
     <context id="specific-commands">
       <include>
         <context id="documentclass" class="no-spell-check">
-          <match>(\\documentclass)(\[.*\])?(\{[a-zA-Z]+\})?</match>
+          <match>(\\documentclass)(\[.*\])?(\{.*\})?</match>
           <include>
             <context sub-pattern="1" style-ref="common-commands"/>
           </include>
         </context>
 
         <context id="usepackage" class="no-spell-check">
-          <match>(\\usepackage)(\[.*\])?(\{[0-9a-zA-Z,\s]+\})?</match>
+          <match>(\\usepackage)(\[.*\])?(\{.*\})?</match>
           <include>
             <context sub-pattern="1" style-ref="include"/>
           </include>
         </context>
 
         <context id="begin-end-command" class="no-spell-check">
-          <match>(\\(begin|end))\{[a-zA-Z0-9]+\*?\}</match>
+          <match>(\\(begin|end))\{.*\}</match>
           <include>
             <context sub-pattern="1" style-ref="common-commands"/>
           </include>
