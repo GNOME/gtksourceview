@@ -275,15 +275,6 @@
       <keyword>zeta</keyword>
     </context>
 
-    <context id="include" style-ref="include" class="no-spell-check">
-      <prefix>\\</prefix>
-
-      <keyword>input</keyword>
-      <keyword>include</keyword>
-      <keyword>includeonly</keyword>
-      <keyword>usepackage</keyword>
-    </context>
-
     <context id="generic-command" style-ref="command" class="no-spell-check" extend-parent="false">
       <match>\\\@?[[:alnum:]]+\*?</match>
     </context>
@@ -297,8 +288,8 @@
           </include>
         </context>
 
-        <context id="usepackage" class="no-spell-check">
-          <match>(\\usepackage)(\[.*\])?(\{.*\})?</match>
+        <context id="include" class="no-spell-check">
+          <match>(\\(input|include|includeonly|usepackage))(\[.*\])?(\{.*\})?</match>
           <include>
             <context sub-pattern="1" style-ref="include"/>
           </include>
@@ -580,7 +571,6 @@
         <context ref="headings"/>
         <context ref="math"/>
         <context ref="specific-commands"/>
-        <context ref="include"/>
         <context ref="common-commands"/>
         <context ref="special-char"/>
         <context ref="generic-command"/>
