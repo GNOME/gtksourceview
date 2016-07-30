@@ -198,7 +198,6 @@ struct _GtkSourceViewPrivate
 	guint highlight_current_line : 1;
 	guint indent_on_tab : 1;
 	guint show_right_margin  : 1;
-	guint style_scheme_applied : 1;
 	guint current_line_color_set : 1;
 	guint background_pattern_color_set : 1;
 	guint smart_backspace : 1;
@@ -4598,13 +4597,6 @@ update_right_margin_colors (GtkSourceView *view)
 static void
 update_style (GtkSourceView *view)
 {
-	if (view->priv->style_scheme != NULL &&
-	    !view->priv->style_scheme_applied)
-	{
-		_gtk_source_style_scheme_apply (view->priv->style_scheme, view);
-		view->priv->style_scheme_applied = TRUE;
-	}
-
 	update_background_pattern_color (view);
 	update_current_line_color (view);
 	update_right_margin_colors (view);
@@ -4642,7 +4634,11 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 
 	g_set_object (&view->priv->style_scheme, new_scheme);
 
-	view->priv->style_scheme_applied = FALSE;
+	if (view->priv->style_scheme != NULL)
+	{
+		_gtk_source_style_scheme_apply (view->priv->style_scheme, view);
+	}
+
 	update_style (view);
 }
 
