@@ -16,8 +16,6 @@ LDADD = $(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
 	$(DEP_LIBS) \
 	$(TESTS_LIBS)
 
-noinst_PROGRAMS = $(TEST_PROGS)
-
 BUILT_SOURCES =				\
 	test-completion-resources.c	\
 	test-search-resources.c		\
@@ -34,7 +32,9 @@ test-search-resources.c: test-search.gresource.xml $(shell $(GLIB_COMPILE_RESOUR
 test-widget-resources.c: test-widget.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/test-widget.gresource.xml)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir) --generate-source $(srcdir)/test-widget.gresource.xml
 
-TEST_PROGS = test-completion
+TEST_PROGS =
+
+TEST_PROGS += test-completion
 test_completion_SOURCES = test-completion.c
 nodist_test_completion_SOURCES = test-completion-resources.c
 
@@ -54,6 +54,8 @@ test_undo_manager_performances_SOURCES = test-undo-manager-performances.c
 TEST_PROGS += test-widget
 test_widget_SOURCES = test-widget.c
 nodist_test_widget_SOURCES = test-widget-resources.c
+
+noinst_PROGRAMS = $(TEST_PROGS)
 
 python_tests =			\
 	test-completion.py	\

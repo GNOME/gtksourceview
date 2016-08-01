@@ -1,5 +1,9 @@
 SUBDIRS = gtksourceview po data docs tests testsuite build
 
+@CODE_COVERAGE_RULES@
+
+AM_DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-glade-catalog
+
 pkgconfig_DATA = gtksourceview-3.0.pc
 
 EXTRA_DIST = \
@@ -91,9 +95,5 @@ MAINTAINERCLEANFILES = 		\
 	po/stamp-po		\
 	test-driver		\
 	`find "$(srcdir)" -type f -name Makefile.in -print`
-
-AM_DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-glade-catalog
-
-@CODE_COVERAGE_RULES@
 
 -include $(top_srcdir)/git.mk
