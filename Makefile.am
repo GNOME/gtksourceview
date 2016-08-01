@@ -2,7 +2,11 @@ SUBDIRS = gtksourceview po data docs tests testsuite build
 
 @CODE_COVERAGE_RULES@
 
-AM_DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-glade-catalog
+AM_DISTCHECK_CONFIGURE_FLAGS =		\
+	--enable-gtk-doc		\
+	--enable-introspection		\
+	--enable-vala			\
+	--enable-glade-catalog
 
 pkgconfig_DATA = gtksourceview-3.0.pc
 
