@@ -30,9 +30,6 @@
 const gchar *
 _gtksourceview_gettext (const gchar *msgid)
 {
-	G_GNUC_UNUSED const char translator_credits[] = N_("translator-credits");
-	/* above is a dummy variable to get the string into po files */
-
 	return g_dgettext (GETTEXT_PACKAGE, msgid);
 }
 
