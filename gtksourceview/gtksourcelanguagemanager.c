@@ -68,6 +68,8 @@ struct _GtkSourceLanguageManagerPrivate
 	gchar          **ids; /* Cache the IDs of the available languages */
 };
 
+static GtkSourceLanguageManager *default_instance;
+
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceLanguageManager, gtk_source_language_manager, G_TYPE_OBJECT)
 
 static void
@@ -203,16 +205,20 @@ gtk_source_language_manager_new (void)
 GtkSourceLanguageManager *
 gtk_source_language_manager_get_default (void)
 {
-	static GtkSourceLanguageManager *instance;
-
-	if (instance == NULL)
+	if (default_instance == NULL)
 	{
-		instance = gtk_source_language_manager_new ();
-		g_object_add_weak_pointer (G_OBJECT (instance),
-					   (gpointer) &instance);
+		default_instance = gtk_source_language_manager_new ();
+		g_object_add_weak_pointer (G_OBJECT (default_instance),
+					   (gpointer) &default_instance);
 	}
 
-	return instance;
+	return default_instance;
+}
+
+GtkSourceLanguageManager *
+_gtk_source_language_manager_peek_default (void)
+{
+	return default_instance;
 }
 
 static void

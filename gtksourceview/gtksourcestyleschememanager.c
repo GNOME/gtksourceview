@@ -57,6 +57,8 @@ enum {
 	PROP_SCHEME_IDS
 };
 
+static GtkSourceStyleSchemeManager *default_instance;
+
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceStyleSchemeManager, gtk_source_style_scheme_manager, G_TYPE_OBJECT)
 
 static void
@@ -202,16 +204,20 @@ gtk_source_style_scheme_manager_new (void)
 GtkSourceStyleSchemeManager *
 gtk_source_style_scheme_manager_get_default (void)
 {
-	static GtkSourceStyleSchemeManager *instance;
-
-	if (instance == NULL)
+	if (default_instance == NULL)
 	{
-		instance = gtk_source_style_scheme_manager_new ();
-		g_object_add_weak_pointer (G_OBJECT (instance),
-					   (gpointer) &instance);
+		default_instance = gtk_source_style_scheme_manager_new ();
+		g_object_add_weak_pointer (G_OBJECT (default_instance),
+					   (gpointer) &default_instance);
 	}
 
-	return instance;
+	return default_instance;
+}
+
+GtkSourceStyleSchemeManager *
+_gtk_source_style_scheme_manager_peek_default (void)
+{
+	return default_instance;
 }
 
 static gboolean

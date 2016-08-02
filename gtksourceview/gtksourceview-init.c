@@ -19,7 +19,10 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-/* Init i18n */
+/* Constructor to init i18n.
+ * Destructor to release remaining allocated memory (useful when using
+ * memory-debugging tools).
+ */
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -30,6 +33,8 @@
 #endif
 
 #include "gconstructor.h"
+#include "gtksourcelanguagemanager.h"
+#include "gtksourcestyleschememanager.h"
 
 #ifdef G_OS_WIN32
 static HMODULE gtksourceview_dll;
@@ -127,6 +132,19 @@ gtksourceview_init (void)
 #endif /* ENABLE_NLS */
 }
 
+static void
+gtksourceview_shutdown (void)
+{
+	GtkSourceLanguageManager *language_manager;
+	GtkSourceStyleSchemeManager *style_scheme_manager;
+
+	language_manager = _gtk_source_language_manager_peek_default ();
+	g_clear_object (&language_manager);
+
+	style_scheme_manager = _gtk_source_style_scheme_manager_peek_default ();
+	g_clear_object (&style_scheme_manager);
+}
+
 #if defined (G_OS_WIN32)
 
 BOOL WINAPI DllMain (HINSTANCE hinstDLL,
@@ -146,6 +164,9 @@ DllMain (HINSTANCE hinstDLL,
 			break;
 
 		case DLL_THREAD_DETACH:
+			gtksourceview_shutdown ();
+			break;
+
 		default:
 			/* do nothing */
 			break;
@@ -165,6 +186,17 @@ static void
 gtksourceview_constructor (void)
 {
 	gtksourceview_init ();
+}
+
+#  ifdef G_DEFINE_DESTRUCTOR_NEEDS_PRAGMA
+#    pragma G_DEFINE_DESTRUCTOR_PRAGMA_ARGS(gtksourceview_destructor)
+#  endif
+G_DEFINE_DESTRUCTOR (gtksourceview_destructor)
+
+static void
+gtksourceview_destructor (void)
+{
+	gtksourceview_shutdown ();
 }
 
 #else
