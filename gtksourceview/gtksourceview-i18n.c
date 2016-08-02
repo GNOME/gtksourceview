@@ -27,107 +27,11 @@
 
 #include "gtksourceview-i18n.h"
 
-#ifdef OS_OSX
-
-#include <Cocoa/Cocoa.h>
-
-static gchar *
-dirs_os_x_get_bundle_resource_dir (void)
-{
-	NSAutoreleasePool *pool;
-	gchar *str = NULL;
-	NSString *path;
-
-	pool = [[NSAutoreleasePool alloc] init];
-
-	if ([[NSBundle mainBundle] bundleIdentifier] == nil)
-	{
-		[pool release];
-		return NULL;
-	}
-
-	path = [[NSBundle mainBundle] resourcePath];
-
-	if (!path)
-	{
-		[pool release];
-		return NULL;
-	}
-
-	str = g_strdup ([path UTF8String]);
-	[pool release];
-	return str;
-}
-
-static gchar *
-dirs_os_x_get_locale_dir (void)
-{
-	gchar *res_dir;
-	gchar *ret;
-
-	res_dir = dirs_os_x_get_bundle_resource_dir ();
-
-	if (res_dir == NULL)
-	{
-		ret = g_build_filename (DATADIR, "locale", NULL);
-	}
-	else
-	{
-		ret = g_build_filename (res_dir, "share", "locale", NULL);
-		g_free (res_dir);
-	}
-
-	return ret;
-}
-
-#endif
-
-static gchar *
-get_locale_dir (void)
-{
-	gchar *locale_dir;
-
-#ifdef G_OS_WIN32
-	gchar *win32_dir;
-
-	win32_dir = g_win32_get_package_installation_directory_of_module (NULL);
-
-	locale_dir = g_build_filename (win32_dir, "share", "locale", NULL);
-
-	g_free (win32_dir);
-#elif defined (OS_OSX)
-	locale_dir = dirs_os_x_get_locale_dir ();
-#else
-	locale_dir = g_build_filename (DATADIR, "locale", NULL);
-#endif
-
-	return locale_dir;
-}
-
-/*
- * Small hack since we don't have a proper place where
- * do gettext initialization.
- */
 const gchar *
 _gtksourceview_gettext (const gchar *msgid)
 {
-	static gboolean initialized = FALSE;
-
 	G_GNUC_UNUSED const char translator_credits[] = N_("translator-credits");
 	/* above is a dummy variable to get the string into po files */
-
-	if (G_UNLIKELY (!initialized))
-	{
-		gchar *locale_dir;
-
-		locale_dir = get_locale_dir ();
-
-		bindtextdomain (GETTEXT_PACKAGE, locale_dir);
-		g_free (locale_dir);
-
-		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-		initialized = TRUE;
-	}
 
 	return g_dgettext (GETTEXT_PACKAGE, msgid);
 }

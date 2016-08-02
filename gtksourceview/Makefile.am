@@ -96,6 +96,7 @@ libgtksourceview_public_c_files =		\
 	gtksourceview.c
 
 libgtksourceview_private_headers =		\
+	gconstructor.h				\
 	gtksourcebuffer-private.h		\
 	gtksourcebufferinputstream.h		\
 	gtksourcebufferoutputstream.h		\
@@ -139,6 +140,7 @@ libgtksourceview_private_c_files =	\
 	gtksourcespacedrawer.c		\
 	gtksourceundomanagerdefault.c	\
 	gtksourceview-i18n.c		\
+	gtksourceview-init.c		\
 	gtksourceview-utils.c
 
 # Split in a helper library, so the private functions can be used in unit tests.
