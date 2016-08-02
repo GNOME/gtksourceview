@@ -192,6 +192,10 @@ GOBJECT_INTROSPECTION_CHECK([1.42.0])
 AX_REQUIRE_DEFINED([AX_CODE_COVERAGE])
 AX_CODE_COVERAGE()
 
+# Valgrind check
+AX_REQUIRE_DEFINED([AX_VALGRIND_CHECK])
+AX_VALGRIND_CHECK
+
 # Vala
 AX_REQUIRE_DEFINED([VAPIGEN_CHECK])
 VAPIGEN_CHECK
@@ -243,5 +247,6 @@ Configuration:
 	GObject introspection:	${found_introspection}
 	Vala:			${enable_vala}
 	Code coverage:		${enable_code_coverage}
+	Valgrind check:		${enable_valgrind}
 	Installed tests:	${enable_installed_tests}
 "
