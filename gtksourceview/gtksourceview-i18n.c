@@ -27,51 +27,42 @@
 
 #include "gtksourceview-i18n.h"
 
-const gchar *
-_gtksourceview_gettext (const gchar *msgid)
-{
-	return g_dgettext (GETTEXT_PACKAGE, msgid);
-}
-
 /**
  * _gtksourceview_dgettext:
  *
  * Try to translate string from given domain. It returns
  * duplicated string which must be freed with g_free().
  */
-#ifdef ENABLE_NLS
-char *
-_gtksourceview_dgettext (const char *domain,
-                         const char *string)
+gchar *
+_gtksourceview_dgettext (const gchar *domain,
+                         const gchar *string)
 {
-	gchar *tmp;
+#ifdef ENABLE_NLS
 	const gchar *translated;
+	gchar *tmp;
 
 	g_return_val_if_fail (string != NULL, NULL);
 
 	if (domain == NULL)
-		return g_strdup (_gtksourceview_gettext (string));
+	{
+		return g_strdup (_(string));
+	}
 
 	translated = dgettext (domain, string);
 
-	if (strcmp (translated, string) == 0)
-		return g_strdup (_gtksourceview_gettext (string));
+	if (g_strcmp0 (translated, string) == 0)
+	{
+		return g_strdup (_(string));
+	}
 
 	if (g_utf8_validate (translated, -1, NULL))
+	{
 		return g_strdup (translated);
+	}
 
 	tmp = g_locale_to_utf8 (translated, -1, NULL, NULL, NULL);
-
-	if (tmp == NULL)
-		return g_strdup (string);
-	else
-		return tmp;
-}
+	return tmp != NULL ? tmp : g_strdup (string);
 #else
-char *
-_gtksourceview_dgettext (const char *domain,
-                         const char *string)
-{
 	return g_strdup (string);
-}
 #endif
+}
