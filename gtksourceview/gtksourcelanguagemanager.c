@@ -23,12 +23,15 @@
 #include <config.h>
 #endif
 
+#include "gtksourcelanguagemanager.h"
+
 #include <string.h>
-#include "gtksourceview-i18n.h"
-#include "gtksourcelanguage-private.h"
-#include "gtksourcelanguage.h"
-#include "gtksourceview-utils.h"
 #include <gio/gio.h>
+
+#include "gtksourcelanguage.h"
+#include "gtksourcelanguage-private.h"
+#include "gtksourceview-utils.h"
+#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:languagemanager

@@ -30,6 +30,7 @@
 #  endif
 #endif
 
+#include <glib-object.h>
 #include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
