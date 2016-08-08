@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-07 14:16+0000\n"
-"PO-Revision-Date: 2016-06-12 13:08+0200\n"
+"POT-Creation-Date: 2016-08-02 05:30+0000\n"
+"PO-Revision-Date: 2016-08-08 12:48+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 
 # PM: Inteligentný Home/End
@@ -92,7 +92,7 @@ msgstr "Koncové"
 #. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:834
+#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:833
 msgid "All"
 msgstr "Všetky"
 
@@ -1015,10 +1015,8 @@ msgstr "Rozmer"
 #  style name
 #. (itstool) path: styles/style@_name
 #: css.lang:57
-#, fuzzy
-#| msgid "Known Property Value"
 msgid "Property Value"
-msgstr "Známa hodnota vlastnosti"
+msgstr "Hodnota vlastnosti"
 
 #  style name
 #. (itstool) path: styles/style@_name
@@ -3319,12 +3317,13 @@ msgstr "Definícia premennej"
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
 #.
-#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:55
+#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:56
 msgid "Others"
 msgstr "Ostatné"
 
@@ -3718,43 +3717,43 @@ msgid "Color scheme using Tango color palette"
 msgstr "Schéma farieb využívajúca paletu farieb Tango"
 
 # property nick
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:334
 msgid "Document Words"
 msgstr "Slová dokumentu"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:842
+#: gtksourceview/gtksourcebufferoutputstream.c:843
 msgid "Invalid byte sequence in conversion input"
 msgstr "Neplatná postupnosť znakov vo vstupe konverzie"
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=629284
-#: gtksourceview/gtksourcebufferoutputstream.c:848
+#: gtksourceview/gtksourcebufferoutputstream.c:849
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Chyba počas konverzie: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:929
+#: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
 msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
 msgstr "Konverzia zo znakovej sady „%s“ na „UTF-8“ nie je podporovaná"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:935
+#: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
 msgid "Could not open converter from '%s' to 'UTF-8'"
 msgstr "Nepodarilo sa otvoriť nástroj na konverziu z „%s“ na „UTF-8“"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:990
+#: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
 msgstr "Neplatný objekt, neinicializované"
 
 # PM: nebude lepšia postupnosť?
 #  style name
-#: gtksourceview/gtksourcebufferoutputstream.c:1182
+#: gtksourceview/gtksourcebufferoutputstream.c:1188
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Neúplná sekvencia v kódovaní UTF-8 na vstupe"
 
 # window title
 #. Tooltip style
-#: gtksourceview/gtksourcecompletioninfo.c:272
+#: gtksourceview/gtksourcecompletioninfo.c:271
 msgid "Completion Info"
 msgstr "Informácie o dokončovaní"
 
@@ -3777,7 +3776,7 @@ msgstr "_Podrobnosti..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3145
+#: gtksourceview/gtksourcecontextengine.c:3141
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3788,7 +3787,7 @@ msgstr ""
 "zvýrazňovania syntaxe bude pracovať pomalšie ako obvykle.\n"
 "Chyba bola: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4468
+#: gtksourceview/gtksourcecontextengine.c:4464
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -3796,19 +3795,19 @@ msgstr ""
 "Zvýrazňovanie jedného riadku zabralo príliš veľa času, zvýrazňovanie syntaxe "
 "bude zakázané"
 
-#: gtksourceview/gtksourcecontextengine.c:5716
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "kontext „%s“ nemôže obsahovať príkaz \\%%{...@start}"
 
-#: gtksourceview/gtksourcecontextengine.c:5879
-#: gtksourceview/gtksourcecontextengine.c:5970
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5966
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "duplicitný identifikátor kontextu „%s“"
 
-#: gtksourceview/gtksourcecontextengine.c:6084
-#: gtksourceview/gtksourcecontextengine.c:6144
+#: gtksourceview/gtksourcecontextengine.c:6080
+#: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -3817,18 +3816,18 @@ msgstr ""
 "prepisovanie štýlu použité s odkazmi na kontext pomocou náhradných znakov v "
 "jazyku „%s“ v odkaze „%s“"
 
-#: gtksourceview/gtksourcecontextengine.c:6158
+#: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "neplatný kontextový odkaz „%s“"
 
-#: gtksourceview/gtksourcecontextengine.c:6177
-#: gtksourceview/gtksourcecontextengine.c:6187
+#: gtksourceview/gtksourcecontextengine.c:6173
+#: gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
 msgid "unknown context '%s'"
 msgstr "neznámy kontext „%s“"
 
-#: gtksourceview/gtksourcecontextengine.c:6286
+#: gtksourceview/gtksourcecontextengine.c:6282
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Chýba hlavná definícia jazyka (identifikátor = „%s“.)"
@@ -3982,11 +3981,11 @@ msgstr "Súbor je príliš veľký."
 msgid "Not a regular file."
 msgstr "Nie je bežný súbor."
 
-#: gtksourceview/gtksourcefilesaver.c:910
+#: gtksourceview/gtksourcefilesaver.c:968
 msgid "The file is externally modified."
 msgstr "Súbor je upravovaný externe."
 
-#: gtksourceview/gtksourcefilesaver.c:1350
+#: gtksourceview/gtksourcefilesaver.c:1420
 msgid "The buffer contains invalid characters."
 msgstr "Zásobník obsahuje neplatné znaky."
 
@@ -4020,39 +4019,38 @@ msgid "_Select"
 msgstr "Vy_brať"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1565
+#: gtksourceview/gtksourceview.c:1683
 msgid "_Redo"
 msgstr "_Znovu vykonať"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1576
+#: gtksourceview/gtksourceview.c:1694
 msgid "_Undo"
 msgstr "Vrátiť _späť"
 
-#: gtksourceview/gtksourceview.c:1595
+#: gtksourceview/gtksourceview.c:1713
 msgid "All _Upper Case"
 msgstr "Všetko _veľkým písmom"
 
-#: gtksourceview/gtksourceview.c:1605
+#: gtksourceview/gtksourceview.c:1723
 msgid "All _Lower Case"
 msgstr "Všetko _malým písmom"
 
-#: gtksourceview/gtksourceview.c:1615
+#: gtksourceview/gtksourceview.c:1733
 msgid "_Invert Case"
 msgstr "Ob_rátiť veľkosť písma"
 
-#: gtksourceview/gtksourceview.c:1625
+#: gtksourceview/gtksourceview.c:1743
 msgid "_Title Case"
 msgstr "_Počiatočné písmeno veľkým"
 
 #  style name
-#: gtksourceview/gtksourceview.c:1635
+#: gtksourceview/gtksourceview.c:1753
 msgid "C_hange Case"
 msgstr "Z_meniť veľkosť písma"
 
-#: gtksourceview/gtksourceview-i18n.c:116
-msgid "translator-credits"
-msgstr "Roman Mátyus <romanmatyus@gmail.com>"
+#~ msgid "translator-credits"
+#~ msgstr "Roman Mátyus <romanmatyus@gmail.com>"
 
 #  style name
 #~ msgid "Escaped Characters"
