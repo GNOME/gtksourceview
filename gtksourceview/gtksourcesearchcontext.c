@@ -1558,19 +1558,30 @@ scan_subregion (GtkSourceSearchContext *search,
 
 static void
 scan_all_region (GtkSourceSearchContext *search,
-		 GtkSourceRegion        *region_to_highlight)
+		 GtkSourceRegion        *region)
 {
-	GtkTextIter start_search;
-	GtkTextIter end_search;
+	GtkSourceRegionIter region_iter;
 
-	if (!gtk_source_region_get_bounds (region_to_highlight,
-					   &start_search,
-					   &end_search))
+	gtk_source_region_get_start_region_iter (region, &region_iter);
+
+	while (!gtk_source_region_iter_is_end (&region_iter))
 	{
-		return;
-	}
+		GtkTextIter subregion_start;
+		GtkTextIter subregion_end;
 
-	scan_subregion (search, &start_search, &end_search);
+		if (!gtk_source_region_iter_get_subregion (&region_iter,
+							   &subregion_start,
+							   &subregion_end))
+		{
+			break;
+		}
+
+		scan_subregion (search,
+				&subregion_start,
+				&subregion_end);
+
+		gtk_source_region_iter_next (&region_iter);
+	}
 }
 
 /* Scan a chunk of the region. If the region is small enough, all the region
@@ -1734,21 +1745,11 @@ idle_scan_normal_search (GtkSourceSearchContext *search)
 static void
 regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 {
-	GtkTextIter start;
-	GtkTextIter end;
 	GtkSourceRegion *region;
 	GtkSourceRegionIter region_iter;
 
-	if (!gtk_source_region_get_bounds (search->priv->high_priority_region,
-					   &start,
-					   &end))
-	{
-		return;
-	}
-
-	region = gtk_source_region_intersect (search->priv->scan_region,
-					      &start,
-					      &end);
+	region = gtk_source_region_intersect_region (search->priv->high_priority_region,
+						     search->priv->scan_region);
 
 	if (region == NULL)
 	{
@@ -3983,13 +3984,14 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 	return nb_matches_replaced;
 }
 
+/* Highlight the [start,end] region in priority. */
 void
 _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 					     const GtkTextIter      *start,
 					     const GtkTextIter      *end,
 					     gboolean                synchronous)
 {
-	GtkSourceRegion *region_to_highlight;
+	GtkSourceRegion *region_to_highlight = NULL;
 
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
 	g_return_if_fail (start != NULL);
@@ -4013,16 +4015,19 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 
 	if (!synchronous)
 	{
-		/* The high priority region is used to highlight the region
-		 * visible on screen. So if we are here, that means that the
-		 * visible region has changed. So we can destroy the old
-		 * high_priority_region.
-		 */
-		g_clear_object (&search->priv->high_priority_region);
+		if (search->priv->high_priority_region == NULL)
+		{
+			search->priv->high_priority_region = region_to_highlight;
+			region_to_highlight = NULL;
+		}
+		else
+		{
+			gtk_source_region_add_region (search->priv->high_priority_region,
+						      region_to_highlight);
+		}
 
-		search->priv->high_priority_region = region_to_highlight;
 		install_idle_scan (search);
-		return;
+		goto out;
 	}
 
 	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
