@@ -329,9 +329,9 @@ idle_scan_regions (GtkSourceCompletionWordsBuffer *buffer)
 		gtk_source_region_iter_next (&region_iter);
 	}
 
-	gtk_source_region_subtract (buffer->priv->scan_region,
-				    &start,
-				    &stop);
+	gtk_source_region_subtract_subregion (buffer->priv->scan_region,
+					      &start,
+					      &stop);
 
 	if (gtk_source_region_is_empty (buffer->priv->scan_region))
 	{
@@ -429,7 +429,7 @@ compute_remove_region (GtkSourceCompletionWordsBuffer *buffer,
 	GtkSourceRegion *remove_region = gtk_source_region_new (buffer->priv->buffer);
 	GtkSourceRegionIter region_iter;
 
-	gtk_source_region_add (remove_region, start, end);
+	gtk_source_region_add_subregion (remove_region, start, end);
 
 	gtk_source_region_get_start_region_iter (buffer->priv->scan_region, &region_iter);
 
@@ -442,9 +442,9 @@ compute_remove_region (GtkSourceCompletionWordsBuffer *buffer,
 						      &scan_start,
 						      &scan_end);
 
-		gtk_source_region_subtract (remove_region,
-					    &scan_start,
-					    &scan_end);
+		gtk_source_region_subtract_subregion (remove_region,
+						      &scan_start,
+						      &scan_end);
 
 		gtk_source_region_iter_next (&region_iter);
 	}
@@ -483,9 +483,9 @@ add_to_scan_region (GtkSourceCompletionWordsBuffer *buffer,
 
 	_gtk_source_completion_words_utils_adjust_region (&start_iter, &end_iter);
 
-	gtk_source_region_add (buffer->priv->scan_region,
-			       &start_iter,
-			       &end_iter);
+	gtk_source_region_add_subregion (buffer->priv->scan_region,
+					 &start_iter,
+					 &end_iter);
 
 	install_initiate_scan (buffer);
 }
@@ -574,9 +574,9 @@ scan_all_buffer (GtkSourceCompletionWordsBuffer *buffer)
 	                            &start,
 	                            &end);
 
-	gtk_source_region_add (buffer->priv->scan_region,
-			       &start,
-			       &end);
+	gtk_source_region_add_subregion (buffer->priv->scan_region,
+					 &start,
+					 &end);
 
 	install_initiate_scan (buffer);
 }

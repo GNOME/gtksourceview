@@ -949,7 +949,7 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 	GtkSourceRegionIter reg_iter;
 
 	/* Get the subregions not yet highlighted. */
-	region = gtk_source_region_intersect (ce->priv->refresh_region, start, end);
+	region = gtk_source_region_intersect_subregion (ce->priv->refresh_region, start, end);
 
 	if (region == NULL)
 		return;
@@ -969,7 +969,7 @@ ensure_highlighted (GtkSourceContextEngine *ce,
 	g_clear_object (&region);
 
 	/* Remove the just highlighted region. */
-	gtk_source_region_subtract (ce->priv->refresh_region, start, end);
+	gtk_source_region_subtract_subregion (ce->priv->refresh_region, start, end);
 }
 
 static GtkTextTag *
@@ -2298,7 +2298,7 @@ enable_highlight (GtkSourceContextEngine *ce,
 
 	if (enable)
 	{
-		gtk_source_region_add (ce->priv->refresh_region, &start, &end);
+		gtk_source_region_add_subregion (ce->priv->refresh_region, &start, &end);
 
 		refresh_range (ce, &start, &end);
 	}
@@ -5471,7 +5471,7 @@ update_syntax (GtkSourceContextEngine *ce,
 
 		line_info_destroy (&line);
 
-		gtk_source_region_add (ce->priv->refresh_region, &line_start, &line_end);
+		gtk_source_region_add_subregion (ce->priv->refresh_region, &line_start, &line_end);
 		analyzed_end = line_end_offset;
 		invalid = get_invalid_segment (ce);
 

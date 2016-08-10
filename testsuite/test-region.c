@@ -110,10 +110,10 @@ test_region (void)
 
 		if (ops [i][0] > 0) {
 			op_name = "added";
-			gtk_source_region_add (region, &iter1, &iter2);
+			gtk_source_region_add_subregion (region, &iter1, &iter2);
 		} else {
 			op_name = "deleted";
-			gtk_source_region_subtract (region, &iter1, &iter2);
+			gtk_source_region_subtract_subregion (region, &iter1, &iter2);
 		}
 		g_print ("%s %d-%d\n", op_name, ops [i][1], ops [i][2]);
 
@@ -128,7 +128,7 @@ test_region (void)
 		gtk_text_buffer_get_iter_at_offset (buffer, &iter2, inter [i][1]);
 
 		g_print ("intersect %d-%d\n", inter [i][0], inter [i][1]);
-		intersection = gtk_source_region_intersect (region, &iter1, &iter2);
+		intersection = gtk_source_region_intersect_subregion (region, &iter1, &iter2);
 		if (intersection) {
 			region_str = gtk_source_region_to_string (region);
 			g_print ("%s\n", region_str);

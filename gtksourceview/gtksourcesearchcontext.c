@@ -1016,7 +1016,9 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 
 	if (search->priv->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect (search->priv->scan_region, &region_start, &limit);
+		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+								&region_start,
+								&limit);
 	}
 
 	if (gtk_source_region_is_empty (region))
@@ -1145,7 +1147,9 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 
 	if (search->priv->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect (search->priv->scan_region, &limit, &region_end);
+		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+								&limit,
+								&region_end);
 	}
 
 	if (gtk_source_region_is_empty (region))
@@ -1274,9 +1278,9 @@ adjust_subregion (GtkSourceSearchContext *search,
 
 			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->priv->found_tag);
 
-			region = gtk_source_region_intersect (search->priv->scan_region,
-							      &tag_start,
-							      &tag_end);
+			region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+									&tag_start,
+									&tag_end);
 
 			if (gtk_source_region_is_empty (region))
 			{
@@ -1324,9 +1328,9 @@ adjust_subregion (GtkSourceSearchContext *search,
 
 			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->priv->found_tag);
 
-			region = gtk_source_region_intersect (search->priv->scan_region,
-							      &tag_start,
-							      &tag_end);
+			region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+									&tag_start,
+									&tag_end);
 
 			if (gtk_source_region_is_empty (region))
 			{
@@ -1458,9 +1462,11 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 		}
 		else
 		{
-			GtkSourceRegion *region = gtk_source_region_intersect (search->priv->scan_region,
-									       &match_start,
-									       &match_end);
+			GtkSourceRegion *region;
+
+			region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+									&match_start,
+									&match_end);
 
 			if (gtk_source_region_is_empty (region))
 			{
@@ -1504,7 +1510,7 @@ scan_subregion (GtkSourceSearchContext *search,
 			print_region (search->priv->scan_region);
 		});
 
-		gtk_source_region_subtract (search->priv->scan_region, start, end);
+		gtk_source_region_subtract_subregion (search->priv->scan_region, start, end);
 
 		DEBUG ({
 			g_print ("Region to scan, after:\n");
@@ -1514,7 +1520,7 @@ scan_subregion (GtkSourceSearchContext *search,
 
 	if (search->priv->task_region != NULL)
 	{
-		gtk_source_region_subtract (search->priv->task_region, start, end);
+		gtk_source_region_subtract_subregion (search->priv->task_region, start, end);
 	}
 
 	if (search_text == NULL)
@@ -1612,7 +1618,7 @@ scan_region_forward (GtkSourceSearchContext *search,
 
 		scan_subregion (search, &start, &limit);
 
-		gtk_source_region_subtract (region, &start, &limit);
+		gtk_source_region_subtract_subregion (region, &start, &limit);
 
 		start_line = gtk_text_iter_get_line (&start);
 		limit_line = gtk_text_iter_get_line (&limit);
@@ -1646,7 +1652,7 @@ scan_region_backward (GtkSourceSearchContext *search,
 
 		scan_subregion (search, &limit, &end);
 
-		gtk_source_region_subtract (region, &limit, &end);
+		gtk_source_region_subtract_subregion (region, &limit, &end);
 
 		limit_line = gtk_text_iter_get_line (&limit);
 		end_line = gtk_text_iter_get_line (&end);
@@ -1960,11 +1966,15 @@ regex_search_scan_chunk (GtkSourceSearchContext *search,
 		segment_start = stopped_at;
 	}
 
-	gtk_source_region_subtract (search->priv->scan_region, chunk_start, &segment_start);
+	gtk_source_region_subtract_subregion (search->priv->scan_region,
+					      chunk_start,
+					      &segment_start);
 
 	if (search->priv->task_region != NULL)
 	{
-		gtk_source_region_subtract (search->priv->task_region, chunk_start, &segment_start);
+		gtk_source_region_subtract_subregion (search->priv->task_region,
+						      chunk_start,
+						      &segment_start);
 	}
 }
 
@@ -2080,7 +2090,9 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 
 	if (search->priv->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect (search->priv->scan_region, &region_start, &limit);
+		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+								&region_start,
+								&limit);
 	}
 
 	if (gtk_source_region_is_empty (region))
@@ -2176,7 +2188,9 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 
 	if (search->priv->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect (search->priv->scan_region, &limit, &region_end);
+		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+								&limit,
+								&region_end);
 	}
 
 	if (gtk_source_region_is_empty (region))
@@ -2261,7 +2275,7 @@ add_subregion_to_scan (GtkSourceSearchContext *search,
 		print_region (search->priv->scan_region);
 	});
 
-	gtk_source_region_add (search->priv->scan_region, &start, &end);
+	gtk_source_region_add_subregion (search->priv->scan_region, &start, &end);
 
 	DEBUG ({
 		g_print ("add_subregion_to_scan(): region to scan, after:\n");
@@ -3116,9 +3130,9 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 
 	if (search->priv->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect (search->priv->scan_region,
-						      match_start,
-						      match_end);
+		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+								match_start,
+								match_end);
 
 		empty = gtk_source_region_is_empty (region);
 
@@ -3153,9 +3167,9 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 
 	if (search->priv->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect (search->priv->scan_region,
-						      &iter,
-						      match_end);
+		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+								&iter,
+								match_end);
 
 		empty = gtk_source_region_is_empty (region);
 
@@ -4004,9 +4018,9 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 		return;
 	}
 
-	region_to_highlight = gtk_source_region_intersect (search->priv->scan_region,
-							   start,
-							   end);
+	region_to_highlight = gtk_source_region_intersect_subregion (search->priv->scan_region,
+								     start,
+								     end);
 
 	if (gtk_source_region_is_empty (region_to_highlight))
 	{

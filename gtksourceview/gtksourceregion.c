@@ -397,7 +397,7 @@ gtk_source_region_clear_zero_length_subregions (GtkSourceRegion *region)
 }
 
 /**
- * gtk_source_region_add:
+ * gtk_source_region_add_subregion:
  * @region: a #GtkSourceRegion.
  * @_start: the start of the subregion.
  * @_end: the end of the subregion.
@@ -407,9 +407,9 @@ gtk_source_region_clear_zero_length_subregions (GtkSourceRegion *region)
  * Since: 3.22
  */
 void
-gtk_source_region_add (GtkSourceRegion   *region,
-		       const GtkTextIter *_start,
-		       const GtkTextIter *_end)
+gtk_source_region_add_subregion (GtkSourceRegion   *region,
+				 const GtkTextIter *_start,
+				 const GtkTextIter *_end)
 {
 	GtkSourceRegionPrivate *priv;
 	GList *start_node;
@@ -568,16 +568,16 @@ gtk_source_region_add_region (GtkSourceRegion *region,
 			break;
 		}
 
-		gtk_source_region_add (region,
-				       &subregion_start,
-				       &subregion_end);
+		gtk_source_region_add_subregion (region,
+						 &subregion_start,
+						 &subregion_end);
 
 		gtk_source_region_iter_next (&iter);
 	}
 }
 
 /**
- * gtk_source_region_subtract:
+ * gtk_source_region_subtract_subregion:
  * @region: a #GtkSourceRegion.
  * @_start: the start of the subregion.
  * @_end: the end of the subregion.
@@ -587,9 +587,9 @@ gtk_source_region_add_region (GtkSourceRegion *region,
  * Since: 3.22
  */
 void
-gtk_source_region_subtract (GtkSourceRegion   *region,
-			    const GtkTextIter *_start,
-			    const GtkTextIter *_end)
+gtk_source_region_subtract_subregion (GtkSourceRegion   *region,
+				      const GtkTextIter *_start,
+				      const GtkTextIter *_end)
 {
 	GtkSourceRegionPrivate *priv;
 	GList *start_node;
@@ -795,9 +795,9 @@ gtk_source_region_subtract_region (GtkSourceRegion *region,
 			break;
 		}
 
-		gtk_source_region_subtract (region,
-					    &subregion_start,
-					    &subregion_end);
+		gtk_source_region_subtract_subregion (region,
+						      &subregion_start,
+						      &subregion_end);
 
 		gtk_source_region_iter_next (&iter);
 	}
@@ -824,9 +824,10 @@ gtk_source_region_is_empty (GtkSourceRegion *region)
 
 	/* A #GtkSourceRegion can contain empty subregions. So checking the
 	 * number of subregions is not sufficient.
-	 * When calling gtk_source_region_add() with equal iters, the subregion
-	 * is not added. But when a subregion becomes empty, due to text
-	 * deletion, the subregion is not removed from the #GtkSourceRegion.
+	 * When calling gtk_source_region_add_subregion() with equal iters, the
+	 * subregion is not added. But when a subregion becomes empty, due to
+	 * text deletion, the subregion is not removed from the
+	 * #GtkSourceRegion.
 	 */
 
 	gtk_source_region_get_start_region_iter (region, &region_iter);
@@ -903,7 +904,7 @@ gtk_source_region_get_bounds (GtkSourceRegion *region,
 }
 
 /**
- * gtk_source_region_intersect:
+ * gtk_source_region_intersect_subregion:
  * @region: a #GtkSourceRegion.
  * @_start: the start of the subregion.
  * @_end: the end of the subregion.
@@ -916,9 +917,9 @@ gtk_source_region_get_bounds (GtkSourceRegion *region,
  * Since: 3.22
  */
 GtkSourceRegion *
-gtk_source_region_intersect (GtkSourceRegion   *region,
-			     const GtkTextIter *_start,
-			     const GtkTextIter *_end)
+gtk_source_region_intersect_subregion (GtkSourceRegion   *region,
+				       const GtkTextIter *_start,
+				       const GtkTextIter *_end)
 {
 	GtkSourceRegionPrivate *priv;
 	GtkSourceRegion *new_region;
@@ -1136,9 +1137,9 @@ gtk_source_region_intersect_region (GtkSourceRegion *region1,
 			break;
 		}
 
-		sub_intersect = gtk_source_region_intersect (region1,
-							     &subregion2_start,
-							     &subregion2_end);
+		sub_intersect = gtk_source_region_intersect_subregion (region1,
+								       &subregion2_start,
+								       &subregion2_end);
 
 		if (full_intersect == NULL)
 		{
