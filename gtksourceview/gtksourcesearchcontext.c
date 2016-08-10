@@ -4008,8 +4008,7 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 
 	if (gtk_source_region_is_empty (region_to_highlight))
 	{
-		g_clear_object (&region_to_highlight);
-		return;
+		goto out;
 	}
 
 	if (!synchronous)
@@ -4034,7 +4033,7 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 						   &region_start,
 						   NULL))
 		{
-			return;
+			goto out;
 		}
 
 		regex_search_scan_chunk (search, &region_start, end);
@@ -4042,6 +4041,8 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 	else
 	{
 		scan_all_region (search, region_to_highlight);
-		g_clear_object (&region_to_highlight);
 	}
+
+out:
+	g_clear_object (&region_to_highlight);
 }
