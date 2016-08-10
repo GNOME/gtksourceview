@@ -80,14 +80,26 @@ void			gtk_source_region_add			(GtkSourceRegion   *region,
 								 const GtkTextIter *_end);
 
 GTK_SOURCE_AVAILABLE_IN_3_22
+void			gtk_source_region_add_region		(GtkSourceRegion *region,
+								 GtkSourceRegion *region_to_add);
+
+GTK_SOURCE_AVAILABLE_IN_3_22
 void			gtk_source_region_subtract		(GtkSourceRegion   *region,
 								 const GtkTextIter *_start,
 								 const GtkTextIter *_end);
 
 GTK_SOURCE_AVAILABLE_IN_3_22
+void			gtk_source_region_subtract_region	(GtkSourceRegion *region,
+								 GtkSourceRegion *region_to_subtract);
+
+GTK_SOURCE_AVAILABLE_IN_3_22
 GtkSourceRegion *	gtk_source_region_intersect		(GtkSourceRegion   *region,
 								 const GtkTextIter *_start,
 								 const GtkTextIter *_end);
+
+GTK_SOURCE_AVAILABLE_IN_3_22
+GtkSourceRegion *	gtk_source_region_intersect_region	(GtkSourceRegion *region1,
+								 GtkSourceRegion *region2);
 
 GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		gtk_source_region_is_empty		(GtkSourceRegion *region);

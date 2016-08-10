@@ -521,6 +521,62 @@ gtk_source_region_add (GtkSourceRegion   *region,
 }
 
 /**
+ * gtk_source_region_add_region:
+ * @region: a #GtkSourceRegion.
+ * @region_to_add: (nullable): the #GtkSourceRegion to add to @region, or %NULL.
+ *
+ * Adds @region_to_add to @region. @region_to_add is not modified.
+ *
+ * Since: 3.22
+ */
+void
+gtk_source_region_add_region (GtkSourceRegion *region,
+			      GtkSourceRegion *region_to_add)
+{
+	GtkSourceRegionIter iter;
+	GtkTextBuffer *region_buffer;
+	GtkTextBuffer *region_to_add_buffer;
+
+	g_return_if_fail (GTK_SOURCE_IS_REGION (region));
+	g_return_if_fail (region_to_add == NULL || GTK_SOURCE_IS_REGION (region_to_add));
+
+	if (region_to_add == NULL)
+	{
+		return;
+	}
+
+	region_buffer = gtk_source_region_get_buffer (region);
+	region_to_add_buffer = gtk_source_region_get_buffer (region_to_add);
+	g_return_if_fail (region_buffer == region_to_add_buffer);
+
+	if (region_buffer == NULL)
+	{
+		return;
+	}
+
+	gtk_source_region_get_start_region_iter (region_to_add, &iter);
+
+	while (!gtk_source_region_iter_is_end (&iter))
+	{
+		GtkTextIter subregion_start;
+		GtkTextIter subregion_end;
+
+		if (!gtk_source_region_iter_get_subregion (&iter,
+							   &subregion_start,
+							   &subregion_end))
+		{
+			break;
+		}
+
+		gtk_source_region_add (region,
+				       &subregion_start,
+				       &subregion_end);
+
+		gtk_source_region_iter_next (&iter);
+	}
+}
+
+/**
  * gtk_source_region_subtract:
  * @region: a #GtkSourceRegion.
  * @_start: the start of the subregion.
@@ -692,6 +748,59 @@ gtk_source_region_subtract (GtkSourceRegion   *region,
 	gtk_source_region_clear_zero_length_subregions (region);
 
 	DEBUG (print_region (region));
+}
+
+/**
+ * gtk_source_region_subtract_region:
+ * @region: a #GtkSourceRegion.
+ * @region_to_subtract: (nullable): the #GtkSourceRegion to subtract from
+ *   @region, or %NULL.
+ *
+ * Subtracts @region_to_subtract from @region. @region_to_subtract is not
+ * modified.
+ *
+ * Since: 3.22
+ */
+void
+gtk_source_region_subtract_region (GtkSourceRegion *region,
+				   GtkSourceRegion *region_to_subtract)
+{
+	GtkTextBuffer *region_buffer;
+	GtkTextBuffer *region_to_subtract_buffer;
+	GtkSourceRegionIter iter;
+
+	g_return_if_fail (GTK_SOURCE_IS_REGION (region));
+	g_return_if_fail (region_to_subtract == NULL || GTK_SOURCE_IS_REGION (region_to_subtract));
+
+	region_buffer = gtk_source_region_get_buffer (region);
+	region_to_subtract_buffer = gtk_source_region_get_buffer (region_to_subtract);
+	g_return_if_fail (region_buffer == region_to_subtract_buffer);
+
+	if (region_buffer == NULL)
+	{
+		return;
+	}
+
+	gtk_source_region_get_start_region_iter (region_to_subtract, &iter);
+
+	while (!gtk_source_region_iter_is_end (&iter))
+	{
+		GtkTextIter subregion_start;
+		GtkTextIter subregion_end;
+
+		if (!gtk_source_region_iter_get_subregion (&iter,
+							   &subregion_start,
+							   &subregion_end))
+		{
+			break;
+		}
+
+		gtk_source_region_subtract (region,
+					    &subregion_start,
+					    &subregion_end);
+
+		gtk_source_region_iter_next (&iter);
+	}
 }
 
 /**
@@ -964,6 +1073,87 @@ gtk_source_region_intersect (GtkSourceRegion   *region,
 
 	new_priv->subregions = g_list_reverse (new_priv->subregions);
 	return new_region;
+}
+
+/**
+ * gtk_source_region_intersect_region:
+ * @region1: (nullable): a #GtkSourceRegion, or %NULL.
+ * @region2: (nullable): a #GtkSourceRegion, or %NULL.
+ *
+ * Returns the intersection between @region1 and @region2. @region1 and
+ * @region2 are not modified.
+ *
+ * Returns: (transfer full) (nullable): the intersection as a #GtkSourceRegion
+ *   object.
+ * Since: 3.22
+ */
+GtkSourceRegion *
+gtk_source_region_intersect_region (GtkSourceRegion *region1,
+				    GtkSourceRegion *region2)
+{
+	GtkTextBuffer *region1_buffer;
+	GtkTextBuffer *region2_buffer;
+	GtkSourceRegion *full_intersect = NULL;
+	GtkSourceRegionIter region2_iter;
+
+	g_return_val_if_fail (region1 == NULL || GTK_SOURCE_IS_REGION (region1), NULL);
+	g_return_val_if_fail (region2 == NULL || GTK_SOURCE_IS_REGION (region2), NULL);
+
+	if (region1 == NULL && region2 == NULL)
+	{
+		return NULL;
+	}
+	if (region1 == NULL)
+	{
+		return g_object_ref (region2);
+	}
+	if (region2 == NULL)
+	{
+		return g_object_ref (region1);
+	}
+
+	region1_buffer = gtk_source_region_get_buffer (region1);
+	region2_buffer = gtk_source_region_get_buffer (region2);
+	g_return_val_if_fail (region1_buffer == region2_buffer, NULL);
+
+	if (region1_buffer == NULL)
+	{
+		return NULL;
+	}
+
+	gtk_source_region_get_start_region_iter (region2, &region2_iter);
+
+	while (!gtk_source_region_iter_is_end (&region2_iter))
+	{
+		GtkTextIter subregion2_start;
+		GtkTextIter subregion2_end;
+		GtkSourceRegion *sub_intersect;
+
+		if (!gtk_source_region_iter_get_subregion (&region2_iter,
+							   &subregion2_start,
+							   &subregion2_end))
+		{
+			break;
+		}
+
+		sub_intersect = gtk_source_region_intersect (region1,
+							     &subregion2_start,
+							     &subregion2_end);
+
+		if (full_intersect == NULL)
+		{
+			full_intersect = sub_intersect;
+		}
+		else
+		{
+			gtk_source_region_add_region (full_intersect, sub_intersect);
+			g_clear_object (&sub_intersect);
+		}
+
+		gtk_source_region_iter_next (&region2_iter);
+	}
+
+	return full_intersect;
 }
 
 static gboolean
