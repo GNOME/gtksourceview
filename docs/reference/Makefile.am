@@ -34,6 +34,7 @@ IGNORE_HFILES =					\
 	gtksource.h				\
 	gtksourcebuffer-private.h		\
 	gtksourcebufferinputstream.h		\
+	gtksourcebufferinternal.h		\
 	gtksourcebufferoutputstream.h		\
 	gtksourcecompletioncontainer.h		\
 	gtksourcecompletionmodel.h		\

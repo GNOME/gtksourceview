@@ -27,6 +27,7 @@
 #include "gtksourcesearchsettings.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
+#include "gtksourcebufferinternal.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils.h"
@@ -2332,6 +2333,7 @@ update (GtkSourceSearchContext *search)
 {
 	GtkTextIter start;
 	GtkTextIter end;
+	GtkSourceBufferInternal *buffer_internal;
 
 	if (search->priv->buffer == NULL)
 	{
@@ -2345,6 +2347,13 @@ update (GtkSourceSearchContext *search)
 
 	gtk_text_buffer_get_bounds (search->priv->buffer, &start, &end);
 	add_subregion_to_scan (search, &start, &end);
+
+	/* Notify the GtkSourceViews that the search is starting, so that
+	 * _gtk_source_search_context_update_highlight() can be called for the
+	 * visible regions of the buffer.
+	 */
+	buffer_internal = _gtk_source_buffer_internal_get_from_buffer (GTK_SOURCE_BUFFER (search->priv->buffer));
+	_gtk_source_buffer_internal_emit_search_start (buffer_internal, search);
 }
 
 static void

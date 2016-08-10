@@ -99,6 +99,7 @@ libgtksourceview_private_headers =		\
 	gconstructor.h				\
 	gtksourcebuffer-private.h		\
 	gtksourcebufferinputstream.h		\
+	gtksourcebufferinternal.h		\
 	gtksourcebufferoutputstream.h		\
 	gtksourcecompletioncontainer.h		\
 	gtksourcecompletionmodel.h		\
@@ -124,6 +125,7 @@ libgtksourceview_private_headers =		\
 
 libgtksourceview_private_c_files =	\
 	gtksourcebufferinputstream.c	\
+	gtksourcebufferinternal.c	\
 	gtksourcebufferoutputstream.c	\
 	gtksourcecompletioncontainer.c	\
 	gtksourcecompletionmodel.c	\

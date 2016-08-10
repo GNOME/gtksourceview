@@ -36,6 +36,7 @@
 
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
+#include "gtksourcebufferinternal.h"
 #include "gtksourceview-i18n.h"
 #include "gtksourceview-enumtypes.h"
 #include "gtksourcemark.h"
@@ -48,6 +49,7 @@
 #include "gtksourcegutterrendererlines.h"
 #include "gtksourcegutterrenderermarks.h"
 #include "gtksourceiter.h"
+#include "gtksourcesearchcontext.h"
 #include "gtksourcespacedrawer.h"
 
 /**
@@ -1430,6 +1432,26 @@ highlight_updated_cb (GtkSourceBuffer *buffer,
 }
 
 static void
+search_start_cb (GtkSourceBufferInternal *buffer_internal,
+		 GtkSourceSearchContext  *search_context,
+		 GtkSourceView           *view)
+{
+	GtkTextIter visible_start;
+	GtkTextIter visible_end;
+	GtkSourceBuffer *buffer_search;
+
+	get_visible_region (GTK_TEXT_VIEW (view), &visible_start, &visible_end);
+
+	buffer_search = gtk_source_search_context_get_buffer (search_context);
+	g_assert (buffer_search == view->priv->source_buffer);
+
+	_gtk_source_search_context_update_highlight (search_context,
+						     &visible_start,
+						     &visible_end,
+						     FALSE);
+}
+
+static void
 source_mark_updated_cb (GtkSourceBuffer *buffer,
 			GtkSourceMark   *mark,
 			GtkTextView     *text_view)
@@ -1461,6 +1483,8 @@ remove_source_buffer (GtkSourceView *view)
 {
 	if (view->priv->source_buffer != NULL)
 	{
+		GtkSourceBufferInternal *buffer_internal;
+
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
 						      highlight_updated_cb,
 						      view);
@@ -1475,6 +1499,12 @@ remove_source_buffer (GtkSourceView *view)
 
 		g_signal_handlers_disconnect_by_func (view->priv->source_buffer,
 						      implicit_trailing_newline_changed_cb,
+						      view);
+
+		buffer_internal = _gtk_source_buffer_internal_get_from_buffer (view->priv->source_buffer);
+
+		g_signal_handlers_disconnect_by_func (buffer_internal,
+						      search_start_cb,
 						      view);
 
 		g_object_unref (view->priv->source_buffer);
@@ -1495,6 +1525,8 @@ set_source_buffer (GtkSourceView *view,
 
 	if (GTK_SOURCE_IS_BUFFER (buffer))
 	{
+		GtkSourceBufferInternal *buffer_internal;
+
 		view->priv->source_buffer = g_object_ref (buffer);
 
 		g_signal_connect (buffer,
@@ -1515,6 +1547,13 @@ set_source_buffer (GtkSourceView *view,
 		g_signal_connect (buffer,
 				  "notify::implicit-trailing-newline",
 				  G_CALLBACK (implicit_trailing_newline_changed_cb),
+				  view);
+
+		buffer_internal = _gtk_source_buffer_internal_get_from_buffer (view->priv->source_buffer);
+
+		g_signal_connect (buffer_internal,
+				  "search-start",
+				  G_CALLBACK (search_start_cb),
 				  view);
 	}
 
