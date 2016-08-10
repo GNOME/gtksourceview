@@ -1794,8 +1794,8 @@ gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
 	return buffer->priv->language;
 }
 
-/**
- * _gtk_source_buffer_update_highlight:
+/*
+ * _gtk_source_buffer_update_syntax_highlight:
  * @buffer: a #GtkSourceBuffer.
  * @start: start of the area to highlight.
  * @end: end of the area to highlight.
@@ -1804,13 +1804,11 @@ gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
  * Asks the buffer to analyze and highlight given area.
  */
 void
-_gtk_source_buffer_update_highlight (GtkSourceBuffer   *buffer,
-				     const GtkTextIter *start,
-				     const GtkTextIter *end,
-				     gboolean           synchronous)
+_gtk_source_buffer_update_syntax_highlight (GtkSourceBuffer   *buffer,
+					    const GtkTextIter *start,
+					    const GtkTextIter *end,
+					    gboolean           synchronous)
 {
-	GList *l;
-
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	if (buffer->priv->highlight_engine != NULL)
@@ -1820,6 +1818,17 @@ _gtk_source_buffer_update_highlight (GtkSourceBuffer   *buffer,
 						     end,
 						     synchronous);
 	}
+}
+
+void
+_gtk_source_buffer_update_search_highlight (GtkSourceBuffer   *buffer,
+					    const GtkTextIter *start,
+					    const GtkTextIter *end,
+					    gboolean           synchronous)
+{
+	GList *l;
+
+	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	for (l = buffer->priv->search_contexts; l != NULL; l = l->next)
 	{
@@ -1853,10 +1862,8 @@ gtk_source_buffer_ensure_highlight (GtkSourceBuffer   *buffer,
 				    const GtkTextIter *start,
 				    const GtkTextIter *end)
 {
-	_gtk_source_buffer_update_highlight (buffer,
-					     start,
-					     end,
-					     TRUE);
+	_gtk_source_buffer_update_syntax_highlight (buffer, start, end, TRUE);
+	_gtk_source_buffer_update_search_highlight (buffer, start, end, TRUE);
 }
 
 /**

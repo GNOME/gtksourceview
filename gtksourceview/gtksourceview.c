@@ -1419,16 +1419,16 @@ highlight_updated_cb (GtkSourceBuffer *buffer,
 	 *
 	 * A previous implementation of this signal handler queued a redraw on
 	 * the view with gtk_widget_queue_draw_area(), instead of calling
-	 * directly _gtk_source_buffer_update_highlight(). The ::draw handler
-	 * also calls _gtk_source_buffer_update_highlight(), so this had the
-	 * desired effect, but it was less clear.
+	 * directly _gtk_source_buffer_update_syntax_highlight(). The ::draw
+	 * handler also calls _gtk_source_buffer_update_syntax_highlight(), so
+	 * this had the desired effect, but it was less clear.
 	 * See the Git commit 949cd128064201935f90d999544e6a19f8e3baa6.
 	 * And: https://bugzilla.gnome.org/show_bug.cgi?id=767565
 	 */
-	_gtk_source_buffer_update_highlight (buffer,
-					     &intersect_start,
-					     &intersect_end,
-					     FALSE);
+	_gtk_source_buffer_update_syntax_highlight (buffer,
+						    &intersect_start,
+						    &intersect_end,
+						    FALSE);
 }
 
 static void
@@ -2234,8 +2234,10 @@ gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
 			 gtk_text_iter_get_line (&iter2));
 	});
 
-	_gtk_source_buffer_update_highlight (view->priv->source_buffer,
-					     &iter1, &iter2, FALSE);
+	_gtk_source_buffer_update_syntax_highlight (view->priv->source_buffer,
+						    &iter1, &iter2, FALSE);
+	_gtk_source_buffer_update_search_highlight (view->priv->source_buffer,
+						    &iter1, &iter2, FALSE);
 }
 
 /* This function is taken from gtk+/tests/testtext.c */

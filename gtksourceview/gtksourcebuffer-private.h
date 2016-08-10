@@ -2,7 +2,7 @@
 /* gtksourcebuffer-private.h
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2013, 2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -29,7 +29,13 @@
 G_BEGIN_DECLS
 
 GTK_SOURCE_INTERNAL
-void			 _gtk_source_buffer_update_highlight		(GtkSourceBuffer        *buffer,
+void			 _gtk_source_buffer_update_syntax_highlight	(GtkSourceBuffer        *buffer,
+									 const GtkTextIter      *start,
+									 const GtkTextIter      *end,
+									 gboolean                synchronous);
+
+GTK_SOURCE_INTERNAL
+void			 _gtk_source_buffer_update_search_highlight	(GtkSourceBuffer        *buffer,
 									 const GtkTextIter      *start,
 									 const GtkTextIter      *end,
 									 gboolean                synchronous);
