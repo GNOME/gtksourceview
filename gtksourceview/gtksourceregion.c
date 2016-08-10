@@ -799,8 +799,8 @@ gtk_source_region_get_bounds (GtkSourceRegion *region,
  * @_start: the start of the subregion.
  * @_end: the end of the subregion.
  *
- * Computes the intersection between @region and the subregion delimited by
- * @_start and @_end.
+ * Returns the intersection between @region and the subregion delimited by
+ * @_start and @_end. @region is not modified.
  *
  * Returns: (transfer full) (nullable): the intersection as a new
  *   #GtkSourceRegion.
