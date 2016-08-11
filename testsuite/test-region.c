@@ -256,6 +256,50 @@ test_intersect_subregion (void)
 	g_object_unref (region);
 }
 
+static void
+test_add_subtract_intersect_region (void)
+{
+	GtkTextBuffer *buffer;
+	GtkSourceRegion *main_region = NULL;
+	GtkSourceRegion *region_to_add = NULL;
+	GtkSourceRegion *region_to_subtract = NULL;
+	GtkSourceRegion *intersection = NULL;
+
+	buffer = gtk_text_buffer_new (NULL);
+	main_region = gtk_source_region_new (buffer);
+
+	gtk_text_buffer_set_text (buffer, "This is a test of GtkSourceRegion", -1);
+
+	g_assert (gtk_source_region_is_empty (main_region));
+
+	/* Basic tests */
+
+	region_to_add = gtk_source_region_new (buffer);
+	add_subregion (region_to_add, 0, 5);
+	add_subregion (region_to_add, 10, 15);
+	check_result (region_to_add, "0-5 10-15");
+	gtk_source_region_add_region (main_region, region_to_add);
+	check_result (main_region, "0-5 10-15");
+
+	region_to_subtract = gtk_source_region_new (buffer);
+	add_subregion (region_to_subtract, 2, 3);
+	add_subregion (region_to_subtract, 10, 15);
+	gtk_source_region_subtract_region (main_region, region_to_subtract);
+	check_result (main_region, "0-2 3-5");
+
+	add_subregion (main_region, 20, 25);
+	check_result (main_region, "0-2 3-5 20-25");
+	check_result (region_to_add, "0-5 10-15");
+	intersection = gtk_source_region_intersect_region (main_region, region_to_add);
+	check_result (intersection, "0-2 3-5");
+
+	g_object_unref (buffer);
+	g_clear_object (&main_region);
+	g_clear_object (&region_to_add);
+	g_clear_object (&region_to_subtract);
+	g_clear_object (&intersection);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -264,6 +308,7 @@ main (int argc, char **argv)
 	g_test_add_func ("/Region/weak-ref", test_weak_ref);
 	g_test_add_func ("/Region/add-subtract-subregion", test_add_subtract_subregion);
 	g_test_add_func ("/Region/intersect-subregion", test_intersect_subregion);
+	g_test_add_func ("/Region/add-subtract-intersect-region", test_add_subtract_intersect_region);
 
 	return g_test_run();
 }
