@@ -192,7 +192,7 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 	gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_OK);
 
 	scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-	gtk_widget_set_size_request (scrolled_window, 325, 450);
+	gtk_widget_set_size_request (scrolled_window, 325, 350);
 	gtk_widget_show (scrolled_window);
 	gtk_widget_set_hexpand (scrolled_window, TRUE);
 	gtk_widget_set_vexpand (scrolled_window, TRUE);
