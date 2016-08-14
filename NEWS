@@ -1,3 +1,22 @@
+News in 3.21.4
+--------------
+* GtkSourceRegion: add functions to add/subtract/intersect two GtkSourceRegions
+* GtkSourceRegion: rename functions to add/subtract/intersect a subregion
+* GtkSourceRegion: real unit tests
+* Whitespace drawing: draw a final newline if the
+  GtkSourceBuffer:implicit-trailing-newline property is TRUE.
+* Whitespace drawing: refactor the code, move the code to a private SpaceDrawer
+  class.
+* Use gconstructor.h to have a DSO constructor that inits i18n, and a
+  destructor to unref the singletons.
+* Use the AX_VALGRIND_CHECK Autotools macro
+* SearchContext: send a private signal to the views so that the views can ask
+  the SearchContext to highlight in priority the visible areas of the buffer
+  (works only for normal search, not regex search).
+* Improvements to the syntax highlighting of: LaTeX
+* Various other code improvements
+* Translation updates
+
 News in 3.21.3
 --------------
 * Warn when a secondary public header is #included in external code.
