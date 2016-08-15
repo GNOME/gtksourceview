@@ -668,21 +668,32 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 		if (gtk_text_iter_compare (&iter, &line_end) > 0)
 		{
+			GtkTextIter next_iter = iter;
+
 			/* Move to the first iter in the exposed area of the
 			 * next line.
 			 */
-			if (!gtk_text_iter_starts_line (&iter))
+			if (!gtk_text_iter_starts_line (&next_iter))
 			{
-				gtk_text_iter_forward_line (&iter);
+				gtk_text_iter_forward_line (&next_iter);
 			}
 
-			gtk_text_view_get_line_yrange (text_view, &iter, &ly, NULL);
-			gtk_text_view_get_iter_at_location (text_view, &iter, min_x, ly);
+			gtk_text_view_get_line_yrange (text_view, &next_iter, &ly, NULL);
+			gtk_text_view_get_iter_at_location (text_view, &next_iter, min_x, ly);
 
 			/* Move back one char otherwise tabs may not be redrawn. */
-			if (!gtk_text_iter_starts_line (&iter))
+			if (!gtk_text_iter_starts_line (&next_iter))
 			{
-				gtk_text_iter_backward_char (&iter);
+				gtk_text_iter_backward_char (&next_iter);
+			}
+
+			/* Ensure that we have actually advanced, since the
+			 * above backward_char() is dangerous and can lead to
+			 * infinite loops.
+			 */
+			if (gtk_text_iter_compare (&next_iter, &iter) > 0)
+			{
+				iter = next_iter;
 			}
 
 			_gtk_source_iter_get_leading_spaces_end_boundary (&iter, &leading_end);
