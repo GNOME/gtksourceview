@@ -658,7 +658,8 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 			draw_whitespace_at_iter (text_view, &iter, cr);
 		}
 
-		if (gtk_text_iter_is_end (&iter))
+		if (gtk_text_iter_is_end (&iter) ||
+		    gtk_text_iter_compare (&iter, &end) >= 0)
 		{
 			break;
 		}
@@ -667,11 +668,6 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 		if (gtk_text_iter_compare (&iter, &line_end) > 0)
 		{
-			if (gtk_text_iter_compare (&iter, &end) > 0)
-			{
-				break;
-			}
-
 			/* Move to the first iter in the exposed area of the
 			 * next line.
 			 */
