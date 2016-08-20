@@ -1,31 +1,31 @@
-# Hungarian translation of gtksourceview.
-# Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013 Free Software Foundation, Inc.
+# Hungarian translation for gtksourceview.
+# Copyright (C) 2003-2016 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 #
 # Andras Timar <timar at gnome dot hu>, 2003.
 # Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015.
-# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-04-25 00:06+0000\n"
-"PO-Revision-Date: 2016-04-25 10:41+0200\n"
-"Last-Translator: Meskó Balázs <meskobalazs@gmail.com>\n"
+"product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-08-15 08:31+0000\n"
+"PO-Revision-Date: 2016-08-20 14:23+0200\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. (itstool) path: displayable-values/value@name
 #: gtksourceview.xml:23
 msgid "Disabled"
-msgstr "Tiltva"
+msgstr "Letiltva"
 
 #. (itstool) path: displayable-values/value@name
 #: gtksourceview.xml:24
@@ -80,7 +80,7 @@ msgstr "Záró"
 #. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:834
+#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:833
 msgid "All"
 msgstr "Mind"
 
@@ -716,7 +716,7 @@ msgid "Date"
 msgstr "Dátum"
 
 #. (itstool) path: styles/style@_name
-#: changelog.lang:35 latex.lang:52
+#: changelog.lang:35
 msgid "Name"
 msgstr "Név"
 
@@ -2752,12 +2752,13 @@ msgstr "Változódefiníció"
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
 #.
-#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:55
+#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:56
 msgid "Others"
 msgstr "Egyéb"
 
@@ -3081,42 +3082,42 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "A Tango színpalettát használó színséma"
 
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:334
 msgid "Document Words"
 msgstr "Dokumentum szavai"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:842
+#: gtksourceview/gtksourcebufferoutputstream.c:843
 msgid "Invalid byte sequence in conversion input"
 msgstr "Érvénytelen bájtsorrend az átalakítás bemenetében"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:848
+#: gtksourceview/gtksourcebufferoutputstream.c:849
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Hiba az átalakítás során: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:929
+#: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
 msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
 msgstr ""
 "A(z) „%s” és az „UTF-8” karakterkészletek közötti átalakítás nem támogatott"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:935
+#: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
 msgid "Could not open converter from '%s' to 'UTF-8'"
 msgstr ""
 "Nem sikerült a(z) „%s” és az „UTF-8” karakterkészletek közötti átalakító "
 "megnyitása"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:990
+#: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
 msgstr "Érvénytelen objektum, nincs előkészítve"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1182
+#: gtksourceview/gtksourcebufferoutputstream.c:1188
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Befejezetlen UTF-8 sorozat a bemenetben"
 
 #. Tooltip style
-#: gtksourceview/gtksourcecompletioninfo.c:272
+#: gtksourceview/gtksourcecompletioninfo.c:271
 msgid "Completion Info"
 msgstr "Kiegészítési információk"
 
@@ -3136,7 +3137,7 @@ msgstr "_Részletek…"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3145
+#: gtksourceview/gtksourcecontextengine.c:3141
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3147,7 +3148,7 @@ msgstr ""
 "szintaxiskiemelési folyamat lassabb lesz a megszokottnál.\n"
 "A hiba: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4468
+#: gtksourceview/gtksourcecontextengine.c:4464
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -3155,19 +3156,19 @@ msgstr ""
 "Egyetlen sor kiemelése túl sokáig tartott, a szintaxiskiemelés letiltásra "
 "kerül"
 
-#: gtksourceview/gtksourcecontextengine.c:5716
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "A(z) „%s” kontextus nem  tartalmazhat \\%%{...@start} parancsot"
 
-#: gtksourceview/gtksourcecontextengine.c:5879
-#: gtksourceview/gtksourcecontextengine.c:5970
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5966
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "többszörös kontextusazonosító: „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6084
-#: gtksourceview/gtksourcecontextengine.c:6144
+#: gtksourceview/gtksourcecontextengine.c:6080
+#: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language '%s' in ref "
@@ -3176,18 +3177,18 @@ msgstr ""
 "a helyettesítő karakteres kontextushivatkozáshoz stílus-felülbírálás került "
 "felhasználásra a(z) „%s” nyelv „%s” hivatkozásában."
 
-#: gtksourceview/gtksourcecontextengine.c:6158
+#: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "érvénytelen kontextushivatkozás („%s”)"
 
-#: gtksourceview/gtksourcecontextengine.c:6177
-#: gtksourceview/gtksourcecontextengine.c:6187
+#: gtksourceview/gtksourcecontextengine.c:6173
+#: gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
 msgid "unknown context '%s'"
 msgstr "ismeretlen kontextus: „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6286
+#: gtksourceview/gtksourcecontextengine.c:6282
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Az elsődleges nyelvmeghatározás hiányzik (azonosító: „%s”.)"
@@ -3326,6 +3327,30 @@ msgstr "Ismeretlen"
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-2', 'WINDOWS-1250', 'IBM852', 'UTF-16']"
 
+#: gtksourceview/gtksourcefileloader.c:508
+msgid ""
+"There was a character encoding conversion error and it was needed to use a "
+"fallback character."
+msgstr ""
+"Karakterkódolás átalakítási hiba volt, és egy tartalék karakter használatára "
+"volt szükség."
+
+#: gtksourceview/gtksourcefileloader.c:615
+msgid "File too big."
+msgstr "A fájl túl nagy."
+
+#: gtksourceview/gtksourcefileloader.c:769
+msgid "Not a regular file."
+msgstr "Nem szabályos fájl."
+
+#: gtksourceview/gtksourcefilesaver.c:968
+msgid "The file is externally modified."
+msgstr "A fájlt külsőleg módosították."
+
+#: gtksourceview/gtksourcefilesaver.c:1420
+msgid "The buffer contains invalid characters."
+msgstr "A puffer érvénytelen karaktereket tartalmaz."
+
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
@@ -3354,726 +3379,32 @@ msgid "_Select"
 msgstr "_Kiválasztás"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1565
+#: gtksourceview/gtksourceview.c:1722
 msgid "_Redo"
 msgstr "Új_ra"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1576
+#: gtksourceview/gtksourceview.c:1733
 msgid "_Undo"
 msgstr "_Visszavonás"
 
-#: gtksourceview/gtksourceview.c:1595
+#: gtksourceview/gtksourceview.c:1752
 msgid "All _Upper Case"
 msgstr "Mind _nagybetűs"
 
-#: gtksourceview/gtksourceview.c:1605
+#: gtksourceview/gtksourceview.c:1762
 msgid "All _Lower Case"
 msgstr "Mind _kisbetűs"
 
-#: gtksourceview/gtksourceview.c:1615
+#: gtksourceview/gtksourceview.c:1772
 msgid "_Invert Case"
 msgstr "Kis- és nagybetű _invertálása"
 
-#: gtksourceview/gtksourceview.c:1625
+#: gtksourceview/gtksourceview.c:1782
 msgid "_Title Case"
 msgstr "Szó_kezdő"
 
-#: gtksourceview/gtksourceview.c:1635
+#: gtksourceview/gtksourceview.c:1792
 msgid "C_hange Case"
 msgstr "Kis- és nagybetű mó_dosítása"
 
-#: gtksourceview/gtksourceview-i18n.c:116
-msgid "translator-credits"
-msgstr ""
-"Dvornik László <dvornik at gnome dot hu>\n"
-"Kelemen Gábor <kelemeng at gnome dot hu>\n"
-"Tímár András <timar at gnome dot hu>"
-
-#~ msgid "Escaped Characters"
-#~ msgstr "Escape-elt karakterek"
-
-#~ msgid "View"
-#~ msgstr "Nézet"
-
-#~ msgid "The view this widget is mapping."
-#~ msgstr "Felületi elem által leképezett nézet."
-
-#~ msgid "Font Description"
-#~ msgstr "Betűkészlet-leírás"
-
-#~ msgid "The Pango font description to use."
-#~ msgstr "A feliratok megjelenítéséhez használt Pango betűkészlet neve."
-
-#~ msgid "GtkSourceView"
-#~ msgstr "GtkSourceView"
-
-#~ msgid "Smart Backspace"
-#~ msgstr "Intelligens backspace"
-
-#~| msgid "Whether the language should be hidden from the user"
-#~ msgid "Whether smart Backspace should be used."
-#~ msgstr "Kell-e intelligens backspace-t használni."
-
-#~ msgid "Sources"
-#~ msgstr "Források"
-
-#~ msgid "GtkSourceStyleSchemeChooserWidget"
-#~ msgstr "GtkSourceStyleSchemeChooserWidget"
-
-#~ msgid "GtkSourceStyleSchemeChooserButton"
-#~ msgstr "GtkSourceStyleSchemeChooserButton"
-
-#~ msgctxt "Object"
-#~ msgid "Name"
-#~ msgstr "Név"
-
-#~ msgid "The provider name"
-#~ msgstr "A szolgáltató neve"
-
-#~ msgid "Icon"
-#~ msgstr "Ikon"
-
-#~ msgid "The provider icon"
-#~ msgstr "A szolgáltató ikonja"
-
-#~ msgid "Proposals Batch Size"
-#~ msgstr "Javaslatok kötegmérete"
-
-#~ msgid "Number of proposals added in one batch"
-#~ msgstr "Egy köteghez adandó javaslatok száma"
-
-#~ msgid "Scan Batch Size"
-#~ msgstr "Vizsgált köteg mérete"
-
-#~ msgid "Number of lines scanned in one batch"
-#~ msgstr "Egy kötegben vizsgált sorok száma"
-
-#~ msgid "Minimum Word Size"
-#~ msgstr "Minimális szóhossz"
-
-#~ msgid "The minimum word size to complete"
-#~ msgstr "A kiegészítendő minimális szóhossz"
-
-#~ msgid "Interactive Delay"
-#~ msgstr "Interaktív késleltetés"
-
-#~ msgid "The delay before initiating interactive completion"
-#~ msgstr "Az interaktív kiegészítés kezdeményezése előtti késleltetés"
-
-#~ msgid "Priority"
-#~ msgstr "Prioritás"
-
-#~ msgid "Provider priority"
-#~ msgstr "Szolgáltató prioritása"
-
-#~ msgid "Activation"
-#~ msgstr "Bekapcsolás"
-
-#~ msgid "The type of activation"
-#~ msgstr "A bekapcsolás típusa"
-
-#~ msgid "Highlight Syntax"
-#~ msgstr "Szintaxiskiemelés"
-
-#~ msgid "Whether to highlight syntax in the buffer"
-#~ msgstr "Kiemelje-e a nyelvtani elemeket a szerkesztőablakban"
-
-#~ msgid "Highlight Matching Brackets"
-#~ msgstr "Zárójelpárok kiemelése"
-
-#~ msgid "Whether to highlight matching brackets"
-#~ msgstr "Kiemelje-e a zárójelpárokat"
-
-#~ msgid "Maximum Undo Levels"
-#~ msgstr "Visszavonások maximális száma"
-
-#~ msgid "Number of undo levels for the buffer"
-#~ msgstr "Visszavonások száma a pufferhez"
-
-#~ msgid "Language"
-#~ msgstr "Nyelv"
-
-#~ msgid "Language object to get highlighting patterns from"
-#~ msgstr "Nyelvobjektum, ahonnan a kiemelési minták beszerezhetőek"
-
-#~ msgid "Can undo"
-#~ msgstr "A visszavonás lehetséges"
-
-#~ msgid "Whether Undo operation is possible"
-#~ msgstr "A Visszavonás művelet lehetséges-e"
-
-#~ msgid "Can redo"
-#~ msgstr "A mégis lehetséges"
-
-#~ msgid "Whether Redo operation is possible"
-#~ msgstr "A mégis művelet lehetséges-e"
-
-#~ msgid "Style scheme"
-#~ msgstr "Stílusséma"
-
-#~ msgid "Undo manager"
-#~ msgstr "Visszavonás-kezelő"
-
-#~ msgid "The buffer undo manager"
-#~ msgstr "A puffer visszavonás-kezelője"
-
-#~ msgid "Implicit trailing newline"
-#~ msgstr "Implicit befejező soremelés"
-
-#~ msgid "The GtkSourceView bound to the completion"
-#~ msgstr "A kiegészítéshez tartozó GtkSourceView"
-
-#~ msgid "Remember Info Visibility"
-#~ msgstr "Információk láthatóságának megjegyzése"
-
-#~ msgid "Remember the last info window visibility state"
-#~ msgstr "Az információk utolsó láthatósági állapotának megjegyzése"
-
-#~ msgid "Select first proposal when completion is shown"
-#~ msgstr "Első javaslat kiválasztása a kijelölés megjelenítésekor"
-
-#~ msgid "Show Headers"
-#~ msgstr "Fejlécek megjelenítése"
-
-#~ msgid ""
-#~ "Show provider headers when proposals from multiple providers are available"
-#~ msgstr ""
-#~ "Szolgáltatófejlécek megjelenítése, ha több szolgáltató javaslatai is "
-#~ "elérhetők"
-
-#~ msgid "Show Icons"
-#~ msgstr "Ikonok megjelenítése"
-
-#~ msgid "Show provider and proposal icons in the completion popup"
-#~ msgstr "Szolgáltató- és javaslatikonok megjelenítése a kiegészítési menüben"
-
-#~ msgid "Accelerators"
-#~ msgstr "Hívóbetűk"
-
-#~ msgid "Number of proposal accelerators to show"
-#~ msgstr "Megjelenítendő javaslat-hívóbetűk száma"
-
-#~ msgid "Auto Complete Delay"
-#~ msgstr "Automatikus kiegészítés késleltetése"
-
-#~ msgid "Completion popup delay for interactive completion"
-#~ msgstr "Kiegészítési menü késleltetése interaktív kiegészítés esetén"
-
-#~ msgid "Provider Page Size"
-#~ msgstr "Szolgáltató oldalmérete"
-
-#~ msgid "Provider scrolling page size"
-#~ msgstr "Szolgáltató gördülő oldalának mérete"
-
-#~ msgid "Proposal Page Size"
-#~ msgstr "Javaslat oldalmérete"
-
-#~ msgid "Proposal scrolling page size"
-#~ msgstr "Javaslat gördülő oldalának mérete"
-
-#~ msgid "Completion"
-#~ msgstr "Kiegészítés"
-
-#~ msgid "The completion object to which the context belongs"
-#~ msgstr "A kiegészítési objektum, amelyhez a kontextus tartozik"
-
-#~ msgid "Iterator"
-#~ msgstr "Iterátor"
-
-#~ msgid "The GtkTextIter at which the completion was invoked"
-#~ msgstr "A GtkTextIter, amelyre a kiegészítést meghívták"
-
-#~ msgid "Label to be shown for this item"
-#~ msgstr "Az elemhez megjelenítendő címke"
-
-#~ msgid "Markup to be shown for this item"
-#~ msgstr "Az elemhez megjelenítendő jelölés"
-
-#~ msgid "Item text"
-#~ msgstr "Elem szövege"
-
-#~ msgid "Icon to be shown for this item"
-#~ msgstr "Az elemhez megjelenítendő ikon"
-
-#~ msgid "Info"
-#~ msgstr "Információk"
-
-#~ msgid "Info to be shown for this item"
-#~ msgstr "Az elemhez megjelenítendő információk"
-
-#~ msgid "Newline type"
-#~ msgstr "Soremelés típusa"
-
-#~ msgid "Compression type"
-#~ msgstr "Tömörítés típusa"
-
-#~ msgid "Input stream"
-#~ msgstr "Bemeneti adatfolyam"
-
-#~ msgid "Flags"
-#~ msgstr "Jelzők"
-
-#~ msgid "The gutters' GtkSourceView"
-#~ msgstr "A kötésmargó GtkSourceView-ja"
-
-#~ msgid "Window Type"
-#~ msgstr "Ablak típusa"
-
-#~ msgid "The gutters' text window type"
-#~ msgstr "A kötésmargó szövegének ablaktípusa"
-
-#~ msgid "X Padding"
-#~ msgstr "X kitöltés"
-
-#~ msgid "The x-padding"
-#~ msgstr "Az x-kitöltés"
-
-#~ msgid "Y Padding"
-#~ msgstr "Y kitöltés"
-
-#~ msgid "The y-padding"
-#~ msgstr "Az y-kitöltés"
-
-#~ msgid "Visible"
-#~ msgstr "Látható"
-
-#~ msgid "X Alignment"
-#~ msgstr "X igazítás"
-
-#~ msgid "The x-alignment"
-#~ msgstr "Az x-igazítás"
-
-#~ msgid "Y Alignment"
-#~ msgstr "Y igazítás"
-
-#~ msgid "The y-alignment"
-#~ msgstr "Az y-igazítás"
-
-#~ msgid "The View"
-#~ msgstr "A nézet"
-
-#~ msgid "The view"
-#~ msgstr "A nézet"
-
-#~ msgid "Alignment Mode"
-#~ msgstr "Igazítási mód"
-
-#~ msgid "The alignment mode"
-#~ msgstr "Az igazítási mód"
-
-#~ msgid "The window type"
-#~ msgstr "Az ablak típusa"
-
-#~ msgid "Size"
-#~ msgstr "Méret"
-
-#~ msgid "The size"
-#~ msgstr "A méret"
-
-#~ msgid "Pixbuf"
-#~ msgstr "Kép"
-
-#~ msgid "The pixbuf"
-#~ msgstr "A kép"
-
-#~ msgid "Stock Id"
-#~ msgstr "Gyári azonosító"
-
-#~ msgid "The stock id"
-#~ msgstr "A gyári azonosító"
-
-#~ msgid "Icon Name"
-#~ msgstr "Ikonnév"
-
-#~ msgid "The icon name"
-#~ msgstr "Az ikon neve"
-
-#~ msgid "GIcon"
-#~ msgstr "GIcon"
-
-#~ msgid "The gicon"
-#~ msgstr "A gicon"
-
-#~ msgid "The markup"
-#~ msgstr "A leírónyelv"
-
-#~ msgid "The text"
-#~ msgstr "A szöveg"
-
-#~ msgid "Language id"
-#~ msgstr "Nyelvazonosító"
-
-#~ msgid "Language name"
-#~ msgstr "Nyelvnév"
-
-#~ msgid "Language section"
-#~ msgstr "Nyelvszakasz"
-
-#~ msgid "Hidden"
-#~ msgstr "Rejtett"
-
-#~ msgid "Language specification directories"
-#~ msgstr "Nyelvmeghatározási könyvtárak"
-
-#~ msgid ""
-#~ "List of directories where the language specification files (.lang) are "
-#~ "located"
-#~ msgstr "A nyelvspecifikációs fájlokat (.lang) tartalmazó könyvtárak listája"
-
-#~ msgid "Language ids"
-#~ msgstr "Nyelvazonosítók"
-
-#~ msgid "List of the ids of the available languages"
-#~ msgstr "Az elérhető nyelvek azonosítóinak listája"
-
-#~ msgid "Background"
-#~ msgstr "Háttér"
-
-#~ msgid "The background"
-#~ msgstr "A háttér"
-
-#~ msgid "The GIcon"
-#~ msgstr "A GIcon"
-
-#~ msgid "category"
-#~ msgstr "kategória"
-
-#~ msgid "The mark category"
-#~ msgstr "A jelölés kategóriája"
-
-#~ msgid "Source Buffer"
-#~ msgstr "Forráspuffer"
-
-#~ msgid "The GtkSourceBuffer object to print"
-#~ msgstr "A nyomtatandó GtkSourceBuffer objektum"
-
-#~ msgid "Tab Width"
-#~ msgstr "Tabulátorok szélessége"
-
-#~ msgid "Width of a tab character expressed in spaces"
-#~ msgstr "Tab karakter szélessége szóközökben kifejezve"
-
-#~ msgid "Wrap Mode"
-#~ msgstr "Sortörés módja"
-
-#~ msgid ""
-#~ "Whether to wrap lines never, at word boundaries, or at character "
-#~ "boundaries."
-#~ msgstr "A sortörés módja: soha, szóhatáron vagy karakterhatáron."
-
-#~ msgid "Whether to print the document with highlighted syntax"
-#~ msgstr "Nyelvtani elemek kiemelésével nyomtassa-e a dokumentumot"
-
-#~ msgid "Print Line Numbers"
-#~ msgstr "Sorok számának kiírása"
-
-#~ msgid "Interval of printed line numbers (0 means no numbers)"
-#~ msgstr ""
-#~ "Nyomtatott sorszámok közti táv (0 azt jelenti, hogy nincsenek számok)"
-
-#~ msgid "Print Header"
-#~ msgstr "Fejléc nyomtatása"
-
-#~ msgid "Whether to print a header in each page"
-#~ msgstr "Nyomtasson-e fejlécet minden egyes oldalon"
-
-#~ msgid "Print Footer"
-#~ msgstr "Lábléc nyomtatása"
-
-#~ msgid "Whether to print a footer in each page"
-#~ msgstr "Nyomtasson-e láblécet minden egyes oldalon"
-
-#~ msgid "Body Font Name"
-#~ msgstr "Törzs betűkészletének neve"
-
-#~ msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-#~ msgstr ""
-#~ "A szövegtörzsben használandó betűkészlet neve (például „Monospace 10”)"
-
-#~ msgid "Line Numbers Font Name"
-#~ msgstr "Sorszámok betűkészlete"
-
-#~ msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-#~ msgstr ""
-#~ "A sorszámokhoz használandó betűkészlet neve (például „Monospace 10”)"
-
-#~ msgid "Header Font Name"
-#~ msgstr "Fejléc betűkészlete"
-
-#~ msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-#~ msgstr ""
-#~ "Az oldalfejléchez használandó betűkészlet neve (például „Monospace 10”)"
-
-#~ msgid "Footer Font Name"
-#~ msgstr "Lábléc betűkészlete"
-
-#~ msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-#~ msgstr "A lábléchez használandó betűkészlet neve (például „Monospace 10”)"
-
-#~ msgid "Number of pages"
-#~ msgstr "Oldalak száma"
-
-#~ msgid ""
-#~ "The number of pages in the document (-1 means the document has not been "
-#~ "completely paginated)."
-#~ msgstr ""
-#~ "A dokumentum oldalainak száma (a -1 azt jelenti, hogy a dokumentum nincs "
-#~ "teljesen oldalakra bontva)."
-
-#~ msgid "Buffer"
-#~ msgstr "Puffer"
-
-#~ msgid "The associated GtkSourceBuffer"
-#~ msgstr "A társított GtkSourceBuffer"
-
-#~ msgid "Settings"
-#~ msgstr "Beállítások"
-
-#~ msgid "The associated GtkSourceSearchSettings"
-#~ msgstr "A társított GtkSourceSearchSettings"
-
-#~ msgid "Highlight"
-#~ msgstr "Kiemelés"
-
-#~ msgid "Highlight search occurrences"
-#~ msgstr "A találatok kiemelése"
-
-#~ msgid "Match style"
-#~ msgstr "Egyezés stílus"
-
-#~| msgid "The text to search"
-#~ msgid "The text style for matches"
-#~ msgstr "Az egyezések szövegstílusa"
-
-#~ msgid "Occurrences count"
-#~ msgstr "Találatok száma"
-
-#~ msgid "Total number of search occurrences"
-#~ msgstr "A találatok teljes száma"
-
-#~ msgid "Regex error"
-#~ msgstr "Regex hiba"
-
-#~ msgid "Regular expression error"
-#~ msgstr "Hibás reguláris kifejezés"
-
-#~ msgid "Search text"
-#~ msgstr "Szöveg keresése"
-
-#~ msgid "The text to search"
-#~ msgstr "A keresendő szöveg"
-
-#~ msgid "Case sensitive"
-#~ msgstr "Kis- és nagybetűk megkülönböztetése"
-
-#~ msgid "At word boundaries"
-#~ msgstr "Szóhatárokon"
-
-#~ msgid "Search at word boundaries"
-#~ msgstr "Keresés szóhatárokon"
-
-#~ msgid "Wrap around"
-#~ msgstr "Körbe"
-
-#~ msgid "Regex enabled"
-#~ msgstr "Regex engedélyezve"
-
-#~ msgid "Whether to search by regular expression"
-#~ msgstr "Keresés reguláris kifejezésekkel"
-
-#~ msgid "Line background"
-#~ msgstr "Sorháttér"
-
-#~ msgid "Line background color"
-#~ msgstr "Sorháttér színe"
-
-#~ msgid "Background color"
-#~ msgstr "Háttérszín"
-
-#~ msgid "Foreground"
-#~ msgstr "Előtér"
-
-#~ msgid "Foreground color"
-#~ msgstr "Előtérszín"
-
-#~ msgid "Underline"
-#~ msgstr "Aláhúzott"
-
-#~ msgid "Strikethrough"
-#~ msgstr "Áthúzott"
-
-#~ msgid "Scale"
-#~ msgstr "Méretezés"
-
-#~ msgid "Text scale factor"
-#~ msgstr "Szöveg méretezési tényezője"
-
-#~ msgid "Line background set"
-#~ msgstr "Sorháttér beállítva"
-
-#~ msgid "Whether line background color is set"
-#~ msgstr "A sorháttérszín be van-e állítva"
-
-#~ msgid "Foreground set"
-#~ msgstr "Előtér beállítva"
-
-#~ msgid "Whether foreground color is set"
-#~ msgstr "Az előtérszín be van-e állítva"
-
-#~ msgid "Background set"
-#~ msgstr "Háttér beállítva"
-
-#~ msgid "Whether background color is set"
-#~ msgstr "A háttérszín be van-e állítva"
-
-#~ msgid "Bold set"
-#~ msgstr "Félkövér beállítva"
-
-#~ msgid "Whether bold attribute is set"
-#~ msgstr "A félkövér attribútum be van-e állítva"
-
-#~ msgid "Italic set"
-#~ msgstr "Dőlt beállítva"
-
-#~ msgid "Whether italic attribute is set"
-#~ msgstr "A dőlt attribútum be van-e állítva"
-
-#~ msgid "Underline set"
-#~ msgstr "Aláhúzott beállítva"
-
-#~ msgid "Whether underline attribute is set"
-#~ msgstr "Az aláhúzott attribútum be van-e állítva"
-
-#~ msgid "Strikethrough set"
-#~ msgstr "Áthúzott beállítva"
-
-#~ msgid "Whether strikethrough attribute is set"
-#~ msgstr "Az áthúzott attribútum be van-e állítva"
-
-#~ msgid "Scale set"
-#~ msgstr "Méretezés beállítva"
-
-#~ msgid "Whether scale attribute is set"
-#~ msgstr "A méretezés attribútum be van-e állítva"
-
-#~ msgid "Style scheme id"
-#~ msgstr "Stílusséma azonosítója"
-
-#~ msgid "Style scheme name"
-#~ msgstr "Stílusséma neve"
-
-#~ msgid "Style scheme description"
-#~ msgstr "Stílusséma leírása"
-
-#~ msgid "Style scheme filename"
-#~ msgstr "Stílusséma fájlneve"
-
-#~ msgid "Style scheme search path"
-#~ msgstr "Stílusséma keresési útvonala"
-
-#~ msgid "List of directories and files where the style schemes are located"
-#~ msgstr "A stílussémákat tartalmazó könyvtárak és fájlok listája"
-
-#~ msgid "Scheme ids"
-#~ msgstr "Sémaazonosítók"
-
-#~ msgid "List of the ids of the available style schemes"
-#~ msgstr "Az elérhető stílussémák azonosítóinak listája"
-
-#~ msgid "The completion object associated with the view"
-#~ msgstr "A nézethez társított kiegészítési objektum"
-
-#~ msgid "Show Line Numbers"
-#~ msgstr "Sorszámozás megjelenítése"
-
-#~ msgid "Whether to display line numbers"
-#~ msgstr "Megjelenítse-e a sorok számát"
-
-#~ msgid "Show Line Marks"
-#~ msgstr "Oldaljelek megjelenítése"
-
-#~ msgid "Whether to display line mark pixbufs"
-#~ msgstr "Megjelenítse-e a sorokat jelző képeket"
-
-#~ msgid "Indent Width"
-#~ msgstr "Behúzás szélessége"
-
-#~ msgid "Number of spaces to use for each step of indent"
-#~ msgstr "Az egyes behúzási lépésekhez használandó szóközök száma"
-
-#~ msgid "Auto Indentation"
-#~ msgstr "Automatikus behúzás"
-
-#~ msgid "Whether to enable auto indentation"
-#~ msgstr "Engedélyezve legyen-e az automatikus behúzás"
-
-#~ msgid "Insert Spaces Instead of Tabs"
-#~ msgstr "Szóközök beillesztése tabulátorok helyett"
-
-#~ msgid "Whether to insert spaces instead of tabs"
-#~ msgstr "Tabulátorok helyett szóközöket illesszen-e be"
-
-#~ msgid "Show Right Margin"
-#~ msgstr "Jobb oldali margó megjelenítése"
-
-#~ msgid "Whether to display the right margin"
-#~ msgstr "Megjelenítse-e a jobb oldali margót"
-
-#~ msgid "Right Margin Position"
-#~ msgstr "Jobb margó pozíciója"
-
-#~ msgid "Position of the right margin"
-#~ msgstr "Jobb oldali margó pozíciója"
-
-#~ msgid "Smart Home/End"
-#~ msgstr "Okos home/end"
-
-#~ msgid ""
-#~ "HOME and END keys move to first/last non whitespace characters on line "
-#~ "before going to the start/end of the line"
-#~ msgstr ""
-#~ "A HOME és END billentyűk a sor első/utolsó nem üres hely karakterére "
-#~ "ugranak, mielőtt a sor elejére/végére állnának"
-
-#~ msgid "Highlight current line"
-#~ msgstr "A jelenlegi sor kiemelése"
-
-#~ msgid "Whether to highlight the current line"
-#~ msgstr "Kiemelje-e a jelenlegi sort?"
-
-#~ msgid "Indent on tab"
-#~ msgstr "Behúzás tabnál"
-
-#~ msgid "Whether to indent the selected text when the tab key is pressed"
-#~ msgstr "Behúzza-e a kijelölt szöveget a tab billentyű lenyomásakor"
-
-#~ msgid "Draw Spaces"
-#~ msgstr "Szóközök rajzolása"
-
-#~ msgid "Set if and how the spaces should be visualized"
-#~ msgstr "A szóközök megjelenítésének és annak módjának beállítása"
-
-#~ msgid "The text buffer to add undo support on"
-#~ msgstr "Visszavonás-támogatás adása ezen szövegpufferhez"
-
-#~ msgid "Cobol"
-#~ msgstr "Cobol"
-
-#~ msgid "math-bound"
-#~ msgstr "matematikai"
-
-#~ msgid "m4-comment"
-#~ msgstr "m4 megjegyzés"
-
-#~ msgid "string-conversion"
-#~ msgstr "karakterlánc-átalakítás"
-
-#~ msgid "No extra information available"
-#~ msgstr "Nem érhetők el további információk"
-
-#~ msgid "Objective Caml"
-#~ msgstr "Objective Caml"
-
-#~ msgid "Object"
-#~ msgstr "Objektum"
