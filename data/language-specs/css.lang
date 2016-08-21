@@ -138,7 +138,7 @@
     </context>
 
     <context id="hexadecimal-color" style-ref="color">
-      <match>#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})\b</match>
+      <match>#([a-fA-F0-9]{8}|[a-fA-F0-9]{6}|[a-fA-F0-9]{4}|[a-fA-F0-9]{3})\b</match>
     </context>
 
     <context id="named-color" style-ref="color">
