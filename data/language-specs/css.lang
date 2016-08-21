@@ -175,7 +175,7 @@
     </context>
 
     <context id="dimension" style-ref="dimension">
-      <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|e(m|x)|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s)</match>
+      <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|e(m|x)|(v(h|w|min|max))|ch|rem|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s)</match>
     </context>
 
     <context id="resolution" style-ref="dimension">
