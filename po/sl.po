@@ -9,19 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-02 20:49+0200\n"
-"PO-Revision-Date: 2016-05-02 20:49+0200\n"
+"product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-08-25 22:48+0200\n"
+"PO-Revision-Date: 2016-08-25 22:50+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: sl\n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. (itstool) path: displayable-values/value@name
 #: gtksourceview.xml:23
@@ -81,7 +81,7 @@ msgstr "Sledeče"
 #. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:834
+#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:833
 msgid "All"
 msgstr "Vse"
 
@@ -147,56 +147,62 @@ msgstr "Skript"
 #. (itstool) path: vbnet.lang/language@_section
 #. (itstool) path: verilog.lang/language@_section
 #. (itstool) path: vhdl.lang/language@_section
-#: actionscript.lang:25 ada.lang:26 ansforth94.lang:25 asp.lang:24 automake.lang:24
-#: bennugd.lang:23 bluespec.lang:22 boo.lang:24 cg.lang:24 chdr.lang:25 c.lang:25
-#: cobol.lang:27 cpphdr.lang:25 cpp.lang:25 csharp.lang:27 cuda.lang:23 d.lang:30
-#: eiffel.lang:24 erlang.lang:24 forth.lang:24 fortran.lang:25 fsharp.lang:25
-#: genie.lang:24 glsl.lang:31 go.lang:25 haskell.lang:25 haskell-literate.lang:24
-#: idl.lang:24 java.lang:25 j.lang:24 lex.lang:25 llvm.lang:23 makefile.lang:23
-#: meson.lang:24 nemerle.lang:24 netrexx.lang:24 objc.lang:24 objj.lang:26
-#: ocaml.lang:27 ooc.lang:24 opal.lang:24 opencl.lang:24 pascal.lang:25 pig.lang:27
-#: prolog.lang:24 rust.lang:36 scala.lang:25 scheme.lang:24 sml.lang:24 sparql.lang:24
-#: sql.lang:24 systemverilog.lang:22 thrift.lang:21 vala.lang:28 vbnet.lang:24
-#: verilog.lang:24 vhdl.lang:24
+#: actionscript.lang:25 ada.lang:26 ansforth94.lang:25 asp.lang:24
+#: automake.lang:24 bennugd.lang:23 bluespec.lang:22 boo.lang:24 cg.lang:24
+#: chdr.lang:25 c.lang:25 cobol.lang:27 cpphdr.lang:25 cpp.lang:25
+#: csharp.lang:27 cuda.lang:23 d.lang:30 eiffel.lang:24 erlang.lang:24
+#: forth.lang:24 fortran.lang:25 fsharp.lang:25 genie.lang:24 glsl.lang:31
+#: go.lang:25 haskell.lang:25 haskell-literate.lang:24 idl.lang:24 java.lang:25
+#: j.lang:24 lex.lang:25 llvm.lang:23 makefile.lang:23 meson.lang:24
+#: nemerle.lang:24 netrexx.lang:24 objc.lang:24 objj.lang:26 ocaml.lang:27
+#: ooc.lang:24 opal.lang:24 opencl.lang:24 pascal.lang:25 pig.lang:27
+#: prolog.lang:24 rust.lang:36 scala.lang:25 scheme.lang:24 sml.lang:24
+#: sparql.lang:24 sql.lang:24 systemverilog.lang:22 thrift.lang:21 vala.lang:28
+#: vbnet.lang:24 verilog.lang:24 vhdl.lang:24
 msgid "Source"
 msgstr "Vir"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:35 ada.lang:34 ansforth94.lang:39 asp.lang:32 bennugd.lang:32
-#: boo.lang:34 cg.lang:33 c.lang:35 cobol.lang:35 csharp.lang:37 def.lang:40 d.lang:40
-#: dosbatch.lang:31 dot.lang:34 eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34
-#: fortran.lang:33 fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35 gtkrc.lang:33
-#: haskell.lang:34 html.lang:34 idl-exelis.lang:28 idl.lang:32 ini.lang:31 jade.lang:33
-#: java.lang:35 j.lang:32 latex.lang:33 llvm.lang:30 lua.lang:34 matlab.lang:41
-#: modelica.lang:36 nemerle.lang:34 netrexx.lang:38 nsis.lang:32 ocaml.lang:36
-#: ocl.lang:41 octave.lang:41 ooc.lang:33 opal.lang:34 pascal.lang:33 perl.lang:34
-#: php.lang:40 pig.lang:41 po.lang:32 prolog.lang:34 protobuf.lang:31 rst.lang:36
-#: ruby.lang:36 rust.lang:45 scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33
-#: sml.lang:32 sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33 thrift.lang:30
-#: vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32 xml.lang:35 yaml.lang:31
+#: actionscript.lang:35 ada.lang:34 ansforth94.lang:39 asp.lang:32
+#: bennugd.lang:32 boo.lang:34 cg.lang:33 c.lang:35 cobol.lang:35
+#: csharp.lang:37 def.lang:40 d.lang:40 dosbatch.lang:31 dot.lang:34
+#: eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34 fortran.lang:33
+#: fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35 gtkrc.lang:33
+#: haskell.lang:34 html.lang:34 idl-exelis.lang:28 idl.lang:32 ini.lang:31
+#: jade.lang:33 java.lang:35 j.lang:32 latex.lang:33 llvm.lang:30 lua.lang:34
+#: matlab.lang:41 modelica.lang:36 nemerle.lang:34 netrexx.lang:38 nsis.lang:32
+#: ocaml.lang:36 ocl.lang:41 octave.lang:41 ooc.lang:33 opal.lang:34
+#: pascal.lang:33 perl.lang:34 php.lang:40 pig.lang:41 po.lang:32
+#: prolog.lang:34 protobuf.lang:31 rst.lang:36 ruby.lang:36 rust.lang:45
+#: scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33 sml.lang:32
+#: sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33 thrift.lang:30
+#: vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32 xml.lang:35
+#: yaml.lang:31
 msgid "Comment"
 msgstr "Opomba"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:36 cg.lang:34 c.lang:54 cobol.lang:43 csharp.lang:38 css.lang:48
-#: def.lang:102 d.lang:41 dot.lang:35 go.lang:36 html.lang:39 jade.lang:41 j.lang:35
-#: json.lang:42 nemerle.lang:35 ocaml.lang:53 ooc.lang:34 opal.lang:36 perl.lang:48
-#: php.lang:41 prolog.lang:40 scala.lang:36 vala.lang:39 verilog.lang:38 xml.lang:45
+#: actionscript.lang:36 cg.lang:34 c.lang:54 cobol.lang:43 csharp.lang:38
+#: css.lang:48 def.lang:102 d.lang:41 dot.lang:35 go.lang:36 html.lang:39
+#: jade.lang:41 j.lang:35 json.lang:42 nemerle.lang:35 ocaml.lang:53
+#: ooc.lang:34 opal.lang:36 perl.lang:48 php.lang:41 prolog.lang:40
+#: scala.lang:36 vala.lang:39 verilog.lang:38 xml.lang:45
 msgid "Error"
 msgstr "Napaka"
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:37 ada.lang:35 ansforth94.lang:43 asp.lang:33 boo.lang:36
-#: c.lang:36 cobol.lang:40 csharp.lang:40 css.lang:50 csv.lang:34 def.lang:57 d.lang:42
-#: dosbatch.lang:32 eiffel.lang:34 erlang.lang:36 forth.lang:35 fortran.lang:34
-#: fsharp.lang:38 gdb-log.lang:30 genie.lang:36 go.lang:37 gtkrc.lang:34
-#: haskell.lang:39 idl-exelis.lang:32 idl.lang:36 imagej.lang:40 ini.lang:33
-#: java.lang:37 javascript.lang:47 j.lang:45 json.lang:39 julia.lang:37 llvm.lang:31
-#: lua.lang:35 meson.lang:34 modelica.lang:37 nemerle.lang:38 netrexx.lang:36
-#: nsis.lang:33 objc.lang:37 objj.lang:41 ocaml.lang:41 ocl.lang:42 octave.lang:42
-#: ooc.lang:36 opal.lang:37 pascal.lang:34 perl.lang:37 php.lang:45 po.lang:34
-#: prolog.lang:37 protobuf.lang:37 python3.lang:34 python.lang:39 ruby.lang:46
-#: rust.lang:46 scala.lang:39 scheme.lang:34 scilab.lang:33 sh.lang:35 sml.lang:36
+#: c.lang:36 cobol.lang:40 csharp.lang:40 css.lang:50 csv.lang:34 def.lang:57
+#: d.lang:42 dosbatch.lang:32 eiffel.lang:34 erlang.lang:36 forth.lang:35
+#: fortran.lang:34 fsharp.lang:38 gdb-log.lang:30 genie.lang:36 go.lang:37
+#: gtkrc.lang:34 haskell.lang:39 idl-exelis.lang:32 idl.lang:36 imagej.lang:40
+#: ini.lang:33 java.lang:37 javascript.lang:47 j.lang:45 json.lang:39
+#: julia.lang:37 llvm.lang:31 lua.lang:35 meson.lang:34 modelica.lang:37
+#: nemerle.lang:38 netrexx.lang:36 nsis.lang:33 objc.lang:37 objj.lang:41
+#: ocaml.lang:41 ocl.lang:42 octave.lang:42 ooc.lang:36 opal.lang:37
+#: pascal.lang:34 perl.lang:37 php.lang:45 po.lang:34 prolog.lang:37
+#: protobuf.lang:37 python3.lang:34 python.lang:39 ruby.lang:46 rust.lang:46
+#: scala.lang:39 scheme.lang:34 scilab.lang:33 sh.lang:35 sml.lang:36
 #: sql.lang:34 texinfo.lang:36 thrift.lang:33 vala.lang:41 vbnet.lang:33
 #: verilog.lang:35 vhdl.lang:33 yaml.lang:32
 msgid "String"
@@ -213,7 +219,8 @@ msgid "Declaration"
 msgstr "Deklaracija"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:40 ada.lang:39 cg.lang:40 c.lang:44 java.lang:43 ooc.lang:39
+#: actionscript.lang:40 ada.lang:39 cg.lang:40 c.lang:44 java.lang:43
+#: ooc.lang:39
 msgid "Storage Class"
 msgstr "Razred shranjevanja"
 
@@ -224,18 +231,20 @@ msgstr "Deklaracije obsega"
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:42 ada.lang:36 ansforth94.lang:36 asp.lang:35 awk.lang:32
-#: bennugd.lang:36 bluespec.lang:35 boo.lang:41 cg.lang:38 c.lang:41 cobol.lang:38
-#: cpp.lang:35 csharp.lang:45 css.lang:59 cuda.lang:33 def.lang:92 d.lang:43
-#: dosbatch.lang:33 dot.lang:36 eiffel.lang:37 erlang.lang:33 fcl.lang:32 forth.lang:37
-#: fortran.lang:36 fsharp.lang:39 gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39
-#: gtkrc.lang:35 haskell.lang:37 idl-exelis.lang:31 idl.lang:35 imagej.lang:38
-#: ini.lang:34 java.lang:45 javascript.lang:41 julia.lang:44 lex.lang:35 llvm.lang:32
+#: bennugd.lang:36 bluespec.lang:35 boo.lang:41 cg.lang:38 c.lang:41
+#: cobol.lang:38 cpp.lang:35 csharp.lang:45 css.lang:59 cuda.lang:33
+#: def.lang:92 d.lang:43 dosbatch.lang:33 dot.lang:36 eiffel.lang:37
+#: erlang.lang:33 fcl.lang:32 forth.lang:37 fortran.lang:36 fsharp.lang:39
+#: gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39 gtkrc.lang:35
+#: haskell.lang:37 idl-exelis.lang:31 idl.lang:35 imagej.lang:38 ini.lang:34
+#: java.lang:45 javascript.lang:41 julia.lang:44 lex.lang:35 llvm.lang:32
 #: lua.lang:36 matlab.lang:42 modelica.lang:46 nemerle.lang:39 objc.lang:34
-#: objj.lang:37 ocaml.lang:42 ocl.lang:43 octave.lang:48 ooc.lang:41 opal.lang:38
-#: opencl.lang:33 pascal.lang:35 perl.lang:38 php.lang:48 po.lang:36 prolog.lang:36
-#: protobuf.lang:35 python3.lang:32 python.lang:37 R.lang:34 ruby.lang:39 rust.lang:48
-#: scala.lang:43 scheme.lang:35 scilab.lang:34 sh.lang:36 sml.lang:33 sparql.lang:37
-#: sql.lang:35 systemverilog.lang:33 tcl.lang:33 texinfo.lang:37 thrift.lang:32
+#: objj.lang:37 ocaml.lang:42 ocl.lang:43 octave.lang:48 ooc.lang:41
+#: opal.lang:38 opencl.lang:33 pascal.lang:35 perl.lang:38 php.lang:48
+#: po.lang:36 prolog.lang:36 protobuf.lang:35 python3.lang:32 python.lang:37
+#: R.lang:34 ruby.lang:39 rust.lang:48 scala.lang:43 scheme.lang:35
+#: scilab.lang:34 sh.lang:36 sml.lang:33 sparql.lang:37 sql.lang:35
+#: systemverilog.lang:33 tcl.lang:33 texinfo.lang:37 thrift.lang:32
 #: vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
 msgid "Keyword"
 msgstr "Ključna beseda"
@@ -248,18 +257,20 @@ msgid "Null Value"
 msgstr "Nična vrednost"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:44 ada.lang:38 asp.lang:42 bennugd.lang:41 cg.lang:46 c.lang:51
-#: csharp.lang:48 def.lang:75 fsharp.lang:50 go.lang:48 gtkrc.lang:40 ini.lang:38
-#: java.lang:47 llvm.lang:38 lua.lang:42 nemerle.lang:42 ocaml.lang:52 ooc.lang:43
-#: opal.lang:39 php.lang:53 protobuf.lang:36 R.lang:39 ruby.lang:41 rust.lang:50
-#: sml.lang:40 vala.lang:43 vbnet.lang:38 vhdl.lang:37
+#: actionscript.lang:44 ada.lang:38 asp.lang:42 bennugd.lang:41 cg.lang:46
+#: c.lang:51 csharp.lang:48 def.lang:75 fsharp.lang:50 go.lang:48 gtkrc.lang:40
+#: ini.lang:38 java.lang:47 llvm.lang:38 lua.lang:42 nemerle.lang:42
+#: ocaml.lang:52 ooc.lang:43 opal.lang:39 php.lang:53 protobuf.lang:36
+#: R.lang:39 ruby.lang:41 rust.lang:50 sml.lang:40 vala.lang:43 vbnet.lang:38
+#: vhdl.lang:37
 msgid "Boolean value"
 msgstr "Boolova vrednost"
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:45 asp.lang:43 boo.lang:45 cobol.lang:41 def.lang:63
-#: desktop.lang:38 forth.lang:39 genie.lang:45 java.lang:48 j.lang:42 julia.lang:39
-#: llvm.lang:39 netrexx.lang:48 prolog.lang:38 rust.lang:52 scala.lang:45 vhdl.lang:40
+#: desktop.lang:38 forth.lang:39 genie.lang:45 java.lang:48 j.lang:42
+#: julia.lang:39 llvm.lang:39 netrexx.lang:48 prolog.lang:38 rust.lang:52
+#: scala.lang:45 vhdl.lang:40
 msgid "Number"
 msgstr "Številka"
 
@@ -269,14 +280,15 @@ msgid "Future Reserved Keywords"
 msgstr "Prihodnje zadržane besede"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:47 ada.lang:40 asp.lang:40 bennugd.lang:37 boo.lang:39 cg.lang:39
-#: c.lang:43 cpp.lang:36 csharp.lang:39 cuda.lang:34 d.lang:44 eiffel.lang:38
-#: forth.lang:38 fortran.lang:40 fsharp.lang:42 genie.lang:39 glsl.lang:42 go.lang:40
-#: gtkrc.lang:37 haskell.lang:38 idl-exelis.lang:29 idl.lang:33 ini.lang:37
-#: java.lang:50 javascript.lang:42 llvm.lang:37 nemerle.lang:40 objc.lang:35
-#: objj.lang:38 ocaml.lang:45 ocl.lang:45 ooc.lang:49 opal.lang:41 opencl.lang:34
-#: pascal.lang:37 php.lang:51 pig.lang:36 protobuf.lang:34 rust.lang:49 scala.lang:47
-#: sml.lang:34 sparql.lang:34 sql.lang:38 thrift.lang:31 vala.lang:40 vbnet.lang:36
+#: actionscript.lang:47 ada.lang:40 asp.lang:40 bennugd.lang:37 boo.lang:39
+#: cg.lang:39 c.lang:43 cpp.lang:36 csharp.lang:39 cuda.lang:34 d.lang:44
+#: eiffel.lang:38 forth.lang:38 fortran.lang:40 fsharp.lang:42 genie.lang:39
+#: glsl.lang:42 go.lang:40 gtkrc.lang:37 haskell.lang:38 idl-exelis.lang:29
+#: idl.lang:33 ini.lang:37 java.lang:50 javascript.lang:42 llvm.lang:37
+#: nemerle.lang:40 objc.lang:35 objj.lang:38 ocaml.lang:45 ocl.lang:45
+#: ooc.lang:49 opal.lang:41 opencl.lang:34 pascal.lang:37 php.lang:51
+#: pig.lang:36 protobuf.lang:34 rust.lang:49 scala.lang:47 sml.lang:34
+#: sparql.lang:34 sql.lang:38 thrift.lang:31 vala.lang:40 vbnet.lang:36
 msgid "Data Type"
 msgstr "Podatkovna vrsta"
 
@@ -287,9 +299,9 @@ msgstr "Ada"
 
 #. (itstool) path: styles/style@_name
 #: ada.lang:37 bennugd.lang:39 cg.lang:43 c.lang:48 csharp.lang:49 csv.lang:31
-#: def.lang:67 d.lang:49 eiffel.lang:45 erlang.lang:39 fsharp.lang:37 go.lang:45
-#: idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40 ooc.lang:45 opal.lang:40
-#: php.lang:55 python3.lang:40 python.lang:46 ruby.lang:43
+#: def.lang:67 d.lang:49 eiffel.lang:45 erlang.lang:39 fsharp.lang:37
+#: go.lang:45 idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40 ooc.lang:45
+#: opal.lang:40 php.lang:55 python3.lang:40 python.lang:46 ruby.lang:43
 msgid "Decimal number"
 msgstr "Decimalno število"
 
@@ -312,11 +324,12 @@ msgid "Real number"
 msgstr "Realno število"
 
 #. (itstool) path: styles/style@_name
-#: ada.lang:44 cg.lang:41 c.lang:46 csharp.lang:42 eiffel.lang:42 fortran.lang:44
-#: fsharp.lang:49 go.lang:42 haskell.lang:41 imagej.lang:37 java.lang:36
-#: javascript.lang:37 json.lang:38 lua.lang:37 netrexx.lang:35 ocaml.lang:51
-#: ooc.lang:35 php.lang:44 prolog.lang:41 python3.lang:35 python.lang:40 ruby.lang:35
-#: scala.lang:40 sml.lang:37 texinfo.lang:34 vala.lang:49 verilog.lang:37
+#: ada.lang:44 cg.lang:41 c.lang:46 csharp.lang:42 eiffel.lang:42
+#: fortran.lang:44 fsharp.lang:49 go.lang:42 haskell.lang:41 imagej.lang:37
+#: java.lang:36 javascript.lang:37 json.lang:38 lua.lang:37 netrexx.lang:35
+#: ocaml.lang:51 ooc.lang:35 php.lang:44 prolog.lang:41 python3.lang:35
+#: python.lang:40 ruby.lang:35 scala.lang:40 sml.lang:37 texinfo.lang:34
+#: vala.lang:49 verilog.lang:37
 msgid "Escaped Character"
 msgstr "Ubežni znak"
 
@@ -336,9 +349,9 @@ msgid "Alert"
 msgstr "Opozorilo"
 
 #. (itstool) path: styles/style@_name
-#: ansforth94.lang:41 c.lang:40 csharp.lang:41 def.lang:55 erlang.lang:37 gap.lang:33
-#: go.lang:38 haskell.lang:40 java.lang:38 julia.lang:38 nemerle.lang:37
-#: netrexx.lang:37 rust.lang:47 sml.lang:35 vhdl.lang:34
+#: ansforth94.lang:41 c.lang:40 csharp.lang:41 def.lang:55 erlang.lang:37
+#: gap.lang:33 go.lang:38 haskell.lang:40 java.lang:38 julia.lang:38
+#: nemerle.lang:37 netrexx.lang:37 rust.lang:47 sml.lang:35 vhdl.lang:34
 msgid "Character"
 msgstr "Znak"
 
@@ -355,9 +368,9 @@ msgstr "Konstanta"
 
 #. (itstool) path: styles/style@_name
 #: ansforth94.lang:45 awk.lang:34 cmake.lang:37 cobol.lang:37 haskell.lang:35
-#: ini.lang:36 llvm.lang:35 makefile.lang:31 nsis.lang:34 perl.lang:44 php.lang:42
-#: pkgconfig.lang:31 prolog.lang:35 protobuf.lang:33 ruby.lang:54 sh.lang:37
-#: sparql.lang:44 tcl.lang:32
+#: ini.lang:36 llvm.lang:35 makefile.lang:31 nsis.lang:34 perl.lang:44
+#: php.lang:42 pkgconfig.lang:31 prolog.lang:35 protobuf.lang:33 ruby.lang:54
+#: sh.lang:37 sparql.lang:44 tcl.lang:32
 msgid "Variable"
 msgstr "Spremenljivka"
 
@@ -388,18 +401,19 @@ msgstr "ASP"
 
 #. (itstool) path: styles/style@_name
 #: asp.lang:36 cg.lang:48 changelog.lang:39 css.lang:53 def.lang:81 gap.lang:35
-#: gdb-log.lang:29 gtk-doc.lang:34 idl-exelis.lang:35 javascript.lang:43 llvm.lang:33
-#: lua.lang:40 scheme.lang:36 scilab.lang:35 sh.lang:34 sparql.lang:35 sql.lang:36
+#: gdb-log.lang:29 gtk-doc.lang:34 idl-exelis.lang:35 javascript.lang:43
+#: llvm.lang:33 lua.lang:40 scheme.lang:36 scilab.lang:35 sh.lang:34
+#: sparql.lang:35 sql.lang:36
 msgid "Function"
 msgstr "Funkcija"
 
 # operator -> operand
 # ni isto!!! operator je +-/*, operand pa številčna vrednost v izrazu
 #. (itstool) path: styles/style@_name
-#: asp.lang:37 bennugd.lang:35 c.lang:42 cmake.lang:35 cobol.lang:42 def.lang:90
-#: erlang.lang:34 imagej.lang:39 julia.lang:43 meson.lang:33 modelica.lang:38
-#: nsis.lang:31 octave.lang:43 perl.lang:43 php.lang:50 prolog.lang:39 scala.lang:46
-#: sparql.lang:45
+#: asp.lang:37 bennugd.lang:35 c.lang:42 cmake.lang:35 cobol.lang:42
+#: def.lang:90 erlang.lang:34 imagej.lang:39 julia.lang:43 meson.lang:33
+#: modelica.lang:38 nsis.lang:31 octave.lang:43 perl.lang:43 php.lang:50
+#: prolog.lang:39 scala.lang:46 sparql.lang:45
 msgid "Operator"
 msgstr "Operator"
 
@@ -480,8 +494,9 @@ msgstr "awk"
 #. (itstool) path: ruby.lang/language@_section
 #. (itstool) path: sh.lang/language@_section
 #. (itstool) path: tcl.lang/language@_section
-#: awk.lang:24 dosbatch.lang:24 javascript.lang:27 lua.lang:24 m4.lang:24 perl.lang:26
-#: php.lang:29 python3.lang:24 python.lang:28 ruby.lang:27 sh.lang:25 tcl.lang:24
+#: awk.lang:24 dosbatch.lang:24 javascript.lang:27 lua.lang:24 m4.lang:24
+#: perl.lang:26 php.lang:29 python3.lang:24 python.lang:28 ruby.lang:27
+#: sh.lang:25 tcl.lang:24
 msgid "Script"
 msgstr "Skript"
 
@@ -491,8 +506,8 @@ msgid "Pattern"
 msgstr "Vzorec"
 
 #. (itstool) path: styles/style@_name
-#: awk.lang:35 boo.lang:46 genie.lang:46 glsl.lang:44 go.lang:50 netrexx.lang:47
-#: perl.lang:39 python3.lang:45 python.lang:51
+#: awk.lang:35 boo.lang:46 genie.lang:46 glsl.lang:44 go.lang:50
+#: netrexx.lang:47 perl.lang:39 python3.lang:45 python.lang:51
 msgid "Builtin Function"
 msgstr "Vgrajene funkcije"
 
@@ -509,7 +524,8 @@ msgstr "Določilnik"
 #. (itstool) path: styles/style@_name
 #: bennugd.lang:38 cg.lang:42 c.lang:47 csv.lang:33 def.lang:65 d.lang:48
 #: erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44 nemerle.lang:43
-#: ooc.lang:44 php.lang:54 python3.lang:39 python.lang:45 R.lang:41 ruby.lang:42
+#: ooc.lang:44 php.lang:54 python3.lang:39 python.lang:45 R.lang:41
+#: ruby.lang:42
 msgid "Floating point number"
 msgstr "Število s plavajočo vejico"
 
@@ -585,8 +601,8 @@ msgid "Import BVI"
 msgstr "Uvozi BVI"
 
 #. (itstool) path: styles/style@_name
-#: bluespec.lang:36 gtk-doc.lang:33 julia.lang:49 systemverilog.lang:34 verilog.lang:44
-#: vhdl.lang:36
+#: bluespec.lang:36 gtk-doc.lang:33 julia.lang:49 systemverilog.lang:34
+#: verilog.lang:44 vhdl.lang:36
 msgid "Type"
 msgstr "Vrsta"
 
@@ -601,7 +617,8 @@ msgid "Multiline string"
 msgstr "Niz v več vrsticah"
 
 #. (itstool) path: styles/style@_name
-#: boo.lang:37 genie.lang:37 javascript.lang:48 perl.lang:47 ruby.lang:57 vala.lang:48
+#: boo.lang:37 genie.lang:37 javascript.lang:48 perl.lang:47 ruby.lang:57
+#: vala.lang:48
 msgid "Regular Expression"
 msgstr "Logični izraz"
 
@@ -622,9 +639,10 @@ msgid "Special Variable"
 msgstr "Posebna spremenljivka"
 
 #. (itstool) path: styles/style@_name
-#: boo.lang:44 desktop.lang:39 d.lang:47 genie.lang:44 imagej.lang:34 julia.lang:40
-#: libtool.lang:33 modelica.lang:42 objj.lang:36 octave.lang:46 python3.lang:38
-#: python.lang:44 scheme.lang:33 scilab.lang:36 sparql.lang:39 yaml.lang:39
+#: boo.lang:44 desktop.lang:39 d.lang:47 genie.lang:44 imagej.lang:34
+#: julia.lang:40 libtool.lang:33 modelica.lang:42 objj.lang:36 octave.lang:46
+#: python3.lang:38 python.lang:44 scheme.lang:33 scilab.lang:36 sparql.lang:39
+#: yaml.lang:39
 msgid "Boolean"
 msgstr "Boolova vrednost"
 
@@ -644,7 +662,8 @@ msgid "Included File"
 msgstr "Dodana datoteka"
 
 #. (itstool) path: styles/style@_name
-#: cg.lang:44 c.lang:49 d.lang:51 go.lang:46 nemerle.lang:46 ooc.lang:46 php.lang:56
+#: cg.lang:44 c.lang:49 d.lang:51 go.lang:46 nemerle.lang:46 ooc.lang:46
+#: php.lang:56
 msgid "Octal number"
 msgstr "Osmiško število"
 
@@ -687,11 +706,11 @@ msgstr "Dnevnik sprememb"
 #. (itstool) path: styles/style@_name
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
-#: changelog.lang:25 cmake.lang:24 css.lang:39 csv.lang:24 desktop.lang:25 diff.lang:24
-#: dot.lang:24 dpatch.lang:24 gdb-log.lang:19 gtkrc.lang:25 ini.lang:23 json.lang:30
-#: libtool.lang:24 nsis.lang:24 ocl.lang:33 pkgconfig.lang:24 po.lang:24
-#: protobuf.lang:21 puppet.lang:24 rpmspec.lang:24 scala.lang:49 yacc.lang:24
-#: yaml.lang:22
+#: changelog.lang:25 cmake.lang:24 css.lang:39 csv.lang:24 desktop.lang:25
+#: diff.lang:24 dot.lang:24 dpatch.lang:24 gdb-log.lang:19 gtkrc.lang:25
+#: ini.lang:23 json.lang:30 libtool.lang:24 nsis.lang:24 ocl.lang:33
+#: pkgconfig.lang:24 po.lang:24 protobuf.lang:21 puppet.lang:24 rpmspec.lang:24
+#: scala.lang:49 yacc.lang:24 yaml.lang:22
 msgid "Other"
 msgstr "Ostalo"
 
@@ -701,7 +720,7 @@ msgid "Date"
 msgstr "Datum"
 
 #. (itstool) path: styles/style@_name
-#: changelog.lang:35 latex.lang:52
+#: changelog.lang:35
 msgid "Name"
 msgstr "Ime"
 
@@ -831,8 +850,9 @@ msgid "Others 3"
 msgstr "Drugo 3"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:55 fcl.lang:34 fortran.lang:39 gap.lang:36 gtkrc.lang:36 haskell.lang:43
-#: ini.lang:35 json.lang:43 modelica.lang:43 pascal.lang:36 sml.lang:39 sql.lang:37
+#: css.lang:55 fcl.lang:34 fortran.lang:39 gap.lang:36 gtkrc.lang:36
+#: haskell.lang:43 ini.lang:35 json.lang:43 modelica.lang:43 pascal.lang:36
+#: sml.lang:39 sql.lang:37
 msgid "Decimal"
 msgstr "Desetiško"
 
@@ -1260,7 +1280,8 @@ msgid "Scientific"
 msgstr "Znanstveno"
 
 #. (itstool) path: styles/style@_name
-#: fcl.lang:31 fortran.lang:35 ini.lang:32 modelica.lang:44 scilab.lang:32 sql.lang:33
+#: fcl.lang:31 fortran.lang:35 ini.lang:32 modelica.lang:44 scilab.lang:32
+#: sql.lang:33
 msgid "Floating Point"
 msgstr "Plavajoča vejica"
 
@@ -2737,12 +2758,13 @@ msgstr "Določilo spremenljivke"
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
 #.
-#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:55
+#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:56
 msgid "Others"
 msgstr "Ostalo"
 
@@ -3066,39 +3088,39 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Barvna shema z barvno paleto tango"
 
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:334
 msgid "Document Words"
 msgstr "Besede dokumenta"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:842
+#: gtksourceview/gtksourcebufferoutputstream.c:843
 msgid "Invalid byte sequence in conversion input"
 msgstr "Neveljavno zaporedje bajtov na vhodu pretvorbe"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:848
+#: gtksourceview/gtksourcebufferoutputstream.c:849
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Napaka med pretvorbo: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:929
+#: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
 msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
 msgstr "Pretvorba iz nabora '%s' v 'UTF-8' ni podprto"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:935
+#: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
 msgid "Could not open converter from '%s' to 'UTF-8'"
 msgstr "Ni mogoče odpreti pretvornika iz '%s' v 'UTF-8'"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:990
+#: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
 msgstr "Neveljaven predmet, opravilo ni začeto"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1182
+#: gtksourceview/gtksourcebufferoutputstream.c:1188
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Neveljavno zaporedje UTF-8 na vhodu"
 
 #. Tooltip style
-#: gtksourceview/gtksourcecompletioninfo.c:272
+#: gtksourceview/gtksourcecompletioninfo.c:271
 msgid "Completion Info"
 msgstr "Podrobnosti dopolnjevanja"
 
@@ -3118,54 +3140,58 @@ msgstr "_Podrobnosti ..."
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3145
+#: gtksourceview/gtksourcecontextengine.c:3141
 #, c-format
 msgid ""
-"Cannot create a regex for all the transitions, the syntax highlighting process will "
-"be slower than usual.\n"
+"Cannot create a regex for all the transitions, the syntax highlighting "
+"process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
 "Ni mogoče ustvariti logičnega izraza za vse prehode; poudarjanje skladnje bo "
 "počasnejše kot običajno.\n"
 "Javljena napaka: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4468
+#: gtksourceview/gtksourcecontextengine.c:4464
 msgid ""
-"Highlighting a single line took too much time, syntax highlighting will be disabled"
+"Highlighting a single line took too much time, syntax highlighting will be "
+"disabled"
 msgstr ""
-"Poudarjanje ene same vrstice je trajalo predolgo. Poudarjanje skladnje bo onemogočeno."
+"Poudarjanje ene same vrstice je trajalo predolgo. Poudarjanje skladnje bo "
+"onemogočeno."
 
-#: gtksourceview/gtksourcecontextengine.c:5716
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
 msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgstr "vsebina '%s' ne sme vsebovati \\%%{...@start} ukaza"
 
-#: gtksourceview/gtksourcecontextengine.c:5879
-#: gtksourceview/gtksourcecontextengine.c:5970
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5966
 #, c-format
 msgid "duplicated context id '%s'"
 msgstr "podvojen ID vsebine '%s'"
 
-#: gtksourceview/gtksourcecontextengine.c:6084
-#: gtksourceview/gtksourcecontextengine.c:6144
+#: gtksourceview/gtksourcecontextengine.c:6080
+#: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
-msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
+msgid ""
+"style override used with wildcard context reference in language '%s' in ref "
+"'%s'"
 msgstr ""
-"prepis sloga uporabljen s posebnimi nadomestnimi znaki (wildcards) v jeziku '%s' "
-"sklica '%s'"
+"prepis sloga uporabljen s posebnimi nadomestnimi znaki (wildcards) v jeziku "
+"'%s' sklica '%s'"
 
-#: gtksourceview/gtksourcecontextengine.c:6158
+#: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
 msgid "invalid context reference '%s'"
 msgstr "neveljavna vsebinska povezava '%s'"
 
-#: gtksourceview/gtksourcecontextengine.c:6177
-#: gtksourceview/gtksourcecontextengine.c:6187
+#: gtksourceview/gtksourcecontextengine.c:6173
+#: gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
 msgid "unknown context '%s'"
 msgstr "neznana vsebina '%s'"
 
-#: gtksourceview/gtksourcecontextengine.c:6286
+#: gtksourceview/gtksourcecontextengine.c:6282
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Manjka določitev glavnega jezika (id = \"%s\".)"
@@ -3304,6 +3330,30 @@ msgstr "Neznano"
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'TRENUTNI', 'ISO-8859-15', 'UTF-16']"
 
+#: gtksourceview/gtksourcefileloader.c:508
+msgid ""
+"There was a character encoding conversion error and it was needed to use a "
+"fallback character."
+msgstr ""
+"Prišlo je do napake pretvarjanja kodnega nabora, zato je bil uporabljen "
+"povratni znak."
+
+#: gtksourceview/gtksourcefileloader.c:615
+msgid "File too big."
+msgstr "Datoteka je prevelika!"
+
+#: gtksourceview/gtksourcefileloader.c:769
+msgid "Not a regular file."
+msgstr "Datoteka ni običajna datoteka."
+
+#: gtksourceview/gtksourcefilesaver.c:968
+msgid "The file is externally modified."
+msgstr "Datoteka je močno spremenjena."
+
+#: gtksourceview/gtksourcefilesaver.c:1420
+msgid "The buffer contains invalid characters."
+msgstr "Medpomnilnik vsebuje neveljavne znake."
+
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
 msgid "Unknown id '%s' in regex '%s'"
@@ -3332,40 +3382,39 @@ msgid "_Select"
 msgstr "_Izberi"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1565
+#: gtksourceview/gtksourceview.c:1722
 msgid "_Redo"
 msgstr "_Ponovno uveljavi"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1576
+#: gtksourceview/gtksourceview.c:1733
 msgid "_Undo"
 msgstr "_Razveljavi"
 
-#: gtksourceview/gtksourceview.c:1595
+#: gtksourceview/gtksourceview.c:1752
 msgid "All _Upper Case"
 msgstr "Vse _velike črke"
 
-#: gtksourceview/gtksourceview.c:1605
+#: gtksourceview/gtksourceview.c:1762
 msgid "All _Lower Case"
 msgstr "Vse _male črke"
 
-#: gtksourceview/gtksourceview.c:1615
+#: gtksourceview/gtksourceview.c:1772
 msgid "_Invert Case"
 msgstr "_Obrni velikost črk"
 
-#: gtksourceview/gtksourceview.c:1625
+#: gtksourceview/gtksourceview.c:1782
 msgid "_Title Case"
 msgstr "_Velike prve črke besed"
 
-#: gtksourceview/gtksourceview.c:1635
+#: gtksourceview/gtksourceview.c:1792
 msgid "C_hange Case"
 msgstr "Spreme_ni velikost črk"
 
-#: gtksourceview/gtksourceview-i18n.c:116
-msgid "translator-credits"
-msgstr ""
-"Matej Urbančič <mateju@svn.gnome.org>\n"
-"Valentin Hegediš <valentin.hegedis@gmail.com>"
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Matej Urbančič <mateju@svn.gnome.org>\n"
+#~ "Valentin Hegediš <valentin.hegedis@gmail.com>"
 
 #~ msgid "C/C++/ObjC Header"
 #~ msgstr "C/C++/ObjC glava"
@@ -3503,7 +3552,8 @@ msgstr ""
 #~ msgid "Show Headers"
 #~ msgstr "Pokaži glave"
 
-#~ msgid "Show provider headers when proposals from multiple providers are available"
+#~ msgid ""
+#~ "Show provider headers when proposals from multiple providers are available"
 #~ msgstr "Pokaži glave ponudnikov, ko so na voljo različne ponudbe "
 
 #~ msgid "Show Icons"
@@ -3684,7 +3734,8 @@ msgstr ""
 #~ msgstr "Mape z določili jezikov"
 
 #~ msgid ""
-#~ "List of directories where the language specification files (.lang) are located"
+#~ "List of directories where the language specification files (.lang) are "
+#~ "located"
 #~ msgstr "Seznam map, v katerih so datoteke (.lang) z določili jezikov"
 
 #~ msgid "Language ids"
