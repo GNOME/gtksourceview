@@ -42,17 +42,18 @@ except according to those terms.
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="char" _name="Character" map-to="def:character"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
-    <style id="identifier" _name="Identifier" map-to="def:identifier"/>
-    <style id="number" _name="Number" map-to="def:number"/>
-    <style id="scope" _name="Scope" map-to="def:preprocessor"/>
-    <style id="attribute" _name="Attribute" map-to="def:preprocessor"/>
-    <style id="macro" _name="Macro" map-to="def:preprocessor"/>
+    <style id="comment"    _name="Comment"       map-to="def:comment"/>
+    <style id="string"     _name="String"        map-to="def:string"/>
+    <style id="char"       _name="Character"     map-to="def:character"/>
+    <style id="keyword"    _name="Keyword"       map-to="def:keyword"/>
+    <style id="type"       _name="Data Type"     map-to="def:type"/>
+    <style id="boolean"    _name="Boolean value" map-to="def:boolean"/>
+    <style id="identifier" _name="Identifier"    map-to="def:identifier"/>
+    <style id="number"     _name="Number"        map-to="def:number"/>
+    <style id="scope"      _name="Scope"         map-to="def:preprocessor"/>
+    <style id="attribute"  _name="Attribute"     map-to="def:preprocessor"/>
+    <style id="macro"      _name="Macro"         map-to="def:preprocessor"/>
+    <style id="error"      _name="Error"         map-to="def:error"/>
   </styles>
 
   <definitions>
