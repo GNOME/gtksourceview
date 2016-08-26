@@ -270,8 +270,16 @@ except according to those terms.
       <match extended="true">'([^\\']|\\\%{common-escape}|\\\%{unicode-escape})'</match>
     </context>
 
+    <context id="invalid-char" style-ref="error">
+      <match extended="true">'([^\\']|\\\%{common-escape}|\\\%{unicode-escape}){2,}'</match>
+    </context>
+
     <context id="byte" style-ref="char">
       <match extended="true">b'([^\\']|\\\%{common-escape})'</match>
+    </context>
+
+    <context id="invalid-byte" style-ref="error">
+      <match extended="true">b'([^\\']|\\\%{common-escape}){2,}'</match>
     </context>
 
     <context id="attribute" style-ref="attribute" class="attribute">
@@ -302,7 +310,9 @@ except according to those terms.
         <context ref="byte-string"/>
         <context ref="raw-string"/>
         <context ref="char"/>
+        <context ref="invalid-char"/>
         <context ref="byte"/>
+        <context ref="invalid-byte"/>
         <context ref="lifetime"/>
         <context ref="attribute"/>
       </include>
