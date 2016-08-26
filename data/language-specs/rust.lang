@@ -163,6 +163,10 @@ except according to those terms.
       \%{int-suffix}|\%{float-suffix}
     </define-regex>
 
+    <define-regex id="bin-digit" extended="true">
+      [01]
+    </define-regex>
+
     <define-regex id="hex-digit" extended="true">
       [0-9a-fA-F]
     </define-regex>
@@ -175,11 +179,22 @@ except according to those terms.
       <match extended="true">
         ((?&lt;=\.\.)|(?&lt;![\w\.]))
         (
-        [1-9][0-9_]*\%{num-suffix}?|
-        0[0-9_]*\%{num-suffix}?|
-        0b[01_]+\%{int-suffix}?|
+        [0-9][0-9_]*\%{num-suffix}?|
+        0b(\%{bin-digit}|_)+\%{int-suffix}?|
         0o(\%{oct-digit}|_)+\%{int-suffix}?|
         0x(\%{hex-digit}|_)+\%{int-suffix}?
+        )
+        ((?![\w\.].)|(?=\.\.))
+      </match>
+    </context>
+
+    <context id="invalid-number" style-ref="error">
+      <match extended="true">
+        ((?&lt;=\.\.)|(?&lt;![\w\.]))
+        (
+        0b(\%{bin-digit}|_)*(?!\%{bin-digit}|_).\w*\%{int-suffix}?|
+        0o(\%{oct-digit}|_)*(?!\%{oct-digit}|_).\w*\%{int-suffix}?|
+        0x(\%{hex-digit}|_)*(?!\%{hex-digit}|_).\w*\%{int-suffix}?
         )
         ((?![\w\.].)|(?=\.\.))
       </match>
@@ -281,6 +296,7 @@ except according to those terms.
         <context ref="macro"/>
         <context ref="boolean"/>
         <context ref="number"/>
+        <context ref="invalid-number"/>
         <context ref="scope"/>
         <context ref="string"/>
         <context ref="byte-string"/>
