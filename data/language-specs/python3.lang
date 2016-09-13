@@ -159,7 +159,11 @@
 
         <context ref="python:hex"/>
 
+        <context ref="python:module-handler-from"/>
         <context ref="python:module-handler"/>
+        <context ref="python:function-definition"/>
+        <context ref="python:class-definition"/>
+        <context ref="python:decorator"/>
 
         <context ref="python:keywords"/>
         <context id="3x-only-keywords" style-ref="keyword">
