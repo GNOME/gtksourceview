@@ -280,10 +280,16 @@ test_sort_lines (void)
 
 	do_test_sort_lines (buffer, "aaa\nbbb\n", "aaa\nbbb\n", 0, -1, 0, 0);
 	do_test_sort_lines (buffer, "bbb\naaa\n", "aaa\nbbb\n", 0, -1, 0, 0);
+	do_test_sort_lines (buffer, "bbb\naaa\n", "aaa\nbbb\n", 1, -1, 0, 0);
+	do_test_sort_lines (buffer, "bbb\naaa\n", "aaa\nbbb\n", 0, 5, 0, 0);
+	do_test_sort_lines (buffer, "ccc\nbbb\naaa\n", "bbb\nccc\naaa\n", 0, 7, 0, 0);
+	do_test_sort_lines (buffer, "ccc\nbbb\naaa\n", "bbb\nccc\naaa\n", 0, 8, 0, 0);
+	do_test_sort_lines (buffer, "ccc\nbbb\naaa\n", "aaa\nbbb\nccc\n", 0, 9, 0, 0);
 	do_test_sort_lines (buffer, "aaa\nbbb\n", "bbb\naaa\n", 0, -1, GTK_SOURCE_SORT_FLAGS_REVERSE_ORDER, 0);
 	do_test_sort_lines (buffer, "aaa\nbbb\naaa\n", "aaa\nbbb\n", 0, -1, GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES, 0);
 	do_test_sort_lines (buffer, "bbb\naaa\nCCC\n", "CCC\naaa\nbbb\n", 0, -1, GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE, 0);
 	do_test_sort_lines (buffer, "aaabbb\nbbbaaa\n", "bbbaaa\naaabbb\n", 0, -1, 0, 3);
+	do_test_sort_lines (buffer, "abcdefghijk\n", "abcdefghijk\n", 2, 6, 0, 0);
 
 	g_object_unref (buffer);
 }

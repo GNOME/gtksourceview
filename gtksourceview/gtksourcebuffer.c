@@ -2939,16 +2939,27 @@ gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
 	start_line = gtk_text_iter_get_line (start);
 	end_line = gtk_text_iter_get_line (end);
 
+	/* Required for gtk_text_buffer_delete() */
+	if (!gtk_text_iter_starts_line (start))
+	{
+		gtk_text_iter_set_line_offset (start, 0);
+	}
+
 	/* if we are at line start our last line is the previus one.
 	 * Otherwise the last line is the current one but we try to
 	 * move the iter after the line terminator */
-	if (gtk_text_iter_get_line_offset (end) == 0)
+	if (gtk_text_iter_starts_line (end))
 	{
 		end_line = MAX (start_line, end_line - 1);
 	}
 	else
 	{
 		gtk_text_iter_forward_line (end);
+	}
+
+	if (start_line == end_line)
+	{
+		return;
 	}
 
 	num_lines = end_line - start_line + 1;
