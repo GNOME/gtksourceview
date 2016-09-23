@@ -300,6 +300,10 @@ GTK_SOURCE_AVAILABLE_IN_3_16
 GtkSourceBackgroundPatternType
 		 gtk_source_view_get_background_pattern	(GtkSourceView   *view);
 
+GTK_SOURCE_AVAILABLE_IN_3_24
+GtkSourceSpaceDrawer *
+		 gtk_source_view_get_space_drawer	(GtkSourceView   *view);
+
 G_END_DECLS
 
 #endif /* end of GTK_SOURCE_VIEW_H */

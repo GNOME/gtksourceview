@@ -50,6 +50,7 @@
 #include "gtksourcegutterrenderermarks.h"
 #include "gtksourceiter.h"
 #include "gtksourcesearchcontext.h"
+#include "gtksourcespacedrawer.h"
 #include "gtksourcespacedrawer-private.h"
 
 /**
@@ -159,7 +160,8 @@ enum
 	PROP_INDENT_ON_TAB,
 	PROP_DRAW_SPACES,
 	PROP_BACKGROUND_PATTERN,
-	PROP_SMART_BACKSPACE
+	PROP_SMART_BACKSPACE,
+	PROP_SPACE_DRAWER
 };
 
 struct _GtkSourceViewPrivate
@@ -688,6 +690,22 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       FALSE,
 							       G_PARAM_READWRITE |
 							       G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GtkSourceView:space-drawer:
+	 *
+	 * The #GtkSourceSpaceDrawer object associated with the view.
+	 *
+	 * Since: 3.24
+	 */
+	g_object_class_install_property (object_class,
+					 PROP_SPACE_DRAWER,
+					 g_param_spec_object ("space-drawer",
+							      "Space Drawer",
+							      "",
+							      GTK_SOURCE_TYPE_SPACE_DRAWER,
+							      G_PARAM_READABLE |
+							      G_PARAM_STATIC_STRINGS));
 
 	signals[UNDO] =
 		g_signal_new ("undo",
@@ -1233,6 +1251,10 @@ gtk_source_view_get_property (GObject    *object,
 
 		case PROP_SMART_BACKSPACE:
 			g_value_set_boolean (value, gtk_source_view_get_smart_backspace (view));
+			break;
+
+		case PROP_SPACE_DRAWER:
+			g_value_set_object (value, gtk_source_view_get_space_drawer (view));
 			break;
 
 		default:
@@ -4900,4 +4922,20 @@ gtk_source_view_get_background_pattern (GtkSourceView *view)
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE);
 
 	return view->priv->background_pattern;
+}
+
+/**
+ * gtk_source_view_get_space_drawer:
+ * @view: a #GtkSourceView.
+ *
+ * Returns: (type GtkSource.SpaceDrawer) (transfer none) (nullable): the
+ * #GtkSourceSpaceDrawer associated with @view.
+ * Since: 3.24
+ */
+GtkSourceSpaceDrawer *
+gtk_source_view_get_space_drawer (GtkSourceView *view)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
+
+	return view->priv->space_drawer;
 }
