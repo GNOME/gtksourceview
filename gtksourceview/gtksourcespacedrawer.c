@@ -31,6 +31,13 @@
 #include "gtksourcestylescheme.h"
 #include "gtksourcetag.h"
 
+/**
+ * SECTION:spacedrawer
+ * @Short_description: Represent whitespace characters with symbols
+ * @Title: GtkSourceSpaceDrawer
+ * @See_also: #GtkSourceView
+ */
+
 /*
 #define ENABLE_PROFILE
 */

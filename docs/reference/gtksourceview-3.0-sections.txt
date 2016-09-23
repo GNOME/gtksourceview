@@ -740,6 +740,22 @@ gtk_source_search_settings_get_type
 </SECTION>
 
 <SECTION>
+<FILE>spacedrawer</FILE>
+<TITLE>GtkSourceSpaceDrawer</TITLE>
+GtkSourceSpaceDrawer
+<SUBSECTION Standard>
+GTK_SOURCE_IS_SPACE_DRAWER
+GTK_SOURCE_IS_SPACE_DRAWER_CLASS
+GTK_SOURCE_SPACE_DRAWER
+GTK_SOURCE_SPACE_DRAWER_CLASS
+GTK_SOURCE_SPACE_DRAWER_GET_CLASS
+GTK_SOURCE_TYPE_SPACE_DRAWER
+GtkSourceSpaceDrawerClass
+GtkSourceSpaceDrawerPrivate
+gtk_source_space_drawer_get_type
+</SECTION>
+
+<SECTION>
 <FILE>style</FILE>
 <TITLE>GtkSourceStyle</TITLE>
 GtkSourceStyle
