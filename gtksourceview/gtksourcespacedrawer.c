@@ -25,6 +25,7 @@
  */
 
 #include "gtksourcespacedrawer.h"
+#include "gtksourcespacedrawer-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourceiter.h"
 #include "gtksourcestylescheme.h"
@@ -41,10 +42,10 @@ struct _GtkSourceSpaceDrawerPrivate
 	GdkRGBA *color;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceSpaceDrawer, _gtk_source_space_drawer, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceSpaceDrawer, gtk_source_space_drawer, G_TYPE_OBJECT)
 
 static void
-_gtk_source_space_drawer_finalize (GObject *object)
+gtk_source_space_drawer_finalize (GObject *object)
 {
 	GtkSourceSpaceDrawer *drawer = GTK_SOURCE_SPACE_DRAWER (object);
 
@@ -53,21 +54,21 @@ _gtk_source_space_drawer_finalize (GObject *object)
 		gdk_rgba_free (drawer->priv->color);
 	}
 
-	G_OBJECT_CLASS (_gtk_source_space_drawer_parent_class)->finalize (object);
+	G_OBJECT_CLASS (gtk_source_space_drawer_parent_class)->finalize (object);
 }
 
 static void
-_gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
+gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->finalize = _gtk_source_space_drawer_finalize;
+	object_class->finalize = gtk_source_space_drawer_finalize;
 }
 
 static void
-_gtk_source_space_drawer_init (GtkSourceSpaceDrawer *drawer)
+gtk_source_space_drawer_init (GtkSourceSpaceDrawer *drawer)
 {
-	drawer->priv = _gtk_source_space_drawer_get_instance_private (drawer);
+	drawer->priv = gtk_source_space_drawer_get_instance_private (drawer);
 }
 
 GtkSourceSpaceDrawer *

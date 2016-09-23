@@ -22,13 +22,20 @@
 #ifndef GTK_SOURCE_SPACE_DRAWER_H
 #define GTK_SOURCE_SPACE_DRAWER_H
 
+#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
+#  if defined (__GNUC__)
+#    warning "Only <gtksourceview/gtksource.h> can be included directly."
+#  elif defined (G_OS_WIN32)
+#    pragma message("Only <gtksourceview/gtksource.h> can be included directly.")
+#  endif
+#endif
+
 #include <gtk/gtk.h>
-#include "gtksourcetypes-private.h"
-#include "gtksourceview.h"
+#include <gtksourceview/gtksourcetypes.h>
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_SPACE_DRAWER             (_gtk_source_space_drawer_get_type ())
+#define GTK_SOURCE_TYPE_SPACE_DRAWER             (gtk_source_space_drawer_get_type ())
 #define GTK_SOURCE_SPACE_DRAWER(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_SPACE_DRAWER, GtkSourceSpaceDrawer))
 #define GTK_SOURCE_SPACE_DRAWER_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_SPACE_DRAWER, GtkSourceSpaceDrawerClass))
 #define GTK_SOURCE_IS_SPACE_DRAWER(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_SPACE_DRAWER))
@@ -48,30 +55,12 @@ struct _GtkSourceSpaceDrawer
 struct _GtkSourceSpaceDrawerClass
 {
 	GObjectClass parent_class;
+
+	gpointer padding[20];
 };
 
-G_GNUC_INTERNAL
-GType			_gtk_source_space_drawer_get_type		(void) G_GNUC_CONST;
-
-G_GNUC_INTERNAL
-GtkSourceSpaceDrawer *	_gtk_source_space_drawer_new			(void);
-
-G_GNUC_INTERNAL
-GtkSourceDrawSpacesFlags
-			_gtk_source_space_drawer_get_flags		(GtkSourceSpaceDrawer *drawer);
-
-G_GNUC_INTERNAL
-gboolean		_gtk_source_space_drawer_set_flags		(GtkSourceSpaceDrawer     *drawer,
-									 GtkSourceDrawSpacesFlags  flags);
-
-G_GNUC_INTERNAL
-void			_gtk_source_space_drawer_update_color		(GtkSourceSpaceDrawer *drawer,
-									 GtkSourceView        *view);
-
-G_GNUC_INTERNAL
-void			_gtk_source_space_drawer_draw			(GtkSourceSpaceDrawer *drawer,
-									 GtkSourceView        *view,
-									 cairo_t              *cr);
+GTK_SOURCE_AVAILABLE_IN_3_24
+GType			gtk_source_space_drawer_get_type		(void) G_GNUC_CONST;
 
 G_END_DECLS
 

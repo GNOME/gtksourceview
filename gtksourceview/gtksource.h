@@ -48,6 +48,7 @@
 #include <gtksourceview/gtksourceregion.h>
 #include <gtksourceview/gtksourcesearchcontext.h>
 #include <gtksourceview/gtksourcesearchsettings.h>
+#include <gtksourceview/gtksourcespacedrawer.h>
 #include <gtksourceview/gtksourcestyle.h>
 #include <gtksourceview/gtksourcestylescheme.h>
 #include <gtksourceview/gtksourcestyleschemechooser.h>

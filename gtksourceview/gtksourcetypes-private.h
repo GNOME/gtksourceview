@@ -38,7 +38,6 @@ typedef struct _GtkSourceGutterRendererMarks	GtkSourceGutterRendererMarks;
 typedef struct _GtkSourceMarksSequence		GtkSourceMarksSequence;
 typedef struct _GtkSourcePixbufHelper		GtkSourcePixbufHelper;
 typedef struct _GtkSourceRegex			GtkSourceRegex;
-typedef struct _GtkSourceSpaceDrawer		GtkSourceSpaceDrawer;
 typedef struct _GtkSourceUndoManagerDefault	GtkSourceUndoManagerDefault;
 
 #ifdef _MSC_VER

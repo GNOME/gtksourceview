@@ -50,7 +50,7 @@
 #include "gtksourcegutterrenderermarks.h"
 #include "gtksourceiter.h"
 #include "gtksourcesearchcontext.h"
-#include "gtksourcespacedrawer.h"
+#include "gtksourcespacedrawer-private.h"
 
 /**
  * SECTION:view

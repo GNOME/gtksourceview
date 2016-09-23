@@ -45,6 +45,7 @@ libgtksourceview_public_headers =		\
 	gtksourceregion.h			\
 	gtksourcesearchcontext.h		\
 	gtksourcesearchsettings.h		\
+	gtksourcespacedrawer.h			\
 	gtksourcestyle.h			\
 	gtksourcestylescheme.h			\
 	gtksourcestyleschemechooser.h		\
@@ -83,6 +84,7 @@ libgtksourceview_public_c_files =		\
 	gtksourceregion.c			\
 	gtksourcesearchcontext.c		\
 	gtksourcesearchsettings.c		\
+	gtksourcespacedrawer.c			\
 	gtksourcestyle.c			\
 	gtksourcestylescheme.c			\
 	gtksourcestyleschemechooser.c		\
@@ -116,7 +118,7 @@ libgtksourceview_private_headers =		\
 	gtksourcemarkssequence.h		\
 	gtksourcepixbufhelper.h			\
 	gtksourceregex.h			\
-	gtksourcespacedrawer.h			\
+	gtksourcespacedrawer-private.h		\
 	gtksourcestyle-private.h		\
 	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
@@ -139,7 +141,6 @@ libgtksourceview_private_c_files =	\
 	gtksourcemarkssequence.c	\
 	gtksourcepixbufhelper.c		\
 	gtksourceregex.c		\
-	gtksourcespacedrawer.c		\
 	gtksourceundomanagerdefault.c	\
 	gtksourceview-i18n.c		\
 	gtksourceview-init.c		\
