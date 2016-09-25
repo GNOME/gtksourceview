@@ -979,20 +979,6 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, background_pattern);
 }
 
-static gboolean
-tranform_boolean_to_draw_spaces_flags (GBinding *binding,
-                                       const GValue *from_value,
-                                       GValue *to_value,
-                                       gpointer user_data)
-{
-	gboolean active;
-
-	active = g_value_get_boolean (from_value);
-	g_value_set_flags (to_value, active ? GTK_SOURCE_DRAW_SPACES_ALL : 0);
-
-	return TRUE;
-}
-
 static void
 show_top_border_window_toggled_cb (GtkToggleButton *checkbutton,
 				   TestWidget      *self)
@@ -1004,6 +990,28 @@ show_top_border_window_toggled_cb (GtkToggleButton *checkbutton,
 	gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (self->priv->view),
 					      GTK_TEXT_WINDOW_TOP,
 					      size);
+}
+
+static void
+draw_spaces_toggled_cb (GtkToggleButton *checkbutton,
+			TestWidget      *self)
+{
+	GtkSourceSpaceDrawer *space_drawer;
+
+	space_drawer = gtk_source_view_get_space_drawer (self->priv->view);
+
+	if (gtk_toggle_button_get_active (checkbutton))
+	{
+		gtk_source_space_drawer_set_types_for_locations (space_drawer,
+								 GTK_SOURCE_SPACE_LOCATION_ALL,
+								 GTK_SOURCE_SPACE_TYPE_ALL);
+	}
+	else
+	{
+		gtk_source_space_drawer_set_types_for_locations (space_drawer,
+								 GTK_SOURCE_SPACE_LOCATION_ALL,
+								 GTK_SOURCE_SPACE_TYPE_NONE);
+	}
 }
 
 static void
@@ -1067,15 +1075,10 @@ test_widget_init (TestWidget *self)
 	                        "visible",
 	                        G_BINDING_SYNC_CREATE);
 
-	g_object_bind_property_full (self->priv->draw_spaces_checkbutton,
-	                             "active",
-	                             self->priv->view,
-	                             "draw-spaces",
-	                             G_BINDING_SYNC_CREATE,
-	                             tranform_boolean_to_draw_spaces_flags,
-	                             NULL,
-	                             NULL,
-	                             NULL);
+	g_signal_connect (self->priv->draw_spaces_checkbutton,
+			  "toggled",
+			  G_CALLBACK (draw_spaces_toggled_cb),
+			  self);
 
 	g_object_bind_property (self->priv->smart_backspace_checkbutton,
 	                        "active",
