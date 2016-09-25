@@ -1264,6 +1264,14 @@ gtk_source_view_get_property (GObject    *object,
 }
 
 static void
+space_drawer_notify_matrix_cb (GtkSourceSpaceDrawer *space_drawer,
+			       GParamSpec           *pspec,
+			       GtkSourceView        *view)
+{
+	gtk_widget_queue_draw (GTK_WIDGET (view));
+}
+
+static void
 notify_buffer_cb (GtkSourceView *view)
 {
 	set_source_buffer (view, gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
@@ -1293,6 +1301,11 @@ gtk_source_view_init (GtkSourceView *view)
 	view->priv->right_margin_overlay_color = NULL;
 
 	view->priv->space_drawer = _gtk_source_space_drawer_new ();
+	g_signal_connect_object (view->priv->space_drawer,
+				 "notify::matrix",
+				 G_CALLBACK (space_drawer_notify_matrix_cb),
+				 view,
+				 0);
 
 	view->priv->mark_categories = g_hash_table_new_full (g_str_hash,
 	                                                     g_str_equal,
