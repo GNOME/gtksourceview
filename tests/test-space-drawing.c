@@ -52,16 +52,30 @@ fill_buffer (GtkTextBuffer *buffer,
 }
 
 static void
-gsv_checkbutton_toggled_cb (GtkToggleButton *gsv_checkbutton,
-			    GtkSourceView   *view)
+enable_matrix (GtkSourceSpaceDrawer *space_drawer)
 {
-	if (gtk_toggle_button_get_active (gsv_checkbutton))
+	gtk_source_space_drawer_set_types_for_locations (space_drawer,
+							 GTK_SOURCE_SPACE_LOCATION_ALL,
+							 GTK_SOURCE_SPACE_TYPE_NBSP);
+
+	gtk_source_space_drawer_set_types_for_locations (space_drawer,
+							 GTK_SOURCE_SPACE_LOCATION_TRAILING,
+							 GTK_SOURCE_SPACE_TYPE_ALL & ~GTK_SOURCE_SPACE_TYPE_NEWLINE);
+}
+
+static void
+matrix_checkbutton_toggled_cb (GtkToggleButton      *matrix_checkbutton,
+			       GtkSourceSpaceDrawer *space_drawer)
+{
+	if (gtk_toggle_button_get_active (matrix_checkbutton))
 	{
-		gtk_source_view_set_draw_spaces (view, GTK_SOURCE_DRAW_SPACES_ALL);
+		enable_matrix (space_drawer);
 	}
 	else
 	{
-		gtk_source_view_set_draw_spaces (view, 0);
+		gtk_source_space_drawer_set_types_for_locations (space_drawer,
+								 GTK_SOURCE_SPACE_LOCATION_ALL,
+								 GTK_SOURCE_SPACE_TYPE_NONE);
 	}
 }
 
@@ -72,13 +86,14 @@ create_window (void)
 	GtkWidget *hgrid;
 	GtkWidget *panel_grid;
 	GtkWidget *scrolled_window;
-	GtkWidget *gsv_checkbutton;
+	GtkWidget *matrix_checkbutton;
 	GtkWidget *tag_set_checkbutton;
 	GtkWidget *tag_checkbutton;
 	GtkWidget *implicit_trailing_newline_checkbutton;
 	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
 	GtkTextTag *tag;
+	GtkSourceSpaceDrawer *space_drawer;
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
@@ -104,7 +119,8 @@ create_window (void)
 
 	fill_buffer (GTK_TEXT_BUFFER (buffer), tag);
 
-	gtk_source_view_set_draw_spaces (view, GTK_SOURCE_DRAW_SPACES_ALL);
+	space_drawer = gtk_source_view_get_space_drawer (view);
+	enable_matrix (space_drawer);
 
 	panel_grid = gtk_grid_new ();
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel_grid), GTK_ORIENTATION_VERTICAL);
@@ -115,13 +131,13 @@ create_window (void)
 		      "margin", 6,
 		      NULL);
 
-	gsv_checkbutton = gtk_check_button_new_with_label ("GtkSourceView draw-spaces");
-	gtk_container_add (GTK_CONTAINER (panel_grid), gsv_checkbutton);
-	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (gsv_checkbutton), TRUE);
-	g_signal_connect (gsv_checkbutton,
+	matrix_checkbutton = gtk_check_button_new_with_label ("GtkSourceSpaceDrawer matrix");
+	gtk_container_add (GTK_CONTAINER (panel_grid), matrix_checkbutton);
+	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (matrix_checkbutton), TRUE);
+	g_signal_connect (matrix_checkbutton,
 			  "toggled",
-			  G_CALLBACK (gsv_checkbutton_toggled_cb),
-			  view);
+			  G_CALLBACK (matrix_checkbutton_toggled_cb),
+			  space_drawer);
 
 	tag_set_checkbutton = gtk_check_button_new_with_label ("GtkSourceTag draw-spaces-set");
 	gtk_container_add (GTK_CONTAINER (panel_grid), tag_set_checkbutton);
