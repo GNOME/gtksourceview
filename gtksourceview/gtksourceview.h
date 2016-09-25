@@ -97,7 +97,11 @@ typedef enum _GtkSourceSmartHomeEndType
  * of GTK_SOURCE_DRAW_SPACES_LEADING, GTK_SOURCE_DRAW_SPACES_TEXT or
  * GTK_SOURCE_DRAW_SPACES_TRAILING is specified, whitespaces at any position in
  * the line will be drawn (i.e. it has the same effect as specifying all of them).
+ *
+ * Deprecated: 3.24: Use #GtkSourceSpaceTypeFlags and
+ * #GtkSourceSpaceLocationFlags instead.
  */
+#ifndef GTKSOURCEVIEW_DISABLE_DEPRECATED
 typedef enum _GtkSourceDrawSpacesFlags
 {
 	GTK_SOURCE_DRAW_SPACES_SPACE      = 1 << 0,
@@ -109,6 +113,7 @@ typedef enum _GtkSourceDrawSpacesFlags
 	GTK_SOURCE_DRAW_SPACES_TRAILING   = 1 << 6,
 	GTK_SOURCE_DRAW_SPACES_ALL        = 0x7f
 } GtkSourceDrawSpacesFlags;
+#endif
 
 /**
  * GtkSourceBackgroundPatternType:
@@ -272,11 +277,11 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSmartHomeEndType
 		 gtk_source_view_get_smart_home_end	(GtkSourceView   *view);
 
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_DEPRECATED_IN_3_24_FOR (gtk_source_space_drawer_set_types_for_locations)
 void		 gtk_source_view_set_draw_spaces	(GtkSourceView            *view,
 							 GtkSourceDrawSpacesFlags  flags);
 
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_DEPRECATED_IN_3_24_FOR (gtk_source_space_drawer_get_types_for_locations)
 GtkSourceDrawSpacesFlags
 		 gtk_source_view_get_draw_spaces	(GtkSourceView   *view);
 

@@ -646,6 +646,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * #GtkSourceTag:draw-spaces property.
 	 *
 	 * Since: 2.4
+	 * Deprecated: 3.24: Use the #GtkSourceSpaceDrawer:matrix property
+	 * instead.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_DRAW_SPACES,
@@ -655,7 +657,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							     GTK_SOURCE_TYPE_DRAW_SPACES_FLAGS,
 							     0,
 							     G_PARAM_READWRITE |
-							     G_PARAM_STATIC_STRINGS));
+							     G_PARAM_STATIC_STRINGS |
+							     G_PARAM_DEPRECATED));
 
 	/**
 	 * GtkSourceView:background-pattern:
@@ -1161,7 +1164,9 @@ gtk_source_view_set_property (GObject      *object,
 			break;
 
 		case PROP_DRAW_SPACES:
+			G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 			gtk_source_view_set_draw_spaces (view, g_value_get_flags (value));
+			G_GNUC_END_IGNORE_DEPRECATIONS;
 			break;
 
 		case PROP_BACKGROUND_PATTERN:
@@ -1241,7 +1246,9 @@ gtk_source_view_get_property (GObject    *object,
 			break;
 
 		case PROP_DRAW_SPACES:
+			G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 			g_value_set_flags (value, gtk_source_view_get_draw_spaces (view));
+			G_GNUC_END_IGNORE_DEPRECATIONS;
 			break;
 
 		case PROP_BACKGROUND_PATTERN:
@@ -4467,6 +4474,9 @@ gtk_source_view_get_smart_home_end (GtkSourceView *view)
  *
  * For a finer-grained method, there is also the GtkSourceTag's
  * #GtkSourceTag:draw-spaces property.
+ *
+ * Deprecated: 3.24: Use gtk_source_space_drawer_set_types_for_locations()
+ * instead.
  */
 void
 gtk_source_view_set_draw_spaces (GtkSourceView            *view,
@@ -4490,6 +4500,8 @@ gtk_source_view_set_draw_spaces (GtkSourceView            *view,
  * should be displayed for this @view.
  *
  * Returns: the #GtkSourceDrawSpacesFlags, 0 if no spaces should be drawn.
+ * Deprecated: 3.24: Use gtk_source_space_drawer_get_types_for_locations()
+ * instead.
  */
 GtkSourceDrawSpacesFlags
 gtk_source_view_get_draw_spaces (GtkSourceView *view)
