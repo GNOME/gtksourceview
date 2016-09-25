@@ -69,7 +69,6 @@
  *  - Indentation settings;
  *  - Configuration for the Home and End keyboard keys;
  *  - Configure and show line marks;
- *  - A way to visualize white spaces (by drawing symbols);
  *  - And a few other things.
  *
  * An easy way to test all these features is to use the test-widget mini-program

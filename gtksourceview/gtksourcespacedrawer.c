@@ -33,9 +33,37 @@
 
 /**
  * SECTION:spacedrawer
- * @Short_description: Represent whitespace characters with symbols
+ * @Short_description: Represent white space characters with symbols
  * @Title: GtkSourceSpaceDrawer
  * @See_also: #GtkSourceView
+ *
+ * #GtkSourceSpaceDrawer provides a way to visualize white spaces, by drawing
+ * symbols.
+ *
+ * Call gtk_source_view_get_space_drawer() to get the #GtkSourceSpaceDrawer
+ * instance of a certain #GtkSourceView.
+ *
+ * By default, no white spaces are drawn. To draw white spaces,
+ * gtk_source_space_drawer_set_types_for_locations() can be called to set the
+ * #GtkSourceSpaceDrawer:matrix property.
+ *
+ * For a finer-grained method, there is also the GtkSourceTag's
+ * #GtkSourceTag:draw-spaces property.
+ *
+ * # Example
+ *
+ * To draw non-breaking spaces everywhere and draw all types of trailing spaces
+ * except newlines:
+ * |[
+ * gtk_source_space_drawer_set_types_for_locations (space_drawer,
+ *                                                  GTK_SOURCE_SPACE_LOCATION_ALL,
+ *                                                  GTK_SOURCE_SPACE_TYPE_NBSP);
+ *
+ * gtk_source_space_drawer_set_types_for_locations (space_drawer,
+ *                                                  GTK_SOURCE_SPACE_LOCATION_TRAILING,
+ *                                                  GTK_SOURCE_SPACE_TYPE_ALL &
+ *                                                  ~GTK_SOURCE_SPACE_TYPE_NEWLINE);
+ * ]|
  */
 
 /* A drawer specially designed for the International Space Station. It comes by
@@ -248,7 +276,7 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 	 * GtkSourceSpaceDrawer:matrix:
 	 *
 	 * The :matrix property is a #GVariant property to specify where and
-	 * what kind of whitespaces to draw.
+	 * what kind of white spaces to draw.
 	 *
 	 * The #GVariant is of type `"au"`, an array of unsigned integers. Each
 	 * integer is a combination of #GtkSourceSpaceTypeFlags. There is one
@@ -438,12 +466,12 @@ _gtk_source_space_drawer_set_flags (GtkSourceSpaceDrawer     *drawer,
  * @locations: one or several #GtkSourceSpaceLocationFlags.
  *
  * If only one location is specified, this function returns what kind of
- * whitespaces are drawn at that location. The value is retrieved from the
+ * white spaces are drawn at that location. The value is retrieved from the
  * #GtkSourceSpaceDrawer:matrix property.
  *
  * If several locations are specified, this function returns the logical AND for
- * those locations. Which means that if a certain kind of whitespace is present
- * in the return value, then that kind of whitespace is drawn at all the
+ * those locations. Which means that if a certain kind of white space is present
+ * in the return value, then that kind of white space is drawn at all the
  * specified @locations.
  *
  * Returns: a combination of #GtkSourceSpaceTypeFlags.

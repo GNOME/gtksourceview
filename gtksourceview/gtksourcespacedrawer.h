@@ -66,9 +66,9 @@ struct _GtkSourceSpaceDrawerClass
  * @GTK_SOURCE_SPACE_TYPE_TAB: Tab character.
  * @GTK_SOURCE_SPACE_TYPE_NEWLINE: Line break character.
  * @GTK_SOURCE_SPACE_TYPE_NBSP: Non-breaking space character.
- * @GTK_SOURCE_SPACE_TYPE_ALL: All whitespaces.
+ * @GTK_SOURCE_SPACE_TYPE_ALL: All white spaces.
  *
- * #GtkSourceSpaceTypeFlags contains flags for whitespace types.
+ * #GtkSourceSpaceTypeFlags contains flags for white space types.
  *
  * Since: 3.24
  */
@@ -85,15 +85,15 @@ typedef enum _GtkSourceSpaceTypeFlags
 /**
  * GtkSourceSpaceLocationFlags:
  * @GTK_SOURCE_SPACE_LOCATION_NONE: No flags.
- * @GTK_SOURCE_SPACE_LOCATION_LEADING: Leading whitespaces on a line, i.e. the
+ * @GTK_SOURCE_SPACE_LOCATION_LEADING: Leading white spaces on a line, i.e. the
  *   indentation.
- * @GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT: Whitespaces inside a line of text.
- * @GTK_SOURCE_SPACE_LOCATION_TRAILING: Trailing whitespaces on a line.
- * @GTK_SOURCE_SPACE_LOCATION_ALL: Whitespaces anywhere.
+ * @GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT: White spaces inside a line of text.
+ * @GTK_SOURCE_SPACE_LOCATION_TRAILING: Trailing white spaces on a line.
+ * @GTK_SOURCE_SPACE_LOCATION_ALL: White spaces anywhere.
  *
- * #GtkSourceSpaceLocationFlags contains flags for whitespace locations.
+ * #GtkSourceSpaceLocationFlags contains flags for white space locations.
  *
- * If a line contains only whitespaces (no text), the whitespaces match both
+ * If a line contains only white spaces (no text), the white spaces match both
  * %GTK_SOURCE_SPACE_LOCATION_LEADING and %GTK_SOURCE_SPACE_LOCATION_TRAILING.
  *
  * Since: 3.24

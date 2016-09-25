@@ -127,8 +127,8 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 	/**
 	 * GtkSourceTag:draw-spaces:
 	 *
-	 * Whether to draw spaces. This property takes precedence over the value
-	 * defined by the GtkSourceView's #GtkSourceView:draw-spaces property
+	 * Whether to draw white spaces. This property takes precedence over the value
+	 * defined by the GtkSourceSpaceDrawer's #GtkSourceSpaceDrawer:matrix property
 	 * (only where the tag is applied).
 	 *
 	 * Setting this property also changes #GtkSourceTag:draw-spaces-set to
