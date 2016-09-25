@@ -1166,7 +1166,6 @@ gtk_source_map_init (GtkSourceMap *map)
 	g_object_set (map,
 	              "auto-indent", FALSE,
 	              "can-focus", FALSE,
-	              "draw-spaces", 0,
 	              "editable", FALSE,
 	              "expand", FALSE,
 	              "monospace", TRUE,
