@@ -37,7 +37,7 @@ GtkSourceDrawSpacesFlags
 			_gtk_source_space_drawer_get_flags		(GtkSourceSpaceDrawer *drawer);
 
 GTK_SOURCE_INTERNAL
-gboolean		_gtk_source_space_drawer_set_flags		(GtkSourceSpaceDrawer     *drawer,
+void			_gtk_source_space_drawer_set_flags		(GtkSourceSpaceDrawer     *drawer,
 									 GtkSourceDrawSpacesFlags  flags);
 
 GTK_SOURCE_INTERNAL

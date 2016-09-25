@@ -1269,6 +1269,7 @@ space_drawer_notify_matrix_cb (GtkSourceSpaceDrawer *space_drawer,
 			       GtkSourceView        *view)
 {
 	gtk_widget_queue_draw (GTK_WIDGET (view));
+	g_object_notify (G_OBJECT (view), "draw-spaces");
 }
 
 static void
@@ -4479,11 +4480,7 @@ gtk_source_view_set_draw_spaces (GtkSourceView            *view,
 		return;
 	}
 
-	if (_gtk_source_space_drawer_set_flags (view->priv->space_drawer, flags))
-	{
-		gtk_widget_queue_draw (GTK_WIDGET (view));
-		g_object_notify (G_OBJECT (view), "draw-spaces");
-	}
+	_gtk_source_space_drawer_set_flags (view->priv->space_drawer, flags);
 }
 
 /**

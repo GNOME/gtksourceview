@@ -50,7 +50,6 @@
 struct _GtkSourceSpaceDrawerPrivate
 {
 	GtkSourceSpaceTypeFlags *matrix;
-	GtkSourceDrawSpacesFlags flags;
 	GdkRGBA *color;
 };
 
@@ -290,29 +289,147 @@ _gtk_source_space_drawer_new (void)
 	return g_object_new (GTK_SOURCE_TYPE_SPACE_DRAWER, NULL);
 }
 
+static GtkSourceSpaceLocationFlags
+get_nonzero_locations_for_draw_spaces_flags (GtkSourceSpaceDrawer *drawer)
+{
+	GtkSourceSpaceLocationFlags locations = GTK_SOURCE_SPACE_LOCATION_NONE;
+	GtkSourceSpaceTypeFlags types;
+
+	types = gtk_source_space_drawer_get_types_for_locations (drawer, GTK_SOURCE_SPACE_LOCATION_LEADING);
+	if (types != GTK_SOURCE_SPACE_TYPE_NONE)
+	{
+		locations |= GTK_SOURCE_SPACE_LOCATION_LEADING;
+	}
+
+	types = gtk_source_space_drawer_get_types_for_locations (drawer, GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT);
+	if (types != GTK_SOURCE_SPACE_TYPE_NONE)
+	{
+		locations |= GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT;
+	}
+
+	types = gtk_source_space_drawer_get_types_for_locations (drawer, GTK_SOURCE_SPACE_LOCATION_TRAILING);
+	if (types != GTK_SOURCE_SPACE_TYPE_NONE)
+	{
+		locations |= GTK_SOURCE_SPACE_LOCATION_TRAILING;
+	}
+
+	return locations;
+}
+
 GtkSourceDrawSpacesFlags
 _gtk_source_space_drawer_get_flags (GtkSourceSpaceDrawer *drawer)
 {
+	GtkSourceSpaceLocationFlags locations;
+	GtkSourceSpaceTypeFlags common_types;
+	GtkSourceDrawSpacesFlags flags = 0;
+
 	g_return_val_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer), 0);
 
-	return drawer->priv->flags;
+	locations = get_nonzero_locations_for_draw_spaces_flags (drawer);
+	common_types = gtk_source_space_drawer_get_types_for_locations (drawer, locations);
+
+	if (locations & GTK_SOURCE_SPACE_LOCATION_LEADING)
+	{
+		flags |= GTK_SOURCE_DRAW_SPACES_LEADING;
+	}
+	if (locations & GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT)
+	{
+		flags |= GTK_SOURCE_DRAW_SPACES_TEXT;
+	}
+	if (locations & GTK_SOURCE_SPACE_LOCATION_TRAILING)
+	{
+		flags |= GTK_SOURCE_DRAW_SPACES_TRAILING;
+	}
+
+	if (common_types & GTK_SOURCE_SPACE_TYPE_SPACE)
+	{
+		flags |= GTK_SOURCE_DRAW_SPACES_SPACE;
+	}
+	if (common_types & GTK_SOURCE_SPACE_TYPE_TAB)
+	{
+		flags |= GTK_SOURCE_DRAW_SPACES_TAB;
+	}
+	if (common_types & GTK_SOURCE_SPACE_TYPE_NEWLINE)
+	{
+		flags |= GTK_SOURCE_DRAW_SPACES_NEWLINE;
+	}
+	if (common_types & GTK_SOURCE_SPACE_TYPE_NBSP)
+	{
+		flags |= GTK_SOURCE_DRAW_SPACES_NBSP;
+	}
+
+	return flags;
 }
 
-gboolean
+static GtkSourceSpaceLocationFlags
+get_locations_from_draw_spaces_flags (GtkSourceDrawSpacesFlags flags)
+{
+	GtkSourceSpaceLocationFlags locations = GTK_SOURCE_SPACE_LOCATION_NONE;
+
+	if (flags & GTK_SOURCE_DRAW_SPACES_LEADING)
+	{
+		locations |= GTK_SOURCE_SPACE_LOCATION_LEADING;
+	}
+	if (flags & GTK_SOURCE_DRAW_SPACES_TEXT)
+	{
+		locations |= GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT;
+	}
+	if (flags & GTK_SOURCE_DRAW_SPACES_TRAILING)
+	{
+		locations |= GTK_SOURCE_SPACE_LOCATION_TRAILING;
+	}
+
+	if (locations == GTK_SOURCE_SPACE_LOCATION_NONE)
+	{
+		locations = (GTK_SOURCE_SPACE_LOCATION_LEADING |
+			     GTK_SOURCE_SPACE_LOCATION_INSIDE_TEXT |
+			     GTK_SOURCE_SPACE_LOCATION_TRAILING);
+	}
+
+	return locations;
+}
+
+static GtkSourceSpaceTypeFlags
+get_space_types_from_draw_spaces_flags (GtkSourceDrawSpacesFlags flags)
+{
+	GtkSourceSpaceTypeFlags types = GTK_SOURCE_SPACE_TYPE_NONE;
+
+	if (flags & GTK_SOURCE_DRAW_SPACES_SPACE)
+	{
+		types |= GTK_SOURCE_SPACE_TYPE_SPACE;
+	}
+	if (flags & GTK_SOURCE_DRAW_SPACES_TAB)
+	{
+		types |= GTK_SOURCE_SPACE_TYPE_TAB;
+	}
+	if (flags & GTK_SOURCE_DRAW_SPACES_NEWLINE)
+	{
+		types |= GTK_SOURCE_SPACE_TYPE_NEWLINE;
+	}
+	if (flags & GTK_SOURCE_DRAW_SPACES_NBSP)
+	{
+		types |= GTK_SOURCE_SPACE_TYPE_NBSP;
+	}
+
+	return types;
+}
+
+void
 _gtk_source_space_drawer_set_flags (GtkSourceSpaceDrawer     *drawer,
 				    GtkSourceDrawSpacesFlags  flags)
 {
-	gboolean changed = FALSE;
+	GtkSourceSpaceLocationFlags locations;
+	GtkSourceSpaceTypeFlags types;
 
-	g_return_val_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer), changed);
+	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
 
-	if (drawer->priv->flags != flags)
-	{
-		drawer->priv->flags = flags;
-		changed = TRUE;
-	}
+	gtk_source_space_drawer_set_types_for_locations (drawer,
+							 GTK_SOURCE_SPACE_LOCATION_ALL,
+							 GTK_SOURCE_SPACE_TYPE_NONE);
 
-	return changed;
+	locations = get_locations_from_draw_spaces_flags (flags);
+	types = get_space_types_from_draw_spaces_flags (flags);
+	gtk_source_space_drawer_set_types_for_locations (drawer, locations, types);
 }
 
 /**
