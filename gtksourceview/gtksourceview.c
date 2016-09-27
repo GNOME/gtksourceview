@@ -4779,8 +4779,7 @@ mark_category_free (MarkCategory *category)
  *
  * Gets the #GtkSourceCompletion associated with @view.
  *
- * Returns: (type GtkSource.Completion) (transfer none):
- * the #GtkSourceCompletion associated with @view.
+ * Returns: (transfer none): the #GtkSourceCompletion associated with @view.
  */
 GtkSourceCompletion *
 gtk_source_view_get_completion (GtkSourceView *view)
@@ -4949,8 +4948,8 @@ gtk_source_view_get_background_pattern (GtkSourceView *view)
  * gtk_source_view_get_space_drawer:
  * @view: a #GtkSourceView.
  *
- * Returns: (type GtkSource.SpaceDrawer) (transfer none) (nullable): the
- * #GtkSourceSpaceDrawer associated with @view.
+ * Returns: (transfer none) (nullable): the #GtkSourceSpaceDrawer associated
+ * with @view.
  * Since: 3.24
  */
 GtkSourceSpaceDrawer *
