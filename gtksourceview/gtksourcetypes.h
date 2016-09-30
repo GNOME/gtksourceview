@@ -55,6 +55,7 @@ typedef struct _GtkSourceLanguageManager	GtkSourceLanguageManager;
 typedef struct _GtkSourceMarkAttributes		GtkSourceMarkAttributes;
 typedef struct _GtkSourceMark			GtkSourceMark;
 typedef struct _GtkSourcePrintCompositor	GtkSourcePrintCompositor;
+typedef struct _GtkSourceRegion			GtkSourceRegion;
 typedef struct _GtkSourceSearchContext		GtkSourceSearchContext;
 typedef struct _GtkSourceSearchSettings		GtkSourceSearchSettings;
 typedef struct _GtkSourceSpaceDrawer		GtkSourceSpaceDrawer;
