@@ -1066,13 +1066,7 @@ test_widget_init (TestWidget *self)
 	                  G_CALLBACK (on_background_pattern_changed),
 	                  self);
 
-	/* White space drawing */
 	space_drawer = gtk_source_view_get_space_drawer (self->priv->view);
-
-	gtk_source_space_drawer_set_types_for_locations (space_drawer,
-							 GTK_SOURCE_SPACE_LOCATION_ALL,
-							 GTK_SOURCE_SPACE_TYPE_ALL);
-
 	g_object_bind_property (self->priv->draw_spaces_checkbutton, "active",
 				space_drawer, "enable-matrix",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);

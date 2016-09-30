@@ -43,9 +43,13 @@
  * Call gtk_source_view_get_space_drawer() to get the #GtkSourceSpaceDrawer
  * instance of a certain #GtkSourceView.
  *
- * By default, no white spaces are drawn. To draw white spaces,
- * gtk_source_space_drawer_set_types_for_locations() can be called to set the
- * #GtkSourceSpaceDrawer:matrix property.
+ * By default, no white spaces are drawn because the
+ * #GtkSourceSpaceDrawer:enable-matrix is %FALSE.
+ *
+ * To draw white spaces, gtk_source_space_drawer_set_types_for_locations() can
+ * be called to set the #GtkSourceSpaceDrawer:matrix property (by default all
+ * space types are enabled at all locations). Then call
+ * gtk_source_space_drawer_set_enable_matrix().
  *
  * For a finer-grained method, there is also the GtkSourceTag's
  * #GtkSourceTag:draw-spaces property.
@@ -63,6 +67,8 @@
  *                                                  GTK_SOURCE_SPACE_LOCATION_TRAILING,
  *                                                  GTK_SOURCE_SPACE_TYPE_ALL &
  *                                                  ~GTK_SOURCE_SPACE_TYPE_NEWLINE);
+ *
+ * gtk_source_space_drawer_set_enable_matrix (space_drawer, TRUE);
  * ]|
  */
 
@@ -110,6 +116,29 @@ get_number_of_locations (void)
 	}
 
 	return num;
+}
+
+static GVariant *
+get_default_matrix (void)
+{
+	GVariantBuilder builder;
+	gint num_locations;
+	gint i;
+
+	g_variant_builder_init (&builder, G_VARIANT_TYPE ("au"));
+
+	num_locations = get_number_of_locations ();
+
+	for (i = 0; i < num_locations; i++)
+	{
+		GVariant *space_types;
+
+		space_types = g_variant_new_uint32 (GTK_SOURCE_SPACE_TYPE_ALL);
+
+		g_variant_builder_add_value (&builder, space_types);
+	}
+
+	return g_variant_builder_end (&builder);
 }
 
 static gboolean
@@ -313,7 +342,7 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 	 * If the array is shorter than the number of locations, then the value
 	 * for the missing locations will be %GTK_SOURCE_SPACE_TYPE_NONE.
 	 *
-	 * The default value is the empty array `"[]"`.
+	 * By default, %GTK_SOURCE_SPACE_TYPE_ALL is set for all locations.
 	 *
 	 * Since: 3.24
 	 */
@@ -322,8 +351,9 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 				      "Matrix",
 				      "",
 				      G_VARIANT_TYPE ("au"),
-				      g_variant_new ("au", NULL),
+				      get_default_matrix (),
 				      G_PARAM_READWRITE |
+				      G_PARAM_CONSTRUCT |
 				      G_PARAM_STATIC_STRINGS);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);

@@ -165,18 +165,18 @@ test_matrix_getters_setters (void)
 	drawer = gtk_source_view_get_space_drawer (view);
 
 	/* Default value */
-	matrix[LEADING_INDEX] = 0;
-	matrix[INSIDE_TEXT_INDEX] = 0;
-	matrix[TRAILING_INDEX] = 0;
+	matrix[LEADING_INDEX] = GTK_SOURCE_SPACE_TYPE_ALL;
+	matrix[INSIDE_TEXT_INDEX] = GTK_SOURCE_SPACE_TYPE_ALL;
+	matrix[TRAILING_INDEX] = GTK_SOURCE_SPACE_TYPE_ALL;
 	check_equal_matrix (drawer, matrix);
 
 	/* Set each location separately */
 	set_matrix (drawer, matrix);
 
-	matrix[INSIDE_TEXT_INDEX] = GTK_SOURCE_SPACE_TYPE_NBSP;
+	matrix[INSIDE_TEXT_INDEX] = 0;
 	set_matrix (drawer, matrix);
 
-	matrix[TRAILING_INDEX] = GTK_SOURCE_SPACE_TYPE_ALL;
+	matrix[TRAILING_INDEX] = GTK_SOURCE_SPACE_TYPE_NBSP;
 	set_matrix (drawer, matrix);
 
 	/* Reset to 0 all at once */
