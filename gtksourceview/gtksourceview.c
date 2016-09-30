@@ -1307,7 +1307,7 @@ gtk_source_view_init (GtkSourceView *view)
 	view->priv->right_margin_line_color = NULL;
 	view->priv->right_margin_overlay_color = NULL;
 
-	view->priv->space_drawer = _gtk_source_space_drawer_new ();
+	view->priv->space_drawer = gtk_source_space_drawer_new ();
 	g_signal_connect_object (view->priv->space_drawer,
 				 "notify::matrix",
 				 G_CALLBACK (space_drawer_notify_matrix_cb),

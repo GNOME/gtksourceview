@@ -30,9 +30,6 @@
 G_BEGIN_DECLS
 
 GTK_SOURCE_INTERNAL
-GtkSourceSpaceDrawer *	_gtk_source_space_drawer_new			(void);
-
-GTK_SOURCE_INTERNAL
 GtkSourceDrawSpacesFlags
 			_gtk_source_space_drawer_get_flags		(GtkSourceSpaceDrawer *drawer);
 

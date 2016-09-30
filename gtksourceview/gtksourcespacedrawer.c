@@ -311,8 +311,14 @@ gtk_source_space_drawer_init (GtkSourceSpaceDrawer *drawer)
 	drawer->priv->matrix = g_new0 (GtkSourceSpaceTypeFlags, get_number_of_locations ());
 }
 
+/**
+ * gtk_source_space_drawer_new:
+ *
+ * Returns: a new #GtkSourceSpaceDrawer.
+ * Since: 3.24
+ */
 GtkSourceSpaceDrawer *
-_gtk_source_space_drawer_new (void)
+gtk_source_space_drawer_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_SPACE_DRAWER, NULL);
 }

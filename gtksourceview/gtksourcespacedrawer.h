@@ -111,6 +111,9 @@ GTK_SOURCE_AVAILABLE_IN_3_24
 GType			gtk_source_space_drawer_get_type		(void) G_GNUC_CONST;
 
 GTK_SOURCE_AVAILABLE_IN_3_24
+GtkSourceSpaceDrawer *	gtk_source_space_drawer_new			(void);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
 GtkSourceSpaceTypeFlags	gtk_source_space_drawer_get_types_for_locations	(GtkSourceSpaceDrawer        *drawer,
 									 GtkSourceSpaceLocationFlags  locations);
 
