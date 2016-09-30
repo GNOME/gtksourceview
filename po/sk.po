@@ -4,21 +4,21 @@
 # Marcel Telka <marcel@telka.sk>, 2003-2005.
 # Roman Mátyus <romanmatyus@gmail.com>, 2010, 2012.
 # Dušan Kazik <prescott66@gmail.com>, 2015.
+# Peter Mráz <etkinator@gmail.com>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-08-02 05:30+0000\n"
-"PO-Revision-Date: 2016-08-08 12:48+0200\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-09-25 17:23+0000\n"
+"PO-Revision-Date: 2016-09-30 15:38+0100\n"
+"Last-Translator: Peter Mráz <etkinator@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.6.10\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 
 # PM: Inteligentný Home/End
@@ -373,7 +373,7 @@ msgstr "Reálne číslo"
 #: python.lang:40 ruby.lang:35 scala.lang:40 sml.lang:37 texinfo.lang:34
 #: vala.lang:49 verilog.lang:37
 msgid "Escaped Character"
-msgstr "Špeciálne zapísaný znak (escaped)"
+msgstr "Uvádzaný znak"
 
 # language name
 #. (itstool) path: ansforth94.lang/language@_name
@@ -621,9 +621,7 @@ msgstr "Šestnástkové číslo"
 msgid "BibTeX"
 msgstr "BibTeX"
 
-# MČ: Názov sekcie zahrňujúcej značkovacie jazyky. Možno by som zvážil použiť slovo „Značkovacie“.
-# MČ: v súboroch ../gtksourceview/gtksourcecompletionitem.c:242 ../gtksourceview/gtksourcegutterrenderertext.c:395 ide o property, čiže by kontext bol vhod, aby sa to nemuselo prekladať rovnako
-# PM: vyžiadaj si kontext
+# Language section
 #. (itstool) path: bibtex.lang/language@_section
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
@@ -646,7 +644,6 @@ msgstr "BibTeX"
 #: html.lang:25 jade.lang:26 latex.lang:25 mallard.lang:23 markdown.lang:26
 #: mediawiki.lang:23 mxml.lang:24 rst.lang:23 sweave.lang:25 t2t.lang:24
 #: texinfo.lang:25 xml.lang:26 xslt.lang:24
-#, fuzzy
 msgid "Markup"
 msgstr "Značkovacie"
 
@@ -839,7 +836,7 @@ msgstr "Dátum"
 #  PM: v prvom prípade má byť určite "Meno" v druhom neviem prever
 #  style name
 #. (itstool) path: styles/style@_name
-#: changelog.lang:35 latex.lang:52
+#: changelog.lang:35
 msgid "Name"
 msgstr "Name"
 
@@ -870,10 +867,8 @@ msgstr "Vydanie"
 # language name
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:25
-#, fuzzy
-#| msgid "C/C++/ObjC Header"
 msgid "C/ObjC Header"
-msgstr "Hlavičkový súbor C/C++/ObjC"
+msgstr "Hlavičkový súbor C/ObjC"
 
 #  language name
 #. (itstool) path: c.lang/language@_name
@@ -1052,10 +1047,8 @@ msgstr "CSV"
 # style name
 #. (itstool) path: styles/style@_name
 #: csv.lang:32
-#, fuzzy
-#| msgid "Escaped Character"
 msgid "Escaped character"
-msgstr "Špeciálne zapísaný znak (escaped)"
+msgstr "Uvádzaný znak"
 
 # lang name
 #. (itstool) path: cuda.lang/language@_name
@@ -2259,7 +2252,6 @@ msgstr "Hranica matematického výrazu"
 #  style name
 #. (itstool) path: styles/style@_name
 #: latex.lang:38 texinfo.lang:41
-#, fuzzy
 msgid "Include"
 msgstr "Vloženie"
 
@@ -3259,7 +3251,7 @@ msgstr "Rust"
 #. (itstool) path: styles/style@_name
 #: rust.lang:53
 msgid "Scope"
-msgstr ""
+msgstr "Rozsah platnosti"
 
 #. (itstool) path: scala.lang/language@_name
 #: scala.lang:25
@@ -3369,7 +3361,6 @@ msgstr "Trieda"
 #  style name
 #. (itstool) path: styles/style@_name
 #: sparql.lang:36
-#, fuzzy
 msgid "Individual"
 msgstr "Individuálne"
 
@@ -3779,21 +3770,15 @@ msgstr "_Podrobnosti..."
 #: gtksourceview/gtksourcecontextengine.c:3141
 #, c-format
 msgid ""
-"Cannot create a regex for all the transitions, the syntax highlighting "
-"process will be slower than usual.\n"
+"Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"Nepodarilo sa vytvoriť regulárny výraz pre všetky zmeny, proces "
-"zvýrazňovania syntaxe bude pracovať pomalšie ako obvykle.\n"
+"Nepodarilo sa vytvoriť regulárny výraz pre všetky zmeny, proces zvýrazňovania syntaxe bude pracovať pomalšie ako obvykle.\n"
 "Chyba bola: %s"
 
 #: gtksourceview/gtksourcecontextengine.c:4464
-msgid ""
-"Highlighting a single line took too much time, syntax highlighting will be "
-"disabled"
-msgstr ""
-"Zvýrazňovanie jedného riadku zabralo príliš veľa času, zvýrazňovanie syntaxe "
-"bude zakázané"
+msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
+msgstr "Zvýrazňovanie jedného riadku zabralo príliš veľa času, zvýrazňovanie syntaxe bude zakázané"
 
 #: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
@@ -3809,12 +3794,8 @@ msgstr "duplicitný identifikátor kontextu „%s“"
 #: gtksourceview/gtksourcecontextengine.c:6080
 #: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
-msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
-msgstr ""
-"prepisovanie štýlu použité s odkazmi na kontext pomocou náhradných znakov v "
-"jazyku „%s“ v odkaze „%s“"
+msgid "style override used with wildcard context reference in language '%s' in ref '%s'"
+msgstr "prepisovanie štýlu použité s odkazmi na kontext pomocou náhradných znakov v jazyku „%s“ v odkaze „%s“"
 
 #: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
@@ -3968,10 +3949,8 @@ msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-2', 'ISO-8859-15']"
 
 #: gtksourceview/gtksourcefileloader.c:508
-msgid ""
-"There was a character encoding conversion error and it was needed to use a "
-"fallback character."
-msgstr ""
+msgid "There was a character encoding conversion error and it was needed to use a fallback character."
+msgstr "Nastala chyba konverzie pri kódovaní znakov a preto bolo potrebné použiť záchranný znak."
 
 #: gtksourceview/gtksourcefileloader.c:615
 msgid "File too big."
@@ -4019,33 +3998,33 @@ msgid "_Select"
 msgstr "Vy_brať"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1683
+#: gtksourceview/gtksourceview.c:1722
 msgid "_Redo"
 msgstr "_Znovu vykonať"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1694
+#: gtksourceview/gtksourceview.c:1733
 msgid "_Undo"
 msgstr "Vrátiť _späť"
 
-#: gtksourceview/gtksourceview.c:1713
+#: gtksourceview/gtksourceview.c:1752
 msgid "All _Upper Case"
 msgstr "Všetko _veľkým písmom"
 
-#: gtksourceview/gtksourceview.c:1723
+#: gtksourceview/gtksourceview.c:1762
 msgid "All _Lower Case"
 msgstr "Všetko _malým písmom"
 
-#: gtksourceview/gtksourceview.c:1733
+#: gtksourceview/gtksourceview.c:1772
 msgid "_Invert Case"
 msgstr "Ob_rátiť veľkosť písma"
 
-#: gtksourceview/gtksourceview.c:1743
+#: gtksourceview/gtksourceview.c:1782
 msgid "_Title Case"
 msgstr "_Počiatočné písmeno veľkým"
 
 #  style name
-#: gtksourceview/gtksourceview.c:1753
+#: gtksourceview/gtksourceview.c:1792
 msgid "C_hange Case"
 msgstr "Z_meniť veľkosť písma"
 
