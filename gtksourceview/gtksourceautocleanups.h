@@ -27,6 +27,11 @@
 #  endif
 #endif
 
+#include <glib.h>
+#include <gtksourceview/gtksourcetypes.h>
+
+G_BEGIN_DECLS
+
 #ifndef __GI_SCANNER__
 
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(GtkSourceBuffer, g_object_unref)
@@ -56,5 +61,7 @@ G_DEFINE_AUTOPTR_CLEANUP_FUNC(GtkSourceUndoManager, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(GtkSourceView, g_object_unref)
 
 #endif /* __GI_SCANNER__ */
+
+G_END_DECLS
 
 #endif /* GTK_SOURCE_AUTOCLEANUPS_H */
