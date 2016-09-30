@@ -39,7 +39,6 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER))
 #define GTK_SOURCE_STYLE_SCHEME_CHOOSER_GET_IFACE(inst)       (G_TYPE_INSTANCE_GET_INTERFACE ((inst), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER, GtkSourceStyleSchemeChooserInterface))
 
-typedef struct _GtkSourceStyleSchemeChooser          GtkSourceStyleSchemeChooser;
 typedef struct _GtkSourceStyleSchemeChooserInterface GtkSourceStyleSchemeChooserInterface;
 
 struct _GtkSourceStyleSchemeChooserInterface

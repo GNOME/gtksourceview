@@ -43,8 +43,7 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER_BUTTON_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON))
 #define GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON, GtkSourceStyleSchemeChooserButtonClass))
 
-typedef struct _GtkSourceStyleSchemeChooserButton        GtkSourceStyleSchemeChooserButton;
-typedef struct _GtkSourceStyleSchemeChooserButtonClass   GtkSourceStyleSchemeChooserButtonClass;
+typedef struct _GtkSourceStyleSchemeChooserButtonClass GtkSourceStyleSchemeChooserButtonClass;
 
 struct _GtkSourceStyleSchemeChooserButton
 {
