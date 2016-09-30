@@ -97,7 +97,7 @@ create_window (void)
 							 GTK_SOURCE_SPACE_TYPE_NBSP);
 	gtk_source_space_drawer_set_types_for_locations (space_drawer,
 							 GTK_SOURCE_SPACE_LOCATION_TRAILING,
-							 GTK_SOURCE_SPACE_TYPE_ALL & ~GTK_SOURCE_SPACE_TYPE_NEWLINE);
+							 GTK_SOURCE_SPACE_TYPE_ALL);
 
 	panel_grid = gtk_grid_new ();
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel_grid), GTK_ORIENTATION_VERTICAL);
