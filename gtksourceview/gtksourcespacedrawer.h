@@ -129,6 +129,13 @@ GTK_SOURCE_AVAILABLE_IN_3_24
 void			gtk_source_space_drawer_set_matrix		(GtkSourceSpaceDrawer *drawer,
 									 GVariant             *matrix);
 
+GTK_SOURCE_AVAILABLE_IN_3_24
+gboolean		gtk_source_space_drawer_get_enable_matrix	(GtkSourceSpaceDrawer *drawer);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			gtk_source_space_drawer_set_enable_matrix	(GtkSourceSpaceDrawer *drawer,
+									 gboolean              enable_matrix);
+
 G_END_DECLS
 
 #endif /* GTK_SOURCE_SPACE_DRAWER_H */

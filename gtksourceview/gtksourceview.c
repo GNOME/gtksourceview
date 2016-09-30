@@ -1270,9 +1270,9 @@ gtk_source_view_get_property (GObject    *object,
 }
 
 static void
-space_drawer_notify_matrix_cb (GtkSourceSpaceDrawer *space_drawer,
-			       GParamSpec           *pspec,
-			       GtkSourceView        *view)
+space_drawer_notify_cb (GtkSourceSpaceDrawer *space_drawer,
+			GParamSpec           *pspec,
+			GtkSourceView        *view)
 {
 	gtk_widget_queue_draw (GTK_WIDGET (view));
 	g_object_notify (G_OBJECT (view), "draw-spaces");
@@ -1309,8 +1309,8 @@ gtk_source_view_init (GtkSourceView *view)
 
 	view->priv->space_drawer = gtk_source_space_drawer_new ();
 	g_signal_connect_object (view->priv->space_drawer,
-				 "notify::matrix",
-				 G_CALLBACK (space_drawer_notify_matrix_cb),
+				 "notify",
+				 G_CALLBACK (space_drawer_notify_cb),
 				 view,
 				 0);
 

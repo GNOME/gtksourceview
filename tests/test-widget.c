@@ -993,30 +993,10 @@ show_top_border_window_toggled_cb (GtkToggleButton *checkbutton,
 }
 
 static void
-draw_spaces_toggled_cb (GtkToggleButton *checkbutton,
-			TestWidget      *self)
+test_widget_init (TestWidget *self)
 {
 	GtkSourceSpaceDrawer *space_drawer;
 
-	space_drawer = gtk_source_view_get_space_drawer (self->priv->view);
-
-	if (gtk_toggle_button_get_active (checkbutton))
-	{
-		gtk_source_space_drawer_set_types_for_locations (space_drawer,
-								 GTK_SOURCE_SPACE_LOCATION_ALL,
-								 GTK_SOURCE_SPACE_TYPE_ALL);
-	}
-	else
-	{
-		gtk_source_space_drawer_set_types_for_locations (space_drawer,
-								 GTK_SOURCE_SPACE_LOCATION_ALL,
-								 GTK_SOURCE_SPACE_TYPE_NONE);
-	}
-}
-
-static void
-test_widget_init (TestWidget *self)
-{
 	self->priv = test_widget_get_instance_private (self);
 
 	gtk_widget_init_template (GTK_WIDGET (self));
@@ -1075,11 +1055,6 @@ test_widget_init (TestWidget *self)
 	                        "visible",
 	                        G_BINDING_SYNC_CREATE);
 
-	g_signal_connect (self->priv->draw_spaces_checkbutton,
-			  "toggled",
-			  G_CALLBACK (draw_spaces_toggled_cb),
-			  self);
-
 	g_object_bind_property (self->priv->smart_backspace_checkbutton,
 	                        "active",
 	                        self->priv->view,
@@ -1090,6 +1065,17 @@ test_widget_init (TestWidget *self)
 	                  "changed",
 	                  G_CALLBACK (on_background_pattern_changed),
 	                  self);
+
+	/* White space drawing */
+	space_drawer = gtk_source_view_get_space_drawer (self->priv->view);
+
+	gtk_source_space_drawer_set_types_for_locations (space_drawer,
+							 GTK_SOURCE_SPACE_LOCATION_ALL,
+							 GTK_SOURCE_SPACE_TYPE_ALL);
+
+	g_object_bind_property (self->priv->draw_spaces_checkbutton, "active",
+				space_drawer, "enable-matrix",
+				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
 	open_file (self, TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
 }

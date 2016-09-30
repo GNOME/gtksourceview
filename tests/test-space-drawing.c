@@ -52,34 +52,6 @@ fill_buffer (GtkTextBuffer *buffer,
 }
 
 static void
-enable_matrix (GtkSourceSpaceDrawer *space_drawer)
-{
-	gtk_source_space_drawer_set_types_for_locations (space_drawer,
-							 GTK_SOURCE_SPACE_LOCATION_ALL,
-							 GTK_SOURCE_SPACE_TYPE_NBSP);
-
-	gtk_source_space_drawer_set_types_for_locations (space_drawer,
-							 GTK_SOURCE_SPACE_LOCATION_TRAILING,
-							 GTK_SOURCE_SPACE_TYPE_ALL & ~GTK_SOURCE_SPACE_TYPE_NEWLINE);
-}
-
-static void
-matrix_checkbutton_toggled_cb (GtkToggleButton      *matrix_checkbutton,
-			       GtkSourceSpaceDrawer *space_drawer)
-{
-	if (gtk_toggle_button_get_active (matrix_checkbutton))
-	{
-		enable_matrix (space_drawer);
-	}
-	else
-	{
-		gtk_source_space_drawer_set_types_for_locations (space_drawer,
-								 GTK_SOURCE_SPACE_LOCATION_ALL,
-								 GTK_SOURCE_SPACE_TYPE_NONE);
-	}
-}
-
-static void
 create_window (void)
 {
 	GtkWidget *window;
@@ -120,7 +92,12 @@ create_window (void)
 	fill_buffer (GTK_TEXT_BUFFER (buffer), tag);
 
 	space_drawer = gtk_source_view_get_space_drawer (view);
-	enable_matrix (space_drawer);
+	gtk_source_space_drawer_set_types_for_locations (space_drawer,
+							 GTK_SOURCE_SPACE_LOCATION_ALL,
+							 GTK_SOURCE_SPACE_TYPE_NBSP);
+	gtk_source_space_drawer_set_types_for_locations (space_drawer,
+							 GTK_SOURCE_SPACE_LOCATION_TRAILING,
+							 GTK_SOURCE_SPACE_TYPE_ALL & ~GTK_SOURCE_SPACE_TYPE_NEWLINE);
 
 	panel_grid = gtk_grid_new ();
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel_grid), GTK_ORIENTATION_VERTICAL);
@@ -131,13 +108,12 @@ create_window (void)
 		      "margin", 6,
 		      NULL);
 
-	matrix_checkbutton = gtk_check_button_new_with_label ("GtkSourceSpaceDrawer matrix");
+	matrix_checkbutton = gtk_check_button_new_with_label ("GtkSourceSpaceDrawer enable-matrix");
 	gtk_container_add (GTK_CONTAINER (panel_grid), matrix_checkbutton);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (matrix_checkbutton), TRUE);
-	g_signal_connect (matrix_checkbutton,
-			  "toggled",
-			  G_CALLBACK (matrix_checkbutton_toggled_cb),
-			  space_drawer);
+	g_object_bind_property (matrix_checkbutton, "active",
+				space_drawer, "enable-matrix",
+				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
 	tag_set_checkbutton = gtk_check_button_new_with_label ("GtkSourceTag draw-spaces-set");
 	gtk_container_add (GTK_CONTAINER (panel_grid), tag_set_checkbutton);

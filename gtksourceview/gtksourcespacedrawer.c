@@ -79,11 +79,13 @@ struct _GtkSourceSpaceDrawerPrivate
 {
 	GtkSourceSpaceTypeFlags *matrix;
 	GdkRGBA *color;
+	guint enable_matrix : 1;
 };
 
 enum
 {
 	PROP_0,
+	PROP_ENABLE_MATRIX,
 	PROP_MATRIX,
 	N_PROPERTIES
 };
@@ -218,6 +220,10 @@ gtk_source_space_drawer_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
+		case PROP_ENABLE_MATRIX:
+			g_value_set_boolean (value, gtk_source_space_drawer_get_enable_matrix (drawer));
+			break;
+
 		case PROP_MATRIX:
 			g_value_set_variant (value, gtk_source_space_drawer_get_matrix (drawer));
 			break;
@@ -238,6 +244,10 @@ gtk_source_space_drawer_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
+		case PROP_ENABLE_MATRIX:
+			gtk_source_space_drawer_set_enable_matrix (drawer, g_value_get_boolean (value));
+			break;
+
 		case PROP_MATRIX:
 			gtk_source_space_drawer_set_matrix (drawer, g_value_get_variant (value));
 			break;
@@ -271,6 +281,22 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 	object_class->get_property = gtk_source_space_drawer_get_property;
 	object_class->set_property = gtk_source_space_drawer_set_property;
 	object_class->finalize = gtk_source_space_drawer_finalize;
+
+	/**
+	 * GtkSourceSpaceDrawer:enable-matrix:
+	 *
+	 * Whether the #GtkSourceSpaceDrawer:matrix property is enabled.
+	 *
+	 * Since: 3.24
+	 */
+	properties[PROP_ENABLE_MATRIX] =
+		g_param_spec_boolean ("enable-matrix",
+				      "Enable Matrix",
+				      "",
+				      FALSE,
+				      G_PARAM_READWRITE |
+				      G_PARAM_CONSTRUCT |
+				      G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceSpaceDrawer:matrix:
@@ -358,6 +384,11 @@ _gtk_source_space_drawer_get_flags (GtkSourceSpaceDrawer *drawer)
 	GtkSourceDrawSpacesFlags flags = 0;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer), 0);
+
+	if (!drawer->priv->enable_matrix)
+	{
+		return 0;
+	}
 
 	locations = get_nonzero_locations_for_draw_spaces_flags (drawer);
 	common_types = gtk_source_space_drawer_get_types_for_locations (drawer, locations);
@@ -464,6 +495,8 @@ _gtk_source_space_drawer_set_flags (GtkSourceSpaceDrawer     *drawer,
 	locations = get_locations_from_draw_spaces_flags (flags);
 	types = get_space_types_from_draw_spaces_flags (flags);
 	gtk_source_space_drawer_set_types_for_locations (drawer, locations, types);
+
+	gtk_source_space_drawer_set_enable_matrix (drawer, TRUE);
 }
 
 /**
@@ -661,6 +694,45 @@ gtk_source_space_drawer_set_matrix (GtkSourceSpaceDrawer *drawer,
 	{
 		g_variant_ref_sink (matrix);
 		g_variant_unref (matrix);
+	}
+}
+
+/**
+ * gtk_source_space_drawer_get_enable_matrix:
+ * @drawer: a #GtkSourceSpaceDrawer.
+ *
+ * Returns: whether the #GtkSourceSpaceDrawer:matrix property is enabled.
+ * Since: 3.24
+ */
+gboolean
+gtk_source_space_drawer_get_enable_matrix (GtkSourceSpaceDrawer *drawer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer), FALSE);
+
+	return drawer->priv->enable_matrix;
+}
+
+/**
+ * gtk_source_space_drawer_set_enable_matrix:
+ * @drawer: a #GtkSourceSpaceDrawer.
+ * @enable_matrix: the new value.
+ *
+ * Sets whether the #GtkSourceSpaceDrawer:matrix property is enabled.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_space_drawer_set_enable_matrix (GtkSourceSpaceDrawer *drawer,
+					   gboolean              enable_matrix)
+{
+	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
+
+	enable_matrix = enable_matrix != FALSE;
+
+	if (drawer->priv->enable_matrix != enable_matrix)
+	{
+		drawer->priv->enable_matrix = enable_matrix;
+		g_object_notify_by_pspec (G_OBJECT (drawer), properties[PROP_ENABLE_MATRIX]);
 	}
 }
 
@@ -1084,7 +1156,8 @@ space_needs_drawing (GtkSourceSpaceDrawer *drawer,
 	}
 
 	/* Check the matrix */
-	return space_needs_drawing_according_to_matrix (drawer, iter, leading_end, trailing_start);
+	return (drawer->priv->enable_matrix &&
+		space_needs_drawing_according_to_matrix (drawer, iter, leading_end, trailing_start));
 }
 
 static void
@@ -1184,7 +1257,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	text_view = GTK_TEXT_VIEW (view);
 	buffer = gtk_text_view_get_buffer (text_view);
 
-	if (is_zero_matrix (drawer) &&
+	if ((!drawer->priv->enable_matrix || is_zero_matrix (drawer)) &&
 	    !buffer_has_draw_spaces_tag (buffer))
 	{
 		return;
