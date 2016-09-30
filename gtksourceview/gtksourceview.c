@@ -4948,8 +4948,10 @@ gtk_source_view_get_background_pattern (GtkSourceView *view)
  * gtk_source_view_get_space_drawer:
  * @view: a #GtkSourceView.
  *
- * Returns: (transfer none) (nullable): the #GtkSourceSpaceDrawer associated
- * with @view.
+ * Returns the #GtkSourceSpaceDrawer of @view. The returned object is guaranteed
+ * to be the same for the lifetime of @view.
+ *
+ * Returns: (transfer none): the #GtkSourceSpaceDrawer associated with @view.
  * Since: 3.24
  */
 GtkSourceSpaceDrawer *
