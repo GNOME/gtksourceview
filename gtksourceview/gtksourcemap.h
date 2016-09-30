@@ -31,6 +31,7 @@
 #endif
 
 #include <gtk/gtk.h>
+#include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourceview.h>
 
 G_BEGIN_DECLS
@@ -43,8 +44,7 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_IS_MAP_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_SOURCE_TYPE_MAP))
 #define GTK_SOURCE_MAP_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GTK_SOURCE_TYPE_MAP, GtkSourceMapClass))
 
-typedef struct _GtkSourceMap        GtkSourceMap;
-typedef struct _GtkSourceMapClass   GtkSourceMapClass;
+typedef struct _GtkSourceMapClass GtkSourceMapClass;
 
 struct _GtkSourceMap
 {

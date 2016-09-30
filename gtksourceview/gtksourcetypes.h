@@ -52,6 +52,7 @@ typedef struct _GtkSourceGutterRendererPixbuf	GtkSourceGutterRendererPixbuf;
 typedef struct _GtkSourceGutterRendererText	GtkSourceGutterRendererText;
 typedef struct _GtkSourceLanguage		GtkSourceLanguage;
 typedef struct _GtkSourceLanguageManager	GtkSourceLanguageManager;
+typedef struct _GtkSourceMap			GtkSourceMap;
 typedef struct _GtkSourceMarkAttributes		GtkSourceMarkAttributes;
 typedef struct _GtkSourceMark			GtkSourceMark;
 typedef struct _GtkSourcePrintCompositor	GtkSourcePrintCompositor;
