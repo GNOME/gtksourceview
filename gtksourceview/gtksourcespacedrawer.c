@@ -766,6 +766,72 @@ gtk_source_space_drawer_set_enable_matrix (GtkSourceSpaceDrawer *drawer,
 	}
 }
 
+static gboolean
+matrix_get_mapping (GValue   *value,
+		    GVariant *variant,
+		    gpointer  user_data)
+{
+	g_value_set_variant (value, variant);
+	return TRUE;
+}
+
+static GVariant *
+matrix_set_mapping (const GValue       *value,
+		    const GVariantType *expected_type,
+		    gpointer            user_data)
+{
+	return g_value_dup_variant (value);
+}
+
+/**
+ * gtk_source_space_drawer_bind_matrix_setting:
+ * @drawer: a #GtkSourceSpaceDrawer object.
+ * @settings: a #GSettings object.
+ * @key: the @settings key to bind.
+ * @flags: flags for the binding.
+ *
+ * Binds the #GtkSourceSpaceDrawer:matrix property to a #GSettings key.
+ *
+ * The #GSettings key must be of the same type as the
+ * #GtkSourceSpaceDrawer:matrix property, that is, `"au"`.
+ *
+ * The g_settings_bind() function cannot be used, because the default GIO
+ * mapping functions don't support #GVariant properties (maybe it will be
+ * supported by a future GIO version, in which case this function can be
+ * deprecated).
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_space_drawer_bind_matrix_setting (GtkSourceSpaceDrawer *drawer,
+					     GSettings            *settings,
+					     const gchar          *key,
+					     GSettingsBindFlags    flags)
+{
+	GVariant *value;
+
+	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
+	g_return_if_fail (G_IS_SETTINGS (settings));
+	g_return_if_fail (key != NULL);
+	g_return_if_fail ((flags & G_SETTINGS_BIND_INVERT_BOOLEAN) == 0);
+
+	value = g_settings_get_value (settings, key);
+	if (!g_variant_is_of_type (value, G_VARIANT_TYPE ("au")))
+	{
+		g_warning ("%s(): the GSettings key must be of type \"au\".", G_STRFUNC);
+		g_variant_unref (value);
+		return;
+	}
+	g_variant_unref (value);
+
+	g_settings_bind_with_mapping (settings, key,
+				      drawer, "matrix",
+				      flags,
+				      matrix_get_mapping,
+				      matrix_set_mapping,
+				      NULL, NULL);
+}
+
 void
 _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 				       GtkSourceView        *view)

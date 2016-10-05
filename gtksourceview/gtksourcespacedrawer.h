@@ -136,6 +136,12 @@ GTK_SOURCE_AVAILABLE_IN_3_24
 void			gtk_source_space_drawer_set_enable_matrix	(GtkSourceSpaceDrawer *drawer,
 									 gboolean              enable_matrix);
 
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			gtk_source_space_drawer_bind_matrix_setting	(GtkSourceSpaceDrawer *drawer,
+									 GSettings            *settings,
+									 const gchar          *key,
+									 GSettingsBindFlags    flags);
+
 G_END_DECLS
 
 #endif /* GTK_SOURCE_SPACE_DRAWER_H */
