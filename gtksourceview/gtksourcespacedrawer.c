@@ -370,6 +370,9 @@ gtk_source_space_drawer_init (GtkSourceSpaceDrawer *drawer)
 /**
  * gtk_source_space_drawer_new:
  *
+ * Creates a new #GtkSourceSpaceDrawer object. Useful for storing space drawing
+ * settings independently of a #GtkSourceView.
+ *
  * Returns: a new #GtkSourceSpaceDrawer.
  * Since: 3.24
  */
