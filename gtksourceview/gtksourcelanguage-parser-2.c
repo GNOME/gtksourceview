@@ -947,7 +947,7 @@ replace_by_id (const GMatchInfo *match_info,
 	if (subst == NULL)
 		g_set_error (&tmp_error,
 			     PARSER_ERROR, PARSER_ERROR_WRONG_ID,
-			     _("Unknown id '%s' in regex '%s'"), id,
+			     _("Unknown id “%s” in regex “%s”"), id,
 			     g_match_info_get_string (match_info));
 
 	if (tmp_error == NULL)
@@ -1177,7 +1177,7 @@ expand_regex (ParserState *parser_state,
 		if (g_regex_get_max_backref (compiled) > 0)
 		{
 			g_set_error (error, PARSER_ERROR, PARSER_ERROR_MALFORMED_REGEX,
-				     _("in regex '%s': backreferences are not supported"),
+				     _("in regex “%s”: backreferences are not supported"),
 				     regex);
 			g_regex_unref (compiled);
 			return NULL;

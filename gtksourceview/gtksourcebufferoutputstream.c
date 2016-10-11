@@ -927,13 +927,13 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 				if (errno == EINVAL)
 				{
 					g_set_error (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
-						     _("Conversion from character set '%s' to 'UTF-8' is not supported"),
+						     _("Conversion from character set “%s” to “UTF-8” is not supported"),
 						     from_charset);
 				}
 				else
 				{
 					g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
-						     _("Could not open converter from '%s' to 'UTF-8'"),
+						     _("Could not open converter from “%s” to “UTF-8”"),
 						     from_charset);
 				}
 

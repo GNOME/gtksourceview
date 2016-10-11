@@ -5709,7 +5709,7 @@ context_definition_new (const gchar            *id,
 		g_set_error (error,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_START_REF,
-			     _("context '%s' cannot contain a \\%%{...@start} command"),
+			     _("context “%s” cannot contain a \\%%{...@start} command"),
 			     id);
 		regex_error = TRUE;
 	}
@@ -5872,7 +5872,7 @@ _gtk_source_context_data_define_context (GtkSourceContextData   *ctx_data,
 		g_set_error (error,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_DUPLICATED_ID,
-			     _("duplicated context id '%s'"), id);
+			     _("duplicated context id “%s”"), id);
 		return FALSE;
 	}
 
@@ -5963,7 +5963,7 @@ _gtk_source_context_data_add_sub_pattern (GtkSourceContextData  *ctx_data,
 		g_set_error (error,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_DUPLICATED_ID,
-			     _("duplicated context id '%s'"), id);
+			     _("duplicated context id “%s”"), id);
 		return FALSE;
 	}
 
@@ -6078,7 +6078,7 @@ _gtk_source_context_data_add_ref (GtkSourceContextData        *ctx_data,
 		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_STYLE,
 			     _("style override used with wildcard context reference"
-			       " in language '%s' in ref '%s'"),
+			       " in language “%s” in ref “%s”"),
 			     ctx_data->lang->priv->id, ref_id);
 		return FALSE;
 	}
@@ -6138,7 +6138,7 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
 					g_set_error (&data->error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 						     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_STYLE,
 						     _("style override used with wildcard context reference"
-						       " in language '%s' in ref '%s'"),
+						       " in language “%s” in ref “%s”"),
 						     data->ctx_data->lang->priv->id, ref->id);
 				}
 				else
@@ -6151,7 +6151,7 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
 		{
 			g_set_error (&data->error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 				     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REF,
-				     _("invalid context reference '%s'"), child_def->u.id);
+				     _("invalid context reference “%s”"), child_def->u.id);
 		}
 	}
 }
@@ -6170,7 +6170,7 @@ process_replace (GtkSourceContextData  *ctx_data,
 	{
 		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REF,
-			     _("unknown context '%s'"), id);
+			     _("unknown context “%s”"), id);
 		return FALSE;
 	}
 
@@ -6180,7 +6180,7 @@ process_replace (GtkSourceContextData  *ctx_data,
 	{
 		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_REF,
-			     _("unknown context '%s'"), replace_with);
+			     _("unknown context “%s”"), replace_with);
 		return FALSE;
 	}
 
