@@ -35,6 +35,12 @@
 
 G_BEGIN_DECLS
 
+/* This header exists to avoid cycles in header inclusions, when header A needs
+ * the type B and header B needs the type A. For an alternative way to solve
+ * this problem (in C11), see:
+ * https://bugzilla.gnome.org/show_bug.cgi?id=679424#c20
+ */
+
 typedef struct _GtkSourceBuffer			GtkSourceBuffer;
 typedef struct _GtkSourceCompletionContext	GtkSourceCompletionContext;
 typedef struct _GtkSourceCompletion		GtkSourceCompletion;
