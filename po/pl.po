@@ -11,9 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-13 16:57+0000\n"
-"PO-Revision-Date: 2016-08-15 10:30+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-10-11 19:32+0000\n"
+"PO-Revision-Date: 2016-10-18 21:07+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -3098,12 +3099,12 @@ msgstr "Błąd podczas konwersji: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
-msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Konwersja z zestawu znaków „%s” do „UTF-8” jest nieobsługiwana"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
-msgid "Could not open converter from '%s' to 'UTF-8'"
+msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Nie można otworzyć konwertera z „%s” do „UTF-8”"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:996
@@ -3128,7 +3129,7 @@ msgid "Show detailed proposal information"
 msgstr "Wyświetlanie szczegółowych informacji o propozycji"
 
 #: gtksourceview/gtksourcecompletion.ui:89
-msgid "_Details..."
+msgid "_Details…"
 msgstr "_Szczegóły…"
 
 #. regex_new could fail, for instance if there are different
@@ -3155,34 +3156,34 @@ msgstr ""
 
 #: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
-msgid "context '%s' cannot contain a \\%%{...@start} command"
+msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "kontekst „%s” nie może zawierać polecenia \\%%{...@start}"
 
 #: gtksourceview/gtksourcecontextengine.c:5875
 #: gtksourceview/gtksourcecontextengine.c:5966
 #, c-format
-msgid "duplicated context id '%s'"
+msgid "duplicated context id “%s”"
 msgstr "powtórzony identyfikator kontekstu „%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6080
 #: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
 msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
 "użyto wymuszenia stylu za pomocą ogólnej referencji kontekstu w języku „%s”, "
 "w referencji „%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
-msgid "invalid context reference '%s'"
+msgid "invalid context reference “%s”"
 msgstr "nieprawidłowa referencja kontekstu „%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6173
 #: gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
-msgid "unknown context '%s'"
+msgid "unknown context “%s”"
 msgstr "nieznany kontekst „%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6282
@@ -3349,12 +3350,12 @@ msgstr "Bufor zawiera nieprawidłowe znaki."
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
-msgid "Unknown id '%s' in regex '%s'"
+msgid "Unknown id “%s” in regex “%s”"
 msgstr "Nieznany identyfikator „%s” w wyrażeniu regularnym „%s”"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
-msgid "in regex '%s': backreferences are not supported"
+msgid "in regex “%s”: backreferences are not supported"
 msgstr "wyrażenie regularne „%s”: referencje wsteczne nie są obsługiwane"
 
 #: gtksourceview/gtksourceregex.c:129
@@ -3375,31 +3376,31 @@ msgid "_Select"
 msgstr "_Wybierz"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1722
+#: gtksourceview/gtksourceview.c:1764
 msgid "_Redo"
 msgstr "P_onów"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1733
+#: gtksourceview/gtksourceview.c:1775
 msgid "_Undo"
 msgstr "Cof_nij"
 
-#: gtksourceview/gtksourceview.c:1752
+#: gtksourceview/gtksourceview.c:1794
 msgid "All _Upper Case"
 msgstr "Wszystko _wielkimi literami"
 
-#: gtksourceview/gtksourceview.c:1762
+#: gtksourceview/gtksourceview.c:1804
 msgid "All _Lower Case"
 msgstr "Wszystko _małymi literami"
 
-#: gtksourceview/gtksourceview.c:1772
+#: gtksourceview/gtksourceview.c:1814
 msgid "_Invert Case"
 msgstr "_Odwróć wielkość liter"
 
-#: gtksourceview/gtksourceview.c:1782
+#: gtksourceview/gtksourceview.c:1824
 msgid "_Title Case"
 msgstr "Jak W _Tytule"
 
-#: gtksourceview/gtksourceview.c:1792
+#: gtksourceview/gtksourceview.c:1834
 msgid "C_hange Case"
 msgstr "_Zmień wielkość liter"
