@@ -19,6 +19,9 @@ EXTRA_DIST =					\
 	$(GENERATED_ITEMS)
 
 gtksourceview-install.props: $(top_srcdir)/build/win32/vs10/gtksourceview-install.propsin $(MSVC10_HEADERS_LISTS)
+	-$(RM) $(top_builddir)/build/win32/vs11/gtksourceview-install.props
+	-$(RM) $(top_builddir)/build/win32/vs12/gtksourceview-install.props
+	-$(RM) $(top_builddir)/build/win32/vs14/gtksourceview-install.props
 	$(CPP) -P - <$(top_srcdir)/build/win32/vs10/gtksourceview-install.propsin >$@
 	$(RM) $(MSVC10_HEADERS_LISTS)
 
