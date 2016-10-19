@@ -9,7 +9,7 @@ STYLES =			\
 	solarized-light.xml	\
 	tango.xml
 
-stylesdir = $(datadir)/gtksourceview-3.0/styles
+stylesdir = $(datadir)/gtksourceview-@GSV_API_VERSION@/styles
 styles_DATA = $(STYLES) styles.rng
 
 EXTRA_DIST =		\
