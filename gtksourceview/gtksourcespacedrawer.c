@@ -968,6 +968,7 @@ draw_space_at_pos (cairo_t      *cr,
 	cairo_save (cr);
 	cairo_move_to (cr, x + w * 0.5, y);
 	cairo_arc (cr, x + w * 0.5, y, 0.8, 0, 2 * G_PI);
+	cairo_stroke (cr);
 	cairo_restore (cr);
 }
 
@@ -990,6 +991,7 @@ draw_tab_at_pos (cairo_t      *cr,
 	cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
 	cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
 	cairo_rel_line_to (cr, -h * 1 / 4, +h * 1 / 4);
+	cairo_stroke (cr);
 	cairo_restore (cr);
 }
 
@@ -1007,6 +1009,7 @@ draw_newline_at_pos (cairo_t      *cr,
 	h = rect.height;
 
 	cairo_save (cr);
+
 	if (gtk_widget_get_default_direction () == GTK_TEXT_DIR_LTR)
 	{
 		cairo_move_to (cr, x + w * 7 / 8, y);
@@ -1026,6 +1029,7 @@ draw_newline_at_pos (cairo_t      *cr,
 		cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
 	}
 
+	cairo_stroke (cr);
 	cairo_restore (cr);
 }
 
@@ -1452,7 +1456,6 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 		}
 	};
 
-	cairo_stroke (cr);
 	cairo_restore (cr);
 
 #ifdef ENABLE_PROFILE
