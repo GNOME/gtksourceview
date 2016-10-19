@@ -55,7 +55,9 @@ AC_SUBST(GSV_LT_VERSION)
 # Because as far as I've tested, it is not easily feasible to not hardcode the
 # API version in those places (swilmet).
 GSV_API_VERSION=3.0
+GSV_MAJOR_API_VERSION=3
 AC_SUBST(GSV_API_VERSION)
+AC_SUBST(GSV_MAJOR_API_VERSION)
 
 # Dependencies
 glib_req=2.48
@@ -239,6 +241,9 @@ data/language-specs/Makefile
 data/styles/Makefile
 docs/Makefile
 docs/reference/Makefile
+docs/reference/gtksourceview-docs.xml
+docs/reference/lang-reference.xml
+docs/reference/style-reference.xml
 gtksourceview/Makefile
 gtksourceview/gtksourceversion.h
 gtksourceview/completion-providers/Makefile

@@ -2,7 +2,7 @@
 AUTOMAKE_OPTIONS = 1.6
 
 # The name of the module.
-DOC_MODULE = gtksourceview-3.0
+DOC_MODULE = gtksourceview-@GSV_API_VERSION@
 
 # The top-level XML file (SGML in the past).
 DOC_MAIN_SGML_FILE = gtksourceview-docs.xml
@@ -80,13 +80,25 @@ FIXXREF_OPTIONS =
 # Only needed if you are using gtkdoc-scangobj to dynamically query widget
 # signals and properties.
 GTKDOC_CFLAGS = -I$(top_srcdir) $(DEP_CFLAGS)
-GTKDOC_LIBS = $(top_builddir)/gtksourceview/libgtksourceview-3.0.la $(DEP_LIBS)
+GTKDOC_LIBS =									\
+	$(top_builddir)/gtksourceview/libgtksourceview-@GSV_API_VERSION@.la	\
+	$(DEP_LIBS)
 
 MAINTAINERCLEANFILES =			\
-	gtksourceview-3.0-overrides.txt	\
-	gtksourceview-3.0.types
+	$(DOC_MODULE)-overrides.txt	\
+	$(DOC_MODULE).types
 
 # include common portion ...
 include $(top_srcdir)/gtk-doc.make
+
+EXTRA_DIST +=				\
+	gtksourceview-docs.xml.in	\
+	lang-reference.xml.in		\
+	style-reference.xml.in
+
+DISTCLEANFILES =			\
+	gtksourceview-docs.xml		\
+	lang-reference.xml		\
+	style-reference.xml
 
 -include $(top_srcdir)/git.mk

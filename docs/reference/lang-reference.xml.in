@@ -24,7 +24,7 @@ Reference to the GtkSourceView language definition file format
 <note>
   <para>
     The version 2 here refers to the language definition file format,
-    not to the version of GtkSourceView. So this reference is suitable
+    not to the version of GtkSourceView. This reference is suitable
     for GtkSourceView 2 and 3.
   </para>
 </note>
@@ -34,17 +34,17 @@ This is an overview of the Language Definition XML format, describing the
 meaning and usage of every element and attribute.  The formal definition is
 stored in the RelaxNG schema file <filename>language2.rng</filename> which
 should be installed on your system in the directory
-<filename>${PREFIX}/share/gtksourceview-3.0/</filename> (where
+<filename>${PREFIX}/share/gtksourceview-@GSV_API_VERSION@/</filename> (where
 <filename>${PREFIX}</filename> can be <filename>/usr/</filename> or
 <filename>/usr/local/</filename> if you have installed from source.
 </para>
 
 <para>
 The preinstalled language files are located in
-<filename>${PREFIX}/share/gtksourceview-3.0/language-specs/</filename>. Custom
+<filename>${PREFIX}/share/gtksourceview-@GSV_API_VERSION@/language-specs/</filename>. Custom
 user languages are usually placed in
-<filename>~/.local/share/gtksourceview-3.0/language-specs/</filename>. Note:
-replace 3 with 2 in the path for GtkSourceView version 2.
+<filename>~/.local/share/gtksourceview-@GSV_API_VERSION@/language-specs/</filename>. Note:
+replace @GSV_MAJOR_API_VERSION@ with 2 in the path for GtkSourceView version 2.
 </para>
 </refsect1>
 
