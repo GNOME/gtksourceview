@@ -70,6 +70,15 @@
  *
  * gtk_source_space_drawer_set_enable_matrix (space_drawer, TRUE);
  * ]|
+ *
+ * # Use-case: draw unwanted white spaces
+ *
+ * A possible use-case is to draw only unwanted white spaces. Examples:
+ * - Draw all trailing spaces.
+ * - If the indentation and alignment must be done with spaces, draw tabs.
+ *
+ * And non-breaking spaces can always be drawn, everywhere, to distinguish them
+ * from normal spaces.
  */
 
 /* A drawer specially designed for the International Space Station. It comes by
