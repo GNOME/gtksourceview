@@ -259,7 +259,7 @@ stamp-gtksourceview-enumtypes.h: Makefile.am $(libgtksourceview_public_headers)
 	&& rm -f xgen-gth && echo stamp > $(@F)
 
 EXTRA_DIST = 					\
-	GtkSource-3.0.metadata			\
+	GtkSource.metadata.in			\
 	gtksourcecompletion.ui			\
 	gtksourceview.gresource.xml
 

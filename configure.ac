@@ -246,6 +246,7 @@ docs/reference/lang-reference.xml
 docs/reference/style-reference.xml
 gtksourceview/Makefile
 gtksourceview/gtksourceversion.h
+gtksourceview/GtkSource-${GSV_API_VERSION}.metadata:gtksourceview/GtkSource.metadata.in
 gtksourceview/completion-providers/Makefile
 gtksourceview/completion-providers/words/Makefile
 po/Makefile.in
