@@ -234,6 +234,7 @@ build/win32/vs12/Makefile
 build/win32/vs14/Makefile
 data/Makefile
 data/glade/Makefile
+data/glade/gtksourceview.xml
 data/language-specs/Makefile
 data/styles/Makefile
 docs/Makefile

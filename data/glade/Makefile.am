@@ -12,7 +12,7 @@ validate: $(catalog_DATA)
 	xmllint --dtdvalid $(GLADE_CATALOG_DIR)/glade-catalog.dtd --noout $<
 
 EXTRA_DIST =			\
-	gtksourceview.xml	\
+	gtksourceview.xml.in	\
 	glade.its		\
 	glade.pot		\
 	update-pot.sh

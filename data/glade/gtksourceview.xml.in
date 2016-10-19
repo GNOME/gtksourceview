@@ -2,10 +2,10 @@
 <glade-catalog version="3.0"
                supports="gtkbuilder"
                name="gtksourceview"
-               library="gtksourceview-3.0"
-               domain="gtksourceview-3.0"
+               library="gtksourceview-@GSV_API_VERSION@"
+               domain="gtksourceview-@GSV_API_VERSION@"
                depends="gtk+"
-               book="gtksourceview-3.0">
+               book="gtksourceview-@GSV_API_VERSION@">
   <glade-widget-classes>
     <glade-widget-class name="GtkSourceView" title="GtkSourceView" generic-name="gtksourceview">
       <properties>
