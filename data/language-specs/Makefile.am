@@ -122,7 +122,7 @@ LANGUAGES =			\
 	yacc.lang		\
 	yaml.lang
 
-languagesdir = $(datadir)/gtksourceview-3.0/language-specs
+languagesdir = $(datadir)/gtksourceview-@GSV_API_VERSION@/language-specs
 languages_DATA = $(LANGUAGES) language.rng language2.rng language.dtd
 
 EXTRA_DIST =			\
