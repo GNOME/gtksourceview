@@ -24,9 +24,11 @@ AC_SUBST(GTK_SOURCE_MICRO_VERSION)
 
 # Libtool versioning
 #
-# For development releases, keep the same numbers.
+# For development releases (if the minor package version is odd), keep the same
+# Libtool version.
 #
-# For stable releases, apply the following algorithm step by step:
+# For a new minor stable release (when incrementing the minor package version
+# to an even number), apply the following algorithm step by step:
 # 1. If the library source code has changed at all since the last
 #    update, then increment REVISION.
 # 2. If any exported functions or data have been added, removed, or
@@ -36,12 +38,24 @@ AC_SUBST(GTK_SOURCE_MICRO_VERSION)
 #    public release, increment AGE.
 # 4. If any exported functions or data have been removed since the last
 #    public release, set AGE to 0.
+#
+# When incrementing the API version (usually for a new major package version),
+# set CURRENT, REVISION and AGE to 0 since it's like a new library.
 
 GSV_LT_CURRENT=8
 GSV_LT_REVISION=0
 GSV_LT_AGE=7
 GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
 AC_SUBST(GSV_LT_VERSION)
+
+# API version, used for parallel installability.
+# Not used in:
+# - po/Makevars
+# - the docs/reference/gtksourceview-3.0-sections.txt filename
+# Because as far as I've tested, it is not easily feasible to not hardcode the
+# API version in those places (swilmet).
+GSV_API_VERSION=3.0
+AC_SUBST(GSV_API_VERSION)
 
 # Dependencies
 glib_req=2.48
@@ -169,7 +183,7 @@ AM_GNU_GETTEXT_VERSION([0.19.4])
 AS_IF([test "$USE_NLS" = "yes"],
       [AC_DEFINE([ENABLE_NLS], [1], [Defined if native language support should be enabled.])])
 
-AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-3.0])
+AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-$GSV_API_VERSION])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gettext package name.])
 
 # Documentation
