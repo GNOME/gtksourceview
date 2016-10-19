@@ -72,7 +72,7 @@ GtkSourceBuffer		*gtk_source_search_context_get_buffer			(GtkSourceSearchContext
 GTK_SOURCE_AVAILABLE_IN_3_10
 GtkSourceSearchSettings	*gtk_source_search_context_get_settings			(GtkSourceSearchContext	 *search);
 
-GTK_SOURCE_AVAILABLE_IN_3_10
+GTK_SOURCE_DEPRECATED_IN_3_24_FOR (gtk_source_search_context_new)
 void			 gtk_source_search_context_set_settings			(GtkSourceSearchContext  *search,
 										 GtkSourceSearchSettings *settings);
 

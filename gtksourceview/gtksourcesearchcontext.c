@@ -2696,7 +2696,9 @@ gtk_source_search_context_set_property (GObject      *object,
 			break;
 
 		case PROP_SETTINGS:
+			G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
 			gtk_source_search_context_set_settings (search, g_value_get_object (value));
+			G_GNUC_END_IGNORE_DEPRECATIONS;
 			break;
 
 		case PROP_HIGHLIGHT:
@@ -2903,6 +2905,12 @@ gtk_source_search_context_get_settings (GtkSourceSearchContext *search)
  * The search context holds a reference to @settings.
  *
  * Since: 3.10
+ * Deprecated: 3.24: The #GtkSourceSearchContext:settings property will become a
+ * construct-only property in a future version. Create a new
+ * #GtkSourceSearchContext instead, or change the #GtkSourceSearchSettings
+ * properties. When the #GtkSourceSearchContext:settings property will become
+ * construct-only, it will be possible to simplify some code that needed to
+ * listen to the notify::settings signal.
  */
 void
 gtk_source_search_context_set_settings (GtkSourceSearchContext  *search,
@@ -2913,6 +2921,10 @@ gtk_source_search_context_set_settings (GtkSourceSearchContext  *search,
 
 	if (search->priv->settings != NULL)
 	{
+		g_warning ("%s() is deprecated, the GtkSourceSearchContext:settings property "
+			   "will become a construct-only property in a future version.",
+			   G_STRFUNC);
+
 		g_signal_handlers_disconnect_by_func (search->priv->settings,
 						      settings_notify_cb,
 						      search);
