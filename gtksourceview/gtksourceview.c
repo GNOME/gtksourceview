@@ -2371,6 +2371,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 {
 	gdouble x1, y1, x2, y2;
 
+	cairo_save (cr);
 	cairo_clip_extents (cr, &x1, &y1, &x2, &y2);
 
 	gdk_cairo_set_source_rgba (cr, (GdkRGBA *)color);
@@ -2378,6 +2379,7 @@ gtk_source_view_paint_line_background (GtkTextView    *text_view,
 	cairo_rectangle (cr, x1 + .5, y + .5, x2 - x1 - 1, height - 1);
 	cairo_stroke_preserve (cr);
 	cairo_fill (cr);
+	cairo_restore (cr);
 }
 
 static void
@@ -2527,6 +2529,7 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 
 	x = view->priv->cached_right_margin_pos + gtk_text_view_get_left_margin (text_view);
 
+	cairo_save (cr);
 	cairo_set_line_width (cr, 1.0);
 
 	if (x + 1 >= clip.x && x <= clip.x + clip.width)
@@ -2549,6 +2552,8 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 		gdk_cairo_set_source_rgba (cr, view->priv->right_margin_overlay_color);
 		cairo_fill (cr);
 	}
+
+	cairo_restore (cr);
 
 	PROFILE ({
 		g_timer_stop (timer);

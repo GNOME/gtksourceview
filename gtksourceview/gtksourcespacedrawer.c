@@ -1386,6 +1386,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	gtk_text_view_get_iter_at_location (text_view, &start, min_x, min_y);
 	gtk_text_view_get_iter_at_location (text_view, &end, max_x, max_y);
 
+	cairo_save (cr);
 	gdk_cairo_set_source_rgba (cr, drawer->priv->color);
 	cairo_set_line_width (cr, 0.8);
 	cairo_translate (cr, -0.5, -0.5);
@@ -1452,6 +1453,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	};
 
 	cairo_stroke (cr);
+	cairo_restore (cr);
 
 #ifdef ENABLE_PROFILE
 	g_timer_stop (timer);
