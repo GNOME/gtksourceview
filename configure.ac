@@ -220,7 +220,7 @@ AC_SUBST(ABS_TOP_SRCDIR)
 
 # Output files
 AC_CONFIG_FILES([
-gtksourceview-3.0.pc
+gtksourceview-${GSV_API_VERSION}.pc:gtksourceview.pc.in
 Makefile
 config.h.win32
 build/Makefile

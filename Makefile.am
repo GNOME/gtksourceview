@@ -8,11 +8,11 @@ AM_DISTCHECK_CONFIGURE_FLAGS =		\
 	--enable-vala			\
 	--enable-glade-catalog
 
-pkgconfig_DATA = gtksourceview-3.0.pc
+pkgconfig_DATA = gtksourceview-@GSV_API_VERSION@.pc
 
 EXTRA_DIST = \
 	gtksourceview.doap \
-	gtksourceview-3.0.pc.in	\
+	gtksourceview.pc.in \
 	HACKING \
 	MAINTAINERS \
 	config.h.win32.in \
