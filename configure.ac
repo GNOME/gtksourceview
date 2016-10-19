@@ -52,6 +52,10 @@ AC_SUBST(GSV_LT_VERSION)
 # Not used in:
 # - po/Makevars
 # - the docs/reference/gtksourceview-3.0-sections.txt filename
+# - the gtksourceview/ directory and sub-directories, because make variables
+#   need to be transformed (3.0 -> 3_0), and it doesn't work if two different
+#   variables are used (it must be the same variable). With GSV_API_VERSION
+#   defined to a single digit (4 instead of 4.0), then it would work.
 # Because as far as I've tested, it is not easily feasible to not hardcode the
 # API version in those places (swilmet).
 GSV_API_VERSION=3.0
