@@ -11,7 +11,7 @@ AM_CPPFLAGS = 				\
 
 AM_LDFLAGS = $(WARN_LDFLAGS)
 
-LDADD = $(top_builddir)/gtksourceview/libgtksourceview-3.0.la \
+LDADD = $(top_builddir)/gtksourceview/libgtksourceview-@GSV_API_VERSION@.la \
 	-lm \
 	$(DEP_LIBS) \
 	$(TESTS_LIBS)
