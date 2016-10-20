@@ -69,45 +69,45 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionItem,
 			 			gtk_source_completion_proposal_iface_init))
 
 static gchar *
-gtk_source_completion_proposal_get_label_impl (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_label_impl (GtkSourceCompletionProposal *proposal)
 {
-	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (self)->priv->label);
+	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (proposal)->priv->label);
 }
 
 static gchar *
-gtk_source_completion_proposal_get_markup_impl (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_markup_impl (GtkSourceCompletionProposal *proposal)
 {
-	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (self)->priv->markup);
+	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (proposal)->priv->markup);
 }
 
 static gchar *
-gtk_source_completion_proposal_get_text_impl (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_text_impl (GtkSourceCompletionProposal *proposal)
 {
-	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (self)->priv->text);
+	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (proposal)->priv->text);
 }
 
 static GdkPixbuf *
-gtk_source_completion_proposal_get_icon_impl (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_icon_impl (GtkSourceCompletionProposal *proposal)
 {
-	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->icon;
+	return GTK_SOURCE_COMPLETION_ITEM (proposal)->priv->icon;
 }
 
 static const gchar *
-gtk_source_completion_proposal_get_icon_name_impl (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_icon_name_impl (GtkSourceCompletionProposal *proposal)
 {
-	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->icon_name;
+	return GTK_SOURCE_COMPLETION_ITEM (proposal)->priv->icon_name;
 }
 
 static GIcon *
-gtk_source_completion_proposal_get_gicon_impl (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_gicon_impl (GtkSourceCompletionProposal *proposal)
 {
-	return GTK_SOURCE_COMPLETION_ITEM (self)->priv->gicon;
+	return GTK_SOURCE_COMPLETION_ITEM (proposal)->priv->gicon;
 }
 
 static gchar *
-gtk_source_completion_proposal_get_info_impl (GtkSourceCompletionProposal *self)
+gtk_source_completion_proposal_get_info_impl (GtkSourceCompletionProposal *proposal)
 {
-	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (self)->priv->info);
+	return g_strdup (GTK_SOURCE_COMPLETION_ITEM (proposal)->priv->info);
 }
 
 static void
@@ -129,10 +129,10 @@ gtk_source_completion_proposal_iface_init (gpointer g_iface,
 static void
 gtk_source_completion_item_dispose (GObject *object)
 {
-	GtkSourceCompletionItem *self = GTK_SOURCE_COMPLETION_ITEM (object);
+	GtkSourceCompletionItem *item = GTK_SOURCE_COMPLETION_ITEM (object);
 
-	g_clear_object (&self->priv->icon);
-	g_clear_object (&self->priv->gicon);
+	g_clear_object (&item->priv->icon);
+	g_clear_object (&item->priv->gicon);
 
 	G_OBJECT_CLASS (gtk_source_completion_item_parent_class)->dispose (object);
 }
@@ -140,13 +140,13 @@ gtk_source_completion_item_dispose (GObject *object)
 static void
 gtk_source_completion_item_finalize (GObject *object)
 {
-	GtkSourceCompletionItem *self = GTK_SOURCE_COMPLETION_ITEM (object);
+	GtkSourceCompletionItem *item = GTK_SOURCE_COMPLETION_ITEM (object);
 
-	g_free (self->priv->label);
-	g_free (self->priv->markup);
-	g_free (self->priv->text);
-	g_free (self->priv->info);
-	g_free (self->priv->icon_name);
+	g_free (item->priv->label);
+	g_free (item->priv->markup);
+	g_free (item->priv->text);
+	g_free (item->priv->info);
+	g_free (item->priv->icon_name);
 
 	G_OBJECT_CLASS (gtk_source_completion_item_parent_class)->finalize (object);
 }
@@ -157,40 +157,40 @@ gtk_source_completion_item_get_property (GObject    *object,
 					 GValue     *value,
 					 GParamSpec *pspec)
 {
-	GtkSourceCompletionItem *self;
+	GtkSourceCompletionItem *item;
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (object));
 
-	self = GTK_SOURCE_COMPLETION_ITEM (object);
+	item = GTK_SOURCE_COMPLETION_ITEM (object);
 
 	switch (prop_id)
 	{
 		case PROP_LABEL:
-			g_value_set_string (value, self->priv->label);
+			g_value_set_string (value, item->priv->label);
 			break;
 
 		case PROP_MARKUP:
-			g_value_set_string (value, self->priv->markup);
+			g_value_set_string (value, item->priv->markup);
 			break;
 
 		case PROP_TEXT:
-			g_value_set_string (value, self->priv->text);
+			g_value_set_string (value, item->priv->text);
 			break;
 
 		case PROP_INFO:
-			g_value_set_string (value, self->priv->info);
+			g_value_set_string (value, item->priv->info);
 			break;
 
 		case PROP_ICON:
-			g_value_set_object (value, self->priv->icon);
+			g_value_set_object (value, item->priv->icon);
 			break;
 
 		case PROP_ICON_NAME:
-			g_value_set_string (value, self->priv->icon_name);
+			g_value_set_string (value, item->priv->icon_name);
 			break;
 
 		case PROP_GICON:
-			g_value_set_object (value, self->priv->gicon);
+			g_value_set_object (value, item->priv->gicon);
 			break;
 
 		default:
@@ -211,53 +211,53 @@ gtk_source_completion_item_set_property (GObject      *object,
 					 const GValue *value,
 					 GParamSpec   *pspec)
 {
-	GtkSourceCompletionItem *self;
+	GtkSourceCompletionItem *item;
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (object));
 
-	self = GTK_SOURCE_COMPLETION_ITEM (object);
+	item = GTK_SOURCE_COMPLETION_ITEM (object);
 
 	switch (prop_id)
 	{
 		case PROP_LABEL:
-			g_free (self->priv->label);
-			self->priv->label = g_value_dup_string (value);
-			emit_changed (self);
+			g_free (item->priv->label);
+			item->priv->label = g_value_dup_string (value);
+			emit_changed (item);
 			break;
 
 		case PROP_MARKUP:
-			g_free (self->priv->markup);
-			self->priv->markup = g_value_dup_string (value);
-			emit_changed (self);
+			g_free (item->priv->markup);
+			item->priv->markup = g_value_dup_string (value);
+			emit_changed (item);
 			break;
 
 		case PROP_TEXT:
-			g_free (self->priv->text);
-			self->priv->text = g_value_dup_string (value);
+			g_free (item->priv->text);
+			item->priv->text = g_value_dup_string (value);
 			break;
 
 		case PROP_INFO:
-			g_free (self->priv->info);
-			self->priv->info = g_value_dup_string (value);
-			emit_changed (self);
+			g_free (item->priv->info);
+			item->priv->info = g_value_dup_string (value);
+			emit_changed (item);
 			break;
 
 		case PROP_ICON:
-			g_clear_object (&self->priv->icon);
-			self->priv->icon = GDK_PIXBUF (g_value_dup_object (value));
-			emit_changed (self);
+			g_clear_object (&item->priv->icon);
+			item->priv->icon = GDK_PIXBUF (g_value_dup_object (value));
+			emit_changed (item);
 			break;
 
 		case PROP_ICON_NAME:
-			g_free (self->priv->icon_name);
-			self->priv->icon_name = g_value_dup_string (value);
-			emit_changed (self);
+			g_free (item->priv->icon_name);
+			item->priv->icon_name = g_value_dup_string (value);
+			emit_changed (item);
 			break;
 
 		case PROP_GICON:
-			g_clear_object (&self->priv->gicon);
-			self->priv->gicon = G_ICON (g_value_dup_object (value));
-			emit_changed (self);
+			g_clear_object (&item->priv->gicon);
+			item->priv->gicon = G_ICON (g_value_dup_object (value));
+			emit_changed (item);
 			break;
 
 		default:
@@ -380,9 +380,9 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 }
 
 static void
-gtk_source_completion_item_init (GtkSourceCompletionItem *self)
+gtk_source_completion_item_init (GtkSourceCompletionItem *item)
 {
-	self->priv = gtk_source_completion_item_get_instance_private (self);
+	item->priv = gtk_source_completion_item_get_instance_private (item);
 }
 
 /**
