@@ -3,6 +3,7 @@
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2009 - Jesse van den Kieboom <jessevdk@gnome.org>
+ * Copyright (C) 2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -75,6 +76,37 @@ GtkSourceCompletionItem *gtk_source_completion_item_new_from_stock	(const gchar 
 								 	 const gchar *text,
 								 	 const gchar *stock,
 								 	 const gchar *info);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+GtkSourceCompletionItem *gtk_source_completion_item_new2		(void);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			 gtk_source_completion_item_set_label		(GtkSourceCompletionItem *item,
+									 const gchar             *label);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			 gtk_source_completion_item_set_markup		(GtkSourceCompletionItem *item,
+									 const gchar             *markup);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			 gtk_source_completion_item_set_text		(GtkSourceCompletionItem *item,
+									 const gchar             *text);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			 gtk_source_completion_item_set_icon		(GtkSourceCompletionItem *item,
+									 GdkPixbuf               *icon);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			 gtk_source_completion_item_set_icon_name	(GtkSourceCompletionItem *item,
+									 const gchar             *icon_name);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			 gtk_source_completion_item_set_gicon		(GtkSourceCompletionItem *item,
+									 GIcon                   *gicon);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+void			 gtk_source_completion_item_set_info		(GtkSourceCompletionItem *item,
+									 const gchar             *info);
 
 G_END_DECLS
 

@@ -3,6 +3,7 @@
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2009 - Jesse van den Kieboom <jessevdk@gnome.org>
+ * Copyright (C) 2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -220,44 +221,31 @@ gtk_source_completion_item_set_property (GObject      *object,
 	switch (prop_id)
 	{
 		case PROP_LABEL:
-			g_free (item->priv->label);
-			item->priv->label = g_value_dup_string (value);
-			emit_changed (item);
+			gtk_source_completion_item_set_label (item, g_value_get_string (value));
 			break;
 
 		case PROP_MARKUP:
-			g_free (item->priv->markup);
-			item->priv->markup = g_value_dup_string (value);
-			emit_changed (item);
+			gtk_source_completion_item_set_markup (item, g_value_get_string (value));
 			break;
 
 		case PROP_TEXT:
-			g_free (item->priv->text);
-			item->priv->text = g_value_dup_string (value);
+			gtk_source_completion_item_set_text (item, g_value_get_string (value));
 			break;
 
 		case PROP_ICON:
-			g_clear_object (&item->priv->icon);
-			item->priv->icon = GDK_PIXBUF (g_value_dup_object (value));
-			emit_changed (item);
+			gtk_source_completion_item_set_icon (item, g_value_get_object (value));
 			break;
 
 		case PROP_ICON_NAME:
-			g_free (item->priv->icon_name);
-			item->priv->icon_name = g_value_dup_string (value);
-			emit_changed (item);
+			gtk_source_completion_item_set_icon_name (item, g_value_get_string (value));
 			break;
 
 		case PROP_GICON:
-			g_clear_object (&item->priv->gicon);
-			item->priv->gicon = G_ICON (g_value_dup_object (value));
-			emit_changed (item);
+			gtk_source_completion_item_set_gicon (item, g_value_get_object (value));
 			break;
 
 		case PROP_INFO:
-			g_free (item->priv->info);
-			item->priv->info = g_value_dup_string (value);
-			emit_changed (item);
+			gtk_source_completion_item_set_info (item, g_value_get_string (value));
 			break;
 
 		default:
@@ -500,3 +488,174 @@ gtk_source_completion_item_new_from_stock (const gchar *label,
 }
 
 G_GNUC_END_IGNORE_DEPRECATIONS;
+
+/**
+ * gtk_source_completion_item_new2:
+ *
+ * Creates a new #GtkSourceCompletionItem. The desired properties need to be set
+ * afterwards.
+ *
+ * Returns: (transfer full): a new #GtkSourceCompletionItem.
+ * Since: 3.24
+ */
+GtkSourceCompletionItem *
+gtk_source_completion_item_new2 (void)
+{
+	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM, NULL);
+}
+
+/**
+ * gtk_source_completion_item_set_label:
+ * @item: a #GtkSourceCompletionItem.
+ * @label: (nullable): the label, or %NULL.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_completion_item_set_label (GtkSourceCompletionItem *item,
+				      const gchar             *label)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (item));
+
+	if (g_strcmp0 (item->priv->label, label) != 0)
+	{
+		g_free (item->priv->label);
+		item->priv->label = g_strdup (label);
+
+		emit_changed (item);
+		g_object_notify (G_OBJECT (item), "label");
+	}
+}
+
+/**
+ * gtk_source_completion_item_set_markup:
+ * @item: a #GtkSourceCompletionItem.
+ * @markup: (nullable): the markup, or %NULL.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_completion_item_set_markup (GtkSourceCompletionItem *item,
+				       const gchar             *markup)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (item));
+
+	if (g_strcmp0 (item->priv->markup, markup) != 0)
+	{
+		g_free (item->priv->markup);
+		item->priv->markup = g_strdup (markup);
+
+		emit_changed (item);
+		g_object_notify (G_OBJECT (item), "markup");
+	}
+}
+
+/**
+ * gtk_source_completion_item_set_text:
+ * @item: a #GtkSourceCompletionItem.
+ * @text: (nullable): the text, or %NULL.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_completion_item_set_text (GtkSourceCompletionItem *item,
+				     const gchar             *text)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (item));
+
+	if (g_strcmp0 (item->priv->text, text) != 0)
+	{
+		g_free (item->priv->text);
+		item->priv->text = g_strdup (text);
+
+		g_object_notify (G_OBJECT (item), "text");
+	}
+}
+
+/**
+ * gtk_source_completion_item_set_icon:
+ * @item: a #GtkSourceCompletionItem.
+ * @icon: (nullable): the #GdkPixbuf, or %NULL.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_completion_item_set_icon (GtkSourceCompletionItem *item,
+				     GdkPixbuf               *icon)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (item));
+	g_return_if_fail (icon == NULL || GDK_IS_PIXBUF (icon));
+
+	if (g_set_object (&item->priv->icon, icon))
+	{
+		emit_changed (item);
+		g_object_notify (G_OBJECT (item), "icon");
+	}
+}
+
+/**
+ * gtk_source_completion_item_set_icon_name:
+ * @item: a #GtkSourceCompletionItem.
+ * @icon_name: (nullable): the icon name, or %NULL.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_completion_item_set_icon_name (GtkSourceCompletionItem *item,
+					  const gchar             *icon_name)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (item));
+
+	if (g_strcmp0 (item->priv->icon_name, icon_name) != 0)
+	{
+		g_free (item->priv->icon_name);
+		item->priv->icon_name = g_strdup (icon_name);
+
+		emit_changed (item);
+		g_object_notify (G_OBJECT (item), "icon-name");
+	}
+}
+
+/**
+ * gtk_source_completion_item_set_gicon:
+ * @item: a #GtkSourceCompletionItem.
+ * @gicon: (nullable): the #GIcon, or %NULL.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_completion_item_set_gicon (GtkSourceCompletionItem *item,
+				      GIcon                   *gicon)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (item));
+	g_return_if_fail (gicon == NULL || G_IS_ICON (gicon));
+
+	if (g_set_object (&item->priv->gicon, gicon))
+	{
+		emit_changed (item);
+		g_object_notify (G_OBJECT (item), "gicon");
+	}
+}
+
+/**
+ * gtk_source_completion_item_set_info:
+ * @item: a #GtkSourceCompletionItem.
+ * @info: (nullable): the info, or %NULL.
+ *
+ * Since: 3.24
+ */
+void
+gtk_source_completion_item_set_info (GtkSourceCompletionItem *item,
+				     const gchar             *info)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (item));
+
+	if (g_strcmp0 (item->priv->info, info) != 0)
+	{
+		g_free (item->priv->info);
+		item->priv->info = g_strdup (info);
+
+		emit_changed (item);
+		g_object_notify (G_OBJECT (item), "info");
+	}
+}
