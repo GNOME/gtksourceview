@@ -41,10 +41,10 @@ struct _GtkSourceCompletionItemPrivate
 	gchar *label;
 	gchar *markup;
 	gchar *text;
-	gchar *info;
 	GdkPixbuf *icon;
 	gchar *icon_name;
 	GIcon *gicon;
+	gchar *info;
 };
 
 enum
@@ -114,7 +114,7 @@ static void
 gtk_source_completion_proposal_iface_init (gpointer g_iface,
 					   gpointer iface_data)
 {
-	GtkSourceCompletionProposalIface *iface = (GtkSourceCompletionProposalIface *)g_iface;
+	GtkSourceCompletionProposalIface *iface = g_iface;
 
 	/* Interface data getter implementations */
 	iface->get_label = gtk_source_completion_proposal_get_label_impl;
@@ -127,27 +127,26 @@ gtk_source_completion_proposal_iface_init (gpointer g_iface,
 }
 
 static void
+gtk_source_completion_item_dispose (GObject *object)
+{
+	GtkSourceCompletionItem *self = GTK_SOURCE_COMPLETION_ITEM (object);
+
+	g_clear_object (&self->priv->icon);
+	g_clear_object (&self->priv->gicon);
+
+	G_OBJECT_CLASS (gtk_source_completion_item_parent_class)->dispose (object);
+}
+
+static void
 gtk_source_completion_item_finalize (GObject *object)
 {
-	GtkSourceCompletionItem *self = GTK_SOURCE_COMPLETION_ITEM(object);
+	GtkSourceCompletionItem *self = GTK_SOURCE_COMPLETION_ITEM (object);
 
 	g_free (self->priv->label);
 	g_free (self->priv->markup);
 	g_free (self->priv->text);
-
 	g_free (self->priv->info);
-
-	if (self->priv->icon != NULL)
-	{
-		g_object_unref (self->priv->icon);
-	}
-
 	g_free (self->priv->icon_name);
-
-	if (self->priv->gicon != NULL)
-	{
-		g_object_unref (self->priv->gicon);
-	}
 
 	G_OBJECT_CLASS (gtk_source_completion_item_parent_class)->finalize (object);
 }
@@ -169,24 +168,31 @@ gtk_source_completion_item_get_property (GObject    *object,
 		case PROP_LABEL:
 			g_value_set_string (value, self->priv->label);
 			break;
+
 		case PROP_MARKUP:
 			g_value_set_string (value, self->priv->markup);
 			break;
+
 		case PROP_TEXT:
 			g_value_set_string (value, self->priv->text);
 			break;
+
 		case PROP_INFO:
 			g_value_set_string (value, self->priv->info);
 			break;
+
 		case PROP_ICON:
 			g_value_set_object (value, self->priv->icon);
 			break;
+
 		case PROP_ICON_NAME:
 			g_value_set_string (value, self->priv->icon_name);
 			break;
+
 		case PROP_GICON:
 			g_value_set_object (value, self->priv->gicon);
 			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -218,43 +224,42 @@ gtk_source_completion_item_set_property (GObject      *object,
 			self->priv->label = g_value_dup_string (value);
 			emit_changed (self);
 			break;
+
 		case PROP_MARKUP:
 			g_free (self->priv->markup);
 			self->priv->markup = g_value_dup_string (value);
 			emit_changed (self);
 			break;
+
 		case PROP_TEXT:
 			g_free (self->priv->text);
 			self->priv->text = g_value_dup_string (value);
 			break;
+
 		case PROP_INFO:
 			g_free (self->priv->info);
 			self->priv->info = g_value_dup_string (value);
 			emit_changed (self);
 			break;
-		case PROP_ICON:
-			if (self->priv->icon != NULL)
-			{
-				g_object_unref (self->priv->icon);
-			}
 
+		case PROP_ICON:
+			g_clear_object (&self->priv->icon);
 			self->priv->icon = GDK_PIXBUF (g_value_dup_object (value));
 			emit_changed (self);
 			break;
+
 		case PROP_ICON_NAME:
 			g_free (self->priv->icon_name);
 			self->priv->icon_name = g_value_dup_string (value);
 			emit_changed (self);
 			break;
-		case PROP_GICON:
-			if (self->priv->gicon != NULL)
-			{
-				g_object_unref (self->priv->gicon);
-			}
 
+		case PROP_GICON:
+			g_clear_object (&self->priv->gicon);
 			self->priv->gicon = G_ICON (g_value_dup_object (value));
 			emit_changed (self);
 			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -266,6 +271,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+	object_class->dispose = gtk_source_completion_item_dispose;
 	object_class->finalize = gtk_source_completion_item_finalize;
 	object_class->get_property = gtk_source_completion_item_get_property;
 	object_class->set_property = gtk_source_completion_item_set_property;
@@ -279,7 +285,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 					 PROP_LABEL,
 					 g_param_spec_string ("label",
 							      "Label",
-							      "Label to be shown for this item",
+							      "",
 							      NULL,
 							      G_PARAM_READWRITE |
 							      G_PARAM_STATIC_STRINGS));
@@ -293,7 +299,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 					 PROP_MARKUP,
 					 g_param_spec_string ("markup",
 							      "Markup",
-							      "Markup to be shown for this item",
+							      "",
 							      NULL,
 							      G_PARAM_READWRITE |
 							      G_PARAM_STATIC_STRINGS));
@@ -307,7 +313,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 					 PROP_TEXT,
 					 g_param_spec_string ("text",
 							      "Text",
-							      "Item text",
+							      "",
 							      NULL,
 							      G_PARAM_READWRITE |
 							      G_PARAM_STATIC_STRINGS));
@@ -321,7 +327,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 					 PROP_ICON,
 					 g_param_spec_object ("icon",
 							      "Icon",
-							      "Pixbuf of the icon to be shown for this item",
+							      "",
 							      GDK_TYPE_PIXBUF,
 							      G_PARAM_READWRITE |
 							      G_PARAM_STATIC_STRINGS));
@@ -337,7 +343,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 					 PROP_ICON_NAME,
 					 g_param_spec_string ("icon-name",
 							      "Icon Name",
-							      "Icon name of the icon to be shown for this item",
+							      "",
 							      NULL,
 							      G_PARAM_READWRITE |
 							      G_PARAM_STATIC_STRINGS));
@@ -353,10 +359,11 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 					 PROP_GICON,
 					 g_param_spec_object ("gicon",
 							      "GIcon",
-							      "GIcon of the icon to be shown for this item",
+							      "",
 							      G_TYPE_ICON,
 							      G_PARAM_READWRITE |
 							      G_PARAM_STATIC_STRINGS));
+
 	/**
 	 * GtkSourceCompletionItem:info:
 	 *
@@ -366,7 +373,7 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 					 PROP_INFO,
 					 g_param_spec_string ("info",
 							      "Info",
-							      "Info to be shown for this item",
+							      "",
 							      NULL,
 							      G_PARAM_READWRITE |
 							      G_PARAM_STATIC_STRINGS));
