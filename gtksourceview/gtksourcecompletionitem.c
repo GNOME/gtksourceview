@@ -570,6 +570,7 @@ gtk_source_completion_item_set_text (GtkSourceCompletionItem *item,
 		g_free (item->priv->text);
 		item->priv->text = g_strdup (text);
 
+		emit_changed (item);
 		g_object_notify (G_OBJECT (item), "text");
 	}
 }
