@@ -1716,8 +1716,12 @@ gtk_source_gutter_get_padding (GtkSourceGutter *gutter,
  *
  * Returns: (nullable) (transfer none): the renderer at (x, y) or %NULL.
  */
-/* FIXME: to insert a renderer in a gutter, only one position is needed. Here to
- * retrieve a renderer, two positions are needed? Document why.
+/* TODO: better document this function. The (x,y) position is different from
+ * the position passed to gtk_source_gutter_insert() and
+ * gtk_source_gutter_reorder(). The (x,y) coordinate can come from a click
+ * event, for example? Is the (x,y) a coordinate of the Gutter's GdkWindow?
+ * Where is the (0,0)? And so on.
+ * Also, this function doesn't seem to be used.
  */
 GtkSourceGutterRenderer *
 gtk_source_gutter_get_renderer_at_pos (GtkSourceGutter *gutter,
