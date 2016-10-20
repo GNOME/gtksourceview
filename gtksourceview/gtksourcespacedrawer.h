@@ -64,7 +64,9 @@ struct _GtkSourceSpaceDrawerClass
  * @GTK_SOURCE_SPACE_TYPE_NONE: No flags.
  * @GTK_SOURCE_SPACE_TYPE_SPACE: Space character.
  * @GTK_SOURCE_SPACE_TYPE_TAB: Tab character.
- * @GTK_SOURCE_SPACE_TYPE_NEWLINE: Line break character.
+ * @GTK_SOURCE_SPACE_TYPE_NEWLINE: Line break character. If the
+ *   #GtkSourceBuffer:implicit-trailing-newline property is %TRUE,
+ *   #GtkSourceSpaceDrawer also draws a line break at the end of the buffer.
  * @GTK_SOURCE_SPACE_TYPE_NBSP: Non-breaking space character.
  * @GTK_SOURCE_SPACE_TYPE_ALL: All white spaces.
  *
