@@ -191,43 +191,41 @@ static void
 test_provider_set_fixed (TestProvider *provider,
 			 gint          nb_proposals)
 {
+	GtkSourceCompletionItem *item;
 	GList *proposals = NULL;
 	gint i;
 
 	g_list_free_full (provider->proposals, g_object_unref);
 
-	proposals = g_list_prepend (proposals,
-				    gtk_source_completion_item_new_with_markup ("A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!",
-										"A very long proposal. I repeat, a very long proposal!",
-										provider->item_icon,
-										"To test the horizontal scrollbar and the markup."));
+	item = gtk_source_completion_item_new2 ();
+	gtk_source_completion_item_set_markup (item, "A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!");
+	gtk_source_completion_item_set_text (item, "A very long proposal. I repeat, a very long proposal!");
+	gtk_source_completion_item_set_icon (item, provider->item_icon);
+	gtk_source_completion_item_set_info (item, "To test the horizontal scrollbar and the markup.");
+	proposals = g_list_prepend (proposals, item);
 
+	item = gtk_source_completion_item_new2 ();
+	gtk_source_completion_item_set_markup (item, "A proposal with a <b>symbolic</b> icon");
+	gtk_source_completion_item_set_text (item, "Test setting the icon-name property");
+	gtk_source_completion_item_set_icon_name (item, "face-cool-symbolic");
+	proposals = g_list_prepend (proposals, item);
 
-
-	proposals = g_list_prepend (proposals,
-				    g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM,
-						  "markup", "A proposal with a <b>symbolic</b> icon",
-						  "text", "Test setting the icon-name property",
-						  "icon-name", "face-cool-symbolic",
-						  NULL));
-
-	proposals = g_list_prepend (proposals,
-				    g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM,
-						  "markup", "A proposal with an emblem <b>GIcon</b>",
-						  "text", "Test setting the GIcon property",
-						  "gicon", provider->item_gicon,
-						  NULL));
+	item = gtk_source_completion_item_new2 ();
+	gtk_source_completion_item_set_markup (item, "A proposal with an emblem <b>GIcon</b>");
+	gtk_source_completion_item_set_text (item, "Test setting the GIcon property");
+	gtk_source_completion_item_set_gicon (item, provider->item_gicon);
+	proposals = g_list_prepend (proposals, item);
 
 	for (i = nb_proposals - 1; i > 0; i--)
 	{
 		gchar *name = g_strdup_printf ("Proposal %d", i);
 
-		proposals = g_list_prepend (proposals,
-					    gtk_source_completion_item_new (name,
-									    name,
-									    provider->item_icon,
-									    "The extra info of the proposal.\n"
-									    "A second line."));
+		item = gtk_source_completion_item_new2 ();
+		gtk_source_completion_item_set_label (item, name);
+		gtk_source_completion_item_set_text (item, name);
+		gtk_source_completion_item_set_icon (item, provider->item_icon);
+		gtk_source_completion_item_set_info (item, "The extra info of the proposal.\nA second line.");
+		proposals = g_list_prepend (proposals, item);
 
 		g_free (name);
 	}
@@ -247,14 +245,15 @@ test_provider_set_random (TestProvider *provider,
 
 	for (i = 0; i < nb_proposals; i++)
 	{
+		GtkSourceCompletionItem *item;
 		gchar *padding = g_strnfill ((i * 3) % 10, 'o');
 		gchar *name = g_strdup_printf ("Propo%ssal %d", padding, i);
 
-		proposals = g_list_prepend (proposals,
-					    gtk_source_completion_item_new (name,
-									    name,
-									    provider->item_icon,
-									    NULL));
+		item = gtk_source_completion_item_new2 ();
+		gtk_source_completion_item_set_label (item, name);
+		gtk_source_completion_item_set_text (item, name);
+		gtk_source_completion_item_set_icon (item, provider->item_icon);
+		proposals = g_list_prepend (proposals, item);
 
 		g_free (padding);
 		g_free (name);
