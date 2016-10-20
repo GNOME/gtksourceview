@@ -385,6 +385,7 @@ gtk_source_completion_item_init (GtkSourceCompletionItem *item)
  * there will be no icon shown and no extra information available.
  *
  * Returns: a new #GtkSourceCompletionItem.
+ * Deprecated: 3.24: Use gtk_source_completion_item_new2() instead.
  */
 GtkSourceCompletionItem *
 gtk_source_completion_item_new (const gchar *label,
@@ -412,6 +413,7 @@ gtk_source_completion_item_new (const gchar *label,
  * which case there will be no icon shown and no extra information available.
  *
  * Returns: a new #GtkSourceCompletionItem.
+ * Deprecated: 3.24: Use gtk_source_completion_item_new2() instead.
  */
 GtkSourceCompletionItem *
 gtk_source_completion_item_new_with_markup (const gchar *markup,
@@ -440,7 +442,7 @@ G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
  * the stock label will be used.
  *
  * Returns: a new #GtkSourceCompletionItem.
- * Deprecated: 3.10: Use gtk_source_completion_item_new() instead.
+ * Deprecated: 3.10: Use gtk_source_completion_item_new2() instead.
  */
 GtkSourceCompletionItem *
 gtk_source_completion_item_new_from_stock (const gchar *label,
