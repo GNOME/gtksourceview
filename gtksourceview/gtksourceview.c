@@ -1423,6 +1423,19 @@ highlight_updated_cb (GtkSourceBuffer *buffer,
 	GtkTextIter intersect_start;
 	GtkTextIter intersect_end;
 
+#if 0
+	{
+		static gint nth_call = 0;
+
+		g_message ("%s(view=%p) %d [%d-%d]",
+			   G_STRFUNC,
+			   text_view,
+			   ++nth_call,
+			   gtk_text_iter_get_offset (_start),
+			   gtk_text_iter_get_offset (_end));
+	}
+#endif
+
 	start = *_start;
 	end = *_end;
 	gtk_text_iter_order (&start, &end);
