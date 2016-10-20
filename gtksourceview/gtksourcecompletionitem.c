@@ -145,8 +145,8 @@ gtk_source_completion_item_finalize (GObject *object)
 	g_free (item->priv->label);
 	g_free (item->priv->markup);
 	g_free (item->priv->text);
-	g_free (item->priv->info);
 	g_free (item->priv->icon_name);
+	g_free (item->priv->info);
 
 	G_OBJECT_CLASS (gtk_source_completion_item_parent_class)->finalize (object);
 }
@@ -177,10 +177,6 @@ gtk_source_completion_item_get_property (GObject    *object,
 			g_value_set_string (value, item->priv->text);
 			break;
 
-		case PROP_INFO:
-			g_value_set_string (value, item->priv->info);
-			break;
-
 		case PROP_ICON:
 			g_value_set_object (value, item->priv->icon);
 			break;
@@ -191,6 +187,10 @@ gtk_source_completion_item_get_property (GObject    *object,
 
 		case PROP_GICON:
 			g_value_set_object (value, item->priv->gicon);
+			break;
+
+		case PROP_INFO:
+			g_value_set_string (value, item->priv->info);
 			break;
 
 		default:
@@ -236,12 +236,6 @@ gtk_source_completion_item_set_property (GObject      *object,
 			item->priv->text = g_value_dup_string (value);
 			break;
 
-		case PROP_INFO:
-			g_free (item->priv->info);
-			item->priv->info = g_value_dup_string (value);
-			emit_changed (item);
-			break;
-
 		case PROP_ICON:
 			g_clear_object (&item->priv->icon);
 			item->priv->icon = GDK_PIXBUF (g_value_dup_object (value));
@@ -257,6 +251,12 @@ gtk_source_completion_item_set_property (GObject      *object,
 		case PROP_GICON:
 			g_clear_object (&item->priv->gicon);
 			item->priv->gicon = G_ICON (g_value_dup_object (value));
+			emit_changed (item);
+			break;
+
+		case PROP_INFO:
+			g_free (item->priv->info);
+			item->priv->info = g_value_dup_string (value);
 			emit_changed (item);
 			break;
 
