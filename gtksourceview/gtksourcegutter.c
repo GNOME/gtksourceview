@@ -615,6 +615,36 @@ _gtk_source_gutter_new (GtkSourceView     *view,
 /* Public API */
 
 /**
+ * gtk_source_gutter_get_view:
+ * @gutter: a #GtkSourceGutter.
+ *
+ * Returns: (transfer none): the associated #GtkSourceView.
+ * Since: 3.24
+ */
+GtkSourceView *
+gtk_source_gutter_get_view (GtkSourceGutter *gutter)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER (gutter), NULL);
+
+	return gutter->priv->view;
+}
+
+/**
+ * gtk_source_gutter_get_window_type:
+ * @gutter: a #GtkSourceGutter.
+ *
+ * Returns: the #GtkTextWindowType of @gutter.
+ * Since: 3.24
+ */
+GtkTextWindowType
+gtk_source_gutter_get_window_type (GtkSourceGutter *gutter)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER (gutter), GTK_TEXT_WINDOW_PRIVATE);
+
+	return gutter->priv->window_type;
+}
+
+/**
  * gtk_source_gutter_get_window:
  * @gutter: a #GtkSourceGutter.
  *

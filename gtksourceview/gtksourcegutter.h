@@ -60,6 +60,14 @@ struct _GtkSourceGutterClass
 GTK_SOURCE_AVAILABLE_IN_ALL
 GType gtk_source_gutter_get_type 		(void) G_GNUC_CONST;
 
+GTK_SOURCE_AVAILABLE_IN_3_24
+GtkSourceView *
+     gtk_source_gutter_get_view			(GtkSourceGutter         *gutter);
+
+GTK_SOURCE_AVAILABLE_IN_3_24
+GtkTextWindowType
+     gtk_source_gutter_get_window_type		(GtkSourceGutter         *gutter);
+
 GTK_SOURCE_DEPRECATED_IN_3_10_FOR (gtk_text_view_get_window)
 GdkWindow *gtk_source_gutter_get_window 	(GtkSourceGutter         *gutter);
 
