@@ -603,8 +603,8 @@ append_renderer (GtkSourceGutter *gutter,
 }
 
 GtkSourceGutter *
-gtk_source_gutter_new (GtkSourceView     *view,
-                       GtkTextWindowType  type)
+_gtk_source_gutter_new (GtkSourceView     *view,
+			GtkTextWindowType  type)
 {
 	return g_object_new (GTK_SOURCE_TYPE_GUTTER,
 	                     "view", view,
@@ -1221,9 +1221,9 @@ end_draw (GtkSourceGutter *gutter)
 }
 
 void
-gtk_source_gutter_draw (GtkSourceGutter *gutter,
-                        GtkSourceView   *view,
-                        cairo_t         *cr)
+_gtk_source_gutter_draw (GtkSourceGutter *gutter,
+			 GtkSourceView   *view,
+			 cairo_t         *cr)
 {
 	GdkRectangle clip;
 	GtkTextView *text_view;

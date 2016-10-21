@@ -2734,12 +2734,12 @@ gtk_source_view_draw (GtkWidget *widget,
 
 	if (view->priv->left_gutter != NULL)
 	{
-		gtk_source_gutter_draw (view->priv->left_gutter, view, cr);
+		_gtk_source_gutter_draw (view->priv->left_gutter, view, cr);
 	}
 
 	if (view->priv->right_gutter != NULL)
 	{
-		gtk_source_gutter_draw (view->priv->right_gutter, view, cr);
+		_gtk_source_gutter_draw (view->priv->right_gutter, view, cr);
 	}
 
 	PROFILE ({
@@ -4840,7 +4840,7 @@ gtk_source_view_get_gutter (GtkSourceView     *view,
 	{
 		if (view->priv->left_gutter == NULL)
 		{
-			view->priv->left_gutter = gtk_source_gutter_new (view, window_type);
+			view->priv->left_gutter = _gtk_source_gutter_new (view, window_type);
 		}
 
 		return view->priv->left_gutter;
@@ -4849,7 +4849,7 @@ gtk_source_view_get_gutter (GtkSourceView     *view,
 	{
 		if (view->priv->right_gutter == NULL)
 		{
-			view->priv->right_gutter = gtk_source_gutter_new (view, window_type);
+			view->priv->right_gutter = _gtk_source_gutter_new (view, window_type);
 		}
 
 		return view->priv->right_gutter;
