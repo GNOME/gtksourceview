@@ -1,3 +1,23 @@
+News in 3.23.1
+--------------
+
+This version still uses GTK+ 3. A GtkSourceView 3.24 version is planned (still
+depending on GTK+ 3), but the release date is not yet determined. If everything
+goes well, GtkSourceView 3.90 (depending on GTK+ 3.90) will be released at the
+same time as GTK+ 3.90 in March 2017.
+
+* New class: GtkSourceSpaceDrawer with a matrix property to combine space types
+  vs locations. The old white space drawing API has been deprecated.
+* gtk_source_search_context_set_settings() has been deprecated, the "settings"
+  property will become construct-only.
+* GtkSourceCompletionItem: add a new API and deprecate the old constructors.
+* GtkSourceGutter: add get_view() and get_window_type() public functions.
+* Build system: do not hardcode the API version (currently 3.0) at as many
+  places as possible (use a variable instead).
+* Bug fixes
+* Documentation improvements
+* Translation updates
+
 News in 3.22.0
 --------------
 * Translation updates
