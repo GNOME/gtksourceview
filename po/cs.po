@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-08-15 08:31+0000\n"
-"PO-Revision-Date: 2016-08-17 11:57+0200\n"
+"POT-Creation-Date: 2016-10-11 19:32+0000\n"
+"PO-Revision-Date: 2016-10-28 10:46+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -747,7 +747,6 @@ msgstr "Vydání"
 
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:25
-#| msgid "C/C++/ObjC Header"
 msgid "C/ObjC Header"
 msgstr "Hlavička C/ObjC"
 
@@ -865,7 +864,6 @@ msgstr "Rozměr"
 
 #. (itstool) path: styles/style@_name
 #: css.lang:57
-#| msgid "Known Property Value"
 msgid "Property Value"
 msgstr "Hodnota vlastnosti"
 
@@ -3104,12 +3102,12 @@ msgstr "Chyba při převodu: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
-msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Převod ze znakové sady „%s“ do „UTF-8“ není podporován"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
-msgid "Could not open converter from '%s' to 'UTF-8'"
+msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Nelze otevřít převodník z „%s“ do „UTF-8“"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:996
@@ -3134,7 +3132,7 @@ msgid "Show detailed proposal information"
 msgstr "Zobrazit podrobné informace k návrhu"
 
 #: gtksourceview/gtksourcecompletion.ui:89
-msgid "_Details..."
+msgid "_Details…"
 msgstr "Po_drobnosti…"
 
 #. regex_new could fail, for instance if there are different
@@ -3162,34 +3160,34 @@ msgstr ""
 
 #: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
-msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr "kontext „%s“ nemůže obsahovat příkaz \\%%{...@start}"
+msgid "context “%s” cannot contain a \\%%{...@start} command"
+msgstr "kontext „%s“ nemůže obsahovat příkaz \\%%{…@start}"
 
 #: gtksourceview/gtksourcecontextengine.c:5875
 #: gtksourceview/gtksourcecontextengine.c:5966
 #, c-format
-msgid "duplicated context id '%s'"
+msgid "duplicated context id “%s”"
 msgstr "duplicitní id kontextu „%s“"
 
 #: gtksourceview/gtksourcecontextengine.c:6080
 #: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
 msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
 "přepisování stylu použité s odkazy na kontext pomocí divokých znaků v jazyce "
 "„%s“ v odkazu „%s“"
 
 #: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
-msgid "invalid context reference '%s'"
+msgid "invalid context reference “%s”"
 msgstr "chybný kontextový odkaz „%s“"
 
 #: gtksourceview/gtksourcecontextengine.c:6173
 #: gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
-msgid "unknown context '%s'"
+msgid "unknown context “%s”"
 msgstr "neznámý kontext „%s“"
 
 #: gtksourceview/gtksourcecontextengine.c:6282
@@ -3357,12 +3355,12 @@ msgstr "Vyrovnávací paměť obsahuje neplatné znaky."
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
-msgid "Unknown id '%s' in regex '%s'"
+msgid "Unknown id “%s” in regex “%s”"
 msgstr "Neznámé ID „%s“ v regulárním výrazu „%s“"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
-msgid "in regex '%s': backreferences are not supported"
+msgid "in regex “%s”: backreferences are not supported"
 msgstr "pro regulární výraz „%s“: zpětné odkazy nejsou podporovány"
 
 #: gtksourceview/gtksourceregex.c:129
@@ -3383,63 +3381,32 @@ msgid "_Select"
 msgstr "_Vybrat"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1722
+#: gtksourceview/gtksourceview.c:1764
 msgid "_Redo"
 msgstr "Zn_ovu"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1733
+#: gtksourceview/gtksourceview.c:1775
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: gtksourceview/gtksourceview.c:1752
+#: gtksourceview/gtksourceview.c:1794
 msgid "All _Upper Case"
 msgstr "Vše _velkými písmeny"
 
-#: gtksourceview/gtksourceview.c:1762
+#: gtksourceview/gtksourceview.c:1804
 msgid "All _Lower Case"
 msgstr "Vše ma_lými písmeny"
 
-#: gtksourceview/gtksourceview.c:1772
+#: gtksourceview/gtksourceview.c:1814
 msgid "_Invert Case"
 msgstr "Přehod_it velikost písmen"
 
-#: gtksourceview/gtksourceview.c:1782
+#: gtksourceview/gtksourceview.c:1824
 msgid "_Title Case"
 msgstr "_První písmena velká"
 
-#: gtksourceview/gtksourceview.c:1792
+#: gtksourceview/gtksourceview.c:1834
 msgid "C_hange Case"
 msgstr "Změni_t velikost písmen"
 
-#~ msgid "Escaped Characters"
-#~ msgstr "Znaky v podobě escape sekvence"
-
-#~ msgid "View"
-#~ msgstr "Zobrazení"
-
-#~ msgid "The view this widget is mapping."
-#~ msgstr "Zobrazení tohoto widgetu je mapa."
-
-#~ msgid "Font Description"
-#~ msgstr "Popis písma"
-
-#~ msgid "The Pango font description to use."
-#~ msgstr "Popis Pango pro písmo, které se má použít."
-
-#~ msgid "translator-credits"
-#~ msgstr ""
-#~ "Miloslav Trmač <mitr@volny.cz>\n"
-#~ "Lukáš Novotný <lukasnov@cvs.gnome.org>\n"
-#~ "Lucas Lommer <llommer@svn.gnome.org>\n"
-#~ "Lukáš Ručka <lukassoftwares@gmail.com>\n"
-#~ "Marek Černocký <marek@manet.cz>"
-
-#~ msgid "GtkSourceView"
-#~ msgstr "GtkSourceView"
-
-#~ msgid "Smart Backspace"
-#~ msgstr "Chytrý Backspace"
-
-#~ msgid "Whether smart Backspace should be used."
-#~ msgstr "Jestli se má používat chytrý Backspace."
