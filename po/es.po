@@ -9,11 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-22 12:12+0000\n"
-"PO-Revision-Date: 2016-05-24 11:27+0200\n"
+"product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-10-11 19:32+0000\n"
+"PO-Revision-Date: 2016-11-02 09:44+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +79,7 @@ msgstr "Sobrantes"
 #. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:834
+#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:833
 msgid "All"
 msgstr "Todo"
 
@@ -715,7 +715,7 @@ msgid "Date"
 msgstr "Fecha"
 
 #. (itstool) path: styles/style@_name
-#: changelog.lang:35 latex.lang:52
+#: changelog.lang:35
 msgid "Name"
 msgstr "Nombre"
 
@@ -2751,12 +2751,13 @@ msgstr "Definición de variable"
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
 #.
-#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:55
+#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:56
 msgid "Others"
 msgstr "Otros"
 
@@ -3080,7 +3081,7 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Esquema de colores usando la paleta de colores de Tango"
 
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:334
 msgid "Document Words"
 msgstr "Palabras del documento"
 
@@ -3095,14 +3096,16 @@ msgstr "Error durante la conversión: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
-msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+#| msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr ""
 "La conversión del conjunto de caracteres «%s» a «UTF-8» no está soportada"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
-msgid "Could not open converter from '%s' to 'UTF-8'"
-msgstr "No se pudo abrir el convertido de «%s» a «UTF-8»"
+#| msgid "Could not open converter from '%s' to 'UTF-8'"
+msgid "Could not open converter from “%s” to “UTF-8”"
+msgstr "No se pudo abrir el convertidor de «%s» a «UTF-8»"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
@@ -3113,7 +3116,7 @@ msgid "Incomplete UTF-8 sequence in input"
 msgstr "Secuencia UTF-8 de entrada incompleta"
 
 #. Tooltip style
-#: gtksourceview/gtksourcecompletioninfo.c:272
+#: gtksourceview/gtksourcecompletioninfo.c:271
 msgid "Completion Info"
 msgstr "Información de completado"
 
@@ -3126,14 +3129,15 @@ msgid "Show detailed proposal information"
 msgstr "Mostrar la información propuesta detallada"
 
 #: gtksourceview/gtksourcecompletion.ui:89
-msgid "_Details..."
+#| msgid "_Details..."
+msgid "_Details…"
 msgstr "_Detalles…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3145
+#: gtksourceview/gtksourcecontextengine.c:3141
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3144,7 +3148,7 @@ msgstr ""
 "proceso de resaltado de sintaxis será más lento de lo habitual.\n"
 "El error fue: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4468
+#: gtksourceview/gtksourcecontextengine.c:4464
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -3152,39 +3156,46 @@ msgstr ""
 "El resaltado de una linea llevó mucho tiempo, se desactivará el resaltado de "
 "sintaxis"
 
-#: gtksourceview/gtksourcecontextengine.c:5716
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
-msgid "context '%s' cannot contain a \\%%{...@start} command"
+#| msgid "context '%s' cannot contain a \\%%{...@start} command"
+msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "el contexto «%s» no puede contener un comando \\%%{...@start} command"
 
-#: gtksourceview/gtksourcecontextengine.c:5879
-#: gtksourceview/gtksourcecontextengine.c:5970
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5966
 #, c-format
-msgid "duplicated context id '%s'"
+#| msgid "duplicated context id '%s'"
+msgid "duplicated context id “%s”"
 msgstr "id de contexto duplicado «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6084
-#: gtksourceview/gtksourcecontextengine.c:6144
+#: gtksourceview/gtksourcecontextengine.c:6080
+#: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
+#| msgid ""
+#| "style override used with wildcard context reference in language '%s' in "
+#| "ref '%s'"
 msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
 "el salto de estilo se usó con comodín de contexto de referencia en el "
 "lenguaje «%s» referencia «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6158
+#: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
-msgid "invalid context reference '%s'"
+#| msgid "invalid context reference '%s'"
+msgid "invalid context reference “%s”"
 msgstr "referencia de contexto no válida «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6177
-#: gtksourceview/gtksourcecontextengine.c:6187
+#: gtksourceview/gtksourcecontextengine.c:6173
+#: gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
-msgid "unknown context '%s'"
+#| msgid "unknown context '%s'"
+msgid "unknown context “%s”"
 msgstr "contexto desconocido «%s»"
 
-#: gtksourceview/gtksourcecontextengine.c:6286
+#: gtksourceview/gtksourcecontextengine.c:6282
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Falta la definición de lenguaje principal (id = «%s».)"
@@ -3349,12 +3360,14 @@ msgstr "El búfer contiene caracteres no válidos."
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
-msgid "Unknown id '%s' in regex '%s'"
+#| msgid "Unknown id '%s' in regex '%s'"
+msgid "Unknown id “%s” in regex “%s”"
 msgstr "Id «%s» desconocido en la expresión regular «%s»"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
-msgid "in regex '%s': backreferences are not supported"
+#| msgid "in regex '%s': backreferences are not supported"
+msgid "in regex “%s”: backreferences are not supported"
 msgstr "en la expresión regular «%s»: las retroreferencias no se soportan"
 
 #: gtksourceview/gtksourceregex.c:129
@@ -3375,40 +3388,39 @@ msgid "_Select"
 msgstr "_Seleccionar"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1565
+#: gtksourceview/gtksourceview.c:1764
 msgid "_Redo"
 msgstr "_Rehacer"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1576
+#: gtksourceview/gtksourceview.c:1775
 msgid "_Undo"
 msgstr "_Deshacer"
 
-#: gtksourceview/gtksourceview.c:1595
+#: gtksourceview/gtksourceview.c:1794
 msgid "All _Upper Case"
 msgstr "Todo en m_ayúsculas"
 
-#: gtksourceview/gtksourceview.c:1605
+#: gtksourceview/gtksourceview.c:1804
 msgid "All _Lower Case"
 msgstr "Todo en _minúsculas"
 
-#: gtksourceview/gtksourceview.c:1615
+#: gtksourceview/gtksourceview.c:1814
 msgid "_Invert Case"
 msgstr "_Invertir capitalización"
 
-#: gtksourceview/gtksourceview.c:1625
+#: gtksourceview/gtksourceview.c:1824
 msgid "_Title Case"
 msgstr "Capitalización del _título"
 
-#: gtksourceview/gtksourceview.c:1635
+#: gtksourceview/gtksourceview.c:1834
 msgid "C_hange Case"
 msgstr "Ca_mbiar capitalización"
 
-#: gtksourceview/gtksourceview-i18n.c:116
-msgid "translator-credits"
-msgstr ""
-"Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2014\n"
-"Jorge González <jorgegonz@svn.gnome.org>, 2007-2010"
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2014\n"
+#~ "Jorge González <jorgegonz@svn.gnome.org>, 2007-2010"
 
 #~ msgid "GtkSourceView"
 #~ msgstr "GtkSourceView"
