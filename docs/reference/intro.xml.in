@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.3//EN"
+   "http://www.oasis-open.org/docbook/xml/4.3/docbookx.dtd"
+[
+ <!ENTITY % local.common.attrib "xmlns:xi CDATA #FIXED 'http://www.w3.org/2003/XInclude'">
+ <!ENTITY % gtkdocentities SYSTEM "xml/gtkdocentities.ent">
+ %gtkdocentities;
+]>
+
+<part>
+  <title>Introduction</title>
+
+  <para>
+    GtkSourceView is a portable C library that extends the standard GTK+
+    framework for multiline text editing with support for configurable syntax
+    highlighting, unlimited undo/redo, search and replace, a completion
+    framework, printing and other features typical of a source code editor.
+  </para>
+
+  <para>
+    See the <ulink url="https://wiki.gnome.org/Projects/GtkSourceView">GtkSourceView website</ulink>.
+  </para>
+
+  <refsect1>
+    <title>pkg-config name</title>
+    <para>
+      For GtkSourceView @GSV_MAJOR_API_VERSION@, the pkg-config name is:
+      <code>gtksourceview-@GSV_API_VERSION@</code>
+    </para>
+    <para>
+      To compile a program that uses GtkSourceView @GSV_MAJOR_API_VERSION@, you
+      can for example use the following command:
+    </para>
+    <para>
+      <code>$ gcc hello.c `pkg-config --cflags --libs gtksourceview-@GSV_API_VERSION@` -o hello</code>
+    </para>
+  </refsect1>
+</part>

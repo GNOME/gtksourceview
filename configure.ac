@@ -246,6 +246,7 @@ data/styles/Makefile
 docs/Makefile
 docs/reference/Makefile
 docs/reference/gtksourceview-docs.xml
+docs/reference/intro.xml
 docs/reference/lang-reference.xml
 docs/reference/style-reference.xml
 gtksourceview/Makefile

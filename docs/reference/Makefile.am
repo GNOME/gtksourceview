@@ -69,6 +69,7 @@ HTML_IMAGES =
 
 # Extra XML files that are included by $(DOC_MAIN_SGML_FILE)
 content_files =			\
+	intro.xml		\
 	lang-tutorial.xml	\
 	lang-reference.xml	\
 	style-reference.xml
@@ -93,11 +94,13 @@ include $(top_srcdir)/gtk-doc.make
 
 EXTRA_DIST +=				\
 	gtksourceview-docs.xml.in	\
+	intro.xml.in			\
 	lang-reference.xml.in		\
 	style-reference.xml.in
 
 DISTCLEANFILES =			\
 	gtksourceview-docs.xml		\
+	intro.xml			\
 	lang-reference.xml		\
 	style-reference.xml
 
