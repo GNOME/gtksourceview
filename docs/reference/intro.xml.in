@@ -22,17 +22,17 @@
   </para>
 
   <para>
-    GtkSourceView @GSV_MAJOR_API_VERSION@ depends on GTK+ 3.
+    GtkSourceView @GSV_API_VERSION@ depends on GTK+ 3.
   </para>
 
   <refsect1>
     <title>pkg-config name</title>
     <para>
-      For GtkSourceView @GSV_MAJOR_API_VERSION@, the pkg-config name is:
+      For GtkSourceView @GSV_API_VERSION@, the pkg-config name is:
       <code>gtksourceview-@GSV_API_VERSION@</code>
     </para>
     <para>
-      To compile a program that uses GtkSourceView @GSV_MAJOR_API_VERSION@, you
+      To compile a program that uses GtkSourceView @GSV_API_VERSION@, you
       can for example use the following command:
     </para>
     <para>

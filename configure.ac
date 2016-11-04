@@ -55,9 +55,7 @@ AC_SUBST(GSV_LT_VERSION)
 # Because as far as I've tested, it is not easily feasible to not hardcode the
 # API version in those places (swilmet).
 GSV_API_VERSION=4
-GSV_MAJOR_API_VERSION=4
 AC_SUBST(GSV_API_VERSION)
-AC_SUBST(GSV_MAJOR_API_VERSION)
 
 # Dependencies
 glib_req=2.48
