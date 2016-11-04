@@ -78,13 +78,6 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean         gtk_source_mark_attributes_get_background      (GtkSourceMarkAttributes *attributes,
                                                                  GdkRGBA                 *background);
 
-GTK_SOURCE_DEPRECATED_IN_3_10
-void             gtk_source_mark_attributes_set_stock_id        (GtkSourceMarkAttributes *attributes,
-                                                                 const gchar             *stock_id);
-
-GTK_SOURCE_DEPRECATED_IN_3_10
-const gchar     *gtk_source_mark_attributes_get_stock_id        (GtkSourceMarkAttributes *attributes);
-
 GTK_SOURCE_AVAILABLE_IN_ALL
 void             gtk_source_mark_attributes_set_icon_name       (GtkSourceMarkAttributes *attributes,
                                                                  const gchar             *icon_name);

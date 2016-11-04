@@ -59,11 +59,6 @@
  *  </listitem>
  *  <listitem>
  *   <para>
- *    gtk_source_mark_attributes_set_stock_id()
- *   </para>
- *  </listitem>
- *  <listitem>
- *   <para>
  *    gtk_source_mark_attributes_set_gicon()
  *   </para>
  *  </listitem>
@@ -98,7 +93,6 @@ enum
 {
 	PROP_0,
 	PROP_BACKGROUND,
-	PROP_STOCK_ID,
 	PROP_PIXBUF,
 	PROP_ICON_NAME,
 	PROP_GICON
@@ -135,20 +129,6 @@ set_background (GtkSourceMarkAttributes *attributes,
 	attributes->priv->background_set = color != NULL;
 
 	g_object_notify (G_OBJECT (attributes), "background");
-}
-
-static void
-set_stock_id (GtkSourceMarkAttributes *attributes,
-	      const gchar             *stock_id)
-{
-	if (0 != g_strcmp0 (gtk_source_pixbuf_helper_get_stock_id (attributes->priv->helper),
-	                                                           stock_id))
-	{
-		gtk_source_pixbuf_helper_set_stock_id (attributes->priv->helper,
-				                       stock_id);
-
-		g_object_notify (G_OBJECT (attributes), "stock-id");
-	}
 }
 
 static void
@@ -210,9 +190,6 @@ gtk_source_mark_attributes_set_property (GObject      *object,
 		case PROP_BACKGROUND:
 			set_background (self, g_value_get_boxed (value));
 			break;
-		case PROP_STOCK_ID:
-			set_stock_id (self, g_value_get_string (value));
-			break;
 		case PROP_PIXBUF:
 			set_pixbuf (self, g_value_get_object (value));
 			break;
@@ -247,10 +224,6 @@ gtk_source_mark_attributes_get_property (GObject    *object,
 			{
 				g_value_set_boxed (value, NULL);
 			}
-			break;
-		case PROP_STOCK_ID:
-			g_value_set_string (value,
-			                    gtk_source_pixbuf_helper_get_stock_id (self->priv->helper));
 			break;
 		case PROP_PIXBUF:
 			g_value_set_object (value,
@@ -293,23 +266,6 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	                                                     GDK_TYPE_RGBA,
 	                                                     G_PARAM_READWRITE |
 							     G_PARAM_STATIC_STRINGS));
-
-	/**
-	 * GtkSourceMarkAttributes:stock-id:
-	 *
-	 * A stock id that may be a base of a rendered icon.
-	 *
-	 * Deprecated: 3.10: Don't use this property.
-	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_STOCK_ID,
-	                                 g_param_spec_string ("stock-id",
-	                                                      "Stock Id",
-	                                                      "The stock id",
-	                                                      NULL,
-	                                                      G_PARAM_READWRITE |
-							      G_PARAM_DEPRECATED |
-							      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceMarkAttributes:pixbuf:
@@ -456,44 +412,6 @@ gtk_source_mark_attributes_get_background (GtkSourceMarkAttributes *attributes,
 }
 
 /**
- * gtk_source_mark_attributes_set_stock_id:
- * @attributes: a #GtkSourceMarkAttributes.
- * @stock_id: a stock id.
- *
- * Sets stock id to be used as a base for rendered icon.
- *
- * Deprecated: 3.10: Don't use this function.
- */
-void
-gtk_source_mark_attributes_set_stock_id (GtkSourceMarkAttributes *attributes,
-					 const gchar             *stock_id)
-{
-	g_return_if_fail (GTK_SOURCE_IS_MARK_ATTRIBUTES (attributes));
-
-	set_stock_id (attributes, stock_id);
-}
-
-/**
- * gtk_source_mark_attributes_get_stock_id:
- * @attributes: a #GtkSourceMarkAttributes.
- *
- * Gets a stock id of an icon used by this attributes. Note that the stock id can
- * be %NULL if it wasn't set earlier.
- *
- * Returns: (transfer none): Stock id. Returned string is owned by @attributes and
- * shouldn't be freed.
- *
- * Deprecated: 3.10: Don't use this function.
- */
-const gchar *
-gtk_source_mark_attributes_get_stock_id (GtkSourceMarkAttributes *attributes)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_MARK_ATTRIBUTES (attributes), NULL);
-
-	return gtk_source_pixbuf_helper_get_stock_id (attributes->priv->helper);
-}
-
-/**
  * gtk_source_mark_attributes_set_icon_name:
  * @attributes: a #GtkSourceMarkAttributes.
  * @icon_name: name of an icon to be used.
@@ -603,9 +521,8 @@ gtk_source_mark_attributes_get_pixbuf (GtkSourceMarkAttributes *attributes)
  *
  * Renders an icon of given size. The base of the icon is set by the last call
  * to one of: gtk_source_mark_attributes_set_pixbuf(),
- * gtk_source_mark_attributes_set_gicon(),
- * gtk_source_mark_attributes_set_icon_name() or
- * gtk_source_mark_attributes_set_stock_id(). @size cannot be lower than 1.
+ * gtk_source_mark_attributes_set_gicon() or
+ * gtk_source_mark_attributes_set_icon_name(). @size cannot be lower than 1.
  *
  * Returns: (transfer none): A rendered pixbuf. The pixbuf belongs to @attributes
  * and should not be unreffed.
