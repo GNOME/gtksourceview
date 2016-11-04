@@ -67,7 +67,6 @@ enum
 	PROP_BOLD_SET,
 	PROP_ITALIC,
 	PROP_ITALIC_SET,
-	PROP_UNDERLINE,
 	PROP_PANGO_UNDERLINE,
 	PROP_UNDERLINE_SET,
 	PROP_STRIKETHROUGH,
@@ -127,19 +126,6 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 					 g_param_spec_boolean ("italic",
 							       "Italic",
 							       "Italic",
-							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
-
-	/**
-	 * GtkSourceStyle:underline
-	 *
-	 * Deprecated: 3.18: Use pango-underline.
-	 */
-	g_object_class_install_property (object_class,
-					 PROP_UNDERLINE,
-					 g_param_spec_boolean ("underline",
-							       "Underline",
-							       "Underline",
 							       FALSE,
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
@@ -334,11 +320,6 @@ gtk_source_style_set_property (GObject      *object,
 			SET_MASK (style, ITALIC);
 			break;
 
-		case PROP_UNDERLINE:
-			style->underline = g_value_get_boolean (value) ? PANGO_UNDERLINE_SINGLE : PANGO_UNDERLINE_NONE;
-			SET_MASK (style, UNDERLINE);
-			break;
-
 		case PROP_PANGO_UNDERLINE:
 			style->underline = (PangoUnderline) g_value_get_enum (value);
 			SET_MASK (style, UNDERLINE);
@@ -447,10 +428,6 @@ gtk_source_style_get_property (GObject      *object,
 
 		case PROP_ITALIC:
 			g_value_set_boolean (value, style->italic);
-			break;
-
-		case PROP_UNDERLINE:
-			g_value_set_boolean (value, style->underline != PANGO_UNDERLINE_NONE);
 			break;
 
 		case PROP_PANGO_UNDERLINE:
