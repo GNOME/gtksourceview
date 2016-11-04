@@ -77,13 +77,6 @@ void         gtk_source_gutter_renderer_pixbuf_set_pixbuf       (GtkSourceGutter
 GTK_SOURCE_AVAILABLE_IN_ALL
 GdkPixbuf   *gtk_source_gutter_renderer_pixbuf_get_pixbuf       (GtkSourceGutterRendererPixbuf *renderer);
 
-GTK_SOURCE_DEPRECATED_IN_3_10
-void         gtk_source_gutter_renderer_pixbuf_set_stock_id     (GtkSourceGutterRendererPixbuf *renderer,
-                                                                 const gchar                   *stock_id);
-
-GTK_SOURCE_DEPRECATED_IN_3_10
-const gchar *gtk_source_gutter_renderer_pixbuf_get_stock_id     (GtkSourceGutterRendererPixbuf *renderer);
-
 GTK_SOURCE_AVAILABLE_IN_ALL
 void         gtk_source_gutter_renderer_pixbuf_set_gicon        (GtkSourceGutterRendererPixbuf *renderer,
                                                                  GIcon                         *icon);

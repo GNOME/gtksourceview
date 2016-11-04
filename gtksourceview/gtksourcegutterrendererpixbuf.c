@@ -48,7 +48,6 @@ enum
 {
 	PROP_0,
 	PROP_PIXBUF,
-	PROP_STOCK_ID,
 	PROP_ICON_NAME,
 	PROP_GICON,
 };
@@ -208,18 +207,6 @@ set_pixbuf (GtkSourceGutterRendererPixbuf *renderer,
 }
 
 static void
-set_stock_id (GtkSourceGutterRendererPixbuf *renderer,
-              const gchar                   *stock_id)
-{
-	gtk_source_pixbuf_helper_set_stock_id (renderer->priv->helper,
-	                                       stock_id);
-
-	g_object_notify (G_OBJECT (renderer), "stock-id");
-
-	gtk_source_gutter_renderer_queue_draw (GTK_SOURCE_GUTTER_RENDERER (renderer));
-}
-
-static void
 set_gicon (GtkSourceGutterRendererPixbuf *renderer,
            GIcon                         *icon)
 {
@@ -259,9 +246,6 @@ gtk_source_gutter_renderer_pixbuf_set_property (GObject      *object,
 		case PROP_PIXBUF:
 			set_pixbuf (renderer, g_value_get_object (value));
 			break;
-		case PROP_STOCK_ID:
-			set_stock_id (renderer, g_value_get_string (value));
-			break;
 		case PROP_ICON_NAME:
 			set_icon_name (renderer, g_value_get_string (value));
 			break;
@@ -289,10 +273,6 @@ gtk_source_gutter_renderer_pixbuf_get_property (GObject    *object,
 		case PROP_PIXBUF:
 			g_value_set_object (value,
 			                    gtk_source_pixbuf_helper_get_pixbuf (renderer->priv->helper));
-			break;
-		case PROP_STOCK_ID:
-			g_value_set_string (value,
-			                    gtk_source_pixbuf_helper_get_stock_id (renderer->priv->helper));
 			break;
 		case PROP_ICON_NAME:
 			g_value_set_string (value,
@@ -328,21 +308,6 @@ gtk_source_gutter_renderer_pixbuf_class_init (GtkSourceGutterRendererPixbufClass
 	                                                      "The pixbuf",
 	                                                      GDK_TYPE_PIXBUF,
 	                                                      G_PARAM_READWRITE));
-
-	/**
-	 * GtkSourceGutterRendererPixbuf:stock-id:
-	 *
-	 * The stock id.
-	 *
-	 * Deprecated: 3.10: Don't use this property.
-	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_STOCK_ID,
-	                                 g_param_spec_string ("stock-id",
-	                                                      "Stock Id",
-	                                                      "The stock id",
-	                                                      NULL,
-	                                                      G_PARAM_READWRITE | G_PARAM_DEPRECATED));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_ICON_NAME,
@@ -414,37 +379,6 @@ gtk_source_gutter_renderer_pixbuf_get_pixbuf (GtkSourceGutterRendererPixbuf *ren
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer), NULL);
 
 	return gtk_source_pixbuf_helper_get_pixbuf (renderer->priv->helper);
-}
-
-/**
- * gtk_source_gutter_renderer_pixbuf_set_stock_id:
- * @renderer: a #GtkSourceGutterRendererPixbuf
- * @stock_id: (nullable): the stock id
- *
- * Deprecated: 3.10: Don't use this function.
- */
-void
-gtk_source_gutter_renderer_pixbuf_set_stock_id (GtkSourceGutterRendererPixbuf *renderer,
-                                                const gchar                   *stock_id)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF_CLASS (renderer));
-
-	set_stock_id (renderer, stock_id);
-}
-
-/**
- * gtk_source_gutter_renderer_pixbuf_get_stock_id:
- * @renderer: a #GtkSourceGutterRendererPixbuf
- *
- * Returns: the stock id.
- * Deprecated: 3.10: Don't use this function.
- */
-const gchar *
-gtk_source_gutter_renderer_pixbuf_get_stock_id (GtkSourceGutterRendererPixbuf *renderer)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer), NULL);
-
-	return gtk_source_pixbuf_helper_get_stock_id (renderer->priv->helper);
 }
 
 /**
