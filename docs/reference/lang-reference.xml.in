@@ -25,7 +25,7 @@ Reference to the GtkSourceView language definition file format
   <para>
     The version 2 here refers to the language definition file format,
     not to the version of GtkSourceView. This reference is suitable
-    for GtkSourceView 2 and 3.
+    for GtkSourceView 2, 3 and 4.
   </para>
 </note>
 
@@ -44,7 +44,8 @@ The preinstalled language files are located in
 <filename>${PREFIX}/share/gtksourceview-@GSV_API_VERSION@/language-specs/</filename>. Custom
 user languages are usually placed in
 <filename>~/.local/share/gtksourceview-@GSV_API_VERSION@/language-specs/</filename>. Note:
-replace @GSV_API_VERSION@ with 2 in the path for GtkSourceView version 2.
+replace @GSV_API_VERSION@ with 2.0 or 3.0 in the path for GtkSourceView version
+2 or version 3.
 </para>
 </refsect1>
 
