@@ -57,8 +57,6 @@ typedef struct _GtkSourceCompletionInfoClass GtkSourceCompletionInfoClass;
 struct _GtkSourceCompletionInfoClass
 {
 	GtkWindowClass parent_class;
-
-	void	(*before_show)		(GtkSourceCompletionInfo *info);
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL
@@ -72,13 +70,6 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 void		 gtk_source_completion_info_move_to_iter	(GtkSourceCompletionInfo *info,
 								 GtkTextView             *view,
 								 GtkTextIter             *iter);
-
-GTK_SOURCE_DEPRECATED_IN_3_8_FOR (gtk_container_add)
-void		 gtk_source_completion_info_set_widget		(GtkSourceCompletionInfo *info,
-								 GtkWidget               *widget);
-
-GTK_SOURCE_DEPRECATED_IN_3_8_FOR (gtk_bin_get_child)
-GtkWidget	*gtk_source_completion_info_get_widget		(GtkSourceCompletionInfo *info);
 
 G_GNUC_INTERNAL
 void		 _gtk_source_completion_info_set_xoffset	(GtkSourceCompletionInfo *info,

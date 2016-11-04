@@ -75,14 +75,6 @@ struct _GtkSourceCompletionInfoPrivate
 	guint transient_set : 1;
 };
 
-enum
-{
-	BEFORE_SHOW,
-	N_SIGNALS
-};
-
-static guint signals[N_SIGNALS];
-
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WINDOW);
 
 /* Resize the window */
@@ -298,9 +290,6 @@ gtk_source_completion_info_show (GtkWidget *widget)
 {
 	GtkSourceCompletionInfo *info = GTK_SOURCE_COMPLETION_INFO (widget);
 
-	/* First emit BEFORE_SHOW and then chain up */
-	g_signal_emit (info, signals[BEFORE_SHOW], 0);
-
 	if (info->priv->attached_to != NULL && !info->priv->transient_set)
 	{
 		GtkWidget *toplevel;
@@ -348,24 +337,6 @@ gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 	widget_class->get_preferred_height = gtk_source_completion_info_get_preferred_height;
 
 	container_class->check_resize = gtk_source_completion_info_check_resize;
-
-	/**
-	 * GtkSourceCompletionInfo::before-show:
-	 * @info: The #GtkSourceCompletionInfo who emits the signal
-	 *
-	 * This signal is emitted before any "show" management. You can connect
-	 * to this signal if you want to change some properties or position
-	 * before the real "show".
-	 *
-	 * Deprecated: 3.10: This signal should not be used.
-	 */
-	signals[BEFORE_SHOW] =
-		g_signal_new ("before-show",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION | G_SIGNAL_DEPRECATED,
-		              0,
-		              NULL, NULL, NULL,
-		              G_TYPE_NONE, 0);
 }
 
 void
@@ -600,61 +571,4 @@ gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
 	{
 		move_to_iter (info, view, iter);
 	}
-}
-
-/**
- * gtk_source_completion_info_set_widget:
- * @info: a #GtkSourceCompletionInfo.
- * @widget: (nullable): a #GtkWidget.
- *
- * Sets the content widget of the info window. See that the previous widget will
- * lose a reference and it can be destroyed, so if you do not want this to
- * happen you must use g_object_ref() before calling this method.
- *
- * Deprecated: 3.8: Use gtk_container_add() instead. If there is already a child
- * widget, remove it with gtk_container_remove().
- */
-void
-gtk_source_completion_info_set_widget (GtkSourceCompletionInfo *info,
-                                       GtkWidget               *widget)
-{
-	GtkWidget *cur_child = NULL;
-
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info));
-	g_return_if_fail (widget == NULL || GTK_IS_WIDGET (widget));
-
-	cur_child = gtk_bin_get_child (GTK_BIN (info));
-
-	if (cur_child == widget)
-	{
-		return;
-	}
-
-	if (cur_child != NULL)
-	{
-		gtk_container_remove (GTK_CONTAINER (info), cur_child);
-	}
-
-	if (widget != NULL)
-	{
-		gtk_container_add (GTK_CONTAINER (info), widget);
-	}
-}
-
-/**
- * gtk_source_completion_info_get_widget:
- * @info: a #GtkSourceCompletionInfo.
- *
- * Get the current content widget.
- *
- * Returns: (transfer none): The current content widget.
- *
- * Deprecated: 3.8: Use gtk_bin_get_child() instead.
- */
-GtkWidget *
-gtk_source_completion_info_get_widget (GtkSourceCompletionInfo* info)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info), NULL);
-
-	return gtk_bin_get_child (GTK_BIN (info));
 }
