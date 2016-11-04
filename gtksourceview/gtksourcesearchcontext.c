@@ -59,10 +59,10 @@
  * For each search, the buffer is scanned at most once. After that, navigating
  * through the occurrences doesn't require to re-scan the buffer entirely.
  *
- * To search forward, use gtk_source_search_context_forward() or
+ * To search forward, use gtk_source_search_context_forward2() or
  * gtk_source_search_context_forward_async() for the asynchronous version.
  * The backward search is done similarly. To replace a search match, or all
- * matches, use gtk_source_search_context_replace() and
+ * matches, use gtk_source_search_context_replace2() and
  * gtk_source_search_context_replace_all().
  *
  * The search occurrences are highlighted by default. To disable it, use
@@ -3205,34 +3205,6 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 }
 
 /**
- * gtk_source_search_context_forward:
- * @search: a #GtkSourceSearchContext.
- * @iter: start of search.
- * @match_start: (out) (optional): return location for start of match, or %NULL.
- * @match_end: (out) (optional): return location for end of match, or %NULL.
- *
- * Synchronous forward search. It is recommended to use the asynchronous
- * functions instead, to not block the user interface. However, if you are sure
- * that the @buffer is small, this function is more convenient to use.
- *
- * Returns: whether a match was found.
- * Since: 3.10
- * Deprecated: 3.22: Use gtk_source_search_context_forward2() instead.
- */
-gboolean
-gtk_source_search_context_forward (GtkSourceSearchContext *search,
-				   const GtkTextIter      *iter,
-				   GtkTextIter            *match_start,
-				   GtkTextIter            *match_end)
-{
-	return gtk_source_search_context_forward2 (search,
-						   iter,
-						   match_start,
-						   match_end,
-						   NULL);
-}
-
-/**
  * gtk_source_search_context_forward2:
  * @search: a #GtkSourceSearchContext.
  * @iter: start of search.
@@ -3244,9 +3216,6 @@ gtk_source_search_context_forward (GtkSourceSearchContext *search,
  * Synchronous forward search. It is recommended to use the asynchronous
  * functions instead, to not block the user interface. However, if you are sure
  * that the @buffer is small, this function is more convenient to use.
- *
- * The difference with gtk_source_search_context_forward() is that the
- * @has_wrapped_around out parameter has been added for convenience.
  *
  * If the #GtkSourceSearchSettings:wrap-around property is %FALSE, this function
  * doesn't try to wrap around.
@@ -3353,36 +3322,6 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
 }
 
 /**
- * gtk_source_search_context_forward_finish:
- * @search: a #GtkSourceSearchContext.
- * @result: a #GAsyncResult.
- * @match_start: (out) (optional): return location for start of match, or %NULL.
- * @match_end: (out) (optional): return location for end of match, or %NULL.
- * @error: a #GError, or %NULL.
- *
- * Finishes a forward search started with
- * gtk_source_search_context_forward_async().
- *
- * Returns: whether a match was found.
- * Since: 3.10
- * Deprecated: 3.22: Use gtk_source_search_context_forward_finish2() instead.
- */
-gboolean
-gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
-					  GAsyncResult            *result,
-					  GtkTextIter             *match_start,
-					  GtkTextIter             *match_end,
-					  GError                 **error)
-{
-	return gtk_source_search_context_forward_finish2 (search,
-							  result,
-							  match_start,
-							  match_end,
-							  NULL,
-							  error);
-}
-
-/**
  * gtk_source_search_context_forward_finish2:
  * @search: a #GtkSourceSearchContext.
  * @result: a #GAsyncResult.
@@ -3458,34 +3397,6 @@ gtk_source_search_context_forward_finish2 (GtkSourceSearchContext  *search,
 }
 
 /**
- * gtk_source_search_context_backward:
- * @search: a #GtkSourceSearchContext.
- * @iter: start of search.
- * @match_start: (out) (optional): return location for start of match, or %NULL.
- * @match_end: (out) (optional): return location for end of match, or %NULL.
- *
- * Synchronous backward search. It is recommended to use the asynchronous
- * functions instead, to not block the user interface. However, if you are sure
- * that the @buffer is small, this function is more convenient to use.
- *
- * Returns: whether a match was found.
- * Since: 3.10
- * Deprecated: 3.22: Use gtk_source_search_context_backward2() instead.
- */
-gboolean
-gtk_source_search_context_backward (GtkSourceSearchContext *search,
-				    const GtkTextIter      *iter,
-				    GtkTextIter            *match_start,
-				    GtkTextIter            *match_end)
-{
-	return gtk_source_search_context_backward2 (search,
-						    iter,
-						    match_start,
-						    match_end,
-						    NULL);
-}
-
-/**
  * gtk_source_search_context_backward2:
  * @search: a #GtkSourceSearchContext.
  * @iter: start of search.
@@ -3497,9 +3408,6 @@ gtk_source_search_context_backward (GtkSourceSearchContext *search,
  * Synchronous backward search. It is recommended to use the asynchronous
  * functions instead, to not block the user interface. However, if you are sure
  * that the @buffer is small, this function is more convenient to use.
- *
- * The difference with gtk_source_search_context_backward() is that the
- * @has_wrapped_around out parameter has been added for convenience.
  *
  * If the #GtkSourceSearchSettings:wrap-around property is %FALSE, this function
  * doesn't try to wrap around.
@@ -3604,36 +3512,6 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
 	search->priv->task = g_task_new (search, cancellable, callback, user_data);
 
 	smart_backward_search_async (search, iter, FALSE);
-}
-
-/**
- * gtk_source_search_context_backward_finish:
- * @search: a #GtkSourceSearchContext.
- * @result: a #GAsyncResult.
- * @match_start: (out) (optional): return location for start of match, or %NULL.
- * @match_end: (out) (optional): return location for end of match, or %NULL.
- * @error: a #GError, or %NULL.
- *
- * Finishes a backward search started with
- * gtk_source_search_context_backward_async().
- *
- * Returns: whether a match was found.
- * Since: 3.10
- * Deprecated: 3.22: Use gtk_source_search_context_backward_finish2() instead.
- */
-gboolean
-gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
-					   GAsyncResult            *result,
-					   GtkTextIter             *match_start,
-					   GtkTextIter             *match_end,
-					   GError                 **error)
-{
-	return gtk_source_search_context_forward_finish2 (search,
-							  result,
-							  match_start,
-							  match_end,
-							  NULL,
-							  error);
 }
 
 /**
@@ -3769,51 +3647,6 @@ end:
 }
 
 /**
- * gtk_source_search_context_replace:
- * @search: a #GtkSourceSearchContext.
- * @match_start: the start of the match to replace.
- * @match_end: the end of the match to replace.
- * @replace: the replacement text.
- * @replace_length: the length of @replace in bytes, or -1.
- * @error: location to a #GError, or %NULL to ignore errors.
- *
- * Replaces a search match by another text. If @match_start and @match_end
- * doesn't correspond to a search match, %FALSE is returned.
- *
- * For a regular expression replacement, you can check if @replace is valid by
- * calling g_regex_check_replacement(). The @replace text can contain
- * backreferences; read the g_regex_replace() documentation for more details.
- *
- * Returns: whether the match has been replaced.
- * Since: 3.10
- * Deprecated: 3.22: Use gtk_source_search_context_replace2() instead.
- */
-gboolean
-gtk_source_search_context_replace (GtkSourceSearchContext  *search,
-				   const GtkTextIter       *match_start,
-				   const GtkTextIter       *match_end,
-				   const gchar             *replace,
-				   gint                     replace_length,
-				   GError                 **error)
-{
-	GtkTextIter start;
-	GtkTextIter end;
-
-	g_return_val_if_fail (match_start != NULL, FALSE);
-	g_return_val_if_fail (match_end != NULL, FALSE);
-
-	start = *match_start;
-	end = *match_end;
-
-	return gtk_source_search_context_replace2 (search,
-						   &start,
-						   &end,
-						   replace,
-						   replace_length,
-						   error);
-}
-
-/**
  * gtk_source_search_context_replace2:
  * @search: a #GtkSourceSearchContext.
  * @match_start: the start of the match to replace.
@@ -3825,8 +3658,8 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
  * Replaces a search match by another text. If @match_start and @match_end
  * doesn't correspond to a search match, %FALSE is returned.
  *
- * Unlike with gtk_source_search_context_replace(), the @match_start and
- * @match_end iters are revalidated to point to the replacement text boundaries.
+ * @match_start and @match_end iters are revalidated to point to the replacement
+ * text boundaries.
  *
  * For a regular expression replacement, you can check if @replace is valid by
  * calling g_regex_check_replacement(). The @replace text can contain

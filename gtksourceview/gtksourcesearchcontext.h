@@ -101,12 +101,6 @@ gint			 gtk_source_search_context_get_occurrence_position	(GtkSourceSearchContex
 										 const GtkTextIter	 *match_start,
 										 const GtkTextIter	 *match_end);
 
-GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_forward2)
-gboolean		 gtk_source_search_context_forward			(GtkSourceSearchContext	 *search,
-										 const GtkTextIter	 *iter,
-										 GtkTextIter		 *match_start,
-										 GtkTextIter		 *match_end);
-
 GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		 gtk_source_search_context_forward2			(GtkSourceSearchContext *search,
 										 const GtkTextIter      *iter,
@@ -121,13 +115,6 @@ void			 gtk_source_search_context_forward_async		(GtkSourceSearchContext	 *searc
 										 GAsyncReadyCallback	  callback,
 										 gpointer		  user_data);
 
-GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_forward_finish2)
-gboolean		 gtk_source_search_context_forward_finish		(GtkSourceSearchContext	 *search,
-										 GAsyncResult		 *result,
-										 GtkTextIter		 *match_start,
-										 GtkTextIter		 *match_end,
-										 GError		        **error);
-
 GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		 gtk_source_search_context_forward_finish2		(GtkSourceSearchContext  *search,
 										 GAsyncResult            *result,
@@ -135,12 +122,6 @@ gboolean		 gtk_source_search_context_forward_finish2		(GtkSourceSearchContext  *
 										 GtkTextIter             *match_end,
 										 gboolean                *has_wrapped_around,
 										 GError                 **error);
-
-GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_backward2)
-gboolean		 gtk_source_search_context_backward			(GtkSourceSearchContext	 *search,
-										 const GtkTextIter	 *iter,
-										 GtkTextIter		 *match_start,
-										 GtkTextIter		 *match_end);
 
 GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		 gtk_source_search_context_backward2			(GtkSourceSearchContext *search,
@@ -156,13 +137,6 @@ void			 gtk_source_search_context_backward_async		(GtkSourceSearchContext	 *sear
 										 GAsyncReadyCallback	  callback,
 										 gpointer		  user_data);
 
-GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_backward_finish2)
-gboolean		 gtk_source_search_context_backward_finish		(GtkSourceSearchContext	 *search,
-										 GAsyncResult		 *result,
-										 GtkTextIter		 *match_start,
-										 GtkTextIter		 *match_end,
-										 GError		        **error);
-
 GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		 gtk_source_search_context_backward_finish2		(GtkSourceSearchContext  *search,
 										 GAsyncResult            *result,
@@ -170,14 +144,6 @@ gboolean		 gtk_source_search_context_backward_finish2		(GtkSourceSearchContext  
 										 GtkTextIter             *match_end,
 										 gboolean                *has_wrapped_around,
 										 GError                 **error);
-
-GTK_SOURCE_DEPRECATED_IN_3_22_FOR (gtk_source_search_context_replace2)
-gboolean		 gtk_source_search_context_replace			(GtkSourceSearchContext	 *search,
-										 const GtkTextIter	 *match_start,
-										 const GtkTextIter	 *match_end,
-										 const gchar		 *replace,
-										 gint			  replace_length,
-										 GError			**error);
 
 GTK_SOURCE_AVAILABLE_IN_3_22
 gboolean		 gtk_source_search_context_replace2			(GtkSourceSearchContext  *search,
