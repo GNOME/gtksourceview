@@ -58,8 +58,6 @@ enum
 	PROP_0,
 	PROP_VIEW,
 	PROP_WINDOW_TYPE,
-	PROP_XPAD,
-	PROP_YPAD
 };
 
 typedef struct
@@ -83,9 +81,6 @@ struct _GtkSourceGutterPrivate
 	GtkOrientation orientation;
 
 	GList *renderers;
-
-	gint xpad;
-	gint ypad;
 
 	guint is_drawing : 1;
 };
@@ -263,12 +258,6 @@ gtk_source_gutter_get_property (GObject    *object,
 		case PROP_WINDOW_TYPE:
 			g_value_set_enum (value, self->priv->window_type);
 			break;
-		case PROP_XPAD:
-			g_value_set_int (value, self->priv->xpad);
-			break;
-		case PROP_YPAD:
-			g_value_set_int (value, self->priv->ypad);
-			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -397,46 +386,6 @@ update_gutter_size (GtkSourceGutter *gutter)
 	                                      width);
 }
 
-static gboolean
-set_padding (GtkSourceGutter *gutter,
-             gint            *field,
-             gint             padding,
-             const gchar     *name,
-             gboolean         resize)
-{
-	if (*field == padding || padding < 0)
-	{
-		return FALSE;
-	}
-
-	*field = padding;
-
-	g_object_notify (G_OBJECT (gutter), name);
-
-	if (resize)
-	{
-		update_gutter_size (gutter);
-	}
-
-	return TRUE;
-}
-
-static gboolean
-set_xpad (GtkSourceGutter *gutter,
-          gint             xpad,
-          gboolean         resize)
-{
-	return set_padding (gutter, &gutter->priv->xpad, xpad, "xpad", resize);
-}
-
-static gboolean
-set_ypad (GtkSourceGutter *gutter,
-          gint             ypad,
-          gboolean         resize)
-{
-	return set_padding (gutter, &gutter->priv->ypad, ypad, "ypad", resize);
-}
-
 static void
 gtk_source_gutter_set_property (GObject       *object,
                                 guint          prop_id,
@@ -452,12 +401,6 @@ gtk_source_gutter_set_property (GObject       *object,
 			break;
 		case PROP_WINDOW_TYPE:
 			self->priv->window_type = g_value_get_enum (value);
-			break;
-		case PROP_XPAD:
-			set_xpad (self, g_value_get_int (value), TRUE);
-			break;
-		case PROP_YPAD:
-			set_ypad (self, g_value_get_int (value), TRUE);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -522,46 +465,6 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                                    GTK_TYPE_TEXT_WINDOW_TYPE,
 	                                                    0,
 	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
-
-	/**
-	 * GtkSourceGutter:xpad:
-	 *
-	 * The x-padding.
-	 *
-	 * Deprecated: 3.12: Use the #GtkSourceGutterRenderer's
-	 * #GtkSourceGutterRenderer:xpad property instead.
-	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_XPAD,
-	                                 g_param_spec_int ("xpad",
-	                                                   "X Padding",
-	                                                   "The x-padding",
-	                                                   -1,
-	                                                   G_MAXINT,
-	                                                   0,
-	                                                   G_PARAM_READWRITE |
-							   G_PARAM_CONSTRUCT |
-							   G_PARAM_DEPRECATED));
-
-	/**
-	 * GtkSourceGutter:ypad:
-	 *
-	 * The y-padding.
-	 *
-	 * Deprecated: 3.12: Use the #GtkSourceGutterRenderer's
-	 * #GtkSourceGutterRenderer:ypad property instead.
-	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_YPAD,
-	                                 g_param_spec_int ("ypad",
-	                                                   "Y Padding",
-	                                                   "The y-padding",
-	                                                   -1,
-	                                                   G_MAXINT,
-	                                                   0,
-	                                                   G_PARAM_READWRITE |
-							   G_PARAM_CONSTRUCT |
-							   G_PARAM_DEPRECATED));
 }
 
 static void
