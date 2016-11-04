@@ -59,24 +59,6 @@ struct _GtkSourceCompletionItemClass {
 GTK_SOURCE_AVAILABLE_IN_ALL
 GType 			 gtk_source_completion_item_get_type 		(void) G_GNUC_CONST;
 
-GTK_SOURCE_DEPRECATED_IN_3_24_FOR (gtk_source_completion_item_new2)
-GtkSourceCompletionItem *gtk_source_completion_item_new 		(const gchar *label,
-									 const gchar *text,
-									 GdkPixbuf   *icon,
-									 const gchar *info);
-
-GTK_SOURCE_DEPRECATED_IN_3_24_FOR (gtk_source_completion_item_new2)
-GtkSourceCompletionItem *gtk_source_completion_item_new_with_markup	(const gchar *markup,
-									 const gchar *text,
-									 GdkPixbuf   *icon,
-									 const gchar *info);
-
-GTK_SOURCE_DEPRECATED_IN_3_10_FOR (gtk_source_completion_item_new2)
-GtkSourceCompletionItem *gtk_source_completion_item_new_from_stock	(const gchar *label,
-								 	 const gchar *text,
-								 	 const gchar *stock,
-								 	 const gchar *info);
-
 GTK_SOURCE_AVAILABLE_IN_3_24
 GtkSourceCompletionItem *gtk_source_completion_item_new2		(void);
 
