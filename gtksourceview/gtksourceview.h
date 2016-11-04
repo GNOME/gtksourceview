@@ -81,41 +81,6 @@ typedef enum _GtkSourceSmartHomeEndType
 } GtkSourceSmartHomeEndType;
 
 /**
- * GtkSourceDrawSpacesFlags:
- * @GTK_SOURCE_DRAW_SPACES_SPACE: whether the space character should be drawn.
- * @GTK_SOURCE_DRAW_SPACES_TAB: whether the tab character should be drawn.
- * @GTK_SOURCE_DRAW_SPACES_NEWLINE: whether the line breaks should be drawn. If
- *   the #GtkSourceBuffer:implicit-trailing-newline property is %TRUE, a line
- *   break is also drawn at the end of the buffer.
- * @GTK_SOURCE_DRAW_SPACES_NBSP: whether the non-breaking whitespaces should be drawn.
- * @GTK_SOURCE_DRAW_SPACES_LEADING: whether leading whitespaces should be drawn.
- * @GTK_SOURCE_DRAW_SPACES_TEXT: whether whitespaces inside text should be drawn.
- * @GTK_SOURCE_DRAW_SPACES_TRAILING: whether trailing whitespaces should be drawn.
- * @GTK_SOURCE_DRAW_SPACES_ALL: wheter all kind of spaces should be drawn.
- *
- * GtkSourceDrawSpacesFlags determine what kind of spaces whould be drawn. If none
- * of GTK_SOURCE_DRAW_SPACES_LEADING, GTK_SOURCE_DRAW_SPACES_TEXT or
- * GTK_SOURCE_DRAW_SPACES_TRAILING is specified, whitespaces at any position in
- * the line will be drawn (i.e. it has the same effect as specifying all of them).
- *
- * Deprecated: 3.24: Use #GtkSourceSpaceTypeFlags and
- * #GtkSourceSpaceLocationFlags instead.
- */
-#ifndef GTKSOURCEVIEW_DISABLE_DEPRECATED
-typedef enum _GtkSourceDrawSpacesFlags
-{
-	GTK_SOURCE_DRAW_SPACES_SPACE      = 1 << 0,
-	GTK_SOURCE_DRAW_SPACES_TAB        = 1 << 1,
-	GTK_SOURCE_DRAW_SPACES_NEWLINE    = 1 << 2,
-	GTK_SOURCE_DRAW_SPACES_NBSP       = 1 << 3,
-	GTK_SOURCE_DRAW_SPACES_LEADING    = 1 << 4,
-	GTK_SOURCE_DRAW_SPACES_TEXT       = 1 << 5,
-	GTK_SOURCE_DRAW_SPACES_TRAILING   = 1 << 6,
-	GTK_SOURCE_DRAW_SPACES_ALL        = 0x7f
-} GtkSourceDrawSpacesFlags;
-#endif
-
-/**
  * GtkSourceBackgroundPatternType:
  * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE: no pattern
  * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID: grid pattern
@@ -276,14 +241,6 @@ void		 gtk_source_view_set_smart_home_end	(GtkSourceView             *view,
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSmartHomeEndType
 		 gtk_source_view_get_smart_home_end	(GtkSourceView   *view);
-
-GTK_SOURCE_DEPRECATED_IN_3_24_FOR (gtk_source_space_drawer_set_types_for_locations)
-void		 gtk_source_view_set_draw_spaces	(GtkSourceView            *view,
-							 GtkSourceDrawSpacesFlags  flags);
-
-GTK_SOURCE_DEPRECATED_IN_3_24_FOR (gtk_source_space_drawer_get_types_for_locations)
-GtkSourceDrawSpacesFlags
-		 gtk_source_view_get_draw_spaces	(GtkSourceView   *view);
 
 GTK_SOURCE_AVAILABLE_IN_ALL
 guint		 gtk_source_view_get_visual_column	(GtkSourceView     *view,

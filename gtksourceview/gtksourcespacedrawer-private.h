@@ -25,17 +25,8 @@
 #include <gtk/gtk.h>
 #include "gtksourcetypes.h"
 #include "gtksourcetypes-private.h"
-#include "gtksourceview.h"
 
 G_BEGIN_DECLS
-
-GTK_SOURCE_INTERNAL
-GtkSourceDrawSpacesFlags
-			_gtk_source_space_drawer_get_flags		(GtkSourceSpaceDrawer *drawer);
-
-GTK_SOURCE_INTERNAL
-void			_gtk_source_space_drawer_set_flags		(GtkSourceSpaceDrawer     *drawer,
-									 GtkSourceDrawSpacesFlags  flags);
 
 GTK_SOURCE_INTERNAL
 void			_gtk_source_space_drawer_update_color		(GtkSourceSpaceDrawer *drawer,

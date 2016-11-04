@@ -946,7 +946,6 @@ GTK_SOURCE_VERSION_MAX_ALLOWED
 <TITLE>GtkSourceView</TITLE>
 GtkSourceView
 GtkSourceSmartHomeEndType
-GtkSourceDrawSpacesFlags
 GtkSourceViewGutterPosition
 GtkSourceBackgroundPatternType
 gtk_source_view_new
@@ -983,8 +982,6 @@ gtk_source_view_set_mark_attributes
 gtk_source_view_get_mark_attributes
 gtk_source_view_set_show_line_marks
 gtk_source_view_get_show_line_marks
-gtk_source_view_set_draw_spaces
-gtk_source_view_get_draw_spaces
 gtk_source_view_set_background_pattern
 gtk_source_view_get_background_pattern
 <SUBSECTION Standard>

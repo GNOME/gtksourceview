@@ -157,7 +157,6 @@ enum
 	PROP_SMART_HOME_END,
 	PROP_HIGHLIGHT_CURRENT_LINE,
 	PROP_INDENT_ON_TAB,
-	PROP_DRAW_SPACES,
 	PROP_BACKGROUND_PATTERN,
 	PROP_SMART_BACKSPACE,
 	PROP_SPACE_DRAWER
@@ -636,29 +635,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       TRUE,
 							       G_PARAM_READWRITE |
 							       G_PARAM_STATIC_STRINGS));
-
-	/**
-	 * GtkSourceView:draw-spaces:
-	 *
-	 * Set if and how the spaces should be visualized.
-	 *
-	 * For a finer-grained method, there is also the GtkSourceTag's
-	 * #GtkSourceTag:draw-spaces property.
-	 *
-	 * Since: 2.4
-	 * Deprecated: 3.24: Use the #GtkSourceSpaceDrawer:matrix property
-	 * instead.
-	 */
-	g_object_class_install_property (object_class,
-					 PROP_DRAW_SPACES,
-					 g_param_spec_flags ("draw-spaces",
-							     "Draw Spaces",
-							     "Set if and how the spaces should be visualized",
-							     GTK_SOURCE_TYPE_DRAW_SPACES_FLAGS,
-							     0,
-							     G_PARAM_READWRITE |
-							     G_PARAM_STATIC_STRINGS |
-							     G_PARAM_DEPRECATED));
 
 	/**
 	 * GtkSourceView:background-pattern:
@@ -1163,12 +1139,6 @@ gtk_source_view_set_property (GObject      *object,
 			gtk_source_view_set_indent_on_tab (view, g_value_get_boolean (value));
 			break;
 
-		case PROP_DRAW_SPACES:
-			G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
-			gtk_source_view_set_draw_spaces (view, g_value_get_flags (value));
-			G_GNUC_END_IGNORE_DEPRECATIONS;
-			break;
-
 		case PROP_BACKGROUND_PATTERN:
 			gtk_source_view_set_background_pattern (view, g_value_get_enum (value));
 			break;
@@ -1245,12 +1215,6 @@ gtk_source_view_get_property (GObject    *object,
 			g_value_set_boolean (value, gtk_source_view_get_indent_on_tab (view));
 			break;
 
-		case PROP_DRAW_SPACES:
-			G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
-			g_value_set_flags (value, gtk_source_view_get_draw_spaces (view));
-			G_GNUC_END_IGNORE_DEPRECATIONS;
-			break;
-
 		case PROP_BACKGROUND_PATTERN:
 			g_value_set_enum (value, gtk_source_view_get_background_pattern (view));
 			break;
@@ -1275,7 +1239,6 @@ space_drawer_notify_cb (GtkSourceSpaceDrawer *space_drawer,
 			GtkSourceView        *view)
 {
 	gtk_widget_queue_draw (GTK_WIDGET (view));
-	g_object_notify (G_OBJECT (view), "draw-spaces");
 }
 
 static void
@@ -4479,59 +4442,6 @@ gtk_source_view_get_smart_home_end (GtkSourceView *view)
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
 
 	return view->priv->smart_home_end;
-}
-
-/**
- * gtk_source_view_set_draw_spaces:
- * @view: a #GtkSourceView.
- * @flags: #GtkSourceDrawSpacesFlags specifing how white spaces should
- * be displayed
- *
- * Set if and how the spaces should be visualized. Specifying @flags as 0 will
- * disable display of spaces.
- *
- * For a finer-grained method, there is also the GtkSourceTag's
- * #GtkSourceTag:draw-spaces property.
- *
- * Deprecated: 3.24: Use gtk_source_space_drawer_set_types_for_locations()
- * instead.
- */
-void
-gtk_source_view_set_draw_spaces (GtkSourceView            *view,
-				 GtkSourceDrawSpacesFlags  flags)
-{
-	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
-
-	if (view->priv->space_drawer == NULL)
-	{
-		return;
-	}
-
-	_gtk_source_space_drawer_set_flags (view->priv->space_drawer, flags);
-}
-
-/**
- * gtk_source_view_get_draw_spaces:
- * @view: a #GtkSourceView
- *
- * Returns the #GtkSourceDrawSpacesFlags specifying if and how spaces
- * should be displayed for this @view.
- *
- * Returns: the #GtkSourceDrawSpacesFlags, 0 if no spaces should be drawn.
- * Deprecated: 3.24: Use gtk_source_space_drawer_get_types_for_locations()
- * instead.
- */
-GtkSourceDrawSpacesFlags
-gtk_source_view_get_draw_spaces (GtkSourceView *view)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), 0);
-
-	if (view->priv->space_drawer == NULL)
-	{
-		return 0;
-	}
-
-	return _gtk_source_space_drawer_get_flags (view->priv->space_drawer);
 }
 
 /**
