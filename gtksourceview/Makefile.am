@@ -173,33 +173,34 @@ libgtksourceview_core_la_LDFLAGS += -framework Cocoa
 endif
 
 # The real library
-lib_LTLIBRARIES = libgtksourceview-3.0.la
+lib_LTLIBRARIES = libgtksourceview-@GSV_API_VERSION@.la
 
-libgtksourceview_3_0_la_SOURCES =
+libgtksourceview_@GSV_API_VERSION@_la_SOURCES =
 
-libgtksourceview_3_0_la_LIBADD = 					\
+libgtksourceview_@GSV_API_VERSION@_la_LIBADD = 				\
 	-lm								\
 	libgtksourceview-core.la					\
 	completion-providers/words/libgtksourcecompletionwords.la	\
 	$(DEP_LIBS) $(GTK_MAC_LIBS)
 
-libgtksourceview_3_0_la_CFLAGS = 	\
-	$(HIDDEN_VISIBILITY_CFLAGS)	\
+libgtksourceview_@GSV_API_VERSION@_la_CFLAGS =	\
+	$(HIDDEN_VISIBILITY_CFLAGS)		\
 	$(CODE_COVERAGE_CFLAGS)
 
-libgtksourceview_3_0_la_LDFLAGS =		\
+libgtksourceview_@GSV_API_VERSION@_la_LDFLAGS =	\
 	-version-info $(GSV_LT_VERSION)		\
 	-no-undefined 				\
 	-export-dynamic				\
 	$(WARN_LDFLAGS)				\
 	$(CODE_COVERAGE_LDFLAGS)
 
-libgtksourceview_3_0_includedir = $(includedir)/gtksourceview-3.0/gtksourceview
+libgtksourceview_@GSV_API_VERSION@_includedir =				\
+	$(includedir)/gtksourceview-@GSV_API_VERSION@/gtksourceview
 
-libgtksourceview_3_0_include_HEADERS = $(libgtksourceview_public_headers)
+libgtksourceview_@GSV_API_VERSION@_include_HEADERS = $(libgtksourceview_public_headers)
 
-nodist_libgtksourceview_3_0_include_HEADERS =	\
-	gtksourceversion.h			\
+nodist_libgtksourceview_@GSV_API_VERSION@_include_HEADERS =	\
+	gtksourceversion.h					\
 	gtksourceview-enumtypes.h
 
 gtksourceview-resources.c: gtksourceview.gresource.xml $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(srcdir) --generate-dependencies $(srcdir)/gtksourceview.gresource.xml)
@@ -274,39 +275,39 @@ libgtksourcecompletionwords_files =	\
 
 if HAVE_INTROSPECTION
 -include $(INTROSPECTION_MAKEFILE)
-INTROSPECTION_GIRS = GtkSource-3.0.gir
+INTROSPECTION_GIRS = GtkSource-@GSV_API_VERSION@.gir
 
 INTROSPECTION_SCANNER_ENV = CC="$(CC)"
 
-GtkSource-3.0.gir: libgtksourceview-3.0.la $(BUILT_SOURCES)
+GtkSource-@GSV_API_VERSION@.gir: libgtksourceview-@GSV_API_VERSION@.la $(BUILT_SOURCES)
 INTROSPECTION_SCANNER_ARGS =			\
 	-I$(top_srcdir)				\
 	-I$(top_builddir)			\
 	--c-include=gtksourceview/gtksource.h	\
 	--warn-all
-GtkSource_3_0_gir_NAMESPACE = GtkSource
-GtkSource_3_0_gir_VERSION = 3.0
-GtkSource_3_0_gir_CFLAGS = $(DEP_CFLAGS)
-GtkSource_3_0_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
-GtkSource_3_0_gir_LIBS = libgtksourceview-3.0.la
+GtkSource_@GSV_API_VERSION@_gir_NAMESPACE = GtkSource
+GtkSource_@GSV_API_VERSION@_gir_VERSION = @GSV_API_VERSION@
+GtkSource_@GSV_API_VERSION@_gir_CFLAGS = $(DEP_CFLAGS)
+GtkSource_@GSV_API_VERSION@_gir_SCANNERFLAGS = $(WARN_SCANNERFLAGS)
+GtkSource_@GSV_API_VERSION@_gir_LIBS = libgtksourceview-@GSV_API_VERSION@.la
 
 # Ensure that gtksource.h is the first one.
-GtkSource_3_0_gir_FILES =			\
+GtkSource_@GSV_API_VERSION@_gir_FILES =		\
 	gtksource.h				\
 	$(libgtksourcecompletionwords_files)	\
 	$(libgtksourceview_public_headers)	\
 	$(libgtksourceview_public_c_files)	\
 	$(BUILT_SOURCES)
 
-GtkSource_3_0_gir_INCLUDES = Gtk-3.0 Gdk-3.0
-GtkSource_3_0_gir_PACKAGES = gtk+-3.0 gdk-3.0
-GtkSource_3_0_gir_EXPORT_PACKAGES = gtksourceview-3.0
+GtkSource_@GSV_API_VERSION@_gir_INCLUDES = Gtk-3.0 Gdk-3.0
+GtkSource_@GSV_API_VERSION@_gir_PACKAGES = gtk+-3.0 gdk-3.0
+GtkSource_@GSV_API_VERSION@_gir_EXPORT_PACKAGES = gtksourceview-@GSV_API_VERSION@
 
 girdir = $(datadir)/gir-1.0
-gir_DATA = GtkSource-3.0.gir
+gir_DATA = GtkSource-@GSV_API_VERSION@.gir
 
 typelibdir = $(libdir)/girepository-1.0
-typelib_DATA = GtkSource-3.0.typelib
+typelib_DATA = GtkSource-@GSV_API_VERSION@.typelib
 
 CLEANFILES +=		\
 	$(gir_DATA)	\
@@ -317,11 +318,12 @@ endif # HAVE_INTROSPECTION
 if ENABLE_VAPIGEN
 -include $(VAPIGEN_MAKEFILE)
 
-gtksourceview-3.0.vapi: GtkSource-3.0.gir
+gtksourceview-@GSV_API_VERSION@.vapi: GtkSource-@GSV_API_VERSION@.gir
 
-VAPIGEN_VAPIS = gtksourceview-3.0.vapi
+VAPIGEN_VAPIS = gtksourceview-@GSV_API_VERSION@.vapi
 
-gtksourceview_3_0_vapi_DEPS = atk \
+gtksourceview_@GSV_API_VERSION@_vapi_DEPS = \
+	atk \
 	gdk-3.0 \
 	gdk-pixbuf-2.0 \
 	gio-2.0 \
@@ -329,18 +331,18 @@ gtksourceview_3_0_vapi_DEPS = atk \
 	pango \
 	cairo
 
-gtksourceview-3.0.deps:
-	$(AM_V_GEN) for pkg in $(gtksourceview_3_0_vapi_DEPS); do \
+gtksourceview-@GSV_API_VERSION@.deps:
+	$(AM_V_GEN) for pkg in $(gtksourceview_@GSV_API_VERSION@_vapi_DEPS); do \
 		echo $$pkg >> $@; \
 	done
 
-gtksourceview_3_0_vapi_METADATADIRS = $(srcdir)
-gtksourceview_3_0_vapi_FILES = GtkSource-3.0.gir
+gtksourceview_@GSV_API_VERSION@_vapi_METADATADIRS = $(srcdir)
+gtksourceview_@GSV_API_VERSION@_vapi_FILES = GtkSource-@GSV_API_VERSION@.gir
 
 vapidir = $(datadir)/vala/vapi
-vapi_DATA =			\
-	gtksourceview-3.0.vapi	\
-	gtksourceview-3.0.deps
+vapi_DATA =					\
+	gtksourceview-@GSV_API_VERSION@.vapi	\
+	gtksourceview-@GSV_API_VERSION@.deps
 
 CLEANFILES += $(vapi_DATA)
 
@@ -366,10 +368,10 @@ gtksourceview_FILES = 					\
 	$(gtksource_win32_more_sources)
 
 gtksourceview_EXCLUDES = dummy
-gtksourceview_HEADERS_DIR = $(libgtksourceview_3_0_includedir)
+gtksourceview_HEADERS_DIR = $(libgtksourceview_@GSV_API_VERSION@_includedir)
 gtksourceview_HEADERS_INST = \
 	$(libgtksourceview_public_headers)	\
-	$(nodist_libgtksourceview_3_0_include_HEADERS)
+	$(nodist_libgtksourceview_@GSV_API_VERSION@_include_HEADERS)
 
 gtksourceview_HEADERS_EXCLUDES = dummy
 
@@ -388,29 +390,29 @@ $(top_builddir)/build/win32/enums.headers: $(libgtksourceview_public_headers)
 # NMake/MSVC introspection
 if HAVE_INTROSPECTION
 NMAKE_INTROSPECTION_FILES = \
-	$(top_builddir)/build/win32/GtkSource-3.0.gir.msvc.introspect	\
-	$(top_builddir)/build/win32/GtkSource_3_0_gir_list
+	$(top_builddir)/build/win32/GtkSource-@GSV_API_VERSION@.gir.msvc.introspect \
+	$(top_builddir)/build/win32/GtkSource_@GSV_API_VERSION@_gir_list
 
-MSVC_INTROSPECT_GIRS = GtkSource-3.0.gir
+MSVC_INTROSPECT_GIRS = GtkSource-@GSV_API_VERSION@.gir
 
 # Ensure that gtksource.h is the first one.
-GtkSource_3_0_gir_MSVC_FILES = \
+GtkSource_@GSV_API_VERSION@_gir_MSVC_FILES =	\
 	gtksource.h				\
 	$(libgtksourcecompletionwords_files)	\
 	$(libgtksourceview_public_headers)	\
 	$(libgtksourceview_public_c_files)	\
 	$(BUILT_SOURCES)
 
-GtkSource_3_0_gir_MSVC_INCLUDE_GIRS = Gtk-3.0 Gdk-3.0
-GtkSource_3_0_gir_MSVC_PACKAGES = gtk+-3.0 gdk-3.0
-GtkSource_3_0_gir_MSVC_EXPORT_PACKAGES = gtksourceview-3.0
-GtkSource_3_0_gir_MSVC_LIBS = gtksourceview-3.0
-GtkSource_3_0_gir_MSVC_CFLAGS = -I..\\..
+GtkSource_@GSV_API_VERSION@_gir_MSVC_INCLUDE_GIRS = Gtk-3.0 Gdk-3.0
+GtkSource_@GSV_API_VERSION@_gir_MSVC_PACKAGES = gtk+-3.0 gdk-3.0
+GtkSource_@GSV_API_VERSION@_gir_MSVC_EXPORT_PACKAGES = gtksourceview-@GSV_API_VERSION@
+GtkSource_@GSV_API_VERSION@_gir_MSVC_LIBS = gtksourceview-@GSV_API_VERSION@
+GtkSource_@GSV_API_VERSION@_gir_MSVC_CFLAGS = -I..\\..
 
-GtkSource_3_0_gir_MSVC_SCANNERFLAGS = \
-	--c-include=gtksourceview/gtksource.h	\
-	--warn-all	\
-	--filelist=GtkSource_3_0_gir_list
+GtkSource_@GSV_API_VERSION@_gir_MSVC_SCANNERFLAGS =	\
+	--c-include=gtksourceview/gtksource.h		\
+	--warn-all					\
+	--filelist=GtkSource_@GSV_API_VERSION@_gir_list
 
 include $(top_srcdir)/build/Makefile.msvc-introspection
 else

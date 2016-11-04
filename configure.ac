@@ -42,24 +42,20 @@ AC_SUBST(GTK_SOURCE_MICRO_VERSION)
 # When incrementing the API version (usually for a new major package version),
 # set CURRENT, REVISION and AGE to 0 since it's like a new library.
 
-GSV_LT_CURRENT=8
+GSV_LT_CURRENT=0
 GSV_LT_REVISION=0
-GSV_LT_AGE=7
+GSV_LT_AGE=0
 GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
 AC_SUBST(GSV_LT_VERSION)
 
 # API version, used for parallel installability.
 # Not used in:
 # - po/Makevars
-# - the docs/reference/gtksourceview-3.0-sections.txt filename
-# - the gtksourceview/ directory and sub-directories, because make variables
-#   need to be transformed (3.0 -> 3_0), and it doesn't work if two different
-#   variables are used (it must be the same variable). With GSV_API_VERSION
-#   defined to a single digit (4 instead of 4.0), then it would work.
+# - the docs/reference/gtksourceview-4.0-sections.txt filename
 # Because as far as I've tested, it is not easily feasible to not hardcode the
 # API version in those places (swilmet).
-GSV_API_VERSION=3.0
-GSV_MAJOR_API_VERSION=3
+GSV_API_VERSION=4
+GSV_MAJOR_API_VERSION=4
 AC_SUBST(GSV_API_VERSION)
 AC_SUBST(GSV_MAJOR_API_VERSION)
 

@@ -37,7 +37,7 @@ libgtksourcecompletionwords_la_LDFLAGS =	\
 	$(CODE_COVERAGE_LDFLAGS)
 
 libgtksourcecompletionwords_includedir = \
-	$(includedir)/gtksourceview-3.0/gtksourceview/completion-providers/words
+	$(includedir)/gtksourceview-@GSV_API_VERSION@/gtksourceview/completion-providers/words
 
 libgtksourcecompletionwords_include_HEADERS =		\
 	$(libgtksourcecompletionwords_headers)

@@ -2,7 +2,11 @@
 AUTOMAKE_OPTIONS = 1.6
 
 # The name of the module.
-DOC_MODULE = gtksourceview-@GSV_API_VERSION@
+# For library-web, it's simpler if the DOC_MODULE follows the scheme:
+# $name-$major.$minor
+# (to show the API online at developer.gnome.org)
+# So, add ".0".
+DOC_MODULE = gtksourceview-@GSV_API_VERSION@.0
 
 # The top-level XML file (SGML in the past).
 DOC_MAIN_SGML_FILE = gtksourceview-docs.xml
