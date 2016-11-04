@@ -3058,37 +3058,6 @@ gtk_source_completion_create_context (GtkSourceCompletion *completion,
 }
 
 /**
- * gtk_source_completion_move_window:
- * @completion: a #GtkSourceCompletion.
- * @iter: a #GtkTextIter.
- *
- * Move the completion window to a specific iter.
- *
- * Deprecated: 3.8: Use gtk_source_completion_provider_get_start_iter() instead.
- */
-void
-gtk_source_completion_move_window (GtkSourceCompletion *completion,
-                                   GtkTextIter         *iter)
-{
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION (completion));
-	g_return_if_fail (iter != NULL);
-
-	if (completion->priv->view == NULL)
-	{
-		return;
-	}
-
-	if (!gtk_widget_get_visible (GTK_WIDGET (completion->priv->main_window)))
-	{
-		return;
-	}
-
-	gtk_source_completion_info_move_to_iter (completion->priv->main_window,
-	                                         GTK_TEXT_VIEW (completion->priv->view),
-	                                         iter);
-}
-
-/**
  * gtk_source_completion_block_interactive:
  * @completion: a #GtkSourceCompletion.
  *

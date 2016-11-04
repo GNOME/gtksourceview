@@ -142,10 +142,6 @@ GtkSourceCompletionContext *
 		 gtk_source_completion_create_context		(GtkSourceCompletion           *completion,
 		 						 GtkTextIter                   *position);
 
-GTK_SOURCE_DEPRECATED_IN_3_8_FOR (gtk_source_completion_provider_get_start_iter)
-void		 gtk_source_completion_move_window		(GtkSourceCompletion           *completion,
-								 GtkTextIter                   *iter);
-
 GTK_SOURCE_AVAILABLE_IN_ALL
 void		 gtk_source_completion_block_interactive	(GtkSourceCompletion           *completion);
 
