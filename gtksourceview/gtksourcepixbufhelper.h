@@ -39,13 +39,6 @@ G_GNUC_INTERNAL
 GdkPixbuf *gtk_source_pixbuf_helper_get_pixbuf (GtkSourcePixbufHelper *helper);
 
 G_GNUC_INTERNAL
-void gtk_source_pixbuf_helper_set_stock_id (GtkSourcePixbufHelper *helper,
-                                            const gchar           *stock_id);
-
-G_GNUC_INTERNAL
-const gchar *gtk_source_pixbuf_helper_get_stock_id (GtkSourcePixbufHelper *helper);
-
-G_GNUC_INTERNAL
 void gtk_source_pixbuf_helper_set_icon_name (GtkSourcePixbufHelper *helper,
                                              const gchar           *icon_name);
 
