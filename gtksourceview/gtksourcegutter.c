@@ -645,28 +645,6 @@ gtk_source_gutter_get_window_type (GtkSourceGutter *gutter)
 }
 
 /**
- * gtk_source_gutter_get_window:
- * @gutter: a #GtkSourceGutter.
- *
- * Get the #GdkWindow of the gutter. The window will only be available when the
- * gutter has at least one, non-zero width, cell renderer packed.
- *
- * Returns: (transfer none): the #GdkWindow of the gutter, or %NULL
- * if the gutter has no window.
- *
- * Since: 2.8
- * Deprecated: 3.12: Use gtk_text_view_get_window() instead.
- */
-GdkWindow *
-gtk_source_gutter_get_window (GtkSourceGutter *gutter)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER (gutter), NULL);
-	g_return_val_if_fail (gutter->priv->view != NULL, NULL);
-
-	return get_window (gutter);
-}
-
-/**
  * gtk_source_gutter_insert:
  * @gutter: a #GtkSourceGutter.
  * @renderer: a gutter renderer (must inherit from #GtkSourceGutterRenderer).
@@ -1687,53 +1665,6 @@ on_view_style_updated (GtkSourceView   *view,
                        GtkSourceGutter *gutter)
 {
 	gtk_source_gutter_queue_draw (gutter);
-}
-
-/**
- * gtk_source_gutter_set_padding:
- * @gutter:
- * @xpad:
- * @ypad:
- *
- * Deprecated: 3.12: Use gtk_source_gutter_renderer_set_padding() instead.
- */
-void
-gtk_source_gutter_set_padding (GtkSourceGutter *gutter,
-                               gint             xpad,
-                               gint             ypad)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER (gutter));
-
-	if (set_xpad (gutter, xpad, FALSE) || set_ypad (gutter, ypad, FALSE))
-	{
-		update_gutter_size (gutter);
-	}
-}
-
-/**
- * gtk_source_gutter_get_padding:
- * @gutter:
- * @xpad:
- * @ypad:
- *
- * Deprecated: 3.12: Use gtk_source_gutter_renderer_get_padding() instead.
- */
-void
-gtk_source_gutter_get_padding (GtkSourceGutter *gutter,
-                               gint            *xpad,
-                               gint            *ypad)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER (gutter));
-
-	if (xpad)
-	{
-		*xpad = gutter->priv->xpad;
-	}
-
-	if (ypad)
-	{
-		*ypad = gutter->priv->ypad;
-	}
 }
 
 /**

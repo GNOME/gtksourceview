@@ -68,9 +68,6 @@ GTK_SOURCE_AVAILABLE_IN_3_24
 GtkTextWindowType
      gtk_source_gutter_get_window_type		(GtkSourceGutter         *gutter);
 
-GTK_SOURCE_DEPRECATED_IN_3_10_FOR (gtk_text_view_get_window)
-GdkWindow *gtk_source_gutter_get_window 	(GtkSourceGutter         *gutter);
-
 GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean gtk_source_gutter_insert               (GtkSourceGutter         *gutter,
                                                  GtkSourceGutterRenderer *renderer,
@@ -87,16 +84,6 @@ void gtk_source_gutter_remove			(GtkSourceGutter         *gutter,
 
 GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_gutter_queue_draw		(GtkSourceGutter         *gutter);
-
-GTK_SOURCE_DEPRECATED_IN_3_12_FOR (gtk_source_gutter_renderer_set_padding)
-void gtk_source_gutter_set_padding              (GtkSourceGutter         *gutter,
-                                                 gint                     xpad,
-                                                 gint                     ypad);
-
-GTK_SOURCE_DEPRECATED_IN_3_12_FOR (gtk_source_gutter_renderer_get_padding)
-void gtk_source_gutter_get_padding              (GtkSourceGutter         *gutter,
-                                                 gint                    *xpad,
-                                                 gint                    *ypad);
 
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceGutterRenderer *
