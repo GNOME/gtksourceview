@@ -23,11 +23,7 @@
 #define GTK_SOURCE_STYLE_SCHEME_MANAGER_H
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
-#  if defined (__GNUC__)
-#    warning "Only <gtksourceview/gtksource.h> can be included directly."
-#  elif defined (G_OS_WIN32)
-#    pragma message("Only <gtksourceview/gtksource.h> can be included directly.")
-#  endif
+#error "Only <gtksourceview/gtksource.h> can be included directly."
 #endif
 
 #include <glib-object.h>

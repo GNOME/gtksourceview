@@ -240,11 +240,7 @@ stamp-gtksourceview-enumtypes.h: Makefile.am $(libgtksourceview_public_headers)
 			--fhead "#ifndef GTKSOURCEVIEW_ENUMTYPES_H\n" \
 			--fhead "#define GTKSOURCEVIEW_ENUMTYPES_H\n\n" \
 			--fhead "#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)\n" \
-			--fhead "#  if defined (__GNUC__)\n" \
-			--fhead "#    warning \"Only <gtksourceview/gtksource.h> can be included directly.\"\n" \
-			--fhead "#  elif defined (G_OS_WIN32)\n" \
-			--fhead "#    pragma message(\"Only <gtksourceview/gtksource.h> can be included directly.\")\n" \
-			--fhead "#  endif\n" \
+			--fhead "#error \"Only <gtksourceview/gtksource.h> can be included directly.\"\n" \
 			--fhead "#endif\n\n" \
 			--ftail "#endif /* GTKSOURCEVIEW_ENUMTYPES_H */\n" \
 			--fprod "#include <gtksourceview/@filename@>\n" \
