@@ -720,7 +720,10 @@ gtk_source_language_parse_file (GtkSourceLanguage *language)
 			switch (language->priv->version)
 			{
 				case GTK_SOURCE_LANGUAGE_VERSION_1_0:
-					success = _gtk_source_language_file_parse_version1 (language, ctx_data);
+					g_warning ("The language definition format version 1 "
+						   "(for syntax highlighting) is no longer "
+						   "supported by GtkSourceView >= 4.0. "
+						   "Please use version 2.");
 					break;
 
 				case GTK_SOURCE_LANGUAGE_VERSION_2_0:

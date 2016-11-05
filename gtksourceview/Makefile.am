@@ -135,7 +135,6 @@ libgtksourceview_private_c_files =	\
 	gtksourcegutterrendererlines.c	\
 	gtksourcegutterrenderermarks.c	\
 	gtksourceiter.c			\
-	gtksourcelanguage-parser-1.c	\
 	gtksourcelanguage-parser-2.c	\
 	gtksourcemarkssequence.c	\
 	gtksourcepixbufhelper.c		\
