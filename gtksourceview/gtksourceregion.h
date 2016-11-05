@@ -44,7 +44,7 @@ struct _GtkSourceRegionClass
 	GObjectClass parent_class;
 
 	/* Padding for future expansion */
-	gpointer padding[8];
+	gpointer padding[10];
 };
 
 /**

@@ -51,6 +51,8 @@ struct _GtkSourceGutter
 struct _GtkSourceGutterClass
 {
 	GObjectClass parent_class;
+
+	gpointer padding[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

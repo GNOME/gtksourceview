@@ -50,6 +50,8 @@ struct _GtkSourceCompletionItem {
 
 struct _GtkSourceCompletionItemClass {
 	GObjectClass parent_class;
+
+	gpointer padding[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

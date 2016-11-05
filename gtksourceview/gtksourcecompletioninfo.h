@@ -53,6 +53,8 @@ typedef struct _GtkSourceCompletionInfoClass GtkSourceCompletionInfoClass;
 struct _GtkSourceCompletionInfoClass
 {
 	GtkWindowClass parent_class;
+
+	gpointer padding[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

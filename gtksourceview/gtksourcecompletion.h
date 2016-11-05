@@ -97,6 +97,8 @@ struct _GtkSourceCompletionClass
 							 GtkScrollStep                step,
 							 gint                         num);
 	void		(* activate_proposal)		(GtkSourceCompletion         *completion);
+
+	gpointer padding[20];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

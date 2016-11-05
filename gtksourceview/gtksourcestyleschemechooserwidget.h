@@ -49,6 +49,8 @@ struct _GtkSourceStyleSchemeChooserWidget
 struct _GtkSourceStyleSchemeChooserWidgetClass
 {
 	GtkBinClass parent;
+
+	gpointer padding[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_3_16

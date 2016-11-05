@@ -150,6 +150,8 @@ struct _GtkSourceGutterRendererClass
 	                             GtkTextIter                  *start,
 	                             GtkTextIter                  *end,
 	                             GtkSourceGutterRendererState  state);
+
+	gpointer padding[20];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

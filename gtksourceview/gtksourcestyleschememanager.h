@@ -53,10 +53,7 @@ struct _GtkSourceStyleSchemeManagerClass
 	GObjectClass parent_class;
 
 	/* Padding for future expansion */
-	void (*_gtk_source_reserved1) (void);
-	void (*_gtk_source_reserved2) (void);
-	void (*_gtk_source_reserved3) (void);
-	void (*_gtk_source_reserved4) (void);
+	gpointer padding[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

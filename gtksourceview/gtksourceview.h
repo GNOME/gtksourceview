@@ -114,6 +114,7 @@ struct _GtkSourceViewClass
 	                    gint           step);
 
 	/* Padding for future expansion */
+	gpointer padding[20];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

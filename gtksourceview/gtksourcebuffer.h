@@ -115,9 +115,7 @@ struct _GtkSourceBufferClass
 				 GtkSourceBracketMatchType  state);
 
 	/* Padding for future expansion */
-	void (*_gtk_source_reserved1) (void);
-	void (*_gtk_source_reserved2) (void);
-	void (*_gtk_source_reserved3) (void);
+	gpointer padding[20];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

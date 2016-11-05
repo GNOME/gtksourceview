@@ -57,7 +57,7 @@ struct _GtkSourceGutterRendererTextClass
 	/*< private >*/
 	GtkSourceGutterRendererClass parent_class;
 
-	/*< public >*/
+	gpointer padding[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

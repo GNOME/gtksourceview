@@ -49,6 +49,8 @@ struct _GtkSourceStyleSchemeChooserButton
 struct _GtkSourceStyleSchemeChooserButtonClass
 {
 	GtkButtonClass parent;
+
+	gpointer padding[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_3_16
