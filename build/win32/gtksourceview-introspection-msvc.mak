@@ -2,7 +2,7 @@
 
 !include detectenv-msvc.mak
 
-APIVERSION = 3.0
+APIVERSION = 4
 
 CHECK_PACKAGE = gtk+-3.0
 

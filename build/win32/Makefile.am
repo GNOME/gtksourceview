@@ -10,9 +10,9 @@ GENERATED_ITEMS = gen-enums.bat
 if HAVE_INTROSPECTION
 GENERATED_ITEMS += \
 	introspection.body.mak	\
-	GtkSource_3_0_gir_list
+	GtkSource_@GSV_API_VERSION@_gir_list
 
-introspection.body.mak: GtkSource-3.0.gir.msvc.introspect
+introspection.body.mak: GtkSource-@GSV_API_VERSION@.gir.msvc.introspect
 	-$(RM) introspection.body.mak
 	for F in `ls *.msvc.introspect`; do \
 		case $$F in \
@@ -20,7 +20,7 @@ introspection.body.mak: GtkSource-3.0.gir.msvc.introspect
 			;; \
 		esac; \
 	done
-	$(RM) GtkSource-3.0.gir.msvc.introspect
+	$(RM) GtkSource-@GSV_API_VERSION@.gir.msvc.introspect
 endif
 
 EXTRA_DIST = \
