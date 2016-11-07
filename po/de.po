@@ -7,7 +7,7 @@
 # Philipp Kerling <k.philipp@gmail.com>, 2008.
 # Andre Klapper <ak-47@gmx.net>, 2008.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2009, 2011-2015.
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2010-2013.
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2010-2013, 2016.
 # Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>, 2012.
 # Christian Kirbach <Christian.Kirbach@googlemail.com>, 2010-2012.
 # Bernd Homuth <dev@hmt.im>, 2015.
@@ -16,17 +16,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GtkSourceView master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-22 12:12+0000\n"
-"PO-Revision-Date: 2016-05-22 20:36+0100\n"
-"Last-Translator: Friedrich Herbst <fherbst@opmbx.org>\n"
+"product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2016-11-05 13:02+0000\n"
+"PO-Revision-Date: 2016-11-07 16:11+0100\n"
+"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: -\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Project-Style: gnome\n"
 
 #. (itstool) path: displayable-values/value@name
@@ -87,7 +87,7 @@ msgstr "Angehängt"
 #. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:834
+#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:833
 msgid "All"
 msgstr "Alle"
 
@@ -730,7 +730,7 @@ msgid "Date"
 msgstr "Datum"
 
 #. (itstool) path: styles/style@_name
-#: changelog.lang:35 latex.lang:52
+#: changelog.lang:35
 msgid "Name"
 msgstr "Name"
 
@@ -2792,12 +2792,13 @@ msgstr "Variablendefinition"
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
 #.
-#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:55
+#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:56
 msgid "Others"
 msgstr "Sonstige"
 
@@ -3130,7 +3131,7 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Farbschema, das die Tango-Farbpalette verwendet"
 
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:334
 msgid "Document Words"
 msgstr "Wörter im Dokument"
 
@@ -3145,13 +3146,13 @@ msgstr "Fehler während der Konvertierung: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
-msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr ""
 "Konvertierung von Zeichenkodierung »%s« nach »UTF-8« ist nicht unterstützt"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
-msgid "Could not open converter from '%s' to 'UTF-8'"
+msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Konverter von »%s« nach »UTF-8« kann nicht geöffnet werden"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:996
@@ -3163,7 +3164,7 @@ msgid "Incomplete UTF-8 sequence in input"
 msgstr "Unvollständige UTF-8-Sequenz in der Eingabe"
 
 #. Tooltip style
-#: gtksourceview/gtksourcecompletioninfo.c:272
+#: gtksourceview/gtksourcecompletioninfo.c:271
 msgid "Completion Info"
 msgstr "Info zur Vervollständigung"
 
@@ -3176,14 +3177,14 @@ msgid "Show detailed proposal information"
 msgstr "Detaillierte Informationen zum Vorschlag anzeigen"
 
 #: gtksourceview/gtksourcecompletion.ui:89
-msgid "_Details..."
+msgid "_Details…"
 msgstr "_Details …"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3145
+#: gtksourceview/gtksourcecontextengine.c:3141
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3194,7 +3195,7 @@ msgstr ""
 "Syntax-Hervorhebung wird langsamer als gewohnt sein.\n"
 "Der Fehler war: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4468
+#: gtksourceview/gtksourcecontextengine.c:4464
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -3202,39 +3203,39 @@ msgstr ""
 "Das Hervorheben einer einzelnen Zeile benötigte zu viel Zeit, daher wird die "
 "Syntax-Hervorhebung ausgeschaltet"
 
-#: gtksourceview/gtksourcecontextengine.c:5716
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
-msgid "context '%s' cannot contain a \\%%{...@start} command"
+msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "Kontext »%s« kann keinen \\%%{...@start}-Befehl enthalten"
 
-#: gtksourceview/gtksourcecontextengine.c:5879
-#: gtksourceview/gtksourcecontextengine.c:5970
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5966
 #, c-format
-msgid "duplicated context id '%s'"
+msgid "duplicated context id “%s”"
 msgstr "Mehrfache Kontext-ID »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6084
-#: gtksourceview/gtksourcecontextengine.c:6144
+#: gtksourceview/gtksourcecontextengine.c:6080
+#: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
 msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
 "Stilüberschreibung durch Platzhalter-Kontext-Referenz in Sprache »%s« in "
 "Referenz »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6158
+#: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
-msgid "invalid context reference '%s'"
+msgid "invalid context reference “%s”"
 msgstr "Ungültige Kontextreferenz »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6177
-#: gtksourceview/gtksourcecontextengine.c:6187
+#: gtksourceview/gtksourcecontextengine.c:6173
+#: gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
-msgid "unknown context '%s'"
+msgid "unknown context “%s”"
 msgstr "Unbekannter Kontext »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6286
+#: gtksourceview/gtksourcecontextengine.c:6282
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Hauptsprachendefinition fehlt (id = »%s«)"
@@ -3399,12 +3400,12 @@ msgstr "Der Puffer beinhaltet ungültige Zeichen."
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
-msgid "Unknown id '%s' in regex '%s'"
+msgid "Unknown id “%s” in regex “%s”"
 msgstr "Unbekannte ID »%s« in regulärem Ausdruck »%s«"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
-msgid "in regex '%s': backreferences are not supported"
+msgid "in regex “%s”: backreferences are not supported"
 msgstr "in regulärem Ausdruck »%s«: Rückreferenzen werden nicht unterstützt"
 
 #: gtksourceview/gtksourceregex.c:129
@@ -3426,43 +3427,42 @@ msgid "_Select"
 msgstr "A_uswählen"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1565
+#: gtksourceview/gtksourceview.c:1777
 msgid "_Redo"
 msgstr "_Wiederholen"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1576
+#: gtksourceview/gtksourceview.c:1788
 msgid "_Undo"
 msgstr "_Rückgängig"
 
-#: gtksourceview/gtksourceview.c:1595
+#: gtksourceview/gtksourceview.c:1807
 msgid "All _Upper Case"
 msgstr "Alles in _Großschreibung"
 
-#: gtksourceview/gtksourceview.c:1605
+#: gtksourceview/gtksourceview.c:1817
 msgid "All _Lower Case"
 msgstr "Alles in _Kleinschreibung"
 
-#: gtksourceview/gtksourceview.c:1615
+#: gtksourceview/gtksourceview.c:1827
 msgid "_Invert Case"
 msgstr "Groß-/Kleinschreibung _umkehren"
 
-#: gtksourceview/gtksourceview.c:1625
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "_Anfangsbuchstaben in Großschreibung"
 
-#: gtksourceview/gtksourceview.c:1635
+#: gtksourceview/gtksourceview.c:1847
 msgid "C_hange Case"
 msgstr "_Groß-/Kleinschreibung ändern"
 
-#: gtksourceview/gtksourceview-i18n.c:116
-msgid "translator-credits"
-msgstr ""
-"Hendrik Richter <hendrikr@gnome.org>\n"
-"Philipp Kerling <k.philipp@gmail.com>\n"
-"Mario Blättermann <mario.blaettermann@gmail.com>\n"
-"Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
-"Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>"
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Hendrik Richter <hendrikr@gnome.org>\n"
+#~ "Philipp Kerling <k.philipp@gmail.com>\n"
+#~ "Mario Blättermann <mario.blaettermann@gmail.com>\n"
+#~ "Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
+#~ "Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>"
 
 #~ msgid "Escaped Characters"
 #~ msgstr "Maskierte Zeichen"
