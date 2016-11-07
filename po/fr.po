@@ -12,21 +12,23 @@
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007.
 # Laurent Coudeur <laurentc@iol.ie>, 2009
 # Gérard Baylard <Geodebay@gmail.com>, 2011.
+# Charles Monzat <superboa@hotmail.fr>, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-08-15 08:31+0000\n"
-"PO-Revision-Date: 2016-08-29 10:47+0200\n"
-"Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
+"POT-Creation-Date: 2016-10-22 21:08+0000\n"
+"PO-Revision-Date: 2016-10-27 11:10+0200\n"
+"Last-Translator: Charles Monzat <superboa@hotmail.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #. (itstool) path: displayable-values/value@name
 #: gtksourceview.xml:23
@@ -748,7 +750,6 @@ msgstr "Version"
 
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:25
-#| msgid "C/C++/ObjC Header"
 msgid "C/ObjC Header"
 msgstr "En-tête C/ObjC"
 
@@ -3105,14 +3106,14 @@ msgstr "Erreur durant la conversion : %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
-msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr ""
 "La conversion à partir du jeu de caractères « %s » vers « UTF-8 » n'est pas "
 "prise en charge"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
-msgid "Could not open converter from '%s' to 'UTF-8'"
+msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Impossible d'ouvrir le convertisseur de « %s » vers « UTF-8 »"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:996
@@ -3137,8 +3138,8 @@ msgid "Show detailed proposal information"
 msgstr "Afficher des informations détaillées sur la proposition"
 
 #: gtksourceview/gtksourcecompletion.ui:89
-msgid "_Details..."
-msgstr "_Détails..."
+msgid "_Details…"
+msgstr "_Détails…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -3165,34 +3166,34 @@ msgstr ""
 
 #: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
-msgid "context '%s' cannot contain a \\%%{...@start} command"
+msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "le contexte « %s » ne peut contenir une commande \\%%{...@start}"
 
 #: gtksourceview/gtksourcecontextengine.c:5875
 #: gtksourceview/gtksourcecontextengine.c:5966
 #, c-format
-msgid "duplicated context id '%s'"
+msgid "duplicated context id “%s”"
 msgstr "id de contexte « %s » en double"
 
 #: gtksourceview/gtksourcecontextengine.c:6080
 #: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
 msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
 "surcharge de style utilisée avec référence de contexte à caractères "
 "génériques dans le langage « %s » dans la référence « %s »"
 
 #: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
-msgid "invalid context reference '%s'"
+msgid "invalid context reference “%s”"
 msgstr "référence de contexte « %s » non valide"
 
 #: gtksourceview/gtksourcecontextengine.c:6173
 #: gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
-msgid "unknown context '%s'"
+msgid "unknown context “%s”"
 msgstr "contexte « %s » inconnu"
 
 #: gtksourceview/gtksourcecontextengine.c:6282
@@ -3339,8 +3340,8 @@ msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
 msgstr ""
-"Une erreur de conversion de codage de caractère s'est produite et il a "
-"fallu utiliser un caractère de remplacement."
+"Une erreur de conversion de codage de caractère s'est produite et il a fallu "
+"utiliser un caractère de remplacement."
 
 #: gtksourceview/gtksourcefileloader.c:615
 msgid "File too big."
@@ -3360,12 +3361,12 @@ msgstr "Le tampon contient des caractères non valides."
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
-msgid "Unknown id '%s' in regex '%s'"
+msgid "Unknown id “%s” in regex “%s”"
 msgstr "Id « %s » inconnu dans l'expr. régulière « %s »"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
-msgid "in regex '%s': backreferences are not supported"
+msgid "in regex “%s”: backreferences are not supported"
 msgstr ""
 "dans l'expr. régulière « %s » : les références arrières ne sont pas prises "
 "en charge"
@@ -3390,52 +3391,34 @@ msgid "_Select"
 msgstr "_Choisir"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1722
+#: gtksourceview/gtksourceview.c:1777
 msgid "_Redo"
 msgstr "_Rétablir"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1733
+#: gtksourceview/gtksourceview.c:1788
 msgid "_Undo"
 msgstr "Ann_uler"
 
-#: gtksourceview/gtksourceview.c:1752
+#: gtksourceview/gtksourceview.c:1807
 msgid "All _Upper Case"
 msgstr "Tout en _majuscules"
 
-#: gtksourceview/gtksourceview.c:1762
+#: gtksourceview/gtksourceview.c:1817
 msgid "All _Lower Case"
 msgstr "Tout en mi_nuscules"
 
-#: gtksourceview/gtksourceview.c:1772
+#: gtksourceview/gtksourceview.c:1827
 msgid "_Invert Case"
 msgstr "_Inverser la casse"
 
-#: gtksourceview/gtksourceview.c:1782
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "Ma_juscules initiales"
 
-#: gtksourceview/gtksourceview.c:1792
+#: gtksourceview/gtksourceview.c:1847
 msgid "C_hange Case"
 msgstr "Mo_difier la casse"
-
-#~ msgid "GtkSourceView"
-#~ msgstr "GtkSourceView"
-
-#~ msgid "Escaped Characters"
-#~ msgstr "Caractères échappés"
-
-#~ msgid "View"
-#~ msgstr "Vue"
-
-#~ msgid "The view this widget is mapping."
-#~ msgstr "La vue que ce composant cartographie."
-
-#~ msgid "Font Description"
-#~ msgstr "Descripteur de police"
-
-#~ msgid "The Pango font description to use."
-#~ msgstr "La description de police Pango à utiliser."
 
 #~ msgid "translator-credits"
 #~ msgstr ""
@@ -3449,6 +3432,3 @@ msgstr "Mo_difier la casse"
 #~ "Stéphane Raimbault <stephane.raimbault@gmail.com>\n"
 #~ "Laurent Coudeur <laurentc@iol.ie>\n"
 #~ "Gérard Baylard <Géodebay@gmail.com>"
-
-#~ msgid "Sources"
-#~ msgstr "Sources"
