@@ -2,11 +2,11 @@
 <VisualStudioPropertySheet
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="gtksourceviewversionpathsprops"
+	Name="gtksourceview4versionpathsprops"
 	>
 	<UserMacro
 		Name="ApiVersion"
-		Value="3.0"
+		Value="4"
 	/>
 	<UserMacro
 		Name="VSVer"
@@ -34,7 +34,7 @@
 	/>
 	<UserMacro
 		Name="GtkSourceviewLibtoolCompatibleDllSuffix"
-		Value="-$(ApiVersion)-0"
+		Value="-$(ApiVersion).0-0"
 	/>
 	<UserMacro
 		Name="GtkSourceviewSeparateVSDllPrefix"
@@ -42,7 +42,7 @@
 	/>
 	<UserMacro
 		Name="GtkSourceviewSeparateVSDllSuffix"
-		Value="-3-vs$(VSVer)"
+		Value="-vs$(VSVer)"
 	/>
 	<!-- Change these two to GtkSourceviewLibtoolCompatibleDllPrefix and
 	GtkSourceviewLibtoolCompatibleDllSuffix if that is what you want -->

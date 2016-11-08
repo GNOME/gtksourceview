@@ -1,28 +1,28 @@
-GENERATED_ITEMS =			\
-	gtksourceview.vcxproj		\
-	gtksourceview.vcxproj.filters	\
-	gtksourceview-install.props	\
+GENERATED_ITEMS =					\
+	gtksourceview-@GSV_API_VERSION@.vcxproj		\
+	gtksourceview-@GSV_API_VERSION@.vcxproj.filters	\
+	gtksourceview@GSV_API_VERSION@-install.props	\
 	math.h
 
 MSVC10_HEADERS_LISTS =	\
-	gtksourceview.vs10.headers
+	gtksourceview-@GSV_API_VERSION@.vs10.headers
 
-EXTRA_DIST =					\
-	gtksourceview.sln			\
-	gtksourceview-build-defines.props	\
-	gtksourceview-gen-srcs.props		\
-	gtksourceview-install.propsin		\
-	gtksourceview-version-paths.props	\
-	gtksourceview.vcxprojin			\
-	gtksourceview.vcxproj.filtersin		\
-	gtksourceview-install.vcxproj		\
+EXTRA_DIST =							\
+	gtksourceview-@GSV_API_VERSION@.sln			\
+	gtksourceview@GSV_API_VERSION@-build-defines.props	\
+	gtksourceview@GSV_API_VERSION@-gen-srcs.props		\
+	gtksourceview@GSV_API_VERSION@-install.propsin		\
+	gtksourceview@GSV_API_VERSION@-version-paths.props	\
+	gtksourceview-@GSV_API_VERSION@.vcxprojin		\
+	gtksourceview-@GSV_API_VERSION@.vcxproj.filtersin	\
+	gtksourceview@GSV_API_VERSION@-install.vcxproj		\
 	$(GENERATED_ITEMS)
 
-gtksourceview-install.props: $(top_srcdir)/build/win32/vs10/gtksourceview-install.propsin $(MSVC10_HEADERS_LISTS)
-	-$(RM) $(top_builddir)/build/win32/vs11/gtksourceview-install.props
-	-$(RM) $(top_builddir)/build/win32/vs12/gtksourceview-install.props
-	-$(RM) $(top_builddir)/build/win32/vs14/gtksourceview-install.props
-	$(CPP) -P - <$(top_srcdir)/build/win32/vs10/gtksourceview-install.propsin >$@
+gtksourceview@GSV_API_VERSION@-install.props: $(top_srcdir)/build/win32/vs10/gtksourceview@GSV_API_VERSION@-install.propsin $(MSVC10_HEADERS_LISTS)
+	-$(RM) $(top_builddir)/build/win32/vs11/gtksourceview@GSV_API_VERSION@-install.props
+	-$(RM) $(top_builddir)/build/win32/vs12/gtksourceview@GSV_API_VERSION@-install.props
+	-$(RM) $(top_builddir)/build/win32/vs14/gtksourceview@GSV_API_VERSION@-install.props
+	$(CPP) -P - <$(top_srcdir)/build/win32/vs10/gtksourceview@GSV_API_VERSION@-install.propsin >$@
 	$(RM) $(MSVC10_HEADERS_LISTS)
 
 math.h: $(top_srcdir)/build/win32/vs9/math.h

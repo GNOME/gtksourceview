@@ -26,7 +26,7 @@ endif
 EXTRA_DIST = \
 	replace.py	\
 	detectenv-msvc.mak	\
-	gtksourceview-introspection-msvc.mak	\
+	gtksourceview4-introspection-msvc.mak	\
 	introspection-msvc.mak	\
 	gen-enums.batin	\
 	$(GENERATED_ITEMS)

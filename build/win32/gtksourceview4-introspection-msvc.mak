@@ -4,7 +4,7 @@
 
 APIVERSION = 4
 
-CHECK_PACKAGE = gtk+-3.0
+CHECK_PACKAGE = gtk+-4.0
 
 built_install_girs = GtkSource-$(APIVERSION).gir
 built_install_typelibs = GtkSource-$(APIVERSION).typelib

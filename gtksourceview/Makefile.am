@@ -353,21 +353,21 @@ gtksource_win32_more_sources =						\
 	completion-providers/words/gtksourcecompletionwordsproposal.c	\
 	completion-providers/words/gtksourcecompletionwordsutils.c
 
-MSVCPROJS = gtksourceview
+MSVCPROJS = gtksourceview-@GSV_API_VERSION@
 
-gtksourceview_FILES = 					\
+gtksourceview_@GSV_API_VERSION@_FILES = 		\
 	$(libgtksourceview_public_c_files)		\
 	$(libgtksourceview_private_c_files)		\
 	$(nodist_libgtksourceview_core_la_SOURCES)	\
 	$(gtksource_win32_more_sources)
 
-gtksourceview_EXCLUDES = dummy
-gtksourceview_HEADERS_DIR = $(libgtksourceview_@GSV_API_VERSION@_includedir)
-gtksourceview_HEADERS_INST = \
+gtksourceview_@GSV_API_VERSION@_EXCLUDES = dummy
+gtksourceview_@GSV_API_VERSION@_HEADERS_DIR = $(libgtksourceview_@GSV_API_VERSION@_includedir)
+gtksourceview_@GSV_API_VERSION@_HEADERS_INST = \
 	$(libgtksourceview_public_headers)	\
 	$(nodist_libgtksourceview_@GSV_API_VERSION@_include_HEADERS)
 
-gtksourceview_HEADERS_EXCLUDES = dummy
+gtksourceview_@GSV_API_VERSION@_HEADERS_EXCLUDES = dummy
 
 include $(top_srcdir)/build/Makefile.msvcproj
 
@@ -397,8 +397,8 @@ GtkSource_@GSV_API_VERSION@_gir_MSVC_FILES =	\
 	$(libgtksourceview_public_c_files)	\
 	$(BUILT_SOURCES)
 
-GtkSource_@GSV_API_VERSION@_gir_MSVC_INCLUDE_GIRS = Gtk-3.0 Gdk-3.0
-GtkSource_@GSV_API_VERSION@_gir_MSVC_PACKAGES = gtk+-3.0 gdk-3.0
+GtkSource_@GSV_API_VERSION@_gir_MSVC_INCLUDE_GIRS = Gtk-4.0
+GtkSource_@GSV_API_VERSION@_gir_MSVC_PACKAGES = gtk+-4.0
 GtkSource_@GSV_API_VERSION@_gir_MSVC_EXPORT_PACKAGES = gtksourceview-@GSV_API_VERSION@
 GtkSource_@GSV_API_VERSION@_gir_MSVC_LIBS = gtksourceview-@GSV_API_VERSION@
 GtkSource_@GSV_API_VERSION@_gir_MSVC_CFLAGS = -I..\\..
@@ -414,9 +414,9 @@ NMAKE_INTROSPECTION_FILES =
 endif
 
 dist-hook: \
-	$(top_builddir)/build/win32/enums.headers		\
-	$(top_builddir)/build/win32/vs9/gtksourceview.vcproj	\
-	$(top_builddir)/build/win32/vs9/gtksourceview.headers	\
+	$(top_builddir)/build/win32/enums.headers				\
+	$(top_builddir)/build/win32/vs9/gtksourceview-@GSV_API_VERSION@.vcproj	\
+	$(top_builddir)/build/win32/vs9/gtksourceview-@GSV_API_VERSION@.headers	\
 	$(NMAKE_INTROSPECTION_FILES)
 
 -include $(top_srcdir)/git.mk

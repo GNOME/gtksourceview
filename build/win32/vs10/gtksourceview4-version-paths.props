@@ -5,17 +5,17 @@
     <GlibEtcInstallRoot>$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
     <DefDir>$(SolutionDir)$(Configuration)\$(Platform)\obj\$(ProjectName)</DefDir>
-    <ApiVersion>3.0</ApiVersion>
+    <ApiVersion>4</ApiVersion>
     <GtkSourceviewLibtoolCompatibleDllPrefix>lib</GtkSourceviewLibtoolCompatibleDllPrefix>
-    <GtkSourceviewLibtoolCompatibleDllSuffix>-$(ApiVersion)-0</GtkSourceviewLibtoolCompatibleDllSuffix>
+    <GtkSourceviewLibtoolCompatibleDllSuffix>-$(ApiVersion).0-0</GtkSourceviewLibtoolCompatibleDllSuffix>
     <GtkSourceviewSeparateVSDllPrefix />
-    <GtkSourceviewSeparateVSDllSuffix>-3-vs$(VSVer)</GtkSourceviewSeparateVSDllSuffix>
+    <GtkSourceviewSeparateVSDllSuffix>-vs$(VSVer)</GtkSourceviewSeparateVSDllSuffix>
     <GtkSourceviewDllPrefix>$(GtkSourceviewSeparateVSDllPrefix)</GtkSourceviewDllPrefix>
     <GtkSourceviewDllSuffix>$(GtkSourceviewSeparateVSDllSuffix)</GtkSourceviewDllSuffix>
     <PythonPath>c:\python27</PythonPath>
   </PropertyGroup>
   <PropertyGroup>
-    <_PropertySheetDisplayName>gtksourceviewversionpathsprops</_PropertySheetDisplayName>
+    <_PropertySheetDisplayName>gtksourceview4versionpathsprops</_PropertySheetDisplayName>
   </PropertyGroup>
   <ItemGroup>
     <BuildMacro Include="VSVer">

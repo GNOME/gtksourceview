@@ -1,12 +1,12 @@
-EXTRA_DIST =				\
-	gtksourceview.sln			\
-	gtksourceview-build-defines.props	\
-	gtksourceview-gen-srcs.props		\
-	gtksourceview-install.props		\
-	gtksourceview-version-paths.props	\
-	gtksourceview.vcxproj			\
-	gtksourceview.vcxproj.filters		\
-	gtksourceview-install.vcxproj
+EXTRA_DIST =							\
+	gtksourceview-@GSV_API_VERSION@.sln			\
+	gtksourceview@GSV_API_VERSION@-build-defines.props	\
+	gtksourceview@GSV_API_VERSION@-gen-srcs.props		\
+	gtksourceview@GSV_API_VERSION@-install.props		\
+	gtksourceview@GSV_API_VERSION@-version-paths.props	\
+	gtksourceview-@GSV_API_VERSION@.vcxproj			\
+	gtksourceview-@GSV_API_VERSION@.vcxproj.filters		\
+	gtksourceview@GSV_API_VERSION@-install.vcxproj
 
 DISTCLEANFILES = $(EXTRA_DIST)
 

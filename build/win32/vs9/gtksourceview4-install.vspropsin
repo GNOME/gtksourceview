@@ -2,8 +2,8 @@
 <VisualStudioPropertySheet
 	ProjectType="Visual C++"
 	Version="8.00"
-	Name="gtksourceviewinstallprops"
-	InheritedPropertySheets=".\gtksourceview-build-defines.vsprops"
+	Name="gtksource4viewinstallprops"
+	InheritedPropertySheets=".\gtksourceview4-build-defines.vsprops"
 	>
 	<UserMacro
 		Name="GtkSourceviewDoInstall"
@@ -14,7 +14,7 @@ copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(GtkSourceviewDllPr
 copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(GtkSourceviewDllPrefix)gtksourceview$(GtkSourceviewDllSuffix).pdb $(CopyDir)\bin&#x0D;&#x0A;
 
 mkdir $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words&#x0D;&#x0A;
-#include "gtksourceview.headers"
+#include "gtksourceview-4.headers"
 copy ..\..\..\gtksourceview\completion-providers\words\gtksourcecompletionwords.h $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words&#x0D;&#x0A;
 
 mkdir $(CopyDir)\lib&#x0D;&#x0A;

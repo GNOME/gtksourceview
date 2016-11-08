@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="gtksourceview"
+	Name="gtksourceview-4"
 	ProjectGUID="{B95C0A8D-2528-40C4-8ADE-1FDE8B6E50E8}"
-	RootNamespace="gtksourceview"
+	RootNamespace="gtksourceview4"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -22,7 +22,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			ConfigurationType="2"
-			InheritedPropertySheets=".\gtksourceview-gen-srcs.vsprops"
+			InheritedPropertySheets=".\gtksourceview4-gen-srcs.vsprops"
 			CharacterSet="2"
 			>
 			<Tool
@@ -45,14 +45,14 @@
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="$(TargetDir)$(ProjectName)-$(ApiVersion).lib"
+				ImportLibrary="$(TargetDir)$(ProjectName).lib"
 				TargetMachine="1"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
 			ConfigurationType="2"
-			InheritedPropertySheets=".\gtksourceview-gen-srcs.vsprops"
+			InheritedPropertySheets=".\gtksourceview4-gen-srcs.vsprops"
 			CharacterSet="2"
 			>
 			<Tool
@@ -79,14 +79,14 @@
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
 				SubSystem="2"
-				ImportLibrary="$(TargetDir)$(ProjectName)-$(ApiVersion).lib"
+				ImportLibrary="$(TargetDir)$(ProjectName).lib"
 				TargetMachine="17"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			ConfigurationType="2"
-			InheritedPropertySheets=".\gtksourceview-gen-srcs.vsprops"
+			InheritedPropertySheets=".\gtksourceview4-gen-srcs.vsprops"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
@@ -112,14 +112,14 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="$(TargetDir)$(ProjectName)-$(ApiVersion).lib"
+				ImportLibrary="$(TargetDir)$(ProjectName).lib"
 				TargetMachine="1"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
 			ConfigurationType="2"
-			InheritedPropertySheets=".\gtksourceview-gen-srcs.vsprops"
+			InheritedPropertySheets=".\gtksourceview4-gen-srcs.vsprops"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
@@ -149,7 +149,7 @@
 				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				ImportLibrary="$(TargetDir)$(ProjectName)-$(ApiVersion).lib"
+				ImportLibrary="$(TargetDir)$(ProjectName).lib"
 				TargetMachine="17"
 			/>
 		</Configuration>
@@ -162,7 +162,7 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-#include "gtksourceview.sourcefiles"
+#include "gtksourceview-4.sourcefiles"
 		</Filter>
 		<Filter
 			Name="Headers"
