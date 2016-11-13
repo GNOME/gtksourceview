@@ -76,6 +76,7 @@ content_files =			\
 	intro.xml		\
 	lang-tutorial.xml	\
 	lang-reference.xml	\
+	porting-guide.xml	\
 	style-reference.xml
 
 # Extra options to supply to gtkdoc-fixref
