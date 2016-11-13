@@ -57,10 +57,6 @@ nodist_test_widget_SOURCES = test-widget-resources.c
 
 noinst_PROGRAMS = $(TEST_PROGS)
 
-python_tests =			\
-	test-completion.py	\
-	test-widget.py
-
 EXTRA_DIST =				\
 	syntax-highlighting		\
 	test-completion.gresource.xml	\
@@ -68,7 +64,6 @@ EXTRA_DIST =				\
 	test-search.gresource.xml	\
 	test-search.ui			\
 	test-widget.gresource.xml	\
-	test-widget.ui			\
-	$(python_tests)
+	test-widget.ui
 
 -include $(top_srcdir)/git.mk
