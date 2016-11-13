@@ -1,10 +1,28 @@
+News in 3.99.1
+--------------
+
+This is an intermediate version towards GtkSourceView 4.0. GtkSourceView 4.0
+will still depend on GTK+ 3, and will be released in March 2017.
+
+* All the deprecated APIs have been removed.
+* Only <gtksourceview/gtksource.h> can be included directly. There were already
+  warnings about it in GtkSourceView 3. The warnings have been changed to
+  errors.
+* Only the version 2 of the GtkSourceView language definition file format is
+  supported (for *.lang files, used for syntax highlighting). The support for
+  the version 1 has been dropped.
+* Add padding for future expansion in the Class structures.
+* Docs: add an intro with the pkg-config name.
+* Docs: write the first steps of the GtkSourceView 3 -> 4 porting guide.
+* Build fixes on Windows.
+* Improvements to the syntax highlighting of: JavaScript and PHP
+* Translation updates
+
 News in 3.23.1
 --------------
 
 This version still uses GTK+ 3. A GtkSourceView 3.24 version is planned (still
-depending on GTK+ 3), but the release date is not yet determined. If everything
-goes well, GtkSourceView 3.90 (depending on GTK+ 3.90) will be released at the
-same time as GTK+ 3.90 in March 2017.
+depending on GTK+ 3), but the release date is not yet determined.
 
 * New class: GtkSourceSpaceDrawer with a matrix property to combine space types
   vs locations. The old white space drawing API has been deprecated.
