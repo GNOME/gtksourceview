@@ -404,7 +404,7 @@ GtkSource_3_0_gir_MSVC_INCLUDE_GIRS = Gtk-3.0 Gdk-3.0
 GtkSource_3_0_gir_MSVC_PACKAGES = gtk+-3.0 gdk-3.0
 GtkSource_3_0_gir_MSVC_EXPORT_PACKAGES = gtksourceview-3.0
 GtkSource_3_0_gir_MSVC_LIBS = gtksourceview-3.0
-GtkSource_3_0_gir_MSVC_CFLAGS = -I..\\..
+GtkSource_3_0_gir_MSVC_CFLAGS = -I..\\.. -DGTK_SOURCE_COMPILATION
 
 GtkSource_3_0_gir_MSVC_SCANNERFLAGS = \
 	--c-include=gtksourceview/gtksource.h	\
