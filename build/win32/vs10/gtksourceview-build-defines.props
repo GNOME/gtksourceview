@@ -4,7 +4,7 @@
     <Import Project="gtksourceview-version-paths.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
-	<GtkSourceBuildDefines>G_LOG_DOMAIN="GtkSourceView";GTK_SOURCE_VERSION_MIN_REQUIRED=GTK_SOURCE_VERSION_3_0</GtkSourceBuildDefines>
+	<GtkSourceBuildDefines>G_LOG_DOMAIN="GtkSourceView";GTK_SOURCE_VERSION_MIN_REQUIRED=GTK_SOURCE_VERSION_3_0;GTK_SOURCE_COMPILATION</GtkSourceBuildDefines>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceviewbuilddefinesprops</_PropertySheetDisplayName>
