@@ -490,12 +490,12 @@ finish_check_result (GtkSourceSearchContext *context,
 
 	if (data->forward)
 	{
-		found = gtk_source_search_context_forward_finish2 (context,
-								   result,
-								   &match_start,
-								   &match_end,
-								   &has_wrapped_around,
-								   NULL);
+		found = gtk_source_search_context_forward_finish (context,
+								  result,
+								  &match_start,
+								  &match_end,
+								  &has_wrapped_around,
+								  NULL);
 	}
 	else
 	{

@@ -3298,7 +3298,7 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
 }
 
 /**
- * gtk_source_search_context_forward_finish2:
+ * gtk_source_search_context_forward_finish:
  * @search: a #GtkSourceSearchContext.
  * @result: a #GAsyncResult.
  * @match_start: (out) (optional): return location for start of match, or %NULL.
@@ -3317,12 +3317,12 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
  * Since: 3.22
  */
 gboolean
-gtk_source_search_context_forward_finish2 (GtkSourceSearchContext  *search,
-					   GAsyncResult            *result,
-					   GtkTextIter             *match_start,
-					   GtkTextIter             *match_end,
-					   gboolean                *has_wrapped_around,
-					   GError                 **error)
+gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
+					  GAsyncResult            *result,
+					  GtkTextIter             *match_start,
+					  GtkTextIter             *match_end,
+					  gboolean                *has_wrapped_around,
+					  GError                 **error)
 {
 	ForwardBackwardData *data;
 	gboolean found;
@@ -3517,12 +3517,12 @@ gtk_source_search_context_backward_finish2 (GtkSourceSearchContext  *search,
 					    gboolean                *has_wrapped_around,
 					    GError                 **error)
 {
-	return gtk_source_search_context_forward_finish2 (search,
-							  result,
-							  match_start,
-							  match_end,
-							  has_wrapped_around,
-							  error);
+	return gtk_source_search_context_forward_finish (search,
+							 result,
+							 match_start,
+							 match_end,
+							 has_wrapped_around,
+							 error);
 }
 
 /* If correctly replaced, returns %TRUE and @match_end is updated to point to

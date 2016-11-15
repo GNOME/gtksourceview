@@ -108,7 +108,7 @@ void			 gtk_source_search_context_forward_async		(GtkSourceSearchContext	 *searc
 										 gpointer		  user_data);
 
 GTK_SOURCE_AVAILABLE_IN_3_22
-gboolean		 gtk_source_search_context_forward_finish2		(GtkSourceSearchContext  *search,
+gboolean		 gtk_source_search_context_forward_finish		(GtkSourceSearchContext  *search,
 										 GAsyncResult            *result,
 										 GtkTextIter             *match_start,
 										 GtkTextIter             *match_end,
