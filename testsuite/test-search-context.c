@@ -499,12 +499,12 @@ finish_check_result (GtkSourceSearchContext *context,
 	}
 	else
 	{
-		found = gtk_source_search_context_backward_finish2 (context,
-								    result,
-								    &match_start,
-								    &match_end,
-								    &has_wrapped_around,
-								    NULL);
+		found = gtk_source_search_context_backward_finish (context,
+								   result,
+								   &match_start,
+								   &match_end,
+								   &has_wrapped_around,
+								   NULL);
 	}
 
 	g_assert_cmpint (found, ==, search_result.found);

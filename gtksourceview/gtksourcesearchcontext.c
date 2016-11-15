@@ -3491,7 +3491,7 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
 }
 
 /**
- * gtk_source_search_context_backward_finish2:
+ * gtk_source_search_context_backward_finish:
  * @search: a #GtkSourceSearchContext.
  * @result: a #GAsyncResult.
  * @match_start: (out) (optional): return location for start of match, or %NULL.
@@ -3510,12 +3510,12 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
  * Since: 3.22
  */
 gboolean
-gtk_source_search_context_backward_finish2 (GtkSourceSearchContext  *search,
-					    GAsyncResult            *result,
-					    GtkTextIter             *match_start,
-					    GtkTextIter             *match_end,
-					    gboolean                *has_wrapped_around,
-					    GError                 **error)
+gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
+					   GAsyncResult            *result,
+					   GtkTextIter             *match_start,
+					   GtkTextIter             *match_end,
+					   gboolean                *has_wrapped_around,
+					   GError                 **error)
 {
 	return gtk_source_search_context_forward_finish (search,
 							 result,

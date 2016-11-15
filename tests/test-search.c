@@ -187,12 +187,12 @@ backward_search_finished (GtkSourceSearchContext *search_context,
 	GtkTextIter match_start;
 	GtkTextIter match_end;
 
-	if (gtk_source_search_context_backward_finish2 (search_context,
-							result,
-							&match_start,
-							&match_end,
-							NULL,
-							NULL))
+	if (gtk_source_search_context_backward_finish (search_context,
+						       result,
+						       &match_start,
+						       &match_end,
+						       NULL,
+						       NULL))
 	{
 		select_search_occurrence (search, &match_start, &match_end);
 	}

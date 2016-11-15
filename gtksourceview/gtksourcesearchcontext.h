@@ -130,7 +130,7 @@ void			 gtk_source_search_context_backward_async		(GtkSourceSearchContext	 *sear
 										 gpointer		  user_data);
 
 GTK_SOURCE_AVAILABLE_IN_3_22
-gboolean		 gtk_source_search_context_backward_finish2		(GtkSourceSearchContext  *search,
+gboolean		 gtk_source_search_context_backward_finish		(GtkSourceSearchContext  *search,
 										 GAsyncResult            *result,
 										 GtkTextIter             *match_start,
 										 GtkTextIter             *match_end,
