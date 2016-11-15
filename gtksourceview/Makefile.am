@@ -397,8 +397,8 @@ GtkSource_@GSV_API_VERSION@_gir_MSVC_FILES =	\
 	$(libgtksourceview_public_c_files)	\
 	$(BUILT_SOURCES)
 
-GtkSource_@GSV_API_VERSION@_gir_MSVC_INCLUDE_GIRS = Gtk-4.0
-GtkSource_@GSV_API_VERSION@_gir_MSVC_PACKAGES = gtk+-4.0
+GtkSource_@GSV_API_VERSION@_gir_MSVC_INCLUDE_GIRS = $(GtkSource_@GSV_API_VERSION@_gir_INCLUDES)
+GtkSource_@GSV_API_VERSION@_gir_MSVC_PACKAGES = $(GtkSource_@GSV_API_VERSION@_gir_PACKAGES)
 GtkSource_@GSV_API_VERSION@_gir_MSVC_EXPORT_PACKAGES = gtksourceview-@GSV_API_VERSION@
 GtkSource_@GSV_API_VERSION@_gir_MSVC_LIBS = gtksourceview-@GSV_API_VERSION@
 GtkSource_@GSV_API_VERSION@_gir_MSVC_CFLAGS = -I..\\..
