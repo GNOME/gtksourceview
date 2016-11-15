@@ -138,7 +138,7 @@ gboolean		 gtk_source_search_context_backward_finish		(GtkSourceSearchContext  *
 										 GError                 **error);
 
 GTK_SOURCE_AVAILABLE_IN_3_22
-gboolean		 gtk_source_search_context_replace2			(GtkSourceSearchContext  *search,
+gboolean		 gtk_source_search_context_replace			(GtkSourceSearchContext  *search,
 										 GtkTextIter             *match_start,
 										 GtkTextIter             *match_end,
 										 const gchar             *replace,

@@ -62,7 +62,7 @@
  * To search forward, use gtk_source_search_context_forward() or
  * gtk_source_search_context_forward_async() for the asynchronous version.
  * The backward search is done similarly. To replace a search match, or all
- * matches, use gtk_source_search_context_replace2() and
+ * matches, use gtk_source_search_context_replace() and
  * gtk_source_search_context_replace_all().
  *
  * The search occurrences are highlighted by default. To disable it, use
@@ -3623,7 +3623,7 @@ end:
 }
 
 /**
- * gtk_source_search_context_replace2:
+ * gtk_source_search_context_replace:
  * @search: a #GtkSourceSearchContext.
  * @match_start: the start of the match to replace.
  * @match_end: the end of the match to replace.
@@ -3645,12 +3645,12 @@ end:
  * Since: 3.22
  */
 gboolean
-gtk_source_search_context_replace2 (GtkSourceSearchContext  *search,
-				    GtkTextIter             *match_start,
-				    GtkTextIter             *match_end,
-				    const gchar             *replace,
-				    gint                     replace_length,
-				    GError                 **error)
+gtk_source_search_context_replace (GtkSourceSearchContext  *search,
+				   GtkTextIter             *match_start,
+				   GtkTextIter             *match_end,
+				   const gchar             *replace,
+				   gint                     replace_length,
+				   GError                 **error)
 {
 	GtkTextIter start;
 	GtkTextIter end;
