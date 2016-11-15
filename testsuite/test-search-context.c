@@ -447,11 +447,11 @@ check_search_results (GtkSourceBuffer        *source_buffer,
 
 		if (forward)
 		{
-			found = gtk_source_search_context_forward2 (context,
-								    &iter,
-								    &match_start,
-								    &match_end,
-								    &has_wrapped_around);
+			found = gtk_source_search_context_forward (context,
+								   &iter,
+								   &match_start,
+								   &match_end,
+								   &has_wrapped_around);
 		}
 		else
 		{
@@ -1051,11 +1051,11 @@ test_regex_at_word_boundaries (void)
 
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
 
-	found = gtk_source_search_context_forward2 (context,
-						    &iter,
-						    &match_start,
-						    &match_end,
-						    &has_wrapped_around);
+	found = gtk_source_search_context_forward (context,
+						   &iter,
+						   &match_start,
+						   &match_end,
+						   &has_wrapped_around);
 	g_assert (found);
 	g_assert (!has_wrapped_around);
 
@@ -1065,11 +1065,11 @@ test_regex_at_word_boundaries (void)
 	g_assert_cmpint (offset, ==, 4);
 
 	iter = match_end;
-	found = gtk_source_search_context_forward2 (context,
-						    &iter,
-						    &match_start,
-						    &match_end,
-						    &has_wrapped_around);
+	found = gtk_source_search_context_forward (context,
+						   &iter,
+						   &match_start,
+						   &match_end,
+						   &has_wrapped_around);
 	g_assert (found);
 	g_assert (!has_wrapped_around);
 
@@ -1147,11 +1147,11 @@ test_regex_look_behind (void)
 
 	/* Forward search */
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
-	found = gtk_source_search_context_forward2 (context,
-						    &iter,
-						    &match_start,
-						    &match_end,
-						    &has_wrapped_around);
+	found = gtk_source_search_context_forward (context,
+						   &iter,
+						   &match_start,
+						   &match_end,
+						   &has_wrapped_around);
 	g_assert (found);
 	g_assert (!has_wrapped_around);
 
@@ -1233,11 +1233,11 @@ test_regex_look_ahead (void)
 
 	/* Forward search */
 	gtk_text_buffer_get_start_iter (text_buffer, &iter);
-	found = gtk_source_search_context_forward2 (context,
-						    &iter,
-						    &match_start,
-						    &match_end,
-						    &has_wrapped_around);
+	found = gtk_source_search_context_forward (context,
+						   &iter,
+						   &match_start,
+						   &match_end,
+						   &has_wrapped_around);
 	g_assert (found);
 	g_assert (!has_wrapped_around);
 

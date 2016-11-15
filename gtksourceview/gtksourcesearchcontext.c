@@ -59,7 +59,7 @@
  * For each search, the buffer is scanned at most once. After that, navigating
  * through the occurrences doesn't require to re-scan the buffer entirely.
  *
- * To search forward, use gtk_source_search_context_forward2() or
+ * To search forward, use gtk_source_search_context_forward() or
  * gtk_source_search_context_forward_async() for the asynchronous version.
  * The backward search is done similarly. To replace a search match, or all
  * matches, use gtk_source_search_context_replace2() and
@@ -3181,7 +3181,7 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 }
 
 /**
- * gtk_source_search_context_forward2:
+ * gtk_source_search_context_forward:
  * @search: a #GtkSourceSearchContext.
  * @iter: start of search.
  * @match_start: (out) (optional): return location for start of match, or %NULL.
@@ -3204,11 +3204,11 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
  * Since: 3.22
  */
 gboolean
-gtk_source_search_context_forward2 (GtkSourceSearchContext *search,
-				    const GtkTextIter      *iter,
-				    GtkTextIter            *match_start,
-				    GtkTextIter            *match_end,
-				    gboolean               *has_wrapped_around)
+gtk_source_search_context_forward (GtkSourceSearchContext *search,
+				   const GtkTextIter      *iter,
+				   GtkTextIter            *match_start,
+				   GtkTextIter            *match_end,
+				   gboolean               *has_wrapped_around)
 {
 	GtkTextIter m_start;
 	GtkTextIter m_end;
@@ -3263,9 +3263,9 @@ gtk_source_search_context_forward2 (GtkSourceSearchContext *search,
  * @callback: a #GAsyncReadyCallback to call when the operation is finished.
  * @user_data: the data to pass to the @callback function.
  *
- * The asynchronous version of gtk_source_search_context_forward2().
+ * The asynchronous version of gtk_source_search_context_forward().
  *
- * See the documentation of gtk_source_search_context_forward2() for more
+ * See the documentation of gtk_source_search_context_forward() for more
  * details.
  *
  * See the #GAsyncResult documentation to know how to use this function.
@@ -3310,7 +3310,7 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
  * Finishes a forward search started with
  * gtk_source_search_context_forward_async().
  *
- * See the documentation of gtk_source_search_context_forward2() for more
+ * See the documentation of gtk_source_search_context_forward() for more
  * details.
  *
  * Returns: whether a match was found.

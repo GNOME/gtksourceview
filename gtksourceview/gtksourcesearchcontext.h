@@ -94,7 +94,7 @@ gint			 gtk_source_search_context_get_occurrence_position	(GtkSourceSearchContex
 										 const GtkTextIter	 *match_end);
 
 GTK_SOURCE_AVAILABLE_IN_3_22
-gboolean		 gtk_source_search_context_forward2			(GtkSourceSearchContext *search,
+gboolean		 gtk_source_search_context_forward			(GtkSourceSearchContext *search,
 										 const GtkTextIter      *iter,
 										 GtkTextIter            *match_start,
 										 GtkTextIter            *match_end,
