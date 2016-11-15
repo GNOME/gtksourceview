@@ -3373,7 +3373,7 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
 }
 
 /**
- * gtk_source_search_context_backward2:
+ * gtk_source_search_context_backward:
  * @search: a #GtkSourceSearchContext.
  * @iter: start of search.
  * @match_start: (out) (optional): return location for start of match, or %NULL.
@@ -3396,11 +3396,11 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
  * Since: 3.22
  */
 gboolean
-gtk_source_search_context_backward2 (GtkSourceSearchContext *search,
-				     const GtkTextIter      *iter,
-				     GtkTextIter            *match_start,
-				     GtkTextIter            *match_end,
-				     gboolean               *has_wrapped_around)
+gtk_source_search_context_backward (GtkSourceSearchContext *search,
+				    const GtkTextIter      *iter,
+				    GtkTextIter            *match_start,
+				    GtkTextIter            *match_end,
+				    gboolean               *has_wrapped_around)
 {
 	GtkTextIter m_start;
 	GtkTextIter m_end;
@@ -3456,9 +3456,9 @@ gtk_source_search_context_backward2 (GtkSourceSearchContext *search,
  * @callback: a #GAsyncReadyCallback to call when the operation is finished.
  * @user_data: the data to pass to the @callback function.
  *
- * The asynchronous version of gtk_source_search_context_backward2().
+ * The asynchronous version of gtk_source_search_context_backward().
  *
- * See the documentation of gtk_source_search_context_backward2() for more
+ * See the documentation of gtk_source_search_context_backward() for more
  * details.
  *
  * See the #GAsyncResult documentation to know how to use this function.
@@ -3503,7 +3503,7 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
  * Finishes a backward search started with
  * gtk_source_search_context_backward_async().
  *
- * See the documentation of gtk_source_search_context_backward2() for more
+ * See the documentation of gtk_source_search_context_backward() for more
  * details.
  *
  * Returns: whether a match was found.
