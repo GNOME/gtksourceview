@@ -2592,17 +2592,7 @@ static void
 set_settings (GtkSourceSearchContext  *search,
 	      GtkSourceSearchSettings *settings)
 {
-	if (search->priv->settings != NULL)
-	{
-		g_warning ("The GtkSourceSearchContext:settings property "
-			   "will become a construct-only property in a future version.");
-
-		g_signal_handlers_disconnect_by_func (search->priv->settings,
-						      settings_notify_cb,
-						      search);
-
-		g_object_unref (search->priv->settings);
-	}
+	g_assert (search->priv->settings == NULL);
 
 	if (settings != NULL)
 	{
@@ -2782,6 +2772,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * The #GtkSourceSearchSettings associated to the search context.
 	 *
+	 * This property is construct-only since version 4.0.
+	 *
 	 * Since: 3.10
 	 */
 	g_object_class_install_property (object_class,
@@ -2791,7 +2783,7 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 							      "The associated GtkSourceSearchSettings",
 							      GTK_SOURCE_TYPE_SEARCH_SETTINGS,
 							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT |
+							      G_PARAM_CONSTRUCT_ONLY |
 							      G_PARAM_STATIC_STRINGS));
 
 	/**

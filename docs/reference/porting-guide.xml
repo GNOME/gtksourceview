@@ -118,6 +118,12 @@
           <link linkend="gtk-source-search-context-replace">gtk_source_search_context_replace()</link>.
         </para>
       </listitem>
+      <listitem>
+        <para>
+          The <link linkend="GtkSourceSearchContext--settings">GtkSourceSearchContext:settings</link>
+          property is now construct-only.
+        </para>
+      </listitem>
     </itemizedlist>
   </refsect1>
 </part>
