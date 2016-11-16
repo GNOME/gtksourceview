@@ -57,7 +57,7 @@ struct _GtkSourceCompletionItemClass {
 GTK_SOURCE_AVAILABLE_IN_ALL
 GType 			 gtk_source_completion_item_get_type 		(void) G_GNUC_CONST;
 
-GTK_SOURCE_AVAILABLE_IN_3_24
+GTK_SOURCE_AVAILABLE_IN_4_0
 GtkSourceCompletionItem *gtk_source_completion_item_new			(void);
 
 GTK_SOURCE_AVAILABLE_IN_3_24

@@ -380,7 +380,7 @@ gtk_source_completion_item_init (GtkSourceCompletionItem *item)
  * afterwards.
  *
  * Returns: (transfer full): a new #GtkSourceCompletionItem.
- * Since: 3.24
+ * Since: 4.0
  */
 GtkSourceCompletionItem *
 gtk_source_completion_item_new (void)
