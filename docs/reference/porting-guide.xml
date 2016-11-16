@@ -78,4 +78,46 @@
       </listitem>
     </itemizedlist>
   </refsect1>
+
+  <refsect1>
+    <title>GtkSourceView 3.99.2</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <code>gtk_source_completion_item_new2()</code> has been renamed to
+          <link linkend="gtk-source-completion-item-new">gtk_source_completion_item_new()</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <code>gtk_source_search_context_forward2()</code> has been renamed to
+          <link linkend="gtk-source-search-context-forward">gtk_source_search_context_forward()</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <code>gtk_source_search_context_forward_finish2()</code> has been renamed to
+          <link linkend="gtk-source-search-context-forward-finish">gtk_source_search_context_forward_finish()</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <code>gtk_source_search_context_backward2()</code> has been renamed to
+          <link linkend="gtk-source-search-context-backward">gtk_source_search_context_backward()</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <code>gtk_source_search_context_backward_finish2()</code> has been renamed to
+          <link linkend="gtk-source-search-context-backward-finish">gtk_source_search_context_backward_finish()</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <code>gtk_source_search_context_replace2()</code> has been renamed to
+          <link linkend="gtk-source-search-context-replace">gtk_source_search_context_replace()</link>.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsect1>
 </part>
