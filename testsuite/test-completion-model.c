@@ -97,12 +97,12 @@ create_proposals (void)
 	GtkSourceCompletionItem *item;
 	GList *list = NULL;
 
-	item = gtk_source_completion_item_new2 ();
+	item = gtk_source_completion_item_new ();
 	gtk_source_completion_item_set_label (item, "Bilbo");
 	gtk_source_completion_item_set_text (item, "Bilbo");
 	list = g_list_prepend (list, item);
 
-	item = gtk_source_completion_item_new2 ();
+	item = gtk_source_completion_item_new ();
 	gtk_source_completion_item_set_label (item, "Frodo");
 	gtk_source_completion_item_set_text (item, "Frodo");
 	list = g_list_prepend (list, item);

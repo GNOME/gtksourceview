@@ -374,7 +374,7 @@ gtk_source_completion_item_init (GtkSourceCompletionItem *item)
 }
 
 /**
- * gtk_source_completion_item_new2:
+ * gtk_source_completion_item_new:
  *
  * Creates a new #GtkSourceCompletionItem. The desired properties need to be set
  * afterwards.
@@ -383,7 +383,7 @@ gtk_source_completion_item_init (GtkSourceCompletionItem *item)
  * Since: 3.24
  */
 GtkSourceCompletionItem *
-gtk_source_completion_item_new2 (void)
+gtk_source_completion_item_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_ITEM, NULL);
 }

@@ -197,20 +197,20 @@ test_provider_set_fixed (TestProvider *provider,
 
 	g_list_free_full (provider->proposals, g_object_unref);
 
-	item = gtk_source_completion_item_new2 ();
+	item = gtk_source_completion_item_new ();
 	gtk_source_completion_item_set_markup (item, "A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!");
 	gtk_source_completion_item_set_text (item, "A very long proposal. I repeat, a very long proposal!");
 	gtk_source_completion_item_set_icon (item, provider->item_icon);
 	gtk_source_completion_item_set_info (item, "To test the horizontal scrollbar and the markup.");
 	proposals = g_list_prepend (proposals, item);
 
-	item = gtk_source_completion_item_new2 ();
+	item = gtk_source_completion_item_new ();
 	gtk_source_completion_item_set_markup (item, "A proposal with a <b>symbolic</b> icon");
 	gtk_source_completion_item_set_text (item, "Test setting the icon-name property");
 	gtk_source_completion_item_set_icon_name (item, "face-cool-symbolic");
 	proposals = g_list_prepend (proposals, item);
 
-	item = gtk_source_completion_item_new2 ();
+	item = gtk_source_completion_item_new ();
 	gtk_source_completion_item_set_markup (item, "A proposal with an emblem <b>GIcon</b>");
 	gtk_source_completion_item_set_text (item, "Test setting the GIcon property");
 	gtk_source_completion_item_set_gicon (item, provider->item_gicon);
@@ -220,7 +220,7 @@ test_provider_set_fixed (TestProvider *provider,
 	{
 		gchar *name = g_strdup_printf ("Proposal %d", i);
 
-		item = gtk_source_completion_item_new2 ();
+		item = gtk_source_completion_item_new ();
 		gtk_source_completion_item_set_label (item, name);
 		gtk_source_completion_item_set_text (item, name);
 		gtk_source_completion_item_set_icon (item, provider->item_icon);
@@ -249,7 +249,7 @@ test_provider_set_random (TestProvider *provider,
 		gchar *padding = g_strnfill ((i * 3) % 10, 'o');
 		gchar *name = g_strdup_printf ("Propo%ssal %d", padding, i);
 
-		item = gtk_source_completion_item_new2 ();
+		item = gtk_source_completion_item_new ();
 		gtk_source_completion_item_set_label (item, name);
 		gtk_source_completion_item_set_text (item, name);
 		gtk_source_completion_item_set_icon (item, provider->item_icon);
