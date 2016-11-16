@@ -1,3 +1,23 @@
+News in 3.99.2
+--------------
+
+This is an intermediate version towards GtkSourceView 4.0. GtkSourceView 4.0
+will still depend on GTK+ 3, and will be released in March 2017.
+
+* gtk_source_completion_item_new2() has been renamed to
+  gtk_source_completion_item_new().
+* gtk_source_search_context_forward2() has been renamed to
+  gtk_source_search_context_forward().
+* gtk_source_search_context_forward_finish2() has been renamed to
+  gtk_source_search_context_forward_finish().
+* gtk_source_search_context_backward2() has been renamed to
+  gtk_source_search_context_backward().
+* gtk_source_search_context_backward_finish2() has been renamed to
+  gtk_source_search_context_backward_finish().
+* gtk_source_search_context_replace2() has been renamed to
+  gtk_source_search_context_replace().
+* The GtkSourceSearchContext:settings property is now construct-only.
+
 News in 3.99.1
 --------------
 
