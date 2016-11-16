@@ -93,7 +93,7 @@ gint			 gtk_source_search_context_get_occurrence_position	(GtkSourceSearchContex
 										 const GtkTextIter	 *match_start,
 										 const GtkTextIter	 *match_end);
 
-GTK_SOURCE_AVAILABLE_IN_3_22
+GTK_SOURCE_AVAILABLE_IN_4_0
 gboolean		 gtk_source_search_context_forward			(GtkSourceSearchContext *search,
 										 const GtkTextIter      *iter,
 										 GtkTextIter            *match_start,
@@ -107,7 +107,7 @@ void			 gtk_source_search_context_forward_async		(GtkSourceSearchContext	 *searc
 										 GAsyncReadyCallback	  callback,
 										 gpointer		  user_data);
 
-GTK_SOURCE_AVAILABLE_IN_3_22
+GTK_SOURCE_AVAILABLE_IN_4_0
 gboolean		 gtk_source_search_context_forward_finish		(GtkSourceSearchContext  *search,
 										 GAsyncResult            *result,
 										 GtkTextIter             *match_start,
@@ -115,7 +115,7 @@ gboolean		 gtk_source_search_context_forward_finish		(GtkSourceSearchContext  *s
 										 gboolean                *has_wrapped_around,
 										 GError                 **error);
 
-GTK_SOURCE_AVAILABLE_IN_3_22
+GTK_SOURCE_AVAILABLE_IN_4_0
 gboolean		 gtk_source_search_context_backward			(GtkSourceSearchContext *search,
 										 const GtkTextIter      *iter,
 										 GtkTextIter            *match_start,
@@ -129,7 +129,7 @@ void			 gtk_source_search_context_backward_async		(GtkSourceSearchContext	 *sear
 										 GAsyncReadyCallback	  callback,
 										 gpointer		  user_data);
 
-GTK_SOURCE_AVAILABLE_IN_3_22
+GTK_SOURCE_AVAILABLE_IN_4_0
 gboolean		 gtk_source_search_context_backward_finish		(GtkSourceSearchContext  *search,
 										 GAsyncResult            *result,
 										 GtkTextIter             *match_start,
@@ -137,7 +137,7 @@ gboolean		 gtk_source_search_context_backward_finish		(GtkSourceSearchContext  *
 										 gboolean                *has_wrapped_around,
 										 GError                 **error);
 
-GTK_SOURCE_AVAILABLE_IN_3_22
+GTK_SOURCE_AVAILABLE_IN_4_0
 gboolean		 gtk_source_search_context_replace			(GtkSourceSearchContext  *search,
 										 GtkTextIter             *match_start,
 										 GtkTextIter             *match_end,

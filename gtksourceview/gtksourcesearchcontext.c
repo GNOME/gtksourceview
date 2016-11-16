@@ -3201,7 +3201,7 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
  * the same value as the #GtkSourceSearchSettings:wrap-around property.
  *
  * Returns: whether a match was found.
- * Since: 3.22
+ * Since: 4.0
  */
 gboolean
 gtk_source_search_context_forward (GtkSourceSearchContext *search,
@@ -3314,7 +3314,7 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
  * details.
  *
  * Returns: whether a match was found.
- * Since: 3.22
+ * Since: 4.0
  */
 gboolean
 gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
@@ -3393,7 +3393,7 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
  * the same value as the #GtkSourceSearchSettings:wrap-around property.
  *
  * Returns: whether a match was found.
- * Since: 3.22
+ * Since: 4.0
  */
 gboolean
 gtk_source_search_context_backward (GtkSourceSearchContext *search,
@@ -3507,7 +3507,7 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
  * details.
  *
  * Returns: whether a match was found.
- * Since: 3.22
+ * Since: 4.0
  */
 gboolean
 gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
@@ -3642,7 +3642,7 @@ end:
  * backreferences; read the g_regex_replace() documentation for more details.
  *
  * Returns: whether the match has been replaced.
- * Since: 3.22
+ * Since: 4.0
  */
 gboolean
 gtk_source_search_context_replace (GtkSourceSearchContext  *search,
