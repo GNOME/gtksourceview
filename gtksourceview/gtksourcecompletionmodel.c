@@ -79,7 +79,7 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionModel,
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL,
                                                 tree_model_iface_init))
 
-/* Utilities functions */
+/* Utility functions */
 
 static gboolean
 is_header (ProposalInfo *info)

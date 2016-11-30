@@ -190,7 +190,7 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceUndoManagerDefault,
                          G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_UNDO_MANAGER,
                                                 gtk_source_undo_manager_iface_init))
 
-/* Utilities functions */
+/* Utility functions */
 
 static Action *
 action_new (void)

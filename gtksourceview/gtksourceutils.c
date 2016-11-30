@@ -27,9 +27,9 @@
 /**
  * SECTION:utils
  * @title: GtkSourceUtils
- * @short_description: Utilities functions
+ * @short_description: Utility functions
  *
- * Utilities functions.
+ * Utility functions.
  */
 
 #include "gtksourceutils.h"

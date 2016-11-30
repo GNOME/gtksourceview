@@ -89,7 +89,7 @@ test_provider_new (void)
 	return g_object_new (test_provider_get_type (), NULL);
 }
 
-/* Utilities functions */
+/* Utility functions */
 
 static GList *
 create_proposals (void)
