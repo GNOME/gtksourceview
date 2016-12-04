@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksour"
 "ceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-08-15 08:31+0000\n"
-"PO-Revision-Date: 2016-08-28 10:56+0200\n"
+"POT-Creation-Date: 2016-11-05 13:02+0000\n"
+"PO-Revision-Date: 2016-12-04 11:52+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
@@ -742,7 +742,6 @@ msgstr "Издање"
 
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:25
-#| msgid "C/C++/ObjC Header"
 msgid "C/ObjC Header"
 msgstr "Ц/ОбјЦ заглавље"
 
@@ -860,7 +859,6 @@ msgstr "Димензије"
 
 #. (itstool) path: styles/style@_name
 #: css.lang:57
-#| msgid "Known Property Value"
 msgid "Property Value"
 msgstr "Вредност особине"
 
@@ -3104,12 +3102,14 @@ msgstr "Грешка приликом претварања: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
-msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+#| msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Претварање из скупа знакова „%s“ у „UTF-8“ није подржано"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
-msgid "Could not open converter from '%s' to 'UTF-8'"
+#| msgid "Could not open converter from '%s' to 'UTF-8'"
+msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Не могу да покренем претварање из „%s“ у „UTF-8“"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:996
@@ -3134,8 +3134,9 @@ msgid "Show detailed proposal information"
 msgstr "Приказује опширне податке предлога"
 
 #: gtksourceview/gtksourcecompletion.ui:89
-msgid "_Details..."
-msgstr "_Појединости..."
+#| msgid "_Details..."
+msgid "_Details…"
+msgstr "_Појединости…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -3162,34 +3163,41 @@ msgstr ""
 
 #: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
-msgid "context '%s' cannot contain a \\%%{...@start} command"
+#| msgid "context '%s' cannot contain a \\%%{...@start} command"
+msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "контекст „%s“ не може да садржи \\%%{...@start} наредбу"
 
 #: gtksourceview/gtksourcecontextengine.c:5875
 #: gtksourceview/gtksourcecontextengine.c:5966
 #, c-format
-msgid "duplicated context id '%s'"
+#| msgid "duplicated context id '%s'"
+msgid "duplicated context id “%s”"
 msgstr "поновљени идентификатор контекста „%s“"
 
 #: gtksourceview/gtksourcecontextengine.c:6080
 #: gtksourceview/gtksourcecontextengine.c:6140
 #, c-format
+#| msgid ""
+#| "style override used with wildcard context reference in language '%s' in "
+#| "ref '%s'"
 msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
 "преклапање стила коришћено са џокер референцом контекста у језику „%s“ и "
 "референци „%s“"
 
 #: gtksourceview/gtksourcecontextengine.c:6154
 #, c-format
-msgid "invalid context reference '%s'"
+#| msgid "invalid context reference '%s'"
+msgid "invalid context reference “%s”"
 msgstr "неисправна референца контекста „%s“"
 
 #: gtksourceview/gtksourcecontextengine.c:6173
 #: gtksourceview/gtksourcecontextengine.c:6183
 #, c-format
-msgid "unknown context '%s'"
+#| msgid "unknown context '%s'"
+msgid "unknown context “%s”"
 msgstr "непознати контекст „%s“"
 
 #: gtksourceview/gtksourcecontextengine.c:6282
@@ -3359,12 +3367,14 @@ msgstr "Међумеморија садржи неисправне знаке."
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
-msgid "Unknown id '%s' in regex '%s'"
+#| msgid "Unknown id '%s' in regex '%s'"
+msgid "Unknown id “%s” in regex “%s”"
 msgstr "Непозната идентификација „%s“ у регуларном изразу „%s“"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
-msgid "in regex '%s': backreferences are not supported"
+#| msgid "in regex '%s': backreferences are not supported"
+msgid "in regex “%s”: backreferences are not supported"
 msgstr "у регуларном изразу „%s“: повратне референце нису подржане"
 
 #: gtksourceview/gtksourceregex.c:129
@@ -3385,32 +3395,32 @@ msgid "_Select"
 msgstr "_Изабери"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1722
+#: gtksourceview/gtksourceview.c:1777
 msgid "_Redo"
 msgstr "_Понови"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1733
+#: gtksourceview/gtksourceview.c:1788
 msgid "_Undo"
 msgstr "_Опозови"
 
-#: gtksourceview/gtksourceview.c:1752
+#: gtksourceview/gtksourceview.c:1807
 msgid "All _Upper Case"
 msgstr "Сва _велика слова"
 
-#: gtksourceview/gtksourceview.c:1762
+#: gtksourceview/gtksourceview.c:1817
 msgid "All _Lower Case"
 msgstr "Сва _мала слова"
 
-#: gtksourceview/gtksourceview.c:1772
+#: gtksourceview/gtksourceview.c:1827
 msgid "_Invert Case"
 msgstr "_Обрни величину слова"
 
-#: gtksourceview/gtksourceview.c:1782
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "Величина слова _наслова"
 
-#: gtksourceview/gtksourceview.c:1792
+#: gtksourceview/gtksourceview.c:1847
 msgid "C_hange Case"
 msgstr "_Измени величину слова"
 
