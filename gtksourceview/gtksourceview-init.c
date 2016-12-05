@@ -37,7 +37,8 @@
 #include "gtksourcestyleschememanager.h"
 
 #ifdef G_OS_WIN32
-#include <windef.h>
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 
 static HMODULE gtksourceview_dll;
 #endif
