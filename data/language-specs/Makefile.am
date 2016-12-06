@@ -2,6 +2,7 @@ TESTS = check-language.sh
 
 LANGUAGES =			\
 	actionscript.lang	\
+	abnf.lang		\
 	ada.lang		\
 	ansforth94.lang		\
 	asp.lang		\
