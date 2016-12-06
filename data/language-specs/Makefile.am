@@ -49,6 +49,7 @@ LANGUAGES =			\
 	haddock.lang		\
 	haskell.lang		\
 	haskell-literate.lang	\
+	haxe.lang		\
 	html.lang		\
 	idl.lang		\
 	idl-exelis.lang		\
