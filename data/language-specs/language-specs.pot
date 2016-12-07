@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-08-10 12:38+0200\n"
+"POT-Creation-Date: 2016-12-07 12:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -9,11 +9,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. (itstool) path: actionscript.lang/language@_name
-#: actionscript.lang:25
-msgid "ActionScript"
+#. (itstool) path: abnf.lang/language@_name
+#: abnf.lang:31
+msgid "ABNF"
 msgstr ""
 
+#. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
 #. (itstool) path: ada.lang/language@_section
 #. (itstool) path: ansforth94.lang/language@_section
@@ -71,6 +72,7 @@ msgstr ""
 #. (itstool) path: vbnet.lang/language@_section
 #. (itstool) path: verilog.lang/language@_section
 #. (itstool) path: vhdl.lang/language@_section
+#: abnf.lang:31
 #: actionscript.lang:25
 #: ada.lang:26
 #: ansforth94.lang:25
@@ -132,6 +134,7 @@ msgid "Source"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
+#: abnf.lang:38
 #: actionscript.lang:35
 #: ada.lang:34
 #: ansforth94.lang:39
@@ -161,7 +164,7 @@ msgstr ""
 #: idl-exelis.lang:28
 #: idl.lang:32
 #: ini.lang:31
-#: jade.lang:33
+#: jade.lang:32
 #: java.lang:35
 #: j.lang:32
 #: latex.lang:33
@@ -186,7 +189,7 @@ msgstr ""
 #: protobuf.lang:31
 #: rst.lang:36
 #: ruby.lang:36
-#: rust.lang:45
+#: rust.lang:46
 #: scala.lang:38
 #: scheme.lang:32
 #: scilab.lang:31
@@ -207,35 +210,60 @@ msgid "Comment"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:36
-#: cg.lang:34
-#: c.lang:54
-#: cobol.lang:43
-#: csharp.lang:38
-#: css.lang:48
-#: def.lang:102
-#: d.lang:41
-#: dot.lang:35
-#: go.lang:36
-#: html.lang:39
-#: jade.lang:41
-#: j.lang:35
-#: json.lang:42
-#: nemerle.lang:35
-#: ocaml.lang:53
-#: ooc.lang:34
-#: opal.lang:36
-#: perl.lang:48
-#: php.lang:41
-#: prolog.lang:40
-#: scala.lang:36
-#: vala.lang:39
-#: verilog.lang:38
-#: xml.lang:45
-msgid "Error"
+#: abnf.lang:39
+msgid "Rule Name"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
+#: abnf.lang:40
+#: d.lang:50
+#: nemerle.lang:45
+msgid "Binary number"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: abnf.lang:41
+#: ada.lang:37
+#: bennugd.lang:39
+#: cg.lang:43
+#: c.lang:48
+#: csharp.lang:49
+#: csv.lang:31
+#: def.lang:67
+#: d.lang:49
+#: eiffel.lang:45
+#: erlang.lang:39
+#: fsharp.lang:37
+#: go.lang:45
+#: idl-exelis.lang:34
+#: nemerle.lang:44
+#: ocaml.lang:40
+#: ooc.lang:45
+#: opal.lang:40
+#: php.lang:55
+#: python3.lang:40
+#: python.lang:46
+#: ruby.lang:43
+msgid "Decimal number"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: abnf.lang:42
+#: bennugd.lang:40
+#: cg.lang:45
+#: c.lang:50
+#: csharp.lang:50
+#: d.lang:52
+#: eiffel.lang:46
+#: go.lang:47
+#: nemerle.lang:47
+#: ooc.lang:47
+#: php.lang:57
+msgid "Hexadecimal number"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: abnf.lang:43
 #: actionscript.lang:37
 #: ada.lang:35
 #: ansforth94.lang:43
@@ -291,7 +319,7 @@ msgstr ""
 #: python3.lang:34
 #: python.lang:39
 #: ruby.lang:46
-#: rust.lang:46
+#: rust.lang:47
 #: scala.lang:39
 #: scheme.lang:34
 #: scilab.lang:33
@@ -306,6 +334,41 @@ msgstr ""
 #: vhdl.lang:33
 #: yaml.lang:32
 msgid "String"
+msgstr ""
+
+#. (itstool) path: actionscript.lang/language@_name
+#: actionscript.lang:25
+msgid "ActionScript"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:36
+#: cg.lang:34
+#: c.lang:54
+#: cobol.lang:43
+#: csharp.lang:38
+#: css.lang:48
+#: def.lang:102
+#: d.lang:41
+#: dot.lang:35
+#: go.lang:36
+#: html.lang:39
+#: jade.lang:40
+#: j.lang:35
+#: json.lang:42
+#: nemerle.lang:35
+#: ocaml.lang:53
+#: ooc.lang:34
+#: opal.lang:36
+#: perl.lang:48
+#: php.lang:41
+#: prolog.lang:40
+#: rust.lang:57
+#: scala.lang:36
+#: vala.lang:39
+#: verilog.lang:38
+#: xml.lang:45
+msgid "Error"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
@@ -404,7 +467,7 @@ msgstr ""
 #: python.lang:37
 #: R.lang:34
 #: ruby.lang:39
-#: rust.lang:48
+#: rust.lang:49
 #: scala.lang:43
 #: scheme.lang:35
 #: scilab.lang:34
@@ -465,7 +528,7 @@ msgstr ""
 #: protobuf.lang:36
 #: R.lang:39
 #: ruby.lang:41
-#: rust.lang:50
+#: rust.lang:51
 #: sml.lang:40
 #: vala.lang:43
 #: vbnet.lang:38
@@ -488,7 +551,7 @@ msgstr ""
 #: llvm.lang:39
 #: netrexx.lang:48
 #: prolog.lang:38
-#: rust.lang:52
+#: rust.lang:53
 #: scala.lang:45
 #: vhdl.lang:40
 msgid "Number"
@@ -541,7 +604,7 @@ msgstr ""
 #: php.lang:51
 #: pig.lang:36
 #: protobuf.lang:34
-#: rust.lang:49
+#: rust.lang:50
 #: scala.lang:47
 #: sml.lang:34
 #: sparql.lang:34
@@ -555,31 +618,6 @@ msgstr ""
 #. (itstool) path: ada.lang/language@_name
 #: ada.lang:26
 msgid "Ada"
-msgstr ""
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:37
-#: bennugd.lang:39
-#: cg.lang:43
-#: c.lang:48
-#: csharp.lang:49
-#: csv.lang:31
-#: def.lang:67
-#: d.lang:49
-#: eiffel.lang:45
-#: erlang.lang:39
-#: fsharp.lang:37
-#: go.lang:45
-#: idl-exelis.lang:34
-#: nemerle.lang:44
-#: ocaml.lang:40
-#: ooc.lang:45
-#: opal.lang:40
-#: php.lang:55
-#: python3.lang:40
-#: python.lang:46
-#: ruby.lang:43
-msgid "Decimal number"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
@@ -675,7 +713,7 @@ msgstr ""
 #: julia.lang:38
 #: nemerle.lang:37
 #: netrexx.lang:37
-#: rust.lang:47
+#: rust.lang:48
 #: sml.lang:35
 #: vhdl.lang:34
 msgid "Character"
@@ -912,7 +950,7 @@ msgstr ""
 #: def.lang:79
 #: llvm.lang:36
 #: php.lang:43
-#: rust.lang:51
+#: rust.lang:52
 msgid "Identifier"
 msgstr ""
 
@@ -935,20 +973,6 @@ msgstr ""
 #: R.lang:41
 #: ruby.lang:42
 msgid "Floating point number"
-msgstr ""
-
-#. (itstool) path: styles/style@_name
-#: bennugd.lang:40
-#: cg.lang:45
-#: c.lang:50
-#: csharp.lang:50
-#: d.lang:52
-#: eiffel.lang:46
-#: go.lang:47
-#: nemerle.lang:47
-#: ooc.lang:47
-#: php.lang:57
-msgid "Hexadecimal number"
 msgstr ""
 
 #. (itstool) path: bibtex.lang/language@_name
@@ -980,7 +1004,7 @@ msgstr ""
 #: gtk-doc.lang:25
 #: haddock.lang:24
 #: html.lang:25
-#: jade.lang:26
+#: jade.lang:25
 #: latex.lang:25
 #: mallard.lang:23
 #: markdown.lang:26
@@ -1023,7 +1047,7 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: bluespec.lang:33
-#: rust.lang:54
+#: rust.lang:55
 msgid "Attribute"
 msgstr ""
 
@@ -1641,12 +1665,6 @@ msgstr ""
 msgid "Special Token"
 msgstr ""
 
-#. (itstool) path: styles/style@_name
-#: d.lang:50
-#: nemerle.lang:45
-msgid "Binary number"
-msgstr ""
-
 #. (itstool) path: docbook.lang/language@_name
 #: docbook.lang:24
 msgid "DocBook"
@@ -1692,7 +1710,7 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: dot.lang:37
-#: jade.lang:37
+#: jade.lang:36
 #: xml.lang:40
 msgid "Attribute name"
 msgstr ""
@@ -2281,42 +2299,42 @@ msgid ".ini"
 msgstr ""
 
 #. (itstool) path: jade.lang/language@_name
-#: jade.lang:26
+#: jade.lang:25
 msgid "Jade"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: jade.lang:34
+#: jade.lang:33
 #: xml.lang:36
 msgid "DOCTYPE"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: jade.lang:35
+#: jade.lang:34
 #: xml.lang:38
 msgid "Processing instruction"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: jade.lang:36
+#: jade.lang:35
 #: mxml.lang:32
 #: xml.lang:39
 msgid "Element name"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: jade.lang:38
+#: jade.lang:37
 #: xml.lang:41
 msgid "Attribute value"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: jade.lang:39
+#: jade.lang:38
 msgid "Tags"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: jade.lang:40
+#: jade.lang:39
 #: xml.lang:42
 msgid "Entity"
 msgstr ""
@@ -2431,7 +2449,7 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: julia.lang:45
-#: rust.lang:55
+#: rust.lang:56
 msgid "Macro"
 msgstr ""
 
@@ -3331,7 +3349,7 @@ msgid "Rust"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: rust.lang:53
+#: rust.lang:54
 msgid "Scope"
 msgstr ""
 
