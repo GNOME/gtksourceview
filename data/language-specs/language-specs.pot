@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-12-07 12:34+0100\n"
+"POT-Creation-Date: 2016-12-08 09:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,6 +42,7 @@ msgstr ""
 #. (itstool) path: go.lang/language@_section
 #. (itstool) path: haskell.lang/language@_section
 #. (itstool) path: haskell-literate.lang/language@_section
+#. (itstool) path: haxe.lang/language@_section
 #. (itstool) path: idl.lang/language@_section
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
@@ -100,6 +101,7 @@ msgstr ""
 #: go.lang:25
 #: haskell.lang:25
 #: haskell-literate.lang:24
+#: haxe.lang:35
 #: idl.lang:24
 #: java.lang:25
 #: j.lang:24
@@ -160,6 +162,7 @@ msgstr ""
 #: go.lang:35
 #: gtkrc.lang:33
 #: haskell.lang:34
+#: haxe.lang:48
 #: html.lang:34
 #: idl-exelis.lang:28
 #: idl.lang:32
@@ -287,6 +290,7 @@ msgstr ""
 #: go.lang:37
 #: gtkrc.lang:34
 #: haskell.lang:39
+#: haxe.lang:55
 #: idl-exelis.lang:32
 #: idl.lang:36
 #: imagej.lang:40
@@ -352,6 +356,7 @@ msgstr ""
 #: d.lang:41
 #: dot.lang:35
 #: go.lang:36
+#: haxe.lang:62
 #: html.lang:39
 #: jade.lang:40
 #: j.lang:35
@@ -373,6 +378,7 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:38
+#: haxe.lang:49
 #: java.lang:41
 #: ooc.lang:37
 #: scala.lang:37
@@ -381,6 +387,7 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:39
+#: haxe.lang:51
 #: java.lang:42
 #: ooc.lang:38
 #: scala.lang:41
@@ -392,6 +399,7 @@ msgstr ""
 #: ada.lang:39
 #: cg.lang:40
 #: c.lang:44
+#: haxe.lang:52
 #: java.lang:43
 #: ooc.lang:39
 msgid "Storage Class"
@@ -436,6 +444,7 @@ msgstr ""
 #: go.lang:39
 #: gtkrc.lang:35
 #: haskell.lang:37
+#: haxe.lang:54
 #: idl-exelis.lang:31
 #: idl.lang:35
 #: imagej.lang:38
@@ -493,6 +502,7 @@ msgstr ""
 #: d.lang:46
 #: fsharp.lang:52
 #: genie.lang:43
+#: haxe.lang:58
 #: java.lang:46
 #: javascript.lang:38
 #: json.lang:40
@@ -516,6 +526,7 @@ msgstr ""
 #: fsharp.lang:50
 #: go.lang:48
 #: gtkrc.lang:40
+#: haxe.lang:57
 #: ini.lang:38
 #: java.lang:47
 #: llvm.lang:38
@@ -545,6 +556,7 @@ msgstr ""
 #: desktop.lang:38
 #: forth.lang:39
 #: genie.lang:45
+#: haxe.lang:56
 #: java.lang:48
 #: j.lang:42
 #: julia.lang:39
@@ -586,6 +598,7 @@ msgstr ""
 #: go.lang:40
 #: gtkrc.lang:37
 #: haskell.lang:38
+#: haxe.lang:59
 #: idl-exelis.lang:29
 #: idl.lang:33
 #: ini.lang:37
@@ -632,6 +645,7 @@ msgstr ""
 #: fsharp.lang:51
 #: glsl.lang:41
 #: haskell.lang:33
+#: haxe.lang:50
 #: idl-exelis.lang:30
 #: idl.lang:34
 #: nemerle.lang:36
@@ -664,6 +678,7 @@ msgstr ""
 #: fsharp.lang:49
 #: go.lang:42
 #: haskell.lang:41
+#: haxe.lang:63
 #: imagej.lang:37
 #: java.lang:36
 #: javascript.lang:37
@@ -2214,6 +2229,34 @@ msgstr ""
 msgid "Literate Haskell"
 msgstr ""
 
+#. (itstool) path: haxe.lang/language@_name
+#: haxe.lang:35
+msgid "Haxe"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: haxe.lang:53
+#: rust.lang:54
+msgid "Scope"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: haxe.lang:60
+msgid "Metadata"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: haxe.lang:61
+#: julia.lang:45
+#: rust.lang:56
+msgid "Macro"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: haxe.lang:64
+msgid "Identifier Prefix"
+msgstr ""
+
 #. (itstool) path: html.lang/language@_name
 #: html.lang:25
 msgid "HTML"
@@ -2445,12 +2488,6 @@ msgstr ""
 #: R.lang:38
 #: scala.lang:44
 msgid "Special Constant"
-msgstr ""
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:45
-#: rust.lang:56
-msgid "Macro"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
@@ -3346,11 +3383,6 @@ msgstr ""
 #. (itstool) path: rust.lang/language@_name
 #: rust.lang:36
 msgid "Rust"
-msgstr ""
-
-#. (itstool) path: styles/style@_name
-#: rust.lang:54
-msgid "Scope"
 msgstr ""
 
 #. (itstool) path: scala.lang/language@_name
