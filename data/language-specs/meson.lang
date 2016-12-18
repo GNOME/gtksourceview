@@ -32,6 +32,7 @@
     <style id="builtin-command" _name="Builtin Command" map-to="def:function"/>
     <style id="operator" _name="Operator" map-to="def:operator"/>
     <style id="string" _name="String" map-to="def:string" />
+    <style id="boolean" _name="Boolean" map-to="def:boolean"/>
   </styles>
 
   <definitions>
@@ -45,9 +46,15 @@
       <end>'</end>
     </context>
 
+    <!-- https://github.com/mesonbuild/meson/wiki/Reference%20manual -->
     <context id="builtin-command" style-ref="builtin-command">
       <prefix>(?i)</prefix>
       <keyword>add_global_arguments</keyword>
+      <keyword>add_global_link_arguments</keyword>
+      <keyword>add_languages</keyword>
+      <keyword>add_project_arguments</keyword>
+      <keyword>add_project_link_arguments</keyword>
+      <keyword>benchmark</keyword>
       <keyword>build_target</keyword>
       <keyword>configuration_data</keyword>
       <keyword>configure_file</keyword>
@@ -55,23 +62,26 @@
       <keyword>declare_dependency</keyword>
       <keyword>dependency</keyword>
       <keyword>error</keyword>
+      <keyword>environment</keyword>
       <keyword>executable</keyword>
       <keyword>find_program</keyword>
       <keyword>find_library</keyword>
       <keyword>files</keyword>
       <keyword>generator</keyword>
       <keyword>get_option</keyword>
-      <keyword>gettext</keyword>
+      <keyword>get_variable</keyword>
+      <keyword>import</keyword>
       <keyword>include_directories</keyword>
       <keyword>install_data</keyword>
       <keyword>install_headers</keyword>
       <keyword>install_man</keyword>
       <keyword>install_subdir</keyword>
       <keyword>is_subproject</keyword>
+      <keyword>is_variable</keyword>
       <keyword>jar</keyword>
+      <keyword>join_paths</keyword>
       <keyword>library</keyword>
       <keyword>message</keyword>
-      <keyword>pkgconfig_gen</keyword>
       <keyword>project</keyword>
       <keyword>run_command</keyword>
       <keyword>run_target</keyword>
@@ -82,6 +92,9 @@
       <keyword>subproject</keyword>
       <keyword>test</keyword>
       <keyword>vcs_tag</keyword>
+
+      <!-- Used in option file -->
+      <keyword>option</keyword>
     </context>
 
     <context id="operator" style-ref="operator">
@@ -93,12 +106,26 @@
       <keyword>endforeach</keyword>
     </context>
 
+    <context id="boolean" style-ref="boolean">
+      <prefix>(?&lt;![\w\.])</prefix>
+      <keyword>false</keyword>
+      <keyword>true</keyword>
+    </context>
+
+    <context id="keywords" style-ref="keyword">
+      <keyword>and</keyword>
+      <keyword>not</keyword>
+      <keyword>or</keyword>
+    </context>
+
     <context id="meson" class="no-spell-check">
       <include>
         <context ref="multiline-string"/>
         <context ref="string"/>
         <context ref="builtin-command"/>
         <context ref="operator"/>
+        <context ref="boolean"/>
+        <context ref="keywords"/>
         <context ref="def:shell-like-comment"/>
       </include>
     </context>
