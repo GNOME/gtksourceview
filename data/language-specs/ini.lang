@@ -22,7 +22,7 @@
 -->
 <language id="ini" _name=".ini" version="2.0" _section="Other">
   <metadata>
-    <property name="mimetypes">text/x-ini-file;application/x-ini-file</property>
+    <property name="mimetypes">text/x-ini-file;application/x-ini-file;text/x-systemd-unit;text/x-dbus-service</property>
     <property name="globs">*.ini</property>
     <property name="line-comment-start">;</property>
   </metadata>
