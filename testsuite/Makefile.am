@@ -17,14 +17,12 @@ AM_CPPFLAGS = 				\
 	-DTOP_SRCDIR=\""$(ABS_TOP_SRCDIR)"\"\
 	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
-	$(DEP_CFLAGS)			\
-	$(TESTS_CFLAGS)
+	$(DEP_CFLAGS)
 
 AM_LDFLAGS = $(WARN_LDFLAGS)
 
 LDADD = $(top_builddir)/gtksourceview/completion-providers/words/libgtksourcecompletionwords.la \
-	$(top_builddir)/gtksourceview/libgtksourceview-core.la \
-	$(TESTS_LIBS)
+	$(top_builddir)/gtksourceview/libgtksourceview-core.la
 
 UNIT_TEST_PROGS =
 

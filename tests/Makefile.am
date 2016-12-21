@@ -6,13 +6,11 @@ AM_CPPFLAGS = 				\
 	-DTOP_SRCDIR=\""$(ABS_TOP_SRCDIR)"\"\
 	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
-	$(DEP_CFLAGS)			\
-	$(TESTS_CFLAGS)
+	$(DEP_CFLAGS)
 
 AM_LDFLAGS = $(WARN_LDFLAGS)
 
-LDADD = $(top_builddir)/gtksourceview/libgtksourceview-@GSV_API_VERSION@.la \
-	$(TESTS_LIBS)
+LDADD = $(top_builddir)/gtksourceview/libgtksourceview-@GSV_API_VERSION@.la
 
 BUILT_SOURCES =				\
 	test-completion-resources.c	\
