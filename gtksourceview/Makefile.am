@@ -166,6 +166,9 @@ libgtksourceview_core_la_LDFLAGS =	\
 	$(WARN_LDFLAGS)
 
 libgtksourceview_core_la_LIBADD =	\
+	$(LIBM)				\
+	$(DEP_LIBS)			\
+	$(GTK_MAC_LIBS)			\
 	$(CODE_COVERAGE_LIBS)
 
 if OS_OSX
@@ -180,11 +183,7 @@ libgtksourceview_@GSV_API_VERSION@_la_SOURCES =
 
 libgtksourceview_@GSV_API_VERSION@_la_LIBADD = 				\
 	libgtksourceview-core.la					\
-	completion-providers/words/libgtksourcecompletionwords.la	\
-	$(CODE_COVERAGE_LIBS)						\
-	$(LIBM)								\
-	$(DEP_LIBS)							\
-	$(GTK_MAC_LIBS)
+	completion-providers/words/libgtksourcecompletionwords.la
 
 libgtksourceview_@GSV_API_VERSION@_la_CFLAGS =	\
 	$(HIDDEN_VISIBILITY_CFLAGS)		\

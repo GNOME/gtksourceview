@@ -36,7 +36,9 @@ libgtksourcecompletionwords_la_CFLAGS =		\
 libgtksourcecompletionwords_la_LDFLAGS =	\
 	$(WARN_LDFLAGS)
 
-libgtksourcecompletionwords_la_LIBADD =		\
+libgtksourcecompletionwords_la_LIBADD =	\
+	$(DEP_LIBS)			\
+	$(GTK_MAC_LIBS)			\
 	$(CODE_COVERAGE_LIBS)
 
 libgtksourcecompletionwords_includedir = \
