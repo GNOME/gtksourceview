@@ -260,7 +260,10 @@ echo "
 
 Configuration:
 
+	${PACKAGE_NAME} version ${PACKAGE_VERSION}
+
 	Source code location:	${srcdir}
+	Prefix:			${prefix}
 	Compiler:		${CC}
 	Glade Catalog:		${glade_catalog}
 	Documentation:		${enable_gtk_doc}
