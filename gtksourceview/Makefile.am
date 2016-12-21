@@ -179,10 +179,10 @@ lib_LTLIBRARIES = libgtksourceview-@GSV_API_VERSION@.la
 libgtksourceview_@GSV_API_VERSION@_la_SOURCES =
 
 libgtksourceview_@GSV_API_VERSION@_la_LIBADD = 				\
-	-lm								\
 	libgtksourceview-core.la					\
 	completion-providers/words/libgtksourcecompletionwords.la	\
 	$(CODE_COVERAGE_LIBS)						\
+	$(LIBM)								\
 	$(DEP_LIBS)							\
 	$(GTK_MAC_LIBS)
 

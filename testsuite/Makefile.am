@@ -24,7 +24,7 @@ AM_LDFLAGS = $(WARN_LDFLAGS)
 
 LDADD = $(top_builddir)/gtksourceview/completion-providers/words/libgtksourcecompletionwords.la \
 	$(top_builddir)/gtksourceview/libgtksourceview-core.la \
-	-lm \
+	$(LIBM) \
 	$(DEP_LIBS) \
 	$(TESTS_LIBS)
 

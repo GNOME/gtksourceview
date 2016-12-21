@@ -144,6 +144,9 @@ case "$host" in
 esac
 AC_SUBST(HIDDEN_VISIBILITY_CFLAGS)
 
+# Dynamic linking dependencies
+LT_LIB_M
+
 AX_REQUIRE_DEFINED([AX_PKG_CHECK_MODULES])
 AX_PKG_CHECK_MODULES([DEP],
 		     [glib-2.0 >= $glib_req  gio-2.0 >= $glib_req  gtk+-3.0 >= $gtk_req],
