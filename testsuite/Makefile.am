@@ -124,7 +124,7 @@ instteststyle_DATA = 			\
 
 test_files = $(UNIT_TEST_PROGS:=.test)
 
-DISTCLEANFILES = $(test_files)
+CLEANFILES = $(test_files)
 
 testmetadir = $(datadir)/installed-tests/$(PACKAGE)-@GSV_API_VERSION@
 testmeta_DATA = $(test_files)
