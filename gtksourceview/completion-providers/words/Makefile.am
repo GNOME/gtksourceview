@@ -7,6 +7,7 @@ AM_CPPFLAGS = 				\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
+	$(CODE_COVERAGE_CPPFLAGS)	\
 	$(DEP_CFLAGS)
 
 noinst_LTLIBRARIES = libgtksourcecompletionwords.la
@@ -33,8 +34,10 @@ libgtksourcecompletionwords_la_CFLAGS =		\
 	$(CODE_COVERAGE_CFLAGS)
 
 libgtksourcecompletionwords_la_LDFLAGS =	\
-	$(WARN_LDFLAGS)				\
-	$(CODE_COVERAGE_LDFLAGS)
+	$(WARN_LDFLAGS)
+
+libgtksourcecompletionwords_la_LIBADD =		\
+	$(CODE_COVERAGE_LIBS)
 
 libgtksourcecompletionwords_includedir = \
 	$(includedir)/gtksourceview-@GSV_API_VERSION@/gtksourceview/completion-providers/words

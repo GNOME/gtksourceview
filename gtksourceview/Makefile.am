@@ -10,6 +10,7 @@ AM_CPPFLAGS = 				\
 	-I$(top_srcdir) -I$(srcdir) 	\
 	$(DISABLE_DEPRECATED_CFLAGS)	\
 	$(WARN_CFLAGS) 			\
+	$(CODE_COVERAGE_CPPFLAGS)	\
 	$(GTK_MAC_CFLAGS)		\
 	$(DEP_CFLAGS)
 
@@ -162,8 +163,10 @@ libgtksourceview_core_la_CFLAGS = 	\
 
 libgtksourceview_core_la_LDFLAGS =	\
 	-no-undefined 			\
-	$(WARN_LDFLAGS)			\
-	$(CODE_COVERAGE_LDFLAGS)
+	$(WARN_LDFLAGS)
+
+libgtksourceview_core_la_LIBADD =	\
+	$(CODE_COVERAGE_LIBS)
 
 if OS_OSX
 libgtksourceview_core_la_CFLAGS += -xobjective-c
@@ -179,7 +182,9 @@ libgtksourceview_@GSV_API_VERSION@_la_LIBADD = 				\
 	-lm								\
 	libgtksourceview-core.la					\
 	completion-providers/words/libgtksourcecompletionwords.la	\
-	$(DEP_LIBS) $(GTK_MAC_LIBS)
+	$(CODE_COVERAGE_LIBS)						\
+	$(DEP_LIBS)							\
+	$(GTK_MAC_LIBS)
 
 libgtksourceview_@GSV_API_VERSION@_la_CFLAGS =	\
 	$(HIDDEN_VISIBILITY_CFLAGS)		\
@@ -189,8 +194,7 @@ libgtksourceview_@GSV_API_VERSION@_la_LDFLAGS =	\
 	-version-info $(GSV_LT_VERSION)		\
 	-no-undefined 				\
 	-export-dynamic				\
-	$(WARN_LDFLAGS)				\
-	$(CODE_COVERAGE_LDFLAGS)
+	$(WARN_LDFLAGS)
 
 libgtksourceview_@GSV_API_VERSION@_includedir =				\
 	$(includedir)/gtksourceview-@GSV_API_VERSION@/gtksourceview
