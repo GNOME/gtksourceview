@@ -248,6 +248,37 @@
       <keyword>progressive</keyword>
     </context>
 
+    <context id="svg-property-names" style-ref="keyword">
+      <suffix>(?=\s*:)</suffix>
+      <keyword>clip-path</keyword>
+      <keyword>clip-rule</keyword>
+      <keyword>color-interpolatation-filters</keyword>
+      <keyword>color-interpolatation</keyword>
+      <keyword>dominant-baseline</keyword>
+      <keyword>fill-rule</keyword>
+      <keyword>fill-opacity</keyword>
+      <keyword>fill</keyword>
+      <keyword>flood-color</keyword>
+      <keyword>flood-opacity</keyword>
+      <keyword>lighting-color</keyword>
+      <keyword>marker-end</keyword>
+      <keyword>marker-mid</keyword>
+      <keyword>marker-start</keyword>
+      <keyword>shape-rendering</keyword>
+      <keyword>stop-color</keyword>
+      <keyword>stop-opacity</keyword>
+      <keyword>stroke-dasharray</keyword>
+      <keyword>stroke-dashoffset</keyword>
+      <keyword>stroke-linecap</keyword>
+      <keyword>stroke-linejoin</keyword>
+      <keyword>stroke-miterlimit</keyword>
+      <keyword>stroke-opacity</keyword>
+      <keyword>stroke-width</keyword>
+      <keyword>stroke</keyword>
+      <keyword>text-anchor</keyword>
+      <keyword>text-rendering</keyword>
+    </context>
+
     <context id="css3-property-names" style-ref="keyword">
       <suffix>(?=\s*:)</suffix>
       <keyword>align-content</keyword>
@@ -487,6 +518,36 @@
       <keyword>width</keyword>
       <keyword>word-spacing</keyword>
       <keyword>z-index</keyword>
+    </context>
+
+    <context id="svg-property-values" style-ref="property-values">
+      <prefix>\s</prefix>
+      <suffix>($|(?=[;\s]))</suffix>
+      <keyword>alphabetic</keyword>
+      <keyword>bevel</keyword>
+      <keyword>butt</keyword>
+      <keyword>central</keyword>
+      <keyword>crisp(E|e)dges</keyword>
+      <keyword>evenodd</keyword>
+      <keyword>geometric(P|p)recision</keyword>
+      <keyword>hanging</keyword>
+      <keyword>ideographic</keyword>
+      <keyword>lr-tb</keyword>
+      <keyword>lr</keyword>
+      <keyword>mathematical</keyword>
+      <keyword>miter</keyword>
+      <keyword>no-change</keyword>
+      <keyword>nonzero</keyword>
+      <keyword>optimize(L|l)egibility</keyword>
+      <keyword>optimize(S|s)peed</keyword>
+      <keyword>reset-size</keyword>
+      <keyword>rl-tb</keyword>
+      <keyword>rl</keyword>
+      <keyword>tb-rl</keyword>
+      <keyword>tb</keyword>
+      <keyword>text-after-edge</keyword>
+      <keyword>text-before-edge</keyword>
+      <keyword>use-script</keyword>
     </context>
 
     <context id="css3-property-values" style-ref="property-values">
@@ -867,8 +928,10 @@
         <context ref="number"/>
         <context ref="unicode-range"/>
         <context ref="importance-modifier"/>
+        <context ref="svg-property-names"/>
         <context ref="css3-property-names"/>
         <context ref="property-names"/>
+        <context ref="svg-property-values"/>
         <context ref="css3-property-values"/>
         <context ref="property-values"/>
       </include>
