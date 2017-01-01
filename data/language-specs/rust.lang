@@ -294,10 +294,18 @@ except according to those terms.
       </include>
     </context>
 
+    <context id="comment-multiline-nested" style-ref="comment" class-disabled="no-spell-check" class="comment" >
+      <start>/\*</start>
+      <end>\*/</end>
+      <include>
+        <context ref="comment-multiline-nested"/>
+      </include>
+    </context>
+
     <context id="rust" class="no-spell-check">
       <include>
         <context ref="def:c-like-comment" style-ref="comment"/>
-        <context ref="def:c-like-comment-multiline" style-ref="comment"/>
+        <context ref="comment-multiline-nested"/>
         <context ref="function"/>
         <context ref="type"/>
         <context ref="keywords"/>
