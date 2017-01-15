@@ -22,7 +22,10 @@ AM_CPPFLAGS = 				\
 AM_LDFLAGS = $(WARN_LDFLAGS)
 
 LDADD = $(top_builddir)/gtksourceview/completion-providers/words/libgtksourcecompletionwords.la \
-	$(top_builddir)/gtksourceview/libgtksourceview-core.la
+	$(top_builddir)/gtksourceview/libgtksourceview-core.la \
+	$(LIBM) \
+	$(DEP_LIBS) \
+	$(TESTS_LIBS)
 
 UNIT_TEST_PROGS =
 
