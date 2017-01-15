@@ -1,10 +1,23 @@
+News in 3.23.2
+--------------
+
+This version still uses GTK+ 3. A GtkSourceView 3.24 version is planned (still
+depending on GTK+ 3), which will be released at the same time as GNOME 3.24 in
+March 2017.
+
+* Docs: add an introduction with the pkg-config name and which GTK+ version is
+  used.
+* Build fixes on MS Windows.
+* New syntax highlighting definition files for: ABNF and HAXE.
+* Improvements to the syntax highlighting of: JavaScript, PHP, Meson, CSS, ini
+  and Rust.
+* Translation updates.
+
 News in 3.23.1
 --------------
 
 This version still uses GTK+ 3. A GtkSourceView 3.24 version is planned (still
-depending on GTK+ 3), but the release date is not yet determined. If everything
-goes well, GtkSourceView 3.90 (depending on GTK+ 3.90) will be released at the
-same time as GTK+ 3.90 in March 2017.
+depending on GTK+ 3), but the release date is not yet determined.
 
 * New class: GtkSourceSpaceDrawer with a matrix property to combine space types
   vs locations. The old white space drawing API has been deprecated.
