@@ -70,7 +70,7 @@ center_on (GtkSourceGutterRenderer *renderer,
 	gtk_text_view_get_iter_location (view, iter, &location);
 
 	*x = cell_area->x + (cell_area->width - width) * xalign;
-	*y = cell_area->y + (location.height - height) * yalign;
+	*y = location.y + (location.height - height) * yalign;
 }
 
 static void
