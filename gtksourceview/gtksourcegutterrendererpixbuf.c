@@ -62,15 +62,23 @@ center_on (GtkSourceGutterRenderer *renderer,
            gint                    *x,
            gint                    *y)
 {
-	GdkRectangle location;
 	GtkTextView *view;
+	GtkTextWindowType window_type;
+	GdkRectangle buffer_location;
+	gint window_y;
 
 	view = gtk_source_gutter_renderer_get_view (renderer);
+	window_type = gtk_source_gutter_renderer_get_window_type (renderer);
 
-	gtk_text_view_get_iter_location (view, iter, &location);
+	gtk_text_view_get_iter_location (view, iter, &buffer_location);
+
+	gtk_text_view_buffer_to_window_coords (view,
+					       window_type,
+					       0, buffer_location.y,
+					       NULL, &window_y);
 
 	*x = cell_area->x + (cell_area->width - width) * xalign;
-	*y = location.y + (location.height - height) * yalign;
+	*y = window_y + (buffer_location.height - height) * yalign;
 }
 
 static void
