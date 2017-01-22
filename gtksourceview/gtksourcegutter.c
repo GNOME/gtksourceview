@@ -888,7 +888,7 @@ begin_draw (GtkSourceGutter *gutter,
 	    LinesInfo       *info,
 	    cairo_t         *cr)
 {
-	GdkRectangle background_area;
+	GdkRectangle background_area = { 0 };
 	GdkRectangle cell_area;
 	GList *l;
 	gint renderer_num;
