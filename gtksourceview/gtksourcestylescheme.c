@@ -1041,16 +1041,6 @@ parse_style (GtkSourceStyleScheme *scheme,
 	tmp = xmlGetProp (node, BAD_CAST "use-style");
 	if (tmp != NULL)
 	{
-		if (use_style != NULL)
-		{
-			g_set_error (error, ERROR_QUARK, 0,
-				     "in style '%s': duplicated use-style attribute",
-				     style_name);
-			g_free (style_name);
-			g_object_unref (use_style);
-			return FALSE;
-		}
-
 		use_style = gtk_source_style_scheme_get_style (scheme, (char*) tmp);
 
 		if (use_style == NULL)
