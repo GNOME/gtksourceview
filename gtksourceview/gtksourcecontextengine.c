@@ -5889,8 +5889,7 @@ _gtk_source_context_data_define_context (GtkSourceContextData   *ctx_data,
 				wrong_args = TRUE;
 			break;
 		case CONTEXT_TYPE_CONTAINER:
-			if (match_regex != NULL)
-				wrong_args = TRUE;
+			g_assert (match_regex == NULL);
 			break;
 		default:
 			g_assert_not_reached ();
