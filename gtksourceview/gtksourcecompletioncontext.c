@@ -196,8 +196,11 @@ gtk_source_completion_context_get_property (GObject    *object,
 		case PROP_ITER:
 			{
 				GtkTextIter iter;
-				gtk_source_completion_context_get_iter (context, &iter);
-				g_value_set_boxed (value, &iter);
+
+				if (gtk_source_completion_context_get_iter (context, &iter))
+				{
+					g_value_set_boxed (value, &iter);
+				}
 			}
 			break;
 
