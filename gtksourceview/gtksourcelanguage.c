@@ -124,8 +124,12 @@ _gtk_source_language_new_from_file (const gchar              *filename,
         }
 	else
 	{
-		g_warning("Unable to open '%s'", filename);
+		g_warning ("Unable to open '%s'", filename);
 
+		if (fd != -1)
+		{
+			close (fd);
+		}
     	}
 
 	if (lang != NULL)
