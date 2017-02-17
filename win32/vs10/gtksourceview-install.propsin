@@ -12,21 +12,21 @@ copy $(SolutionDir)$(Configuration)\$(Platform)\bin\$(GtkSourceviewDllPrefix)gtk
 
 mkdir $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words
 #include "gtksourceview.vs10.headers"
-copy ..\..\..\gtksourceview\completion-providers\words\gtksourcecompletionwords.h $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words
+copy ..\..\gtksourceview\completion-providers\words\gtksourcecompletionwords.h $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words
 
 mkdir $(CopyDir)\lib
 copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gtksourceview-$(ApiVersion).lib $(CopyDir)\lib
 
 mkdir $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
-copy ..\..\..\data\language-specs\*.lang $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
-copy ..\..\..\data\language-specs\*.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
-copy ..\..\..\data\language-specs\check-language.sh $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
-copy ..\..\..\data\language-specs\language.dtd $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
+copy ..\..\data\language-specs\*.lang $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
+copy ..\..\data\language-specs\*.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
+copy ..\..\data\language-specs\check-language.sh $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
+copy ..\..\data\language-specs\language.dtd $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
 
 mkdir $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
-copy ..\..\..\data\styles\*.xml $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
-copy ..\..\..\data\styles\styles.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
-copy ..\..\..\data\styles\check-style.sh $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
+copy ..\..\data\styles\*.xml $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
+copy ..\..\data\styles\styles.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
+copy ..\..\data\styles\check-style.sh $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
     </GtkSourceviewDoInstall>
   </PropertyGroup>
   <PropertyGroup>

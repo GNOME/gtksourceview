@@ -373,14 +373,14 @@ gtksourceview_HEADERS_INST = \
 
 gtksourceview_HEADERS_EXCLUDES = dummy
 
-include $(top_srcdir)/build/Makefile.msvcproj
+include $(top_srcdir)/win32/Makefile.msvcproj
 
-$(top_builddir)/build/win32/enums.headers: $(libgtksourceview_public_headers)
-	-$(RM) $(top_builddir)/build/win32/enum.headers
+$(top_builddir)/win32/enums.headers: $(libgtksourceview_public_headers)
+	-$(RM) $(top_builddir)/win32/enum.headers
 	for F in $(libgtksourceview_public_headers); do \
 		case $$F in \
 		*.h) \
-			echo $$F' ^'>>$(top_builddir)/build/win32/enum.headers \
+			echo $$F' ^'>>$(top_builddir)/win32/enum.headers \
 			;; \
 		esac \
 	done
@@ -388,8 +388,8 @@ $(top_builddir)/build/win32/enums.headers: $(libgtksourceview_public_headers)
 # NMake/MSVC introspection
 if HAVE_INTROSPECTION
 NMAKE_INTROSPECTION_FILES = \
-	$(top_builddir)/build/win32/GtkSource-3.0.gir.msvc.introspect	\
-	$(top_builddir)/build/win32/GtkSource_3_0_gir_list
+	$(top_builddir)/win32/GtkSource-3.0.gir.msvc.introspect	\
+	$(top_builddir)/win32/GtkSource_3_0_gir_list
 
 MSVC_INTROSPECT_GIRS = GtkSource-3.0.gir
 
@@ -405,22 +405,22 @@ GtkSource_3_0_gir_MSVC_INCLUDE_GIRS = Gtk-3.0 Gdk-3.0
 GtkSource_3_0_gir_MSVC_PACKAGES = gtk+-3.0 gdk-3.0
 GtkSource_3_0_gir_MSVC_EXPORT_PACKAGES = gtksourceview-3.0
 GtkSource_3_0_gir_MSVC_LIBS = gtksourceview-3.0
-GtkSource_3_0_gir_MSVC_CFLAGS = -I..\\.. -DGTK_SOURCE_COMPILATION
+GtkSource_3_0_gir_MSVC_CFLAGS = -I.. -DGTK_SOURCE_COMPILATION
 
 GtkSource_3_0_gir_MSVC_SCANNERFLAGS = \
 	--c-include=gtksourceview/gtksource.h	\
 	--warn-all	\
 	--filelist=GtkSource_3_0_gir_list
 
-include $(top_srcdir)/build/Makefile.msvc-introspection
+include $(top_srcdir)/win32/Makefile.msvc-introspection
 else
 NMAKE_INTROSPECTION_FILES =
 endif
 
 dist-hook: \
-	$(top_builddir)/build/win32/enums.headers		\
-	$(top_builddir)/build/win32/vs9/gtksourceview.vcproj	\
-	$(top_builddir)/build/win32/vs9/gtksourceview.headers	\
+	$(top_builddir)/win32/enums.headers		\
+	$(top_builddir)/win32/vs9/gtksourceview.vcproj	\
+	$(top_builddir)/win32/vs9/gtksourceview.headers	\
 	$(NMAKE_INTROSPECTION_FILES)
 
 -include $(top_srcdir)/git.mk

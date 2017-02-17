@@ -1,4 +1,4 @@
-SUBDIRS = gtksourceview po data docs tests testsuite build
+SUBDIRS = gtksourceview po data docs tests testsuite win32
 
 @CODE_COVERAGE_RULES@
 

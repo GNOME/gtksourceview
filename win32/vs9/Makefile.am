@@ -16,8 +16,8 @@ EXTRA_DIST = 					\
 	$(GENERATED_ITEMS)			\
 	math.h
 
-gtksourceview-install.vsprops: $(top_srcdir)/build/win32/vs9/gtksourceview-install.vspropsin $(MSVC_HEADERS_LISTS)
-	$(CPP) -P - <$(top_srcdir)/build/win32/vs9/gtksourceview-install.vspropsin >$@
+gtksourceview-install.vsprops: $(top_srcdir)/win32/vs9/gtksourceview-install.vspropsin $(MSVC_HEADERS_LISTS)
+	$(CPP) -P - <$(top_srcdir)/win32/vs9/gtksourceview-install.vspropsin >$@
 	$(RM) $(MSVC_HEADERS_LISTS)
 
 DISTCLEANFILES = $(GENERATED_ITEMS)

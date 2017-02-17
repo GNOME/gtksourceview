@@ -14,11 +14,11 @@
 	/>
 	<UserMacro
 		Name="GlibEtcInstallRoot"
-		Value="$(SolutionDir)\..\..\..\..\vs$(VSVer)\$(PlatformName)"
+		Value="$(SolutionDir)\..\..\..\vs$(VSVer)\$(PlatformName)"
 	/>
 	<UserMacro
 		Name="GlibMkEnumsPath"
-		Value="..\..\..\vs$(VSVer)\$(PlatformName)"
+		Value="..\..\vs$(VSVer)\$(PlatformName)"
 	/>
 	<UserMacro
 		Name="DefDir"
