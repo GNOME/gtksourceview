@@ -224,6 +224,11 @@ VAPIGEN_CHECK
 ABS_TOP_SRCDIR=`cd $srcdir && pwd`
 AC_SUBST(ABS_TOP_SRCDIR)
 
+# Check whether MSVC toolset is explicitly set
+
+AM_CONDITIONAL(MSVC_BASE_NO_TOOLSET_SET, [test x$MSVC_BASE_TOOLSET = x])
+AM_CONDITIONAL(MSVC_NO_TOOLSET_SET, [test x$MSVC_TOOLSET = x])
+
 # Output files
 AC_CONFIG_FILES([
 gtksourceview-${GSV_API_VERSION}.pc:gtksourceview.pc.in
@@ -237,6 +242,7 @@ win32/vs10/gtksourceview-gen-srcs.props
 win32/vs11/Makefile
 win32/vs12/Makefile
 win32/vs14/Makefile
+win32/vs15/Makefile
 data/Makefile
 data/glade/Makefile
 data/glade/gtksourceview.xml

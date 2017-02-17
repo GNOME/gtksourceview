@@ -22,6 +22,7 @@ gtksourceview-install.props: $(top_srcdir)/win32/vs10/gtksourceview-install.prop
 	-$(RM) $(top_builddir)/win32/vs11/gtksourceview-install.props
 	-$(RM) $(top_builddir)/win32/vs12/gtksourceview-install.props
 	-$(RM) $(top_builddir)/win32/vs14/gtksourceview-install.props
+	-$(RM) $(top_builddir)/win32/vs15/gtksourceview-install.props
 	$(CPP) -P - <$(top_srcdir)/win32/vs10/gtksourceview-install.propsin >$@
 	$(RM) $(MSVC10_HEADERS_LISTS)
 
