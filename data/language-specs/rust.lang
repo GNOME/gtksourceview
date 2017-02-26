@@ -273,7 +273,7 @@ except according to those terms.
     </context>
 
     <context id="invalid-char" style-ref="error">
-      <match extended="true">'([^\\']|\\\%{common-escape}|\\\%{unicode-escape}){2,}'</match>
+      <match extended="true">'([^\\']|\\\%{common-escape}|\\\%{unicode-escape}){2,}'(?!\%{ident})</match>
     </context>
 
     <context id="byte" style-ref="char">
