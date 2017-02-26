@@ -1,3 +1,20 @@
+News in 3.99.3
+--------------
+
+This is an intermediate version towards GtkSourceView 4.0. GtkSourceView 4.0
+will still depend on GTK+ 3, but the release date is not yet determined. See
+the roadmap for more details:
+https://wiki.gnome.org/Projects/GtkSourceView/RoadMap
+
+* Bug fix in GtkSourceGutterRendererPixbuf.
+* Fixes for bugs found by Coverity.
+* Build fixes on MS Windows.
+* New syntax highlighting definition files for: ABNF, HAXE and Django template.
+* Improvements to the syntax highlighting of: Meson, CSS, ini, Rust and
+  JavaScript.
+* Improvements to the build system.
+* Translation updates.
+
 News in 3.99.2
 --------------
 
