@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2016-12-08 08:33+0000\n"
-"PO-Revision-Date: 2016-12-08 10:21+0100\n"
+"POT-Creation-Date: 2017-02-11 18:15+0000\n"
+"PO-Revision-Date: 2017-02-22 17:10+0100\n"
 "Last-Translator: Meskó Balázs <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -167,18 +167,18 @@ msgstr "Forrás"
 #: abnf.lang:38 actionscript.lang:35 ada.lang:34 ansforth94.lang:39 asp.lang:32
 #: bennugd.lang:32 boo.lang:34 cg.lang:33 c.lang:35 cobol.lang:35
 #: csharp.lang:37 def.lang:40 d.lang:40 dosbatch.lang:31 dot.lang:34
-#: eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34 fortran.lang:33
-#: fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35 gtkrc.lang:33
-#: haskell.lang:34 haxe.lang:48 html.lang:34 idl-exelis.lang:28 idl.lang:32
-#: ini.lang:31 jade.lang:32 java.lang:35 j.lang:32 latex.lang:33 llvm.lang:30
-#: lua.lang:34 matlab.lang:41 modelica.lang:36 nemerle.lang:34 netrexx.lang:38
-#: nsis.lang:32 ocaml.lang:36 ocl.lang:41 octave.lang:41 ooc.lang:33
-#: opal.lang:34 pascal.lang:33 perl.lang:34 php.lang:40 pig.lang:41 po.lang:32
-#: prolog.lang:34 protobuf.lang:31 rst.lang:36 ruby.lang:36 rust.lang:46
-#: scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33 sml.lang:32
-#: sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33 thrift.lang:30
-#: vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32 xml.lang:35
-#: yaml.lang:31
+#: dtl.lang:34 eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34
+#: fortran.lang:33 fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35
+#: gtkrc.lang:33 haskell.lang:34 haxe.lang:48 html.lang:34 idl-exelis.lang:28
+#: idl.lang:32 ini.lang:31 jade.lang:32 java.lang:35 j.lang:32 latex.lang:33
+#: llvm.lang:30 lua.lang:34 matlab.lang:41 modelica.lang:36 nemerle.lang:34
+#: netrexx.lang:38 nsis.lang:32 ocaml.lang:36 ocl.lang:41 octave.lang:41
+#: ooc.lang:33 opal.lang:34 pascal.lang:33 perl.lang:34 php.lang:40 pig.lang:41
+#: po.lang:32 prolog.lang:34 protobuf.lang:31 rst.lang:36 ruby.lang:36
+#: rust.lang:46 scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33
+#: sml.lang:32 sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33
+#: thrift.lang:30 vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32
+#: xml.lang:35 yaml.lang:31
 msgid "Comment"
 msgstr "Megjegyzés"
 
@@ -194,7 +194,7 @@ msgstr "Bináris szám"
 
 #. (itstool) path: styles/style@_name
 #: abnf.lang:41 ada.lang:37 bennugd.lang:39 cg.lang:43 c.lang:48 csharp.lang:49
-#: csv.lang:31 def.lang:67 d.lang:49 eiffel.lang:45 erlang.lang:39
+#: csv.lang:31 def.lang:67 d.lang:49 dtl.lang:42 eiffel.lang:45 erlang.lang:39
 #: fsharp.lang:37 go.lang:45 idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40
 #: ooc.lang:45 opal.lang:40 php.lang:55 python3.lang:40 python.lang:46
 #: ruby.lang:43
@@ -203,25 +203,27 @@ msgstr "Decimális szám"
 
 #. (itstool) path: styles/style@_name
 #: abnf.lang:42 bennugd.lang:40 cg.lang:45 c.lang:50 csharp.lang:50 d.lang:52
-#: eiffel.lang:46 go.lang:47 nemerle.lang:47 ooc.lang:47 php.lang:57
+#: dtl.lang:44 eiffel.lang:46 go.lang:47 nemerle.lang:47 ooc.lang:47
+#: php.lang:57
 msgid "Hexadecimal number"
 msgstr "Hexadecimális szám"
 
 #. (itstool) path: styles/style@_name
 #: abnf.lang:43 actionscript.lang:37 ada.lang:35 ansforth94.lang:43 asp.lang:33
 #: boo.lang:36 c.lang:36 cobol.lang:40 csharp.lang:40 css.lang:50 csv.lang:34
-#: def.lang:57 d.lang:42 dosbatch.lang:32 eiffel.lang:34 erlang.lang:36
-#: forth.lang:35 fortran.lang:34 fsharp.lang:38 gdb-log.lang:30 genie.lang:36
-#: go.lang:37 gtkrc.lang:34 haskell.lang:39 haxe.lang:55 idl-exelis.lang:32
-#: idl.lang:36 imagej.lang:40 ini.lang:33 java.lang:37 javascript.lang:47
-#: j.lang:45 json.lang:39 julia.lang:37 llvm.lang:31 lua.lang:35 meson.lang:34
-#: modelica.lang:37 nemerle.lang:38 netrexx.lang:36 nsis.lang:33 objc.lang:37
-#: objj.lang:41 ocaml.lang:41 ocl.lang:42 octave.lang:42 ooc.lang:36
-#: opal.lang:37 pascal.lang:34 perl.lang:37 php.lang:45 po.lang:34
-#: prolog.lang:37 protobuf.lang:37 python3.lang:34 python.lang:39 ruby.lang:46
-#: rust.lang:47 scala.lang:39 scheme.lang:34 scilab.lang:33 sh.lang:35
-#: sml.lang:36 sql.lang:34 texinfo.lang:36 thrift.lang:33 vala.lang:41
-#: vbnet.lang:33 verilog.lang:35 vhdl.lang:33 yaml.lang:32
+#: def.lang:57 d.lang:42 dosbatch.lang:32 dtl.lang:37 eiffel.lang:34
+#: erlang.lang:36 forth.lang:35 fortran.lang:34 fsharp.lang:38 gdb-log.lang:30
+#: genie.lang:36 go.lang:37 gtkrc.lang:34 haskell.lang:39 haxe.lang:55
+#: idl-exelis.lang:32 idl.lang:36 imagej.lang:40 ini.lang:33 java.lang:37
+#: javascript.lang:47 j.lang:45 json.lang:39 julia.lang:37 llvm.lang:31
+#: lua.lang:35 meson.lang:34 modelica.lang:37 nemerle.lang:38 netrexx.lang:36
+#: nsis.lang:33 objc.lang:37 objj.lang:41 ocaml.lang:41 ocl.lang:42
+#: octave.lang:42 ooc.lang:36 opal.lang:37 pascal.lang:34 perl.lang:37
+#: php.lang:45 po.lang:34 prolog.lang:37 protobuf.lang:37 python3.lang:34
+#: python.lang:39 ruby.lang:46 rust.lang:47 scala.lang:39 scheme.lang:34
+#: scilab.lang:33 sh.lang:35 sml.lang:36 sql.lang:34 texinfo.lang:36
+#: thrift.lang:33 vala.lang:41 vbnet.lang:33 verilog.lang:35 vhdl.lang:33
+#: yaml.lang:32
 msgid "String"
 msgstr "Karakterlánc"
 
@@ -232,11 +234,11 @@ msgstr "ActionScript"
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:36 cg.lang:34 c.lang:54 cobol.lang:43 csharp.lang:38
-#: css.lang:48 def.lang:102 d.lang:41 dot.lang:35 go.lang:36 haxe.lang:62
-#: html.lang:39 jade.lang:40 j.lang:35 json.lang:42 nemerle.lang:35
-#: ocaml.lang:53 ooc.lang:34 opal.lang:36 perl.lang:48 php.lang:41
-#: prolog.lang:40 rust.lang:57 scala.lang:36 vala.lang:39 verilog.lang:38
-#: xml.lang:45
+#: css.lang:48 def.lang:102 d.lang:41 dot.lang:35 dtl.lang:35 go.lang:36
+#: haxe.lang:62 html.lang:39 jade.lang:40 j.lang:35 json.lang:42
+#: nemerle.lang:35 ocaml.lang:53 ooc.lang:34 opal.lang:36 perl.lang:48
+#: php.lang:41 prolog.lang:40 rust.lang:57 scala.lang:36 vala.lang:39
+#: verilog.lang:38 xml.lang:45
 msgid "Error"
 msgstr "Hiba"
 
@@ -265,33 +267,34 @@ msgstr "Hatókör-deklaráció"
 #: actionscript.lang:42 ada.lang:36 ansforth94.lang:36 asp.lang:35 awk.lang:32
 #: bennugd.lang:36 bluespec.lang:35 boo.lang:41 cg.lang:38 c.lang:41
 #: cobol.lang:38 cpp.lang:35 csharp.lang:45 css.lang:59 cuda.lang:33
-#: def.lang:92 d.lang:43 dosbatch.lang:33 dot.lang:36 eiffel.lang:37
-#: erlang.lang:33 fcl.lang:32 forth.lang:37 fortran.lang:36 fsharp.lang:39
-#: gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39 gtkrc.lang:35
-#: haskell.lang:37 haxe.lang:54 idl-exelis.lang:31 idl.lang:35 imagej.lang:38
-#: ini.lang:34 java.lang:45 javascript.lang:41 julia.lang:44 lex.lang:35
-#: llvm.lang:32 lua.lang:36 matlab.lang:42 modelica.lang:46 nemerle.lang:39
-#: objc.lang:34 objj.lang:37 ocaml.lang:42 ocl.lang:43 octave.lang:48
-#: ooc.lang:41 opal.lang:38 opencl.lang:33 pascal.lang:35 perl.lang:38
-#: php.lang:48 po.lang:36 prolog.lang:36 protobuf.lang:35 python3.lang:32
-#: python.lang:37 R.lang:34 ruby.lang:39 rust.lang:49 scala.lang:43
-#: scheme.lang:35 scilab.lang:34 sh.lang:36 sml.lang:33 sparql.lang:37
-#: sql.lang:35 systemverilog.lang:33 tcl.lang:33 texinfo.lang:37 thrift.lang:32
-#: vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
+#: def.lang:92 d.lang:43 dosbatch.lang:33 dot.lang:36 dtl.lang:38
+#: eiffel.lang:37 erlang.lang:33 fcl.lang:32 forth.lang:37 fortran.lang:36
+#: fsharp.lang:39 gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39
+#: gtkrc.lang:35 haskell.lang:37 haxe.lang:54 idl-exelis.lang:31 idl.lang:35
+#: imagej.lang:38 ini.lang:34 java.lang:45 javascript.lang:41 julia.lang:44
+#: lex.lang:35 llvm.lang:32 lua.lang:36 matlab.lang:42 modelica.lang:46
+#: nemerle.lang:39 objc.lang:34 objj.lang:37 ocaml.lang:42 ocl.lang:43
+#: octave.lang:48 ooc.lang:41 opal.lang:38 opencl.lang:33 pascal.lang:35
+#: perl.lang:38 php.lang:48 po.lang:36 prolog.lang:36 protobuf.lang:35
+#: python3.lang:32 python.lang:37 R.lang:34 ruby.lang:39 rust.lang:49
+#: scala.lang:43 scheme.lang:35 scilab.lang:34 sh.lang:36 sml.lang:33
+#: sparql.lang:37 sql.lang:35 systemverilog.lang:33 tcl.lang:33 texinfo.lang:37
+#: thrift.lang:32 vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
 msgid "Keyword"
 msgstr "Kulcsszó"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:43 boo.lang:43 csharp.lang:47 d.lang:46 fsharp.lang:52
-#: genie.lang:43 haxe.lang:58 java.lang:46 javascript.lang:38 json.lang:40
-#: nemerle.lang:41 objj.lang:42 ooc.lang:42 php.lang:52 vala.lang:44
+#: actionscript.lang:43 boo.lang:43 csharp.lang:47 d.lang:46 dtl.lang:39
+#: fsharp.lang:52 genie.lang:43 haxe.lang:58 java.lang:46 javascript.lang:38
+#: json.lang:40 nemerle.lang:41 objj.lang:42 ooc.lang:42 php.lang:52
+#: vala.lang:44
 msgid "Null Value"
 msgstr "Null érték"
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:44 ada.lang:38 asp.lang:42 bennugd.lang:41 cg.lang:46
-#: c.lang:51 csharp.lang:48 def.lang:75 fsharp.lang:50 go.lang:48 gtkrc.lang:40
-#: haxe.lang:57 ini.lang:38 java.lang:47 llvm.lang:38 lua.lang:42
+#: c.lang:51 csharp.lang:48 def.lang:75 dtl.lang:40 fsharp.lang:50 go.lang:48
+#: gtkrc.lang:40 haxe.lang:57 ini.lang:38 java.lang:47 llvm.lang:38 lua.lang:42
 #: nemerle.lang:42 ocaml.lang:52 ooc.lang:43 opal.lang:39 php.lang:53
 #: protobuf.lang:36 R.lang:39 ruby.lang:41 rust.lang:51 sml.lang:40
 #: vala.lang:43 vbnet.lang:38 vhdl.lang:37
@@ -349,7 +352,7 @@ msgid "Real number"
 msgstr "Valós szám"
 
 #. (itstool) path: styles/style@_name
-#: ada.lang:44 cg.lang:41 c.lang:46 csharp.lang:42 eiffel.lang:42
+#: ada.lang:44 cg.lang:41 c.lang:46 csharp.lang:42 dtl.lang:36 eiffel.lang:42
 #: fortran.lang:44 fsharp.lang:49 go.lang:42 haskell.lang:41 haxe.lang:63
 #: imagej.lang:37 java.lang:36 javascript.lang:37 json.lang:38 lua.lang:37
 #: netrexx.lang:35 ocaml.lang:51 ooc.lang:35 php.lang:44 prolog.lang:41
@@ -546,9 +549,9 @@ msgstr "Azonosító"
 
 #. (itstool) path: styles/style@_name
 #: bennugd.lang:38 cg.lang:42 c.lang:47 csv.lang:33 def.lang:65 d.lang:48
-#: erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44 nemerle.lang:43
-#: ooc.lang:44 php.lang:54 python3.lang:39 python.lang:45 R.lang:41
-#: ruby.lang:42
+#: dtl.lang:41 erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44
+#: nemerle.lang:43 ooc.lang:44 php.lang:54 python3.lang:39 python.lang:45
+#: R.lang:41 ruby.lang:42
 msgid "Floating point number"
 msgstr "Lebegőpontos szám"
 
@@ -560,6 +563,7 @@ msgstr "BibTeX"
 #. (itstool) path: bibtex.lang/language@_section
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
+#. (itstool) path: dtl.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
@@ -575,10 +579,10 @@ msgstr "BibTeX"
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
-#: bibtex.lang:24 docbook.lang:24 dtd.lang:24 gtk-doc.lang:25 haddock.lang:24
-#: html.lang:25 jade.lang:25 latex.lang:25 mallard.lang:23 markdown.lang:26
-#: mediawiki.lang:23 mxml.lang:24 rst.lang:23 sweave.lang:25 t2t.lang:24
-#: texinfo.lang:25 xml.lang:26 xslt.lang:24
+#: bibtex.lang:24 docbook.lang:24 dtd.lang:24 dtl.lang:25 gtk-doc.lang:25
+#: haddock.lang:24 html.lang:25 jade.lang:25 latex.lang:25 mallard.lang:23
+#: markdown.lang:26 mediawiki.lang:23 mxml.lang:24 rst.lang:23 sweave.lang:25
+#: t2t.lang:24 texinfo.lang:25 xml.lang:26 xslt.lang:24
 msgid "Markup"
 msgstr "Leírónyelv"
 
@@ -656,9 +660,9 @@ msgstr "Speciális változó"
 
 #. (itstool) path: styles/style@_name
 #: boo.lang:44 desktop.lang:39 d.lang:47 genie.lang:44 imagej.lang:34
-#: julia.lang:40 libtool.lang:33 modelica.lang:42 objj.lang:36 octave.lang:46
-#: python3.lang:38 python.lang:44 scheme.lang:33 scilab.lang:36 sparql.lang:39
-#: yaml.lang:39
+#: julia.lang:40 libtool.lang:33 meson.lang:35 modelica.lang:42 objj.lang:36
+#: octave.lang:46 python3.lang:38 python.lang:44 scheme.lang:33 scilab.lang:36
+#: sparql.lang:39 yaml.lang:39
 msgid "Boolean"
 msgstr "Logikai"
 
@@ -678,8 +682,8 @@ msgid "Included File"
 msgstr "Include-olt fájl"
 
 #. (itstool) path: styles/style@_name
-#: cg.lang:44 c.lang:49 d.lang:51 go.lang:46 nemerle.lang:46 ooc.lang:46
-#: php.lang:56
+#: cg.lang:44 c.lang:49 d.lang:51 dtl.lang:43 go.lang:46 nemerle.lang:46
+#: ooc.lang:46 php.lang:56
 msgid "Octal number"
 msgstr "Oktális szám"
 
@@ -1207,6 +1211,11 @@ msgstr "hiba"
 #: dtd.lang:36
 msgid "Quoted Value"
 msgstr "Idézett érték"
+
+#. (itstool) path: dtl.lang/language@_name
+#: dtl.lang:25
+msgid "Django Template"
+msgstr "Django sablon"
 
 #. (itstool) path: eiffel.lang/language@_name
 #: eiffel.lang:24
@@ -3192,13 +3201,13 @@ msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "A(z) „%s” kontextus nem  tartalmazhat \\%%{...@start} parancsot"
 
 #: gtksourceview/gtksourcecontextengine.c:5875
-#: gtksourceview/gtksourcecontextengine.c:5966
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "többszörös kontextusazonosító: „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6080
-#: gtksourceview/gtksourcecontextengine.c:6140
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -3207,18 +3216,18 @@ msgstr ""
 "a helyettesítő karakteres kontextushivatkozáshoz stílus-felülbírálás került "
 "felhasználásra a(z) „%s” nyelv „%s” hivatkozásában."
 
-#: gtksourceview/gtksourcecontextengine.c:6154
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "érvénytelen kontextushivatkozás („%s”)"
 
-#: gtksourceview/gtksourcecontextengine.c:6173
-#: gtksourceview/gtksourcecontextengine.c:6183
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
 msgid "unknown context “%s”"
 msgstr "ismeretlen kontextus: „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6282
+#: gtksourceview/gtksourcecontextengine.c:6281
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Az elsődleges nyelvmeghatározás hiányzik (azonosító: „%s”.)"
