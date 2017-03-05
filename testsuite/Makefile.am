@@ -2,13 +2,12 @@
 
 @VALGRIND_CHECK_RULES@
 
-# https://github.com/pwithnall/walbottle
 # https://github.com/dtrebbien/GNOME.supp
-VALGRIND_SUPPRESSIONS_FILES =						\
-	$(top_srcdir)/../walbottle/libwalbottle/tests/walbottle.supp	\
-	$(top_srcdir)/../GNOME.supp/build/base.supp			\
-	$(top_srcdir)/../GNOME.supp/build/pango.supp			\
-	$(top_srcdir)/../GNOME.supp/build/gdk.supp			\
+VALGRIND_SUPPRESSIONS_FILES =					\
+	$(GLIB_PREFIX)/share/glib-2.0/valgrind/glib.supp	\
+	$(top_srcdir)/../GNOME.supp/build/base.supp		\
+	$(top_srcdir)/../GNOME.supp/build/pango.supp		\
+	$(top_srcdir)/../GNOME.supp/build/gdk.supp		\
 	$(top_srcdir)/../GNOME.supp/build/gtk3.supp
 
 AM_CPPFLAGS = 				\
