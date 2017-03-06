@@ -26,6 +26,7 @@ endif
 
 EXTRA_DIST = \
 	replace.py	\
+	gtksource_version_h.py	\
 	detectenv-msvc.mak	\
 	gtksourceview-introspection-msvc.mak	\
 	introspection-msvc.mak	\
