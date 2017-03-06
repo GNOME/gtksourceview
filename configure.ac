@@ -236,9 +236,9 @@ Makefile
 config.h.win32
 win32/Makefile
 win32/vs9/Makefile
-win32/vs9/gtksourceview-gen-srcs.vsprops
+win32/vs9/gtksourceview-version-paths.vsprops
 win32/vs10/Makefile
-win32/vs10/gtksourceview-gen-srcs.props
+win32/vs10/gtksourceview-version-paths.props
 win32/vs11/Makefile
 win32/vs12/Makefile
 win32/vs14/Makefile

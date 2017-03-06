@@ -5,6 +5,9 @@
     <GlibEtcInstallRoot>$(SolutionDir)\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
     <DefDir>$(SolutionDir)$(Configuration)\$(Platform)\obj\$(ProjectName)</DefDir>
+    <GtkSourceviewMajorVersion>@GTK_SOURCE_MAJOR_VERSION@</GtkSourceviewMajorVersion>
+    <GtkSourceviewMinorVersion>@GTK_SOURCE_MINOR_VERSION@</GtkSourceviewMinorVersion>    
+    <GtkSourceviewMicroVersion>@GTK_SOURCE_MICRO_VERSION@</GtkSourceviewMicroVersion>
     <ApiVersion>3.0</ApiVersion>
     <GtkSourceviewLibtoolCompatibleDllPrefix>lib</GtkSourceviewLibtoolCompatibleDllPrefix>
     <GtkSourceviewLibtoolCompatibleDllSuffix>-$(ApiVersion)-0</GtkSourceviewLibtoolCompatibleDllSuffix>
@@ -32,6 +35,15 @@
     </BuildMacro>
     <BuildMacro Include="DefDir">
       <Value>$(DefDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceviewMajorVersion">
+      <Value>$(GtkSourceviewMajorVersion)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceviewMinorVersion">
+      <Value>$(GtkSourceviewMinorVersion)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceviewMicroVersion">
+      <Value>$(GtkSourceviewMicroVersion)</Value>
     </BuildMacro>
     <BuildMacro Include="ApiVersion">
       <Value>$(ApiVersion)</Value>
