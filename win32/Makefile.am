@@ -31,6 +31,8 @@ EXTRA_DIST = \
 	gtksourceview4-introspection-msvc.mak	\
 	introspection-msvc.mak	\
 	gen-enums.batin	\
+	pc_base.py	\
+	gtksourceviewpc.py	\
 	$(GENERATED_ITEMS)
 
 gen-enums.bat: $(top_srcdir)/win32/gen-enums.batin enum.headers
