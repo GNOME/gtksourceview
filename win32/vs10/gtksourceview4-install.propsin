@@ -16,6 +16,7 @@ copy ..\..\gtksourceview\completion-providers\words\gtksourcecompletionwords.h $
 
 mkdir $(CopyDir)\lib
 copy $(SolutionDir)$(Configuration)\$(Platform)\bin\gtksourceview-$(ApiVersion).lib $(CopyDir)\lib
+copy ..\gtksourceview-$(ApiVersion).pc $(CopyDir)\lib\pkgconfig
 
 mkdir $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
 copy ..\..\data\language-specs\*.lang $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs
@@ -28,6 +29,8 @@ copy ..\..\data\styles\*.xml $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
 copy ..\..\data\styles\styles.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
 copy ..\..\data\styles\check-style.sh $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
     </GtkSourceviewDoInstall>
+    <GtkSourceviewPCFiles>..\gtksourceview-$(ApiVersion).pc</GtkSourceviewPCFiles>
+    <GtkSourceviewGenPC>(if not exist $(CopyDir)\lib\pkgconfig mkdir $(CopyDir)\lib\pkgconfig) &amp; ($(PythonPath)\python ..\gtksourceviewpc.py --prefix=$(CopyDir) --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion))</GtkSourceviewGenPC>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceview4installprops</_PropertySheetDisplayName>
@@ -37,6 +40,12 @@ copy ..\..\data\styles\check-style.sh $(CopyDir)\share\gtksourceview-$(ApiVersio
   <ItemGroup>
     <BuildMacro Include="GtkSourceviewDoInstall">
       <Value>$(GtkSourceviewDoInstall)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceviewPCFiles">
+      <Value>$(GtkSourceviewPCFiles)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceviewGenPC">
+      <Value>$(GtkSourceviewGenPC)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

@@ -6,7 +6,8 @@ EXTRA_DIST =							\
 	gtksourceview@GSV_API_VERSION@-version-paths.props	\
 	gtksourceview-@GSV_API_VERSION@.vcxproj			\
 	gtksourceview-@GSV_API_VERSION@.vcxproj.filters		\
-	gtksourceview@GSV_API_VERSION@-install.vcxproj
+	gtksourceview@GSV_API_VERSION@-install.vcxproj		\
+	gtksourceview@GSV_API_VERSION@-install.vcxproj.filters
 
 DISTCLEANFILES = $(EXTRA_DIST)
 
