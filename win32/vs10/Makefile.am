@@ -22,6 +22,7 @@ gtksourceview@GSV_API_VERSION@-install.props: $(top_srcdir)/win32/vs10/gtksource
 	-$(RM) $(top_builddir)/win32/vs11/gtksourceview@GSV_API_VERSION@-install.props
 	-$(RM) $(top_builddir)/win32/vs12/gtksourceview@GSV_API_VERSION@-install.props
 	-$(RM) $(top_builddir)/win32/vs14/gtksourceview@GSV_API_VERSION@-install.props
+	-$(RM) $(top_builddir)/win32/vs15/gtksourceview@GSV_API_VERSION@-install.props
 	$(CPP) -P - <$(top_srcdir)/win32/vs10/gtksourceview@GSV_API_VERSION@-install.propsin >$@
 	$(RM) $(MSVC10_HEADERS_LISTS)
 
