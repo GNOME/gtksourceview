@@ -5,6 +5,18 @@
 	Name="gtksourceview4versionpathsprops"
 	>
 	<UserMacro
+		Name="GtkSourceviewMajorVersion"
+		Value="@GTK_SOURCE_MAJOR_VERSION@"
+	/>
+	<UserMacro
+		Name="GtkSourceviewMinorVersion"
+		Value="@GTK_SOURCE_MINOR_VERSION@"
+	/>
+	<UserMacro
+		Name="GtkSourceviewMicroVersion"
+		Value="@GTK_SOURCE_MICRO_VERSION@"
+	/>
+	<UserMacro
 		Name="ApiVersion"
 		Value="4"
 	/>

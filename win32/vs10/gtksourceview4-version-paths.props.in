@@ -2,10 +2,13 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="UserMacros">
     <VSVer>10</VSVer>
+    <GtkSourceviewMajorVersion>@GTK_SOURCE_MAJOR_VERSION@</GtkSourceviewMajorVersion>
+    <GtkSourceviewMinorVersion>@GTK_SOURCE_MINOR_VERSION@</GtkSourceviewMinorVersion>
+    <GtkSourceviewMicroVersion>@GTK_SOURCE_MICRO_VERSION@</GtkSourceviewMicroVersion>
+    <ApiVersion>4</ApiVersion>
     <GlibEtcInstallRoot>$(SolutionDir)\..\..\..\vs$(VSVer)\$(Platform)</GlibEtcInstallRoot>
     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
     <DefDir>$(SolutionDir)$(Configuration)\$(Platform)\obj\$(ProjectName)</DefDir>
-    <ApiVersion>4</ApiVersion>
     <GtkSourceviewLibtoolCompatibleDllPrefix>lib</GtkSourceviewLibtoolCompatibleDllPrefix>
     <GtkSourceviewLibtoolCompatibleDllSuffix>-$(ApiVersion).0-0</GtkSourceviewLibtoolCompatibleDllSuffix>
     <GtkSourceviewSeparateVSDllPrefix />
@@ -21,20 +24,26 @@
     <BuildMacro Include="VSVer">
       <Value>$(VSVer)</Value>
     </BuildMacro>
+    <BuildMacro Include="GtkSourceviewMajorVersion">
+      <Value>$(GtkSourceviewMajorVersion)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceviewMinorVersion">
+      <Value>$(GtkSourceviewMinorVersion)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceviewMicroVersion">
+      <Value>$(GtkSourceviewMicroVersionn)</Value>
+    </BuildMacro>
+    <BuildMacro Include="ApiVersion">
+      <Value>$(ApiVersion)</Value>
+    </BuildMacro>
     <BuildMacro Include="GlibEtcInstallRoot">
       <Value>$(GlibEtcInstallRoot)</Value>
-    </BuildMacro>
-    <BuildMacro Include="GlibEtcInstallRootFromBuildWin32">
-      <Value>$(GlibEtcInstallRootFromBuildWin32)</Value>
     </BuildMacro>
     <BuildMacro Include="CopyDir">
       <Value>$(CopyDir)</Value>
     </BuildMacro>
     <BuildMacro Include="DefDir">
       <Value>$(DefDir)</Value>
-    </BuildMacro>
-    <BuildMacro Include="ApiVersion">
-      <Value>$(ApiVersion)</Value>
     </BuildMacro>
     <BuildMacro Include="GtkSourceviewLibtoolCompatibleDllPrefix">
       <Value>$(GtkSourceviewLibtoolCompatibleDllPrefix)</Value>
