@@ -7,6 +7,7 @@ EXTRA_DIST =				\
 	gtksourceview.vcxproj			\
 	gtksourceview.vcxproj.filters		\
 	gtksourceview-install.vcxproj		\
+	gtksourceview-install.vcxproj.filters	\
 	math.h
 
 math.h: $(top_srcdir)/win32/vs9/math.h
