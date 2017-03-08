@@ -15,19 +15,19 @@ copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(GtkSourceviewDllPr
 
 mkdir $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words&#x0D;&#x0A;
 #include "gtksourceview-4.headers"
-copy ..\..\..\gtksourceview\completion-providers\words\gtksourcecompletionwords.h $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words&#x0D;&#x0A;
+copy ..\..\gtksourceview\completion-providers\words\gtksourcecompletionwords.h $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words&#x0D;&#x0A;
 
 mkdir $(CopyDir)\lib&#x0D;&#x0A;
 copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\*-$(ApiVersion).lib $(CopyDir)\lib&#x0D;&#x0A;
 
 mkdir $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs&#x0D;&#x0A;
-copy ..\..\..\data\language-specs\*.lang $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs&#x0D;&#x0A;
-copy ..\..\..\data\language-specs\*.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs&#x0D;&#x0A;
-copy ..\..\..\data\language-specs\language.dtd $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs&#x0D;&#x0A;
+copy ..\..\data\language-specs\*.lang $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs&#x0D;&#x0A;
+copy ..\..\data\language-specs\*.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs&#x0D;&#x0A;
+copy ..\..\data\language-specs\language.dtd $(CopyDir)\share\gtksourceview-$(ApiVersion)\language-specs&#x0D;&#x0A;
 
 mkdir $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles&#x0D;&#x0A;
-copy ..\..\..\data\styles\*.xml $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles&#x0D;&#x0A;
-copy ..\..\..\data\styles\styles.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles&#x0D;&#x0A;
+copy ..\..\data\styles\*.xml $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles&#x0D;&#x0A;
+copy ..\..\data\styles\styles.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles&#x0D;&#x0A;
 "
 	/>
 </VisualStudioPropertySheet>

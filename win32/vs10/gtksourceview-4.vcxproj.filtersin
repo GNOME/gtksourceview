@@ -18,9 +18,9 @@
 #include "gtksourceview-4.vs10.sourcefiles.filters"
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\..\config.h.win32"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\config.h.win32"><Filter>Resource Files</Filter></CustomBuild>
     <CustomBuild Include="..\gen-enums.bat"><Filter>Resource Files</Filter></CustomBuild>
-    <CustomBuild Include="..\..\..\gtksourceview\gtksourceview.gresource.xml"><Filter>Resource Files</Filter></CustomBuild>
-    <CustomBuild Include="..\..\..\gtksourceview\gtksourceversion.h.in"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\gtksourceview\gtksourceview.gresource.xml"><Filter>Resource Files</Filter></CustomBuild>
+    <CustomBuild Include="..\..\gtksourceview\gtksourceversion.h.in"><Filter>Resource Files</Filter></CustomBuild>
   </ItemGroup>
 </Project>

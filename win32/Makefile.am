@@ -16,7 +16,7 @@ introspection.body.mak: GtkSource-@GSV_API_VERSION@.gir.msvc.introspect
 	-$(RM) introspection.body.mak
 	for F in `ls *.msvc.introspect`; do \
 		case $$F in \
-			*)	cat $(top_builddir)/build/win32/$$F >>$@ \
+			*)	cat $(top_builddir)/win32/$$F >>$@ \
 			;; \
 		esac; \
 	done
@@ -31,7 +31,7 @@ EXTRA_DIST = \
 	gen-enums.batin	\
 	$(GENERATED_ITEMS)
 
-gen-enums.bat: $(top_srcdir)/build/win32/gen-enums.batin enum.headers
+gen-enums.bat: $(top_srcdir)/win32/gen-enums.batin enum.headers
 	-$(RM) $@
 	$(CPP) -P - -traditional-cpp <$< >$@
 	$(RM) enum.headers
