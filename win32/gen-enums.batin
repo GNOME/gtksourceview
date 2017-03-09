@@ -1,6 +1,6 @@
 @echo OFF
 
-cd ..\..\gtksourceview
+cd ..\gtksourceview
 
 if exist gtksourceview-enumtypes.h del gtksourceview-enumtypes.h
 if exist gtksourceview-enumtypes.c del gtksourceview-enumtypes.c
