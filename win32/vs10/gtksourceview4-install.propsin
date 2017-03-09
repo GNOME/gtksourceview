@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets">
-    <Import Project="gtksourceview-build-defines.props" />
+    <Import Project="gtksourceview4-build-defines.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
     <GtkSourceviewDoInstall>
 mkdir $(CopyDir)
 mkdir $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\$(GtkSourceviewDllPrefix)gtksourceview$(GtkSourceviewDllSuffix).dll $(CopyDir)\bin
-copy $(SolutionDir)$(Configuration)\$(Platform)\bin\$(GtkSourceviewDllPrefix)gtksourceview$(GtkSourceviewDllSuffix).pdb $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\$(GtkSourceviewDllPrefix)gtksourceview-$(ApiVersion)$(GtkSourceviewDllSuffix).dll $(CopyDir)\bin
+copy $(SolutionDir)$(Configuration)\$(Platform)\bin\$(GtkSourceviewDllPrefix)gtksourceview-$(ApiVersion)$(GtkSourceviewDllSuffix).pdb $(CopyDir)\bin
 
 mkdir $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words
 #include "gtksourceview-4.vs10.headers"

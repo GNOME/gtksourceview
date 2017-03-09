@@ -10,8 +10,8 @@
 		Value="
 mkdir $(CopyDir)&#x0D;&#x0A;
 mkdir $(CopyDir)\bin&#x0D;&#x0A;
-copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(GtkSourceviewDllPrefix)gtksourceview$(GtkSourceviewDllSuffix).dll $(CopyDir)\bin&#x0D;&#x0A;
-copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(GtkSourceviewDllPrefix)gtksourceview$(GtkSourceviewDllSuffix).pdb $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(GtkSourceviewDllPrefix)gtksourceview-$(ApiVersion)$(GtkSourceviewDllSuffix).dll $(CopyDir)\bin&#x0D;&#x0A;
+copy $(SolutionDir)$(ConfigurationName)\$(PlatformName)\bin\$(GtkSourceviewDllPrefix)gtksourceview-$(ApiVersion)$(GtkSourceviewDllSuffix).pdb $(CopyDir)\bin&#x0D;&#x0A;
 
 mkdir $(CopyDir)\include\gtksourceview-$(ApiVersion)\gtksourceview\completion-providers\words&#x0D;&#x0A;
 #include "gtksourceview-4.headers"

@@ -10,7 +10,7 @@
     <CopyDir>$(GlibEtcInstallRoot)</CopyDir>
     <DefDir>$(SolutionDir)$(Configuration)\$(Platform)\obj\$(ProjectName)</DefDir>
     <GtkSourceviewLibtoolCompatibleDllPrefix>lib</GtkSourceviewLibtoolCompatibleDllPrefix>
-    <GtkSourceviewLibtoolCompatibleDllSuffix>-$(ApiVersion).0-0</GtkSourceviewLibtoolCompatibleDllSuffix>
+    <GtkSourceviewLibtoolCompatibleDllSuffix>.0-0</GtkSourceviewLibtoolCompatibleDllSuffix>
     <GtkSourceviewSeparateVSDllPrefix />
     <GtkSourceviewSeparateVSDllSuffix>-vs$(VSVer)</GtkSourceviewSeparateVSDllSuffix>
     <GtkSourceviewDllPrefix>$(GtkSourceviewSeparateVSDllPrefix)</GtkSourceviewDllPrefix>
