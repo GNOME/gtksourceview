@@ -14,7 +14,6 @@ EXTRA_DIST = \
 	gtksourceview.doap \
 	gtksourceview.pc.in \
 	HACKING \
-	MAINTAINERS \
 	config.h.win32.in \
 	config.h.win32
 
