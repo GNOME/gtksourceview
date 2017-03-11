@@ -9,17 +9,17 @@
 # Ilkka Tuohela <hile@iki.fi>, 2005-2009.
 # Tommi Vainikainen <thv@iki.fi>, 2009.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2014.
-# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2013, 2016.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2013, 2016, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-14 12:34+0000\n"
-"PO-Revision-Date: 2016-03-14 19:35+0200\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-02-23 11:09+0000\n"
+"PO-Revision-Date: 2017-03-11 19:01+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
-"Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
+"Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,15 +87,16 @@ msgstr "Seuraava"
 #. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview.xml:39 ../gtksourceview/gtksourcecompletion.c:834
+#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:833
 msgid "All"
 msgstr "Kaikki"
 
-#. (itstool) path: actionscript.lang/language@_name
-#: actionscript.lang:25
-msgid "ActionScript"
-msgstr "ActionScript"
+#. (itstool) path: abnf.lang/language@_name
+#: abnf.lang:31
+msgid "ABNF"
+msgstr ""
 
+#. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
 #. (itstool) path: ada.lang/language@_section
 #. (itstool) path: ansforth94.lang/language@_section
@@ -104,12 +105,12 @@ msgstr "ActionScript"
 #. (itstool) path: bennugd.lang/language@_section
 #. (itstool) path: bluespec.lang/language@_section
 #. (itstool) path: boo.lang/language@_section
-#. (itstool) path: c.lang/language@_section
 #. (itstool) path: cg.lang/language@_section
 #. (itstool) path: chdr.lang/language@_section
+#. (itstool) path: c.lang/language@_section
 #. (itstool) path: cobol.lang/language@_section
-#. (itstool) path: cpp.lang/language@_section
 #. (itstool) path: cpphdr.lang/language@_section
+#. (itstool) path: cpp.lang/language@_section
 #. (itstool) path: csharp.lang/language@_section
 #. (itstool) path: cuda.lang/language@_section
 #. (itstool) path: d.lang/language@_section
@@ -123,9 +124,10 @@ msgstr "ActionScript"
 #. (itstool) path: go.lang/language@_section
 #. (itstool) path: haskell.lang/language@_section
 #. (itstool) path: haskell-literate.lang/language@_section
+#. (itstool) path: haxe.lang/language@_section
 #. (itstool) path: idl.lang/language@_section
-#. (itstool) path: j.lang/language@_section
 #. (itstool) path: java.lang/language@_section
+#. (itstool) path: j.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
@@ -153,81 +155,115 @@ msgstr "ActionScript"
 #. (itstool) path: vbnet.lang/language@_section
 #. (itstool) path: verilog.lang/language@_section
 #. (itstool) path: vhdl.lang/language@_section
-#: actionscript.lang:25 ada.lang:26 ansforth94.lang:25 asp.lang:24
-#: automake.lang:24 bennugd.lang:23 bluespec.lang:22 boo.lang:24 c.lang:25
-#: cg.lang:24 chdr.lang:25 cobol.lang:27 cpp.lang:25 cpphdr.lang:25
+#: abnf.lang:31 actionscript.lang:25 ada.lang:26 ansforth94.lang:25 asp.lang:24
+#: automake.lang:24 bennugd.lang:23 bluespec.lang:22 boo.lang:24 cg.lang:24
+#: chdr.lang:25 c.lang:25 cobol.lang:27 cpphdr.lang:25 cpp.lang:25
 #: csharp.lang:27 cuda.lang:23 d.lang:30 eiffel.lang:24 erlang.lang:24
 #: forth.lang:24 fortran.lang:25 fsharp.lang:25 genie.lang:24 glsl.lang:31
-#: go.lang:25 haskell.lang:25 haskell-literate.lang:24 idl.lang:24 j.lang:24
-#: java.lang:25 lex.lang:25 llvm.lang:23 makefile.lang:23 meson.lang:24
-#: nemerle.lang:24 netrexx.lang:24 objc.lang:24 objj.lang:26 ocaml.lang:27
-#: ooc.lang:24 opal.lang:24 opencl.lang:24 pascal.lang:25 pig.lang:27
-#: prolog.lang:24 rust.lang:36 scala.lang:25 scheme.lang:24 sml.lang:24
-#: sparql.lang:24 sql.lang:24 systemverilog.lang:22 thrift.lang:21
+#: go.lang:25 haskell.lang:25 haskell-literate.lang:24 haxe.lang:35 idl.lang:24
+#: java.lang:25 j.lang:24 lex.lang:25 llvm.lang:23 makefile.lang:23
+#: meson.lang:24 nemerle.lang:24 netrexx.lang:24 objc.lang:24 objj.lang:26
+#: ocaml.lang:27 ooc.lang:24 opal.lang:24 opencl.lang:24 pascal.lang:25
+#: pig.lang:27 prolog.lang:24 rust.lang:36 scala.lang:25 scheme.lang:24
+#: sml.lang:24 sparql.lang:24 sql.lang:24 systemverilog.lang:22 thrift.lang:21
 #: vala.lang:28 vbnet.lang:24 verilog.lang:24 vhdl.lang:24
-#| msgid "Sources"
 msgid "Source"
 msgstr "Lähde"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:35 ada.lang:34 ansforth94.lang:39 asp.lang:32
-#: bennugd.lang:32 boo.lang:34 c.lang:35 cg.lang:33 cobol.lang:35
+#: abnf.lang:38 actionscript.lang:35 ada.lang:34 ansforth94.lang:39 asp.lang:32
+#: bennugd.lang:32 boo.lang:34 cg.lang:33 c.lang:35 cobol.lang:35
 #: csharp.lang:37 def.lang:40 d.lang:40 dosbatch.lang:31 dot.lang:34
-#: eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34 fortran.lang:33
-#: fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35 gtkrc.lang:33
-#: haskell.lang:34 html.lang:34 idl.lang:32 idl-exelis.lang:28 ini.lang:31
-#: j.lang:32 jade.lang:33 java.lang:35 latex.lang:33 llvm.lang:30 lua.lang:34
-#: matlab.lang:41 modelica.lang:36 nemerle.lang:34 netrexx.lang:38
-#: nsis.lang:32 ocaml.lang:36 ocl.lang:41 octave.lang:41 ooc.lang:33
-#: opal.lang:34 pascal.lang:33 perl.lang:34 php.lang:40 pig.lang:41 po.lang:32
-#: prolog.lang:34 protobuf.lang:31 rst.lang:36 ruby.lang:36 rust.lang:45
-#: scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33 sml.lang:32
-#: sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33 thrift.lang:30
-#: vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32 xml.lang:35
-#: yaml.lang:31
+#: dtl.lang:34 eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34
+#: fortran.lang:33 fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35
+#: gtkrc.lang:33 haskell.lang:34 haxe.lang:48 html.lang:34 idl-exelis.lang:28
+#: idl.lang:32 ini.lang:31 jade.lang:32 java.lang:35 j.lang:32 latex.lang:33
+#: llvm.lang:30 lua.lang:34 matlab.lang:41 modelica.lang:36 nemerle.lang:34
+#: netrexx.lang:38 nsis.lang:32 ocaml.lang:36 ocl.lang:41 octave.lang:41
+#: ooc.lang:33 opal.lang:34 pascal.lang:33 perl.lang:34 php.lang:40 pig.lang:41
+#: po.lang:32 prolog.lang:34 protobuf.lang:31 rst.lang:36 ruby.lang:36
+#: rust.lang:46 scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33
+#: sml.lang:32 sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33
+#: thrift.lang:30 vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32
+#: xml.lang:35 yaml.lang:31
 msgid "Comment"
 msgstr "Kommentti"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:36 c.lang:54 cg.lang:34 cobol.lang:43 csharp.lang:38
-#: css.lang:47 def.lang:102 d.lang:41 dot.lang:35 go.lang:36 html.lang:39
-#: j.lang:35 jade.lang:41 json.lang:42 nemerle.lang:35 ocaml.lang:53
-#: ooc.lang:34 opal.lang:36 perl.lang:48 php.lang:41 prolog.lang:40
-#: scala.lang:36 vala.lang:39 verilog.lang:38 xml.lang:45
+#: abnf.lang:39
+#, fuzzy
+#| msgid "Complex number"
+msgid "Rule Name"
+msgstr "Kompleksiluku"
+
+#. (itstool) path: styles/style@_name
+#: abnf.lang:40 d.lang:50 nemerle.lang:45
+msgid "Binary number"
+msgstr "Binääriluku"
+
+#. (itstool) path: styles/style@_name
+#: abnf.lang:41 ada.lang:37 bennugd.lang:39 cg.lang:43 c.lang:48 csharp.lang:49
+#: csv.lang:31 def.lang:67 d.lang:49 dtl.lang:42 eiffel.lang:45 erlang.lang:39
+#: fsharp.lang:37 go.lang:45 idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40
+#: ooc.lang:45 opal.lang:40 php.lang:55 python3.lang:40 python.lang:46
+#: ruby.lang:43
+msgid "Decimal number"
+msgstr "Desimaaliluku"
+
+#. (itstool) path: styles/style@_name
+#: abnf.lang:42 bennugd.lang:40 cg.lang:45 c.lang:50 csharp.lang:50 d.lang:52
+#: dtl.lang:44 eiffel.lang:46 go.lang:47 nemerle.lang:47 ooc.lang:47
+#: php.lang:57
+msgid "Hexadecimal number"
+msgstr "Heksadesimaaliluku"
+
+#. (itstool) path: styles/style@_name
+#: abnf.lang:43 actionscript.lang:37 ada.lang:35 ansforth94.lang:43 asp.lang:33
+#: boo.lang:36 c.lang:36 cobol.lang:40 csharp.lang:40 css.lang:50 csv.lang:34
+#: def.lang:57 d.lang:42 dosbatch.lang:32 dtl.lang:37 eiffel.lang:34
+#: erlang.lang:36 forth.lang:35 fortran.lang:34 fsharp.lang:38 gdb-log.lang:30
+#: genie.lang:36 go.lang:37 gtkrc.lang:34 haskell.lang:39 haxe.lang:55
+#: idl-exelis.lang:32 idl.lang:36 imagej.lang:40 ini.lang:33 java.lang:37
+#: javascript.lang:47 j.lang:45 json.lang:39 julia.lang:37 llvm.lang:31
+#: lua.lang:35 meson.lang:34 modelica.lang:37 nemerle.lang:38 netrexx.lang:36
+#: nsis.lang:33 objc.lang:37 objj.lang:41 ocaml.lang:41 ocl.lang:42
+#: octave.lang:42 ooc.lang:36 opal.lang:37 pascal.lang:34 perl.lang:37
+#: php.lang:45 po.lang:34 prolog.lang:37 protobuf.lang:37 python3.lang:34
+#: python.lang:39 ruby.lang:46 rust.lang:47 scala.lang:39 scheme.lang:34
+#: scilab.lang:33 sh.lang:35 sml.lang:36 sql.lang:34 texinfo.lang:36
+#: thrift.lang:33 vala.lang:41 vbnet.lang:33 verilog.lang:35 vhdl.lang:33
+#: yaml.lang:32
+msgid "String"
+msgstr "Merkkijono"
+
+#. (itstool) path: actionscript.lang/language@_name
+#: actionscript.lang:25
+msgid "ActionScript"
+msgstr "ActionScript"
+
+#. (itstool) path: styles/style@_name
+#: actionscript.lang:36 cg.lang:34 c.lang:54 cobol.lang:43 csharp.lang:38
+#: css.lang:48 def.lang:102 d.lang:41 dot.lang:35 dtl.lang:35 go.lang:36
+#: haxe.lang:62 html.lang:39 jade.lang:40 j.lang:35 json.lang:42
+#: nemerle.lang:35 ocaml.lang:53 ooc.lang:34 opal.lang:36 perl.lang:48
+#: php.lang:41 prolog.lang:40 rust.lang:57 scala.lang:36 vala.lang:39
+#: verilog.lang:38 xml.lang:45
 msgid "Error"
 msgstr "Virhe"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:37 ada.lang:35 ansforth94.lang:43 asp.lang:33 boo.lang:36
-#: c.lang:36 cobol.lang:40 csharp.lang:40 css.lang:49 csv.lang:34 def.lang:57
-#: d.lang:42 dosbatch.lang:32 eiffel.lang:34 erlang.lang:36 forth.lang:35
-#: fortran.lang:34 fsharp.lang:38 gdb-log.lang:30 genie.lang:36 go.lang:37
-#: gtkrc.lang:34 haskell.lang:39 idl.lang:36 idl-exelis.lang:32 imagej.lang:40
-#: ini.lang:33 j.lang:45 java.lang:37 javascript.lang:47 json.lang:39
-#: julia.lang:37 llvm.lang:31 lua.lang:35 meson.lang:34 modelica.lang:37
-#: nemerle.lang:38 netrexx.lang:36 nsis.lang:33 objc.lang:37 objj.lang:41
-#: ocaml.lang:41 ocl.lang:42 octave.lang:42 ooc.lang:36 opal.lang:37
-#: pascal.lang:34 perl.lang:37 php.lang:45 po.lang:34 python.lang:39
-#: python3.lang:34 prolog.lang:37 protobuf.lang:37 ruby.lang:46 rust.lang:46
-#: scala.lang:39 scheme.lang:34 scilab.lang:33 sh.lang:35 sml.lang:36
-#: sql.lang:34 texinfo.lang:36 thrift.lang:33 vala.lang:41 vbnet.lang:33
-#: verilog.lang:35 vhdl.lang:33 yaml.lang:32
-msgid "String"
-msgstr "Merkkijono"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:38 java.lang:41 ooc.lang:37 scala.lang:37
+#: actionscript.lang:38 haxe.lang:49 java.lang:41 ooc.lang:37 scala.lang:37
 msgid "External"
 msgstr "Ulkoinen"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:39 java.lang:42 ooc.lang:38 scala.lang:41
+#: actionscript.lang:39 haxe.lang:51 java.lang:42 ooc.lang:38 scala.lang:41
 msgid "Declaration"
 msgstr "Määrittely"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:40 ada.lang:39 c.lang:44 cg.lang:40 java.lang:43
-#: ooc.lang:39
+#: actionscript.lang:40 ada.lang:39 cg.lang:40 c.lang:44 haxe.lang:52
+#: java.lang:43 ooc.lang:39
 msgid "Storage Class"
 msgstr "Säilöluokka"
 
@@ -238,46 +274,47 @@ msgstr "Alueen määrittely"
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:42 ada.lang:36 ansforth94.lang:36 asp.lang:35 awk.lang:32
-#: bennugd.lang:36 bluespec.lang:35 boo.lang:41 c.lang:41 cg.lang:38
-#: cobol.lang:38 cpp.lang:35 csharp.lang:45 css.lang:58 cuda.lang:33
-#: def.lang:92 d.lang:43 dosbatch.lang:33 dot.lang:36 eiffel.lang:37
-#: erlang.lang:33 fcl.lang:32 forth.lang:37 fortran.lang:36 fsharp.lang:39
-#: gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39 gtkrc.lang:35
-#: haskell.lang:37 idl.lang:35 idl-exelis.lang:31 imagej.lang:38 ini.lang:34
-#: java.lang:45 javascript.lang:41 julia.lang:44 lex.lang:35 llvm.lang:32
-#: lua.lang:36 matlab.lang:42 modelica.lang:46 nemerle.lang:39 objc.lang:34
-#: objj.lang:37 ocaml.lang:42 ocl.lang:43 octave.lang:48 ooc.lang:41
-#: opal.lang:38 opencl.lang:33 pascal.lang:35 perl.lang:38 php.lang:48
-#: po.lang:36 python.lang:37 python3.lang:32 prolog.lang:36 protobuf.lang:35
-#: R.lang:34 ruby.lang:39 rust.lang:48 scala.lang:43 scheme.lang:35
-#: scilab.lang:34 sh.lang:36 sml.lang:33 sparql.lang:37 sql.lang:35
-#: systemverilog.lang:33 tcl.lang:33 texinfo.lang:37 thrift.lang:32
-#: vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
+#: bennugd.lang:36 bluespec.lang:35 boo.lang:41 cg.lang:38 c.lang:41
+#: cobol.lang:38 cpp.lang:35 csharp.lang:45 css.lang:59 cuda.lang:33
+#: def.lang:92 d.lang:43 dosbatch.lang:33 dot.lang:36 dtl.lang:38
+#: eiffel.lang:37 erlang.lang:33 fcl.lang:32 forth.lang:37 fortran.lang:36
+#: fsharp.lang:39 gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39
+#: gtkrc.lang:35 haskell.lang:37 haxe.lang:54 idl-exelis.lang:31 idl.lang:35
+#: imagej.lang:38 ini.lang:34 java.lang:45 javascript.lang:41 julia.lang:44
+#: lex.lang:35 llvm.lang:32 lua.lang:36 matlab.lang:42 modelica.lang:46
+#: nemerle.lang:39 objc.lang:34 objj.lang:37 ocaml.lang:42 ocl.lang:43
+#: octave.lang:48 ooc.lang:41 opal.lang:38 opencl.lang:33 pascal.lang:35
+#: perl.lang:38 php.lang:48 po.lang:36 prolog.lang:36 protobuf.lang:35
+#: python3.lang:32 python.lang:37 R.lang:34 ruby.lang:39 rust.lang:49
+#: scala.lang:43 scheme.lang:35 scilab.lang:34 sh.lang:36 sml.lang:33
+#: sparql.lang:37 sql.lang:35 systemverilog.lang:33 tcl.lang:33 texinfo.lang:37
+#: thrift.lang:32 vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
 msgid "Keyword"
 msgstr "Avainsana"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:43 boo.lang:43 csharp.lang:47 d.lang:46 fsharp.lang:52
-#: genie.lang:43 java.lang:46 javascript.lang:38 json.lang:40 nemerle.lang:41
-#: objj.lang:42 ooc.lang:42 php.lang:52 vala.lang:44
+#: actionscript.lang:43 boo.lang:43 csharp.lang:47 d.lang:46 dtl.lang:39
+#: fsharp.lang:52 genie.lang:43 haxe.lang:58 java.lang:46 javascript.lang:38
+#: json.lang:40 nemerle.lang:41 objj.lang:42 ooc.lang:42 php.lang:52
+#: vala.lang:44
 msgid "Null Value"
 msgstr "NULL-arvo"
 
 #. (itstool) path: styles/style@_name
-#: actionscript.lang:44 ada.lang:38 asp.lang:42 bennugd.lang:41 c.lang:51
-#: cg.lang:46 csharp.lang:48 def.lang:75 fsharp.lang:50 go.lang:48
-#: gtkrc.lang:40 ini.lang:38 java.lang:47 llvm.lang:38 lua.lang:42
+#: actionscript.lang:44 ada.lang:38 asp.lang:42 bennugd.lang:41 cg.lang:46
+#: c.lang:51 csharp.lang:48 def.lang:75 dtl.lang:40 fsharp.lang:50 go.lang:48
+#: gtkrc.lang:40 haxe.lang:57 ini.lang:38 java.lang:47 llvm.lang:38 lua.lang:42
 #: nemerle.lang:42 ocaml.lang:52 ooc.lang:43 opal.lang:39 php.lang:53
-#: protobuf.lang:36 R.lang:39 ruby.lang:41 rust.lang:50 sml.lang:40
+#: protobuf.lang:36 R.lang:39 ruby.lang:41 rust.lang:51 sml.lang:40
 #: vala.lang:43 vbnet.lang:38 vhdl.lang:37
 msgid "Boolean value"
 msgstr "Totuusarvo"
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:45 asp.lang:43 boo.lang:45 cobol.lang:41 def.lang:63
-#: desktop.lang:38 forth.lang:39 genie.lang:45 j.lang:42 java.lang:48
-#: julia.lang:39 llvm.lang:39 netrexx.lang:48 prolog.lang:38 rust.lang:52
-#: scala.lang:45 vhdl.lang:40
+#: desktop.lang:38 forth.lang:39 genie.lang:45 haxe.lang:56 java.lang:48
+#: j.lang:42 julia.lang:39 llvm.lang:39 netrexx.lang:48 prolog.lang:38
+#: rust.lang:53 scala.lang:45 vhdl.lang:40
 msgid "Number"
 msgstr "Numero"
 
@@ -288,14 +325,15 @@ msgstr "Tulevaan käyttöön varatut sanat"
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:47 ada.lang:40 asp.lang:40 bennugd.lang:37 boo.lang:39
-#: c.lang:43 cg.lang:39 cpp.lang:36 csharp.lang:39 cuda.lang:34 d.lang:44
+#: cg.lang:39 c.lang:43 cpp.lang:36 csharp.lang:39 cuda.lang:34 d.lang:44
 #: eiffel.lang:38 forth.lang:38 fortran.lang:40 fsharp.lang:42 genie.lang:39
-#: glsl.lang:42 go.lang:40 gtkrc.lang:37 haskell.lang:38 idl.lang:33
-#: idl-exelis.lang:29 ini.lang:37 java.lang:50 javascript.lang:42 llvm.lang:37
-#: nemerle.lang:40 objc.lang:35 objj.lang:38 ocaml.lang:45 ocl.lang:45
-#: ooc.lang:49 opal.lang:41 opencl.lang:34 pascal.lang:37 php.lang:51
-#: pig.lang:36 protobuf.lang:34 rust.lang:49 scala.lang:47 sml.lang:34
-#: sparql.lang:34 sql.lang:38 thrift.lang:31 vala.lang:40 vbnet.lang:36
+#: glsl.lang:42 go.lang:40 gtkrc.lang:37 haskell.lang:38 haxe.lang:59
+#: idl-exelis.lang:29 idl.lang:33 ini.lang:37 java.lang:50 javascript.lang:42
+#: llvm.lang:37 nemerle.lang:40 objc.lang:35 objj.lang:38 ocaml.lang:45
+#: ocl.lang:45 ooc.lang:49 opal.lang:41 opencl.lang:34 pascal.lang:37
+#: php.lang:51 pig.lang:36 protobuf.lang:34 rust.lang:50 scala.lang:47
+#: sml.lang:34 sparql.lang:34 sql.lang:38 thrift.lang:31 vala.lang:40
+#: vbnet.lang:36
 msgid "Data Type"
 msgstr "Tietotyyppi"
 
@@ -305,18 +343,10 @@ msgid "Ada"
 msgstr "Ada"
 
 #. (itstool) path: styles/style@_name
-#: ada.lang:37 bennugd.lang:39 c.lang:48 cg.lang:43 csharp.lang:49 csv.lang:31
-#: def.lang:67 d.lang:49 eiffel.lang:45 erlang.lang:39 fsharp.lang:37
-#: go.lang:45 idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40 ooc.lang:45
-#: opal.lang:40 php.lang:55 python.lang:46 python3.lang:40 ruby.lang:43
-msgid "Decimal number"
-msgstr "Desimaaliluku"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:41 asp.lang:34 bennugd.lang:33 c.lang:37 cg.lang:35 csharp.lang:46
+#: ada.lang:41 asp.lang:34 bennugd.lang:33 cg.lang:35 c.lang:37 csharp.lang:46
 #: forth.lang:36 fortran.lang:41 fsharp.lang:51 glsl.lang:41 haskell.lang:33
-#: idl.lang:34 idl-exelis.lang:30 nemerle.lang:36 objj.lang:39 pascal.lang:38
-#: vbnet.lang:34
+#: haxe.lang:50 idl-exelis.lang:30 idl.lang:34 nemerle.lang:36 objj.lang:39
+#: pascal.lang:38 vbnet.lang:34
 msgid "Preprocessor"
 msgstr "Esikäsittejä"
 
@@ -331,17 +361,17 @@ msgid "Real number"
 msgstr "Reaaliluku"
 
 #. (itstool) path: styles/style@_name
-#: ada.lang:44 c.lang:46 cg.lang:41 csharp.lang:42 eiffel.lang:42
-#: fortran.lang:44 fsharp.lang:49 go.lang:42 haskell.lang:41 java.lang:36
-#: javascript.lang:37 json.lang:38 lua.lang:37 netrexx.lang:35 ocaml.lang:51
-#: ooc.lang:35 php.lang:44 python.lang:40 python3.lang:35 prolog.lang:41
-#: ruby.lang:35 scala.lang:40 sml.lang:37 texinfo.lang:34 verilog.lang:37
+#: ada.lang:44 cg.lang:41 c.lang:46 csharp.lang:42 dtl.lang:36 eiffel.lang:42
+#: fortran.lang:44 fsharp.lang:49 go.lang:42 haskell.lang:41 haxe.lang:63
+#: imagej.lang:37 java.lang:36 javascript.lang:37 json.lang:38 lua.lang:37
+#: netrexx.lang:35 ocaml.lang:51 ooc.lang:35 php.lang:44 prolog.lang:41
+#: python3.lang:35 python.lang:40 ruby.lang:35 scala.lang:40 sml.lang:37
+#: texinfo.lang:34 vala.lang:49 verilog.lang:37
 msgid "Escaped Character"
 msgstr "Suojattu merkkijono"
 
 #. (itstool) path: ansforth94.lang/language@_name
 #: ansforth94.lang:25
-#| msgid "Forth"
 msgid "ANS-Forth94"
 msgstr "ANS-Forth94"
 
@@ -360,7 +390,7 @@ msgstr ""
 #. (itstool) path: styles/style@_name
 #: ansforth94.lang:41 c.lang:40 csharp.lang:41 def.lang:55 erlang.lang:37
 #: gap.lang:33 go.lang:38 haskell.lang:40 java.lang:38 julia.lang:38
-#: nemerle.lang:37 netrexx.lang:37 rust.lang:47 sml.lang:35 vhdl.lang:34
+#: nemerle.lang:37 netrexx.lang:37 rust.lang:48 sml.lang:35 vhdl.lang:34
 msgid "Character"
 msgstr "Merkki"
 
@@ -385,10 +415,9 @@ msgstr "Muuttuja"
 
 #. (itstool) path: styles/style@_name
 #: ansforth94.lang:46
-#, fuzzy
 #| msgid "Global Variable"
 msgid "Local Variable"
-msgstr "Globaali muuttuja"
+msgstr "Paikallinen muuttuja"
 
 #. (itstool) path: styles/style@_name
 #: ansforth94.lang:47
@@ -415,10 +444,10 @@ msgid "ASP"
 msgstr "ASP"
 
 #. (itstool) path: styles/style@_name
-#: asp.lang:36 changelog.lang:39 cg.lang:48 css.lang:52 def.lang:81
-#: gap.lang:35 gdb-log.lang:29 gtk-doc.lang:34 idl-exelis.lang:35
-#: javascript.lang:43 llvm.lang:33 lua.lang:40 scheme.lang:36 scilab.lang:35
-#: sh.lang:34 sparql.lang:35 sql.lang:36
+#: asp.lang:36 cg.lang:48 changelog.lang:39 css.lang:53 def.lang:81 gap.lang:35
+#: gdb-log.lang:29 gtk-doc.lang:34 idl-exelis.lang:35 javascript.lang:43
+#: llvm.lang:33 lua.lang:40 scheme.lang:36 scilab.lang:35 sh.lang:34
+#: sparql.lang:35 sql.lang:36
 msgid "Function"
 msgstr "Funktio"
 
@@ -452,9 +481,8 @@ msgstr "Automake"
 
 #. (itstool) path: styles/style@_name
 #: automake.lang:39
-#, fuzzy
 msgid "Automake Variable"
-msgstr "Varusmuuttuja"
+msgstr "Automake-muuttuja"
 
 #. (itstool) path: styles/style@_name
 #: automake.lang:40
@@ -503,13 +531,13 @@ msgstr "awk"
 #. (itstool) path: m4.lang/language@_section
 #. (itstool) path: perl.lang/language@_section
 #. (itstool) path: php.lang/language@_section
-#. (itstool) path: python.lang/language@_section
 #. (itstool) path: python3.lang/language@_section
+#. (itstool) path: python.lang/language@_section
 #. (itstool) path: ruby.lang/language@_section
 #. (itstool) path: sh.lang/language@_section
 #. (itstool) path: tcl.lang/language@_section
 #: awk.lang:24 dosbatch.lang:24 javascript.lang:27 lua.lang:24 m4.lang:24
-#: perl.lang:26 php.lang:29 python.lang:28 python3.lang:24 ruby.lang:27
+#: perl.lang:26 php.lang:29 python3.lang:24 python.lang:28 ruby.lang:27
 #: sh.lang:25 tcl.lang:24
 #, fuzzy
 #| msgid "Scripts"
@@ -523,7 +551,7 @@ msgstr "Malli"
 
 #. (itstool) path: styles/style@_name
 #: awk.lang:35 boo.lang:46 genie.lang:46 glsl.lang:44 go.lang:50
-#: netrexx.lang:47 perl.lang:39 python.lang:51 python3.lang:45
+#: netrexx.lang:47 perl.lang:39 python3.lang:45 python.lang:51
 msgid "Builtin Function"
 msgstr "Varusfunktio"
 
@@ -533,23 +561,17 @@ msgid "BennuGD"
 msgstr "BennuGD"
 
 #. (itstool) path: styles/style@_name
-#: bennugd.lang:34 def.lang:79 llvm.lang:36 php.lang:43 rust.lang:51
+#: bennugd.lang:34 def.lang:79 llvm.lang:36 php.lang:43 rust.lang:52
 msgid "Identifier"
 msgstr "Tunniste"
 
 #. (itstool) path: styles/style@_name
-#: bennugd.lang:38 c.lang:47 cg.lang:42 csv.lang:33 def.lang:65 d.lang:48
-#: erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44 nemerle.lang:43
-#: ooc.lang:44 php.lang:54 python.lang:45 python3.lang:39 R.lang:41
-#: ruby.lang:42
+#: bennugd.lang:38 cg.lang:42 c.lang:47 csv.lang:33 def.lang:65 d.lang:48
+#: dtl.lang:41 erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44
+#: nemerle.lang:43 ooc.lang:44 php.lang:54 python3.lang:39 python.lang:45
+#: R.lang:41 ruby.lang:42
 msgid "Floating point number"
 msgstr "Liukuluku"
-
-#. (itstool) path: styles/style@_name
-#: bennugd.lang:40 c.lang:50 cg.lang:45 csharp.lang:50 d.lang:52
-#: eiffel.lang:46 go.lang:47 nemerle.lang:47 ooc.lang:47 php.lang:57
-msgid "Hexadecimal number"
-msgstr "Heksadesimaaliluku"
 
 #. (itstool) path: bibtex.lang/language@_name
 #: bibtex.lang:24
@@ -559,6 +581,7 @@ msgstr "BibTeX"
 #. (itstool) path: bibtex.lang/language@_section
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
+#. (itstool) path: dtl.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
@@ -574,10 +597,10 @@ msgstr "BibTeX"
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
-#: bibtex.lang:24 docbook.lang:24 dtd.lang:24 gtk-doc.lang:25 haddock.lang:24
-#: html.lang:25 jade.lang:26 latex.lang:25 mallard.lang:23 markdown.lang:26
-#: mediawiki.lang:23 mxml.lang:24 rst.lang:23 sweave.lang:25 t2t.lang:24
-#: texinfo.lang:25 xml.lang:26 xslt.lang:24
+#: bibtex.lang:24 docbook.lang:24 dtd.lang:24 dtl.lang:25 gtk-doc.lang:25
+#: haddock.lang:24 html.lang:25 jade.lang:25 latex.lang:25 mallard.lang:23
+#: markdown.lang:26 mediawiki.lang:23 mxml.lang:24 rst.lang:23 sweave.lang:25
+#: t2t.lang:24 texinfo.lang:25 xml.lang:26 xslt.lang:24
 msgid "Markup"
 msgstr "Merkintä"
 
@@ -612,7 +635,7 @@ msgid "Annotation"
 msgstr "Aktivointi"
 
 #. (itstool) path: styles/style@_name
-#: bluespec.lang:33 rust.lang:54
+#: bluespec.lang:33 rust.lang:55
 #, fuzzy
 #| msgid "Attribute name"
 msgid "Attribute"
@@ -635,12 +658,13 @@ msgid "Boo"
 msgstr "Boo"
 
 #. (itstool) path: styles/style@_name
-#: boo.lang:35 genie.lang:35 python.lang:38 python3.lang:33
+#: boo.lang:35 genie.lang:35 python3.lang:33 python.lang:38
 msgid "Multiline string"
 msgstr "Monirivinen merkkijono"
 
 #. (itstool) path: styles/style@_name
 #: boo.lang:37 genie.lang:37 javascript.lang:48 perl.lang:47 ruby.lang:57
+#: vala.lang:48
 msgid "Regular Expression"
 msgstr "Säännöllinen lauseke"
 
@@ -655,17 +679,49 @@ msgid "Definition"
 msgstr "Määrittely"
 
 #. (itstool) path: styles/style@_name
-#: boo.lang:42 genie.lang:42 python.lang:43 python3.lang:37 ruby.lang:52
+#: boo.lang:42 genie.lang:42 python3.lang:37 python.lang:43 ruby.lang:52
 msgid "Special Variable"
 msgstr "Erityinen muuttuja"
 
 #. (itstool) path: styles/style@_name
 #: boo.lang:44 desktop.lang:39 d.lang:47 genie.lang:44 imagej.lang:34
-#: julia.lang:40 libtool.lang:33 modelica.lang:42 objj.lang:36 octave.lang:46
-#: python.lang:44 python3.lang:38 scheme.lang:33 scilab.lang:36 sparql.lang:39
-#: yaml.lang:39
+#: julia.lang:40 libtool.lang:33 meson.lang:35 modelica.lang:42 objj.lang:36
+#: octave.lang:46 python3.lang:38 python.lang:44 scheme.lang:33 scilab.lang:36
+#: sparql.lang:39 yaml.lang:39
 msgid "Boolean"
 msgstr "Totuusarvo"
+
+#. (itstool) path: cg.lang/language@_name
+#: cg.lang:24
+msgid "CG Shader Language"
+msgstr "CG-varjostinkieli"
+
+#. (itstool) path: styles/style@_name
+#: cg.lang:36
+msgid "Bindings"
+msgstr "Sidokset"
+
+#. (itstool) path: styles/style@_name
+#: cg.lang:37 c.lang:39 fortran.lang:43 objj.lang:40
+msgid "Included File"
+msgstr "Sisällytetty tiedosto"
+
+#. (itstool) path: styles/style@_name
+#: cg.lang:44 c.lang:49 d.lang:51 dtl.lang:43 go.lang:46 nemerle.lang:46
+#: ooc.lang:46 php.lang:56
+msgid "Octal number"
+msgstr "Oktaaliluku"
+
+#. (itstool) path: styles/style@_name
+#: cg.lang:47
+msgid "Swizzle operator"
+msgstr "Swizzle-operaattori"
+
+#. (itstool) path: styles/style@_name
+#: cg.lang:49 erlang.lang:41 imagej.lang:33 matlab.lang:43 modelica.lang:47
+#: octave.lang:50 ruby.lang:49
+msgid "Builtin"
+msgstr "Sisäänrakennettu"
 
 #. (itstool) path: changelog.lang/language@_name
 #: changelog.lang:25
@@ -695,11 +751,11 @@ msgstr "ChangeLog"
 #. (itstool) path: styles/style@_name
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
-#: changelog.lang:25 cmake.lang:24 css.lang:38 csv.lang:24 desktop.lang:25
+#: changelog.lang:25 cmake.lang:24 css.lang:39 csv.lang:24 desktop.lang:25
 #: diff.lang:24 dot.lang:24 dpatch.lang:24 gdb-log.lang:19 gtkrc.lang:25
 #: ini.lang:23 json.lang:30 libtool.lang:24 nsis.lang:24 ocl.lang:33
-#: pkgconfig.lang:24 po.lang:24 protobuf.lang:21 puppet.lang:24
-#: rpmspec.lang:24 scala.lang:49 yacc.lang:24 yaml.lang:22
+#: pkgconfig.lang:24 po.lang:24 protobuf.lang:21 puppet.lang:24 rpmspec.lang:24
+#: scala.lang:49 yacc.lang:24 yaml.lang:22
 msgid "Other"
 msgstr "Muu"
 
@@ -709,7 +765,7 @@ msgid "Date"
 msgstr "Päiväys"
 
 #. (itstool) path: styles/style@_name
-#: changelog.lang:35 latex.lang:52
+#: changelog.lang:35
 msgid "Name"
 msgstr "Nimi"
 
@@ -733,6 +789,12 @@ msgstr "Luoti"
 msgid "Release"
 msgstr "Julkaisu"
 
+#. (itstool) path: chdr.lang/language@_name
+#: chdr.lang:25
+#| msgid "C/C++/ObjC Header"
+msgid "C/ObjC Header"
+msgstr "C/ObjC-otsake"
+
 #. (itstool) path: c.lang/language@_name
 #: c.lang:25
 msgid "C"
@@ -744,20 +806,9 @@ msgid "Common Defines"
 msgstr "Yleiset määrittelyt"
 
 #. (itstool) path: styles/style@_name
-#: c.lang:39 cg.lang:37 fortran.lang:43 objj.lang:40
-msgid "Included File"
-msgstr "Sisällytetty tiedosto"
-
-#. (itstool) path: styles/style@_name
 #: c.lang:45 genie.lang:47 go.lang:41 verilog.lang:36
 msgid "printf Conversion"
 msgstr "printf-muunnos"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:49 cg.lang:44 d.lang:51 go.lang:46 nemerle.lang:46 ooc.lang:46
-#: php.lang:56
-msgid "Octal number"
-msgstr "Oktaaliluku"
 
 #. (itstool) path: styles/style@_name
 #: c.lang:52
@@ -768,32 +819,6 @@ msgstr "Standardivirta"
 #: c.lang:53
 msgid "Signal name"
 msgstr "Signaalin nimi"
-
-#. (itstool) path: cg.lang/language@_name
-#: cg.lang:24
-msgid "CG Shader Language"
-msgstr "CG-varjostinkieli"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:36
-msgid "Bindings"
-msgstr "Sidokset"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:47
-msgid "Swizzle operator"
-msgstr "Swizzle-operaattori"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:49 erlang.lang:41 imagej.lang:33 matlab.lang:43 modelica.lang:47
-#: octave.lang:50 ruby.lang:49
-msgid "Builtin"
-msgstr "Sisäänrakennettu"
-
-#. (itstool) path: chdr.lang/language@_name
-#: chdr.lang:25
-msgid "C/C++/ObjC Header"
-msgstr "C/C++/ObjC-otsake"
 
 #. (itstool) path: cmake.lang/language@_name
 #: cmake.lang:24
@@ -807,10 +832,9 @@ msgstr "Varuskomento"
 
 #. (itstool) path: styles/style@_name
 #: cmake.lang:32
-#, fuzzy
 #| msgid "Builtin Command"
 msgid "Deprecated Builtin Command"
-msgstr "Varuskomento"
+msgstr "Vanhennettu varuskomento"
 
 #. (itstool) path: styles/style@_name
 #: cmake.lang:33 glsl.lang:46
@@ -832,16 +856,15 @@ msgstr "COBOL"
 msgid "Statement"
 msgstr "Lauseke"
 
+#. (itstool) path: cpphdr.lang/language@_name
+#: cpphdr.lang:25
+msgid "C++ Header"
+msgstr "C++-otsake"
+
 #. (itstool) path: cpp.lang/language@_name
 #: cpp.lang:25
 msgid "C++"
 msgstr "C++"
-
-#. (itstool) path: cpphdr.lang/language@_name
-#: cpphdr.lang:25
-#| msgid "Header"
-msgid "C++ Header"
-msgstr "C++-otsake"
 
 #. (itstool) path: csharp.lang/language@_name
 #: csharp.lang:27
@@ -854,65 +877,65 @@ msgid "String Format"
 msgstr "Merkkijonomuotoilu"
 
 #. (itstool) path: css.lang/language@_name
-#: css.lang:38
+#: css.lang:39
 msgid "CSS"
 msgstr "CSS"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:48
+#: css.lang:49
 msgid "Others 2"
 msgstr "Muut 2"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:50
+#: css.lang:51
 msgid "Color"
 msgstr "Väri"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:51
+#: css.lang:52
 msgid "Others 3"
 msgstr "Muut 3"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:54 fcl.lang:34 fortran.lang:39 gap.lang:36 gtkrc.lang:36
+#: css.lang:55 fcl.lang:34 fortran.lang:39 gap.lang:36 gtkrc.lang:36
 #: haskell.lang:43 ini.lang:35 json.lang:43 modelica.lang:43 pascal.lang:36
 #: sml.lang:39 sql.lang:37
 msgid "Decimal"
 msgstr "Desimaali"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:55
+#: css.lang:56
 msgid "Dimension"
 msgstr "Mitta"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:56
-msgid "Known Property Value"
-msgstr "Tunnettu ominaisuuden arvo"
+#: css.lang:57
+#| msgid "Known Property Value"
+msgid "Property Value"
+msgstr "Ominaisuuden arvo"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:57
+#: css.lang:58
 msgid "at-rules"
 msgstr "at-säännöt"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:59
+#: css.lang:60
 msgid "ID Selector"
 msgstr "ID-valitsin"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:60
+#: css.lang:61
 msgid "Class Selector"
 msgstr "Class-valitsin"
 
 #. (itstool) path: styles/style@_name
-#: css.lang:61
+#: css.lang:62
 msgid "Tag Name Selector"
 msgstr "Elementtivalitsin"
 
 #. (itstool) path: csv.lang/language@_name
 #: csv.lang:24
-#| msgid "CSS"
 msgid "CSV"
 msgstr "CSV"
 
@@ -969,12 +992,12 @@ msgid "Special character (inside a string)"
 msgstr "Erikoismerkki (merkkijoukon sisällä)"
 
 #. (itstool) path: styles/style@_name
-#: def.lang:69 python.lang:47 python3.lang:41 ruby.lang:44
+#: def.lang:69 python3.lang:41 python.lang:47 ruby.lang:44
 msgid "Base-N number"
 msgstr "N-kantainen luku"
 
 #. (itstool) path: styles/style@_name
-#: def.lang:71 python.lang:48 python3.lang:42
+#: def.lang:71 python3.lang:42 python.lang:48
 msgid "Complex number"
 msgstr "Kompleksiluku"
 
@@ -1015,45 +1038,38 @@ msgstr "Alleviivattu"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:112
-#, fuzzy
 msgid "Heading 0"
-msgstr "POD-otsake"
+msgstr "Otsake 0"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:113
-#, fuzzy
 msgid "Heading 1"
-msgstr "POD-otsake"
+msgstr "Otsake 1"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:114
-#, fuzzy
 msgid "Heading 2"
-msgstr "POD-otsake"
+msgstr "Otsake 2"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:115
-#, fuzzy
 msgid "Heading 3"
-msgstr "POD-otsake"
+msgstr "Otsake 3"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:116
-#, fuzzy
 msgid "Heading 4"
-msgstr "POD-otsake"
+msgstr "Otsake 4"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:117
-#, fuzzy
 msgid "Heading 5"
-msgstr "POD-otsake"
+msgstr "Otsake 5"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:118
-#, fuzzy
 msgid "Heading 6"
-msgstr "POD-otsake"
+msgstr "Otsake 6"
 
 #. (itstool) path: desktop.lang/language@_name
 #: desktop.lang:25
@@ -1145,11 +1161,6 @@ msgstr "D"
 msgid "Special Token"
 msgstr "Erikoismerkki"
 
-#. (itstool) path: styles/style@_name
-#: d.lang:50 nemerle.lang:45
-msgid "Binary number"
-msgstr "Binääriluku"
-
 #. (itstool) path: docbook.lang/language@_name
 #: docbook.lang:24
 msgid "DocBook"
@@ -1192,7 +1203,7 @@ msgid "Graphviz Dot"
 msgstr "Graphviz-piste"
 
 #. (itstool) path: styles/style@_name
-#: dot.lang:37 jade.lang:37 xml.lang:40
+#: dot.lang:37 jade.lang:36 xml.lang:40
 msgid "Attribute name"
 msgstr "Määreen nimi"
 
@@ -1231,10 +1242,14 @@ msgstr "virhe"
 
 #. (itstool) path: styles/style@_name
 #: dtd.lang:36
-#, fuzzy
 #| msgid "quoted-value"
 msgid "Quoted Value"
-msgstr "lainattu arvo"
+msgstr "Lainattu arvo"
+
+#. (itstool) path: dtl.lang/language@_name
+#: dtl.lang:25
+msgid "Django Template"
+msgstr "Django-pohja"
 
 #. (itstool) path: eiffel.lang/language@_name
 #: eiffel.lang:24
@@ -1480,7 +1495,7 @@ msgid "OpenGL Shading Language"
 msgstr "OpenGL-varjostinkieli"
 
 #. (itstool) path: styles/style@_name
-#: glsl.lang:45 go.lang:49 python.lang:49 python3.lang:43
+#: glsl.lang:45 go.lang:49 python3.lang:43 python.lang:49
 msgid "Builtin Constant"
 msgstr "Varusvakio"
 
@@ -1659,6 +1674,35 @@ msgstr "Heksa"
 msgid "Literate Haskell"
 msgstr "Literate Haskell"
 
+#. (itstool) path: haxe.lang/language@_name
+#: haxe.lang:35
+msgid "Haxe"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: haxe.lang:53 rust.lang:54
+msgid "Scope"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: haxe.lang:60
+msgid "Metadata"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: haxe.lang:61 julia.lang:45 rust.lang:56
+#, fuzzy
+#| msgid "Macros"
+msgid "Macro"
+msgstr "Makrot"
+
+#. (itstool) path: styles/style@_name
+#: haxe.lang:64
+#, fuzzy
+#| msgid "Identifier"
+msgid "Identifier Prefix"
+msgstr "Tunniste"
+
 #. (itstool) path: html.lang/language@_name
 #: html.lang:25
 msgid "HTML"
@@ -1711,15 +1755,15 @@ msgstr ""
 msgid "Heading level 5"
 msgstr ""
 
-#. (itstool) path: idl.lang/language@_name
-#: idl.lang:24
-msgid "IDL"
-msgstr "IDL"
-
 #. (itstool) path: idl-exelis.lang/language@_name
 #: idl-exelis.lang:21
 msgid "IDL-Exelis"
 msgstr ""
+
+#. (itstool) path: idl.lang/language@_name
+#: idl.lang:24
+msgid "IDL"
+msgstr "IDL"
 
 #. (itstool) path: imagej.lang/language@_name
 #: imagej.lang:24
@@ -1737,21 +1781,75 @@ msgstr "Komennot"
 msgid "Storage Type"
 msgstr "Tietotyyppi"
 
-#. (itstool) path: styles/style@_name
-#: imagej.lang:37
-#, fuzzy
-msgid "Escaped Characters"
-msgstr "Suojattu merkkijono"
-
 #. (itstool) path: ini.lang/language@_name
 #: ini.lang:23
 msgid ".ini"
 msgstr ".ini"
 
+#. (itstool) path: jade.lang/language@_name
+#: jade.lang:25
+msgid "Jade"
+msgstr "Jade"
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:33 xml.lang:36
+msgid "DOCTYPE"
+msgstr "DOCTYPE"
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:34 xml.lang:38
+msgid "Processing instruction"
+msgstr "Prosessointikäsky"
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:35 mxml.lang:32 xml.lang:39
+msgid "Element name"
+msgstr "Elementin nimi"
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:37 xml.lang:41
+msgid "Attribute value"
+msgstr "Määreen arvo"
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:38
+msgid "Tags"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: jade.lang:39 xml.lang:42
+msgid "Entity"
+msgstr "Entiteetti"
+
+#. (itstool) path: java.lang/language@_name
+#: java.lang:25
+msgid "Java"
+msgstr "Java"
+
+#. (itstool) path: javascript.lang/language@_name
+#: javascript.lang:27
+msgid "JavaScript"
+msgstr "JavaScript"
+
+#. (itstool) path: styles/style@_name
+#: javascript.lang:39
+msgid "Undefined Value"
+msgstr "Määrittelemätön arvo"
+
+#. (itstool) path: styles/style@_name
+#: javascript.lang:44
+msgid "Properties"
+msgstr "Ominaisuudet"
+
+#. (itstool) path: styles/style@_name
+#: javascript.lang:45
+msgid "Constructors"
+msgstr "Konstruktorit"
+
 #. (itstool) path: j.lang/language@_name
 #: j.lang:24
 msgid "J"
-msgstr ""
+msgstr "J"
 
 #. (itstool) path: styles/style@_name
 #: j.lang:31
@@ -1823,66 +1921,6 @@ msgstr ""
 msgid "Verb"
 msgstr "Muotoilematon"
 
-#. (itstool) path: jade.lang/language@_name
-#: jade.lang:26
-msgid "Jade"
-msgstr ""
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:34 xml.lang:36
-msgid "DOCTYPE"
-msgstr "DOCTYPE"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:35 xml.lang:38
-msgid "Processing instruction"
-msgstr "Prosessointikäsky"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:36 mxml.lang:32 xml.lang:39
-msgid "Element name"
-msgstr "Elementin nimi"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:38 xml.lang:41
-msgid "Attribute value"
-msgstr "Määreen arvo"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:39
-msgid "Tags"
-msgstr ""
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:40 xml.lang:42
-msgid "Entity"
-msgstr "Entiteetti"
-
-#. (itstool) path: java.lang/language@_name
-#: java.lang:25
-msgid "Java"
-msgstr "Java"
-
-#. (itstool) path: javascript.lang/language@_name
-#: javascript.lang:27
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:39
-msgid "Undefined Value"
-msgstr "Määrittelemätön arvo"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:44
-msgid "Properties"
-msgstr "Ominaisuudet"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:45
-msgid "Constructors"
-msgstr "Konstruktorit"
-
 #. (itstool) path: julia.lang/language@_name
 #: julia.lang:24
 msgid "Julia"
@@ -1899,13 +1937,6 @@ msgstr "Vakio"
 #: julia.lang:42 R.lang:38 scala.lang:44
 msgid "Special Constant"
 msgstr "Erikoisvakio"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:45 rust.lang:55
-#, fuzzy
-#| msgid "Macros"
-msgid "Macro"
-msgstr "Makrot"
 
 #. (itstool) path: styles/style@_name
 #: julia.lang:46
@@ -2006,10 +2037,9 @@ msgstr ""
 
 #. (itstool) path: lex.lang/language@_name
 #: lex.lang:25
-#, fuzzy
 #| msgid "Hex"
 msgid "Lex"
-msgstr "Heksa"
+msgstr "Lex"
 
 #. (itstool) path: styles/style@_name
 #: lex.lang:34
@@ -2067,7 +2097,6 @@ msgstr "m4"
 
 #. (itstool) path: styles/style@_name
 #: m4.lang:32
-#| msgid "Comment"
 msgid "m4 Comment"
 msgstr "m4-kommentti"
 
@@ -2380,10 +2409,9 @@ msgstr "Avainsanat"
 
 #. (itstool) path: styles/style@_name
 #: netrexx.lang:46
-#, fuzzy
 #| msgid "Keyword"
 msgid "Sub Keywords"
-msgstr "Avainsana"
+msgstr "Aliavainsanat"
 
 #. (itstool) path: nsis.lang/language@_name
 #: nsis.lang:24
@@ -2451,7 +2479,7 @@ msgid "Opal"
 msgstr "Opal"
 
 #. (itstool) path: styles/style@_name
-#: opal.lang:33 python.lang:36 python3.lang:31
+#: opal.lang:33 python3.lang:31 python.lang:36
 msgid "Module Handler"
 msgstr "Moduulin käsittelin"
 
@@ -2582,17 +2610,15 @@ msgstr "Varatut sanat"
 
 #. (itstool) path: styles/style@_name
 #: pig.lang:38
-#, fuzzy
 #| msgid "Builtin Function"
 msgid "Built In Functions"
-msgstr "Varusfunktio"
+msgstr "Varusfunktiot"
 
 #. (itstool) path: styles/style@_name
 #: pig.lang:39
-#, fuzzy
 #| msgid "Boolean value"
 msgid "Boolean values"
-msgstr "Totuusarvo"
+msgstr "Totuusarvot"
 
 #. (itstool) path: styles/style@_name
 #: pig.lang:40 yaml.lang:38
@@ -2618,46 +2644,6 @@ msgstr "Gettext-käännös"
 #: po.lang:35
 msgid "Fuzzy"
 msgstr "Sumea"
-
-#. (itstool) path: python.lang/language@_name
-#: python.lang:28
-msgid "Python"
-msgstr "Python"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:41 python3.lang:36
-msgid "Format"
-msgstr "Muotoilu"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:42
-#, fuzzy
-#| msgid "printf Conversion"
-msgid "String Conversion"
-msgstr "printf-muunnos"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:50 python3.lang:44
-msgid "Builtin Object"
-msgstr "Varusolio"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:53
-#| msgid "Class names"
-msgid "Class Name"
-msgstr "Luokkanimi"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:54
-#, fuzzy
-#| msgid "Operator"
-msgid "Decorator"
-msgstr "Operaattori"
-
-#. (itstool) path: python3.lang/language@_name
-#: python3.lang:24
-msgid "Python 3"
-msgstr "Python 3"
 
 #. (itstool) path: prolog.lang/language@_name
 #: prolog.lang:24
@@ -2707,6 +2693,45 @@ msgstr "Muuttujat"
 #: puppet.lang:37
 msgid "Class names"
 msgstr "Luokkanimet"
+
+#. (itstool) path: python3.lang/language@_name
+#: python3.lang:24
+msgid "Python 3"
+msgstr "Python 3"
+
+#. (itstool) path: styles/style@_name
+#: python3.lang:36 python.lang:41
+msgid "Format"
+msgstr "Muotoilu"
+
+#. (itstool) path: styles/style@_name
+#: python3.lang:44 python.lang:50
+msgid "Builtin Object"
+msgstr "Varusolio"
+
+#. (itstool) path: python.lang/language@_name
+#: python.lang:28
+msgid "Python"
+msgstr "Python"
+
+#. (itstool) path: styles/style@_name
+#: python.lang:42
+#, fuzzy
+#| msgid "printf Conversion"
+msgid "String Conversion"
+msgstr "printf-muunnos"
+
+#. (itstool) path: styles/style@_name
+#: python.lang:53
+msgid "Class Name"
+msgstr "Luokkanimi"
+
+#. (itstool) path: styles/style@_name
+#: python.lang:54
+#, fuzzy
+#| msgid "Operator"
+msgid "Decorator"
+msgstr "Operaattori"
 
 #. (itstool) path: R.lang/language@_name
 #: R.lang:26
@@ -2795,10 +2820,9 @@ msgstr "Sähköposti"
 
 #. (itstool) path: rst.lang/language@_name
 #: rst.lang:23
-#, fuzzy
 #| msgid "Structural Elements"
 msgid "reStructuredText"
-msgstr "Rakenne-elementit"
+msgstr "reStructuredText"
 
 #. (itstool) path: styles/style@_name
 #: rst.lang:35 yaml.lang:37
@@ -2836,11 +2860,6 @@ msgstr "Literaali"
 #: rust.lang:36
 msgid "Rust"
 msgstr "Rust"
-
-#. (itstool) path: styles/style@_name
-#: rust.lang:53
-msgid "Scope"
-msgstr ""
 
 #. (itstool) path: scala.lang/language@_name
 #: scala.lang:25
@@ -2891,12 +2910,13 @@ msgstr "Muuttujien määrittelyt"
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
 #.
-#: sh.lang:39 texinfo.lang:35 ../gtksourceview/gtksourcelanguage.c:55
+#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:56
 msgid "Others"
 msgstr "Muut"
 
@@ -2963,7 +2983,7 @@ msgstr "Ei tietoa mikä tämä on"
 #. (itstool) path: sweave.lang/language@_name
 #: sweave.lang:25
 msgid "Sweave"
-msgstr ""
+msgstr "Sweave"
 
 #. (itstool) path: systemverilog.lang/language@_name
 #: systemverilog.lang:22
@@ -3053,7 +3073,7 @@ msgstr "Luotu sisältö"
 #. (itstool) path: thrift.lang/language@_name
 #: thrift.lang:21
 msgid "Thrift"
-msgstr ""
+msgstr "Thrift"
 
 #. (itstool) path: vala.lang/language@_name
 #: vala.lang:28
@@ -3232,53 +3252,63 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Tango-väripaletissa käytetty värimalli"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:334
 msgid "Document Words"
 msgstr "Asiakirjan sanat"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:842
+#: gtksourceview/gtksourcebufferoutputstream.c:843
 msgid "Invalid byte sequence in conversion input"
 msgstr ""
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:848
+#: gtksourceview/gtksourcebufferoutputstream.c:849
 #, fuzzy, c-format
 #| msgid "string-conversion"
 msgid "Error during conversion: %s"
 msgstr "merkkimuunnos"
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:929
+#: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
-msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr ""
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:935
+#: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
-msgid "Could not open converter from '%s' to 'UTF-8'"
+msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr ""
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:990
+#: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
 msgstr ""
 
-#: ../gtksourceview/gtksourcebufferoutputstream.c:1182
-#, c-format
+#: gtksourceview/gtksourcebufferoutputstream.c:1188
 msgid "Incomplete UTF-8 sequence in input"
 msgstr ""
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:272
+#: gtksourceview/gtksourcecompletioninfo.c:271
 msgid "Completion Info"
 msgstr "Täydennystieto"
 
-#: ../gtksourceview/gtksourcecompletionmodel.c:495
+#: gtksourceview/gtksourcecompletionmodel.c:495
 msgid "Provider"
 msgstr "Tarjoaja"
+
+#: gtksourceview/gtksourcecompletion.ui:87
+#, fuzzy
+#| msgid "Show provider and proposal icons in the completion popup"
+msgid "Show detailed proposal information"
+msgstr "Näytä tarjoaja- ja ehdotuskuvakkeet täydennysikkunassa"
+
+#: gtksourceview/gtksourcecompletion.ui:89
+#| msgid "_Details..."
+msgid "_Details…"
+msgstr "_Tiedot…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3147
+#: gtksourceview/gtksourcecontextengine.c:3141
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3289,7 +3319,7 @@ msgstr ""
 "korostustoiminto saattaa olla hitaampi kuin yleensä.\n"
 "Virhe oli: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4470
+#: gtksourceview/gtksourcecontextengine.c:4464
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -3297,180 +3327,165 @@ msgstr ""
 "Yhden rivin korostaminen kesti liian pitkään, syntaksin korostus on pois "
 "päältä"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5718
-#, c-format
-msgid "context '%s' cannot contain a \\%%{...@start} command"
+#: gtksourceview/gtksourcecontextengine.c:5712
+#, fuzzy, c-format
+#| msgid "context '%s' cannot contain a \\%%{...@start} command"
+msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "konteksti ”%s” ei voi sisältää \\%%{…@start} -komentoa"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5881
-#: ../gtksourceview/gtksourcecontextengine.c:5972
-#, c-format
-msgid "duplicated context id '%s'"
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
+#, fuzzy, c-format
+#| msgid "duplicated context id '%s'"
+msgid "duplicated context id “%s”"
 msgstr "kahdennettu kontekstin tunniste ”%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6086
-#: ../gtksourceview/gtksourcecontextengine.c:6146
-#, c-format
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
+#, fuzzy, c-format
+#| msgid ""
+#| "style override used with wildcard context reference in language '%s' in "
+#| "ref '%s'"
 msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
 "tyylin ohitusta käytettiin jokerimerkillisessä kontekstiviitteessä kielellä "
 "”%s” viitteessä ”%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6160
-#, c-format
-msgid "invalid context reference '%s'"
+#: gtksourceview/gtksourcecontextengine.c:6153
+#, fuzzy, c-format
+#| msgid "invalid context reference '%s'"
+msgid "invalid context reference “%s”"
 msgstr "virheellinen kontekstiviite ”%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6179
-#: ../gtksourceview/gtksourcecontextengine.c:6189
-#, c-format
-msgid "unknown context '%s'"
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
+#, fuzzy, c-format
+#| msgid "unknown context '%s'"
+msgid "unknown context “%s”"
 msgstr "tuntematon konteksti ”%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6288
+#: gtksourceview/gtksourcecontextengine.c:6281
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Kielen päämäärittly puuttuu (tunniste = ”%s”.)"
 
-#: ../gtksourceview/gtksourceencoding.c:141
-#: ../gtksourceview/gtksourceencoding.c:184
-#: ../gtksourceview/gtksourceencoding.c:186
-#: ../gtksourceview/gtksourceencoding.c:188
-#: ../gtksourceview/gtksourceencoding.c:190
-#: ../gtksourceview/gtksourceencoding.c:192
-#: ../gtksourceview/gtksourceencoding.c:194
-#: ../gtksourceview/gtksourceencoding.c:196
+#: gtksourceview/gtksourceencoding.c:141 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
+#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
+#: gtksourceview/gtksourceencoding.c:194 gtksourceview/gtksourceencoding.c:196
 msgid "Unicode"
 msgstr "Unicode"
 
-#: ../gtksourceview/gtksourceencoding.c:155
-#: ../gtksourceview/gtksourceencoding.c:179
-#: ../gtksourceview/gtksourceencoding.c:229
-#: ../gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:155 gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:229 gtksourceview/gtksourceencoding.c:272
 msgid "Western"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:157
-#: ../gtksourceview/gtksourceencoding.c:231
-#: ../gtksourceview/gtksourceencoding.c:268
+#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:231
+#: gtksourceview/gtksourceencoding.c:268
 msgid "Central European"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:159
+#: gtksourceview/gtksourceencoding.c:159
 msgid "South European"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:161
-#: ../gtksourceview/gtksourceencoding.c:175
-#: ../gtksourceview/gtksourceencoding.c:282
+#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:282
 msgid "Baltic"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:163
-#: ../gtksourceview/gtksourceencoding.c:233
-#: ../gtksourceview/gtksourceencoding.c:246
-#: ../gtksourceview/gtksourceencoding.c:250
-#: ../gtksourceview/gtksourceencoding.c:252
-#: ../gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:233
+#: gtksourceview/gtksourceencoding.c:246 gtksourceview/gtksourceencoding.c:250
+#: gtksourceview/gtksourceencoding.c:252 gtksourceview/gtksourceencoding.c:270
 msgid "Cyrillic"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:165
-#: ../gtksourceview/gtksourceencoding.c:239
-#: ../gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:239
+#: gtksourceview/gtksourceencoding.c:280
 msgid "Arabic"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:167
-#: ../gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:274
 msgid "Greek"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:169
+#: gtksourceview/gtksourceencoding.c:169
 msgid "Hebrew Visual"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:171
-#: ../gtksourceview/gtksourceencoding.c:235
-#: ../gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:171 gtksourceview/gtksourceencoding.c:235
+#: gtksourceview/gtksourceencoding.c:276
 msgid "Turkish"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:173
+#: gtksourceview/gtksourceencoding.c:173
 msgid "Nordic"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:177
+#: gtksourceview/gtksourceencoding.c:177
 msgid "Celtic"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:181
+#: gtksourceview/gtksourceencoding.c:181
 msgid "Romanian"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:199
+#: gtksourceview/gtksourceencoding.c:199
 msgid "Armenian"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:201
-#: ../gtksourceview/gtksourceencoding.c:203
-#: ../gtksourceview/gtksourceencoding.c:217
+#: gtksourceview/gtksourceencoding.c:201 gtksourceview/gtksourceencoding.c:203
+#: gtksourceview/gtksourceencoding.c:217
 msgid "Chinese Traditional"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:205
+#: gtksourceview/gtksourceencoding.c:205
 msgid "Cyrillic/Russian"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:208
-#: ../gtksourceview/gtksourceencoding.c:210
-#: ../gtksourceview/gtksourceencoding.c:212
-#: ../gtksourceview/gtksourceencoding.c:242
-#: ../gtksourceview/gtksourceencoding.c:257
+#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:210
+#: gtksourceview/gtksourceencoding.c:212 gtksourceview/gtksourceencoding.c:242
+#: gtksourceview/gtksourceencoding.c:257
 msgid "Japanese"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:215
-#: ../gtksourceview/gtksourceencoding.c:244
-#: ../gtksourceview/gtksourceencoding.c:248
-#: ../gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:244
+#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:263
 msgid "Korean"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:220
-#: ../gtksourceview/gtksourceencoding.c:222
-#: ../gtksourceview/gtksourceencoding.c:224
+#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:222
+#: gtksourceview/gtksourceencoding.c:224
 msgid "Chinese Simplified"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:226
 msgid "Georgian"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:237
-#: ../gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:237 gtksourceview/gtksourceencoding.c:278
 msgid "Hebrew"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:254
+#: gtksourceview/gtksourceencoding.c:254
 msgid "Cyrillic/Ukrainian"
 msgstr ""
 
-#: ../gtksourceview/gtksourceencoding.c:259
-#: ../gtksourceview/gtksourceencoding.c:265
-#: ../gtksourceview/gtksourceencoding.c:284
+#: gtksourceview/gtksourceencoding.c:259 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:284
 #, fuzzy
 #| msgid "Filename"
 msgid "Vietnamese"
 msgstr "Tiedostonimi"
 
-#: ../gtksourceview/gtksourceencoding.c:261
+#: gtksourceview/gtksourceencoding.c:261
 msgid "Thai"
-msgstr ""
+msgstr "Thai"
 
-#: ../gtksourceview/gtksourceencoding.c:495
+#: gtksourceview/gtksourceencoding.c:495
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -3488,80 +3503,104 @@ msgstr "Tuntematon"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: ../gtksourceview/gtksourceencoding.c:639
+#: gtksourceview/gtksourceencoding.c:639
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
-#, c-format
-msgid "Unknown id '%s' in regex '%s'"
+#: gtksourceview/gtksourcefileloader.c:508
+msgid ""
+"There was a character encoding conversion error and it was needed to use a "
+"fallback character."
+msgstr ""
+
+#: gtksourceview/gtksourcefileloader.c:615
+msgid "File too big."
+msgstr "Tiedosto on liian suuri."
+
+#: gtksourceview/gtksourcefileloader.c:769
+msgid "Not a regular file."
+msgstr "Ei tavallinen tiedosto."
+
+#: gtksourceview/gtksourcefilesaver.c:968
+msgid "The file is externally modified."
+msgstr "Tätä tiedostoa on muokattu ulkoisesti."
+
+#: gtksourceview/gtksourcefilesaver.c:1420
+msgid "The buffer contains invalid characters."
+msgstr ""
+
+#: gtksourceview/gtksourcelanguage-parser-2.c:950
+#, fuzzy, c-format
+#| msgid "Unknown id '%s' in regex '%s'"
+msgid "Unknown id “%s” in regex “%s”"
 msgstr "Tuntematon tunniste ”%s” säännöllisessä lauseessa ”%s”"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1180
-#, c-format
-msgid "in regex '%s': backreferences are not supported"
+#: gtksourceview/gtksourcelanguage-parser-2.c:1180
+#, fuzzy, c-format
+#| msgid "in regex '%s': backreferences are not supported"
+msgid "in regex “%s”: backreferences are not supported"
 msgstr "lausekkeessa ”%s”: takaisinviittauksia ei tueta"
 
-#: ../gtksourceview/gtksourceregex.c:129
+#: gtksourceview/gtksourceregex.c:129
 msgid "using \\C is not supported in language definitions"
 msgstr "Käytetään arvoa \\C tukemattomissa kielimäärittelyissä"
 
 #. TODO: have a ChooserDialog?
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:185
-#, fuzzy
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
 #| msgid "Select on Show"
 msgid "Select a Style"
-msgstr "Valitse näytettäessä"
+msgstr "Valitse tyyli"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:189
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:189
 msgid "_Cancel"
 msgstr "_Peru"
 
-#: ../gtksourceview/gtksourcestyleschemechooserbutton.c:190
-#| msgid "ID Selector"
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:190
 msgid "_Select"
 msgstr "_Valitse"
 
 #. create redo menu_item.
-#: ../gtksourceview/gtksourceview.c:1564
+#: gtksourceview/gtksourceview.c:1777
 msgid "_Redo"
 msgstr "_Tee uudelleen"
 
 #. create undo menu_item.
-#: ../gtksourceview/gtksourceview.c:1575
+#: gtksourceview/gtksourceview.c:1788
 msgid "_Undo"
 msgstr "_Kumoa"
 
-#: ../gtksourceview/gtksourceview.c:1594
+#: gtksourceview/gtksourceview.c:1807
 msgid "All _Upper Case"
-msgstr ""
+msgstr "Kaikki _isoin kirjaimin"
 
-#: ../gtksourceview/gtksourceview.c:1604
+#: gtksourceview/gtksourceview.c:1817
 msgid "All _Lower Case"
-msgstr ""
+msgstr "Kaikki _pienin kirjaimin"
 
-#: ../gtksourceview/gtksourceview.c:1614
+#: gtksourceview/gtksourceview.c:1827
 msgid "_Invert Case"
-msgstr ""
+msgstr "_Käänteinen kirjainkoko"
 
-#: ../gtksourceview/gtksourceview.c:1624
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
-msgstr ""
+msgstr "_Otsikon kirjainkoko"
 
-#: ../gtksourceview/gtksourceview.c:1634
-#, fuzzy
+#: gtksourceview/gtksourceview.c:1847
 #| msgid "Changed line"
 msgid "C_hange Case"
-msgstr "Muutettu rivi"
+msgstr "_Muuta kirjainkokoa"
 
-#: ../gtksourceview/gtksourceview-i18n.c:116
-msgid "translator-credits"
-msgstr ""
-"Jiri Grönroos, 2016\n"
-"Ilkka Tuohela, 2006-2009\n"
-"Pauli Virtanen, 2003-2005\n"
-"\n"
-"https://l10n.gnome.org/teams/fi/"
+#, fuzzy
+#~ msgid "Escaped Characters"
+#~ msgstr "Suojattu merkkijono"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Jiri Grönroos, 2016\n"
+#~ "Ilkka Tuohela, 2006-2009\n"
+#~ "Pauli Virtanen, 2003-2005\n"
+#~ "\n"
+#~ "https://l10n.gnome.org/teams/fi/"
 
 #~ msgid "GtkSourceView"
 #~ msgstr "GtkSourceView"
@@ -3743,14 +3782,6 @@ msgstr ""
 
 #~ msgid "Info to be shown for this item"
 #~ msgstr "Tieto, joka näytetään tälle kohteelle"
-
-#, fuzzy
-#~| msgid "Show provider and proposal icons in the completion popup"
-#~ msgid "Show detailed proposal information"
-#~ msgstr "Näytä tarjoaja- ja ehdotuskuvakkeet täydennysikkunassa"
-
-#~ msgid "_Details..."
-#~ msgstr "_Tiedot..."
 
 #, fuzzy
 #~| msgid "Newline"
