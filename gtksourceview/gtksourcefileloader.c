@@ -447,6 +447,14 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 							      G_PARAM_READWRITE |
 							      G_PARAM_CONSTRUCT_ONLY |
 							      G_PARAM_STATIC_STRINGS));
+
+	/* Due to potential deadlocks when registering types, we need to
+	 * ensure the dependent private class GtkSourceBufferOutputStream
+	 * has been registered up front.
+	 *
+	 * See https://bugzilla.gnome.org/show_bug.cgi?id=780216
+	 */
+	g_type_ensure (GTK_SOURCE_TYPE_BUFFER_OUTPUT_STREAM);
 }
 
 static void
