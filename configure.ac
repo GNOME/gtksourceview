@@ -3,8 +3,8 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ(2.64)
 
 m4_define(gtksourceview_major_version, 3)
-m4_define(gtksourceview_minor_version, 23)
-m4_define(gtksourceview_micro_version, 91)
+m4_define(gtksourceview_minor_version, 24)
+m4_define(gtksourceview_micro_version, 0)
 m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor_version.gtksourceview_micro_version)
 
 AC_INIT([gtksourceview],
@@ -42,9 +42,9 @@ AC_SUBST(GTK_SOURCE_MICRO_VERSION)
 # When incrementing the API version (usually for a new major package version),
 # set CURRENT, REVISION and AGE to 0 since it's like a new library.
 
-GSV_LT_CURRENT=8
+GSV_LT_CURRENT=9
 GSV_LT_REVISION=0
-GSV_LT_AGE=7
+GSV_LT_AGE=8
 GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
 AC_SUBST(GSV_LT_VERSION)
 
