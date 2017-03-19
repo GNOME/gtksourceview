@@ -55,6 +55,41 @@ will still depend on GTK+ 3, but the release date is not yet determined.
 * Improvements to the syntax highlighting of: JavaScript and PHP
 * Translation updates
 
+News in 3.24.0
+--------------
+* Translation update
+
+News in 3.23.91
+---------------
+* Improvements to the Visual Studio builds and add support for Visual Studio
+  2017.
+* Bug fix in Rust syntax highlighting
+* Add mimetype to python3.lang
+* Translation updates
+
+News in 3.23.90
+---------------
+* Bug fix in GtkSourceGutterRendererPixbuf
+* Fixes for bugs found by Coverity
+* New syntax highlighting definition file for: Django template
+* Improvements to the syntax highlighting of: CSS and JavaScript
+* Translation updates
+
+News in 3.23.2
+--------------
+
+This version still uses GTK+ 3. A GtkSourceView 3.24 version is planned (still
+depending on GTK+ 3), which will be released at the same time as GNOME 3.24 in
+March 2017.
+
+* Docs: add an introduction with the pkg-config name and which GTK+ version is
+  used.
+* Build fixes on MS Windows.
+* New syntax highlighting definition files for: ABNF and HAXE.
+* Improvements to the syntax highlighting of: JavaScript, PHP, Meson, CSS, ini
+  and Rust.
+* Translation updates.
+
 News in 3.23.1
 --------------
 
