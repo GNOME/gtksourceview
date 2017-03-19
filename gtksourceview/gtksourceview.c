@@ -2126,6 +2126,9 @@ move_cursor_words (GtkTextView *text_view,
 	GtkTextBuffer *buffer;
 	GtkTextIter insert;
 	GtkTextIter newplace;
+	GtkTextIter line_start;
+	GtkTextIter line_end;
+	gchar *line_text;
 
 	buffer = gtk_text_view_get_buffer (text_view);
 
@@ -2133,7 +2136,23 @@ move_cursor_words (GtkTextView *text_view,
 					  &insert,
 					  gtk_text_buffer_get_insert (buffer));
 
-	newplace = insert;
+	line_start = line_end = newplace = insert;
+
+	/* Get the text of the current line for RTL analysis */
+	gtk_text_iter_set_line_offset (&line_start, 0);
+	gtk_text_iter_forward_line (&line_end);
+	line_text = gtk_text_iter_get_visible_text (&line_start, &line_end);
+
+	/* Swap direction for RTL to maintain visual cursor movement.
+	 * Otherwise, cursor will move in opposite direction which is counter
+	 * intuitve and causes confusion for RTL users.
+	 */
+	if (pango_find_base_dir (line_text, -1) == PANGO_DIRECTION_RTL)
+	{
+		count *= -1;
+	}
+
+	g_free (line_text);
 
 	if (count < 0)
 	{
