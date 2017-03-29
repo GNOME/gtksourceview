@@ -93,6 +93,9 @@ test_undo_manager_SOURCES = test-undo-manager.c
 UNIT_TEST_PROGS += test-utils
 test_utils_SOURCES = test-utils.c
 
+UNIT_TEST_PROGS += test-view
+test_view_SOURCES = test-view.c
+
 TESTS_ENVIRONMENT = G_TEST_SRCDIR="$(abs_srcdir)"
 TESTS = $(UNIT_TEST_PROGS)
 noinst_PROGRAMS = $(UNIT_TEST_PROGS)
