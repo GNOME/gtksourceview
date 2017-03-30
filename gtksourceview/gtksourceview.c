@@ -3770,9 +3770,8 @@ gtk_source_view_move_lines (GtkSourceView *view,
 		gtk_text_iter_forward_line (&end);
 	}
 
-	if ((!down && (0 == gtk_text_iter_get_line (&start))) ||
-	    (down && (gtk_text_iter_is_end (&end))) ||
-	    (down && (gtk_text_buffer_get_line_count (buffer) == gtk_text_iter_get_line (&end))))
+	if ((!down && gtk_text_iter_is_start (&start)) ||
+	    (down && gtk_text_iter_is_end (&end)))
 	{
 		return;
 	}
