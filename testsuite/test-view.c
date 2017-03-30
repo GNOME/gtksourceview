@@ -161,7 +161,7 @@ test_move_lines__move_single_line (void)
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
 				 "line3\n"
-				 "line2\n"); /* FIXME should be "line2" without the '\n'. */
+				 "line2");
 		g_free (text);
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
@@ -209,7 +209,7 @@ test_move_lines__move_single_line (void)
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
 				 "line3\n"
-				 "line2\n"); /* FIXME should be "line2" without the '\n'. */
+				 "line2");
 		g_free (text);
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
@@ -455,7 +455,7 @@ test_move_lines__move_several_lines (void)
 				 "line1\n"
 				 "line4\n"
 				 "line2\n"
-				 "line3\n"); /* FIXME should be "line3" without the '\n'. */
+				 "line3");
 		g_free (text);
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
@@ -507,7 +507,7 @@ test_move_lines__move_several_lines (void)
 				 "line1\n"
 				 "line3\n"
 				 "line4\n"
-				 "line2\n"); /* FIXME should be "line2" without the '\n'. */
+				 "line2");
 		g_free (text);
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
