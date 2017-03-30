@@ -3737,6 +3737,45 @@ gtk_source_view_move_words (GtkSourceView *view,
 	g_free (new_text);
 }
 
+static gboolean
+buffer_contains_trailing_newline (GtkTextBuffer *buffer)
+{
+	GtkTextIter iter;
+	gunichar ch;
+
+	gtk_text_buffer_get_end_iter (buffer, &iter);
+	gtk_text_iter_backward_char (&iter);
+	ch = gtk_text_iter_get_char (&iter);
+
+	return (ch == '\n' || ch == '\r');
+}
+
+/* FIXME could be a function of GtkSourceBuffer, it's also useful for the
+ * FileLoader.
+ */
+static void
+remove_trailing_newline (GtkTextBuffer *buffer)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+
+	gtk_text_buffer_get_end_iter (buffer, &end);
+	start = end;
+
+	gtk_text_iter_set_line_offset (&start, 0);
+
+	if (gtk_text_iter_ends_line (&start) &&
+	    gtk_text_iter_backward_line (&start))
+	{
+		if (!gtk_text_iter_ends_line (&start))
+		{
+			gtk_text_iter_forward_to_line_end (&start);
+		}
+
+		gtk_text_buffer_delete (buffer, &start, &end);
+	}
+}
+
 static void
 gtk_source_view_move_lines (GtkSourceView *view,
 			    gboolean       copy,
@@ -3745,9 +3784,12 @@ gtk_source_view_move_lines (GtkSourceView *view,
 	GtkTextBuffer *buffer;
 	GtkTextIter start;
 	GtkTextIter end;
-	GtkTextMark *mark;
-	gboolean down;
+	GtkTextIter insert_pos;
+	GtkTextMark *start_mark;
+	GtkTextMark *end_mark;
 	gchar *text;
+	gboolean initially_contains_trailing_newline;
+	gboolean down;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
@@ -3765,7 +3807,7 @@ gtk_source_view_move_lines (GtkSourceView *view,
 	/* Get the entire lines, including the paragraph terminator. */
 	gtk_text_iter_set_line_offset (&start, 0);
 	if (!gtk_text_iter_starts_line (&end) ||
-	     gtk_text_iter_get_line (&start) == gtk_text_iter_get_line (&end))
+	    gtk_text_iter_get_line (&start) == gtk_text_iter_get_line (&end))
 	{
 		gtk_text_iter_forward_line (&end);
 	}
@@ -3773,34 +3815,38 @@ gtk_source_view_move_lines (GtkSourceView *view,
 	if ((!down && gtk_text_iter_is_start (&start)) ||
 	    (down && gtk_text_iter_is_end (&end)))
 	{
+		/* Nothing to do, and the undo/redo history must remain
+		 * unchanged.
+		 */
 		return;
 	}
 
-	text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
-
-	/* First special case) We are moving up the last line
-	 * of the buffer, check if buffer ends with a paragraph
-	 * delimiter otherwise append a \n ourselves.
-	 */
-	if (gtk_text_iter_is_end (&end))
-	{
-		GtkTextIter iter;
-		iter = end;
-
-		gtk_text_iter_set_line_offset (&iter, 0);
-		if (!gtk_text_iter_ends_line (&iter) &&
-		    !gtk_text_iter_forward_to_line_end (&iter))
-		{
-			gchar *tmp;
-
-			tmp = g_strdup_printf ("%s\n", text);
-
-			g_free (text);
-			text = tmp;
-		}
-	}
+	start_mark = gtk_text_buffer_create_mark (buffer, NULL, &start, TRUE);
+	end_mark = gtk_text_buffer_create_mark (buffer, NULL, &end, FALSE);
 
 	gtk_text_buffer_begin_user_action (buffer);
+
+	initially_contains_trailing_newline = buffer_contains_trailing_newline (buffer);
+
+	if (!initially_contains_trailing_newline)
+	{
+		/* Insert a trailing newline. */
+		gtk_text_buffer_get_end_iter (buffer, &end);
+		gtk_text_buffer_insert (buffer, &end, "\n", -1);
+	}
+
+	/* At this point all lines finish with a newline or carriage return, so
+	 * there are no special cases for the last line.
+	 */
+
+	gtk_text_buffer_get_iter_at_mark (buffer, &start, start_mark);
+	gtk_text_buffer_get_iter_at_mark (buffer, &end, end_mark);
+	gtk_text_buffer_delete_mark (buffer, start_mark);
+	gtk_text_buffer_delete_mark (buffer, end_mark);
+	start_mark = NULL;
+	end_mark = NULL;
+
+	text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
 
 	if (!copy)
 	{
@@ -3809,46 +3855,35 @@ gtk_source_view_move_lines (GtkSourceView *view,
 
 	if (down)
 	{
-		gtk_text_iter_forward_line (&end);
-
-		/* Second special case) We are moving down the last-but-one line
-		 * of the buffer, check if buffer ends with a paragraph
-		 * delimiter otherwise prepend a \n ourselves.
-		 */
-		if (gtk_text_iter_is_end (&end))
-		{
-			GtkTextIter iter;
-			iter = end;
-
-			gtk_text_iter_set_line_offset (&iter, 0);
-			if (!gtk_text_iter_ends_line (&iter) &&
-			    !gtk_text_iter_forward_to_line_end (&iter))
-			{
-				gtk_text_buffer_insert (buffer, &end, "\n", -1);
-			}
-		}
+		insert_pos = end;
+		gtk_text_iter_forward_line (&insert_pos);
 	}
 	else
 	{
-		gtk_text_iter_backward_line (&end);
+		insert_pos = start;
+		gtk_text_iter_backward_line (&insert_pos);
 	}
 
-	/* Use anon mark to be able to select after insertion. */
-	mark = gtk_text_buffer_create_mark (buffer, NULL, &end, TRUE);
+	start_mark = gtk_text_buffer_create_mark (buffer, NULL, &insert_pos, TRUE);
 
-	gtk_text_buffer_insert (buffer, &end, text, -1);
-
-	gtk_text_buffer_end_user_action (buffer);
-
+	gtk_text_buffer_insert (buffer, &insert_pos, text, -1);
 	g_free (text);
 
 	/* Select the moved text. */
-	gtk_text_buffer_get_iter_at_mark (buffer, &start, mark);
-	gtk_text_buffer_select_range (buffer, &start, &end);
+	gtk_text_buffer_get_iter_at_mark (buffer, &start, start_mark);
+	gtk_text_buffer_delete_mark (buffer, start_mark);
+
+	gtk_text_buffer_select_range (buffer, &start, &insert_pos);
+
+	if (!initially_contains_trailing_newline)
+	{
+		remove_trailing_newline (buffer);
+	}
+
+	gtk_text_buffer_end_user_action (buffer);
+
 	gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view),
 					    gtk_text_buffer_get_insert (buffer));
-
-	gtk_text_buffer_delete_mark (buffer, mark);
 }
 
 static gboolean
