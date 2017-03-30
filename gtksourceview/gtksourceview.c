@@ -747,15 +747,20 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	/**
 	 * GtkSourceView::move-lines:
 	 * @view: the #GtkSourceView which received the signal
-	 * @copy: %TRUE if the line should be copied,
-	 *        %FALSE if it should be moved
-	 * @count: the number of lines to move over.
+	 * @copy: %TRUE if the line should be copied, %FALSE if it should be
+	 *   moved. This parameter is deprecated and will be removed in a later
+	 *   version, it should be always %FALSE.
+	 * @count: the number of lines to move over. Only 1 and -1 are
+	 *   supported.
 	 *
 	 * The ::move-lines signal is a keybinding which gets emitted
 	 * when the user initiates moving a line. The default binding key
 	 * is Alt+Up/Down arrow. And moves the currently selected lines,
 	 * or the current line by @count. For the moment, only
 	 * @count of -1 or 1 is valid.
+	 *
+	 * The @copy parameter is deprecated, it has never been used by
+	 * GtkSourceView (the value is always %FALSE) and was buggy.
 	 *
 	 * Since: 2.10
 	 */
@@ -3752,6 +3757,16 @@ gtk_source_view_move_lines (GtkSourceView *view,
 	gchar *text;
 	gboolean initially_contains_trailing_newline;
 	gboolean down;
+
+	if (copy)
+	{
+		g_warning ("The 'copy' parameter of GtkSourceView::move-lines is deprecated.");
+	}
+
+	if (step != 1 && step != -1)
+	{
+		g_warning ("The 'count' parameter of GtkSourceView::move-lines should be either 1 or -1.");
+	}
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
