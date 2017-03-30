@@ -106,8 +106,7 @@ struct _GtkSourceViewClass
 	                             GdkEvent      *event);
 	void (*show_completion) (GtkSourceView *view);
 	void (*move_lines) (GtkSourceView *view,
-	                    gboolean       copy,
-	                    gint           step);
+			    gboolean       down);
 
 	void (*move_words) (GtkSourceView *view,
 	                    gint           step);

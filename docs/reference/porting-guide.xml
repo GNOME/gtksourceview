@@ -126,4 +126,19 @@
       </listitem>
     </itemizedlist>
   </refsect1>
+
+  <refsect1>
+    <title>GtkSourceView 3.99.4</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          The API of the
+          <link linkend="GtkSourceView-move-lines">GtkSourceView::move-lines</link>
+          keybinding signal has been simplified: the <code>copy</code> parameter
+          was deprecated and has been removed; and the <code>count</code>
+          parameter has been replaced by the <code>down</code> boolean.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsect1>
 </part>

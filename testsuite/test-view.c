@@ -108,7 +108,7 @@ test_move_lines__move_single_line (void)
 
 		set_initial_selection_for_single_line (buffer, 0, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, 1);
+		g_signal_emit_by_name (view, "move-lines", TRUE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line2\n"
@@ -132,7 +132,7 @@ test_move_lines__move_single_line (void)
 
 		set_initial_selection_for_single_line (buffer, 1, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, -1);
+		g_signal_emit_by_name (view, "move-lines", FALSE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line2\n"
@@ -156,7 +156,7 @@ test_move_lines__move_single_line (void)
 
 		set_initial_selection_for_single_line (buffer, 1, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, 1);
+		g_signal_emit_by_name (view, "move-lines", TRUE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
@@ -180,7 +180,7 @@ test_move_lines__move_single_line (void)
 
 		set_initial_selection_for_single_line (buffer, 1, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, 1);
+		g_signal_emit_by_name (view, "move-lines", TRUE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
@@ -204,7 +204,7 @@ test_move_lines__move_single_line (void)
 
 		set_initial_selection_for_single_line (buffer, 2, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, -1);
+		g_signal_emit_by_name (view, "move-lines", FALSE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
@@ -228,7 +228,7 @@ test_move_lines__move_single_line (void)
 
 		set_initial_selection_for_single_line (buffer, 2, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, -1);
+		g_signal_emit_by_name (view, "move-lines", FALSE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
@@ -251,7 +251,7 @@ test_move_lines__move_single_line (void)
 	gtk_text_buffer_get_end_iter (buffer, &end);
 	gtk_text_buffer_place_cursor (buffer, &end);
 
-	g_signal_emit_by_name (view, "move-lines", FALSE, 1);
+	g_signal_emit_by_name (view, "move-lines", TRUE);
 	text = get_text (buffer);
 	g_assert_cmpstr (text, ==,
 			 "line1\n"
@@ -273,7 +273,7 @@ test_move_lines__move_single_line (void)
 	gtk_text_buffer_get_start_iter (buffer, &start);
 	gtk_text_buffer_place_cursor (buffer, &start);
 
-	g_signal_emit_by_name (view, "move-lines", FALSE, -1);
+	g_signal_emit_by_name (view, "move-lines", FALSE);
 	text = get_text (buffer);
 	g_assert_cmpstr (text, ==,
 			 "line1\n"
@@ -352,7 +352,7 @@ test_move_lines__move_several_lines (void)
 
 		set_initial_selection_for_several_lines (buffer, 0, 1, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, 1);
+		g_signal_emit_by_name (view, "move-lines", TRUE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line3\n"
@@ -378,7 +378,7 @@ test_move_lines__move_several_lines (void)
 
 		set_initial_selection_for_several_lines (buffer, 1, 2, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, -1);
+		g_signal_emit_by_name (view, "move-lines", FALSE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line2\n"
@@ -404,7 +404,7 @@ test_move_lines__move_several_lines (void)
 
 		set_initial_selection_for_several_lines (buffer, 1, 2, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, 1);
+		g_signal_emit_by_name (view, "move-lines", TRUE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
@@ -430,7 +430,7 @@ test_move_lines__move_several_lines (void)
 
 		set_initial_selection_for_several_lines (buffer, 1, 2, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, 1);
+		g_signal_emit_by_name (view, "move-lines", TRUE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
@@ -456,7 +456,7 @@ test_move_lines__move_several_lines (void)
 
 		set_initial_selection_for_several_lines (buffer, 2, 3, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, -1);
+		g_signal_emit_by_name (view, "move-lines", FALSE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
@@ -482,7 +482,7 @@ test_move_lines__move_several_lines (void)
 
 		set_initial_selection_for_several_lines (buffer, 2, 3, case_num);
 
-		g_signal_emit_by_name (view, "move-lines", FALSE, -1);
+		g_signal_emit_by_name (view, "move-lines", FALSE);
 		text = get_text (buffer);
 		g_assert_cmpstr (text, ==,
 				 "line1\n"
@@ -506,7 +506,7 @@ test_move_lines__move_several_lines (void)
 
 	set_initial_selection_for_several_lines (buffer, 2, 3, 0);
 
-	g_signal_emit_by_name (view, "move-lines", FALSE, 1);
+	g_signal_emit_by_name (view, "move-lines", TRUE);
 	text = get_text (buffer);
 	g_assert_cmpstr (text, ==,
 			 "line1\n"
@@ -525,7 +525,7 @@ test_move_lines__move_several_lines (void)
 
 	set_initial_selection_for_several_lines (buffer, 0, 1, 0);
 
-	g_signal_emit_by_name (view, "move-lines", FALSE, -1);
+	g_signal_emit_by_name (view, "move-lines", FALSE);
 	text = get_text (buffer);
 	g_assert_cmpstr (text, ==,
 			 "line1\n"

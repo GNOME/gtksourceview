@@ -264,8 +264,7 @@ static void 	gtk_source_view_get_lines		(GtkTextView       *text_view,
 static gboolean gtk_source_view_draw 			(GtkWidget         *widget,
 							 cairo_t           *cr);
 static void	gtk_source_view_move_lines		(GtkSourceView     *view,
-							 gboolean           copy,
-							 gint               step);
+							 gboolean           down);
 static void	gtk_source_view_move_words		(GtkSourceView     *view,
 							 gint               step);
 static gboolean	gtk_source_view_key_press_event		(GtkWidget         *widget,
@@ -746,23 +745,13 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 
 	/**
 	 * GtkSourceView::move-lines:
-	 * @view: the #GtkSourceView which received the signal
-	 * @copy: %TRUE if the line should be copied, %FALSE if it should be
-	 *   moved. This parameter is deprecated and will be removed in a later
-	 *   version, it should be always %FALSE.
-	 * @count: the number of lines to move over. Only 1 and -1 are
-	 *   supported.
+	 * @view: the #GtkSourceView which received the signal.
+	 * @down: %TRUE to move down, %FALSE to move up.
 	 *
 	 * The ::move-lines signal is a keybinding which gets emitted
 	 * when the user initiates moving a line. The default binding key
 	 * is Alt+Up/Down arrow. And moves the currently selected lines,
-	 * or the current line by @count. For the moment, only
-	 * @count of -1 or 1 is valid.
-	 *
-	 * The @copy parameter is deprecated, it has never been used by
-	 * GtkSourceView (the value is always %FALSE) and was buggy.
-	 *
-	 * Since: 2.10
+	 * or the current line up or down by one line.
 	 */
 	signals[MOVE_LINES] =
 		g_signal_new ("move-lines",
@@ -770,9 +759,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, move_lines),
 			      NULL, NULL, NULL,
-			      G_TYPE_NONE, 2,
-			      G_TYPE_BOOLEAN,
-			      G_TYPE_INT);
+			      G_TYPE_NONE, 1,
+			      G_TYPE_BOOLEAN);
 
 	/**
 	 * GtkSourceView::move-words:
@@ -917,27 +905,23 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Up,
 				      GDK_MOD1_MASK,
-				      "move-lines", 2,
-				      G_TYPE_BOOLEAN, FALSE,
-				      G_TYPE_INT, -1);
+				      "move-lines", 1,
+				      G_TYPE_BOOLEAN, FALSE);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Up,
 				      GDK_MOD1_MASK,
-				      "move-lines", 2,
-				      G_TYPE_BOOLEAN, FALSE,
-				      G_TYPE_INT, -1);
+				      "move-lines", 1,
+				      G_TYPE_BOOLEAN, FALSE);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Down,
 				      GDK_MOD1_MASK,
-				      "move-lines", 2,
-				      G_TYPE_BOOLEAN, FALSE,
-				      G_TYPE_INT, 1);
+				      "move-lines", 1,
+				      G_TYPE_BOOLEAN, TRUE);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_KP_Down,
 				      GDK_MOD1_MASK,
-				      "move-lines", 2,
-				      G_TYPE_BOOLEAN, FALSE,
-				      G_TYPE_INT, 1);
+				      "move-lines", 1,
+				      G_TYPE_BOOLEAN, TRUE);
 
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_Left,
@@ -3745,8 +3729,7 @@ remove_trailing_newline (GtkTextBuffer *buffer)
 
 static void
 gtk_source_view_move_lines (GtkSourceView *view,
-			    gboolean       copy,
-			    gint           step)
+			    gboolean       down)
 {
 	GtkTextBuffer *buffer;
 	GtkTextIter start;
@@ -3756,28 +3739,13 @@ gtk_source_view_move_lines (GtkSourceView *view,
 	GtkTextMark *end_mark;
 	gchar *text;
 	gboolean initially_contains_trailing_newline;
-	gboolean down;
-
-	if (copy)
-	{
-		g_warning ("The 'copy' parameter of GtkSourceView::move-lines is deprecated.");
-	}
-
-	if (step != 1 && step != -1)
-	{
-		g_warning ("The 'count' parameter of GtkSourceView::move-lines should be either 1 or -1.");
-	}
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
-	if (step == 0 || !gtk_text_view_get_editable (GTK_TEXT_VIEW (view)))
+	if (!gtk_text_view_get_editable (GTK_TEXT_VIEW (view)))
 	{
 		return;
 	}
-
-	/* FIXME: for now we just handle a step of one line */
-
-	down = step > 0;
 
 	gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
 
@@ -3825,10 +3793,7 @@ gtk_source_view_move_lines (GtkSourceView *view,
 
 	text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
 
-	if (!copy)
-	{
-		gtk_text_buffer_delete (buffer, &start, &end);
-	}
+	gtk_text_buffer_delete (buffer, &start, &end);
 
 	if (down)
 	{
