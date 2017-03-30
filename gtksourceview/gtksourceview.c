@@ -3776,7 +3776,7 @@ gtk_source_view_move_lines (GtkSourceView *view,
 		return;
 	}
 
-	text = gtk_text_buffer_get_slice (buffer, &start, &end, TRUE);
+	text = gtk_text_buffer_get_text (buffer, &start, &end, TRUE);
 
 	/* First special case) We are moving up the last line
 	 * of the buffer, check if buffer ends with a paragraph
