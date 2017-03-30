@@ -288,51 +288,6 @@ test_move_lines__move_single_line (void)
 	g_object_unref (view);
 }
 
-static void
-test_move_lines__copy_single_line (void)
-{
-	GtkSourceView *view;
-	GtkTextBuffer *buffer;
-	GtkTextIter iter;
-	gchar *text;
-
-	view = GTK_SOURCE_VIEW (gtk_source_view_new ());
-	g_object_ref_sink (view);
-
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-
-	gtk_text_buffer_set_text (buffer,
-				  "line1\n"
-				  "line2\n"
-				  "line3",
-				  -1);
-
-	gtk_text_buffer_get_start_iter (buffer, &iter);
-	gtk_text_buffer_place_cursor (buffer, &iter);
-
-	/* Strange operation. A more useful operation would result to:
-	 * line1\n
-	 * line1\n
-	 * line2\n
-	 * line3
-	 *
-	 * The copy parameter has been added in
-	 * commit 5ac5099a2fe28cc8d7851ba8dcc6c8126dae0f28, but it seems that it
-	 * has never been used, at least not by GtkSourceView itself (there are
-	 * no move-lines keybindings with copy=TRUE).
-	 */
-	g_signal_emit_by_name (view, "move-lines", TRUE, 1);
-	text = get_text (buffer);
-	g_assert_cmpstr (text, ==,
-			 "line1\n"
-			 "line2\n"
-			 "line1\n"
-			 "line3");
-	g_free (text);
-
-	g_object_unref (view);
-}
-
 #define N_CASES_INITIAL_SELECTION_FOR_SEVERAL_LINES (3)
 
 static void
@@ -588,7 +543,6 @@ main (int argc, char **argv)
 	gtk_test_init (&argc, &argv);
 
 	g_test_add_func ("/view/move-lines/move-single-line", test_move_lines__move_single_line);
-	g_test_add_func ("/view/move-lines/copy-single-line", test_move_lines__copy_single_line);
 	g_test_add_func ("/view/move-lines/move-several-lines", test_move_lines__move_several_lines);
 
 	return g_test_run();
