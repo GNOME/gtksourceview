@@ -94,9 +94,10 @@ AC_PATH_PROG(GLIB_MKENUMS, glib-mkenums)
 AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
 AC_PATH_PROG(ITSTOOL, itstool)
 
-# Compile warnings
+# Compile warnings. There can be deprecation warnings at any time, so disable
+# -Werror by default with the [yes] argument.
 AX_REQUIRE_DEFINED([AX_COMPILER_FLAGS])
-AX_COMPILER_FLAGS([WARN_CFLAGS], [WARN_LDFLAGS])
+AX_COMPILER_FLAGS([WARN_CFLAGS], [WARN_LDFLAGS], [yes])
 
 AC_ARG_ENABLE(deprecations,
               [AS_HELP_STRING([--disable-deprecations],
