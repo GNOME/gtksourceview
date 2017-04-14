@@ -158,7 +158,8 @@ libgtksourceview_core_la_SOURCES =		\
 nodist_libgtksourceview_core_la_SOURCES = \
 	$(BUILT_SOURCES)
 
-libgtksourceview_core_la_CFLAGS = 	\
+libgtksourceview_core_la_CFLAGS =	\
+	$(HIDDEN_VISIBILITY_CFLAGS)	\
 	$(CODE_COVERAGE_CFLAGS)
 
 libgtksourceview_core_la_LDFLAGS =	\

@@ -31,6 +31,7 @@ libgtksourcecompletionwords_la_SOURCES =	\
 	$(NOINST_H_FILES)
 
 libgtksourcecompletionwords_la_CFLAGS =		\
+	$(HIDDEN_VISIBILITY_CFLAGS)		\
 	$(CODE_COVERAGE_CFLAGS)
 
 libgtksourcecompletionwords_la_LDFLAGS =	\
