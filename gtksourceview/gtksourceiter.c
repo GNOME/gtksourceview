@@ -18,6 +18,10 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "gtksourceiter.h"
 
 /* GtkTextIter functions. Contains forward/backward functions for word

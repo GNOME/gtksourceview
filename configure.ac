@@ -115,7 +115,11 @@ if test "$enable_deprecations" = "no"; then
 	AC_SUBST(DISABLE_DEPRECATED_CFLAGS)
 fi
 
-# Symbol visibility handling
+# Symbol visibility handling.
+#
+# This requires to #include config.h in every *.c file where there is a public
+# symbol. As a simpler rule, it's easier to #include config.h in all
+# gtksourceview/**/*.c files, to be sure that we don't miss any public symbol.
 HIDDEN_VISIBILITY_CFLAGS=""
 case "$host" in
     *-*-mingw*)

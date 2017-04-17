@@ -29,6 +29,10 @@
  * limit.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "gtksourcecompletioncontainer.h"
 
 #define UNREALIZED_WIDTH  350

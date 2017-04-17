@@ -18,6 +18,10 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "gtksourcemarkssequence.h"
 
 /* An object for storing GtkTextMarks. The text marks are sorted internally with
