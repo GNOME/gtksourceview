@@ -8,19 +8,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gtksour"
-"ceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-02-18 09:37+0000\n"
-"PO-Revision-Date: 2017-02-21 07:09+0200\n"
-"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: Serbian <(nothing)>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-04-15 19:25+0000\n"
+"PO-Revision-Date: 2017-04-20 22:07+0200\n"
+"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
+"Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
-"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
+"X-Generator: Poedit 1.8.12\n"
 
 #. (itstool) path: displayable-values/value@name
 #: gtksourceview.xml:23
@@ -87,7 +88,7 @@ msgstr "Све"
 #. (itstool) path: abnf.lang/language@_name
 #: abnf.lang:31
 msgid "ABNF"
-msgstr "АБНФ"
+msgstr "АБНФ (ABNF)"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -230,7 +231,7 @@ msgstr "Ниска"
 #. (itstool) path: actionscript.lang/language@_name
 #: actionscript.lang:25
 msgid "ActionScript"
-msgstr "Скрипта радње"
+msgstr "Скрипта радње (ActionScript)"
 
 #. (itstool) path: styles/style@_name
 #: actionscript.lang:36 cg.lang:34 c.lang:54 cobol.lang:43 csharp.lang:38
@@ -331,7 +332,7 @@ msgstr "Врста података"
 #. (itstool) path: ada.lang/language@_name
 #: ada.lang:26
 msgid "Ada"
-msgstr "Ада"
+msgstr "Ада (Ada)"
 
 #. (itstool) path: styles/style@_name
 #: ada.lang:41 asp.lang:34 bennugd.lang:33 cg.lang:35 c.lang:37 csharp.lang:46
@@ -364,7 +365,7 @@ msgstr "Знак новог реда"
 #. (itstool) path: ansforth94.lang/language@_name
 #: ansforth94.lang:25
 msgid "ANS-Forth94"
-msgstr "АНС-Форт94"
+msgstr "АНС-Форт94 (ANS-Forth94)"
 
 #. (itstool) path: styles/style@_name
 #: ansforth94.lang:37
@@ -425,7 +426,7 @@ msgstr "Покретни"
 #. (itstool) path: asp.lang/language@_name
 #: asp.lang:24
 msgid "ASP"
-msgstr "АСП"
+msgstr "АСП (ASP)"
 
 #. (itstool) path: styles/style@_name
 #: asp.lang:36 cg.lang:48 changelog.lang:39 css.lang:53 def.lang:81 gap.lang:35
@@ -461,7 +462,7 @@ msgstr "Посебна константа"
 #. (itstool) path: automake.lang/language@_name
 #: automake.lang:24
 msgid "Automake"
-msgstr "Самостварање"
+msgstr "Аутомејк (Automake)"
 
 #. (itstool) path: styles/style@_name
 #: automake.lang:39
@@ -506,7 +507,7 @@ msgstr "Замена"
 #. (itstool) path: awk.lang/language@_name
 #: awk.lang:24
 msgid "awk"
-msgstr "awk"
+msgstr "авк (awk)"
 
 #. (itstool) path: awk.lang/language@_section
 #. (itstool) path: dosbatch.lang/language@_section
@@ -540,7 +541,7 @@ msgstr "Уграђена функција"
 #. (itstool) path: bennugd.lang/language@_name
 #: bennugd.lang:23
 msgid "BennuGD"
-msgstr "Бену ГД"
+msgstr "Бену ГД (BennuGD)"
 
 #. (itstool) path: styles/style@_name
 #: bennugd.lang:34 def.lang:79 llvm.lang:36 php.lang:43 rust.lang:52
@@ -558,7 +559,7 @@ msgstr "Број у покретном зарезу"
 #. (itstool) path: bibtex.lang/language@_name
 #: bibtex.lang:24
 msgid "BibTeX"
-msgstr "Биб ТеКс"
+msgstr "Биб ТеКс (BibTeX)"
 
 #. (itstool) path: bibtex.lang/language@_section
 #. (itstool) path: docbook.lang/language@_section
@@ -599,7 +600,7 @@ msgstr "Поље"
 #. (itstool) path: bluespec.lang/language@_name
 #: bluespec.lang:22
 msgid "Bluespec SystemVerilog"
-msgstr "Блуспец Верилог система"
+msgstr "Блуспец Верилог система (Bluespec SystemVerilog)"
 
 #. (itstool) path: styles/style@_name
 #: bluespec.lang:31 systemverilog.lang:32
@@ -630,7 +631,7 @@ msgstr "Врста"
 #. (itstool) path: boo.lang/language@_name
 #: boo.lang:24
 msgid "Boo"
-msgstr "Боо"
+msgstr "Бу (Boo)"
 
 #. (itstool) path: styles/style@_name
 #: boo.lang:35 genie.lang:35 python3.lang:33 python.lang:38
@@ -669,7 +670,7 @@ msgstr "Логичка вредност"
 #. (itstool) path: cg.lang/language@_name
 #: cg.lang:24
 msgid "CG Shader Language"
-msgstr "Језик ЦГ нијансера"
+msgstr "Језик ЦГ нијансера (CG Shader Language)"
 
 #. (itstool) path: styles/style@_name
 #: cg.lang:36
@@ -701,7 +702,7 @@ msgstr "Уграђено"
 #. (itstool) path: changelog.lang/language@_name
 #: changelog.lang:25
 msgid "ChangeLog"
-msgstr "Дневник измена"
+msgstr "Дневник измена (ChangeLog)"
 
 #. (itstool) path: changelog.lang/language@_section
 #. (itstool) path: cmake.lang/language@_section
@@ -747,7 +748,7 @@ msgstr "Назив"
 #. (itstool) path: styles/style@_name
 #: changelog.lang:36
 msgid "E-mail address"
-msgstr "Адреса е-поште"
+msgstr "Адреса ел. поште"
 
 #. (itstool) path: styles/style@_name
 #: changelog.lang:37
@@ -767,12 +768,12 @@ msgstr "Издање"
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:25
 msgid "C/ObjC Header"
-msgstr "Ц/ОбјЦ заглавље"
+msgstr "Це/Обј. Це (C/ObjC) заглавље"
 
 #. (itstool) path: c.lang/language@_name
 #: c.lang:25
 msgid "C"
-msgstr "Ц"
+msgstr "Це (C)"
 
 #. (itstool) path: styles/style@_name
 #: c.lang:38 cpp.lang:37 objc.lang:36 opal.lang:35
@@ -797,7 +798,7 @@ msgstr "Назив сигнала"
 #. (itstool) path: cmake.lang/language@_name
 #: cmake.lang:24
 msgid "CMake"
-msgstr "Ц Направи"
+msgstr "Си-мејк (Cmake)"
 
 #. (itstool) path: styles/style@_name
 #: cmake.lang:31 meson.lang:32
@@ -822,7 +823,7 @@ msgstr "Контролна кључна реч"
 #. (itstool) path: cobol.lang/language@_name
 #: cobol.lang:27
 msgid "COBOL"
-msgstr "КОБОЛ"
+msgstr "КОБОЛ (COBOL)"
 
 #. (itstool) path: styles/style@_name
 #: cobol.lang:36 def.lang:88 protobuf.lang:32
@@ -832,17 +833,17 @@ msgstr "Изјава"
 #. (itstool) path: cpphdr.lang/language@_name
 #: cpphdr.lang:25
 msgid "C++ Header"
-msgstr "Це++ заглавље"
+msgstr "Це++ (C++) заглавље"
 
 #. (itstool) path: cpp.lang/language@_name
 #: cpp.lang:25
 msgid "C++"
-msgstr "Ц++"
+msgstr "Це++ (C++)"
 
 #. (itstool) path: csharp.lang/language@_name
 #: csharp.lang:27
 msgid "C#"
-msgstr "Ц#"
+msgstr "Си-шарп (C#)"
 
 #. (itstool) path: styles/style@_name
 #: csharp.lang:44 po.lang:37
@@ -852,7 +853,7 @@ msgstr "Формат ниске"
 #. (itstool) path: css.lang/language@_name
 #: css.lang:39
 msgid "CSS"
-msgstr "ЦСС"
+msgstr "ЦСС (CSS)"
 
 #. (itstool) path: styles/style@_name
 #: css.lang:49
@@ -909,7 +910,7 @@ msgstr "Бирач назива ознаке"
 #. (itstool) path: csv.lang/language@_name
 #: csv.lang:24
 msgid "CSV"
-msgstr "ЦСВ"
+msgstr "ЦСВ (CSV)"
 
 #. (itstool) path: styles/style@_name
 #: csv.lang:32
@@ -919,7 +920,7 @@ msgstr "Побегли карактер"
 #. (itstool) path: cuda.lang/language@_name
 #: cuda.lang:23
 msgid "CUDA"
-msgstr "КУДА"
+msgstr "КУДА (CUDA)"
 
 #. (itstool) path: styles/style@_name
 #: cuda.lang:35
@@ -974,7 +975,7 @@ msgstr "Комплексни број"
 #. (itstool) path: styles/style@_name
 #: def.lang:84
 msgid "Built-in identifier"
-msgstr "Уграђени одредник"
+msgstr "Уграђени идентификатор"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:96 modelica.lang:40 octave.lang:44
@@ -1044,7 +1045,7 @@ msgstr "Заглавље 6"
 #. (itstool) path: desktop.lang/language@_name
 #: desktop.lang:25
 msgid ".desktop"
-msgstr ".desktop"
+msgstr ".десктоп (.desktop)"
 
 #. (itstool) path: styles/style@_name
 #: desktop.lang:33
@@ -1124,7 +1125,7 @@ msgstr "Занемари"
 #. (itstool) path: d.lang/language@_name
 #: d.lang:30
 msgid "D"
-msgstr "Д"
+msgstr "Де (D)"
 
 #. (itstool) path: styles/style@_name
 #: d.lang:45
@@ -1134,7 +1135,7 @@ msgstr "Посебни симбол"
 #. (itstool) path: docbook.lang/language@_name
 #: docbook.lang:24
 msgid "DocBook"
-msgstr "Док бук"
+msgstr "Док бук (DocBook)"
 
 #. (itstool) path: styles/style@_name
 #: docbook.lang:33
@@ -1159,7 +1160,7 @@ msgstr "Структурални елементи"
 #. (itstool) path: dosbatch.lang/language@_name
 #: dosbatch.lang:24
 msgid "DOS Batch"
-msgstr "ДОС група"
+msgstr "ДОС беч (DOS Batch)"
 
 #. (itstool) path: styles/style@_name
 #: dosbatch.lang:34 latex.lang:39 latex.lang:40 sweave.lang:33
@@ -1169,7 +1170,7 @@ msgstr "Наредба"
 #. (itstool) path: dot.lang/language@_name
 #: dot.lang:24
 msgid "Graphviz Dot"
-msgstr "Графвиз тачкица"
+msgstr "Графвиз (Graphviz) тачкица"
 
 #. (itstool) path: styles/style@_name
 #: dot.lang:37 jade.lang:36 xml.lang:40
@@ -1179,7 +1180,7 @@ msgstr "Назив особине"
 #. (itstool) path: dpatch.lang/language@_name
 #: dpatch.lang:24
 msgid "DPatch"
-msgstr "Д_закрпа"
+msgstr "Ди-печ (DPatch)"
 
 #. (itstool) path: styles/style@_name
 #: dpatch.lang:31
@@ -1190,7 +1191,7 @@ msgstr "Почетак закрпе"
 #. (itstool) path: styles/style@_name
 #: dtd.lang:24 html.lang:38
 msgid "DTD"
-msgstr "ДТД"
+msgstr "ДТД (DTD)"
 
 #. (itstool) path: styles/style@_name
 #: dtd.lang:33
@@ -1214,14 +1215,13 @@ msgstr "Цитирана вредност"
 
 #. (itstool) path: dtl.lang/language@_name
 #: dtl.lang:25
-#| msgid "Template"
 msgid "Django Template"
-msgstr "Дјанго шаблон"
+msgstr "Ђанго (Django) шаблон"
 
 #. (itstool) path: eiffel.lang/language@_name
 #: eiffel.lang:24
 msgid "Eiffel"
-msgstr "Ајфел"
+msgstr "Ајфел (Eiffel)"
 
 #. (itstool) path: styles/style@_name
 #: eiffel.lang:35
@@ -1261,7 +1261,7 @@ msgstr "Истинитосна вредност"
 #. (itstool) path: erlang.lang/language@_name
 #: erlang.lang:24
 msgid "Erlang"
-msgstr "Ерланг"
+msgstr "Ерланг (Erlang)"
 
 #. (itstool) path: styles/style@_name
 #: erlang.lang:35
@@ -1282,7 +1282,7 @@ msgstr "Директива преводиоца"
 #. (itstool) path: fcl.lang/language@_name
 #: fcl.lang:23
 msgid "FCL"
-msgstr "ФЦЛ"
+msgstr "ФЦЛ (FCL)"
 
 #. (itstool) path: fcl.lang/language@_section
 #. (itstool) path: gap.lang/language@_section
@@ -1318,7 +1318,7 @@ msgstr "Резервисана константа"
 #. (itstool) path: forth.lang/language@_name
 #: forth.lang:24
 msgid "Forth"
-msgstr "Форт"
+msgstr "Форт (Forth)"
 
 #. (itstool) path: styles/style@_name
 #: forth.lang:40
@@ -1333,7 +1333,7 @@ msgstr "Текст грешке"
 #. (itstool) path: fortran.lang/language@_name
 #: fortran.lang:25
 msgid "Fortran 95"
-msgstr "Фортран 95"
+msgstr "Фортран 95 (Fortran 95)"
 
 #. (itstool) path: styles/style@_name
 #: fortran.lang:37
@@ -1353,7 +1353,7 @@ msgstr "ОпенМП уредбе"
 #. (itstool) path: fsharp.lang/language@_name
 #: fsharp.lang:25
 msgid "F#"
-msgstr "Ф#"
+msgstr "Еф-шарп (F#)"
 
 #. (itstool) path: styles/style@_name
 #: fsharp.lang:36 ocaml.lang:39 sml.lang:41
@@ -1398,12 +1398,12 @@ msgstr "Путања модула"
 #. (itstool) path: gap.lang/language@_name
 #: gap.lang:24
 msgid "GAP"
-msgstr "ГАП"
+msgstr "ГАП (GAP)"
 
 #. (itstool) path: gdb-log.lang/language@_name
 #: gdb-log.lang:19
 msgid "GDB Log"
-msgstr "ГДБ дневник"
+msgstr "ГДБ (GDB) дневник"
 
 #. (itstool) path: styles/style@_name
 #: gdb-log.lang:25
@@ -1448,12 +1448,12 @@ msgstr "Упит"
 #. (itstool) path: genie.lang/language@_name
 #: genie.lang:24
 msgid "Genie"
-msgstr "Гение"
+msgstr "Џини (Genie)"
 
 #. (itstool) path: glsl.lang/language@_name
 #: glsl.lang:31
 msgid "OpenGL Shading Language"
-msgstr "Језик за ОпенГЛ сенчење"
+msgstr "Језик за ОпенГЛ (OpenGL) сенчење"
 
 #. (itstool) path: styles/style@_name
 #: glsl.lang:45 go.lang:49 python3.lang:43 python.lang:49
@@ -1468,7 +1468,7 @@ msgstr "Резервисане кључне речи"
 #. (itstool) path: go.lang/language@_name
 #: go.lang:25
 msgid "Go"
-msgstr "Иди"
+msgstr "Го (Go)"
 
 #. (itstool) path: styles/style@_name
 #: go.lang:44
@@ -1478,7 +1478,7 @@ msgstr "Имагинарни број"
 #. (itstool) path: gtk-doc.lang/language@_name
 #: gtk-doc.lang:25
 msgid "gtk-doc"
-msgstr "гтк-док"
+msgstr "гтк-док (gtk-doc)"
 
 #. (itstool) path: styles/style@_name
 #: gtk-doc.lang:27
@@ -1523,7 +1523,7 @@ msgstr "Застарело"
 #. (itstool) path: gtkrc.lang/language@_name
 #: gtkrc.lang:25
 msgid "GtkRC"
-msgstr "ГткРЦ"
+msgstr "ГткРЦ (GtkRC)"
 
 #. (itstool) path: styles/style@_name
 #: gtkrc.lang:38
@@ -1538,7 +1538,7 @@ msgstr "Директива за укључивање"
 #. (itstool) path: haddock.lang/language@_name
 #: haddock.lang:24
 msgid "Haddock"
-msgstr "Хадок"
+msgstr "Хадок (Haddock)"
 
 #. (itstool) path: styles/style@_name
 #: haddock.lang:27
@@ -1613,7 +1613,7 @@ msgstr "Сидро"
 #. (itstool) path: haskell.lang/language@_name
 #: haskell.lang:25
 msgid "Haskell"
-msgstr "Хаскел"
+msgstr "Хаскел (Haskell)"
 
 #. (itstool) path: styles/style@_name
 #: haskell.lang:36 ruby.lang:51
@@ -1633,12 +1633,12 @@ msgstr "Хексадецимални"
 #. (itstool) path: haskell-literate.lang/language@_name
 #: haskell-literate.lang:24
 msgid "Literate Haskell"
-msgstr "Писмен Хаскел"
+msgstr "Писмен Хаскел (Literate Haskell)"
 
 #. (itstool) path: haxe.lang/language@_name
 #: haxe.lang:35
 msgid "Haxe"
-msgstr "Хаксе"
+msgstr "Хаксе (Haxe)"
 
 #. (itstool) path: styles/style@_name
 #: haxe.lang:53 rust.lang:54
@@ -1663,7 +1663,7 @@ msgstr "Префикс одредника"
 #. (itstool) path: html.lang/language@_name
 #: html.lang:25
 msgid "HTML"
-msgstr "ХТМЛ"
+msgstr "ХТМЛ (HTML)"
 
 #. (itstool) path: styles/style@_name
 #: html.lang:35 xml.lang:43 yaml.lang:34
@@ -1713,17 +1713,17 @@ msgstr "Заглавље нивоа 5"
 #. (itstool) path: idl-exelis.lang/language@_name
 #: idl-exelis.lang:21
 msgid "IDL-Exelis"
-msgstr "ИДЛ-Екселис"
+msgstr "ИДЛ-Екселис (IDL-Exelis)"
 
 #. (itstool) path: idl.lang/language@_name
 #: idl.lang:24
 msgid "IDL"
-msgstr "ИДЛ"
+msgstr "ИДЛ (IDL)"
 
 #. (itstool) path: imagej.lang/language@_name
 #: imagej.lang:24
 msgid "ImageJ"
-msgstr "Слика Ј"
+msgstr "Слика Ј (ImageJ)"
 
 #. (itstool) path: styles/style@_name
 #: imagej.lang:35
@@ -1738,12 +1738,12 @@ msgstr "Врста смештаја"
 #. (itstool) path: ini.lang/language@_name
 #: ini.lang:23
 msgid ".ini"
-msgstr ".ini"
+msgstr ".ини (.ini)"
 
 #. (itstool) path: jade.lang/language@_name
 #: jade.lang:25
 msgid "Jade"
-msgstr "Жад"
+msgstr "Џејд (Jade)"
 
 #. (itstool) path: styles/style@_name
 #: jade.lang:33 xml.lang:36
@@ -1778,12 +1778,12 @@ msgstr "Ентитет"
 #. (itstool) path: java.lang/language@_name
 #: java.lang:25
 msgid "Java"
-msgstr "Јава"
+msgstr "Јава (Java)"
 
 #. (itstool) path: javascript.lang/language@_name
 #: javascript.lang:27
 msgid "JavaScript"
-msgstr "Јава скрипт"
+msgstr "Јаваскрипт (JavaScript)"
 
 #. (itstool) path: styles/style@_name
 #: javascript.lang:39
@@ -1803,7 +1803,7 @@ msgstr "Изграђивачи"
 #. (itstool) path: j.lang/language@_name
 #: j.lang:24
 msgid "J"
-msgstr "J"
+msgstr "Џеј (J)"
 
 #. (itstool) path: styles/style@_name
 #: j.lang:31
@@ -1868,7 +1868,7 @@ msgstr "Глагол"
 #. (itstool) path: julia.lang/language@_name
 #: julia.lang:24
 msgid "Julia"
-msgstr "Јулија"
+msgstr "Јулија (Julia)"
 
 #. (itstool) path: styles/style@_name
 #: julia.lang:41
@@ -1898,7 +1898,7 @@ msgstr "Модул"
 #. (itstool) path: latex.lang/language@_name
 #: latex.lang:25
 msgid "LaTeX"
-msgstr "Ла ТеКс"
+msgstr "Ла ТеКс (LaTeX)"
 
 #. (itstool) path: styles/style@_name
 #: latex.lang:34 latex.lang:36
@@ -1968,7 +1968,7 @@ msgstr "Заглавље подпасуса"
 #. (itstool) path: lex.lang/language@_name
 #: lex.lang:25
 msgid "Lex"
-msgstr "Лекс"
+msgstr "Лекс (Lex)"
 
 #. (itstool) path: styles/style@_name
 #: lex.lang:34
@@ -1983,12 +1983,12 @@ msgstr "Израз"
 #. (itstool) path: libtool.lang/language@_name
 #: libtool.lang:24
 msgid "libtool"
-msgstr "либ алат"
+msgstr "либ алат (libtool)"
 
 #. (itstool) path: llvm.lang/language@_name
 #: llvm.lang:23
 msgid "LLVM IR"
-msgstr "ЛЛВМ ИР"
+msgstr "ЛЛВМ ИР (LLVM IR)"
 
 #. (itstool) path: styles/style@_name
 #: llvm.lang:34
@@ -1998,12 +1998,12 @@ msgstr "Константе"
 #. (itstool) path: lua.lang/language@_name
 #: lua.lang:24
 msgid "Lua"
-msgstr "Луа"
+msgstr "Луа (Lua)"
 
 #. (itstool) path: styles/style@_name
 #: lua.lang:38
 msgid "Reserved Identifier"
-msgstr "Резервисани одредник"
+msgstr "Резервисани идентификатор"
 
 #. (itstool) path: styles/style@_name
 #: lua.lang:39 markdown.lang:42
@@ -2018,7 +2018,7 @@ msgstr "Нил константа"
 #. (itstool) path: m4.lang/language@_name
 #: m4.lang:24
 msgid "m4"
-msgstr "m4"
+msgstr "м4 (m4)"
 
 #. (itstool) path: styles/style@_name
 #: m4.lang:32
@@ -2088,7 +2088,7 @@ msgstr "кључна реч"
 #. (itstool) path: mallard.lang/language@_name
 #: mallard.lang:23
 msgid "Mallard"
-msgstr "Малард"
+msgstr "Малард (Mallard)"
 
 #. (itstool) path: styles/style@_name
 #: mallard.lang:32
@@ -2113,7 +2113,7 @@ msgstr "Унутрашњи елементи"
 #. (itstool) path: markdown.lang/language@_name
 #: markdown.lang:26
 msgid "Markdown"
-msgstr "Маркдаун"
+msgstr "Маркдаун (Markdown)"
 
 #. (itstool) path: styles/style@_name
 #: markdown.lang:35 rpmspec.lang:33 rst.lang:31 t2t.lang:34
@@ -2168,12 +2168,12 @@ msgstr "Прелом реда"
 #. (itstool) path: matlab.lang/language@_name
 #: matlab.lang:26
 msgid "Matlab"
-msgstr "Матлаб"
+msgstr "Матлаб (Matlab)"
 
 #. (itstool) path: mediawiki.lang/language@_name
 #: mediawiki.lang:23
 msgid "MediaWiki"
-msgstr "Медија вики"
+msgstr "Медија вики (MediaWiki)"
 
 #. (itstool) path: styles/style@_name
 #: mediawiki.lang:31
@@ -2238,12 +2238,12 @@ msgstr "Шаблон"
 #. (itstool) path: meson.lang/language@_name
 #: meson.lang:24
 msgid "Meson"
-msgstr "Мезон"
+msgstr "Мезон (Meson)"
 
 #. (itstool) path: modelica.lang/language@_name
 #: modelica.lang:26
 msgid "Modelica"
-msgstr "Моделика"
+msgstr "Моделика (Modelica)"
 
 #. (itstool) path: styles/style@_name
 #: modelica.lang:39
@@ -2258,22 +2258,22 @@ msgstr "Задата особина"
 #. (itstool) path: mxml.lang/language@_name
 #: mxml.lang:24
 msgid "MXML"
-msgstr "МИксМЛ"
+msgstr "МИксМЛ (MXML)"
 
 #. (itstool) path: styles/style@_name
 #: mxml.lang:33 xml.lang:37
 msgid "CDATA delimiter"
-msgstr "ЦДАТА граничник"
+msgstr "ЦДАТА (CDATA) граничник"
 
 #. (itstool) path: nemerle.lang/language@_name
 #: nemerle.lang:24
 msgid "Nemerle"
-msgstr "Немерле"
+msgstr "Немерле (Nemerle)"
 
 #. (itstool) path: netrexx.lang/language@_name
 #: netrexx.lang:24
 msgid "NetRexx"
-msgstr "Нет Рексикс"
+msgstr "Нет Рексикс (NetRexx)"
 
 #. (itstool) path: styles/style@_name
 #: netrexx.lang:39
@@ -2318,27 +2318,27 @@ msgstr "Поткључне речи"
 #. (itstool) path: nsis.lang/language@_name
 #: nsis.lang:24
 msgid "NSIS"
-msgstr "НСИС"
+msgstr "НСИС (NSIS)"
 
 #. (itstool) path: objc.lang/language@_name
 #: objc.lang:24
 msgid "Objective-C"
-msgstr "Објектни Ц"
+msgstr "Објектни Це (Objective-C)"
 
 #. (itstool) path: objj.lang/language@_name
 #: objj.lang:26
 msgid "Objective-J"
-msgstr "Објектни Ј"
+msgstr "Објектни J (Objective-J)"
 
 #. (itstool) path: ocaml.lang/language@_name
 #: ocaml.lang:27
 msgid "OCaml"
-msgstr "ОКемл"
+msgstr "Окемл (OCaml)"
 
 #. (itstool) path: styles/style@_name
 #: ocaml.lang:37
 msgid "Ocamldoc Comments"
-msgstr "Окамл коментари"
+msgstr "Окемл (OCaml) коментари"
 
 #. (itstool) path: styles/style@_name
 #: ocaml.lang:54
@@ -2348,7 +2348,7 @@ msgstr "Стандардни модули"
 #. (itstool) path: ocl.lang/language@_name
 #: ocl.lang:33
 msgid "OCL"
-msgstr "ОЦЛ"
+msgstr "ОЦЛ (OCL)"
 
 #. (itstool) path: styles/style@_name
 #: ocl.lang:44
@@ -2364,7 +2364,7 @@ msgstr "Оператор операције"
 #. (itstool) path: octave.lang/language@_name
 #: octave.lang:26
 msgid "Octave"
-msgstr "Октава"
+msgstr "Октава (Octave)"
 
 # Можда овако, или подаци о програму???
 # ~Милош
@@ -2376,12 +2376,12 @@ msgstr "Управник пакета"
 #. (itstool) path: ooc.lang/language@_name
 #: ooc.lang:24
 msgid "OOC"
-msgstr "ООЦ"
+msgstr "ООЦ (OOC)"
 
 #. (itstool) path: opal.lang/language@_name
 #: opal.lang:24
 msgid "Opal"
-msgstr "Опал"
+msgstr "Опал (Opal)"
 
 #. (itstool) path: styles/style@_name
 #: opal.lang:33 python3.lang:31 python.lang:36
@@ -2396,7 +2396,7 @@ msgstr "Кључни симбол"
 #. (itstool) path: opencl.lang/language@_name
 #: opencl.lang:24
 msgid "OpenCL"
-msgstr "ОпенЦЛ"
+msgstr "ОпенЦЛ (OpenCL)"
 
 #. (itstool) path: styles/style@_name
 #: opencl.lang:35
@@ -2426,12 +2426,12 @@ msgstr "Општа променљива"
 #. (itstool) path: pascal.lang/language@_name
 #: pascal.lang:25
 msgid "Pascal"
-msgstr "Паскал"
+msgstr "Паскал (Pascal)"
 
 #. (itstool) path: perl.lang/language@_name
 #: perl.lang:26
 msgid "Perl"
-msgstr "Перл"
+msgstr "Перл (Perl)"
 
 #. (itstool) path: styles/style@_name
 #: perl.lang:35
@@ -2486,7 +2486,7 @@ msgstr "ПОД заглавље"
 #. (itstool) path: php.lang/language@_name
 #: php.lang:29
 msgid "PHP"
-msgstr "ПХП"
+msgstr "ПХП (PHP)"
 
 #. (itstool) path: styles/style@_name
 #: php.lang:39
@@ -2501,7 +2501,7 @@ msgstr "Општа функција"
 #. (itstool) path: pig.lang/language@_name
 #: pig.lang:27
 msgid "Pig"
-msgstr "Пиг"
+msgstr "Пиг (Pig)"
 
 #. (itstool) path: styles/style@_name
 #: pig.lang:37
@@ -2526,7 +2526,7 @@ msgstr "Ништа"
 #. (itstool) path: pkgconfig.lang/language@_name
 #: pkgconfig.lang:24
 msgid "pkg-config"
-msgstr "пкг-конфиг"
+msgstr "пкг-конфиг (pkg-config)"
 
 # Можда овако, или подаци о програму???
 # ~Милош
@@ -2538,7 +2538,7 @@ msgstr "Подаци о пакету"
 #. (itstool) path: po.lang/language@_name
 #: po.lang:24
 msgid "gettext translation"
-msgstr "геттекст превод"
+msgstr "геттекст (gettext) превод"
 
 #. (itstool) path: styles/style@_name
 #: po.lang:35
@@ -2548,12 +2548,12 @@ msgstr "Нејасно"
 #. (itstool) path: prolog.lang/language@_name
 #: prolog.lang:24
 msgid "Prolog"
-msgstr "Пролог"
+msgstr "Пролог (Prolog)"
 
 #. (itstool) path: puppet.lang/language@_name
 #: puppet.lang:24
 msgid "Puppet"
-msgstr "Марионета"
+msgstr "Папет (Puppet)"
 
 #. (itstool) path: styles/style@_name
 #: puppet.lang:31
@@ -2593,7 +2593,7 @@ msgstr "Називи разреда"
 #. (itstool) path: python3.lang/language@_name
 #: python3.lang:24
 msgid "Python 3"
-msgstr "Питон 3"
+msgstr "Пајтон 3 (Python 3)"
 
 #. (itstool) path: styles/style@_name
 #: python3.lang:36 python.lang:41
@@ -2608,7 +2608,7 @@ msgstr "Уграђени објекат"
 #. (itstool) path: python.lang/language@_name
 #: python.lang:28
 msgid "Python"
-msgstr "Питон"
+msgstr "Пајтон (Python)"
 
 #. (itstool) path: styles/style@_name
 #: python.lang:42
@@ -2628,7 +2628,7 @@ msgstr "Украшивач"
 #. (itstool) path: R.lang/language@_name
 #: R.lang:26
 msgid "R"
-msgstr "R"
+msgstr "Ер (R)"
 
 #. (itstool) path: styles/style@_name
 #: R.lang:35
@@ -2653,7 +2653,7 @@ msgstr "Цео број"
 #. (itstool) path: rpmspec.lang/language@_name
 #: rpmspec.lang:24
 msgid "RPM spec"
-msgstr "РПМ спец"
+msgstr "РПМ (RPM) спец"
 
 #. (itstool) path: styles/style@_name
 #: rpmspec.lang:32
@@ -2708,12 +2708,12 @@ msgstr "Прекидач"
 #. (itstool) path: styles/style@_name
 #: rpmspec.lang:44
 msgid "Email"
-msgstr "Е-пошта"
+msgstr "Ел. пошта"
 
 #. (itstool) path: rst.lang/language@_name
 #: rst.lang:23
 msgid "reStructuredText"
-msgstr "Поново структурисани текст"
+msgstr "Поново структурисани текст (reStructuredText)"
 
 #. (itstool) path: styles/style@_name
 #: rst.lang:35 yaml.lang:37
@@ -2723,7 +2723,7 @@ msgstr "Смерница"
 #. (itstool) path: ruby.lang/language@_name
 #: ruby.lang:27
 msgid "Ruby"
-msgstr "Руби"
+msgstr "Руби (Ruby)"
 
 #. (itstool) path: styles/style@_name
 #: ruby.lang:37
@@ -2748,12 +2748,12 @@ msgstr "Дословно"
 #. (itstool) path: rust.lang/language@_name
 #: rust.lang:36
 msgid "Rust"
-msgstr "Рђа"
+msgstr "Раст (Rust)"
 
 #. (itstool) path: scala.lang/language@_name
 #: scala.lang:25
 msgid "Scala"
-msgstr "Размера"
+msgstr "Скала (Scala)"
 
 #. (itstool) path: styles/style@_name
 #: scala.lang:42
@@ -2773,17 +2773,17 @@ msgstr "ХМЛ ознака"
 #. (itstool) path: scheme.lang/language@_name
 #: scheme.lang:24
 msgid "Scheme"
-msgstr "Шема"
+msgstr "Ским (Scheme)"
 
 #. (itstool) path: scilab.lang/language@_name
 #: scilab.lang:24
 msgid "Scilab"
-msgstr "Шилаб"
+msgstr "Шилаб (Scilab)"
 
 #. (itstool) path: sh.lang/language@_name
 #: sh.lang:25
 msgid "sh"
-msgstr "sh"
+msgstr "шкољка (sh)"
 
 #. (itstool) path: styles/style@_name
 #: sh.lang:38
@@ -2820,7 +2820,7 @@ msgstr "Подљуска"
 #. (itstool) path: sml.lang/language@_name
 #: sml.lang:24
 msgid "Standard ML"
-msgstr "Стандардни МЛ"
+msgstr "Стандардни МЛ (Standard ML)"
 
 #. (itstool) path: styles/style@_name
 #: sml.lang:42
@@ -2830,7 +2830,7 @@ msgstr "Назив модула, Варијанта, итд"
 #. (itstool) path: sparql.lang/language@_name
 #: sparql.lang:24
 msgid "SPARQL"
-msgstr "СПАРКуЛ"
+msgstr "СПАРКуЛ (SPARQL)"
 
 #. (itstool) path: styles/style@_name
 #: sparql.lang:33
@@ -2860,7 +2860,7 @@ msgstr "ИРИ"
 #. (itstool) path: sql.lang/language@_name
 #: sql.lang:24
 msgid "SQL"
-msgstr "СКуЛ"
+msgstr "СКуЛ (SQL)"
 
 #. (itstool) path: styles/style@_name
 #: sql.lang:39
@@ -2870,17 +2870,17 @@ msgstr "Немам појма шта је ово"
 #. (itstool) path: sweave.lang/language@_name
 #: sweave.lang:25
 msgid "Sweave"
-msgstr "Звив"
+msgstr "Звив (Sweave)"
 
 #. (itstool) path: systemverilog.lang/language@_name
 #: systemverilog.lang:22
 msgid "SystemVerilog"
-msgstr "Верилог система"
+msgstr "Системски Верилог (SystemVerilog)"
 
 #. (itstool) path: t2t.lang/language@_name
 #: t2t.lang:24
 msgid "txt2tags"
-msgstr "Текст2ознаке"
+msgstr "Текст у ознаке (txt2tags)"
 
 #. (itstool) path: styles/style@_name
 #: t2t.lang:32
@@ -2935,12 +2935,12 @@ msgstr "Вербатим блок"
 #. (itstool) path: tcl.lang/language@_name
 #: tcl.lang:24
 msgid "Tcl"
-msgstr "Tцл"
+msgstr "Tцл (Tcl)"
 
 #. (itstool) path: texinfo.lang/language@_name
 #: texinfo.lang:25
 msgid "Texinfo"
-msgstr "Тексинфо"
+msgstr "Тексинфо (Texinfo)"
 
 #. (itstool) path: styles/style@_name
 #: texinfo.lang:38
@@ -2960,22 +2960,22 @@ msgstr "Генерисани садржај"
 #. (itstool) path: thrift.lang/language@_name
 #: thrift.lang:21
 msgid "Thrift"
-msgstr "Трифт"
+msgstr "Трифт (Thrift)"
 
 #. (itstool) path: vala.lang/language@_name
 #: vala.lang:28
 msgid "Vala"
-msgstr "Вала"
+msgstr "Вала (Vala)"
 
 #. (itstool) path: vbnet.lang/language@_name
 #: vbnet.lang:24
 msgid "VB.NET"
-msgstr "ВБ.НЕТ"
+msgstr "ВБ.НЕТ (VB.NET)"
 
 #. (itstool) path: verilog.lang/language@_name
 #: verilog.lang:24
 msgid "Verilog"
-msgstr "Верилог"
+msgstr "Верилог (Verilog)"
 
 #. (itstool) path: styles/style@_name
 #: verilog.lang:40
@@ -2995,17 +2995,17 @@ msgstr "Пролаз"
 #. (itstool) path: vhdl.lang/language@_name
 #: vhdl.lang:24
 msgid "VHDL"
-msgstr "ВХДЛ"
+msgstr "ВХДЛ (VHDL)"
 
 #. (itstool) path: xml.lang/language@_name
 #: xml.lang:26
 msgid "XML"
-msgstr "ХМЛ"
+msgstr "ИксМЛ (XML)"
 
 #. (itstool) path: xslt.lang/language@_name
 #: xslt.lang:24
 msgid "XSLT"
-msgstr "ИксСЛТ"
+msgstr "ИксСЛТ (XSLT)"
 
 #. (itstool) path: styles/style@_name
 #: xslt.lang:33
@@ -3015,7 +3015,7 @@ msgstr "Елемент"
 #. (itstool) path: yacc.lang/language@_name
 #: yacc.lang:24
 msgid "Yacc"
-msgstr "Јак"
+msgstr "Јак (Yacc)"
 
 #. (itstool) path: styles/style@_name
 #: yacc.lang:36
@@ -3030,7 +3030,7 @@ msgstr "правило"
 #. (itstool) path: yaml.lang/language@_name
 #: yaml.lang:22
 msgid "YAML"
-msgstr "ЈАМЛ"
+msgstr "ЈАМЛ (YAML)"
 
 #. (itstool) path: styles/style@_name
 #: yaml.lang:30
@@ -3371,7 +3371,7 @@ msgstr ""
 "['UTF-8', 'CURRENT', 'ISO-8859-2', 'ISO-8859-5', 'WINDOWS-1250', "
 "'WINDOWS-1251', 'ISO-8859-15']"
 
-#: gtksourceview/gtksourcefileloader.c:508
+#: gtksourceview/gtksourcefileloader.c:516
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -3379,19 +3379,19 @@ msgstr ""
 "Дошло је до грешке претварања кодирања знакова и било је неопходно коришћење "
 "старог знака."
 
-#: gtksourceview/gtksourcefileloader.c:615
+#: gtksourceview/gtksourcefileloader.c:623
 msgid "File too big."
 msgstr "Датотека је превелика."
 
-#: gtksourceview/gtksourcefileloader.c:769
+#: gtksourceview/gtksourcefileloader.c:777
 msgid "Not a regular file."
 msgstr "Није обична датотека."
 
-#: gtksourceview/gtksourcefilesaver.c:968
+#: gtksourceview/gtksourcefilesaver.c:976
 msgid "The file is externally modified."
 msgstr "Датотека је измењена споља."
 
-#: gtksourceview/gtksourcefilesaver.c:1420
+#: gtksourceview/gtksourcefilesaver.c:1428
 msgid "The buffer contains invalid characters."
 msgstr "Међумеморија садржи неисправне знаке."
 
@@ -3423,32 +3423,32 @@ msgid "_Select"
 msgstr "_Изабери"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1777
+#: gtksourceview/gtksourceview.c:1781
 msgid "_Redo"
 msgstr "_Понови"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1788
+#: gtksourceview/gtksourceview.c:1792
 msgid "_Undo"
 msgstr "_Опозови"
 
-#: gtksourceview/gtksourceview.c:1807
+#: gtksourceview/gtksourceview.c:1811
 msgid "All _Upper Case"
 msgstr "Сва _велика слова"
 
-#: gtksourceview/gtksourceview.c:1817
+#: gtksourceview/gtksourceview.c:1821
 msgid "All _Lower Case"
 msgstr "Сва _мала слова"
 
-#: gtksourceview/gtksourceview.c:1827
+#: gtksourceview/gtksourceview.c:1831
 msgid "_Invert Case"
 msgstr "_Обрни величину слова"
 
-#: gtksourceview/gtksourceview.c:1837
+#: gtksourceview/gtksourceview.c:1841
 msgid "_Title Case"
 msgstr "Величина слова _наслова"
 
-#: gtksourceview/gtksourceview.c:1847
+#: gtksourceview/gtksourceview.c:1851
 msgid "C_hange Case"
 msgstr "_Измени величину слова"
 
