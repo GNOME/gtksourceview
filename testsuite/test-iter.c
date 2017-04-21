@@ -394,6 +394,44 @@ test_backward_word_start (void)
 	check_word_boundaries_movement (FALSE, "--__--", 2, 0, TRUE);
 }
 
+static void
+check_get_leading_spaces_end_boundary (const gchar *text,
+				       gint         iter_offset,
+				       gint         expected_leading_end_offset)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter iter;
+	GtkTextIter leading_end;
+
+	buffer = gtk_text_buffer_new (NULL);
+	gtk_text_buffer_set_text (buffer, text, -1);
+
+	gtk_text_buffer_get_iter_at_offset (buffer, &iter, iter_offset);
+	_gtk_source_iter_get_leading_spaces_end_boundary (&iter, &leading_end);
+	g_assert_cmpint (gtk_text_iter_get_offset (&leading_end), ==, expected_leading_end_offset);
+
+	g_object_unref (buffer);
+}
+
+static void
+test_get_leading_spaces_end_boundary (void)
+{
+	check_get_leading_spaces_end_boundary ("  abc\n", 0, 2);
+	check_get_leading_spaces_end_boundary ("  \n", 0, 2);
+	check_get_leading_spaces_end_boundary ("\t\n", 0, 1);
+	check_get_leading_spaces_end_boundary ("\t\r\n", 0, 1);
+	check_get_leading_spaces_end_boundary ("\t\r", 0, 1);
+	check_get_leading_spaces_end_boundary (" \t \n", 0, 3);
+
+	/* No-Break Space U+00A0 */
+	check_get_leading_spaces_end_boundary ("\302\240abc\n", 0, 1);
+	check_get_leading_spaces_end_boundary (" \t\302\240\t\n", 0, 4);
+
+	/* Narrow No-Break Space U+202F */
+	check_get_leading_spaces_end_boundary ("\342\200\257abc\n", 0, 1);
+	check_get_leading_spaces_end_boundary ("\t \342\200\257\n", 0, 3);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -412,6 +450,8 @@ main (int argc, char **argv)
 	g_test_add_func ("/Iter/custom-word/boundaries", test_word_boundaries);
 	g_test_add_func ("/Iter/custom-word/forward", test_forward_word_end);
 	g_test_add_func ("/Iter/custom-word/backward", test_backward_word_start);
+
+	g_test_add_func ("/Iter/get_leading_spaces_end_boundary", test_get_leading_spaces_end_boundary);
 
 	return g_test_run ();
 }
