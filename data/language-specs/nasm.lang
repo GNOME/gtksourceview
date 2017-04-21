@@ -1,0 +1,2002 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: Guillaume Lestringant <GuillaumeLestringant@users.noreply.github.com>
+ Copyright (C) 2016 Guillaume Lestringant <GuillaumeLestringant@users.noreply.github.com>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+
+<!-- **************************************************************************
+
+Almost 100% complete coloration for NASM assembly. This file follows as closely
+as possible the organization of NASM’s official documentation.
+
+http://www.nasm.us/doc/
+
+This way, it is possible to easily verify if the coloration has the expected
+outcome, and to update it if the documentation is updated.
+
+*************************************************************************** -->
+
+<language id="nasm" _name="NASM assembly" version="2.0" _section="Sources">
+  <metadata>
+    <property name="mimetypes">text/x-asm</property>
+    <property name="globs">*.asm</property>
+    <property name="line-comment-start">;</property>
+<!--
+    <property name="block-comment-start">%comment</property>
+    <property name="block-comment-end">%endcomment</property>
+
+    See below SECTION 4.11 why this is disabled.
+-->
+  </metadata>
+
+<!-- SECTION 3.1
+
+     Any line in a NASM source code has one of the following forms.
+        label<:> (pseudo-)instruction operands ;comment
+        directive arguments
+        %preprocessor_command arguments
+     Of which, only instruction, directive, or %preprocessor_command is mandatory.
+
+     Pseudo-instructions and directives are highlighted alike, as def:keyword, whereas
+     instructions (which agregate actual instructions, size operands and ASM prefixes)
+     are highlighted as def:type.
+
+     Within operands, one must distinguish registers (highlighted as def:operator),
+     decimal integers and BCD (highlighted as def:decimal), other integers (highlighted
+     as def:base-n-integer), floating-point numbers (highlighted as def:floating-point),
+     unescapable strings (highlighted as def:character), escapable strings (highlighted
+     as def:string, with escaped characters being highlighted as def:special-char), and
+     effective memory adresses (of which only the brackets are highlighted as
+     def:keyword).
+
+     Special labels, like reserved macros (e.g. __utf16__), pre-defined labels (e.g. $)
+     and ELF standard sections (e.g. .text) are highlighted as def:special-constant,
+     while regular labels are highlighted as def:identifier. The optional trailing
+     colon is highlighted as def:keyword. A specific style is used for local labels,
+     that maps by default to def:identifier, but should be defined specifically by color
+     schemes.
+
+     Single-line comments, as well as %(end)comment macros are naturaly highlighted as
+     def:comment.
+
+     Preprocessor directives are highlighted as def:preprocessor, except the comment
+     directives, and preprocessor labels are highlighted as def:shebang.
+
+     Finally, when everything else has been highlighted, operators of NASM expressions,
+     as well as the multi-line backslash, are highlighted as def:keyword.
+
+-->
+
+  <styles>
+    <style id="char"              _name="Regular string"         map-to="def:character" />
+    <style id="comment"           _name="Comment"                map-to="def:comment" />
+    <style id="decimal"           _name="Decimal integer"        map-to="def:decimal" />
+    <style id="escaped-character" _name="Escaped character"      map-to="def:special-char" />
+    <style id="floating-point"    _name="Floating-point number"  map-to="def:floating-point" />
+    <style id="keyword"           _name="NASM keyword"           map-to="def:keyword" />
+    <style id="label"             _name="Regular label"          map-to="def:identifier" />
+    <style id="local-label"       _name="Local label"            map-to="def:identifier" />
+    <style id="mnemonic"          _name="Mnemonic"               map-to="def:type" />
+    <style id="other-integer"     _name="Non-decimal integer"    map-to="def:base-n-integer" />
+    <style id="operator"          _name="Operator"               map-to="def:keyword" />
+    <style id="asm-prefix"        _name="Assembly prefix"        map-to="def:type" />
+    <style id="preproc-directive" _name="Preprocessor directive" map-to="def:preprocessor" />
+    <style id="preproc-variable"  _name="Preprocessor variable"  map-to="def:shebang" />
+    <style id="register"          _name="Register"               map-to="def:operator" />
+    <style id="size-operand"      _name="Size operand"           map-to="def:type" />
+    <style id="special-label"     _name="Special label"          map-to="def:special-constant" />
+    <style id="string"            _name="Escapable string"       map-to="def:string" />
+  </styles>
+
+  <default-regex-options case-sensitive="false" />
+
+  <definitions>
+
+    <!-- SECTION 3.1 : Labels -->
+    <define-regex id="label-insides">[a-z_.?][a-z0-9_$#@~.?]{0,4094}</define-regex>
+
+    <context id="label" style-ref="label">
+      <match>\$?\%{label-insides}</match>
+    </context>
+
+    <!-- SECTION 3.1 : Line continuation character -->
+    <context id="line-continue" style-ref="operator">
+      <start>\\$</start>
+      <end>^</end>
+    </context>
+
+    <!-- SECTION 3.1 : Assembly prefixes -->
+    <context id="prefix" style-ref="asm-prefix">
+      <keyword>lock</keyword>
+      <keyword>repn?(e|z)?</keyword>
+      <keyword>(xacquire|xrelease)</keyword>
+      <keyword>(no)?bnd</keyword>
+      <keyword>(a|o)(16|32|64)</keyword>
+    </context>
+
+    <!-- SECTION 3.2 : Pseudo-instructions -->
+    <context id="pseudo-instruction" style-ref="keyword">
+      <keyword>(d|res)(b|w|d|q|t|o|y|z)</keyword> <!-- SECTION 3.2.1 & 3.2.2 -->
+      <keyword>incbin</keyword> <!-- SECTION 3.2.3 -->
+      <keyword>equ</keyword> <!-- SECTION 3.2.4 -->
+      <keyword>times</keyword> <!-- SECTION 3.2.5 -->
+    </context>
+
+    <!-- SECTION 3.3 : Memory adresses -->
+    <context id="effective-adress" style-ref="keyword">
+      <match>[\[\]]</match>
+    </context>
+
+    <context id="broadcasting-decorator" style-ref="keyword">
+      <match>{([1-9][0-9]?)to([1-9][0-9]?)}</match>
+      <include>
+        <context sub-pattern="1" style-ref="decimal"/>
+        <context sub-pattern="2" style-ref="decimal"/>
+      </include>
+    </context>
+
+    <!-- SECTION 3.4.1 : Integers in various bases -->
+    <define-regex id="binary-number">(0(b|y)[0-1_]*|[0-1]+[0-1_]*(b|y))</define-regex>
+    <define-regex id="decimal-number">(0(d|t)[0-9_]*|[0-9]+[0-9_]*(d|t)?)</define-regex>
+    <define-regex id="hexadecimal-number">(0(x|h)[0-9a-f_]*|[0-9]+[0-9a-f_]*h|\$[0-9]+[0-9a-f_]*)</define-regex>
+    <define-regex id="octal-number">(0(o|q)[0-7_]*|[0-7]+[0-7_]*(o|q))</define-regex>
+
+    <context id="decimal-integer" style-ref="decimal">
+      <match>[-+]?\%{decimal-number}</match>
+    </context>
+
+    <context id="other-integer" style-ref="other-integer">
+      <match>[-+]?(\%{binary-number}|\%{hexadecimal-number}|\%{octal-number})</match>
+    </context>
+
+    <!-- SECTION 3.4.2 to 3.4.4 : Strings, escaped or not -->
+    <define-regex id="escaped-character" extended="true">
+      \\(                    # Leading backslash
+      [\\\"\'`abtnvfre\?] |  # Escaped character
+      [0-7]{1,3} |           # Up to 3 octal digits
+      x[0-9a-f]{1,2} |       # Up to 2 hexadecimal digits
+      u[0-9a-f]{4} |         # 4 hexadecimal digits - Unicode character
+      U[0-9a-f]{8}           # 8 hexadecimal digits - Unicode character
+      )
+    </define-regex>
+
+    <context id="sq-string" style-ref="char" end-at-line-end="true" class-disabled="no-spell-check">
+      <start>'</start>
+      <end>'</end>
+      <include>
+        <context ref="line-continue" />
+      </include>
+    </context>
+
+    <context id="dq-string" style-ref="char" end-at-line-end="true" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context ref="line-continue" />
+      </include>
+    </context>
+
+    <context id="bq-string" style-ref="string" end-at-line-end="true" class-disabled="no-spell-check">
+      <start>`</start>
+      <end>`</end>
+      <include>
+        <context style-ref="escaped-character">
+          <match>\%{escaped-character}</match>
+        </context>
+        <context ref="line-continue" />
+      </include>
+    </context>
+
+    <!-- SECTION 3.4.5 : Unicode strings -->
+    <context id="unicode-string" style-ref="special-label">
+      <keyword>__utf(16|32)(le|be)?__</keyword>
+    </context>
+
+    <!-- SECTION 3.4.6 : Floating-point numbers -->
+    <context id="floating-point-macro" style-ref="special-label">
+      <keyword>__float(8|16|32|64|80(m|e)|128(l|h))__</keyword>
+      <keyword>__Infinity__</keyword>
+      <keyword>__(Q|S)?NaN__</keyword>
+    </context>
+
+    <define-regex id="decimal-fp">[0-9_]+\.([0-9_]+)?(e([-+]?[0-9_]+)?)?</define-regex>
+    <define-regex id="binary-fp" extended="true">
+      (0b|0y)[0-1_]+                  # Binary notation, leading digits
+      (                               # Then, either optional period, optionally more digits,
+      \.?([0-1_]+)?p([-+]?[0-9_]+)? | #   p, optional decimal exponent…
+      \.([0-1_]+)?                    # …or period, optionally more digits
+      )
+    </define-regex>
+    <define-regex id="octal-fp" extended="true">
+      (0o|0q)[0-7_]+                  # Octal notation, leading digits
+      (                               # Then, either optional period, optionally more digits,
+      \.?([0-7_]+)?p([-+]?[0-9_]+)? | #   p, optional decimal exponent…
+      \.([0-7_]+)?                    # …or period, optionally more digits
+      )
+    </define-regex>
+    <define-regex id="hexadecimal-fp" extended="true">
+      (0x|0h|\$)[0-9a-f_]+               # Hexadecimal notation, leading digits
+      (                                  # Then, either optional period, optionally more digits,
+      \.?([0-9a-f_]+)?p([-+]?[0-9_]+)? | #   p, optional decimal exponent…
+      \.([0-9a-f_]+)?                    # …or period, optionally more digits
+      )
+    </define-regex>
+
+    <context id="floating-point" style-ref="floating-point">
+      <match>[-+]?(\%{decimal-fp}|\%{binary-fp}|\%{octal-fp}|\%{hexadecimal-fp})</match>
+    </context>
+
+    <!-- SECTION 3.4.7 : Packed BCD -->
+    <define-regex id="p-bcd">[-+]?(0p[0-9_]*|[0-9]+[0-9_]*p)</define-regex>
+
+    <context id="packed-bcd" style-ref="decimal">
+      <keyword>\%{p-bcd}</keyword>
+    </context>
+
+    <!-- SECTION 3.5 : Expressions -->
+    <context id="dollar-label" style-ref="special-label">
+      <match>\${1,2}</match>
+    </context>
+
+    <context id="expression-operator" style-ref="operator">
+      <match>[-|\^&amp;+*\/%~!&lt;&gt;]</match>
+      <!-- Also does for preprocessor-specific operators of SECTION 4.4.4 -->
+    </context>
+
+    <!-- SECTION 3.7 : Size operands -->
+    <context id="size-operand" style-ref="size-operand">
+      <keyword>byte</keyword>
+      <keyword>(d|q|t|o|y|z)?word</keyword>
+    </context>
+
+    <!-- SECTION 3.9 : Local labels -->
+    <context id="local-label">
+      <include>
+        <context ref="non-local-label" />
+        <context ref="true-local-label" />
+      </include>
+    </context>
+
+    <context id="non-local-label" style-ref="label">
+      <match>\.\.@[a-z0-9_$#@~.?]{1,4092}</match>
+    </context>
+
+    <context id="true-local-label" style-ref="local-label">
+      <match>\.[a-z0-9_$#@~.?]{1,4094}</match>
+    </context>
+
+    <!-- SECTION 4.1 : Single-line macros -->
+    <context id="single-line-macro">
+      <include>
+        <context ref="single-line-macro-general" />
+        <context ref="single-line-macro-concat" />
+        <context ref="single-line-macro-plus" />
+        <context ref="macro-own-name" />
+      </include>
+    </context>
+
+    <context id="single-line-macro-general" style-ref="preproc-directive">
+      <prefix>%</prefix>
+      <keyword>i?x?define</keyword> <!-- SECTION 4.1.1 & 4.1.2 -->
+      <keyword>undef</keyword> <!-- SECTION 4.1.6 -->
+      <keyword>i?(assign|defstr|deftok)</keyword> <!-- SECTION 4.1.7 to 4.1.9 -->
+    </context>
+
+    <context id="single-line-macro-concat" style-ref="preproc-variable">
+      <match>%(\[)\$?\%{label-insides}(\])</match> <!--SECTION 4.1.3 -->
+      <include>
+        <context sub-pattern="1" style-ref="keyword" />
+        <context sub-pattern="2" style-ref="keyword" />
+      </include>
+    </context>
+
+    <context id="single-line-macro-plus" style-ref="preproc-directive">
+      <match>%\+[\s]</match> <!-- SECTION 4.1.4 -->
+    </context>
+
+    <context id="macro-own-name" style-ref="preproc-variable">
+      <match>(%\?\??|\$%\?)</match> <!-- SECTION 4.1.5 -->
+    </context>
+
+    <!-- SECTION 4.2 : String manipulation in macros -->
+    <context id="string-manipulation" style-ref="preproc-directive">
+      <prefix>%</prefix>
+      <keyword>strcat</keyword> <!-- SECTION 4.2.1 -->
+      <keyword>strlen</keyword> <!-- SECTION 4.2.2 -->
+      <keyword>substr</keyword> <!-- SECTION 4.2.3 -->
+    </context>
+
+    <!-- SECTION 4.3 : Multi-line macros -->
+    <context id="multi-line-macro">
+      <include>
+        <context ref="multi-line-macro-general" />
+        <context ref="multi-line-macro-range" /> <!-- More specific than -param -->
+        <context ref="multi-line-macro-param" />
+        <context ref="multi-line-macro-concat" />
+        <context ref="multi-line-macro-nolimit" />
+      </include>
+    </context>
+
+    <context id="multi-line-macro-general" style-ref="preproc-directive">
+      <prefix>%</prefix>
+      <keyword>(end|i|un)?macro</keyword> <!-- SECTION 4.3 & 4.3.12 -->
+      <keyword>rotate</keyword> <!-- SECTION 4.3.8 -->
+    </context>
+
+    <context id="macro-local-label" style-ref="preproc-variable">
+      <match>%(%|\$+)\%{label-insides}</match>
+      <!-- SECTION 4.3.2 & 4.7.2 & 4.7.3 -->
+    </context>
+
+    <context id="multi-line-macro-param" style-ref="preproc-variable">
+      <match>%\{?(00|0|[-+]?[1-9][0-9]*)\}?</match>
+      <!-- SECTION 4.3 & 4.3.6 & 4.3.7 & 4.3.9 & 4.3.10 -->
+    </context>
+
+    <context id="multi-line-macro-range" style-ref="preproc-variable">
+      <match>%\{[-+]?[1-9][0-9]*:[-+]?[1-9][0-9]*\}</match> <!-- SECTION 4.3.4 -->
+    </context>
+
+    <context id="multi-line-macro-concat" style-ref="preproc-variable">
+      <match>%(\{)(%?)\$?\%{label-insides}(\})</match> <!-- SECTION 4.3.9 -->
+      <include>
+        <context sub-pattern="1" style-ref="keyword" />
+        <context sub-pattern="3" style-ref="keyword" />
+      </include>
+    </context>
+
+    <context id="multi-line-macro-nolimit" style-ref="special-label">
+      <match>([0-9]+)?\.nolimit</match> <!-- SECTION 4.3.11 -->
+      <include>
+        <context sub-pattern="1" style-ref="decimal" />
+        <!-- Otherwise, an integer immediately followed by .nolimit
+             would not be recognised. -->
+      </include>
+    </context>
+
+    <!-- SECTION 4.4 : Conditional assembly -->
+    <context id="conditional-assembly" style-ref="preproc-directive">
+      <prefix>%</prefix>
+      <keyword>(el)?ifn?(def|macro|ctx|idni?|id|str|num|token|empty|env)?</keyword>
+      <!-- SECTION 4.4 & 4.4.1 to 4.4.9 -->
+      <keyword>else</keyword> <!-- SECTION 4.4 -->
+      <keyword>endif</keyword> <!-- SECTION 4.4 -->
+    </context>
+
+    <!-- SECTION 4.5 : Preprocessor loops -->
+    <context id="preprocessor-loop" style-ref="preproc-directive">
+      <prefix>%</prefix>
+      <keyword>(end|exit)?rep</keyword>
+    </context>
+
+    <!-- SECTION 4.6 : Source files and dependencies -->
+    <context id="dependency" style-ref="preproc-directive">
+      <prefix>%</prefix>
+      <keyword>include</keyword> <!-- SECTION 4.6.1 -->
+      <keyword>pathsearch</keyword> <!-- SECTION 4.6.2 -->
+      <keyword>depend</keyword> <!-- SECTION 4.6.3 -->
+      <keyword>use</keyword> <!-- SECTION 4.6.4 -->
+    </context>
+
+    <!-- SECTION 4.7 : Context stack -->
+    <context id="context-stack" style-ref="preproc-directive">
+      <prefix>%</prefix>
+      <keyword>push</keyword> <!-- SECTION 4.7.1 -->
+      <keyword>pop</keyword> <!-- SECTION 4.7.1 -->
+      <keyword>repl</keyword> <!-- SECTION 4.7.5 -->
+    </context>
+
+    <!-- SECTION 4.8 to 4.10 : Other preprocessor directives -->
+    <context id="other-preprocessor">
+      <include>
+        <context ref="other-preprocessor-base" />
+        <context ref="stacksize" />
+        <context ref="environment-variable" />
+        <context ref="clear" /> <!-- See below SECTION 4.12 -->
+      </include>
+    </context>
+
+    <context id="other-preprocessor-base" style-ref="preproc-directive">
+      <prefix>%</prefix>
+      <keyword>arg</keyword> <!-- SECTION 4.8.1 -->
+      <keyword>local</keyword> <!-- SECTION 4.8.3 -->
+      <keyword>(error|warning|fatal)</keyword> <!-- SECTION 4.9 -->
+      <keyword>line</keyword> <!-- SECTION 4.10 -->
+    </context>
+
+    <context id="stacksize" style-ref="preproc-directive">
+      <match>%stacksize (flat64|flat|large|small)</match>
+      <include>
+        <context sub-pattern="1" style-ref="preproc-variable"/>
+      </include>
+    </context>
+
+    <context id="environment-variable" style-ref="preproc-variable">
+      <match>%!('[^']+'|"[^"]+"|`[^`]+`|[^\s'"`]+)</match>
+    </context>
+
+    <!-- SECTION 4.11 : Comments -->
+    <context id="comment">
+      <include>
+        <context ref="line-comment" />
+    <!--<context ref="block-comment" />-->
+      </include>
+    </context>
+
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+      <start>;</start>
+    </context>
+<!--
+    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
+      <start>^\s*%comment$</start>
+      <end>^\s*%endcomment$</end>
+    </context>
+
+    This block-comment directive is documented, but according to the following forum post,
+    it has been disabled some time ago. Might comme back someday, so, keep it present here.
+    http://forum.nasm.us/index.php?topic=1898.msg8450#msg8450
+-->
+
+    <!-- SECTION 4.12 : Standard macros -->
+    <context id="clear" style-ref="preproc-directive">
+      <prefix>%</prefix>
+      <keyword>clear</keyword> <!-- SECTION 4.12 -->
+    </context>
+
+    <context id="standard-macro" style-ref="special-label">
+      <prefix>__</prefix>
+      <suffix>__</suffix>
+      <keyword>NASM_(MAJOR|(SUB)?MINOR|PATCHLEVEL|SNAPSHOT)</keyword> <!-- SECTION 4.12.1 -->
+      <keyword>NASM_VER(SION_ID)?</keyword> <!-- SECTION 4.12.2 & 4.12.3 -->
+      <keyword>(FILE|LINE)</keyword> <!-- SECTION 4.12.4 -->
+      <keyword>BITS</keyword> <!-- SECTION 4.12.5 -->
+      <keyword>OUTPUT_FORMAT</keyword> <!-- SECTION 4.12.6 -->
+      <keyword>((UTC_)?(DATE|TIME)(_NUM)?|POSIX_TIME)</keyword> <!-- SECTION 4.12.7 -->
+      <keyword>PASS</keyword> <!-- SECTION 4.12.9 -->
+    </context>
+
+    <!-- Other NASM keywords -->
+    <context id="other-nasm-keyword" style-ref="keyword">
+      <keyword>to</keyword> <!-- SECTION 3.1 -->
+      <keyword>nosplit</keyword> <!-- SECTION 3.3 -->
+      <keyword>(seg|wrt)</keyword> <!-- SECTION 3.6 -->
+      <keyword>strict</keyword> <!-- SECTION 3.7 -->
+      <keyword>(end|i)?struc</keyword> <!-- SECTION 4.12.10 & 4.12.11 -->
+      <keyword>(at|iend)</keyword> <!-- SECTION 4.12.11 -->
+      <keyword>alignb?</keyword> <!-- SECTION 4.12.12 -->
+      <keyword>sectalign</keyword> <!-- SECTION 4.12.13 -->
+    </context>
+
+    <!-- CHAPTER 6 : Directives -->
+    <context id="directive" style-ref="keyword">
+      <keyword>bits</keyword> <!-- SECTION 6.1 -->
+      <keyword>use(32|64)</keyword> <!-- SECTION 6.1.1 -->
+      <keyword>default (rel|abs|(no)?bnd)</keyword> <!-- SECTION 6.2 -->
+      <keyword>(section|segment)</keyword> <!-- SECTION 6.3 -->
+      <keyword>absolute</keyword> <!-- SECTION 6.4 -->
+      <keyword>extern</keyword> <!-- SECTION 6.5 -->
+      <keyword>global</keyword> <!-- SECTION 6.6 -->
+      <keyword>common</keyword> <!-- SECTION 6.7 -->
+      <keyword>cpu ((80|1|2|3|4|5|6)86|P(ENTIUM|PRO|2|3|4)|KATMAI|WILLAMETTE|PRESCOTT|(X|IA)64)</keyword>
+      <!-- SECTION 6.8 -->
+      <keyword>float ((no)daz|near|up|down|zero|default)</keyword> <!-- SECTION 6.9 -->
+    </context>
+
+    <context id="directive-macro" style-ref="special-label">
+      <prefix>__</prefix>
+      <suffix>__</suffix>
+      <keyword>SECT</keyword> <!-- SECTION 6.3.1 -->
+      <keyword>FLOAT(_DAZ|_ROUND)?</keyword> <!-- SECTION 6.9 -->
+    </context>
+
+    <context id="relative-adressing" style-ref="asm-prefix">
+      <!-- SECTION 6.2 -->
+      <keyword>abs</keyword>
+      <keyword>rel</keyword>
+    </context>
+
+    <!-- CHAPTER 7 : Format specific -->
+    <!-- Not every single syntax described in this chapter has been included.
+         For instance, `code` is a standard segment name according to section
+         7.4, but also a keyword according to section 7.5.1. The latter has
+         been favored, given that win32 is more commonly used than obj.
+         Also, the strange syntaxes using colons described in sections 7.4.8,
+         7.9.5, 7.13.3 and 7.13.4 have not been included, because I could not
+         find a sensible way of coloring them. -->
+    <context id="format-specific-directive">
+      <include>
+        <context ref="format-specific-directive-base" />
+        <context ref="format-specific-directive-map" />
+        <context ref="format-specific-directive-import-export" />
+      </include>
+    </context>
+
+    <context id="format-specific-directive-base" style-ref="keyword">
+      <keyword>org</keyword> <!-- SECTION 7.1.1 -->
+      <keyword>group</keyword> <!-- SECTION 7.4.2 -->
+      <keyword>uppercase</keyword> <!-- SECTION 7.4.3 -->
+      <keyword>safeseh</keyword> <!-- SECTION 7.5.1 -->
+      <keyword>osabi</keyword> <!-- SECTION 7.9.1 -->
+      <keyword>library</keyword> <!-- SECTION 7.13.1 -->
+      <keyword>module</keyword> <!-- SECTION 7.13.2 -->
+    </context>
+
+    <context id="format-specific-directive-map" style-ref="keyword">
+      <match extended="true">
+        \[
+        map
+        (([\s]+)(all|brief|sections|segments|symbols))?
+        (([\s]+)(stdout|stderr|([\S]+)))?
+        \]
+      </match> <!-- SECTION 7.1.4 -->
+      <include>
+        <context sub-pattern="7" style-ref="string"/>
+      </include>
+    </context>
+
+    <context id="format-specific-directive-import-export">
+      <match extended="true">
+        (import|export)[\s]+
+        (\$?\%{label-insides})[\s]+
+        ([\S]+)
+        ([\s]+([\S]+))?
+      </match> <!-- SECTION 7.4.4 -->
+      <include>
+        <context sub-pattern="1" style-ref="keyword" />
+        <context sub-pattern="2" style-ref="label" />
+        <context sub-pattern="3" style-ref="string" />
+        <context sub-pattern="5" style-ref="string" />
+      </include>
+    </context>
+
+    <context id="format-specific-keyword">
+      <include>
+        <context ref="format-specific-keyword-base" />
+        <context ref="format-specific-keyword-equal" />
+      </include>
+    </context>
+
+    <context id="format-specific-keyword-base" style-ref="keyword">
+      <keyword>(no|prog)bits</keyword> <!-- SECTION 7.1.3 & 7.9.2 -->
+      <keyword>(private|public|stack)</keyword> <!-- SECTION 7.4.1 -->
+      <keyword>use16</keyword> <!-- SECTION 7.4.1 -->
+      <keyword>flat</keyword> <!-- SECTION 7.4.1 -->
+      <keyword>(resident|nodata)</keyword> <!-- SECTION 7.4.5 -->
+      <keyword>(code|rdata|info)</keyword> <!-- SECTION 7.5.1 -->
+      <keyword>(data|bss)</keyword> <!-- SECTION 7.5.1 & 7.8.1 -->
+      <keyword>(text|mixed)</keyword> <!-- SECTION 7.8.1 -->
+      <keyword>(no)?(alloc|exec|write)</keyword> <!-- SECTION 7.9.2 -->
+      <keyword>tls</keyword> <!-- SECTION 7.9.2 -->
+    </context>
+
+    <context id="format-specific-keyword-equal" style-ref="keyword">
+      <suffix>=</suffix>
+      <keyword>align</keyword> <!-- SECTION 7.1.3 & 7.4.1 & 7.5.1 & 7.8.1 & 7.9.2 -->
+      <keyword>(v?start|v?follows)</keyword> <!-- SECTION 7.1.3 -->
+      <keyword>(class|overlay|absolute)</keyword> <!--SECTION 7.4.1 -->
+      <keyword>parm</keyword> <!--SECTION 7.4.5 -->
+    </context>
+
+    <context id="format-specific-label">
+      <include>
+        <context ref="format-specific-label-double-dots" />
+        <context ref="format-specific-label-single-dot" />
+        <context ref="format-specific-label-other" />
+        <context ref="format-specific-label-with-wrt" />
+      </include>
+    </context>
+
+    <context id="format-specific-label-double-dots" style-ref="special-label">
+      <prefix>\.\.</prefix>
+      <keyword>start</keyword> <!-- SECTION 7.4.6 & 7.12 -->
+    </context>
+
+    <context id="format-specific-label-single-dot" style-ref="special-label">
+      <prefix>\.</prefix>
+      <keyword>(text|data|bss)</keyword> <!-- SECTION 7.1.3 & 7.5.1 & 7.8.1
+                                & 7.9.2 & 7.10 & 7.11 & 7.12 & 7.13 -->
+      <keyword>rdata</keyword> <!-- SECTION 7.5.1 -->
+      <keyword>rodata</keyword> <!-- SECTION 7.8.1 & 7.9.2 -->
+      <keyword>l((ro)?data|bss)</keyword> <!-- SECTION 7.9.2 -->
+      <keyword>t(data|bss)</keyword> <!-- SECTION 7.9.2 -->
+      <keyword>comment</keyword> <!-- SECTION 7.9.2 -->
+    </context>
+
+    <context id="format-specific-label-other" style-ref="special-label">
+      <keyword>__(text|const|data|bss)</keyword> <!-- SECTION 7.8.1 -->
+      <keyword>_start</keyword> <!-- Not mentioned, but common in ELF format. -->
+    </context>
+
+    <context id="format-specific-label-with-wrt" style-ref="special-label">
+      <match extended="true">
+        (wrt)([\s]+)(
+        code|data|bss|        # SECTION 7.4
+        \.\.(
+        imagebase|            # SECTION 7.6.1
+        tlvp|gotpcrel|        # SECTION 7.8.2
+        tlsiel|gottpoff|      # SECTION 7.9.4
+        got(pc|off)?|plt|sym  # SECTION 7.9.3 and 7.11
+        ))
+      </match>
+      <include>
+        <context sub-pattern="1" style-ref="keyword"/>
+      </include>
+    </context>
+
+    <!-- The documentation offers no complete list of supported registers. SECTION 11.1
+         gives a number of then, and warns that NASM uses AMD convention and not Intel
+         convention for the lower byte of r8-15.
+         The following source has been used to compute the complete list, stripping
+         those registers which cannot be directly accessed, like RIP or MXCSR.
+         https://en.wikipedia.org/wiki/X86#x86_registers -->
+    <context id="register" style-ref="register">
+      <keyword>[a-d](h|l)</keyword> <!-- Original 8-bit registers -->
+      <keyword>(e|r)?([a-d]x|di|si|bp|sp)</keyword>
+      <!-- Original 16-bit general-purpose registers and their extensions -->
+      <keyword>(r(8|9|1[0-5])(b|w|d)?|(di|si|bp|sp)l)</keyword>
+      <!-- Long-mode only general-purpose registers -->
+      <keyword>([c-g]|s)s</keyword> <!-- Segment registers -->
+      <keyword>(st[0-7]|mm[0-7]|(x|y)mm([0-9]|1[0-5])|zmm([0-9]|[1-2][0-9]|30|31))</keyword>
+      <!-- FPU and SIMD Registers -->
+      <keyword>k[0-7]</keyword> <!-- opMask registers -->
+      <keyword>bnd[0-3]</keyword> <!-- Bound registers of Intel MPX -->
+      <keyword>(cr[0-48]|dr[0-367]|tr[3-7])</keyword> <!-- Special registers -->
+    </context>
+
+    <!-- APPENDIX B : Instructions -->
+    <!-- For maintainability reasons, instructions are grouped according to
+         the first CPU model in which they were used, following this source
+         https://en.wikipedia.org/wiki/X86_instruction_listings
+         compared with the APPENDIX B of NASM manual, to make sure that NASM
+         actually recognizes the instruction. -->
+    <context id="mnemonic">
+      <include>
+        <context ref="mnemonic-1978-1982-first-gen" />
+        <context ref="mnemonic-1982-second-gen" />
+        <context ref="mnemonic-1985-1987-third-gen" />
+        <context ref="mnemonic-1989-80486" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1993-cyrix-cx486dx" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1993-1996-fifth-gen" />
+        <context ref="mnemonic-1995-1997-sixth-gen" />
+        <context ref="mnemonic-1995-hint-nop" /> <!-- APPENDIX B.1.38 -->
+        <context ref="mnemonic-1996-1997-mmx" />
+        <context ref="mnemonic-1997-cyrix-6x86mx" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1997-cyrix-gx1" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1998-2002-3dnow" />
+        <context ref="mnemonic-1999-sse" />
+        <context ref="mnemonic-2001-sse2" />
+        <context ref="mnemonic-2002-cyrix-geode-lx" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-2003-amd64" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-2003-2005-padlock" /> <!-- APPENDIX B.1.30 -->
+        <context ref="mnemonic-2004-sse3" />
+        <context ref="mnemonic-2005-2007-vmx" />
+        <context ref="mnemonic-2006-ssse3" /> <!-- APPENDIX B.1.15 -->
+        <context ref="mnemonic-2006-2014-xsave" /> <!-- APPENDIX B.1.5 -->
+        <context ref="mnemonic-2007-2008-sse4" />
+        <context ref="mnemonic-2008-smx" /> <!-- APPENDIX B.1.20 -->
+        <context ref="mnemonic-2008-movbe" /> <!-- APPENDIX B.1.22 -->
+        <context ref="mnemonic-2010-aes-ni" /> <!-- APPENDIX B.1.23 -->
+        <context ref="mnemonic-2010-clmul" /> <!-- APPENDIX B.1.26 -->
+        <context ref="mnemonic-2011-avx" />
+        <context ref="mnemonic-2011-lwp" /> <!-- APPENDIX B.1.31 -->
+        <context ref="mnemonic-2011-2012-sse5" />
+        <context ref="mnemonic-2012-2013-bmi" />
+        <context ref="mnemonic-2012-ivy-bridge-new" /> <!-- APPENDIX B.1.29 -->
+        <context ref="mnemonic-2013-invpcid" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-2013-broadwell-new" /> <!-- APPENDIX B.1.29 -->
+        <context ref="mnemonic-2013-avx2" /> <!-- APPENDIX B.1.33 -->
+        <context ref="mnemonic-2013-tsx" /> <!-- APPENDIX B.1.34 -->
+        <context ref="mnemonic-2014-clflushopt" /> <!-- APPENDIX B.1.37 -->
+        <context ref="mnemonic-2015-mpx" /> <!-- APPENDIX B.1.35 -->
+        <context ref="mnemonic-2015-sha" /> <!-- APPENDIX B.1.36 -->
+        <context ref="mnemonic-2015-avx-512" /> <!-- APPENDIX B.1.36 -->
+        <context ref="mnemonic-unknown-prefetchwt1" /> <!-- APPENDIX B.1.35 -->
+      </include>
+    </context>
+
+    <!-- First generation instructions -->
+    <context id="mnemonic-1978-1982-first-gen">
+      <include>
+        <context ref="mnemonic-1978-8086" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1980-8087" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1982-80186" /> <!-- APPENDIX B.1.2 -->
+      </include>
+    </context>
+
+    <!-- Second generation instructions -->
+    <context id="mnemonic-1982-second-gen">
+      <include>
+        <context ref="mnemonic-1982-80286" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1982-80287" /> <!-- APPENDIX B.1.2 -->
+      </include>
+    </context>
+
+    <!-- Third generation instructions -->
+    <context id="mnemonic-1985-1987-third-gen">
+      <include>
+        <context ref="mnemonic-1985-80386" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1987-80387" /> <!-- APPENDIX B.1.2 -->
+      </include>
+    </context>
+
+    <!-- Fifth generation instructions -->
+    <context id="mnemonic-1993-1996-fifth-gen">
+      <include>
+        <context ref="mnemonic-1993-pentium" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1996-pentium-mmx" /> <!-- APPENDIX B.1.2 -->
+      </include>
+    </context>
+
+    <!-- Sixth generation instructions -->
+    <context id="mnemonic-1995-1997-sixth-gen">
+      <include>
+        <context ref="mnemonic-1995-pentium-pro" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1997-pentium-2" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1997-amd-k6" /> <!-- APPENDIX B.1.2 -->
+      </include>
+    </context>
+
+    <!-- MXX & Extended MMX extensions -->
+    <context id="mnemonic-1996-1997-mmx">
+      <include>
+        <context ref="mnemonic-1996-mmx-no-p" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1996-mmx" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1997-emmi" /> <!-- APPENDIX B.1.2 -->
+      </include>
+    </context>
+
+    <!-- 3DNow! & it's extensions -->
+    <context id="mnemonic-1998-2002-3dnow">
+      <include>
+        <context ref="mnemonic-1998-3dnow-floating-point-no-pf" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1998-3dnow-floating-point" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1998-3dnow-integer" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1998-3dnow-other" /> <!-- APPENDIX B.1.2 -->
+        <context ref="mnemonic-1999-3dnow-plus" /> <!-- APPENDIX B.1.8 -->
+        <context ref="mnemonic-2002-3dnow-geode" /> <!-- APPENDIX B.1.21 -->
+      </include>
+    </context>
+
+    <!-- SSE extensions -->
+    <context id="mnemonic-1999-sse">
+      <include>
+        <context ref="mnemonic-1998-sse-fxsave" /> <!-- APPENDIX B.1.4 -->
+        <context ref="mnemonic-1999-sse-floating-point" /> <!-- APPENDIX B.1.3 -->
+        <context ref="mnemonic-1999-sse-integer" /> <!-- APPENDIX B.1.7 -->
+        <context ref="mnemonic-1999-sse-other" /> <!-- APPENDIX B.1.3, B.1.6 & B.1.7 -->
+        <context ref="mnemonic-2003-sse-fxsave64" /> <!-- APPENDIX B.1.4 -->
+      </include>
+    </context>
+
+    <!-- SSE2 extensions -->
+    <context id="mnemonic-2001-sse2">
+      <include>
+        <context ref="mnemonic-2001-sse2-floating-point" /> <!-- APPENDIX B.1.11 -->
+        <context ref="mnemonic-2001-sse2-integer-no-p" /> <!-- APPENDIX B.1.10 -->
+        <context ref="mnemonic-2001-sse2-integer" /> <!-- APPENDIX B.1.10 -->
+        <context ref="mnemonic-2001-sse2-other" /> <!-- APPENDIX B.1.9 -->
+      </include>
+    </context>
+
+    <!-- SSE3 extensions -->
+    <context id="mnemonic-2004-sse3">
+      <include>
+        <context ref="mnemonic-2004-sse3-general" /> <!-- APPENDIX B.1.12 -->
+        <context ref="mnemonic-2004-sse3-other" /> <!-- APPENDIX B.1.2 -->
+      </include>
+    </context>
+
+    <!-- Virtualization extensions -->
+    <context id="mnemonic-2005-2007-vmx">
+      <include>
+        <context ref="mnemonic-2005-vmx" /> <!-- APPENDIX B.1.13 -->
+        <context ref="mnemonic-2006-svm" /> <!-- APPENDIX B.1.13 -->
+        <context ref="mnemonic-2007-vmx" /> <!-- APPENDIX B.1.14 -->
+      </include>
+    </context>
+
+    <!-- SSE4 extensions -->
+    <context id="mnemonic-2007-2008-sse4">
+      <include>
+        <context ref="mnemonic-2007-sse4a" /> <!-- APPENDIX B.1.16 -->
+        <context ref="mnemonic-2007-abm" /> <!-- APPENDIX B.1.17 & B.1.19 -->
+        <context ref="mnemonic-2007-sse41-no-p" /> <!-- APPENDIX B.1.18 -->
+        <context ref="mnemonic-2007-sse41" /> <!-- APPENDIX B.1.18 -->
+        <context ref="mnemonic-2008-sse42" /> <!-- APPENDIX B.1.19 -->
+      </include>
+    </context>
+
+    <!-- AVX extensions -->
+    <context id="mnemonic-2011-avx">
+      <include>
+        <context ref="mnemonic-2011-avx-aes-ni" /> <!-- APPENDIX B.1.24 -->
+        <context ref="mnemonic-2011-avx-sse-floating-point" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse-integer-no-p" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse-integer" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse-other" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse2-floating-point" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse2-integer-no-p" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse2-integer" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse2-other" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse3" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-ssse3" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse41-no-p" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse41" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-sse42" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-additional-vcmp" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-additional-wiki" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-additional-other" /> <!-- APPENDIX B.1.25 -->
+        <context ref="mnemonic-2011-avx-clmul" /> <!-- APPENDIX B.1.27 -->
+      </include>
+    </context>
+
+    <!-- SSE5 extensions, finally dispatched in multiple sets -->
+    <context id="mnemonic-2011-2012-sse5">
+      <include>
+        <context ref="mnemonic-2011-fma4" /> <!-- APPENDIX B.1.32 -->
+        <context ref="mnemonic-2012-fma3" /> <!-- APPENDIX B.1.28 -->
+        <context ref="mnemonic-2012-f16c" /> <!-- APPENDIX B.1.29 -->
+        <context ref="mnemonic-2012-xop-no-vp" /> <!-- APPENDIX B.1.32 -->
+        <context ref="mnemonic-2012-xop" /> <!-- APPENDIX B.1.32 -->
+      </include>
+    </context>
+
+    <!-- Bit Manipulation Instructions -->
+    <context id="mnemonic-2012-2013-bmi">
+      <include>
+        <context ref="mnemonic-2012-bmi1" /> <!-- APPENDIX B.1.35 -->
+        <context ref="mnemonic-2012-tbm" /> <!-- APPENDIX B.1.35 -->
+        <context ref="mnemonic-2013-bmi2" /> <!-- APPENDIX B.1.35 -->
+      </include>
+    </context>
+
+    <!-- AVX-512 extensions -->
+    <context id="mnemonic-2015-avx-512">
+      <include>
+        <context ref="mnemonic-2015-avx-512-opmask" /> <!-- APPENDIX B.1.36 -->
+        <context ref="mnemonic-2015-avx-512-opmask-kunpck" /> <!-- APPENDIX B.1.36 -->
+        <context ref="mnemonic-2015-avx-512-general-no-p" /> <!-- APPENDIX B.1.36 -->
+        <context ref="mnemonic-2015-avx-512-general" /> <!-- APPENDIX B.1.36 -->
+      </include>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel 8086 (1978). -->
+    <context id="mnemonic-1978-8086" style-ref="mnemonic">
+      <keyword>((a|d)a(a|s)|aa(d|m))</keyword>
+      <keyword>(ad(d|c)|s(b|u)b)</keyword>
+      <keyword>(and|not|x?or)</keyword>
+      <keyword>(call|ret(n|f)?)</keyword>
+      <keyword>(cbw|cwd)</keyword>
+      <keyword>((cl|st)(c|d|i)|cmc)</keyword>
+      <keyword>cmp</keyword>
+      <keyword>(cmp|lod|mov|sca|sto)s(b|w)</keyword>
+      <keyword>(dec|inc)</keyword>
+      <keyword>hlt</keyword>
+      <keyword>i?(div|mul)</keyword>
+      <keyword>(in|out)</keyword>
+      <keyword>(int(o|0?3)?|iretw?)</keyword>
+      <keyword>j(n?((a|b|g|l)e?|(c|e|o|p|s|z))|p(e|o))</keyword>
+      <keyword>jcxz</keyword>
+      <keyword>jmp</keyword>
+      <keyword>(lahf|sahf)</keyword>
+      <keyword>l(d|e)s</keyword>
+      <keyword>lea</keyword>
+      <keyword>loop(n?(e|z))?</keyword>
+      <keyword>mov</keyword>
+      <keyword>nop</keyword>
+      <keyword>neg</keyword>
+      <keyword>(pop|push)(fw?)?</keyword>
+      <keyword>(s(a|h)|r(c|o))(l|r)</keyword>
+      <keyword>salc</keyword> <!-- Undocumented -->
+      <keyword>test</keyword>
+      <keyword>wait</keyword>
+      <keyword>xchg</keyword>
+      <keyword>xlatb?</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel 8087 (1980). -->
+    <context id="mnemonic-1980-8087" style-ref="mnemonic">
+      <prefix>f</prefix>
+      <keyword>2xm1</keyword>
+      <keyword>abs</keyword>
+      <keyword>(addp?|subr?p?)</keyword>
+      <keyword>(bld|bstp)</keyword>
+      <keyword>chs</keyword>
+      <keyword>comp?p?</keyword>
+      <keyword>(dec|inc)stp</keyword>
+      <keyword>(divr?p?|mulp?)</keyword>
+      <keyword>freep?</keyword>
+      <keyword>i(add|comp?|divr?|ld|mul|stp?|subr?)</keyword>
+      <keyword>(ld|n?st)(cw|envw?)?</keyword>
+      <keyword>ld(1|l2e|l2t|lg2|ln2|pi|z)</keyword>
+      <keyword>n?(clex|disi|eni|init)</keyword>
+      <keyword>nop</keyword>
+      <keyword>(n?save|rstor)w?</keyword>
+      <keyword>n?stsw</keyword>
+      <keyword>(pa?tan|prem)</keyword>
+      <keyword>rndint</keyword>
+      <keyword>scale</keyword>
+      <keyword>sqrt</keyword>
+      <keyword>stp</keyword>
+      <keyword>tst</keyword>
+      <keyword>wait</keyword>
+      <keyword>xam</keyword>
+      <keyword>xch</keyword>
+      <keyword>xtract</keyword>
+      <keyword>yl2x(p1)?</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel 80186 (1982). -->
+    <context id="mnemonic-1982-80186" style-ref="mnemonic">
+      <keyword>bound</keyword>
+      <keyword>(enter|leave)</keyword>
+      <keyword>(in|out)(s(b|w))?</keyword>
+      <keyword>(pop|push)aw?</keyword>
+      <keyword>ud(0|1|2b)</keyword> <!-- Undocumented -->
+      <keyword>ud2a?</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel 80286 (1982). -->
+    <context id="mnemonic-1982-80286" style-ref="mnemonic">
+      <keyword>arpl</keyword>
+      <keyword>clts</keyword>
+      <keyword>(lar|lsl)</keyword>
+      <keyword>(l|s)((g|i|l)dt|msw|tr)</keyword>
+      <keyword>loadall286</keyword> <!-- Undocumented -->
+      <keyword>ver(r|w)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel 80287 (1982). -->
+    <context id="mnemonic-1982-80287" style-ref="mnemonic">
+      <keyword>fsetpm</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel 80386 (1985). -->
+    <context id="mnemonic-1985-80386" style-ref="mnemonic">
+      <keyword>(bs(f|r)|bt(c|r|s)?)</keyword>
+      <keyword>(cdq|cwde)</keyword>
+      <keyword>(cmp|in|lod|mov|out|sca|sto)sd</keyword>
+      <keyword>(i|x)bts</keyword> <!-- Undocumented -->
+      <keyword>(int0?1|icebp)</keyword> <!-- ICEBP is undocumented -->
+      <keyword>(iret|(pop|push)(a|f)|sh(l|r))d</keyword>
+      <keyword>jecxz</keyword>
+      <keyword>l(f|g|s)s</keyword>
+      <keyword>loadall</keyword> <!-- Undocumented -->
+      <keyword>mov(s|z)x</keyword>
+      <keyword>set(n?((a|b|g|l)e?|(c|e|o|p|s|z))|p(e|o))</keyword>
+      <keyword>smi</keyword>
+      <keyword>umov</keyword> <!-- Undocumented -->
+      <!-- LOOPW, LOOPD are not implemented in NASM. -->
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel 80387 (1987). -->
+    <context id="mnemonic-1987-80387" style-ref="mnemonic">
+      <prefix>f</prefix>
+      <keyword>(cos|sin|sincos)</keyword>
+      <keyword>prem1</keyword>
+      <keyword>ucomp?p?</keyword>
+      <!-- FLDENVD, FRSTORD, FSAVED, FSTENVD are not implemented in NASM. -->
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel 80486 (1989). -->
+    <context id="mnemonic-1989-80486" style-ref="mnemonic">
+      <keyword>bswap</keyword>
+      <keyword>cmpxchg486</keyword> <!-- Undocumented -->
+      <keyword>invlpg</keyword>
+      <keyword>(wb)?invd</keyword>
+      <keyword>xadd</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel Pentium (1993). -->
+    <context id="mnemonic-1993-pentium" style-ref="mnemonic">
+      <keyword>cpuid</keyword>
+      <keyword>cmpxchg(8b)?</keyword>
+      <keyword>(rd|wr)msr</keyword>
+      <keyword>rdtsc</keyword>
+      <keyword>rsm</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used, to know the exact model it was introduced in:
+         http://www.gladir.com/LEXIQUE/ASM/smintold.htm
+         Introduced in Cyrix Cx486DX (1993). -->
+    <context id="mnemonic-1993-cyrix-cx486dx" style-ref="mnemonic">
+      <keyword>(rs|sv)(dc|ldt|ts)</keyword>
+      <keyword>smintold</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel Pentium Pro (1995). -->
+    <context id="mnemonic-1995-pentium-pro" style-ref="mnemonic">
+      <keyword>cmov(n?((a|b|g|l)e?|(c|e|o|p|s|z))|p(e|o))</keyword>
+      <keyword>fcmovn?(be?|e|u)</keyword>
+      <keyword>fu?comip?</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel Pentium MMX (1996). -->
+    <context id="mnemonic-1996-pentium-mmx" style-ref="mnemonic">
+      <keyword>rdpmc</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         APPENDIX B.1.3 : Katmai Streaming SIMD instructions (SSE a.k.a. KNI, XMM, MMX2)
+         Note: these instructions were redefined in SSE.
+         Complementary source used: https://de.wikipedia.org/wiki/Datei:MMX-Instructions-Overview.jpg
+         Introduced in Intel Pentium MMX (1996). -->
+    <context id="mnemonic-1996-mmx-no-p" style-ref="mnemonic">
+      <keyword>emms</keyword>
+      <keyword>mov(d|q)</keyword>
+      <keyword>pack(ssdw|sswb|uswb)</keyword>
+    </context>
+
+    <context id="mnemonic-1996-mmx" style-ref="mnemonic">
+      <prefix>p</prefix>
+      <keyword>(add|sub)(d|(u?s)?(b|w))</keyword>
+      <keyword>(andn?|x?or)</keyword>
+      <keyword>cmp(eq|gt)(b|w|d)</keyword>
+      <keyword>maddwd</keyword>
+      <keyword>mul(hw|lw)</keyword>
+      <keyword>s(l|r)l(w|d|q)</keyword>
+      <keyword>sra(w|d)</keyword>
+      <keyword>unpck(h|l)(bw|wd|dq)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in Intel Pentium II (1997). -->
+    <context id="mnemonic-1997-pentium-2" style-ref="mnemonic">
+      <keyword>sys(enter|exit)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in AMD K6 (1997). -->
+    <context id="mnemonic-1997-amd-k6" style-ref="mnemonic">
+      <keyword>sys(call|ret)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: https://en.wikipedia.org/wiki/Extended_MMX
+         Introduced in Cyrix 6x86MX (1997). -->
+    <context id="mnemonic-1997-emmi" style-ref="mnemonic">
+      <prefix>p</prefix>
+      <keyword>aveb</keyword>
+      <keyword>(add|sub)siw</keyword>
+      <keyword>distib</keyword>
+      <keyword>machriw</keyword>
+      <keyword>magw</keyword>
+      <keyword>mulhrwc</keyword> <!-- NASM specific, to distinguish from 3DNow! -->
+      <keyword>mulhriw</keyword>
+      <keyword>mv(ge|l|n)?zb</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         These two instruction were first introduced in this model according to:
+         http://www.gladir.com/LEXIQUE/ASM/wrshr.htm
+         Introduced in Cyrix 6x86MX (1997). -->
+    <context id="mnemonic-1997-cyrix-6x86mx" style-ref="mnemonic">
+      <keyword>(rd|wr)shr</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Introduced in Cyrix GX1 alias Cyrix MediaGX (1997). -->
+    <context id="mnemonic-1997-cyrix-gx1" style-ref="mnemonic">
+      <keyword>bb(0|1)_reset</keyword>
+      <keyword>cpu_(read|write)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: https://en.wikipedia.org/wiki/3DNow!
+         Introduced in AMD K6-2 (1998). -->
+    <context id="mnemonic-1998-3dnow-floating-point-no-pf" style-ref="mnemonic">
+      <keyword>(pf2id|pi2fd)</keyword>
+    </context>
+
+    <context id="mnemonic-1998-3dnow-floating-point" style-ref="mnemonic">
+      <prefix>pf</prefix>
+      <keyword>acc</keyword>
+      <keyword>(add|subr?)</keyword>
+      <keyword>cmp(eq|ge|gt)</keyword>
+      <keyword>(max|min)</keyword>
+      <keyword>mul</keyword>
+      <keyword>rcp(it1|it2)?</keyword>
+      <keyword>rsqit1</keyword>
+      <keyword>rsqrt</keyword>
+    </context>
+
+    <context id="mnemonic-1998-3dnow-integer" style-ref="mnemonic">
+      <keyword>pavgusb</keyword>
+      <keyword>pmulhrwa</keyword> <!-- NASM specific, to distinguish from EMMI -->
+    </context>
+
+    <context id="mnemonic-1998-3dnow-other" style-ref="mnemonic">
+      <keyword>femms</keyword>
+      <keyword>prefetchw?</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Introduced in Cyrix Geode LX (2002). -->
+    <context id="mnemonic-2002-cyrix-geode-lx" style-ref="mnemonic">
+      <keyword>(d|s)mint</keyword>
+      <keyword>rdm</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Complementary source used: http://ref.x86asm.net/geek-abc.html
+         Introduced in AMD Athlon 64 (2003). -->
+    <context id="mnemonic-2003-amd64" style-ref="mnemonic">
+      <keyword>(cdqe|cqo)</keyword>
+      <keyword>(cmp|lod|sca|sto)sq</keyword>
+      <keyword>cmpxchg16b</keyword>
+      <keyword>(iret|(pop|push)f)q</keyword>
+      <keyword>jmpe</keyword> <!-- NASM documentation calls it an IA64 instruction
+        as opposed to X64 for others, and sandpile says it's an Itanium instruction
+        so might not actually be x86. -->
+      <keyword>jrcxz</keyword>
+      <keyword>movsq</keyword>
+      <keyword>movsxd</keyword>
+      <keyword>rdtscp</keyword>
+      <keyword>swapgs</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Introduced in Intel Prescott (2004). -->
+    <context id="mnemonic-2004-sse3-other" style-ref="mnemonic">
+      <keyword>fisttp</keyword>
+      <keyword>monitor</keyword>
+      <keyword>mwait</keyword>
+      <keyword>pause</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.2 : Conventional instructions [partly]
+         Reading this source:
+         https://www.redhat.com/archives/libvirt-users/2013-June/msg00043.html
+         It seems this instruction was new in the Intel Haswell family.
+         Introduced in Intel Haswell (2013). -->
+    <context id="mnemonic-2013-invpcid" style-ref="mnemonic">
+      <keyword>invpcid</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.3 : Katmai Streaming SIMD instructions (SSE a.k.a. KNI, XMM, MMX2)
+            [except MOVNTPS]
+         Introduced in Intel Katmai (1999). -->
+    <context id="mnemonic-1999-sse-floating-point" style-ref="mnemonic">
+      <keyword>(add|sub)(ps|ss)</keyword>
+      <keyword>(andn?|x?or)ps</keyword>
+      <keyword>cmp(n?eq|n?le|n?lt|(un)?ord)?(ps|ss)</keyword>
+      <keyword>cvt(pi2ps|t?ps2pi|si2ss|t?ss2si)</keyword>
+      <keyword>(div|mul)(ps|ss)</keyword>
+      <keyword>(max|min)(ps|ss)</keyword>
+      <keyword>mov(a|hl?|lh?|msk|u)ps</keyword>
+      <keyword>movss</keyword>
+      <keyword>rcp(ps|ss)</keyword>
+      <keyword>r?sqrt(ps|ss)</keyword>
+      <keyword>shufps</keyword>
+      <keyword>u?comiss</keyword>
+      <keyword>unpck(h|l)ps</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.4 : Introduced in Deschutes but necessary for SSE support [partly]
+         Instructions actually added in 1998.
+         Introduced in Intel Deschutes (1998). -->
+    <context id="mnemonic-1998-sse-fxsave" style-ref="mnemonic">
+      <keyword>(fxrstor|fxsave)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.4 : Introduced in Deschutes but necessary for SSE support [partly]
+         Instructions added with AMD64.
+         Introduced in AMD Opteron (2003). -->
+    <context id="mnemonic-2003-sse-fxsave64" style-ref="mnemonic">
+      <keyword>(fxrstor|fxsave)64</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.5 : XSAVE group (AVX and extended state)
+         Not completely sure of implementation history.
+         First part introduced in Intel Nehalem (2008).
+         Second part introduced in Intel Broadwell (2014) ?? -->
+    <context id="mnemonic-2006-2014-xsave" style-ref="mnemonic">
+      <prefix>x</prefix>
+      <keyword>(get|set)bv</keyword> <!-- 2008 -->
+      <keyword>(rstor|save)(64)?</keyword> <!-- 2008 -->
+      <keyword>(rstor|save)s(64)?</keyword>
+      <keyword>save(c|opt)(64)?</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.3 : Katmai Streaming SIMD instructions (SSE a.k.a. KNI, XMM, MMX2)
+            [only MOVNTPS]
+         APPENDIX B.1.6 : Generic memory operations
+         APPENDIX B.1.7 : New MMX instructions introduced in Katmai [partly]
+         Introduced in Intel Katmai (1999). -->
+    <context id="mnemonic-1999-sse-other" style-ref="mnemonic">
+      <keyword>(ld|st)mxcsr</keyword>
+      <keyword>maskmovq</keyword>
+      <keyword>movnt(ps|q)</keyword>
+      <keyword>prefetch(t0|t1|t2|nta)</keyword>
+      <keyword>sfence</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.7 : New MMX instructions introduced in Katmai [partly]
+         Introduced in Intel Katmai (1999). -->
+    <context id="mnemonic-1999-sse-integer" style-ref="mnemonic">
+      <prefix>p</prefix>
+      <keyword>avg(b|w)</keyword>
+      <keyword>(extrw|insrw)</keyword>
+      <keyword>(max|min)(sw|ub)</keyword>
+      <keyword>movmskb</keyword>
+      <keyword>mulhuw</keyword>
+      <keyword>sadbw</keyword>
+      <keyword>shufw</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.8 : AMD Enhanced 3DNow! (Athlon) instructions
+         Complementary source used: https://en.wikipedia.org/wiki/3DNow!
+         Introduced in AMD Athlon (1999). -->
+    <context id="mnemonic-1999-3dnow-plus" style-ref="mnemonic">
+      <keyword>(pf2iw|pi2fw)</keyword>
+      <keyword>pfp?nacc</keyword>
+      <keyword>pswapd</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.9 : Willamette SSE2 Cacheability Instructions
+         Introduced in Intel Willamette (2001). -->
+    <context id="mnemonic-2001-sse2-other" style-ref="mnemonic">
+      <keyword>clflush</keyword>
+      <keyword>(l|m)fence</keyword>
+      <keyword>maskmovdqu</keyword>
+      <keyword>movnt(dq|i|pd)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.10 : Willamette MMX instructions (SSE2 SIMD Integer Instructions)
+         Introduced in Intel Willamette (2001). -->
+    <context id="mnemonic-2001-sse2-integer-no-p" style-ref="mnemonic">
+      <keyword>mov(dq(a|u|2q)|q2dq)</keyword>
+    </context>
+
+    <context id="mnemonic-2001-sse2-integer" style-ref="mnemonic">
+      <prefix>p</prefix>
+      <keyword>(addq|subq)</keyword>
+      <keyword>muludq</keyword>
+      <keyword>shuf(d|hw|lw)</keyword>
+      <keyword>s(l|r)ldq</keyword>
+      <keyword>unpck(h|l)qdq</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.11 : Willamette Streaming SIMD instructions (SSE2)
+         Introduced in Intel Willamette (2001). -->
+    <context id="mnemonic-2001-sse2-floating-point" style-ref="mnemonic">
+      <keyword>(add|sub)(pd|sd)</keyword>
+      <keyword>(andn?|x?or)pd</keyword>
+      <keyword>cmp(n?eq|n?le|n?lt|(un)?ord)?(pd|sd)</keyword>
+      <keyword>cvt(dq2pd|dq2ps|t?pd2dq|t?pd2pi|pd2ps|pi2pd|t?ps2dq|ps2pd)</keyword>
+      <keyword>cvt(t?sd2si|sd2ss|si2sd|ss2sd)</keyword>
+      <keyword>(div|mul)(pd|sd)</keyword>
+      <keyword>(max|min)(pd|sd)</keyword>
+      <keyword>mov(a|h|l|msk|u)pd</keyword>
+      <keyword>movsd</keyword>
+      <keyword>shufpd</keyword>
+      <keyword>sqrt(pd|sd)</keyword>
+      <keyword>u?comisd</keyword>
+      <keyword>unpck(h|l)pd</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.12 : Prescott New Instructions (SSE3)
+         Introduced in Intel Prescott (2004). -->
+    <context id="mnemonic-2004-sse3-general" style-ref="mnemonic">
+      <keyword>addsub(pd|ps)</keyword>
+      <keyword>h(add|sub)(pd|ps)</keyword>
+      <keyword>lddqu</keyword>
+      <keyword>mov(d|sh|sl)dup</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.13 : VMX/SVM Instructions [partly]
+         VMX alias Intel VT-x instructions.
+         Introduced in Intel Prescott 2M (2005). -->
+    <context id="mnemonic-2005-vmx" style-ref="mnemonic">
+      <prefix>vm</prefix>
+      <keyword>call</keyword>
+      <keyword>clear</keyword>
+      <keyword>func</keyword>
+      <keyword>launch</keyword>
+      <keyword>ptr(ld|st)</keyword>
+      <keyword>(read|write)</keyword>
+      <keyword>resume</keyword>
+      <keyword>(xon|xoff)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.13 : VMX/SVM Instructions [partly]
+         SVM alias AMD-V instructions.
+         Introduced in AMD Athlon 64 Orleans (2006). -->
+    <context id="mnemonic-2006-svm" style-ref="mnemonic">
+      <keyword>(cl|st)gi</keyword>
+      <keyword>invlpga</keyword>
+      <keyword>skinit</keyword>
+      <keyword>vm(load|mcall|run|save)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.14 : Extended Page Tables VMX instructions
+         Introduced in AMD K10 (2007). -->
+    <context id="mnemonic-2007-vmx" style-ref="mnemonic">
+      <keyword>invept</keyword>
+      <keyword>invvpid</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.15 : Tejas New Instructions (SSSE3)
+         Introduced in Intel Woodcrest (2006). -->
+    <context id="mnemonic-2006-ssse3" style-ref="mnemonic">
+      <prefix>p</prefix>
+      <keyword>abs(b|w|d)</keyword>
+      <keyword>alignr</keyword>
+      <keyword>h(add|sub)(d|s?w)</keyword>
+      <keyword>maddubsw</keyword>
+      <keyword>mulhrsw</keyword>
+      <keyword>shufb</keyword>
+      <keyword>sign(b|w|d)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.16 : AMD SSE4A
+         Introduced in AMD K10 (2007). -->
+    <context id="mnemonic-2007-sse4a" style-ref="mnemonic">
+      <keyword>(extrq|insertq)</keyword>
+      <keyword>movnt(sd|ss)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.17 : New instructions in Barcelona
+         APPENDIX B.1.19 : Nehalem New Instructions (SSE4.2) [partly]
+         AMD calls it “Advanced Bit Manipulation”.
+         Introduced in AMD K10 (2007) -->
+    <context id="mnemonic-2007-abm" style-ref="mnemonic">
+      <keyword>lzcnt</keyword>
+      <keyword>popcnt</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.18 : Penryn New Instructions (SSE4.1)
+         Introduced in Intel Penryn (2007). -->
+    <context id="mnemonic-2007-sse41-no-p" style-ref="mnemonic">
+      <keyword>blendv?(pd|ps)</keyword>
+      <keyword>dp(pd|ps)</keyword>
+      <keyword>(extract|insert)ps</keyword>
+      <keyword>movntdqa</keyword>
+      <keyword>mpsadbw</keyword>
+      <keyword>packusdw</keyword>
+      <keyword>round(pd|ps|sd|ss)</keyword>
+    </context>
+
+    <context id="mnemonic-2007-sse41" style-ref="mnemonic">
+      <prefix>p</prefix>
+      <keyword>blend(vb|w)</keyword>
+      <keyword>cmpeqq</keyword>
+      <keyword>(extr|insr)(b|d|q)</keyword>
+      <keyword>hminposuw</keyword>
+      <keyword>(max|min)(sb|sd|ud|uw)</keyword>
+      <keyword>mov(s|z)x(b(w|d|q)|w(d|q)|dq)</keyword>
+      <keyword>mul(dq|ld)</keyword>
+      <keyword>test</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.19 : Nehalem New Instructions (SSE4.2) [partly]
+         Introduced in Intel Nehalem (2008) -->
+    <context id="mnemonic-2008-sse42" style-ref="mnemonic">
+      <keyword>crc32</keyword>
+      <keyword>pcmp(e|i)str(i|m)</keyword>
+      <keyword>pcmpgtq</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.20 : Intel SMX
+         Not completely sure of implementation history.
+         Introduced in Intel Penryn (2008) ?? -->
+    <context id="mnemonic-2008-smx" style-ref="mnemonic">
+      <keyword>getsec</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.21 : Geode (Cyrix) 3DNow! additions
+         Complementary source used: https://en.wikipedia.org/wiki/3DNow!
+         Introduced in AMD Geode GX (2002). -->
+    <context id="mnemonic-2002-3dnow-geode" style-ref="mnemonic">
+      <keyword>pfrcpv</keyword>
+      <keyword>pfrsqrtv</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.22 : Intel new instructions in ???
+         Not completely sure of implementation history.
+         NASM manual seems not to know when it was introduced, but classifies
+            it under Nehalem, but this source says it came with late Core 2:
+            http://ref.x86asm.net/geek-abc.html
+            and this source says in 2011 it exists only on Intel Atom:
+            https://code.google.com/p/corkami/wiki/x86oddities#movbe
+         Introduced in Intel Atom (2008) ?? -->
+    <context id="mnemonic-2008-movbe" style-ref="mnemonic">
+      <keyword>movbe</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.23 : Intel AES instructions
+         Introduced in Intel Westmere (2010). -->
+    <context id="mnemonic-2010-aes-ni" style-ref="mnemonic">
+      <prefix>aes</prefix>
+      <keyword>(enc|dec)(last)?</keyword>
+      <keyword>imc</keyword>
+      <keyword>keygenassist</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.24 : Intel AVX AES instructions
+         Copy of APPENDIX B.1.23, with leading V-
+         Introduced in Intel Sandy Bridge (2011). -->
+    <context id="mnemonic-2011-avx-aes-ni" style-ref="mnemonic">
+      <prefix>vaes</prefix>
+      <keyword>(enc|dec)(last)?</keyword>
+      <keyword>imc</keyword>
+      <keyword>keygenassist</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.25 : Intel AVX instructions [partly]
+         Copy of APPENDIX B.1.3, B.1.6 & B.1.7 with leading V-
+         [except CVTPI2PS, CVTT?PS2PI, EMMS, MASKMOVQ, MOVNTQ, 
+            PREFETCH(T0|T1|T2|NTA), PSHUFW, SFENCE]
+         Introduced in Intel Sandy Bridge (2011). -->
+    <context id="mnemonic-2011-avx-sse-floating-point" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>(add|sub)(ps|ss)</keyword>
+      <keyword>(andn?|x?or)ps</keyword>
+      <keyword>cmp(n?eq|n?le|n?lt|(un)?ord)?(ps|ss)</keyword>
+      <keyword>cvt(si2ss|t?ss2si)</keyword>
+      <keyword>(div|mul)(ps|ss)</keyword>
+      <keyword>(max|min)(ps|ss)</keyword>
+      <keyword>mov(a|hl?|lh?|msk|u)ps</keyword>
+      <keyword>movss</keyword>
+      <keyword>rcp(ps|ss)</keyword>
+      <keyword>r?sqrt(ps|ss)</keyword>
+      <keyword>shufps</keyword>
+      <keyword>u?comiss</keyword>
+      <keyword>unpck(h|l)ps</keyword>
+    </context>
+
+    <context id="mnemonic-2011-avx-sse-integer-no-p" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>mov(d|q)</keyword>
+      <keyword>pack(ssdw|sswb|uswb)</keyword>
+    </context>
+
+    <context id="mnemonic-2011-avx-sse-integer" style-ref="mnemonic">
+      <prefix>vp</prefix>
+      <keyword>(add|sub)(d|(u?s)?(b|w))</keyword>
+      <keyword>(andn?|x?or)</keyword>
+      <keyword>avg(b|w)</keyword>
+      <keyword>cmp(eq|gt)(b|w|d)</keyword>
+      <keyword>(extrw|insrw)</keyword>
+      <keyword>maddwd</keyword>
+      <keyword>(max|min)(sw|ub)</keyword>
+      <keyword>movmskb</keyword>
+      <keyword>mul(hw|lw)</keyword>
+      <keyword>mulhuw</keyword>
+      <keyword>sadbw</keyword>
+      <keyword>s(l|r)l(w|d|q)</keyword>
+      <keyword>sra(w|d)</keyword>
+      <keyword>unpck(h|l)(bw|wd|dq)</keyword>
+    </context>
+
+    <context id="mnemonic-2011-avx-sse-other" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>(ld|st)mxcsr</keyword>
+      <keyword>movntps</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.25 : Intel AVX instructions [partly]
+         Copy of APPENDIX B.1.9 to B.1.11 with leading V-
+         [except CLFLUSH, CVTT?PD2PI, CVTPI2PD, LFENCE, MFENCE,
+            MOVDQ2Q, MOVQ2DQ, MOVNTI]
+         Introduced in Intel Sandy Bridge (2011). -->
+    <context id="mnemonic-2011-avx-sse2-floating-point" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>(add|sub)(pd|sd)</keyword>
+      <keyword>(andn?|x?or)pd</keyword>
+      <keyword>cmp(n?eq|n?le|n?lt|(un)?ord)?(pd|sd)</keyword>
+      <keyword>cvt(dq2pd|dq2ps|t?pd2dq|pd2ps|t?ps2dq|ps2pd)</keyword>
+      <keyword>cvt(t?sd2si|sd2ss|si2sd|ss2sd)</keyword>
+      <keyword>(div|mul)(pd|sd)</keyword>
+      <keyword>(max|min)(pd|sd)</keyword>
+      <keyword>mov(a|h|l|msk|u)pd</keyword>
+      <keyword>movsd</keyword>
+      <keyword>shufpd</keyword>
+      <keyword>sqrt(pd|sd)</keyword>
+      <keyword>u?comisd</keyword>
+      <keyword>unpck(h|l)pd</keyword>
+    </context>
+
+    <context id="mnemonic-2011-avx-sse2-integer-no-p" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>movdq(a|u)</keyword>
+    </context>
+
+    <context id="mnemonic-2011-avx-sse2-integer" style-ref="mnemonic">
+      <prefix>vp</prefix>
+      <keyword>(addq|subq)</keyword>
+      <keyword>muludq</keyword>
+      <keyword>shuf(d|hw|lw)</keyword>
+      <keyword>s(l|r)ldq</keyword>
+      <keyword>unpck(h|l)qdq</keyword>
+    </context>
+
+    <context id="mnemonic-2011-avx-sse2-other" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>maskmovdqu</keyword>
+      <keyword>movnt(dq|pd)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.25 : Intel AVX instructions [partly]
+         Copy of APPENDIX B.1.12 with leading V-
+         Introduced in Intel Sandy Bridge (2011). -->
+    <context id="mnemonic-2011-avx-sse3" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>addsub(pd|ps)</keyword>
+      <keyword>h(add|sub)(pd|ps)</keyword>
+      <keyword>lddqu</keyword>
+      <keyword>mov(d|sh|sl)dup</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.25 : Intel AVX instructions [partly]
+         Copy of APPENDIX B.1.15 with leading V-
+         Introduced in Intel Sandy Bridge (2011). -->
+    <context id="mnemonic-2011-avx-ssse3" style-ref="mnemonic">
+      <prefix>vp</prefix>
+      <keyword>abs(b|w|d)</keyword>
+      <keyword>alignr</keyword>
+      <keyword>h(add|sub)(d|s?w)</keyword>
+      <keyword>maddubsw</keyword>
+      <keyword>mulhrsw</keyword>
+      <keyword>shufb</keyword>
+      <keyword>sign(b|w|d)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.25 : Intel AVX instructions [partly]
+         Copy of APPENDIX B.1.18 & B.1.19 with leading V-
+         [Except CRC32, POPCNT]
+         Introduced in Intel Sandy Bridge (2011). -->
+    <context id="mnemonic-2011-avx-sse41-no-p" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>blendv?(pd|ps)</keyword>
+      <keyword>dp(pd|ps)</keyword>
+      <keyword>(extract|insert)ps</keyword>
+      <keyword>movntdqa</keyword>
+      <keyword>mpsadbw</keyword>
+      <keyword>packusdw</keyword>
+      <keyword>round(pd|ps|sd|ss)</keyword>
+    </context>
+
+    <context id="mnemonic-2011-avx-sse41" style-ref="mnemonic">
+      <prefix>vp</prefix>
+      <keyword>blend(vb|w)</keyword>
+      <keyword>cmpeqq</keyword>
+      <keyword>(extr|insr)(b|d|q)</keyword>
+      <keyword>hminposuw</keyword>
+      <keyword>(max|min)(sb|sd|ud|uw)</keyword>
+      <keyword>mov(s|z)x(b(w|d|q)|w(d|q)|dq)</keyword>
+      <keyword>mul(dq|ld)</keyword>
+      <keyword>test</keyword>
+    </context>
+
+    <context id="mnemonic-2011-avx-sse42" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>pcmp(e|i)str(i|m)</keyword>
+      <keyword>pcmpgtq</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.25 : Intel AVX instructions [partly]
+         Additional VCMP… instructions.
+         Introduced in Intel Sandy Bridge (2011). -->
+    <context id="mnemonic-2011-avx-additional-vcmp" style-ref="mnemonic">
+      <prefix>vcmp</prefix>
+      <suffix>(ps|ss|pd|sd)</suffix>
+      <keyword>(n?eq|(g|l)(e|t)|false)_o(q|s)</keyword>
+      <keyword>(n?eq|n(g|l)(e|t)|true)_u(q|s)</keyword>
+      <keyword>(un)?ord_(q|s)</keyword>
+      <keyword>(false|n?g(e|t)|true)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.25 : Intel AVX instructions [partly]
+         Instructions created for AVX according to this complementary source:
+         https://en.wikipedia.org/wiki/Advanced_Vector_Extensions
+         Introduced in Intel Sandy Bridge (2011). -->
+    <context id="mnemonic-2011-avx-additional-wiki" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>broadcast(f128|sd|ss)</keyword>
+      <keyword>(extract|insert)f128</keyword>
+      <keyword>maskmov(pd|ps)</keyword>
+      <keyword>permil(pd|ps)</keyword>
+      <keyword>perm2f128</keyword>
+      <keyword>zero(all|upper)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.25 : Intel AVX instructions [partly]
+         The few other newly created instruction.
+         Introduced in Intel Sandy Bridge (2011). -->
+    <context id="mnemonic-2011-avx-additional-other" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>ldqqu</keyword>
+      <keyword>movqq(a|u)</keyword>
+      <keyword>movntqq</keyword>
+      <keyword>test(pd|ps)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.26 : Intel Carry-Less Multiplication instructions (CLMUL)
+         Introduced in Intel Wetsmere (2010). -->
+    <context id="mnemonic-2010-clmul" style-ref="mnemonic">
+      <keyword>pclmul((h|l)q(h|l))?qdq</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.27 : Intel AVX Carry-Less Multiplication instructions (CLMUL)
+         Introduced in Intel Wetsmere (2010). -->
+    <context id="mnemonic-2011-avx-clmul" style-ref="mnemonic">
+      <keyword>vpclmul((h|l)q(h|l))?qdq</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.28 : Intel Fused Multiply-Add instructions (FMA)
+         FMA3 instructions.
+         Introduced in AMD Piledriver (2012). -->
+    <context id="mnemonic-2012-fma3" style-ref="mnemonic">
+      <prefix>vf</prefix>
+      <keyword>n?m(add|sub)(123|132|213|231|312|321)(pd|ps|sd|ss)</keyword>
+      <keyword>(maddsub|msubadd)(123|132|213|231|312|321)(pd|ps)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.29 : Intel post-32 nm processor instructions [partly]
+         F16C alias CVT16 instructions.
+         Most sources are ambiguous towards wether these instruction were
+         introduced in Bulldozer or Piledriver. This source seems tu settle it:
+         http://developer.amd.com/wordpress/media/2012/10/New-Bulldozer-and-Piledriver-Instructions.pdf
+         Introduced in AMD Piledriver (2012). -->
+    <context id="mnemonic-2012-f16c" style-ref="mnemonic">
+      <keyword>vcvt(ph2ps|ps2ph)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.29 : Intel post-32 nm processor instructions [partly]
+         A number of instructions added in Ivy Bridge.
+         Complementary sources used:
+         https://en.wikipedia.org/wiki/RdRand
+         http://lists.freebsd.org/pipermail/freebsd-amd64/2012-September/014849.html
+         Introduced in Intel Ivy Bridge (2012). -->
+    <context id="mnemonic-2012-ivy-bridge-new" style-ref="mnemonic">
+      <keyword>(rd|wr)(fs|gs)base</keyword>
+      <keyword>rdrand</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.29 : Intel post-32 nm processor instructions [partly]
+         A number of instructions added in Broadwell.
+         Complementary sources used:
+         https://en.wikipedia.org/wiki/Broadwell_(microarchitecture)
+         https://en.wikipedia.org/wiki/RdRand
+         Introduced in Intel Broadwell (2013). -->
+    <context id="mnemonic-2013-broadwell-new" style-ref="mnemonic">
+      <keyword>(adcx|adox)</keyword> <!-- Intel ADX -->
+      <keyword>rdseed</keyword>
+      <keyword>(cl|st)ac</keyword> <!-- Supervisor Mode Access Prevention (SMAP) -->
+    </context>
+
+    <!-- APPENDIX B.1.30 : VIA (Centaur) security instructions
+         VIA PadLock instructions.
+         First part introduced in Cyrix C3 (2003),
+            second part in Cyrix C7 (2005). -->
+    <context id="mnemonic-2003-2005-padlock" style-ref="mnemonic">
+      <keyword>montmul</keyword> <!-- 2005 -->
+      <keyword>xcrypt(cbc|cfb|ctr|ecb|ofb)</keyword>
+      <keyword>xsha1</keyword> <!-- 2005 -->
+      <keyword>xsha256</keyword> <!-- 2005 -->
+      <keyword>xstore</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.31 : AMD Lightweight Profiling (LWP) instructions
+         Introduced in AMD Bulldozer (2011). -->
+    <context id="mnemonic-2011-lwp" style-ref="mnemonic">
+      <keyword>(l|s)lwpcb</keyword>
+      <keyword>lwpins</keyword>
+      <keyword>lwpval</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.32 : AMD XOP and FMA4 instructions (SSE5) [partly]
+         FMA4 instructions.
+         Introduced in AMD Bulldozer (2011). -->
+    <context id="mnemonic-2011-fma4" style-ref="mnemonic">
+      <prefix>vf</prefix>
+      <keyword>n?m(add|sub)(pd|ps|sd|ss)</keyword>
+      <keyword>(maddsub|msubadd)(pd|ps)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.32 : AMD XOP and FMA4 instructions (SSE5) [partly]
+         XOP instructions.
+         Most sources are ambiguous towards wether these instruction were
+         introduced in Bulldozer or Piledriver. This source seems tu settle it:
+         http://developer.amd.com/wordpress/media/2012/10/New-Bulldozer-and-Piledriver-Instructions.pdf
+         Introduced in AMD Piledriver (2012). -->
+    <context id="mnemonic-2012-xop-no-vp" style-ref="mnemonic">
+      <keyword>vfrcz(pd|ps|sd|ss)</keyword>
+    </context>
+
+    <context id="mnemonic-2012-xop" style-ref="mnemonic">
+      <prefix>vp</prefix>
+      <keyword>cmov</keyword>
+      <keyword>comu?(b|w|d|q)</keyword>
+      <keyword>haddu?(bw|bd|bq|wd|wq|dq)</keyword>
+      <keyword>hsub(bw|wd|dq)</keyword>
+      <keyword>macss?(ww|wd|dd|dqh|dql)</keyword>
+      <keyword>madcss?wd</keyword>
+      <keyword>perm</keyword>
+      <keyword>(rot|sha|shl)(b|w|d|q)</keyword>
+      <!-- VPPERMIL2PD, VPPERMIL2PS are not implemented in NASM. -->
+    </context>
+
+    <!-- APPENDIX B.1.33 : Intel AVX2 instructions
+         Introduced in Intel Haswell (2013). -->
+    <context id="mnemonic-2013-avx2" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>(broadcast|extract|insert)i128</keyword>
+      <keyword>gather(d|q)(pd|ps)</keyword>
+      <keyword>pblendd</keyword>
+      <keyword>pbroadcast(b|w|d|q)</keyword>
+      <keyword>perm(d|q|pd|ps|2i128)</keyword>
+      <keyword>pgather(d|q)(d|q)</keyword>
+      <keyword>pmaskmov(d|q)</keyword>
+      <keyword>(ps(l|r)lv(d|q)|psravd)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.34 : Transactional Synchronization Extensions (TSX)
+         Introduced in Intel Haswell (2013). -->
+    <context id="mnemonic-2013-tsx" style-ref="mnemonic">
+      <prefix>x</prefix>
+      <keyword>abort</keyword>
+      <keyword>begin</keyword>
+      <keyword>end</keyword>
+      <keyword>test</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.35 : Intel BMI1 and BMI2 instructions, AMD TBM instructions [partly]
+         BMI1 instructions.
+         Introduced in AMD Piledriver (2012). -->
+    <context id="mnemonic-2012-bmi1" style-ref="mnemonic">
+      <keyword>andn</keyword>
+      <keyword>bextr</keyword>
+      <keyword>blsi</keyword>
+      <keyword>blsmsk</keyword>
+      <keyword>blsr</keyword>
+      <keyword>tzcnt</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.35 : Intel BMI1 and BMI2 instructions, AMD TBM instructions [partly]
+         BMI2 instructions.
+         Introduced in Intel Haswell (2013). -->
+    <context id="mnemonic-2013-bmi2" style-ref="mnemonic">
+      <keyword>bzhi</keyword>
+      <keyword>(mul|ror|sar|shr|shl)x</keyword>
+      <keyword>(pdep|pext)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.35 : Intel BMI1 and BMI2 instructions, AMD TBM instructions [partly]
+         TBM instructions.
+         Introduced in AMD Piledriver (2012). -->
+    <context id="mnemonic-2012-tbm" style-ref="mnemonic">
+      <keyword>blc(fill|ic?|msk)</keyword>
+      <keyword>blcs</keyword>
+      <keyword>bls(fill|ic)</keyword>
+      <keyword>t1mskc</keyword>
+      <keyword>tzmsk</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.35 : Intel BMI1 and BMI2 instructions, AMD TBM instructions [partly]
+         PREFETCHWT1 instruction.
+         Can't find when it was introduced. -->
+    <context id="mnemonic-unknown-prefetchwt1" style-ref="mnemonic">
+      <keyword>prefetchwt1</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.35 : Intel BMI1 and BMI2 instructions, AMD TBM instructions [partly]
+         MPX instructions.
+         Introduced in Intel Skylake (2015). -->
+    <context id="mnemonic-2015-mpx" style-ref="mnemonic">
+      <keyword>bndc(l|n|u)</keyword>
+      <keyword>bnd(ld|st)x</keyword>
+      <keyword>bndmk</keyword>
+      <keyword>bndmov</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.36 : MJC PUBLIC BEGIN [partly]
+         Intel SHA instructions.
+         Introduced in Intel Goldmont (2015). -->
+    <context id="mnemonic-2015-sha" style-ref="mnemonic">
+      <keyword>sha1(msg(1|2)|nexte|rnds4)</keyword>
+      <keyword>sha256(msg(1|2)|rnds2)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.36 : MJC PUBLIC BEGIN [partly]
+         AVX-512 opMask instructions. [except KUNPCK]
+         To be introduced in Intel Knights Landing (2015?). -->
+    <context id="mnemonic-2015-avx-512-opmask" style-ref="mnemonic">
+      <prefix>k</prefix>
+      <suffix>(b|w|d|q)</suffix>
+      <keyword>add</keyword>
+      <keyword>(andn?|not|shift(l|r)|(xn?)?or)</keyword>
+      <keyword>mov</keyword>
+      <keyword>(or)?test</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.36 : MJC PUBLIC BEGIN [partly]
+         AVX-512 opMask instructions. [only KUNPCK]
+         To be introduced in Intel Knights Landing (2015?). -->
+    <context id="mnemonic-2015-avx-512-opmask-kunpck" style-ref="mnemonic">
+      <prefix>k</prefix>
+      <keyword>unpck(bw|wd|dq)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.36 : MJC PUBLIC BEGIN [partly]
+         AVX-512 instructions.
+         NASM listings don't seem to be in accordance with other sources like:
+         https://en.wikipedia.org/wiki/AVX-512
+         To be introduced in Intel Knights Landing (2015?). -->
+    <context id="mnemonic-2015-avx-512-general-no-p" style-ref="mnemonic">
+      <prefix>v</prefix>
+      <keyword>align(d|q)</keyword>
+      <keyword>blendm(pd|ps)</keyword>
+      <keyword>broadcast(f|i)(32x(2|4|8)|64x(2|4))</keyword>
+      <keyword>(compress|expand)(pd|ps)</keyword>
+      <keyword>cvtt?(pd|ps)2(qq|udq|uqq)</keyword>
+      <keyword>cvtqq2(pd|ps)</keyword>
+      <keyword>cvtt?(sd|ss)2usi</keyword>
+      <keyword>cvt(udq|uqq)2(pd|ps)</keyword>
+      <keyword>cvtusi2(sd|ss)</keyword>
+      <keyword>dbpsadbw</keyword>
+      <keyword>exp2(pd|ps)</keyword>
+      <keyword>(extract|insert)(f|i)(32x(4|8)|64x(2|4))</keyword>
+      <keyword>fixupimm(pd|ps|sd|ss)</keyword>
+      <keyword>fpclass(pd|ps|sd|ss)</keyword>
+      <keyword>(gather|scatter)pf(0|1)(d|q)(pd|ps)</keyword>
+      <keyword>get(exp|mant)(pd|ps|sd|ss)</keyword>
+      <keyword>movdqa(32|64)</keyword>
+      <keyword>movdqu(8|16|32|64)</keyword>
+      <keyword>perm(b|w)</keyword>
+      <keyword>perm(i2|t2)(b|w|d|q|pd|ps)</keyword>
+      <keyword>range(pd|ps|sd|ss)</keyword>
+      <keyword>rcp(14|28)(pd|ps|sd|ss)</keyword>
+      <keyword>reduce(pd|ps|sd|ss)</keyword>
+      <keyword>rndscale(pd|ps|sd|ss)</keyword>
+      <keyword>rsqrt(14|28)(pd|ps|sd|ss)</keyword>
+      <keyword>scalef(pd|ps|sd|ss)</keyword>
+      <keyword>scatter(d|q)(pd|ps)</keyword>
+      <keyword>shuf(f|i)(32x4|64x2)</keyword>
+    </context>
+
+    <context id="mnemonic-2015-avx-512-general" style-ref="mnemonic">
+      <prefix>vp</prefix>
+      <keyword>absq</keyword>
+      <keyword>(andn?|ro(l|r)v?|x?or)(d|q)</keyword>
+      <keyword>blendm(b|w|d|q)</keyword>
+      <keyword>broadcastm(b2q|w2d)</keyword>
+      <keyword>cmpu?(b|w|d|q)</keyword>
+      <keyword>(compress|expand)(d|q)</keyword>
+      <keyword>conflict(d|q)</keyword>
+      <keyword>lzcnt(d|q)</keyword>
+      <keyword>madd52(h|l)uq</keyword>
+      <keyword>(max|min)(s|u)q</keyword>
+      <keyword>mov(b|w|d|q)2m</keyword>
+      <keyword>movm2(b|w|d|q)</keyword>
+      <keyword>mov(u?s)?(wb|d(b|w)|q(b|w|d))</keyword>
+      <keyword>mullq</keyword>
+      <keyword>multishiftqb</keyword>
+      <keyword>scatter(d|q)(d|q)</keyword>
+      <keyword>s(l|r)lvw</keyword>
+      <keyword>sra(v?q|vw)</keyword>
+      <keyword>ternlog(d|q)</keyword>
+      <keyword>testn?m(b|w|d|q)</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.37 : MJC PUBLIC END
+         Not completely sure of implementation history. Possible source:
+         https://sourceware.org/ml/binutils/2014-02/msg00069.html
+         Introduced in Intel Broadwell (2014) ?? -->
+    <context id="mnemonic-2014-clflushopt" style-ref="mnemonic">
+      <keyword>clflushopt</keyword>
+    </context>
+
+    <!-- APPENDIX B.1.38 : Systematic names for the hinting nop instructions
+         Introduced in Intel Pentium Pro (1995). -->
+    <context id="mnemonic-1995-hint-nop" style-ref="mnemonic">
+      <keyword>hint_nop([1-5]?[0-9]|6[0-3])</keyword>
+    </context>
+
+    <!-- Trailing colon in labels -->
+    <context id="label-trailing-colon" style-ref="keyword">
+      <match>:</match>
+    </context>
+
+    <!-- Main context -->
+    <context id="nasm" class="no-spell-check">
+      <include>
+        <!-- Preprocessor -->
+        <context ref="comment" />
+        <context ref="single-line-macro" />
+        <context ref="string-manipulation" />
+        <context ref="multi-line-macro" />
+        <context ref="conditional-assembly" />
+        <context ref="preprocessor-loop" />
+        <context ref="dependency" />
+        <context ref="context-stack" />
+        <context ref="other-preprocessor" />
+        <context ref="standard-macro" />
+        <context ref="macro-local-label" />
+
+        <!-- NASM specific -->
+        <context ref="pseudo-instruction" />
+        <context ref="format-specific-keyword" />
+          <!-- To have absolute= before absolute. -->
+        <context ref="directive" />
+        <context ref="directive-macro" />
+        <context ref="format-specific-directive" />
+        <context ref="format-specific-label" />
+        <context ref="other-nasm-keyword" />
+
+        <!-- Assembly proper -->
+        <context ref="mnemonic" />
+        <context ref="register" />
+        <context ref="prefix" />
+        <context ref="size-operand" />
+        <context ref="relative-adressing" />
+
+        <!-- Constants -->
+        <context ref="floating-point" />
+        <context ref="floating-point-macro" />
+        <context ref="packed-bcd" />
+        <context ref="other-integer" />
+        <context ref="decimal-integer" />
+        <context ref="sq-string" />
+        <context ref="dq-string" />
+        <context ref="bq-string" />
+        <context ref="unicode-string" />
+
+        <!-- Minor details -->
+        <context ref="local-label" />
+        <context ref="label" />
+        <context ref="broadcasting-decorator" />
+        <context ref="dollar-label" />
+        <context ref="expression-operator" />
+        <context ref="effective-adress" />
+        <context ref="label-trailing-colon" />
+        <context ref="line-continue" />
+      </include>
+    </context>
+
+  </definitions>
+</language>
