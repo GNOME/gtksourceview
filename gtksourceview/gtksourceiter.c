@@ -650,7 +650,7 @@ _gtk_source_iter_get_leading_spaces_end_boundary (const GtkTextIter *iter,
 	*leading_end = *iter;
 	gtk_text_iter_set_line_offset (leading_end, 0);
 
-	while (!gtk_text_iter_is_end (leading_end))
+	while (!gtk_text_iter_ends_line (leading_end))
 	{
 		gunichar ch = gtk_text_iter_get_char (leading_end);
 
