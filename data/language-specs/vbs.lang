@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Princeton Ferro - August 2013 (princetonf@optonline.net)
+
+ This file may be freely redistributed under the GNU General Public License,
+ version 2.0.
+-->
+<language id="vbs" _name="VBScript" version="2.0" _section="Scripts">
+	<metadata>
+		<property name="mimetypes">text/x-vbs;text/x-wsf</property>
+		<property name="globs">*.vbs;*.wsf</property>
+		<property name="line-comment-start">'</property>
+	</metadata>
+	
+	<styles>
+		<style id="comment" _name="Comment" map-to="def:comment" />
+		<style id="string" _name="String" map-to="def:string"/>
+		<style id="keyword" _name="Keyword" map-to="def:keyword"/>
+		<style id="boolean" _name="Boolean" map-to="def:boolean"/>
+		<style id="special-constant" _name="Special Constant" map-to="def:special-constant"/>
+		<style id="builtin" _name="Built In" map-to="def:builtin"/>
+		<style id="operator" _name="Operator" map-to="def:operator"/>
+		<style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
+		<style id="decimal" _name="Decimal" map-to="def:decimal"/>
+	</styles>
+	
+	<default-regex-options case-sensitive="false"/>
+	
+	<definitions>
+	
+		<context id="comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+			<start>'</start>
+			<include>
+				<context ref="def:in-line-comment"/>
+			</include>
+		</context>
+	
+		<context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+			<start>"</start>
+			<end>"</end>
+		</context>
+	
+		<context id="keywords" style-ref="keyword">
+			<keyword>call</keyword>
+			<keyword>case</keyword>
+			<keyword>createobject</keyword>
+			<keyword>dim</keyword>
+			<keyword>do</keyword>
+			<keyword>each</keyword>
+			<keyword>echo</keyword>
+			<keyword>elseif</keyword>
+			<keyword>else</keyword>
+			<keyword>end</keyword>
+			<keyword>erase</keyword>
+			<keyword>for</keyword>
+			<keyword>function</keyword>
+			<keyword>if</keyword>
+			<keyword>in</keyword>
+			<keyword>let</keyword>
+			<keyword>loop</keyword>
+			<keyword>next</keyword>
+			<keyword>on error goto</keyword>
+			<keyword>on error</keyword>
+			<keyword>option explicit</keyword>
+			<keyword>quit</keyword>
+			<keyword>resume</keyword>
+			<keyword>select</keyword>
+			<keyword>set</keyword>
+			<keyword>sleep</keyword>
+			<keyword>sub</keyword>
+			<keyword>then</keyword>
+			<keyword>until</keyword>
+			<keyword>wend</keyword>
+			<keyword>while</keyword>
+		</context>
+		
+		<context id="boolean" style-ref="boolean">
+			<keyword>true</keyword>
+			<keyword>false</keyword>
+		</context>
+		
+		<context id="special-constants" style-ref="special-constant">
+			<keyword>empty</keyword>
+			<keyword>err</keyword>
+			<keyword>nothing</keyword>
+			<keyword>null</keyword>
+			<keyword>vbclrf</keyword>
+			<keyword>vbNo</keyword>
+			<keyword>vbOkayCancel</keyword>
+			<keyword>vbOkay</keyword>
+			<keyword>vbYes</keyword>
+			<keyword>vbYesNo</keyword>
+		</context>
+		
+		<context id="builtins" style-ref="builtin">
+			<keyword>inputbox</keyword>
+			<keyword>isarray</keyword>
+			<keyword>isdate</keyword>
+			<keyword>isempty</keyword>
+			<keyword>isnull</keyword>
+			<keyword>isnumeric</keyword>
+			<keyword>isobject</keyword>
+			<keyword>lbound</keyword>
+			<keyword>msgbox</keyword>
+			<keyword>ubound</keyword>
+			<keyword>vartype</keyword>
+			<keyword>wscript</keyword>
+		</context>
+		
+		<context id="operators" style-ref="operator">
+			<match>[\+\-\^\*\/\\\&amp;\=\&lt;\&gt;]</match>
+		</context>
+		
+		<context id="word-operators" style-ref="operator">
+			<keyword>is</keyword>
+			<keyword>not</keyword>
+			<keyword>mod</keyword>
+			<keyword>and</keyword>
+			<keyword>or</keyword>
+			<keyword>xor</keyword>
+			<keyword>eqv</keyword>
+			<keyword>imp</keyword>
+		</context>
+		
+		<context id="floating-points" style-ref="floating-point">
+			<match>(?&lt;![\w\.])[0-9]+[\.][0-9]+(?![\w\.])</match>
+		</context>
+		
+		<context id="decimals" style-ref="decimal">
+			<match>(?&lt;![\w\.])[0-9]+(?![\w\.])</match>
+		</context>
+		
+		<!-- Main Context -->
+		<context id="vbs" class="no-spell-check">
+			<include>
+				<context ref="comment"/>
+				<context ref="string"/>
+				<context ref="keywords"/>
+				<context ref="boolean"/>
+				<context ref="special-constants"/>
+				<context ref="builtins"/>
+				<context ref="operators"/>
+				<context ref="word-operators"/>
+				<context ref="floating-points"/>
+				<context ref="decimals"/>
+			</include>
+		</context>
+		
+	</definitions>
+</language>
