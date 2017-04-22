@@ -300,7 +300,7 @@
         </context>
 
         <context id="include" class="no-spell-check">
-          <match>(\\(input|include|includeonly|usepackage))(\[.*\])?(\{.*\})?</match>
+          <match>(\\(input|include|includeonly|usepackage))\b(\[.*\])?(\{.*\})?</match>
           <include>
             <context sub-pattern="1" style-ref="include"/>
           </include>
