@@ -1,3 +1,17 @@
+News in 3.99.4
+--------------
+* The API of the GtkSourceView::move-lines keybinding signal has been
+  simplified: the copy parameter has been removed; and the count parameter has
+  been replaced by the down boolean.
+* Force visual word movements for RTL text with Ctrl+left/right.
+* Improvements to the Visual Studio builds and add support for Visual Studio
+  2017.
+* Improvements to the syntax highlighting of: Rust and LaTeX.
+* Add mimetype to python3.lang.
+* Misc bug fixes.
+* Various other small improvements.
+* Translation updates.
+
 News in 3.99.3
 --------------
 
