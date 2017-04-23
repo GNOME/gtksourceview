@@ -432,6 +432,47 @@ test_get_leading_spaces_end_boundary (void)
 	check_get_leading_spaces_end_boundary ("\t \342\200\257\n", 0, 3);
 }
 
+static void
+check_get_trailing_spaces_start_boundary (const gchar *text,
+					  gint         iter_offset,
+					  gint         expected_trailing_start_offset)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter iter;
+	GtkTextIter trailing_start;
+
+	buffer = gtk_text_buffer_new (NULL);
+	gtk_text_buffer_set_text (buffer, text, -1);
+
+	gtk_text_buffer_get_iter_at_offset (buffer, &iter, iter_offset);
+	_gtk_source_iter_get_trailing_spaces_start_boundary (&iter, &trailing_start);
+	g_assert_cmpint (gtk_text_iter_get_offset (&trailing_start), ==, expected_trailing_start_offset);
+
+	g_object_unref (buffer);
+}
+
+static void
+test_get_trailing_spaces_start_boundary (void)
+{
+	check_get_trailing_spaces_start_boundary ("", 0, 0);
+	check_get_trailing_spaces_start_boundary ("a", 0, 1);
+	check_get_trailing_spaces_start_boundary ("a ", 0, 1);
+	check_get_trailing_spaces_start_boundary ("a \n", 0, 1);
+	check_get_trailing_spaces_start_boundary ("a \r\n", 0, 1);
+	check_get_trailing_spaces_start_boundary ("a \r", 0, 1);
+	check_get_trailing_spaces_start_boundary ("a\t\n", 0, 1);
+	check_get_trailing_spaces_start_boundary (" \t\t  \n", 0, 0);
+	check_get_trailing_spaces_start_boundary ("\n", 1, 1);
+
+	/* No-Break Space U+00A0 */
+	check_get_trailing_spaces_start_boundary ("a\302\240", 0, 1);
+	check_get_trailing_spaces_start_boundary ("a \t\302\240 \t\302\240", 0, 1);
+
+	/* Narrow No-Break Space U+202F */
+	check_get_trailing_spaces_start_boundary ("a\342\200\257", 0, 1);
+	check_get_trailing_spaces_start_boundary (" \ta;\t  \342\200\257 \t\302\240\n", 0, 4);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -452,6 +493,7 @@ main (int argc, char **argv)
 	g_test_add_func ("/Iter/custom-word/backward", test_backward_word_start);
 
 	g_test_add_func ("/Iter/get_leading_spaces_end_boundary", test_get_leading_spaces_end_boundary);
+	g_test_add_func ("/Iter/get_trailing_spaces_start_boundary", test_get_trailing_spaces_start_boundary);
 
 	return g_test_run ();
 }
