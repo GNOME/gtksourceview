@@ -2,7 +2,6 @@
 
 <SECTION>
 <FILE>buffer</FILE>
-<TITLE>GtkSourceBuffer</TITLE>
 GtkSourceBuffer
 GtkSourceBracketMatchType
 GtkSourceChangeCaseType
@@ -69,7 +68,6 @@ gtk_source_sort_flags_get_type
 
 <SECTION>
 <FILE>completion</FILE>
-<TITLE>GtkSourceCompletion</TITLE>
 GtkSourceCompletion
 GTK_SOURCE_COMPLETION_ERROR
 GtkSourceCompletionError
@@ -102,7 +100,6 @@ gtk_source_completion_error_get_type
 <SECTION>
 <FILE>completioncontext</FILE>
 GtkSourceCompletionActivation
-<TITLE>GtkSourceCompletionContext</TITLE>
 GtkSourceCompletionContext
 gtk_source_completion_context_add_proposals
 gtk_source_completion_context_get_iter
@@ -123,7 +120,6 @@ gtk_source_completion_activation_get_type
 
 <SECTION>
 <FILE>completioninfo</FILE>
-<TITLE>GtkSourceCompletionInfo</TITLE>
 GtkSourceCompletionInfo
 gtk_source_completion_info_new
 gtk_source_completion_info_move_to_iter
@@ -141,7 +137,6 @@ GtkSourceCompletionInfoClass
 
 <SECTION>
 <FILE>completionitem</FILE>
-<TITLE>GtkSourceCompletionItem</TITLE>
 GtkSourceCompletionItem
 gtk_source_completion_item_new
 gtk_source_completion_item_set_label
@@ -165,7 +160,6 @@ GtkSourceCompletionItemPrivate
 
 <SECTION>
 <FILE>completionproposal</FILE>
-<TITLE>GtkSourceCompletionProposal</TITLE>
 GtkSourceCompletionProposal
 GtkSourceCompletionProposalIface
 gtk_source_completion_proposal_get_label
@@ -188,7 +182,6 @@ gtk_source_completion_proposal_get_type
 
 <SECTION>
 <FILE>completionprovider</FILE>
-<TITLE>GtkSourceCompletionProvider</TITLE>
 GtkSourceCompletionProvider
 GtkSourceCompletionProviderIface
 gtk_source_completion_provider_get_name
@@ -214,7 +207,6 @@ gtk_source_completion_provider_get_type
 
 <SECTION>
 <FILE>completionwords</FILE>
-<TITLE>GtkSourceCompletionWords</TITLE>
 GtkSourceCompletionWords
 gtk_source_completion_words_new
 gtk_source_completion_words_register
@@ -233,7 +225,6 @@ gtk_source_completion_words_get_type
 
 <SECTION>
 <FILE>encoding</FILE>
-<TITLE>GtkSourceEncoding</TITLE>
 GtkSourceEncoding
 <SUBSECTION>
 gtk_source_encoding_get_utf8
@@ -253,7 +244,6 @@ gtk_source_encoding_get_type
 
 <SECTION>
 <FILE>file</FILE>
-<TITLE>GtkSourceFile</TITLE>
 GtkSourceFile
 GtkSourceNewlineType
 GTK_SOURCE_NEWLINE_TYPE_DEFAULT
@@ -290,7 +280,6 @@ gtk_source_newline_type_get_type
 
 <SECTION>
 <FILE>fileloader</FILE>
-<TITLE>GtkSourceFileLoader</TITLE>
 GtkSourceFileLoader
 GTK_SOURCE_FILE_LOADER_ERROR
 GtkSourceFileLoaderError
@@ -323,7 +312,6 @@ gtk_source_file_loader_error_get_type
 
 <SECTION>
 <FILE>filesaver</FILE>
-<TITLE>GtkSourceFileSaver</TITLE>
 GtkSourceFileSaver
 GTK_SOURCE_FILE_SAVER_ERROR
 GtkSourceFileSaverError
@@ -363,7 +351,6 @@ gtk_source_file_saver_flags_get_type
 
 <SECTION>
 <FILE>gutter</FILE>
-<TITLE>GtkSourceGutter</TITLE>
 GtkSourceGutter
 gtk_source_gutter_get_view
 gtk_source_gutter_get_window_type
@@ -386,7 +373,6 @@ gtk_source_gutter_get_type
 
 <SECTION>
 <FILE>gutterrenderer</FILE>
-<TITLE>GtkSourceGutterRenderer</TITLE>
 GtkSourceGutterRenderer
 GtkSourceGutterRendererState
 GtkSourceGutterRendererAlignmentMode
@@ -431,7 +417,6 @@ gtk_source_gutter_renderer_state_get_type
 
 <SECTION>
 <FILE>gutterrendererpixbuf</FILE>
-<TITLE>GtkSourceGutterRendererPixbuf</TITLE>
 GtkSourceGutterRendererPixbuf
 gtk_source_gutter_renderer_pixbuf_new
 gtk_source_gutter_renderer_pixbuf_set_pixbuf
@@ -455,7 +440,6 @@ gtk_source_gutter_renderer_pixbuf_get_type
 
 <SECTION>
 <FILE>gutterrenderertext</FILE>
-<TITLE>GtkSourceGutterRendererText</TITLE>
 GtkSourceGutterRendererText
 gtk_source_gutter_renderer_text_new
 gtk_source_gutter_renderer_text_set_markup
@@ -477,7 +461,6 @@ gtk_source_gutter_renderer_text_get_type
 
 <SECTION>
 <FILE>language</FILE>
-<TITLE>GtkSourceLanguage</TITLE>
 GtkSourceLanguage
 gtk_source_language_get_id
 gtk_source_language_get_name
@@ -503,7 +486,6 @@ gtk_source_language_get_type
 
 <SECTION>
 <FILE>languagemanager</FILE>
-<TITLE>GtkSourceLanguageManager</TITLE>
 GtkSourceLanguageManager
 gtk_source_language_manager_new
 gtk_source_language_manager_get_default
@@ -526,7 +508,6 @@ gtk_source_language_manager_get_type
 
 <SECTION>
 <FILE>map</FILE>
-<TITLE>GtkSourceMap</TITLE>
 GtkSourceMap
 gtk_source_map_new
 gtk_source_map_set_view
@@ -545,7 +526,6 @@ gtk_source_map_get_type
 
 <SECTION>
 <FILE>mark</FILE>
-<TITLE>GtkSourceMark</TITLE>
 GtkSourceMark
 gtk_source_mark_new
 gtk_source_mark_get_category
@@ -565,7 +545,6 @@ gtk_source_mark_get_type
 
 <SECTION>
 <FILE>markattributes</FILE>
-<TITLE>GtkSourceMarkAttributes</TITLE>
 GtkSourceMarkAttributes
 gtk_source_mark_attributes_new
 gtk_source_mark_attributes_set_background
@@ -593,7 +572,6 @@ gtk_source_mark_attributes_get_type
 
 <SECTION>
 <FILE>printcompositor</FILE>
-<TITLE>GtkSourcePrintCompositor</TITLE>
 GtkSourcePrintCompositor
 gtk_source_print_compositor_new
 gtk_source_print_compositor_new_from_view
@@ -646,7 +624,6 @@ GtkSourcePrintCompositorClass
 
 <SECTION>
 <FILE>region</FILE>
-<TITLE>GtkSourceRegion</TITLE>
 GtkSourceRegion
 GtkSourceRegionIter
 gtk_source_region_new
@@ -671,7 +648,6 @@ GtkSourceRegionClass
 
 <SECTION>
 <FILE>searchcontext</FILE>
-<TITLE>GtkSourceSearchContext</TITLE>
 GtkSourceSearchContext
 gtk_source_search_context_new
 gtk_source_search_context_get_buffer
@@ -705,7 +681,6 @@ gtk_source_search_context_get_type
 
 <SECTION>
 <FILE>searchsettings</FILE>
-<TITLE>GtkSourceSearchSettings</TITLE>
 GtkSourceSearchSettings
 gtk_source_search_settings_new
 gtk_source_search_settings_get_search_text
@@ -732,7 +707,6 @@ gtk_source_search_settings_get_type
 
 <SECTION>
 <FILE>spacedrawer</FILE>
-<TITLE>GtkSourceSpaceDrawer</TITLE>
 GtkSourceSpaceDrawer
 GtkSourceSpaceTypeFlags
 GtkSourceSpaceLocationFlags
@@ -762,7 +736,6 @@ gtk_source_space_type_flags_get_type
 
 <SECTION>
 <FILE>style</FILE>
-<TITLE>GtkSourceStyle</TITLE>
 GtkSourceStyle
 gtk_source_style_copy
 gtk_source_style_apply
@@ -779,7 +752,6 @@ gtk_source_style_get_type
 
 <SECTION>
 <FILE>stylescheme</FILE>
-<TITLE>GtkSourceStyleScheme</TITLE>
 GtkSourceStyleScheme
 gtk_source_style_scheme_get_id
 gtk_source_style_scheme_get_name
@@ -801,7 +773,6 @@ gtk_source_style_scheme_get_type
 
 <SECTION>
 <FILE>styleschemechooser</FILE>
-<TITLE>GtkSourceStyleSchemeChooser</TITLE>
 GtkSourceStyleSchemeChooser
 gtk_source_style_scheme_chooser_get_style_scheme
 gtk_source_style_scheme_chooser_set_style_scheme
@@ -816,7 +787,6 @@ gtk_source_style_scheme_chooser_get_type
 
 <SECTION>
 <FILE>styleschemechooserbutton</FILE>
-<TITLE>GtkSourceStyleSchemeChooserButton</TITLE>
 GtkSourceStyleSchemeChooserButton
 gtk_source_style_scheme_chooser_button_new
 <SUBSECTION Standard>
@@ -833,7 +803,6 @@ gtk_source_style_scheme_chooser_button_get_type
 
 <SECTION>
 <FILE>styleschemechooserwidget</FILE>
-<TITLE>GtkSourceStyleSchemeChooserWidget</TITLE>
 GtkSourceStyleSchemeChooserWidget
 gtk_source_style_scheme_chooser_widget_new
 <SUBSECTION Standard>
@@ -850,7 +819,6 @@ gtk_source_style_scheme_chooser_widget_get_type
 
 <SECTION>
 <FILE>styleschememanager</FILE>
-<TITLE>GtkSourceStyleSchemeManager</TITLE>
 GtkSourceStyleSchemeManager
 gtk_source_style_scheme_manager_new
 gtk_source_style_scheme_manager_get_default
@@ -875,7 +843,6 @@ GtkSourceStyleSchemeManagerPrivate
 
 <SECTION>
 <FILE>tag</FILE>
-<TITLE>GtkSourceTag</TITLE>
 GtkSourceTag
 gtk_source_tag_new
 <SUBSECTION Standard>
@@ -885,7 +852,6 @@ GtkSourceTagClass
 
 <SECTION>
 <FILE>undomanager</FILE>
-<TITLE>GtkSourceUndoManager</TITLE>
 GtkSourceUndoManager
 gtk_source_undo_manager_can_undo
 gtk_source_undo_manager_can_redo
@@ -906,14 +872,12 @@ gtk_source_undo_manager_get_type
 
 <SECTION>
 <FILE>utils</FILE>
-<TITLE>GtkSourceUtils</TITLE>
 gtk_source_utils_unescape_search_text
 gtk_source_utils_escape_search_text
 </SECTION>
 
 <SECTION>
 <FILE>version</FILE>
-<TITLE>Version Information</TITLE>
 gtk_source_get_major_version
 gtk_source_get_minor_version
 gtk_source_get_micro_version
@@ -944,7 +908,6 @@ GTK_SOURCE_VERSION_MAX_ALLOWED
 
 <SECTION>
 <FILE>view</FILE>
-<TITLE>GtkSourceView</TITLE>
 GtkSourceView
 GtkSourceSmartHomeEndType
 GtkSourceViewGutterPosition

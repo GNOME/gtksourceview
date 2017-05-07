@@ -26,8 +26,9 @@
 
 /**
  * SECTION:version
- * @short_description: Macros and functions to check the GtkSourceView version
- **/
+ * @Short_description: Macros and functions to check the GtkSourceView version
+ * @Title: Version Information
+ */
 
 /**
  * gtk_source_get_major_version:
