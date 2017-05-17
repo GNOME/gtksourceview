@@ -57,7 +57,6 @@ typedef struct _GtkSourceMap			GtkSourceMap;
 typedef struct _GtkSourceMarkAttributes		GtkSourceMarkAttributes;
 typedef struct _GtkSourceMark			GtkSourceMark;
 typedef struct _GtkSourcePrintCompositor	GtkSourcePrintCompositor;
-typedef struct _GtkSourceRegion			GtkSourceRegion;
 typedef struct _GtkSourceSearchContext		GtkSourceSearchContext;
 typedef struct _GtkSourceSearchSettings		GtkSourceSearchSettings;
 typedef struct _GtkSourceSpaceDrawer		GtkSourceSpaceDrawer;
@@ -67,7 +66,6 @@ typedef struct _GtkSourceStyleSchemeChooser	GtkSourceStyleSchemeChooser;
 typedef struct _GtkSourceStyleSchemeChooserButton GtkSourceStyleSchemeChooserButton;
 typedef struct _GtkSourceStyleSchemeChooserWidget GtkSourceStyleSchemeChooserWidget;
 typedef struct _GtkSourceStyleSchemeManager	GtkSourceStyleSchemeManager;
-typedef struct _GtkSourceTag			GtkSourceTag;
 typedef struct _GtkSourceUndoManager		GtkSourceUndoManager;
 typedef struct _GtkSourceView			GtkSourceView;
 
