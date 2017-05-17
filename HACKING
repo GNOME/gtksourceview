@@ -20,7 +20,7 @@ When in doubt assume you haven't ;-).
 
 Please attach patches in bugzilla (http://bugzilla.gnome.org).
 If the patch fixes a bug that is not reported yet in bugzilla or is
-an enhancement, create a new bugreport.
+an enhancement, create a new bug report.
 
 Please create patches with the git format-patch command.
 
@@ -40,9 +40,14 @@ will be reverted. Commit messages should have the following format:
 === begin example commit ===
 Short explanation of the commit
 
-Longer explanation explaining exactly what's changed, whether any
-external or private interfaces changed, what bugs were fixed (with bug
-tracker reference if applicable) and so forth. Be concise but not too brief.
+Longer explanation explaining exactly what's changed, whether any external or
+private interfaces changed, what bugs were fixed and so forth. Be concise but
+not too brief.
+
+The full URL to the bugzilla ticket should be on the last line of the commit
+message, like this:
+
+https://bugzilla.gnome.org/show_bug.cgi?id=123456
 === end example commit ===
 
   - Always add a brief description of the commit to the _first_ line of
@@ -55,11 +60,10 @@ tracker reference if applicable) and so forth. Be concise but not too brief.
     72 characters.
 
   - The main description (the body) is normal prose and should use normal
-    punctuation and capital letters where appropriate. Normally, for patches
-    sent to a mailing list it's copied from there.
+    punctuation and capital letters where appropriate.
 
   - When committing code on behalf of others use the --author option, e.g.
-    git commit -a --author "Joe Coder <joe@coder.org>" and --signoff.
+    git commit -a --author "Joe Coder <joe@coder.org>".
 
 
 Code conventions
