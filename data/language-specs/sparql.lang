@@ -99,6 +99,8 @@
         OPTIONAL     |
         FILTER       |
         UNION        |
+        MINUS        |
+        SERVICE      |
         NOT          |
         EXISTS
       )\%]
@@ -122,6 +124,8 @@
         SUM         |
         AVG         |
         COUNT       |
+        SAMPLE      |
+        COALESCE    |
         MIN         |
         MAX
       )\%]
