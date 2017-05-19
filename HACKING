@@ -1,73 +1,25 @@
-Guidelines for GtkSourceView
-============================
+How to contribute to GtkSourceView
+==================================
 
-GtkSourceView source code is maintained using the git version control system
-and is available at the following location:
+The Git version control system is used. Read the following wiki pages to know
+how to create and send patches to bugzilla, and the conventions for the commit
+messages:
 
-    git://git.gnome.org/gtksourceview
+    https://wiki.gnome.org/Git
+    https://wiki.gnome.org/Git/WorkingWithPatches
+    https://wiki.gnome.org/Git/CommitMessages
 
-Or if you have an account on GNOME servers:
+If you have write access to the Git repository, please don't push your commits
+directly unless you have been given the green light to commit freely to
+GtkSourceView. When in doubt assume you haven't ;-).
 
-    ssh://USERNAME@git.gnome.org/git/gtksourceview
-
-A web interface is available at:
-
-    https://git.gnome.org/browse/gtksourceview/
-
-Please don't commit directly to the git repository unless
-you have been given the green light to commit freely to GtkSourceView.
-When in doubt assume you haven't ;-).
-
-Please attach patches in bugzilla (http://bugzilla.gnome.org).
-If the patch fixes a bug that is not reported yet in bugzilla or is
-an enhancement, create a new bug report.
-
-Please create patches with the git format-patch command.
-
-If you are a translator feel free to mark strings for translation,
-fix typos in the code, etc.
-
-Please send patches for build & configure fixes too.  I really appreciate
-your help, I just want to review these fixes before applying.
-
-If you are a "build sheriff", feel free to commit fixes for build and
-configure.
-
-When committing to the GtkSourceView git repository make sure to include a
-meaningful commit message. Changes without a sufficient commit message
-will be reverted. Commit messages should have the following format:
-
-=== begin example commit ===
-Short explanation of the commit
-
-Longer explanation explaining exactly what's changed, whether any external or
-private interfaces changed, what bugs were fixed and so forth. Be concise but
-not too brief.
-
-The full URL to the bugzilla ticket should be on the last line of the commit
-message, like this:
-
-https://bugzilla.gnome.org/show_bug.cgi?id=123456
-=== end example commit ===
-
-  - Always add a brief description of the commit to the _first_ line of
-    the commit and terminate by two newlines (it will work without the
-    second newline, but that is not nice for the interfaces).
-
-  - First line (the brief description) must only be one sentence and
-    should start with a capital letter unless it starts with a lowercase
-    symbol or identifier. Don't use a trailing period either. Don't exceed
-    72 characters.
-
-  - The main description (the body) is normal prose and should use normal
-    punctuation and capital letters where appropriate.
-
-  - When committing code on behalf of others use the --author option, e.g.
-    git commit -a --author "Joe Coder <joe@coder.org>".
-
+People who can commit freely to GtkSourceView:
+* GtkSourceView maintainers, with of course discussion before doing important
+  changes.
+* GNOME "build sheriffs", to fix build issues.
 
 Code conventions
-================
+----------------
 
 You may encounter old code that doesn't follow all the following code
 conventions, but for new code it is better to follow them, for consistency.
@@ -78,22 +30,23 @@ conventions, but for new code it is better to follow them, for consistency.
 
   - The files should have a modeline for the indentation style.
 
-  - All blocks should be surrounded by curly braces, even one-line blocks. It
-    spaces out the code, and it is more convenient when some code must be added
-    or removed without the need to add or remove the curly braces.
+  - All blocks should be surrounded by curly braces, even one-line blocks. The
+    curly braces must be placed on their own lines. It spaces out the code, to
+    have a better readability. And when modifying a block of code, if it
+    switches between one and two lines, we don't need to add/remove the curly
+    braces all the time.
 
   - Follow the C89 standard. In particular, no "//"-style comments.
 
   - As a general rule of thumb, follow the same coding style as the surrounding
     code.
 
-  - Do not be cheap about blank lines, spacing the code vertically help
+  - Do not be cheap about blank lines, spacing the code vertically helps
     readability. However never use two consecutive blank lines, there is really
     no need.
 
-
 Programming best practices
-==========================
+--------------------------
 
 GtkSourceView is a pretty big piece of software, developed over the years by
 different people and GNOME technologies. Some parts of the code may be a little
@@ -131,12 +84,12 @@ Here are some general advices.
 	functions so that when you change them you need to change them only in
 	one place.
 
-  - Self documentation and code comments: use code comments parsimoniously. Code
+  - Self-documentation and code comments: use code comments parsimoniously. Code
     should be written so that it is clear and evident without the need of
     comments. Besides, comments usually get outdated when the code is changed
-    and they become misleading. In particular avoid stating the obvious e.g. "a
-    = 1; /* assign 1 to a */". Use good function names and variables to make the
-    code self-documented.
+    and they become misleading. In particular avoid stating the obvious e.g.
+    "a = 1; /* assign 1 to a */". Use good function and variable names to make
+    the code self-documented.
 
     A good function name is one that explain clearly all what its code really
     does. There shouldn't be hidden features. If you can not find easily a good
@@ -160,15 +113,14 @@ Here are some general advices.
     writing hacks to work around a bug or a lack of feature in an underlying
     library.
 
-
 See also
-========
+--------
 
 https://wiki.gnome.org/Apps/Gedit/DevGettingStarted
 https://developer.gnome.org/programming-guidelines/stable/
 https://wiki.gnome.org/Projects/GTK%2B/BestPractices
 http://ometer.com/hacking.html
-http://blogs.gnome.org/swilmet/2012/08/01/about-code-quality-and-maintainability/
+https://blogs.gnome.org/swilmet/2012/08/01/about-code-quality-and-maintainability/
 
 For a shared library:
 
@@ -176,8 +128,3 @@ http://davidz25.blogspot.be/2011/07/writing-c-library-intro-conclusion-and.html
 http://akkadia.org/drepper/
 	- How to Write Shared Libraries
 	- Good Practices in Library Design, Implementation, and Maintenance
-
-
-Thanks,
-
-  The GtkSourceView team.

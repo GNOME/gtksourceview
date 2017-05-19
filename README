@@ -1,5 +1,5 @@
-General Information
-===================
+GtkSourceView
+=============
 
 This is version 3.99.5 of GtkSourceView.
 
@@ -9,27 +9,30 @@ GtkTextView.
 It improves GtkTextView by implementing syntax highlighting and other
 features typical of a source code editor.
 
+The GtkSourceView library is free software and is released under the terms of
+the GNU Lesser General Public License.
+
 The official web site is:
 
     https://wiki.gnome.org/Projects/GtkSourceView
 
-The GtkSourceView library is free software and is released under the terms of
-the GNU Lesser General Public License.
-
-
 About GtkSourceView 4, GtkSourceView 5 and GTK+ 4
-=================================================
+-------------------------------------------------
 
 See:
 
     https://wiki.gnome.org/Projects/GtkSourceView/RoadMap
     https://wiki.gnome.org/Projects/GtkSourceView/TransitionToGtkSourceView4
 
+Dependencies
+------------
+
+* GLib >= 2.48
+* GTK+ >= 3.20
+* libxml2 >= 2.6
 
 Installation
-============
-
-GtkSourceView requires GLib >= 2.48, GTK+ >= 3.20 and libxml2 >= 2.6.
+------------
 
 Simple install procedure:
 
@@ -48,9 +51,8 @@ To build the latest version of GtkSourceView from Git, Jhbuild can be used:
 
     https://wiki.gnome.org/Projects/Jhbuild
 
-
 How to report bugs
-==================
+------------------
 
 Bugs should be reported to the GNOME bug tracking system:
 
@@ -71,28 +73,11 @@ and include:
 
 * How to reproduce the bug. 
 
-* If the bug was a crash, the exact text that was printed out when the
-  crash occurred, with a backtrace from gdb with debug symbols. See:
+* If the bug was a crash, the exact text that was printed out in the terminal
+  when the crash occurred, with a backtrace from gdb with debug symbols. See:
   https://wiki.gnome.org/Community/GettingInTouch/Bugzilla/GettingTraces
 
+How to contribute
+-----------------
 
-Patches
-=======
-
-Patches should also be submitted to bugzilla.gnome.org. If the patch
-fixes an existing bug, add the patch as an attachment to that bug
-report.
-
-Otherwise, enter a new bug report that describes the problem the patch
-fixes, and attach it to that bug report.
-
-Patches should be created with the git format-patch command.
-Please follow the coding style described in the HACKING file.
-
-If you are interested in helping us to develop GtkSourceView, please see
-the file 'AUTHORS' for contact information and/or send a message to the
-GtkSourceView mailing list. See also the file 'HACKING' for information
-about our git guidelines.
-
-
-The GtkSourceView team.
+See the file 'HACKING'.
