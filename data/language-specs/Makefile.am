@@ -111,6 +111,7 @@ LANGUAGES =			\
 	sparql.lang		\
 	sql.lang		\
 	sweave.lang		\
+	swift.lang		\
 	systemverilog.lang	\
 	t2t.lang		\
 	tcl.lang		\

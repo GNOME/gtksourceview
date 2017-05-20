@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: Adam Dingle
+ Copyright (C) 2017 Adam Dingle <adam@medovina.org>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<language id="swift" _name="Swift" version="2.0" _section="Source">
+
+  <metadata>
+    <property name="mimetypes">text/x-swift</property>
+    <property name="globs">*.swift</property>
+    <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
+  </metadata>
+
+  <styles>
+    <style id="builtin"           _name="Builtin Value"           map-to="def:builtin"/>
+    <style id="comment"           _name="Comment"                 map-to="def:comment"/>
+    <style id="compiler-control"  _name="Compiler Control"        map-to="def:preprocessor"/>
+    <style id="declaration"       _name="Declaration"             map-to="def:type"/>
+    <style id="escaped-character" _name="Escaped Character"       map-to="def:special-char"/>
+    <style id="external"          _name="External"                map-to="def:preprocessor"/>
+    <style id="interpolated"      _name="Interpolated Expression" map-to="def:identifier"/>
+    <style id="keyword"           _name="Keyword"                 map-to="def:keyword"/>
+    <style id="modifier"          _name="Modifier"                map-to="def:type"/>
+    <style id="number"            _name="Number"                  map-to="def:decimal"/>
+    <style id="operator"          _name="Operator"                map-to="def:operator"/>
+    <style id="special"           _name="Special Constant"        map-to="def:special-constant"/>
+    <style id="string"            _name="String"                  map-to="def:string"/>
+    <style id="type"              _name="Data Type"               map-to="def:identifier"/>
+  </styles>
+
+  <definitions>
+
+    <context id="attribute" style-ref="special">
+      <match>@[a-zA-Z_][a-zA-Z0-9_]*</match>
+    </context>
+
+    <context id="block-comment" style-ref="comment">
+      <start>/\*</start>
+      <end>\*/</end>
+      <include>
+        <context ref="def:in-comment"/>
+        <context ref="block-comment"/>
+      </include>
+    </context>
+
+    <context id="builtin" style-ref="builtin">
+      <keyword>Protocol</keyword>
+      <keyword>self</keyword>
+      <keyword>super</keyword>
+      <keyword>Type</keyword>
+    </context>
+
+    <context id="cast" style-ref="operator">
+      <keyword>as</keyword>
+      <keyword>is</keyword>
+    </context>
+
+    <context id="compiler-control" style-ref="compiler-control">
+      <match extended="true">
+        \#(available|colorLiteral|column|else|elseif|endif|file|fileLiteral|function|if
+         |imageLiteral|keyPath|line|selector|sourceLocation)
+      </match>
+    </context>
+
+    <context id="declaration" style-ref="declaration">
+      <keyword>associatedtype</keyword>
+      <keyword>case</keyword>
+      <keyword>class</keyword>
+      <keyword>didSet</keyword>
+      <keyword>enum</keyword>
+      <keyword>extension</keyword>
+      <keyword>func</keyword>
+      <keyword>get</keyword>
+      <keyword>init</keyword>
+      <keyword>let</keyword>
+      <keyword>precedencegroup</keyword>
+      <keyword>protocol</keyword>
+      <keyword>set</keyword>
+      <keyword>struct</keyword>
+      <keyword>subscript</keyword>
+      <keyword>typealias</keyword>
+      <keyword>var</keyword>
+      <keyword>willSet</keyword>
+    </context>
+
+    <context id="external" style-ref="external">
+      <keyword>import</keyword>
+    </context>
+
+    <context id="implicit-param" style-ref="builtin">
+      <match>\$[0-9]+</match>
+    </context>
+
+    <context id="library-type" style-ref="type">
+      <keyword>Any</keyword>
+      <keyword>AnyObject</keyword>
+      <keyword>Array</keyword>
+      <keyword>Bool</keyword>
+      <keyword>Character</keyword>
+      <keyword>Collection</keyword>
+      <keyword>Comparable</keyword>
+      <keyword>Dictionary</keyword>
+      <keyword>Double</keyword>
+      <keyword>Equatable</keyword>
+      <keyword>Error</keyword>
+      <keyword>Float</keyword>
+      <keyword>Float80</keyword>
+      <keyword>FloatingPoint</keyword>
+      <keyword>Hashable</keyword>
+      <keyword>Int</keyword>
+      <keyword>Int8</keyword>
+      <keyword>Int16</keyword>
+      <keyword>Int32</keyword>
+      <keyword>Int64</keyword>
+      <keyword>Integer</keyword>
+      <keyword>Never</keyword>
+      <keyword>Optional</keyword>
+      <keyword>Sequence</keyword>
+      <keyword>Set</keyword>
+      <keyword>String</keyword>
+      <keyword>UInt</keyword>
+      <keyword>UInt8</keyword>
+      <keyword>UInt16</keyword>
+      <keyword>UInt32</keyword>
+      <keyword>UInt64</keyword>
+    </context>
+
+    <context id="modifier" style-ref="modifier">
+      <keyword>convenience</keyword>
+      <keyword>dynamic</keyword>
+      <keyword>fileprivate</keyword>
+      <keyword>final</keyword>
+      <keyword>indirect</keyword>
+      <keyword>infix</keyword>
+      <keyword>internal</keyword>
+      <keyword>inout</keyword>
+      <keyword>lazy</keyword>
+      <keyword>mutating</keyword>
+      <keyword>nonmutating</keyword>
+      <keyword>open</keyword>
+      <keyword>optional</keyword>
+      <keyword>override</keyword>
+      <keyword>postfix</keyword>
+      <keyword>prefix</keyword>
+      <keyword>private</keyword>
+      <keyword>public</keyword>
+      <keyword>required</keyword>
+      <keyword>safe</keyword>
+      <keyword>static</keyword>
+      <keyword>rethrows</keyword>
+      <keyword>throws</keyword>
+      <keyword>unowned</keyword>
+      <keyword>unsafe</keyword>
+      <keyword>weak</keyword>
+    </context>
+
+    <define-regex id="decimal" extended="true">
+      [0-9][0-9_]*
+    </define-regex>
+
+    <define-regex id="hex" extended="true">
+      [0-9a-fA-F][0-9a-fA-F_]*
+    </define-regex>
+
+    <context id="numeric" style-ref="number">
+      <match extended="true">
+        \b( 0b [01] [01_]*                                           # boolean literal
+          | 0o [0-7][0-7_]*                                          # octal literal
+          | 0x \%{hex} ( (\.\%{hex})? [pP][+-]?\%{hex} )?            # hex literal
+          | \%{decimal} (\.\%{decimal})? ([eE][+-]?\%{decimal})?     # decimal literal
+        )
+      </match>
+    </context>
+
+    <context id="operator" style-ref="operator">
+      <match extended="true">
+        (
+          [-/=+!*%&lt;&gt;&amp;|^~?:\[\]]
+        | \b_\b                 # wildcard underscore
+        | \.\.\.                # range constructor
+        | \.\.&lt;              # range constructor
+        )
+      </match>
+    </context>
+
+    <context id="special" style-ref="special">
+      <keyword>false</keyword>
+      <keyword>true</keyword>
+      <keyword>nil</keyword>
+    </context>
+
+    <context id="statement" style-ref="keyword">
+      <keyword>break</keyword>
+      <keyword>catch</keyword>
+      <keyword>continue</keyword>
+      <keyword>default</keyword>
+      <keyword>defer</keyword>
+      <keyword>do</keyword>
+      <keyword>else</keyword>
+      <keyword>fallthrough</keyword>
+      <keyword>for</keyword>
+      <keyword>guard</keyword>
+      <keyword>if</keyword>
+      <keyword>in</keyword>
+      <keyword>repeat</keyword>
+      <keyword>return</keyword>
+      <keyword>switch</keyword>
+      <keyword>throw</keyword>
+      <keyword>try</keyword>
+      <keyword>where</keyword>
+      <keyword>while</keyword>
+    </context>
+
+    <context id="string" style-ref="string" end-at-line-end="true"
+             class="string" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context id="escaped-character" style-ref="escaped-character">
+          <match extended="true">
+            \\(     # leading backslash
+              [0\\tnr"']             # \n, \r and friends
+            | u\{[0-9a-fA-F]{1,8}\}  # unicode scalar
+            )
+          </match>
+        </context>
+
+        <context id="interpolated-expression" style-ref="interpolated">
+          <start>\\\(</start>
+          <end>\)</end>
+          <include>
+            <context ref="swift"/>
+          </include>
+        </context>
+      </include>
+    </context>
+
+    <context id="swift" class="no-spell-check">
+      <include>
+        <context ref="def:c-like-comment"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="attribute"/>
+        <context ref="block-comment"/>
+        <context ref="builtin"/>
+        <context ref="cast"/>
+        <context ref="compiler-control"/>
+        <context ref="declaration"/>
+        <context ref="external"/>
+        <context ref="implicit-param"/>
+        <context ref="library-type"/>
+        <context ref="modifier"/>
+        <context ref="numeric"/>
+        <context ref="operator"/>
+        <context ref="special"/>
+        <context ref="statement"/>
+        <context ref="string"/>
+      </include>
+    </context>
+
+  </definitions>
+
+</language>
