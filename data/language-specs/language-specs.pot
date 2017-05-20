@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-02-11 19:12+0100\n"
+"POT-Creation-Date: 2017-05-20 17:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,6 +67,7 @@ msgstr ""
 #. (itstool) path: sml.lang/language@_section
 #. (itstool) path: sparql.lang/language@_section
 #. (itstool) path: sql.lang/language@_section
+#. (itstool) path: swift.lang/language@_section
 #. (itstool) path: systemverilog.lang/language@_section
 #. (itstool) path: thrift.lang/language@_section
 #. (itstool) path: vala.lang/language@_section
@@ -126,6 +127,7 @@ msgstr ""
 #: sml.lang:23
 #: sparql.lang:23
 #: sql.lang:23
+#: swift.lang:24
 #: systemverilog.lang:21
 #: thrift.lang:20
 #: vala.lang:27
@@ -201,6 +203,7 @@ msgstr ""
 #: sml.lang:31
 #: sql.lang:31
 #: sweave.lang:31
+#: swift.lang:36
 #: t2t.lang:30
 #: texinfo.lang:32
 #: thrift.lang:29
@@ -246,7 +249,7 @@ msgstr ""
 #: ooc.lang:44
 #: opal.lang:39
 #: php.lang:54
-#: python3.lang:39
+#: python3.lang:40
 #: python.lang:45
 #: ruby.lang:42
 msgid "Decimal number"
@@ -324,7 +327,7 @@ msgstr ""
 #: po.lang:33
 #: prolog.lang:36
 #: protobuf.lang:37
-#: python3.lang:33
+#: python3.lang:34
 #: python.lang:38
 #: ruby.lang:45
 #: rust.lang:46
@@ -334,6 +337,7 @@ msgstr ""
 #: sh.lang:34
 #: sml.lang:35
 #: sql.lang:33
+#: swift.lang:47
 #: texinfo.lang:35
 #: thrift.lang:32
 #: vala.lang:40
@@ -387,6 +391,7 @@ msgstr ""
 #: java.lang:40
 #: ooc.lang:36
 #: scala.lang:36
+#: swift.lang:40
 msgid "External"
 msgstr ""
 
@@ -396,6 +401,7 @@ msgstr ""
 #: java.lang:41
 #: ooc.lang:37
 #: scala.lang:40
+#: swift.lang:38
 msgid "Declaration"
 msgstr ""
 
@@ -478,7 +484,7 @@ msgstr ""
 #: po.lang:35
 #: prolog.lang:35
 #: protobuf.lang:35
-#: python3.lang:31
+#: python3.lang:32
 #: python.lang:36
 #: R.lang:33
 #: ruby.lang:38
@@ -490,6 +496,7 @@ msgstr ""
 #: sml.lang:32
 #: sparql.lang:36
 #: sql.lang:34
+#: swift.lang:42
 #: systemverilog.lang:32
 #: tcl.lang:32
 #: texinfo.lang:36
@@ -573,6 +580,7 @@ msgstr ""
 #: prolog.lang:37
 #: rust.lang:52
 #: scala.lang:44
+#: swift.lang:44
 #: vhdl.lang:39
 msgid "Number"
 msgstr ""
@@ -630,6 +638,7 @@ msgstr ""
 #: sml.lang:33
 #: sparql.lang:33
 #: sql.lang:37
+#: swift.lang:48
 #: thrift.lang:30
 #: vala.lang:39
 #: vbnet.lang:35
@@ -698,11 +707,12 @@ msgstr ""
 #: ooc.lang:34
 #: php.lang:43
 #: prolog.lang:40
-#: python3.lang:34
+#: python3.lang:35
 #: python.lang:39
 #: ruby.lang:34
 #: scala.lang:39
 #: sml.lang:36
+#: swift.lang:39
 #: texinfo.lang:33
 #: vala.lang:48
 #: verilog.lang:36
@@ -847,6 +857,7 @@ msgstr ""
 #: prolog.lang:38
 #: scala.lang:45
 #: sparql.lang:44
+#: swift.lang:45
 msgid "Operator"
 msgstr ""
 
@@ -959,7 +970,7 @@ msgstr ""
 #: go.lang:49
 #: netrexx.lang:46
 #: perl.lang:38
-#: python3.lang:44
+#: python3.lang:45
 #: python.lang:50
 msgid "Builtin Function"
 msgstr ""
@@ -993,7 +1004,7 @@ msgstr ""
 #: nemerle.lang:42
 #: ooc.lang:43
 #: php.lang:53
-#: python3.lang:38
+#: python3.lang:39
 #: python.lang:44
 #: R.lang:40
 #: ruby.lang:41
@@ -1101,7 +1112,7 @@ msgstr ""
 #. (itstool) path: styles/style@_name
 #: boo.lang:34
 #: genie.lang:34
-#: python3.lang:32
+#: python3.lang:33
 #: python.lang:37
 msgid "Multiline string"
 msgstr ""
@@ -1134,7 +1145,7 @@ msgstr ""
 #. (itstool) path: styles/style@_name
 #: boo.lang:41
 #: genie.lang:41
-#: python3.lang:36
+#: python3.lang:37
 #: python.lang:42
 #: ruby.lang:51
 msgid "Special Variable"
@@ -1152,7 +1163,7 @@ msgstr ""
 #: modelica.lang:41
 #: objj.lang:35
 #: octave.lang:45
-#: python3.lang:37
+#: python3.lang:38
 #: python.lang:43
 #: scheme.lang:32
 #: scilab.lang:35
@@ -1512,7 +1523,7 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: def.lang:68
-#: python3.lang:40
+#: python3.lang:41
 #: python.lang:46
 #: ruby.lang:43
 msgid "Base-N number"
@@ -1520,7 +1531,7 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: def.lang:70
-#: python3.lang:41
+#: python3.lang:42
 #: python.lang:47
 msgid "Complex number"
 msgstr ""
@@ -2060,7 +2071,7 @@ msgstr ""
 #. (itstool) path: styles/style@_name
 #: glsl.lang:44
 #: go.lang:48
-#: python3.lang:42
+#: python3.lang:43
 #: python.lang:48
 msgid "Builtin Constant"
 msgstr ""
@@ -2506,6 +2517,7 @@ msgstr ""
 #: julia.lang:41
 #: R.lang:37
 #: scala.lang:43
+#: swift.lang:46
 msgid "Special Constant"
 msgstr ""
 
@@ -3026,7 +3038,7 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: opal.lang:32
-#: python3.lang:30
+#: python3.lang:31
 #: python.lang:35
 msgid "Module Handler"
 msgstr ""
@@ -3244,13 +3256,13 @@ msgid "Python 3"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: python3.lang:35
+#: python3.lang:36
 #: python.lang:40
 msgid "Format"
 msgstr ""
 
 #. (itstool) path: styles/style@_name
-#: python3.lang:43
+#: python3.lang:44
 #: python.lang:49
 msgid "Builtin Object"
 msgstr ""
@@ -3411,6 +3423,7 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: scala.lang:41
+#: swift.lang:43
 msgid "Modifier"
 msgstr ""
 
@@ -3513,6 +3526,26 @@ msgstr ""
 #. (itstool) path: sweave.lang/language@_name
 #: sweave.lang:24
 msgid "Sweave"
+msgstr ""
+
+#. (itstool) path: swift.lang/language@_name
+#: swift.lang:24
+msgid "Swift"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: swift.lang:35
+msgid "Builtin Value"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: swift.lang:37
+msgid "Compiler Control"
+msgstr ""
+
+#. (itstool) path: styles/style@_name
+#: swift.lang:41
+msgid "Interpolated Expression"
 msgstr ""
 
 #. (itstool) path: systemverilog.lang/language@_name
