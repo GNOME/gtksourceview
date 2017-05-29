@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=General\n"
 "POT-Creation-Date: 2017-05-21 11:41+0000\n"
-"PO-Revision-Date: 2017-05-29 16:46+0200\n"
+"PO-Revision-Date: 2017-05-29 21:41+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -956,9 +956,8 @@ msgstr "Peraule clâf riservade"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:107
-#, fuzzy
 msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr "Note (FIXME, TODO, XXX, etc.)"
+msgstr "Note (FIXME, TODO, XXX, e vie indenant...)"
 
 #. (itstool) path: styles/style@_name
 #: def.lang:109
@@ -2844,17 +2843,13 @@ msgstr "Valôr incorporât"
 
 #. (itstool) path: styles/style@_name
 #: swift.lang:37
-#, fuzzy
-#| msgid "Complex number"
 msgid "Compiler Control"
-msgstr "Numar complès"
+msgstr "Control dal compiladôr"
 
 #. (itstool) path: styles/style@_name
 #: swift.lang:41
-#, fuzzy
-#| msgid "Regular Expression"
 msgid "Interpolated Expression"
-msgstr "Espression regolâr"
+msgstr "Espression interpolade"
 
 #. (itstool) path: systemverilog.lang/language@_name
 #: systemverilog.lang:21
@@ -3396,7 +3391,7 @@ msgstr "te espression regolâr “%s”: i riferiments indaûr no son supuartât
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "l'ûs di \\C nol è supuartât tes definizions dal lengaç"
 
 #. TODO: have a ChooserDialog?
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:185
