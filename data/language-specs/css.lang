@@ -175,7 +175,7 @@
     </context>
 
     <context id="dimension" style-ref="dimension">
-      <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|e(m|x)|(v(h|w|min|max))|ch|rem|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s)</match>
+      <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|e(m|x)|(v(h|w|min|max))|ch|fr|rem|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s)</match>
     </context>
 
     <context id="resolution" style-ref="dimension">
@@ -340,6 +340,24 @@
       <keyword>font-variant-ligatures</keyword>
       <keyword>font-variant-numeric</keyword>
       <keyword>font-variant-position</keyword>
+      <keyword>grid-area</keyword>
+      <keyword>grid-gap</keyword>
+      <keyword>grid-auto-columns</keyword>
+      <keyword>grid-auto-flow</keyword>
+      <keyword>grid-auto-rows</keyword>
+      <keyword>grid-column-end</keyword>
+      <keyword>grid-column-gap</keyword>
+      <keyword>grid-column-start</keyword>
+      <keyword>grid-column</keyword>
+      <keyword>grid-row-end</keyword>
+      <keyword>grid-row-gap</keyword>
+      <keyword>grid-row-start</keyword>
+      <keyword>grid-row</keyword>
+      <keyword>grid-template-areas</keyword>
+      <keyword>grid-template-columns</keyword>
+      <keyword>grid-template-rows</keyword>
+      <keyword>grid-template</keyword>
+      <keyword>grid</keyword>
       <keyword>hanging-punctuation</keyword>
       <keyword>hyphens</keyword>
       <keyword>image-orientation</keyword>
@@ -347,6 +365,7 @@
       <keyword>image-resolution</keyword>
       <keyword>ime-mode</keyword>
       <keyword>justify-content</keyword>
+      <keyword>justify-self</keyword>
       <keyword>line-break</keyword>
       <keyword>mask-type</keyword>
       <keyword>mask</keyword>
@@ -565,6 +584,7 @@
       <keyword>alternate-reverse</keyword>
       <keyword>alternate</keyword>
       <keyword>avoid-page</keyword>
+      <keyword>auto-flow</keyword>
       <keyword>backwards</keyword>
       <keyword>balance</keyword>
       <keyword>border-box</keyword>
@@ -582,6 +602,7 @@
       <keyword>cover</keyword>
       <keyword>crisp-edges</keyword>
       <keyword>darken</keyword>
+      <keyword>dense</keyword>
       <keyword>diagonal-fractions</keyword>
       <keyword>disabled</keyword>
       <keyword>discretionary-ligatures</keyword>
@@ -605,6 +626,7 @@
       <keyword>forwards</keyword>
       <keyword>from-image</keyword>
       <keyword>full-width</keyword>
+      <keyword>grid</keyword>
       <keyword>historical-forms</keyword>
       <keyword>historical-ligatures</keyword>
       <keyword>horizontal-tb</keyword>
@@ -613,6 +635,7 @@
       <keyword>infinite</keyword>
       <keyword>initial</keyword>
       <keyword>inline-flex</keyword>
+      <keyword>inline-grid</keyword>
       <keyword>inter-cluster</keyword>
       <keyword>inter-ideograph</keyword>
       <keyword>inter-word</keyword>
@@ -664,6 +687,7 @@
       <keyword>slashed-zero</keyword>
       <keyword>space-around</keyword>
       <keyword>space-between</keyword>
+      <keyword>space-evenly</keyword>
       <keyword>space</keyword>
       <keyword>stacked-fractions</keyword>
       <keyword>start</keyword>
