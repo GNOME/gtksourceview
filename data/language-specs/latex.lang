@@ -107,6 +107,50 @@
       </include>
     </context>
 
+    <!--
+        Examples: \url{http://google.de}, \href{http://google.de}{Google}
+
+        Supports also urls with math symbols: \url{https://example.com/$test}
+    -->
+    <context id="urls">
+      <include>
+        <context ref="url-command"/>
+        <context ref="href-command"/>
+      </include>
+    </context>
+
+    <context id="url-command" class="no-spell-check">
+      <match extended="true">
+        (\\url)            # url command.
+        \{                 # Literal opening braces.
+          [ \t]*           # Optional spaces or tabs after the opening braces.
+          .*?              # URL
+          [ \t]*           # Optional spaces or tabs before the closing braces.
+        \}                 # closing url command.
+      </match>
+
+      <include>
+        <context sub-pattern="1" style-ref="command"/>
+      </include>
+    </context>
+
+    <context id="href-command">
+      <match extended="true">
+        (\\href)           # url command.
+        \{(                # Literal opening braces.
+          [ \t]*           # Optional spaces or tabs after the opening braces.
+          .*?              # URL
+          [ \t]*           # Optional spaces or tabs before the closing braces.
+        )\}                # closing url command.
+        \{(.*?)\}          # link text
+      </match>
+
+      <include>
+        <context sub-pattern="1" class="no-spell-check" style-ref="command"/>
+        <context sub-pattern="2" class="no-spell-check"/>
+      </include>
+    </context>
+
     <!--using brackets is an experimental feature from the listings package. The
         following must support these cases:
 
@@ -582,6 +626,7 @@
         <context ref="R-block"/>
         <context ref="headings"/>
         <context ref="math"/>
+        <context ref="urls"/>
         <context ref="specific-commands"/>
         <context ref="common-commands"/>
         <context ref="special-char"/>
