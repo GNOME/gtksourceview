@@ -30,6 +30,7 @@
   <styles>
     <style id="entry-type" _name="Entries" map-to="def:keyword"/>
     <style id="field"      _name="Field"   map-to="def:identifier"/>
+    <style id="string"     _name="String"  map-to="def:string"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>
@@ -96,11 +97,23 @@
       <keyword>year</keyword>
     </context>
 
+    <context id="string" class-disabled="no-spell-check">
+      <match extended="true">
+        =\s*(\{.*?\})|(".*?")
+      </match>
+
+      <include>
+        <context sub-pattern="1" style-ref="string" class="string"/>
+        <context sub-pattern="2" style-ref="string" class="string"/>
+      </include>
+    </context>
+
     <context id="bibtex">
       <include>
         <context ref="latex:latex"/>
         <context ref="entry-type"/>
         <context ref="field"/>
+        <context ref="string"/>
       </include>
     </context>
   </definitions>
