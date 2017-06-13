@@ -40,55 +40,55 @@
     <context id="entry-type" style-ref="entry-type" class="no-spell-check">
       <prefix>@</prefix>
 
-      <keyword>book</keyword>
       <keyword>article</keyword>
+      <keyword>book</keyword>
       <keyword>booklet</keyword>
       <keyword>conference</keyword>
       <keyword>inbook</keyword>
       <keyword>incollection</keyword>
       <keyword>inproceedings</keyword>
+      <keyword>lambda</keyword>
       <keyword>manual</keyword>
       <keyword>mastersthesis</keyword>
-      <keyword>lambda</keyword>
       <keyword>misc</keyword>
       <keyword>phdthesis</keyword>
       <keyword>proceedings</keyword>
+      <keyword>report</keyword>
       <keyword>techreport</keyword>
       <keyword>unpublished</keyword>
-      <keyword>report</keyword>
     </context>
 
     <context id="field" style-ref="field" class="no-spell-check">
+      <keyword>address</keyword>
       <keyword>author</keyword>
-      <keyword>title</keyword>
+      <keyword>booktitle</keyword>
+      <keyword>chapter</keyword>
+      <keyword>crossref</keyword>
+      <keyword>doi</keyword>
+      <keyword>edition</keyword>
+      <keyword>editor</keyword>
+      <keyword>howpublished</keyword>
+      <keyword>institution</keyword>
+      <keyword>isbn</keyword>
+      <keyword>issn</keyword>
       <keyword>journal</keyword>
-      <keyword>year</keyword>
-      <keyword>volume</keyword>
-      <keyword>number</keyword>
-      <keyword>pages</keyword>
+      <keyword>key</keyword>
+      <keyword>location</keyword>
       <keyword>month</keyword>
       <keyword>note</keyword>
-      <keyword>key</keyword>
-      <keyword>publisher</keyword>
-      <keyword>editor</keyword>
-      <keyword>series</keyword>
-      <keyword>address</keyword>
-      <keyword>edition</keyword>
-      <keyword>howpublished</keyword>
-      <keyword>booktitle</keyword>
-      <keyword>organization</keyword>
-      <keyword>chapter</keyword>
-      <keyword>school</keyword>
-      <keyword>institution</keyword>
-      <keyword>type</keyword>
-      <keyword>doi</keyword>
-      <keyword>issn</keyword>
-      <keyword>isbn</keyword>
-      <keyword>url</keyword>
+      <keyword>number</keyword>
       <keyword>numpages</keyword>
+      <keyword>organization</keyword>
+      <keyword>pages</keyword>
+      <keyword>publisher</keyword>
+      <keyword>school</keyword>
+      <keyword>series</keyword>
       <keyword>subtitle</keyword>
-      <keyword>location</keyword>
-      <keyword>crossref</keyword>
+      <keyword>title</keyword>
+      <keyword>type</keyword>
+      <keyword>url</keyword>
+      <keyword>volume</keyword>
+      <keyword>year</keyword>
     </context>
 
     <context id="bibtex">
