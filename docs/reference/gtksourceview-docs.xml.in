@@ -14,22 +14,22 @@
 
   <xi:include href="intro.xml"/>
 
-  <part>
+  <part id="api-reference">
     <title>API reference</title>
 
-    <chapter>
+    <chapter id="main-classes">
       <title>Main Classes</title>
       <xi:include href="xml/buffer.xml"/>
       <xi:include href="xml/view.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="syntax-highlighting">
       <title>Syntax Highlighting</title>
       <xi:include href="xml/language.xml"/>
       <xi:include href="xml/languagemanager.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="styling">
       <title>Styling</title>
       <xi:include href="xml/style.xml"/>
       <xi:include href="xml/stylescheme.xml"/>
@@ -39,7 +39,7 @@
       <xi:include href="xml/styleschemechooserwidget.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="completion">
       <title>Completion</title>
       <xi:include href="xml/completion.xml"/>
       <xi:include href="xml/completioncontext.xml"/>
@@ -50,7 +50,7 @@
       <xi:include href="xml/completionwords.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="file-loading-and-saving">
       <title>File Loading and Saving</title>
       <xi:include href="xml/encoding.xml"/>
       <xi:include href="xml/file.xml"/>
@@ -58,7 +58,7 @@
       <xi:include href="xml/filesaver.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="gutter">
       <title>Gutter and Marks</title>
       <xi:include href="xml/gutter.xml"/>
       <xi:include href="xml/gutterrenderer.xml"/>
@@ -68,19 +68,19 @@
       <xi:include href="xml/markattributes.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="printing">
       <title>Printing</title>
       <xi:include href="xml/printcompositor.xml"/>
     </chapter>
 
-    <chapter>
+    <chapter id="search-and-replace">
       <title>Search and Replace</title>
       <xi:include href="xml/searchcontext.xml"/>
       <xi:include href="xml/searchsettings.xml"/>
     </chapter>
 
-    <chapter>
-      <title>Other</title>
+    <chapter id="misc">
+      <title>Misc</title>
       <xi:include href="xml/map.xml"/>
       <xi:include href="xml/region.xml"/>
       <xi:include href="xml/spacedrawer.xml"/>
@@ -91,7 +91,7 @@
     </chapter>
   </part>
 
-  <part>
+  <part id="syntax-highlighting-reference">
     <title>Syntax highlighting reference</title>
     <xi:include href="lang-tutorial.xml"/>
     <xi:include href="lang-reference.xml"/>
@@ -100,7 +100,7 @@
 
   <xi:include href="porting-guide.xml"/>
 
-  <part>
+  <part id="annexes">
     <title>Annexes</title>
 
     <chapter id="object-tree">
