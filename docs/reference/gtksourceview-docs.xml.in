@@ -98,7 +98,10 @@
     <xi:include href="style-reference.xml"/>
   </part>
 
-  <xi:include href="porting-guide.xml"/>
+  <part id="porting-guide">
+    <title>Porting Guide</title>
+    <xi:include href="porting-guide-3-to-4.xml"/>
+  </part>
 
   <part id="annexes">
     <title>Annexes</title>
