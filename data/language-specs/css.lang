@@ -163,17 +163,6 @@
       <keyword>yellow</keyword>
     </context>
 
-    <context id="function">
-      <start>[a-zA-Z][a-z0-9-]+\(</start>
-      <end>\)</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="function"/>
-        <context sub-pattern="0" where="end" style-ref="function"/>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
-      </include>
-    </context>
-
     <context id="dimension" style-ref="dimension">
       <match>[\+-]?([0-9]+|[0-9]*\.[0-9]+)(%|e(m|x)|(v(h|w|min|max))|ch|fr|rem|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|m?s)</match>
     </context>
@@ -977,6 +966,23 @@
 
     <context id="selector-grammar" style-ref="others-3">
       <match>[*&gt;+]</match>
+    </context>
+
+    <context id="function">
+      <start>[a-zA-Z][a-zA-Z0-9-]+\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="function"/>
+        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
+        <context ref="hexadecimal-color"/>
+        <context ref="resolution"/>
+        <context ref="dimension"/>
+        <context ref="float-number"/>
+        <context ref="number"/>
+        <context ref="function"/>
+      </include>
     </context>
 
     <context id="css" class="no-spell-check">
