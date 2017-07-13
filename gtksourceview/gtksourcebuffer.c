@@ -49,7 +49,7 @@
 
 /**
  * SECTION:buffer
- * @Short_description: Stores the text for display in a GtkSourceView
+ * @Short_description: Subclass of #GtkTextBuffer
  * @Title: GtkSourceBuffer
  * @See_also: #GtkTextBuffer, #GtkSourceView
  *

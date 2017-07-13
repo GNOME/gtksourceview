@@ -54,7 +54,7 @@
 
 /**
  * SECTION:view
- * @Short_description: Widget that displays a GtkSourceBuffer
+ * @Short_description: Subclass of #GtkTextView
  * @Title: GtkSourceView
  * @See_also: #GtkTextView, #GtkSourceBuffer
  *
