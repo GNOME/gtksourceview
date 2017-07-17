@@ -62,6 +62,7 @@ LANGUAGES =			\
 	javascript.lang		\
 	json.lang		\
 	julia.lang		\
+	kotlin.lang		\
 	latex.lang		\
 	lex.lang		\
 	libtool.lang		\
