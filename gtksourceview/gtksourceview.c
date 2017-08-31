@@ -3208,7 +3208,8 @@ gtk_source_view_indent_lines (GtkSourceView *view,
 
 		tab_buffer = g_strnfill (spaces, ' ');
 	}
-	else if (view->priv->indent_width > 0)
+	else if (view->priv->indent_width > 0 &&
+	         view->priv->indent_width != (gint)view->priv->tab_width)
 	{
 		guint indent_width;
 
@@ -3469,7 +3470,8 @@ insert_tab_or_spaces (GtkSourceView *view,
 
 		tab_buf = g_strnfill (spaces, ' ');
 	}
-	else if (view->priv->indent_width > 0)
+	else if (view->priv->indent_width > 0 &&
+	         view->priv->indent_width != (gint)view->priv->tab_width)
 	{
 		GtkTextIter iter;
 		gint i;
