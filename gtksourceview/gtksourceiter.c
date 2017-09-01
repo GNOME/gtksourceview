@@ -37,6 +37,12 @@
  * https://bugzilla.gnome.org/show_bug.cgi?id=111503
  */
 
+/* TODO: the following Pango bug is now mostly done, see if the code here can be
+ * simplified.
+ * https://bugzilla.gnome.org/show_bug.cgi?id=97545
+ * "Make pango_default_break follow Unicode TR #29"
+ */
+
 /* Go to the end of the next or current "full word". A full word is a group of
  * non-blank chars.
  * In other words, this function is the same as the 'E' Vim command.
