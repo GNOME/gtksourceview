@@ -1,26 +1,26 @@
 # Hungarian translation for gtksourceview.
-# Copyright (C) 2003-2016 Free Software Foundation, Inc.
+# Copyright (C) 2003-2017 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 #
 # Andras Timar <timar at gnome dot hu>, 2003.
 # Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016.
-# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015, 2016.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015, 2016, 2017.
 # Balázs Meskó <meskobalazs at fedoraproject dot org>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-05-20 15:26+0000\n"
-"PO-Revision-Date: 2017-02-22 17:10+0100\n"
-"Last-Translator: Meskó Balázs <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-09-01 15:59+0000\n"
+"PO-Revision-Date: 2017-09-05 17:16+0200\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Lokalize 1.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. (itstool) path: displayable-values/value@name
@@ -131,14 +131,14 @@ msgstr "Forrás"
 #: fortran.lang:32 fsharp.lang:33 gap.lang:31 genie.lang:33 go.lang:34
 #: gtkrc.lang:32 haskell.lang:33 haxe.lang:47 html.lang:33 idl-exelis.lang:27
 #: idl.lang:31 ini.lang:30 jade.lang:31 java.lang:34 j.lang:31 latex.lang:32
-#: llvm.lang:29 lua.lang:33 matlab.lang:40 modelica.lang:35 nemerle.lang:33
-#: netrexx.lang:37 nsis.lang:31 ocaml.lang:35 ocl.lang:40 octave.lang:40
-#: ooc.lang:32 opal.lang:33 pascal.lang:32 perl.lang:33 php.lang:39 pig.lang:40
-#: po.lang:31 prolog.lang:33 protobuf.lang:31 rst.lang:35 ruby.lang:35
-#: rust.lang:45 scala.lang:37 scheme.lang:31 scilab.lang:30 sh.lang:32
-#: sml.lang:31 sql.lang:31 sweave.lang:31 swift.lang:36 t2t.lang:30
-#: texinfo.lang:32 thrift.lang:29 vala.lang:37 vbnet.lang:31 verilog.lang:33
-#: vhdl.lang:31 xml.lang:34 yaml.lang:30
+#: llvm.lang:29 lua.lang:33 matlab.lang:40 maxima.lang:33 modelica.lang:35
+#: nemerle.lang:33 netrexx.lang:37 nsis.lang:31 ocaml.lang:35 ocl.lang:40
+#: octave.lang:40 ooc.lang:32 opal.lang:33 pascal.lang:32 perl.lang:33
+#: php.lang:39 pig.lang:40 po.lang:31 prolog.lang:33 protobuf.lang:31
+#: rst.lang:35 ruby.lang:35 rust.lang:45 scala.lang:37 scheme.lang:31
+#: scilab.lang:30 sh.lang:32 sml.lang:31 sql.lang:31 sweave.lang:31
+#: swift.lang:36 t2t.lang:30 texinfo.lang:32 thrift.lang:29 vala.lang:37
+#: vbnet.lang:31 verilog.lang:33 vhdl.lang:31 xml.lang:34 yaml.lang:30
 msgid "Comment"
 msgstr "Megjegyzés"
 
@@ -176,14 +176,14 @@ msgstr "Hexadecimális szám"
 #: genie.lang:35 go.lang:36 gtkrc.lang:33 haskell.lang:38 haxe.lang:54
 #: idl-exelis.lang:31 idl.lang:35 imagej.lang:39 ini.lang:32 java.lang:36
 #: javascript.lang:46 j.lang:44 json.lang:38 julia.lang:36 llvm.lang:30
-#: lua.lang:34 meson.lang:33 modelica.lang:36 nemerle.lang:37 netrexx.lang:35
-#: nsis.lang:32 objc.lang:36 objj.lang:40 ocaml.lang:40 ocl.lang:41
-#: octave.lang:41 ooc.lang:35 opal.lang:36 pascal.lang:33 perl.lang:36
-#: php.lang:44 po.lang:33 prolog.lang:36 protobuf.lang:37 python3.lang:34
-#: python.lang:38 ruby.lang:45 rust.lang:46 scala.lang:38 scheme.lang:33
-#: scilab.lang:32 sh.lang:34 sml.lang:35 sql.lang:33 swift.lang:47
-#: texinfo.lang:35 thrift.lang:32 vala.lang:40 vbnet.lang:32 verilog.lang:34
-#: vhdl.lang:32 yaml.lang:31
+#: lua.lang:34 maxima.lang:34 meson.lang:33 modelica.lang:36 nemerle.lang:37
+#: netrexx.lang:35 nsis.lang:32 objc.lang:36 objj.lang:40 ocaml.lang:40
+#: ocl.lang:41 octave.lang:41 ooc.lang:35 opal.lang:36 pascal.lang:33
+#: perl.lang:36 php.lang:44 po.lang:33 prolog.lang:36 protobuf.lang:37
+#: python3.lang:34 python.lang:38 ruby.lang:45 rust.lang:46 scala.lang:38
+#: scheme.lang:33 scilab.lang:32 sh.lang:34 sml.lang:35 sql.lang:33
+#: swift.lang:47 texinfo.lang:35 thrift.lang:32 vala.lang:40 vbnet.lang:32
+#: verilog.lang:34 vhdl.lang:32 yaml.lang:31
 msgid "String"
 msgstr "Karakterlánc"
 
@@ -234,15 +234,15 @@ msgstr "Hatókör-deklaráció"
 #: fsharp.lang:38 gap.lang:33 genie.lang:40 glsl.lang:42 go.lang:38
 #: gtkrc.lang:34 haskell.lang:36 haxe.lang:53 idl-exelis.lang:30 idl.lang:34
 #: imagej.lang:37 ini.lang:33 java.lang:44 javascript.lang:40 julia.lang:43
-#: lex.lang:34 llvm.lang:31 lua.lang:35 matlab.lang:41 modelica.lang:45
-#: nemerle.lang:38 objc.lang:33 objj.lang:36 ocaml.lang:41 ocl.lang:42
-#: octave.lang:47 ooc.lang:40 opal.lang:37 opencl.lang:32 pascal.lang:34
-#: perl.lang:37 php.lang:47 po.lang:35 prolog.lang:35 protobuf.lang:35
-#: python3.lang:32 python.lang:36 R.lang:33 ruby.lang:38 rust.lang:48
-#: scala.lang:42 scheme.lang:34 scilab.lang:33 sh.lang:35 sml.lang:32
-#: sparql.lang:36 sql.lang:34 swift.lang:42 systemverilog.lang:32 tcl.lang:32
-#: texinfo.lang:36 thrift.lang:31 vala.lang:41 vbnet.lang:34 verilog.lang:41
-#: vhdl.lang:34
+#: lex.lang:34 llvm.lang:31 lua.lang:35 matlab.lang:41 maxima.lang:36
+#: modelica.lang:45 nemerle.lang:38 objc.lang:33 objj.lang:36 ocaml.lang:41
+#: ocl.lang:42 octave.lang:47 ooc.lang:40 opal.lang:37 opencl.lang:32
+#: pascal.lang:34 perl.lang:37 php.lang:47 po.lang:35 prolog.lang:35
+#: protobuf.lang:35 python3.lang:32 python.lang:36 R.lang:33 ruby.lang:38
+#: rust.lang:48 scala.lang:42 scheme.lang:34 scilab.lang:33 sh.lang:35
+#: sml.lang:32 sparql.lang:36 sql.lang:34 swift.lang:42 systemverilog.lang:32
+#: tcl.lang:32 texinfo.lang:36 thrift.lang:31 vala.lang:41 vbnet.lang:34
+#: verilog.lang:41 vhdl.lang:34
 msgid "Keyword"
 msgstr "Kulcsszó"
 
@@ -359,9 +359,9 @@ msgstr "Állandó"
 
 #. (itstool) path: styles/style@_name
 #: ansforth94.lang:44 awk.lang:33 cmake.lang:36 cobol.lang:36 haskell.lang:34
-#: ini.lang:35 llvm.lang:34 makefile.lang:30 nsis.lang:33 perl.lang:43
-#: php.lang:41 pkgconfig.lang:30 prolog.lang:34 protobuf.lang:33 ruby.lang:53
-#: sh.lang:36 sparql.lang:43 tcl.lang:31
+#: ini.lang:35 llvm.lang:34 makefile.lang:30 maxima.lang:37 nsis.lang:33
+#: perl.lang:43 php.lang:41 pkgconfig.lang:30 prolog.lang:34 protobuf.lang:33
+#: ruby.lang:53 sh.lang:36 sparql.lang:43 tcl.lang:31
 msgid "Variable"
 msgstr "Változó"
 
@@ -656,8 +656,8 @@ msgid "Swizzle operator"
 msgstr "Feloldási operátor"
 
 #. (itstool) path: styles/style@_name
-#: cg.lang:48 erlang.lang:40 imagej.lang:32 matlab.lang:42 modelica.lang:46
-#: octave.lang:49 ruby.lang:48
+#: cg.lang:48 erlang.lang:40 imagej.lang:32 matlab.lang:42 maxima.lang:35
+#: modelica.lang:46 octave.lang:49 ruby.lang:48
 msgid "Builtin"
 msgstr "Beépített"
 
@@ -1252,12 +1252,14 @@ msgstr "FCL"
 #. (itstool) path: imagej.lang/language@_section
 #. (itstool) path: julia.lang/language@_section
 #. (itstool) path: matlab.lang/language@_section
+#. (itstool) path: maxima.lang/language@_section
 #. (itstool) path: modelica.lang/language@_section
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
 #: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
-#: matlab.lang:25 modelica.lang:25 octave.lang:25 R.lang:25 scilab.lang:23
+#: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
+#: scilab.lang:23
 msgid "Scientific"
 msgstr "Tudományos"
 
@@ -2132,6 +2134,11 @@ msgstr "Sortörés"
 msgid "Matlab"
 msgstr "Matlab"
 
+#. (itstool) path: maxima.lang/language@_name
+#: maxima.lang:24
+msgid "Maxima"
+msgstr "Maxima"
+
 #. (itstool) path: mediawiki.lang/language@_name
 #: mediawiki.lang:22
 msgid "MediaWiki"
@@ -2836,19 +2843,16 @@ msgstr "Swift"
 
 #. (itstool) path: styles/style@_name
 #: swift.lang:35
-#| msgid "Builtin Variable"
 msgid "Builtin Value"
 msgstr "Beépített érték"
 
 #. (itstool) path: styles/style@_name
 #: swift.lang:37
-#| msgid "Control"
 msgid "Compiler Control"
 msgstr "Fordítóvezérlés"
 
 #. (itstool) path: styles/style@_name
 #: swift.lang:41
-#| msgid "Regular Expression"
 msgid "Interpolated Expression"
 msgstr "Interpolált kifejezés"
 
@@ -3439,23 +3443,3 @@ msgstr "Szó_kezdő"
 msgid "C_hange Case"
 msgstr "Kis- és nagybetű mó_dosítása"
 
-#~ msgid "Space"
-#~ msgstr "Szóköz"
-
-#~ msgid "Tab"
-#~ msgstr "Tab"
-
-#~ msgid "Newline"
-#~ msgstr "Soremelés"
-
-#~ msgid "Non Breaking Whitespace"
-#~ msgstr "Nem törő szóköz"
-
-#~ msgid "Leading"
-#~ msgstr "Kezdő"
-
-#~ msgid "Text"
-#~ msgstr "Szöveg"
-
-#~ msgid "Trailing"
-#~ msgstr "Záró"
