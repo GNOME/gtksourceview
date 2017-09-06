@@ -21,16 +21,16 @@
 
 -->
 
-<language id="sweave" _name="Sweave" version="2.0" _section="Markup">
+<language id="sweave" name="Sweave" version="2.0" _section="Markup">
   <metadata>
     <property name="globs">*.rnw;*.Rnw;*.snw;*.Snw</property>
     <property name="line-comment-start">%</property>
   </metadata>
 
   <styles>
-    <style id="comment"            _name="Comment"    map-to="latex:comment"/>
-    <style id="command"            _name="Command"    map-to="latex:command"/>
-    <style id="verbatim"           _name="Verbatim"   map-to="latex:verbatim"/>
+    <style id="comment"            name="Comment"    map-to="latex:comment"/>
+    <style id="command"            name="Command"    map-to="latex:command"/>
+    <style id="verbatim"           name="Verbatim"   map-to="latex:verbatim"/>
   </styles>
 
   <definitions>

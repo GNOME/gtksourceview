@@ -20,7 +20,7 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="sparql" _name="SPARQL" version="2.0" _section="Source">
+<language id="sparql" name="SPARQL" version="2.0" _section="Source">
 
   <metadata>
     <property name="mimetypes">application/sparql-query</property>
@@ -29,19 +29,19 @@
   </metadata>
 
   <styles>
-    <style id="class"      _name="Class"      map-to="def:type"/>
-    <style id="datatype"   _name="Data Type"  map-to="def:type"/>
-    <style id="function"   _name="Function"   map-to="def:function"/>
-    <style id="individual" _name="Individual" map-to="def:special-constant"/>
-    <style id="keyword"    _name="Keyword"    map-to="def:keyword"/>
-    <style id="namespace"  _name="Namespace"  map-to="def:builtin"/>
-    <style id="boolean"    _name="Boolean"    map-to="def:boolean"/>
-    <style id="literal"    _name="Literal"    map-to="def:string"/>
-    <style id="predicate"  _name="Predicate"  map-to="def:function"/>
-    <style id="qname"      _name="QName" />
-    <style id="iri"        _name="IRI"        map-to="def:special-constant"/>
-    <style id="var"        _name="Variable"   map-to="def:preprocessor"/>
-    <style id="operator"   _name="Operator"   map-to="def:operator"/>
+    <style id="class"      name="Class"      map-to="def:type"/>
+    <style id="datatype"   name="Data Type"  map-to="def:type"/>
+    <style id="function"   name="Function"   map-to="def:function"/>
+    <style id="individual" name="Individual" map-to="def:special-constant"/>
+    <style id="keyword"    name="Keyword"    map-to="def:keyword"/>
+    <style id="namespace"  name="Namespace"  map-to="def:builtin"/>
+    <style id="boolean"    name="Boolean"    map-to="def:boolean"/>
+    <style id="literal"    name="Literal"    map-to="def:string"/>
+    <style id="predicate"  name="Predicate"  map-to="def:function"/>
+    <style id="qname"      name="QName" />
+    <style id="iri"        name="IRI"        map-to="def:special-constant"/>
+    <style id="var"        name="Variable"   map-to="def:preprocessor"/>
+    <style id="operator"   name="Operator"   map-to="def:operator"/>
   </styles>
 
   <definitions>

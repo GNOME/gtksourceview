@@ -21,7 +21,7 @@
 
 -->
 
-<language id="lex" _name="Lex" _section="Source" version="2.0">
+<language id="lex" name="Lex" _section="Source" version="2.0">
   <metadata>
     <property name="globs">*.l;*.lex;*.flex</property>
     <property name="line-comment-start">//</property>
@@ -30,10 +30,10 @@
   </metadata>
 
   <styles>
-    <style id="token" _name="Token" map-to="def:keyword" />
-    <style id="keyword" _name="Keyword" map-to="def:keyword" />
-    <style id="regexp" _name="Pattern" map-to="def:identifier" />
-    <style id="expression" _name="Expression" map-to="def:type" />
+    <style id="token" name="Token" map-to="def:keyword" />
+    <style id="keyword" name="Keyword" map-to="def:keyword" />
+    <style id="regexp" name="Pattern" map-to="def:identifier" />
+    <style id="expression" name="Expression" map-to="def:type" />
   </styles>
 
   <definitions>

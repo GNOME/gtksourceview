@@ -22,7 +22,7 @@
 
 -->
 <!-- Translators: It is the section for a set of languages related for this purpose -->
-<language id="r" _name="R" version="2.0" _section="Scientific">
+<language id="r" name="R" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/x-R</property>
     <property name="globs">*.R;*.Rout;*.r;*.Rhistory;*.Rt;*.Rout.save;*.Rout.fail</property>
@@ -30,15 +30,15 @@
   </metadata>
 
   <styles>
-    <style id="keyword"             _name="Keyword"               map-to="def:keyword"/>
-    <style id="reserved-classes"    _name="Reserved Class"        map-to="def:type"/>
-    <style id="assignment-operator" _name="Assignment Operator"   map-to="def:operator"/>
-    <style id="delimiter"           _name="Delimiter"             map-to="def:operator"/>
-    <style id="special-constant"    _name="Special Constant"      map-to="def:special-constant"/>
-    <style id="boolean"             _name="Boolean value"         map-to="def:boolean"/>
-    <style id="integer-number"      _name="Integer Number"        map-to="def:base-n-integer"/>
-    <style id="floating-point"      _name="Floating point number" map-to="def:floating-point"/>
-    <style id="functions"           _name="Functions"             map-to="def:function"/>
+    <style id="keyword"             name="Keyword"               map-to="def:keyword"/>
+    <style id="reserved-classes"    name="Reserved Class"        map-to="def:type"/>
+    <style id="assignment-operator" name="Assignment Operator"   map-to="def:operator"/>
+    <style id="delimiter"           name="Delimiter"             map-to="def:operator"/>
+    <style id="special-constant"    name="Special Constant"      map-to="def:special-constant"/>
+    <style id="boolean"             name="Boolean value"         map-to="def:boolean"/>
+    <style id="integer-number"      name="Integer Number"        map-to="def:base-n-integer"/>
+    <style id="floating-point"      name="Floating point number" map-to="def:floating-point"/>
+    <style id="functions"           name="Functions"             map-to="def:function"/>
   </styles>
 
   <definitions>

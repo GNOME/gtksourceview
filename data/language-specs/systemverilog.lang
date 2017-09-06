@@ -18,7 +18,7 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="systemverilog" _name="SystemVerilog" version="2.0" _section="Source">
+<language id="systemverilog" name="SystemVerilog" version="2.0" _section="Source">
   <metadata>
     <property name="globs">*.sv;*.svh</property>
     <property name="line-comment-start">//</property>
@@ -27,10 +27,10 @@
   </metadata>
 
   <styles>
-    <style id="compiler-directive" _name="Compiler Directive" map-to="def:preprocessor"/>
-    <style id="system-task" _name="System Task" map-to="def:keyword"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="type" _name="Type" map-to="def:type"/>
+    <style id="compiler-directive" name="Compiler Directive" map-to="def:preprocessor"/>
+    <style id="system-task" name="System Task" map-to="def:keyword"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="type" name="Type" map-to="def:type"/>
   </styles>
 
   <definitions>

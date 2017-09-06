@@ -21,7 +21,7 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="scala" _name="Scala" version="2.0" _section="Source">
+<language id="scala" name="Scala" version="2.0" _section="Source">
 
   <metadata>
     <property name="mimetypes">text/x-scala</property>
@@ -32,21 +32,21 @@
   </metadata>
 
   <styles>
-    <style id="error" _name="Error" map-to="def:error"/>
-    <style id="external" _name="External" map-to="def:preprocessor"/>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
-    <style id="declaration" _name="Declaration" map-to="def:type"/>
-    <style id="modifier" _name="Modifier" map-to="def:type"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="special" _name="Special Constant" map-to="def:special-constant"/>
-    <style id="number" _name="Number" map-to="def:decimal"/>
-    <style id="operator" _name="Operator" map-to="def:operator"/>
-    <style id="type" _name="Data Type" map-to="def:identifier"/>
-    <style id="builtin" _name="Built In" map-to="def:type"/>
-    <style id="other" _name="Other" map-to="def:special-char"/>
-    <style id="xmltag" _name="XML Tag" map-to="def:identifier"/>
+    <style id="error" name="Error" map-to="def:error"/>
+    <style id="external" name="External" map-to="def:preprocessor"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
+    <style id="declaration" name="Declaration" map-to="def:type"/>
+    <style id="modifier" name="Modifier" map-to="def:type"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="special" name="Special Constant" map-to="def:special-constant"/>
+    <style id="number" name="Number" map-to="def:decimal"/>
+    <style id="operator" name="Operator" map-to="def:operator"/>
+    <style id="type" name="Data Type" map-to="def:identifier"/>
+    <style id="builtin" name="Built In" map-to="def:type"/>
+    <style id="other" name="Other" map-to="def:special-char"/>
+    <style id="xmltag" name="XML Tag" map-to="def:identifier"/>
   </styles>
 
   <definitions>

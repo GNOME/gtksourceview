@@ -20,20 +20,20 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="cmake" _name="CMake" version="2.0" _section="Other">
+<language id="cmake" name="CMake" version="2.0" _section="Other">
   <metadata>
     <property name="globs">CMakeLists.txt;*.cmake;*.cmake.in;*.ctest;*.ctest.in</property>
     <property name="line-comment-start">#</property>
   </metadata>
 
   <styles>
-    <style id="builtin-command" _name="Builtin Command" map-to="def:function"/>
-    <style id="deprecated-builtin-command" _name="Deprecated Builtin Command" map-to="def:warning"/>
-    <style id="builtin-variable" _name="Builtin Variable" map-to="def:builtin"/>
-    <style id="constant" _name="Constant" map-to="def:constant"/>
-    <style id="operator" _name="Operator" map-to="def:operator"/>
-    <style id="control" _name="Control Keyword" map-to="def:keyword"/>
-    <style id="variable" _name="Variable" map-to="makefile:variable"/>
+    <style id="builtin-command" name="Builtin Command" map-to="def:function"/>
+    <style id="deprecated-builtin-command" name="Deprecated Builtin Command" map-to="def:warning"/>
+    <style id="builtin-variable" name="Builtin Variable" map-to="def:builtin"/>
+    <style id="constant" name="Constant" map-to="def:constant"/>
+    <style id="operator" name="Operator" map-to="def:operator"/>
+    <style id="control" name="Control Keyword" map-to="def:keyword"/>
+    <style id="variable" name="Variable" map-to="makefile:variable"/>
   </styles>
 
   <definitions>

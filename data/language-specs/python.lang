@@ -24,7 +24,7 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="python" _name="Python" version="2.0" _section="Script">
+<language id="python" name="Python" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">text/x-python;application/x-python</property>
     <property name="globs">*.py</property>
@@ -32,25 +32,25 @@
   </metadata>
 
   <styles>
-    <style id="module-handler"    _name="Module Handler"        map-to="def:preprocessor"/>
-    <style id="keyword"           _name="Keyword"               map-to="def:keyword"/>
-    <style id="multiline-string"  _name="Multiline string"      map-to="def:string"/>
-    <style id="string"            _name="String"                map-to="def:string"/>
-    <style id="escaped-char"      _name="Escaped Character"     map-to="def:special-char"/>
-    <style id="format"            _name="Format"                map-to="def:character"/>
-    <style id="string-conversion" _name="String Conversion"/>
-    <style id="special-variable"  _name="Special Variable"      map-to="def:identifier"/>
-    <style id="boolean"           _name="Boolean"               map-to="def:boolean"/>
-    <style id="floating-point"    _name="Floating point number" map-to="def:floating-point"/>
-    <style id="decimal"           _name="Decimal number"        map-to="def:decimal"/>
-    <style id="base-n-integer"    _name="Base-N number"         map-to="def:base-n-integer"/>
-    <style id="complex"           _name="Complex number"        map-to="def:complex"/>
-    <style id="builtin-constant"  _name="Builtin Constant"      map-to="def:special-constant"/>
-    <style id="builtin-object"    _name="Builtin Object"        map-to="def:type"/>
-    <style id="builtin-function"  _name="Builtin Function"      map-to="def:builtin"/>
-    <style id="function-name"     _name="Function Name"         map-to="def:function"/>
-    <style id="class-name"        _name="Class Name"            map-to="def:function"/>
-    <style id="decorator"         _name="Decorator"             map-to="def:preprocessor"/>
+    <style id="module-handler"    name="Module Handler"        map-to="def:preprocessor"/>
+    <style id="keyword"           name="Keyword"               map-to="def:keyword"/>
+    <style id="multiline-string"  name="Multiline string"      map-to="def:string"/>
+    <style id="string"            name="String"                map-to="def:string"/>
+    <style id="escaped-char"      name="Escaped Character"     map-to="def:special-char"/>
+    <style id="format"            name="Format"                map-to="def:character"/>
+    <style id="string-conversion" name="String Conversion"/>
+    <style id="special-variable"  name="Special Variable"      map-to="def:identifier"/>
+    <style id="boolean"           name="Boolean"               map-to="def:boolean"/>
+    <style id="floating-point"    name="Floating point number" map-to="def:floating-point"/>
+    <style id="decimal"           name="Decimal number"        map-to="def:decimal"/>
+    <style id="base-n-integer"    name="Base-N number"         map-to="def:base-n-integer"/>
+    <style id="complex"           name="Complex number"        map-to="def:complex"/>
+    <style id="builtin-constant"  name="Builtin Constant"      map-to="def:special-constant"/>
+    <style id="builtin-object"    name="Builtin Object"        map-to="def:type"/>
+    <style id="builtin-function"  name="Builtin Function"      map-to="def:builtin"/>
+    <style id="function-name"     name="Function Name"         map-to="def:function"/>
+    <style id="class-name"        name="Class Name"            map-to="def:function"/>
+    <style id="decorator"         name="Decorator"             map-to="def:preprocessor"/>
   </styles>
 
   <definitions>

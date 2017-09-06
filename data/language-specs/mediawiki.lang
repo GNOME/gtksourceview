@@ -19,27 +19,27 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="mediawiki" _name="MediaWiki" version="2.0" _section="Markup">
+<language id="mediawiki" name="MediaWiki" version="2.0" _section="Markup">
   <metadata>
     <property name="block-comment-start">&lt;!--</property>
     <property name="block-comment-end">--&gt;</property>
   </metadata>
 
   <styles>
-    <style id="strong-emphasis" _name="Strong Emphasis"   map-to="def:statement"/>
-    <style id="light-emphasis"  _name="Light Emphasis"    map-to="def:doc-comment-element"/>
-    <style id="signature"       _name="Signature"         map-to="def:statement"/>
-    <style id="url"             _name="URL"               map-to="def:underlined"/>
-    <style id="link"            _name="Link"              map-to="def:comment"/>
-    <style id="link-symbol"     _name="Symbol on a Link"  map-to="def:shebang"/>
-    <style id="line"            _name="Line"              map-to="def:type"/>
-    <style id="list"            _name="List"              map-to="def:statement"/>
-    <style id="magic-word"      _name="Magic Word"        map-to="def:statement"/>
-    <style id="table-symbol"    _name="Symbol of a Table" map-to="def:statement"/>
-    <style id="preformatted"    _name="Preformatted"      map-to="def:identifier"/>
-    <style id="redirect"        _name="Redirect"          map-to="def:statement"/>
-    <style id="title"           _name="Title"             map-to="def:type"/>
-    <style id="template"        _name="Template"          map-to="def:statement"/>
+    <style id="strong-emphasis" name="Strong Emphasis"   map-to="def:statement"/>
+    <style id="light-emphasis"  name="Light Emphasis"    map-to="def:doc-comment-element"/>
+    <style id="signature"       name="Signature"         map-to="def:statement"/>
+    <style id="url"             name="URL"               map-to="def:underlined"/>
+    <style id="link"            name="Link"              map-to="def:comment"/>
+    <style id="link-symbol"     name="Symbol on a Link"  map-to="def:shebang"/>
+    <style id="line"            name="Line"              map-to="def:type"/>
+    <style id="list"            name="List"              map-to="def:statement"/>
+    <style id="magic-word"      name="Magic Word"        map-to="def:statement"/>
+    <style id="table-symbol"    name="Symbol of a Table" map-to="def:statement"/>
+    <style id="preformatted"    name="Preformatted"      map-to="def:identifier"/>
+    <style id="redirect"        name="Redirect"          map-to="def:statement"/>
+    <style id="title"           name="Title"             map-to="def:type"/>
+    <style id="template"        name="Template"          map-to="def:statement"/>
   </styles>
 
   <definitions>

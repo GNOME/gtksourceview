@@ -18,7 +18,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this library; if not, see <http://www.gnu.org/licenses/>.
 -->
-<language id="yaml" _name="YAML" _section="Other" version="2.0">
+<language id="yaml" name="YAML" _section="Other" version="2.0">
   <metadata>
     <property name="mimetypes">application/x-yaml</property>
     <property name="globs">*.yaml;*.yml;</property>
@@ -26,18 +26,18 @@
   </metadata>
 
   <styles>
-    <style id="scalar"    _name="Block literal"   map-to="def:string"/>
-    <style id="comment"   _name="Comment"         map-to="def:comment"/>
-    <style id="string"    _name="String"          map-to="def:string"/>
-    <style id="anchor"    _name="Anchor"          map-to="def:identifier"/>
-    <style id="tag"       _name="Tag"             map-to="def:preprocessor"/>
-    <style id="alias"     _name="Alias"           map-to="def:type"/>
-    <style id="map-key"   _name="Map key"         map-to="def:keyword"/>
-    <style id="directive" _name="Directive"       map-to="def:shebang"/>
-    <style id="null"      _name="Null"            map-to="def:special-constant"/>
-    <style id="bool"      _name="Boolean"         map-to="def:boolean"/>
-    <style id="int"       _name="Integer"         map-to="def:decimal"/>
-    <style id="float"     _name="Floating point"  map-to="def:floating-point"/>
+    <style id="scalar"    name="Block literal"   map-to="def:string"/>
+    <style id="comment"   name="Comment"         map-to="def:comment"/>
+    <style id="string"    name="String"          map-to="def:string"/>
+    <style id="anchor"    name="Anchor"          map-to="def:identifier"/>
+    <style id="tag"       name="Tag"             map-to="def:preprocessor"/>
+    <style id="alias"     name="Alias"           map-to="def:type"/>
+    <style id="map-key"   name="Map key"         map-to="def:keyword"/>
+    <style id="directive" name="Directive"       map-to="def:shebang"/>
+    <style id="null"      name="Null"            map-to="def:special-constant"/>
+    <style id="bool"      name="Boolean"         map-to="def:boolean"/>
+    <style id="int"       name="Integer"         map-to="def:decimal"/>
+    <style id="float"     name="Floating point"  map-to="def:floating-point"/>
   </styles>
 
   <definitions>

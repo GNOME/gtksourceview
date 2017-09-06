@@ -20,7 +20,7 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="objc" _name="Objective-C" version="2.0" _section="Source">
+<language id="objc" name="Objective-C" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-objcsrc</property>
     <property name="globs">*.m</property>
@@ -30,10 +30,10 @@
   </metadata>
 
   <styles>
-    <style id="keyword" _name="Keyword" map-to="c:keyword"/>
-    <style id="type" _name="Data Type" map-to="c:type"/>
-    <style id="common-defines" _name="Common Defines" map-to="c:common-defines"/>
-    <style id="string" _name="String" map-to="c:string"/>
+    <style id="keyword" name="Keyword" map-to="c:keyword"/>
+    <style id="type" name="Data Type" map-to="c:type"/>
+    <style id="common-defines" name="Common Defines" map-to="c:common-defines"/>
+    <style id="string" name="String" map-to="c:string"/>
   </styles>
 
   <definitions>

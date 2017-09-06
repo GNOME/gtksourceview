@@ -31,7 +31,7 @@ References:
   https://haxe.org/manual/expression.html
 -->
 
-<language id="haxe" _name="Haxe" version="2.0" _section="Source">
+<language id="haxe" name="Haxe" version="2.0" _section="Source">
 
   <metadata>
 
@@ -44,23 +44,23 @@ References:
 
 
   <styles>
-    <style id="comment"           _name="Comment"           map-to="def:comment" />
-    <style id="external"          _name="External"          map-to="def:preprocessor" />
-    <style id="preprocessor"      _name="Preprocessor"      map-to="def:preprocessor" />
-    <style id="declaration"       _name="Declaration"       map-to="def:type" />
-    <style id="storage-class"     _name="Storage Class"     map-to="def:type" />
-    <style id="scope"             _name="Scope"             map-to="def:type" />
-    <style id="keyword"           _name="Keyword"           map-to="def:keyword" />
-    <style id="string"            _name="String"            map-to="def:string" />
-    <style id="number"            _name="Number"            map-to="def:decimal" />
-    <style id="boolean"           _name="Boolean value"     map-to="def:boolean" />
-    <style id="null-value"        _name="Null Value"        map-to="def:special-constant" />
-    <style id="type"              _name="Data Type"         map-to="def:identifier" />
-    <style id="metadata"          _name="Metadata"          map-to="def:constant" />
-    <style id="macro"             _name="Macro"             map-to="def:preprocessor" />
-    <style id="error"             _name="Error"             map-to="def:error" />
-    <style id="escaped-char"      _name="Escaped Character" map-to="def:special-char" />
-    <style id="identifier-prefix" _name="Identifier Prefix" map-to="def:warning" />
+    <style id="comment"           name="Comment"           map-to="def:comment" />
+    <style id="external"          name="External"          map-to="def:preprocessor" />
+    <style id="preprocessor"      name="Preprocessor"      map-to="def:preprocessor" />
+    <style id="declaration"       name="Declaration"       map-to="def:type" />
+    <style id="storage-class"     name="Storage Class"     map-to="def:type" />
+    <style id="scope"             name="Scope"             map-to="def:type" />
+    <style id="keyword"           name="Keyword"           map-to="def:keyword" />
+    <style id="string"            name="String"            map-to="def:string" />
+    <style id="number"            name="Number"            map-to="def:decimal" />
+    <style id="boolean"           name="Boolean value"     map-to="def:boolean" />
+    <style id="null-value"        name="Null Value"        map-to="def:special-constant" />
+    <style id="type"              name="Data Type"         map-to="def:identifier" />
+    <style id="metadata"          name="Metadata"          map-to="def:constant" />
+    <style id="macro"             name="Macro"             map-to="def:preprocessor" />
+    <style id="error"             name="Error"             map-to="def:error" />
+    <style id="escaped-char"      name="Escaped Character" map-to="def:special-char" />
+    <style id="identifier-prefix" name="Identifier Prefix" map-to="def:warning" />
   </styles>
 
   <definitions>

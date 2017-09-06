@@ -20,7 +20,7 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="eiffel" _name="Eiffel" version="2.0" _section="Source">
+<language id="eiffel" name="Eiffel" version="2.0" _section="Source">
 
   <metadata>
     <property name="mimetypes">text/x-eiffel</property>
@@ -29,20 +29,20 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="debug" _name="Debug" map-to="def:preprocessor"/>
-    <style id="assertion" _name="Assertion" map-to="def:preprocessor"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="design-by-contract" _name="Design by Contract" map-to="def:keyword"/>
-    <style id="exception-handling" _name="Exception Handling" map-to="def:keyword"/>
-    <style id="predefined-variable" _name="Predefined Variable" map-to="def:builtin"/>
-    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
-    <style id="void" _name="Void Value" map-to="def:special-constant"/>
-    <style id="boolean" _name="Boolean Value" map-to="def:boolean"/>
-    <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
-    <style id="hexadecimal" _name="Hexadecimal number" map-to="def:base-n-integer"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="debug" name="Debug" map-to="def:preprocessor"/>
+    <style id="assertion" name="Assertion" map-to="def:preprocessor"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="design-by-contract" name="Design by Contract" map-to="def:keyword"/>
+    <style id="exception-handling" name="Exception Handling" map-to="def:keyword"/>
+    <style id="predefined-variable" name="Predefined Variable" map-to="def:builtin"/>
+    <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
+    <style id="void" name="Void Value" map-to="def:special-constant"/>
+    <style id="boolean" name="Boolean Value" map-to="def:boolean"/>
+    <style id="decimal" name="Decimal number" map-to="def:decimal"/>
+    <style id="hexadecimal" name="Hexadecimal number" map-to="def:base-n-integer"/>
   </styles>
 
   <default-regex-options case-sensitive="true"/>

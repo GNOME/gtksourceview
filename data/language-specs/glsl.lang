@@ -27,7 +27,7 @@
  Specification (February 12, 2010):
 http://www.opengl.org/registry/doc/GLSLangSpec.4.00.7.pdf
 -->
-<language id="glsl" _name="OpenGL Shading Language" version="2.0" _section="Source">
+<language id="glsl" name="OpenGL Shading Language" version="2.0" _section="Source">
 
   <metadata>
     <property name="globs">*.glslv;*.glslf</property>
@@ -37,13 +37,13 @@ http://www.opengl.org/registry/doc/GLSLangSpec.4.00.7.pdf
   </metadata>
 
   <styles>
-    <style id="preprocessor"      _name="Preprocessor"          map-to="def:preprocessor"/>
-    <style id="type"              _name="Data Type"             map-to="def:type"/>
-    <style id="keyword"           _name="Keyword"               map-to="def:keyword"/>
-    <style id="builtin-function"  _name="Builtin Function"      map-to="def:builtin"/>
-    <style id="builtin-constant"  _name="Builtin Constant"      map-to="def:constant"/>
-    <style id="builtin-variable"  _name="Builtin Variable"      map-to="def:identifier"/>
-    <style id="future-use"        _name="Reserved Keywords"/>
+    <style id="preprocessor"      name="Preprocessor"          map-to="def:preprocessor"/>
+    <style id="type"              name="Data Type"             map-to="def:type"/>
+    <style id="keyword"           name="Keyword"               map-to="def:keyword"/>
+    <style id="builtin-function"  name="Builtin Function"      map-to="def:builtin"/>
+    <style id="builtin-constant"  name="Builtin Constant"      map-to="def:constant"/>
+    <style id="builtin-variable"  name="Builtin Variable"      map-to="def:identifier"/>
+    <style id="future-use"        name="Reserved Keywords"/>
   </styles>
 
   <definitions>

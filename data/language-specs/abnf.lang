@@ -27,19 +27,19 @@ References:
 	https://tools.ietf.org/html/rfc5234
 	https://tools.ietf.org/html/rfc7405
 -->
-<language id="abnf" _name="ABNF" version="2.0" _section="Source">
+<language id="abnf" name="ABNF" version="2.0" _section="Source">
   <metadata>
     <property name="globs">*.abnf</property>
     <property name="line-comment-start">;</property>
   </metadata>
 
   <styles>
-    <style id="comment"     _name="Comment"            map-to="def:comment"/>
-    <style id="rulename"    _name="Rule Name"          map-to="def:type"/>
-    <style id="binary"      _name="Binary number"      map-to="def:base-n-integer"/>
-    <style id="decimal"     _name="Decimal number"     map-to="def:decimal"/>
-    <style id="hexadecimal" _name="Hexadecimal number" map-to="def:base-n-integer"/>
-    <style id="string"      _name="String"             map-to="def:string"/>
+    <style id="comment"     name="Comment"            map-to="def:comment"/>
+    <style id="rulename"    name="Rule Name"          map-to="def:type"/>
+    <style id="binary"      name="Binary number"      map-to="def:base-n-integer"/>
+    <style id="decimal"     name="Decimal number"     map-to="def:decimal"/>
+    <style id="hexadecimal" name="Hexadecimal number" map-to="def:base-n-integer"/>
+    <style id="string"      name="String"             map-to="def:string"/>
   </styles>
 
   <definitions>
