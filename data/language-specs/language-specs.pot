@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-05-21 13:39+0200\n"
+"POT-Creation-Date: 2017-09-06 14:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,7 @@ msgstr ""
 #. (itstool) path: idl.lang/language@_section
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
+#. (itstool) path: kotlin.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
@@ -106,6 +107,7 @@ msgstr ""
 #: idl.lang:23
 #: java.lang:24
 #: j.lang:23
+#: kotlin.lang:24
 #: lex.lang:24
 #: llvm.lang:22
 #: makefile.lang:22
@@ -177,7 +179,6 @@ msgstr ""
 #: llvm.lang:29
 #: lua.lang:33
 #: matlab.lang:40
-#: maxima.lang:33
 #: modelica.lang:35
 #: nemerle.lang:33
 #: netrexx.lang:37
@@ -204,7 +205,6 @@ msgstr ""
 #: sml.lang:31
 #: sql.lang:31
 #: sweave.lang:31
-#: swift.lang:36
 #: t2t.lang:30
 #: texinfo.lang:32
 #: thrift.lang:29
@@ -278,6 +278,7 @@ msgstr ""
 #: ada.lang:34
 #: ansforth94.lang:42
 #: asp.lang:32
+#: bibtex.lang:33
 #: boo.lang:35
 #: c.lang:35
 #: cobol.lang:39
@@ -310,7 +311,6 @@ msgstr ""
 #: julia.lang:36
 #: llvm.lang:30
 #: lua.lang:34
-#: maxima.lang:34
 #: meson.lang:33
 #: modelica.lang:36
 #: nemerle.lang:37
@@ -339,7 +339,6 @@ msgstr ""
 #: sh.lang:34
 #: sml.lang:35
 #: sql.lang:33
-#: swift.lang:47
 #: texinfo.lang:35
 #: thrift.lang:32
 #: vala.lang:40
@@ -393,7 +392,6 @@ msgstr ""
 #: java.lang:40
 #: ooc.lang:36
 #: scala.lang:36
-#: swift.lang:40
 msgid "External"
 msgstr ""
 
@@ -403,7 +401,6 @@ msgstr ""
 #: java.lang:41
 #: ooc.lang:37
 #: scala.lang:40
-#: swift.lang:38
 msgid "Declaration"
 msgstr ""
 
@@ -470,7 +467,6 @@ msgstr ""
 #: llvm.lang:31
 #: lua.lang:35
 #: matlab.lang:41
-#: maxima.lang:36
 #: modelica.lang:45
 #: nemerle.lang:38
 #: objc.lang:33
@@ -499,7 +495,6 @@ msgstr ""
 #: sml.lang:32
 #: sparql.lang:36
 #: sql.lang:34
-#: swift.lang:42
 #: systemverilog.lang:32
 #: tcl.lang:32
 #: texinfo.lang:36
@@ -583,7 +578,6 @@ msgstr ""
 #: prolog.lang:37
 #: rust.lang:52
 #: scala.lang:44
-#: swift.lang:44
 #: vhdl.lang:39
 msgid "Number"
 msgstr ""
@@ -641,7 +635,6 @@ msgstr ""
 #: sml.lang:33
 #: sparql.lang:33
 #: sql.lang:37
-#: swift.lang:48
 #: thrift.lang:30
 #: vala.lang:39
 #: vbnet.lang:35
@@ -715,7 +708,6 @@ msgstr ""
 #: ruby.lang:34
 #: scala.lang:39
 #: sml.lang:36
-#: swift.lang:39
 #: texinfo.lang:33
 #: vala.lang:48
 #: verilog.lang:36
@@ -781,7 +773,6 @@ msgstr ""
 #: ini.lang:35
 #: llvm.lang:34
 #: makefile.lang:30
-#: maxima.lang:37
 #: nsis.lang:33
 #: perl.lang:43
 #: php.lang:41
@@ -861,7 +852,6 @@ msgstr ""
 #: prolog.lang:38
 #: scala.lang:45
 #: sparql.lang:44
-#: swift.lang:45
 msgid "Operator"
 msgstr ""
 
@@ -1216,7 +1206,6 @@ msgstr ""
 #: erlang.lang:40
 #: imagej.lang:32
 #: matlab.lang:42
-#: maxima.lang:35
 #: modelica.lang:46
 #: octave.lang:49
 #: ruby.lang:48
@@ -2524,7 +2513,6 @@ msgstr ""
 #: julia.lang:41
 #: R.lang:37
 #: scala.lang:43
-#: swift.lang:46
 msgid "Special Constant"
 msgstr ""
 
@@ -2829,11 +2817,6 @@ msgstr ""
 #. (itstool) path: matlab.lang/language@_name
 #: matlab.lang:25
 msgid "Matlab"
-msgstr ""
-
-#. (itstool) path: maxima.lang/language@_name
-#: maxima.lang:24
-msgid "Maxima"
 msgstr ""
 
 #. (itstool) path: mediawiki.lang/language@_name
@@ -3435,7 +3418,6 @@ msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: scala.lang:41
-#: swift.lang:43
 msgid "Modifier"
 msgstr ""
 
@@ -3538,26 +3520,6 @@ msgstr ""
 #. (itstool) path: sweave.lang/language@_name
 #: sweave.lang:24
 msgid "Sweave"
-msgstr ""
-
-#. (itstool) path: swift.lang/language@_name
-#: swift.lang:24
-msgid "Swift"
-msgstr ""
-
-#. (itstool) path: styles/style@_name
-#: swift.lang:35
-msgid "Builtin Value"
-msgstr ""
-
-#. (itstool) path: styles/style@_name
-#: swift.lang:37
-msgid "Compiler Control"
-msgstr ""
-
-#. (itstool) path: styles/style@_name
-#: swift.lang:41
-msgid "Interpolated Expression"
 msgstr ""
 
 #. (itstool) path: systemverilog.lang/language@_name
