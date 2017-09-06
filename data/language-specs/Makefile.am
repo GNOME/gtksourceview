@@ -62,6 +62,7 @@ LANGUAGES =			\
 	javascript.lang		\
 	json.lang		\
 	julia.lang		\
+	kotlin.lang		\
 	latex.lang		\
 	lex.lang		\
 	libtool.lang		\
@@ -72,6 +73,7 @@ LANGUAGES =			\
 	mallard.lang		\
 	markdown.lang		\
 	matlab.lang		\
+	maxima.lang		\
 	mediawiki.lang		\
 	meson.lang		\
 	modelica.lang		\
@@ -111,6 +113,7 @@ LANGUAGES =			\
 	sparql.lang		\
 	sql.lang		\
 	sweave.lang		\
+	swift.lang		\
 	systemverilog.lang	\
 	t2t.lang		\
 	tcl.lang		\
