@@ -21,7 +21,7 @@
 
 -->
 
-<language id="kotlin" _name="Kotlin" version="2.0" _section="Source">
+<language id="kotlin" name="Kotlin" version="2.0" _section="Source">
 
   <metadata>
     <property name="mimetypes">text/x-kotlin</property>
@@ -32,22 +32,22 @@
   </metadata>
 
   <styles>
-    <style id="builtin"           _name="Builtin Value"           map-to="def:builtin"/>
-    <style id="comment"           _name="Comment"                 map-to="def:comment"/>
-    <style id="declaration"       _name="Declaration"             map-to="def:type"/>
-    <style id="default"           _name="Default"/>
-    <style id="error"             _name="Error"                   map-to="def:error"/>
-    <style id="escaped-character" _name="Escaped Character"       map-to="def:special-char"/>
-    <style id="external"          _name="External"                map-to="def:preprocessor"/>
-    <style id="identifier"        _name="Identifier"              map-to="def:identifier"/>
-    <style id="interpolated"      _name="Interpolated Expression" map-to="def:identifier"/>
-    <style id="keyword"           _name="Keyword"                 map-to="def:keyword"/>
-    <style id="modifier"          _name="Modifier"                map-to="def:type"/>
-    <style id="number"            _name="Number"                  map-to="def:decimal"/>
-    <style id="operator"          _name="Operator"                map-to="def:operator"/>
-    <style id="special"           _name="Special Constant"        map-to="def:special-constant"/>
-    <style id="string"            _name="String"                  map-to="def:string"/>
-    <style id="type"              _name="Data Type"               map-to="def:identifier"/>
+    <style id="builtin"           name="Builtin Value"           map-to="def:builtin"/>
+    <style id="comment"           name="Comment"                 map-to="def:comment"/>
+    <style id="declaration"       name="Declaration"             map-to="def:type"/>
+    <style id="default"           name="Default"/>
+    <style id="error"             name="Error"                   map-to="def:error"/>
+    <style id="escaped-character" name="Escaped Character"       map-to="def:special-char"/>
+    <style id="external"          name="External"                map-to="def:preprocessor"/>
+    <style id="identifier"        name="Identifier"              map-to="def:identifier"/>
+    <style id="interpolated"      name="Interpolated Expression" map-to="def:identifier"/>
+    <style id="keyword"           name="Keyword"                 map-to="def:keyword"/>
+    <style id="modifier"          name="Modifier"                map-to="def:type"/>
+    <style id="number"            name="Number"                  map-to="def:decimal"/>
+    <style id="operator"          name="Operator"                map-to="def:operator"/>
+    <style id="special"           name="Special Constant"        map-to="def:special-constant"/>
+    <style id="string"            name="String"                  map-to="def:string"/>
+    <style id="type"              name="Data Type"               map-to="def:identifier"/>
   </styles>
 
   <definitions>
