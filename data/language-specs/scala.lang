@@ -76,7 +76,7 @@
     <context id="operators" style-ref="operator" extend-parent="false">
       <match>[-.~^@,;:/%|\=\+\*\!\?&amp;&lt;&gt;()_\[\]]</match>
     </context>
-      
+
     <context id="character" style-ref="special">
       <match>'(\%{escaped-character}|.)'</match>
     </context>
@@ -84,7 +84,7 @@
     <context id="character-error" style-ref="error">
       <match>'(\%{escaped-character}|.)[^\s]+'</match>
     </context>
-    
+
     <context id="symbol" style-ref="special">
       <match>'[a-zA-Z_][a-zA-Z0-9_]*</match>
     </context>
@@ -103,7 +103,7 @@
         (\b([0-9]+|0[xX][0-9a-fA-F]+)[Ll]?\b|\b(([0-9]+[Ee][-]?[0-9]+|([0-9]*\.[0-9]+|[0-9]+\.)([Ee][-]?[0-9]+)?)[fFdD]?|[0-9]+[FfDd]))
       </match>
     </context>
-    
+
     <context id="annotation">
       <match>(^\s*|[^a-zA-Z0-9_\s]\s*)(@[a-zA-Z][a-zA-Z0-9_]*)</match>
       <include>
@@ -345,7 +345,7 @@
       <keyword>super</keyword>
       <keyword>this</keyword>
     </context>
-    
+
     <context id="special" style-ref="special">
       <keyword>true</keyword>
       <keyword>false</keyword>

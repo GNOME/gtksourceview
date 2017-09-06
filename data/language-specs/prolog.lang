@@ -41,7 +41,7 @@
   </styles>
 
   <definitions>
-    
+
     <define-regex id="symbolchar">[-!+\\|=:&amp;&gt;&lt;]</define-regex>
 
     <define-regex id="escaped-character" extended="true">
@@ -66,7 +66,7 @@
         <context ref="def:in-comment"/>
       </include>
     </context>
-    
+
     <context id="close-comment-outside-comment" style-ref="error">
       <match>\*/(?!\*)</match>
     </context>
@@ -74,7 +74,7 @@
     <context id="variable" style-ref="variable">
       <match>\b(_|[A-Z][A-Za-z0-9_]*)\b</match>
     </context>
-    
+
     <context id="operators" style-ref="operator">
       <prefix>(?&lt;!\%{symbolchar})</prefix>
       <suffix>(?!\%{symbolchar})</suffix>
@@ -91,7 +91,7 @@
       <keyword>\\==</keyword>
       <keyword>\\\+</keyword>
     </context>
-    
+
     <context id="special-operators" style-ref="operator">
       <match>([!;]|:\-)</match>
     </context>
