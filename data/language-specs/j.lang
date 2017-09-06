@@ -3,7 +3,7 @@
 
  This file is part of GtkSourceView
 
- Authors: Jsoftware, Ric Sherlock 
+ Authors: Jsoftware, Ric Sherlock
  Copyright (C) 2011 Ric Sherlock <tikkanz@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
@@ -57,7 +57,7 @@
       <start>\%[NB\.</start>
     </context>
 
-    <!-- 'abcde' (Strings) -->  
+    <!-- 'abcde' (Strings) -->
     <context id="string" style-ref="string" end-at-line-end="true">
       <start>L?'</start><end>'</end>
     </context>
@@ -83,7 +83,7 @@
     <context id="verb" style-ref="verb">
       <match extended="true">
         ((_?[0-9]:)|
-        (\%[p\.\.)|              
+        (\%[p\.\.)|
         (\%[[AcCeEiIjLopr]\.)|
         (\%[[ipqsux]:)|
         ({::)|
@@ -97,7 +97,7 @@
     <!-- Adverbs -->
     <context id="adverb" style-ref="adverb">
       <match extended="true">
-        (([\/\\]\.)| 
+        (([\/\\]\.)|
         (\%[[bfMt]\.)|
         (\%[t:)|
         ([\~\/\\\}]))

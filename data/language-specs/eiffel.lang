@@ -55,13 +55,13 @@
       <end>'</end>
     </context>
 
-    
+
     <context id="multi-line-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"\[</start>
       <end>\]"</end>
-      
+
     </context>
-    
+
     <context id="double-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>"</start>
       <end>"</end>
@@ -73,8 +73,8 @@
          </context>
        </include>
     </context>
-    
-    
+
+
 
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
       <start>--</start>

@@ -177,7 +177,7 @@
                     <keyword>POSITION</keyword>
                     <keyword>NORMAL</keyword>
                 </context>
-                
+
                 <context id="color-bindings" style-ref="bindings">
                     <match extended="true">COLOR[0-3]?</match>
                 </context>
@@ -185,24 +185,24 @@
                 <context id="texunit-bindings" style-ref="bindings">
                     <match extended="true">TEXUNIT([0-9]|1[0-5])?</match>
                 </context>
-                 
+
                 <context id="texcoord-bindings" style-ref="bindings">
                     <match extended="true">TEXCOORD[0-7]?</match>
                 </context>
-                 
+
                 <context id="swizzle">
                     <match extended="true">\.([xyzw]+|[rgba]+)</match>
                     <include>
                         <context id="swizzle-operator" sub-pattern="1" style-ref="swizzle"/>
                     </include>
                 </context>
-                 
-                <!-- C99 booleans -->                
+
+                <!-- C99 booleans -->
                 <context id="boolean" style-ref="boolean">
                     <keyword>true</keyword>
                     <keyword>false</keyword>
                 </context>
-                
+
                 <context id="builtin">
                     <match extended="true">
                         (mul|lit|lerp|saturate|abs|cos|acos|sin|asin|tan|atan|all|any|ceil|clamp|
@@ -217,7 +217,7 @@
                         <context id="builtin-name" sub-pattern="1" style-ref="builtin"/>
                     </include>
                 </context>
-                
+
                 <context id="function">
                     <match extended="true">
                         ([a-zA-Z_][a-zA-Z_0-9]*)\s*\(
