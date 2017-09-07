@@ -20,7 +20,8 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="rpmspec" name="RPM spec" version="2.0" _section="Other">
+<!-- Translators: do not translate "spec", it's the file extension. -->
+<language id="rpmspec" _name="RPM spec" version="2.0" _section="Other">
   <metadata>
     <property name="mimetypes">text/x-rpm-spec</property>
     <property name="globs">*.spec</property>

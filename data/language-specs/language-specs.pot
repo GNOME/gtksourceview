@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-09-06 17:37+0200\n"
+"POT-Creation-Date: 2017-09-07 13:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -202,6 +202,11 @@ msgstr ""
 msgid "Markup"
 msgstr ""
 
+#. (itstool) path: cg.lang/language@_name
+#: cg.lang:23
+msgid "CG Shader Language"
+msgstr ""
+
 #. (itstool) path: changelog.lang/language@_section
 #. (itstool) path: cmake.lang/language@_section
 #. (itstool) path: css.lang/language@_section
@@ -243,10 +248,30 @@ msgstr ""
 #: po.lang:23
 #: protobuf.lang:21
 #: puppet.lang:23
-#: rpmspec.lang:23
+#: rpmspec.lang:24
 #: yacc.lang:23
 #: yaml.lang:21
 msgid "Other"
+msgstr ""
+
+#. (itstool) path: chdr.lang/language@_name
+#: chdr.lang:24
+msgid "C/ObjC Header"
+msgstr ""
+
+#. (itstool) path: cpphdr.lang/language@_name
+#: cpphdr.lang:24
+msgid "C++ Header"
+msgstr ""
+
+#. (itstool) path: dosbatch.lang/language@_name
+#: dosbatch.lang:23
+msgid "DOS Batch"
+msgstr ""
+
+#. (itstool) path: dtl.lang/language@_name
+#: dtl.lang:25
+msgid "Django Template"
 msgstr ""
 
 #. (itstool) path: fcl.lang/language@_section
@@ -272,5 +297,30 @@ msgstr ""
 #: R.lang:25
 #: scilab.lang:23
 msgid "Scientific"
+msgstr ""
+
+#. (itstool) path: gdb-log.lang/language@_name
+#: gdb-log.lang:18
+msgid "GDB Log"
+msgstr ""
+
+#. (itstool) path: glsl.lang/language@_name
+#: glsl.lang:30
+msgid "OpenGL Shading Language"
+msgstr ""
+
+#. (itstool) path: llvm.lang/language@_name
+#: llvm.lang:22
+msgid "LLVM IR"
+msgstr ""
+
+#. (itstool) path: po.lang/language@_name
+#: po.lang:23
+msgid "gettext translation"
+msgstr ""
+
+#. (itstool) path: rpmspec.lang/language@_name
+#: rpmspec.lang:24
+msgid "RPM spec"
 msgstr ""
 
