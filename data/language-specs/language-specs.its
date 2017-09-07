@@ -3,5 +3,6 @@
   version="1.0">
 
   <its:translateRule translate="no" selector="/language" />
+  <its:translateRule translate="yes" selector="/language/@_name" />
   <its:translateRule translate="yes" selector="/language/@_section" />
 </its:rules>
