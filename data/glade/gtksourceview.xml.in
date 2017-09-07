@@ -3,7 +3,6 @@
                supports="gtkbuilder"
                name="gtksourceview"
                library="gtksourceview-@GSV_API_VERSION@"
-               domain="gtksourceview-@GSV_API_VERSION@"
                depends="gtk+"
                book="gtksourceview-@GSV_API_VERSION@">
   <glade-widget-classes>
@@ -19,7 +18,6 @@
         <property id="show-right-margin" default="False" />
         <property id="smart-home-end" default="Disabled">
           <displayable-values>
-            <!-- Translators: It is related to an option of a set of values -->
             <value id="GTK_SOURCE_SMART_HOME_END_DISABLED" name="Disabled" />
             <value id="GTK_SOURCE_SMART_HOME_END_BEFORE" name="Before" />
             <value id="GTK_SOURCE_SMART_HOME_END_AFTER" name="After" />
