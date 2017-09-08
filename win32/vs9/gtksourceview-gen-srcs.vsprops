@@ -27,4 +27,8 @@ $(GlibEtcInstallRoot)\bin\glib-compile-resources --target=..\..\gtksourceview\gt
 		Name="GenGtksourceVersionH"
 		Value="$(PythonDir)\python.exe ..\gtksource_version_h.py --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion)"
 	/>
+	<UserMacro
+		Name="GenGtksourceVersionHX64"
+		Value="$(PythonDirX64)\python.exe ..\gtksource_version_h.py --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion)"
+	/>
 </VisualStudioPropertySheet>

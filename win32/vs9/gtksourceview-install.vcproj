@@ -101,7 +101,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Generating .pc files..."
-						CommandLine="$(GtkSourceviewGenPC)"
+						CommandLine="$(GtkSourceviewGenPCX64)"
 						Outputs="..\gtksourceview-$(ApiVersion).pc"
 					/>
 				</FileConfiguration>
@@ -109,7 +109,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Generating .pc files..."
-						CommandLine="$(GtkSourceviewGenPC)"
+						CommandLine="$(GtkSourceviewGenPCX64)"
 						Outputs="..\gtksourceview-$(ApiVersion).pc"
 					/>
 				</FileConfiguration>

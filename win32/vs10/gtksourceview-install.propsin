@@ -31,6 +31,7 @@ copy ..\..\data\styles\check-style.sh $(CopyDir)\share\gtksourceview-$(ApiVersio
     </GtkSourceviewDoInstall>
     <GtkSourceviewPCFiles>..\gtksourceview-$(ApiVersion).pc</GtkSourceviewPCFiles>
     <GtkSourceviewGenPC>(if not exist $(CopyDir)\lib\pkgconfig mkdir $(CopyDir)\lib\pkgconfig) &amp; ($(PythonDir)\python ..\gtksourceviewpc.py --prefix=$(CopyDir) --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion))</GtkSourceviewGenPC>
+    <GtkSourceviewGenPCX64>(if not exist $(CopyDir)\lib\pkgconfig mkdir $(CopyDir)\lib\pkgconfig) &amp; ($(PythonDirX64)\python ..\gtksourceviewpc.py --prefix=$(CopyDir) --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion))</GtkSourceviewGenPCX64>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceviewinstallprops</_PropertySheetDisplayName>
@@ -46,6 +47,9 @@ copy ..\..\data\styles\check-style.sh $(CopyDir)\share\gtksourceview-$(ApiVersio
     </BuildMacro>
     <BuildMacro Include="GtkSourceviewGenPC">
       <Value>$(GtkSourceviewGenPC)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceviewGenPCX64">
+      <Value>$(GtkSourceviewGenPCX64)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

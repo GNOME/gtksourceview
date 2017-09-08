@@ -219,7 +219,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Generating gtksourceversion.h..."
-						CommandLine="$(GenGtksourceVersionH)"
+						CommandLine="$(GenGtksourceVersionHX64)"
 						Outputs="..\..\gtksourceview\gtksourceversion.h"
 					/>
 				</FileConfiguration>
@@ -235,7 +235,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Generating gtksourceversion.h..."
-						CommandLine="$(GenGtksourceVersionH)"
+						CommandLine="$(GenGtksourceVersionHX64)"
 						Outputs="..\..\gtksourceview\gtksourceversion.h"
 					/>
 				</FileConfiguration>

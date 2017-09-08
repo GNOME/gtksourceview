@@ -70,4 +70,8 @@
 		Name="PythonDir"
 		Value="c:\python27"
 	/>
+	<UserMacro
+		Name="PythonDirX64"
+		Value="$(PythonDir).x64"
+	/>
 </VisualStudioPropertySheet>

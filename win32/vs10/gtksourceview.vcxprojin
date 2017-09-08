@@ -169,20 +169,15 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\config.h.win32">
-      <Message Condition="'$(Configuration)'=='Debug'">Copying config.h from config.h.win32...</Message>
-      <Command Condition="'$(Configuration)'=='Debug'">$(CopyConfigH)</Command>
-      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\config.h;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)'=='Release'">Copying config.h from config.h.win32...</Message>
-      <Command Condition="'$(Configuration)'=='Release'">$(CopyConfigH)</Command>
-      <Outputs Condition="'$(Configuration)'=='Release'">..\..\config.h;%(Outputs)</Outputs>
+      <Message>Copying config.h from config.h.win32...</Message>
+      <Command>$(CopyConfigH)</Command>
+      <Outputs>..\..\config.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\..\gtksourceview\gtksourceversion.h.in">
-      <Message Condition="'$(Configuration)'=='Debug'">Generating gtksourceversion.h...</Message>
-      <Command Condition="'$(Configuration)'=='Debug'">$(GenGtksourceVersionH)</Command>
-      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gtksourceview\gtksourceversion.h;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)'=='Release'">Generating gtksourceversion.h...</Message>
-      <Command Condition="'$(Configuration)'=='Release'">$(GenGtksourceVersionH)</Command>
-      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gtksourceview\gtksourceversion.h;%(Outputs)</Outputs>
+      <Message>Generating gtksourceversion.h...</Message>
+      <Command Condition="'$(Platform)'=='Win32'">$(GenGtksourceVersionH)</Command>
+      <Command Condition="'$(Platform)'=='x64'">$(GenGtksourceVersionHX64)</Command>
+      <Outputs>..\..\gtksourceview\gtksourceversion.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\gen-enums.bat">
       <Message Condition="'$(Configuration)'=='Debug'">Generating Enumeration sources...</Message>
@@ -193,12 +188,9 @@
       <Outputs Condition="'$(Configuration)'=='Release'">..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\gtksourceview\gtksourceview-enumtypes.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\..\gtksourceview\gtksourceview.gresource.xml">
-      <Message Condition="'$(Configuration)'=='Debug'">Generating GResource sources...</Message>
-      <Command Condition="'$(Configuration)'=='Debug'">$(GenerateRsrcSrc)</Command>
-      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gtksourceview\gtksourceview-resources.c;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)'=='Release'">Generating GResource sources...</Message>
-      <Command Condition="'$(Configuration)'=='Release'">$(GenerateRsrcSrc)</Command>
-      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gtksourceview\gtksourceview-resources.c;%(Outputs)</Outputs>
+      <Message>Generating GResource sources...</Message>
+      <Command>$(GenerateRsrcSrc)</Command>
+      <Outputs>..\..\gtksourceview\gtksourceview-resources.c;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -11,6 +11,7 @@ cd $(SolutionDir)
     </GenerateEnums>
     <GenerateRsrcSrc>$(GlibEtcInstallRoot)\bin\glib-compile-resources --target=..\..\gtksourceview\gtksourceview-resources.c --generate-source --sourcedir=..\..\gtksourceview ..\..\gtksourceview\gtksourceview.gresource.xml</GenerateRsrcSrc>
     <GenGtksourceVersionH>$(PythonDir)\python.exe ..\gtksource_version_h.py --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion)</GenGtksourceVersionH>
+    <GenGtksourceVersionHX64>$(PythonDirX64)\python.exe ..\gtksource_version_h.py --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion)</GenGtksourceVersionHX64>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceviewgensrcsprops</_PropertySheetDisplayName>
@@ -27,6 +28,9 @@ cd $(SolutionDir)
     </BuildMacro>
     <BuildMacro Include="GenGtksourceVersionH">
       <Value>$(GenGtksourceVersionH)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GenGtksourceVersionHX64">
+      <Value>$(GenGtksourceVersionHX64)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

@@ -84,22 +84,16 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\..\config.h.win32">
-      <Message Condition="'$(Configuration)'=='Debug'">Copying build results...</Message>
-      <AdditionalInputs Condition="'$(Configuration)'=='Debug'">$(GtkSourceviewPCFiles)</AdditionalInputs>
-      <Command Condition="'$(Configuration)'=='Debug'">$(GtkSourceviewDoInstall)</Command>
-      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\blah;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)'=='Release'">Copying build results...</Message>
-      <AdditionalInputs Condition="'$(Configuration)'=='Release'">$(GtkSourceviewPCFiles)</AdditionalInputs>
-      <Command Condition="'$(Configuration)'=='Release'">$(GtkSourceviewDoInstall)</Command>
-      <Outputs Condition="'$(Configuration)'=='Release'">..\..\blah;%(Outputs)</Outputs>
+      <Message>Copying build results...</Message>
+      <AdditionalInputs>$(GtkSourceviewPCFiles)</AdditionalInputs>
+      <Command>$(GtkSourceviewDoInstall)</Command>
+      <Outputs>..\..\blah;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\..\gtksourceview.pc.in">
-      <Message Condition="'$(Configuration)'=='Debug'">Generating .pc files...</Message>
-      <Command Condition="'$(Configuration)'=='Debug'">$(GtkSourceviewGenPC)</Command>
-      <Outputs Condition="'$(Configuration)'=='Debug'">$(GtkSourceviewPCFiles);%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)'=='Release'">Generating .pc files...</Message>
-      <Command Condition="'$(Configuration)'=='Release'">$(GtkSourceviewGenPC)</Command>
-      <Outputs Condition="'$(Configuration)'=='Release'">$(GtkSourceviewPCFiles);%(Outputs)</Outputs>
+      <Message>Generating .pc files...</Message>
+      <Command Condition="'$(Platform)'=='Win32'">$(GtkSourceviewGenPC)</Command>
+      <Command Condition="'$(Platform)'=='x64'">$(GtkSourceviewGenPCX64)</Command>
+      <Outputs>$(GtkSourceviewPCFiles);%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
