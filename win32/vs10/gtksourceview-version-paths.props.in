@@ -15,7 +15,7 @@
     <GtkSourceviewSeparateVSDllSuffix>-3-vs$(VSVer)</GtkSourceviewSeparateVSDllSuffix>
     <GtkSourceviewDllPrefix>$(GtkSourceviewSeparateVSDllPrefix)</GtkSourceviewDllPrefix>
     <GtkSourceviewDllSuffix>$(GtkSourceviewSeparateVSDllSuffix)</GtkSourceviewDllSuffix>
-    <PythonPath>c:\python27</PythonPath>
+    <PythonDir>c:\python27</PythonDir>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceviewversionpathsprops</_PropertySheetDisplayName>
@@ -66,8 +66,8 @@
     <BuildMacro Include="GtkSourceviewDllSuffix">
       <Value>$(GtkSourceviewDllSuffix)</Value>
     </BuildMacro>
-    <BuildMacro Include="PythonPath">
-      <Value>$(PythonPath)</Value>
+    <BuildMacro Include="PythonDir">
+      <Value>$(PythonDir)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

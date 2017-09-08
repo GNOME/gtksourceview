@@ -10,7 +10,7 @@ CALL gen-enums.bat $(GlibEtcInstallRoot)
 cd $(SolutionDir)
     </GenerateEnums>
     <GenerateRsrcSrc>$(GlibEtcInstallRoot)\bin\glib-compile-resources --target=..\..\gtksourceview\gtksourceview-resources.c --generate-source --sourcedir=..\..\gtksourceview ..\..\gtksourceview\gtksourceview.gresource.xml</GenerateRsrcSrc>
-    <GenGtksourceVersionH>$(PythonPath)\python.exe ..\gtksource_version_h.py --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion)</GenGtksourceVersionH>
+    <GenGtksourceVersionH>$(PythonDir)\python.exe ..\gtksource_version_h.py --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion)</GenGtksourceVersionH>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceviewgensrcsprops</_PropertySheetDisplayName>
