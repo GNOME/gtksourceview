@@ -13,7 +13,15 @@
 		Name="GenerateEnums"
 		Value="
 cd ..&#x0D;&#x0A;
-CALL gen-enums.bat $(GlibEtcInstallRoot)&#x0D;&#x0A;
+CALL gen-enums.bat $(GlibEtcInstallRoot) $(PythonDir)\python.exe&#x0D;&#x0A;
+cd $(SolutionDir)&#x0D;&#x0A;
+		      "
+	/>
+	<UserMacro
+		Name="GenerateEnumsX64"
+		Value="
+cd ..&#x0D;&#x0A;
+CALL gen-enums.bat $(GlibEtcInstallRoot) $(PythonDirX64)\python.exe&#x0D;&#x0A;
 cd $(SolutionDir)&#x0D;&#x0A;
 		      "
 	/>

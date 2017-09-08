@@ -258,14 +258,14 @@
 				<FileConfiguration Name="Debug|x64">
 					<Tool Name="VCCustomBuildTool"
 						Description="Generating Enumeration sources..."
-						CommandLine="$(GenerateEnums)"
+						CommandLine="$(GenerateEnumsX64)"
 						Outputs="..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\gtksourceview\gtksourceview-enumtypes.h"
 					/>
 				</FileConfiguration>
 				<FileConfiguration Name="Release|x64">
 					<Tool Name="VCCustomBuildTool"
 						Description="Generating Enumeration sources..."
-						CommandLine="$(GenerateEnums)"
+						CommandLine="$(GenerateEnumsX64)"
 						Outputs="..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\gtksourceview\gtksourceview-enumtypes.h"
 					/>
 				</FileConfiguration>

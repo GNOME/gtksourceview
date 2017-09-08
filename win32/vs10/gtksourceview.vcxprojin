@@ -180,12 +180,10 @@
       <Outputs>..\..\gtksourceview\gtksourceversion.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\gen-enums.bat">
-      <Message Condition="'$(Configuration)'=='Debug'">Generating Enumeration sources...</Message>
-      <Command Condition="'$(Configuration)'=='Debug'">$(GenerateEnums)</Command>
-      <Outputs Condition="'$(Configuration)'=='Debug'">..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\gtksourceview\gtksourceview-enumtypes.h;%(Outputs)</Outputs>
-      <Message Condition="'$(Configuration)'=='Release'">Generating Enumeration sources...</Message>
-      <Command Condition="'$(Configuration)'=='Release'">$(GenerateEnums)</Command>
-      <Outputs Condition="'$(Configuration)'=='Release'">..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\gtksourceview\gtksourceview-enumtypes.h;%(Outputs)</Outputs>
+      <Message>Generating Enumeration sources...</Message>
+      <Command Condition="'$(Platform)'=='Win32'">$(GenerateEnums)</Command>
+      <Command Condition="'$(Platform)'=='x64'">$(GenerateEnumsX64)</Command>
+      <Outputs>..\..\gtksourceview\gtksourceview-enumtypes.c;..\..\gtksourceview\gtksourceview-enumtypes.h;%(Outputs)</Outputs>
     </CustomBuild>
     <CustomBuild Include="..\..\gtksourceview\gtksourceview.gresource.xml">
       <Message>Generating GResource sources...</Message>
