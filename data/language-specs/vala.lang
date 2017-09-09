@@ -282,6 +282,7 @@
       <keyword>uint64</keyword>
       <keyword>ulong</keyword>
       <keyword>unichar</keyword>
+      <keyword>unichar2</keyword>
       <keyword>ushort</keyword>
       <keyword>void</keyword>
     </context>
@@ -296,12 +297,21 @@
       Signal|
       Deprecated|
       Description|
+      Experimental|
+      Version|
       DBus|
       Compact|
+      ConcreteAccessor|
+      DestroysInstance|
       Diagnostics|
       ErrorBase|
       Flags|
+      FormatArg|
+      GenericAccessors|
       GIR|
+      GtkCallback|
+      GtkChild|
+      GtkTemplate|
       HasEmitter|
       Immutable|
       ModuleInit|
