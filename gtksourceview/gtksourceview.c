@@ -3215,8 +3215,8 @@ get_indent_string (guint tabs,
  * @start: #GtkTextIter of the first line to indent
  * @end: #GtkTextIter of the last line to indent
  *
- * Insert one indentation level at the beginning of the
- * specified lines.
+ * Inserts one indentation level at the beginning of the specified lines. The
+ * empty lines are not indented.
  *
  * Since: 3.16
  */
