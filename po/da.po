@@ -1,12 +1,12 @@
 # Danish translation of gtksourceview.
-# Copyright (C) 2003-09, 2011-16 Free Software Foundation, Inc.
+# Copyright (C) 2003-09, 2011-17 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 #
 # Ole Laursen <olau@hardworking.dk>, 2003, 04, 05.
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004.
 # Kenneth Nielsen <k.nielsen81@gmail.com>, 2008.
 # flemming christensen <fc@stromata.dk>, 2011.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 09, 10, 11, 12, 13, 14, 16.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 09, 10, 11, 12, 13, 14, 16, 17.
 # scootergrisen, 2015.
 # Alan Mortensen <alanmortensen.am@gmail.com>, 2017.
 #
@@ -24,10 +24,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: "
-"https://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-06-22 14:38+0000\n"
-"PO-Revision-Date: 2017-03-05 20:00+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2017-09-01 15:59+0000\n"
+"PO-Revision-Date: 2017-09-03 20:05+0200\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -2177,7 +2177,7 @@ msgstr "Matlab"
 #. (itstool) path: maxima.lang/language@_name
 #: maxima.lang:24
 msgid "Maxima"
-msgstr ""
+msgstr "Maxima"
 
 #. (itstool) path: mediawiki.lang/language@_name
 #: mediawiki.lang:22
@@ -2897,28 +2897,22 @@ msgstr "Sweave"
 #. (itstool) path: swift.lang/language@_name
 #: swift.lang:24
 msgid "Swift"
-msgstr ""
+msgstr "Swift"
 
 #. (itstool) path: styles/style@_name
 #: swift.lang:35
-#, fuzzy
-#| msgid "Builtin Variable"
 msgid "Builtin Value"
-msgstr "Indbygget variabel"
+msgstr "Indbygget værdi"
 
 #. (itstool) path: styles/style@_name
 #: swift.lang:37
-#, fuzzy
-#| msgid "Completion"
 msgid "Compiler Control"
-msgstr "Fuldførelse"
+msgstr "Kompilerkontrol"
 
 #. (itstool) path: styles/style@_name
 #: swift.lang:41
-#, fuzzy
-#| msgid "Regular Expression"
 msgid "Interpolated Expression"
-msgstr "Regulært udtryk"
+msgstr "Interpoleret udtryk"
 
 #. (itstool) path: systemverilog.lang/language@_name
 #: systemverilog.lang:21
@@ -3560,18 +3554,18 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid "Name"
 #~ msgstr "Navn"
 
-#~ # Tilsyneladende er der tale om funktioner (bemærk kildehenisning fra 'completion-providers'), der på forskellig vis tilbyder at autofuldføre strenge
+# Tilsyneladende er der tale om funktioner (bemærk kildehenisning fra 'completion-providers'), der på forskellig vis tilbyder at autofuldføre strenge
 #~ msgid "The provider name"
 #~ msgstr "Navn på fuldførelsesfunktion"
 
 #~ msgid "Icon"
 #~ msgstr "Ikon"
 
-#~ # Min fortolkning: der findes forskellige 'providers' af autofuldførelsesforslag
+# Min fortolkning: der findes forskellige 'providers' af autofuldførelsesforslag
 #~ msgid "The provider icon"
 #~ msgstr "Ikon for fuldførelsesfunktion"
 
-#~ # Min fortolkning baseret på denne og efterfølgende strenge: ved autofuldførelse kommer der en masse forskellige forslag, og dette er en gruppe af sådanne.
+# Min fortolkning baseret på denne og efterfølgende strenge: ved autofuldførelse kommer der en masse forskellige forslag, og dette er en gruppe af sådanne.
 #~ msgid "Proposals Batch Size"
 #~ msgstr "Gruppestørrelse for forslag"
 
@@ -3590,7 +3584,7 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid "The minimum word size to complete"
 #~ msgstr "Mindste ordstørrelse for fuldførelse"
 
-#~ # jf strengen under
+# jf strengen under
 #~ msgid "Interactive Delay"
 #~ msgstr "Ventetid for interaktiv fuldførelse"
 
@@ -3675,8 +3669,8 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid ""
 #~ "Show provider headers when proposals from multiple providers are available"
 #~ msgstr ""
-#~ "Vis overskrifter for fuldførelsesfunktioner, når der er tilgængelige forslag "
-#~ "fra flere fuldførelsesfunktioner"
+#~ "Vis overskrifter for fuldførelsesfunktioner, når der er tilgængelige "
+#~ "forslag fra flere fuldførelsesfunktioner"
 
 #~ msgid "Show Icons"
 #~ msgstr "Vis ikoner"
@@ -3807,7 +3801,7 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid "Pixbuf"
 #~ msgstr "Pixbuf"
 
-#~ # fantastisk
+# fantastisk
 #~ msgid "The pixbuf"
 #~ msgstr "Pixbuffen"
 
@@ -3826,7 +3820,7 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid "GIcon"
 #~ msgstr "GIcon"
 
-#~ # Det er nogle fantastisk hjælpsomme forklaringer de her...
+# Det er nogle fantastisk hjælpsomme forklaringer de her...
 #~ msgid "The gicon"
 #~ msgstr "GIcon-objektet"
 
@@ -3896,8 +3890,10 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgstr "Ombrydnings-tilstand"
 
 #~ msgid ""
-#~ "Whether to wrap lines never, at word boundaries, or at character boundaries."
-#~ msgstr "Om linjer skal ombrydes aldrig, ved ordgrænser eller ved tegngrænser."
+#~ "Whether to wrap lines never, at word boundaries, or at character "
+#~ "boundaries."
+#~ msgstr ""
+#~ "Om linjer skal ombrydes aldrig, ved ordgrænser eller ved tegngrænser."
 
 #~ msgid "Whether to print the document with highlighted syntax"
 #~ msgstr "Om dokumentet skal udskrives med fremhævet syntaks"
@@ -3924,7 +3920,8 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgstr "Tekstkrop-skrifttype"
 
 #~ msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-#~ msgstr "Skrifttype som skal anvendes til tekstkroppen (f.eks. “Monospace 10”)"
+#~ msgstr ""
+#~ "Skrifttype som skal anvendes til tekstkroppen (f.eks. “Monospace 10”)"
 
 #~ msgid "Line Numbers Font Name"
 #~ msgstr "Linjenummer-skrifttype"
@@ -3936,7 +3933,8 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgstr "Sidehoved-skrifttype"
 
 #~ msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-#~ msgstr "Skrifttype som skal anvendes til sidehoveder (f.eks. “Monospace 10”)"
+#~ msgstr ""
+#~ "Skrifttype som skal anvendes til sidehoveder (f.eks. “Monospace 10”)"
 
 #~ msgid "Footer Font Name"
 #~ msgstr "Sidefod-skrifttype"
@@ -3984,11 +3982,11 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid "Regular expression error"
 #~ msgstr "Fejl for regulært udtryk"
 
-#~ # ?
+# ?
 #~ msgid "Search text"
 #~ msgstr "Søgetekst"
 
-#~ # ?
+# ?
 #~ msgid "The text to search"
 #~ msgstr "Teksten til søgning"
 
@@ -4188,7 +4186,7 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid "Cobol"
 #~ msgstr "Cobol"
 
-#~ # Math-mode er jo reserveret terminologi i latex, så vi må hellere lade det blive stående
+# Math-mode er jo reserveret terminologi i latex, så vi må hellere lade det blive stående
 #~ msgid "math-bound"
 #~ msgstr "math-afgrænsning"
 
@@ -4219,7 +4217,7 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid "The maximum allowed height"
 #~ msgstr "Den maksimalt tilladte højde"
 
-#~ # Jf. nedenfor
+# Jf. nedenfor
 #~ msgid "Shrink width"
 #~ msgstr "Breddeformindskning"
 
@@ -4358,7 +4356,7 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid "Unicode Character Reference"
 #~ msgstr "Reference til unicodetegn"
 
-#~ # Der menes noget med tegnet `. Men det har måske ikke noget rigtigt navn på dansk
+# Der menes noget med tegnet `. Men det har måske ikke noget rigtigt navn på dansk
 #~ msgid "Grave Literal"
 #~ msgstr "Grave-literal"
 
@@ -4515,7 +4513,7 @@ msgstr "_Ændr mellem store/små bogstaver"
 #~ msgid "Punctuator"
 #~ msgstr "Skilletegn"
 
-#~ # De taler velsagtens om programmeringssproget self
+# De taler velsagtens om programmeringssproget self
 #~ msgid "Self"
 #~ msgstr "Self"
 
@@ -4632,5 +4630,3 @@ msgstr "_Ændr mellem store/små bogstaver"
 
 #~ msgid "Miscellaneous Single-Row Functions"
 #~ msgstr "Diverse enkeltrække-funktioner"
-
-
