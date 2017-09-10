@@ -8,15 +8,16 @@
 # Necdet Yücel <necdetyucel@gmail.com>, 2014.
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2012, 2014, 2015.
 # Emin Tufan Çetin <etcetin@gmail.com>, 2017.
+# Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-09-09 16:02+0000\n"
-"PO-Revision-Date: 2017-09-09 21:31+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2017-09-09 19:11+0000\n"
+"PO-Revision-Date: 2017-09-10 14:53+0300\n"
+"Last-Translator: Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -191,7 +192,6 @@ msgstr "Açıklama"
 
 #. (itstool) path: styles/style@_name
 #: abnf.lang:39
-#| msgid "Double Number"
 msgid "Rule Name"
 msgstr "Kural Adı"
 
@@ -774,7 +774,6 @@ msgstr "Sürüm"
 
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:25
-#| msgid "C/C++/ObjC Header"
 msgid "C/ObjC Header"
 msgstr "C/ObjC Başlığı"
 
@@ -892,7 +891,6 @@ msgstr "Boyutlar"
 
 #. (itstool) path: styles/style@_name
 #: css.lang:57
-#| msgid "Known Property Value"
 msgid "Property Value"
 msgstr "Özellik Değeri"
 
@@ -1224,7 +1222,6 @@ msgstr "Tırnakta Değer"
 
 #. (itstool) path: dtl.lang/language@_name
 #: dtl.lang:25
-#| msgid "Template"
 msgid "Django Template"
 msgstr "Django Şablonu"
 
@@ -1669,7 +1666,6 @@ msgstr "Makro"
 
 #. (itstool) path: styles/style@_name
 #: haxe.lang:64
-#| msgid "Identifier"
 msgid "Identifier Prefix"
 msgstr "Tanımlayıcı Ön Eki"
 
@@ -3150,13 +3146,11 @@ msgstr "Dönüştürme esnasında hata: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:930
 #, c-format
-#| msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "“%s” karakter setinden “UTF-8”e dönüştürme desteklenmiyor"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:936
 #, c-format
-#| msgid "Could not open converter from '%s' to 'UTF-8'"
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "“%s”den “UTF-8”e dönüştürücü açılamadı"
 
@@ -3182,7 +3176,6 @@ msgid "Show detailed proposal information"
 msgstr "Ayrıntılı teklif bilgilerini göster"
 
 #: gtksourceview/gtksourcecompletion.ui:89
-#| msgid "_Details..."
 msgid "_Details…"
 msgstr "_Ayrıntılar…"
 
@@ -3211,23 +3204,18 @@ msgstr ""
 
 #: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
-#| msgid "context '%s' cannot contain a \\%%{...@start} command"
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "“%s” bağlamı bir \\%%{...@start} komutu içeremez"
 
 #: gtksourceview/gtksourcecontextengine.c:5875
 #: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
-#| msgid "duplicated context id '%s'"
 msgid "duplicated context id “%s”"
 msgstr "kopyalanmış bağlam etiketi “%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6079
 #: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
-#| msgid ""
-#| "style override used with wildcard context reference in language '%s' in "
-#| "ref '%s'"
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
@@ -3237,14 +3225,12 @@ msgstr ""
 
 #: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
-#| msgid "invalid context reference '%s'"
 msgid "invalid context reference “%s”"
 msgstr "geçersiz bağlam referansı “%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6172
 #: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
-#| msgid "unknown context '%s'"
 msgid "unknown context “%s”"
 msgstr "bilinmeyen bağlam “%s”"
 
@@ -3392,6 +3378,8 @@ msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
 msgstr ""
+"Karakter kodlaması dönüştürme hatası oluştu. Bir yedek karakter kullanmak "
+"için buna gereksinim duyuluyordu."
 
 #: gtksourceview/gtksourcefileloader.c:623
 msgid "File too big."
@@ -3411,13 +3399,11 @@ msgstr "Arabellek geçersiz karakterler içeriyor."
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
-#| msgid "Unknown id '%s' in regex '%s'"
 msgid "Unknown id “%s” in regex “%s”"
 msgstr "“%2$s” regex’inde bilinmeyen kimlik “%1$s”"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
-#| msgid "in regex '%s': backreferences are not supported"
 msgid "in regex “%s”: backreferences are not supported"
 msgstr "regex “%s”: geri referanslar desteklenmiyor"
 
