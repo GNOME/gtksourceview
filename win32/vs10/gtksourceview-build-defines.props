@@ -5,6 +5,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros">
 	<GtkSourceBuildDefines>G_LOG_DOMAIN="GtkSourceView";GTK_SOURCE_VERSION_MIN_REQUIRED=GTK_SOURCE_VERSION_3_0;GTK_SOURCE_COMPILATION</GtkSourceBuildDefines>
+    <GtkSourceIntrospectNMakeCmd>cd ..
+set VCInstallDir=$(VCInstallDir)
+nmake -f gtksourceview-introspection-msvc.mak CFG=$(Configuration) PREFIX=$(GlibEtcInstallRoot)</GtkSourceIntrospectNMakeCmd>
+    <GtkSourceIntrospectBuiltFiles>$(SolutionDir)\..\GtkSource-3.0.gir;$(SolutionDir)\..\GtkSource-3.0.typelib</GtkSourceIntrospectBuiltFiles>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceviewbuilddefinesprops</_PropertySheetDisplayName>
@@ -27,6 +31,12 @@
   <ItemGroup>
     <BuildMacro Include="GtkSourceBuildDefines">
       <Value>$(GtkSourceBuildDefines)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceIntrospectNMakeCmd">
+      <Value>$(GtkSourceIntrospectNMakeCmd)</Value>
+    </BuildMacro>
+    <BuildMacro Include="GtkSourceIntrospectBuiltFiles">
+      <Value>$(GtkSourceIntrospectBuiltFiles)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

@@ -23,4 +23,12 @@
 		Name="GtkSourceBuildDefines"
 		Value="G_LOG_DOMAIN=\&quot;GtkSourceView\&quot;;GTK_SOURCE_VERSION_MIN_REQUIRED=GTK_SOURCE_VERSION_3_0;GTK_SOURCE_COMPILATION"
 	/>
+	<UserMacro
+		Name="GtkSourceIntrospectNMakeCmd"
+		Value="cd ..&#x0D;&#x0A;set VCInstallDir=$(VCInstallDir)&#x0D;&#x0A;nmake -f gtksourceview-introspection-msvc.mak CFG=$(ConfigurationName) PREFIX=$(GlibEtcInstallRoot)"
+	/>
+	<UserMacro
+		Name="GtkSourceIntrospectBuiltFiles"
+		Value="$(SolutionDir)\..\GtkSource-3.0.gir;$(SolutionDir)\..\GtkSource-3.0.typelib"
+	/>
 </VisualStudioPropertySheet>

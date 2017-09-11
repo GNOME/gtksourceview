@@ -13,6 +13,7 @@ EXTRA_DIST = 					\
 	gtksourceview-version-paths.vsprops	\
 	gtksourceview.vcprojin			\
 	gtksourceview-install.vcproj		\
+	gtksourceview-introspect.vcproj		\
 	$(GENERATED_ITEMS)			\
 	math.h
 

@@ -7,7 +7,8 @@ EXTRA_DIST =				\
 	gtksourceview.vcxproj			\
 	gtksourceview.vcxproj.filters		\
 	gtksourceview-install.vcxproj		\
-	gtksourceview-install.vcxproj.filters
+	gtksourceview-install.vcxproj.filters	\
+	gtksourceview-introspect.vcxproj
 
 DISTCLEANFILES = $(EXTRA_DIST)
 

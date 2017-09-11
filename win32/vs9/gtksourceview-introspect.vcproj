@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="gtksourceview-introspect"
+	ProjectGUID="{227C33AD-3F74-4688-A8A7-A86717353455}"
+	Keyword="MakeFileProj"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+		<Platform
+			Name="x64"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\gtksourceview-build-defines.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParam) install-introspection"
+				ReBuildCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParam) clean install-introspection"
+				CleanCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParam) clean"
+				Output="$(GtkSourceIntrospectBuiltFiles)"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Debug|x64"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\gtksourceview-build-defines.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParamX64) install-introspection"
+				ReBuildCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParamX64) clean install-introspection"
+				CleanCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParamX64) clean"
+				Output="$(GtkSourceIntrospectBuiltFiles)"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\gtksourceview-build-defines.vsprops"
+			CharacterSet="2"
+			DeleteExtensionsOnClean=""
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParam) install-introspection"
+				ReBuildCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParam) clean install-introspection"
+				CleanCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParam) clean"
+				Output="$(GtkSourceIntrospectBuiltFiles)"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|x64"
+			ConfigurationType="0"
+			InheritedPropertySheets=".\gtksourceview-build-defines.vsprops"
+			>
+			<Tool
+				Name="VCNMakeTool"
+				BuildCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParamX64) install-introspection"
+				ReBuildCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParamX64) clean install-introspection"
+				CleanCommandLine="$(GtkSourceIntrospectNMakeCmd) $(IntrospectPythonParamX64) clean"
+				Output="$(GtkSourceIntrospectBuiltFiles)"
+			/>
+		</Configuration>
+	</Configurations>
+</VisualStudioProject>

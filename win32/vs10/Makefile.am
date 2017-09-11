@@ -17,6 +17,7 @@ EXTRA_DIST =					\
 	gtksourceview.vcxproj.filtersin		\
 	gtksourceview-install.vcxproj		\
 	gtksourceview-install.vcxproj.filters	\
+	gtksourceview-introspect.vcxproj	\
 	$(GENERATED_ITEMS)
 
 gtksourceview-install.props: $(top_srcdir)/win32/vs10/gtksourceview-install.propsin $(MSVC10_HEADERS_LISTS)

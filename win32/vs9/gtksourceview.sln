@@ -8,6 +8,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtksourceview-install", "gt
 		{B95C0A8D-2528-40C4-8ADE-1FDE8B6E50E8} = {B95C0A8D-2528-40C4-8ADE-1FDE8B6E50E8}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gtksourceview-introspect", "gtksourceview-introspect.vcproj", "{227C33AD-3F74-4688-A8A7-A86717353455}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2093D218-190E-4194-9421-3BA7CBF33B10} = {2093D218-190E-4194-9421-3BA7CBF33B10}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -32,6 +37,10 @@ Global
 		{2093D218-190E-4194-9421-3BA7CBF33B10}.Release|Win32.Build.0 = Release|Win32
 		{2093D218-190E-4194-9421-3BA7CBF33B10}.Release|x64.ActiveCfg = Release|x64
 		{2093D218-190E-4194-9421-3BA7CBF33B10}.Release|x64.Build.0 = Release|x64
+		{227C33AD-3F74-4688-A8A7-A86717353455}.Debug|Win32.ActiveCfg = Debug|Win32
+		{227C33AD-3F74-4688-A8A7-A86717353455}.Debug|x64.ActiveCfg = Debug|x64
+		{227C33AD-3F74-4688-A8A7-A86717353455}.Release|Win32.ActiveCfg = Release|Win32
+		{227C33AD-3F74-4688-A8A7-A86717353455}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
