@@ -3235,17 +3235,24 @@ gtk_source_view_indent_lines (GtkSourceView *view,
 
 		gtk_text_buffer_get_iter_at_line (buf, &iter, i);
 
+		/* Don't add indentation on completely empty lines, to not add
+		 * trailing spaces.
+		 * Note that non-empty lines containing only whitespaces are
+		 * indented like any other non-empty line, because those lines
+		 * already contain trailing spaces, some users use those
+		 * whitespaces to more easily insert text at the right place
+		 * without the need to insert the indentation each time.
+		 */
+		if (gtk_text_iter_ends_line (&iter))
+		{
+			continue;
+		}
+
 		/* add spaces always after tabs, to avoid the case
 		 * where "\t" becomes "  \t" with no visual difference */
 		while (gtk_text_iter_get_char (&iter) == '\t')
 		{
 			gtk_text_iter_forward_char (&iter);
-		}
-
-		/* don't add indentation on empty lines */
-		if (gtk_text_iter_ends_line (&iter))
-		{
-			continue;
 		}
 
 		/* if tabs are allowed try to merge the spaces
