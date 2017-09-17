@@ -162,12 +162,21 @@ underscores ("<code>_</code>").
 </varlistentry>
 
 <varlistentry>
-<term><code>name</code> (mandatory)</term>
-<listitem><para>
-The translatable name of the language presented to the user.
-It can be marked for translation putting an underscore before the attribute
-name (see the gettext documentation).
-</para></listitem>
+<term><code>name</code> or <code>_name</code> (mandatory)</term>
+<listitem>
+  <para>
+    The name of the language presented to the user. With <code>_name</code>, the
+    string is marked for translation (see the gettext documentation).
+  </para>
+
+  <para>
+    The name should be marked for translation only if: (1) it contains a common
+    English word, for example "C++ header" should be translated, but not "C++"
+    or "XML". Or (2) if the name contains several words, because in some
+    languages the word order should be different, for example "LLVM IR" or "RPM
+    spec" should also be marked for translation.
+  </para>
+</listitem>
 </varlistentry>
 
 <varlistentry>
@@ -178,13 +187,13 @@ The version of the XML format (currently "2.0").
 </varlistentry>
 
 <varlistentry>
-<term><code>section</code> (optional)</term>
+<term><code>section</code> or <code>_section</code> (optional)</term>
 <listitem><para>
-The translatable category in which the language has to be grouped when
-presented to the user. It can be marked for translation putting
-an underscore before the attribute name. Currently used categories in
-GtkSourceView are "Source", "Script",  "Markup" and "Other", but
-it is possible to use arbitrary categories (while usually discouraged).
+The category in which the language has to be grouped when presented to the user.
+With <code>_section</code> the string is marked for translation. Currently used
+categories in GtkSourceView are "Source", "Script", "Markup", "Scientific" and
+"Other", but it is possible to use arbitrary categories (while usually
+discouraged). The convention in GtkSourceView is to use <code>_section</code>.
 </para></listitem>
 </varlistentry>
 
@@ -302,11 +311,25 @@ hyphens ("<code>-</code>") and underscores ("<code>_</code>").
 </varlistentry>
 
 <varlistentry>
-<term><code>name</code> (mandatory)</term>
-<listitem><para>
-The user visible translatable name for the style. It has to be preceded
-with a underscore ("<code>_</code>") to be marked for translation.
-</para></listitem>
+<term><code>name</code> or <code>_name</code> (mandatory)</term>
+<listitem>
+  <para>
+    The user visible name for the style. With <code>_name</code> the string is
+    marked for translation.
+  </para>
+
+  <para>
+    The convention in GtkSourceView is to <emphasis>never</emphasis> mark those
+    strings for translation because they are extremely rarely used in the UI of
+    an application (for example it could be used by a GUI tool to edit or create
+    style schemes, but it is not really useful beyond that), and because those
+    strings would be hard to translate (as a result, if those strings are
+    translated, in practice they would often be translated in a way that the
+    user doesn't understand what it means; for example for the C language,
+    "include" or "define" should not be translated, those are keywords of the
+    programming language).
+  </para>
+</listitem>
 </varlistentry>
 
 <varlistentry>

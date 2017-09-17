@@ -56,21 +56,20 @@ After the usual preamble, the main tag is the <code>&lt;language&gt;</code> elem
 </para>
 
 <programlisting>
-&lt;language id="c" _name="C" version="2.0" _section="Source"&gt;
+&lt;language id="c" name="C" version="2.0" _section="Source"&gt;
 </programlisting>
 
 <para>
 The attribute <code>id</code> is used in external references and defines a standard
 way to refer to this language definition, while the <code>name</code> attribute is
-the name presented to the user (it is translatable using gettext prepending a
-<code>_</code>.)
+the name presented to the user.
 </para>
 
 <para>
-The attribute <code>section</code>, also translatable, tells the category where
-this language should be grouped when it is presented to the user. Currently
-available categories in GtkSourceView are "Source", "Script", "Markup",
-"Scientific" and "Other".
+The attribute <code>section</code> (it is translatable using gettext prepending
+a <code>_</code>), tells the category where this language should be grouped when
+it is presented to the user. Currently available categories in GtkSourceView are
+"Source", "Script", "Markup", "Scientific" and "Other".
 </para>
 
 <para>
@@ -116,14 +115,14 @@ For each style there is a <code>&lt;style&gt;</code> element:
 </para>
 
 <programlisting>
-&lt;style id="comment" _name="Comment" map-to="def:comment"/&gt;
+&lt;style id="comment" name="Comment" map-to="def:comment"/&gt;
 </programlisting>
 
 <para>
 This defines a <code>comment</code> style, which inherits the font
 properties from the defaults style <code>def:comment</code>.
-The <code>name</code> attribute contains the translatable name for this
-style, which is the name to show to the user.
+The <code>name</code> attribute is the name to show to the user (that string
+could for example be used by a GUI tool to edit or create style schemes).
 </para>
 
 <para>
@@ -133,13 +132,13 @@ contexts, so they will share the same appearance.
 </para>
 
 <programlisting>
-&lt;style id="string" _name="String" map-to="def:string"/&gt;
-&lt;style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/&gt;
-&lt;style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/&gt;
-&lt;style id="included-file" _name="Included File" map-to="def:string"/&gt;
-&lt;style id="char" _name="Character" map-to="def:character"/&gt;
-&lt;style id="keyword" _name="Keyword" map-to="def:keyword"/&gt;
-&lt;style id="type" _name="Data Type" map-to="def:type"/&gt;
+&lt;style id="string" name="String" map-to="def:string"/&gt;
+&lt;style id="escaped-character" name="Escaped Character" map-to="def:special-char"/&gt;
+&lt;style id="preprocessor" name="Preprocessor" map-to="def:preprocessor"/&gt;
+&lt;style id="included-file" name="Included File" map-to="def:string"/&gt;
+&lt;style id="char" name="Character" map-to="def:character"/&gt;
+&lt;style id="keyword" name="Keyword" map-to="def:keyword"/&gt;
+&lt;style id="type" name="Data Type" map-to="def:type"/&gt;
 </programlisting>
 
 <para>
@@ -607,20 +606,20 @@ for this tutorial:
 
 <programlisting>
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;language id="c" _name="C" version="2.0" _section="Source"&gt;
+&lt;language id="c" name="C" version="2.0" _section="Source"&gt;
   &lt;metadata&gt;
     &lt;property name="mimetypes"&gt;text/x-c;text/x-csrc&lt;/property&gt;
     &lt;property name="globs"&gt;*.c&lt;/property&gt;
   &lt;/metadata&gt;
   &lt;styles&gt;
-    &lt;style id="comment" _name="Comment" map-to="def:comment"/&gt;
-    &lt;style id="string" _name="String" map-to="def:string"/&gt;
-    &lt;style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/&gt;
-    &lt;style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/&gt;
-    &lt;style id="included-file" _name="Included File" map-to="def:string"/&gt;
-    &lt;style id="char" _name="Character" map-to="def:character"/&gt;
-    &lt;style id="keyword" _name="Keyword" map-to="def:keyword"/&gt;
-    &lt;style id="type" _name="Data Type" map-to="def:type"/&gt;
+    &lt;style id="comment" name="Comment" map-to="def:comment"/&gt;
+    &lt;style id="string" name="String" map-to="def:string"/&gt;
+    &lt;style id="escaped-character" name="Escaped Character" map-to="def:special-char"/&gt;
+    &lt;style id="preprocessor" name="Preprocessor" map-to="def:preprocessor"/&gt;
+    &lt;style id="included-file" name="Included File" map-to="def:string"/&gt;
+    &lt;style id="char" name="Character" map-to="def:character"/&gt;
+    &lt;style id="keyword" name="Keyword" map-to="def:keyword"/&gt;
+    &lt;style id="type" name="Data Type" map-to="def:type"/&gt;
   &lt;/styles&gt;
   &lt;definitions&gt;
     &lt;context id="c"&gt;
