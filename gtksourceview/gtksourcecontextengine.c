@@ -26,7 +26,7 @@
 #include "gtksourcecontextengine.h"
 #include <string.h>
 #include <glib.h>
-#include "gtksourceview-i18n.h"
+#include <glib/gi18n-lib.h>
 #include "gtksourceregion.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"

@@ -23,6 +23,7 @@
 #endif
 
 #include "gtksourcesearchcontext.h"
+#include <string.h>
 #include "gtksourcesearchsettings.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
@@ -32,10 +33,7 @@
 #include "gtksourceutils.h"
 #include "gtksourceregion.h"
 #include "gtksourceiter.h"
-#include "gtksourceview-i18n.h"
 #include "gtksourceview-enumtypes.h"
-
-#include <string.h>
 
 /**
  * SECTION:searchcontext

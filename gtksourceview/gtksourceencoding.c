@@ -25,7 +25,7 @@
 
 #include "gtksourceencoding.h"
 #include "gtksourceencoding-private.h"
-#include "gtksourceview-i18n.h"
+#include <glib/gi18n-lib.h>
 
 /**
  * SECTION:encoding

@@ -26,13 +26,13 @@
 #endif
 
 #include "gtksourcefileloader.h"
+#include <glib/gi18n-lib.h>
 #include "gtksourcebuffer.h"
 #include "gtksourcefile.h"
 #include "gtksourcebufferoutputstream.h"
 #include "gtksourceencoding.h"
 #include "gtksourceencoding-private.h"
 #include "gtksourceview-enumtypes.h"
-#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:fileloader

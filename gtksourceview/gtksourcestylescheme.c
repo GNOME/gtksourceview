@@ -23,14 +23,14 @@
 #endif
 
 #include "gtksourcestylescheme.h"
+#include <libxml/parser.h>
+#include <string.h>
+#include <glib/gi18n-lib.h>
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestyle-private.h"
 #include "gtksourceview.h"
 #include "gtksourcelanguage-private.h"
-#include "gtksourceview-i18n.h"
-#include <libxml/parser.h>
-#include <string.h>
 
 /**
  * SECTION:stylescheme

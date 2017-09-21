@@ -28,15 +28,14 @@
 #include "gtksourceview.h"
 
 #include <string.h> /* For strlen */
-
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <pango/pango-tabs.h>
+#include <glib/gi18n-lib.h>
 
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
 #include "gtksourcebufferinternal.h"
-#include "gtksourceview-i18n.h"
 #include "gtksourceview-enumtypes.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"

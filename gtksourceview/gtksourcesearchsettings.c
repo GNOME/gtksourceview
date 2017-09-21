@@ -23,7 +23,6 @@
 #endif
 
 #include "gtksourcesearchsettings.h"
-#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:searchsettings

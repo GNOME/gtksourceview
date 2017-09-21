@@ -26,7 +26,6 @@
 #include "gtksourcegutterrenderer-private.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceview-enumtypes.h"
-#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:gutterrenderer

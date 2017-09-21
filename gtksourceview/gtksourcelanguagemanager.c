@@ -30,7 +30,6 @@
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourceview-utils.h"
-#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:languagemanager

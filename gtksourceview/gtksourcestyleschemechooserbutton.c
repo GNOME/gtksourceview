@@ -24,10 +24,10 @@
 #endif
 
 #include "gtksourcestyleschemechooserbutton.h"
+#include <glib/gi18n-lib.h>
 #include "gtksourcestyleschemechooser.h"
 #include "gtksourcestyleschemechooserwidget.h"
 #include "gtksourcestylescheme.h"
-#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:styleschemechooserbutton

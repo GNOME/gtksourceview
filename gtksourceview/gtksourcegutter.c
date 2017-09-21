@@ -25,7 +25,6 @@
 #include "gtksourcegutter.h"
 #include "gtksourcegutter-private.h"
 #include "gtksourceview.h"
-#include "gtksourceview-i18n.h"
 #include "gtksourcegutterrenderer.h"
 #include "gtksourcegutterrenderer-private.h"
 

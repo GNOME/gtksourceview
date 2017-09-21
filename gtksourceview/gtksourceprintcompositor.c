@@ -29,7 +29,6 @@
 #include <string.h>
 #include <time.h>
 
-#include "gtksourceview-i18n.h"
 #include "gtksourceprintcompositor.h"
 #include "gtksourceview.h"
 #include "gtksourcebuffer.h"

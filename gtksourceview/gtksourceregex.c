@@ -23,11 +23,11 @@
 #include <config.h>
 #endif
 
+#include "gtksourceregex.h"
 #include <string.h>
 #include <glib.h>
-#include "gtksourceview-i18n.h"
+#include <glib/gi18n-lib.h>
 #include "gtksourceview-utils.h"
-#include "gtksourceregex.h"
 
 /*
  * GRegex wrapper which adds a few features needed for syntax highlighting,

@@ -66,7 +66,6 @@
 #include "gtksourcecompletioncontext.h"
 #include "gtksourceview-enumtypes.h"
 #include "gtksourcecompletionprovider.h"
-#include "gtksourceview-i18n.h"
 #include "gtksourcecompletion.h"
 
 struct _GtkSourceCompletionContextPrivate

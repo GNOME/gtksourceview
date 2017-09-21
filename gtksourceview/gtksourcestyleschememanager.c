@@ -23,10 +23,9 @@
 #endif
 
 #include "gtksourcestyleschememanager.h"
-#include "gtksourcestylescheme.h"
-#include "gtksourceview-i18n.h"
-#include "gtksourceview-utils.h"
 #include <string.h>
+#include "gtksourcestylescheme.h"
+#include "gtksourceview-utils.h"
 
 /**
  * SECTION:styleschememanager

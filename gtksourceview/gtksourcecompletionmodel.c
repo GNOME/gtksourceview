@@ -24,9 +24,9 @@
 #endif
 
 #include "gtksourcecompletionmodel.h"
+#include <glib/gi18n-lib.h>
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcecompletionproposal.h"
-#include "gtksourceview-i18n.h"
 
 typedef struct
 {

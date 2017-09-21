@@ -34,7 +34,6 @@
 
 #include "gtksourcecompletionitem.h"
 #include "gtksourcecompletionproposal.h"
-#include "gtksourceview-i18n.h"
 
 struct _GtkSourceCompletionItemPrivate
 {

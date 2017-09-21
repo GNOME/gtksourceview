@@ -24,7 +24,6 @@
 
 #include "gtksourcestyle.h"
 #include "gtksourcestyle-private.h"
-#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:style

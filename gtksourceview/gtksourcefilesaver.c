@@ -26,13 +26,13 @@
 #endif
 
 #include "gtksourcefilesaver.h"
+#include <glib/gi18n-lib.h>
 #include "gtksourcefile.h"
 #include "gtksourcebufferinputstream.h"
 #include "gtksourceencoding.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
 #include "gtksourceview-enumtypes.h"
-#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:filesaver

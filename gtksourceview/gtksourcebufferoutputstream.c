@@ -23,14 +23,14 @@
 #include <config.h>
 #endif
 
+#include "gtksourcebufferoutputstream.h"
 #include <string.h>
 #include <errno.h>
-#include "gtksourcebufferoutputstream.h"
+#include <glib/gi18n-lib.h>
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
 #include "gtksourceencoding.h"
 #include "gtksourcefileloader.h"
-#include "gtksourceview-i18n.h"
 
 /* NOTE: never use async methods on this stream, the stream is just
  * a wrapper around GtkTextBuffer api so that we can use GIO Stream

@@ -102,6 +102,7 @@
 
 #include "gtksourcecompletion.h"
 #include "gtksourcecompletion-private.h"
+#include <glib/gi18n-lib.h>
 #include "gtksourcecompletionmodel.h"
 #include "gtksourcecompletioncontext.h"
 #include "gtksourcecompletioninfo.h"
@@ -110,7 +111,6 @@
 #include "gtksourcecompletioncontainer.h"
 #include "gtksourcebuffer.h"
 #include "gtksourceview.h"
-#include "gtksourceview-i18n.h"
 
 enum
 {

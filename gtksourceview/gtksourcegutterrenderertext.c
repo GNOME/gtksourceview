@@ -23,7 +23,6 @@
 #endif
 
 #include "gtksourcegutterrenderertext.h"
-#include "gtksourceview-i18n.h"
 
 /**
  * SECTION:gutterrenderertext

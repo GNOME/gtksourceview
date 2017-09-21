@@ -32,7 +32,6 @@
 #include <config.h>
 #endif
 
-#include "gtksourceview-i18n.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
@@ -40,6 +39,7 @@
 
 #include <glib.h>
 #include <glib/gstdio.h>
+#include <glib/gi18n-lib.h>
 
 #include <string.h>
 #include <fcntl.h>

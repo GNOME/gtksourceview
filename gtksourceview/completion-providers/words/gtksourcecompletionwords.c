@@ -34,14 +34,13 @@
 #endif
 
 #include "gtksourcecompletionwords.h"
+#include <string.h>
+#include <glib/gi18n-lib.h>
 #include "gtksourcecompletionwordslibrary.h"
 #include "gtksourcecompletionwordsbuffer.h"
 #include "gtksourcecompletionwordsutils.h"
 #include "gtksourceview/gtksource.h"
 #include "gtksourceview/gtksourceview-enumtypes.h"
-#include "gtksourceview/gtksourceview-i18n.h"
-
-#include <string.h>
 
 #define BUFFER_KEY "GtkSourceCompletionWordsBufferKey"
 

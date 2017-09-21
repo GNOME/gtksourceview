@@ -59,8 +59,8 @@
 #include <config.h>
 #endif
 
-#include <gtksourceview/gtksourcecompletioninfo.h>
-#include "gtksourceview-i18n.h"
+#include "gtksourcecompletioninfo.h"
+#include <glib/gi18n-lib.h>
 
 struct _GtkSourceCompletionInfoPrivate
 {

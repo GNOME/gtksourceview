@@ -23,7 +23,6 @@
 #endif
 
 #include "gtksourcegutterrendererpixbuf.h"
-#include "gtksourceview-i18n.h"
 #include "gtksourcepixbufhelper.h"
 
 /**
