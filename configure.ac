@@ -188,9 +188,6 @@ AS_IF([ test "$glade_catalog" = "yes" ],
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.19.4])
 
-AS_IF([test "$USE_NLS" = "yes"],
-      [AC_DEFINE([ENABLE_NLS], [1], [Defined if native language support should be enabled.])])
-
 AC_SUBST([GETTEXT_PACKAGE], [gtksourceview-$GSV_API_VERSION])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [Define to the gettext package name.])
 

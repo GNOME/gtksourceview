@@ -2,7 +2,7 @@
  *
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2016 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright (C) 2016, 2017 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -27,9 +27,7 @@
 #include <config.h>
 #endif
 
-#ifdef ENABLE_NLS
 #include <glib/gi18n-lib.h>
-#endif
 
 #include "gconstructor.h"
 #include "gtksourcelanguagemanager.h"
@@ -42,10 +40,8 @@
 static HMODULE gtksourceview_dll;
 #endif
 
-#ifdef ENABLE_NLS
-
-#  ifdef OS_OSX
-#  include <Cocoa/Cocoa.h>
+#ifdef OS_OSX
+#include <Cocoa/Cocoa.h>
 
 static gchar *
 dirs_os_x_get_bundle_resource_dir (void)
@@ -95,14 +91,14 @@ dirs_os_x_get_locale_dir (void)
 
 	return ret;
 }
-#  endif /* OS_OSX */
+#endif /* OS_OSX */
 
 static gchar *
 get_locale_dir (void)
 {
 	gchar *locale_dir;
 
-#  if defined (G_OS_WIN32)
+#if defined (G_OS_WIN32)
 	gchar *win32_dir;
 
 	win32_dir = g_win32_get_package_installation_directory_of_module (gtksourceview_dll);
@@ -110,20 +106,18 @@ get_locale_dir (void)
 	locale_dir = g_build_filename (win32_dir, "share", "locale", NULL);
 
 	g_free (win32_dir);
-#  elif defined (OS_OSX)
+#elif defined (OS_OSX)
 	locale_dir = dirs_os_x_get_locale_dir ();
-#  else
+#else
 	locale_dir = g_build_filename (DATADIR, "locale", NULL);
-#  endif
+#endif
 
 	return locale_dir;
 }
-#endif /* ENABLE_NLS */
 
 static void
 gtksourceview_init (void)
 {
-#ifdef ENABLE_NLS
 	gchar *locale_dir;
 
 	locale_dir = get_locale_dir ();
@@ -131,7 +125,6 @@ gtksourceview_init (void)
 	g_free (locale_dir);
 
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-#endif /* ENABLE_NLS */
 }
 
 static void
