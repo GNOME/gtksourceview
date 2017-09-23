@@ -23,9 +23,9 @@
 #endif
 
 #include "gtksourceview-utils.h"
-
 #include <errno.h>
 #include <math.h>
+#include <glib/gi18n-lib.h>
 
 #define SOURCEVIEW_DIR "gtksourceview-3.0"
 
@@ -315,4 +315,40 @@ _gtk_source_pango_font_description_to_css (const PangoFontDescription *font_desc
 
 #undef ADD_KEYVAL
 #undef ADD_KEYVAL_PRINTF
+}
+
+/*
+ * _gtksourceview_dgettext:
+ *
+ * Try to translate string from given domain. It returns
+ * duplicated string which must be freed with g_free().
+ */
+gchar *
+_gtksourceview_dgettext (const gchar *domain,
+                         const gchar *string)
+{
+	const gchar *translated;
+	gchar *tmp;
+
+	g_return_val_if_fail (string != NULL, NULL);
+
+	if (domain == NULL)
+	{
+		return g_strdup (_(string));
+	}
+
+	translated = dgettext (domain, string);
+
+	if (g_strcmp0 (translated, string) == 0)
+	{
+		return g_strdup (_(string));
+	}
+
+	if (g_utf8_validate (translated, -1, NULL))
+	{
+		return g_strdup (translated);
+	}
+
+	tmp = g_locale_to_utf8 (translated, -1, NULL, NULL, NULL);
+	return tmp != NULL ? tmp : g_strdup (string);
 }

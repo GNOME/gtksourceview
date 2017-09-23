@@ -41,6 +41,13 @@ gint		_gtk_source_string_to_int			(const gchar *str);
 G_GNUC_INTERNAL
 gchar *		_gtk_source_pango_font_description_to_css	(const PangoFontDescription *font_desc);
 
+#define GD_(Domain,String) _gtksourceview_dgettext (Domain, String)
+
+/* Note: it returns duplicated string. */
+G_GNUC_INTERNAL
+gchar *		_gtksourceview_dgettext		(const gchar *domain,
+						 const gchar *msgid) G_GNUC_FORMAT(2);
+
 G_END_DECLS
 
 #endif /* GTK_SOURCE_VIEW_UTILS_H */

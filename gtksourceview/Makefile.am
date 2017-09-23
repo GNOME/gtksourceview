@@ -122,7 +122,6 @@ libgtksourceview_private_headers =		\
 	gtksourcestyle-private.h		\
 	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
-	gtksourceview-i18n.h			\
 	gtksourceview-utils.h
 
 libgtksourceview_private_c_files =	\
@@ -141,7 +140,6 @@ libgtksourceview_private_c_files =	\
 	gtksourcepixbufhelper.c		\
 	gtksourceregex.c		\
 	gtksourceundomanagerdefault.c	\
-	gtksourceview-i18n.c		\
 	gtksourceview-init.c		\
 	gtksourceview-utils.c
 

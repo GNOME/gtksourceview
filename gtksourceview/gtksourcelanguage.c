@@ -31,9 +31,10 @@
 
 #include <libxml/xmlreader.h>
 #include <glib/gstdio.h>
-#include "gtksourceview-i18n.h"
+#include <glib/gi18n-lib.h>
 #include "gtksourcelanguage-private.h"
 #include "gtksourcelanguage.h"
+#include "gtksourceview-utils.h"
 
 #ifdef G_OS_WIN32
 #include <io.h>
