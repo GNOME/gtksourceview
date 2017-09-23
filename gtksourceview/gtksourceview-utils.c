@@ -318,14 +318,14 @@ _gtk_source_pango_font_description_to_css (const PangoFontDescription *font_desc
 }
 
 /*
- * _gtksourceview_dgettext:
+ * _gtk_source_dgettext:
  *
  * Try to translate string from given domain. It returns
  * duplicated string which must be freed with g_free().
  */
 gchar *
-_gtksourceview_dgettext (const gchar *domain,
-                         const gchar *string)
+_gtk_source_dgettext (const gchar *domain,
+		      const gchar *string)
 {
 	const gchar *translated;
 	gchar *tmp;
