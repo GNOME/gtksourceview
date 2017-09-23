@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
-/* test-undo-manager.c
+/*
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2013, 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>

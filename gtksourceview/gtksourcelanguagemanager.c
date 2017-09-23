@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
-/* gtksourcelanguagemanager.c
+/*
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2003-2007 - Paolo Maggi <paolo.maggi@polito.it>

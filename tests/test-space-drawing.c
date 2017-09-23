@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- * test-space-drawing.c
+ *
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2015 - Université Catholique de Louvain

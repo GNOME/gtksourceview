@@ -1,5 +1,5 @@
 /*
- * test-search-context.c
+ *
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2013, 2015, 2016 - Sébastien Wilmet <swilmet@gnome.org>

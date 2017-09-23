@@ -1,5 +1,5 @@
 /*
- * test-search-performances.c
+ *
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>

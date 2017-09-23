@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
-/* gtksourcefilesaver.h
+/*
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2005, 2007 - Paolo Maggi

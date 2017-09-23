@@ -1,5 +1,5 @@
 /*
- * gtksourcetypes.h
+ *
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2012-2016 - Sébastien Wilmet <swilmet@gnome.org>

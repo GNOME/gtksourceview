@@ -1,5 +1,5 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
-/* gtksourcebufferoutputstream.h
+/*
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2010 - Ignacio Casal Quinteiro
