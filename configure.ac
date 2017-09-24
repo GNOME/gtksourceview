@@ -46,7 +46,7 @@ GSV_LT_CURRENT=0
 GSV_LT_REVISION=0
 GSV_LT_AGE=0
 GSV_LT_VERSION="$GSV_LT_CURRENT:$GSV_LT_REVISION:$GSV_LT_AGE"
-AC_SUBST(GSV_LT_VERSION)
+AC_SUBST([GSV_LT_VERSION])
 
 # API version, used for parallel installability.
 # Not used in:
@@ -55,7 +55,10 @@ AC_SUBST(GSV_LT_VERSION)
 # Because as far as I've tested, it is not easily feasible to not hardcode the
 # API version in those places (swilmet).
 GSV_API_VERSION=4
-AC_SUBST(GSV_API_VERSION)
+AC_SUBST([GSV_API_VERSION])
+AC_DEFINE_UNQUOTED([GSV_API_VERSION],
+		   ["$GSV_API_VERSION"],
+		   [Define to the GtkSourceView API version.])
 
 # Dependencies
 glib_req=2.48

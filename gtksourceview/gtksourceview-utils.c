@@ -27,7 +27,7 @@
 #include <math.h>
 #include <glib/gi18n-lib.h>
 
-#define SOURCEVIEW_DIR "gtksourceview-3.0"
+#define GSV_DATA_SUBDIR "gtksourceview-" GSV_API_VERSION
 
 gchar **
 _gtk_source_utils_get_default_dirs (const gchar *basename)
@@ -39,7 +39,7 @@ _gtk_source_utils_get_default_dirs (const gchar *basename)
 
 	/* User dir */
 	g_ptr_array_add (dirs, g_build_filename (g_get_user_data_dir (),
-						 SOURCEVIEW_DIR,
+						 GSV_DATA_SUBDIR,
 						 basename,
 						 NULL));
 
@@ -49,7 +49,7 @@ _gtk_source_utils_get_default_dirs (const gchar *basename)
 	     system_dirs++)
 	{
 		g_ptr_array_add (dirs, g_build_filename (*system_dirs,
-							 SOURCEVIEW_DIR,
+							 GSV_DATA_SUBDIR,
 							 basename,
 							 NULL));
 	}
