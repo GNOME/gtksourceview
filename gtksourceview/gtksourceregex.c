@@ -198,7 +198,7 @@ replace_start_regex (const GMatchInfo *match_info,
 
 	escapes = g_match_info_fetch (match_info, 1);
 	num_string = g_match_info_fetch (match_info, 2);
-	num = _gtk_source_string_to_int (num_string);
+	num = _gtk_source_utils_string_to_int (num_string);
 
 	if (num < 0)
 	{

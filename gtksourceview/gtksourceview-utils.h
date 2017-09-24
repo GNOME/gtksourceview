@@ -35,7 +35,7 @@ GSList *	_gtk_source_utils_get_file_list			(gchar       **path,
 								 gboolean      only_dirs);
 
 G_GNUC_INTERNAL
-gint		_gtk_source_string_to_int			(const gchar *str);
+gint		_gtk_source_utils_string_to_int			(const gchar *str);
 
 G_GNUC_INTERNAL
 gchar *		_gtk_source_pango_font_description_to_css	(const PangoFontDescription *font_desc);

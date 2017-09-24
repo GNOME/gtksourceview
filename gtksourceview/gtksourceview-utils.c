@@ -122,7 +122,7 @@ _gtk_source_utils_get_file_list (gchar       **path,
  * (e.g. \%{1@start} or \%{blah@start}) are named or numbers.
  */
 gint
-_gtk_source_string_to_int (const gchar *str)
+_gtk_source_utils_string_to_int (const gchar *str)
 {
 	guint64 number;
 	gchar *end_str;

@@ -6000,7 +6000,7 @@ _gtk_source_context_data_add_sub_pattern (GtkSourceContextData  *ctx_data,
 #endif
 	sp_def->style = g_strdup (style);
 	sp_def->where = where_num;
-	number = _gtk_source_string_to_int (name);
+	number = _gtk_source_utils_string_to_int (name);
 
 	if (number < 0)
 	{
