@@ -2,7 +2,9 @@
  *
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2007 - Gustavo Giráldez and Paolo Maggi
+ * Copyright (C) 2007 - Gustavo Giráldez
+ * Copyright (C) 2007 - Paolo Maggi
+ * Copyright (C) 2017 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,8 +20,8 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_VIEW_UTILS_H
-#define GTK_SOURCE_VIEW_UTILS_H
+#ifndef GTK_SOURCE_UTILS_PRIVATE_H
+#define GTK_SOURCE_UTILS_PRIVATE_H
 
 #include <glib.h>
 #include <pango/pango.h>
@@ -47,4 +49,4 @@ gchar *		_gtk_source_utils_dgettext			(const gchar *domain,
 
 G_END_DECLS
 
-#endif /* GTK_SOURCE_VIEW_UTILS_H */
+#endif /* GTK_SOURCE_UTILS_PRIVATE_H */

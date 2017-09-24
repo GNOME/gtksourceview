@@ -34,7 +34,7 @@
 #include "gtksourceregex.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
-#include "gtksourceview-utils.h"
+#include "gtksourceutils-private.h"
 
 #undef ENABLE_DEBUG
 #undef ENABLE_PROFILE

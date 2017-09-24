@@ -27,7 +27,7 @@
 #include <string.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
-#include "gtksourceview-utils.h"
+#include "gtksourceutils-private.h"
 
 /*
  * GRegex wrapper which adds a few features needed for syntax highlighting,

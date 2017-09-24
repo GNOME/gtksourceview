@@ -62,7 +62,7 @@ IGNORE_HFILES =					\
 	gtksourcestyle-private.h		\
 	gtksourcetypes-private.h		\
 	gtksourceundomanagerdefault.h		\
-	gtksourceview-utils.h
+	gtksourceutils-private.h
 
 # Extra options to supply to gtkdoc-mkdb
 MKDB_OPTIONS = --xml-mode --output-format=xml

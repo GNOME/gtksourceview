@@ -25,7 +25,7 @@
 #include "gtksourcestyleschememanager.h"
 #include <string.h>
 #include "gtksourcestylescheme.h"
-#include "gtksourceview-utils.h"
+#include "gtksourceutils-private.h"
 
 /**
  * SECTION:styleschememanager

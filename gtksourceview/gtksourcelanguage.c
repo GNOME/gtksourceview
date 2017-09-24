@@ -34,7 +34,7 @@
 #include <glib/gi18n-lib.h>
 #include "gtksourcelanguage-private.h"
 #include "gtksourcelanguage.h"
-#include "gtksourceview-utils.h"
+#include "gtksourceutils-private.h"
 
 #ifdef G_OS_WIN32
 #include <io.h>

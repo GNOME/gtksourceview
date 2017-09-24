@@ -29,7 +29,7 @@
 
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
-#include "gtksourceview-utils.h"
+#include "gtksourceutils-private.h"
 
 /**
  * SECTION:languagemanager

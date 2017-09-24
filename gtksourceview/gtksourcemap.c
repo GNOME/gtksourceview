@@ -27,7 +27,7 @@
 #include "gtksourcecompletion.h"
 #include "gtksourcestyle-private.h"
 #include "gtksourcestylescheme.h"
-#include "gtksourceview-utils.h"
+#include "gtksourceutils-private.h"
 
 /**
  * SECTION:map
