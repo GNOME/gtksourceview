@@ -37,7 +37,7 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-static HMODULE gtksourceview_dll;
+static HMODULE gtk_source_dll;
 #endif
 
 #ifdef OS_OSX
@@ -101,7 +101,7 @@ get_locale_dir (void)
 #if defined (G_OS_WIN32)
 	gchar *win32_dir;
 
-	win32_dir = g_win32_get_package_installation_directory_of_module (gtksourceview_dll);
+	win32_dir = g_win32_get_package_installation_directory_of_module (gtk_source_dll);
 
 	locale_dir = g_build_filename (win32_dir, "share", "locale", NULL);
 
@@ -116,7 +116,7 @@ get_locale_dir (void)
 }
 
 static void
-gtksourceview_init (void)
+gtk_source_init (void)
 {
 	gchar *locale_dir;
 
@@ -128,7 +128,7 @@ gtksourceview_init (void)
 }
 
 static void
-gtksourceview_shutdown (void)
+gtk_source_shutdown (void)
 {
 	GtkSourceLanguageManager *language_manager;
 	GtkSourceStyleSchemeManager *style_scheme_manager;
@@ -154,12 +154,12 @@ DllMain (HINSTANCE hinstDLL,
 	switch (fdwReason)
 	{
 		case DLL_PROCESS_ATTACH:
-			gtksourceview_dll = hinstDLL;
-			gtksourceview_init ();
+			gtk_source_dll = hinstDLL;
+			gtk_source_init ();
 			break;
 
 		case DLL_THREAD_DETACH:
-			gtksourceview_shutdown ();
+			gtk_source_shutdown ();
 			break;
 
 		default:
@@ -173,25 +173,25 @@ DllMain (HINSTANCE hinstDLL,
 #elif defined (G_HAS_CONSTRUCTORS)
 
 #  ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
-#    pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(gtksourceview_constructor)
+#    pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(gtk_source_constructor)
 #  endif
-G_DEFINE_CONSTRUCTOR (gtksourceview_constructor)
+G_DEFINE_CONSTRUCTOR (gtk_source_constructor)
 
 static void
-gtksourceview_constructor (void)
+gtk_source_constructor (void)
 {
-	gtksourceview_init ();
+	gtk_source_init ();
 }
 
 #  ifdef G_DEFINE_DESTRUCTOR_NEEDS_PRAGMA
-#    pragma G_DEFINE_DESTRUCTOR_PRAGMA_ARGS(gtksourceview_destructor)
+#    pragma G_DEFINE_DESTRUCTOR_PRAGMA_ARGS(gtk_source_destructor)
 #  endif
-G_DEFINE_DESTRUCTOR (gtksourceview_destructor)
+G_DEFINE_DESTRUCTOR (gtk_source_destructor)
 
 static void
-gtksourceview_destructor (void)
+gtk_source_destructor (void)
 {
-	gtksourceview_shutdown ();
+	gtk_source_shutdown ();
 }
 
 #else
