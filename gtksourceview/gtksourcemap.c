@@ -275,9 +275,9 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	 * minimap as well as the styling for the scrubber.
 	 *
 	 * The font is calculated from #GtkSourceMap:font-desc. We convert this
-	 * to CSS using _gtk_source_pango_font_description_to_css(). It gets
-	 * applied to the minimap widget via the CSS style provider which we
-	 * attach to the view in gtk_source_map_init().
+	 * to CSS using _gtk_source_utils_pango_font_description_to_css(). It
+	 * gets applied to the minimap widget via the CSS style provider which
+	 * we attach to the view in gtk_source_map_init().
 	 *
 	 * The rules for calculating the style for the scrubber are as follows.
 	 *
@@ -302,7 +302,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	{
 		gchar *css;
 
-		css = _gtk_source_pango_font_description_to_css (priv->font_desc);
+		css = _gtk_source_utils_pango_font_description_to_css (priv->font_desc);
 		g_string_append_printf (gstr, "textview { %s }\n", css != NULL ? css : "");
 		g_free (css);
 	}

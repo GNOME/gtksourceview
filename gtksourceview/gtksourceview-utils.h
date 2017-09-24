@@ -38,7 +38,7 @@ G_GNUC_INTERNAL
 gint		_gtk_source_utils_string_to_int			(const gchar *str);
 
 G_GNUC_INTERNAL
-gchar *		_gtk_source_pango_font_description_to_css	(const PangoFontDescription *font_desc);
+gchar *		_gtk_source_utils_pango_font_description_to_css	(const PangoFontDescription *font_desc);
 
 /* Note: it returns duplicated string. */
 G_GNUC_INTERNAL

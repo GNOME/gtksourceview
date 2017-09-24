@@ -150,7 +150,7 @@ _gtk_source_utils_string_to_int (const gchar *str)
 #define FONT_SIZE    "font-size"
 
 gchar *
-_gtk_source_pango_font_description_to_css (const PangoFontDescription *font_desc)
+_gtk_source_utils_pango_font_description_to_css (const PangoFontDescription *font_desc)
 {
 	PangoFontMask mask;
 	GString *str;
