@@ -30,8 +30,8 @@
 #define SOURCEVIEW_DIR "gtksourceview-3.0"
 
 gchar **
-_gtk_source_view_get_default_dirs (const char *basename,
-				   gboolean    compat)
+_gtk_source_utils_get_default_dirs (const char *basename,
+				    gboolean    compat)
 {
 	const gchar * const *xdg_dirs;
 	GPtrArray *dirs;

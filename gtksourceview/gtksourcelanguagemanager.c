@@ -260,7 +260,7 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
 	tmp = lm->priv->lang_dirs;
 
 	if (dirs == NULL)
-		lm->priv->lang_dirs = _gtk_source_view_get_default_dirs (LANGUAGE_DIR, TRUE);
+		lm->priv->lang_dirs = _gtk_source_utils_get_default_dirs (LANGUAGE_DIR, TRUE);
 	else
 		lm->priv->lang_dirs = g_strdupv (dirs);
 
@@ -285,7 +285,7 @@ gtk_source_language_manager_get_search_path (GtkSourceLanguageManager *lm)
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm), NULL);
 
 	if (lm->priv->lang_dirs == NULL)
-		lm->priv->lang_dirs = _gtk_source_view_get_default_dirs (LANGUAGE_DIR, TRUE);
+		lm->priv->lang_dirs = _gtk_source_utils_get_default_dirs (LANGUAGE_DIR, TRUE);
 
 	return (const gchar * const *)lm->priv->lang_dirs;
 }

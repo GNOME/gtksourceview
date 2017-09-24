@@ -27,8 +27,8 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-gchar **	_gtk_source_view_get_default_dirs		(const gchar  *basename,
-								 gboolean      compat);
+gchar **	_gtk_source_utils_get_default_dirs		(const gchar *basename,
+								 gboolean     compat);
 
 G_GNUC_INTERNAL
 GSList *	_gtk_source_view_get_file_list			(gchar       **path,
