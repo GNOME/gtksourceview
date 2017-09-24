@@ -354,9 +354,9 @@ ensure_languages (GtkSourceLanguageManager *lm)
 	lm->priv->language_ids = g_hash_table_new_full (g_str_hash, g_str_equal,
 							g_free, g_object_unref);
 
-	filenames = _gtk_source_view_get_file_list ((gchar **)gtk_source_language_manager_get_search_path (lm),
-						    LANG_FILE_SUFFIX,
-						    TRUE);
+	filenames = _gtk_source_utils_get_file_list ((gchar **)gtk_source_language_manager_get_search_path (lm),
+						     LANG_FILE_SUFFIX,
+						     TRUE);
 
 	for (l = filenames; l != NULL; l = l->next)
 	{

@@ -30,7 +30,7 @@ G_GNUC_INTERNAL
 gchar **	_gtk_source_utils_get_default_dirs		(const gchar *basename);
 
 G_GNUC_INTERNAL
-GSList *	_gtk_source_view_get_file_list			(gchar       **path,
+GSList *	_gtk_source_utils_get_file_list			(gchar       **path,
 								 const gchar  *suffix,
 								 gboolean      only_dirs);
 

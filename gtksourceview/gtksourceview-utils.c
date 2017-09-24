@@ -102,9 +102,9 @@ build_file_listing (const gchar *item,
 }
 
 GSList *
-_gtk_source_view_get_file_list (gchar       **path,
-				const gchar  *suffix,
-				gboolean      only_dirs)
+_gtk_source_utils_get_file_list (gchar       **path,
+				 const gchar  *suffix,
+				 gboolean      only_dirs)
 {
 	GSList *files = NULL;
 

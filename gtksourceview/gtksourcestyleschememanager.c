@@ -348,9 +348,9 @@ reload_if_needed (GtkSourceStyleSchemeManager *mgr)
 
 	schemes_hash = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_object_unref);
 
-	files = _gtk_source_view_get_file_list ((gchar **)gtk_source_style_scheme_manager_get_search_path (mgr),
-						SCHEME_FILE_SUFFIX,
-						FALSE);
+	files = _gtk_source_utils_get_file_list ((gchar **)gtk_source_style_scheme_manager_get_search_path (mgr),
+						 SCHEME_FILE_SUFFIX,
+						 FALSE);
 
 	for (l = files; l != NULL; l = l->next)
 	{
