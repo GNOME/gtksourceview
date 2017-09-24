@@ -33,7 +33,7 @@
 #include "gtksourceutils.h"
 #include "gtksourceregion.h"
 #include "gtksourceiter.h"
-#include "gtksourceview-enumtypes.h"
+#include "gtksource-enumtypes.h"
 
 /**
  * SECTION:searchcontext

@@ -44,7 +44,7 @@
 #include "gtksourcemarkssequence.h"
 #include "gtksourcesearchcontext.h"
 #include "gtksourcetag.h"
-#include "gtksourceview-enumtypes.h"
+#include "gtksource-enumtypes.h"
 
 /**
  * SECTION:buffer

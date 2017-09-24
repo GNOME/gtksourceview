@@ -24,7 +24,7 @@
 
 #include "gtksourcefile.h"
 #include "gtksourceencoding.h"
-#include "gtksourceview-enumtypes.h"
+#include "gtksource-enumtypes.h"
 
 /**
  * SECTION:file

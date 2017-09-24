@@ -2,15 +2,15 @@
 
 cd ..\gtksourceview
 
-if exist gtksourceview-enumtypes.h del gtksourceview-enumtypes.h
-if exist gtksourceview-enumtypes.c del gtksourceview-enumtypes.c
+if exist gtksource-enumtypes.h del gtksource-enumtypes.h
+if exist gtksource-enumtypes.c del gtksource-enumtypes.c
 
 call perl %1\bin\glib-mkenums ^
 --fhead "#ifdef HAVE_CONFIG_H\n" ^
 --fhead "#include \"config.h\"\n" ^
 --fhead "#endif\n\n" ^
 --fhead "#include <glib-object.h>\n" ^
---fhead "#include \"gtksourceview-enumtypes.h\"\n\n" ^
+--fhead "#include \"gtksource-enumtypes.h\"\n\n" ^
 --fprod "\n/* enumerations from \"@filename@\" */" ^
 --vhead "static const G@Type@Value _@enum_name@_values[] = {" ^
 --vprod "  { @VALUENAME@, \"@VALUENAME@\", \"@valuenick@\" }," ^
@@ -21,7 +21,7 @@ call perl %1\bin\glib-mkenums ^
 --vtail "    type = g_@type@_register_static (\"@EnumName@\", _@enum_name@_values);\n\n" ^
 --vtail "  return type;\n}\n\n" ^
 #include "enum.headers"
-&1> gtksourceview-enumtypes.c
+&1> gtksource-enumtypes.c
 
 call perl %1\bin\glib-mkenums ^
 --fhead "#ifndef GTKSOURCEVIEW_ENUMTYPES_H\n" ^
@@ -33,8 +33,8 @@ call perl %1\bin\glib-mkenums ^
 --eprod "GTK_SOURCE_ENUM_EXTERN\nGType @enum_name@_get_type (void);\n" ^
 --eprod "G_END_DECLS\n\n" ^
 # include "enum.headers"
-&1> gtksourceview-enumtypes.h
+&1> gtksource-enumtypes.h
 
 
-call perl -p -i.tmp -e "s/GTK_TYPE_SOURCE_/GTK_SOURCE_TYPE_/g" gtksourceview-enumtypes.h
-del gtksourceview-enumtypes.h.tmp
+call perl -p -i.tmp -e "s/GTK_TYPE_SOURCE_/GTK_SOURCE_TYPE_/g" gtksource-enumtypes.h
+del gtksource-enumtypes.h.tmp

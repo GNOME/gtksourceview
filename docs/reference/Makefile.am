@@ -28,7 +28,7 @@ CFILE_GLOB = $(top_srcdir)/gtksourceview/*.c
 # e.g. EXTRA_HFILES = $(top_srcdir}/contrib/extra.h
 EXTRA_HFILES =								\
 	$(top_builddir)/gtksourceview/gtksourceversion.h		\
-	$(top_builddir)/gtksourceview/gtksourceview-enumtypes.h
+	$(top_builddir)/gtksourceview/gtksource-enumtypes.h
 
 # Header files or dirs to ignore when scanning. Use base file/dir names
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h private_code

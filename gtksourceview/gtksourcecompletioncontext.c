@@ -64,7 +64,7 @@
 #endif
 
 #include "gtksourcecompletioncontext.h"
-#include "gtksourceview-enumtypes.h"
+#include "gtksource-enumtypes.h"
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcecompletion.h"
 

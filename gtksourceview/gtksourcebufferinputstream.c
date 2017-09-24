@@ -27,7 +27,7 @@
 #include <gio/gio.h>
 #include <string.h>
 #include "gtksourcebufferinputstream.h"
-#include "gtksourceview-enumtypes.h"
+#include "gtksource-enumtypes.h"
 
 /* NOTE: never use async methods on this stream, the stream is just
  * a wrapper around GtkTextBuffer api so that we can use GIO Stream

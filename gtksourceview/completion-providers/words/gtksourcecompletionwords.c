@@ -40,7 +40,7 @@
 #include "gtksourcecompletionwordsbuffer.h"
 #include "gtksourcecompletionwordsutils.h"
 #include "gtksourceview/gtksource.h"
-#include "gtksourceview/gtksourceview-enumtypes.h"
+#include "gtksourceview/gtksource-enumtypes.h"
 
 #define BUFFER_KEY "GtkSourceCompletionWordsBufferKey"
 

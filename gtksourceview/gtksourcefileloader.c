@@ -32,7 +32,7 @@
 #include "gtksourcebufferoutputstream.h"
 #include "gtksourceencoding.h"
 #include "gtksourceencoding-private.h"
-#include "gtksourceview-enumtypes.h"
+#include "gtksource-enumtypes.h"
 
 /**
  * SECTION:fileloader
