@@ -30,41 +30,25 @@
 #define SOURCEVIEW_DIR "gtksourceview-3.0"
 
 gchar **
-_gtk_source_utils_get_default_dirs (const char *basename,
-				    gboolean    compat)
+_gtk_source_utils_get_default_dirs (const gchar *basename)
 {
-	const gchar * const *xdg_dirs;
+	const gchar * const *system_dirs;
 	GPtrArray *dirs;
 
 	dirs = g_ptr_array_new ();
 
-	/* user dir */
+	/* User dir */
 	g_ptr_array_add (dirs, g_build_filename (g_get_user_data_dir (),
 						 SOURCEVIEW_DIR,
 						 basename,
 						 NULL));
 
-#ifdef G_OS_UNIX
-	/* Legacy gtsourceview 1 user dir, for backward compatibility */
-	if (compat)
+	/* System dirs */
+	for (system_dirs = g_get_system_data_dirs ();
+	     system_dirs != NULL && *system_dirs != NULL;
+	     system_dirs++)
 	{
-		const gchar *home;
-
-		home = g_get_home_dir ();
-		if (home != NULL)
-		{
-			g_ptr_array_add (dirs,
-					 g_strdup_printf ("%s/%s",
-							  home,
-							  ".gnome2/gtksourceview-1.0/language-specs"));
-		}
-	}
-#endif
-
-	/* system dir */
-	for (xdg_dirs = g_get_system_data_dirs (); xdg_dirs && *xdg_dirs; ++xdg_dirs)
-	{
-		g_ptr_array_add (dirs, g_build_filename (*xdg_dirs,
+		g_ptr_array_add (dirs, g_build_filename (*system_dirs,
 							 SOURCEVIEW_DIR,
 							 basename,
 							 NULL));
@@ -72,7 +56,7 @@ _gtk_source_utils_get_default_dirs (const char *basename,
 
 	g_ptr_array_add (dirs, NULL);
 
-	return (gchar**) g_ptr_array_free (dirs, FALSE);
+	return (gchar **) g_ptr_array_free (dirs, FALSE);
 }
 
 static GSList *

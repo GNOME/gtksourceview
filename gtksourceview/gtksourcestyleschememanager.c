@@ -423,7 +423,7 @@ gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager  *m
 	tmp = manager->priv->search_path;
 
 	if (path == NULL)
-		manager->priv->search_path = _gtk_source_utils_get_default_dirs (STYLES_DIR, FALSE);
+		manager->priv->search_path = _gtk_source_utils_get_default_dirs (STYLES_DIR);
 	else
 		manager->priv->search_path = g_strdupv (path);
 
@@ -451,7 +451,7 @@ gtk_source_style_scheme_manager_append_search_path (GtkSourceStyleSchemeManager 
 	g_return_if_fail (path != NULL);
 
 	if (manager->priv->search_path == NULL)
-		manager->priv->search_path = _gtk_source_utils_get_default_dirs (STYLES_DIR, FALSE);
+		manager->priv->search_path = _gtk_source_utils_get_default_dirs (STYLES_DIR);
 
 	g_return_if_fail (manager->priv->search_path != NULL);
 
@@ -487,7 +487,7 @@ gtk_source_style_scheme_manager_prepend_search_path (GtkSourceStyleSchemeManager
 	g_return_if_fail (path != NULL);
 
 	if (manager->priv->search_path == NULL)
-		manager->priv->search_path = _gtk_source_utils_get_default_dirs (STYLES_DIR, FALSE);
+		manager->priv->search_path = _gtk_source_utils_get_default_dirs (STYLES_DIR);
 
 	g_return_if_fail (manager->priv->search_path != NULL);
 
@@ -520,7 +520,7 @@ gtk_source_style_scheme_manager_get_search_path (GtkSourceStyleSchemeManager *ma
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME_MANAGER (manager), NULL);
 
 	if (manager->priv->search_path == NULL)
-		manager->priv->search_path = _gtk_source_utils_get_default_dirs (STYLES_DIR, FALSE);
+		manager->priv->search_path = _gtk_source_utils_get_default_dirs (STYLES_DIR);
 
 	return (const gchar * const *)manager->priv->search_path;
 }
