@@ -42,7 +42,7 @@ gchar *		_gtk_source_utils_pango_font_description_to_css	(const PangoFontDescrip
 
 /* Note: it returns duplicated string. */
 G_GNUC_INTERNAL
-gchar *		_gtk_source_dgettext				(const gchar *domain,
+gchar *		_gtk_source_utils_dgettext			(const gchar *domain,
 								 const gchar *msgid) G_GNUC_FORMAT(2);
 
 G_END_DECLS

@@ -475,7 +475,7 @@ _gtk_source_language_translate_string (GtkSourceLanguage *language,
 {
 	g_return_val_if_fail (string != NULL, NULL);
 
-	return _gtk_source_dgettext (language->priv->translation_domain, string);
+	return _gtk_source_utils_dgettext (language->priv->translation_domain, string);
 }
 
 /**
