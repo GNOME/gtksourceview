@@ -134,13 +134,13 @@ libgtksourceview_private_c_files =	\
 	gtksourceengine.c		\
 	gtksourcegutterrendererlines.c	\
 	gtksourcegutterrenderermarks.c	\
+	gtksourceinit.c			\
 	gtksourceiter.c			\
 	gtksourcelanguage-parser-2.c	\
 	gtksourcemarkssequence.c	\
 	gtksourcepixbufhelper.c		\
 	gtksourceregex.c		\
-	gtksourceundomanagerdefault.c	\
-	gtksourceview-init.c
+	gtksourceundomanagerdefault.c
 
 # Split in a helper library, so the private functions can be used in unit tests.
 noinst_LTLIBRARIES = libgtksourceview-core.la
