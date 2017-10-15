@@ -1,3 +1,18 @@
+News in 3.99.6
+--------------
+* Reduce a lot the number of translatable strings (especially in *.lang files),
+  to translate only what makes sense. 630 -> 93 translatable strings!
+* Build: remove ENABLE_NLS option, always support gettext translation, to
+  simplify the code.
+* Fix bug in gtk_source_view_indent_lines().
+* Fix bug to read GtkSourceView 4 *.lang and style scheme files, not those from
+  GtkSourceView 3.
+* Code refactorings to prepare for the namespace change.
+* Improvements to the syntax highlighting of: Vala.
+* Improvements to the Visual Studio builds.
+* Various other small improvements.
+* Translation updates.
+
 News in 3.99.5
 --------------
 * Avoid type redefinitions.
