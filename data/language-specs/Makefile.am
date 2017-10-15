@@ -67,6 +67,7 @@ LANGUAGES =			\
 	lex.lang		\
 	libtool.lang		\
 	llvm.lang		\
+	logcat.lang		\
 	lua.lang		\
 	m4.lang			\
 	makefile.lang		\
