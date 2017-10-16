@@ -7,17 +7,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-02-11 18:15+0000\n"
-"PO-Revision-Date: 2017-02-13 23:48+0100\n"
+"POT-Creation-Date: 2017-10-05 12:43+0000\n"
+"PO-Revision-Date: 2017-10-16 13:11+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #. (itstool) path: displayable-values/value@name
 #: gtksourceview.xml:23
@@ -118,6 +118,7 @@ msgstr "ABNF"
 #. (itstool) path: idl.lang/language@_section
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
+#. (itstool) path: kotlin.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
@@ -139,6 +140,7 @@ msgstr "ABNF"
 #. (itstool) path: sml.lang/language@_section
 #. (itstool) path: sparql.lang/language@_section
 #. (itstool) path: sql.lang/language@_section
+#. (itstool) path: swift.lang/language@_section
 #. (itstool) path: systemverilog.lang/language@_section
 #. (itstool) path: thrift.lang/language@_section
 #. (itstool) path: vala.lang/language@_section
@@ -151,12 +153,13 @@ msgstr "ABNF"
 #: csharp.lang:27 cuda.lang:23 d.lang:30 eiffel.lang:24 erlang.lang:24
 #: forth.lang:24 fortran.lang:25 fsharp.lang:25 genie.lang:24 glsl.lang:31
 #: go.lang:25 haskell.lang:25 haskell-literate.lang:24 haxe.lang:35 idl.lang:24
-#: java.lang:25 j.lang:24 lex.lang:25 llvm.lang:23 makefile.lang:23
-#: meson.lang:24 nemerle.lang:24 netrexx.lang:24 objc.lang:24 objj.lang:26
-#: ocaml.lang:27 ooc.lang:24 opal.lang:24 opencl.lang:24 pascal.lang:25
-#: pig.lang:27 prolog.lang:24 rust.lang:36 scala.lang:25 scheme.lang:24
-#: sml.lang:24 sparql.lang:24 sql.lang:24 systemverilog.lang:22 thrift.lang:21
-#: vala.lang:28 vbnet.lang:24 verilog.lang:24 vhdl.lang:24
+#: java.lang:25 j.lang:24 kotlin.lang:24 lex.lang:25 llvm.lang:23
+#: makefile.lang:23 meson.lang:24 nemerle.lang:24 netrexx.lang:24 objc.lang:24
+#: objj.lang:26 ocaml.lang:27 ooc.lang:24 opal.lang:24 opencl.lang:24
+#: pascal.lang:25 pig.lang:27 prolog.lang:24 rust.lang:36 scala.lang:25
+#: scheme.lang:24 sml.lang:24 sparql.lang:24 sql.lang:24 swift.lang:24
+#: systemverilog.lang:22 thrift.lang:21 vala.lang:28 vbnet.lang:24
+#: verilog.lang:24 vhdl.lang:24
 msgid "Source"
 msgstr "Källkod"
 
@@ -193,7 +196,7 @@ msgstr "Binärtal"
 #: abnf.lang:41 ada.lang:37 bennugd.lang:39 cg.lang:43 c.lang:48 csharp.lang:49
 #: csv.lang:31 def.lang:67 d.lang:49 dtl.lang:42 eiffel.lang:45 erlang.lang:39
 #: fsharp.lang:37 go.lang:45 idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40
-#: ooc.lang:45 opal.lang:40 php.lang:55 python3.lang:40 python.lang:46
+#: ooc.lang:45 opal.lang:40 php.lang:55 python3.lang:41 python.lang:46
 #: ruby.lang:43
 msgid "Decimal number"
 msgstr "Decimaltal"
@@ -207,20 +210,20 @@ msgstr "Hexadecimaltal"
 
 #. (itstool) path: styles/style@_name
 #: abnf.lang:43 actionscript.lang:37 ada.lang:35 ansforth94.lang:43 asp.lang:33
-#: boo.lang:36 c.lang:36 cobol.lang:40 csharp.lang:40 css.lang:50 csv.lang:34
-#: def.lang:57 d.lang:42 dosbatch.lang:32 dtl.lang:37 eiffel.lang:34
-#: erlang.lang:36 forth.lang:35 fortran.lang:34 fsharp.lang:38 gdb-log.lang:30
-#: genie.lang:36 go.lang:37 gtkrc.lang:34 haskell.lang:39 haxe.lang:55
-#: idl-exelis.lang:32 idl.lang:36 imagej.lang:40 ini.lang:33 java.lang:37
-#: javascript.lang:47 j.lang:45 json.lang:39 julia.lang:37 llvm.lang:31
-#: lua.lang:35 meson.lang:34 modelica.lang:37 nemerle.lang:38 netrexx.lang:36
-#: nsis.lang:33 objc.lang:37 objj.lang:41 ocaml.lang:41 ocl.lang:42
-#: octave.lang:42 ooc.lang:36 opal.lang:37 pascal.lang:34 perl.lang:37
-#: php.lang:45 po.lang:34 prolog.lang:37 protobuf.lang:37 python3.lang:34
-#: python.lang:39 ruby.lang:46 rust.lang:47 scala.lang:39 scheme.lang:34
-#: scilab.lang:33 sh.lang:35 sml.lang:36 sql.lang:34 texinfo.lang:36
-#: thrift.lang:33 vala.lang:41 vbnet.lang:33 verilog.lang:35 vhdl.lang:33
-#: yaml.lang:32
+#: bibtex.lang:34 boo.lang:36 c.lang:36 cobol.lang:40 csharp.lang:40
+#: css.lang:50 csv.lang:34 def.lang:57 d.lang:42 dosbatch.lang:32 dtl.lang:37
+#: eiffel.lang:34 erlang.lang:36 forth.lang:35 fortran.lang:34 fsharp.lang:38
+#: gdb-log.lang:30 genie.lang:36 go.lang:37 gtkrc.lang:34 haskell.lang:39
+#: haxe.lang:55 idl-exelis.lang:32 idl.lang:36 imagej.lang:40 ini.lang:33
+#: java.lang:37 javascript.lang:47 j.lang:45 json.lang:39 julia.lang:37
+#: llvm.lang:31 lua.lang:35 meson.lang:34 modelica.lang:37 nemerle.lang:38
+#: netrexx.lang:36 nsis.lang:33 objc.lang:37 objj.lang:41 ocaml.lang:41
+#: ocl.lang:42 octave.lang:42 ooc.lang:36 opal.lang:37 pascal.lang:34
+#: perl.lang:37 php.lang:45 po.lang:34 prolog.lang:37 protobuf.lang:37
+#: python3.lang:35 python.lang:39 ruby.lang:46 rust.lang:47 scala.lang:39
+#: scheme.lang:34 scilab.lang:33 sh.lang:35 sml.lang:36 sql.lang:34
+#: texinfo.lang:36 thrift.lang:33 vala.lang:41 vbnet.lang:33 verilog.lang:35
+#: vhdl.lang:33 yaml.lang:32
 msgid "String"
 msgstr "Sträng"
 
@@ -273,7 +276,7 @@ msgstr "Omfångsdeklarering"
 #: nemerle.lang:39 objc.lang:34 objj.lang:37 ocaml.lang:42 ocl.lang:43
 #: octave.lang:48 ooc.lang:41 opal.lang:38 opencl.lang:33 pascal.lang:35
 #: perl.lang:38 php.lang:48 po.lang:36 prolog.lang:36 protobuf.lang:35
-#: python3.lang:32 python.lang:37 R.lang:34 ruby.lang:39 rust.lang:49
+#: python3.lang:33 python.lang:37 R.lang:34 ruby.lang:39 rust.lang:49
 #: scala.lang:43 scheme.lang:35 scilab.lang:34 sh.lang:36 sml.lang:33
 #: sparql.lang:37 sql.lang:35 systemverilog.lang:33 tcl.lang:33 texinfo.lang:37
 #: thrift.lang:32 vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
@@ -353,7 +356,7 @@ msgstr "Verkligt tal"
 #: fortran.lang:44 fsharp.lang:49 go.lang:42 haskell.lang:41 haxe.lang:63
 #: imagej.lang:37 java.lang:36 javascript.lang:37 json.lang:38 lua.lang:37
 #: netrexx.lang:35 ocaml.lang:51 ooc.lang:35 php.lang:44 prolog.lang:41
-#: python3.lang:35 python.lang:40 ruby.lang:35 scala.lang:40 sml.lang:37
+#: python3.lang:36 python.lang:40 ruby.lang:35 scala.lang:40 sml.lang:37
 #: texinfo.lang:34 vala.lang:49 verilog.lang:37
 msgid "Escaped Character"
 msgstr "Tecken efter Escape-tecken"
@@ -533,7 +536,7 @@ msgstr "Mönster"
 
 #. (itstool) path: styles/style@_name
 #: awk.lang:35 boo.lang:46 genie.lang:46 glsl.lang:44 go.lang:50
-#: netrexx.lang:47 perl.lang:39 python3.lang:45 python.lang:51
+#: netrexx.lang:47 perl.lang:39 python3.lang:46 python.lang:51
 msgid "Builtin Function"
 msgstr "Inbyggd funktion"
 
@@ -550,7 +553,7 @@ msgstr "Identifierare"
 #. (itstool) path: styles/style@_name
 #: bennugd.lang:38 cg.lang:42 c.lang:47 csv.lang:33 def.lang:65 d.lang:48
 #: dtl.lang:41 erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44
-#: nemerle.lang:43 ooc.lang:44 php.lang:54 python3.lang:39 python.lang:45
+#: nemerle.lang:43 ooc.lang:44 php.lang:54 python3.lang:40 python.lang:45
 #: R.lang:41 ruby.lang:42
 msgid "Floating point number"
 msgstr "Flyttal"
@@ -635,7 +638,7 @@ msgid "Boo"
 msgstr "Boo"
 
 #. (itstool) path: styles/style@_name
-#: boo.lang:35 genie.lang:35 python3.lang:33 python.lang:38
+#: boo.lang:35 genie.lang:35 python3.lang:34 python.lang:38
 msgid "Multiline string"
 msgstr "Flerradig sträng"
 
@@ -656,14 +659,14 @@ msgid "Definition"
 msgstr "Definition"
 
 #. (itstool) path: styles/style@_name
-#: boo.lang:42 genie.lang:42 python3.lang:37 python.lang:43 ruby.lang:52
+#: boo.lang:42 genie.lang:42 python3.lang:38 python.lang:43 ruby.lang:52
 msgid "Special Variable"
 msgstr "Specialvariabel"
 
 #. (itstool) path: styles/style@_name
 #: boo.lang:44 desktop.lang:39 d.lang:47 genie.lang:44 imagej.lang:34
 #: julia.lang:40 libtool.lang:33 meson.lang:35 modelica.lang:42 objj.lang:36
-#: octave.lang:46 python3.lang:38 python.lang:44 scheme.lang:33 scilab.lang:36
+#: octave.lang:46 python3.lang:39 python.lang:44 scheme.lang:33 scilab.lang:36
 #: sparql.lang:39 yaml.lang:39
 msgid "Boolean"
 msgstr "Boolesk"
@@ -964,12 +967,12 @@ msgid "Special character (inside a string)"
 msgstr "Specialtecken (inne i en sträng)"
 
 #. (itstool) path: styles/style@_name
-#: def.lang:69 python3.lang:41 python.lang:47 ruby.lang:44
+#: def.lang:69 python3.lang:42 python.lang:47 ruby.lang:44
 msgid "Base-N number"
 msgstr "Tal i bas N"
 
 #. (itstool) path: styles/style@_name
-#: def.lang:71 python3.lang:42 python.lang:48
+#: def.lang:71 python3.lang:43 python.lang:48
 msgid "Complex number"
 msgstr "Komplext tal"
 
@@ -1292,12 +1295,14 @@ msgstr "FCL"
 #. (itstool) path: imagej.lang/language@_section
 #. (itstool) path: julia.lang/language@_section
 #. (itstool) path: matlab.lang/language@_section
+#. (itstool) path: maxima.lang/language@_section
 #. (itstool) path: modelica.lang/language@_section
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
 #: fcl.lang:23 gap.lang:24 idl-exelis.lang:21 imagej.lang:24 julia.lang:24
-#: matlab.lang:26 modelica.lang:26 octave.lang:26 R.lang:26 scilab.lang:24
+#: matlab.lang:26 maxima.lang:24 modelica.lang:26 octave.lang:26 R.lang:26
+#: scilab.lang:24
 msgid "Scientific"
 msgstr "Vetenskaplig"
 
@@ -1345,7 +1350,7 @@ msgstr "Väsentlig funktion"
 #. (itstool) path: styles/style@_name
 #: fortran.lang:38
 msgid "BOZ Literal"
-msgstr "BOZ-literal"
+msgstr "BOZ-litteral"
 
 #. (itstool) path: styles/style@_name
 #: fortran.lang:42
@@ -1458,7 +1463,7 @@ msgid "OpenGL Shading Language"
 msgstr "OpenGL Shading Language"
 
 #. (itstool) path: styles/style@_name
-#: glsl.lang:45 go.lang:49 python3.lang:43 python.lang:49
+#: glsl.lang:45 go.lang:49 python3.lang:44 python.lang:49
 msgid "Builtin Constant"
 msgstr "Inbyggd konstant"
 
@@ -2386,7 +2391,7 @@ msgid "Opal"
 msgstr "Opal"
 
 #. (itstool) path: styles/style@_name
-#: opal.lang:33 python3.lang:31 python.lang:36
+#: opal.lang:33 python3.lang:32 python.lang:36
 msgid "Module Handler"
 msgstr "Modulhanterare"
 
@@ -2597,12 +2602,12 @@ msgid "Python 3"
 msgstr "Python 3"
 
 #. (itstool) path: styles/style@_name
-#: python3.lang:36 python.lang:41
+#: python3.lang:37 python.lang:41
 msgid "Format"
 msgstr "Format"
 
 #. (itstool) path: styles/style@_name
-#: python3.lang:44 python.lang:50
+#: python3.lang:45 python.lang:50
 msgid "Builtin Object"
 msgstr "Inbyggt objekt"
 
@@ -2736,16 +2741,15 @@ msgstr "Attributdefinition"
 msgid "Module handler"
 msgstr "Modulhanterare"
 
-# Osäker
 #. (itstool) path: styles/style@_name
 #: ruby.lang:45
 msgid "Numeric literal"
-msgstr "Numerisk literal"
+msgstr "Numerisk litteral"
 
 #. (itstool) path: styles/style@_name
 #: ruby.lang:47 sparql.lang:40
 msgid "Literal"
-msgstr "Ordagrann"
+msgstr "Litteral"
 
 #. (itstool) path: rust.lang/language@_name
 #: rust.lang:36
@@ -3037,7 +3041,7 @@ msgstr "YAML"
 #. (itstool) path: styles/style@_name
 #: yaml.lang:30
 msgid "Block literal"
-msgstr "Block-literal"
+msgstr "Blocklitteral"
 
 #. (itstool) path: styles/style@_name
 #: yaml.lang:35
@@ -3373,7 +3377,7 @@ msgstr "Okänd"
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:508
+#: gtksourceview/gtksourcefileloader.c:516
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -3381,19 +3385,19 @@ msgstr ""
 "Ett teckenkodningskonverteringsfel inträffade och behovet uppstod att "
 "använda ett tecken att falla tillbaka på."
 
-#: gtksourceview/gtksourcefileloader.c:615
+#: gtksourceview/gtksourcefileloader.c:623
 msgid "File too big."
 msgstr "Filen är för stor."
 
-#: gtksourceview/gtksourcefileloader.c:769
+#: gtksourceview/gtksourcefileloader.c:777
 msgid "Not a regular file."
 msgstr "Inte en vanlig fil."
 
-#: gtksourceview/gtksourcefilesaver.c:968
+#: gtksourceview/gtksourcefilesaver.c:976
 msgid "The file is externally modified."
 msgstr "Filen har ändrats externt."
 
-#: gtksourceview/gtksourcefilesaver.c:1420
+#: gtksourceview/gtksourcefilesaver.c:1428
 msgid "The buffer contains invalid characters."
 msgstr "Bufferten innehåller ogiltiga tecken."
 
@@ -3425,32 +3429,32 @@ msgid "_Select"
 msgstr "_Välj"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1777
+#: gtksourceview/gtksourceview.c:1781
 msgid "_Redo"
 msgstr "Gö_r om"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1788
+#: gtksourceview/gtksourceview.c:1792
 msgid "_Undo"
 msgstr "Å_ngra"
 
-#: gtksourceview/gtksourceview.c:1807
+#: gtksourceview/gtksourceview.c:1811
 msgid "All _Upper Case"
 msgstr "Alla _versaler"
 
-#: gtksourceview/gtksourceview.c:1817
+#: gtksourceview/gtksourceview.c:1821
 msgid "All _Lower Case"
 msgstr "Alla _gemener"
 
-#: gtksourceview/gtksourceview.c:1827
+#: gtksourceview/gtksourceview.c:1831
 msgid "_Invert Case"
 msgstr "_Invertera skiftläge"
 
-#: gtksourceview/gtksourceview.c:1837
+#: gtksourceview/gtksourceview.c:1841
 msgid "_Title Case"
 msgstr "Versaler inleder _ord"
 
-#: gtksourceview/gtksourceview.c:1847
+#: gtksourceview/gtksourceview.c:1851
 msgid "C_hange Case"
 msgstr "Ändra _skiftläge"
 
