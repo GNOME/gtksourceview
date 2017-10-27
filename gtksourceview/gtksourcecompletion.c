@@ -25,16 +25,17 @@
  * @title: GtkSourceCompletion
  * @short_description: Main Completion Object
  *
- * The completion system helps the user when he writes some text, such
- * as words, command names, functions, and suchlike. Proposals can be
- * shown, to complete the text the user is writing. Each proposal can
- * contain an additional piece of information, that is displayed when
- * the "Details" button is active.
+ * The completion system helps the user when he/she writes some text,
+ * such as words, command names, functions, and suchlike. Proposals can
+ * be shown, to complete the text the user is writing. Each proposal can
+ * contain an additional piece of information (for example
+ * documentation), that is displayed when the "Details" button is
+ * clicked.
  *
  * Proposals are created via a #GtkSourceCompletionProvider. There can
  * be for example a provider to complete words (see
  * #GtkSourceCompletionWords), another provider for the completion of
- * function's names, etc. To add a provider, call
+ * function names, etc. To add a provider, call
  * gtk_source_completion_add_provider().
  *
  * When the completion is activated, a #GtkSourceCompletionContext object is
@@ -61,7 +62,7 @@
  *
  * A #GtkSourceCompletionInfo window can also be used to display
  * calltips. When no proposals are available, it can be useful to
- * display extra information like a function's prototype (number of
+ * display extra information like a function prototype (number of
  * parameters, types of parameters, etc).
  *
  * Each #GtkSourceView object is associated with a #GtkSourceCompletion
@@ -70,7 +71,7 @@
  * #GtkSourceView::show-completion signal.
  *
  * A same #GtkSourceCompletionProvider object can be used for several
- * #GtkSourceCompletion.
+ * #GtkSourceCompletion's.
  *
  * # GtkSourceCompletion as GtkBuildable
  *
