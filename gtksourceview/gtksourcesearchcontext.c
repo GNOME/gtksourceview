@@ -2841,7 +2841,8 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 * GtkSourceSearchContext:regex-error:
 	 *
 	 * If the regex search pattern doesn't follow all the rules, this
-	 * property will be set. If the pattern is valid, the value is %NULL.
+	 * #GError property will be set. If the pattern is valid, the value is
+	 * %NULL.
 	 *
 	 * Free with g_error_free().
 	 *
