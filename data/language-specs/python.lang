@@ -82,7 +82,7 @@
       <match extended="true">
         \\(                 # leading backslash
         [\\'"abfnrtv]     | # single escaped char
-        N\{[A-Z\ ]+\}     | # named unicode character
+        N\{[0-9A-Z\ -]+\} | # named unicode character
         u[0-9A-Fa-f]{4}   | # xxxx - character with 16-bit hex value xxxx
         U[0-9A-Fa-f]{8}   | # xxxxxxxx - character with 32-bit hex value xxxxxxxx
         x[0-9A-Fa-f]{1,2} | # \xhh - character with hex value hh
