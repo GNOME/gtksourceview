@@ -120,7 +120,7 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 GList		*gtk_source_completion_get_providers		(GtkSourceCompletion           *completion);
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_completion_show			(GtkSourceCompletion           *completion,
+gboolean	 gtk_source_completion_start			(GtkSourceCompletion           *completion,
 								 GList                         *providers,
 								 GtkSourceCompletionContext    *context);
 

@@ -146,4 +146,29 @@
       </listitem>
     </itemizedlist>
   </refsect1>
+
+  <refsect1>
+    <title>GtkSourceView 3.99.5 and 3.99.6</title>
+    <para>No API changes.</para>
+  </refsect1>
+
+  <refsect1>
+    <title>GtkSourceView 3.99.7</title>
+    <para>
+      In order to have a better *.gir file and have less metadata to generate
+      the *.vapi for Vala, the following change has been made:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <code>gtk_source_completion_show()</code> has been renamed to
+          <link linkend="gtk-source-completion-start">gtk_source_completion_start()</link>.
+          The function conflicted with the
+          <link linkend="GtkSourceCompletion-show">GtkSourceCompletion::show</link> signal.
+          Note that in Vala this doesn't require code changes because the method
+          was already renamed to <code>start()</code> in GtkSourceView&nbsp;3.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsect1>
 </chapter>

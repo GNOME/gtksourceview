@@ -2753,7 +2753,7 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
 }
 
 /**
- * gtk_source_completion_show:
+ * gtk_source_completion_start:
  * @completion: a #GtkSourceCompletion.
  * @providers: (element-type GtkSource.CompletionProvider) (nullable):
  * a list of #GtkSourceCompletionProvider, or %NULL.
@@ -2773,9 +2773,9 @@ _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
  * Returns: %TRUE if it was possible to the show completion window.
  */
 gboolean
-gtk_source_completion_show (GtkSourceCompletion        *completion,
-                            GList                      *providers,
-                            GtkSourceCompletionContext *context)
+gtk_source_completion_start (GtkSourceCompletion        *completion,
+			     GList                      *providers,
+			     GtkSourceCompletionContext *context)
 {
 	GList *selected_providers;
 
@@ -3028,7 +3028,7 @@ gtk_source_completion_get_view (GtkSourceCompletion *completion)
  *
  * Returns: (transfer floating): a new #GtkSourceCompletionContext.
  * The reference being returned is a 'floating' reference,
- * so if you invoke gtk_source_completion_show() with this context
+ * so if you invoke gtk_source_completion_start() with this context
  * you don't need to unref it.
  */
 GtkSourceCompletionContext *

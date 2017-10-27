@@ -1656,9 +1656,9 @@ gtk_source_view_show_completion_real (GtkSourceView *view)
 	completion = gtk_source_view_get_completion (view);
 	context = gtk_source_completion_create_context (completion, NULL);
 
-	gtk_source_completion_show (completion,
-	                            gtk_source_completion_get_providers (completion),
-	                            context);
+	gtk_source_completion_start (completion,
+				     gtk_source_completion_get_providers (completion),
+				     context);
 }
 
 static void
