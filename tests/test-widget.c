@@ -1086,6 +1086,7 @@ main (int argc, char *argv[])
 	TestWidget *test_widget;
 
 	gtk_init (&argc, &argv);
+	gtk_source_init ();
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_default_size (GTK_WINDOW (window), 900, 600);
@@ -1098,5 +1099,8 @@ main (int argc, char *argv[])
 	gtk_widget_show (window);
 
 	gtk_main ();
+
+	gtk_source_finalize ();
+
 	return 0;
 }
