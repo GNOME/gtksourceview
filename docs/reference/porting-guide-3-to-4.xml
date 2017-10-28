@@ -168,5 +168,20 @@
         </para>
       </listitem>
     </itemizedlist>
+
+    <para>
+      Other changes in 3.99.7:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          For i18n initialization, the
+          <link linkend="gtk-source-init">gtk_source_init()</link> function
+          now needs to be called. There is also the
+          <link linkend="gtk-source-finalize">gtk_source_finalize()</link>
+          function which is convenient when using memory debugging tools.
+        </para>
+      </listitem>
+    </itemizedlist>
   </refsect1>
 </chapter>
