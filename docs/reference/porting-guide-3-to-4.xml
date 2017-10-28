@@ -13,18 +13,16 @@
   <refsect1>
     <title>GTK+ dependency</title>
     <para>
-      Both GtkSourceView 3 and GtkSourceView 4 depend on GTK+ 3. GtkSourceView 5
-      depends on GTK+ 4. Before porting an application to GTK+ 4, it is
-      therefore recommended to first port to GtkSourceView 4 and then to GTK+ 4
-      and GtkSourceView 5.
+      Both GtkSourceView 3 and GtkSourceView 4 depend on GTK+ 3.
     </para>
   </refsect1>
 
   <refsect1>
     <title>Preparation in GtkSourceView 3</title>
     <para>
-      GtkSourceView 3.24 is the latest stable GtkSourceView 3 version. You
-      should use this version without using any deprecated API.
+      GtkSourceView 3.24 is the latest stable GtkSourceView 3 version. Before
+      continuing this porting guide, you should use the 3.24 version without
+      using any deprecated API.
     </para>
   </refsect1>
 
