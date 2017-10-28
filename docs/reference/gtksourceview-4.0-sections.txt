@@ -461,6 +461,13 @@ gtk_source_gutter_renderer_text_get_type
 </SECTION>
 
 <SECTION>
+<FILE>init</FILE>
+<TITLE>GtkSourceView Initialization and Finalization</TITLE>
+gtk_source_init
+gtk_source_finalize
+</SECTION>
+
+<SECTION>
 <FILE>language</FILE>
 GtkSourceLanguage
 gtk_source_language_get_id

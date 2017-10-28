@@ -37,6 +37,7 @@
 #include <gtksourceview/gtksourcegutterrenderer.h>
 #include <gtksourceview/gtksourcegutterrenderertext.h>
 #include <gtksourceview/gtksourcegutterrendererpixbuf.h>
+#include <gtksourceview/gtksourceinit.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcelanguagemanager.h>
 #include <gtksourceview/gtksourcemap.h>

@@ -18,18 +18,12 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-/* Constructor to init i18n.
- * Destructor to release remaining allocated memory (useful when using
- * memory-debugging tools).
- */
-
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
 
+#include "gtksourceinit.h"
 #include <glib/gi18n-lib.h>
-
-#include "gconstructor.h"
 #include "gtksourcelanguagemanager.h"
 #include "gtksourcestyleschememanager.h"
 
@@ -38,7 +32,30 @@
 #include <windows.h>
 
 static HMODULE gtk_source_dll;
-#endif
+
+BOOL WINAPI DllMain (HINSTANCE hinstDLL,
+		     DWORD     fdwReason,
+		     LPVOID    lpvReserved);
+
+BOOL WINAPI
+DllMain (HINSTANCE hinstDLL,
+	 DWORD     fdwReason,
+	 LPVOID    lpvReserved)
+{
+	switch (fdwReason)
+	{
+		case DLL_PROCESS_ATTACH:
+			gtk_source_dll = hinstDLL;
+			break;
+
+		default:
+			/* do nothing */
+			break;
+	}
+
+	return TRUE;
+}
+#endif /* G_OS_WIN32 */
 
 #ifdef OS_OSX
 #include <Cocoa/Cocoa.h>
@@ -115,85 +132,81 @@ get_locale_dir (void)
 	return locale_dir;
 }
 
-static void
+/**
+ * gtk_source_init:
+ *
+ * Initializes the GtkSourceView library (e.g. for the internationalization).
+ *
+ * This function can be called several times, but is meant to be called at the
+ * beginning of main(), before any other GtkSourceView function call.
+ *
+ * Since: 4.0
+ */
+void
 gtk_source_init (void)
 {
-	gchar *locale_dir;
+	static gboolean done = FALSE;
 
-	locale_dir = get_locale_dir ();
-	bindtextdomain (GETTEXT_PACKAGE, locale_dir);
-	g_free (locale_dir);
-
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-}
-
-static void
-gtk_source_shutdown (void)
-{
-	GtkSourceLanguageManager *language_manager;
-	GtkSourceStyleSchemeManager *style_scheme_manager;
-
-	language_manager = _gtk_source_language_manager_peek_default ();
-	g_clear_object (&language_manager);
-
-	style_scheme_manager = _gtk_source_style_scheme_manager_peek_default ();
-	g_clear_object (&style_scheme_manager);
-}
-
-#if defined (G_OS_WIN32)
-
-BOOL WINAPI DllMain (HINSTANCE hinstDLL,
-		     DWORD     fdwReason,
-		     LPVOID    lpvReserved);
-
-BOOL WINAPI
-DllMain (HINSTANCE hinstDLL,
-	 DWORD     fdwReason,
-	 LPVOID    lpvReserved)
-{
-	switch (fdwReason)
+	if (!done)
 	{
-		case DLL_PROCESS_ATTACH:
-			gtk_source_dll = hinstDLL;
-			gtk_source_init ();
-			break;
+		gchar *locale_dir;
 
-		case DLL_THREAD_DETACH:
-			gtk_source_shutdown ();
-			break;
+		locale_dir = get_locale_dir ();
+		bindtextdomain (GETTEXT_PACKAGE, locale_dir);
+		g_free (locale_dir);
 
-		default:
-			/* do nothing */
-			break;
+		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
+		done = TRUE;
 	}
-
-	return TRUE;
 }
 
-#elif defined (G_HAS_CONSTRUCTORS)
+/**
+ * gtk_source_finalize:
+ *
+ * Free the resources allocated by GtkSourceView. For example it unrefs the
+ * singleton objects.
+ *
+ * It is not mandatory to call this function, it's just to be friendlier to
+ * memory debugging tools. This function is meant to be called at the end of
+ * main(). It can be called several times.
+ *
+ * Since: 4.0
+ */
 
-#  ifdef G_DEFINE_CONSTRUCTOR_NEEDS_PRAGMA
-#    pragma G_DEFINE_CONSTRUCTOR_PRAGMA_ARGS(gtk_source_constructor)
-#  endif
-G_DEFINE_CONSTRUCTOR (gtk_source_constructor)
-
-static void
-gtk_source_constructor (void)
+/* Another way is to use a DSO destructor, see gconstructor.h in GLib.
+ *
+ * The advantage of calling gtk_source_finalize() at the end of main() is that
+ * gobject-list [1] correctly reports that all GtkSource* objects have been
+ * finalized when quitting the application. On the other hand a DSO destructor
+ * runs after the gobject-list's last output, so it's much less convenient, see:
+ * commit e761de9c2bee90c232875bbc41e6e73e1f63e145
+ *
+ * [1] A tool for debugging the lifetime of GObjects:
+ * https://github.com/danni/gobject-list
+ */
+void
+gtk_source_finalize (void)
 {
-	gtk_source_init ();
+	static gboolean done = FALSE;
+
+	/* Unref the singletons only once, even if this function is called
+	 * multiple times, to see if a reference is not released correctly.
+	 * Normally the singleton have a ref count of 1. If for some reason the
+	 * ref count is increased somewhere, it needs to be decreased
+	 * accordingly, at the right place.
+	 */
+	if (!done)
+	{
+		GtkSourceLanguageManager *language_manager;
+		GtkSourceStyleSchemeManager *style_scheme_manager;
+
+		language_manager = _gtk_source_language_manager_peek_default ();
+		g_clear_object (&language_manager);
+
+		style_scheme_manager = _gtk_source_style_scheme_manager_peek_default ();
+		g_clear_object (&style_scheme_manager);
+
+		done = TRUE;
+	}
 }
-
-#  ifdef G_DEFINE_DESTRUCTOR_NEEDS_PRAGMA
-#    pragma G_DEFINE_DESTRUCTOR_PRAGMA_ARGS(gtk_source_destructor)
-#  endif
-G_DEFINE_DESTRUCTOR (gtk_source_destructor)
-
-static void
-gtk_source_destructor (void)
-{
-	gtk_source_shutdown ();
-}
-
-#else
-#  error Your platform/compiler is missing constructor support
-#endif

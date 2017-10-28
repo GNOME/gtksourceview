@@ -17,6 +17,11 @@
   <part id="api-reference">
     <title>API reference</title>
 
+    <chapter id="general">
+      <title>General</title>
+      <xi:include href="xml/init.xml"/>
+    </chapter>
+
     <chapter id="main-classes">
       <title>Main Classes</title>
       <xi:include href="xml/buffer.xml"/>

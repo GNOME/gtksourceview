@@ -37,6 +37,7 @@ libgtksourceview_public_headers =		\
 	gtksourcegutterrenderer.h		\
 	gtksourcegutterrendererpixbuf.h		\
 	gtksourcegutterrenderertext.h		\
+	gtksourceinit.h				\
 	gtksourcelanguage.h			\
 	gtksourcelanguagemanager.h		\
 	gtksourcemap.h				\
@@ -75,6 +76,7 @@ libgtksourceview_public_c_files =		\
 	gtksourcegutterrenderer.c		\
 	gtksourcegutterrendererpixbuf.c		\
 	gtksourcegutterrenderertext.c		\
+	gtksourceinit.c				\
 	gtksourcelanguage.c 			\
 	gtksourcelanguagemanager.c 		\
 	gtksourcemap.c				\
@@ -98,7 +100,6 @@ libgtksourceview_public_c_files =		\
 	gtksourceview.c
 
 libgtksourceview_private_headers =		\
-	gconstructor.h				\
 	gtksourcebuffer-private.h		\
 	gtksourcebufferinputstream.h		\
 	gtksourcebufferinternal.h		\
@@ -134,7 +135,6 @@ libgtksourceview_private_c_files =	\
 	gtksourceengine.c		\
 	gtksourcegutterrendererlines.c	\
 	gtksourcegutterrenderermarks.c	\
-	gtksourceinit.c			\
 	gtksourceiter.c			\
 	gtksourcelanguage-parser-2.c	\
 	gtksourcemarkssequence.c	\
