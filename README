@@ -16,14 +16,6 @@ The official web site is:
 
     https://wiki.gnome.org/Projects/GtkSourceView
 
-About GtkSourceView 4, GtkSourceView 5 and GTK+ 4
--------------------------------------------------
-
-See:
-
-    https://wiki.gnome.org/Projects/GtkSourceView/RoadMap
-    https://wiki.gnome.org/Projects/GtkSourceView/TransitionToGtkSourceView4
-
 Dependencies
 ------------
 
@@ -34,7 +26,7 @@ Dependencies
 Installation
 ------------
 
-Simple install procedure:
+Simple install procedure from a tarball:
 
   $ ./configure
   $ make
@@ -47,7 +39,8 @@ From the Git repository, the 'configure' script and the 'INSTALL' file are not
 yet generated, so you need to run 'autogen.sh' instead, which takes the same
 arguments as 'configure'.
 
-To build the latest version of GtkSourceView from Git, Jhbuild can be used:
+To build the latest version of GtkSourceView plus its dependencies from Git,
+Jhbuild is recommended:
 
     https://wiki.gnome.org/Projects/Jhbuild
 
