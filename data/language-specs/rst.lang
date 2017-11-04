@@ -98,7 +98,7 @@
     </context>
 
     <context id="link" style-ref="link">
-      <match>(\S+_)|(`\b.*?\b`_)</match>
+      <match>(\S+_\b)|(`\b.*?\b`_)</match>
     </context>
 
     <context id="substitution" style-ref="substitution">
