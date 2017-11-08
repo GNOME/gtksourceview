@@ -1,5 +1,5 @@
-News in 3.99.6
---------------
+News in 3.99.6, 2017-10-15
+--------------------------
 * Reduce a lot the number of translatable strings (especially in *.lang files),
   to translate only what makes sense. 630 -> 93 translatable strings!
 * Build: remove ENABLE_NLS option, always support gettext translation, to
@@ -13,8 +13,8 @@ News in 3.99.6
 * Various other small improvements.
 * Translation updates.
 
-News in 3.99.5
---------------
+News in 3.99.5, 2017-09-06
+--------------------------
 * Avoid type redefinitions.
 * Fix bug when GtkSourceView:indent-width and :tab-width are equal.
 * New syntax highlighting definition file for: Swift, Maxima and Kotlin.
