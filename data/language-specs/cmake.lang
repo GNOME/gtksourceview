@@ -682,13 +682,30 @@
       <keyword>WHILE</keyword>
     </context>
 
-    <context id="variable" style-ref="variable"
+    <context id="escape-sequence">
+      <match>(\\([trn;]|[^A-Za-z0-9;]))|(\\(.|$))</match>
+      <include>
+        <context sub-pattern="1" style-ref="def:special-char"/>
+        <context sub-pattern="3" style-ref="def:error"/>
+      </include>
+    </context>
+
+    <context id="disallowed-variable-reference-char" style-ref="def:error" extend-parent="false">
+      <match>[^A-Za-z0-9_./+-]</match>
+    </context>
+
+    <context id="variable-reference" style-ref="variable"
              style-inside="true" end-at-line-end="true"
     >
       <start>\$\{</start>
       <end>\}</end>
       <include>
+        <context sub-pattern="0" where="start" style-ref="def:special-char"/>
+        <context sub-pattern="0" where="end" style-ref="def:special-char"/>
         <context ref="builtin-variable"/>
+        <context ref="variable-reference"/>
+        <context ref="escape-sequence"/>
+        <context ref="disallowed-variable-reference-char"/>
       </include>
     </context>
 
@@ -698,7 +715,7 @@
       <include>
         <context sub-pattern="1" where="start" style-ref="builtin-command"/>
         <context sub-pattern="2" where="start" style-ref="variable"/>
-        <context ref="variable"/>
+        <context ref="variable-reference"/>
         <context ref="constant"/>
         <context ref="def:shell-like-comment"/>
       </include>
@@ -706,7 +723,7 @@
 
     <context id="cmake">
       <include>
-        <context ref="variable"/>
+        <context ref="variable-reference"/>
         <context ref="variable-assignment"/>
         <context ref="def:shell-like-comment"/>
         <context ref="constant"/>
