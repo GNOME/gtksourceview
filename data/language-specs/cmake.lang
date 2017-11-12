@@ -638,14 +638,6 @@
       <keyword>XCODE_VERSION</keyword>
     </context>
 
-    <context id="builtin-variable-2" style-ref="builtin-variable">
-      <keyword>LOCATION</keyword>
-      <keyword>TARGET</keyword>
-      <keyword>POST_BUILD</keyword>
-      <keyword>PRE_BUILD</keyword>
-      <keyword>ARGS</keyword>
-    </context>
-
     <context id="operator" style-ref="operator">
       <keyword>AND</keyword>
       <keyword>COMMAND</keyword>
@@ -697,7 +689,6 @@
       <end>\}</end>
       <include>
         <context ref="builtin-variable"/>
-        <context ref="builtin-variable-2"/>
       </include>
     </context>
 
