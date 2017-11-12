@@ -156,15 +156,16 @@
 
     <context id="constant" style-ref="constant">
       <prefix>(?i)\b</prefix> <!-- case insensitive -->
-      <keyword>BOOL</keyword>
-      <keyword>CACHE</keyword>
       <keyword>FALSE</keyword>
+      <keyword>IGNORE</keyword>
       <keyword>N</keyword>
       <keyword>NO</keyword>
-      <keyword>ON</keyword>
+      <keyword>(\w+-)?NOTFOUND</keyword>
       <keyword>OFF</keyword>
-      <keyword>NOTFOUND</keyword>
+      <keyword>ON</keyword>
       <keyword>TRUE</keyword>
+      <keyword>Y</keyword>
+      <keyword>YES</keyword>
     </context>
 
     <context id="builtin-variable" style-ref="builtin-variable">
@@ -645,6 +646,8 @@
 
     <context id="operator" style-ref="operator">
       <keyword>AND</keyword>
+      <keyword>BOOL</keyword>
+      <keyword>CACHE</keyword>
       <keyword>COMMAND</keyword>
       <keyword>DEFINED</keyword>
       <keyword>DOC</keyword>
