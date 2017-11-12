@@ -53,9 +53,23 @@
       <keyword>BUILD_COMMAND</keyword>
       <keyword>CMAKE_HOST_SYSTEM_INFORMATION</keyword>
       <keyword>CMAKE_MINIMUM_REQUIRED</keyword>
+      <keyword>CMAKE_PARSE_ARGUMENTS</keyword>
       <keyword>CMAKE_POLICY</keyword>
       <keyword>CONFIGURE_FILE</keyword>
       <keyword>CREATE_TEST_SOURCELIST</keyword>
+      <keyword>CTEST_BUILD</keyword>
+      <keyword>CTEST_CONFIGURE</keyword>
+      <keyword>CTEST_COVERAGE</keyword>
+      <keyword>CTEST_EMPTY_BINARY_DIRECTORY</keyword>
+      <keyword>CTEST_MEMCHECK</keyword>
+      <keyword>CTEST_READ_CUSTOM_FILES</keyword>
+      <keyword>CTEST_RUN_SCRIPT</keyword>
+      <keyword>CTEST_SLEEP</keyword>
+      <keyword>CTEST_START</keyword>
+      <keyword>CTEST_SUBMIT</keyword>
+      <keyword>CTEST_TEST</keyword>
+      <keyword>CTEST_UPDATE</keyword>
+      <keyword>CTEST_UPLOAD</keyword>
       <keyword>DEFINE_PROPERTY</keyword>
       <keyword>ENABLE_LANGUAGE</keyword>
       <keyword>ENABLE_TESTING</keyword>
@@ -78,13 +92,13 @@
       <keyword>INCLUDE</keyword>
       <keyword>INCLUDE_DIRECTORIES</keyword>
       <keyword>INCLUDE_EXTERNAL_MSPROJECT</keyword>
+      <keyword>INCLUDE_GUARD</keyword>
       <keyword>INCLUDE_REGULAR_EXPRESSION</keyword>
       <keyword>INSTALL</keyword>
       <keyword>LINK_DIRECTORIES</keyword>
       <keyword>LINK_LIBRARIES</keyword>
       <keyword>LIST</keyword>
       <keyword>LOAD_CACHE</keyword>
-      <keyword>LOAD_COMMAND</keyword>
       <keyword>MARK_AS_ADVANCED</keyword>
       <keyword>MATH</keyword>
       <keyword>MESSAGE</keyword>
@@ -123,6 +137,7 @@
       <keyword>INSTALL_FILES</keyword>
       <keyword>INSTALL_PROGRAMS</keyword>
       <keyword>INSTALL_TARGETS</keyword>
+      <keyword>LOAD_COMMAND</keyword>
       <keyword>MAKE_DIRECTORY</keyword>
       <keyword>OUTPUT_REQUIRED_FILES</keyword>
       <keyword>REMOVE</keyword>
@@ -155,34 +170,57 @@
       <keyword>\w+_VERSION_MINOR</keyword>
       <keyword>\w+_VERSION_PATCH</keyword>
       <keyword>\w+_VERSION_TWEAK</keyword>
+      <keyword>ANDROID</keyword>
       <keyword>APPLE</keyword>
       <keyword>BORLAND</keyword>
       <keyword>BUILD_SHARED_LIBS</keyword>
       <keyword>CMAKE_\w+_POSTFIX</keyword>
+      <keyword>CMAKE_\w+_ANDROID_TOOLCHAIN_MACHINE</keyword>
+      <keyword>CMAKE_\w+_ANDROID_TOOLCHAIN_PREFIX</keyword>
+      <keyword>CMAKE_\w+_ANDROID_TOOLCHAIN_SUFFIX</keyword>
       <keyword>CMAKE_\w+_ARCHIVE_APPEND</keyword>
       <keyword>CMAKE_\w+_ARCHIVE_CREATE</keyword>
       <keyword>CMAKE_\w+_ARCHIVE_FINISH</keyword>
+      <keyword>CMAKE_\w+_CLANG_TIDY</keyword>
       <keyword>CMAKE_\w+_COMPILER</keyword>
       <keyword>CMAKE_\w+_COMPILER_ABI</keyword>
+      <keyword>CMAKE_\w+_COMPILER_AR</keyword>
+      <keyword>CMAKE_\w+_COMPILER_ARCHITECTURE_ID</keyword>
       <keyword>CMAKE_\w+_COMPILER_EXTERNAL_TOOLCHAIN</keyword>
       <keyword>CMAKE_\w+_COMPILER_ID</keyword>
+      <keyword>CMAKE_\w+_COMPILER_LAUNCHER</keyword>
       <keyword>CMAKE_\w+_COMPILER_LOADED</keyword>
+      <keyword>CMAKE_\w+_COMPILER_PREDEFINES_COMMAND</keyword>
+      <keyword>CMAKE_\w+_COMPILER_RANLIB</keyword>
       <keyword>CMAKE_\w+_COMPILER_TARGET</keyword>
       <keyword>CMAKE_\w+_COMPILER_VERSION</keyword>
+      <keyword>CMAKE_\w+_COMPILER_VERSION_INTERNAL</keyword>
       <keyword>CMAKE_\w+_COMPILE_OBJECT</keyword>
+      <keyword>CMAKE_\w+_CPPCHECK</keyword>
+      <keyword>CMAKE_\w+_CPPLINT</keyword>
       <keyword>CMAKE_\w+_CREATE_SHARED_LIBRARY</keyword>
       <keyword>CMAKE_\w+_CREATE_SHARED_MODULE</keyword>
       <keyword>CMAKE_\w+_CREATE_STATIC_LIBRARY</keyword>
       <keyword>CMAKE_\w+_FLAGS</keyword>
       <keyword>CMAKE_\w+_FLAGS_DEBUG</keyword>
+      <keyword>CMAKE_\w+_FLAGS_DEBUG_INIT</keyword>
+      <keyword>CMAKE_\w+_FLAGS_INIT</keyword>
       <keyword>CMAKE_\w+_FLAGS_MINSIZEREL</keyword>
+      <keyword>CMAKE_\w+_FLAGS_MINSIZEREL_INIT</keyword>
       <keyword>CMAKE_\w+_FLAGS_RELEASE</keyword>
+      <keyword>CMAKE_\w+_FLAGS_RELEASE_INIT</keyword>
       <keyword>CMAKE_\w+_FLAGS_RELWITHDEBINFO</keyword>
+      <keyword>CMAKE_\w+_FLAGS_RELWITHDEBINFO_INIT</keyword>
+      <keyword>CMAKE_\w+_GHS_KERNEL_FLAGS_DEBUG</keyword>
+      <keyword>CMAKE_\w+_GHS_KERNEL_FLAGS_MINSIZEREL</keyword>
+      <keyword>CMAKE_\w+_GHS_KERNEL_FLAGS_RELEASE</keyword>
+      <keyword>CMAKE_\w+_GHS_KERNEL_FLAGS_RELWITHDEBINFO</keyword>
       <keyword>CMAKE_\w+_IGNORE_EXTENSIONS</keyword>
       <keyword>CMAKE_\w+_IMPLICIT_INCLUDE_DIRECTORIES</keyword>
       <keyword>CMAKE_\w+_IMPLICIT_LINK_DIRECTORIES</keyword>
       <keyword>CMAKE_\w+_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES</keyword>
       <keyword>CMAKE_\w+_IMPLICIT_LINK_LIBRARIES</keyword>
+      <keyword>CMAKE_\w+_INCLUDE_WHAT_YOU_USE</keyword>
       <keyword>CMAKE_\w+_LIBRARY_ARCHITECTURE</keyword>
       <keyword>CMAKE_\w+_LINKER_PREFERENCE</keyword>
       <keyword>CMAKE_\w+_LINKER_PREFERENCE_PROPAGATES</keyword>
@@ -193,27 +231,58 @@
       <keyword>CMAKE_\w+_SIMULATE_VERSION</keyword>
       <keyword>CMAKE_\w+_SIZEOF_DATA_PTR</keyword>
       <keyword>CMAKE_\w+_SOURCE_FILE_EXTENSIONS</keyword>
+      <keyword>CMAKE_\w+_STANDARD_INCLUDE_DIRECTORIES</keyword>
+      <keyword>CMAKE_\w+_STANDARD_LIBRARIES</keyword>
       <keyword>CMAKE_\w+_VISIBILITY_PRESET</keyword>
       <keyword>CMAKE_ABSOLUTE_DESTINATION_FILES</keyword>
+      <keyword>CMAKE_ANDROID_ANT_ADDITIONAL_OPTIONS</keyword>
       <keyword>CMAKE_ANDROID_API</keyword>
       <keyword>CMAKE_ANDROID_API_MIN</keyword>
+      <keyword>CMAKE_ANDROID_ARCH</keyword>
+      <keyword>CMAKE_ANDROID_ARCH_ABI</keyword>
+      <keyword>CMAKE_ANDROID_ARM_MODE</keyword>
+      <keyword>CMAKE_ANDROID_ARM_NEON</keyword>
+      <keyword>CMAKE_ANDROID_ASSETS_DIRECTORIES</keyword>
       <keyword>CMAKE_ANDROID_GUI</keyword>
+      <keyword>CMAKE_ANDROID_JAR_DEPENDENCIES</keyword>
+      <keyword>CMAKE_ANDROID_JAR_DIRECTORIES</keyword>
+      <keyword>CMAKE_ANDROID_JAVA_SOURCE_DIR</keyword>
+      <keyword>CMAKE_ANDROID_NATIVE_LIB_DEPENDENCIES</keyword>
+      <keyword>CMAKE_ANDROID_NATIVE_LIB_DIRECTORIES</keyword>
+      <keyword>CMAKE_ANDROID_NDK</keyword>
+      <keyword>CMAKE_ANDROID_NDK_DEPRECATED_HEADERS</keyword>
+      <keyword>CMAKE_ANDROID_NDK_TOOLCHAIN_HOST_TAG</keyword>
+      <keyword>CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION</keyword>
+      <keyword>CMAKE_ANDROID_PROCESS_MAX</keyword>
+      <keyword>CMAKE_ANDROID_PROGUARD</keyword>
+      <keyword>CMAKE_ANDROID_PROGUARD_CONFIG_PATH</keyword>
+      <keyword>CMAKE_ANDROID_SECURE_PROPS_PATH</keyword>
+      <keyword>CMAKE_ANDROID_SKIP_ANT_STEP</keyword>
+      <keyword>CMAKE_ANDROID_STANDALONE_TOOLCHAIN</keyword>
+      <keyword>CMAKE_ANDROID_STL_TYPE</keyword>
       <keyword>CMAKE_APPBUNDLE_PATH</keyword>
       <keyword>CMAKE_AR</keyword>
       <keyword>CMAKE_ARCHIVE_OUTPUT_DIRECTORY</keyword>
+      <keyword>CMAKE_ARCHIVE_OUTPUT_DIRECTORY_\w+</keyword>
       <keyword>CMAKE_ARGC</keyword>
       <keyword>CMAKE_ARGV0</keyword>
       <keyword>CMAKE_AUTOMOC</keyword>
+      <keyword>CMAKE_AUTOMOC_COMPILER_PREDEFINES</keyword>
+      <keyword>CMAKE_AUTOMOC_DEPEND_FILTERS</keyword>
+      <keyword>CMAKE_AUTOMOC_MACRO_NAMES</keyword>
       <keyword>CMAKE_AUTOMOC_MOC_OPTIONS</keyword>
       <keyword>CMAKE_AUTOMOC_RELAXED_MODE</keyword>
       <keyword>CMAKE_AUTORCC</keyword>
       <keyword>CMAKE_AUTORCC_OPTIONS</keyword>
       <keyword>CMAKE_AUTOUIC</keyword>
       <keyword>CMAKE_AUTOUIC_OPTIONS</keyword>
+      <keyword>CMAKE_AUTOUIC_SEARCH_PATHS</keyword>
       <keyword>CMAKE_BACKWARDS_COMPATIBILITY</keyword>
       <keyword>CMAKE_BINARY_DIR</keyword>
+      <keyword>CMAKE_BUILD_RPATH</keyword>
       <keyword>CMAKE_BUILD_TOOL</keyword>
       <keyword>CMAKE_BUILD_TYPE</keyword>
+      <keyword>CMAKE_BUILD_WITH_INSTALL_NAME_DIR</keyword>
       <keyword>CMAKE_BUILD_WITH_INSTALL_RPATH</keyword>
       <keyword>CMAKE_CACHEFILE_DIR</keyword>
       <keyword>CMAKE_CACHE_MAJOR_VERSION</keyword>
@@ -221,15 +290,25 @@
       <keyword>CMAKE_CACHE_PATCH_VERSION</keyword>
       <keyword>CMAKE_CFG_INTDIR</keyword>
       <keyword>CMAKE_CL_64</keyword>
+      <keyword>CMAKE_CODEBLOCKS_EXCLUDE_EXTERNAL_FILES</keyword>
+      <keyword>CMAKE_CODELITE_USE_TARGETS</keyword>
       <keyword>CMAKE_COLOR_MAKEFILE</keyword>
       <keyword>CMAKE_COMMAND</keyword>
       <keyword>CMAKE_COMPILER_2005</keyword>
-      <keyword>CMAKE_COMPILER_IS_GNU\w+</keyword>
+      <keyword>CMAKE_COMPILER_IS_GNUCC</keyword>
+      <keyword>CMAKE_COMPILER_IS_GNUCXX</keyword>
+      <keyword>CMAKE_COMPILER_IS_GNUG77</keyword>
       <keyword>CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY</keyword>
       <keyword>CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY_\w+</keyword>
       <keyword>CMAKE_CONFIGURATION_TYPES</keyword>
       <keyword>CMAKE_CROSSCOMPILING</keyword>
+      <keyword>CMAKE_CROSSCOMPILING_EMULATOR</keyword>
       <keyword>CMAKE_CTEST_COMMAND</keyword>
+      <keyword>CMAKE_CUDA_EXTENSIONS</keyword>
+      <keyword>CMAKE_CUDA_HOST_COMPILER</keyword>
+      <keyword>CMAKE_CUDA_STANDARD</keyword>
+      <keyword>CMAKE_CUDA_STANDARD_REQUIRED</keyword>
+      <keyword>CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES</keyword>
       <keyword>CMAKE_CURRENT_BINARY_DIR</keyword>
       <keyword>CMAKE_CURRENT_LIST_DIR</keyword>
       <keyword>CMAKE_CURRENT_LIST_FILE</keyword>
@@ -245,23 +324,38 @@
       <keyword>CMAKE_C_STANDARD_REQUIRED</keyword>
       <keyword>CMAKE_DEBUG_POSTFIX</keyword>
       <keyword>CMAKE_DEBUG_TARGET_PROPERTIES</keyword>
+      <keyword>CMAKE_DEPENDS_IN_PROJECT_ONLY</keyword>
+      <keyword>CMAKE_DIRECTORY_LABELS</keyword>
       <keyword>CMAKE_DISABLE_FIND_PACKAGE_\w+</keyword>
       <keyword>CMAKE_DL_LIBS</keyword>
+      <keyword>CMAKE_ECLIPSE_GENERATE_LINKED_RESOURCES</keyword>
+      <keyword>CMAKE_ECLIPSE_GENERATE_SOURCE_PROJECT</keyword>
+      <keyword>CMAKE_ECLIPSE_MAKE_ARGUMENTS</keyword>
+      <keyword>CMAKE_ECLIPSE_VERSION</keyword>
       <keyword>CMAKE_EDIT_COMMAND</keyword>
+      <keyword>CMAKE_ENABLE_EXPORTS</keyword>
       <keyword>CMAKE_ERROR_DEPRECATED</keyword>
       <keyword>CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION</keyword>
       <keyword>CMAKE_EXECUTABLE_SUFFIX</keyword>
       <keyword>CMAKE_EXE_LINKER_FLAGS</keyword>
       <keyword>CMAKE_EXE_LINKER_FLAGS_\w+</keyword>
+      <keyword>CMAKE_EXE_LINKER_FLAGS_\w+_INIT</keyword>
+      <keyword>CMAKE_EXE_LINKER_FLAGS_INIT</keyword>
+      <keyword>CMAKE_EXPORT_COMPILE_COMMANDS</keyword>
       <keyword>CMAKE_EXPORT_NO_PACKAGE_REGISTRY</keyword>
       <keyword>CMAKE_EXTRA_GENERATOR</keyword>
       <keyword>CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES</keyword>
+      <keyword>CMAKE_FIND_APPBUNDLE</keyword>
+      <keyword>CMAKE_FIND_FRAMEWORK</keyword>
+      <keyword>CMAKE_FIND_LIBRARY_CUSTOM_LIB_SUFFIX</keyword>
       <keyword>CMAKE_FIND_LIBRARY_PREFIXES</keyword>
       <keyword>CMAKE_FIND_LIBRARY_SUFFIXES</keyword>
       <keyword>CMAKE_FIND_NO_INSTALL_PREFIX</keyword>
       <keyword>CMAKE_FIND_PACKAGE_NAME</keyword>
       <keyword>CMAKE_FIND_PACKAGE_NO_PACKAGE_REGISTRY</keyword>
       <keyword>CMAKE_FIND_PACKAGE_NO_SYSTEM_PACKAGE_REGISTRY</keyword>
+      <keyword>CMAKE_FIND_PACKAGE_SORT_DIRECTION</keyword>
+      <keyword>CMAKE_FIND_PACKAGE_SORT_ORDER</keyword>
       <keyword>CMAKE_FIND_PACKAGE_WARN_NO_MODULE</keyword>
       <keyword>CMAKE_FIND_ROOT_PATH</keyword>
       <keyword>CMAKE_FIND_ROOT_PATH_MODE_INCLUDE</keyword>
@@ -280,6 +374,7 @@
       <keyword>CMAKE_GNUtoMS</keyword>
       <keyword>CMAKE_HOME_DIRECTORY</keyword>
       <keyword>CMAKE_HOST_APPLE</keyword>
+      <keyword>CMAKE_HOST_SOLARIS</keyword>
       <keyword>CMAKE_HOST_SYSTEM</keyword>
       <keyword>CMAKE_HOST_SYSTEM_NAME</keyword>
       <keyword>CMAKE_HOST_SYSTEM_PROCESSOR</keyword>
@@ -298,14 +393,19 @@
       <keyword>CMAKE_INSTALL_MESSAGE</keyword>
       <keyword>CMAKE_INSTALL_NAME_DIR</keyword>
       <keyword>CMAKE_INSTALL_PREFIX</keyword>
+      <keyword>CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT</keyword>
       <keyword>CMAKE_INSTALL_RPATH</keyword>
       <keyword>CMAKE_INSTALL_RPATH_USE_LINK_PATH</keyword>
       <keyword>CMAKE_INTERNAL_PLATFORM_ABI</keyword>
+      <keyword>CMAKE_INTERPROCEDURAL_OPTIMIZATION</keyword>
+      <keyword>CMAKE_INTERPROCEDURAL_OPTIMIZATION_\w+</keyword>
+      <keyword>CMAKE_IOS_INSTALL_COMBINED</keyword>
       <keyword>CMAKE_JOB_POOL_COMPILE</keyword>
       <keyword>CMAKE_JOB_POOL_LINK</keyword>
       <keyword>CMAKE_LIBRARY_ARCHITECTURE</keyword>
       <keyword>CMAKE_LIBRARY_ARCHITECTURE_REGEX</keyword>
       <keyword>CMAKE_LIBRARY_OUTPUT_DIRECTORY</keyword>
+      <keyword>CMAKE_LIBRARY_OUTPUT_DIRECTORY_\w+</keyword>
       <keyword>CMAKE_LIBRARY_PATH</keyword>
       <keyword>CMAKE_LIBRARY_PATH_FLAG</keyword>
       <keyword>CMAKE_LINK_DEF_FILE_FLAG</keyword>
@@ -314,18 +414,26 @@
       <keyword>CMAKE_LINK_LIBRARY_FILE_FLAG</keyword>
       <keyword>CMAKE_LINK_LIBRARY_FLAG</keyword>
       <keyword>CMAKE_LINK_LIBRARY_SUFFIX</keyword>
+      <keyword>CMAKE_LINK_SEARCH_END_STATIC</keyword>
+      <keyword>CMAKE_LINK_SEARCH_START_STATIC</keyword>
+      <keyword>CMAKE_LINK_WHAT_YOU_USE</keyword>
       <keyword>CMAKE_MACOSX_BUNDLE</keyword>
       <keyword>CMAKE_MACOSX_RPATH</keyword>
       <keyword>CMAKE_MAJOR_VERSION</keyword>
       <keyword>CMAKE_MAKE_PROGRAM</keyword>
       <keyword>CMAKE_MAP_IMPORTED_CONFIG_\w+</keyword>
+      <keyword>CMAKE_MATCH_\d+</keyword>
       <keyword>CMAKE_MATCH_COUNT</keyword>
       <keyword>CMAKE_MFC_FLAG</keyword>
       <keyword>CMAKE_MINIMUM_REQUIRED_VERSION</keyword>
       <keyword>CMAKE_MINOR_VERSION</keyword>
       <keyword>CMAKE_MODULE_LINKER_FLAGS</keyword>
       <keyword>CMAKE_MODULE_LINKER_FLAGS_\w+</keyword>
+      <keyword>CMAKE_MODULE_LINKER_FLAGS_\w+_INIT</keyword>
+      <keyword>CMAKE_MODULE_LINKER_FLAGS_INIT</keyword>
       <keyword>CMAKE_MODULE_PATH</keyword>
+      <keyword>CMAKE_MSVCIDE_RUN_PATH</keyword>
+      <keyword>CMAKE_NINJA_OUTPUT_PATH_PREFIX</keyword>
       <keyword>CMAKE_NOT_USING_CONFIG_FLAGS</keyword>
       <keyword>CMAKE_NO_BUILTIN_CHRPATH</keyword>
       <keyword>CMAKE_NO_SYSTEM_FROM_IMPORTED</keyword>
@@ -343,15 +451,19 @@
       <keyword>CMAKE_PREFIX_PATH</keyword>
       <keyword>CMAKE_PROGRAM_PATH</keyword>
       <keyword>CMAKE_PROJECT_\w+_INCLUDE</keyword>
+      <keyword>CMAKE_PROJECT_DESCRIPTION</keyword>
       <keyword>CMAKE_PROJECT_NAME</keyword>
       <keyword>CMAKE_RANLIB</keyword>
       <keyword>CMAKE_ROOT</keyword>
       <keyword>CMAKE_RUNTIME_OUTPUT_DIRECTORY</keyword>
+      <keyword>CMAKE_RUNTIME_OUTPUT_DIRECTORY_\w+</keyword>
       <keyword>CMAKE_SCRIPT_MODE_FILE</keyword>
       <keyword>CMAKE_SHARED_LIBRARY_PREFIX</keyword>
       <keyword>CMAKE_SHARED_LIBRARY_SUFFIX</keyword>
       <keyword>CMAKE_SHARED_LINKER_FLAGS</keyword>
       <keyword>CMAKE_SHARED_LINKER_FLAGS_\w+</keyword>
+      <keyword>CMAKE_SHARED_LINKER_FLAGS_\w+_INIT</keyword>
+      <keyword>CMAKE_SHARED_LINKER_FLAGS_INIT</keyword>
       <keyword>CMAKE_SHARED_MODULE_PREFIX</keyword>
       <keyword>CMAKE_SHARED_MODULE_SUFFIX</keyword>
       <keyword>CMAKE_SIZEOF_VOID_P</keyword>
@@ -362,13 +474,20 @@
       <keyword>CMAKE_SKIP_RPATH</keyword>
       <keyword>CMAKE_SOURCE_DIR</keyword>
       <keyword>CMAKE_STAGING_PREFIX</keyword>
-      <keyword>CMAKE_STANDARD_LIBRARIES</keyword>
       <keyword>CMAKE_STATIC_LIBRARY_PREFIX</keyword>
       <keyword>CMAKE_STATIC_LIBRARY_SUFFIX</keyword>
       <keyword>CMAKE_STATIC_LINKER_FLAGS</keyword>
       <keyword>CMAKE_STATIC_LINKER_FLAGS_\w+</keyword>
+      <keyword>CMAKE_STATIC_LINKER_FLAGS_\w+_INIT</keyword>
+      <keyword>CMAKE_STATIC_LINKER_FLAGS_INIT</keyword>
+      <keyword>CMAKE_SUBLIME_TEXT_2_ENV_SETTINGS</keyword>
+      <keyword>CMAKE_SUBLIME_TEXT_2_EXCLUDE_BUILD_TREE</keyword>
       <keyword>CMAKE_SYSROOT</keyword>
+      <keyword>CMAKE_SYSROOT_COMPILE</keyword>
+      <keyword>CMAKE_SYSROOT_LINK</keyword>
       <keyword>CMAKE_SYSTEM</keyword>
+      <keyword>CMAKE_SYSTEM_APPBUNDLE_PATH</keyword>
+      <keyword>CMAKE_SYSTEM_FRAMEWORK_PATH</keyword>
       <keyword>CMAKE_SYSTEM_IGNORE_PATH</keyword>
       <keyword>CMAKE_SYSTEM_INCLUDE_PATH</keyword>
       <keyword>CMAKE_SYSTEM_LIBRARY_PATH</keyword>
@@ -377,8 +496,11 @@
       <keyword>CMAKE_SYSTEM_PROCESSOR</keyword>
       <keyword>CMAKE_SYSTEM_PROGRAM_PATH</keyword>
       <keyword>CMAKE_SYSTEM_VERSION</keyword>
+      <keyword>CMAKE_Swift_LANGUAGE_VERSION</keyword>
       <keyword>CMAKE_TOOLCHAIN_FILE</keyword>
       <keyword>CMAKE_TRY_COMPILE_CONFIGURATION</keyword>
+      <keyword>CMAKE_TRY_COMPILE_PLATFORM_VARIABLES</keyword>
+      <keyword>CMAKE_TRY_COMPILE_TARGET_TYPE</keyword>
       <keyword>CMAKE_TWEAK_VERSION</keyword>
       <keyword>CMAKE_USER_MAKE_RULES_OVERRIDE</keyword>
       <keyword>CMAKE_USER_MAKE_RULES_OVERRIDE_\w+</keyword>
@@ -387,19 +509,103 @@
       <keyword>CMAKE_VERSION</keyword>
       <keyword>CMAKE_VISIBILITY_INLINES_HIDDEN</keyword>
       <keyword>CMAKE_VS_DEVENV_COMMAND</keyword>
+      <keyword>CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD</keyword>
+      <keyword>CMAKE_VS_INCLUDE_PACKAGE_TO_DEFAULT_BUILD</keyword>
       <keyword>CMAKE_VS_INTEL_Fortran_PROJECT_VERSION</keyword>
       <keyword>CMAKE_VS_MSBUILD_COMMAND</keyword>
-      <keyword>CMAKE_VS_MSDEV_COMMAND</keyword>
       <keyword>CMAKE_VS_NsightTegra_VERSION</keyword>
       <keyword>CMAKE_VS_PLATFORM_NAME</keyword>
       <keyword>CMAKE_VS_PLATFORM_TOOLSET</keyword>
+      <keyword>CMAKE_VS_PLATFORM_TOOLSET_CUDA</keyword>
+      <keyword>CMAKE_VS_PLATFORM_TOOLSET_HOST_ARCHITECTURE</keyword>
+      <keyword>CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION</keyword>
       <keyword>CMAKE_WARN_DEPRECATED</keyword>
       <keyword>CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION</keyword>
       <keyword>CMAKE_WIN32_EXECUTABLE</keyword>
+      <keyword>CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS</keyword>
       <keyword>CMAKE_XCODE_ATTRIBUTE_\w+</keyword>
+      <keyword>CMAKE_XCODE_GENERATE_SCHEME</keyword>
       <keyword>CMAKE_XCODE_PLATFORM_TOOLSET</keyword>
+      <keyword>CPACK_ABSOLUTE_DESTINATION_FILES</keyword>
+      <keyword>CPACK_COMPONENT_INCLUDE_TOPLEVEL_DIRECTORY</keyword>
+      <keyword>CPACK_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION</keyword>
+      <keyword>CPACK_INCLUDE_TOPLEVEL_DIRECTORY</keyword>
+      <keyword>CPACK_INSTALL_SCRIPT</keyword>
+      <keyword>CPACK_PACKAGING_INSTALL_PREFIX</keyword>
+      <keyword>CPACK_SET_DESTDIR</keyword>
+      <keyword>CPACK_WARN_ON_ABSOLUTE_INSTALL_DESTINATION</keyword>
+      <keyword>CTEST_BINARY_DIRECTORY</keyword>
+      <keyword>CTEST_BUILD_COMMAND</keyword>
+      <keyword>CTEST_BUILD_NAME</keyword>
+      <keyword>CTEST_BZR_COMMAND</keyword>
+      <keyword>CTEST_BZR_UPDATE_OPTIONS</keyword>
+      <keyword>CTEST_CHANGE_ID</keyword>
+      <keyword>CTEST_CHECKOUT_COMMAND</keyword>
+      <keyword>CTEST_CONFIGURATION_TYPE</keyword>
+      <keyword>CTEST_CONFIGURE_COMMAND</keyword>
+      <keyword>CTEST_COVERAGE_COMMAND</keyword>
+      <keyword>CTEST_COVERAGE_EXTRA_FLAGS</keyword>
+      <keyword>CTEST_CURL_OPTIONS</keyword>
+      <keyword>CTEST_CUSTOM_COVERAGE_EXCLUDE</keyword>
+      <keyword>CTEST_CUSTOM_ERROR_EXCEPTION</keyword>
+      <keyword>CTEST_CUSTOM_ERROR_MATCH</keyword>
+      <keyword>CTEST_CUSTOM_ERROR_POST_CONTEXT</keyword>
+      <keyword>CTEST_CUSTOM_ERROR_PRE_CONTEXT</keyword>
+      <keyword>CTEST_CUSTOM_MAXIMUM_FAILED_TEST_OUTPUT_SIZE</keyword>
+      <keyword>CTEST_CUSTOM_MAXIMUM_NUMBER_OF_ERRORS</keyword>
+      <keyword>CTEST_CUSTOM_MAXIMUM_NUMBER_OF_WARNINGS</keyword>
+      <keyword>CTEST_CUSTOM_MAXIMUM_PASSED_TEST_OUTPUT_SIZE</keyword>
+      <keyword>CTEST_CUSTOM_MEMCHECK_IGNORE</keyword>
+      <keyword>CTEST_CUSTOM_POST_MEMCHECK</keyword>
+      <keyword>CTEST_CUSTOM_POST_TEST</keyword>
+      <keyword>CTEST_CUSTOM_PRE_MEMCHECK</keyword>
+      <keyword>CTEST_CUSTOM_PRE_TEST</keyword>
+      <keyword>CTEST_CUSTOM_TEST_IGNORE</keyword>
+      <keyword>CTEST_CUSTOM_WARNING_EXCEPTION</keyword>
+      <keyword>CTEST_CUSTOM_WARNING_MATCH</keyword>
+      <keyword>CTEST_CVS_CHECKOUT</keyword>
+      <keyword>CTEST_CVS_COMMAND</keyword>
+      <keyword>CTEST_CVS_UPDATE_OPTIONS</keyword>
+      <keyword>CTEST_DROP_LOCATION</keyword>
+      <keyword>CTEST_DROP_METHOD</keyword>
+      <keyword>CTEST_DROP_SITE</keyword>
+      <keyword>CTEST_DROP_SITE_CDASH</keyword>
+      <keyword>CTEST_DROP_SITE_PASSWORD</keyword>
+      <keyword>CTEST_DROP_SITE_USER</keyword>
+      <keyword>CTEST_EXTRA_COVERAGE_GLOB</keyword>
+      <keyword>CTEST_GIT_COMMAND</keyword>
+      <keyword>CTEST_GIT_INIT_SUBMODULES</keyword>
+      <keyword>CTEST_GIT_UPDATE_CUSTOM</keyword>
+      <keyword>CTEST_GIT_UPDATE_OPTIONS</keyword>
+      <keyword>CTEST_HG_COMMAND</keyword>
+      <keyword>CTEST_HG_UPDATE_OPTIONS</keyword>
+      <keyword>CTEST_LABELS_FOR_SUBPROJECTS</keyword>
+      <keyword>CTEST_MEMORYCHECK_COMMAND</keyword>
+      <keyword>CTEST_MEMORYCHECK_COMMAND_OPTIONS</keyword>
+      <keyword>CTEST_MEMORYCHECK_SANITIZER_OPTIONS</keyword>
+      <keyword>CTEST_MEMORYCHECK_SUPPRESSIONS_FILE</keyword>
+      <keyword>CTEST_MEMORYCHECK_TYPE</keyword>
+      <keyword>CTEST_NIGHTLY_START_TIME</keyword>
+      <keyword>CTEST_P4_CLIENT</keyword>
+      <keyword>CTEST_P4_COMMAND</keyword>
+      <keyword>CTEST_P4_OPTIONS</keyword>
+      <keyword>CTEST_P4_UPDATE_OPTIONS</keyword>
+      <keyword>CTEST_SCP_COMMAND</keyword>
+      <keyword>CTEST_SITE</keyword>
+      <keyword>CTEST_SOURCE_DIRECTORY</keyword>
+      <keyword>CTEST_SVN_COMMAND</keyword>
+      <keyword>CTEST_SVN_OPTIONS</keyword>
+      <keyword>CTEST_SVN_UPDATE_OPTIONS</keyword>
+      <keyword>CTEST_TEST_LOAD</keyword>
+      <keyword>CTEST_TEST_TIMEOUT</keyword>
+      <keyword>CTEST_TRIGGER_SITE</keyword>
+      <keyword>CTEST_UPDATE_COMMAND</keyword>
+      <keyword>CTEST_UPDATE_OPTIONS</keyword>
+      <keyword>CTEST_UPDATE_VERSION_ONLY</keyword>
+      <keyword>CTEST_USE_LAUNCHERS</keyword>
       <keyword>CYGWIN</keyword>
       <keyword>EXECUTABLE_OUTPUT_PATH</keyword>
+      <keyword>GHS-MULTI</keyword>
       <keyword>LIBRARY_OUTPUT_PATH</keyword>
       <keyword>MINGW</keyword>
       <keyword>MSVC</keyword>
@@ -415,6 +621,7 @@
       <keyword>MSVC_IDE</keyword>
       <keyword>MSVC_VERSION</keyword>
       <keyword>PROJECT_BINARY_DIR</keyword>
+      <keyword>PROJECT_DESCRIPTION</keyword>
       <keyword>PROJECT_NAME</keyword>
       <keyword>PROJECT_SOURCE_DIR</keyword>
       <keyword>PROJECT_VERSION</keyword>
@@ -427,6 +634,7 @@
       <keyword>WINCE</keyword>
       <keyword>WINDOWS_PHONE</keyword>
       <keyword>WINDOWS_STORE</keyword>
+      <keyword>XCODE</keyword>
       <keyword>XCODE_VERSION</keyword>
     </context>
 
