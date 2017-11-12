@@ -35,6 +35,7 @@
     <style id="control" name="Control Keyword" map-to="def:keyword"/>
     <style id="variable" name="Variable" map-to="makefile:variable"/>
     <style id="quoted-argument" name="Quoted Argument" map-to="def:string"/>
+    <style id="bracket-argument" name="Bracket Argument" map-to="def:string"/>
   </styles>
 
   <definitions>
@@ -738,6 +739,11 @@
       </include>
     </context>
 
+    <context id="bracket-argument" style-ref="bracket-argument">
+      <start>\[(=*)\[</start>
+      <end>\]\%{1@start}\]</end>
+    </context>
+
     <context id="variable-assignment">
       <start>\b((?i)SET)\b\s*\(\s*([\w_][\w\d_]*)</start>
       <end>\)</end>
@@ -748,6 +754,7 @@
         <context ref="env-variable-reference"/>
         <context ref="constant"/>
         <context ref="quoted-argument"/>
+        <context ref="bracket-argument"/>
         <context ref="def:shell-like-comment"/>
       </include>
     </context>
@@ -757,6 +764,7 @@
         <context ref="variable-reference"/>
         <context ref="env-variable-reference"/>
         <context ref="quoted-argument"/>
+        <context ref="bracket-argument"/>
         <context ref="variable-assignment"/>
         <context ref="def:shell-like-comment"/>
         <context ref="constant"/>
