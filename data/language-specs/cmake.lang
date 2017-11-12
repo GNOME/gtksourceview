@@ -24,6 +24,8 @@
   <metadata>
     <property name="globs">CMakeLists.txt;*.cmake;*.cmake.in;*.ctest;*.ctest.in</property>
     <property name="line-comment-start">#</property>
+    <property name="block-comment-start">#[[</property>
+    <property name="block-comment-end">]]</property>
   </metadata>
 
   <styles>
@@ -744,6 +746,14 @@
       <end>\]\%{1@start}\]</end>
     </context>
 
+    <context id="bracket-comment" style-ref="def:comment" class="comment" class-disabled="no-spell-check">
+      <start>#\[(=*)\[</start>
+      <end>\]\%{1@start}\]</end>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
     <context id="variable-assignment">
       <start>\b((?i)SET)\b\s*\(\s*([\w_][\w\d_]*)</start>
       <end>\)</end>
@@ -755,6 +765,7 @@
         <context ref="constant"/>
         <context ref="quoted-argument"/>
         <context ref="bracket-argument"/>
+        <context ref="bracket-comment"/>
         <context ref="def:shell-like-comment"/>
       </include>
     </context>
@@ -766,6 +777,7 @@
         <context ref="quoted-argument"/>
         <context ref="bracket-argument"/>
         <context ref="variable-assignment"/>
+        <context ref="bracket-comment"/>
         <context ref="def:shell-like-comment"/>
         <context ref="constant"/>
         <context ref="builtin-command"/>
