@@ -34,6 +34,7 @@
     <style id="operator" name="Operator" map-to="def:operator"/>
     <style id="control" name="Control Keyword" map-to="def:keyword"/>
     <style id="variable" name="Variable" map-to="makefile:variable"/>
+    <style id="quoted-argument" name="Quoted Argument" map-to="def:string"/>
   </styles>
 
   <definitions>
@@ -724,6 +725,19 @@
       </include>
     </context>
 
+    <context id="quoted-argument" style-ref="quoted-argument">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context ref="variable-reference"/>
+        <context ref="env-variable-reference"/>
+        <context style-ref="def:special-char">
+          <match>\\$</match> <!-- quoted_continuation from the grammar -->
+        </context>
+        <context ref="escape-sequence"/>
+      </include>
+    </context>
+
     <context id="variable-assignment">
       <start>\b((?i)SET)\b\s*\(\s*([\w_][\w\d_]*)</start>
       <end>\)</end>
@@ -733,6 +747,7 @@
         <context ref="variable-reference"/>
         <context ref="env-variable-reference"/>
         <context ref="constant"/>
+        <context ref="quoted-argument"/>
         <context ref="def:shell-like-comment"/>
       </include>
     </context>
@@ -741,6 +756,7 @@
       <include>
         <context ref="variable-reference"/>
         <context ref="env-variable-reference"/>
+        <context ref="quoted-argument"/>
         <context ref="variable-assignment"/>
         <context ref="def:shell-like-comment"/>
         <context ref="constant"/>
