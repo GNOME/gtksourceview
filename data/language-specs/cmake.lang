@@ -789,7 +789,7 @@
     </context>
 
     <context id="variable-assignment">
-      <start>\b((?i)SET)\b\s*\(\s*([\w_][\w\d_]*)</start>
+      <start>\b((?i)SET|UNSET)\b\s*\(\s*([\w_][\w\d_]*)</start>
       <end>\)</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="builtin-command"/>
