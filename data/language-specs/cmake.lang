@@ -38,6 +38,7 @@
     <style id="variable" name="Variable" map-to="makefile:variable"/>
     <style id="quoted-argument" name="Quoted Argument" map-to="def:string"/>
     <style id="bracket-argument" name="Bracket Argument" map-to="def:string"/>
+    <style id="legacy-syntax" name="Legacy Syntax" map-to="def:warning"/>
   </styles>
 
   <definitions>
@@ -729,7 +730,7 @@
     </context>
 
     <context id="quoted-argument" style-ref="quoted-argument">
-      <start>"</start>
+      <start>(?&lt;=[()"]|\s|^)"</start>
       <end>"</end>
       <include>
         <context ref="variable-reference"/>
@@ -754,36 +755,51 @@
       </include>
     </context>
 
+    <context id="in-unquoted-argument">
+      <include>
+        <context ref="constant"/>
+        <context ref="variable-reference"/>
+        <context ref="env-variable-reference"/>
+        <context ref="escape-sequence"/>
+        <context style-ref="legacy-syntax" end-at-line-end="true">
+          <start>"</start>
+          <end>"</end>
+          <include>
+            <context ref="escape-sequence"/>
+          </include>
+        </context>
+        <context style-ref="legacy-syntax">
+          <match>\$\(\w+\)</match>
+        </context>
+      </include>
+    </context>
+
     <context id="variable-assignment">
       <start>\b((?i)SET)\b\s*\(\s*([\w_][\w\d_]*)</start>
       <end>\)</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="builtin-command"/>
         <context sub-pattern="2" where="start" style-ref="variable"/>
-        <context ref="variable-reference"/>
-        <context ref="env-variable-reference"/>
-        <context ref="constant"/>
         <context ref="quoted-argument"/>
         <context ref="bracket-argument"/>
         <context ref="bracket-comment"/>
         <context ref="def:shell-like-comment"/>
+        <context ref="in-unquoted-argument"/>
       </include>
     </context>
 
     <context id="cmake">
       <include>
-        <context ref="variable-reference"/>
-        <context ref="env-variable-reference"/>
         <context ref="quoted-argument"/>
         <context ref="bracket-argument"/>
         <context ref="variable-assignment"/>
         <context ref="bracket-comment"/>
         <context ref="def:shell-like-comment"/>
-        <context ref="constant"/>
         <context ref="builtin-command"/>
         <context ref="deprecated-builtin-command"/>
         <context ref="operator"/>
         <context ref="control"/>
+        <context ref="in-unquoted-argument"/>
       </include>
     </context>
 
