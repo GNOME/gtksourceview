@@ -774,32 +774,39 @@
       </include>
     </context>
 
+    <context id="arguments">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context ref="quoted-argument"/>
+        <context ref="bracket-argument"/>
+        <context ref="in-unquoted-argument"/>
+        <context ref="operator"/>
+        <context ref="arguments"/>
+        <context ref="bracket-comment"/>
+        <context ref="def:shell-like-comment"/>
+      </include>
+    </context>
+
     <context id="variable-assignment">
       <start>\b((?i)SET)\b\s*\(\s*([\w_][\w\d_]*)</start>
       <end>\)</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="builtin-command"/>
         <context sub-pattern="2" where="start" style-ref="variable"/>
-        <context ref="quoted-argument"/>
-        <context ref="bracket-argument"/>
-        <context ref="bracket-comment"/>
-        <context ref="def:shell-like-comment"/>
-        <context ref="in-unquoted-argument"/>
+        <context ref="arguments:*"/>
       </include>
     </context>
 
     <context id="cmake">
       <include>
-        <context ref="quoted-argument"/>
-        <context ref="bracket-argument"/>
         <context ref="variable-assignment"/>
-        <context ref="bracket-comment"/>
-        <context ref="def:shell-like-comment"/>
         <context ref="builtin-command"/>
         <context ref="deprecated-builtin-command"/>
-        <context ref="operator"/>
         <context ref="control"/>
-        <context ref="in-unquoted-argument"/>
+        <context ref="arguments"/>
+        <context ref="bracket-comment"/>
+        <context ref="def:shell-like-comment"/>
       </include>
     </context>
 
