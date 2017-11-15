@@ -6,4 +6,9 @@ class Hello(object):
     def hello(self):
         print >> sys.stderr, "Hi there!"
     None, True, False
+    r'raw \' \
+        string'
+    r"""raw multiline \"""
+        string"""
+
 Hello().hello()

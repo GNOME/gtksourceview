@@ -137,6 +137,7 @@
       <end>"""</end>
       <include>
         <context ref="format"/>
+        <context ref="escaped-char" ignore-style="true"/>
       </include>
     </context>
 
@@ -145,6 +146,7 @@
       <end>'''</end>
       <include>
         <context ref="format"/>
+        <context ref="escaped-char" ignore-style="true"/>
       </include>
     </context>
 
@@ -153,7 +155,8 @@
       <end>"</end>
       <include>
         <context ref="format"/>
-        <context ref="def:line-continue"/>
+        <context ref="escaped-char" ignore-style="true"/>
+        <context ref="def:line-continue" ignore-style="true"/>
       </include>
     </context>
 
@@ -162,7 +165,8 @@
       <end>'</end>
       <include>
         <context ref="format"/>
-        <context ref="def:line-continue"/>
+        <context ref="escaped-char" ignore-style="true"/>
+        <context ref="def:line-continue" ignore-style="true"/>
       </include>
     </context>
 
