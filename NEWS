@@ -1,3 +1,14 @@
+News in 3.99.7, 2017-12-09
+--------------------------
+* Rename gtk_source_completion_show() to gtk_source_completion_start().
+* Drop gconstructor.h, add gtk_source_init() and gtk_source_finalize().
+* Improve documentation.
+* New syntax highlighting definition file for: logcat.
+* Improvements to the syntax highlighting of: Python, reStructuredText and
+  CMake.
+* Improvements to the Visual Studio builds.
+* Translation updates.
+
 News in 3.99.6, 2017-10-15
 --------------------------
 * Reduce a lot the number of translatable strings (especially in *.lang files),
