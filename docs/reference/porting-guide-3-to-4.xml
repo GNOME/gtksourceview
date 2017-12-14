@@ -42,16 +42,6 @@
   </refsect1>
 
   <refsect1>
-    <title>A set of intermediate tarballs to ease the transition</title>
-    <para>
-      When porting to GtkSourceView 4, instead of doing everything in one step,
-      you can compile intermediate 3.99.x tarballs of GtkSourceView, so that you
-      can compile your code regularly and run the tests. Not doing all at once
-      in one big commit, but instead doing smaller and testable commits.
-    </para>
-  </refsect1>
-
-  <refsect1>
     <title>GtkSourceView 3.99.1</title>
     <itemizedlist>
       <listitem>
