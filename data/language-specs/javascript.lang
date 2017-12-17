@@ -283,20 +283,48 @@
 
     <context id="constructors" style-ref="constructors">
       <keyword>Array</keyword>
+      <keyword>ArrayBuffer</keyword>
+      <keyword>AsyncFunction</keyword>
+      <keyword>Atomics</keyword>
       <keyword>Boolean</keyword>
+      <keyword>DataView</keyword>
       <keyword>Date</keyword>
       <keyword>Error</keyword>
       <keyword>EvalError</keyword>
+      <keyword>Float32Array</keyword>
+      <keyword>Fload64Array</keyword>
       <keyword>Function</keyword>
+      <keyword>Generator</keyword>
+      <keyword>GeneratorFunction</keyword>
+      <keyword>Function</keyword>
+      <keyword>Int8Array</keyword>
+      <keyword>Int16Array</keyword>
+      <keyword>Int32Array</keyword>
+      <keyword>Intl</keyword>
+      <keyword>JSON</keywords>
       <keyword>Math</keyword>
+      <keyword>Map</keyword>
       <keyword>Number</keyword>
       <keyword>Object</keyword>
+      <keyword>Promise</keyword>
+      <keyword>Proxy</keyword>
       <keyword>RangeError</keyword>
+      <keyword>Reflect</keyword>
       <keyword>RegExp</keyword>
+      <keyword>Set</keyword>
+      <keyword>SharedArrayBuffer</keyword>
       <keyword>String</keyword>
+      <keyword>Symbol</keyword>
       <keyword>SyntaxError</keyword>
       <keyword>TypeError</keyword>
+      <keyword>Uint8Array</keyword>
+      <keyword>Uint8ClampedArray</keyword>
+      <keyword>Uint16Array</keyword>
+      <keyword>Uint32Array</keyword>
       <keyword>URIError</keyword>
+      <keyword>WeakMap</keyword>
+      <keyword>WeakSet</keyword>
+      <keyword>WebAssembly</keyword>
     </context>
 
     <context id="future-words" style-ref="future-words">
