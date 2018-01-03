@@ -24,6 +24,10 @@ C code conventions
 You may encounter old code that doesn't follow all the following code
 conventions, but for new code it is better to follow them, for consistency.
 
+In the scripts/ directory there is an uncrustify config file with a script to
+apply the coding style to a certain *.c file. The script has not (yet) been run
+on all the GtkSourceView source code, but it can serve as a guideline.
+
   - Avoid trailing whitespace.
 
   - Indent the C code with tabulations with a width of eight characters.
