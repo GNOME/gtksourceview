@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="desktop" _name=".desktop" version="2.0" _section="Other">
+<language id="desktop" name=".desktop" version="2.0" _section="Other">
   <metadata>
     <property name="mimetypes">application/x-gnome-app-info;application/x-desktop</property>
     <property name="globs">*.desktop;*.kdelnk</property>
@@ -30,18 +29,16 @@
   </metadata>
 
   <styles>
-    <style id="group" _name="Group" map-to="def:keyword"/>
-    <!-- Translators: "Key" here means key value, that is the left hand
-         side in a myoption=something line in a .desktop file -->
-    <style id="key" _name="Key" map-to="def:type"/>
-    <style id="language" _name="Translation" map-to="def:decimal"/>
-    <style id="number" _name="Number" map-to="def:floating-point"/>
-    <style id="boolean" _name="Boolean" map-to="def:floating-point"/>
-    <style id="exec-parameter" _name="Exec parameter" map-to="def:floating-point"/>
-    <style id="encoding" _name="Encoding" map-to="def:floating-point"/>
-    <style id="category-main" _name="Main Category" map-to="def:reserved"/>
-    <style id="category-additional" _name="Additional Category" map-to="def:identifier"/>
-    <style id="category-reserved" _name="Reserved Category" map-to="def:note"/>
+    <style id="group" name="Group" map-to="def:keyword"/>
+    <style id="key" name="Key" map-to="def:type"/>
+    <style id="language" name="Translation" map-to="def:decimal"/>
+    <style id="number" name="Number" map-to="def:floating-point"/>
+    <style id="boolean" name="Boolean" map-to="def:floating-point"/>
+    <style id="exec-parameter" name="Exec parameter" map-to="def:floating-point"/>
+    <style id="encoding" name="Encoding" map-to="def:floating-point"/>
+    <style id="category-main" name="Main Category" map-to="def:reserved"/>
+    <style id="category-additional" name="Additional Category" map-to="def:identifier"/>
+    <style id="category-reserved" name="Reserved Category" map-to="def:note"/>
   </styles>
 
   <definitions>

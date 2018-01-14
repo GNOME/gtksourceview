@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="latex" _name="LaTeX" version="2.0" _section="Markup">
+<language id="latex" name="LaTeX" version="2.0" _section="Markup">
   <metadata>
     <property name="mimetypes">text/x-tex</property>
     <property name="globs">*.tex;*.ltx;*.sty;*.cls;*.dtx;*.ins;*.bbl</property>
@@ -30,23 +29,23 @@
   </metadata>
 
   <styles>
-    <style id="comment"            _name="Comment"              map-to="def:comment"/>
-    <style id="display-math"       _name="Math Mode"            map-to="def:string"/>
-    <style id="inline-math"        _name="Inline Math Mode"     map-to="latex:display-math"/>
-    <style id="math"               _name="Math Mode"            map-to="latex:display-math"/>
-    <style id="math-boundary"      _name="Math Boundary"        map-to="latex:display-math"/>
-    <style id="include"            _name="Include"              map-to="def:keyword"/>
-    <style id="common-commands"    _name="Command"              map-to="def:keyword"/>
-    <style id="command"            _name="Command"              map-to="def:keyword"/>
-    <style id="verbatim"           _name="Verbatim"             map-to="def:comment"/>
-    <style id="special-char"       _name="Special Character"    map-to="def:special-char"/>
-    <style id="part"               _name="Part Heading"          map-to="def:heading0"/>
-    <style id="chapter"            _name="Chapter Heading"       map-to="def:heading1"/>
-    <style id="section"            _name="Section Heading"       map-to="def:heading2"/>
-    <style id="subsection"         _name="SubSection Heading"    map-to="def:heading3"/>
-    <style id="subsubsection"      _name="SubSubSection Heading" map-to="def:heading4"/>
-    <style id="paragraph"          _name="Paragraph Heading"     map-to="def:heading5"/>
-    <style id="subparagraph"       _name="SubParagraph Heading"  map-to="def:heading6"/>
+    <style id="comment"            name="Comment"              map-to="def:comment"/>
+    <style id="display-math"       name="Math Mode"            map-to="def:string"/>
+    <style id="inline-math"        name="Inline Math Mode"     map-to="latex:display-math"/>
+    <style id="math"               name="Math Mode"            map-to="latex:display-math"/>
+    <style id="math-boundary"      name="Math Boundary"        map-to="latex:display-math"/>
+    <style id="include"            name="Include"              map-to="def:keyword"/>
+    <style id="common-commands"    name="Command"              map-to="def:keyword"/>
+    <style id="command"            name="Command"              map-to="def:keyword"/>
+    <style id="verbatim"           name="Verbatim"             map-to="def:comment"/>
+    <style id="special-char"       name="Special Character"    map-to="def:special-char"/>
+    <style id="part"               name="Part Heading"          map-to="def:heading0"/>
+    <style id="chapter"            name="Chapter Heading"       map-to="def:heading1"/>
+    <style id="section"            name="Section Heading"       map-to="def:heading2"/>
+    <style id="subsection"         name="SubSection Heading"    map-to="def:heading3"/>
+    <style id="subsubsection"      name="SubSubSection Heading" map-to="def:heading4"/>
+    <style id="paragraph"          name="Paragraph Heading"     map-to="def:heading5"/>
+    <style id="subparagraph"       name="SubParagraph Heading"  map-to="def:heading6"/>
   </styles>
 
   <definitions>

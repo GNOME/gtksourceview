@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="verilog" _name="Verilog" version="2.0" _section="Source">
+<language id="verilog" name="Verilog" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-verilog-src</property>
     <property name="globs">*.v</property>
@@ -31,20 +30,20 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="printf" _name="printf Conversion" map-to="def:special-char"/>
-    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
-    <style id="error" _name="Error" map-to="def:error"/>
-    <style id="compiler-directive" _name="Compiler Directive" map-to="def:preprocessor"/>
-    <style id="ieee-system-task" _name="IEEE System Task" map-to="def:keyword"/>
-    <style id="lrm-additional-system-task" _name="LRM Additional System Task" map-to="def:keyword"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="gate" _name="Gate" map-to="def:keyword"/>
-    <style id="type" _name="Type" map-to="def:type"/>
-    <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
-    <style id="real-number" _name="Real number" map-to="def:floating-point"/>
-    <style id="integer-number" _name="Integer Number" map-to="def:number"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="printf" name="printf Conversion" map-to="def:special-char"/>
+    <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
+    <style id="error" name="Error" map-to="def:error"/>
+    <style id="compiler-directive" name="Compiler Directive" map-to="def:preprocessor"/>
+    <style id="ieee-system-task" name="IEEE System Task" map-to="def:keyword"/>
+    <style id="lrm-additional-system-task" name="LRM Additional System Task" map-to="def:keyword"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="gate" name="Gate" map-to="def:keyword"/>
+    <style id="type" name="Type" map-to="def:type"/>
+    <style id="base-n-integer" name="Base-N Integer" map-to="def:base-n-integer"/>
+    <style id="real-number" name="Real number" map-to="def:floating-point"/>
+    <style id="integer-number" name="Integer Number" map-to="def:number"/>
   </styles>
 
   <definitions>

@@ -16,34 +16,33 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="j" _name="J" version="2.0" _section="Source">
+<language id="j" name="J" version="2.0" _section="Source">
   <metadata>
     <property name="globs">*.ijs</property>
     <property name="line-comment-start">NB\.</property>
   </metadata>
 
   <styles>
-    <style id="adverb" _name="Adverb" map-to="def:identifier" />
-    <style id="comment" _name="Comment" map-to="def:comment" />
-    <style id="conjunction" _name="Conjunction" map-to="def:identifier" />
-    <style id="control" _name="Control" map-to="def:keyword" />
-    <style id="error" _name="Error" map-to="def:error" />
-    <style id="exparg" _name="Explicit Argument" map-to="def:special-char" />
-    <style id="global" _name="Global" map-to="def:type" />
-    <style id="labtext" _name="Lab Text" map-to="def:preprocessor" />
-    <style id="local" _name="Local" map-to="def:type" />
-    <style id="noun" _name="Noun" map-to="def:special-constant" />
-    <style id="noundef" _name="Explicit Noun Definition" map-to="def:string" />
-    <style id="number" _name="Number" map-to="def:decimal" />
-    <style id="parens" _name="Parens" map-to="def:statement" />
-    <style id="primitive" _name="Primitive" map-to="def:identifier" />
-    <style id="string" _name="String" map-to="def:string" />
-    <style id="verb"  _name="Verb" map-to="def:identifier" />
+    <style id="adverb" name="Adverb" map-to="def:identifier" />
+    <style id="comment" name="Comment" map-to="def:comment" />
+    <style id="conjunction" name="Conjunction" map-to="def:identifier" />
+    <style id="control" name="Control" map-to="def:keyword" />
+    <style id="error" name="Error" map-to="def:error" />
+    <style id="exparg" name="Explicit Argument" map-to="def:special-char" />
+    <style id="global" name="Global" map-to="def:type" />
+    <style id="labtext" name="Lab Text" map-to="def:preprocessor" />
+    <style id="local" name="Local" map-to="def:type" />
+    <style id="noun" name="Noun" map-to="def:special-constant" />
+    <style id="noundef" name="Explicit Noun Definition" map-to="def:string" />
+    <style id="number" name="Number" map-to="def:decimal" />
+    <style id="parens" name="Parens" map-to="def:statement" />
+    <style id="primitive" name="Primitive" map-to="def:identifier" />
+    <style id="string" name="String" map-to="def:string" />
+    <style id="verb"  name="Verb" map-to="def:identifier" />
   </styles>
 
   <definitions>

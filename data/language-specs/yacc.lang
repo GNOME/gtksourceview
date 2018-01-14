@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="yacc" _name="Yacc" _section="Other" version="2.0">
+<language id="yacc" name="Yacc" _section="Other" version="2.0">
   <metadata>
     <property name="mimetypes">text/x-yacc;text/x-bison</property>
     <property name="globs">*.y;*.yacc</property>
@@ -32,9 +31,9 @@
 
   <styles>
     <!--FIXME make it better names, and make them translatable -->
-    <style id="keyword" _name="keyword" map-to="def:keyword"/>
-    <style id="token-type" _name="token type" map-to="def:type"/>
-    <style id="rule" _name="rule" map-to="def:identifier"/>
+    <style id="keyword" name="keyword" map-to="def:keyword"/>
+    <style id="token-type" name="token type" map-to="def:type"/>
+    <style id="rule" name="rule" map-to="def:identifier"/>
   </styles>
 
   <definitions>

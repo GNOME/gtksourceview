@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="sml" _name="Standard ML" version="2.0" _section="Source">
+<language id="sml" name="Standard ML" version="2.0" _section="Source">
   <metadata>
     <property name="globs">*.sml;*.sig</property>
     <property name="block-comment-start">(*</property>
@@ -29,17 +28,17 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="character" _name="Character" map-to="def:character"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
-    <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
-    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
-    <style id="floating-point" _name="Floating Point number" map-to="def:floating-point"/>
-    <style id="special-var" _name="Module name, Variant, etc" map-to="def:type"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="character" name="Character" map-to="def:character"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
+    <style id="base-n-integer" name="Base-N Integer" map-to="def:base-n-integer"/>
+    <style id="decimal" name="Decimal" map-to="def:decimal"/>
+    <style id="boolean" name="Boolean value" map-to="def:boolean"/>
+    <style id="floating-point" name="Floating Point number" map-to="def:floating-point"/>
+    <style id="special-var" name="Module name, Variant, etc" map-to="def:type"/>
   </styles>
 
   <definitions>

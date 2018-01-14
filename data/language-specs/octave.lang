@@ -18,12 +18,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="octave" _name="Octave" version="2.0" _section="Scientific">
+<language id="octave" name="Octave" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/x-octave</property>
     <property name="globs">*.m</property>
@@ -38,16 +37,16 @@
   -->
 
   <styles>
-    <style id="comment"           _name="Comment"           map-to="def:comment"/>
-    <style id="string"            _name="String"            map-to="def:string"/>
-    <style id="operator"          _name="Operator"          map-to="def:operator"/>
-    <style id="data-type"         _name="Data type"         map-to="def:type"/>
-    <style id="storage-type"      _name="Storage Type"      map-to="def:type"/>
-    <style id="boolean"           _name="Boolean"           map-to="def:boolean"/>
-    <style id="package-manager"   _name="Package Manager"   map-to="def:preprocessor"/>
-    <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
-    <style id="reserved-constant" _name="Reserved Constant" map-to="def:special-constant"/>
-    <style id="builtin"           _name="Builtin"           map-to="def:builtin"/>
+    <style id="comment"           name="Comment"           map-to="def:comment"/>
+    <style id="string"            name="String"            map-to="def:string"/>
+    <style id="operator"          name="Operator"          map-to="def:operator"/>
+    <style id="data-type"         name="Data type"         map-to="def:type"/>
+    <style id="storage-type"      name="Storage Type"      map-to="def:type"/>
+    <style id="boolean"           name="Boolean"           map-to="def:boolean"/>
+    <style id="package-manager"   name="Package Manager"   map-to="def:preprocessor"/>
+    <style id="keyword"           name="Keyword"           map-to="def:keyword"/>
+    <style id="reserved-constant" name="Reserved Constant" map-to="def:special-constant"/>
+    <style id="builtin"           name="Builtin"           map-to="def:builtin"/>
   </styles>
 
   <definitions>

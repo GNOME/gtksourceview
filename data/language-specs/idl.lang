@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="idl" _name="IDL" version="2.0" _section="Source">
+<language id="idl" name="IDL" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-idl</property>
     <property name="globs">*.idl</property>
@@ -29,11 +28,11 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="string" _name="String" map-to="def:string"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="preprocessor" name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="string" name="String" map-to="def:string"/>
   </styles>
 
   <definitions>

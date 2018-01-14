@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="opal" _name="Opal" version="2.0" _section="Source">
+<language id="opal" name="Opal" version="2.0" _section="Source">
   <metadata>
     <property name="globs">*.sign;*.impl</property>
     <property name="line-comment-start">-- </property>
@@ -30,16 +29,16 @@
   </metadata>
 
   <styles>
-    <style id="module-handler" _name="Module Handler" map-to="def:preprocessor"/>
-    <style id="comment"        _name="Comment"        map-to="def:comment"/>
-    <style id="common-defines" _name="Common Defines" map-to="def:special-constant"/>
-    <style id="error"          _name="Error"          map-to="def:error"/>
-    <style id="string"         _name="String"         map-to="def:string"/>
-    <style id="keyword"        _name="Keyword"        map-to="def:keyword"/>
-    <style id="boolean"        _name="Boolean value"  map-to="def:boolean"/>
-    <style id="decimal"        _name="Decimal number" map-to="def:decimal"/>
-    <style id="type"           _name="Data Type"      map-to="def:type"/>
-    <style id="keysymbol"      _name="Keysymbol"      map-to="def:keyword"/>
+    <style id="module-handler" name="Module Handler" map-to="def:preprocessor"/>
+    <style id="comment"        name="Comment"        map-to="def:comment"/>
+    <style id="common-defines" name="Common Defines" map-to="def:special-constant"/>
+    <style id="error"          name="Error"          map-to="def:error"/>
+    <style id="string"         name="String"         map-to="def:string"/>
+    <style id="keyword"        name="Keyword"        map-to="def:keyword"/>
+    <style id="boolean"        name="Boolean value"  map-to="def:boolean"/>
+    <style id="decimal"        name="Decimal number" map-to="def:decimal"/>
+    <style id="type"           name="Data Type"      map-to="def:type"/>
+    <style id="keysymbol"      name="Keysymbol"      map-to="def:keyword"/>
   </styles>
 
   <definitions>

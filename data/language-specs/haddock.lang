@@ -16,28 +16,27 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="haddock" _name="Haddock" version="2.0" _section="Markup" hidden="true">
+<language id="haddock" name="Haddock" version="2.0" _section="Markup" hidden="true">
 
   <styles>
-    <style id="markup"     _name="Inline Haddock Section" map-to="def:doc-comment"/>
-    <style id="directive"  _name="Haddock Directive" map-to="def:doc-comment-element"/>
-    <style id="identifier" _name="Hyperlinked Identifier" map-to="def:doc-comment-element"/>
-    <style id="module"     _name="Hyperlinked Module Name" map-to="def:doc-comment-element"/>
-    <style id="escape"     _name="Escape" map-to="def:special-char"/>
-    <style id="emphasis"   _name="Emphasis" map-to="def:doc-comment-element"/>
-    <style id="monospace"  _name="Monospace" />
-    <style id="codeblock"  _name="Code Block" />
-    <style id="property"   _name="Header Property" map-to="def:doc-comment-element"/>
-    <style id="itemized"   _name="Itemized list" map-to="def:doc-comment-element"/>
-    <style id="enumerated" _name="Enumerated list" map-to="def:doc-comment-element"/>
-    <style id="definition" _name="Definition list" map-to="def:doc-comment-element"/>
-    <style id="url"        _name="URL" map-to="def:underlined"/>
-    <style id="anchor"     _name="Anchor" map-to="def:doc-comment-element"/>
+    <style id="markup"     name="Inline Haddock Section" map-to="def:doc-comment"/>
+    <style id="directive"  name="Haddock Directive" map-to="def:doc-comment-element"/>
+    <style id="identifier" name="Hyperlinked Identifier" map-to="def:doc-comment-element"/>
+    <style id="module"     name="Hyperlinked Module Name" map-to="def:doc-comment-element"/>
+    <style id="escape"     name="Escape" map-to="def:special-char"/>
+    <style id="emphasis"   name="Emphasis" map-to="def:doc-comment-element"/>
+    <style id="monospace"  name="Monospace" />
+    <style id="codeblock"  name="Code Block" />
+    <style id="property"   name="Header Property" map-to="def:doc-comment-element"/>
+    <style id="itemized"   name="Itemized list" map-to="def:doc-comment-element"/>
+    <style id="enumerated" name="Enumerated list" map-to="def:doc-comment-element"/>
+    <style id="definition" name="Definition list" map-to="def:doc-comment-element"/>
+    <style id="url"        name="URL" map-to="def:underlined"/>
+    <style id="anchor"     name="Anchor" map-to="def:doc-comment-element"/>
   </styles>
 
   <definitions>

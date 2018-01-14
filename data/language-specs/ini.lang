@@ -16,11 +16,10 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 -->
-<language id="ini" _name=".ini" version="2.0" _section="Other">
+<language id="ini" name=".ini" version="2.0" _section="Other">
   <metadata>
     <property name="mimetypes">text/x-ini-file;application/x-ini-file;text/x-systemd-unit;text/x-dbus-service</property>
     <property name="globs">*.ini</property>
@@ -28,14 +27,14 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="variable" _name="Variable" map-to="def:type"/>
-    <style id="non-standard-key" _name="Data Type" map-to="def:type"/>
-    <style id="boolean-value" _name="Boolean value" map-to="def:boolean"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="floating-point" name="Floating Point" map-to="def:floating-point"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="decimal" name="Decimal" map-to="def:decimal"/>
+    <style id="variable" name="Variable" map-to="def:type"/>
+    <style id="non-standard-key" name="Data Type" map-to="def:type"/>
+    <style id="boolean-value" name="Boolean value" map-to="def:boolean"/>
   </styles>
 
   <definitions>

@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="def" _name="Defaults" hidden="true" version="2.0">
+<language id="def" name="Defaults" hidden="true" version="2.0">
   <styles>
 
     <!-- styles defined here are all the styles that
@@ -37,85 +36,85 @@
 
     <!-- Comment group -->
     <!-- Any comment -->
-    <style id="comment"             _name="Comment"/>
+    <style id="comment"             name="Comment"/>
     <!-- A shebang: #!/bin/sh -->
-    <style id="shebang"             _name="Shebang"               map-to="def:comment"/>
+    <style id="shebang"             name="Shebang"               map-to="def:comment"/>
     <!-- A special comment containing documentation like in javadoc or
          gtk-doc -->
-    <style id="doc-comment"         _name="Documentation comment" map-to="def:comment"/>
+    <style id="doc-comment"         name="Documentation comment" map-to="def:comment"/>
     <!-- A element inside a documentation comment: @author -->
     <!-- This style doesn't map to anything since it must be used as an additional
          style for text which is already styled as a "doc-comment" -->
-    <style id="doc-comment-element" _name="Documentation comment element" />
+    <style id="doc-comment-element" name="Documentation comment element" />
 
     <!-- Constant group -->
     <!-- Any constant -->
-    <style id="constant"            _name="Constant"/>
+    <style id="constant"            name="Constant"/>
     <!-- A character constant: 'c' -->
-    <style id="character"           _name="Character"             map-to="def:constant"/>
+    <style id="character"           name="Character"             map-to="def:constant"/>
     <!-- A string constant: "this is a string" -->
-    <style id="string"              _name="String"                map-to="def:constant"/>
+    <style id="string"              name="String"                map-to="def:constant"/>
     <!-- Special character in a string constant: "%s", "\t" -->
     <!-- This style doesn't map to anything since it must be used as an additional
          style for text which is already styled as a "string" -->
-    <style id="special-char"        _name="Special character (inside a string)" />
+    <style id="special-char"        name="Special character (inside a string)" />
     <!-- A generic number constant -->
-    <style id="number"              _name="Number"                map-to="def:constant"/>
+    <style id="number"              name="Number"                map-to="def:constant"/>
     <!-- A floating point constant: 2.3e10 -->
-    <style id="floating-point"      _name="Floating point number" map-to="def:number"/>
+    <style id="floating-point"      name="Floating point number" map-to="def:number"/>
     <!-- A decimal number: 1234 -->
-    <style id="decimal"             _name="Decimal number"        map-to="def:number"/>
+    <style id="decimal"             name="Decimal number"        map-to="def:number"/>
     <!-- A base-N number: 0xFFFF -->
-    <style id="base-n-integer"      _name="Base-N number"         map-to="def:number"/>
+    <style id="base-n-integer"      name="Base-N number"         map-to="def:number"/>
     <!-- A complex number -->
-    <style id="complex"             _name="Complex number"        map-to="def:number"/>
+    <style id="complex"             name="Complex number"        map-to="def:number"/>
     <!-- A special constant like NULL in C or null in Java -->
-    <style id="special-constant"    _name="Special constant"      map-to="def:constant"/>
+    <style id="special-constant"    name="Special constant"      map-to="def:constant"/>
     <!-- A boolean constant: TRUE, false -->
-    <style id="boolean"             _name="Boolean value"         map-to="def:special-constant"/>
+    <style id="boolean"             name="Boolean value"         map-to="def:special-constant"/>
 
     <!-- Identifier group -->
     <!-- Any variable name -->
-    <style id="identifier"          _name="Identifier" />
+    <style id="identifier"          name="Identifier" />
     <!-- A function name (also: methods for classes) -->
-    <style id="function"            _name="Function" map-to="def:identifier"/>
+    <style id="function"            name="Function" map-to="def:identifier"/>
     <!-- A builtin name: like __import__, abs in Python
         (see http://docs.python.org/lib/built-in-funcs.html) -->
-    <style id="builtin"             _name="Built-in identifier" map-to="def:identifier"/>
+    <style id="builtin"             name="Built-in identifier" map-to="def:identifier"/>
 
     <!-- Statement group -->
     <!-- Any statement -->
-    <style id="statement"           _name="Statement"/>
+    <style id="statement"           name="Statement"/>
     <!-- Operators: "+", "*", etc. -->
-    <style id="operator"            _name="Operator" map-to="def:statement" />
+    <style id="operator"            name="Operator" map-to="def:statement" />
     <!-- keywords: "if", "for", "while", etc. -->
-    <style id="keyword"             _name="Keyword" map-to="def:statement" />
+    <style id="keyword"             name="Keyword" map-to="def:statement" />
 
     <!-- Type group -->
     <!--A primitive data type: int, long, char, etc. -->
-    <style id="type"                _name="Data type"/>
+    <style id="type"                name="Data type"/>
 
     <!-- Others -->
     <!-- This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc.. -->
-    <style id="preprocessor"        _name="Preprocessor directive"/>
+    <style id="preprocessor"        name="Preprocessor directive"/>
     <!-- Any erroneous construct -->
-    <style id="error"               _name="Error"/>
+    <style id="error"               name="Error"/>
     <!-- to mark possibily errors or unrecommended syntax  -->
-    <style id="warning"             _name="Warning"/>
+    <style id="warning"             name="Warning"/>
     <!--Reserved keywords: like "const" and "goto" in Java -->
-    <style id="reserved"            _name="Reserved keyword" map-to="def:error" />
+    <style id="reserved"            name="Reserved keyword" map-to="def:error" />
     <!-- Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX -->
-    <style id="note"                _name="Note (FIXME, TODO, XXX, etc.)"/>
+    <style id="note"                name="Note (FIXME, TODO, XXX, etc.)"/>
     <!-- Text that stands out, HTML links, e-mail addresses, etc. -->
-    <style id="underlined"          _name="Underlined"/>
+    <style id="underlined"          name="Underlined"/>
     <!-- Text that acts as some kind of heading, such as h1, h2, ... in html. -->
-    <style id="heading0"            _name="Heading 0"/>
-    <style id="heading1"            _name="Heading 1"/>
-    <style id="heading2"            _name="Heading 2"/>
-    <style id="heading3"            _name="Heading 3"/>
-    <style id="heading4"            _name="Heading 4"/>
-    <style id="heading5"            _name="Heading 5"/>
-    <style id="heading6"            _name="Heading 6"/>
+    <style id="heading0"            name="Heading 0"/>
+    <style id="heading1"            name="Heading 1"/>
+    <style id="heading2"            name="Heading 2"/>
+    <style id="heading3"            name="Heading 3"/>
+    <style id="heading4"            name="Heading 4"/>
+    <style id="heading5"            name="Heading 5"/>
+    <style id="heading6"            name="Heading 6"/>
   </styles>
 
   <definitions>

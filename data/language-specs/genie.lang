@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="genie" _name="Genie" version="2.0" _section="Source">
+<language id="genie" name="Genie" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-genie</property>
     <property name="globs">*.gs</property>
@@ -31,20 +30,20 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="multiline-string" _name="Multiline string" map-to="def:string"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="regex" _name="Regular Expression" map-to="def:string"/>
-    <style id="namespace" _name="Namespace" map-to="def:preprocessor"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="definition" _name="Definition" map-to="def:keyword"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="special-variable" _name="Special Variable" map-to="def:identifier"/>
-    <style id="null-value" _name="Null Value" map-to="def:special-constant"/>
-    <style id="boolean" _name="Boolean" map-to="def:boolean"/>
-    <style id="number" _name="Number" map-to="def:number"/>
-    <style id="builtin" _name="Builtin Function" map-to="def:builtin"/>
-    <style id="printf" _name="printf Conversion" map-to="def:special-char"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="multiline-string" name="Multiline string" map-to="def:string"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="regex" name="Regular Expression" map-to="def:string"/>
+    <style id="namespace" name="Namespace" map-to="def:preprocessor"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="definition" name="Definition" map-to="def:keyword"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="special-variable" name="Special Variable" map-to="def:identifier"/>
+    <style id="null-value" name="Null Value" map-to="def:special-constant"/>
+    <style id="boolean" name="Boolean" map-to="def:boolean"/>
+    <style id="number" name="Number" map-to="def:number"/>
+    <style id="builtin" name="Builtin Function" map-to="def:builtin"/>
+    <style id="printf" name="printf Conversion" map-to="def:special-char"/>
   </styles>
 
   <definitions>

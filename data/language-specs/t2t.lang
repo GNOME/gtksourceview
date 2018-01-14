@@ -16,33 +16,32 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="t2t" _name="txt2tags" version="2.0" _section="Markup">
+<language id="t2t" name="txt2tags" version="2.0" _section="Markup">
   <metadata>
     <property name="globs">*.t2t</property>
     <property name="line-comment-start">%</property>
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment"/>
-    <style id="option" _name="Option"/>
-    <style id="option-name" _name="Option Name" map-to="def:keyword"/>
-    <style id="header" _name="Header" map-to="def:keyword"/>
-    <style id="section" _name="Section" map-to="def:keyword"/>
-    <style id="section-1" _name="Section 1" map-to="t2t:section"/>
-    <style id="section-2" _name="Section 2" map-to="t2t:section"/>
-    <style id="section-3" _name="Section 3" map-to="t2t:section"/>
-    <style id="section-4" _name="Section 4" map-to="t2t:section"/>
-    <style id="section-5" _name="Section 5" map-to="t2t:section"/>
-    <style id="anchor" _name="Anchor" map-to="t2t:section"/>
-    <style id="italic" _name="Italic"/>
-    <style id="bold" _name="Bold"/>
-    <style id="verbatim" _name="Verbatim"/>
-    <style id="verbatim-block" _name="Verbatim Block"/>
+    <style id="comment" name="Comment"/>
+    <style id="option" name="Option"/>
+    <style id="option-name" name="Option Name" map-to="def:keyword"/>
+    <style id="header" name="Header" map-to="def:keyword"/>
+    <style id="section" name="Section" map-to="def:keyword"/>
+    <style id="section-1" name="Section 1" map-to="t2t:section"/>
+    <style id="section-2" name="Section 2" map-to="t2t:section"/>
+    <style id="section-3" name="Section 3" map-to="t2t:section"/>
+    <style id="section-4" name="Section 4" map-to="t2t:section"/>
+    <style id="section-5" name="Section 5" map-to="t2t:section"/>
+    <style id="anchor" name="Anchor" map-to="t2t:section"/>
+    <style id="italic" name="Italic"/>
+    <style id="bold" name="Bold"/>
+    <style id="verbatim" name="Verbatim"/>
+    <style id="verbatim-block" name="Verbatim Block"/>
   </styles>
 
   <definitions>

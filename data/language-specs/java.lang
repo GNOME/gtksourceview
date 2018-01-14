@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="java" _name="Java" version="2.0" _section="Source">
+<language id="java" name="Java" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-java</property>
     <property name="globs">*.java</property>
@@ -32,22 +31,20 @@
   </metadata>
 
   <styles>
-    <style id="comment"           _name="Comment"                   map-to="def:comment"/>
-    <style id="escaped-character" _name="Escaped Character"         map-to="def:special-char"/>
-    <style id="string"            _name="String"                    map-to="def:string"/>
-    <style id="char"              _name="Character"                 map-to="def:character"/>
-    <!-- Translators: refered to some specific keywords of the language that
-         allow to get external functionalities -->
-    <style id="external"          _name="External"                  map-to="def:preprocessor"/>
-    <style id="declaration"       _name="Declaration"               map-to="def:type"/>
-    <style id="storage-class"     _name="Storage Class"             map-to="def:type"/>
-    <style id="scope-declaration" _name="Scope Declaration"         map-to="def:type"/>
-    <style id="keyword"           _name="Keyword"                   map-to="def:keyword"/>
-    <style id="null-value"        _name="Null Value"                map-to="def:special-constant"/>
-    <style id="boolean"           _name="Boolean value"             map-to="def:boolean"/>
-    <style id="number"            _name="Number"                    map-to="def:decimal"/>
-    <style id="reserved"          _name="Future Reserved Keywords"  map-to="def:reserved"/>
-    <style id="type"              _name="Data Type"                 map-to="def:type"/>
+    <style id="comment"           name="Comment"                   map-to="def:comment"/>
+    <style id="escaped-character" name="Escaped Character"         map-to="def:special-char"/>
+    <style id="string"            name="String"                    map-to="def:string"/>
+    <style id="char"              name="Character"                 map-to="def:character"/>
+    <style id="external"          name="External"                  map-to="def:preprocessor"/>
+    <style id="declaration"       name="Declaration"               map-to="def:type"/>
+    <style id="storage-class"     name="Storage Class"             map-to="def:type"/>
+    <style id="scope-declaration" name="Scope Declaration"         map-to="def:type"/>
+    <style id="keyword"           name="Keyword"                   map-to="def:keyword"/>
+    <style id="null-value"        name="Null Value"                map-to="def:special-constant"/>
+    <style id="boolean"           name="Boolean value"             map-to="def:boolean"/>
+    <style id="number"            name="Number"                    map-to="def:decimal"/>
+    <style id="reserved"          name="Future Reserved Keywords"  map-to="def:reserved"/>
+    <style id="type"              name="Data Type"                 map-to="def:type"/>
   </styles>
 
   <definitions>

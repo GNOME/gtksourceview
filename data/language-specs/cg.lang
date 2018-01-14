@@ -16,9 +16,8 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
 <language id="cg" _name="CG Shader Language" version="2.0" _section="Source">
@@ -30,23 +29,23 @@
     </metadata>
 
     <styles>
-        <style id="comment"           _name="Comment"             map-to="def:comment"/>
-        <style id="error"             _name="Error"               map-to="def:error"/>
-        <style id="preprocessor"      _name="Preprocessor"        map-to="def:preprocessor"/>
-        <style id="bindings"          _name="Bindings"            map-to="def:special-constant"/>
-        <style id="included-file"     _name="Included File"       map-to="def:string"/>
-        <style id="keyword"           _name="Keyword"             map-to="def:keyword"/>
-        <style id="type"              _name="Data Type"           map-to="def:type"/>
-        <style id="storage-class"     _name="Storage Class"       map-to="def:builtin"/>
-        <style id="escaped-character" _name="Escaped Character"   map-to="def:special-char"/>
-        <style id="floating-point"    _name="Floating point number" map-to="def:floating-point"/>
-        <style id="decimal"           _name="Decimal number"      map-to="def:decimal"/>
-        <style id="octal"             _name="Octal number"        map-to="def:base-n-integer"/>
-        <style id="hexadecimal"       _name="Hexadecimal number"  map-to="def:base-n-integer"/>
-        <style id="boolean"           _name="Boolean value"       map-to="def:boolean"/>
-        <style id="swizzle"           _name="Swizzle operator"    map-to="def:operator"/>
-        <style id="function"          _name="Function"            map-to="def:function"/>
-        <style id="builtin"           _name="Builtin"             map-to="def:preprocessor"/>
+        <style id="comment"           name="Comment"             map-to="def:comment"/>
+        <style id="error"             name="Error"               map-to="def:error"/>
+        <style id="preprocessor"      name="Preprocessor"        map-to="def:preprocessor"/>
+        <style id="bindings"          name="Bindings"            map-to="def:special-constant"/>
+        <style id="included-file"     name="Included File"       map-to="def:string"/>
+        <style id="keyword"           name="Keyword"             map-to="def:keyword"/>
+        <style id="type"              name="Data Type"           map-to="def:type"/>
+        <style id="storage-class"     name="Storage Class"       map-to="def:builtin"/>
+        <style id="escaped-character" name="Escaped Character"   map-to="def:special-char"/>
+        <style id="floating-point"    name="Floating point number" map-to="def:floating-point"/>
+        <style id="decimal"           name="Decimal number"      map-to="def:decimal"/>
+        <style id="octal"             name="Octal number"        map-to="def:base-n-integer"/>
+        <style id="hexadecimal"       name="Hexadecimal number"  map-to="def:base-n-integer"/>
+        <style id="boolean"           name="Boolean value"       map-to="def:boolean"/>
+        <style id="swizzle"           name="Swizzle operator"    map-to="def:operator"/>
+        <style id="function"          name="Function"            map-to="def:function"/>
+        <style id="builtin"           name="Builtin"             map-to="def:preprocessor"/>
     </styles>
 
     <definitions>

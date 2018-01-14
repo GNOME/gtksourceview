@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="sql" _name="SQL" version="2.0" _section="Source">
+<language id="sql" name="SQL" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-sql</property>
     <property name="globs">*.sql</property>
@@ -29,14 +28,14 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="function" _name="Function" map-to="def:function"/>
-    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="some-thing" _name="No idea what it is" map-to="def:preprocessor"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="floating-point" name="Floating Point" map-to="def:floating-point"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="function" name="Function" map-to="def:function"/>
+    <style id="decimal" name="Decimal" map-to="def:decimal"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="some-thing" name="No idea what it is" map-to="def:preprocessor"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>

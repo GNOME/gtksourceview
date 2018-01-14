@@ -15,15 +15,14 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 TODO: extended regex support
 FIXME: =pod should require an empty line before/after, as written in perlpod
 
 -->
-<language id="perl" _name="Perl" version="2.0" _section="Script">
+<language id="perl" name="Perl" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">text/x-perl;application/x-perl</property>
     <property name="globs">*.pl;*.pm;*.al;*.perl;*.t</property>
@@ -31,25 +30,25 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
   </metadata>
 
   <styles>
-    <style id="comment"           _name="Comment"            map-to="def:comment"/>
-    <style id="line-directive"    _name="Line Directive"     map-to="def:preprocessor"/>
-    <style id="include-statement" _name="Include Statement"  map-to="def:preprocessor"/>
-    <style id="string"            _name="String"             map-to="def:string"/>
-    <style id="keyword"           _name="Keyword"            map-to="def:keyword"/>
-    <style id="builtin"           _name="Builtin Function"   map-to="def:builtin"/>
-    <style id="here-doc"          _name="Heredoc"            map-to="def:string" />
-    <style id="here-doc-bound"    _name="Heredoc Bound"      map-to="def:string"/>
-    <style id="system-command"    _name="System Command"     map-to="def:string"/>
-    <style id="operator"          _name="Operator"           map-to="def:keyword"/>
-    <style id="variable"          _name="Variable"           map-to="def:type"/>
-    <style id="file-descriptor"   _name="File Descriptor"    map-to="def:special-constant"/>
-    <style id="control"           _name="Control"            map-to="def:preprocessor"/>
-    <style id="regex"             _name="Regular Expression" map-to="def:string"/>
-    <style id="error"             _name="Error"              map-to="def:error"/>
-    <style id="pod"               _name="POD"                map-to="def:comment"/>
-    <style id="pod-escape"        _name="POD Escape"         map-to="def:special-char"/>
-    <style id="pod-keyword"       _name="POD keyword"        map-to="def:keyword"/>
-    <style id="pod-heading"       _name="POD heading"        map-to="def:doc-comment-element"/>
+    <style id="comment"           name="Comment"            map-to="def:comment"/>
+    <style id="line-directive"    name="Line Directive"     map-to="def:preprocessor"/>
+    <style id="include-statement" name="Include Statement"  map-to="def:preprocessor"/>
+    <style id="string"            name="String"             map-to="def:string"/>
+    <style id="keyword"           name="Keyword"            map-to="def:keyword"/>
+    <style id="builtin"           name="Builtin Function"   map-to="def:builtin"/>
+    <style id="here-doc"          name="Heredoc"            map-to="def:string" />
+    <style id="here-doc-bound"    name="Heredoc Bound"      map-to="def:string"/>
+    <style id="system-command"    name="System Command"     map-to="def:string"/>
+    <style id="operator"          name="Operator"           map-to="def:keyword"/>
+    <style id="variable"          name="Variable"           map-to="def:type"/>
+    <style id="file-descriptor"   name="File Descriptor"    map-to="def:special-constant"/>
+    <style id="control"           name="Control"            map-to="def:preprocessor"/>
+    <style id="regex"             name="Regular Expression" map-to="def:string"/>
+    <style id="error"             name="Error"              map-to="def:error"/>
+    <style id="pod"               name="POD"                map-to="def:comment"/>
+    <style id="pod-escape"        name="POD Escape"         map-to="def:special-char"/>
+    <style id="pod-keyword"       name="POD keyword"        map-to="def:keyword"/>
+    <style id="pod-heading"       name="POD heading"        map-to="def:doc-comment-element"/>
   </styles>
 
   <definitions>

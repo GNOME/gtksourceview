@@ -14,12 +14,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="bluespec" _name="Bluespec SystemVerilog" version="2.0" _section="Source">
+<language id="bluespec" name="Bluespec SystemVerilog" version="2.0" _section="Source">
   <metadata>
     <property name="globs">*.bsv</property>
     <property name="line-comment-start">//</property>
@@ -28,12 +27,12 @@
   </metadata>
 
   <styles>
-    <style id="system-task" _name="System Task" map-to="def:keyword"/>
-    <style id="annotation" _name="Annotation" map-to="def:function"/>
-    <style id="attribute" _name="Attribute" map-to="def:type"/>
-    <style id="import-bvi" _name="Import BVI" map-to="def:keyword"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="type" _name="Type" map-to="def:type"/>
+    <style id="system-task" name="System Task" map-to="def:keyword"/>
+    <style id="annotation" name="Annotation" map-to="def:function"/>
+    <style id="attribute" name="Attribute" map-to="def:type"/>
+    <style id="import-bvi" name="Import BVI" map-to="def:keyword"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="type" name="Type" map-to="def:type"/>
   </styles>
 
   <definitions>

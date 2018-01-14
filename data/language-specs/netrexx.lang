@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="netrexx" _name="NetRexx" version="2.0" _section="Source">
+<language id="netrexx" name="NetRexx" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-netrexx</property>
     <property name="globs">*.nrx</property>
@@ -32,20 +31,20 @@
   </metadata>
 
   <styles>
-    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char" />
-    <style id="string" _name="String" map-to="def:string" />
-    <style id="char" _name="Character" map-to="def:character" />
-    <style id="line-comment" _name="Comment" map-to="def:comment" />
-    <style id="externals" _name="Externals" map-to="def:preprocessor" />
-    <style id="options" _name="Options" map-to="def:function" />
-    <style id="primitive-types" _name="Data Types" map-to="def:type" />
-    <style id="special" _name="Special" map-to="def:special-constant" />
-    <style id="visibility" _name="Visibility" map-to="def:identifier" />
-    <style id="modifiers" _name="Modifiers" map-to="def:type" />
-    <style id="keywords" _name="Keywords" map-to="def:keyword" />
-    <style id="sub-keywords" _name="Sub Keywords" map-to="def:shebang" />
-    <style id="builtin-function" _name="Builtin Function" map-to="def:builtin" />
-    <style id="numeric" _name="Number" map-to="def:number" />
+    <style id="escaped-character" name="Escaped Character" map-to="def:special-char" />
+    <style id="string" name="String" map-to="def:string" />
+    <style id="char" name="Character" map-to="def:character" />
+    <style id="line-comment" name="Comment" map-to="def:comment" />
+    <style id="externals" name="Externals" map-to="def:preprocessor" />
+    <style id="options" name="Options" map-to="def:function" />
+    <style id="primitive-types" name="Data Types" map-to="def:type" />
+    <style id="special" name="Special" map-to="def:special-constant" />
+    <style id="visibility" name="Visibility" map-to="def:identifier" />
+    <style id="modifiers" name="Modifiers" map-to="def:type" />
+    <style id="keywords" name="Keywords" map-to="def:keyword" />
+    <style id="sub-keywords" name="Sub Keywords" map-to="def:shebang" />
+    <style id="builtin-function" name="Builtin Function" map-to="def:builtin" />
+    <style id="numeric" name="Number" map-to="def:number" />
   </styles>
 
   <definitions>

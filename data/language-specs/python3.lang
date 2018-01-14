@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="python3" _name="Python 3" version="2.0" _section="Script">
+<language id="python3" name="Python 3" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">text/x-python3</property>
     <property name="globs">*.py3</property>
@@ -29,21 +28,21 @@
   </metadata>
 
   <styles>
-    <style id="module-handler"    _name="Module Handler"        map-to="python:module-handler"/>
-    <style id="keyword"           _name="Keyword"               map-to="python:keyword"/>
-    <style id="multiline-string"  _name="Multiline string"      map-to="python:multiline-string"/>
-    <style id="string"            _name="String"                map-to="python:string"/>
-    <style id="escaped-char"      _name="Escaped Character"     map-to="python:escaped-char"/>
-    <style id="format"            _name="Format"                map-to="python:format"/>
-    <style id="special-variable"  _name="Special Variable"      map-to="python:special-variable"/>
-    <style id="boolean"           _name="Boolean"               map-to="python:boolean"/>
-    <style id="floating-point"    _name="Floating point number" map-to="python:floating-point"/>
-    <style id="decimal"           _name="Decimal number"        map-to="python:decimal"/>
-    <style id="base-n-integer"    _name="Base-N number"         map-to="python:base-n-integer"/>
-    <style id="complex"           _name="Complex number"        map-to="python:complex"/>
-    <style id="builtin-constant"  _name="Builtin Constant"      map-to="python:builtin-constant"/>
-    <style id="builtin-object"    _name="Builtin Object"        map-to="python:builtin-object"/>
-    <style id="builtin-function"  _name="Builtin Function"      map-to="python:builtin-function"/>
+    <style id="module-handler"    name="Module Handler"        map-to="python:module-handler"/>
+    <style id="keyword"           name="Keyword"               map-to="python:keyword"/>
+    <style id="multiline-string"  name="Multiline string"      map-to="python:multiline-string"/>
+    <style id="string"            name="String"                map-to="python:string"/>
+    <style id="escaped-char"      name="Escaped Character"     map-to="python:escaped-char"/>
+    <style id="format"            name="Format"                map-to="python:format"/>
+    <style id="special-variable"  name="Special Variable"      map-to="python:special-variable"/>
+    <style id="boolean"           name="Boolean"               map-to="python:boolean"/>
+    <style id="floating-point"    name="Floating point number" map-to="python:floating-point"/>
+    <style id="decimal"           name="Decimal number"        map-to="python:decimal"/>
+    <style id="base-n-integer"    name="Base-N number"         map-to="python:base-n-integer"/>
+    <style id="complex"           name="Complex number"        map-to="python:complex"/>
+    <style id="builtin-constant"  name="Builtin Constant"      map-to="python:builtin-constant"/>
+    <style id="builtin-object"    name="Builtin Object"        map-to="python:builtin-object"/>
+    <style id="builtin-function"  name="Builtin Function"      map-to="python:builtin-function"/>
   </styles>
 
   <definitions>

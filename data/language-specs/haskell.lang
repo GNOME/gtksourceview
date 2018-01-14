@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="haskell" _name="Haskell" version="2.0" _section="Source">
+<language id="haskell" name="Haskell" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-haskell</property>
     <property name="globs">*.hs</property>
@@ -30,19 +29,19 @@
   </metadata>
 
   <styles>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
-    <style id="comment"      _name="Comment"      map-to="def:comment"/>
-    <style id="variable"     _name="Variable"                         />
-    <style id="symbol"       _name="Symbol"                           />
-    <style id="keyword"      _name="Keyword"      map-to="def:keyword"/>
-    <style id="type"         _name="Data Type"    map-to="def:type"/>
-    <style id="string"       _name="String"       map-to="def:string"/>
-    <style id="character"    _name="Character"    map-to="def:character"/>
-    <style id="char-escape"  _name="Escaped Character" map-to="def:special-char"/>
-    <style id="float"        _name="Float"        map-to="def:floating-point"/>
-    <style id="decimal"      _name="Decimal"      map-to="def:decimal"/>
-    <style id="octal"        _name="Octal"        map-to="def:base-n-integer"/>
-    <style id="hexadecimal"  _name="Hex"          map-to="def:base-n-integer"/>
+    <style id="preprocessor" name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="comment"      name="Comment"      map-to="def:comment"/>
+    <style id="variable"     name="Variable"                         />
+    <style id="symbol"       name="Symbol"                           />
+    <style id="keyword"      name="Keyword"      map-to="def:keyword"/>
+    <style id="type"         name="Data Type"    map-to="def:type"/>
+    <style id="string"       name="String"       map-to="def:string"/>
+    <style id="character"    name="Character"    map-to="def:character"/>
+    <style id="char-escape"  name="Escaped Character" map-to="def:special-char"/>
+    <style id="float"        name="Float"        map-to="def:floating-point"/>
+    <style id="decimal"      name="Decimal"      map-to="def:decimal"/>
+    <style id="octal"        name="Octal"        map-to="def:base-n-integer"/>
+    <style id="hexadecimal"  name="Hex"          map-to="def:base-n-integer"/>
   </styles>
 
   <definitions>

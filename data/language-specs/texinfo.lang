@@ -16,13 +16,12 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
 <!-- converted to new lang file format with convert.py -->
-<language id="texinfo" _name="Texinfo" version="2.0" _section="Markup">
+<language id="texinfo" name="Texinfo" version="2.0" _section="Markup">
   <metadata>
     <property name="mimetypes">text/x-texinfo</property>
     <property name="globs">*.texi;*.texinfo</property>
@@ -30,15 +29,15 @@
   </metadata>
 
   <styles>
-    <style id="comment"           _name="Comment"           map-to="def:comment"/>
-    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
-    <style id="others"            _name="Others"/>
-    <style id="string"            _name="String"            map-to="def:string"/>
-    <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
-    <style id="macros"            _name="Macros"            map-to="def:keyword"/>
-    <style id="file-attributes"   _name="File Attributes"   map-to="def:keyword"/>
-    <style id="generated-content" _name="Generated Content" map-to="def:keyword"/>
-    <style id="include"           _name="Include"           map-to="def:preprocessor"/>
+    <style id="comment"           name="Comment"           map-to="def:comment"/>
+    <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
+    <style id="others"            name="Others"/>
+    <style id="string"            name="String"            map-to="def:string"/>
+    <style id="keyword"           name="Keyword"           map-to="def:keyword"/>
+    <style id="macros"            name="Macros"            map-to="def:keyword"/>
+    <style id="file-attributes"   name="File Attributes"   map-to="def:keyword"/>
+    <style id="generated-content" name="Generated Content" map-to="def:keyword"/>
+    <style id="include"           name="Include"           map-to="def:preprocessor"/>
   </styles>
 
   <definitions>

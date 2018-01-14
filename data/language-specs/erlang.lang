@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="erlang" _name="Erlang" version="2.0" _section="Source">
+<language id="erlang" name="Erlang" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-erlang</property>
     <property name="globs">*.erl;*.hrl</property>
@@ -29,17 +28,17 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="operator" _name="Operator" map-to="def:operator"/>
-    <style id="atom" _name="Atom" map-to="def:type"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="character" _name="Character" map-to="def:character"/>
-    <style id="floating-point" _name="Floating point number" map-to="def:floating-point"/>
-    <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
-    <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
-    <style id="builtin" _name="Builtin" map-to="def:builtin"/>
-    <style id="compiler-directive" _name="Compiler Directive" map-to="def:preprocessor"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="operator" name="Operator" map-to="def:operator"/>
+    <style id="atom" name="Atom" map-to="def:type"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="character" name="Character" map-to="def:character"/>
+    <style id="floating-point" name="Floating point number" map-to="def:floating-point"/>
+    <style id="decimal" name="Decimal number" map-to="def:decimal"/>
+    <style id="base-n-integer" name="Base-N Integer" map-to="def:base-n-integer"/>
+    <style id="builtin" name="Builtin" map-to="def:builtin"/>
+    <style id="compiler-directive" name="Compiler Directive" map-to="def:preprocessor"/>
   </styles>
 
   <definitions>
@@ -219,12 +218,14 @@
     <context id="compiler-directives" style-ref="compiler-directive">
       <prefix>-</prefix>
       <keyword>author</keyword>
+      <keyword>behaviour</keyword>
       <keyword>compile</keyword>
       <keyword>copyright</keyword>
       <keyword>define</keyword>
       <keyword>doc</keyword>
       <keyword>else</keyword>
       <keyword>endif</keyword>
+      <keyword>error</keyword>
       <keyword>export</keyword>
       <keyword>file</keyword>
       <keyword>ifdef</keyword>
@@ -233,8 +234,11 @@
       <keyword>include_lib</keyword>
       <keyword>include</keyword>
       <keyword>module</keyword>
+      <keyword>on_load</keyword>
       <keyword>record</keyword>
       <keyword>undef</keyword>
+      <keyword>vsn</keyword>
+      <keyword>warning</keyword>
     </context>
 
     <context id="erlang" class="no-spell-check">

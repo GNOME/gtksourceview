@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="xslt" _name="XSLT" version="2.0" _section="Markup">
+<language id="xslt" name="XSLT" version="2.0" _section="Markup">
   <metadata>
     <property name="mimetypes">application/xslt+xml</property>
     <property name="globs">*.xslt;*.xsl</property>
@@ -30,8 +29,8 @@
   </metadata>
 
   <styles>
-    <style id="element" _name="Element" map-to="def:keyword"/>
-    <style id="namespace" _name="Namespace" map-to="xslt:element"/>
+    <style id="element" name="Element" map-to="def:keyword"/>
+    <style id="namespace" name="Namespace" map-to="xslt:element"/>
   </styles>
 
   <definitions>

@@ -16,22 +16,21 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="nsis" _name="NSIS" version="2.0" _section="Other">
+<language id="nsis" name="NSIS" version="2.0" _section="Other">
   <metadata>
     <property name="globs">*.nsi;*.nsh</property>
     <property name="line-comment-start">;</property>
   </metadata>
 
   <styles>
-    <style id="operator" _name="Operator" map-to="def:operator"/>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="variable" _name="Variable" map-to="makefile:variable"/>
+    <style id="operator" name="Operator" map-to="def:operator"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="variable" name="Variable" map-to="makefile:variable"/>
   </styles>
 
   <definitions>

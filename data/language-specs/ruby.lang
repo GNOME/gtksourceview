@@ -19,12 +19,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="ruby" _name="Ruby" version="2.0" _section="Script">
+<language id="ruby" name="Ruby" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">application/x-ruby;text/x-ruby</property>
     <property name="globs">*.rb;*.rake;*.gemspec;Rakefile;Capfile;Gemfile</property>
@@ -32,29 +31,28 @@
   </metadata>
 
   <styles>
-    <style id="escape"               _name="Escaped Character"     map-to="def:special-char"/>
-    <style id="comment"              _name="Comment"               map-to="def:comment"/>
-    <style id="attribute-definition" _name="Attribute Definition"  map-to="def:statement"/>
-    <style id="module-handler"       _name="Module handler"        map-to="def:preprocessor"/>
-    <style id="keyword"              _name="Keyword"               map-to="def:keyword"/>
-    <style id="nil-value"            _name="Nil Constant"          map-to="def:special-constant"/>
-    <style id="boolean"              _name="Boolean value"         map-to="def:boolean"/>
-    <style id="floating-point"       _name="Floating point number" map-to="def:floating-point"/>
-    <style id="decimal"              _name="Decimal number"        map-to="def:decimal"/>
-    <style id="base-n-integer"       _name="Base-N number"         map-to="def:base-n-integer"/>
-    <style id="numeric-literal"      _name="Numeric literal"       map-to="def:base-n-integer"/>
-    <style id="string"               _name="String"                map-to="def:string"/>
-    <style id="literal"              _name="Literal"               map-to="def:special-char"/>
-    <!-- Translators: functions that are provided in the language -->
-    <style id="builtin"              _name="Builtin"               map-to="def:type"/>
-    <style id="constant"             _name="Constant"              map-to="def:type"/>
-    <style id="symbol"               _name="Symbol"                map-to="def:string"/>
-    <style id="special-variable"     _name="Special Variable"      map-to="def:identifier"/>
-    <style id="predefined-variable"  _name="Predefined Variable"   map-to="def:identifier"/>
-    <style id="variable"             _name="Variable"              map-to="def:identifier"/>
-    <style id="here-doc"             _name="Heredoc"               map-to="def:string" />
-    <style id="here-doc-bound"       _name="Heredoc Bound"         map-to="def:string"/>
-    <style id="regex"                _name="Regular Expression"    map-to="def:identifier"/>
+    <style id="escape"               name="Escaped Character"     map-to="def:special-char"/>
+    <style id="comment"              name="Comment"               map-to="def:comment"/>
+    <style id="attribute-definition" name="Attribute Definition"  map-to="def:statement"/>
+    <style id="module-handler"       name="Module handler"        map-to="def:preprocessor"/>
+    <style id="keyword"              name="Keyword"               map-to="def:keyword"/>
+    <style id="nil-value"            name="Nil Constant"          map-to="def:special-constant"/>
+    <style id="boolean"              name="Boolean value"         map-to="def:boolean"/>
+    <style id="floating-point"       name="Floating point number" map-to="def:floating-point"/>
+    <style id="decimal"              name="Decimal number"        map-to="def:decimal"/>
+    <style id="base-n-integer"       name="Base-N number"         map-to="def:base-n-integer"/>
+    <style id="numeric-literal"      name="Numeric literal"       map-to="def:base-n-integer"/>
+    <style id="string"               name="String"                map-to="def:string"/>
+    <style id="literal"              name="Literal"               map-to="def:special-char"/>
+    <style id="builtin"              name="Builtin"               map-to="def:type"/>
+    <style id="constant"             name="Constant"              map-to="def:type"/>
+    <style id="symbol"               name="Symbol"                map-to="def:string"/>
+    <style id="special-variable"     name="Special Variable"      map-to="def:identifier"/>
+    <style id="predefined-variable"  name="Predefined Variable"   map-to="def:identifier"/>
+    <style id="variable"             name="Variable"              map-to="def:identifier"/>
+    <style id="here-doc"             name="Heredoc"               map-to="def:string" />
+    <style id="here-doc-bound"       name="Heredoc Bound"         map-to="def:string"/>
+    <style id="regex"                name="Regular Expression"    map-to="def:identifier"/>
   </styles>
 
   <definitions>

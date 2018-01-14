@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="html" _name="HTML" version="2.0" _section="Markup">
+<language id="html" name="HTML" version="2.0" _section="Markup">
   <metadata>
     <property name="mimetypes">text/html</property>
     <property name="globs">*.html;*.htm</property>
@@ -31,18 +30,18 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="xml:comment"/>
-    <style id="tag" _name="Tag" map-to="xml:element-name"/>
-    <style id="attrib-name" _name="Attribute Name" map-to="xml:attribute-name"/>
-    <style id="attrib-value" _name="Attribute Value" map-to="xml:attribute-value"/>
-    <style id="dtd" _name="DTD" map-to="xml:doctype"/>
-    <style id="error" _name="Error" map-to="xml:error"/>
-    <style id="title" _name="Page title" map-to="def:heading0"/>
-    <style id="h1" _name="Heading level 1" map-to="def:heading1"/>
-    <style id="h2" _name="Heading level 2" map-to="def:heading2"/>
-    <style id="h3" _name="Heading level 3" map-to="def:heading3"/>
-    <style id="h4" _name="Heading level 4" map-to="def:heading4"/>
-    <style id="h5" _name="Heading level 5" map-to="def:heading5"/>
+    <style id="comment" name="Comment" map-to="xml:comment"/>
+    <style id="tag" name="Tag" map-to="xml:element-name"/>
+    <style id="attrib-name" name="Attribute Name" map-to="xml:attribute-name"/>
+    <style id="attrib-value" name="Attribute Value" map-to="xml:attribute-value"/>
+    <style id="dtd" name="DTD" map-to="xml:doctype"/>
+    <style id="error" name="Error" map-to="xml:error"/>
+    <style id="title" name="Page title" map-to="def:heading0"/>
+    <style id="h1" name="Heading level 1" map-to="def:heading1"/>
+    <style id="h2" name="Heading level 2" map-to="def:heading2"/>
+    <style id="h3" name="Heading level 3" map-to="def:heading3"/>
+    <style id="h4" name="Heading level 4" map-to="def:heading4"/>
+    <style id="h5" name="Heading level 5" map-to="def:heading5"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>

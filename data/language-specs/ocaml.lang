@@ -19,12 +19,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="ocaml" _name="OCaml" version="2.0" _section="Source">
+<language id="ocaml" name="OCaml" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-ocaml</property>
     <property name="globs">*.ml;*.mli;*.mll;*.mly</property>
@@ -33,25 +32,25 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="ocamldoc" _name="Ocamldoc Comments" map-to="def:note"/>
-    <style id="base-n-integer" _name="Base-N Integer" map-to="def:base-n-integer"/>
-    <style id="floating-point" _name="Floating Point number" map-to="def:floating-point"/>
-    <style id="decimal" _name="Decimal number" map-to="def:decimal"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="meta-keyword" _name="Type, module or object keyword" map-to="def:keyword"/>
-    <style id="fun-keyword" _name="Builtin-function keyword" map-to="def:keyword"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="label" _name="Labeled argument" map-to="def:type"/>
-    <style id="poly-variant" _name="Polymorphic Variant" map-to="def:type"/>
-    <style id="variant" _name="Variant Constructor" map-to="def:type"/>
-    <style id="type-var" _name="Type Variable" map-to="def:type"/>
-    <style id="module" _name="Module Path" map-to="def:type"/>
-    <style id="escape" _name="Escaped Character" map-to="def:special-char"/>
-    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
-    <style id="error" _name="Error" map-to="def:error"/>
-    <style id="std-modules" _name="Standard Modules" map-to="def:type"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="ocamldoc" name="Ocamldoc Comments" map-to="def:note"/>
+    <style id="base-n-integer" name="Base-N Integer" map-to="def:base-n-integer"/>
+    <style id="floating-point" name="Floating Point number" map-to="def:floating-point"/>
+    <style id="decimal" name="Decimal number" map-to="def:decimal"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="meta-keyword" name="Type, module or object keyword" map-to="def:keyword"/>
+    <style id="fun-keyword" name="Builtin-function keyword" map-to="def:keyword"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="label" name="Labeled argument" map-to="def:type"/>
+    <style id="poly-variant" name="Polymorphic Variant" map-to="def:type"/>
+    <style id="variant" name="Variant Constructor" map-to="def:type"/>
+    <style id="type-var" name="Type Variable" map-to="def:type"/>
+    <style id="module" name="Module Path" map-to="def:type"/>
+    <style id="escape" name="Escaped Character" map-to="def:special-char"/>
+    <style id="boolean" name="Boolean value" map-to="def:boolean"/>
+    <style id="error" name="Error" map-to="def:error"/>
+    <style id="std-modules" name="Standard Modules" map-to="def:type"/>
   </styles>
 
   <definitions>

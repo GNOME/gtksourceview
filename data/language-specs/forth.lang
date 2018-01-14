@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="forth" _name="Forth" version="2.0" _section="Source">
+<language id="forth" name="Forth" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-forth</property>
     <property name="globs">*.frt;*.fs</property>
@@ -31,15 +30,15 @@
   </metadata>
 
   <styles>
-    <style id="comment"       _name="Comment"            map-to="def:comment"/>
-    <style id="string"        _name="String"             map-to="def:string"/>
-    <style id="preprocessor"  _name="Preprocessor"       map-to="def:preprocessor"/>
-    <style id="keyword"       _name="Keyword"            map-to="def:statement"/>
-    <style id="type"          _name="Data Type"          map-to="def:type"/>
-    <style id="number"        _name="Number"             map-to="def:decimal"/>
-    <style id="debugs"        _name="Debug Code"         map-to="def:comment"/>
-    <style id="error"         _name="Error Text"         map-to="def:error"/>
-    <style id="compiler"      _name="Compiler Directive" map-to="def:identifier"/>
+    <style id="comment"       name="Comment"            map-to="def:comment"/>
+    <style id="string"        name="String"             map-to="def:string"/>
+    <style id="preprocessor"  name="Preprocessor"       map-to="def:preprocessor"/>
+    <style id="keyword"       name="Keyword"            map-to="def:statement"/>
+    <style id="type"          name="Data Type"          map-to="def:type"/>
+    <style id="number"        name="Number"             map-to="def:decimal"/>
+    <style id="debugs"        name="Debug Code"         map-to="def:comment"/>
+    <style id="error"         name="Error Text"         map-to="def:error"/>
+    <style id="compiler"      name="Compiler Directive" map-to="def:identifier"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>

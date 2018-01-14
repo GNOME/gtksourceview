@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="cpp" _name="C++" version="2.0" _section="Source">
+<language id="cpp" name="C++" version="2.0" _section="Source">
     <metadata>
       <property name="mimetypes">text/x-c++;text/x-cpp;text/x-c++src</property>
       <property name="globs">*.cpp;*.cxx;*.cc;*.C;*.c++</property>
@@ -32,9 +31,9 @@
     </metadata>
 
     <styles>
-        <style id="keyword" _name="Keyword" map-to="c:keyword"/>
-        <style id="type" _name="Data Type" map-to="c:type"/>
-        <style id="common-defines" _name="Common Defines" map-to="c:common-defines"/>
+        <style id="keyword" name="Keyword" map-to="c:keyword"/>
+        <style id="type" name="Data Type" map-to="c:type"/>
+        <style id="common-defines" name="Common Defines" map-to="c:common-defines"/>
     </styles>
 
     <definitions>

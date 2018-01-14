@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="sh" _name="sh" version="2.0" _section="Script">
+<language id="sh" name="sh" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">text/x-shellscript;application/x-shellscript;text/x-sh</property>
     <property name="globs">*.sh;*bashrc;.profile;.bash_profile</property>
@@ -30,16 +29,16 @@
   </metadata>
 
   <styles>
-    <style id="comment"             _name="Comment"             map-to="def:comment"/>
-    <style id="function"            _name="Function"            map-to="def:function"/>
-    <style id="string"              _name="String"              map-to="def:string"/>
-    <style id="keyword"             _name="Keyword"             map-to="def:keyword"/>
-    <style id="variable"            _name="Variable"            map-to="def:type"/> <!-- FIXME: need to sort out proper styles for variables -->
-    <style id="variable-definition" _name="Variable Definition" map-to="sh:variable"/>
-    <style id="others"              _name="Others"              map-to="def:keyword"/>
-    <style id="common-command"      _name="Common Commands"     map-to="def:keyword"/>
-    <style id="here-doc-bound"      _name="Heredoc Bound"       map-to="def:keyword"/>
-    <style id="subshell"            _name="Subshell"            map-to="def:preprocessor"/>
+    <style id="comment"             name="Comment"             map-to="def:comment"/>
+    <style id="function"            name="Function"            map-to="def:function"/>
+    <style id="string"              name="String"              map-to="def:string"/>
+    <style id="keyword"             name="Keyword"             map-to="def:keyword"/>
+    <style id="variable"            name="Variable"            map-to="def:type"/> <!-- FIXME: need to sort out proper styles for variables -->
+    <style id="variable-definition" name="Variable Definition" map-to="sh:variable"/>
+    <style id="others"              name="Others"              map-to="def:keyword"/>
+    <style id="common-command"      name="Common Commands"     map-to="def:keyword"/>
+    <style id="here-doc-bound"      name="Heredoc Bound"       map-to="def:keyword"/>
+    <style id="subshell"            name="Subshell"            map-to="def:preprocessor"/>
   </styles>
 
   <definitions>

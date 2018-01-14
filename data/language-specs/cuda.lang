@@ -15,12 +15,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="cuda" _name="CUDA" version="2.0" _section="Source">
+<language id="cuda" name="CUDA" version="2.0" _section="Source">
   <metadata>
     <property name="globs">*.cu;*.cuh</property>
     <property name="line-comment-start">//</property>
@@ -30,11 +29,11 @@
 
 
   <styles>
-    <style id="keyword"       _name="Keyword"           map-to="def:keyword"/>
-    <style id="data-type"     _name="Data Type"         map-to="def:type"/>
-    <style id="cuda-global"   _name="Global Functions"  map-to="def:function"/>
-    <style id="cuda-device"   _name="Device Functions"  map-to="def:function"/>
-    <style id="global-var"    _name="Global Variables"  map-to="def:identifier"/>
+    <style id="keyword"       name="Keyword"           map-to="def:keyword"/>
+    <style id="data-type"     name="Data Type"         map-to="def:type"/>
+    <style id="cuda-global"   name="Global Functions"  map-to="def:function"/>
+    <style id="cuda-device"   name="Device Functions"  map-to="def:function"/>
+    <style id="global-var"    name="Global Variables"  map-to="def:identifier"/>
   </styles>
 
   <definitions>

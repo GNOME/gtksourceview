@@ -18,12 +18,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="objj" _name="Objective-J" version="2.0" _section="Source">
+<language id="objj" name="Objective-J" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-objective-j</property>
     <property name="globs">*.j</property>
@@ -33,13 +32,13 @@
   </metadata>
 
   <styles>
-    <style id="boolean"       _name="Boolean"       map-to="js:boolean"/>
-    <style id="keyword"       _name="Keyword"       map-to="js:keyword"/>
-    <style id="type"          _name="Data Type"     map-to="js:type"/>
-    <style id="preprocessor"  _name="Preprocessor"  map-to="def:preprocessor"/>
-    <style id="included-file" _name="Included File" map-to="js:string"/>
-    <style id="string"        _name="String"        map-to="js:string"/>
-    <style id="null-value"    _name="Null Value"    map-to="js:null-value"/>
+    <style id="boolean"       name="Boolean"       map-to="js:boolean"/>
+    <style id="keyword"       name="Keyword"       map-to="js:keyword"/>
+    <style id="type"          name="Data Type"     map-to="js:type"/>
+    <style id="preprocessor"  name="Preprocessor"  map-to="def:preprocessor"/>
+    <style id="included-file" name="Included File" map-to="js:string"/>
+    <style id="string"        name="String"        map-to="js:string"/>
+    <style id="null-value"    name="Null Value"    map-to="js:null-value"/>
   </styles>
 
   <definitions>

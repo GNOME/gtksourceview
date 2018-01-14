@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="asp" _name="ASP" version="2.0" _section="Source">
+<language id="asp" name="ASP" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-asp;application/x-asp;application/x-asap</property>
     <property name="globs">*.asp</property>
@@ -29,18 +28,18 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="function" _name="Function" map-to="def:function"/>
-    <style id="operator" _name="Operator" map-to="def:operator"/>
-    <style id="object" _name="ASP Object" map-to="def:type"/>
-    <style id="constant" _name="VBScript and ADO constants" map-to="def:constant"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="special-constant" _name="Special constant" map-to="def:special-constant"/>
-    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
-    <style id="number" _name="Number" map-to="def:decimal"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="preprocessor" name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="function" name="Function" map-to="def:function"/>
+    <style id="operator" name="Operator" map-to="def:operator"/>
+    <style id="object" name="ASP Object" map-to="def:type"/>
+    <style id="constant" name="VBScript and ADO constants" map-to="def:constant"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="special-constant" name="Special constant" map-to="def:special-constant"/>
+    <style id="boolean" name="Boolean value" map-to="def:boolean"/>
+    <style id="number" name="Number" map-to="def:decimal"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>

@@ -16,22 +16,21 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
 
-<language id="sweave" _name="Sweave" version="2.0" _section="Markup">
+<language id="sweave" name="Sweave" version="2.0" _section="Markup">
   <metadata>
     <property name="globs">*.rnw;*.Rnw;*.snw;*.Snw</property>
     <property name="line-comment-start">%</property>
   </metadata>
 
   <styles>
-    <style id="comment"            _name="Comment"    map-to="latex:comment"/>
-    <style id="command"            _name="Command"    map-to="latex:command"/>
-    <style id="verbatim"           _name="Verbatim"   map-to="latex:verbatim"/>
+    <style id="comment"            name="Comment"    map-to="latex:comment"/>
+    <style id="command"            name="Command"    map-to="latex:command"/>
+    <style id="verbatim"           name="Verbatim"   map-to="latex:verbatim"/>
   </styles>
 
   <definitions>

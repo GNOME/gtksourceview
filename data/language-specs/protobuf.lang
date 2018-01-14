@@ -28,13 +28,13 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="statement" _name="Statement" map-to="def:preprocessor"/>
-    <style id="variable" _name="Variable" map-to="def:type"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="boolean" _name="Boolean value" map-to="def:boolean"/>
-    <style id="string" _name="String" map-to="def:string"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="statement" name="Statement" map-to="def:preprocessor"/>
+    <style id="variable" name="Variable" map-to="def:type"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="boolean" name="Boolean value" map-to="def:boolean"/>
+    <style id="string" name="String" map-to="def:string"/>
   </styles>
 
   <definitions>

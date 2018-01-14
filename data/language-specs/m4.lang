@@ -16,12 +16,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="m4" _name="m4" _section="Script" version="2.0">
+<language id="m4" name="m4" _section="Script" version="2.0">
   <metadata>
     <property name="mimetypes">application/x-m4</property>
     <property name="globs">*.m4;configure.ac;configure.in</property>
@@ -29,10 +28,10 @@
   </metadata>
 
   <styles>
-    <style id="m4-comment" _name="m4 Comment" map-to="sh:comment"/>
-    <style id="m4-macro" _name="m4 Macro" map-to="def:keyword"/>
-    <style id="ac-macro" _name="Autoconf Macro" map-to="def:keyword"/>
-    <style id="ac-macro-obsolete" _name="Obsolete Autoconf Macro" map-to="def:error"/>
+    <style id="m4-comment" name="m4 Comment" map-to="sh:comment"/>
+    <style id="m4-macro" name="m4 Macro" map-to="def:keyword"/>
+    <style id="ac-macro" name="Autoconf Macro" map-to="def:keyword"/>
+    <style id="ac-macro-obsolete" name="Obsolete Autoconf Macro" map-to="def:error"/>
   </styles>
 
   <!--

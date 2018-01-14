@@ -19,12 +19,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="cobol" _name="COBOL" version="2.0" _section="Source">
+<language id="cobol" name="COBOL" version="2.0" _section="Source">
   <metadata>
     <property name="mimetype">text/x-cobol</property>
     <property name="globs">*.cbl;*.cob;*.cbd;*.cdb;*.cdc</property>
@@ -32,15 +31,15 @@
   </metadata>
 
   <styles>
-    <style id="comment"           _name="Comment"           map-to="def:comment"/>
-    <style id="statement"         _name="Statement"         map-to="def:statement"/>
-    <style id="variable"          _name="Variable"          map-to="def:type"/>
-    <style id="keyword"           _name="Keyword"           map-to="def:keyword"/>
-    <style id="constant"          _name="Constant"          map-to="def:constant"/>
-    <style id="string"            _name="String"            map-to="def:string"/>
-    <style id="number"            _name="Number"            map-to="def:decimal"/>
-    <style id="operator"          _name="Operator"          map-to="def:operator"/>
-    <style id="error"             _name="Error"             map-to="def:error"/>
+    <style id="comment"           name="Comment"           map-to="def:comment"/>
+    <style id="statement"         name="Statement"         map-to="def:statement"/>
+    <style id="variable"          name="Variable"          map-to="def:type"/>
+    <style id="keyword"           name="Keyword"           map-to="def:keyword"/>
+    <style id="constant"          name="Constant"          map-to="def:constant"/>
+    <style id="string"            name="String"            map-to="def:string"/>
+    <style id="number"            name="Number"            map-to="def:decimal"/>
+    <style id="operator"          name="Operator"          map-to="def:operator"/>
+    <style id="error"             name="Error"             map-to="def:error"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>

@@ -14,16 +14,15 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
 <!-- Note: this language definition file adds support for Markdown syntax,
      described in the following websites:
      * (fr) <http://michelf.com/projets/php-markdown/syntaxe/>
      * (en) <http://daringfireball.net/projects/markdown/syntax> -->
-<language id="markdown" _name="Markdown" version="2.0" _section="Markup">
+<language id="markdown" name="Markdown" version="2.0" _section="Markup">
   <metadata>
     <property name="mimetypes">text/x-markdown</property>
     <property name="globs">*.markdown;*.md;*.mkd</property>
@@ -32,20 +31,20 @@
   </metadata>
 
   <styles>
-    <style id="header" _name="Header" map-to="def:type"/>
-    <style id="horizontal-rule" _name="Horizontal Rule" map-to="def:type"/>
-    <style id="list-marker" _name="List Marker" map-to="def:statement"/>
-    <style id="code" _name="Code" map-to="def:identifier"/>
-    <style id="blockquote-marker" _name="Blockquote Marker" map-to="def:shebang"/>
-    <style id="url" _name="URL" map-to="def:underlined"/>
-    <style id="link-text" _name="Link Text" map-to="def:comment"/>
-    <style id="label" _name="Label" map-to="def:preprocessor"/>
-    <style id="attribute-value" _name="Attribute Value" map-to="def:constant"/>
-    <style id="image-marker" _name="Image Marker" map-to="def:shebang"/>
-    <style id="emphasis" _name="Emphasis" map-to="def:doc-comment-element"/>
-    <style id="strong-emphasis" _name="Strong Emphasis" map-to="def:statement"/>
-    <style id="backslash-escape" _name="Backslash Escape" map-to="def:special-char"/>
-    <style id="line-break" _name="Line Break" map-to="def:note"/>
+    <style id="header" name="Header" map-to="def:type"/>
+    <style id="horizontal-rule" name="Horizontal Rule" map-to="def:type"/>
+    <style id="list-marker" name="List Marker" map-to="def:statement"/>
+    <style id="code" name="Code" map-to="def:identifier"/>
+    <style id="blockquote-marker" name="Blockquote Marker" map-to="def:shebang"/>
+    <style id="url" name="URL" map-to="def:underlined"/>
+    <style id="link-text" name="Link Text" map-to="def:comment"/>
+    <style id="label" name="Label" map-to="def:preprocessor"/>
+    <style id="attribute-value" name="Attribute Value" map-to="def:constant"/>
+    <style id="image-marker" name="Image Marker" map-to="def:shebang"/>
+    <style id="emphasis" name="Emphasis" map-to="def:doc-comment-element"/>
+    <style id="strong-emphasis" name="Strong Emphasis" map-to="def:statement"/>
+    <style id="backslash-escape" name="Backslash Escape" map-to="def:special-char"/>
+    <style id="line-break" name="Line Break" map-to="def:note"/>
   </styles>
 
   <definitions>

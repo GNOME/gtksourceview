@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="fortran" _name="Fortran 95" version="2.0" _section="Source">
+<language id="fortran" name="Fortran 95" version="2.0" _section="Source">
   <metadata>
     <property name="mimetypes">text/x-fortran</property>
     <property name="globs">*.f;*.f90;*.f95;*.for;*.F;*.F90</property>
@@ -30,18 +29,18 @@
   </metadata>
 
   <styles>
-    <style id="comment" _name="Comment" map-to="def:comment"/>
-    <style id="string" _name="String" map-to="def:string"/>
-    <style id="floating-point" _name="Floating Point" map-to="def:floating-point"/>
-    <style id="keyword" _name="Keyword" map-to="def:keyword"/>
-    <style id="intrinsic" _name="Intrinsic function" map-to="def:builtin"/>
-    <style id="boz-literal" _name="BOZ Literal" map-to="def:base-n-integer"/>
-    <style id="decimal" _name="Decimal" map-to="def:decimal"/>
-    <style id="type" _name="Data Type" map-to="def:type"/>
-    <style id="preprocessor" _name="Preprocessor" map-to="def:preprocessor"/>
-    <style id="openmp-directives" _name="OpenMP directives" map-to="def:preprocessor"/>
-    <style id="included-file" _name="Included File" map-to="def:string"/>
-    <style id="escaped-character" _name="Escaped Character" map-to="def:special-char"/>
+    <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="string" name="String" map-to="def:string"/>
+    <style id="floating-point" name="Floating Point" map-to="def:floating-point"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="intrinsic" name="Intrinsic function" map-to="def:builtin"/>
+    <style id="boz-literal" name="BOZ Literal" map-to="def:base-n-integer"/>
+    <style id="decimal" name="Decimal" map-to="def:decimal"/>
+    <style id="type" name="Data Type" map-to="def:type"/>
+    <style id="preprocessor" name="Preprocessor" map-to="def:preprocessor"/>
+    <style id="openmp-directives" name="OpenMP directives" map-to="def:preprocessor"/>
+    <style id="included-file" name="Included File" map-to="def:string"/>
+    <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>

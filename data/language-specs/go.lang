@@ -15,14 +15,13 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 
   See: http://code.google.com/p/go/source/browse/misc/vim/syntax/go.vim
 -->
-<language id="go" _name="Go" version="2.0" _section="Source">
+<language id="go" name="Go" version="2.0" _section="Source">
   <metadata>
     <property name="mimetype">text/x-go</property>
     <property name="globs">*.go</property>
@@ -32,22 +31,22 @@
   </metadata>
 
   <styles>
-    <style id="comment"           _name="Comment"             map-to="def:comment"/>
-    <style id="error"             _name="Error"               map-to="def:error"/>
-    <style id="string"            _name="String"              map-to="def:string"/>
-    <style id="char"              _name="Character"           map-to="def:character"/>
-    <style id="keyword"           _name="Keyword"             map-to="def:keyword"/>
-    <style id="type"              _name="Data Type"           map-to="def:type"/>
-    <style id="printf"            _name="printf Conversion"   map-to="def:special-char"/>
-    <style id="escaped-character" _name="Escaped Character"   map-to="def:special-char"/>
-    <style id="floating-point"    _name="Floating point number" map-to="def:floating-point"/>
-    <style id="imaginary"         _name="Imaginary number"    map-to="def:number"/>
-    <style id="decimal"           _name="Decimal number"      map-to="def:decimal"/>
-    <style id="octal"             _name="Octal number"        map-to="def:base-n-integer"/>
-    <style id="hexadecimal"       _name="Hexadecimal number"  map-to="def:base-n-integer"/>
-    <style id="boolean"           _name="Boolean value"       map-to="def:boolean"/>
-    <style id="builtin-constant"  _name="Builtin Constant"    map-to="def:special-constant"/>
-    <style id="builtin-function"  _name="Builtin Function"    map-to="def:builtin"/>
+    <style id="comment"           name="Comment"             map-to="def:comment"/>
+    <style id="error"             name="Error"               map-to="def:error"/>
+    <style id="string"            name="String"              map-to="def:string"/>
+    <style id="char"              name="Character"           map-to="def:character"/>
+    <style id="keyword"           name="Keyword"             map-to="def:keyword"/>
+    <style id="type"              name="Data Type"           map-to="def:type"/>
+    <style id="printf"            name="printf Conversion"   map-to="def:special-char"/>
+    <style id="escaped-character" name="Escaped Character"   map-to="def:special-char"/>
+    <style id="floating-point"    name="Floating point number" map-to="def:floating-point"/>
+    <style id="imaginary"         name="Imaginary number"    map-to="def:number"/>
+    <style id="decimal"           name="Decimal number"      map-to="def:decimal"/>
+    <style id="octal"             name="Octal number"        map-to="def:base-n-integer"/>
+    <style id="hexadecimal"       name="Hexadecimal number"  map-to="def:base-n-integer"/>
+    <style id="boolean"           name="Boolean value"       map-to="def:boolean"/>
+    <style id="builtin-constant"  name="Builtin Constant"    map-to="def:special-constant"/>
+    <style id="builtin-function"  name="Builtin Function"    map-to="def:builtin"/>
   </styles>
 
   <definitions>

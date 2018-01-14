@@ -17,12 +17,11 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<language id="changelog" _name="ChangeLog" version="2.0" _section="Other">
+<language id="changelog" name="ChangeLog" version="2.0" _section="Other">
 
   <metadata>
     <property name="mimetypes">text/x-changelog</property>
@@ -30,14 +29,13 @@
   </metadata>
 
   <styles>
-    <style id="date" _name="Date" map-to="def:number"/>
-    <!-- Translators: the name of a person, not an object. -->
-    <style id="name" _name="Name" map-to="def:statement"/>
-    <style id="email" _name="E-mail address" map-to="def:identifier"/>
-    <style id="file" _name="File" map-to="def:comment"/>
-    <style id="bullet" _name="Bullet" map-to="def:type"/>
-    <style id="function" _name="Function" map-to="def:function"/>
-    <style id="release" _name="Release" map-to="def:statement"/>
+    <style id="date" name="Date" map-to="def:number"/>
+    <style id="name" name="Name" map-to="def:statement"/>
+    <style id="email" name="E-mail address" map-to="def:identifier"/>
+    <style id="file" name="File" map-to="def:comment"/>
+    <style id="bullet" name="Bullet" map-to="def:type"/>
+    <style id="function" name="Function" map-to="def:function"/>
+    <style id="release" name="Release" map-to="def:statement"/>
   </styles>
 
   <definitions>

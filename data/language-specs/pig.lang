@@ -18,13 +18,12 @@
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
   Lesser General Public License for more details.
 
-  You should have received a copy of the GNU Lesser General Public
-  License along with this library; if not, write to the Free Software
-  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  You should have received a copy of the GNU Lesser General Public License
+  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
 
-<language id="pig" _name="Pig" version="2.0" _section="Source">
+<language id="pig" name="Pig" version="2.0" _section="Source">
   <metadata>
     <property name="globs">*.pig</property>
     <property name="line-comment-start">--</property>
@@ -33,12 +32,12 @@
   </metadata>
 
   <styles>
-    <style id="datatype" _name="Data Type" map-to="def:type" />
-    <style id="reserved-words" _name="Reserved Words" map-to="def:keyword" />
-    <style id="builtin-functions" _name="Built In Functions" map-to="def:function" />
-    <style id="boolean" _name="Boolean values" map-to="def:boolean" />
-    <style id="null" _name="Null" map-to="def:special-constant" />
-    <style id="comment" _name="Comment" map-to="def:comment" />
+    <style id="datatype" name="Data Type" map-to="def:type" />
+    <style id="reserved-words" name="Reserved Words" map-to="def:keyword" />
+    <style id="builtin-functions" name="Built In Functions" map-to="def:function" />
+    <style id="boolean" name="Boolean values" map-to="def:boolean" />
+    <style id="null" name="Null" map-to="def:special-constant" />
+    <style id="comment" name="Comment" map-to="def:comment" />
   </styles>
 
   <default-regex-options case-sensitive="true" />
