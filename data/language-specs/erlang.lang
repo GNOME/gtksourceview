@@ -218,12 +218,14 @@
     <context id="compiler-directives" style-ref="compiler-directive">
       <prefix>-</prefix>
       <keyword>author</keyword>
+      <keyword>behaviour</keyword>
       <keyword>compile</keyword>
       <keyword>copyright</keyword>
       <keyword>define</keyword>
       <keyword>doc</keyword>
       <keyword>else</keyword>
       <keyword>endif</keyword>
+      <keyword>error</keyword>
       <keyword>export</keyword>
       <keyword>file</keyword>
       <keyword>ifdef</keyword>
@@ -232,8 +234,11 @@
       <keyword>include_lib</keyword>
       <keyword>include</keyword>
       <keyword>module</keyword>
+      <keyword>on_load</keyword>
       <keyword>record</keyword>
       <keyword>undef</keyword>
+      <keyword>vsn</keyword>
+      <keyword>warning</keyword>
     </context>
 
     <context id="erlang" class="no-spell-check">
