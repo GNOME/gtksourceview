@@ -104,6 +104,16 @@
                 <context id="common-defines" style-ref="common-defines">
                     <keyword>__STDC__</keyword>
                     <keyword>__cplusplus</keyword>
+                    <keyword>__STDC_HOSTED__</keyword>
+                    <keyword>__STDCPP_DEFAULT_NEW_ALIGNMENT__</keyword>
+                    <keyword>__STDC_VERSION__</keyword>
+                    <keyword>__STDC_ISO_10646__</keyword>
+                    <keyword>__STDC_MB_MIGHT_NEQ_WC__</keyword>
+                    <keyword>__STDCPP_STRICT_POINTER_SAFETY__</keyword>
+                    <keyword>__STDCPP_THREADS__</keyword>
+                    <keyword>__VERSION__</keyword>
+                    <keyword>__OBJC__</keyword>
+                    <keyword>__ASSEMBLER__</keyword>
                 </context>
             </include>
         </context>
