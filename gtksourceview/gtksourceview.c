@@ -4098,7 +4098,8 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 	if ((key == GDK_KEY_Tab || key == GDK_KEY_KP_Tab || key == GDK_KEY_ISO_Left_Tab) &&
 	    ((event->state & modifiers) == 0 ||
 	     (event->state & modifiers) == GDK_SHIFT_MASK) &&
-	    editable)
+	    editable &&
+	    gtk_text_view_get_accepts_tab (GTK_TEXT_VIEW (view)))
 	{
 		GtkTextIter s, e;
 		gboolean has_selection;
