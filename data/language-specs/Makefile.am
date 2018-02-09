@@ -12,6 +12,7 @@ LANGUAGES =			\
 	bibtex.lang		\
 	bluespec.lang		\
 	boo.lang		\
+	bsl.lang		\
 	cg.lang			\
 	changelog.lang		\
 	chdr.lang		\

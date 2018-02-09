@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ Authors: Alexander Andreev
+ Copyright (C) 2017 Alexander Andreev
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public
+ License along with this library; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+
+<!--
+ This file is based on the file published at
+
+    https://github.com/andreevlex/gtksourceview-1c-bsl
+
+ by the Alexander Andreev, which used the following license:
+
+Licensed under the MIT license
+<LICENSE-MIT or http://opensource.org/licenses/MIT>.
+-->
+<language id="bsl" _name="1C(BSL)" version="2.0" _section="Source">
+  <metadata>
+    <property name="globs">*.bsl;*.os</property>
+    <property name="line-comment-start">//</property>
+  </metadata>
+
+  <styles>
+    <style id="comment"           _name="Comment"               map-to="def:comment"/>
+    <style id="string"            _name="String"                map-to="def:string"/>
+    <style id="preprocessor"      _name="Preprocessor"          map-to="def:preprocessor"/>
+    <style id="keyword"           _name="Keyword"               map-to="def:keyword"/>
+    <style id="operator"          _name="Operator"              map-to="def:operator"/>
+    <style id="floating-point"    _name="Floating point number" map-to="def:floating-point"/>
+    <style id="decimal"           _name="Decimal number"        map-to="def:decimal"/>
+    <style id="builtin-constant"  _name="Builtin Constant"      map-to="def:special-constant"/>
+  </styles>
+
+  <default-regex-options case-sensitive="false"/>
+
+  <definitions>
+
+    <!--regexs-->
+    <define-regex id="preproc-start">^\s*#\s*</define-regex>
+    
+    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <context id="preprocessor-en" style-ref="preprocessor" end-at-line-end="true">
+      <start>\%{preproc-start}(If|ElsIf|Else|EndIf).*(Then)?</start>
+    </context>
+
+    <context id="preprocessor-ru" style-ref="preprocessor" end-at-line-end="true">
+      <start>\%{preproc-start}(Если|ИначеЕсли|Иначе|КонецЕсли).*(Тогда)?</start>
+    </context>
+    
+    <context id="import-en" style-ref="preprocessor">
+      <match extended="true">
+        \%{preproc-start}
+        (Use)\s*
+      </match>
+    </context>
+
+    <context id="import-ru" style-ref="preprocessor">
+      <match extended="true">
+        \%{preproc-start}
+        (Использовать)\s*
+      </match>
+    </context>
+
+    <context id="directive-en" style-ref="comment" end-at-line-end="true">
+      <start>&amp;(AtClient((AtServer(NoContext)?)?)|AtServer(NoContext)?)\b</start>
+    </context>
+
+    <context id="directive-ru" style-ref="comment" end-at-line-end="true">
+      <start>&amp;(НаКлиенте((НаСервере(БезКонтекста)?)?)|НаСервере(БезКонтекста)?)\b</start>
+    </context>
+    
+    <context id="float" style-ref="floating-point">
+      <match extended="true">
+        (?&lt;![\w\.])
+        ((\.[0-9]+ | [0-9]+\.[0-9]*))
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="decimal" style-ref="decimal">
+      <match extended="true">
+        (?&lt;![\w\.])
+        (0|[1-9][0-9]*)
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="functions-and-function-modifiers-en" style-ref="keyword">
+      <keyword>Function</keyword>
+      <keyword>Procedure</keyword>
+      <keyword>EndFunction</keyword>
+      <keyword>EndProcedure</keyword>
+    </context>
+
+    <context id="functions-and-function-modifiers-ru" style-ref="keyword">
+      <keyword>Функция</keyword>
+      <keyword>Процедура</keyword>
+      <keyword>КонецФункции</keyword>
+      <keyword>КонецПроцедуры</keyword>
+    </context>
+
+    <context id="keywords-en" style-ref="keyword">
+      <keyword>Break</keyword>
+      <keyword>Continue</keyword>
+      <keyword>Do</keyword>
+      <keyword>Each</keyword>
+      <keyword>Else</keyword>
+      <keyword>ElsIf</keyword>
+      <keyword>EndIf</keyword>
+      <keyword>EndTry</keyword>
+      <keyword>EndDo</keyword>
+      <keyword>Except</keyword>
+      <keyword>Export</keyword>
+      <keyword>For</keyword>
+      <keyword>If</keyword>
+      <keyword>In</keyword>
+      <keyword>Return</keyword>
+      <keyword>Raise</keyword>
+      <keyword>To</keyword>
+      <keyword>Try</keyword>
+      <keyword>Then</keyword>
+      <keyword>While</keyword>
+      <keyword>Val</keyword>
+      <keyword>Var</keyword>
+    </context>
+
+    <context id="keywords-ru" style-ref="keyword">
+      <keyword>Прервать</keyword>
+      <keyword>Продолжить</keyword>
+      <keyword>Возврат</keyword>
+      <keyword>Если</keyword>
+      <keyword>Иначе</keyword>
+      <keyword>ИначеЕсли</keyword>
+      <keyword>Тогда</keyword>
+      <keyword>КонецЕсли</keyword>
+      <keyword>Попытка</keyword>
+      <keyword>Исключение</keyword>
+      <keyword>КонецПопытки</keyword>
+      <keyword>ВызватьИсключение</keyword>
+      <keyword>Пока</keyword>
+      <keyword>Для</keyword>
+      <keyword>Каждого</keyword>
+      <keyword>Из</keyword>
+      <keyword>По</keyword>
+      <keyword>Цикл</keyword>
+      <keyword>КонецЦикла</keyword>
+      <keyword>Экспорт</keyword>
+      <keyword>Знач</keyword>
+      <keyword>Перем</keyword>
+    </context>
+
+    <context id="builtin-constant-en" style-ref="builtin-constant">
+      <keyword>Undefined</keyword>
+      <keyword>True</keyword>
+      <keyword>False</keyword>
+      <keyword>NULL</keyword>
+    </context>
+
+    <context id="builtin-constant-ru" style-ref="builtin-constant">
+      <keyword>Неопределено</keyword>
+      <keyword>Истина</keyword>
+      <keyword>Ложь</keyword>
+    </context>
+
+    <context id="operators-en" style-ref="operator">
+      <keyword>NOT</keyword>
+      <keyword>AND</keyword>
+      <keyword>OR</keyword>
+    </context>
+
+    <context id="operators-ru" style-ref="operator">
+      <keyword>НЕ</keyword>
+      <keyword>И</keyword>
+      <keyword>ИЛИ</keyword>
+    </context>
+
+    <!--Main context-->
+    <context id="bsl" class="no-spell-check">
+      <include>
+        <context ref="def:c-like-comment" style-ref="comment"/>
+        <context ref="string"/>
+        <context ref="preprocessor-en"/>
+        <context ref="preprocessor-ru"/>
+        <context ref="import-en"/>
+        <context ref="import-ru"/>
+        <context ref="directive-en"/>
+        <context ref="directive-ru"/>
+        <context ref="float"/>
+        <context ref="decimal"/>
+        <context ref="functions-and-function-modifiers-en"/>
+        <context ref="functions-and-function-modifiers-ru"/>
+        <context ref="keywords-en"/>
+        <context ref="keywords-ru"/>
+        <context ref="builtin-constant-en"/>
+        <context ref="builtin-constant-ru"/>
+        <context ref="operators-en"/>
+        <context ref="operators-ru"/>
+      </include>
+    </context>
+
+  </definitions>
+</language>
