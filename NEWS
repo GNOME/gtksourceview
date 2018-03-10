@@ -1,3 +1,12 @@
+News in 4.0.0, 2018-03-10
+-------------------------
+* GtkSourceView class: respect the GtkTextView:accepts-tab property.
+* New syntax highlighting definition file for: Groovy and Tera templates.
+* Improvements to the syntax highlighting of: Erlang and Fortran.
+* Provide an Uncrustify configuration file for the GtkSourceView C coding style.
+* Various other improvements and small fixes.
+* Translation updates.
+
 News in 3.99.7, 2017-12-09
 --------------------------
 * Rename gtk_source_completion_show() to gtk_source_completion_start().
