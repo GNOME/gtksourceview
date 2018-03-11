@@ -86,8 +86,8 @@
     </context>
 
     <context id="lstlisting-env" style-inside="true" style-ref="verbatim" class="no-spell-check">
-      <start>(\\begin)\{lstlisting\}</start>
-      <end>(\\end)\{lstlisting\}</end>
+      <start>(\\begin)\{(lstlisting|minted)\}</start>
+      <end>(\\end)\{\%{2@start}\}</end>
       <include>
         <context sub-pattern="1" where="start" style-ref="common-commands"/>
         <context sub-pattern="1" where="end" style-ref="common-commands"/>
@@ -193,6 +193,22 @@
       </include>
     </context>
 
+    <context id="mintinline-curly-brackets" style-inside="true" style-ref="verbatim" class="no-spell-check">
+      <start>(\\mintinline)(\[.*?\])?\{.+?\}{</start>
+      <end>}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="command"/>
+      </include>
+    </context>
+
+    <context id="mintinline" style-inside="true" style-ref="verbatim" class="no-spell-check">
+      <start>(\\mintinline)(\[.*?\])?\{.+?\}((?!\[)\S)</start>  <!-- ignore when starting with [ -->
+      <end>\%{3@start}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="command"/>
+      </include>
+    </context>
+
     <!-- If using \verb instead of \lstinline, the brackets cannot be used -->
     <context id="verbatim-inline" style-inside="true" style-ref="verbatim" class-disabled="no-spell-check">
       <start>(\\verb)\*?(\S)</start>
@@ -210,6 +226,8 @@
         <context ref="lstinline-curly-brackets"/>
         <context ref="lstinline-square-brackets"/>
         <context ref="lstinline"/>
+        <context ref="mintinline-curly-brackets" />
+        <context ref="mintinline"/>
       </include>
     </context>
 
