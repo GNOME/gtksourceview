@@ -172,18 +172,11 @@
 
     <context id="dollar-slashy-string" style-ref="string" class="string">
       <start extended="true">
-        # Strictly speaking, a dollar slashy string has the same requirements on the
-        # preceding token as a plain slashy string, but if those requirements aren't
-        # met, it's parsed as a dollar followed by a division operator, which isn't
-        # legal. So we don't bother with accounting for that case.
-
         \$/
 
-        # We will, however, account for the case when there's a slash right after
-        # the initial $/. In that case, the construct is actually parsed as a dollar
-        # followed by a single-line comment. Which is still illegal... but as least
-        # this check is easy to implement.
-        (?=[^/])
+        # Dollar slashy strings can't be empty (a would-be empty one is parsed
+        # as a dollar followed by a single-line comment instead).
+        (?! /\$)
       </start>
       <end>/\$</end>
       <include>

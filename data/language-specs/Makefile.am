@@ -119,8 +119,10 @@ LANGUAGES =			\
 	systemverilog.lang	\
 	t2t.lang		\
 	tcl.lang		\
+	tera.lang		\
 	texinfo.lang		\
 	thrift.lang		\
+	toml.lang		\
 	vala.lang		\
 	vbnet.lang		\
 	verilog.lang		\
