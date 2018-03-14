@@ -1,3 +1,10 @@
+News in 3.24.7, 2018-03-14
+--------------------------
+* GtkSourceView class: respect the GtkTextView:accepts-tab property.
+* Syntax highlighting: sync all *.lang files from GtkSourceView 4.
+* Build system: don't declare functions in AC_TRY_COMPILE.
+* Translation updates.
+
 News in 3.24.6
 --------------
 * New syntax highlighting definition file for: logcat.
