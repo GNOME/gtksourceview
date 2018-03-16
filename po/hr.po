@@ -4,3125 +4,926 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-17 04:06+0000\n"
-"PO-Revision-Date: 2016-09-24 12:50+0200\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=gtksourceview&keywords=I18N+L10N&component=General\n"
+"POT-Creation-Date: 2018-01-14 10:53+0000\n"
+"PO-Revision-Date: 2018-03-16 22:44+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
+"Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2014-01-06 17:27+0000\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Language: hr\n"
 
-#: ../data/glade/gtksourceview.xml.in.h:1
-msgid "GtkSourceView"
-msgstr ""
-
-#. Translators: It is related to an option of a set of values
-#: ../data/glade/gtksourceview.xml.in.h:3
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:23
 msgid "Disabled"
-msgstr ""
+msgstr "Onemogućeno"
 
-#: ../data/glade/gtksourceview.xml.in.h:4
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:24
 msgid "Before"
-msgstr ""
+msgstr "Prije"
 
-#: ../data/glade/gtksourceview.xml.in.h:5
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:25
 msgid "After"
-msgstr ""
+msgstr "Poslije"
 
-#: ../data/glade/gtksourceview.xml.in.h:6
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:26
 msgid "Always"
-msgstr ""
+msgstr "Uvijek"
 
-#: ../data/glade/gtksourceview.xml.in.h:7
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:32
 msgid "Space"
-msgstr ""
+msgstr "Razmak"
 
-#: ../data/glade/gtksourceview.xml.in.h:8
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:33
 msgid "Tab"
-msgstr ""
+msgstr "Kartica"
 
-#: ../data/glade/gtksourceview.xml.in.h:9
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:34
 msgid "Newline"
-msgstr ""
+msgstr "Novi redak"
 
-#: ../data/glade/gtksourceview.xml.in.h:10
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:35
 msgid "Non Breaking Whitespace"
-msgstr ""
+msgstr "Neprelomljivi znak razmaka"
 
-#: ../data/glade/gtksourceview.xml.in.h:11
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:36
 msgid "Leading"
-msgstr ""
+msgstr "Vodeći"
 
-#: ../data/glade/gtksourceview.xml.in.h:12
-#: ../gtksourceview/gtksourcecompletionitem.c:262
-#: ../gtksourceview/gtksourcegutterrenderertext.c:399
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:37
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
-#: ../data/glade/gtksourceview.xml.in.h:13
+#. (itstool) path: displayable-values/value@name
+#: gtksourceview.xml:38
 msgid "Trailing"
-msgstr ""
+msgstr "Prateći"
 
+#. (itstool) path: displayable-values/value@name
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: ../data/glade/gtksourceview.xml.in.h:14
-#: ../gtksourceview/gtksourcecompletion.c:764
+#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:833
 msgid "All"
-msgstr ""
+msgstr "Sve"
 
-#: ../data/language-specs/actionscript.lang.h:1
-#: ../data/language-specs/ada.lang.h:1 ../data/language-specs/asp.lang.h:1
-#: ../data/language-specs/automake.lang.h:1
-#: ../data/language-specs/bennugd.lang.h:1
-#: ../data/language-specs/bluespec.lang.h:1 ../data/language-specs/boo.lang.h:1
-#: ../data/language-specs/cg.lang.h:1 ../data/language-specs/chdr.lang.h:1
-#: ../data/language-specs/c.lang.h:1 ../data/language-specs/cobol.lang.h:1
-#: ../data/language-specs/cpp.lang.h:1 ../data/language-specs/csharp.lang.h:1
-#: ../data/language-specs/cuda.lang.h:1 ../data/language-specs/d.lang.h:1
-#: ../data/language-specs/eiffel.lang.h:1
-#: ../data/language-specs/erlang.lang.h:1 ../data/language-specs/forth.lang.h:1
-#: ../data/language-specs/fortran.lang.h:1
-#: ../data/language-specs/fsharp.lang.h:1 ../data/language-specs/glsl.lang.h:1
-#: ../data/language-specs/go.lang.h:1 ../data/language-specs/haskell.lang.h:1
-#: ../data/language-specs/haskell-literate.lang.h:1
-#: ../data/language-specs/idl.lang.h:1 ../data/language-specs/java.lang.h:1
-#: ../data/language-specs/j.lang.h:1 ../data/language-specs/makefile.lang.h:1
-#: ../data/language-specs/nemerle.lang.h:1
-#: ../data/language-specs/netrexx.lang.h:1 ../data/language-specs/objc.lang.h:1
-#: ../data/language-specs/objj.lang.h:1 ../data/language-specs/ocaml.lang.h:1
-#: ../data/language-specs/ooc.lang.h:1 ../data/language-specs/opal.lang.h:1
-#: ../data/language-specs/opencl.lang.h:1
-#: ../data/language-specs/pascal.lang.h:1
-#: ../data/language-specs/prolog.lang.h:1 ../data/language-specs/scala.lang.h:1
-#: ../data/language-specs/scheme.lang.h:1 ../data/language-specs/sml.lang.h:1
-#: ../data/language-specs/sparql.lang.h:1 ../data/language-specs/sql.lang.h:1
-#: ../data/language-specs/systemverilog.lang.h:1
-#: ../data/language-specs/vala.lang.h:1 ../data/language-specs/vbnet.lang.h:1
-#: ../data/language-specs/verilog.lang.h:1 ../data/language-specs/vhdl.lang.h:1
-msgid "Sources"
-msgstr "Izvorni kod"
+#. (itstool) path: abnf.lang/language@_section
+#. (itstool) path: actionscript.lang/language@_section
+#. (itstool) path: ada.lang/language@_section
+#. (itstool) path: ansforth94.lang/language@_section
+#. (itstool) path: asp.lang/language@_section
+#. (itstool) path: automake.lang/language@_section
+#. (itstool) path: bennugd.lang/language@_section
+#. (itstool) path: bluespec.lang/language@_section
+#. (itstool) path: boo.lang/language@_section
+#. (itstool) path: cg.lang/language@_section
+#. (itstool) path: chdr.lang/language@_section
+#. (itstool) path: c.lang/language@_section
+#. (itstool) path: cobol.lang/language@_section
+#. (itstool) path: cpphdr.lang/language@_section
+#. (itstool) path: cpp.lang/language@_section
+#. (itstool) path: csharp.lang/language@_section
+#. (itstool) path: cuda.lang/language@_section
+#. (itstool) path: d.lang/language@_section
+#. (itstool) path: eiffel.lang/language@_section
+#. (itstool) path: erlang.lang/language@_section
+#. (itstool) path: forth.lang/language@_section
+#. (itstool) path: fortran.lang/language@_section
+#. (itstool) path: fsharp.lang/language@_section
+#. (itstool) path: genie.lang/language@_section
+#. (itstool) path: glsl.lang/language@_section
+#. (itstool) path: go.lang/language@_section
+#. (itstool) path: groovy.lang/language@_section
+#. (itstool) path: haskell.lang/language@_section
+#. (itstool) path: haskell-literate.lang/language@_section
+#. (itstool) path: haxe.lang/language@_section
+#. (itstool) path: idl.lang/language@_section
+#. (itstool) path: java.lang/language@_section
+#. (itstool) path: j.lang/language@_section
+#. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lex.lang/language@_section
+#. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: makefile.lang/language@_section
+#. (itstool) path: meson.lang/language@_section
+#. (itstool) path: nemerle.lang/language@_section
+#. (itstool) path: netrexx.lang/language@_section
+#. (itstool) path: objc.lang/language@_section
+#. (itstool) path: objj.lang/language@_section
+#. (itstool) path: ocaml.lang/language@_section
+#. (itstool) path: ooc.lang/language@_section
+#. (itstool) path: opal.lang/language@_section
+#. (itstool) path: opencl.lang/language@_section
+#. (itstool) path: pascal.lang/language@_section
+#. (itstool) path: pig.lang/language@_section
+#. (itstool) path: prolog.lang/language@_section
+#. (itstool) path: rust.lang/language@_section
+#. (itstool) path: scala.lang/language@_section
+#. (itstool) path: scheme.lang/language@_section
+#. (itstool) path: sml.lang/language@_section
+#. (itstool) path: sparql.lang/language@_section
+#. (itstool) path: sql.lang/language@_section
+#. (itstool) path: swift.lang/language@_section
+#. (itstool) path: systemverilog.lang/language@_section
+#. (itstool) path: thrift.lang/language@_section
+#. (itstool) path: vala.lang/language@_section
+#. (itstool) path: vbnet.lang/language@_section
+#. (itstool) path: verilog.lang/language@_section
+#. (itstool) path: vhdl.lang/language@_section
+#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23
+#: automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23
+#: chdr.lang:24 c.lang:24 cobol.lang:26 cpphdr.lang:24 cpp.lang:24
+#: csharp.lang:26 cuda.lang:22 d.lang:29 eiffel.lang:23 erlang.lang:23
+#: forth.lang:23 fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30
+#: go.lang:24 groovy.lang:24 haskell.lang:24 haskell-literate.lang:23
+#: haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24
+#: llvm.lang:22 makefile.lang:22 meson.lang:23 nemerle.lang:23 netrexx.lang:23
+#: objc.lang:23 objj.lang:25 ocaml.lang:26 ooc.lang:23 opal.lang:23
+#: opencl.lang:23 pascal.lang:24 pig.lang:26 prolog.lang:23 rust.lang:35
+#: scala.lang:24 scheme.lang:23 sml.lang:23 sparql.lang:23 sql.lang:23
+#: swift.lang:24 systemverilog.lang:21 thrift.lang:20 vala.lang:27
+#: vbnet.lang:23 verilog.lang:23 vhdl.lang:23
+msgid "Source"
+msgstr "Izvor"
 
-#: ../data/language-specs/ada.lang.h:2
-msgid "Ada"
-msgstr "Ada"
+#. (itstool) path: awk.lang/language@_section
+#. (itstool) path: dosbatch.lang/language@_section
+#. (itstool) path: javascript.lang/language@_section
+#. (itstool) path: lua.lang/language@_section
+#. (itstool) path: m4.lang/language@_section
+#. (itstool) path: perl.lang/language@_section
+#. (itstool) path: php.lang/language@_section
+#. (itstool) path: python3.lang/language@_section
+#. (itstool) path: python.lang/language@_section
+#. (itstool) path: ruby.lang/language@_section
+#. (itstool) path: sh.lang/language@_section
+#. (itstool) path: tcl.lang/language@_section
+#: awk.lang:23 dosbatch.lang:23 javascript.lang:26 lua.lang:23 m4.lang:23
+#: perl.lang:25 php.lang:28 python3.lang:23 python.lang:27 ruby.lang:26
+#: sh.lang:24 tcl.lang:23
+msgid "Script"
+msgstr "Skripta"
 
-#. Any comment
-#: ../data/language-specs/actionscript.lang.h:3
-#: ../data/language-specs/ada.lang.h:3 ../data/language-specs/asp.lang.h:3
-#: ../data/language-specs/bennugd.lang.h:3 ../data/language-specs/boo.lang.h:3
-#: ../data/language-specs/cg.lang.h:3 ../data/language-specs/c.lang.h:3
-#: ../data/language-specs/cobol.lang.h:3 ../data/language-specs/csharp.lang.h:3
-#: ../data/language-specs/def.lang.h:3 ../data/language-specs/d.lang.h:3
-#: ../data/language-specs/dosbatch.lang.h:3 ../data/language-specs/dot.lang.h:3
-#: ../data/language-specs/eiffel.lang.h:3
-#: ../data/language-specs/erlang.lang.h:3 ../data/language-specs/fcl.lang.h:3
-#: ../data/language-specs/forth.lang.h:3
-#: ../data/language-specs/fortran.lang.h:3
-#: ../data/language-specs/fsharp.lang.h:3 ../data/language-specs/gap.lang.h:3
-#: ../data/language-specs/go.lang.h:3 ../data/language-specs/gtkrc.lang.h:3
-#: ../data/language-specs/haskell.lang.h:4 ../data/language-specs/html.lang.h:3
-#: ../data/language-specs/idl-exelis.lang.h:3
-#: ../data/language-specs/idl.lang.h:3 ../data/language-specs/ini.lang.h:3
-#: ../data/language-specs/j.lang.h:4 ../data/language-specs/latex.lang.h:3
-#: ../data/language-specs/lua.lang.h:3 ../data/language-specs/matlab.lang.h:3
-#: ../data/language-specs/modelica.lang.h:3
-#: ../data/language-specs/nemerle.lang.h:3
-#: ../data/language-specs/netrexx.lang.h:6 ../data/language-specs/nsis.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:3 ../data/language-specs/ocl.lang.h:3
-#: ../data/language-specs/octave.lang.h:3 ../data/language-specs/ooc.lang.h:3
-#: ../data/language-specs/opal.lang.h:4 ../data/language-specs/pascal.lang.h:3
-#: ../data/language-specs/perl.lang.h:3 ../data/language-specs/php.lang.h:3
-#: ../data/language-specs/po.lang.h:3 ../data/language-specs/prolog.lang.h:3
-#: ../data/language-specs/ruby.lang.h:4 ../data/language-specs/scala.lang.h:5
-#: ../data/language-specs/scheme.lang.h:3
-#: ../data/language-specs/scilab.lang.h:3 ../data/language-specs/sh.lang.h:3
-#: ../data/language-specs/sml.lang.h:3 ../data/language-specs/sql.lang.h:3
-#: ../data/language-specs/t2t.lang.h:3 ../data/language-specs/texinfo.lang.h:3
-#: ../data/language-specs/vala.lang.h:3 ../data/language-specs/vbnet.lang.h:3
-#: ../data/language-specs/verilog.lang.h:3 ../data/language-specs/vhdl.lang.h:3
-#: ../data/language-specs/xml.lang.h:3
-msgid "Comment"
-msgstr "Komentar"
-
-#. A string constant: "this is a string"
-#: ../data/language-specs/actionscript.lang.h:5
-#: ../data/language-specs/ada.lang.h:4 ../data/language-specs/asp.lang.h:4
-#: ../data/language-specs/boo.lang.h:5 ../data/language-specs/c.lang.h:4
-#: ../data/language-specs/cobol.lang.h:8 ../data/language-specs/csharp.lang.h:6
-#: ../data/language-specs/css.lang.h:5 ../data/language-specs/def.lang.h:17
-#: ../data/language-specs/d.lang.h:5 ../data/language-specs/dosbatch.lang.h:4
-#: ../data/language-specs/eiffel.lang.h:4
-#: ../data/language-specs/erlang.lang.h:7 ../data/language-specs/forth.lang.h:4
-#: ../data/language-specs/fsharp.lang.h:7
-#: ../data/language-specs/gdb-log.lang.h:8 ../data/language-specs/go.lang.h:5
-#: ../data/language-specs/gtkrc.lang.h:4
-#: ../data/language-specs/haskell.lang.h:9
-#: ../data/language-specs/idl-exelis.lang.h:7
-#: ../data/language-specs/idl.lang.h:7 ../data/language-specs/imagej.lang.h:10
-#: ../data/language-specs/ini.lang.h:5 ../data/language-specs/java.lang.h:4
-#: ../data/language-specs/javascript.lang.h:13
-#: ../data/language-specs/j.lang.h:17 ../data/language-specs/json.lang.h:4
-#: ../data/language-specs/julia.lang.h:3 ../data/language-specs/lua.lang.h:4
-#: ../data/language-specs/modelica.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:7
-#: ../data/language-specs/netrexx.lang.h:4 ../data/language-specs/nsis.lang.h:5
-#: ../data/language-specs/objc.lang.h:6 ../data/language-specs/objj.lang.h:8
-#: ../data/language-specs/ocaml.lang.h:8 ../data/language-specs/ocl.lang.h:4
-#: ../data/language-specs/octave.lang.h:4 ../data/language-specs/ooc.lang.h:6
-#: ../data/language-specs/opal.lang.h:7 ../data/language-specs/pascal.lang.h:4
-#: ../data/language-specs/perl.lang.h:6 ../data/language-specs/php.lang.h:9
-#: ../data/language-specs/po.lang.h:5 ../data/language-specs/prolog.lang.h:6
-#: ../data/language-specs/protobuf.lang.h:6
-#: ../data/language-specs/python3.lang.h:6
-#: ../data/language-specs/python.lang.h:6 ../data/language-specs/ruby.lang.h:14
-#: ../data/language-specs/scala.lang.h:6 ../data/language-specs/scheme.lang.h:5
-#: ../data/language-specs/scilab.lang.h:5 ../data/language-specs/sh.lang.h:5
-#: ../data/language-specs/sml.lang.h:7 ../data/language-specs/sql.lang.h:5
-#: ../data/language-specs/texinfo.lang.h:6 ../data/language-specs/vala.lang.h:6
-#: ../data/language-specs/vbnet.lang.h:4
-#: ../data/language-specs/verilog.lang.h:4 ../data/language-specs/vhdl.lang.h:4
-msgid "String"
-msgstr "Znakovni niz"
-
-#. keywords: "if", "for", "while", etc.
-#: ../data/language-specs/actionscript.lang.h:10
-#: ../data/language-specs/ada.lang.h:5 ../data/language-specs/asp.lang.h:6
-#: ../data/language-specs/awk.lang.h:3 ../data/language-specs/bennugd.lang.h:7
-#: ../data/language-specs/bluespec.lang.h:7
-#: ../data/language-specs/boo.lang.h:10 ../data/language-specs/cg.lang.h:8
-#: ../data/language-specs/c.lang.h:9 ../data/language-specs/cobol.lang.h:6
-#: ../data/language-specs/cpp.lang.h:3 ../data/language-specs/csharp.lang.h:11
-#: ../data/language-specs/css.lang.h:14 ../data/language-specs/cuda.lang.h:3
-#: ../data/language-specs/def.lang.h:47 ../data/language-specs/d.lang.h:6
-#: ../data/language-specs/dosbatch.lang.h:5 ../data/language-specs/dot.lang.h:5
-#: ../data/language-specs/eiffel.lang.h:7
-#: ../data/language-specs/erlang.lang.h:4 ../data/language-specs/fcl.lang.h:5
-#: ../data/language-specs/forth.lang.h:6
-#: ../data/language-specs/fortran.lang.h:5
-#: ../data/language-specs/fsharp.lang.h:8 ../data/language-specs/gap.lang.h:5
-#: ../data/language-specs/glsl.lang.h:5 ../data/language-specs/go.lang.h:7
-#: ../data/language-specs/gtkrc.lang.h:5
-#: ../data/language-specs/haskell.lang.h:7
-#: ../data/language-specs/idl-exelis.lang.h:6
-#: ../data/language-specs/idl.lang.h:6 ../data/language-specs/imagej.lang.h:8
-#: ../data/language-specs/ini.lang.h:6 ../data/language-specs/java.lang.h:12
-#: ../data/language-specs/javascript.lang.h:7
-#: ../data/language-specs/julia.lang.h:10 ../data/language-specs/lua.lang.h:5
-#: ../data/language-specs/matlab.lang.h:4
-#: ../data/language-specs/modelica.lang.h:13
-#: ../data/language-specs/nemerle.lang.h:8 ../data/language-specs/objc.lang.h:3
-#: ../data/language-specs/objj.lang.h:4 ../data/language-specs/ocaml.lang.h:9
-#: ../data/language-specs/ocl.lang.h:5 ../data/language-specs/octave.lang.h:13
-#: ../data/language-specs/ooc.lang.h:11 ../data/language-specs/opal.lang.h:8
-#: ../data/language-specs/opencl.lang.h:3
-#: ../data/language-specs/pascal.lang.h:5 ../data/language-specs/perl.lang.h:7
-#: ../data/language-specs/php.lang.h:12 ../data/language-specs/po.lang.h:7
-#: ../data/language-specs/prolog.lang.h:5
-#: ../data/language-specs/protobuf.lang.h:4
-#: ../data/language-specs/python3.lang.h:4
-#: ../data/language-specs/python.lang.h:4 ../data/language-specs/R.lang.h:3
-#: ../data/language-specs/ruby.lang.h:7 ../data/language-specs/scala.lang.h:10
-#: ../data/language-specs/scheme.lang.h:6
-#: ../data/language-specs/scilab.lang.h:6 ../data/language-specs/sh.lang.h:6
-#: ../data/language-specs/sml.lang.h:4 ../data/language-specs/sparql.lang.h:7
-#: ../data/language-specs/sql.lang.h:6
-#: ../data/language-specs/systemverilog.lang.h:5
-#: ../data/language-specs/tcl.lang.h:4 ../data/language-specs/texinfo.lang.h:7
-#: ../data/language-specs/vala.lang.h:7 ../data/language-specs/vbnet.lang.h:6
-#: ../data/language-specs/verilog.lang.h:11
-#: ../data/language-specs/vhdl.lang.h:6
-msgid "Keyword"
-msgstr "Ključna riječ"
-
-#. A decimal number: 1234
-#: ../data/language-specs/ada.lang.h:6 ../data/language-specs/bennugd.lang.h:10
-#: ../data/language-specs/cg.lang.h:13 ../data/language-specs/c.lang.h:16
-#: ../data/language-specs/csharp.lang.h:15 ../data/language-specs/def.lang.h:26
-#: ../data/language-specs/d.lang.h:12 ../data/language-specs/eiffel.lang.h:15
-#: ../data/language-specs/erlang.lang.h:10
-#: ../data/language-specs/fsharp.lang.h:6 ../data/language-specs/go.lang.h:13
-#: ../data/language-specs/idl-exelis.lang.h:9
-#: ../data/language-specs/nemerle.lang.h:13
-#: ../data/language-specs/ocaml.lang.h:7 ../data/language-specs/ooc.lang.h:15
-#: ../data/language-specs/opal.lang.h:10 ../data/language-specs/php.lang.h:19
-#: ../data/language-specs/python3.lang.h:12
-#: ../data/language-specs/python.lang.h:13
-#: ../data/language-specs/ruby.lang.h:11
-msgid "Decimal number"
-msgstr ""
-
-#. A boolean constant: TRUE, false
-#: ../data/language-specs/actionscript.lang.h:12
-#: ../data/language-specs/ada.lang.h:7 ../data/language-specs/asp.lang.h:13
-#: ../data/language-specs/bennugd.lang.h:12 ../data/language-specs/cg.lang.h:16
-#: ../data/language-specs/c.lang.h:19 ../data/language-specs/csharp.lang.h:14
-#: ../data/language-specs/def.lang.h:34 ../data/language-specs/fsharp.lang.h:19
-#: ../data/language-specs/go.lang.h:16 ../data/language-specs/gtkrc.lang.h:10
-#: ../data/language-specs/ini.lang.h:10 ../data/language-specs/java.lang.h:14
-#: ../data/language-specs/lua.lang.h:10
-#: ../data/language-specs/nemerle.lang.h:11
-#: ../data/language-specs/ocaml.lang.h:19 ../data/language-specs/ooc.lang.h:13
-#: ../data/language-specs/opal.lang.h:9 ../data/language-specs/php.lang.h:17
-#: ../data/language-specs/protobuf.lang.h:5 ../data/language-specs/R.lang.h:8
-#: ../data/language-specs/ruby.lang.h:9 ../data/language-specs/sml.lang.h:11
-#: ../data/language-specs/vala.lang.h:8 ../data/language-specs/vbnet.lang.h:9
-#: ../data/language-specs/vhdl.lang.h:8
-msgid "Boolean value"
-msgstr ""
-
-#: ../data/language-specs/actionscript.lang.h:8
-#: ../data/language-specs/ada.lang.h:8 ../data/language-specs/cg.lang.h:10
-#: ../data/language-specs/c.lang.h:12 ../data/language-specs/java.lang.h:10
-#: ../data/language-specs/ooc.lang.h:9
-msgid "Storage Class"
-msgstr ""
-
-#: ../data/language-specs/actionscript.lang.h:15
-#: ../data/language-specs/ada.lang.h:9 ../data/language-specs/asp.lang.h:11
-#: ../data/language-specs/bennugd.lang.h:8 ../data/language-specs/boo.lang.h:8
-#: ../data/language-specs/cg.lang.h:9 ../data/language-specs/c.lang.h:11
-#: ../data/language-specs/cpp.lang.h:4 ../data/language-specs/csharp.lang.h:5
-#: ../data/language-specs/cuda.lang.h:4 ../data/language-specs/d.lang.h:7
-#: ../data/language-specs/eiffel.lang.h:8 ../data/language-specs/forth.lang.h:7
-#: ../data/language-specs/fortran.lang.h:9
-#: ../data/language-specs/fsharp.lang.h:11 ../data/language-specs/glsl.lang.h:4
-#: ../data/language-specs/go.lang.h:8 ../data/language-specs/gtkrc.lang.h:7
-#: ../data/language-specs/haskell.lang.h:8
-#: ../data/language-specs/idl-exelis.lang.h:4
-#: ../data/language-specs/idl.lang.h:4 ../data/language-specs/ini.lang.h:9
-#: ../data/language-specs/java.lang.h:17
-#: ../data/language-specs/javascript.lang.h:8
-#: ../data/language-specs/nemerle.lang.h:9 ../data/language-specs/objc.lang.h:4
-#: ../data/language-specs/objj.lang.h:5 ../data/language-specs/ocaml.lang.h:12
-#: ../data/language-specs/ocl.lang.h:7 ../data/language-specs/ooc.lang.h:19
-#: ../data/language-specs/opal.lang.h:11 ../data/language-specs/opencl.lang.h:4
-#: ../data/language-specs/pascal.lang.h:7 ../data/language-specs/php.lang.h:15
-#: ../data/language-specs/protobuf.lang.h:3
-#: ../data/language-specs/scala.lang.h:14 ../data/language-specs/sml.lang.h:5
-#: ../data/language-specs/sparql.lang.h:4 ../data/language-specs/sql.lang.h:9
-#: ../data/language-specs/vala.lang.h:5 ../data/language-specs/vbnet.lang.h:7
-msgid "Data Type"
-msgstr "Tip podatka"
-
-#: ../data/language-specs/ada.lang.h:10 ../data/language-specs/asp.lang.h:5
-#: ../data/language-specs/bennugd.lang.h:4 ../data/language-specs/cg.lang.h:5
-#: ../data/language-specs/c.lang.h:5 ../data/language-specs/csharp.lang.h:12
-#: ../data/language-specs/forth.lang.h:5
-#: ../data/language-specs/fsharp.lang.h:20 ../data/language-specs/glsl.lang.h:3
-#: ../data/language-specs/haskell.lang.h:3
-#: ../data/language-specs/idl-exelis.lang.h:5
-#: ../data/language-specs/idl.lang.h:5 ../data/language-specs/nemerle.lang.h:5
-#: ../data/language-specs/objj.lang.h:6 ../data/language-specs/pascal.lang.h:8
-#: ../data/language-specs/vbnet.lang.h:5
-msgid "Preprocessor"
-msgstr "Predprocesor"
-
-#: ../data/language-specs/ada.lang.h:11
-msgid "Arbitrary base number"
-msgstr ""
-
-#: ../data/language-specs/ada.lang.h:12 ../data/language-specs/csharp.lang.h:17
-#: ../data/language-specs/verilog.lang.h:15
-#: ../data/language-specs/vhdl.lang.h:10
-msgid "Real number"
-msgstr ""
-
-#. map to nothing
-#: ../data/language-specs/ada.lang.h:13 ../data/language-specs/cg.lang.h:11
-#: ../data/language-specs/c.lang.h:14 ../data/language-specs/csharp.lang.h:8
-#: ../data/language-specs/eiffel.lang.h:12
-#: ../data/language-specs/fsharp.lang.h:18 ../data/language-specs/go.lang.h:10
-#: ../data/language-specs/haskell.lang.h:11
-#: ../data/language-specs/java.lang.h:3
-#: ../data/language-specs/javascript.lang.h:3
-#: ../data/language-specs/json.lang.h:3 ../data/language-specs/lua.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:3
-#: ../data/language-specs/ocaml.lang.h:18 ../data/language-specs/ooc.lang.h:5
-#: ../data/language-specs/php.lang.h:8 ../data/language-specs/prolog.lang.h:10
-#: ../data/language-specs/python3.lang.h:7
-#: ../data/language-specs/python.lang.h:7 ../data/language-specs/ruby.lang.h:3
-#: ../data/language-specs/scala.lang.h:7 ../data/language-specs/sml.lang.h:8
-#: ../data/language-specs/texinfo.lang.h:4
-#: ../data/language-specs/verilog.lang.h:6
-msgid "Escaped Character"
-msgstr ""
-
-#: ../data/language-specs/asp.lang.h:2
-msgid "ASP"
-msgstr ""
-
-#. A function name (also: methods for classes)
-#: ../data/language-specs/asp.lang.h:7 ../data/language-specs/cg.lang.h:18
-#: ../data/language-specs/changelog.lang.h:9
-#: ../data/language-specs/css.lang.h:8 ../data/language-specs/def.lang.h:38
-#: ../data/language-specs/gap.lang.h:6 ../data/language-specs/gdb-log.lang.h:7
-#: ../data/language-specs/gtk-doc.lang.h:10
-#: ../data/language-specs/idl-exelis.lang.h:10
-#: ../data/language-specs/javascript.lang.h:9
-#: ../data/language-specs/lua.lang.h:8 ../data/language-specs/scheme.lang.h:7
-#: ../data/language-specs/scilab.lang.h:7 ../data/language-specs/sh.lang.h:4
-#: ../data/language-specs/sparql.lang.h:5 ../data/language-specs/sql.lang.h:7
-msgid "Function"
-msgstr "Funkcija"
-
-#. Operators: "+", "*", etc.
-#: ../data/language-specs/asp.lang.h:8 ../data/language-specs/bennugd.lang.h:6
-#: ../data/language-specs/c.lang.h:10 ../data/language-specs/cmake.lang.h:6
-#: ../data/language-specs/cobol.lang.h:10 ../data/language-specs/def.lang.h:45
-#: ../data/language-specs/erlang.lang.h:5
-#: ../data/language-specs/imagej.lang.h:9 ../data/language-specs/julia.lang.h:9
-#: ../data/language-specs/modelica.lang.h:5
-#: ../data/language-specs/nsis.lang.h:3 ../data/language-specs/octave.lang.h:5
-#: ../data/language-specs/perl.lang.h:12 ../data/language-specs/php.lang.h:14
-#: ../data/language-specs/prolog.lang.h:8
-#: ../data/language-specs/scala.lang.h:13
-#: ../data/language-specs/sparql.lang.h:15
-msgid "Operator"
-msgstr ""
-
-#: ../data/language-specs/asp.lang.h:9
-msgid "ASP Object"
-msgstr ""
-
-#: ../data/language-specs/asp.lang.h:10
-msgid "VBScript and ADO constants"
-msgstr ""
-
-#. A special constant like NULL in C or null in Java
-#: ../data/language-specs/asp.lang.h:12 ../data/language-specs/def.lang.h:32
-#: ../data/language-specs/vbnet.lang.h:8
-msgid "Special constant"
-msgstr ""
-
-#. A generic number constant
-#: ../data/language-specs/actionscript.lang.h:13
-#: ../data/language-specs/asp.lang.h:14 ../data/language-specs/boo.lang.h:14
-#: ../data/language-specs/cobol.lang.h:9 ../data/language-specs/def.lang.h:22
-#: ../data/language-specs/desktop.lang.h:8
-#: ../data/language-specs/forth.lang.h:8 ../data/language-specs/java.lang.h:15
-#: ../data/language-specs/j.lang.h:14 ../data/language-specs/julia.lang.h:5
-#: ../data/language-specs/netrexx.lang.h:16
-#: ../data/language-specs/prolog.lang.h:7
-#: ../data/language-specs/scala.lang.h:12 ../data/language-specs/vhdl.lang.h:11
-msgid "Number"
-msgstr "Broj"
-
-#: ../data/language-specs/automake.lang.h:2
-msgid "Automake"
-msgstr ""
-
-#: ../data/language-specs/automake.lang.h:3
-msgid "Automake Variable"
-msgstr ""
-
-#: ../data/language-specs/automake.lang.h:4
-msgid "Primary"
-msgstr ""
-
-#: ../data/language-specs/automake.lang.h:5
-msgid "Secondary"
-msgstr ""
-
-#: ../data/language-specs/automake.lang.h:6
-msgid "Prefix"
-msgstr ""
-
-#: ../data/language-specs/automake.lang.h:7
-msgid "Optional Target"
-msgstr ""
-
-#: ../data/language-specs/automake.lang.h:8
-msgid "Built-in Target"
-msgstr ""
-
-#: ../data/language-specs/automake.lang.h:9
-msgid "Other Keyword"
-msgstr ""
-
-#: ../data/language-specs/automake.lang.h:10
-msgid "Substitution"
-msgstr ""
-
-#: ../data/language-specs/awk.lang.h:1 ../data/language-specs/dosbatch.lang.h:1
-#: ../data/language-specs/javascript.lang.h:1
-#: ../data/language-specs/lua.lang.h:1 ../data/language-specs/m4.lang.h:1
-#: ../data/language-specs/perl.lang.h:1 ../data/language-specs/php.lang.h:1
-#: ../data/language-specs/python3.lang.h:1
-#: ../data/language-specs/python.lang.h:1 ../data/language-specs/ruby.lang.h:1
-#: ../data/language-specs/sh.lang.h:1 ../data/language-specs/tcl.lang.h:1
-msgid "Scripts"
-msgstr "Skripte"
-
-#: ../data/language-specs/awk.lang.h:2
-msgid "awk"
-msgstr ""
-
-#: ../data/language-specs/awk.lang.h:4
-msgid "Pattern"
-msgstr ""
-
-#: ../data/language-specs/awk.lang.h:5 ../data/language-specs/cmake.lang.h:8
-#: ../data/language-specs/cobol.lang.h:5
-#: ../data/language-specs/haskell.lang.h:5 ../data/language-specs/ini.lang.h:8
-#: ../data/language-specs/makefile.lang.h:3
-#: ../data/language-specs/nsis.lang.h:6 ../data/language-specs/octave.lang.h:14
-#: ../data/language-specs/perl.lang.h:13 ../data/language-specs/php.lang.h:5
-#: ../data/language-specs/pkgconfig.lang.h:3
-#: ../data/language-specs/prolog.lang.h:4
-#: ../data/language-specs/protobuf.lang.h:2
-#: ../data/language-specs/ruby.lang.h:22 ../data/language-specs/sh.lang.h:7
-#: ../data/language-specs/sparql.lang.h:14 ../data/language-specs/tcl.lang.h:3
-msgid "Variable"
-msgstr "Varijabla"
-
-#: ../data/language-specs/awk.lang.h:6 ../data/language-specs/boo.lang.h:15
-#: ../data/language-specs/glsl.lang.h:6 ../data/language-specs/go.lang.h:18
-#: ../data/language-specs/netrexx.lang.h:15
-#: ../data/language-specs/perl.lang.h:8
-#: ../data/language-specs/python3.lang.h:17
-#: ../data/language-specs/python.lang.h:18
-msgid "Builtin Function"
-msgstr ""
-
-#: ../data/language-specs/bennugd.lang.h:2
-msgid "BennuGD"
-msgstr ""
-
-#. Any variable name
-#: ../data/language-specs/bennugd.lang.h:5 ../data/language-specs/def.lang.h:36
-#: ../data/language-specs/php.lang.h:6
-msgid "Identifier"
-msgstr ""
-
-#. A floating point constant: 2.3e10
-#: ../data/language-specs/bennugd.lang.h:9 ../data/language-specs/cg.lang.h:12
-#: ../data/language-specs/c.lang.h:15 ../data/language-specs/def.lang.h:24
-#: ../data/language-specs/d.lang.h:11 ../data/language-specs/erlang.lang.h:9
-#: ../data/language-specs/go.lang.h:11
-#: ../data/language-specs/idl-exelis.lang.h:8
-#: ../data/language-specs/json.lang.h:9
-#: ../data/language-specs/nemerle.lang.h:12
-#: ../data/language-specs/ooc.lang.h:14 ../data/language-specs/php.lang.h:18
-#: ../data/language-specs/python3.lang.h:11
-#: ../data/language-specs/python.lang.h:12 ../data/language-specs/R.lang.h:10
-#: ../data/language-specs/ruby.lang.h:10
-msgid "Floating point number"
-msgstr ""
-
-#: ../data/language-specs/bennugd.lang.h:11 ../data/language-specs/cg.lang.h:15
-#: ../data/language-specs/c.lang.h:18 ../data/language-specs/csharp.lang.h:16
-#: ../data/language-specs/d.lang.h:15 ../data/language-specs/eiffel.lang.h:16
-#: ../data/language-specs/go.lang.h:15 ../data/language-specs/nemerle.lang.h:16
-#: ../data/language-specs/ooc.lang.h:17 ../data/language-specs/php.lang.h:21
-msgid "Hexadecimal number"
-msgstr ""
-
-#: ../data/language-specs/bibtex.lang.h:1
-#: ../data/language-specs/docbook.lang.h:1 ../data/language-specs/dtd.lang.h:1
-#: ../data/language-specs/gtk-doc.lang.h:1
-#: ../data/language-specs/haddock.lang.h:1 ../data/language-specs/html.lang.h:1
-#: ../data/language-specs/latex.lang.h:1
-#: ../data/language-specs/mallard.lang.h:1
-#: ../data/language-specs/markdown.lang.h:1
-#: ../data/language-specs/mediawiki.lang.h:1
-#: ../data/language-specs/mxml.lang.h:1 ../data/language-specs/t2t.lang.h:1
-#: ../data/language-specs/texinfo.lang.h:1 ../data/language-specs/xml.lang.h:1
-#: ../data/language-specs/xslt.lang.h:1
-#: ../gtksourceview/gtksourcecompletionitem.c:249
-#: ../gtksourceview/gtksourcegutterrenderertext.c:391
+#. (itstool) path: bibtex.lang/language@_section
+#. (itstool) path: docbook.lang/language@_section
+#. (itstool) path: dtd.lang/language@_section
+#. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: gtk-doc.lang/language@_section
+#. (itstool) path: haddock.lang/language@_section
+#. (itstool) path: html.lang/language@_section
+#. (itstool) path: jade.lang/language@_section
+#. (itstool) path: latex.lang/language@_section
+#. (itstool) path: mallard.lang/language@_section
+#. (itstool) path: markdown.lang/language@_section
+#. (itstool) path: mediawiki.lang/language@_section
+#. (itstool) path: mxml.lang/language@_section
+#. (itstool) path: rst.lang/language@_section
+#. (itstool) path: sweave.lang/language@_section
+#. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: texinfo.lang/language@_section
+#. (itstool) path: xml.lang/language@_section
+#. (itstool) path: xslt.lang/language@_section
+#: bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 gtk-doc.lang:24
+#: haddock.lang:23 html.lang:24 jade.lang:24 latex.lang:24 mallard.lang:22
+#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
+#: t2t.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
 msgid "Markup"
-msgstr "Markup"
-
-#: ../data/language-specs/bibtex.lang.h:2
-msgid "BibTeX"
-msgstr ""
-
-#: ../data/language-specs/bibtex.lang.h:3
-msgid "Entries"
-msgstr ""
-
-#: ../data/language-specs/bibtex.lang.h:4
-msgid "Field"
-msgstr ""
-
-#: ../data/language-specs/boo.lang.h:2
-msgid "Boo"
-msgstr ""
-
-#: ../data/language-specs/boo.lang.h:4 ../data/language-specs/python3.lang.h:5
-#: ../data/language-specs/python.lang.h:5
-msgid "Multiline string"
-msgstr ""
-
-#: ../data/language-specs/boo.lang.h:6
-#: ../data/language-specs/javascript.lang.h:14
-#: ../data/language-specs/perl.lang.h:16 ../data/language-specs/ruby.lang.h:25
-msgid "Regular Expression"
-msgstr ""
-
-#: ../data/language-specs/boo.lang.h:7 ../data/language-specs/sparql.lang.h:8
-#: ../data/language-specs/xml.lang.h:12 ../data/language-specs/xslt.lang.h:4
-msgid "Namespace"
-msgstr ""
-
-#: ../data/language-specs/boo.lang.h:9
-msgid "Definition"
-msgstr ""
-
-#: ../data/language-specs/boo.lang.h:11 ../data/language-specs/python3.lang.h:9
-#: ../data/language-specs/python.lang.h:10
-#: ../data/language-specs/ruby.lang.h:20
-msgid "Special Variable"
-msgstr ""
-
-#: ../data/language-specs/actionscript.lang.h:11
-#: ../data/language-specs/boo.lang.h:12 ../data/language-specs/csharp.lang.h:13
-#: ../data/language-specs/d.lang.h:9 ../data/language-specs/fsharp.lang.h:21
-#: ../data/language-specs/java.lang.h:13
-#: ../data/language-specs/javascript.lang.h:4
-#: ../data/language-specs/json.lang.h:5
-#: ../data/language-specs/nemerle.lang.h:10
-#: ../data/language-specs/objj.lang.h:9 ../data/language-specs/ooc.lang.h:12
-#: ../data/language-specs/php.lang.h:16 ../data/language-specs/vala.lang.h:9
-msgid "Null Value"
-msgstr ""
-
-#: ../data/language-specs/boo.lang.h:13 ../data/language-specs/desktop.lang.h:9
-#: ../data/language-specs/d.lang.h:10 ../data/language-specs/imagej.lang.h:4
-#: ../data/language-specs/julia.lang.h:6
-#: ../data/language-specs/libtool.lang.h:4
-#: ../data/language-specs/modelica.lang.h:9
-#: ../data/language-specs/objj.lang.h:3 ../data/language-specs/octave.lang.h:8
-#: ../data/language-specs/python3.lang.h:10
-#: ../data/language-specs/python.lang.h:11
-#: ../data/language-specs/scheme.lang.h:4
-#: ../data/language-specs/scilab.lang.h:8
-#: ../data/language-specs/sparql.lang.h:9
-msgid "Boolean"
-msgstr ""
-
-#: ../data/language-specs/cg.lang.h:2
-msgid "CG Shader Language"
-msgstr ""
-
-#. Any erroneous construct
-#: ../data/language-specs/actionscript.lang.h:4
-#: ../data/language-specs/cg.lang.h:4 ../data/language-specs/c.lang.h:22
-#: ../data/language-specs/cobol.lang.h:11
-#: ../data/language-specs/csharp.lang.h:4 ../data/language-specs/css.lang.h:3
-#: ../data/language-specs/def.lang.h:53 ../data/language-specs/d.lang.h:4
-#: ../data/language-specs/dot.lang.h:4 ../data/language-specs/go.lang.h:4
-#: ../data/language-specs/html.lang.h:8 ../data/language-specs/j.lang.h:7
-#: ../data/language-specs/json.lang.h:7 ../data/language-specs/nemerle.lang.h:4
-#: ../data/language-specs/ocaml.lang.h:20 ../data/language-specs/ooc.lang.h:4
-#: ../data/language-specs/opal.lang.h:6 ../data/language-specs/perl.lang.h:17
-#: ../data/language-specs/php.lang.h:4 ../data/language-specs/prolog.lang.h:9
-#: ../data/language-specs/scala.lang.h:3 ../data/language-specs/vala.lang.h:4
-#: ../data/language-specs/verilog.lang.h:7 ../data/language-specs/xml.lang.h:13
-msgid "Error"
-msgstr ""
-
-#: ../data/language-specs/cg.lang.h:6
-msgid "Bindings"
-msgstr ""
-
-#: ../data/language-specs/cg.lang.h:7 ../data/language-specs/c.lang.h:7
-#: ../data/language-specs/objj.lang.h:7
-msgid "Included File"
-msgstr ""
-
-#: ../data/language-specs/cg.lang.h:14 ../data/language-specs/c.lang.h:17
-#: ../data/language-specs/d.lang.h:14 ../data/language-specs/go.lang.h:14
-#: ../data/language-specs/nemerle.lang.h:15
-#: ../data/language-specs/ooc.lang.h:16 ../data/language-specs/php.lang.h:20
-msgid "Octal number"
-msgstr ""
-
-#: ../data/language-specs/cg.lang.h:17
-msgid "Swizzle operator"
-msgstr ""
-
-#. Translators: functions that are provided in the language
-#: ../data/language-specs/cg.lang.h:19 ../data/language-specs/erlang.lang.h:12
-#: ../data/language-specs/imagej.lang.h:3
-#: ../data/language-specs/matlab.lang.h:5
-#: ../data/language-specs/modelica.lang.h:14
-#: ../data/language-specs/octave.lang.h:16
-#: ../data/language-specs/ruby.lang.h:17
-msgid "Builtin"
-msgstr ""
-
-#. *
-#. * SECTION:language
-#. * @Short_description: Object representing a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
-#. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
-#.
-#: ../data/language-specs/changelog.lang.h:1
-#: ../data/language-specs/cmake.lang.h:1 ../data/language-specs/css.lang.h:1
-#: ../data/language-specs/desktop.lang.h:1 ../data/language-specs/diff.lang.h:1
-#: ../data/language-specs/dot.lang.h:1 ../data/language-specs/dpatch.lang.h:1
-#: ../data/language-specs/gdb-log.lang.h:1
-#: ../data/language-specs/gtkrc.lang.h:1 ../data/language-specs/ini.lang.h:1
-#: ../data/language-specs/json.lang.h:1 ../data/language-specs/libtool.lang.h:1
-#: ../data/language-specs/nsis.lang.h:1 ../data/language-specs/ocl.lang.h:1
-#: ../data/language-specs/pkgconfig.lang.h:1 ../data/language-specs/po.lang.h:1
-#: ../data/language-specs/protobuf.lang.h:1
-#: ../data/language-specs/puppet.lang.h:1
-#: ../data/language-specs/rpmspec.lang.h:1 ../data/language-specs/sh.lang.h:10
-#: ../data/language-specs/texinfo.lang.h:5 ../data/language-specs/yacc.lang.h:1
-#: ../gtksourceview/gtksourcelanguage.c:55
-msgid "Others"
-msgstr "Drugi"
-
-#: ../data/language-specs/changelog.lang.h:2
-msgid "ChangeLog"
-msgstr ""
-
-#: ../data/language-specs/changelog.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:14
-msgid "Date"
-msgstr ""
-
-#. Translators: the name of a person, not an object.
-#: ../data/language-specs/changelog.lang.h:5
-msgid "Name"
-msgstr ""
-
-#: ../data/language-specs/changelog.lang.h:6
-msgid "E-mail address"
-msgstr ""
-
-#: ../data/language-specs/changelog.lang.h:7
-msgid "File"
-msgstr ""
-
-#: ../data/language-specs/changelog.lang.h:8
-msgid "Bullet"
-msgstr ""
-
-#: ../data/language-specs/changelog.lang.h:10
-msgid "Release"
-msgstr ""
-
-#: ../data/language-specs/chdr.lang.h:2
-msgid "C/C++/ObjC Header"
-msgstr ""
-
-#: ../data/language-specs/c.lang.h:2
-msgid "C"
-msgstr "C"
-
-#: ../data/language-specs/c.lang.h:6 ../data/language-specs/cpp.lang.h:5
-#: ../data/language-specs/objc.lang.h:5 ../data/language-specs/opal.lang.h:5
-msgid "Common Defines"
-msgstr ""
-
-#. A character constant: 'c'
-#: ../data/language-specs/c.lang.h:8 ../data/language-specs/csharp.lang.h:7
-#: ../data/language-specs/def.lang.h:15 ../data/language-specs/erlang.lang.h:8
-#: ../data/language-specs/gap.lang.h:4 ../data/language-specs/go.lang.h:6
-#: ../data/language-specs/haskell.lang.h:10
-#: ../data/language-specs/java.lang.h:5 ../data/language-specs/julia.lang.h:4
-#: ../data/language-specs/nemerle.lang.h:6
-#: ../data/language-specs/netrexx.lang.h:5 ../data/language-specs/sml.lang.h:6
-#: ../data/language-specs/vhdl.lang.h:5
-msgid "Character"
-msgstr "Znak"
-
-#: ../data/language-specs/c.lang.h:13 ../data/language-specs/go.lang.h:9
-#: ../data/language-specs/verilog.lang.h:5
-msgid "printf Conversion"
-msgstr ""
-
-#: ../data/language-specs/c.lang.h:20
-msgid "Standard stream"
-msgstr ""
-
-#: ../data/language-specs/c.lang.h:21
-msgid "Signal name"
-msgstr ""
-
-#: ../data/language-specs/cmake.lang.h:2
-msgid "CMake"
-msgstr ""
-
-#: ../data/language-specs/cmake.lang.h:3
-msgid "Builtin Command"
-msgstr ""
-
-#: ../data/language-specs/cmake.lang.h:4 ../data/language-specs/glsl.lang.h:8
-msgid "Builtin Variable"
-msgstr ""
-
-#. Any constant
-#: ../data/language-specs/cmake.lang.h:5 ../data/language-specs/cobol.lang.h:7
-#: ../data/language-specs/def.lang.h:13 ../data/language-specs/gtk-doc.lang.h:8
-#: ../data/language-specs/libtool.lang.h:3
-#: ../data/language-specs/ruby.lang.h:18
-msgid "Constant"
-msgstr ""
-
-#: ../data/language-specs/cmake.lang.h:7
-msgid "Control Keyword"
-msgstr ""
-
-#: ../data/language-specs/cobol.lang.h:2
-msgid "Cobol"
-msgstr ""
-
-#. Any statement
-#: ../data/language-specs/cobol.lang.h:4 ../data/language-specs/def.lang.h:43
-msgid "Statement"
-msgstr ""
-
-#: ../data/language-specs/cpp.lang.h:2
-msgid "C++"
-msgstr "C++"
-
-#: ../data/language-specs/csharp.lang.h:2
-msgid "C#"
-msgstr "C#"
-
-#. Translators: this is a format that appears in the strings
-#: ../data/language-specs/csharp.lang.h:10 ../data/language-specs/po.lang.h:8
-msgid "String Format"
-msgstr "Oblik teksta"
-
-#: ../data/language-specs/css.lang.h:2
-msgid "CSS"
-msgstr ""
-
-#: ../data/language-specs/css.lang.h:4
-msgid "Others 2"
-msgstr "Ostali 2"
-
-#: ../data/language-specs/css.lang.h:6
-msgid "Color"
-msgstr ""
-
-#: ../data/language-specs/css.lang.h:7
-msgid "Others 3"
-msgstr "Ostali 3"
-
-#. Translator: it is a type of number
-#: ../data/language-specs/css.lang.h:10 ../data/language-specs/fcl.lang.h:7
-#: ../data/language-specs/fortran.lang.h:8 ../data/language-specs/gap.lang.h:7
-#: ../data/language-specs/gtkrc.lang.h:6
-#: ../data/language-specs/haskell.lang.h:13 ../data/language-specs/ini.lang.h:7
-#: ../data/language-specs/json.lang.h:8
-#: ../data/language-specs/modelica.lang.h:10
-#: ../data/language-specs/octave.lang.h:9
-#: ../data/language-specs/pascal.lang.h:6 ../data/language-specs/sml.lang.h:10
-#: ../data/language-specs/sql.lang.h:8
-msgid "Decimal"
-msgstr "Decimalni"
-
-#: ../data/language-specs/css.lang.h:11
-msgid "Dimension"
-msgstr ""
-
-#: ../data/language-specs/css.lang.h:12
-msgid "Known Property Value"
-msgstr ""
-
-#: ../data/language-specs/css.lang.h:13
-msgid "at-rules"
-msgstr ""
-
-#: ../data/language-specs/css.lang.h:15
-msgid "ID Selector"
-msgstr ""
-
-#: ../data/language-specs/css.lang.h:16
-msgid "Class Selector"
-msgstr ""
-
-#: ../data/language-specs/css.lang.h:17
-msgid "Tag Name Selector"
-msgstr ""
-
-#: ../data/language-specs/cuda.lang.h:2
-msgid "CUDA"
-msgstr ""
-
-#: ../data/language-specs/cuda.lang.h:5
-msgid "Global Functions"
-msgstr ""
-
-#: ../data/language-specs/cuda.lang.h:6
-msgid "Device Functions"
-msgstr ""
-
-#: ../data/language-specs/cuda.lang.h:7
-msgid "Global Variables"
-msgstr ""
-
-#: ../data/language-specs/def.lang.h:1
-msgid "Defaults"
-msgstr ""
-
-#. A shebang: #!/bin/sh
-#: ../data/language-specs/def.lang.h:5
-msgid "Shebang"
-msgstr ""
-
-#. A special comment containing documentation like in javadoc or
-#. gtk-doc
-#: ../data/language-specs/def.lang.h:8
-msgid "Documentation comment"
-msgstr ""
-
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "doc-comment"
-#: ../data/language-specs/def.lang.h:11
-msgid "Documentation comment element"
-msgstr ""
-
-#. This style doesn't map to anything since it must be used as an additional
-#. style for text which is already styled as a "string"
-#: ../data/language-specs/def.lang.h:20
-msgid "Special character (inside a string)"
-msgstr ""
-
-#. A base-N number: 0xFFFF
-#: ../data/language-specs/def.lang.h:28
-#: ../data/language-specs/python3.lang.h:13
-#: ../data/language-specs/python.lang.h:14
-#: ../data/language-specs/ruby.lang.h:12
-msgid "Base-N number"
-msgstr ""
-
-#. A complex number
-#: ../data/language-specs/def.lang.h:30
-#: ../data/language-specs/python3.lang.h:14
-#: ../data/language-specs/python.lang.h:15
-msgid "Complex number"
-msgstr ""
-
-#. A builtin name: like __import__, abs in Python
-#. (see http://docs.python.org/lib/built-in-funcs.html)
-#: ../data/language-specs/def.lang.h:41
-msgid "Built-in identifier"
-msgstr ""
-
-#. A primitive data type: int, long, char, etc.
-#: ../data/language-specs/def.lang.h:49
-#: ../data/language-specs/modelica.lang.h:7
-#: ../data/language-specs/octave.lang.h:6
-msgid "Data type"
-msgstr ""
-
-#. This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc..
-#: ../data/language-specs/def.lang.h:51
-msgid "Preprocessor directive"
-msgstr ""
-
-#. Reserved keywords: like "const" and "goto" in Java
-#: ../data/language-specs/def.lang.h:57
-msgid "Reserved keyword"
-msgstr ""
-
-#. Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX
-#: ../data/language-specs/def.lang.h:59
-msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr ""
-
-#. Text that stands out, HTML links, e-mail addresses, etc.
-#: ../data/language-specs/def.lang.h:61
-msgid "Underlined"
-msgstr ""
-
-#: ../data/language-specs/desktop.lang.h:2
-msgid ".desktop"
-msgstr ".desktop"
-
-#: ../data/language-specs/desktop.lang.h:3
-msgid "Group"
-msgstr "Grupa"
-
-#. Translators: "Key" here means key value, that is the left hand
-#. side in a myoption=something line in a .desktop file
-#: ../data/language-specs/desktop.lang.h:6 ../data/language-specs/json.lang.h:2
-msgid "Key"
-msgstr ""
-
-#: ../data/language-specs/desktop.lang.h:7
-msgid "Translation"
-msgstr ""
-
-#: ../data/language-specs/desktop.lang.h:10
-msgid "Exec parameter"
-msgstr ""
-
-#: ../data/language-specs/desktop.lang.h:11
-msgid "Encoding"
-msgstr "Kodiranje"
-
-#: ../data/language-specs/desktop.lang.h:12
-msgid "Main Category"
-msgstr ""
-
-#: ../data/language-specs/desktop.lang.h:13
-msgid "Additional Category"
-msgstr ""
-
-#: ../data/language-specs/desktop.lang.h:14
-msgid "Reserved Category"
-msgstr ""
-
-#: ../data/language-specs/diff.lang.h:2
-msgid "Diff"
-msgstr "Razlika"
-
-#: ../data/language-specs/diff.lang.h:3
-msgid "Added line"
-msgstr "Dodan redak"
-
-#. Others 2
-#: ../data/language-specs/diff.lang.h:5
-msgid "Removed line"
-msgstr "Obrisan redak"
-
-#. Others 3
-#: ../data/language-specs/diff.lang.h:7
-msgid "Changed line"
-msgstr "Promijenjena linija"
-
-#. Preprocessor
-#: ../data/language-specs/diff.lang.h:9
-msgid "Special case"
-msgstr "Posebni slučaj"
-
-#. String
-#: ../data/language-specs/diff.lang.h:11 ../data/language-specs/po.lang.h:4
-msgid "Location"
-msgstr "Smještaj"
-
-#. Keyword
-#: ../data/language-specs/diff.lang.h:13
-msgid "Ignore"
-msgstr ""
-
-#: ../data/language-specs/d.lang.h:2
-msgid "D"
-msgstr ""
-
-#: ../data/language-specs/d.lang.h:8
-msgid "Special Token"
-msgstr ""
-
-#: ../data/language-specs/d.lang.h:13 ../data/language-specs/nemerle.lang.h:14
-msgid "Binary number"
-msgstr ""
-
-#: ../data/language-specs/docbook.lang.h:2
-msgid "DocBook"
-msgstr ""
-
-#: ../data/language-specs/docbook.lang.h:3
-msgid "Header Elements"
-msgstr ""
-
-#: ../data/language-specs/docbook.lang.h:4
-msgid "Formatting Elements"
-msgstr ""
-
-#: ../data/language-specs/docbook.lang.h:5
-msgid "GUI Elements"
-msgstr ""
-
-#: ../data/language-specs/docbook.lang.h:6
-msgid "Structural Elements"
-msgstr ""
-
-#: ../data/language-specs/dosbatch.lang.h:2
-msgid "DOS Batch"
-msgstr ""
-
-#: ../data/language-specs/dosbatch.lang.h:6
-#: ../data/language-specs/latex.lang.h:8
-msgid "Command"
-msgstr ""
-
-#: ../data/language-specs/dot.lang.h:2
-msgid "Graphviz Dot"
-msgstr ""
-
-#: ../data/language-specs/dot.lang.h:6 ../data/language-specs/xml.lang.h:8
-msgid "Attribute name"
-msgstr ""
-
-#: ../data/language-specs/dpatch.lang.h:2
-msgid "DPatch"
-msgstr ""
-
-#: ../data/language-specs/dpatch.lang.h:3
-msgid "patch-start"
-msgstr ""
-
-#: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
-msgid "DTD"
-msgstr "DTD"
-
-#: ../data/language-specs/dtd.lang.h:3
-msgid "entity"
-msgstr ""
-
-#: ../data/language-specs/dtd.lang.h:4
-msgid "decl"
-msgstr ""
-
-#: ../data/language-specs/dtd.lang.h:5
-msgid "error"
-msgstr ""
-
-#: ../data/language-specs/dtd.lang.h:6
-msgid "quoted-value"
-msgstr ""
-
-#: ../data/language-specs/eiffel.lang.h:2
-msgid "Eiffel"
-msgstr ""
-
-#: ../data/language-specs/eiffel.lang.h:5
-msgid "Debug"
-msgstr ""
-
-#: ../data/language-specs/eiffel.lang.h:6
-msgid "Assertion"
-msgstr ""
-
-#: ../data/language-specs/eiffel.lang.h:9
-msgid "Design by Contract"
-msgstr ""
-
-#: ../data/language-specs/eiffel.lang.h:10
-msgid "Exception Handling"
-msgstr ""
-
-#: ../data/language-specs/eiffel.lang.h:11
-#: ../data/language-specs/ruby.lang.h:21
-msgid "Predefined Variable"
-msgstr ""
-
-#: ../data/language-specs/eiffel.lang.h:13
-msgid "Void Value"
-msgstr ""
-
-#: ../data/language-specs/eiffel.lang.h:14
-#: ../data/language-specs/javascript.lang.h:6
-#: ../data/language-specs/json.lang.h:6
-msgid "Boolean Value"
-msgstr "Boolean vrijednost"
-
-#: ../data/language-specs/erlang.lang.h:2
-msgid "Erlang"
-msgstr ""
-
-#: ../data/language-specs/erlang.lang.h:6
-msgid "Atom"
-msgstr ""
-
-#: ../data/language-specs/erlang.lang.h:11
-#: ../data/language-specs/fsharp.lang.h:4
-#: ../data/language-specs/modelica.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:5
-#: ../data/language-specs/octave.lang.h:11 ../data/language-specs/sml.lang.h:9
-#: ../data/language-specs/verilog.lang.h:14
-#: ../data/language-specs/vhdl.lang.h:9
-msgid "Base-N Integer"
-msgstr "Base-N prirodni broj"
-
-#: ../data/language-specs/erlang.lang.h:13
-#: ../data/language-specs/forth.lang.h:11
-#: ../data/language-specs/systemverilog.lang.h:3
-#: ../data/language-specs/verilog.lang.h:8
-msgid "Compiler Directive"
-msgstr ""
-
-#: ../data/language-specs/fcl.lang.h:1 ../data/language-specs/gap.lang.h:1
-#: ../data/language-specs/idl-exelis.lang.h:1
-#: ../data/language-specs/imagej.lang.h:1 ../data/language-specs/julia.lang.h:1
-#: ../data/language-specs/matlab.lang.h:1
-#: ../data/language-specs/modelica.lang.h:1
-#: ../data/language-specs/octave.lang.h:1 ../data/language-specs/R.lang.h:1
-#: ../data/language-specs/scilab.lang.h:1
-msgid "Scientific"
-msgstr ""
-
-#: ../data/language-specs/fcl.lang.h:2
-msgid "FCL"
-msgstr ""
-
-#: ../data/language-specs/fcl.lang.h:4 ../data/language-specs/fortran.lang.h:4
-#: ../data/language-specs/ini.lang.h:4
-#: ../data/language-specs/modelica.lang.h:11
-#: ../data/language-specs/octave.lang.h:10
-#: ../data/language-specs/scilab.lang.h:4 ../data/language-specs/sql.lang.h:4
-msgid "Floating Point"
-msgstr "Pomični zarez"
-
-#: ../data/language-specs/fcl.lang.h:6
-msgid "Block"
-msgstr ""
-
-#: ../data/language-specs/fcl.lang.h:8 ../data/language-specs/octave.lang.h:15
-#: ../data/language-specs/scilab.lang.h:9
-msgid "Reserved Constant"
-msgstr ""
-
-#: ../data/language-specs/forth.lang.h:2
-msgid "Forth"
-msgstr ""
-
-#: ../data/language-specs/forth.lang.h:9
-msgid "Debug Code"
-msgstr ""
-
-#: ../data/language-specs/forth.lang.h:10
-msgid "Error Text"
-msgstr ""
-
-#: ../data/language-specs/fortran.lang.h:2
-msgid "Fortran 95"
-msgstr ""
-
-#: ../data/language-specs/fortran.lang.h:6
-msgid "Intrinsic function"
-msgstr ""
-
-#: ../data/language-specs/fortran.lang.h:7
-msgid "BOZ Literal"
-msgstr ""
-
-#: ../data/language-specs/fsharp.lang.h:2
-msgid "F#"
-msgstr ""
-
-#: ../data/language-specs/fsharp.lang.h:5 ../data/language-specs/ocaml.lang.h:6
-#: ../data/language-specs/sml.lang.h:12
-msgid "Floating Point number"
-msgstr ""
-
-#: ../data/language-specs/fsharp.lang.h:9
-#: ../data/language-specs/ocaml.lang.h:10
-msgid "Type, module or object keyword"
-msgstr ""
-
-#: ../data/language-specs/fsharp.lang.h:10
-#: ../data/language-specs/ocaml.lang.h:11
-msgid "Builtin-function keyword"
-msgstr ""
-
-#: ../data/language-specs/fsharp.lang.h:12
-#: ../data/language-specs/ocaml.lang.h:13
-msgid "Labeled argument"
-msgstr ""
-
-#: ../data/language-specs/fsharp.lang.h:13
-#: ../data/language-specs/ocaml.lang.h:14
-msgid "Polymorphic Variant"
-msgstr ""
-
-#: ../data/language-specs/fsharp.lang.h:14
-#: ../data/language-specs/ocaml.lang.h:15
-msgid "Variant Constructor"
-msgstr ""
-
-#. Translators: this is a specific variable called Type
-#: ../data/language-specs/fsharp.lang.h:16
-#: ../data/language-specs/ocaml.lang.h:16
-msgid "Type Variable"
-msgstr ""
-
-#: ../data/language-specs/fsharp.lang.h:17
-#: ../data/language-specs/ocaml.lang.h:17
-msgid "Module Path"
-msgstr ""
-
-#: ../data/language-specs/gap.lang.h:2
-msgid "GAP"
-msgstr ""
-
-#: ../data/language-specs/gdb-log.lang.h:2
-msgid "GDB Log"
-msgstr ""
-
-#: ../data/language-specs/gdb-log.lang.h:3
-msgid "Thread Action"
-msgstr ""
-
-#: ../data/language-specs/gdb-log.lang.h:4
-msgid "Thread Header"
-msgstr ""
-
-#: ../data/language-specs/gdb-log.lang.h:5
-msgid "Frame Number"
-msgstr ""
-
-#: ../data/language-specs/gdb-log.lang.h:6
-msgid "Address"
-msgstr ""
-
-#: ../data/language-specs/gdb-log.lang.h:9
-msgid "Filename"
-msgstr ""
-
-#: ../data/language-specs/gdb-log.lang.h:10
-msgid "Optimized Out"
-msgstr ""
-
-#: ../data/language-specs/gdb-log.lang.h:11
-msgid "Incomplete Sequence"
-msgstr ""
-
-#: ../data/language-specs/gdb-log.lang.h:12
-msgid "Prompt"
-msgstr ""
-
-#: ../data/language-specs/glsl.lang.h:2
-msgid "OpenGL Shading Language"
-msgstr ""
-
-#: ../data/language-specs/glsl.lang.h:7 ../data/language-specs/go.lang.h:17
-#: ../data/language-specs/python3.lang.h:15
-#: ../data/language-specs/python.lang.h:16
-msgid "Builtin Constant"
-msgstr ""
-
-#: ../data/language-specs/glsl.lang.h:9
-msgid "Reserved Keywords"
-msgstr ""
-
-#: ../data/language-specs/go.lang.h:2
-msgid "Go"
-msgstr ""
-
-#: ../data/language-specs/gtk-doc.lang.h:2
-msgid "gtk-doc"
-msgstr ""
-
-#: ../data/language-specs/gtk-doc.lang.h:3
-msgid "Inline Documentation Section"
-msgstr ""
-
-#: ../data/language-specs/gtk-doc.lang.h:4
-msgid "Function Name"
-msgstr ""
-
-#: ../data/language-specs/gtk-doc.lang.h:5
-msgid "Signal Name"
-msgstr ""
-
-#: ../data/language-specs/gtk-doc.lang.h:6
-msgid "Property Name"
-msgstr ""
-
-#: ../data/language-specs/gtk-doc.lang.h:7
-msgid "Parameter"
-msgstr ""
-
-#: ../data/language-specs/bluespec.lang.h:8
-#: ../data/language-specs/gtk-doc.lang.h:9
-#: ../data/language-specs/julia.lang.h:15
-#: ../data/language-specs/systemverilog.lang.h:6
-#: ../data/language-specs/verilog.lang.h:13
-#: ../data/language-specs/vhdl.lang.h:7
-msgid "Type"
-msgstr ""
-
-#: ../data/language-specs/gtk-doc.lang.h:11
-msgid "Return"
-msgstr ""
-
-#: ../data/language-specs/gtk-doc.lang.h:12
-msgid "Since"
-msgstr ""
-
-#: ../data/language-specs/gtk-doc.lang.h:13
-msgid "Deprecated"
-msgstr ""
-
-#: ../data/language-specs/gtkrc.lang.h:2
-msgid "GtkRC"
-msgstr ""
-
-#: ../data/language-specs/gtkrc.lang.h:8
-msgid "Widget State"
-msgstr ""
-
-#: ../data/language-specs/gtkrc.lang.h:9
-msgid "Include directive"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:2
-msgid "Haddock"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:3
-msgid "Inline Haddock Section"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:4
-msgid "Haddock Directive"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:5
-msgid "Hyperlinked Identifier"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:6
-msgid "Hyperlinked Module Name"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:7
-msgid "Escape"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:8
-#: ../data/language-specs/markdown.lang.h:13
-msgid "Emphasis"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:9
-msgid "Monospace"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:10
-msgid "Code Block"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:11
-msgid "Header Property"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:12
-msgid "Itemized list"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:13
-msgid "Enumerated list"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:14
-msgid "Definition list"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:15
-#: ../data/language-specs/markdown.lang.h:8
-#: ../data/language-specs/mediawiki.lang.h:6
-msgid "URL"
-msgstr ""
-
-#: ../data/language-specs/haddock.lang.h:16
-#: ../data/language-specs/t2t.lang.h:13
-msgid "Anchor"
-msgstr ""
-
-#: ../data/language-specs/haskell.lang.h:2
-msgid "Haskell"
-msgstr ""
-
-#: ../data/language-specs/haskell.lang.h:6
-#: ../data/language-specs/ruby.lang.h:19
-msgid "Symbol"
-msgstr ""
-
-#: ../data/language-specs/haskell.lang.h:12
-msgid "Float"
-msgstr ""
-
-#: ../data/language-specs/haskell.lang.h:14
-msgid "Octal"
-msgstr ""
-
-#: ../data/language-specs/haskell.lang.h:15
-msgid "Hex"
-msgstr ""
-
-#: ../data/language-specs/haskell-literate.lang.h:2
-msgid "Literate Haskell"
-msgstr ""
-
-#: ../data/language-specs/html.lang.h:2
-msgid "HTML"
-msgstr "HTML"
-
-#: ../data/language-specs/html.lang.h:4 ../data/language-specs/xml.lang.h:11
-msgid "Tag"
 msgstr "Oznaka"
 
-#: ../data/language-specs/html.lang.h:5
-msgid "Attribute Name"
-msgstr ""
-
-#: ../data/language-specs/html.lang.h:6
-#: ../data/language-specs/markdown.lang.h:11
-msgid "Attribute Value"
-msgstr ""
-
-#: ../data/language-specs/idl.lang.h:2
-msgid "IDL"
-msgstr "IDL"
-
-#: ../data/language-specs/imagej.lang.h:2
-msgid "ImageJ"
-msgstr ""
-
-#: ../data/language-specs/imagej.lang.h:5
-msgid "Commands"
-msgstr ""
-
-#: ../data/language-specs/imagej.lang.h:6
-#: ../data/language-specs/octave.lang.h:7
-msgid "Storage Type"
-msgstr ""
-
-#: ../data/language-specs/imagej.lang.h:7
-msgid "Escaped Characters"
-msgstr ""
-
-#: ../data/language-specs/ini.lang.h:2
-msgid ".ini"
-msgstr ""
-
-#: ../data/language-specs/java.lang.h:2
-msgid "Java"
-msgstr "Java"
-
-#. Translators: refered to some specific keywords of the language that
-#. allow to get external functionalities
-#: ../data/language-specs/actionscript.lang.h:6
-#: ../data/language-specs/java.lang.h:8 ../data/language-specs/ooc.lang.h:7
-#: ../data/language-specs/scala.lang.h:4
-msgid "External"
-msgstr ""
-
-#: ../data/language-specs/actionscript.lang.h:7
-#: ../data/language-specs/java.lang.h:9 ../data/language-specs/ooc.lang.h:8
-#: ../data/language-specs/scala.lang.h:8
-msgid "Declaration"
-msgstr ""
-
-#: ../data/language-specs/actionscript.lang.h:9
-#: ../data/language-specs/java.lang.h:11 ../data/language-specs/ooc.lang.h:10
-msgid "Scope Declaration"
-msgstr ""
-
-#: ../data/language-specs/actionscript.lang.h:14
-#: ../data/language-specs/java.lang.h:16
-#: ../data/language-specs/javascript.lang.h:12
-#: ../data/language-specs/ooc.lang.h:18
-msgid "Future Reserved Keywords"
-msgstr ""
-
-#: ../data/language-specs/javascript.lang.h:2
-msgid "JavaScript"
-msgstr ""
-
-#: ../data/language-specs/javascript.lang.h:5
-msgid "Undefined Value"
-msgstr ""
-
-#: ../data/language-specs/javascript.lang.h:10
-msgid "Properties"
-msgstr ""
-
-#: ../data/language-specs/javascript.lang.h:11
-msgid "Constructors"
-msgstr ""
-
-#: ../data/language-specs/latex.lang.h:2
-msgid "LaTeX"
-msgstr "LaTeX"
-
-#: ../data/language-specs/latex.lang.h:4
-msgid "Math Mode"
-msgstr ""
-
-#: ../data/language-specs/latex.lang.h:5
-msgid "Inline Math Mode"
-msgstr ""
-
-#: ../data/language-specs/latex.lang.h:6
-msgid "math-bound"
-msgstr ""
-
-#: ../data/language-specs/latex.lang.h:7
-#: ../data/language-specs/texinfo.lang.h:11
-msgid "Include"
-msgstr "Uključi"
-
-#: ../data/language-specs/latex.lang.h:9 ../data/language-specs/t2t.lang.h:16
-msgid "Verbatim"
-msgstr ""
-
-#: ../data/language-specs/libtool.lang.h:2
-msgid "libtool"
-msgstr ""
-
-#: ../data/language-specs/lua.lang.h:2
-msgid "Lua"
-msgstr ""
-
-#: ../data/language-specs/lua.lang.h:7
-msgid "Reserved Identifier"
-msgstr ""
-
-#: ../data/language-specs/lua.lang.h:9 ../data/language-specs/ruby.lang.h:8
-msgid "Nil Constant"
-msgstr ""
-
-#: ../data/language-specs/m4.lang.h:2
-msgid "m4"
-msgstr ""
-
-#: ../data/language-specs/m4.lang.h:3
-msgid "m4-comment"
-msgstr ""
-
-#: ../data/language-specs/m4.lang.h:4
-msgid "m4 Macro"
-msgstr ""
-
-#: ../data/language-specs/m4.lang.h:5
-msgid "Autoconf Macro"
-msgstr ""
-
-#: ../data/language-specs/m4.lang.h:6
-msgid "Obsolete Autoconf Macro"
-msgstr ""
-
-#: ../data/language-specs/makefile.lang.h:2
-msgid "Makefile"
-msgstr ""
-
-#: ../data/language-specs/makefile.lang.h:4
-msgid "Assignment Right Hand Side"
-msgstr ""
-
-#: ../data/language-specs/makefile.lang.h:5
-msgid "Assignment Left Hand Side"
-msgstr ""
-
-#: ../data/language-specs/makefile.lang.h:6
-msgid "targets"
-msgstr ""
-
-#: ../data/language-specs/makefile.lang.h:7
-msgid "prereq"
-msgstr ""
-
-#: ../data/language-specs/makefile.lang.h:8
-msgid "command"
-msgstr ""
-
-#. Translators: Trailing Tabs refers to tabulation characters present at
-#. the end of the line
-#: ../data/language-specs/makefile.lang.h:11
-msgid "Trailing Tab"
-msgstr ""
-
-#: ../data/language-specs/makefile.lang.h:12
-msgid "function"
-msgstr ""
-
-#. FIXME make it better names, and make them translatable
-#: ../data/language-specs/makefile.lang.h:13
-#: ../data/language-specs/yacc.lang.h:4
-msgid "keyword"
-msgstr ""
-
-#: ../data/language-specs/mallard.lang.h:2
-msgid "Mallard"
-msgstr ""
-
-#: ../data/language-specs/mallard.lang.h:3
-msgid "Page Elements"
-msgstr ""
-
-#: ../data/language-specs/mallard.lang.h:4
-msgid "Section Elements"
-msgstr ""
-
-#: ../data/language-specs/mallard.lang.h:5
-msgid "Block Elements"
-msgstr ""
-
-#: ../data/language-specs/mallard.lang.h:6
-msgid "Inline Elements"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:2
-msgid "Markdown"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:3
-#: ../data/language-specs/rpmspec.lang.h:4 ../data/language-specs/t2t.lang.h:6
-msgid "Header"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:4
-msgid "Horizontal Rule"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:5
-msgid "List Marker"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:6
-msgid "Code"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:7
-msgid "Blockquote Marker"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:9
-msgid "Link Text"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:10
-#: ../gtksourceview/gtksourcecompletionitem.c:236
-msgid "Label"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:12
-msgid "Image Marker"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:14
-#: ../data/language-specs/mediawiki.lang.h:3
-msgid "Strong Emphasis"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:15
-msgid "Backslash Escape"
-msgstr ""
-
-#: ../data/language-specs/markdown.lang.h:16
-msgid "Line Break"
-msgstr ""
-
-#: ../data/language-specs/matlab.lang.h:2
-msgid "Matlab"
-msgstr ""
-
-#: ../data/language-specs/nemerle.lang.h:2
-msgid "Nemerle"
-msgstr ""
-
-#: ../data/language-specs/nsis.lang.h:2
-msgid "NSIS"
-msgstr ""
-
-#: ../data/language-specs/objc.lang.h:2
-msgid "Objective-C"
-msgstr ""
-
-#: ../data/language-specs/objj.lang.h:2
-msgid "Objective-J"
-msgstr ""
-
-#: ../data/language-specs/ocaml.lang.h:2
-msgid "Objective Caml"
-msgstr ""
-
-#: ../data/language-specs/ocaml.lang.h:4
-msgid "Ocamldoc Comments"
-msgstr ""
-
-#: ../data/language-specs/ocaml.lang.h:21
-msgid "Standard Modules"
-msgstr ""
-
-#: ../data/language-specs/ocl.lang.h:2
-msgid "OCL"
-msgstr ""
-
-#: ../data/language-specs/ocl.lang.h:6
-msgid "Type Operators"
-msgstr ""
-
-#: ../data/language-specs/ocl.lang.h:8
-msgid "Operation operator"
-msgstr ""
-
-#: ../data/language-specs/octave.lang.h:2
-msgid "Octave"
-msgstr ""
-
-#: ../data/language-specs/octave.lang.h:12
-msgid "Package Manager"
-msgstr ""
-
-#: ../data/language-specs/ooc.lang.h:2
-msgid "OOC"
-msgstr ""
-
-#: ../data/language-specs/opal.lang.h:2
-msgid "Opal"
-msgstr ""
-
-#: ../data/language-specs/opal.lang.h:3 ../data/language-specs/python3.lang.h:3
-#: ../data/language-specs/python.lang.h:3
-msgid "Module Handler"
-msgstr "Rukovatelj modula"
-
-#: ../data/language-specs/opal.lang.h:12
-msgid "Keysymbol"
-msgstr ""
-
-#: ../data/language-specs/opencl.lang.h:2
-msgid "OpenCL"
-msgstr ""
-
-#: ../data/language-specs/opencl.lang.h:5
-msgid "Global Function"
-msgstr ""
-
-#: ../data/language-specs/opencl.lang.h:6
-msgid "Device Function"
-msgstr ""
-
-#: ../data/language-specs/opencl.lang.h:7
-msgid "Device Cast"
-msgstr ""
-
-#: ../data/language-specs/opencl.lang.h:8
-msgid "OpenCL Constant"
-msgstr ""
-
-#: ../data/language-specs/opencl.lang.h:9
-msgid "Global Variable"
-msgstr ""
-
-#: ../data/language-specs/pascal.lang.h:2
-msgid "Pascal"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:2
-msgid "Perl"
-msgstr "Perl"
-
-#: ../data/language-specs/perl.lang.h:4
-msgid "Line Directive"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:5
-msgid "Include Statement"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:9 ../data/language-specs/php.lang.h:10
-#: ../data/language-specs/ruby.lang.h:23
-msgid "Heredoc"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:10 ../data/language-specs/php.lang.h:11
-#: ../data/language-specs/ruby.lang.h:24 ../data/language-specs/sh.lang.h:12
-msgid "Heredoc Bound"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:11
-msgid "System Command"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:14
-msgid "File Descriptor"
-msgstr ""
-
-#: ../data/language-specs/j.lang.h:6 ../data/language-specs/perl.lang.h:15
-msgid "Control"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:18
-msgid "POD"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:19
-msgid "POD Escape"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:20
-msgid "POD keyword"
-msgstr ""
-
-#: ../data/language-specs/perl.lang.h:21
-msgid "POD heading"
-msgstr ""
-
-#: ../data/language-specs/php.lang.h:2
-msgid "PHP"
-msgstr "PHP"
-
-#: ../data/language-specs/php.lang.h:13
-msgid "Common Function"
-msgstr ""
-
-#: ../data/language-specs/pkgconfig.lang.h:2
-msgid "pkg-config"
-msgstr ""
-
-#: ../data/language-specs/pkgconfig.lang.h:4
-msgid "Package Info"
-msgstr ""
-
-#: ../data/language-specs/po.lang.h:2
+#. (itstool) path: cg.lang/language@_name
+#: cg.lang:23
+msgid "CG Shader Language"
+msgstr "CG Shader jezik"
+
+#. (itstool) path: changelog.lang/language@_section
+#. (itstool) path: cmake.lang/language@_section
+#. (itstool) path: css.lang/language@_section
+#. (itstool) path: csv.lang/language@_section
+#. (itstool) path: desktop.lang/language@_section
+#. (itstool) path: diff.lang/language@_section
+#. (itstool) path: dot.lang/language@_section
+#. (itstool) path: dpatch.lang/language@_section
+#. (itstool) path: gdb-log.lang/language@_section
+#. (itstool) path: gtkrc.lang/language@_section
+#. (itstool) path: ini.lang/language@_section
+#. (itstool) path: json.lang/language@_section
+#. (itstool) path: libtool.lang/language@_section
+#. (itstool) path: logcat.lang/language@_section
+#. (itstool) path: nsis.lang/language@_section
+#. (itstool) path: ocl.lang/language@_section
+#. (itstool) path: pkgconfig.lang/language@_section
+#. (itstool) path: po.lang/language@_section
+#. (itstool) path: protobuf.lang/language@_section
+#. (itstool) path: puppet.lang/language@_section
+#. (itstool) path: rpmspec.lang/language@_section
+#. (itstool) path: yacc.lang/language@_section
+#. (itstool) path: yaml.lang/language@_section
+#: changelog.lang:24 cmake.lang:23 css.lang:38 csv.lang:23 desktop.lang:24
+#: diff.lang:23 dot.lang:23 dpatch.lang:23 gdb-log.lang:18 gtkrc.lang:24
+#: ini.lang:22 json.lang:29 libtool.lang:23 logcat.lang:23 nsis.lang:23
+#: ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21 puppet.lang:23
+#: rpmspec.lang:24 yacc.lang:23 yaml.lang:21
+msgid "Other"
+msgstr "Ostalo"
+
+#. (itstool) path: chdr.lang/language@_name
+#: chdr.lang:24
+msgid "C/ObjC Header"
+msgstr "C/ObjC zaglavlje"
+
+#. (itstool) path: cpphdr.lang/language@_name
+#: cpphdr.lang:24
+msgid "C++ Header"
+msgstr "C++ zaglavlje"
+
+#. (itstool) path: dosbatch.lang/language@_name
+#: dosbatch.lang:23
+msgid "DOS Batch"
+msgstr "DOS Batch"
+
+#. (itstool) path: dtl.lang/language@_name
+#: dtl.lang:25
+msgid "Django Template"
+msgstr "Django predložak"
+
+#. (itstool) path: fcl.lang/language@_section
+#. (itstool) path: gap.lang/language@_section
+#. (itstool) path: idl-exelis.lang/language@_section
+#. (itstool) path: imagej.lang/language@_section
+#. (itstool) path: julia.lang/language@_section
+#. (itstool) path: matlab.lang/language@_section
+#. (itstool) path: maxima.lang/language@_section
+#. (itstool) path: modelica.lang/language@_section
+#. (itstool) path: octave.lang/language@_section
+#. (itstool) path: R.lang/language@_section
+#. (itstool) path: scilab.lang/language@_section
+#: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
+#: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
+#: scilab.lang:23
+msgid "Scientific"
+msgstr "Znanstveni"
+
+#. (itstool) path: gdb-log.lang/language@_name
+#: gdb-log.lang:18
+msgid "GDB Log"
+msgstr "GDB zapis"
+
+#. (itstool) path: glsl.lang/language@_name
+#: glsl.lang:30
+msgid "OpenGL Shading Language"
+msgstr "OpenGL Shading jezik"
+
+#. (itstool) path: llvm.lang/language@_name
+#: llvm.lang:22
+msgid "LLVM IR"
+msgstr "LLVM IR"
+
+#. (itstool) path: po.lang/language@_name
+#: po.lang:23
 msgid "gettext translation"
-msgstr "Prijevod gettext"
+msgstr "gettext prijevod"
 
-#: ../data/language-specs/po.lang.h:6
-msgid "Fuzzy"
-msgstr ""
-
-#: ../data/language-specs/prolog.lang.h:2
-msgid "Prolog"
-msgstr ""
-
-#: ../data/language-specs/python.lang.h:2
-msgid "Python"
-msgstr "Python"
-
-#: ../data/language-specs/python3.lang.h:8
-#: ../data/language-specs/python.lang.h:8
-msgid "Format"
-msgstr "Oblikovanje"
-
-#: ../data/language-specs/python.lang.h:9
-msgid "string-conversion"
-msgstr ""
-
-#: ../data/language-specs/python3.lang.h:16
-#: ../data/language-specs/python.lang.h:17
-msgid "Builtin Object"
-msgstr ""
-
-#: ../data/language-specs/python3.lang.h:2
-msgid "Python 3"
-msgstr ""
-
-#: ../data/language-specs/R.lang.h:2
-msgid "R"
-msgstr ""
-
-#: ../data/language-specs/R.lang.h:4
-msgid "Reserved Class"
-msgstr ""
-
-#: ../data/language-specs/R.lang.h:5
-msgid "Assignment Operator"
-msgstr ""
-
-#: ../data/language-specs/R.lang.h:6
-msgid "Delimiter"
-msgstr ""
-
-#: ../data/language-specs/julia.lang.h:8 ../data/language-specs/R.lang.h:7
-#: ../data/language-specs/scala.lang.h:11
-msgid "Special Constant"
-msgstr ""
-
-#: ../data/language-specs/R.lang.h:9 ../data/language-specs/verilog.lang.h:16
-msgid "Integer Number"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:2
+#. (itstool) path: rpmspec.lang/language@_name
+#: rpmspec.lang:24
 msgid "RPM spec"
-msgstr ""
+msgstr "RPM spec"
 
-#: ../data/language-specs/rpmspec.lang.h:3
-msgid "Define"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:5 ../data/language-specs/t2t.lang.h:7
-msgid "Section"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:6
-msgid "Spec Macro"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:7
-msgid "Directory Macro"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:8
-msgid "Command Macro"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:9
-msgid "Conditional Macro"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:10
-msgid "Other Macro"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:11
-msgid "Flow Conditional"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:12
-msgid "RPM Variable"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:13
-msgid "Switch"
-msgstr ""
-
-#: ../data/language-specs/rpmspec.lang.h:15
-msgid "Email"
-msgstr ""
-
-#: ../data/language-specs/ruby.lang.h:2
-msgid "Ruby"
-msgstr ""
-
-#: ../data/language-specs/ruby.lang.h:5
-msgid "Attribute Definition"
-msgstr ""
-
-#: ../data/language-specs/ruby.lang.h:6
-msgid "Module handler"
-msgstr ""
-
-#: ../data/language-specs/ruby.lang.h:13
-msgid "Numeric literal"
-msgstr ""
-
-#: ../data/language-specs/scheme.lang.h:2
-msgid "Scheme"
-msgstr ""
-
-#: ../data/language-specs/scilab.lang.h:2
-msgid "Scilab"
-msgstr ""
-
-#: ../data/language-specs/sh.lang.h:2
-msgid "sh"
-msgstr ""
-
-#. FIXME: need to sort out proper styles for variables
-#: ../data/language-specs/sh.lang.h:9
-msgid "Variable Definition"
-msgstr ""
-
-#: ../data/language-specs/sh.lang.h:11
-msgid "Common Commands"
-msgstr ""
-
-#: ../data/language-specs/sh.lang.h:13
-msgid "Subshell"
-msgstr ""
-
-#: ../data/language-specs/sml.lang.h:2
-msgid "Standard ML"
-msgstr ""
-
-#: ../data/language-specs/sml.lang.h:13
-msgid "Module name, Variant, etc"
-msgstr ""
-
-#: ../data/language-specs/sparql.lang.h:2
-msgid "SPARQL"
-msgstr ""
-
-#: ../data/language-specs/sparql.lang.h:3
-msgid "Class"
-msgstr ""
-
-#: ../data/language-specs/sparql.lang.h:6
-msgid "Individual"
-msgstr ""
-
-#: ../data/language-specs/ruby.lang.h:15
-#: ../data/language-specs/sparql.lang.h:10
-msgid "Literal"
-msgstr ""
-
-#: ../data/language-specs/sparql.lang.h:11
-msgid "Predicate"
-msgstr ""
-
-#: ../data/language-specs/sparql.lang.h:12
-msgid "QName"
-msgstr ""
-
-#: ../data/language-specs/sparql.lang.h:13
-msgid "IRI"
-msgstr ""
-
-#: ../data/language-specs/sql.lang.h:2
-msgid "SQL"
-msgstr "SQL"
-
-#: ../data/language-specs/sql.lang.h:10
-msgid "No idea what it is"
-msgstr ""
-
-#: ../data/language-specs/systemverilog.lang.h:2
-msgid "SystemVerilog"
-msgstr ""
-
-#: ../data/language-specs/bluespec.lang.h:3
-#: ../data/language-specs/systemverilog.lang.h:4
-msgid "System Task"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:2
-msgid "txt2tags"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:4
-msgid "Option"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:5
-msgid "Option Name"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:8
-msgid "Section 1"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:9
-msgid "Section 2"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:10
-msgid "Section 3"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:11
-msgid "Section 4"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:12
-msgid "Section 5"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:14 ../gtksourceview/gtksourcestyle.c:119
-#: ../gtksourceview/gtksourcestyle.c:120
-msgid "Italic"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:15 ../gtksourceview/gtksourcestyle.c:111
-#: ../gtksourceview/gtksourcestyle.c:112
-msgid "Bold"
-msgstr ""
-
-#: ../data/language-specs/t2t.lang.h:17
-msgid "Verbatim Block"
-msgstr ""
-
-#: ../data/language-specs/tcl.lang.h:2
-msgid "Tcl"
-msgstr ""
-
-#: ../data/language-specs/texinfo.lang.h:2
-msgid "Texinfo"
-msgstr ""
-
-#: ../data/language-specs/texinfo.lang.h:8
-msgid "Macros"
-msgstr ""
-
-#: ../data/language-specs/texinfo.lang.h:9
-msgid "File Attributes"
-msgstr ""
-
-#: ../data/language-specs/texinfo.lang.h:10
-msgid "Generated Content"
-msgstr ""
-
-#: ../data/language-specs/vala.lang.h:2
-msgid "Vala"
-msgstr ""
-
-#: ../data/language-specs/vbnet.lang.h:2
-msgid "VB.NET"
-msgstr ""
-
-#: ../data/language-specs/verilog.lang.h:2
-msgid "Verilog"
-msgstr "Verilog"
-
-#: ../data/language-specs/verilog.lang.h:9
-msgid "IEEE System Task"
-msgstr ""
-
-#: ../data/language-specs/verilog.lang.h:10
-msgid "LRM Additional System Task"
-msgstr ""
-
-#: ../data/language-specs/verilog.lang.h:12
-msgid "Gate"
-msgstr ""
-
-#: ../data/language-specs/vhdl.lang.h:2
-msgid "VHDL"
-msgstr ""
-
-#: ../data/language-specs/xml.lang.h:2
-msgid "XML"
-msgstr "XML"
-
-#: ../data/language-specs/xml.lang.h:4
-msgid "DOCTYPE"
-msgstr ""
-
-#: ../data/language-specs/mxml.lang.h:4 ../data/language-specs/xml.lang.h:5
-msgid "CDATA delimiter"
-msgstr ""
-
-#: ../data/language-specs/xml.lang.h:6
-msgid "Processing instruction"
-msgstr ""
-
-#: ../data/language-specs/mxml.lang.h:3 ../data/language-specs/xml.lang.h:7
-msgid "Element name"
-msgstr ""
-
-#: ../data/language-specs/xml.lang.h:9
-msgid "Attribute value"
-msgstr ""
-
-#: ../data/language-specs/xml.lang.h:10
-msgid "Entity"
-msgstr "Entitet"
-
-#: ../data/language-specs/xslt.lang.h:2
-msgid "XSLT"
-msgstr ""
-
-#: ../data/language-specs/xslt.lang.h:3
-msgid "Element"
-msgstr ""
-
-#: ../data/language-specs/yacc.lang.h:2
-msgid "Yacc"
-msgstr ""
-
-#: ../data/language-specs/yacc.lang.h:5
-msgid "token-type"
-msgstr ""
-
-#: ../data/language-specs/yacc.lang.h:6
-msgid "rule"
-msgstr ""
-
-#: ../data/styles/classic.xml.h:1
+#. (itstool) path: classic.xml/style-scheme@_name
+#: classic.xml:24
 msgid "Classic"
-msgstr ""
+msgstr "Klasična"
 
-#: ../data/styles/classic.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: classic.xml:26
 msgid "Classic color scheme"
-msgstr ""
+msgstr "Klasična shema boja"
 
-#: ../data/styles/cobalt.xml.h:1
+#. (itstool) path: cobalt.xml/style-scheme@_name
+#: cobalt.xml:26
 msgid "Cobalt"
-msgstr ""
+msgstr "Kobalt"
 
-#: ../data/styles/cobalt.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: cobalt.xml:28
 msgid "Blue based color scheme"
-msgstr ""
+msgstr "Plavo temeljena shema boja"
 
-#: ../data/styles/kate.xml.h:1
+#. (itstool) path: kate.xml/style-scheme@_name
+#: kate.xml:24
 msgid "Kate"
-msgstr ""
+msgstr "Kate"
 
-#: ../data/styles/kate.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: kate.xml:26
 msgid "Color scheme used in the Kate text editor"
-msgstr ""
+msgstr "Shema boja korištena u Kate uređivaču teksta"
 
-#: ../data/styles/oblivion.xml.h:1
+#. (itstool) path: oblivion.xml/style-scheme@_name
+#: oblivion.xml:25
 msgid "Oblivion"
-msgstr ""
+msgstr "Oblivion"
 
-#: ../data/styles/oblivion.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: oblivion.xml:28
 msgid "Dark color scheme using the Tango color palette"
-msgstr ""
+msgstr "Tamna shema boja korištena u Tango paleti boja"
 
-#: ../data/styles/tango.xml.h:1
+#. (itstool) path: solarized-dark.xml/style-scheme@_name
+#: solarized-dark.xml:24
+msgid "Solarized Dark"
+msgstr "Solarizirano tamna"
+
+#. (itstool) path: style-scheme/_description
+#: solarized-dark.xml:26
+msgid "Color scheme using Solarized dark color palette"
+msgstr "Shema boja korištena Solarizirano tamnoj paleti boja"
+
+#. (itstool) path: solarized-light.xml/style-scheme@_name
+#: solarized-light.xml:24
+msgid "Solarized Light"
+msgstr "Solarizirano svjetla"
+
+#. (itstool) path: style-scheme/_description
+#: solarized-light.xml:26
+msgid "Color scheme using Solarized light color palette"
+msgstr "Shema boja korištena Solarizirano svjetloj paleti boja"
+
+#. (itstool) path: tango.xml/style-scheme@_name
+#: tango.xml:24
 msgid "Tango"
-msgstr ""
+msgstr "Tango"
 
-#: ../data/styles/tango.xml.h:2
+#. (itstool) path: style-scheme/_description
+#: tango.xml:26
 msgid "Color scheme using Tango color palette"
-msgstr ""
+msgstr "Shema boja korištena Tango paleti boja"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:327
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:334
 msgid "Document Words"
-msgstr ""
+msgstr "Riječi dokumenta"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:430
-msgid "The provider name"
-msgstr ""
+#: gtksourceview/gtksourcebufferoutputstream.c:843
+msgid "Invalid byte sequence in conversion input"
+msgstr "Neispravan slijed bajta u ulazu pretvorbe"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:437
-#: ../gtksourceview/gtksourcecompletionitem.c:275
-msgid "Icon"
-msgstr ""
+#: gtksourceview/gtksourcebufferoutputstream.c:849
+#, c-format
+msgid "Error during conversion: %s"
+msgstr "Greška tijekom pretvorbe: %s"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:438
-msgid "The provider icon"
-msgstr ""
+#: gtksourceview/gtksourcebufferoutputstream.c:930
+#, c-format
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
+msgstr "Pretvorba iz skupa znakova “%s” u “UTF-8” nije podržana"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:445
-msgid "Proposals Batch Size"
-msgstr ""
+#: gtksourceview/gtksourcebufferoutputstream.c:936
+#, c-format
+msgid "Could not open converter from “%s” to “UTF-8”"
+msgstr "Nemoguće otvaranje pretvornika iz “%s” u “UTF-8”"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:446
-msgid "Number of proposals added in one batch"
-msgstr ""
+#: gtksourceview/gtksourcebufferoutputstream.c:996
+msgid "Invalid object, not initialized"
+msgstr "Neispravan objekt, nemoguće pokretanje"
 
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:455
-msgid "Scan Batch Size"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:456
-msgid "Number of lines scanned in one batch"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:465
-msgid "Minimum Word Size"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:466
-msgid "The minimum word size to complete"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:475
-msgid "Interactive Delay"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:476
-msgid "The delay before initiating interactive completion"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:485
-msgid "Priority"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:486
-msgid "Provider priority"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:293
-#: ../gtksourceview/gtksourceprintcompositor.c:505
-msgid "Highlight Syntax"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:294
-msgid "Whether to highlight syntax in the buffer"
-msgstr "Treba li osvijetliti sintaksu u međuspremniku"
-
-#: ../gtksourceview/gtksourcebuffer.c:307
-msgid "Highlight Matching Brackets"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:308
-msgid "Whether to highlight matching brackets"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:321
-#: ../gtksourceview/gtksourceundomanagerdefault.c:414
-msgid "Maximum Undo Levels"
-msgstr "Maksimalni broj koraka unatrag"
-
-#: ../gtksourceview/gtksourcebuffer.c:322
-#: ../gtksourceview/gtksourceundomanagerdefault.c:415
-msgid "Number of undo levels for the buffer"
-msgstr "Broj koraka unazad za međuspremnik"
-
-#. Translators: throughout GtkSourceView "language" stands
-#. * for "programming language", not "spoken language"
-#: ../gtksourceview/gtksourcebuffer.c:334
-msgid "Language"
-msgstr "Jezik"
-
-#: ../gtksourceview/gtksourcebuffer.c:335
-msgid "Language object to get highlighting patterns from"
-msgstr "Objekt jezika iz kojega se dobivaju osvjetljeni uzorci"
-
-#: ../gtksourceview/gtksourcebuffer.c:343
-msgid "Can undo"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:344
-msgid "Whether Undo operation is possible"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:351
-msgid "Can redo"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:352
-msgid "Whether Redo operation is possible"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:366
-#: ../gtksourceview/gtksourcebuffer.c:367
-msgid "Style scheme"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:374
-msgid "Undo manager"
-msgstr ""
-
-#: ../gtksourceview/gtksourcebuffer.c:375
-msgid "The buffer undo manager"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:554
-#: ../gtksourceview/gtksourcecompletion.c:585
-msgid "No extra information available"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1789
-#: ../gtksourceview/gtksourcegutter.c:537
-msgid "View"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1790
-msgid "The GtkSourceView bound to the completion"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1804
-msgid "Remember Info Visibility"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1805
-msgid "Remember the last info window visibility state"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1817
-msgid "Select on Show"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1818
-msgid "Select first proposal when completion is shown"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1831
-msgid "Show Headers"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1832
-msgid ""
-"Show provider headers when proposals from multiple providers are available"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1845
-msgid "Show Icons"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1846
-msgid "Show provider and proposal icons in the completion popup"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1860
-msgid "Accelerators"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1861
-msgid "Number of proposal accelerators to show"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1876
-msgid "Auto Complete Delay"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1877
-msgid "Completion popup delay for interactive completion"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1893
-msgid "Provider Page Size"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1894
-msgid "Provider scrolling page size"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1914
-msgid "Proposal Page Size"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.c:1915
-msgid "Proposal scrolling page size"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionmodel.c:491
-msgid "Provider"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:1
-msgid "Show detailed proposal information"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletion.ui.h:2
-msgid "_Details..."
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:272
-#: ../gtksourceview/gtksourceview.c:308
-msgid "Completion"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:273
-msgid "The completion object to which the context belongs"
-msgstr ""
-
-#. Translators: The GtkTextIter at which the completion was invoked
-#: ../gtksourceview/gtksourcecompletioncontext.c:286
-msgid "Iterator"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletioncontext.c:287
-msgid "The GtkTextIter at which the completion was invoked"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:502
-#: ../gtksourceview/gtksourcecompletioncontext.c:299
-msgid "Activation"
-msgstr ""
-
-#: ../gtksourceview/completion-providers/words/gtksourcecompletionwords.c:503
-#: ../gtksourceview/gtksourcecompletioncontext.c:300
-msgid "The type of activation"
-msgstr ""
+#: gtksourceview/gtksourcebufferoutputstream.c:1188
+msgid "Incomplete UTF-8 sequence in input"
+msgstr "Nepotpun UTF-8 slijed u ulazu"
 
 #. Tooltip style
-#: ../gtksourceview/gtksourcecompletioninfo.c:253
+#: gtksourceview/gtksourcecompletioninfo.c:271
 msgid "Completion Info"
-msgstr ""
+msgstr "Informacija dovršavanja"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:237
-msgid "Label to be shown for this item"
-msgstr ""
+#: gtksourceview/gtksourcecompletionmodel.c:495
+msgid "Provider"
+msgstr "Pružatelj usluge"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:250
-msgid "Markup to be shown for this item"
-msgstr ""
+#: gtksourceview/gtksourcecompletion.ui:87
+msgid "Show detailed proposal information"
+msgstr "Prikaži opširne informacije prijedloga"
 
-#: ../gtksourceview/gtksourcecompletionitem.c:263
-msgid "Item text"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionitem.c:276
-msgid "Icon to be shown for this item"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionitem.c:288
-msgid "Info"
-msgstr ""
-
-#: ../gtksourceview/gtksourcecompletionitem.c:289
-msgid "Info to be shown for this item"
-msgstr ""
+#: gtksourceview/gtksourcecompletion.ui:89
+msgid "_Details…"
+msgstr "_Pojedinosti…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: ../gtksourceview/gtksourcecontextengine.c:3129
+#: gtksourceview/gtksourcecontextengine.c:3141
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
 "process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
+"Nemoguće stvaranje regularnog izraza za sve prijevode, proces naglašavanja "
+"sintakse biti će sporije nego uobičajeno\n"
+"Dogodila se greška: %s"
 
-#: ../gtksourceview/gtksourcecontextengine.c:4452
+#: gtksourceview/gtksourcecontextengine.c:4464
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
+"Naglašavanje jednog redka trajalo je previše vremena, naglašavanje sintakse "
+"će biti onemogućeno"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5696
+#: gtksourceview/gtksourcecontextengine.c:5712
 #, c-format
-msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr ""
+msgid "context “%s” cannot contain a \\%%{...@start} command"
+msgstr "sadržaj “%s” ne može sadržavati \\%%{...@start} naredbu"
 
-#: ../gtksourceview/gtksourcecontextengine.c:5857
-#: ../gtksourceview/gtksourcecontextengine.c:5946
+#: gtksourceview/gtksourcecontextengine.c:5875
+#: gtksourceview/gtksourcecontextengine.c:5965
 #, c-format
-msgid "duplicated context id '%s'"
-msgstr ""
+msgid "duplicated context id “%s”"
+msgstr "dupli id sadržaja “%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6060
-#: ../gtksourceview/gtksourcecontextengine.c:6120
+#: gtksourceview/gtksourcecontextengine.c:6079
+#: gtksourceview/gtksourcecontextengine.c:6139
 #, c-format
 msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
+"izgled zaobilaženja korišten sa zamjenskim znakovima sadržaja napomene u "
+"jeziku “%s” in ref “%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6134
+#: gtksourceview/gtksourcecontextengine.c:6153
 #, c-format
-msgid "invalid context reference '%s'"
-msgstr ""
+msgid "invalid context reference “%s”"
+msgstr "neispravan sadržaj napomene “%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6153
-#: ../gtksourceview/gtksourcecontextengine.c:6163
+#: gtksourceview/gtksourcecontextengine.c:6172
+#: gtksourceview/gtksourcecontextengine.c:6182
 #, c-format
-msgid "unknown context '%s'"
-msgstr ""
+msgid "unknown context “%s”"
+msgstr "nepoznat sadržaj “%s”"
 
-#: ../gtksourceview/gtksourcecontextengine.c:6262
+#: gtksourceview/gtksourcecontextengine.c:6281
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
-msgstr ""
+msgstr "Nedostaje definicija glavnog jezika (id = \"%s\".)"
 
-#. Translators: gutters can be used to display information
-#. * on the left or on the right of the text view. To draw the
-#. * line numbers for example.
-#: ../gtksourceview/gtksourcegutter.c:541
-msgid "The gutters' GtkSourceView"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:141 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
+#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
+#: gtksourceview/gtksourceencoding.c:194 gtksourceview/gtksourceencoding.c:196
+msgid "Unicode"
+msgstr "Unikôd"
 
-#: ../gtksourceview/gtksourcegutter.c:553
-#: ../gtksourceview/gtksourcegutterrenderer.c:705
-msgid "Window Type"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:155 gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:229 gtksourceview/gtksourceencoding.c:272
+msgid "Western"
+msgstr "Zapadni"
 
-#: ../gtksourceview/gtksourcegutter.c:562
-msgid "The gutters text window type"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:231
+#: gtksourceview/gtksourceencoding.c:268
+msgid "Central European"
+msgstr "Srednjo europski"
 
-#: ../gtksourceview/gtksourcegutter.c:562
-#: ../gtksourceview/gtksourcegutterrenderer.c:482
-msgid "X Padding"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:159
+msgid "South European"
+msgstr "Južno europski"
 
-#: ../gtksourceview/gtksourcegutter.c:563
-#: ../gtksourceview/gtksourcegutterrenderer.c:483
-msgid "The x-padding"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:282
+msgid "Baltic"
+msgstr "Baltički"
 
-#: ../gtksourceview/gtksourcegutter.c:573
-#: ../gtksourceview/gtksourcegutterrenderer.c:498
-msgid "Y Padding"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:233
+#: gtksourceview/gtksourceencoding.c:246 gtksourceview/gtksourceencoding.c:250
+#: gtksourceview/gtksourceencoding.c:252 gtksourceview/gtksourceencoding.c:270
+msgid "Cyrillic"
+msgstr "Ćirilica"
 
-#: ../gtksourceview/gtksourcegutter.c:574
-#: ../gtksourceview/gtksourcegutterrenderer.c:499
-msgid "The y-padding"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:239
+#: gtksourceview/gtksourceencoding.c:280
+msgid "Arabic"
+msgstr "Arapski"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:468
-#: ../gtksourceview/gtksourcegutterrenderer.c:469
-msgid "Visible"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:274
+msgid "Greek"
+msgstr "Grčki"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:514
-msgid "X Alignment"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:169
+msgid "Hebrew Visual"
+msgstr "Hebrejski vizualni"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:515
-msgid "The x-alignment"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:171 gtksourceview/gtksourceencoding.c:235
+#: gtksourceview/gtksourceencoding.c:276
+msgid "Turkish"
+msgstr "Turski"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:530
-msgid "Y Alignment"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:173
+msgid "Nordic"
+msgstr "Nordijski"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:531
-msgid "The y-alignment"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:177
+msgid "Celtic"
+msgstr "Keltski"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:672
-msgid "The View"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:181
+msgid "Romanian"
+msgstr "Rumunjski"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:673
-msgid "The view"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:199
+msgid "Armenian"
+msgstr "Armenski"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:689
-msgid "Alignment Mode"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:201 gtksourceview/gtksourceencoding.c:203
+#: gtksourceview/gtksourceencoding.c:217
+msgid "Chinese Traditional"
+msgstr "Kineski tradicionalni"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:690
-msgid "The alignment mode"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:205
+msgid "Cyrillic/Russian"
+msgstr "Ćirilica/Ruski"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:706
-msgid "The window type"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:210
+#: gtksourceview/gtksourceencoding.c:212 gtksourceview/gtksourceencoding.c:242
+#: gtksourceview/gtksourceencoding.c:257
+msgid "Japanese"
+msgstr "Japanski"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:714
-msgid "Size"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:244
+#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:263
+msgid "Korean"
+msgstr "Korejski"
 
-#: ../gtksourceview/gtksourcegutterrenderer.c:715
-msgid "The size"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:222
+#: gtksourceview/gtksourceencoding.c:224
+msgid "Chinese Simplified"
+msgstr "Kineski pojednostavljeni"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:289
-#: ../gtksourceview/gtksourcemarkattributes.c:316
-msgid "Pixbuf"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:226
+msgid "Georgian"
+msgstr "Gruzijski"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:290
-#: ../gtksourceview/gtksourcemarkattributes.c:317
-msgid "The pixbuf"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:237 gtksourceview/gtksourceencoding.c:278
+msgid "Hebrew"
+msgstr "Hebrejski"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:304
-#: ../gtksourceview/gtksourcemarkattributes.c:303
-msgid "Stock Id"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:254
+msgid "Cyrillic/Ukrainian"
+msgstr "Ćirilica/Ukrajinski"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:305
-#: ../gtksourceview/gtksourcemarkattributes.c:304
-msgid "The stock id"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:259 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:284
+msgid "Vietnamese"
+msgstr "Vijetnamski"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:312
-#: ../gtksourceview/gtksourcemarkattributes.c:329
-msgid "Icon Name"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:261
+msgid "Thai"
+msgstr "Tajlandski"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:313
-#: ../gtksourceview/gtksourcemarkattributes.c:330
-msgid "The icon name"
-msgstr ""
+#: gtksourceview/gtksourceencoding.c:495
+msgid "Unknown"
+msgstr "Nepoznato"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:320
-#: ../gtksourceview/gtksourcemarkattributes.c:342
-msgid "GIcon"
-msgstr ""
+#. Translators: This is the sorted list of encodings used by
+#. * GtkSourceView for automatic detection of the file encoding. You may
+#. * want to customize it adding encodings that are common in your
+#. * country, for instance the GB18030 encoding for the Chinese
+#. * translation. You may also want to remove the ISO-8859-15 encoding
+#. * (covering English and most Western European languages) if you think
+#. * people in your country will rarely use it.  "CURRENT" is a magic
+#. * value used by GtkSourceView and it represents the encoding for the
+#. * current locale, so please don't translate the "CURRENT" term.  Only
+#. * recognized encodings are used. See
+#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+#. * for a list of supported encodings.
+#. * Keep the same format: square brackets, single quotes, commas.
+#.
+#: gtksourceview/gtksourceencoding.c:639
+msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+msgstr "['UTF-8', 'TRENUTNO', 'ISO-8859-15', 'UTF-16']"
 
-#: ../gtksourceview/gtksourcegutterrendererpixbuf.c:321
-msgid "The gicon"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:392
-msgid "The markup"
-msgstr ""
-
-#: ../gtksourceview/gtksourcegutterrenderertext.c:400
-msgid "The text"
-msgstr ""
-
-#: ../gtksourceview/gtksourcelanguage.c:228
-#: ../gtksourceview/gtksourcelanguage.c:229
-msgid "Language id"
-msgstr ""
-
-#: ../gtksourceview/gtksourcelanguage.c:236
-#: ../gtksourceview/gtksourcelanguage.c:237
-msgid "Language name"
-msgstr ""
-
-#: ../gtksourceview/gtksourcelanguage.c:244
-#: ../gtksourceview/gtksourcelanguage.c:245
-msgid "Language section"
-msgstr ""
-
-#: ../gtksourceview/gtksourcelanguage.c:252
-msgid "Hidden"
-msgstr ""
-
-#: ../gtksourceview/gtksourcelanguage.c:253
-msgid "Whether the language should be hidden from the user"
-msgstr ""
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:149
-msgid "Language specification directories"
-msgstr "Direktoriji specifikacije jezika"
-
-#: ../gtksourceview/gtksourcelanguagemanager.c:150
+#: gtksourceview/gtksourcefileloader.c:516
 msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
+"There was a character encoding conversion error and it was needed to use a "
+"fallback character."
 msgstr ""
-"Popis direktorija gdje se nalaze datoteke sa specifikacijom jezika (.lang)"
+"Dogodila se greška pretvorbe kôdiranja znakova i potrebno je korištenje "
+"pričuvnog znaka."
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:159
-msgid "Language ids"
-msgstr ""
+#: gtksourceview/gtksourcefileloader.c:623
+msgid "File too big."
+msgstr "Datoteka je prevelika."
 
-#: ../gtksourceview/gtksourcelanguagemanager.c:160
-msgid "List of the ids of the available languages"
-msgstr ""
+#: gtksourceview/gtksourcefileloader.c:777
+msgid "Not a regular file."
+msgstr "Nije obična datoteka."
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:950
+#: gtksourceview/gtksourcefilesaver.c:976
+msgid "The file is externally modified."
+msgstr "Datoteka je promijenjena izvana."
+
+#: gtksourceview/gtksourcefilesaver.c:1428
+msgid "The buffer contains invalid characters."
+msgstr "Međuspremnik sadrži neispravne znakove."
+
+#. *
+#. * SECTION:language
+#. * @Short_description: Represents a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#.
+#: gtksourceview/gtksourcelanguage.c:56
+msgid "Others"
+msgstr "Ostali"
+
+#: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
-msgid "Unknown id '%s' in regex '%s'"
-msgstr ""
+msgid "Unknown id “%s” in regex “%s”"
+msgstr "Nepoznat id \"%s\" u regularnom izrazu “%s”"
 
-#: ../gtksourceview/gtksourcelanguage-parser-2.c:1178
+#: gtksourceview/gtksourcelanguage-parser-2.c:1180
 #, c-format
-msgid "in regex '%s': backreferences are not supported"
-msgstr ""
+msgid "in regex “%s”: backreferences are not supported"
+msgstr "u regularnom izrazu “%s”: povratne preporuke nisu podržane"
 
-#: ../gtksourceview/gtksourcemarkattributes.c:288
-#: ../gtksourceview/gtksourcestyle.c:95
-msgid "Background"
-msgstr ""
-
-#: ../gtksourceview/gtksourcemarkattributes.c:289
-msgid "The background"
-msgstr ""
-
-#: ../gtksourceview/gtksourcemarkattributes.c:343
-msgid "The GIcon"
-msgstr ""
-
-#: ../gtksourceview/gtksourcemark.c:140
-msgid "category"
-msgstr ""
-
-#: ../gtksourceview/gtksourcemark.c:141
-msgid "The mark category"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:445
-msgid "Source Buffer"
-msgstr "Međuspremnik s kodom"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:446
-msgid "The GtkSourceBuffer object to print"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:463
-#: ../gtksourceview/gtksourceview.c:346
-msgid "Tab Width"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:464
-#: ../gtksourceview/gtksourceview.c:347
-msgid "Width of a tab character expressed in spaces"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:484
-msgid "Wrap Mode"
-msgstr "Način omotavanja"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:485
-msgid ""
-"Whether to wrap lines never, at word boundaries, or at character boundaries."
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:506
-msgid "Whether to print the document with highlighted syntax"
-msgstr "Treba li ispisivati dokument sa osvijetljenom sintaksom"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:527
-msgid "Print Line Numbers"
-msgstr "Ispis brojeva linija"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:528
-msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Interval ispisanih brojeva linija (0 znači da nema brojeva)"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:550
-msgid "Print Header"
-msgstr "Zaglavlje ispisa"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:551
-msgid "Whether to print a header in each page"
-msgstr "Treba li ispisivati zaglavlje na svakoj stranici"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:573
-msgid "Print Footer"
-msgstr "Ispis podnožja"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:574
-msgid "Whether to print a footer in each page"
-msgstr "Treba li ispisivati podnožje na svakoj stranici"
-
-#: ../gtksourceview/gtksourceprintcompositor.c:596
-msgid "Body Font Name"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:597
-msgid "Name of the font to use for the text body (e.g. \"Monospace 10\")"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:620
-msgid "Line Numbers Font Name"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:621
-msgid "Name of the font to use for the line numbers (e.g. \"Monospace 10\")"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:644
-msgid "Header Font Name"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:645
-msgid "Name of the font to use for the page header (e.g. \"Monospace 10\")"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:668
-msgid "Footer Font Name"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:669
-msgid "Name of the font to use for the page footer (e.g. \"Monospace 10\")"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:685
-msgid "Number of pages"
-msgstr ""
-
-#: ../gtksourceview/gtksourceprintcompositor.c:686
-msgid ""
-"The number of pages in the document (-1 means the document has not been "
-"completely paginated)."
-msgstr ""
-
-#: ../gtksourceview/gtksourceregex.c:125
+#: gtksourceview/gtksourceregex.c:129
 msgid "using \\C is not supported in language definitions"
-msgstr ""
+msgstr "korištenje \\C nije podržano u definicijama jezika"
 
-#: ../gtksourceview/gtksourcestyle.c:87
-msgid "Line background"
-msgstr ""
+#. TODO: have a ChooserDialog?
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
+msgid "Select a Style"
+msgstr "Odaberi izgled"
 
-#: ../gtksourceview/gtksourcestyle.c:88
-msgid "Line background color"
-msgstr ""
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:189
+msgid "_Cancel"
+msgstr "_Odustani"
 
-#: ../gtksourceview/gtksourcestyle.c:96
-msgid "Background color"
-msgstr ""
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:190
+msgid "_Select"
+msgstr "_Odaberi"
 
-#: ../gtksourceview/gtksourcestyle.c:103
-msgid "Foreground"
-msgstr ""
+#. create redo menu_item.
+#: gtksourceview/gtksourceview.c:1781
+msgid "_Redo"
+msgstr "_Ponovi"
 
-#: ../gtksourceview/gtksourcestyle.c:104
-msgid "Foreground color"
-msgstr ""
+#. create undo menu_item.
+#: gtksourceview/gtksourceview.c:1792
+msgid "_Undo"
+msgstr "_Vrati"
 
-#: ../gtksourceview/gtksourcestyle.c:127 ../gtksourceview/gtksourcestyle.c:128
-msgid "Underline"
-msgstr ""
+#: gtksourceview/gtksourceview.c:1811
+msgid "All _Upper Case"
+msgstr "Sva _velika slova"
 
-#: ../gtksourceview/gtksourcestyle.c:135 ../gtksourceview/gtksourcestyle.c:136
-msgid "Strikethrough"
-msgstr ""
+#: gtksourceview/gtksourceview.c:1821
+msgid "All _Lower Case"
+msgstr "Sva _mala slova"
 
-#: ../gtksourceview/gtksourcestyle.c:143
-msgid "Line background set"
-msgstr ""
+#: gtksourceview/gtksourceview.c:1831
+msgid "_Invert Case"
+msgstr "_Obrni slova"
 
-#: ../gtksourceview/gtksourcestyle.c:144
-msgid "Whether line background color is set"
-msgstr ""
+#: gtksourceview/gtksourceview.c:1841
+msgid "_Title Case"
+msgstr "_Naslov slučaja"
 
-#: ../gtksourceview/gtksourcestyle.c:151
-msgid "Foreground set"
-msgstr ""
+#: gtksourceview/gtksourceview.c:1851
+msgid "C_hange Case"
+msgstr "P_romijeni slučaj"
 
-#: ../gtksourceview/gtksourcestyle.c:152
-msgid "Whether foreground color is set"
-msgstr ""
+#~ msgid "Ada"
+#~ msgstr "Ada"
 
-#: ../gtksourceview/gtksourcestyle.c:159
-msgid "Background set"
-msgstr ""
+#~ msgid "Comment"
+#~ msgstr "Komentar"
 
-#: ../gtksourceview/gtksourcestyle.c:160
-msgid "Whether background color is set"
-msgstr ""
+#~ msgid "String"
+#~ msgstr "Znakovni niz"
 
-#: ../gtksourceview/gtksourcestyle.c:167
-msgid "Bold set"
-msgstr ""
+#~ msgid "Keyword"
+#~ msgstr "Ključna riječ"
 
-#: ../gtksourceview/gtksourcestyle.c:168
-msgid "Whether bold attribute is set"
-msgstr ""
+#~ msgid "Data Type"
+#~ msgstr "Tip podatka"
 
-#: ../gtksourceview/gtksourcestyle.c:175
-msgid "Italic set"
-msgstr ""
+#~ msgid "Preprocessor"
+#~ msgstr "Predprocesor"
 
-#: ../gtksourceview/gtksourcestyle.c:176
-msgid "Whether italic attribute is set"
-msgstr ""
+#~ msgid "Function"
+#~ msgstr "Funkcija"
 
-#: ../gtksourceview/gtksourcestyle.c:183
-msgid "Underline set"
-msgstr ""
+#~ msgid "Number"
+#~ msgstr "Broj"
 
-#: ../gtksourceview/gtksourcestyle.c:184
-msgid "Whether underline attribute is set"
-msgstr ""
+#~ msgid "Variable"
+#~ msgstr "Varijabla"
 
-#: ../gtksourceview/gtksourcestyle.c:191
-msgid "Strikethrough set"
-msgstr ""
+#~ msgid "C"
+#~ msgstr "C"
 
-#: ../gtksourceview/gtksourcestyle.c:192
-msgid "Whether strikethrough attribute is set"
-msgstr ""
+#~ msgid "Character"
+#~ msgstr "Znak"
 
-#: ../gtksourceview/gtksourcestylescheme.c:211
-#: ../gtksourceview/gtksourcestylescheme.c:212
-msgid "Style scheme id"
-msgstr ""
+#~ msgid "C++"
+#~ msgstr "C++"
 
-#: ../gtksourceview/gtksourcestylescheme.c:224
-#: ../gtksourceview/gtksourcestylescheme.c:225
-msgid "Style scheme name"
-msgstr ""
+#~ msgid "C#"
+#~ msgstr "C#"
 
-#: ../gtksourceview/gtksourcestylescheme.c:237
-#: ../gtksourceview/gtksourcestylescheme.c:238
-msgid "Style scheme description"
-msgstr ""
+#~ msgid "String Format"
+#~ msgstr "Oblik teksta"
 
-#: ../gtksourceview/gtksourcestylescheme.c:250
-#: ../gtksourceview/gtksourcestylescheme.c:251
-msgid "Style scheme filename"
-msgstr ""
+#~ msgid "Others 2"
+#~ msgstr "Ostali 2"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:153
-msgid "Style scheme search path"
-msgstr ""
+#~ msgid "Others 3"
+#~ msgstr "Ostali 3"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:154
-msgid "List of directories and files where the style schemes are located"
-msgstr ""
+#~ msgid "Decimal"
+#~ msgstr "Decimalni"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:162
-msgid "Scheme ids"
-msgstr ""
+#~ msgid ".desktop"
+#~ msgstr ".desktop"
 
-#: ../gtksourceview/gtksourcestyleschememanager.c:163
-msgid "List of the ids of the available style schemes"
-msgstr ""
+#~ msgid "Group"
+#~ msgstr "Grupa"
 
-#: ../gtksourceview/gtksourcesearchcontext.c:2740
-#: ../gtksourceview/gtksourceundomanagerdefault.c:406
-msgid "Buffer"
-msgstr ""
+#~ msgid "Encoding"
+#~ msgstr "Kodiranje"
 
-#: ../gtksourceview/gtksourceundomanagerdefault.c:407
-msgid "The text buffer to add undo support on"
-msgstr ""
+#~ msgid "Diff"
+#~ msgstr "Razlika"
 
-#: ../gtksourceview/gtksourceview.c:309
-msgid "The completion object associated with the view"
-msgstr ""
+#~ msgid "Added line"
+#~ msgstr "Dodan redak"
 
-#: ../gtksourceview/gtksourceview.c:321
-msgid "Show Line Numbers"
-msgstr "Pokaži brojeve linija"
+#~ msgid "Removed line"
+#~ msgstr "Obrisan redak"
 
-#: ../gtksourceview/gtksourceview.c:322
-msgid "Whether to display line numbers"
-msgstr "Treba li prikazati brojeve redaka"
+#~ msgid "Special case"
+#~ msgstr "Posebni slučaj"
 
-#: ../gtksourceview/gtksourceview.c:333
-msgid "Show Line Marks"
-msgstr ""
+#~ msgid "Location"
+#~ msgstr "Smještaj"
 
-#: ../gtksourceview/gtksourceview.c:334
-msgid "Whether to display line mark pixbufs"
-msgstr ""
+#~ msgid "DTD"
+#~ msgstr "DTD"
 
-#: ../gtksourceview/gtksourceview.c:361
-msgid "Indent Width"
-msgstr ""
+#~ msgid "Boolean Value"
+#~ msgstr "Boolean vrijednost"
 
-#: ../gtksourceview/gtksourceview.c:362
-msgid "Number of spaces to use for each step of indent"
-msgstr ""
+#~ msgid "Base-N Integer"
+#~ msgstr "Base-N prirodni broj"
 
-#: ../gtksourceview/gtksourceview.c:371
-msgid "Auto Indentation"
-msgstr "Automatsko uvlačenje"
+#~ msgid "Floating Point"
+#~ msgstr "Pomični zarez"
 
-#: ../gtksourceview/gtksourceview.c:372
-msgid "Whether to enable auto indentation"
-msgstr "Treba li omogućiti automatsko uvlačenje"
+#~ msgid "HTML"
+#~ msgstr "HTML"
 
-#: ../gtksourceview/gtksourceview.c:379
-msgid "Insert Spaces Instead of Tabs"
-msgstr "Ubacivanje razmaka umjesto tabova"
+#~ msgid "Tag"
+#~ msgstr "Oznaka"
 
-#: ../gtksourceview/gtksourceview.c:380
-msgid "Whether to insert spaces instead of tabs"
-msgstr "Treba li ubaciti razmake umjesto tabova"
+#~ msgid "IDL"
+#~ msgstr "IDL"
 
-#: ../gtksourceview/gtksourceview.c:392
-msgid "Show Right Margin"
-msgstr "Pokaži desnu marginu"
+#~ msgid "Java"
+#~ msgstr "Java"
 
-#: ../gtksourceview/gtksourceview.c:393
-msgid "Whether to display the right margin"
-msgstr "Treba li prikazati desnu marginu"
+#~ msgid "LaTeX"
+#~ msgstr "LaTeX"
 
-#: ../gtksourceview/gtksourceview.c:405
-msgid "Right Margin Position"
-msgstr ""
+#~ msgid "Include"
+#~ msgstr "Uključi"
 
-#: ../gtksourceview/gtksourceview.c:406
-msgid "Position of the right margin"
-msgstr "Položaj desne margine"
+#~ msgid "Module Handler"
+#~ msgstr "Rukovatelj modula"
 
-#: ../gtksourceview/gtksourceview.c:422
-msgid "Smart Home/End"
-msgstr ""
+#~ msgid "Perl"
+#~ msgstr "Perl"
 
-#: ../gtksourceview/gtksourceview.c:423
-msgid ""
-"HOME and END keys move to first/last non whitespace characters on line "
-"before going to the start/end of the line"
-msgstr ""
+#~ msgid "PHP"
+#~ msgstr "PHP"
 
-#: ../gtksourceview/gtksourceview.c:433
-msgid "Highlight current line"
-msgstr ""
+#~ msgid "Python"
+#~ msgstr "Python"
 
-#: ../gtksourceview/gtksourceview.c:434
-msgid "Whether to highlight the current line"
-msgstr ""
+#~ msgid "Format"
+#~ msgstr "Oblikovanje"
 
-#: ../gtksourceview/gtksourceview.c:441
-msgid "Indent on tab"
-msgstr ""
+#~ msgid "SQL"
+#~ msgstr "SQL"
 
-#: ../gtksourceview/gtksourceview.c:442
-msgid "Whether to indent the selected text when the tab key is pressed"
-msgstr ""
+#~ msgid "Verilog"
+#~ msgstr "Verilog"
 
-#: ../gtksourceview/gtksourceview.c:456
-msgid "Draw Spaces"
-msgstr ""
+#~ msgid "XML"
+#~ msgstr "XML"
 
-#: ../gtksourceview/gtksourceview.c:457
-msgid "Set if and how the spaces should be visualized"
-msgstr ""
+#~ msgid "Entity"
+#~ msgstr "Entitet"
 
-#: ../gtksourceview/gtksourceview-i18n.c:72
-msgid "translator-credits"
-msgstr ""
-"lokalizacija@linux.hr\n"
-"  Automatski Prijevod <>\n"
-"  Denis Lackovic <delacko@linux.hr>\n"
-"  Robert Sedak <robert.sedak@sk.t-com.hr>\n"
-"\n"
-"Launchpad Contributions:\n"
-"  Launchpad Translations Administrators https://launchpad.net/~rosetta-admins"
+#~ msgid "Whether to highlight syntax in the buffer"
+#~ msgstr "Treba li osvijetliti sintaksu u međuspremniku"
+
+#~ msgid "Maximum Undo Levels"
+#~ msgstr "Maksimalni broj koraka unatrag"
+
+#~ msgid "Number of undo levels for the buffer"
+#~ msgstr "Broj koraka unazad za međuspremnik"
+
+#~ msgid "Language"
+#~ msgstr "Jezik"
+
+#~ msgid "Language object to get highlighting patterns from"
+#~ msgstr "Objekt jezika iz kojega se dobivaju osvjetljeni uzorci"
+
+#~ msgid "Language specification directories"
+#~ msgstr "Direktoriji specifikacije jezika"
+
+#~ msgid ""
+#~ "List of directories where the language specification files (.lang) are "
+#~ "located"
+#~ msgstr ""
+#~ "Popis direktorija gdje se nalaze datoteke sa specifikacijom jezika (.lang)"
+
+#~ msgid "Source Buffer"
+#~ msgstr "Međuspremnik s kodom"
+
+#~ msgid "Wrap Mode"
+#~ msgstr "Način omotavanja"
+
+#~ msgid "Whether to print the document with highlighted syntax"
+#~ msgstr "Treba li ispisivati dokument sa osvijetljenom sintaksom"
+
+#~ msgid "Print Line Numbers"
+#~ msgstr "Ispis brojeva linija"
+
+#~ msgid "Interval of printed line numbers (0 means no numbers)"
+#~ msgstr "Interval ispisanih brojeva linija (0 znači da nema brojeva)"
+
+#~ msgid "Whether to print a header in each page"
+#~ msgstr "Treba li ispisivati zaglavlje na svakoj stranici"
+
+#~ msgid "Print Footer"
+#~ msgstr "Ispis podnožja"
+
+#~ msgid "Whether to print a footer in each page"
+#~ msgstr "Treba li ispisivati podnožje na svakoj stranici"
+
+#~ msgid "Show Line Numbers"
+#~ msgstr "Pokaži brojeve linija"
+
+#~ msgid "Whether to display line numbers"
+#~ msgstr "Treba li prikazati brojeve redaka"
+
+#~ msgid "Auto Indentation"
+#~ msgstr "Automatsko uvlačenje"
+
+#~ msgid "Whether to enable auto indentation"
+#~ msgstr "Treba li omogućiti automatsko uvlačenje"
+
+#~ msgid "Insert Spaces Instead of Tabs"
+#~ msgstr "Ubacivanje razmaka umjesto tabova"
+
+#~ msgid "Whether to insert spaces instead of tabs"
+#~ msgstr "Treba li ubaciti razmake umjesto tabova"
+
+#~ msgid "Show Right Margin"
+#~ msgstr "Pokaži desnu marginu"
+
+#~ msgid "Whether to display the right margin"
+#~ msgstr "Treba li prikazati desnu marginu"
+
+#~ msgid "Position of the right margin"
+#~ msgstr "Položaj desne margine"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "lokalizacija@linux.hr\n"
+#~ "  Automatski Prijevod <>\n"
+#~ "  Denis Lackovic <delacko@linux.hr>\n"
+#~ "  Robert Sedak <robert.sedak@sk.t-com.hr>\n"
+#~ "\n"
+#~ "Launchpad Contributions:\n"
+#~ "  Launchpad Translations Administrators https://launchpad.net/~rosetta-"
+#~ "admins"
