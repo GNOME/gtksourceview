@@ -357,11 +357,13 @@
       <keyword>image-rendering</keyword>
       <keyword>image-resolution</keyword>
       <keyword>ime-mode</keyword>
+      <keyword>isolation</keyword>
       <keyword>justify-content</keyword>
       <keyword>justify-self</keyword>
       <keyword>line-break</keyword>
       <keyword>mask-type</keyword>
       <keyword>mask</keyword>
+      <keyword>mix-blend-mode</keyword>
       <keyword>nav-down</keyword>
       <keyword>nav-index</keyword>
       <keyword>nav-left</keyword>
@@ -397,6 +399,8 @@
       <keyword>transition-property</keyword>
       <keyword>transition-timing-function</keyword>
       <keyword>transition</keyword>
+      <keyword>unicode-range</keyword>
+      <keyword>will-change</keyword>
       <keyword>word-break</keyword>
       <keyword>word-wrap</keyword>
       <keyword>writing-mode</keyword>
@@ -553,14 +557,19 @@
       <keyword>nonzero</keyword>
       <keyword>optimize(L|l)egibility</keyword>
       <keyword>optimize(S|s)peed</keyword>
+      <keyword>painted</keyword>
       <keyword>reset-size</keyword>
       <keyword>rl-tb</keyword>
       <keyword>rl</keyword>
+      <keyword>stroke</keyword>
       <keyword>tb-rl</keyword>
       <keyword>tb</keyword>
       <keyword>text-after-edge</keyword>
       <keyword>text-before-edge</keyword>
       <keyword>use-script</keyword>
+      <keyword>visible(F|f)ill</keyword>
+      <keyword>visible(P|p)ainted</keyword>
+      <keyword>visible(S|s)troke</keyword>
     </context>
 
     <context id="css3-property-values" style-ref="property-values">
@@ -584,6 +593,8 @@
       <keyword>break-all</keyword>
       <keyword>break-word</keyword>
       <keyword>clip</keyword>
+      <keyword>clone</keyword>
+      <keyword>color-burn</keyword>
       <keyword>color-dodge</keyword>
       <keyword>color</keyword>
       <keyword>column-reverse</keyword>
@@ -591,12 +602,15 @@
       <keyword>common-ligatures</keyword>
       <keyword>contain</keyword>
       <keyword>content-box</keyword>
+      <keyword>contents</keyword>
       <keyword>contextual</keyword>
       <keyword>cover</keyword>
       <keyword>crisp-edges</keyword>
+      <keyword>current(C|c)olor</keyword>
       <keyword>darken</keyword>
       <keyword>dense</keyword>
       <keyword>diagonal-fractions</keyword>
+      <keyword>difference</keyword>
       <keyword>disabled</keyword>
       <keyword>discretionary-ligatures</keyword>
       <keyword>distribute</keyword>
@@ -607,6 +621,7 @@
       <keyword>ellipsis</keyword>
       <keyword>end</keyword>
       <keyword>exclude</keyword>
+      <keyword>exclusion</keyword>
       <keyword>fill-box</keyword>
       <keyword>fill</keyword>
       <keyword>first</keyword>
@@ -620,10 +635,12 @@
       <keyword>from-image</keyword>
       <keyword>full-width</keyword>
       <keyword>grid</keyword>
+      <keyword>hard-light</keyword>
       <keyword>historical-forms</keyword>
       <keyword>historical-ligatures</keyword>
       <keyword>horizontal-tb</keyword>
       <keyword>horizontal</keyword>
+      <keyword>hue</keyword>
       <keyword>inactive</keyword>
       <keyword>infinite</keyword>
       <keyword>initial</keyword>
@@ -633,6 +650,7 @@
       <keyword>inter-ideograph</keyword>
       <keyword>inter-word</keyword>
       <keyword>intersect</keyword>
+      <keyword>isolate</keyword>
       <keyword>kashida</keyword>
       <keyword>keep-all</keyword>
       <keyword>last</keyword>
@@ -673,17 +691,22 @@
       <keyword>saturation</keyword>
       <keyword>scale-down</keyword>
       <keyword>screen</keyword>
+      <keyword>scroll-position</keyword>
       <keyword>sideways-left</keyword>
       <keyword>sideways-right</keyword>
       <keyword>sideways</keyword>
       <keyword>simplified</keyword>
       <keyword>slashed-zero</keyword>
+      <keyword>slice</keyword>
+      <keyword>soft-light</keyword>
       <keyword>space-around</keyword>
       <keyword>space-between</keyword>
       <keyword>space-evenly</keyword>
       <keyword>space</keyword>
       <keyword>stacked-fractions</keyword>
       <keyword>start</keyword>
+      <keyword>step-end</keyword>
+      <keyword>step-start</keyword>
       <keyword>stretch</keyword>
       <keyword>strict</keyword>
       <keyword>stroke-box</keyword>
