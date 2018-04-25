@@ -66,12 +66,18 @@
       <match>\\([a-fA-F0-9]{1,5}[ \t]|[a-fA-F0-9]{6})</match>
     </context>
 
-    <context id="selector-pseudo-elements" style-ref="function">
-      <prefix>:</prefix>
+    <context id="selector-pseudo-elements-one-colon" style-ref="function">
+      <prefix>::?</prefix>
       <keyword>first-line</keyword>
       <keyword>first-letter</keyword>
       <keyword>before</keyword>
       <keyword>after</keyword>
+    </context>
+
+    <context id="selector-pseudo-elements" style-ref="function">
+      <prefix>::</prefix>
+      <keyword>placeholder</keyword>
+      <keyword>selection</keyword>
     </context>
 
     <context id="selector-pseudo-classes" style-ref="function">
@@ -990,6 +996,7 @@
         <context ref="def:c-like-comment-multiline"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="unicode-character-reference"/>
+        <context ref="selector-pseudo-elements-one-colon"/>
         <context ref="selector-pseudo-elements"/>
         <context ref="selector-pseudo-classes"/>
         <context ref="css3-at-rules"/>
