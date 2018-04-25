@@ -9,6 +9,11 @@ p + div {
 .someclass,
 .otherclass {
     font-size: 20px;
+    opacity: .5;
+}
+
+#headline:after {
+    transform: scaleX(-1.75) rotate(+33.333e+3deg);
 }
 
 ul::before {}
@@ -33,3 +38,6 @@ link:hover {}
     }
 }
 
+@media (min-resolution: +2.54dpcm) {}
+
+@media (min-aspect-ratio: 16/9) {}
