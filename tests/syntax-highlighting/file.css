@@ -1,4 +1,4 @@
-#testID[type=text] {
+#testID[lang|="zh"] {
     font: 12px italic "Overpass";
 }
 
@@ -42,6 +42,7 @@ INPUT::PLACEHOLDER {
             color: #000;
         }
     }
+    @media screen {} @media print {}
 }
 
 @media (min-resolution: +2.54dpcm) {}

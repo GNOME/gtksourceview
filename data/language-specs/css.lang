@@ -111,7 +111,7 @@
     </context>
 
     <context id="css3-at-rules" style-ref="at-rules">
-      <prefix>^[ \t]*@</prefix>
+      <prefix>@</prefix>
       <keyword>annotation</keyword>
       <keyword>character-variant</keyword>
       <keyword>font-face</keyword>
@@ -124,7 +124,7 @@
     </context>
 
     <context id="at-rules" style-ref="at-rules">
-      <prefix>^[ \t]*@</prefix>
+      <prefix>@</prefix>
       <keyword>charset</keyword>
       <keyword>import</keyword>
       <keyword>media</keyword>
@@ -1093,6 +1093,8 @@
       <start>\{</start>
       <end>\}</end>
       <include>
+        <context ref="def:string"/>
+        <context ref="def:single-quoted-string"/>
         <context ref="def:c-like-comment-multiline"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="css3-at-rules"/>
@@ -1119,16 +1121,16 @@
       <match>[{}();,]</match>
     </context>
 
-    <context id="attribute-value-delimiters" style-ref="others-2">
+    <context id="attribute-selector-delimiters" style-ref="others-2">
       <match>(\[|\])</match>
     </context>
 
-    <context id="operators" style-ref="function">
-      <match>[@%~|!=]</match>
+    <context id="attribute-selector-operators" style-ref="function">
+      <match>[~|^$*]?=</match>
     </context>
 
     <context id="selector-grammar" style-ref="others-3">
-      <match>[*&gt;+]</match>
+      <match>[*&gt;+~]</match>
     </context>
 
     <context id="function">
@@ -1137,6 +1139,8 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="def:string"/>
+        <context ref="def:single-quoted-string"/>
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
         <context ref="hexadecimal-color"/>
@@ -1161,8 +1165,8 @@
         <context ref="at-rules"/>
         <context ref="style-block"/>
         <context ref="punctuators"/>
-        <context ref="attribute-value-delimiters"/>
-        <context ref="operators"/>
+        <context ref="attribute-selector-delimiters"/>
+        <context ref="attribute-selector-operators"/>
         <context ref="selector-grammar"/>
         <context ref="selector-id"/>
         <context ref="selector-class"/>
