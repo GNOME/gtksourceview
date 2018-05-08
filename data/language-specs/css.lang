@@ -148,8 +148,6 @@
     </context>
 
     <context id="css3-named-color" style-ref="color">
-      <prefix>\s</prefix>
-      <suffix>($|(?=[;\s]))</suffix>
       <keyword>aliceblue</keyword>
       <keyword>antiquewhite</keyword>
       <keyword>aquamarine</keyword>
@@ -284,8 +282,6 @@
     </context>
 
     <context id="named-color" style-ref="color">
-      <prefix>\s</prefix>
-      <suffix>($|(?=[;\s]))</suffix>
       <keyword>aqua</keyword>
       <keyword>black</keyword>
       <keyword>blue</keyword>
@@ -673,8 +669,6 @@
     </context>
 
     <context id="svg-property-values" style-ref="property-values">
-      <prefix>\s</prefix>
-      <suffix>($|(?=[;\s]))</suffix>
       <keyword>alphabetic</keyword>
       <keyword>bevel</keyword>
       <keyword>butt</keyword>
@@ -708,8 +702,6 @@
     </context>
 
     <context id="css3-property-values" style-ref="property-values">
-      <prefix>\s</prefix>
-      <suffix>($|(?=[;\s]))</suffix>
       <keyword>active</keyword>
       <keyword>add</keyword>
       <keyword>allow-end</keyword>
@@ -868,8 +860,6 @@
     </context>
 
     <context id="property-values" style-ref="property-values">
-      <prefix>\s</prefix>
-      <suffix>($|(?=[;\s]))</suffix>
       <keyword>above</keyword>
       <keyword>absolute</keyword>
       <keyword>alias</keyword>
