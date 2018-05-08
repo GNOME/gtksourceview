@@ -1079,6 +1079,29 @@
       <keyword>zoom-out</keyword>
     </context>
 
+    <context id="css3-function-arguments" style-ref="property-values">
+      <keyword>at</keyword>
+      <keyword>auto-fill</keyword>
+      <keyword>auto-fit</keyword>
+      <keyword>auto</keyword>
+      <keyword>bottom</keyword>
+      <keyword>center</keyword>
+      <keyword>circle</keyword>
+      <keyword>closest-corner</keyword>
+      <keyword>closest-side</keyword>
+      <keyword>ellipse</keyword>
+      <keyword>end</keyword>
+      <keyword>farthest-corner</keyword>
+      <keyword>farthest-side</keyword>
+      <keyword>left</keyword>
+      <keyword>max-content</keyword>
+      <keyword>min-content</keyword>
+      <keyword>right</keyword>
+      <keyword>start</keyword>
+      <keyword>top</keyword>
+      <keyword>to</keyword>
+    </context>
+
     <context id="style-block">
       <start>\{</start>
       <end>\}</end>
@@ -1134,9 +1157,12 @@
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
         <context ref="hexadecimal-color"/>
+        <context ref="css3-named-color"/>
+        <context ref="named-color"/>
         <context ref="resolution"/>
         <context ref="dimension"/>
         <context ref="number"/>
+        <context ref="css3-function-arguments"/>
         <context ref="function"/>
       </include>
     </context>

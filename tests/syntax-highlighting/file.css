@@ -29,11 +29,15 @@ INPUT::PLACEHOLDER {
 
 @media all {
     * ~ ul {
+        background-image: linear-gradient(to left top, #fff, blue);
         padding: 10VW;
     }
     @media screen and (orientation: portrait) {
         .heading > .news {
             background-image: url(image.png);
+        }
+        .grid {
+            grid-template-columns: repeat(2, minmax(max-content, 300px) 1fr) 100px;
         }
     }
     @media print and (min-monochrome: 16) {
