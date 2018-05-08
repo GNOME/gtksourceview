@@ -60,10 +60,12 @@
     <style id="selector-tagname"      name="Tag Name Selector"     map-to="def:type"/>
   </styles>
 
+  <default-regex-options case-sensitive="false"/>
+
   <definitions>
 
     <context id="unicode-character-reference" style-ref="others-2">
-      <match>\\([a-fA-F0-9]{1,5}[ \t]|[a-fA-F0-9]{6})</match>
+      <match>\\([a-f0-9]{1,5}[ \t]|[a-f0-9]{6})</match>
     </context>
 
     <context id="selector-pseudo-elements-one-colon" style-ref="function">
@@ -130,19 +132,19 @@
     </context>
 
     <context id="selector-id" style-ref="selector-id">
-      <match>#[a-zA-Z][a-zA-Z0-9_-]*\b</match>
+      <match>#[a-z][a-z0-9_-]*\b</match>
     </context>
 
     <context id="selector-class" style-ref="selector-class">
-      <match>\.[a-zA-Z][a-zA-Z0-9_-]*\b</match>
+      <match>\.[a-z][a-z0-9_-]*\b</match>
     </context>
 
     <context id="selector-tagname" style-ref="selector-tagname">
-      <match>\b[a-zA-Z][a-zA-Z0-9_-]*\b</match>
+      <match>\b[a-z][a-z0-9_-]*\b</match>
     </context>
 
     <context id="hexadecimal-color" style-ref="color">
-      <match>#([a-fA-F0-9]{8}|[a-fA-F0-9]{6}|[a-fA-F0-9]{4}|[a-fA-F0-9]{3})\b</match>
+      <match>#([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})\b</match>
     </context>
 
     <context id="css3-named-color" style-ref="color">
@@ -322,7 +324,7 @@
     </context>
 
     <context id="unicode-range" style-ref="others-2">
-      <match>[uU]\+[a-fA-F0-9]{1,6}(-[a-fA-F0-9]{1,6})?</match>
+      <match>u\+[a-f0-9]{1,6}(-[a-f0-9]{1,6})?</match>
     </context>
 
     <context id="importance-modifier" style-ref="keyword">
@@ -677,9 +679,9 @@
       <keyword>bevel</keyword>
       <keyword>butt</keyword>
       <keyword>central</keyword>
-      <keyword>crisp(E|e)dges</keyword>
+      <keyword>crispedges</keyword>
       <keyword>evenodd</keyword>
-      <keyword>geometric(P|p)recision</keyword>
+      <keyword>geometricprecision</keyword>
       <keyword>hanging</keyword>
       <keyword>ideographic</keyword>
       <keyword>lr-tb</keyword>
@@ -688,8 +690,8 @@
       <keyword>miter</keyword>
       <keyword>no-change</keyword>
       <keyword>nonzero</keyword>
-      <keyword>optimize(L|l)egibility</keyword>
-      <keyword>optimize(S|s)peed</keyword>
+      <keyword>optimizelegibility</keyword>
+      <keyword>optimizespeed</keyword>
       <keyword>painted</keyword>
       <keyword>reset-size</keyword>
       <keyword>rl-tb</keyword>
@@ -700,9 +702,9 @@
       <keyword>text-after-edge</keyword>
       <keyword>text-before-edge</keyword>
       <keyword>use-script</keyword>
-      <keyword>visible(F|f)ill</keyword>
-      <keyword>visible(P|p)ainted</keyword>
-      <keyword>visible(S|s)troke</keyword>
+      <keyword>visiblefill</keyword>
+      <keyword>visiblepainted</keyword>
+      <keyword>visiblestroke</keyword>
     </context>
 
     <context id="css3-property-values" style-ref="property-values">
@@ -739,7 +741,7 @@
       <keyword>contextual</keyword>
       <keyword>cover</keyword>
       <keyword>crisp-edges</keyword>
-      <keyword>current(C|c)olor</keyword>
+      <keyword>currentcolor</keyword>
       <keyword>darken</keyword>
       <keyword>dense</keyword>
       <keyword>diagonal-fractions</keyword>
@@ -1130,7 +1132,7 @@
     </context>
 
     <context id="function">
-      <start>[a-zA-Z][a-zA-Z0-9-]+\(</start>
+      <start>[a-z][a-z0-9-]+\(</start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>

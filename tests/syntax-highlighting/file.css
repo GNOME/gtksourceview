@@ -1,4 +1,4 @@
-#testid[type=text] {
+#testID[type=text] {
     font: 12px italic "Overpass";
 }
 
@@ -20,11 +20,15 @@ ul::before {}
 
 link:hover {}
 
-@import url("fineprint.css");
+INPUT::PLACEHOLDER {
+    COLOR: REBECCAPURPLE;
+}
+
+@import URL("fineprint.css");
 
 @media all {
     * ~ ul {
-        padding: 10px;
+        padding: 10VW;
     }
     @media screen and (orientation: portrait) {
         .heading > .news {
@@ -33,6 +37,8 @@ link:hover {}
     }
     @media print and (min-monochrome: 16) {
         body {
+            background-color: #FFFFFF;
+            border-color: currentColor;
             color: #000;
         }
     }
