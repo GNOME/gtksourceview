@@ -19,6 +19,8 @@ p + div {
 
 ul::before {}
 
+li:nth-child(2n+1) {}
+
 link:hover {}
 
 INPUT::PLACEHOLDER {

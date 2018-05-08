@@ -1146,6 +1146,26 @@
       <match>[*&gt;+~]</match>
     </context>
 
+    <context id="selector-nth-argument-keywords" style-ref="property-values">
+      <keyword>even</keyword>
+      <keyword>odd</keyword>
+    </context>
+
+    <context id="selector-nth-argument-An-plus-B" style-ref="decimal">
+      <match>[+-]?(\d*n(\s*[+-]\s*\d+)?|\d+)</match>
+    </context>
+
+    <context id="selector-nth-argument">
+      <start>(?:(?&lt;=:nth-child)|(?&lt;=:nth-last-child)|(?&lt;=:nth-of-type)|(?&lt;=:nth-last-of-type))\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="function"/>
+        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="selector-nth-argument-keywords"/>
+        <context ref="selector-nth-argument-An-plus-B"/>
+      </include>
+    </context>
+
     <context id="function">
       <start>[a-z][a-z0-9-]+\(</start>
       <end>\)</end>
@@ -1177,6 +1197,7 @@
         <context ref="selector-pseudo-elements-one-colon"/>
         <context ref="selector-pseudo-elements"/>
         <context ref="selector-pseudo-classes"/>
+        <context ref="selector-nth-argument"/>
         <context ref="css3-at-rules"/>
         <context ref="at-rules"/>
         <context ref="style-block"/>
