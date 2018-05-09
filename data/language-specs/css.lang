@@ -7,6 +7,7 @@
  Copyright (C) 2004 Scott Martin <scott@coffeeblack.org>
  Copyright (C) 2010 Patryk Zawadzki <patrys@pld-linux.org>
  Copyright (C) 2016 Tobias Schönberg <tobias47n9e@gmail.com>
+ Copyright (C) 2018 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -64,9 +65,56 @@
 
   <definitions>
 
-    <context id="unicode-character-reference" style-ref="others-2">
-      <match>\\([a-f0-9]{1,5}[ \t]|[a-f0-9]{6})</match>
-    </context>
+    <!-- https://drafts.csswg.org/css-syntax/#escaping -->
+    <define-regex id="escape-regex" extended="true">
+      (?:
+        \\                   # backslash
+        (?:
+          [^\n\r\f0-9a-f] |  # not newline or hex digit; or
+          [0-9a-f]{1,6} \s?  # 1-6 hex digits, trailing whitespace (not necessary in some cases)
+        )
+      )
+    </define-regex>
+
+    <!-- https://drafts.csswg.org/css-syntax/#non-ascii-code-point -->
+    <define-regex id="non-ascii-regex">[\x{80}-\x{10ffff}]</define-regex>
+
+    <!--
+    a combination of name-start code point and escape
+    https://drafts.csswg.org/css-syntax/#name-start-code-point
+    https://www.w3.org/TR/selectors-3/#lex
+    -->
+    <define-regex id="identifier-start-char-regex" extended="true">
+      (?:
+        [a-z_] |
+        \%{non-ascii-regex} |
+        \%{escape-regex}
+      )
+    </define-regex>
+
+    <!--
+    a combination of name code point and escape
+    https://drafts.csswg.org/css-syntax/#name-code-point
+    https://www.w3.org/TR/selectors-3/#lex
+    -->
+    <define-regex id="identifier-char-regex" extended="true">
+      (?:
+        [a-z0-9_-] |
+        \%{non-ascii-regex} |
+        \%{escape-regex}
+      )
+    </define-regex>
+
+    <!-- https://drafts.csswg.org/css-syntax/#ident-token-diagram -->
+    <define-regex id="identifier-regex" extended="true">
+      (?:
+        (?:
+          -- |
+          -? \%{identifier-start-char-regex}
+        )
+        \%{identifier-char-regex}*
+      )
+    </define-regex>
 
     <context id="selector-pseudo-elements-one-colon" style-ref="function">
       <prefix>::?</prefix>
@@ -132,15 +180,15 @@
     </context>
 
     <context id="selector-id" style-ref="selector-id">
-      <match>#[a-z][a-z0-9_-]*\b</match>
+      <match>#\%{identifier-regex}</match>
     </context>
 
     <context id="selector-class" style-ref="selector-class">
-      <match>\.[a-z][a-z0-9_-]*\b</match>
+      <match>\.\%{identifier-regex}</match>
     </context>
 
     <context id="selector-tagname" style-ref="selector-tagname">
-      <match>\b[a-z][a-z0-9_-]*\b</match>
+      <match>\%{identifier-regex}</match>
     </context>
 
     <context id="hexadecimal-color" style-ref="color">
@@ -1263,7 +1311,7 @@
     </context>
 
     <context id="function">
-      <start>[a-z][a-z0-9-]+\(</start>
+      <start>\%{identifier-regex}\(</start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
@@ -1289,7 +1337,6 @@
         <context ref="def:single-quoted-string"/>
         <context ref="def:c-like-comment-multiline"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
-        <context ref="unicode-character-reference"/>
         <context ref="selector-pseudo-elements-one-colon"/>
         <context ref="selector-pseudo-elements"/>
         <context ref="selector-pseudo-classes"/>
