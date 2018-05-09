@@ -23,6 +23,7 @@ p + div {
 
 #headline:after {
     transform: scaleX(-1.75) rotate(+33.333e+3deg);
+    transition: transform 2s ease-in-out, color 400ms;
 }
 
 ul::before {}

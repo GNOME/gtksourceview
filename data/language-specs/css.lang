@@ -669,6 +669,100 @@
       <keyword>z-index</keyword>
     </context>
 
+    <context id="animatable-properties" style-ref="property-values">
+      <keyword>background-color</keyword>
+      <keyword>background-position</keyword>
+      <keyword>background-size</keyword>
+      <keyword>background</keyword>
+      <keyword>border-bottom-color</keyword>
+      <keyword>border-bottom-left-radius</keyword>
+      <keyword>border-bottom-right-radius</keyword>
+      <keyword>border-bottom-width</keyword>
+      <keyword>border-bottom</keyword>
+      <keyword>border-color</keyword>
+      <keyword>border-left-color</keyword>
+      <keyword>border-left-width</keyword>
+      <keyword>border-left</keyword>
+      <keyword>border-radius</keyword>
+      <keyword>border-right-color</keyword>
+      <keyword>border-right-width</keyword>
+      <keyword>border-right</keyword>
+      <keyword>border-top-color</keyword>
+      <keyword>border-top-left-radius</keyword>
+      <keyword>border-top-right-radius</keyword>
+      <keyword>border-top-width</keyword>
+      <keyword>border-top</keyword>
+      <keyword>border-width</keyword>
+      <keyword>border</keyword>
+      <keyword>bottom</keyword>
+      <keyword>box-shadow</keyword>
+      <keyword>clip-path</keyword>
+      <keyword>clip</keyword>
+      <keyword>color</keyword>
+      <keyword>column-count</keyword>
+      <keyword>column-gap</keyword>
+      <keyword>column-rule-color</keyword>
+      <keyword>column-rule-width</keyword>
+      <keyword>column-rule</keyword>
+      <keyword>column-width</keyword>
+      <keyword>columns</keyword>
+      <keyword>filter</keyword>
+      <keyword>flex-basis</keyword>
+      <keyword>flex-grow</keyword>
+      <keyword>flex-shrink</keyword>
+      <keyword>flex</keyword>
+      <keyword>font-size-adjust</keyword>
+      <keyword>font-size</keyword>
+      <keyword>font-stretch</keyword>
+      <keyword>font-weight</keyword>
+      <keyword>font</keyword>
+      <keyword>grid-column-gap</keyword>
+      <keyword>grid-gap</keyword>
+      <keyword>grid-row-gap</keyword>
+      <keyword>height</keyword>
+      <keyword>left</keyword>
+      <keyword>letter-spacing</keyword>
+      <keyword>line-height</keyword>
+      <keyword>margin-bottom</keyword>
+      <keyword>margin-left</keyword>
+      <keyword>margin-right</keyword>
+      <keyword>margin-top</keyword>
+      <keyword>margin</keyword>
+      <keyword>mask</keyword>
+      <keyword>max-height</keyword>
+      <keyword>max-width</keyword>
+      <keyword>min-height</keyword>
+      <keyword>min-width</keyword>
+      <keyword>object-position</keyword>
+      <keyword>opacity</keyword>
+      <keyword>order</keyword>
+      <keyword>outline-color</keyword>
+      <keyword>outline-offset</keyword>
+      <keyword>outline-width</keyword>
+      <keyword>outline</keyword>
+      <keyword>padding-bottom</keyword>
+      <keyword>padding-left</keyword>
+      <keyword>padding-right</keyword>
+      <keyword>padding-top</keyword>
+      <keyword>padding</keyword>
+      <keyword>perspective-origin</keyword>
+      <keyword>perspective</keyword>
+      <keyword>right</keyword>
+      <keyword>tab-size</keyword>
+      <keyword>text-decoration-color</keyword>
+      <keyword>text-decoration</keyword>
+      <keyword>text-indent</keyword>
+      <keyword>text-shadow</keyword>
+      <keyword>top</keyword>
+      <keyword>transform-origin</keyword>
+      <keyword>transform</keyword>
+      <keyword>vertical-align</keyword>
+      <keyword>visibility</keyword>
+      <keyword>width</keyword>
+      <keyword>word-spacing</keyword>
+      <keyword>z-index</keyword>
+    </context>
+
     <context id="svg-property-values" style-ref="property-values">
       <keyword>alphabetic</keyword>
       <keyword>bevel</keyword>
@@ -1125,6 +1219,7 @@
         <context ref="svg-property-names"/>
         <context ref="css3-property-names"/>
         <context ref="property-names"/>
+        <context ref="animatable-properties"/>
         <context ref="svg-property-values"/>
         <context ref="css3-property-values"/>
         <context ref="property-values"/>
