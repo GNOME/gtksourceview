@@ -320,7 +320,7 @@
     </context>
 
     <context id="unicode-range" style-ref="others-2">
-      <match>u\+[a-f0-9]{1,6}(-[a-f0-9]{1,6})?</match>
+      <match>u\+[a-f0-9?]{1,6}(-[a-f0-9]{1,6})?</match>
     </context>
 
     <context id="importance-modifier" style-ref="keyword">
@@ -512,6 +512,7 @@
       <keyword>perspective</keyword>
       <keyword>pointer-events</keyword>
       <keyword>resize</keyword>
+      <keyword>src</keyword>
       <keyword>tab-size</keyword>
       <keyword>text-align-last</keyword>
       <keyword>text-combine-upright</keyword>

@@ -1,3 +1,11 @@
+@font-face {
+    font-family: MyHelvetica;
+    src: local("Helvetica Neue"),
+         local("HelveticaNeue"),
+         url(MgOpenModerna.ttf);
+    unicode-range: U+0025-00FF, U+4??;
+}
+
 #testID[lang|="zh"] {
     font: 12px italic "Overpass";
 }
