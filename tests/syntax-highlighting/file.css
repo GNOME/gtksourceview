@@ -19,6 +19,7 @@ p + div {
 .otherclass {
     font-size: 20px;
     opacity: .5;
+    width: 100%;
 }
 
 #headline:after {
@@ -48,6 +49,12 @@ div#\E9 dition .\0000E9dition .motion_\e9motion, /* Unicode character escape */
 }
 
 @import URL("fineprint.css");
+
+@keyframes myanim {
+    from { opacity: 0.0; }
+    50%  { opacity: 0.5; }
+    to   { opacity: 1.0; }
+}
 
 @media all {
     * ~ ul {
