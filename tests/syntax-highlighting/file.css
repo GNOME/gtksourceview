@@ -37,6 +37,16 @@ INPUT::PLACEHOLDER {
     COLOR: REBECCAPURPLE;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
 #-- .--hello-world, /* two hyphens: https://stackoverflow.com/a/30822662 */
 .-❤#-español.♫#你好, /* leading hyphen, non-ASCII */
 span.\. + .\+\ space\@\>, /* special character escape */
@@ -50,6 +60,12 @@ div#\E9 dition .\0000E9dition .motion_\e9motion, /* Unicode character escape */
 
 @import URL("fineprint.css");
 
+@-webkit-keyframes myanim {
+    from { opacity: 0.0; }
+    50%  { opacity: 0.5; }
+    to   { opacity: 1.0; }
+}
+
 @keyframes myanim {
     from { opacity: 0.0; }
     50%  { opacity: 0.5; }
@@ -58,7 +74,8 @@ div#\E9 dition .\0000E9dition .motion_\e9motion, /* Unicode character escape */
 
 @media all {
     * ~ ul {
-        background-image: linear-gradient(to left top, #fff, blue);
+        background-image: -webkit-linear-gradient(to left top, #fff, blue);
+        background-image:         linear-gradient(to left top, #fff, blue);
         padding: 10VW;
     }
     @media screen and (orientation: portrait) {
@@ -67,6 +84,7 @@ div#\E9 dition .\0000E9dition .motion_\e9motion, /* Unicode character escape */
         }
         .grid {
             grid-template-columns: repeat(2, minmax(max-content, 300px) 1fr) 100px;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
         }
     }
     @media print and (min-monochrome: 16) {

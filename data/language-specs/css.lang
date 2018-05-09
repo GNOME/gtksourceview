@@ -59,6 +59,7 @@
     <style id="selector-id"           name="ID Selector"           map-to="def:statement"/>
     <style id="selector-class"        name="Class Selector"        map-to="def:identifier"/>
     <style id="selector-tagname"      name="Tag Name Selector"     map-to="def:type"/>
+    <style id="vendor-specific"       name="Vendor Specific"       map-to="def:warning"/>
     <style id="name"                  name="Name"/>
   </styles>
 
@@ -117,8 +118,27 @@
       )
     </define-regex>
 
+    <!--
+    https://www.w3.org/TR/CSS21/syndata.html#vendor-keywords
+    https://en.wikipedia.org/wiki/CSS_hack#List_of_prefixes
+    -->
+    <define-regex id="vendor-specific-identifier-regex" extended="true">
+      (?:
+        (?:
+          [_-] \%{identifier-start-char-regex} \%{identifier-char-regex}* |
+          mso |
+          prince
+        )
+        - \%{identifier-char-regex}+
+      )
+    </define-regex>
+
     <context id="name" style-ref="name">
       <match>\%{identifier-regex}</match>
+    </context>
+
+    <context id="selector-vendor-specific-pseudo-elements-classes" style-ref="vendor-specific">
+      <match>::?\%{vendor-specific-identifier-regex}</match>
     </context>
 
     <context id="selector-pseudo-elements-one-colon" style-ref="function">
@@ -161,6 +181,10 @@
       <keyword>focus</keyword>
       <keyword>target</keyword>
       <keyword>lang</keyword>
+    </context>
+
+    <context id="vendor-specific-at-rules" style-ref="vendor-specific">
+      <match>@\%{vendor-specific-identifier-regex}</match>
     </context>
 
     <context id="css3-at-rules" style-ref="at-rules">
@@ -380,6 +404,47 @@
       <match>u\+[a-f0-9?]{1,6}(-[a-f0-9]{1,6})?</match>
     </context>
 
+    <context id="function-arguments-list">
+      <include>
+        <context ref="def:string"/>
+        <context ref="def:single-quoted-string"/>
+        <context ref="hexadecimal-color"/>
+        <context ref="css3-named-color"/>
+        <context ref="named-color"/>
+        <context ref="resolution"/>
+        <context ref="dimension"/>
+        <context ref="percentage"/>
+        <context ref="number"/>
+        <context ref="css3-function-arguments"/>
+        <context ref="vendor-specific-function"/>
+        <context ref="function"/>
+      </include>
+    </context>
+
+    <context id="vendor-specific-function">
+      <start>\%{vendor-specific-identifier-regex}\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
+        <context sub-pattern="0" where="end" style-ref="vendor-specific"/>
+        <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="function-arguments-list"/>
+      </include>
+    </context>
+
+    <context id="function">
+      <start>\%{identifier-regex}\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="function"/>
+        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="function-arguments-list"/>
+      </include>
+    </context>
+
     <context id="importance-modifier" style-ref="keyword">
       <match>\![ \t]*important</match>
     </context>
@@ -428,6 +493,10 @@
       <keyword>landscape</keyword>
       <keyword>portrait</keyword>
       <keyword>progressive</keyword>
+    </context>
+
+    <context id="vendor-specific-property-names" style-ref="vendor-specific">
+      <match>\%{vendor-specific-identifier-regex}(?=\s*:)</match>
     </context>
 
     <context id="svg-property-names" style-ref="keyword">
@@ -724,6 +793,10 @@
       <keyword>width</keyword>
       <keyword>word-spacing</keyword>
       <keyword>z-index</keyword>
+    </context>
+
+    <context id="vendor-specific-property-values" style-ref="vendor-specific">
+      <match>\%{vendor-specific-identifier-regex}</match>
     </context>
 
     <context id="animatable-properties" style-ref="property-values">
@@ -1262,21 +1335,25 @@
         <context ref="def:single-quoted-string"/>
         <context ref="def:c-like-comment-multiline"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="vendor-specific-at-rules"/>
         <context ref="css3-at-rules"/>
         <context ref="at-rules"/>
         <context ref="style-block"/>
         <context ref="hexadecimal-color"/>
         <context ref="css3-named-color"/>
         <context ref="named-color"/>
+        <context ref="vendor-specific-function"/>
         <context ref="function"/>
         <context ref="dimension"/>
         <context ref="percentage"/>
         <context ref="number"/>
         <context ref="unicode-range"/>
         <context ref="importance-modifier"/>
+        <context ref="vendor-specific-property-names"/>
         <context ref="svg-property-names"/>
         <context ref="css3-property-names"/>
         <context ref="property-names"/>
+        <context ref="vendor-specific-property-values"/>
         <context ref="animatable-properties"/>
         <context ref="svg-property-values"/>
         <context ref="css3-property-values"/>
@@ -1351,38 +1428,18 @@
       </include>
     </context>
 
-    <context id="function">
-      <start>\%{identifier-regex}\(</start>
-      <end>\)</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="function"/>
-        <context sub-pattern="0" where="end" style-ref="function"/>
-        <context ref="def:string"/>
-        <context ref="def:single-quoted-string"/>
-        <context ref="def:escape"/>
-        <context ref="def:line-continue"/>
-        <context ref="hexadecimal-color"/>
-        <context ref="css3-named-color"/>
-        <context ref="named-color"/>
-        <context ref="resolution"/>
-        <context ref="dimension"/>
-        <context ref="percentage"/>
-        <context ref="number"/>
-        <context ref="css3-function-arguments"/>
-        <context ref="function"/>
-      </include>
-    </context>
-
     <context id="css" class="no-spell-check">
       <include>
         <context ref="def:string"/>
         <context ref="def:single-quoted-string"/>
         <context ref="def:c-like-comment-multiline"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="selector-vendor-specific-pseudo-elements-classes"/>
         <context ref="selector-pseudo-elements-one-colon"/>
         <context ref="selector-pseudo-elements"/>
         <context ref="selector-pseudo-classes"/>
         <context ref="selector-nth-argument"/>
+        <context ref="vendor-specific-at-rules"/>
         <context ref="css3-at-rules"/>
         <context ref="at-rules"/>
         <context ref="style-block"/>
