@@ -202,6 +202,13 @@ on_row_selected (GtkListBox                        *list_box,
 }
 
 static void
+destroy_child_cb (GtkWidget *widget,
+		  gpointer   data)
+{
+	gtk_widget_destroy (widget);
+}
+
+static void
 gtk_source_style_scheme_chooser_widget_populate (GtkSourceStyleSchemeChooserWidget *widget)
 {
 	GtkSourceStyleSchemeChooserWidgetPrivate *priv = GET_PRIV (widget);
@@ -215,7 +222,7 @@ gtk_source_style_scheme_chooser_widget_populate (GtkSourceStyleSchemeChooserWidg
 	g_signal_handlers_block_by_func (priv->list_box, on_row_selected, widget);
 
 	gtk_container_foreach (GTK_CONTAINER (priv->list_box),
-	                       (GtkCallback)gtk_widget_destroy,
+	                       destroy_child_cb,
 	                       NULL);
 
 	manager = gtk_source_style_scheme_manager_get_default ();
