@@ -81,7 +81,8 @@ free_sequence (GtkSourceMarksSequence *seq)
 
 static gint
 compare_marks (GtkTextMark *mark1,
-	       GtkTextMark *mark2)
+	       GtkTextMark *mark2,
+	       gpointer     user_data)
 {
 	GtkTextBuffer *buffer;
 	GtkTextIter iter1;
