@@ -3228,8 +3228,9 @@ context_new (Context           *parent,
 }
 
 static void
-context_unref_hash_cb (G_GNUC_UNUSED gpointer  text,
-		       Context                *context)
+context_unref_hash_cb (gpointer  text,
+		       Context  *context,
+		       gpointer  user_data)
 {
 	context->parent = NULL;
 	context_unref (context);
@@ -3360,8 +3361,9 @@ context_unref (Context *context)
 }
 
 static void
-context_freeze_hash_cb (G_GNUC_UNUSED gpointer  text,
-		        Context                *context)
+context_freeze_hash_cb (gpointer  text,
+			Context  *context,
+			gpointer  user_data)
 {
 	context_freeze (context);
 }
@@ -3416,6 +3418,13 @@ get_child_contexts_hash_cb (G_GNUC_UNUSED gpointer   text,
 	*list = g_slist_prepend (*list, context);
 }
 
+static void
+context_thaw_cb (Context *ctx,
+		 gpointer user_data)
+{
+	context_thaw (ctx);
+}
+
 /**
  * context_thaw:
  * @context: the context.
@@ -3447,7 +3456,7 @@ context_thaw (Context *ctx)
 					      (GHFunc) get_child_contexts_hash_cb,
 					      &children);
 
-			g_slist_foreach (children, (GFunc) context_thaw, NULL);
+			g_slist_foreach (children, (GFunc) context_thaw_cb, NULL);
 			g_slist_free (children);
 		}
 
