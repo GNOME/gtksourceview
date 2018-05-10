@@ -134,7 +134,6 @@ gtk_source_style_scheme_finalize (GObject *object)
 
 	if (scheme->priv->authors != NULL)
 	{
-		g_ptr_array_foreach (scheme->priv->authors, (GFunc)g_free, NULL);
 		g_ptr_array_free (scheme->priv->authors, TRUE);
 	}
 
@@ -1234,7 +1233,7 @@ parse_style_scheme_child (GtkSourceStyleScheme *scheme,
 	{
 		xmlChar *tmp = xmlNodeGetContent (node);
 		if (scheme->priv->authors == NULL)
-			scheme->priv->authors = g_ptr_array_new ();
+			scheme->priv->authors = g_ptr_array_new_with_free_func (g_free);
 
 		g_ptr_array_add (scheme->priv->authors, g_strdup ((char*) tmp));
 
