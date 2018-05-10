@@ -94,7 +94,8 @@ gtk_source_completion_words_library_new (void)
 
 static gint
 compare_full (GtkSourceCompletionWordsProposal *a,
-	      GtkSourceCompletionWordsProposal *b)
+	      GtkSourceCompletionWordsProposal *b,
+	      gpointer                          user_data)
 {
 	if (a == b)
 	{
