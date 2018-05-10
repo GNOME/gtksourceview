@@ -1628,10 +1628,10 @@
 
     <context id="selector-pseudo-elements-one-colon" style-ref="function">
       <prefix>::?</prefix>
-      <keyword>first-line</keyword>
-      <keyword>first-letter</keyword>
-      <keyword>before</keyword>
       <keyword>after</keyword>
+      <keyword>before</keyword>
+      <keyword>first-letter</keyword>
+      <keyword>first-line</keyword>
     </context>
 
     <context id="selector-pseudo-elements" style-ref="function">
@@ -1642,30 +1642,39 @@
 
     <context id="selector-pseudo-classes" style-ref="function">
       <prefix>:</prefix>
-      <keyword>enabled</keyword>
-      <keyword>disabled</keyword>
+      <keyword>active</keyword>
       <keyword>checked</keyword>
+      <keyword>default</keyword>
+      <keyword>disabled</keyword>
+      <keyword>empty</keyword>
+      <keyword>enabled</keyword>
+      <keyword>first-child</keyword>
+      <keyword>first-of-type</keyword>
+      <keyword>focus</keyword>
+      <keyword>hover</keyword>
+      <keyword>in-range</keyword>
       <keyword>indeterminate</keyword>
-      <keyword>root</keyword>
+      <keyword>invalid</keyword>
+      <keyword>lang</keyword>
+      <keyword>last-child</keyword>
+      <keyword>last-of-type</keyword>
+      <keyword>link</keyword>
+      <keyword>not</keyword>
       <keyword>nth-child</keyword>
       <keyword>nth-last-child</keyword>
-      <keyword>nth-of-type</keyword>
       <keyword>nth-last-of-type</keyword>
-      <keyword>first-child</keyword>
-      <keyword>last-child</keyword>
-      <keyword>first-of-type</keyword>
-      <keyword>last-of-type</keyword>
+      <keyword>nth-of-type</keyword>
       <keyword>only-child</keyword>
       <keyword>only-of-type</keyword>
-      <keyword>empty</keyword>
-      <keyword>not</keyword>
-      <keyword>link</keyword>
-      <keyword>visited</keyword>
-      <keyword>hover</keyword>
-      <keyword>active</keyword>
-      <keyword>focus</keyword>
+      <keyword>optional</keyword>
+      <keyword>out-of-range</keyword>
+      <keyword>read-only</keyword>
+      <keyword>read-write</keyword>
+      <keyword>required</keyword>
+      <keyword>root</keyword>
       <keyword>target</keyword>
-      <keyword>lang</keyword>
+      <keyword>valid</keyword>
+      <keyword>visited</keyword>
     </context>
 
     <context id="selector-nth-argument-keywords" style-ref="property-values">
