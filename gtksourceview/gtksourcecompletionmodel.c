@@ -881,6 +881,13 @@ gtk_source_completion_model_add_proposals (GtkSourceCompletionModel    *model,
 
 /* Other public functions */
 
+static gpointer
+provider_copy_func (gconstpointer src,
+		    gpointer      data)
+{
+	return g_object_ref ((gpointer) src);
+}
+
 void
 gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *model,
                                                    GList                    *providers)
@@ -897,7 +904,7 @@ gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *mod
 	g_list_free_full (model->priv->visible_providers, g_object_unref);
 
 	model->priv->visible_providers = g_list_copy_deep (providers,
-							   (GCopyFunc)g_object_ref,
+							   provider_copy_func,
 							   NULL);
 
 	for (l = model->priv->providers; l != NULL; l = l->next)
