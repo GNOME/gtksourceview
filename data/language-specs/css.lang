@@ -1385,6 +1385,7 @@
       <keyword>ornaments</keyword>
       <keyword>styleset</keyword>
       <keyword>stylistic</keyword>
+      <keyword>supports</keyword>
       <keyword>swash</keyword>
     </context>
 
@@ -1443,6 +1444,39 @@
       </include>
     </context>
 
+    <context id="at-supports-test">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="others-3"/>
+        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context ref="comment"/>
+        <context ref="at-supports-test"/>
+        <context ref="at-supports-operators"/>
+        <context ref="all-basic-data-types"/>
+        <context ref="all-functions"/>
+        <context ref="all-style-properties"/>
+        <context ref="comma"/>
+        <context ref="colon"/>
+      </include>
+    </context>
+
+    <context id="at-supports-operators" style-ref="at-rules">
+      <keyword>and</keyword>
+      <keyword>not</keyword>
+      <keyword>or</keyword>
+    </context>
+
+    <context id="at-supports-call">
+      <start>(?&lt;=@supports)</start>
+      <include>
+        <context ref="comment"/>
+        <context ref="at-supports-test"/>
+        <context ref="at-supports-operators"/>
+        <context ref="at-rule-general-block"/>
+      </include>
+    </context>
+
     <context id="all-at-rules">
       <include>
         <context ref="vendor-specific-at-rules"/>
@@ -1450,6 +1484,7 @@
         <context ref="at-rules"/>
         <context ref="at-keyframes-call"/>
         <context ref="at-media-call"/>
+        <context ref="at-supports-call"/>
       </include>
     </context>
 

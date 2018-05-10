@@ -100,3 +100,18 @@ div#\E9 dition .\0000E9dition .motion_\e9motion, /* Unicode character escape */
 @media (min-resolution: +2.54dpcm) {}
 
 @media (min-aspect-ratio: 16/9) {}
+
+@supports (animation-name: test) {
+    @keyframes 'my-complicated-animation' {
+        0%      {}
+        33.333% {}
+        66.667% {}
+        100%    {}
+    }
+}
+
+@supports not ((text-align-last: justify) or (-moz-text-align-last: justify)) {
+    body {
+        text-align: justify;
+    }
+}
