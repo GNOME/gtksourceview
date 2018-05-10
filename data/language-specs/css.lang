@@ -1312,20 +1312,19 @@
     </context>
 
     <context id="css3-media-features" style-ref="keyword">
+      <keyword>any-hover</keyword>
+      <keyword>any-pointer</keyword>
       <keyword>aspect-ratio</keyword>
+      <keyword>color-gamut</keyword>
       <keyword>color-index</keyword>
       <keyword>color</keyword>
-      <keyword>device-aspect-ratio</keyword>
-      <keyword>device-height</keyword>
-      <keyword>device-width</keyword>
+      <keyword>display-mode</keyword>
       <keyword>grid</keyword>
       <keyword>height</keyword>
+      <keyword>hover</keyword>
       <keyword>max-aspect-ratio</keyword>
       <keyword>max-color-index</keyword>
       <keyword>max-color</keyword>
-      <keyword>max-device-aspect-ratio</keyword>
-      <keyword>max-device-height</keyword>
-      <keyword>max-device-width</keyword>
       <keyword>max-height</keyword>
       <keyword>max-monochrome</keyword>
       <keyword>max-resolution</keyword>
@@ -1333,9 +1332,6 @@
       <keyword>min-aspect-ratio</keyword>
       <keyword>min-color-index</keyword>
       <keyword>min-color</keyword>
-      <keyword>min-device-aspect-ratio</keyword>
-      <keyword>min-device-width</keyword>
-      <keyword>min-device-height</keyword>
       <keyword>min-height</keyword>
       <keyword>min-monochrome</keyword>
       <keyword>min-resolution</keyword>
@@ -1344,17 +1340,34 @@
       <keyword>orientation</keyword>
       <keyword>overflow-block</keyword>
       <keyword>overflow-inline</keyword>
+      <keyword>pointer</keyword>
       <keyword>resolution</keyword>
       <keyword>scan</keyword>
-      <keyword>update-frequency</keyword>
+      <keyword>update</keyword>
       <keyword>width</keyword>
     </context>
 
     <context id="css3-media-feature-values" style-ref="property-values">
+      <keyword>browser</keyword>
+      <keyword>coarse</keyword>
+      <keyword>fast</keyword>
+      <keyword>fine</keyword>
+      <keyword>fullscreen</keyword>
+      <keyword>hover</keyword>
       <keyword>interlace</keyword>
       <keyword>landscape</keyword>
+      <keyword>minimal-ui</keyword>
+      <keyword>none</keyword>
+      <keyword>optional-paged</keyword>
+      <keyword>p3</keyword>
+      <keyword>paged</keyword>
       <keyword>portrait</keyword>
       <keyword>progressive</keyword>
+      <keyword>rec2020</keyword>
+      <keyword>scroll</keyword>
+      <keyword>slow</keyword>
+      <keyword>srgb</keyword>
+      <keyword>standalone</keyword>
     </context>
 
     <context id="media-feature-test">
