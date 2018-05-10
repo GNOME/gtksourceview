@@ -33,6 +33,7 @@
 
   <styles>
     <style id="error"                 name="Error"                 map-to="def:error"/>
+    <style id="namespace"             name="Namespace"             map-to="def:keyword"/>
     <style id="others-2"              name="Others 2"/>
     <style id="string"                name="String"                map-to="def:string"/>
     <style id="color"                 name="Color"                 map-to="def:base-n-integer"/>
@@ -385,6 +386,17 @@
       <keyword>to</keyword>
     </context>
 
+    <context id="url">
+      <start>url\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="function"/>
+        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="comment"/>
+        <context ref="string"/>
+      </include>
+    </context>
+
     <context id="function-arguments-list">
       <include>
         <context ref="all-functions"/>
@@ -419,6 +431,7 @@
     <context id="all-functions">
       <include>
         <context ref="vendor-specific-function"/>
+        <context ref="url"/>
         <context ref="function"/>
       </include>
     </context>
@@ -1382,6 +1395,7 @@
       <keyword>font-face</keyword>
       <keyword>font-feature-values</keyword>
       <keyword>keyframes</keyword>
+      <keyword>namespace</keyword>
       <keyword>ornaments</keyword>
       <keyword>styleset</keyword>
       <keyword>stylistic</keyword>
@@ -1404,6 +1418,47 @@
         <context sub-pattern="0" where="start" style-ref="others-3"/>
         <context sub-pattern="0" where="end" style-ref="others-3"/>
         <context ref="css"/>
+      </include>
+    </context>
+
+    <context id="at-rule-general-delimiter" end-parent="true" style-ref="others-3">
+      <match>;</match>
+    </context>
+
+    <context id="at-charset-call" first-line-only="true">
+      <start case-sensitive="true">(?&lt;=^@charset )(?="[^"]*";)</start>
+      <include>
+        <context ref="def:string"/>
+        <context ref="at-rule-general-delimiter"/>
+      </include>
+    </context>
+
+    <context id="at-charset-call-error" style-ref="error">
+      <start extended="true">
+        (
+          (?&lt;=@charset\ ) |           # match if at-charset-call context did not match, or
+          (?&lt;=@charset)               # match if after @charset
+          (?!                            #   the next character is not
+            (                            #   either
+              \  |                       #   a space, or
+              \%{identifier-char-regex}  #   an identifier character
+            )                            #   (making this another at-rule, not @charset)
+          )
+        )
+      </start>
+      <include>
+        <context ref="at-rule-general-delimiter"/>
+      </include>
+    </context>
+
+    <context id="at-import-call">
+      <start>(?&lt;=@import)</start>
+      <include>
+        <context ref="comment"/>
+        <context ref="url"/>
+        <context ref="string"/>
+        <context ref="media-queries"/>
+        <context ref="at-rule-general-delimiter"/>
       </include>
     </context>
 
@@ -1441,6 +1496,17 @@
         <context ref="comment"/>
         <context ref="media-queries"/>
         <context ref="at-rule-general-block"/>
+      </include>
+    </context>
+
+    <context id="at-namespace-call">
+      <start>(?&lt;=@namespace)</start>
+      <include>
+        <context ref="comment"/>
+        <context ref="url"/>
+        <context ref="string"/>
+        <context ref="name" style-ref="namespace"/>
+        <context ref="at-rule-general-delimiter"/>
       </include>
     </context>
 
@@ -1482,14 +1548,26 @@
         <context ref="vendor-specific-at-rules"/>
         <context ref="css3-at-rules"/>
         <context ref="at-rules"/>
+        <context ref="at-charset-call"/>
+        <context ref="at-charset-call-error"/>
+        <context ref="at-import-call"/>
         <context ref="at-keyframes-call"/>
         <context ref="at-media-call"/>
+        <context ref="at-namespace-call"/>
         <context ref="at-supports-call"/>
       </include>
     </context>
 
 
     <!-- selectors -->
+
+    <context id="namespace-qualifier">
+      <match>(\%{identifier-regex}|\*)?(\|)</match>
+      <include>
+        <context sub-pattern="1" style-ref="namespace"/>
+        <context sub-pattern="2" style-ref="others-3"/>
+      </include>
+    </context>
 
     <context id="selector-id" style-ref="selector-id">
       <match>#\%{identifier-regex}</match>
@@ -1599,6 +1677,7 @@
 
     <context id="all-selectors">
       <include>
+        <context ref="namespace-qualifier"/>
         <context ref="selector-grammar"/>
         <context ref="selector-id"/>
         <context ref="selector-class"/>
@@ -1619,9 +1698,7 @@
     <context id="css" class="no-spell-check">
       <include>
         <context ref="comment"/>
-        <context ref="string"/>
         <context ref="all-at-rules"/>
-        <context ref="all-functions"/>
         <context ref="all-selectors"/>
         <context ref="style-block"/>
       </include>

@@ -1,3 +1,12 @@
+@charset "UTF-8";
+
+@import URL("fineprint.css");
+@import 'custom.css';
+@import url('landscape.css') screen and (orientation: landscape), print;
+
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace svg url(http://www.w3.org/2000/svg);
+
 @font-face {
     font-family: MyHelvetica;
     src: local("Helvetica Neue"),
@@ -47,6 +56,9 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
+svg|a {}
+*|a {}
+
 #-- .--hello-world, /* two hyphens: https://stackoverflow.com/a/30822662 */
 .-❤#-español.♫#你好, /* leading hyphen, non-ASCII */
 span.\. + .\+\ space\@\>, /* special character escape */
@@ -57,8 +69,6 @@ div#\E9 dition .\0000E9dition .motion_\e9motion, /* Unicode character escape */
 .\31 23 {
     background: \u\72\l("unicode.png");
 }
-
-@import URL("fineprint.css");
 
 @-webkit-keyframes myanim {
     from { opacity: 0.0; }
