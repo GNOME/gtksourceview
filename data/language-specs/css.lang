@@ -1361,6 +1361,53 @@
       </include>
     </context>
 
+    <context id="media-query-operators" style-ref="at-rules">
+      <keyword>and</keyword>
+      <keyword>not</keyword>
+      <keyword>only</keyword>
+    </context>
+
+    <context id="media-types" style-ref="keyword">
+      <keyword>all</keyword>
+      <keyword>print</keyword>
+      <keyword>screen</keyword>
+      <keyword>speech</keyword>
+    </context>
+
+    <context id="media-feature-test">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="media-queries"/>
+        <context ref="css3-media-features"/>
+        <context ref="css3-media-feature-values"/>
+        <context ref="hexadecimal-color"/>
+        <context ref="resolution"/>
+        <context ref="dimension"/>
+        <context ref="percentage"/>
+        <context ref="ratio"/>
+        <context ref="number"/>
+      </include>
+    </context>
+
+    <context id="media-queries">
+      <include>
+        <context ref="media-query-operators"/>
+        <context ref="media-types"/>
+        <context ref="media-feature-test"/>
+      </include>
+    </context>
+
+    <context id="at-rule-general-block" end-parent="true">
+      <start>\{</start>
+      <end>\}</end>
+      <include>
+        <context ref="css"/>
+      </include>
+    </context>
+
     <context id="keyframe-selector" style-ref="function">
       <keyword>from</keyword>
       <keyword>to</keyword>
@@ -1389,6 +1436,16 @@
         <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="name"/>
         <context ref="at-keyframes-block"/>
+      </include>
+    </context>
+
+    <context id="at-media-call">
+      <start>(?&lt;=@media)</start>
+      <include>
+        <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="media-queries"/>
+        <context ref="at-rule-general-block"/>
       </include>
     </context>
 
@@ -1451,37 +1508,7 @@
         <context ref="selector-class"/>
         <context ref="selector-tagname"/>
         <context ref="at-keyframes-call"/>
-        <context id="at-media-call">
-          <start>(?&lt;=(@media))</start>
-          <end>\{</end>
-          <include>
-            <context id="media-keywords" style-ref="at-rules">
-              <keyword>and</keyword>
-              <keyword>not</keyword>
-              <keyword>only</keyword>
-            </context>
-            <context id="media-types" style-ref="keyword">
-              <keyword>all</keyword>
-              <keyword>print</keyword>
-              <keyword>screen</keyword>
-              <keyword>speech</keyword>
-            </context>
-            <context id="at-media-arguments">
-              <start>\(</start>
-              <end>\)</end>
-              <include>
-                <context ref="css3-media-features"/>
-                <context ref="css3-media-feature-values"/>
-                <context ref="hexadecimal-color"/>
-                <context ref="resolution"/>
-                <context ref="dimension"/>
-                <context ref="percentage"/>
-                <context ref="ratio"/>
-                <context ref="number"/>
-              </include>
-            </context>
-          </include>
-        </context>
+        <context ref="at-media-call"/>
       </include>
     </context>
 
