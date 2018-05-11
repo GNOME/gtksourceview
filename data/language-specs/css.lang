@@ -317,7 +317,31 @@
     <define-regex id="number-regex">(\d+|\d*\.\d+)(e[+-]?\d+)?</define-regex>
 
     <context id="dimension" style-ref="dimension">
-      <match>[+-]?\%{number-regex}(e(m|x)|(v(h|w|min|max))|ch|fr|rem|p(x|t|c)|in|ft|(m|c)m|k?Hz|deg|g?rad|turn|m?s)</match>
+      <prefix>[+-]?\%{number-regex}</prefix>
+      <keyword>ch</keyword>
+      <keyword>cm</keyword>
+      <keyword>deg</keyword>
+      <keyword>em</keyword>
+      <keyword>ex</keyword>
+      <keyword>fr</keyword>
+      <keyword>ft</keyword>
+      <keyword>grad</keyword>
+      <keyword>hz</keyword>
+      <keyword>in</keyword>
+      <keyword>khz</keyword>
+      <keyword>mm</keyword>
+      <keyword>ms</keyword>
+      <keyword>pc</keyword>
+      <keyword>pt</keyword>
+      <keyword>px</keyword>
+      <keyword>rad</keyword>
+      <keyword>rem</keyword>
+      <keyword>s</keyword>
+      <keyword>turn</keyword>
+      <keyword>vh</keyword>
+      <keyword>vmax</keyword>
+      <keyword>vmin</keyword>
+      <keyword>vw</keyword>
     </context>
 
     <context id="percentage" style-ref="dimension">
@@ -325,7 +349,10 @@
     </context>
 
     <context id="resolution" style-ref="dimension">
-      <match>\+?\%{number-regex}dp(i|cm|px)</match>
+      <prefix>\+?\%{number-regex}</prefix>
+      <keyword>dpcm</keyword>
+      <keyword>dpi</keyword>
+      <keyword>dppx</keyword>
     </context>
 
     <context id="ratio" style-ref="dimension">
