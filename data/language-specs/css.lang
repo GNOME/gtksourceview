@@ -897,6 +897,15 @@
       <keyword>visiblestroke</keyword>
     </context>
 
+    <context id="east-asian-variant-values" style-ref="property-values">
+      <keyword>jis04</keyword>
+      <keyword>jis78</keyword>
+      <keyword>jis83</keyword>
+      <keyword>jis90</keyword>
+      <keyword>simplified</keyword>
+      <keyword>traditional</keyword>
+    </context>
+
     <context id="css3-property-values" style-ref="property-values">
       <keyword>active</keyword>
       <keyword>add</keyword>
@@ -1018,7 +1027,6 @@
       <keyword>sideways-left</keyword>
       <keyword>sideways-right</keyword>
       <keyword>sideways</keyword>
-      <keyword>simplified</keyword>
       <keyword>slashed-zero</keyword>
       <keyword>slice</keyword>
       <keyword>soft-light</keyword>
@@ -1038,7 +1046,6 @@
       <keyword>subtract</keyword>
       <keyword>tabular-nums</keyword>
       <keyword>titling-caps</keyword>
-      <keyword>traditional</keyword>
       <keyword>trim</keyword>
       <keyword>under</keyword>
       <keyword>unicase</keyword>
@@ -1284,6 +1291,7 @@
         <context ref="vendor-specific-property-values"/>
         <context ref="animatable-properties"/>
         <context ref="svg-property-values"/>
+        <context ref="east-asian-variant-values"/>
         <context ref="css3-property-values"/>
         <context ref="property-values"/>
       </include>
