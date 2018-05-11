@@ -314,10 +314,32 @@
       <keyword>yellow</keyword>
     </context>
 
-    <define-regex id="number-regex">(\d+|\d*\.\d+)(e[+-]?\d+)?</define-regex>
+    <define-regex id="number-magnitude-regex" extended="true">
+      (?: (?: \d+ | \d* \. \d+ ) (?: e [+-]? \d+ )? )
+    </define-regex>
+
+    <define-regex id="number-regex" extended="true">
+      (?: [+-]? \%{number-magnitude-regex} )
+    </define-regex>
+
+    <define-regex id="positive-number-regex" extended="true">
+      (?: \+? \%{number-magnitude-regex} )
+    </define-regex>
+
+    <define-regex id="integer-magnitude-regex" extended="true">
+      (?: \d+ )
+    </define-regex>
+
+    <define-regex id="integer-regex" extended="true">
+      (?: [+-]? \%{integer-magnitude-regex} )
+    </define-regex>
+
+    <define-regex id="positive-integer-regex" extended="true">
+      (?: \+? \%{integer-magnitude-regex} )
+    </define-regex>
 
     <context id="dimension" style-ref="dimension">
-      <prefix>[+-]?\%{number-regex}</prefix>
+      <prefix>\%{number-regex}</prefix>
       <keyword>ch</keyword>
       <keyword>cm</keyword>
       <keyword>deg</keyword>
@@ -345,22 +367,22 @@
     </context>
 
     <context id="percentage" style-ref="dimension">
-      <match>[+-]?\%{number-regex}%</match>
+      <match>\%{number-regex}%</match>
     </context>
 
     <context id="resolution" style-ref="dimension">
-      <prefix>\+?\%{number-regex}</prefix>
+      <prefix>\%{positive-number-regex}</prefix>
       <keyword>dpcm</keyword>
       <keyword>dpi</keyword>
       <keyword>dppx</keyword>
     </context>
 
     <context id="ratio" style-ref="dimension">
-      <match>\+?\d+\s*/\s*\+?\d+</match>
+      <match>\%{positive-integer-regex}\s*/\s*\%{positive-integer-regex}</match>
     </context>
 
     <context id="number" style-ref="decimal">
-      <match>(?&lt;![\w\.])[+-]?\%{number-regex}(?![\w\.])</match>
+      <match>(?&lt;![\w\.])\%{number-regex}(?![\w\.])</match>
     </context>
 
     <context id="unicode-range" style-ref="others-2">
@@ -1753,24 +1775,37 @@
       </include>
     </context>
 
-    <context id="selector-nth-argument-keywords" style-ref="property-values">
+    <context id="selector-nth-argument-keywords" once-only="true" style-ref="property-values">
       <keyword>even</keyword>
       <keyword>odd</keyword>
     </context>
 
-    <context id="selector-nth-argument-An-plus-B" style-ref="decimal">
-      <match>[+-]?(\d*n(\s*[+-]\s*\d+)?|\d+)</match>
+    <context id="selector-nth-argument-expression" once-only="true" style-ref="decimal">
+      <match extended="true">
+        (
+          \%{integer-regex}? n (\s* [+-] \s* \%{integer-magnitude-regex})? |
+          \%{integer-regex}
+        )
+      </match>
     </context>
 
     <context id="selector-nth-argument">
-      <start>(?:(?&lt;=:nth-child)|(?&lt;=:nth-last-child)|(?&lt;=:nth-of-type)|(?&lt;=:nth-last-of-type))\(</start>
+      <start extended="true">
+        (
+          (?&lt;=:nth-child) |
+          (?&lt;=:nth-last-child) |
+          (?&lt;=:nth-of-type) |
+          (?&lt;=:nth-last-of-type)
+        )
+        \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
         <context ref="comment"/>
         <context ref="selector-nth-argument-keywords"/>
-        <context ref="selector-nth-argument-An-plus-B"/>
+        <context ref="selector-nth-argument-expression"/>
       </include>
     </context>
 
