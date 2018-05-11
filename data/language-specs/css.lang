@@ -1677,6 +1677,47 @@
       <keyword>visited</keyword>
     </context>
 
+    <context id="lang-selector-argument">
+      <start>(?&lt;=:lang)\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="function"/>
+        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="comment"/>
+      </include>
+    </context>
+
+    <context id="not-selector-nested-not-without-argument-error" style-ref="error">
+      <match>:not(?!\()</match>
+    </context>
+
+    <context id="not-selector-nested-not-with-argument-error" style-ref="error">
+      <start>:not\(</start>
+      <end>\)</end>
+    </context>
+
+    <context id="not-selector-argument">
+      <start>(?&lt;=:not)\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="function"/>
+        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="comment"/>
+        <context ref="not-selector-nested-not-without-argument-error"/>
+        <context ref="not-selector-nested-not-with-argument-error"/>
+        <context ref="namespace-qualifier"/>
+        <context ref="selector-grammar"/>
+        <context ref="selector-id"/>
+        <context ref="selector-class"/>
+        <context ref="selector-tagname"/>
+        <context ref="attribute-selector"/>
+        <context ref="selector-vendor-specific-pseudo-elements-classes"/>
+        <context ref="selector-pseudo-classes"/>
+        <context ref="lang-selector-argument"/>
+        <context ref="selector-nth-argument"/>
+      </include>
+    </context>
+
     <context id="selector-nth-argument-keywords" style-ref="property-values">
       <keyword>even</keyword>
       <keyword>odd</keyword>
@@ -1692,6 +1733,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="comment"/>
         <context ref="selector-nth-argument-keywords"/>
         <context ref="selector-nth-argument-An-plus-B"/>
       </include>
@@ -1709,6 +1751,8 @@
         <context ref="selector-pseudo-elements-one-colon"/>
         <context ref="selector-pseudo-elements"/>
         <context ref="selector-pseudo-classes"/>
+        <context ref="lang-selector-argument"/>
+        <context ref="not-selector-argument"/>
         <context ref="selector-nth-argument"/>
         <context ref="comma"/>
       </include>

@@ -38,6 +38,18 @@ p + div {
 
 ul::before {}
 
+:lang(fr) > q {
+    quotes: '« ' ' »';
+}
+
+p:not(.fancy) {
+    color: green;
+}
+
+body :not(p) {
+    text-decoration: underline;
+}
+
 li:nth-child(2n+1) {}
 
 link:hover {}
