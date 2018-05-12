@@ -32,23 +32,60 @@
   </metadata>
 
   <styles>
-    <style id="error"                 name="Error"                 map-to="def:error"/>
-    <style id="namespace"             name="Namespace"             map-to="def:keyword"/>
-    <style id="others-2"              name="Others 2"/>
-    <style id="string"                name="String"                map-to="def:string"/>
-    <style id="color"                 name="Color"                 map-to="def:base-n-integer"/>
-    <style id="others-3"              name="Others 3"/>
-    <style id="function"              name="Function"              map-to="def:function"/>
-    <style id="decimal"               name="Decimal"               map-to="def:decimal"/>
-    <style id="dimension"             name="Dimension"             map-to="def:floating-point"/>
-    <style id="property-values"       name="Property Value"        map-to="def:constant"/>
-    <style id="at-rules"              name="at-rules"              map-to="def:preprocessor"/>
-    <style id="keyword"               name="Keyword"               map-to="def:keyword"/>
-    <style id="id-selector"           name="ID Selector"           map-to="def:statement"/>
-    <style id="class-selector"        name="Class Selector"        map-to="def:identifier"/>
-    <style id="type-selector"         name="Type Selector"         map-to="def:type"/>
-    <style id="vendor-specific"       name="Vendor Specific"       map-to="def:warning"/>
-    <style id="name"                  name="Name"/>
+
+    <!-- global -->
+    <style id="error"                       name="Error"                       map-to="def:error"/>
+    <style id="vendor-specific"             name="Vendor Specific"             map-to="def:warning"/>
+    <style id="name"                        name="Name"/>
+    <style id="keyword"                     name="Keyword"                     map-to="def:constant"/>
+    <style id="namespace"                   name="Namespace"                   map-to="def:keyword"/>
+    <style id="symbol"                      name="Symbol"/>
+    <style id="delimiter"                   name="Delimiter"/>
+    <style id="block-delimiter"             name="Block Delimiter"             map-to="css:delimiter"/>
+    <style id="test-delimiter"              name="Test Delimiter"              map-to="css:delimiter"/>
+
+    <!-- basic data types -->
+    <style id="color"                       name="Color"                       map-to="def:base-n-integer"/>
+    <style id="number"                      name="Number"                      map-to="def:number"/>
+    <style id="integer"                     name="Integer"                     map-to="def:decimal"/>
+    <style id="dimension"                   name="Dimension"                   map-to="def:floating-point"/>
+    <style id="expression"                  name="Expression"                  map-to="def:complex"/>
+    <style id="unicode-range"               name="Unicode Range"/>
+
+    <!-- functions -->
+    <style id="function"                    name="Function"                    map-to="def:function"/>
+
+    <!-- style properties -->
+    <style id="property-name"               name="Property Name"               map-to="def:keyword"/>
+
+    <!-- modifiers -->
+    <style id="modifier"                    name="Modifier"                    map-to="def:keyword"/>
+
+    <!-- at-rules -->
+    <style id="at-rule"                     name="At-rule"                     map-to="def:preprocessor"/>
+    <style id="at-rule-operator"            name="At-rule Operator"            map-to="css:at-rule"/>
+    <style id="at-rule-inner-selector"      name="At-rule Inner Selector"      map-to="def:identifier"/>
+
+    <!-- media queries -->
+    <style id="media-query-operator"        name="Media Query Operator"        map-to="css:at-rule-operator"/>
+    <style id="media-type"                  name="Media Type"                  map-to="css:property-name"/>
+    <style id="media-feature"               name="Media Feature"               map-to="css:property-name"/>
+    <style id="media-feature-value"         name="Media Feature Value"         map-to="css:keyword"/>
+
+    <!-- selectors -->
+    <style id="selector-symbol"             name="Selector Symbol"             map-to="css:symbol"/>
+    <style id="namespace-qualifier"         name="Namespace Qualifier"         map-to="css:selector-symbol"/>
+    <style id="id-selector"                 name="ID Selector"                 map-to="def:statement"/>
+    <style id="class-selector"              name="Class Selector"              map-to="def:identifier"/>
+    <style id="type-selector"               name="Type Selector"               map-to="def:type"/>
+    <style id="universal-selector"          name="Universal Selector"          map-to="css:selector-symbol"/>
+    <style id="attribute-selector"          name="Attribute Selector"          map-to="css:selector-symbol"/>
+    <style id="attribute-selector-operator" name="Attribute Selector Operator" map-to="css:selector-symbol"/>
+    <style id="attribute-selector-name"     name="Attribute Selector Name"     map-to="def:type"/>
+    <style id="combinator"                  name="Combinator"                  map-to="css:selector-symbol"/>
+    <style id="pseudo-element"              name="Pseudo-element"              map-to="def:function"/>
+    <style id="pseudo-class"                name="Pseudo-class"                map-to="def:function"/>
+
   </styles>
 
   <default-regex-options case-sensitive="false"/>
@@ -134,15 +171,15 @@
       <match>\%{identifier-regex}</match>
     </context>
 
-    <context id="comma" style-ref="others-3">
+    <context id="comma" style-ref="delimiter">
       <match>,</match>
     </context>
 
-    <context id="colon" style-ref="others-3">
+    <context id="colon" style-ref="delimiter">
       <match>:</match>
     </context>
 
-    <context id="semicolon" style-ref="others-3">
+    <context id="semicolon" style-ref="delimiter">
       <match>;</match>
     </context>
 
@@ -377,19 +414,19 @@
       <keyword>dppx</keyword>
     </context>
 
-    <context id="ratio" style-ref="dimension">
+    <context id="ratio" style-ref="expression">
       <match>\%{positive-integer-regex}\s*/\s*\%{positive-integer-regex}</match>
     </context>
 
-    <context id="number" style-ref="decimal">
+    <context id="number" style-ref="number">
       <match>(?&lt;![\w\.])\%{number-regex}(?![\w\.])</match>
     </context>
 
-    <context id="positive-integer" style-ref="decimal">
+    <context id="positive-integer" style-ref="integer">
       <match>(?&lt;![\w\.])\%{positive-integer-regex}(?![\w\.])</match>
     </context>
 
-    <context id="unicode-range" style-ref="others-2">
+    <context id="unicode-range" style-ref="unicode-range">
       <match>u\+[a-f0-9?]{1,6}(-[a-f0-9]{1,6})?</match>
     </context>
 
@@ -416,7 +453,7 @@
 
     <!-- functions -->
 
-    <context id="css3-function-arguments" style-ref="property-values">
+    <context id="css3-function-arguments" style-ref="keyword">
       <keyword>at</keyword>
       <keyword>auto-fill</keyword>
       <keyword>auto-fit</keyword>
@@ -496,7 +533,7 @@
       <match>\%{vendor-specific-identifier-regex}(?=\s*:)</match>
     </context>
 
-    <context id="svg-property-names" style-ref="keyword">
+    <context id="svg-property-names" style-ref="property-name">
       <suffix>(?=\s*:)</suffix>
       <keyword>clip-path</keyword>
       <keyword>clip-rule</keyword>
@@ -527,7 +564,7 @@
       <keyword>text-rendering</keyword>
     </context>
 
-    <context id="css3-property-names" style-ref="keyword">
+    <context id="css3-property-names" style-ref="property-name">
       <suffix>(?=\s*:)</suffix>
       <keyword>align-content</keyword>
       <keyword>align-items</keyword>
@@ -662,7 +699,7 @@
       <keyword>writing-mode</keyword>
     </context>
 
-    <context id="property-names" style-ref="keyword">
+    <context id="property-names" style-ref="property-name">
       <suffix>(?=\s*:)</suffix>
       <keyword>azimuth</keyword>
       <keyword>background-attachment</keyword>
@@ -797,7 +834,7 @@
       <match>\%{vendor-specific-identifier-regex}</match>
     </context>
 
-    <context id="animatable-properties" style-ref="property-values">
+    <context id="animatable-properties" style-ref="keyword">
       <keyword>background-color</keyword>
       <keyword>background-position</keyword>
       <keyword>background-size</keyword>
@@ -891,7 +928,7 @@
       <keyword>z-index</keyword>
     </context>
 
-    <context id="svg-property-values" style-ref="property-values">
+    <context id="svg-property-values" style-ref="keyword">
       <keyword>alphabetic</keyword>
       <keyword>bevel</keyword>
       <keyword>butt</keyword>
@@ -924,7 +961,7 @@
       <keyword>visiblestroke</keyword>
     </context>
 
-    <context id="east-asian-variant-values" style-ref="property-values">
+    <context id="east-asian-variant-values" style-ref="keyword">
       <keyword>jis04</keyword>
       <keyword>jis78</keyword>
       <keyword>jis83</keyword>
@@ -933,7 +970,7 @@
       <keyword>traditional</keyword>
     </context>
 
-    <context id="page-sizes" style-ref="property-values">
+    <context id="page-sizes" style-ref="keyword">
       <keyword>A3</keyword>
       <keyword>A4</keyword>
       <keyword>A5</keyword>
@@ -946,7 +983,7 @@
       <keyword>letter</keyword>
     </context>
 
-    <context id="css3-property-values" style-ref="property-values">
+    <context id="css3-property-values" style-ref="keyword">
       <keyword>active</keyword>
       <keyword>add</keyword>
       <keyword>allow-end</keyword>
@@ -1102,7 +1139,7 @@
       <keyword>wrap</keyword>
     </context>
 
-    <context id="property-values" style-ref="property-values">
+    <context id="property-values" style-ref="keyword">
       <keyword>above</keyword>
       <keyword>absolute</keyword>
       <keyword>alias</keyword>
@@ -1341,7 +1378,7 @@
 
     <!-- modifiers -->
 
-    <context id="importance-modifier" style-ref="keyword">
+    <context id="importance-modifier" style-ref="modifier">
       <match>\![ \t]*important</match>
     </context>
 
@@ -1364,8 +1401,8 @@
       <start>\{</start>
       <end>\}</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="others-3"/>
-        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
+        <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
         <context ref="comment"/>
         <context ref="declaration"/>
       </include>
@@ -1374,20 +1411,20 @@
 
     <!-- media queries -->
 
-    <context id="media-query-operators" style-ref="at-rules">
+    <context id="media-query-operators" style-ref="media-query-operator">
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>only</keyword>
     </context>
 
-    <context id="media-types" style-ref="keyword">
+    <context id="media-types" style-ref="media-type">
       <keyword>all</keyword>
       <keyword>print</keyword>
       <keyword>screen</keyword>
       <keyword>speech</keyword>
     </context>
 
-    <context id="css3-media-features" style-ref="keyword">
+    <context id="css3-media-features" style-ref="media-feature">
       <keyword>any-hover</keyword>
       <keyword>any-pointer</keyword>
       <keyword>aspect-ratio</keyword>
@@ -1423,7 +1460,7 @@
       <keyword>width</keyword>
     </context>
 
-    <context id="css3-media-feature-values" style-ref="property-values">
+    <context id="css3-media-feature-values" style-ref="media-feature-value">
       <keyword>browser</keyword>
       <keyword>coarse</keyword>
       <keyword>fast</keyword>
@@ -1450,8 +1487,8 @@
       <start>\(</start>
       <end>\)</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="others-3"/>
-        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context sub-pattern="0" where="start" style-ref="test-delimiter"/>
+        <context sub-pattern="0" where="end" style-ref="test-delimiter"/>
         <context ref="comment"/>
         <context ref="media-queries"/>
         <context ref="css3-media-features"/>
@@ -1477,7 +1514,7 @@
       <match>@\%{vendor-specific-identifier-regex}</match>
     </context>
 
-    <context id="css3-at-rules" style-ref="at-rules">
+    <context id="css3-at-rules" style-ref="at-rule">
       <prefix>@</prefix>
       <keyword>font-face</keyword>
       <keyword>font-feature-values</keyword>
@@ -1486,7 +1523,7 @@
       <keyword>supports</keyword>
     </context>
 
-    <context id="at-rules" style-ref="at-rules">
+    <context id="at-rules" style-ref="at-rule">
       <prefix>@</prefix>
       <keyword>charset</keyword>
       <keyword>import</keyword>
@@ -1498,13 +1535,13 @@
       <start>\{</start>
       <end>\}</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="others-3"/>
-        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
+        <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
         <context ref="css"/>
       </include>
     </context>
 
-    <context id="at-rule-general-delimiter" end-parent="true" style-ref="others-3">
+    <context id="at-rule-general-delimiter" end-parent="true" style-ref="delimiter">
       <match>;</match>
     </context>
 
@@ -1534,7 +1571,7 @@
       </include>
     </context>
 
-    <context id="font-feature-types" style-ref="function">
+    <context id="font-feature-types" style-ref="at-rule-inner-selector">
       <prefix>@</prefix>
       <keyword>annotation</keyword>
       <keyword>character-variant</keyword>
@@ -1552,8 +1589,8 @@
       <start>\{</start>
       <end>\}</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="others-3"/>
-        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
+        <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
         <context ref="comment"/>
         <context ref="at-font-feature-values-feature-value-name"/>
         <context ref="positive-integer"/>
@@ -1566,8 +1603,8 @@
       <start>\{</start>
       <end>\}</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="others-3"/>
-        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
+        <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
         <context ref="comment"/>
         <context ref="font-feature-types"/>
         <context ref="at-font-feature-values-feature-value-block"/>
@@ -1595,7 +1632,7 @@
       </include>
     </context>
 
-    <context id="keyframe-selector" style-ref="function">
+    <context id="keyframe-selector" style-ref="at-rule-inner-selector">
       <keyword>from</keyword>
       <keyword>to</keyword>
     </context>
@@ -1604,10 +1641,10 @@
       <start>\{</start>
       <end>\}</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="others-3"/>
-        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
+        <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
         <context ref="comment"/>
-        <context ref="percentage" style-ref="function"/>
+        <context ref="percentage" style-ref="at-rule-inner-selector"/>
         <context ref="keyframe-selector"/>
         <context ref="style-block"/>
       </include>
@@ -1643,7 +1680,7 @@
       </include>
     </context>
 
-    <context id="pseudo-pages" style-ref="function">
+    <context id="pseudo-pages" style-ref="pseudo-class">
       <prefix>:</prefix>
       <keyword>blank</keyword>
       <keyword>first</keyword>
@@ -1651,7 +1688,7 @@
       <keyword>right</keyword>
     </context>
 
-    <context id="page-margin-box-types" style-ref="function">
+    <context id="page-margin-box-types" style-ref="at-rule-inner-selector">
       <prefix>@</prefix>
       <keyword>bottom-center</keyword>
       <keyword>bottom-left-corner</keyword>
@@ -1675,8 +1712,8 @@
       <start>\{</start>
       <end>\}</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="others-3"/>
-        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
+        <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
         <context ref="comment"/>
         <context ref="declaration"/>
         <context ref="page-margin-box-types"/>
@@ -1699,8 +1736,8 @@
       <start>\(</start>
       <end>\)</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="others-3"/>
-        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context sub-pattern="0" where="start" style-ref="test-delimiter"/>
+        <context sub-pattern="0" where="end" style-ref="test-delimiter"/>
         <context ref="comment"/>
         <context ref="at-supports-test"/>
         <context ref="at-supports-operators"/>
@@ -1712,7 +1749,7 @@
       </include>
     </context>
 
-    <context id="at-supports-operators" style-ref="at-rules">
+    <context id="at-supports-operators" style-ref="at-rule-operator">
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
@@ -1752,7 +1789,7 @@
       <match>(\%{identifier-regex}|\*)?(\|)</match>
       <include>
         <context sub-pattern="1" style-ref="namespace"/>
-        <context sub-pattern="2" style-ref="others-3"/>
+        <context sub-pattern="2" style-ref="namespace-qualifier"/>
       </include>
     </context>
 
@@ -1768,18 +1805,18 @@
       <match>\%{identifier-regex}</match>
     </context>
 
-    <context id="universal-selector" style-ref="others-3">
+    <context id="universal-selector" style-ref="universal-selector">
       <match>\*</match>
     </context>
 
     <context id="attribute-selector-attribute-name">
       <match>(?&lt;=\[)\s*(\%{identifier-regex})</match>
       <include>
-        <context sub-pattern="1" style-ref="type-selector"/>
+        <context sub-pattern="1" style-ref="attribute-selector-name"/>
       </include>
     </context>
 
-    <context id="attribute-selector-operators" style-ref="others-3">
+    <context id="attribute-selector-operators" style-ref="attribute-selector-operator">
       <match>[~|^$*]?=</match>
     </context>
 
@@ -1787,8 +1824,8 @@
       <start>\[</start>
       <end>\]</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="others-3"/>
-        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context sub-pattern="0" where="start" style-ref="attribute-selector"/>
+        <context sub-pattern="0" where="end" style-ref="attribute-selector"/>
         <context ref="comment"/>
         <context ref="string"/>
         <context ref="attribute-selector-attribute-name"/>
@@ -1797,7 +1834,7 @@
     </context>
 
     <!-- technically, this should include the space character (descendent combinator) -->
-    <context id="combinators" style-ref="others-3">
+    <context id="combinators" style-ref="combinator">
       <match>[&gt;+~]</match>
     </context>
 
@@ -1805,7 +1842,7 @@
       <match>::?\%{vendor-specific-identifier-regex}</match>
     </context>
 
-    <context id="single-colon-pseudo-elements" style-ref="function">
+    <context id="single-colon-pseudo-elements" style-ref="pseudo-element">
       <prefix>::?</prefix>
       <keyword>after</keyword>
       <keyword>before</keyword>
@@ -1813,13 +1850,13 @@
       <keyword>first-line</keyword>
     </context>
 
-    <context id="pseudo-elements" style-ref="function">
+    <context id="pseudo-elements" style-ref="pseudo-element">
       <prefix>::</prefix>
       <keyword>placeholder</keyword>
       <keyword>selection</keyword>
     </context>
 
-    <context id="pseudo-classes" style-ref="function">
+    <context id="pseudo-classes" style-ref="pseudo-class">
       <prefix>:</prefix>
       <keyword>active</keyword>
       <keyword>checked</keyword>
@@ -1860,8 +1897,8 @@
       <start>(?&lt;=:lang)\(</start>
       <end>\)</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="function"/>
-        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
+        <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
         <context ref="comment"/>
       </include>
     </context>
@@ -1879,8 +1916,8 @@
       <start>(?&lt;=:not)\(</start>
       <end>\)</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="function"/>
-        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
+        <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
         <context ref="comment"/>
         <context ref="not-pseudo-class-nested-not-without-argument-error"/>
         <context ref="not-pseudo-class-nested-not-with-argument-error"/>
@@ -1898,12 +1935,12 @@
       </include>
     </context>
 
-    <context id="nth-pseudo-class-argument-keywords" once-only="true" style-ref="property-values">
+    <context id="nth-pseudo-class-argument-keywords" once-only="true" style-ref="keyword">
       <keyword>even</keyword>
       <keyword>odd</keyword>
     </context>
 
-    <context id="nth-pseudo-class-argument-expression" once-only="true" style-ref="decimal">
+    <context id="nth-pseudo-class-argument-expression" once-only="true" style-ref="expression">
       <match extended="true">
         (
           \%{integer-regex}? n (\s* [+-] \s* \%{integer-magnitude-regex})? |
@@ -1924,8 +1961,8 @@
       </start>
       <end>\)</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="function"/>
-        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
+        <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
         <context ref="comment"/>
         <context ref="nth-pseudo-class-argument-keywords"/>
         <context ref="nth-pseudo-class-argument-expression"/>
