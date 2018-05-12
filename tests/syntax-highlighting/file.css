@@ -133,6 +133,17 @@ div#\E9 dition .\0000E9dition .motion_\e9motion, /* Unicode character escape */
 
 @media (min-aspect-ratio: 16/9) {}
 
+@page toc, index:first:left, :blank {
+    bleed: 1cm;
+    margin: 2cm;
+    marks: crop cross;
+    size: A4;
+
+    @top-right {
+        content: "Page " counter(page);
+    }
+}
+
 @supports (animation-name: test) {
     @keyframes 'my-complicated-animation' {
         0%      {}

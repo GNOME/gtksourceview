@@ -547,6 +547,7 @@
       <keyword>background-clip</keyword>
       <keyword>background-origin</keyword>
       <keyword>background-size</keyword>
+      <keyword>bleed</keyword>
       <keyword>border-image-outset</keyword>
       <keyword>border-image-repeat</keyword>
       <keyword>border-image-slice</keyword>
@@ -932,6 +933,19 @@
       <keyword>traditional</keyword>
     </context>
 
+    <context id="page-sizes" style-ref="property-values">
+      <keyword>A3</keyword>
+      <keyword>A4</keyword>
+      <keyword>A5</keyword>
+      <keyword>B4</keyword>
+      <keyword>B5</keyword>
+      <keyword>JIS-B4</keyword>
+      <keyword>JIS-B5</keyword>
+      <keyword>ledger</keyword>
+      <keyword>legal</keyword>
+      <keyword>letter</keyword>
+    </context>
+
     <context id="css3-property-values" style-ref="property-values">
       <keyword>active</keyword>
       <keyword>add</keyword>
@@ -1223,7 +1237,7 @@
       <keyword>outside</keyword>
       <keyword>overline</keyword>
       <keyword>pointer</keyword>
-      <keyword>portait</keyword>
+      <keyword>portrait</keyword>
       <keyword>pre-line</keyword>
       <keyword>pre-wrap</keyword>
       <keyword>pre</keyword>
@@ -1318,6 +1332,7 @@
         <context ref="animatable-properties"/>
         <context ref="svg-property-values"/>
         <context ref="east-asian-variant-values"/>
+        <context ref="page-sizes"/>
         <context ref="css3-property-values"/>
         <context ref="property-values"/>
       </include>
@@ -1628,6 +1643,58 @@
       </include>
     </context>
 
+    <context id="pseudo-pages" style-ref="function">
+      <prefix>:</prefix>
+      <keyword>blank</keyword>
+      <keyword>first</keyword>
+      <keyword>left</keyword>
+      <keyword>right</keyword>
+    </context>
+
+    <context id="page-margin-box-types" style-ref="function">
+      <prefix>@</prefix>
+      <keyword>bottom-center</keyword>
+      <keyword>bottom-left-corner</keyword>
+      <keyword>bottom-left</keyword>
+      <keyword>bottom-right-corner</keyword>
+      <keyword>bottom-right</keyword>
+      <keyword>left-bottom</keyword>
+      <keyword>left-middle</keyword>
+      <keyword>left-top</keyword>
+      <keyword>right-bottom</keyword>
+      <keyword>right-middle</keyword>
+      <keyword>right-top</keyword>
+      <keyword>top-center</keyword>
+      <keyword>top-left-corner</keyword>
+      <keyword>top-left</keyword>
+      <keyword>top-right-corner</keyword>
+      <keyword>top-right</keyword>
+    </context>
+
+    <context id="at-page-block" end-parent="true">
+      <start>\{</start>
+      <end>\}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="others-3"/>
+        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context ref="comment"/>
+        <context ref="declaration"/>
+        <context ref="page-margin-box-types"/>
+        <context ref="style-block"/>
+      </include>
+    </context>
+
+    <context id="at-page-call">
+      <start>(?&lt;=@page)</start>
+      <include>
+        <context ref="comment"/>
+        <context ref="pseudo-pages"/>
+        <context ref="name"/>
+        <context ref="comma"/>
+        <context ref="at-page-block"/>
+      </include>
+    </context>
+
     <context id="at-supports-test">
       <start>\(</start>
       <end>\)</end>
@@ -1673,6 +1740,7 @@
         <context ref="at-keyframes-call"/>
         <context ref="at-media-call"/>
         <context ref="at-namespace-call"/>
+        <context ref="at-page-call"/>
         <context ref="at-supports-call"/>
       </include>
     </context>
