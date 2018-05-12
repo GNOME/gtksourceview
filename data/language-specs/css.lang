@@ -44,9 +44,9 @@
     <style id="property-values"       name="Property Value"        map-to="def:constant"/>
     <style id="at-rules"              name="at-rules"              map-to="def:preprocessor"/>
     <style id="keyword"               name="Keyword"               map-to="def:keyword"/>
-    <style id="selector-id"           name="ID Selector"           map-to="def:statement"/>
-    <style id="selector-class"        name="Class Selector"        map-to="def:identifier"/>
-    <style id="selector-tagname"      name="Tag Name Selector"     map-to="def:type"/>
+    <style id="id-selector"           name="ID Selector"           map-to="def:statement"/>
+    <style id="class-selector"        name="Class Selector"        map-to="def:identifier"/>
+    <style id="type-selector"         name="Type Selector"         map-to="def:type"/>
     <style id="vendor-specific"       name="Vendor Specific"       map-to="def:warning"/>
     <style id="name"                  name="Name"/>
   </styles>
@@ -1756,22 +1756,26 @@
       </include>
     </context>
 
-    <context id="selector-id" style-ref="selector-id">
+    <context id="id-selector" style-ref="id-selector">
       <match>#\%{identifier-regex}</match>
     </context>
 
-    <context id="selector-class" style-ref="selector-class">
+    <context id="class-selector" style-ref="class-selector">
       <match>\.\%{identifier-regex}</match>
     </context>
 
-    <context id="selector-tagname" style-ref="selector-tagname">
+    <context id="type-selector" style-ref="type-selector">
       <match>\%{identifier-regex}</match>
+    </context>
+
+    <context id="universal-selector" style-ref="others-3">
+      <match>\*</match>
     </context>
 
     <context id="attribute-selector-attribute-name">
       <match>(?&lt;=\[)\s*(\%{identifier-regex})</match>
       <include>
-        <context sub-pattern="1" style-ref="selector-tagname"/>
+        <context sub-pattern="1" style-ref="type-selector"/>
       </include>
     </context>
 
@@ -1792,15 +1796,16 @@
       </include>
     </context>
 
-    <context id="selector-grammar" style-ref="others-3">
-      <match>[*&gt;+~]</match>
+    <!-- technically, this should include the space character (descendent combinator) -->
+    <context id="combinators" style-ref="others-3">
+      <match>[&gt;+~]</match>
     </context>
 
-    <context id="selector-vendor-specific-pseudo-elements-classes" style-ref="vendor-specific">
+    <context id="vendor-specific-pseudo-elements-classes" style-ref="vendor-specific">
       <match>::?\%{vendor-specific-identifier-regex}</match>
     </context>
 
-    <context id="selector-pseudo-elements-one-colon" style-ref="function">
+    <context id="single-colon-pseudo-elements" style-ref="function">
       <prefix>::?</prefix>
       <keyword>after</keyword>
       <keyword>before</keyword>
@@ -1808,13 +1813,13 @@
       <keyword>first-line</keyword>
     </context>
 
-    <context id="selector-pseudo-elements" style-ref="function">
+    <context id="pseudo-elements" style-ref="function">
       <prefix>::</prefix>
       <keyword>placeholder</keyword>
       <keyword>selection</keyword>
     </context>
 
-    <context id="selector-pseudo-classes" style-ref="function">
+    <context id="pseudo-classes" style-ref="function">
       <prefix>:</prefix>
       <keyword>active</keyword>
       <keyword>checked</keyword>
@@ -1851,7 +1856,7 @@
       <keyword>visited</keyword>
     </context>
 
-    <context id="lang-selector-argument">
+    <context id="lang-pseudo-class-argument">
       <start>(?&lt;=:lang)\(</start>
       <end>\)</end>
       <include>
@@ -1861,43 +1866,44 @@
       </include>
     </context>
 
-    <context id="not-selector-nested-not-without-argument-error" style-ref="error">
+    <context id="not-pseudo-class-nested-not-without-argument-error" style-ref="error">
       <match>:not(?!\()</match>
     </context>
 
-    <context id="not-selector-nested-not-with-argument-error" style-ref="error">
+    <context id="not-pseudo-class-nested-not-with-argument-error" style-ref="error">
       <start>:not\(</start>
       <end>\)</end>
     </context>
 
-    <context id="not-selector-argument">
+    <context id="not-pseudo-class-argument">
       <start>(?&lt;=:not)\(</start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
         <context ref="comment"/>
-        <context ref="not-selector-nested-not-without-argument-error"/>
-        <context ref="not-selector-nested-not-with-argument-error"/>
+        <context ref="not-pseudo-class-nested-not-without-argument-error"/>
+        <context ref="not-pseudo-class-nested-not-with-argument-error"/>
         <context ref="namespace-qualifier"/>
-        <context ref="selector-grammar"/>
-        <context ref="selector-id"/>
-        <context ref="selector-class"/>
-        <context ref="selector-tagname"/>
+        <context ref="id-selector"/>
+        <context ref="class-selector"/>
+        <context ref="type-selector"/>
+        <context ref="universal-selector"/>
         <context ref="attribute-selector"/>
-        <context ref="selector-vendor-specific-pseudo-elements-classes"/>
-        <context ref="selector-pseudo-classes"/>
-        <context ref="lang-selector-argument"/>
-        <context ref="selector-nth-argument"/>
+        <context ref="combinators"/>
+        <context ref="vendor-specific-pseudo-elements-classes"/>
+        <context ref="pseudo-classes"/>
+        <context ref="lang-pseudo-class-argument"/>
+        <context ref="nth-pseudo-class-argument"/>
       </include>
     </context>
 
-    <context id="selector-nth-argument-keywords" once-only="true" style-ref="property-values">
+    <context id="nth-pseudo-class-argument-keywords" once-only="true" style-ref="property-values">
       <keyword>even</keyword>
       <keyword>odd</keyword>
     </context>
 
-    <context id="selector-nth-argument-expression" once-only="true" style-ref="decimal">
+    <context id="nth-pseudo-class-argument-expression" once-only="true" style-ref="decimal">
       <match extended="true">
         (
           \%{integer-regex}? n (\s* [+-] \s* \%{integer-magnitude-regex})? |
@@ -1906,7 +1912,7 @@
       </match>
     </context>
 
-    <context id="selector-nth-argument">
+    <context id="nth-pseudo-class-argument">
       <start extended="true">
         (
           (?&lt;=:nth-child) |
@@ -1921,26 +1927,27 @@
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
         <context ref="comment"/>
-        <context ref="selector-nth-argument-keywords"/>
-        <context ref="selector-nth-argument-expression"/>
+        <context ref="nth-pseudo-class-argument-keywords"/>
+        <context ref="nth-pseudo-class-argument-expression"/>
       </include>
     </context>
 
     <context id="all-selectors">
       <include>
         <context ref="namespace-qualifier"/>
-        <context ref="selector-grammar"/>
-        <context ref="selector-id"/>
-        <context ref="selector-class"/>
-        <context ref="selector-tagname"/>
+        <context ref="id-selector"/>
+        <context ref="class-selector"/>
+        <context ref="type-selector"/>
+        <context ref="universal-selector"/>
         <context ref="attribute-selector"/>
-        <context ref="selector-vendor-specific-pseudo-elements-classes"/>
-        <context ref="selector-pseudo-elements-one-colon"/>
-        <context ref="selector-pseudo-elements"/>
-        <context ref="selector-pseudo-classes"/>
-        <context ref="lang-selector-argument"/>
-        <context ref="not-selector-argument"/>
-        <context ref="selector-nth-argument"/>
+        <context ref="combinators"/>
+        <context ref="vendor-specific-pseudo-elements-classes"/>
+        <context ref="single-colon-pseudo-elements"/>
+        <context ref="pseudo-elements"/>
+        <context ref="pseudo-classes"/>
+        <context ref="lang-pseudo-class-argument"/>
+        <context ref="not-pseudo-class-argument"/>
+        <context ref="nth-pseudo-class-argument"/>
         <context ref="comma"/>
       </include>
     </context>
