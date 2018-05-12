@@ -15,6 +15,12 @@
     unicode-range: U+0025-00FF, U+4??;
 }
 
+@font-feature-values Font One {
+    @styleset {
+        nice-style: 12;
+    }
+}
+
 #testID[lang|="zh"] {
     font: 12px italic "Overpass", sans-serif;
 }
@@ -29,6 +35,10 @@ p + div {
     font-size: 20px;
     opacity: .5;
     width: 100%;
+}
+
+.nice-look {
+    font-variant-alternates: styleset(nice-style);
 }
 
 #headline:after {

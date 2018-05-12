@@ -385,6 +385,10 @@
       <match>(?&lt;![\w\.])\%{number-regex}(?![\w\.])</match>
     </context>
 
+    <context id="positive-integer" style-ref="decimal">
+      <match>(?&lt;![\w\.])\%{positive-integer-regex}(?![\w\.])</match>
+    </context>
+
     <context id="unicode-range" style-ref="others-2">
       <match>u\+[a-f0-9?]{1,6}(-[a-f0-9]{1,6})?</match>
     </context>
@@ -1460,17 +1464,11 @@
 
     <context id="css3-at-rules" style-ref="at-rules">
       <prefix>@</prefix>
-      <keyword>annotation</keyword>
-      <keyword>character-variant</keyword>
       <keyword>font-face</keyword>
       <keyword>font-feature-values</keyword>
       <keyword>keyframes</keyword>
       <keyword>namespace</keyword>
-      <keyword>ornaments</keyword>
-      <keyword>styleset</keyword>
-      <keyword>stylistic</keyword>
       <keyword>supports</keyword>
-      <keyword>swash</keyword>
     </context>
 
     <context id="at-rules" style-ref="at-rules">
@@ -1518,6 +1516,56 @@
       </start>
       <include>
         <context ref="at-rule-general-delimiter"/>
+      </include>
+    </context>
+
+    <context id="font-feature-types" style-ref="function">
+      <prefix>@</prefix>
+      <keyword>annotation</keyword>
+      <keyword>character-variant</keyword>
+      <keyword>ornaments</keyword>
+      <keyword>styleset</keyword>
+      <keyword>stylistic</keyword>
+      <keyword>swash</keyword>
+    </context>
+
+    <context id="at-font-feature-values-feature-value-name" style-ref="name">
+      <match>\%{identifier-regex}(?=\s*:)</match>
+    </context>
+
+    <context id="at-font-feature-values-feature-value-block">
+      <start>\{</start>
+      <end>\}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="others-3"/>
+        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context ref="comment"/>
+        <context ref="at-font-feature-values-feature-value-name"/>
+        <context ref="positive-integer"/>
+        <context ref="colon"/>
+        <context ref="semicolon"/>
+      </include>
+    </context>
+
+    <context id="at-font-feature-values-block" end-parent="true">
+      <start>\{</start>
+      <end>\}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="others-3"/>
+        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context ref="comment"/>
+        <context ref="font-feature-types"/>
+        <context ref="at-font-feature-values-feature-value-block"/>
+      </include>
+    </context>
+
+    <context id="at-font-feature-values-call">
+      <start>(?&lt;=@font-feature-values)</start>
+      <include>
+        <context ref="comment"/>
+        <context ref="string"/>
+        <context ref="name"/>
+        <context ref="at-font-feature-values-block"/>
       </include>
     </context>
 
@@ -1620,6 +1668,7 @@
         <context ref="at-rules"/>
         <context ref="at-charset-call"/>
         <context ref="at-charset-call-error"/>
+        <context ref="at-font-feature-values-call"/>
         <context ref="at-import-call"/>
         <context ref="at-keyframes-call"/>
         <context ref="at-media-call"/>
