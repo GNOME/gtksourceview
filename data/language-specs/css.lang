@@ -23,19 +23,6 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-<!--
-	Proposed language specification for CSS (Cascading Style Sheet) files.
-
-	Reference used:
- 		http://www.w3.org/TR/CSS2/
-
- 	Tested with:
- 		http://www.simplebits.com/css/simple.css
-
-	Submitted by
-
-        Converted to new format with convert.py
--->
 <language id="css" name="CSS" version="2.0" _section="Other">
   <metadata>
     <property name="mimetypes">text/css</property>
@@ -66,6 +53,8 @@
   <default-regex-options case-sensitive="false"/>
 
   <definitions>
+
+    <!-- global -->
 
     <!-- https://drafts.csswg.org/css-syntax/#escaping -->
     <define-regex id="escape-regex" extended="true">
@@ -137,88 +126,12 @@
       <match>\%{identifier-regex}</match>
     </context>
 
-    <context id="selector-vendor-specific-pseudo-elements-classes" style-ref="vendor-specific">
-      <match>::?\%{vendor-specific-identifier-regex}</match>
+    <context id="punctuators" style-ref="others-3">
+      <match>[{}();,]</match>
     </context>
 
-    <context id="selector-pseudo-elements-one-colon" style-ref="function">
-      <prefix>::?</prefix>
-      <keyword>first-line</keyword>
-      <keyword>first-letter</keyword>
-      <keyword>before</keyword>
-      <keyword>after</keyword>
-    </context>
 
-    <context id="selector-pseudo-elements" style-ref="function">
-      <prefix>::</prefix>
-      <keyword>placeholder</keyword>
-      <keyword>selection</keyword>
-    </context>
-
-    <context id="selector-pseudo-classes" style-ref="function">
-      <prefix>:</prefix>
-      <keyword>enabled</keyword>
-      <keyword>disabled</keyword>
-      <keyword>checked</keyword>
-      <keyword>indeterminate</keyword>
-      <keyword>root</keyword>
-      <keyword>nth-child</keyword>
-      <keyword>nth-last-child</keyword>
-      <keyword>nth-of-type</keyword>
-      <keyword>nth-last-of-type</keyword>
-      <keyword>first-child</keyword>
-      <keyword>last-child</keyword>
-      <keyword>first-of-type</keyword>
-      <keyword>last-of-type</keyword>
-      <keyword>only-child</keyword>
-      <keyword>only-of-type</keyword>
-      <keyword>empty</keyword>
-      <keyword>not</keyword>
-      <keyword>link</keyword>
-      <keyword>visited</keyword>
-      <keyword>hover</keyword>
-      <keyword>active</keyword>
-      <keyword>focus</keyword>
-      <keyword>target</keyword>
-      <keyword>lang</keyword>
-    </context>
-
-    <context id="vendor-specific-at-rules" style-ref="vendor-specific">
-      <match>@\%{vendor-specific-identifier-regex}</match>
-    </context>
-
-    <context id="css3-at-rules" style-ref="at-rules">
-      <prefix>@</prefix>
-      <keyword>annotation</keyword>
-      <keyword>character-variant</keyword>
-      <keyword>font-face</keyword>
-      <keyword>font-feature-values</keyword>
-      <keyword>keyframes</keyword>
-      <keyword>ornaments</keyword>
-      <keyword>styleset</keyword>
-      <keyword>stylistic</keyword>
-      <keyword>swash</keyword>
-    </context>
-
-    <context id="at-rules" style-ref="at-rules">
-      <prefix>@</prefix>
-      <keyword>charset</keyword>
-      <keyword>import</keyword>
-      <keyword>media</keyword>
-      <keyword>page</keyword>
-    </context>
-
-    <context id="selector-id" style-ref="selector-id">
-      <match>#\%{identifier-regex}</match>
-    </context>
-
-    <context id="selector-class" style-ref="selector-class">
-      <match>\.\%{identifier-regex}</match>
-    </context>
-
-    <context id="selector-tagname" style-ref="selector-tagname">
-      <match>\%{identifier-regex}</match>
-    </context>
+    <!-- basic data types -->
 
     <context id="hexadecimal-color" style-ref="color">
       <match>#([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})\b</match>
@@ -404,6 +317,32 @@
       <match>u\+[a-f0-9?]{1,6}(-[a-f0-9]{1,6})?</match>
     </context>
 
+
+    <!-- functions -->
+
+    <context id="css3-function-arguments" style-ref="property-values">
+      <keyword>at</keyword>
+      <keyword>auto-fill</keyword>
+      <keyword>auto-fit</keyword>
+      <keyword>auto</keyword>
+      <keyword>bottom</keyword>
+      <keyword>center</keyword>
+      <keyword>circle</keyword>
+      <keyword>closest-corner</keyword>
+      <keyword>closest-side</keyword>
+      <keyword>ellipse</keyword>
+      <keyword>end</keyword>
+      <keyword>farthest-corner</keyword>
+      <keyword>farthest-side</keyword>
+      <keyword>left</keyword>
+      <keyword>max-content</keyword>
+      <keyword>min-content</keyword>
+      <keyword>right</keyword>
+      <keyword>start</keyword>
+      <keyword>top</keyword>
+      <keyword>to</keyword>
+    </context>
+
     <context id="function-arguments-list">
       <include>
         <context ref="def:string"/>
@@ -445,55 +384,8 @@
       </include>
     </context>
 
-    <context id="importance-modifier" style-ref="keyword">
-      <match>\![ \t]*important</match>
-    </context>
 
-    <context id="css3-media-features" style-ref="keyword">
-      <keyword>aspect-ratio</keyword>
-      <keyword>color-index</keyword>
-      <keyword>color</keyword>
-      <keyword>device-aspect-ratio</keyword>
-      <keyword>device-height</keyword>
-      <keyword>device-width</keyword>
-      <keyword>grid</keyword>
-      <keyword>height</keyword>
-      <keyword>max-aspect-ratio</keyword>
-      <keyword>max-color-index</keyword>
-      <keyword>max-color</keyword>
-      <keyword>max-device-aspect-ratio</keyword>
-      <keyword>max-device-height</keyword>
-      <keyword>max-device-width</keyword>
-      <keyword>max-height</keyword>
-      <keyword>max-monochrome</keyword>
-      <keyword>max-resolution</keyword>
-      <keyword>max-width</keyword>
-      <keyword>min-aspect-ratio</keyword>
-      <keyword>min-color-index</keyword>
-      <keyword>min-color</keyword>
-      <keyword>min-device-aspect-ratio</keyword>
-      <keyword>min-device-width</keyword>
-      <keyword>min-device-height</keyword>
-      <keyword>min-height</keyword>
-      <keyword>min-monochrome</keyword>
-      <keyword>min-resolution</keyword>
-      <keyword>min-width</keyword>
-      <keyword>monochrome</keyword>
-      <keyword>orientation</keyword>
-      <keyword>overflow-block</keyword>
-      <keyword>overflow-inline</keyword>
-      <keyword>resolution</keyword>
-      <keyword>scan</keyword>
-      <keyword>update-frequency</keyword>
-      <keyword>width</keyword>
-    </context>
-
-    <context id="css3-media-feature-values" style-ref="property-values">
-      <keyword>interlace</keyword>
-      <keyword>landscape</keyword>
-      <keyword>portrait</keyword>
-      <keyword>progressive</keyword>
-    </context>
+    <!-- style properties -->
 
     <context id="vendor-specific-property-names" style-ref="vendor-specific">
       <match>\%{vendor-specific-identifier-regex}(?=\s*:)</match>
@@ -1304,28 +1196,15 @@
       <keyword>zoom-out</keyword>
     </context>
 
-    <context id="css3-function-arguments" style-ref="property-values">
-      <keyword>at</keyword>
-      <keyword>auto-fill</keyword>
-      <keyword>auto-fit</keyword>
-      <keyword>auto</keyword>
-      <keyword>bottom</keyword>
-      <keyword>center</keyword>
-      <keyword>circle</keyword>
-      <keyword>closest-corner</keyword>
-      <keyword>closest-side</keyword>
-      <keyword>ellipse</keyword>
-      <keyword>end</keyword>
-      <keyword>farthest-corner</keyword>
-      <keyword>farthest-side</keyword>
-      <keyword>left</keyword>
-      <keyword>max-content</keyword>
-      <keyword>min-content</keyword>
-      <keyword>right</keyword>
-      <keyword>start</keyword>
-      <keyword>top</keyword>
-      <keyword>to</keyword>
+
+    <!-- modifiers -->
+
+    <context id="importance-modifier" style-ref="keyword">
+      <match>\![ \t]*important</match>
     </context>
+
+
+    <!-- style block -->
 
     <context id="style-block">
       <start>\{</start>
@@ -1361,6 +1240,9 @@
       </include>
     </context>
 
+
+    <!-- media queries -->
+
     <context id="media-query-operators" style-ref="at-rules">
       <keyword>and</keyword>
       <keyword>not</keyword>
@@ -1372,6 +1254,52 @@
       <keyword>print</keyword>
       <keyword>screen</keyword>
       <keyword>speech</keyword>
+    </context>
+
+    <context id="css3-media-features" style-ref="keyword">
+      <keyword>aspect-ratio</keyword>
+      <keyword>color-index</keyword>
+      <keyword>color</keyword>
+      <keyword>device-aspect-ratio</keyword>
+      <keyword>device-height</keyword>
+      <keyword>device-width</keyword>
+      <keyword>grid</keyword>
+      <keyword>height</keyword>
+      <keyword>max-aspect-ratio</keyword>
+      <keyword>max-color-index</keyword>
+      <keyword>max-color</keyword>
+      <keyword>max-device-aspect-ratio</keyword>
+      <keyword>max-device-height</keyword>
+      <keyword>max-device-width</keyword>
+      <keyword>max-height</keyword>
+      <keyword>max-monochrome</keyword>
+      <keyword>max-resolution</keyword>
+      <keyword>max-width</keyword>
+      <keyword>min-aspect-ratio</keyword>
+      <keyword>min-color-index</keyword>
+      <keyword>min-color</keyword>
+      <keyword>min-device-aspect-ratio</keyword>
+      <keyword>min-device-width</keyword>
+      <keyword>min-device-height</keyword>
+      <keyword>min-height</keyword>
+      <keyword>min-monochrome</keyword>
+      <keyword>min-resolution</keyword>
+      <keyword>min-width</keyword>
+      <keyword>monochrome</keyword>
+      <keyword>orientation</keyword>
+      <keyword>overflow-block</keyword>
+      <keyword>overflow-inline</keyword>
+      <keyword>resolution</keyword>
+      <keyword>scan</keyword>
+      <keyword>update-frequency</keyword>
+      <keyword>width</keyword>
+    </context>
+
+    <context id="css3-media-feature-values" style-ref="property-values">
+      <keyword>interlace</keyword>
+      <keyword>landscape</keyword>
+      <keyword>portrait</keyword>
+      <keyword>progressive</keyword>
     </context>
 
     <context id="media-feature-test">
@@ -1398,6 +1326,34 @@
         <context ref="media-types"/>
         <context ref="media-feature-test"/>
       </include>
+    </context>
+
+
+    <!-- at-rules -->
+
+    <context id="vendor-specific-at-rules" style-ref="vendor-specific">
+      <match>@\%{vendor-specific-identifier-regex}</match>
+    </context>
+
+    <context id="css3-at-rules" style-ref="at-rules">
+      <prefix>@</prefix>
+      <keyword>annotation</keyword>
+      <keyword>character-variant</keyword>
+      <keyword>font-face</keyword>
+      <keyword>font-feature-values</keyword>
+      <keyword>keyframes</keyword>
+      <keyword>ornaments</keyword>
+      <keyword>styleset</keyword>
+      <keyword>stylistic</keyword>
+      <keyword>swash</keyword>
+    </context>
+
+    <context id="at-rules" style-ref="at-rules">
+      <prefix>@</prefix>
+      <keyword>charset</keyword>
+      <keyword>import</keyword>
+      <keyword>media</keyword>
+      <keyword>page</keyword>
     </context>
 
     <context id="at-rule-general-block" end-parent="true">
@@ -1449,8 +1405,19 @@
       </include>
     </context>
 
-    <context id="punctuators" style-ref="others-3">
-      <match>[{}();,]</match>
+
+    <!-- selectors -->
+
+    <context id="selector-id" style-ref="selector-id">
+      <match>#\%{identifier-regex}</match>
+    </context>
+
+    <context id="selector-class" style-ref="selector-class">
+      <match>\.\%{identifier-regex}</match>
+    </context>
+
+    <context id="selector-tagname" style-ref="selector-tagname">
+      <match>\%{identifier-regex}</match>
     </context>
 
     <context id="attribute-selector-delimiters" style-ref="others-2">
@@ -1463,6 +1430,52 @@
 
     <context id="selector-grammar" style-ref="others-3">
       <match>[*&gt;+~]</match>
+    </context>
+
+    <context id="selector-vendor-specific-pseudo-elements-classes" style-ref="vendor-specific">
+      <match>::?\%{vendor-specific-identifier-regex}</match>
+    </context>
+
+    <context id="selector-pseudo-elements-one-colon" style-ref="function">
+      <prefix>::?</prefix>
+      <keyword>first-line</keyword>
+      <keyword>first-letter</keyword>
+      <keyword>before</keyword>
+      <keyword>after</keyword>
+    </context>
+
+    <context id="selector-pseudo-elements" style-ref="function">
+      <prefix>::</prefix>
+      <keyword>placeholder</keyword>
+      <keyword>selection</keyword>
+    </context>
+
+    <context id="selector-pseudo-classes" style-ref="function">
+      <prefix>:</prefix>
+      <keyword>enabled</keyword>
+      <keyword>disabled</keyword>
+      <keyword>checked</keyword>
+      <keyword>indeterminate</keyword>
+      <keyword>root</keyword>
+      <keyword>nth-child</keyword>
+      <keyword>nth-last-child</keyword>
+      <keyword>nth-of-type</keyword>
+      <keyword>nth-last-of-type</keyword>
+      <keyword>first-child</keyword>
+      <keyword>last-child</keyword>
+      <keyword>first-of-type</keyword>
+      <keyword>last-of-type</keyword>
+      <keyword>only-child</keyword>
+      <keyword>only-of-type</keyword>
+      <keyword>empty</keyword>
+      <keyword>not</keyword>
+      <keyword>link</keyword>
+      <keyword>visited</keyword>
+      <keyword>hover</keyword>
+      <keyword>active</keyword>
+      <keyword>focus</keyword>
+      <keyword>target</keyword>
+      <keyword>lang</keyword>
     </context>
 
     <context id="selector-nth-argument-keywords" style-ref="property-values">
@@ -1484,6 +1497,9 @@
         <context ref="selector-nth-argument-An-plus-B"/>
       </include>
     </context>
+
+
+    <!-- main context -->
 
     <context id="css" class="no-spell-check">
       <include>
