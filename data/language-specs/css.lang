@@ -122,16 +122,38 @@
       )
     </define-regex>
 
+    <context id="comment">
+      <include>
+        <context ref="def:c-like-comment-multiline"/>
+        <context ref="def:c-like-close-comment-outside-comment"/>
+      </include>
+    </context>
+
     <context id="name" style-ref="name">
       <match>\%{identifier-regex}</match>
     </context>
 
-    <context id="punctuators" style-ref="others-3">
-      <match>[{}();,]</match>
+    <context id="comma" style-ref="others-3">
+      <match>,</match>
+    </context>
+
+    <context id="colon" style-ref="others-3">
+      <match>:</match>
+    </context>
+
+    <context id="semicolon" style-ref="others-3">
+      <match>;</match>
     </context>
 
 
     <!-- basic data types -->
+
+    <context id="string">
+      <include>
+        <context ref="def:string"/>
+        <context ref="def:single-quoted-string"/>
+      </include>
+    </context>
 
     <context id="hexadecimal-color" style-ref="color">
       <match>#([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})\b</match>
@@ -317,6 +339,26 @@
       <match>u\+[a-f0-9?]{1,6}(-[a-f0-9]{1,6})?</match>
     </context>
 
+    <!--
+    resolution and ratio are used in media queries only
+    unicode-range is used for the unicode-range (@font-face) property only
+    but keep these here for simplicity
+    -->
+    <context id="all-basic-data-types">
+      <include>
+        <context ref="string"/>
+        <context ref="hexadecimal-color"/>
+        <context ref="css3-named-color"/>
+        <context ref="named-color"/>
+        <context ref="dimension"/>
+        <context ref="percentage"/>
+        <context ref="resolution"/>
+        <context ref="ratio"/>
+        <context ref="number"/>
+        <context ref="unicode-range"/>
+      </include>
+    </context>
+
 
     <!-- functions -->
 
@@ -345,18 +387,10 @@
 
     <context id="function-arguments-list">
       <include>
-        <context ref="def:string"/>
-        <context ref="def:single-quoted-string"/>
-        <context ref="hexadecimal-color"/>
-        <context ref="css3-named-color"/>
-        <context ref="named-color"/>
-        <context ref="resolution"/>
-        <context ref="dimension"/>
-        <context ref="percentage"/>
-        <context ref="number"/>
+        <context ref="all-functions"/>
+        <context ref="all-basic-data-types"/>
         <context ref="css3-function-arguments"/>
-        <context ref="vendor-specific-function"/>
-        <context ref="function"/>
+        <context ref="comma"/>
       </include>
     </context>
 
@@ -366,8 +400,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
         <context sub-pattern="0" where="end" style-ref="vendor-specific"/>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="comment"/>
         <context ref="function-arguments-list"/>
       </include>
     </context>
@@ -378,9 +411,15 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="comment"/>
         <context ref="function-arguments-list"/>
+      </include>
+    </context>
+
+    <context id="all-functions">
+      <include>
+        <context ref="vendor-specific-function"/>
+        <context ref="function"/>
       </include>
     </context>
 
@@ -1196,6 +1235,20 @@
       <keyword>zoom-out</keyword>
     </context>
 
+    <context id="all-style-properties">
+      <include>
+        <context ref="vendor-specific-property-names"/>
+        <context ref="svg-property-names"/>
+        <context ref="css3-property-names"/>
+        <context ref="property-names"/>
+        <context ref="vendor-specific-property-values"/>
+        <context ref="animatable-properties"/>
+        <context ref="svg-property-values"/>
+        <context ref="css3-property-values"/>
+        <context ref="property-values"/>
+      </include>
+    </context>
+
 
     <!-- modifiers -->
 
@@ -1206,37 +1259,26 @@
 
     <!-- style block -->
 
+    <context id="declaration">
+      <include>
+        <context ref="all-functions"/>
+        <context ref="all-basic-data-types"/>
+        <context ref="all-style-properties"/>
+        <context ref="importance-modifier"/>
+        <context ref="comma"/>
+        <context ref="colon"/>
+        <context ref="semicolon"/>
+      </include>
+    </context>
+
     <context id="style-block">
       <start>\{</start>
       <end>\}</end>
       <include>
-        <context ref="def:string"/>
-        <context ref="def:single-quoted-string"/>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
-        <context ref="vendor-specific-at-rules"/>
-        <context ref="css3-at-rules"/>
-        <context ref="at-rules"/>
-        <context ref="style-block"/>
-        <context ref="hexadecimal-color"/>
-        <context ref="css3-named-color"/>
-        <context ref="named-color"/>
-        <context ref="vendor-specific-function"/>
-        <context ref="function"/>
-        <context ref="dimension"/>
-        <context ref="percentage"/>
-        <context ref="number"/>
-        <context ref="unicode-range"/>
-        <context ref="importance-modifier"/>
-        <context ref="vendor-specific-property-names"/>
-        <context ref="svg-property-names"/>
-        <context ref="css3-property-names"/>
-        <context ref="property-names"/>
-        <context ref="vendor-specific-property-values"/>
-        <context ref="animatable-properties"/>
-        <context ref="svg-property-values"/>
-        <context ref="css3-property-values"/>
-        <context ref="property-values"/>
+        <context sub-pattern="0" where="start" style-ref="others-3"/>
+        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context ref="comment"/>
+        <context ref="declaration"/>
       </include>
     </context>
 
@@ -1306,17 +1348,14 @@
       <start>\(</start>
       <end>\)</end>
       <include>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context sub-pattern="0" where="start" style-ref="others-3"/>
+        <context sub-pattern="0" where="end" style-ref="others-3"/>
+        <context ref="comment"/>
         <context ref="media-queries"/>
         <context ref="css3-media-features"/>
         <context ref="css3-media-feature-values"/>
-        <context ref="hexadecimal-color"/>
-        <context ref="resolution"/>
-        <context ref="dimension"/>
-        <context ref="percentage"/>
-        <context ref="ratio"/>
-        <context ref="number"/>
+        <context ref="all-basic-data-types"/>
+        <context ref="colon"/>
       </include>
     </context>
 
@@ -1325,6 +1364,7 @@
         <context ref="media-query-operators"/>
         <context ref="media-types"/>
         <context ref="media-feature-test"/>
+        <context ref="comma"/>
       </include>
     </context>
 
@@ -1360,6 +1400,8 @@
       <start>\{</start>
       <end>\}</end>
       <include>
+        <context sub-pattern="0" where="start" style-ref="others-3"/>
+        <context sub-pattern="0" where="end" style-ref="others-3"/>
         <context ref="css"/>
       </include>
     </context>
@@ -1375,8 +1417,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="others-3"/>
         <context sub-pattern="0" where="end" style-ref="others-3"/>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="comment"/>
         <context ref="percentage" style-ref="function"/>
         <context ref="keyframe-selector"/>
         <context ref="style-block"/>
@@ -1386,10 +1427,8 @@
     <context id="at-keyframes-call">
       <start>(?&lt;=@keyframes)</start>
       <include>
-        <context ref="def:string"/>
-        <context ref="def:single-quoted-string"/>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="comment"/>
+        <context ref="string"/>
         <context ref="name"/>
         <context ref="at-keyframes-block"/>
       </include>
@@ -1398,10 +1437,19 @@
     <context id="at-media-call">
       <start>(?&lt;=@media)</start>
       <include>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="comment"/>
         <context ref="media-queries"/>
         <context ref="at-rule-general-block"/>
+      </include>
+    </context>
+
+    <context id="all-at-rules">
+      <include>
+        <context ref="vendor-specific-at-rules"/>
+        <context ref="css3-at-rules"/>
+        <context ref="at-rules"/>
+        <context ref="at-keyframes-call"/>
+        <context ref="at-media-call"/>
       </include>
     </context>
 
@@ -1498,33 +1546,34 @@
       </include>
     </context>
 
-
-    <!-- main context -->
-
-    <context id="css" class="no-spell-check">
+    <context id="all-selectors">
       <include>
-        <context ref="def:string"/>
-        <context ref="def:single-quoted-string"/>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="selector-grammar"/>
+        <context ref="selector-id"/>
+        <context ref="selector-class"/>
+        <context ref="selector-tagname"/>
+        <context ref="attribute-selector-delimiters"/>
+        <context ref="attribute-selector-operators"/>
         <context ref="selector-vendor-specific-pseudo-elements-classes"/>
         <context ref="selector-pseudo-elements-one-colon"/>
         <context ref="selector-pseudo-elements"/>
         <context ref="selector-pseudo-classes"/>
         <context ref="selector-nth-argument"/>
-        <context ref="vendor-specific-at-rules"/>
-        <context ref="css3-at-rules"/>
-        <context ref="at-rules"/>
+        <context ref="comma"/>
+      </include>
+    </context>
+
+
+    <!-- main context -->
+
+    <context id="css" class="no-spell-check">
+      <include>
+        <context ref="comment"/>
+        <context ref="string"/>
+        <context ref="all-at-rules"/>
+        <context ref="all-functions"/>
+        <context ref="all-selectors"/>
         <context ref="style-block"/>
-        <context ref="punctuators"/>
-        <context ref="attribute-selector-delimiters"/>
-        <context ref="attribute-selector-operators"/>
-        <context ref="selector-grammar"/>
-        <context ref="selector-id"/>
-        <context ref="selector-class"/>
-        <context ref="selector-tagname"/>
-        <context ref="at-keyframes-call"/>
-        <context ref="at-media-call"/>
       </include>
     </context>
 
