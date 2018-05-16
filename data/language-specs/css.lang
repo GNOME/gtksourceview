@@ -36,7 +36,6 @@
     <!-- global -->
     <style id="error"                       name="Error"                       map-to="def:error"/>
     <style id="vendor-specific"             name="Vendor Specific"             map-to="def:warning"/>
-    <style id="name"                        name="Name"/>
     <style id="keyword"                     name="Keyword"                     map-to="def:constant"/>
     <style id="namespace"                   name="Namespace"                   map-to="def:keyword"/>
     <style id="symbol"                      name="Symbol"/>
@@ -44,7 +43,8 @@
     <style id="block-delimiter"             name="Block Delimiter"             map-to="css:delimiter"/>
     <style id="test-delimiter"              name="Test Delimiter"              map-to="css:delimiter"/>
 
-    <!-- basic data types -->
+    <!-- data types -->
+    <style id="name"                        name="Name"/>
     <style id="color"                       name="Color"                       map-to="def:base-n-integer"/>
     <style id="number"                      name="Number"                      map-to="def:number"/>
     <style id="integer"                     name="Integer"                     map-to="def:decimal"/>
@@ -167,10 +167,6 @@
       </include>
     </context>
 
-    <context id="name" style-ref="name">
-      <match>\%{identifier-regex}</match>
-    </context>
-
     <context id="comma" style-ref="delimiter">
       <match>,</match>
     </context>
@@ -184,7 +180,12 @@
     </context>
 
 
-    <!-- basic data types -->
+    <!-- data types -->
+
+    <!-- custom identifier -->
+    <context id="name" style-ref="name">
+      <match>\%{identifier-regex}</match>
+    </context>
 
     <context id="string">
       <include>
@@ -430,26 +431,6 @@
       <match>u\+[a-f0-9?]{1,6}(-[a-f0-9]{1,6})?</match>
     </context>
 
-    <!--
-    resolution and ratio are used in media queries only
-    unicode-range is used for the unicode-range (@font-face) property only
-    but keep these here for simplicity
-    -->
-    <context id="all-basic-data-types">
-      <include>
-        <context ref="string"/>
-        <context ref="hexadecimal-color"/>
-        <context ref="css3-named-color"/>
-        <context ref="named-color"/>
-        <context ref="dimension"/>
-        <context ref="percentage"/>
-        <context ref="resolution"/>
-        <context ref="ratio"/>
-        <context ref="number"/>
-        <context ref="unicode-range"/>
-      </include>
-    </context>
-
 
     <!-- functions -->
 
@@ -483,16 +464,14 @@
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
         <context ref="comment"/>
-        <context ref="string"/>
+        <context ref="string-value"/>
       </include>
     </context>
 
     <context id="function-content">
       <include>
-        <context ref="all-functions"/>
-        <context ref="all-basic-data-types"/>
         <context ref="css3-function-arguments"/>
-        <context ref="comma"/>
+        <context ref="any-value"/>
       </include>
     </context>
 
@@ -518,11 +497,61 @@
       </include>
     </context>
 
-    <context id="all-functions">
+    <context id="function-call">
       <include>
         <context ref="vendor-specific-function"/>
         <context ref="url"/>
         <context ref="function"/>
+      </include>
+    </context>
+
+
+    <!-- data values (interface between types and users) -->
+
+    <context id="name-value">
+      <include>
+        <context ref="name"/>
+      </include>
+    </context>
+
+    <context id="string-value">
+      <include>
+        <context ref="string"/>
+      </include>
+    </context>
+
+    <context id="color-value">
+      <include>
+        <context ref="hexadecimal-color"/>
+        <context ref="css3-named-color"/>
+        <context ref="named-color"/>
+      </include>
+    </context>
+
+    <!-- resolution and ratio are used in media queries only -->
+    <context id="number-value">
+      <include>
+        <context ref="dimension"/>
+        <context ref="percentage"/>
+        <context ref="resolution"/>
+        <context ref="ratio"/>
+        <context ref="number"/>
+      </include>
+    </context>
+
+    <context id="unicode-range-value">
+      <include>
+        <context ref="unicode-range"/>
+      </include>
+    </context>
+
+    <!-- unicode-range is used for the unicode-range (@font-face) property only -->
+    <context id="data-value">
+      <include>
+        <context ref="string-value"/>
+        <context ref="color-value"/>
+        <context ref="number-value"/>
+        <context ref="unicode-range"/>
       </include>
     </context>
 
@@ -1376,6 +1405,17 @@
     </context>
 
 
+    <!-- any assignable value -->
+
+    <context id="any-value">
+      <include>
+        <context ref="function-call"/>
+        <context ref="data-value"/>
+        <context ref="comma"/> <!-- for lists -->
+      </include>
+    </context>
+
+
     <!-- modifiers -->
 
     <context id="importance-modifier" style-ref="modifier">
@@ -1387,11 +1427,9 @@
 
     <context id="declaration">
       <include>
-        <context ref="all-functions"/>
-        <context ref="all-basic-data-types"/>
+        <context ref="any-value"/>
         <context ref="all-style-properties"/>
         <context ref="importance-modifier"/>
-        <context ref="comma"/>
         <context ref="colon"/>
         <context ref="semicolon"/>
       </include>
@@ -1489,12 +1527,18 @@
       <keyword>standalone</keyword>
     </context>
 
+    <context id="media-type-value">
+      <include>
+        <context ref="media-types"/>
+      </include>
+    </context>
+
     <context id="media-feature-test-content">
       <include>
         <context ref="media-queries"/>
         <context ref="css3-media-features"/>
         <context ref="css3-media-feature-values"/>
-        <context ref="all-basic-data-types"/>
+        <context ref="data-value"/>
         <context ref="colon"/>
       </include>
     </context>
@@ -1513,7 +1557,7 @@
     <context id="media-queries">
       <include>
         <context ref="media-query-operators"/>
-        <context ref="media-types"/>
+        <context ref="media-type-value"/>
         <context ref="media-feature-test"/>
         <context ref="comma"/>
       </include>
@@ -1593,6 +1637,12 @@
       <keyword>swash</keyword>
     </context>
 
+    <context id="font-feature-type-value">
+      <include>
+        <context ref="font-feature-types"/>
+      </include>
+    </context>
+
     <context id="at-font-feature-values-feature-value-name" style-ref="name">
       <match>\%{identifier-regex}(?=\s*:)</match>
     </context>
@@ -1618,7 +1668,7 @@
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
         <context ref="comment"/>
-        <context ref="font-feature-types"/>
+        <context ref="font-feature-type-value"/>
         <context ref="at-font-feature-values-feature-value-block"/>
       </include>
     </context>
@@ -1627,8 +1677,8 @@
       <start>(?&lt;=@font-feature-values)</start>
       <include>
         <context ref="comment"/>
-        <context ref="string"/>
-        <context ref="name"/>
+        <context ref="string-value"/>
+        <context ref="name-value"/>
         <context ref="at-font-feature-values-block"/>
       </include>
     </context>
@@ -1638,7 +1688,7 @@
       <include>
         <context ref="comment"/>
         <context ref="url"/>
-        <context ref="string"/>
+        <context ref="string-value"/>
         <context ref="media-queries"/>
         <context ref="at-rule-general-delimiter"/>
       </include>
@@ -1649,6 +1699,13 @@
       <keyword>to</keyword>
     </context>
 
+    <context id="keyframe-selector-value">
+      <include>
+        <context ref="percentage" style-ref="at-rule-inner-selector"/>
+        <context ref="keyframe-selector"/>
+      </include>
+    </context>
+
     <context id="at-keyframes-block" end-parent="true">
       <start>\{</start>
       <end>\}</end>
@@ -1656,8 +1713,7 @@
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
         <context ref="comment"/>
-        <context ref="percentage" style-ref="at-rule-inner-selector"/>
-        <context ref="keyframe-selector"/>
+        <context ref="keyframe-selector-value"/>
         <context ref="style-block"/>
       </include>
     </context>
@@ -1666,8 +1722,8 @@
       <start>(?&lt;=@keyframes)</start>
       <include>
         <context ref="comment"/>
-        <context ref="string"/>
-        <context ref="name"/>
+        <context ref="string-value"/>
+        <context ref="name-value"/>
         <context ref="at-keyframes-block"/>
       </include>
     </context>
@@ -1681,13 +1737,19 @@
       </include>
     </context>
 
+    <context id="namespace-value">
+      <include>
+        <context ref="name" style-ref="namespace"/>
+      </include>
+    </context>
+
     <context id="at-namespace-call">
       <start>(?&lt;=@namespace)</start>
       <include>
         <context ref="comment"/>
         <context ref="url"/>
-        <context ref="string"/>
-        <context ref="name" style-ref="namespace"/>
+        <context ref="string-value"/>
+        <context ref="namespace-value"/>
         <context ref="at-rule-general-delimiter"/>
       </include>
     </context>
@@ -1738,7 +1800,7 @@
       <include>
         <context ref="comment"/>
         <context ref="pseudo-pages"/>
-        <context ref="name"/>
+        <context ref="name-value"/>
         <context ref="comma"/>
         <context ref="at-page-block"/>
       </include>
@@ -1753,8 +1815,8 @@
         <context ref="comment"/>
         <context ref="at-supports-test"/>
         <context ref="at-supports-operators"/>
-        <context ref="all-basic-data-types"/>
-        <context ref="all-functions"/>
+        <context ref="function-call"/>
+        <context ref="data-value"/>
         <context ref="all-style-properties"/>
         <context ref="comma"/>
         <context ref="colon"/>
@@ -1834,7 +1896,7 @@
 
     <context id="attribute-selector-content">
       <include>
-        <context ref="string"/>
+        <context ref="string-value"/>
         <context ref="attribute-selector-attribute-name"/>
         <context ref="attribute-selector-operators"/>
       </include>
@@ -1913,7 +1975,7 @@
 
     <context id="lang-pseudo-class-argument-content">
       <include>
-        <context ref="name"/>
+        <context ref="name-value"/>
       </include>
     </context>
 
