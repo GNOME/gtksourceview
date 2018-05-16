@@ -160,6 +160,10 @@
       )
     </define-regex>
 
+    <define-regex id="declaration-value-end">(?=[!;}])</define-regex>
+
+    <define-regex id="test-value-end">(?=\))</define-regex>
+
     <context id="comment">
       <include>
         <context ref="def:c-like-comment-multiline"/>
@@ -562,12 +566,7 @@
 
     <!-- style properties -->
 
-    <context id="vendor-specific-property-names" style-ref="vendor-specific">
-      <match>\%{vendor-specific-identifier-regex}(?=\s*:)</match>
-    </context>
-
     <context id="svg-property-names" style-ref="property-name">
-      <suffix>(?=\s*:)</suffix>
       <keyword>clip-path</keyword>
       <keyword>clip-rule</keyword>
       <keyword>color-interpolatation-filters</keyword>
@@ -598,7 +597,6 @@
     </context>
 
     <context id="css3-property-names" style-ref="property-name">
-      <suffix>(?=\s*:)</suffix>
       <keyword>align-content</keyword>
       <keyword>align-items</keyword>
       <keyword>align-self</keyword>
@@ -733,7 +731,6 @@
     </context>
 
     <context id="property-names" style-ref="property-name">
-      <suffix>(?=\s*:)</suffix>
       <keyword>azimuth</keyword>
       <keyword>background-attachment</keyword>
       <keyword>background-color</keyword>
@@ -1390,7 +1387,7 @@
 
     <context id="property-name">
       <include>
-        <context ref="vendor-specific-property-names"/>
+        <context ref="vendor-specific-name"/>
         <context ref="svg-property-names"/>
         <context ref="css3-property-names"/>
         <context ref="property-names"/>
@@ -1431,12 +1428,33 @@
 
     <!-- style block -->
 
-    <context id="declaration">
+    <context id="declaration-property">
       <include>
         <context ref="property-name"/>
+      </include>
+    </context>
+
+    <context id="declaration-value-content">
+      <include>
         <context ref="any-value"/>
+      </include>
+    </context>
+
+    <context id="declaration-value">
+      <start>:</start>
+      <end>\%{declaration-value-end}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="delimiter"/>
+        <context ref="comment"/>
+        <context ref="declaration-value-content"/>
+      </include>
+    </context>
+
+    <context id="declaration">
+      <include>
+        <context ref="declaration-property"/>
+        <context ref="declaration-value"/>
         <context ref="importance-modifier"/>
-        <context ref="colon"/>
         <context ref="semicolon"/>
       </include>
     </context>
@@ -1539,13 +1557,34 @@
       </include>
     </context>
 
+    <context id="media-feature-test-name">
+      <include>
+        <context ref="css3-media-features"/>
+      </include>
+    </context>
+
+    <context id="media-feature-test-value-content">
+      <include>
+        <context ref="css3-media-feature-values"/>
+        <context ref="data-value"/>
+      </include>
+    </context>
+
+    <context id="media-feature-test-value">
+      <start>:</start>
+      <end>\%{test-value-end}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="delimiter"/>
+        <context ref="comment"/>
+        <context ref="media-feature-test-value-content"/>
+      </include>
+    </context>
+
     <context id="media-feature-test-content">
       <include>
         <context ref="media-queries"/>
-        <context ref="css3-media-features"/>
-        <context ref="css3-media-feature-values"/>
-        <context ref="data-value"/>
-        <context ref="colon"/>
+        <context ref="media-feature-test-name"/>
+        <context ref="media-feature-test-value"/>
       </include>
     </context>
 
@@ -1649,8 +1688,26 @@
       </include>
     </context>
 
-    <context id="at-font-feature-values-feature-value-name" style-ref="name">
-      <match>\%{identifier-regex}(?=\s*:)</match>
+    <context id="font-feature-value-declaration-name">
+      <include>
+        <context ref="name-value"/>
+      </include>
+    </context>
+
+    <context id="font-feature-value-declaration-value-content">
+      <include>
+        <context ref="positive-integer"/>
+      </include>
+    </context>
+
+    <context id="font-feature-value-declaration-value">
+      <start>:</start>
+      <end>\%{declaration-value-end}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="delimiter"/>
+        <context ref="comment"/>
+        <context ref="font-feature-value-declaration-value-content"/>
+      </include>
     </context>
 
     <context id="at-font-feature-values-feature-value-block">
@@ -1660,9 +1717,8 @@
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
         <context ref="comment"/>
-        <context ref="at-font-feature-values-feature-value-name"/>
-        <context ref="positive-integer"/>
-        <context ref="colon"/>
+        <context ref="font-feature-value-declaration-name"/>
+        <context ref="font-feature-value-declaration-value"/>
         <context ref="semicolon"/>
       </include>
     </context>
@@ -1812,6 +1868,29 @@
       </include>
     </context>
 
+    <context id="at-supports-operators" style-ref="at-rule-operator">
+      <keyword>and</keyword>
+      <keyword>not</keyword>
+      <keyword>or</keyword>
+    </context>
+
+    <define-regex id="at-supports-declaration-value-end" extended="true">
+      (?:
+        \%{test-value-end} |
+        (?= ! )
+      )
+    </define-regex>
+
+    <context id="at-supports-declaration-value">
+      <start>:</start>
+      <end>\%{at-supports-declaration-value-end}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="delimiter"/>
+        <context ref="comment"/>
+        <context ref="declaration-value-content"/>
+      </include>
+    </context>
+
     <context id="at-supports-test">
       <start>\(</start>
       <end>\)</end>
@@ -1821,19 +1900,10 @@
         <context ref="comment"/>
         <context ref="at-supports-test"/>
         <context ref="at-supports-operators"/>
-        <context ref="function-call"/>
-        <context ref="data-value"/>
-        <context ref="property-name"/>
-        <context ref="property-value-keyword"/>
-        <context ref="comma"/>
-        <context ref="colon"/>
+        <context ref="declaration-property"/>
+        <context ref="at-supports-declaration-value"/>
+        <context ref="importance-modifier"/> <!-- allowed here but has no effect -->
       </include>
-    </context>
-
-    <context id="at-supports-operators" style-ref="at-rule-operator">
-      <keyword>and</keyword>
-      <keyword>not</keyword>
-      <keyword>or</keyword>
     </context>
 
     <context id="at-supports-call">
