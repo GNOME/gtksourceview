@@ -187,6 +187,10 @@
       <match>\%{identifier-regex}</match>
     </context>
 
+    <context id="vendor-specific-name" style-ref="vendor-specific">
+      <match>\%{vendor-specific-identifier-regex}</match>
+    </context>
+
     <context id="string">
       <include>
         <context ref="def:string"/>
@@ -859,10 +863,6 @@
       <keyword>z-index</keyword>
     </context>
 
-    <context id="vendor-specific-property-values" style-ref="vendor-specific">
-      <match>\%{vendor-specific-identifier-regex}</match>
-    </context>
-
     <context id="animatable-properties" style-ref="keyword">
       <keyword>background-color</keyword>
       <keyword>background-position</keyword>
@@ -1388,13 +1388,18 @@
       <keyword>zoom-out</keyword>
     </context>
 
-    <context id="all-style-properties">
+    <context id="property-name">
       <include>
         <context ref="vendor-specific-property-names"/>
         <context ref="svg-property-names"/>
         <context ref="css3-property-names"/>
         <context ref="property-names"/>
-        <context ref="vendor-specific-property-values"/>
+      </include>
+    </context>
+
+    <context id="property-value-keyword">
+      <include>
+        <context ref="vendor-specific-name"/>
         <context ref="animatable-properties"/>
         <context ref="svg-property-values"/>
         <context ref="east-asian-variant-values"/>
@@ -1410,6 +1415,7 @@
     <context id="any-value">
       <include>
         <context ref="function-call"/>
+        <context ref="property-value-keyword"/>
         <context ref="data-value"/>
         <context ref="comma"/> <!-- for lists -->
       </include>
@@ -1427,8 +1433,8 @@
 
     <context id="declaration">
       <include>
+        <context ref="property-name"/>
         <context ref="any-value"/>
-        <context ref="all-style-properties"/>
         <context ref="importance-modifier"/>
         <context ref="colon"/>
         <context ref="semicolon"/>
@@ -1817,7 +1823,8 @@
         <context ref="at-supports-operators"/>
         <context ref="function-call"/>
         <context ref="data-value"/>
-        <context ref="all-style-properties"/>
+        <context ref="property-name"/>
+        <context ref="property-value-keyword"/>
         <context ref="comma"/>
         <context ref="colon"/>
       </include>
