@@ -1689,7 +1689,7 @@
     <context id="at-rule-css-block-content">
       <include>
         <context ref="at-rule"/>
-        <context ref="all-selectors"/>
+        <context ref="selector"/>
         <context ref="style-block"/>
       </include>
     </context>
@@ -2082,6 +2082,8 @@
 
     <!-- selectors -->
 
+    <!-- namespace qualifier -->
+
     <context id="namespace-qualifier">
       <match>(\%{identifier-regex}|\*)?(\|)</match>
       <include>
@@ -2089,6 +2091,8 @@
         <context sub-pattern="2" style-ref="namespace-qualifier"/>
       </include>
     </context>
+
+    <!-- simple selectors -->
 
     <context id="id-selector" style-ref="id-selector">
       <match>#\%{identifier-regex}</match>
@@ -2113,7 +2117,7 @@
       </include>
     </context>
 
-    <context id="attribute-selector-operators" style-ref="attribute-selector-operator">
+    <context id="attribute-selector-operator" style-ref="attribute-selector-operator">
       <match>[~|^$*]?=</match>
     </context>
 
@@ -2121,7 +2125,7 @@
       <include>
         <context ref="string-value"/>
         <context ref="attribute-selector-attribute-name"/>
-        <context ref="attribute-selector-operators"/>
+        <context ref="attribute-selector-operator"/>
       </include>
     </context>
 
@@ -2136,13 +2140,27 @@
       </include>
     </context>
 
+    <context id="simple-selector">
+      <include>
+        <context ref="id-selector"/>
+        <context ref="class-selector"/>
+        <context ref="type-selector"/>
+        <context ref="universal-selector"/>
+        <context ref="attribute-selector"/>
+      </include>
+    </context>
+
+    <!-- combinators -->
+
     <!-- technically, this should include the space character (descendent combinator) -->
-    <context id="combinators" style-ref="combinator">
+    <context id="combinator" style-ref="combinator">
       <match>[&gt;+~]</match>
     </context>
 
-    <context id="vendor-specific-pseudo-elements-classes" style-ref="vendor-specific">
-      <match>::?\%{vendor-specific-identifier-regex}</match>
+    <!-- pseudo-elements -->
+
+    <context id="vendor-specific-pseudo-element" style-ref="vendor-specific">
+      <match>::\%{vendor-specific-identifier-regex}</match>
     </context>
 
     <context id="single-colon-pseudo-elements" style-ref="pseudo-element">
@@ -2157,6 +2175,20 @@
       <prefix>::</prefix>
       <keyword>placeholder</keyword>
       <keyword>selection</keyword>
+    </context>
+
+    <context id="pseudo-element">
+      <include>
+        <context ref="vendor-specific-pseudo-element"/>
+        <context ref="single-colon-pseudo-elements"/>
+        <context ref="pseudo-elements"/>
+      </include>
+    </context>
+
+    <!-- pseudo-classes -->
+
+    <context id="vendor-specific-pseudo-class" style-ref="vendor-specific">
+      <match>:\%{vendor-specific-identifier-regex}</match>
     </context>
 
     <context id="pseudo-classes" style-ref="pseudo-class">
@@ -2196,6 +2228,15 @@
       <keyword>visited</keyword>
     </context>
 
+    <context id="pseudo-class">
+      <include>
+        <context ref="vendor-specific-pseudo-class"/>
+        <context ref="pseudo-classes"/>
+      </include>
+    </context>
+
+    <!-- pseudo-class arguments -->
+
     <context id="lang-pseudo-class-argument-content">
       <include>
         <context ref="name-value"/>
@@ -2213,13 +2254,20 @@
       </include>
     </context>
 
-    <context id="not-pseudo-class-nested-not-without-argument-error" style-ref="error">
-      <match>:not(?!\()</match>
-    </context>
-
-    <context id="not-pseudo-class-nested-not-with-argument-error" style-ref="error">
+    <context id="not-pseudo-class-nested-not-error" style-ref="error">
       <start>:not\(</start>
       <end>\)</end>
+      <include>
+        <context ref="pseudo-class-argument"/>
+      </include>
+    </context>
+
+    <context id="not-pseudo-class-nested-pseudo-element-error">
+      <include>
+        <context ref="vendor-specific-pseudo-element" style-ref="error"/>
+        <context ref="single-colon-pseudo-elements" style-ref="error"/>
+        <context ref="pseudo-elements" style-ref="error"/>
+      </include>
     </context>
 
     <context id="not-pseudo-class-argument">
@@ -2229,19 +2277,13 @@
         <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
         <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
         <context ref="comment"/>
-        <context ref="not-pseudo-class-nested-not-without-argument-error"/>
-        <context ref="not-pseudo-class-nested-not-with-argument-error"/>
-        <context ref="namespace-qualifier"/>
-        <context ref="id-selector"/>
-        <context ref="class-selector"/>
-        <context ref="type-selector"/>
-        <context ref="universal-selector"/>
-        <context ref="attribute-selector"/>
-        <context ref="combinators"/>
-        <context ref="vendor-specific-pseudo-elements-classes"/>
-        <context ref="pseudo-classes"/>
-        <context ref="lang-pseudo-class-argument"/>
-        <context ref="nth-pseudo-class-argument"/>
+        <context ref="not-pseudo-class-nested-not-error"/>
+        <context ref="not-pseudo-class-nested-pseudo-element-error"/>
+        <context ref="simple-selector"/>
+        <context ref="combinator"/>
+        <context ref="pseudo-class"/>
+        <context ref="pseudo-class-argument"/>
+        <context ref="comma"/>
       </include>
     </context>
 
@@ -2253,7 +2295,7 @@
     <context id="nth-pseudo-class-argument-expression" once-only="true" style-ref="expression">
       <match extended="true">
         (
-          \%{integer-regex}? n (\s* [+-] \s* \%{integer-magnitude-regex})? |
+          \%{integer-regex}? n ( \s* [+-] \s* \%{integer-magnitude-regex} )? |
           \%{integer-regex}
         )
       </match>
@@ -2285,22 +2327,24 @@
       </include>
     </context>
 
-    <context id="all-selectors">
+    <context id="pseudo-class-argument">
       <include>
-        <context ref="namespace-qualifier"/>
-        <context ref="id-selector"/>
-        <context ref="class-selector"/>
-        <context ref="type-selector"/>
-        <context ref="universal-selector"/>
-        <context ref="attribute-selector"/>
-        <context ref="combinators"/>
-        <context ref="vendor-specific-pseudo-elements-classes"/>
-        <context ref="single-colon-pseudo-elements"/>
-        <context ref="pseudo-elements"/>
-        <context ref="pseudo-classes"/>
         <context ref="lang-pseudo-class-argument"/>
         <context ref="not-pseudo-class-argument"/>
         <context ref="nth-pseudo-class-argument"/>
+      </include>
+    </context>
+
+    <!-- all selectors -->
+
+    <context id="selector">
+      <include>
+        <context ref="namespace-qualifier"/>
+        <context ref="simple-selector"/>
+        <context ref="combinator"/>
+        <context ref="pseudo-element"/>
+        <context ref="pseudo-class"/>
+        <context ref="pseudo-class-argument"/>
         <context ref="comma"/>
       </include>
     </context>
@@ -2312,7 +2356,7 @@
       <include>
         <context ref="comment"/>
         <context ref="at-rule"/>
-        <context ref="all-selectors"/>
+        <context ref="selector"/>
         <context ref="style-block"/>
       </include>
     </context>
