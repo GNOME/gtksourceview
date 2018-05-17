@@ -136,6 +136,14 @@
       )
     </define-regex>
 
+    <!-- for lookbehinds (and lookaheads) -->
+    <define-regex id="single-identifier-char-regex" extended="true">
+      (?:
+        [a-z0-9_-] |
+        \%{non-ascii-regex}
+      )
+    </define-regex>
+
     <!-- https://drafts.csswg.org/css-syntax/#ident-token-diagram -->
     <define-regex id="identifier-regex" extended="true">
       (?:
@@ -151,14 +159,21 @@
     https://www.w3.org/TR/CSS21/syndata.html#vendor-keywords
     https://en.wikipedia.org/wiki/CSS_hack#List_of_prefixes
     -->
-    <define-regex id="vendor-specific-identifier-regex" extended="true">
+    <define-regex id="vendor-specific-prefix-regex" extended="true">
       (?:
         (?:
           [_-] \%{identifier-start-char-regex} \%{identifier-char-regex}* |
           mso |
           prince
         )
-        - \%{identifier-char-regex}+
+        -
+      )
+    </define-regex>
+
+    <define-regex id="vendor-specific-identifier-regex" extended="true">
+      (?:
+        (?&lt;! \%{single-identifier-char-regex} )
+        \%{vendor-specific-prefix-regex} \%{identifier-char-regex}+
       )
     </define-regex>
 
@@ -386,8 +401,15 @@
       (?: \+? \%{integer-magnitude-regex} )
     </define-regex>
 
+    <define-regex id="non-number-char-regex" extended="true">
+      (?:
+        \%{single-identifier-char-regex} |
+        \.
+      )
+    </define-regex>
+
     <context id="dimension" style-ref="dimension">
-      <prefix>\%{number-regex}</prefix>
+      <prefix>(?&lt;!\%{non-number-char-regex})\%{number-regex}</prefix>
       <keyword>ch</keyword>
       <keyword>cm</keyword>
       <keyword>deg</keyword>
@@ -415,30 +437,48 @@
     </context>
 
     <context id="percentage" style-ref="dimension">
-      <match>\%{number-regex}%</match>
+      <match extended="true">
+        (?&lt;! \%{non-number-char-regex} )
+        \%{number-regex}%
+      </match>
     </context>
 
     <context id="resolution" style-ref="dimension">
-      <prefix>\%{positive-number-regex}</prefix>
+      <prefix>(?&lt;!\%{non-number-char-regex})\%{positive-number-regex}</prefix>
       <keyword>dpcm</keyword>
       <keyword>dpi</keyword>
       <keyword>dppx</keyword>
     </context>
 
     <context id="ratio" style-ref="expression">
-      <match>\%{positive-integer-regex}\s*/\s*\%{positive-integer-regex}</match>
+      <match extended="true">
+        (?&lt;! \%{non-number-char-regex} )
+        \%{positive-integer-regex} \s* / \s* \%{positive-integer-regex}
+        (?! \%{non-number-char-regex} )
+      </match>
     </context>
 
     <context id="number" style-ref="number">
-      <match>(?&lt;![\w\.])\%{number-regex}(?![\w\.])</match>
+      <match extended="true">
+        (?&lt;! \%{non-number-char-regex} )
+        \%{number-regex}
+        (?! \%{non-number-char-regex} )
+      </match>
     </context>
 
     <context id="positive-integer" style-ref="integer">
-      <match>(?&lt;![\w\.])\%{positive-integer-regex}(?![\w\.])</match>
+      <match extended="true">
+        (?&lt;! \%{non-number-char-regex} )
+        \%{positive-integer-regex}
+        (?! \%{non-number-char-regex} )
+      </match>
     </context>
 
     <context id="unicode-range" style-ref="unicode-range">
-      <match>u\+[a-f0-9?]{1,6}(-[a-f0-9]{1,6})?</match>
+      <match extended="true">
+        \%[ u\+[a-f0-9?]{1,6} (-[a-f0-9]{1,6})?
+        (?! \%{single-identifier-char-regex} )
+      </match>
     </context>
 
 
@@ -1839,6 +1879,17 @@
       </include>
     </context>
 
+    <context id="vendor-specific-at-keyframes">
+      <start>@\%{vendor-specific-prefix-regex}keyframes\%]</start>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
+        <context ref="comment"/>
+        <context ref="string-value"/>
+        <context ref="name-value"/>
+        <context ref="at-keyframes-block"/>
+      </include>
+    </context>
+
     <context id="at-keyframes">
       <start>@keyframes\%]</start>
       <include>
@@ -2013,6 +2064,7 @@
 
     <context id="at-rule">
       <include>
+        <context ref="vendor-specific-at-keyframes"/>
         <context ref="vendor-specific-at-rule"/>
         <context ref="at-charset"/>
         <context ref="at-charset-error"/>
