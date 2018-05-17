@@ -1734,8 +1734,18 @@
       </include>
     </context>
 
+    <!--
+    if this was a simple context (<match>), then in a case like this:
+    @supports {
+        @import url();
+        @media screen {}
+    }
+    the @media rule would not be highlighted correctly
+    (seems like a bug?)
+    -->
     <context id="at-rule-delimiter" end-parent="true" style-ref="delimiter">
-      <match>;</match>
+      <start>(?=;)</start>
+      <end>;</end>
     </context>
 
     <context id="vendor-specific-at-rule">

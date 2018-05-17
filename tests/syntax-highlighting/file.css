@@ -111,6 +111,7 @@ div#\E9 dition .\0000E9dition .motion_\e9motion, /* Unicode character escape */
         background-image:         linear-gradient(to left top, #fff, blue);
         padding: 10VW;
     }
+    @import 'custom.css';
     @media screen, (orientation: portrait) {
         .heading > .news {
             background-image: url(image.png);
