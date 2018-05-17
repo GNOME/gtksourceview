@@ -90,6 +90,8 @@
 
   <default-regex-options case-sensitive="false"/>
 
+  <keyword-char-class>[a-z0-9_-]</keyword-char-class>
+
   <definitions>
 
     <!-- global -->
@@ -203,7 +205,7 @@
     </context>
 
     <context id="hexadecimal-color" style-ref="color">
-      <match>#([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})\b</match>
+      <match>#([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})\%]</match>
     </context>
 
     <context id="css3-named-color" style-ref="color">
@@ -1627,66 +1629,95 @@
 
     <!-- at-rules -->
 
-    <context id="vendor-specific-at-rules" style-ref="vendor-specific">
-      <match>@\%{vendor-specific-identifier-regex}</match>
+    <context id="at-rule-style-block-content">
+      <include>
+        <context ref="declaration"/>
+      </include>
     </context>
 
-    <context id="css3-at-rules" style-ref="at-rule">
-      <prefix>@</prefix>
-      <keyword>font-face</keyword>
-      <keyword>font-feature-values</keyword>
-      <keyword>keyframes</keyword>
-      <keyword>namespace</keyword>
-      <keyword>supports</keyword>
-    </context>
-
-    <context id="at-rules" style-ref="at-rule">
-      <prefix>@</prefix>
-      <keyword>charset</keyword>
-      <keyword>import</keyword>
-      <keyword>media</keyword>
-      <keyword>page</keyword>
-    </context>
-
-    <context id="at-rule-general-block" end-parent="true">
+    <context id="at-rule-style-block" end-parent="true">
       <start>\{</start>
       <end>\}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
-        <context ref="css"/>
+        <context ref="comment"/>
+        <context ref="at-rule-style-block-content"/>
       </include>
     </context>
 
-    <context id="at-rule-general-delimiter" end-parent="true" style-ref="delimiter">
+    <context id="at-rule-css-block-content">
+      <include>
+        <context ref="at-rule"/>
+        <context ref="all-selectors"/>
+        <context ref="style-block"/>
+      </include>
+    </context>
+
+    <context id="at-rule-css-block" end-parent="true">
+      <start>\{</start>
+      <end>\}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
+        <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
+        <context ref="comment"/>
+        <context ref="at-rule-css-block-content"/>
+      </include>
+    </context>
+
+    <context id="at-rule-delimiter" end-parent="true" style-ref="delimiter">
       <match>;</match>
     </context>
 
-    <context id="at-charset-call" first-line-only="true">
-      <start case-sensitive="true">(?&lt;=^@charset )(?="[^"]*";)</start>
+    <context id="vendor-specific-at-rule">
+      <start>@\%{vendor-specific-identifier-regex}</start>
       <include>
-        <context ref="def:string"/>
-        <context ref="at-rule-general-delimiter"/>
+        <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
+        <context ref="at-rule-css-block"/>
+        <context ref="at-rule-delimiter"/>
       </include>
     </context>
 
-    <context id="at-charset-call-error" style-ref="error">
-      <start extended="true">
-        (
-          (?&lt;=@charset\ ) |           # match if at-charset-call context did not match, or
-          (?&lt;=@charset)               # match if after @charset
-          (?!                            #   the next character is not
-            (                            #   either
-              \  |                       #   a space, or
-              \%{identifier-char-regex}  #   an identifier character
-            )                            #   (making this another at-rule, not @charset)
-          )
-        )
-      </start>
+    <!--
+    @charset "encoding";
+    -->
+
+    <context id="at-charset" first-line-only="true">
+      <start case-sensitive="true">^@charset(?= "[^"]*";)</start>
       <include>
-        <context ref="at-rule-general-delimiter"/>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="def:string"/>
+        <context ref="at-rule-delimiter"/>
       </include>
     </context>
+
+    <context id="at-charset-error" style-ref="error">
+      <start>@charset\%]</start>
+      <include>
+        <context ref="at-rule-delimiter"/>
+      </include>
+    </context>
+
+    <!--
+    @font-face <style-block>
+    -->
+
+    <context id="at-font-face">
+      <start>@font-face\%]</start>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="comment"/>
+        <context ref="at-rule-style-block"/>
+      </include>
+    </context>
+
+    <!--
+    @font-feature-values <font name|"font name"> {
+        @<font-feature-type> {
+            <custom-name>: <positive-integer>+;
+        }
+    }
+    -->
 
     <context id="font-feature-types" style-ref="at-rule-inner-selector">
       <prefix>@</prefix>
@@ -1751,9 +1782,10 @@
       </include>
     </context>
 
-    <context id="at-font-feature-values-call">
-      <start>(?&lt;=@font-feature-values)</start>
+    <context id="at-font-feature-values">
+      <start>@font-feature-values\%]</start>
       <include>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="comment"/>
         <context ref="string-value"/>
         <context ref="name-value"/>
@@ -1761,16 +1793,27 @@
       </include>
     </context>
 
-    <context id="at-import-call">
-      <start>(?&lt;=@import)</start>
+    <!--
+    @import <url(...)|"url"> <media-queries>?;
+    -->
+
+    <context id="at-import">
+      <start>@import\%]</start>
       <include>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="comment"/>
         <context ref="url"/>
-        <context ref="string-value"/>
         <context ref="media-queries"/>
-        <context ref="at-rule-general-delimiter"/>
+        <context ref="string-value"/>
+        <context ref="at-rule-delimiter"/>
       </include>
     </context>
+
+    <!--
+    @keyframes <custom name|"custom name"> {
+        <from|to|%> <style-block>
+    }
+    -->
 
     <context id="keyframe-selector" style-ref="at-rule-inner-selector">
       <keyword>from</keyword>
@@ -1796,9 +1839,10 @@
       </include>
     </context>
 
-    <context id="at-keyframes-call">
-      <start>(?&lt;=@keyframes)</start>
+    <context id="at-keyframes">
+      <start>@keyframes\%]</start>
       <include>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="comment"/>
         <context ref="string-value"/>
         <context ref="name-value"/>
@@ -1806,14 +1850,23 @@
       </include>
     </context>
 
-    <context id="at-media-call">
-      <start>(?&lt;=@media)</start>
+    <!--
+    @media <media-queries> <css-block>
+    -->
+
+    <context id="at-media">
+      <start>@media\%]</start>
       <include>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="comment"/>
         <context ref="media-queries"/>
-        <context ref="at-rule-general-block"/>
+        <context ref="at-rule-css-block"/>
       </include>
     </context>
+
+    <!--
+    @namespace <namespace>? <url(...)|"url">;
+    -->
 
     <context id="namespace-value">
       <include>
@@ -1821,16 +1874,24 @@
       </include>
     </context>
 
-    <context id="at-namespace-call">
-      <start>(?&lt;=@namespace)</start>
+    <context id="at-namespace">
+      <start>@namespace\%]</start>
       <include>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="comment"/>
         <context ref="url"/>
         <context ref="string-value"/>
         <context ref="namespace-value"/>
-        <context ref="at-rule-general-delimiter"/>
+        <context ref="at-rule-delimiter"/>
       </include>
     </context>
+
+    <!--
+    @page <custom name>?<pseudo-page>* (, <custom name>?<pseudo-page>*)* {
+        <declaration>*
+        (@<page-margin-box-type> <style-block>)*
+    }
+    -->
 
     <context id="pseudo-pages" style-ref="pseudo-class">
       <prefix>:</prefix>
@@ -1873,9 +1934,10 @@
       </include>
     </context>
 
-    <context id="at-page-call">
-      <start>(?&lt;=@page)</start>
+    <context id="at-page">
+      <start>@page\%]</start>
       <include>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="comment"/>
         <context ref="pseudo-pages"/>
         <context ref="name-value"/>
@@ -1883,6 +1945,10 @@
         <context ref="at-page-block"/>
       </include>
     </context>
+
+    <!--
+    @supports <test> <css-block>
+    -->
 
     <context id="at-supports-operators" style-ref="at-rule-operator">
       <keyword>and</keyword>
@@ -1932,30 +1998,32 @@
       </include>
     </context>
 
-    <context id="at-supports-call">
-      <start>(?&lt;=@supports)</start>
+    <context id="at-supports">
+      <start>@supports\%]</start>
       <include>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="comment"/>
         <context ref="at-supports-test"/>
         <context ref="at-supports-operators"/>
-        <context ref="at-rule-general-block"/>
+        <context ref="at-rule-css-block"/>
       </include>
     </context>
 
-    <context id="all-at-rules">
+    <!-- all at-rules -->
+
+    <context id="at-rule">
       <include>
-        <context ref="vendor-specific-at-rules"/>
-        <context ref="css3-at-rules"/>
-        <context ref="at-rules"/>
-        <context ref="at-charset-call"/>
-        <context ref="at-charset-call-error"/>
-        <context ref="at-font-feature-values-call"/>
-        <context ref="at-import-call"/>
-        <context ref="at-keyframes-call"/>
-        <context ref="at-media-call"/>
-        <context ref="at-namespace-call"/>
-        <context ref="at-page-call"/>
-        <context ref="at-supports-call"/>
+        <context ref="vendor-specific-at-rule"/>
+        <context ref="at-charset"/>
+        <context ref="at-charset-error"/>
+        <context ref="at-font-face"/>
+        <context ref="at-font-feature-values"/>
+        <context ref="at-import"/>
+        <context ref="at-keyframes"/>
+        <context ref="at-media"/>
+        <context ref="at-namespace"/>
+        <context ref="at-page"/>
+        <context ref="at-supports"/>
       </include>
     </context>
 
@@ -2191,7 +2259,7 @@
     <context id="css" class="no-spell-check">
       <include>
         <context ref="comment"/>
-        <context ref="all-at-rules"/>
+        <context ref="at-rule"/>
         <context ref="all-selectors"/>
         <context ref="style-block"/>
       </include>
