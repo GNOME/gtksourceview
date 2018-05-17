@@ -89,7 +89,8 @@ div#\E9 dition .\0000E9dition .motion_\e9motion, /* Unicode character escape */
 .\e33  div, /* need extra space to denote separate tokens */
 #-notvendor-specific,
 .\31 23 {
-    background: \u\72\l("unicode.png");
+    background: \u\72\l("\E9 dition \"\0000E9dition\" \e9motion\
+                         .png");
 }
 
 @-webkit-keyframes myanim {
