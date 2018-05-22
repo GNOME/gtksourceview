@@ -130,11 +130,13 @@
     https://drafts.csswg.org/css-syntax/#name-code-point
     https://www.w3.org/TR/selectors-3/#lex
     -->
-    <define-regex id="identifier-char-regex" extended="true">
-      (?:
-        [a-z0-9_-] |
-        \%{non-ascii-regex} |
-        \%{escape-regex}
+    <define-regex id="identifier-chars-regex" extended="true">
+      (?&gt;
+        (?:
+          [a-z0-9_-]+ |
+          \%{non-ascii-regex}+ |
+          \%{escape-regex}+
+        )+
       )
     </define-regex>
 
@@ -153,7 +155,7 @@
           -- |
           -? \%{identifier-start-char-regex}
         )
-        \%{identifier-char-regex}*
+        \%{identifier-chars-regex}?
       )
     </define-regex>
 
@@ -164,7 +166,7 @@
     <define-regex id="vendor-specific-prefix-regex" extended="true">
       (?:
         (?:
-          [_-] \%{identifier-start-char-regex} \%{identifier-char-regex}* |
+          [_-] \%{identifier-start-char-regex}+ |
           mso |
           prince
         )
@@ -175,7 +177,7 @@
     <define-regex id="vendor-specific-identifier-regex" extended="true">
       (?:
         (?&lt;! \%{single-identifier-char-regex} )
-        \%{vendor-specific-prefix-regex} \%{identifier-char-regex}+
+        \%{vendor-specific-prefix-regex} \%{identifier-chars-regex}
       )
     </define-regex>
 
@@ -407,7 +409,7 @@
     </context>
 
     <define-regex id="number-magnitude-regex" extended="true">
-      (?: (?: \d+ | \d* \. \d+ ) (?: e [+-]? \d+ )? )
+      (?: (?> \d* \. \d+ | \d+ ) (?: e [+-]? \d+ )? )
     </define-regex>
 
     <define-regex id="number-regex" extended="true">
@@ -419,7 +421,7 @@
     </define-regex>
 
     <define-regex id="integer-magnitude-regex" extended="true">
-      (?: \d+ )
+      (?> \d+ )
     </define-regex>
 
     <define-regex id="integer-regex" extended="true">
@@ -505,7 +507,7 @@
 
     <context id="unicode-range" style-ref="unicode-range">
       <match extended="true">
-        \%[ u\+[a-f0-9?]{1,6} (-[a-f0-9]{1,6})?
+        \%[ u \+ (?> [a-f0-9?]{1,6} ) (?> - [a-f0-9]{1,6} )?
         (?! \%{single-identifier-char-regex} )
       </match>
     </context>
@@ -2191,7 +2193,7 @@
 
     <!-- combinators -->
 
-    <!-- technically, this should include the space character (descendent combinator) -->
+    <!-- technically, this should include the space character (descendant combinator) -->
     <context id="combinator" style-ref="combinator">
       <match>[&gt;+~]</match>
     </context>
@@ -2349,11 +2351,11 @@
 
     <context id="nth-pseudo-class-argument">
       <start extended="true">
-        (
-          (?&lt;=:nth-child) |
-          (?&lt;=:nth-last-child) |
-          (?&lt;=:nth-of-type) |
-          (?&lt;=:nth-last-of-type)
+        (?&lt;=
+          :nth-child |
+          :nth-last-child |
+          :nth-of-type |
+          :nth-last-of-type
         )
         \(
       </start>
