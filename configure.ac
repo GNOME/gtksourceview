@@ -9,7 +9,7 @@ m4_define(gtksourceview_version, gtksourceview_major_version.gtksourceview_minor
 
 AC_INIT([gtksourceview],
         [gtksourceview_version],
-	[http://bugzilla.gnome.org/enter_bug.cgi?product=gtksourceview],
+	[https://gitlab.gnome.org/GNOME/gtksourceview/issues],
 	[gtksourceview],
 	[https://wiki.gnome.org/Projects/GtkSourceView])
 

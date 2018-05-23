@@ -637,7 +637,7 @@ gtk_source_encoding_get_default_candidates (void)
 	 * value used by GtkSourceView and it represents the encoding for the
 	 * current locale, so please don't translate the "CURRENT" term.  Only
 	 * recognized encodings are used. See
-	 * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+	 * https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
 	 * for a list of supported encodings.
 	 * Keep the same format: square brackets, single quotes, commas.
 	 */
