@@ -44,32 +44,6 @@ Jhbuild is recommended:
 
     https://wiki.gnome.org/Projects/Jhbuild
 
-How to report bugs
-------------------
-
-Bugs should be reported to the GNOME bug tracking system:
-
-    https://bugzilla.gnome.org/page.cgi?id=browse.html&product=gtksourceview
-
-You will need to create an account for yourself.
-
-Please search to see if the bug is not already reported. If not, file a new bug
-and include:
-  
-* Information about your system. For instance:
-
-   - What version of GtkSourceView
-   - What operating system and version
-   - What version of GTK+ and GLib
-
-  And anything else you think is relevant.
-
-* How to reproduce the bug. 
-
-* If the bug was a crash, the exact text that was printed out in the terminal
-  when the crash occurred, with a backtrace from gdb with debug symbols. See:
-  https://wiki.gnome.org/Community/GettingInTouch/Bugzilla/GettingTraces
-
 How to contribute
 -----------------
 
