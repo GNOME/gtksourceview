@@ -192,6 +192,10 @@
       </include>
     </context>
 
+    <context id="slash" style-ref="symbol">
+      <match>/</match>
+    </context>
+
     <context id="comma" style-ref="delimiter">
       <match>,</match>
     </context>
@@ -1487,6 +1491,7 @@
         <context ref="function-call"/>
         <context ref="property-value-keyword"/>
         <context ref="data-value"/>
+        <context ref="slash"/>
         <context ref="comma"/> <!-- for lists -->
       </include>
     </context>
