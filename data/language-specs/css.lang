@@ -1421,8 +1421,24 @@
 
     <!-- modifiers -->
 
-    <context id="importance-modifier" style-ref="modifier">
-      <match>\![ \t]*important</match>
+    <context id="modifiers" end-parent="true" style-ref="modifier">
+      <keyword>important</keyword>
+    </context>
+
+    <context id="modifier-content">
+      <include>
+        <context ref="modifiers"/>
+      </include>
+    </context>
+
+    <context id="modifier">
+      <start>!</start>
+      <end>\%{declaration-value-end}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="modifier"/>
+        <context ref="comment"/>
+        <context ref="modifier-content"/>
+      </include>
     </context>
 
 
@@ -1454,7 +1470,7 @@
       <include>
         <context ref="declaration-property"/>
         <context ref="declaration-value"/>
-        <context ref="importance-modifier"/>
+        <context ref="modifier"/>
         <context ref="semicolon"/>
       </include>
     </context>
@@ -1891,6 +1907,16 @@
       </include>
     </context>
 
+    <context id="at-supports-modifier">
+      <start>!</start>
+      <end>\%{at-supports-declaration-value-end}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="modifier"/>
+        <context ref="comment"/>
+        <context ref="modifier-content"/>
+      </include>
+    </context>
+
     <context id="at-supports-test">
       <start>\(</start>
       <end>\)</end>
@@ -1902,7 +1928,7 @@
         <context ref="at-supports-operators"/>
         <context ref="declaration-property"/>
         <context ref="at-supports-declaration-value"/>
-        <context ref="importance-modifier"/> <!-- allowed here but has no effect -->
+        <context ref="at-supports-modifier"/> <!-- allowed here but has no effect -->
       </include>
     </context>
 
