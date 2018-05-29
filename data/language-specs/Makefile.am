@@ -65,6 +65,7 @@ LANGUAGES =			\
 	julia.lang		\
 	kotlin.lang		\
 	latex.lang		\
+	less.lang		\
 	lex.lang		\
 	libtool.lang		\
 	llvm.lang		\
@@ -110,6 +111,7 @@ LANGUAGES =			\
 	scala.lang		\
 	scheme.lang		\
 	scilab.lang		\
+	scss.lang		\
 	sh.lang			\
 	sml.lang		\
 	sparql.lang		\
