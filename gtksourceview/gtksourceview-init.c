@@ -166,7 +166,7 @@ DllMain (HINSTANCE hinstDLL,
 			gtksourceview_init ();
 			break;
 
-		case DLL_THREAD_DETACH:
+		case DLL_PROCESS_DETACH:
 			gtksourceview_shutdown ();
 			break;
 
