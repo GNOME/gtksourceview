@@ -128,10 +128,12 @@ except according to those terms.
       <keyword>i16</keyword>
       <keyword>i32</keyword>
       <keyword>i64</keyword>
+      <keyword>i128</keyword>
       <keyword>u8</keyword>
       <keyword>u16</keyword>
       <keyword>u32</keyword>
       <keyword>u64</keyword>
+      <keyword>u128</keyword>
       <keyword>f32</keyword>
       <keyword>f64</keyword>
       <keyword>char</keyword>
@@ -149,7 +151,7 @@ except according to those terms.
     </context>
 
     <define-regex id="int-suffix" extended="true">
-      (i8|i16|i32|i64|isize|u8|u16|u32|u64|usize)
+      (i8|i16|i32|i64|i128|isize|u8|u16|u32|u64|u128|usize)
     </define-regex>
 
     <define-regex id="exponent" extended="true">
@@ -230,7 +232,7 @@ except according to those terms.
     </define-regex>
 
     <define-regex id="unicode-escape" extended="true">
-      u{\%{hex-digit}{1,6}}
+      u{(\%{hex-digit}_*){1,6}}
     </define-regex>
 
     <context id="string-escape" style-ref="def:special-char">
