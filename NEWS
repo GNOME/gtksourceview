@@ -1,3 +1,9 @@
+News in 3.24.8, 2018-06-17
+--------------------------
+* MS Windows: lib shutdown on DLL_PROCESS_DETACH, not DLL_THREAD_DETACH.
+* Syntax highlighting: sync all *.lang files from GtkSourceView 4.
+* Translation updates.
+
 News in 3.24.7, 2018-03-14
 --------------------------
 * GtkSourceView class: respect the GtkTextView:accepts-tab property.
