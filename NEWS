@@ -1,3 +1,15 @@
+News in 4.0.2, 2018-06-17
+-------------------------
+* GtkSourceView has moved to the GNOME GitLab instance. The bugzilla tickets
+  have not yet been migrated to the GitLab issues, so before filing a new issue
+  on GitLab, please search the bugzilla first. All links are available as usual
+  on:
+  https://wiki.gnome.org/Projects/GtkSourceView
+
+* Fix new compilation warnings (-Wcast-function-type).
+* New syntax highlighting definition file for: SCSS and Less.
+* Improvements to the syntax highlighting of: CSS and Rust.
+
 News in 4.0.1, 2018-05-05
 -------------------------
 * New syntax highlighting definition file for: TOML.
