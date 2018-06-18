@@ -45,6 +45,7 @@ LANGUAGES =			\
 	genie.lang		\
 	glsl.lang		\
 	go.lang			\
+	gradle.lang		\
 	groovy.lang		\
 	gtk-doc.lang		\
 	gtkrc.lang		\
