@@ -81,6 +81,7 @@ LANGUAGES =			\
 	mallard.lang		\
 	markdown.lang		\
 	matlab.lang		\
+	maven.lang		\
 	maxima.lang		\
 	mediawiki.lang		\
 	meson.lang		\
