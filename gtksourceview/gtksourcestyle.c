@@ -141,7 +141,9 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       "Underline",
 							       "Underline",
 							       FALSE,
-							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+							       G_PARAM_READWRITE |
+							       G_PARAM_CONSTRUCT_ONLY |
+							       G_PARAM_DEPRECATED));
 
 	g_object_class_install_property (object_class,
 					 PROP_PANGO_UNDERLINE,
