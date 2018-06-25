@@ -14,9 +14,9 @@ a = [thing / thing, thing / thing];
 x = a /b/ c / d;
 
 // Character groups with backslashes:
-/[ab\\]/ // a, b or \
+/[ab\\]/ // a, b or backslash
 /[ab\]]/ // a, b or ]
-/\\[ab]/ // a or b preceded by \
+/\\[ab]/ // a or b preceded by backslash
 /\[ab]/  // Literally "[ab]"
 
 // Template strings
