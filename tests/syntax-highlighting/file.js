@@ -19,6 +19,14 @@ x = a /b/ c / d;
 /\\[ab]/ // a or b preceded by backslash
 /\[ab]/  // Literally "[ab]"
 
+// Escape sequences:
+'\b\f\n\r\t\v\0\'\"\\' // Single character escape
+"\1\01\001"            // Octal escape
+'\xA9'                 // Hexadecimal escape
+"\u00a9"               // Unicode escape
+'\u{1D306}'            // Unicode code point escape
+/\cJ/                  // Control escape
+
 // Template strings
 // ----------------
 // Template strings are delimited by back-ticks (grave accent) and
