@@ -1759,6 +1759,7 @@
       <start>@\%{vendor-specific-identifier-regex}</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
+        <context ref="comment"/>
         <context ref="at-rule-css-block"/>
         <context ref="at-rule-delimiter"/>
       </include>
