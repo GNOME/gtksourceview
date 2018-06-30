@@ -27,6 +27,12 @@ x = a /b/ c / d;
 '\u{1D306}'            // Unicode code point escape
 /\cJ/                  // Control escape
 
+// ES2015 binary and octal numbers:
+let binary1 = 0b1010;
+let binary2 = 0B00001111;
+let octal1 = 0o0123;
+let octal2 = 0O4567;
+
 // Template strings
 // ----------------
 // Template strings are delimited by back-ticks (grave accent) and

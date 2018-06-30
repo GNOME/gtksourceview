@@ -35,6 +35,8 @@
 
   <styles>
     <style id="escape"          name="Escaped Character"        map-to="def:special-char"/>
+    <style id="decimal"         name="Decimal Number"           map-to="def:decimal"/>
+    <style id="base-n-number"   name="Base-N Number"            map-to="def:base-n-integer"/>
     <style id="null-value"      name="Null Value"               map-to="def:special-constant"/>
     <style id="undefined-value" name="Undefined Value"          map-to="def:special-constant"/>
     <style id="boolean"         name="Boolean Value"            map-to="def:boolean"/>
@@ -118,6 +120,42 @@
         <context ref="escape"/>
         <context ref="regex-bracketed"/>
       </include>
+    </context>
+
+    <context id="decimal" style-ref="decimal">
+      <match extended="true">
+        (?&lt;! [\w\.] )
+        (?&gt;
+          ( [1-9][0-9]* | 0 ) ( \. [0-9]* )? |
+          \. [0-9]+
+        )
+        (?&gt; [eE] [+-]? [0-9]+ )?
+        (?! [\w\.] )
+      </match>
+    </context>
+
+    <context id="binary-integer" style-ref="base-n-number">
+      <match extended="true">
+        (?&lt;![\w\.]) (?&gt;0 [bB] [01]+) (?![\w\.])
+      </match>
+    </context>
+
+    <context id="octal-integer" style-ref="base-n-number">
+      <match extended="true">
+        (?&lt;![\w\.]) (?&gt;0 [oO] [0-7]+) (?![\w\.])
+      </match>
+    </context>
+
+    <context id="hex-integer" style-ref="base-n-number">
+      <match extended="true">
+        (?&lt;![\w\.]) (?&gt;0 [xX] [0-9a-fA-F]+) (?![\w\.])
+      </match>
+    </context>
+
+    <context id="legacy-octal-integer" style-ref="base-n-number">
+      <match extended="true">
+        (?&lt;![\w\.]) (?&gt;0 [0-7]+) (?![\w\.])
+      </match>
     </context>
 
     <!--
@@ -368,10 +406,11 @@
         <context ref="string" />
         <context ref="single-quoted-string" />
         <context ref="template-string"/>
-        <context ref="def:float"/>
-        <context ref="def:decimal"/>
-        <context ref="def:octal"/>
-        <context ref="def:hexadecimal"/>
+        <context ref="decimal"/>
+        <context ref="binary-integer"/>
+        <context ref="octal-integer"/>
+        <context ref="hex-integer"/>
+        <context ref="legacy-octal-integer"/>
         <context ref="undefined-value"/>
         <context ref="null-value"/>
         <context ref="boolean"/>
