@@ -154,6 +154,7 @@
       </match>
     </context>
 
+    <!-- deprecated -->
     <context id="legacy-octal-integer" style-ref="base-n-number">
       <match extended="true">
         (?&lt;![\w\.]) (?&gt;0 [0-7]+) (?![\w\.])
@@ -238,13 +239,13 @@
       <keyword>decodeURI</keyword>
       <keyword>encodeURIComponent</keyword>
       <keyword>encodeURI</keyword>
-      <keyword>escape</keyword>
+      <keyword>escape</keyword> <!-- deprecated -->
       <keyword>eval</keyword>
       <keyword>isFinite</keyword>
       <keyword>isNaN</keyword>
       <keyword>parseFloat</keyword>
       <keyword>parseInt</keyword>
-      <keyword>unescape</keyword>
+      <keyword>unescape</keyword> <!-- deprecated -->
     </context>
 
     <context id="array-properties" style-ref="properties">
@@ -255,14 +256,33 @@
     <context id="array-methods" style-ref="function">
       <prefix>\%{is-member}</prefix>
       <keyword>concat</keyword>
+      <keyword>copyWithin</keyword>
+      <keyword>entries</keyword>
+      <keyword>every</keyword>
+      <keyword>fill</keyword>
+      <keyword>filter</keyword>
+      <keyword>findIndex</keyword>
+      <keyword>find</keyword>
+      <keyword>forEach</keyword>
+      <keyword>from</keyword>
+      <keyword>indexOf</keyword>
+      <keyword>isArray</keyword>
       <keyword>join</keyword>
+      <keyword>keys</keyword>
+      <keyword>lastIndexOf</keyword>
+      <keyword>map</keyword>
+      <keyword>of</keyword>
       <keyword>pop</keyword>
       <keyword>push</keyword>
+      <keyword>reduceRight</keyword>
+      <keyword>reduce</keyword>
       <keyword>reverse</keyword>
       <keyword>shift</keyword>
       <keyword>slice</keyword>
+      <keyword>some</keyword>
       <keyword>sort</keyword>
       <keyword>unshift</keyword>
+      <keyword>values</keyword>
     </context>
 
     <context id="date-methods" style-ref="function">
@@ -285,7 +305,8 @@
       <keyword>getUTCMinutes</keyword>
       <keyword>getUTCMonth</keyword>
       <keyword>getUTCSeconds</keyword>
-      <keyword>getYear</keyword>
+      <keyword>getYear</keyword> <!-- deprecated -->
+      <keyword>now</keyword>
       <keyword>parse</keyword>
       <keyword>setDate</keyword>
       <keyword>setFullYear</keyword>
@@ -302,9 +323,11 @@
       <keyword>setUTCMinutes</keyword>
       <keyword>setUTCMonth</keyword>
       <keyword>setUTCSeconds</keyword>
-      <keyword>setYear</keyword>
+      <keyword>setYear</keyword> <!-- deprecated -->
       <keyword>toDateString</keyword>
-      <keyword>toGMTString</keyword>
+      <keyword>toGMTString</keyword> <!-- deprecated -->
+      <keyword>toISOString</keyword>
+      <keyword>toJSON</keyword>
       <keyword>toLocaleDateString</keyword>
       <keyword>toLocaleTimeString</keyword>
       <keyword>toTimeString</keyword>
@@ -321,44 +344,88 @@
     <context id="function-properties" style-ref="properties">
       <prefix>\%{is-member}</prefix>
       <keyword>length</keyword>
+      <keyword>name</keyword>
+      <keyword>target</keyword> <!-- for new.target -->
     </context>
 
     <context id="function-methods" style-ref="function">
       <prefix>\%{is-member}</prefix>
       <keyword>apply</keyword>
+      <keyword>bind</keyword>
       <keyword>call</keyword>
+    </context>
+
+    <context id="math-properties" style-ref="properties">
+      <prefix>\%{is-member}</prefix>
+      <keyword>E</keyword>
+      <keyword>LN10</keyword>
+      <keyword>LN2</keyword>
+      <keyword>LOG10E</keyword>
+      <keyword>LOG2E</keyword>
+      <keyword>PI</keyword>
+      <keyword>SQRT1_2</keyword>
+      <keyword>SQRT2</keyword>
     </context>
 
     <context id="math-methods" style-ref="function">
       <prefix>\%{is-member}</prefix>
       <keyword>abs</keyword>
+      <keyword>acosh</keyword>
       <keyword>acos</keyword>
+      <keyword>asinh</keyword>
       <keyword>asin</keyword>
       <keyword>atan2</keyword>
+      <keyword>atanh</keyword>
       <keyword>atan</keyword>
+      <keyword>cbrt</keyword>
       <keyword>ceil</keyword>
+      <keyword>clz32</keyword>
+      <keyword>cosh</keyword>
       <keyword>cos</keyword>
+      <keyword>expm1</keyword>
       <keyword>exp</keyword>
       <keyword>floor</keyword>
+      <keyword>fround</keyword>
+      <keyword>hypot</keyword>
+      <keyword>imul</keyword>
+      <keyword>log10</keyword>
+      <keyword>log1p</keyword>
+      <keyword>log2</keyword>
       <keyword>log</keyword>
       <keyword>max</keyword>
       <keyword>min</keyword>
       <keyword>pow</keyword>
       <keyword>random</keyword>
       <keyword>round</keyword>
+      <keyword>sign</keyword>
+      <keyword>sinh</keyword>
       <keyword>sin</keyword>
       <keyword>sqrt</keyword>
+      <keyword>tanh</keyword>
       <keyword>tan</keyword>
+      <keyword>trunc</keyword>
     </context>
 
     <context id="number-properties" style-ref="properties">
       <prefix>\%{is-member}</prefix>
+      <keyword>EPSILON</keyword>
+      <keyword>MAX_SAFE_INTEGER</keyword>
+      <keyword>MAX_VALUE</keyword>
+      <keyword>MIN_SAFE_INTEGER</keyword>
+      <keyword>MIN_VALUE</keyword>
+      <keyword>NaN</keyword>
       <keyword>NEGATIVE_INFINITY</keyword>
       <keyword>POSITIVE_INFINITY</keyword>
     </context>
 
     <context id="number-methods" style-ref="function">
       <prefix>\%{is-member}</prefix>
+      <keyword>isFinite</keyword>
+      <keyword>isInteger</keyword>
+      <keyword>isNaN</keyword>
+      <keyword>isSafeInteger</keyword>
+      <keyword>parseFloat</keyword>
+      <keyword>parseInt</keyword>
       <keyword>toExponential</keyword>
       <keyword>toFixed</keyword>
       <keyword>toPrecision</keyword>
@@ -372,9 +439,26 @@
 
     <context id="object-methods" style-ref="function">
       <prefix>\%{is-member}</prefix>
+      <keyword>assign</keyword>
+      <keyword>create</keyword>
+      <keyword>defineProperties</keyword>
+      <keyword>defineProperty</keyword>
+      <keyword>freeze</keyword>
+      <keyword>getOwnPropertyDescriptor</keyword>
+      <keyword>getOwnPropertyNames</keyword>
+      <keyword>getOwnPropertySymbols</keyword>
+      <keyword>getPrototypeOf</keyword>
       <keyword>hasOwnProperty</keyword>
+      <keyword>isExtensible</keyword>
+      <keyword>isFrozen</keyword>
       <keyword>isPrototypeOf</keyword>
+      <keyword>isSealed</keyword>
+      <keyword>is</keyword>
+      <keyword>keys</keyword>
+      <keyword>preventExtensions</keyword>
       <keyword>propertyIsEnumerable</keyword>
+      <keyword>seal</keyword>
+      <keyword>setPrototypeOf</keyword>
       <keyword>toLocaleString</keyword>
       <keyword>toString</keyword>
       <keyword>valueOf</keyword>
@@ -382,16 +466,20 @@
 
     <context id="regexp-properties" style-ref="properties">
       <prefix>\%{is-member}</prefix>
+      <keyword>flags</keyword>
       <keyword>global</keyword>
       <keyword>ignoreCase</keyword>
       <keyword>lastIndex</keyword>
       <keyword>multiline</keyword>
       <keyword>source</keyword>
+      <keyword>sticky</keyword>
+      <keyword>unicode</keyword>
     </context>
 
     <context id="regexp-methods" style-ref="function">
       <prefix>\%{is-member}</prefix>
       <keyword>exec</keyword>
+      <keyword>test</keyword>
     </context>
 
     <context id="string-properties" style-ref="properties">
@@ -403,22 +491,31 @@
       <prefix>\%{is-member}</prefix>
       <keyword>charAt</keyword>
       <keyword>charCodeAt</keyword>
+      <keyword>codePointAt</keyword>
       <keyword>concat</keyword>
+      <keyword>endsWith</keyword>
       <keyword>fromCharCode</keyword>
+      <keyword>fromCodePoint</keyword>
+      <keyword>includes</keyword>
       <keyword>indexOf</keyword>
       <keyword>lastIndexOf</keyword>
       <keyword>localeCompare</keyword>
       <keyword>match</keyword>
+      <keyword>normalize</keyword>
+      <keyword>raw</keyword>
+      <keyword>repeat</keyword>
       <keyword>replace</keyword>
       <keyword>search</keyword>
       <keyword>slice</keyword>
       <keyword>split</keyword>
+      <keyword>startsWith</keyword>
       <keyword>substring</keyword>
-      <keyword>substr</keyword>
+      <keyword>substr</keyword> <!-- deprecated -->
       <keyword>toLocaleLowerCase</keyword>
       <keyword>toLocaleUpperCase</keyword>
       <keyword>toLowerCase</keyword>
       <keyword>toUpperCase</keyword>
+      <keyword>trim</keyword>
     </context>
 
     <context id="constructors" style-ref="constructors">
@@ -488,6 +585,7 @@
         <context ref="error-properties"/>
         <context ref="function-properties"/>
         <context ref="function-methods"/>
+        <context ref="math-properties"/>
         <context ref="math-methods"/>
         <context ref="number-properties"/>
         <context ref="number-methods"/>
