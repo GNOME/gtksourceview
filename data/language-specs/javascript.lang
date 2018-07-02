@@ -285,6 +285,44 @@
       <keyword>values</keyword>
     </context>
 
+    <context id="arraybuffer-properties" style-ref="properties">
+      <prefix>\%{is-member}</prefix>
+      <keyword>byteLength</keyword>
+    </context>
+
+    <context id="arraybuffer-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>isView</keyword>
+      <keyword>slice</keyword>
+    </context>
+
+    <context id="dataview-properties" style-ref="properties">
+      <prefix>\%{is-member}</prefix>
+      <keyword>buffer</keyword>
+      <keyword>byteLength</keyword>
+      <keyword>byteOffset</keyword>
+    </context>
+
+    <context id="dataview-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>getFloat32</keyword>
+      <keyword>getFloat64</keyword>
+      <keyword>getInt16</keyword>
+      <keyword>getInt32</keyword>
+      <keyword>getInt8</keyword>
+      <keyword>getUint16</keyword>
+      <keyword>getUint32</keyword>
+      <keyword>getUint8</keyword>
+      <keyword>setFloat32</keyword>
+      <keyword>setFloat64</keyword>
+      <keyword>setInt16</keyword>
+      <keyword>setInt32</keyword>
+      <keyword>setInt8</keyword>
+      <keyword>setUint16</keyword>
+      <keyword>setUint32</keyword>
+      <keyword>setUint8</keyword>
+    </context>
+
     <context id="date-methods" style-ref="function">
       <prefix>\%{is-member}</prefix>
       <keyword>getDate</keyword>
@@ -353,6 +391,37 @@
       <keyword>apply</keyword>
       <keyword>bind</keyword>
       <keyword>call</keyword>
+    </context>
+
+    <context id="generator-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>next</keyword>
+      <keyword>return</keyword>
+      <keyword>throw</keyword>
+    </context>
+
+    <context id="json-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>parse</keyword>
+      <keyword>stringify</keyword>
+    </context>
+
+    <context id="map-properties" style-ref="properties">
+      <prefix>\%{is-member}</prefix>
+      <keyword>size</keyword>
+    </context>
+
+    <context id="map-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>clear</keyword>
+      <keyword>delete</keyword>
+      <keyword>entries</keyword>
+      <keyword>forEach</keyword>
+      <keyword>get</keyword>
+      <keyword>has</keyword>
+      <keyword>keys</keyword>
+      <keyword>set</keyword>
+      <keyword>values</keyword>
     </context>
 
     <context id="math-properties" style-ref="properties">
@@ -464,6 +533,38 @@
       <keyword>valueOf</keyword>
     </context>
 
+    <context id="promise-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>all</keyword>
+      <keyword>catch</keyword>
+      <keyword>race</keyword>
+      <keyword>reject</keyword>
+      <keyword>resolve</keyword>
+      <keyword>then</keyword>
+    </context>
+
+    <context id="proxy-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>revocable</keyword>
+    </context>
+
+    <context id="reflect-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>apply</keyword>
+      <keyword>construct</keyword>
+      <keyword>defineProperty</keyword>
+      <keyword>deleteProperty</keyword>
+      <keyword>getOwnPropertyDescriptor</keyword>
+      <keyword>getPrototypeOf</keyword>
+      <keyword>get</keyword>
+      <keyword>has</keyword>
+      <keyword>isExtensible</keyword>
+      <keyword>ownKeys</keyword>
+      <keyword>preventExtensions</keyword>
+      <keyword>setPrototypeOf</keyword>
+      <keyword>set</keyword>
+    </context>
+
     <context id="regexp-properties" style-ref="properties">
       <prefix>\%{is-member}</prefix>
       <keyword>flags</keyword>
@@ -480,6 +581,23 @@
       <prefix>\%{is-member}</prefix>
       <keyword>exec</keyword>
       <keyword>test</keyword>
+    </context>
+
+    <context id="set-properties" style-ref="properties">
+      <prefix>\%{is-member}</prefix>
+      <keyword>size</keyword>
+    </context>
+
+    <context id="set-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>add</keyword>
+      <keyword>clear</keyword>
+      <keyword>delete</keyword>
+      <keyword>entries</keyword>
+      <keyword>forEach</keyword>
+      <keyword>has</keyword>
+      <keyword>keys</keyword>
+      <keyword>values</keyword>
     </context>
 
     <context id="string-properties" style-ref="properties">
@@ -518,22 +636,127 @@
       <keyword>trim</keyword>
     </context>
 
+    <context id="symbol-properties" style-ref="properties">
+      <prefix>\%{is-member}</prefix>
+      <keyword>hasInstance</keyword>
+      <keyword>isConcatSpreadable</keyword>
+      <keyword>iterator</keyword>
+      <keyword>match</keyword>
+      <keyword>replace</keyword>
+      <keyword>search</keyword>
+      <keyword>species</keyword>
+      <keyword>split</keyword>
+      <keyword>toPrimitive</keyword>
+      <keyword>toStringTag</keyword>
+      <keyword>unscopables</keyword>
+    </context>
+
+    <context id="symbol-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>for</keyword>
+      <keyword>keyFor</keyword>
+    </context>
+
+    <!-- TypedArray is one of these objects:
+         * Float32Array
+         * Float64Array
+         * Int16Array
+         * Int32Array
+         * Int8Array
+         * Uint16Array
+         * Uint32Array
+         * Uint8Array
+         * Uint8ClampedArray
+    -->
+    <context id="typedarray-properties" style-ref="properties">
+      <prefix>\%{is-member}</prefix>
+      <keyword>buffer</keyword>
+      <keyword>byteLength</keyword>
+      <keyword>byteOffset</keyword>
+      <keyword>BYTES_PER_ELEMENT</keyword>
+      <keyword>length</keyword>
+      <keyword>name</keyword>
+    </context>
+
+    <context id="typedarray-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>copyWithin</keyword>
+      <keyword>entries</keyword>
+      <keyword>every</keyword>
+      <keyword>fill</keyword>
+      <keyword>filter</keyword>
+      <keyword>findIndex</keyword>
+      <keyword>find</keyword>
+      <keyword>forEach</keyword>
+      <keyword>from</keyword>
+      <keyword>indexOf</keyword>
+      <keyword>join</keyword>
+      <keyword>keys</keyword>
+      <keyword>lastIndexOf</keyword>
+      <keyword>map</keyword>
+      <keyword>of</keyword>
+      <keyword>reduceRight</keyword>
+      <keyword>reduce</keyword>
+      <keyword>reverse</keyword>
+      <keyword>set</keyword>
+      <keyword>slice</keyword>
+      <keyword>some</keyword>
+      <keyword>sort</keyword>
+      <keyword>subarray</keyword>
+      <keyword>values</keyword>
+    </context>
+
+    <context id="weakmap-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>delete</keyword>
+      <keyword>get</keyword>
+      <keyword>has</keyword>
+      <keyword>set</keyword>
+    </context>
+
+    <context id="weakset-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>add</keyword>
+      <keyword>delete</keyword>
+      <keyword>has</keyword>
+    </context>
+
     <context id="constructors" style-ref="constructors">
+      <keyword>ArrayBuffer</keyword>
       <keyword>Array</keyword>
       <keyword>Boolean</keyword>
       <keyword>Date</keyword>
       <keyword>Error</keyword>
       <keyword>EvalError</keyword>
+      <keyword>Float32Array</keyword>
+      <keyword>Float64Array</keyword>
       <keyword>Function</keyword>
+      <keyword>Int16Array</keyword>
+      <keyword>Int32Array</keyword>
+      <keyword>Int8Array</keyword>
+      <keyword>JSON</keyword>
+      <keyword>Map</keyword>
       <keyword>Math</keyword>
       <keyword>Number</keyword>
       <keyword>Object</keyword>
+      <keyword>Promise</keyword>
+      <keyword>Proxy</keyword>
       <keyword>RangeError</keyword>
+      <keyword>ReferenceError</keyword>
+      <keyword>Reflect</keyword>
       <keyword>RegExp</keyword>
+      <keyword>Set</keyword>
       <keyword>String</keyword>
+      <keyword>Symbol</keyword>
       <keyword>SyntaxError</keyword>
       <keyword>TypeError</keyword>
+      <keyword>Uint16Array</keyword>
+      <keyword>Uint32Array</keyword>
+      <keyword>Uint8Array</keyword>
+      <keyword>Uint8ClampedArray</keyword>
       <keyword>URIError</keyword>
+      <keyword>WeakMap</keyword>
+      <keyword>WeakSet</keyword>
     </context>
 
     <context id="future-words" style-ref="future-words">
@@ -581,20 +804,39 @@
         <context ref="global-functions"/>
         <context ref="array-properties"/>
         <context ref="array-methods"/>
+        <context ref="arraybuffer-properties"/>
+        <context ref="arraybuffer-methods"/>
+        <context ref="dataview-properties"/>
+        <context ref="dataview-methods"/>
         <context ref="date-methods"/>
         <context ref="error-properties"/>
         <context ref="function-properties"/>
         <context ref="function-methods"/>
+        <context ref="generator-methods"/>
+        <context ref="json-methods"/>
+        <context ref="map-properties"/>
+        <context ref="map-methods"/>
         <context ref="math-properties"/>
         <context ref="math-methods"/>
         <context ref="number-properties"/>
         <context ref="number-methods"/>
         <context ref="object-properties"/>
         <context ref="object-methods"/>
+        <context ref="promise-methods"/>
+        <context ref="proxy-methods"/>
+        <context ref="reflect-methods"/>
         <context ref="regexp-properties"/>
         <context ref="regexp-methods"/>
+        <context ref="set-properties"/>
+        <context ref="set-methods"/>
         <context ref="string-properties"/>
         <context ref="string-methods"/>
+        <context ref="symbol-properties"/>
+        <context ref="symbol-methods"/>
+        <context ref="typedarray-properties"/>
+        <context ref="typedarray-methods"/>
+        <context ref="weakmap-methods"/>
+        <context ref="weakset-methods"/>
         <context ref="constructors"/>
         <context ref="future-words"/>
         <context ref="regex-simple"/>
