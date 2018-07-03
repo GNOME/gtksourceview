@@ -62,7 +62,7 @@
     <!-- global -->
 
     <define-regex id="statement-end" extended="true">
-      (?: ; | (?= \} ) )
+      (?: ; | (?= } ) )
     </define-regex>
 
     <context id="less-comment">
@@ -86,8 +86,8 @@
     </context>
 
     <context id="variable-interpolation" style-ref="variable">
-      <start>@\{</start>
-      <end>\}</end>
+      <start>@{</start>
+      <end>}</end>
       <include>
         <!-- nested interpolations are not documented but appear to work
              (functions as variable reference / indirection) -->
@@ -108,7 +108,7 @@
     </context>
 
     <context id="arguments-variable-interpolation" style-ref="built-in-variable">
-      <match>@\{arguments\}</match>
+      <match>@{arguments}</match>
     </context>
 
     <context id="variable-value">
@@ -176,8 +176,8 @@
     </context>
 
     <context id="detached-ruleset">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="css:block-delimiter"/>
@@ -371,17 +371,17 @@
       <start extended="true">
         (?(DEFINE)
           (?&lt;interpolation&gt;  # recursive subpattern to find matching brackets
-            @\{
+            @{
               (?:
-                (?>
+                (?&gt;
                   (?:
                     [^@{}]+ |
-                    (?! @\{ | \} ) .
+                    (?! @{ | } ) .
                   )+
                 ) |
                 (?&amp;interpolation)
               )*
-            \}
+            }
           )
         )
         (
@@ -391,7 +391,7 @@
             (?!                                       # not the start of a
               \%{css:single-identifier-char-regex} |  #   pseudo-class
               [:\\] |                                 #   pseudo-element, escape
-              @\{                                     #   variable interpolation
+              @{                                      #   variable interpolation
             ) |                                       # or
             (?=                                       # ends like a normal declaration
               (?&gt;
@@ -628,7 +628,7 @@
 
     <context id="guard">
       <start>\%[when\%]</start>
-      <end>(?=\{)</end>
+      <end>(?={)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="guard-operator"/>
         <context ref="css:comment"/>
@@ -650,7 +650,7 @@
     </context>
 
     <context id="variable-interpolation-fragment" style-ref="selector-fragment">
-      <match>(?&lt;=\})\%{css:identifier-chars-regex}</match>
+      <match>(?&lt;=})\%{css:identifier-chars-regex}</match>
     </context>
 
     <context id="less-pseudo-classes" style-ref="css:pseudo-class">

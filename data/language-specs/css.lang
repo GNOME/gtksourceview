@@ -413,7 +413,7 @@
     </context>
 
     <define-regex id="number-magnitude-regex" extended="true">
-      (?: (?> \d* \. \d+ | \d+ ) (?: e [+-]? \d+ )? )
+      (?: (?&gt; \d* \. \d+ | \d+ ) (?: e [+-]? \d+ )? )
     </define-regex>
 
     <define-regex id="number-regex" extended="true">
@@ -425,7 +425,7 @@
     </define-regex>
 
     <define-regex id="integer-magnitude-regex" extended="true">
-      (?> \d+ )
+      (?&gt; \d+ )
     </define-regex>
 
     <define-regex id="integer-regex" extended="true">
@@ -511,7 +511,7 @@
 
     <context id="unicode-range" style-ref="unicode-range">
       <match extended="true">
-        \%[ u \+ (?> [a-f0-9?]{1,6} ) (?> - [a-f0-9]{1,6} )?
+        \%[ u \+ (?&gt; [a-f0-9?]{1,6} ) (?&gt; - [a-f0-9]{1,6} )?
         (?! \%{single-identifier-char-regex} )
       </match>
     </context>
@@ -1560,8 +1560,8 @@
     </context>
 
     <context id="style-block">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
@@ -1712,8 +1712,8 @@
     </context>
 
     <context id="at-rule-style-block" end-parent="true">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
@@ -1731,8 +1731,8 @@
     </context>
 
     <context id="at-rule-css-block" end-parent="true">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
@@ -1845,8 +1845,8 @@
     </context>
 
     <context id="at-font-feature-values-feature-value-block">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
@@ -1858,8 +1858,8 @@
     </context>
 
     <context id="at-font-feature-values-block" end-parent="true">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
@@ -1915,8 +1915,8 @@
     </context>
 
     <context id="at-keyframes-block" end-parent="true">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
@@ -2020,8 +2020,8 @@
     </context>
 
     <context id="at-page-block" end-parent="true">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
@@ -2178,7 +2178,7 @@
 
     <context id="attribute-selector">
       <start>\[</start>
-      <end>\]</end>
+      <end>]</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="attribute-selector"/>
         <context sub-pattern="0" where="end" style-ref="attribute-selector"/>
