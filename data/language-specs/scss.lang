@@ -87,8 +87,8 @@
     <!-- interpolations -->
 
     <context id="interpolation">
-      <start>#\{</start>
-      <end>\}</end>
+      <start>#{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="interpolation"/>
         <context sub-pattern="0" where="end" style-ref="interpolation"/>
@@ -153,7 +153,7 @@
 
     <context id="bracketed-list">
       <start>\[</start>
-      <end>\]</end>
+      <end>]</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="list-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="list-delimiter"/>
@@ -353,8 +353,8 @@
     <!-- style block -->
 
     <context id="nested-properties" end-parent="true">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="css:block-delimiter"/>
@@ -381,17 +381,17 @@
       <start extended="true">
         (?(DEFINE)
           (?&lt;interpolation&gt;  # recursive subpattern to find matching brackets
-            \#\{
+            \#{
               (?:
-                (?>
+                (?&gt;
                   (?:
                     [^#{}]+ |
-                    (?! \#\{ | \} ) .
+                    (?! \#{ | } ) .
                   )+
                 ) |
                 (?&amp;interpolation)
               )*
-            \}
+            }
           )
         )
         :
@@ -399,7 +399,7 @@
           (?!                                       # not the start of a
             \%{css:single-identifier-char-regex} |  #   pseudo-class
             [:\\] |                                 #   pseudo-element, escape
-            \#\{                                    #   interpolation
+            \#{                                     #   interpolation
           ) |                                       # or
           (?=                                       # ends like a normal declaration
             (?&gt;
@@ -806,7 +806,7 @@
     </context>
 
     <context id="interpolation-fragment" style-ref="selector-fragment">
-      <match>(?&lt;=\})\%{css:identifier-chars-regex}</match>
+      <match>(?&lt;=})\%{css:identifier-chars-regex}</match>
     </context>
 
 
