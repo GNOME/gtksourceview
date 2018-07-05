@@ -427,6 +427,10 @@ div {
     color:#000;
     width:#{$width};
 
+    // incorrectly highlighted declarations
+    display:block
+    ;
+
     // selectors
     input:focus {
         opacity: 0.5;
