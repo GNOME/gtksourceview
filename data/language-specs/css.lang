@@ -99,7 +99,7 @@
     <!-- global -->
 
     <!-- https://drafts.csswg.org/css-syntax/#escaping -->
-    <define-regex id="escape-regex" extended="true">
+    <define-regex id="escape" extended="true">
       (?:
         \\                   # backslash
         (?:
@@ -110,18 +110,18 @@
     </define-regex>
 
     <!-- https://drafts.csswg.org/css-syntax/#non-ascii-code-point -->
-    <define-regex id="non-ascii-regex">[\x{80}-\x{10ffff}]</define-regex>
+    <define-regex id="non-ascii">[\x{80}-\x{10ffff}]</define-regex>
 
     <!--
     a combination of name-start code point and escape
     https://drafts.csswg.org/css-syntax/#name-start-code-point
     https://www.w3.org/TR/selectors-3/#lex
     -->
-    <define-regex id="identifier-start-char-regex" extended="true">
+    <define-regex id="identifier-start-char" extended="true">
       (?:
         [a-z_] |
-        \%{non-ascii-regex} |
-        \%{escape-regex}
+        \%{non-ascii} |
+        \%{escape}
       )
     </define-regex>
 
@@ -130,32 +130,32 @@
     https://drafts.csswg.org/css-syntax/#name-code-point
     https://www.w3.org/TR/selectors-3/#lex
     -->
-    <define-regex id="identifier-chars-regex" extended="true">
+    <define-regex id="identifier-chars" extended="true">
       (?&gt;
         (?:
           [a-z0-9_-]+ |
-          \%{non-ascii-regex}+ |
-          \%{escape-regex}+
+          \%{non-ascii}+ |
+          \%{escape}+
         )+
       )
     </define-regex>
 
     <!-- for lookbehinds (and lookaheads) -->
-    <define-regex id="single-identifier-char-regex" extended="true">
+    <define-regex id="single-identifier-char" extended="true">
       (?:
         [a-z0-9_-] |
-        \%{non-ascii-regex}
+        \%{non-ascii}
       )
     </define-regex>
 
     <!-- https://drafts.csswg.org/css-syntax/#ident-token-diagram -->
-    <define-regex id="identifier-regex" extended="true">
+    <define-regex id="identifier" extended="true">
       (?:
         (?:
           -- |
-          -? \%{identifier-start-char-regex}
+          -? \%{identifier-start-char}
         )
-        \%{identifier-chars-regex}?
+        \%{identifier-chars}?
       )
     </define-regex>
 
@@ -163,10 +163,10 @@
     https://www.w3.org/TR/CSS21/syndata.html#vendor-keywords
     https://en.wikipedia.org/wiki/CSS_hack#List_of_prefixes
     -->
-    <define-regex id="vendor-specific-prefix-regex" extended="true">
+    <define-regex id="vendor-specific-prefix" extended="true">
       (?:
         (?:
-          [_-] \%{identifier-start-char-regex}+ |
+          [_-] \%{identifier-start-char}+ |
           mso |
           prince
         )
@@ -174,10 +174,10 @@
       )
     </define-regex>
 
-    <define-regex id="vendor-specific-identifier-regex" extended="true">
+    <define-regex id="vendor-specific-identifier" extended="true">
       (?:
-        (?&lt;! \%{single-identifier-char-regex} )
-        \%{vendor-specific-prefix-regex} \%{identifier-chars-regex}
+        (?&lt;! \%{single-identifier-char} )
+        \%{vendor-specific-prefix} \%{identifier-chars}
       )
     </define-regex>
 
@@ -213,15 +213,15 @@
 
     <!-- custom identifier -->
     <context id="name" style-ref="name">
-      <match>\%{identifier-regex}</match>
+      <match>\%{identifier}</match>
     </context>
 
     <context id="vendor-specific-name" style-ref="vendor-specific">
-      <match>\%{vendor-specific-identifier-regex}</match>
+      <match>\%{vendor-specific-identifier}</match>
     </context>
 
     <context id="escape" style-ref="escape">
-      <match>\%{escape-regex}</match>
+      <match>\%{escape}</match>
     </context>
 
     <context id="string-content">
@@ -412,39 +412,39 @@
       <keyword>yellow</keyword>
     </context>
 
-    <define-regex id="number-magnitude-regex" extended="true">
+    <define-regex id="number-magnitude" extended="true">
       (?: (?&gt; \d* \. \d+ | \d+ ) (?: e [+-]? \d+ )? )
     </define-regex>
 
-    <define-regex id="number-regex" extended="true">
-      (?: [+-]? \%{number-magnitude-regex} )
+    <define-regex id="number" extended="true">
+      (?: [+-]? \%{number-magnitude} )
     </define-regex>
 
-    <define-regex id="positive-number-regex" extended="true">
-      (?: \+? \%{number-magnitude-regex} )
+    <define-regex id="positive-number" extended="true">
+      (?: \+? \%{number-magnitude} )
     </define-regex>
 
-    <define-regex id="integer-magnitude-regex" extended="true">
+    <define-regex id="integer-magnitude" extended="true">
       (?&gt; \d+ )
     </define-regex>
 
-    <define-regex id="integer-regex" extended="true">
-      (?: [+-]? \%{integer-magnitude-regex} )
+    <define-regex id="integer" extended="true">
+      (?: [+-]? \%{integer-magnitude} )
     </define-regex>
 
-    <define-regex id="positive-integer-regex" extended="true">
-      (?: \+? \%{integer-magnitude-regex} )
+    <define-regex id="positive-integer" extended="true">
+      (?: \+? \%{integer-magnitude} )
     </define-regex>
 
-    <define-regex id="non-number-char-regex" extended="true">
+    <define-regex id="non-number-char" extended="true">
       (?:
-        \%{single-identifier-char-regex} |
+        \%{single-identifier-char} |
         \.
       )
     </define-regex>
 
     <context id="dimension" style-ref="dimension">
-      <prefix>(?&lt;!\%{non-number-char-regex})\%{number-regex}</prefix>
+      <prefix>(?&lt;!\%{non-number-char})\%{number}</prefix>
       <keyword>ch</keyword>
       <keyword>cm</keyword>
       <keyword>deg</keyword>
@@ -473,13 +473,13 @@
 
     <context id="percentage" style-ref="dimension">
       <match extended="true">
-        (?&lt;! \%{non-number-char-regex} )
-        \%{number-regex}%
+        (?&lt;! \%{non-number-char} )
+        \%{number}%
       </match>
     </context>
 
     <context id="resolution" style-ref="dimension">
-      <prefix>(?&lt;!\%{non-number-char-regex})\%{positive-number-regex}</prefix>
+      <prefix>(?&lt;!\%{non-number-char})\%{positive-number}</prefix>
       <keyword>dpcm</keyword>
       <keyword>dpi</keyword>
       <keyword>dppx</keyword>
@@ -487,32 +487,32 @@
 
     <context id="ratio" style-ref="expression">
       <match extended="true">
-        (?&lt;! \%{non-number-char-regex} )
-        \%{positive-integer-regex} \s* / \s* \%{positive-integer-regex}
-        (?! \%{non-number-char-regex} )
+        (?&lt;! \%{non-number-char} )
+        \%{positive-integer} \s* / \s* \%{positive-integer}
+        (?! \%{non-number-char} )
       </match>
     </context>
 
     <context id="number" style-ref="number">
       <match extended="true">
-        (?&lt;! \%{non-number-char-regex} )
-        \%{number-regex}
-        (?! \%{non-number-char-regex} )
+        (?&lt;! \%{non-number-char} )
+        \%{number}
+        (?! \%{non-number-char} )
       </match>
     </context>
 
     <context id="positive-integer" style-ref="integer">
       <match extended="true">
-        (?&lt;! \%{non-number-char-regex} )
-        \%{positive-integer-regex}
-        (?! \%{non-number-char-regex} )
+        (?&lt;! \%{non-number-char} )
+        \%{positive-integer}
+        (?! \%{non-number-char} )
       </match>
     </context>
 
     <context id="unicode-range" style-ref="unicode-range">
       <match extended="true">
         \%[ u \+ (?&gt; [a-f0-9?]{1,6} ) (?&gt; - [a-f0-9]{1,6} )?
-        (?! \%{single-identifier-char-regex} )
+        (?! \%{single-identifier-char} )
       </match>
     </context>
 
@@ -561,7 +561,7 @@
     </context>
 
     <context id="vendor-specific-function">
-      <start>\%{vendor-specific-identifier-regex}\(</start>
+      <start>\%{vendor-specific-identifier}\(</start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
@@ -572,7 +572,7 @@
     </context>
 
     <context id="function">
-      <start>\%{identifier-regex}\(</start>
+      <start>\%{identifier}\(</start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
@@ -1756,7 +1756,7 @@
     </context>
 
     <context id="vendor-specific-at-rule">
-      <start>@\%{vendor-specific-identifier-regex}</start>
+      <start>@\%{vendor-specific-identifier}</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
         <context ref="comment"/>
@@ -1927,7 +1927,7 @@
     </context>
 
     <context id="vendor-specific-at-keyframes">
-      <start>@\%{vendor-specific-prefix-regex}keyframes\%]</start>
+      <start>@\%{vendor-specific-prefix}keyframes\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
         <context ref="comment"/>
@@ -2132,7 +2132,7 @@
     <!-- namespace qualifier -->
 
     <context id="namespace-qualifier">
-      <match>(\%{identifier-regex}|\*)?(\|)</match>
+      <match>(\%{identifier}|\*)?(\|)</match>
       <include>
         <context sub-pattern="1" style-ref="namespace"/>
         <context sub-pattern="2" style-ref="namespace-qualifier"/>
@@ -2142,15 +2142,15 @@
     <!-- simple selectors -->
 
     <context id="id-selector" style-ref="id-selector">
-      <match>#\%{identifier-regex}</match>
+      <match>#\%{identifier}</match>
     </context>
 
     <context id="class-selector" style-ref="class-selector">
-      <match>\.\%{identifier-regex}</match>
+      <match>\.\%{identifier}</match>
     </context>
 
     <context id="type-selector" style-ref="type-selector">
-      <match>\%{identifier-regex}</match>
+      <match>\%{identifier}</match>
     </context>
 
     <context id="universal-selector" style-ref="universal-selector">
@@ -2158,7 +2158,7 @@
     </context>
 
     <context id="attribute-selector-attribute-name">
-      <match>(?&lt;=\[)\s*(\%{identifier-regex})</match>
+      <match>(?&lt;=\[)\s*(\%{identifier})</match>
       <include>
         <context sub-pattern="1" style-ref="attribute-selector-name"/>
       </include>
@@ -2207,7 +2207,7 @@
     <!-- pseudo-elements -->
 
     <context id="vendor-specific-pseudo-element" style-ref="vendor-specific">
-      <match>::\%{vendor-specific-identifier-regex}</match>
+      <match>::\%{vendor-specific-identifier}</match>
     </context>
 
     <context id="single-colon-pseudo-elements" style-ref="pseudo-element">
@@ -2235,7 +2235,7 @@
     <!-- pseudo-classes -->
 
     <context id="vendor-specific-pseudo-class" style-ref="vendor-specific">
-      <match>:\%{vendor-specific-identifier-regex}</match>
+      <match>:\%{vendor-specific-identifier}</match>
     </context>
 
     <context id="pseudo-classes" style-ref="pseudo-class">
@@ -2342,8 +2342,8 @@
     <context id="nth-pseudo-class-argument-expression" once-only="true" style-ref="expression">
       <match extended="true">
         (
-          \%{integer-regex}? n ( \s* [+-] \s* \%{integer-magnitude-regex} )? |
-          \%{integer-regex}
+          \%{integer}? n ( \s* [+-] \s* \%{integer-magnitude} )? |
+          \%{integer}
         )
       </match>
     </context>

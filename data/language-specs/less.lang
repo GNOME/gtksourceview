@@ -77,12 +77,12 @@
 
     <!-- variables -->
 
-    <define-regex id="variable-regex" extended="true">
-      (?: @ \%{css:identifier-regex} )
+    <define-regex id="variable" extended="true">
+      (?: @ \%{css:identifier} )
     </define-regex>
 
     <context id="variable" style-ref="variable">
-      <match>\%{variable-regex}</match>
+      <match>\%{variable}</match>
     </context>
 
     <context id="variable-interpolation" style-ref="variable">
@@ -96,11 +96,11 @@
     </context>
 
     <context id="variable-reference" style-ref="variable">
-      <match>@@\%{css:identifier-regex}</match>
+      <match>@@\%{css:identifier}</match>
     </context>
 
     <context id="property-variable" style-ref="variable">
-      <match>\$\%{css:identifier-regex}</match>
+      <match>\$\%{css:identifier}</match>
     </context>
 
     <context id="arguments-variable" style-ref="built-in-variable">
@@ -138,9 +138,9 @@
       <match extended="true">
         (
           [+*/] |
-          (?&lt;! \%{css:single-identifier-char-regex} )
+          (?&lt;! \%{css:single-identifier-char} )
           -
-          (?! \%{css:single-identifier-char-regex} )
+          (?! \%{css:single-identifier-char} )
         )
       </match>
     </context>
@@ -191,7 +191,7 @@
     </context>
 
     <context id="detached-ruleset-call">
-      <start>\%{variable-regex}\(</start>
+      <start>\%{variable}\(</start>
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="variable"/>
@@ -372,15 +372,15 @@
         (?(DEFINE)
           (?&lt;interpolation&gt;  # recursive subpattern to find matching brackets
             @{
-              (?:
-                (?&gt;
-                  (?:
-                    [^@{}]+ |
-                    (?! @{ | } ) .
-                  )+
-                ) |
-                (?&amp;interpolation)
-              )*
+            (?:
+              (?&gt;
+                (?:
+                  [^@{}]+ |
+                  (?! @{ | } ) .
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
             }
           )
         )
@@ -388,12 +388,12 @@
           \+_?: |  # property merge
           :
           (?:
-            (?!                                       # not the start of a
-              \%{css:single-identifier-char-regex} |  #   pseudo-class
-              [:\\] |                                 #   pseudo-element, escape
-              @{                                      #   variable interpolation
-            ) |                                       # or
-            (?=                                       # ends like a normal declaration
+            (?!                                 # not the start of a
+              \%{css:single-identifier-char} |  #   pseudo-class
+              [:\\] |                           #   pseudo-element, escape
+              @{                                #   variable interpolation
+            ) |                                 # or
+            (?=                                 # ends like a normal declaration
               (?&gt;
                 (?:
                   [^;}{@]+ |
@@ -401,7 +401,7 @@
                   \@+
                 )*
               )
-              \%{css:declaration-value-end}           #   with a semicolon or at the end of a block
+              \%{css:declaration-value-end}     #   with a semicolon or at the end of a block
             )
           )
         )
@@ -480,7 +480,7 @@
     </context>
 
     <context id="standalone-plugin-function-call">
-      <start>(?=\%{css:identifier-regex}\()</start>
+      <start>(?=\%{css:identifier}\()</start>
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
@@ -642,7 +642,7 @@
     <!-- Less selectors -->
 
     <context id="parent-combinator">
-      <match>(&amp;)(\%{css:identifier-chars-regex}?)</match>
+      <match>(&amp;)(\%{css:identifier-chars}?)</match>
       <include>
         <context sub-pattern="1" style-ref="css:combinator"/>
         <context sub-pattern="2" style-ref="selector-fragment"/>
@@ -650,7 +650,7 @@
     </context>
 
     <context id="variable-interpolation-fragment" style-ref="selector-fragment">
-      <match>(?&lt;=})\%{css:identifier-chars-regex}</match>
+      <match>(?&lt;=})\%{css:identifier-chars}</match>
     </context>
 
     <context id="less-pseudo-classes" style-ref="css:pseudo-class">

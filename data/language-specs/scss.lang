@@ -101,7 +101,7 @@
     <!-- variables -->
 
     <context id="variable" style-ref="variable">
-      <match>\$\%{css:identifier-regex}</match>
+      <match>\$\%{css:identifier}</match>
     </context>
 
 
@@ -114,9 +114,9 @@
       <match extended="true">
         (
           [+*%] |
-          (?&lt;! \%{css:single-identifier-char-regex} )
+          (?&lt;! \%{css:single-identifier-char} )
           -
-          (?! \%{css:single-identifier-char-regex} )
+          (?! \%{css:single-identifier-char} )
         )
       </match>
     </context>
@@ -382,26 +382,26 @@
         (?(DEFINE)
           (?&lt;interpolation&gt;  # recursive subpattern to find matching brackets
             \#{
-              (?:
-                (?&gt;
-                  (?:
-                    [^#{}]+ |
-                    (?! \#{ | } ) .
-                  )+
-                ) |
-                (?&amp;interpolation)
-              )*
+            (?:
+              (?&gt;
+                (?:
+                  [^#{}]+ |
+                  (?! \#{ | } ) .
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
             }
           )
         )
         :
         (?:
-          (?!                                       # not the start of a
-            \%{css:single-identifier-char-regex} |  #   pseudo-class
-            [:\\] |                                 #   pseudo-element, escape
-            \#{                                     #   interpolation
-          ) |                                       # or
-          (?=                                       # ends like a normal declaration
+          (?!                                 # not the start of a
+            \%{css:single-identifier-char} |  #   pseudo-class
+            [:\\] |                           #   pseudo-element, escape
+            \#{                               #   interpolation
+          ) |                                 # or
+          (?=                                 # ends like a normal declaration
             (?&gt;
               (?:
                 [^;}{#]+ |
@@ -409,7 +409,7 @@
                 \#+
               )*
             )
-            \%{css:declaration-value-end}           #   with a semicolon or at the end of a block
+            \%{css:declaration-value-end}     #   with a semicolon or at the end of a block
           )
         )
       </start>
@@ -794,7 +794,7 @@
     <!-- Sass selectors -->
 
     <context id="parent-combinator">
-      <match>(&amp;)(\%{css:identifier-chars-regex}?)</match>
+      <match>(&amp;)(\%{css:identifier-chars}?)</match>
       <include>
         <context sub-pattern="1"  style-ref="css:combinator"/>
         <context sub-pattern="2"  style-ref="selector-fragment"/>
@@ -802,11 +802,11 @@
     </context>
 
     <context id="placeholder-selector" style-ref="placeholder-selector">
-      <match>%\%{css:identifier-regex}</match>
+      <match>%\%{css:identifier}</match>
     </context>
 
     <context id="interpolation-fragment" style-ref="selector-fragment">
-      <match>(?&lt;=})\%{css:identifier-chars-regex}</match>
+      <match>(?&lt;=})\%{css:identifier-chars}</match>
     </context>
 
 
