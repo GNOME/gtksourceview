@@ -452,6 +452,10 @@ div {
 
 // from file.css
 
+//@charset "UTF-8";
+// Sass follows the CSS spec when reading stylesheets,
+// so any @charset rule must be at the top of the document
+
 /*
  * general
  */

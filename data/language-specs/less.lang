@@ -492,6 +492,17 @@
 
     <!-- at-rules -->
 
+    <context id="less-at-charset">
+      <start case-sensitive="true">@charset\%]</start>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
+        <context ref="css:comment"/>
+        <!-- though Less preserves quote type, which may be invalid -->
+        <context ref="css:string"/>
+        <context ref="css:at-rule-delimiter"/>
+      </include>
+    </context>
+
     <context id="less-font-feature-type-value">
       <include>
         <context ref="variable-interpolation-value"/>
@@ -573,6 +584,7 @@
 
     <replace id="css:at-rule-style-block-content" ref="less-style-block-content"/>
     <replace id="css:at-rule-css-block-content" ref="less-style-block-content"/>
+    <replace id="css:at-charset" ref="less-at-charset"/>
     <replace id="css:font-feature-type-value" ref="less-font-feature-type-value"/>
     <replace id="css:font-feature-value-declaration-name" ref="less-font-feature-value-declaration-name"/>
     <replace id="css:font-feature-value-declaration-value-content" ref="less-font-feature-value-declaration-value-content"/>
