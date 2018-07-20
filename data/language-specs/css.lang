@@ -1773,7 +1773,7 @@
       <start case-sensitive="true">^@charset(?= "[^"]*";)</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
-        <context ref="def:string"/>
+        <context ref="double-quoted-string"/>
         <context ref="at-rule-delimiter"/>
       </include>
     </context>
