@@ -1433,7 +1433,13 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 			 */
 			if (!gtk_text_iter_starts_line (&next_iter))
 			{
-				gtk_text_iter_forward_line (&next_iter);
+				/* We're trying to move forward on the last
+				 * line of the buffer, so we can stop now.
+				 */
+				if (!gtk_text_iter_forward_line (&next_iter))
+				{
+					break;
+				}
 			}
 
 			gtk_text_view_get_line_yrange (text_view, &next_iter, &ly, NULL);
