@@ -520,7 +520,7 @@ close_input_stream_cb (GObject      *source_object,
 					 GTK_SOURCE_FILE_LOADER_ERROR,
 					 GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK,
 					 _("There was a character encoding conversion error "
-					   "and it was needed to use a fallback character."));
+					   "so it was necessary to use a fallback character."));
 		return;
 	}
 
