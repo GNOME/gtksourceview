@@ -2028,7 +2028,7 @@ init_tree_view (GtkSourceCompletion *completion,
 	GtkTreeViewColumn *column;
 	GtkCellRenderer *cell_renderer;
 	GtkStyleContext *style_context;
-	GdkRGBA background_color;
+	GdkRGBA* background_color = NULL;
 	GdkRGBA foreground_color;
 
 	completion->priv->tree_view_proposals = GTK_TREE_VIEW (gtk_builder_get_object (builder, "tree_view_proposals"));
@@ -2094,7 +2094,7 @@ init_tree_view (GtkSourceCompletion *completion,
 	gtk_style_context_restore (style_context);
 
 	g_object_set (cell_renderer,
-	              "cell-background-rgba", &background_color,
+	              "cell-background-rgba", background_color,
 	              NULL);
 
 	g_object_bind_property (completion, "show-icons",
@@ -2116,7 +2116,7 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	g_object_set (cell_renderer,
 	              "foreground-rgba", &foreground_color,
-	              "cell-background-rgba", &background_color,
+	              "cell-background-rgba", background_color,
 	              NULL);
 
 	/* Accelerators cell renderer */
@@ -2132,7 +2132,7 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	g_object_set (cell_renderer,
 	              "foreground-rgba", &foreground_color,
-	              "cell-background-rgba", &background_color,
+	              "cell-background-rgba", background_color,
 		      NULL);
 
 	gtk_tree_view_column_set_cell_data_func (column,
@@ -2146,6 +2146,8 @@ init_tree_view (GtkSourceCompletion *completion,
 				 G_CALLBACK (accelerators_notify_cb),
 				 column,
 				 0);
+
+	gdk_rgba_free (background_color);
 }
 
 static void
