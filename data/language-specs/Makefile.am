@@ -70,6 +70,7 @@ LANGUAGES =			\
 	libtool.lang		\
 	llvm.lang		\
 	logcat.lang		\
+	logtalk.lang		\
 	lua.lang		\
 	m4.lang			\
 	makefile.lang		\
