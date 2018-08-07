@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-12-29 11:40+0100\n"
+"POT-Creation-Date: 2018-08-07 18:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,7 @@ msgstr ""
 #. (itstool) path: genie.lang/language@_section
 #. (itstool) path: glsl.lang/language@_section
 #. (itstool) path: go.lang/language@_section
+#. (itstool) path: gradle.lang/language@_section
 #. (itstool) path: groovy.lang/language@_section
 #. (itstool) path: haskell.lang/language@_section
 #. (itstool) path: haskell-literate.lang/language@_section
@@ -45,6 +46,7 @@ msgstr ""
 #. (itstool) path: kotlin.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: logtalk.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
 #. (itstool) path: meson.lang/language@_section
 #. (itstool) path: nemerle.lang/language@_section
@@ -97,6 +99,7 @@ msgstr ""
 #: genie.lang:23
 #: glsl.lang:30
 #: go.lang:24
+#: gradle.lang:21
 #: groovy.lang:24
 #: haskell.lang:24
 #: haskell-literate.lang:23
@@ -107,6 +110,7 @@ msgstr ""
 #: kotlin.lang:24
 #: lex.lang:24
 #: llvm.lang:22
+#: logtalk.lang:23
 #: makefile.lang:22
 #: meson.lang:23
 #: nemerle.lang:23
@@ -150,7 +154,7 @@ msgstr ""
 #. (itstool) path: tcl.lang/language@_section
 #: awk.lang:23
 #: dosbatch.lang:23
-#: javascript.lang:26
+#: javascript.lang:27
 #: lua.lang:23
 #: m4.lang:23
 #: perl.lang:25
@@ -179,6 +183,7 @@ msgstr ""
 #. (itstool) path: rst.lang/language@_section
 #. (itstool) path: sweave.lang/language@_section
 #. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: tera.lang/language@_section
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
@@ -198,6 +203,7 @@ msgstr ""
 #: rst.lang:22
 #: sweave.lang:24
 #: t2t.lang:23
+#: tera.lang:23
 #: texinfo.lang:24
 #: xml.lang:25
 #: xslt.lang:23
@@ -221,6 +227,7 @@ msgstr ""
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
 #. (itstool) path: json.lang/language@_section
+#. (itstool) path: less.lang/language@_section
 #. (itstool) path: libtool.lang/language@_section
 #. (itstool) path: logcat.lang/language@_section
 #. (itstool) path: nsis.lang/language@_section
@@ -230,11 +237,13 @@ msgstr ""
 #. (itstool) path: protobuf.lang/language@_section
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
+#. (itstool) path: scss.lang/language@_section
+#. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
 #: changelog.lang:24
 #: cmake.lang:23
-#: css.lang:38
+#: css.lang:26
 #: csv.lang:23
 #: desktop.lang:24
 #: diff.lang:23
@@ -244,6 +253,7 @@ msgstr ""
 #: gtkrc.lang:24
 #: ini.lang:22
 #: json.lang:29
+#: less.lang:23
 #: libtool.lang:23
 #: logcat.lang:23
 #: nsis.lang:23
@@ -253,6 +263,8 @@ msgstr ""
 #: protobuf.lang:21
 #: puppet.lang:23
 #: rpmspec.lang:24
+#: scss.lang:23
+#: toml.lang:23
 #: yacc.lang:23
 #: yaml.lang:21
 msgid "Other"
@@ -326,5 +338,10 @@ msgstr ""
 #. (itstool) path: rpmspec.lang/language@_name
 #: rpmspec.lang:24
 msgid "RPM spec"
+msgstr ""
+
+#. (itstool) path: tera.lang/language@_name
+#: tera.lang:23
+msgid "Tera Template"
 msgstr ""
 
