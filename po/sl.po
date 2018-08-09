@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the gtksourcereview package.
 #
 # Matjaž Horvat <m@owca.info>, 2006.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007–2017.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007–2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-08-28 19:34+0200\n"
-"PO-Revision-Date: 2017-08-28 19:34+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
+"POT-Creation-Date: 2018-08-09 17:37+0000\n"
+"PO-Revision-Date: 2018-08-09 20:06+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -21,32 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.1\n"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:23
-msgid "Disabled"
-msgstr "Onemogočeno"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:24
-msgid "Before"
-msgstr "Pred"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:25
-msgid "After"
-msgstr "Za"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:26
-msgid "Always"
-msgstr "Vedno"
-
-#. (itstool) path: abnf.lang/language@_name
-#: abnf.lang:30
-msgid "ABNF"
-msgstr "ABNF"
+"X-Generator: Poedit 2.0.6\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -74,14 +48,18 @@ msgstr "ABNF"
 #. (itstool) path: genie.lang/language@_section
 #. (itstool) path: glsl.lang/language@_section
 #. (itstool) path: go.lang/language@_section
+#. (itstool) path: gradle.lang/language@_section
+#. (itstool) path: groovy.lang/language@_section
 #. (itstool) path: haskell.lang/language@_section
 #. (itstool) path: haskell-literate.lang/language@_section
 #. (itstool) path: haxe.lang/language@_section
 #. (itstool) path: idl.lang/language@_section
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
+#. (itstool) path: kotlin.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: logtalk.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
 #. (itstool) path: meson.lang/language@_section
 #. (itstool) path: nemerle.lang/language@_section
@@ -113,8 +91,9 @@ msgstr "ABNF"
 #: chdr.lang:24 c.lang:24 cobol.lang:26 cpphdr.lang:24 cpp.lang:24
 #: csharp.lang:26 cuda.lang:22 d.lang:29 eiffel.lang:23 erlang.lang:23
 #: forth.lang:23 fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30
-#: go.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34 idl.lang:23
-#: java.lang:24 j.lang:23 lex.lang:24 llvm.lang:22 makefile.lang:22
+#: go.lang:24 gradle.lang:21 groovy.lang:24 haskell.lang:24
+#: haskell-literate.lang:23 haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23
+#: kotlin.lang:24 lex.lang:24 llvm.lang:22 logtalk.lang:23 makefile.lang:22
 #: meson.lang:23 nemerle.lang:23 netrexx.lang:23 objc.lang:23 objj.lang:25
 #: ocaml.lang:26 ooc.lang:23 opal.lang:23 opencl.lang:23 pascal.lang:24
 #: pig.lang:26 prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23
@@ -122,356 +101,6 @@ msgstr "ABNF"
 #: thrift.lang:20 vala.lang:27 vbnet.lang:23 verilog.lang:23 vhdl.lang:23
 msgid "Source"
 msgstr "Vir"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:37 actionscript.lang:34 ada.lang:33 ansforth94.lang:38 asp.lang:31
-#: bennugd.lang:31 boo.lang:33 cg.lang:32 c.lang:34 cobol.lang:34
-#: csharp.lang:36 def.lang:39 d.lang:39 dosbatch.lang:30 dot.lang:33
-#: dtl.lang:34 eiffel.lang:32 erlang.lang:31 fcl.lang:30 forth.lang:33
-#: fortran.lang:32 fsharp.lang:33 gap.lang:31 genie.lang:33 go.lang:34
-#: gtkrc.lang:32 haskell.lang:33 haxe.lang:47 html.lang:33 idl-exelis.lang:27
-#: idl.lang:31 ini.lang:30 jade.lang:31 java.lang:34 j.lang:31 latex.lang:32
-#: llvm.lang:29 lua.lang:33 matlab.lang:40 maxima.lang:33 modelica.lang:35
-#: nemerle.lang:33 netrexx.lang:37 nsis.lang:31 ocaml.lang:35 ocl.lang:40
-#: octave.lang:40 ooc.lang:32 opal.lang:33 pascal.lang:32 perl.lang:33
-#: php.lang:39 pig.lang:40 po.lang:31 prolog.lang:33 protobuf.lang:31
-#: rst.lang:35 ruby.lang:35 rust.lang:45 scala.lang:37 scheme.lang:31
-#: scilab.lang:30 sh.lang:32 sml.lang:31 sql.lang:31 sweave.lang:31
-#: swift.lang:36 t2t.lang:30 texinfo.lang:32 thrift.lang:29 vala.lang:37
-#: vbnet.lang:31 verilog.lang:33 vhdl.lang:31 xml.lang:34 yaml.lang:30
-msgid "Comment"
-msgstr "Opomba"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:38
-msgid "Rule Name"
-msgstr "Ime pravila"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:39 d.lang:49 nemerle.lang:44
-msgid "Binary number"
-msgstr "Dvojiško število"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:40 ada.lang:36 bennugd.lang:38 cg.lang:42 c.lang:47 csharp.lang:48
-#: csv.lang:30 def.lang:66 d.lang:48 dtl.lang:42 eiffel.lang:44 erlang.lang:38
-#: fsharp.lang:36 go.lang:44 idl-exelis.lang:33 nemerle.lang:43 ocaml.lang:39
-#: ooc.lang:44 opal.lang:39 php.lang:54 python3.lang:40 python.lang:45
-#: ruby.lang:42
-msgid "Decimal number"
-msgstr "Decimalno število"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:41 bennugd.lang:39 cg.lang:44 c.lang:49 csharp.lang:49 d.lang:51
-#: dtl.lang:44 eiffel.lang:45 go.lang:46 nemerle.lang:46 ooc.lang:46
-#: php.lang:56
-msgid "Hexadecimal number"
-msgstr "Šestnajstiško število"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:42 actionscript.lang:36 ada.lang:34 ansforth94.lang:42 asp.lang:32
-#: boo.lang:35 c.lang:35 cobol.lang:39 csharp.lang:39 css.lang:49 csv.lang:33
-#: def.lang:56 d.lang:41 dosbatch.lang:31 dtl.lang:37 eiffel.lang:33
-#: erlang.lang:35 forth.lang:34 fortran.lang:33 fsharp.lang:37 gdb-log.lang:29
-#: genie.lang:35 go.lang:36 gtkrc.lang:33 haskell.lang:38 haxe.lang:54
-#: idl-exelis.lang:31 idl.lang:35 imagej.lang:39 ini.lang:32 java.lang:36
-#: javascript.lang:46 j.lang:44 json.lang:38 julia.lang:36 llvm.lang:30
-#: lua.lang:34 maxima.lang:34 meson.lang:33 modelica.lang:36 nemerle.lang:37
-#: netrexx.lang:35 nsis.lang:32 objc.lang:36 objj.lang:40 ocaml.lang:40
-#: ocl.lang:41 octave.lang:41 ooc.lang:35 opal.lang:36 pascal.lang:33
-#: perl.lang:36 php.lang:44 po.lang:33 prolog.lang:36 protobuf.lang:37
-#: python3.lang:34 python.lang:38 ruby.lang:45 rust.lang:46 scala.lang:38
-#: scheme.lang:33 scilab.lang:32 sh.lang:34 sml.lang:35 sql.lang:33
-#: swift.lang:47 texinfo.lang:35 thrift.lang:32 vala.lang:40 vbnet.lang:32
-#: verilog.lang:34 vhdl.lang:32 yaml.lang:31
-msgid "String"
-msgstr "Niz"
-
-#. (itstool) path: actionscript.lang/language@_name
-#: actionscript.lang:24
-msgid "ActionScript"
-msgstr "Skript"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:35 cg.lang:33 c.lang:53 cobol.lang:42 csharp.lang:37
-#: css.lang:47 def.lang:101 d.lang:40 dot.lang:34 dtl.lang:35 go.lang:35
-#: haxe.lang:61 html.lang:38 jade.lang:39 j.lang:34 json.lang:41
-#: nemerle.lang:34 ocaml.lang:52 ooc.lang:33 opal.lang:35 perl.lang:47
-#: php.lang:40 prolog.lang:39 rust.lang:56 scala.lang:35 vala.lang:38
-#: verilog.lang:37 xml.lang:44
-msgid "Error"
-msgstr "Napaka"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:37 haxe.lang:48 java.lang:40 ooc.lang:36 scala.lang:36
-#: swift.lang:40
-msgid "External"
-msgstr "Zunanje"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:38 haxe.lang:50 java.lang:41 ooc.lang:37 scala.lang:40
-#: swift.lang:38
-msgid "Declaration"
-msgstr "Deklaracija"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:39 ada.lang:38 cg.lang:39 c.lang:43 haxe.lang:51
-#: java.lang:42 ooc.lang:38
-msgid "Storage Class"
-msgstr "Razred shranjevanja"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:40 java.lang:43 ooc.lang:39
-msgid "Scope Declaration"
-msgstr "Deklaracije obsega"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:41 ada.lang:35 ansforth94.lang:35 asp.lang:34 awk.lang:31
-#: bennugd.lang:35 bluespec.lang:34 boo.lang:40 cg.lang:37 c.lang:40
-#: cobol.lang:37 cpp.lang:34 csharp.lang:44 css.lang:58 cuda.lang:32
-#: def.lang:91 d.lang:42 dosbatch.lang:32 dot.lang:35 dtl.lang:38
-#: eiffel.lang:36 erlang.lang:32 fcl.lang:32 forth.lang:36 fortran.lang:35
-#: fsharp.lang:38 gap.lang:33 genie.lang:40 glsl.lang:42 go.lang:38
-#: gtkrc.lang:34 haskell.lang:36 haxe.lang:53 idl-exelis.lang:30 idl.lang:34
-#: imagej.lang:37 ini.lang:33 java.lang:44 javascript.lang:40 julia.lang:43
-#: lex.lang:34 llvm.lang:31 lua.lang:35 matlab.lang:41 maxima.lang:36
-#: modelica.lang:45 nemerle.lang:38 objc.lang:33 objj.lang:36 ocaml.lang:41
-#: ocl.lang:42 octave.lang:47 ooc.lang:40 opal.lang:37 opencl.lang:32
-#: pascal.lang:34 perl.lang:37 php.lang:47 po.lang:35 prolog.lang:35
-#: protobuf.lang:35 python3.lang:32 python.lang:36 R.lang:33 ruby.lang:38
-#: rust.lang:48 scala.lang:42 scheme.lang:34 scilab.lang:33 sh.lang:35
-#: sml.lang:32 sparql.lang:36 sql.lang:34 swift.lang:42 systemverilog.lang:32
-#: tcl.lang:32 texinfo.lang:36 thrift.lang:31 vala.lang:41 vbnet.lang:34
-#: verilog.lang:41 vhdl.lang:34
-msgid "Keyword"
-msgstr "Ključna beseda"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:42 boo.lang:42 csharp.lang:46 d.lang:45 dtl.lang:39
-#: fsharp.lang:51 genie.lang:42 haxe.lang:57 java.lang:45 javascript.lang:37
-#: json.lang:39 nemerle.lang:40 objj.lang:41 ooc.lang:41 php.lang:51
-#: vala.lang:43
-msgid "Null Value"
-msgstr "Nična vrednost"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:43 ada.lang:37 asp.lang:41 bennugd.lang:40 cg.lang:45
-#: c.lang:50 csharp.lang:47 def.lang:74 dtl.lang:40 fsharp.lang:49 go.lang:47
-#: gtkrc.lang:39 haxe.lang:56 ini.lang:37 java.lang:46 llvm.lang:37 lua.lang:41
-#: nemerle.lang:41 ocaml.lang:51 ooc.lang:42 opal.lang:38 php.lang:52
-#: protobuf.lang:36 R.lang:38 ruby.lang:40 rust.lang:50 sml.lang:39
-#: vala.lang:42 vbnet.lang:37 vhdl.lang:36
-msgid "Boolean value"
-msgstr "Boolova vrednost"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:44 asp.lang:42 boo.lang:44 cobol.lang:40 def.lang:62
-#: desktop.lang:37 forth.lang:38 genie.lang:44 haxe.lang:55 java.lang:47
-#: j.lang:41 julia.lang:38 llvm.lang:38 netrexx.lang:47 prolog.lang:37
-#: rust.lang:52 scala.lang:44 swift.lang:44 vhdl.lang:39
-msgid "Number"
-msgstr "Številka"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:45 java.lang:48 javascript.lang:45 ooc.lang:47
-msgid "Future Reserved Keywords"
-msgstr "Prihodnje zadržane besede"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:46 ada.lang:39 asp.lang:39 bennugd.lang:36 boo.lang:38
-#: cg.lang:38 c.lang:42 cpp.lang:35 csharp.lang:38 cuda.lang:33 d.lang:43
-#: eiffel.lang:37 forth.lang:37 fortran.lang:39 fsharp.lang:41 genie.lang:38
-#: glsl.lang:41 go.lang:39 gtkrc.lang:36 haskell.lang:37 haxe.lang:58
-#: idl-exelis.lang:28 idl.lang:32 ini.lang:36 java.lang:49 javascript.lang:41
-#: llvm.lang:36 nemerle.lang:39 objc.lang:34 objj.lang:37 ocaml.lang:44
-#: ocl.lang:44 ooc.lang:48 opal.lang:40 opencl.lang:33 pascal.lang:36
-#: php.lang:50 pig.lang:35 protobuf.lang:34 rust.lang:49 scala.lang:46
-#: sml.lang:33 sparql.lang:33 sql.lang:37 swift.lang:48 thrift.lang:30
-#: vala.lang:39 vbnet.lang:35
-msgid "Data Type"
-msgstr "Podatkovna vrsta"
-
-#. (itstool) path: ada.lang/language@_name
-#: ada.lang:25
-msgid "Ada"
-msgstr "Ada"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:40 asp.lang:33 bennugd.lang:32 cg.lang:34 c.lang:36 csharp.lang:45
-#: forth.lang:35 fortran.lang:40 fsharp.lang:50 glsl.lang:40 haskell.lang:32
-#: haxe.lang:49 idl-exelis.lang:29 idl.lang:33 nemerle.lang:35 objj.lang:38
-#: pascal.lang:37 vbnet.lang:33
-msgid "Preprocessor"
-msgstr "Predprocesor"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:41
-msgid "Arbitrary base number"
-msgstr "Privzeta številčna osnova"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:42 csharp.lang:50 verilog.lang:45 vhdl.lang:38
-msgid "Real number"
-msgstr "Realno število"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:43 cg.lang:40 c.lang:45 csharp.lang:41 dtl.lang:36 eiffel.lang:41
-#: fortran.lang:43 fsharp.lang:48 go.lang:41 haskell.lang:40 haxe.lang:62
-#: imagej.lang:36 java.lang:35 javascript.lang:36 json.lang:37 lua.lang:36
-#: netrexx.lang:34 ocaml.lang:50 ooc.lang:34 php.lang:43 prolog.lang:40
-#: python3.lang:35 python.lang:39 ruby.lang:34 scala.lang:39 sml.lang:36
-#: swift.lang:39 texinfo.lang:33 vala.lang:48 verilog.lang:36
-msgid "Escaped Character"
-msgstr "Ubežni znak"
-
-#. (itstool) path: ansforth94.lang/language@_name
-#: ansforth94.lang:24
-msgid "ANS-Forth94"
-msgstr "ANS-Forth94"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:36
-msgid "Obsolete Keyword"
-msgstr "Opuščena ključna beseda"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:39
-msgid "Alert"
-msgstr "Opozorilo"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:40 c.lang:39 csharp.lang:40 def.lang:54 erlang.lang:36
-#: gap.lang:32 go.lang:37 haskell.lang:39 java.lang:37 julia.lang:37
-#: nemerle.lang:36 netrexx.lang:36 rust.lang:47 sml.lang:34 vhdl.lang:33
-msgid "Character"
-msgstr "Znak"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:41
-msgid "Word"
-msgstr "Beseda"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:43 cmake.lang:33 cobol.lang:38 def.lang:52 gtk-doc.lang:31
-#: libtool.lang:31 ruby.lang:49
-msgid "Constant"
-msgstr "Konstanta"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:44 awk.lang:33 cmake.lang:36 cobol.lang:36 haskell.lang:34
-#: ini.lang:35 llvm.lang:34 makefile.lang:30 maxima.lang:37 nsis.lang:33
-#: perl.lang:43 php.lang:41 pkgconfig.lang:30 prolog.lang:34 protobuf.lang:33
-#: ruby.lang:53 sh.lang:36 sparql.lang:43 tcl.lang:31
-msgid "Variable"
-msgstr "Spremenljivka"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:45
-msgid "Local Variable"
-msgstr "Krajevna spremenljivka"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:46
-msgid "Single Number"
-msgstr "Enojno število"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:47
-msgid "Double Number"
-msgstr "Dvojno število"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:48 haskell.lang:41
-msgid "Float"
-msgstr "Plavajoče"
-
-#. (itstool) path: asp.lang/language@_name
-#: asp.lang:23
-msgid "ASP"
-msgstr "ASP"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:35 cg.lang:47 changelog.lang:38 css.lang:52 def.lang:80 gap.lang:34
-#: gdb-log.lang:28 gtk-doc.lang:33 idl-exelis.lang:34 javascript.lang:42
-#: llvm.lang:32 lua.lang:39 scheme.lang:35 scilab.lang:34 sh.lang:33
-#: sparql.lang:34 sql.lang:35
-msgid "Function"
-msgstr "Funkcija"
-
-# operator -> operand
-# ni isto!!! operator je +-/*, operand pa številčna vrednost v izrazu
-#. (itstool) path: styles/style@_name
-#: asp.lang:36 bennugd.lang:34 c.lang:41 cmake.lang:34 cobol.lang:41
-#: def.lang:89 erlang.lang:33 imagej.lang:38 julia.lang:42 meson.lang:32
-#: modelica.lang:37 nsis.lang:30 octave.lang:42 perl.lang:42 php.lang:49
-#: prolog.lang:38 scala.lang:45 sparql.lang:44 swift.lang:45
-msgid "Operator"
-msgstr "Operator"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:37
-msgid "ASP Object"
-msgstr "Predmet ASP"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:38
-msgid "VBScript and ADO constants"
-msgstr "VBScript in ADO konstante"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:40 def.lang:72 vbnet.lang:36
-msgid "Special constant"
-msgstr "Posebna konstanta"
-
-#. (itstool) path: automake.lang/language@_name
-#: automake.lang:23
-msgid "Automake"
-msgstr "automake"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:38
-msgid "Automake Variable"
-msgstr "Spremenljivka automake"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:39
-msgid "Primary"
-msgstr "Osnovni"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:40
-msgid "Secondary"
-msgstr "Drugotni"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:41
-msgid "Prefix"
-msgstr "Predpona"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:42
-msgid "Optional Target"
-msgstr "Izbirni cilj"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:43
-msgid "Built-in Target"
-msgstr "Vgrajeni cilj"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:44
-msgid "Other Keyword"
-msgstr "Druga ključna beseda"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:45 rst.lang:37
-msgid "Substitution"
-msgstr "Zamenjava"
-
-#. (itstool) path: awk.lang/language@_name
-#: awk.lang:23
-msgid "awk"
-msgstr "awk"
 
 #. (itstool) path: awk.lang/language@_section
 #. (itstool) path: dosbatch.lang/language@_section
@@ -485,45 +114,11 @@ msgstr "awk"
 #. (itstool) path: ruby.lang/language@_section
 #. (itstool) path: sh.lang/language@_section
 #. (itstool) path: tcl.lang/language@_section
-#: awk.lang:23 dosbatch.lang:23 javascript.lang:26 lua.lang:23 m4.lang:23
+#: awk.lang:23 dosbatch.lang:23 javascript.lang:27 lua.lang:23 m4.lang:23
 #: perl.lang:25 php.lang:28 python3.lang:23 python.lang:27 ruby.lang:26
 #: sh.lang:24 tcl.lang:23
 msgid "Script"
 msgstr "Skript"
-
-#. (itstool) path: styles/style@_name
-#: awk.lang:32 lex.lang:35
-msgid "Pattern"
-msgstr "Vzorec"
-
-#. (itstool) path: styles/style@_name
-#: awk.lang:34 boo.lang:45 genie.lang:45 glsl.lang:43 go.lang:49
-#: netrexx.lang:46 perl.lang:38 python3.lang:45 python.lang:50
-msgid "Builtin Function"
-msgstr "Vgrajene funkcije"
-
-#. (itstool) path: bennugd.lang/language@_name
-#: bennugd.lang:22
-msgid "BennuGD"
-msgstr "BennuGD"
-
-#. (itstool) path: styles/style@_name
-#: bennugd.lang:33 def.lang:78 llvm.lang:35 php.lang:42 rust.lang:51
-msgid "Identifier"
-msgstr "Določilnik"
-
-#. (itstool) path: styles/style@_name
-#: bennugd.lang:37 cg.lang:41 c.lang:46 csv.lang:32 def.lang:64 d.lang:47
-#: dtl.lang:41 erlang.lang:37 go.lang:42 idl-exelis.lang:32 json.lang:43
-#: nemerle.lang:42 ooc.lang:43 php.lang:53 python3.lang:39 python.lang:44
-#: R.lang:40 ruby.lang:41
-msgid "Floating point number"
-msgstr "Število s plavajočo vejico"
-
-#. (itstool) path: bibtex.lang/language@_name
-#: bibtex.lang:23
-msgid "BibTeX"
-msgstr "BibTeX"
 
 #. (itstool) path: bibtex.lang/language@_section
 #. (itstool) path: docbook.lang/language@_section
@@ -541,133 +136,21 @@ msgstr "BibTeX"
 #. (itstool) path: rst.lang/language@_section
 #. (itstool) path: sweave.lang/language@_section
 #. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: tera.lang/language@_section
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
 #: bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 gtk-doc.lang:24
 #: haddock.lang:23 html.lang:24 jade.lang:24 latex.lang:24 mallard.lang:22
 #: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
-#: t2t.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
 msgid "Markup"
 msgstr "Označevanje"
-
-#. (itstool) path: styles/style@_name
-#: bibtex.lang:31
-msgid "Entries"
-msgstr "Vnosi"
-
-#. (itstool) path: styles/style@_name
-#: bibtex.lang:32
-msgid "Field"
-msgstr "Polje"
-
-#. (itstool) path: bluespec.lang/language@_name
-#: bluespec.lang:21
-msgid "Bluespec SystemVerilog"
-msgstr "Bluespec SystemVerilog"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:30 systemverilog.lang:31
-msgid "System Task"
-msgstr "Sistemska naloga"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:31
-msgid "Annotation"
-msgstr "Pripomba"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:32 rust.lang:54
-msgid "Attribute"
-msgstr "Atribut"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:33
-msgid "Import BVI"
-msgstr "Uvozi BVI"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:35 gtk-doc.lang:32 julia.lang:48 systemverilog.lang:33
-#: verilog.lang:43 vhdl.lang:35
-msgid "Type"
-msgstr "Vrsta"
-
-#. (itstool) path: boo.lang/language@_name
-#: boo.lang:23
-msgid "Boo"
-msgstr "Boo"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:34 genie.lang:34 python3.lang:33 python.lang:37
-msgid "Multiline string"
-msgstr "Niz v več vrsticah"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:36 genie.lang:36 javascript.lang:47 perl.lang:46 ruby.lang:56
-#: vala.lang:47
-msgid "Regular Expression"
-msgstr "Logični izraz"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:37 genie.lang:37 sparql.lang:37 xml.lang:43 xslt.lang:33
-msgid "Namespace"
-msgstr "Imenski prostor"
-
-# Ta pride kasneje. Definicija je namreč ustrezen pojem, ki nima slovenskega prevoda ...
-#. (itstool) path: styles/style@_name
-#: boo.lang:39 genie.lang:39
-msgid "Definition"
-msgstr "Definicija"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:41 genie.lang:41 python3.lang:37 python.lang:42 ruby.lang:51
-msgid "Special Variable"
-msgstr "Posebna spremenljivka"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:43 desktop.lang:38 d.lang:46 genie.lang:43 imagej.lang:33
-#: julia.lang:39 libtool.lang:32 meson.lang:34 modelica.lang:41 objj.lang:35
-#: octave.lang:45 python3.lang:38 python.lang:43 scheme.lang:32 scilab.lang:35
-#: sparql.lang:38 yaml.lang:38
-msgid "Boolean"
-msgstr "Boolova vrednost"
 
 #. (itstool) path: cg.lang/language@_name
 #: cg.lang:23
 msgid "CG Shader Language"
 msgstr "Jezik CG Shader"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:35
-msgid "Bindings"
-msgstr "Tipkovne povezave"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:36 c.lang:38 fortran.lang:42 objj.lang:39
-msgid "Included File"
-msgstr "Dodana datoteka"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:43 c.lang:48 d.lang:50 dtl.lang:43 go.lang:45 nemerle.lang:45
-#: ooc.lang:45 php.lang:55
-msgid "Octal number"
-msgstr "Osmiško število"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:46
-msgid "Swizzle operator"
-msgstr "Operator Swizzle"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:48 erlang.lang:40 imagej.lang:32 matlab.lang:42 maxima.lang:35
-#: modelica.lang:46 octave.lang:49 ruby.lang:48
-msgid "Builtin"
-msgstr "Vgrajeno"
-
-#. (itstool) path: changelog.lang/language@_name
-#: changelog.lang:24
-msgid "ChangeLog"
-msgstr "Dnevnik sprememb"
 
 #. (itstool) path: changelog.lang/language@_section
 #. (itstool) path: cmake.lang/language@_section
@@ -681,7 +164,9 @@ msgstr "Dnevnik sprememb"
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
 #. (itstool) path: json.lang/language@_section
+#. (itstool) path: less.lang/language@_section
 #. (itstool) path: libtool.lang/language@_section
+#. (itstool) path: logcat.lang/language@_section
 #. (itstool) path: nsis.lang/language@_section
 #. (itstool) path: ocl.lang/language@_section
 #. (itstool) path: pkgconfig.lang/language@_section
@@ -689,566 +174,38 @@ msgstr "Dnevnik sprememb"
 #. (itstool) path: protobuf.lang/language@_section
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
-#. (itstool) path: styles/style@_name
+#. (itstool) path: scss.lang/language@_section
+#. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
-#: changelog.lang:24 cmake.lang:23 css.lang:38 csv.lang:23 desktop.lang:24
+#: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 gdb-log.lang:18 gtkrc.lang:24
-#: ini.lang:22 json.lang:29 libtool.lang:23 nsis.lang:23 ocl.lang:32
-#: pkgconfig.lang:23 po.lang:23 protobuf.lang:21 puppet.lang:23 rpmspec.lang:23
-#: scala.lang:48 yacc.lang:23 yaml.lang:21
+#: ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23 logcat.lang:23
+#: nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21
+#: puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23 yacc.lang:23
+#: yaml.lang:21
 msgid "Other"
 msgstr "Ostalo"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:32 rpmspec.lang:42
-msgid "Date"
-msgstr "Datum"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:34
-msgid "Name"
-msgstr "Ime"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:35
-msgid "E-mail address"
-msgstr "Elektronski naslov"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:36
-msgid "File"
-msgstr "Datoteka"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:37 rst.lang:33
-msgid "Bullet"
-msgstr "Vrstična oznaka"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:39
-msgid "Release"
-msgstr "Objava"
 
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:24
 msgid "C/ObjC Header"
 msgstr "Glava C/ObjC"
 
-#. (itstool) path: c.lang/language@_name
-#: c.lang:24
-msgid "C"
-msgstr "C"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:37 cpp.lang:36 objc.lang:35 opal.lang:34
-msgid "Common Defines"
-msgstr "Običajna določila"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:44 genie.lang:46 go.lang:40 verilog.lang:35
-msgid "printf Conversion"
-msgstr "printf pretvorba"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:51
-msgid "Standard stream"
-msgstr "Običajni pretok"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:52
-msgid "Signal name"
-msgstr "Ime signala"
-
-#. (itstool) path: cmake.lang/language@_name
-#: cmake.lang:23
-msgid "CMake"
-msgstr "CMake"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:30 meson.lang:31
-msgid "Builtin Command"
-msgstr "Vgrajen ukaz"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:31
-msgid "Deprecated Builtin Command"
-msgstr "Opuščen vgrajeni ukaz"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:32 glsl.lang:45
-msgid "Builtin Variable"
-msgstr "Vgrajena spremenljivka"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:35
-msgid "Control Keyword"
-msgstr "Nadzorna beseda"
-
-#. (itstool) path: cobol.lang/language@_name
-#: cobol.lang:26
-msgid "COBOL"
-msgstr "Cobol"
-
-#. (itstool) path: styles/style@_name
-#: cobol.lang:35 def.lang:87 protobuf.lang:32
-msgid "Statement"
-msgstr "Izjava"
-
 #. (itstool) path: cpphdr.lang/language@_name
 #: cpphdr.lang:24
 msgid "C++ Header"
 msgstr "Glava C++"
-
-#. (itstool) path: cpp.lang/language@_name
-#: cpp.lang:24
-msgid "C++"
-msgstr "C++"
-
-#. (itstool) path: csharp.lang/language@_name
-#: csharp.lang:26
-msgid "C#"
-msgstr "C#"
-
-#. (itstool) path: styles/style@_name
-#: csharp.lang:43 po.lang:36
-msgid "String Format"
-msgstr "Zapis niti"
-
-#. (itstool) path: css.lang/language@_name
-#: css.lang:38
-msgid "CSS"
-msgstr "CSS"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:48
-msgid "Others 2"
-msgstr "Drugo 2"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:50
-msgid "Color"
-msgstr "Barva"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:51
-msgid "Others 3"
-msgstr "Drugo 3"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:54 fcl.lang:34 fortran.lang:38 gap.lang:35 gtkrc.lang:35
-#: haskell.lang:42 ini.lang:34 json.lang:42 modelica.lang:42 pascal.lang:35
-#: sml.lang:38 sql.lang:36
-msgid "Decimal"
-msgstr "Desetiško"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:55
-msgid "Dimension"
-msgstr "Mere"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:56
-msgid "Property Value"
-msgstr "Vrednosti lastnosti"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:57
-msgid "at-rules"
-msgstr "at-pravila"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:59
-msgid "ID Selector"
-msgstr "Izbirnik ID"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:60
-msgid "Class Selector"
-msgstr "Izbirnik razredov"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:61
-msgid "Tag Name Selector"
-msgstr "Izbirnik imena oznake"
-
-#. (itstool) path: csv.lang/language@_name
-#: csv.lang:23
-msgid "CSV"
-msgstr "CSV"
-
-#. (itstool) path: styles/style@_name
-#: csv.lang:31
-msgid "Escaped character"
-msgstr "Ubežni znaki"
-
-#. (itstool) path: cuda.lang/language@_name
-#: cuda.lang:22
-msgid "CUDA"
-msgstr "CUDA"
-
-#. (itstool) path: styles/style@_name
-#: cuda.lang:34
-msgid "Global Functions"
-msgstr "Splošne funkcije"
-
-#. (itstool) path: styles/style@_name
-#: cuda.lang:35
-msgid "Device Functions"
-msgstr "Funkcije naprave"
-
-#. (itstool) path: styles/style@_name
-#: cuda.lang:36
-msgid "Global Variables"
-msgstr "Splošne spremenljivke"
-
-#. (itstool) path: def.lang/language@_name
-#: def.lang:24
-msgid "Defaults"
-msgstr "Privzeto"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:41
-msgid "Shebang"
-msgstr "Shebang"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:44
-msgid "Documentation comment"
-msgstr "Opomba dokumentacije"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:48
-msgid "Documentation comment element"
-msgstr "Predmet opombe dokumentacije"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:60
-msgid "Special character (inside a string)"
-msgstr "Poseben znak (znotraj niza)"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:68 python3.lang:41 python.lang:46 ruby.lang:43
-msgid "Base-N number"
-msgstr "Število z osnovo N"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:70 python3.lang:42 python.lang:47
-msgid "Complex number"
-msgstr "Kompleksno število"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:83
-msgid "Built-in identifier"
-msgstr "Vgrajeno določilo"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:95 modelica.lang:39 octave.lang:43
-msgid "Data type"
-msgstr "Podatkovna vrsta"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:99
-msgid "Preprocessor directive"
-msgstr "Določilo predprocesorja"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:103
-msgid "Warning"
-msgstr "Opozorilo"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:105
-msgid "Reserved keyword"
-msgstr "Zadržana beseda"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:107
-msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr "Opomba (PopraviMe, Naloge, XXX, etc.)"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:109
-msgid "Underlined"
-msgstr "Podčrtano"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:111
-msgid "Heading 0"
-msgstr "Naslov 0"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:112
-msgid "Heading 1"
-msgstr "Naslov 1"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:113
-msgid "Heading 2"
-msgstr "Naslov 2"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:114
-msgid "Heading 3"
-msgstr "Naslov 3"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:115
-msgid "Heading 4"
-msgstr "Naslov 4"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:116
-msgid "Heading 5"
-msgstr "Naslov 5"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:117
-msgid "Heading 6"
-msgstr "Naslov 6"
-
-# TO je ime datoteke.
-#. (itstool) path: desktop.lang/language@_name
-#: desktop.lang:24
-msgid ".desktop"
-msgstr ".desktop"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:32
-msgid "Group"
-msgstr "Skupina"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:35 json.lang:36
-msgid "Key"
-msgstr "Ključ"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:36
-msgid "Translation"
-msgstr "Prevod"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:39
-msgid "Exec parameter"
-msgstr "Parameter Exec"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:40
-msgid "Encoding"
-msgstr "Šifriranje"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:41
-msgid "Main Category"
-msgstr "Glavna kategorija"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:42
-msgid "Additional Category"
-msgstr "Dodatna kategorija"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:43
-msgid "Reserved Category"
-msgstr "Rezervirana kategorija"
-
-#. (itstool) path: diff.lang/language@_name
-#: diff.lang:23
-msgid "Diff"
-msgstr "Primerjava"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:30
-msgid "Added line"
-msgstr "Dodana vrstica"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:31
-msgid "Removed line"
-msgstr "Odstranjena vrstica"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:32
-msgid "Changed line"
-msgstr "Spremenjena vrstica"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:33
-msgid "Special case"
-msgstr "Posebna velikost"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:34 po.lang:32
-msgid "Location"
-msgstr "Mesto"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:35
-msgid "Ignore"
-msgstr "Prezri"
-
-#. (itstool) path: d.lang/language@_name
-#: d.lang:29
-msgid "D"
-msgstr "D"
-
-#. (itstool) path: styles/style@_name
-#: d.lang:44
-msgid "Special Token"
-msgstr "Posebni žetoni"
-
-#. (itstool) path: docbook.lang/language@_name
-#: docbook.lang:23
-msgid "DocBook"
-msgstr "DocBook"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:32
-msgid "Header Elements"
-msgstr "Predmeti glave"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:33
-msgid "Formatting Elements"
-msgstr "Oblikovni predmeti"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:34
-msgid "GUI Elements"
-msgstr "Predmeti grafičnega vmesnika"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:35
-msgid "Structural Elements"
-msgstr "Strukturni predmeti"
 
 #. (itstool) path: dosbatch.lang/language@_name
 #: dosbatch.lang:23
 msgid "DOS Batch"
 msgstr "Paketni ukazi DOS"
 
-#. (itstool) path: styles/style@_name
-#: dosbatch.lang:33 latex.lang:38 latex.lang:39 sweave.lang:32
-msgid "Command"
-msgstr "Ukaz"
-
-#. (itstool) path: dot.lang/language@_name
-#: dot.lang:23
-msgid "Graphviz Dot"
-msgstr "Graphviz Dot"
-
-#. (itstool) path: styles/style@_name
-#: dot.lang:36 jade.lang:35 xml.lang:39
-msgid "Attribute name"
-msgstr "Ime atributa"
-
-#. (itstool) path: dpatch.lang/language@_name
-#: dpatch.lang:23
-msgid "DPatch"
-msgstr "DPatch"
-
-#. (itstool) path: styles/style@_name
-#: dpatch.lang:30
-msgid "Patch Start"
-msgstr "Začetek popravka"
-
-#. (itstool) path: dtd.lang/language@_name
-#. (itstool) path: styles/style@_name
-#: dtd.lang:23 html.lang:37
-msgid "DTD"
-msgstr "DTD"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:32
-msgid "entity"
-msgstr "entiteta"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:33
-msgid "decl"
-msgstr "decl"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:34
-msgid "error"
-msgstr "napaka"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:35
-msgid "Quoted Value"
-msgstr "Navedena vrednost"
-
 #. (itstool) path: dtl.lang/language@_name
 #: dtl.lang:25
 msgid "Django Template"
 msgstr "Predloga Django"
-
-#. (itstool) path: eiffel.lang/language@_name
-#: eiffel.lang:23
-msgid "Eiffel"
-msgstr "Eiffel"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:34
-msgid "Debug"
-msgstr "Razhroščevanje"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:35
-msgid "Assertion"
-msgstr "Napoved"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:38
-msgid "Design by Contract"
-msgstr "Oblikovanje po pogodbi"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:39
-msgid "Exception Handling"
-msgstr "Upravljanje z izjemami"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:40 ruby.lang:52
-msgid "Predefined Variable"
-msgstr "Predhodno določena spremenljivka"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:42
-msgid "Void Value"
-msgstr "Nična vrednost"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:43 javascript.lang:39 json.lang:40
-msgid "Boolean Value"
-msgstr "Boolova vrednost"
-
-#. (itstool) path: erlang.lang/language@_name
-#: erlang.lang:23
-msgid "Erlang"
-msgstr "Erlang"
-
-#. (itstool) path: styles/style@_name
-#: erlang.lang:34
-msgid "Atom"
-msgstr "Atom"
-
-#. (itstool) path: styles/style@_name
-#: erlang.lang:39 fsharp.lang:34 modelica.lang:44 ocaml.lang:37 sml.lang:37
-#: verilog.lang:44 vhdl.lang:37
-msgid "Base-N Integer"
-msgstr "Številka Base-N"
-
-#. (itstool) path: styles/style@_name
-#: erlang.lang:41 forth.lang:41 systemverilog.lang:30 verilog.lang:38
-msgid "Compiler Directive"
-msgstr "Direktiva prevajalnika"
-
-#. (itstool) path: fcl.lang/language@_name
-#: fcl.lang:23
-msgid "FCL"
-msgstr "FCL"
 
 #. (itstool) path: fcl.lang/language@_section
 #. (itstool) path: gap.lang/language@_section
@@ -1267,1856 +224,102 @@ msgstr "FCL"
 msgid "Scientific"
 msgstr "Znanstveno"
 
-#. (itstool) path: styles/style@_name
-#: fcl.lang:31 fortran.lang:34 ini.lang:31 modelica.lang:43 scilab.lang:31
-#: sql.lang:32
-msgid "Floating Point"
-msgstr "Plavajoča vejica"
-
-#. (itstool) path: styles/style@_name
-#: fcl.lang:33
-msgid "Block"
-msgstr "Blok"
-
-#. (itstool) path: styles/style@_name
-#: fcl.lang:35 octave.lang:48 scilab.lang:36
-msgid "Reserved Constant"
-msgstr "Zadržana konstanta"
-
-#. (itstool) path: forth.lang/language@_name
-#: forth.lang:23
-msgid "Forth"
-msgstr "Forth"
-
-#. (itstool) path: styles/style@_name
-#: forth.lang:39
-msgid "Debug Code"
-msgstr "Koda razhroščevanja"
-
-#. (itstool) path: styles/style@_name
-#: forth.lang:40
-msgid "Error Text"
-msgstr "Besedilo napake"
-
-#. (itstool) path: fortran.lang/language@_name
-#: fortran.lang:24
-msgid "Fortran 95"
-msgstr "Fortran 95"
-
-#. (itstool) path: styles/style@_name
-#: fortran.lang:36
-msgid "Intrinsic function"
-msgstr "Notranje funkcije"
-
-#. (itstool) path: styles/style@_name
-#: fortran.lang:37
-msgid "BOZ Literal"
-msgstr "BOZ Literal"
-
-#. (itstool) path: styles/style@_name
-#: fortran.lang:41
-msgid "OpenMP directives"
-msgstr "Direktive OpenMP"
-
-#. (itstool) path: fsharp.lang/language@_name
-#: fsharp.lang:24
-msgid "F#"
-msgstr "F#"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:35 ocaml.lang:38 sml.lang:40
-msgid "Floating Point number"
-msgstr "Število s plavajočo vejico"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:39 ocaml.lang:42
-msgid "Type, module or object keyword"
-msgstr "Ključna beseda vrste, modula ali predmeta"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:40 ocaml.lang:43
-msgid "Builtin-function keyword"
-msgstr "Vgrajene ključne besede funkcije"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:42 ocaml.lang:45
-msgid "Labeled argument"
-msgstr "Označen argument"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:43 ocaml.lang:46
-msgid "Polymorphic Variant"
-msgstr "Polimorfna različica"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:44 ocaml.lang:47
-msgid "Variant Constructor"
-msgstr "Izgradnja različic"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:46 ocaml.lang:48
-msgid "Type Variable"
-msgstr "Vrsta spremenljivke"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:47 ocaml.lang:49
-msgid "Module Path"
-msgstr "Pot modula"
-
-#. (itstool) path: gap.lang/language@_name
-#: gap.lang:23
-msgid "GAP"
-msgstr "GAP"
-
 #. (itstool) path: gdb-log.lang/language@_name
 #: gdb-log.lang:18
 msgid "GDB Log"
 msgstr "Dnevnik GDB"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:24
-msgid "Thread Action"
-msgstr "Dejanje niti"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:25
-msgid "Thread Header"
-msgstr "Glava niti"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:26
-msgid "Frame Number"
-msgstr "Število sličic"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:27
-msgid "Address"
-msgstr "Naslov"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:30
-msgid "Filename"
-msgstr "Ime datoteke"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:31
-msgid "Optimized Out"
-msgstr "Optimiziran izhod"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:32
-msgid "Incomplete Sequence"
-msgstr "Nepopolno zaporedje"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:33
-msgid "Prompt"
-msgstr "Pozovi"
-
-#. (itstool) path: genie.lang/language@_name
-#: genie.lang:23
-msgid "Genie"
-msgstr "Genie"
 
 #. (itstool) path: glsl.lang/language@_name
 #: glsl.lang:30
 msgid "OpenGL Shading Language"
 msgstr "OpenGL senčilni jezik"
 
-#. (itstool) path: styles/style@_name
-#: glsl.lang:44 go.lang:48 python3.lang:43 python.lang:48
-msgid "Builtin Constant"
-msgstr "Vgrajena konstanta"
-
-#. (itstool) path: styles/style@_name
-#: glsl.lang:46
-msgid "Reserved Keywords"
-msgstr "Zadržane ključne besede"
-
-#. (itstool) path: go.lang/language@_name
-#: go.lang:24
-msgid "Go"
-msgstr "Pojdi"
-
-#. (itstool) path: styles/style@_name
-#: go.lang:43
-msgid "Imaginary number"
-msgstr "Imaginarno število"
-
-#. (itstool) path: gtk-doc.lang/language@_name
-#: gtk-doc.lang:24
-msgid "gtk-doc"
-msgstr "gtk-doc"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:26
-msgid "Inline Documentation Section"
-msgstr "Medvrstični odsek dokumentacije"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:27 python.lang:51
-msgid "Function Name"
-msgstr "Ime funkcije"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:28
-msgid "Signal Name"
-msgstr "Ime signala"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:29
-msgid "Property Name"
-msgstr "Ime lastnosti"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:30
-msgid "Parameter"
-msgstr "Parameter"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:34
-msgid "Return"
-msgstr "Vrni"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:35
-msgid "Since"
-msgstr "Od"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:36
-msgid "Deprecated"
-msgstr "Opuščeno"
-
-#. (itstool) path: gtkrc.lang/language@_name
-#: gtkrc.lang:24
-msgid "GtkRC"
-msgstr "GtkRC"
-
-#. (itstool) path: styles/style@_name
-#: gtkrc.lang:37
-msgid "Widget State"
-msgstr "Stanje gradnika"
-
-#. (itstool) path: styles/style@_name
-#: gtkrc.lang:38
-msgid "Include directive"
-msgstr "Vključi direktivo"
-
-#. (itstool) path: haddock.lang/language@_name
-#: haddock.lang:23
-msgid "Haddock"
-msgstr "Haddock"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:26
-msgid "Inline Haddock Section"
-msgstr "Medvrstični odsek Haddock"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:27
-msgid "Haddock Directive"
-msgstr "Direktiva Haddock"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:28
-msgid "Hyperlinked Identifier"
-msgstr "Določilnik hiperpovezave"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:29
-msgid "Hyperlinked Module Name"
-msgstr "Ime hiperpovezanega modula"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:30
-msgid "Escape"
-msgstr "Ubežni znak"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:31 markdown.lang:44 rst.lang:31
-msgid "Emphasis"
-msgstr "Poudarek"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:32
-msgid "Monospace"
-msgstr "Monospace"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:33
-msgid "Code Block"
-msgstr "Enota kode"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:34
-msgid "Header Property"
-msgstr "Lastnost glave"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:35
-msgid "Itemized list"
-msgstr "Opredmeten seznam"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:36
-msgid "Enumerated list"
-msgstr "Oštevilčen seznam"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:37
-msgid "Definition list"
-msgstr "Seznam definicij"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:38 markdown.lang:39 mediawiki.lang:32
-msgid "URL"
-msgstr "Naslov URL"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:39 t2t.lang:40 yaml.lang:32
-msgid "Anchor"
-msgstr "Sidro"
-
-#. (itstool) path: haskell.lang/language@_name
-#: haskell.lang:24
-msgid "Haskell"
-msgstr "Haskell"
-
-#. (itstool) path: styles/style@_name
-#: haskell.lang:35 ruby.lang:50
-msgid "Symbol"
-msgstr "Simbol"
-
-#. (itstool) path: styles/style@_name
-#: haskell.lang:43
-msgid "Octal"
-msgstr "Osmiško"
-
-#. (itstool) path: styles/style@_name
-#: haskell.lang:44
-msgid "Hex"
-msgstr "Šestnajstiško"
-
-#. (itstool) path: haskell-literate.lang/language@_name
-#: haskell-literate.lang:23
-msgid "Literate Haskell"
-msgstr "Haskell območje"
-
-#. (itstool) path: haxe.lang/language@_name
-#: haxe.lang:34
-msgid "Haxe"
-msgstr "Haxe"
-
-#. (itstool) path: styles/style@_name
-#: haxe.lang:52 rust.lang:53
-msgid "Scope"
-msgstr "Scope"
-
-#. (itstool) path: styles/style@_name
-#: haxe.lang:59
-msgid "Metadata"
-msgstr "Metapodatki"
-
-#. (itstool) path: styles/style@_name
-#: haxe.lang:60 julia.lang:44 rust.lang:55
-msgid "Macro"
-msgstr "Makro"
-
-#. (itstool) path: styles/style@_name
-#: haxe.lang:63
-msgid "Identifier Prefix"
-msgstr "Predpona določilnika"
-
-#. (itstool) path: html.lang/language@_name
-#: html.lang:24
-msgid "HTML"
-msgstr "HTML"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:34 xml.lang:42 yaml.lang:33
-msgid "Tag"
-msgstr "Oznaka"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:35
-msgid "Attribute Name"
-msgstr "Ime atributa"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:36 markdown.lang:42
-msgid "Attribute Value"
-msgstr "Vrednost atributa"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:39
-msgid "Page title"
-msgstr "Naziv strani"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:40
-msgid "Heading level 1"
-msgstr "Naslov (1 raven)"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:41
-msgid "Heading level 2"
-msgstr "Naslov (2 raven)"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:42
-msgid "Heading level 3"
-msgstr "Naslov (3 raven)"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:43
-msgid "Heading level 4"
-msgstr "Naslov (4 raven)"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:44
-msgid "Heading level 5"
-msgstr "Naslov (5 raven)"
-
-#. (itstool) path: idl-exelis.lang/language@_name
-#: idl-exelis.lang:20
-msgid "IDL-Exelis"
-msgstr "IDL-Exelis"
-
-#. (itstool) path: idl.lang/language@_name
-#: idl.lang:23
-msgid "IDL"
-msgstr "IDL"
-
-#. (itstool) path: imagej.lang/language@_name
-#: imagej.lang:23
-msgid "ImageJ"
-msgstr "SlikaJ"
-
-#. (itstool) path: styles/style@_name
-#: imagej.lang:34
-msgid "Commands"
-msgstr "Ukazi"
-
-#. (itstool) path: styles/style@_name
-#: imagej.lang:35 octave.lang:44
-msgid "Storage Type"
-msgstr "Vrsta hrambe"
-
-#. (itstool) path: ini.lang/language@_name
-#: ini.lang:22
-msgid ".ini"
-msgstr ".ini"
-
-#. (itstool) path: jade.lang/language@_name
-#: jade.lang:24
-msgid "Jade"
-msgstr "Jade"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:32 xml.lang:35
-msgid "DOCTYPE"
-msgstr "DOCTYPE"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:33 xml.lang:37
-msgid "Processing instruction"
-msgstr "Navodila obdelave"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:34 mxml.lang:31 xml.lang:38
-msgid "Element name"
-msgstr "Ime predmeta"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:36 xml.lang:40
-msgid "Attribute value"
-msgstr "Vrednost atributa"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:37
-msgid "Tags"
-msgstr "Tags"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:38 xml.lang:41
-msgid "Entity"
-msgstr "Entiteta"
-
-#. (itstool) path: java.lang/language@_name
-#: java.lang:24
-msgid "Java"
-msgstr "Java"
-
-#. (itstool) path: javascript.lang/language@_name
-#: javascript.lang:26
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:38
-msgid "Undefined Value"
-msgstr "Nedoločena vrednost"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:43
-msgid "Properties"
-msgstr "Lastnosti"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:44
-msgid "Constructors"
-msgstr "Konstruktorji"
-
-#. (itstool) path: j.lang/language@_name
-#: j.lang:23
-msgid "J"
-msgstr "J"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:30
-msgid "Adverb"
-msgstr "Pridevnik"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:32
-msgid "Conjunction"
-msgstr "Konjunkcija"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:33 perl.lang:45
-msgid "Control"
-msgstr "Nadzor"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:35
-msgid "Explicit Argument"
-msgstr "Izrecni argument"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:36
-msgid "Global"
-msgstr "Splošno"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:37
-msgid "Lab Text"
-msgstr "Besedilo"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:38
-msgid "Local"
-msgstr "Krajevno"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:39
-msgid "Noun"
-msgstr "Samostalnik"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:40
-msgid "Explicit Noun Definition"
-msgstr "Izrecno določilo samostalnika"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:42
-msgid "Parens"
-msgstr "Parens"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:43
-msgid "Primitive"
-msgstr "Praštevilo"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:45
-msgid "Verb"
-msgstr "Glagol"
-
-#. (itstool) path: julia.lang/language@_name
-#: julia.lang:23
-msgid "Julia"
-msgstr "Julia"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:40
-msgid "Math Constant"
-msgstr "Matematična konstanta"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:41 R.lang:37 scala.lang:43 swift.lang:46
-msgid "Special Constant"
-msgstr "Posebna konstanta"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:45
-msgid "External Command"
-msgstr "Zunanji ukaz"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:46
-msgid "Built-in Function"
-msgstr "Vgrajena funkcija"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:47
-msgid "Module"
-msgstr "Modul"
-
-#. (itstool) path: latex.lang/language@_name
-#: latex.lang:24
-msgid "LaTeX"
-msgstr "LaTeX"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:33 latex.lang:35
-msgid "Math Mode"
-msgstr "Matematični način"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:34
-msgid "Inline Math Mode"
-msgstr "Medvrstični matematični način"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:36
-msgid "Math Boundary"
-msgstr "Matematični način"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:37 texinfo.lang:40
-msgid "Include"
-msgstr "Vključi"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:40 sweave.lang:33 t2t.lang:43
-msgid "Verbatim"
-msgstr "Verbatim"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:41
-msgid "Special Character"
-msgstr "Posebni znak"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:42
-msgid "Part Heading"
-msgstr "Delni naslov"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:43
-msgid "Chapter Heading"
-msgstr "Naslov poglavja"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:44
-msgid "Section Heading"
-msgstr "Naslov razdelka"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:45
-msgid "SubSection Heading"
-msgstr "Naslov podrejenega razdelka"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:46
-msgid "SubSubSection Heading"
-msgstr "Naslov pod-podrejenega razdelka"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:47
-msgid "Paragraph Heading"
-msgstr "Naslov odstavka"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:48
-msgid "SubParagraph Heading"
-msgstr "Naslov podrejenega odstavka"
-
-#. (itstool) path: lex.lang/language@_name
-#: lex.lang:24
-msgid "Lex"
-msgstr "Lex"
-
-#. (itstool) path: styles/style@_name
-#: lex.lang:33
-msgid "Token"
-msgstr "Žeton"
-
-#. (itstool) path: styles/style@_name
-#: lex.lang:36
-msgid "Expression"
-msgstr "Izraz"
-
-#. (itstool) path: libtool.lang/language@_name
-#: libtool.lang:23
-msgid "libtool"
-msgstr "libtool"
-
 #. (itstool) path: llvm.lang/language@_name
 #: llvm.lang:22
 msgid "LLVM IR"
 msgstr "LLVM IR"
-
-#. (itstool) path: styles/style@_name
-#: llvm.lang:33
-msgid "Constants"
-msgstr "Konstante"
-
-#. (itstool) path: lua.lang/language@_name
-#: lua.lang:23
-msgid "Lua"
-msgstr "Lua"
-
-#. (itstool) path: styles/style@_name
-#: lua.lang:37
-msgid "Reserved Identifier"
-msgstr "Zadržan določilnik"
-
-#. (itstool) path: styles/style@_name
-#: lua.lang:38 markdown.lang:41
-msgid "Label"
-msgstr "Oznaka"
-
-#. (itstool) path: styles/style@_name
-#: lua.lang:40 ruby.lang:39
-msgid "Nil Constant"
-msgstr "Nična konstanta"
-
-#. (itstool) path: m4.lang/language@_name
-#: m4.lang:23
-msgid "m4"
-msgstr "m4"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:31
-msgid "m4 Comment"
-msgstr "Opomba m4"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:32
-msgid "m4 Macro"
-msgstr "m4 makro"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:33
-msgid "Autoconf Macro"
-msgstr "Autoconf makro"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:34
-msgid "Obsolete Autoconf Macro"
-msgstr "Zastarel autoconf makro"
-
-#. (itstool) path: makefile.lang/language@_name
-#: makefile.lang:22
-msgid "Makefile"
-msgstr "Makefile"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:31
-msgid "Assignment Right Hand Side"
-msgstr "Dodelitev desnoročne strani"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:32
-msgid "Assignment Left Hand Side"
-msgstr "Dodelitev levoročne strani"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:33
-msgid "targets"
-msgstr "cilji"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:34
-msgid "prereq"
-msgstr "zahteva"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:35
-msgid "command"
-msgstr "ukaz"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:38
-msgid "Trailing Tab"
-msgstr "Sledilni zavihek"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:39
-msgid "function"
-msgstr "funkcija"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:40 yacc.lang:34
-msgid "keyword"
-msgstr "ključna beseda"
-
-#. (itstool) path: mallard.lang/language@_name
-#: mallard.lang:22
-msgid "Mallard"
-msgstr "Mallard"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:31
-msgid "Page Elements"
-msgstr "Predmeti strani"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:32
-msgid "Section Elements"
-msgstr "Predmeti odseka"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:33
-msgid "Block Elements"
-msgstr "Bločni predmeti"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:34
-msgid "Inline Elements"
-msgstr "Medvrstični predmeti"
-
-#. (itstool) path: markdown.lang/language@_name
-#: markdown.lang:25
-msgid "Markdown"
-msgstr "Markdown"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:34 rpmspec.lang:32 rst.lang:30 t2t.lang:33
-msgid "Header"
-msgstr "Glava"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:35
-msgid "Horizontal Rule"
-msgstr "Vodoravna črta"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:36
-msgid "List Marker"
-msgstr "Oznaka seznama"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:37 rst.lang:38
-msgid "Code"
-msgstr "Koda"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:38
-msgid "Blockquote Marker"
-msgstr "Oznaka bločnega navedka"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:40
-msgid "Link Text"
-msgstr "Besedilo povezave"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:43
-msgid "Image Marker"
-msgstr "Oznaka slike"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:45 mediawiki.lang:29 rst.lang:32
-msgid "Strong Emphasis"
-msgstr "Močan poudarek"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:46
-msgid "Backslash Escape"
-msgstr "Ubežni znak leve poševnice"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:47
-msgid "Line Break"
-msgstr "Prelom vrstice"
-
-#. (itstool) path: matlab.lang/language@_name
-#: matlab.lang:25
-msgid "Matlab"
-msgstr "Matlab"
-
-#. (itstool) path: maxima.lang/language@_name
-#: maxima.lang:24
-msgid "Maxima"
-msgstr "Maxima"
-
-#. (itstool) path: mediawiki.lang/language@_name
-#: mediawiki.lang:22
-msgid "MediaWiki"
-msgstr "MediaWiki"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:30
-msgid "Light Emphasis"
-msgstr "Nežen poudarek"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:31
-msgid "Signature"
-msgstr "Podpis"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:33 rst.lang:36
-msgid "Link"
-msgstr "Povezava"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:34
-msgid "Symbol on a Link"
-msgstr "Simbol na povezavi"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:35
-msgid "Line"
-msgstr "Črta"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:36
-msgid "List"
-msgstr "Seznam"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:37
-msgid "Magic Word"
-msgstr "Čarobna beseda"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:38
-msgid "Symbol of a Table"
-msgstr "Simbol razpredelnice"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:39
-msgid "Preformatted"
-msgstr "_Predoblikovano"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:40
-msgid "Redirect"
-msgstr "Preusmeritev"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:41
-msgid "Title"
-msgstr "Naslov"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:42
-msgid "Template"
-msgstr "Template"
-
-#. (itstool) path: meson.lang/language@_name
-#: meson.lang:23
-msgid "Meson"
-msgstr "Meson"
-
-#. (itstool) path: modelica.lang/language@_name
-#: modelica.lang:25
-msgid "Modelica"
-msgstr "Modelica"
-
-#. (itstool) path: styles/style@_name
-#: modelica.lang:38
-msgid "Class type"
-msgstr "Vrsta razreda"
-
-#. (itstool) path: styles/style@_name
-#: modelica.lang:40
-msgid "Default Attribute"
-msgstr "Privzeti atribut"
-
-#. (itstool) path: mxml.lang/language@_name
-#: mxml.lang:23
-msgid "MXML"
-msgstr "MXML"
-
-#. (itstool) path: styles/style@_name
-#: mxml.lang:32 xml.lang:36
-msgid "CDATA delimiter"
-msgstr "CDATA ločevalo"
-
-#. (itstool) path: nemerle.lang/language@_name
-#: nemerle.lang:23
-msgid "Nemerle"
-msgstr "Nemerle"
-
-#. (itstool) path: netrexx.lang/language@_name
-#: netrexx.lang:23
-msgid "NetRexx"
-msgstr "NetRexx"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:38
-msgid "Externals"
-msgstr "Zunanji predmeti"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:39
-msgid "Options"
-msgstr "Možnosti"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:40
-msgid "Data Types"
-msgstr "Podatkovne vrste"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:41
-msgid "Special"
-msgstr "Posebno"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:42
-msgid "Visibility"
-msgstr "Vidnost"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:43
-msgid "Modifiers"
-msgstr "Spremenilniki"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:44
-msgid "Keywords"
-msgstr "Ključne besede"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:45
-msgid "Sub Keywords"
-msgstr "Podrejene ključne besede"
-
-#. (itstool) path: nsis.lang/language@_name
-#: nsis.lang:23
-msgid "NSIS"
-msgstr "NSIS"
-
-#. (itstool) path: objc.lang/language@_name
-#: objc.lang:23
-msgid "Objective-C"
-msgstr "Predmetni-C"
-
-#. (itstool) path: objj.lang/language@_name
-#: objj.lang:25
-msgid "Objective-J"
-msgstr "Predmetni-J"
-
-#. (itstool) path: ocaml.lang/language@_name
-#: ocaml.lang:26
-msgid "OCaml"
-msgstr "OCaml"
-
-#. (itstool) path: styles/style@_name
-#: ocaml.lang:36
-msgid "Ocamldoc Comments"
-msgstr "Opomba Ocamldoc"
-
-#. (itstool) path: styles/style@_name
-#: ocaml.lang:53
-msgid "Standard Modules"
-msgstr "Standardni moduli"
-
-#. (itstool) path: ocl.lang/language@_name
-#: ocl.lang:32
-msgid "OCL"
-msgstr "OCL"
-
-#. (itstool) path: styles/style@_name
-#: ocl.lang:43
-msgid "Type Operators"
-msgstr "Vrstni operatorji"
-
-#. (itstool) path: styles/style@_name
-#: ocl.lang:45
-msgid "Operation operator"
-msgstr "Operator opravila"
-
-#. (itstool) path: octave.lang/language@_name
-#: octave.lang:25
-msgid "Octave"
-msgstr "Octave"
-
-#. (itstool) path: styles/style@_name
-#: octave.lang:46
-msgid "Package Manager"
-msgstr "Upravljalnik paketov"
-
-#. (itstool) path: ooc.lang/language@_name
-#: ooc.lang:23
-msgid "OOC"
-msgstr "OOC"
-
-#. (itstool) path: opal.lang/language@_name
-#: opal.lang:23
-msgid "Opal"
-msgstr "Opal"
-
-#. (itstool) path: styles/style@_name
-#: opal.lang:32 python3.lang:31 python.lang:35
-msgid "Module Handler"
-msgstr "Ročnik modulov"
-
-#. (itstool) path: styles/style@_name
-#: opal.lang:41
-msgid "Keysymbol"
-msgstr "Simbol tipke"
-
-#. (itstool) path: opencl.lang/language@_name
-#: opencl.lang:23
-msgid "OpenCL"
-msgstr "OpenCL"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:34
-msgid "Global Function"
-msgstr "Splošna funkcija"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:35
-msgid "Device Function"
-msgstr "Funkcija naprave"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:36
-msgid "Device Cast"
-msgstr "Oddajanje naprave"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:37
-msgid "OpenCL Constant"
-msgstr "Konstanta OpenCL"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:38
-msgid "Global Variable"
-msgstr "Splošna spremenljivka"
-
-#. (itstool) path: pascal.lang/language@_name
-#: pascal.lang:24
-msgid "Pascal"
-msgstr "Pascal"
-
-#. (itstool) path: perl.lang/language@_name
-#: perl.lang:25
-msgid "Perl"
-msgstr "Perl"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:34
-msgid "Line Directive"
-msgstr "Direktiva vrstice"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:35
-msgid "Include Statement"
-msgstr "Dodaj stavek"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:39 php.lang:45 ruby.lang:54
-msgid "Heredoc"
-msgstr "Heredoc"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:40 php.lang:46 ruby.lang:55 sh.lang:40
-msgid "Heredoc Bound"
-msgstr "Vez Heredoc"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:41
-msgid "System Command"
-msgstr "Sistemski ukaz"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:44
-msgid "File Descriptor"
-msgstr "Opisnik datoteke"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:48
-msgid "POD"
-msgstr "POD"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:49
-msgid "POD Escape"
-msgstr "POD Izhod"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:50
-msgid "POD keyword"
-msgstr "POD ključna beseda"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:51
-msgid "POD heading"
-msgstr "POD glava"
-
-#. (itstool) path: php.lang/language@_name
-#: php.lang:28
-msgid "PHP"
-msgstr "PHP"
-
-#. (itstool) path: styles/style@_name
-#: php.lang:38
-msgid "Preprocessor tags"
-msgstr "Oznake predprocesorja"
-
-#. (itstool) path: styles/style@_name
-#: php.lang:48
-msgid "Common Function"
-msgstr "Pogosta zmožnost"
-
-#. (itstool) path: pig.lang/language@_name
-#: pig.lang:26
-msgid "Pig"
-msgstr "Pig"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:36
-msgid "Reserved Words"
-msgstr "Rezervirane besede"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:37
-msgid "Built In Functions"
-msgstr "Vgrajene funkcije"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:38
-msgid "Boolean values"
-msgstr "Logične vrednosti"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:39 yaml.lang:37
-msgid "Null"
-msgstr "Ničta vrednost"
-
-#. (itstool) path: pkgconfig.lang/language@_name
-#: pkgconfig.lang:23
-msgid "pkg-config"
-msgstr "pkg-config"
-
-#. (itstool) path: styles/style@_name
-#: pkgconfig.lang:31
-msgid "Package Info"
-msgstr "Podrobnosti paketa"
 
 #. (itstool) path: po.lang/language@_name
 #: po.lang:23
 msgid "gettext translation"
 msgstr "prevod gettext"
 
-#. (itstool) path: styles/style@_name
-#: po.lang:34
-msgid "Fuzzy"
-msgstr "Ohlapno"
-
-# Programski jezik
-#. (itstool) path: prolog.lang/language@_name
-#: prolog.lang:23
-msgid "Prolog"
-msgstr "Prolog"
-
-#. (itstool) path: puppet.lang/language@_name
-#: puppet.lang:23
-msgid "Puppet"
-msgstr "Puppet"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:30
-msgid "Resources"
-msgstr "Viri"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:31
-msgid "Parameters"
-msgstr "Parametri"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:32
-msgid "Metaparameters"
-msgstr "Metaparametri"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:33 R.lang:41
-msgid "Functions"
-msgstr "Funkcije"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:34
-msgid "Values"
-msgstr "Vrednosti"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:35
-msgid "Variables"
-msgstr "Spremenljivke"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:36
-msgid "Class names"
-msgstr "Imena razredov"
-
-#. (itstool) path: python3.lang/language@_name
-#: python3.lang:23
-msgid "Python 3"
-msgstr "Python 3"
-
-#. (itstool) path: styles/style@_name
-#: python3.lang:36 python.lang:40
-msgid "Format"
-msgstr "Format"
-
-#. (itstool) path: styles/style@_name
-#: python3.lang:44 python.lang:49
-msgid "Builtin Object"
-msgstr "Vgrajeni predmet"
-
-#. (itstool) path: python.lang/language@_name
-#: python.lang:27
-msgid "Python"
-msgstr "Python"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:41
-msgid "String Conversion"
-msgstr "Pretvorba nizov"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:52
-msgid "Class Name"
-msgstr "Ime razreda"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:53
-msgid "Decorator"
-msgstr "Oblikovni vzorec"
-
-#. (itstool) path: R.lang/language@_name
-#: R.lang:25
-msgid "R"
-msgstr "R"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:34
-msgid "Reserved Class"
-msgstr "Zadržan razred"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:35
-msgid "Assignment Operator"
-msgstr "Operator naloge"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:36
-msgid "Delimiter"
-msgstr "Ločilnik"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:39 verilog.lang:46
-msgid "Integer Number"
-msgstr "Celo število"
-
 #. (itstool) path: rpmspec.lang/language@_name
-#: rpmspec.lang:23
+#: rpmspec.lang:24
 msgid "RPM spec"
 msgstr "RPM določila"
 
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:31
-msgid "Define"
-msgstr "Določi"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:33 t2t.lang:34
-msgid "Section"
-msgstr "Odsek"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:34
-msgid "Spec Macro"
-msgstr "Makro določila"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:35
-msgid "Directory Macro"
-msgstr "Makro imenika"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:36
-msgid "Command Macro"
-msgstr "Ukazni makro"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:37
-msgid "Conditional Macro"
-msgstr "Pogojni makro"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:38
-msgid "Other Macro"
-msgstr "Drugi makro"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:39
-msgid "Flow Conditional"
-msgstr "Pogojnik pretoka"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:40
-msgid "RPM Variable"
-msgstr "RPM spremenljivka"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:41
-msgid "Switch"
-msgstr "Stikalo"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:43
-msgid "Email"
-msgstr "Elektronska pošta"
-
-#. (itstool) path: rst.lang/language@_name
-#: rst.lang:22
-msgid "reStructuredText"
-msgstr "reStructuredText"
-
-#. (itstool) path: styles/style@_name
-#: rst.lang:34 yaml.lang:36
-msgid "Directive"
-msgstr "Določilo"
-
-#. (itstool) path: ruby.lang/language@_name
-#: ruby.lang:26
-msgid "Ruby"
-msgstr "Ruby"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:36
-msgid "Attribute Definition"
-msgstr "Določilo atributa"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:37
-msgid "Module handler"
-msgstr "Ročnik modulov"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:44
-msgid "Numeric literal"
-msgstr "Številčno območje"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:46 sparql.lang:39
-msgid "Literal"
-msgstr "Dosledno"
-
-#. (itstool) path: rust.lang/language@_name
-#: rust.lang:35
-msgid "Rust"
-msgstr "Rust"
-
-#. (itstool) path: scala.lang/language@_name
-#: scala.lang:24
-msgid "Scala"
-msgstr "Scala"
-
-#. (itstool) path: styles/style@_name
-#: scala.lang:41 swift.lang:43
-msgid "Modifier"
-msgstr "Spremenilnik"
-
-#. (itstool) path: styles/style@_name
-#: scala.lang:47
-msgid "Built In"
-msgstr "Vgrajeno"
-
-#. (itstool) path: styles/style@_name
-#: scala.lang:49
-msgid "XML Tag"
-msgstr "Oznaka XML"
-
-#. (itstool) path: scheme.lang/language@_name
-#: scheme.lang:23
-msgid "Scheme"
-msgstr "Shema"
-
-#. (itstool) path: scilab.lang/language@_name
-#: scilab.lang:23
-msgid "Scilab"
-msgstr "Scilab"
-
-#. (itstool) path: sh.lang/language@_name
-#: sh.lang:24
-msgid "sh"
-msgstr "sh"
-
-#. (itstool) path: styles/style@_name
-#: sh.lang:37
-msgid "Variable Definition"
-msgstr "Določilo spremenljivke"
-
-#. (itstool) path: styles/style@_name
-#. *
-#. * SECTION:language
-#. * @Short_description: Represents a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
-#. *
-#. * A #GtkSourceLanguage represents a programming or markup language, affecting
-#. * syntax highlighting and [context classes][context-classes].
-#. *
-#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
-#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
-#.
-#: sh.lang:38 texinfo.lang:34 gtksourceview/gtksourcelanguage.c:55
-msgid "Others"
-msgstr "Ostalo"
-
-#. (itstool) path: styles/style@_name
-#: sh.lang:39
-msgid "Common Commands"
-msgstr "Splošni ukazi"
-
-#. (itstool) path: styles/style@_name
-#: sh.lang:41
-msgid "Subshell"
-msgstr "Podlupina"
-
-#. (itstool) path: sml.lang/language@_name
-#: sml.lang:23
-msgid "Standard ML"
-msgstr "Standard ML"
-
-#. (itstool) path: styles/style@_name
-#: sml.lang:41
-msgid "Module name, Variant, etc"
-msgstr "Ime modula, različica in drugo."
-
-#. (itstool) path: sparql.lang/language@_name
-#: sparql.lang:23
-msgid "SPARQL"
-msgstr "SPARQL"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:32
-msgid "Class"
-msgstr "Razred"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:35
-msgid "Individual"
-msgstr "Posamezno"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:40
-msgid "Predicate"
-msgstr "Povedno"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:41
-msgid "QName"
-msgstr "QName"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:42
-msgid "IRI"
-msgstr "IRI"
-
-#. (itstool) path: sql.lang/language@_name
-#: sql.lang:23
-msgid "SQL"
-msgstr "SQL"
-
-#. (itstool) path: styles/style@_name
-#: sql.lang:38
-msgid "No idea what it is"
-msgstr "Neznan dogodek brez prave osnove"
-
-#. (itstool) path: sweave.lang/language@_name
-#: sweave.lang:24
-msgid "Sweave"
-msgstr "Zavitek"
-
-#. (itstool) path: swift.lang/language@_name
-#: swift.lang:24
-msgid "Swift"
-msgstr "Swift"
-
-#. (itstool) path: styles/style@_name
-#: swift.lang:35
-msgid "Builtin Value"
-msgstr "Vgrajena vrednost"
-
-#. (itstool) path: styles/style@_name
-#: swift.lang:37
-msgid "Compiler Control"
-msgstr "Kodni prevajalnik"
-
-#. (itstool) path: styles/style@_name
-#: swift.lang:41
-msgid "Interpolated Expression"
-msgstr "Interpoliran izraz"
-
-#. (itstool) path: systemverilog.lang/language@_name
-#: systemverilog.lang:21
-msgid "SystemVerilog"
-msgstr "Sistemski Verilog"
-
-#. (itstool) path: t2t.lang/language@_name
-#: t2t.lang:23
-msgid "txt2tags"
-msgstr "txt2tags"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:31
-msgid "Option"
-msgstr "Možnost"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:32
-msgid "Option Name"
-msgstr "Ime možnosti"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:35
-msgid "Section 1"
-msgstr "Odsek 1"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:36
-msgid "Section 2"
-msgstr "Odsek 2"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:37
-msgid "Section 3"
-msgstr "Odsek 3"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:38
-msgid "Section 4"
-msgstr "Odsek 4"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:39
-msgid "Section 5"
-msgstr "Odsek 5"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:41
-msgid "Italic"
-msgstr "Ležeče"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:42
-msgid "Bold"
-msgstr "Krepko"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:44
-msgid "Verbatim Block"
-msgstr "Blok Verbatim"
-
-#. (itstool) path: tcl.lang/language@_name
-#: tcl.lang:23
-msgid "Tcl"
-msgstr "Tcl"
-
-#. (itstool) path: texinfo.lang/language@_name
-#: texinfo.lang:24
-msgid "Texinfo"
-msgstr "Texinfo"
-
-#. (itstool) path: styles/style@_name
-#: texinfo.lang:37
-msgid "Macros"
-msgstr "Makri"
-
-#. (itstool) path: styles/style@_name
-#: texinfo.lang:38
-msgid "File Attributes"
-msgstr "Atributi datoteke"
-
-#. (itstool) path: styles/style@_name
-#: texinfo.lang:39
-msgid "Generated Content"
-msgstr "Ustvarjena vsebina"
-
-#. (itstool) path: thrift.lang/language@_name
-#: thrift.lang:20
-msgid "Thrift"
-msgstr "Thrift"
-
-#. (itstool) path: vala.lang/language@_name
-#: vala.lang:27
-msgid "Vala"
-msgstr "Vala"
-
-#. (itstool) path: vbnet.lang/language@_name
-#: vbnet.lang:23
-msgid "VB.NET"
-msgstr "VB.NET"
-
-#. (itstool) path: verilog.lang/language@_name
-#: verilog.lang:23
-msgid "Verilog"
-msgstr "Verilog"
-
-#. (itstool) path: styles/style@_name
-#: verilog.lang:39
-msgid "IEEE System Task"
-msgstr "Sistemska naloga IEEE"
-
-#. (itstool) path: styles/style@_name
-#: verilog.lang:40
-msgid "LRM Additional System Task"
-msgstr "Dodatna sistemska naloga LRM"
-
-#. (itstool) path: styles/style@_name
-#: verilog.lang:42
-msgid "Gate"
-msgstr "Gate"
-
-#. (itstool) path: vhdl.lang/language@_name
-#: vhdl.lang:23
-msgid "VHDL"
-msgstr "VHDL"
-
-#. (itstool) path: xml.lang/language@_name
-#: xml.lang:25
-msgid "XML"
-msgstr "XML"
-
-#. (itstool) path: xslt.lang/language@_name
-#: xslt.lang:23
-msgid "XSLT"
-msgstr "XSLT"
-
-#. (itstool) path: styles/style@_name
-#: xslt.lang:32
-msgid "Element"
-msgstr "Predmet"
-
-#. (itstool) path: yacc.lang/language@_name
-#: yacc.lang:23
-msgid "Yacc"
-msgstr "Yacc"
-
-#. (itstool) path: styles/style@_name
-#: yacc.lang:35
-msgid "token type"
-msgstr "vrsta žetona"
-
-#. (itstool) path: styles/style@_name
-#: yacc.lang:36
-msgid "rule"
-msgstr "pravilo"
-
-#. (itstool) path: yaml.lang/language@_name
-#: yaml.lang:21
-msgid "YAML"
-msgstr "YAML"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:29
-msgid "Block literal"
-msgstr "Block literal"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:34
-msgid "Alias"
-msgstr "Vzdevek"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:35
-msgid "Map key"
-msgstr "Ključ preslikave"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:39
-msgid "Integer"
-msgstr "Celo število"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:40
-msgid "Floating point"
-msgstr "Plavajoča vejica"
+#. (itstool) path: tera.lang/language@_name
+#: tera.lang:23
+msgid "Tera Template"
+msgstr "Predloga Tera"
 
 #. (itstool) path: classic.xml/style-scheme@_name
-#: classic.xml:24
+#: classic.xml:23
 msgid "Classic"
 msgstr "Običajno"
 
 #. (itstool) path: style-scheme/_description
-#: classic.xml:26
+#: classic.xml:25
 msgid "Classic color scheme"
 msgstr "Običajna barvna shema"
 
 #. (itstool) path: cobalt.xml/style-scheme@_name
-#: cobalt.xml:26
+#: cobalt.xml:25
 msgid "Cobalt"
 msgstr "Cobalt"
 
 #. (itstool) path: style-scheme/_description
-#: cobalt.xml:28
+#: cobalt.xml:27
 msgid "Blue based color scheme"
 msgstr "Običajna modra barvna shema"
 
-#. (itstool) path: kate.xml/style-scheme@_name
-#: kate.xml:24
-msgid "Kate"
-msgstr "Kate"
-
 #. (itstool) path: style-scheme/_description
-#: kate.xml:26
+#: kate.xml:25
 msgid "Color scheme used in the Kate text editor"
 msgstr "Barvna shema uporabljena v Kate urejevalniku besedil"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:25
+#: oblivion.xml:24
 msgid "Oblivion"
 msgstr "Pozaba"
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:28
+#: oblivion.xml:27
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Temna barvna shema z barvno paleto tango"
 
 #. (itstool) path: solarized-dark.xml/style-scheme@_name
-#: solarized-dark.xml:24
+#: solarized-dark.xml:23
 msgid "Solarized Dark"
 msgstr "Temna tema"
 
 #. (itstool) path: style-scheme/_description
-#: solarized-dark.xml:26
+#: solarized-dark.xml:25
 msgid "Color scheme using Solarized dark color palette"
 msgstr "Barvna shema s temno barvno paleto"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
-#: solarized-light.xml:24
+#: solarized-light.xml:23
 msgid "Solarized Light"
 msgstr "Svetla tema"
 
 #. (itstool) path: style-scheme/_description
-#: solarized-light.xml:26
+#: solarized-light.xml:25
 msgid "Color scheme using Solarized light color palette"
 msgstr "Barvna shema s svetlo barvno paleto"
 
 #. (itstool) path: tango.xml/style-scheme@_name
-#: tango.xml:24
+#: tango.xml:23
 msgid "Tango"
 msgstr "Tango"
 
 #. (itstool) path: style-scheme/_description
-#: tango.xml:26
+#: tango.xml:25
 msgid "Color scheme using Tango color palette"
 msgstr "Barvna shema z barvno paleto tango"
 
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:333
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
 msgid "Document Words"
 msgstr "Besede dokumenta"
 
@@ -3149,7 +352,7 @@ msgstr "Neveljavno zaporedje UTF-8 na vhodu"
 
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview/gtksourcecompletion.c:832
+#: gtksourceview/gtksourcecompletion.c:833
 msgid "All"
 msgstr "Vse"
 
@@ -3185,7 +388,7 @@ msgstr ""
 "počasnejše kot običajno.\n"
 "Javljena napaka: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4463
+#: gtksourceview/gtksourcecontextengine.c:4472
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -3193,19 +396,19 @@ msgstr ""
 "Poudarjanje ene same vrstice je trajalo predolgo. Poudarjanje skladnje bo "
 "onemogočeno."
 
-#: gtksourceview/gtksourcecontextengine.c:5711
+#: gtksourceview/gtksourcecontextengine.c:5720
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "vsebina »%s« ne sme vsebovati \\%%{...@start} ukaza"
 
-#: gtksourceview/gtksourcecontextengine.c:5874
-#: gtksourceview/gtksourcecontextengine.c:5964
+#: gtksourceview/gtksourcecontextengine.c:5883
+#: gtksourceview/gtksourcecontextengine.c:5973
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "podvojen ID vsebine »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6078
-#: gtksourceview/gtksourcecontextengine.c:6138
+#: gtksourceview/gtksourcecontextengine.c:6087
+#: gtksourceview/gtksourcecontextengine.c:6147
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -3214,135 +417,135 @@ msgstr ""
 "prepis sloga uporabljen s posebnimi nadomestnimi znaki (wildcards) v jeziku "
 "»%s« sklica »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6152
+#: gtksourceview/gtksourcecontextengine.c:6161
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "neveljaven vsebinskis klic »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6171
-#: gtksourceview/gtksourcecontextengine.c:6181
+#: gtksourceview/gtksourcecontextengine.c:6180
+#: gtksourceview/gtksourcecontextengine.c:6190
 #, c-format
 msgid "unknown context “%s”"
 msgstr "neznana vsebina »%s«"
 
-#: gtksourceview/gtksourcecontextengine.c:6280
+#: gtksourceview/gtksourcecontextengine.c:6289
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Manjka določitev glavnega jezika (id = \"%s\".)"
 
-#: gtksourceview/gtksourceencoding.c:140 gtksourceview/gtksourceencoding.c:183
-#: gtksourceview/gtksourceencoding.c:185 gtksourceview/gtksourceencoding.c:187
-#: gtksourceview/gtksourceencoding.c:189 gtksourceview/gtksourceencoding.c:191
-#: gtksourceview/gtksourceencoding.c:193 gtksourceview/gtksourceencoding.c:195
+#: gtksourceview/gtksourceencoding.c:146 gtksourceview/gtksourceencoding.c:189
+#: gtksourceview/gtksourceencoding.c:191 gtksourceview/gtksourceencoding.c:193
+#: gtksourceview/gtksourceencoding.c:195 gtksourceview/gtksourceencoding.c:197
+#: gtksourceview/gtksourceencoding.c:199 gtksourceview/gtksourceencoding.c:201
 msgid "Unicode"
 msgstr "Unikod"
 
-#: gtksourceview/gtksourceencoding.c:154 gtksourceview/gtksourceencoding.c:178
-#: gtksourceview/gtksourceencoding.c:228 gtksourceview/gtksourceencoding.c:271
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:234 gtksourceview/gtksourceencoding.c:277
 msgid "Western"
 msgstr "zahodnoevropsko"
 
-#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:230
-#: gtksourceview/gtksourceencoding.c:267
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:236
+#: gtksourceview/gtksourceencoding.c:273
 msgid "Central European"
 msgstr "srednjeevropsko"
 
-#: gtksourceview/gtksourceencoding.c:158
+#: gtksourceview/gtksourceencoding.c:164
 msgid "South European"
 msgstr "južnoevropsko"
 
-#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:174
-#: gtksourceview/gtksourceencoding.c:281
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:287
 msgid "Baltic"
 msgstr "baltsko"
 
-#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:232
-#: gtksourceview/gtksourceencoding.c:245 gtksourceview/gtksourceencoding.c:249
-#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:269
+#: gtksourceview/gtksourceencoding.c:168 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:255
+#: gtksourceview/gtksourceencoding.c:257 gtksourceview/gtksourceencoding.c:275
 msgid "Cyrillic"
 msgstr "cirilica"
 
-#: gtksourceview/gtksourceencoding.c:164 gtksourceview/gtksourceencoding.c:238
-#: gtksourceview/gtksourceencoding.c:279
+#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:244
+#: gtksourceview/gtksourceencoding.c:285
 msgid "Arabic"
 msgstr "arabsko"
 
-#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:273
+#: gtksourceview/gtksourceencoding.c:172 gtksourceview/gtksourceencoding.c:279
 msgid "Greek"
 msgstr "grško"
 
-#: gtksourceview/gtksourceencoding.c:168
+#: gtksourceview/gtksourceencoding.c:174
 msgid "Hebrew Visual"
 msgstr "hebrejsko predočeno"
 
-#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:234
-#: gtksourceview/gtksourceencoding.c:275
+#: gtksourceview/gtksourceencoding.c:176 gtksourceview/gtksourceencoding.c:240
+#: gtksourceview/gtksourceencoding.c:281
 msgid "Turkish"
 msgstr "turško"
 
-#: gtksourceview/gtksourceencoding.c:172
+#: gtksourceview/gtksourceencoding.c:178
 msgid "Nordic"
 msgstr "nordijsko"
 
-#: gtksourceview/gtksourceencoding.c:176
+#: gtksourceview/gtksourceencoding.c:182
 msgid "Celtic"
 msgstr "keltsko"
 
-#: gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:186
 msgid "Romanian"
 msgstr "romunsko"
 
-#: gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:204
 msgid "Armenian"
 msgstr "armensko"
 
-#: gtksourceview/gtksourceencoding.c:200 gtksourceview/gtksourceencoding.c:202
-#: gtksourceview/gtksourceencoding.c:216
+#: gtksourceview/gtksourceencoding.c:206 gtksourceview/gtksourceencoding.c:208
+#: gtksourceview/gtksourceencoding.c:222
 msgid "Chinese Traditional"
 msgstr "kitajsko tradicionalno"
 
-#: gtksourceview/gtksourceencoding.c:204
+#: gtksourceview/gtksourceencoding.c:210
 msgid "Cyrillic/Russian"
 msgstr "cirilica/rusko"
 
-#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:209
-#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:241
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:213 gtksourceview/gtksourceencoding.c:215
+#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:247
+#: gtksourceview/gtksourceencoding.c:262
 msgid "Japanese"
 msgstr "japonsko"
 
-#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:243
-#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:262
+#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:249
+#: gtksourceview/gtksourceencoding.c:253 gtksourceview/gtksourceencoding.c:268
 msgid "Korean"
 msgstr "korejsko"
 
-#: gtksourceview/gtksourceencoding.c:219 gtksourceview/gtksourceencoding.c:221
-#: gtksourceview/gtksourceencoding.c:223
+#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:227
+#: gtksourceview/gtksourceencoding.c:229
 msgid "Chinese Simplified"
 msgstr "kitajsko poenostavljeno"
 
-#: gtksourceview/gtksourceencoding.c:225
+#: gtksourceview/gtksourceencoding.c:231
 msgid "Georgian"
 msgstr "gruzijsko"
 
-#: gtksourceview/gtksourceencoding.c:236 gtksourceview/gtksourceencoding.c:277
+#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:283
 msgid "Hebrew"
 msgstr "hebrejsko"
 
-#: gtksourceview/gtksourceencoding.c:253
+#: gtksourceview/gtksourceencoding.c:259
 msgid "Cyrillic/Ukrainian"
 msgstr "cirilica/ukrajinsko"
 
-#: gtksourceview/gtksourceencoding.c:258 gtksourceview/gtksourceencoding.c:264
-#: gtksourceview/gtksourceencoding.c:283
+#: gtksourceview/gtksourceencoding.c:264 gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:289
 msgid "Vietnamese"
 msgstr "vietnamsko"
 
-#: gtksourceview/gtksourceencoding.c:260
+#: gtksourceview/gtksourceencoding.c:266
 msgid "Thai"
 msgstr "tajsko"
 
-#: gtksourceview/gtksourceencoding.c:494
+#: gtksourceview/gtksourceencoding.c:500
 msgid "Unknown"
 msgstr "Neznano"
 
@@ -3356,15 +559,15 @@ msgstr "Neznano"
 #. * value used by GtkSourceView and it represents the encoding for the
 #. * current locale, so please don't translate the "CURRENT" term.  Only
 #. * recognized encodings are used. See
-#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+#. * https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:638
+#: gtksourceview/gtksourceencoding.c:644
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'TRENUTNI', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:515
+#: gtksourceview/gtksourcefileloader.c:522
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -3372,21 +575,37 @@ msgstr ""
 "Prišlo je do napake pretvarjanja kodnega nabora, zato je bil uporabljen "
 "povratni znak."
 
-#: gtksourceview/gtksourcefileloader.c:622
+#: gtksourceview/gtksourcefileloader.c:629
 msgid "File too big."
 msgstr "Datoteka je prevelika!"
 
-#: gtksourceview/gtksourcefileloader.c:776
+#: gtksourceview/gtksourcefileloader.c:783
 msgid "Not a regular file."
 msgstr "Datoteka ni običajna datoteka."
 
-#: gtksourceview/gtksourcefilesaver.c:975
+#: gtksourceview/gtksourcefilesaver.c:981
 msgid "The file is externally modified."
 msgstr "Datoteka je močno spremenjena."
 
-#: gtksourceview/gtksourcefilesaver.c:1427
+#: gtksourceview/gtksourcefilesaver.c:1433
 msgid "The buffer contains invalid characters."
 msgstr "Medpomnilnik vsebuje neveljavne znake."
+
+#. *
+#. * SECTION:language
+#. * @Short_description: Represents a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#.
+#: gtksourceview/gtksourcelanguage.c:56
+msgid "Others"
+msgstr "Ostalo"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:949
 #, c-format
@@ -3444,6 +663,1613 @@ msgstr "_Velike prve črke besed"
 #: gtksourceview/gtksourceview.c:1797
 msgid "C_hange Case"
 msgstr "Spreme_ni velikost črk"
+
+#~ msgid "Disabled"
+#~ msgstr "Onemogočeno"
+
+#~ msgid "Before"
+#~ msgstr "Pred"
+
+#~ msgid "After"
+#~ msgstr "Za"
+
+#~ msgid "Always"
+#~ msgstr "Vedno"
+
+#~ msgid "ABNF"
+#~ msgstr "ABNF"
+
+#~ msgid "Comment"
+#~ msgstr "Opomba"
+
+#~ msgid "Rule Name"
+#~ msgstr "Ime pravila"
+
+#~ msgid "Binary number"
+#~ msgstr "Dvojiško število"
+
+#~ msgid "Decimal number"
+#~ msgstr "Decimalno število"
+
+#~ msgid "Hexadecimal number"
+#~ msgstr "Šestnajstiško število"
+
+#~ msgid "String"
+#~ msgstr "Niz"
+
+#~ msgid "ActionScript"
+#~ msgstr "Skript"
+
+#~ msgid "Error"
+#~ msgstr "Napaka"
+
+#~ msgid "External"
+#~ msgstr "Zunanje"
+
+#~ msgid "Declaration"
+#~ msgstr "Deklaracija"
+
+#~ msgid "Storage Class"
+#~ msgstr "Razred shranjevanja"
+
+#~ msgid "Scope Declaration"
+#~ msgstr "Deklaracije obsega"
+
+#~ msgid "Keyword"
+#~ msgstr "Ključna beseda"
+
+#~ msgid "Null Value"
+#~ msgstr "Nična vrednost"
+
+#~ msgid "Boolean value"
+#~ msgstr "Boolova vrednost"
+
+#~ msgid "Number"
+#~ msgstr "Številka"
+
+#~ msgid "Future Reserved Keywords"
+#~ msgstr "Prihodnje zadržane besede"
+
+#~ msgid "Data Type"
+#~ msgstr "Podatkovna vrsta"
+
+#~ msgid "Ada"
+#~ msgstr "Ada"
+
+#~ msgid "Preprocessor"
+#~ msgstr "Predprocesor"
+
+#~ msgid "Arbitrary base number"
+#~ msgstr "Privzeta številčna osnova"
+
+#~ msgid "Real number"
+#~ msgstr "Realno število"
+
+#~ msgid "Escaped Character"
+#~ msgstr "Ubežni znak"
+
+#~ msgid "ANS-Forth94"
+#~ msgstr "ANS-Forth94"
+
+#~ msgid "Obsolete Keyword"
+#~ msgstr "Opuščena ključna beseda"
+
+#~ msgid "Alert"
+#~ msgstr "Opozorilo"
+
+#~ msgid "Character"
+#~ msgstr "Znak"
+
+#~ msgid "Word"
+#~ msgstr "Beseda"
+
+#~ msgid "Constant"
+#~ msgstr "Konstanta"
+
+#~ msgid "Variable"
+#~ msgstr "Spremenljivka"
+
+#~ msgid "Local Variable"
+#~ msgstr "Krajevna spremenljivka"
+
+#~ msgid "Single Number"
+#~ msgstr "Enojno število"
+
+#~ msgid "Double Number"
+#~ msgstr "Dvojno število"
+
+#~ msgid "Float"
+#~ msgstr "Plavajoče"
+
+#~ msgid "ASP"
+#~ msgstr "ASP"
+
+#~ msgid "Function"
+#~ msgstr "Funkcija"
+
+# operator -> operand
+# ni isto!!! operator je +-/*, operand pa številčna vrednost v izrazu
+#~ msgid "Operator"
+#~ msgstr "Operator"
+
+#~ msgid "ASP Object"
+#~ msgstr "Predmet ASP"
+
+#~ msgid "VBScript and ADO constants"
+#~ msgstr "VBScript in ADO konstante"
+
+#~ msgid "Special constant"
+#~ msgstr "Posebna konstanta"
+
+#~ msgid "Automake"
+#~ msgstr "automake"
+
+#~ msgid "Automake Variable"
+#~ msgstr "Spremenljivka automake"
+
+#~ msgid "Primary"
+#~ msgstr "Osnovni"
+
+#~ msgid "Secondary"
+#~ msgstr "Drugotni"
+
+#~ msgid "Prefix"
+#~ msgstr "Predpona"
+
+#~ msgid "Optional Target"
+#~ msgstr "Izbirni cilj"
+
+#~ msgid "Built-in Target"
+#~ msgstr "Vgrajeni cilj"
+
+#~ msgid "Other Keyword"
+#~ msgstr "Druga ključna beseda"
+
+#~ msgid "Substitution"
+#~ msgstr "Zamenjava"
+
+#~ msgid "awk"
+#~ msgstr "awk"
+
+#~ msgid "Pattern"
+#~ msgstr "Vzorec"
+
+#~ msgid "Builtin Function"
+#~ msgstr "Vgrajene funkcije"
+
+#~ msgid "BennuGD"
+#~ msgstr "BennuGD"
+
+#~ msgid "Identifier"
+#~ msgstr "Določilnik"
+
+#~ msgid "Floating point number"
+#~ msgstr "Število s plavajočo vejico"
+
+#~ msgid "BibTeX"
+#~ msgstr "BibTeX"
+
+#~ msgid "Entries"
+#~ msgstr "Vnosi"
+
+#~ msgid "Field"
+#~ msgstr "Polje"
+
+#~ msgid "Bluespec SystemVerilog"
+#~ msgstr "Bluespec SystemVerilog"
+
+#~ msgid "System Task"
+#~ msgstr "Sistemska naloga"
+
+#~ msgid "Annotation"
+#~ msgstr "Pripomba"
+
+#~ msgid "Attribute"
+#~ msgstr "Atribut"
+
+#~ msgid "Import BVI"
+#~ msgstr "Uvozi BVI"
+
+#~ msgid "Type"
+#~ msgstr "Vrsta"
+
+#~ msgid "Boo"
+#~ msgstr "Boo"
+
+#~ msgid "Multiline string"
+#~ msgstr "Niz v več vrsticah"
+
+#~ msgid "Regular Expression"
+#~ msgstr "Logični izraz"
+
+#~ msgid "Namespace"
+#~ msgstr "Imenski prostor"
+
+# Ta pride kasneje. Definicija je namreč ustrezen pojem, ki nima slovenskega prevoda ...
+#~ msgid "Definition"
+#~ msgstr "Definicija"
+
+#~ msgid "Special Variable"
+#~ msgstr "Posebna spremenljivka"
+
+#~ msgid "Boolean"
+#~ msgstr "Boolova vrednost"
+
+#~ msgid "Bindings"
+#~ msgstr "Tipkovne povezave"
+
+#~ msgid "Included File"
+#~ msgstr "Dodana datoteka"
+
+#~ msgid "Octal number"
+#~ msgstr "Osmiško število"
+
+#~ msgid "Swizzle operator"
+#~ msgstr "Operator Swizzle"
+
+#~ msgid "Builtin"
+#~ msgstr "Vgrajeno"
+
+#~ msgid "ChangeLog"
+#~ msgstr "Dnevnik sprememb"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "Name"
+#~ msgstr "Ime"
+
+#~ msgid "E-mail address"
+#~ msgstr "Elektronski naslov"
+
+#~ msgid "File"
+#~ msgstr "Datoteka"
+
+#~ msgid "Bullet"
+#~ msgstr "Vrstična oznaka"
+
+#~ msgid "Release"
+#~ msgstr "Objava"
+
+#~ msgid "C"
+#~ msgstr "C"
+
+#~ msgid "Common Defines"
+#~ msgstr "Običajna določila"
+
+#~ msgid "printf Conversion"
+#~ msgstr "printf pretvorba"
+
+#~ msgid "Standard stream"
+#~ msgstr "Običajni pretok"
+
+#~ msgid "Signal name"
+#~ msgstr "Ime signala"
+
+#~ msgid "CMake"
+#~ msgstr "CMake"
+
+#~ msgid "Builtin Command"
+#~ msgstr "Vgrajen ukaz"
+
+#~ msgid "Deprecated Builtin Command"
+#~ msgstr "Opuščen vgrajeni ukaz"
+
+#~ msgid "Builtin Variable"
+#~ msgstr "Vgrajena spremenljivka"
+
+#~ msgid "Control Keyword"
+#~ msgstr "Nadzorna beseda"
+
+#~ msgid "COBOL"
+#~ msgstr "Cobol"
+
+#~ msgid "Statement"
+#~ msgstr "Izjava"
+
+#~ msgid "C++"
+#~ msgstr "C++"
+
+#~ msgid "C#"
+#~ msgstr "C#"
+
+#~ msgid "String Format"
+#~ msgstr "Zapis niti"
+
+#~ msgid "CSS"
+#~ msgstr "CSS"
+
+#~ msgid "Others 2"
+#~ msgstr "Drugo 2"
+
+#~ msgid "Color"
+#~ msgstr "Barva"
+
+#~ msgid "Others 3"
+#~ msgstr "Drugo 3"
+
+#~ msgid "Decimal"
+#~ msgstr "Desetiško"
+
+#~ msgid "Dimension"
+#~ msgstr "Mere"
+
+#~ msgid "Property Value"
+#~ msgstr "Vrednosti lastnosti"
+
+#~ msgid "at-rules"
+#~ msgstr "at-pravila"
+
+#~ msgid "ID Selector"
+#~ msgstr "Izbirnik ID"
+
+#~ msgid "Class Selector"
+#~ msgstr "Izbirnik razredov"
+
+#~ msgid "Tag Name Selector"
+#~ msgstr "Izbirnik imena oznake"
+
+#~ msgid "CSV"
+#~ msgstr "CSV"
+
+#~ msgid "Escaped character"
+#~ msgstr "Ubežni znaki"
+
+#~ msgid "CUDA"
+#~ msgstr "CUDA"
+
+#~ msgid "Global Functions"
+#~ msgstr "Splošne funkcije"
+
+#~ msgid "Device Functions"
+#~ msgstr "Funkcije naprave"
+
+#~ msgid "Global Variables"
+#~ msgstr "Splošne spremenljivke"
+
+#~ msgid "Defaults"
+#~ msgstr "Privzeto"
+
+#~ msgid "Shebang"
+#~ msgstr "Shebang"
+
+#~ msgid "Documentation comment"
+#~ msgstr "Opomba dokumentacije"
+
+#~ msgid "Documentation comment element"
+#~ msgstr "Predmet opombe dokumentacije"
+
+#~ msgid "Special character (inside a string)"
+#~ msgstr "Poseben znak (znotraj niza)"
+
+#~ msgid "Base-N number"
+#~ msgstr "Število z osnovo N"
+
+#~ msgid "Complex number"
+#~ msgstr "Kompleksno število"
+
+#~ msgid "Built-in identifier"
+#~ msgstr "Vgrajeno določilo"
+
+#~ msgid "Data type"
+#~ msgstr "Podatkovna vrsta"
+
+#~ msgid "Preprocessor directive"
+#~ msgstr "Določilo predprocesorja"
+
+#~ msgid "Warning"
+#~ msgstr "Opozorilo"
+
+#~ msgid "Reserved keyword"
+#~ msgstr "Zadržana beseda"
+
+#~ msgid "Note (FIXME, TODO, XXX, etc.)"
+#~ msgstr "Opomba (PopraviMe, Naloge, XXX, etc.)"
+
+#~ msgid "Underlined"
+#~ msgstr "Podčrtano"
+
+#~ msgid "Heading 0"
+#~ msgstr "Naslov 0"
+
+#~ msgid "Heading 1"
+#~ msgstr "Naslov 1"
+
+#~ msgid "Heading 2"
+#~ msgstr "Naslov 2"
+
+#~ msgid "Heading 3"
+#~ msgstr "Naslov 3"
+
+#~ msgid "Heading 4"
+#~ msgstr "Naslov 4"
+
+#~ msgid "Heading 5"
+#~ msgstr "Naslov 5"
+
+#~ msgid "Heading 6"
+#~ msgstr "Naslov 6"
+
+# TO je ime datoteke.
+#~ msgid ".desktop"
+#~ msgstr ".desktop"
+
+#~ msgid "Group"
+#~ msgstr "Skupina"
+
+#~ msgid "Key"
+#~ msgstr "Ključ"
+
+#~ msgid "Translation"
+#~ msgstr "Prevod"
+
+#~ msgid "Exec parameter"
+#~ msgstr "Parameter Exec"
+
+#~ msgid "Encoding"
+#~ msgstr "Šifriranje"
+
+#~ msgid "Main Category"
+#~ msgstr "Glavna kategorija"
+
+#~ msgid "Additional Category"
+#~ msgstr "Dodatna kategorija"
+
+#~ msgid "Reserved Category"
+#~ msgstr "Rezervirana kategorija"
+
+#~ msgid "Diff"
+#~ msgstr "Primerjava"
+
+#~ msgid "Added line"
+#~ msgstr "Dodana vrstica"
+
+#~ msgid "Removed line"
+#~ msgstr "Odstranjena vrstica"
+
+#~ msgid "Changed line"
+#~ msgstr "Spremenjena vrstica"
+
+#~ msgid "Special case"
+#~ msgstr "Posebna velikost"
+
+#~ msgid "Location"
+#~ msgstr "Mesto"
+
+#~ msgid "Ignore"
+#~ msgstr "Prezri"
+
+#~ msgid "D"
+#~ msgstr "D"
+
+#~ msgid "Special Token"
+#~ msgstr "Posebni žetoni"
+
+#~ msgid "DocBook"
+#~ msgstr "DocBook"
+
+#~ msgid "Header Elements"
+#~ msgstr "Predmeti glave"
+
+#~ msgid "Formatting Elements"
+#~ msgstr "Oblikovni predmeti"
+
+#~ msgid "GUI Elements"
+#~ msgstr "Predmeti grafičnega vmesnika"
+
+#~ msgid "Structural Elements"
+#~ msgstr "Strukturni predmeti"
+
+#~ msgid "Command"
+#~ msgstr "Ukaz"
+
+#~ msgid "Graphviz Dot"
+#~ msgstr "Graphviz Dot"
+
+#~ msgid "Attribute name"
+#~ msgstr "Ime atributa"
+
+#~ msgid "DPatch"
+#~ msgstr "DPatch"
+
+#~ msgid "Patch Start"
+#~ msgstr "Začetek popravka"
+
+#~ msgid "DTD"
+#~ msgstr "DTD"
+
+#~ msgid "entity"
+#~ msgstr "entiteta"
+
+#~ msgid "decl"
+#~ msgstr "decl"
+
+#~ msgid "error"
+#~ msgstr "napaka"
+
+#~ msgid "Quoted Value"
+#~ msgstr "Navedena vrednost"
+
+#~ msgid "Eiffel"
+#~ msgstr "Eiffel"
+
+#~ msgid "Debug"
+#~ msgstr "Razhroščevanje"
+
+#~ msgid "Assertion"
+#~ msgstr "Napoved"
+
+#~ msgid "Design by Contract"
+#~ msgstr "Oblikovanje po pogodbi"
+
+#~ msgid "Exception Handling"
+#~ msgstr "Upravljanje z izjemami"
+
+#~ msgid "Predefined Variable"
+#~ msgstr "Predhodno določena spremenljivka"
+
+#~ msgid "Void Value"
+#~ msgstr "Nična vrednost"
+
+#~ msgid "Boolean Value"
+#~ msgstr "Boolova vrednost"
+
+#~ msgid "Erlang"
+#~ msgstr "Erlang"
+
+#~ msgid "Atom"
+#~ msgstr "Atom"
+
+#~ msgid "Base-N Integer"
+#~ msgstr "Številka Base-N"
+
+#~ msgid "Compiler Directive"
+#~ msgstr "Direktiva prevajalnika"
+
+#~ msgid "FCL"
+#~ msgstr "FCL"
+
+#~ msgid "Floating Point"
+#~ msgstr "Plavajoča vejica"
+
+#~ msgid "Block"
+#~ msgstr "Blok"
+
+#~ msgid "Reserved Constant"
+#~ msgstr "Zadržana konstanta"
+
+#~ msgid "Forth"
+#~ msgstr "Forth"
+
+#~ msgid "Debug Code"
+#~ msgstr "Koda razhroščevanja"
+
+#~ msgid "Error Text"
+#~ msgstr "Besedilo napake"
+
+#~ msgid "Fortran 95"
+#~ msgstr "Fortran 95"
+
+#~ msgid "Intrinsic function"
+#~ msgstr "Notranje funkcije"
+
+#~ msgid "BOZ Literal"
+#~ msgstr "BOZ Literal"
+
+#~ msgid "OpenMP directives"
+#~ msgstr "Direktive OpenMP"
+
+#~ msgid "F#"
+#~ msgstr "F#"
+
+#~ msgid "Floating Point number"
+#~ msgstr "Število s plavajočo vejico"
+
+#~ msgid "Type, module or object keyword"
+#~ msgstr "Ključna beseda vrste, modula ali predmeta"
+
+#~ msgid "Builtin-function keyword"
+#~ msgstr "Vgrajene ključne besede funkcije"
+
+#~ msgid "Labeled argument"
+#~ msgstr "Označen argument"
+
+#~ msgid "Polymorphic Variant"
+#~ msgstr "Polimorfna različica"
+
+#~ msgid "Variant Constructor"
+#~ msgstr "Izgradnja različic"
+
+#~ msgid "Type Variable"
+#~ msgstr "Vrsta spremenljivke"
+
+#~ msgid "Module Path"
+#~ msgstr "Pot modula"
+
+#~ msgid "GAP"
+#~ msgstr "GAP"
+
+#~ msgid "Thread Action"
+#~ msgstr "Dejanje niti"
+
+#~ msgid "Thread Header"
+#~ msgstr "Glava niti"
+
+#~ msgid "Frame Number"
+#~ msgstr "Število sličic"
+
+#~ msgid "Address"
+#~ msgstr "Naslov"
+
+#~ msgid "Filename"
+#~ msgstr "Ime datoteke"
+
+#~ msgid "Optimized Out"
+#~ msgstr "Optimiziran izhod"
+
+#~ msgid "Incomplete Sequence"
+#~ msgstr "Nepopolno zaporedje"
+
+#~ msgid "Prompt"
+#~ msgstr "Pozovi"
+
+#~ msgid "Genie"
+#~ msgstr "Genie"
+
+#~ msgid "Builtin Constant"
+#~ msgstr "Vgrajena konstanta"
+
+#~ msgid "Reserved Keywords"
+#~ msgstr "Zadržane ključne besede"
+
+#~ msgid "Go"
+#~ msgstr "Pojdi"
+
+#~ msgid "Imaginary number"
+#~ msgstr "Imaginarno število"
+
+#~ msgid "gtk-doc"
+#~ msgstr "gtk-doc"
+
+#~ msgid "Inline Documentation Section"
+#~ msgstr "Medvrstični odsek dokumentacije"
+
+#~ msgid "Function Name"
+#~ msgstr "Ime funkcije"
+
+#~ msgid "Signal Name"
+#~ msgstr "Ime signala"
+
+#~ msgid "Property Name"
+#~ msgstr "Ime lastnosti"
+
+#~ msgid "Parameter"
+#~ msgstr "Parameter"
+
+#~ msgid "Return"
+#~ msgstr "Vrni"
+
+#~ msgid "Since"
+#~ msgstr "Od"
+
+#~ msgid "Deprecated"
+#~ msgstr "Opuščeno"
+
+#~ msgid "GtkRC"
+#~ msgstr "GtkRC"
+
+#~ msgid "Widget State"
+#~ msgstr "Stanje gradnika"
+
+#~ msgid "Include directive"
+#~ msgstr "Vključi direktivo"
+
+#~ msgid "Haddock"
+#~ msgstr "Haddock"
+
+#~ msgid "Inline Haddock Section"
+#~ msgstr "Medvrstični odsek Haddock"
+
+#~ msgid "Haddock Directive"
+#~ msgstr "Direktiva Haddock"
+
+#~ msgid "Hyperlinked Identifier"
+#~ msgstr "Določilnik hiperpovezave"
+
+#~ msgid "Hyperlinked Module Name"
+#~ msgstr "Ime hiperpovezanega modula"
+
+#~ msgid "Escape"
+#~ msgstr "Ubežni znak"
+
+#~ msgid "Emphasis"
+#~ msgstr "Poudarek"
+
+#~ msgid "Monospace"
+#~ msgstr "Monospace"
+
+#~ msgid "Code Block"
+#~ msgstr "Enota kode"
+
+#~ msgid "Header Property"
+#~ msgstr "Lastnost glave"
+
+#~ msgid "Itemized list"
+#~ msgstr "Opredmeten seznam"
+
+#~ msgid "Enumerated list"
+#~ msgstr "Oštevilčen seznam"
+
+#~ msgid "Definition list"
+#~ msgstr "Seznam definicij"
+
+#~ msgid "URL"
+#~ msgstr "Naslov URL"
+
+#~ msgid "Anchor"
+#~ msgstr "Sidro"
+
+#~ msgid "Haskell"
+#~ msgstr "Haskell"
+
+#~ msgid "Symbol"
+#~ msgstr "Simbol"
+
+#~ msgid "Octal"
+#~ msgstr "Osmiško"
+
+#~ msgid "Hex"
+#~ msgstr "Šestnajstiško"
+
+#~ msgid "Literate Haskell"
+#~ msgstr "Haskell območje"
+
+#~ msgid "Haxe"
+#~ msgstr "Haxe"
+
+#~ msgid "Scope"
+#~ msgstr "Scope"
+
+#~ msgid "Metadata"
+#~ msgstr "Metapodatki"
+
+#~ msgid "Macro"
+#~ msgstr "Makro"
+
+#~ msgid "Identifier Prefix"
+#~ msgstr "Predpona določilnika"
+
+#~ msgid "HTML"
+#~ msgstr "HTML"
+
+#~ msgid "Tag"
+#~ msgstr "Oznaka"
+
+#~ msgid "Attribute Name"
+#~ msgstr "Ime atributa"
+
+#~ msgid "Attribute Value"
+#~ msgstr "Vrednost atributa"
+
+#~ msgid "Page title"
+#~ msgstr "Naziv strani"
+
+#~ msgid "Heading level 1"
+#~ msgstr "Naslov (1 raven)"
+
+#~ msgid "Heading level 2"
+#~ msgstr "Naslov (2 raven)"
+
+#~ msgid "Heading level 3"
+#~ msgstr "Naslov (3 raven)"
+
+#~ msgid "Heading level 4"
+#~ msgstr "Naslov (4 raven)"
+
+#~ msgid "Heading level 5"
+#~ msgstr "Naslov (5 raven)"
+
+#~ msgid "IDL-Exelis"
+#~ msgstr "IDL-Exelis"
+
+#~ msgid "IDL"
+#~ msgstr "IDL"
+
+#~ msgid "ImageJ"
+#~ msgstr "SlikaJ"
+
+#~ msgid "Commands"
+#~ msgstr "Ukazi"
+
+#~ msgid "Storage Type"
+#~ msgstr "Vrsta hrambe"
+
+#~ msgid ".ini"
+#~ msgstr ".ini"
+
+#~ msgid "Jade"
+#~ msgstr "Jade"
+
+#~ msgid "DOCTYPE"
+#~ msgstr "DOCTYPE"
+
+#~ msgid "Processing instruction"
+#~ msgstr "Navodila obdelave"
+
+#~ msgid "Element name"
+#~ msgstr "Ime predmeta"
+
+#~ msgid "Attribute value"
+#~ msgstr "Vrednost atributa"
+
+#~ msgid "Tags"
+#~ msgstr "Tags"
+
+#~ msgid "Entity"
+#~ msgstr "Entiteta"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "JavaScript"
+#~ msgstr "JavaScript"
+
+#~ msgid "Undefined Value"
+#~ msgstr "Nedoločena vrednost"
+
+#~ msgid "Properties"
+#~ msgstr "Lastnosti"
+
+#~ msgid "Constructors"
+#~ msgstr "Konstruktorji"
+
+#~ msgid "J"
+#~ msgstr "J"
+
+#~ msgid "Adverb"
+#~ msgstr "Pridevnik"
+
+#~ msgid "Conjunction"
+#~ msgstr "Konjunkcija"
+
+#~ msgid "Control"
+#~ msgstr "Nadzor"
+
+#~ msgid "Explicit Argument"
+#~ msgstr "Izrecni argument"
+
+#~ msgid "Global"
+#~ msgstr "Splošno"
+
+#~ msgid "Lab Text"
+#~ msgstr "Besedilo"
+
+#~ msgid "Local"
+#~ msgstr "Krajevno"
+
+#~ msgid "Noun"
+#~ msgstr "Samostalnik"
+
+#~ msgid "Explicit Noun Definition"
+#~ msgstr "Izrecno določilo samostalnika"
+
+#~ msgid "Parens"
+#~ msgstr "Parens"
+
+#~ msgid "Primitive"
+#~ msgstr "Praštevilo"
+
+#~ msgid "Verb"
+#~ msgstr "Glagol"
+
+#~ msgid "Julia"
+#~ msgstr "Julia"
+
+#~ msgid "Math Constant"
+#~ msgstr "Matematična konstanta"
+
+#~ msgid "Special Constant"
+#~ msgstr "Posebna konstanta"
+
+#~ msgid "External Command"
+#~ msgstr "Zunanji ukaz"
+
+#~ msgid "Built-in Function"
+#~ msgstr "Vgrajena funkcija"
+
+#~ msgid "Module"
+#~ msgstr "Modul"
+
+#~ msgid "LaTeX"
+#~ msgstr "LaTeX"
+
+#~ msgid "Math Mode"
+#~ msgstr "Matematični način"
+
+#~ msgid "Inline Math Mode"
+#~ msgstr "Medvrstični matematični način"
+
+#~ msgid "Math Boundary"
+#~ msgstr "Matematični način"
+
+#~ msgid "Include"
+#~ msgstr "Vključi"
+
+#~ msgid "Verbatim"
+#~ msgstr "Verbatim"
+
+#~ msgid "Special Character"
+#~ msgstr "Posebni znak"
+
+#~ msgid "Part Heading"
+#~ msgstr "Delni naslov"
+
+#~ msgid "Chapter Heading"
+#~ msgstr "Naslov poglavja"
+
+#~ msgid "Section Heading"
+#~ msgstr "Naslov razdelka"
+
+#~ msgid "SubSection Heading"
+#~ msgstr "Naslov podrejenega razdelka"
+
+#~ msgid "SubSubSection Heading"
+#~ msgstr "Naslov pod-podrejenega razdelka"
+
+#~ msgid "Paragraph Heading"
+#~ msgstr "Naslov odstavka"
+
+#~ msgid "SubParagraph Heading"
+#~ msgstr "Naslov podrejenega odstavka"
+
+#~ msgid "Lex"
+#~ msgstr "Lex"
+
+#~ msgid "Token"
+#~ msgstr "Žeton"
+
+#~ msgid "Expression"
+#~ msgstr "Izraz"
+
+#~ msgid "libtool"
+#~ msgstr "libtool"
+
+#~ msgid "Constants"
+#~ msgstr "Konstante"
+
+#~ msgid "Lua"
+#~ msgstr "Lua"
+
+#~ msgid "Reserved Identifier"
+#~ msgstr "Zadržan določilnik"
+
+#~ msgid "Label"
+#~ msgstr "Oznaka"
+
+#~ msgid "Nil Constant"
+#~ msgstr "Nična konstanta"
+
+#~ msgid "m4"
+#~ msgstr "m4"
+
+#~ msgid "m4 Comment"
+#~ msgstr "Opomba m4"
+
+#~ msgid "m4 Macro"
+#~ msgstr "m4 makro"
+
+#~ msgid "Autoconf Macro"
+#~ msgstr "Autoconf makro"
+
+#~ msgid "Obsolete Autoconf Macro"
+#~ msgstr "Zastarel autoconf makro"
+
+#~ msgid "Makefile"
+#~ msgstr "Makefile"
+
+#~ msgid "Assignment Right Hand Side"
+#~ msgstr "Dodelitev desnoročne strani"
+
+#~ msgid "Assignment Left Hand Side"
+#~ msgstr "Dodelitev levoročne strani"
+
+#~ msgid "targets"
+#~ msgstr "cilji"
+
+#~ msgid "prereq"
+#~ msgstr "zahteva"
+
+#~ msgid "command"
+#~ msgstr "ukaz"
+
+#~ msgid "Trailing Tab"
+#~ msgstr "Sledilni zavihek"
+
+#~ msgid "function"
+#~ msgstr "funkcija"
+
+#~ msgid "keyword"
+#~ msgstr "ključna beseda"
+
+#~ msgid "Mallard"
+#~ msgstr "Mallard"
+
+#~ msgid "Page Elements"
+#~ msgstr "Predmeti strani"
+
+#~ msgid "Section Elements"
+#~ msgstr "Predmeti odseka"
+
+#~ msgid "Block Elements"
+#~ msgstr "Bločni predmeti"
+
+#~ msgid "Inline Elements"
+#~ msgstr "Medvrstični predmeti"
+
+#~ msgid "Markdown"
+#~ msgstr "Markdown"
+
+#~ msgid "Header"
+#~ msgstr "Glava"
+
+#~ msgid "Horizontal Rule"
+#~ msgstr "Vodoravna črta"
+
+#~ msgid "List Marker"
+#~ msgstr "Oznaka seznama"
+
+#~ msgid "Code"
+#~ msgstr "Koda"
+
+#~ msgid "Blockquote Marker"
+#~ msgstr "Oznaka bločnega navedka"
+
+#~ msgid "Link Text"
+#~ msgstr "Besedilo povezave"
+
+#~ msgid "Image Marker"
+#~ msgstr "Oznaka slike"
+
+#~ msgid "Strong Emphasis"
+#~ msgstr "Močan poudarek"
+
+#~ msgid "Backslash Escape"
+#~ msgstr "Ubežni znak leve poševnice"
+
+#~ msgid "Line Break"
+#~ msgstr "Prelom vrstice"
+
+#~ msgid "Matlab"
+#~ msgstr "Matlab"
+
+#~ msgid "Maxima"
+#~ msgstr "Maxima"
+
+#~ msgid "MediaWiki"
+#~ msgstr "MediaWiki"
+
+#~ msgid "Light Emphasis"
+#~ msgstr "Nežen poudarek"
+
+#~ msgid "Signature"
+#~ msgstr "Podpis"
+
+#~ msgid "Link"
+#~ msgstr "Povezava"
+
+#~ msgid "Symbol on a Link"
+#~ msgstr "Simbol na povezavi"
+
+#~ msgid "Line"
+#~ msgstr "Črta"
+
+#~ msgid "List"
+#~ msgstr "Seznam"
+
+#~ msgid "Magic Word"
+#~ msgstr "Čarobna beseda"
+
+#~ msgid "Symbol of a Table"
+#~ msgstr "Simbol razpredelnice"
+
+#~ msgid "Preformatted"
+#~ msgstr "_Predoblikovano"
+
+#~ msgid "Redirect"
+#~ msgstr "Preusmeritev"
+
+#~ msgid "Title"
+#~ msgstr "Naslov"
+
+#~ msgid "Meson"
+#~ msgstr "Meson"
+
+#~ msgid "Modelica"
+#~ msgstr "Modelica"
+
+#~ msgid "Class type"
+#~ msgstr "Vrsta razreda"
+
+#~ msgid "Default Attribute"
+#~ msgstr "Privzeti atribut"
+
+#~ msgid "MXML"
+#~ msgstr "MXML"
+
+#~ msgid "CDATA delimiter"
+#~ msgstr "CDATA ločevalo"
+
+#~ msgid "Nemerle"
+#~ msgstr "Nemerle"
+
+#~ msgid "NetRexx"
+#~ msgstr "NetRexx"
+
+#~ msgid "Externals"
+#~ msgstr "Zunanji predmeti"
+
+#~ msgid "Options"
+#~ msgstr "Možnosti"
+
+#~ msgid "Data Types"
+#~ msgstr "Podatkovne vrste"
+
+#~ msgid "Special"
+#~ msgstr "Posebno"
+
+#~ msgid "Visibility"
+#~ msgstr "Vidnost"
+
+#~ msgid "Modifiers"
+#~ msgstr "Spremenilniki"
+
+#~ msgid "Keywords"
+#~ msgstr "Ključne besede"
+
+#~ msgid "Sub Keywords"
+#~ msgstr "Podrejene ključne besede"
+
+#~ msgid "NSIS"
+#~ msgstr "NSIS"
+
+#~ msgid "Objective-C"
+#~ msgstr "Predmetni-C"
+
+#~ msgid "Objective-J"
+#~ msgstr "Predmetni-J"
+
+#~ msgid "OCaml"
+#~ msgstr "OCaml"
+
+#~ msgid "Ocamldoc Comments"
+#~ msgstr "Opomba Ocamldoc"
+
+#~ msgid "Standard Modules"
+#~ msgstr "Standardni moduli"
+
+#~ msgid "OCL"
+#~ msgstr "OCL"
+
+#~ msgid "Type Operators"
+#~ msgstr "Vrstni operatorji"
+
+#~ msgid "Operation operator"
+#~ msgstr "Operator opravila"
+
+#~ msgid "Octave"
+#~ msgstr "Octave"
+
+#~ msgid "Package Manager"
+#~ msgstr "Upravljalnik paketov"
+
+#~ msgid "OOC"
+#~ msgstr "OOC"
+
+#~ msgid "Opal"
+#~ msgstr "Opal"
+
+#~ msgid "Module Handler"
+#~ msgstr "Ročnik modulov"
+
+#~ msgid "Keysymbol"
+#~ msgstr "Simbol tipke"
+
+#~ msgid "OpenCL"
+#~ msgstr "OpenCL"
+
+#~ msgid "Global Function"
+#~ msgstr "Splošna funkcija"
+
+#~ msgid "Device Function"
+#~ msgstr "Funkcija naprave"
+
+#~ msgid "Device Cast"
+#~ msgstr "Oddajanje naprave"
+
+#~ msgid "OpenCL Constant"
+#~ msgstr "Konstanta OpenCL"
+
+#~ msgid "Global Variable"
+#~ msgstr "Splošna spremenljivka"
+
+#~ msgid "Pascal"
+#~ msgstr "Pascal"
+
+#~ msgid "Perl"
+#~ msgstr "Perl"
+
+#~ msgid "Line Directive"
+#~ msgstr "Direktiva vrstice"
+
+#~ msgid "Include Statement"
+#~ msgstr "Dodaj stavek"
+
+#~ msgid "Heredoc"
+#~ msgstr "Heredoc"
+
+#~ msgid "Heredoc Bound"
+#~ msgstr "Vez Heredoc"
+
+#~ msgid "System Command"
+#~ msgstr "Sistemski ukaz"
+
+#~ msgid "File Descriptor"
+#~ msgstr "Opisnik datoteke"
+
+#~ msgid "POD"
+#~ msgstr "POD"
+
+#~ msgid "POD Escape"
+#~ msgstr "POD Izhod"
+
+#~ msgid "POD keyword"
+#~ msgstr "POD ključna beseda"
+
+#~ msgid "POD heading"
+#~ msgstr "POD glava"
+
+#~ msgid "PHP"
+#~ msgstr "PHP"
+
+#~ msgid "Preprocessor tags"
+#~ msgstr "Oznake predprocesorja"
+
+#~ msgid "Common Function"
+#~ msgstr "Pogosta zmožnost"
+
+#~ msgid "Pig"
+#~ msgstr "Pig"
+
+#~ msgid "Reserved Words"
+#~ msgstr "Rezervirane besede"
+
+#~ msgid "Built In Functions"
+#~ msgstr "Vgrajene funkcije"
+
+#~ msgid "Boolean values"
+#~ msgstr "Logične vrednosti"
+
+#~ msgid "Null"
+#~ msgstr "Ničta vrednost"
+
+#~ msgid "pkg-config"
+#~ msgstr "pkg-config"
+
+#~ msgid "Package Info"
+#~ msgstr "Podrobnosti paketa"
+
+#~ msgid "Fuzzy"
+#~ msgstr "Ohlapno"
+
+# Programski jezik
+#~ msgid "Prolog"
+#~ msgstr "Prolog"
+
+#~ msgid "Puppet"
+#~ msgstr "Puppet"
+
+#~ msgid "Resources"
+#~ msgstr "Viri"
+
+#~ msgid "Parameters"
+#~ msgstr "Parametri"
+
+#~ msgid "Metaparameters"
+#~ msgstr "Metaparametri"
+
+#~ msgid "Functions"
+#~ msgstr "Funkcije"
+
+#~ msgid "Values"
+#~ msgstr "Vrednosti"
+
+#~ msgid "Variables"
+#~ msgstr "Spremenljivke"
+
+#~ msgid "Class names"
+#~ msgstr "Imena razredov"
+
+#~ msgid "Python 3"
+#~ msgstr "Python 3"
+
+#~ msgid "Format"
+#~ msgstr "Format"
+
+#~ msgid "Builtin Object"
+#~ msgstr "Vgrajeni predmet"
+
+#~ msgid "Python"
+#~ msgstr "Python"
+
+#~ msgid "String Conversion"
+#~ msgstr "Pretvorba nizov"
+
+#~ msgid "Class Name"
+#~ msgstr "Ime razreda"
+
+#~ msgid "Decorator"
+#~ msgstr "Oblikovni vzorec"
+
+#~ msgid "R"
+#~ msgstr "R"
+
+#~ msgid "Reserved Class"
+#~ msgstr "Zadržan razred"
+
+#~ msgid "Assignment Operator"
+#~ msgstr "Operator naloge"
+
+#~ msgid "Delimiter"
+#~ msgstr "Ločilnik"
+
+#~ msgid "Integer Number"
+#~ msgstr "Celo število"
+
+#~ msgid "Define"
+#~ msgstr "Določi"
+
+#~ msgid "Section"
+#~ msgstr "Odsek"
+
+#~ msgid "Spec Macro"
+#~ msgstr "Makro določila"
+
+#~ msgid "Directory Macro"
+#~ msgstr "Makro imenika"
+
+#~ msgid "Command Macro"
+#~ msgstr "Ukazni makro"
+
+#~ msgid "Conditional Macro"
+#~ msgstr "Pogojni makro"
+
+#~ msgid "Other Macro"
+#~ msgstr "Drugi makro"
+
+#~ msgid "Flow Conditional"
+#~ msgstr "Pogojnik pretoka"
+
+#~ msgid "RPM Variable"
+#~ msgstr "RPM spremenljivka"
+
+#~ msgid "Switch"
+#~ msgstr "Stikalo"
+
+#~ msgid "Email"
+#~ msgstr "Elektronska pošta"
+
+#~ msgid "reStructuredText"
+#~ msgstr "reStructuredText"
+
+#~ msgid "Directive"
+#~ msgstr "Določilo"
+
+#~ msgid "Ruby"
+#~ msgstr "Ruby"
+
+#~ msgid "Attribute Definition"
+#~ msgstr "Določilo atributa"
+
+#~ msgid "Module handler"
+#~ msgstr "Ročnik modulov"
+
+#~ msgid "Numeric literal"
+#~ msgstr "Številčno območje"
+
+#~ msgid "Literal"
+#~ msgstr "Dosledno"
+
+#~ msgid "Rust"
+#~ msgstr "Rust"
+
+#~ msgid "Scala"
+#~ msgstr "Scala"
+
+#~ msgid "Modifier"
+#~ msgstr "Spremenilnik"
+
+#~ msgid "Built In"
+#~ msgstr "Vgrajeno"
+
+#~ msgid "XML Tag"
+#~ msgstr "Oznaka XML"
+
+#~ msgid "Scheme"
+#~ msgstr "Shema"
+
+#~ msgid "Scilab"
+#~ msgstr "Scilab"
+
+#~ msgid "sh"
+#~ msgstr "sh"
+
+#~ msgid "Variable Definition"
+#~ msgstr "Določilo spremenljivke"
+
+#~ msgid "Common Commands"
+#~ msgstr "Splošni ukazi"
+
+#~ msgid "Subshell"
+#~ msgstr "Podlupina"
+
+#~ msgid "Standard ML"
+#~ msgstr "Standard ML"
+
+#~ msgid "Module name, Variant, etc"
+#~ msgstr "Ime modula, različica in drugo."
+
+#~ msgid "SPARQL"
+#~ msgstr "SPARQL"
+
+#~ msgid "Class"
+#~ msgstr "Razred"
+
+#~ msgid "Individual"
+#~ msgstr "Posamezno"
+
+#~ msgid "Predicate"
+#~ msgstr "Povedno"
+
+#~ msgid "QName"
+#~ msgstr "QName"
+
+#~ msgid "IRI"
+#~ msgstr "IRI"
+
+#~ msgid "SQL"
+#~ msgstr "SQL"
+
+#~ msgid "No idea what it is"
+#~ msgstr "Neznan dogodek brez prave osnove"
+
+#~ msgid "Sweave"
+#~ msgstr "Zavitek"
+
+#~ msgid "Swift"
+#~ msgstr "Swift"
+
+#~ msgid "Builtin Value"
+#~ msgstr "Vgrajena vrednost"
+
+#~ msgid "Compiler Control"
+#~ msgstr "Kodni prevajalnik"
+
+#~ msgid "Interpolated Expression"
+#~ msgstr "Interpoliran izraz"
+
+#~ msgid "SystemVerilog"
+#~ msgstr "Sistemski Verilog"
+
+#~ msgid "txt2tags"
+#~ msgstr "txt2tags"
+
+#~ msgid "Option"
+#~ msgstr "Možnost"
+
+#~ msgid "Option Name"
+#~ msgstr "Ime možnosti"
+
+#~ msgid "Section 1"
+#~ msgstr "Odsek 1"
+
+#~ msgid "Section 2"
+#~ msgstr "Odsek 2"
+
+#~ msgid "Section 3"
+#~ msgstr "Odsek 3"
+
+#~ msgid "Section 4"
+#~ msgstr "Odsek 4"
+
+#~ msgid "Section 5"
+#~ msgstr "Odsek 5"
+
+#~ msgid "Italic"
+#~ msgstr "Ležeče"
+
+#~ msgid "Bold"
+#~ msgstr "Krepko"
+
+#~ msgid "Verbatim Block"
+#~ msgstr "Blok Verbatim"
+
+#~ msgid "Tcl"
+#~ msgstr "Tcl"
+
+#~ msgid "Texinfo"
+#~ msgstr "Texinfo"
+
+#~ msgid "Macros"
+#~ msgstr "Makri"
+
+#~ msgid "File Attributes"
+#~ msgstr "Atributi datoteke"
+
+#~ msgid "Generated Content"
+#~ msgstr "Ustvarjena vsebina"
+
+#~ msgid "Thrift"
+#~ msgstr "Thrift"
+
+#~ msgid "Vala"
+#~ msgstr "Vala"
+
+#~ msgid "VB.NET"
+#~ msgstr "VB.NET"
+
+#~ msgid "Verilog"
+#~ msgstr "Verilog"
+
+#~ msgid "IEEE System Task"
+#~ msgstr "Sistemska naloga IEEE"
+
+#~ msgid "LRM Additional System Task"
+#~ msgstr "Dodatna sistemska naloga LRM"
+
+#~ msgid "Gate"
+#~ msgstr "Gate"
+
+#~ msgid "VHDL"
+#~ msgstr "VHDL"
+
+#~ msgid "XML"
+#~ msgstr "XML"
+
+#~ msgid "XSLT"
+#~ msgstr "XSLT"
+
+#~ msgid "Element"
+#~ msgstr "Predmet"
+
+#~ msgid "Yacc"
+#~ msgstr "Yacc"
+
+#~ msgid "token type"
+#~ msgstr "vrsta žetona"
+
+#~ msgid "rule"
+#~ msgstr "pravilo"
+
+#~ msgid "YAML"
+#~ msgstr "YAML"
+
+#~ msgid "Block literal"
+#~ msgstr "Block literal"
+
+#~ msgid "Alias"
+#~ msgstr "Vzdevek"
+
+#~ msgid "Map key"
+#~ msgstr "Ključ preslikave"
+
+#~ msgid "Integer"
+#~ msgstr "Celo število"
+
+#~ msgid "Floating point"
+#~ msgstr "Plavajoča vejica"
+
+#~ msgid "Kate"
+#~ msgstr "Kate"
 
 #~ msgid "Space"
 #~ msgstr "Preslednica"
