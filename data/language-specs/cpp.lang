@@ -3,9 +3,10 @@
 
  This file is part of GtkSourceView
 
- Authors: Marco Barisione, Emanuele Aina
+ Authors: Marco Barisione, Emanuele Aina, Ole Christian Eidheim
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
+ Copyright (C) 2018 Ole Christian Eidheim <eidheim@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -31,6 +32,7 @@
     </metadata>
 
     <styles>
+        <style id="raw-string" name="Raw String" map-to="def:string"/>
         <style id="keyword" name="Keyword" map-to="c:keyword"/>
         <style id="type" name="Data Type" map-to="c:type"/>
         <style id="common-defines" name="Common Defines" map-to="c:common-defines"/>
@@ -40,6 +42,11 @@
         <!-- C++-specific stuff (i.e. stuff which is not C) -->
         <context id="cpp-proper">
             <include>
+                <context id="raw-string" style-ref="raw-string" class="string" class-disabled="no-spell-check">
+                  <start>R"([^\(\)\\ ]*)\(</start>
+                  <end>\)\%{1@start}"</end>
+                </context>
+                
                 <context id="keywords" style-ref="keyword">
                     <keyword>alignas</keyword>
                     <keyword>alignof</keyword>
