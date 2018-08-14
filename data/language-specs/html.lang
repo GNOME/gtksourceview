@@ -50,7 +50,7 @@
     <!-- Html comments are more permissive than xml comments -->
     <context id="comment" style-ref="comment" class="comment">
       <start>&lt;!--</start>
-      <end>--\s*&gt;</end>
+      <end>--&gt;</end>
       <include>
         <context ref="def:in-comment"/>
       </include>
@@ -82,13 +82,13 @@
           </include>
         </context>
         <context id="h1" end-at-line-end="true">
-          <start>&lt;\s*h1</start>
+          <start>&lt;h1</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context ref="generic-tag"/>
             <context id="h1-inside" style-inside="true" style-ref="h1" end-at-line-end="true" end-parent="true">
               <start>&gt;</start>
-              <end>&lt;\s*/h1\s*&gt;</end>
+              <end>&lt;/h1\s*&gt;</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
@@ -99,13 +99,13 @@
           </include>
         </context>
         <context id="h2" end-at-line-end="true">
-          <start>&lt;\s*h2</start>
+          <start>&lt;h2</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context ref="generic-tag"/>
             <context id="h2-inside" style-inside="true" style-ref="h2" end-at-line-end="true" end-parent="true">
               <start>&gt;</start>
-              <end>&lt;\s*/h2\s*&gt;</end>
+              <end>&lt;/h2\s*&gt;</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
@@ -116,13 +116,13 @@
           </include>
         </context>
         <context id="h3" end-at-line-end="true">
-          <start>&lt;\s*h3</start>
+          <start>&lt;h3</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context ref="generic-tag"/>
             <context id="h3-inside" style-inside="true" style-ref="h3" end-at-line-end="true" end-parent="true">
               <start>&gt;</start>
-              <end>&lt;\s*/h3\s*&gt;</end>
+              <end>&lt;/h3\s*&gt;</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
@@ -133,13 +133,13 @@
           </include>
         </context>
         <context id="h4" end-at-line-end="true">
-          <start>&lt;\s*h4</start>
+          <start>&lt;h4</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context ref="generic-tag"/>
             <context id="h4-inside" style-inside="true" style-ref="h4" end-at-line-end="true" end-parent="true">
               <start>&gt;</start>
-              <end>&lt;\s*/h4\s*&gt;</end>
+              <end>&lt;/h4\s*&gt;</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
@@ -150,13 +150,13 @@
           </include>
         </context>
         <context id="h5" end-at-line-end="true">
-          <start>&lt;\s*h5</start>
+          <start>&lt;h5</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context ref="generic-tag"/>
             <context id="h5-inside" style-inside="true" style-ref="h5" end-at-line-end="true" end-parent="true">
               <start>&gt;</start>
-              <end>&lt;\s*/h5\s*&gt;</end>
+              <end>&lt;/h5\s*&gt;</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
@@ -213,18 +213,18 @@
     </context>
 
     <context id="style" class="no-spell-check">
-      <start>&lt;\s*style\%]</start>
+      <start>&lt;style\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="tag"/>
         <context ref="generic-tag"/>
 
         <context end-parent="true" style-ref="tag">
-          <match>/\s*&gt;</match>
+          <match>/&gt;</match>
         </context>
 
         <context id="style-code" end-parent="true">
           <start>&gt;</start>
-          <end>&lt;\s*/\s*style\s*&gt;</end>
+          <end>&lt;/style\s*&gt;</end>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context sub-pattern="0" where="end" style-ref="tag"/>
@@ -236,18 +236,18 @@
     </context>
 
     <context id="script" class="no-spell-check">
-      <start>&lt;\s*script\%]</start>
+      <start>&lt;script\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="tag"/>
         <context ref="generic-tag"/>
 
         <context end-parent="true" style-ref="tag">
-          <match>/\s*&gt;</match>
+          <match>/&gt;</match>
         </context>
 
         <context id="js-code" end-parent="true">
           <start>&gt;</start>
-          <end>&lt;\s*/\s*script\s*&gt;</end>
+          <end>&lt;/script\s*&gt;</end>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context sub-pattern="0" where="end" style-ref="tag"/>
@@ -259,8 +259,8 @@
     </context>
 
     <context id="tag" class="no-spell-check">
-      <start>&lt;\s*/?\s*[a-z0-9_-]+</start>
-      <end>/?\s*&gt;</end>
+      <start>&lt;/?[a-z0-9_-]+</start>
+      <end>/?&gt;</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="tag"/>
         <context sub-pattern="0" where="end" style-ref="tag"/>
