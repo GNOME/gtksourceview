@@ -16,26 +16,26 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 or visit this link <http://www.gnu.org/licenses/>.
 
 -->
-<language id="fish" _name="Fish" version="2.0" _section="Scripts">
+<language id="fish" name="Fish" version="2.0" _section="Script">
   <metadata>
 <!--    <property name="mimetypes">text/x-fish</property>  -->
-    <property name="mimetypes">text/x-shellscript;application/x-shellscript;text/x-fish</property>
+    <property name="mimetypes">text/x-fish</property>
     <property name="globs">*.fish</property>
     <property name="line-comment-start">#</property>
   </metadata>
 
   <styles>
-    <style id="comment"             _name="Comment"             map-to="def:comment"/>
-    <style id="function"            _name="Function"            map-to="def:function"/>
-    <style id="string"              _name="String"              map-to="def:string"/>
-    <style id="keyword"             _name="Keyword"             map-to="def:keyword"/>
-    <style id="variable"            _name="Variable"            map-to="def:type"/>
-    <style id="variable-definition" _name="Variable Definition" map-to="sh:variable"/> 
-    <style id="variable-definition" _name="Variable Definition" map-to="fish:variable"/> 
-    <style id="others"              _name="Others"              map-to="def:keyword"/>
-    <style id="common-command"      _name="Common Commands"     map-to="def:keyword"/>
-    <style id="here-doc-bound"      _name="Heredoc Bound"       map-to="def:keyword"/>
-    <style id="subshell"            _name="Subshell"            map-to="def:preprocessor"/>
+    <style id="comment"             name="Comment"             map-to="def:comment"/>
+    <style id="function"            name="Function"            map-to="def:function"/>
+    <style id="string"              name="String"              map-to="def:string"/>
+    <style id="keyword"             name="Keyword"             map-to="def:keyword"/>
+    <style id="variable"            name="Variable"            map-to="def:type"/>
+    <style id="variable-definition" name="Variable Definition" map-to="sh:variable"/> 
+    <style id="variable-definition" name="Variable Definition" map-to="fish:variable"/> 
+    <style id="others"              name="Others"              map-to="def:keyword"/>
+    <style id="common-command"      name="Common Commands"     map-to="def:keyword"/>
+    <style id="here-doc-bound"      name="Heredoc Bound"       map-to="def:keyword"/>
+    <style id="subshell"            name="Subshell"            map-to="def:preprocessor"/>
   </styles>
 
   <definitions>
@@ -52,11 +52,11 @@ or visit this link <http://www.gnu.org/licenses/>.
       <include>
         <!-- highlight escaped chars -->
         <context style-ref="def:special-char">
-            <match>\\[$`"\\]</match>
+          <match>\\[$`"\\]</match>
         </context>
         <!-- skip backslash where it's not an escaping char -->
         <context>
-            <match>\\</match>
+          <match>\\</match>
         </context>
         <context ref="def:line-continue"/>
         <context ref="variable"/>
