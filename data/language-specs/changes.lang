@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView.
+
+ Author: Luciano Santos
+ Copyright (C) 2018 Luciano Santos <luc14n0@linuxmail.org>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+<language id="changes" name="Changes" version="2.0" _section="Other">
+
+  <metadata>
+    <property name="mimetypes">text/plain</property>
+    <property name="globs">*changes</property>
+  </metadata>
+
+  <styles>
+    <style id="horizontal-rule" name="Horizontal Rule" map-to="def:type"/>
+    <style id="date" name="Date" map-to="def:number"/>
+    <style id="email" name="E-mail address" map-to="def:identifier"/>
+    <style id="bullet" name="Bullet" map-to="def:type"/>
+  </styles>
+
+  <definitions>
+    <define-regex id="weekday">Mon|Tue|Wed|Thu|Fri|Sat|Sun</define-regex>
+    <define-regex id="month">Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec</define-regex>
+
+    <define-regex id="date" extended="true">
+      \%{weekday}\s+\%{month}\s+\d{1,2}\s+\d{1,2}:\d{1,2}:\d{1,2}\s+\w{3,4}\s+\d{4}
+    </define-regex>
+
+    <context id="changes">
+      <include>
+
+        <context id="horizontal-rule" style-ref="horizontal-rule" class="no-spell-check">
+          <match>^-{67}</match>
+        </context>
+
+        <context id="date-email" class="no-spell-check">
+          <match extended="true">
+            ^(?P&lt;date&gt;\%{date})\s-\s
+            (?P&lt;email&gt;.*@.*\.\w{2,3})$
+          </match>
+          <include>
+            <context sub-pattern="date" style-ref="date"/>
+            <context sub-pattern="email" style-ref="email"/>
+          </include>
+       </context>
+       <context id="bullet" style-ref="bullet">
+         <match extended="true">
+           (
+             ^-\s |
+             ^[ ]{2}(\*|\+)\s |
+             ^[ ]{4}-\s |
+             ^[ ]{6}\.\s
+           )
+         </match>
+       </context>
+
+      </include>
+    </context>
+  </definitions>
+
+</language>
