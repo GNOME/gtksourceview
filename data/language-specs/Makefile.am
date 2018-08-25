@@ -14,6 +14,7 @@ LANGUAGES =			\
 	boo.lang		\
 	cg.lang			\
 	changelog.lang		\
+	changes.lang		\
 	chdr.lang		\
 	c.lang			\
 	cmake.lang		\
