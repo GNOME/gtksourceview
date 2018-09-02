@@ -4,10 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-01-14 10:53+0000\n"
-"PO-Revision-Date: 2018-03-16 22:44+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
+"POT-Creation-Date: 2018-08-07 18:41+0000\n"
+"PO-Revision-Date: 2018-09-02 18:55+0200\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "Language: hr\n"
@@ -15,71 +14,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2014-01-06 17:27+0000\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.1.1\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:23
-msgid "Disabled"
-msgstr "Onemogućeno"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:24
-msgid "Before"
-msgstr "Prije"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:25
-msgid "After"
-msgstr "Poslije"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:26
-msgid "Always"
-msgstr "Uvijek"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:32
-msgid "Space"
-msgstr "Razmak"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:33
-msgid "Tab"
-msgstr "Kartica"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:34
-msgid "Newline"
-msgstr "Novi redak"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:35
-msgid "Non Breaking Whitespace"
-msgstr "Neprelomljivi znak razmaka"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:36
-msgid "Leading"
-msgstr "Vodeći"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:37
-msgid "Text"
-msgstr "Tekst"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:38
-msgid "Trailing"
-msgstr "Prateći"
-
-#. (itstool) path: displayable-values/value@name
-#. Translators: "All" is used as a label in the status bar of the
-#. popup, telling that all completion pages are shown.
-#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:833
-msgid "All"
-msgstr "Sve"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -107,6 +44,7 @@ msgstr "Sve"
 #. (itstool) path: genie.lang/language@_section
 #. (itstool) path: glsl.lang/language@_section
 #. (itstool) path: go.lang/language@_section
+#. (itstool) path: gradle.lang/language@_section
 #. (itstool) path: groovy.lang/language@_section
 #. (itstool) path: haskell.lang/language@_section
 #. (itstool) path: haskell-literate.lang/language@_section
@@ -117,6 +55,7 @@ msgstr "Sve"
 #. (itstool) path: kotlin.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: logtalk.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
 #. (itstool) path: meson.lang/language@_section
 #. (itstool) path: nemerle.lang/language@_section
@@ -148,14 +87,14 @@ msgstr "Sve"
 #: chdr.lang:24 c.lang:24 cobol.lang:26 cpphdr.lang:24 cpp.lang:24
 #: csharp.lang:26 cuda.lang:22 d.lang:29 eiffel.lang:23 erlang.lang:23
 #: forth.lang:23 fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30
-#: go.lang:24 groovy.lang:24 haskell.lang:24 haskell-literate.lang:23
-#: haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24
-#: llvm.lang:22 makefile.lang:22 meson.lang:23 nemerle.lang:23 netrexx.lang:23
-#: objc.lang:23 objj.lang:25 ocaml.lang:26 ooc.lang:23 opal.lang:23
-#: opencl.lang:23 pascal.lang:24 pig.lang:26 prolog.lang:23 rust.lang:35
-#: scala.lang:24 scheme.lang:23 sml.lang:23 sparql.lang:23 sql.lang:23
-#: swift.lang:24 systemverilog.lang:21 thrift.lang:20 vala.lang:27
-#: vbnet.lang:23 verilog.lang:23 vhdl.lang:23
+#: go.lang:24 gradle.lang:21 groovy.lang:24 haskell.lang:24
+#: haskell-literate.lang:23 haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23
+#: kotlin.lang:24 lex.lang:24 llvm.lang:22 logtalk.lang:23 makefile.lang:22
+#: meson.lang:23 nemerle.lang:23 netrexx.lang:23 objc.lang:23 objj.lang:25
+#: ocaml.lang:26 ooc.lang:23 opal.lang:23 opencl.lang:23 pascal.lang:24
+#: pig.lang:26 prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23
+#: sml.lang:23 sparql.lang:23 sql.lang:23 swift.lang:24 systemverilog.lang:21
+#: thrift.lang:20 vala.lang:27 vbnet.lang:23 verilog.lang:23 vhdl.lang:23
 msgid "Source"
 msgstr "Izvor"
 
@@ -171,7 +110,7 @@ msgstr "Izvor"
 #. (itstool) path: ruby.lang/language@_section
 #. (itstool) path: sh.lang/language@_section
 #. (itstool) path: tcl.lang/language@_section
-#: awk.lang:23 dosbatch.lang:23 javascript.lang:26 lua.lang:23 m4.lang:23
+#: awk.lang:23 dosbatch.lang:23 javascript.lang:27 lua.lang:23 m4.lang:23
 #: perl.lang:25 php.lang:28 python3.lang:23 python.lang:27 ruby.lang:26
 #: sh.lang:24 tcl.lang:23
 msgid "Script"
@@ -193,13 +132,14 @@ msgstr "Skripta"
 #. (itstool) path: rst.lang/language@_section
 #. (itstool) path: sweave.lang/language@_section
 #. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: tera.lang/language@_section
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
 #: bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 gtk-doc.lang:24
 #: haddock.lang:23 html.lang:24 jade.lang:24 latex.lang:24 mallard.lang:22
 #: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
-#: t2t.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
 msgid "Markup"
 msgstr "Oznaka"
 
@@ -220,6 +160,7 @@ msgstr "CG Shader jezik"
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
 #. (itstool) path: json.lang/language@_section
+#. (itstool) path: less.lang/language@_section
 #. (itstool) path: libtool.lang/language@_section
 #. (itstool) path: logcat.lang/language@_section
 #. (itstool) path: nsis.lang/language@_section
@@ -229,13 +170,16 @@ msgstr "CG Shader jezik"
 #. (itstool) path: protobuf.lang/language@_section
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
+#. (itstool) path: scss.lang/language@_section
+#. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
-#: changelog.lang:24 cmake.lang:23 css.lang:38 csv.lang:23 desktop.lang:24
+#: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 gdb-log.lang:18 gtkrc.lang:24
-#: ini.lang:22 json.lang:29 libtool.lang:23 logcat.lang:23 nsis.lang:23
-#: ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21 puppet.lang:23
-#: rpmspec.lang:24 yacc.lang:23 yaml.lang:21
+#: ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23 logcat.lang:23
+#: nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21
+#: puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23 yacc.lang:23
+#: yaml.lang:21
 msgid "Other"
 msgstr "Ostalo"
 
@@ -301,121 +245,127 @@ msgstr "gettext prijevod"
 msgid "RPM spec"
 msgstr "RPM spec"
 
+#. (itstool) path: tera.lang/language@_name
+#: tera.lang:23
+msgid "Tera Template"
+msgstr "Tera predložak"
+
 #. (itstool) path: classic.xml/style-scheme@_name
-#: classic.xml:24
+#: classic.xml:23
 msgid "Classic"
 msgstr "Klasična"
 
 #. (itstool) path: style-scheme/_description
-#: classic.xml:26
+#: classic.xml:25
 msgid "Classic color scheme"
 msgstr "Klasična shema boja"
 
 #. (itstool) path: cobalt.xml/style-scheme@_name
-#: cobalt.xml:26
+#: cobalt.xml:25
 msgid "Cobalt"
 msgstr "Kobalt"
 
 #. (itstool) path: style-scheme/_description
-#: cobalt.xml:28
+#: cobalt.xml:27
 msgid "Blue based color scheme"
 msgstr "Plavo temeljena shema boja"
 
-#. (itstool) path: kate.xml/style-scheme@_name
-#: kate.xml:24
-msgid "Kate"
-msgstr "Kate"
-
 #. (itstool) path: style-scheme/_description
-#: kate.xml:26
+#: kate.xml:25
 msgid "Color scheme used in the Kate text editor"
 msgstr "Shema boja korištena u Kate uređivaču teksta"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:25
+#: oblivion.xml:24
 msgid "Oblivion"
 msgstr "Oblivion"
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:28
+#: oblivion.xml:27
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Tamna shema boja korištena u Tango paleti boja"
 
 #. (itstool) path: solarized-dark.xml/style-scheme@_name
-#: solarized-dark.xml:24
+#: solarized-dark.xml:23
 msgid "Solarized Dark"
 msgstr "Solarizirano tamna"
 
 #. (itstool) path: style-scheme/_description
-#: solarized-dark.xml:26
+#: solarized-dark.xml:25
 msgid "Color scheme using Solarized dark color palette"
 msgstr "Shema boja korištena Solarizirano tamnoj paleti boja"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
-#: solarized-light.xml:24
+#: solarized-light.xml:23
 msgid "Solarized Light"
 msgstr "Solarizirano svjetla"
 
 #. (itstool) path: style-scheme/_description
-#: solarized-light.xml:26
+#: solarized-light.xml:25
 msgid "Color scheme using Solarized light color palette"
 msgstr "Shema boja korištena Solarizirano svjetloj paleti boja"
 
 #. (itstool) path: tango.xml/style-scheme@_name
-#: tango.xml:24
+#: tango.xml:23
 msgid "Tango"
 msgstr "Tango"
 
 #. (itstool) path: style-scheme/_description
-#: tango.xml:26
+#: tango.xml:25
 msgid "Color scheme using Tango color palette"
 msgstr "Shema boja korištena Tango paleti boja"
 
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:334
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
 msgid "Document Words"
 msgstr "Riječi dokumenta"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:843
+#: gtksourceview/gtksourcebufferoutputstream.c:842
 msgid "Invalid byte sequence in conversion input"
 msgstr "Neispravan slijed bajta u ulazu pretvorbe"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:849
+#: gtksourceview/gtksourcebufferoutputstream.c:848
 #, c-format
 msgid "Error during conversion: %s"
 msgstr "Greška tijekom pretvorbe: %s"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:930
+#: gtksourceview/gtksourcebufferoutputstream.c:929
 #, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
 msgstr "Pretvorba iz skupa znakova “%s” u “UTF-8” nije podržana"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:936
+#: gtksourceview/gtksourcebufferoutputstream.c:935
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
 msgstr "Nemoguće otvaranje pretvornika iz “%s” u “UTF-8”"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:996
+#: gtksourceview/gtksourcebufferoutputstream.c:995
 msgid "Invalid object, not initialized"
 msgstr "Neispravan objekt, nemoguće pokretanje"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1188
+#: gtksourceview/gtksourcebufferoutputstream.c:1187
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Nepotpun UTF-8 slijed u ulazu"
 
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
+#: gtksourceview/gtksourcecompletion.c:833
+msgid "All"
+msgstr "Sve"
+
 #. Tooltip style
-#: gtksourceview/gtksourcecompletioninfo.c:271
+#: gtksourceview/gtksourcecompletioninfo.c:262
 msgid "Completion Info"
 msgstr "Informacija dovršavanja"
 
-#: gtksourceview/gtksourcecompletionmodel.c:495
+#: gtksourceview/gtksourcecompletionmodel.c:494
 msgid "Provider"
 msgstr "Pružatelj usluge"
 
-#: gtksourceview/gtksourcecompletion.ui:87
+#: gtksourceview/gtksourcecompletion.ui:86
 msgid "Show detailed proposal information"
 msgstr "Prikaži opširne informacije prijedloga"
 
-#: gtksourceview/gtksourcecompletion.ui:89
+#: gtksourceview/gtksourcecompletion.ui:88
 msgid "_Details…"
 msgstr "_Pojedinosti…"
 
@@ -423,7 +373,7 @@ msgstr "_Pojedinosti…"
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3141
+#: gtksourceview/gtksourcecontextengine.c:3140
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -434,7 +384,7 @@ msgstr ""
 "sintakse biti će sporije nego uobičajeno\n"
 "Dogodila se greška: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4464
+#: gtksourceview/gtksourcecontextengine.c:4472
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -442,19 +392,19 @@ msgstr ""
 "Naglašavanje jednog redka trajalo je previše vremena, naglašavanje sintakse "
 "će biti onemogućeno"
 
-#: gtksourceview/gtksourcecontextengine.c:5712
+#: gtksourceview/gtksourcecontextengine.c:5720
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "sadržaj “%s” ne može sadržavati \\%%{...@start} naredbu"
 
-#: gtksourceview/gtksourcecontextengine.c:5875
-#: gtksourceview/gtksourcecontextengine.c:5965
+#: gtksourceview/gtksourcecontextengine.c:5883
+#: gtksourceview/gtksourcecontextengine.c:5973
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "dupli id sadržaja “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6079
-#: gtksourceview/gtksourcecontextengine.c:6139
+#: gtksourceview/gtksourcecontextengine.c:6087
+#: gtksourceview/gtksourcecontextengine.c:6147
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -463,135 +413,135 @@ msgstr ""
 "izgled zaobilaženja korišten sa zamjenskim znakovima sadržaja napomene u "
 "jeziku “%s” in ref “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6153
+#: gtksourceview/gtksourcecontextengine.c:6161
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "neispravan sadržaj napomene “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6172
-#: gtksourceview/gtksourcecontextengine.c:6182
+#: gtksourceview/gtksourcecontextengine.c:6180
+#: gtksourceview/gtksourcecontextengine.c:6190
 #, c-format
 msgid "unknown context “%s”"
 msgstr "nepoznat sadržaj “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6281
+#: gtksourceview/gtksourcecontextengine.c:6289
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Nedostaje definicija glavnog jezika (id = \"%s\".)"
 
-#: gtksourceview/gtksourceencoding.c:141 gtksourceview/gtksourceencoding.c:184
-#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
-#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
-#: gtksourceview/gtksourceencoding.c:194 gtksourceview/gtksourceencoding.c:196
+#: gtksourceview/gtksourceencoding.c:146 gtksourceview/gtksourceencoding.c:189
+#: gtksourceview/gtksourceencoding.c:191 gtksourceview/gtksourceencoding.c:193
+#: gtksourceview/gtksourceencoding.c:195 gtksourceview/gtksourceencoding.c:197
+#: gtksourceview/gtksourceencoding.c:199 gtksourceview/gtksourceencoding.c:201
 msgid "Unicode"
 msgstr "Unikôd"
 
-#: gtksourceview/gtksourceencoding.c:155 gtksourceview/gtksourceencoding.c:179
-#: gtksourceview/gtksourceencoding.c:229 gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:234 gtksourceview/gtksourceencoding.c:277
 msgid "Western"
 msgstr "Zapadni"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:231
-#: gtksourceview/gtksourceencoding.c:268
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:236
+#: gtksourceview/gtksourceencoding.c:273
 msgid "Central European"
 msgstr "Srednjo europski"
 
-#: gtksourceview/gtksourceencoding.c:159
+#: gtksourceview/gtksourceencoding.c:164
 msgid "South European"
 msgstr "Južno europski"
 
-#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:175
-#: gtksourceview/gtksourceencoding.c:282
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:287
 msgid "Baltic"
 msgstr "Baltički"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:233
-#: gtksourceview/gtksourceencoding.c:246 gtksourceview/gtksourceencoding.c:250
-#: gtksourceview/gtksourceencoding.c:252 gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:168 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:255
+#: gtksourceview/gtksourceencoding.c:257 gtksourceview/gtksourceencoding.c:275
 msgid "Cyrillic"
 msgstr "Ćirilica"
 
-#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:239
-#: gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:244
+#: gtksourceview/gtksourceencoding.c:285
 msgid "Arabic"
 msgstr "Arapski"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:172 gtksourceview/gtksourceencoding.c:279
 msgid "Greek"
 msgstr "Grčki"
 
-#: gtksourceview/gtksourceencoding.c:169
+#: gtksourceview/gtksourceencoding.c:174
 msgid "Hebrew Visual"
 msgstr "Hebrejski vizualni"
 
-#: gtksourceview/gtksourceencoding.c:171 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:176 gtksourceview/gtksourceencoding.c:240
+#: gtksourceview/gtksourceencoding.c:281
 msgid "Turkish"
 msgstr "Turski"
 
-#: gtksourceview/gtksourceencoding.c:173
+#: gtksourceview/gtksourceencoding.c:178
 msgid "Nordic"
 msgstr "Nordijski"
 
-#: gtksourceview/gtksourceencoding.c:177
+#: gtksourceview/gtksourceencoding.c:182
 msgid "Celtic"
 msgstr "Keltski"
 
-#: gtksourceview/gtksourceencoding.c:181
+#: gtksourceview/gtksourceencoding.c:186
 msgid "Romanian"
 msgstr "Rumunjski"
 
-#: gtksourceview/gtksourceencoding.c:199
+#: gtksourceview/gtksourceencoding.c:204
 msgid "Armenian"
 msgstr "Armenski"
 
-#: gtksourceview/gtksourceencoding.c:201 gtksourceview/gtksourceencoding.c:203
-#: gtksourceview/gtksourceencoding.c:217
+#: gtksourceview/gtksourceencoding.c:206 gtksourceview/gtksourceencoding.c:208
+#: gtksourceview/gtksourceencoding.c:222
 msgid "Chinese Traditional"
 msgstr "Kineski tradicionalni"
 
-#: gtksourceview/gtksourceencoding.c:205
+#: gtksourceview/gtksourceencoding.c:210
 msgid "Cyrillic/Russian"
 msgstr "Ćirilica/Ruski"
 
-#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:210
-#: gtksourceview/gtksourceencoding.c:212 gtksourceview/gtksourceencoding.c:242
-#: gtksourceview/gtksourceencoding.c:257
+#: gtksourceview/gtksourceencoding.c:213 gtksourceview/gtksourceencoding.c:215
+#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:247
+#: gtksourceview/gtksourceencoding.c:262
 msgid "Japanese"
 msgstr "Japanski"
 
-#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:244
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:249
+#: gtksourceview/gtksourceencoding.c:253 gtksourceview/gtksourceencoding.c:268
 msgid "Korean"
 msgstr "Korejski"
 
-#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:222
-#: gtksourceview/gtksourceencoding.c:224
+#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:227
+#: gtksourceview/gtksourceencoding.c:229
 msgid "Chinese Simplified"
 msgstr "Kineski pojednostavljeni"
 
-#: gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:231
 msgid "Georgian"
 msgstr "Gruzijski"
 
-#: gtksourceview/gtksourceencoding.c:237 gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:283
 msgid "Hebrew"
 msgstr "Hebrejski"
 
-#: gtksourceview/gtksourceencoding.c:254
+#: gtksourceview/gtksourceencoding.c:259
 msgid "Cyrillic/Ukrainian"
 msgstr "Ćirilica/Ukrajinski"
 
-#: gtksourceview/gtksourceencoding.c:259 gtksourceview/gtksourceencoding.c:265
-#: gtksourceview/gtksourceencoding.c:284
+#: gtksourceview/gtksourceencoding.c:264 gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:289
 msgid "Vietnamese"
 msgstr "Vijetnamski"
 
-#: gtksourceview/gtksourceencoding.c:261
+#: gtksourceview/gtksourceencoding.c:266
 msgid "Thai"
 msgstr "Tajlandski"
 
-#: gtksourceview/gtksourceencoding.c:495
+#: gtksourceview/gtksourceencoding.c:500
 msgid "Unknown"
 msgstr "Nepoznato"
 
@@ -605,15 +555,15 @@ msgstr "Nepoznato"
 #. * value used by GtkSourceView and it represents the encoding for the
 #. * current locale, so please don't translate the "CURRENT" term.  Only
 #. * recognized encodings are used. See
-#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+#. * https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:639
+#: gtksourceview/gtksourceencoding.c:644
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'TRENUTNO', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:516
+#: gtksourceview/gtksourcefileloader.c:522
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -621,19 +571,19 @@ msgstr ""
 "Dogodila se greška pretvorbe kôdiranja znakova i potrebno je korištenje "
 "pričuvnog znaka."
 
-#: gtksourceview/gtksourcefileloader.c:623
+#: gtksourceview/gtksourcefileloader.c:629
 msgid "File too big."
 msgstr "Datoteka je prevelika."
 
-#: gtksourceview/gtksourcefileloader.c:777
+#: gtksourceview/gtksourcefileloader.c:783
 msgid "Not a regular file."
 msgstr "Nije obična datoteka."
 
-#: gtksourceview/gtksourcefilesaver.c:976
+#: gtksourceview/gtksourcefilesaver.c:981
 msgid "The file is externally modified."
 msgstr "Datoteka je promijenjena izvana."
 
-#: gtksourceview/gtksourcefilesaver.c:1428
+#: gtksourceview/gtksourcefilesaver.c:1433
 msgid "The buffer contains invalid characters."
 msgstr "Međuspremnik sadrži neispravne znakove."
 
@@ -653,17 +603,17 @@ msgstr "Međuspremnik sadrži neispravne znakove."
 msgid "Others"
 msgstr "Ostali"
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:950
+#: gtksourceview/gtksourcelanguage-parser-2.c:949
 #, c-format
 msgid "Unknown id “%s” in regex “%s”"
 msgstr "Nepoznat id \"%s\" u regularnom izrazu “%s”"
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:1180
+#: gtksourceview/gtksourcelanguage-parser-2.c:1179
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
 msgstr "u regularnom izrazu “%s”: povratne preporuke nisu podržane"
 
-#: gtksourceview/gtksourceregex.c:129
+#: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
 msgstr "korištenje \\C nije podržano u definicijama jezika"
 
@@ -681,34 +631,70 @@ msgid "_Select"
 msgstr "_Odaberi"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1781
+#: gtksourceview/gtksourceview.c:1727
 msgid "_Redo"
 msgstr "_Ponovi"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1792
+#: gtksourceview/gtksourceview.c:1738
 msgid "_Undo"
 msgstr "_Vrati"
 
-#: gtksourceview/gtksourceview.c:1811
+#: gtksourceview/gtksourceview.c:1757
 msgid "All _Upper Case"
 msgstr "Sva _velika slova"
 
-#: gtksourceview/gtksourceview.c:1821
+#: gtksourceview/gtksourceview.c:1767
 msgid "All _Lower Case"
 msgstr "Sva _mala slova"
 
-#: gtksourceview/gtksourceview.c:1831
+#: gtksourceview/gtksourceview.c:1777
 msgid "_Invert Case"
 msgstr "_Obrni slova"
 
-#: gtksourceview/gtksourceview.c:1841
+#: gtksourceview/gtksourceview.c:1787
 msgid "_Title Case"
 msgstr "_Naslov slučaja"
 
-#: gtksourceview/gtksourceview.c:1851
+#: gtksourceview/gtksourceview.c:1797
 msgid "C_hange Case"
 msgstr "P_romijeni slučaj"
+
+#~ msgid "Disabled"
+#~ msgstr "Onemogućeno"
+
+#~ msgid "Before"
+#~ msgstr "Prije"
+
+#~ msgid "After"
+#~ msgstr "Poslije"
+
+#~ msgid "Always"
+#~ msgstr "Uvijek"
+
+#~ msgid "Space"
+#~ msgstr "Razmak"
+
+#~ msgid "Tab"
+#~ msgstr "Kartica"
+
+#~ msgid "Newline"
+#~ msgstr "Novi redak"
+
+#~ msgid "Non Breaking Whitespace"
+#~ msgstr "Neprelomljivi znak razmaka"
+
+#~ msgid "Leading"
+#~ msgstr "Vodeći"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgid "Trailing"
+#~ msgstr "Prateći"
+
+#~ msgid "Kate"
+#~ msgstr "Kate"
 
 #~ msgid "Ada"
 #~ msgstr "Ada"
