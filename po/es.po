@@ -2,22 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
-#
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2017.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2018-07-21 08:01+0000\n"
-"PO-Revision-Date: 2017-05-25 16:37+0200\n"
+"POT-Creation-Date: 2018-08-27 07:59+0000\n"
+"PO-Revision-Date: 2018-09-05 11:14+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -46,6 +45,7 @@ msgstr ""
 #. (itstool) path: genie.lang/language@_section
 #. (itstool) path: glsl.lang/language@_section
 #. (itstool) path: go.lang/language@_section
+#. (itstool) path: gradle.lang/language@_section
 #. (itstool) path: groovy.lang/language@_section
 #. (itstool) path: haskell.lang/language@_section
 #. (itstool) path: haskell-literate.lang/language@_section
@@ -56,6 +56,7 @@ msgstr ""
 #. (itstool) path: kotlin.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: logtalk.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
 #. (itstool) path: meson.lang/language@_section
 #. (itstool) path: nemerle.lang/language@_section
@@ -87,14 +88,14 @@ msgstr ""
 #: chdr.lang:24 c.lang:24 cobol.lang:26 cpphdr.lang:24 cpp.lang:24
 #: csharp.lang:26 cuda.lang:22 d.lang:29 eiffel.lang:23 erlang.lang:23
 #: forth.lang:23 fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30
-#: go.lang:24 groovy.lang:24 haskell.lang:24 haskell-literate.lang:23
-#: haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24
-#: llvm.lang:22 makefile.lang:22 meson.lang:23 nemerle.lang:23 netrexx.lang:23
-#: objc.lang:23 objj.lang:25 ocaml.lang:26 ooc.lang:23 opal.lang:23
-#: opencl.lang:23 pascal.lang:24 pig.lang:26 prolog.lang:23 rust.lang:35
-#: scala.lang:24 scheme.lang:23 sml.lang:23 sparql.lang:23 sql.lang:23
-#: swift.lang:24 systemverilog.lang:21 thrift.lang:20 vala.lang:27
-#: vbnet.lang:23 verilog.lang:23 vhdl.lang:23
+#: go.lang:24 gradle.lang:21 groovy.lang:24 haskell.lang:24
+#: haskell-literate.lang:23 haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23
+#: kotlin.lang:24 lex.lang:24 llvm.lang:22 logtalk.lang:23 makefile.lang:22
+#: meson.lang:23 nemerle.lang:23 netrexx.lang:23 objc.lang:23 objj.lang:25
+#: ocaml.lang:26 ooc.lang:23 opal.lang:23 opencl.lang:23 pascal.lang:24
+#: pig.lang:26 prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23
+#: sml.lang:23 sparql.lang:23 sql.lang:23 swift.lang:24 systemverilog.lang:21
+#: thrift.lang:20 vala.lang:27 vbnet.lang:23 verilog.lang:23 vhdl.lang:23
 msgid "Source"
 msgstr "Fuente"
 
@@ -110,7 +111,7 @@ msgstr "Fuente"
 #. (itstool) path: ruby.lang/language@_section
 #. (itstool) path: sh.lang/language@_section
 #. (itstool) path: tcl.lang/language@_section
-#: awk.lang:23 dosbatch.lang:23 javascript.lang:26 lua.lang:23 m4.lang:23
+#: awk.lang:23 dosbatch.lang:23 javascript.lang:27 lua.lang:23 m4.lang:23
 #: perl.lang:25 php.lang:28 python3.lang:23 python.lang:27 ruby.lang:26
 #: sh.lang:24 tcl.lang:23
 msgid "Script"
@@ -132,13 +133,14 @@ msgstr "Script"
 #. (itstool) path: rst.lang/language@_section
 #. (itstool) path: sweave.lang/language@_section
 #. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: tera.lang/language@_section
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
 #: bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 gtk-doc.lang:24
 #: haddock.lang:23 html.lang:24 jade.lang:24 latex.lang:24 mallard.lang:22
 #: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
-#: t2t.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
 msgid "Markup"
 msgstr "Marcado"
 
@@ -159,6 +161,7 @@ msgstr "Lenguaje de sombras CG"
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
 #. (itstool) path: json.lang/language@_section
+#. (itstool) path: less.lang/language@_section
 #. (itstool) path: libtool.lang/language@_section
 #. (itstool) path: logcat.lang/language@_section
 #. (itstool) path: nsis.lang/language@_section
@@ -168,13 +171,16 @@ msgstr "Lenguaje de sombras CG"
 #. (itstool) path: protobuf.lang/language@_section
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
+#. (itstool) path: scss.lang/language@_section
+#. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
-#: changelog.lang:24 cmake.lang:23 css.lang:38 csv.lang:23 desktop.lang:24
+#: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 gdb-log.lang:18 gtkrc.lang:24
-#: ini.lang:22 json.lang:29 libtool.lang:23 logcat.lang:23 nsis.lang:23
-#: ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21 puppet.lang:23
-#: rpmspec.lang:24 yacc.lang:23 yaml.lang:21
+#: ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23 logcat.lang:23
+#: nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21
+#: puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23 yacc.lang:23
+#: yaml.lang:21
 msgid "Other"
 msgstr "Otros"
 
@@ -239,6 +245,12 @@ msgstr "traducción gettext"
 #: rpmspec.lang:24
 msgid "RPM spec"
 msgstr "Especificación de RPM"
+
+#. (itstool) path: tera.lang/language@_name
+#: tera.lang:23
+#| msgid "Template"
+msgid "Tera Template"
+msgstr "Plantilla Tera"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -1763,9 +1775,6 @@ msgstr "Ca_mbiar capitalización"
 
 #~ msgid "Title"
 #~ msgstr "Título"
-
-#~ msgid "Template"
-#~ msgstr "Plantilla"
 
 #~ msgid "Meson"
 #~ msgstr "Meson"
