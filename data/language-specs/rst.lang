@@ -54,7 +54,7 @@
     </context>
 
     <context id="comment" style-ref="comment">
-      <start>(\s*)\.\.(\s+).+$</start>
+      <start>^(\s*)\.\.(\s+).+$</start>
       <end>^(?!(\%{1@start}  \%{2@start})|(^$))</end>
     </context>
 
