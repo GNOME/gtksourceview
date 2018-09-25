@@ -25,6 +25,8 @@
   <metadata>
     <property name="globs" >*.jl</property>
     <property name="line-comment-start" >#</property>
+    <property name="block-comment-start">#=</property>
+    <property name="block-comment-end">=#</property>
   </metadata>
 
   <!--
