@@ -100,6 +100,7 @@ LANGUAGES =			\
 	pig.lang		\
 	pkgconfig.lang		\
 	po.lang			\
+	powershell.lang		\
 	prolog.lang		\
 	protobuf.lang		\
 	puppet.lang		\
