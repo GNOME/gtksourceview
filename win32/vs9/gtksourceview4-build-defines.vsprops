@@ -21,6 +21,6 @@
 	/>
 	<UserMacro
 		Name="GtkSourceBuildDefines"
-		Value="G_LOG_DOMAIN=\&quot;GtkSourceView\&quot;;GTK_SOURCE_COMPILATION"
+		Value="G_LOG_DOMAIN=\&quot;GtkSourceView\&quot;;GTK_SOURCE_COMPILATION;GSV_API_VERSION=\&quot;$(GtkSourceviewMajorVersion)\&quot;"
 	/>
 </VisualStudioPropertySheet>
