@@ -20,6 +20,9 @@
     <PythonDir Condition="'$(VisualStudioVersion)' == '12.0'">c:\python34</PythonDir>
     <PythonDir Condition="'$(VisualStudioVersion)' == '14.0'">c:\python36</PythonDir>
     <PythonDir Condition="'$(VisualStudioVersion)' == '15.0'">c:\python36</PythonDir>
+    <PythonDirX64>$(PythonDir).x64</PythonDirX64>
+    <PythonCmd Condition="'$(Platform)' == 'Win32'">$(PythonDir)\python.exe</PythonCmd>
+    <PythonCmd Condition="'$(Platform)' == 'x64'">$(PythonDirX64)\python.exe</PythonCmd>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceview4versionpathsprops</_PropertySheetDisplayName>
@@ -69,6 +72,12 @@
     </BuildMacro>
     <BuildMacro Include="PythonDir">
       <Value>$(PythonDir)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PythonDirX64">
+      <Value>$(PythonDirX64)</Value>
+    </BuildMacro>
+    <BuildMacro Include="PythonCmd">
+      <Value>$(PythonCmd)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
