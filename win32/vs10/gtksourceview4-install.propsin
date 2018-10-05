@@ -30,7 +30,7 @@ copy ..\..\data\styles\styles.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\s
 copy ..\..\data\styles\check-style.sh $(CopyDir)\share\gtksourceview-$(ApiVersion)\styles
     </GtkSourceviewDoInstall>
     <GtkSourceviewPCFiles>..\gtksourceview-$(ApiVersion).pc</GtkSourceviewPCFiles>
-    <GtkSourceviewGenPC>(if not exist $(CopyDir)\lib\pkgconfig mkdir $(CopyDir)\lib\pkgconfig) &amp; ($(PythonPath)\python ..\gtksourceviewpc.py --prefix=$(CopyDir) --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion))</GtkSourceviewGenPC>
+    <GtkSourceviewGenPC>(if not exist $(CopyDir)\lib\pkgconfig mkdir $(CopyDir)\lib\pkgconfig) &amp; ($(PythonDir)\python ..\gtksourceviewpc.py --prefix=$(CopyDir) --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion))</GtkSourceviewGenPC>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceview4installprops</_PropertySheetDisplayName>

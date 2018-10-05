@@ -15,7 +15,7 @@
     <GtkSourceviewSeparateVSDllSuffix>-vs$(VSVer)</GtkSourceviewSeparateVSDllSuffix>
     <GtkSourceviewDllPrefix>$(GtkSourceviewSeparateVSDllPrefix)</GtkSourceviewDllPrefix>
     <GtkSourceviewDllSuffix>$(GtkSourceviewSeparateVSDllSuffix)</GtkSourceviewDllSuffix>
-    <PythonPath>c:\python34</PythonPath>
+    <PythonDir>c:\python34</PythonDir>
   </PropertyGroup>
   <PropertyGroup>
     <_PropertySheetDisplayName>gtksourceview4versionpathsprops</_PropertySheetDisplayName>
@@ -63,8 +63,8 @@
     <BuildMacro Include="GtkSourceviewDllSuffix">
       <Value>$(GtkSourceviewDllSuffix)</Value>
     </BuildMacro>
-    <BuildMacro Include="PythonPath">
-      <Value>$(PythonPath)</Value>
+    <BuildMacro Include="PythonDir">
+      <Value>$(PythonDir)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>

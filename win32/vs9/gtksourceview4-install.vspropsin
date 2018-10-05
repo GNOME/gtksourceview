@@ -33,6 +33,6 @@ copy ..\..\data\styles\styles.rng $(CopyDir)\share\gtksourceview-$(ApiVersion)\s
 	/>
 	<UserMacro
 		Name="GtkSourceviewGenPC"
-		Value="(if not exist $(CopyDir)\lib\pkgconfig mkdir $(CopyDir)\lib\pkgconfig) &amp; ($(PythonPath)\python ..\gtksourceviewpc.py --prefix=$(CopyDir) --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion))"
+		Value="(if not exist $(CopyDir)\lib\pkgconfig mkdir $(CopyDir)\lib\pkgconfig) &amp; ($(PythonDir)\python ..\gtksourceviewpc.py --prefix=$(CopyDir) --version=$(GtkSourceviewMajorVersion).$(GtkSourceviewMinorVersion).$(GtkSourceviewMicroVersion))"
 	/>
 </VisualStudioPropertySheet>
