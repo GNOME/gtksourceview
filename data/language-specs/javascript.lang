@@ -799,7 +799,6 @@
         <context ref="undefined-value"/>
         <context ref="null-value"/>
         <context ref="boolean"/>
-        <context ref="keywords"/>
         <context ref="types"/>
         <context ref="global-functions"/>
         <context ref="array-properties"/>
@@ -838,6 +837,7 @@
         <context ref="weakmap-methods"/>
         <context ref="weakset-methods"/>
         <context ref="constructors"/>
+        <context ref="keywords"/>
         <context ref="future-words"/>
         <context ref="regex-simple"/>
       </include>
