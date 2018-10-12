@@ -32,6 +32,7 @@
     <style id="operator" name="Operator" map-to="def:operator"/>
     <style id="string" name="String" map-to="def:string" />
     <style id="boolean" name="Boolean" map-to="def:boolean"/>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
   </styles>
 
   <definitions>
@@ -45,26 +46,31 @@
       <end>'</end>
     </context>
 
-    <!-- https://github.com/mesonbuild/meson/wiki/Reference%20manual -->
+    <!-- http://mesonbuild.com/Reference-manual.html -->
     <context id="builtin-command" style-ref="builtin-command">
-      <prefix>(?i)</prefix>
+      <prefix>(?&lt;![\w\.])</prefix> <!-- not a method call -->
+      <suffix>(?=\s*\()</suffix> <!-- must be followed by opening parentheses -->
       <keyword>add_global_arguments</keyword>
       <keyword>add_global_link_arguments</keyword>
       <keyword>add_languages</keyword>
       <keyword>add_project_arguments</keyword>
       <keyword>add_project_link_arguments</keyword>
+      <keyword>add_test_setup</keyword>
+      <keyword>assert</keyword>
       <keyword>benchmark</keyword>
+      <keyword>both_libraries</keyword>
       <keyword>build_target</keyword>
       <keyword>configuration_data</keyword>
       <keyword>configure_file</keyword>
       <keyword>custom_target</keyword>
       <keyword>declare_dependency</keyword>
       <keyword>dependency</keyword>
+      <keyword>disabler</keyword>
       <keyword>error</keyword>
       <keyword>environment</keyword>
       <keyword>executable</keyword>
-      <keyword>find_program</keyword>
       <keyword>find_library</keyword>
+      <keyword>find_program</keyword>
       <keyword>files</keyword>
       <keyword>generator</keyword>
       <keyword>get_option</keyword>
@@ -75,18 +81,20 @@
       <keyword>install_headers</keyword>
       <keyword>install_man</keyword>
       <keyword>install_subdir</keyword>
-      <keyword>is_subproject</keyword>
       <keyword>is_variable</keyword>
       <keyword>jar</keyword>
       <keyword>join_paths</keyword>
       <keyword>library</keyword>
       <keyword>message</keyword>
+      <keyword>warning</keyword>
       <keyword>project</keyword>
       <keyword>run_command</keyword>
       <keyword>run_target</keyword>
       <keyword>set_variable</keyword>
       <keyword>shared_library</keyword>
+      <keyword>shared_module</keyword>
       <keyword>static_library</keyword>
+      <keyword>subdir_done</keyword>
       <keyword>subdir</keyword>
       <keyword>subproject</keyword>
       <keyword>test</keyword>
@@ -115,6 +123,9 @@
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
+      <keyword>in</keyword>
+      <keyword>continue</keyword>
+      <keyword>break</keyword>
     </context>
 
     <context id="meson" class="no-spell-check">
