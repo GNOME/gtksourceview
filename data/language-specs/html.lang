@@ -6,6 +6,7 @@
  Copyright (C) 2005-2007 - Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 - Emanuele Aina
  Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ Copyright (C) 2018 - Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -42,6 +43,7 @@
     <style id="h3" name="Heading level 3" map-to="def:heading3"/>
     <style id="h4" name="Heading level 4" map-to="def:heading4"/>
     <style id="h5" name="Heading level 5" map-to="def:heading5"/>
+    <style id="h6" name="Heading level 6" map-to="def:heading6"/>
   </styles>
 
   <default-regex-options case-sensitive="false"/>
@@ -70,6 +72,22 @@
       <end></end>
     </context>
 
+    <context id="heading-tag" once-only="true">
+      <start>\%{def:always-match}</start>
+      <end>&gt;</end>
+      <include>
+        <context sub-pattern="0" where="end" style-ref="tag"/>
+        <context ref="generic-tag"/>
+      </include>
+    </context>
+
+    <define-regex id="h1-close">&lt;/h1\s*&gt;</define-regex>
+    <define-regex id="h2-close">&lt;/h2\s*&gt;</define-regex>
+    <define-regex id="h3-close">&lt;/h3\s*&gt;</define-regex>
+    <define-regex id="h4-close">&lt;/h4\s*&gt;</define-regex>
+    <define-regex id="h5-close">&lt;/h5\s*&gt;</define-regex>
+    <define-regex id="h6-close">&lt;/h6\s*&gt;</define-regex>
+
     <context id="headings">
       <include>
         <context id="title" style-inside="true" style-ref="title" end-at-line-end="true">
@@ -81,88 +99,141 @@
             <context ref="embedded-lang-hook"/>
           </include>
         </context>
-        <context id="h1" end-at-line-end="true">
-          <start>&lt;h1</start>
+
+        <context id="h1" class="no-spell-check">
+          <start>&lt;h1\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="generic-tag"/>
-            <context id="h1-inside" style-inside="true" style-ref="h1" end-at-line-end="true" end-parent="true">
-              <start>&gt;</start>
-              <end>&lt;/h1\s*&gt;</end>
+            <context ref="heading-tag"/>
+
+            <context style-ref="h1" class-disabled="no-spell-check">
+              <start>(?!\%{h1-close})</start>
               <include>
-                <context sub-pattern="0" where="start" style-ref="tag"/>
-                <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context end-parent="true">
+                  <match>(?=\%{h1-close})</match>
+                </context>
                 <context ref="embedded-lang-hook"/>
-                <!-- We cannot match any further here, because matching to tag will override our end-match -->
+                <context ref="tag"/>
               </include>
+            </context>
+
+            <context style-ref="tag" end-parent="true">
+              <match>\%{h1-close}</match>
             </context>
           </include>
         </context>
-        <context id="h2" end-at-line-end="true">
-          <start>&lt;h2</start>
+
+        <context id="h2" class="no-spell-check">
+          <start>&lt;h2\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="generic-tag"/>
-            <context id="h2-inside" style-inside="true" style-ref="h2" end-at-line-end="true" end-parent="true">
-              <start>&gt;</start>
-              <end>&lt;/h2\s*&gt;</end>
+            <context ref="heading-tag"/>
+
+            <context style-ref="h2" class-disabled="no-spell-check">
+              <start>(?!\%{h2-close})</start>
               <include>
-                <context sub-pattern="0" where="start" style-ref="tag"/>
-                <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context end-parent="true">
+                  <match>(?=\%{h2-close})</match>
+                </context>
                 <context ref="embedded-lang-hook"/>
-                <!-- We cannot match any further here, because matching to tag will override our end-match -->
+                <context ref="tag"/>
               </include>
+            </context>
+
+            <context style-ref="tag" end-parent="true">
+              <match>\%{h2-close}</match>
             </context>
           </include>
         </context>
-        <context id="h3" end-at-line-end="true">
-          <start>&lt;h3</start>
+
+        <context id="h3" class="no-spell-check">
+          <start>&lt;h3\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="generic-tag"/>
-            <context id="h3-inside" style-inside="true" style-ref="h3" end-at-line-end="true" end-parent="true">
-              <start>&gt;</start>
-              <end>&lt;/h3\s*&gt;</end>
+            <context ref="heading-tag"/>
+
+            <context style-ref="h3" class-disabled="no-spell-check">
+              <start>(?!\%{h3-close})</start>
               <include>
-                <context sub-pattern="0" where="start" style-ref="tag"/>
-                <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context end-parent="true">
+                  <match>(?=\%{h3-close})</match>
+                </context>
                 <context ref="embedded-lang-hook"/>
-                <!-- We cannot match any further here, because matching to tag will override our end-match -->
+                <context ref="tag"/>
               </include>
+            </context>
+
+            <context style-ref="tag" end-parent="true">
+              <match>\%{h3-close}</match>
             </context>
           </include>
         </context>
-        <context id="h4" end-at-line-end="true">
-          <start>&lt;h4</start>
+
+        <context id="h4" class="no-spell-check">
+          <start>&lt;h4\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="generic-tag"/>
-            <context id="h4-inside" style-inside="true" style-ref="h4" end-at-line-end="true" end-parent="true">
-              <start>&gt;</start>
-              <end>&lt;/h4\s*&gt;</end>
+            <context ref="heading-tag"/>
+
+            <context style-ref="h4" class-disabled="no-spell-check">
+              <start>(?!\%{h4-close})</start>
               <include>
-                <context sub-pattern="0" where="start" style-ref="tag"/>
-                <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context end-parent="true">
+                  <match>(?=\%{h4-close})</match>
+                </context>
                 <context ref="embedded-lang-hook"/>
-                <!-- We cannot match any further here, because matching to tag will override our end-match -->
+                <context ref="tag"/>
               </include>
+            </context>
+
+            <context style-ref="tag" end-parent="true">
+              <match>\%{h4-close}</match>
             </context>
           </include>
         </context>
-        <context id="h5" end-at-line-end="true">
-          <start>&lt;h5</start>
+
+        <context id="h5" class="no-spell-check">
+          <start>&lt;h5\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context ref="generic-tag"/>
-            <context id="h5-inside" style-inside="true" style-ref="h5" end-at-line-end="true" end-parent="true">
-              <start>&gt;</start>
-              <end>&lt;/h5\s*&gt;</end>
+            <context ref="heading-tag"/>
+
+            <context style-ref="h5" class-disabled="no-spell-check">
+              <start>(?!\%{h5-close})</start>
               <include>
-                <context sub-pattern="0" where="start" style-ref="tag"/>
-                <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context end-parent="true">
+                  <match>(?=\%{h5-close})</match>
+                </context>
                 <context ref="embedded-lang-hook"/>
-                <!-- We cannot match any further here, because matching to tag will override our end-match -->
+                <context ref="tag"/>
               </include>
+            </context>
+
+            <context style-ref="tag" end-parent="true">
+              <match>\%{h5-close}</match>
+            </context>
+          </include>
+        </context>
+
+        <context id="h6" class="no-spell-check">
+          <start>&lt;h6\%]</start>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="tag"/>
+            <context ref="heading-tag"/>
+
+            <context style-ref="h6" class-disabled="no-spell-check">
+              <start>(?!\%{h6-close})</start>
+              <include>
+                <context end-parent="true">
+                  <match>(?=\%{h6-close})</match>
+                </context>
+                <context ref="embedded-lang-hook"/>
+                <context ref="tag"/>
+              </include>
+            </context>
+
+            <context style-ref="tag" end-parent="true">
+              <match>\%{h6-close}</match>
             </context>
           </include>
         </context>
