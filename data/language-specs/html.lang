@@ -90,13 +90,21 @@
 
     <context id="headings">
       <include>
-        <context id="title" style-inside="true" style-ref="title" end-at-line-end="true">
-          <start>&lt;title&gt;</start>
-          <end>&lt;/title&gt;</end>
+        <context id="title" class="no-spell-check">
+          <start>&lt;title\%]</start>
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
-            <context sub-pattern="0" where="end" style-ref="tag"/>
-            <context ref="embedded-lang-hook"/>
+            <context ref="generic-tag"/>
+
+            <context style-inside="true" style-ref="title" end-parent="true" class-disabled="no-spell-check">
+              <start>&gt;</start>
+              <end>&lt;/title\s*&gt;</end>
+              <include>
+                <context sub-pattern="0" where="start" style-ref="tag"/>
+                <context sub-pattern="0" where="end" style-ref="tag"/>
+                <context ref="embedded-lang-hook"/>
+              </include>
+            </context>
           </include>
         </context>
 
