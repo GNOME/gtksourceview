@@ -42,6 +42,7 @@ LANGUAGES =			\
 	fsharp.lang		\
 	gap.lang		\
 	gdb-log.lang		\
+	gdscript.lang		\
 	genie.lang		\
 	glsl.lang		\
 	go.lang			\
