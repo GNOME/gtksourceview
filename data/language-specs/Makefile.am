@@ -118,6 +118,7 @@ LANGUAGES =			\
 	scss.lang		\
 	sh.lang			\
 	sml.lang		\
+	solidity.lang		\
 	sparql.lang		\
 	sql.lang		\
 	sweave.lang		\
