@@ -74,9 +74,8 @@
     </context>
 
 
-    <context id="pragma-number" style-ref="preprocessor">
-      <prefix>\^</prefix>
-      <keyword>(\d+\.)?(\d+\.)?(\*|\d+)</keyword>
+    <context id="pragma-number" style-ref="floating-point">
+      <keyword>(\d+\.)(\d+\.)(\d+)</keyword>
     </context>
 
     <!-- instructions to importe other solidity files -->
