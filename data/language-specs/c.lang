@@ -138,6 +138,9 @@
     <context id="char" style-ref="char" class="string">
       <match>L?'(\%{escaped-character}|.)'</match>
     </context>
+    <context id="identifier" class="identifier">
+      <match>[0-9a-zA-Z_]+</match>
+    </context>
 
     <!-- http://www.lysator.liu.se/c/ANSI-C-grammar-l.html -->
     <context id="float" style-ref="floating-point">
@@ -336,6 +339,7 @@
         <context ref="common-defines"/>
         <context ref="standard-streams"/>
         <context ref="signals"/>
+        <context ref="identifier"/>
       </include>
     </context>
 
