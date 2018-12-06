@@ -333,7 +333,9 @@ _gtk_source_regex_fetch_pos (GtkSourceRegex *regex,
 
 	g_assert (regex->resolved);
 
-	if (!g_match_info_fetch_pos (regex->u.regex.match, num, &byte_start_pos, &byte_end_pos))
+	/* g_match_info_fetch_pos() can return TRUE with start_pos/end_pos set to -1 */
+	if (!g_match_info_fetch_pos (regex->u.regex.match, num, &byte_start_pos, &byte_end_pos) ||
+	    byte_start_pos == -1 || byte_end_pos == 1)
 	{
 		if (start_pos != NULL)
 			*start_pos = -1;
