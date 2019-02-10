@@ -24,6 +24,7 @@ LANGUAGES =			\
 	css.lang		\
 	csv.lang		\
 	cuda.lang		\
+	dart.lang		\
 	def.lang		\
 	desktop.lang		\
 	diff.lang		\
