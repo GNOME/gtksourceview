@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-09-06 01:13+0200\n"
+"POT-Creation-Date: 2019-02-10 18:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,7 @@ msgstr ""
 #. (itstool) path: cpp.lang/language@_section
 #. (itstool) path: csharp.lang/language@_section
 #. (itstool) path: cuda.lang/language@_section
+#. (itstool) path: dart.lang/language@_section
 #. (itstool) path: d.lang/language@_section
 #. (itstool) path: eiffel.lang/language@_section
 #. (itstool) path: erlang.lang/language@_section
@@ -59,11 +60,13 @@ msgstr ""
 #. (itstool) path: opencl.lang/language@_section
 #. (itstool) path: pascal.lang/language@_section
 #. (itstool) path: pig.lang/language@_section
+#. (itstool) path: powershell.lang/language@_section
 #. (itstool) path: prolog.lang/language@_section
 #. (itstool) path: rust.lang/language@_section
 #. (itstool) path: scala.lang/language@_section
 #. (itstool) path: scheme.lang/language@_section
 #. (itstool) path: sml.lang/language@_section
+#. (itstool) path: solidity.lang/language@_section
 #. (itstool) path: sparql.lang/language@_section
 #. (itstool) path: sql.lang/language@_section
 #. (itstool) path: swift.lang/language@_section
@@ -90,6 +93,7 @@ msgstr ""
 #: cpp.lang:25
 #: csharp.lang:26
 #: cuda.lang:22
+#: dart.lang:22
 #: d.lang:29
 #: eiffel.lang:23
 #: erlang.lang:23
@@ -123,11 +127,13 @@ msgstr ""
 #: opencl.lang:23
 #: pascal.lang:24
 #: pig.lang:26
+#: powershell.lang:23
 #: prolog.lang:23
 #: rust.lang:35
 #: scala.lang:24
 #: scheme.lang:23
 #: sml.lang:23
+#: solidity.lang:28
 #: sparql.lang:23
 #: sql.lang:23
 #: swift.lang:24
@@ -143,6 +149,7 @@ msgstr ""
 #. (itstool) path: awk.lang/language@_section
 #. (itstool) path: dosbatch.lang/language@_section
 #. (itstool) path: fish.lang/language@_section
+#. (itstool) path: gdscript.lang/language@_section
 #. (itstool) path: javascript.lang/language@_section
 #. (itstool) path: lua.lang/language@_section
 #. (itstool) path: m4.lang/language@_section
@@ -156,6 +163,7 @@ msgstr ""
 #: awk.lang:23
 #: dosbatch.lang:23
 #: fish.lang:19
+#: gdscript.lang:22
 #: javascript.lang:27
 #: lua.lang:23
 #: m4.lang:23
@@ -195,7 +203,7 @@ msgstr ""
 #: dtl.lang:25
 #: gtk-doc.lang:24
 #: haddock.lang:23
-#: html.lang:24
+#: html.lang:25
 #: jade.lang:24
 #: latex.lang:24
 #: mallard.lang:22
