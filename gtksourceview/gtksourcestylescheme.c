@@ -1440,6 +1440,11 @@ _gtk_source_style_scheme_set_parent (GtkSourceStyleScheme *scheme,
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
 	g_return_if_fail (parent_scheme == NULL || GTK_SOURCE_IS_STYLE_SCHEME (parent_scheme));
 
+	if (scheme->priv->parent == parent_scheme)
+	{
+		return;
+	}
+
 	g_clear_object (&scheme->priv->parent);
 
 	if (parent_scheme != NULL)
@@ -1448,6 +1453,10 @@ _gtk_source_style_scheme_set_parent (GtkSourceStyleScheme *scheme,
 	}
 
 	scheme->priv->parent = parent_scheme;
+
+	/* Update CSS based on parent styles */
+	g_hash_table_remove_all (scheme->priv->style_cache);
+	generate_css_style (scheme);
 }
 
 /**
