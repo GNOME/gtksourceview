@@ -484,6 +484,7 @@ pick_langs_for_filename (GtkSourceLanguageManager *lm,
 			if (g_pattern_match_simple (*gptr, filename_utf8))
 			{
 				langs = g_slist_prepend (langs, lang);
+				break;
 			}
 		}
 
