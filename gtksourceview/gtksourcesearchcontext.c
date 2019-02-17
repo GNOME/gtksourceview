@@ -357,8 +357,8 @@ struct _GtkSourceSearchContextPrivate
 typedef struct
 {
 	GtkTextMark *start_at;
-	GtkTextIter match_start;
-	GtkTextIter match_end;
+	GtkTextMark *match_start;
+	GtkTextMark *match_end;
 	guint found : 1;
 	guint wrapped_around : 1;
 
@@ -958,6 +958,18 @@ forward_backward_data_free (ForwardBackwardData *data)
 		gtk_text_buffer_delete_mark (buffer, data->start_at);
 	}
 
+	if (data->match_start != NULL)
+	{
+		GtkTextBuffer *buffer = gtk_text_mark_get_buffer (data->match_start);
+		gtk_text_buffer_delete_mark (buffer, data->match_start);
+	}
+
+	if (data->match_end != NULL)
+	{
+		GtkTextBuffer *buffer = gtk_text_mark_get_buffer (data->match_end);
+		gtk_text_buffer_delete_mark (buffer, data->match_end);
+	}
+
 	g_slice_free (ForwardBackwardData, data);
 }
 
@@ -1035,8 +1047,16 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 
 			task_data = g_slice_new0 (ForwardBackwardData);
 			task_data->found = TRUE;
-			task_data->match_start = match_start;
-			task_data->match_end = match_end;
+			task_data->match_start =
+                                gtk_text_buffer_create_mark (search->priv->buffer,
+                                                             NULL,
+                                                             &match_start,
+                                                             TRUE);
+			task_data->match_end =
+                                gtk_text_buffer_create_mark (search->priv->buffer,
+                                                             NULL,
+                                                             &match_end,
+                                                             FALSE);
 			task_data->is_forward = TRUE;
 			task_data->wrapped_around = *wrapped_around;
 
@@ -1166,8 +1186,16 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 
 			task_data = g_slice_new0 (ForwardBackwardData);
 			task_data->found = TRUE;
-			task_data->match_start = match_start;
-			task_data->match_end = match_end;
+			task_data->match_start =
+				gtk_text_buffer_create_mark (search->priv->buffer,
+				                             NULL,
+				                             &match_start,
+				                             TRUE);
+			task_data->match_end =
+				gtk_text_buffer_create_mark (search->priv->buffer,
+				                             NULL,
+				                             &match_end,
+				                             FALSE);
 			task_data->is_forward = FALSE;
 			task_data->wrapped_around = *wrapped_around;
 
@@ -3344,12 +3372,16 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
 	{
 		if (match_start != NULL)
 		{
-			*match_start = data->match_start;
+                        gtk_text_buffer_get_iter_at_mark (search->priv->buffer,
+                                                          match_start,
+                                                          data->match_start);
 		}
 
 		if (match_end != NULL)
 		{
-			*match_end = data->match_end;
+                        gtk_text_buffer_get_iter_at_mark (search->priv->buffer,
+                                                          match_end,
+                                                          data->match_end);
 		}
 	}
 
