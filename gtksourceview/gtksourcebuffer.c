@@ -2053,6 +2053,12 @@ gtk_source_buffer_create_source_mark (GtkSourceBuffer   *buffer,
 				  GTK_TEXT_MARK (mark),
 				  where);
 
+	/* We want to return a borrowed reference and the mark is already
+	 * owned by @buffer due to gtk_text_buffer_add_mark(). Therefore
+	 * it is safe to unref immediately.
+	 */
+	g_object_unref (mark);
+
 	return mark;
 }
 
