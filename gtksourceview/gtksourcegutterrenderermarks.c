@@ -337,6 +337,7 @@ gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
 	GSList *marks;
 	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
+	gboolean ret;
 
 	view = GTK_SOURCE_VIEW (gtk_source_gutter_renderer_get_view (renderer));
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
@@ -353,7 +354,11 @@ gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
 
 		marks = g_slist_reverse (marks);
 
-		return set_tooltip_widget_from_marks (view, tooltip, marks);
+		ret = set_tooltip_widget_from_marks (view, tooltip, marks);
+
+		g_slist_free (marks);
+
+		return ret;
 	}
 
 	return FALSE;
