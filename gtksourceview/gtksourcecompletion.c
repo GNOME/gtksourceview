@@ -2953,7 +2953,7 @@ gtk_source_completion_remove_provider (GtkSourceCompletion          *completion,
 		return FALSE;
 	}
 
-	completion->priv->providers = g_list_remove_link (completion->priv->providers, item);
+	completion->priv->providers = g_list_delete_link (completion->priv->providers, item);
 
 	g_object_unref (provider);
 
