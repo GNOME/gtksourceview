@@ -200,6 +200,8 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
 	              "xalign", 0.5,
 	              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
 	              NULL);
+
+	g_clear_object (&pixbuf);
 }
 
 static gboolean
