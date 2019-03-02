@@ -90,6 +90,29 @@
  *   </child>
  * </object>
  * ]|
+ *
+ * # Changing the Font
+ *
+ * Gtk CSS provides the best way to change the font for a #GtkSourceView in a
+ * manner that allows for components like #GtkSourceMap to scale the desired
+ * font.
+ *
+ * |[
+ *   GtkCssProvider *provider = gtk_css_provider_new ();
+ *   gtk_css_provider_load_from_data (provider,
+ *                                    "textview { font-family: Monospace; font-size: 8pt; }",
+ *                                    -1,
+ *                                    NULL);
+ *   gtk_style_context_add_provider (gtk_widget_get_style_context (view),
+ *                                   GTK_STYLE_PROVIDER (provider),
+ *                                   GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+ *   g_object_unref (provider);
+ * ]|
+ *
+ * If you need to adjust the font or size of font within a portion of the
+ * document only, you should use a #GtkTextTag with the #GtkTextTag:family or
+ * #GtkTextTag:scale set so that the font size may be scaled relative to
+ * the default font set in CSS.
  */
 
 /*
