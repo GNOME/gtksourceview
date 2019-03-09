@@ -13,18 +13,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2017-09-09 19:11+0000\n"
-"PO-Revision-Date: 2017-09-10 14:53+0300\n"
-"Last-Translator: Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
+"POT-Creation-Date: 2018-12-12 04:28+0000\n"
+"PO-Revision-Date: 2018-12-28 04:07+0200\n"
+"Last-Translator: sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-POOTLE-MTIME: 1419203099.000000\n"
 
 #. (itstool) path: displayable-values/value@name
@@ -89,11 +88,6 @@ msgstr "Sondaki"
 msgid "All"
 msgstr "Tümü"
 
-#. (itstool) path: abnf.lang/language@_name
-#: abnf.lang:31
-msgid "ABNF"
-msgstr "ABNF"
-
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
 #. (itstool) path: ada.lang/language@_section
@@ -120,6 +114,7 @@ msgstr "ABNF"
 #. (itstool) path: genie.lang/language@_section
 #. (itstool) path: glsl.lang/language@_section
 #. (itstool) path: go.lang/language@_section
+#. (itstool) path: groovy.lang/language@_section
 #. (itstool) path: haskell.lang/language@_section
 #. (itstool) path: haskell-literate.lang/language@_section
 #. (itstool) path: haxe.lang/language@_section
@@ -129,6 +124,7 @@ msgstr "ABNF"
 #. (itstool) path: kotlin.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: logtalk.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
 #. (itstool) path: meson.lang/language@_section
 #. (itstool) path: nemerle.lang/language@_section
@@ -155,366 +151,21 @@ msgstr "ABNF"
 #. (itstool) path: vbnet.lang/language@_section
 #. (itstool) path: verilog.lang/language@_section
 #. (itstool) path: vhdl.lang/language@_section
-#: abnf.lang:31 actionscript.lang:25 ada.lang:26 ansforth94.lang:25 asp.lang:24
-#: automake.lang:24 bennugd.lang:23 bluespec.lang:22 boo.lang:24 cg.lang:24
-#: chdr.lang:25 c.lang:25 cobol.lang:27 cpphdr.lang:25 cpp.lang:25
-#: csharp.lang:27 cuda.lang:23 d.lang:30 eiffel.lang:24 erlang.lang:24
-#: forth.lang:24 fortran.lang:25 fsharp.lang:25 genie.lang:24 glsl.lang:31
-#: go.lang:25 haskell.lang:25 haskell-literate.lang:24 haxe.lang:35 idl.lang:24
-#: java.lang:25 j.lang:24 kotlin.lang:24 lex.lang:25 llvm.lang:23
-#: makefile.lang:23 meson.lang:24 nemerle.lang:24 netrexx.lang:24 objc.lang:24
-#: objj.lang:26 ocaml.lang:27 ooc.lang:24 opal.lang:24 opencl.lang:24
-#: pascal.lang:25 pig.lang:27 prolog.lang:24 rust.lang:36 scala.lang:25
-#: scheme.lang:24 sml.lang:24 sparql.lang:24 sql.lang:24 swift.lang:24
-#: systemverilog.lang:22 thrift.lang:21 vala.lang:28 vbnet.lang:24
-#: verilog.lang:24 vhdl.lang:24
+#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23
+#: automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23
+#: chdr.lang:24 c.lang:24 cobol.lang:26 cpphdr.lang:24 cpp.lang:24
+#: csharp.lang:26 cuda.lang:22 d.lang:29 eiffel.lang:23 erlang.lang:23
+#: forth.lang:23 fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30
+#: go.lang:24 groovy.lang:24 haskell.lang:24 haskell-literate.lang:23
+#: haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24
+#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: netrexx.lang:23 objc.lang:23 objj.lang:25 ocaml.lang:26 ooc.lang:23
+#: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 prolog.lang:23
+#: rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23 sparql.lang:23
+#: sql.lang:23 swift.lang:24 systemverilog.lang:21 thrift.lang:20 vala.lang:27
+#: vbnet.lang:23 verilog.lang:23 vhdl.lang:23
 msgid "Source"
 msgstr "Kaynak"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:38 actionscript.lang:35 ada.lang:34 ansforth94.lang:39 asp.lang:32
-#: bennugd.lang:32 boo.lang:34 cg.lang:33 c.lang:35 cobol.lang:35
-#: csharp.lang:37 def.lang:40 d.lang:40 dosbatch.lang:31 dot.lang:34
-#: dtl.lang:34 eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34
-#: fortran.lang:33 fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35
-#: gtkrc.lang:33 haskell.lang:34 haxe.lang:48 html.lang:34 idl-exelis.lang:28
-#: idl.lang:32 ini.lang:31 jade.lang:32 java.lang:35 j.lang:32 latex.lang:33
-#: llvm.lang:30 lua.lang:34 matlab.lang:41 modelica.lang:36 nemerle.lang:34
-#: netrexx.lang:38 nsis.lang:32 ocaml.lang:36 ocl.lang:41 octave.lang:41
-#: ooc.lang:33 opal.lang:34 pascal.lang:33 perl.lang:34 php.lang:40 pig.lang:41
-#: po.lang:32 prolog.lang:34 protobuf.lang:31 rst.lang:36 ruby.lang:36
-#: rust.lang:46 scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33
-#: sml.lang:32 sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33
-#: thrift.lang:30 vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32
-#: xml.lang:35 yaml.lang:31
-msgid "Comment"
-msgstr "Açıklama"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:39
-msgid "Rule Name"
-msgstr "Kural Adı"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:40 d.lang:50 nemerle.lang:45
-msgid "Binary number"
-msgstr "İkili sayı"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:41 ada.lang:37 bennugd.lang:39 cg.lang:43 c.lang:48 csharp.lang:49
-#: csv.lang:31 def.lang:67 d.lang:49 dtl.lang:42 eiffel.lang:45 erlang.lang:39
-#: fsharp.lang:37 go.lang:45 idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40
-#: ooc.lang:45 opal.lang:40 php.lang:55 python3.lang:41 python.lang:46
-#: ruby.lang:43
-msgid "Decimal number"
-msgstr "Ondalık sayı"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:42 bennugd.lang:40 cg.lang:45 c.lang:50 csharp.lang:50 d.lang:52
-#: dtl.lang:44 eiffel.lang:46 go.lang:47 nemerle.lang:47 ooc.lang:47
-#: php.lang:57
-msgid "Hexadecimal number"
-msgstr "Onaltılık sayı"
-
-#. (itstool) path: styles/style@_name
-#: abnf.lang:43 actionscript.lang:37 ada.lang:35 ansforth94.lang:43 asp.lang:33
-#: bibtex.lang:34 boo.lang:36 c.lang:36 cobol.lang:40 csharp.lang:40
-#: css.lang:50 csv.lang:34 def.lang:57 d.lang:42 dosbatch.lang:32 dtl.lang:37
-#: eiffel.lang:34 erlang.lang:36 forth.lang:35 fortran.lang:34 fsharp.lang:38
-#: gdb-log.lang:30 genie.lang:36 go.lang:37 gtkrc.lang:34 haskell.lang:39
-#: haxe.lang:55 idl-exelis.lang:32 idl.lang:36 imagej.lang:40 ini.lang:33
-#: java.lang:37 javascript.lang:47 j.lang:45 json.lang:39 julia.lang:37
-#: llvm.lang:31 lua.lang:35 meson.lang:34 modelica.lang:37 nemerle.lang:38
-#: netrexx.lang:36 nsis.lang:33 objc.lang:37 objj.lang:41 ocaml.lang:41
-#: ocl.lang:42 octave.lang:42 ooc.lang:36 opal.lang:37 pascal.lang:34
-#: perl.lang:37 php.lang:45 po.lang:34 prolog.lang:37 protobuf.lang:37
-#: python3.lang:35 python.lang:39 ruby.lang:46 rust.lang:47 scala.lang:39
-#: scheme.lang:34 scilab.lang:33 sh.lang:35 sml.lang:36 sql.lang:34
-#: texinfo.lang:36 thrift.lang:33 vala.lang:41 vbnet.lang:33 verilog.lang:35
-#: vhdl.lang:33 yaml.lang:32
-msgid "String"
-msgstr "Dizgi"
-
-#. (itstool) path: actionscript.lang/language@_name
-#: actionscript.lang:25
-msgid "ActionScript"
-msgstr "ActionScript"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:36 cg.lang:34 c.lang:54 cobol.lang:43 csharp.lang:38
-#: css.lang:48 def.lang:102 d.lang:41 dot.lang:35 dtl.lang:35 go.lang:36
-#: haxe.lang:62 html.lang:39 jade.lang:40 j.lang:35 json.lang:42
-#: nemerle.lang:35 ocaml.lang:53 ooc.lang:34 opal.lang:36 perl.lang:48
-#: php.lang:41 prolog.lang:40 rust.lang:57 scala.lang:36 vala.lang:39
-#: verilog.lang:38 xml.lang:45
-msgid "Error"
-msgstr "Hata"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:38 haxe.lang:49 java.lang:41 ooc.lang:37 scala.lang:37
-msgid "External"
-msgstr "Harici"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:39 haxe.lang:51 java.lang:42 ooc.lang:38 scala.lang:41
-msgid "Declaration"
-msgstr "Tanımr"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:40 ada.lang:39 cg.lang:40 c.lang:44 haxe.lang:52
-#: java.lang:43 ooc.lang:39
-msgid "Storage Class"
-msgstr "Depo Sınıfı"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:41 java.lang:44 ooc.lang:40
-msgid "Scope Declaration"
-msgstr "Kapsam Tanımı"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:42 ada.lang:36 ansforth94.lang:36 asp.lang:35 awk.lang:32
-#: bennugd.lang:36 bluespec.lang:35 boo.lang:41 cg.lang:38 c.lang:41
-#: cobol.lang:38 cpp.lang:35 csharp.lang:45 css.lang:59 cuda.lang:33
-#: def.lang:92 d.lang:43 dosbatch.lang:33 dot.lang:36 dtl.lang:38
-#: eiffel.lang:37 erlang.lang:33 fcl.lang:32 forth.lang:37 fortran.lang:36
-#: fsharp.lang:39 gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39
-#: gtkrc.lang:35 haskell.lang:37 haxe.lang:54 idl-exelis.lang:31 idl.lang:35
-#: imagej.lang:38 ini.lang:34 java.lang:45 javascript.lang:41 julia.lang:44
-#: lex.lang:35 llvm.lang:32 lua.lang:36 matlab.lang:42 modelica.lang:46
-#: nemerle.lang:39 objc.lang:34 objj.lang:37 ocaml.lang:42 ocl.lang:43
-#: octave.lang:48 ooc.lang:41 opal.lang:38 opencl.lang:33 pascal.lang:35
-#: perl.lang:38 php.lang:48 po.lang:36 prolog.lang:36 protobuf.lang:35
-#: python3.lang:33 python.lang:37 R.lang:34 ruby.lang:39 rust.lang:49
-#: scala.lang:43 scheme.lang:35 scilab.lang:34 sh.lang:36 sml.lang:33
-#: sparql.lang:37 sql.lang:35 systemverilog.lang:33 tcl.lang:33 texinfo.lang:37
-#: thrift.lang:32 vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
-msgid "Keyword"
-msgstr "Anahtar sözcük"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:43 boo.lang:43 csharp.lang:47 d.lang:46 dtl.lang:39
-#: fsharp.lang:52 genie.lang:43 haxe.lang:58 java.lang:46 javascript.lang:38
-#: json.lang:40 nemerle.lang:41 objj.lang:42 ooc.lang:42 php.lang:52
-#: vala.lang:44
-msgid "Null Value"
-msgstr "Null Değeri"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:44 ada.lang:38 asp.lang:42 bennugd.lang:41 cg.lang:46
-#: c.lang:51 csharp.lang:48 def.lang:75 dtl.lang:40 fsharp.lang:50 go.lang:48
-#: gtkrc.lang:40 haxe.lang:57 ini.lang:38 java.lang:47 llvm.lang:38 lua.lang:42
-#: nemerle.lang:42 ocaml.lang:52 ooc.lang:43 opal.lang:39 php.lang:53
-#: protobuf.lang:36 R.lang:39 ruby.lang:41 rust.lang:51 sml.lang:40
-#: vala.lang:43 vbnet.lang:38 vhdl.lang:37
-msgid "Boolean value"
-msgstr "Mantıksal değer"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:45 asp.lang:43 boo.lang:45 cobol.lang:41 def.lang:63
-#: desktop.lang:38 forth.lang:39 genie.lang:45 haxe.lang:56 java.lang:48
-#: j.lang:42 julia.lang:39 llvm.lang:39 netrexx.lang:48 prolog.lang:38
-#: rust.lang:53 scala.lang:45 vhdl.lang:40
-msgid "Number"
-msgstr "Numara"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:46 java.lang:49 javascript.lang:46 ooc.lang:48
-msgid "Future Reserved Keywords"
-msgstr "İlerisi İçin Ayrılmış Sözcükler"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:47 ada.lang:40 asp.lang:40 bennugd.lang:37 boo.lang:39
-#: cg.lang:39 c.lang:43 cpp.lang:36 csharp.lang:39 cuda.lang:34 d.lang:44
-#: eiffel.lang:38 forth.lang:38 fortran.lang:40 fsharp.lang:42 genie.lang:39
-#: glsl.lang:42 go.lang:40 gtkrc.lang:37 haskell.lang:38 haxe.lang:59
-#: idl-exelis.lang:29 idl.lang:33 ini.lang:37 java.lang:50 javascript.lang:42
-#: llvm.lang:37 nemerle.lang:40 objc.lang:35 objj.lang:38 ocaml.lang:45
-#: ocl.lang:45 ooc.lang:49 opal.lang:41 opencl.lang:34 pascal.lang:37
-#: php.lang:51 pig.lang:36 protobuf.lang:34 rust.lang:50 scala.lang:47
-#: sml.lang:34 sparql.lang:34 sql.lang:38 thrift.lang:31 vala.lang:40
-#: vbnet.lang:36
-msgid "Data Type"
-msgstr "Veri Türü"
-
-#. (itstool) path: ada.lang/language@_name
-#: ada.lang:26
-msgid "Ada"
-msgstr "Ada"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:41 asp.lang:34 bennugd.lang:33 cg.lang:35 c.lang:37 csharp.lang:46
-#: forth.lang:36 fortran.lang:41 fsharp.lang:51 glsl.lang:41 haskell.lang:33
-#: haxe.lang:50 idl-exelis.lang:30 idl.lang:34 nemerle.lang:36 objj.lang:39
-#: pascal.lang:38 vbnet.lang:34
-msgid "Preprocessor"
-msgstr "Önişlemci"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:42
-msgid "Arbitrary base number"
-msgstr "Değişen taban numarası"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:43 csharp.lang:51 verilog.lang:46 vhdl.lang:39
-msgid "Real number"
-msgstr "Gerçel sayı"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:44 cg.lang:41 c.lang:46 csharp.lang:42 dtl.lang:36 eiffel.lang:42
-#: fortran.lang:44 fsharp.lang:49 go.lang:42 haskell.lang:41 haxe.lang:63
-#: imagej.lang:37 java.lang:36 javascript.lang:37 json.lang:38 lua.lang:37
-#: netrexx.lang:35 ocaml.lang:51 ooc.lang:35 php.lang:44 prolog.lang:41
-#: python3.lang:36 python.lang:40 ruby.lang:35 scala.lang:40 sml.lang:37
-#: texinfo.lang:34 vala.lang:49 verilog.lang:37
-msgid "Escaped Character"
-msgstr "Çıkış Karakteri"
-
-#. (itstool) path: ansforth94.lang/language@_name
-#: ansforth94.lang:25
-msgid "ANS-Forth94"
-msgstr "ANS-Forth94"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:37
-msgid "Obsolete Keyword"
-msgstr "Eski Anahtar Sözcük"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:40
-msgid "Alert"
-msgstr "Alarm"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:41 c.lang:40 csharp.lang:41 def.lang:55 erlang.lang:37
-#: gap.lang:33 go.lang:38 haskell.lang:40 java.lang:38 julia.lang:38
-#: nemerle.lang:37 netrexx.lang:37 rust.lang:48 sml.lang:35 vhdl.lang:34
-msgid "Character"
-msgstr "Karakter"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:42
-msgid "Word"
-msgstr "Sözcük"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:44 cmake.lang:34 cobol.lang:39 def.lang:53 gtk-doc.lang:32
-#: libtool.lang:32 ruby.lang:50
-msgid "Constant"
-msgstr "Sabit"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:45 awk.lang:34 cmake.lang:37 cobol.lang:37 haskell.lang:35
-#: ini.lang:36 llvm.lang:35 makefile.lang:31 nsis.lang:34 perl.lang:44
-#: php.lang:42 pkgconfig.lang:31 prolog.lang:35 protobuf.lang:33 ruby.lang:54
-#: sh.lang:37 sparql.lang:44 tcl.lang:32
-msgid "Variable"
-msgstr "Değişken"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:46
-msgid "Local Variable"
-msgstr "Yerel Değişken"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:47
-msgid "Single Number"
-msgstr "Tek Numara"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:48
-msgid "Double Number"
-msgstr "Çift Numara"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:49 haskell.lang:42
-msgid "Float"
-msgstr "Reel"
-
-#. (itstool) path: asp.lang/language@_name
-#: asp.lang:24
-msgid "ASP"
-msgstr "ASP"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:36 cg.lang:48 changelog.lang:39 css.lang:53 def.lang:81 gap.lang:35
-#: gdb-log.lang:29 gtk-doc.lang:34 idl-exelis.lang:35 javascript.lang:43
-#: llvm.lang:33 lua.lang:40 scheme.lang:36 scilab.lang:35 sh.lang:34
-#: sparql.lang:35 sql.lang:36
-msgid "Function"
-msgstr "Fonksiyon"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:37 bennugd.lang:35 c.lang:42 cmake.lang:35 cobol.lang:42
-#: def.lang:90 erlang.lang:34 imagej.lang:39 julia.lang:43 meson.lang:33
-#: modelica.lang:38 nsis.lang:31 octave.lang:43 perl.lang:43 php.lang:50
-#: prolog.lang:39 scala.lang:46 sparql.lang:45
-msgid "Operator"
-msgstr "İşleçr"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:38
-msgid "ASP Object"
-msgstr "ASP Nesnesi"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:39
-msgid "VBScript and ADO constants"
-msgstr "VBScript ve ADO sabitleri"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:41 def.lang:73 vbnet.lang:37
-msgid "Special constant"
-msgstr "Özel sabit"
-
-#. (itstool) path: automake.lang/language@_name
-#: automake.lang:24
-msgid "Automake"
-msgstr "Automake"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:39
-msgid "Automake Variable"
-msgstr "Automake Değişkeni"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:40
-msgid "Primary"
-msgstr "Birincil"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:41
-msgid "Secondary"
-msgstr "İkincil"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:42
-msgid "Prefix"
-msgstr "Önek"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:43
-msgid "Optional Target"
-msgstr "Seçmeli Hedef"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:44
-msgid "Built-in Target"
-msgstr "Dahili Hedef"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:45
-msgid "Other Keyword"
-msgstr "Diğer Anahtar Sözcük"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:46 rst.lang:38
-msgid "Substitution"
-msgstr "İkame"
-
-#. (itstool) path: awk.lang/language@_name
-#: awk.lang:24
-msgid "awk"
-msgstr "awk"
 
 #. (itstool) path: awk.lang/language@_section
 #. (itstool) path: dosbatch.lang/language@_section
@@ -528,45 +179,11 @@ msgstr "awk"
 #. (itstool) path: ruby.lang/language@_section
 #. (itstool) path: sh.lang/language@_section
 #. (itstool) path: tcl.lang/language@_section
-#: awk.lang:24 dosbatch.lang:24 javascript.lang:27 lua.lang:24 m4.lang:24
-#: perl.lang:26 php.lang:29 python3.lang:24 python.lang:28 ruby.lang:27
-#: sh.lang:25 tcl.lang:24
+#: awk.lang:23 dosbatch.lang:23 javascript.lang:26 lua.lang:23 m4.lang:23
+#: perl.lang:25 php.lang:28 python3.lang:23 python.lang:27 ruby.lang:26
+#: sh.lang:24 tcl.lang:23
 msgid "Script"
 msgstr "Betik"
-
-#. (itstool) path: styles/style@_name
-#: awk.lang:33 lex.lang:36
-msgid "Pattern"
-msgstr "Kalıp"
-
-#. (itstool) path: styles/style@_name
-#: awk.lang:35 boo.lang:46 genie.lang:46 glsl.lang:44 go.lang:50
-#: netrexx.lang:47 perl.lang:39 python3.lang:46 python.lang:51
-msgid "Builtin Function"
-msgstr "Dahili İşlev"
-
-#. (itstool) path: bennugd.lang/language@_name
-#: bennugd.lang:23
-msgid "BennuGD"
-msgstr "BennuGD"
-
-#. (itstool) path: styles/style@_name
-#: bennugd.lang:34 def.lang:79 llvm.lang:36 php.lang:43 rust.lang:52
-msgid "Identifier"
-msgstr "Tanımlayıcı"
-
-#. (itstool) path: styles/style@_name
-#: bennugd.lang:38 cg.lang:42 c.lang:47 csv.lang:33 def.lang:65 d.lang:48
-#: dtl.lang:41 erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44
-#: nemerle.lang:43 ooc.lang:44 php.lang:54 python3.lang:40 python.lang:45
-#: R.lang:41 ruby.lang:42
-msgid "Floating point number"
-msgstr "Gerçel sayı"
-
-#. (itstool) path: bibtex.lang/language@_name
-#: bibtex.lang:24
-msgid "BibTeX"
-msgstr "BibTeX"
 
 #. (itstool) path: bibtex.lang/language@_section
 #. (itstool) path: docbook.lang/language@_section
@@ -584,132 +201,21 @@ msgstr "BibTeX"
 #. (itstool) path: rst.lang/language@_section
 #. (itstool) path: sweave.lang/language@_section
 #. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: tera.lang/language@_section
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
-#: bibtex.lang:24 docbook.lang:24 dtd.lang:24 dtl.lang:25 gtk-doc.lang:25
-#: haddock.lang:24 html.lang:25 jade.lang:25 latex.lang:25 mallard.lang:23
-#: markdown.lang:26 mediawiki.lang:23 mxml.lang:24 rst.lang:23 sweave.lang:25
-#: t2t.lang:24 texinfo.lang:25 xml.lang:26 xslt.lang:24
+#: bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 gtk-doc.lang:24
+#: haddock.lang:23 html.lang:24 jade.lang:24 latex.lang:24 mallard.lang:22
+#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
 msgid "Markup"
 msgstr "İşaretleme"
 
-#. (itstool) path: styles/style@_name
-#: bibtex.lang:32
-msgid "Entries"
-msgstr "Girdiler"
-
-#. (itstool) path: styles/style@_name
-#: bibtex.lang:33
-msgid "Field"
-msgstr "Alan"
-
-#. (itstool) path: bluespec.lang/language@_name
-#: bluespec.lang:22
-msgid "Bluespec SystemVerilog"
-msgstr "Bluespec SystemVerilog"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:31 systemverilog.lang:32
-msgid "System Task"
-msgstr "Sistem Görevi"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:32
-msgid "Annotation"
-msgstr "Belirtim"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:33 rust.lang:55
-msgid "Attribute"
-msgstr "Öznitelik"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:34
-msgid "Import BVI"
-msgstr "BVI Aktar"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:36 gtk-doc.lang:33 julia.lang:49 systemverilog.lang:34
-#: verilog.lang:44 vhdl.lang:36
-msgid "Type"
-msgstr "Tür"
-
-#. (itstool) path: boo.lang/language@_name
-#: boo.lang:24
-msgid "Boo"
-msgstr "Boo"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:35 genie.lang:35 python3.lang:34 python.lang:38
-msgid "Multiline string"
-msgstr "Çoksatırlı dizgi"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:37 genie.lang:37 javascript.lang:48 perl.lang:47 ruby.lang:57
-#: vala.lang:48
-msgid "Regular Expression"
-msgstr "Düzenli İfade"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:38 genie.lang:38 sparql.lang:38 xml.lang:44 xslt.lang:34
-msgid "Namespace"
-msgstr "Ad uzayı"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:40 genie.lang:40
-msgid "Definition"
-msgstr "Tanım"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:42 genie.lang:42 python3.lang:38 python.lang:43 ruby.lang:52
-msgid "Special Variable"
-msgstr "Özel Değer"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:44 desktop.lang:39 d.lang:47 genie.lang:44 imagej.lang:34
-#: julia.lang:40 libtool.lang:33 meson.lang:35 modelica.lang:42 objj.lang:36
-#: octave.lang:46 python3.lang:39 python.lang:44 scheme.lang:33 scilab.lang:36
-#: sparql.lang:39 yaml.lang:39
-msgid "Boolean"
-msgstr "Mantıksal Değer"
-
 #. (itstool) path: cg.lang/language@_name
-#: cg.lang:24
+#: cg.lang:23
 msgid "CG Shader Language"
 msgstr "CG Shader Dili"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:36
-msgid "Bindings"
-msgstr "Bağlar"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:37 c.lang:39 fortran.lang:43 objj.lang:40
-msgid "Included File"
-msgstr "Dahil Edilmiş Dosya"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:44 c.lang:49 d.lang:51 dtl.lang:43 go.lang:46 nemerle.lang:46
-#: ooc.lang:46 php.lang:56
-msgid "Octal number"
-msgstr "Sekizlik sayı"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:47
-msgid "Swizzle operator"
-msgstr "Swizzle işleci"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:49 erlang.lang:41 imagej.lang:33 matlab.lang:43 modelica.lang:47
-#: octave.lang:50 ruby.lang:49
-msgid "Builtin"
-msgstr "Yapısal"
-
-#. (itstool) path: changelog.lang/language@_name
-#: changelog.lang:25
-msgid "ChangeLog"
-msgstr "Değişim Günlüğü"
 
 #. (itstool) path: changelog.lang/language@_section
 #. (itstool) path: cmake.lang/language@_section
@@ -723,7 +229,9 @@ msgstr "Değişim Günlüğü"
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
 #. (itstool) path: json.lang/language@_section
+#. (itstool) path: less.lang/language@_section
 #. (itstool) path: libtool.lang/language@_section
+#. (itstool) path: logcat.lang/language@_section
 #. (itstool) path: nsis.lang/language@_section
 #. (itstool) path: ocl.lang/language@_section
 #. (itstool) path: pkgconfig.lang/language@_section
@@ -731,565 +239,38 @@ msgstr "Değişim Günlüğü"
 #. (itstool) path: protobuf.lang/language@_section
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
-#. (itstool) path: styles/style@_name
+#. (itstool) path: scss.lang/language@_section
+#. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
-#: changelog.lang:25 cmake.lang:24 css.lang:39 csv.lang:24 desktop.lang:25
-#: diff.lang:24 dot.lang:24 dpatch.lang:24 gdb-log.lang:19 gtkrc.lang:25
-#: ini.lang:23 json.lang:30 libtool.lang:24 nsis.lang:24 ocl.lang:33
-#: pkgconfig.lang:24 po.lang:24 protobuf.lang:21 puppet.lang:24 rpmspec.lang:24
-#: scala.lang:49 yacc.lang:24 yaml.lang:22
+#: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
+#: diff.lang:23 dot.lang:23 dpatch.lang:23 gdb-log.lang:18 gtkrc.lang:24
+#: ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23 logcat.lang:23
+#: nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21
+#: puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23 yacc.lang:23
+#: yaml.lang:21
 msgid "Other"
 msgstr "Diğer"
 
-#. (itstool) path: styles/style@_name
-#: changelog.lang:33 rpmspec.lang:43
-msgid "Date"
-msgstr "Tarih"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:35
-msgid "Name"
-msgstr "Ad"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:36
-msgid "E-mail address"
-msgstr "E-posta adresi"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:37
-msgid "File"
-msgstr "Dosya"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:38 rst.lang:34
-msgid "Bullet"
-msgstr "Bullet"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:40
-msgid "Release"
-msgstr "Sürüm"
-
 #. (itstool) path: chdr.lang/language@_name
-#: chdr.lang:25
+#: chdr.lang:24
 msgid "C/ObjC Header"
 msgstr "C/ObjC Başlığı"
 
-#. (itstool) path: c.lang/language@_name
-#: c.lang:25
-msgid "C"
-msgstr "C"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:38 cpp.lang:37 objc.lang:36 opal.lang:35
-msgid "Common Defines"
-msgstr "Ortak Tanımlar"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:45 genie.lang:47 go.lang:41 verilog.lang:36
-msgid "printf Conversion"
-msgstr "printf Çevirimi"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:52
-msgid "Standard stream"
-msgstr "Standart akış"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:53
-msgid "Signal name"
-msgstr "Sinyal adı"
-
-#. (itstool) path: cmake.lang/language@_name
-#: cmake.lang:24
-msgid "CMake"
-msgstr "CMake"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:31 meson.lang:32
-msgid "Builtin Command"
-msgstr "Dahili Komut"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:32
-msgid "Deprecated Builtin Command"
-msgstr "Kullanımdan Kaldırılmış Yerleşik Komut"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:33 glsl.lang:46
-msgid "Builtin Variable"
-msgstr "Dahili Değişken"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:36
-msgid "Control Keyword"
-msgstr "Kontrol Anahtar Sözcüğü"
-
-#. (itstool) path: cobol.lang/language@_name
-#: cobol.lang:27
-msgid "COBOL"
-msgstr "COBOL"
-
-#. (itstool) path: styles/style@_name
-#: cobol.lang:36 def.lang:88 protobuf.lang:32
-msgid "Statement"
-msgstr "Belirtim"
-
 #. (itstool) path: cpphdr.lang/language@_name
-#: cpphdr.lang:25
+#: cpphdr.lang:24
 msgid "C++ Header"
 msgstr "C++ Üstbilgisi"
 
-#. (itstool) path: cpp.lang/language@_name
-#: cpp.lang:25
-msgid "C++"
-msgstr "C++"
-
-#. (itstool) path: csharp.lang/language@_name
-#: csharp.lang:27
-msgid "C#"
-msgstr "C#"
-
-#. (itstool) path: styles/style@_name
-#: csharp.lang:44 po.lang:37
-msgid "String Format"
-msgstr "Dizgi Biçimi"
-
-#. (itstool) path: css.lang/language@_name
-#: css.lang:39
-msgid "CSS"
-msgstr "CSS"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:49
-msgid "Others 2"
-msgstr "Diğerleri 2"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:51
-msgid "Color"
-msgstr "Renk"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:52
-msgid "Others 3"
-msgstr "Diğerleri 3"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:55 fcl.lang:34 fortran.lang:39 gap.lang:36 gtkrc.lang:36
-#: haskell.lang:43 ini.lang:35 json.lang:43 modelica.lang:43 pascal.lang:36
-#: sml.lang:39 sql.lang:37
-msgid "Decimal"
-msgstr "Ondalık"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:56
-msgid "Dimension"
-msgstr "Boyutlar"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:57
-msgid "Property Value"
-msgstr "Özellik Değeri"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:58
-msgid "at-rules"
-msgstr "at-kuralları"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:60
-msgid "ID Selector"
-msgstr "ID Seçici"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:61
-msgid "Class Selector"
-msgstr "Sınıf Seçici"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:62
-msgid "Tag Name Selector"
-msgstr "Etiket Adı Seçici"
-
-#. (itstool) path: csv.lang/language@_name
-#: csv.lang:24
-msgid "CSV"
-msgstr "CSV"
-
-#. (itstool) path: styles/style@_name
-#: csv.lang:32
-msgid "Escaped character"
-msgstr "İşlenmeyen karakter"
-
-#. (itstool) path: cuda.lang/language@_name
-#: cuda.lang:23
-msgid "CUDA"
-msgstr "CUDA"
-
-#. (itstool) path: styles/style@_name
-#: cuda.lang:35
-msgid "Global Functions"
-msgstr "Genel İşlevler"
-
-#. (itstool) path: styles/style@_name
-#: cuda.lang:36
-msgid "Device Functions"
-msgstr "Aygıt İşlevleri"
-
-#. (itstool) path: styles/style@_name
-#: cuda.lang:37
-msgid "Global Variables"
-msgstr "Genel Değişkenler"
-
-#. (itstool) path: def.lang/language@_name
-#: def.lang:25
-msgid "Defaults"
-msgstr "Öntanımlılar"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:42
-msgid "Shebang"
-msgstr "Shebang"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:45
-msgid "Documentation comment"
-msgstr "Belgelendirme açıklaması"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:49
-msgid "Documentation comment element"
-msgstr "Belgelendirme açıklama ögesi"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:61
-msgid "Special character (inside a string)"
-msgstr "Özel karakter (bir dizgi içinde)"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:69 python3.lang:42 python.lang:47 ruby.lang:44
-msgid "Base-N number"
-msgstr "N-Tabanlı sayı"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:71 python3.lang:43 python.lang:48
-msgid "Complex number"
-msgstr "Karmaşık sayı"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:84
-msgid "Built-in identifier"
-msgstr "Dahili tanımlayıcı"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:96 modelica.lang:40 octave.lang:44
-msgid "Data type"
-msgstr "Veri türü"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:100
-msgid "Preprocessor directive"
-msgstr "Önişlemci tanımı"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:104
-msgid "Warning"
-msgstr "Uyarı"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:106
-msgid "Reserved keyword"
-msgstr "Ayrılmış sSözcür"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:108
-msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr "Not (FIXME, TODO, XXX vb.)"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:110
-msgid "Underlined"
-msgstr "Altı çizili"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:112
-msgid "Heading 0"
-msgstr "0. Düzey Başlık"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:113
-msgid "Heading 1"
-msgstr "1. Düzey Başlık"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:114
-msgid "Heading 2"
-msgstr "2. Düzey Başlık"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:115
-msgid "Heading 3"
-msgstr "3. Düzey Başlık"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:116
-msgid "Heading 4"
-msgstr "4. Düzey Başlık"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:117
-msgid "Heading 5"
-msgstr "5. Düzey Başlık"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:118
-msgid "Heading 6"
-msgstr "6. Düzey Başlık"
-
-#. (itstool) path: desktop.lang/language@_name
-#: desktop.lang:25
-msgid ".desktop"
-msgstr ".desktop"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:33
-msgid "Group"
-msgstr "Grup"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:36 json.lang:37
-msgid "Key"
-msgstr "Anahtar"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:37
-msgid "Translation"
-msgstr "Tercüme"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:40
-msgid "Exec parameter"
-msgstr "Çalıştırma parametresi"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:41
-msgid "Encoding"
-msgstr "Kodlama"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:42
-msgid "Main Category"
-msgstr "Ana Kategori"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:43
-msgid "Additional Category"
-msgstr "Ek Kategori"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:44
-msgid "Reserved Category"
-msgstr "Ayrılmış Kategori"
-
-#. (itstool) path: diff.lang/language@_name
-#: diff.lang:24
-msgid "Diff"
-msgstr "Diff"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:31
-msgid "Added line"
-msgstr "Eklenmiş satır"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:32
-msgid "Removed line"
-msgstr "Çıkarılmış satır"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:33
-msgid "Changed line"
-msgstr "Değişmiş satır"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:34
-msgid "Special case"
-msgstr "Özel durum"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:35 po.lang:33
-msgid "Location"
-msgstr "Konum"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:36
-msgid "Ignore"
-msgstr "Yoksay"
-
-#. (itstool) path: d.lang/language@_name
-#: d.lang:30
-msgid "D"
-msgstr "D"
-
-#. (itstool) path: styles/style@_name
-#: d.lang:45
-msgid "Special Token"
-msgstr "Özel Durum"
-
-#. (itstool) path: docbook.lang/language@_name
-#: docbook.lang:24
-msgid "DocBook"
-msgstr "DocBook"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:33
-msgid "Header Elements"
-msgstr "Başlık Ögeleri"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:34
-msgid "Formatting Elements"
-msgstr "Biçimleme Ögeleri"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:35
-msgid "GUI Elements"
-msgstr "Grafik Arayüz Ögeleri"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:36
-msgid "Structural Elements"
-msgstr "Yapısal Ögeler"
-
 #. (itstool) path: dosbatch.lang/language@_name
-#: dosbatch.lang:24
+#: dosbatch.lang:23
 msgid "DOS Batch"
 msgstr "DOS Batch"
-
-#. (itstool) path: styles/style@_name
-#: dosbatch.lang:34 latex.lang:39 latex.lang:40 sweave.lang:33
-msgid "Command"
-msgstr "Komut"
-
-#. (itstool) path: dot.lang/language@_name
-#: dot.lang:24
-msgid "Graphviz Dot"
-msgstr "Graphviz Nokta"
-
-#. (itstool) path: styles/style@_name
-#: dot.lang:37 jade.lang:36 xml.lang:40
-msgid "Attribute name"
-msgstr "Öznitelik adı"
-
-#. (itstool) path: dpatch.lang/language@_name
-#: dpatch.lang:24
-msgid "DPatch"
-msgstr "DPatch"
-
-#. (itstool) path: styles/style@_name
-#: dpatch.lang:31
-msgid "Patch Start"
-msgstr "Yama Başlangıcı"
-
-#. (itstool) path: dtd.lang/language@_name
-#. (itstool) path: styles/style@_name
-#: dtd.lang:24 html.lang:38
-msgid "DTD"
-msgstr "DTD"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:33
-msgid "entity"
-msgstr "entity"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:34
-msgid "decl"
-msgstr "decl"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:35
-msgid "error"
-msgstr "hata"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:36
-msgid "Quoted Value"
-msgstr "Tırnakta Değer"
 
 #. (itstool) path: dtl.lang/language@_name
 #: dtl.lang:25
 msgid "Django Template"
 msgstr "Django Şablonu"
-
-#. (itstool) path: eiffel.lang/language@_name
-#: eiffel.lang:24
-msgid "Eiffel"
-msgstr "Eiffel"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:35
-msgid "Debug"
-msgstr "Hata Ayıklama"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:36
-msgid "Assertion"
-msgstr "Kontrol"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:39
-msgid "Design by Contract"
-msgstr "Kontrat Tasarımı"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:40
-msgid "Exception Handling"
-msgstr "İstisna İşleme"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:41 ruby.lang:53
-msgid "Predefined Variable"
-msgstr "Öntanımlı Değişken"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:43
-msgid "Void Value"
-msgstr "Void Değeri"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:44 javascript.lang:40 json.lang:41
-msgid "Boolean Value"
-msgstr "Mantıksal Değer"
-
-#. (itstool) path: erlang.lang/language@_name
-#: erlang.lang:24
-msgid "Erlang"
-msgstr "Erlang"
-
-#. (itstool) path: styles/style@_name
-#: erlang.lang:35
-msgid "Atom"
-msgstr "Atom"
-
-#. (itstool) path: styles/style@_name
-#: erlang.lang:40 fsharp.lang:35 modelica.lang:45 ocaml.lang:38 sml.lang:38
-#: verilog.lang:45 vhdl.lang:38
-msgid "Base-N Integer"
-msgstr "N-Tabanlı Tamsayı"
-
-#. (itstool) path: styles/style@_name
-#: erlang.lang:42 forth.lang:42 systemverilog.lang:31 verilog.lang:39
-msgid "Compiler Directive"
-msgstr "Derleyici Direktifi"
-
-#. (itstool) path: fcl.lang/language@_name
-#: fcl.lang:23
-msgid "FCL"
-msgstr "FCL"
 
 #. (itstool) path: fcl.lang/language@_section
 #. (itstool) path: gap.lang/language@_section
@@ -1302,1764 +283,41 @@ msgstr "FCL"
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
-#: fcl.lang:23 gap.lang:24 idl-exelis.lang:21 imagej.lang:24 julia.lang:24
-#: matlab.lang:26 maxima.lang:24 modelica.lang:26 octave.lang:26 R.lang:26
-#: scilab.lang:24
+#: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
+#: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
+#: scilab.lang:23
 msgid "Scientific"
 msgstr "Bilimsel"
 
-#. (itstool) path: styles/style@_name
-#: fcl.lang:31 fortran.lang:35 ini.lang:32 modelica.lang:44 scilab.lang:32
-#: sql.lang:33
-msgid "Floating Point"
-msgstr "Reel Sayı"
-
-#. (itstool) path: styles/style@_name
-#: fcl.lang:33
-msgid "Block"
-msgstr "Blok"
-
-#. (itstool) path: styles/style@_name
-#: fcl.lang:35 octave.lang:49 scilab.lang:37
-msgid "Reserved Constant"
-msgstr "Ayrılmış Sabit"
-
-#. (itstool) path: forth.lang/language@_name
-#: forth.lang:24
-msgid "Forth"
-msgstr "Forth"
-
-#. (itstool) path: styles/style@_name
-#: forth.lang:40
-msgid "Debug Code"
-msgstr "Hata Ayıklama Kodu"
-
-#. (itstool) path: styles/style@_name
-#: forth.lang:41
-msgid "Error Text"
-msgstr "Hata Metni"
-
-#. (itstool) path: fortran.lang/language@_name
-#: fortran.lang:25
-msgid "Fortran 95"
-msgstr "Fortran 95"
-
-#. (itstool) path: styles/style@_name
-#: fortran.lang:37
-msgid "Intrinsic function"
-msgstr "Esas işlev"
-
-#. (itstool) path: styles/style@_name
-#: fortran.lang:38
-msgid "BOZ Literal"
-msgstr "BOZ Literal"
-
-#. (itstool) path: styles/style@_name
-#: fortran.lang:42
-msgid "OpenMP directives"
-msgstr "OpenMP direktifleri"
-
-#. (itstool) path: fsharp.lang/language@_name
-#: fsharp.lang:25
-msgid "F#"
-msgstr "F#"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:36 ocaml.lang:39 sml.lang:41
-msgid "Floating Point number"
-msgstr "Reel sayı"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:40 ocaml.lang:43
-msgid "Type, module or object keyword"
-msgstr "Tür, modül ya da nesne anahtar sözcüğüi"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:41 ocaml.lang:44
-msgid "Builtin-function keyword"
-msgstr "Yapısal işlev sözcüğü"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:43 ocaml.lang:46
-msgid "Labeled argument"
-msgstr "Etikletlenmiş parametre"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:44 ocaml.lang:47
-msgid "Polymorphic Variant"
-msgstr "Polimorfik Türev"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:45 ocaml.lang:48
-msgid "Variant Constructor"
-msgstr "Türev Oluşturucu"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:47 ocaml.lang:49
-msgid "Type Variable"
-msgstr "Tür Değişkeni"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:48 ocaml.lang:50
-msgid "Module Path"
-msgstr "Modül Yolu"
-
-#. (itstool) path: gap.lang/language@_name
-#: gap.lang:24
-msgid "GAP"
-msgstr "GAP"
-
 #. (itstool) path: gdb-log.lang/language@_name
-#: gdb-log.lang:19
+#: gdb-log.lang:18
 msgid "GDB Log"
 msgstr "GDB Günlüğü"
 
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:25
-msgid "Thread Action"
-msgstr "Kanal Eylemi"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:26
-msgid "Thread Header"
-msgstr "Kanal Başlığı"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:27
-msgid "Frame Number"
-msgstr "Çerçeve Numarası"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:28
-msgid "Address"
-msgstr "Adres"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:31
-msgid "Filename"
-msgstr "Dosya adı"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:32
-msgid "Optimized Out"
-msgstr "Eniyilenmiş Çıktı"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:33
-msgid "Incomplete Sequence"
-msgstr "Eksik Dizi"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:34
-msgid "Prompt"
-msgstr "İstem"
-
-#. (itstool) path: genie.lang/language@_name
-#: genie.lang:24
-msgid "Genie"
-msgstr "Genie"
-
 #. (itstool) path: glsl.lang/language@_name
-#: glsl.lang:31
+#: glsl.lang:30
 msgid "OpenGL Shading Language"
 msgstr "OpenGL Shading Dili"
 
-#. (itstool) path: styles/style@_name
-#: glsl.lang:45 go.lang:49 python3.lang:44 python.lang:49
-msgid "Builtin Constant"
-msgstr "Yapısal Sabit"
-
-#. (itstool) path: styles/style@_name
-#: glsl.lang:47
-msgid "Reserved Keywords"
-msgstr "Ayrılmış Anahtar Sözcükler"
-
-#. (itstool) path: go.lang/language@_name
-#: go.lang:25
-msgid "Go"
-msgstr "Git"
-
-#. (itstool) path: styles/style@_name
-#: go.lang:44
-msgid "Imaginary number"
-msgstr "Sanal sayı"
-
-#. (itstool) path: gtk-doc.lang/language@_name
-#: gtk-doc.lang:25
-msgid "gtk-doc"
-msgstr "gtk-doc"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:27
-msgid "Inline Documentation Section"
-msgstr "Satır Arası Belgelendirme Bölümü"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:28 python.lang:52
-msgid "Function Name"
-msgstr "İşlev Adı"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:29
-msgid "Signal Name"
-msgstr "Sinyal Adı"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:30
-msgid "Property Name"
-msgstr "Özellik Adı"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:31
-msgid "Parameter"
-msgstr "Parametre"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:35
-msgid "Return"
-msgstr "Return"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:36
-msgid "Since"
-msgstr "Since"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:37
-msgid "Deprecated"
-msgstr "Kullanılmayan"
-
-#. (itstool) path: gtkrc.lang/language@_name
-#: gtkrc.lang:25
-msgid "GtkRC"
-msgstr "GtkRC"
-
-#. (itstool) path: styles/style@_name
-#: gtkrc.lang:38
-msgid "Widget State"
-msgstr "Gereç Durumu"
-
-#. (itstool) path: styles/style@_name
-#: gtkrc.lang:39
-msgid "Include directive"
-msgstr "İçer direktifi"
-
-#. (itstool) path: haddock.lang/language@_name
-#: haddock.lang:24
-msgid "Haddock"
-msgstr "Haddock"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:27
-msgid "Inline Haddock Section"
-msgstr "Satır Arası Haddock Bölümü"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:28
-msgid "Haddock Directive"
-msgstr "Haddock Direktifi"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:29
-msgid "Hyperlinked Identifier"
-msgstr "Hiperlinkli Direktif"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:30
-msgid "Hyperlinked Module Name"
-msgstr "Hiperlinkli Modül Adı"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:31
-msgid "Escape"
-msgstr "Escape"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:32 markdown.lang:45 rst.lang:32
-msgid "Emphasis"
-msgstr "Vurgu"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:33
-msgid "Monospace"
-msgstr "Monospace"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:34
-msgid "Code Block"
-msgstr "Kod Bloğu"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:35
-msgid "Header Property"
-msgstr "Başlık Özelliği"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:36
-msgid "Itemized list"
-msgstr "Ögelenmiş liste"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:37
-msgid "Enumerated list"
-msgstr "Sıralı liste"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:38
-msgid "Definition list"
-msgstr "Tanım listesi"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:39 markdown.lang:40 mediawiki.lang:33
-msgid "URL"
-msgstr "URL"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:40 t2t.lang:41 yaml.lang:33
-msgid "Anchor"
-msgstr "Çıpa"
-
-#. (itstool) path: haskell.lang/language@_name
-#: haskell.lang:25
-msgid "Haskell"
-msgstr "Haskell"
-
-#. (itstool) path: styles/style@_name
-#: haskell.lang:36 ruby.lang:51
-msgid "Symbol"
-msgstr "Sembol"
-
-#. (itstool) path: styles/style@_name
-#: haskell.lang:44
-msgid "Octal"
-msgstr "Sekizli"
-
-#. (itstool) path: styles/style@_name
-#: haskell.lang:45
-msgid "Hex"
-msgstr "Onaltılı"
-
-#. (itstool) path: haskell-literate.lang/language@_name
-#: haskell-literate.lang:24
-msgid "Literate Haskell"
-msgstr "Literate Haskell"
-
-#. (itstool) path: haxe.lang/language@_name
-#: haxe.lang:35
-msgid "Haxe"
-msgstr "Haxe"
-
-#. (itstool) path: styles/style@_name
-#: haxe.lang:53 rust.lang:54
-msgid "Scope"
-msgstr "Kapsam"
-
-#. (itstool) path: styles/style@_name
-#: haxe.lang:60
-msgid "Metadata"
-msgstr "Üst veri"
-
-#. (itstool) path: styles/style@_name
-#: haxe.lang:61 julia.lang:45 rust.lang:56
-msgid "Macro"
-msgstr "Makro"
-
-#. (itstool) path: styles/style@_name
-#: haxe.lang:64
-msgid "Identifier Prefix"
-msgstr "Tanımlayıcı Ön Eki"
-
-#. (itstool) path: html.lang/language@_name
-#: html.lang:25
-msgid "HTML"
-msgstr "HTML"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:35 xml.lang:43 yaml.lang:34
-msgid "Tag"
-msgstr "Etiket"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:36
-msgid "Attribute Name"
-msgstr "Öznitelik Adı"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:37 markdown.lang:43
-msgid "Attribute Value"
-msgstr "Öznitelik Değeri"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:40
-msgid "Page title"
-msgstr "Sayfa başlığı"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:41
-msgid "Heading level 1"
-msgstr "Başlık düzeyi 1"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:42
-msgid "Heading level 2"
-msgstr "Başlık düzeyi 2"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:43
-msgid "Heading level 3"
-msgstr "Başlık düzeyi 3"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:44
-msgid "Heading level 4"
-msgstr "Başlık düzeyi 4"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:45
-msgid "Heading level 5"
-msgstr "Başlık düzeyi 5"
-
-#. (itstool) path: idl-exelis.lang/language@_name
-#: idl-exelis.lang:21
-msgid "IDL-Exelis"
-msgstr "IDL-Exelis"
-
-#. (itstool) path: idl.lang/language@_name
-#: idl.lang:24
-msgid "IDL"
-msgstr "IDL"
-
-#. (itstool) path: imagej.lang/language@_name
-#: imagej.lang:24
-msgid "ImageJ"
-msgstr "ImageJ"
-
-#. (itstool) path: styles/style@_name
-#: imagej.lang:35
-msgid "Commands"
-msgstr "Komutlar"
-
-#. (itstool) path: styles/style@_name
-#: imagej.lang:36 octave.lang:45
-msgid "Storage Type"
-msgstr "Depolama Türü"
-
-#. (itstool) path: ini.lang/language@_name
-#: ini.lang:23
-msgid ".ini"
-msgstr ".ini"
-
-#. (itstool) path: jade.lang/language@_name
-#: jade.lang:25
-msgid "Jade"
-msgstr "Jade"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:33 xml.lang:36
-msgid "DOCTYPE"
-msgstr "DOCTYPE"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:34 xml.lang:38
-msgid "Processing instruction"
-msgstr "İşleme yönergesi"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:35 mxml.lang:32 xml.lang:39
-msgid "Element name"
-msgstr "Öge adı"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:37 xml.lang:41
-msgid "Attribute value"
-msgstr "Öznitelik değeri"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:38
-msgid "Tags"
-msgstr "Etiketler"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:39 xml.lang:42
-msgid "Entity"
-msgstr "İçerik"
-
-#. (itstool) path: java.lang/language@_name
-#: java.lang:25
-msgid "Java"
-msgstr "Java"
-
-#. (itstool) path: javascript.lang/language@_name
-#: javascript.lang:27
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:39
-msgid "Undefined Value"
-msgstr "Tanımsız Değer"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:44
-msgid "Properties"
-msgstr "Özellikler"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:45
-msgid "Constructors"
-msgstr "Yapıcılar"
-
-#. (itstool) path: j.lang/language@_name
-#: j.lang:24
-msgid "J"
-msgstr "J"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:31
-msgid "Adverb"
-msgstr "Zarf"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:33
-msgid "Conjunction"
-msgstr "Bağlaç"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:34 perl.lang:46
-msgid "Control"
-msgstr "Kontrol"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:36
-msgid "Explicit Argument"
-msgstr "Belirgin Argüman"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:37
-msgid "Global"
-msgstr "Genel"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:38
-msgid "Lab Text"
-msgstr "Lab Metni"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:39
-msgid "Local"
-msgstr "Yerel"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:40
-msgid "Noun"
-msgstr "Ad"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:41
-msgid "Explicit Noun Definition"
-msgstr "Belirgin Ad Tanımı"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:43
-msgid "Parens"
-msgstr "Temel"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:44
-msgid "Primitive"
-msgstr "İlkel"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:46
-msgid "Verb"
-msgstr "Fiil"
-
-#. (itstool) path: julia.lang/language@_name
-#: julia.lang:24
-msgid "Julia"
-msgstr "Julia"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:41
-msgid "Math Constant"
-msgstr "Matematiksel Sabit"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:42 R.lang:38 scala.lang:44
-msgid "Special Constant"
-msgstr "Özel Sabit"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:46
-msgid "External Command"
-msgstr "Harici Komut"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:47
-msgid "Built-in Function"
-msgstr "Dahili İşlev"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:48
-msgid "Module"
-msgstr "Modül"
-
-#. (itstool) path: latex.lang/language@_name
-#: latex.lang:25
-msgid "LaTeX"
-msgstr "LaTeX"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:34 latex.lang:36
-msgid "Math Mode"
-msgstr "Matematik Kipi"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:35
-msgid "Inline Math Mode"
-msgstr "Satır Arası Matematik Kipi"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:37
-msgid "Math Boundary"
-msgstr "Matematik Sınırı"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:38 texinfo.lang:41
-msgid "Include"
-msgstr "Include"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:41 sweave.lang:34 t2t.lang:44
-msgid "Verbatim"
-msgstr "Birebir"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:42
-msgid "Special Character"
-msgstr "Özel Karakter"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:43
-msgid "Part Heading"
-msgstr "Parça Başlığı"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:44
-msgid "Chapter Heading"
-msgstr "Bölüm Başlığı"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:45
-msgid "Section Heading"
-msgstr "Bölüm Başlığı"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:46
-msgid "SubSection Heading"
-msgstr "Alt Bölüm Başlığı"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:47
-msgid "SubSubSection Heading"
-msgstr "AltAltBölüm Başlığı"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:48
-msgid "Paragraph Heading"
-msgstr "Paragraf Başlığı"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:49
-msgid "SubParagraph Heading"
-msgstr "Alt Paragraf Başlığı"
-
-#. (itstool) path: lex.lang/language@_name
-#: lex.lang:25
-msgid "Lex"
-msgstr "Lex"
-
-#. (itstool) path: styles/style@_name
-#: lex.lang:34
-msgid "Token"
-msgstr "Simge"
-
-#. (itstool) path: styles/style@_name
-#: lex.lang:37
-msgid "Expression"
-msgstr "İfade"
-
-#. (itstool) path: libtool.lang/language@_name
-#: libtool.lang:24
-msgid "libtool"
-msgstr "libtool"
-
 #. (itstool) path: llvm.lang/language@_name
-#: llvm.lang:23
+#: llvm.lang:22
 msgid "LLVM IR"
 msgstr "LLVM"
 
-#. (itstool) path: styles/style@_name
-#: llvm.lang:34
-msgid "Constants"
-msgstr "Sabit"
-
-#. (itstool) path: lua.lang/language@_name
-#: lua.lang:24
-msgid "Lua"
-msgstr "Lua"
-
-#. (itstool) path: styles/style@_name
-#: lua.lang:38
-msgid "Reserved Identifier"
-msgstr "Ayrılmış Tanımlayıcı"
-
-#. (itstool) path: styles/style@_name
-#: lua.lang:39 markdown.lang:42
-msgid "Label"
-msgstr "Etiket"
-
-#. (itstool) path: styles/style@_name
-#: lua.lang:41 ruby.lang:40
-msgid "Nil Constant"
-msgstr "Nil Sabiti"
-
-#. (itstool) path: m4.lang/language@_name
-#: m4.lang:24
-msgid "m4"
-msgstr "m4"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:32
-msgid "m4 Comment"
-msgstr "m4 Açıklaması"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:33
-msgid "m4 Macro"
-msgstr "m4 Makrosu"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:34
-msgid "Autoconf Macro"
-msgstr "Autoconf Makrosu"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:35
-msgid "Obsolete Autoconf Macro"
-msgstr "Atıl Autoconf Makrosu"
-
-#. (itstool) path: makefile.lang/language@_name
-#: makefile.lang:23
-msgid "Makefile"
-msgstr "Makefile"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:32
-msgid "Assignment Right Hand Side"
-msgstr "Sağ taraf ataması"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:33
-msgid "Assignment Left Hand Side"
-msgstr "Sol taraf ataması"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:34
-msgid "targets"
-msgstr "hedefler"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:35
-msgid "prereq"
-msgstr "prereq"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:36
-msgid "command"
-msgstr "komut"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:39
-msgid "Trailing Tab"
-msgstr "Sondaki Sekme"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:40
-msgid "function"
-msgstr "işlev"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:41 yacc.lang:35
-msgid "keyword"
-msgstr "anahtar sözcük"
-
-#. (itstool) path: mallard.lang/language@_name
-#: mallard.lang:23
-msgid "Mallard"
-msgstr "Mallard"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:32
-msgid "Page Elements"
-msgstr "Sayfa Ögeleri"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:33
-msgid "Section Elements"
-msgstr "Bölüm Ögeleri"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:34
-msgid "Block Elements"
-msgstr "Blok Ögeleri"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:35
-msgid "Inline Elements"
-msgstr "Satır Arası Ögeleri"
-
-#. (itstool) path: markdown.lang/language@_name
-#: markdown.lang:26
-msgid "Markdown"
-msgstr "Markdown"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:35 rpmspec.lang:33 rst.lang:31 t2t.lang:34
-msgid "Header"
-msgstr "Başlık"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:36
-msgid "Horizontal Rule"
-msgstr "Yatay Çizgi"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:37
-msgid "List Marker"
-msgstr "Liste İşaretçisi"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:38 rst.lang:39
-msgid "Code"
-msgstr "Kod"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:39
-msgid "Blockquote Marker"
-msgstr "Blok Alıntı İşaretçisi"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:41
-msgid "Link Text"
-msgstr "Bağlantı Metni"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:44
-msgid "Image Marker"
-msgstr "Resim İşaretçisi"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:46 mediawiki.lang:30 rst.lang:33
-msgid "Strong Emphasis"
-msgstr "Güçlü Vurgu"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:47
-msgid "Backslash Escape"
-msgstr "Ters Bölü Çıkışı"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:48
-msgid "Line Break"
-msgstr "Satır Başı"
-
-#. (itstool) path: matlab.lang/language@_name
-#: matlab.lang:26
-msgid "Matlab"
-msgstr "Matlab"
-
-#. (itstool) path: mediawiki.lang/language@_name
-#: mediawiki.lang:23
-msgid "MediaWiki"
-msgstr "MediaWiki"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:31
-msgid "Light Emphasis"
-msgstr "Vurgu"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:32
-msgid "Signature"
-msgstr "İmza"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:34 rst.lang:37
-msgid "Link"
-msgstr "Bağlantı"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:35
-msgid "Symbol on a Link"
-msgstr "Bir Bağlantı üzerinde sembol"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:36
-msgid "Line"
-msgstr "Satır"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:37
-msgid "List"
-msgstr "Liste"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:38
-msgid "Magic Word"
-msgstr "Sihirli Sözcük"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:39
-msgid "Symbol of a Table"
-msgstr "Tablo Sembolü"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:40
-msgid "Preformatted"
-msgstr "﻿Önceden biçimlendirilmiş"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:41
-msgid "Redirect"
-msgstr "﻿Yönlendir"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:42
-msgid "Title"
-msgstr "Başlık"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:43
-msgid "Template"
-msgstr "Şablon"
-
-#. (itstool) path: meson.lang/language@_name
-#: meson.lang:24
-msgid "Meson"
-msgstr "Meson"
-
-#. (itstool) path: modelica.lang/language@_name
-#: modelica.lang:26
-msgid "Modelica"
-msgstr "Modelica"
-
-#. (itstool) path: styles/style@_name
-#: modelica.lang:39
-msgid "Class type"
-msgstr "Sınıf türü"
-
-#. (itstool) path: styles/style@_name
-#: modelica.lang:41
-msgid "Default Attribute"
-msgstr "Öntanımlı Nitelik"
-
-#. (itstool) path: mxml.lang/language@_name
-#: mxml.lang:24
-msgid "MXML"
-msgstr "MXML"
-
-#. (itstool) path: styles/style@_name
-#: mxml.lang:33 xml.lang:37
-msgid "CDATA delimiter"
-msgstr "CDATA ayıracı"
-
-#. (itstool) path: nemerle.lang/language@_name
-#: nemerle.lang:24
-msgid "Nemerle"
-msgstr "Nemerle"
-
-#. (itstool) path: netrexx.lang/language@_name
-#: netrexx.lang:24
-msgid "NetRexx"
-msgstr "NetRexx"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:39
-msgid "Externals"
-msgstr "Harici"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:40
-msgid "Options"
-msgstr "Seçenekler"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:41
-msgid "Data Types"
-msgstr "Veri Türleri"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:42
-msgid "Special"
-msgstr "Özel"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:43
-msgid "Visibility"
-msgstr "Görünürlük"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:44
-msgid "Modifiers"
-msgstr "Değiştiriciler"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:45
-msgid "Keywords"
-msgstr "Anahtar sözcükler"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:46
-msgid "Sub Keywords"
-msgstr "Alt Anahtar Sözcükler"
-
-#. (itstool) path: nsis.lang/language@_name
-#: nsis.lang:24
-msgid "NSIS"
-msgstr "NSIS"
-
-#. (itstool) path: objc.lang/language@_name
-#: objc.lang:24
-msgid "Objective-C"
-msgstr "Nesnel-Cr"
-
-#. (itstool) path: objj.lang/language@_name
-#: objj.lang:26
-msgid "Objective-J"
-msgstr "Nesnel-J"
-
-#. (itstool) path: ocaml.lang/language@_name
-#: ocaml.lang:27
-msgid "OCaml"
-msgstr "OCaml"
-
-#. (itstool) path: styles/style@_name
-#: ocaml.lang:37
-msgid "Ocamldoc Comments"
-msgstr "Ocamldoc Açıklamaları"
-
-#. (itstool) path: styles/style@_name
-#: ocaml.lang:54
-msgid "Standard Modules"
-msgstr "Standart Modüller"
-
-#. (itstool) path: ocl.lang/language@_name
-#: ocl.lang:33
-msgid "OCL"
-msgstr "OCL"
-
-#. (itstool) path: styles/style@_name
-#: ocl.lang:44
-msgid "Type Operators"
-msgstr "Tür İşleçleri"
-
-#. (itstool) path: styles/style@_name
-#: ocl.lang:46
-msgid "Operation operator"
-msgstr "İşlem işleçleri"
-
-#. (itstool) path: octave.lang/language@_name
-#: octave.lang:26
-msgid "Octave"
-msgstr "Oktav"
-
-#. (itstool) path: styles/style@_name
-#: octave.lang:47
-msgid "Package Manager"
-msgstr "Paket Yöneticisi"
-
-#. (itstool) path: ooc.lang/language@_name
-#: ooc.lang:24
-msgid "OOC"
-msgstr "OOC"
-
-#. (itstool) path: opal.lang/language@_name
-#: opal.lang:24
-msgid "Opal"
-msgstr "Opal"
-
-#. (itstool) path: styles/style@_name
-#: opal.lang:33 python3.lang:32 python.lang:36
-msgid "Module Handler"
-msgstr "Modül İşleyici"
-
-#. (itstool) path: styles/style@_name
-#: opal.lang:42
-msgid "Keysymbol"
-msgstr "Anahtar-sembol"
-
-#. (itstool) path: opencl.lang/language@_name
-#: opencl.lang:24
-msgid "OpenCL"
-msgstr "OpenCL"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:35
-msgid "Global Function"
-msgstr "Genel İşlev"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:36
-msgid "Device Function"
-msgstr "Aygıt İşlevi"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:37
-msgid "Device Cast"
-msgstr "Cihaz Dökümü"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:38
-msgid "OpenCL Constant"
-msgstr "OpenCL Sabiti"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:39
-msgid "Global Variable"
-msgstr "Genel Değişken"
-
-#. (itstool) path: pascal.lang/language@_name
-#: pascal.lang:25
-msgid "Pascal"
-msgstr "Pascal"
-
-#. (itstool) path: perl.lang/language@_name
-#: perl.lang:26
-msgid "Perl"
-msgstr "Perl"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:35
-msgid "Line Directive"
-msgstr "Satır Direktifi"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:36
-msgid "Include Statement"
-msgstr "İçer Belirtimi"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:40 php.lang:46 ruby.lang:55
-msgid "Heredoc"
-msgstr "Heredoc"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:41 php.lang:47 ruby.lang:56 sh.lang:41
-msgid "Heredoc Bound"
-msgstr "Heredoc Bağlamı"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:42
-msgid "System Command"
-msgstr "Sistem Komutu"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:45
-msgid "File Descriptor"
-msgstr "Dosya Tanımlayıcı"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:49
-msgid "POD"
-msgstr "POD"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:50
-msgid "POD Escape"
-msgstr "POD Escape"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:51
-msgid "POD keyword"
-msgstr "POD anahtar sözcük"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:52
-msgid "POD heading"
-msgstr "POD başlık"
-
-#. (itstool) path: php.lang/language@_name
-#: php.lang:29
-msgid "PHP"
-msgstr "PHP"
-
-#. (itstool) path: styles/style@_name
-#: php.lang:39
-msgid "Preprocessor tags"
-msgstr "Önişlemci etiketleri"
-
-#. (itstool) path: styles/style@_name
-#: php.lang:49
-msgid "Common Function"
-msgstr "Ortak İşlev"
-
-#. (itstool) path: pig.lang/language@_name
-#: pig.lang:27
-msgid "Pig"
-msgstr "Pig"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:37
-msgid "Reserved Words"
-msgstr "Ayrılmış Sözcükler"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:38
-msgid "Built In Functions"
-msgstr "Dahili İşlevler"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:39
-msgid "Boolean values"
-msgstr "Boolean değerleri"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:40 yaml.lang:38
-msgid "Null"
-msgstr "Null"
-
-#. (itstool) path: pkgconfig.lang/language@_name
-#: pkgconfig.lang:24
-msgid "pkg-config"
-msgstr "pkg-config"
-
-#. (itstool) path: styles/style@_name
-#: pkgconfig.lang:32
-msgid "Package Info"
-msgstr "Paket Bilgisi"
-
 #. (itstool) path: po.lang/language@_name
-#: po.lang:24
+#: po.lang:23
 msgid "gettext translation"
 msgstr "gettext tercüme"
-
-#. (itstool) path: styles/style@_name
-#: po.lang:35
-msgid "Fuzzy"
-msgstr "Bulanık"
-
-#. (itstool) path: prolog.lang/language@_name
-#: prolog.lang:24
-msgid "Prolog"
-msgstr "Prolog"
-
-#. (itstool) path: puppet.lang/language@_name
-#: puppet.lang:24
-msgid "Puppet"
-msgstr "Kukla"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:31
-msgid "Resources"
-msgstr "Kaynaklar"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:32
-msgid "Parameters"
-msgstr "Parametreler"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:33
-msgid "Metaparameters"
-msgstr "Hedef Parametreler"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:34 R.lang:42
-msgid "Functions"
-msgstr "İşlevler"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:35
-msgid "Values"
-msgstr "Değerler"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:36
-msgid "Variables"
-msgstr "Değişkenler"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:37
-msgid "Class names"
-msgstr "Sınıf adları"
-
-#. (itstool) path: python3.lang/language@_name
-#: python3.lang:24
-msgid "Python 3"
-msgstr "Python 3"
-
-#. (itstool) path: styles/style@_name
-#: python3.lang:37 python.lang:41
-msgid "Format"
-msgstr "Biçim"
-
-#. (itstool) path: styles/style@_name
-#: python3.lang:45 python.lang:50
-msgid "Builtin Object"
-msgstr "Yapısal Nesne"
-
-#. (itstool) path: python.lang/language@_name
-#: python.lang:28
-msgid "Python"
-msgstr "Python"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:42
-msgid "String Conversion"
-msgstr "Karakter Dizisi Dönüştürme"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:53
-msgid "Class Name"
-msgstr "Sınıf Adı"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:54
-msgid "Decorator"
-msgstr "Dekoratör"
-
-#. (itstool) path: R.lang/language@_name
-#: R.lang:26
-msgid "R"
-msgstr "R"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:35
-msgid "Reserved Class"
-msgstr "Ayrılmış Sınıf"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:36
-msgid "Assignment Operator"
-msgstr "Atama İşlemcisi"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:37
-msgid "Delimiter"
-msgstr "Ayıraç"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:40 verilog.lang:47
-msgid "Integer Number"
-msgstr "Tamsayı Numara"
 
 #. (itstool) path: rpmspec.lang/language@_name
 #: rpmspec.lang:24
 msgid "RPM spec"
 msgstr "RPM spec"
 
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:32
-msgid "Define"
-msgstr "Tanımla"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:34 t2t.lang:35
-msgid "Section"
-msgstr "Bölüm"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:35
-msgid "Spec Macro"
-msgstr "Spek Makrosu"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:36
-msgid "Directory Macro"
-msgstr "Dizin Makrosu"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:37
-msgid "Command Macro"
-msgstr "Komut Makrosu"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:38
-msgid "Conditional Macro"
-msgstr "Koşullu Makro"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:39
-msgid "Other Macro"
-msgstr "Diğer Makro"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:40
-msgid "Flow Conditional"
-msgstr "Akış Koşulu"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:41
-msgid "RPM Variable"
-msgstr "RPM Değişkeni"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:42
-msgid "Switch"
-msgstr "Switch"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:44
-msgid "Email"
-msgstr "E-posta"
-
-#. (itstool) path: rst.lang/language@_name
-#: rst.lang:23
-msgid "reStructuredText"
-msgstr "Yeniden Yapılandırılmış Metin"
-
-#. (itstool) path: styles/style@_name
-#: rst.lang:35 yaml.lang:37
-msgid "Directive"
-msgstr "Direktif"
-
-#. (itstool) path: ruby.lang/language@_name
-#: ruby.lang:27
-msgid "Ruby"
-msgstr "Ruby"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:37
-msgid "Attribute Definition"
-msgstr "Öznitelik Tanımı"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:38
-msgid "Module handler"
-msgstr "Modül işleyici"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:45
-msgid "Numeric literal"
-msgstr "Yalın sayı"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:47 sparql.lang:40
-msgid "Literal"
-msgstr "Literal"
-
-#. (itstool) path: rust.lang/language@_name
-#: rust.lang:36
-msgid "Rust"
-msgstr "Pas"
-
-#. (itstool) path: scala.lang/language@_name
-#: scala.lang:25
-msgid "Scala"
-msgstr "Scala"
-
-#. (itstool) path: styles/style@_name
-#: scala.lang:42
-msgid "Modifier"
-msgstr "Değiştirici"
-
-#. (itstool) path: styles/style@_name
-#: scala.lang:48
-msgid "Built In"
-msgstr "Yapısal"
-
-#. (itstool) path: styles/style@_name
-#: scala.lang:50
-msgid "XML Tag"
-msgstr "XML Etiketi"
-
-#. (itstool) path: scheme.lang/language@_name
-#: scheme.lang:24
-msgid "Scheme"
-msgstr "Şema"
-
-#. (itstool) path: scilab.lang/language@_name
-#: scilab.lang:24
-msgid "Scilab"
-msgstr "Scilab"
-
-#. (itstool) path: sh.lang/language@_name
-#: sh.lang:25
-msgid "sh"
-msgstr "sh"
-
-#. (itstool) path: styles/style@_name
-#: sh.lang:38
-msgid "Variable Definition"
-msgstr "Değişken Tanımı"
-
-#. (itstool) path: styles/style@_name
-#. *
-#. * SECTION:language
-#. * @Short_description: Represents a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
-#. *
-#. * A #GtkSourceLanguage represents a programming or markup language, affecting
-#. * syntax highlighting and [context classes][context-classes].
-#. *
-#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
-#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
-#.
-#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:56
-msgid "Others"
-msgstr "Diğerleri"
-
-#. (itstool) path: styles/style@_name
-#: sh.lang:40
-msgid "Common Commands"
-msgstr "Yaygın Komutlar"
-
-#. (itstool) path: styles/style@_name
-#: sh.lang:42
-msgid "Subshell"
-msgstr "Alt kabuk"
-
-#. (itstool) path: sml.lang/language@_name
-#: sml.lang:24
-msgid "Standard ML"
-msgstr "Standart ML"
-
-#. (itstool) path: styles/style@_name
-#: sml.lang:42
-msgid "Module name, Variant, etc"
-msgstr "Modül adı, Varyantı, vs."
-
-#. (itstool) path: sparql.lang/language@_name
-#: sparql.lang:24
-msgid "SPARQL"
-msgstr "SPARQL"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:33
-msgid "Class"
-msgstr "Sınıf"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:36
-msgid "Individual"
-msgstr "Bireysel"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:41
-msgid "Predicate"
-msgstr "Dayanak"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:42
-msgid "QName"
-msgstr "QName"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:43
-msgid "IRI"
-msgstr "IRI"
-
-#. (itstool) path: sql.lang/language@_name
-#: sql.lang:24
-msgid "SQL"
-msgstr "SQL"
-
-#. (itstool) path: styles/style@_name
-#: sql.lang:39
-msgid "No idea what it is"
-msgstr "Ne olduğu belirsiz"
-
-#. (itstool) path: sweave.lang/language@_name
-#: sweave.lang:25
-msgid "Sweave"
-msgstr "Sweave"
-
-#. (itstool) path: systemverilog.lang/language@_name
-#: systemverilog.lang:22
-msgid "SystemVerilog"
-msgstr "SystemVerilog"
-
-#. (itstool) path: t2t.lang/language@_name
-#: t2t.lang:24
-msgid "txt2tags"
-msgstr "txt2tags"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:32
-msgid "Option"
-msgstr "Seçenek"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:33
-msgid "Option Name"
-msgstr "Seçenek Adı"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:36
-msgid "Section 1"
-msgstr "Bölüm 1"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:37
-msgid "Section 2"
-msgstr "Bölüm 2"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:38
-msgid "Section 3"
-msgstr "Bölüm 3"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:39
-msgid "Section 4"
-msgstr "Bölüm 4"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:40
-msgid "Section 5"
-msgstr "Bölüm 5"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:42
-msgid "Italic"
-msgstr "Eğik"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:43
-msgid "Bold"
-msgstr "Kalın"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:45
-msgid "Verbatim Block"
-msgstr "Birebir Aynı Blok"
-
-#. (itstool) path: tcl.lang/language@_name
-#: tcl.lang:24
-msgid "Tcl"
-msgstr "Tcl"
-
-#. (itstool) path: texinfo.lang/language@_name
-#: texinfo.lang:25
-msgid "Texinfo"
-msgstr "Texinfo"
-
-#. (itstool) path: styles/style@_name
-#: texinfo.lang:38
-msgid "Macros"
-msgstr "Makrolar"
-
-#. (itstool) path: styles/style@_name
-#: texinfo.lang:39
-msgid "File Attributes"
-msgstr "Dosya Öznitelikleri"
-
-#. (itstool) path: styles/style@_name
-#: texinfo.lang:40
-msgid "Generated Content"
-msgstr "Oluşturulmuş İçerik"
-
-#. (itstool) path: thrift.lang/language@_name
-#: thrift.lang:21
-msgid "Thrift"
-msgstr "Thrift"
-
-#. (itstool) path: vala.lang/language@_name
-#: vala.lang:28
-msgid "Vala"
-msgstr "Vala"
-
-#. (itstool) path: vbnet.lang/language@_name
-#: vbnet.lang:24
-msgid "VB.NET"
-msgstr "VB.NET"
-
-#. (itstool) path: verilog.lang/language@_name
-#: verilog.lang:24
-msgid "Verilog"
-msgstr "Verilog"
-
-#. (itstool) path: styles/style@_name
-#: verilog.lang:40
-msgid "IEEE System Task"
-msgstr "IEEE Sistem Görevi"
-
-#. (itstool) path: styles/style@_name
-#: verilog.lang:41
-msgid "LRM Additional System Task"
-msgstr "LRM Ek Sistem Görevi"
-
-#. (itstool) path: styles/style@_name
-#: verilog.lang:43
-msgid "Gate"
-msgstr "Kapı"
-
-#. (itstool) path: vhdl.lang/language@_name
-#: vhdl.lang:24
-msgid "VHDL"
-msgstr "VHDL"
-
-#. (itstool) path: xml.lang/language@_name
-#: xml.lang:26
-msgid "XML"
-msgstr "XML"
-
-#. (itstool) path: xslt.lang/language@_name
-#: xslt.lang:24
-msgid "XSLT"
-msgstr "XSLT"
-
-#. (itstool) path: styles/style@_name
-#: xslt.lang:33
-msgid "Element"
-msgstr "Öge"
-
-#. (itstool) path: yacc.lang/language@_name
-#: yacc.lang:24
-msgid "Yacc"
-msgstr "Yacc"
-
-#. (itstool) path: styles/style@_name
-#: yacc.lang:36
-msgid "token type"
-msgstr "simge tipi"
-
-#. (itstool) path: styles/style@_name
-#: yacc.lang:37
-msgid "rule"
-msgstr "kural"
-
-#. (itstool) path: yaml.lang/language@_name
-#: yaml.lang:22
-msgid "YAML"
-msgstr "YAML"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:30
-msgid "Block literal"
-msgstr "Blok değişmezi"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:35
-msgid "Alias"
-msgstr "Takma ad"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:36
-msgid "Map key"
-msgstr "Tuş ata"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:40
-msgid "Integer"
-msgstr "Tamsayı"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:41
-msgid "Floating point"
-msgstr "Kayar Nokta"
+#. (itstool) path: tera.lang/language@_name
+#: tera.lang:23
+msgid "Tera Template"
+msgstr "Tera Şablonu"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:24
@@ -3387,7 +645,7 @@ msgstr "Dosya çok büyük."
 
 #: gtksourceview/gtksourcefileloader.c:777
 msgid "Not a regular file."
-msgstr "Sıradan bir dosya değil. "
+msgstr "Sıradan bir dosya değil."
 
 #: gtksourceview/gtksourcefilesaver.c:976
 msgid "The file is externally modified."
@@ -3396,6 +654,22 @@ msgstr "Dosya dışarıdan düzenlendi."
 #: gtksourceview/gtksourcefilesaver.c:1428
 msgid "The buffer contains invalid characters."
 msgstr "Arabellek geçersiz karakterler içeriyor."
+
+#. *
+#. * SECTION:language
+#. * @Short_description: Represents a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#.
+#: gtksourceview/gtksourcelanguage.c:56
+msgid "Others"
+msgstr "Diğerleri"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
 #, c-format
@@ -3453,6 +727,1578 @@ msgstr "Başlık _Durumu"
 #: gtksourceview/gtksourceview.c:1851
 msgid "C_hange Case"
 msgstr "Büyük/Küçük Harf _Değiştir"
+
+#~ msgid "ABNF"
+#~ msgstr "ABNF"
+
+#~ msgid "Comment"
+#~ msgstr "Açıklama"
+
+#~ msgid "Rule Name"
+#~ msgstr "Kural Adı"
+
+#~ msgid "Binary number"
+#~ msgstr "İkili sayı"
+
+#~ msgid "Decimal number"
+#~ msgstr "Ondalık sayı"
+
+#~ msgid "Hexadecimal number"
+#~ msgstr "Onaltılık sayı"
+
+#~ msgid "String"
+#~ msgstr "Dizgi"
+
+#~ msgid "ActionScript"
+#~ msgstr "ActionScript"
+
+#~ msgid "Error"
+#~ msgstr "Hata"
+
+#~ msgid "External"
+#~ msgstr "Harici"
+
+#~ msgid "Declaration"
+#~ msgstr "Tanımr"
+
+#~ msgid "Storage Class"
+#~ msgstr "Depo Sınıfı"
+
+#~ msgid "Scope Declaration"
+#~ msgstr "Kapsam Tanımı"
+
+#~ msgid "Keyword"
+#~ msgstr "Anahtar sözcük"
+
+#~ msgid "Null Value"
+#~ msgstr "Null Değeri"
+
+#~ msgid "Boolean value"
+#~ msgstr "Mantıksal değer"
+
+#~ msgid "Number"
+#~ msgstr "Numara"
+
+#~ msgid "Future Reserved Keywords"
+#~ msgstr "İlerisi İçin Ayrılmış Sözcükler"
+
+#~ msgid "Data Type"
+#~ msgstr "Veri Türü"
+
+#~ msgid "Ada"
+#~ msgstr "Ada"
+
+#~ msgid "Preprocessor"
+#~ msgstr "Önişlemci"
+
+#~ msgid "Arbitrary base number"
+#~ msgstr "Değişen taban numarası"
+
+#~ msgid "Real number"
+#~ msgstr "Gerçel sayı"
+
+#~ msgid "Escaped Character"
+#~ msgstr "Çıkış Karakteri"
+
+#~ msgid "ANS-Forth94"
+#~ msgstr "ANS-Forth94"
+
+#~ msgid "Obsolete Keyword"
+#~ msgstr "Eski Anahtar Sözcük"
+
+#~ msgid "Alert"
+#~ msgstr "Alarm"
+
+#~ msgid "Character"
+#~ msgstr "Karakter"
+
+#~ msgid "Word"
+#~ msgstr "Sözcük"
+
+#~ msgid "Constant"
+#~ msgstr "Sabit"
+
+#~ msgid "Variable"
+#~ msgstr "Değişken"
+
+#~ msgid "Local Variable"
+#~ msgstr "Yerel Değişken"
+
+#~ msgid "Single Number"
+#~ msgstr "Tek Numara"
+
+#~ msgid "Double Number"
+#~ msgstr "Çift Numara"
+
+#~ msgid "Float"
+#~ msgstr "Reel"
+
+#~ msgid "ASP"
+#~ msgstr "ASP"
+
+#~ msgid "Function"
+#~ msgstr "Fonksiyon"
+
+#~ msgid "Operator"
+#~ msgstr "İşleçr"
+
+#~ msgid "ASP Object"
+#~ msgstr "ASP Nesnesi"
+
+#~ msgid "VBScript and ADO constants"
+#~ msgstr "VBScript ve ADO sabitleri"
+
+#~ msgid "Special constant"
+#~ msgstr "Özel sabit"
+
+#~ msgid "Automake"
+#~ msgstr "Automake"
+
+#~ msgid "Automake Variable"
+#~ msgstr "Automake Değişkeni"
+
+#~ msgid "Primary"
+#~ msgstr "Birincil"
+
+#~ msgid "Secondary"
+#~ msgstr "İkincil"
+
+#~ msgid "Prefix"
+#~ msgstr "Önek"
+
+#~ msgid "Optional Target"
+#~ msgstr "Seçmeli Hedef"
+
+#~ msgid "Built-in Target"
+#~ msgstr "Dahili Hedef"
+
+#~ msgid "Other Keyword"
+#~ msgstr "Diğer Anahtar Sözcük"
+
+#~ msgid "Substitution"
+#~ msgstr "İkame"
+
+#~ msgid "awk"
+#~ msgstr "awk"
+
+#~ msgid "Pattern"
+#~ msgstr "Kalıp"
+
+#~ msgid "Builtin Function"
+#~ msgstr "Dahili İşlev"
+
+#~ msgid "BennuGD"
+#~ msgstr "BennuGD"
+
+#~ msgid "Identifier"
+#~ msgstr "Tanımlayıcı"
+
+#~ msgid "Floating point number"
+#~ msgstr "Gerçel sayı"
+
+#~ msgid "BibTeX"
+#~ msgstr "BibTeX"
+
+#~ msgid "Entries"
+#~ msgstr "Girdiler"
+
+#~ msgid "Field"
+#~ msgstr "Alan"
+
+#~ msgid "Bluespec SystemVerilog"
+#~ msgstr "Bluespec SystemVerilog"
+
+#~ msgid "System Task"
+#~ msgstr "Sistem Görevi"
+
+#~ msgid "Annotation"
+#~ msgstr "Belirtim"
+
+#~ msgid "Attribute"
+#~ msgstr "Öznitelik"
+
+#~ msgid "Import BVI"
+#~ msgstr "BVI Aktar"
+
+#~ msgid "Type"
+#~ msgstr "Tür"
+
+#~ msgid "Boo"
+#~ msgstr "Boo"
+
+#~ msgid "Multiline string"
+#~ msgstr "Çoksatırlı dizgi"
+
+#~ msgid "Regular Expression"
+#~ msgstr "Düzenli İfade"
+
+#~ msgid "Namespace"
+#~ msgstr "Ad uzayı"
+
+#~ msgid "Definition"
+#~ msgstr "Tanım"
+
+#~ msgid "Special Variable"
+#~ msgstr "Özel Değer"
+
+#~ msgid "Boolean"
+#~ msgstr "Mantıksal Değer"
+
+#~ msgid "Bindings"
+#~ msgstr "Bağlar"
+
+#~ msgid "Included File"
+#~ msgstr "Dahil Edilmiş Dosya"
+
+#~ msgid "Octal number"
+#~ msgstr "Sekizlik sayı"
+
+#~ msgid "Swizzle operator"
+#~ msgstr "Swizzle işleci"
+
+#~ msgid "Builtin"
+#~ msgstr "Yapısal"
+
+#~ msgid "ChangeLog"
+#~ msgstr "Değişim Günlüğü"
+
+#~ msgid "Date"
+#~ msgstr "Tarih"
+
+#~ msgid "Name"
+#~ msgstr "Ad"
+
+#~ msgid "E-mail address"
+#~ msgstr "E-posta adresi"
+
+#~ msgid "File"
+#~ msgstr "Dosya"
+
+#~ msgid "Bullet"
+#~ msgstr "Bullet"
+
+#~ msgid "Release"
+#~ msgstr "Sürüm"
+
+#~ msgid "C"
+#~ msgstr "C"
+
+#~ msgid "Common Defines"
+#~ msgstr "Ortak Tanımlar"
+
+#~ msgid "printf Conversion"
+#~ msgstr "printf Çevirimi"
+
+#~ msgid "Standard stream"
+#~ msgstr "Standart akış"
+
+#~ msgid "Signal name"
+#~ msgstr "Sinyal adı"
+
+#~ msgid "CMake"
+#~ msgstr "CMake"
+
+#~ msgid "Builtin Command"
+#~ msgstr "Dahili Komut"
+
+#~ msgid "Deprecated Builtin Command"
+#~ msgstr "Kullanımdan Kaldırılmış Yerleşik Komut"
+
+#~ msgid "Builtin Variable"
+#~ msgstr "Dahili Değişken"
+
+#~ msgid "Control Keyword"
+#~ msgstr "Kontrol Anahtar Sözcüğü"
+
+#~ msgid "COBOL"
+#~ msgstr "COBOL"
+
+#~ msgid "Statement"
+#~ msgstr "Belirtim"
+
+#~ msgid "C++"
+#~ msgstr "C++"
+
+#~ msgid "C#"
+#~ msgstr "C#"
+
+#~ msgid "String Format"
+#~ msgstr "Dizgi Biçimi"
+
+#~ msgid "CSS"
+#~ msgstr "CSS"
+
+#~ msgid "Others 2"
+#~ msgstr "Diğerleri 2"
+
+#~ msgid "Color"
+#~ msgstr "Renk"
+
+#~ msgid "Others 3"
+#~ msgstr "Diğerleri 3"
+
+#~ msgid "Decimal"
+#~ msgstr "Ondalık"
+
+#~ msgid "Dimension"
+#~ msgstr "Boyutlar"
+
+#~ msgid "Property Value"
+#~ msgstr "Özellik Değeri"
+
+#~ msgid "at-rules"
+#~ msgstr "at-kuralları"
+
+#~ msgid "ID Selector"
+#~ msgstr "ID Seçici"
+
+#~ msgid "Class Selector"
+#~ msgstr "Sınıf Seçici"
+
+#~ msgid "Tag Name Selector"
+#~ msgstr "Etiket Adı Seçici"
+
+#~ msgid "CSV"
+#~ msgstr "CSV"
+
+#~ msgid "Escaped character"
+#~ msgstr "İşlenmeyen karakter"
+
+#~ msgid "CUDA"
+#~ msgstr "CUDA"
+
+#~ msgid "Global Functions"
+#~ msgstr "Genel İşlevler"
+
+#~ msgid "Device Functions"
+#~ msgstr "Aygıt İşlevleri"
+
+#~ msgid "Global Variables"
+#~ msgstr "Genel Değişkenler"
+
+#~ msgid "Defaults"
+#~ msgstr "Öntanımlılar"
+
+#~ msgid "Shebang"
+#~ msgstr "Shebang"
+
+#~ msgid "Documentation comment"
+#~ msgstr "Belgelendirme açıklaması"
+
+#~ msgid "Documentation comment element"
+#~ msgstr "Belgelendirme açıklama ögesi"
+
+#~ msgid "Special character (inside a string)"
+#~ msgstr "Özel karakter (bir dizgi içinde)"
+
+#~ msgid "Base-N number"
+#~ msgstr "N-Tabanlı sayı"
+
+#~ msgid "Complex number"
+#~ msgstr "Karmaşık sayı"
+
+#~ msgid "Built-in identifier"
+#~ msgstr "Dahili tanımlayıcı"
+
+#~ msgid "Data type"
+#~ msgstr "Veri türü"
+
+#~ msgid "Preprocessor directive"
+#~ msgstr "Önişlemci tanımı"
+
+#~ msgid "Warning"
+#~ msgstr "Uyarı"
+
+#~ msgid "Reserved keyword"
+#~ msgstr "Ayrılmış sSözcür"
+
+#~ msgid "Note (FIXME, TODO, XXX, etc.)"
+#~ msgstr "Not (FIXME, TODO, XXX vb.)"
+
+#~ msgid "Underlined"
+#~ msgstr "Altı çizili"
+
+#~ msgid "Heading 0"
+#~ msgstr "0. Düzey Başlık"
+
+#~ msgid "Heading 1"
+#~ msgstr "1. Düzey Başlık"
+
+#~ msgid "Heading 2"
+#~ msgstr "2. Düzey Başlık"
+
+#~ msgid "Heading 3"
+#~ msgstr "3. Düzey Başlık"
+
+#~ msgid "Heading 4"
+#~ msgstr "4. Düzey Başlık"
+
+#~ msgid "Heading 5"
+#~ msgstr "5. Düzey Başlık"
+
+#~ msgid "Heading 6"
+#~ msgstr "6. Düzey Başlık"
+
+#~ msgid ".desktop"
+#~ msgstr ".desktop"
+
+#~ msgid "Group"
+#~ msgstr "Grup"
+
+#~ msgid "Key"
+#~ msgstr "Anahtar"
+
+#~ msgid "Translation"
+#~ msgstr "Tercüme"
+
+#~ msgid "Exec parameter"
+#~ msgstr "Çalıştırma parametresi"
+
+#~ msgid "Encoding"
+#~ msgstr "Kodlama"
+
+#~ msgid "Main Category"
+#~ msgstr "Ana Kategori"
+
+#~ msgid "Additional Category"
+#~ msgstr "Ek Kategori"
+
+#~ msgid "Reserved Category"
+#~ msgstr "Ayrılmış Kategori"
+
+#~ msgid "Diff"
+#~ msgstr "Diff"
+
+#~ msgid "Added line"
+#~ msgstr "Eklenmiş satır"
+
+#~ msgid "Removed line"
+#~ msgstr "Çıkarılmış satır"
+
+#~ msgid "Changed line"
+#~ msgstr "Değişmiş satır"
+
+#~ msgid "Special case"
+#~ msgstr "Özel durum"
+
+#~ msgid "Location"
+#~ msgstr "Konum"
+
+#~ msgid "Ignore"
+#~ msgstr "Yoksay"
+
+#~ msgid "D"
+#~ msgstr "D"
+
+#~ msgid "Special Token"
+#~ msgstr "Özel Durum"
+
+#~ msgid "DocBook"
+#~ msgstr "DocBook"
+
+#~ msgid "Header Elements"
+#~ msgstr "Başlık Ögeleri"
+
+#~ msgid "Formatting Elements"
+#~ msgstr "Biçimleme Ögeleri"
+
+#~ msgid "GUI Elements"
+#~ msgstr "Grafik Arayüz Ögeleri"
+
+#~ msgid "Structural Elements"
+#~ msgstr "Yapısal Ögeler"
+
+#~ msgid "Command"
+#~ msgstr "Komut"
+
+#~ msgid "Graphviz Dot"
+#~ msgstr "Graphviz Nokta"
+
+#~ msgid "Attribute name"
+#~ msgstr "Öznitelik adı"
+
+#~ msgid "DPatch"
+#~ msgstr "DPatch"
+
+#~ msgid "Patch Start"
+#~ msgstr "Yama Başlangıcı"
+
+#~ msgid "DTD"
+#~ msgstr "DTD"
+
+#~ msgid "entity"
+#~ msgstr "entity"
+
+#~ msgid "decl"
+#~ msgstr "decl"
+
+#~ msgid "error"
+#~ msgstr "hata"
+
+#~ msgid "Quoted Value"
+#~ msgstr "Tırnakta Değer"
+
+#~ msgid "Eiffel"
+#~ msgstr "Eiffel"
+
+#~ msgid "Debug"
+#~ msgstr "Hata Ayıklama"
+
+#~ msgid "Assertion"
+#~ msgstr "Kontrol"
+
+#~ msgid "Design by Contract"
+#~ msgstr "Kontrat Tasarımı"
+
+#~ msgid "Exception Handling"
+#~ msgstr "İstisna İşleme"
+
+#~ msgid "Predefined Variable"
+#~ msgstr "Öntanımlı Değişken"
+
+#~ msgid "Void Value"
+#~ msgstr "Void Değeri"
+
+#~ msgid "Boolean Value"
+#~ msgstr "Mantıksal Değer"
+
+#~ msgid "Erlang"
+#~ msgstr "Erlang"
+
+#~ msgid "Atom"
+#~ msgstr "Atom"
+
+#~ msgid "Base-N Integer"
+#~ msgstr "N-Tabanlı Tamsayı"
+
+#~ msgid "Compiler Directive"
+#~ msgstr "Derleyici Direktifi"
+
+#~ msgid "FCL"
+#~ msgstr "FCL"
+
+#~ msgid "Floating Point"
+#~ msgstr "Reel Sayı"
+
+#~ msgid "Block"
+#~ msgstr "Blok"
+
+#~ msgid "Reserved Constant"
+#~ msgstr "Ayrılmış Sabit"
+
+#~ msgid "Forth"
+#~ msgstr "Forth"
+
+#~ msgid "Debug Code"
+#~ msgstr "Hata Ayıklama Kodu"
+
+#~ msgid "Error Text"
+#~ msgstr "Hata Metni"
+
+#~ msgid "Fortran 95"
+#~ msgstr "Fortran 95"
+
+#~ msgid "Intrinsic function"
+#~ msgstr "Esas işlev"
+
+#~ msgid "BOZ Literal"
+#~ msgstr "BOZ Literal"
+
+#~ msgid "OpenMP directives"
+#~ msgstr "OpenMP direktifleri"
+
+#~ msgid "F#"
+#~ msgstr "F#"
+
+#~ msgid "Floating Point number"
+#~ msgstr "Reel sayı"
+
+#~ msgid "Type, module or object keyword"
+#~ msgstr "Tür, modül ya da nesne anahtar sözcüğüi"
+
+#~ msgid "Builtin-function keyword"
+#~ msgstr "Yapısal işlev sözcüğü"
+
+#~ msgid "Labeled argument"
+#~ msgstr "Etikletlenmiş parametre"
+
+#~ msgid "Polymorphic Variant"
+#~ msgstr "Polimorfik Türev"
+
+#~ msgid "Variant Constructor"
+#~ msgstr "Türev Oluşturucu"
+
+#~ msgid "Type Variable"
+#~ msgstr "Tür Değişkeni"
+
+#~ msgid "Module Path"
+#~ msgstr "Modül Yolu"
+
+#~ msgid "GAP"
+#~ msgstr "GAP"
+
+#~ msgid "Thread Action"
+#~ msgstr "Kanal Eylemi"
+
+#~ msgid "Thread Header"
+#~ msgstr "Kanal Başlığı"
+
+#~ msgid "Frame Number"
+#~ msgstr "Çerçeve Numarası"
+
+#~ msgid "Address"
+#~ msgstr "Adres"
+
+#~ msgid "Filename"
+#~ msgstr "Dosya adı"
+
+#~ msgid "Optimized Out"
+#~ msgstr "Eniyilenmiş Çıktı"
+
+#~ msgid "Incomplete Sequence"
+#~ msgstr "Eksik Dizi"
+
+#~ msgid "Prompt"
+#~ msgstr "İstem"
+
+#~ msgid "Genie"
+#~ msgstr "Genie"
+
+#~ msgid "Builtin Constant"
+#~ msgstr "Yapısal Sabit"
+
+#~ msgid "Reserved Keywords"
+#~ msgstr "Ayrılmış Anahtar Sözcükler"
+
+#~ msgid "Go"
+#~ msgstr "Git"
+
+#~ msgid "Imaginary number"
+#~ msgstr "Sanal sayı"
+
+#~ msgid "gtk-doc"
+#~ msgstr "gtk-doc"
+
+#~ msgid "Inline Documentation Section"
+#~ msgstr "Satır Arası Belgelendirme Bölümü"
+
+#~ msgid "Function Name"
+#~ msgstr "İşlev Adı"
+
+#~ msgid "Signal Name"
+#~ msgstr "Sinyal Adı"
+
+#~ msgid "Property Name"
+#~ msgstr "Özellik Adı"
+
+#~ msgid "Parameter"
+#~ msgstr "Parametre"
+
+#~ msgid "Return"
+#~ msgstr "Return"
+
+#~ msgid "Since"
+#~ msgstr "Since"
+
+#~ msgid "Deprecated"
+#~ msgstr "Kullanılmayan"
+
+#~ msgid "GtkRC"
+#~ msgstr "GtkRC"
+
+#~ msgid "Widget State"
+#~ msgstr "Gereç Durumu"
+
+#~ msgid "Include directive"
+#~ msgstr "İçer direktifi"
+
+#~ msgid "Haddock"
+#~ msgstr "Haddock"
+
+#~ msgid "Inline Haddock Section"
+#~ msgstr "Satır Arası Haddock Bölümü"
+
+#~ msgid "Haddock Directive"
+#~ msgstr "Haddock Direktifi"
+
+#~ msgid "Hyperlinked Identifier"
+#~ msgstr "Hiperlinkli Direktif"
+
+#~ msgid "Hyperlinked Module Name"
+#~ msgstr "Hiperlinkli Modül Adı"
+
+#~ msgid "Escape"
+#~ msgstr "Escape"
+
+#~ msgid "Emphasis"
+#~ msgstr "Vurgu"
+
+#~ msgid "Monospace"
+#~ msgstr "Monospace"
+
+#~ msgid "Code Block"
+#~ msgstr "Kod Bloğu"
+
+#~ msgid "Header Property"
+#~ msgstr "Başlık Özelliği"
+
+#~ msgid "Itemized list"
+#~ msgstr "Ögelenmiş liste"
+
+#~ msgid "Enumerated list"
+#~ msgstr "Sıralı liste"
+
+#~ msgid "Definition list"
+#~ msgstr "Tanım listesi"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "Anchor"
+#~ msgstr "Çıpa"
+
+#~ msgid "Haskell"
+#~ msgstr "Haskell"
+
+#~ msgid "Symbol"
+#~ msgstr "Sembol"
+
+#~ msgid "Octal"
+#~ msgstr "Sekizli"
+
+#~ msgid "Hex"
+#~ msgstr "Onaltılı"
+
+#~ msgid "Literate Haskell"
+#~ msgstr "Literate Haskell"
+
+#~ msgid "Haxe"
+#~ msgstr "Haxe"
+
+#~ msgid "Scope"
+#~ msgstr "Kapsam"
+
+#~ msgid "Metadata"
+#~ msgstr "Üst veri"
+
+#~ msgid "Macro"
+#~ msgstr "Makro"
+
+#~ msgid "Identifier Prefix"
+#~ msgstr "Tanımlayıcı Ön Eki"
+
+#~ msgid "HTML"
+#~ msgstr "HTML"
+
+#~ msgid "Tag"
+#~ msgstr "Etiket"
+
+#~ msgid "Attribute Name"
+#~ msgstr "Öznitelik Adı"
+
+#~ msgid "Attribute Value"
+#~ msgstr "Öznitelik Değeri"
+
+#~ msgid "Page title"
+#~ msgstr "Sayfa başlığı"
+
+#~ msgid "Heading level 1"
+#~ msgstr "Başlık düzeyi 1"
+
+#~ msgid "Heading level 2"
+#~ msgstr "Başlık düzeyi 2"
+
+#~ msgid "Heading level 3"
+#~ msgstr "Başlık düzeyi 3"
+
+#~ msgid "Heading level 4"
+#~ msgstr "Başlık düzeyi 4"
+
+#~ msgid "Heading level 5"
+#~ msgstr "Başlık düzeyi 5"
+
+#~ msgid "IDL-Exelis"
+#~ msgstr "IDL-Exelis"
+
+#~ msgid "IDL"
+#~ msgstr "IDL"
+
+#~ msgid "ImageJ"
+#~ msgstr "ImageJ"
+
+#~ msgid "Commands"
+#~ msgstr "Komutlar"
+
+#~ msgid "Storage Type"
+#~ msgstr "Depolama Türü"
+
+#~ msgid ".ini"
+#~ msgstr ".ini"
+
+#~ msgid "Jade"
+#~ msgstr "Jade"
+
+#~ msgid "DOCTYPE"
+#~ msgstr "DOCTYPE"
+
+#~ msgid "Processing instruction"
+#~ msgstr "İşleme yönergesi"
+
+#~ msgid "Element name"
+#~ msgstr "Öge adı"
+
+#~ msgid "Attribute value"
+#~ msgstr "Öznitelik değeri"
+
+#~ msgid "Tags"
+#~ msgstr "Etiketler"
+
+#~ msgid "Entity"
+#~ msgstr "İçerik"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "JavaScript"
+#~ msgstr "JavaScript"
+
+#~ msgid "Undefined Value"
+#~ msgstr "Tanımsız Değer"
+
+#~ msgid "Properties"
+#~ msgstr "Özellikler"
+
+#~ msgid "Constructors"
+#~ msgstr "Yapıcılar"
+
+#~ msgid "J"
+#~ msgstr "J"
+
+#~ msgid "Adverb"
+#~ msgstr "Zarf"
+
+#~ msgid "Conjunction"
+#~ msgstr "Bağlaç"
+
+#~ msgid "Control"
+#~ msgstr "Kontrol"
+
+#~ msgid "Explicit Argument"
+#~ msgstr "Belirgin Argüman"
+
+#~ msgid "Global"
+#~ msgstr "Genel"
+
+#~ msgid "Lab Text"
+#~ msgstr "Lab Metni"
+
+#~ msgid "Local"
+#~ msgstr "Yerel"
+
+#~ msgid "Noun"
+#~ msgstr "Ad"
+
+#~ msgid "Explicit Noun Definition"
+#~ msgstr "Belirgin Ad Tanımı"
+
+#~ msgid "Parens"
+#~ msgstr "Temel"
+
+#~ msgid "Primitive"
+#~ msgstr "İlkel"
+
+#~ msgid "Verb"
+#~ msgstr "Fiil"
+
+#~ msgid "Julia"
+#~ msgstr "Julia"
+
+#~ msgid "Math Constant"
+#~ msgstr "Matematiksel Sabit"
+
+#~ msgid "Special Constant"
+#~ msgstr "Özel Sabit"
+
+#~ msgid "External Command"
+#~ msgstr "Harici Komut"
+
+#~ msgid "Built-in Function"
+#~ msgstr "Dahili İşlev"
+
+#~ msgid "Module"
+#~ msgstr "Modül"
+
+#~ msgid "LaTeX"
+#~ msgstr "LaTeX"
+
+#~ msgid "Math Mode"
+#~ msgstr "Matematik Kipi"
+
+#~ msgid "Inline Math Mode"
+#~ msgstr "Satır Arası Matematik Kipi"
+
+#~ msgid "Math Boundary"
+#~ msgstr "Matematik Sınırı"
+
+#~ msgid "Include"
+#~ msgstr "Include"
+
+#~ msgid "Verbatim"
+#~ msgstr "Birebir"
+
+#~ msgid "Special Character"
+#~ msgstr "Özel Karakter"
+
+#~ msgid "Part Heading"
+#~ msgstr "Parça Başlığı"
+
+#~ msgid "Chapter Heading"
+#~ msgstr "Bölüm Başlığı"
+
+#~ msgid "Section Heading"
+#~ msgstr "Bölüm Başlığı"
+
+#~ msgid "SubSection Heading"
+#~ msgstr "Alt Bölüm Başlığı"
+
+#~ msgid "SubSubSection Heading"
+#~ msgstr "AltAltBölüm Başlığı"
+
+#~ msgid "Paragraph Heading"
+#~ msgstr "Paragraf Başlığı"
+
+#~ msgid "SubParagraph Heading"
+#~ msgstr "Alt Paragraf Başlığı"
+
+#~ msgid "Lex"
+#~ msgstr "Lex"
+
+#~ msgid "Token"
+#~ msgstr "Simge"
+
+#~ msgid "Expression"
+#~ msgstr "İfade"
+
+#~ msgid "libtool"
+#~ msgstr "libtool"
+
+#~ msgid "Constants"
+#~ msgstr "Sabit"
+
+#~ msgid "Lua"
+#~ msgstr "Lua"
+
+#~ msgid "Reserved Identifier"
+#~ msgstr "Ayrılmış Tanımlayıcı"
+
+#~ msgid "Label"
+#~ msgstr "Etiket"
+
+#~ msgid "Nil Constant"
+#~ msgstr "Nil Sabiti"
+
+#~ msgid "m4"
+#~ msgstr "m4"
+
+#~ msgid "m4 Comment"
+#~ msgstr "m4 Açıklaması"
+
+#~ msgid "m4 Macro"
+#~ msgstr "m4 Makrosu"
+
+#~ msgid "Autoconf Macro"
+#~ msgstr "Autoconf Makrosu"
+
+#~ msgid "Obsolete Autoconf Macro"
+#~ msgstr "Atıl Autoconf Makrosu"
+
+#~ msgid "Makefile"
+#~ msgstr "Makefile"
+
+#~ msgid "Assignment Right Hand Side"
+#~ msgstr "Sağ taraf ataması"
+
+#~ msgid "Assignment Left Hand Side"
+#~ msgstr "Sol taraf ataması"
+
+#~ msgid "targets"
+#~ msgstr "hedefler"
+
+#~ msgid "prereq"
+#~ msgstr "prereq"
+
+#~ msgid "command"
+#~ msgstr "komut"
+
+#~ msgid "Trailing Tab"
+#~ msgstr "Sondaki Sekme"
+
+#~ msgid "function"
+#~ msgstr "işlev"
+
+#~ msgid "keyword"
+#~ msgstr "anahtar sözcük"
+
+#~ msgid "Mallard"
+#~ msgstr "Mallard"
+
+#~ msgid "Page Elements"
+#~ msgstr "Sayfa Ögeleri"
+
+#~ msgid "Section Elements"
+#~ msgstr "Bölüm Ögeleri"
+
+#~ msgid "Block Elements"
+#~ msgstr "Blok Ögeleri"
+
+#~ msgid "Inline Elements"
+#~ msgstr "Satır Arası Ögeleri"
+
+#~ msgid "Markdown"
+#~ msgstr "Markdown"
+
+#~ msgid "Header"
+#~ msgstr "Başlık"
+
+#~ msgid "Horizontal Rule"
+#~ msgstr "Yatay Çizgi"
+
+#~ msgid "List Marker"
+#~ msgstr "Liste İşaretçisi"
+
+#~ msgid "Code"
+#~ msgstr "Kod"
+
+#~ msgid "Blockquote Marker"
+#~ msgstr "Blok Alıntı İşaretçisi"
+
+#~ msgid "Link Text"
+#~ msgstr "Bağlantı Metni"
+
+#~ msgid "Image Marker"
+#~ msgstr "Resim İşaretçisi"
+
+#~ msgid "Strong Emphasis"
+#~ msgstr "Güçlü Vurgu"
+
+#~ msgid "Backslash Escape"
+#~ msgstr "Ters Bölü Çıkışı"
+
+#~ msgid "Line Break"
+#~ msgstr "Satır Başı"
+
+#~ msgid "Matlab"
+#~ msgstr "Matlab"
+
+#~ msgid "MediaWiki"
+#~ msgstr "MediaWiki"
+
+#~ msgid "Light Emphasis"
+#~ msgstr "Vurgu"
+
+#~ msgid "Signature"
+#~ msgstr "İmza"
+
+#~ msgid "Link"
+#~ msgstr "Bağlantı"
+
+#~ msgid "Symbol on a Link"
+#~ msgstr "Bir Bağlantı üzerinde sembol"
+
+#~ msgid "Line"
+#~ msgstr "Satır"
+
+#~ msgid "List"
+#~ msgstr "Liste"
+
+#~ msgid "Magic Word"
+#~ msgstr "Sihirli Sözcük"
+
+#~ msgid "Symbol of a Table"
+#~ msgstr "Tablo Sembolü"
+
+#~ msgid "Preformatted"
+#~ msgstr "﻿Önceden biçimlendirilmiş"
+
+#~ msgid "Redirect"
+#~ msgstr "﻿Yönlendir"
+
+#~ msgid "Title"
+#~ msgstr "Başlık"
+
+#~ msgid "Meson"
+#~ msgstr "Meson"
+
+#~ msgid "Modelica"
+#~ msgstr "Modelica"
+
+#~ msgid "Class type"
+#~ msgstr "Sınıf türü"
+
+#~ msgid "Default Attribute"
+#~ msgstr "Öntanımlı Nitelik"
+
+#~ msgid "MXML"
+#~ msgstr "MXML"
+
+#~ msgid "CDATA delimiter"
+#~ msgstr "CDATA ayıracı"
+
+#~ msgid "Nemerle"
+#~ msgstr "Nemerle"
+
+#~ msgid "NetRexx"
+#~ msgstr "NetRexx"
+
+#~ msgid "Externals"
+#~ msgstr "Harici"
+
+#~ msgid "Options"
+#~ msgstr "Seçenekler"
+
+#~ msgid "Data Types"
+#~ msgstr "Veri Türleri"
+
+#~ msgid "Special"
+#~ msgstr "Özel"
+
+#~ msgid "Visibility"
+#~ msgstr "Görünürlük"
+
+#~ msgid "Modifiers"
+#~ msgstr "Değiştiriciler"
+
+#~ msgid "Keywords"
+#~ msgstr "Anahtar sözcükler"
+
+#~ msgid "Sub Keywords"
+#~ msgstr "Alt Anahtar Sözcükler"
+
+#~ msgid "NSIS"
+#~ msgstr "NSIS"
+
+#~ msgid "Objective-C"
+#~ msgstr "Nesnel-Cr"
+
+#~ msgid "Objective-J"
+#~ msgstr "Nesnel-J"
+
+#~ msgid "OCaml"
+#~ msgstr "OCaml"
+
+#~ msgid "Ocamldoc Comments"
+#~ msgstr "Ocamldoc Açıklamaları"
+
+#~ msgid "Standard Modules"
+#~ msgstr "Standart Modüller"
+
+#~ msgid "OCL"
+#~ msgstr "OCL"
+
+#~ msgid "Type Operators"
+#~ msgstr "Tür İşleçleri"
+
+#~ msgid "Operation operator"
+#~ msgstr "İşlem işleçleri"
+
+#~ msgid "Octave"
+#~ msgstr "Oktav"
+
+#~ msgid "Package Manager"
+#~ msgstr "Paket Yöneticisi"
+
+#~ msgid "OOC"
+#~ msgstr "OOC"
+
+#~ msgid "Opal"
+#~ msgstr "Opal"
+
+#~ msgid "Module Handler"
+#~ msgstr "Modül İşleyici"
+
+#~ msgid "Keysymbol"
+#~ msgstr "Anahtar-sembol"
+
+#~ msgid "OpenCL"
+#~ msgstr "OpenCL"
+
+#~ msgid "Global Function"
+#~ msgstr "Genel İşlev"
+
+#~ msgid "Device Function"
+#~ msgstr "Aygıt İşlevi"
+
+#~ msgid "Device Cast"
+#~ msgstr "Cihaz Dökümü"
+
+#~ msgid "OpenCL Constant"
+#~ msgstr "OpenCL Sabiti"
+
+#~ msgid "Global Variable"
+#~ msgstr "Genel Değişken"
+
+#~ msgid "Pascal"
+#~ msgstr "Pascal"
+
+#~ msgid "Perl"
+#~ msgstr "Perl"
+
+#~ msgid "Line Directive"
+#~ msgstr "Satır Direktifi"
+
+#~ msgid "Include Statement"
+#~ msgstr "İçer Belirtimi"
+
+#~ msgid "Heredoc"
+#~ msgstr "Heredoc"
+
+#~ msgid "Heredoc Bound"
+#~ msgstr "Heredoc Bağlamı"
+
+#~ msgid "System Command"
+#~ msgstr "Sistem Komutu"
+
+#~ msgid "File Descriptor"
+#~ msgstr "Dosya Tanımlayıcı"
+
+#~ msgid "POD"
+#~ msgstr "POD"
+
+#~ msgid "POD Escape"
+#~ msgstr "POD Escape"
+
+#~ msgid "POD keyword"
+#~ msgstr "POD anahtar sözcük"
+
+#~ msgid "POD heading"
+#~ msgstr "POD başlık"
+
+#~ msgid "PHP"
+#~ msgstr "PHP"
+
+#~ msgid "Preprocessor tags"
+#~ msgstr "Önişlemci etiketleri"
+
+#~ msgid "Common Function"
+#~ msgstr "Ortak İşlev"
+
+#~ msgid "Pig"
+#~ msgstr "Pig"
+
+#~ msgid "Reserved Words"
+#~ msgstr "Ayrılmış Sözcükler"
+
+#~ msgid "Built In Functions"
+#~ msgstr "Dahili İşlevler"
+
+#~ msgid "Boolean values"
+#~ msgstr "Boolean değerleri"
+
+#~ msgid "Null"
+#~ msgstr "Null"
+
+#~ msgid "pkg-config"
+#~ msgstr "pkg-config"
+
+#~ msgid "Package Info"
+#~ msgstr "Paket Bilgisi"
+
+#~ msgid "Fuzzy"
+#~ msgstr "Bulanık"
+
+#~ msgid "Prolog"
+#~ msgstr "Prolog"
+
+#~ msgid "Puppet"
+#~ msgstr "Kukla"
+
+#~ msgid "Resources"
+#~ msgstr "Kaynaklar"
+
+#~ msgid "Parameters"
+#~ msgstr "Parametreler"
+
+#~ msgid "Metaparameters"
+#~ msgstr "Hedef Parametreler"
+
+#~ msgid "Functions"
+#~ msgstr "İşlevler"
+
+#~ msgid "Values"
+#~ msgstr "Değerler"
+
+#~ msgid "Variables"
+#~ msgstr "Değişkenler"
+
+#~ msgid "Class names"
+#~ msgstr "Sınıf adları"
+
+#~ msgid "Python 3"
+#~ msgstr "Python 3"
+
+#~ msgid "Format"
+#~ msgstr "Biçim"
+
+#~ msgid "Builtin Object"
+#~ msgstr "Yapısal Nesne"
+
+#~ msgid "Python"
+#~ msgstr "Python"
+
+#~ msgid "String Conversion"
+#~ msgstr "Karakter Dizisi Dönüştürme"
+
+#~ msgid "Class Name"
+#~ msgstr "Sınıf Adı"
+
+#~ msgid "Decorator"
+#~ msgstr "Dekoratör"
+
+#~ msgid "R"
+#~ msgstr "R"
+
+#~ msgid "Reserved Class"
+#~ msgstr "Ayrılmış Sınıf"
+
+#~ msgid "Assignment Operator"
+#~ msgstr "Atama İşlemcisi"
+
+#~ msgid "Delimiter"
+#~ msgstr "Ayıraç"
+
+#~ msgid "Integer Number"
+#~ msgstr "Tamsayı Numara"
+
+#~ msgid "Define"
+#~ msgstr "Tanımla"
+
+#~ msgid "Section"
+#~ msgstr "Bölüm"
+
+#~ msgid "Spec Macro"
+#~ msgstr "Spek Makrosu"
+
+#~ msgid "Directory Macro"
+#~ msgstr "Dizin Makrosu"
+
+#~ msgid "Command Macro"
+#~ msgstr "Komut Makrosu"
+
+#~ msgid "Conditional Macro"
+#~ msgstr "Koşullu Makro"
+
+#~ msgid "Other Macro"
+#~ msgstr "Diğer Makro"
+
+#~ msgid "Flow Conditional"
+#~ msgstr "Akış Koşulu"
+
+#~ msgid "RPM Variable"
+#~ msgstr "RPM Değişkeni"
+
+#~ msgid "Switch"
+#~ msgstr "Switch"
+
+#~ msgid "Email"
+#~ msgstr "E-posta"
+
+#~ msgid "reStructuredText"
+#~ msgstr "Yeniden Yapılandırılmış Metin"
+
+#~ msgid "Directive"
+#~ msgstr "Direktif"
+
+#~ msgid "Ruby"
+#~ msgstr "Ruby"
+
+#~ msgid "Attribute Definition"
+#~ msgstr "Öznitelik Tanımı"
+
+#~ msgid "Module handler"
+#~ msgstr "Modül işleyici"
+
+#~ msgid "Numeric literal"
+#~ msgstr "Yalın sayı"
+
+#~ msgid "Literal"
+#~ msgstr "Literal"
+
+#~ msgid "Rust"
+#~ msgstr "Pas"
+
+#~ msgid "Scala"
+#~ msgstr "Scala"
+
+#~ msgid "Modifier"
+#~ msgstr "Değiştirici"
+
+#~ msgid "Built In"
+#~ msgstr "Yapısal"
+
+#~ msgid "XML Tag"
+#~ msgstr "XML Etiketi"
+
+#~ msgid "Scheme"
+#~ msgstr "Şema"
+
+#~ msgid "Scilab"
+#~ msgstr "Scilab"
+
+#~ msgid "sh"
+#~ msgstr "sh"
+
+#~ msgid "Variable Definition"
+#~ msgstr "Değişken Tanımı"
+
+#~ msgid "Common Commands"
+#~ msgstr "Yaygın Komutlar"
+
+#~ msgid "Subshell"
+#~ msgstr "Alt kabuk"
+
+#~ msgid "Standard ML"
+#~ msgstr "Standart ML"
+
+#~ msgid "Module name, Variant, etc"
+#~ msgstr "Modül adı, Varyantı, vs."
+
+#~ msgid "SPARQL"
+#~ msgstr "SPARQL"
+
+#~ msgid "Class"
+#~ msgstr "Sınıf"
+
+#~ msgid "Individual"
+#~ msgstr "Bireysel"
+
+#~ msgid "Predicate"
+#~ msgstr "Dayanak"
+
+#~ msgid "QName"
+#~ msgstr "QName"
+
+#~ msgid "IRI"
+#~ msgstr "IRI"
+
+#~ msgid "SQL"
+#~ msgstr "SQL"
+
+#~ msgid "No idea what it is"
+#~ msgstr "Ne olduğu belirsiz"
+
+#~ msgid "Sweave"
+#~ msgstr "Sweave"
+
+#~ msgid "SystemVerilog"
+#~ msgstr "SystemVerilog"
+
+#~ msgid "txt2tags"
+#~ msgstr "txt2tags"
+
+#~ msgid "Option"
+#~ msgstr "Seçenek"
+
+#~ msgid "Option Name"
+#~ msgstr "Seçenek Adı"
+
+#~ msgid "Section 1"
+#~ msgstr "Bölüm 1"
+
+#~ msgid "Section 2"
+#~ msgstr "Bölüm 2"
+
+#~ msgid "Section 3"
+#~ msgstr "Bölüm 3"
+
+#~ msgid "Section 4"
+#~ msgstr "Bölüm 4"
+
+#~ msgid "Section 5"
+#~ msgstr "Bölüm 5"
+
+#~ msgid "Italic"
+#~ msgstr "Eğik"
+
+#~ msgid "Bold"
+#~ msgstr "Kalın"
+
+#~ msgid "Verbatim Block"
+#~ msgstr "Birebir Aynı Blok"
+
+#~ msgid "Tcl"
+#~ msgstr "Tcl"
+
+#~ msgid "Texinfo"
+#~ msgstr "Texinfo"
+
+#~ msgid "Macros"
+#~ msgstr "Makrolar"
+
+#~ msgid "File Attributes"
+#~ msgstr "Dosya Öznitelikleri"
+
+#~ msgid "Generated Content"
+#~ msgstr "Oluşturulmuş İçerik"
+
+#~ msgid "Thrift"
+#~ msgstr "Thrift"
+
+#~ msgid "Vala"
+#~ msgstr "Vala"
+
+#~ msgid "VB.NET"
+#~ msgstr "VB.NET"
+
+#~ msgid "Verilog"
+#~ msgstr "Verilog"
+
+#~ msgid "IEEE System Task"
+#~ msgstr "IEEE Sistem Görevi"
+
+#~ msgid "LRM Additional System Task"
+#~ msgstr "LRM Ek Sistem Görevi"
+
+#~ msgid "Gate"
+#~ msgstr "Kapı"
+
+#~ msgid "VHDL"
+#~ msgstr "VHDL"
+
+#~ msgid "XML"
+#~ msgstr "XML"
+
+#~ msgid "XSLT"
+#~ msgstr "XSLT"
+
+#~ msgid "Element"
+#~ msgstr "Öge"
+
+#~ msgid "Yacc"
+#~ msgstr "Yacc"
+
+#~ msgid "token type"
+#~ msgstr "simge tipi"
+
+#~ msgid "rule"
+#~ msgstr "kural"
+
+#~ msgid "YAML"
+#~ msgstr "YAML"
+
+#~ msgid "Block literal"
+#~ msgstr "Blok değişmezi"
+
+#~ msgid "Alias"
+#~ msgstr "Takma ad"
+
+#~ msgid "Map key"
+#~ msgstr "Tuş ata"
+
+#~ msgid "Integer"
+#~ msgstr "Tamsayı"
+
+#~ msgid "Floating point"
+#~ msgstr "Kayar Nokta"
 
 #~ msgid "Escaped Characters"
 #~ msgstr "Çıkarılmış Karakterler"
