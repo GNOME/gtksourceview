@@ -55,7 +55,6 @@ class BasePCItems:
 
         # check and setup the exec_prefix
         if getattr(args, 'exec_prefix', None) is None:
-            exec_prefix_use_shorthand = True
             self.exec_prefix = '${prefix}'
         else:
             if args.exec_prefix.startswith('${prefix}'):
