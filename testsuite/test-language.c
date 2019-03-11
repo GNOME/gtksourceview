@@ -80,22 +80,24 @@ test_fixture_teardown (TestFixture   *fixture,
 }
 
 static void
-compare_strv (const gchar **strv,
-	      const gchar **expected_strv)
+compare_strv_unordered (const gchar **strv,
+                        const gchar **expected_strv)
 {
 	if (expected_strv != NULL)
 	{
-		guint n, i;
+		guint i;
 
-		n = g_strv_length ((gchar **) expected_strv);
-		for (i = 0; i < n; i++)
+		g_assert_cmpuint (g_strv_length ((gchar **) strv), ==,
+				  g_strv_length ((gchar **) expected_strv));
+
+		for (i = 0; expected_strv[i] != NULL; i++)
 		{
-			g_assert_cmpstr (strv[i], ==, expected_strv[i]);
+			g_assert_true (g_strv_contains (strv, expected_strv[i]));
 		}
 	}
 	else
 	{
-		g_assert (strv == NULL);
+		g_assert_null (strv);
 	}
 }
 
@@ -123,15 +125,15 @@ check_language (GtkSourceLanguage  *language,
 	g_assert_cmpstr (gtk_source_language_get_metadata (language, "extra-meta"), ==, expected_extra_meta);
 
 	mime = gtk_source_language_get_mime_types (language);
-	compare_strv ((const gchar **) mime, expected_mime);
+	compare_strv_unordered ((const gchar **) mime, expected_mime);
 	g_strfreev (mime);
 
 	glob = gtk_source_language_get_globs (language);
-	compare_strv ((const gchar **) glob, expected_glob);
+	compare_strv_unordered ((const gchar **) glob, expected_glob);
 	g_strfreev (glob);
 
 	styles = gtk_source_language_get_style_ids (language);
-	compare_strv ((const gchar **) styles, expected_styles);
+	compare_strv_unordered ((const gchar **) styles, expected_styles);
 	g_strfreev (styles);
 
 	if (expected_style_name != NULL)
