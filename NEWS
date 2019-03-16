@@ -1,3 +1,18 @@
+News in 3.24.10, 2019-03-15
+---------------------------
+* New syntax highlighting definition file for: Powershell
+* Improvements to the syntax highlighting of: reStructuredText, C++,
+  CSS, HTML, Groovy, Meson, Python3, and Logtalk.
+* Fix testsuite for changes in GLib hashtable ordering.
+* Avoid double entry of languages based on globs.
+* MSVC build improvements.
+* Fix usage of GRegex for offset in text, which fixes a Valgrind warning.
+* Ensure CSS is inherted from parent style schemes.
+* Avoid storing GtkTextIter across main-loop boundaries.
+* Fix incorrect transfer annoation for gtk_source_buffer_create_source_mark().
+* Various memory leak fixes.
+* Translation updates.
+
 News in 3.24.9, 2018-09-05
 --------------------------
 * New syntax highlighting definition file for: Logtalk.
