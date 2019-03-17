@@ -38,6 +38,7 @@ LANGUAGES =			\
 	eiffel.lang		\
 	erlang.lang		\
 	fcl.lang		\
+	fish.lang		\
 	forth.lang		\
 	fortran.lang		\
 	fsharp.lang		\
