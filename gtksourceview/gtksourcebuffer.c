@@ -485,7 +485,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	/**
 	 * GtkSourceBuffer::bracket-matched:
 	 * @buffer: a #GtkSourceBuffer.
-	 * @iter: if found, the location of the matching bracket.
+	 * @iter: (nullable): if found, the location of the matching bracket.
 	 * @state: state of bracket matching.
 	 *
 	 * @iter is set to a valid iterator pointing to the matching bracket
