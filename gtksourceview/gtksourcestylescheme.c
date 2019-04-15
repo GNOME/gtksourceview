@@ -957,7 +957,7 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE_NUMBER);
 	if (style != NULL)
 	{
-		append_css_style (final_style, style, ".current-line-number");
+		append_css_style (final_style, style, "textview .current-line-number");
 	}
 
 	if (*final_style->str != '\0')
