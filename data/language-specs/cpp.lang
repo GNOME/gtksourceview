@@ -116,7 +116,7 @@
         </context>
 
         <!-- actual language definition: C++-specific stuff plus everything from C -->
-        <context id="cpp">
+        <context id="cpp" class="no-spell-check">
             <include>
                 <context ref="cpp-proper"/>
                 <context ref="c:c"/>
