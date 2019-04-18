@@ -35,6 +35,7 @@
 
 #include "gtksourceutils.h"
 #include "gtksourceutils-private.h"
+#include "gtksourcenumbers-private.h"
 #include <string.h>
 #include <errno.h>
 #include <math.h>
@@ -513,4 +514,75 @@ _gtk_source_utils_dgettext (const gchar *domain,
 
 	tmp = g_locale_to_utf8 (translated, -1, NULL, NULL, NULL);
 	return tmp != NULL ? tmp : g_strdup (string);
+}
+
+/*
+ * _gtk_source_utils_int_to_string:
+ * @value: the integer to convert to a string
+ * @outstr: (out): a location for a pointer to the result string
+ * @tmpbuf: scratch space that may be used to generate the string
+ *
+ * This function provides a fast path for converting line numbers to
+ * their string equivalent without the use of snprintf() in all cases
+ * from 0 to 20,000. This is useful when performing lots of string
+ * conversions such as for line numbers in the text gutter.
+ *
+ * If the line number is > 20,000, then @tmpbuf will be used along with
+ * snprintf() to generate the string and @outstr will be set to @tmpbuf.
+ *
+ * In most cases, this will return a pointer to a string in the text
+ * section of the library. Not all values are stored from 0 to 20,000,
+ * only from 10,000 to 20,000. In cases < 10,000, we use an offset of
+ * the string within the first 10,000 adjusted to look like the expected
+ * number.
+ *
+ * Returns: the number of characters in the resulting string
+ */
+gint
+_gtk_source_utils_int_to_string (guint         value,
+                                 const gchar **outstr,
+                                 gchar         tmpbuf[static 12])
+{
+	gint ret;
+
+	/* The first offset is 10,000 so we can use that string but offset
+	 * ourselves into that string a bit to get the same number we would
+	 * if we had smaller strings available.
+	 */
+
+	if (value < 10)
+	{
+		*outstr = gtk_source_numbers[value] + 4;
+		return 1;
+	}
+
+	if (value < 100)
+	{
+		*outstr = gtk_source_numbers[value] + 3;
+		return 2;
+	}
+
+	if (value < 1000)
+	{
+		*outstr = gtk_source_numbers[value] + 2;
+		return 3;
+	}
+
+	if (value < 10000)
+	{
+		*outstr = gtk_source_numbers[value] + 1;
+		return 4;
+	}
+
+	if (value < 20000)
+	{
+		*outstr = gtk_source_numbers[value - 10000];
+		return 5;
+	}
+
+	*outstr = tmpbuf;
+	ret = snprintf (tmpbuf, 12, "%u", value);
+	tmpbuf[11] = 0;
+
+	return ret;
 }
