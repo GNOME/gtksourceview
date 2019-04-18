@@ -23,6 +23,7 @@
 #endif
 
 #include "gtksourcegutterrendererlines.h"
+#include "gtksourceutils-private.h"
 #include "gtksourceview.h"
 
 struct _GtkSourceGutterRendererLinesPrivate
@@ -216,6 +217,7 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
 {
 	GtkSourceGutterRendererLines *lines = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
 	gchar text[24];
+	const gchar *textptr = text;
 	gint line;
 	gint len;
 	gboolean current_line;
@@ -225,17 +227,17 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
 	current_line = (state & GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR) &&
 	               lines->priv->cursor_visible;
 
-	if (current_line)
+	if G_LIKELY (!current_line)
 	{
-		len = g_snprintf (text, sizeof text, "<b>%d</b>", line);
+		len = _gtk_source_utils_int_to_string (line, &textptr, text);
 	}
 	else
 	{
-		len = g_snprintf (text, sizeof text, "%d", line);
+		len = g_snprintf (text, sizeof text, "<b>%d</b>", line);
 	}
 
 	gtk_source_gutter_renderer_text_set_markup (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer),
-	                                            text,
+	                                            textptr,
 	                                            len);
 }
 
