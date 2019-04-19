@@ -54,7 +54,12 @@ TEST_PROGS += test-widget
 test_widget_SOURCES = test-widget.c
 nodist_test_widget_SOURCES = test-widget-resources.c
 
-noinst_PROGRAMS = $(TEST_PROGS)
+test_int2str_SOURCES = test-int2str.c
+test_int2str_LDADD = $(top_builddir)/gtksourceview/libgtksourceview-core.la \
+	$(LIBM) \
+	$(DEP_LIBS)
+
+noinst_PROGRAMS = $(TEST_PROGS) test-int2str
 
 EXTRA_DIST =				\
 	syntax-highlighting		\
