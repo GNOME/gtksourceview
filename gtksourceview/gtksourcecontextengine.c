@@ -87,12 +87,6 @@
  */
 #define MAX_TIME_FOR_ONE_LINE		2000
 
-/* Maximum number of characters supported in one line or else highlighting
- * is dsiabled. This helps mitigate chances that libpcre can cause us to
- * overflow from poorly crafted regexes.
- */
-#define LINE_MAX_SUPPORTED_CHARS	2000
-
 #define GTK_SOURCE_CONTEXT_ENGINE_ERROR (gtk_source_context_engine_error_quark ())
 
 #define HAS_OPTION(def,opt) (((def)->flags & GTK_SOURCE_CONTEXT_##opt) != 0)
@@ -4207,16 +4201,6 @@ next_segment (GtkSourceContextEngine  *ce,
 
 	g_assert (!ce->priv->hint2 || ce->priv->hint2->parent == state);
 	g_assert (pos <= line->byte_length);
-
-	/* Bail on pathologically long lines to protect against possible
-	 * recursion in regexes, as libpcre can stack-overflow. Also help to
-	 * keep things fast in the presence of such difficult input.
-	 */
-	if (line->char_length > LINE_MAX_SUPPORTED_CHARS)
-	{
-		ce->priv->disabled = TRUE;
-		return FALSE;
-	}
 
 	while (pos <= line->byte_length)
 	{
