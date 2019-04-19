@@ -167,8 +167,22 @@
       </include>
     </context>
 
+
     <context id="map">
+      <!--
+        The following can cause a stack-overflow in libpcre if the map entry
+        contains lots of HTTP urls. If you have a better design for this, please
+        contribute an improvement. Another option might be for GRegex to be
+        compiled without recurse support, but that doesn't fix things that
+        are out in the wild already.
+
+        To generate the failure case try:
+
+        python3 -c 'print("key:", "http://example.com " * 1000)' > testcase.yml
+
       <match>(?&lt;=^|\s)((?:[^:]|:(?=\S))+)(?::\s+|:$)</match>
+      -->
+      <match>(?&lt;=^|\s)((?:[^:])+)(?::\s+|:$)</match>
       <include>
         <context sub-pattern="1" style-ref="map-key"/>
       </include>
