@@ -35,7 +35,6 @@
 
 #include "gtksourceutils.h"
 #include "gtksourceutils-private.h"
-#include "gtksourcenumbers-private.h"
 #include <string.h>
 #include <errno.h>
 #include <math.h>
@@ -520,69 +519,77 @@ _gtk_source_utils_dgettext (const gchar *domain,
  * _gtk_source_utils_int_to_string:
  * @value: the integer to convert to a string
  * @outstr: (out): a location for a pointer to the result string
- * @tmpbuf: scratch space that may be used to generate the string
  *
- * This function provides a fast path for converting line numbers to
- * their string equivalent without the use of snprintf() in all cases
- * from 0 to 20,000. This is useful when performing lots of string
- * conversions such as for line numbers in the text gutter.
+ * The following implementation uses an internal cache to speed up the
+ * conversion of integers to strings by comparing the value to the
+ * previous value that was calculated.
  *
- * If the line number is > 20,000, then @tmpbuf will be used along with
- * snprintf() to generate the string and @outstr will be set to @tmpbuf.
+ * If we detect a simple increment, we can alter the previous string directly
+ * and then carry the number to each of the previous chars sequentually. If we
+ * still have a carry bit at the end of the loop, we need to move the whole
+ * string over 1 place to take account for the new "1" at the start.
  *
- * In most cases, this will return a pointer to a string in the text
- * section of the library. Not all values are stored from 0 to 20,000,
- * only from 10,000 to 20,000. In cases < 10,000, we use an offset of
- * the string within the first 10,000 adjusted to look like the expected
- * number.
+ * This function is not thread-safe, as the resulting string is stored in
+ * static data.
  *
  * Returns: the number of characters in the resulting string
  */
 gint
 _gtk_source_utils_int_to_string (guint         value,
-                                 const gchar **outstr,
-                                 gchar         tmpbuf[static 12])
+                                 const gchar **outstr)
 {
-	gint ret;
+	static struct{
+		guint value;
+		guint len;
+		gchar str[12];
+	} fi;
 
-	/* The first offset is 10,000 so we can use that string but offset
-	 * ourselves into that string a bit to get the same number we would
-	 * if we had smaller strings available.
-	 */
+	*outstr = fi.str;
 
-	if (value < 10)
+	if (value == fi.value)
 	{
-		*outstr = gtk_source_numbers[value] + 4;
-		return 1;
+		return fi.len;
 	}
 
-	if (value < 100)
+	if G_LIKELY (value == fi.value + 1)
 	{
-		*outstr = gtk_source_numbers[value] + 3;
-		return 2;
+		guint carry = 1;
+
+		for (gint i = fi.len - 1; i >= 0; i--)
+		{
+			fi.str[i] += carry;
+			carry = fi.str[i] == ':';
+
+			if (carry)
+			{
+				fi.str[i] = '0';
+			}
+			else
+			{
+				break;
+			}
+		}
+
+		if G_UNLIKELY (carry)
+		{
+			for (guint i = fi.len; i > 0; i--)
+			{
+				fi.str[i] = fi.str[i-1];
+			}
+
+			fi.len++;
+			fi.str[0] = '1';
+			fi.str[fi.len] = 0;
+		}
+
+		fi.value++;
+
+		return fi.len;
 	}
 
-	if (value < 1000)
-	{
-		*outstr = gtk_source_numbers[value] + 2;
-		return 3;
-	}
+	fi.len = snprintf (fi.str, sizeof fi.str - 1, "%u", value);
+	fi.str[fi.len] = 0;
+	fi.value = value;
 
-	if (value < 10000)
-	{
-		*outstr = gtk_source_numbers[value] + 1;
-		return 4;
-	}
-
-	if (value < 20000)
-	{
-		*outstr = gtk_source_numbers[value - 10000];
-		return 5;
-	}
-
-	*outstr = tmpbuf;
-	ret = snprintf (tmpbuf, 12, "%u", value);
-	tmpbuf[11] = 0;
-
-	return ret;
+	return fi.len;
 }

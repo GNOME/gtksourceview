@@ -229,7 +229,7 @@ gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
 
 	if G_LIKELY (!current_line)
 	{
-		len = _gtk_source_utils_int_to_string (line, &textptr, text);
+		len = _gtk_source_utils_int_to_string (line, &textptr);
 	}
 	else
 	{

@@ -117,7 +117,6 @@ libgtksourceview_private_headers =		\
 	gtksourceiter.h				\
 	gtksourcelanguage-private.h		\
 	gtksourcemarkssequence.h		\
-	gtksourcenumbers-private.h		\
 	gtksourcepixbufhelper.h			\
 	gtksourceregex.h			\
 	gtksourcespacedrawer-private.h		\

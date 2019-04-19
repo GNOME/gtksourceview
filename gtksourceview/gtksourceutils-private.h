@@ -41,8 +41,7 @@ gint		_gtk_source_utils_string_to_int			(const gchar *str);
 
 G_GNUC_INTERNAL
 gint		_gtk_source_utils_int_to_string			(guint         value,
-								 const gchar **outstr,
-								 gchar         tmpbuf[static 12]);
+								 const gchar **outstr);
 
 G_GNUC_INTERNAL
 gchar *		_gtk_source_utils_pango_font_description_to_css	(const PangoFontDescription *font_desc);
