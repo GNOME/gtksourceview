@@ -5540,7 +5540,7 @@ update_syntax (GtkSourceContextEngine *ce,
 
 	if (analyzed_end == gtk_text_buffer_get_char_count (buffer))
 	{
-		g_assert (g_slist_length (ce->priv->invalid) <= 1);
+		g_assert (g_slist_length (ce->priv->invalid) <= 2);
 
 		if (ce->priv->invalid != NULL)
 		{
