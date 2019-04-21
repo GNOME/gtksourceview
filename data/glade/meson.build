@@ -10,15 +10,10 @@ catalog_in = configuration_data()
 catalog_in.set('GSV_API_VERSION', api_version)
 
 catalog_xml = configure_file(
-  input: 'gtksourceview.xml.in',
-  output: 'gtksourceview.xml',
+          input: 'gtksourceview.xml.in',
+         output: 'gtksourceview.xml',
   configuration: catalog_in,
-  install: true,
-  install_dir: join_paths(
-    datadir,
-    'glade',
-    'catalogs'
-  )
+    install_dir: join_paths(datadir, 'glade', 'catalogs')
 )
 
 if xmllint_prg.found()

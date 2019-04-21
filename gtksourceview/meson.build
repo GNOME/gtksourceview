@@ -147,7 +147,6 @@ gtksourceversion_h = configure_file(
           input: 'gtksourceversion.h.in',
          output: 'gtksourceversion.h',
   configuration: version_h,
-        install: true,
     install_dir: join_paths(pkgincludedir, 'gtksourceview'),
 )
 
