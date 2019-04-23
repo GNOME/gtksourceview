@@ -60,7 +60,6 @@ foreach test: testsuite_sources
               input: 'gtksourceview.test.in',
              output: '@0@.test'.format(test_name),
       configuration: test_t,
-            install: true,
         install_dir: testdatadir
     )
   endif
