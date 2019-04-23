@@ -1,3 +1,14 @@
+News in 4.3.1, 2019-04-23
+-------------------------
+* Ported to meson build system, autotools will be phased out by next release.
+* First release using `meson dist` instead of `make dist`. Distributions
+  choosing to use autotools for this release will need to use autogen.sh.
+* GtkSourceGutterRendererLines has gained an interger-to-string optimization
+  to reduce the overhead of g_snprintf() in the vast majority of cases.
+* Workaround a stack overflow in libpcre (via GRegex) in yaml.lang
+* Improvements to the syntax highlighting of: fish, julia, and C++
+* Translation updates.
+
 News in 4.2.0, 2019-03-15
 -------------------------
 * New syntax highlighting definition file for: Fish, GDScript, Solidity,
