@@ -227,8 +227,8 @@
       <keyword>bool</keyword>
       <keyword>char</keyword>
       <keyword>char(16|32)_t</keyword>
-      <keyword>double</keyword>
-      <keyword>float</keyword>
+      <keyword>double(_t)?</keyword>
+      <keyword>float(_t)?</keyword>
       <keyword>int</keyword>
       <keyword>(u)?int(_least|_fast)?(8|16|32|64)_t</keyword>
       <keyword>(u)?intmax_t</keyword>
