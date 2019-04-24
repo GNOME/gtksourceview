@@ -152,59 +152,65 @@ endif
 
 # Compiler flags and warnings
 global_c_args = []
-test_c_args = [
-  '-Wcast-align',
-  '-Wdeclaration-after-statement',
-  '-Werror=address',
-  '-Werror=array-bounds',
-  '-Werror=empty-body',
-  '-Werror=implicit',
-  '-Werror=implicit-function-declaration',
-  '-Werror=incompatible-pointer-types',
-  '-Werror=init-self',
-  '-Werror=int-conversion',
-  '-Werror=int-to-pointer-cast',
-  '-Werror=main',
-  '-Werror=misleading-indentation',
-  '-Werror=missing-braces',
-  '-Werror=missing-include-dirs',
-  '-Werror=nonnull',
-  '-Werror=overflow',
-  '-Werror=parenthesis',
-  '-Werror=pointer-arith',
-  '-Werror=pointer-to-int-cast',
-  '-Werror=return-type',
-  '-Werror=sequence-point',
-  '-Werror=shadow',
-  '-Werror=strict-prototypes',
-  '-Werror=trigraphs',
-  '-Werror=undef',
-  '-Werror=write-strings',
-  '-Wformat-nonliteral',
-  ['-Werror=format-security', '-Werror=format=2' ],
-  '-Wignored-qualifiers',
-  '-Wimplicit-function-declaration',
-  '-Wlogical-op',
-  '-Wmissing-format-attribute',
-  '-Wmissing-include-dirs',
-  '-Wmissing-noreturn',
-  '-Wnested-externs',
-  '-Wno-cast-function-type',
-  '-Wno-missing-field-initializers',
-  '-Wno-sign-compare',
-  '-Wno-unused-parameter',
-  '-Wold-style-definition',
-  '-Wpointer-arith',
-  '-Wstrict-prototypes',
-  '-Wswitch-default',
-  '-Wswitch-enum',
-  '-Wundef',
-  '-Wuninitialized',
-  '-Wunused',
-  '-fno-strict-aliasing',
-]
-if get_option('buildtype') != 'plain'
-  test_c_args += '-fstack-protector-strong'
+if cc.get_id() == 'msvc'
+  test_c_args = [
+    '/FImsvc_recommended_pragmas.h',
+  ]
+else
+  test_c_args = [
+    '-Wcast-align',
+    '-Wdeclaration-after-statement',
+    '-Werror=address',
+    '-Werror=array-bounds',
+    '-Werror=empty-body',
+    '-Werror=implicit',
+    '-Werror=implicit-function-declaration',
+    '-Werror=incompatible-pointer-types',
+    '-Werror=init-self',
+    '-Werror=int-conversion',
+    '-Werror=int-to-pointer-cast',
+    '-Werror=main',
+    '-Werror=misleading-indentation',
+    '-Werror=missing-braces',
+    '-Werror=missing-include-dirs',
+    '-Werror=nonnull',
+    '-Werror=overflow',
+    '-Werror=parenthesis',
+    '-Werror=pointer-arith',
+    '-Werror=pointer-to-int-cast',
+    '-Werror=return-type',
+    '-Werror=sequence-point',
+    '-Werror=shadow',
+    '-Werror=strict-prototypes',
+    '-Werror=trigraphs',
+    '-Werror=undef',
+    '-Werror=write-strings',
+    '-Wformat-nonliteral',
+    ['-Werror=format-security', '-Werror=format=2' ],
+    '-Wignored-qualifiers',
+    '-Wimplicit-function-declaration',
+    '-Wlogical-op',
+    '-Wmissing-format-attribute',
+    '-Wmissing-include-dirs',
+    '-Wmissing-noreturn',
+    '-Wnested-externs',
+    '-Wno-cast-function-type',
+    '-Wno-missing-field-initializers',
+    '-Wno-sign-compare',
+    '-Wno-unused-parameter',
+    '-Wold-style-definition',
+    '-Wpointer-arith',
+    '-Wstrict-prototypes',
+    '-Wswitch-default',
+    '-Wswitch-enum',
+    '-Wundef',
+    '-Wuninitialized',
+    '-Wunused',
+    '-fno-strict-aliasing',
+  ]
+  if get_option('buildtype') != 'plain'
+    test_c_args += '-fstack-protector-strong'
+  endif
 endif
 
 foreach arg: test_c_args
@@ -213,7 +219,7 @@ foreach arg: test_c_args
   endif
 endforeach
 
-if cc.has_multi_arguments('-Wmissing-declarations')
+if cc.get_id() != 'msvc' and cc.has_multi_arguments('-Wmissing-declarations')
   global_c_args += '-Wmissing-declarations'
 endif
 
