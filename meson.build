@@ -74,7 +74,7 @@ glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
 gtk_dep = dependency('gtk+-3.0', version: gtk_req)
-libxml_dep = dependency('libxml-2.0', version: libxml_req)
+libxml_dep = dependency('libxml-2.0', version: libxml_req, required: cc.get_id() != 'msvc')
 
 gtk_quartz_dep = dependency('gtk+-quartz-3.0', version: gtk_doc_req, required: false)
 
@@ -100,6 +100,23 @@ if build_gtk_doc
   gtk_doc_dep = dependency('gtk-doc', version: gtk_doc_req)
 else
   gtk_doc_dep = []
+endif
+
+# Look for the libxml2 library manually on Visual Studio if
+# its pkg-config file could not be found, as the NMake
+# Makefiles of libxml2 do not generate the pkg-config files
+# for us.  Remove once Meson gains the ability to declare
+# deps in a declarative way
+if cc.get_id() == 'msvc' and not libxml_dep.found()
+  libxml_headers = ['xmlreader', 'parser']
+  libxml_headers_missing = false
+  foreach h: libxml_headers
+    if not cc.has_header('libxml/@0@.h'.format(h))
+      libxml_headers_missing = true
+    endif
+  endforeach
+  assert(not libxml_headers_missing, 'The libxml2 headers and libs are required')
+  libxml_dep = cc.find_library('libxml2')
 endif
 
 xmllint_prg = find_program('xmllint', required: false)
