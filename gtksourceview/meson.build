@@ -124,7 +124,7 @@ if cc.get_id() == 'msvc'
   # include our math.h to implement round() for pre-2013 Visual Studio
   msvc_maj_ver = cc.version().split('.')[0].to_int()
   if msvc_maj_ver < 18
-    gtksourceview_include_dirs = [rootdir, include_directories('../win32')]
+    gtksourceview_include_dirs = [rootdir, include_directories('../msvc')]
   else
     gtksourceview_include_dirs = rootdir
   endif
