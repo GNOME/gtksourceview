@@ -588,7 +588,12 @@ _gtk_source_utils_int_to_string (guint         value,
 		return fi.len;
 	}
 
+#ifdef G_OS_WIN32
 	fi.len = g_snprintf (fi.str, sizeof fi.str - 1, "%u", value);
+#else
+	/* Use snprintf() directly when possible to reduce overhead */
+	fi.len = snprintf (fi.str, sizeof fi.str - 1, "%u", value);
+#endif
 	fi.str[fi.len] = 0;
 	fi.value = value;
 
