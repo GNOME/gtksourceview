@@ -44,10 +44,10 @@ main (gint   argc,
 	{
 		gchar tmpbuf[12];
 
-		snprintf (tmpbuf, 12, "%u", i);
+		g_snprintf (tmpbuf, 12, "%u", i);
 	}
 	d = g_timer_elapsed (timer, NULL);
-	g_print ("     snprintf: %lf\n", d);
+	g_print ("     g_snprintf: %lf\n", d);
 
 	/* Make sure implementation is correct */
 	for (i = 0; i < 20000; i++)
@@ -57,7 +57,7 @@ main (gint   argc,
 		gchar str2[12];
 
 		len1 = _gtk_source_utils_int_to_string (i, &str1);
-		len2 = snprintf (str2, sizeof str2, "%u", i);
+		len2 = g_snprintf (str2, sizeof str2, "%u", i);
 
 		g_assert_cmpint (len1, ==, len2);
 		g_assert_cmpstr (str1, ==, str2);
