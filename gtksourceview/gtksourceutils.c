@@ -554,8 +554,9 @@ _gtk_source_utils_int_to_string (guint         value,
 	if G_LIKELY (value == fi.value + 1)
 	{
 		guint carry = 1;
+		gint i;
 
-		for (gint i = fi.len - 1; i >= 0; i--)
+		for (i = fi.len - 1; i >= 0; i--)
 		{
 			fi.str[i] += carry;
 			carry = fi.str[i] == ':';
@@ -572,7 +573,7 @@ _gtk_source_utils_int_to_string (guint         value,
 
 		if G_UNLIKELY (carry)
 		{
-			for (guint i = fi.len; i > 0; i--)
+			for (i = fi.len; i > 0; i--)
 			{
 				fi.str[i] = fi.str[i-1];
 			}
@@ -587,7 +588,7 @@ _gtk_source_utils_int_to_string (guint         value,
 		return fi.len;
 	}
 
-	fi.len = snprintf (fi.str, sizeof fi.str - 1, "%u", value);
+	fi.len = g_snprintf (fi.str, sizeof fi.str - 1, "%u", value);
 	fi.str[fi.len] = 0;
 	fi.value = value;
 
