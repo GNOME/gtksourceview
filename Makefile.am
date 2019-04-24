@@ -13,6 +13,7 @@ pkgconfig_DATA = gtksourceview-@GSV_API_VERSION@.pc
 EXTRA_DIST = \
 	gtksourceview.doap \
 	gtksourceview.pc.in \
+	README.win32	\
 	HACKING
 
 MAINTAINERCLEANFILES = \
