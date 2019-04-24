@@ -33,6 +33,7 @@ EXTRA_DIST = \
 	gen-enums.batin	\
 	pc_base.py	\
 	gtksourceviewpc.py	\
+	math.h	\
 	$(GENERATED_ITEMS)
 
 gen-enums.bat: $(top_srcdir)/win32/gen-enums.batin enum.headers

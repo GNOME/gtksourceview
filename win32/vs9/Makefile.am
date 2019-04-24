@@ -13,8 +13,7 @@ EXTRA_DIST = 							\
 	gtksourceview@GSV_API_VERSION@-version-paths.vsprops	\
 	gtksourceview-@GSV_API_VERSION@.vcprojin		\
 	gtksourceview@GSV_API_VERSION@-install.vcproj		\
-	$(GENERATED_ITEMS)					\
-	math.h
+	$(GENERATED_ITEMS)
 
 gtksourceview@GSV_API_VERSION@-install.vsprops: $(top_srcdir)/win32/vs9/gtksourceview@GSV_API_VERSION@-install.vspropsin $(MSVC_HEADERS_LISTS)
 	$(CPP) -P - <$(top_srcdir)/win32/vs9/gtksourceview@GSV_API_VERSION@-install.vspropsin >$@

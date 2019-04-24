@@ -1,8 +1,7 @@
 GENERATED_ITEMS =					\
 	gtksourceview-@GSV_API_VERSION@.vcxproj		\
 	gtksourceview-@GSV_API_VERSION@.vcxproj.filters	\
-	gtksourceview@GSV_API_VERSION@-install.props	\
-	math.h
+	gtksourceview@GSV_API_VERSION@-install.props
 
 MSVC10_HEADERS_LISTS =	\
 	gtksourceview-@GSV_API_VERSION@.vs10.headers
@@ -26,9 +25,6 @@ gtksourceview@GSV_API_VERSION@-install.props: $(top_srcdir)/win32/vs10/gtksource
 	-$(RM) $(top_builddir)/win32/vs15/gtksourceview@GSV_API_VERSION@-install.props
 	$(CPP) -P - <$(top_srcdir)/win32/vs10/gtksourceview@GSV_API_VERSION@-install.propsin >$@
 	$(RM) $(MSVC10_HEADERS_LISTS)
-
-math.h: $(top_srcdir)/win32/vs9/math.h
-	cp $< $@
 
 DISTCLEANFILES = $(GENERATED_ITEMS)
 

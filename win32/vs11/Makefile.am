@@ -7,11 +7,7 @@ EXTRA_DIST =							\
 	gtksourceview-@GSV_API_VERSION@.vcxproj			\
 	gtksourceview-@GSV_API_VERSION@.vcxproj.filters		\
 	gtksourceview@GSV_API_VERSION@-install.vcxproj		\
-	gtksourceview@GSV_API_VERSION@-install.vcxproj.filters	\
-	math.h
-
-math.h: $(top_srcdir)/win32/vs9/math.h
-	cp $< $@
+	gtksourceview@GSV_API_VERSION@-install.vcxproj.filters
 
 DISTCLEANFILES = $(EXTRA_DIST)
 

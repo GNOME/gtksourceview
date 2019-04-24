@@ -120,6 +120,15 @@ if config_h.has('OS_OSX')
   ]
 endif
 
+extra_include_dirs = []
+if cc.get_id() == 'msvc'
+  # include our math.h to implement round() for pre-2013 Visual Studio
+  msvc_maj_ver = cc.version().split('.')[0].to_int()
+  if msvc_maj_ver < 18
+    extra_include_dirs = include_directories('../win32')
+  endif
+endif
+
 core_enums_header = '''
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 # error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -163,7 +172,7 @@ install_headers(
 )
 
 core_lib = static_library(package_string + 'core', core_sources,
-  include_directories: rootdir,
+  include_directories: [rootdir, extra_include_dirs],
          dependencies: core_deps,
                c_args: core_c_args,
               install: false
