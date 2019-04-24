@@ -1,4 +1,4 @@
-SUBDIRS = po data gtksourceview win32 tests testsuite docs
+SUBDIRS = po data gtksourceview msvc tests testsuite docs
 
 @CODE_COVERAGE_RULES@
 
@@ -13,9 +13,7 @@ pkgconfig_DATA = gtksourceview-@GSV_API_VERSION@.pc
 EXTRA_DIST = \
 	gtksourceview.doap \
 	gtksourceview.pc.in \
-	HACKING \
-	config.h.win32.in \
-	config.h.win32
+	HACKING
 
 MAINTAINERCLEANFILES = \
 	$(GITIGNORE_MAINTAINERCLEANFILES_TOPLEVEL) \
