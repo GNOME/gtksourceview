@@ -42,9 +42,11 @@ foreach test: testsuite_sources
     '@0@.c'.format(test_name),
   ]
 
+  # MSVC builds: We need to link to the main GtkSourceView .lib except
+  # for test-stylescheme.c, where we must link only to the static core lib
   test_exe = executable(test_name, test_sources,
           c_args: testsuite_c_args,
-    dependencies: [gtksource_dep],
+    dependencies: cc.get_id() == 'msvc' and test_name == 'test-stylescheme' ? [core_dep] : [gtksource_dep],
          install: get_option('install_tests'),
      install_dir: testexecdir
   )

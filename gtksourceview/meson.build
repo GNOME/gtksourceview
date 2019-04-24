@@ -120,16 +120,24 @@ if config_h.has('OS_OSX')
   ]
 endif
 
-extra_include_dirs = []
 if cc.get_id() == 'msvc'
   # include our math.h to implement round() for pre-2013 Visual Studio
   msvc_maj_ver = cc.version().split('.')[0].to_int()
   if msvc_maj_ver < 18
-    extra_include_dirs = include_directories('../win32')
+    gtksourceview_include_dirs = [rootdir, include_directories('../win32')]
+  else
+    gtksourceview_include_dirs = rootdir
   endif
+else
+  gtksourceview_include_dirs = rootdir
 endif
 
 core_enums_header = '''
+
+#if defined (GTK_SOURCE_COMPILATION) && defined (HAVE_CONFIG_H)
+# include <config.h>
+#endif
+
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 # error "Only <gtksourceview/gtksource.h> can be included directly."
 #endif
@@ -171,18 +179,19 @@ install_headers(
   install_dir: join_paths(pkgincludedir, 'gtksourceview'),
 )
 
+core_enums_h = core_enums.get(1)
+
+# Unfortunately, Visual Studio builds must build the core
+# sources twice, once for the GtkSourceView DLL, and once for
+# the tests (static core lib), so that we can ensure that
+# all the items from the core sources are properly linked into
+# the final GtkSourceView DLL and exported from it.
 core_lib = static_library(package_string + 'core', core_sources,
-  include_directories: [rootdir, extra_include_dirs],
+  include_directories: gtksourceview_include_dirs,
          dependencies: core_deps,
                c_args: core_c_args,
               install: false
 )
-
-gtksource_libs = [
-  core_lib,
-]
-
-core_enums_h = core_enums.get(1)
 
 core_dep = declare_dependency(
             link_with: core_lib,
@@ -195,6 +204,12 @@ gtksource_deps = [
   core_dep,
 ]
 
+# We can't use the static libs on Visual Studio builds
+# to form our DLL here, so we must build all the core
+# and word completion provider sources into the main DLL
+# instead
+gtksource_libs = cc.get_id() == 'msvc' ? [] : [core_lib]
+
 extra_public_sources = []
 
 subdir('completion-providers')
@@ -204,15 +219,34 @@ gtksource_res = gnome.compile_resources(
   'gtksourceview.gresource.xml'
 )
 
-gtksource_lib = shared_library(package_string, gtksource_res,
-                version: lib_version,
-    include_directories: rootdir,
-           dependencies: gtksource_deps,
-             link_whole: gtksource_libs,
-                 c_args: core_c_args,
-                install: true,
-  gnu_symbol_visibility: 'hidden',
-)
+# We can't use the static libs on Visual Studio builds
+# to form our DLL here, so we must build all the core
+# and word completion provider sources into the main DLL
+# instead
+if cc.get_id() == 'msvc'
+  gtksource_word_provider_sources = []
+  foreach s: completionwords_public_c
+    gtksource_word_provider_sources += files(['completion-providers/words/@0@'.format(s)])
+  endforeach
+  gtksource_lib = shared_library(package_string,
+                  [core_sources, gtksource_word_provider_sources, gtksource_res],
+                  version: lib_version,
+      include_directories: gtksourceview_include_dirs,
+             dependencies: core_deps,
+                   c_args: core_c_args,
+                  install: true,
+  )
+else
+  gtksource_lib = shared_library(package_string, gtksource_res,
+                  version: lib_version,
+      include_directories: gtksourceview_include_dirs,
+             dependencies: gtksource_deps,
+               link_whole: gtksource_libs,
+                   c_args: core_c_args,
+                  install: true,
+    gnu_symbol_visibility: 'hidden',
+  )
+endif
 
 gtksource_dep_sources = [
   core_enums_h,
@@ -269,10 +303,11 @@ if generate_gir
   endif
 endif
 
+# MSVC builds: Only link to the dependent packages/.lib's
 gtksource_dep = declare_dependency(
             link_with: gtksource_lib,
   include_directories: rootdir,
-         dependencies: gtksource_deps,
+         dependencies: cc.get_id() == 'msvc' ? core_deps : gtksource_deps,
               sources: gtksource_dep_sources,
 )
 

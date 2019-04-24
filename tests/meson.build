@@ -27,7 +27,10 @@ foreach test_name, test_sources: tests_sources
     )
   endif
 
+  # MSVC builds: We need items from the main GtkSourceView .lib as
+  # well as the static core lib
   executable('test-@0@'.format(test_name), test_sources,
           c_args: tests_c_args,
-    dependencies: [gtksource_dep])
+    dependencies: cc.get_id() == 'msvc' ? [gtksource_dep, core_dep] : [gtksource_dep],
+  )
 endforeach

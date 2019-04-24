@@ -26,26 +26,29 @@ install_headers(
   )
 )
 
-completionwords_lib = static_library(
-  package_string + 'completionwords',
-  completionwords_public_c,
-  include_directories: rootdir,
-  dependencies: core_dep,
-  c_args: completionwords_c_args,
-  install: false,
-)
+if cc.get_id() != 'msvc'
+  completionwords_lib = static_library(
+    package_string + 'completionwords',
+    completionwords_public_c,
+    include_directories: rootdir,
+    dependencies: core_dep,
+    c_args: completionwords_c_args,
+    install: false,
+  )
 
-gtksource_libs += [
-  completionwords_lib,
-]
+  gtksource_libs += [
+    completionwords_lib,
+  ]
 
-completionwords_dep = declare_dependency(
-  link_with: completionwords_lib,
-  include_directories: rootdir,
-  dependencies: core_dep,
-)
+  completionwords_dep = declare_dependency(
+    link_with: completionwords_lib,
+    include_directories: rootdir,
+    dependencies: core_dep,
+  )
 
-gtksource_deps += completionwords_dep
+  gtksource_deps += completionwords_dep
+
+endif
 
 extra_public_sources += files([
   'gtksourcecompletionwords.c',
