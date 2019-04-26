@@ -742,21 +742,25 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 static void
 update_info_position (GtkSourceCompletion *completion)
 {
-	GdkScreen *screen;
+	GdkDisplay *display;
+	GdkMonitor *monitor;
+	GdkWindow *window;
+	GdkRectangle geom;
 	gint x, y;
 	gint width, height;
-	gint screen_width;
 	gint info_width;
 
 	gtk_window_get_position (GTK_WINDOW (completion->priv->main_window), &x, &y);
 	gtk_window_get_size (GTK_WINDOW (completion->priv->main_window), &width, &height);
 	gtk_window_get_size (GTK_WINDOW (completion->priv->info_window), &info_width, NULL);
 
-	screen = gtk_window_get_screen (GTK_WINDOW (completion->priv->main_window));
-	screen_width = gdk_screen_get_width (screen);
+	display = gtk_widget_get_display (GTK_WIDGET (completion->priv->main_window));
+	window = gtk_widget_get_window (GTK_WIDGET (completion->priv->main_window));
+	monitor = gdk_display_get_monitor_at_window (display, window);
+	gdk_monitor_get_geometry (monitor, &geom);
 
 	/* Determine on which side to place it */
-	if (x + width + info_width >= screen_width)
+	if (x + width + info_width >= geom.width)
 	{
 		x -= info_width;
 	}

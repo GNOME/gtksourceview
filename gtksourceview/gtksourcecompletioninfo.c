@@ -461,19 +461,21 @@ move_to_iter (GtkSourceCompletionInfo *window,
 	      GtkTextView             *view,
 	      GtkTextIter             *iter)
 {
-	GdkScreen *screen;
+	GdkDisplay *display;
+	GdkWindow *gdk_window;
+	GdkMonitor *monitor;
+	GdkRectangle geom;
 	gint x, y;
 	gint w, h;
-	gint sw, sh;
 	gint cx, cy;
 	gint oy;
 	gint height;
 	gboolean overlapup;
 
-	screen = gtk_window_get_screen (GTK_WINDOW (window));
-
-	sw = gdk_screen_get_width (screen);
-	sh = gdk_screen_get_height (screen);
+	display = gtk_widget_get_display (GTK_WIDGET (view));
+	gdk_window = gtk_widget_get_window (GTK_WIDGET (view));
+	monitor = gdk_display_get_monitor_at_window (display, gdk_window);
+	gdk_monitor_get_geometry (monitor, &geom);
 
 	get_iter_pos (view, iter, &x, &y, &height);
 	gtk_window_get_size (GTK_WINDOW (window), &w, &h);
@@ -484,18 +486,18 @@ move_to_iter (GtkSourceCompletionInfo *window,
 	compensate_for_gravity (window, &cx, &cy, w, h);
 
 	/* Push window inside screen */
-	if (x - cx + w > sw)
+	if (x - cx + w > geom.width)
 	{
-		x = (sw - w) + cx;
+		x = (geom.width - w) + cx;
 	}
 	else if (x - cx < 0)
 	{
 		x = cx;
 	}
 
-	if (y - cy + h > sh)
+	if (y - cy + h > geom.height)
 	{
-		y = (sh - h) + cy;
+		y = (geom.height - h) + cy;
 		overlapup = TRUE;
 	}
 	else if (y - cy < 0)

@@ -47,18 +47,22 @@ get_max_width (GtkSourceCompletionContainer *container)
 {
 	if (gtk_widget_get_realized (GTK_WIDGET (container)))
 	{
+		GdkDisplay *display;
+		GdkMonitor *monitor;
 		GtkWidget *toplevel;
 		GdkWindow *window;
-		GdkScreen *screen;
+		GdkRectangle geom;
 		gint max_width;
 		gint xorigin;
 
 		toplevel = gtk_widget_get_toplevel (GTK_WIDGET (container));
 		window = gtk_widget_get_window (toplevel);
-		screen = gdk_window_get_screen (window);
+		display = gtk_widget_get_display (toplevel);
+		monitor = gdk_display_get_monitor_at_window (display, window);
+		gdk_monitor_get_geometry (monitor, &geom);
 
 		gdk_window_get_origin (window, &xorigin, NULL);
-		max_width = gdk_screen_get_width (screen) - xorigin;
+		max_width = geom.width - xorigin;
 
 		return MAX (max_width, UNREALIZED_WIDTH);
 	}
