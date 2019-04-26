@@ -106,6 +106,7 @@ core_c_args = [
 
 core_deps = [
   libm_dep,
+  fribidi_dep,
   glib_dep,
   gobject_dep,
   gio_dep,
@@ -320,6 +321,7 @@ gtksource_pc_reqs = [
 
 gtksource_pc_private_reqs = [
   'libxml-2.0 @0@'.format(libxml_req),
+  'fribidi @0@'.format(fribidi_req),
 ]
 
 gtksource_pc = pkg.generate(
