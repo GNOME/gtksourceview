@@ -61,10 +61,12 @@ build_gtk_doc = get_option('gtk_doc')
 # Dependencies
 cc = meson.get_compiler('c')
 
+gtk_req_version = '3.22'
+
 libm_dep = cc.find_library('m', required: false)
 
 glib_req = '>= 2.48'
-gtk_req = '>= 3.20'
+gtk_req = '>= @0@'.format(gtk_req_version)
 libxml_req = '>= 2.6'
 gladeui_req = '>= 3.9'
 introspection_req  = '>= 1.42.0'
@@ -121,12 +123,18 @@ endif
 
 xmllint_prg = find_program('xmllint', required: false)
 
+gtk_version_arr = gtk_req_version.split('.')
+gtk_major_version = gtk_version_arr[0]
+gtk_minor_version = gtk_version_arr[1]
+
 # Configurations
 add_project_arguments([
   '-DG_DISABLE_DEPRECATED',
   '-DGDK_DISABLE_DEPRECATED',
   '-DGTK_DISABLE_DEPRECATED',
   '-DGDK_PIXBUF_DISABLE_DEPRECATED',
+  '-DGDK_VERSION_MIN_REQUIRED=GDK_VERSION_@0@_@1@'.format(gtk_major_version, gtk_minor_version),
+  '-DGDK_VERSION_MAX_ALLOWED=GDK_VERSION_@0@_@1@'.format(gtk_major_version, gtk_minor_version),
 ], language: 'c')
 
 config_h = configuration_data()
