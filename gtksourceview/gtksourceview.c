@@ -28,6 +28,7 @@
 #include "gtksourceview.h"
 
 #include <string.h> /* For strlen */
+#include <fribidi.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include <pango/pango-tabs.h>
@@ -2101,6 +2102,7 @@ move_cursor_words (GtkTextView *text_view,
 	GtkTextIter newplace;
 	GtkTextIter line_start;
 	GtkTextIter line_end;
+	const gchar *ptr;
 	gchar *line_text;
 
 	buffer = gtk_text_view_get_buffer (text_view);
@@ -2119,10 +2121,26 @@ move_cursor_words (GtkTextView *text_view,
 	/* Swap direction for RTL to maintain visual cursor movement.
 	 * Otherwise, cursor will move in opposite direction which is counter
 	 * intuitve and causes confusion for RTL users.
+	 *
+	 * You would think we could iterate using the textiter, but we cannot
+	 * since there is no way in GtkTextIter to check if it is visible (as
+	 * that is not exposed by GtkTextBTree). So we use the allocated string
+	 * contents instead.
 	 */
-	if (pango_find_base_dir (line_text, -1) == PANGO_DIRECTION_RTL)
+	for (ptr = line_text; *ptr; ptr = g_utf8_next_char (ptr))
 	{
-		count *= -1;
+		gunichar ch = g_utf8_get_char (ptr);
+		FriBidiCharType ch_type = fribidi_get_bidi_type (ch);
+
+		if (FRIBIDI_IS_STRONG (ch_type))
+		{
+			if (FRIBIDI_IS_RTL (ch_type))
+			{
+				count *= -1;
+			}
+
+			break;
+		}
 	}
 
 	g_free (line_text);
