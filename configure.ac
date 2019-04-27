@@ -64,6 +64,7 @@ AC_DEFINE_UNQUOTED([GSV_API_VERSION],
 glib_req=2.48
 gtk_req=3.20
 libxml_req=2.6
+fribidi_req=0.19.7
 gladeui_req=3.9
 
 AC_CONFIG_SRCDIR([gtksourceview/gtksourcebuffer.h])
@@ -158,7 +159,7 @@ LT_LIB_M
 AX_REQUIRE_DEFINED([AX_PKG_CHECK_MODULES])
 AX_PKG_CHECK_MODULES([DEP],
 		     [glib-2.0 >= $glib_req  gio-2.0 >= $glib_req  gtk+-3.0 >= $gtk_req],
-		     [libxml-2.0 >= $libxml_req])
+		     [libxml-2.0 >= $libxml_req fribidi >= $fribidi_req])
 
 dnl check for native osx
 AC_MSG_CHECKING([for native Mac OS X])
