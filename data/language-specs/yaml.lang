@@ -48,8 +48,15 @@
     <define-regex id="rschar">[\s\]\},]</define-regex>
 
     <context id="scalar" class-disabled="no-spell-check">
-      <start>(?&lt;=^|\s)[|&gt;]$</start>
+      <start extended="true">
+        (?&lt;= ^ | \s)
+        [|&gt;] # block scalar indicator
+        (?: [-+]?[0-9]? | [0-9]?[-+]?) # optional indentation and chomping indicators
+        (?: \s+ (\#.*)?)? # optional whitespace and comment
+        $
+      </start>
       <include>
+        <context sub-pattern="1" where="start" style-ref="comment"/>
         <context end-parent="true" style-ref="scalar">
           <start>^(?'indent'\s+)</start>
           <end>^(?!\%{indent@start})</end>
