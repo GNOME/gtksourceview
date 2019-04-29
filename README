@@ -29,6 +29,7 @@ Installation
 Simple install procedure from a tarball:
 
   $ mkdir build
+  $ meson
   $ cd build
   [ Become root if necessary ]
   $ ninja install
