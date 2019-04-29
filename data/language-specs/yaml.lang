@@ -189,7 +189,7 @@
 
       <match>(?&lt;=^|\s)((?:[^:]|:(?=\S))+)(?::\s+|:$)</match>
       -->
-      <match>(?&lt;=^|\s)((?:[^:])+)(?::\s+|:$)</match>
+      <match>(?&lt;=^|\s)([^:\s][^:]*)(?::\s+|:$)</match>
       <include>
         <context sub-pattern="1" style-ref="map-key"/>
       </include>
@@ -223,8 +223,8 @@
         <context ref="alias"/>
         <context ref="tag"/>
         <context ref="anchor"/>
-        <context ref="map"/>
         <context ref="string"/>
+        <context ref="map"/>
         <context ref="unquoted-string"/>
       </include>
     </context>
