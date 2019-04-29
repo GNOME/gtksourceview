@@ -28,10 +28,10 @@ Installation
 
 Simple install procedure from a tarball:
 
-  $ ./configure
-  $ make
+  $ mkdir build
+  $ cd build
   [ Become root if necessary ]
-  $ make install
+  $ ninja install
 
 See the file 'INSTALL' for more detailed information.
 
