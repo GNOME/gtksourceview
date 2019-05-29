@@ -35,6 +35,7 @@
 
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
+#include "gtksource-marshal.h"
 #include "gtksourceundomanager.h"
 #include "gtksourceundomanagerdefault.h"
 #include "gtksourcestyle.h"
@@ -430,11 +431,15 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	                                G_OBJECT_CLASS_TYPE (object_class),
 	                                G_SIGNAL_RUN_LAST,
 	                                G_CALLBACK (gtk_source_buffer_real_highlight_updated),
-					NULL, NULL, NULL,
+					NULL, NULL,
+					_gtk_source_marshal_VOID__BOXED_BOXED,
 	                                G_TYPE_NONE,
 	                                2,
 	                                GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
 	                                GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE);
+	g_signal_set_va_marshaller (buffer_signals[HIGHLIGHT_UPDATED],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_VOID__BOXED_BOXEDv);
 
 	/**
 	 * GtkSourceBuffer::source-mark-updated:
@@ -449,9 +454,13 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			   G_OBJECT_CLASS_TYPE (object_class),
 			   G_SIGNAL_RUN_LAST,
 			   0,
-			   NULL, NULL, NULL,
+			   NULL, NULL,
+			   g_cclosure_marshal_VOID__OBJECT,
 			   G_TYPE_NONE,
 			   1, GTK_TYPE_TEXT_MARK);
+	g_signal_set_va_marshaller (buffer_signals[SOURCE_MARK_UPDATED],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__OBJECTv);
 
 	/**
 	 * GtkSourceBuffer::undo:
@@ -465,8 +474,12 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_OBJECT_CLASS_TYPE (object_class),
 			  G_SIGNAL_RUN_LAST,
 			  G_STRUCT_OFFSET (GtkSourceBufferClass, undo),
-			  NULL, NULL, NULL,
+			  NULL, NULL,
+			  g_cclosure_marshal_VOID__VOID,
 			  G_TYPE_NONE, 0);
+	g_signal_set_va_marshaller (buffer_signals[UNDO],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 	/**
 	 * GtkSourceBuffer::redo:
@@ -479,8 +492,12 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_OBJECT_CLASS_TYPE (object_class),
 			  G_SIGNAL_RUN_LAST,
 			  G_STRUCT_OFFSET (GtkSourceBufferClass, redo),
-			  NULL, NULL, NULL,
+			  NULL, NULL,
+			  g_cclosure_marshal_VOID__VOID,
 			  G_TYPE_NONE, 0);
+	g_signal_set_va_marshaller (buffer_signals[REDO],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 	/**
 	 * GtkSourceBuffer::bracket-matched:
@@ -504,10 +521,14 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 			  G_OBJECT_CLASS_TYPE (object_class),
 			  G_SIGNAL_RUN_LAST,
 			  G_STRUCT_OFFSET (GtkSourceBufferClass, bracket_matched),
-			  NULL, NULL, NULL,
+			  NULL, NULL,
+			  _gtk_source_marshal_VOID__BOXED_ENUM,
 			  G_TYPE_NONE, 2,
 			  GTK_TYPE_TEXT_ITER,
 			  GTK_SOURCE_TYPE_BRACKET_MATCH_TYPE);
+	g_signal_set_va_marshaller (buffer_signals[BRACKET_MATCHED],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_VOID__BOXED_ENUMv);
 }
 
 static void
