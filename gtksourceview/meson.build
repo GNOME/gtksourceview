@@ -1,3 +1,10 @@
+core_marshallers = gnome.genmarshal('gtksource-marshal',
+             sources: ['gtksourcemarshalers.list'],
+              prefix: '_gtk_source_marshal',
+         skip_source: true,
+  valist_marshallers: true,
+)
+
 core_public_h = files([
   'gtksource.h',
   'gtksourceautocleanups.h',
@@ -173,6 +180,7 @@ core_sources = [
   core_private_c,
   core_enums,
   gtksourceversion_h,
+  core_marshallers,
 ]
 
 install_headers(

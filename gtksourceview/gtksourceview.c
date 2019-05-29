@@ -40,6 +40,7 @@
 #include "gtksource-enumtypes.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"
+#include "gtksource-marshal.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourcecompletion.h"
 #include "gtksourcecompletion-private.h"
@@ -712,16 +713,24 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, undo),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+		              g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE, 0);
+	g_signal_set_va_marshaller (signals[UNDO],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 	signals[REDO] =
 		g_signal_new ("redo",
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, redo),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE, 0);
+	g_signal_set_va_marshaller (signals[REDO],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 	/**
 	 * GtkSourceView::show-completion:
@@ -743,8 +752,12 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, show_completion),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE, 0);
+	g_signal_set_va_marshaller (signals[SHOW_COMPLETION],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 	/**
 	 * GtkSourceView::line-mark-activated:
@@ -761,11 +774,15 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, line_mark_activated),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      _gtk_source_marshal_VOID__BOXED_BOXED,
 			      G_TYPE_NONE,
 			      2,
 			      GTK_TYPE_TEXT_ITER,
 			      GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
+	g_signal_set_va_marshaller (signals[LINE_MARK_ACTIVATED],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_VOID__BOXED_BOXEDv);
 
 	/**
 	 * GtkSourceView::move-lines:
@@ -782,9 +799,13 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, move_lines),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__BOOLEAN,
 			      G_TYPE_NONE, 1,
 			      G_TYPE_BOOLEAN);
+	g_signal_set_va_marshaller (signals[MOVE_LINES],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__BOOLEANv);
 
 	/**
 	 * GtkSourceView::move-words:
@@ -803,9 +824,13 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceViewClass, move_words),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__INT,
 			      G_TYPE_NONE, 1,
 			      G_TYPE_INT);
+	g_signal_set_va_marshaller (signals[MOVE_WORDS],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__INTv);
 
 	/**
 	 * GtkSourceView::smart-home-end:
@@ -826,11 +851,15 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL, NULL, NULL,
+		              NULL, NULL,
+		              _gtk_source_marshal_VOID__BOXED_INT,
 		              G_TYPE_NONE,
 		              2,
 		              GTK_TYPE_TEXT_ITER,
 		              G_TYPE_INT);
+	g_signal_set_va_marshaller (signals[SMART_HOME_END],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_VOID__BOXED_INTv);
 
 	/**
 	 * GtkSourceView::move-to-matching-bracket:
@@ -847,10 +876,14 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                            G_TYPE_FROM_CLASS (klass),
 		                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		                            G_CALLBACK (gtk_source_view_move_to_matching_bracket),
-		                            NULL, NULL, NULL,
+		                            NULL, NULL,
+		                            g_cclosure_marshal_VOID__BOOLEAN,
 		                            G_TYPE_NONE,
 		                            1,
 		                            G_TYPE_BOOLEAN);
+	g_signal_set_va_marshaller (signals[MOVE_TO_MATCHING_BRACKET],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__BOOLEANv);
 
 	/**
 	 * GtkSourceView::change-number:
@@ -866,10 +899,14 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                            G_TYPE_FROM_CLASS (klass),
 		                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		                            G_CALLBACK (gtk_source_view_change_number),
-		                            NULL, NULL, NULL,
+		                            NULL, NULL,
+		                            g_cclosure_marshal_VOID__INT,
 		                            G_TYPE_NONE,
 		                            1,
 		                            G_TYPE_INT);
+	g_signal_set_va_marshaller (signals[CHANGE_NUMBER],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__INTv);
 
 	/**
 	 * GtkSourceView::change-case:
@@ -885,10 +922,14 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                            G_TYPE_FROM_CLASS (klass),
 		                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		                            G_CALLBACK (gtk_source_view_change_case),
-		                            NULL, NULL, NULL,
+		                            NULL, NULL,
+		                            g_cclosure_marshal_VOID__ENUM,
 		                            G_TYPE_NONE,
 		                            1,
 		                            GTK_SOURCE_TYPE_CHANGE_CASE_TYPE);
+	g_signal_set_va_marshaller (signals[CHANGE_CASE],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__ENUMv);
 
 	/**
 	 * GtkSourceView::join-lines:
@@ -903,9 +944,13 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                            G_TYPE_FROM_CLASS (klass),
 		                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		                            G_CALLBACK (gtk_source_view_join_lines),
-		                            NULL, NULL, NULL,
+		                            NULL, NULL,
+		                            g_cclosure_marshal_VOID__VOID,
 		                            G_TYPE_NONE,
 		                            0);
+	g_signal_set_va_marshaller (signals[JOIN_LINES],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 	binding_set = gtk_binding_set_by_class (klass);
 
