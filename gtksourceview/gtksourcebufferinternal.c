@@ -24,6 +24,7 @@
 
 #include "gtksourcebufferinternal.h"
 #include "gtksourcebuffer.h"
+#include "gtksource-marshal.h"
 #include "gtksourcesearchcontext.h"
 
 /* A private extension of GtkSourceBuffer, to add private signals and
@@ -64,9 +65,13 @@ _gtk_source_buffer_internal_class_init (GtkSourceBufferInternalClass *klass)
 			      G_OBJECT_CLASS_TYPE (object_class),
 			      G_SIGNAL_RUN_LAST,
 			      0,
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+		              g_cclosure_marshal_VOID__OBJECT,
 			      G_TYPE_NONE,
 			      1, GTK_SOURCE_TYPE_SEARCH_CONTEXT);
+	g_signal_set_va_marshaller (signals[SIGNAL_SEARCH_START],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__OBJECTv);
 }
 
 static void

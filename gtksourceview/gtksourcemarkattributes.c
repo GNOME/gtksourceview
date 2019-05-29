@@ -25,6 +25,7 @@
 
 #include "gtksourcemarkattributes.h"
 #include "gtksourcemark.h"
+#include "gtksource-marshal.h"
 #include "gtksourcepixbufhelper.h"
 
 /**
@@ -323,10 +324,14 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL, NULL, NULL,
+		              NULL, NULL,
+		              _gtk_source_marshal_STRING__OBJECT,
 		              G_TYPE_STRING,
 		              1,
 		              GTK_SOURCE_TYPE_MARK);
+	g_signal_set_va_marshaller (signals[QUERY_TOOLTIP_TEXT],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_STRING__OBJECTv);
 
 	/**
 	 * GtkSourceMarkAttributes::query-tooltip-markup:
@@ -344,10 +349,14 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST,
 		              0,
-		              NULL, NULL, NULL,
+		              NULL, NULL,
+		              _gtk_source_marshal_STRING__OBJECT,
 		              G_TYPE_STRING,
 		              1,
 		              GTK_SOURCE_TYPE_MARK);
+	g_signal_set_va_marshaller (signals[QUERY_TOOLTIP_TEXT],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_STRING__OBJECTv);
 }
 
 static void

@@ -142,8 +142,12 @@ gtk_source_completion_proposal_default_init (GtkSourceCompletionProposalIface *i
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionProposalIface, changed),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE, 0);
+		g_signal_set_va_marshaller (signals[CHANGED],
+		                            G_TYPE_FROM_INTERFACE (iface),
+		                            g_cclosure_marshal_VOID__VOIDv);
 
 		initialized = TRUE;
 	}

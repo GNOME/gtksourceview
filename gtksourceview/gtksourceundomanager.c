@@ -121,9 +121,13 @@ gtk_source_undo_manager_default_init (GtkSourceUndoManagerIface *iface)
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceUndoManagerIface, can_undo_changed),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+		              g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE,
 			      0);
+	g_signal_set_va_marshaller (signals[CAN_UNDO_CHANGED],
+	                            G_TYPE_FROM_INTERFACE (iface),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 	/**
 	 * GtkSourceUndoManager::can-redo-changed:
@@ -139,9 +143,13 @@ gtk_source_undo_manager_default_init (GtkSourceUndoManagerIface *iface)
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceUndoManagerIface, can_redo_changed),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE,
 			      0);
+	g_signal_set_va_marshaller (signals[CAN_REDO_CHANGED],
+	                            G_TYPE_FROM_INTERFACE (iface),
+	                            g_cclosure_marshal_VOID__VOIDv);
 }
 
 /**

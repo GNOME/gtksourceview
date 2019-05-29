@@ -2466,8 +2466,12 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, show),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE, 0);
+	g_signal_set_va_marshaller (signals[SHOW],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 
 	/**
@@ -2482,8 +2486,12 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, hide),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE, 0);
+	g_signal_set_va_marshaller (signals[HIDE],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 	/**
 	 * GtkSourceCompletion::populate-context:
@@ -2498,10 +2506,14 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 		              G_TYPE_FROM_CLASS (klass),
 		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 		              G_STRUCT_OFFSET (GtkSourceCompletionClass, populate_context),
-		              NULL, NULL, NULL,
+		              NULL, NULL,
+		              g_cclosure_marshal_VOID__OBJECT,
 		              G_TYPE_NONE,
 		              1,
 		              GTK_SOURCE_TYPE_COMPLETION_CONTEXT);
+	g_signal_set_va_marshaller (signals[POPULATE_CONTEXT],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__OBJECTv);
 
 	/* Actions */
 
