@@ -111,6 +111,7 @@
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcecompletioncontainer.h"
 #include "gtksourcebuffer.h"
+#include "gtksource-marshal.h"
 #include "gtksourceview.h"
 
 enum
@@ -2532,11 +2533,15 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, move_cursor),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      _gtk_source_marshal_VOID__ENUM_INT,
 			      G_TYPE_NONE,
 			      2,
 			      GTK_TYPE_SCROLL_STEP,
 			      G_TYPE_INT);
+	g_signal_set_va_marshaller (signals [MOVE_CURSOR],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_VOID__ENUM_INTv);
 
 	/**
 	 * GtkSourceCompletion::move-page:
@@ -2569,11 +2574,15 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, move_page),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      _gtk_source_marshal_VOID__ENUM_INT,
 			      G_TYPE_NONE,
 			      2,
 			      GTK_TYPE_SCROLL_STEP,
 			      G_TYPE_INT);
+	g_signal_set_va_marshaller (signals [MOVE_PAGE],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_VOID__ENUM_INTv);
 
 	/**
 	 * GtkSourceCompletion::activate-proposal:
@@ -2592,8 +2601,12 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			      G_TYPE_FROM_CLASS (klass),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 			      G_STRUCT_OFFSET (GtkSourceCompletionClass, activate_proposal),
-			      NULL, NULL, NULL,
+			      NULL, NULL,
+			      g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE, 0);
+	g_signal_set_va_marshaller (signals [ACTIVATE_PROPOSAL],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            g_cclosure_marshal_VOID__VOIDv);
 
 	/* Key bindings */
 	binding_set = gtk_binding_set_by_class (klass);
