@@ -4089,8 +4089,14 @@ gtk_source_view_key_press_event (GtkWidget   *widget,
 				return GDK_EVENT_STOP;
 			}
 
-			/* If an input method has inserted some text while handling the key press event,
-			 * the cur iterm may be invalid, so get the iter again */
+			/* Delete any selected text to preserve behavior without auto-indent */
+			gtk_text_buffer_delete_selection (buf,
+			                                  TRUE,
+			                                  gtk_text_view_get_editable (GTK_TEXT_VIEW (view)));
+
+			/* If an input method or deletion has inserted some text while handling the
+			 * key press event, the cur iterm may be invalid, so get the iter again
+			 */
 			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 
 			/* Insert new line and auto-indent. */
