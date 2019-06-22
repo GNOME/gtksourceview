@@ -36,7 +36,7 @@ def notSlashy = 1 /2/ 3 // not a slashy string; just two division operators
 def dollarSlashy = $/Dollar slashy string.
 
     There are three escape sequences: $$ $/ \
-    Interpolation works: $_ ${true}
+    Interpolation works: $_ ${x.collect { it + '\n' }.join('')}
     Dollars $ and backslashes \ on their own are interpreted literally./$
 
 0b10i + 0b0110_1011 // binary numbers
