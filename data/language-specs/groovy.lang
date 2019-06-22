@@ -324,6 +324,19 @@
         <context ref="operator"/>
         <context ref="null-value"/>
         <context ref="boolean"/>
+
+        <!--
+          To be able to tell apart closing braces that end a ${} placeholder
+          and ones that end a block inside such a placeholder,
+          treat braced blocks as nested contexts.
+        -->
+        <context>
+          <start>\{</start>
+          <end>\}</end>
+          <include>
+            <context ref="groovy"/>
+          </include>
+        </context>
       </include>
     </context>
   </definitions>
