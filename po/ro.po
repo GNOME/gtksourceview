@@ -10,11 +10,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=General\n"
-"POT-Creation-Date: 2018-03-26 22:26+0000\n"
-"PO-Revision-Date: 2018-04-09 00:56+0300\n"
-"Last-Translator: Florentina Mușat <florentina.musat.28@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
+"POT-Creation-Date: 2019-07-12 04:46+0000\n"
+"PO-Revision-Date: 2019-07-21 19:29+0200\n"
+"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Launchpad-Export-Date: 2009-08-21 13:52+0000\n"
 
 #. (itstool) path: displayable-values/value@name
@@ -123,6 +122,7 @@ msgstr "Toate"
 #. (itstool) path: kotlin.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: logtalk.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
 #. (itstool) path: meson.lang/language@_section
 #. (itstool) path: nemerle.lang/language@_section
@@ -156,11 +156,11 @@ msgstr "Toate"
 #: forth.lang:23 fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30
 #: go.lang:24 groovy.lang:24 haskell.lang:24 haskell-literate.lang:23
 #: haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24
-#: llvm.lang:22 makefile.lang:22 meson.lang:23 nemerle.lang:23 netrexx.lang:23
-#: objc.lang:23 objj.lang:25 ocaml.lang:26 ooc.lang:23 opal.lang:23
-#: opencl.lang:23 pascal.lang:24 pig.lang:26 prolog.lang:23 rust.lang:35
-#: scala.lang:24 scheme.lang:23 sml.lang:23 sparql.lang:23 sql.lang:23
-#: swift.lang:24 systemverilog.lang:21 thrift.lang:20 vala.lang:27
+#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: netrexx.lang:23 objc.lang:23 objj.lang:25 ocaml.lang:26 ooc.lang:23
+#: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 prolog.lang:23
+#: rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23 sparql.lang:23
+#: sql.lang:23 swift.lang:24 systemverilog.lang:21 thrift.lang:20 vala.lang:27
 #: vbnet.lang:23 verilog.lang:23 vhdl.lang:23
 msgid "Source"
 msgstr "Sursă"
@@ -199,13 +199,14 @@ msgstr "Script"
 #. (itstool) path: rst.lang/language@_section
 #. (itstool) path: sweave.lang/language@_section
 #. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: tera.lang/language@_section
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
 #: bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 gtk-doc.lang:24
 #: haddock.lang:23 html.lang:24 jade.lang:24 latex.lang:24 mallard.lang:22
 #: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
-#: t2t.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
 msgid "Markup"
 msgstr "Marcaj"
 
@@ -226,6 +227,7 @@ msgstr "Limbajul de shader CG"
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
 #. (itstool) path: json.lang/language@_section
+#. (itstool) path: less.lang/language@_section
 #. (itstool) path: libtool.lang/language@_section
 #. (itstool) path: logcat.lang/language@_section
 #. (itstool) path: nsis.lang/language@_section
@@ -235,13 +237,16 @@ msgstr "Limbajul de shader CG"
 #. (itstool) path: protobuf.lang/language@_section
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
+#. (itstool) path: scss.lang/language@_section
+#. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
-#: changelog.lang:24 cmake.lang:23 css.lang:38 csv.lang:23 desktop.lang:24
+#: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 gdb-log.lang:18 gtkrc.lang:24
-#: ini.lang:22 json.lang:29 libtool.lang:23 logcat.lang:23 nsis.lang:23
-#: ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21 puppet.lang:23
-#: rpmspec.lang:24 yacc.lang:23 yaml.lang:21
+#: ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23 logcat.lang:23
+#: nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21
+#: puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23 yacc.lang:23
+#: yaml.lang:21
 msgid "Other"
 msgstr "Altele"
 
@@ -306,6 +311,11 @@ msgstr "traducere gettext"
 #: rpmspec.lang:24
 msgid "RPM spec"
 msgstr "Specificație RPM"
+
+#. (itstool) path: tera.lang/language@_name
+#: tera.lang:23
+msgid "Tera Template"
+msgstr "Șablon Tera"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:24
@@ -448,19 +458,19 @@ msgstr ""
 "Evidențierea sintaxei pentru o singură linie a durat prea mult timp, "
 "evidențierea sintaxei va fi dezactivată"
 
-#: gtksourceview/gtksourcecontextengine.c:5712
+#: gtksourceview/gtksourcecontextengine.c:5714
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "contextul „%s” nu poate conține o comandă \\%%{...@start}"
 
-#: gtksourceview/gtksourcecontextengine.c:5875
-#: gtksourceview/gtksourcecontextengine.c:5965
+#: gtksourceview/gtksourcecontextengine.c:5877
+#: gtksourceview/gtksourcecontextengine.c:5967
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "identificator de context duplicat „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6079
-#: gtksourceview/gtksourcecontextengine.c:6139
+#: gtksourceview/gtksourcecontextengine.c:6081
+#: gtksourceview/gtksourcecontextengine.c:6141
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -469,18 +479,18 @@ msgstr ""
 "suprascrierea stilului folosit cu referința contextului unui metacaracter în "
 "limba „%s” în ref „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6153
+#: gtksourceview/gtksourcecontextengine.c:6155
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "referință la context nevalidă „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6172
-#: gtksourceview/gtksourcecontextengine.c:6182
+#: gtksourceview/gtksourcecontextengine.c:6174
+#: gtksourceview/gtksourcecontextengine.c:6184
 #, c-format
 msgid "unknown context “%s”"
 msgstr "context necunoscut „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6281
+#: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Definiția principală de limbaj lipsește (id = „%s”.)"
