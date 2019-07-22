@@ -651,6 +651,11 @@ svg|[fill] { /* attribute */
 
     /* animatable */
     transition-property: height, font-size, visibility;
+
+    /* custom properties */
+    --my-custom-color: #fff;
+    color: var(--my-custom-color);
+    background-color: var(--my-custom-color, white);
 }
 
 /*

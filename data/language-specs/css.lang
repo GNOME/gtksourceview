@@ -59,6 +59,7 @@
 
     <!-- style properties -->
     <style id="property-name"               name="Property Name"               map-to="def:keyword"/>
+    <style id="custom-property-name"        name="Custom Property Name"        map-to="def:identifier"/>
 
     <!-- modifiers -->
     <style id="modifier"                    name="Modifier"                    map-to="def:keyword"/>
@@ -181,6 +182,11 @@
       )
     </define-regex>
 
+    <!-- https://drafts.csswg.org/css-variables/#defining-variables -->
+    <define-regex id="custom-property-identifier" extended="true">
+      (?: -- \%{identifier-chars}+ )
+    </define-regex>
+
     <define-regex id="declaration-value-end">(?=[!;}])</define-regex>
 
     <define-regex id="test-value-end">(?=\))</define-regex>
@@ -218,6 +224,10 @@
 
     <context id="vendor-specific-name" style-ref="vendor-specific">
       <match>\%{vendor-specific-identifier}</match>
+    </context>
+
+    <context id="custom-property-name" style-ref="custom-property-name">
+      <match>\%{custom-property-identifier}</match>
     </context>
 
     <context id="escape" style-ref="escape">
@@ -553,6 +563,19 @@
       </include>
     </context>
 
+    <!-- https://drafts.csswg.org/css-variables/#using-variables -->
+    <context id="var">
+      <start>var\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="function"/>
+        <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="comment"/>
+        <context ref="custom-property-name"/>
+        <context ref="function-content"/>
+      </include>
+    </context>
+
     <context id="function-content">
       <include>
         <context ref="css3-function-arguments"/>
@@ -586,6 +609,7 @@
       <include>
         <context ref="vendor-specific-function"/>
         <context ref="url"/>
+        <context ref="var"/>
         <context ref="function"/>
       </include>
     </context>
@@ -1465,6 +1489,7 @@
     <context id="property-name">
       <include>
         <context ref="vendor-specific-name"/>
+        <context ref="custom-property-name"/>
         <context ref="svg-property-names"/>
         <context ref="css3-property-names"/>
         <context ref="property-names"/>
