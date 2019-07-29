@@ -4634,26 +4634,24 @@ guint
 gtk_source_view_get_visual_column (GtkSourceView     *view,
 				   const GtkTextIter *iter)
 {
-	gunichar tab_char;
 	GtkTextIter position;
-	guint column, indent_width;
+	guint column;
+	guint tab_width;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), 0);
 	g_return_val_if_fail (iter != NULL, 0);
 
-	tab_char = g_utf8_get_char ("\t");
-
 	column = 0;
-	indent_width = get_real_indent_width (view);
+	tab_width = view->priv->tab_width;
 
 	position = *iter;
 	gtk_text_iter_set_line_offset (&position, 0);
 
 	while (!gtk_text_iter_equal (&position, iter))
 	{
-		if (gtk_text_iter_get_char (&position) == tab_char)
+		if (gtk_text_iter_get_char (&position) == '\t')
 		{
-			column += (indent_width - (column % indent_width));
+			column += (tab_width - (column % tab_width));
 		}
 		else
 		{
