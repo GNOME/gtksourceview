@@ -297,6 +297,10 @@
         <context sub-pattern="0" where="start" style-ref="tag"/>
         <context ref="generic-tag"/>
 
+        <context end-parent="true" style-ref="tag">
+          <match>/&gt;</match>
+        </context>
+
         <context id="style-code" end-parent="true">
           <start>&gt;</start>
           <end>&lt;/style\s*&gt;</end>
@@ -315,6 +319,10 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="tag"/>
         <context ref="generic-tag"/>
+
+        <context end-parent="true" style-ref="tag">
+          <match>/&gt;</match>
+        </context>
 
         <context id="js-code" end-parent="true">
           <start>&gt;</start>
