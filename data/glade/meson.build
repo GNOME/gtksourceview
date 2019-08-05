@@ -16,20 +16,22 @@ catalog_xml = configure_file(
     install_dir: join_paths(datadir, 'glade', 'catalogs')
 )
 
-if xmllint_prg.found()
-  catalog_dtd = join_paths(
-    gladeui_dep.get_pkgconfig_variable('catalogdir'),
-   'glade-catalog.dtd'
-  )
-
-  test(
-    'Validate Glade catalogue',
-    xmllint_prg,
-    args: [
-      '--dtdvalid',
-      catalog_dtd,
-      catalog_xml,
-      '--noout',
-    ]
-  )
-endif
+# Currently DTD validation does not work with glade's DTD.
+# This does not appear to be limited to GtkSourceView.
+#if xmllint_prg.found()
+#  catalog_dtd = join_paths(
+#    gladeui_dep.get_pkgconfig_variable('catalogdir'),
+#   'glade-catalog.dtd'
+#  )
+#
+#  test(
+#    'Validate Glade catalogue',
+#    xmllint_prg,
+#    args: [
+#      '--dtdvalid',
+#      catalog_dtd,
+#      catalog_xml,
+#      '--noout',
+#    ]
+#  )
+#endif
