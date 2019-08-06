@@ -170,6 +170,7 @@ void		 _gtk_source_file_set_compression_type		(GtkSourceFile            *file,
 G_GNUC_INTERNAL
 GMountOperation	*_gtk_source_file_create_mount_operation	(GtkSourceFile *file);
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 G_GNUC_INTERNAL
 gboolean	 _gtk_source_file_get_modification_time		(GtkSourceFile *file,
 								 GTimeVal      *modification_time);
@@ -177,6 +178,7 @@ gboolean	 _gtk_source_file_get_modification_time		(GtkSourceFile *file,
 G_GNUC_INTERNAL
 void		 _gtk_source_file_set_modification_time		(GtkSourceFile *file,
 								 GTimeVal       modification_time);
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 G_GNUC_INTERNAL
 void		 _gtk_source_file_set_externally_modified	(GtkSourceFile *file,
