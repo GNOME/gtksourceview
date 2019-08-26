@@ -61,11 +61,12 @@ build_gtk_doc = get_option('gtk_doc')
 # Dependencies
 cc = meson.get_compiler('c')
 
+glib_req_version = '2.48'
 gtk_req_version = '3.22'
 
 libm_dep = cc.find_library('m', required: false)
 
-glib_req = '>= 2.48'
+glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
 libxml_req = '>= 2.6'
 gladeui_req = '>= 3.9'
@@ -125,6 +126,10 @@ endif
 
 xmllint_prg = find_program('xmllint', required: false)
 
+glib_version_arr = glib_req_version.split('.')
+glib_major_version = glib_version_arr[0]
+glib_minor_version = glib_version_arr[1]
+
 gtk_version_arr = gtk_req_version.split('.')
 gtk_major_version = gtk_version_arr[0]
 gtk_minor_version = gtk_version_arr[1]
@@ -137,6 +142,8 @@ add_project_arguments([
   '-DGDK_PIXBUF_DISABLE_DEPRECATED',
   '-DGDK_VERSION_MIN_REQUIRED=GDK_VERSION_@0@_@1@'.format(gtk_major_version, gtk_minor_version),
   '-DGDK_VERSION_MAX_ALLOWED=GDK_VERSION_@0@_@1@'.format(gtk_major_version, gtk_minor_version),
+  '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
+  '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
 ], language: 'c')
 
 config_h = configuration_data()
