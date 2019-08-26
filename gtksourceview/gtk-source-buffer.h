@@ -34,15 +34,10 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_BUFFER            (gtk_source_buffer_get_type ())
-#define GTK_SOURCE_BUFFER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_BUFFER, GtkSourceBuffer))
-#define GTK_SOURCE_BUFFER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_BUFFER, GtkSourceBufferClass))
-#define GTK_SOURCE_IS_BUFFER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_BUFFER))
-#define GTK_SOURCE_IS_BUFFER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_BUFFER))
-#define GTK_SOURCE_BUFFER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_BUFFER, GtkSourceBufferClass))
+#define GTK_SOURCE_TYPE_BUFFER (gtk_source_buffer_get_type ())
 
-typedef struct _GtkSourceBufferClass		GtkSourceBufferClass;
-typedef struct _GtkSourceBufferPrivate		GtkSourceBufferPrivate;
+GTK_SOURCE_AVAILABLE_IN_ALL
+G_DECLARE_DERIVABLE_TYPE (GtkSourceBuffer, gtk_source_buffer, GTK_SOURCE, BUFFER, GtkTextBuffer)
 
 /**
  * GtkSourceBracketMatchType:
@@ -94,13 +89,6 @@ typedef enum _GtkSourceSortFlags
 	GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES = 1 << 2,
 } GtkSourceSortFlags;
 
-struct _GtkSourceBuffer
-{
-	GtkTextBuffer parent_instance;
-
-	GtkSourceBufferPrivate *priv;
-};
-
 struct _GtkSourceBufferClass
 {
 	GtkTextBufferClass parent_class;
@@ -113,12 +101,9 @@ struct _GtkSourceBufferClass
 				 GtkTextIter               *iter,
 				 GtkSourceBracketMatchType  state);
 
-	/* Padding for future expansion */
-	gpointer padding[20];
+  /*< private >*/
+	gpointer _reserved[20];
 };
-
-GTK_SOURCE_AVAILABLE_IN_ALL
-GType			 gtk_source_buffer_get_type				(void) G_GNUC_CONST;
 
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceBuffer	 	*gtk_source_buffer_new					(GtkTextTagTable        *table);

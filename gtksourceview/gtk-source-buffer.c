@@ -192,7 +192,7 @@ enum
 	N_PROPERTIES
 };
 
-struct _GtkSourceBufferPrivate
+typedef struct
 {
 	GtkTextTag *bracket_match_tag;
 	GtkSourceBracketMatchType bracket_match_state;
@@ -219,7 +219,7 @@ struct _GtkSourceBufferPrivate
 	guint highlight_syntax : 1;
 	guint highlight_brackets : 1;
 	guint implicit_trailing_newline : 1;
-};
+} GtkSourceBufferPrivate;
 
 static guint buffer_signals[N_SIGNALS];
 static GParamSpec *buffer_properties[N_PROPERTIES];
@@ -273,8 +273,9 @@ static void
 gtk_source_buffer_constructed (GObject *object)
 {
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (object);
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
-	if (buffer->priv->undo_manager == NULL)
+	if (priv->undo_manager == NULL)
 	{
 		/* This will install the default undo manager */
 		gtk_source_buffer_set_undo_manager (buffer, NULL);
@@ -535,35 +536,37 @@ static void
 set_undo_manager (GtkSourceBuffer      *buffer,
                   GtkSourceUndoManager *manager)
 {
-	if (manager == buffer->priv->undo_manager)
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	if (manager == priv->undo_manager)
 	{
 		return;
 	}
 
-	if (buffer->priv->undo_manager != NULL)
+	if (priv->undo_manager != NULL)
 	{
-		g_signal_handlers_disconnect_by_func (buffer->priv->undo_manager,
+		g_signal_handlers_disconnect_by_func (priv->undo_manager,
 		                                      G_CALLBACK (gtk_source_buffer_can_undo_handler),
 		                                      buffer);
 
-		g_signal_handlers_disconnect_by_func (buffer->priv->undo_manager,
+		g_signal_handlers_disconnect_by_func (priv->undo_manager,
 		                                      G_CALLBACK (gtk_source_buffer_can_redo_handler),
 		                                      buffer);
 
-		g_object_unref (buffer->priv->undo_manager);
-		buffer->priv->undo_manager = NULL;
+		g_object_unref (priv->undo_manager);
+		priv->undo_manager = NULL;
 	}
 
 	if (manager != NULL)
 	{
-		buffer->priv->undo_manager = g_object_ref (manager);
+		priv->undo_manager = g_object_ref (manager);
 
-		g_signal_connect (buffer->priv->undo_manager,
+		g_signal_connect (priv->undo_manager,
 		                  "can-undo-changed",
 		                  G_CALLBACK (gtk_source_buffer_can_undo_handler),
 		                  buffer);
 
-		g_signal_connect (buffer->priv->undo_manager,
+		g_signal_connect (priv->undo_manager,
 		                  "can-redo-changed",
 		                  G_CALLBACK (gtk_source_buffer_can_redo_handler),
 		                  buffer);
@@ -578,7 +581,9 @@ static void
 search_context_weak_notify_cb (GtkSourceBuffer *buffer,
 			       GObject         *search_context)
 {
-	buffer->priv->search_contexts = g_list_remove (buffer->priv->search_contexts,
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	priv->search_contexts = g_list_remove (priv->search_contexts,
 						       search_context);
 }
 
@@ -587,7 +592,7 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 {
 	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
-	buffer->priv = priv;
+	priv = priv;
 
 	priv->highlight_syntax = TRUE;
 	priv->highlight_brackets = TRUE;
@@ -613,29 +618,30 @@ static void
 gtk_source_buffer_dispose (GObject *object)
 {
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (object);
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 	GList *l;
 
-	if (buffer->priv->bracket_highlighting_timeout_id != 0)
+	if (priv->bracket_highlighting_timeout_id != 0)
 	{
-		g_source_remove (buffer->priv->bracket_highlighting_timeout_id);
-		buffer->priv->bracket_highlighting_timeout_id = 0;
+		g_source_remove (priv->bracket_highlighting_timeout_id);
+		priv->bracket_highlighting_timeout_id = 0;
 	}
 
-	if (buffer->priv->undo_manager != NULL)
+	if (priv->undo_manager != NULL)
 	{
 		set_undo_manager (buffer, NULL);
 	}
 
-	if (buffer->priv->highlight_engine != NULL)
+	if (priv->highlight_engine != NULL)
 	{
-		_gtk_source_engine_attach_buffer (buffer->priv->highlight_engine, NULL);
+		_gtk_source_engine_attach_buffer (priv->highlight_engine, NULL);
 	}
 
-	g_clear_object (&buffer->priv->highlight_engine);
-	g_clear_object (&buffer->priv->language);
-	g_clear_object (&buffer->priv->style_scheme);
+	g_clear_object (&priv->highlight_engine);
+	g_clear_object (&priv->language);
+	g_clear_object (&priv->style_scheme);
 
-	for (l = buffer->priv->search_contexts; l != NULL; l = l->next)
+	for (l = priv->search_contexts; l != NULL; l = l->next)
 	{
 		GtkSourceSearchContext *search_context = l->data;
 
@@ -644,15 +650,15 @@ gtk_source_buffer_dispose (GObject *object)
 				     buffer);
 	}
 
-	g_list_free (buffer->priv->search_contexts);
-	buffer->priv->search_contexts = NULL;
+	g_list_free (priv->search_contexts);
+	priv->search_contexts = NULL;
 
-	g_clear_object (&buffer->priv->all_source_marks);
+	g_clear_object (&priv->all_source_marks);
 
-	if (buffer->priv->source_marks != NULL)
+	if (priv->source_marks != NULL)
 	{
-		g_hash_table_unref (buffer->priv->source_marks);
-		buffer->priv->source_marks = NULL;
+		g_hash_table_unref (priv->source_marks);
+		priv->source_marks = NULL;
 	}
 
 	G_OBJECT_CLASS (gtk_source_buffer_parent_class)->dispose (object);
@@ -712,32 +718,29 @@ gtk_source_buffer_get_property (GObject    *object,
 				GValue     *value,
 				GParamSpec *pspec)
 {
-	GtkSourceBuffer *buffer;
-
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (object));
-
-	buffer = GTK_SOURCE_BUFFER (object);
+	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (object);
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
 	switch (prop_id)
 	{
 		case PROP_HIGHLIGHT_SYNTAX:
-			g_value_set_boolean (value, buffer->priv->highlight_syntax);
+			g_value_set_boolean (value, priv->highlight_syntax);
 			break;
 
 		case PROP_HIGHLIGHT_MATCHING_BRACKETS:
-			g_value_set_boolean (value, buffer->priv->highlight_brackets);
+			g_value_set_boolean (value, priv->highlight_brackets);
 			break;
 
 		case PROP_MAX_UNDO_LEVELS:
-			g_value_set_int (value, buffer->priv->max_undo_levels);
+			g_value_set_int (value, priv->max_undo_levels);
 			break;
 
 		case PROP_LANGUAGE:
-			g_value_set_object (value, buffer->priv->language);
+			g_value_set_object (value, priv->language);
 			break;
 
 		case PROP_STYLE_SCHEME:
-			g_value_set_object (value, buffer->priv->style_scheme);
+			g_value_set_object (value, priv->style_scheme);
 			break;
 
 		case PROP_CAN_UNDO:
@@ -749,11 +752,11 @@ gtk_source_buffer_get_property (GObject    *object,
 			break;
 
 		case PROP_UNDO_MANAGER:
-			g_value_set_object (value, buffer->priv->undo_manager);
+			g_value_set_object (value, priv->undo_manager);
 			break;
 
 		case PROP_IMPLICIT_TRAILING_NEWLINE:
-			g_value_set_boolean (value, buffer->priv->implicit_trailing_newline);
+			g_value_set_boolean (value, priv->implicit_trailing_newline);
 			break;
 
 		default:
@@ -821,34 +824,37 @@ gtk_source_buffer_can_redo_handler (GtkSourceUndoManager *manager,
 static void
 update_bracket_match_style (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 	GtkSourceStyle *style = NULL;
 
-	if (buffer->priv->bracket_match_tag == NULL)
+	if (priv->bracket_match_tag == NULL)
 	{
 		return;
 	}
 
-	if (buffer->priv->style_scheme != NULL)
+	if (priv->style_scheme != NULL)
 	{
-		style = _gtk_source_style_scheme_get_matching_brackets_style (buffer->priv->style_scheme);
+		style = _gtk_source_style_scheme_get_matching_brackets_style (priv->style_scheme);
 	}
 
-	gtk_source_style_apply (style, buffer->priv->bracket_match_tag);
+	gtk_source_style_apply (style, priv->bracket_match_tag);
 }
 
 static GtkTextTag *
 get_bracket_match_tag (GtkSourceBuffer *buffer)
 {
-	if (buffer->priv->bracket_match_tag == NULL)
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	if (priv->bracket_match_tag == NULL)
 	{
-		buffer->priv->bracket_match_tag =
+		priv->bracket_match_tag =
 			gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (buffer),
 						    NULL,
 						    NULL);
 		update_bracket_match_style (buffer);
 	}
 
-	return buffer->priv->bracket_match_tag;
+	return priv->bracket_match_tag;
 }
 
 /* This is private, just used by the print compositor to not print bracket
@@ -858,7 +864,9 @@ get_bracket_match_tag (GtkSourceBuffer *buffer)
 GtkTextTag *
 _gtk_source_buffer_get_bracket_match_tag (GtkSourceBuffer *buffer)
 {
-	return buffer->priv->bracket_match_tag;
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	return priv->bracket_match_tag;
 }
 
 static gunichar
@@ -1005,15 +1013,14 @@ remove_tag_with_minimal_damage (GtkTextBuffer     *buffer,
 static void
 update_bracket_highlighting (GtkSourceBuffer *source_buffer)
 {
-	GtkTextBuffer *buffer;
+	GtkTextBuffer *buffer = GTK_TEXT_BUFFER (source_buffer);
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (source_buffer);
 	GtkTextIter insert_iter;
 	GtkTextIter bracket;
 	GtkTextIter bracket_match;
 	GtkSourceBracketMatchType previous_state;
 
-	buffer = GTK_TEXT_BUFFER (source_buffer);
-
-	if (source_buffer->priv->bracket_match_tag != NULL)
+	if (priv->bracket_match_tag != NULL)
 	{
 		GtkTextIter start;
 		GtkTextIter end;
@@ -1021,20 +1028,20 @@ update_bracket_highlighting (GtkSourceBuffer *source_buffer)
 		gtk_text_buffer_get_bounds (buffer, &start, &end);
 
 		remove_tag_with_minimal_damage (GTK_TEXT_BUFFER (source_buffer),
-		                                source_buffer->priv->bracket_match_tag,
+		                                priv->bracket_match_tag,
 		                                &start,
 		                                &end);
 	}
 
-	if (!source_buffer->priv->highlight_brackets)
+	if (!priv->highlight_brackets)
 	{
-		if (source_buffer->priv->bracket_match_tag != NULL)
+		if (priv->bracket_match_tag != NULL)
 		{
 			GtkTextTagTable *table;
 
 			table = gtk_text_buffer_get_tag_table (buffer);
-			gtk_text_tag_table_remove (table, source_buffer->priv->bracket_match_tag);
-			source_buffer->priv->bracket_match_tag = NULL;
+			gtk_text_tag_table_remove (table, priv->bracket_match_tag);
+			priv->bracket_match_tag = NULL;
 		}
 
 		return;
@@ -1044,14 +1051,14 @@ update_bracket_highlighting (GtkSourceBuffer *source_buffer)
 					  &insert_iter,
 					  gtk_text_buffer_get_insert (buffer));
 
-	previous_state = source_buffer->priv->bracket_match_state;
-	source_buffer->priv->bracket_match_state =
+	previous_state = priv->bracket_match_state;
+	priv->bracket_match_state =
 		_gtk_source_buffer_find_bracket_match (source_buffer,
 						       &insert_iter,
 						       &bracket,
 						       &bracket_match);
 
-	if (source_buffer->priv->bracket_match_state == GTK_SOURCE_BRACKET_MATCH_FOUND)
+	if (priv->bracket_match_state == GTK_SOURCE_BRACKET_MATCH_FOUND)
 	{
 		GtkTextIter next_iter;
 
@@ -1081,13 +1088,13 @@ update_bracket_highlighting (GtkSourceBuffer *source_buffer)
 	 * positions are nonbrackets.
 	 */
 	if (previous_state != GTK_SOURCE_BRACKET_MATCH_NONE ||
-	    source_buffer->priv->bracket_match_state != GTK_SOURCE_BRACKET_MATCH_NONE)
+	    priv->bracket_match_state != GTK_SOURCE_BRACKET_MATCH_NONE)
 	{
 		g_signal_emit (source_buffer,
 			       buffer_signals[BRACKET_MATCHED],
 			       0,
 			       NULL,
-			       source_buffer->priv->bracket_match_state);
+			       priv->bracket_match_state);
 	}
 }
 
@@ -1095,19 +1102,22 @@ static gboolean
 bracket_highlighting_timeout_cb (gpointer user_data)
 {
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (user_data);
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
 	update_bracket_highlighting (buffer);
 
-	buffer->priv->bracket_highlighting_timeout_id = 0;
+	priv->bracket_highlighting_timeout_id = 0;
 	return G_SOURCE_REMOVE;
 }
 
 static void
 queue_bracket_highlighting_update (GtkSourceBuffer *buffer)
 {
-	if (buffer->priv->bracket_highlighting_timeout_id != 0)
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	if (priv->bracket_highlighting_timeout_id != 0)
 	{
-		g_source_remove (buffer->priv->bracket_highlighting_timeout_id);
+		g_source_remove (priv->bracket_highlighting_timeout_id);
 	}
 
 	/* Queue an update to the bracket location instead of doing it
@@ -1127,7 +1137,7 @@ queue_bracket_highlighting_update (GtkSourceBuffer *buffer)
 	 * If we had access to a GdkFrameClock, we might consider using
 	 * ::update() or ::after-paint() to synchronize this.
 	 */
-	buffer->priv->bracket_highlighting_timeout_id =
+	priv->bracket_highlighting_timeout_id =
 		gdk_threads_add_timeout_full (G_PRIORITY_LOW,
 					      UPDATE_BRACKET_DELAY,
 					      bracket_highlighting_timeout_cb,
@@ -1159,12 +1169,13 @@ gtk_source_buffer_content_inserted (GtkTextBuffer *buffer,
 				    gint           end_offset)
 {
 	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (source_buffer);
 
 	cursor_moved (source_buffer);
 
-	if (source_buffer->priv->highlight_engine != NULL)
+	if (priv->highlight_engine != NULL)
 	{
-		_gtk_source_engine_text_inserted (source_buffer->priv->highlight_engine,
+		_gtk_source_engine_text_inserted (priv->highlight_engine,
 						  start_offset,
 						  end_offset);
 	}
@@ -1257,6 +1268,7 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 {
 	gint offset, length;
 	GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (source_buffer);
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (start != NULL);
@@ -1273,9 +1285,9 @@ gtk_source_buffer_real_delete_range (GtkTextBuffer *buffer,
 	cursor_moved (source_buffer);
 
 	/* emit text deleted for engines */
-	if (source_buffer->priv->highlight_engine != NULL)
+	if (priv->highlight_engine != NULL)
 	{
-		_gtk_source_engine_text_deleted (source_buffer->priv->highlight_engine,
+		_gtk_source_engine_text_deleted (priv->highlight_engine,
 						 offset, length);
 	}
 }
@@ -1482,9 +1494,11 @@ _gtk_source_buffer_find_bracket_match (GtkSourceBuffer   *buffer,
 gboolean
 gtk_source_buffer_can_undo (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return gtk_source_undo_manager_can_undo (buffer->priv->undo_manager);
+	return gtk_source_undo_manager_can_undo (priv->undo_manager);
 }
 
 /**
@@ -1499,9 +1513,11 @@ gtk_source_buffer_can_undo (GtkSourceBuffer *buffer)
 gboolean
 gtk_source_buffer_can_redo (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return gtk_source_undo_manager_can_redo (buffer->priv->undo_manager);
+	return gtk_source_undo_manager_can_redo (priv->undo_manager);
 }
 
 /**
@@ -1550,9 +1566,11 @@ gtk_source_buffer_redo (GtkSourceBuffer *buffer)
 gint
 gtk_source_buffer_get_max_undo_levels (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), 0);
 
-	return buffer->priv->max_undo_levels;
+	return priv->max_undo_levels;
 }
 
 /**
@@ -1572,18 +1590,20 @@ void
 gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 				       gint             max_undo_levels)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	if (buffer->priv->max_undo_levels == max_undo_levels)
+	if (priv->max_undo_levels == max_undo_levels)
 	{
 		return;
 	}
 
-	buffer->priv->max_undo_levels = max_undo_levels;
+	priv->max_undo_levels = max_undo_levels;
 
-	if (GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (buffer->priv->undo_manager))
+	if (GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (priv->undo_manager))
 	{
-		gtk_source_undo_manager_default_set_max_undo_levels (GTK_SOURCE_UNDO_MANAGER_DEFAULT (buffer->priv->undo_manager),
+		gtk_source_undo_manager_default_set_max_undo_levels (GTK_SOURCE_UNDO_MANAGER_DEFAULT (priv->undo_manager),
 		                                                     max_undo_levels);
 	}
 
@@ -1593,20 +1613,22 @@ gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
 gboolean
 _gtk_source_buffer_is_undo_redo_enabled (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	if (buffer->priv->undo_manager == NULL)
+	if (priv->undo_manager == NULL)
 	{
 		return FALSE;
 	}
 
 	/* A custom UndoManager is not forced to follow max_undo_levels. */
-	if (!GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (buffer->priv->undo_manager))
+	if (!GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (priv->undo_manager))
 	{
 		return TRUE;
 	}
 
-	return buffer->priv->max_undo_levels != 0;
+	return priv->max_undo_levels != 0;
 }
 
 /**
@@ -1624,9 +1646,11 @@ _gtk_source_buffer_is_undo_redo_enabled (GtkSourceBuffer *buffer)
 void
 gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	gtk_source_undo_manager_begin_not_undoable_action (buffer->priv->undo_manager);
+	gtk_source_undo_manager_begin_not_undoable_action (priv->undo_manager);
 }
 
 /**
@@ -1641,9 +1665,11 @@ gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer *buffer)
 void
 gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	gtk_source_undo_manager_end_not_undoable_action (buffer->priv->undo_manager);
+	gtk_source_undo_manager_end_not_undoable_action (priv->undo_manager);
 }
 
 /**
@@ -1659,9 +1685,11 @@ gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
 gboolean
 gtk_source_buffer_get_highlight_matching_brackets (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return buffer->priv->highlight_brackets;
+	return priv->highlight_brackets;
 }
 
 /**
@@ -1678,13 +1706,15 @@ void
 gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 						   gboolean         highlight)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	highlight = highlight != FALSE;
 
-	if (highlight != buffer->priv->highlight_brackets)
+	if (highlight != priv->highlight_brackets)
 	{
-		buffer->priv->highlight_brackets = highlight;
+		priv->highlight_brackets = highlight;
 
 		update_bracket_highlighting (buffer);
 
@@ -1704,9 +1734,11 @@ gtk_source_buffer_set_highlight_matching_brackets (GtkSourceBuffer *buffer,
 gboolean
 gtk_source_buffer_get_highlight_syntax (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	return buffer->priv->highlight_syntax;
+	return priv->highlight_syntax;
 }
 
 /**
@@ -1728,13 +1760,15 @@ void
 gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
 					gboolean         highlight)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	highlight = highlight != FALSE;
 
-	if (buffer->priv->highlight_syntax != highlight)
+	if (priv->highlight_syntax != highlight)
 	{
-		buffer->priv->highlight_syntax = highlight;
+		priv->highlight_syntax = highlight;
 		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_HIGHLIGHT_SYNTAX]);
 	}
 }
@@ -1756,36 +1790,38 @@ void
 gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 				GtkSourceLanguage *language)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (GTK_SOURCE_IS_LANGUAGE (language) || language == NULL);
 
-	if (!g_set_object (&buffer->priv->language, language))
+	if (!g_set_object (&priv->language, language))
 	{
 		return;
 	}
 
-	if (buffer->priv->highlight_engine != NULL)
+	if (priv->highlight_engine != NULL)
 	{
 		/* disconnect the old engine */
-		_gtk_source_engine_attach_buffer (buffer->priv->highlight_engine, NULL);
-		g_object_unref (buffer->priv->highlight_engine);
-		buffer->priv->highlight_engine = NULL;
+		_gtk_source_engine_attach_buffer (priv->highlight_engine, NULL);
+		g_object_unref (priv->highlight_engine);
+		priv->highlight_engine = NULL;
 	}
 
 	if (language != NULL)
 	{
 		/* get a new engine */
-		buffer->priv->highlight_engine = _gtk_source_language_create_engine (language);
+		priv->highlight_engine = _gtk_source_language_create_engine (language);
 
-		if (buffer->priv->highlight_engine != NULL)
+		if (priv->highlight_engine != NULL)
 		{
-			_gtk_source_engine_attach_buffer (buffer->priv->highlight_engine,
+			_gtk_source_engine_attach_buffer (priv->highlight_engine,
 							  GTK_TEXT_BUFFER (buffer));
 
-			if (buffer->priv->style_scheme != NULL)
+			if (priv->style_scheme != NULL)
 			{
-				_gtk_source_engine_set_style_scheme (buffer->priv->highlight_engine,
-								     buffer->priv->style_scheme);
+				_gtk_source_engine_set_style_scheme (priv->highlight_engine,
+								     priv->style_scheme);
 			}
 		}
 	}
@@ -1807,9 +1843,11 @@ gtk_source_buffer_set_language (GtkSourceBuffer   *buffer,
 GtkSourceLanguage *
 gtk_source_buffer_get_language (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
-	return buffer->priv->language;
+	return priv->language;
 }
 
 /*
@@ -1827,11 +1865,13 @@ _gtk_source_buffer_update_syntax_highlight (GtkSourceBuffer   *buffer,
 					    const GtkTextIter *end,
 					    gboolean           synchronous)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	if (buffer->priv->highlight_engine != NULL)
+	if (priv->highlight_engine != NULL)
 	{
-		_gtk_source_engine_update_highlight (buffer->priv->highlight_engine,
+		_gtk_source_engine_update_highlight (priv->highlight_engine,
 						     start,
 						     end,
 						     synchronous);
@@ -1844,11 +1884,12 @@ _gtk_source_buffer_update_search_highlight (GtkSourceBuffer   *buffer,
 					    const GtkTextIter *end,
 					    gboolean           synchronous)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 	GList *l;
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	for (l = buffer->priv->search_contexts; l != NULL; l = l->next)
+	for (l = priv->search_contexts; l != NULL; l = l->next)
 	{
 		GtkSourceSearchContext *search_context = l->data;
 
@@ -1907,16 +1948,18 @@ void
 gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
 				    GtkSourceStyleScheme *scheme)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme) || scheme == NULL);
 
-	if (g_set_object (&buffer->priv->style_scheme, scheme))
+	if (g_set_object (&priv->style_scheme, scheme))
 	{
 		update_bracket_match_style (buffer);
 
-		if (buffer->priv->highlight_engine != NULL)
+		if (priv->highlight_engine != NULL)
 		{
-			_gtk_source_engine_set_style_scheme (buffer->priv->highlight_engine, scheme);
+			_gtk_source_engine_set_style_scheme (priv->highlight_engine, scheme);
 		}
 
 		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_STYLE_SCHEME]);
@@ -1937,29 +1980,32 @@ gtk_source_buffer_set_style_scheme (GtkSourceBuffer      *buffer,
 GtkSourceStyleScheme *
 gtk_source_buffer_get_style_scheme (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
-	return buffer->priv->style_scheme;
+	return priv->style_scheme;
 }
 
 static void
 add_source_mark (GtkSourceBuffer *buffer,
 		 GtkSourceMark   *mark)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 	const gchar *category;
 	GtkSourceMarksSequence *seq;
 
-	_gtk_source_marks_sequence_add (buffer->priv->all_source_marks,
+	_gtk_source_marks_sequence_add (priv->all_source_marks,
 					GTK_TEXT_MARK (mark));
 
 	category = gtk_source_mark_get_category (mark);
-	seq = g_hash_table_lookup (buffer->priv->source_marks, category);
+	seq = g_hash_table_lookup (priv->source_marks, category);
 
 	if (seq == NULL)
 	{
 		seq = _gtk_source_marks_sequence_new (GTK_TEXT_BUFFER (buffer));
 
-		g_hash_table_insert (buffer->priv->source_marks,
+		g_hash_table_insert (priv->source_marks,
 				     g_strdup (category),
 				     seq);
 	}
@@ -1994,15 +2040,16 @@ gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
 	if (GTK_SOURCE_IS_MARK (mark))
 	{
 		GtkSourceBuffer *source_buffer = GTK_SOURCE_BUFFER (buffer);
+		GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (source_buffer);
 		const gchar *category;
 		GtkSourceMarksSequence *seq;
 
 		category = gtk_source_mark_get_category (GTK_SOURCE_MARK (mark));
-		seq = g_hash_table_lookup (source_buffer->priv->source_marks, category);
+		seq = g_hash_table_lookup (priv->source_marks, category);
 
 		if (_gtk_source_marks_sequence_is_empty (seq))
 		{
-			g_hash_table_remove (source_buffer->priv->source_marks, category);
+			g_hash_table_remove (priv->source_marks, category);
 		}
 
 		g_signal_emit (buffer, buffer_signals[SOURCE_MARK_UPDATED], 0, mark);
@@ -2017,17 +2064,21 @@ gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
 static void
 gtk_source_buffer_real_undo (GtkSourceBuffer *buffer)
 {
-	g_return_if_fail (gtk_source_undo_manager_can_undo (buffer->priv->undo_manager));
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
-	gtk_source_undo_manager_undo (buffer->priv->undo_manager);
+	g_return_if_fail (gtk_source_undo_manager_can_undo (priv->undo_manager));
+
+	gtk_source_undo_manager_undo (priv->undo_manager);
 }
 
 static void
 gtk_source_buffer_real_redo (GtkSourceBuffer *buffer)
 {
-	g_return_if_fail (gtk_source_undo_manager_can_redo (buffer->priv->undo_manager));
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
-	gtk_source_undo_manager_redo (buffer->priv->undo_manager);
+	g_return_if_fail (gtk_source_undo_manager_can_redo (priv->undo_manager));
+
+	gtk_source_undo_manager_redo (priv->undo_manager);
 }
 
 /**
@@ -2085,9 +2136,11 @@ static GtkSourceMarksSequence *
 get_marks_sequence (GtkSourceBuffer *buffer,
 		    const gchar     *category)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	return category == NULL ?
-		buffer->priv->all_source_marks :
-		g_hash_table_lookup (buffer->priv->source_marks, category);
+		priv->all_source_marks :
+		g_hash_table_lookup (priv->source_marks, category);
 }
 
 GtkSourceMark *
@@ -2517,6 +2570,7 @@ gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer
 void
 _gtk_source_buffer_save_and_clear_selection (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 	GtkTextBuffer *buf;
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
@@ -2532,13 +2586,13 @@ _gtk_source_buffer_save_and_clear_selection (GtkSourceBuffer *buffer)
 		GtkTextIter insert_iter;
 		GtkTextIter selection_bound_iter;
 
-		g_assert (buffer->priv->tmp_insert_mark == NULL);
-		g_assert (buffer->priv->tmp_selection_bound_mark == NULL);
+		g_assert (priv->tmp_insert_mark == NULL);
+		g_assert (priv->tmp_selection_bound_mark == NULL);
 
 		gtk_text_buffer_get_iter_at_mark (buf, &insert_iter, gtk_text_buffer_get_insert (buf));
 		gtk_text_buffer_get_iter_at_mark (buf, &selection_bound_iter, gtk_text_buffer_get_selection_bound (buf));
-		buffer->priv->tmp_insert_mark = gtk_text_buffer_create_mark (buf, NULL, &insert_iter, FALSE);
-		buffer->priv->tmp_selection_bound_mark = gtk_text_buffer_create_mark (buf, NULL, &selection_bound_iter, FALSE);
+		priv->tmp_insert_mark = gtk_text_buffer_create_mark (buf, NULL, &insert_iter, FALSE);
+		priv->tmp_selection_bound_mark = gtk_text_buffer_create_mark (buf, NULL, &selection_bound_iter, FALSE);
 
 		gtk_text_buffer_place_cursor (buf, &insert_iter);
 	}
@@ -2547,10 +2601,12 @@ _gtk_source_buffer_save_and_clear_selection (GtkSourceBuffer *buffer)
 void
 _gtk_source_buffer_restore_selection (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	if (buffer->priv->tmp_insert_mark != NULL &&
-	    buffer->priv->tmp_selection_bound_mark != NULL)
+	if (priv->tmp_insert_mark != NULL &&
+	    priv->tmp_selection_bound_mark != NULL)
 	{
 		GtkTextBuffer *buf;
 		GtkTextIter insert_iter;
@@ -2558,15 +2614,15 @@ _gtk_source_buffer_restore_selection (GtkSourceBuffer *buffer)
 
 		buf = GTK_TEXT_BUFFER (buffer);
 
-		gtk_text_buffer_get_iter_at_mark (buf, &insert_iter, buffer->priv->tmp_insert_mark);
-		gtk_text_buffer_get_iter_at_mark (buf, &selection_bound_iter, buffer->priv->tmp_selection_bound_mark);
+		gtk_text_buffer_get_iter_at_mark (buf, &insert_iter, priv->tmp_insert_mark);
+		gtk_text_buffer_get_iter_at_mark (buf, &selection_bound_iter, priv->tmp_selection_bound_mark);
 
 		gtk_text_buffer_select_range (buf, &insert_iter, &selection_bound_iter);
 
-		gtk_text_buffer_delete_mark (buf, buffer->priv->tmp_insert_mark);
-		gtk_text_buffer_delete_mark (buf, buffer->priv->tmp_selection_bound_mark);
-		buffer->priv->tmp_insert_mark = NULL;
-		buffer->priv->tmp_selection_bound_mark = NULL;
+		gtk_text_buffer_delete_mark (buf, priv->tmp_insert_mark);
+		gtk_text_buffer_delete_mark (buf, priv->tmp_selection_bound_mark);
+		priv->tmp_insert_mark = NULL;
+		priv->tmp_selection_bound_mark = NULL;
 	}
 }
 
@@ -3083,6 +3139,8 @@ void
 gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
                                     GtkSourceUndoManager *manager)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (manager == NULL || GTK_SOURCE_IS_UNDO_MANAGER (manager));
 
@@ -3090,7 +3148,7 @@ gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
 	{
 		manager = g_object_new (GTK_SOURCE_TYPE_UNDO_MANAGER_DEFAULT,
 		                        "buffer", buffer,
-		                        "max-undo-levels", buffer->priv->max_undo_levels,
+		                        "max-undo-levels", priv->max_undo_levels,
 		                        NULL);
 	}
 	else
@@ -3118,25 +3176,29 @@ gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
 GtkSourceUndoManager *
 gtk_source_buffer_get_undo_manager (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 
-	return buffer->priv->undo_manager;
+	return priv->undo_manager;
 }
 
 void
 _gtk_source_buffer_add_search_context (GtkSourceBuffer        *buffer,
 				       GtkSourceSearchContext *search_context)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search_context));
 	g_return_if_fail (gtk_source_search_context_get_buffer (search_context) == buffer);
 
-	if (g_list_find (buffer->priv->search_contexts, search_context) != NULL)
+	if (g_list_find (priv->search_contexts, search_context) != NULL)
 	{
 		return;
 	}
 
-	buffer->priv->search_contexts = g_list_prepend (buffer->priv->search_contexts,
+	priv->search_contexts = g_list_prepend (priv->search_contexts,
 							search_context);
 
 	g_object_weak_ref (G_OBJECT (search_context),
@@ -3149,14 +3211,15 @@ sync_invalid_char_tag (GtkSourceBuffer *buffer,
 		       GParamSpec      *pspec,
 		       gpointer         data)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 	GtkSourceStyle *style = NULL;
 
-	if (buffer->priv->style_scheme != NULL)
+	if (priv->style_scheme != NULL)
 	{
-		style = gtk_source_style_scheme_get_style (buffer->priv->style_scheme, "def:error");
+		style = gtk_source_style_scheme_get_style (priv->style_scheme, "def:error");
 	}
 
-	gtk_source_style_apply (style, buffer->priv->invalid_char_tag);
+	gtk_source_style_apply (style, priv->invalid_char_tag);
 }
 
 static void
@@ -3176,9 +3239,11 @@ _gtk_source_buffer_set_as_invalid_character (GtkSourceBuffer   *buffer,
 					     const GtkTextIter *start,
 					     const GtkTextIter *end)
 {
-	if (buffer->priv->invalid_char_tag == NULL)
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	if (priv->invalid_char_tag == NULL)
 	{
-		buffer->priv->invalid_char_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (buffer),
+		priv->invalid_char_tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (buffer),
 									     "invalid-char-style",
 									     NULL);
 
@@ -3193,11 +3258,11 @@ _gtk_source_buffer_set_as_invalid_character (GtkSourceBuffer   *buffer,
 	/* Make sure the 'error' tag has the priority over
 	 * syntax highlighting tags.
 	 */
-	text_tag_set_highest_priority (buffer->priv->invalid_char_tag,
+	text_tag_set_highest_priority (priv->invalid_char_tag,
 	                               GTK_TEXT_BUFFER (buffer));
 
 	gtk_text_buffer_apply_tag (GTK_TEXT_BUFFER (buffer),
-	                           buffer->priv->invalid_char_tag,
+	                           priv->invalid_char_tag,
 	                           start,
 	                           end);
 }
@@ -3205,19 +3270,20 @@ _gtk_source_buffer_set_as_invalid_character (GtkSourceBuffer   *buffer,
 gboolean
 _gtk_source_buffer_has_invalid_chars (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 	GtkTextIter start;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
-	if (buffer->priv->invalid_char_tag == NULL)
+	if (priv->invalid_char_tag == NULL)
 	{
 		return FALSE;
 	}
 
 	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &start);
 
-	if (gtk_text_iter_starts_tag (&start, buffer->priv->invalid_char_tag) ||
-	    gtk_text_iter_forward_to_tag_toggle (&start, buffer->priv->invalid_char_tag))
+	if (gtk_text_iter_starts_tag (&start, priv->invalid_char_tag) ||
+	    gtk_text_iter_forward_to_tag_toggle (&start, priv->invalid_char_tag))
 	{
 		return TRUE;
 	}
@@ -3252,13 +3318,15 @@ void
 gtk_source_buffer_set_implicit_trailing_newline (GtkSourceBuffer *buffer,
 						 gboolean         implicit_trailing_newline)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
 	implicit_trailing_newline = implicit_trailing_newline != FALSE;
 
-	if (buffer->priv->implicit_trailing_newline != implicit_trailing_newline)
+	if (priv->implicit_trailing_newline != implicit_trailing_newline)
 	{
-		buffer->priv->implicit_trailing_newline = implicit_trailing_newline;
+		priv->implicit_trailing_newline = implicit_trailing_newline;
 		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_IMPLICIT_TRAILING_NEWLINE]);
 	}
 }
@@ -3273,9 +3341,11 @@ gtk_source_buffer_set_implicit_trailing_newline (GtkSourceBuffer *buffer,
 gboolean
 gtk_source_buffer_get_implicit_trailing_newline (GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), TRUE);
 
-	return buffer->priv->implicit_trailing_newline;
+	return priv->implicit_trailing_newline;
 }
 
 /**
