@@ -23,7 +23,7 @@
 #endif
 
 #include <glib.h>
-#include <gtksourceview/gtksourcetypes.h>
+#include <gtksourceview/gtk-source-types.h>
 
 G_BEGIN_DECLS
 

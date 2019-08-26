@@ -22,9 +22,9 @@
 #define GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_H
 
 #include <glib-object.h>
-#include <gtksourceview/gtksourcecompletionproposal.h>
+#include <gtksourceview/gtk-source-completion-proposal.h>
 
-#include "gtksourceview/gtksourcetypes-private.h"
+#include "gtksourceview/gtk-source-types-private.h"
 
 G_BEGIN_DECLS
 

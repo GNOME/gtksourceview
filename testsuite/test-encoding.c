@@ -19,7 +19,7 @@
  */
 
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourceencoding-private.h"
+#include "gtksourceview/gtk-source-encoding-private.h"
 
 static void
 test_remove_duplicates (void)

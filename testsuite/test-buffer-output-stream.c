@@ -24,7 +24,7 @@
 #include <gtk/gtk.h>
 #include <string.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourcebufferoutputstream.h"
+#include "gtksourceview/gtk-source-buffer-output-stream.h"
 
 static void
 test_consecutive_write (const gchar          *inbuf,

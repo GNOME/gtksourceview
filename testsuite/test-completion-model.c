@@ -19,7 +19,7 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourcecompletionmodel.h"
+#include "gtksourceview/gtk-source-completion-model.h"
 
 /* Basic provider.
  * The populate function is not implemented. Proposals are created

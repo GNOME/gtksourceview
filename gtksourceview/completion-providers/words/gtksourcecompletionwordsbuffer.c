@@ -25,7 +25,7 @@
 
 #include "gtksourcecompletionwordsbuffer.h"
 #include "gtksourcecompletionwordsutils.h"
-#include "gtksourceview/gtksourceregion.h"
+#include "gtksourceview/gtk-source-region.h"
 
 /* Timeout in seconds */
 #define INITIATE_SCAN_TIMEOUT 5

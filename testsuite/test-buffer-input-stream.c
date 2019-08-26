@@ -22,7 +22,7 @@
 #include <gtk/gtk.h>
 #include <string.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourcebufferinputstream.h"
+#include "gtksourceview/gtk-source-buffer-input-stream.h"
 
 static void
 test_consecutive_read (const gchar          *inbuf,

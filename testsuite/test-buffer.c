@@ -22,7 +22,7 @@
 
 #include <stdlib.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourcebuffer-private.h"
+#include "gtksourceview/gtk-source-buffer-private.h"
 
 static const char *c_snippet =
 	"#include <foo.h>\n"

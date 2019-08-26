@@ -19,7 +19,7 @@
  */
 
 #include <gtksourceview/gtksource.h>
-#include <gtksourceview/gtksourceutils-private.h>
+#include <gtksourceview/gtk-source-utils-private.h>
 
 gint
 main (gint   argc,

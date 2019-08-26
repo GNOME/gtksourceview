@@ -18,7 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gtksourceview/gtksourceiter.h"
+#include "gtksourceview/gtk-source-iter.h"
 
 static void
 check_full_word_boundaries (gboolean     forward,
