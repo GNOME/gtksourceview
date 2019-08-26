@@ -68,8 +68,10 @@
 #include "gtk-source-completion-provider.h"
 #include "gtk-source-completion.h"
 
-struct _GtkSourceCompletionContextPrivate
+struct _GtkSourceCompletionContext
 {
+  GInitiallyUnowned parent_instance;
+
 	GtkSourceCompletion *completion;
 
 	GtkTextMark *mark;
@@ -92,27 +94,27 @@ enum
 
 static guint context_signals[N_SIGNALS];
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionContext, gtk_source_completion_context, G_TYPE_INITIALLY_UNOWNED)
+G_DEFINE_TYPE (GtkSourceCompletionContext, gtk_source_completion_context, G_TYPE_INITIALLY_UNOWNED)
 
 static void
 gtk_source_completion_context_dispose (GObject *object)
 {
 	GtkSourceCompletionContext *context = GTK_SOURCE_COMPLETION_CONTEXT (object);
 
-	if (context->priv->mark != NULL)
+	if (context->mark != NULL)
 	{
-		GtkTextBuffer *buffer = gtk_text_mark_get_buffer (context->priv->mark);
+		GtkTextBuffer *buffer = gtk_text_mark_get_buffer (context->mark);
 
 		if (buffer != NULL)
 		{
-			gtk_text_buffer_delete_mark (buffer, context->priv->mark);
+			gtk_text_buffer_delete_mark (buffer, context->mark);
 		}
 
-		g_object_unref (context->priv->mark);
-		context->priv->mark = NULL;
+		g_object_unref (context->mark);
+		context->mark = NULL;
 	}
 
-	g_clear_object (&context->priv->completion);
+	g_clear_object (&context->completion);
 
 	G_OBJECT_CLASS (gtk_source_completion_context_parent_class)->dispose (object);
 }
@@ -125,27 +127,27 @@ set_iter (GtkSourceCompletionContext *context,
 
 	buffer = gtk_text_iter_get_buffer (iter);
 
-	if (context->priv->mark != NULL)
+	if (context->mark != NULL)
 	{
 		GtkTextBuffer *old_buffer;
 
-		old_buffer = gtk_text_mark_get_buffer (context->priv->mark);
+		old_buffer = gtk_text_mark_get_buffer (context->mark);
 
 		if (old_buffer != buffer)
 		{
-			g_object_unref (context->priv->mark);
-			context->priv->mark = NULL;
+			g_object_unref (context->mark);
+			context->mark = NULL;
 		}
 	}
 
-	if (context->priv->mark == NULL)
+	if (context->mark == NULL)
 	{
-		context->priv->mark = gtk_text_buffer_create_mark (buffer, NULL, iter, FALSE);
-		g_object_ref (context->priv->mark);
+		context->mark = gtk_text_buffer_create_mark (buffer, NULL, iter, FALSE);
+		g_object_ref (context->mark);
 	}
 	else
 	{
-		gtk_text_buffer_move_mark (buffer, context->priv->mark, iter);
+		gtk_text_buffer_move_mark (buffer, context->mark, iter);
 	}
 
 	g_object_notify (G_OBJECT (context), "iter");
@@ -162,7 +164,7 @@ gtk_source_completion_context_set_property (GObject      *object,
 	switch (prop_id)
 	{
 		case PROP_COMPLETION:
-			context->priv->completion = g_value_dup_object (value);
+			context->completion = g_value_dup_object (value);
 			break;
 
 		case PROP_ITER:
@@ -170,7 +172,7 @@ gtk_source_completion_context_set_property (GObject      *object,
 			break;
 
 		case PROP_ACTIVATION:
-			context->priv->activation = g_value_get_flags (value);
+			context->activation = g_value_get_flags (value);
 			break;
 
 		default:
@@ -189,7 +191,7 @@ gtk_source_completion_context_get_property (GObject    *object,
 	switch (prop_id)
 	{
 		case PROP_COMPLETION:
-			g_value_set_object (value, context->priv->completion);
+			g_value_set_object (value, context->completion);
 			break;
 
 		case PROP_ITER:
@@ -204,7 +206,7 @@ gtk_source_completion_context_get_property (GObject    *object,
 			break;
 
 		case PROP_ACTIVATION:
-			g_value_set_flags (value, context->priv->activation);
+			g_value_set_flags (value, context->activation);
 			break;
 
 		default:
@@ -229,16 +231,13 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	 * to know when to cancel running proposal queries.
 	 **/
 	context_signals[CANCELLED] =
-		g_signal_new ("cancelled",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-		              G_STRUCT_OFFSET (GtkSourceCompletionContextClass, cancelled),
-		              NULL, NULL,
-		              g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE, 0);
-	g_signal_set_va_marshaller (context_signals[CANCELLED],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            g_cclosure_marshal_VOID__VOIDv);
+		g_signal_new_class_handler ("cancelled",
+		                            G_TYPE_FROM_CLASS (klass),
+		                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+					    NULL,
+		                            NULL, NULL,
+		                            NULL,
+		                            G_TYPE_NONE, 0);
 
 	/**
 	 * GtkSourceCompletionContext:completion:
@@ -289,7 +288,7 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 static void
 gtk_source_completion_context_init (GtkSourceCompletionContext *context)
 {
-	context->priv = gtk_source_completion_context_get_instance_private (context);
+	context = gtk_source_completion_context_get_instance_private (context);
 }
 
 /**
@@ -315,7 +314,7 @@ gtk_source_completion_context_add_proposals (GtkSourceCompletionContext  *contex
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
 
-	_gtk_source_completion_add_proposals (context->priv->completion,
+	_gtk_source_completion_add_proposals (context->completion,
 	                                      context,
 	                                      provider,
 	                                      proposals,
@@ -342,7 +341,7 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
 
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context), FALSE);
 
-	if (context->priv->mark == NULL)
+	if (context->mark == NULL)
 	{
 		/* This should never happen: context should be always be created
 		   providing a position iter */
@@ -350,14 +349,14 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
 		return FALSE;
 	}
 
-	mark_buffer = gtk_text_mark_get_buffer (context->priv->mark);
+	mark_buffer = gtk_text_mark_get_buffer (context->mark);
 
 	if (mark_buffer == NULL)
 	{
 		return FALSE;
 	}
 
-	view = gtk_source_completion_get_view (context->priv->completion);
+	view = gtk_source_completion_get_view (context->completion);
 	if (view == NULL)
 	{
 		return FALSE;
@@ -370,7 +369,7 @@ gtk_source_completion_context_get_iter (GtkSourceCompletionContext *context,
 		return FALSE;
 	}
 
-	gtk_text_buffer_get_iter_at_mark (mark_buffer, iter, context->priv->mark);
+	gtk_text_buffer_get_iter_at_mark (mark_buffer, iter, context->mark);
 	return TRUE;
 }
 
@@ -388,7 +387,7 @@ gtk_source_completion_context_get_activation (GtkSourceCompletionContext *contex
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context),
 			      GTK_SOURCE_COMPLETION_ACTIVATION_NONE);
 
-	return context->priv->activation;
+	return context->activation;
 }
 
 void
