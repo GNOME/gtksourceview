@@ -29,7 +29,6 @@ G_BEGIN_DECLS
 
 #ifndef __GI_SCANNER__
 
-G_DEFINE_AUTOPTR_CLEANUP_FUNC(GtkSourceCompletion, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(GtkSourceCompletionContext, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(GtkSourceCompletionInfo, g_object_unref)
 G_DEFINE_AUTOPTR_CLEANUP_FUNC(GtkSourceCompletionItem, g_object_unref)

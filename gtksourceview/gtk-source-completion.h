@@ -31,15 +31,10 @@
 
 G_BEGIN_DECLS
 
-/*
- * Type checking and casting macros
- */
-#define GTK_SOURCE_TYPE_COMPLETION              (gtk_source_completion_get_type())
-#define GTK_SOURCE_COMPLETION(obj)              (G_TYPE_CHECK_INSTANCE_CAST((obj), GTK_SOURCE_TYPE_COMPLETION, GtkSourceCompletion))
-#define GTK_SOURCE_COMPLETION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST((klass), GTK_SOURCE_TYPE_COMPLETION, GtkSourceCompletionClass))
-#define GTK_SOURCE_IS_COMPLETION(obj)           (G_TYPE_CHECK_INSTANCE_TYPE((obj), GTK_SOURCE_TYPE_COMPLETION))
-#define GTK_SOURCE_IS_COMPLETION_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_COMPLETION))
-#define GTK_SOURCE_COMPLETION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), GTK_SOURCE_TYPE_COMPLETION, GtkSourceCompletionClass))
+#define GTK_SOURCE_TYPE_COMPLETION (gtk_source_completion_get_type())
+
+GTK_SOURCE_AVAILABLE_IN_ALL
+G_DECLARE_FINAL_TYPE (GtkSourceCompletion, gtk_source_completion, GTK_SOURCE, COMPLETION, GObject)
 
 /**
  * GTK_SOURCE_COMPLETION_ERROR:
@@ -48,10 +43,7 @@ G_BEGIN_DECLS
  * #GtkSourceCompletionError enumeration. See #GError for more information on
  * error domains.
  */
-#define GTK_SOURCE_COMPLETION_ERROR		(gtk_source_completion_error_quark ())
-
-typedef struct _GtkSourceCompletionPrivate GtkSourceCompletionPrivate;
-typedef struct _GtkSourceCompletionClass GtkSourceCompletionClass;
+#define GTK_SOURCE_COMPLETION_ERROR (gtk_source_completion_error_quark ())
 
 /**
  * GtkSourceCompletionError:
@@ -68,40 +60,6 @@ typedef enum _GtkSourceCompletionError
 	GTK_SOURCE_COMPLETION_ERROR_ALREADY_BOUND = 0,
 	GTK_SOURCE_COMPLETION_ERROR_NOT_BOUND
 } GtkSourceCompletionError;
-
-struct _GtkSourceCompletion
-{
-	GObject parent_instance;
-
-	GtkSourceCompletionPrivate *priv;
-};
-
-struct _GtkSourceCompletionClass
-{
-	GObjectClass parent_class;
-
-	gboolean 	(* proposal_activated)		(GtkSourceCompletion         *completion,
-	                                                 GtkSourceCompletionProvider *provider,
-							 GtkSourceCompletionProposal *proposal);
-	void 		(* show)			(GtkSourceCompletion         *completion);
-	void		(* hide)			(GtkSourceCompletion         *completion);
-	void		(* populate_context)		(GtkSourceCompletion         *completion,
-							 GtkSourceCompletionContext  *context);
-
-	/* Actions */
-	void		(* move_cursor)			(GtkSourceCompletion         *completion,
-							 GtkScrollStep                step,
-							 gint                         num);
-	void		(* move_page)			(GtkSourceCompletion         *completion,
-							 GtkScrollStep                step,
-							 gint                         num);
-	void		(* activate_proposal)		(GtkSourceCompletion         *completion);
-
-	gpointer padding[20];
-};
-
-GTK_SOURCE_AVAILABLE_IN_ALL
-GType		 gtk_source_completion_get_type			(void) G_GNUC_CONST;
 
 GTK_SOURCE_AVAILABLE_IN_ALL
 GQuark		 gtk_source_completion_error_quark		(void);
@@ -151,6 +109,7 @@ void		 _gtk_source_completion_add_proposals		(GtkSourceCompletion           *com
 								 GtkSourceCompletionProvider   *provider,
 								 GList                         *proposals,
 								 gboolean                       finished);
+
 G_END_DECLS
 
 #endif /* GTK_SOURCE_COMPLETION_H */
