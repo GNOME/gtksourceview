@@ -138,9 +138,10 @@ make_row (GtkSourceStyleScheme *scheme,
 {
 	GtkWidget *row;
 	AtkObject *accessible;
-	GtkWidget *event;
 	GtkSourceBuffer *buffer;
 	GtkWidget *view;
+	GtkWidget *overlay;
+	GtkWidget *label;
 	gchar *text;
 
 	row = gtk_list_box_row_new ();
@@ -151,11 +152,6 @@ make_row (GtkSourceStyleScheme *scheme,
 
 	g_object_set_data (G_OBJECT (row), "scheme", scheme);
 
-	event = gtk_event_box_new ();
-	gtk_event_box_set_above_child (GTK_EVENT_BOX (event), TRUE);
-	gtk_widget_show (event);
-	gtk_container_add (GTK_CONTAINER (row), event);
-
 	buffer = gtk_source_buffer_new_with_language (language);
 	gtk_source_buffer_set_highlight_matching_brackets (buffer, FALSE);
 	gtk_source_buffer_set_style_scheme (buffer, scheme);
@@ -164,6 +160,10 @@ make_row (GtkSourceStyleScheme *scheme,
 	                        gtk_source_style_scheme_get_name (scheme));
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
 	g_free (text);
+
+	overlay = gtk_overlay_new ();
+	gtk_container_add (GTK_CONTAINER (row), overlay);
+	gtk_widget_show (overlay);
 
 	view = g_object_new (GTK_SOURCE_TYPE_VIEW,
 	                     "buffer", buffer,
@@ -176,7 +176,15 @@ make_row (GtkSourceStyleScheme *scheme,
 	                     "show-right-margin", TRUE,
 	                     "margin", 2,
 	                     NULL);
-	gtk_container_add (GTK_CONTAINER (event), view);
+	gtk_container_add (GTK_CONTAINER (overlay), view);
+
+	label = g_object_new (GTK_TYPE_LABEL,
+			      "can-focus", FALSE,
+			      "expand", TRUE,
+			      "selectable", FALSE,
+			      "visible", TRUE,
+			      NULL);
+	gtk_overlay_add_overlay (GTK_OVERLAY (overlay), label);
 
 	return row;
 }
