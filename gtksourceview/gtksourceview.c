@@ -4259,30 +4259,52 @@ view_dnd_drop (GtkTextView      *view,
 
 	if (info == TARGET_COLOR)
 	{
-		guint16 *vals;
+		GdkRGBA rgba;
 		gchar string[] = "#000000";
 		gint buffer_x;
 		gint buffer_y;
 		gint length = gtk_selection_data_get_length (selection_data);
+		guint format;
 
 		if (length < 0)
 		{
 			return;
 		}
 
-		if (gtk_selection_data_get_format (selection_data) != 16 || length != 8)
+		format = gtk_selection_data_get_format (selection_data);
+
+		if (format == 8 && length == 4)
+		{
+			guint8 *vals;
+
+			vals = (gpointer) gtk_selection_data_get_data (selection_data);
+
+			rgba.red = vals[0] / 256.0;
+			rgba.green = vals[1] / 256.0;
+			rgba.blue = vals[2] / 256.0;
+			rgba.alpha = 1.0;
+		}
+		else if (format == 16 && length == 8)
+		{
+			guint16 *vals;
+
+			vals = (gpointer) gtk_selection_data_get_data (selection_data);
+
+			rgba.red = vals[0] / 65535.0;
+			rgba.green = vals[1] / 65535.0;
+			rgba.blue = vals[2] / 65535.0;
+			rgba.alpha = 1.0;
+		}
+		else
 		{
 			g_warning ("Received invalid color data\n");
 			return;
 		}
 
-		vals = (gpointer) gtk_selection_data_get_data (selection_data);
-
-		vals[0] /= 256;
-	        vals[1] /= 256;
-		vals[2] /= 256;
-
-		g_snprintf (string, sizeof (string), "#%02X%02X%02X", vals[0], vals[1], vals[2]);
+		g_snprintf (string, sizeof string, "#%02X%02X%02X",
+		            (gint)(rgba.red * 256),
+		            (gint)(rgba.green * 256),
+		            (gint)(rgba.blue * 256));
 
 		gtk_text_view_window_to_buffer_coords (view,
 						       GTK_TEXT_WINDOW_TEXT,
