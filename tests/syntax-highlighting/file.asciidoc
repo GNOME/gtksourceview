@@ -1,0 +1,47 @@
+[id="a-title"]
+= A title
+
+This is a regular paragraph. It contains *bold*, _italic_, and `monospace` text. Parts of words can use markup using "unconstrained quotes": abc**d**efg__h__ijk.
+
+.List title
+* This is
+* An unordered list
+
+.List title
+. This is
+. An ordered list
+
+.A labeled list
+Item 1:: A description.
+Item 2::
+Another description.
+
+A command to display the `file.asciidoc` file using `cat`:
+
+----
+$ cat file.asciidoc
+----
+
+NOTE: This is a note.
+
+[WARNING]
+====
+A longer note-like block.
+
+This one is a warning.
+====
+
+link:https://gitlab.gnome.org/[A hypertext link]
+
+// A single-line comment
+
+////
+A multi-line
+comment
+block
+////
+
+:an-attribute: the content of an attribute (a variable), defined here
+
+This paragraph includes {an-attribute}.
+
