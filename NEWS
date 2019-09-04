@@ -1,3 +1,24 @@
+News in 4.3.92, 2019-09-04
+--------------------------
+* RC release for 4.4 scheduled for next week.
+* New syntax highlighting definition file for: ASCII Doc, Dockerfile
+* Improvements to the syntax highlighting of: CSS, Gradle, HTML, C, PHP,
+  YAML, and Grovvy.
+* Performance improvements in line number drawing.
+* GtkSourceView now requires GTK 3.22 or newer.
+* GtkSourceView no longer uses many deprecated APIs from GTK.
+* GtkSourceView now uses fribidi directly to determine bidriectional
+  direction for cursors.
+* GtkSourceView now relies on GObject for correct marsharllers as well
+  as va_marshallers or provides its own. This improves profiling with
+  kernel stack unwinders such as Linux's perf.
+* Visual column detection is improved to use the tab-width instead of
+  the indent-width.
+* Support for DnD from GIMPs color palette has been improved.
+* A performance optimization has been added to avoid painting mark
+  backgrounds if no GtkSourceMarks have been registered.
+* Translation updates.
+
 News in 4.3.1, 2019-04-23
 -------------------------
 * Ported to meson build system, autotools will be phased out by next release.
