@@ -2401,6 +2401,7 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 	gint i;
 
 	if (view->priv->source_buffer == NULL ||
+	    !_gtk_source_buffer_has_source_marks (view->priv->source_buffer) ||
 	    !gdk_cairo_get_clip_rectangle (cr, &clip))
 	{
 		return;
