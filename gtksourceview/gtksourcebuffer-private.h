@@ -80,6 +80,9 @@ void			 _gtk_source_buffer_restore_selection		(GtkSourceBuffer        *buffer);
 GTK_SOURCE_INTERNAL
 gboolean		 _gtk_source_buffer_is_undo_redo_enabled	(GtkSourceBuffer        *buffer);
 
+GTK_SOURCE_INTERNAL
+gboolean		_gtk_source_buffer_has_source_marks		(GtkSourceBuffer        *buffer);
+
 G_END_DECLS
 
 #endif /* GTK_SOURCE_BUFFER_PRIVATE_H */

@@ -2325,6 +2325,19 @@ gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
 	g_slist_free (list);
 }
 
+gboolean
+_gtk_source_buffer_has_source_marks (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	if (buffer->priv->all_source_marks != NULL)
+	{
+		return !_gtk_source_marks_sequence_is_empty (buffer->priv->all_source_marks);
+	}
+
+	return FALSE;
+}
+
 static GtkTextTag *
 get_context_class_tag (GtkSourceBuffer *buffer,
 		       const gchar     *context_class)
