@@ -19,7 +19,7 @@
  You should have received a copy of the GNU Lesser General Public License
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 -->
-<language id="asciidoc" _name="AsciiDoc" version="2.0" _section="Markup">
+<language id="asciidoc" name="AsciiDoc" version="2.0" _section="Markup">
   <metadata>
     <property name="mimetypes">text/asciidoc</property>
     <property name="globs">*.asciidoc;*.adoc</property>
@@ -27,27 +27,27 @@
   </metadata>
 
   <styles>
-    <style id="markup-monospace"  _name="Monospaced Text"     map-to="def:constant"/>
-    <style id="markup-emphasis"   _name="Emphasized Text"     map-to="def:underlined"/>
-    <style id="markup-strong"     _name="Strong Text"         map-to="def:statement"/>
-    <style id="markup-pass"       _name="Passthrough Text"    map-to="def:special-char"/>
-    <style id="markup-replace"    _name="Replacement"         map-to="def:special-char"/>
-    <style id="markup-linebreak"  _name="Line Break"          map-to="def:special-char"/>
-    <style id="markup-admonition" _name="Admonition"          map-to="def:note"/>
-    <style id="markup-anchor"     _name="Anchor"              map-to="def:identifier"/>
-    <style id="markup-crosslink"  _name="Link"                map-to="def:identifier"/>
-    <style id="markup-url"        _name="URL"                 map-to="def:underlined"/>
-    <style id="markup-att-entry"  _name="Attribute Entry Invocation"     map-to="def:preprocessor"/>
-    <style id="struct-title"      _name="Title"               map-to="def:type"/>
-    <style id="struct-blocktitle" _name="Block Title"         map-to="def:identifier"/>
-    <style id="struct-style"      _name="Style"               map-to="def:identifier"/>
-    <style id="par-literal"       _name="Literal"             map-to="def:string"/>
-    <style id="block-listing"     _name="Listing"             map-to="def:comment"/>
-    <style id="block-comment"     _name="Comment"             map-to="def:comment"/>
-    <style id="block-boundary"    _name="Block Boundary"      map-to="def:identifier"/>
-    <style id="macro"             _name="Macro"               map-to="def:keyword"/>
-    <style id="preprocessor"      _name="Preprocessor"        map-to="def:preprocessor"/>
-    <style id="list-identifier"   _name="List Identifier"     map-to="def:special-char"/>
+    <style id="markup-monospace"  name="Monospaced Text"     map-to="def:constant"/>
+    <style id="markup-emphasis"   name="Emphasized Text"     map-to="def:underlined"/>
+    <style id="markup-strong"     name="Strong Text"         map-to="def:statement"/>
+    <style id="markup-pass"       name="Passthrough Text"    map-to="def:special-char"/>
+    <style id="markup-replace"    name="Replacement"         map-to="def:special-char"/>
+    <style id="markup-linebreak"  name="Line Break"          map-to="def:special-char"/>
+    <style id="markup-admonition" name="Admonition"          map-to="def:note"/>
+    <style id="markup-anchor"     name="Anchor"              map-to="def:identifier"/>
+    <style id="markup-crosslink"  name="Link"                map-to="def:identifier"/>
+    <style id="markup-url"        name="URL"                 map-to="def:underlined"/>
+    <style id="markup-att-entry"  name="Attribute Entry Invocation"     map-to="def:preprocessor"/>
+    <style id="struct-title"      name="Title"               map-to="def:type"/>
+    <style id="struct-blocktitle" name="Block Title"         map-to="def:identifier"/>
+    <style id="struct-style"      name="Style"               map-to="def:identifier"/>
+    <style id="par-literal"       name="Literal"             map-to="def:string"/>
+    <style id="block-listing"     name="Listing"             map-to="def:comment"/>
+    <style id="block-comment"     name="Comment"             map-to="def:comment"/>
+    <style id="block-boundary"    name="Block Boundary"      map-to="def:identifier"/>
+    <style id="macro"             name="Macro"               map-to="def:keyword"/>
+    <style id="preprocessor"      name="Preprocessor"        map-to="def:preprocessor"/>
+    <style id="list-identifier"   name="List Identifier"     map-to="def:special-char"/>
   </styles>
 
   <definitions>
