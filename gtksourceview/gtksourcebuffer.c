@@ -216,6 +216,7 @@ struct _GtkSourceBufferPrivate
 
 	GtkTextTag *invalid_char_tag;
 
+	guint has_draw_spaces_tag : 1;
 	guint highlight_syntax : 1;
 	guint highlight_brackets : 1;
 	guint implicit_trailing_newline : 1;
@@ -270,9 +271,52 @@ static void	 gtk_source_buffer_real_highlight_updated
 							 GtkTextIter             *end);
 
 static void
+gtk_source_buffer_check_tag_for_spaces (GtkSourceBuffer *buffer,
+                                        GtkSourceTag    *tag)
+{
+	if (!buffer->priv->has_draw_spaces_tag)
+	{
+		gboolean draw_spaces_set;
+
+		g_object_get (tag,
+		              "draw-spaces-set", &draw_spaces_set,
+		              NULL);
+
+		if (draw_spaces_set)
+		{
+			buffer->priv->has_draw_spaces_tag = TRUE;
+		}
+	}
+}
+
+static void
+gtk_source_buffer_tag_changed_cb (GtkTextTagTable *table,
+                                  GtkTextTag      *tag,
+                                  gboolean         size_changed,
+                                  GtkSourceBuffer *buffer)
+{
+	if (GTK_SOURCE_IS_TAG (tag))
+	{
+		gtk_source_buffer_check_tag_for_spaces (buffer, GTK_SOURCE_TAG (tag));
+	}
+}
+
+static void
+gtk_source_buffer_tag_added_cb (GtkTextTagTable *table,
+                                GtkTextTag      *tag,
+                                GtkSourceBuffer *buffer)
+{
+	if (GTK_SOURCE_IS_TAG (tag))
+	{
+		gtk_source_buffer_check_tag_for_spaces (buffer, GTK_SOURCE_TAG (tag));
+	}
+}
+
+static void
 gtk_source_buffer_constructed (GObject *object)
 {
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (object);
+	GtkTextTagTable *table;
 
 	if (buffer->priv->undo_manager == NULL)
 	{
@@ -281,6 +325,16 @@ gtk_source_buffer_constructed (GObject *object)
 	}
 
 	G_OBJECT_CLASS (gtk_source_buffer_parent_class)->constructed (object);
+
+	table = gtk_text_buffer_get_tag_table (GTK_TEXT_BUFFER (buffer));
+	g_signal_connect_object (table,
+	                         "tag-changed",
+	                         G_CALLBACK (gtk_source_buffer_tag_changed_cb),
+	                         buffer, 0);
+	g_signal_connect_object (table,
+	                         "tag-added",
+	                         G_CALLBACK (gtk_source_buffer_tag_added_cb),
+	                         buffer, 0);
 }
 
 static void
@@ -3348,4 +3402,12 @@ gtk_source_buffer_create_source_tag (GtkSourceBuffer *buffer,
 	g_object_unref (tag);
 
 	return tag;
+}
+
+gboolean
+_gtk_source_buffer_has_spaces_tag (GtkSourceBuffer *buffer)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return buffer->priv->has_draw_spaces_tag;
 }

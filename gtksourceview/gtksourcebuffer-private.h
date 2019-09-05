@@ -22,8 +22,10 @@
 #define GTK_SOURCE_BUFFER_PRIVATE_H
 
 #include <gtk/gtk.h>
+
 #include "gtksourcetypes.h"
 #include "gtksourcetypes-private.h"
+#include "gtksourcebuffer.h"
 
 G_BEGIN_DECLS
 
@@ -82,6 +84,9 @@ gboolean		 _gtk_source_buffer_is_undo_redo_enabled	(GtkSourceBuffer        *buff
 
 GTK_SOURCE_INTERNAL
 gboolean		_gtk_source_buffer_has_source_marks		(GtkSourceBuffer        *buffer);
+
+GTK_SOURCE_INTERNAL
+gboolean		_gtk_source_buffer_has_spaces_tag		(GtkSourceBuffer        *buffer);
 
 G_END_DECLS
 

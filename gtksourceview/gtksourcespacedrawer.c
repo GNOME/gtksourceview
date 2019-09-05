@@ -30,6 +30,7 @@
 #include "gtksourcespacedrawer.h"
 #include "gtksourcespacedrawer-private.h"
 #include "gtksourcebuffer.h"
+#include "gtksourcebuffer-private.h"
 #include "gtksourceiter.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourcetag.h"
@@ -958,44 +959,6 @@ draw_whitespace_at_iter (GtkTextView *text_view,
 }
 
 static void
-draw_spaces_tag_foreach (GtkTextTag *tag,
-			 gboolean   *found)
-{
-	if (*found)
-	{
-		return;
-	}
-
-	if (GTK_SOURCE_IS_TAG (tag))
-	{
-		gboolean draw_spaces_set;
-
-		g_object_get (tag,
-			      "draw-spaces-set", &draw_spaces_set,
-			      NULL);
-
-		if (draw_spaces_set)
-		{
-			*found = TRUE;
-		}
-	}
-}
-
-static gboolean
-buffer_has_draw_spaces_tag (GtkTextBuffer *buffer)
-{
-	GtkTextTagTable *table;
-	gboolean found = FALSE;
-
-	table = gtk_text_buffer_get_tag_table (buffer);
-	gtk_text_tag_table_foreach (table,
-				    (GtkTextTagTableForeach) draw_spaces_tag_foreach,
-				    &found);
-
-	return found;
-}
-
-static void
 space_needs_drawing_according_to_tag (const GtkTextIter *iter,
 				      gboolean          *has_tag,
 				      gboolean          *needs_drawing)
@@ -1224,7 +1187,7 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	buffer = gtk_text_view_get_buffer (text_view);
 
 	if ((!drawer->priv->enable_matrix || is_zero_matrix (drawer)) &&
-	    !buffer_has_draw_spaces_tag (buffer))
+	    !_gtk_source_buffer_has_spaces_tag (GTK_SOURCE_BUFFER (buffer)))
 	{
 		return;
 	}
