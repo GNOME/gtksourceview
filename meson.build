@@ -21,10 +21,14 @@ version_micro = version_arr[2].to_int()
 api_version = '4'
 
 lib_version = '0.0.0'
-lib_version_arr = version.split('.')
-lib_version_major = version_arr[0].to_int()
-lib_version_minor = version_arr[1].to_int()
-lib_version_micro = version_arr[2].to_int()
+lib_version_arr = lib_version.split('.')
+lib_version_major = lib_version_arr[0].to_int()
+lib_version_minor = lib_version_arr[1].to_int()
+lib_version_micro = lib_version_arr[2].to_int()
+
+osx_current = lib_version_major + 1
+lib_osx_version = [osx_current, '@0@.@1@'.format(osx_current, lib_version_minor)]
+
 
 package_name = meson.project_name()
 package_string = '@0@-@1@'.format(package_name, api_version)
