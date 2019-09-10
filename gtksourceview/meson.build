@@ -248,6 +248,7 @@ if cc.get_id() == 'msvc'
 else
   gtksource_lib = shared_library(package_string, gtksource_res,
                   version: lib_version,
+          darwin_versions: lib_osx_version,
       include_directories: gtksourceview_include_dirs,
              dependencies: gtksource_deps,
                link_whole: gtksource_libs,
