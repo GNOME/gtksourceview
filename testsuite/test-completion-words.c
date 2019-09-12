@@ -43,20 +43,20 @@ test_library_find (void)
 	library_add_words (library);
 
 	iter = gtk_source_completion_words_library_find_first (library, "a", -1);
-	g_assert (iter == NULL);
+	g_assert_null (iter);
 
 	iter = gtk_source_completion_words_library_find_first (library, "bba", -1);
-	g_assert (iter == NULL);
+	g_assert_null (iter);
 
 	iter = gtk_source_completion_words_library_find_first (library, "b", -1);
-	g_assert (iter != NULL);
+	g_assert_nonnull (iter);
 
 	proposal = gtk_source_completion_words_library_get_proposal (iter);
 	word = gtk_source_completion_words_proposal_get_word (proposal);
 	g_assert_cmpstr (word, ==, "bb");
 
 	iter = gtk_source_completion_words_library_find_first (library, "dd", -1);
-	g_assert (iter != NULL);
+	g_assert_nonnull (iter);
 
 	proposal = gtk_source_completion_words_library_get_proposal (iter);
 	word = gtk_source_completion_words_proposal_get_word (proposal);

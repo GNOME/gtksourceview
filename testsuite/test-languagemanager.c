@@ -60,7 +60,7 @@ test_get_default (void)
 
 	lm1 = gtk_source_language_manager_get_default ();
 	lm2 = gtk_source_language_manager_get_default ();
-	g_assert (lm1 == lm2);
+	g_assert_true (lm1 == lm2);
 }
 
 static void
@@ -71,20 +71,20 @@ test_get_language (void)
 
 	lm = gtk_source_language_manager_get_default ();
 	ids = gtk_source_language_manager_get_language_ids (lm);
-	g_assert (ids != NULL);
+	g_assert_nonnull (ids);
 
 	while (*ids != NULL)
 	{
 		GtkSourceLanguage *lang1, *lang2;
 
 		lang1 = gtk_source_language_manager_get_language (lm, *ids);
-		g_assert (lang1 != NULL);
-		g_assert (GTK_SOURCE_IS_LANGUAGE (lang1));
+		g_assert_nonnull (lang1);
+		g_assert_true (GTK_SOURCE_IS_LANGUAGE (lang1));
 		g_assert_cmpstr (*ids, == , gtk_source_language_get_id (lang1));
 
 		/* langs are owned by the manager */
 		lang2 = gtk_source_language_manager_get_language (lm, *ids);
-		g_assert (lang1 == lang2);
+		g_assert_true (lang1 == lang2);
 
 		++ids;
 	}
@@ -143,16 +143,16 @@ test_guess_language (void)
 	g_test_trap_assert_failed ();
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.abcdef", NULL);
-	g_assert (l == NULL);
+	g_assert_null (l);
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.abcdef", "");
-	g_assert (l == NULL);
+	g_assert_null (l);
 
 	l = gtk_source_language_manager_guess_language (lm, NULL, "image/png");
-	g_assert (l == NULL);
+	g_assert_null (l);
 
 	l = gtk_source_language_manager_guess_language (lm, "", "image/png");
-	g_assert (l == NULL);
+	g_assert_null (l);
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.c", NULL);
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");

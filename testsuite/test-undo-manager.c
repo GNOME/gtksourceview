@@ -175,20 +175,20 @@ test_single_action (void)
 	GtkSourceBuffer *buffer = gtk_source_buffer_new (NULL);
 	gtk_source_buffer_set_max_undo_levels (buffer, -1);
 
-	g_assert (!gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_false (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	insert_text (buffer, "foo");
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	gtk_source_buffer_undo (buffer);
-	g_assert (!gtk_source_buffer_can_undo (buffer));
-	g_assert (gtk_source_buffer_can_redo (buffer));
+	g_assert_false (gtk_source_buffer_can_undo (buffer));
+	g_assert_true (gtk_source_buffer_can_redo (buffer));
 
 	gtk_source_buffer_redo (buffer);
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	g_object_unref (buffer);
 }
@@ -201,16 +201,16 @@ test_lose_redo_actions (void)
 
 	insert_text (buffer, "foo\n");
 	insert_text (buffer, "bar\n");
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	gtk_source_buffer_undo (buffer);
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_true (gtk_source_buffer_can_redo (buffer));
 
 	insert_text (buffer, "baz\n");
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	g_object_unref (buffer);
 }
@@ -251,10 +251,10 @@ test_max_undo_levels (void)
 	}
 
 	gtk_source_buffer_undo (buffer);
-	g_assert (gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_redo (buffer));
 
 	gtk_source_buffer_set_max_undo_levels (buffer, 2);
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	g_object_unref (buffer);
 }
@@ -270,8 +270,8 @@ test_not_undoable_action (void)
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), "foo\n", -1);
 	gtk_source_buffer_end_not_undoable_action (buffer);
 
-	g_assert (!gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_false (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	/* begin_user_action inside */
 	gtk_source_buffer_begin_not_undoable_action (buffer);
@@ -280,38 +280,38 @@ test_not_undoable_action (void)
 	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
 	gtk_source_buffer_end_not_undoable_action (buffer);
 
-	g_assert (!gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_false (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	/* In the middle of an action history */
 	insert_text (buffer, "foo\n");
 	insert_text (buffer, "bar\n");
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	gtk_source_buffer_undo (buffer);
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_true (gtk_source_buffer_can_redo (buffer));
 
 	gtk_source_buffer_begin_not_undoable_action (buffer);
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), "new text\n", -1);
 	gtk_source_buffer_end_not_undoable_action (buffer);
 
-	g_assert (!gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_false (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	/* Empty undoable action */
 	insert_text (buffer, "foo\n");
 	insert_text (buffer, "bar\n");
 	gtk_source_buffer_undo (buffer);
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_true (gtk_source_buffer_can_redo (buffer));
 
 	gtk_source_buffer_begin_not_undoable_action (buffer);
 	gtk_source_buffer_end_not_undoable_action (buffer);
 
-	g_assert (!gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_false (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	/* Behavior _during_ a not undoable action */
 
@@ -327,18 +327,18 @@ test_not_undoable_action (void)
 	gtk_source_buffer_undo (buffer);
 
 	gtk_source_buffer_begin_not_undoable_action (buffer);
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_true (gtk_source_buffer_can_redo (buffer));
 
 	gtk_source_buffer_redo (buffer);
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), "new text\n", -1);
 
 	gtk_source_buffer_end_not_undoable_action (buffer);
-	g_assert (!gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_false (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	/* Nested */
 	insert_text (buffer, "foo\n");
@@ -355,12 +355,12 @@ test_not_undoable_action (void)
 	insert_text (buffer, "blah\n");
 
 	gtk_source_buffer_end_not_undoable_action (buffer);
-	g_assert (!gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_false (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	insert_text (buffer, "blah\n");
-	g_assert (gtk_source_buffer_can_undo (buffer));
-	g_assert (!gtk_source_buffer_can_redo (buffer));
+	g_assert_true (gtk_source_buffer_can_undo (buffer));
+	g_assert_false (gtk_source_buffer_can_redo (buffer));
 
 	g_object_unref (buffer);
 }
@@ -390,7 +390,7 @@ check_contents_history (GtkSourceBuffer *buffer,
 		}
 		else
 		{
-			g_assert (l->prev == NULL);
+			g_assert_null (l->prev);
 		}
 	}
 
@@ -407,7 +407,7 @@ check_contents_history (GtkSourceBuffer *buffer,
 		}
 		else
 		{
-			g_assert (l->next == NULL);
+			g_assert_null (l->next);
 		}
 	}
 }
@@ -593,24 +593,24 @@ test_modified (void)
 	gtk_text_buffer_set_modified (text_buffer, FALSE);
 	insert_text (source_buffer, "foo\n");
 
-	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	g_assert_true (gtk_text_buffer_get_modified (text_buffer));
 	gtk_source_buffer_undo (source_buffer);
-	g_assert (!gtk_text_buffer_get_modified (text_buffer));
+	g_assert_false (gtk_text_buffer_get_modified (text_buffer));
 	gtk_source_buffer_redo (source_buffer);
-	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	g_assert_true (gtk_text_buffer_get_modified (text_buffer));
 
 	gtk_text_buffer_set_modified (text_buffer, FALSE);
 	gtk_source_buffer_undo (source_buffer);
-	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	g_assert_true (gtk_text_buffer_get_modified (text_buffer));
 	gtk_source_buffer_redo (source_buffer);
-	g_assert (!gtk_text_buffer_get_modified (text_buffer));
+	g_assert_false (gtk_text_buffer_get_modified (text_buffer));
 
 	gtk_source_buffer_undo (source_buffer);
-	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	g_assert_true (gtk_text_buffer_get_modified (text_buffer));
 	insert_text (source_buffer, "bar\n");
-	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	g_assert_true (gtk_text_buffer_get_modified (text_buffer));
 	gtk_source_buffer_undo (source_buffer);
-	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	g_assert_true (gtk_text_buffer_get_modified (text_buffer));
 
 	g_object_unref (source_buffer);
 
@@ -627,10 +627,10 @@ test_modified (void)
 	gtk_source_buffer_end_not_undoable_action (source_buffer);
 
 	insert_text (source_buffer, "b\n");
-	g_assert (gtk_text_buffer_get_modified (text_buffer));
+	g_assert_true (gtk_text_buffer_get_modified (text_buffer));
 
 	gtk_source_buffer_undo (source_buffer);
-	g_assert (!gtk_text_buffer_get_modified (text_buffer));
+	g_assert_false (gtk_text_buffer_get_modified (text_buffer));
 
 	g_object_unref (source_buffer);
 }

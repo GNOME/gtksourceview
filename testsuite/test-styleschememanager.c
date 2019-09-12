@@ -28,7 +28,7 @@ test_get_default (void)
 
 	sm1 = gtk_source_style_scheme_manager_get_default ();
 	sm2 = gtk_source_style_scheme_manager_get_default ();
-	g_assert (sm1 == sm2);
+	g_assert_true (sm1 == sm2);
 }
 
 static void

@@ -339,7 +339,7 @@ test_case_sensitivity (void)
 
 	gtk_source_search_settings_set_case_sensitive (settings, TRUE);
 	case_sensitive = gtk_source_search_settings_get_case_sensitive (settings);
-	g_assert (case_sensitive);
+	g_assert_true (case_sensitive);
 
 	flush_queue ();
 	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
@@ -347,7 +347,7 @@ test_case_sensitivity (void)
 
 	gtk_source_search_settings_set_case_sensitive (settings, FALSE);
 	case_sensitive = gtk_source_search_settings_get_case_sensitive (settings);
-	g_assert (!case_sensitive);
+	g_assert_false (case_sensitive);
 
 	flush_queue ();
 	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
@@ -374,7 +374,7 @@ test_search_at_word_boundaries (void)
 
 	gtk_source_search_settings_set_at_word_boundaries (settings, TRUE);
 	at_word_boundaries = gtk_source_search_settings_get_at_word_boundaries (settings);
-	g_assert (at_word_boundaries);
+	g_assert_true (at_word_boundaries);
 
 	flush_queue ();
 	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
@@ -396,7 +396,7 @@ test_search_at_word_boundaries (void)
 
 	gtk_source_search_settings_set_at_word_boundaries (settings, FALSE);
 	at_word_boundaries = gtk_source_search_settings_get_at_word_boundaries (settings);
-	g_assert (!at_word_boundaries);
+	g_assert_false (at_word_boundaries);
 
 	flush_queue ();
 	occurrences_count = gtk_source_search_context_get_occurrences_count (context);
@@ -603,7 +603,7 @@ test_forward_search (void)
 
 	gtk_source_search_settings_set_wrap_around (settings, TRUE);
 	wrap_around = gtk_source_search_settings_get_wrap_around (settings);
-	g_assert (wrap_around);
+	g_assert_true (wrap_around);
 
 	check_search_results (source_buffer, context, results1, TRUE);
 
@@ -621,7 +621,7 @@ test_forward_search (void)
 
 	gtk_source_search_settings_set_wrap_around (settings, FALSE);
 	wrap_around = gtk_source_search_settings_get_wrap_around (settings);
-	g_assert (!wrap_around);
+	g_assert_false (wrap_around);
 
 	check_search_results (source_buffer, context, results2, TRUE);
 
@@ -828,11 +828,11 @@ test_highlight (void)
 
 	gtk_source_search_context_set_highlight (context1, TRUE);
 	highlight = gtk_source_search_context_get_highlight (context1);
-	g_assert (highlight);
+	g_assert_true (highlight);
 
 	gtk_source_search_context_set_highlight (context2, FALSE);
 	highlight = gtk_source_search_context_get_highlight (context2);
-	g_assert (!highlight);
+	g_assert_false (highlight);
 
 	g_object_unref (source_buffer);
 	g_object_unref (context1);
@@ -846,11 +846,11 @@ test_get_search_text (void)
 	const gchar *search_text;
 
 	search_text = gtk_source_search_settings_get_search_text (settings);
-	g_assert (search_text == NULL);
+	g_assert_null (search_text);
 
 	gtk_source_search_settings_set_search_text (settings, "");
 	search_text = gtk_source_search_settings_get_search_text (settings);
-	g_assert (search_text == NULL);
+	g_assert_null (search_text);
 
 	gtk_source_search_settings_set_search_text (settings, "search-text");
 	search_text = gtk_source_search_settings_get_search_text (settings);
@@ -917,13 +917,13 @@ test_replace (void)
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 3);
 
 	replaced = gtk_source_search_context_replace (context, &start, &end, "bbb", -1, NULL);
-	g_assert (!replaced);
+	g_assert_false (replaced);
 
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &start, 2);
 	gtk_text_buffer_get_iter_at_offset (text_buffer, &end, 4);
 
 	replaced = gtk_source_search_context_replace (context, &start, &end, "bbb", -1, NULL);
-	g_assert (replaced);
+	g_assert_true (replaced);
 	offset = gtk_text_iter_get_offset (&start);
 	g_assert_cmpint (offset, ==, 2);
 	offset = gtk_text_iter_get_offset (&end);
@@ -980,7 +980,7 @@ test_regex_basics (void)
 	gtk_text_buffer_set_text (text_buffer, "hello\nworld\n", -1);
 	gtk_source_search_settings_set_regex_enabled (settings, TRUE);
 	regex_enabled = gtk_source_search_settings_get_regex_enabled (settings);
-	g_assert (regex_enabled);
+	g_assert_true (regex_enabled);
 
 	/* Simple regex */
 
@@ -1005,8 +1005,8 @@ test_regex_basics (void)
 	gtk_text_buffer_get_start_iter (text_buffer, &start);
 	gtk_text_buffer_get_end_iter (text_buffer, &end);
 	gtk_source_search_context_replace (context, &start, &end, "\\2#\\1", -1, NULL);
-	g_assert (gtk_text_iter_is_start (&start));
-	g_assert (gtk_text_iter_is_end (&end));
+	g_assert_true (gtk_text_iter_is_start (&start));
+	g_assert_true (gtk_text_iter_is_end (&end));
 
 	contents = get_buffer_contents (text_buffer);
 	g_assert_cmpstr (contents, ==, "bb#aa");
@@ -1054,8 +1054,8 @@ test_regex_at_word_boundaries (void)
 						   &match_start,
 						   &match_end,
 						   &has_wrapped_around);
-	g_assert (found);
-	g_assert (!has_wrapped_around);
+	g_assert_true (found);
+	g_assert_false (has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 0);
@@ -1068,8 +1068,8 @@ test_regex_at_word_boundaries (void)
 						   &match_start,
 						   &match_end,
 						   &has_wrapped_around);
-	g_assert (found);
-	g_assert (!has_wrapped_around);
+	g_assert_true (found);
+	g_assert_false (has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 11);
@@ -1087,7 +1087,7 @@ test_regex_at_word_boundaries (void)
 	gtk_source_search_context_replace (context, &match_start, &match_end, "bbb", -1, NULL);
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 1);
-	g_assert (gtk_text_iter_is_end (&match_end));
+	g_assert_true (gtk_text_iter_is_end (&match_end));
 
 	content = get_buffer_contents (text_buffer);
 	g_assert_cmpstr (content, ==, "&bbb");
@@ -1104,7 +1104,7 @@ test_regex_at_word_boundaries (void)
 	gtk_source_search_context_replace (context, &match_start, &match_end, "bbb", -1, NULL);
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 1);
-	g_assert (gtk_text_iter_is_end (&match_end));
+	g_assert_true (gtk_text_iter_is_end (&match_end));
 
 	content = get_buffer_contents (text_buffer);
 	g_assert_cmpstr (content, ==, "–bbb");
@@ -1150,8 +1150,8 @@ test_regex_look_behind (void)
 						   &match_start,
 						   &match_end,
 						   &has_wrapped_around);
-	g_assert (found);
-	g_assert (!has_wrapped_around);
+	g_assert_true (found);
+	g_assert_false (has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 7);
@@ -1165,8 +1165,8 @@ test_regex_look_behind (void)
 						    &match_start,
 						    &match_end,
 						    &has_wrapped_around);
-	g_assert (found);
-	g_assert (!has_wrapped_around);
+	g_assert_true (found);
+	g_assert_false (has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 7);
@@ -1236,8 +1236,8 @@ test_regex_look_ahead (void)
 						   &match_start,
 						   &match_end,
 						   &has_wrapped_around);
-	g_assert (found);
-	g_assert (!has_wrapped_around);
+	g_assert_true (found);
+	g_assert_false (has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 6);
@@ -1251,8 +1251,8 @@ test_regex_look_ahead (void)
 						    &match_start,
 						    &match_end,
 						    &has_wrapped_around);
-	g_assert (found);
-	g_assert (!has_wrapped_around);
+	g_assert_true (found);
+	g_assert_false (has_wrapped_around);
 
 	offset = gtk_text_iter_get_offset (&match_start);
 	g_assert_cmpint (offset, ==, 6);

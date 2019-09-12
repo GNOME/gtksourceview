@@ -71,8 +71,8 @@ test_get_buffer (void)
 
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
-	g_assert (buffer != NULL);
-	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
+	g_assert_nonnull (buffer);
+	g_assert_true (GTK_SOURCE_IS_BUFFER (buffer));
 
 	if (g_object_is_floating (view))
 	{
@@ -111,7 +111,7 @@ test_get_context_classes (void)
 	/* test C */
 	lm = gtk_source_language_manager_get_default ();
 	lang = gtk_source_language_manager_get_language (lm, "c");
-	g_assert (GTK_SOURCE_IS_LANGUAGE (lang));
+	g_assert_true (GTK_SOURCE_IS_LANGUAGE (lang));
 	buffer = gtk_source_buffer_new_with_language (lang);
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), c_snippet, -1);
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
@@ -347,7 +347,7 @@ test_bracket_matching (void)
 
 	language_manager = gtk_source_language_manager_get_default ();
 	c_language = gtk_source_language_manager_get_language (language_manager, "c");
-	g_assert (c_language != NULL);
+	g_assert_nonnull (c_language);
 	gtk_source_buffer_set_language (buffer, c_language);
 
 	/* Basics */

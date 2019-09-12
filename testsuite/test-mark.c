@@ -30,9 +30,9 @@ test_create (void)
 	m = gtk_source_mark_new ("Mark 1", "test");
 	g_assert_cmpstr ("Mark 1", ==, gtk_text_mark_get_name (GTK_TEXT_MARK (m)));
 	g_assert_cmpstr ("test", ==, gtk_source_mark_get_category (m));
-	g_assert (NULL == gtk_text_mark_get_buffer (GTK_TEXT_MARK (m)));
-	g_assert (NULL == gtk_source_mark_next (m, NULL));
-	g_assert (NULL == gtk_source_mark_prev (m, NULL));
+	g_assert_null (gtk_text_mark_get_buffer (GTK_TEXT_MARK (m)));
+	g_assert_null (gtk_source_mark_next (m, NULL));
+	g_assert_null (gtk_source_mark_prev (m, NULL));
 	g_object_unref (m);
 }
 
@@ -55,15 +55,15 @@ test_prev_next (void)
 	gtk_text_iter_forward_char (&iter);
 	mark3 = gtk_source_buffer_create_source_mark (source_buffer, NULL, "cat1", &iter);
 
-	g_assert (mark2 == gtk_source_mark_next (mark1, NULL));
-	g_assert (mark3 == gtk_source_mark_next (mark1, "cat1"));
-	g_assert (NULL == gtk_source_mark_next (mark2, "cat2"));
-	g_assert (NULL == gtk_source_mark_next (mark3, NULL));
+	g_assert_true (mark2 == gtk_source_mark_next (mark1, NULL));
+	g_assert_true (mark3 == gtk_source_mark_next (mark1, "cat1"));
+	g_assert_null (gtk_source_mark_next (mark2, "cat2"));
+	g_assert_null (gtk_source_mark_next (mark3, NULL));
 
-	g_assert (mark1 == gtk_source_mark_prev (mark2, NULL));
-	g_assert (mark1 == gtk_source_mark_prev (mark3, "cat1"));
-	g_assert (NULL == gtk_source_mark_prev (mark2, "cat2"));
-	g_assert (NULL == gtk_source_mark_prev (mark1, NULL));
+	g_assert_true (mark1 == gtk_source_mark_prev (mark2, NULL));
+	g_assert_true (mark1 == gtk_source_mark_prev (mark3, "cat1"));
+	g_assert_null (gtk_source_mark_prev (mark2, "cat2"));
+	g_assert_null (gtk_source_mark_prev (mark1, NULL));
 
 	g_object_unref (source_buffer);
 }
@@ -123,15 +123,15 @@ test_get_source_marks_at_iter (void)
 
 	list = gtk_source_buffer_get_source_marks_at_iter (source_buffer, &iter, "cat1");
 	g_assert_cmpint (2, ==, g_slist_length (list));
-	g_assert (g_slist_find (list, mark1) != NULL);
-	g_assert (g_slist_find (list, mark3) != NULL);
+	g_assert_nonnull (g_slist_find (list, mark1));
+	g_assert_nonnull (g_slist_find (list, mark3));
 	g_slist_free (list);
 
 	list = gtk_source_buffer_get_source_marks_at_iter (source_buffer, &iter, NULL);
 	g_assert_cmpint (3, ==, g_slist_length (list));
-	g_assert (g_slist_find (list, mark1) != NULL);
-	g_assert (g_slist_find (list, mark2) != NULL);
-	g_assert (g_slist_find (list, mark3) != NULL);
+	g_assert_nonnull (g_slist_find (list, mark1));
+	g_assert_nonnull (g_slist_find (list, mark2));
+	g_assert_nonnull (g_slist_find (list, mark3));
 
 	g_object_unref (source_buffer);
 }

@@ -38,15 +38,15 @@ test_weak_ref (void)
 	gtk_text_buffer_get_bounds (buffer, &start, &end);
 	gtk_source_region_add_subregion (region, &start, &end);
 
-	g_assert (!gtk_source_region_is_empty (region));
+	g_assert_false (gtk_source_region_is_empty (region));
 
 	g_object_unref (buffer);
 
-	g_assert (gtk_source_region_is_empty (region));
-	g_assert (!gtk_source_region_get_bounds (region, &start, &end));
+	g_assert_true (gtk_source_region_is_empty (region));
+	g_assert_false (gtk_source_region_get_bounds (region, &start, &end));
 
 	gtk_source_region_get_start_region_iter (region, &region_iter);
-	g_assert (!gtk_source_region_iter_get_subregion (&region_iter, &start, &end));
+	g_assert_false (gtk_source_region_iter_get_subregion (&region_iter, &start, &end));
 
 	g_object_unref (region);
 }
@@ -92,11 +92,11 @@ check_result (GtkSourceRegion *region,
 
 	if (expected_result == NULL)
 	{
-		g_assert (gtk_source_region_is_empty (region));
+		g_assert_true (gtk_source_region_is_empty (region));
 		return;
 	}
 
-	g_assert (!gtk_source_region_is_empty (region));
+	g_assert_false (gtk_source_region_is_empty (region));
 
 	expected_region_str = g_strconcat ("Subregions: ", expected_result, NULL);
 	region_str = gtk_source_region_to_string (region);
@@ -117,13 +117,13 @@ test_add_subtract_subregion (void)
 
 	gtk_text_buffer_set_text (buffer, "This is a test of GtkSourceRegion", -1);
 
-	g_assert (gtk_source_region_is_empty (region));
+	g_assert_true (gtk_source_region_is_empty (region));
 
 	/* Add/remove 0-length subregions */
 	add_subregion (region, 5, 5);
-	g_assert (gtk_source_region_is_empty (region));
+	g_assert_true (gtk_source_region_is_empty (region));
 	subtract_subregion (region, 5, 5);
-	g_assert (gtk_source_region_is_empty (region));
+	g_assert_true (gtk_source_region_is_empty (region));
 
 	/* Add subregion */
 	add_subregion (region, 5, 10);
@@ -138,7 +138,7 @@ test_add_subtract_subregion (void)
 
 	/* Remove all */
 	subtract_subregion (region, 1, 15);
-	g_assert (gtk_source_region_is_empty (region));
+	g_assert_true (gtk_source_region_is_empty (region));
 
 	/* Add two separate subregions */
 	add_subregion (region, 5, 10);
@@ -238,7 +238,7 @@ test_intersect_subregion (void)
 
 	gtk_text_buffer_set_text (buffer, "This is a test of GtkSourceRegion", -1);
 
-	g_assert (gtk_source_region_is_empty (region));
+	g_assert_true (gtk_source_region_is_empty (region));
 
 	add_subregion (region, 0, 2);
 	add_subregion (region, 10, 15);
@@ -269,7 +269,7 @@ test_add_subtract_intersect_region (void)
 
 	gtk_text_buffer_set_text (buffer, "This is a test of GtkSourceRegion", -1);
 
-	g_assert (gtk_source_region_is_empty (main_region));
+	g_assert_true (gtk_source_region_is_empty (main_region));
 
 	/* Basic tests */
 

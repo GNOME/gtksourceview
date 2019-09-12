@@ -94,7 +94,7 @@ compare_strv (const gchar **strv,
 	}
 	else
 	{
-		g_assert (strv == NULL);
+		g_assert_null (strv);
 	}
 }
 
@@ -114,7 +114,7 @@ check_scheme (GtkSourceStyleScheme  *scheme,
 	compare_strv ((const gchar **)gtk_source_style_scheme_get_authors (scheme), expected_authors);
 
 	style = gtk_source_style_scheme_get_style (scheme, style_id);
-	g_assert (GTK_SOURCE_IS_STYLE (style));
+	g_assert_true (GTK_SOURCE_IS_STYLE (style));
 }
 
 static void
@@ -140,12 +140,12 @@ test_named_color_alpha (TestFixture   *fixture,
 
 	/* Use these two semi private methods to compare a named color and a normal one */
 	res = _gtk_source_style_scheme_get_current_line_color (scheme, &color1);
-	g_assert (res);
+	g_assert_true (res);
 
 	res = _gtk_source_style_scheme_get_background_pattern_color (scheme, &color2);
-	g_assert (res);
+	g_assert_true (res);
 
-	g_assert (gdk_rgba_equal (&color1, &color2));
+	g_assert_true (gdk_rgba_equal (&color1, &color2));
 }
 
 int

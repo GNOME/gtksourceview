@@ -120,7 +120,7 @@ check_language (GtkSourceLanguage  *language,
 	g_assert_cmpstr (gtk_source_language_get_id (language), ==, id);
 	g_assert_cmpstr (gtk_source_language_get_name (language), ==, expected_name);
 	g_assert_cmpstr (gtk_source_language_get_section (language), ==, expected_section);
-	g_assert (gtk_source_language_get_hidden (language) == expected_hidden);
+	g_assert_cmpint (gtk_source_language_get_hidden (language), ==, expected_hidden);
 	g_assert_cmpstr (gtk_source_language_get_metadata (language, "extra-meta"), ==, expected_extra_meta);
 
 	mime = gtk_source_language_get_mime_types (language);
