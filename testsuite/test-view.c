@@ -141,7 +141,7 @@ test_move_lines__move_single_line (void)
 		g_free (text);
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
-		g_assert (gtk_text_iter_is_start (&start));
+		g_assert_true (gtk_text_iter_is_start (&start));
 		g_assert_cmpint (gtk_text_iter_get_offset (&end), ==, 6);
 	}
 
@@ -166,7 +166,7 @@ test_move_lines__move_single_line (void)
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
 		g_assert_cmpint (gtk_text_iter_get_offset (&start), ==, 12);
-		g_assert (gtk_text_iter_is_end (&end));
+		g_assert_true (gtk_text_iter_is_end (&end));
 	}
 
 	/* Move down second line, with final newline */
@@ -190,7 +190,7 @@ test_move_lines__move_single_line (void)
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
 		g_assert_cmpint (gtk_text_iter_get_offset (&start), ==, 12);
-		g_assert (gtk_text_iter_is_end (&end));
+		g_assert_true (gtk_text_iter_is_end (&end));
 	}
 
 	/* Move up third line, without final newline */
@@ -260,8 +260,8 @@ test_move_lines__move_single_line (void)
 	g_free (text);
 
 	gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
-	g_assert (gtk_text_iter_is_end (&start));
-	g_assert (gtk_text_iter_is_end (&end));
+	g_assert_true (gtk_text_iter_is_end (&start));
+	g_assert_true (gtk_text_iter_is_end (&end));
 
 	/* Move up first line */
 	gtk_text_buffer_set_text (buffer,
@@ -282,8 +282,8 @@ test_move_lines__move_single_line (void)
 	g_free (text);
 
 	gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
-	g_assert (gtk_text_iter_is_start (&start));
-	g_assert (gtk_text_iter_is_start (&end));
+	g_assert_true (gtk_text_iter_is_start (&start));
+	g_assert_true (gtk_text_iter_is_start (&end));
 
 	g_object_unref (view);
 }
@@ -388,7 +388,7 @@ test_move_lines__move_several_lines (void)
 		g_free (text);
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
-		g_assert (gtk_text_iter_is_start (&start));
+		g_assert_true (gtk_text_iter_is_start (&start));
 		g_assert_cmpint (gtk_text_iter_get_offset (&end), ==, 12);
 	}
 
@@ -415,7 +415,7 @@ test_move_lines__move_several_lines (void)
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
 		g_assert_cmpint (gtk_text_iter_get_offset (&start), ==, 12);
-		g_assert (gtk_text_iter_is_end (&end));
+		g_assert_true (gtk_text_iter_is_end (&end));
 	}
 
 	/* Move down second and third lines, with final newline */
@@ -441,7 +441,7 @@ test_move_lines__move_several_lines (void)
 
 		gtk_text_buffer_get_selection_bounds (buffer, &start, &end);
 		g_assert_cmpint (gtk_text_iter_get_offset (&start), ==, 12);
-		g_assert (gtk_text_iter_is_end (&end));
+		g_assert_true (gtk_text_iter_is_end (&end));
 	}
 
 	/* Move up third and fourth lines, without final newline */

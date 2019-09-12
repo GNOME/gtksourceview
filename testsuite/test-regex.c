@@ -30,7 +30,7 @@ test_slash_c_pattern (void)
 
 	regex = _gtk_source_regex_new ("\\C", 0, &error);
 	g_assert_error (error, G_REGEX_ERROR, G_REGEX_ERROR_COMPILE);
-	g_assert (regex == NULL);
+	g_assert_null (regex);
 }
 
 int

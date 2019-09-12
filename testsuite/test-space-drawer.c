@@ -86,7 +86,7 @@ check_equal_matrix (GtkSourceSpaceDrawer    *drawer,
 	/* Check variants */
 	my_variant = create_variant_from_matrix (matrix);
 	drawer_variant = gtk_source_space_drawer_get_matrix (drawer);
-	g_assert (g_variant_equal (my_variant, drawer_variant));
+	g_assert_true (g_variant_equal (my_variant, drawer_variant));
 
 	gtk_source_space_drawer_set_types_for_locations (drawer,
 							 GTK_SOURCE_SPACE_LOCATION_ALL,
@@ -97,7 +97,7 @@ check_equal_matrix (GtkSourceSpaceDrawer    *drawer,
 
 	my_variant = create_variant_from_matrix (matrix);
 	drawer_variant = gtk_source_space_drawer_get_matrix (drawer);
-	g_assert (g_variant_equal (my_variant, drawer_variant));
+	g_assert_true (g_variant_equal (my_variant, drawer_variant));
 	g_variant_ref_sink (my_variant);
 	g_variant_unref (my_variant);
 	g_variant_ref_sink (drawer_variant);

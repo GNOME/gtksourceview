@@ -80,23 +80,23 @@ test_starts_full_word (void)
 	gtk_text_buffer_set_text (buffer, "foo--- ---bar", -1);
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 0);
-	g_assert (_gtk_source_iter_starts_full_word (&iter));
+	g_assert_true (_gtk_source_iter_starts_full_word (&iter));
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 1);
-	g_assert (!_gtk_source_iter_starts_full_word (&iter));
+	g_assert_false (_gtk_source_iter_starts_full_word (&iter));
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 7);
-	g_assert (_gtk_source_iter_starts_full_word (&iter));
+	g_assert_true (_gtk_source_iter_starts_full_word (&iter));
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 10);
-	g_assert (!_gtk_source_iter_starts_full_word (&iter));
+	g_assert_false (_gtk_source_iter_starts_full_word (&iter));
 
 	gtk_text_buffer_set_text (buffer, " ab ", -1);
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 0);
-	g_assert (!_gtk_source_iter_starts_full_word (&iter));
+	g_assert_false (_gtk_source_iter_starts_full_word (&iter));
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 4);
-	g_assert (!_gtk_source_iter_starts_full_word (&iter));
+	g_assert_false (_gtk_source_iter_starts_full_word (&iter));
 
 	g_object_unref (buffer);
 }
@@ -111,22 +111,22 @@ test_ends_full_word (void)
 	gtk_text_buffer_set_text (buffer, "foo--- ---bar ", -1);
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 14);
-	g_assert (!_gtk_source_iter_ends_full_word (&iter));
+	g_assert_false (_gtk_source_iter_ends_full_word (&iter));
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 13);
-	g_assert (_gtk_source_iter_ends_full_word (&iter));
+	g_assert_true (_gtk_source_iter_ends_full_word (&iter));
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 12);
-	g_assert (!_gtk_source_iter_ends_full_word (&iter));
+	g_assert_false (_gtk_source_iter_ends_full_word (&iter));
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 6);
-	g_assert (_gtk_source_iter_ends_full_word (&iter));
+	g_assert_true (_gtk_source_iter_ends_full_word (&iter));
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 3);
-	g_assert (!_gtk_source_iter_ends_full_word (&iter));
+	g_assert_false (_gtk_source_iter_ends_full_word (&iter));
 
 	gtk_text_buffer_get_iter_at_offset (buffer, &iter, 0);
-	g_assert (!_gtk_source_iter_ends_full_word (&iter));
+	g_assert_false (_gtk_source_iter_ends_full_word (&iter));
 
 	g_object_unref (buffer);
 }

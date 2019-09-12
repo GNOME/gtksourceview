@@ -62,7 +62,7 @@ test_consecutive_write (const gchar          *inbuf,
 	g_assert_no_error (err);
 
 	type = gtk_source_buffer_output_stream_detect_newline_type (out);
-	g_assert (type == newline_type);
+	g_assert_cmpint (type, ==, newline_type);
 
 	g_output_stream_close (G_OUTPUT_STREAM (out), NULL, &err);
 	g_assert_no_error (err);
@@ -72,7 +72,7 @@ test_consecutive_write (const gchar          *inbuf,
 	g_assert_cmpstr (outbuf, ==, b);
 	g_free (b);
 
-	g_assert (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (source_buffer)) == FALSE);
+	g_assert_false (gtk_text_buffer_get_modified (GTK_TEXT_BUFFER (source_buffer)));
 
 	g_object_unref (source_buffer);
 	g_object_unref (out);
@@ -337,7 +337,7 @@ test_empty_conversion (void)
 	g_assert_cmpstr (out, ==, "");
 	g_free (out);
 
-	g_assert (guessed == gtk_source_encoding_get_utf8 ());
+	g_assert_true (guessed == gtk_source_encoding_get_utf8 ());
 }
 
 static void
@@ -360,7 +360,7 @@ test_guessed (void)
 	                         &fail_len,
 	                         FALSE);
 
-	g_assert (fail == NULL);
+	g_assert_null (fail);
 
 	/* ISO-8859-15 should fail */
 	encs = g_slist_append (encs, (gpointer)gtk_source_encoding_get_from_charset ("ISO-8859-15"));
@@ -370,7 +370,7 @@ test_guessed (void)
 	g_free (aux);
 	g_free (aux2);
 
-	g_assert (guessed == gtk_source_encoding_get_from_charset ("UTF-16"));
+	g_assert_true (guessed == gtk_source_encoding_get_from_charset ("UTF-16"));
 }
 
 static void

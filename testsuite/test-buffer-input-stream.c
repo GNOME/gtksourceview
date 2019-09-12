@@ -63,7 +63,7 @@ test_consecutive_read (const gchar          *inbuf,
 	g_assert_cmpstr (b, ==, outbuf);
 
 	close = g_input_stream_close (G_INPUT_STREAM (in), NULL, &err);
-	g_assert (close);
+	g_assert_true (close);
 	g_assert_no_error (err);
 
 	g_object_unref (buf);
