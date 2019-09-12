@@ -183,7 +183,7 @@ print_language_style_ids (GtkSourceLanguage *language)
 {
 	gchar **styles;
 
-	g_assert (language != NULL);
+	g_assert_nonnull (language);
 
 	styles = gtk_source_language_get_style_ids (language);
 
@@ -543,7 +543,7 @@ paginate (GtkPrintOperation        *operation,
 	{
 		gint n_pages;
 
-		g_assert (gtk_source_print_compositor_get_pagination_progress (compositor) == 1.0);
+		g_assert_cmpint (gtk_source_print_compositor_get_pagination_progress (compositor), ==, 1.0);
 		g_print ("Pagination progress: %.2f %%\n", gtk_source_print_compositor_get_pagination_progress (compositor) * 100.0);
 
 		n_pages = gtk_source_print_compositor_get_n_pages (compositor);

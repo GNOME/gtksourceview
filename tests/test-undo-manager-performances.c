@@ -44,7 +44,7 @@ test_undo_redo (GtkSourceBuffer *buffer,
 
 	for (i = 0; i < nb_actions; i++)
 	{
-		g_assert (gtk_source_buffer_can_redo (buffer));
+		g_assert_true (gtk_source_buffer_can_redo (buffer));
 		gtk_source_buffer_redo (buffer);
 	}
 
