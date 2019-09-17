@@ -59,14 +59,21 @@ _gtk_source_iter_forward_full_word_end (GtkTextIter *iter)
 
 	while (g_unichar_isspace (gtk_text_iter_get_char (&pos)))
 	{
-		gtk_text_iter_forward_visible_cursor_position (&pos);
+		if (!gtk_text_iter_forward_visible_cursor_position (&pos))
+		{
+			break;
+		}
 	}
 
 	while (!gtk_text_iter_is_end (&pos) &&
 	       !g_unichar_isspace (gtk_text_iter_get_char (&pos)))
 	{
 		non_blank_found = TRUE;
-		gtk_text_iter_forward_visible_cursor_position (&pos);
+
+		if (!gtk_text_iter_forward_visible_cursor_position (&pos))
+		{
+			break;
+		}
 	}
 
 	if (non_blank_found)
@@ -88,7 +95,11 @@ _gtk_source_iter_backward_full_word_start (GtkTextIter *iter)
 	while (!gtk_text_iter_is_start (&pos))
 	{
 		prev = pos;
-		gtk_text_iter_backward_visible_cursor_position (&prev);
+
+		if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+		{
+			break;
+		}
 
 		if (!g_unichar_isspace (gtk_text_iter_get_char (&prev)))
 		{
@@ -101,7 +112,11 @@ _gtk_source_iter_backward_full_word_start (GtkTextIter *iter)
 	while (!gtk_text_iter_is_start (&pos))
 	{
 		prev = pos;
-		gtk_text_iter_backward_visible_cursor_position (&prev);
+
+		if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+		{
+			break;
+		}
 
 		if (g_unichar_isspace (gtk_text_iter_get_char (&prev)))
 		{
@@ -188,11 +203,17 @@ _gtk_source_iter_forward_extra_natural_word_end (GtkTextIter *iter)
 	{
 		if (gtk_text_iter_get_char (iter) == '_')
 		{
-			gtk_text_iter_forward_visible_cursor_position (iter);
+			if (!gtk_text_iter_forward_visible_cursor_position (iter))
+			{
+				break;
+			}
 		}
 		else if (gtk_text_iter_starts_word (iter))
 		{
-			gtk_text_iter_forward_visible_word_end (iter);
+			if (!gtk_text_iter_forward_visible_word_end (iter))
+			{
+				break;
+			}
 		}
 		else
 		{
@@ -234,7 +255,11 @@ _gtk_source_iter_backward_extra_natural_word_start (GtkTextIter *iter)
 	while (!gtk_text_iter_is_start (iter))
 	{
 		GtkTextIter prev = *iter;
-		gtk_text_iter_backward_visible_cursor_position (&prev);
+
+		if (!gtk_text_iter_backward_visible_cursor_position (&prev))
+		{
+			break;
+		}
 
 		if (gtk_text_iter_get_char (&prev) == '_')
 		{
@@ -242,7 +267,10 @@ _gtk_source_iter_backward_extra_natural_word_start (GtkTextIter *iter)
 		}
 		else if (gtk_text_iter_ends_word (iter))
 		{
-			gtk_text_iter_backward_visible_word_start (iter);
+			if (!gtk_text_iter_backward_visible_word_start (iter))
+			{
+				break;
+			}
 		}
 		else
 		{
