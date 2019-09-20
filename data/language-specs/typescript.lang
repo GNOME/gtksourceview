@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Author: Scott Martin <scott@coffeeblack.org>
+ Copyright (C) 2004 Scott Martin <scott@coffeeblack.org>
+ Copyright (C) 2005 Stef Walter (formerly Nate Nielsen) <stef@memberwebs.com>
+ Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
+ Copyright (C) 2005-2007 Emanuele Aina
+ Copyright (C) 2018 Jeffery To <jeffery.to@gmail.com>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+<language id="ts" name="TypeScript" version="2.0" _section="Script">
+  <metadata>
+    <property name="mimetypes">application/typescript;application/x-typescript;text/x-typescript;text/typescript</property>
+    <property name="globs">*.ts</property>
+    <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
+  </metadata>
+
+  <styles>
+    <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="native-type" name="Native Data Type" map-to="def:type"/>
+  </styles>
+
+  <definitions>
+    <!-- TS specific stuff (i.e. stuff which is not JS) -->
+    <context id="ts-proper">
+      <include>
+        <context id="keywords" style-ref="keyword">
+          <keyword>declare</keyword>
+          <keyword>enum</keyword>
+          <keyword>implements</keyword>
+          <keyword>interface</keyword>
+          <keyword>module</keyword>
+          <keyword>namespace</keyword>
+          <keyword>package</keyword>
+          <keyword>private</keyword>
+          <keyword>protected</keyword>
+          <keyword>public</keyword>
+          <keyword>type</keyword>
+        </context>
+
+        <context id="native-types" style-ref="native-type">
+          <!-- Other types such as `null`, `undefined`, and `void` are already
+               highlighted by JS rules which we don't want to override -->
+          <keyword>any</keyword>
+          <keyword>boolean</keyword>
+          <keyword>never</keyword>
+          <keyword>number</keyword>
+          <keyword>object</keyword>
+          <keyword>string</keyword>
+          <keyword>unknown</keyword>
+        </context>
+      </include>
+    </context>
+
+    <!-- Actual language definition (TS specific stuff + everything from JS) -->
+    <context id="ts" class="no-spell-check">
+      <include>
+        <context ref="ts-proper"/>
+        <context ref="js:js"/>
+      </include>
+    </context>
+  </definitions>
+</language>
