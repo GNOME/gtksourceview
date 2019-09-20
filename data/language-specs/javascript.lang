@@ -778,6 +778,9 @@
         <context id="template-expression" style-ref="function">
           <start>\$\{</start>
           <end>\}</end>
+          <include>
+            <context ref="js:js"/>
+          </include>
         </context>
       </include>
     </context>
