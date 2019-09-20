@@ -35,7 +35,7 @@
 
   <styles>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
-    <style id="native-type" name="Native Data Type" map-to="def:type"/>
+    <style id="basic-type" name="Basic Data Type" map-to="def:type"/>
   </styles>
 
   <definitions>
@@ -56,7 +56,7 @@
           <keyword>type</keyword>
         </context>
 
-        <context id="native-types" style-ref="native-type">
+        <context id="basic-types" style-ref="basic-type">
           <!-- Other types such as `null`, `undefined`, and `void` are already
                highlighted by JS rules which we don't want to override -->
           <keyword>any</keyword>
