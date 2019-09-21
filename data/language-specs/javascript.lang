@@ -790,11 +790,14 @@
       <end>`</end>
       <include>
         <context ref="escape"/>
+        <context ref="def:line-continue"/>
+
+        <!-- FIXME: syntax highlight should go back to none here -->
         <context id="template-expression" style-ref="function">
           <start>\$\{</start>
           <end>\}</end>
           <include>
-            <context ref="js:js"/>
+            <context ref="js:*"/>
           </include>
         </context>
       </include>
