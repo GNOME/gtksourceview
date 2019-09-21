@@ -785,10 +785,11 @@
       <keyword>public</keyword>
     </context>
 
-    <context id="template-string" style-ref="string">
+    <context id="template-string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>`</start>
       <end>`</end>
       <include>
+        <context ref="escape"/>
         <context id="template-expression" style-ref="function">
           <start>\$\{</start>
           <end>\}</end>
