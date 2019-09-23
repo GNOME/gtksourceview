@@ -37,6 +37,7 @@
     <style id="escape"          name="Escaped Character"        map-to="def:special-char"/>
     <style id="decimal"         name="Decimal Number"           map-to="def:decimal"/>
     <style id="base-n-number"   name="Base-N Number"            map-to="def:base-n-integer"/>
+    <style id="big-integer"     name="Big Integer"              map-to="def:number"/>
     <style id="null-value"      name="Null Value"               map-to="def:special-constant"/>
     <style id="undefined-value" name="Undefined Value"          map-to="def:special-constant"/>
     <style id="boolean"         name="Boolean Value"            map-to="def:boolean"/>
@@ -151,6 +152,12 @@
     <context id="hex-integer" style-ref="base-n-number">
       <match extended="true">
         (?&lt;![\w\.]) (?&gt;0 [xX] [0-9a-fA-F]+) (?![\w\.])
+      </match>
+    </context>
+
+    <context id="big-integer" style-ref="big-integer">
+      <match extended="true">
+        (?&lt;![\w\.]) (?&gt;( [1-9][0-9]* | 0 ) n) (?![\w\.])
       </match>
     </context>
 
@@ -721,9 +728,16 @@
       <keyword>has</keyword>
     </context>
 
+    <context id="bigint-methods" style-ref="function">
+      <prefix>\%{is-member}</prefix>
+      <keyword>asIntN</keyword>
+      <keyword>asUintN</keyword>
+    </context>
+
     <context id="constructors" style-ref="constructors">
       <keyword>ArrayBuffer</keyword>
       <keyword>Array</keyword>
+      <keyword>BigInt</keyword>
       <keyword>Boolean</keyword>
       <keyword>Date</keyword>
       <keyword>Error</keyword>
@@ -795,6 +809,7 @@
         <context ref="binary-integer"/>
         <context ref="octal-integer"/>
         <context ref="hex-integer"/>
+        <context ref="big-integer"/>
         <context ref="legacy-octal-integer"/>
         <context ref="undefined-value"/>
         <context ref="null-value"/>
@@ -836,6 +851,7 @@
         <context ref="typedarray-methods"/>
         <context ref="weakmap-methods"/>
         <context ref="weakset-methods"/>
+        <context ref="bigint-methods"/>
         <context ref="constructors"/>
         <context ref="keywords"/>
         <context ref="future-words"/>
