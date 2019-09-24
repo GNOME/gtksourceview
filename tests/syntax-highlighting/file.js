@@ -26,6 +26,8 @@ x = a /b/ c / d;
 "\u00a9"               // Unicode escape
 '\u{1D306}'            // Unicode code point escape
 /\cJ/                  // Control escape
+'\
+'                      // Newline escape
 
 // ES2015 binary and octal numbers:
 let binary1 = 0b1010;
@@ -41,7 +43,16 @@ let octal2 = 0O4567;
 
 console.log(`The sum of 2 and 2 is ${2 + 2}`);
 
+// Interpolation inside interpolation
+let interp = `Hello ${
+  Math.random() > 0.5
+  ? 'World!'
+  : `${Math.random() > 0.5 ? 'Alice' : 'Bob'}!`
+}`;
+
 let y = 8;
 let my_string = `This is a multiline
 string that also contains
 a template ${y + (4.1 - 2.2)}`;
+let escaped = `\b\f\`\\\u00a8\u{12345}\
+`;
