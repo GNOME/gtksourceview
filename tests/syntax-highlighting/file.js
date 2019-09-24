@@ -9,7 +9,7 @@ function_with_regex_arg(/abc/);
 /abc/ // Comment
 var matches = /abc/.exec('Alphabet ... that should contain abc, right?');
 
-// No regex here: 
+// No regex here:
 a = [thing / thing, thing / thing];
 x = a /b/ c / d;
 
@@ -32,6 +32,12 @@ let binary1 = 0b1010;
 let binary2 = 0B00001111;
 let octal1 = 0o0123;
 let octal2 = 0O4567;
+
+// Big integers:
+let bigInt = 543789527895762347856234897532n;
+let bigIntZero = 0n;
+let bigIntConst = BigInt('1234513123123');
+312312n+5234523n-12n*3123n/4n%3231n**-123123n;
 
 // Template strings
 // ----------------
