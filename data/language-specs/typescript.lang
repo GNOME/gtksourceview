@@ -36,23 +36,30 @@
   <styles>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
     <style id="basic-type" name="Basic Data Type" map-to="def:type"/>
+    <style id="utility-type" name="Utility Type" map-to="def:function"/>
   </styles>
 
   <definitions>
     <!-- TS specific stuff (i.e. stuff which is not JS) -->
     <context id="ts-proper">
       <include>
+        <!-- From: https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#221-reserved-words -->
         <context id="keywords" style-ref="keyword">
+          <keyword>abstract</keyword>
           <keyword>declare</keyword>
           <keyword>enum</keyword>
           <keyword>implements</keyword>
+          <keyword>infer</keyword>
           <keyword>interface</keyword>
+          <keyword>is</keyword>
+          <keyword>keyof</keyword>
           <keyword>module</keyword>
           <keyword>namespace</keyword>
           <keyword>package</keyword>
           <keyword>private</keyword>
           <keyword>protected</keyword>
           <keyword>public</keyword>
+          <keyword>readonly</keyword>
           <keyword>type</keyword>
         </context>
 
@@ -65,7 +72,24 @@
           <keyword>number</keyword>
           <keyword>object</keyword>
           <keyword>string</keyword>
+          <keyword>symbol</keyword>
           <keyword>unknown</keyword>
+        </context>
+
+        <!-- From: https://www.typescriptlang.org/docs/handbook/utility-types.html -->
+        <context id="utility-types" style-ref="utility-type">
+          <keyword>Exclude</keyword>
+          <keyword>Extract</keyword>
+          <keyword>InstanceType</keyword>
+          <keyword>NonNullable</keyword>
+          <keyword>Omit</keyword>
+          <keyword>Partial</keyword>
+          <keyword>Pick</keyword>
+          <keyword>Readonly</keyword>
+          <keyword>Record</keyword>
+          <keyword>Required</keyword>
+          <keyword>ReturnType</keyword>
+          <keyword>ThisType</keyword>
         </context>
       </include>
     </context>
