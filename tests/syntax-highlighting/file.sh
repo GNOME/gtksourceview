@@ -29,3 +29,15 @@ xxx${x#$HOME}xxx
 xxx${x##*/}xxx
 xxx${x#*}xxx
 xxx${x#"*"}xxx
+
+# Case statements
+case $item in
+[1-6]*)
+  ;;
+9[1-8])
+  ;;
+')')
+  ;;
+*)
+  ;;
+esac
