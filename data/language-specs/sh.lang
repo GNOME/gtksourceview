@@ -481,10 +481,11 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
-        <context ref="variable-definition"/>
-        <define-regex id="slitem">([^)'"\s]|\\['"])+</define-regex>
+        <define-regex id="unquoted-part">([^\\)'"\s]|\\[\\)'"\s])+</define-regex>
+        <define-regex id="quoted-part">('.+'|".+")</define-regex>
+        <define-regex id="end-operators">;;|;&amp;|;;&amp;</define-regex>
         <context style-ref="others">
-          <match>^\s*\%{slitem}?('[^)]+'|"[^)]+")?\%{slitem}?\s*\)|;;</match>
+          <match>(^\s*|\s+|\%{end-operators})(\%{unquoted-part}?\%{quoted-part}?)*\s*\)|\%{end-operators}</match>
         </context>
         <context ref="sh"/>
       </include>
