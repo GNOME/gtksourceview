@@ -32,6 +32,18 @@ xxx${x#"*"}xxx
 
 # Case statements
 case $item in
+line_beginning)
+;;
+	indented)
+;; separated_by_space)
+;;separated_by);&_an_end;;&_operator)
+;;
+'arbitrary text in single quotation marks')
+;;
+"arbitrary text in double quotation marks")
+;;
+unquoted\ characters\ to\ protect:\ \)\'\"\\)
+;;
 [1-6]*)
   ;;
 9[1-8])
