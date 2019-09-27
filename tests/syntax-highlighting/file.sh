@@ -50,6 +50,9 @@ unquoted\ characters\ to\ protect:\ \)\'\"\\)
   ;;
 ')')
   ;;
-*)
+*) # some patterns that should not be recognized as items
+var=')'
+var=")"
+"$(cmd "$var")"
   ;;
 esac
