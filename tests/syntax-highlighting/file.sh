@@ -38,9 +38,9 @@ line_beginning)
 ;; separated_by_space)
 ;;separated_by);&_an_end;;&_operator)
 ;;
-'arbitrary text in single quotation marks')
+'any characters in single quotation marks')
 ;;
-"arbitrary text in double quotation marks")
+"character to protect in double quotation marks: \"")
 ;;
 unquoted\ characters\ to\ protect:\ \)\'\"\\)
 ;;
