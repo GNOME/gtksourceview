@@ -481,11 +481,6 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
-        <context ref="variable-definition"/>
-        <define-regex id="slitem">([^)'"\s]|\\['"])+</define-regex>
-        <context style-ref="others">
-          <match>^\s*\%{slitem}?('[^)]+'|"[^)]+")?\%{slitem}?\s*\)|;;</match>
-        </context>
         <context ref="sh"/>
       </include>
     </context>
