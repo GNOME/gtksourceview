@@ -29,3 +29,8 @@ xxx${x#$HOME}xxx
 xxx${x##*/}xxx
 xxx${x#*}xxx
 xxx${x#"*"}xxx
+
+# Variable definitions
+var=val
+if var=$(cmd); then some; fi
+test -f xxx && var=xxx || var=yyy
