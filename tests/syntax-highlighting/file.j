@@ -1,3 +1,304 @@
+/**
+ * Built-in types
+ */
+
+@implementation SomeClass
+{
+    id i;
+
+    BOOL i;
+    SEL i;
+
+    byte i;
+    char i;
+    short i;
+    int i;
+    long i;
+    float i;
+    double i;
+
+    signed i;
+    unsigned i;
+    signed char i;
+    unsigned long i;
+    unsigned long long i;
+}
+
++ (void)fn
+{
+}
+
+- (@action)fn
+{
+}
+
+- (IBAction)fn
+{
+}
+
+@end
+
+
+/**
+ * Built-in values / functions
+ */
+
+// keywords
+self;
+super;
+_cmd;
+
+// values
+YES;
+NO;
+nil;
+Nil;
+NULL;
+
+// math constants
+E;
+LOG10E;
+LOG2E;
+LN10;
+LN2;
+PI;
+PI2;
+PI_2;
+SQRT1_2;
+SQRT2;
+
+// math functions
+ABS();
+ACOS();
+ASIN();
+ATAN();
+ATAN2();
+CEIL();
+COS();
+EXP();
+FLOOR();
+LOG();
+MAX();
+MIN();
+POW();
+RAND();
+ROUND();
+SIN();
+SQRT();
+TAN();
+
+// reference / dereference
+var a, aRef = @ref(a);
+@deref(aRef) = 5;
+console.log(@deref(aRef));
+
+// method reference
+var a = @selector(setJobTitle:company:);
+
+
+/**
+ * Literals
+ */
+
+// string
+var a = @"foo";
+var a = @'bar';
+
+// array
+var a = @[1, 2, 3];
+
+// dictionary
+var a = @{
+    @"border-color": "#000",
+    @"border-width": 1.0,
+    @"content-margin": CGSizeMakeZero(),
+};
+
+
+/**
+ * Messages
+ */
+
+[self length];
+[self characterAtIndex:index];
+[myPerson setJobTitle:"Founder" company:"Cappuccino Foundation"];
+[[self alloc:42] initWithName:aName];
+
+// no semicolon between message calls
+[self length]
+[obj arg:self]
+[[obj arg:self] arg:@selector(foo:)];
+
+
+/**
+ * Declarations
+ */
+
+/* Forward class declaration */
+
+@class CPString
+
+
+// Forward global variable declaration */
+
+@global CPInvalidArgumentException
+
+
+/* Class declaration */
+
+@implementation Person : CPObject
+{
+    CPString name;
+
+    // accessors
+    CPString name         @accessors;
+    CPString _nickName    @accessors(property=nickName);
+    BOOL _cool            @accessors(getter=isCool, setter=setCool:);
+    id foo                @accessors(readonly);
+    id bar                @accessors(copy);
+    id baz                @accessors(readwrite);
+
+    // outlet
+    @outlet CPButton button;
+    IBOutlet CPCheckBox checkbox;
+}
+
+// static method
++ (id)personWithName:(CPString)aName
+{
+    return self;
+}
+
+// instance method
+- (id)initWithName:(CPString)aName
+{
+    self = [super init];
+
+    name = aName;
+
+    return self;
+}
+
+- (void)setName:(CPString)aName
+{
+    name = aName;
+}
+
+- (CPString)name
+{
+    return name;
+}
+
+@end
+
+
+// categories
+@implementation CPString (Reversing)
+- (CPString)reverse
+{
+    return reversedString;
+}
+
+@end
+
+// adopting protocol
+@implementation Person : CPObject <Move>
+{
+    CPString name;
+}
+
+@end
+
+
+/* Import */
+
+@import <Foundation/CPObject.j>
+@import "MyClass.j"
+
+
+/* Protocol definition */
+
+@protocol Move <CPObject>
+
+@required
++ (void)walk;
+
+@optional
+- (void)run;
+- (void)jump;
+
+@end
+
+
+/* Type definition */
+
+@typedef CPButtonType
+CPMomentaryLightButton  = 0;
+CPPushOnPushOffButton   = 1;
+CPToggleButton          = 2;
+
+
+/**
+ * Preprocessor directives
+ */
+
+#define foo 1
+#undef foo
+
+{
+#ifdef foo
+}
+
+function () {
+#ifndef foo
+}
+
+o = {
+#if foo == 1
+};
+
+@implementation SomeClass
+#elif defined(foo)
+{
+#else
+    id i;
+
+}
+#endif
+
++ (void)fn
+#pragma \
+mark foo
+{
+#include "foo.js"
+}
+
+@end
+
+@protocol Move <CPObject>
+#warning \
+Warning \
+message
+
+@required
++ (void)walk;
+
+@optional
+- (void)run;
+#error Error message
+- (void)jump;
+
+@end
+
+// commented out
+/*
+#define foo 1
+*/
+// #define foo 1
+
+
+// from file.js
+
 /*
  * Expressions (in expression statements)
  */

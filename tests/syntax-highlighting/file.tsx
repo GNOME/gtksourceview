@@ -1,4 +1,105 @@
 /*
+ * TypeScript JSX-specific conditions
+ */
+
+/* @jsx comment pragma */
+
+// Valid pragmas
+/*@jsx dom */
+/** @jsx preact.h */
+{
+    /*  @jsx dom */
+}
+
+// Invalid pragmas
+/* @ jsx dom */
+/** @JSX dom */
+/*** @jsx dom */
+// @jsx dom
+
+
+/* Type parameters for arrow function vs JSX element */
+
+// Requires extends clause or multiple parameters
+a = <T extends any>(x: T) => x;
+a = < T /* comment */ , U >(x: T, y: U) => x;
+
+// Not correctly highlighted (extra </T> added to close incorrect T elements)
+a = <T 
+extends any>(x: T) => x;
+</T>
+a = <T
+, U>(x: T, y: U) => x;
+</T>
+a = <T /* comment
+*/ extends any>(x: T) => x;
+</T>
+a = < T // comment
+, U >(x: T, y: U) => x;
+</T>
+
+
+/* Type arguments in JSX elements */
+
+a = <GenericComponent<string> a={10} b="hi"/>;
+
+
+// from file.jsx
+
+/*
+ * JSX Elements
+ */
+
+// Element name
+( <div></div> );
+( <my-custom-component></my-custom-component> );
+( <namespace:component></namespace:component> );
+( <Module.Sub.Component></Module.Sub.Component> );
+
+// Attributes
+( <div {...props}></div> ); // spread attributes
+( <div class="main"></div> );
+( <namespace:component namespace:attribute='value'></namespace:component> );
+( <div class={classes[0]}></div> );
+
+// Empty element
+( <img /> );
+
+// Nested elements
+(
+    <div>
+        <span></span>
+        <img />
+    </div>
+);
+
+// Child expression
+(
+    <div>
+        {["1", 2, three].join('+')}
+        {...obj}
+    </div>
+);
+
+// XML character entity / numeric character references
+( <div>&gt;&#47;</div> );
+
+// Fragment
+(
+    <>
+        <div>
+             <img />
+        </div>
+        <div>
+            <span></span>
+        </div>
+    </>
+);
+
+
+// from file.ts
+
+/*
  * Type
  */
 
@@ -192,14 +293,16 @@ function fn<T, K extends keyof T>() {}
  */
 
 // Type parameters
-a = <T>(x) => x;
+//a = <T>(x) => x;  // not considered a type parameters list in typescript jsx
 a = <T, U>(x) => x;
 a = <T = string, U extends V = any, V extends Function>(x) => x;
 a = <T, K extends keyof T>(x) => x;
 
 // Type assertion
+/* type assertions should be done using the "as" operator in typescript jsx
 a = <string>obj;
 a = <const>obj;
+*/
 
 
 /*
@@ -479,8 +582,10 @@ myTag<string> // comment
 `Template literal`;
 
 // Type assertion
+/* type assertions should be done using the "as" operator in typescript jsx
 a = <string>obj;
 a = <const>obj;
+*/
 
 
 /* Export / import declaration */

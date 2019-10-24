@@ -110,8 +110,8 @@
       <context ref="string"/>
       <context ref="decimal"/>
       <context ref="float"/>
-      <context ref="js:null-value" style-ref="null-value"/>
-      <context ref="js:boolean" style-ref="boolean"/>
+      <context ref="js-lit:null-value" style-ref="null-value"/>
+      <context ref="js-lit:boolean" style-ref="boolean"/>
       <context ref="catchall"/>
     </include></context>
 
