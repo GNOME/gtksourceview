@@ -30,20 +30,43 @@
   <styles>
     <style id="builtin-command" name="Builtin Command" map-to="def:function"/>
     <style id="operator" name="Operator" map-to="def:operator"/>
+    <style id="escape" name="Escape Sequence" map-to="def:special-char" />
     <style id="string" name="String" map-to="def:string" />
     <style id="boolean" name="Boolean" map-to="def:boolean"/>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
   </styles>
 
   <definitions>
-    <context id="multiline-string" style-ref="def:string">
+    <!--
+    https://mesonbuild.com/Syntax.html#strings
+    also ESCAPE_SEQUENCE_SINGLE_RE in mesonbuild/mparser.py
+    https://github.com/mesonbuild/meson/blob/0.52.0/mesonbuild/mparser.py#L23-L30
+    -->
+    <context id="escape" style-ref="escape">
+      <match extended="true">
+        \\
+        (
+          [\\'abfnrtv] |      # single character escape
+          [0-7]{1,3} |        # octal value
+          x[0-9A-Fa-f]{2} |   # hex value
+          u[0-9A-Fa-f]{4} |   # 16-bit hex value
+          U[0-9A-Fa-f]{8} |   # 32-bit hex value
+          N\{[^}]+\}          # named Unicode character
+        )
+      </match>
+    </context>
+
+    <context id="multiline-string" style-ref="string">
       <start>'''</start>
       <end>'''</end>
     </context>
 
-    <context id="string" style-ref="def:string" end-at-line-end="true">
+    <context id="string" style-ref="string" end-at-line-end="true">
       <start>'</start>
       <end>'</end>
+      <include>
+        <context ref="escape"/>
+      </include>
     </context>
 
     <!-- http://mesonbuild.com/Reference-manual.html -->
