@@ -480,7 +480,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
 
     <context id="regular-expression" style-ref="regex">
       <start>\%{pattern-before}qr\b</start>
-      <end>\%{end-of-pattern}[imosx]*</end>
+      <end>\%{end-of-pattern}[msixpodualn]*</end>
       <include><context ref="simple-pattern"/></include>
     </context>
 
@@ -500,19 +500,19 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
 
     <context id="match" style-ref="regex">
       <start>\%{pattern-before}m\b</start>
-      <end>\%{end-of-pattern}[cgimosx]*</end>
+      <end>\%{end-of-pattern}[msixpodualngc]*</end>
       <include><context ref="simple-pattern"/></include>
     </context>
 
     <context id="substitution" style-ref="regex">
       <start>\%{pattern-before}s\b</start>
-      <end>\%{end-of-pattern}[ecgimosx]*</end>
+      <end>\%{end-of-pattern}[msixpodualngcer]*</end>
       <include><context ref="double-pattern"/></include>
     </context>
 
     <context id="transliteration" style-ref="regex">
       <start>\%{pattern-before}(tr|y)\b</start>
-      <end>\%{end-of-pattern}[cds]*</end>
+      <end>\%{end-of-pattern}[cdsr]*</end>
       <include><context ref="double-pattern-no-ve"/></include>
     </context>
 
@@ -523,8 +523,18 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     <context id="match-slashslash">
       <include>
         <context style-inside="true" style-ref="regex">
-          <start>(^|[^$@%&amp;])(split|while|if)\s+(/)</start>
-          <end>/[cgimosx]*</end>
+          <start>(^|[^$@%&amp;])(if|unless|while|until|when)\s+(/)</start>
+          <end>/[msixpodualngc]*</end>
+          <include>
+            <context sub-pattern="2" where="start" style-ref="keyword"/>
+            <context sub-pattern="3" where="start" style-ref="regex"/>
+            <context sub-pattern="0" where="end" style-ref="regex"/>
+            <context ref="in-pattern"/>
+          </include>
+        </context>
+        <context style-inside="true" style-ref="regex">
+          <start>(^|[^$@%&amp;])(split)\s+(/)</start>
+          <end>/[msixpodualngc]*</end>
           <include>
             <context sub-pattern="2" where="start" style-ref="builtin"/>
             <context sub-pattern="3" where="start" style-ref="regex"/>
@@ -534,7 +544,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
         </context>
         <context style-inside="true" style-ref="regex">
           <start>(^|(?&lt;=[\(\{]))\s*(/)</start>
-          <end>/[cgimosx]*</end>
+          <end>/[msixpodualngc]*</end>
           <include>
             <context sub-pattern="2" where="start" style-ref="regex"/>
             <context sub-pattern="0" where="end" style-ref="regex"/>
@@ -543,7 +553,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
         </context>
         <context style-inside="true" style-ref="regex">
           <start>([!=]\~)\s*(/)</start>
-          <end>/[cgimosx]*</end>
+          <end>/[msixpodualngc]*</end>
           <include>
             <context sub-pattern="1" where="start" style-ref="operator"/>
             <context sub-pattern="2" where="start" style-ref="regex"/>

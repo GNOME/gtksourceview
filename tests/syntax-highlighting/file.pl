@@ -95,6 +95,13 @@ sub tsame {
     return  eq ;
 }
 
+sub login {
+  my @words = split /:/, $str;
+  do {
+    $_ = shift @members;
+  } until /^\s+$/;
+}
+
 =head1 EXAMPLE
 B<collateindex.pl> B<-o> F<index.sgml> F<HTML.index>
 =head1 EXIT STATUS
