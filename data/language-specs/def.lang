@@ -105,8 +105,8 @@
     <style id="reserved"            name="Reserved keyword" map-to="def:error" />
     <!-- Anything that needs extra attention; mostly the keywords TODO, FIXME and XXX -->
     <style id="note"                name="Note (FIXME, TODO, XXX, etc.)"/>
-    <!-- Text that stands out, HTML links, e-mail addresses, etc. -->
-    <style id="underlined"          name="Underlined"/>
+    <!-- Internet address: URLs, email addresses, etc. -->
+    <style id="net-address"         name="Net address (URL, email address, etc.)"/>
     <!-- Text that acts as some kind of heading, such as h1, h2, ... in html. -->
     <style id="heading0"            name="Heading 0"/>
     <style id="heading1"            name="Heading 1"/>
@@ -173,10 +173,10 @@
 
     <context id="in-comment" class-disabled="no-spell-check">
       <include>
-        <context id="net-address" extend-parent="false" style-ref="underlined" class="no-spell-check">
+        <context id="net-address" extend-parent="false" style-ref="net-address" class="no-spell-check">
           <match>\%{net-address}</match>
         </context>
-        <context id="email-address" extend-parent="false" style-ref="underlined" class="no-spell-check">
+        <context id="email-address" extend-parent="false" style-ref="net-address" class="no-spell-check">
           <match>\%{email-address}</match>
         </context>
         <context id="comment-note" extend-parent="false" style-ref="note" class="no-spell-check comment-note">
