@@ -58,6 +58,8 @@
 
   <definitions>
 
+    <define-regex id="identifier">[a-zA-Z_\x{80}-\x{10ffff}][a-zA-Z0-9_\x{80}-\x{10ffff}]*</define-regex>
+
     <context id="bash-line-comment" style-ref="comment" end-at-line-end="true" extend-parent="false" class="comment" class-disabled="no-spell-check">
       <start>#</start>
       <include>
@@ -89,7 +91,7 @@
     </context>
 
     <context id="variable" style-ref="variable">
-      <match>[$]+[a-zA-Z_][a-zA-Z0-9_]*</match>
+      <match>[$]+\%{identifier}</match>
     </context>
 
     <context id="array-operators" style-ref="variable">
@@ -147,11 +149,25 @@
     </context>
 
     <context id="here-doc-string" style-ref="here-doc" extend-parent="true">
-      <start>(&lt;&lt;&lt;)\s?([a-zA-Z_][a-zA-Z0-9_]*)</start>
-      <end>^(\%{2@start});?$</end>
+      <start>(&lt;&lt;&lt;)\s?(\%{identifier})</start>
+      <end>^\s*(\%{2@start})(;|\b)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
         <context sub-pattern="1" where="end" style-ref="here-doc-bound"/>
+        <context sub-pattern="2" where="end" style-ref="operator"/>
+        <context ref="escape"/>
+        <context ref="string-var"/>
+        <context ref="def:line-continue"/>
+      </include>
+    </context>
+
+    <context id="here-doc-string-double-quotes" style-ref="here-doc" extend-parent="true">
+      <start>(&lt;&lt;&lt;)\s?"(\%{identifier})"</start>
+      <end>^\s*(\%{2@start})(;|\b)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
+        <context sub-pattern="1" where="end" style-ref="here-doc-bound"/>
+        <context sub-pattern="2" where="end" style-ref="operator"/>
         <context ref="escape"/>
         <context ref="string-var"/>
         <context ref="def:line-continue"/>
@@ -159,11 +175,12 @@
     </context>
 
     <context id="now-doc-string" style-ref="here-doc" extend-parent="true">
-      <start>(&lt;&lt;&lt;)\s?'([a-zA-Z_][a-zA-Z0-9_]*)'</start>
-      <end>^(\%{2@start});?$</end>
+      <start>(&lt;&lt;&lt;)\s?'(\%{identifier})'</start>
+      <end>^\s*(\%{2@start})(;|\b)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
         <context sub-pattern="1" where="end" style-ref="here-doc-bound"/>
+        <context sub-pattern="2" where="end" style-ref="operator"/>
         <context style-ref="def:special-char">
           <match>\\['\\]</match>
         </context>
@@ -172,7 +189,7 @@
     </context>
 
     <context id="identifier" style-ref="identifier">
-      <match>[a-zA-Z_][a-zA-Z0-9_]*</match>
+      <match>\%{identifier}</match>
     </context>
 
     <context id="keywords" style-ref="keyword">
@@ -333,6 +350,7 @@
         <context ref="single-quoted-string"/>
         <context ref="backtick-string"/>
         <context ref="here-doc-string"/>
+        <context ref="here-doc-string-double-quotes"/>
         <context ref="now-doc-string"/>
         <context ref="variable"/>
         <context ref="array-operators"/>
