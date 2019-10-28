@@ -8,7 +8,19 @@ text
 extrémité
 
 echo <<<"END"
+      a
+     b
+    c
+    END;
+
+stringManipulator(<<<'END'
+   a
+  b
+ c
+END);
+
+$values = [<<<END
 a
 b
-c
-END;
+ENDING
+END, 'd e f'];

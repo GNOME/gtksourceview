@@ -150,10 +150,11 @@
 
     <context id="here-doc-string" style-ref="here-doc" extend-parent="true">
       <start>(&lt;&lt;&lt;)\s?(\%{identifier})</start>
-      <end>^(\%{2@start});?$</end>
+      <end>^\s*(\%{2@start})(;|\b)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
         <context sub-pattern="1" where="end" style-ref="here-doc-bound"/>
+        <context sub-pattern="2" where="end" style-ref="operator"/>
         <context ref="escape"/>
         <context ref="string-var"/>
         <context ref="def:line-continue"/>
@@ -162,10 +163,11 @@
 
     <context id="here-doc-string-double-quotes" style-ref="here-doc" extend-parent="true">
       <start>(&lt;&lt;&lt;)\s?"(\%{identifier})"</start>
-      <end>^(\%{2@start});?$</end>
+      <end>^\s*(\%{2@start})(;|\b)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
         <context sub-pattern="1" where="end" style-ref="here-doc-bound"/>
+        <context sub-pattern="2" where="end" style-ref="operator"/>
         <context ref="escape"/>
         <context ref="string-var"/>
         <context ref="def:line-continue"/>
@@ -174,10 +176,11 @@
 
     <context id="now-doc-string" style-ref="here-doc" extend-parent="true">
       <start>(&lt;&lt;&lt;)\s?'(\%{identifier})'</start>
-      <end>^(\%{2@start});?$</end>
+      <end>^\s*(\%{2@start})(;|\b)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
         <context sub-pattern="1" where="end" style-ref="here-doc-bound"/>
+        <context sub-pattern="2" where="end" style-ref="operator"/>
         <context style-ref="def:special-char">
           <match>\\['\\]</match>
         </context>
