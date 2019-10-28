@@ -31,10 +31,12 @@ xxx${x#*}xxx
 xxx${x#"*"}xxx
 
 # Variable definitions
-var=val
+var1=val1; var2=val2
 if var=$(cmd); then some; fi
 test -f xxx && var=xxx || var=yyy
+echo text | var=xxx cmd
 
+# For statements
 for word in hello world
 do
     echo $word
