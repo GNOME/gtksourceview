@@ -218,12 +218,12 @@
       <keyword>(?&lt;=\s)\.(?=\s)</keyword>
     </context>
 
-    <context id="for-command">
+    <context id="for-command" end-at-line-end="true">
       <start>\bfor\b</start>
-      <end>\b(in|do)\b</end>
+      <end>(?=\S)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
-        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="def:line-continue"/>
         <context style-ref="variable-definition" once-only="true">
           <match>\w+</match>
         </context>

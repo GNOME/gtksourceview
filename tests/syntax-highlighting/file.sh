@@ -34,3 +34,16 @@ xxx${x#"*"}xxx
 var=val
 if var=$(cmd); then some; fi
 test -f xxx && var=xxx || var=yyy
+
+for word in hello world
+do
+    echo $word
+done
+
+for arg; do echo $arg; done
+for \
+arg; do echo $arg; done
+
+echo Look for file
+echo Look for; echo Look for
+echo next line
