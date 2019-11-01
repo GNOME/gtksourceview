@@ -1,4 +1,57 @@
 /*
+ * JSX Elements
+ */
+
+// Element name
+( <div></div> );
+( <my-custom-component></my-custom-component> );
+( <namespace:component></namespace:component> );
+( <Module.Sub.Component></Module.Sub.Component> );
+
+// Attributes
+( <div {...props}></div> ); // spread attributes
+( <div class="main"></div> );
+( <namespace:component namespace:attribute='value'></namespace:component> );
+( <div class={classes[0]}></div> );
+
+// Empty element
+( <img /> );
+
+// Nested elements
+(
+    <div>
+        <span></span>
+        <img />
+    </div>
+);
+
+// Child expression
+(
+    <div>
+        {["1", 2, three].join('+')}
+        {...obj}
+    </div>
+);
+
+// XML character entity / numeric character references
+( <div>&gt;&#47;</div> );
+
+// Fragment
+(
+    <>
+        <div>
+             <img />
+        </div>
+        <div>
+            <span></span>
+        </div>
+    </>
+);
+
+
+// from file.js
+
+/*
  * Expressions (in expression statements)
  */
 
