@@ -124,6 +124,17 @@
     <!-- $^ never matches. -->
     <define-regex id="never-match">$^</define-regex>
 
+    <!-- Unicode ID_Start and ID_Continue characters
+         Descriptions from https://www.unicode.org/reports/tr31/#Table_Lexical_Classes_for_Identifiers
+         Other_ID_Start and Other_ID_Continue code points from https://www.unicode.org/Public/12.1.0/ucd/PropList.txt
+    -->
+    <define-regex id="unicode-id-start" extended="true">
+      [\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}]
+    </define-regex>
+    <define-regex id="unicode-id-continue" extended="true">
+      [\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}]
+    </define-regex>
+
     <define-regex id="decimal" extended="true">
       (?&lt;![\w\.]) ([1-9][0-9]* | 0) (?![\w\.])
     </define-regex>

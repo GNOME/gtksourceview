@@ -50,22 +50,11 @@
   </styles>
 
   <definitions>
-    <!-- https://docs.python.org/3/reference/lexical_analysis.html#identifiers -->
-    <define-regex id="id-start" extended="true">
-      (?:
-        [\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}_] |
-        [\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}]  # Other_ID_Start (Unicode 12.1.0)
-      )
-    </define-regex>
-    <define-regex id="id-continue" extended="true">
-      (?:
-        \%{id-start} |
-        [\p{Mn}\p{Mc}\p{Nd}\p{Pc}] |
-        [\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}]  # Other_ID_Continue (Unicode 12.1.0)
-      )
-    </define-regex>
+    <!-- https://docs.python.org/3/reference/lexical_analysis.html#identifiers
+         Underscore ('LOW LINE' U+005F) is a member of \p{Pc}, and so included in def:unicode-id-continue
+    -->
     <define-regex id="identifier" extended="true">
-      (?&gt; \%{id-start} \%{id-continue}* )
+      (?&gt; (?: _ | \%{def:unicode-id-start} ) \%{def:unicode-id-continue}* )
     </define-regex>
     <define-regex id="number">[1-9][0-9]*</define-regex>
 
