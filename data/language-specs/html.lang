@@ -248,6 +248,7 @@
       </include>
     </context>
 
+    <!-- See https://gitlab.gnome.org/GNOME/gtksourceview/commit/5385eb27720875bc144d54ccbd00d1613c41f7e0 -->
     <define-regex id="attribute-name">[^\x00\t\n\f\r "'/&lt;=&gt;\x{007F}-\x{009F}\x{FDD0}-\x{FDEF}\x{FFFE}\x{FFFF}\x{1FFFE}\x{1FFFF}\x{2FFFE}\x{2FFFF}\x{3FFFE}\x{3FFFF}\x{4FFFE}\x{4FFFF}\x{5FFFE}\x{5FFFF}\x{6FFFE}\x{6FFFF}\x{7FFFE}\x{7FFFF}\x{8FFFE}\x{8FFFF}\x{9FFFE}\x{9FFFF}\x{AFFFE}\x{AFFFF}\x{BFFFE}\x{BFFFF}\x{CFFFE}\x{CFFFF}\x{DFFFE}\x{DFFFF}\x{EFFFE}\x{EFFFF}\x{FFFFE}\x{FFFFF}\x{10FFFE}\x{10FFFF}]+</define-regex>
 
     <context id="generic-tag">
@@ -350,6 +351,7 @@
     <replace id="js:embedded-lang-hooks" ref="js-embedded-lang-hooks"/>
 
     <context id="tag" class="no-spell-check">
+      <!-- See https://gitlab.gnome.org/GNOME/gtksourceview/commit/5385eb27720875bc144d54ccbd00d1613c41f7e0 -->
       <start>&lt;/?[a-z][^\x00\t\n\f\r /&gt;\x{007F}-\x{009F}\x{FDD0}-\x{FDEF}\x{FFFE}\x{FFFF}\x{1FFFE}\x{1FFFF}\x{2FFFE}\x{2FFFF}\x{3FFFE}\x{3FFFF}\x{4FFFE}\x{4FFFF}\x{5FFFE}\x{5FFFF}\x{6FFFE}\x{6FFFF}\x{7FFFE}\x{7FFFF}\x{8FFFE}\x{8FFFF}\x{9FFFE}\x{9FFFF}\x{AFFFE}\x{AFFFF}\x{BFFFE}\x{BFFFF}\x{CFFFE}\x{CFFFF}\x{DFFFE}\x{DFFFF}\x{EFFFE}\x{EFFFF}\x{FFFFE}\x{FFFFF}\x{10FFFE}\x{10FFFF}]*</start>
       <end>/?&gt;</end>
       <include>
