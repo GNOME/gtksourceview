@@ -104,7 +104,8 @@ check_scheme (GtkSourceStyleScheme  *scheme,
               const gchar           *expected_name,
               const gchar           *expected_description,
               const gchar          **expected_authors,
-              const gchar           *style_id)
+              const gchar           *style_id,
+              const gchar           *background_rgba)
 {
 	GtkSourceStyle *style;
 
@@ -115,6 +116,18 @@ check_scheme (GtkSourceStyleScheme  *scheme,
 
 	style = gtk_source_style_scheme_get_style (scheme, style_id);
 	g_assert_true (GTK_SOURCE_IS_STYLE (style));
+
+	if (background_rgba != NULL)
+	{
+		gchar *background = NULL;
+
+		g_object_get (style,
+		              "background", &background,
+			      NULL);
+
+		g_assert_cmpstr (background_rgba, ==, background);
+		g_free (background);
+	}
 }
 
 static void
@@ -125,7 +138,11 @@ test_scheme_properties (TestFixture   *fixture,
 	const gchar *authors[] = { "Paolo Borelli", "John Doe", NULL};
 
 	scheme = gtk_source_style_scheme_manager_get_scheme (fixture->manager, "test");
-	check_scheme (scheme, "test", "Test", "Test color scheme", authors, "def:comment");
+
+	check_scheme (scheme, "test", "Test", "Test color scheme", authors, "def:comment", NULL);
+
+	/* Check that net-address remapped correctly to "underlined" */
+	check_scheme (scheme, "test", "Test", "Test color scheme", authors, "def:net-address", "#FFFFFF");
 }
 
 static void

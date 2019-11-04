@@ -493,37 +493,12 @@ fix_style_colors (GtkSourceStyleScheme *scheme,
 	return style;
 }
 
-/**
- * gtk_source_style_scheme_get_style:
- * @scheme: a #GtkSourceStyleScheme.
- * @style_id: id of the style to retrieve.
- *
- * Returns: (nullable) (transfer none): style which corresponds to @style_id in
- * the @scheme, or %NULL when no style with this name found.  It is owned by
- * @scheme and may not be unref'ed.
- *
- * Since: 2.0
- */
-/*
- * It's a little weird because we have named colors: styles loaded from
- * scheme file can have "#red" or "blue", and we want to give out styles
- * which have nice colors suitable for gdk_color_parse(), so that GtkSourceStyle
- * foreground and background properties are the same as GtkTextTag's.
- * Yet we do need to preserve what we got from file in style schemes,
- * since there may be child schemes which may redefine colors or something,
- * so we can't translate colors when loading scheme.
- * So, defined_styles hash has named colors; styles returned with get_style()
- * have real colors.
- */
-GtkSourceStyle *
-gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
-				   const gchar          *style_id)
+static GtkSourceStyle *
+gtk_source_style_scheme_get_style_internal (GtkSourceStyleScheme *scheme,
+					    const gchar          *style_id)
 {
 	GtkSourceStyle *style = NULL;
 	GtkSourceStyle *real_style;
-
-	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
-	g_return_val_if_fail (style_id != NULL, NULL);
 
 	if (g_hash_table_lookup_extended (scheme->priv->style_cache,
 					  style_id,
@@ -555,6 +530,65 @@ gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
 	g_hash_table_insert (scheme->priv->style_cache,
 			     g_strdup (style_id),
 			     style);
+
+	return style;
+}
+
+/**
+ * gtk_source_style_scheme_get_style:
+ * @scheme: a #GtkSourceStyleScheme.
+ * @style_id: id of the style to retrieve.
+ *
+ * Returns: (nullable) (transfer none): style which corresponds to @style_id in
+ * the @scheme, or %NULL when no style with this name found.  It is owned by
+ * @scheme and may not be unref'ed.
+ *
+ * Since: 2.0
+ */
+/*
+ * It's a little weird because we have named colors: styles loaded from
+ * scheme file can have "#red" or "blue", and we want to give out styles
+ * which have nice colors suitable for gdk_color_parse(), so that GtkSourceStyle
+ * foreground and background properties are the same as GtkTextTag's.
+ * Yet we do need to preserve what we got from file in style schemes,
+ * since there may be child schemes which may redefine colors or something,
+ * so we can't translate colors when loading scheme.
+ * So, defined_styles hash has named colors; styles returned with get_style()
+ * have real colors.
+ */
+GtkSourceStyle *
+gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
+				   const gchar          *style_id)
+{
+	GtkSourceStyle *style;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (style_id != NULL, NULL);
+
+
+	style = gtk_source_style_scheme_get_style_internal (scheme, style_id);
+
+	if (style == NULL)
+	{
+		/* Long ago, "underlined" was added as a style. The problem with
+		 * this is that it defines how something should look rather than
+		 * classifying what it is.
+		 *
+		 * In general, this was used for URLs.
+		 *
+		 * However, going forward we want to change this but do our best
+		 * to not break existing style-schemes. Should "net-address" be
+		 * requested, but only "underlined" existed, we will fallback to
+		 * the "underlined" style.
+		 *
+		 * If in the future, we need to support more fallbacks, this should
+		 * be changed to a GHashTable to map from src->dst style id.
+		 */
+		if (g_str_equal (style_id, "def:net-address"))
+		{
+			style = gtk_source_style_scheme_get_style_internal (scheme, "def:underlined");
+		}
+	}
 
 	return style;
 }
