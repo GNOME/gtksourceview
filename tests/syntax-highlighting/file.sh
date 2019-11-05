@@ -32,14 +32,20 @@ xxx${x#"*"}xxx
 
 # Variable definitions
 var1=val1; var2=val2
+local var=xxx
 if var=$(cmd); then some; fi
 test -f xxx && var=xxx || var=yyy
-echo text | var=xxx cmd
+echo text | var=xxx cmd & var=yyy
+declare -i '-r' "-x" var1=val1 var2=val2
+case $1 in
+  item) var=xxx;;
+  *)var=yyy;;
+esac
 
 # For statements
 for word in hello world
 do
-    echo $word
+  echo $word
 done
 
 for arg; do echo $arg; done
