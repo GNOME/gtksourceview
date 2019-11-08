@@ -32,14 +32,15 @@ xxx${x#"*"}xxx
 
 # Variable definitions
 var1=val1; var2=val2
-local var=xxx
 if var=$(cmd); then some; fi
 test -f xxx && var=xxx || var=yyy
 echo text | var=xxx cmd & var=yyy
-declare -i '-r' "-x" var1=val1 var2=val2
+declare -i '-r' "-x" var1=val1 var2=$val1 var3=`cmd1` \
+  var4=$(cmd2) var5=xxx\ yyy var6 #comment
+var+=xxx; (var=yyy); { var=zzz; }
 case $1 in
   item) var=xxx;;
-  *)var=yyy;;
+  *)declare var=yyy;;
 esac
 
 # For statements
