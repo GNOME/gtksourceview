@@ -84,6 +84,20 @@
   <!-- Statements -->
   <style name="def:statement"               bold="true"/>
 
+  <!-- Markup -->
+  <style name="def:emphasis"                bold="true"/>
+  <style name="def:strong-emphasis"         bold="true"/>
+  <style name="def:inline-code"             foreground="dark-blue"/>
+  <style name="def:insertion"               underline="single"/>
+  <style name="def:deletion"                strikethrough="true"/>
+  <style name="def:link-text"               foreground="grey" italic="true" bold="false"/>
+  <style name="def:link-symbol"             foreground="grey" bold="true"/>
+  <style name="def:link-destination"        underline="single"/>
+  <style name="def:heading"                 foreground="dark-blue"/>
+  <style name="def:thematic-break"          foreground="dark-blue"/>
+  <style name="def:preformatted-section"    foreground="dark-blue"/>
+  <style name="def:list-marker"             bold="true"/>
+
   <!-- Others -->
   <style name="def:preprocessor"            bold="true"/>
   <style name="def:note"                    foreground="#BF0303" background="#F7E7E7" bold="true" italic="false"/>

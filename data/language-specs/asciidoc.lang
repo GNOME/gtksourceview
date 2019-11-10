@@ -27,27 +27,27 @@
   </metadata>
 
   <styles>
-    <style id="markup-monospace"  name="Monospaced Text"     map-to="def:constant"/>
-    <style id="markup-emphasis"   name="Emphasized Text"     map-to="def:doc-comment-element"/>
-    <style id="markup-strong"     name="Strong Text"         map-to="def:statement"/>
+    <style id="markup-monospace"  name="Monospaced Text"     map-to="def:inline-code"/>
+    <style id="markup-emphasis"   name="Emphasized Text"     map-to="def:emphasis"/>
+    <style id="markup-strong"     name="Strong Text"         map-to="def:strong-emphasis"/>
     <style id="markup-pass"       name="Passthrough Text"    map-to="def:special-char"/>
     <style id="markup-replace"    name="Replacement"         map-to="def:special-char"/>
     <style id="markup-linebreak"  name="Line Break"          map-to="def:special-char"/>
     <style id="markup-admonition" name="Admonition"          map-to="def:note"/>
     <style id="markup-anchor"     name="Anchor"              map-to="def:identifier"/>
     <style id="markup-crosslink"  name="Link"                map-to="def:identifier"/>
-    <style id="markup-url"        name="URL"                 map-to="def:net-address"/>
+    <style id="markup-url"        name="URL"                 map-to="def:link-destination"/>
     <style id="markup-att-entry"  name="Attribute Entry Invocation"     map-to="def:preprocessor"/>
-    <style id="struct-title"      name="Title"               map-to="def:type"/>
+    <style id="struct-title"      name="Title"               map-to="def:heading"/>
     <style id="struct-blocktitle" name="Block Title"         map-to="def:identifier"/>
     <style id="struct-style"      name="Style"               map-to="def:identifier"/>
-    <style id="par-literal"       name="Literal"             map-to="def:string"/>
-    <style id="block-listing"     name="Listing"             map-to="def:comment"/>
+    <style id="par-literal"       name="Literal"             map-to="def:preformatted-section"/>
+    <style id="block-listing"     name="Listing"             map-to="def:preformatted-section"/>
     <style id="block-comment"     name="Comment"             map-to="def:comment"/>
     <style id="block-boundary"    name="Block Boundary"      map-to="def:identifier"/>
     <style id="macro"             name="Macro"               map-to="def:keyword"/>
     <style id="preprocessor"      name="Preprocessor"        map-to="def:preprocessor"/>
-    <style id="list-identifier"   name="List Identifier"     map-to="def:special-char"/>
+    <style id="list-identifier"   name="List Identifier"     map-to="def:list-marker"/>
   </styles>
 
   <definitions>

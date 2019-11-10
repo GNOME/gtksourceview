@@ -97,6 +97,20 @@
   <!-- Types -->
   <style name="def:type"                    foreground="teal_blue"/>
 
+  <!-- Markup -->
+  <style name="def:emphasis"                bold="true"/>
+  <style name="def:strong-emphasis"         foreground="bright_orange"/>
+  <style name="def:inline-code"             foreground="light_grey"/>
+  <style name="def:insertion"               underline="single"/>
+  <style name="def:deletion"                strikethrough="true"/>
+  <style name="def:link-text"               foreground="sky_blue" italic="true"/>
+  <style name="def:link-symbol"             foreground="sky_blue" italic="true"/>
+  <style name="def:link-destination"        underline="single"/>
+  <style name="def:heading"                 foreground="teal_blue"/>
+  <style name="def:thematic-break"          foreground="teal_blue"/>
+  <style name="def:preformatted-section"    foreground="light_grey"/>
+  <style name="def:list-marker"             foreground="bright_orange"/>
+
   <!-- Others -->
   <style name="def:error"                   foreground="white" background="dark_red" bold="true"/>
   <style name="def:warning"                 foreground="white" background="nail_polish_pink"/>

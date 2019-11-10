@@ -31,18 +31,19 @@
   </metadata>
 
   <styles>
-    <style id="header" name="Header" map-to="def:type"/>
-    <style id="horizontal-rule" name="Horizontal Rule" map-to="def:type"/>
-    <style id="list-marker" name="List Marker" map-to="def:statement"/>
-    <style id="code" name="Code" map-to="def:identifier"/>
+    <style id="header" name="Header" map-to="def:heading"/>
+    <style id="horizontal-rule" name="Horizontal Rule" map-to="def:thematic-break"/>
+    <style id="list-marker" name="List Marker" map-to="def:list-marker"/>
+    <style id="code-span" name="Code Span" map-to="def:inline-code"/>
+    <style id="code-block" name="Code Block" map-to="def:preformatted-section"/>
     <style id="blockquote-marker" name="Blockquote Marker" map-to="def:shebang"/>
-    <style id="url" name="URL" map-to="def:net-address"/>
-    <style id="link-text" name="Link Text" map-to="def:comment"/>
+    <style id="url" name="URL" map-to="def:link-destination"/>
+    <style id="link-text" name="Link Text" map-to="def:link-text"/>
     <style id="label" name="Label" map-to="def:preprocessor"/>
     <style id="attribute-value" name="Attribute Value" map-to="def:constant"/>
-    <style id="image-marker" name="Image Marker" map-to="def:shebang"/>
-    <style id="emphasis" name="Emphasis" map-to="def:doc-comment-element"/>
-    <style id="strong-emphasis" name="Strong Emphasis" map-to="def:statement"/>
+    <style id="image-marker" name="Image Marker" map-to="def:link-symbol"/>
+    <style id="emphasis" name="Emphasis" map-to="def:emphasis"/>
+    <style id="strong-emphasis" name="Strong Emphasis" map-to="def:strong-emphasis"/>
     <style id="backslash-escape" name="Backslash Escape" map-to="def:special-char"/>
     <style id="line-break" name="Line Break" map-to="def:note"/>
   </styles>
@@ -132,7 +133,7 @@
       <match>^( {8,}|\t{2,})([^ \t]+.*)</match>
 
       <include>
-        <context sub-pattern="2" style-ref="code"/>
+        <context sub-pattern="2" style-ref="code-block"/>
       </include>
     </context>
 
@@ -147,7 +148,7 @@
          Here's a literal HTML tag: `<p>`.
          `Here's a code span containing ``backticks``.`
     -->
-    <context id="1-backtick-code-span" class="no-spell-check" style-ref="code">
+    <context id="1-backtick-code-span" class="no-spell-check" style-ref="code-span">
       <match>(?&lt;!`)`[^`]+(`{2,}[^`]+)*`(?!`)</match>
     </context>
 
@@ -156,11 +157,11 @@
          ``The grave accent (`) is used in Markdown to indicate a code span.``
          ``Here's another code span containing ```backticks```.``
     -->
-    <context id="2-backticks-code-span" class="no-spell-check" style-ref="code">
+    <context id="2-backticks-code-span" class="no-spell-check" style-ref="code-span">
       <match>(?&lt;!`)``[^`]+((`|`{3,})[^`]+)*``(?!`)</match>
     </context>
 
-    <context id="3-backticks-code-span" class="no-spell-check" style-ref="code">
+    <context id="3-backticks-code-span" class="no-spell-check" style-ref="code-block">
       <start>^```.*$</start>
       <end>^```$</end>
     </context>

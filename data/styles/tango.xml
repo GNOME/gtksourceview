@@ -87,6 +87,20 @@
   <!-- Types -->
   <style name="def:type"                    foreground="chameleon3" bold="true"/>
 
+  <!-- Markup -->
+  <style name="def:emphasis"                italic="true"/>
+  <style name="def:strong-emphasis"         foreground="scarletred3" bold="true"/>
+  <style name="def:inline-code"             foreground="skyblue2"/>
+  <style name="def:insertion"               underline="single"/>
+  <style name="def:deletion"                strikethrough="true"/>
+  <style name="def:link-text"               foreground="skyblue3"/>
+  <style name="def:link-symbol"             foreground="skyblue3" bold="true"/>
+  <style name="def:link-destination"        italic="true" underline="single"/>
+  <style name="def:heading"                 foreground="chameleon3" bold="true"/>
+  <style name="def:thematic-break"          foreground="chameleon3" bold="true"/>
+  <style name="def:preformatted-section"    foreground="skyblue2"/>
+  <style name="def:list-marker"             foreground="scarletred3" bold="true"/>
+
   <!-- Others -->
   <style name="def:preprocessor"            foreground="chocolate3"/>
   <style name="def:error"                   background="scarletred2" bold="true"/>

@@ -26,19 +26,19 @@
   </metadata>
 
   <styles>
-    <style id="strong-emphasis" name="Strong Emphasis"   map-to="def:statement"/>
-    <style id="light-emphasis"  name="Light Emphasis"    map-to="def:doc-comment-element"/>
+    <style id="strong-emphasis" name="Strong Emphasis"   map-to="def:strong-emphasis"/>
+    <style id="light-emphasis"  name="Light Emphasis"    map-to="def:emphasis"/>
     <style id="signature"       name="Signature"         map-to="def:statement"/>
-    <style id="url"             name="URL"               map-to="def:net-address"/>
-    <style id="link"            name="Link"              map-to="def:comment"/>
-    <style id="link-symbol"     name="Symbol on a Link"  map-to="def:shebang"/>
-    <style id="line"            name="Line"              map-to="def:type"/>
-    <style id="list"            name="List"              map-to="def:statement"/>
+    <style id="url"             name="URL"               map-to="def:link-destination"/>
+    <style id="link"            name="Link"              map-to="def:link-text"/>
+    <style id="link-symbol"     name="Symbol on a Link"  map-to="def:link-symbol"/>
+    <style id="line"            name="Line"              map-to="def:thematic-break"/>
+    <style id="list"            name="List"              map-to="def:list-marker"/>
     <style id="magic-word"      name="Magic Word"        map-to="def:statement"/>
     <style id="table-symbol"    name="Symbol of a Table" map-to="def:statement"/>
-    <style id="preformatted"    name="Preformatted"      map-to="def:identifier"/>
+    <style id="preformatted"    name="Preformatted"      map-to="def:preformatted-section"/>
     <style id="redirect"        name="Redirect"          map-to="def:statement"/>
-    <style id="title"           name="Title"             map-to="def:type"/>
+    <style id="title"           name="Title"             map-to="def:heading"/>
     <style id="template"        name="Template"          map-to="def:statement"/>
   </styles>
 
