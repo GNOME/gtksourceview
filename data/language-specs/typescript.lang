@@ -51,6 +51,8 @@
     <!-- General -->
     <style id="optional-modifier"                             name="Optional Modifier"/>
     <style id="definite-assignment-assertion"                 name="Definite Assignment Assertion"/>
+    <style id="decorator"                                     name="Decorator"/>
+    <style id="decorator-operator"                            name="Decorator Operator"/>
     <style id="type-annotation"                               name="Type Annotation"/>
 
     <!-- Type literals -->
@@ -96,10 +98,6 @@
          https://www.typescriptlang.org/
 
          Supported level: TypeScript 3.6
-
-         Not supported yet:
-         * Decorators: Still an experimental feature of TypeScript and
-           a Stage 2 proposal for ECMAScript
 
          Naming conventions described in javascript.lang
     -->
@@ -332,6 +330,95 @@
         <context ref="_this-parameter-or-assignment-target"/>
       </include>
     </context> <!-- /ordered-this-parameter-or-assignment-target -->
+
+    <!-- ## Decorators
+
+         @sealed
+         @decorators.required
+         @configurable(false)
+         @(isDebug ? annotate : hideOutput)
+    -->
+
+    <context id="_choice-decorator-primary-expression-parenthesized-expression" end-parent="true">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context ref="js:comments"/>
+
+        <context id="_decorator-primary-expression-parenthesized-expression-content">
+          <include>
+            <context ref="js-expr:expression-with-comma"/>
+          </include>
+        </context> <!-- /_decorator-primary-expression-parenthesized-expression-content -->
+
+      </include>
+    </context> <!-- /_choice-decorator-primary-expression-parenthesized-expression -->
+
+    <context id="_decorator-primary-expression" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:comments"/>
+
+        <context id="_decorator-primary-expression-content">
+          <include>
+            <context ref="_choice-decorator-primary-expression-parenthesized-expression"/>
+            <context ref="js:choice-identifier"/>
+          </include>
+        </context> <!-- /_decorator-primary-expression-content -->
+
+      </include>
+    </context> <!-- /_decorator-primary-expression -->
+
+    <context id="_ordered-decorator-primary-expression" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_decorator-primary-expression"/>
+      </include>
+    </context> <!-- /_ordered-decorator-primary-expression -->
+
+    <context id="_decorator-dot-property-accessors">
+      <start>\.</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:comments"/>
+
+        <context id="_decorator-dot-property-accessor-content">
+          <include>
+            <context ref="js:identifier"/>
+          </include>
+        </context> <!-- /_decorator-dot-property-accessor-content -->
+
+      </include>
+    </context>
+
+    <context id="decorators" style-ref="decorator">
+      <start>@</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="decorator-operator"/>
+        <context ref="js:comments"/>
+
+        <context id="_decorator-content">
+          <include>
+            <context ref="_ordered-decorator-primary-expression"/>
+            <context ref="_decorator-dot-property-accessors"/>
+            <context ref="typescript-js-expr:_function-call-type-arguments-lists"/>
+            <context ref="js-expr:_function-arguments-lists"/>
+          </include>
+        </context> <!-- /_decorator-content -->
+
+      </include>
+    </context> <!-- /decorators -->
+
+    <context id="ordered-decorators" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="decorators"/>
+      </include>
+    </context> <!-- /ordered-decorators -->
 
 
     <!-- # Types -->
@@ -639,6 +726,7 @@
     <replace id="js-fn:_class-extends-clause-content" ref="typescript-js-fn:class-extends-clause-content"/>
 
     <replace id="js-fn:_class-body-member-content" ref="typescript-js-fn:class-body-member-content"/>
+    <replace id="js-fn:_class-body-content" ref="typescript-js-fn:class-body-content"/>
 
     <replace id="js-fn:_class-expression-content" ref="typescript-js-fn:class-expression-content"/>
     <replace id="js-fn:choice-class-expression" ref="typescript-js-fn:choice-class-expression"/>

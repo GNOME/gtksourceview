@@ -53,6 +53,10 @@
     <!-- replaces js-fn:_function-parameters-content -->
     <context id="function-parameters-content">
       <include>
+        <!-- decorators are valid for class declaration methods only -->
+        <context ref="typescript:ordered-decorators"/>
+        <!-- accessibility modifiers are valid for class
+             expression/declaration constructors only -->
         <context ref="_ordered-accessibility-modifier"/>
         <context ref="js:ordered-rest-syntax"/>
         <context ref="js:ordered-assignment-target"/>
@@ -72,8 +76,14 @@
 
         <context id="_function-first-parameter-content">
           <include>
+            <!-- decorators are valid for class declaration methods only -->
+            <context ref="typescript:ordered-decorators"/>
+            <!-- accessibility modifiers are valid for class
+                 expression/declaration constructors only -->
             <context ref="_ordered-accessibility-modifier"/>
             <context ref="js:ordered-rest-syntax"/>
+            <!-- this parameters are valid for class
+                 expression/declaration methods only -->
             <context ref="typescript:ordered-this-parameter-or-assignment-target"/>
             <context ref="typescript:ordered-optional-modifier"/>
             <context ref="typescript:ordered-type-annotation"/>
@@ -312,6 +322,14 @@
         <context ref="_choice-class-body-property-or-method-member"/>
       </include>
     </context> <!-- /class-body-member-content -->
+
+    <!-- replaces js-fn:_class-body-content -->
+    <context id="class-body-content">
+      <include>
+        <context ref="typescript:decorators"/>
+        <context ref="js-fn:_class-body-content" original="true"/>
+      </include>
+    </context> <!-- /class-body-content -->
 
     <!-- ## Class expression -->
 

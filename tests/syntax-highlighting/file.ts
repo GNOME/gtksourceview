@@ -265,6 +265,27 @@ let a: string;
 /// <reference-path
 
 
+/* Decorators (experimental, stage 2 proposal) */
+
+// Class decorator
+@sealed
+class Greeter {
+    // Property decorator
+    @(Deco) /* comment */ . /* comment */ utils /* comment */ () /* comment */ . /* comment */ format /* comment */ ("Hello, %s")
+    greeting: string;
+
+    // Method decorator
+    @ /* comment */ (foo = 'bar', false || validate)
+    greet(@required name: string) { // Parameter decorator
+        return "Hello " + name + ", " + this.greeting;
+    }
+
+    // Accessor decorator
+    @configurable<string>(false) /* comment */
+    get x() { return this._x; }
+}
+
+
 /* Ambient declaration */
 
 declare let a;

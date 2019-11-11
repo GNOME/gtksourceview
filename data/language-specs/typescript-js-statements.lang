@@ -529,6 +529,7 @@
     <!-- replaces js-st:statements -->
     <context id="statements">
       <include>
+        <context ref="typescript:decorators"/>
         <context ref="_ambient-declarations"/>
         <context ref="_const-declarations"/>
         <context ref="_enum-declarations"/>
