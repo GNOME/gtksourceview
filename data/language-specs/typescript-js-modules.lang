@@ -128,20 +128,20 @@
         <context id="_import-require-content">
           <include>
 
-            <context id="_import-require-parameter-list" once-only="true">
+            <context id="_import-require-parameters-list" once-only="true">
               <start>\(</start>
               <end>\)</end>
               <include>
                 <context ref="js:comments"/>
 
-                <context id="_import-require-parameter-list-content">
+                <context id="_import-require-parameters-list-content">
                   <include>
                     <context ref="typescript:js-ordered-string"/>
                   </include>
-                </context> <!-- /_import-require-parameter-list-content -->
+                </context> <!-- /_import-require-parameters-list-content -->
 
               </include>
-            </context> <!-- /_import-require-parameter-list -->
+            </context> <!-- /_import-require-parameters-list -->
 
           </include>
         </context> <!-- /_import-require-content -->

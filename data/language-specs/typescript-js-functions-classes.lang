@@ -120,29 +120,29 @@
            property: 'value'
     -->
 
-    <context id="_function-parameter-list-and-type-annotation" once-only="true">
+    <context id="_function-parameters-list-and-type-annotation" once-only="true">
       <start>(?=\()</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:comments"/>
 
-        <context id="_function-parameter-list-and-type-annotation-content">
+        <context id="_function-parameters-list-and-type-annotation-content">
           <include>
             <context ref="js-fn:_ordered-function-parameters-list" style-ref="js:function-expression"/>
             <context ref="typescript:ordered-type-annotation"/>
           </include>
-        </context> <!-- /_function-parameter-list-and-type-annotation-content -->
+        </context> <!-- /_function-parameters-list-and-type-annotation-content -->
 
       </include>
-    </context> <!-- /_function-parameter-list-and-type-annotation -->
+    </context> <!-- /_function-parameters-list-and-type-annotation -->
 
-    <context id="_ordered-function-parameter-list-and-type-annotation" once-only="true">
+    <context id="_ordered-function-parameters-list-and-type-annotation" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
       <include>
-        <context ref="_function-parameter-list-and-type-annotation"/>
+        <context ref="_function-parameters-list-and-type-annotation"/>
       </include>
-    </context> <!-- /_ordered-function-parameter-list-and-type-annotation -->
+    </context> <!-- /_ordered-function-parameters-list-and-type-annotation -->
 
     <!-- replaces js-fn:_method-definition-content -->
     <context id="method-definition-content">
@@ -159,7 +159,7 @@
              assertion cannot both be specified -->
         <context ref="typescript:ordered-definite-assignment-assertion"/>
         <context ref="typescript-type-gen:ordered-type-parameters-list"/>
-        <context ref="_ordered-function-parameter-list-and-type-annotation"/>
+        <context ref="_ordered-function-parameters-list-and-type-annotation"/>
         <context ref="js-fn:_last-function-body" style-ref="js:function-expression"/>
       </include>
     </context> <!-- /method-definition-content -->
@@ -300,7 +300,7 @@
           <include>
             <context ref="js-fn:ordered-method-definition"/>
             <!-- method-definition has a type-annotation, but it is tied
-                 to function-parameter-list -->
+                 to function-parameters-list -->
             <context ref="typescript:ordered-type-annotation"/>
             <context ref="js:ordered-default-value-assignment"/>
           </include>
