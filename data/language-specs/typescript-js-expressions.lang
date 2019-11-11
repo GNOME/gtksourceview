@@ -90,18 +90,6 @@
     </context> <!-- /choice-grouping-and-type-annotation -->
 
 
-    <!-- # Primary expression -->
-
-    <!-- replaces js-expr:_primary-expression-identifier-content -->
-    <!--
-    <context id="primary-expression-identifier-content">
-      <include>
-        <context ref="typescript-object-keywords"/>
-        <context ref="js-expr:_primary-expression-identifier-content" original="true"/>
-      </include>
-    </context> <!- - /primary-expression-identifier-content -->
-
-
     <!-- # Non-null assertion (post-fix !)
 
          a!.method();
