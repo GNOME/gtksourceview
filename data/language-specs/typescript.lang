@@ -49,42 +49,42 @@
     <!-- The following are for debugging use -->
 
     <!-- General -->
-    <style id="optional-modifier"                             name="Optional Modifier"/>
-    <style id="definite-assignment-assertion"                 name="Definite Assignment Assertion"/>
+    <style id="optional-modifier"                             name="Optional modifier"/>
+    <style id="definite-assignment-assertion"                 name="Definite assignment assertion"/>
     <style id="decorator"                                     name="Decorator"/>
-    <style id="decorator-operator"                            name="Decorator Operator"/>
-    <style id="type-annotation"                               name="Type Annotation"/>
+    <style id="decorator-operator"                            name="Decorator operator"/>
+    <style id="type-annotation"                               name="Type annotation"/>
 
     <!-- Type literals -->
-    <style id="mapped-type-modifier-prefix"                   name="Mapped Type Modifier Prefix"/>
-    <style id="tuple-type-literal"                            name="Tuple Type Literal"/>
-    <style id="object-type-literal"                           name="Object Type Literal"/>
+    <style id="mapped-type-modifier-prefix"                   name="Mapped type modifier prefix"/>
+    <style id="tuple-type-literal"                            name="Tuple type literal"/>
+    <style id="object-type-literal"                           name="Object type literal"/>
 
     <!-- Type generics -->
-    <style id="type-parameters-list"                          name="Type Parameters List"/>
-    <style id="type-parameters-list-or-type-assertion"        name="Type Parameters List or Type Assertion"/>
-    <style id="type-arguments-list"                           name="Type Arguments List"/>
+    <style id="type-parameters-list"                          name="Type parameters list"/>
+    <style id="type-parameters-list-or-type-assertion"        name="Type parameters list or type assertion"/>
+    <style id="type-arguments-list"                           name="Type arguments list"/>
 
     <!-- Type expressions -->
-    <style id="parenthesized-type-or-function-type"           name="Parenthesized Type or Function Type"/>
-    <style id="parenthesized-type-or-function-type-operator"  name="Parenthesized Type or Function Type Operator"/>
-    <style id="type-query"                                    name="Type Query"/>
-    <style id="bracket-type-operator"                         name="Bracket Type Operator"/>
-    <style id="conditional-type-operator"                     name="Conditional Type Operator"/>
-    <style id="union-intersection-type-operator"              name="Union / Intersection Type Operator"/>
-    <style id="type-expression"                               name="Type Expression"/>
+    <style id="parenthesized-type-or-function-type"           name="Parenthesized type or function type"/>
+    <style id="parenthesized-type-or-function-type-operator"  name="Parenthesized type or function type operator"/>
+    <style id="type-query"                                    name="Type query"/>
+    <style id="bracket-type-operator"                         name="Bracket type operator"/>
+    <style id="conditional-type-operator"                     name="Conditional type operator"/>
+    <style id="union-intersection-type-operator"              name="Union / intersection type operator"/>
+    <style id="type-expression"                               name="Type expression"/>
 
     <!-- JavaScript expressions -->
-    <style id="non-null-assertion-operator"                   name="Non-null Assertion Operator"/>
+    <style id="non-null-assertion-operator"                   name="Non-null assertion operator"/>
 
     <!-- JavaScript statements -->
-    <style id="global-augmentation"                           name="Global Augmentation"/>
-    <style id="ambient-declaration"                           name="Ambient Declaration"/>
-    <style id="enum-declaration"                              name="Enum Declaration"/>
-    <style id="interface-declaration"                         name="Interface Declaration"/>
-    <style id="module-declaration"                            name="Module Declaration"/>
-    <style id="namespace-declaration"                         name="Namespace Declaration"/>
-    <style id="type-alias-declaration"                        name="Type Alias Declaration"/>
+    <style id="global-augmentation"                           name="Global augmentation"/>
+    <style id="ambient-declaration"                           name="Ambient declaration"/>
+    <style id="enum-declaration"                              name="Enum declaration"/>
+    <style id="interface-declaration"                         name="Interface declaration"/>
+    <style id="module-declaration"                            name="Module declaration"/>
+    <style id="namespace-declaration"                         name="Namespace declaration"/>
+    <style id="type-alias-declaration"                        name="Type alias declaration"/>
   </styles>
 
   <keyword-char-class>[a-zA-Z0-9_$]</keyword-char-class>
