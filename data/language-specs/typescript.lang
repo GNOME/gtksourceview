@@ -662,7 +662,9 @@
 
     <!-- using a context from a component file in a <replace> before
          referencing a context from the file causes "unknown context"
-         errors -->
+         errors
+         https://gitlab.gnome.org/GNOME/gtksourceview/issues/67
+    -->
     <context id="unknown-context-error-workaround">
       <include>
         <context ref="typescript-js-lit:choice-number"/>

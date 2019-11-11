@@ -236,6 +236,8 @@
 
     <!-- "unknown id" errors can occur when using a regex defined in one
           component file in another component file
+          https://gitlab.gnome.org/GNOME/gtksourceview/issues/67
+
           so we move the definitions of these regexes here
     -->
 

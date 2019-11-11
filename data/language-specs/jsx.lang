@@ -45,6 +45,7 @@
 
     <!-- using a style from another lang file before referencing a
          context from the file causes "style not defined" errors
+         https://gitlab.gnome.org/GNOME/gtksourceview/issues/67
     -->
     <context id="style-not-defined-error-workaround">
       <include>
@@ -57,6 +58,7 @@
 
     <!-- reference js here to avoid "unknown id" error when referencing
          a regex from js before referencing a context from js
+         https://gitlab.gnome.org/GNOME/gtksourceview/issues/67
     -->
     <context id="main-lang">
       <include>

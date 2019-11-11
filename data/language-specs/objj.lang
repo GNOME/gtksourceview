@@ -53,6 +53,7 @@
 
     <!-- using a style from another lang file before referencing a
          context from the file causes "style not defined" errors
+         https://gitlab.gnome.org/GNOME/gtksourceview/issues/67
     -->
     <context id="style-not-defined-error-workaround">
       <include>
