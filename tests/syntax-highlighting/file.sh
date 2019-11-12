@@ -31,7 +31,7 @@ xxx${x#*}xxx
 xxx${x#"*"}xxx
 
 # Variable definitions
-var1=val1; var2=val2
+var1=val1; var2=val2 var3=val3
 if var=$(cmd); then some; fi
 test -f xxx && var=xxx || var=yyy
 echo text | var=xxx cmd & var=yyy
@@ -56,3 +56,8 @@ arg; do echo $arg; done
 echo Look for file
 echo Look for; echo Look for
 echo next line
+
+# Redirections
+> >> 1>&2 &> 3>&-
+< 0<&3 3<&-
+3<> 1>|
