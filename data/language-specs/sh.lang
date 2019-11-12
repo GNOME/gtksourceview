@@ -42,16 +42,17 @@
     <style id="subshell"            name="Subshell"            map-to="def:preprocessor"/>
   </styles>
 
+<keyword-char-class>[^()`&amp;|;]</keyword-char-class>
+
   <definitions>
 
-    <define-regex id="assignment">\+?=</define-regex>
-    <define-regex id="boundary-operator">[()`&amp;|;]</define-regex>
     <define-regex id="identifier">[a-zA-Z_][a-zA-Z0-9_]*</define-regex>
+    <define-regex id="unescaped-space">(?&lt;!\\)\s</define-regex>
 
     <!-- we cannot use def:shell-like-comment, because
          m4.lang needs to replace this context -->
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>(?&lt;!\S)#</start>
+      <start>(?&lt;=\s)#</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
@@ -109,22 +110,16 @@
     </context>
 
     <context id="function" style-ref="function">
-      <match>\b\%{identifier}[ \t]*\(\)</match>
+      <match>(?&lt;=\%{unescaped-space}|\%[)\%{identifier}\s*\(\)</match>
     </context>
 
     <context id="redirection" style-ref="others">
-      <keyword>&gt;&amp;+[0-9]</keyword>
-      <keyword>\b[0-9]+&gt;&amp;</keyword>
-      <keyword>\b[0-9]+&gt;&amp;+[0-9]</keyword>
-      <keyword>\b[0-9]+&gt;</keyword>
-      <keyword>&gt;&gt;</keyword>
-      <keyword>\b[0-9]+&gt;&gt;</keyword>
-      <keyword>&lt;&amp;[0-9]</keyword>
-      <keyword>\b[0-9]+&lt;&amp;</keyword>
-      <keyword>\b[0-9]+&lt;&amp;[0-9]</keyword>
-      <keyword>\b[0-9]+&lt;</keyword>
-      <keyword>&lt;&lt;+[0-9]</keyword>
-      <keyword>\b[0-9]+&lt;&lt;</keyword>
+      <prefix></prefix>
+      <suffix></suffix>
+      <!-- The order of the two following keywords matters -->
+      <keyword>([0-9]+)?[&lt;&gt;](&amp;)?([0-9]+)?-?</keyword>
+      <keyword>(&amp;|[0-9]+)?&gt;{1,2}([0-9]+)?-?</keyword>
+      <keyword>([0-9]+)?(&lt;&gt;|&gt;\|)</keyword>
     </context>
 
     <context id="here-doc">
@@ -207,15 +202,7 @@
     </context>
 
     <context id="stand-alone-variable-definition">
-      <match extended="true">
-        (?:
-          ^ \s* |
-          (?&lt;=\%{boundary-operator}) \s* |
-          (?&lt;=if|then|else|while|until|do|{) \s+
-        )
-        (\%{identifier})
-        \%{assignment}
-      </match>
+      <match>(?&lt;=\%{unescaped-space}|\%[)(\%{identifier})\+?=</match>
       <include>
         <context sub-pattern="1" style-ref="variable-definition"/>
       </include>
@@ -223,11 +210,11 @@
 
     <context id="variable-definition-command" end-at-line-end="true" extend-parent="false">
       <start extended="true">
-        (?&lt;=\%{boundary-operator}|^|\s)
+        (?&lt;=\%{unescaped-space}|\%[)
         (declare|local|typeset|readonly|export)
-        (?=\%{boundary-operator}|$|\s)
+        (?=\s|\%])
       </start>
-      <end>&gt;|\%{boundary-operator}</end>
+      <end>\%]</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
@@ -236,11 +223,12 @@
         <context ref="line-comment"/>
         <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
+        <context ref="redirection"/>
         <context ref="backtick-subshell"/>
         <context ref="subshell"/>
         <context ref="variable"/>
         <context style-ref="variable-definition">
-          <match>(?&lt;=(?&lt;!\\)\s)\%{identifier}</match>
+          <match>(?&lt;=\%{unescaped-space})\%{identifier}</match>
         </context>
       </include>
     </context>
@@ -265,8 +253,8 @@
     <!-- To prevent conflicts, keywords below should be removed from the list
          before being used in any container context -->
     <context id="built-in-command-2" style-ref="keyword">
-      <prefix>(?&lt;![^\s;\(\)\`])</prefix>
-      <suffix>(?![^\s;\(\)\`])</suffix>
+      <prefix>(?&lt;=\%{unescaped-space}|\%[)</prefix>
+      <suffix>(?=\s|\%])</suffix>
       <keyword>do</keyword>
       <keyword>done</keyword>
       <keyword>elif</keyword>
@@ -327,8 +315,8 @@
     </context>
 
     <context id="case-command">
-      <start>\bcase\b</start>
-      <end>\besac\b</end>
+      <start>(?&lt;=\%{unescaped-space}|\%[)case(?=\s)</start>
+      <end>(?&lt;=\%{unescaped-space}|\%[)esac(?=\s|\%])</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
@@ -337,7 +325,7 @@
     </context>
 
     <context id="for-command" end-at-line-end="true">
-      <start>\bfor\b</start>
+      <start>(?&lt;=\%{unescaped-space}|\%[)for(?=\s)</start>
       <end>(?=\S)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
