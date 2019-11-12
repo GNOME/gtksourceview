@@ -180,13 +180,20 @@
     </context>
 
     <context id="short-parameter-expansion" style-ref="variable">
-      <match>\$([!@?*#\$0-9]|\%{identifier})</match>
+      <match>\$([-!@?*#\$0-9]|\%{identifier})</match>
     </context>
 
-    <context id="parameter-expansion" style-ref="variable">
-      <start>\$\{</start>
+    <context id="parameter-expansion" style-ref="def:statement" style-inside="true">
+      <start extended="true">
+        \$\{ (
+          [-@?*\$0-9]
+          | [!#]? ( \%{identifier} (\[ ([@*]|-?[0-9]+) \])? )?
+        )</start>
       <end>\}</end>
       <include>
+        <context sub-pattern="0" where="start" style-ref="variable"/>
+        <context sub-pattern="0" where="end" style-ref="variable"/>
+        <context ref="def:escape"/>
         <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="variable"/>
@@ -346,8 +353,8 @@
     </context>
 
     <context id="common-command" style-ref="common-command">
-      <prefix>(?&lt;![\w\-\.])</prefix>
-      <suffix>(?![\w\-\.])</suffix>
+      <prefix>(?&lt;=\%{unescaped-space}|\%[)</prefix>
+      <suffix>(?=\s|\%])</suffix>
       <keyword>ar</keyword>
       <keyword>awk</keyword>
       <keyword>basename</keyword>

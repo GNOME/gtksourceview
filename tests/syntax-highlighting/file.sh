@@ -3,10 +3,12 @@ echo "Hi there!"
 
 # Parameter Expansion
 
-xxx${xxx}xxx # parameter in braces
-xxx${"{"}xxx xxx${"}"}xxx # brace in quoted string
+xxx${xxx}xxx # Parameter in braces
+xxx${var/\"}xxx xxx${var/\}}xxx # Escaped characters
 
-xxx$0000 # one digit parameter
+xxx$0000 # One digit parameter
+xxx$-xxx xxx$$xxx xxx$@xxx # Special parameters
+xxx${array[@]}xxx xxx${!array[@]}xxx xxx${array[-1]}xxx # Arrays
 
 xxx${parameter:-word}xxx${parameter-word}xxx # Use Default Values
 xxx${parameter:=word}xxx${parameter=word}xxx # Assign Default Values
@@ -15,6 +17,7 @@ xxx${parameter:?}xxx${parameter?}xxx # Indicate Error if Null or Unset
 xxx${parameter:+word}xxx${parameter+word}xxx # Use Alternative Value
 
 xxx${#parameter}xxx # String Length
+xxx${!parameter}xxx # Names matching prefix
 xxx${parameter%word}xxx # Remove Smallest Suffix Pattern
 xxx${parameter%%word}xxx # Remove Largest Suffix Pattern
 xxx${parameter#word}xxx # Remove Smallest Prefix Pattern
@@ -36,7 +39,7 @@ if var=$(cmd); then some; fi
 test -f xxx && var=xxx || var=yyy
 echo text | var=xxx cmd & var=yyy
 declare -i '-r' "-x" var1=val1 var2=$val1 var3=`cmd1` \
-  var4=$(cmd2) var5=xxx\ yyy var6 #comment
+  var4=$(cmd2) var5=xxx\ yyy var6 # Comment
 var+=xxx; (var=yyy); { var=zzz; }
 case $1 in
   item) var=xxx;;
