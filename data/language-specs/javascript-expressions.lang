@@ -544,7 +544,7 @@
     <!-- excluding comma operator -->
     <define-regex id="_binary-operator" extended="true">
       (?:
-        \*\* =? |                            # expotentiation (assignment) (ES2016)
+        \*\* =? |                            # exponentiation (assignment) (ES2016)
         [+/*%-] =? |                         # arithmetic (assignment)
         [!=]==? |                            # equality
         &amp;&amp; | \|\| |                  # logical
