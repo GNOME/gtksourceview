@@ -536,6 +536,8 @@
           </include>
         </context> <!-- /_template-head -->
 
+        <context ref="js:embedded-lang-hooks"/>
+
         <context id="_template-substitution-tails" style-ref="js:template-literal">
           <start>(?&lt;=})</start>
           <end>(?=`|\$\{)</end>
