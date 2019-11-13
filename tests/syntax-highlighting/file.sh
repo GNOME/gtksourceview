@@ -58,9 +58,11 @@ for arg; do echo $arg; done
 for \
 arg; do echo $arg; done
 
-echo Look for file
-echo Look for; echo Look for
-echo next line
+# Generic command (e.g. echo)
+echo for case grep $var ${var/x/y} $(cmd) `cmd` \
+  'a' "b" \\ | grep 'pattern'
+echo echo; echo echo & echo echo
+echo
 
 # Redirections
 > >> 1>&2 &> 3>&-
