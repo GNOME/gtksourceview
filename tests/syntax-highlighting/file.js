@@ -814,3 +814,80 @@ with (Math) {
     x = r * cos(PI);
     y = r * sin(PI / 2);
 }
+
+
+/*
+ * JSDoc
+ */
+
+/* Inline tag */
+
+/** {@link String} */
+/**
+ * {@link http://example.com | Ex\{am\}ple}
+ */
+/** {@link*/
+
+
+/* Type */
+
+/** {String} */
+/**
+ * {Foo.B\{a\}r}
+ */
+/** {number*/
+
+
+/* Block tag */
+
+// No arguments
+/** @constructor */
+/**
+ * @deprecated since 1.1.0
+ */
+/** @public*/
+
+// Generic argument
+/** @default 3.14159 */
+/**
+ * @tutorial tutorial-1
+ */
+/** @variation 2*/
+
+// Event name argument
+/** @fires earthquakeEvent */
+/**
+ * @listens touchstart
+ */
+/** @event newEvent*/
+
+// Keyword argument
+/** @access protected */
+/**
+ * @kind module
+ */
+/** @access private*/
+
+// Name/namepath argument
+/** @alias foo */
+/**
+ * @extends bar
+ */
+/** @typeParam T*/
+
+// Type and name arguments
+/** @param {String} name - A \{chosen\} \@name */
+/**
+ * @member {Object} child
+ */
+/** @property {number} num*/
+
+// Borrows block tag
+/** @borrows foo as bar */
+/**
+ * @borrows foo as
+ */
+/** @borrows foo*/
+
+// Todo block tag
+/** @todo write more/less test cases */

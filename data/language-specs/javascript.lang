@@ -36,6 +36,8 @@
   <styles>
 
     <!-- General -->
+    <style id="comment"               name="Comment"                map-to="def:comment"/>
+    <style id="doc-comment"           name="Documentation comment"  map-to="def:doc-comment"/>
     <style id="error"                 name="Error"                  map-to="def:error"/>
     <style id="keyword"               name="Keyword"                map-to="def:keyword"/>
     <style id="reserved-word"         name="Reserved word"          map-to="def:reserved"/>
@@ -294,21 +296,21 @@
     <!-- includes def:in-comment instead of def:in-line-comment,
          because line continuations are not allowed inside single-line
          comments -->
-    <context id="_c-like-comment" style-ref="def:comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
+    <context id="_c-like-comment" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start>//</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
     </context> <!-- /_c-like-comment -->
 
-    <context id="_c-like-comment-no-extend-parent" style-ref="def:comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment" extend-parent="false">
+    <context id="_c-like-comment-no-extend-parent" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment" extend-parent="false">
       <start>//</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
     </context> <!-- /_c-like-comment-no-extend-parent -->
 
-    <context id="_c-like-comment-multiline-no-extend-parent" style-ref="def:comment" class-disabled="no-spell-check" class="comment" extend-parent="false">
+    <context id="_c-like-comment-multiline-no-extend-parent" style-ref="comment" class-disabled="no-spell-check" class="comment" extend-parent="false">
       <start>/\*</start>
       <end>\*/</end>
       <include>
@@ -316,11 +318,45 @@
       </include>
     </context> <!-- /_c-like-comment-multiline-no-extend-parent -->
 
+    <context id="jsdoc-embedded-lang-hooks">
+      <include>
+        <context ref="embedded-lang-hooks"/>
+
+        <context end-parent="true">
+          <start>(?=\*/)</start>
+          <end>\%{def:always-match}</end>
+        </context>
+
+        <context ref="jsdoc:embedded-lang-hooks" original="true"/>
+      </include>
+    </context>
+
+    <replace id="jsdoc:embedded-lang-hooks" ref="jsdoc-embedded-lang-hooks"/>
+
+    <context id="doc-comment" style-ref="doc-comment" class-disabled="no-spell-check" class="comment">
+      <start>/\*\*(?![\*/])</start>
+      <end>\*/</end>
+      <include>
+        <context ref="def:in-comment"/>
+        <context ref="jsdoc:jsdoc"/>
+      </include>
+    </context> <!-- /doc-comment -->
+
+    <context id="doc-comment-no-extend-parent" style-ref="doc-comment" class-disabled="no-spell-check" class="comment" extend-parent="false">
+      <start>/\*\*(?![\*/])</start>
+      <end>\*/</end>
+      <include>
+        <context ref="def:in-comment"/>
+        <context ref="jsdoc:jsdoc"/>
+      </include>
+    </context> <!-- /doc-comment-no-extend-parent -->
+
     <context id="comments">
       <include>
         <context ref="_c-like-comment"/>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="doc-comment"/>
+        <context ref="def:c-like-comment-multiline" style-ref="comment"/>
+        <context ref="def:c-like-close-comment-outside-comment" style-ref="error"/>
       </include>
     </context> <!-- /comments -->
 
@@ -328,8 +364,9 @@
     <context id="comments-no-extend-parent">
       <include>
         <context ref="_c-like-comment-no-extend-parent"/>
+        <context ref="doc-comment-no-extend-parent"/>
         <context ref="_c-like-comment-multiline-no-extend-parent"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="def:c-like-close-comment-outside-comment" style-ref="error"/>
       </include>
     </context> <!-- /comments-no-extend-parent -->
 
