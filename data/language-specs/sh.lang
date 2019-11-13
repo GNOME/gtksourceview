@@ -52,7 +52,7 @@
     <!-- we cannot use def:shell-like-comment, because
          m4.lang needs to replace this context -->
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>(?&lt;=\s)#</start>
+      <start>(?&lt;=\s|^)#</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
@@ -66,13 +66,10 @@
         <context style-ref="def:special-char">
             <match>\\[$`"\\]</match>
         </context>
-        <!-- skip backslash where it's not an escaping char -->
-        <context>
-            <match>\\</match>
-        </context>
         <context ref="def:line-continue"/>
         <context ref="variable"/>
         <context ref="backtick-subshell"/>
+        <context ref="command-substitution"/>
       </include>
     </context>
 
@@ -81,8 +78,18 @@
       <end>'</end>
     </context>
 
-    <context id="subshell">
-      <start>\(</start>
+    <context id="subshell" style-ref="subshell">
+      <start>(?&lt;=\%{unescaped-space}|[`&amp;|;]|^)\((?!\()</start>
+      <end>\)(?=\s|[`&amp;|;]|$)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="sh"/>
+      </include>
+    </context>
+
+    <context id="command-substitution" style-ref="subshell">
+      <start>\$\((?!\()</start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
@@ -91,17 +98,27 @@
       </include>
     </context>
 
+    <!-- Treated separately, not including itself nor command-like contexts
+      (see https://gitlab.gnome.org/GNOME/gtksourceview/issues/94) -->
     <context id="backtick-subshell" style-ref="subshell">
       <start>`</start>
       <end>`</end>
       <include>
-        <context ref="def:escape"/>
+        <context ref="line-comment"/>
         <context ref="def:line-continue"/>
-        <context ref="variable"/>
-        <context ref="built-in-command"/>
-        <context ref="common-command"/>
+        <context ref="def:escape"/>
         <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
+        <context ref="subshell"/>
+        <context ref="command-substitution"/>
+        <context ref="punctuator"/>
+        <context ref="function"/>
+        <context ref="here-doc"/>
+        <context ref="redirection"/>
+        <context ref="operator"/>
+        <context ref="variable"/>
+        <context ref="stand-alone-variable-definition"/>
+        <context ref="built-in-command"/>
       </include>
     </context>
 
@@ -188,16 +205,19 @@
         \$\{ (
           [-@?*\$0-9]
           | [!#]? ( \%{identifier} (\[ ([@*]|-?[0-9]+) \])? )?
-        )</start>
+        )
+      </start>
       <end>\}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="variable"/>
         <context sub-pattern="0" where="end" style-ref="variable"/>
         <context ref="def:escape"/>
+        <context ref="def:line-continue"/>
         <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="variable"/>
         <context ref="backtick-subshell"/>
+        <context ref="command-substitution"/>
       </include>
     </context>
 
@@ -215,7 +235,7 @@
       </include>
     </context>
 
-    <context id="variable-definition-command" end-at-line-end="true" extend-parent="false">
+    <context id="variable-definition-command" end-at-line-end="true">
       <start extended="true">
         (?&lt;=\%{unescaped-space}|\%[)
         (declare|local|typeset|readonly|export)
@@ -230,9 +250,10 @@
         <context ref="line-comment"/>
         <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
+        <context ref="here-doc"/>
         <context ref="redirection"/>
         <context ref="backtick-subshell"/>
-        <context ref="subshell"/>
+        <context ref="command-substitution"/>
         <context ref="variable"/>
         <context style-ref="variable-definition">
           <match>(?&lt;=\%{unescaped-space})\%{identifier}</match>
@@ -525,11 +546,13 @@
       <include>
         <context ref="def:shebang"/>
         <context ref="line-comment"/>
+        <context ref="def:line-continue"/>
         <context ref="def:escape"/>
         <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="subshell"/>
         <context ref="backtick-subshell"/>
+        <context ref="command-substitution"/>
         <context ref="punctuator"/>
         <context ref="function"/>
         <context ref="here-doc"/>

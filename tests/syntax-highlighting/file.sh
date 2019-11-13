@@ -5,6 +5,8 @@ echo "Hi there!"
 
 xxx${xxx}xxx # Parameter in braces
 xxx${var/\"}xxx xxx${var/\}}xxx # Escaped characters
+xxx${var\
+/x/y} # Line continue
 
 xxx$0000 # One digit parameter
 xxx$-xxx xxx$$xxx xxx$@xxx # Special parameters
@@ -23,7 +25,7 @@ xxx${parameter%%word}xxx # Remove Largest Suffix Pattern
 xxx${parameter#word}xxx # Remove Smallest Prefix Pattern
 xxx${parameter##word}xxx # Remove Largest Prefix Pattern
 
-xxx${x:-$(ls)}xxx
+xxx${x:-$(ls ~/*)}xxx
 xxx${posix:?}xxx
 xxx${3:+posix}xxx
 xxx${#HOME}xxx
@@ -64,3 +66,8 @@ echo next line
 > >> 1>&2 &> 3>&-
 < 0<&3 3<&-
 3<> 1>|
+
+# Quoting
+'no special characters'
+"$var, ${var/x/y}, $(cmd), `cmd`, \
+\$, \`, \", \\, \ "
