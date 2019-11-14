@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-09-23 20:28+0200\n"
+"POT-Creation-Date: 2019-11-14 14:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,7 +122,7 @@ msgstr ""
 #: nemerle.lang:23
 #: netrexx.lang:23
 #: objc.lang:23
-#: objj.lang:25
+#: objj.lang:26
 #: ocaml.lang:26
 #: ooc.lang:23
 #: opal.lang:23
@@ -157,6 +157,7 @@ msgstr ""
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
 #. (itstool) path: jade.lang/language@_section
+#. (itstool) path: jsdoc.lang/language@_section
 #. (itstool) path: latex.lang/language@_section
 #. (itstool) path: mallard.lang/language@_section
 #. (itstool) path: markdown.lang/language@_section
@@ -178,6 +179,7 @@ msgstr ""
 #: haddock.lang:23
 #: html.lang:25
 #: jade.lang:24
+#: jsdoc.lang:23
 #: latex.lang:24
 #: mallard.lang:22
 #: markdown.lang:25
@@ -188,7 +190,7 @@ msgstr ""
 #: t2t.lang:23
 #: tera.lang:23
 #: texinfo.lang:24
-#: xml.lang:25
+#: xml.lang:26
 #: xslt.lang:23
 msgid "Markup"
 msgstr ""
@@ -197,7 +199,14 @@ msgstr ""
 #. (itstool) path: dosbatch.lang/language@_section
 #. (itstool) path: fish.lang/language@_section
 #. (itstool) path: gdscript.lang/language@_section
+#. (itstool) path: javascript-expressions.lang/language@_section
+#. (itstool) path: javascript-functions-classes.lang/language@_section
 #. (itstool) path: javascript.lang/language@_section
+#. (itstool) path: javascript-literals.lang/language@_section
+#. (itstool) path: javascript-modules.lang/language@_section
+#. (itstool) path: javascript-statements.lang/language@_section
+#. (itstool) path: javascript-values.lang/language@_section
+#. (itstool) path: jsx.lang/language@_section
 #. (itstool) path: lua.lang/language@_section
 #. (itstool) path: m4.lang/language@_section
 #. (itstool) path: perl.lang/language@_section
@@ -207,22 +216,49 @@ msgstr ""
 #. (itstool) path: ruby.lang/language@_section
 #. (itstool) path: sh.lang/language@_section
 #. (itstool) path: tcl.lang/language@_section
+#. (itstool) path: typescript-js-expressions.lang/language@_section
+#. (itstool) path: typescript-js-functions-classes.lang/language@_section
+#. (itstool) path: typescript-js-literals.lang/language@_section
+#. (itstool) path: typescript-js-modules.lang/language@_section
+#. (itstool) path: typescript-js-statements.lang/language@_section
+#. (itstool) path: typescript-js-values.lang/language@_section
+#. (itstool) path: typescript-jsx.lang/language@_section
 #. (itstool) path: typescript.lang/language@_section
+#. (itstool) path: typescript-type-expressions.lang/language@_section
+#. (itstool) path: typescript-type-generics.lang/language@_section
+#. (itstool) path: typescript-type-literals.lang/language@_section
 #: awk.lang:23
 #: dosbatch.lang:23
 #: fish.lang:19
 #: gdscript.lang:22
+#: javascript-expressions.lang:27
+#: javascript-functions-classes.lang:27
 #: javascript.lang:27
+#: javascript-literals.lang:27
+#: javascript-modules.lang:27
+#: javascript-statements.lang:27
+#: javascript-values.lang:27
+#: jsx.lang:23
 #: lua.lang:23
 #: m4.lang:23
 #: perl.lang:25
 #: php.lang:28
 #: python3.lang:23
 #: python.lang:27
-#: ruby.lang:26
+#: ruby.lang:27
 #: sh.lang:24
 #: tcl.lang:23
-#: typescript.lang:27
+#: typescript-js-expressions.lang:23
+#: typescript-js-functions-classes.lang:23
+#: typescript-js-literals.lang:23
+#: typescript-js-modules.lang:23
+#: typescript-js-statements.lang:23
+#: typescript-js-values.lang:23
+#: typescript-jsx.lang:23
+#: typescript.lang:23
+#: typescript-type-expressions.lang:23
+#: typescript-type-generics.lang:23
+#: typescript-type-literals.lang:23
 msgid "Script"
 msgstr ""
 
@@ -239,6 +275,7 @@ msgstr ""
 #. (itstool) path: diff.lang/language@_section
 #. (itstool) path: dot.lang/language@_section
 #. (itstool) path: dpatch.lang/language@_section
+#. (itstool) path: ftl.lang/language@_section
 #. (itstool) path: gdb-log.lang/language@_section
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
@@ -265,6 +302,7 @@ msgstr ""
 #: diff.lang:23
 #: dot.lang:23
 #: dpatch.lang:23
+#: ftl.lang:23
 #: gdb-log.lang:18
 #: gtkrc.lang:24
 #: ini.lang:22
