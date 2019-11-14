@@ -546,6 +546,7 @@ a = class {
     private property!: number;
     protected static readonly property: number = 1;
     abstract property;
+    declare property: number; // for useDefineForClassFields
 
     // Accessibility modifiers, type annotation, parameter properties for constructor
     private constructor(public x: number, private y?: string);
