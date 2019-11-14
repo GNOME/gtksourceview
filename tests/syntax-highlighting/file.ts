@@ -274,15 +274,18 @@ let a: string;
 
 // Valid directives
 ///<reference path="foo" />
-/// <reference lib="es2017.string" />
+/// <REFERENCE lib="es2017.string" />
 /// <amd-module name="bar" />
-///  <amd-dependency />
+///  <aMd-dEpEnDeNcY />
 
 // Invalid directives
 /// comment
 /// <comment
 /// < reference
 /// <reference-path
+{
+    /// <reference path="foo" />
+}
 
 
 /* Decorators (experimental, stage 2 proposal) */

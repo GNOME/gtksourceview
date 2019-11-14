@@ -193,10 +193,12 @@
 
          can only be preceded by comments or other triple-slash
          directives (i.e. at the top of a file)
+         appears to be case-insensitive
+         https://github.com/microsoft/TypeScript/blob/ef0cca7d12a320bc98cefebbf4d391de36003149/src/services/classifier.ts#L768
     -->
 
     <context id="_triple-slash-directives" style-ref="js:directive" end-at-line-end="true" class="comment">
-      <start extended="true">
+      <start case-sensitive="false" extended="true">
         /// \s* &lt;
         (
           amd-module |
