@@ -169,6 +169,24 @@
       </include>
     </context> <!-- /_ts-ignore-comment-pragmas-no-extend-parent -->
 
+    <!-- ## @ts-nocheck comment pragma
+
+         // @ts-nocheck
+
+         can only be preceded by comments or other triple-slash
+         directives (i.e. at the top of a file)
+         appears to be case-insensitive (cannot find code reference though)
+    -->
+
+    <context id="_ts-nocheck-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
+      <start case-sensitive="false" extended="true">
+        ///? \s* @ts-nocheck \%]
+      </start>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context> <!-- /_ts-nocheck-comment-pragmas -->
+
     <!-- ## Triple-slash directive
 
          /// <reference path="..."
@@ -796,6 +814,7 @@
 
     <context id="typescript" class="no-spell-check">
       <include>
+        <context ref="_ts-nocheck-comment-pragmas"/>
         <context ref="_triple-slash-directives"/>
         <context ref="js:js"/>
       </include>

@@ -255,6 +255,21 @@ let a: string;
 /* @ts-ignore */
 
 
+/* @ts-nocheck comment pragmas */
+
+// Valid pragmas
+//@ts-nocheck
+/// @TS-NOCHECK text here
+
+// Invalid pragmas
+// @ ts-nocheck
+//// @ts-nocheck
+/* @ts-nocheck */
+{
+    // @ts-nocheck
+}
+
+
 /* Triple-slash directives */
 
 // Valid directives
