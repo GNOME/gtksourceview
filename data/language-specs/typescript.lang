@@ -752,6 +752,11 @@
 
     <replace id="js-expr:_pre-lhs-expression" ref="typescript-js-expr:pre-lhs-expression"/>
 
+    <!-- ### Binary operators -->
+
+    <replace id="js-expr:_binary-operators-without-comma" ref="typescript-js-expr:binary-operators-without-comma"/>
+    <replace id="js-expr:_binary-operators-with-comma" ref="typescript-js-expr:binary-operators-with-comma"/>
+
     <!-- ### Post-LHS expression -->
 
     <replace id="js-expr:_post-lhs-expression-without-comma" ref="typescript-js-expr:post-lhs-expression-without-comma"/>

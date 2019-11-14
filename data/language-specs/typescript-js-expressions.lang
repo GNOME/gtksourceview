@@ -182,6 +182,50 @@
     </context> <!-- /pre-lhs-expression -->
 
 
+    <!-- # Binary operators -->
+
+    <!-- excluding comma operator -->
+    <define-regex id="_binary-operator" extended="true">
+      (?:
+        \*\* =? |                            # exponentiation (assignment) (ES2016)
+        [+/*%-] =? |                         # arithmetic (assignment)
+        [!=]==? |                            # equality
+        &amp;&amp; | \|\| |                  # logical
+        \?\? |                               # nullish coalescing (stage 3 proposal)
+        [&amp;|^] =? |                       # bitwise logical (assignment)
+        (?: &lt;&lt; | &gt;&gt;&gt;? ) =? |  # bitwise shift (assignment)
+        [&lt;&gt;]=? |                       # relational
+        =                                    # assignment
+      )
+    </define-regex> <!-- /_binary-operator -->
+
+    <!-- ## Without comma -->
+
+    <!-- replaces js-expr:_binary-operators-without-comma -->
+    <context id="binary-operators-without-comma">
+      <start>\%{_binary-operator}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:binary-operator"/>
+        <context ref="js:comments"/>
+        <context ref="js-expr:_binary-operator-without-comma-content"/>
+      </include>
+    </context> <!-- /binary-operators-without-comma -->
+
+    <!-- ## With comma -->
+
+    <!-- replaces js-expr:_binary-operators-with-comma -->
+    <context id="binary-operators-with-comma">
+      <start>(\%{_binary-operator}|,)</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:binary-operator"/>
+        <context ref="js:comments"/>
+        <context ref="js-expr:_binary-operator-with-comma-content"/>
+      </include>
+    </context> <!-- /binary-operators-with-comma -->
+
+
     <!-- # as operator (type assertion / cast)
 
          a = obj as string;

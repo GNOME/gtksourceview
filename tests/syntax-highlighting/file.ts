@@ -477,6 +477,10 @@ obj?.[expr];
 func?.(...args);
 foo?.3:0; // correctly highlighted as the ternary operator, not optional chaining
 
+// Nullish coalescing (stage 3 proposal)
+( obj ?? 'default value' );
+a = foo ?? 1, bar ?? 2;
+
 // Type arguments for function calls
 fn<string>();
 fn<string, number>();
