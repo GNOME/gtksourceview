@@ -21,7 +21,8 @@
 
 -->
 <language id="typescript-type-expr" name="TypeScript Type Expressions" version="2.0" _section="Script" hidden="true">
-  <keyword-char-class>[a-zA-Z0-9_$]</keyword-char-class>
+  <!-- from js:identifier-char -->
+  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 

@@ -119,7 +119,8 @@
 
   </styles>
 
-  <keyword-char-class>[a-zA-Z0-9_$]</keyword-char-class>
+  <!-- from identifier-char -->
+  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -198,17 +199,20 @@
     </define-regex> <!-- /unicode-escape -->
 
     <!-- <IdentifierStart> -->
-    <!-- should include all Unicode ID_Start code points -->
     <define-regex id="identifier-start" extended="true">
-      (?: [a-zA-Z_$] | \%{unicode-escape} )
+      (?: \%{def:unicode-id-start} | [$_] | \%{unicode-escape} )
     </define-regex> <!-- /identifier-start -->
 
-    <!-- for lookbehinds -->
-    <define-regex id="identifier-char">[a-zA-Z0-9_$]</define-regex>
+    <!-- for lookbehinds
+
+         U+200C Zero-width non-joiner <ZWNJ>
+         U+200D Zero-width joiner <ZWJ>
+    -->
+    <define-regex id="identifier-char" extended="true">
+      (?: \%{def:unicode-id-continue} | [$\x{200C}\x{200D}] )
+    </define-regex> <!-- /identifier-char -->
 
     <!-- <IdentifierPart> -->
-    <!-- should include all Unicode ID_Continue code points,
-         ZWNJ / ZWJ -->
     <define-regex id="identifier-part" extended="true">
       (?: \%{identifier-char} | \%{unicode-escape} )
     </define-regex> <!-- /identifier-part -->

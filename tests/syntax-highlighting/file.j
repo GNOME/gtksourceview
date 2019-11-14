@@ -300,6 +300,26 @@ message
 // from file.js
 
 /*
+ * Identifiers
+ */
+
+var example;
+function example() {}
+
+var príklad;
+function príklad() {}
+
+var 例子;
+function 例子() {}
+
+var $jquery;
+function _lodash() {}
+
+var \u0075nicod\u{65};
+function \u0075nicod\u{65}() {}
+
+
+/*
  * Expressions (in expression statements)
  */
 
