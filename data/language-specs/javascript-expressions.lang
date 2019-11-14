@@ -397,7 +397,9 @@
     -->
 
     <define-regex id="_expression-start" extended="true">
-      (?= [^\s:;\])}] ) (?! /[/*] )
+      (?= \%{js:not-whitespace} )
+      (?= [^:;\])}] )
+      (?! /[/*] )
     </define-regex> <!-- /_expression-start -->
 
     <!-- <LeftHandSideExpression> -->

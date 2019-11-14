@@ -154,7 +154,7 @@
     -->
     <context id="_ts-ignore-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
       <start extended="true">
-        ///? \s* @ts-ignore \%]
+        ///? \%{js:whitespace}* @ts-ignore \%]
       </start>
       <include>
         <context ref="def:in-comment"/>
@@ -163,7 +163,7 @@
 
     <context id="_ts-ignore-comment-pragmas-no-extend-parent" style-ref="js:directive" end-at-line-end="true" class="comment" extend-parent="false">
       <start extended="true">
-        ///? \s* @ts-ignore \%]
+        ///? \%{js:whitespace}* @ts-ignore \%]
       </start>
       <include>
         <context ref="def:in-comment"/>
@@ -200,13 +200,13 @@
 
     <context id="_triple-slash-directives" style-ref="js:directive" end-at-line-end="true" class="comment">
       <start case-sensitive="false" extended="true">
-        /// \s* &lt;
+        /// \%{js:whitespace}* &lt;
         (
           amd-module |
           amd-dependency |
           reference
         )
-        \s
+        \%{js:whitespace}
       </start>
     </context> <!-- /_triple-slash-directives -->
 

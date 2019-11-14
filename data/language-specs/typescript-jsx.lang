@@ -61,7 +61,7 @@
          any definitive documentation -->
     <context id="_jsx-comment-pragmas" style-ref="js:directive" class="comment">
       <start case-sensitive="false" extended="true">
-        /\*\*? \s* @jsx \%]
+        /\*\*? \%{js:whitespace}* @jsx \%]
       </start>
       <end>\*/</end>
       <include>
@@ -71,7 +71,7 @@
 
     <context id="_jsx-comment-pragmas-no-extend-parent" style-ref="js:directive" class="comment" extend-parent="false">
       <start extended="true">
-        /\*\*? \s* @jsx \%]
+        /\*\*? \%{js:whitespace}* @jsx \%]
       </start>
       <end>\*/</end>
       <include>
