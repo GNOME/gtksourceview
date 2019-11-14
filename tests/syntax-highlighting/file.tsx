@@ -220,6 +220,11 @@ let a: string & number;
 // Type predicate (user-defined type guard)
 function isString(x: any): x is string {}
 
+// "asserts" type predicate (for assertion functions)
+declare function assert(value: unknown): asserts value;
+declare function assertIsArrayOfStrings(obj: unknown): asserts obj is string[];
+declare function assertNonNull<T>(obj: T): asserts obj is NonNullable<T>;
+
 // Indexed type query (keyof)
 let a: keyof T;
 
