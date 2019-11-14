@@ -471,6 +471,12 @@ a = import . /* comment
 a = import // comment
 .meta.__dirname; // incorrectly highlighted
 
+// Optional chaining (stage 3 proposal)
+obj?.prop;
+obj?.[expr];
+func?.(...args);
+foo?.3:0; // correctly highlighted as the ternary operator, not optional chaining
+
 // Type arguments for function calls
 fn<string>();
 fn<string, number>();

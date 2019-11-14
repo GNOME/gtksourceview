@@ -137,6 +137,27 @@
     </context> <!-- /_function-call-type-arguments-lists -->
 
 
+    <!-- # Optional chaining: stage 3 proposal
+
+         obj?.prop
+         obj?.[expr]
+         func?.(...args)
+    -->
+
+    <!-- we only add the dot-property accessor case
+         other cases will still be matched (the context will end early)
+    -->
+    <context id="_optional-dot-property-accessors">
+      <start>\?\.(?![0-9])</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="typescript:optional-chaining-operator"/>
+        <context ref="js:comments"/>
+        <context ref="js-expr:_dot-property-accessor-content"/>
+      </include>
+    </context> <!-- /_optional-dot-property-accessors -->
+
+
     <!-- # Post-primary expression -->
 
     <!-- replaces js-expr:_post-primary-expression -->
@@ -144,6 +165,7 @@
       <include>
         <context ref="_non-null-assertion-operators"/>
         <context ref="_function-call-type-arguments-lists"/>
+        <context ref="_optional-dot-property-accessors"/>
         <context ref="js-expr:_post-primary-expression" original="true"/>
       </include>
     </context> <!-- /post-primary-expression -->
