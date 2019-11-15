@@ -4,6 +4,10 @@
 
 // Element name
 ( <div></div> );
+( <príklad></príklad> );
+( <例子></例子> );
+( <$jquery></$jquery> );
+( <\u0075nicod\u{65}></\u0075nicod\u{65}> );
 ( <my-custom-component></my-custom-component> );
 ( <namespace:component></namespace:component> );
 ( <Module.Sub.Component></Module.Sub.Component> );
@@ -50,6 +54,26 @@
 
 
 // from file.js
+
+/*
+ * Identifiers
+ */
+
+var example;
+function example() {}
+
+var príklad;
+function príklad() {}
+
+var 例子;
+function 例子() {}
+
+var $jquery;
+function _lodash() {}
+
+var \u0075nicod\u{65};
+function \u0075nicod\u{65}() {}
+
 
 /*
  * Expressions (in expression statements)

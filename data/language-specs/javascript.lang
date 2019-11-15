@@ -119,7 +119,8 @@
 
   </styles>
 
-  <keyword-char-class>[a-zA-Z0-9_$]</keyword-char-class>
+  <!-- from identifier-char -->
+  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -198,17 +199,20 @@
     </define-regex> <!-- /unicode-escape -->
 
     <!-- <IdentifierStart> -->
-    <!-- should include all Unicode ID_Start code points -->
     <define-regex id="identifier-start" extended="true">
-      (?: [a-zA-Z_$] | \%{unicode-escape} )
+      (?: \%{def:unicode-id-start} | [$_] | \%{unicode-escape} )
     </define-regex> <!-- /identifier-start -->
 
-    <!-- for lookbehinds -->
-    <define-regex id="identifier-char">[a-zA-Z0-9_$]</define-regex>
+    <!-- for lookbehinds
+
+         U+200C Zero-width non-joiner <ZWNJ>
+         U+200D Zero-width joiner <ZWJ>
+    -->
+    <define-regex id="identifier-char" extended="true">
+      (?: \%{def:unicode-id-continue} | [$\x{200C}\x{200D}] )
+    </define-regex> <!-- /identifier-char -->
 
     <!-- <IdentifierPart> -->
-    <!-- should include all Unicode ID_Continue code points,
-         ZWNJ / ZWJ -->
     <define-regex id="identifier-part" extended="true">
       (?: \%{identifier-char} | \%{unicode-escape} )
     </define-regex> <!-- /identifier-part -->
@@ -218,7 +222,39 @@
       (?: \%{identifier-start} \%{identifier-part}* )
     </define-regex> <!-- /identifier-->
 
-    <define-regex id="before-next-token">(?=\S)</define-regex>
+    <!-- <WhiteSpace> -->
+    <!-- does not include characters from <LineTerminator>,
+         to only allow space separators when we want match a
+         "whitespace" character
+
+         U+0009 Character tabulation <TAB>
+         U+000B Line tabulation <VT>
+         U+000C Form feed <FF>
+         U+0020 Space <SP>
+         U+00A0 No-break space <NBSP>
+         U+FEFF Zero width no-break space <ZWNBSP>
+         Zs Space_Separator category <USP>
+    -->
+    <define-regex id="whitespace" extended="true">
+      [\t\x{000B}\f \x{00A0}\x{FEFF}\p{Zs}]
+    </define-regex> <!-- /whitespace -->
+
+    <!-- includes characters from <LineTerminator>,
+         to ignore line terminators when we want to match a "not
+         whitespace" character
+
+         U+000A Line feed <LF>
+         U+000D Carriage return <CR>
+         U+2028 Line separator <LS>
+         U+2029 Paragraph separator <PS>
+    -->
+    <define-regex id="not-whitespace" extended="true">
+      [^\t\x{000B}\f \x{00A0}\x{FEFF}\p{Zs}\n\r\x{2028}\x{2029}]
+    </define-regex> <!-- /not-whitespace -->
+
+    <define-regex id="before-next-token" extended="true">
+      (?= \%{not-whitespace} )
+    </define-regex> <!-- /before-next-token -->
 
     <define-regex id="statement-end" extended="true">
       (?: ; | \%{before-next-token} )
@@ -231,7 +267,7 @@
     <!-- wherever this is used, the highlighting will be more brittle,
          because comments can span multiple lines -->
     <define-regex id="optional-whitespace-or-comments" extended="true">
-      (?&gt; (?: \s+ | /\*.*?\*/ )* )
+      (?&gt; (?: \%{whitespace}+ | /\*.*?\*/ )* )
     </define-regex> <!-- /optional-whitespace-or-comments -->
 
     <define-regex id="generator-modifier">\*</define-regex>

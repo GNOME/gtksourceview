@@ -88,7 +88,8 @@
     <style id="type-alias-declaration"                        name="Type alias declaration"/>
   </styles>
 
-  <keyword-char-class>[a-zA-Z0-9_$]</keyword-char-class>
+  <!-- from js:identifier-char -->
+  <keyword-char-class>[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
 
   <definitions>
 
@@ -153,7 +154,7 @@
     -->
     <context id="_ts-ignore-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
       <start extended="true">
-        ///? \s* @ts-ignore \%]
+        ///? \%{js:whitespace}* @ts-ignore \%]
       </start>
       <include>
         <context ref="def:in-comment"/>
@@ -162,7 +163,7 @@
 
     <context id="_ts-ignore-comment-pragmas-no-extend-parent" style-ref="js:directive" end-at-line-end="true" class="comment" extend-parent="false">
       <start extended="true">
-        ///? \s* @ts-ignore \%]
+        ///? \%{js:whitespace}* @ts-ignore \%]
       </start>
       <include>
         <context ref="def:in-comment"/>
@@ -199,13 +200,13 @@
 
     <context id="_triple-slash-directives" style-ref="js:directive" end-at-line-end="true" class="comment">
       <start case-sensitive="false" extended="true">
-        /// \s* &lt;
+        /// \%{js:whitespace}* &lt;
         (
           amd-module |
           amd-dependency |
           reference
         )
-        \s
+        \%{js:whitespace}
       </start>
     </context> <!-- /_triple-slash-directives -->
 
