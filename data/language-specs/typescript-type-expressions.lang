@@ -59,6 +59,7 @@
     <!-- # Pre-primary type
 
          new () => object
+         asserts param
          keyof T
          readonly string[]
          unique symbol
@@ -68,6 +69,10 @@
       <include>
         <context ref="typescript:constructor-modifier"/>
         <context ref="typescript-type-gen:type-parameters-list"/>
+
+        <context id="_asserts-type-predicates" style-ref="typescript:type-keyword">
+          <keyword>asserts</keyword>
+        </context> <!-- /_asserts-type-predicates -->
 
         <context id="_indexed-type-queries" style-ref="typescript:type-keyword">
           <keyword>keyof</keyword>

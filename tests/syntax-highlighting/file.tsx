@@ -6,14 +6,13 @@
 
 // Valid pragmas
 /*@jsx dom */
-/** @jsx preact.h */
+/** @JSX preact.h */
 {
     /*  @jsx dom */
 }
 
 // Invalid pragmas
 /* @ jsx dom */
-/** @JSX dom */
 /*** @jsx dom */
 // @jsx dom
 
@@ -220,6 +219,11 @@ let a: string & number;
 // Type predicate (user-defined type guard)
 function isString(x: any): x is string {}
 
+// "asserts" type predicate (for assertion functions)
+declare function assert(value: unknown): asserts value;
+declare function assertIsArrayOfStrings(obj: unknown): asserts obj is string[];
+declare function assertNonNull<T>(obj: T): asserts obj is NonNullable<T>;
+
 // Indexed type query (keyof)
 let a: keyof T;
 
@@ -353,19 +357,37 @@ let a: string;
 /* @ts-ignore */
 
 
+/* @ts-nocheck comment pragmas */
+
+// Valid pragmas
+//@ts-nocheck
+/// @TS-NOCHECK text here
+
+// Invalid pragmas
+// @ ts-nocheck
+//// @ts-nocheck
+/* @ts-nocheck */
+{
+    // @ts-nocheck
+}
+
+
 /* Triple-slash directives */
 
 // Valid directives
 ///<reference path="foo" />
-/// <reference lib="es2017.string" />
+/// <REFERENCE lib="es2017.string" />
 /// <amd-module name="bar" />
-///  <amd-dependency />
+///  <aMd-dEpEnDeNcY />
 
 // Invalid directives
 /// comment
 /// <comment
 /// < reference
 /// <reference-path
+{
+    /// <reference path="foo" />
+}
 
 
 /* Decorators (experimental, stage 2 proposal) */
@@ -541,6 +563,7 @@ a = class {
     private property!: number;
     protected static readonly property: number = 1;
     abstract property;
+    declare property: number; // for useDefineForClassFields
 
     // Accessibility modifiers, type annotation, parameter properties for constructor
     private constructor(public x: number, private y?: string);
@@ -573,6 +596,16 @@ a = import . /* comment
 */ meta.__dirname; // incorrectly highlighted
 a = import // comment
 .meta.__dirname; // incorrectly highlighted
+
+// Optional chaining (stage 3 proposal)
+obj?.prop;
+obj?.[expr];
+func?.(...args);
+foo?.3:0; // correctly highlighted as the ternary operator, not optional chaining
+
+// Nullish coalescing (stage 3 proposal)
+( obj ?? 'default value' );
+a = foo ?? 1, bar ?? 2;
 
 // Type arguments for function calls
 fn<string>();

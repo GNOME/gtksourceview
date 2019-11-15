@@ -59,7 +59,7 @@
     <!-- I believe the allowed syntax is less strict but I haven't found
          any definitive documentation -->
     <context id="_jsx-comment-pragmas" style-ref="js:directive" class="comment">
-      <start extended="true">
+      <start case-sensitive="false" extended="true">
         /\*\*? \s* @jsx \%]
       </start>
       <end>\*/</end>

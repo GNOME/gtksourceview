@@ -636,9 +636,9 @@
         <context ref="js:embedded-lang-hooks"/>
         <context ref="_increment-decrement-operators"/>
         <context ref="js-fn:arrow-functions"/>
-        <context ref="_ternary-operators-without-comma"/>
         <context ref="_keyword-binary-operators-without-comma"/>
         <context ref="_binary-operators-without-comma"/>
+        <context ref="_ternary-operators-without-comma"/>
       </include>
     </context> <!-- /_post-lhs-expression-without-comma -->
 
@@ -657,9 +657,9 @@
         <context ref="js:embedded-lang-hooks"/>
         <context ref="_increment-decrement-operators"/>
         <context ref="js-fn:arrow-functions"/>
-        <context ref="_ternary-operators-with-comma"/>
         <context ref="_keyword-binary-operators-with-comma"/>
         <context ref="_binary-operators-with-comma"/>
+        <context ref="_ternary-operators-with-comma"/>
       </include>
     </context> <!-- /_post-lhs-expression-with-comma -->
 

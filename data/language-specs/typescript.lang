@@ -76,6 +76,7 @@
 
     <!-- JavaScript expressions -->
     <style id="non-null-assertion-operator"                   name="Non-null assertion operator"/>
+    <style id="optional-chaining-operator"                    name="Optional chaining operator"/>
 
     <!-- JavaScript statements -->
     <style id="global-augmentation"                           name="Global augmentation"/>
@@ -97,7 +98,7 @@
          https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md
          https://www.typescriptlang.org/
 
-         Supported level: TypeScript 3.6
+         Supported level: TypeScript 3.7
 
          Naming conventions described in javascript.lang
     -->
@@ -168,16 +169,36 @@
       </include>
     </context> <!-- /_ts-ignore-comment-pragmas-no-extend-parent -->
 
+    <!-- ## @ts-nocheck comment pragma
+
+         // @ts-nocheck
+
+         can only be preceded by comments or other triple-slash
+         directives (i.e. at the top of a file)
+         appears to be case-insensitive (cannot find code reference though)
+    -->
+
+    <context id="_ts-nocheck-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
+      <start case-sensitive="false" extended="true">
+        ///? \s* @ts-nocheck \%]
+      </start>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context> <!-- /_ts-nocheck-comment-pragmas -->
+
     <!-- ## Triple-slash directive
 
          /// <reference path="..."
 
          can only be preceded by comments or other triple-slash
          directives (i.e. at the top of a file)
+         appears to be case-insensitive
+         https://github.com/microsoft/TypeScript/blob/ef0cca7d12a320bc98cefebbf4d391de36003149/src/services/classifier.ts#L768
     -->
 
     <context id="_triple-slash-directives" style-ref="js:directive" end-at-line-end="true" class="comment">
-      <start extended="true">
+      <start case-sensitive="false" extended="true">
         /// \s* &lt;
         (
           amd-module |
@@ -751,6 +772,11 @@
 
     <replace id="js-expr:_pre-lhs-expression" ref="typescript-js-expr:pre-lhs-expression"/>
 
+    <!-- ### Binary operators -->
+
+    <replace id="js-expr:_binary-operators-without-comma" ref="typescript-js-expr:binary-operators-without-comma"/>
+    <replace id="js-expr:_binary-operators-with-comma" ref="typescript-js-expr:binary-operators-with-comma"/>
+
     <!-- ### Post-LHS expression -->
 
     <replace id="js-expr:_post-lhs-expression-without-comma" ref="typescript-js-expr:post-lhs-expression-without-comma"/>
@@ -790,6 +816,7 @@
 
     <context id="typescript" class="no-spell-check">
       <include>
+        <context ref="_ts-nocheck-comment-pragmas"/>
         <context ref="_triple-slash-directives"/>
         <context ref="js:js"/>
       </include>
