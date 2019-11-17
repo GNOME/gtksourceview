@@ -37,6 +37,7 @@
     <style id="variable"            name="Variable"            map-to="def:type"/>
     <style id="variable-definition" name="Variable Definition" map-to="sh:variable"/>
     <style id="others"              name="Others"              map-to="def:keyword"/>
+    <style id="common-command"      name="Common Commands"     map-to="def:keyword"/>
     <style id="here-doc-bound"      name="Heredoc Bound"       map-to="def:keyword"/>
     <style id="subshell"            name="Subshell"            map-to="def:preprocessor"/>
   </styles>
@@ -45,6 +46,7 @@
 
   <definitions>
 
+    <define-regex id="command-name">[a-zA-Z_][a-zA-Z0-9_.-]*</define-regex>
     <define-regex id="identifier">[a-zA-Z_][a-zA-Z0-9_]*</define-regex>
     <define-regex id="unescaped-space">(?&lt;!\\)\s</define-regex>
 
@@ -126,7 +128,7 @@
     </context>
 
     <context id="function" style-ref="function">
-      <match>(?&lt;=\%{unescaped-space}|\%[)\%{identifier}\s*\(\)</match>
+      <match>(?&lt;=\%{unescaped-space}|\%[)\%{command-name}\s*\(\)</match>
     </context>
 
     <context id="redirection" style-ref="others">
@@ -299,10 +301,15 @@
 
     <context id="case-command">
       <start>(?&lt;=\%{unescaped-space}|\%[)case(?=\s)</start>
-      <end>(?&lt;=\%{unescaped-space}|\%[)esac(?=\s|\%])</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
-        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <!-- Must be included before any reference context
+          (replaces <end> tag, to enforce priority) -->
+        <context style-ref="keyword" end-parent="true">
+          <prefix>(?&lt;=\%{unescaped-space}|\%[)</prefix>
+          <suffix>(?=\s|\%])</suffix>
+          <keyword>esac</keyword>
+        </context>
         <context ref="sh"/>
       </include>
     </context>
@@ -328,228 +335,239 @@
       </include>
     </context>
 
-    <define-regex id="builtin-command" extended="true">
-      \.
-      | alias
-      | bg
-      | bind
-      | break
-      | builtin
-      | cd
-      | command
-      | compgen
-      | complete
-      | continue
-      | dirs
-      | disown
-      | echo
-      | enable
-      | eval
-      | exec
-      | exit
-      | fc
-      | fg
-      | getopts
-      | hash
-      | help
-      | history
-      | jobs
-      | let
-      | logout
-      | popd
-      | printf
-      | pushd
-      | read
-      | return
-      | set
-      | shift
-      | shopt
-      | source
-      | suspend
-      | trap
-      | type
-      | ulimit
-      | umask
-      | unalias
-      | unset
-      | wait
-    </define-regex>
-    <define-regex id="common-command" extended="true">
-      ar
-      | awk
-      | basename
-      | bash
-      | beep
-      | bunzip2
-      | bzcat
-      | bzcmp
-      | bzdiff
-      | bzegrep
-      | bzfgrep
-      | bzgrep
-      | bzip2recover
-      | bzip2
-      | bzless
-      | bzmore
-      | cc
-      | cat
-      | chattr
-      | chgrp
-      | chmod
-      | chown
-      | chroot
-      | clear
-      | cmp
-      | cpp
-      | cp
-      | cut
-      | date
-      | dd
-      | df
-      | dialog
-      | diff3
-      | diff
-      | dirname
-      | dir
-      | du
-      | egrep
-      | eject
-      | env
-      | expr
-      | false
-      | fgrep
-      | file
-      | find
-      | fmt
-      | free
-      | ftp
-      | funzip
-      | fuser
-      | gawk
-      | gcc
-      | getent
-      | getopt
-      | grep
-      | groups
-      | gunzip
-      | gzip
-      | head
-      | hostname
-      | id
-      | ifconfig
-      | info
-      | insmod
-      | install
-      | join
-      | killall
-      | kill
-      | lastb
-      | last
-      | ld
-      | less
-      | ln
-      | locate
-      | lockfile
-      | login
-      | logname
-      | lp
-      | lpr
-      | lsattr
-      | ls
-      | lsmod
-      | make
-      | man
-      | mkdir
-      | mkfifo
-      | mknod
-      | mktemp
-      | modprobe
-      | more
-      | mount
-      | mv
-      | namei
-      | nawk
-      | nice
-      | nl
-      | passwd
-      | patch
-      | perl
-      | pgawk
-      | pidof
-      | ping
-      | pkg-config
-      | pr
-      | ps
-      | pwd
-      | readlink
-      | renice
-      | rmdir
-      | rm
-      | scp
-      | sed
-      | seq
-      | sh
-      | sleep
-      | sort
-      | split
-      | ssh-add
-      | ssh-agent
-      | ssh-keygen
-      | ssh-keyscan
-      | ssh
-      | stat
-      | sudo
-      | sum
-      | su
-      | sync
-      | tac
-      | tail
-      | tar
-      | tee
-      | tempfile
-      | touch
-      | true
-      | tr
-      | umount
-      | uname
-      | uniq
-      | unlink
-      | unzip
-      | uptime
-      | wall
-      | wc
-      | wget
-      | whereis
-      | which
-      | whoami
-      | who
-      | write
-      | w
-      | xargs
-      | xdialog
-      | zcat
-      | zcmp
-      | zdiff
-      | zegrep
-      | zenity
-      | zfgrep
-      | zforce
-      | zgrep
-      | zip
-      | zless
-      | zmore
-      | znew
-    </define-regex>
     <context id="generic-command" end-at-line-end="true">
       <start extended="true">
-        (?&lt;=\%{unescaped-space}|\%[) (
-          \%{builtin-command} | \%{common-command}
-        ) (?=\s|\%])
+        (?&lt;=\%{unescaped-space}|\%[)
+        (?=\%{command-name}(\s|\%]))
       </start>
-      <end>\%]</end>
+      <end>(?=[)`&amp;|;])</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="keyword"/>
-        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <!-- Must be included first -->
+        <context once-only="true">
+          <start>\%{def:always-match}</start>
+          <include>
+            <context style-ref="keyword" end-parent="true">
+              <prefix></prefix>
+              <suffix></suffix>
+              <keyword>\.</keyword>
+              <keyword>alias</keyword>
+              <keyword>bg</keyword>
+              <keyword>bind</keyword>
+              <keyword>break</keyword>
+              <keyword>builtin</keyword>
+              <keyword>cd</keyword>
+              <keyword>command</keyword>
+              <keyword>compgen</keyword>
+              <keyword>complete</keyword>
+              <keyword>continue</keyword>
+              <keyword>dirs</keyword>
+              <keyword>disown</keyword>
+              <keyword>echo</keyword>
+              <keyword>enable</keyword>
+              <keyword>eval</keyword>
+              <keyword>exec</keyword>
+              <keyword>exit</keyword>
+              <keyword>fc</keyword>
+              <keyword>fg</keyword>
+              <keyword>getopts</keyword>
+              <keyword>hash</keyword>
+              <keyword>help</keyword>
+              <keyword>history</keyword>
+              <keyword>jobs</keyword>
+              <keyword>let</keyword>
+              <keyword>logout</keyword>
+              <keyword>popd</keyword>
+              <keyword>printf</keyword>
+              <keyword>pushd</keyword>
+              <keyword>read</keyword>
+              <keyword>return</keyword>
+              <keyword>set</keyword>
+              <keyword>shift</keyword>
+              <keyword>shopt</keyword>
+              <keyword>source</keyword>
+              <keyword>suspend</keyword>
+              <keyword>trap</keyword>
+              <keyword>type</keyword>
+              <keyword>ulimit</keyword>
+              <keyword>umask</keyword>
+              <keyword>unalias</keyword>
+              <keyword>unset</keyword>
+              <keyword>wait</keyword>
+            </context>
+            <context style-ref="common-command" end-parent="true">
+              <prefix></prefix>
+              <suffix></suffix>
+              <keyword>ar</keyword>
+              <keyword>awk</keyword>
+              <keyword>basename</keyword>
+              <keyword>bash</keyword>
+              <keyword>beep</keyword>
+              <keyword>bunzip2</keyword>
+              <keyword>bzcat</keyword>
+              <keyword>bzcmp</keyword>
+              <keyword>bzdiff</keyword>
+              <keyword>bzegrep</keyword>
+              <keyword>bzfgrep</keyword>
+              <keyword>bzgrep</keyword>
+              <keyword>bzip2recover</keyword>
+              <keyword>bzip2</keyword>
+              <keyword>bzless</keyword>
+              <keyword>bzmore</keyword>
+              <keyword>cc</keyword>
+              <keyword>cat</keyword>
+              <keyword>chattr</keyword>
+              <keyword>chgrp</keyword>
+              <keyword>chmod</keyword>
+              <keyword>chown</keyword>
+              <keyword>chroot</keyword>
+              <keyword>clear</keyword>
+              <keyword>cmp</keyword>
+              <keyword>cpp</keyword>
+              <keyword>cp</keyword>
+              <keyword>cut</keyword>
+              <keyword>date</keyword>
+              <keyword>dd</keyword>
+              <keyword>df</keyword>
+              <keyword>dialog</keyword>
+              <keyword>diff3</keyword>
+              <keyword>diff</keyword>
+              <keyword>dirname</keyword>
+              <keyword>dir</keyword>
+              <keyword>du</keyword>
+              <keyword>egrep</keyword>
+              <keyword>eject</keyword>
+              <keyword>env</keyword>
+              <keyword>expr</keyword>
+              <keyword>false</keyword>
+              <keyword>fgrep</keyword>
+              <keyword>file</keyword>
+              <keyword>find</keyword>
+              <keyword>fmt</keyword>
+              <keyword>free</keyword>
+              <keyword>ftp</keyword>
+              <keyword>funzip</keyword>
+              <keyword>fuser</keyword>
+              <keyword>gawk</keyword>
+              <keyword>gcc</keyword>
+              <keyword>getent</keyword>
+              <keyword>getopt</keyword>
+              <keyword>grep</keyword>
+              <keyword>groups</keyword>
+              <keyword>gunzip</keyword>
+              <keyword>gzip</keyword>
+              <keyword>head</keyword>
+              <keyword>hostname</keyword>
+              <keyword>id</keyword>
+              <keyword>ifconfig</keyword>
+              <keyword>info</keyword>
+              <keyword>insmod</keyword>
+              <keyword>install</keyword>
+              <keyword>join</keyword>
+              <keyword>killall</keyword>
+              <keyword>kill</keyword>
+              <keyword>lastb</keyword>
+              <keyword>last</keyword>
+              <keyword>ld</keyword>
+              <keyword>less</keyword>
+              <keyword>ln</keyword>
+              <keyword>locate</keyword>
+              <keyword>lockfile</keyword>
+              <keyword>login</keyword>
+              <keyword>logname</keyword>
+              <keyword>lp</keyword>
+              <keyword>lpr</keyword>
+              <keyword>lsattr</keyword>
+              <keyword>ls</keyword>
+              <keyword>lsmod</keyword>
+              <keyword>make</keyword>
+              <keyword>man</keyword>
+              <keyword>mkdir</keyword>
+              <keyword>mkfifo</keyword>
+              <keyword>mknod</keyword>
+              <keyword>mktemp</keyword>
+              <keyword>modprobe</keyword>
+              <keyword>more</keyword>
+              <keyword>mount</keyword>
+              <keyword>mv</keyword>
+              <keyword>namei</keyword>
+              <keyword>nawk</keyword>
+              <keyword>nice</keyword>
+              <keyword>nl</keyword>
+              <keyword>passwd</keyword>
+              <keyword>patch</keyword>
+              <keyword>perl</keyword>
+              <keyword>pgawk</keyword>
+              <keyword>pidof</keyword>
+              <keyword>ping</keyword>
+              <keyword>pkg-config</keyword>
+              <keyword>pr</keyword>
+              <keyword>ps</keyword>
+              <keyword>pwd</keyword>
+              <keyword>readlink</keyword>
+              <keyword>renice</keyword>
+              <keyword>rmdir</keyword>
+              <keyword>rm</keyword>
+              <keyword>scp</keyword>
+              <keyword>sed</keyword>
+              <keyword>seq</keyword>
+              <keyword>sh</keyword>
+              <keyword>sleep</keyword>
+              <keyword>sort</keyword>
+              <keyword>split</keyword>
+              <keyword>ssh-add</keyword>
+              <keyword>ssh-agent</keyword>
+              <keyword>ssh-keygen</keyword>
+              <keyword>ssh-keyscan</keyword>
+              <keyword>ssh</keyword>
+              <keyword>stat</keyword>
+              <keyword>sudo</keyword>
+              <keyword>sum</keyword>
+              <keyword>su</keyword>
+              <keyword>sync</keyword>
+              <keyword>tac</keyword>
+              <keyword>tail</keyword>
+              <keyword>tar</keyword>
+              <keyword>tee</keyword>
+              <keyword>tempfile</keyword>
+              <keyword>touch</keyword>
+              <keyword>true</keyword>
+              <keyword>tr</keyword>
+              <keyword>umount</keyword>
+              <keyword>uname</keyword>
+              <keyword>uniq</keyword>
+              <keyword>unlink</keyword>
+              <keyword>unzip</keyword>
+              <keyword>uptime</keyword>
+              <keyword>wall</keyword>
+              <keyword>wc</keyword>
+              <keyword>wget</keyword>
+              <keyword>whereis</keyword>
+              <keyword>which</keyword>
+              <keyword>whoami</keyword>
+              <keyword>who</keyword>
+              <keyword>write</keyword>
+              <keyword>w</keyword>
+              <keyword>xargs</keyword>
+              <keyword>xdialog</keyword>
+              <keyword>zcat</keyword>
+              <keyword>zcmp</keyword>
+              <keyword>zdiff</keyword>
+              <keyword>zegrep</keyword>
+              <keyword>zenity</keyword>
+              <keyword>zfgrep</keyword>
+              <keyword>zforce</keyword>
+              <keyword>zgrep</keyword>
+              <keyword>zip</keyword>
+              <keyword>zless</keyword>
+              <keyword>zmore</keyword>
+              <keyword>znew</keyword>
+            </context>
+            <!-- Must be included last -->
+            <context end-parent="true">
+              <match>\%{command-name}</match>
+            </context>
+          </include>
+        </context>
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
         <context ref="line-comment"/>
@@ -582,6 +600,7 @@
         <context ref="variable"/>
         <context ref="variable-definition"/>
         <context ref="built-in-command"/>
+        <!-- Must be included last -->
         <context ref="generic-command"/>
       </include>
     </context>
