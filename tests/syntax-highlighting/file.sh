@@ -41,7 +41,7 @@ if var=$(cmd); then some; fi
 test -f xxx && var=xxx || var=yyy
 echo text | var=xxx cmd & var=yyy
 declare -i '-r' "-x" var1=val1 var2=$val1 var3=`cmd1` \
-  var4=$(cmd2) var5=xxx\ yyy var6 # Comment
+  var4=$(cmd2) var5=xxx\ yyy var6=("${ar[@]}") var7 # Comment
 var+=xxx; (var=yyy); { var=zzz; }
 case $1 in
   item) var=xxx;;
@@ -60,7 +60,7 @@ arg; do echo $arg; done
 
 # Generic command (e.g. echo)
 echo for case grep $var ${var/x/y} $(cmd) `cmd` \
-  'a' "b" \\ | grep 'pattern'
+  'a' "b" \\ | grep 'pattern' > >(tee file)
 echo echo; echo echo & echo echo
 echo
 
@@ -73,3 +73,8 @@ echo
 'no special characters'
 "$var, ${var/x/y}, $(cmd), `cmd`, \
 \$, \`, \", \\, \ "
+
+# Arithmetic evaluation/expansion
+var1=$((var2+2#101+$(cmd)+($var3+ \
+  "$var4")/0x1f))
+let var1='1'+010-23+`cmd`+var2 # Comment
