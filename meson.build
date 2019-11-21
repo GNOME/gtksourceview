@@ -1,7 +1,7 @@
 project('gtksourceview', 'c',
           version: '4.5.1',
           license: 'LGPL-2.1-or-later',
-    meson_version: '>= 0.49.0',
+    meson_version: '>= 0.50.0',
   default_options: [ 'c_std=gnu99',
                      'buildtype=debugoptimized',
                      'warning_level=2' ],
@@ -117,15 +117,7 @@ endif
 # for us.  Remove once Meson gains the ability to declare
 # deps in a declarative way
 if cc.get_id() == 'msvc' and not libxml_dep.found()
-  libxml_headers = ['xmlreader', 'parser']
-  libxml_headers_missing = false
-  foreach h: libxml_headers
-    if not cc.has_header('libxml/@0@.h'.format(h))
-      libxml_headers_missing = true
-    endif
-  endforeach
-  assert(not libxml_headers_missing, 'The libxml2 headers and libs are required')
-  libxml_dep = cc.find_library('libxml2')
+  libxml_dep = cc.find_library('libxml2', has_headers: ['libxml/xmlreader.h', 'libxml/parser.h'])
 endif
 
 xmllint_prg = find_program('xmllint', required: false)
