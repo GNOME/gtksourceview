@@ -128,17 +128,14 @@ if config_h.has('OS_OSX')
   ]
 endif
 
-if cc.get_id() == 'msvc'
+if cc.get_id() == 'msvc' and cc.version().version_compare('<18')
   # include our math.h to implement round() for pre-2013 Visual Studio
-  msvc_maj_ver = cc.version().split('.')[0].to_int()
-  if msvc_maj_ver < 18
-    gtksourceview_include_dirs = [rootdir, include_directories('../msvc')]
-  else
-    gtksourceview_include_dirs = rootdir
-  endif
+  gtksourceview_extra_include_dirs = include_directories('../msvc')
 else
-  gtksourceview_include_dirs = rootdir
+  gtksourceview_extra_include_dirs = []
 endif
+
+gtksourceview_include_dirs = [rootdir, gtksourceview_extra_include_dirs]
 
 core_enums_header = '''
 
@@ -213,11 +210,7 @@ gtksource_deps = [
   core_dep,
 ]
 
-# We can't use the static libs on Visual Studio builds
-# to form our DLL here, so we must build all the core
-# and word completion provider sources into the main DLL
-# instead
-gtksource_libs = cc.get_id() == 'msvc' ? [] : [core_lib]
+gtksource_libs = [core_lib]
 
 extra_public_sources = []
 
@@ -228,35 +221,29 @@ gtksource_res = gnome.compile_resources(
   'gtksourceview.gresource.xml'
 )
 
+
 # We can't use the static libs on Visual Studio builds
-# to form our DLL here, so we must build all the core
-# and word completion provider sources into the main DLL
+# to form our DLL here directly, so we must use
+# extract_all_objects() to extract all the core and word
+# completion provider objects that we previously built
+# into static .lib's and link them into the main DLL
 # instead
-if cc.get_id() == 'msvc'
-  gtksource_word_provider_sources = []
-  foreach s: completionwords_public_c
-    gtksource_word_provider_sources += files(['completion-providers/words/@0@'.format(s)])
-  endforeach
-  gtksource_lib = shared_library(package_string,
-                  [core_sources, gtksource_word_provider_sources, gtksource_res],
-                  version: lib_version,
-      include_directories: gtksourceview_include_dirs,
-             dependencies: core_deps,
-                   c_args: core_c_args,
-                  install: true,
-  )
-else
-  gtksource_lib = shared_library(package_string, gtksource_res,
-                  version: lib_version,
-          darwin_versions: lib_osx_version,
-      include_directories: gtksourceview_include_dirs,
-             dependencies: gtksource_deps,
-               link_whole: gtksource_libs,
-                   c_args: core_c_args,
-                  install: true,
-    gnu_symbol_visibility: 'hidden',
-  )
-endif
+gtksource_objs = []
+foreach int_lib : gtksource_libs
+  gtksource_objs += int_lib.extract_all_objects()
+endforeach
+
+gtksource_lib = shared_library(package_string, gtksource_res,
+                version: lib_version,
+        darwin_versions: lib_osx_version,
+    include_directories: gtksourceview_include_dirs,
+           dependencies: cc.get_id() == 'msvc' ? core_deps : gtksource_deps,
+                objects: cc.get_id() == 'msvc' ? gtksource_objs : [],
+             link_whole: cc.get_id() == 'msvc' ? [] : gtksource_libs,
+                 c_args: core_c_args,
+                install: true,
+  gnu_symbol_visibility: 'hidden',
+)
 
 gtksource_dep_sources = [
   core_enums_h,
@@ -328,8 +315,20 @@ gtksource_pc_reqs = [
   'gtk+-3.0 @0@'.format(gtk_req),
 ]
 
-gtksource_pc_private_reqs = [
-  'libxml-2.0 @0@'.format(libxml_req),
+gtksource_pc_private_reqs = []
+gtksource_lib_private = []
+
+if libxml_dep.type_name() == 'pkgconfig'
+  gtksource_pc_private_reqs += [
+    'libxml-2.0 @0@'.format(libxml_req)
+  ]
+else
+  if libxml_dep.type_name() == 'library'
+    gtksource_lib_private += libxml_dep
+  endif
+endif
+
+gtksource_pc_private_reqs += [
   'fribidi @0@'.format(fribidi_req),
 ]
 
@@ -341,5 +340,6 @@ gtksource_pc = pkg.generate(
            version: version,
            subdirs: package_string,
          libraries: gtksource_lib,
+ libraries_private: gtksource_lib_private,
        install_dir: pkgconfigdir,
 )
