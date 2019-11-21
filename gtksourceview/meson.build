@@ -128,17 +128,14 @@ if config_h.has('OS_OSX')
   ]
 endif
 
-if cc.get_id() == 'msvc'
+if cc.get_id() == 'msvc' and cc.version().version_compare('<18')
   # include our math.h to implement round() for pre-2013 Visual Studio
-  msvc_maj_ver = cc.version().split('.')[0].to_int()
-  if msvc_maj_ver < 18
-    gtksourceview_include_dirs = [rootdir, include_directories('../msvc')]
-  else
-    gtksourceview_include_dirs = rootdir
-  endif
+  gtksourceview_extra_include_dirs = include_directories('../msvc')
 else
-  gtksourceview_include_dirs = rootdir
+  gtksourceview_extra_include_dirs = []
 endif
+
+gtksourceview_include_dirs = [rootdir, gtksourceview_extra_include_dirs]
 
 core_enums_header = '''
 
