@@ -46,17 +46,17 @@
 
     <define-regex id="command-name">[a-zA-Z_][a-zA-Z0-9_.-]*</define-regex>
     <define-regex id="identifier">[a-zA-Z_][a-zA-Z0-9_]*</define-regex>
-    <define-regex id="unescaped-space">(?&lt;!\\)\s</define-regex>
-    <define-regex id="brackets-prefix">(?&lt;=\%{unescaped-space}|[`&amp;|;]|^)</define-regex>
-    <define-regex id="brackets-suffix">(?=\s|[)`&amp;|;]|$)</define-regex>
+    <define-regex id="argument-prefix">(?&lt;=\s|^)</define-regex>
+    <define-regex id="argument-suffix">(?=\s|[&lt;&gt;]|\\?$)</define-regex>
+    <define-regex id="parentheses-prefix">(?&lt;=\s|[)`&amp;|;]|^)</define-regex>
     <define-regex id="command-suffix">(?=[)`&amp;|;])</define-regex>
-    <define-regex id="lb">(?&lt;=\%{unescaped-space}|[()`&amp;|;]|^)</define-regex>
-    <define-regex id="rb">(?=\s|[()`&amp;|;]|$)</define-regex>
+    <define-regex id="lb">(?&lt;=\s|[()`&amp;|;]|^)</define-regex>
+    <define-regex id="rb">(?=\s|[()`&amp;|;&lt;&gt;]|\\?$)</define-regex>
 
     <!-- we cannot use def:shell-like-comment, because
          m4.lang needs to replace this context -->
     <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
-      <start>(?&lt;=\s|^)#</start>
+      <start>\%{argument-prefix}#</start>
       <include>
         <context ref="def:in-comment"/>
       </include>
@@ -75,6 +75,7 @@
         <context ref="backtick-subshell"/>
         <context ref="command-substitution"/>
         <context ref="arithmetic-expansion"/>
+        <context ref="history-expansion-command"/>
       </include>
     </context>
 
@@ -84,8 +85,8 @@
     </context>
 
     <context id="subshell" style-ref="subshell">
-      <start>\%{brackets-prefix}\((?!\()</start>
-      <end>\)\%{brackets-suffix}</end>
+      <start>\%{parentheses-prefix}\((?!\()</start>
+      <end>\)\%{rb}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
@@ -104,8 +105,8 @@
     </context>
 
     <context id="process-substitution" style-ref="subshell">
-      <start>(?&lt;=\%{unescaped-space}|^)[&lt;&gt;]\((?!\()</start>
-      <end>\)\%{brackets-suffix}</end>
+      <start>\%{argument-prefix}[&lt;&gt;]\((?!\()</start>
+      <end>\)\%{rb}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
@@ -130,17 +131,24 @@
       </include>
     </context>
 
+    <context id="logical-operator" style-ref="others">
+      <match>&amp;{2}|\|{2}</match>
+    </context>
+
     <context id="evaluation-nesting">
       <include>
+        <!-- Must be included first, to ensure unescaped boundaries -->
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
         <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="backtick-subshell"/>
         <context ref="command-substitution"/>
+        <context ref="history-expansion"/>
         <context ref="variable"/>
         <context ref="reference-by-name"/>
         <context ref="numeral-system"/>
+        <context ref="logical-operator"/>
       </include>
     </context>
     
@@ -158,8 +166,8 @@
     </context>
 
     <context id="arithmetic-evaluation">
-      <start>\%{brackets-prefix}\({2}(?!\()</start>
-      <end>\){2}\%{brackets-suffix}</end>
+      <start>\%{parentheses-prefix}\({2}(?!\()</start>
+      <end>\){2}\%{rb}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
@@ -181,8 +189,10 @@
             <context ref="backtick-subshell"/>
             <context ref="command-substitution"/>
             <context ref="variable"/>
+            <context ref="history-expansion"/>
             <context ref="reference-by-name"/>
             <context ref="numeral-system"/>
+            <context ref="logical-operator"/>
           </include>
         </context>
         <context id="expansion-precedence">
@@ -217,9 +227,10 @@
       <start>`</start>
       <end>`</end>
       <include>
+        <!-- Must be included first, to ensure unescaped boundaries -->
+        <context ref="def:escape"/>
         <context ref="line-comment"/>
         <context ref="def:line-continue"/>
-        <context ref="def:escape"/>
         <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="subshell"/>
@@ -233,12 +244,13 @@
         <context ref="function"/>
         <context ref="here-doc"/>
         <context ref="redirection"/>
-        <context ref="operator"/>
         <context ref="variable"/>
         <context ref="stand-alone-variable-definition"/>
         <context ref="reserved-word"/>
         <context ref="case-command"/>
         <context ref="for-command"/>
+        <context ref="history-expansion"/>
+        <context ref="conditional-command"/>
       </include>
     </context>
 
@@ -254,9 +266,9 @@
       <prefix></prefix>
       <suffix></suffix>
       <!-- The order of the two following keywords matters -->
-      <keyword>([0-9]+)?[&lt;&gt;](&amp;)?([0-9]+)?-?</keyword>
-      <keyword>(&amp;|[0-9]+)?&gt;{1,2}([0-9]+)?-?</keyword>
-      <keyword>([0-9]+)?(&lt;&gt;|&gt;\|)</keyword>
+      <keyword>[0-9]*[&lt;&gt;](&amp;)?[0-9]*-?</keyword>
+      <keyword>(&amp;|[0-9]+)?&gt;{1,2}[0-9]*-?</keyword>
+      <keyword>[0-9]*(&lt;&gt;|&gt;\|)</keyword>
     </context>
 
     <context id="here-doc">
@@ -277,43 +289,86 @@
       </include>
     </context>
 
-    <context id="operator" style-ref="function">
-      <keyword>\-a\b</keyword>
-      <keyword>\-b\b</keyword>
-      <keyword>\-c\b</keyword>
-      <keyword>\-d\b</keyword>
-      <keyword>\-e\b</keyword>
-      <keyword>\-f\b</keyword>
-      <keyword>\-g\b</keyword>
-      <keyword>\-h\b</keyword>
-      <keyword>\-k\b</keyword>
-      <keyword>\-p\b</keyword>
-      <keyword>\-r\b</keyword>
-      <keyword>\-s\b</keyword>
-      <keyword>\-t\b</keyword>
-      <keyword>\-u\b</keyword>
-      <keyword>\-w\b</keyword>
-      <keyword>\-x\b</keyword>
-      <keyword>\-O\b</keyword>
-      <keyword>\-G\b</keyword>
-      <keyword>\-L\b</keyword>
-      <keyword>\-S\b</keyword>
-      <keyword>\-N\b</keyword>
-      <keyword>\-nt\b</keyword>
-      <keyword>\-ot\b</keyword>
-      <keyword>\-ef\b</keyword>
-      <keyword>\-o\b</keyword>
-      <keyword>\-z\b</keyword>
-      <keyword>\-n\b</keyword>
+    <context id="test-operator" style-ref="function">
+      <prefix>(?&lt;=\s|\(|^)</prefix>
+      <suffix>\%{argument-suffix}</suffix>
+      <keyword>-a</keyword>
+      <keyword>-b</keyword>
+      <keyword>-c</keyword>
+      <keyword>-d</keyword>
+      <keyword>-e</keyword>
+      <keyword>-f</keyword>
+      <keyword>-g</keyword>
+      <keyword>-h</keyword>
+      <keyword>-k</keyword>
+      <keyword>-p</keyword>
+      <keyword>-r</keyword>
+      <keyword>-s</keyword>
+      <keyword>-t</keyword>
+      <keyword>-u</keyword>
+      <keyword>-w</keyword>
+      <keyword>-x</keyword>
+      <keyword>-G</keyword>
+      <keyword>-L</keyword>
+      <keyword>-N</keyword>
+      <keyword>-O</keyword>
+      <keyword>-S</keyword>
+      <keyword>-ef</keyword>
+      <keyword>-nt</keyword>
+      <keyword>-ot</keyword>
+      <keyword>-o</keyword>
+      <keyword>-v</keyword>
+      <keyword>-R</keyword>
+      <keyword>-z</keyword>
+      <keyword>-n</keyword>
+      <keyword>==</keyword>
+      <keyword>=~</keyword>
+      <keyword>=</keyword>
+      <keyword>!=</keyword>
+      <keyword>!</keyword>
       <keyword>&lt;</keyword>
       <keyword>&gt;</keyword>
-      <keyword>\!=</keyword>
-      <keyword>\-eq\b</keyword>
-      <keyword>\-ne\b</keyword>
-      <keyword>\-lt\b</keyword>
-      <keyword>\-le\b</keyword>
-      <keyword>\-gt\b</keyword>
-      <keyword>\-ge\b</keyword>
+      <keyword>-eq</keyword>
+      <keyword>-ne</keyword>
+      <keyword>-lt</keyword>
+      <keyword>-le</keyword>
+      <keyword>-gt</keyword>
+      <keyword>-ge</keyword>
+    </context>
+
+    <context id="conditional-command">
+      <start>\%{lb}\[{1,2}\%{argument-suffix}</start>
+      <end>\%{argument-prefix}\]{1,2}\%{rb}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context id="brackets-nesting">
+          <include>
+            <!-- Must be included first, to ensure unescaped boundaries -->
+            <context ref="def:escape"/>
+            <context ref="def:line-continue"/>
+            <context ref="single-quoted-string"/>
+            <context ref="double-quoted-string"/>
+            <context ref="backtick-subshell"/>
+            <context ref="command-substitution"/>
+            <context ref="arithmetic-expansion"/>
+            <context ref="history-expansion"/>
+            <context ref="variable"/>
+            <context ref="test-operator"/>
+            <context ref="logical-operator"/>
+          </include>
+        </context>
+        <context id="brackets-precedence">
+          <start>\(</start>
+          <end>\)</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="function"/>
+            <context sub-pattern="0" where="end" style-ref="function"/>
+            <context ref="brackets-nesting"/>
+            <context ref="brackets-precedence"/>
+          </include>
+        </context>
+      </include>
     </context>
 
     <context id="short-parameter-expansion" style-ref="variable">
@@ -331,6 +386,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="variable"/>
         <context sub-pattern="0" where="end" style-ref="variable"/>
+        <!-- Must be included first, to ensure unescaped boundaries -->
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
         <context ref="single-quoted-string"/>
@@ -339,6 +395,7 @@
         <context ref="backtick-subshell"/>
         <context ref="command-substitution"/>
         <context ref="arithmetic-expansion"/>
+        <context ref="history-expansion"/>
       </include>
     </context>
 
@@ -361,6 +418,7 @@
       <end>\%{command-suffix}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <!-- Must be included first, to ensure unescaped boundaries -->
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
         <context ref="line-comment"/>
@@ -372,9 +430,10 @@
         <context ref="arithmetic-expansion"/>
         <!-- Must be included after all other parenthesized subshells -->
         <context ref="default-subshell"/>
+        <context ref="history-expansion"/>
         <context ref="variable"/>
         <context style-ref="variable-definition">
-          <match>(?&lt;=\%{unescaped-space})\%{identifier}</match>
+          <match>\%{argument-prefix}\%{identifier}</match>
         </context>
       </include>
     </context>
@@ -407,12 +466,10 @@
       <keyword>then</keyword>
       <keyword>until</keyword>
       <keyword>while</keyword>
-      <keyword>test</keyword>
-      <keyword>times</keyword>
     </context>
 
     <context id="case-command">
-      <start>\%{lb}case(?=\s)</start>
+      <start>\%{lb}case\%{argument-suffix}</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <!-- Must be included before any reference context
@@ -427,7 +484,7 @@
     </context>
 
     <context id="for-command" end-at-line-end="true">
-      <start>\%{lb}for(?=\s)</start>
+      <start>\%{lb}for\%{argument-suffix}</start>
       <end>(?=\S)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
@@ -438,15 +495,105 @@
       </include>
     </context>
 
+    <context id="history-expansion-command">
+      <start extended="true">
+        # Event Designator
+        ((?&lt;!\\)!) (?: (!|\#|-?[1-9][0-9]*) | (\?)[^?]+(\?|$)
+          | [^=("\s:$^*%-][^"\s:$^*%-]* )
+      </start>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="keyword"/>
+        <context sub-pattern="2" where="start" style-ref="keyword"/>
+        <context sub-pattern="3" where="start" style-ref="keyword"/>
+        <context sub-pattern="4" where="start" style-ref="keyword"/>
+        <context id="word-designator" once-only="true" style-ref="keyword">
+          <match extended="true">
+            (:|(?=[$^*%-])) ( (\^|[0-9]+)-(\$|[0-9]+) | (\^|[0-9]+)[*-]
+              | [$^%*] | [0-9]+ | -(\$|[0-9]+) )
+          </match>
+        </context>
+        <context id="modifier" end-parent="true">
+          <start>\%{def:always-match}</start>
+          <end>\%{def:always-match}</end>
+          <include>
+            <context id="simple-modifier" style-ref="keyword">
+              <match>:([htrepqx]|[agG]?&amp;)</match>
+            </context>
+            <context id="substitution-modifier" end-at-line-end="true">
+              <start>:[agG]?s</start>
+              <include>
+                <context sub-pattern="0" where="start" style-ref="keyword"/>
+                <context id="substitution-modifier-pattern" once-only="true">
+                  <start>[[:print:]]</start>
+                  <end>((?=\%{0@start})|$)</end>
+                  <include>
+                    <context sub-pattern="0" where="start" style-ref="keyword"/>
+                    <context ref="def:escape"/>
+                  </include>
+                </context>
+                <context id="substitution-modifier-replacement" end-parent="true">
+                  <start>[[:print:]]</start>
+                  <end>(\%{0@start}|$)</end>
+                  <include>
+                    <context sub-pattern="0" where="start" style-ref="keyword"/>
+                    <context sub-pattern="0" where="end" style-ref="keyword"/>
+                    <context ref="def:escape"/>
+                  </include>
+                </context>
+              </include>
+            </context>
+          </include>
+        </context>
+      </include>
+    </context>
+
+    <context id="history-expansion">
+      <include>
+        <context ref="history-expansion-command"/>
+        <context id="quick-substitution">
+          <match extended="true">
+            ^(\^) ([^^]|\\^)* (\^) ([^^]|\\^)* (\^|$)\%{rb}
+          </match>
+          <include>
+            <context sub-pattern="1" style-ref="keyword"/>
+            <context sub-pattern="3" style-ref="keyword"/>
+            <context sub-pattern="5" style-ref="keyword"/>
+          </include>
+        </context>
+      </include>
+    </context>
+
     <context id="let-command" end-at-line-end="true">
-      <start>\%{lb}let(?=\s)</start>
+      <start>\%{lb}let\%{argument-suffix}</start>
       <end>\%{command-suffix}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <!-- Must be included first (contains def:escape) -->
+        <context ref="evaluation-nesting"/>
         <context ref="line-comment"/>
         <context ref="redirection"/>
-        <context ref="evaluation-nesting"/>
         <context ref="evaluation-precedence"/>
+      </include>
+    </context>
+
+    <context id="test-command" end-at-line-end="true">
+      <start>\%{lb}test\%{rb}</start>
+      <end>\%{command-suffix}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <!-- Must be included first, to ensure unescaped boundaries -->
+        <context ref="def:escape"/>
+        <context ref="line-comment"/>
+        <context ref="redirection"/>
+        <context ref="def:line-continue"/>
+        <context ref="single-quoted-string"/>
+        <context ref="double-quoted-string"/>
+        <context ref="backtick-subshell"/>
+        <context ref="command-substitution"/>
+        <context ref="arithmetic-expansion"/>
+        <context ref="history-expansion"/>
+        <context ref="variable"/>
+        <context ref="test-operator"/>
       </include>
     </context>
 
@@ -455,7 +602,10 @@
         <context ref="reserved-word"/>
         <context ref="case-command"/>
         <context ref="for-command"/>
+        <context ref="history-expansion"/>
         <context ref="let-command"/>
+        <context ref="conditional-command"/>
+        <context ref="test-command"/>
       </include>
     </context>
 
@@ -509,6 +659,7 @@
               <keyword>shopt</keyword>
               <keyword>source</keyword>
               <keyword>suspend</keyword>
+              <keyword>times</keyword>
               <keyword>trap</keyword>
               <keyword>type</keyword>
               <keyword>ulimit</keyword>
@@ -691,6 +842,7 @@
             </context>
           </include>
         </context>
+        <!-- Must be included first, to ensure unescaped boundaries -->
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
         <context ref="line-comment"/>
@@ -700,6 +852,7 @@
         <context ref="command-substitution"/>
         <context ref="process-substitution"/>
         <context ref="arithmetic-expansion"/>
+        <context ref="history-expansion"/>
         <context ref="here-doc"/>
         <context ref="redirection"/>
         <context ref="variable"/>
@@ -708,10 +861,11 @@
 
     <context id="sh" class="no-spell-check">
       <include>
+        <!-- Must be included first, to ensure unescaped boundaries -->
+        <context ref="def:escape"/>
         <context ref="def:shebang"/>
         <context ref="line-comment"/>
         <context ref="def:line-continue"/>
-        <context ref="def:escape"/>
         <context ref="single-quoted-string"/>
         <context ref="double-quoted-string"/>
         <context ref="backtick-subshell"/>
@@ -726,7 +880,6 @@
         <context ref="function"/>
         <context ref="here-doc"/>
         <context ref="redirection"/>
-        <context ref="operator"/>
         <context ref="variable"/>
         <context ref="variable-definition"/>
         <context ref="built-in-command"/>

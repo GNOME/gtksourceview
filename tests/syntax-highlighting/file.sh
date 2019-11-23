@@ -78,3 +78,12 @@ echo
 var1=$((var2+2#101+$(cmd)+($var3+ \
   "$var4")/0x1f))
 let var1='1'+010-23+`cmd`+var2 # Comment
+
+# History expansion
+"txt!cmd:^-$:r:gs/xxx/yyy/:ptxt"
+^xxx^yyy^
+
+# Test commands
+test ! -f "$file"
+[ "$var" = 'xxx' ]
+[[ ! (-n $var1||$var2 =~ regex) && -f $file ]]
