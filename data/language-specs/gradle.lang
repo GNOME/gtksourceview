@@ -20,7 +20,7 @@
 -->
 <language id="gradle" name="Gradle" version="2.0" _section="Source">
   <metadata>
-    <property name="globs">build.gradle</property>
+    <property name="globs">*.gradle</property>
     <property name="line-comment-start">//</property>
     <property name="block-comment-start">/*</property>
     <property name="block-comment-end">*/</property>
