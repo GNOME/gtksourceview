@@ -75,6 +75,20 @@
   <!-- Types -->
   <style name="def:type"                    foreground="green" bold="true"/>
 
+  <!-- Markup -->
+  <style name="def:emphasis"                italic="true"/>
+  <style name="def:strong-emphasis"         foreground="bordeaux" bold="true"/>
+  <style name="def:inline-code"             foreground="cyan"/>
+  <style name="def:insertion"               underline="single"/>
+  <style name="def:deletion"                strikethrough="true"/>
+  <style name="def:link-text"               foreground="blue"/>
+  <style name="def:link-symbol"             foreground="blue" bold="true"/>
+  <style name="def:link-destination"        italic="true" underline="single"/>
+  <style name="def:heading"                 foreground="green" bold="true"/>
+  <style name="def:thematic-break"          foreground="green" bold="true"/>
+  <style name="def:preformatted-section"    foreground="cyan"/>
+  <style name="def:list-marker"             foreground="bordeaux" bold="true"/>
+
   <!-- Others -->
   <style name="def:preprocessor"            foreground="purple"/>
   <style name="def:error"                   background="red" bold="true"/>

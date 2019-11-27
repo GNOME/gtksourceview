@@ -94,6 +94,32 @@
     <!--A primitive data type: int, long, char, etc. -->
     <style id="type"                name="Data type"/>
 
+    <!-- Markup group -->
+    <!-- Emphasis, usually rendered with italics -->
+    <style id="emphasis"            name="Emphasis"/>
+    <!-- Strong emphasis, usually rendered as bold -->
+    <style id="strong-emphasis"     name="Strong emphasis"/>
+    <!-- Inline code, usually rendered with a monospace font -->
+    <style id="inline-code"         name="Inline code"/>
+    <!-- Insertion, usually rendered with an underline -->
+    <style id="insertion"           name="Insertion"/>
+    <!-- Deletion, usually rendered with a strikethrough -->
+    <style id="deletion"            name="Deletion"/>
+    <!-- Link text, usually rendered with an underline -->
+    <style id="link-text"           name="Link text"/>
+    <!-- Link symbol, a part of the markup syntax for links -->
+    <style id="link-symbol"         name="Link symbol"/>
+    <!-- Link destination, not usually visible -->
+    <style id="link-destination"    name="Link destination"/>
+    <!-- Heading, usually rendered in a larger font (using h1, h2, etc. tags) -->
+    <style id="heading"             name="Heading"/>
+    <!-- Thematic break, usually rendered as a horizontal rule (line) -->
+    <style id="thematic-break"      name="Thematic break"/>
+    <!-- Preformatted section, usually rendered with a monospace font -->
+    <style id="preformatted-section" name="Preformatted section"/>
+    <!-- List marker, usually rendered as a bullet or number -->
+    <style id="list-marker"         name="List marker"/>
+
     <!-- Others -->
     <!-- This one is for '#include <foo.h>' and "#pragma blah", or 'use foobar', etc.. -->
     <style id="preprocessor"        name="Preprocessor directive"/>
