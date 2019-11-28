@@ -98,6 +98,15 @@
 
   <definitions>
 
+    <!--
+    embedding languages can do:
+
+    <replace id="css:at-charset-highlighting" ref="css:at-charset-highlighting-no-error"/>
+    <replace id="css:not-pseudo-class-highlighting" ref="css:not-pseudo-class-highlighting-no-error"/>
+
+    to disable error highlighting for invalid @charset rules and :not() pseudo-classes
+    -->
+
     <!-- global -->
 
     <!-- https://drafts.csswg.org/css-syntax/#escaping -->
@@ -1844,6 +1853,30 @@
       </include>
     </context>
 
+    <context id="at-charset-no-error">
+      <start>@charset\%]</start>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
+        <context ref="double-quoted-string"/>
+        <context ref="at-rule-delimiter"/>
+      </include>
+    </context>
+
+    <context id="at-charset-highlighting">
+      <include>
+        <context ref="at-charset"/>
+        <context ref="at-charset-error"/>
+      </include>
+    </context>
+
+    <context id="at-charset-highlighting-no-error">
+      <include>
+        <context ref="at-charset-no-error"/>
+      </include>
+    </context>
+
     <!--
     @font-face <style-block>
     -->
@@ -2189,8 +2222,7 @@
       <include>
         <context ref="vendor-specific-at-keyframes"/>
         <context ref="vendor-specific-at-rule"/>
-        <context ref="at-charset"/>
-        <context ref="at-charset-error"/>
+        <context ref="at-charset-highlighting"/>
         <context ref="at-font-face"/>
         <context ref="at-font-feature-values"/>
         <context ref="at-import"/>
@@ -2397,6 +2429,19 @@
       </include>
     </context>
 
+    <context id="not-pseudo-class-highlighting">
+      <include>
+        <context ref="not-pseudo-class-nested-not-error"/>
+        <context ref="not-pseudo-class-nested-pseudo-element-error"/>
+      </include>
+    </context>
+
+    <context id="not-pseudo-class-highlighting-no-error">
+      <include>
+        <context ref="pseudo-element"/>
+      </include>
+    </context>
+
     <context id="not-pseudo-class-argument">
       <start>(?&lt;=:not)\(</start>
       <end>\)</end>
@@ -2405,8 +2450,7 @@
         <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
         <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
-        <context ref="not-pseudo-class-nested-not-error"/>
-        <context ref="not-pseudo-class-nested-pseudo-element-error"/>
+        <context ref="not-pseudo-class-highlighting"/>
         <context ref="simple-selector"/>
         <context ref="combinator"/>
         <context ref="pseudo-class"/>
