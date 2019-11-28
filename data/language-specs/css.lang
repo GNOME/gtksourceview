@@ -7,7 +7,7 @@
  Copyright (C) 2004 Scott Martin <scott@coffeeblack.org>
  Copyright (C) 2010 Patryk Zawadzki <patrys@pld-linux.org>
  Copyright (C) 2016 Tobias Schönberg <tobias47n9e@gmail.com>
- Copyright (C) 2018 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2018-2019 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -192,10 +192,13 @@
 
     <define-regex id="test-value-end">(?=\))</define-regex>
 
+    <context id="embedded-lang-hook"/>
+
     <context id="multiline-comment" style-ref="comment" class-disabled="no-spell-check" class="comment">
       <start>/\*</start>
       <end>\*/</end>
       <include>
+        <context ref="embedded-lang-hook"/>
         <context ref="def:in-comment"/>
       </include>
     </context>
@@ -254,6 +257,8 @@
       <start>"</start>
       <end>"</end>
       <include>
+        <context ref="embedded-lang-hook"/>
+        <!-- no comment here -->
         <context ref="string-content"/>
       </include>
     </context>
@@ -262,6 +267,8 @@
       <start>'</start>
       <end>'</end>
       <include>
+        <context ref="embedded-lang-hook"/>
+        <!-- no comment here -->
         <context ref="string-content"/>
       </include>
     </context>
@@ -567,6 +574,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="string-value"/>
       </include>
@@ -579,6 +587,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="custom-property-name"/>
         <context ref="function-content"/>
@@ -598,6 +607,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
         <context sub-pattern="0" where="end" style-ref="vendor-specific"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="function-content"/>
       </include>
@@ -609,6 +619,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="function"/>
         <context sub-pattern="0" where="end" style-ref="function"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="function-content"/>
       </include>
@@ -1550,6 +1561,7 @@
       <end>\%{declaration-value-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="modifier"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="modifier-content"/>
       </include>
@@ -1575,6 +1587,7 @@
       <end>\%{declaration-value-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="declaration-value-content"/>
       </include>
@@ -1601,6 +1614,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="style-block-content"/>
       </include>
@@ -1705,6 +1719,7 @@
       <end>\%{test-value-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="media-feature-test-value-content"/>
       </include>
@@ -1724,6 +1739,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="test-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="test-delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="media-feature-test-content"/>
       </include>
@@ -1753,6 +1769,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="at-rule-style-block-content"/>
       </include>
@@ -1772,6 +1789,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="at-rule-css-block-content"/>
       </include>
@@ -1795,6 +1813,7 @@
       <start>@\%{vendor-specific-identifier}</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="at-rule-css-block"/>
         <context ref="at-rule-delimiter"/>
@@ -1809,6 +1828,8 @@
       <start case-sensitive="true">^@charset(?= "[^"]*";)</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
         <context ref="double-quoted-string"/>
         <context ref="at-rule-delimiter"/>
       </include>
@@ -1817,6 +1838,8 @@
     <context id="at-charset-error" style-ref="error">
       <start>@charset\%]</start>
       <include>
+        <context ref="embedded-lang-hook"/>
+        <!-- no comment here -->
         <context ref="at-rule-delimiter"/>
       </include>
     </context>
@@ -1829,6 +1852,7 @@
       <start>@font-face\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="at-rule-style-block"/>
       </include>
@@ -1875,6 +1899,7 @@
       <end>\%{declaration-value-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="font-feature-value-declaration-value-content"/>
       </include>
@@ -1886,6 +1911,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="font-feature-value-declaration-name"/>
         <context ref="font-feature-value-declaration-value"/>
@@ -1899,6 +1925,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="font-feature-type-value"/>
         <context ref="at-font-feature-values-feature-value-block"/>
@@ -1909,6 +1936,7 @@
       <start>@font-feature-values\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="string-value"/>
         <context ref="name-value"/>
@@ -1924,6 +1952,7 @@
       <start>@import\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="url"/>
         <context ref="media-queries"/>
@@ -1956,6 +1985,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="keyframe-selector-value"/>
         <context ref="style-block"/>
@@ -1966,6 +1996,7 @@
       <start>@\%{vendor-specific-prefix}keyframes\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="vendor-specific"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="string-value"/>
         <context ref="name-value"/>
@@ -1977,6 +2008,7 @@
       <start>@keyframes\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="string-value"/>
         <context ref="name-value"/>
@@ -1992,6 +2024,7 @@
       <start>@media\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="media-queries"/>
         <context ref="at-rule-css-block"/>
@@ -2012,6 +2045,7 @@
       <start>@namespace\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="url"/>
         <context ref="string-value"/>
@@ -2061,6 +2095,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="block-delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="declaration"/>
         <context ref="page-margin-box-types"/>
@@ -2072,6 +2107,7 @@
       <start>@page\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="pseudo-pages"/>
         <context ref="name-value"/>
@@ -2102,6 +2138,7 @@
       <end>\%{at-supports-declaration-value-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="declaration-value-content"/>
       </include>
@@ -2112,6 +2149,7 @@
       <end>\%{at-supports-declaration-value-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="modifier"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="modifier-content"/>
       </include>
@@ -2123,6 +2161,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="test-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="test-delimiter"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="at-supports-test"/>
         <context ref="at-supports-operators"/>
@@ -2136,6 +2175,7 @@
       <start>@supports\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="at-supports-test"/>
         <context ref="at-supports-operators"/>
@@ -2218,6 +2258,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="attribute-selector"/>
         <context sub-pattern="0" where="end" style-ref="attribute-selector"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="attribute-selector-content"/>
       </include>
@@ -2332,6 +2373,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
         <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="lang-pseudo-class-argument-content"/>
       </include>
@@ -2341,6 +2383,8 @@
       <start>:not\(</start>
       <end>\)</end>
       <include>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
         <context ref="pseudo-class-argument"/>
       </include>
     </context>
@@ -2359,6 +2403,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
         <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="not-pseudo-class-nested-not-error"/>
         <context ref="not-pseudo-class-nested-pseudo-element-error"/>
@@ -2405,6 +2450,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
         <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="nth-pseudo-class-argument-content"/>
       </include>
@@ -2437,6 +2483,7 @@
 
     <context id="css" class="no-spell-check">
       <include>
+        <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
         <context ref="at-rule"/>
         <context ref="selector"/>

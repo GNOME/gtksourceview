@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2018 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2018-2019 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -65,9 +65,19 @@
       (?: ; | (?= } ) )
     </define-regex>
 
+    <context id="embedded-lang-hook"/>
+
+    <context id="less-embedded-lang-hook">
+      <include>
+        <context ref="embedded-lang-hook"/>
+        <context ref="css:embedded-lang-hook" original="true"/>
+      </include>
+    </context>
+
     <context id="single-line-comment" style-ref="css:comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start>//</start>
       <include>
+        <context ref="css:embedded-lang-hook"/>
         <!-- line continuations not allowed -->
         <context ref="def:in-comment"/>
       </include>
@@ -80,6 +90,7 @@
       </include>
     </context>
 
+    <replace id="css:embedded-lang-hook" ref="less-embedded-lang-hook"/>
     <replace id="css:comment" ref="less-comment"/>
 
 
@@ -97,6 +108,8 @@
       <start>@{</start>
       <end>}</end>
       <include>
+        <context ref="css:embedded-lang-hook"/>
+        <!-- no comment here -->
         <!-- nested interpolations are not documented but appear to work
              (functions as variable reference / indirection) -->
         <context ref="variable-interpolation-value"/>
@@ -164,6 +177,8 @@
       <start>~"</start>
       <end>"</end>
       <include>
+        <context ref="css:embedded-lang-hook"/>
+        <!-- no comment here -->
         <context ref="css:string-content"/>
       </include>
     </context>
@@ -172,6 +187,8 @@
       <start>~'</start>
       <end>'</end>
       <include>
+        <context ref="css:embedded-lang-hook"/>
+        <!-- no comment here -->
         <context ref="css:string-content"/>
       </include>
     </context>
@@ -189,6 +206,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="css:block-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="css:block-delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:style-block-content"/>
       </include>
@@ -204,7 +222,8 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="variable"/>
         <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
-        <!-- no comments allowed -->
+        <context ref="css:embedded-lang-hook"/>
+        <!-- no comment here -->
         <context ref="detached-ruleset-call-close-paren"/>
       </include>
     </context>
@@ -215,6 +234,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="group-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="group-delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:data-value"/>
       </include>
@@ -226,6 +246,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="group-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="group-delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:any-value"/>
       </include>
@@ -253,6 +274,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="css:function"/>
         <context sub-pattern="0" where="end" style-ref="css:function"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:function-content"/>
       </include>
@@ -267,6 +289,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="css:function"/>
         <context sub-pattern="0" where="end" style-ref="css:function"/>
+        <context ref="css:embedded-lang-hook"/>
         <!-- only accept multi-line comments because // is part of urls -->
         <context ref="css:comment" original="true"/>
         <context ref="css:string-value"/>
@@ -417,6 +440,7 @@
       <end>\%{css:declaration-value-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:declaration-value-content"/>
       </include>
@@ -468,6 +492,7 @@
       <include>
         <context sub-pattern="1" where="start" style-ref="group-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="group-delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <!-- options are passed to the plugin directly, not parsed by Less -->
       </include>
@@ -477,6 +502,7 @@
       <start>@plugin\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="at-plugin-options"/>
         <context ref="css:url"/>
@@ -492,6 +518,7 @@
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:function-call"/>
       </include>
@@ -504,6 +531,7 @@
       <start case-sensitive="true">@charset\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <!-- though Less preserves quote type, which may be invalid -->
         <context ref="css:string"/>
@@ -552,6 +580,7 @@
       <include>
         <context sub-pattern="1" where="start" style-ref="group-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="group-delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="less-at-import-options-keyword"/>
         <context ref="css:comma"/>
@@ -562,6 +591,7 @@
       <start>@import\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="less-at-import-options"/>
         <context ref="css:url"/>
@@ -613,6 +643,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="mixin-parameters-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="mixin-parameters-delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:any-value"/>
         <context ref="variable-arguments"/>
@@ -640,6 +671,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="css:test-delimiter"/>
         <context sub-pattern="0" where="end" style-ref="css:test-delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:any-value"/>
         <context ref="guard-comparison-operator"/>
@@ -651,6 +683,7 @@
       <end>(?={)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="guard-operator"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="guard-test"/>
         <context ref="guard-logical-operator"/>
@@ -688,6 +721,7 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="css:pseudo-class"/>
         <context sub-pattern="0" where="end" style-ref="css:pseudo-class"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="extend-pseudo-class-argument-keyword"/>
         <context ref="css:selector"/>
@@ -699,6 +733,7 @@
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:selector"/>
       </include>
@@ -799,6 +834,7 @@
 
     <context id="less" class="no-spell-check">
       <include>
+        <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="css:at-rule"/> <!-- because Less variables look like at-rules -->
         <context ref="detached-ruleset-call"/>

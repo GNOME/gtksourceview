@@ -308,12 +308,24 @@
           <include>
             <context sub-pattern="0" where="start" style-ref="tag"/>
             <context sub-pattern="0" where="end" style-ref="tag"/>
-            <context ref="embedded-lang-hook"/>
             <context ref="css:css"/>
           </include>
         </context>
       </include>
     </context>
+
+    <context id="css-embedded-lang-hook">
+      <include>
+        <context end-parent="true">
+          <start>(?=&lt;/style(?:&gt;|\s|$))</start>
+          <end>\%{def:always-match}</end>
+        </context>
+        <context ref="embedded-lang-hook"/>
+        <context ref="css:embedded-lang-hook" original="true"/>
+      </include>
+    </context>
+
+    <replace id="css:embedded-lang-hook" ref="css-embedded-lang-hook"/>
 
     <context id="script" class="no-spell-check">
       <start>&lt;script\%]</start>
