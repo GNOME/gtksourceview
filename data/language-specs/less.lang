@@ -65,9 +65,17 @@
       (?: ; | (?= } ) )
     </define-regex>
 
+    <context id="single-line-comment" style-ref="css:comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
+      <start>//</start>
+      <include>
+        <!-- line continuations not allowed -->
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
     <context id="less-comment">
       <include>
-        <context ref="def:c-like-comment"/>
+        <context ref="single-line-comment"/>
         <context ref="css:comment" original="true"/>
       </include>
     </context>

@@ -64,7 +64,7 @@
 
     <!-- global -->
 
-    <context id="sass-c-like-comment-multiline" style-ref="def:comment" class-disabled="no-spell-check" class="comment">
+    <context id="scss-multiline-comment" style-ref="css:comment" class-disabled="no-spell-check" class="comment">
       <start>/\*</start>
       <end>\*/</end>
       <include>
@@ -73,14 +73,22 @@
       </include>
     </context>
 
-    <context id="scss-comment">
+    <context id="single-line-comment" style-ref="css:comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
+      <start>//</start>
       <include>
-        <context ref="def:c-like-comment"/>
-        <context ref="sass-c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <!-- line continuations not allowed -->
+        <context ref="def:in-comment"/>
       </include>
     </context>
 
+    <context id="scss-comment">
+      <include>
+        <context ref="single-line-comment"/>
+        <context ref="css:comment" original="true"/>
+      </include>
+    </context>
+
+    <replace id="css:multiline-comment" ref="scss-multiline-comment"/>
     <replace id="css:comment" ref="scss-comment"/>
 
 
@@ -227,8 +235,7 @@
         <context sub-pattern="0" where="start" style-ref="css:function"/>
         <context sub-pattern="0" where="end" style-ref="css:function"/>
         <!-- only accept multi-line comments because // is part of urls -->
-        <context ref="sass-c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="css:comment" original="true"/>
         <context ref="css:string-value"/>
       </include>
     </context>

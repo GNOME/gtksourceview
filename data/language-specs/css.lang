@@ -34,6 +34,7 @@
   <styles>
 
     <!-- global -->
+    <style id="comment"                     name="Comment"                     map-to="def:comment"/>
     <style id="error"                       name="Error"                       map-to="def:error"/>
     <style id="vendor-specific"             name="Vendor Specific"             map-to="def:warning"/>
     <style id="keyword"                     name="Keyword"                     map-to="def:constant"/>
@@ -191,10 +192,18 @@
 
     <define-regex id="test-value-end">(?=\))</define-regex>
 
+    <context id="multiline-comment" style-ref="comment" class-disabled="no-spell-check" class="comment">
+      <start>/\*</start>
+      <end>\*/</end>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
     <context id="comment">
       <include>
-        <context ref="def:c-like-comment-multiline"/>
-        <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="multiline-comment"/>
+        <context ref="def:c-like-close-comment-outside-comment" style-ref="comment"/>
       </include>
     </context>
 
