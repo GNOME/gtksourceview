@@ -480,7 +480,7 @@
 
     <!-- ## Without comma -->
 
-    <context id="_ternary-operator-without-comma-false-clause" once-only="true">
+    <context id="_ternary-operator-without-comma-false-expression" once-only="true">
       <start>:</start>
       <end>\%{js:before-next-token}</end>
       <include>
@@ -488,14 +488,14 @@
         <context ref="js:embedded-lang-hooks"/>
         <context ref="js:comments"/>
 
-        <context id="_ternary-operator-without-comma-false-clause-content">
+        <context id="_ternary-operator-without-comma-false-expression-content">
           <include>
             <context ref="expression-without-comma"/>
           </include>
-        </context> <!-- /_ternary-operator-without-comma-false-clause-content -->
+        </context> <!-- /_ternary-operator-without-comma-false-expression-content -->
 
       </include>
-    </context> <!-- /_ternary-operator-without-comma-false-clause -->
+    </context> <!-- /_ternary-operator-without-comma-false-expression -->
 
     <context id="_choice-ternary-operator-without-comma-true-expression" end-parent="true">
       <start>\%{js:before-next-token}</start>
@@ -507,7 +507,7 @@
         <context id="_ternary-operator-without-comma-true-expression-content">
           <include>
             <context ref="expression-without-comma"/>
-            <context ref="_ternary-operator-without-comma-false-clause"/>
+            <context ref="_ternary-operator-without-comma-false-expression"/>
           </include>
         </context> <!-- /_ternary-operator-without-comma-true-expression-content -->
 
@@ -534,7 +534,7 @@
 
     <!-- ## With comma -->
 
-    <context id="_ternary-operator-with-comma-false-clause" once-only="true">
+    <context id="_ternary-operator-with-comma-false-expression" once-only="true">
       <start>:</start>
       <end>\%{js:before-next-token}</end>
       <include>
@@ -542,14 +542,14 @@
         <context ref="js:embedded-lang-hooks"/>
         <context ref="js:comments"/>
 
-        <context id="_ternary-operator-with-comma-false-clause-content">
+        <context id="_ternary-operator-with-comma-false-expression-content">
           <include>
             <context ref="expression-with-comma"/>
           </include>
-        </context> <!-- /_ternary-operator-with-comma-false-clause-content -->
+        </context> <!-- /_ternary-operator-with-comma-false-expression-content -->
 
       </include>
-    </context> <!-- /_ternary-operator-with-comma-false-clause -->
+    </context> <!-- /_ternary-operator-with-comma-false-expression -->
 
     <context id="_choice-ternary-operator-with-comma-true-expression" end-parent="true">
       <start>\%{js:before-next-token}</start>
@@ -561,7 +561,7 @@
         <context id="_ternary-operator-with-comma-true-expression-content">
           <include>
             <context ref="expression-with-comma"/>
-            <context ref="_ternary-operator-with-comma-false-clause"/>
+            <context ref="_ternary-operator-with-comma-false-expression"/>
           </include>
         </context> <!-- /_ternary-operator-with-comma-true-expression-content -->
 

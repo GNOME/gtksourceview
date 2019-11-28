@@ -330,21 +330,21 @@
       <end>\%{def:always-match}</end>
     </context> <!-- /_choice-conditional-type-operator-missing-true-type -->
 
-    <context id="_conditional-type-operator-false-clause" once-only="true">
+    <context id="_conditional-type-operator-false-type" once-only="true">
       <start>:</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:conditional-type-operator"/>
         <context ref="js:comments"/>
 
-        <context id="_conditional-type-operator-false-clause-content">
+        <context id="_conditional-type-operator-false-type-content">
           <include>
             <context ref="type-expression"/>
           </include>
-        </context> <!-- /_conditional-type-operator-false-clause-content -->
+        </context> <!-- /_conditional-type-operator-false-type-content -->
 
       </include>
-    </context> <!-- /_conditional-type-operator-false-clause -->
+    </context> <!-- /_conditional-type-operator-false-type -->
 
     <context id="_choice-conditional-type-operator-true-type" end-parent="true">
       <start>\%{js:before-next-token}</start>
@@ -355,7 +355,7 @@
         <context id="_conditional-type-operator-true-type-content">
           <include>
             <context ref="type-expression"/>
-            <context ref="_conditional-type-operator-false-clause"/>
+            <context ref="_conditional-type-operator-false-type"/>
           </include>
         </context> <!-- /_conditional-type-operator-true-type-content -->
 
