@@ -157,7 +157,7 @@
         ///? \%{js:whitespace}* @ts-ignore \%]
       </start>
       <include>
-        <context ref="def:in-comment"/>
+        <context ref="js:_comment-content"/>
       </include>
     </context> <!-- /_ts-ignore-comment-pragmas -->
 
@@ -166,7 +166,7 @@
         ///? \%{js:whitespace}* @ts-ignore \%]
       </start>
       <include>
-        <context ref="def:in-comment"/>
+        <context ref="js:_comment-content"/>
       </include>
     </context> <!-- /_ts-ignore-comment-pragmas-no-extend-parent -->
 
@@ -184,7 +184,7 @@
         ///? \s* @ts-nocheck \%]
       </start>
       <include>
-        <context ref="def:in-comment"/>
+        <context ref="js:_comment-content"/>
       </include>
     </context> <!-- /_ts-nocheck-comment-pragmas -->
 
@@ -208,6 +208,9 @@
         )
         \%{js:whitespace}
       </start>
+      <include>
+        <context ref="js:_comment-content"/>
+      </include>
     </context> <!-- /_triple-slash-directives -->
 
     <!-- ## Namespace name

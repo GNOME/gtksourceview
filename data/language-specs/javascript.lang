@@ -320,41 +320,45 @@
 
     <!-- ## Comments -->
 
-    <context id="_in-comment" class-disabled="no-spell-check">
+    <context id="_comment-content" class-disabled="no-spell-check">
       <include>
         <context ref="embedded-lang-hooks"/>
-        <context ref="def:in-comment" original="true"/>
-      </include>
-    </context> <!-- /_in-comment -->
-
-    <replace id="def:in-comment" ref="_in-comment"/>
-
-    <!-- includes def:in-comment instead of def:in-line-comment,
-         because line continuations are not allowed inside single-line
-         comments -->
-    <context id="_c-like-comment" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
-      <start>//</start>
-      <include>
         <context ref="def:in-comment"/>
       </include>
-    </context> <!-- /_c-like-comment -->
+    </context> <!-- /_comment-content -->
 
-    <context id="_c-like-comment-no-extend-parent" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment" extend-parent="false">
+    <!-- line continuations are not allowed inside single-line comments -->
+    <context id="_single-line-comments" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start>//</start>
       <include>
-        <context ref="def:in-comment"/>
+        <context ref="_comment-content"/>
       </include>
-    </context> <!-- /_c-like-comment-no-extend-parent -->
+    </context> <!-- /_single-line-comments -->
 
-    <context id="_c-like-comment-multiline-no-extend-parent" style-ref="comment" class-disabled="no-spell-check" class="comment" extend-parent="false">
+    <context id="_multiline-comments" style-ref="comment" class-disabled="no-spell-check" class="comment">
       <start>/\*</start>
       <end>\*/</end>
       <include>
-        <context ref="def:in-comment"/>
+        <context ref="_comment-content"/>
       </include>
-    </context> <!-- /_c-like-comment-multiline-no-extend-parent -->
+    </context> <!-- /_multiline-comments -->
 
-    <context id="jsdoc-embedded-lang-hooks">
+    <context id="_single-line-comments-no-extend-parent" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment" extend-parent="false">
+      <start>//</start>
+      <include>
+        <context ref="_comment-content"/>
+      </include>
+    </context> <!-- /_single-line-comments-no-extend-parent -->
+
+    <context id="_multiline-comments-no-extend-parent" style-ref="comment" class-disabled="no-spell-check" class="comment" extend-parent="false">
+      <start>/\*</start>
+      <end>\*/</end>
+      <include>
+        <context ref="_comment-content"/>
+      </include>
+    </context> <!-- /_multiline-comments-no-extend-parent -->
+
+    <context id="_jsdoc-embedded-lang-hooks">
       <include>
         <context ref="embedded-lang-hooks"/>
 
@@ -365,33 +369,38 @@
 
         <context ref="jsdoc:embedded-lang-hooks" original="true"/>
       </include>
-    </context>
+    </context> <!-- /_jsdoc-embedded-lang-hooks -->
 
-    <replace id="jsdoc:embedded-lang-hooks" ref="jsdoc-embedded-lang-hooks"/>
+    <replace id="jsdoc:embedded-lang-hooks" ref="_jsdoc-embedded-lang-hooks"/>
 
-    <context id="doc-comment" style-ref="doc-comment" class-disabled="no-spell-check" class="comment">
+    <context id="_doc-comment-content">
+      <include>
+        <context ref="_comment-content"/>
+        <context ref="jsdoc:jsdoc"/>
+      </include>
+    </context> <!-- /_doc-comment-content -->
+
+    <context id="_doc-comments" style-ref="doc-comment" class-disabled="no-spell-check" class="comment">
       <start>/\*\*(?![\*/])</start>
       <end>\*/</end>
       <include>
-        <context ref="def:in-comment"/>
-        <context ref="jsdoc:jsdoc"/>
+        <context ref="_doc-comment-content"/>
       </include>
-    </context> <!-- /doc-comment -->
+    </context> <!-- /_doc-comments -->
 
-    <context id="doc-comment-no-extend-parent" style-ref="doc-comment" class-disabled="no-spell-check" class="comment" extend-parent="false">
+    <context id="_doc-comments-no-extend-parent" style-ref="doc-comment" class-disabled="no-spell-check" class="comment" extend-parent="false">
       <start>/\*\*(?![\*/])</start>
       <end>\*/</end>
       <include>
-        <context ref="def:in-comment"/>
-        <context ref="jsdoc:jsdoc"/>
+        <context ref="_doc-comment-content"/>
       </include>
-    </context> <!-- /doc-comment-no-extend-parent -->
+    </context> <!-- /_doc-comments-no-extend-parent -->
 
     <context id="comments">
       <include>
-        <context ref="_c-like-comment"/>
-        <context ref="doc-comment"/>
-        <context ref="def:c-like-comment-multiline" style-ref="comment"/>
+        <context ref="_single-line-comments"/>
+        <context ref="_doc-comments"/>
+        <context ref="_multiline-comments"/>
         <context ref="def:c-like-close-comment-outside-comment" style-ref="error"/>
       </include>
     </context> <!-- /comments -->
@@ -399,9 +408,9 @@
     <!-- for statements that cannot contain line terminators -->
     <context id="comments-no-extend-parent">
       <include>
-        <context ref="_c-like-comment-no-extend-parent"/>
-        <context ref="doc-comment-no-extend-parent"/>
-        <context ref="_c-like-comment-multiline-no-extend-parent"/>
+        <context ref="_single-line-comments-no-extend-parent"/>
+        <context ref="_doc-comments-no-extend-parent"/>
+        <context ref="_multiline-comments-no-extend-parent"/>
         <context ref="def:c-like-close-comment-outside-comment" style-ref="error"/>
       </include>
     </context> <!-- /comments-no-extend-parent -->

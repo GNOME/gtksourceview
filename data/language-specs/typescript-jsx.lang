@@ -65,7 +65,7 @@
       </start>
       <end>\*/</end>
       <include>
-        <context ref="def:in-comment"/>
+        <context ref="js:_comment-content"/>
       </include>
     </context> <!-- /_jsx-comment-pragmas -->
 
@@ -75,7 +75,7 @@
       </start>
       <end>\*/</end>
       <include>
-        <context ref="def:in-comment"/>
+        <context ref="js:_comment-content"/>
       </include>
     </context> <!-- /_jsx-comment-pragmas-no-extend-parent -->
 

@@ -387,13 +387,14 @@
     <replace id="js:embedded-lang-hooks" ref="_embedded-lang-hooks"/>
 
     <!-- ignore preprocessor directives inside comments -->
-    <context id="_in-comment" class-disabled="no-spell-check">
+    <context id="_comment-content" class-disabled="no-spell-check">
       <include>
-        <context ref="def:in-comment" original="true"/>
+        <context ref="js:embedded-lang-hooks" original="true"/>
+        <context ref="def:in-comment"/>
       </include>
-    </context> <!-- /_in-comment -->
+    </context> <!-- /_comment-content -->
 
-    <replace id="def:in-comment" ref="_in-comment"/>
+    <replace id="js:_comment-content" ref="_comment-content"/>
 
 
     <!-- ## Literals -->
