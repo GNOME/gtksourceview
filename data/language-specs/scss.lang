@@ -871,10 +871,10 @@
       </include>
     </context>
 
-    <context id="scss-nth-pseudo-class-argument-content">
+    <context id="scss-nth-pseudo-class-content">
       <include>
         <context ref="interpolation"/>
-        <context ref="css:nth-pseudo-class-argument-content" original="true"/>
+        <context ref="css:nth-pseudo-class-content" original="true"/>
       </include>
     </context>
 
@@ -887,7 +887,7 @@
 
     <replace id="css:simple-selector" ref="scss-simple-selector"/>
     <replace id="css:combinator" ref="scss-combinator"/>
-    <replace id="css:nth-pseudo-class-argument-content" ref="scss-nth-pseudo-class-argument-content"/>
+    <replace id="css:nth-pseudo-class-content" ref="scss-nth-pseudo-class-content"/>
     <replace id="css:selector" ref="scss-selector"/>
 
 

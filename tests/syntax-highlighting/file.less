@@ -479,21 +479,21 @@ ul ul {        /* descendant */
 
 /* pseudo-elements */
 :after,
-::after,
+::/* comment */after,
 ::placeholder,
-::selection {
+::/* comment */selection {
     color: green;
 }
 
 /* pseudo-classes */
 :hover,
-:required,
+:/* comment */required,
 :lang(fr),
-:not(div#sidebar.fancy),
+:/* comment */not(div#sidebar.fancy),
 :nth-child(n+1),
-:nth-last-child(-2n /* comment */ - /* comment */ 30),
+:/* comment */nth-last-child(-2n /* comment */ - /* comment */ 30),
 :nth-of-type(5),
-:nth-last-of-type(even) {
+:/* comment */nth-last-of-type(even) {
     color: yellow;
 }
 
@@ -735,7 +735,7 @@ body {
     margin: 2cm;
     marks: crop cross;
 }
-@page index:left {
+@page index:/*comment*/left {
     size: A4;
 
     @top-right {
@@ -758,7 +758,7 @@ body {
 
 /* pseudo-elements */
 input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type="number"]::/* comment */-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 input[type="number"] {
@@ -767,7 +767,7 @@ input[type="number"] {
 
 /* pseudo-classes */
 #page:-moz-full-screen,
-#page:-ms-fullscreen,
+#page:/* comment */-ms-fullscreen,
 #page:-webkit-full-screen {
     background: silver;
 }

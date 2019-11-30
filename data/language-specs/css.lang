@@ -87,8 +87,10 @@
     <style id="attribute-selector-operator" name="Attribute Selector Operator" map-to="css:selector-symbol"/>
     <style id="attribute-selector-name"     name="Attribute Selector Name"     map-to="def:type"/>
     <style id="combinator"                  name="Combinator"                  map-to="css:selector-symbol"/>
-    <style id="pseudo-element"              name="Pseudo-element"              map-to="def:function"/>
-    <style id="pseudo-class"                name="Pseudo-class"                map-to="def:function"/>
+    <style id="pseudo-selector"             name="Pseudo Selector"             map-to="def:function"/>
+    <style id="pseudo-selector-operator"    name="Pseudo Selector Operator"    map-to="css:pseudo-selector"/>
+    <style id="pseudo-element"              name="Pseudo-element"              map-to="css:pseudo-selector"/>
+    <style id="pseudo-class"                name="Pseudo-class"                map-to="css:pseudo-selector"/>
 
   </styles>
 
@@ -105,6 +107,11 @@
     <replace id="css:not-pseudo-class-highlighting" ref="css:not-pseudo-class-highlighting-no-error"/>
 
     to disable error highlighting for invalid @charset rules and :not() pseudo-classes
+    -->
+
+    <!--
+    contexts with end-parent="true" are written as container contexts to work around
+    https://gitlab.gnome.org/GNOME/gtksourceview/issues/14
     -->
 
     <!-- global -->
@@ -2109,12 +2116,22 @@
     }
     -->
 
-    <context id="pseudo-pages" style-ref="pseudo-class">
-      <prefix>:</prefix>
-      <keyword>blank</keyword>
-      <keyword>first</keyword>
-      <keyword>left</keyword>
-      <keyword>right</keyword>
+    <context id="pseudo-page-names" end-parent="true" style-ref="pseudo-class">
+      <start extended="true">
+        \%[ (?: blank | first | left | right ) \%]
+      </start>
+      <end>\%{def:always-match}</end>
+    </context>
+
+    <context id="pseudo-page">
+      <start>:</start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="pseudo-selector-operator"/>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
+        <context ref="pseudo-page-names"/>
+      </include>
     </context>
 
     <context id="page-margin-box-types" style-ref="at-rule-inner-selector">
@@ -2157,7 +2174,7 @@
         <context sub-pattern="0" where="start" style-ref="at-rule"/>
         <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
-        <context ref="pseudo-pages"/>
+        <context ref="pseudo-page"/>
         <context ref="name-value"/>
         <context ref="comma"/>
         <context ref="at-page-block"/>
@@ -2327,135 +2344,122 @@
 
     <!-- pseudo-elements -->
 
-    <context id="vendor-specific-pseudo-element" style-ref="vendor-specific">
-      <match>::\%{vendor-specific-identifier}</match>
+    <context id="vendor-specific-pseudo-element-name" end-parent="true" style-ref="vendor-specific">
+      <start>\%{vendor-specific-identifier}</start>
+      <end>\%{def:always-match}</end>
     </context>
 
-    <context id="single-colon-pseudo-elements" style-ref="pseudo-element">
-      <prefix>::?</prefix>
-      <keyword>after</keyword>
-      <keyword>before</keyword>
-      <keyword>first-letter</keyword>
-      <keyword>first-line</keyword>
+    <context id="single-colon-pseudo-element-names" end-parent="true" style-ref="pseudo-element">
+      <start extended="true">
+        \%[ (?: after | before | first-letter | first-line ) \%]
+      </start>
+      <end>\%{def:always-match}</end>
     </context>
 
-    <context id="pseudo-elements" style-ref="pseudo-element">
-      <prefix>::</prefix>
-      <keyword>placeholder</keyword>
-      <keyword>selection</keyword>
+    <context id="pseudo-element-names" end-parent="true" style-ref="pseudo-element">
+      <start extended="true">
+        \%[ (?: placeholder | selection ) \%]
+      </start>
+      <end>\%{def:always-match}</end>
+    </context>
+
+    <context id="pseudo-element-content">
+      <include>
+        <context ref="vendor-specific-pseudo-element-name"/>
+        <context ref="single-colon-pseudo-element-names"/>
+        <context ref="pseudo-element-names"/>
+      </include>
     </context>
 
     <context id="pseudo-element">
+      <start>::</start>
+      <end>\%{def:always-match}</end>
       <include>
-        <context ref="vendor-specific-pseudo-element"/>
-        <context ref="single-colon-pseudo-elements"/>
-        <context ref="pseudo-elements"/>
+        <context sub-pattern="0" where="start" style-ref="pseudo-selector-operator"/>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
+        <context ref="pseudo-element-content"/>
       </include>
     </context>
 
     <!-- pseudo-classes -->
 
-    <context id="vendor-specific-pseudo-class" style-ref="vendor-specific">
-      <match>:\%{vendor-specific-identifier}</match>
+    <context id="vendor-specific-pseudo-class-name" end-parent="true" style-ref="vendor-specific">
+      <start>\%{vendor-specific-identifier}</start>
+      <end>\%{def:always-match}</end>
     </context>
 
-    <context id="pseudo-classes" style-ref="pseudo-class">
-      <prefix>:</prefix>
-      <keyword>active</keyword>
-      <keyword>checked</keyword>
-      <keyword>default</keyword>
-      <keyword>disabled</keyword>
-      <keyword>empty</keyword>
-      <keyword>enabled</keyword>
-      <keyword>first-child</keyword>
-      <keyword>first-of-type</keyword>
-      <keyword>focus</keyword>
-      <keyword>hover</keyword>
-      <keyword>in-range</keyword>
-      <keyword>indeterminate</keyword>
-      <keyword>invalid</keyword>
-      <keyword>lang</keyword>
-      <keyword>last-child</keyword>
-      <keyword>last-of-type</keyword>
-      <keyword>link</keyword>
-      <keyword>not</keyword>
-      <keyword>nth-child</keyword>
-      <keyword>nth-last-child</keyword>
-      <keyword>nth-last-of-type</keyword>
-      <keyword>nth-of-type</keyword>
-      <keyword>only-child</keyword>
-      <keyword>only-of-type</keyword>
-      <keyword>optional</keyword>
-      <keyword>out-of-range</keyword>
-      <keyword>read-only</keyword>
-      <keyword>read-write</keyword>
-      <keyword>required</keyword>
-      <keyword>root</keyword>
-      <keyword>target</keyword>
-      <keyword>valid</keyword>
-      <keyword>visited</keyword>
+    <context id="pseudo-class-names" end-parent="true" style-ref="pseudo-class">
+      <start extended="true">
+        \%[
+        (?:
+          active |
+          checked |
+          default |
+          disabled |
+          empty |
+          enabled |
+          first-child |
+          first-of-type |
+          focus |
+          hover |
+          in-range |
+          indeterminate |
+          invalid |
+          last-child |
+          last-of-type |
+          link |
+          only-child |
+          only-of-type |
+          optional |
+          out-of-range |
+          read-only |
+          read-write |
+          required |
+          root |
+          target |
+          valid |
+          visited
+        )
+        \%]
+      </start>
+      <end>\%{def:always-match}</end>
     </context>
 
-    <context id="pseudo-class">
-      <include>
-        <context ref="vendor-specific-pseudo-class"/>
-        <context ref="pseudo-classes"/>
-      </include>
-    </context>
-
-    <!-- pseudo-class arguments -->
-
-    <context id="lang-pseudo-class-argument-content">
+    <context id="lang-pseudo-class-content">
       <include>
         <context ref="name-value"/>
       </include>
     </context>
 
-    <context id="lang-pseudo-class-argument">
-      <start>(?&lt;=:lang)\(</start>
+    <context id="lang-pseudo-class" end-parent="true">
+      <start>\%[lang\(</start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
         <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
         <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
-        <context ref="lang-pseudo-class-argument-content"/>
-      </include>
-    </context>
-
-    <context id="not-pseudo-class-nested-not-error" style-ref="error">
-      <start>:not\(</start>
-      <end>\)</end>
-      <include>
-        <context ref="embedded-lang-hook"/>
-        <context ref="comment"/>
-        <context ref="pseudo-class-argument"/>
-      </include>
-    </context>
-
-    <context id="not-pseudo-class-nested-pseudo-element-error">
-      <include>
-        <context ref="vendor-specific-pseudo-element" style-ref="error"/>
-        <context ref="single-colon-pseudo-elements" style-ref="error"/>
-        <context ref="pseudo-elements" style-ref="error"/>
+        <context ref="lang-pseudo-class-content"/>
       </include>
     </context>
 
     <context id="not-pseudo-class-highlighting">
       <include>
-        <context ref="not-pseudo-class-nested-not-error"/>
-        <context ref="not-pseudo-class-nested-pseudo-element-error"/>
+        <context ref="pseudo-element" style-ref="error"/>
+        <context ref="pseudo-class-not-pseudo-class-argument"/>
       </include>
     </context>
 
     <context id="not-pseudo-class-highlighting-no-error">
       <include>
         <context ref="pseudo-element"/>
+        <context ref="pseudo-class"/>
       </include>
     </context>
 
-    <context id="not-pseudo-class-argument">
-      <start>(?&lt;=:not)\(</start>
+    <context id="not-pseudo-class" end-parent="true">
+      <start>\%[not\(</start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="pseudo-class"/>
@@ -2466,17 +2470,16 @@
         <context ref="simple-selector"/>
         <context ref="combinator"/>
         <context ref="pseudo-class"/>
-        <context ref="pseudo-class-argument"/>
         <context ref="comma"/>
       </include>
     </context>
 
-    <context id="nth-pseudo-class-argument-keywords" once-only="true" style-ref="keyword">
+    <context id="nth-pseudo-class-keywords" once-only="true" style-ref="keyword">
       <keyword>even</keyword>
       <keyword>odd</keyword>
     </context>
 
-    <context id="nth-pseudo-class-argument-expression-offset-magnitude" end-parent="true">
+    <context id="nth-pseudo-class-expression-offset-magnitude" end-parent="true">
       <start extended="true">
         (?&lt;! \%{non-number-char} )
         (?=
@@ -2487,17 +2490,17 @@
       <end>\%{integer-magnitude}</end>
     </context>
 
-    <context id="nth-pseudo-class-argument-expression-offset" end-parent="true">
+    <context id="nth-pseudo-class-expression-offset" end-parent="true">
       <start>[+-]</start>
       <end>(?=\S)</end>
       <include>
         <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
-        <context ref="nth-pseudo-class-argument-expression-offset-magnitude"/>
+        <context ref="nth-pseudo-class-expression-offset-magnitude"/>
       </include>
     </context>
 
-    <context id="nth-pseudo-class-argument-expression" once-only="true" style-ref="expression">
+    <context id="nth-pseudo-class-expression" once-only="true" style-ref="expression">
       <start extended="true">
         (?&lt;! \%{non-number-char} )
         \%{integer}? n
@@ -2506,11 +2509,11 @@
       <include>
         <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
-        <context ref="nth-pseudo-class-argument-expression-offset"/>
+        <context ref="nth-pseudo-class-expression-offset"/>
       </include>
     </context>
 
-    <context id="nth-pseudo-class-argument-integer-only" once-only="true" style-ref="expression">
+    <context id="nth-pseudo-class-integer-only" once-only="true" style-ref="expression">
       <match extended="true">
         (?&lt;! \%{non-number-char} )
         \%{integer}
@@ -2518,23 +2521,17 @@
       </match>
     </context>
 
-    <context id="nth-pseudo-class-argument-content">
+    <context id="nth-pseudo-class-content">
       <include>
-        <context ref="nth-pseudo-class-argument-keywords"/>
-        <context ref="nth-pseudo-class-argument-expression"/>
-        <context ref="nth-pseudo-class-argument-integer-only"/>
+        <context ref="nth-pseudo-class-keywords"/>
+        <context ref="nth-pseudo-class-expression"/>
+        <context ref="nth-pseudo-class-integer-only"/>
       </include>
     </context>
 
-    <context id="nth-pseudo-class-argument">
+    <context id="nth-pseudo-class" end-parent="true">
       <start extended="true">
-        (?&lt;=
-          :nth-child |
-          :nth-last-child |
-          :nth-of-type |
-          :nth-last-of-type
-        )
-        \(
+        \%[ (nth-child | nth-of-type | nth-last-child | nth-last-of-type) \(
       </start>
       <end>\)</end>
       <include>
@@ -2542,15 +2539,51 @@
         <context sub-pattern="0" where="end" style-ref="pseudo-class"/>
         <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
-        <context ref="nth-pseudo-class-argument-content"/>
+        <context ref="nth-pseudo-class-content"/>
       </include>
     </context>
 
-    <context id="pseudo-class-argument">
+    <context id="pseudo-class-content">
       <include>
-        <context ref="lang-pseudo-class-argument"/>
-        <context ref="not-pseudo-class-argument"/>
-        <context ref="nth-pseudo-class-argument"/>
+        <context ref="vendor-specific-pseudo-class-name"/>
+        <context ref="single-colon-pseudo-element-names"/>
+        <context ref="pseudo-class-names"/>
+        <context ref="lang-pseudo-class"/>
+        <context ref="not-pseudo-class"/>
+        <context ref="nth-pseudo-class"/>
+      </include>
+    </context>
+
+    <context id="pseudo-class">
+      <start>:</start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="pseudo-selector-operator"/>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
+        <context ref="pseudo-class-content"/>
+      </include>
+    </context>
+
+    <context id="pseudo-class-not-pseudo-class-argument-content">
+      <include>
+        <context ref="vendor-specific-pseudo-class-name"/>
+        <context ref="single-colon-pseudo-element-names" style-ref="error"/>
+        <context ref="pseudo-class-names"/>
+        <context ref="lang-pseudo-class"/>
+        <context ref="not-pseudo-class" style-ref="error"/>
+        <context ref="nth-pseudo-class"/>
+      </include>
+    </context>
+
+    <context id="pseudo-class-not-pseudo-class-argument">
+      <start>:</start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="pseudo-selector-operator"/>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
+        <context ref="pseudo-class-not-pseudo-class-argument-content"/>
       </include>
     </context>
 
@@ -2563,7 +2596,6 @@
         <context ref="combinator"/>
         <context ref="pseudo-element"/>
         <context ref="pseudo-class"/>
-        <context ref="pseudo-class-argument"/>
         <context ref="comma"/>
       </include>
     </context>
