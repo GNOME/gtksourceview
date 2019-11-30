@@ -2280,22 +2280,19 @@
       <match>\*</match>
     </context>
 
-    <context id="attribute-selector-attribute-name">
-      <match>(?&lt;=\[)\s*(\%{identifier})</match>
-      <include>
-        <context sub-pattern="1" style-ref="attribute-selector-name"/>
-      </include>
+    <context id="attribute-selector-attribute-name" once-only="true" style-ref="attribute-selector-name">
+      <match>\%{identifier}</match>
     </context>
 
-    <context id="attribute-selector-operator" style-ref="attribute-selector-operator">
+    <context id="attribute-selector-operator" once-only="true" style-ref="attribute-selector-operator">
       <match>[~|^$*]?=</match>
     </context>
 
     <context id="attribute-selector-content">
       <include>
-        <context ref="string-value"/>
         <context ref="attribute-selector-attribute-name"/>
         <context ref="attribute-selector-operator"/>
+        <context ref="string-value"/>
       </include>
     </context>
 
