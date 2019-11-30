@@ -201,6 +201,10 @@
 
     <define-regex id="test-value-end">(?=\))</define-regex>
 
+    <define-regex id="optional-whitespace-or-comments" extended="true">
+      (?&gt; (?: \s+ | /\*.*?\*/ )* )
+    </define-regex>
+
     <context id="embedded-lang-hook"/>
 
     <context id="multiline-comment" style-ref="comment" class-disabled="no-spell-check" class="comment">
@@ -521,11 +525,22 @@
     </context>
 
     <context id="ratio" style-ref="expression">
-      <match extended="true">
+      <start extended="true">
         (?&lt;! \%{non-number-char} )
-        \%{positive-integer} \s* / \s* \%{positive-integer}
-        (?! \%{non-number-char} )
-      </match>
+        \%{positive-integer}
+        (?=
+          \%{optional-whitespace-or-comments}
+          /
+          \%{optional-whitespace-or-comments}
+          \%{positive-integer}
+          (?! \%{non-number-char} )
+        )
+      </start>
+      <end>\%{positive-integer}</end>
+      <include>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
+      </include>
     </context>
 
     <context id="number" style-ref="number">

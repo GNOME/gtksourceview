@@ -596,6 +596,7 @@ svg|[fill] { /* attribute */
 
 /* ratio */
 @media (min-aspect-ratio: 16/9) {}
+@media (min-aspect-ratio: 16 /* comment */ / /* comment */ 9) {}
 
 /* resolution */
 @media (min-resolution: +2.54dpcm) {}
