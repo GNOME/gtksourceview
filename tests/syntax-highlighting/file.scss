@@ -515,7 +515,7 @@ ul ul {        /* descendant */
 :lang(fr),
 :not(div#sidebar.fancy),
 :nth-child(n+1),
-:nth-last-child(-2n - 30),
+:nth-last-child(-2n /* comment */ - /* comment */ 30),
 :nth-of-type(5),
 :nth-last-of-type(even) {
     color: yellow;

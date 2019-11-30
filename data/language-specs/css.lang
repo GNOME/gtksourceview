@@ -2479,12 +2479,45 @@
       <keyword>odd</keyword>
     </context>
 
-    <context id="nth-pseudo-class-argument-expression" once-only="true" style-ref="expression">
-      <match extended="true">
-        (
-          \%{integer}? n ( \s* [+-] \s* \%{integer-magnitude} )? |
-          \%{integer}
+    <context id="nth-pseudo-class-argument-expression-offset-magnitude" end-parent="true">
+      <start extended="true">
+        (?&lt;! \%{non-number-char} )
+        (?=
+          \%{integer-magnitude}
+          (?! \%{non-number-char} )
         )
+      </start>
+      <end>\%{integer-magnitude}</end>
+    </context>
+
+    <context id="nth-pseudo-class-argument-expression-offset" end-parent="true">
+      <start>[+-]</start>
+      <end>(?=\S)</end>
+      <include>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
+        <context ref="nth-pseudo-class-argument-expression-offset-magnitude"/>
+      </include>
+    </context>
+
+    <context id="nth-pseudo-class-argument-expression" once-only="true" style-ref="expression">
+      <start extended="true">
+        (?&lt;! \%{non-number-char} )
+        \%{integer}? n
+      </start>
+      <end>(?=\S)</end>
+      <include>
+        <context ref="embedded-lang-hook"/>
+        <context ref="comment"/>
+        <context ref="nth-pseudo-class-argument-expression-offset"/>
+      </include>
+    </context>
+
+    <context id="nth-pseudo-class-argument-integer-only" once-only="true" style-ref="expression">
+      <match extended="true">
+        (?&lt;! \%{non-number-char} )
+        \%{integer}
+        (?! \%{non-number-char} )
       </match>
     </context>
 
@@ -2492,6 +2525,7 @@
       <include>
         <context ref="nth-pseudo-class-argument-keywords"/>
         <context ref="nth-pseudo-class-argument-expression"/>
+        <context ref="nth-pseudo-class-argument-integer-only"/>
       </include>
     </context>
 
