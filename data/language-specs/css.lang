@@ -215,7 +215,7 @@
     <context id="comment">
       <include>
         <context ref="multiline-comment"/>
-        <context ref="def:c-like-close-comment-outside-comment" style-ref="comment"/>
+        <context ref="def:c-like-close-comment-outside-comment" style-ref="error"/>
       </include>
     </context>
 
