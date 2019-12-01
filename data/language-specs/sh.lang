@@ -46,6 +46,7 @@
 
     <define-regex id="command-name">[a-zA-Z_][a-zA-Z0-9_.-]*</define-regex>
     <define-regex id="identifier">[a-zA-Z_][a-zA-Z0-9_]*</define-regex>
+    <define-regex id="special-parameter">[*@#?$!0-9_-]</define-regex>
     <define-regex id="argument-prefix">(?&lt;=\s|^)</define-regex>
     <define-regex id="argument-suffix">(?=\s|[&lt;&gt;]|\\?$)</define-regex>
     <define-regex id="parentheses-prefix">(?&lt;=\s|[)`&amp;|;]|^)</define-regex>
@@ -176,35 +177,39 @@
       </include>
     </context>
 
+    <context id="expansion-nesting">
+      <include>
+        <context ref="def:line-continue"/>
+        <context ref="double-quoted-string"/>
+        <context ref="backtick-subshell"/>
+        <context ref="command-substitution"/>
+        <context ref="variable"/>
+        <context ref="history-expansion"/>
+        <context ref="reference-by-name"/>
+        <context ref="numeral-system"/>
+        <context ref="logical-operator"/>
+      </include>
+    </context>
+
+    <context id="expansion-precedence">
+      <start>\$?\(</start>
+      <end>\)</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="expansion-nesting"/>
+        <context ref="expansion-precedence"/>
+      </include>
+    </context>
+
     <context id="arithmetic-expansion">
       <start>\$\({2}(?!\()</start>
       <end>\){2}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="keyword"/>
         <context sub-pattern="0" where="end" style-ref="keyword"/>
-        <context id="expansion-nesting">
-          <include>
-            <context ref="def:line-continue"/>
-            <context ref="double-quoted-string"/>
-            <context ref="backtick-subshell"/>
-            <context ref="command-substitution"/>
-            <context ref="variable"/>
-            <context ref="history-expansion"/>
-            <context ref="reference-by-name"/>
-            <context ref="numeral-system"/>
-            <context ref="logical-operator"/>
-          </include>
-        </context>
-        <context id="expansion-precedence">
-          <start>\$?\(</start>
-          <end>\)</end>
-          <include>
-            <context sub-pattern="0" where="start" style-ref="keyword"/>
-            <context sub-pattern="0" where="end" style-ref="keyword"/>
-            <context ref="expansion-nesting"/>
-            <context ref="expansion-precedence"/>
-          </include>
-        </context>
+        <context ref="expansion-nesting"/>
+        <context ref="expansion-precedence"/>
       </include>
     </context>
 
@@ -271,21 +276,61 @@
       <keyword>[0-9]*(&lt;&gt;|&gt;\|)</keyword>
     </context>
 
-    <context id="here-doc">
-      <start extended="true" dupnames="true">
-        # (?&lt;!&lt;) and [^\s&lt;] are for not matching
-        # here-word (&lt;&lt;&lt;)
-        (?&lt;!&lt;)
-        &lt;&lt;-?\s*\\?(
-          \"(?P&lt;HDB&gt;[^\s&lt;]+)\" | # "EOF"
-          \'(?P&lt;HDB&gt;[^\s&lt;]+)\' | # 'EOF'
-          (?P&lt;HDB&gt;[^\s&lt;]+)       # EOF
-        )$
-      </start>
-      <end>^\t*\%{HDB@start}$</end>
+    <context id="highlighted-rest-of-line" once-only="true" end-at-line-end="true">
+      <start>(?&lt;=.)(?=.)</start>
       <include>
-        <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
-        <context sub-pattern="0" where="end" style-ref="here-doc-bound"/>
+        <context ref="sh"/>
+      </include>
+    </context>
+
+    <context id="here-doc">
+      <include>
+        <context id="unexpanded-here-doc">
+          <start extended="true" dupnames="true">
+            # (?&lt;!&lt;) for not matching here-word (&lt;&lt;&lt;)
+            (?&lt;!&lt;) &lt;&lt;-?\s* (
+              '(?P&lt;HDB&gt;[^']*)'    # 'EOF'
+              | "(?P&lt;HDB&gt;[^"]*)"  # "EOF"
+            )\%{rb}
+          </start>
+          <!-- "\t*" in case of "<<-" above -->
+          <end>^\t*\%{HDB@start}(?=`|$)</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
+            <context sub-pattern="0" where="end" style-ref="here-doc-bound"/>
+            <!-- We can have cmd<<'EOF'; something to highlight -->
+            <context ref="highlighted-rest-of-line"/>
+            <context id="unexpanded-body-text" extend-parent="false">
+              <start>^</start>
+            </context>
+          </include>
+        </context>
+        <context id="expanded-here-doc">
+          <start extended="true">
+            (?&lt;!&lt;) &lt;&lt;-?\s* (
+              (?P&lt;HDB&gt;[^\s()`&amp;|;&lt;&gt;"'\#]+) # EOF
+            )\%{rb}
+          </start>
+          <end>^\t*\%{HDB@start}(?=`|$)</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="here-doc-bound"/>
+            <context sub-pattern="0" where="end" style-ref="here-doc-bound"/>
+            <context ref="highlighted-rest-of-line"/>
+            <context id="expanded-body-text" extend-parent="false">
+              <start>^</start>
+              <include>
+                <context style-ref="def:special-char">
+                  <match>\\[$`\\]</match>
+                </context>
+                <context ref="def:line-continue"/>
+                <context ref="backtick-subshell"/>
+                <context ref="command-substitution"/>
+                <context ref="arithmetic-expansion"/>
+                <context ref="variable"/>
+              </include>
+            </context>
+          </include>
+        </context>
       </include>
     </context>
 
@@ -372,20 +417,34 @@
     </context>
 
     <context id="short-parameter-expansion" style-ref="variable">
-      <match>\$([-!@?*#\$0-9]|\%{identifier})</match>
+      <match>\$(\%{special-parameter}|\%{identifier})</match>
     </context>
 
     <context id="parameter-expansion" style-ref="def:statement" style-inside="true">
-      <start extended="true">
-        \$\{ (
-          [-@?*\$0-9]
-          | [!#]? ( \%{identifier} (\[ ([@*]|-?[0-9]+) \])? )?
-        )
-      </start>
+      <start>\$\{(?=[!#]?\%{identifier}|\%{special-parameter})</start>
       <end>\}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="variable"/>
         <context sub-pattern="0" where="end" style-ref="variable"/>
+        <!-- The order of the two following contexts matters -->
+        <context id="array-variable" once-only="true">
+          <start>([!#])?(\%{identifier})(\[)</start>
+          <end>\]</end>
+          <include>
+            <context sub-pattern="1" where="start" style-ref="keyword"/>
+            <context sub-pattern="2" where="start" style-ref="variable"/>
+            <context sub-pattern="3" where="start" style-ref="keyword"/>
+            <context sub-pattern="0" where="end" style-ref="keyword"/>
+            <context ref="expansion-nesting"/>
+            <context ref="expansion-precedence"/>
+          </include>
+        </context>
+        <context id="simple-variable" once-only="true" style-ref="variable">
+          <match>([!#])?\%{identifier}|\%{special-parameter}</match>
+          <include>
+            <context sub-pattern="1" style-ref="keyword"/>
+          </include>
+        </context>
         <!-- Must be included first, to ensure unescaped boundaries -->
         <context ref="def:escape"/>
         <context ref="def:line-continue"/>
@@ -407,9 +466,20 @@
     </context>
 
     <context id="stand-alone-variable-definition">
-      <match>\%{lb}(\%{identifier})\+?=</match>
+      <start>\%{lb}\%{identifier}(?=(\[.*\])?\+?=)</start>
+      <end>\+?=</end>
       <include>
-        <context sub-pattern="1" style-ref="variable-definition"/>
+        <context sub-pattern="0" where="start" style-ref="variable-definition"/>
+        <context id="array-index" once-only="true">
+          <start>\[</start>
+          <end>\](?=\+?=)</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="keyword"/>
+            <context sub-pattern="0" where="end" style-ref="keyword"/>
+            <context ref="expansion-nesting"/>
+            <context ref="expansion-precedence"/>
+          </include>
+        </context>
       </include>
     </context>
 
@@ -629,10 +699,12 @@
               <keyword>bind</keyword>
               <keyword>break</keyword>
               <keyword>builtin</keyword>
+              <keyword>caller</keyword>
               <keyword>cd</keyword>
               <keyword>command</keyword>
               <keyword>compgen</keyword>
               <keyword>complete</keyword>
+              <keyword>compopt</keyword>
               <keyword>continue</keyword>
               <keyword>dirs</keyword>
               <keyword>disown</keyword>
@@ -641,6 +713,7 @@
               <keyword>eval</keyword>
               <keyword>exec</keyword>
               <keyword>exit</keyword>
+              <keyword>false</keyword>
               <keyword>fc</keyword>
               <keyword>fg</keyword>
               <keyword>getopts</keyword>
@@ -648,10 +721,14 @@
               <keyword>help</keyword>
               <keyword>history</keyword>
               <keyword>jobs</keyword>
+              <keyword>kill</keyword>
               <keyword>logout</keyword>
+              <keyword>mapfile</keyword>
               <keyword>popd</keyword>
               <keyword>printf</keyword>
               <keyword>pushd</keyword>
+              <keyword>pwd</keyword>
+              <keyword>readarray</keyword>
               <keyword>read</keyword>
               <keyword>return</keyword>
               <keyword>set</keyword>
@@ -661,6 +738,7 @@
               <keyword>suspend</keyword>
               <keyword>times</keyword>
               <keyword>trap</keyword>
+              <keyword>true</keyword>
               <keyword>type</keyword>
               <keyword>ulimit</keyword>
               <keyword>umask</keyword>
@@ -712,7 +790,6 @@
               <keyword>eject</keyword>
               <keyword>env</keyword>
               <keyword>expr</keyword>
-              <keyword>false</keyword>
               <keyword>fgrep</keyword>
               <keyword>file</keyword>
               <keyword>find</keyword>
@@ -738,7 +815,6 @@
               <keyword>install</keyword>
               <keyword>join</keyword>
               <keyword>killall</keyword>
-              <keyword>kill</keyword>
               <keyword>lastb</keyword>
               <keyword>last</keyword>
               <keyword>ld</keyword>
@@ -776,7 +852,6 @@
               <keyword>pkg-config</keyword>
               <keyword>pr</keyword>
               <keyword>ps</keyword>
-              <keyword>pwd</keyword>
               <keyword>readlink</keyword>
               <keyword>renice</keyword>
               <keyword>rmdir</keyword>
@@ -804,7 +879,6 @@
               <keyword>tee</keyword>
               <keyword>tempfile</keyword>
               <keyword>touch</keyword>
-              <keyword>true</keyword>
               <keyword>tr</keyword>
               <keyword>umount</keyword>
               <keyword>uname</keyword>

@@ -10,7 +10,7 @@ xxx${var\
 
 xxx$0000 # One digit parameter
 xxx$-xxx xxx$$xxx xxx$@xxx # Special parameters
-xxx${array[@]}xxx xxx${!array[@]}xxx xxx${array[-1]}xxx # Arrays
+xxx${!array[@]}xxx${#array[-1]}xxx${array[0x1+var/2*$(cmd)]}xxx # Arrays
 
 xxx${parameter:-word}xxx${parameter-word}xxx # Use Default Values
 xxx${parameter:=word}xxx${parameter=word}xxx # Assign Default Values
@@ -36,7 +36,7 @@ xxx${x#*}xxx
 xxx${x#"*"}xxx
 
 # Variable definitions
-var1=val1; var2=val2 var3=val3
+var1=val1; var2=val2 array[0x1+var/2*$(cmd)]+=val3
 if var=$(cmd); then some; fi
 test -f xxx && var=xxx || var=yyy
 echo text | var=xxx cmd & var=yyy
@@ -68,6 +68,15 @@ echo
 > >> 1>&2 &> 3>&-
 < 0<&3 3<&-
 3<> 1>|
+cmd<<<"$var" # Here String
+cmd<<EOF # Expanded Here Document
+$(cmd) `cmd` \
+$var $((1+var))
+EOF
+cmd<<'EOF'; echo 'some text' # Unexpanded Here Document
+$(cmd) `cmd` \
+$var $((1+var))
+EOF
 
 # Quoting
 'no special characters'
