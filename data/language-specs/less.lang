@@ -292,6 +292,7 @@
         <context ref="css:embedded-lang-hook"/>
         <!-- only accept multi-line comments because // is part of urls -->
         <context ref="css:comment" original="true"/>
+        <context ref="css:escape" ignore-style="true"/>
         <context ref="css:string-value"/>
       </include>
     </context>
@@ -369,6 +370,7 @@
         <context ref="css:number-value"/>
         <context ref="css:unicode-range"/>
         <context ref="arithmetic-operator"/>
+        <context ref="css:name-value" original="true"/>
         <context ref="css:slash"/>
         <context ref="css:comma"/>
       </include>

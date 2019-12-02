@@ -607,6 +607,7 @@
         <context sub-pattern="0" where="end" style-ref="function"/>
         <context ref="embedded-lang-hook"/>
         <context ref="comment"/>
+        <context ref="escape" ignore-style="true"/>
         <context ref="string-value"/>
       </include>
     </context>
@@ -1569,6 +1570,7 @@
         <context ref="function-call"/>
         <context ref="property-value-keyword"/>
         <context ref="data-value"/>
+        <context ref="name-value"/>
         <context ref="slash"/>
         <context ref="comma"/> <!-- for lists -->
       </include>
@@ -2310,6 +2312,7 @@
         <context ref="attribute-selector-attribute-name"/>
         <context ref="attribute-selector-operator"/>
         <context ref="string-value"/>
+        <context ref="name-value"/>
       </include>
     </context>
 
