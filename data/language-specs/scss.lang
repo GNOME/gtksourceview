@@ -58,7 +58,7 @@
 
   <default-regex-options case-sensitive="false"/>
 
-  <keyword-char-class>[a-z0-9_-]</keyword-char-class>
+  <keyword-char-class>[a-z0-9_\x{80}-\x{10ffff}\\-]</keyword-char-class>
 
   <definitions>
 
