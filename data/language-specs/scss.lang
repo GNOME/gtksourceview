@@ -408,34 +408,150 @@
 
     <context id="scss-declaration-value">
       <start extended="true">
+        (?(DEFINE) (?&lt;escape_interpolation_start&gt; (?: \\ \#{ )+ ) )
+        (?(DEFINE) (?&lt;escape_comment_start&gt;       (?: \\ /\* )+ ) )
+        (?(DEFINE) (?&lt;escape&gt;                     (?: \\ .   )+ ) )
+
+        (?(DEFINE)
+          (?&lt;interpolation_start_chars&gt;
+            (?: (?: \# (?! { ) )+ | (?: (?&lt;! \# ) { )+ )
+          )
+        )
+        (?(DEFINE)
+          (?&lt;comment_start_chars&gt;
+            (?: (?: / (?! \* ) )+ | (?: (?&lt;! / ) \* )+ )
+          )
+        )
+        (?(DEFINE)
+          (?&lt;comment_end_chars&gt;
+            (?: (?: \* (?! / ) )+ | (?: (?&lt;! \* ) / )+ )
+          )
+        )
+
         (?(DEFINE)
           (?&lt;interpolation&gt;  # recursive subpattern to find matching brackets
             \#{
             (?:
               (?&gt;
                 (?:
-                  [^#{}]+ |
-                  (?! \#{ | } ) .
+                  [^\\}#{(/*"']+ |
+                  (?&amp;escape_interpolation_start) |
+                  (?&amp;escape_comment_start) |
+                  (?&amp;escape) |
+                  (?&amp;interpolation_start_chars) |
+                  (?&amp;comment_start_chars)
                 )+
               ) |
-              (?&amp;interpolation)
+              (?&amp;interpolation) |
+              (?&amp;parentheses) |
+              (?&amp;comment) |
+              (?&amp;double_quotes) |
+              (?&amp;single_quotes)
             )*
             }
           )
         )
+        (?(DEFINE)
+          (?&lt;parentheses&gt;  # recursive subpattern to find matching parentheses
+            \(
+            (?:
+              (?&gt;
+                (?:
+                  [^\\)(#{/*"']+ |
+                  (?&amp;escape_interpolation_start) |
+                  (?&amp;escape_comment_start) |
+                  (?&amp;escape) |
+                  (?&amp;interpolation_start_chars) |
+                  (?&amp;comment_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation) |
+              (?&amp;parentheses) |
+              (?&amp;comment) |
+              (?&amp;double_quotes) |
+              (?&amp;single_quotes)
+            )*
+            \)
+          )
+        )
+        (?(DEFINE)
+          (?&lt;comment&gt;  # subpattern to find matching comment delimiters
+            /\*
+            (?:
+              (?&gt;
+                (?:
+                  [^*/#{]+ |
+                  # no escapes
+                  (?&amp;comment_end_chars) |
+                  (?&amp;interpolation_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
+            \*/
+          )
+        )
+        (?(DEFINE)
+          (?&lt;double_quotes&gt;  # subpattern to find matching double quotes
+            "
+            (?:
+              (?&gt;
+                (?:
+                  [^\\"#{]+ |
+                  (?&amp;escape_interpolation_start) |
+                  (?&amp;escape) |
+                  (?&amp;interpolation_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
+            "
+          )
+        )
+        (?(DEFINE)
+          (?&lt;single_quotes&gt;  # subpattern to find matching single quotes
+            '
+            (?:
+              (?&gt;
+                (?:
+                  [^\\'#{]+ |
+                  (?&amp;escape_interpolation_start) |
+                  (?&amp;escape) |
+                  (?&amp;interpolation_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
+            '
+          )
+        )
+
         :
         (?:
           (?!                                 # not the start of a
             \%{css:single-identifier-char} |  #   pseudo-class
             [:\\] |                           #   pseudo-element, escape
-            \#{                               #   interpolation
+            \#{ |                             #   interpolation
+            /\*                               #   comment
           ) |                                 # or
           (?=                                 # ends like a normal declaration
             (?&gt;
               (?:
-                [^;}{#]+ |
-                (?&amp;interpolation)+ |
-                \#+
+                (?&gt;
+                  (?:
+                    [^\\;}{#(/*"']+ |
+                    (?&amp;escape_interpolation_start) |
+                    (?&amp;escape_comment_start) |
+                    (?&amp;escape) |
+                    (?: \# (?! { ) )+ |  # interpolation_start_chars allows {
+                    (?&amp;comment_start_chars)
+                  )+
+                ) |
+                (?&amp;interpolation) |
+                (?&amp;parentheses) |
+                (?&amp;comment) |
+                (?&amp;double_quotes) |
+                (?&amp;single_quotes)
               )*
             )
             \%{css:declaration-value-end}     #   with a semicolon or at the end of a block
