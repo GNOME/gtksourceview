@@ -254,6 +254,7 @@
         <context ref="css:embedded-lang-hook"/>
         <!-- only accept multi-line comments because // is part of urls -->
         <context ref="css:comment" original="true"/>
+        <context ref="interpolation"/>
         <context ref="css:escape" ignore-style="true"/>
         <context ref="css:string-value"/>
       </include>
