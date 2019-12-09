@@ -61,6 +61,7 @@
 
     <!-- global -->
 
+    <define-regex id="identifier">[\w-]+</define-regex>
     <define-regex id="statement-end" extended="true">;|(?=})</define-regex>
 
     <context id="embedded-lang-hook"/>
@@ -94,12 +95,8 @@
 
     <!-- variables -->
 
-    <define-regex id="variable" extended="true">
-      @ \%{css:identifier}
-    </define-regex>
-
     <context id="variable" style-ref="variable">
-      <match>\%{variable}</match>
+      <match>@\%{identifier}</match>
     </context>
 
     <context id="variable-interpolation" style-ref="variable">
@@ -115,11 +112,11 @@
     </context>
 
     <context id="variable-reference" style-ref="variable">
-      <match>@@\%{css:identifier}</match>
+      <match>@@\%{identifier}</match>
     </context>
 
     <context id="property-variable" style-ref="variable">
-      <match>\$\%{css:identifier}</match>
+      <match>\$\%{identifier}</match>
     </context>
 
     <context id="arguments-variable" style-ref="built-in-variable">
@@ -215,7 +212,7 @@
     </context>
 
     <context id="detached-ruleset-call">
-      <start>\%{variable}\(</start>
+      <start>@\%{identifier}\(</start>
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="variable"/>
@@ -513,7 +510,7 @@
     </context>
 
     <context id="standalone-plugin-function-call">
-      <start>(?=\%{css:identifier}\()</start>
+      <start>(?=\%{identifier}\()</start>
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
