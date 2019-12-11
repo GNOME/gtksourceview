@@ -410,8 +410,10 @@ div {
 
 .declarations-or-selectors {
     // declarations
+
     display:block;
     font-family:arial;
+
     font: {
         family: fantasy;
         weight: bold;
@@ -420,33 +422,72 @@ div {
         size: 20px;
         style: italic;
     }
+
     #{$property}:block;
     #{$property}: {
         color: red;
     }
+
     color:#000;
     width:#{$width};
+
+    background-image:url( \( \) \{ { );
+    background-image:url( url( { ) );
+    background-image:url( #{ \) ')' '{' } );
+    background-image:url( /* ) { */ );
+    background-image:url( " ) { " );
+    background-image:url( ' ) { ' );
+
+    margin:#{ \#\{ \} \{ '{' } 10px;
+    margin:#{ url( } { ) } 10px;
+    margin:#{ #{ '{' } } 10px;
+    margin:#{ /* } { */ } 10px;
+    margin:#{ " } { " } 10px;
+    margin:#{ ' } { ' } 10px;
+
+    display:/* { */block;
+    display:/* #{ \*\/ '{' } */block;
+
+    font-family:" \" \{ { ", serif;
+    font-family:" #{ \" "" '{' } ", serif;
+
+    font-family:' \' \{ { ', serif;
+    font-family:' #{ \' '' '{' } ', serif;
 
     // incorrectly highlighted declarations
     display:block
     ;
 
     // selectors
-    input:focus {
-        opacity: 0.5;
-    }
-    div:nth-child(2n+1) {
-       background-color: gray;
-    }
-    div:-moz-full-screen {
-        display: block;
-    }
-    a:#{$state} {
-        color: blue;
-    }
-    #{$selector}:focus {
-        color: blue;
-    }
+    input:focus { opacity: 0.5; }
+    div:nth-child(2n+1) { background-color: gray; }
+    div:-moz-full-screen { display: block; }
+
+    #{$selector}:focus { color: blue; }
+
+    a:#{$state} { color: blue; }
+
+    a:focus[id=\]\;] { color: blue; }
+    a:focus[id=#{ \] "]" ";" }] { color: blue; }
+    a:focus[id=/* ] ; */] { color: blue; }
+    a:focus[id=" ] ; "] { color: blue; }
+    a:focus[id=' ] ; '] { color: blue; }
+
+    a:#{ \#\{ \} \; ';' } { color: blue; }
+    a:#{ url( } ; ) } { color: blue; }
+    a:#{ #{ ';' } } { color: blue; }
+    a:#{ /* } ; */ } { color: blue; }
+    a:#{ " } ; " } { color: blue; }
+    a:#{ ' } ; ' } { color: blue; }
+
+    a:/* ; */focus { color: blue; }
+    a:/* #{ \*\/ ';' } */focus { color: blue; }
+
+    a:focus[id=" ] \" \; ; "] { color: blue; }
+    a:focus[id=" #{ \" "" ';' } "] { color: blue; }
+
+    a:focus[id=' ] \' \; ; '] { color: blue; }
+    a:focus[id=' #{ \' '' ';' } '] { color: blue; }
 }
 
 
@@ -489,7 +530,8 @@ Body {
 .someclass,    /* class */
 div,           /* type */
 *,             /* universal */
-[lang|="zh"] { /* attribute */
+[lang|="zh"], /* attribute */
+[ /* comment */ lang /* comment */ |= /* comment */ "zh" /* comment */ ] {
     color: black;
 }
 
@@ -503,21 +545,21 @@ ul ul {        /* descendant */
 
 /* pseudo-elements */
 :after,
-::after,
+::/* comment */after,
 ::placeholder,
-::selection {
+::/* comment */selection {
     color: green;
 }
 
 /* pseudo-classes */
 :hover,
-:required,
+:/* comment */required,
 :lang(fr),
-:not(div#sidebar.fancy),
+:/* comment */not(div#sidebar.fancy),
 :nth-child(n+1),
-:nth-last-child(-2n - 30),
+:/* comment */nth-last-child(-2n /* comment */ - /* comment */ 30),
 :nth-of-type(5),
-:nth-last-of-type(even) {
+:/* comment */nth-last-of-type(even) {
     color: yellow;
 }
 
@@ -596,6 +638,7 @@ svg|[fill] { /* attribute */
 
 /* ratio */
 @media (min-aspect-ratio: 16/9) {}
+@media (min-aspect-ratio: 16 /* comment */ / /* comment */ 9) {}
 
 /* resolution */
 @media (min-resolution: +2.54dpcm) {}
@@ -640,6 +683,7 @@ svg|[fill] { /* attribute */
     content: "\E9 dition \
               \"\0000E9dition\" \
               \e9motion";
+    font-family: \E9 dition, \"\0000E9dition\", \e9motion;
 
     /* function name */
     background: \u\72\l(image.png);
@@ -758,7 +802,7 @@ body {
     margin: 2cm;
     marks: crop cross;
 }
-@page index:left {
+@page index:/*comment*/left {
     size: A4;
 
     @top-right {
@@ -781,7 +825,7 @@ body {
 
 /* pseudo-elements */
 input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type="number"]::/* comment */-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 input[type="number"] {
@@ -790,7 +834,7 @@ input[type="number"] {
 
 /* pseudo-classes */
 #page:-moz-full-screen,
-#page:-ms-fullscreen,
+#page:/* comment */-ms-fullscreen,
 #page:-webkit-full-screen {
     background: silver;
 }

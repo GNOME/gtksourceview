@@ -55,15 +55,14 @@
 
   <default-regex-options case-sensitive="false"/>
 
-  <keyword-char-class>[a-z0-9_-]</keyword-char-class>
+  <keyword-char-class>[a-z0-9_\x{80}-\x{10ffff}\\-]</keyword-char-class>
 
   <definitions>
 
     <!-- global -->
 
-    <define-regex id="statement-end" extended="true">
-      (?: ; | (?= } ) )
-    </define-regex>
+    <define-regex id="identifier">[\w-]+</define-regex>
+    <define-regex id="statement-end" extended="true">;|(?=})</define-regex>
 
     <context id="embedded-lang-hook"/>
 
@@ -96,12 +95,8 @@
 
     <!-- variables -->
 
-    <define-regex id="variable" extended="true">
-      (?: @ \%{css:identifier} )
-    </define-regex>
-
     <context id="variable" style-ref="variable">
-      <match>\%{variable}</match>
+      <match>@\%{identifier}</match>
     </context>
 
     <context id="variable-interpolation" style-ref="variable">
@@ -117,11 +112,11 @@
     </context>
 
     <context id="variable-reference" style-ref="variable">
-      <match>@@\%{css:identifier}</match>
+      <match>@@\%{identifier}</match>
     </context>
 
     <context id="property-variable" style-ref="variable">
-      <match>\$\%{css:identifier}</match>
+      <match>\$\%{identifier}</match>
     </context>
 
     <context id="arguments-variable" style-ref="built-in-variable">
@@ -217,7 +212,7 @@
     </context>
 
     <context id="detached-ruleset-call">
-      <start>\%{variable}\(</start>
+      <start>@\%{identifier}\(</start>
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="variable"/>
@@ -292,6 +287,7 @@
         <context ref="css:embedded-lang-hook"/>
         <!-- only accept multi-line comments because // is part of urls -->
         <context ref="css:comment" original="true"/>
+        <context ref="css:escape" ignore-style="true"/>
         <context ref="css:string-value"/>
       </include>
     </context>
@@ -369,6 +365,7 @@
         <context ref="css:number-value"/>
         <context ref="css:unicode-range"/>
         <context ref="arithmetic-operator"/>
+        <context ref="css:name-value" original="true"/>
         <context ref="css:slash"/>
         <context ref="css:comma"/>
       </include>
@@ -400,14 +397,36 @@
 
     <context id="less-declaration-value">
       <start extended="true">
+        (?(DEFINE) (?&lt;escape_comment_start&gt; (?: \\ /\* )+ ) )
+        (?(DEFINE) (?&lt;escape&gt;               (?: \\ .   )+ ) )
+
+        (?(DEFINE) (?&lt;escape_not_interpolation_start&gt; (?: \\ (?! @{ ) . )+ ) )
+
+        (?(DEFINE)
+          (?&lt;interpolation_start_chars&gt;
+            (?: (?: @ (?! { ) )+ | (?: (?&lt;! @ ) { )+ )
+          )
+        )
+        (?(DEFINE)
+          (?&lt;comment_start_chars&gt;
+            (?: (?: / (?! \* ) )+ | (?: (?&lt;! / ) \* )+ )
+          )
+        )
+        (?(DEFINE)
+          (?&lt;comment_end_chars&gt;
+            (?: (?: \* (?! / ) )+ | (?: (?&lt;! \* ) / )+ )
+          )
+        )
+
         (?(DEFINE)
           (?&lt;interpolation&gt;  # recursive subpattern to find matching brackets
             @{
             (?:
               (?&gt;
                 (?:
-                  [^@{}]+ |
-                  (?! @{ | } ) .
+                  [^}@{]+ |
+                  # no escapes
+                  (?&amp;interpolation_start_chars)
                 )+
               ) |
               (?&amp;interpolation)
@@ -415,6 +434,74 @@
             }
           )
         )
+        (?(DEFINE)
+          (?&lt;parentheses&gt;  # recursive subpattern to find matching parentheses
+            \(
+            (?:
+              (?&gt;
+                (?:
+                  [^\\)(/*"']+ |
+                  (?&amp;escape_comment_start) |
+                  (?&amp;escape) |
+                  (?&amp;comment_start_chars)
+                )+
+              ) |
+              (?&amp;parentheses) |
+              (?&amp;comment) |
+              (?&amp;double_quotes) |
+              (?&amp;single_quotes)
+            )*
+            \)
+          )
+        )
+        (?(DEFINE)
+          (?&lt;comment&gt;  # subpattern to find matching comment delimiters
+            /\*
+            (?:
+              (?&gt;
+                (?:
+                  [^*/]+ |
+                  # no escapes
+                  (?&amp;comment_end_chars)
+                )+
+              )
+            )*
+            \*/
+          )
+        )
+        (?(DEFINE)
+          (?&lt;double_quotes&gt;  # subpattern to find matching double quotes
+            "
+            (?:
+              (?&gt;
+                (?:
+                  [^\\"@{]+ |
+                  (?&amp;escape_not_interpolation_start) |
+                  (?&amp;interpolation_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
+            "
+          )
+        )
+        (?(DEFINE)
+          (?&lt;single_quotes&gt;  # subpattern to find matching single quotes
+            '
+            (?:
+              (?&gt;
+                (?:
+                  [^\\'@{]+ |
+                  (?&amp;escape_not_interpolation_start) |
+                  (?&amp;interpolation_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
+            '
+          )
+        )
+
         (
           \+_?: |  # property merge
           :
@@ -422,16 +509,24 @@
             (?!                                 # not the start of a
               \%{css:single-identifier-char} |  #   pseudo-class
               [:\\] |                           #   pseudo-element, escape
-              @{                                #   variable interpolation
+              @{ |                              #   variable interpolation
+              /\*                               #   comment
             ) |                                 # or
             (?=                                 # ends like a normal declaration
-              (?&gt;
-                (?:
-                  [^;}{@]+ |
-                  (?&amp;interpolation)+ |
-                  \@+
-                )*
-              )
+              (?:
+                (?&gt;
+                  (?:
+                    [^\\;}{(/*"']+ |
+                    (?&amp;escape_comment_start) |
+                    (?&amp;escape) |
+                    (?&amp;comment_start_chars)
+                  )+
+                ) |
+                (?&amp;parentheses) |
+                (?&amp;comment) |
+                (?&amp;double_quotes) |
+                (?&amp;single_quotes)
+              )*
               \%{css:declaration-value-end}     #   with a semicolon or at the end of a block
             )
           )
@@ -451,7 +546,6 @@
         <context ref="css:at-rule"/> <!-- because Less variables look like at-rules -->
         <context ref="detached-ruleset-call"/>
         <context ref="standalone-plugin-function-call"/>
-        <context ref="inside-ruleset-extend"/>
         <context ref="css:style-block-content" original="true"/>
         <context ref="css:selector"/>
         <context ref="css:style-block"/>
@@ -514,7 +608,7 @@
     </context>
 
     <context id="standalone-plugin-function-call">
-      <start>(?=\%{css:identifier}\()</start>
+      <start>(?=\%{identifier}\()</start>
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
@@ -706,35 +800,19 @@
       <match>(?&lt;=})\%{css:identifier-chars}</match>
     </context>
 
-    <context id="less-pseudo-classes" style-ref="css:pseudo-class">
-      <prefix>:</prefix>
-      <keyword>extend</keyword>
-    </context>
-
-    <context id="extend-pseudo-class-argument-keyword" style-ref="css:keyword">
+    <context id="extend-pseudo-class-keyword" once-only="true" style-ref="css:keyword">
       <keyword>all</keyword>
     </context>
 
-    <context id="extend-pseudo-class-argument">
-      <start>(?&lt;=:extend)\(</start>
+    <context id="extend-pseudo-class" end-parent="true">
+      <start>\%[extend\(</start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:pseudo-class"/>
         <context sub-pattern="0" where="end" style-ref="css:pseudo-class"/>
         <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
-        <context ref="extend-pseudo-class-argument-keyword"/>
-        <context ref="css:selector"/>
-      </include>
-    </context>
-
-    <context id="inside-ruleset-extend">
-      <start>(?=&amp;:extend\()</start>
-      <end>\%{statement-end}</end>
-      <include>
-        <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
-        <context ref="css:embedded-lang-hook"/>
-        <context ref="css:comment"/>
+        <context ref="extend-pseudo-class-keyword"/>
         <context ref="css:selector"/>
       </include>
     </context>
@@ -764,31 +842,31 @@
       </include>
     </context>
 
-    <context id="less-pseudo-class">
-      <include>
-        <context ref="less-pseudo-classes"/>
-        <context ref="css:pseudo-class" original="true"/>
-      </include>
-    </context>
-
-    <context id="less-lang-pseudo-class-argument-content">
+    <context id="less-lang-pseudo-class-content">
       <include>
         <context ref="variable-interpolation-value"/>
-        <context ref="css:lang-pseudo-class-argument-content" original="true"/>
+        <context ref="css:lang-pseudo-class-content" original="true"/>
       </include>
     </context>
 
-    <context id="less-nth-pseudo-class-argument-content">
+    <context id="less-nth-pseudo-class-content">
       <include>
         <context ref="variable-interpolation-value"/>
-        <context ref="css:nth-pseudo-class-argument-content" original="true"/>
+        <context ref="css:nth-pseudo-class-content" original="true"/>
       </include>
     </context>
 
-    <context id="less-pseudo-class-argument">
+    <context id="less-pseudo-class-content">
       <include>
-        <context ref="extend-pseudo-class-argument"/>
-        <context ref="css:pseudo-class-argument" original="true"/>
+        <context ref="extend-pseudo-class"/>
+        <context ref="css:pseudo-class-content" original="true"/>
+      </include>
+    </context>
+
+    <context id="less-pseudo-class-not-pseudo-class-argument-content">
+      <include>
+        <context ref="extend-pseudo-class" style-ref="css:error"/>
+        <context ref="css:pseudo-class-not-pseudo-class-argument-content" original="true"/>
       </include>
     </context>
 
@@ -805,10 +883,10 @@
     <replace id="css:attribute-selector-content" ref="less-attribute-selector-content"/>
     <replace id="css:simple-selector" ref="less-simple-selector"/>
     <replace id="css:combinator" ref="less-combinator"/>
-    <replace id="css:pseudo-class" ref="less-pseudo-class"/>
-    <replace id="css:lang-pseudo-class-argument-content" ref="less-lang-pseudo-class-argument-content"/>
-    <replace id="css:nth-pseudo-class-argument-content" ref="less-nth-pseudo-class-argument-content"/>
-    <replace id="css:pseudo-class-argument" ref="less-pseudo-class-argument"/>
+    <replace id="css:lang-pseudo-class-content" ref="less-lang-pseudo-class-content"/>
+    <replace id="css:nth-pseudo-class-content" ref="less-nth-pseudo-class-content"/>
+    <replace id="css:pseudo-class-content" ref="less-pseudo-class-content"/>
+    <replace id="css:pseudo-class-not-pseudo-class-argument-content" ref="less-pseudo-class-not-pseudo-class-argument-content"/>
     <replace id="css:selector" ref="less-selector"/>
 
 

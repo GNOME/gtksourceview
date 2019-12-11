@@ -58,7 +58,7 @@
 
   <default-regex-options case-sensitive="false"/>
 
-  <keyword-char-class>[a-z0-9_-]</keyword-char-class>
+  <keyword-char-class>[a-z0-9_\x{80}-\x{10ffff}\\-]</keyword-char-class>
 
   <definitions>
 
@@ -254,6 +254,8 @@
         <context ref="css:embedded-lang-hook"/>
         <!-- only accept multi-line comments because // is part of urls -->
         <context ref="css:comment" original="true"/>
+        <context ref="interpolation"/>
+        <context ref="css:escape" ignore-style="true"/>
         <context ref="css:string-value"/>
       </include>
     </context>
@@ -330,6 +332,7 @@
         <context ref="logical-operator"/>
         <context ref="comparison-operator"/>
         <context ref="arithmetic-operator"/>
+        <context ref="css:name-value" original="true"/>
         <context ref="css:slash"/>
         <context ref="css:comma"/>
       </include>
@@ -405,34 +408,150 @@
 
     <context id="scss-declaration-value">
       <start extended="true">
+        (?(DEFINE) (?&lt;escape_interpolation_start&gt; (?: \\ \#{ )+ ) )
+        (?(DEFINE) (?&lt;escape_comment_start&gt;       (?: \\ /\* )+ ) )
+        (?(DEFINE) (?&lt;escape&gt;                     (?: \\ .   )+ ) )
+
+        (?(DEFINE)
+          (?&lt;interpolation_start_chars&gt;
+            (?: (?: \# (?! { ) )+ | (?: (?&lt;! \# ) { )+ )
+          )
+        )
+        (?(DEFINE)
+          (?&lt;comment_start_chars&gt;
+            (?: (?: / (?! \* ) )+ | (?: (?&lt;! / ) \* )+ )
+          )
+        )
+        (?(DEFINE)
+          (?&lt;comment_end_chars&gt;
+            (?: (?: \* (?! / ) )+ | (?: (?&lt;! \* ) / )+ )
+          )
+        )
+
         (?(DEFINE)
           (?&lt;interpolation&gt;  # recursive subpattern to find matching brackets
             \#{
             (?:
               (?&gt;
                 (?:
-                  [^#{}]+ |
-                  (?! \#{ | } ) .
+                  [^\\}#{(/*"']+ |
+                  (?&amp;escape_interpolation_start) |
+                  (?&amp;escape_comment_start) |
+                  (?&amp;escape) |
+                  (?&amp;interpolation_start_chars) |
+                  (?&amp;comment_start_chars)
                 )+
               ) |
-              (?&amp;interpolation)
+              (?&amp;interpolation) |
+              (?&amp;parentheses) |
+              (?&amp;comment) |
+              (?&amp;double_quotes) |
+              (?&amp;single_quotes)
             )*
             }
           )
         )
+        (?(DEFINE)
+          (?&lt;parentheses&gt;  # recursive subpattern to find matching parentheses
+            \(
+            (?:
+              (?&gt;
+                (?:
+                  [^\\)(#{/*"']+ |
+                  (?&amp;escape_interpolation_start) |
+                  (?&amp;escape_comment_start) |
+                  (?&amp;escape) |
+                  (?&amp;interpolation_start_chars) |
+                  (?&amp;comment_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation) |
+              (?&amp;parentheses) |
+              (?&amp;comment) |
+              (?&amp;double_quotes) |
+              (?&amp;single_quotes)
+            )*
+            \)
+          )
+        )
+        (?(DEFINE)
+          (?&lt;comment&gt;  # subpattern to find matching comment delimiters
+            /\*
+            (?:
+              (?&gt;
+                (?:
+                  [^*/#{]+ |
+                  # no escapes
+                  (?&amp;comment_end_chars) |
+                  (?&amp;interpolation_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
+            \*/
+          )
+        )
+        (?(DEFINE)
+          (?&lt;double_quotes&gt;  # subpattern to find matching double quotes
+            "
+            (?:
+              (?&gt;
+                (?:
+                  [^\\"#{]+ |
+                  (?&amp;escape_interpolation_start) |
+                  (?&amp;escape) |
+                  (?&amp;interpolation_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
+            "
+          )
+        )
+        (?(DEFINE)
+          (?&lt;single_quotes&gt;  # subpattern to find matching single quotes
+            '
+            (?:
+              (?&gt;
+                (?:
+                  [^\\'#{]+ |
+                  (?&amp;escape_interpolation_start) |
+                  (?&amp;escape) |
+                  (?&amp;interpolation_start_chars)
+                )+
+              ) |
+              (?&amp;interpolation)
+            )*
+            '
+          )
+        )
+
         :
         (?:
           (?!                                 # not the start of a
             \%{css:single-identifier-char} |  #   pseudo-class
             [:\\] |                           #   pseudo-element, escape
-            \#{                               #   interpolation
+            \#{ |                             #   interpolation
+            /\*                               #   comment
           ) |                                 # or
           (?=                                 # ends like a normal declaration
             (?&gt;
               (?:
-                [^;}{#]+ |
-                (?&amp;interpolation)+ |
-                \#+
+                (?&gt;
+                  (?:
+                    [^\\;}{#(/*"']+ |
+                    (?&amp;escape_interpolation_start) |
+                    (?&amp;escape_comment_start) |
+                    (?&amp;escape) |
+                    (?: \# (?! { ) )+ |  # interpolation_start_chars allows {
+                    (?&amp;comment_start_chars)
+                  )+
+                ) |
+                (?&amp;interpolation) |
+                (?&amp;parentheses) |
+                (?&amp;comment) |
+                (?&amp;double_quotes) |
+                (?&amp;single_quotes)
               )*
             )
             \%{css:declaration-value-end}     #   with a semicolon or at the end of a block
@@ -871,10 +990,10 @@
       </include>
     </context>
 
-    <context id="scss-nth-pseudo-class-argument-content">
+    <context id="scss-nth-pseudo-class-content">
       <include>
         <context ref="interpolation"/>
-        <context ref="css:nth-pseudo-class-argument-content" original="true"/>
+        <context ref="css:nth-pseudo-class-content" original="true"/>
       </include>
     </context>
 
@@ -887,7 +1006,7 @@
 
     <replace id="css:simple-selector" ref="scss-simple-selector"/>
     <replace id="css:combinator" ref="scss-combinator"/>
-    <replace id="css:nth-pseudo-class-argument-content" ref="scss-nth-pseudo-class-argument-content"/>
+    <replace id="css:nth-pseudo-class-content" ref="scss-nth-pseudo-class-content"/>
     <replace id="css:selector" ref="scss-selector"/>
 
 

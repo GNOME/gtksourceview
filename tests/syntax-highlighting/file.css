@@ -42,7 +42,8 @@ Body {
 .someclass,    /* class */
 div,           /* type */
 *,             /* universal */
-[lang|="zh"] { /* attribute */
+[lang|="zh"], /* attribute */
+[ /* comment */ lang /* comment */ |= /* comment */ "zh" /* comment */ ] {
     color: black;
 }
 
@@ -56,21 +57,21 @@ ul ul {        /* descendant */
 
 /* pseudo-elements */
 :after,
-::after,
+::/* comment */after,
 ::placeholder,
-::selection {
+::/* comment */selection {
     color: green;
 }
 
 /* pseudo-classes */
 :hover,
-:required,
+:/* comment */required,
 :lang(fr),
-:not(div#sidebar.fancy),
+:/* comment */not(div#sidebar.fancy),
 :nth-child(n+1),
-:nth-last-child(-2n - 30),
+:/* comment */nth-last-child(-2n /* comment */ - /* comment */ 30),
 :nth-of-type(5),
-:nth-last-of-type(even) {
+:/* comment */nth-last-of-type(even) {
     color: yellow;
 }
 
@@ -149,6 +150,7 @@ svg|[fill] { /* attribute */
 
 /* ratio */
 @media (min-aspect-ratio: 16/9) {}
+@media (min-aspect-ratio: 16 /* comment */ / /* comment */ 9) {}
 
 /* resolution */
 @media (min-resolution: +2.54dpcm) {}
@@ -193,6 +195,7 @@ svg|[fill] { /* attribute */
     content: "\E9 dition \
               \"\0000E9dition\" \
               \e9motion";
+    font-family: \E9 dition, \"\0000E9dition\", \e9motion;
 
     /* function name */
     background: \u\72\l(image.png);
@@ -311,7 +314,7 @@ body {
     margin: 2cm;
     marks: crop cross;
 }
-@page index:left {
+@page index:/*comment*/left {
     size: A4;
 
     @top-right {
@@ -334,7 +337,7 @@ body {
 
 /* pseudo-elements */
 input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type="number"]::/* comment */-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 input[type="number"] {
@@ -343,7 +346,7 @@ input[type="number"] {
 
 /* pseudo-classes */
 #page:-moz-full-screen,
-#page:-ms-fullscreen,
+#page:/* comment */-ms-fullscreen,
 #page:-webkit-full-screen {
     background: silver;
 }
