@@ -11,10 +11,7 @@ typical of a source code editor.
 
 The GtkSourceView library is free software and is released under the terms of
 the GNU Lesser General Public License, see the 'COPYING' file for more details.
-
-The official web site is:
-
-    https://wiki.gnome.org/Projects/GtkSourceView
+The official web site is https://wiki.gnome.org/Projects/GtkSourceView.
 
 Dependencies
 ------------
@@ -28,19 +25,19 @@ Installation
 ------------
 
 Simple install procedure from a tarball:
-
+```
   $ mkdir build
   $ meson build
   $ cd build
   [ Become root if necessary ]
   $ ninja install
+```
 
 See the file 'INSTALL' for more detailed information.
 
 To build the latest version of GtkSourceView plus its dependencies from Git,
-Jhbuild is recommended:
+[Jhbuild](https://wiki.gnome.org/Projects/Jhbuild) is recommended.
 
-    https://wiki.gnome.org/Projects/Jhbuild
 
 How to contribute
 -----------------
