@@ -386,27 +386,27 @@
     </define-regex>
 
     <context id="float" style-ref="floating-point">
-      <match>(?&lt;![\w\.])\%{float}(?![\w\.])</match>
+      <match>(?&lt;!\.\.\.\.)((?&lt;![\w\.])|(?&lt;=\.\.))\%{float}((?![\w\.])|(?=\.\.))(?!\.\.\.\.)</match>
     </context>
 
     <context id="decimal" style-ref="decimal">
-      <match>(?&lt;![\w\.])([1-9](_?[0-9])*|0)(?![\w\.])</match>
+      <match>(?&lt;!\.\.\.\.)((?&lt;![\w\.])|(?&lt;=\.\.))([1-9](_?[0-9])*|0)((?![\w\.])|(?=\.\.))(?!\.\.\.\.)</match>
     </context>
 
     <context id="hex" style-ref="base-n-integer">
-      <match>(?&lt;![\w\.])0[xX][0-9A-Fa-f](_?[0-9A-Fa-f])*(?![\w\.])</match>
+      <match>(?&lt;!\.\.\.\.)((?&lt;![\w\.])|(?&lt;=\.\.))0[xX][0-9A-Fa-f](_?[0-9A-Fa-f])*((?![\w\.])|(?=\.\.))(?!\.\.\.\.)</match>
     </context>
 
     <context id="octal" style-ref="base-n-integer">
-      <match>(?&lt;![\w\.])0[0-7](_?[0-7])*(?![\w\.])</match>
+      <match>(?&lt;!\.\.\.\.)((?&lt;![\w\.])|(?&lt;=\.\.))0[0-7](_?[0-7])*((?![\w\.])|(?=\.\.))(?!\.\.\.\.)</match>
     </context>
 
     <context id="binary" style-ref="base-n-integer">
-      <match>(?&lt;![\w\.])0[bB][01](_?[01])*(?![\w\.])</match>
+      <match>(?&lt;!\.\.\.\.)((?&lt;![\w\.])|(?&lt;=\.\.))0[bB][01](_?[01])*((?![\w\.])|(?=\.\.))(?!\.\.\.\.)</match>
     </context>
 
     <context id="numeric-literal" style-ref="numeric-literal">
-      <match>(?&lt;![\w\.])\?((\\[MC]-){1,2}|\\?)\S</match>
+      <match>(?&lt;!\.\.\.\.)((?&lt;![\w\.])|(?&lt;=\.\.))\?((\\[MC]-){1,2}|\\?)\S</match>
     </context>
 
     <!-- in double quotes and backticks -->
