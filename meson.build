@@ -1,5 +1,5 @@
 project('gtksourceview', 'c',
-          version: '4.5.1',
+          version: '4.99.0',
           license: 'LGPL-2.1-or-later',
     meson_version: '>= 0.50.0',
   default_options: [ 'c_std=gnu99',
@@ -20,7 +20,7 @@ version_major = version_arr[0].to_int()
 version_minor = version_arr[1].to_int()
 version_micro = version_arr[2].to_int()
 
-api_version = '4'
+api_version = '5'
 
 lib_version = '0.0.0'
 lib_version_arr = lib_version.split('.')
