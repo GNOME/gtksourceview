@@ -5,1491 +5,1370 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-03-08 11:38+0100\n"
-"PO-Revision-Date: 2004-08-26 07:16+0730\n"
-"Last-Translator: Hasbullah Bin Pit <sebol@my-penguin.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
+"POT-Creation-Date: 2019-11-23 16:12+0000\n"
+"PO-Revision-Date: 2019-12-25 15:12+0800\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Projek Gabai <gabai-penyumbang@lists.sourceforge.net>\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: gtksourceview/gtksourcebuffer.c:279
-msgid "Escape Character"
-msgstr "Aksara Berpelepas"
-
-#: gtksourceview/gtksourcebuffer.c:280
-msgid "Escaping character for syntax patterns"
-msgstr "Aksara berpelepas bagi corak sintaks"
-
-#: gtksourceview/gtksourcebuffer.c:288
-msgid "Check Brackets"
-msgstr "Periksa Kurungan"
-
-#: gtksourceview/gtksourcebuffer.c:289
-msgid "Whether to check and highlight matching brackets"
-msgstr "Samada untuk memeriksa dan menyerlahkan kurungan sepadan"
-
-#: gtksourceview/gtksourcebuffer.c:297 gtksourceview/gtksourceprintjob.c:295
-msgid "Highlight"
-msgstr "Serlah"
-
-#: gtksourceview/gtksourcebuffer.c:298
-msgid "Whether to highlight syntax in the buffer"
-msgstr "Samada menyerlahkan sintals pada penimbal"
-
-#: gtksourceview/gtksourcebuffer.c:306
-msgid "Maximum Undo Levels"
-msgstr "Aras Nyah acara Maksimum"
-
-#: gtksourceview/gtksourcebuffer.c:307
-msgid "Number of undo levels for the buffer"
-msgstr "Bilangan aras nyahcara bagi penimbal"
-
-#: gtksourceview/gtksourcebuffer.c:317
-#: gtksourceview/language-specs/desktop.lang.h:6
-#: gtksourceview/language-specs/ini.lang.h:7
-msgid "Language"
-msgstr "Bahasa"
-
-#: gtksourceview/gtksourcebuffer.c:318
-msgid "Language object to get highlighting patterns from"
-msgstr "Objek bahasa supaya corak diserlahkan"
-
-#: gtksourceview/gtksourcelanguagesmanager.c:119
-msgid "Language specification directories"
-msgstr "Direktori spesifikasi bahasa"
-
-#: gtksourceview/gtksourcelanguagesmanager.c:120
-msgid ""
-"List of directories where the language specification files (.lang) are "
-"located"
-msgstr "Senarai direktori dimana fail spefisikasi bahasa /.lang)  diletak"
-
-#: gtksourceview/gtksourceprintjob.c:264
-msgid "Configuration"
-msgstr "Kongfigurasi"
-
-#: gtksourceview/gtksourceprintjob.c:265
-msgid "Configuration options for the print job"
-msgstr "Opsyen konfigurasi bagi kerja cetakan"
-
-#: gtksourceview/gtksourceprintjob.c:272
-msgid "Source Buffer"
-msgstr "Penimbal Sumber"
-
-#: gtksourceview/gtksourceprintjob.c:273
-msgid "GtkSourceBuffer object to print"
-msgstr "Objek GtkSourceBuffer untuk dicetak"
-
-#: gtksourceview/gtksourceprintjob.c:279 gtksourceview/gtksourceview.c:222
-#: gtksourceview/gtksourceview.c:223
-msgid "Tabs Width"
-msgstr "Lebar Tab"
-
-#: gtksourceview/gtksourceprintjob.c:280
-msgid "Width in equivalent space characters of tabs"
-msgstr "Lebar yang setara dengan aksara ruang bagi tab"
-
-#: gtksourceview/gtksourceprintjob.c:287
-msgid "Wrap Mode"
-msgstr "Mod Balut"
-
-#: gtksourceview/gtksourceprintjob.c:288
-msgid "Word wrapping mode"
-msgstr "Mod balutan perkataan"
-
-#: gtksourceview/gtksourceprintjob.c:296
-msgid "Whether to print the document with highlighted syntax"
-msgstr "Samada untuk mencetak dokumen dengan serlahan teks"
-
-#: gtksourceview/gtksourceprintjob.c:304
-msgid "Font"
-msgstr "Font"
-
-#: gtksourceview/gtksourceprintjob.c:305
-msgid "GnomeFont name to use for the document text (deprecated)"
-msgstr "Nama Gnomefont untuk digunakan pada teks dokumen (tiada lagi)"
-
-#: gtksourceview/gtksourceprintjob.c:312
-msgid "Font Description"
-msgstr "Huraian Font"
-
-#: gtksourceview/gtksourceprintjob.c:313
-msgid "Font to use for the document text (e.g. \"Monospace 10\")"
-msgstr ""
-
-#: gtksourceview/gtksourceprintjob.c:320 gtksourceview/gtksourceprintjob.c:328
-msgid "Numbers Font"
-msgstr "Font Nombor"
-
-#: gtksourceview/gtksourceprintjob.c:321
-msgid "GnomeFont name to use for the line numbers (deprecated)"
-msgstr ""
-
-#: gtksourceview/gtksourceprintjob.c:329
-msgid "Font description to use for the line numbers"
-msgstr "Keterangan font digunakan untuk mencetak nombor baris"
-
-#: gtksourceview/gtksourceprintjob.c:336
-msgid "Print Line Numbers"
-msgstr "Cetak Nombor Baris"
-
-#: gtksourceview/gtksourceprintjob.c:337
-msgid "Interval of printed line numbers (0 means no numbers)"
-msgstr "Selang bagi nombor baris (0 bermaksud tiada nombor)"
-
-#: gtksourceview/gtksourceprintjob.c:344
-msgid "Print Header"
-msgstr "Cetak Pengepala"
-
-#: gtksourceview/gtksourceprintjob.c:345
-msgid "Whether to print a header in each page"
-msgstr "Samada mencetak pengepala pada setiap halaman"
-
-#: gtksourceview/gtksourceprintjob.c:352
-msgid "Print Footer"
-msgstr "Cetak Pengaki"
-
-#: gtksourceview/gtksourceprintjob.c:353
-msgid "Whether to print a footer in each page"
-msgstr "Samada mencetak pengaki pada setiap halaman"
-
-#: gtksourceview/gtksourceprintjob.c:360
-msgid "Header and Footer Font"
-msgstr "Pengepala dan Pengaki Font"
-
-#: gtksourceview/gtksourceprintjob.c:361
-msgid "GnomeFont name to use for the header and footer (deprecated)"
-msgstr ""
-
-#: gtksourceview/gtksourceprintjob.c:368
-msgid "Header and Footer Font Description"
-msgstr "Huraian Pengepala dan Pengaki Font"
-
-#: gtksourceview/gtksourceprintjob.c:369
-msgid "Font to use for headers and footers (e.g. \"Monospace 10\")"
-msgstr ""
-
-#: gtksourceview/gtksourcestylescheme.c:262
-msgid "Base-N Integer"
-msgstr "Integer Asas-N"
-
-#: gtksourceview/gtksourcestylescheme.c:267
-msgid "Character"
-msgstr "Aksara"
-
-#: gtksourceview/gtksourcestylescheme.c:272
-#: gtksourceview/language-specs/latex.lang.h:1
-#: gtksourceview/language-specs/po.lang.h:1
-msgid "Comment"
-msgstr "Komen"
-
-#. $this = (datatype)
-#: gtksourceview/gtksourcestylescheme.c:277
-#: gtksourceview/language-specs/php.lang.h:14
-msgid "Data Type"
-msgstr "Jenis Data"
-
-#.
-#. CSS functions, such as rgb(), clip(), or lang().
-#.
-#: gtksourceview/gtksourcestylescheme.c:282
-#: gtksourceview/language-specs/ada.lang.h:3
-#: gtksourceview/language-specs/css.lang.h:17
-msgid "Function"
-msgstr "Fungsi"
-
-#: gtksourceview/gtksourcestylescheme.c:287
-#: gtksourceview/language-specs/c.lang.h:6
-#: gtksourceview/language-specs/cpp.lang.h:6
-#: gtksourceview/language-specs/fortran.lang.h:1
-#: gtksourceview/language-specs/python.lang.h:2
-#: gtksourceview/language-specs/haskell.lang.h:3
-#: gtksourceview/language-specs/nemerle.lang.h:6
-msgid "Decimal"
-msgstr "Desimal"
-
-#: gtksourceview/gtksourcestylescheme.c:292
-msgid "Floating Point"
-msgstr "Titik Apungan"
-
-#: gtksourceview/gtksourcestylescheme.c:297
-#: gtksourceview/language-specs/latex.lang.h:3
-#: gtksourceview/language-specs/po.lang.h:3
-#: gtksourceview/language-specs/texinfo.lang.h:8
-#: gtksourceview/language-specs/vhdl.lang.h:2
-#: gtksourceview/language-specs/R.lang.h:6
-#: gtksourceview/language-specs/gtkrc.lang.h:6
-msgid "Keyword"
-msgstr "katakunci"
-
-#: gtksourceview/gtksourcestylescheme.c:302
-msgid "Preprocessor"
-msgstr "Pra Pemproses"
-
-#: gtksourceview/gtksourcestylescheme.c:307
-#: gtksourceview/language-specs/ada.lang.h:9
-#: gtksourceview/language-specs/c.lang.h:15
-#: gtksourceview/language-specs/cpp.lang.h:15
-#: gtksourceview/language-specs/csharp.lang.h:8
-#: gtksourceview/language-specs/css.lang.h:63
-#: gtksourceview/language-specs/html.lang.h:8
-#: gtksourceview/language-specs/fortran.lang.h:12
-#: gtksourceview/language-specs/idl.lang.h:9
-#: gtksourceview/language-specs/java.lang.h:11
-#: gtksourceview/language-specs/javascript.lang.h:33
-#: gtksourceview/language-specs/lua.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:18
-#: gtksourceview/language-specs/perl.lang.h:8
-#: gtksourceview/language-specs/po.lang.h:6
-#: gtksourceview/language-specs/python.lang.h:14
-#: gtksourceview/language-specs/ruby.lang.h:18
-#: gtksourceview/language-specs/sh.lang.h:13
-#: gtksourceview/language-specs/xml.lang.h:7
-#: gtksourceview/language-specs/haskell.lang.h:15
-#: gtksourceview/language-specs/vbnet.lang.h:7
-#: gtksourceview/language-specs/nemerle.lang.h:15
-#: gtksourceview/language-specs/tcl.lang.h:4
-#: gtksourceview/language-specs/vhdl.lang.h:6
-msgid "String"
-msgstr "Rentetan"
-
-#: gtksourceview/gtksourcestylescheme.c:312
-msgid "Specials"
-msgstr "Istimewa"
-
-#.
-#. Proposed language specification for CSS (Cascading Style Sheet) files.
-#.
-#. Reference used:
-#. http://www.w3.org/TR/CSS2/
-#.
-#. Tested with:
-#. http://www.simplebits.com/css/simple.css
-#.
-#. Submitted by Scott Martin (scott@coffeeblack.org)
-#.
-#. FIXME: find the correct mimetype
-#: gtksourceview/gtksourcestylescheme.c:319
-#: gtksourceview/language-specs/css.lang.h:46
-#: gtksourceview/language-specs/desktop.lang.h:10
-#: gtksourceview/language-specs/diff.lang.h:7
-#: gtksourceview/language-specs/ini.lang.h:10
-#: gtksourceview/language-specs/msil.lang.h:2
-#: gtksourceview/language-specs/po.lang.h:5
-#: gtksourceview/language-specs/gtkrc.lang.h:9
-msgid "Others"
-msgstr "Lain-lain"
-
-#: gtksourceview/gtksourcestylescheme.c:324
-msgid "Others 2"
-msgstr "Lain-lain 2"
-
-#: gtksourceview/gtksourcestylescheme.c:329
-msgid "Others 3"
-msgstr "Lain-lain 3"
-
-#: gtksourceview/gtksourcestylescheme.c:366
-msgid "Default"
-msgstr "Default"
-
-#: gtksourceview/gtksourcetag.c:108
-msgid "Tag ID"
-msgstr "ID Tag"
-
-#: gtksourceview/gtksourcetag.c:109
-msgid "ID used to refer to the source tag"
-msgstr "ID digunakan untuk merujuk kepada tag sumber"
-
-#: gtksourceview/gtksourcetag.c:116
-msgid "Tag style"
-msgstr "Gaya tag"
-
-#: gtksourceview/gtksourcetag.c:117
-msgid "The style associated to the source tag"
-msgstr "Gaya dikaitkan dengan tag sumber"
-
-#: gtksourceview/gtksourceview.c:206
-msgid "Show Line Numbers"
-msgstr "Papar Nombor Baris"
-
-#: gtksourceview/gtksourceview.c:207
-msgid "Whether to display line numbers"
-msgstr "Samada hendak memapar nombor baris"
-
-#: gtksourceview/gtksourceview.c:214
-msgid "Show Line Markers"
-msgstr "Papar Penanda Baris"
-
-#: gtksourceview/gtksourceview.c:215
-msgid "Whether to display line marker pixbufs"
-msgstr "Samada hendak memapar pixbuf penanda baris"
-
-#: gtksourceview/gtksourceview.c:232
-msgid "Auto Indentation"
-msgstr "Auto Indentasi"
-
-#: gtksourceview/gtksourceview.c:233
-msgid "Whether to enable auto indentation"
-msgstr "Samada patut menghidupkan auto pengindenan"
-
-#: gtksourceview/gtksourceview.c:239
-msgid "Insert Spaces Instead of Tabs"
-msgstr "Selitkan Ruang selain Tab"
-
-#: gtksourceview/gtksourceview.c:240
-msgid "Whether to insert spaces instead of tabs"
-msgstr "Samada untuk menyelit ruang selain drpd tab"
-
-#: gtksourceview/gtksourceview.c:247
-msgid "Show Right Margin"
-msgstr "Papar Margin Kanan"
-
-#: gtksourceview/gtksourceview.c:248
-msgid "Whether to display the right margin"
-msgstr "Samada hendak memapar margin kanan"
-
-#: gtksourceview/gtksourceview.c:255
-msgid "Margin position"
-msgstr "Posisi margin"
-
-#: gtksourceview/gtksourceview.c:256
-msgid "Position of the right margin"
-msgstr "Posisi bagi margin kanan"
-
-#: gtksourceview/gtksourceview.c:265
-msgid "Use smart home/end"
-msgstr "Guna home/end bistari"
-
-#: gtksourceview/gtksourceview.c:266
-msgid ""
-"HOME and END keys move to first/last characters on line first before going "
-"to the start/end of the line"
-msgstr ""
-"kekunci HOME dan END menggerak kursor ke aksara pertama/akhir pada baris "
-"pertama sebelum pergi ke mula/akhir baris"
-
-#: gtksourceview/gtksourceview.c:275
-msgid "Highlight current line"
-msgstr ""
-
-#: gtksourceview/gtksourceview.c:276
-msgid "Whether to highlight the current line"
-msgstr ""
-
-#: gtksourceview/language-specs/ada.lang.h:1
-msgid "Ada"
-msgstr "Ada"
-
-#: gtksourceview/language-specs/ada.lang.h:2
-#: gtksourceview/language-specs/c.lang.h:4
-#: gtksourceview/language-specs/cpp.lang.h:4
-#: gtksourceview/language-specs/haskell.lang.h:2
-#: gtksourceview/language-specs/nemerle.lang.h:3
-#: gtksourceview/language-specs/vhdl.lang.h:1
-msgid "Character Constant"
-msgstr "Pemalar Aksara"
-
-#: gtksourceview/language-specs/ada.lang.h:4
-#: gtksourceview/language-specs/c.lang.h:10
-#: gtksourceview/language-specs/cpp.lang.h:10
-#: gtksourceview/language-specs/csharp.lang.h:3
-#: gtksourceview/language-specs/fortran.lang.h:7
-#: gtksourceview/language-specs/idl.lang.h:4
-#: gtksourceview/language-specs/javascript.lang.h:11
-#: gtksourceview/language-specs/lua.lang.h:3
-#: gtksourceview/language-specs/perl.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:6
-#: gtksourceview/language-specs/ruby.lang.h:8
-#: gtksourceview/language-specs/verilog.lang.h:6
-#: gtksourceview/language-specs/haskell.lang.h:9
-#: gtksourceview/language-specs/vbnet.lang.h:1
-#: gtksourceview/language-specs/tcl.lang.h:1
-msgid "Keywords"
-msgstr "Katakunci"
-
-#: gtksourceview/language-specs/ada.lang.h:5
-#: gtksourceview/language-specs/c.lang.h:11
-#: gtksourceview/language-specs/cpp.lang.h:11
-#: gtksourceview/language-specs/csharp.lang.h:4
-#: gtksourceview/language-specs/css.lang.h:28
-#: gtksourceview/language-specs/desktop.lang.h:7
-#: gtksourceview/language-specs/diff.lang.h:5
-#: gtksourceview/language-specs/fortran.lang.h:8
-#: gtksourceview/language-specs/idl.lang.h:5
-#: gtksourceview/language-specs/ini.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:5
-#: gtksourceview/language-specs/javascript.lang.h:12
-#: gtksourceview/language-specs/lua.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:11
-#: gtksourceview/language-specs/perl.lang.h:3
-#: gtksourceview/language-specs/python.lang.h:7
-#: gtksourceview/language-specs/ruby.lang.h:9
-#: gtksourceview/language-specs/sh.lang.h:5
-#: gtksourceview/language-specs/sql.lang.h:11
-#: gtksourceview/language-specs/verilog.lang.h:7
-#: gtksourceview/language-specs/haskell.lang.h:10
-#: gtksourceview/language-specs/texinfo.lang.h:9
-#: gtksourceview/language-specs/vbnet.lang.h:2
-#: gtksourceview/language-specs/nemerle.lang.h:10
-#: gtksourceview/language-specs/tcl.lang.h:2
-#: gtksourceview/language-specs/vhdl.lang.h:3
-#: gtksourceview/language-specs/R.lang.h:7
-#: gtksourceview/language-specs/gtkrc.lang.h:7
-msgid "Line Comment"
-msgstr "Komen Baris"
-
-#.
-#. For values like: z-index: 2;
-#. +/- before 0 is not allowed.
-#.
-#: gtksourceview/language-specs/ada.lang.h:6
-#: gtksourceview/language-specs/css.lang.h:33
-#: gtksourceview/language-specs/desktop.lang.h:9
-#: gtksourceview/language-specs/javascript.lang.h:15
-#: gtksourceview/language-specs/pascal.lang.h:14
-#: gtksourceview/language-specs/vhdl.lang.h:4
-#: gtksourceview/language-specs/gtkrc.lang.h:8
-msgid "Number"
-msgstr "Nombor"
-
-#: gtksourceview/language-specs/ada.lang.h:7
-msgid "Preprocessor Keywords"
-msgstr "Katakunci Pra Pemproses"
-
-#: gtksourceview/language-specs/ada.lang.h:8
-#: gtksourceview/language-specs/c.lang.h:14
-#: gtksourceview/language-specs/cpp.lang.h:14
-#: gtksourceview/language-specs/csharp.lang.h:7
-#: gtksourceview/language-specs/fortran.lang.h:11
-#: gtksourceview/language-specs/idl.lang.h:8
-#: gtksourceview/language-specs/java.lang.h:10
-#: gtksourceview/language-specs/pascal.lang.h:17
-#: gtksourceview/language-specs/php.lang.h:23
-#: gtksourceview/language-specs/sql.lang.h:26
-#: gtksourceview/language-specs/verilog.lang.h:9
-#: gtksourceview/language-specs/haskell.lang.h:14
-#: gtksourceview/language-specs/vbnet.lang.h:6
-#: gtksourceview/language-specs/nemerle.lang.h:14
-#: gtksourceview/language-specs/vhdl.lang.h:5
-msgid "Sources"
+"X-Generator: Poedit 2.0.6\n"
+
+#. (itstool) path: abnf.lang/language@_section
+#. (itstool) path: actionscript.lang/language@_section
+#. (itstool) path: ada.lang/language@_section
+#. (itstool) path: ansforth94.lang/language@_section
+#. (itstool) path: asp.lang/language@_section
+#. (itstool) path: automake.lang/language@_section
+#. (itstool) path: bennugd.lang/language@_section
+#. (itstool) path: bluespec.lang/language@_section
+#. (itstool) path: boo.lang/language@_section
+#. (itstool) path: cg.lang/language@_section
+#. (itstool) path: chdr.lang/language@_section
+#. (itstool) path: c.lang/language@_section
+#. (itstool) path: cobol.lang/language@_section
+#. (itstool) path: cpphdr.lang/language@_section
+#. (itstool) path: cpp.lang/language@_section
+#. (itstool) path: csharp.lang/language@_section
+#. (itstool) path: cuda.lang/language@_section
+#. (itstool) path: dart.lang/language@_section
+#. (itstool) path: d.lang/language@_section
+#. (itstool) path: docker.lang/language@_section
+#. (itstool) path: eiffel.lang/language@_section
+#. (itstool) path: erlang.lang/language@_section
+#. (itstool) path: forth.lang/language@_section
+#. (itstool) path: fortran.lang/language@_section
+#. (itstool) path: fsharp.lang/language@_section
+#. (itstool) path: genie.lang/language@_section
+#. (itstool) path: glsl.lang/language@_section
+#. (itstool) path: go.lang/language@_section
+#. (itstool) path: gradle.lang/language@_section
+#. (itstool) path: groovy.lang/language@_section
+#. (itstool) path: haskell.lang/language@_section
+#. (itstool) path: haskell-literate.lang/language@_section
+#. (itstool) path: haxe.lang/language@_section
+#. (itstool) path: idl.lang/language@_section
+#. (itstool) path: java.lang/language@_section
+#. (itstool) path: j.lang/language@_section
+#. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lex.lang/language@_section
+#. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: logtalk.lang/language@_section
+#. (itstool) path: makefile.lang/language@_section
+#. (itstool) path: meson.lang/language@_section
+#. (itstool) path: nemerle.lang/language@_section
+#. (itstool) path: netrexx.lang/language@_section
+#. (itstool) path: objc.lang/language@_section
+#. (itstool) path: objj.lang/language@_section
+#. (itstool) path: ocaml.lang/language@_section
+#. (itstool) path: ooc.lang/language@_section
+#. (itstool) path: opal.lang/language@_section
+#. (itstool) path: opencl.lang/language@_section
+#. (itstool) path: pascal.lang/language@_section
+#. (itstool) path: pig.lang/language@_section
+#. (itstool) path: powershell.lang/language@_section
+#. (itstool) path: prolog.lang/language@_section
+#. (itstool) path: rust.lang/language@_section
+#. (itstool) path: scala.lang/language@_section
+#. (itstool) path: scheme.lang/language@_section
+#. (itstool) path: sml.lang/language@_section
+#. (itstool) path: solidity.lang/language@_section
+#. (itstool) path: sparql.lang/language@_section
+#. (itstool) path: sql.lang/language@_section
+#. (itstool) path: swift.lang/language@_section
+#. (itstool) path: systemverilog.lang/language@_section
+#. (itstool) path: thrift.lang/language@_section
+#. (itstool) path: vala.lang/language@_section
+#. (itstool) path: vbnet.lang/language@_section
+#. (itstool) path: verilog.lang/language@_section
+#. (itstool) path: vhdl.lang/language@_section
+#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23
+#: automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23
+#: chdr.lang:24 c.lang:24 cobol.lang:26 cpphdr.lang:24 cpp.lang:25
+#: csharp.lang:26 cuda.lang:22 dart.lang:22 d.lang:29 docker.lang:21
+#: eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24 fsharp.lang:24
+#: genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21 groovy.lang:24
+#: haskell.lang:24 haskell-literate.lang:23 haxe.lang:34 idl.lang:23
+#: java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
+#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
+#: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
+#: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
+#: solidity.lang:28 sparql.lang:23 sql.lang:23 swift.lang:24
+#: systemverilog.lang:21 thrift.lang:20 vala.lang:27 vbnet.lang:23
+#: verilog.lang:23 vhdl.lang:23
+msgid "Source"
 msgstr "Sumber"
 
-#: gtksourceview/language-specs/ada.lang.h:10
-msgid "True And False"
-msgstr "Benar atau Palsu"
-
-#: gtksourceview/language-specs/ada.lang.h:11
-#: gtksourceview/language-specs/c.lang.h:16
-#: gtksourceview/language-specs/cpp.lang.h:16
-#: gtksourceview/language-specs/fortran.lang.h:14
-#: gtksourceview/language-specs/idl.lang.h:10
-#: gtksourceview/language-specs/verilog.lang.h:10
-msgid "Types"
-msgstr "Jenis"
-
-#: gtksourceview/language-specs/c.lang.h:1
-#: gtksourceview/language-specs/cpp.lang.h:1
-msgid "'#if 0' Comment"
-msgstr "Komen '#if 0'"
-
-#: gtksourceview/language-specs/c.lang.h:2
-#: gtksourceview/language-specs/cpp.lang.h:2
-#: gtksourceview/language-specs/csharp.lang.h:1
-#: gtksourceview/language-specs/css.lang.h:9
-#: gtksourceview/language-specs/html.lang.h:2
-#: gtksourceview/language-specs/idl.lang.h:1
-#: gtksourceview/language-specs/java.lang.h:1
-#: gtksourceview/language-specs/javascript.lang.h:2
-#: gtksourceview/language-specs/lua.lang.h:1
-#: gtksourceview/language-specs/sql.lang.h:5
-#: gtksourceview/language-specs/verilog.lang.h:2
-#: gtksourceview/language-specs/xml.lang.h:2
-#: gtksourceview/language-specs/haskell.lang.h:1
-#: gtksourceview/language-specs/texinfo.lang.h:1
-#: gtksourceview/language-specs/nemerle.lang.h:2
-msgid "Block Comment"
-msgstr "Blok Komen"
-
-#: gtksourceview/language-specs/c.lang.h:3
-msgid "C"
-msgstr "C"
-
-#: gtksourceview/language-specs/c.lang.h:5
-#: gtksourceview/language-specs/cpp.lang.h:5
-msgid "Common Macro"
-msgstr "Makro Biasa"
-
-#: gtksourceview/language-specs/c.lang.h:7
-#: gtksourceview/language-specs/cpp.lang.h:7
-#: gtksourceview/language-specs/fortran.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:3
-#: gtksourceview/language-specs/haskell.lang.h:4
-#: gtksourceview/language-specs/nemerle.lang.h:7
-#: gtksourceview/language-specs/R.lang.h:4
-msgid "Floating Point Number"
-msgstr "Nombor Titik Apungan"
-
-#. FIXME WHY DOESN'T THIS WORK?
-#: gtksourceview/language-specs/c.lang.h:8
-#: gtksourceview/language-specs/cpp.lang.h:8
-#: gtksourceview/language-specs/fortran.lang.h:4
-#: gtksourceview/language-specs/pascal.lang.h:10
-#: gtksourceview/language-specs/python.lang.h:5
-#: gtksourceview/language-specs/haskell.lang.h:6
-#: gtksourceview/language-specs/nemerle.lang.h:8
-msgid "Hex Number"
-msgstr "Nombor Heks"
-
-#: gtksourceview/language-specs/c.lang.h:9
-#: gtksourceview/language-specs/cpp.lang.h:9
-#: gtksourceview/language-specs/idl.lang.h:3
-#: gtksourceview/language-specs/haskell.lang.h:7
-msgid "Include/Pragma"
-msgstr ""
-
-#: gtksourceview/language-specs/c.lang.h:12
-#: gtksourceview/language-specs/cpp.lang.h:12
-#: gtksourceview/language-specs/fortran.lang.h:9
-#: gtksourceview/language-specs/python.lang.h:11
-#: gtksourceview/language-specs/verilog.lang.h:8
-#: gtksourceview/language-specs/haskell.lang.h:11
-#: gtksourceview/language-specs/nemerle.lang.h:12
-msgid "Octal Number"
-msgstr "Nombor Oktal"
-
-#: gtksourceview/language-specs/c.lang.h:13
-#: gtksourceview/language-specs/cpp.lang.h:13
-#: gtksourceview/language-specs/csharp.lang.h:5
-#: gtksourceview/language-specs/idl.lang.h:6
-#: gtksourceview/language-specs/haskell.lang.h:13
-#: gtksourceview/language-specs/vbnet.lang.h:4
-msgid "Preprocessor Definitions"
-msgstr "Takrifan Pra Pemproses"
-
-#: gtksourceview/language-specs/cpp.lang.h:3
-msgid "C++"
-msgstr "C++"
-
-#: gtksourceview/language-specs/csharp.lang.h:2
-msgid "C#"
-msgstr "C#"
-
-#: gtksourceview/language-specs/csharp.lang.h:6
-#: gtksourceview/language-specs/java.lang.h:9
-#: gtksourceview/language-specs/vbnet.lang.h:5
-#: gtksourceview/language-specs/nemerle.lang.h:13
-msgid "Primitives"
-msgstr "Primitif"
-
-#: gtksourceview/language-specs/csharp.lang.h:9
-#: gtksourceview/language-specs/css.lang.h:64
-#: gtksourceview/language-specs/fortran.lang.h:13
-#: gtksourceview/language-specs/java.lang.h:12
-#: gtksourceview/language-specs/javascript.lang.h:34
-#: gtksourceview/language-specs/lua.lang.h:11
-#: gtksourceview/language-specs/python.lang.h:15
-#: gtksourceview/language-specs/ruby.lang.h:19
-#: gtksourceview/language-specs/sh.lang.h:14
-#: gtksourceview/language-specs/vbnet.lang.h:8
-msgid "String 2"
-msgstr "Rentetan 2"
-
-#.
-#. At rules must occur at the start of a line.
-#.
-#: gtksourceview/language-specs/css.lang.h:4
-msgid "At Rules"
-msgstr ""
-
-#.
-#. For CSS 2-style selectors: tag[attr="value"].
-#.
-#: gtksourceview/language-specs/css.lang.h:8
-msgid "Attribute Value Delimiters"
-msgstr "Pemisah Nilai Atribut"
-
-#.
-#. Value length specifier. Unless it is 0, must always be like: -1.2em.
-#.
-#: gtksourceview/language-specs/css.lang.h:13
-msgid "Dimension"
-msgstr "Dimensi"
-
-#.
-#. Hexadecimal method of specifying colors. Can either be 3 or 6 in
-#. length: #ffcc00 = #fc0.
-#.
-#: gtksourceview/language-specs/css.lang.h:22
-msgid "Hexadecimal Color"
-msgstr "Warna Heksadesimal"
-
-#.
-#. Upgrades a rule set's importance when several rule sets conflict.
-#.
-#: gtksourceview/language-specs/css.lang.h:26
-msgid "Importance Modifier"
-msgstr ""
-
-#: gtksourceview/language-specs/css.lang.h:27
-msgid "Known Property Values"
-msgstr "Nilai Ciri-ciri Diketahui"
-
-#: gtksourceview/language-specs/css.lang.h:34
-#: gtksourceview/language-specs/javascript.lang.h:19
-#: gtksourceview/language-specs/php.lang.h:19
-#: gtksourceview/language-specs/sh.lang.h:8
-#: gtksourceview/language-specs/haskell.lang.h:12
-msgid "Operators"
-msgstr "Operator"
-
-#: gtksourceview/language-specs/css.lang.h:47
-msgid "Property Names"
-msgstr "Nama Ciri-ciri"
-
-#.
-#. Brackets define a declaration block, parentheses define functions.
-#.
-#: gtksourceview/language-specs/css.lang.h:51
-#: gtksourceview/language-specs/javascript.lang.h:20
-#: gtksourceview/language-specs/sh.lang.h:9
-msgid "Punctuators"
-msgstr ""
-
-#: gtksourceview/language-specs/css.lang.h:52
-msgid "Selector Grammar"
-msgstr "Tatabahasa Pemilih"
-
-#.
-#. Pseudo-class rules. Good to have syntax highlighting for these
-#. for mistypings.
-#.
-#: gtksourceview/language-specs/css.lang.h:57
-msgid "Selector Pseudo Classes"
-msgstr ""
-
-#.
-#. Pseudo-element rules. Good to have syntax highlighting for these
-#. for mistypings.
-#.
-#: gtksourceview/language-specs/css.lang.h:62
-msgid "Selector Pseudo Elements"
-msgstr ""
-
-#.
-#. Escaped unicode characters can contain either 6 hexadecimal characters
-#. or 1-5 hex characters followed by one whitespace character.
-#.
-#: gtksourceview/language-specs/css.lang.h:69
-msgid "Unicode Character Reference"
-msgstr ""
-
-#.
-#. Unicode range values.
-#.
-#: gtksourceview/language-specs/css.lang.h:73
-msgid "Unicode Range"
-msgstr "Julat Unicode"
-
-#: gtksourceview/language-specs/desktop.lang.h:1
-msgid ".desktop"
-msgstr ".desktop"
-
-#: gtksourceview/language-specs/desktop.lang.h:2
-#: gtksourceview/language-specs/ini.lang.h:2
-#: gtksourceview/language-specs/gtkrc.lang.h:1
-msgid "Boolean Value"
-msgstr "Nilai Boolean"
-
-#: gtksourceview/language-specs/desktop.lang.h:3
-msgid "Encoding"
-msgstr "Pengenkodan"
-
-#: gtksourceview/language-specs/desktop.lang.h:4
-msgid "Exec Parameter"
-msgstr "Parameter Exec"
-
-#: gtksourceview/language-specs/desktop.lang.h:5
-#: gtksourceview/language-specs/ini.lang.h:5
-msgid "Group"
-msgstr "Kumpul"
-
-#: gtksourceview/language-specs/desktop.lang.h:8
-#: gtksourceview/language-specs/ini.lang.h:9
-msgid "Non Standard Key"
-msgstr "Bukan Kekunci Piawai"
-
-#: gtksourceview/language-specs/desktop.lang.h:11
-msgid "Standard Key"
-msgstr "Kekunci Piawai"
-
-#: gtksourceview/language-specs/diff.lang.h:1
-msgid "Added line"
-msgstr "Baris ditambah"
-
-#: gtksourceview/language-specs/diff.lang.h:2
-msgid "Changed line"
-msgstr "Baris berubah"
-
-#: gtksourceview/language-specs/diff.lang.h:3
-msgid "Diff"
-msgstr "Diff"
-
-#: gtksourceview/language-specs/diff.lang.h:4
-msgid "Diff file"
-msgstr "Fail diff"
-
-#: gtksourceview/language-specs/diff.lang.h:6
-#: gtksourceview/language-specs/po.lang.h:4
-msgid "Location"
-msgstr "Lokasi"
-
-#: gtksourceview/language-specs/diff.lang.h:8
-msgid "Removed line"
-msgstr "Baris dibuang"
-
-#: gtksourceview/language-specs/diff.lang.h:9
-msgid "Special case"
-msgstr "Kes Istimewa"
-
-#: gtksourceview/language-specs/html.lang.h:1
-#: gtksourceview/language-specs/xml.lang.h:1
-msgid "Attributes"
-msgstr "Atribut"
-
-#: gtksourceview/language-specs/html.lang.h:3
-#: gtksourceview/language-specs/xml.lang.h:3
-msgid "Closing Bracket"
-msgstr "Tutup Kurungan"
-
-#: gtksourceview/language-specs/html.lang.h:4
-msgid "DTD"
-msgstr "DTD"
-
-#: gtksourceview/language-specs/html.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:4
-msgid "Entity"
-msgstr "Entiti"
-
-#: gtksourceview/language-specs/html.lang.h:6
-msgid "HTML"
-msgstr "HTML"
-
-#: gtksourceview/language-specs/html.lang.h:7
-#: gtksourceview/language-specs/latex.lang.h:5
-#: gtksourceview/language-specs/xml.lang.h:6
-#: gtksourceview/language-specs/texinfo.lang.h:12
+#. (itstool) path: asciidoc.lang/language@_section
+#. (itstool) path: bibtex.lang/language@_section
+#. (itstool) path: docbook.lang/language@_section
+#. (itstool) path: dtd.lang/language@_section
+#. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: gtk-doc.lang/language@_section
+#. (itstool) path: haddock.lang/language@_section
+#. (itstool) path: html.lang/language@_section
+#. (itstool) path: jade.lang/language@_section
+#. (itstool) path: jsdoc.lang/language@_section
+#. (itstool) path: latex.lang/language@_section
+#. (itstool) path: mallard.lang/language@_section
+#. (itstool) path: markdown.lang/language@_section
+#. (itstool) path: mediawiki.lang/language@_section
+#. (itstool) path: mxml.lang/language@_section
+#. (itstool) path: rst.lang/language@_section
+#. (itstool) path: sweave.lang/language@_section
+#. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: tera.lang/language@_section
+#. (itstool) path: texinfo.lang/language@_section
+#. (itstool) path: xml.lang/language@_section
+#. (itstool) path: xslt.lang/language@_section
+#: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
+#: gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24 jsdoc.lang:23
+#: latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22
+#: mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23
+#: texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
-msgstr "Markup"
+msgstr "Penanda"
 
-#: gtksourceview/language-specs/html.lang.h:9
-msgid "Tags"
-msgstr "Tag"
-
-#: gtksourceview/language-specs/fortran.lang.h:3
-msgid "Fortran 95"
-msgstr "Fortran 95"
-
-#: gtksourceview/language-specs/fortran.lang.h:5
-msgid "Input/Output"
-msgstr "Input/Output"
-
-#: gtksourceview/language-specs/fortran.lang.h:6
-msgid "Intrinsics"
-msgstr ""
-
-#: gtksourceview/language-specs/fortran.lang.h:10
-msgid "Read/Write"
-msgstr "Baca/Tulis"
-
-#: gtksourceview/language-specs/idl.lang.h:2
-msgid "IDL"
-msgstr "IDL"
-
-#: gtksourceview/language-specs/idl.lang.h:7
-msgid "Sectional"
-msgstr "Pengseksyenan"
-
-#: gtksourceview/language-specs/ini.lang.h:1
-msgid ".ini"
-msgstr ""
-
-#: gtksourceview/language-specs/ini.lang.h:3
-#: gtksourceview/language-specs/verilog.lang.h:3
-msgid "Decimal Number"
-msgstr "Nombor Desimal"
-
-#: gtksourceview/language-specs/ini.lang.h:4
-#: gtksourceview/language-specs/R.lang.h:3
-#: gtksourceview/language-specs/gtkrc.lang.h:2
-msgid "Double Quote String"
-msgstr ""
-
-#: gtksourceview/language-specs/ini.lang.h:6
-msgid "Integer"
-msgstr ""
-
-#: gtksourceview/language-specs/ini.lang.h:11
-#: gtksourceview/language-specs/R.lang.h:11
-#: gtksourceview/language-specs/gtkrc.lang.h:10
-msgid "Single Quote String"
-msgstr ""
-
-#. $variable, $$dynamic-variable and even $$$more
-#: gtksourceview/language-specs/ini.lang.h:12
-#: gtksourceview/language-specs/php.lang.h:25
-#: gtksourceview/language-specs/gtkrc.lang.h:12
-msgid "Variable"
-msgstr "Pembolehubah"
-
-#: gtksourceview/language-specs/java.lang.h:2
-msgid "Declarations"
-msgstr "Pengistiharan"
-
-#: gtksourceview/language-specs/java.lang.h:3
-msgid "Flow"
-msgstr "Aliran"
-
-#: gtksourceview/language-specs/java.lang.h:4
-msgid "Java"
-msgstr "Java"
-
-#: gtksourceview/language-specs/java.lang.h:6
-msgid "Memory"
-msgstr "Memori"
-
-#: gtksourceview/language-specs/java.lang.h:7
-msgid "Modifiers"
-msgstr "Pengubahsuai"
-
-#: gtksourceview/language-specs/java.lang.h:8
-msgid "Numeric"
-msgstr "Angka"
-
-#: gtksourceview/language-specs/javascript.lang.h:1
-#: gtksourceview/language-specs/php.lang.h:1
-msgid "Array Operators"
-msgstr ""
-
-#: gtksourceview/language-specs/javascript.lang.h:3
-msgid "Constructors"
-msgstr "Pembina"
-
-#: gtksourceview/language-specs/javascript.lang.h:4
-msgid "Error Handling"
-msgstr "Pengendalian Ralat"
-
-#: gtksourceview/language-specs/javascript.lang.h:5
-msgid "Floating-Point Number"
-msgstr "Nombor Titik-Apungan"
-
-#: gtksourceview/language-specs/javascript.lang.h:6
-msgid "Flow Keywords"
-msgstr "Katakunci Aliran"
-
-#: gtksourceview/language-specs/javascript.lang.h:7
-msgid "Future Reserved Words"
-msgstr "Perkataan Rizab Masadepan"
-
-#: gtksourceview/language-specs/javascript.lang.h:8
-msgid "Global Functions"
-msgstr "Fungsi Global"
-
-#: gtksourceview/language-specs/javascript.lang.h:9
-msgid "Global Properties"
-msgstr "Ciri-ciri Global"
-
-#: gtksourceview/language-specs/javascript.lang.h:10
-#: gtksourceview/language-specs/verilog.lang.h:5
-msgid "Hexadecimal Number"
-msgstr "Nombor Heksadesimal"
-
-#: gtksourceview/language-specs/javascript.lang.h:13
-msgid "Literals"
-msgstr ""
-
-#: gtksourceview/language-specs/javascript.lang.h:14
-msgid "Math Value Properties"
-msgstr "Ciri-ciri NIlat Matematik"
-
-#: gtksourceview/language-specs/javascript.lang.h:16
-msgid "Object Functions"
-msgstr "Fungsi Objek"
-
-#: gtksourceview/language-specs/javascript.lang.h:17
-msgid "Object Properties"
-msgstr "Ciri-ciri Objek"
-
-#: gtksourceview/language-specs/javascript.lang.h:18
-msgid "Objects"
-msgstr "Objek"
-
-#.
-#. Proposed language specification for JavaScript files.
-#.
-#. Reference used:
-#. http://www.ecma-international.org/publications/files/ecma-st/ECMA-262.pdf
-#.
-#. Tested with:
-#. http://www.coffeeblack.org/scripts/map.js
-#.
-#. Submitted by Scott Martin (scott@coffeeblack.org)
-#.
-#: gtksourceview/language-specs/javascript.lang.h:32
-#: gtksourceview/language-specs/lua.lang.h:9
-#: gtksourceview/language-specs/perl.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:13
-#: gtksourceview/language-specs/ruby.lang.h:17
-#: gtksourceview/language-specs/sh.lang.h:11
-#: gtksourceview/language-specs/tcl.lang.h:3
-#: gtksourceview/language-specs/R.lang.h:10
-msgid "Scripts"
+#. (itstool) path: awk.lang/language@_section
+#. (itstool) path: dosbatch.lang/language@_section
+#. (itstool) path: fish.lang/language@_section
+#. (itstool) path: gdscript.lang/language@_section
+#. (itstool) path: javascript-expressions.lang/language@_section
+#. (itstool) path: javascript-functions-classes.lang/language@_section
+#. (itstool) path: javascript.lang/language@_section
+#. (itstool) path: javascript-literals.lang/language@_section
+#. (itstool) path: javascript-modules.lang/language@_section
+#. (itstool) path: javascript-statements.lang/language@_section
+#. (itstool) path: javascript-values.lang/language@_section
+#. (itstool) path: jsx.lang/language@_section
+#. (itstool) path: lua.lang/language@_section
+#. (itstool) path: m4.lang/language@_section
+#. (itstool) path: perl.lang/language@_section
+#. (itstool) path: php.lang/language@_section
+#. (itstool) path: python3.lang/language@_section
+#. (itstool) path: python.lang/language@_section
+#. (itstool) path: ruby.lang/language@_section
+#. (itstool) path: sh.lang/language@_section
+#. (itstool) path: tcl.lang/language@_section
+#. (itstool) path: typescript-js-expressions.lang/language@_section
+#. (itstool) path: typescript-js-functions-classes.lang/language@_section
+#. (itstool) path: typescript-js-literals.lang/language@_section
+#. (itstool) path: typescript-js-modules.lang/language@_section
+#. (itstool) path: typescript-js-statements.lang/language@_section
+#. (itstool) path: typescript-js-values.lang/language@_section
+#. (itstool) path: typescript-jsx.lang/language@_section
+#. (itstool) path: typescript.lang/language@_section
+#. (itstool) path: typescript-type-expressions.lang/language@_section
+#. (itstool) path: typescript-type-generics.lang/language@_section
+#. (itstool) path: typescript-type-literals.lang/language@_section
+#: awk.lang:23 dosbatch.lang:23 fish.lang:19 gdscript.lang:22
+#: javascript-expressions.lang:27 javascript-functions-classes.lang:27
+#: javascript.lang:27 javascript-literals.lang:27 javascript-modules.lang:27
+#: javascript-statements.lang:27 javascript-values.lang:27 jsx.lang:23
+#: lua.lang:23 m4.lang:23 perl.lang:25 php.lang:28 python3.lang:23
+#: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
+#: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
+#: typescript-js-literals.lang:23 typescript-js-modules.lang:23
+#: typescript-js-statements.lang:23 typescript-js-values.lang:23
+#: typescript-jsx.lang:23 typescript.lang:23
+#: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
+#: typescript-type-literals.lang:23
+msgid "Script"
 msgstr "Skrip"
 
-#: gtksourceview/language-specs/javascript.lang.h:35
-msgid "Unicode Escape Sequence"
-msgstr ""
+#. (itstool) path: cg.lang/language@_name
+#: cg.lang:23
+msgid "CG Shader Language"
+msgstr "Bahasa Pelorek CG"
 
-#: gtksourceview/language-specs/javascript.lang.h:36
-msgid "Word Operators"
-msgstr "Operator Perkataan"
+#. (itstool) path: changelog.lang/language@_section
+#. (itstool) path: cmake.lang/language@_section
+#. (itstool) path: css.lang/language@_section
+#. (itstool) path: csv.lang/language@_section
+#. (itstool) path: desktop.lang/language@_section
+#. (itstool) path: diff.lang/language@_section
+#. (itstool) path: dot.lang/language@_section
+#. (itstool) path: dpatch.lang/language@_section
+#. (itstool) path: ftl.lang/language@_section
+#. (itstool) path: gdb-log.lang/language@_section
+#. (itstool) path: gtkrc.lang/language@_section
+#. (itstool) path: ini.lang/language@_section
+#. (itstool) path: json.lang/language@_section
+#. (itstool) path: less.lang/language@_section
+#. (itstool) path: libtool.lang/language@_section
+#. (itstool) path: logcat.lang/language@_section
+#. (itstool) path: nsis.lang/language@_section
+#. (itstool) path: ocl.lang/language@_section
+#. (itstool) path: pkgconfig.lang/language@_section
+#. (itstool) path: po.lang/language@_section
+#. (itstool) path: protobuf.lang/language@_section
+#. (itstool) path: puppet.lang/language@_section
+#. (itstool) path: rpmspec.lang/language@_section
+#. (itstool) path: scss.lang/language@_section
+#. (itstool) path: toml.lang/language@_section
+#. (itstool) path: yacc.lang/language@_section
+#. (itstool) path: yaml.lang/language@_section
+#: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
+#: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
+#: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
+#: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23
+#: yacc.lang:23 yaml.lang:21
+msgid "Other"
+msgstr "Lain-lain"
 
-#: gtksourceview/language-specs/latex.lang.h:2
-#: gtksourceview/language-specs/texinfo.lang.h:6
-msgid "Include"
-msgstr "Termasuk"
+#. (itstool) path: chdr.lang/language@_name
+#: chdr.lang:24
+msgid "C/ObjC Header"
+msgstr "Pengepala C/ObjC"
 
-#: gtksourceview/language-specs/latex.lang.h:4
-msgid "LaTeX"
-msgstr "LaTeX"
+#. (itstool) path: cpphdr.lang/language@_name
+#: cpphdr.lang:24
+msgid "C++ Header"
+msgstr "Pengepala C++"
 
-#: gtksourceview/language-specs/latex.lang.h:6
-msgid "Math"
-msgstr "Matematik"
+#. (itstool) path: dosbatch.lang/language@_name
+#: dosbatch.lang:23
+msgid "DOS Batch"
+msgstr "Kelompok DOS"
 
-#: gtksourceview/language-specs/latex.lang.h:7
-msgid "Most Used Commands"
-msgstr "Arahan Sering Digunakan"
+#. (itstool) path: dtl.lang/language@_name
+#: dtl.lang:25
+msgid "Django Template"
+msgstr "Templat Django"
 
-#: gtksourceview/language-specs/lua.lang.h:2
-#: gtksourceview/language-specs/python.lang.h:4
-#: gtksourceview/language-specs/sh.lang.h:4
-msgid "Functions"
-msgstr "Fungsi"
+#. (itstool) path: fcl.lang/language@_section
+#. (itstool) path: gap.lang/language@_section
+#. (itstool) path: idl-exelis.lang/language@_section
+#. (itstool) path: imagej.lang/language@_section
+#. (itstool) path: julia.lang/language@_section
+#. (itstool) path: matlab.lang/language@_section
+#. (itstool) path: maxima.lang/language@_section
+#. (itstool) path: modelica.lang/language@_section
+#. (itstool) path: octave.lang/language@_section
+#. (itstool) path: R.lang/language@_section
+#. (itstool) path: scilab.lang/language@_section
+#: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
+#: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
+#: scilab.lang:23
+msgid "Scientific"
+msgstr "Saintifik"
 
-#: gtksourceview/language-specs/lua.lang.h:5
-msgid "Line Comment 2"
-msgstr "Komen Baris 2"
+#. (itstool) path: gdb-log.lang/language@_name
+#: gdb-log.lang:18
+msgid "GDB Log"
+msgstr "Log GDB"
 
-#: gtksourceview/language-specs/lua.lang.h:6
-msgid "Lua"
-msgstr ""
+#. (itstool) path: glsl.lang/language@_name
+#: glsl.lang:30
+msgid "OpenGL Shading Language"
+msgstr "Bahasa Lorekan OpenGL"
 
-#: gtksourceview/language-specs/lua.lang.h:7
-#: gtksourceview/language-specs/python.lang.h:9
-#: gtksourceview/language-specs/sh.lang.h:6
-msgid "Multiline String"
-msgstr "Rentetan Aneka Baris "
+#. (itstool) path: llvm.lang/language@_name
+#: llvm.lang:22
+msgid "LLVM IR"
+msgstr "IR LLVM"
 
-#: gtksourceview/language-specs/lua.lang.h:8
-#: gtksourceview/language-specs/python.lang.h:10
-#: gtksourceview/language-specs/sh.lang.h:7
-msgid "Multiline String 2"
-msgstr "Rentetan Aneka Baris 2"
-
-#: gtksourceview/language-specs/pascal.lang.h:1
-msgid "Block Comment 1"
-msgstr "Blok Komen 1"
-
-#: gtksourceview/language-specs/pascal.lang.h:2
-msgid "Block Comment 2"
-msgstr "Blok Komen 2"
-
-#: gtksourceview/language-specs/pascal.lang.h:3
-msgid "Boolean Bitwise Operators"
-msgstr ""
-
-#: gtksourceview/language-specs/pascal.lang.h:4
-msgid "Builtin Functions"
-msgstr "Fungsi Dalaman"
-
-#: gtksourceview/language-specs/pascal.lang.h:5
-msgid "Builtin Types"
-msgstr "Jenis Dalaman"
-
-#: gtksourceview/language-specs/pascal.lang.h:6
-msgid "Builtin Values"
-msgstr "Nilai Dalaman"
-
-#: gtksourceview/language-specs/pascal.lang.h:7
-msgid "Functions and Function Modifiers"
-msgstr ""
-
-#: gtksourceview/language-specs/pascal.lang.h:8
-msgid "General Format"
-msgstr "Format Umum"
-
-#: gtksourceview/language-specs/pascal.lang.h:12
-msgid "Loop, Flow, and Exceptions Keywords"
-msgstr "Katakunci Gelung, Aliran dan Pengecualian"
-
-#: gtksourceview/language-specs/pascal.lang.h:13
-msgid "Math Operators"
-msgstr "Operator Matematik"
-
-#: gtksourceview/language-specs/pascal.lang.h:15
-msgid "Pascal"
-msgstr "Pascal"
-
-#: gtksourceview/language-specs/pascal.lang.h:16
-msgid "Preprocessor Defines"
-msgstr "Takrifan Pra Pemproses"
-
-#: gtksourceview/language-specs/pascal.lang.h:19
-msgid "Type, Class and Object Keywords"
-msgstr ""
-
-#: gtksourceview/language-specs/perl.lang.h:1
-msgid "Function Call"
-msgstr "Panggilan Fungsi"
-
-#: gtksourceview/language-specs/perl.lang.h:4
-msgid "Method Call"
-msgstr "Panggilan Kaedah"
-
-#: gtksourceview/language-specs/perl.lang.h:5
-msgid "POD"
-msgstr ""
-
-#: gtksourceview/language-specs/perl.lang.h:6
-msgid "Perl"
-msgstr "Perl"
-
-#: gtksourceview/language-specs/perl.lang.h:9
-#: gtksourceview/language-specs/tcl.lang.h:5
-msgid "String2"
-msgstr "Rentetan2"
-
-#: gtksourceview/language-specs/perl.lang.h:10
-msgid "String3"
-msgstr "Rentetan3"
-
-#: gtksourceview/language-specs/perl.lang.h:11
-#: gtksourceview/language-specs/tcl.lang.h:7
-msgid "Variables"
-msgstr "Pembolehubah"
-
-#. `backticks-quoted strings`
-#: gtksourceview/language-specs/php.lang.h:3
-#: gtksourceview/language-specs/sh.lang.h:1
-msgid "Backtick String"
-msgstr ""
-
-#. # Bourne Shell Line Comment
-#: gtksourceview/language-specs/php.lang.h:5
-msgid "Bash Line Comment"
-msgstr "Komen Baris Bash"
-
-#. /* C Block Comment
-#: gtksourceview/language-specs/php.lang.h:7
-msgid "C Block Comment"
-msgstr "Komen Blok C"
-
-#. // C++ Line Comment
-#: gtksourceview/language-specs/php.lang.h:9
-msgid "C++ Line Comment"
-msgstr "Komen Baris C++"
-
-#: gtksourceview/language-specs/php.lang.h:10
-msgid "Case Insensitive Keyword"
-msgstr "Katakunci Tak Sensitif Huruf Besar/Kecil"
-
-#. This are keywords, the are recognised by php
-#: gtksourceview/language-specs/php.lang.h:12
-msgid "Case Sensitive Keyword"
-msgstr "Katakunci Sensitif Huruf Besar/Kecil"
-
-#. "duble-quoted strings"
-#: gtksourceview/language-specs/php.lang.h:16
-msgid "Double Quoted String"
-msgstr ""
-
-#: gtksourceview/language-specs/php.lang.h:17
-msgid "First Open PHP Tag"
-msgstr "Tag Pembuka PHP Pertama"
-
-#: gtksourceview/language-specs/php.lang.h:18
-msgid "HTML Block"
-msgstr "Blok HTML"
-
-#: gtksourceview/language-specs/php.lang.h:20
-msgid "PHP"
-msgstr "PHP"
-
-#. 'single-quoted strings'
-#: gtksourceview/language-specs/php.lang.h:22
-msgid "Single Quoted String"
-msgstr ""
-
-#: gtksourceview/language-specs/po.lang.h:2
-msgid "Format"
-msgstr "Format"
-
-#: gtksourceview/language-specs/po.lang.h:7
+#. (itstool) path: po.lang/language@_name
+#: po.lang:23
 msgid "gettext translation"
 msgstr "terjemahan gettext"
 
-#: gtksourceview/language-specs/python.lang.h:1
-#: gtksourceview/language-specs/ruby.lang.h:2
-msgid "Builtins"
-msgstr "Dalaman"
+#. (itstool) path: rpmspec.lang/language@_name
+#: rpmspec.lang:24
+msgid "RPM spec"
+msgstr "spec RPM"
 
-#: gtksourceview/language-specs/python.lang.h:8
-msgid "Module Handler"
-msgstr "Pengendali Modul"
+#. (itstool) path: tera.lang/language@_name
+#: tera.lang:23
+msgid "Tera Template"
+msgstr "Templat Tera"
 
-#: gtksourceview/language-specs/python.lang.h:12
-msgid "Python"
-msgstr "Python"
+#. (itstool) path: classic.xml/style-scheme@_name
+#: classic.xml:23
+msgid "Classic"
+msgstr "Klasik"
 
-#: gtksourceview/language-specs/ruby.lang.h:1
-msgid "Attribute Definitions"
-msgstr "Takrifan Atribut"
+#. (itstool) path: style-scheme/_description
+#: classic.xml:25
+msgid "Classic color scheme"
+msgstr "Skema warna klasik"
 
-#: gtksourceview/language-specs/ruby.lang.h:3
-msgid "Class Variables"
-msgstr "Pembolehubah Kelas"
+#. (itstool) path: cobalt.xml/style-scheme@_name
+#: cobalt.xml:25
+msgid "Cobalt"
+msgstr "Kobalt"
 
-#: gtksourceview/language-specs/ruby.lang.h:4
-msgid "Constants"
-msgstr "Pemalar"
+#. (itstool) path: style-scheme/_description
+#: cobalt.xml:27
+msgid "Blue based color scheme"
+msgstr "Skema warna berasaskan biru"
 
-#: gtksourceview/language-specs/ruby.lang.h:5
-msgid "Definitions"
-msgstr "Takrifan"
+#. (itstool) path: style-scheme/_description
+#: kate.xml:25
+msgid "Color scheme used in the Kate text editor"
+msgstr "Skema warna yang digunakan dalam penyunting teks Kate"
 
-#: gtksourceview/language-specs/ruby.lang.h:6
-msgid "Global Variables"
-msgstr "Pembolehubah Global"
+#. (itstool) path: oblivion.xml/style-scheme@_name
+#: oblivion.xml:24
+msgid "Oblivion"
+msgstr "Oblivion"
 
-#: gtksourceview/language-specs/ruby.lang.h:7
-msgid "Instance Variables"
+#. (itstool) path: style-scheme/_description
+#: oblivion.xml:27
+msgid "Dark color scheme using the Tango color palette"
+msgstr "Skema warna gelap menggunakan palet warna Tango"
+
+#. (itstool) path: solarized-dark.xml/style-scheme@_name
+#: solarized-dark.xml:23
+msgid "Solarized Dark"
+msgstr "Gelap Suria"
+
+#. (itstool) path: style-scheme/_description
+#: solarized-dark.xml:25
+msgid "Color scheme using Solarized dark color palette"
+msgstr "Skema warna menggunakan palet warna gelap suria"
+
+#. (itstool) path: solarized-light.xml/style-scheme@_name
+#: solarized-light.xml:23
+msgid "Solarized Light"
+msgstr "Cerah Suria"
+
+#. (itstool) path: style-scheme/_description
+#: solarized-light.xml:25
+msgid "Color scheme using Solarized light color palette"
+msgstr "Skema warna menggunakan palet warna cerah suria"
+
+#. (itstool) path: tango.xml/style-scheme@_name
+#: tango.xml:23
+msgid "Tango"
+msgstr "Tango"
+
+#. (itstool) path: style-scheme/_description
+#: tango.xml:25
+msgid "Color scheme using Tango color palette"
+msgstr "Skema warna menggunakan palet warna Tango"
+
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:332
+msgid "Document Words"
+msgstr "Word Dokumen"
+
+#: gtksourceview/gtksourcebufferoutputstream.c:842
+msgid "Invalid byte sequence in conversion input"
+msgstr "Jujukan bait tidak sah dalam input pertukaran"
+
+#: gtksourceview/gtksourcebufferoutputstream.c:848
+#, c-format
+msgid "Error during conversion: %s"
+msgstr "Ralat ketika pertukaran: %s"
+
+#: gtksourceview/gtksourcebufferoutputstream.c:929
+#, c-format
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
+msgstr "Pertukaran dari set aksara \"%s\" ke \"UTF-8\" tidak disokong"
+
+#: gtksourceview/gtksourcebufferoutputstream.c:935
+#, c-format
+msgid "Could not open converter from “%s” to “UTF-8”"
+msgstr "Tidak dapat membuka penukar dari \"%s\" ke \"UTF-8\""
+
+#: gtksourceview/gtksourcebufferoutputstream.c:995
+msgid "Invalid object, not initialized"
+msgstr "Objek tidak sah, tidak diawalkan"
+
+#: gtksourceview/gtksourcebufferoutputstream.c:1187
+#, c-format
+msgid "Incomplete UTF-8 sequence in input"
+msgstr "Jujukan UTF-8 tidak lengkap di dalam input"
+
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
+#: gtksourceview/gtksourcecompletion.c:838
+msgid "All"
+msgstr "Semua"
+
+#. Tooltip style
+#: gtksourceview/gtksourcecompletioninfo.c:262
+msgid "Completion Info"
+msgstr "Maklumat Pelengkapan"
+
+#: gtksourceview/gtksourcecompletionmodel.c:494
+msgid "Provider"
+msgstr "Penyedia"
+
+#: gtksourceview/gtksourcecompletion.ui:86
+msgid "Show detailed proposal information"
+msgstr "Tunjuk maklumat cadangan terperinci"
+
+#: gtksourceview/gtksourcecompletion.ui:88
+msgid "_Details…"
+msgstr "_Perincian..."
+
+#. regex_new could fail, for instance if there are different
+#. * named sub-patterns with the same name or if resulting regex is
+#. * too long. In this case fixing lang file helps (e.g. renaming
+#. * subpatterns, making huge keywords use bigger prefixes, etc.)
+#: gtksourceview/gtksourcecontextengine.c:3140
+#, c-format
+msgid ""
+"Cannot create a regex for all the transitions, the syntax highlighting "
+"process will be slower than usual.\n"
+"The error was: %s"
 msgstr ""
+"Tidak dapat mencipta satu ungkapan nalar untuk semua terjemahan, proses "
+"penyorotan sintaks akan menjadi lebih lambat berbanding biasa.\n"
+"Ralat adalah: %s"
 
-#: gtksourceview/language-specs/ruby.lang.h:10
-msgid "Module Handlers"
-msgstr "Pengendali Modul"
-
-#: gtksourceview/language-specs/ruby.lang.h:11
-msgid "Multiline Comment"
-msgstr "Komen Aneka Baris"
-
-#: gtksourceview/language-specs/ruby.lang.h:12
-msgid "Pseudo Variables"
-msgstr "Pembolehubah Pseudo"
-
-#: gtksourceview/language-specs/ruby.lang.h:13
-msgid "RegExp Variables"
-msgstr "Pembolehubah RegExp"
-
-#: gtksourceview/language-specs/ruby.lang.h:14
-msgid "Regular Expression"
-msgstr "Ungkapan Regular"
-
-#: gtksourceview/language-specs/ruby.lang.h:15
-msgid "Regular Expression 2"
-msgstr "Ungkapan Regular 2"
-
-#: gtksourceview/language-specs/ruby.lang.h:16
-msgid "Ruby"
-msgstr "Ruby"
-
-#: gtksourceview/language-specs/sh.lang.h:2
-msgid "Built-in Commands"
+#: gtksourceview/gtksourcecontextengine.c:4472
+msgid ""
+"Highlighting a single line took too much time, syntax highlighting will be "
+"disabled"
 msgstr ""
+"Penyorotan satu baris tunggal mengambil masa yang terlalu lama, penyorotan "
+"sintaks akan dilumpuhkan"
 
-#: gtksourceview/language-specs/sh.lang.h:3
-msgid "Common Commands"
+#: gtksourceview/gtksourcecontextengine.c:5722
+#, c-format
+msgid "context “%s” cannot contain a \\%%{...@start} command"
+msgstr "konteks \"%s\" tidak mengandungi satu perintah \\%%{...@start}"
+
+#: gtksourceview/gtksourcecontextengine.c:5885
+#: gtksourceview/gtksourcecontextengine.c:5975
+#, c-format
+msgid "duplicated context id “%s”"
+msgstr "id konteks \"%s\" ada pendua"
+
+#: gtksourceview/gtksourcecontextengine.c:6089
+#: gtksourceview/gtksourcecontextengine.c:6149
+#, c-format
+msgid ""
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
+"pembatal gaya digunakan dengan rujukan konteks kad liar dalam bahasa \"%s\" "
+"pada ruj \"%s\""
 
-#: gtksourceview/language-specs/sh.lang.h:10
-msgid "Redirections"
+#: gtksourceview/gtksourcecontextengine.c:6163
+#, c-format
+msgid "invalid context reference “%s”"
+msgstr "rujukan konteks \"%s\" tidak sah"
+
+#: gtksourceview/gtksourcecontextengine.c:6182
+#: gtksourceview/gtksourcecontextengine.c:6192
+#, c-format
+msgid "unknown context “%s”"
+msgstr "konteks \"%s\" tidak diketahui"
+
+#: gtksourceview/gtksourcecontextengine.c:6291
+#, c-format
+msgid "Missing main language definition (id = \"%s\".)"
+msgstr "Takrifan bahasa utama hilang (id = \"%s\".)"
+
+#: gtksourceview/gtksourceencoding.c:146 gtksourceview/gtksourceencoding.c:189
+#: gtksourceview/gtksourceencoding.c:191 gtksourceview/gtksourceencoding.c:193
+#: gtksourceview/gtksourceencoding.c:195 gtksourceview/gtksourceencoding.c:197
+#: gtksourceview/gtksourceencoding.c:199 gtksourceview/gtksourceencoding.c:201
+msgid "Unicode"
+msgstr "Unikod"
+
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:234 gtksourceview/gtksourceencoding.c:277
+msgid "Western"
+msgstr "Barat"
+
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:236
+#: gtksourceview/gtksourceencoding.c:273
+msgid "Central European"
+msgstr "Eropah Tengah"
+
+#: gtksourceview/gtksourceencoding.c:164
+msgid "South European"
+msgstr "Eropah Selatan"
+
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:287
+msgid "Baltic"
+msgstr "Baltik"
+
+#: gtksourceview/gtksourceencoding.c:168 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:255
+#: gtksourceview/gtksourceencoding.c:257 gtksourceview/gtksourceencoding.c:275
+msgid "Cyrillic"
+msgstr "Cyril"
+
+#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:244
+#: gtksourceview/gtksourceencoding.c:285
+msgid "Arabic"
+msgstr "Arab"
+
+#: gtksourceview/gtksourceencoding.c:172 gtksourceview/gtksourceencoding.c:279
+msgid "Greek"
+msgstr "Yunani"
+
+#: gtksourceview/gtksourceencoding.c:174
+msgid "Hebrew Visual"
+msgstr "Ibrani Tampak"
+
+#: gtksourceview/gtksourceencoding.c:176 gtksourceview/gtksourceencoding.c:240
+#: gtksourceview/gtksourceencoding.c:281
+msgid "Turkish"
+msgstr "Turki"
+
+#: gtksourceview/gtksourceencoding.c:178
+msgid "Nordic"
+msgstr "Nord"
+
+#: gtksourceview/gtksourceencoding.c:182
+msgid "Celtic"
+msgstr "Celt"
+
+#: gtksourceview/gtksourceencoding.c:186
+msgid "Romanian"
+msgstr "Romania"
+
+#: gtksourceview/gtksourceencoding.c:204
+msgid "Armenian"
+msgstr "Armenia"
+
+#: gtksourceview/gtksourceencoding.c:206 gtksourceview/gtksourceencoding.c:208
+#: gtksourceview/gtksourceencoding.c:222
+msgid "Chinese Traditional"
+msgstr "Cina Tradisional"
+
+#: gtksourceview/gtksourceencoding.c:210
+msgid "Cyrillic/Russian"
+msgstr "Cyril/Rusia"
+
+#: gtksourceview/gtksourceencoding.c:213 gtksourceview/gtksourceencoding.c:215
+#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:247
+#: gtksourceview/gtksourceencoding.c:262
+msgid "Japanese"
+msgstr "Jepun"
+
+#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:249
+#: gtksourceview/gtksourceencoding.c:253 gtksourceview/gtksourceencoding.c:268
+msgid "Korean"
+msgstr "Korea"
+
+#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:227
+#: gtksourceview/gtksourceencoding.c:229
+msgid "Chinese Simplified"
+msgstr "Cina Dipermudah"
+
+#: gtksourceview/gtksourceencoding.c:231
+msgid "Georgian"
+msgstr "Georgia"
+
+#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:283
+msgid "Hebrew"
+msgstr "Ibrani"
+
+#: gtksourceview/gtksourceencoding.c:259
+msgid "Cyrillic/Ukrainian"
+msgstr "Cyril/Ukraine"
+
+#: gtksourceview/gtksourceencoding.c:264 gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:289
+msgid "Vietnamese"
+msgstr "Vietnam"
+
+#: gtksourceview/gtksourceencoding.c:266
+msgid "Thai"
+msgstr "Siam"
+
+#: gtksourceview/gtksourceencoding.c:500
+msgid "Unknown"
+msgstr "Tidak diketahui"
+
+#. Translators: This is the sorted list of encodings used by
+#. * GtkSourceView for automatic detection of the file encoding. You may
+#. * want to customize it adding encodings that are common in your
+#. * country, for instance the GB18030 encoding for the Chinese
+#. * translation. You may also want to remove the ISO-8859-15 encoding
+#. * (covering English and most Western European languages) if you think
+#. * people in your country will rarely use it.  "CURRENT" is a magic
+#. * value used by GtkSourceView and it represents the encoding for the
+#. * current locale, so please don't translate the "CURRENT" term.  Only
+#. * recognized encodings are used. See
+#. * https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
+#. * for a list of supported encodings.
+#. * Keep the same format: square brackets, single quotes, commas.
+#.
+#: gtksourceview/gtksourceencoding.c:644
+msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
+
+#: gtksourceview/gtksourcefileloader.c:522
+msgid ""
+"There was a character encoding conversion error and it was needed to use a "
+"fallback character."
 msgstr ""
+"Terdapat satu ralat pertukaran pengekodan aksara dan ia diperlukan untuk "
+"menggunakan satu aksara jatuh-balik."
+
+#: gtksourceview/gtksourcefileloader.c:629
+msgid "File too big."
+msgstr "Fail terlalu besar."
+
+#: gtksourceview/gtksourcefileloader.c:783
+msgid "Not a regular file."
+msgstr "Bukan satu fail nalar."
+
+#: gtksourceview/gtksourcefilesaver.c:981
+msgid "The file is externally modified."
+msgstr "Fail diubah suai secara luaran."
+
+#: gtksourceview/gtksourcefilesaver.c:1433
+msgid "The buffer contains invalid characters."
+msgstr "Penimbal mengandungi aksara-aksara tidak sah."
+
+#. *
+#. * SECTION:language
+#. * @Short_description: Represents a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#.
+#: gtksourceview/gtksourcelanguage.c:56
+msgid "Others"
+msgstr "Lain-lain"
+
+#: gtksourceview/gtksourcelanguage-parser-2.c:949
+#, c-format
+msgid "Unknown id “%s” in regex “%s”"
+msgstr "Id \"%s\" tidak diketahui dalam ungkapan nalar \"%s\""
+
+#: gtksourceview/gtksourcelanguage-parser-2.c:1179
+#, c-format
+msgid "in regex “%s”: backreferences are not supported"
+msgstr "dalam ungkapan nalar \"%s\": rujukan belakang tidak disokong"
+
+#: gtksourceview/gtksourceregex.c:128
+msgid "using \\C is not supported in language definitions"
+msgstr "penggunaan \\C tidak disokong dalam takrifan bahasa"
 
-#: gtksourceview/language-specs/sh.lang.h:12
-msgid "Self"
-msgstr "Diri"
+#. TODO: have a ChooserDialog?
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
+msgid "Select a Style"
+msgstr "Pilih satu Gaya"
+
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:189
+msgid "_Cancel"
+msgstr "_Batal"
 
-#: gtksourceview/language-specs/sh.lang.h:15
-msgid "Variable1"
-msgstr ""
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:190
+msgid "_Select"
+msgstr "_Pilih"
 
-#: gtksourceview/language-specs/sh.lang.h:16
-msgid "Variable2"
-msgstr ""
+#. create redo menu_item.
+#: gtksourceview/gtksourceview.c:1796
+msgid "_Redo"
+msgstr "_Buat Semula"
 
-#: gtksourceview/language-specs/sh.lang.h:17
-msgid "sh"
-msgstr ""
+#. create undo menu_item.
+#: gtksourceview/gtksourceview.c:1807
+msgid "_Undo"
+msgstr "Buat _Asal"
 
-#: gtksourceview/language-specs/sql.lang.h:1
-msgid "ANSI Datatypes"
-msgstr "Jenis Data ANSI"
+#: gtksourceview/gtksourceview.c:1826
+msgid "All _Upper Case"
+msgstr "Semua _Huruf Besar"
 
-#: gtksourceview/language-specs/sql.lang.h:2
-msgid "ANSI Reserved Words"
-msgstr "Perkataan Rizab ANSI"
+#: gtksourceview/gtksourceview.c:1836
+msgid "All _Lower Case"
+msgstr "Semua Huruf _Kecil"
 
-#: gtksourceview/language-specs/sql.lang.h:3
-msgid "Aggregate Functions"
-msgstr "Fungsi Agregat"
+#: gtksourceview/gtksourceview.c:1846
+msgid "_Invert Case"
+msgstr "_Songsang Kata"
 
-#: gtksourceview/language-specs/sql.lang.h:4
-msgid "Analytic Functions"
-msgstr "Fungsi Analitik"
+#: gtksourceview/gtksourceview.c:1856
+msgid "_Title Case"
+msgstr "Kata _Tajuk"
 
-#: gtksourceview/language-specs/sql.lang.h:6
-msgid "Character Functions Returning Character Values"
-msgstr "Fungsi Aksara Mengembalikan Nilai Aksara"
+#: gtksourceview/gtksourceview.c:1866
+msgid "C_hange Case"
+msgstr "_Ubah Kata"
 
-#: gtksourceview/language-specs/sql.lang.h:7
-msgid "Character Functions Returning Number Values"
-msgstr "Fungsi Aksara Mengembalikan Nilai Nombor"
+#~ msgid "Escape Character"
+#~ msgstr "Aksara Berpelepas"
 
-#: gtksourceview/language-specs/sql.lang.h:8
-msgid "Conversion Functions"
-msgstr "Fungsi Penukaran"
+#~ msgid "Escaping character for syntax patterns"
+#~ msgstr "Aksara berpelepas bagi corak sintaks"
 
-#: gtksourceview/language-specs/sql.lang.h:9
-msgid "Datetime Functions"
-msgstr "Fungsi Datetime"
+#~ msgid "Check Brackets"
+#~ msgstr "Periksa Kurungan"
 
-#: gtksourceview/language-specs/sql.lang.h:10
-msgid "Integer Literals"
-msgstr ""
+#~ msgid "Whether to check and highlight matching brackets"
+#~ msgstr "Samada untuk memeriksa dan menyerlahkan kurungan sepadan"
 
-#: gtksourceview/language-specs/sql.lang.h:12
-msgid "Miscellaneous Single-Row Functions"
-msgstr "Fungsi Baris-Tunggal Lain-lain"
+#~ msgid "Highlight"
+#~ msgstr "Serlah"
 
-#: gtksourceview/language-specs/sql.lang.h:13
-msgid "Null"
-msgstr ""
+#~ msgid "Whether to highlight syntax in the buffer"
+#~ msgstr "Samada menyerlahkan sintals pada penimbal"
 
-#: gtksourceview/language-specs/sql.lang.h:14
-msgid "Number Functions"
-msgstr "Fungsi Nombor"
+#~ msgid "Maximum Undo Levels"
+#~ msgstr "Aras Nyah acara Maksimum"
 
-#: gtksourceview/language-specs/sql.lang.h:15
-msgid "Number Literals"
-msgstr ""
+#~ msgid "Number of undo levels for the buffer"
+#~ msgstr "Bilangan aras nyahcara bagi penimbal"
 
-#: gtksourceview/language-specs/sql.lang.h:16
-msgid "Object Reference Functions"
-msgstr "Fungsi Rujukan Objek"
+#~ msgid "Language object to get highlighting patterns from"
+#~ msgstr "Objek bahasa supaya corak diserlahkan"
 
-#: gtksourceview/language-specs/sql.lang.h:17
-msgid "Oracle Built-in Datatypes"
-msgstr "Jenis Data Dalaman Oracle"
+#~ msgid "Language specification directories"
+#~ msgstr "Direktori spesifikasi bahasa"
 
-#: gtksourceview/language-specs/sql.lang.h:18
-msgid "Oracle Reserved Words"
-msgstr "Perkataan Rizab Oracle"
+#~ msgid ""
+#~ "List of directories where the language specification files (.lang) are "
+#~ "located"
+#~ msgstr "Senarai direktori dimana fail spefisikasi bahasa /.lang)  diletak"
 
-#: gtksourceview/language-specs/sql.lang.h:19
-msgid "SQL"
-msgstr "SQL"
+#~ msgid "Configuration"
+#~ msgstr "Kongfigurasi"
 
-#: gtksourceview/language-specs/sql.lang.h:20
-msgid "SQL*Plus At Sign"
-msgstr "Tanda At SQL*Plus"
+#~ msgid "Configuration options for the print job"
+#~ msgstr "Opsyen konfigurasi bagi kerja cetakan"
 
-#: gtksourceview/language-specs/sql.lang.h:21
-msgid "SQL*Plus Commands"
-msgstr "Arahan SQL*Plus"
+#~ msgid "Source Buffer"
+#~ msgstr "Penimbal Sumber"
 
-#: gtksourceview/language-specs/sql.lang.h:22
-msgid "SQL*Plus Double At Sign"
-msgstr "Tanda Dwi At SQL*Plus"
+#~ msgid "GtkSourceBuffer object to print"
+#~ msgstr "Objek GtkSourceBuffer untuk dicetak"
 
-#: gtksourceview/language-specs/sql.lang.h:23
-msgid "SQL*Plus Slash"
-msgstr ""
+#~ msgid "Tabs Width"
+#~ msgstr "Lebar Tab"
 
-#: gtksourceview/language-specs/sql.lang.h:24
-msgid "SQL/DS and DB2 Datatypes"
-msgstr "Jenis Data SQL/DS dan DB2"
+#~ msgid "Width in equivalent space characters of tabs"
+#~ msgstr "Lebar yang setara dengan aksara ruang bagi tab"
 
-#: gtksourceview/language-specs/sql.lang.h:25
-msgid "Size Clause"
-msgstr "Klausa Saiz"
+#~ msgid "Wrap Mode"
+#~ msgstr "Mod Balut"
 
-#: gtksourceview/language-specs/sql.lang.h:27
-msgid "Text Literals"
-msgstr ""
+#~ msgid "Word wrapping mode"
+#~ msgstr "Mod balutan perkataan"
 
-#: gtksourceview/language-specs/sql.lang.h:28
-msgid "Unlimited"
-msgstr "Tanpa Had"
+#~ msgid "Whether to print the document with highlighted syntax"
+#~ msgstr "Samada untuk mencetak dokumen dengan serlahan teks"
 
-#: gtksourceview/language-specs/verilog.lang.h:1
-#: gtksourceview/language-specs/nemerle.lang.h:1
-msgid "Binary Number"
-msgstr "Nombor Binari"
-
-#: gtksourceview/language-specs/verilog.lang.h:4
-msgid "Gates"
-msgstr ""
-
-#: gtksourceview/language-specs/verilog.lang.h:11
-msgid "Verilog"
-msgstr "Verilog"
-
-#: gtksourceview/language-specs/xml.lang.h:5
-msgid "Hexadecimal"
-msgstr "Heksadesimal"
-
-#: gtksourceview/language-specs/xml.lang.h:8
-msgid "Tag"
-msgstr "Tag"
-
-#: gtksourceview/language-specs/xml.lang.h:9
-msgid "XML"
-msgstr "XML"
-
-#: gtksourceview/language-specs/haskell.lang.h:5
-msgid "Haskell"
-msgstr ""
-
-#: gtksourceview/language-specs/haskell.lang.h:8
-msgid "Keysymbols"
-msgstr ""
-
-#: gtksourceview/language-specs/haskell.lang.h:16
-msgid "Type or Constructor"
-msgstr ""
-
-#: gtksourceview/language-specs/texinfo.lang.h:2
-msgid "Characters"
-msgstr "Aksara"
-
-#: gtksourceview/language-specs/texinfo.lang.h:3
-msgid "File Attributes"
-msgstr "Atribut Fail"
-
-#: gtksourceview/language-specs/texinfo.lang.h:4
-msgid "Formatting"
-msgstr "Pengformatan"
-
-#: gtksourceview/language-specs/texinfo.lang.h:5
-msgid "Generated Content"
-msgstr "Kandungan Dijana"
-
-#: gtksourceview/language-specs/texinfo.lang.h:7
-msgid "Indexing"
-msgstr "Pengindeksan"
-
-#: gtksourceview/language-specs/texinfo.lang.h:10
-msgid "Macro Parameters"
-msgstr "Parameter Macro"
-
-#: gtksourceview/language-specs/texinfo.lang.h:11
-msgid "Macros"
-msgstr ""
-
-#: gtksourceview/language-specs/texinfo.lang.h:13
-msgid "Markup (block)"
-msgstr "Markup (blok)"
-
-#: gtksourceview/language-specs/texinfo.lang.h:14
-msgid "Markup (inline)"
-msgstr "Markup (dalaman)"
-
-#: gtksourceview/language-specs/texinfo.lang.h:15
-msgid "Sectioning"
-msgstr "Pengseksyenan"
-
-#: gtksourceview/language-specs/texinfo.lang.h:16
-msgid "Texinfo"
-msgstr "Texinfo"
-
-#: gtksourceview/language-specs/vbnet.lang.h:3
-msgid "Old Style Comment"
-msgstr "Komen Gaya Lama"
-
-#: gtksourceview/language-specs/vbnet.lang.h:9
-msgid "VB.NET"
-msgstr "VB.NET"
-
-#: gtksourceview/language-specs/nemerle.lang.h:4
-msgid "Core Keywords"
-msgstr ""
-
-#: gtksourceview/language-specs/nemerle.lang.h:5
-msgid "Core Types"
-msgstr ""
-
-#: gtksourceview/language-specs/nemerle.lang.h:9
-msgid "Keywords Defined by Macros"
-msgstr ""
-
-#: gtksourceview/language-specs/nemerle.lang.h:11
-msgid "Nemerle"
-msgstr ""
-
-#: gtksourceview/language-specs/tcl.lang.h:6
-msgid "Tcl"
-msgstr ""
-
-#: gtksourceview/language-specs/vhdl.lang.h:7
-msgid "True and False"
-msgstr ""
-
-#: gtksourceview/language-specs/vhdl.lang.h:8
-msgid "Type"
-msgstr ""
-
-#: gtksourceview/language-specs/vhdl.lang.h:9
-msgid "VHDL"
-msgstr ""
-
-#: gtksourceview/language-specs/R.lang.h:1
-msgid "Assignment Operator"
-msgstr ""
-
-#: gtksourceview/language-specs/R.lang.h:2
-msgid "Delimiter"
-msgstr ""
-
-#: gtksourceview/language-specs/R.lang.h:5
-msgid "Integer Number"
-msgstr ""
-
-#: gtksourceview/language-specs/R.lang.h:8
-msgid "Reserved Class"
-msgstr ""
-
-#: gtksourceview/language-specs/R.lang.h:9
-msgid "Reserved Constant"
-msgstr ""
-
-#: gtksourceview/language-specs/gtkrc.lang.h:3
-msgid "GtkRC"
-msgstr ""
-
-#: gtksourceview/language-specs/gtkrc.lang.h:4
-msgid "Include Directive"
-msgstr ""
-
-#: gtksourceview/language-specs/gtkrc.lang.h:5
-msgid "Keysymbol"
-msgstr ""
-
-#: gtksourceview/language-specs/gtkrc.lang.h:11
-msgid "State"
-msgstr ""
+#~ msgid "Font"
+#~ msgstr "Font"
+
+#~ msgid "GnomeFont name to use for the document text (deprecated)"
+#~ msgstr "Nama Gnomefont untuk digunakan pada teks dokumen (tiada lagi)"
+
+#~ msgid "Font Description"
+#~ msgstr "Huraian Font"
+
+#~ msgid "Numbers Font"
+#~ msgstr "Font Nombor"
+
+#~ msgid "Font description to use for the line numbers"
+#~ msgstr "Keterangan font digunakan untuk mencetak nombor baris"
+
+#~ msgid "Print Line Numbers"
+#~ msgstr "Cetak Nombor Baris"
+
+#~ msgid "Interval of printed line numbers (0 means no numbers)"
+#~ msgstr "Selang bagi nombor baris (0 bermaksud tiada nombor)"
+
+#~ msgid "Whether to print a header in each page"
+#~ msgstr "Samada mencetak pengepala pada setiap halaman"
+
+#~ msgid "Print Footer"
+#~ msgstr "Cetak Pengaki"
+
+#~ msgid "Whether to print a footer in each page"
+#~ msgstr "Samada mencetak pengaki pada setiap halaman"
+
+#~ msgid "Header and Footer Font"
+#~ msgstr "Pengepala dan Pengaki Font"
+
+#~ msgid "Header and Footer Font Description"
+#~ msgstr "Huraian Pengepala dan Pengaki Font"
+
+#~ msgid "Base-N Integer"
+#~ msgstr "Integer Asas-N"
+
+#~ msgid "Character"
+#~ msgstr "Aksara"
+
+#~ msgid "Comment"
+#~ msgstr "Komen"
+
+#~ msgid "Data Type"
+#~ msgstr "Jenis Data"
+
+#~ msgid "Function"
+#~ msgstr "Fungsi"
+
+#~ msgid "Decimal"
+#~ msgstr "Desimal"
+
+#~ msgid "Floating Point"
+#~ msgstr "Titik Apungan"
+
+#~ msgid "Keyword"
+#~ msgstr "katakunci"
+
+#~ msgid "Preprocessor"
+#~ msgstr "Pra Pemproses"
+
+#~ msgid "String"
+#~ msgstr "Rentetan"
+
+#~ msgid "Specials"
+#~ msgstr "Istimewa"
+
+#~ msgid "Others 2"
+#~ msgstr "Lain-lain 2"
+
+#~ msgid "Others 3"
+#~ msgstr "Lain-lain 3"
+
+#~ msgid "Default"
+#~ msgstr "Default"
+
+#~ msgid "Tag ID"
+#~ msgstr "ID Tag"
+
+#~ msgid "ID used to refer to the source tag"
+#~ msgstr "ID digunakan untuk merujuk kepada tag sumber"
+
+#~ msgid "Tag style"
+#~ msgstr "Gaya tag"
+
+#~ msgid "The style associated to the source tag"
+#~ msgstr "Gaya dikaitkan dengan tag sumber"
+
+#~ msgid "Show Line Numbers"
+#~ msgstr "Papar Nombor Baris"
+
+#~ msgid "Whether to display line numbers"
+#~ msgstr "Samada hendak memapar nombor baris"
+
+#~ msgid "Show Line Markers"
+#~ msgstr "Papar Penanda Baris"
+
+#~ msgid "Whether to display line marker pixbufs"
+#~ msgstr "Samada hendak memapar pixbuf penanda baris"
+
+#~ msgid "Auto Indentation"
+#~ msgstr "Auto Indentasi"
+
+#~ msgid "Whether to enable auto indentation"
+#~ msgstr "Samada patut menghidupkan auto pengindenan"
+
+#~ msgid "Insert Spaces Instead of Tabs"
+#~ msgstr "Selitkan Ruang selain Tab"
+
+#~ msgid "Whether to insert spaces instead of tabs"
+#~ msgstr "Samada untuk menyelit ruang selain drpd tab"
+
+#~ msgid "Show Right Margin"
+#~ msgstr "Papar Margin Kanan"
+
+#~ msgid "Whether to display the right margin"
+#~ msgstr "Samada hendak memapar margin kanan"
+
+#~ msgid "Margin position"
+#~ msgstr "Posisi margin"
+
+#~ msgid "Position of the right margin"
+#~ msgstr "Posisi bagi margin kanan"
+
+#~ msgid "Use smart home/end"
+#~ msgstr "Guna home/end bistari"
+
+#~ msgid ""
+#~ "HOME and END keys move to first/last characters on line first before "
+#~ "going to the start/end of the line"
+#~ msgstr ""
+#~ "kekunci HOME dan END menggerak kursor ke aksara pertama/akhir pada baris "
+#~ "pertama sebelum pergi ke mula/akhir baris"
+
+#~ msgid "Ada"
+#~ msgstr "Ada"
+
+#~ msgid "Character Constant"
+#~ msgstr "Pemalar Aksara"
+
+#~ msgid "Keywords"
+#~ msgstr "Katakunci"
+
+#~ msgid "Line Comment"
+#~ msgstr "Komen Baris"
+
+#~ msgid "Number"
+#~ msgstr "Nombor"
+
+#~ msgid "Preprocessor Keywords"
+#~ msgstr "Katakunci Pra Pemproses"
+
+#~ msgid "True And False"
+#~ msgstr "Benar atau Palsu"
+
+#~ msgid "Types"
+#~ msgstr "Jenis"
+
+#~ msgid "'#if 0' Comment"
+#~ msgstr "Komen '#if 0'"
+
+#~ msgid "Block Comment"
+#~ msgstr "Blok Komen"
+
+#~ msgid "C"
+#~ msgstr "C"
+
+#~ msgid "Common Macro"
+#~ msgstr "Makro Biasa"
+
+#~ msgid "Floating Point Number"
+#~ msgstr "Nombor Titik Apungan"
+
+#~ msgid "Hex Number"
+#~ msgstr "Nombor Heks"
+
+#~ msgid "Octal Number"
+#~ msgstr "Nombor Oktal"
+
+#~ msgid "Preprocessor Definitions"
+#~ msgstr "Takrifan Pra Pemproses"
+
+#~ msgid "C++"
+#~ msgstr "C++"
+
+#~ msgid "C#"
+#~ msgstr "C#"
+
+#~ msgid "Primitives"
+#~ msgstr "Primitif"
+
+#~ msgid "String 2"
+#~ msgstr "Rentetan 2"
+
+#~ msgid "Attribute Value Delimiters"
+#~ msgstr "Pemisah Nilai Atribut"
+
+#~ msgid "Dimension"
+#~ msgstr "Dimensi"
+
+#~ msgid "Hexadecimal Color"
+#~ msgstr "Warna Heksadesimal"
+
+#~ msgid "Known Property Values"
+#~ msgstr "Nilai Ciri-ciri Diketahui"
+
+#~ msgid "Operators"
+#~ msgstr "Operator"
+
+#~ msgid "Property Names"
+#~ msgstr "Nama Ciri-ciri"
+
+#~ msgid "Selector Grammar"
+#~ msgstr "Tatabahasa Pemilih"
+
+#~ msgid ".desktop"
+#~ msgstr ".desktop"
+
+#~ msgid "Boolean Value"
+#~ msgstr "Nilai Boolean"
+
+#~ msgid "Encoding"
+#~ msgstr "Pengenkodan"
+
+#~ msgid "Exec Parameter"
+#~ msgstr "Parameter Exec"
+
+#~ msgid "Group"
+#~ msgstr "Kumpul"
+
+#~ msgid "Non Standard Key"
+#~ msgstr "Bukan Kekunci Piawai"
+
+#~ msgid "Standard Key"
+#~ msgstr "Kekunci Piawai"
+
+#~ msgid "Added line"
+#~ msgstr "Baris ditambah"
+
+#~ msgid "Diff"
+#~ msgstr "Diff"
+
+#~ msgid "Diff file"
+#~ msgstr "Fail diff"
+
+#~ msgid "Location"
+#~ msgstr "Lokasi"
+
+#~ msgid "Removed line"
+#~ msgstr "Baris dibuang"
+
+#~ msgid "Special case"
+#~ msgstr "Kes Istimewa"
+
+#~ msgid "Attributes"
+#~ msgstr "Atribut"
+
+#~ msgid "Closing Bracket"
+#~ msgstr "Tutup Kurungan"
+
+#~ msgid "DTD"
+#~ msgstr "DTD"
+
+#~ msgid "Entity"
+#~ msgstr "Entiti"
+
+#~ msgid "HTML"
+#~ msgstr "HTML"
+
+#~ msgid "Tags"
+#~ msgstr "Tag"
+
+#~ msgid "Fortran 95"
+#~ msgstr "Fortran 95"
+
+#~ msgid "Input/Output"
+#~ msgstr "Input/Output"
+
+#~ msgid "Read/Write"
+#~ msgstr "Baca/Tulis"
+
+#~ msgid "IDL"
+#~ msgstr "IDL"
+
+#~ msgid "Sectional"
+#~ msgstr "Pengseksyenan"
+
+#~ msgid "Decimal Number"
+#~ msgstr "Nombor Desimal"
+
+#~ msgid "Variable"
+#~ msgstr "Pembolehubah"
+
+#~ msgid "Declarations"
+#~ msgstr "Pengistiharan"
+
+#~ msgid "Flow"
+#~ msgstr "Aliran"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "Memory"
+#~ msgstr "Memori"
+
+#~ msgid "Modifiers"
+#~ msgstr "Pengubahsuai"
+
+#~ msgid "Numeric"
+#~ msgstr "Angka"
+
+#~ msgid "Constructors"
+#~ msgstr "Pembina"
+
+#~ msgid "Error Handling"
+#~ msgstr "Pengendalian Ralat"
+
+#~ msgid "Floating-Point Number"
+#~ msgstr "Nombor Titik-Apungan"
+
+#~ msgid "Flow Keywords"
+#~ msgstr "Katakunci Aliran"
+
+#~ msgid "Future Reserved Words"
+#~ msgstr "Perkataan Rizab Masadepan"
+
+#~ msgid "Global Functions"
+#~ msgstr "Fungsi Global"
+
+#~ msgid "Global Properties"
+#~ msgstr "Ciri-ciri Global"
+
+#~ msgid "Hexadecimal Number"
+#~ msgstr "Nombor Heksadesimal"
+
+#~ msgid "Math Value Properties"
+#~ msgstr "Ciri-ciri NIlat Matematik"
+
+#~ msgid "Object Functions"
+#~ msgstr "Fungsi Objek"
+
+#~ msgid "Object Properties"
+#~ msgstr "Ciri-ciri Objek"
+
+#~ msgid "Objects"
+#~ msgstr "Objek"
+
+#~ msgid "Word Operators"
+#~ msgstr "Operator Perkataan"
+
+#~ msgid "Include"
+#~ msgstr "Termasuk"
+
+#~ msgid "LaTeX"
+#~ msgstr "LaTeX"
+
+#~ msgid "Math"
+#~ msgstr "Matematik"
+
+#~ msgid "Most Used Commands"
+#~ msgstr "Arahan Sering Digunakan"
+
+#~ msgid "Functions"
+#~ msgstr "Fungsi"
+
+#~ msgid "Line Comment 2"
+#~ msgstr "Komen Baris 2"
+
+#~ msgid "Multiline String"
+#~ msgstr "Rentetan Aneka Baris "
+
+#~ msgid "Multiline String 2"
+#~ msgstr "Rentetan Aneka Baris 2"
+
+#~ msgid "Block Comment 1"
+#~ msgstr "Blok Komen 1"
+
+#~ msgid "Block Comment 2"
+#~ msgstr "Blok Komen 2"
+
+#~ msgid "Builtin Functions"
+#~ msgstr "Fungsi Dalaman"
+
+#~ msgid "Builtin Types"
+#~ msgstr "Jenis Dalaman"
+
+#~ msgid "Builtin Values"
+#~ msgstr "Nilai Dalaman"
+
+#~ msgid "General Format"
+#~ msgstr "Format Umum"
+
+#~ msgid "Loop, Flow, and Exceptions Keywords"
+#~ msgstr "Katakunci Gelung, Aliran dan Pengecualian"
+
+#~ msgid "Math Operators"
+#~ msgstr "Operator Matematik"
+
+#~ msgid "Pascal"
+#~ msgstr "Pascal"
+
+#~ msgid "Preprocessor Defines"
+#~ msgstr "Takrifan Pra Pemproses"
+
+#~ msgid "Function Call"
+#~ msgstr "Panggilan Fungsi"
+
+#~ msgid "Method Call"
+#~ msgstr "Panggilan Kaedah"
+
+#~ msgid "Perl"
+#~ msgstr "Perl"
+
+#~ msgid "String2"
+#~ msgstr "Rentetan2"
+
+#~ msgid "String3"
+#~ msgstr "Rentetan3"
+
+#~ msgid "Variables"
+#~ msgstr "Pembolehubah"
+
+#~ msgid "Bash Line Comment"
+#~ msgstr "Komen Baris Bash"
+
+#~ msgid "C Block Comment"
+#~ msgstr "Komen Blok C"
+
+#~ msgid "C++ Line Comment"
+#~ msgstr "Komen Baris C++"
+
+#~ msgid "Case Insensitive Keyword"
+#~ msgstr "Katakunci Tak Sensitif Huruf Besar/Kecil"
+
+#~ msgid "Case Sensitive Keyword"
+#~ msgstr "Katakunci Sensitif Huruf Besar/Kecil"
+
+#~ msgid "First Open PHP Tag"
+#~ msgstr "Tag Pembuka PHP Pertama"
+
+#~ msgid "HTML Block"
+#~ msgstr "Blok HTML"
+
+#~ msgid "PHP"
+#~ msgstr "PHP"
+
+#~ msgid "Format"
+#~ msgstr "Format"
+
+#~ msgid "Builtins"
+#~ msgstr "Dalaman"
+
+#~ msgid "Module Handler"
+#~ msgstr "Pengendali Modul"
+
+#~ msgid "Python"
+#~ msgstr "Python"
+
+#~ msgid "Attribute Definitions"
+#~ msgstr "Takrifan Atribut"
+
+#~ msgid "Class Variables"
+#~ msgstr "Pembolehubah Kelas"
+
+#~ msgid "Constants"
+#~ msgstr "Pemalar"
+
+#~ msgid "Definitions"
+#~ msgstr "Takrifan"
+
+#~ msgid "Global Variables"
+#~ msgstr "Pembolehubah Global"
+
+#~ msgid "Module Handlers"
+#~ msgstr "Pengendali Modul"
+
+#~ msgid "Multiline Comment"
+#~ msgstr "Komen Aneka Baris"
+
+#~ msgid "Pseudo Variables"
+#~ msgstr "Pembolehubah Pseudo"
+
+#~ msgid "RegExp Variables"
+#~ msgstr "Pembolehubah RegExp"
+
+#~ msgid "Regular Expression"
+#~ msgstr "Ungkapan Regular"
+
+#~ msgid "Regular Expression 2"
+#~ msgstr "Ungkapan Regular 2"
+
+#~ msgid "Ruby"
+#~ msgstr "Ruby"
+
+#~ msgid "Self"
+#~ msgstr "Diri"
+
+#~ msgid "ANSI Datatypes"
+#~ msgstr "Jenis Data ANSI"
+
+#~ msgid "ANSI Reserved Words"
+#~ msgstr "Perkataan Rizab ANSI"
+
+#~ msgid "Aggregate Functions"
+#~ msgstr "Fungsi Agregat"
+
+#~ msgid "Analytic Functions"
+#~ msgstr "Fungsi Analitik"
+
+#~ msgid "Character Functions Returning Character Values"
+#~ msgstr "Fungsi Aksara Mengembalikan Nilai Aksara"
+
+#~ msgid "Character Functions Returning Number Values"
+#~ msgstr "Fungsi Aksara Mengembalikan Nilai Nombor"
+
+#~ msgid "Conversion Functions"
+#~ msgstr "Fungsi Penukaran"
+
+#~ msgid "Datetime Functions"
+#~ msgstr "Fungsi Datetime"
+
+#~ msgid "Miscellaneous Single-Row Functions"
+#~ msgstr "Fungsi Baris-Tunggal Lain-lain"
+
+#~ msgid "Number Functions"
+#~ msgstr "Fungsi Nombor"
+
+#~ msgid "Object Reference Functions"
+#~ msgstr "Fungsi Rujukan Objek"
+
+#~ msgid "Oracle Built-in Datatypes"
+#~ msgstr "Jenis Data Dalaman Oracle"
+
+#~ msgid "Oracle Reserved Words"
+#~ msgstr "Perkataan Rizab Oracle"
+
+#~ msgid "SQL"
+#~ msgstr "SQL"
+
+#~ msgid "SQL*Plus At Sign"
+#~ msgstr "Tanda At SQL*Plus"
+
+#~ msgid "SQL*Plus Commands"
+#~ msgstr "Arahan SQL*Plus"
+
+#~ msgid "SQL*Plus Double At Sign"
+#~ msgstr "Tanda Dwi At SQL*Plus"
+
+#~ msgid "SQL/DS and DB2 Datatypes"
+#~ msgstr "Jenis Data SQL/DS dan DB2"
+
+#~ msgid "Size Clause"
+#~ msgstr "Klausa Saiz"
+
+#~ msgid "Unlimited"
+#~ msgstr "Tanpa Had"
+
+#~ msgid "Binary Number"
+#~ msgstr "Nombor Binari"
+
+#~ msgid "Verilog"
+#~ msgstr "Verilog"
+
+#~ msgid "Hexadecimal"
+#~ msgstr "Heksadesimal"
+
+#~ msgid "Tag"
+#~ msgstr "Tag"
+
+#~ msgid "XML"
+#~ msgstr "XML"
+
+#~ msgid "Characters"
+#~ msgstr "Aksara"
+
+#~ msgid "File Attributes"
+#~ msgstr "Atribut Fail"
+
+#~ msgid "Formatting"
+#~ msgstr "Pengformatan"
+
+#~ msgid "Generated Content"
+#~ msgstr "Kandungan Dijana"
+
+#~ msgid "Indexing"
+#~ msgstr "Pengindeksan"
+
+#~ msgid "Macro Parameters"
+#~ msgstr "Parameter Macro"
+
+#~ msgid "Markup (block)"
+#~ msgstr "Markup (blok)"
+
+#~ msgid "Markup (inline)"
+#~ msgstr "Markup (dalaman)"
+
+#~ msgid "Sectioning"
+#~ msgstr "Pengseksyenan"
+
+#~ msgid "Texinfo"
+#~ msgstr "Texinfo"
+
+#~ msgid "Old Style Comment"
+#~ msgstr "Komen Gaya Lama"
+
+#~ msgid "VB.NET"
+#~ msgstr "VB.NET"
 
 #~ msgid "Font description name to use for the document text"
 #~ msgstr "Ketarangan  font untuk digunakan bagi teks dokumen"
