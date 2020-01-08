@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_STYLE_H
-#define GTK_SOURCE_STYLE_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -50,5 +49,3 @@ void		 gtk_source_style_apply		(const GtkSourceStyle *style,
 						 GtkTextTag           *tag);
 
 G_END_DECLS
-
-#endif  /* GTK_SOURCE_STYLE_H */

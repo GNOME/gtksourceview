@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_LANGUAGE_MANAGER_H
-#define GTK_SOURCE_LANGUAGE_MANAGER_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -88,5 +87,3 @@ G_GNUC_INTERNAL
 GtkSourceLanguageManager *_gtk_source_language_manager_peek_default		(void);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_LANGUAGE_MANAGER_H */

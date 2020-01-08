@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_ITER_H
-#define GTK_SOURCE_ITER_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes-private.h"
@@ -93,5 +92,3 @@ GTK_SOURCE_INTERNAL
 gboolean	_gtk_source_iter_inside_word				(const GtkTextIter *iter);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_ITER_H */

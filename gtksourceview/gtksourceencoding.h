@@ -19,8 +19,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_ENCODING_H
-#define GTK_SOURCE_ENCODING_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -70,5 +69,3 @@ GTK_SOURCE_AVAILABLE_IN_3_14
 void			 gtk_source_encoding_free			(GtkSourceEncoding       *enc);
 
 G_END_DECLS
-
-#endif  /* GTK_SOURCE_ENCODING_H */

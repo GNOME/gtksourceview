@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_GUTTER_RENDERER_MARKS_H
-#define GTK_SOURCE_GUTTER_RENDERER_MARKS_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes.h"
@@ -55,5 +54,3 @@ G_GNUC_INTERNAL
 GtkSourceGutterRenderer *gtk_source_gutter_renderer_marks_new (void);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_GUTTER_RENDERER_MARKS_H */

@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTKSOURCEMARK_H
-#define GTKSOURCEMARK_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -75,5 +74,3 @@ GtkSourceMark	*gtk_source_mark_prev		(GtkSourceMark	*mark,
 						 const gchar	*category);
 
 G_END_DECLS
-
-#endif /* GTKSOURCEMARK_H */

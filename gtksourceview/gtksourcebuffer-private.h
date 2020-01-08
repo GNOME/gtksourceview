@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_BUFFER_PRIVATE_H
-#define GTK_SOURCE_BUFFER_PRIVATE_H
+#pragma once
 
 #include <gtk/gtk.h>
 
@@ -89,5 +88,3 @@ GTK_SOURCE_INTERNAL
 gboolean		_gtk_source_buffer_has_spaces_tag		(GtkSourceBuffer        *buffer);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_BUFFER_PRIVATE_H */

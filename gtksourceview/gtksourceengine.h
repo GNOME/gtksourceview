@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_ENGINE_H
-#define GTK_SOURCE_ENGINE_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes.h"
@@ -85,5 +84,3 @@ void        _gtk_source_engine_set_style_scheme	(GtkSourceEngine      *engine,
 						 GtkSourceStyleScheme *scheme);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_ENGINE_H */

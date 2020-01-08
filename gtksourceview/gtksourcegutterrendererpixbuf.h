@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_GUTTER_RENDERER_PIXBUF_H
-#define GTK_SOURCE_GUTTER_RENDERER_PIXBUF_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -87,5 +86,3 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar *gtk_source_gutter_renderer_pixbuf_get_icon_name    (GtkSourceGutterRendererPixbuf *renderer);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_GUTTER_RENDERER_TEXT_H */

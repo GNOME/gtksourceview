@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_COMPLETION_MODEL_H
-#define GTK_SOURCE_COMPLETION_MODEL_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes.h"
@@ -125,5 +124,3 @@ gboolean gtk_source_completion_model_iter_equal			(GtkSourceCompletionModel    *
 								 GtkTreeIter                 *iter2);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_COMPLETION_MODEL_H */

@@ -20,8 +20,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_UTILS_PRIVATE_H
-#define GTK_SOURCE_UTILS_PRIVATE_H
+#pragma once
 
 #include <glib.h>
 #include <pango/pango.h>
@@ -52,5 +51,3 @@ gchar *		_gtk_source_utils_dgettext			(const gchar *domain,
 								 const gchar *msgid) G_GNUC_FORMAT(2);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_UTILS_PRIVATE_H */

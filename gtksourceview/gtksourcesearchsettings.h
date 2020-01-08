@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_SEARCH_SETTINGS_H
-#define GTK_SOURCE_SEARCH_SETTINGS_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -96,5 +95,3 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean		 gtk_source_search_settings_get_regex_enabled		(GtkSourceSearchSettings *settings);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_SEARCH_SETTINGS_H */

@@ -20,8 +20,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_VIEW_H
-#define GTK_SOURCE_VIEW_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -262,5 +261,3 @@ GtkSourceSpaceDrawer *
 		 gtk_source_view_get_space_drawer	(GtkSourceView   *view);
 
 G_END_DECLS
-
-#endif /* end of GTK_SOURCE_VIEW_H */

@@ -21,8 +21,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_FILE_SAVER_H
-#define GTK_SOURCE_FILE_SAVER_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -164,5 +163,3 @@ gboolean		 gtk_source_file_saver_save_finish	(GtkSourceFileSaver       *saver,
 								 GError                  **error);
 
 G_END_DECLS
-
-#endif  /* GTK_SOURCE_FILE_SAVER_H  */
