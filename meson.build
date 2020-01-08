@@ -59,7 +59,6 @@ testdatadir = join_paths(datadir, 'installed-tests', package_string)
 docpath = join_paths(datadir, 'gtk-doc', 'html', package_string)
 
 # Options
-install_glade_catalog = get_option('glade_catalog')
 generate_gir = get_option('gir')
 generate_vapi = generate_gir and get_option('vapi')
 build_gtk_doc = get_option('gtk_doc')
@@ -75,7 +74,6 @@ libm_dep = cc.find_library('m', required: false)
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
 libxml_req = '>= 2.6'
-gladeui_req = '>= 3.9'
 introspection_req  = '>= 1.42.0'
 gtk_doc_req = '>= 1.25'
 fribidi_req = '>= 0.19.7'
@@ -88,12 +86,6 @@ libxml_dep = dependency('libxml-2.0', version: libxml_req, required: cc.get_id()
 fribidi_dep = dependency('fribidi', version: fribidi_req)
 
 gtk_quartz_dep = dependency('gtk+-quartz-3.0', version: gtk_doc_req, required: false)
-
-if install_glade_catalog
-  gladeui_dep = dependency('gladeui-2.0', version: gladeui_req)
-else
-  gladeui_dep = []
-endif
 
 if generate_gir
   introspection_dep = dependency('gobject-introspection-1.0', version: introspection_req)
@@ -293,7 +285,6 @@ summary = [
   'GtkSourceView @0@ (@1@)'.format(version, api_version),
   '',
   '  Documentation: @0@'.format(build_gtk_doc),
-  '  Glade catalog: @0@'.format(install_glade_catalog),
   '  Install tests: @0@'.format(get_option('install_tests')),
   '  Introspection: @0@'.format(generate_gir),
   '      Vala vapi: @0@'.format(generate_vapi),
