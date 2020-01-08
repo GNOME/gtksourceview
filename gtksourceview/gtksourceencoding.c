@@ -2,8 +2,8 @@
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2002-2005 - Paolo Maggi
- * Copyright (C) 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2002-2005 - Paolo Maggi
+ * Copyright 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -58,7 +58,7 @@ G_DEFINE_BOXED_TYPE (GtkSourceEncoding, gtk_source_encoding,
 /*
  * The original versions of the following tables are taken from profterm
  *
- * Copyright (C) 2002 Red Hat, Inc.
+ * Copyright 2002 Red Hat, Inc.
  */
 
 typedef enum _GtkSourceEncodingIndex

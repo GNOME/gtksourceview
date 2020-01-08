@@ -2,7 +2,7 @@
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
+ * Copyright 2003 - Paolo Maggi <paolo.maggi@polito.it>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

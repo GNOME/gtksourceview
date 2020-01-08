@@ -2,10 +2,10 @@
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 1998, 1999 - Alex Roberts, Evan Lawrence
- * Copyright (C) 2000, 2001 - Chema Celorio, Paolo Maggi
- * Copyright (C) 2002-2005  - Paolo Maggi
- * Copyright (C) 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 1998, 1999 - Alex Roberts, Evan Lawrence
+ * Copyright 2000, 2001 - Chema Celorio, Paolo Maggi
+ * Copyright 2002-2005  - Paolo Maggi
+ * Copyright 2014, 2015 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

@@ -2,11 +2,11 @@
  *
  * This file is part of GtkSourceView
  *
- * Copyright (C) 1999-2002 - Mikael Hermansson <tyan@linux.se>,
- *                           Chris Phelps <chicane@reninet.com> and
- *                           Jeroen Zwartepoorte <jeroen@xs4all.nl>
- * Copyright (C) 2003 - Paolo Maggi, Gustavo Giráldez
- * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 1999-2002 - Mikael Hermansson <tyan@linux.se>,
+ *                       Chris Phelps <chicane@reninet.com> and
+ *                       Jeroen Zwartepoorte <jeroen@xs4all.nl>
+ * Copyright 2003 - Paolo Maggi, Gustavo Giráldez
+ * Copyright 2014 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

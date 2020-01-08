@@ -2,8 +2,8 @@
  *
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2003  Gustavo Giráldez
- * Copyright (C) 2007-2008  Paolo Maggi, Paolo Borelli and Yevgen Muntyan
+ * Copyright 2003  Gustavo Giráldez
+ * Copyright 2007-2008  Paolo Maggi, Paolo Borelli and Yevgen Muntyan
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

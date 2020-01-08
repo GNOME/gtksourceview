@@ -2,10 +2,10 @@
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2005-2007 - Paolo Borelli and Paolo Maggi
- * Copyright (C) 2007 - Steve Frécinaux
- * Copyright (C) 2008 - Jesse van den Kieboom
- * Copyright (C) 2014, 2016 - Sébastien Wilmet
+ * Copyright 2005-2007 - Paolo Borelli and Paolo Maggi
+ * Copyright 2007 - Steve Frécinaux
+ * Copyright 2008 - Jesse van den Kieboom
+ * Copyright 2014, 2016 - Sébastien Wilmet
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
