@@ -1,7 +1,3 @@
-if install_glade_catalog
-  subdir('glade')
-endif
-
 install_subdir('language-specs',
     install_dir: pkgdatadir,
   exclude_files: [ 'Makefile.am',
