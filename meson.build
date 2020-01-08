@@ -1,8 +1,8 @@
 project('gtksourceview', 'c',
-          version: '4.99.0',
+          version: '4.90.0',
           license: 'LGPL-2.1-or-later',
     meson_version: '>= 0.50.0',
-  default_options: [ 'c_std=gnu11',
+  default_options: [ 'c_std=gnu99',
                      'buildtype=debugoptimized',
                      'warning_level=2' ],
 )
@@ -66,8 +66,8 @@ build_gtk_doc = get_option('gtk_doc')
 # Dependencies
 cc = meson.get_compiler('c')
 
-glib_req_version = '2.48'
-gtk_req_version = '3.22'
+glib_req_version = '2.62'
+gtk_req_version = '3.96'
 
 libm_dep = cc.find_library('m', required: false)
 
@@ -81,11 +81,11 @@ fribidi_req = '>= 0.19.7'
 glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
-gtk_dep = dependency('gtk+-3.0', version: gtk_req)
+gtk_dep = dependency('gtk4', version: gtk_req)
 libxml_dep = dependency('libxml-2.0', version: libxml_req, required: cc.get_id() != 'msvc')
 fribidi_dep = dependency('fribidi', version: fribidi_req)
 
-gtk_quartz_dep = dependency('gtk+-quartz-3.0', version: gtk_doc_req, required: false)
+gtk_quartz_dep = dependency('gtk4-quartz', version: gtk_doc_req, required: false)
 
 if generate_gir
   introspection_dep = dependency('gobject-introspection-1.0', version: introspection_req)
@@ -120,9 +120,10 @@ glib_version_arr = glib_req_version.split('.')
 glib_major_version = glib_version_arr[0]
 glib_minor_version = glib_version_arr[1]
 
+# Override until GTK 4 is released
 gtk_version_arr = gtk_req_version.split('.')
-gtk_major_version = gtk_version_arr[0]
-gtk_minor_version = gtk_version_arr[1]
+gtk_major_version = '4' # gtk_version_arr[0]
+gtk_minor_version = '0' # gtk_version_arr[1]
 
 # Configurations
 add_project_arguments([

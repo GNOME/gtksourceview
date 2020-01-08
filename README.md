@@ -16,8 +16,8 @@ The official web site is https://wiki.gnome.org/Projects/GtkSourceView.
 Dependencies
 ------------
 
-* GLib >= 2.48
-* GTK+ >= 3.22
+* GLib >= 2.62
+* GTK+ >= 3.96
 * libxml2 >= 2.6
 * freebidi >= 0.19.7
 
