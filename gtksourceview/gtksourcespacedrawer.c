@@ -2,12 +2,12 @@
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2008, 2011, 2016 - Paolo Borelli <pborelli@gnome.org>
- * Copyright (C) 2008, 2010 - Ignacio Casal Quinteiro <icq@gnome.org>
- * Copyright (C) 2010 - Garret Regier
- * Copyright (C) 2013 - Arpad Borsos <arpad.borsos@googlemail.com>
- * Copyright (C) 2015, 2016 - Sébastien Wilmet <swilmet@gnome.org>
- * Copyright (C) 2016 - Christian Hergert <christian@hergert.me>
+ * Copyright 2008, 2011, 2016 - Paolo Borelli <pborelli@gnome.org>
+ * Copyright 2008, 2010 - Ignacio Casal Quinteiro <icq@gnome.org>
+ * Copyright 2010 - Garret Regier
+ * Copyright 2013 - Arpad Borsos <arpad.borsos@googlemail.com>
+ * Copyright 2015, 2016 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2016 - Christian Hergert <christian@hergert.me>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

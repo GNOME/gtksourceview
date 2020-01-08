@@ -2,8 +2,8 @@
  *
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2010 - Jesse van den Kieboom
- * Copyright (C) 2010 - Krzesimir Nowak
+ * Copyright 2010 - Jesse van den Kieboom
+ * Copyright 2010 - Krzesimir Nowak
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

@@ -2,8 +2,8 @@
  *
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
- * Copyright (C) 2005, 2006 - Marco Barisione, Emanuele Aina
+ * Copyright 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
+ * Copyright 2005, 2006 - Marco Barisione, Emanuele Aina
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public

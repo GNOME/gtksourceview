@@ -2,9 +2,9 @@
  *
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2007 - Gustavo Giráldez
- * Copyright (C) 2007 - Paolo Maggi
- * Copyright (C) 2017 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2007 - Gustavo Giráldez
+ * Copyright 2007 - Paolo Maggi
+ * Copyright 2017 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
