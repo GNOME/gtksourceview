@@ -15,8 +15,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_H
-#define GTK_SOURCE_H
+#pragma once
 
 #define GTK_SOURCE_H_INSIDE
 
@@ -63,5 +62,3 @@
 #include <gtksourceview/gtksourceautocleanups.h>
 
 #undef GTK_SOURCE_H_INSIDE
-
-#endif /* GTK_SOURCE_H */

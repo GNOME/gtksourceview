@@ -19,8 +19,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_CONTEXT_ENGINE_H
-#define GTK_SOURCE_CONTEXT_ENGINE_H
+#pragma once
 
 #include "gtksourceengine.h"
 #include "gtksourcetypes.h"
@@ -140,5 +139,3 @@ void			 _gtk_source_context_data_set_escape_char	(GtkSourceContextData	 *data,
 									 gunichar		  esc_char);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_CONTEXT_ENGINE_H */

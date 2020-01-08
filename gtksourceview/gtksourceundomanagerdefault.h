@@ -20,8 +20,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_UNDO_MANAGER_DEFAULT_H
-#define GTK_SOURCE_UNDO_MANAGER_DEFAULT_H
+#pragma once
 
 #include <glib-object.h>
 #include "gtksourcetypes-private.h"
@@ -58,5 +57,3 @@ void gtk_source_undo_manager_default_set_max_undo_levels (GtkSourceUndoManagerDe
                                                           gint                         max_undo_levels);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_UNDO_MANAGER_DEFAULT_H */

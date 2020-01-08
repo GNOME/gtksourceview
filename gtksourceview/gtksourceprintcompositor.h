@@ -19,8 +19,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_PRINT_COMPOSITOR_H
-#define GTK_SOURCE_PRINT_COMPOSITOR_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -219,5 +218,3 @@ void			  gtk_source_print_compositor_draw_page		(GtkSourcePrintCompositor *compo
 									 gint                      page_nr);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_PRINT_COMPOSITOR_H */

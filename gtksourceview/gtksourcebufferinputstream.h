@@ -19,8 +19,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_BUFFER_INPUT_STREAM_H
-#define GTK_SOURCE_BUFFER_INPUT_STREAM_H
+#pragma once
 
 #include <gio/gio.h>
 #include <gtk/gtk.h>
@@ -68,5 +67,3 @@ GTK_SOURCE_INTERNAL
 gsize		 _gtk_source_buffer_input_stream_tell			(GtkSourceBufferInputStream *stream);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_BUFFER_INPUT_STREAM_H */

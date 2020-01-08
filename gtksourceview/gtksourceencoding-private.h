@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_ENCODING_PRIVATE_H
-#define GTK_SOURCE_ENCODING_PRIVATE_H
+#pragma once
 
 #include <glib.h>
 #include "gtksourcetypes-private.h"
@@ -47,5 +46,3 @@ GSList *		_gtk_source_encoding_remove_duplicates		(GSList                      *
 									 GtkSourceEncodingDuplicates  removal_type);
 
 G_END_DECLS
-
-#endif  /* GTK_SOURCE_ENCODING_PRIVATE_H */

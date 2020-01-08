@@ -19,8 +19,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_REGEX_H
-#define GTK_SOURCE_REGEX_H
+#pragma once
 
 #include <glib.h>
 #include "gtksourcetypes-private.h"
@@ -80,5 +79,3 @@ GTK_SOURCE_INTERNAL
 const gchar	*_gtk_source_regex_get_pattern	(GtkSourceRegex *regex);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_REGEX_H */

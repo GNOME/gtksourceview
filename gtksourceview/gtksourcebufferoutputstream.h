@@ -19,8 +19,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_BUFFER_OUTPUT_STREAM_H
-#define GTK_SOURCE_BUFFER_OUTPUT_STREAM_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes.h"
@@ -73,5 +72,3 @@ guint			 gtk_source_buffer_output_stream_get_num_fallbacks
 									(GtkSourceBufferOutputStream *stream);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_BUFFER_OUTPUT_STREAM_H */

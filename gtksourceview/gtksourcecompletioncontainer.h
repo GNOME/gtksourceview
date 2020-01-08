@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_COMPLETION_CONTAINER_H
-#define GTK_SOURCE_COMPLETION_CONTAINER_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes-private.h"
@@ -53,5 +52,3 @@ GtkSourceCompletionContainer *
 		 _gtk_source_completion_container_new			(void);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_COMPLETION_CONTAINER_H */

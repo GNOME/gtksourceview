@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_PIXBUF_HELPER_H
-#define GTK_SOURCE_PIXBUF_HELPER_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes-private.h"
@@ -55,6 +54,3 @@ G_GNUC_INTERNAL
 GdkPixbuf *gtk_source_pixbuf_helper_render (GtkSourcePixbufHelper *helper,
                                             GtkWidget             *widget,
                                             gint                   size);
-
-#endif /* GTK_SOURCE_PIXBUF_HELPER_H */
-

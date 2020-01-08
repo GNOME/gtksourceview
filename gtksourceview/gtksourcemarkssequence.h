@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_MARKS_SEQUENCE_H
-#define GTK_SOURCE_MARKS_SEQUENCE_H
+#pragma once
 
 #include <gtk/gtk.h>
 #include "gtksourcetypes-private.h"
@@ -91,5 +90,3 @@ GSList			*_gtk_source_marks_sequence_get_marks_in_range	(GtkSourceMarksSequence 
 									 const GtkTextIter      *iter2);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_MARKS_SEQUENCE_H */

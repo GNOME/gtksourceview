@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_LANGUAGE_PRIVATE_H
-#define GTK_SOURCE_LANGUAGE_PRIVATE_H
+#pragma once
 
 #include <glib.h>
 #include "gtksourcecontextengine.h"
@@ -98,6 +97,3 @@ G_GNUC_INTERNAL
 void			  _gtk_source_style_info_free			(GtkSourceStyleInfo       *info);
 
 G_END_DECLS
-
-#endif  /* GTK_SOURCE_LANGUAGE_PRIVATE_H */
-

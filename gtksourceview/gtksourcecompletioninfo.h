@@ -19,8 +19,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_COMPLETION_INFO_H
-#define GTK_SOURCE_COMPLETION_INFO_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -73,5 +72,3 @@ void		 _gtk_source_completion_info_set_xoffset	(GtkSourceCompletionInfo *info,
 								 gint                     xoffset);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_COMPLETION_INFO_H */

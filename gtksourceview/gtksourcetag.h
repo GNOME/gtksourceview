@@ -20,8 +20,7 @@
  * Author: Sébastien Wilmet
  */
 
-#ifndef GTK_SOURCE_TAG_H
-#define GTK_SOURCE_TAG_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -50,5 +49,3 @@ GTK_SOURCE_AVAILABLE_IN_3_20
 GtkTextTag *	gtk_source_tag_new		(const gchar *name);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_TAG_H */

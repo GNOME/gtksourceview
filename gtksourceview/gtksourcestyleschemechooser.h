@@ -18,8 +18,7 @@
  * along with GtkSourceView. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_STYLE_SCHEME_CHOOSER_H
-#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
@@ -62,5 +61,3 @@ void                      gtk_source_style_scheme_chooser_set_style_scheme      
                                                                                   GtkSourceStyleScheme        *scheme);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_STYLE_SCHEME_CHOOSER_H */
