@@ -21,7 +21,7 @@
 #include "config.h"
 
 #include "gtksourcegutterrendererpixbuf.h"
-#include "gtksourcepixbufhelper.h"
+#include "gtksourcepixbufhelper-private.h"
 
 /**
  * SECTION:gutterrendererpixbuf
