@@ -30,32 +30,20 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON            (gtk_source_style_scheme_chooser_button_get_type())
-#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON, GtkSourceStyleSchemeChooserButton))
-#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_CONST(obj)      (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON, GtkSourceStyleSchemeChooserButton const))
-#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON, GtkSourceStyleSchemeChooserButtonClass))
-#define GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER_BUTTON(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON))
-#define GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER_BUTTON_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON))
-#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_BUTTON_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON, GtkSourceStyleSchemeChooserButtonClass))
-
-typedef struct _GtkSourceStyleSchemeChooserButtonClass GtkSourceStyleSchemeChooserButtonClass;
-
-struct _GtkSourceStyleSchemeChooserButton
-{
-	GtkButton parent;
-};
+#define GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON (gtk_source_style_scheme_chooser_button_get_type())
 
 struct _GtkSourceStyleSchemeChooserButtonClass
 {
 	GtkButtonClass parent;
 
-	gpointer padding[10];
+	/*< private >*/
+	gpointer _reserved[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_3_16
-GType                 gtk_source_style_scheme_chooser_button_get_type              (void);
+G_DECLARE_DERIVABLE_TYPE (GtkSourceStyleSchemeChooserButton, gtk_source_style_scheme_chooser_button, GTK_SOURCE, STYLE_SCHEME_CHOOSER_BUTTON, GtkButton)
 
 GTK_SOURCE_AVAILABLE_IN_3_16
-GtkWidget            *gtk_source_style_scheme_chooser_button_new                   (void);
+GtkWidget *gtk_source_style_scheme_chooser_button_new (void);
 
 G_END_DECLS
