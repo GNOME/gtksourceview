@@ -25,13 +25,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourcebufferoutputstream.h"
+#include "gtksourceview/gtksourcebufferoutputstream-private.h"
 
 static void
 test_consecutive_write (const gchar          *inbuf,
-			const gchar          *outbuf,
-			gsize                 write_chunk_len,
-			GtkSourceNewlineType  newline_type)
+                        const gchar          *outbuf,
+                        gsize                 write_chunk_len,
+                        GtkSourceNewlineType  newline_type)
 {
 	GtkSourceBuffer *source_buffer;
 	GtkSourceBufferOutputStream *out;
@@ -167,11 +167,11 @@ test_invalid_utf8 (void)
 
 static gchar *
 get_encoded_text (const gchar             *text,
-		  gint                     nread,
-		  const GtkSourceEncoding *to,
-		  const GtkSourceEncoding *from,
-		  gsize                   *bytes_written_aux,
-		  gboolean                 care_about_error)
+                  gint                     nread,
+                  const GtkSourceEncoding *to,
+                  const GtkSourceEncoding *from,
+                  gsize                   *bytes_written_aux,
+                  gboolean                 care_about_error)
 {
 	GCharsetConverter *converter;
 	gchar *out, *out_aux;
@@ -241,11 +241,11 @@ get_encoded_text (const gchar             *text,
 
 static gchar *
 do_test (const gchar              *inbuf,
-	 const gchar              *enc,
-	 GSList                   *encodings,
-	 gsize                     len,
-	 gsize                     write_chunk_len,
-	 const GtkSourceEncoding **guessed)
+         const gchar              *enc,
+         GSList                   *encodings,
+         gsize                     len,
+         gsize                     write_chunk_len,
+         const GtkSourceEncoding **guessed)
 {
 	GtkSourceBuffer *source_buffer;
 	GtkSourceBufferOutputStream *out;

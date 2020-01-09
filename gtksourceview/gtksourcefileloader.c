@@ -28,7 +28,7 @@
 #include "gtksourcefileloader.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcefile-private.h"
-#include "gtksourcebufferoutputstream.h"
+#include "gtksourcebufferoutputstream-private.h"
 #include "gtksourceencoding.h"
 #include "gtksourceencoding-private.h"
 #include "gtksource-enumtypes.h"

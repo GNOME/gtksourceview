@@ -10,7 +10,7 @@ reference_private_h = [
   'gtksourcebuffer-private.h',
   'gtksourcebufferinputstream-private.h',
   'gtksourcebufferinternal-private.h',
-  'gtksourcebufferoutputstream.h',
+  'gtksourcebufferoutputstream-private.h',
   'gtksourcecompletion-private.h',
   'gtksourcecompletioncontainer-private.h',
   'gtksourcecompletioncontext-private.h',
