@@ -81,7 +81,7 @@ enum
 	N_SIGNALS
 };
 
-struct _GtkSourceGutterRendererPrivate
+typedef struct
 {
 	GtkTextView *view;
 	GtkTextBuffer *buffer;
@@ -101,7 +101,7 @@ struct _GtkSourceGutterRendererPrivate
 
 	guint background_set : 1;
 	guint visible : 1;
-};
+} GtkSourceGutterRendererPrivate;
 
 static guint signals[N_SIGNALS];
 
@@ -127,35 +127,38 @@ static void
 set_buffer (GtkSourceGutterRenderer *renderer,
             GtkTextBuffer           *buffer)
 {
-	if (renderer->priv->buffer != NULL)
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	if (priv->buffer != NULL)
 	{
-		g_object_remove_weak_pointer (G_OBJECT (renderer->priv->buffer),
-		                              (gpointer) &renderer->priv->buffer);
+		g_object_remove_weak_pointer (G_OBJECT (priv->buffer),
+		                              (gpointer) &priv->buffer);
 	}
 
 	if (buffer != NULL)
 	{
 		g_object_add_weak_pointer (G_OBJECT (buffer),
-		                           (gpointer) &renderer->priv->buffer);
+		                           (gpointer) &priv->buffer);
 	}
 
-	renderer->priv->buffer = buffer;
+	priv->buffer = buffer;
 }
 
 static void
 emit_buffer_changed (GtkTextView             *view,
                      GtkSourceGutterRenderer *renderer)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 	GtkTextBuffer* buffer;
 
 	buffer = gtk_text_view_get_buffer (view);
 
-	if (buffer != renderer->priv->buffer)
+	if (buffer != priv->buffer)
 	{
 		if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer)
 		{
 			GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer (renderer,
-			                                                                renderer->priv->buffer);
+			                                                                priv->buffer);
 		}
 
 		set_buffer (renderer, buffer);
@@ -174,6 +177,8 @@ static void
 renderer_change_view_impl (GtkSourceGutterRenderer *renderer,
                            GtkTextView             *old_view)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	if (old_view)
 	{
 		g_signal_handlers_disconnect_by_func (old_view,
@@ -181,11 +186,11 @@ renderer_change_view_impl (GtkSourceGutterRenderer *renderer,
 		                                      renderer);
 	}
 
-	if (renderer->priv->view)
+	if (priv->view)
 	{
-		emit_buffer_changed (renderer->priv->view, renderer);
+		emit_buffer_changed (priv->view, renderer);
 
-		g_signal_connect (renderer->priv->view,
+		g_signal_connect (priv->view,
 		                  "notify::buffer",
 		                  G_CALLBACK (on_buffer_changed),
 		                  renderer);
@@ -195,13 +200,12 @@ renderer_change_view_impl (GtkSourceGutterRenderer *renderer,
 static void
 gtk_source_gutter_renderer_dispose (GObject *object)
 {
-	GtkSourceGutterRenderer *renderer;
-
-	renderer = GTK_SOURCE_GUTTER_RENDERER (object);
+	GtkSourceGutterRenderer *renderer = GTK_SOURCE_GUTTER_RENDERER (object);
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 
 	set_buffer (renderer, NULL);
 
-	if (renderer->priv->view)
+	if (priv->view)
 	{
 		_gtk_source_gutter_renderer_set_view (renderer,
 		                                      NULL,
@@ -215,11 +219,13 @@ static void
 set_visible (GtkSourceGutterRenderer *renderer,
              gboolean                 visible)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	visible = visible != FALSE;
 
-	if (renderer->priv->visible != visible)
+	if (priv->visible != visible)
 	{
-		renderer->priv->visible = visible;
+		priv->visible = visible;
 		g_object_notify (G_OBJECT (renderer), "visible");
 
 		gtk_source_gutter_renderer_queue_draw (renderer);
@@ -247,8 +253,10 @@ static gboolean
 set_xpad (GtkSourceGutterRenderer *renderer,
           gint                     xpad)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	return set_padding (renderer,
-	                    &renderer->priv->xpad,
+	                    &priv->xpad,
 	                    xpad,
 	                    "xpad");
 }
@@ -257,8 +265,10 @@ static gboolean
 set_ypad (GtkSourceGutterRenderer *renderer,
           gint                     ypad)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	return set_padding (renderer,
-	                    &renderer->priv->ypad,
+	                    &priv->ypad,
 	                    ypad,
 	                    "ypad");
 }
@@ -291,8 +301,10 @@ set_xalign (GtkSourceGutterRenderer *renderer,
             gfloat                   xalign,
             gboolean                 emit)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	return set_alignment (renderer,
-	                      &renderer->priv->xalign,
+	                      &priv->xalign,
 	                      xalign,
 	                      "xalign",
 	                      emit);
@@ -303,8 +315,10 @@ set_yalign (GtkSourceGutterRenderer *renderer,
             gfloat                   yalign,
             gboolean                 emit)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	return set_alignment (renderer,
-	                      &renderer->priv->yalign,
+	                      &priv->yalign,
 	                      yalign,
 	                      "yalign",
 	                      emit);
@@ -314,12 +328,14 @@ static void
 set_alignment_mode (GtkSourceGutterRenderer              *renderer,
                     GtkSourceGutterRendererAlignmentMode  mode)
 {
-	if (renderer->priv->alignment_mode == mode)
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	if (priv->alignment_mode == mode)
 	{
 		return;
 	}
 
-	renderer->priv->alignment_mode = mode;
+	priv->alignment_mode = mode;
 	g_object_notify (G_OBJECT (renderer), "alignment-mode");
 
 	gtk_source_gutter_renderer_queue_draw (renderer);
@@ -329,12 +345,14 @@ static void
 set_size (GtkSourceGutterRenderer *renderer,
           gint                     value)
 {
-	if (renderer->priv->size == value)
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	if (priv->size == value)
 	{
 		return;
 	}
 
-	renderer->priv->size = value;
+	priv->size = value;
 	g_object_notify (G_OBJECT (renderer), "size");
 }
 
@@ -342,11 +360,13 @@ static void
 set_background_color_set (GtkSourceGutterRenderer *renderer,
                           gboolean                 isset)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	isset = (isset != FALSE);
 
-	if (isset != renderer->priv->background_set)
+	if (isset != priv->background_set)
 	{
-		renderer->priv->background_set = isset;
+		priv->background_set = isset;
 		gtk_source_gutter_renderer_queue_draw (renderer);
 	}
 }
@@ -355,14 +375,16 @@ static void
 set_background_color (GtkSourceGutterRenderer *renderer,
                       const GdkRGBA          *color)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	if (!color)
 	{
 		set_background_color_set (renderer, FALSE);
 	}
 	else
 	{
-		renderer->priv->background_color = *color;
-		renderer->priv->background_set = TRUE;
+		priv->background_color = *color;
+		priv->background_set = TRUE;
 
 		gtk_source_gutter_renderer_queue_draw (renderer);
 	}
@@ -375,6 +397,7 @@ gtk_source_gutter_renderer_set_property (GObject      *object,
                                          GParamSpec   *pspec)
 {
 	GtkSourceGutterRenderer *self = GTK_SOURCE_GUTTER_RENDERER (object);
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (self);
 
 	switch (prop_id)
 	{
@@ -397,10 +420,10 @@ gtk_source_gutter_renderer_set_property (GObject      *object,
 			set_alignment_mode (self, g_value_get_enum (value));
 			break;
 		case PROP_VIEW:
-			self->priv->view = g_value_get_object (value);
+			priv->view = g_value_get_object (value);
 			break;
 		case PROP_WINDOW_TYPE:
-			self->priv->window_type = g_value_get_enum (value);
+			priv->window_type = g_value_get_enum (value);
 			break;
 		case PROP_SIZE:
 			set_size (self, g_value_get_int (value));
@@ -426,41 +449,42 @@ gtk_source_gutter_renderer_get_property (GObject    *object,
                                          GParamSpec *pspec)
 {
 	GtkSourceGutterRenderer *self = GTK_SOURCE_GUTTER_RENDERER (object);
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (self);
 
 	switch (prop_id)
 	{
 		case PROP_VISIBLE:
-			g_value_set_boolean (value, self->priv->visible);
+			g_value_set_boolean (value, priv->visible);
 			break;
 		case PROP_XPAD:
-			g_value_set_int (value, self->priv->xpad);
+			g_value_set_int (value, priv->xpad);
 			break;
 		case PROP_YPAD:
-			g_value_set_int (value, self->priv->ypad);
+			g_value_set_int (value, priv->ypad);
 			break;
 		case PROP_XALIGN:
-			g_value_set_float (value, self->priv->xalign);
+			g_value_set_float (value, priv->xalign);
 			break;
 		case PROP_YALIGN:
-			g_value_set_float (value, self->priv->yalign);
+			g_value_set_float (value, priv->yalign);
 			break;
 		case PROP_VIEW:
-			g_value_set_object (value, self->priv->view);
+			g_value_set_object (value, priv->view);
 			break;
 		case PROP_ALIGNMENT_MODE:
-			g_value_set_enum (value, self->priv->alignment_mode);
+			g_value_set_enum (value, priv->alignment_mode);
 			break;
 		case PROP_WINDOW_TYPE:
-			g_value_set_enum (value, self->priv->window_type);
+			g_value_set_enum (value, priv->window_type);
 			break;
 		case PROP_SIZE:
-			g_value_set_int (value, self->priv->size);
+			g_value_set_int (value, priv->size);
 			break;
 		case PROP_BACKGROUND_RGBA:
-			g_value_set_boxed (value, &self->priv->background_color);
+			g_value_set_boxed (value, &priv->background_color);
 			break;
 		case PROP_BACKGROUND_SET:
-			g_value_set_boolean (value, self->priv->background_set);
+			g_value_set_boolean (value, priv->background_set);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -477,21 +501,23 @@ renderer_draw_impl (GtkSourceGutterRenderer      *renderer,
                     GtkTextIter                  *end,
                     GtkSourceGutterRendererState  state)
 {
-	if (renderer->priv->background_set)
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	if (priv->background_set)
 	{
 		cairo_save (cr);
 		gdk_cairo_rectangle (cr, background_area);
-		gdk_cairo_set_source_rgba (cr, &renderer->priv->background_color);
+		gdk_cairo_set_source_rgba (cr, &priv->background_color);
 		cairo_fill (cr);
 		cairo_restore (cr);
 	}
 	else if ((state & GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR) != 0 &&
-		 GTK_SOURCE_IS_VIEW (renderer->priv->view) &&
-		 gtk_source_view_get_highlight_current_line (GTK_SOURCE_VIEW (renderer->priv->view)))
+		 GTK_SOURCE_IS_VIEW (priv->view) &&
+		 gtk_source_view_get_highlight_current_line (GTK_SOURCE_VIEW (priv->view)))
 	{
 		GtkStyleContext *context;
 
-		context = gtk_widget_get_style_context (GTK_WIDGET (renderer->priv->view));
+		context = gtk_widget_get_style_context (GTK_WIDGET (priv->view));
 
 		gtk_style_context_save (context);
 		gtk_style_context_add_class (context, "current-line-number");
@@ -813,7 +839,6 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 static void
 gtk_source_gutter_renderer_init (GtkSourceGutterRenderer *self)
 {
-	self->priv = gtk_source_gutter_renderer_get_instance_private (self);
 }
 
 /**
@@ -1121,9 +1146,11 @@ gtk_source_gutter_renderer_set_visible (GtkSourceGutterRenderer *renderer,
 gboolean
 gtk_source_gutter_renderer_get_visible (GtkSourceGutterRenderer *renderer)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
 
-	return renderer->priv->visible;
+	return priv->visible;
 }
 
 /**
@@ -1164,16 +1191,18 @@ gtk_source_gutter_renderer_get_padding (GtkSourceGutterRenderer *renderer,
                                         gint                    *xpad,
                                         gint                    *ypad)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	if (xpad)
 	{
-		*xpad = renderer->priv->xpad;
+		*xpad = priv->xpad;
 	}
 
 	if (ypad)
 	{
-		*ypad = renderer->priv->ypad;
+		*ypad = priv->ypad;
 	}
 }
 
@@ -1225,16 +1254,18 @@ gtk_source_gutter_renderer_get_alignment (GtkSourceGutterRenderer *renderer,
                                           gfloat                  *xalign,
                                           gfloat                  *yalign)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	if (xalign)
 	{
-		*xalign = renderer->priv->xalign;
+		*xalign = priv->xalign;
 	}
 
 	if (yalign)
 	{
-		*yalign = renderer->priv->yalign;
+		*yalign = priv->yalign;
 	}
 }
 
@@ -1269,9 +1300,11 @@ gtk_source_gutter_renderer_set_alignment_mode (GtkSourceGutterRenderer          
 GtkSourceGutterRendererAlignmentMode
 gtk_source_gutter_renderer_get_alignment_mode (GtkSourceGutterRenderer *renderer)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), 0);
 
-	return renderer->priv->alignment_mode;
+	return priv->alignment_mode;
 }
 
 /**
@@ -1286,9 +1319,11 @@ gtk_source_gutter_renderer_get_alignment_mode (GtkSourceGutterRenderer *renderer
 GtkTextWindowType
 gtk_source_gutter_renderer_get_window_type (GtkSourceGutterRenderer *renderer)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), GTK_TEXT_WINDOW_PRIVATE);
 
-	return renderer->priv->window_type;
+	return priv->window_type;
 }
 
 /**
@@ -1303,9 +1338,11 @@ gtk_source_gutter_renderer_get_window_type (GtkSourceGutterRenderer *renderer)
 GtkTextView *
 gtk_source_gutter_renderer_get_view (GtkSourceGutterRenderer *renderer)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), NULL);
 
-	return renderer->priv->view;
+	return priv->view;
 }
 
 /**
@@ -1320,9 +1357,11 @@ gtk_source_gutter_renderer_get_view (GtkSourceGutterRenderer *renderer)
 gint
 gtk_source_gutter_renderer_get_size (GtkSourceGutterRenderer *renderer)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), 0);
 
-	return renderer->priv->size;
+	return priv->size;
 }
 
 /**
@@ -1357,14 +1396,16 @@ gboolean
 gtk_source_gutter_renderer_get_background (GtkSourceGutterRenderer *renderer,
                                            GdkRGBA                 *color)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
 
 	if (color)
 	{
-		*color = renderer->priv->background_color;
+		*color = priv->background_color;
 	}
 
-	return renderer->priv->background_set;
+	return priv->background_set;
 }
 
 /**
@@ -1390,15 +1431,17 @@ _gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
                                       GtkTextView             *view,
                                       GtkTextWindowType        window_type)
 {
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
 	GtkTextView *old_view;
 
 	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 	g_return_if_fail (view == NULL || GTK_IS_TEXT_VIEW (view));
 
-	old_view = renderer->priv->view;
+	old_view = priv->view;
 
-	renderer->priv->window_type = window_type;
-	renderer->priv->view = view != NULL ? g_object_ref (view) : NULL;
+	priv->window_type = window_type;
+	priv->view = view != NULL ? g_object_ref (view) : NULL;
 
 	if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_view)
 	{
