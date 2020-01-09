@@ -26,7 +26,7 @@
 #include "gtksourcefilesaver.h"
 #include <glib/gi18n-lib.h>
 #include "gtksourcefile.h"
-#include "gtksourcebufferinputstream.h"
+#include "gtksourcebufferinputstream-private.h"
 #include "gtksourceencoding.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"

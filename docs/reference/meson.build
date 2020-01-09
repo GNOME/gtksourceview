@@ -8,7 +8,7 @@ reference_private_h = [
   'config.h',
   'gtksource.h',
   'gtksourcebuffer-private.h',
-  'gtksourcebufferinputstream.h',
+  'gtksourcebufferinputstream-private.h',
   'gtksourcebufferinternal.h',
   'gtksourcebufferoutputstream.h',
   'gtksourcecompletioncontainer.h',
