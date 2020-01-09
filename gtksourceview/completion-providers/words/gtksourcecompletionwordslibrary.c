@@ -21,9 +21,9 @@
 
 #include "config.h"
 
-#include "gtksourcecompletionwordslibrary.h"
-
 #include <string.h>
+
+#include "gtksourcecompletionwordslibrary-private.h"
 
 enum
 {

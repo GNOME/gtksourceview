@@ -21,8 +21,8 @@
 
 #include "config.h"
 
-#include "gtksourcecompletionwordsbuffer.h"
-#include "gtksourcecompletionwordsutils.h"
+#include "gtksourcecompletionwordsbuffer-private.h"
+#include "gtksourcecompletionwordsutils-private.h"
 #include "gtksourceview/gtksourceregion.h"
 
 /* Timeout in seconds */

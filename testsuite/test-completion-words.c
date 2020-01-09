@@ -19,7 +19,7 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/completion-providers/words/gtksourcecompletionwordslibrary.h"
+#include "gtksourceview/completion-providers/words/gtksourcecompletionwordslibrary-private.h"
 
 static void
 library_add_words (GtkSourceCompletionWordsLibrary *library)
