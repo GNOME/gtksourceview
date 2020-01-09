@@ -29,9 +29,7 @@
  * appearing in the registered #GtkTextBuffer<!-- -->s.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourcecompletionwords.h"
 #include <string.h>

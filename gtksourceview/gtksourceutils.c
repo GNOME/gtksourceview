@@ -29,9 +29,7 @@
  * Utility functions.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourceutils.h"
 #include "gtksourceutils-private.h"

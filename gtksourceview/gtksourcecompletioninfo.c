@@ -55,9 +55,7 @@
  * #GtkSourceCompletion machinery, you don't need to worry about this.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourcecompletioninfo.h"
 #include <glib/gi18n-lib.h>
