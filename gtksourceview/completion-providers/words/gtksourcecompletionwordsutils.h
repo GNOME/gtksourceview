@@ -19,28 +19,22 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_COMPLETION_WORDS_UTILS_H
-#define GTK_SOURCE_COMPLETION_WORDS_UTILS_H
+#pragma once
 
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-GSList		*_gtk_source_completion_words_utils_scan_words		(gchar *text,
-									 guint  minimum_word_size);
-
+GSList *_gtk_source_completion_words_utils_scan_words        (gchar             *text,
+                                                              guint              minimum_word_size);
 G_GNUC_INTERNAL
-gchar		*_gtk_source_completion_words_utils_get_end_word	(gchar *text);
-
+gchar  *_gtk_source_completion_words_utils_get_end_word      (gchar             *text);
 G_GNUC_INTERNAL
-void		 _gtk_source_completion_words_utils_adjust_region	(GtkTextIter *start,
-									 GtkTextIter *end);
-
+void    _gtk_source_completion_words_utils_adjust_region     (GtkTextIter       *start,
+                                                              GtkTextIter       *end);
 G_GNUC_INTERNAL
-void		 _gtk_source_completion_words_utils_check_scan_region	(const GtkTextIter *start,
-									 const GtkTextIter *end);
+void    _gtk_source_completion_words_utils_check_scan_region (const GtkTextIter *start,
+                                                              const GtkTextIter *end);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_COMPLETION_WORDS_UTILS_H */

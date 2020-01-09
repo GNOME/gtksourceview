@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_COMPLETION_WORDS_BUFFER_H
-#define GTK_SOURCE_COMPLETION_WORDS_BUFFER_H
+#pragma once
 
 #include <gtk/gtk.h>
 
@@ -27,47 +26,21 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER			(gtk_source_completion_words_buffer_get_type ())
-#define GTK_SOURCE_COMPLETION_WORDS_BUFFER(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBuffer))
-#define GTK_SOURCE_COMPLETION_WORDS_BUFFER_CONST(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBuffer const))
-#define GTK_SOURCE_COMPLETION_WORDS_BUFFER_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferClass))
-#define GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER))
-#define GTK_SOURCE_IS_COMPLETION_WORDS_BUFFER_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER))
-#define GTK_SOURCE_COMPLETION_WORDS_BUFFER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER, GtkSourceCompletionWordsBufferClass))
-
-typedef struct _GtkSourceCompletionWordsBuffer			GtkSourceCompletionWordsBuffer;
-typedef struct _GtkSourceCompletionWordsBufferClass		GtkSourceCompletionWordsBufferClass;
-typedef struct _GtkSourceCompletionWordsBufferPrivate		GtkSourceCompletionWordsBufferPrivate;
-
-struct _GtkSourceCompletionWordsBuffer {
-	GObject parent;
-
-	GtkSourceCompletionWordsBufferPrivate *priv;
-};
-
-struct _GtkSourceCompletionWordsBufferClass {
-	GObjectClass parent_class;
-};
+#define GTK_SOURCE_TYPE_COMPLETION_WORDS_BUFFER (gtk_source_completion_words_buffer_get_type())
 
 G_GNUC_INTERNAL
-GType		 gtk_source_completion_words_buffer_get_type			(void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (GtkSourceCompletionWordsBuffer, gtk_source_completion_words_buffer, GTK_SOURCE, COMPLETION_WORDS_BUFFER, GObject)
 
 G_GNUC_INTERNAL
-GtkSourceCompletionWordsBuffer *
-		 gtk_source_completion_words_buffer_new				(GtkSourceCompletionWordsLibrary *library,
-										 GtkTextBuffer                   *buffer);
-
+GtkSourceCompletionWordsBuffer *gtk_source_completion_words_buffer_new                   (GtkSourceCompletionWordsLibrary *library,
+                                                                                          GtkTextBuffer                   *buffer);
 G_GNUC_INTERNAL
-GtkTextBuffer 	*gtk_source_completion_words_buffer_get_buffer			(GtkSourceCompletionWordsBuffer  *buffer);
-
+GtkTextBuffer                  *gtk_source_completion_words_buffer_get_buffer            (GtkSourceCompletionWordsBuffer  *buffer);
 G_GNUC_INTERNAL
-void		 gtk_source_completion_words_buffer_set_scan_batch_size		(GtkSourceCompletionWordsBuffer  *buffer,
-										 guint                            size);
-
+void                            gtk_source_completion_words_buffer_set_scan_batch_size   (GtkSourceCompletionWordsBuffer  *buffer,
+                                                                                          guint                            size);
 G_GNUC_INTERNAL
-void		 gtk_source_completion_words_buffer_set_minimum_word_size	(GtkSourceCompletionWordsBuffer  *buffer,
-										 guint                            size);
+void                            gtk_source_completion_words_buffer_set_minimum_word_size (GtkSourceCompletionWordsBuffer  *buffer,
+                                                                                          guint                            size);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_COMPLETION_WORDS_BUFFER_H */
