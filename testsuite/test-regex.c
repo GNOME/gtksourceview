@@ -20,7 +20,7 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourceregex.h"
+#include "gtksourceview/gtksourceregex-private.h"
 
 static void
 test_slash_c_pattern (void)

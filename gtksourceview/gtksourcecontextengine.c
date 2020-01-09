@@ -30,7 +30,7 @@
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksourcebuffer.h"
-#include "gtksourceregex.h"
+#include "gtksourceregex-private.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils-private.h"
