@@ -37,13 +37,11 @@
  * a #GtkTextTag, not a #GtkSourceTag.
  */
 
-typedef struct _GtkSourceTagPrivate GtkSourceTagPrivate;
-
-struct _GtkSourceTagPrivate
+typedef struct
 {
 	guint draw_spaces : 1;
 	guint draw_spaces_set : 1;
-};
+} GtkSourceTagPrivate;
 
 enum
 {
@@ -56,9 +54,9 @@ G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceTag, gtk_source_tag, GTK_TYPE_TEXT_TAG)
 
 static void
 gtk_source_tag_get_property (GObject    *object,
-			     guint       prop_id,
-			     GValue     *value,
-			     GParamSpec *pspec)
+                             guint       prop_id,
+                             GValue     *value,
+                             GParamSpec *pspec)
 {
 	GtkSourceTagPrivate *priv;
 
@@ -82,9 +80,9 @@ gtk_source_tag_get_property (GObject    *object,
 
 static void
 gtk_source_tag_set_property (GObject      *object,
-			     guint         prop_id,
-			     const GValue *value,
-			     GParamSpec   *pspec)
+                             guint         prop_id,
+                             const GValue *value,
+                             GParamSpec   *pspec)
 {
 	GtkSourceTag *tag;
 	GtkSourceTagPrivate *priv;

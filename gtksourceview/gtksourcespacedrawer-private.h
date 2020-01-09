@@ -21,18 +21,18 @@
 #pragma once
 
 #include <gtk/gtk.h>
+
 #include "gtksourcetypes.h"
 #include "gtksourcetypes-private.h"
 
 G_BEGIN_DECLS
 
 GTK_SOURCE_INTERNAL
-void			_gtk_source_space_drawer_update_color		(GtkSourceSpaceDrawer *drawer,
-									 GtkSourceView        *view);
-
+void _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
+                                            GtkSourceView        *view);
 GTK_SOURCE_INTERNAL
-void			_gtk_source_space_drawer_draw			(GtkSourceSpaceDrawer *drawer,
-									 GtkSourceView        *view,
-									 cairo_t              *cr);
+void _gtk_source_space_drawer_draw         (GtkSourceSpaceDrawer *drawer,
+                                            GtkSourceView        *view,
+                                            cairo_t              *cr);
 
 G_END_DECLS

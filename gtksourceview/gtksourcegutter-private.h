@@ -26,13 +26,11 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-GtkSourceGutter *	_gtk_source_gutter_new		(GtkSourceView     *view,
-							 GtkTextWindowType  type);
-
+GtkSourceGutter *_gtk_source_gutter_new  (GtkSourceView     *view,
+                                          GtkTextWindowType  type);
 G_GNUC_INTERNAL
-void			_gtk_source_gutter_draw		(GtkSourceGutter *gutter,
-							 GtkSourceView   *view,
-							 cairo_t         *cr);
-
+void             _gtk_source_gutter_draw (GtkSourceGutter   *gutter,
+                                          GtkSourceView     *view,
+                                          cairo_t           *cr);
 
 G_END_DECLS

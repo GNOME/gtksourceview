@@ -94,15 +94,15 @@ struct _GtkSourceBufferClass
 	GtkTextBufferClass parent_class;
 
 	/* Signals */
-	void (*undo) (GtkSourceBuffer *buffer);
-	void (*redo) (GtkSourceBuffer *buffer);
+	void (*undo)            (GtkSourceBuffer *buffer);
+	void (*redo)            (GtkSourceBuffer *buffer);
 
 	void (*bracket_matched) (GtkSourceBuffer           *buffer,
-				 GtkTextIter               *iter,
-				 GtkSourceBracketMatchType  state);
+	                         GtkTextIter               *iter,
+	                         GtkSourceBracketMatchType  state);
 
-	/* Padding for future expansion */
-	gpointer padding[20];
+	/*< private >*/
+	gpointer _reserved[20];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL
