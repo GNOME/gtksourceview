@@ -42,7 +42,7 @@ typedef enum _GtkSourceEncodingDuplicates
 } GtkSourceEncodingDuplicates;
 
 GTK_SOURCE_INTERNAL
-GSList *		_gtk_source_encoding_remove_duplicates		(GSList                      *encodings,
-									 GtkSourceEncodingDuplicates  removal_type);
+GSList *_gtk_source_encoding_remove_duplicates (GSList                      *encodings,
+                                                GtkSourceEncodingDuplicates  removal_type);
 
 G_END_DECLS

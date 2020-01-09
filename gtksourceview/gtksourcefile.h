@@ -85,7 +85,7 @@ typedef enum _GtkSourceCompressionType
  * Since: 3.14
  */
 typedef GMountOperation *(*GtkSourceMountOperationFactory) (GtkSourceFile *file,
-							    gpointer       userdata);
+                                                            gpointer       userdata);
 
 GTK_SOURCE_AVAILABLE_IN_3_14
 G_DECLARE_DERIVABLE_TYPE (GtkSourceFile, gtk_source_file, GTK_SOURCE, FILE, GObject)

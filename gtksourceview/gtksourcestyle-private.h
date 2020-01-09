@@ -33,15 +33,15 @@ G_BEGIN_DECLS
 
 enum
 {
-	GTK_SOURCE_STYLE_USE_LINE_BACKGROUND = 1 << 0,	/*< nick=use_line_background >*/
-	GTK_SOURCE_STYLE_USE_BACKGROUND      = 1 << 1,	/*< nick=use_background >*/
-	GTK_SOURCE_STYLE_USE_FOREGROUND      = 1 << 2,	/*< nick=use_foreground >*/
-	GTK_SOURCE_STYLE_USE_ITALIC          = 1 << 3,	/*< nick=use_italic >*/
-	GTK_SOURCE_STYLE_USE_BOLD            = 1 << 4,	/*< nick=use_bold >*/
-	GTK_SOURCE_STYLE_USE_UNDERLINE       = 1 << 5,	/*< nick=use_underline >*/
-	GTK_SOURCE_STYLE_USE_STRIKETHROUGH   = 1 << 6,	/*< nick=use_strikethrough >*/
-	GTK_SOURCE_STYLE_USE_SCALE           = 1 << 7,	/*< nick=use_scale >*/
-	GTK_SOURCE_STYLE_USE_UNDERLINE_COLOR = 1 << 8	/*< nick=use_underline_color >*/
+	GTK_SOURCE_STYLE_USE_LINE_BACKGROUND = 1 << 0, /*< nick=use_line_background >*/
+	GTK_SOURCE_STYLE_USE_BACKGROUND      = 1 << 1, /*< nick=use_background >*/
+	GTK_SOURCE_STYLE_USE_FOREGROUND      = 1 << 2, /*< nick=use_foreground >*/
+	GTK_SOURCE_STYLE_USE_ITALIC          = 1 << 3, /*< nick=use_italic >*/
+	GTK_SOURCE_STYLE_USE_BOLD            = 1 << 4, /*< nick=use_bold >*/
+	GTK_SOURCE_STYLE_USE_UNDERLINE       = 1 << 5, /*< nick=use_underline >*/
+	GTK_SOURCE_STYLE_USE_STRIKETHROUGH   = 1 << 6, /*< nick=use_strikethrough >*/
+	GTK_SOURCE_STYLE_USE_SCALE           = 1 << 7, /*< nick=use_scale >*/
+	GTK_SOURCE_STYLE_USE_UNDERLINE_COLOR = 1 << 8, /*< nick=use_underline_color >*/
 };
 
 struct _GtkSourceStyle

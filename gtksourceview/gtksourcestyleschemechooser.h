@@ -40,10 +40,10 @@ struct _GtkSourceStyleSchemeChooserInterface
 	GTypeInterface base_interface;
 
 	/* Methods */
-	GtkSourceStyleScheme * (* get_style_scheme)       (GtkSourceStyleSchemeChooser *chooser);
+	GtkSourceStyleScheme *(*get_style_scheme) (GtkSourceStyleSchemeChooser *chooser);
 
-	void                   (* set_style_scheme)       (GtkSourceStyleSchemeChooser *chooser,
-	                                                   GtkSourceStyleScheme        *scheme);
+	void                  (*set_style_scheme) (GtkSourceStyleSchemeChooser *chooser,
+	                                           GtkSourceStyleScheme        *scheme);
 
 	/*< private >*/
 	gpointer _reserved[12];
