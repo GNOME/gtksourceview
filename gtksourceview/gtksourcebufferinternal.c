@@ -111,7 +111,7 @@ _gtk_source_buffer_internal_get_from_buffer (GtkSourceBuffer *buffer)
 
 void
 _gtk_source_buffer_internal_emit_search_start (GtkSourceBufferInternal *buffer_internal,
-					       GtkSourceSearchContext  *search_context)
+                                               GtkSourceSearchContext  *search_context)
 {
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER_INTERNAL (buffer_internal));
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search_context));
