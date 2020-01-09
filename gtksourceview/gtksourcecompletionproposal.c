@@ -51,8 +51,6 @@ enum
 
 static guint signals[N_SIGNALS];
 
-typedef GtkSourceCompletionProposalIface GtkSourceCompletionProposalInterface;
-
 G_DEFINE_INTERFACE (GtkSourceCompletionProposal, gtk_source_completion_proposal, G_TYPE_OBJECT)
 
 static gchar *
@@ -111,7 +109,7 @@ gtk_source_completion_proposal_equal_default (GtkSourceCompletionProposal *propo
 }
 
 static void
-gtk_source_completion_proposal_default_init (GtkSourceCompletionProposalIface *iface)
+gtk_source_completion_proposal_default_init (GtkSourceCompletionProposalInterface *iface)
 {
 	static gboolean initialized = FALSE;
 
@@ -139,7 +137,7 @@ gtk_source_completion_proposal_default_init (GtkSourceCompletionProposalIface *i
 			g_signal_new ("changed",
 			      G_TYPE_FROM_INTERFACE (iface),
 			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-			      G_STRUCT_OFFSET (GtkSourceCompletionProposalIface, changed),
+			      G_STRUCT_OFFSET (GtkSourceCompletionProposalInterface, changed),
 			      NULL, NULL,
 			      g_cclosure_marshal_VOID__VOID,
 			      G_TYPE_NONE, 0);
@@ -167,7 +165,7 @@ gtk_source_completion_proposal_get_label (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_label (proposal);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE (proposal)->get_label (proposal);
 }
 
 /**
@@ -186,7 +184,7 @@ gtk_source_completion_proposal_get_markup (GtkSourceCompletionProposal *proposal
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_markup (proposal);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE (proposal)->get_markup (proposal);
 }
 
 /**
@@ -207,7 +205,7 @@ gtk_source_completion_proposal_get_text (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_text (proposal);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE (proposal)->get_text (proposal);
 }
 
 /**
@@ -223,7 +221,7 @@ gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_icon (proposal);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE (proposal)->get_icon (proposal);
 }
 
 /**
@@ -241,7 +239,7 @@ gtk_source_completion_proposal_get_icon_name (GtkSourceCompletionProposal *propo
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_icon_name (proposal);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE (proposal)->get_icon_name (proposal);
 }
 
 /**
@@ -259,7 +257,7 @@ gtk_source_completion_proposal_get_gicon (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_gicon (proposal);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE (proposal)->get_gicon (proposal);
 }
 
 /**
@@ -279,7 +277,7 @@ gtk_source_completion_proposal_get_info (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->get_info (proposal);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE (proposal)->get_info (proposal);
 }
 
 /**
@@ -297,7 +295,7 @@ gtk_source_completion_proposal_hash (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), 0);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->hash (proposal);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE (proposal)->hash (proposal);
 }
 
 /**
@@ -318,7 +316,7 @@ gtk_source_completion_proposal_equal (GtkSourceCompletionProposal *proposal,
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), FALSE);
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (other), FALSE);
 
-	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE (proposal)->equal (proposal, other);
+	return GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE (proposal)->equal (proposal, other);
 }
 
 /**
