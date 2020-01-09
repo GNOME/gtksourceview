@@ -45,7 +45,7 @@
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcegutter.h"
 #include "gtksourcegutter-private.h"
-#include "gtksourcegutterrendererlines.h"
+#include "gtksourcegutterrendererlines-private.h"
 #include "gtksourcegutterrenderermarks-private.h"
 #include "gtksourceiter-private.h"
 #include "gtksourcesearchcontext-private.h"
@@ -2956,7 +2956,7 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 
 		gutter = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
 
-		priv->line_renderer = gtk_source_gutter_renderer_lines_new ();
+		priv->line_renderer = _gtk_source_gutter_renderer_lines_new ();
 		g_object_set (priv->line_renderer,
 		              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
 		              "yalign", 0.5,
