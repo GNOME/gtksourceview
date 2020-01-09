@@ -20,9 +20,10 @@
 
 #include "config.h"
 
-#include "gtksourceinit.h"
 #include <glib/gi18n-lib.h>
-#include "gtksourcelanguagemanager.h"
+
+#include "gtksourceinit.h"
+#include "gtksourcelanguagemanager-private.h"
 #include "gtksourcestyleschememanager.h"
 
 #ifdef G_OS_WIN32

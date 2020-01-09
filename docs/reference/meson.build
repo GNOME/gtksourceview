@@ -30,6 +30,7 @@ reference_private_h = [
   'gtksourcegutterrenderer-private.h',
   'gtksourceiter-private.h',
   'gtksourcelanguage-private.h',
+  'gtksourcelanguagemanager-private.h',
   'gtksourcemarkssequence.h',
   'gtksourcepixbufhelper.h',
   'gtksourceregex.h',
