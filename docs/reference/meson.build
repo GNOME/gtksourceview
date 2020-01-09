@@ -26,7 +26,7 @@ reference_private_h = [
   'gtksourcefile-private.h',
   'gtksourcegutter-private.h',
   'gtksourcegutterrenderer-private.h',
-  'gtksourcegutterrendererlines.h',
+  'gtksourcegutterrendererlines-private.h',
   'gtksourcegutterrenderermarks-private.h',
   'gtksourceiter-private.h',
   'gtksourcelanguage-private.h',
