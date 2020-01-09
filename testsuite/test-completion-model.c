@@ -42,7 +42,7 @@ struct _TestProviderClass
 
 GType test_provider_get_type (void);
 
-static void test_provider_iface_init (GtkSourceCompletionProviderIface *iface);
+static void test_provider_iface_init (GtkSourceCompletionProviderInterface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (TestProvider,
 			 test_provider,
@@ -63,7 +63,7 @@ test_provider_get_priority (GtkSourceCompletionProvider *provider)
 }
 
 static void
-test_provider_iface_init (GtkSourceCompletionProviderIface *iface)
+test_provider_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
 	iface->get_name = test_provider_get_name;
 	iface->get_priority = test_provider_get_priority;
