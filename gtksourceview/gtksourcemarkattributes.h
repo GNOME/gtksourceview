@@ -31,80 +31,43 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_MARK_ATTRIBUTES			(gtk_source_mark_attributes_get_type ())
-#define GTK_SOURCE_MARK_ATTRIBUTES(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_MARK_ATTRIBUTES, GtkSourceMarkAttributes))
-#define GTK_SOURCE_MARK_ATTRIBUTES_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_MARK_ATTRIBUTES, GtkSourceMarkAttributesClass))
-#define GTK_SOURCE_IS_MARK_ATTRIBUTES(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_MARK_ATTRIBUTES))
-#define GTK_SOURCE_IS_MARK_ATTRIBUTES_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_MARK_ATTRIBUTES))
-#define GTK_SOURCE_MARK_ATTRIBUTES_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_MARK_ATTRIBUTES, GtkSourceMarkAttributesClass))
-
-typedef struct _GtkSourceMarkAttributesClass	GtkSourceMarkAttributesClass;
-typedef struct _GtkSourceMarkAttributesPrivate	GtkSourceMarkAttributesPrivate;
-
-struct _GtkSourceMarkAttributes
-{
-	/*< private >*/
-	GObject parent;
-
-	GtkSourceMarkAttributesPrivate *priv;
-
-	/*< public >*/
-};
-
-struct _GtkSourceMarkAttributesClass
-{
-	/*< private >*/
-	GObjectClass parent_class;
-
-	gpointer padding[10];
-};
+#define GTK_SOURCE_TYPE_MARK_ATTRIBUTES (gtk_source_mark_attributes_get_type())
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GType gtk_source_mark_attributes_get_type (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (GtkSourceMarkAttributes, gtk_source_mark_attributes, GTK_SOURCE, MARK_ATTRIBUTES, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceMarkAttributes *gtk_source_mark_attributes_new (void);
-
+GtkSourceMarkAttributes *gtk_source_mark_attributes_new                (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void             gtk_source_mark_attributes_set_background      (GtkSourceMarkAttributes *attributes,
-                                                                 const GdkRGBA           *background);
-
+void                     gtk_source_mark_attributes_set_background     (GtkSourceMarkAttributes *attributes,
+                                                                        const GdkRGBA           *background);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean         gtk_source_mark_attributes_get_background      (GtkSourceMarkAttributes *attributes,
-                                                                 GdkRGBA                 *background);
-
+gboolean                 gtk_source_mark_attributes_get_background     (GtkSourceMarkAttributes *attributes,
+                                                                        GdkRGBA                 *background);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void             gtk_source_mark_attributes_set_icon_name       (GtkSourceMarkAttributes *attributes,
-                                                                 const gchar             *icon_name);
-
+void                     gtk_source_mark_attributes_set_icon_name      (GtkSourceMarkAttributes *attributes,
+                                                                        const gchar             *icon_name);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar     *gtk_source_mark_attributes_get_icon_name       (GtkSourceMarkAttributes *attributes);
-
+const gchar             *gtk_source_mark_attributes_get_icon_name      (GtkSourceMarkAttributes *attributes);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void             gtk_source_mark_attributes_set_gicon           (GtkSourceMarkAttributes *attributes,
-                                                                 GIcon                   *gicon);
-
+void                     gtk_source_mark_attributes_set_gicon          (GtkSourceMarkAttributes *attributes,
+                                                                        GIcon                   *gicon);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GIcon           *gtk_source_mark_attributes_get_gicon           (GtkSourceMarkAttributes *attributes);
-
+GIcon                   *gtk_source_mark_attributes_get_gicon          (GtkSourceMarkAttributes *attributes);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void             gtk_source_mark_attributes_set_pixbuf          (GtkSourceMarkAttributes *attributes,
-                                                                 const GdkPixbuf         *pixbuf);
-
+void                     gtk_source_mark_attributes_set_pixbuf         (GtkSourceMarkAttributes *attributes,
+                                                                        const GdkPixbuf         *pixbuf);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const GdkPixbuf *gtk_source_mark_attributes_get_pixbuf          (GtkSourceMarkAttributes *attributes);
-
+const GdkPixbuf         *gtk_source_mark_attributes_get_pixbuf         (GtkSourceMarkAttributes *attributes);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const GdkPixbuf *gtk_source_mark_attributes_render_icon         (GtkSourceMarkAttributes *attributes,
-                                                                 GtkWidget               *widget,
-                                                                 gint                   size);
-
+const GdkPixbuf         *gtk_source_mark_attributes_render_icon        (GtkSourceMarkAttributes *attributes,
+                                                                        GtkWidget               *widget,
+                                                                        gint                     size);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gchar           *gtk_source_mark_attributes_get_tooltip_text    (GtkSourceMarkAttributes *attributes,
-                                                                 GtkSourceMark           *mark);
-
+gchar                   *gtk_source_mark_attributes_get_tooltip_text   (GtkSourceMarkAttributes *attributes,
+                                                                        GtkSourceMark           *mark);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gchar           *gtk_source_mark_attributes_get_tooltip_markup  (GtkSourceMarkAttributes *attributes,
-                                                                 GtkSourceMark           *mark);
+gchar                   *gtk_source_mark_attributes_get_tooltip_markup (GtkSourceMarkAttributes *attributes,
+                                                                        GtkSourceMark           *mark);
 
 G_END_DECLS
