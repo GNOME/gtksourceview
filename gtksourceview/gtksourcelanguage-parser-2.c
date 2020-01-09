@@ -33,7 +33,7 @@
 #include "gtksourcebuffer.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
-#include "gtksourcecontextengine.h"
+#include "gtksourcecontextengine-private.h"
 
 #include <glib.h>
 #include <glib/gstdio.h>
