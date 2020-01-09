@@ -40,7 +40,7 @@
 #include "gtksourcestylescheme-private.h"
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcemark.h"
-#include "gtksourcemarkssequence.h"
+#include "gtksourcemarkssequence-private.h"
 #include "gtksourcesearchcontext-private.h"
 #include "gtksourcetag.h"
 #include "gtksource-enumtypes.h"
