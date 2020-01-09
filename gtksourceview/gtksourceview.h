@@ -31,15 +31,7 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_VIEW             (gtk_source_view_get_type ())
-#define GTK_SOURCE_VIEW(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_VIEW, GtkSourceView))
-#define GTK_SOURCE_VIEW_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_VIEW, GtkSourceViewClass))
-#define GTK_SOURCE_IS_VIEW(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_VIEW))
-#define GTK_SOURCE_IS_VIEW_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_VIEW))
-#define GTK_SOURCE_VIEW_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_VIEW, GtkSourceViewClass))
-
-typedef struct _GtkSourceViewClass GtkSourceViewClass;
-typedef struct _GtkSourceViewPrivate GtkSourceViewPrivate;
+#define GTK_SOURCE_TYPE_VIEW (gtk_source_view_get_type())
 
 /**
  * GtkSourceViewGutterPosition:
@@ -87,177 +79,123 @@ typedef enum _GtkSourceBackgroundPatternType
 	GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID
 } GtkSourceBackgroundPatternType;
 
-struct _GtkSourceView
-{
-	GtkTextView parent;
-
-	GtkSourceViewPrivate *priv;
-};
+GTK_SOURCE_AVAILABLE_IN_ALL
+G_DECLARE_DERIVABLE_TYPE (GtkSourceView, gtk_source_view, GTK_SOURCE, VIEW, GtkTextView)
 
 struct _GtkSourceViewClass
 {
 	GtkTextViewClass parent_class;
 
-	void (*undo) (GtkSourceView *view);
-	void (*redo) (GtkSourceView *view);
+	void (*undo)                (GtkSourceView *view);
+	void (*redo)                (GtkSourceView *view);
 	void (*line_mark_activated) (GtkSourceView *view,
 	                             GtkTextIter   *iter,
 	                             GdkEvent      *event);
-	void (*show_completion) (GtkSourceView *view);
-	void (*move_lines) (GtkSourceView *view,
-			    gboolean       down);
+	void (*show_completion)     (GtkSourceView *view);
+	void (*move_lines)          (GtkSourceView *view,
+	                             gboolean       down);
+	void (*move_words)          (GtkSourceView *view,
+	                             gint           step);
 
-	void (*move_words) (GtkSourceView *view,
-	                    gint           step);
-
-	/* Padding for future expansion */
-	gpointer padding[20];
+	/*< private >*/
+	gpointer _reserved[20];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GType		 gtk_source_view_get_type		(void) G_GNUC_CONST;
-
+GtkWidget                      *gtk_source_view_new                               (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkWidget	*gtk_source_view_new			(void);
-
+GtkWidget                      *gtk_source_view_new_with_buffer                   (GtkSourceBuffer                *buffer);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkWidget 	*gtk_source_view_new_with_buffer	(GtkSourceBuffer *buffer);
-
+void                            gtk_source_view_set_show_line_numbers             (GtkSourceView                  *view,
+                                                                                   gboolean                        show);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_show_line_numbers 	(GtkSourceView   *view,
-							 gboolean         show);
-
+gboolean                        gtk_source_view_get_show_line_numbers             (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean 	 gtk_source_view_get_show_line_numbers 	(GtkSourceView   *view);
-
+void                            gtk_source_view_set_tab_width                     (GtkSourceView                  *view,
+                                                                                   guint                           width);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_tab_width          (GtkSourceView   *view,
-							 guint            width);
-
+guint                           gtk_source_view_get_tab_width                     (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-guint            gtk_source_view_get_tab_width          (GtkSourceView   *view);
-
+void                            gtk_source_view_set_indent_width                  (GtkSourceView                  *view,
+                                                                                   gint                            width);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_indent_width 	(GtkSourceView   *view,
-							 gint             width);
-
+gint                            gtk_source_view_get_indent_width                  (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gint		 gtk_source_view_get_indent_width	(GtkSourceView   *view);
-
+void                            gtk_source_view_set_auto_indent                   (GtkSourceView                  *view,
+                                                                                   gboolean                        enable);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_auto_indent 	(GtkSourceView   *view,
-							 gboolean         enable);
-
+gboolean                        gtk_source_view_get_auto_indent                   (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_view_get_auto_indent 	(GtkSourceView   *view);
-
+void                            gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView                  *view,
+                                                                                   gboolean                        enable);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_insert_spaces_instead_of_tabs
-							(GtkSourceView   *view,
-							 gboolean         enable);
-
+gboolean                        gtk_source_view_get_insert_spaces_instead_of_tabs (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_view_get_insert_spaces_instead_of_tabs
-							(GtkSourceView   *view);
-
+void                            gtk_source_view_set_indent_on_tab                 (GtkSourceView                  *view,
+                                                                                   gboolean                        enable);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_indent_on_tab 	(GtkSourceView   *view,
-							 gboolean         enable);
-
-GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_view_get_indent_on_tab 	(GtkSourceView   *view);
-
+gboolean                        gtk_source_view_get_indent_on_tab                 (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_3_16
-void		 gtk_source_view_indent_lines		(GtkSourceView   *view,
-							 GtkTextIter     *start,
-							 GtkTextIter     *end);
-
+void                            gtk_source_view_indent_lines                      (GtkSourceView                  *view,
+                                                                                   GtkTextIter                    *start,
+                                                                                   GtkTextIter                    *end);
 GTK_SOURCE_AVAILABLE_IN_3_16
-void		 gtk_source_view_unindent_lines		(GtkSourceView   *view,
-							 GtkTextIter     *start,
-							 GtkTextIter     *end);
-
+void                            gtk_source_view_unindent_lines                    (GtkSourceView                  *view,
+                                                                                   GtkTextIter                    *start,
+                                                                                   GtkTextIter                    *end);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_highlight_current_line
-							(GtkSourceView   *view,
-							 gboolean         highlight);
-
+void                            gtk_source_view_set_highlight_current_line        (GtkSourceView                  *view,
+                                                                                   gboolean                        highlight);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean 	 gtk_source_view_get_highlight_current_line
-							(GtkSourceView   *view);
-
+gboolean                        gtk_source_view_get_highlight_current_line        (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_show_right_margin 	(GtkSourceView   *view,
-							 gboolean         show);
-
+void                            gtk_source_view_set_show_right_margin             (GtkSourceView                  *view,
+                                                                                   gboolean                        show);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean 	 gtk_source_view_get_show_right_margin 	(GtkSourceView   *view);
-
+gboolean                        gtk_source_view_get_show_right_margin             (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_right_margin_position
-					 		(GtkSourceView   *view,
-							 guint            pos);
-
+void                            gtk_source_view_set_right_margin_position         (GtkSourceView                  *view,
+                                                                                   guint                           pos);
 GTK_SOURCE_AVAILABLE_IN_ALL
-guint		 gtk_source_view_get_right_margin_position
-					 		(GtkSourceView   *view);
-
+guint                           gtk_source_view_get_right_margin_position         (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void 		 gtk_source_view_set_show_line_marks    (GtkSourceView   *view,
-							 gboolean         show);
-
+void                            gtk_source_view_set_show_line_marks               (GtkSourceView                  *view,
+                                                                                   gboolean                        show);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_view_get_show_line_marks    (GtkSourceView   *view);
-
+gboolean                        gtk_source_view_get_show_line_marks               (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void             gtk_source_view_set_mark_attributes    (GtkSourceView           *view,
-                                                         const gchar             *category,
-                                                         GtkSourceMarkAttributes *attributes,
-                                                         gint                     priority);
-
+void                            gtk_source_view_set_mark_attributes               (GtkSourceView                  *view,
+                                                                                   const gchar                    *category,
+                                                                                   GtkSourceMarkAttributes        *attributes,
+                                                                                   gint                            priority);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceMarkAttributes *
-                 gtk_source_view_get_mark_attributes    (GtkSourceView           *view,
-                                                         const gchar             *category,
-                                                         gint                    *priority);
-
+GtkSourceMarkAttributes        *gtk_source_view_get_mark_attributes               (GtkSourceView                  *view,
+                                                                                   const gchar                    *category,
+                                                                                   gint                           *priority);
 GTK_SOURCE_AVAILABLE_IN_3_18
-void		 gtk_source_view_set_smart_backspace	(GtkSourceView   *view,
-							 gboolean        smart_backspace);
-
+void                            gtk_source_view_set_smart_backspace               (GtkSourceView                  *view,
+                                                                                   gboolean                        smart_backspace);
 GTK_SOURCE_AVAILABLE_IN_3_18
-gboolean	 gtk_source_view_get_smart_backspace	(GtkSourceView   *view);
-
+gboolean                        gtk_source_view_get_smart_backspace               (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_view_set_smart_home_end	(GtkSourceView             *view,
-							 GtkSourceSmartHomeEndType  smart_home_end);
-
+void                            gtk_source_view_set_smart_home_end                (GtkSourceView                  *view,
+                                                                                   GtkSourceSmartHomeEndType       smart_home_end);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceSmartHomeEndType
-		 gtk_source_view_get_smart_home_end	(GtkSourceView   *view);
-
+GtkSourceSmartHomeEndType       gtk_source_view_get_smart_home_end                (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-guint		 gtk_source_view_get_visual_column	(GtkSourceView     *view,
-							 const GtkTextIter *iter);
-
+guint                           gtk_source_view_get_visual_column                 (GtkSourceView                  *view,
+                                                                                   const GtkTextIter              *iter);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceCompletion *
-		 gtk_source_view_get_completion		(GtkSourceView   *view);
-
+GtkSourceCompletion            *gtk_source_view_get_completion                    (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceGutter *gtk_source_view_get_gutter		(GtkSourceView     *view,
-                                                         GtkTextWindowType  window_type);
-
+GtkSourceGutter                *gtk_source_view_get_gutter                        (GtkSourceView                  *view,
+                                                                                   GtkTextWindowType               window_type);
 GTK_SOURCE_AVAILABLE_IN_3_16
-void		 gtk_source_view_set_background_pattern	(GtkSourceView                  *view,
-                                                         GtkSourceBackgroundPatternType  background_pattern);
-
+void                            gtk_source_view_set_background_pattern            (GtkSourceView                  *view,
+                                                                                   GtkSourceBackgroundPatternType  background_pattern);
 GTK_SOURCE_AVAILABLE_IN_3_16
-GtkSourceBackgroundPatternType
-		 gtk_source_view_get_background_pattern	(GtkSourceView   *view);
-
+GtkSourceBackgroundPatternType  gtk_source_view_get_background_pattern            (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_3_24
-GtkSourceSpaceDrawer *
-		 gtk_source_view_get_space_drawer	(GtkSourceView   *view);
+GtkSourceSpaceDrawer           *gtk_source_view_get_space_drawer                  (GtkSourceView                  *view);
 
 G_END_DECLS
