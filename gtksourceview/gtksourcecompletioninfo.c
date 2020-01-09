@@ -60,8 +60,10 @@
 #include "gtksourcecompletioninfo.h"
 #include <glib/gi18n-lib.h>
 
-struct _GtkSourceCompletionInfoPrivate
+struct _GtkSourceCompletionInfo
 {
+	GtkWindow parent_instance;
+
 	guint idle_resize;
 
 	GtkWidget *attached_to;
@@ -72,7 +74,7 @@ struct _GtkSourceCompletionInfoPrivate
 	guint transient_set : 1;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WINDOW);
+G_DEFINE_TYPE (GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WINDOW);
 
 /* Resize the window */
 
@@ -87,7 +89,7 @@ idle_resize (GtkSourceCompletionInfo *info)
 	gint cur_window_width;
 	gint cur_window_height;
 
-	info->priv->idle_resize = 0;
+	info->idle_resize = 0;
 
 	if (child == NULL)
 	{
@@ -117,9 +119,9 @@ idle_resize (GtkSourceCompletionInfo *info)
 static void
 queue_resize (GtkSourceCompletionInfo *info)
 {
-	if (info->priv->idle_resize == 0)
+	if (info->idle_resize == 0)
 	{
-		info->priv->idle_resize = g_idle_add ((GSourceFunc)idle_resize, info);
+		info->idle_resize = g_idle_add ((GSourceFunc)idle_resize, info);
 	}
 }
 
@@ -205,21 +207,21 @@ static void
 set_attached_to (GtkSourceCompletionInfo *info,
 		 GtkWidget               *attached_to)
 {
-	if (info->priv->attached_to != NULL)
+	if (info->attached_to != NULL)
 	{
-		g_object_remove_weak_pointer (G_OBJECT (info->priv->attached_to),
-					      (gpointer *) &info->priv->attached_to);
+		g_object_remove_weak_pointer (G_OBJECT (info->attached_to),
+					      (gpointer *) &info->attached_to);
 
-		if (info->priv->focus_out_event_handler != 0)
+		if (info->focus_out_event_handler != 0)
 		{
-			g_signal_handler_disconnect (info->priv->attached_to,
-						     info->priv->focus_out_event_handler);
+			g_signal_handler_disconnect (info->attached_to,
+						     info->focus_out_event_handler);
 
-			info->priv->focus_out_event_handler = 0;
+			info->focus_out_event_handler = 0;
 		}
 	}
 
-	info->priv->attached_to = attached_to;
+	info->attached_to = attached_to;
 
 	if (attached_to == NULL)
 	{
@@ -227,15 +229,15 @@ set_attached_to (GtkSourceCompletionInfo *info,
 	}
 
 	g_object_add_weak_pointer (G_OBJECT (attached_to),
-				   (gpointer *) &info->priv->attached_to);
+				   (gpointer *) &info->attached_to);
 
-	info->priv->focus_out_event_handler =
+	info->focus_out_event_handler =
 		g_signal_connect_swapped (attached_to,
 					  "focus-out-event",
 					  G_CALLBACK (focus_out_event_cb),
 					  info);
 
-	info->priv->transient_set = FALSE;
+	info->transient_set = FALSE;
 }
 
 static void
@@ -247,7 +249,7 @@ update_attached_to (GtkSourceCompletionInfo *info)
 static void
 gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 {
-	info->priv = gtk_source_completion_info_get_instance_private (info);
+	info = gtk_source_completion_info_get_instance_private (info);
 
 	g_signal_connect (info,
 			  "notify::attached-to",
@@ -271,10 +273,10 @@ gtk_source_completion_info_dispose (GObject *object)
 {
 	GtkSourceCompletionInfo *info = GTK_SOURCE_COMPLETION_INFO (object);
 
-	if (info->priv->idle_resize != 0)
+	if (info->idle_resize != 0)
 	{
-		g_source_remove (info->priv->idle_resize);
-		info->priv->idle_resize = 0;
+		g_source_remove (info->idle_resize);
+		info->idle_resize = 0;
 	}
 
 	set_attached_to (info, NULL);
@@ -287,16 +289,16 @@ gtk_source_completion_info_show (GtkWidget *widget)
 {
 	GtkSourceCompletionInfo *info = GTK_SOURCE_COMPLETION_INFO (widget);
 
-	if (info->priv->attached_to != NULL && !info->priv->transient_set)
+	if (info->attached_to != NULL && !info->transient_set)
 	{
 		GtkWidget *toplevel;
 
-		toplevel = gtk_widget_get_toplevel (GTK_WIDGET (info->priv->attached_to));
+		toplevel = gtk_widget_get_toplevel (GTK_WIDGET (info->attached_to));
 		if (gtk_widget_is_toplevel (toplevel))
 		{
 			gtk_window_set_transient_for (GTK_WINDOW (info),
 						      GTK_WINDOW (toplevel));
-			info->priv->transient_set = TRUE;
+			info->transient_set = TRUE;
 		}
 	}
 
@@ -342,7 +344,7 @@ _gtk_source_completion_info_set_xoffset (GtkSourceCompletionInfo *window,
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (window));
 
-	window->priv->xoffset = xoffset;
+	window->xoffset = xoffset;
 }
 
 /* Move to iter */
