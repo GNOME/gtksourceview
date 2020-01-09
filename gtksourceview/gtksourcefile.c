@@ -55,7 +55,7 @@ enum
 	PROP_READ_ONLY
 };
 
-struct _GtkSourceFilePrivate
+typedef struct
 {
 	GFile *location;
 	const GtkSourceEncoding *encoding;
@@ -76,42 +76,39 @@ struct _GtkSourceFilePrivate
 	guint externally_modified : 1;
 	guint deleted : 1;
 	guint readonly : 1;
-};
+} GtkSourceFilePrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceFile, gtk_source_file, G_TYPE_OBJECT)
 
 static void
 gtk_source_file_get_property (GObject    *object,
-			      guint       prop_id,
-			      GValue     *value,
-			      GParamSpec *pspec)
+                              guint       prop_id,
+                              GValue     *value,
+                              GParamSpec *pspec)
 {
-	GtkSourceFile *file;
-
-	g_return_if_fail (GTK_SOURCE_IS_FILE (object));
-
-	file = GTK_SOURCE_FILE (object);
+	GtkSourceFile *file = GTK_SOURCE_FILE (object);
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
 
 	switch (prop_id)
 	{
 		case PROP_LOCATION:
-			g_value_set_object (value, file->priv->location);
+			g_value_set_object (value, priv->location);
 			break;
 
 		case PROP_ENCODING:
-			g_value_set_boxed (value, file->priv->encoding);
+			g_value_set_boxed (value, priv->encoding);
 			break;
 
 		case PROP_NEWLINE_TYPE:
-			g_value_set_enum (value, file->priv->newline_type);
+			g_value_set_enum (value, priv->newline_type);
 			break;
 
 		case PROP_COMPRESSION_TYPE:
-			g_value_set_enum (value, file->priv->compression_type);
+			g_value_set_enum (value, priv->compression_type);
 			break;
 
 		case PROP_READ_ONLY:
-			g_value_set_boolean (value, file->priv->readonly);
+			g_value_set_boolean (value, priv->readonly);
 			break;
 
 		default:
@@ -122,15 +119,11 @@ gtk_source_file_get_property (GObject    *object,
 
 static void
 gtk_source_file_set_property (GObject      *object,
-			      guint         prop_id,
-			      const GValue *value,
-			      GParamSpec   *pspec)
+                              guint         prop_id,
+                              const GValue *value,
+                              GParamSpec   *pspec)
 {
-	GtkSourceFile *file;
-
-	g_return_if_fail (GTK_SOURCE_IS_FILE (object));
-
-	file = GTK_SOURCE_FILE (object);
+	GtkSourceFile *file = GTK_SOURCE_FILE (object);
 
 	switch (prop_id)
 	{
@@ -148,13 +141,14 @@ static void
 gtk_source_file_dispose (GObject *object)
 {
 	GtkSourceFile *file = GTK_SOURCE_FILE (object);
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
 
-	g_clear_object (&file->priv->location);
+	g_clear_object (&priv->location);
 
-	if (file->priv->mount_operation_notify != NULL)
+	if (priv->mount_operation_notify != NULL)
 	{
-		file->priv->mount_operation_notify (file->priv->mount_operation_userdata);
-		file->priv->mount_operation_notify = NULL;
+		priv->mount_operation_notify (priv->mount_operation_userdata);
+		priv->mount_operation_notify = NULL;
 	}
 
 	G_OBJECT_CLASS (gtk_source_file_parent_class)->dispose (object);
@@ -258,11 +252,11 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 static void
 gtk_source_file_init (GtkSourceFile *file)
 {
-	file->priv = gtk_source_file_get_instance_private (file);
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
 
-	file->priv->encoding = NULL;
-	file->priv->newline_type = GTK_SOURCE_NEWLINE_TYPE_LF;
-	file->priv->compression_type = GTK_SOURCE_COMPRESSION_TYPE_NONE;
+	priv->encoding = NULL;
+	priv->newline_type = GTK_SOURCE_NEWLINE_TYPE_LF;
+	priv->compression_type = GTK_SOURCE_COMPRESSION_TYPE_NONE;
 }
 
 /**
@@ -288,20 +282,22 @@ gtk_source_file_new (void)
  */
 void
 gtk_source_file_set_location (GtkSourceFile *file,
-			      GFile         *location)
+                              GFile         *location)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 	g_return_if_fail (location == NULL || G_IS_FILE (location));
 
-	if (g_set_object (&file->priv->location, location))
+	if (g_set_object (&priv->location, location))
 	{
 		g_object_notify (G_OBJECT (file), "location");
 
 		/* The modification_time is for the old location. */
-		file->priv->modification_time_set = FALSE;
+		priv->modification_time_set = FALSE;
 
-		file->priv->externally_modified = FALSE;
-		file->priv->deleted = FALSE;
+		priv->externally_modified = FALSE;
+		priv->deleted = FALSE;
 	}
 }
 
@@ -315,20 +311,24 @@ gtk_source_file_set_location (GtkSourceFile *file,
 GFile *
 gtk_source_file_get_location (GtkSourceFile *file)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), NULL);
 
-	return file->priv->location;
+	return priv->location;
 }
 
 void
 _gtk_source_file_set_encoding (GtkSourceFile           *file,
-			       const GtkSourceEncoding *encoding)
+                               const GtkSourceEncoding *encoding)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 
-	if (file->priv->encoding != encoding)
+	if (priv->encoding != encoding)
 	{
-		file->priv->encoding = encoding;
+		priv->encoding = encoding;
 		g_object_notify (G_OBJECT (file), "encoding");
 	}
 }
@@ -346,20 +346,24 @@ _gtk_source_file_set_encoding (GtkSourceFile           *file,
 const GtkSourceEncoding *
 gtk_source_file_get_encoding (GtkSourceFile *file)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), NULL);
 
-	return file->priv->encoding;
+	return priv->encoding;
 }
 
 void
 _gtk_source_file_set_newline_type (GtkSourceFile        *file,
-				   GtkSourceNewlineType  newline_type)
+                                   GtkSourceNewlineType  newline_type)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 
-	if (file->priv->newline_type != newline_type)
+	if (priv->newline_type != newline_type)
 	{
-		file->priv->newline_type = newline_type;
+		priv->newline_type = newline_type;
 		g_object_notify (G_OBJECT (file), "newline-type");
 	}
 }
@@ -374,20 +378,24 @@ _gtk_source_file_set_newline_type (GtkSourceFile        *file,
 GtkSourceNewlineType
 gtk_source_file_get_newline_type (GtkSourceFile *file)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), GTK_SOURCE_NEWLINE_TYPE_DEFAULT);
 
-	return file->priv->newline_type;
+	return priv->newline_type;
 }
 
 void
 _gtk_source_file_set_compression_type (GtkSourceFile            *file,
-				       GtkSourceCompressionType  compression_type)
+                                       GtkSourceCompressionType  compression_type)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 
-	if (file->priv->compression_type != compression_type)
+	if (priv->compression_type != compression_type)
 	{
-		file->priv->compression_type = compression_type;
+		priv->compression_type = compression_type;
 		g_object_notify (G_OBJECT (file), "compression-type");
 	}
 }
@@ -402,9 +410,11 @@ _gtk_source_file_set_compression_type (GtkSourceFile            *file,
 GtkSourceCompressionType
 gtk_source_file_get_compression_type (GtkSourceFile *file)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), GTK_SOURCE_COMPRESSION_TYPE_NONE);
 
-	return file->priv->compression_type;
+	return priv->compression_type;
 }
 
 /**
@@ -427,34 +437,40 @@ gtk_source_file_get_compression_type (GtkSourceFile *file)
  */
 void
 gtk_source_file_set_mount_operation_factory (GtkSourceFile                  *file,
-					     GtkSourceMountOperationFactory  callback,
-					     gpointer                        user_data,
-					     GDestroyNotify                  notify)
+                                             GtkSourceMountOperationFactory  callback,
+                                             gpointer                        user_data,
+                                             GDestroyNotify                  notify)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 
-	if (file->priv->mount_operation_notify != NULL)
+	if (priv->mount_operation_notify != NULL)
 	{
-		file->priv->mount_operation_notify (file->priv->mount_operation_userdata);
+		priv->mount_operation_notify (priv->mount_operation_userdata);
 	}
 
-	file->priv->mount_operation_factory = callback;
-	file->priv->mount_operation_userdata = user_data;
-	file->priv->mount_operation_notify = notify;
+	priv->mount_operation_factory = callback;
+	priv->mount_operation_userdata = user_data;
+	priv->mount_operation_notify = notify;
 }
 
 GMountOperation *
 _gtk_source_file_create_mount_operation (GtkSourceFile *file)
 {
-	return (file != NULL && file->priv->mount_operation_factory != NULL) ?
-		file->priv->mount_operation_factory (file, file->priv->mount_operation_userdata) :
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
+	return (file != NULL && priv->mount_operation_factory != NULL) ?
+		priv->mount_operation_factory (file, priv->mount_operation_userdata) :
 		g_mount_operation_new ();
 }
 
 gboolean
 _gtk_source_file_get_modification_time (GtkSourceFile *file,
-					GTimeVal      *modification_time)
+                                        GTimeVal      *modification_time)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_assert (modification_time != NULL);
 
 	if (file == NULL)
@@ -464,24 +480,26 @@ _gtk_source_file_get_modification_time (GtkSourceFile *file,
 
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
 
-	if (file->priv->modification_time_set)
+	if (priv->modification_time_set)
 	{
-		*modification_time = file->priv->modification_time;
+		*modification_time = priv->modification_time;
 	}
 
-	return file->priv->modification_time_set;
+	return priv->modification_time_set;
 }
 
 void
 _gtk_source_file_set_modification_time (GtkSourceFile *file,
-					GTimeVal       modification_time)
+                                        GTimeVal       modification_time)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	if (file != NULL)
 	{
 		g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 
-		file->priv->modification_time = modification_time;
-		file->priv->modification_time_set = TRUE;
+		priv->modification_time = modification_time;
+		priv->modification_time_set = TRUE;
 	}
 }
 
@@ -498,14 +516,16 @@ _gtk_source_file_set_modification_time (GtkSourceFile *file,
 gboolean
 gtk_source_file_is_local (GtkSourceFile *file)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
 
-	if (file->priv->location == NULL)
+	if (priv->location == NULL)
 	{
 		return FALSE;
 	}
 
-	return g_file_has_uri_scheme (file->priv->location, "file");
+	return g_file_has_uri_scheme (priv->location, "file");
 }
 
 /**
@@ -527,14 +547,15 @@ gtk_source_file_is_local (GtkSourceFile *file)
 void
 gtk_source_file_check_file_on_disk (GtkSourceFile *file)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
 	GFileInfo *info;
 
-	if (file->priv->location == NULL)
+	if (priv->location == NULL)
 	{
 		return;
 	}
 
-	info = g_file_query_info (file->priv->location,
+	info = g_file_query_info (priv->location,
 				  G_FILE_ATTRIBUTE_TIME_MODIFIED ","
 				  G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE,
 				  G_FILE_QUERY_INFO_NONE,
@@ -543,12 +564,12 @@ gtk_source_file_check_file_on_disk (GtkSourceFile *file)
 
 	if (info == NULL)
 	{
-		file->priv->deleted = TRUE;
+		priv->deleted = TRUE;
 		return;
 	}
 
 	if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED) &&
-	    file->priv->modification_time_set)
+	    priv->modification_time_set)
 	{
 		GTimeVal timeval;
 
@@ -557,10 +578,10 @@ gtk_source_file_check_file_on_disk (GtkSourceFile *file)
 		/* Note that the modification time can even go backwards if the
 		 * user is copying over an old file.
 		 */
-		if (timeval.tv_sec != file->priv->modification_time.tv_sec ||
-		    timeval.tv_usec != file->priv->modification_time.tv_usec)
+		if (timeval.tv_sec != priv->modification_time.tv_sec ||
+		    timeval.tv_usec != priv->modification_time.tv_usec)
 		{
-			file->priv->externally_modified = TRUE;
+			priv->externally_modified = TRUE;
 		}
 	}
 
@@ -578,11 +599,13 @@ gtk_source_file_check_file_on_disk (GtkSourceFile *file)
 
 void
 _gtk_source_file_set_externally_modified (GtkSourceFile *file,
-					  gboolean       externally_modified)
+                                          gboolean       externally_modified)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 
-	file->priv->externally_modified = externally_modified != FALSE;
+	priv->externally_modified = externally_modified != FALSE;
 }
 
 /**
@@ -601,18 +624,22 @@ _gtk_source_file_set_externally_modified (GtkSourceFile *file,
 gboolean
 gtk_source_file_is_externally_modified (GtkSourceFile *file)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
 
-	return file->priv->externally_modified;
+	return priv->externally_modified;
 }
 
 void
 _gtk_source_file_set_deleted (GtkSourceFile *file,
-			      gboolean       deleted)
+                              gboolean       deleted)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 
-	file->priv->deleted = deleted != FALSE;
+	priv->deleted = deleted != FALSE;
 }
 
 /**
@@ -631,22 +658,26 @@ _gtk_source_file_set_deleted (GtkSourceFile *file,
 gboolean
 gtk_source_file_is_deleted (GtkSourceFile *file)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
 
-	return file->priv->deleted;
+	return priv->deleted;
 }
 
 void
 _gtk_source_file_set_readonly (GtkSourceFile *file,
-			       gboolean       readonly)
+                               gboolean       readonly)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_if_fail (GTK_SOURCE_IS_FILE (file));
 
 	readonly = readonly != FALSE;
 
-	if (file->priv->readonly != readonly)
+	if (priv->readonly != readonly)
 	{
-		file->priv->readonly = readonly;
+		priv->readonly = readonly;
 		g_object_notify (G_OBJECT (file), "read-only");
 	}
 }
@@ -667,7 +698,9 @@ _gtk_source_file_set_readonly (GtkSourceFile *file,
 gboolean
 gtk_source_file_is_readonly (GtkSourceFile *file)
 {
+	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), FALSE);
 
-	return file->priv->readonly;
+	return priv->readonly;
 }
