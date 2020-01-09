@@ -32,15 +32,13 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_COMPLETION_PROVIDER 			(gtk_source_completion_provider_get_type ())
-#define GTK_SOURCE_COMPLETION_PROVIDER(obj) 			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_COMPLETION_PROVIDER, GtkSourceCompletionProvider))
-#define GTK_SOURCE_IS_COMPLETION_PROVIDER(obj) 			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_COMPLETION_PROVIDER))
-#define GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE(obj) 	(G_TYPE_INSTANCE_GET_INTERFACE ((obj), GTK_SOURCE_TYPE_COMPLETION_PROVIDER, GtkSourceCompletionProviderIface))
+#define GTK_SOURCE_TYPE_COMPLETION_PROVIDER (gtk_source_completion_provider_get_type())
 
-typedef struct _GtkSourceCompletionProviderIface GtkSourceCompletionProviderIface;
+GTK_SOURCE_AVAILABLE_IN_ALL
+G_DECLARE_INTERFACE (GtkSourceCompletionProvider, gtk_source_completion_provider, GTK_SOURCE, COMPLETION_PROVIDER, GObject)
 
 /**
- * GtkSourceCompletionProviderIface:
+ * GtkSourceCompletionProviderInterface:
  * @g_iface: The parent interface.
  * @get_name: The virtual function pointer for gtk_source_completion_provider_get_name().
  * Must be implemented.
@@ -71,94 +69,70 @@ typedef struct _GtkSourceCompletionProviderIface GtkSourceCompletionProviderIfac
  *
  * The virtual function table for #GtkSourceCompletionProvider.
  */
-struct _GtkSourceCompletionProviderIface
+struct _GtkSourceCompletionProviderInterface
 {
 	GTypeInterface g_iface;
 
-	gchar		*(*get_name)       	(GtkSourceCompletionProvider *provider);
-
-	GdkPixbuf	*(*get_icon)       	(GtkSourceCompletionProvider *provider);
-	const gchar	*(*get_icon_name)   (GtkSourceCompletionProvider *provider);
-	GIcon		*(*get_gicon)       (GtkSourceCompletionProvider *provider);
-
-	void 		 (*populate) 		(GtkSourceCompletionProvider *provider,
-						 GtkSourceCompletionContext  *context);
-
-	gboolean 	 (*match)		(GtkSourceCompletionProvider *provider,
-	                                         GtkSourceCompletionContext  *context);
-
-	GtkSourceCompletionActivation
-		         (*get_activation)	(GtkSourceCompletionProvider *provider);
-
-	GtkWidget 	*(*get_info_widget)	(GtkSourceCompletionProvider *provider,
-						 GtkSourceCompletionProposal *proposal);
-	void		 (*update_info)		(GtkSourceCompletionProvider *provider,
-						 GtkSourceCompletionProposal *proposal,
-						 GtkSourceCompletionInfo     *info);
-
-	gboolean	 (*get_start_iter)	(GtkSourceCompletionProvider *provider,
-						 GtkSourceCompletionContext  *context,
-						 GtkSourceCompletionProposal *proposal,
-						 GtkTextIter                 *iter);
-	gboolean	 (*activate_proposal)	(GtkSourceCompletionProvider *provider,
-						 GtkSourceCompletionProposal *proposal,
-						 GtkTextIter                 *iter);
-
-	gint		 (*get_interactive_delay) (GtkSourceCompletionProvider *provider);
-	gint		 (*get_priority)	(GtkSourceCompletionProvider *provider);
+	gchar                         *(*get_name)              (GtkSourceCompletionProvider *provider);
+	GdkPixbuf                     *(*get_icon)              (GtkSourceCompletionProvider *provider);
+	const gchar                   *(*get_icon_name)         (GtkSourceCompletionProvider *provider);
+	GIcon                         *(*get_gicon)             (GtkSourceCompletionProvider *provider);
+	void                           (*populate)              (GtkSourceCompletionProvider *provider,
+	                                                         GtkSourceCompletionContext  *context);
+	gboolean                       (*match)                 (GtkSourceCompletionProvider *provider,
+	                                                         GtkSourceCompletionContext  *context);
+	GtkSourceCompletionActivation  (*get_activation)        (GtkSourceCompletionProvider *provider);
+	GtkWidget                     *(*get_info_widget)       (GtkSourceCompletionProvider *provider,
+	                                                         GtkSourceCompletionProposal *proposal);
+	void                           (*update_info)           (GtkSourceCompletionProvider *provider,
+	                                                         GtkSourceCompletionProposal *proposal,
+	                                                         GtkSourceCompletionInfo     *info);
+	gboolean                       (*get_start_iter)        (GtkSourceCompletionProvider *provider,
+	                                                         GtkSourceCompletionContext  *context,
+	                                                         GtkSourceCompletionProposal *proposal,
+	                                                         GtkTextIter                 *iter);
+	gboolean                       (*activate_proposal)     (GtkSourceCompletionProvider *provider,
+	                                                         GtkSourceCompletionProposal *proposal,
+	                                                         GtkTextIter                 *iter);
+	gint                           (*get_interactive_delay) (GtkSourceCompletionProvider *provider);
+	gint                           (*get_priority)          (GtkSourceCompletionProvider *provider);
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GType		 gtk_source_completion_provider_get_type	(void);
-
+gchar                         *gtk_source_completion_provider_get_name              (GtkSourceCompletionProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gchar		*gtk_source_completion_provider_get_name	(GtkSourceCompletionProvider *provider);
-
-GTK_SOURCE_AVAILABLE_IN_ALL
-GdkPixbuf	*gtk_source_completion_provider_get_icon	(GtkSourceCompletionProvider *provider);
-
+GdkPixbuf                     *gtk_source_completion_provider_get_icon              (GtkSourceCompletionProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_3_18
-const gchar	*gtk_source_completion_provider_get_icon_name	(GtkSourceCompletionProvider *provider);
-
+const gchar                   *gtk_source_completion_provider_get_icon_name         (GtkSourceCompletionProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_3_18
-GIcon		*gtk_source_completion_provider_get_gicon	(GtkSourceCompletionProvider *provider);
-
+GIcon                         *gtk_source_completion_provider_get_gicon             (GtkSourceCompletionProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_completion_provider_populate	(GtkSourceCompletionProvider *provider,
-								 GtkSourceCompletionContext  *context);
-
+void                           gtk_source_completion_provider_populate              (GtkSourceCompletionProvider *provider,
+                                                                                     GtkSourceCompletionContext  *context);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceCompletionActivation
-		 gtk_source_completion_provider_get_activation (GtkSourceCompletionProvider *provider);
-
+GtkSourceCompletionActivation  gtk_source_completion_provider_get_activation        (GtkSourceCompletionProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_completion_provider_match 		(GtkSourceCompletionProvider *provider,
-		                                                 GtkSourceCompletionContext  *context);
-
+gboolean                       gtk_source_completion_provider_match                 (GtkSourceCompletionProvider *provider,
+                                                                                     GtkSourceCompletionContext  *context);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkWidget	*gtk_source_completion_provider_get_info_widget	(GtkSourceCompletionProvider *provider,
-								 GtkSourceCompletionProposal *proposal);
-
+GtkWidget                     *gtk_source_completion_provider_get_info_widget       (GtkSourceCompletionProvider *provider,
+                                                                                     GtkSourceCompletionProposal *proposal);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void 		 gtk_source_completion_provider_update_info	(GtkSourceCompletionProvider *provider,
-								 GtkSourceCompletionProposal *proposal,
-								 GtkSourceCompletionInfo     *info);
-
+void                           gtk_source_completion_provider_update_info           (GtkSourceCompletionProvider *provider,
+                                                                                     GtkSourceCompletionProposal *proposal,
+                                                                                     GtkSourceCompletionInfo     *info);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_completion_provider_get_start_iter	(GtkSourceCompletionProvider *provider,
-								 GtkSourceCompletionContext  *context,
-								 GtkSourceCompletionProposal *proposal,
-								 GtkTextIter                 *iter);
-
+gboolean                       gtk_source_completion_provider_get_start_iter        (GtkSourceCompletionProvider *provider,
+                                                                                     GtkSourceCompletionContext  *context,
+                                                                                     GtkSourceCompletionProposal *proposal,
+                                                                                     GtkTextIter                 *iter);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *provider,
-								   GtkSourceCompletionProposal *proposal,
-								   GtkTextIter                 *iter);
-
+gboolean                       gtk_source_completion_provider_activate_proposal     (GtkSourceCompletionProvider *provider,
+                                                                                     GtkSourceCompletionProposal *proposal,
+                                                                                     GtkTextIter                 *iter);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gint		 gtk_source_completion_provider_get_interactive_delay (GtkSourceCompletionProvider *provider);
-
+gint                           gtk_source_completion_provider_get_interactive_delay (GtkSourceCompletionProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gint		 gtk_source_completion_provider_get_priority	(GtkSourceCompletionProvider *provider);
+gint                           gtk_source_completion_provider_get_priority          (GtkSourceCompletionProvider *provider);
 
 G_END_DECLS

@@ -92,7 +92,7 @@ typedef struct
 
 static GParamSpec *properties[N_PROPERTIES];
 
-static void gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface);
+static void gtk_source_completion_words_iface_init (GtkSourceCompletionProviderInterface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWords,
 			 gtk_source_completion_words,
@@ -572,7 +572,7 @@ gtk_source_completion_words_get_activation (GtkSourceCompletionProvider *provide
 }
 
 static void
-gtk_source_completion_words_iface_init (GtkSourceCompletionProviderIface *iface)
+gtk_source_completion_words_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
 	iface->get_name = gtk_source_completion_words_get_name;
 	iface->get_icon = gtk_source_completion_words_get_icon;

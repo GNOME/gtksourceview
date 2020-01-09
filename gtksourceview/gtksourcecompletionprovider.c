@@ -40,9 +40,7 @@
  * will be used.
  */
 
-typedef GtkSourceCompletionProviderIface GtkSourceCompletionProviderInterface;
-
-G_DEFINE_INTERFACE(GtkSourceCompletionProvider, gtk_source_completion_provider, G_TYPE_OBJECT)
+G_DEFINE_INTERFACE (GtkSourceCompletionProvider, gtk_source_completion_provider, G_TYPE_OBJECT)
 
 /* Default implementations */
 static gchar *
@@ -135,7 +133,7 @@ gtk_source_completion_provider_get_priority_default (GtkSourceCompletionProvider
 }
 
 static void
-gtk_source_completion_provider_default_init (GtkSourceCompletionProviderIface *iface)
+gtk_source_completion_provider_default_init (GtkSourceCompletionProviderInterface *iface)
 {
 	iface->get_name = gtk_source_completion_provider_get_name_default;
 
@@ -173,7 +171,7 @@ gtk_source_completion_provider_get_name (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_name (provider);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->get_name (provider);
 }
 
 /**
@@ -190,7 +188,7 @@ gtk_source_completion_provider_get_icon (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_icon (provider);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->get_icon (provider);
 }
 
 /**
@@ -209,7 +207,7 @@ gtk_source_completion_provider_get_icon_name (GtkSourceCompletionProvider *provi
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_icon_name (provider);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->get_icon_name (provider);
 }
 
 /**
@@ -228,7 +226,7 @@ gtk_source_completion_provider_get_gicon (GtkSourceCompletionProvider *provider)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_gicon (provider);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->get_gicon (provider);
 }
 
 /**
@@ -245,7 +243,7 @@ gtk_source_completion_provider_populate (GtkSourceCompletionProvider *provider,
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
 
-	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->populate (provider, context);
+	GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->populate (provider, context);
 }
 
 /**
@@ -261,7 +259,7 @@ gtk_source_completion_provider_get_activation (GtkSourceCompletionProvider *prov
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), GTK_SOURCE_COMPLETION_ACTIVATION_NONE);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_activation (provider);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->get_activation (provider);
 }
 
 /**
@@ -280,8 +278,7 @@ gtk_source_completion_provider_match (GtkSourceCompletionProvider *provider,
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), TRUE);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->match (provider,
-	                                                                       context);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->match (provider, context);
 }
 
 /**
@@ -316,7 +313,7 @@ gtk_source_completion_provider_get_info_widget (GtkSourceCompletionProvider *pro
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), NULL);
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_info_widget (provider, proposal);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->get_info_widget (provider, proposal);
 }
 
 /**
@@ -343,7 +340,7 @@ gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provide
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal));
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info));
 
-	GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->update_info (provider, proposal, info);
+	GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->update_info (provider, proposal, info);
 }
 
 /**
@@ -379,10 +376,7 @@ gtk_source_completion_provider_get_start_iter (GtkSourceCompletionProvider *prov
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_start_iter (provider,
-	                                                                                context,
-	                                                                                proposal,
-	                                                                                iter);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->get_start_iter (provider, context, proposal, iter);
 }
 
 /**
@@ -413,9 +407,7 @@ gtk_source_completion_provider_activate_proposal (GtkSourceCompletionProvider *p
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), FALSE);
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), FALSE);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->activate_proposal (provider,
-	                                                                                   proposal,
-	                                                                                   iter);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->activate_proposal (provider, proposal, iter);
 }
 
 /**
@@ -433,7 +425,7 @@ gtk_source_completion_provider_get_interactive_delay (GtkSourceCompletionProvide
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), -1);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_interactive_delay (provider);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->get_interactive_delay (provider);
 }
 
 /**
@@ -451,5 +443,5 @@ gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *provid
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider), 0);
 
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE (provider)->get_priority (provider);
+	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->get_priority (provider);
 }

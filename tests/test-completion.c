@@ -52,7 +52,7 @@ struct _TestProviderClass
 	GObjectClass parent_class;
 };
 
-static void test_provider_iface_init (GtkSourceCompletionProviderIface *iface);
+static void test_provider_iface_init (GtkSourceCompletionProviderInterface *iface);
 GType test_provider_get_type (void);
 
 G_DEFINE_TYPE_WITH_CODE (TestProvider,
@@ -121,7 +121,7 @@ test_provider_get_icon (GtkSourceCompletionProvider *provider)
 }
 
 static void
-test_provider_iface_init (GtkSourceCompletionProviderIface *iface)
+test_provider_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
 	iface->get_name = test_provider_get_name;
 	iface->populate = test_provider_populate;
