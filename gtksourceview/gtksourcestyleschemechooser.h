@@ -29,12 +29,10 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER                  (gtk_source_style_scheme_chooser_get_type ())
-#define GTK_SOURCE_STYLE_SCHEME_CHOOSER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER, GtkSourceStyleSchemeChooser))
-#define GTK_SOURCE_IS_STYLE_SCHEME_CHOOSER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER))
-#define GTK_SOURCE_STYLE_SCHEME_CHOOSER_GET_IFACE(inst)       (G_TYPE_INSTANCE_GET_INTERFACE ((inst), GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER, GtkSourceStyleSchemeChooserInterface))
+#define GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER (gtk_source_style_scheme_chooser_get_type())
 
-typedef struct _GtkSourceStyleSchemeChooserInterface GtkSourceStyleSchemeChooserInterface;
+GTK_SOURCE_AVAILABLE_IN_3_16
+G_DECLARE_INTERFACE (GtkSourceStyleSchemeChooser, gtk_source_style_scheme_chooser, GTK_SOURCE, STYLE_SCHEME_CHOOSER, GObject)
 
 struct _GtkSourceStyleSchemeChooserInterface
 {
@@ -46,18 +44,14 @@ struct _GtkSourceStyleSchemeChooserInterface
 	void                   (* set_style_scheme)       (GtkSourceStyleSchemeChooser *chooser,
 	                                                   GtkSourceStyleScheme        *scheme);
 
-	/* Padding */
-	gpointer padding[12];
+	/*< private >*/
+	gpointer _reserved[12];
 };
 
 GTK_SOURCE_AVAILABLE_IN_3_16
-GType                     gtk_source_style_scheme_chooser_get_type               (void) G_GNUC_CONST;
-
+GtkSourceStyleScheme *gtk_source_style_scheme_chooser_get_style_scheme (GtkSourceStyleSchemeChooser *chooser);
 GTK_SOURCE_AVAILABLE_IN_3_16
-GtkSourceStyleScheme     *gtk_source_style_scheme_chooser_get_style_scheme       (GtkSourceStyleSchemeChooser *chooser);
-
-GTK_SOURCE_AVAILABLE_IN_3_16
-void                      gtk_source_style_scheme_chooser_set_style_scheme       (GtkSourceStyleSchemeChooser *chooser,
-                                                                                  GtkSourceStyleScheme        *scheme);
+void                  gtk_source_style_scheme_chooser_set_style_scheme (GtkSourceStyleSchemeChooser *chooser,
+                                                                        GtkSourceStyleScheme        *scheme);
 
 G_END_DECLS
