@@ -21,10 +21,11 @@
 
 #include "config.h"
 
-#include "gtksourceregex.h"
 #include <string.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
+
+#include "gtksourceregex-private.h"
 #include "gtksourceutils-private.h"
 
 /*
