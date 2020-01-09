@@ -26,7 +26,7 @@
 
 #include "gtksourceinit.h"
 #include "gtksourcelanguagemanager-private.h"
-#include "gtksourcestyleschememanager.h"
+#include "gtksourcestyleschememanager-private.h"
 
 #ifdef G_OS_WIN32
 #define WIN32_LEAN_AND_MEAN
