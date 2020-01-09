@@ -24,8 +24,8 @@
 #error "Only <gtksourceview/gtksource.h> can be included directly."
 #endif
 
-#include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcegutterrenderer.h>
+#include "gtksourcetypes.h"
+#include "gtksourcegutterrenderer.h"
 
 G_BEGIN_DECLS
 

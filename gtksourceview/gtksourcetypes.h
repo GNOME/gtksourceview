@@ -24,7 +24,8 @@
 #endif
 
 #include <glib.h>
-#include <gtksourceview/gtksourceversion.h>
+
+#include "gtksourceversion.h"
 
 G_BEGIN_DECLS
 

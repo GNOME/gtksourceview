@@ -146,7 +146,7 @@ core_enums_header = '''
 # error "Only <gtksourceview/gtksource.h> can be included directly."
 #endif
 
-#include <gtksourceview/gtksourceversion.h>
+#include "gtksourceversion.h"
 '''
 
 core_enums = gnome.mkenums_simple('gtksource-enumtypes',

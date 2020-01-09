@@ -24,8 +24,9 @@
 #error "Only <gtksourceview/gtksource.h> can be included directly."
 #endif
 
-#include <gtksourceview/gtksourcecompletionprovider.h>
 #include <gtk/gtk.h>
+
+#include "../../gtksourcecompletionprovider.h"
 
 G_BEGIN_DECLS
 

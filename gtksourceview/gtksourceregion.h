@@ -26,23 +26,22 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourceversion.h>
+
+#include "gtksourceversion.h"
 
 G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_REGION (gtk_source_region_get_type ())
 
 GTK_SOURCE_AVAILABLE_IN_3_22
-G_DECLARE_DERIVABLE_TYPE (GtkSourceRegion, gtk_source_region,
-			  GTK_SOURCE, REGION,
-			  GObject)
+G_DECLARE_DERIVABLE_TYPE (GtkSourceRegion, gtk_source_region, GTK_SOURCE, REGION, GObject)
 
 struct _GtkSourceRegionClass
 {
 	GObjectClass parent_class;
 
-	/* Padding for future expansion */
-	gpointer padding[10];
+	/*< private >*/
+	gpointer _reserved[10];
 };
 
 /**

@@ -18,13 +18,12 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_H
-#define GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_H
+#pragma once
 
 #include <glib-object.h>
-#include <gtksourceview/gtksourcecompletionproposal.h>
 
-#include "gtksourceview/gtksourcetypes-private.h"
+#include "../../gtksourcecompletionproposal.h"
+#include "../../gtksourcetypes-private.h"
 
 G_BEGIN_DECLS
 
@@ -43,5 +42,3 @@ GTK_SOURCE_INTERNAL
 void                              gtk_source_completion_words_proposal_unuse    (GtkSourceCompletionWordsProposal *proposal);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_H */

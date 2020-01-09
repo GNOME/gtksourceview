@@ -25,7 +25,8 @@
 #endif
 
 #include <glib-object.h>
-#include <gtksourceview/gtksourcetypes.h>
+
+#include "gtksourcetypes.h"
 
 G_BEGIN_DECLS
 

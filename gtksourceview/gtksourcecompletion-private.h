@@ -21,7 +21,8 @@
 #pragma once
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourcetypes.h>
+
+#include "gtksourcetypes.h"
 
 G_GNUC_INTERNAL
 GtkSourceCompletion *_gtk_source_completion_new           (GtkSourceView               *source_view);
