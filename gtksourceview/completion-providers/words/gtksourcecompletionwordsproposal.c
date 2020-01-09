@@ -55,7 +55,7 @@ static void
 gtk_source_completion_proposal_iface_init (gpointer g_iface,
                                            gpointer iface_data)
 {
-	GtkSourceCompletionProposalIface *iface = (GtkSourceCompletionProposalIface *)g_iface;
+	GtkSourceCompletionProposalInterface *iface = (GtkSourceCompletionProposalInterface *)g_iface;
 
 	/* Interface data getter implementations */
 	iface->get_label = gtk_source_completion_words_proposal_get_text;
