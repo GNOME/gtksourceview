@@ -26,8 +26,8 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-void _gtk_source_gutter_renderer_set_view         (GtkSourceGutterRenderer *renderer,
-                                                   GtkTextView             *view,
-                                                   GtkTextWindowType        window_type);
+void _gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
+                                           GtkTextView             *view,
+                                           GtkTextWindowType        window_type);
 
 G_END_DECLS
