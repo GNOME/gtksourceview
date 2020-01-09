@@ -25,7 +25,8 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourcetypes.h>
+
+#include "gtksourcetypes.h"
 
 G_BEGIN_DECLS
 
@@ -38,23 +39,20 @@ struct _GtkSourceMarkClass
 {
 	GtkTextMarkClass parent_class;
 
-	/* Padding for future expansion */
+	/*< private >*/
 	gpointer _reserved[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceMark   *gtk_source_mark_new		(const gchar	*name,
-						 const gchar	*category);
-
+GtkSourceMark *gtk_source_mark_new          (const gchar *name,
+                                             const gchar *category);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar	*gtk_source_mark_get_category	(GtkSourceMark	*mark);
-
+const gchar   *gtk_source_mark_get_category (GtkSourceMark *mark);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceMark	*gtk_source_mark_next		(GtkSourceMark	*mark,
-						 const gchar	*category);
-
+GtkSourceMark *gtk_source_mark_next         (GtkSourceMark *mark,
+                                             const gchar   *category);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceMark	*gtk_source_mark_prev		(GtkSourceMark	*mark,
-						 const gchar	*category);
+GtkSourceMark *gtk_source_mark_prev         (GtkSourceMark *mark,
+                                             const gchar   *category);
 
 G_END_DECLS

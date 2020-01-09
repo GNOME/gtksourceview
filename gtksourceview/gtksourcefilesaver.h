@@ -28,8 +28,9 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourcetypes.h>
-#include <gtksourceview/gtksourcefile.h>
+
+#include "gtksourcetypes.h"
+#include "gtksourcefile.h"
 
 G_BEGIN_DECLS
 

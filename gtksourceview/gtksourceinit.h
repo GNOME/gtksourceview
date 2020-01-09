@@ -24,13 +24,13 @@
 #endif
 
 #include <glib.h>
-#include <gtksourceview/gtksourceversion.h>
+
+#include "gtksourceversion.h"
 
 G_BEGIN_DECLS
 
 GTK_SOURCE_AVAILABLE_IN_4_0
-void	gtk_source_init		(void);
-
+void	gtk_source_init		  (void);
 GTK_SOURCE_AVAILABLE_IN_4_0
 void	gtk_source_finalize	(void);
 
