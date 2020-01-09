@@ -23,7 +23,7 @@
 
 #include "gtksourcestyleschemechooserwidget.h"
 #include "gtksourcestyleschemechooser.h"
-#include "gtksourcestylescheme.h"
+#include "gtksourcestylescheme-private.h"
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguagemanager.h"

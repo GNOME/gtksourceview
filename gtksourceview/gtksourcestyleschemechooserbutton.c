@@ -21,11 +21,12 @@
 
 #include "config.h"
 
-#include "gtksourcestyleschemechooserbutton.h"
 #include <glib/gi18n-lib.h>
+
+#include "gtksourcestyleschemechooserbutton.h"
 #include "gtksourcestyleschemechooser.h"
 #include "gtksourcestyleschemechooserwidget.h"
-#include "gtksourcestylescheme.h"
+#include "gtksourcestylescheme-private.h"
 
 /**
  * SECTION:styleschemechooserbutton

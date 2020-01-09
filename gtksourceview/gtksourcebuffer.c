@@ -37,7 +37,7 @@
 #include "gtksourceundomanager.h"
 #include "gtksourceundomanagerdefault.h"
 #include "gtksourcestyle.h"
-#include "gtksourcestylescheme.h"
+#include "gtksourcestylescheme-private.h"
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkssequence.h"

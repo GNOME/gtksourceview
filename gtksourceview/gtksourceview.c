@@ -39,7 +39,7 @@
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"
 #include "gtksource-marshal.h"
-#include "gtksourcestylescheme.h"
+#include "gtksourcestylescheme-private.h"
 #include "gtksourcecompletion.h"
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletionprovider.h"
