@@ -2784,9 +2784,8 @@ _gtk_source_context_data_unref (GtkSourceContextData *ctx_data)
 
 	if (--ctx_data->ref_count == 0)
 	{
-		if (ctx_data->lang != NULL && ctx_data->lang->priv != NULL &&
-		    ctx_data->lang->priv->ctx_data == ctx_data)
-			ctx_data->lang->priv->ctx_data = NULL;
+		if (ctx_data->lang != NULL)
+			_gtk_source_language_clear_ctx_data (ctx_data->lang, ctx_data);
 		g_hash_table_destroy (ctx_data->definitions);
 		g_slice_free (GtkSourceContextData, ctx_data);
 	}
@@ -6086,7 +6085,7 @@ _gtk_source_context_data_add_ref (GtkSourceContextData        *ctx_data,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_STYLE,
 			     _("style override used with wildcard context reference"
 			       " in language “%s” in ref “%s”"),
-			     ctx_data->lang->priv->id, ref_id);
+			     gtk_source_language_get_id (ctx_data->lang), ref_id);
 		return FALSE;
 	}
 
@@ -6146,7 +6145,7 @@ resolve_reference (G_GNUC_UNUSED const gchar *id,
 						     GTK_SOURCE_CONTEXT_ENGINE_ERROR_INVALID_STYLE,
 						     _("style override used with wildcard context reference"
 						       " in language “%s” in ref “%s”"),
-						     data->ctx_data->lang->priv->id, ref->id);
+						     gtk_source_language_get_id (data->ctx_data->lang), ref->id);
 				}
 				else
 				{
@@ -6278,7 +6277,9 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData  *ctx_data,
 	}
 
 	/* Sanity check: user may have screwed up the files by now (#485661) */
-	root_id = g_strdup_printf ("%s:%s", ctx_data->lang->priv->id, ctx_data->lang->priv->id);
+	root_id = g_strdup_printf ("%s:%s",
+	                           gtk_source_language_get_id (ctx_data->lang),
+	                           gtk_source_language_get_id (ctx_data->lang));
 	main_definition = gtk_source_context_data_lookup (ctx_data, root_id);
 	g_free (root_id);
 
@@ -6286,9 +6287,8 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData  *ctx_data,
 	{
 		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_BAD_FILE,
-			     _("Missing main language "
-			       "definition (id = \"%s\".)"),
-			     ctx_data->lang->priv->id);
+			     _("Missing main language definition (id = “%s”.)"),
+			     gtk_source_language_get_id (ctx_data->lang));
 		return FALSE;
 	}
 
