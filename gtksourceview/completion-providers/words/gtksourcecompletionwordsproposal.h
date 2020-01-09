@@ -28,43 +28,19 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL			(gtk_source_completion_words_proposal_get_type ())
-#define GTK_SOURCE_COMPLETION_WORDS_PROPOSAL(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, GtkSourceCompletionWordsProposal))
-#define GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_CONST(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, GtkSourceCompletionWordsProposal const))
-#define GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, GtkSourceCompletionWordsProposalClass))
-#define GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL(obj)			(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL))
-#define GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL_CLASS(klass)		(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL))
-#define GTK_SOURCE_COMPLETION_WORDS_PROPOSAL_GET_CLASS(obj)		(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, GtkSourceCompletionWordsProposalClass))
-
-typedef struct _GtkSourceCompletionWordsProposal		GtkSourceCompletionWordsProposal;
-typedef struct _GtkSourceCompletionWordsProposalClass		GtkSourceCompletionWordsProposalClass;
-typedef struct _GtkSourceCompletionWordsProposalPrivate		GtkSourceCompletionWordsProposalPrivate;
-
-struct _GtkSourceCompletionWordsProposal {
-	GObject parent;
-
-	GtkSourceCompletionWordsProposalPrivate *priv;
-};
-
-struct _GtkSourceCompletionWordsProposalClass {
-	GObjectClass parent_class;
-};
+#define GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL (gtk_source_completion_words_proposal_get_type())
 
 GTK_SOURCE_INTERNAL
-GType		 gtk_source_completion_words_proposal_get_type	(void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (GtkSourceCompletionWordsProposal, gtk_source_completion_words_proposal, GTK_SOURCE, COMPLETION_WORDS_PROPOSAL, GObject)
 
 GTK_SOURCE_INTERNAL
-GtkSourceCompletionWordsProposal *
-		 gtk_source_completion_words_proposal_new 	(const gchar                      *word);
-
+GtkSourceCompletionWordsProposal *gtk_source_completion_words_proposal_new      (const gchar                      *word);
 GTK_SOURCE_INTERNAL
-const gchar 	*gtk_source_completion_words_proposal_get_word 	(GtkSourceCompletionWordsProposal *proposal);
-
+const gchar                      *gtk_source_completion_words_proposal_get_word (GtkSourceCompletionWordsProposal *proposal);
 GTK_SOURCE_INTERNAL
-void		 gtk_source_completion_words_proposal_use 	(GtkSourceCompletionWordsProposal *proposal);
-
+void                              gtk_source_completion_words_proposal_use      (GtkSourceCompletionWordsProposal *proposal);
 GTK_SOURCE_INTERNAL
-void		 gtk_source_completion_words_proposal_unuse 	(GtkSourceCompletionWordsProposal *proposal);
+void                              gtk_source_completion_words_proposal_unuse    (GtkSourceCompletionWordsProposal *proposal);
 
 G_END_DECLS
 

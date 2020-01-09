@@ -21,8 +21,9 @@
 
 #include "config.h"
 
-#include "gtksourcecompletionwordsutils.h"
 #include <string.h>
+
+#include "gtksourcecompletionwordsutils.h"
 
 /* Here, we work on strings. It is more efficient than working with
  * GtkTextIters to traverse the text (~3x faster). Both techniques are equally
@@ -51,8 +52,8 @@ valid_start_char (gunichar ch)
  */
 static gboolean
 find_next_word (gchar *text,
-		guint *start_idx,
-		guint *end_idx)
+                guint *start_idx,
+                guint *end_idx)
 {
 	gchar *cur_char;
 
@@ -102,7 +103,7 @@ find_next_word (gchar *text,
  */
 GSList *
 _gtk_source_completion_words_utils_scan_words (gchar *text,
-					       guint  minimum_word_size)
+                                               guint  minimum_word_size)
 {
 	GSList *words = NULL;
 	guint start_idx = 0;
@@ -182,7 +183,7 @@ _gtk_source_completion_words_utils_get_end_word (gchar *text)
  */
 void
 _gtk_source_completion_words_utils_adjust_region (GtkTextIter *start,
-						  GtkTextIter *end)
+                                                  GtkTextIter *end)
 {
 	g_return_if_fail (gtk_text_iter_compare (start, end) <= 0);
 
@@ -237,7 +238,7 @@ iter_inside_word (const GtkTextIter *iter)
  */
 void
 _gtk_source_completion_words_utils_check_scan_region (const GtkTextIter *start,
-						      const GtkTextIter *end)
+                                                      const GtkTextIter *end)
 {
 	g_return_if_fail (gtk_text_iter_compare (start, end) <= 0);
 
