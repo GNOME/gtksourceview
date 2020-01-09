@@ -18,9 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourcegutterrendererpixbuf.h"
 #include "gtksourcepixbufhelper.h"

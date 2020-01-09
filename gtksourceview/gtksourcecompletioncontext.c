@@ -59,9 +59,7 @@
  * #GtkTextBuffer with gtk_text_iter_get_buffer().
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourcecompletioncontext.h"
 #include "gtksource-enumtypes.h"
