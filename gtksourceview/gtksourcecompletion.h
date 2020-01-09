@@ -64,51 +64,33 @@ typedef enum _GtkSourceCompletionError
 } GtkSourceCompletionError;
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GQuark		 gtk_source_completion_error_quark		(void);
-
+GQuark                      gtk_source_completion_error_quark         (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_completion_add_provider		(GtkSourceCompletion           *completion,
-								 GtkSourceCompletionProvider   *provider,
-								 GError                       **error);
-
+gboolean                    gtk_source_completion_add_provider        (GtkSourceCompletion          *completion,
+                                                                       GtkSourceCompletionProvider  *provider,
+                                                                       GError                      **error);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_completion_remove_provider		(GtkSourceCompletion           *completion,
-								 GtkSourceCompletionProvider   *provider,
-								 GError                       **error);
-
+gboolean                    gtk_source_completion_remove_provider     (GtkSourceCompletion          *completion,
+                                                                       GtkSourceCompletionProvider  *provider,
+                                                                       GError                      **error);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GList		*gtk_source_completion_get_providers		(GtkSourceCompletion           *completion);
-
+GList                      *gtk_source_completion_get_providers       (GtkSourceCompletion          *completion);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean	 gtk_source_completion_start			(GtkSourceCompletion           *completion,
-								 GList                         *providers,
-								 GtkSourceCompletionContext    *context);
-
+gboolean                    gtk_source_completion_start               (GtkSourceCompletion          *completion,
+                                                                       GList                        *providers,
+                                                                       GtkSourceCompletionContext   *context);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_completion_hide			(GtkSourceCompletion           *completion);
-
+void                        gtk_source_completion_hide                (GtkSourceCompletion          *completion);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceCompletionInfo *
-		 gtk_source_completion_get_info_window		(GtkSourceCompletion           *completion);
-
+GtkSourceCompletionInfo    *gtk_source_completion_get_info_window     (GtkSourceCompletion          *completion);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceView	*gtk_source_completion_get_view			(GtkSourceCompletion	       *completion);
-
+GtkSourceView              *gtk_source_completion_get_view            (GtkSourceCompletion          *completion);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceCompletionContext *
-		 gtk_source_completion_create_context		(GtkSourceCompletion           *completion,
-		 						 GtkTextIter                   *position);
-
+GtkSourceCompletionContext *gtk_source_completion_create_context      (GtkSourceCompletion          *completion,
+                                                                       GtkTextIter                  *position);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_completion_block_interactive	(GtkSourceCompletion           *completion);
-
+void                        gtk_source_completion_block_interactive   (GtkSourceCompletion          *completion);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void		 gtk_source_completion_unblock_interactive	(GtkSourceCompletion           *completion);
+void                        gtk_source_completion_unblock_interactive (GtkSourceCompletion          *completion);
 
-G_GNUC_INTERNAL
-void		 _gtk_source_completion_add_proposals		(GtkSourceCompletion           *completion,
-								 GtkSourceCompletionContext    *context,
-								 GtkSourceCompletionProvider   *provider,
-								 GList                         *proposals,
-								 gboolean                       finished);
 G_END_DECLS
