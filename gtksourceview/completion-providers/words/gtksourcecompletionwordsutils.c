@@ -23,7 +23,7 @@
 
 #include <string.h>
 
-#include "gtksourcecompletionwordsutils.h"
+#include "gtksourcecompletionwordsutils-private.h"
 
 /* Here, we work on strings. It is more efficient than working with
  * GtkTextIters to traverse the text (~3x faster). Both techniques are equally

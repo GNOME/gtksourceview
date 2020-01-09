@@ -22,7 +22,7 @@
 
 #include <gtk/gtk.h>
 
-#include "gtksourcecompletionwordslibrary.h"
+#include "gtksourcecompletionwordslibrary-private.h"
 
 G_BEGIN_DECLS
 

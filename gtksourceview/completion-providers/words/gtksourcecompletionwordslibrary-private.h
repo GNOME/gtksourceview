@@ -21,7 +21,8 @@
 #pragma once
 
 #include <glib-object.h>
-#include "gtksourcecompletionwordsproposal.h"
+
+#include "gtksourcecompletionwordsproposal-private.h"
 
 G_BEGIN_DECLS
 

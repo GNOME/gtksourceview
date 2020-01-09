@@ -20,7 +20,7 @@
 
 #include "config.h"
 
-#include "gtksourcecompletionwordsproposal.h"
+#include "gtksourcecompletionwordsproposal-private.h"
 
 struct _GtkSourceCompletionWordsProposal
 {
