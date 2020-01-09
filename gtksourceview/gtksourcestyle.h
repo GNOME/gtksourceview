@@ -30,23 +30,15 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_STYLE             (gtk_source_style_get_type ())
-#define GTK_SOURCE_STYLE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_STYLE, GtkSourceStyle))
-#define GTK_SOURCE_IS_STYLE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_STYLE))
-#define GTK_SOURCE_STYLE_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_STYLE, GtkSourceStyleClass))
-#define GTK_SOURCE_IS_STYLE_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_STYLE))
-#define GTK_SOURCE_STYLE_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_STYLE, GtkSourceStyleClass))
-
-typedef struct _GtkSourceStyleClass GtkSourceStyleClass;
+#define GTK_SOURCE_TYPE_STYLE (gtk_source_style_get_type ())
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GType		 gtk_source_style_get_type	(void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (GtkSourceStyle, gtk_source_style, GTK_SOURCE, STYLE, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceStyle	*gtk_source_style_copy		(const GtkSourceStyle *style);
-
+GtkSourceStyle *gtk_source_style_copy  (const GtkSourceStyle *style);
 GTK_SOURCE_AVAILABLE_IN_3_22
-void		 gtk_source_style_apply		(const GtkSourceStyle *style,
-						 GtkTextTag           *tag);
+void            gtk_source_style_apply (const GtkSourceStyle *style,
+                                        GtkTextTag           *tag);
 
 G_END_DECLS
