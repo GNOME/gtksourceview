@@ -20,7 +20,7 @@
 
 #include "config.h"
 
-#include "gtksourceiter.h"
+#include "gtksourceiter-private.h"
 
 /* GtkTextIter functions. Contains forward/backward functions for word
  * movements, with custom word boundaries that are used for word selection

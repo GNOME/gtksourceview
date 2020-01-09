@@ -31,7 +31,7 @@
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils.h"
 #include "gtksourceregion.h"
-#include "gtksourceiter.h"
+#include "gtksourceiter-private.h"
 #include "gtksource-enumtypes.h"
 
 /**

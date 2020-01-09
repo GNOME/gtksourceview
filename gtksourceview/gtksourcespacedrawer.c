@@ -29,7 +29,7 @@
 #include "gtksourcespacedrawer-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
-#include "gtksourceiter.h"
+#include "gtksourceiter-private.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourcetag.h"
 #include "gtksourceview.h"
