@@ -20,10 +20,11 @@
 
 #include "config.h"
 
-#include "gtksourcestylescheme.h"
 #include <libxml/parser.h>
 #include <string.h>
 #include <glib/gi18n-lib.h>
+
+#include "gtksourcestylescheme.h"
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestyle-private.h"
@@ -76,8 +77,10 @@ enum
 	PROP_FILENAME
 };
 
-struct _GtkSourceStyleSchemePrivate
+struct _GtkSourceStyleScheme
 {
+	GObject parent_instance;
+
 	gchar *id;
 	gchar *name;
 	GPtrArray *authors;
@@ -93,34 +96,34 @@ struct _GtkSourceStyleSchemePrivate
 	GtkCssProvider *css_provider_cursors;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceStyleScheme, gtk_source_style_scheme, G_TYPE_OBJECT)
+G_DEFINE_TYPE (GtkSourceStyleScheme, gtk_source_style_scheme, G_TYPE_OBJECT)
 
 static void
 gtk_source_style_scheme_dispose (GObject *object)
 {
 	GtkSourceStyleScheme *scheme = GTK_SOURCE_STYLE_SCHEME (object);
 
-	if (scheme->priv->named_colors != NULL)
+	if (scheme->named_colors != NULL)
 	{
-		g_hash_table_unref (scheme->priv->named_colors);
-		scheme->priv->named_colors = NULL;
+		g_hash_table_unref (scheme->named_colors);
+		scheme->named_colors = NULL;
 	}
 
-	if (scheme->priv->style_cache != NULL)
+	if (scheme->style_cache != NULL)
 	{
-		g_hash_table_unref (scheme->priv->style_cache);
-		scheme->priv->style_cache = NULL;
+		g_hash_table_unref (scheme->style_cache);
+		scheme->style_cache = NULL;
 	}
 
-	if (scheme->priv->defined_styles != NULL)
+	if (scheme->defined_styles != NULL)
 	{
-		g_hash_table_unref (scheme->priv->defined_styles);
-		scheme->priv->defined_styles = NULL;
+		g_hash_table_unref (scheme->defined_styles);
+		scheme->defined_styles = NULL;
 	}
 
-	g_clear_object (&scheme->priv->parent);
-	g_clear_object (&scheme->priv->css_provider);
-	g_clear_object (&scheme->priv->css_provider_cursors);
+	g_clear_object (&scheme->parent);
+	g_clear_object (&scheme->css_provider);
+	g_clear_object (&scheme->css_provider_cursors);
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_parent_class)->dispose (object);
 }
@@ -130,33 +133,33 @@ gtk_source_style_scheme_finalize (GObject *object)
 {
 	GtkSourceStyleScheme *scheme = GTK_SOURCE_STYLE_SCHEME (object);
 
-	if (scheme->priv->authors != NULL)
+	if (scheme->authors != NULL)
 	{
-		g_ptr_array_free (scheme->priv->authors, TRUE);
+		g_ptr_array_free (scheme->authors, TRUE);
 	}
 
-	g_free (scheme->priv->filename);
-	g_free (scheme->priv->description);
-	g_free (scheme->priv->id);
-	g_free (scheme->priv->name);
-	g_free (scheme->priv->parent_id);
+	g_free (scheme->filename);
+	g_free (scheme->description);
+	g_free (scheme->id);
+	g_free (scheme->name);
+	g_free (scheme->parent_id);
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_parent_class)->finalize (object);
 }
 
 static void
-gtk_source_style_scheme_set_property (GObject 	   *object,
-				      guint         prop_id,
-				      const GValue *value,
-				      GParamSpec   *pspec)
+gtk_source_style_scheme_set_property (GObject      *object,
+                                      guint         prop_id,
+                                      const GValue *value,
+                                      GParamSpec   *pspec)
 {
 	GtkSourceStyleScheme *scheme = GTK_SOURCE_STYLE_SCHEME (object);
 
 	switch (prop_id)
 	{
 		case PROP_ID:
-			g_free (scheme->priv->id);
-			scheme->priv->id = g_value_dup_string (value);
+			g_free (scheme->id);
+			scheme->id = g_value_dup_string (value);
 			break;
 
 		default:
@@ -166,29 +169,29 @@ gtk_source_style_scheme_set_property (GObject 	   *object,
 }
 
 static void
-gtk_source_style_scheme_get_property (GObject 	 *object,
-				      guint 	  prop_id,
-				      GValue 	 *value,
-				      GParamSpec *pspec)
+gtk_source_style_scheme_get_property (GObject    *object,
+                                      guint       prop_id,
+                                      GValue     *value,
+                                      GParamSpec *pspec)
 {
 	GtkSourceStyleScheme *scheme = GTK_SOURCE_STYLE_SCHEME (object);
 
 	switch (prop_id)
 	{
 		case PROP_ID:
-			g_value_set_string (value, scheme->priv->id);
+			g_value_set_string (value, scheme->id);
 			break;
 
 		case PROP_NAME:
-			g_value_set_string (value, scheme->priv->name);
+			g_value_set_string (value, scheme->name);
 			break;
 
 		case PROP_DESCRIPTION:
-			g_value_set_string (value, scheme->priv->description);
+			g_value_set_string (value, scheme->description);
 			break;
 
 		case PROP_FILENAME:
-			g_value_set_string (value, scheme->priv->filename);
+			g_value_set_string (value, scheme->filename);
 			break;
 
 		default:
@@ -273,18 +276,18 @@ unref_if_not_null (gpointer object)
 static void
 gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
 {
-	scheme->priv = gtk_source_style_scheme_get_instance_private (scheme);
+	scheme = gtk_source_style_scheme_get_instance_private (scheme);
 
-	scheme->priv->defined_styles = g_hash_table_new_full (g_str_hash, g_str_equal,
+	scheme->defined_styles = g_hash_table_new_full (g_str_hash, g_str_equal,
 							      g_free, g_object_unref);
 
-	scheme->priv->style_cache = g_hash_table_new_full (g_str_hash, g_str_equal,
+	scheme->style_cache = g_hash_table_new_full (g_str_hash, g_str_equal,
 							   g_free, unref_if_not_null);
 
-	scheme->priv->named_colors = g_hash_table_new_full (g_str_hash, g_str_equal,
+	scheme->named_colors = g_hash_table_new_full (g_str_hash, g_str_equal,
 							    g_free, g_free);
 
-	scheme->priv->css_provider = gtk_css_provider_new ();
+	scheme->css_provider = gtk_css_provider_new ();
 }
 
 /**
@@ -299,9 +302,9 @@ const gchar *
 gtk_source_style_scheme_get_id (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
-	g_return_val_if_fail (scheme->priv->id != NULL, "");
+	g_return_val_if_fail (scheme->id != NULL, "");
 
-	return scheme->priv->id;
+	return scheme->id;
 }
 
 /**
@@ -316,9 +319,9 @@ const gchar *
 gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
-	g_return_val_if_fail (scheme->priv->name != NULL, "");
+	g_return_val_if_fail (scheme->name != NULL, "");
 
-	return scheme->priv->name;
+	return scheme->name;
 }
 
 /**
@@ -334,7 +337,7 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
-	return scheme->priv->description;
+	return scheme->description;
 }
 
 /**
@@ -352,12 +355,12 @@ gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
-	if (scheme->priv->authors == NULL)
+	if (scheme->authors == NULL)
 	{
 		return NULL;
 	}
 
-	return (const gchar * const *)scheme->priv->authors->pdata;
+	return (const gchar * const *)scheme->authors->pdata;
 }
 
 /**
@@ -374,7 +377,7 @@ gtk_source_style_scheme_get_filename (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
-	return scheme->priv->filename;
+	return scheme->filename;
 }
 
 /*
@@ -414,7 +417,7 @@ color_parse (const gchar *color,
  */
 static const gchar *
 get_color_by_name (GtkSourceStyleScheme *scheme,
-		   const gchar          *name)
+                   const gchar          *name)
 {
 	const char *color = NULL;
 
@@ -433,11 +436,11 @@ get_color_by_name (GtkSourceStyleScheme *scheme,
 	}
 	else
 	{
-		color = g_hash_table_lookup (scheme->priv->named_colors, name);
+		color = g_hash_table_lookup (scheme->named_colors, name);
 
-		if (color == NULL && scheme->priv->parent != NULL)
+		if (color == NULL && scheme->parent != NULL)
 		{
-			color = get_color_by_name (scheme->priv->parent, name);
+			color = get_color_by_name (scheme->parent, name);
 		}
 
 		if (color == NULL)
@@ -451,7 +454,7 @@ get_color_by_name (GtkSourceStyleScheme *scheme,
 
 static GtkSourceStyle *
 fix_style_colors (GtkSourceStyleScheme *scheme,
-		  GtkSourceStyle       *real_style)
+                  GtkSourceStyle       *real_style)
 {
 	GtkSourceStyle *style;
 	guint i;
@@ -493,12 +496,12 @@ fix_style_colors (GtkSourceStyleScheme *scheme,
 
 static GtkSourceStyle *
 gtk_source_style_scheme_get_style_internal (GtkSourceStyleScheme *scheme,
-					    const gchar          *style_id)
+                                            const gchar          *style_id)
 {
 	GtkSourceStyle *style = NULL;
 	GtkSourceStyle *real_style;
 
-	if (g_hash_table_lookup_extended (scheme->priv->style_cache,
+	if (g_hash_table_lookup_extended (scheme->style_cache,
 					  style_id,
 					  NULL,
 					  (gpointer)&style))
@@ -506,13 +509,13 @@ gtk_source_style_scheme_get_style_internal (GtkSourceStyleScheme *scheme,
 		return style;
 	}
 
-	real_style = g_hash_table_lookup (scheme->priv->defined_styles, style_id);
+	real_style = g_hash_table_lookup (scheme->defined_styles, style_id);
 
 	if (real_style == NULL)
 	{
-		if (scheme->priv->parent != NULL)
+		if (scheme->parent != NULL)
 		{
-			style = gtk_source_style_scheme_get_style (scheme->priv->parent,
+			style = gtk_source_style_scheme_get_style (scheme->parent,
 								   style_id);
 		}
 		if (style != NULL)
@@ -525,7 +528,7 @@ gtk_source_style_scheme_get_style_internal (GtkSourceStyleScheme *scheme,
 		style = fix_style_colors (scheme, real_style);
 	}
 
-	g_hash_table_insert (scheme->priv->style_cache,
+	g_hash_table_insert (scheme->style_cache,
 			     g_strdup (style_id),
 			     style);
 
@@ -556,7 +559,7 @@ gtk_source_style_scheme_get_style_internal (GtkSourceStyleScheme *scheme,
  */
 GtkSourceStyle *
 gtk_source_style_scheme_get_style (GtkSourceStyleScheme *scheme,
-				   const gchar          *style_id)
+                                   const gchar          *style_id)
 {
 	GtkSourceStyle *style;
 
@@ -617,8 +620,8 @@ _gtk_source_style_scheme_get_draw_spaces_style (GtkSourceStyleScheme *scheme)
 
 static gboolean
 get_color (GtkSourceStyle *style,
-	   gboolean        foreground,
-	   GdkRGBA        *dest)
+           gboolean        foreground,
+           GdkRGBA        *dest)
 {
 	const gchar *color;
 	guint mask;
@@ -657,7 +660,7 @@ get_color (GtkSourceStyle *style,
  */
 gboolean
 _gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
-						 GdkRGBA              *color)
+                                                 GdkRGBA              *color)
 {
 	GtkSourceStyle *style;
 
@@ -688,7 +691,7 @@ _gtk_source_style_scheme_get_background_pattern_color (GtkSourceStyleScheme *sch
 
 static gchar *
 get_cursors_css_style (GtkSourceStyleScheme *scheme,
-		       GtkWidget            *widget)
+                       GtkWidget            *widget)
 {
 	GtkSourceStyle *primary_style;
 	GtkSourceStyle *secondary_style;
@@ -771,7 +774,7 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
  */
 static GtkCssProvider *
 get_css_provider_cursors (GtkSourceStyleScheme *scheme,
-			  GtkWidget            *widget)
+                          GtkWidget            *widget)
 {
 	gchar *css;
 	GtkCssProvider *provider;
@@ -810,7 +813,7 @@ get_css_provider_cursors (GtkSourceStyleScheme *scheme,
  */
 void
 _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
-				GtkSourceView        *view)
+                                GtkSourceView        *view)
 {
 	GtkStyleContext *context;
 
@@ -819,7 +822,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 
 	context = gtk_widget_get_style_context (GTK_WIDGET (view));
 	gtk_style_context_add_provider (context,
-	                                GTK_STYLE_PROVIDER (scheme->priv->css_provider),
+	                                GTK_STYLE_PROVIDER (scheme->css_provider),
 	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
 
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
@@ -830,16 +833,16 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	/* The CssProvider for the cursors needs that the first provider is
 	 * applied, to get the background color.
 	 */
-	if (scheme->priv->css_provider_cursors == NULL)
+	if (scheme->css_provider_cursors == NULL)
 	{
-		scheme->priv->css_provider_cursors = get_css_provider_cursors (scheme,
+		scheme->css_provider_cursors = get_css_provider_cursors (scheme,
 									       GTK_WIDGET (view));
 	}
 
-	if (scheme->priv->css_provider_cursors != NULL)
+	if (scheme->css_provider_cursors != NULL)
 	{
 		gtk_style_context_add_provider (context,
-						GTK_STYLE_PROVIDER (scheme->priv->css_provider_cursors),
+						GTK_STYLE_PROVIDER (scheme->css_provider_cursors),
 						GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
 
 		G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
@@ -859,7 +862,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
  */
 void
 _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
-				  GtkSourceView        *view)
+                                  GtkSourceView        *view)
 {
 	GtkStyleContext *context;
 
@@ -868,12 +871,12 @@ _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
 
 	context = gtk_widget_get_style_context (GTK_WIDGET (view));
 	gtk_style_context_remove_provider (context,
-	                                   GTK_STYLE_PROVIDER (scheme->priv->css_provider));
+	                                   GTK_STYLE_PROVIDER (scheme->css_provider));
 
-	if (scheme->priv->css_provider_cursors != NULL)
+	if (scheme->css_provider_cursors != NULL)
 	{
 		gtk_style_context_remove_provider (context,
-						   GTK_STYLE_PROVIDER (scheme->priv->css_provider_cursors));
+						   GTK_STYLE_PROVIDER (scheme->css_provider_cursors));
 	}
 
 	G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
@@ -996,7 +999,7 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	{
 		GError *error = NULL;
 
-		gtk_css_provider_load_from_data (scheme->priv->css_provider,
+		gtk_css_provider_load_from_data (scheme->css_provider,
 						 final_style->str,
 						 final_style->len,
 						 &error);
@@ -1021,10 +1024,10 @@ parse_bool (char *value)
 
 static void
 get_bool (xmlNode    *node,
-	  const char *propname,
-	  guint      *mask,
-	  guint       mask_value,
-	  gboolean   *value)
+          const char *propname,
+          guint      *mask,
+          guint       mask_value,
+          gboolean   *value)
 {
 	xmlChar *tmp = xmlGetProp (node, BAD_CAST propname);
 
@@ -1038,11 +1041,11 @@ get_bool (xmlNode    *node,
 }
 
 static gboolean
-parse_style (GtkSourceStyleScheme *scheme,
-	     xmlNode              *node,
-	     gchar               **style_name_p,
-	     GtkSourceStyle      **style_p,
-	     GError              **error)
+parse_style (GtkSourceStyleScheme  *scheme,
+             xmlNode               *node,
+             gchar                **style_name_p,
+             GtkSourceStyle       **style_p,
+             GError               **error)
 {
 	GtkSourceStyle *use_style = NULL;
 	GtkSourceStyle *result = NULL;
@@ -1209,9 +1212,9 @@ parse_style (GtkSourceStyleScheme *scheme,
 }
 
 static gboolean
-parse_color (GtkSourceStyleScheme *scheme,
-	     xmlNode              *node,
-	     GError              **error)
+parse_color (GtkSourceStyleScheme  *scheme,
+             xmlNode               *node,
+             GError               **error)
 {
 	xmlChar *name, *value;
 	gboolean result = FALSE;
@@ -1225,13 +1228,13 @@ parse_color (GtkSourceStyleScheme *scheme,
 		g_set_error (error, ERROR_QUARK, 0, "value attribute missing in 'color' tag");
 	else if (value[0] != '#' || value[1] == 0)
 		g_set_error (error, ERROR_QUARK, 0, "value in 'color' tag is not of the form '#RGB' or '#name'");
-	else if (g_hash_table_lookup (scheme->priv->named_colors, name) != NULL)
+	else if (g_hash_table_lookup (scheme->named_colors, name) != NULL)
 		g_set_error (error, ERROR_QUARK, 0, "duplicated color '%s'", name);
 	else
 		result = TRUE;
 
 	if (result)
-		g_hash_table_insert (scheme->priv->named_colors,
+		g_hash_table_insert (scheme->named_colors,
 				     g_strdup ((char *) name),
 				     g_strdup ((char *) value));
 
@@ -1242,9 +1245,9 @@ parse_color (GtkSourceStyleScheme *scheme,
 }
 
 static gboolean
-parse_style_scheme_child (GtkSourceStyleScheme *scheme,
-			  xmlNode              *node,
-			  GError              **error)
+parse_style_scheme_child (GtkSourceStyleScheme  *scheme,
+                          xmlNode               *node,
+                          GError               **error)
 {
 	if (strcmp ((char*) node->name, "style") == 0)
 	{
@@ -1254,7 +1257,7 @@ parse_style_scheme_child (GtkSourceStyleScheme *scheme,
 		if (!parse_style (scheme, node, &style_name, &style, error))
 			return FALSE;
 
-		g_hash_table_insert (scheme->priv->defined_styles, style_name, style);
+		g_hash_table_insert (scheme->defined_styles, style_name, style);
 	}
 	else if (strcmp ((char*) node->name, "color") == 0)
 	{
@@ -1264,23 +1267,23 @@ parse_style_scheme_child (GtkSourceStyleScheme *scheme,
 	else if (strcmp ((char*) node->name, "author") == 0)
 	{
 		xmlChar *tmp = xmlNodeGetContent (node);
-		if (scheme->priv->authors == NULL)
-			scheme->priv->authors = g_ptr_array_new_with_free_func (g_free);
+		if (scheme->authors == NULL)
+			scheme->authors = g_ptr_array_new_with_free_func (g_free);
 
-		g_ptr_array_add (scheme->priv->authors, g_strdup ((char*) tmp));
+		g_ptr_array_add (scheme->authors, g_strdup ((char*) tmp));
 
 		xmlFree (tmp);
 	}
 	else if (strcmp ((char*) node->name, "description") == 0)
 	{
 		xmlChar *tmp = xmlNodeGetContent (node);
-		scheme->priv->description = g_strdup ((char*) tmp);
+		scheme->description = g_strdup ((char*) tmp);
 		xmlFree (tmp);
 	}
 	else if (strcmp ((char*) node->name, "_description") == 0)
 	{
 		xmlChar *tmp = xmlNodeGetContent (node);
-		scheme->priv->description = g_strdup (_((char*) tmp));
+		scheme->description = g_strdup (_((char*) tmp));
 		xmlFree (tmp);
 	}
 	else
@@ -1293,9 +1296,9 @@ parse_style_scheme_child (GtkSourceStyleScheme *scheme,
 }
 
 static void
-parse_style_scheme_element (GtkSourceStyleScheme *scheme,
-			    xmlNode              *scheme_node,
-			    GError              **error)
+parse_style_scheme_element (GtkSourceStyleScheme  *scheme,
+                            xmlNode               *scheme_node,
+                            GError               **error)
 {
 	xmlChar *tmp;
 	xmlNode *node;
@@ -1328,14 +1331,14 @@ parse_style_scheme_element (GtkSourceStyleScheme *scheme,
 		g_set_error (error, ERROR_QUARK, 0, "missing 'id' attribute");
 		return;
 	}
-	scheme->priv->id = g_strdup ((char*) tmp);
+	scheme->id = g_strdup ((char*) tmp);
 	xmlFree (tmp);
 
 	tmp = xmlGetProp (scheme_node, BAD_CAST "_name");
 	if (tmp != NULL)
-		scheme->priv->name = g_strdup (_((char*) tmp));
+		scheme->name = g_strdup (_((char*) tmp));
 	else if ((tmp = xmlGetProp (scheme_node, BAD_CAST "name")) != NULL)
-		scheme->priv->name = g_strdup ((char*) tmp);
+		scheme->name = g_strdup ((char*) tmp);
 	else
 	{
 		g_set_error (error, ERROR_QUARK, 0, "missing 'name' attribute");
@@ -1345,7 +1348,7 @@ parse_style_scheme_element (GtkSourceStyleScheme *scheme,
 
 	tmp = xmlGetProp (scheme_node, BAD_CAST "parent-scheme");
 	if (tmp != NULL)
-		scheme->priv->parent_id = g_strdup ((char*) tmp);
+		scheme->parent_id = g_strdup ((char*) tmp);
 	xmlFree (tmp);
 
 	for (node = scheme_node->children; node != NULL; node = node->next)
@@ -1354,8 +1357,8 @@ parse_style_scheme_element (GtkSourceStyleScheme *scheme,
 				return;
 
 	/* NULL-terminate the array of authors */
-	if (scheme->priv->authors != NULL)
-		g_ptr_array_add (scheme->priv->authors, NULL);
+	if (scheme->authors != NULL)
+		g_ptr_array_add (scheme->authors, NULL);
 }
 
 /**
@@ -1413,7 +1416,7 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
 	}
 
 	scheme = g_object_new (GTK_SOURCE_TYPE_STYLE_SCHEME, NULL);
-	scheme->priv->filename = g_strdup (filename);
+	scheme->filename = g_strdup (filename);
 
 	parse_style_scheme_element (scheme, node, &error);
 
@@ -1451,7 +1454,7 @@ _gtk_source_style_scheme_get_parent_id (GtkSourceStyleScheme *scheme)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
 
-	return scheme->priv->parent_id;
+	return scheme->parent_id;
 }
 
 /**
@@ -1467,27 +1470,27 @@ _gtk_source_style_scheme_get_parent_id (GtkSourceStyleScheme *scheme)
  */
 void
 _gtk_source_style_scheme_set_parent (GtkSourceStyleScheme *scheme,
-				     GtkSourceStyleScheme *parent_scheme)
+                                     GtkSourceStyleScheme *parent_scheme)
 {
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
 	g_return_if_fail (parent_scheme == NULL || GTK_SOURCE_IS_STYLE_SCHEME (parent_scheme));
 
-	if (scheme->priv->parent == parent_scheme)
+	if (scheme->parent == parent_scheme)
 	{
 		return;
 	}
 
-	g_clear_object (&scheme->priv->parent);
+	g_clear_object (&scheme->parent);
 
 	if (parent_scheme != NULL)
 	{
 		g_object_ref (parent_scheme);
 	}
 
-	scheme->priv->parent = parent_scheme;
+	scheme->parent = parent_scheme;
 
 	/* Update CSS based on parent styles */
-	g_hash_table_remove_all (scheme->priv->style_cache);
+	g_hash_table_remove_all (scheme->style_cache);
 	generate_css_style (scheme);
 }
 
