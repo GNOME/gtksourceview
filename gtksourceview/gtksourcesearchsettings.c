@@ -40,62 +40,63 @@ enum
 	PROP_CASE_SENSITIVE,
 	PROP_AT_WORD_BOUNDARIES,
 	PROP_WRAP_AROUND,
-	PROP_REGEX_ENABLED
+	PROP_REGEX_ENABLED,
+	N_PROPS
 };
 
-struct _GtkSourceSearchSettingsPrivate
+typedef struct
 {
 	gchar *search_text;
 	guint case_sensitive : 1;
 	guint at_word_boundaries : 1;
 	guint wrap_around : 1;
 	guint regex_enabled : 1;
-};
+} GtkSourceSearchSettingsPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceSearchSettings, gtk_source_search_settings, G_TYPE_OBJECT)
+
+static GParamSpec *properties[N_PROPS];
 
 static void
 gtk_source_search_settings_finalize (GObject *object)
 {
 	GtkSourceSearchSettings *settings = GTK_SOURCE_SEARCH_SETTINGS (object);
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
 
-	g_free (settings->priv->search_text);
+	g_free (priv->search_text);
 
 	G_OBJECT_CLASS (gtk_source_search_settings_parent_class)->finalize (object);
 }
 
 static void
 gtk_source_search_settings_get_property (GObject    *object,
-					 guint       prop_id,
-					 GValue     *value,
-					 GParamSpec *pspec)
+                                         guint       prop_id,
+                                         GValue     *value,
+                                         GParamSpec *pspec)
 {
-	GtkSourceSearchSettings *settings;
-
-	g_return_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (object));
-
-	settings = GTK_SOURCE_SEARCH_SETTINGS (object);
+	GtkSourceSearchSettings *settings = GTK_SOURCE_SEARCH_SETTINGS (object);
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
 
 	switch (prop_id)
 	{
 		case PROP_SEARCH_TEXT:
-			g_value_set_string (value, settings->priv->search_text);
+			g_value_set_string (value, priv->search_text);
 			break;
 
 		case PROP_CASE_SENSITIVE:
-			g_value_set_boolean (value, settings->priv->case_sensitive);
+			g_value_set_boolean (value, priv->case_sensitive);
 			break;
 
 		case PROP_AT_WORD_BOUNDARIES:
-			g_value_set_boolean (value, settings->priv->at_word_boundaries);
+			g_value_set_boolean (value, priv->at_word_boundaries);
 			break;
 
 		case PROP_WRAP_AROUND:
-			g_value_set_boolean (value, settings->priv->wrap_around);
+			g_value_set_boolean (value, priv->wrap_around);
 			break;
 
 		case PROP_REGEX_ENABLED:
-			g_value_set_boolean (value, settings->priv->regex_enabled);
+			g_value_set_boolean (value, priv->regex_enabled);
 			break;
 
 		default:
@@ -106,15 +107,12 @@ gtk_source_search_settings_get_property (GObject    *object,
 
 static void
 gtk_source_search_settings_set_property (GObject      *object,
-					 guint         prop_id,
-					 const GValue *value,
-					 GParamSpec   *pspec)
+                                         guint         prop_id,
+                                         const GValue *value,
+                                         GParamSpec   *pspec)
 {
-	GtkSourceSearchSettings *settings;
-
-	g_return_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (object));
-
-	settings = GTK_SOURCE_SEARCH_SETTINGS (object);
+	GtkSourceSearchSettings *settings = GTK_SOURCE_SEARCH_SETTINGS (object);
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
 
 	switch (prop_id)
 	{
@@ -123,19 +121,19 @@ gtk_source_search_settings_set_property (GObject      *object,
 			break;
 
 		case PROP_CASE_SENSITIVE:
-			settings->priv->case_sensitive = g_value_get_boolean (value);
+			priv->case_sensitive = g_value_get_boolean (value);
 			break;
 
 		case PROP_AT_WORD_BOUNDARIES:
-			settings->priv->at_word_boundaries = g_value_get_boolean (value);
+			priv->at_word_boundaries = g_value_get_boolean (value);
 			break;
 
 		case PROP_WRAP_AROUND:
-			settings->priv->wrap_around = g_value_get_boolean (value);
+			priv->wrap_around = g_value_get_boolean (value);
 			break;
 
 		case PROP_REGEX_ENABLED:
-			settings->priv->regex_enabled = g_value_get_boolean (value);
+			priv->regex_enabled = g_value_get_boolean (value);
 			break;
 
 		default:
@@ -162,15 +160,12 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_SEARCH_TEXT,
-					 g_param_spec_string ("search-text",
-							      "Search text",
-							      "The text to search",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT |
-							      G_PARAM_STATIC_STRINGS));
+	properties[PROP_SEARCH_TEXT] =
+		g_param_spec_string ("search-text",
+				     "Search text",
+				     "The text to search",
+				     NULL,
+				     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceSearchSettings:case-sensitive:
@@ -179,15 +174,12 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_CASE_SENSITIVE,
-					 g_param_spec_boolean ("case-sensitive",
-							       "Case sensitive",
-							       "Case sensitive",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_CONSTRUCT |
-							       G_PARAM_STATIC_STRINGS));
+	properties[PROP_CASE_SENSITIVE] =
+		g_param_spec_boolean ("case-sensitive",
+				      "Case sensitive",
+				      "Case sensitive",
+				      FALSE,
+				      G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceSearchSettings:at-word-boundaries:
@@ -197,15 +189,12 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_AT_WORD_BOUNDARIES,
-					 g_param_spec_boolean ("at-word-boundaries",
-							       "At word boundaries",
-							       "Search at word boundaries",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_CONSTRUCT |
-							       G_PARAM_STATIC_STRINGS));
+	properties[PROP_AT_WORD_BOUNDARIES] =
+		g_param_spec_boolean ("at-word-boundaries",
+				      "At word boundaries",
+				      "Search at word boundaries",
+				      FALSE,
+				      G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceSearchSettings:wrap-around:
@@ -216,15 +205,12 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_WRAP_AROUND,
-					 g_param_spec_boolean ("wrap-around",
-							       "Wrap around",
-							       "Wrap around",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_CONSTRUCT |
-							       G_PARAM_STATIC_STRINGS));
+	properties[PROP_WRAP_AROUND] =
+		g_param_spec_boolean ("wrap-around",
+				      "Wrap around",
+				      "Wrap around",
+				      FALSE,
+				      G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceSearchSettings:regex-enabled:
@@ -234,21 +220,19 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_REGEX_ENABLED,
-					 g_param_spec_boolean ("regex-enabled",
-							       "Regex enabled",
-							       "Whether to search by regular expression",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_CONSTRUCT |
-							       G_PARAM_STATIC_STRINGS));
+	properties[PROP_REGEX_ENABLED] =
+		g_param_spec_boolean ("regex-enabled",
+				      "Regex enabled",
+				      "Whether to search by regular expression",
+				      FALSE,
+				      G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
 gtk_source_search_settings_init (GtkSourceSearchSettings *self)
 {
-	self->priv = gtk_source_search_settings_get_instance_private (self);
 }
 
 /**
@@ -281,30 +265,32 @@ gtk_source_search_settings_new (void)
  */
 void
 gtk_source_search_settings_set_search_text (GtkSourceSearchSettings *settings,
-					    const gchar             *search_text)
+                                            const gchar             *search_text)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings));
 	g_return_if_fail (search_text == NULL || g_utf8_validate (search_text, -1, NULL));
 
-	if ((settings->priv->search_text == NULL &&
+	if ((priv->search_text == NULL &&
 	     (search_text == NULL || search_text[0] == '\0')) ||
-	    g_strcmp0 (settings->priv->search_text, search_text) == 0)
+	    g_strcmp0 (priv->search_text, search_text) == 0)
 	{
 		return;
 	}
 
-	g_free (settings->priv->search_text);
+	g_free (priv->search_text);
 
 	if (search_text == NULL || search_text[0] == '\0')
 	{
-		settings->priv->search_text = NULL;
+		priv->search_text = NULL;
 	}
 	else
 	{
-		settings->priv->search_text = g_strdup (search_text);
+		priv->search_text = g_strdup (search_text);
 	}
 
-	g_object_notify (G_OBJECT (settings), "search-text");
+	g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_SEARCH_TEXT]);
 }
 
 /**
@@ -322,9 +308,11 @@ gtk_source_search_settings_set_search_text (GtkSourceSearchSettings *settings,
 const gchar *
 gtk_source_search_settings_get_search_text (GtkSourceSearchSettings *settings)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings), NULL);
 
-	return settings->priv->search_text;
+	return priv->search_text;
 }
 
 /**
@@ -338,16 +326,18 @@ gtk_source_search_settings_get_search_text (GtkSourceSearchSettings *settings)
  */
 void
 gtk_source_search_settings_set_case_sensitive (GtkSourceSearchSettings *settings,
-					       gboolean                 case_sensitive)
+                                               gboolean                 case_sensitive)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings));
 
 	case_sensitive = case_sensitive != FALSE;
 
-	if (settings->priv->case_sensitive != case_sensitive)
+	if (priv->case_sensitive != case_sensitive)
 	{
-		settings->priv->case_sensitive = case_sensitive;
-		g_object_notify (G_OBJECT (settings), "case-sensitive");
+		priv->case_sensitive = case_sensitive;
+		g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_CASE_SENSITIVE]);
 	}
 }
 
@@ -361,9 +351,11 @@ gtk_source_search_settings_set_case_sensitive (GtkSourceSearchSettings *settings
 gboolean
 gtk_source_search_settings_get_case_sensitive (GtkSourceSearchSettings *settings)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings), FALSE);
 
-	return settings->priv->case_sensitive;
+	return priv->case_sensitive;
 }
 
 /**
@@ -380,16 +372,18 @@ gtk_source_search_settings_get_case_sensitive (GtkSourceSearchSettings *settings
  */
 void
 gtk_source_search_settings_set_at_word_boundaries (GtkSourceSearchSettings *settings,
-						   gboolean                 at_word_boundaries)
+                                                   gboolean                 at_word_boundaries)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings));
 
 	at_word_boundaries = at_word_boundaries != FALSE;
 
-	if (settings->priv->at_word_boundaries != at_word_boundaries)
+	if (priv->at_word_boundaries != at_word_boundaries)
 	{
-		settings->priv->at_word_boundaries = at_word_boundaries;
-		g_object_notify (G_OBJECT (settings), "at-word-boundaries");
+		priv->at_word_boundaries = at_word_boundaries;
+		g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_AT_WORD_BOUNDARIES]);
 	}
 }
 
@@ -403,9 +397,11 @@ gtk_source_search_settings_set_at_word_boundaries (GtkSourceSearchSettings *sett
 gboolean
 gtk_source_search_settings_get_at_word_boundaries (GtkSourceSearchSettings *settings)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings), FALSE);
 
-	return settings->priv->at_word_boundaries;
+	return priv->at_word_boundaries;
 }
 
 /**
@@ -422,16 +418,18 @@ gtk_source_search_settings_get_at_word_boundaries (GtkSourceSearchSettings *sett
  */
 void
 gtk_source_search_settings_set_wrap_around (GtkSourceSearchSettings *settings,
-					    gboolean                 wrap_around)
+                                            gboolean                 wrap_around)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings));
 
 	wrap_around = wrap_around != FALSE;
 
-	if (settings->priv->wrap_around != wrap_around)
+	if (priv->wrap_around != wrap_around)
 	{
-		settings->priv->wrap_around = wrap_around;
-		g_object_notify (G_OBJECT (settings), "wrap-around");
+		priv->wrap_around = wrap_around;
+		g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_WRAP_AROUND]);
 	}
 }
 
@@ -445,9 +443,11 @@ gtk_source_search_settings_set_wrap_around (GtkSourceSearchSettings *settings,
 gboolean
 gtk_source_search_settings_get_wrap_around (GtkSourceSearchSettings *settings)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings), FALSE);
 
-	return settings->priv->wrap_around;
+	return priv->wrap_around;
 }
 
 /**
@@ -467,16 +467,18 @@ gtk_source_search_settings_get_wrap_around (GtkSourceSearchSettings *settings)
  */
 void
 gtk_source_search_settings_set_regex_enabled (GtkSourceSearchSettings *settings,
-					      gboolean                 regex_enabled)
+                                              gboolean                 regex_enabled)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings));
 
 	regex_enabled = regex_enabled != FALSE;
 
-	if (settings->priv->regex_enabled != regex_enabled)
+	if (priv->regex_enabled != regex_enabled)
 	{
-		settings->priv->regex_enabled = regex_enabled;
-		g_object_notify (G_OBJECT (settings), "regex-enabled");
+		priv->regex_enabled = regex_enabled;
+		g_object_notify_by_pspec (G_OBJECT (settings), properties[PROP_REGEX_ENABLED]);
 	}
 }
 
@@ -490,7 +492,9 @@ gtk_source_search_settings_set_regex_enabled (GtkSourceSearchSettings *settings,
 gboolean
 gtk_source_search_settings_get_regex_enabled (GtkSourceSearchSettings *settings)
 {
+	GtkSourceSearchSettingsPrivate *priv = gtk_source_search_settings_get_instance_private (settings);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_SETTINGS (settings), FALSE);
 
-	return settings->priv->regex_enabled;
+	return priv->regex_enabled;
 }
