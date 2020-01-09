@@ -21,8 +21,9 @@
 
 #include "config.h"
 
-#include "gtksourcecompletionmodel.h"
 #include <glib/gi18n-lib.h>
+
+#include "gtksourcecompletionmodel-private.h"
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcecompletionproposal.h"
 
@@ -42,7 +43,7 @@ typedef struct
 
 typedef struct
 {
-	/* Node from model->priv->providers */
+	/* Node from model->providers */
 	GList *provider_node;
 
 	/* For the header, the completion proposal is NULL. */
@@ -53,8 +54,10 @@ typedef struct
 	gulong changed_id;
 } ProposalInfo;
 
-struct _GtkSourceCompletionModelPrivate
+struct _GtkSourceCompletionModel
 {
+	GObject parent_instance;
+
 	GType column_types[GTK_SOURCE_COMPLETION_MODEL_N_COLUMNS];
 
 	/* List of ProviderInfo sorted by priority in descending order. */
@@ -72,7 +75,6 @@ static void tree_model_iface_init (gpointer g_iface, gpointer iface_data);
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionModel,
                          gtk_source_completion_model,
                          G_TYPE_OBJECT,
-			 G_ADD_PRIVATE (GtkSourceCompletionModel)
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_TREE_MODEL,
                                                 tree_model_iface_init))
 
@@ -90,12 +92,12 @@ static gboolean
 is_provider_visible (GtkSourceCompletionModel    *model,
 		     GtkSourceCompletionProvider *provider)
 {
-	if (model->priv->visible_providers == NULL)
+	if (model->visible_providers == NULL)
 	{
 		return TRUE;
 	}
 
-	return g_list_find (model->priv->visible_providers, provider) != NULL;
+	return g_list_find (model->visible_providers, provider) != NULL;
 }
 
 static gboolean
@@ -113,7 +115,7 @@ get_iter_from_index (GtkSourceCompletionModel *model,
 	}
 
 	/* Find the provider */
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		gint new_index;
 		info = l->data;
@@ -153,7 +155,7 @@ get_provider_start_index (GtkSourceCompletionModel *model,
 
 	g_assert (info != NULL);
 
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		ProviderInfo *cur_info = l->data;
 
@@ -242,7 +244,7 @@ get_provider_node (GtkSourceCompletionModel    *model,
 {
 	GList *l;
 
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		ProviderInfo *provider_info = l->data;
 
@@ -265,7 +267,7 @@ get_last_iter (GtkSourceCompletionModel *model,
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 
-	last_provider = g_list_last (model->priv->providers);
+	last_provider = g_list_last (model->providers);
 
 	if (last_provider == NULL)
 	{
@@ -402,7 +404,7 @@ tree_model_get_column_type (GtkTreeModel *tree_model,
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (tree_model), G_TYPE_INVALID);
 	g_return_val_if_fail (0 <= idx && idx < GTK_SOURCE_COMPLETION_MODEL_N_COLUMNS, G_TYPE_INVALID);
 
-	return GTK_SOURCE_COMPLETION_MODEL (tree_model)->priv->column_types[idx];
+	return GTK_SOURCE_COMPLETION_MODEL (tree_model)->column_types[idx];
 }
 
 static gboolean
@@ -461,7 +463,7 @@ tree_model_get_value (GtkTreeModel *tree_model,
 	completion_proposal = proposal_info->completion_proposal;
 	completion_provider = provider_info->completion_provider;
 
-	g_value_init (value, GTK_SOURCE_COMPLETION_MODEL (tree_model)->priv->column_types[column]);
+	g_value_init (value, GTK_SOURCE_COMPLETION_MODEL (tree_model)->column_types[column]);
 
 	switch (column)
 	{
@@ -652,7 +654,7 @@ tree_model_iter_n_children (GtkTreeModel *tree_model,
 
 	model = GTK_SOURCE_COMPLETION_MODEL (tree_model);
 
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		ProviderInfo *info = l->data;
 
@@ -727,11 +729,11 @@ gtk_source_completion_model_dispose (GObject *object)
 {
 	GtkSourceCompletionModel *model = GTK_SOURCE_COMPLETION_MODEL (object);
 
-	g_list_free_full (model->priv->providers, (GDestroyNotify)provider_info_free);
-	model->priv->providers = NULL;
+	g_list_free_full (model->providers, (GDestroyNotify)provider_info_free);
+	model->providers = NULL;
 
-	g_list_free_full (model->priv->visible_providers, g_object_unref);
-	model->priv->visible_providers = NULL;
+	g_list_free_full (model->visible_providers, g_object_unref);
+	model->visible_providers = NULL;
 
 	G_OBJECT_CLASS (gtk_source_completion_model_parent_class)->dispose (object);
 }
@@ -747,19 +749,17 @@ gtk_source_completion_model_class_init (GtkSourceCompletionModelClass *klass)
 static void
 gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 {
-	self->priv = gtk_source_completion_model_get_instance_private (self);
+	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP] = G_TYPE_STRING;
+	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON] = GDK_TYPE_PIXBUF;
+	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON_NAME] = G_TYPE_STRING;
+	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_GICON] = G_TYPE_ICON;
+	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL] = G_TYPE_OBJECT;
+	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER] = G_TYPE_OBJECT;
+	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER] = G_TYPE_BOOLEAN;
 
-	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP] = G_TYPE_STRING;
-	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON] = GDK_TYPE_PIXBUF;
-	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON_NAME] = G_TYPE_STRING;
-	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_GICON] = G_TYPE_ICON;
-	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL] = G_TYPE_OBJECT;
-	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROVIDER] = G_TYPE_OBJECT;
-	self->priv->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER] = G_TYPE_BOOLEAN;
-
-	self->priv->show_headers = 1;
-	self->priv->providers = NULL;
-	self->priv->visible_providers = NULL;
+	self->show_headers = 1;
+	self->providers = NULL;
+	self->visible_providers = NULL;
 }
 
 /* Population: add proposals */
@@ -786,7 +786,7 @@ create_provider_info (GtkSourceCompletionModel    *model,
 
 	priority = gtk_source_completion_provider_get_priority (provider);
 
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		ProviderInfo *cur_info = l->data;
 		gint cur_priority = gtk_source_completion_provider_get_priority (cur_info->completion_provider);
@@ -797,13 +797,13 @@ create_provider_info (GtkSourceCompletionModel    *model,
 		}
 	}
 
-	model->priv->providers = g_list_insert_before (model->priv->providers, l, info);
+	model->providers = g_list_insert_before (model->providers, l, info);
 
-	provider_node = g_list_find (model->priv->providers, info);
+	provider_node = g_list_find (model->providers, info);
 
 	/* Insert the header if needed */
 
-	if (model->priv->show_headers)
+	if (model->show_headers)
 	{
 		add_header (provider_node);
 	}
@@ -899,13 +899,13 @@ gtk_source_completion_model_set_visible_providers (GtkSourceCompletionModel *mod
 		g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (l->data));
 	}
 
-	g_list_free_full (model->priv->visible_providers, g_object_unref);
+	g_list_free_full (model->visible_providers, g_object_unref);
 
-	model->priv->visible_providers = g_list_copy_deep (providers,
+	model->visible_providers = g_list_copy_deep (providers,
 							   provider_copy_func,
 							   NULL);
 
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		ProviderInfo *provider_info = l->data;
 		provider_info->visible = is_provider_visible (model, provider_info->completion_provider);
@@ -917,7 +917,7 @@ gtk_source_completion_model_get_visible_providers (GtkSourceCompletionModel *mod
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), NULL);
 
-	return model->priv->visible_providers;
+	return model->visible_providers;
 }
 
 /* If @only_visible is %TRUE, only the visible providers are taken into account. */
@@ -929,7 +929,7 @@ gtk_source_completion_model_is_empty (GtkSourceCompletionModel *model,
 
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), TRUE);
 
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		ProviderInfo *info = l->data;
 
@@ -953,14 +953,14 @@ gtk_source_completion_model_set_show_headers (GtkSourceCompletionModel *model,
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model));
 
-	if (model->priv->show_headers == show_headers)
+	if (model->show_headers == show_headers)
 	{
 		return;
 	}
 
-	model->priv->show_headers = show_headers;
+	model->show_headers = show_headers;
 
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		if (show_headers)
 		{
@@ -1052,7 +1052,7 @@ gtk_source_completion_model_get_providers (GtkSourceCompletionModel *model)
 
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_MODEL (model), NULL);
 
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		ProviderInfo *info = l->data;
 		ret = g_list_prepend (ret, info->completion_provider);
@@ -1209,7 +1209,7 @@ gtk_source_completion_model_has_info (GtkSourceCompletionModel *model)
 {
 	GList *l;
 
-	for (l = model->priv->providers; l != NULL; l = l->next)
+	for (l = model->providers; l != NULL; l = l->next)
 	{
 		ProviderInfo *provider_info = l->data;
 

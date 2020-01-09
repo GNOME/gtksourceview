@@ -15,7 +15,7 @@ reference_private_h = [
   'gtksourcecompletioncontainer-private.h',
   'gtksourcecompletioncontext-private.h',
   'gtksourcecompletioninfo-private.h',
-  'gtksourcecompletionmodel.h',
+  'gtksourcecompletionmodel-private.h',
   'gtksourcecompletionwordsbuffer-private.h',
   'gtksourcecompletionwordslibrary-private.h',
   'gtksourcecompletionwordsproposal-private.h',

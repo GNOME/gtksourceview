@@ -99,10 +99,11 @@
 
 #include "config.h"
 
+#include <glib/gi18n-lib.h>
+
 #include "gtksourcecompletion.h"
 #include "gtksourcecompletion-private.h"
-#include <glib/gi18n-lib.h>
-#include "gtksourcecompletionmodel.h"
+#include "gtksourcecompletionmodel-private.h"
 #include "gtksourcecompletioncontext.h"
 #include "gtksourcecompletioninfo-private.h"
 #include "gtksourcecompletionproposal.h"
