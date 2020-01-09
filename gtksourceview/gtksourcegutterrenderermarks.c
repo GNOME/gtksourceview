@@ -20,24 +20,29 @@
 
 #include "config.h"
 
-#include "gtksourcegutterrenderermarks.h"
+#include "gtksourcegutterrenderermarks-private.h"
 #include "gtksourceview.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcemarkattributes.h"
 #include "gtksourcemark.h"
 
-#define COMPOSITE_ALPHA                 225
+#define COMPOSITE_ALPHA 225
+
+struct _GtkSourceGutterRendererMarks
+{
+	GtkSourceGutterRendererPixbuf parent_instance;
+};
 
 G_DEFINE_TYPE (GtkSourceGutterRendererMarks, gtk_source_gutter_renderer_marks, GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF)
 
 static gint
 sort_marks_by_priority (gconstpointer m1,
-			gconstpointer m2,
-			gpointer data)
+                        gconstpointer m2,
+                        gpointer      data)
 {
-	GtkSourceMark *mark1 = GTK_SOURCE_MARK (m1);
-	GtkSourceMark *mark2 = GTK_SOURCE_MARK (m2);
-	GtkSourceView *view = GTK_SOURCE_VIEW (data);
+	GtkSourceMark *mark1 = (GtkSourceMark *)m1;
+	GtkSourceMark *mark2 = (GtkSourceMark *)m2;
+	GtkSourceView *view = data;
 	GtkTextIter iter1, iter2;
 	gint line1;
 	gint line2;
@@ -165,9 +170,9 @@ composite_marks (GtkSourceView *view,
 
 static void
 gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
-			    GtkTextIter                  *start,
-			    GtkTextIter                  *end,
-			    GtkSourceGutterRendererState  state)
+                            GtkTextIter                  *start,
+                            GtkTextIter                  *end,
+                            GtkSourceGutterRendererState  state)
 {
 	GSList *marks;
 	GdkPixbuf *pixbuf = NULL;
