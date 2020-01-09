@@ -23,6 +23,7 @@ reference_private_h = [
   'gtksourcecontextengine-private.h',
   'gtksourceencoding-private.h',
   'gtksourceengine-private.h',
+  'gtksourcefile-private.h',
   'gtksourcegutter-private.h',
   'gtksourcegutterrendererlines.h',
   'gtksourcegutterrenderermarks-private.h',
