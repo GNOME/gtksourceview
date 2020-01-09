@@ -20,7 +20,7 @@
 
 #include "config.h"
 
-#include "gtksourcefile.h"
+#include "gtksourcefile-private.h"
 #include "gtksourceencoding.h"
 #include "gtksource-enumtypes.h"
 

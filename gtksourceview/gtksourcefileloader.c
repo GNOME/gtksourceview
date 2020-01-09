@@ -23,10 +23,11 @@
 
 #include "config.h"
 
-#include "gtksourcefileloader.h"
 #include <glib/gi18n-lib.h>
+
+#include "gtksourcefileloader.h"
 #include "gtksourcebuffer.h"
-#include "gtksourcefile.h"
+#include "gtksourcefile-private.h"
 #include "gtksourcebufferoutputstream.h"
 #include "gtksourceencoding.h"
 #include "gtksourceencoding-private.h"
