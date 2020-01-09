@@ -52,7 +52,5 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceLanguage        *gtk_source_language_manager_guess_language   (GtkSourceLanguageManager  *lm,
                                                                         const gchar               *filename,
                                                                         const gchar               *content_type);
-G_GNUC_INTERNAL
-GtkSourceLanguageManager *_gtk_source_language_manager_peek_default    (void);
 
 G_END_DECLS

@@ -20,13 +20,12 @@
 
 #include "config.h"
 
-#include "gtksourcelanguagemanager.h"
-
 #include <string.h>
 #include <gio/gio.h>
 
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
+#include "gtksourcelanguagemanager-private.h"
 #include "gtksourceutils-private.h"
 
 /**
