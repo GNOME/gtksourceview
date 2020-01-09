@@ -22,7 +22,7 @@
 
 #include <glib.h>
 
-#include "gtksourcecontextengine.h"
+#include "gtksourcecontextengine-private.h"
 #include "gtksourcelanguagemanager.h"
 
 G_BEGIN_DECLS

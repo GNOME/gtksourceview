@@ -20,7 +20,7 @@ reference_private_h = [
   'gtksourcecompletionwordslibrary.h',
   'gtksourcecompletionwordsproposal.h',
   'gtksourcecompletionwordsutils.h',
-  'gtksourcecontextengine.h',
+  'gtksourcecontextengine-private.h',
   'gtksourceencoding-private.h',
   'gtksourceengine.h',
   'gtksourcegutter-private.h',
