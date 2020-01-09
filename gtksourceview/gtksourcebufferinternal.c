@@ -20,7 +20,7 @@
 
 #include "config.h"
 
-#include "gtksourcebufferinternal.h"
+#include "gtksourcebufferinternal-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksource-marshal.h"
 #include "gtksourcesearchcontext.h"
