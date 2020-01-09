@@ -23,7 +23,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourcebufferinputstream.h"
+
+#include "gtksourceview/gtksourcebufferinputstream-private.h"
 
 static void
 test_consecutive_read (const gchar          *inbuf,
