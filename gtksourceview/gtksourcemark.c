@@ -49,24 +49,21 @@ enum
 	PROP_CATEGORY
 };
 
-struct _GtkSourceMarkPrivate
+typedef struct
 {
 	gchar *category;
-};
+} GtkSourceMarkPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMark, gtk_source_mark, GTK_TYPE_TEXT_MARK);
+G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMark, gtk_source_mark, GTK_TYPE_TEXT_MARK)
 
 static void
 gtk_source_mark_set_property (GObject      *object,
-			      guint         prop_id,
-			      const GValue *value,
-			      GParamSpec   *pspec)
+                              guint         prop_id,
+                              const GValue *value,
+                              GParamSpec   *pspec)
 {
-	GtkSourceMarkPrivate *priv;
-
-	g_return_if_fail (GTK_SOURCE_IS_MARK (object));
-
-	priv = GTK_SOURCE_MARK (object)->priv;
+	GtkSourceMark *mark = GTK_SOURCE_MARK (object);
+	GtkSourceMarkPrivate *priv = gtk_source_mark_get_instance_private (mark);
 
 	switch (prop_id)
 	{
@@ -84,15 +81,11 @@ gtk_source_mark_set_property (GObject      *object,
 
 static void
 gtk_source_mark_get_property (GObject    *object,
-			      guint       prop_id,
-			      GValue     *value,
-			      GParamSpec *pspec)
+                              guint       prop_id,
+                              GValue     *value,
+                              GParamSpec *pspec)
 {
-	GtkSourceMark *mark;
-
-	g_return_if_fail (GTK_SOURCE_IS_MARK (object));
-
-	mark = GTK_SOURCE_MARK (object);
+	GtkSourceMark *mark = GTK_SOURCE_MARK (object);
 
 	switch (prop_id)
 	{
@@ -111,8 +104,9 @@ static void
 gtk_source_mark_finalize (GObject *object)
 {
 	GtkSourceMark *mark = GTK_SOURCE_MARK (object);
+	GtkSourceMarkPrivate *priv = gtk_source_mark_get_instance_private (mark);
 
-	g_free (mark->priv->category);
+	g_clear_pointer (&priv->category, g_free);
 
 	G_OBJECT_CLASS (gtk_source_mark_parent_class)->finalize (object);
 }
@@ -148,7 +142,6 @@ gtk_source_mark_class_init (GtkSourceMarkClass *klass)
 static void
 gtk_source_mark_init (GtkSourceMark *mark)
 {
-	mark->priv = gtk_source_mark_get_instance_private (mark);
 }
 
 /**
@@ -195,9 +188,11 @@ gtk_source_mark_new (const gchar *name,
 const gchar *
 gtk_source_mark_get_category (GtkSourceMark *mark)
 {
+	GtkSourceMarkPrivate *priv = gtk_source_mark_get_instance_private (mark);
+
 	g_return_val_if_fail (GTK_SOURCE_IS_MARK (mark), NULL);
 
-	return mark->priv->category;
+	return priv->category;
 }
 
 /**
@@ -216,7 +211,7 @@ gtk_source_mark_get_category (GtkSourceMark *mark)
  */
 GtkSourceMark *
 gtk_source_mark_next (GtkSourceMark *mark,
-		      const gchar   *category)
+                      const gchar   *category)
 {
 	GtkTextBuffer *buffer;
 
@@ -250,7 +245,7 @@ gtk_source_mark_next (GtkSourceMark *mark,
  */
 GtkSourceMark *
 gtk_source_mark_prev (GtkSourceMark *mark,
-		      const gchar   *category)
+                      const gchar   *category)
 {
 	GtkTextBuffer *buffer;
 
