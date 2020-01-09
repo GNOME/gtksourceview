@@ -29,69 +29,34 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER		(gtk_source_style_scheme_manager_get_type ())
-#define GTK_SOURCE_STYLE_SCHEME_MANAGER(obj)		(G_TYPE_CHECK_INSTANCE_CAST((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER, GtkSourceStyleSchemeManager))
-#define GTK_SOURCE_STYLE_SCHEME_MANAGER_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST((klass), GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER, GtkSourceStyleSchemeManagerClass))
-#define GTK_SOURCE_IS_STYLE_SCHEME_MANAGER(obj)		(G_TYPE_CHECK_INSTANCE_TYPE((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER))
-#define GTK_SOURCE_IS_STYLE_SCHEME_MANAGER_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER))
-#define GTK_SOURCE_STYLE_SCHEME_MANAGER_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS((obj), GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER, GtkSourceStyleSchemeManagerClass))
-
-typedef struct _GtkSourceStyleSchemeManagerClass	GtkSourceStyleSchemeManagerClass;
-typedef struct _GtkSourceStyleSchemeManagerPrivate	GtkSourceStyleSchemeManagerPrivate;
-
-struct _GtkSourceStyleSchemeManager
-{
-	GObject parent;
-
-	GtkSourceStyleSchemeManagerPrivate *priv;
-};
-
-struct _GtkSourceStyleSchemeManagerClass
-{
-	GObjectClass parent_class;
-
-	/* Padding for future expansion */
-	gpointer padding[10];
-};
+#define GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER (gtk_source_style_scheme_manager_get_type())
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GType			 gtk_source_style_scheme_manager_get_type		(void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (GtkSourceStyleSchemeManager, gtk_source_style_scheme_manager, GTK_SOURCE, STYLE_SCHEME_MANAGER, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceStyleSchemeManager *
-			 gtk_source_style_scheme_manager_new			(void);
-
+GtkSourceStyleSchemeManager *gtk_source_style_scheme_manager_new                 (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceStyleSchemeManager *
-			 gtk_source_style_scheme_manager_get_default		(void);
-
+GtkSourceStyleSchemeManager *gtk_source_style_scheme_manager_get_default         (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void			 gtk_source_style_scheme_manager_set_search_path	(GtkSourceStyleSchemeManager	*manager,
-						    				 gchar			       **path);
-
+void                         gtk_source_style_scheme_manager_set_search_path     (GtkSourceStyleSchemeManager  *manager,
+                                                                                  gchar                       **path);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void 			 gtk_source_style_scheme_manager_append_search_path	(GtkSourceStyleSchemeManager	*manager,
-						    				 const gchar			*path);
-
+void                         gtk_source_style_scheme_manager_append_search_path  (GtkSourceStyleSchemeManager  *manager,
+                                                                                  const gchar                  *path);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void 			 gtk_source_style_scheme_manager_prepend_search_path	(GtkSourceStyleSchemeManager	*manager,
-						    				 const gchar			*path);
-
+void                         gtk_source_style_scheme_manager_prepend_search_path (GtkSourceStyleSchemeManager  *manager,
+                                                                                  const gchar                  *path);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar * const *	 gtk_source_style_scheme_manager_get_search_path	(GtkSourceStyleSchemeManager	*manager);
-
+const gchar * const         *gtk_source_style_scheme_manager_get_search_path     (GtkSourceStyleSchemeManager  *manager);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void			 gtk_source_style_scheme_manager_force_rescan		(GtkSourceStyleSchemeManager	*manager);
-
+void                         gtk_source_style_scheme_manager_force_rescan        (GtkSourceStyleSchemeManager  *manager);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar * const *	 gtk_source_style_scheme_manager_get_scheme_ids		(GtkSourceStyleSchemeManager	*manager);
-
+const gchar * const         *gtk_source_style_scheme_manager_get_scheme_ids      (GtkSourceStyleSchemeManager  *manager);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceStyleScheme	*gtk_source_style_scheme_manager_get_scheme		(GtkSourceStyleSchemeManager	*manager,
-										 const gchar			*scheme_id);
-
+GtkSourceStyleScheme        *gtk_source_style_scheme_manager_get_scheme          (GtkSourceStyleSchemeManager  *manager,
+                                                                                  const gchar                  *scheme_id);
 G_GNUC_INTERNAL
-GtkSourceStyleSchemeManager *
-			 _gtk_source_style_scheme_manager_peek_default		(void);
+GtkSourceStyleSchemeManager *_gtk_source_style_scheme_manager_peek_default       (void);
 
 G_END_DECLS
