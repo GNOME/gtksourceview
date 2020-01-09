@@ -47,7 +47,7 @@
 #include "gtksourcegutter-private.h"
 #include "gtksourcegutterrendererlines.h"
 #include "gtksourcegutterrenderermarks-private.h"
-#include "gtksourceiter.h"
+#include "gtksourceiter-private.h"
 #include "gtksourcesearchcontext.h"
 #include "gtksourcespacedrawer.h"
 #include "gtksourcespacedrawer-private.h"
