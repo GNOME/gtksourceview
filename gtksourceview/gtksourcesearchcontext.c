@@ -22,7 +22,7 @@
 
 #include <string.h>
 
-#include "gtksourcesearchcontext.h"
+#include "gtksourcesearchcontext-private.h"
 #include "gtksourcesearchsettings.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"

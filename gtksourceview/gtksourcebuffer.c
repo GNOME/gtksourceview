@@ -41,7 +41,7 @@
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkssequence.h"
-#include "gtksourcesearchcontext.h"
+#include "gtksourcesearchcontext-private.h"
 #include "gtksourcetag.h"
 #include "gtksource-enumtypes.h"
 
