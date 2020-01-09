@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+#include <gtksourceview/gtksourcestylescheme-private.h>
 
 typedef struct _TestFixture TestFixture;
 

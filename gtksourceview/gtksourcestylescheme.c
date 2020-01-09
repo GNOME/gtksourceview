@@ -25,6 +25,7 @@
 #include <glib/gi18n-lib.h>
 
 #include "gtksourcestylescheme.h"
+#include "gtksourcestylescheme-private.h"
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestyle-private.h"

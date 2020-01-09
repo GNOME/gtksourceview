@@ -23,7 +23,7 @@
 #include <string.h>
 
 #include "gtksourcestyleschememanager-private.h"
-#include "gtksourcestylescheme.h"
+#include "gtksourcestylescheme-private.h"
 #include "gtksourceutils-private.h"
 
 /**

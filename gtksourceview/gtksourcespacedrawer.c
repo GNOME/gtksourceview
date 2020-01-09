@@ -30,7 +30,7 @@
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
 #include "gtksourceiter-private.h"
-#include "gtksourcestylescheme.h"
+#include "gtksourcestylescheme-private.h"
 #include "gtksourcetag.h"
 #include "gtksourceview.h"
 
