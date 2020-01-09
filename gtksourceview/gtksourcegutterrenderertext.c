@@ -32,14 +32,14 @@
  * #GtkSourceGutter.
  */
 
-struct _GtkSourceGutterRendererTextPrivate
+typedef struct
 {
 	gchar *text;
 
 	PangoLayout *cached_layout;
 
 	guint is_markup : 1;
-};
+} GtkSourceGutterRendererTextPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererText, gtk_source_gutter_renderer_text, GTK_SOURCE_TYPE_GUTTER_RENDERER)
 
@@ -52,19 +52,20 @@ enum
 
 static void
 gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
-			    cairo_t                 *cr,
-			    GdkRectangle            *background_area,
-			    GdkRectangle            *cell_area,
-			    GtkTextIter             *start,
-			    GtkTextIter             *end)
+                            cairo_t                 *cr,
+                            GdkRectangle            *background_area,
+                            GdkRectangle            *cell_area,
+                            GtkTextIter             *start,
+                            GtkTextIter             *end)
 {
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
+	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (text);
 	GtkTextView *view;
 
 	view = gtk_source_gutter_renderer_get_view (renderer);
 
-	g_clear_object (&text->priv->cached_layout);
-	text->priv->cached_layout = gtk_widget_create_pango_layout (GTK_WIDGET (view), NULL);
+	g_clear_object (&priv->cached_layout);
+	priv->cached_layout = gtk_widget_create_pango_layout (GTK_WIDGET (view), NULL);
 
 	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_text_parent_class)->begin != NULL)
 	{
@@ -98,14 +99,15 @@ center_on (GtkTextView  *view,
 
 static void
 gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
-			   cairo_t                      *cr,
-			   GdkRectangle                 *background_area,
-			   GdkRectangle                 *cell_area,
-			   GtkTextIter                  *start,
-			   GtkTextIter                  *end,
-			   GtkSourceGutterRendererState  state)
+                           cairo_t                      *cr,
+                           GdkRectangle                 *background_area,
+                           GdkRectangle                 *cell_area,
+                           GtkTextIter                  *start,
+                           GtkTextIter                  *end,
+                           GtkSourceGutterRendererState  state)
 {
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
+	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (text);
 	GtkTextView *view;
 	gint width;
 	gint height;
@@ -130,20 +132,20 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 
 	view = gtk_source_gutter_renderer_get_view (renderer);
 
-	if (text->priv->is_markup)
+	if (priv->is_markup)
 	{
-		pango_layout_set_markup (text->priv->cached_layout,
-		                         text->priv->text,
+		pango_layout_set_markup (priv->cached_layout,
+		                         priv->text,
 		                         -1);
 	}
 	else
 	{
-		pango_layout_set_text (text->priv->cached_layout,
-		                       text->priv->text,
+		pango_layout_set_text (priv->cached_layout,
+		                       priv->text,
 		                       -1);
 	}
 
-	pango_layout_get_pixel_size (text->priv->cached_layout, &width, &height);
+	pango_layout_get_pixel_size (priv->cached_layout, &width, &height);
 
 	gtk_source_gutter_renderer_get_alignment (renderer,
 	                                          &xalign,
@@ -195,15 +197,16 @@ gutter_renderer_text_draw (GtkSourceGutterRenderer      *renderer,
 	}
 
 	context = gtk_widget_get_style_context (GTK_WIDGET (view));
-	gtk_render_layout (context, cr, x, y, text->priv->cached_layout);
+	gtk_render_layout (context, cr, x, y, priv->cached_layout);
 }
 
 static void
 gutter_renderer_text_end (GtkSourceGutterRenderer *renderer)
 {
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
+	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (text);
 
-	g_clear_object (&text->priv->cached_layout);
+	g_clear_object (&priv->cached_layout);
 
 	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_text_parent_class)->end != NULL)
 	{
@@ -291,9 +294,10 @@ static void
 gtk_source_gutter_renderer_text_finalize (GObject *object)
 {
 	GtkSourceGutterRendererText *renderer = GTK_SOURCE_GUTTER_RENDERER_TEXT (object);
+	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (renderer);
 
-	g_free (renderer->priv->text);
-	g_clear_object (&renderer->priv->cached_layout);
+	g_free (priv->text);
+	g_clear_object (&priv->cached_layout);
 
 	G_OBJECT_CLASS (gtk_source_gutter_renderer_text_parent_class)->finalize (object);
 }
@@ -304,10 +308,12 @@ set_text (GtkSourceGutterRendererText *renderer,
           gint                         length,
           gboolean                     is_markup)
 {
-	g_free (renderer->priv->text);
+	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (renderer);
 
-	renderer->priv->text = length >= 0 ? g_strndup (text, length) : g_strdup (text);
-	renderer->priv->is_markup = is_markup;
+	g_free (priv->text);
+
+	priv->text = length >= 0 ? g_strndup (text, length) : g_strdup (text);
+	priv->is_markup = is_markup;
 }
 
 static void
@@ -340,17 +346,16 @@ gtk_source_gutter_renderer_text_get_property (GObject    *object,
                                               GValue     *value,
                                               GParamSpec *pspec)
 {
-	GtkSourceGutterRendererText *renderer;
-
-	renderer = GTK_SOURCE_GUTTER_RENDERER_TEXT (object);
+	GtkSourceGutterRendererText *renderer = GTK_SOURCE_GUTTER_RENDERER_TEXT (object);
+	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (renderer);
 
 	switch (prop_id)
 	{
 		case PROP_MARKUP:
-			g_value_set_string (value, renderer->priv->is_markup ? renderer->priv->text : NULL);
+			g_value_set_string (value, priv->is_markup ? priv->text : NULL);
 			break;
 		case PROP_TEXT:
-			g_value_set_string (value, !renderer->priv->is_markup ? renderer->priv->text : NULL);
+			g_value_set_string (value, !priv->is_markup ? priv->text : NULL);
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -393,9 +398,9 @@ gtk_source_gutter_renderer_text_class_init (GtkSourceGutterRendererTextClass *kl
 static void
 gtk_source_gutter_renderer_text_init (GtkSourceGutterRendererText *self)
 {
-	self->priv = gtk_source_gutter_renderer_text_get_instance_private (self);
+	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (self);
 
-	self->priv->is_markup = TRUE;
+	priv->is_markup = TRUE;
 }
 
 /**
