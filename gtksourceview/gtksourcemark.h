@@ -29,34 +29,18 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_MARK             (gtk_source_mark_get_type ())
-#define GTK_SOURCE_MARK(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_MARK, GtkSourceMark))
-#define GTK_SOURCE_MARK_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_MARK, GtkSourceMarkClass))
-#define GTK_SOURCE_IS_MARK(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_MARK))
-#define GTK_SOURCE_IS_MARK_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_MARK))
-#define GTK_SOURCE_MARK_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_MARK, GtkSourceMarkClass))
+#define GTK_SOURCE_TYPE_MARK (gtk_source_mark_get_type())
 
-typedef struct _GtkSourceMarkClass GtkSourceMarkClass;
-
-typedef struct _GtkSourceMarkPrivate GtkSourceMarkPrivate;
-
-struct _GtkSourceMark
-{
-	GtkTextMark parent_instance;
-
-	GtkSourceMarkPrivate *priv;
-};
+GTK_SOURCE_AVAILABLE_IN_ALL
+G_DECLARE_DERIVABLE_TYPE (GtkSourceMark, gtk_source_mark, GTK_SOURCE, MARK, GtkTextMark)
 
 struct _GtkSourceMarkClass
 {
 	GtkTextMarkClass parent_class;
 
 	/* Padding for future expansion */
-	gpointer padding[10];
+	gpointer _reserved[10];
 };
-
-GTK_SOURCE_AVAILABLE_IN_ALL
-GType		 gtk_source_mark_get_type (void) G_GNUC_CONST;
 
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceMark   *gtk_source_mark_new		(const gchar	*name,
