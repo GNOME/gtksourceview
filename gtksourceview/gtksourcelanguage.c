@@ -61,15 +61,41 @@ enum {
 	PROP_HIDDEN
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceLanguage, gtk_source_language, G_TYPE_OBJECT)
+struct _GtkSourceLanguage
+{
+	GObject                   parent_instance;
 
-static GtkSourceLanguage *process_language_node (xmlTextReaderPtr	 reader,
-						 const gchar		*filename);
-static gboolean		  force_styles		(GtkSourceLanguage	*language);
+	gchar                    *lang_file_name;
+	gchar                    *translation_domain;
+
+	gchar                    *id;
+	gchar                    *name;
+	gchar                    *section;
+
+	/* Maps ids to GtkSourceStyleInfo objects */
+	/* Names of styles defined in other lang files are not stored */
+	GHashTable               *styles;
+	gboolean                  styles_loaded;
+
+	gint                      version;
+	gboolean                  hidden;
+
+	GHashTable               *properties;
+
+	GtkSourceLanguageManager *language_manager;
+
+	GtkSourceContextData     *ctx_data;
+};
+
+G_DEFINE_TYPE (GtkSourceLanguage, gtk_source_language, G_TYPE_OBJECT)
+
+static GtkSourceLanguage *process_language_node (xmlTextReaderPtr   reader,
+                                                 const gchar       *filename);
+static gboolean           force_styles          (GtkSourceLanguage *language);
 
 GtkSourceLanguage *
 _gtk_source_language_new_from_file (const gchar              *filename,
-				    GtkSourceLanguageManager *lm)
+                                    GtkSourceLanguageManager *lm)
 {
 	GtkSourceLanguage *lang = NULL;
 	xmlTextReaderPtr reader = NULL;
@@ -132,9 +158,9 @@ _gtk_source_language_new_from_file (const gchar              *filename,
 
 	if (lang != NULL)
 	{
-		lang->priv->language_manager = lm;
+		lang->language_manager = lm;
 		g_object_add_weak_pointer (G_OBJECT (lm),
-					   (gpointer) &lang->priv->language_manager);
+					   (gpointer) &lang->language_manager);
 	}
 
 	return lang;
@@ -142,9 +168,9 @@ _gtk_source_language_new_from_file (const gchar              *filename,
 
 static void
 gtk_source_language_get_property (GObject    *object,
-				  guint       prop_id,
-				  GValue     *value,
-				  GParamSpec *pspec)
+                                  guint       prop_id,
+                                  GValue     *value,
+                                  GParamSpec *pspec)
 {
 	GtkSourceLanguage *language;
 
@@ -155,19 +181,19 @@ gtk_source_language_get_property (GObject    *object,
 	switch (prop_id)
 	{
 		case PROP_ID:
-			g_value_set_string (value, language->priv->id);
+			g_value_set_string (value, language->id);
 			break;
 
 		case PROP_NAME:
-			g_value_set_string (value, language->priv->name);
+			g_value_set_string (value, language->name);
 			break;
 
 		case PROP_SECTION:
-			g_value_set_string (value, language->priv->section);
+			g_value_set_string (value, language->section);
 			break;
 
 		case PROP_HIDDEN:
-			g_value_set_boolean (value, language->priv->hidden);
+			g_value_set_boolean (value, language->hidden);
 			break;
 
 		default:
@@ -183,11 +209,11 @@ gtk_source_language_dispose (GObject *object)
 
 	lang = GTK_SOURCE_LANGUAGE (object);
 
-	if (lang->priv->language_manager != NULL)
+	if (lang->language_manager != NULL)
 	{
-		g_object_remove_weak_pointer (G_OBJECT (lang->priv->language_manager),
-					      (gpointer) &lang->priv->language_manager);
-		lang->priv->language_manager = NULL;
+		g_object_remove_weak_pointer (G_OBJECT (lang->language_manager),
+					      (gpointer) &lang->language_manager);
+		lang->language_manager = NULL;
 	}
 
 	G_OBJECT_CLASS (gtk_source_language_parent_class)->dispose (object);
@@ -200,17 +226,17 @@ gtk_source_language_finalize (GObject *object)
 
 	lang = GTK_SOURCE_LANGUAGE (object);
 
-	if (lang->priv->ctx_data != NULL)
+	if (lang->ctx_data != NULL)
 		g_critical ("context data not freed in gtk_source_language_finalize");
 
-	g_free (lang->priv->lang_file_name);
-	g_free (lang->priv->translation_domain);
-	g_free (lang->priv->name);
-	g_free (lang->priv->section);
-	g_free (lang->priv->id);
-	g_hash_table_destroy (lang->priv->properties);
+	g_free (lang->lang_file_name);
+	g_free (lang->translation_domain);
+	g_free (lang->name);
+	g_free (lang->section);
+	g_free (lang->id);
+	g_hash_table_destroy (lang->properties);
 
-	g_hash_table_destroy (lang->priv->styles);
+	g_hash_table_destroy (lang->styles);
 
 	G_OBJECT_CLASS (gtk_source_language_parent_class)->finalize (object);
 }
@@ -264,13 +290,13 @@ gtk_source_language_class_init (GtkSourceLanguageClass *klass)
 static void
 gtk_source_language_init (GtkSourceLanguage *lang)
 {
-	lang->priv = gtk_source_language_get_instance_private (lang);
+	lang = gtk_source_language_get_instance_private (lang);
 
-	lang->priv->styles = g_hash_table_new_full (g_str_hash,
+	lang->styles = g_hash_table_new_full (g_str_hash,
 						    g_str_equal,
 						    g_free,
 						    (GDestroyNotify)_gtk_source_style_info_free);
-	lang->priv->properties = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
+	lang->properties = g_hash_table_new_full (g_str_hash, g_str_equal, g_free, g_free);
 }
 
 static gboolean
@@ -290,7 +316,7 @@ string_to_bool (const gchar *string)
 
 static void
 process_properties (xmlTextReaderPtr   reader,
-		    GtkSourceLanguage *language)
+                    GtkSourceLanguage *language)
 {
 	xmlNodePtr child;
 	xmlNodePtr node = NULL;
@@ -334,7 +360,7 @@ process_properties (xmlTextReaderPtr   reader,
 		content = xmlNodeGetContent (child);
 
 		if (name != NULL && content != NULL)
-			g_hash_table_insert (language->priv->properties,
+			g_hash_table_insert (language->properties,
 					     g_strdup ((gchar *) name),
 					     g_strdup ((gchar *) content));
 
@@ -344,7 +370,8 @@ process_properties (xmlTextReaderPtr   reader,
 }
 
 static GtkSourceLanguage *
-process_language_node (xmlTextReaderPtr reader, const gchar *filename)
+process_language_node (xmlTextReaderPtr  reader,
+                       const gchar      *filename)
 {
 	xmlChar *version;
 	xmlChar *tmp;
@@ -353,29 +380,29 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 
 	lang = g_object_new (GTK_SOURCE_TYPE_LANGUAGE, NULL);
 
-	lang->priv->lang_file_name = g_strdup (filename);
+	lang->lang_file_name = g_strdup (filename);
 
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "translation-domain");
-	lang->priv->translation_domain = g_strdup ((gchar*) tmp);
+	lang->translation_domain = g_strdup ((gchar*) tmp);
 	xmlFree (tmp);
 
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "hidden");
 	if (tmp != NULL)
-		lang->priv->hidden = string_to_bool ((gchar*) tmp);
+		lang->hidden = string_to_bool ((gchar*) tmp);
 	else
-		lang->priv->hidden = FALSE;
+		lang->hidden = FALSE;
 	xmlFree (tmp);
 
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "mimetypes");
 	if (tmp != NULL)
-		g_hash_table_insert (lang->priv->properties,
+		g_hash_table_insert (lang->properties,
 				     g_strdup ("mimetypes"),
 				     g_strdup ((char*) tmp));
 	xmlFree (tmp);
 
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "globs");
 	if (tmp != NULL)
-		g_hash_table_insert (lang->priv->properties,
+		g_hash_table_insert (lang->properties,
 				     g_strdup ("globs"),
 				     g_strdup ((char*) tmp));
 	xmlFree (tmp);
@@ -393,23 +420,23 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 			return NULL;
 		}
 
-		lang->priv->name = g_strdup ((char*) tmp);
+		lang->name = g_strdup ((char*) tmp);
 		untranslated_name = tmp;
 	}
 	else
 	{
-		lang->priv->name = _gtk_source_language_translate_string (lang, (gchar*) tmp);
+		lang->name = _gtk_source_language_translate_string (lang, (gchar*) tmp);
 		untranslated_name = tmp;
 	}
 
 	tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "id");
 	if (tmp != NULL)
 	{
-		lang->priv->id = g_ascii_strdown ((gchar*) tmp, -1);
+		lang->id = g_ascii_strdown ((gchar*) tmp, -1);
 	}
 	else
 	{
-		lang->priv->id = g_ascii_strdown ((gchar*) untranslated_name, -1);
+		lang->id = g_ascii_strdown ((gchar*) untranslated_name, -1);
 	}
 	xmlFree (tmp);
 	xmlFree (untranslated_name);
@@ -420,15 +447,15 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 		tmp = xmlTextReaderGetAttribute (reader, BAD_CAST "section");
 
 		if (tmp == NULL)
-			lang->priv->section = g_strdup (DEFAULT_SECTION);
+			lang->section = g_strdup (DEFAULT_SECTION);
 		else
-			lang->priv->section = g_strdup ((gchar *) tmp);
+			lang->section = g_strdup ((gchar *) tmp);
 
 		xmlFree (tmp);
 	}
 	else
 	{
-		lang->priv->section = _gtk_source_language_translate_string (lang, (gchar*) tmp);
+		lang->section = _gtk_source_language_translate_string (lang, (gchar*) tmp);
 		xmlFree (tmp);
 	}
 
@@ -444,11 +471,11 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 
 	if (xmlStrcmp (version , BAD_CAST "1.0") == 0)
 	{
-		lang->priv->version = GTK_SOURCE_LANGUAGE_VERSION_1_0;
+		lang->version = GTK_SOURCE_LANGUAGE_VERSION_1_0;
 	}
 	else if (xmlStrcmp (version, BAD_CAST "2.0") == 0)
 	{
-		lang->priv->version = GTK_SOURCE_LANGUAGE_VERSION_2_0;
+		lang->version = GTK_SOURCE_LANGUAGE_VERSION_2_0;
 	}
 	else
 	{
@@ -461,7 +488,7 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 
 	xmlFree (version);
 
-	if (lang->priv->version == GTK_SOURCE_LANGUAGE_VERSION_2_0)
+	if (lang->version == GTK_SOURCE_LANGUAGE_VERSION_2_0)
 		process_properties (reader, lang);
 
 	return lang;
@@ -469,11 +496,11 @@ process_language_node (xmlTextReaderPtr reader, const gchar *filename)
 
 gchar *
 _gtk_source_language_translate_string (GtkSourceLanguage *language,
-				       const gchar       *string)
+                                       const gchar       *string)
 {
 	g_return_val_if_fail (string != NULL, NULL);
 
-	return _gtk_source_utils_dgettext (language->priv->translation_domain, string);
+	return _gtk_source_utils_dgettext (language->translation_domain, string);
 }
 
 /**
@@ -490,9 +517,9 @@ const gchar *
 gtk_source_language_get_id (GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
-	g_return_val_if_fail (language->priv->id != NULL, NULL);
+	g_return_val_if_fail (language->id != NULL, NULL);
 
-	return language->priv->id;
+	return language->id;
 }
 
 /**
@@ -509,9 +536,9 @@ const gchar *
 gtk_source_language_get_name (GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
-	g_return_val_if_fail (language->priv->name != NULL, NULL);
+	g_return_val_if_fail (language->name != NULL, NULL);
 
-	return language->priv->name;
+	return language->name;
 }
 
 /**
@@ -527,12 +554,12 @@ gtk_source_language_get_name (GtkSourceLanguage *language)
  * Returns: the section of @language.
  **/
 const gchar *
-gtk_source_language_get_section	(GtkSourceLanguage *language)
+gtk_source_language_get_section (GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
-	g_return_val_if_fail (language->priv->section != NULL, NULL);
+	g_return_val_if_fail (language->section != NULL, NULL);
 
-	return language->priv->section;
+	return language->section;
 }
 
 /**
@@ -548,7 +575,7 @@ gtk_source_language_get_hidden (GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), FALSE);
 
-	return language->priv->hidden;
+	return language->hidden;
 }
 
 /**
@@ -564,12 +591,12 @@ gtk_source_language_get_hidden (GtkSourceLanguage *language)
  **/
 const gchar *
 gtk_source_language_get_metadata (GtkSourceLanguage *language,
-				  const gchar       *name)
+                                  const gchar       *name)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
 	g_return_val_if_fail (name != NULL, NULL);
 
-	return g_hash_table_lookup (language->priv->properties, name);
+	return g_hash_table_lookup (language->properties, name);
 }
 
 /**
@@ -637,17 +664,17 @@ GtkSourceLanguageManager *
 _gtk_source_language_get_language_manager (GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
-	g_return_val_if_fail (language->priv->id != NULL, NULL);
+	g_return_val_if_fail (language->id != NULL, NULL);
 
-	return language->priv->language_manager;
+	return language->language_manager;
 }
 
 /* Highlighting engine creation ------------------------------------------ */
 
 static void
 copy_style_info (const char         *style_id,
-		 GtkSourceStyleInfo *info,
-		 GHashTable         *dest)
+                 GtkSourceStyleInfo *info,
+                 GHashTable         *dest)
 {
 	g_hash_table_insert (dest, g_strdup (style_id),
 			     _gtk_source_style_info_copy (info));
@@ -680,7 +707,7 @@ _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 
 		info = _gtk_source_style_info_new (alias[i][0], alias[i][1]);
 
-		g_hash_table_insert (lang->priv->styles,
+		g_hash_table_insert (lang->styles,
 				     g_strdup (alias[i][0]),
 				     info);
 
@@ -696,9 +723,9 @@ _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 	if (def_lang != NULL)
 	{
 		force_styles (def_lang);
-		g_hash_table_foreach (def_lang->priv->styles,
+		g_hash_table_foreach (def_lang->styles,
 				      (GHFunc) copy_style_info,
-				      lang->priv->styles);
+				      lang->styles);
 	}
 }
 
@@ -706,12 +733,12 @@ _gtk_source_language_define_language_styles (GtkSourceLanguage *lang)
 static GtkSourceContextData *
 gtk_source_language_parse_file (GtkSourceLanguage *language)
 {
-	if (language->priv->ctx_data == NULL)
+	if (language->ctx_data == NULL)
 	{
 		gboolean success = FALSE;
 		GtkSourceContextData *ctx_data;
 
-		if (language->priv->language_manager == NULL)
+		if (language->language_manager == NULL)
 		{
 			g_critical ("_gtk_source_language_create_engine() is called after "
 				    "language manager was finalized");
@@ -720,7 +747,7 @@ gtk_source_language_parse_file (GtkSourceLanguage *language)
 		{
 			ctx_data = _gtk_source_context_data_new	(language);
 
-			switch (language->priv->version)
+			switch (language->version)
 			{
 				case GTK_SOURCE_LANGUAGE_VERSION_1_0:
 					g_warning ("The language definition format version 1 "
@@ -740,15 +767,15 @@ gtk_source_language_parse_file (GtkSourceLanguage *language)
 			if (!success)
 				_gtk_source_context_data_unref (ctx_data);
 			else
-				language->priv->ctx_data = ctx_data;
+				language->ctx_data = ctx_data;
 		}
 	}
 	else
 	{
-		_gtk_source_context_data_ref (language->priv->ctx_data);
+		_gtk_source_context_data_ref (language->ctx_data);
 	}
 
-	return language->priv->ctx_data;
+	return language->ctx_data;
 }
 
 GtkSourceEngine *
@@ -768,16 +795,16 @@ _gtk_source_language_create_engine (GtkSourceLanguage *language)
 	return ce ? GTK_SOURCE_ENGINE (ce) : NULL;
 }
 
-typedef struct _AddStyleIdData AddStyleIdData;
-
-struct _AddStyleIdData
+typedef struct
 {
-	gchar             *language_id;
-	GPtrArray         *ids_array;
-};
+	gchar     *language_id;
+	GPtrArray *ids_array;
+} AddStyleIdData;
 
 static void
-add_style_id (gchar *id, G_GNUC_UNUSED gpointer value, AddStyleIdData *data)
+add_style_id (gchar                  *id,
+              G_GNUC_UNUSED gpointer  value,
+              AddStyleIdData         *data)
 {
 	if (g_str_has_prefix (id, data->language_id))
 		g_ptr_array_add (data->ids_array, g_strdup (id));
@@ -789,14 +816,14 @@ get_style_ids (GtkSourceLanguage *language)
 	GPtrArray *ids_array;
 	AddStyleIdData data;
 
-	g_return_val_if_fail (language->priv->styles != NULL, NULL);
+	g_return_val_if_fail (language->styles != NULL, NULL);
 
 	ids_array = g_ptr_array_new ();
 
-	data.language_id = g_strdup_printf ("%s:", language->priv->id);
+	data.language_id = g_strdup_printf ("%s:", language->id);
 	data.ids_array = ids_array;
 
-	g_hash_table_foreach (language->priv->styles,
+	g_hash_table_foreach (language->styles,
 			      (GHFunc) add_style_id,
 			      &data);
 
@@ -825,7 +852,7 @@ force_styles (GtkSourceLanguage *language)
 	 * as if we were to create an engine. In the future we can improve
 	 * this by parsing styles only.
 	 */
-	if (!language->priv->styles_loaded && language->priv->ctx_data == NULL)
+	if (!language->styles_loaded && language->ctx_data == NULL)
 	{
 		GtkSourceContextData *ctx_data;
 
@@ -833,7 +860,7 @@ force_styles (GtkSourceLanguage *language)
 		if (ctx_data == NULL)
 			return FALSE;
 
-		language->priv->styles_loaded = TRUE;
+		language->styles_loaded = TRUE;
 		_gtk_source_context_data_unref (ctx_data);
 	}
 
@@ -855,7 +882,7 @@ gchar **
 gtk_source_language_get_style_ids (GtkSourceLanguage *language)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
-	g_return_val_if_fail (language->priv->id != NULL, NULL);
+	g_return_val_if_fail (language->id != NULL, NULL);
 
 	if (!force_styles (language))
 		return NULL;
@@ -864,16 +891,17 @@ gtk_source_language_get_style_ids (GtkSourceLanguage *language)
 }
 
 static GtkSourceStyleInfo *
-get_style_info (GtkSourceLanguage *language, const char *style_id)
+get_style_info (GtkSourceLanguage *language,
+                const char        *style_id)
 {
 	GtkSourceStyleInfo *info;
 
 	if (!force_styles (language))
 		return NULL;
 
-	g_return_val_if_fail (language->priv->styles != NULL, NULL);
+	g_return_val_if_fail (language->styles != NULL, NULL);
 
-	info = g_hash_table_lookup (language->priv->styles, style_id);
+	info = g_hash_table_lookup (language->styles, style_id);
 
 	return info;
 }
@@ -892,12 +920,12 @@ get_style_info (GtkSourceLanguage *language, const char *style_id)
  */
 const gchar *
 gtk_source_language_get_style_name (GtkSourceLanguage *language,
-				    const gchar       *style_id)
+                                    const gchar       *style_id)
 {
 	GtkSourceStyleInfo *info;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
-	g_return_val_if_fail (language->priv->id != NULL, NULL);
+	g_return_val_if_fail (language->id != NULL, NULL);
 	g_return_val_if_fail (style_id != NULL, NULL);
 
 	info = get_style_info (language, style_id);
@@ -922,12 +950,12 @@ gtk_source_language_get_style_name (GtkSourceLanguage *language,
  */
 const gchar *
 gtk_source_language_get_style_fallback (GtkSourceLanguage *language,
-					const gchar       *style_id)
+                                        const gchar       *style_id)
 {
 	GtkSourceStyleInfo *info;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_LANGUAGE (language), NULL);
-	g_return_val_if_fail (language->priv->id != NULL, NULL);
+	g_return_val_if_fail (language->id != NULL, NULL);
 	g_return_val_if_fail (style_id != NULL, NULL);
 
 	info = get_style_info (language, style_id);
@@ -938,7 +966,8 @@ gtk_source_language_get_style_fallback (GtkSourceLanguage *language,
 /* Utility functions for GtkSourceStyleInfo */
 
 GtkSourceStyleInfo *
-_gtk_source_style_info_new (const gchar *name, const gchar *map_to)
+_gtk_source_style_info_new (const gchar *name,
+                            const gchar *map_to)
 {
 	GtkSourceStyleInfo *info = g_new0 (GtkSourceStyleInfo, 1);
 
@@ -952,6 +981,7 @@ GtkSourceStyleInfo *
 _gtk_source_style_info_copy (GtkSourceStyleInfo *info)
 {
 	g_return_val_if_fail (info != NULL, NULL);
+
 	return _gtk_source_style_info_new (info->name, info->map_to);
 }
 
@@ -959,11 +989,34 @@ void
 _gtk_source_style_info_free (GtkSourceStyleInfo *info)
 {
 	if (info == NULL)
+	{
 		return;
+	}
 
 	g_free (info->name);
 	g_free (info->map_to);
-
 	g_free (info);
 }
 
+
+void
+_gtk_source_language_clear_ctx_data (GtkSourceLanguage    *language,
+                                     GtkSourceContextData *ctx_data)
+{
+	if (language->ctx_data == ctx_data)
+	{
+		language->ctx_data = NULL;
+	}
+}
+
+const gchar *
+_gtk_source_language_get_file_name (GtkSourceLanguage *language)
+{
+	return language->lang_file_name;
+}
+
+GHashTable *
+_gtk_source_language_get_styles (GtkSourceLanguage *language)
+{
+	return language->styles;
+}

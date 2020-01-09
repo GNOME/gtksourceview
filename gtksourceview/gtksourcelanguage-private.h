@@ -21,79 +21,51 @@
 #pragma once
 
 #include <glib.h>
+
 #include "gtksourcecontextengine.h"
 #include "gtksourcelanguagemanager.h"
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_LANGUAGE_VERSION_1_0  100
-#define GTK_SOURCE_LANGUAGE_VERSION_2_0  200
+#define GTK_SOURCE_LANGUAGE_VERSION_1_0 100
+#define GTK_SOURCE_LANGUAGE_VERSION_2_0 200
 
-typedef struct _GtkSourceStyleInfo GtkSourceStyleInfo;
-
-struct _GtkSourceStyleInfo
+typedef struct
 {
 	gchar *name;
 	gchar *map_to;
-};
-
-struct _GtkSourceLanguagePrivate
-{
-	gchar                    *lang_file_name;
-	gchar                    *translation_domain;
-
-	gchar                    *id;
-	gchar                    *name;
-	gchar                    *section;
-
-	/* Maps ids to GtkSourceStyleInfo objects */
-	/* Names of styles defined in other lang files are not stored */
-	GHashTable               *styles;
-	gboolean		  styles_loaded;
-
-	gint                      version;
-	gboolean                  hidden;
-
-	GHashTable               *properties;
-
-	GtkSourceLanguageManager *language_manager;
-
-	GtkSourceContextData     *ctx_data;
-};
+} GtkSourceStyleInfo;
 
 G_GNUC_INTERNAL
-GtkSourceLanguage 	 *_gtk_source_language_new_from_file 		(const gchar		   *filename,
-									 GtkSourceLanguageManager  *lm);
-
+GtkSourceLanguage        *_gtk_source_language_new_from_file          (const gchar              *filename,
+                                                                       GtkSourceLanguageManager *lm);
 G_GNUC_INTERNAL
-GtkSourceLanguageManager *_gtk_source_language_get_language_manager 	(GtkSourceLanguage        *language);
-
+GtkSourceLanguageManager *_gtk_source_language_get_language_manager   (GtkSourceLanguage        *language);
 G_GNUC_INTERNAL
-const gchar		 *_gtk_source_language_manager_get_rng_file	(GtkSourceLanguageManager *lm);
-
+const gchar              *_gtk_source_language_get_file_name          (GtkSourceLanguage        *language);
 G_GNUC_INTERNAL
-gchar       		 *_gtk_source_language_translate_string 	(GtkSourceLanguage        *language,
-									 const gchar              *string);
-
+const gchar              *_gtk_source_language_manager_get_rng_file   (GtkSourceLanguageManager *lm);
 G_GNUC_INTERNAL
-void 			  _gtk_source_language_define_language_styles	(GtkSourceLanguage        *language);
-
+gchar                    *_gtk_source_language_translate_string       (GtkSourceLanguage        *language,
+                                                                       const gchar              *string);
 G_GNUC_INTERNAL
-gboolean 		  _gtk_source_language_file_parse_version2	(GtkSourceLanguage        *language,
-									 GtkSourceContextData     *ctx_data);
-
+void                      _gtk_source_language_define_language_styles (GtkSourceLanguage        *language);
 G_GNUC_INTERNAL
-GtkSourceEngine 	 *_gtk_source_language_create_engine		(GtkSourceLanguage	  *language);
-
-/* Utility functions for GtkSourceStyleInfo */
+gboolean                  _gtk_source_language_file_parse_version2    (GtkSourceLanguage        *language,
+                                                                       GtkSourceContextData     *ctx_data);
 G_GNUC_INTERNAL
-GtkSourceStyleInfo 	 *_gtk_source_style_info_new 			(const gchar		  *name,
-									 const gchar              *map_to);
-
+GtkSourceEngine          *_gtk_source_language_create_engine          (GtkSourceLanguage        *language);
 G_GNUC_INTERNAL
-GtkSourceStyleInfo 	 *_gtk_source_style_info_copy			(GtkSourceStyleInfo       *info);
-
+void                      _gtk_source_language_clear_ctx_data         (GtkSourceLanguage        *language,
+                                                                       GtkSourceContextData     *ctx_data);
 G_GNUC_INTERNAL
-void			  _gtk_source_style_info_free			(GtkSourceStyleInfo       *info);
+GHashTable               *_gtk_source_language_get_styles             (GtkSourceLanguage        *language);
+G_GNUC_INTERNAL
+GtkSourceStyleInfo       *_gtk_source_style_info_new                  (const gchar              *name,
+                                                                       const gchar              *map_to);
+G_GNUC_INTERNAL
+GtkSourceStyleInfo       *_gtk_source_style_info_copy                 (GtkSourceStyleInfo       *info);
+G_GNUC_INTERNAL
+void                      _gtk_source_style_info_free                 (GtkSourceStyleInfo       *info);
 
 G_END_DECLS

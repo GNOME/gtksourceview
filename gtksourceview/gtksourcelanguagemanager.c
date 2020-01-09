@@ -359,6 +359,7 @@ ensure_languages (GtkSourceLanguageManager *lm)
 	for (l = filenames; l != NULL; l = l->next)
 	{
 		GtkSourceLanguage *lang;
+		const gchar *id;
 		gchar *filename;
 
 		filename = l->data;
@@ -371,16 +372,18 @@ ensure_languages (GtkSourceLanguageManager *lm)
 			continue;
 		}
 
-		if (g_hash_table_lookup (lm->priv->language_ids, lang->priv->id) == NULL)
+		id = gtk_source_language_get_id (lang);
+
+		if (g_hash_table_lookup (lm->priv->language_ids, id) == NULL)
 		{
 			g_hash_table_insert (lm->priv->language_ids,
-					     g_strdup (lang->priv->id),
+					     g_strdup (id),
 					     lang);
 
 			if (ids_array == NULL)
 				ids_array = g_ptr_array_new ();
 
-			g_ptr_array_add (ids_array, g_strdup (lang->priv->id));
+			g_ptr_array_add (ids_array, g_strdup (id));
 		}
 		else
 		{
