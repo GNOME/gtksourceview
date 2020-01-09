@@ -26,19 +26,15 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_BUFFER_INTERNAL (_gtk_source_buffer_internal_get_type ())
+#define GTK_SOURCE_TYPE_BUFFER_INTERNAL (_gtk_source_buffer_internal_get_type())
 
 G_GNUC_INTERNAL
-G_DECLARE_FINAL_TYPE (GtkSourceBufferInternal, _gtk_source_buffer_internal,
-		      GTK_SOURCE, BUFFER_INTERNAL,
-		      GObject)
+G_DECLARE_FINAL_TYPE (GtkSourceBufferInternal, _gtk_source_buffer_internal, GTK_SOURCE, BUFFER_INTERNAL, GObject)
 
 G_GNUC_INTERNAL
-GtkSourceBufferInternal *
-		_gtk_source_buffer_internal_get_from_buffer		(GtkSourceBuffer *buffer);
-
+GtkSourceBufferInternal *_gtk_source_buffer_internal_get_from_buffer   (GtkSourceBuffer         *buffer);
 G_GNUC_INTERNAL
-void		_gtk_source_buffer_internal_emit_search_start		(GtkSourceBufferInternal *buffer_internal,
-									 GtkSourceSearchContext  *search_context);
+void                     _gtk_source_buffer_internal_emit_search_start (GtkSourceBufferInternal *buffer_internal,
+                                                                        GtkSourceSearchContext  *search_context);
 
 G_END_DECLS
