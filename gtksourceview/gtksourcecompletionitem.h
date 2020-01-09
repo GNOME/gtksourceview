@@ -30,60 +30,41 @@
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_COMPLETION_ITEM			(gtk_source_completion_item_get_type ())
-#define GTK_SOURCE_COMPLETION_ITEM(obj)			(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_COMPLETION_ITEM, GtkSourceCompletionItem))
-#define GTK_SOURCE_COMPLETION_ITEM_CLASS(klass)		(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_COMPLETION_ITEM, GtkSourceCompletionItemClass))
-#define GTK_SOURCE_IS_COMPLETION_ITEM(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_COMPLETION_ITEM))
-#define GTK_SOURCE_IS_COMPLETION_ITEM_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_COMPLETION_ITEM))
-#define GTK_SOURCE_COMPLETION_ITEM_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_COMPLETION_ITEM, GtkSourceCompletionItemClass))
-
-typedef struct _GtkSourceCompletionItemClass	GtkSourceCompletionItemClass;
-typedef struct _GtkSourceCompletionItemPrivate	GtkSourceCompletionItemPrivate;
-
-struct _GtkSourceCompletionItem {
-	GObject parent;
-
-	GtkSourceCompletionItemPrivate *priv;
-};
-
-struct _GtkSourceCompletionItemClass {
-	GObjectClass parent_class;
-
-	gpointer padding[10];
-};
+#define GTK_SOURCE_TYPE_COMPLETION_ITEM (gtk_source_completion_item_get_type())
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GType 			 gtk_source_completion_item_get_type 		(void) G_GNUC_CONST;
+G_DECLARE_DERIVABLE_TYPE (GtkSourceCompletionItem, gtk_source_completion_item, GTK_SOURCE, COMPLETION_ITEM, GObject)
+
+struct _GtkSourceCompletionItemClass
+{
+	GObjectClass parent_class;
+
+	/*< private >*/
+	gpointer _reserved[10];
+};
 
 GTK_SOURCE_AVAILABLE_IN_4_0
-GtkSourceCompletionItem *gtk_source_completion_item_new			(void);
-
+GtkSourceCompletionItem *gtk_source_completion_item_new           (void);
 GTK_SOURCE_AVAILABLE_IN_3_24
-void			 gtk_source_completion_item_set_label		(GtkSourceCompletionItem *item,
-									 const gchar             *label);
-
+void                     gtk_source_completion_item_set_label     (GtkSourceCompletionItem *item,
+                                                                   const gchar             *label);
 GTK_SOURCE_AVAILABLE_IN_3_24
-void			 gtk_source_completion_item_set_markup		(GtkSourceCompletionItem *item,
-									 const gchar             *markup);
-
+void                     gtk_source_completion_item_set_markup    (GtkSourceCompletionItem *item,
+                                                                   const gchar             *markup);
 GTK_SOURCE_AVAILABLE_IN_3_24
-void			 gtk_source_completion_item_set_text		(GtkSourceCompletionItem *item,
-									 const gchar             *text);
-
+void                     gtk_source_completion_item_set_text      (GtkSourceCompletionItem *item,
+                                                                   const gchar             *text);
 GTK_SOURCE_AVAILABLE_IN_3_24
-void			 gtk_source_completion_item_set_icon		(GtkSourceCompletionItem *item,
-									 GdkPixbuf               *icon);
-
+void                     gtk_source_completion_item_set_icon      (GtkSourceCompletionItem *item,
+                                                                   GdkPixbuf               *icon);
 GTK_SOURCE_AVAILABLE_IN_3_24
-void			 gtk_source_completion_item_set_icon_name	(GtkSourceCompletionItem *item,
-									 const gchar             *icon_name);
-
+void                     gtk_source_completion_item_set_icon_name (GtkSourceCompletionItem *item,
+                                                                   const gchar             *icon_name);
 GTK_SOURCE_AVAILABLE_IN_3_24
-void			 gtk_source_completion_item_set_gicon		(GtkSourceCompletionItem *item,
-									 GIcon                   *gicon);
-
+void                     gtk_source_completion_item_set_gicon     (GtkSourceCompletionItem *item,
+                                                                   GIcon                   *gicon);
 GTK_SOURCE_AVAILABLE_IN_3_24
-void			 gtk_source_completion_item_set_info		(GtkSourceCompletionItem *item,
-									 const gchar             *info);
+void                     gtk_source_completion_item_set_info      (GtkSourceCompletionItem *item,
+                                                                   const gchar             *info);
 
 G_END_DECLS
