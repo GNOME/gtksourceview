@@ -21,7 +21,7 @@
 
 #pragma once
 
-#include "gtksourceengine.h"
+#include "gtksourceengine-private.h"
 #include "gtksourcetypes.h"
 #include "gtksourcetypes-private.h"
 
