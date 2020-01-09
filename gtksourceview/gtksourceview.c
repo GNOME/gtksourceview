@@ -34,7 +34,7 @@
 
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
-#include "gtksourcebufferinternal.h"
+#include "gtksourcebufferinternal-private.h"
 #include "gtksource-enumtypes.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"

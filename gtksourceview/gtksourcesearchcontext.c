@@ -20,12 +20,13 @@
 
 #include "config.h"
 
-#include "gtksourcesearchcontext.h"
 #include <string.h>
+
+#include "gtksourcesearchcontext.h"
 #include "gtksourcesearchsettings.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
-#include "gtksourcebufferinternal.h"
+#include "gtksourcebufferinternal-private.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils.h"
