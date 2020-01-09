@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_VERSION_H
-#define GTK_SOURCE_VERSION_H
+#pragma once
 
 #include <glib.h>
 
@@ -578,19 +577,14 @@ G_BEGIN_DECLS
 #endif /* __GTK_DOC_IGNORE__ */
 
 GTK_SOURCE_AVAILABLE_IN_3_20
-guint		gtk_source_get_major_version		(void);
-
+guint    gtk_source_get_major_version (void);
 GTK_SOURCE_AVAILABLE_IN_3_20
-guint		gtk_source_get_minor_version		(void);
-
+guint    gtk_source_get_minor_version (void);
 GTK_SOURCE_AVAILABLE_IN_3_20
-guint		gtk_source_get_micro_version		(void);
-
+guint    gtk_source_get_micro_version (void);
 GTK_SOURCE_AVAILABLE_IN_3_20
-gboolean	gtk_source_check_version		(guint major,
-							 guint minor,
-							 guint micro);
+gboolean gtk_source_check_version     (guint major,
+                                       guint minor,
+                                       guint micro);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_VERSION_H */
