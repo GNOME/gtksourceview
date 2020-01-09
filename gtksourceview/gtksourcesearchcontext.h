@@ -109,10 +109,5 @@ guint                    gtk_source_search_context_replace_all             (GtkS
                                                                             const gchar              *replace,
                                                                             gint                      replace_length,
                                                                             GError                  **error);
-G_GNUC_INTERNAL
-void                     _gtk_source_search_context_update_highlight       (GtkSourceSearchContext   *search,
-                                                                            const GtkTextIter        *start,
-                                                                            const GtkTextIter        *end,
-                                                                            gboolean                  synchronous);
 
 G_END_DECLS
