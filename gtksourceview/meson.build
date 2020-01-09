@@ -7,7 +7,6 @@ core_marshallers = gnome.genmarshal('gtksource-marshal',
 
 core_public_h = files([
   'gtksource.h',
-  'gtksourceautocleanups.h',
   'gtksourcebuffer.h',
   'gtksourcecompletion.h',
   'gtksourcecompletioncontext.h',
