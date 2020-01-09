@@ -20,7 +20,7 @@
 
 #include "config.h"
 
-#include "gtksourcepixbufhelper.h"
+#include "gtksourcepixbufhelper-private.h"
 
 typedef enum _IconType
 {

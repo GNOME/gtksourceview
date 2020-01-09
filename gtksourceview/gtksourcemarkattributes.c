@@ -24,7 +24,7 @@
 #include "gtksourcemarkattributes.h"
 #include "gtksourcemark.h"
 #include "gtksource-marshal.h"
-#include "gtksourcepixbufhelper.h"
+#include "gtksourcepixbufhelper-private.h"
 
 /**
  * SECTION:markattributes
