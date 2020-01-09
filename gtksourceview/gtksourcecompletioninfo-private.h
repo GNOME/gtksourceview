@@ -21,25 +21,12 @@
 
 #pragma once
 
-#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
-#error "Only <gtksourceview/gtksource.h> can be included directly."
-#endif
-
-#include <gtk/gtk.h>
-#include <gtksourceview/gtksourcetypes.h>
+#include "gtksourcecompletioninfo.h"
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_COMPLETION_INFO (gtk_source_completion_info_get_type())
-
-GTK_SOURCE_AVAILABLE_IN_ALL
-G_DECLARE_FINAL_TYPE (GtkSourceCompletionInfo, gtk_source_completion_info, GTK_SOURCE, COMPLETION_INFO, GtkWindow)
-
-GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceCompletionInfo *gtk_source_completion_info_new          (void);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                     gtk_source_completion_info_move_to_iter (GtkSourceCompletionInfo *info,
-                                                                  GtkTextView             *view,
-                                                                  GtkTextIter             *iter);
+G_GNUC_INTERNAL
+void _gtk_source_completion_info_set_xoffset (GtkSourceCompletionInfo *info,
+                                              gint                     xoffset);
 
 G_END_DECLS

@@ -20,15 +20,14 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
-#include <gtksourceview/gtksourcetypes.h>
+#include "gtksourcecompletioncontext.h"
+
+G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-GtkSourceCompletion *_gtk_source_completion_new           (GtkSourceView               *source_view);
+GtkSourceCompletionContext *_gtk_source_completion_context_new    (GtkSourceCompletion        *completion,
+                                                                   GtkTextIter                *position);
 G_GNUC_INTERNAL
-void                 _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
-                                                           GtkSourceCompletionContext  *context,
-                                                           GtkSourceCompletionProvider *provider,
-                                                           GList                       *proposals,
-                                                           gboolean                     finished);
+void                        _gtk_source_completion_context_cancel (GtkSourceCompletionContext *context);
 
+G_END_DECLS

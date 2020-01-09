@@ -4951,7 +4951,7 @@ gtk_source_view_get_completion (GtkSourceView *view)
 
 	if (priv->completion == NULL)
 	{
-		priv->completion = gtk_source_completion_new (view);
+		priv->completion = _gtk_source_completion_new (view);
 	}
 
 	return priv->completion;

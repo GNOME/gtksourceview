@@ -61,7 +61,8 @@
 
 #include "config.h"
 
-#include "gtksourcecompletioncontext.h"
+#include "gtksourcecompletion-private.h"
+#include "gtksourcecompletioncontext-private.h"
 #include "gtksource-enumtypes.h"
 #include "gtksourcecompletionprovider.h"
 #include "gtksourcecompletion.h"

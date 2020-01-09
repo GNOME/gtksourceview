@@ -104,10 +104,11 @@
 #include <glib/gi18n-lib.h>
 #include "gtksourcecompletionmodel.h"
 #include "gtksourcecompletioncontext.h"
-#include "gtksourcecompletioninfo.h"
+#include "gtksourcecompletioninfo-private.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
-#include "gtksourcecompletioncontainer.h"
+#include "gtksourcecompletioncontainer-private.h"
+#include "gtksourcecompletioncontext-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksource-marshal.h"
 #include "gtksourceview.h"
@@ -2859,7 +2860,7 @@ gtk_source_completion_error_quark (void)
 }
 
 /**
- * gtk_source_completion_new:
+ * _gtk_source_completion_new:
  * @view: a #GtkSourceView.
  *
  * Creates a new #GtkSourceCompletion associated with @view.
@@ -2867,7 +2868,7 @@ gtk_source_completion_error_quark (void)
  * Returns: a new #GtkSourceCompletion.
  */
 GtkSourceCompletion *
-gtk_source_completion_new (GtkSourceView *view)
+_gtk_source_completion_new (GtkSourceView *view)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
 

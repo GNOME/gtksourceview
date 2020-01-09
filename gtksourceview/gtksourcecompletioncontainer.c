@@ -31,14 +31,17 @@
 
 #include "config.h"
 
-#include "gtksourcecompletioncontainer.h"
+#include "gtksourcecompletioncontainer-private.h"
 
 #define UNREALIZED_WIDTH  350
 #define MAX_HEIGHT        180
 
-G_DEFINE_TYPE (GtkSourceCompletionContainer,
-	       _gtk_source_completion_container,
-	       GTK_TYPE_SCROLLED_WINDOW);
+struct _GtkSourceCompletionContainer
+{
+	GtkScrolledWindow parent_instnace;
+};
+
+G_DEFINE_TYPE (GtkSourceCompletionContainer, _gtk_source_completion_container, GTK_TYPE_SCROLLED_WINDOW);
 
 static gint
 get_max_width (GtkSourceCompletionContainer *container)
@@ -74,8 +77,8 @@ get_max_width (GtkSourceCompletionContainer *container)
 
 static void
 _gtk_source_completion_container_get_preferred_width (GtkWidget *widget,
-						      gint      *min_width,
-						      gint      *nat_width)
+                                                      gint      *min_width,
+                                                      gint      *nat_width)
 {
 	GtkSourceCompletionContainer *container = GTK_SOURCE_COMPLETION_CONTAINER (widget);
 	GtkWidget *child;
@@ -113,7 +116,7 @@ _gtk_source_completion_container_get_preferred_width (GtkWidget *widget,
 
 static gint
 get_row_height (GtkSourceCompletionContainer *container,
-		gint                          tree_view_height)
+                gint                          tree_view_height)
 {
 	GtkWidget *tree_view;
 	GtkTreeModel *model;
@@ -155,8 +158,8 @@ get_row_height (GtkSourceCompletionContainer *container,
 /* Return a height at a row boundary of the GtkTreeView. */
 static void
 _gtk_source_completion_container_get_preferred_height (GtkWidget *widget,
-						       gint	 *min_height,
-						       gint	 *nat_height)
+                                                       gint      *min_height,
+                                                       gint      *nat_height)
 {
 	GtkSourceCompletionContainer *container = GTK_SOURCE_COMPLETION_CONTAINER (widget);
 	GtkWidget *child;

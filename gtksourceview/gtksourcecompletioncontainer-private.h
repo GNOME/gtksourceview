@@ -2,7 +2,7 @@
  *
  * This file is part of GtkSourceView
  *
- * Copyright 2009 - Jesse van den Kieboom <jessevdk@gnome.org>
+ * Copyright 2013 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,14 +21,17 @@
 #pragma once
 
 #include <gtk/gtk.h>
-#include <gtksourceview/gtksourcetypes.h>
+
+#include "gtksourcetypes-private.h"
+
+G_BEGIN_DECLS
+
+#define GTK_SOURCE_TYPE_COMPLETION_CONTAINER (_gtk_source_completion_container_get_type())
 
 G_GNUC_INTERNAL
-GtkSourceCompletion *_gtk_source_completion_new           (GtkSourceView               *source_view);
-G_GNUC_INTERNAL
-void                 _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
-                                                           GtkSourceCompletionContext  *context,
-                                                           GtkSourceCompletionProvider *provider,
-                                                           GList                       *proposals,
-                                                           gboolean                     finished);
+G_DECLARE_FINAL_TYPE (GtkSourceCompletionContainer, _gtk_source_completion_container, GTK_SOURCE, COMPLETION_CONTAINER, GtkScrolledWindow)
 
+G_GNUC_INTERNAL
+GtkSourceCompletionContainer *_gtk_source_completion_container_new (void);
+
+G_END_DECLS
