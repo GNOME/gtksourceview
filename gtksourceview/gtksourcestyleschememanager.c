@@ -22,7 +22,7 @@
 
 #include <string.h>
 
-#include "gtksourcestyleschememanager.h"
+#include "gtksourcestyleschememanager-private.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils-private.h"
 
@@ -35,8 +35,8 @@
  * Object which provides access to #GtkSourceStyleScheme<!-- -->s.
  */
 
-#define SCHEME_FILE_SUFFIX	".xml"
-#define STYLES_DIR		"styles"
+#define SCHEME_FILE_SUFFIX ".xml"
+#define STYLES_DIR         "styles"
 
 struct _GtkSourceStyleSchemeManager
 {

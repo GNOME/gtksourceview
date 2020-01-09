@@ -35,6 +35,7 @@ reference_private_h = [
   'gtksourcepixbufhelper.h',
   'gtksourceregex.h',
   'gtksourcestyle-private.h',
+  'gtksourcestyleschememanager-private.h',
   'gtksourcetypes-private.h',
   'gtksourceundomanagerdefault.h',
   'gtksourceutils-private.h',

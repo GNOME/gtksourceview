@@ -56,7 +56,5 @@ const gchar * const         *gtk_source_style_scheme_manager_get_scheme_ids     
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyleScheme        *gtk_source_style_scheme_manager_get_scheme          (GtkSourceStyleSchemeManager  *manager,
                                                                                   const gchar                  *scheme_id);
-G_GNUC_INTERNAL
-GtkSourceStyleSchemeManager *_gtk_source_style_scheme_manager_peek_default       (void);
 
 G_END_DECLS
