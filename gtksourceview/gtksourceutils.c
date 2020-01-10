@@ -203,7 +203,7 @@ gtk_source_utils_escape_search_text (const gchar* text)
 	return g_string_free (str, FALSE);
 }
 
-#define GSV_DATA_SUBDIR "gtksourceview-" GSV_API_VERSION
+#define GSV_DATA_SUBDIR "gtksourceview-" GSV_API_VERSION_S
 
 gchar **
 _gtk_source_utils_get_default_dirs (const gchar *basename)

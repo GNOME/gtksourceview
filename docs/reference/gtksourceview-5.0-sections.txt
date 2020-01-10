@@ -19,17 +19,6 @@ gtk_source_buffer_get_highlight_syntax
 gtk_source_buffer_set_highlight_matching_brackets
 gtk_source_buffer_get_highlight_matching_brackets
 gtk_source_buffer_ensure_highlight
-<SUBSECTION Undo Redo>
-gtk_source_buffer_undo
-gtk_source_buffer_redo
-gtk_source_buffer_can_undo
-gtk_source_buffer_can_redo
-gtk_source_buffer_begin_not_undoable_action
-gtk_source_buffer_end_not_undoable_action
-gtk_source_buffer_get_max_undo_levels
-gtk_source_buffer_set_max_undo_levels
-gtk_source_buffer_get_undo_manager
-gtk_source_buffer_set_undo_manager
 <SUBSECTION Context Classes>
 gtk_source_buffer_iter_has_context_class
 gtk_source_buffer_get_context_classes_at_iter
@@ -56,7 +45,6 @@ GTK_SOURCE_BUFFER
 GTK_SOURCE_BUFFER_CLASS
 GTK_SOURCE_BUFFER_GET_CLASS
 GTK_SOURCE_TYPE_BUFFER
-GtkSourceBufferPrivate
 gtk_source_buffer_get_type
 GTK_SOURCE_TYPE_BRACKET_MATCH_TYPE
 gtk_source_bracket_match_type_get_type
@@ -89,7 +77,6 @@ GTK_SOURCE_COMPLETION
 GTK_SOURCE_COMPLETION_CLASS
 GTK_SOURCE_COMPLETION_GET_CLASS
 GTK_SOURCE_TYPE_COMPLETION
-GtkSourceCompletionPrivate
 GtkSourceCompletionClass
 gtk_source_completion_get_type
 gtk_source_completion_error_quark
@@ -111,7 +98,6 @@ GTK_SOURCE_COMPLETION_CONTEXT
 GTK_SOURCE_COMPLETION_CONTEXT_CLASS
 GTK_SOURCE_COMPLETION_CONTEXT_GET_CLASS
 GTK_SOURCE_TYPE_COMPLETION_CONTEXT
-GtkSourceCompletionContextPrivate
 gtk_source_completion_context_get_type
 GtkSourceCompletionContextClass
 GTK_SOURCE_TYPE_COMPLETION_ACTIVATION
@@ -130,7 +116,6 @@ GTK_SOURCE_COMPLETION_INFO
 GTK_SOURCE_COMPLETION_INFO_CLASS
 GTK_SOURCE_COMPLETION_INFO_GET_CLASS
 GTK_SOURCE_TYPE_COMPLETION_INFO
-GtkSourceCompletionInfoPrivate
 gtk_source_completion_info_get_type
 GtkSourceCompletionInfoClass
 </SECTION>
@@ -155,13 +140,12 @@ GTK_SOURCE_COMPLETION_ITEM_GET_CLASS
 GTK_SOURCE_TYPE_COMPLETION_ITEM
 gtk_source_completion_item_get_type
 GtkSourceCompletionItemClass
-GtkSourceCompletionItemPrivate
 </SECTION>
 
 <SECTION>
 <FILE>completionproposal</FILE>
 GtkSourceCompletionProposal
-GtkSourceCompletionProposalIface
+GtkSourceCompletionProposalInterface
 gtk_source_completion_proposal_get_label
 gtk_source_completion_proposal_get_markup
 gtk_source_completion_proposal_get_text
@@ -175,7 +159,7 @@ gtk_source_completion_proposal_equal
 <SUBSECTION Standard>
 GTK_SOURCE_IS_COMPLETION_PROPOSAL
 GTK_SOURCE_COMPLETION_PROPOSAL
-GTK_SOURCE_COMPLETION_PROPOSAL_GET_INTERFACE
+GTK_SOURCE_COMPLETION_PROPOSAL_GET_IFACE
 GTK_SOURCE_TYPE_COMPLETION_PROPOSAL
 gtk_source_completion_proposal_get_type
 </SECTION>
@@ -183,7 +167,7 @@ gtk_source_completion_proposal_get_type
 <SECTION>
 <FILE>completionprovider</FILE>
 GtkSourceCompletionProvider
-GtkSourceCompletionProviderIface
+GtkSourceCompletionProviderInterface
 gtk_source_completion_provider_get_name
 gtk_source_completion_provider_get_icon
 gtk_source_completion_provider_get_icon_name
@@ -200,7 +184,7 @@ gtk_source_completion_provider_get_priority
 <SUBSECTION Standard>
 GTK_SOURCE_IS_COMPLETION_PROVIDER
 GTK_SOURCE_COMPLETION_PROVIDER
-GTK_SOURCE_COMPLETION_PROVIDER_GET_INTERFACE
+GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE
 GTK_SOURCE_TYPE_COMPLETION_PROVIDER
 gtk_source_completion_provider_get_type
 </SECTION>
@@ -219,7 +203,6 @@ GTK_SOURCE_IS_COMPLETION_WORDS
 GTK_SOURCE_IS_COMPLETION_WORDS_CLASS
 GTK_SOURCE_TYPE_COMPLETION_WORDS
 GtkSourceCompletionWordsClass
-GtkSourceCompletionWordsPrivate
 gtk_source_completion_words_get_type
 </SECTION>
 
@@ -270,7 +253,6 @@ GTK_SOURCE_IS_FILE
 GTK_SOURCE_IS_FILE_CLASS
 GTK_SOURCE_TYPE_FILE
 GtkSourceFileClass
-GtkSourceFilePrivate
 gtk_source_file_get_type
 GTK_SOURCE_TYPE_COMPRESSION_TYPE
 gtk_source_compression_type_get_type
@@ -304,7 +286,6 @@ GTK_SOURCE_IS_FILE_LOADER
 GTK_SOURCE_IS_FILE_LOADER_CLASS
 GTK_SOURCE_TYPE_FILE_LOADER
 GtkSourceFileLoaderClass
-GtkSourceFileLoaderPrivate
 gtk_source_file_loader_get_type
 gtk_source_file_loader_error_quark
 GTK_SOURCE_TYPE_FILE_LOADER_ERROR
@@ -341,7 +322,6 @@ GTK_SOURCE_IS_FILE_SAVER
 GTK_SOURCE_IS_FILE_SAVER_CLASS
 GTK_SOURCE_TYPE_FILE_SAVER
 GtkSourceFileSaverClass
-GtkSourceFileSaverPrivate
 gtk_source_file_saver_get_type
 gtk_source_file_saver_error_quark
 GTK_SOURCE_TYPE_FILE_SAVER_ERROR
@@ -354,12 +334,8 @@ gtk_source_file_saver_flags_get_type
 <FILE>gutter</FILE>
 GtkSourceGutter
 gtk_source_gutter_get_view
-gtk_source_gutter_get_window_type
 gtk_source_gutter_insert
 gtk_source_gutter_reorder
-gtk_source_gutter_remove
-gtk_source_gutter_queue_draw
-gtk_source_gutter_get_renderer_at_pos
 <SUBSECTION Standard>
 GtkSourceGutterClass
 GTK_SOURCE_IS_GUTTER
@@ -368,37 +344,58 @@ GTK_SOURCE_GUTTER
 GTK_SOURCE_GUTTER_CLASS
 GTK_SOURCE_GUTTER_GET_CLASS
 GTK_SOURCE_TYPE_GUTTER
-GtkSourceGutterPrivate
 gtk_source_gutter_get_type
+</SECTION>
+
+<SECTION>
+<FILE>gutterlines</FILE>
+GtkSourceGutterLines
+gtk_source_gutter_lines_add_class
+gtk_source_gutter_lines_add_qclass
+gtk_source_gutter_lines_get_buffer
+gtk_source_gutter_lines_get_first
+gtk_source_gutter_lines_get_iter_at_line
+gtk_source_gutter_lines_get_last
+gtk_source_gutter_lines_get_line_yrange
+gtk_source_gutter_lines_get_view
+gtk_source_gutter_lines_get_yrange
+gtk_source_gutter_lines_has_class
+gtk_source_gutter_lines_has_qclass
+gtk_source_gutter_lines_is_cursor
+gtk_source_gutter_lines_is_prelit
+gtk_source_gutter_lines_is_selected
+gtk_source_gutter_lines_remove_class
+gtk_source_gutter_lines_remove_qclass
+<SUBSECTION Standard>
+GtkSourceGutterLinesClass
+GTK_SOURCE_IS_GUTTER_LINES
+GTK_SOURCE_IS_GUTTER_LINES_CLASS
+GTK_SOURCE_GUTTER_LINES
+GTK_SOURCE_GUTTER_LINES_CLASS
+GTK_SOURCE_GUTTER_LINES_GET_CLASS
+GTK_SOURCE_TYPE_GUTTER_LINES
+gtk_source_gutter_lines_get_type
 </SECTION>
 
 <SECTION>
 <FILE>gutterrenderer</FILE>
 GtkSourceGutterRenderer
-GtkSourceGutterRendererState
 GtkSourceGutterRendererAlignmentMode
-gtk_source_gutter_renderer_begin
-gtk_source_gutter_renderer_draw
-gtk_source_gutter_renderer_end
+gtk_source_gutter_renderer_get_buffer
 gtk_source_gutter_renderer_get_view
-gtk_source_gutter_renderer_get_window_type
-gtk_source_gutter_renderer_get_visible
-gtk_source_gutter_renderer_set_visible
-gtk_source_gutter_renderer_get_size
-gtk_source_gutter_renderer_set_size
-gtk_source_gutter_renderer_get_padding
-gtk_source_gutter_renderer_set_padding
-gtk_source_gutter_renderer_get_alignment
-gtk_source_gutter_renderer_set_alignment
 gtk_source_gutter_renderer_get_alignment_mode
 gtk_source_gutter_renderer_set_alignment_mode
-gtk_source_gutter_renderer_get_background
-gtk_source_gutter_renderer_set_background
+gtk_source_gutter_renderer_get_xalign
+gtk_source_gutter_renderer_set_xalign
+gtk_source_gutter_renderer_get_xpad
+gtk_source_gutter_renderer_set_xpad
+gtk_source_gutter_renderer_get_yalign
+gtk_source_gutter_renderer_set_yalign
+gtk_source_gutter_renderer_get_ypad
+gtk_source_gutter_renderer_set_ypad
+gtk_source_gutter_renderer_align_cell
 gtk_source_gutter_renderer_activate
 gtk_source_gutter_renderer_query_activatable
-gtk_source_gutter_renderer_query_data
-gtk_source_gutter_renderer_query_tooltip
-gtk_source_gutter_renderer_queue_draw
 <SUBSECTION Standard>
 GtkSourceGutterRendererClass
 GTK_SOURCE_IS_GUTTER_RENDERER
@@ -408,7 +405,6 @@ GTK_SOURCE_GUTTER_RENDERER_CONST
 GTK_SOURCE_GUTTER_RENDERER_CLASS
 GTK_SOURCE_GUTTER_RENDERER_GET_CLASS
 GTK_SOURCE_TYPE_GUTTER_RENDERER
-GtkSourceGutterRendererPrivate
 gtk_source_gutter_renderer_get_type
 GTK_SOURCE_TYPE_GUTTER_RENDERER_ALIGNMENT_MODE
 gtk_source_gutter_renderer_alignment_mode_get_type
@@ -426,6 +422,9 @@ gtk_source_gutter_renderer_pixbuf_set_gicon
 gtk_source_gutter_renderer_pixbuf_get_gicon
 gtk_source_gutter_renderer_pixbuf_set_icon_name
 gtk_source_gutter_renderer_pixbuf_get_icon_name
+gtk_source_gutter_renderer_pixbuf_get_paintable
+gtk_source_gutter_renderer_pixbuf_set_paintable
+gtk_source_gutter_renderer_pixbuf_overlay_paintable
 <SUBSECTION Standard>
 GtkSourceGutterRendererPixbufClass
 GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF
@@ -435,7 +434,6 @@ GTK_SOURCE_GUTTER_RENDERER_PIXBUF_CONST
 GTK_SOURCE_GUTTER_RENDERER_PIXBUF_CLASS
 GTK_SOURCE_GUTTER_RENDERER_PIXBUF_GET_CLASS
 GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF
-GtkSourceGutterRendererPixbufPrivate
 gtk_source_gutter_renderer_pixbuf_get_type
 </SECTION>
 
@@ -456,7 +454,6 @@ GTK_SOURCE_GUTTER_RENDERER_TEXT_CONST
 GTK_SOURCE_GUTTER_RENDERER_TEXT_CLASS
 GTK_SOURCE_GUTTER_RENDERER_TEXT_GET_CLASS
 GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT
-GtkSourceGutterRendererTextPrivate
 gtk_source_gutter_renderer_text_get_type
 </SECTION>
 
@@ -488,7 +485,6 @@ GTK_SOURCE_LANGUAGE
 GTK_SOURCE_LANGUAGE_CLASS
 GTK_SOURCE_LANGUAGE_GET_CLASS
 GTK_SOURCE_TYPE_LANGUAGE
-GtkSourceLanguagePrivate
 gtk_source_language_get_type
 </SECTION>
 
@@ -510,7 +506,6 @@ GTK_SOURCE_LANGUAGE_MANAGER
 GTK_SOURCE_LANGUAGE_MANAGER_CLASS
 GTK_SOURCE_LANGUAGE_MANAGER_GET_CLASS
 GTK_SOURCE_TYPE_LANGUAGE_MANAGER
-GtkSourceLanguageManagerPrivate
 gtk_source_language_manager_get_type
 </SECTION>
 
@@ -541,7 +536,6 @@ gtk_source_mark_next
 gtk_source_mark_prev
 <SUBSECTION Standard>
 GtkSourceMarkClass
-GtkSourceMarkPrivate
 GTK_SOURCE_IS_MARK
 GTK_SOURCE_IS_MARK_CLASS
 GTK_SOURCE_MARK
@@ -574,7 +568,6 @@ GTK_SOURCE_MARK_ATTRIBUTES
 GTK_SOURCE_MARK_ATTRIBUTES_CLASS
 GTK_SOURCE_MARK_ATTRIBUTES_GET_CLASS
 GTK_SOURCE_TYPE_MARK_ATTRIBUTES
-GtkSourceMarkAttributesPrivate
 gtk_source_mark_attributes_get_type
 </SECTION>
 
@@ -626,7 +619,6 @@ gtk_source_print_compositor_get_type
 GTK_SOURCE_PRINT_COMPOSITOR_CLASS
 GTK_SOURCE_IS_PRINT_COMPOSITOR_CLASS
 GTK_SOURCE_PRINT_COMPOSITOR_GET_CLASS
-GtkSourcePrintCompositorPrivate
 GtkSourcePrintCompositorClass
 </SECTION>
 
@@ -683,7 +675,6 @@ GTK_SOURCE_SEARCH_CONTEXT_CLASS
 GTK_SOURCE_SEARCH_CONTEXT_GET_CLASS
 GTK_SOURCE_TYPE_SEARCH_CONTEXT
 GtkSourceSearchContextClass
-GtkSourceSearchContextPrivate
 gtk_source_search_context_get_type
 </SECTION>
 
@@ -709,7 +700,6 @@ GTK_SOURCE_SEARCH_SETTINGS_CLASS
 GTK_SOURCE_SEARCH_SETTINGS_GET_CLASS
 GTK_SOURCE_TYPE_SEARCH_SETTINGS
 GtkSourceSearchSettingsClass
-GtkSourceSearchSettingsPrivate
 gtk_source_search_settings_get_type
 </SECTION>
 
@@ -734,7 +724,6 @@ GTK_SOURCE_SPACE_DRAWER_CLASS
 GTK_SOURCE_SPACE_DRAWER_GET_CLASS
 GTK_SOURCE_TYPE_SPACE_DRAWER
 GtkSourceSpaceDrawerClass
-GtkSourceSpaceDrawerPrivate
 gtk_source_space_drawer_get_type
 GTK_SOURCE_TYPE_SPACE_LOCATION_FLAGS
 GTK_SOURCE_TYPE_SPACE_TYPE_FLAGS
@@ -775,7 +764,6 @@ GTK_SOURCE_STYLE_SCHEME
 GTK_SOURCE_STYLE_SCHEME_CLASS
 GTK_SOURCE_STYLE_SCHEME_GET_CLASS
 GTK_SOURCE_TYPE_STYLE_SCHEME
-GtkSourceStyleSchemePrivate
 gtk_source_style_scheme_get_type
 </SECTION>
 
@@ -846,7 +834,6 @@ GTK_SOURCE_STYLE_SCHEME_MANAGER_CLASS
 GTK_SOURCE_STYLE_SCHEME_MANAGER_GET_CLASS
 GTK_SOURCE_TYPE_STYLE_SCHEME_MANAGER
 gtk_source_style_scheme_manager_get_type
-GtkSourceStyleSchemeManagerPrivate
 </SECTION>
 
 <SECTION>
@@ -856,26 +843,6 @@ gtk_source_tag_new
 <SUBSECTION Standard>
 GTK_SOURCE_TYPE_TAG
 GtkSourceTagClass
-</SECTION>
-
-<SECTION>
-<FILE>undomanager</FILE>
-GtkSourceUndoManager
-gtk_source_undo_manager_can_undo
-gtk_source_undo_manager_can_redo
-gtk_source_undo_manager_undo
-gtk_source_undo_manager_redo
-gtk_source_undo_manager_begin_not_undoable_action
-gtk_source_undo_manager_end_not_undoable_action
-gtk_source_undo_manager_can_undo_changed
-gtk_source_undo_manager_can_redo_changed
-<SUBSECTION Standard>
-GtkSourceUndoManagerIface
-GTK_SOURCE_UNDO_MANAGER
-GTK_SOURCE_IS_UNDO_MANAGER
-GTK_SOURCE_TYPE_UNDO_MANAGER
-GTK_SOURCE_UNDO_MANAGER_GET_INTERFACE
-gtk_source_undo_manager_get_type
 </SECTION>
 
 <SECTION>
@@ -910,6 +877,7 @@ GTK_SOURCE_VERSION_3_20
 GTK_SOURCE_VERSION_3_22
 GTK_SOURCE_VERSION_3_24
 GTK_SOURCE_VERSION_4_0
+GTK_SOURCE_VERSION_5_0
 GTK_SOURCE_VERSION_MIN_REQUIRED
 GTK_SOURCE_VERSION_MAX_ALLOWED
 </SECTION>
@@ -964,7 +932,6 @@ GTK_SOURCE_VIEW
 GTK_SOURCE_VIEW_CLASS
 GTK_SOURCE_VIEW_GET_CLASS
 GTK_SOURCE_TYPE_VIEW
-GtkSourceViewPrivate
 gtk_source_view_get_type
 GTK_SOURCE_TYPE_BACKGROUND_PATTERN_TYPE
 gtk_source_background_pattern_type_get_type

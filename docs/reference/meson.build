@@ -100,7 +100,7 @@ reference_fixxref_args = [
 
 gnome.gtkdoc('@0@.0'.format(package_string),
            main_xml: join_paths(builddir, '@0@'.format(gtksourceview_docs_xml)),
-  gobject_typesfile: 'gtksourceview-4.0.types',
+  gobject_typesfile: 'gtksourceview-5.0.types',
             src_dir: reference_sources,
        dependencies: gtksource_dep,
       content_files: reference_content_files,
