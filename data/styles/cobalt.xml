@@ -31,7 +31,7 @@
   <color name="bright_orange"               value="#ff9d00"/>
   <color name="faded_orange"                value="#ffb054"/>
   <color name="nail_polish_pink"            value="#ff0044"/>
-  <color name="neon_pink"                   value="#ffdd00"/>
+  <color name="neon_yellow"                 value="#ffdd00"/>
   <color name="sky_blue"                    value="#0088ff"/>
   <color name="teal_blue"                   value="#80ffbb"/>
   <color name="light_blue"                  value="#0065bf"/>
@@ -83,6 +83,7 @@
   <style name="def:special-constant"        foreground="nail_polish_pink" bold="true"/>
   <style name="def:number"                  foreground="nail_polish_pink"/>
   <style name="def:floating-point"          foreground="nail_polish_pink"/>
+  <style name="def:boolean"                 foreground="nail_polish_pink"/>
   <style name="def:keyword"                 foreground="bright_orange" bold="true"/>
   <style name="def:builtin"                 foreground="bright_orange" bold="true"/>
   <style name="def:variable"                foreground="light_grey"/>
@@ -114,7 +115,7 @@
   <!-- Others -->
   <style name="def:error"                   foreground="white" background="dark_red" bold="true"/>
   <style name="def:warning"                 foreground="white" background="nail_polish_pink"/>
-  <style name="def:note"                    foreground="neon_pink" bold="true"/>
+  <style name="def:note"                    foreground="neon_yellow" bold="true"/>
   <style name="def:net-address"             foreground="teal_blue" italic="false" underline="single"/>
   <style name="def:preprocessor"            foreground="light_grey"/>
   <style name="def:underlined"              underline="single"/>
@@ -129,10 +130,6 @@
   <style name="def:heading5"                scale="1.3"/>
   <style name="def:heading6"                scale="1.2"/>
   -->
-
-  <!-- Unknown? -->
-  <style name="def:specials"                foreground="white" background="neon_pink"/>
-  <style name="def:boolean"                 foreground="nail_polish_pink"/>
 
   <!-- C Styles -->
   <style name="c:preprocessor"              foreground="teal_blue" bold="true"/>
@@ -154,12 +151,12 @@
   <style name="ruby:regex"                  foreground="teal_blue"/>
 
   <!-- SH Styles -->
-  <style name="sh:function"                 foreground="neon_pink"/>
+  <style name="sh:function"                 foreground="neon_yellow"/>
 
   <!-- XML Styles -->
   <style name="xml:attribute-name"          foreground="light_grey"/>
   <style name="xml:element-name"            foreground="teal_blue"/>
-  <style name="xml:entity"                  foreground="#blue"/>
+  <style name="xml:entity"                  foreground="neon_yellow"/>
   <style name="xml:processing-instruction"  bold="true"/>
 
 </style-scheme>
