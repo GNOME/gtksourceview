@@ -2391,8 +2391,9 @@ install_idle_worker (GtkSourceContextEngine *ce)
 {
 	if (ce->first_update == 0 && ce->incremental_update == 0)
 		ce->incremental_update =
-			gdk_threads_add_idle_full (INCREMENTAL_UPDATE_PRIORITY,
-			                           (GSourceFunc) idle_worker, ce, NULL);
+			g_idle_add_full (INCREMENTAL_UPDATE_PRIORITY,
+			                 (GSourceFunc) idle_worker,
+			                 ce, NULL);
 }
 
 /**
@@ -2414,9 +2415,9 @@ install_first_update (GtkSourceContextEngine *ce)
 		}
 
 		ce->first_update =
-			gdk_threads_add_idle_full (FIRST_UPDATE_PRIORITY,
-			                           (GSourceFunc) first_update_callback,
-			                           ce, NULL);
+			g_idle_add_full (FIRST_UPDATE_PRIORITY,
+			                 (GSourceFunc) first_update_callback,
+			                 ce, NULL);
 	}
 }
 
