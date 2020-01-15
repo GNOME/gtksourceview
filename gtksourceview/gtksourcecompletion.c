@@ -2178,10 +2178,8 @@ init_main_window (GtkSourceCompletion *completion,
 				  G_CALLBACK (update_window_position),
 				  completion);
 
-	g_signal_connect (completion->main_window,
-			  "delete-event",
-			  G_CALLBACK (gtk_widget_hide_on_delete),
-			  NULL);
+	gtk_window_set_hide_on_close (GTK_WINDOW (completion->main_window),
+				      TRUE);
 
 	g_signal_connect (completion->main_window,
 	                  "notify::transient-for",
