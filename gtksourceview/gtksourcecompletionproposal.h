@@ -25,8 +25,7 @@
 #error "Only <gtksourceview/gtksource.h> can be included directly."
 #endif
 
-#include <glib-object.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gtk/gtk.h>
 
 #include "gtksourcetypes.h"
 
@@ -70,7 +69,7 @@ struct _GtkSourceCompletionProposalInterface
 	gchar           *(*get_label)     (GtkSourceCompletionProposal *proposal);
 	gchar           *(*get_markup)    (GtkSourceCompletionProposal *proposal);
 	gchar           *(*get_text)      (GtkSourceCompletionProposal *proposal);
-	GdkPixbuf       *(*get_icon)      (GtkSourceCompletionProposal *proposal);
+	GdkTexture      *(*get_icon)      (GtkSourceCompletionProposal *proposal);
 	const gchar     *(*get_icon_name) (GtkSourceCompletionProposal *proposal);
 	GIcon           *(*get_gicon)     (GtkSourceCompletionProposal *proposal);
 	gchar           *(*get_info)      (GtkSourceCompletionProposal *proposal);
@@ -89,7 +88,7 @@ gchar       *gtk_source_completion_proposal_get_markup    (GtkSourceCompletionPr
 GTK_SOURCE_AVAILABLE_IN_ALL
 gchar       *gtk_source_completion_proposal_get_text      (GtkSourceCompletionProposal *proposal);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GdkPixbuf   *gtk_source_completion_proposal_get_icon      (GtkSourceCompletionProposal *proposal);
+GdkTexture  *gtk_source_completion_proposal_get_icon      (GtkSourceCompletionProposal *proposal);
 GTK_SOURCE_AVAILABLE_IN_3_18
 const gchar *gtk_source_completion_proposal_get_icon_name (GtkSourceCompletionProposal *proposal);
 GTK_SOURCE_AVAILABLE_IN_3_18

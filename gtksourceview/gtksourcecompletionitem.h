@@ -57,7 +57,7 @@ void                     gtk_source_completion_item_set_text      (GtkSourceComp
                                                                    const gchar             *text);
 GTK_SOURCE_AVAILABLE_IN_3_24
 void                     gtk_source_completion_item_set_icon      (GtkSourceCompletionItem *item,
-                                                                   GdkPixbuf               *icon);
+                                                                   GdkTexture              *icon);
 GTK_SOURCE_AVAILABLE_IN_3_24
 void                     gtk_source_completion_item_set_icon_name (GtkSourceCompletionItem *item,
                                                                    const gchar             *icon_name);

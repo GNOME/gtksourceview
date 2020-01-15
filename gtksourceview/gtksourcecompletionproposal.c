@@ -37,7 +37,7 @@
  * The label may be specified using plain text or markup by implementing
  * the corresponding get function. Only one of those get functions
  * should return a value different from %NULL.
- * The icon may be specified as a #GdkPixbuf, as an icon name or as a #GIcon by
+ * The icon may be specified as a #GdkTexture, as an icon name or as a #GIcon by
  * implementing the corresponding get function. At most one of those get functions
  * should return a value different from %NULL, if they all return %NULL no icon
  * will be used.
@@ -71,7 +71,7 @@ gtk_source_completion_proposal_get_text_default (GtkSourceCompletionProposal *pr
 	return NULL;
 }
 
-static GdkPixbuf *
+static GdkTexture *
 gtk_source_completion_proposal_get_icon_default (GtkSourceCompletionProposal *proposal)
 {
 	return NULL;
@@ -212,11 +212,11 @@ gtk_source_completion_proposal_get_text (GtkSourceCompletionProposal *proposal)
  * gtk_source_completion_proposal_get_icon:
  * @proposal: a #GtkSourceCompletionProposal.
  *
- * Gets the #GdkPixbuf for the icon of @proposal.
+ * Gets the #GdkTexture for the icon of @proposal.
  *
- * Returns: (nullable) (transfer none): A #GdkPixbuf with the icon of @proposal.
+ * Returns: (nullable) (transfer none): A #GdkTexture with the icon of @proposal.
  */
-GdkPixbuf *
+GdkTexture *
 gtk_source_completion_proposal_get_icon (GtkSourceCompletionProposal *proposal)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal), NULL);
