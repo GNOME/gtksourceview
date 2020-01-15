@@ -304,6 +304,7 @@ static void           gtk_source_view_draw_layer           (GtkTextView         
 static MarkCategory  *mark_category_new                    (GtkSourceMarkAttributes *attributes,
                                                             gint                     priority);
 static void           mark_category_free                   (MarkCategory            *category);
+static void           gtk_source_view_queue_draw                         (GtkSourceView           *view);
 static gboolean       gtk_source_view_drag_drop                          (GtkDropTarget           *dest,
                                                                           GdkDrop                 *drop,
                                                                           int                      x,
@@ -1247,7 +1248,7 @@ space_drawer_notify_cb (GtkSourceSpaceDrawer *space_drawer,
                         GParamSpec           *pspec,
                         GtkSourceView        *view)
 {
-	gtk_widget_queue_draw (GTK_WIDGET (view));
+	gtk_source_view_queue_draw (view);
 }
 
 static void
@@ -1486,7 +1487,7 @@ source_mark_updated_cb (GtkSourceBuffer *buffer,
 {
 	/* TODO do something more intelligent here, namely
 	 * invalidate only the area under the mark if possible */
-	gtk_widget_queue_draw (GTK_WIDGET (text_view));
+	gtk_source_view_queue_draw (GTK_SOURCE_VIEW (text_view));
 }
 
 static void
@@ -1503,7 +1504,7 @@ implicit_trailing_newline_changed_cb (GtkSourceBuffer *buffer,
                                       GtkSourceView   *view)
 {
 	/* For drawing or not a trailing newline. */
-	gtk_widget_queue_draw (GTK_WIDGET (view));
+	gtk_source_view_queue_draw (view);
 }
 
 static void
@@ -4417,7 +4418,7 @@ gtk_source_view_set_highlight_current_line (GtkSourceView *view,
 	{
 		priv->highlight_current_line = highlight;
 
-		gtk_widget_queue_draw (GTK_WIDGET (view));
+		gtk_source_view_queue_draw (view);
 
 		g_object_notify (G_OBJECT (view), "highlight_current_line");
 	}
@@ -4462,7 +4463,7 @@ gtk_source_view_set_show_right_margin (GtkSourceView *view,
 	{
 		priv->show_right_margin = show;
 
-		gtk_widget_queue_draw (GTK_WIDGET (view));
+		gtk_source_view_queue_draw (view);
 
 		g_object_notify (G_OBJECT (view), "show-right-margin");
 	}
@@ -4507,7 +4508,7 @@ gtk_source_view_set_right_margin_position (GtkSourceView *view,
 		priv->right_margin_pos = pos;
 		priv->cached_right_margin_pos = -1;
 
-		gtk_widget_queue_draw (GTK_WIDGET (view));
+		gtk_source_view_queue_draw (view);
 
 		g_object_notify (G_OBJECT (view), "right-margin-position");
 	}
@@ -4783,7 +4784,7 @@ update_style (GtkSourceView *view)
 		_gtk_source_space_drawer_update_color (priv->space_drawer, view);
 	}
 
-	gtk_widget_queue_draw (GTK_WIDGET (view));
+	gtk_source_view_queue_draw (view);
 }
 
 static void
@@ -5025,7 +5026,7 @@ gtk_source_view_set_background_pattern (GtkSourceView                  *view,
 	{
 		priv->background_pattern = background_pattern;
 
-		gtk_widget_queue_draw (GTK_WIDGET (view));
+		gtk_source_view_queue_draw (view);
 
 		g_object_notify (G_OBJECT (view), "background-pattern");
 	}
@@ -5070,4 +5071,22 @@ gtk_source_view_get_space_drawer (GtkSourceView *view)
 	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
 
 	return priv->space_drawer;
+}
+
+static void
+gtk_source_view_queue_draw (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	gtk_widget_queue_draw (GTK_WIDGET (view));
+
+	if (priv->left_gutter != NULL)
+	{
+		_gtk_source_gutter_queue_draw (priv->left_gutter);
+	}
+
+	if (priv->right_gutter != NULL)
+	{
+		_gtk_source_gutter_queue_draw (priv->right_gutter);
+	}
 }
