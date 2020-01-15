@@ -69,7 +69,7 @@ typedef struct
 	/* Last known modification time of 'location'. The value is updated on a
 	 * file loading or file saving.
 	 */
-	GTimeVal modification_time;
+	gint64 modification_time;
 
 	guint modification_time_set : 1;
 
@@ -467,7 +467,7 @@ _gtk_source_file_create_mount_operation (GtkSourceFile *file)
 
 gboolean
 _gtk_source_file_get_modification_time (GtkSourceFile *file,
-                                        GTimeVal      *modification_time)
+					gint64        *modification_time)
 {
 	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
 
@@ -490,7 +490,7 @@ _gtk_source_file_get_modification_time (GtkSourceFile *file,
 
 void
 _gtk_source_file_set_modification_time (GtkSourceFile *file,
-                                        GTimeVal       modification_time)
+					gint64         modification_time)
 {
 	GtkSourceFilePrivate *priv = gtk_source_file_get_instance_private (file);
 
@@ -571,18 +571,21 @@ gtk_source_file_check_file_on_disk (GtkSourceFile *file)
 	if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED) &&
 	    priv->modification_time_set)
 	{
-		GTimeVal timeval;
+		GDateTime *dt;
+		gint64 mtime;
 
-		g_file_info_get_modification_time (info, &timeval);
+		dt = g_file_info_get_modification_date_time (info);
+		mtime = g_date_time_to_unix (dt);
 
 		/* Note that the modification time can even go backwards if the
 		 * user is copying over an old file.
 		 */
-		if (timeval.tv_sec != priv->modification_time.tv_sec ||
-		    timeval.tv_usec != priv->modification_time.tv_usec)
+		if (mtime != priv->modification_time)
 		{
 			priv->externally_modified = TRUE;
 		}
+
+		g_date_time_unref (dt);
 	}
 
 	if (g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
