@@ -30,6 +30,7 @@
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
 #include "gtksourceiter-private.h"
+#include "gtksourcestylescheme.h"
 #include "gtksourcestylescheme-private.h"
 #include "gtksourcetag.h"
 #include "gtksourceview.h"
@@ -88,17 +89,41 @@
  * default with a DVD of Matrix, in case the astronauts are bored.
  */
 
-/*
-#define ENABLE_PROFILE
-*/
-#undef ENABLE_PROFILE
+#if 0
+# define ENABLE_PROFILE
+#else
+# undef ENABLE_PROFILE
+#endif
+
+typedef enum
+{
+	DRAW_TAB,
+	DRAW_NARROW_NBSP,
+	DRAW_NBSP,
+	DRAW_SPACE,
+	DRAW_NEWLINE,
+	N_DRAW
+} Draw;
+
+typedef struct
+{
+	GskRenderNode *node;
+	gint           width;
+	gint           height;
+} CachedNode;
 
 struct _GtkSourceSpaceDrawer
 {
-	GObject parent_instance;
+	GObject                  parent_instance;
+
 	GtkSourceSpaceTypeFlags *matrix;
-	GdkRGBA *color;
-	guint enable_matrix : 1;
+
+	CachedNode               cached[N_DRAW];
+
+	GdkRGBA                  color;
+
+	guint                    color_set : 1;
+	guint                    enable_matrix : 1;
 };
 
 enum
@@ -112,6 +137,19 @@ enum
 static GParamSpec *properties[N_PROPERTIES];
 
 G_DEFINE_TYPE (GtkSourceSpaceDrawer, gtk_source_space_drawer, G_TYPE_OBJECT)
+
+static void
+gtk_source_space_drawer_purge_cache (GtkSourceSpaceDrawer *drawer)
+{
+	guint i;
+
+	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
+
+	for (i = 0; i < G_N_ELEMENTS (drawer->cached); i++)
+	{
+		g_clear_pointer (&drawer->cached[i].node, gsk_render_node_unref);
+	}
+}
 
 static gint
 get_number_of_locations (void)
@@ -305,12 +343,8 @@ gtk_source_space_drawer_finalize (GObject *object)
 {
 	GtkSourceSpaceDrawer *drawer = GTK_SOURCE_SPACE_DRAWER (object);
 
+	gtk_source_space_drawer_purge_cache (drawer);
 	g_free (drawer->matrix);
-
-	if (drawer->color != NULL)
-	{
-		gdk_rgba_free (drawer->color);
-	}
 
 	G_OBJECT_CLASS (gtk_source_space_drawer_parent_class)->finalize (object);
 }
@@ -706,11 +740,9 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	if (drawer->color != NULL)
-	{
-		gdk_rgba_free (drawer->color);
-		drawer->color = NULL;
-	}
+	gtk_source_space_drawer_purge_cache (drawer);
+
+	drawer->color_set = FALSE;
 
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 	style_scheme = gtk_source_buffer_get_style_scheme (buffer);
@@ -736,14 +768,15 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 			    color_str != NULL &&
 			    gdk_rgba_parse (&color, color_str))
 			{
-				drawer->color = gdk_rgba_copy (&color);
+				drawer->color = color;
+				drawer->color_set = TRUE;
 			}
 
 			g_free (color_str);
 		}
 	}
 
-	if (drawer->color == NULL)
+	if (!drawer->color_set)
 	{
 		GtkStyleContext *context;
 		GdkRGBA color;
@@ -751,12 +784,11 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 		context = gtk_widget_get_style_context (GTK_WIDGET (view));
 		gtk_style_context_save (context);
 		gtk_style_context_set_state (context, GTK_STATE_FLAG_INSENSITIVE);
-		gtk_style_context_get_color (context,
-					     gtk_style_context_get_state (context),
-					     &color);
+		gtk_style_context_get_color (context, &color);
 		gtk_style_context_restore (context);
 
-		drawer->color = gdk_rgba_copy (&color);
+		drawer->color = color;
+		drawer->color_set = TRUE;
 	}
 }
 
@@ -806,61 +838,43 @@ is_whitespace (gunichar ch)
 }
 
 static void
-draw_space_at_pos (cairo_t      *cr,
-                   GdkRectangle  rect)
+draw_space_at_pos (cairo_t *cr,
+                   gdouble  w,
+                   gdouble  h)
 {
-	gint x, y;
-	gdouble w;
+	const gint x = 0;
+	const gint y = h * 2 / 3;
 
-	x = rect.x;
-	y = rect.y + rect.height * 2 / 3;
-
-	w = rect.width;
-
-	cairo_save (cr);
 	cairo_move_to (cr, x + w * 0.5, y);
 	cairo_arc (cr, x + w * 0.5, y, 0.8, 0, 2 * G_PI);
 	cairo_stroke (cr);
-	cairo_restore (cr);
 }
 
 static void
-draw_tab_at_pos (cairo_t      *cr,
-                 GdkRectangle  rect)
+draw_tab_at_pos (cairo_t *cr,
+                 gdouble  w,
+                 gdouble  h)
 {
-	gint x, y;
-	gdouble w, h;
+	const gint x = 0;
+	const gint y = h * 2 / 3;
 
-	x = rect.x;
-	y = rect.y + rect.height * 2 / 3;
-
-	w = rect.width;
-	h = rect.height;
-
-	cairo_save (cr);
 	cairo_move_to (cr, x + h * 1 / 6, y);
 	cairo_rel_line_to (cr, w - h * 2 / 6, 0);
 	cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
 	cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
 	cairo_rel_line_to (cr, -h * 1 / 4, +h * 1 / 4);
 	cairo_stroke (cr);
-	cairo_restore (cr);
 }
 
 static void
-draw_newline_at_pos (cairo_t      *cr,
-                     GdkRectangle  rect)
+draw_newline_at_pos (cairo_t *cr,
+                     gdouble  w,
+                     gdouble  h)
 {
-	gint x, y;
-	gdouble w, h;
+	const gint x = 0;
+	const gint y = h / 3;
 
-	x = rect.x;
-	y = rect.y + rect.height / 3;
-
-	w = 2 * rect.width;
-	h = rect.height;
-
-	cairo_save (cr);
+	w = w * 2;
 
 	if (gtk_widget_get_default_direction () == GTK_TEXT_DIR_LTR)
 	{
@@ -882,48 +896,50 @@ draw_newline_at_pos (cairo_t      *cr,
 	}
 
 	cairo_stroke (cr);
-	cairo_restore (cr);
 }
 
 static void
-draw_nbsp_at_pos (cairo_t      *cr,
-                  GdkRectangle  rect,
-                  gboolean      narrowed)
+draw_narrow_nbsp_at_pos (cairo_t *cr,
+                         gdouble  w,
+                         gdouble  h)
 {
-	gint x, y;
-	gdouble w, h;
+	const gint x = 0;
+	const gint y = h / 2;
 
-	x = rect.x;
-	y = rect.y + rect.height / 2;
-
-	w = rect.width;
-	h = rect.height;
-
-	cairo_save (cr);
 	cairo_move_to (cr, x + w * 1 / 6, y);
 	cairo_rel_line_to (cr, w * 4 / 6, 0);
 	cairo_rel_line_to (cr, -w * 2 / 6, +h * 1 / 4);
 	cairo_rel_line_to (cr, -w * 2 / 6, -h * 1 / 4);
-
-	if (narrowed)
-	{
-		cairo_fill (cr);
-	}
-	else
-	{
-		cairo_stroke (cr);
-	}
-
-	cairo_restore (cr);
+	cairo_fill (cr);
 }
 
 static void
-draw_whitespace_at_iter (GtkTextView *text_view,
-                         GtkTextIter *iter,
-                         cairo_t     *cr)
+draw_nbsp_at_pos (cairo_t *cr,
+                  gdouble  w,
+                  gdouble  h)
 {
-	gunichar ch;
+	const gint x = 0;
+	const gint y = h / 2;
+
+	cairo_move_to (cr, x + w * 1 / 6, y);
+	cairo_rel_line_to (cr, w * 4 / 6, 0);
+	cairo_rel_line_to (cr, -w * 2 / 6, +h * 1 / 4);
+	cairo_rel_line_to (cr, -w * 2 / 6, -h * 1 / 4);
+	cairo_stroke (cr);
+}
+
+static void
+draw_whitespace_at_iter (GtkSourceSpaceDrawer *drawer,
+                         GtkTextView          *text_view,
+                         const GtkTextIter    *iter,
+                         const GdkRGBA        *color,
+                         GtkSnapshot          *snapshot)
+{
+	void (*draw) (cairo_t *cr, gdouble w, gdouble h) = NULL;
+	CachedNode *cache = NULL;
 	GdkRectangle rect;
+	gunichar ch;
+	gint ratio = 1;
 
 	gtk_text_view_get_iter_location (text_view, iter, &rect);
 
@@ -939,19 +955,66 @@ draw_whitespace_at_iter (GtkTextView *text_view,
 
 	if (is_tab (ch))
 	{
-		draw_tab_at_pos (cr, rect);
+		draw = draw_tab_at_pos;
+		cache = &drawer->cached[DRAW_TAB];
 	}
 	else if (is_nbsp (ch))
 	{
-		draw_nbsp_at_pos (cr, rect, is_narrowed_nbsp (ch));
+		if (is_narrowed_nbsp (ch))
+		{
+			draw = draw_narrow_nbsp_at_pos;
+			cache = &drawer->cached[DRAW_NARROW_NBSP];
+		}
+		else
+		{
+			draw = draw_nbsp_at_pos;
+			cache = &drawer->cached[DRAW_NBSP];
+		}
 	}
 	else if (is_space (ch))
 	{
-		draw_space_at_pos (cr, rect);
+		draw = draw_space_at_pos;
+		cache = &drawer->cached[DRAW_SPACE];
 	}
 	else if (is_newline (iter))
 	{
-		draw_newline_at_pos (cr, rect);
+		draw = draw_newline_at_pos;
+		cache = &drawer->cached[DRAW_NEWLINE];
+		ratio = 2;
+	}
+
+	g_assert (draw == NULL || cache != NULL);
+
+	if (draw != NULL)
+	{
+		if (cache->width != rect.width || cache->height != rect.height)
+		{
+			g_clear_pointer (&cache->node, gsk_render_node_unref);
+		}
+
+		if G_UNLIKELY (cache->node == NULL)
+		{
+			GtkSnapshot *to_cache;
+			cairo_t *cr;
+
+			to_cache = gtk_snapshot_new ();
+			cr = gtk_snapshot_append_cairo (to_cache,
+			                                &GRAPHENE_RECT_INIT (0, 0, rect.width * ratio, rect.height));
+			gdk_cairo_set_source_rgba (cr, color);
+			cairo_set_line_width (cr, 0.8);
+			cairo_translate (cr, -0.5, -0.5);
+			draw (cr, rect.width, rect.height);
+			cairo_destroy (cr);
+
+			cache->node = gtk_snapshot_free_to_node (g_steal_pointer (&to_cache));
+			cache->width = rect.width;
+			cache->height = rect.height;
+		}
+
+		gtk_snapshot_save (snapshot);
+		gtk_snapshot_translate (snapshot, &GRAPHENE_POINT_INIT (rect.x, rect.y));
+		gtk_snapshot_append_node (snapshot, cache->node);
+		gtk_snapshot_restore (snapshot);
 	}
 }
 
@@ -1143,11 +1206,11 @@ get_line_end (GtkTextView       *text_view,
 void
 _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
                                GtkSourceView        *view,
-                               cairo_t              *cr)
+                               GtkSnapshot          *snapshot)
 {
 	GtkTextView *text_view;
 	GtkTextBuffer *buffer;
-	GdkRectangle clip;
+	GdkRectangle visible;
 	gint min_x;
 	gint min_y;
 	gint max_x;
@@ -1172,9 +1235,8 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
-	g_return_if_fail (cr != NULL);
 
-	if (drawer->color == NULL)
+	if (!drawer->color_set)
 	{
 		g_warning ("GtkSourceSpaceDrawer: color not set.");
 		return;
@@ -1189,25 +1251,17 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 		return;
 	}
 
-	if (!gdk_cairo_get_clip_rectangle (cr, &clip))
-	{
-		return;
-	}
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible);
 
 	is_wrapping = gtk_text_view_get_wrap_mode (text_view) != GTK_WRAP_NONE;
 
-	min_x = clip.x;
-	min_y = clip.y;
-	max_x = min_x + clip.width;
-	max_y = min_y + clip.height;
+	min_x = visible.x;
+	min_y = visible.y;
+	max_x = min_x + visible.width;
+	max_y = min_y + visible.height;
 
 	gtk_text_view_get_iter_at_location (text_view, &start, min_x, min_y);
 	gtk_text_view_get_iter_at_location (text_view, &end, max_x, max_y);
-
-	cairo_save (cr);
-	gdk_cairo_set_source_rgba (cr, drawer->color);
-	cairo_set_line_width (cr, 0.8);
-	cairo_translate (cr, -0.5, -0.5);
 
 	iter = start;
 	_gtk_source_iter_get_leading_spaces_end_boundary (&iter, &leading_end);
@@ -1223,7 +1277,11 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 		if ((is_whitespace (ch) || gtk_text_iter_is_end (&iter)) &&
 		    space_needs_drawing (drawer, &iter, &leading_end, &trailing_start))
 		{
-			draw_whitespace_at_iter (text_view, &iter, cr);
+			draw_whitespace_at_iter (drawer,
+			                         text_view,
+			                         &iter,
+			                         &drawer->color,
+			                         snapshot);
 		}
 
 		if (gtk_text_iter_is_end (&iter) ||
@@ -1275,8 +1333,6 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 			get_line_end (text_view, &iter, &line_end, max_x, max_y, is_wrapping);
 		}
 	};
-
-	cairo_restore (cr);
 
 #ifdef ENABLE_PROFILE
 	g_timer_stop (timer);
