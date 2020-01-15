@@ -46,7 +46,7 @@ void                   gtk_source_pixbuf_helper_set_gicon     (GtkSourcePixbufHe
 G_GNUC_INTERNAL
 GIcon                 *gtk_source_pixbuf_helper_get_gicon     (GtkSourcePixbufHelper *helper);
 G_GNUC_INTERNAL
-GdkPixbuf             *gtk_source_pixbuf_helper_render        (GtkSourcePixbufHelper *helper,
+GdkPaintable          *gtk_source_pixbuf_helper_render        (GtkSourcePixbufHelper *helper,
                                                                GtkWidget             *widget,
                                                                gint                   size);
 

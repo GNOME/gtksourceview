@@ -31,7 +31,7 @@ typedef enum _IconType
 
 struct _GtkSourcePixbufHelper
 {
-	GdkPixbuf *cached_pixbuf;
+	GdkPaintable *cached_paintable;
 	IconType type;
 
 	GdkPixbuf *pixbuf;
@@ -48,40 +48,20 @@ gtk_source_pixbuf_helper_new (void)
 void
 gtk_source_pixbuf_helper_free (GtkSourcePixbufHelper *helper)
 {
-	if (helper->pixbuf)
-	{
-		g_object_unref (helper->pixbuf);
-	}
-
-	if (helper->cached_pixbuf)
-	{
-		g_object_unref (helper->cached_pixbuf);
-	}
-
-	if (helper->gicon)
-	{
-		g_object_unref (helper->gicon);
-	}
-
-	g_free (helper->icon_name);
+	g_clear_object (&helper->pixbuf);
+	g_clear_object (&helper->cached_paintable);
+	g_clear_object (&helper->gicon);
+	g_clear_pointer (&helper->icon_name, g_free);
 
 	g_slice_free (GtkSourcePixbufHelper, helper);
 }
 
 static void
 set_cache (GtkSourcePixbufHelper *helper,
-           GdkPixbuf             *pixbuf)
+	   GdkPaintable          *paintable)
 {
-	if (helper->cached_pixbuf)
-	{
-		g_object_unref (helper->cached_pixbuf);
-		helper->cached_pixbuf = NULL;
-	}
-
-	if (pixbuf)
-	{
-		helper->cached_pixbuf = pixbuf;
-	}
+	g_clear_object (&helper->cached_paintable);
+	helper->cached_paintable = paintable;
 }
 
 static void
@@ -169,26 +149,10 @@ from_pixbuf (GtkSourcePixbufHelper *helper,
              GtkWidget             *widget,
              gint                   size)
 {
-	if (helper->pixbuf == NULL)
+	if (helper->pixbuf != NULL)
 	{
-		return;
+		set_cache (helper, GDK_PAINTABLE (gdk_texture_new_for_pixbuf (helper->pixbuf)));
 	}
-
-	if (gdk_pixbuf_get_width (helper->pixbuf) <= size)
-	{
-		if (!helper->cached_pixbuf)
-		{
-			set_cache (helper, gdk_pixbuf_copy (helper->pixbuf));
-		}
-
-		return;
-	}
-
-	/* Make smaller */
-	set_cache (helper, gdk_pixbuf_scale_simple (helper->pixbuf,
-	                                            size,
-	                                            size,
-	                                            GDK_INTERP_BILINEAR));
 }
 
 static void
@@ -196,13 +160,18 @@ from_gicon (GtkSourcePixbufHelper *helper,
             GtkWidget             *widget,
             gint                   size)
 {
-	GdkScreen *screen;
+	GdkDisplay *display;
 	GtkIconTheme *icon_theme;
 	GtkIconInfo *info;
 	GtkIconLookupFlags flags;
 
-	screen = gtk_widget_get_screen (widget);
-	icon_theme = gtk_icon_theme_get_for_screen (screen);
+	if (helper->gicon == NULL)
+	{
+		return;
+	}
+
+	display = gtk_widget_get_display (widget);
+	icon_theme = gtk_icon_theme_get_for_display (display);
 
 	flags = GTK_ICON_LOOKUP_USE_BUILTIN;
 
@@ -213,6 +182,7 @@ from_gicon (GtkSourcePixbufHelper *helper,
 
 	if (info)
 	{
+
 		set_cache (helper, gtk_icon_info_load_icon (info, NULL));
 	}
 }
@@ -222,14 +192,19 @@ from_name (GtkSourcePixbufHelper *helper,
            GtkWidget             *widget,
            gint                   size)
 {
-	GdkScreen *screen;
+	GdkDisplay *display;
 	GtkIconTheme *icon_theme;
 	GtkIconInfo *info;
 	GtkIconLookupFlags flags;
 	gint scale;
 
-	screen = gtk_widget_get_screen (widget);
-	icon_theme = gtk_icon_theme_get_for_screen (screen);
+	if (helper->icon_name == NULL)
+	{
+		return;
+	}
+
+	display = gtk_widget_get_display (widget);
+	icon_theme = gtk_icon_theme_get_for_display (display);
 
 	flags = GTK_ICON_LOOKUP_USE_BUILTIN;
         scale = gtk_widget_get_scale_factor (widget);
@@ -242,33 +217,32 @@ from_name (GtkSourcePixbufHelper *helper,
 
 	if (info)
 	{
-		GdkPixbuf *pixbuf;
+		GdkPaintable *paintable;
 
 		if (gtk_icon_info_is_symbolic (info))
 		{
 			GtkStyleContext *context;
 
 			context = gtk_widget_get_style_context (widget);
-			pixbuf = gtk_icon_info_load_symbolic_for_context (info, context, NULL, NULL);
+			paintable = gtk_icon_info_load_symbolic_for_context (info, context, NULL, NULL);
 		}
 		else
 		{
-			pixbuf = gtk_icon_info_load_icon (info, NULL);
+			paintable = gtk_icon_info_load_icon (info, NULL);
 		}
 
-		set_cache (helper, pixbuf);
+		set_cache (helper, paintable);
 	}
 }
 
-GdkPixbuf *
+GdkPaintable *
 gtk_source_pixbuf_helper_render (GtkSourcePixbufHelper *helper,
                                  GtkWidget             *widget,
                                  gint                   size)
 {
-	if (helper->cached_pixbuf &&
-	    gdk_pixbuf_get_width (helper->cached_pixbuf) == size)
+	if (helper->cached_paintable != NULL)
 	{
-		return helper->cached_pixbuf;
+		return helper->cached_paintable;
 	}
 
 	switch (helper->type)
@@ -286,6 +260,6 @@ gtk_source_pixbuf_helper_render (GtkSourcePixbufHelper *helper,
 			g_assert_not_reached ();
 	}
 
-	return helper->cached_pixbuf;
+	return helper->cached_paintable;
 }
 
