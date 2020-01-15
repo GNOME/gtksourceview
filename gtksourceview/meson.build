@@ -104,7 +104,6 @@ core_private_c = files([
 ])
 
 core_c_args = [
-  '-DHAVE_CONFIG_H',
   '-DGTK_SOURCE_COMPILATION',
   '-DG_LOG_DOMAIN="GtkSourceView"',
 ]
@@ -137,15 +136,15 @@ gtksourceview_include_dirs = [rootdir, gtksourceview_extra_include_dirs]
 
 core_enums_header = '''
 
-#if defined (GTK_SOURCE_COMPILATION) && defined (HAVE_CONFIG_H)
-# include <config.h>
+#if defined (GTK_SOURCE_COMPILATION)
+# include "config.h"
 #endif
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 # error "Only <gtksourceview/gtksource.h> can be included directly."
 #endif
 
-#include "gtksourceversion.h"
+#include <gtksourceview/gtksourceversion.h>
 '''
 
 core_enums = gnome.mkenums_simple('gtksource-enumtypes',

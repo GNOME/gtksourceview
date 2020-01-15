@@ -1,5 +1,4 @@
 completionwords_c_args = [
-  '-DHAVE_CONFIG_H',
   '-DGTK_SOURCE_COMPILATION',
   '-DG_LOG_DOMAIN="GtkSourceView"',
 ]
