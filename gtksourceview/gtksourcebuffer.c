@@ -130,9 +130,9 @@
 #define PROFILE(x)
 #endif
 
-#define UPDATE_BRACKET_DELAY		50
-#define BRACKET_MATCHING_CHARS_LIMIT	10000
-#define CONTEXT_CLASSES_PREFIX		"gtksourceview:context-classes:"
+#define UPDATE_BRACKET_DELAY          50
+#define BRACKET_MATCHING_CHARS_LIMIT  10000
+#define CONTEXT_CLASSES_PREFIX        "gtksourceview:context-classes:"
 
 enum
 {
@@ -147,11 +147,11 @@ enum
 enum
 {
 	PROP_0,
-	PROP_HIGHLIGHT_SYNTAX,
 	PROP_HIGHLIGHT_MATCHING_BRACKETS,
+	PROP_HIGHLIGHT_SYNTAX,
+	PROP_IMPLICIT_TRAILING_NEWLINE,
 	PROP_LANGUAGE,
 	PROP_STYLE_SCHEME,
-	PROP_IMPLICIT_TRAILING_NEWLINE,
 	N_PROPERTIES
 };
 
@@ -182,46 +182,41 @@ typedef struct
 	guint implicit_trailing_newline : 1;
 } GtkSourceBufferPrivate;
 
-static guint buffer_signals[N_SIGNALS];
 static GParamSpec *buffer_properties[N_PROPERTIES];
+static guint       buffer_signals[N_SIGNALS];
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceBuffer, gtk_source_buffer, GTK_TYPE_TEXT_BUFFER)
 
-/* Prototypes */
-static void 	 gtk_source_buffer_dispose		(GObject                 *object);
-static void      gtk_source_buffer_set_property         (GObject                 *object,
-							 guint                    prop_id,
-							 const GValue            *value,
-							 GParamSpec              *pspec);
-static void      gtk_source_buffer_get_property         (GObject                 *object,
-							 guint                    prop_id,
-							 GValue                  *value,
-							 GParamSpec              *pspec);
-static void 	 gtk_source_buffer_real_insert_text 	(GtkTextBuffer           *buffer,
-							 GtkTextIter             *iter,
-							 const gchar             *text,
-							 gint                     len);
-static void	 gtk_source_buffer_real_insert_pixbuf	(GtkTextBuffer           *buffer,
-							 GtkTextIter             *pos,
-							 GdkPixbuf               *pixbuf);
-static void	 gtk_source_buffer_real_insert_child_anchor
-							(GtkTextBuffer           *buffer,
-							 GtkTextIter             *pos,
-							 GtkTextChildAnchor      *anchor);
-static void 	 gtk_source_buffer_real_delete_range 	(GtkTextBuffer           *buffer,
-							 GtkTextIter             *iter,
-							 GtkTextIter             *end);
-static void 	 gtk_source_buffer_real_mark_set	(GtkTextBuffer		 *buffer,
-							 const GtkTextIter	 *location,
-							 GtkTextMark		 *mark);
-
-static void 	 gtk_source_buffer_real_mark_deleted	(GtkTextBuffer		 *buffer,
-							 GtkTextMark		 *mark);
-
-static void	 gtk_source_buffer_real_highlight_updated
-							(GtkSourceBuffer         *buffer,
-							 GtkTextIter             *start,
-							 GtkTextIter             *end);
+static void gtk_source_buffer_dispose                  (GObject            *object);
+static void gtk_source_buffer_set_property             (GObject            *object,
+                                                        guint               prop_id,
+                                                        const GValue       *value,
+                                                        GParamSpec         *pspec);
+static void gtk_source_buffer_get_property             (GObject            *object,
+                                                        guint               prop_id,
+                                                        GValue             *value,
+                                                        GParamSpec         *pspec);
+static void gtk_source_buffer_real_insert_text         (GtkTextBuffer      *buffer,
+                                                        GtkTextIter        *iter,
+                                                        const gchar        *text,
+                                                        gint                len);
+static void gtk_source_buffer_real_insert_texture      (GtkTextBuffer      *buffer,
+                                                        GtkTextIter        *pos,
+                                                        GdkTexture         *texture);
+static void gtk_source_buffer_real_insert_child_anchor (GtkTextBuffer      *buffer,
+                                                        GtkTextIter        *pos,
+                                                        GtkTextChildAnchor *anchor);
+static void gtk_source_buffer_real_delete_range        (GtkTextBuffer      *buffer,
+                                                        GtkTextIter        *iter,
+                                                        GtkTextIter        *end);
+static void gtk_source_buffer_real_mark_set            (GtkTextBuffer      *buffer,
+                                                        const GtkTextIter  *location,
+                                                        GtkTextMark        *mark);
+static void gtk_source_buffer_real_mark_deleted        (GtkTextBuffer      *buffer,
+                                                        GtkTextMark        *mark);
+static void gtk_source_buffer_real_highlight_updated   (GtkSourceBuffer    *buffer,
+                                                        GtkTextIter        *start,
+                                                        GtkTextIter        *end);
 
 static void
 gtk_source_buffer_check_tag_for_spaces (GtkSourceBuffer *buffer,
