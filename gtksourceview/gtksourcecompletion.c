@@ -842,12 +842,14 @@ update_selection_label (GtkSourceCompletion *completion)
 	}
 	else
 	{
+		GdkTexture *texture;
+
 		gchar *temp_name = gtk_source_completion_provider_get_name (visible);
 		name = g_markup_escape_text (temp_name, -1);
 		g_free (temp_name);
 
-		gtk_image_set_from_pixbuf (completion->selection_image,
-					   gtk_source_completion_provider_get_icon (visible));
+		texture = gtk_source_completion_provider_get_icon (visible);
+		gtk_image_set_from_paintable (completion->selection_image, GDK_PAINTABLE (texture));
 	}
 
 	selection_text = g_strdup_printf ("<small>%s (%d/%d)</small>", name, pos + 1, num + 1);
@@ -1988,21 +1990,21 @@ cell_icon_func (GtkTreeViewColumn *column,
                 GtkTreeIter       *iter,
                 gpointer           data)
 {
-	GdkPixbuf *pixbuf;
+	GdkTexture *texture;
 	gchar *icon_name;
 	GIcon *gicon;
 	gboolean set = FALSE;
 
 	gtk_tree_model_get (model, iter,
-	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON, &pixbuf,
+	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON, &texture,
 	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON_NAME, &icon_name,
 	                    GTK_SOURCE_COMPLETION_MODEL_COLUMN_GICON, &gicon,
 	                    -1);
 
-	if (pixbuf != NULL)
+	if (texture != NULL)
 	{
-		g_object_set (cell, "pixbuf", pixbuf, NULL);
-		g_object_unref (pixbuf);
+		g_object_set (cell, "texture", texture, NULL);
+		g_object_unref (texture);
 		set = TRUE;
 	}
 

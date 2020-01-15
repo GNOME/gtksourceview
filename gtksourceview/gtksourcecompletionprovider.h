@@ -74,7 +74,7 @@ struct _GtkSourceCompletionProviderInterface
 	GTypeInterface g_iface;
 
 	gchar                         *(*get_name)              (GtkSourceCompletionProvider *provider);
-	GdkPixbuf                     *(*get_icon)              (GtkSourceCompletionProvider *provider);
+	GdkTexture                    *(*get_icon)              (GtkSourceCompletionProvider *provider);
 	const gchar                   *(*get_icon_name)         (GtkSourceCompletionProvider *provider);
 	GIcon                         *(*get_gicon)             (GtkSourceCompletionProvider *provider);
 	void                           (*populate)              (GtkSourceCompletionProvider *provider,
@@ -101,7 +101,7 @@ struct _GtkSourceCompletionProviderInterface
 GTK_SOURCE_AVAILABLE_IN_ALL
 gchar                         *gtk_source_completion_provider_get_name              (GtkSourceCompletionProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GdkPixbuf                     *gtk_source_completion_provider_get_icon              (GtkSourceCompletionProvider *provider);
+GdkTexture                    *gtk_source_completion_provider_get_icon              (GtkSourceCompletionProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_3_18
 const gchar                   *gtk_source_completion_provider_get_icon_name         (GtkSourceCompletionProvider *provider);
 GTK_SOURCE_AVAILABLE_IN_3_18

@@ -38,7 +38,7 @@ typedef struct
 	gchar *label;
 	gchar *markup;
 	gchar *text;
-	GdkPixbuf *icon;
+	GdkTexture *icon;
 	gchar *icon_name;
 	GIcon *gicon;
 	gchar *info;
@@ -92,7 +92,7 @@ gtk_source_completion_proposal_get_text_impl (GtkSourceCompletionProposal *propo
 	return g_strdup (priv->text);
 }
 
-static GdkPixbuf *
+static GdkTexture *
 gtk_source_completion_proposal_get_icon_impl (GtkSourceCompletionProposal *proposal)
 {
 	GtkSourceCompletionItem *item = GTK_SOURCE_COMPLETION_ITEM (proposal);
@@ -321,14 +321,14 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	/**
 	 * GtkSourceCompletionItem:icon:
 	 *
-	 * The #GdkPixbuf for the icon to be shown for this proposal.
+	 * The #GdkTexture for the icon to be shown for this proposal.
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_ICON,
 					 g_param_spec_object ("icon",
 							      "Icon",
 							      "",
-							      GDK_TYPE_PIXBUF,
+							      GDK_TYPE_TEXTURE,
 							      G_PARAM_READWRITE |
 							      G_PARAM_STATIC_STRINGS));
 
@@ -477,18 +477,18 @@ gtk_source_completion_item_set_text (GtkSourceCompletionItem *item,
 /**
  * gtk_source_completion_item_set_icon:
  * @item: a #GtkSourceCompletionItem.
- * @icon: (nullable): the #GdkPixbuf, or %NULL.
+ * @icon: (nullable): the #GdkTexture, or %NULL.
  *
  * Since: 3.24
  */
 void
 gtk_source_completion_item_set_icon (GtkSourceCompletionItem *item,
-                                     GdkPixbuf               *icon)
+                                     GdkTexture              *icon)
 {
 	GtkSourceCompletionItemPrivate *priv = gtk_source_completion_item_get_instance_private (item);
 
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_ITEM (item));
-	g_return_if_fail (icon == NULL || GDK_IS_PIXBUF (icon));
+	g_return_if_fail (icon == NULL || GDK_IS_TEXTURE (icon));
 
 	if (g_set_object (&priv->icon, icon))
 	{

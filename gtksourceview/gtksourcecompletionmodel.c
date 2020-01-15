@@ -513,12 +513,12 @@ tree_model_get_value (GtkTreeModel *tree_model,
 		case GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON:
 			if (is_header (proposal_info))
 			{
-				GdkPixbuf *icon = gtk_source_completion_provider_get_icon (completion_provider);
+				GdkTexture *icon = gtk_source_completion_provider_get_icon (completion_provider);
 				g_value_set_object (value, (gpointer)icon);
 			}
 			else
 			{
-				GdkPixbuf *icon = gtk_source_completion_proposal_get_icon (completion_proposal);
+				GdkTexture *icon = gtk_source_completion_proposal_get_icon (completion_proposal);
 				g_value_set_object (value, (gpointer)icon);
 			}
 			break;
@@ -750,7 +750,7 @@ static void
 gtk_source_completion_model_init (GtkSourceCompletionModel *self)
 {
 	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_MARKUP] = G_TYPE_STRING;
-	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON] = GDK_TYPE_PIXBUF;
+	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON] = GDK_TYPE_TEXTURE;
 	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_ICON_NAME] = G_TYPE_STRING;
 	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_GICON] = G_TYPE_ICON;
 	self->column_types[GTK_SOURCE_COMPLETION_MODEL_COLUMN_PROPOSAL] = G_TYPE_OBJECT;
