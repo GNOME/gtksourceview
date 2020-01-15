@@ -20,8 +20,12 @@
 
 #include "config.h"
 
+#include "gtksourcebuffer.h"
+#include "gtksourcegutter.h"
+#include "gtksourcegutter-private.h"
 #include "gtksourcegutterrenderer.h"
 #include "gtksourcegutterrenderer-private.h"
+#include "gtksourcegutterlines.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceview.h"
 #include "gtksource-enumtypes.h"
@@ -39,9 +43,11 @@
  * this case, #GtkSourceGutterRendererAlignmentMode controls the alignment of
  * the cell.
  *
- * The gutter renderer must announce its #GtkSourceGutterRenderer:size. The
- * height is determined by the text view height. The width must be determined by
- * the gutter renderer. The width generally takes into account the entire text
+ * The gutter renderer is a #GtkWidget and is measured using the normal widget
+ * measurement facilities. The width of the gutter will be determined by the
+ * measurements of the gutter renderers.
+ *
+ * The width of a gutter renderer generally takes into account the entire text
  * buffer. For instance, to display the line numbers, if the buffer contains 100
  * lines, the gutter renderer will always set its width such as three digits can
  * be printed, even if only the first 20 lines are shown. Another strategy is to
@@ -51,122 +57,84 @@
  * into account the text buffer to announce its width. It only depends on the
  * icons size displayed in the gutter column.
  *
- * An horizontal and vertical padding can be added with
- * gtk_source_gutter_renderer_set_padding().  The total width of a gutter
- * renderer is its size (#GtkSourceGutterRenderer:size) plus two times the
- * horizontal padding (#GtkSourceGutterRenderer:xpad).
- *
  * When the available size to render a cell is greater than the required size to
  * render the cell contents, the cell contents can be aligned horizontally and
  * vertically with gtk_source_gutter_renderer_set_alignment().
  *
- * The cells rendering occurs in three phases:
- * - begin: the gtk_source_gutter_renderer_begin() function is called when some
- *   cells need to be redrawn. It provides the associated region of the
- *   #GtkTextBuffer. The cells need to be redrawn when the #GtkTextView is
- *   scrolled, or when the state of the cells change (see
- *   #GtkSourceGutterRendererState).
- * - draw: gtk_source_gutter_renderer_draw() is called for each cell that needs
- *   to be drawn.
- * - end: finally, gtk_source_gutter_renderer_end() is called.
+ * The cells rendering occurs using gtk_widget_snapshot(). Implementations
+ * should use gtk_source_gutter_renderer_get_lines() to retrieve information
+ * about the lines to be rendered. To help with aligning content which takes
+ * into account the padding and alignment of a cell, implementations may call
+ * gtk_source_gutter_renderer_align_cell() for a given line number with the
+ * width and height measurement of the content they width to render.
  */
-
-enum
-{
-	ACTIVATE,
-	QUEUE_DRAW,
-	QUERY_TOOLTIP,
-	QUERY_DATA,
-	QUERY_ACTIVATABLE,
-	N_SIGNALS
-};
 
 typedef struct
 {
-	GtkTextView *view;
-	GtkTextBuffer *buffer;
-	GtkTextWindowType window_type;
-
-	gint xpad;
-	gint ypad;
+	GtkSourceGutter *gutter;
+	GtkSourceView *view;
+	GtkSourceBuffer *buffer;
+	GtkSourceGutterLines *lines;
 
 	gfloat xalign;
 	gfloat yalign;
 
-	gint size;
+	gint xpad;
+	gint ypad;
 
 	GtkSourceGutterRendererAlignmentMode alignment_mode;
 
-	GdkRGBA background_color;
-
-	guint background_set : 1;
 	guint visible : 1;
 } GtkSourceGutterRendererPrivate;
 
-static guint signals[N_SIGNALS];
-
-G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (GtkSourceGutterRenderer, gtk_source_gutter_renderer, G_TYPE_INITIALLY_UNOWNED)
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (GtkSourceGutterRenderer, gtk_source_gutter_renderer, GTK_TYPE_WIDGET)
 
 enum
 {
 	PROP_0,
-	PROP_VISIBLE,
-	PROP_XPAD,
-	PROP_YPAD,
-	PROP_XALIGN,
-	PROP_YALIGN,
-	PROP_VIEW,
 	PROP_ALIGNMENT_MODE,
-	PROP_WINDOW_TYPE,
-	PROP_SIZE,
-	PROP_BACKGROUND_RGBA,
-	PROP_BACKGROUND_SET
+	PROP_LINES,
+	PROP_VIEW,
+	PROP_XALIGN,
+	PROP_XPAD,
+	PROP_YALIGN,
+	PROP_YPAD,
+	N_PROPS
 };
 
-static void
-set_buffer (GtkSourceGutterRenderer *renderer,
-            GtkTextBuffer           *buffer)
+enum
 {
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+	ACTIVATE,
+	QUERY_ACTIVATABLE,
+	QUERY_DATA,
+	N_SIGNALS
+};
 
-	if (priv->buffer != NULL)
-	{
-		g_object_remove_weak_pointer (G_OBJECT (priv->buffer),
-		                              (gpointer) &priv->buffer);
-	}
-
-	if (buffer != NULL)
-	{
-		g_object_add_weak_pointer (G_OBJECT (buffer),
-		                           (gpointer) &priv->buffer);
-	}
-
-	priv->buffer = buffer;
-}
+static GParamSpec *properties[N_PROPS];
+static guint       signals[N_SIGNALS];
 
 static void
-emit_buffer_changed (GtkTextView             *view,
+emit_buffer_changed (GtkSourceView           *view,
                      GtkSourceGutterRenderer *renderer)
 {
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-	GtkTextBuffer* buffer;
+	GtkSourceBuffer *buffer;
+	GtkSourceBuffer *old_buffer;
 
-	buffer = gtk_text_view_get_buffer (view);
+	old_buffer = priv->buffer;
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
-	if (buffer != priv->buffer)
+	if (buffer == old_buffer)
 	{
-		if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer)
-		{
-			GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer (renderer,
-			                                                                priv->buffer);
-		}
-
-		set_buffer (renderer, buffer);
+		return;
 	}
+
+	g_set_weak_pointer (&priv->buffer, buffer);
+	GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_buffer (renderer, old_buffer);
 }
 
 static void
-on_buffer_changed (GtkTextView             *view,
+on_buffer_changed (GtkSourceView           *view,
                    GParamSpec              *spec,
                    GtkSourceGutterRenderer *renderer)
 {
@@ -174,19 +142,25 @@ on_buffer_changed (GtkTextView             *view,
 }
 
 static void
-renderer_change_view_impl (GtkSourceGutterRenderer *renderer,
-                           GtkTextView             *old_view)
+gtk_source_gutter_renderer_change_buffer (GtkSourceGutterRenderer *renderer,
+                                          GtkSourceBuffer         *buffer)
+{
+}
+
+static void
+gtk_source_gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
+                                        GtkSourceView           *old_view)
 {
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 
-	if (old_view)
+	if (old_view != NULL)
 	{
 		g_signal_handlers_disconnect_by_func (old_view,
 		                                      G_CALLBACK (on_buffer_changed),
 		                                      renderer);
 	}
 
-	if (priv->view)
+	if (priv->view != NULL)
 	{
 		emit_buffer_changed (priv->view, renderer);
 
@@ -198,196 +172,98 @@ renderer_change_view_impl (GtkSourceGutterRenderer *renderer,
 }
 
 static void
+gtk_source_gutter_renderer_snapshot (GtkWidget   *widget,
+                                     GtkSnapshot *snapshot)
+{
+	GtkSourceGutterRenderer *renderer = GTK_SOURCE_GUTTER_RENDERER (widget);
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+	GtkSourceGutterRendererClass *klass = GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (widget);
+	GtkSourceGutterRendererAlignmentMode mode = priv->alignment_mode;
+	GtkSourceGutterLines *lines = priv->lines;
+	guint first;
+	guint last;
+	guint line;
+	gint y;
+	gint h;
+
+	if (lines == NULL || klass->snapshot_line == NULL)
+	{
+		return;
+	}
+
+	first = gtk_source_gutter_lines_get_first (lines);
+	last = gtk_source_gutter_lines_get_last (lines);
+
+	for (line = first; line <= last; line++)
+	{
+		gtk_source_gutter_lines_get_line_yrange (lines, line, mode, &y, &h);
+
+		klass->query_data (renderer, lines, line);
+		klass->snapshot_line (renderer, snapshot, lines, line);
+	}
+}
+
+static void
 gtk_source_gutter_renderer_dispose (GObject *object)
 {
 	GtkSourceGutterRenderer *renderer = GTK_SOURCE_GUTTER_RENDERER (object);
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 
-	set_buffer (renderer, NULL);
+	g_clear_weak_pointer (&priv->buffer);
 
-	if (priv->view)
+	if (priv->view != NULL)
 	{
-		_gtk_source_gutter_renderer_set_view (renderer,
-		                                      NULL,
-		                                      GTK_TEXT_WINDOW_PRIVATE);
+		_gtk_source_gutter_renderer_set_view (renderer, NULL);
 	}
 
 	G_OBJECT_CLASS (gtk_source_gutter_renderer_parent_class)->dispose (object);
 }
 
 static void
-set_visible (GtkSourceGutterRenderer *renderer,
-             gboolean                 visible)
+gtk_source_gutter_renderer_root (GtkWidget *widget)
 {
+	GtkSourceGutterRenderer *renderer = GTK_SOURCE_GUTTER_RENDERER (widget);
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+	GtkWidget *gutter;
 
-	visible = visible != FALSE;
+	GTK_WIDGET_CLASS (gtk_source_gutter_renderer_parent_class)->root (widget);
 
-	if (priv->visible != visible)
+	gutter = gtk_widget_get_ancestor (widget, GTK_SOURCE_TYPE_GUTTER);
+
+	if (GTK_SOURCE_IS_GUTTER (gutter))
 	{
-		priv->visible = visible;
-		g_object_notify (G_OBJECT (renderer), "visible");
-
-		gtk_source_gutter_renderer_queue_draw (renderer);
-	}
-}
-
-static gboolean
-set_padding (GtkSourceGutterRenderer *renderer,
-             gint                    *field,
-             gint                     padding,
-             const gchar             *name)
-{
-	if (*field == padding || padding < 0)
-	{
-		return FALSE;
-	}
-
-	*field = padding;
-	g_object_notify (G_OBJECT (renderer), name);
-
-	return TRUE;
-}
-
-static gboolean
-set_xpad (GtkSourceGutterRenderer *renderer,
-          gint                     xpad)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	return set_padding (renderer,
-	                    &priv->xpad,
-	                    xpad,
-	                    "xpad");
-}
-
-static gboolean
-set_ypad (GtkSourceGutterRenderer *renderer,
-          gint                     ypad)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	return set_padding (renderer,
-	                    &priv->ypad,
-	                    ypad,
-	                    "ypad");
-}
-
-static gboolean
-set_alignment (GtkSourceGutterRenderer *renderer,
-               gfloat                  *field,
-               gfloat                   align,
-               const gchar             *name,
-               gboolean                 emit)
-{
-	if (*field == align || align < 0)
-	{
-		return FALSE;
-	}
-
-	*field = align;
-	g_object_notify (G_OBJECT (renderer), name);
-
-	if (emit)
-	{
-		gtk_source_gutter_renderer_queue_draw (renderer);
-	}
-
-	return TRUE;
-}
-
-static gboolean
-set_xalign (GtkSourceGutterRenderer *renderer,
-            gfloat                   xalign,
-            gboolean                 emit)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	return set_alignment (renderer,
-	                      &priv->xalign,
-	                      xalign,
-	                      "xalign",
-	                      emit);
-}
-
-static gboolean
-set_yalign (GtkSourceGutterRenderer *renderer,
-            gfloat                   yalign,
-            gboolean                 emit)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	return set_alignment (renderer,
-	                      &priv->yalign,
-	                      yalign,
-	                      "yalign",
-	                      emit);
-}
-
-static void
-set_alignment_mode (GtkSourceGutterRenderer              *renderer,
-                    GtkSourceGutterRendererAlignmentMode  mode)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	if (priv->alignment_mode == mode)
-	{
-		return;
-	}
-
-	priv->alignment_mode = mode;
-	g_object_notify (G_OBJECT (renderer), "alignment-mode");
-
-	gtk_source_gutter_renderer_queue_draw (renderer);
-}
-
-static void
-set_size (GtkSourceGutterRenderer *renderer,
-          gint                     value)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	if (priv->size == value)
-	{
-		return;
-	}
-
-	priv->size = value;
-	g_object_notify (G_OBJECT (renderer), "size");
-}
-
-static void
-set_background_color_set (GtkSourceGutterRenderer *renderer,
-                          gboolean                 isset)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	isset = (isset != FALSE);
-
-	if (isset != priv->background_set)
-	{
-		priv->background_set = isset;
-		gtk_source_gutter_renderer_queue_draw (renderer);
+		priv->gutter = GTK_SOURCE_GUTTER (gutter);
 	}
 }
 
 static void
-set_background_color (GtkSourceGutterRenderer *renderer,
-                      const GdkRGBA          *color)
+gtk_source_gutter_renderer_unroot (GtkWidget *widget)
 {
+	GtkSourceGutterRenderer *renderer = GTK_SOURCE_GUTTER_RENDERER (widget);
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 
-	if (!color)
-	{
-		set_background_color_set (renderer, FALSE);
-	}
-	else
-	{
-		priv->background_color = *color;
-		priv->background_set = TRUE;
+	priv->gutter = NULL;
 
-		gtk_source_gutter_renderer_queue_draw (renderer);
-	}
+	GTK_WIDGET_CLASS (gtk_source_gutter_renderer_parent_class)->unroot (widget);
+}
+
+static void
+gtk_source_gutter_renderer_real_begin (GtkSourceGutterRenderer *renderer,
+                                       GtkSourceGutterLines    *lines)
+{
+}
+
+static void
+gtk_source_gutter_renderer_real_end (GtkSourceGutterRenderer *renderer)
+{
+}
+
+static void
+gtk_source_gutter_renderer_query_data (GtkSourceGutterRenderer *renderer,
+                                       GtkSourceGutterLines    *lines,
+                                       guint                    line)
+{
+	g_signal_emit (renderer, signals[QUERY_DATA], 0, lines, line);
 }
 
 static void
@@ -397,45 +273,29 @@ gtk_source_gutter_renderer_set_property (GObject      *object,
                                          GParamSpec   *pspec)
 {
 	GtkSourceGutterRenderer *self = GTK_SOURCE_GUTTER_RENDERER (object);
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (self);
 
 	switch (prop_id)
 	{
-		case PROP_VISIBLE:
-			set_visible (self, g_value_get_boolean (value));
-			break;
 		case PROP_XPAD:
-			set_xpad (self, g_value_get_int (value));
+			gtk_source_gutter_renderer_set_xpad (self, g_value_get_int (value));
 			break;
+
 		case PROP_YPAD:
-			set_ypad (self, g_value_get_int (value));
+			gtk_source_gutter_renderer_set_ypad (self, g_value_get_int (value));
 			break;
+
 		case PROP_XALIGN:
-			set_xalign (self, g_value_get_float (value), TRUE);
+			gtk_source_gutter_renderer_set_xalign (self, g_value_get_float (value));
 			break;
+
 		case PROP_YALIGN:
-			set_yalign (self, g_value_get_float (value), TRUE);
+			gtk_source_gutter_renderer_set_yalign (self, g_value_get_float (value));
 			break;
+
 		case PROP_ALIGNMENT_MODE:
-			set_alignment_mode (self, g_value_get_enum (value));
+			gtk_source_gutter_renderer_set_alignment_mode (self, g_value_get_enum (value));
 			break;
-		case PROP_VIEW:
-			priv->view = g_value_get_object (value);
-			break;
-		case PROP_WINDOW_TYPE:
-			priv->window_type = g_value_get_enum (value);
-			break;
-		case PROP_SIZE:
-			set_size (self, g_value_get_int (value));
-			break;
-		case PROP_BACKGROUND_RGBA:
-			set_background_color (self,
-			                      g_value_get_boxed (value));
-			break;
-		case PROP_BACKGROUND_SET:
-			set_background_color_set (self,
-			                          g_value_get_boolean (value));
-			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -453,39 +313,34 @@ gtk_source_gutter_renderer_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-		case PROP_VISIBLE:
-			g_value_set_boolean (value, priv->visible);
+		case PROP_LINES:
+			g_value_set_object (value, priv->lines);
 			break;
-		case PROP_XPAD:
-			g_value_set_int (value, priv->xpad);
-			break;
-		case PROP_YPAD:
-			g_value_set_int (value, priv->ypad);
-			break;
+
 		case PROP_XALIGN:
 			g_value_set_float (value, priv->xalign);
 			break;
+
+		case PROP_XPAD:
+			g_value_set_int (value, priv->xpad);
+			break;
+
 		case PROP_YALIGN:
 			g_value_set_float (value, priv->yalign);
 			break;
+
+		case PROP_YPAD:
+			g_value_set_int (value, priv->ypad);
+			break;
+
 		case PROP_VIEW:
 			g_value_set_object (value, priv->view);
 			break;
+
 		case PROP_ALIGNMENT_MODE:
 			g_value_set_enum (value, priv->alignment_mode);
 			break;
-		case PROP_WINDOW_TYPE:
-			g_value_set_enum (value, priv->window_type);
-			break;
-		case PROP_SIZE:
-			g_value_set_int (value, priv->size);
-			break;
-		case PROP_BACKGROUND_RGBA:
-			g_value_set_boxed (value, &priv->background_color);
-			break;
-		case PROP_BACKGROUND_SET:
-			g_value_set_boolean (value, priv->background_set);
-			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -493,102 +348,66 @@ gtk_source_gutter_renderer_get_property (GObject    *object,
 }
 
 static void
-renderer_draw_impl (GtkSourceGutterRenderer      *renderer,
-                    cairo_t                      *cr,
-                    GdkRectangle                 *background_area,
-                    GdkRectangle                 *cell_area,
-                    GtkTextIter                  *start,
-                    GtkTextIter                  *end,
-                    GtkSourceGutterRendererState  state)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	if (priv->background_set)
-	{
-		cairo_save (cr);
-		gdk_cairo_rectangle (cr, background_area);
-		gdk_cairo_set_source_rgba (cr, &priv->background_color);
-		cairo_fill (cr);
-		cairo_restore (cr);
-	}
-	else if ((state & GTK_SOURCE_GUTTER_RENDERER_STATE_CURSOR) != 0 &&
-		 GTK_SOURCE_IS_VIEW (priv->view) &&
-		 gtk_source_view_get_highlight_current_line (GTK_SOURCE_VIEW (priv->view)))
-	{
-		GtkStyleContext *context;
-
-		context = gtk_widget_get_style_context (GTK_WIDGET (priv->view));
-
-		gtk_style_context_save (context);
-		gtk_style_context_add_class (context, "current-line-number");
-
-		gtk_render_background (context,
-				       cr,
-				       background_area->x,
-				       background_area->y,
-				       background_area->width,
-				       background_area->height);
-
-		gtk_style_context_restore (context);
-	}
-}
-
-static void
 gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
 	object_class->dispose = gtk_source_gutter_renderer_dispose;
-
 	object_class->get_property = gtk_source_gutter_renderer_get_property;
 	object_class->set_property = gtk_source_gutter_renderer_set_property;
 
-	klass->draw = renderer_draw_impl;
-	klass->change_view = renderer_change_view_impl;
+	widget_class->root = gtk_source_gutter_renderer_root;
+	widget_class->unroot = gtk_source_gutter_renderer_unroot;
+	widget_class->snapshot = gtk_source_gutter_renderer_snapshot;
+
+	klass->begin = gtk_source_gutter_renderer_real_begin;
+	klass->end = gtk_source_gutter_renderer_real_end;
+        klass->change_buffer = gtk_source_gutter_renderer_change_buffer;
+	klass->change_view = gtk_source_gutter_renderer_change_view;
+	klass->query_data = gtk_source_gutter_renderer_query_data;
 
 	/**
-	 * GtkSourceGutterRenderer:visible:
+	 * GtkSourceGutterRenderer:lines:
 	 *
-	 * The visibility of the renderer.
-	 *
-	 **/
-	g_object_class_install_property (object_class,
-	                                 PROP_VISIBLE,
-	                                 g_param_spec_boolean ("visible",
-	                                                       "Visible",
-	                                                       "Visible",
-	                                                       TRUE,
-	                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	 * The "lines" property contains information about the lines to be
+	 * rendered. It should be used by #GtkSourceGutterRenderer
+	 * implementations from gtk_widget_snapshot().
+	 */
+	properties[PROP_LINES] =
+		g_param_spec_object ("lines",
+		                     "Lines",
+		                     "Information about the lines to render",
+		                     GTK_SOURCE_TYPE_GUTTER_LINES,
+		                     G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceGutterRenderer:xpad:
 	 *
 	 * The left and right padding of the renderer.
 	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_XPAD,
-	                                 g_param_spec_int ("xpad",
-	                                                   "X Padding",
-	                                                   "The x-padding",
-	                                                   -1,
-	                                                   G_MAXINT,
-	                                                   0,
-	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	properties[PROP_XPAD] =
+		g_param_spec_int ("xpad",
+		                  "X Padding",
+		                  "The x-padding",
+		                  0,
+		                  G_MAXINT,
+		                  0,
+		                  G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceGutterRenderer:ypad:
 	 *
 	 * The top and bottom padding of the renderer.
 	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_YPAD,
-	                                 g_param_spec_int ("ypad",
-	                                                   "Y Padding",
-	                                                   "The y-padding",
-	                                                   -1,
-	                                                   G_MAXINT,
-	                                                   0,
-	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	properties[PROP_YPAD] =
+		g_param_spec_int ("ypad",
+		                  "Y Padding",
+		                  "The y-padding",
+		                  0,
+		                  G_MAXINT,
+		                  0,
+		                  G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceGutterRenderer:xalign:
@@ -597,15 +416,14 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	 * alignment. 1 for a right alignment. And 0.5 for centering the cells.
 	 * A value lower than 0 doesn't modify the alignment.
 	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_XALIGN,
-	                                 g_param_spec_float ("xalign",
-	                                                     "X Alignment",
-	                                                     "The x-alignment",
-	                                                     -1,
-	                                                     1,
-	                                                     0,
-	                                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	properties[PROP_XALIGN] =
+		g_param_spec_float ("xalign",
+		                    "X Alignment",
+		                    "The x-alignment",
+		                    0.0,
+		                    1.0,
+		                    0.0,
+		                    G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceGutterRenderer:yalign:
@@ -614,166 +432,27 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	 * alignment. 1 for a bottom alignment. And 0.5 for centering the cells.
 	 * A value lower than 0 doesn't modify the alignment.
 	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_YALIGN,
-	                                 g_param_spec_float ("yalign",
-	                                                     "Y Alignment",
-	                                                     "The y-alignment",
-	                                                     -1,
-	                                                     1,
-	                                                     0,
-	                                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	properties[PROP_YALIGN] =
+		g_param_spec_float ("yalign",
+		                    "Y Alignment",
+		                    "The y-alignment",
+		                    0.0,
+		                    1.0,
+		                    0.0,
+		                    G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
-	/**
-	 * GtkSourceGutterRenderer::activate:
-	 * @renderer: the #GtkSourceGutterRenderer who emits the signal
-	 * @iter: a #GtkTextIter
-	 * @area: a #GdkRectangle
-	 * @event: the event that caused the activation
-	 *
-	 * The ::activate signal is emitted when the renderer is
-	 * activated.
-	 *
-	 */
-	signals[ACTIVATE] =
-		g_signal_new ("activate",
-		              G_TYPE_FROM_CLASS (object_class),
-		              G_SIGNAL_RUN_LAST,
-		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, activate),
-		              NULL, NULL,
-		              _gtk_source_marshal_VOID__BOXED_BOXED_BOXED,
-		              G_TYPE_NONE,
-		              3,
-		              GTK_TYPE_TEXT_ITER,
-		              GDK_TYPE_RECTANGLE,
-		              GDK_TYPE_EVENT);
-	g_signal_set_va_marshaller (signals[ACTIVATE],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            _gtk_source_marshal_VOID__BOXED_BOXED_BOXEDv);
-
-	/**
-	 * GtkSourceGutterRenderer::queue-draw:
-	 * @renderer: the #GtkSourceGutterRenderer who emits the signal
-	 *
-	 * The ::queue-draw signal is emitted when the renderer needs
-	 * to be redrawn. Use gtk_source_gutter_renderer_queue_draw()
-	 * to emit this signal from an implementation of the
-	 * #GtkSourceGutterRenderer interface.
-	 */
-	signals[QUEUE_DRAW] =
-		g_signal_new ("queue-draw",
-		              G_TYPE_FROM_CLASS (object_class),
-		              G_SIGNAL_RUN_LAST,
-		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, queue_draw),
-		              NULL, NULL,
-		              g_cclosure_marshal_VOID__VOID,
-		              G_TYPE_NONE, 0);
-	g_signal_set_va_marshaller (signals[QUEUE_DRAW],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            g_cclosure_marshal_VOID__VOIDv);
-
-	/**
-	 * GtkSourceGutterRenderer::query-tooltip:
-	 * @renderer: the #GtkSourceGutterRenderer who emits the signal
-	 * @iter: a #GtkTextIter
-	 * @area: a #GdkRectangle
-	 * @x: the x position (in window coordinates)
-	 * @y: the y position (in window coordinates)
-	 * @tooltip: a #GtkTooltip
-	 *
-	 * The ::query-tooltip signal is emitted when the renderer can
-	 * show a tooltip.
-	 *
-	 */
-	signals[QUERY_TOOLTIP] =
-		g_signal_new ("query-tooltip",
-		              G_TYPE_FROM_CLASS (object_class),
-		              G_SIGNAL_RUN_LAST,
-		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, query_tooltip),
-		              g_signal_accumulator_true_handled,
-		              NULL,
-		              _gtk_source_marshal_BOOLEAN__BOXED_BOXED_INT_INT_OBJECT,
-		              G_TYPE_BOOLEAN,
-		              5,
-		              GTK_TYPE_TEXT_ITER,
-		              GDK_TYPE_RECTANGLE,
-		              G_TYPE_INT,
-		              G_TYPE_INT,
-		              GTK_TYPE_TOOLTIP);
-	g_signal_set_va_marshaller (signals[QUERY_TOOLTIP],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            _gtk_source_marshal_BOOLEAN__BOXED_BOXED_INT_INT_OBJECTv);
-
-	/**
-	 * GtkSourceGutterRenderer::query-data:
-	 * @renderer: the #GtkSourceGutterRenderer who emits the signal
-	 * @start: a #GtkTextIter
-	 * @end: a #GtkTextIter
-	 * @state: the renderer state
-	 *
-	 * The ::query-data signal is emitted when the renderer needs
-	 * to be filled with data just before a cell is drawn. This can
-	 * be used by general renderer implementations to allow render
-	 * data to be filled in externally.
-	 *
-	 */
-	signals[QUERY_DATA] =
-		g_signal_new ("query-data",
-		              G_TYPE_FROM_CLASS (object_class),
-		              G_SIGNAL_RUN_LAST,
-		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, query_data),
-		              NULL, NULL,
-			      _gtk_source_marshal_VOID__BOXED_BOXED_FLAGS,
-		              G_TYPE_NONE,
-		              3,
-		              GTK_TYPE_TEXT_ITER,
-		              GTK_TYPE_TEXT_ITER,
-		              GTK_SOURCE_TYPE_GUTTER_RENDERER_STATE);
-	g_signal_set_va_marshaller (signals[QUERY_DATA],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            _gtk_source_marshal_VOID__BOXED_BOXED_FLAGSv);
-
-	/**
-	 * GtkSourceGutterRenderer::query-activatable:
-	 * @renderer: the #GtkSourceGutterRenderer who emits the signal
-	 * @iter: a #GtkTextIter
-	 * @area: a #GdkRectangle
-	 * @event: the #GdkEvent that is causing the activatable query
-	 *
-	 * The ::query-activatable signal is emitted when the renderer
-	 * can possibly be activated.
-	 *
-	 */
-	signals[QUERY_ACTIVATABLE] =
-		g_signal_new ("query-activatable",
-		              G_TYPE_FROM_CLASS (object_class),
-		              G_SIGNAL_RUN_LAST,
-		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, query_activatable),
-		              g_signal_accumulator_true_handled,
-		              NULL,
-		              _gtk_source_marshal_BOOLEAN__BOXED_BOXED_BOXED,
-		              G_TYPE_BOOLEAN,
-		              3,
-		              GTK_TYPE_TEXT_ITER,
-		              GDK_TYPE_RECTANGLE,
-		              GDK_TYPE_EVENT);
-	g_signal_set_va_marshaller (signals[QUERY_ACTIVATABLE],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            _gtk_source_marshal_BOOLEAN__BOXED_BOXED_BOXEDv);
 
 	/**
 	 * GtkSourceGutterRenderer:view:
 	 *
 	 * The view on which the renderer is placed.
-	 *
 	 **/
-	g_object_class_install_property (object_class,
-	                                 PROP_VIEW,
-	                                 g_param_spec_object ("view",
-	                                                      "The View",
-	                                                      "The view",
-	                                                      GTK_TYPE_TEXT_VIEW,
-	                                                      G_PARAM_READABLE));
+	properties[PROP_VIEW] =
+		g_param_spec_object ("view",
+		                     "The View",
+		                     "The view",
+		                     GTK_TYPE_TEXT_VIEW,
+		                     G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceGutterRenderer:alignment-mode:
@@ -784,56 +463,87 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	 * or the last line.
 	 *
 	 **/
-	g_object_class_install_property (object_class,
-	                                 PROP_ALIGNMENT_MODE,
-	                                 g_param_spec_enum ("alignment-mode",
-	                                                    "Alignment Mode",
-	                                                    "The alignment mode",
-	                                                    GTK_SOURCE_TYPE_GUTTER_RENDERER_ALIGNMENT_MODE,
-	                                                    GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL,
-	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	properties[PROP_ALIGNMENT_MODE] =
+		g_param_spec_enum ("alignment-mode",
+		                   "Alignment Mode",
+		                   "The alignment mode",
+		                   GTK_SOURCE_TYPE_GUTTER_RENDERER_ALIGNMENT_MODE,
+		                   GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL,
+		                   G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 
 	/**
-	 * GtkSourceGutterRenderer:window-type:
+	 * GtkSourceGutterRenderer::activate:
+	 * @renderer: the #GtkSourceGutterRenderer who emits the signal
+	 * @iter: a #GtkTextIter
+	 * @area: a #GdkRectangle
+	 * @button: the button that was pressed
+	 * @state: a #GdkModifierType of state
+	 * @n_presses: the number of button presses
 	 *
-	 * The window type of the view on which the renderer is placed (left,
-	 * or right).
+	 * The ::activate signal is emitted when the renderer is activated.
+	 */
+	signals[ACTIVATE] =
+		g_signal_new ("activate",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, activate),
+		              NULL, NULL,
+		              _gtk_source_marshal_VOID__BOXED_BOXED_UINT_FLAGS_INT,
+		              G_TYPE_NONE,
+		              5,
+		              GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
+		              GDK_TYPE_RECTANGLE | G_SIGNAL_TYPE_STATIC_SCOPE,
+		              G_TYPE_UINT,
+		              GDK_TYPE_MODIFIER_TYPE,
+		              G_TYPE_INT);
+	g_signal_set_va_marshaller (signals[ACTIVATE],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_VOID__BOXED_BOXED_UINT_FLAGS_INTv);
+
+	/**
+	 * GtkSourceGutterRenderer::query-activatable:
+	 * @renderer: the #GtkSourceGutterRenderer who emits the signal
+	 * @iter: a #GtkTextIter
+	 * @area: a #GdkRectangle
+	 * @event: the #GdkEvent that is causing the activatable query
 	 *
-	 **/
-	g_object_class_install_property (object_class,
-	                                 PROP_WINDOW_TYPE,
-	                                 g_param_spec_enum ("window-type",
-	                                                    "Window Type",
-	                                                    "The window type",
-	                                                    GTK_TYPE_TEXT_WINDOW_TYPE,
-	                                                    GTK_TEXT_WINDOW_PRIVATE,
-	                                                    G_PARAM_READABLE));
+	 * The ::query-activatable signal is emitted when the renderer
+	 * can possibly be activated.
+	 */
+	signals[QUERY_ACTIVATABLE] =
+		g_signal_new ("query-activatable",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              G_STRUCT_OFFSET (GtkSourceGutterRendererClass, query_activatable),
+		              g_signal_accumulator_true_handled,
+		              NULL,
+		              _gtk_source_marshal_BOOLEAN__BOXED_BOXED,
+		              G_TYPE_BOOLEAN,
+		              2,
+		              GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
+		              GDK_TYPE_RECTANGLE | G_SIGNAL_TYPE_STATIC_SCOPE);
+	g_signal_set_va_marshaller (signals[QUERY_ACTIVATABLE],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_BOOLEAN__BOXED_BOXEDv);
 
-	g_object_class_install_property (object_class,
-	                                 PROP_SIZE,
-	                                 g_param_spec_int ("size",
-	                                                   "Size",
-	                                                   "The size",
-	                                                   0,
-	                                                   G_MAXINT,
-	                                                   0,
-	                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+	signals[QUERY_DATA] =
+		g_signal_new ("query-data",
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              0,
+		              NULL, NULL,
+		              _gtk_source_marshal_VOID__OBJECT_UINT,
+		              G_TYPE_NONE,
+		              2,
+		              G_TYPE_OBJECT,
+		              G_TYPE_UINT);
+	g_signal_set_va_marshaller (signals[QUERY_DATA],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_VOID__OBJECT_UINTv);
 
-	g_object_class_install_property (object_class,
-	                                 PROP_BACKGROUND_RGBA,
-	                                 g_param_spec_boxed ("background-rgba",
-	                                                     "Background Color",
-	                                                     "The background color",
-	                                                     GDK_TYPE_RGBA,
-	                                                     G_PARAM_READWRITE));
-
-	g_object_class_install_property (object_class,
-	                                 PROP_BACKGROUND_SET,
-	                                 g_param_spec_boolean ("background-set",
-	                                                       "Background Set",
-	                                                       "Whether the background color is set",
-	                                                       FALSE,
-	                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+  gtk_widget_class_set_css_name (widget_class, "gutterrenderer");
 }
 
 static void
@@ -842,124 +552,12 @@ gtk_source_gutter_renderer_init (GtkSourceGutterRenderer *self)
 }
 
 /**
- * gtk_source_gutter_renderer_begin:
- * @renderer: a #GtkSourceGutterRenderer
- * @cr: a #cairo_t
- * @background_area: a #GdkRectangle
- * @cell_area: a #GdkRectangle
- * @start: a #GtkTextIter
- * @end: a #GtkTextIter
- *
- * Called when drawing a region begins. The region to be drawn is indicated
- * by @start and @end. The purpose is to allow the implementation to precompute
- * some state before the draw method is called for each cell.
- */
-void
-gtk_source_gutter_renderer_begin (GtkSourceGutterRenderer *renderer,
-                                  cairo_t                 *cr,
-                                  GdkRectangle            *background_area,
-                                  GdkRectangle            *cell_area,
-                                  GtkTextIter             *start,
-                                  GtkTextIter             *end)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-	g_return_if_fail (cr != NULL);
-	g_return_if_fail (background_area != NULL);
-	g_return_if_fail (cell_area != NULL);
-	g_return_if_fail (start != NULL);
-	g_return_if_fail (end != NULL);
-
-	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (G_OBJECT_GET_CLASS (renderer))->begin)
-	{
-		GTK_SOURCE_GUTTER_RENDERER_CLASS (
-			G_OBJECT_GET_CLASS (renderer))->begin (renderer,
-			                                       cr,
-			                                       background_area,
-			                                       cell_area,
-			                                       start,
-			                                       end);
-	}
-}
-
-/**
- * gtk_source_gutter_renderer_draw:
- * @renderer: a #GtkSourceGutterRenderer
- * @cr: the cairo render context
- * @background_area: a #GdkRectangle indicating the total area to be drawn
- * @cell_area: a #GdkRectangle indicating the area to draw content
- * @start: a #GtkTextIter
- * @end: a #GtkTextIter
- * @state: a #GtkSourceGutterRendererState
- *
- * Main renderering method. Implementations should implement this method to draw
- * onto the cairo context. The @background_area indicates the total area of the
- * cell to be drawn. The @cell_area indicates the area where content can be
- * drawn (text, images, etc).
- *
- * The @background_area is the @cell_area plus the padding on each side (two
- * times the #GtkSourceGutterRenderer:xpad horizontally and two times the
- * #GtkSourceGutterRenderer:ypad vertically, so that the @cell_area is centered
- * inside @background_area).
- *
- * The @state argument indicates the current state of the renderer and should
- * be taken into account to properly draw the different possible states
- * (cursor, prelit, selected) if appropriate.
- */
-void
-gtk_source_gutter_renderer_draw (GtkSourceGutterRenderer      *renderer,
-                                 cairo_t                      *cr,
-                                 GdkRectangle                 *background_area,
-                                 GdkRectangle                 *cell_area,
-                                 GtkTextIter                  *start,
-                                 GtkTextIter                  *end,
-                                 GtkSourceGutterRendererState  state)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-	g_return_if_fail (cr != NULL);
-	g_return_if_fail (background_area != NULL);
-	g_return_if_fail (cell_area != NULL);
-	g_return_if_fail (start != NULL);
-	g_return_if_fail (end != NULL);
-
-	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (G_OBJECT_GET_CLASS (renderer))->draw)
-	{
-		GTK_SOURCE_GUTTER_RENDERER_CLASS (
-			G_OBJECT_GET_CLASS (renderer))->draw (renderer,
-			                                      cr,
-			                                      background_area,
-			                                      cell_area,
-			                                      start,
-			                                      end,
-			                                      state);
-	}
-}
-
-/**
- * gtk_source_gutter_renderer_end:
- * @renderer: a #GtkSourceGutterRenderer
- *
- * Called when drawing a region of lines has ended.
- *
- **/
-void
-gtk_source_gutter_renderer_end (GtkSourceGutterRenderer *renderer)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-
-	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (G_OBJECT_GET_CLASS (renderer))->end)
-	{
-		GTK_SOURCE_GUTTER_RENDERER_CLASS (G_OBJECT_GET_CLASS (renderer))->end (renderer);
-	}
-}
-
-/**
  * gtk_source_gutter_renderer_query_activatable:
  * @renderer: a #GtkSourceGutterRenderer
  * @iter: a #GtkTextIter at the start of the line to be activated
  * @area: a #GdkRectangle of the cell area to be activated
- * @event: the event that triggered the query
  *
- * Get whether the renderer is activatable at the location in @event. This is
+ * Get whether the renderer is activatable at the location provided. This is
  * called from #GtkSourceGutter to determine whether a renderer is activatable
  * using the mouse pointer.
  *
@@ -968,16 +566,14 @@ gtk_source_gutter_renderer_end (GtkSourceGutterRenderer *renderer)
  **/
 gboolean
 gtk_source_gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
-                                              GtkTextIter             *iter,
-                                              GdkRectangle            *area,
-                                              GdkEvent                *event)
+                                              const GtkTextIter       *iter,
+                                              const GdkRectangle      *area)
 {
 	gboolean ret;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
 	g_return_val_if_fail (iter != NULL, FALSE);
 	g_return_val_if_fail (area != NULL, FALSE);
-	g_return_val_if_fail (event != NULL, FALSE);
 
 	ret = FALSE;
 
@@ -986,7 +582,6 @@ gtk_source_gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
 	               0,
 	               iter,
 	               area,
-	               event,
 	               &ret);
 
 	return ret;
@@ -997,276 +592,26 @@ gtk_source_gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
  * @renderer: a #GtkSourceGutterRenderer
  * @iter: a #GtkTextIter at the start of the line where the renderer is activated
  * @area: a #GdkRectangle of the cell area where the renderer is activated
- * @event: the event that triggered the activation
+ * @button: the button that was pressed
+ * @state: a #GdkModifierType
+ * @n_presses: the number of button presses
  *
  * Emits the #GtkSourceGutterRenderer::activate signal of the renderer. This is
  * called from #GtkSourceGutter and should never have to be called manually.
  */
 void
 gtk_source_gutter_renderer_activate (GtkSourceGutterRenderer *renderer,
-                                     GtkTextIter             *iter,
-                                     GdkRectangle            *area,
-                                     GdkEvent                *event)
+                                     const GtkTextIter       *iter,
+                                     const GdkRectangle      *area,
+                                     guint                    button,
+                                     GdkModifierType          state,
+                                     gint                     n_presses)
 {
 	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 	g_return_if_fail (iter != NULL);
 	g_return_if_fail (area != NULL);
-	g_return_if_fail (event != NULL);
 
-	g_signal_emit (renderer, signals[ACTIVATE], 0, iter, area, event);
-}
-
-/**
- * gtk_source_gutter_renderer_queue_draw:
- * @renderer: a #GtkSourceGutterRenderer
- *
- * Emits the #GtkSourceGutterRenderer::queue-draw signal of the renderer. Call
- * this from an implementation to inform that the renderer has changed such that
- * it needs to redraw.
- */
-void
-gtk_source_gutter_renderer_queue_draw (GtkSourceGutterRenderer *renderer)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-
-	g_signal_emit (renderer, signals[QUEUE_DRAW], 0);
-}
-
-/**
- * gtk_source_gutter_renderer_query_tooltip:
- * @renderer: a #GtkSourceGutterRenderer.
- * @iter: a #GtkTextIter.
- * @area: a #GdkRectangle.
- * @x: The x position of the tooltip.
- * @y: The y position of the tooltip.
- * @tooltip: a #GtkTooltip.
- *
- * Emits the #GtkSourceGutterRenderer::query-tooltip signal. This function is
- * called from #GtkSourceGutter. Implementations can override the default signal
- * handler or can connect to the signal externally.
- *
- * Returns: %TRUE if the tooltip has been set, %FALSE otherwise
- */
-gboolean
-gtk_source_gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
-                                          GtkTextIter             *iter,
-                                          GdkRectangle            *area,
-                                          gint                     x,
-                                          gint                     y,
-                                          GtkTooltip              *tooltip)
-{
-	gboolean ret;
-
-	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
-	g_return_val_if_fail (iter != NULL, FALSE);
-	g_return_val_if_fail (area != NULL, FALSE);
-	g_return_val_if_fail (GTK_IS_TOOLTIP (tooltip), FALSE);
-
-	ret = FALSE;
-
-	g_signal_emit (renderer,
-	               signals[QUERY_TOOLTIP],
-	               0,
-	               iter,
-	               area,
-	               x,
-	               y,
-	               tooltip,
-	               &ret);
-
-	return ret;
-}
-
-/**
- * gtk_source_gutter_renderer_query_data:
- * @renderer: a #GtkSourceGutterRenderer.
- * @start: a #GtkTextIter.
- * @end: a #GtkTextIter.
- * @state: a #GtkSourceGutterRendererState.
- *
- * Emit the #GtkSourceGutterRenderer::query-data signal. This function is called
- * to query for data just before rendering a cell. This is called from the
- * #GtkSourceGutter.  Implementations can override the default signal handler or
- * can connect a signal handler externally to the
- * #GtkSourceGutterRenderer::query-data signal.
- */
-void
-gtk_source_gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
-                                       GtkTextIter                  *start,
-                                       GtkTextIter                  *end,
-                                       GtkSourceGutterRendererState  state)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-	g_return_if_fail (start != NULL);
-	g_return_if_fail (end != NULL);
-
-
-	/* Signal emission is relatively expensive and this code path is
-	 * frequent enough to optimize the common case where we only have the
-	 * override and no connected handlers.
-	 *
-	 * This is the same trick used by gtk_widget_draw().
-	 */
-	if (G_UNLIKELY (g_signal_has_handler_pending (renderer, signals[QUERY_DATA], 0, FALSE)))
-	{
-		g_signal_emit (renderer, signals[QUERY_DATA], 0, start, end, state);
-	}
-	else if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->query_data)
-	{
-		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->query_data (renderer, start, end, state);
-	}
-}
-
-/**
- * gtk_source_gutter_renderer_set_visible:
- * @renderer: a #GtkSourceGutterRenderer
- * @visible: the visibility
- *
- * Set whether the gutter renderer is visible.
- *
- **/
-void
-gtk_source_gutter_renderer_set_visible (GtkSourceGutterRenderer *renderer,
-                                        gboolean                 visible)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-
-	set_visible (renderer, visible);
-}
-
-/**
- * gtk_source_gutter_renderer_get_visible:
- * @renderer: a #GtkSourceGutterRenderer
- *
- * Get whether the gutter renderer is visible.
- *
- * Returns: %TRUE if the renderer is visible, %FALSE otherwise
- *
- **/
-gboolean
-gtk_source_gutter_renderer_get_visible (GtkSourceGutterRenderer *renderer)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
-
-	return priv->visible;
-}
-
-/**
- * gtk_source_gutter_renderer_set_padding:
- * @renderer: a #GtkSourceGutterRenderer
- * @xpad: the x-padding
- * @ypad: the y-padding
- *
- * Set the padding of the gutter renderer. Both @xpad and @ypad can be
- * -1, which means the values will not be changed (this allows changing only
- * one of the values).
- *
- * @xpad is the left and right padding. @ypad is the top and bottom padding.
- */
-void
-gtk_source_gutter_renderer_set_padding (GtkSourceGutterRenderer *renderer,
-                                        gint                     xpad,
-                                        gint                     ypad)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-
-	set_xpad (renderer, xpad);
-	set_ypad (renderer, ypad);
-}
-
-/**
- * gtk_source_gutter_renderer_get_padding:
- * @renderer: a #GtkSourceGutterRenderer
- * @xpad: (out caller-allocates) (optional): return location for the x-padding,
- *   or %NULL to ignore.
- * @ypad: (out caller-allocates) (optional): return location for the y-padding,
- *   or %NULL to ignore.
- *
- * Get the x-padding and y-padding of the gutter renderer.
- */
-void
-gtk_source_gutter_renderer_get_padding (GtkSourceGutterRenderer *renderer,
-                                        gint                    *xpad,
-                                        gint                    *ypad)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-
-	if (xpad)
-	{
-		*xpad = priv->xpad;
-	}
-
-	if (ypad)
-	{
-		*ypad = priv->ypad;
-	}
-}
-
-/**
- * gtk_source_gutter_renderer_set_alignment:
- * @renderer: a #GtkSourceGutterRenderer
- * @xalign: the x-alignment
- * @yalign: the y-alignment
- *
- * Set the alignment of the gutter renderer. Both @xalign and @yalign can be
- * -1, which means the values will not be changed (this allows changing only
- * one of the values).
- *
- * @xalign is the horizontal alignment. Set to 0 for a left alignment. 1 for a
- * right alignment. And 0.5 for centering the cells. @yalign is the vertical
- * alignment. Set to 0 for a top alignment. 1 for a bottom alignment.
- */
-void
-gtk_source_gutter_renderer_set_alignment (GtkSourceGutterRenderer *renderer,
-                                          gfloat                   xalign,
-                                          gfloat                   yalign)
-{
-	gboolean changed_x;
-	gboolean changed_y;
-
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-
-	changed_x = set_xalign (renderer, xalign, FALSE);
-	changed_y = set_yalign (renderer, yalign, FALSE);
-
-	if (changed_x || changed_y)
-	{
-		gtk_source_gutter_renderer_queue_draw (renderer);
-	}
-}
-
-/**
- * gtk_source_gutter_renderer_get_alignment:
- * @renderer: a #GtkSourceGutterRenderer
- * @xalign: (out caller-allocates) (optional): return location for the x-alignment,
- *   or %NULL to ignore.
- * @yalign: (out caller-allocates) (optional): return location for the y-alignment,
- *   or %NULL to ignore.
- *
- * Get the x-alignment and y-alignment of the gutter renderer.
- */
-void
-gtk_source_gutter_renderer_get_alignment (GtkSourceGutterRenderer *renderer,
-                                          gfloat                  *xalign,
-                                          gfloat                  *yalign)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-
-	if (xalign)
-	{
-		*xalign = priv->xalign;
-	}
-
-	if (yalign)
-	{
-		*yalign = priv->yalign;
-	}
+	g_signal_emit (renderer, signals[ACTIVATE], 0, iter, area, button, state, n_presses);
 }
 
 /**
@@ -1275,16 +620,27 @@ gtk_source_gutter_renderer_get_alignment (GtkSourceGutterRenderer *renderer,
  * @mode: a #GtkSourceGutterRendererAlignmentMode
  *
  * Set the alignment mode. The alignment mode describes the manner in which the
- * renderer is aligned (see :xalign and :yalign).
- *
+ * renderer is aligned (see #GtkSourceGutterRenderer:xalign and
+ * #GtkSourceGutterRenderer:yalign).
  **/
 void
 gtk_source_gutter_renderer_set_alignment_mode (GtkSourceGutterRenderer              *renderer,
                                                GtkSourceGutterRendererAlignmentMode  mode)
 {
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 
-	set_alignment_mode (renderer, mode);
+	g_return_if_fail (GTK_SOURCE_GUTTER_RENDERER (renderer));
+	g_return_if_fail (mode == GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL ||
+	                  mode == GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST ||
+	                  mode == GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_LAST);
+
+	if (priv->alignment_mode != mode)
+	{
+		priv->alignment_mode = mode;
+		g_object_notify_by_pspec (G_OBJECT (renderer),
+		                          properties[PROP_ALIGNMENT_MODE]);
+		gtk_widget_queue_draw (GTK_WIDGET (renderer));
+	}
 }
 
 /**
@@ -1295,7 +651,6 @@ gtk_source_gutter_renderer_set_alignment_mode (GtkSourceGutterRenderer          
  * renderer is aligned (see :xalign and :yalign).
  *
  * Returns: a #GtkSourceGutterRendererAlignmentMode
- *
  **/
 GtkSourceGutterRendererAlignmentMode
 gtk_source_gutter_renderer_get_alignment_mode (GtkSourceGutterRenderer *renderer)
@@ -1308,152 +663,356 @@ gtk_source_gutter_renderer_get_alignment_mode (GtkSourceGutterRenderer *renderer
 }
 
 /**
- * gtk_source_gutter_renderer_get_window_type:
- * @renderer: a #GtkSourceGutterRenderer
- *
- * Get the #GtkTextWindowType associated with the gutter renderer.
- *
- * Returns: a #GtkTextWindowType
- *
- **/
-GtkTextWindowType
-gtk_source_gutter_renderer_get_window_type (GtkSourceGutterRenderer *renderer)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), GTK_TEXT_WINDOW_PRIVATE);
-
-	return priv->window_type;
-}
-
-/**
  * gtk_source_gutter_renderer_get_view:
  * @renderer: a #GtkSourceGutterRenderer
  *
  * Get the view associated to the gutter renderer
  *
- * Returns: (transfer none): a #GtkTextView
- *
+ * Returns: (transfer none): a #GtkSourceView
  **/
-GtkTextView *
+GtkSourceView *
 gtk_source_gutter_renderer_get_view (GtkSourceGutterRenderer *renderer)
 {
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), NULL);
 
-	return priv->view;
+	return GTK_SOURCE_VIEW (priv->view);
+}
+
+void
+_gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
+                                      GtkSourceView           *view)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+	GtkSourceView *old_view;
+
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
+	g_return_if_fail (view == NULL || GTK_SOURCE_IS_VIEW (view));
+
+	if (view == priv->view)
+	{
+		return;
+	}
+
+	old_view = g_steal_pointer (&priv->view);
+	g_set_object (&priv->view, view);
+
+	GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_view (renderer, old_view);
+
+	g_clear_object (&old_view);
+
+	g_object_notify_by_pspec (G_OBJECT (renderer), properties[PROP_VIEW]);
+}
+
+static void
+get_line_rect (GtkSourceGutterRenderer *renderer,
+               guint                    line,
+               GdkRectangle            *rect)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+	GtkSourceGutterLines *lines = NULL;
+
+	if (priv->gutter != NULL)
+	{
+		lines = _gtk_source_gutter_get_lines (priv->gutter);
+	}
+
+	if (lines != NULL)
+	{
+		gint y;
+		gint height;
+
+		gtk_source_gutter_lines_get_line_yrange (lines,
+		                                         line,
+		                                         priv->alignment_mode,
+		                                         &y,
+		                                         &height);
+
+		rect->x = priv->xpad;
+		rect->y = y + priv->ypad;
+		rect->width = gtk_widget_get_width (GTK_WIDGET (renderer));
+		rect->height = height;
+
+		rect->width -= 2 * priv->xpad;
+		rect->height -= 2 * priv->ypad;
+	}
+	else
+	{
+		rect->x = 0;
+		rect->y = 0;
+		rect->width = 0;
+		rect->height = 0;
+	}
 }
 
 /**
- * gtk_source_gutter_renderer_get_size:
+ * gtk_source_gutter_renderer_align_cell:
+ * @renderer: the #GtkSourceGutterRenderer
+ * @line: the line number for content
+ * @width: the width of the content to draw
+ * @height: the height of the content to draw
+ * @x: (out): the X position to render the content
+ * @y: (out): the Y position to render the content
+ *
+ * Locates where to render content that is @width x @height based on
+ * the renderers alignment and padding.
+ *
+ * The location will be placed into @x and @y and is relative to the
+ * renderer's coordinates.
+ *
+ * It is encouraged that renderers use this function when snappshotting
+ * to ensure consistent placement of their contents.
+ *
+ * Since: 5.0
+ */
+void
+gtk_source_gutter_renderer_align_cell (GtkSourceGutterRenderer *renderer,
+                                       guint                    line,
+                                       gfloat                   width,
+                                       gfloat                   height,
+                                       gfloat                  *x,
+                                       gfloat                  *y)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+	GdkRectangle rect;
+
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
+
+	get_line_rect (renderer, line, &rect);
+
+	*x = rect.x + (rect.width - width) * priv->xalign;
+	*y = rect.y + (rect.height - height) * priv->yalign;
+}
+
+/**
+ * gtk_source_gutter_renderer_get_xpad:
  * @renderer: a #GtkSourceGutterRenderer
  *
- * Get the size of the renderer.
+ * Gets the "xpad" property of the #GtkSourceGutterRenderer. This may be used
+ * to adjust the cell rectangle that the renderer will use to draw.
  *
- * Returns: the size of the renderer.
- *
- **/
+ * Since: 5.0
+ */
 gint
-gtk_source_gutter_renderer_get_size (GtkSourceGutterRenderer *renderer)
+gtk_source_gutter_renderer_get_xpad (GtkSourceGutterRenderer *renderer)
 {
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), 0);
 
-	return priv->size;
+	return priv->xpad;
 }
 
 /**
- * gtk_source_gutter_renderer_set_size:
+ * gtk_source_gutter_renderer_set_xpad:
  * @renderer: a #GtkSourceGutterRenderer
- * @size: the size
+ * @xpad: the Y padding for the drawing cell
  *
- * Sets the size of the renderer. A value of -1 specifies that the size
- * is to be determined dynamically.
+ * Adjusts the "xpad" property of the #GtkSourceGutterRenderer. This may be
+ * used to adjust the cell rectangle that the renderer will use to draw.
  *
- **/
-void
-gtk_source_gutter_renderer_set_size (GtkSourceGutterRenderer *renderer,
-                                     gint                     size)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-
-	set_size (renderer, size);
-}
-
-/**
- * gtk_source_gutter_renderer_get_background:
- * @renderer: a #GtkSourceGutterRenderer
- * @color: (out caller-allocates) (optional): return value for a #GdkRGBA
- *
- * Get the background color of the renderer.
- *
- * Returns: %TRUE if the background color is set, %FALSE otherwise
- *
- **/
-gboolean
-gtk_source_gutter_renderer_get_background (GtkSourceGutterRenderer *renderer,
-                                           GdkRGBA                 *color)
-{
-	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
-
-	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
-
-	if (color)
-	{
-		*color = priv->background_color;
-	}
-
-	return priv->background_set;
-}
-
-/**
- * gtk_source_gutter_renderer_set_background:
- * @renderer: a #GtkSourceGutterRenderer
- * @color: (nullable): a #GdkRGBA or %NULL
- *
- * Set the background color of the renderer. If @color is set to %NULL, the
- * renderer will not have a background color.
- *
+ * Since: 5.0
  */
 void
-gtk_source_gutter_renderer_set_background (GtkSourceGutterRenderer *renderer,
-                                           const GdkRGBA           *color)
-{
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-
-	set_background_color (renderer, color);
-}
-
-void
-_gtk_source_gutter_renderer_set_view (GtkSourceGutterRenderer *renderer,
-                                      GtkTextView             *view,
-                                      GtkTextWindowType        window_type)
+gtk_source_gutter_renderer_set_xpad (GtkSourceGutterRenderer *renderer,
+                                     gint                     xpad)
 {
 	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 
-	GtkTextView *old_view;
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
+	g_return_if_fail (xpad >= 0);
+
+	if (priv->xpad != xpad)
+	{
+		priv->xpad = xpad;
+		g_object_notify_by_pspec (G_OBJECT (renderer),
+		                          properties[PROP_XPAD]);
+		gtk_widget_queue_draw (GTK_WIDGET (renderer));
+	}
+}
+
+/**
+ * gtk_source_gutter_renderer_get_ypad:
+ * @renderer: a #GtkSourceGutterRenderer
+ *
+ * Gets the "ypad" property of the #GtkSourceGutterRenderer. This may be used
+ * to adjust the cell rectangle that the renderer will use to draw.
+ *
+ * Since: 5.0
+ */
+gint
+gtk_source_gutter_renderer_get_ypad (GtkSourceGutterRenderer *renderer)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), 0);
+
+	return priv->ypad;
+}
+
+/**
+ * gtk_source_gutter_renderer_set_ypad:
+ * @renderer: a #GtkSourceGutterRenderer
+ * @ypad: the Y padding for the drawing cell
+ *
+ * Adjusts the "ypad" property of the #GtkSourceGutterRenderer. This may be
+ * used to adjust the cell rectangle that the renderer will use to draw.
+ *
+ * Since: 5.0
+ */
+void
+gtk_source_gutter_renderer_set_ypad (GtkSourceGutterRenderer *renderer,
+                                     gint                     ypad)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
 
 	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
-	g_return_if_fail (view == NULL || GTK_IS_TEXT_VIEW (view));
+	g_return_if_fail (ypad >= 0);
 
-	old_view = priv->view;
-
-	priv->window_type = window_type;
-	priv->view = view != NULL ? g_object_ref (view) : NULL;
-
-	if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_view)
+	if (priv->ypad != ypad)
 	{
-		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->change_view (renderer,
-		                                                              old_view);
+		priv->ypad = ypad;
+		g_object_notify_by_pspec (G_OBJECT (renderer),
+		                          properties[PROP_YPAD]);
+		gtk_widget_queue_draw (GTK_WIDGET (renderer));
 	}
+}
 
-	if (old_view)
+/**
+ * gtk_source_gutter_renderer_get_xalign:
+ * @renderer: a #GtkSourceGutterRenderer
+ *
+ * Gets the "xalign" property of the #GtkSourceGutterRenderer. This may be used
+ * to adjust where within the cell rectangle the renderer will draw.
+ *
+ * Since: 5.0
+ */
+gfloat
+gtk_source_gutter_renderer_get_xalign (GtkSourceGutterRenderer *renderer)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), 0);
+
+	return priv->xalign;
+}
+
+/**
+ * gtk_source_gutter_renderer_set_xalign:
+ * @renderer: a #GtkSourceGutterRenderer
+ * @xalign: the Y padding for the drawing cell
+ *
+ * Adjusts the "xalign" property of the #GtkSourceGutterRenderer. This may be
+ * used to adjust where within the cell rectangle the renderer will draw.
+ *
+ * Since: 5.0
+ */
+void
+gtk_source_gutter_renderer_set_xalign (GtkSourceGutterRenderer *renderer,
+                                       gfloat                   xalign)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
+	g_return_if_fail (xalign >= 0);
+
+	if (priv->xalign != xalign)
 	{
-		g_object_unref (old_view);
+		priv->xalign = xalign;
+		g_object_notify_by_pspec (G_OBJECT (renderer),
+		                          properties[PROP_XALIGN]);
+		gtk_widget_queue_draw (GTK_WIDGET (renderer));
 	}
+}
 
-	g_object_notify (G_OBJECT (renderer), "view");
-	g_object_notify (G_OBJECT (renderer), "window_type");
+/**
+ * gtk_source_gutter_renderer_get_yalign:
+ * @renderer: a #GtkSourceGutterRenderer
+ *
+ * Gets the "yalign" property of the #GtkSourceGutterRenderer. This may be used
+ * to adjust where within the cell rectangle the renderer will draw.
+ *
+ * Since: 5.0
+ */
+gfloat
+gtk_source_gutter_renderer_get_yalign (GtkSourceGutterRenderer *renderer)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), 0);
+
+	return priv->yalign;
+}
+
+/**
+ * gtk_source_gutter_renderer_set_yalign:
+ * @renderer: a #GtkSourceGutterRenderer
+ * @yalign: the Y padding for the drawing cell
+ *
+ * Adjusts the "yalign" property of the #GtkSourceGutterRenderer. This may be
+ * used to adjust where within the cell rectangle the renderer will draw.
+ *
+ * Since: 5.0
+ */
+void
+gtk_source_gutter_renderer_set_yalign (GtkSourceGutterRenderer *renderer,
+                                       gfloat                   yalign)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
+	g_return_if_fail (yalign >= 0);
+
+	if (priv->yalign != yalign)
+	{
+		priv->yalign = yalign;
+		g_object_notify_by_pspec (G_OBJECT (renderer),
+		                          properties[PROP_YALIGN]);
+		gtk_widget_queue_draw (GTK_WIDGET (renderer));
+	}
+}
+
+/**
+ * gtk_source_gutter_renderer_get_buffer:
+ * @renderer: a #GtkSourceGutterRenderer
+ *
+ * Gets the #GtkSourceBuffer for which the gutter renderer is drawing.
+ *
+ * Returns: (transfer none) (nullable): a #GtkTextBuffer or %NULL
+ *
+ * Since: 5.0
+ */
+GtkSourceBuffer *
+gtk_source_gutter_renderer_get_buffer (GtkSourceGutterRenderer *renderer)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), NULL);
+
+	return priv->buffer;
+}
+
+void
+_gtk_source_gutter_renderer_begin (GtkSourceGutterRenderer *renderer,
+                                   GtkSourceGutterLines    *lines)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_LINES (lines));
+
+	g_set_object (&priv->lines, lines);
+	GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->begin (renderer, lines);
+}
+
+void
+_gtk_source_gutter_renderer_end (GtkSourceGutterRenderer *renderer)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
+
+	GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->end (renderer);
+	g_clear_object (&priv->lines);
 }

@@ -36,6 +36,8 @@
 typedef struct
 {
 	GtkSourcePixbufHelper *helper;
+	GdkPaintable          *paintable;
+	GPtrArray             *overlays;
 } GtkSourceGutterRendererPixbufPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererPixbuf, gtk_source_gutter_renderer_pixbuf, GTK_SOURCE_TYPE_GUTTER_RENDERER)
@@ -46,147 +48,80 @@ enum
 	PROP_PIXBUF,
 	PROP_ICON_NAME,
 	PROP_GICON,
+        PROP_PAINTABLE,
 };
 
 static void
-center_on (GtkSourceGutterRenderer *renderer,
-           GdkRectangle            *cell_area,
-           GtkTextIter             *iter,
-           gint                     width,
-           gint                     height,
-           gfloat                   xalign,
-           gfloat                   yalign,
-           gint                    *x,
-           gint                    *y)
+clear_overlays (GtkSourceGutterRendererPixbuf *renderer)
 {
-	GtkTextView *view;
-	GtkTextWindowType window_type;
-	GdkRectangle buffer_location;
-	gint window_y;
+	GtkSourceGutterRendererPixbufPrivate *priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (renderer);
 
-	view = gtk_source_gutter_renderer_get_view (renderer);
-	window_type = gtk_source_gutter_renderer_get_window_type (renderer);
-
-	gtk_text_view_get_iter_location (view, iter, &buffer_location);
-
-	gtk_text_view_buffer_to_window_coords (view,
-					       window_type,
-					       0, buffer_location.y,
-					       NULL, &window_y);
-
-	*x = cell_area->x + (cell_area->width - width) * xalign;
-	*y = window_y + (buffer_location.height - height) * yalign;
+	if (priv->overlays != NULL && priv->overlays->len > 0)
+	{
+		g_ptr_array_remove_range (priv->overlays, 0, priv->overlays->len);
+	}
 }
 
 static void
-gutter_renderer_pixbuf_draw (GtkSourceGutterRenderer      *renderer,
-                             cairo_t                      *cr,
-                             GdkRectangle                 *background_area,
-                             GdkRectangle                 *cell_area,
-                             GtkTextIter                  *start,
-                             GtkTextIter                  *end,
-                             GtkSourceGutterRendererState  state)
+gutter_renderer_pixbuf_snapshot_line (GtkSourceGutterRenderer      *renderer,
+                                      GtkSnapshot                  *snapshot,
+                                      GtkSourceGutterLines         *lines,
+                                      guint                         line)
 {
 	GtkSourceGutterRendererPixbuf *pix = GTK_SOURCE_GUTTER_RENDERER_PIXBUF (renderer);
 	GtkSourceGutterRendererPixbufPrivate *priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (pix);
+	GtkWidget *widget = GTK_WIDGET (renderer);
+	GdkPaintable *paintable;
+	GtkSourceView *view;
 	gint width;
 	gint height;
-	gfloat xalign;
-	gfloat yalign;
-	GtkSourceGutterRendererAlignmentMode mode;
-	GtkTextView *view;
-	gint scale;
-	gint x = 0;
-	gint y = 0;
-	GdkPixbuf *pixbuf;
-	cairo_surface_t *surface;
-
-	/* Chain up to draw background */
-	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_pixbuf_parent_class)->draw != NULL)
-	{
-		GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_pixbuf_parent_class)->draw (renderer,
-													 cr,
-													 background_area,
-													 cell_area,
-													 start,
-													 end,
-													 state);
-	}
+	gfloat x = 0;
+	gfloat y = 0;
+	guint i;
+	gint size;
 
 	view = gtk_source_gutter_renderer_get_view (renderer);
 
-	pixbuf = gtk_source_pixbuf_helper_render (priv->helper,
-	                                          GTK_WIDGET (view),
-	                                          cell_area->width);
+	width = gtk_widget_get_width (widget);
+	height = gtk_widget_get_height (widget);
+	size = MIN (width, height);
 
-	if (!pixbuf)
+	paintable = gtk_source_pixbuf_helper_render (priv->helper,
+	                                             GTK_WIDGET (view),
+	                                             size);
+
+	/* Short-circuit if there is nothing to snapshot */
+	if (paintable == NULL &&
+	    (priv->overlays == NULL || priv->overlays->len == 0))
 	{
 		return;
 	}
 
-	width = gdk_pixbuf_get_width (pixbuf);
-	height = gdk_pixbuf_get_height (pixbuf);
+	gtk_source_gutter_renderer_align_cell (renderer, line, size, size, &x, &y);
 
-	/*
-	 * We might have gotten a pixbuf back from the helper that will allow
-	 * us to render for HiDPI. If we detect this, we pretend that we got a
-	 * different size back and then gdk_cairo_surface_create_from_pixbuf()
-	 * will take care of the rest.
-	 */
-	scale = gtk_widget_get_scale_factor (GTK_WIDGET (view));
-	if ((scale > 1) &&
-	    ((width > cell_area->width) || (height > cell_area->height)) &&
-	    (width <= (cell_area->width * scale)) &&
-	    (height <= (cell_area->height * scale)))
+	gtk_snapshot_save (snapshot);
+	gtk_snapshot_translate (snapshot, &GRAPHENE_POINT_INIT (x, y));
+
+	if (paintable != NULL)
 	{
-		width = width / scale;
-		height = height / scale;
+		gdk_paintable_snapshot (paintable, snapshot, size, size);
+	}
+	else if (priv->paintable != NULL)
+	{
+		gdk_paintable_snapshot (priv->paintable, snapshot, size, size);
 	}
 
-	gtk_source_gutter_renderer_get_alignment (renderer,
-	                                          &xalign,
-	                                          &yalign);
-
-	mode = gtk_source_gutter_renderer_get_alignment_mode (renderer);
-
-	switch (mode)
+	if (priv->overlays != NULL)
 	{
-		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_CELL:
-			x = cell_area->x + (cell_area->width - width) * xalign;
-			y = cell_area->y + (cell_area->height - height) * yalign;
-			break;
-		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST:
-			center_on (renderer,
-			           cell_area,
-			           start,
-			           width,
-			           height,
-			           xalign,
-			           yalign,
-			           &x,
-			           &y);
-			break;
-		case GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_LAST:
-			center_on (renderer,
-			           cell_area,
-			           end,
-			           width,
-			           height,
-			           xalign,
-			           yalign,
-			           &x,
-			           &y);
-			break;
-		default:
-			g_assert_not_reached ();
+		for (i = 0; i < priv->overlays->len; i++)
+		{
+			GdkPaintable *ele = g_ptr_array_index (priv->overlays, i);
+
+			gdk_paintable_snapshot (ele, snapshot, size, size);
+		}
 	}
 
-	surface = gdk_cairo_surface_create_from_pixbuf (pixbuf, scale, NULL);
-	cairo_set_source_surface (cr, surface, x, y);
-
-	cairo_paint (cr);
-
-	cairo_surface_destroy (surface);
+	gtk_snapshot_restore (snapshot);
 }
 
 static void
@@ -195,7 +130,8 @@ gtk_source_gutter_renderer_pixbuf_finalize (GObject *object)
 	GtkSourceGutterRendererPixbuf *renderer = GTK_SOURCE_GUTTER_RENDERER_PIXBUF (object);
 	GtkSourceGutterRendererPixbufPrivate *priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (renderer);
 
-	gtk_source_pixbuf_helper_free (priv->helper);
+        g_clear_pointer (&priv->helper, gtk_source_pixbuf_helper_free);
+        g_clear_pointer (&priv->overlays, g_ptr_array_unref);
 
 	G_OBJECT_CLASS (gtk_source_gutter_renderer_pixbuf_parent_class)->finalize (object);
 }
@@ -206,11 +142,9 @@ set_pixbuf (GtkSourceGutterRendererPixbuf *renderer,
 {
 	GtkSourceGutterRendererPixbufPrivate *priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (renderer);
 
+        g_clear_object (&priv->paintable);
+        clear_overlays (renderer);
 	gtk_source_pixbuf_helper_set_pixbuf (priv->helper, pixbuf);
-
-	g_object_notify (G_OBJECT (renderer), "pixbuf");
-
-	gtk_source_gutter_renderer_queue_draw (GTK_SOURCE_GUTTER_RENDERER (renderer));
 }
 
 static void
@@ -219,11 +153,9 @@ set_gicon (GtkSourceGutterRendererPixbuf *renderer,
 {
 	GtkSourceGutterRendererPixbufPrivate *priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (renderer);
 
+        g_clear_object (&priv->paintable);
+        clear_overlays (renderer);
 	gtk_source_pixbuf_helper_set_gicon (priv->helper, icon);
-
-	g_object_notify (G_OBJECT (renderer), "gicon");
-
-	gtk_source_gutter_renderer_queue_draw (GTK_SOURCE_GUTTER_RENDERER (renderer));
 }
 
 static void
@@ -232,11 +164,9 @@ set_icon_name (GtkSourceGutterRendererPixbuf *renderer,
 {
 	GtkSourceGutterRendererPixbufPrivate *priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (renderer);
 
+        g_clear_object (&priv->paintable);
+        clear_overlays (renderer);
 	gtk_source_pixbuf_helper_set_icon_name (priv->helper, icon_name);
-
-	g_object_notify (G_OBJECT (renderer), "icon-name");
-
-	gtk_source_gutter_renderer_queue_draw (GTK_SOURCE_GUTTER_RENDERER (renderer));
 }
 
 
@@ -246,9 +176,7 @@ gtk_source_gutter_renderer_pixbuf_set_property (GObject      *object,
                                                 const GValue *value,
                                                 GParamSpec   *pspec)
 {
-	GtkSourceGutterRendererPixbuf *renderer;
-
-	renderer = GTK_SOURCE_GUTTER_RENDERER_PIXBUF (object);
+	GtkSourceGutterRendererPixbuf *renderer = GTK_SOURCE_GUTTER_RENDERER_PIXBUF (object);
 
 	switch (prop_id)
 	{
@@ -260,6 +188,10 @@ gtk_source_gutter_renderer_pixbuf_set_property (GObject      *object,
 			break;
 		case PROP_GICON:
 			set_gicon (renderer, g_value_get_object (value));
+			break;
+		case PROP_PAINTABLE:
+			gtk_source_gutter_renderer_pixbuf_set_paintable (renderer,
+			                                                 g_value_get_object (value));
 			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -290,6 +222,9 @@ gtk_source_gutter_renderer_pixbuf_get_property (GObject    *object,
 			g_value_set_object (value,
 			                    gtk_source_pixbuf_helper_get_gicon (priv->helper));
 			break;
+		case PROP_PAINTABLE:
+			g_value_set_object (value, priv->paintable);
+			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -303,11 +238,18 @@ gtk_source_gutter_renderer_pixbuf_class_init (GtkSourceGutterRendererPixbufClass
 	GtkSourceGutterRendererClass *renderer_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (klass);
 
 	object_class->finalize = gtk_source_gutter_renderer_pixbuf_finalize;
-
 	object_class->get_property = gtk_source_gutter_renderer_pixbuf_get_property;
 	object_class->set_property = gtk_source_gutter_renderer_pixbuf_set_property;
 
-	renderer_class->draw = gutter_renderer_pixbuf_draw;
+	renderer_class->snapshot_line = gutter_renderer_pixbuf_snapshot_line;
+
+	g_object_class_install_property (object_class,
+	                                 PROP_PAINTABLE,
+	                                 g_param_spec_object ("paintable",
+	                                                      "Paintable",
+	                                                      "The paintable",
+	                                                      GDK_TYPE_PAINTABLE,
+	                                                      G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_PIXBUF,
@@ -315,7 +257,7 @@ gtk_source_gutter_renderer_pixbuf_class_init (GtkSourceGutterRendererPixbufClass
 	                                                      "Pixbuf",
 	                                                      "The pixbuf",
 	                                                      GDK_TYPE_PIXBUF,
-	                                                      G_PARAM_READWRITE));
+	                                                      G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_ICON_NAME,
@@ -323,7 +265,7 @@ gtk_source_gutter_renderer_pixbuf_class_init (GtkSourceGutterRendererPixbufClass
 	                                                      "Icon Name",
 	                                                      "The icon name",
 	                                                      NULL,
-	                                                      G_PARAM_READWRITE));
+	                                                      G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_property (object_class,
 	                                 PROP_GICON,
@@ -331,7 +273,7 @@ gtk_source_gutter_renderer_pixbuf_class_init (GtkSourceGutterRendererPixbufClass
 	                                                      "GIcon",
 	                                                      "The gicon",
 	                                                      G_TYPE_ICON,
-	                                                      G_PARAM_READWRITE));
+	                                                      G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS));
 }
 
 static void
@@ -447,4 +389,72 @@ gtk_source_gutter_renderer_pixbuf_get_icon_name (GtkSourceGutterRendererPixbuf *
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer), NULL);
 
 	return gtk_source_pixbuf_helper_get_icon_name (priv->helper);
+}
+
+/**
+ * gtk_source_gutter_renderer_pixbuf_set_paintable:
+ * @renderer: a #GtkSourceGutterRendererPixbuf
+ * @paintable: (nullable): the paintable, or %NULL.
+ */
+void
+gtk_source_gutter_renderer_pixbuf_set_paintable (GtkSourceGutterRendererPixbuf *renderer,
+                                                 GdkPaintable                  *paintable)
+{
+	GtkSourceGutterRendererPixbufPrivate *priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (renderer);
+
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer));
+	g_return_if_fail (!paintable || GDK_IS_PAINTABLE (paintable));
+
+	clear_overlays (renderer);
+	gtk_source_pixbuf_helper_set_icon_name (priv->helper, NULL);
+	g_set_object (&priv->paintable, paintable);
+}
+
+/**
+ * gtk_source_gutter_renderer_pixbuf_get_paintable:
+ * @renderer: a #GtkSourceGutterRendererPixbuf
+ *
+ * Gets a #GdkPaintable that was set with
+ * gtk_source_gutter_renderer_pixbuf_set_paintable()
+ *
+ * Returns: (transfer none) (nullable): a #GdkPaintable or %NULL
+ *
+ * Since: 5.0
+ */
+GdkPaintable *
+gtk_source_gutter_renderer_pixbuf_get_paintable (GtkSourceGutterRendererPixbuf *renderer)
+{
+	GtkSourceGutterRendererPixbufPrivate *priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (renderer);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer), NULL);
+
+	return priv->paintable;
+}
+
+/**
+ * gtk_source_gutter_renderer_pixbuf_overlay_paintable:
+ * @renderer: a #GtkSourceGutterRendererPixbuf
+ * @paintable: a #GdkPaintable
+ *
+ * Allows overlaying a paintable on top of any other image that
+ * has been set for the pixbuf. This will be applied when the
+ * widget is next snapshot.
+ *
+ * Since: 5.0
+ */
+void
+gtk_source_gutter_renderer_pixbuf_overlay_paintable (GtkSourceGutterRendererPixbuf *renderer,
+                                                     GdkPaintable                  *paintable)
+{
+	GtkSourceGutterRendererPixbufPrivate *priv = gtk_source_gutter_renderer_pixbuf_get_instance_private (renderer);
+
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER_PIXBUF (renderer));
+	g_return_if_fail (GDK_IS_PAINTABLE (paintable));
+
+	if (priv->overlays == NULL)
+	{
+		priv->overlays = g_ptr_array_new_with_free_func (g_object_unref);
+	}
+
+	g_ptr_array_add (priv->overlays, g_object_ref (paintable));
 }
