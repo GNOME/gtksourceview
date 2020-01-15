@@ -25,8 +25,14 @@
 #include <glib/gi18n-lib.h>
 
 #include "gtksourceinit.h"
+#include "gtksourcegutterrendererpixbuf.h"
+#include "gtksourcegutterrenderertext.h"
 #include "gtksourcelanguagemanager-private.h"
+#include "gtksourcemap.h"
+#include "gtksourcestyleschemechooserbutton.h"
+#include "gtksourcestyleschemechooserwidget.h"
 #include "gtksourcestyleschememanager-private.h"
+#include "gtksourceview.h"
 
 #ifdef G_OS_WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -157,6 +163,13 @@ gtk_source_init (void)
 		g_free (locale_dir);
 
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
+		g_type_ensure (GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT);
+		g_type_ensure (GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF);
+		g_type_ensure (GTK_SOURCE_TYPE_MAP);
+		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON);
+		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET);
+		g_type_ensure (GTK_SOURCE_TYPE_VIEW);
 
 		done = TRUE;
 	}
