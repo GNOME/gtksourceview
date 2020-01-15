@@ -2766,7 +2766,7 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 		                          GTK_SOURCE_VIEW_GUTTER_POSITION_LINES);
 	}
 
-	gtk_source_gutter_renderer_set_visible (priv->line_renderer, show);
+	gtk_widget_set_visible (GTK_WIDGET (priv->line_renderer), show);
 	priv->show_line_numbers = show;
 
 	g_object_notify (G_OBJECT (view), "show_line_numbers");
@@ -2847,7 +2847,7 @@ gtk_source_view_set_show_line_marks (GtkSourceView *view,
 		                  view);
 	}
 
-	gtk_source_gutter_renderer_set_visible (priv->marks_renderer, show);
+	gtk_widget_set_visible (GTK_WIDGET (priv->marks_renderer), show);
 	priv->show_line_marks = show;
 
 	g_object_notify (G_OBJECT (view), "show_line_marks");
