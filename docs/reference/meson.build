@@ -40,6 +40,7 @@ reference_private_h = [
   'gtksourcestyleschememanager-private.h',
   'gtksourcetypes-private.h',
   'gtksourceutils-private.h',
+  'quarkset-inline.h',
 ]
 
 reference_content_files = files([
