@@ -87,14 +87,16 @@ struct _GtkSourceViewClass
 {
 	GtkTextViewClass parent_class;
 
-	void (*line_mark_activated) (GtkSourceView *view,
-	                             GtkTextIter   *iter,
-	                             GdkEvent      *event);
-	void (*show_completion)     (GtkSourceView *view);
-	void (*move_lines)          (GtkSourceView *view,
-	                             gboolean       down);
-	void (*move_words)          (GtkSourceView *view,
-	                             gint           step);
+	void (*line_mark_activated) (GtkSourceView     *view,
+	                             const GtkTextIter *iter,
+	                             guint              button,
+	                             GdkModifierType    state,
+	                             gint               n_presses);
+	void (*show_completion)     (GtkSourceView     *view);
+	void (*move_lines)          (GtkSourceView     *view,
+	                             gboolean           down);
+	void (*move_words)          (GtkSourceView     *view,
+	                             gint               step);
 
 	/*< private >*/
 	gpointer _reserved[20];
