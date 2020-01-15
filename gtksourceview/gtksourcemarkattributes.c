@@ -529,21 +529,27 @@ gtk_source_mark_attributes_get_pixbuf (GtkSourceMarkAttributes *attributes)
  * gtk_source_mark_attributes_set_gicon() or
  * gtk_source_mark_attributes_set_icon_name(). @size cannot be lower than 1.
  *
- * Returns: (transfer none): A rendered pixbuf. The pixbuf belongs to @attributes
+ * Returns: (transfer none): A #GdkPaintable. The paintable belongs to @attributes
  * and should not be unreffed.
  */
-const GdkPixbuf *
+GdkPaintable *
 gtk_source_mark_attributes_render_icon (GtkSourceMarkAttributes *attributes,
                                         GtkWidget               *widget,
                                         gint                     size)
 {
+	GdkPaintable *ret;
+
 	g_return_val_if_fail (GTK_SOURCE_IS_MARK_ATTRIBUTES (attributes), NULL);
 	g_return_val_if_fail (GTK_IS_WIDGET (widget), NULL);
 	g_return_val_if_fail (size > 0, NULL);
 
-	return gtk_source_pixbuf_helper_render (attributes->helper,
-	                                        widget,
-	                                        size);
+	ret = gtk_source_pixbuf_helper_render (attributes->helper,
+	                                       widget,
+	                                       size);
+
+	g_return_val_if_fail (ret == NULL || GDK_IS_PAINTABLE (ret), NULL);
+
+	return ret;
 }
 
 /**
