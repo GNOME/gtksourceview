@@ -47,6 +47,7 @@ typedef struct _GtkSourceFile                      GtkSourceFile;
 typedef struct _GtkSourceFileLoader                GtkSourceFileLoader;
 typedef struct _GtkSourceFileSaver                 GtkSourceFileSaver;
 typedef struct _GtkSourceGutter                    GtkSourceGutter;
+typedef struct _GtkSourceGutterLines               GtkSourceGutterLines;
 typedef struct _GtkSourceGutterRenderer            GtkSourceGutterRenderer;
 typedef struct _GtkSourceGutterRendererPixbuf      GtkSourceGutterRendererPixbuf;
 typedef struct _GtkSourceGutterRendererText        GtkSourceGutterRendererText;

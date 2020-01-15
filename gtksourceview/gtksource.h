@@ -39,6 +39,7 @@
 #include "gtksourceinit.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguagemanager.h"
+#include "gtksourcegutterlines.h"
 #include "gtksourcemap.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"
