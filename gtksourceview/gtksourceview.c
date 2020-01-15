@@ -25,7 +25,7 @@
 
 #include "gtksourceview.h"
 
-#include <string.h> /* For strlen */
+#include <string.h>
 #include <fribidi.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
@@ -35,18 +35,18 @@
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
 #include "gtksourcebufferinternal-private.h"
+#include "gtksourcecompletion.h"
+#include "gtksourcegutter.h"
+#include "gtksourcegutter-private.h"
+#include "gtksourcegutterrendererlines-private.h"
+#include "gtksourcegutterrenderermarks-private.h"
 #include "gtksource-enumtypes.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"
 #include "gtksource-marshal.h"
 #include "gtksourcestylescheme-private.h"
-#include "gtksourcecompletion.h"
 #include "gtksourcecompletion-private.h"
 #include "gtksourcecompletionprovider.h"
-#include "gtksourcegutter.h"
-#include "gtksourcegutter-private.h"
-#include "gtksourcegutterrendererlines-private.h"
-#include "gtksourcegutterrenderermarks-private.h"
 #include "gtksourceiter-private.h"
 #include "gtksourcesearchcontext-private.h"
 #include "gtksourcespacedrawer.h"
@@ -150,15 +150,15 @@
 
 enum
 {
-	SHOW_COMPLETION,
+	CHANGE_CASE,
+	CHANGE_NUMBER,
+	JOIN_LINES,
 	LINE_MARK_ACTIVATED,
 	MOVE_LINES,
-	MOVE_WORDS,
-	SMART_HOME_END,
 	MOVE_TO_MATCHING_BRACKET,
-	CHANGE_NUMBER,
-	CHANGE_CASE,
-	JOIN_LINES,
+	MOVE_WORDS,
+	SHOW_COMPLETION,
+	SMART_HOME_END,
 	N_SIGNALS
 };
 
@@ -236,9 +236,9 @@ static guint signals[N_SIGNALS];
 static void gtk_source_view_buildable_interface_init (GtkBuildableIface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceView, gtk_source_view, GTK_TYPE_TEXT_VIEW,
-			 G_ADD_PRIVATE (GtkSourceView)
-			 G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
-						gtk_source_view_buildable_interface_init))
+                         G_ADD_PRIVATE (GtkSourceView)
+                         G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
+                                                gtk_source_view_buildable_interface_init))
 
 /* Implement DnD for application/x-color drops */
 typedef enum _GtkSourceViewDropTypes {
