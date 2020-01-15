@@ -262,12 +262,12 @@ if generate_gir
       identifier_prefix: 'GtkSource',
         export_packages: [package_string],
               link_with: gtksource_lib,
-               includes: [ 'Gdk-3.0', 'Gtk-3.0' ],
+               includes: [ 'Gtk-4.0' ],
                 install: true,
         install_dir_gir: girdir,
     install_dir_typelib: typelibdir,
              extra_args: [ '--c-include=gtksourceview/gtksource.h',
-	                   '--warn-all' ],
+                           '--warn-all' ],
   )
 
   gtksource_dep_sources += [
@@ -287,12 +287,11 @@ if generate_gir
             install: true,
         install_dir: vapidir,
            packages: [ 'atk',
-                       'gdk-3.0',
-		       'gdk-pixbuf-2.0',
-		       'gio-2.0',
-		       'gtk+-3.0',
-		       'pango',
-		       'cairo' ],
+                       'gdk-pixbuf-2.0',
+                       'gio-2.0',
+                       'gtk4',
+                       'pango',
+                       'cairo' ],
     )
   endif
 endif
@@ -309,7 +308,7 @@ gtksource_pc_reqs = [
   'glib-2.0 @0@'.format(glib_req),
   'gobject-2.0 @0@'.format(glib_req),
   'gio-2.0 @0@'.format(glib_req),
-  'gtk+-3.0 @0@'.format(gtk_req),
+  'gtk4 @0@'.format(gtk_req),
 ]
 
 gtksource_pc_private_reqs = []
