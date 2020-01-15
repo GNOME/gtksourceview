@@ -37,9 +37,9 @@ struct _TestProvider
 	gint priority;
 	gchar *name;
 
-	GdkPixbuf *provider_icon;
+	GdkPaintable *provider_icon;
 
-	GdkPixbuf *item_icon;
+	GdkPaintable *item_icon;
 	GIcon *item_gicon;
 
 	/* If it's a random provider, a subset of 'proposals' are choosen on
@@ -112,12 +112,12 @@ test_provider_populate (GtkSourceCompletionProvider *completion_provider,
 						     TRUE);
 }
 
-static GdkPixbuf *
+static GdkTexture *
 test_provider_get_icon (GtkSourceCompletionProvider *provider)
 {
 	TestProvider *tp = (TestProvider *)provider;
 
-	return tp->is_random ? NULL : tp->provider_icon;
+	return tp->is_random ? NULL : GDK_TEXTURE (tp->provider_icon);
 }
 
 static void
@@ -177,7 +177,7 @@ test_provider_init (TestProvider *self)
 
 	self->item_icon = gtk_icon_theme_load_icon (theme, "trophy-gold", 16, 0, NULL);
 
-	icon = g_themed_icon_new ("trophy-silver");
+	icon = g_themed_icon_new ("trophy-gold");
 	emblem_icon = g_themed_icon_new ("emblem-urgent");
 	emblem = g_emblem_new (emblem_icon);
 	self->item_gicon = g_emblemed_icon_new (icon, emblem);
@@ -199,7 +199,7 @@ test_provider_set_fixed (TestProvider *provider,
 	item = gtk_source_completion_item_new ();
 	gtk_source_completion_item_set_markup (item, "A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!");
 	gtk_source_completion_item_set_text (item, "A very long proposal. I repeat, a very long proposal!");
-	gtk_source_completion_item_set_icon (item, provider->item_icon);
+	gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
 	gtk_source_completion_item_set_info (item, "To test the horizontal scrollbar and the markup.");
 	proposals = g_list_prepend (proposals, item);
 
@@ -222,7 +222,7 @@ test_provider_set_fixed (TestProvider *provider,
 		item = gtk_source_completion_item_new ();
 		gtk_source_completion_item_set_label (item, name);
 		gtk_source_completion_item_set_text (item, name);
-		gtk_source_completion_item_set_icon (item, provider->item_icon);
+		gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
 		gtk_source_completion_item_set_info (item, "The extra info of the proposal.\nA second line.");
 		proposals = g_list_prepend (proposals, item);
 
@@ -251,7 +251,7 @@ test_provider_set_random (TestProvider *provider,
 		item = gtk_source_completion_item_new ();
 		gtk_source_completion_item_set_label (item, name);
 		gtk_source_completion_item_set_text (item, name);
-		gtk_source_completion_item_set_icon (item, provider->item_icon);
+		gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
 		proposals = g_list_prepend (proposals, item);
 
 		g_free (padding);
@@ -454,9 +454,10 @@ create_window (void)
 }
 
 int
-main (int argc, char *argv[])
+main (int   argc,
+      char *argv[])
 {
-	gtk_init (&argc, &argv);
+	gtk_init ();
 
 	create_window ();
 
