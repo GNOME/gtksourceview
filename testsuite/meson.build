@@ -34,7 +34,6 @@ testsuite_sources = [
   ['test-space-drawer'],
   ['test-stylescheme'],
   ['test-styleschememanager'],
-  ['test-undo-manager'],
   ['test-utils'],
   ['test-view'],
 ]

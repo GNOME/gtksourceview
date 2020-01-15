@@ -39,7 +39,6 @@ reference_private_h = [
   'gtksourcestylescheme-private.h',
   'gtksourcestyleschememanager-private.h',
   'gtksourcetypes-private.h',
-  'gtksourceundomanagerdefault.h',
   'gtksourceutils-private.h',
 ]
 

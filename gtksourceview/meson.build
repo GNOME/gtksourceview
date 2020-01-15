@@ -41,7 +41,6 @@ core_public_h = files([
   'gtksourcestyleschememanager.h',
   'gtksourcetag.h',
   'gtksourcetypes.h',
-  'gtksourceundomanager.h',
   'gtksourceutils.h',
   'gtksourceview.h',
 ])
@@ -80,7 +79,6 @@ core_public_c = files([
   'gtksourcestyleschemechooserwidget.c',
   'gtksourcestyleschememanager.c',
   'gtksourcetag.c',
-  'gtksourceundomanager.c',
   'gtksourceutils.c',
   'gtksourceversion.c',
   'gtksourceview.c',
@@ -101,7 +99,6 @@ core_private_c = files([
   'gtksourcemarkssequence.c',
   'gtksourcepixbufhelper.c',
   'gtksourceregex.c',
-  'gtksourceundomanagerdefault.c',
 ])
 
 core_c_args = [

@@ -34,8 +34,6 @@
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
 #include "gtksource-marshal.h"
-#include "gtksourceundomanager.h"
-#include "gtksourceundomanagerdefault.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme-private.h"
 #include "gtksourcestyleschememanager.h"
@@ -53,8 +51,7 @@
  *
  * A #GtkSourceBuffer object is the model for #GtkSourceView widgets.
  * It extends the #GtkTextBuffer class by adding features useful to display
- * and edit source code such as syntax highlighting and bracket matching. It
- * also implements support for the undo/redo.
+ * and edit source code such as syntax highlighting and bracket matching.
  *
  * To create a #GtkSourceBuffer use gtk_source_buffer_new() or
  * gtk_source_buffer_new_with_language(). The second form is just a convenience
@@ -64,34 +61,6 @@
  *
  * The highlighting is enabled by default, but you can disable it with
  * gtk_source_buffer_set_highlight_syntax().
- *
- * # Undo/Redo
- *
- * A custom #GtkSourceUndoManager can be implemented and set with
- * gtk_source_buffer_set_undo_manager(). However the default implementation
- * should be suitable for most uses, so you can use the API provided by
- * #GtkSourceBuffer instead of using #GtkSourceUndoManager. By default, actions
- * that can be undone or redone are defined as groups of operations between a
- * call to gtk_text_buffer_begin_user_action() and
- * gtk_text_buffer_end_user_action(). In general, this happens whenever the user
- * presses any key which modifies the buffer. But the default undo manager will
- * try to merge similar consecutive actions into one undo/redo level. The
- * merging is done word by word, so after writing a new sentence (character by
- * character), each undo will remove the previous word.
- *
- * The default undo manager remembers the "modified" state of the buffer, and
- * restores it when an action is undone or redone. It can be useful in a text
- * editor to know whether the file is saved. See gtk_text_buffer_get_modified()
- * and gtk_text_buffer_set_modified().
- *
- * The default undo manager also restores the selected text (or cursor
- * position), if the selection was related to the action. For example if the
- * user selects some text and deletes it, an undo will restore the selection. On
- * the other hand, if some text is selected but a deletion occurs elsewhere (the
- * deletion was done programmatically), an undo will not restore the selection,
- * it will only moves the cursor (the cursor is moved so that the user sees the
- * undo's effect). Warning: the selection restoring behavior might change in the
- * future.
  *
  * # Context Classes # {#context-classes}
  *
@@ -178,14 +147,10 @@ enum
 enum
 {
 	PROP_0,
-	PROP_CAN_UNDO,
-	PROP_CAN_REDO,
 	PROP_HIGHLIGHT_SYNTAX,
 	PROP_HIGHLIGHT_MATCHING_BRACKETS,
-	PROP_MAX_UNDO_LEVELS,
 	PROP_LANGUAGE,
 	PROP_STYLE_SCHEME,
-	PROP_UNDO_MANAGER,
 	PROP_IMPLICIT_TRAILING_NEWLINE,
 	N_PROPERTIES
 };
@@ -203,9 +168,6 @@ typedef struct
 	GtkSourceStyleScheme *style_scheme;
 	GtkSourceLanguage *language;
 	GtkSourceEngine *highlight_engine;
-
-	GtkSourceUndoManager *undo_manager;
-	gint max_undo_levels;
 
 	GtkTextMark *tmp_insert_mark;
 	GtkTextMark *tmp_selection_bound_mark;
@@ -235,10 +197,6 @@ static void      gtk_source_buffer_get_property         (GObject                
 							 guint                    prop_id,
 							 GValue                  *value,
 							 GParamSpec              *pspec);
-static void 	 gtk_source_buffer_can_undo_handler 	(GtkSourceUndoManager    *manager,
-							 GtkSourceBuffer         *buffer);
-static void 	 gtk_source_buffer_can_redo_handler	(GtkSourceUndoManager    *manager,
-							 GtkSourceBuffer         *buffer);
 static void 	 gtk_source_buffer_real_insert_text 	(GtkTextBuffer           *buffer,
 							 GtkTextIter             *iter,
 							 const gchar             *text,
@@ -259,9 +217,6 @@ static void 	 gtk_source_buffer_real_mark_set	(GtkTextBuffer		 *buffer,
 
 static void 	 gtk_source_buffer_real_mark_deleted	(GtkTextBuffer		 *buffer,
 							 GtkTextMark		 *mark);
-
-static void	 gtk_source_buffer_real_undo		(GtkSourceBuffer	 *buffer);
-static void	 gtk_source_buffer_real_redo		(GtkSourceBuffer	 *buffer);
 
 static void	 gtk_source_buffer_real_highlight_updated
 							(GtkSourceBuffer         *buffer,
@@ -316,14 +271,7 @@ static void
 gtk_source_buffer_constructed (GObject *object)
 {
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (object);
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 	GtkTextTagTable *table;
-
-	if (priv->undo_manager == NULL)
-	{
-		/* This will install the default undo manager */
-		gtk_source_buffer_set_undo_manager (buffer, NULL);
-	}
 
 	G_OBJECT_CLASS (gtk_source_buffer_parent_class)->constructed (object);
 
@@ -359,9 +307,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	text_buffer_class->mark_set = gtk_source_buffer_real_mark_set;
 	text_buffer_class->mark_deleted = gtk_source_buffer_real_mark_deleted;
 
-	klass->undo = gtk_source_buffer_real_undo;
-	klass->redo = gtk_source_buffer_real_redo;
-
 	/**
 	 * GtkSourceBuffer:highlight-syntax:
 	 *
@@ -388,22 +333,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 				      G_PARAM_READWRITE |
 				      G_PARAM_STATIC_STRINGS);
 
-	/**
-	 * GtkSourceBuffer:max-undo-levels:
-	 *
-	 * Number of undo levels for the buffer. -1 means no limit. This property
-	 * will only affect the default undo manager.
-	 */
-	buffer_properties[PROP_MAX_UNDO_LEVELS] =
-		g_param_spec_int ("max-undo-levels",
-				  "Maximum Undo Levels",
-				  "Number of undo levels for the buffer",
-				  -1,
-				  G_MAXINT,
-				  -1,
-				  G_PARAM_READWRITE |
-				  G_PARAM_STATIC_STRINGS);
-
 	buffer_properties[PROP_LANGUAGE] =
 		g_param_spec_object ("language",
 				     "Language",
@@ -411,22 +340,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 				     GTK_SOURCE_TYPE_LANGUAGE,
 				     G_PARAM_READWRITE |
 				     G_PARAM_STATIC_STRINGS);
-
-	buffer_properties[PROP_CAN_UNDO] =
-		g_param_spec_boolean ("can-undo",
-				      "Can undo",
-				      "Whether Undo operation is possible",
-				      FALSE,
-				      G_PARAM_READABLE |
-				      G_PARAM_STATIC_STRINGS);
-
-	buffer_properties[PROP_CAN_REDO] =
-		g_param_spec_boolean ("can-redo",
-				      "Can redo",
-				      "Whether Redo operation is possible",
-				      FALSE,
-				      G_PARAM_READABLE |
-				      G_PARAM_STATIC_STRINGS);
 
 	/**
 	 * GtkSourceBuffer:style-scheme:
@@ -441,15 +354,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 				     "Style scheme",
 				     GTK_SOURCE_TYPE_STYLE_SCHEME,
 				     G_PARAM_READWRITE |
-				     G_PARAM_STATIC_STRINGS);
-
-	buffer_properties[PROP_UNDO_MANAGER] =
-		g_param_spec_object ("undo-manager",
-				     "Undo manager",
-				     "The buffer undo manager",
-				     GTK_SOURCE_TYPE_UNDO_MANAGER,
-				     G_PARAM_READWRITE |
-				     G_PARAM_CONSTRUCT |
 				     G_PARAM_STATIC_STRINGS);
 
 	/**
@@ -518,43 +422,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	                            g_cclosure_marshal_VOID__OBJECTv);
 
 	/**
-	 * GtkSourceBuffer::undo:
-	 * @buffer: the buffer that received the signal
-	 *
-	 * The ::undo signal is emitted to undo the last user action which
-	 * modified the buffer.
-	 */
-	buffer_signals[UNDO] =
-	    g_signal_new ("undo",
-			  G_OBJECT_CLASS_TYPE (object_class),
-			  G_SIGNAL_RUN_LAST,
-			  G_STRUCT_OFFSET (GtkSourceBufferClass, undo),
-			  NULL, NULL,
-			  g_cclosure_marshal_VOID__VOID,
-			  G_TYPE_NONE, 0);
-	g_signal_set_va_marshaller (buffer_signals[UNDO],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            g_cclosure_marshal_VOID__VOIDv);
-
-	/**
-	 * GtkSourceBuffer::redo:
-	 * @buffer: the buffer that received the signal
-	 *
-	 * The ::redo signal is emitted to redo the last undo operation.
-	 */
-	buffer_signals[REDO] =
-	    g_signal_new ("redo",
-			  G_OBJECT_CLASS_TYPE (object_class),
-			  G_SIGNAL_RUN_LAST,
-			  G_STRUCT_OFFSET (GtkSourceBufferClass, redo),
-			  NULL, NULL,
-			  g_cclosure_marshal_VOID__VOID,
-			  G_TYPE_NONE, 0);
-	g_signal_set_va_marshaller (buffer_signals[REDO],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            g_cclosure_marshal_VOID__VOIDv);
-
-	/**
 	 * GtkSourceBuffer::bracket-matched:
 	 * @buffer: a #GtkSourceBuffer.
 	 * @iter: (nullable): if found, the location of the matching bracket.
@@ -587,51 +454,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 }
 
 static void
-set_undo_manager (GtkSourceBuffer      *buffer,
-                  GtkSourceUndoManager *manager)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	if (manager == priv->undo_manager)
-	{
-		return;
-	}
-
-	if (priv->undo_manager != NULL)
-	{
-		g_signal_handlers_disconnect_by_func (priv->undo_manager,
-		                                      G_CALLBACK (gtk_source_buffer_can_undo_handler),
-		                                      buffer);
-
-		g_signal_handlers_disconnect_by_func (priv->undo_manager,
-		                                      G_CALLBACK (gtk_source_buffer_can_redo_handler),
-		                                      buffer);
-
-		g_object_unref (priv->undo_manager);
-		priv->undo_manager = NULL;
-	}
-
-	if (manager != NULL)
-	{
-		priv->undo_manager = g_object_ref (manager);
-
-		g_signal_connect (priv->undo_manager,
-		                  "can-undo-changed",
-		                  G_CALLBACK (gtk_source_buffer_can_undo_handler),
-		                  buffer);
-
-		g_signal_connect (priv->undo_manager,
-		                  "can-redo-changed",
-		                  G_CALLBACK (gtk_source_buffer_can_redo_handler),
-		                  buffer);
-
-		/* Notify possible changes in the can-undo/redo state */
-		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_CAN_UNDO]);
-		g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_CAN_REDO]);
-	}
-}
-
-static void
 search_context_weak_notify_cb (GtkSourceBuffer *buffer,
 			       GObject         *search_context)
 {
@@ -648,7 +470,6 @@ gtk_source_buffer_init (GtkSourceBuffer *buffer)
 	priv->highlight_syntax = TRUE;
 	priv->highlight_brackets = TRUE;
 	priv->bracket_match_state = GTK_SOURCE_BRACKET_MATCH_NONE;
-	priv->max_undo_levels = -1;
 
 	priv->source_marks = g_hash_table_new_full (g_str_hash,
 						    g_str_equal,
@@ -676,11 +497,6 @@ gtk_source_buffer_dispose (GObject *object)
 	{
 		g_source_remove (priv->bracket_highlighting_timeout_id);
 		priv->bracket_highlighting_timeout_id = 0;
-	}
-
-	if (priv->undo_manager != NULL)
-	{
-		set_undo_manager (buffer, NULL);
 	}
 
 	if (priv->highlight_engine != NULL)
@@ -733,20 +549,12 @@ gtk_source_buffer_set_property (GObject      *object,
 			gtk_source_buffer_set_highlight_matching_brackets (buffer, g_value_get_boolean (value));
 			break;
 
-		case PROP_MAX_UNDO_LEVELS:
-			gtk_source_buffer_set_max_undo_levels (buffer, g_value_get_int (value));
-			break;
-
 		case PROP_LANGUAGE:
 			gtk_source_buffer_set_language (buffer, g_value_get_object (value));
 			break;
 
 		case PROP_STYLE_SCHEME:
 			gtk_source_buffer_set_style_scheme (buffer, g_value_get_object (value));
-			break;
-
-		case PROP_UNDO_MANAGER:
-			gtk_source_buffer_set_undo_manager (buffer, g_value_get_object (value));
 			break;
 
 		case PROP_IMPLICIT_TRAILING_NEWLINE:
@@ -778,28 +586,12 @@ gtk_source_buffer_get_property (GObject    *object,
 			g_value_set_boolean (value, priv->highlight_brackets);
 			break;
 
-		case PROP_MAX_UNDO_LEVELS:
-			g_value_set_int (value, priv->max_undo_levels);
-			break;
-
 		case PROP_LANGUAGE:
 			g_value_set_object (value, priv->language);
 			break;
 
 		case PROP_STYLE_SCHEME:
 			g_value_set_object (value, priv->style_scheme);
-			break;
-
-		case PROP_CAN_UNDO:
-			g_value_set_boolean (value, gtk_source_buffer_can_undo (buffer));
-			break;
-
-		case PROP_CAN_REDO:
-			g_value_set_boolean (value, gtk_source_buffer_can_redo (buffer));
-			break;
-
-		case PROP_UNDO_MANAGER:
-			g_value_set_object (value, priv->undo_manager);
 			break;
 
 		case PROP_IMPLICIT_TRAILING_NEWLINE:
@@ -850,24 +642,6 @@ gtk_source_buffer_new_with_language (GtkSourceLanguage *language)
 			     "tag-table", NULL,
 			     "language", language,
 			     NULL);
-}
-
-static void
-gtk_source_buffer_can_undo_handler (GtkSourceUndoManager *manager,
-                                    GtkSourceBuffer      *buffer)
-{
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-
-	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_CAN_UNDO]);
-}
-
-static void
-gtk_source_buffer_can_redo_handler (GtkSourceUndoManager *manager,
-                                    GtkSourceBuffer      *buffer)
-{
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-
-	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_CAN_REDO]);
 }
 
 static void
@@ -1533,195 +1307,6 @@ _gtk_source_buffer_find_bracket_match (GtkSourceBuffer   *buffer,
 }
 
 /**
- * gtk_source_buffer_can_undo:
- * @buffer: a #GtkSourceBuffer.
- *
- * Determines whether a source buffer can undo the last action.
- *
- * Returns: %TRUE if it's possible to undo the last action.
- */
-gboolean
-gtk_source_buffer_can_undo (GtkSourceBuffer *buffer)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
-
-	return gtk_source_undo_manager_can_undo (priv->undo_manager);
-}
-
-/**
- * gtk_source_buffer_can_redo:
- * @buffer: a #GtkSourceBuffer.
- *
- * Determines whether a source buffer can redo the last action
- * (i.e. if the last operation was an undo).
- *
- * Returns: %TRUE if a redo is possible.
- */
-gboolean
-gtk_source_buffer_can_redo (GtkSourceBuffer *buffer)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
-
-	return gtk_source_undo_manager_can_redo (priv->undo_manager);
-}
-
-/**
- * gtk_source_buffer_undo:
- * @buffer: a #GtkSourceBuffer.
- *
- * Undoes the last user action which modified the buffer.  Use
- * gtk_source_buffer_can_undo() to check whether a call to this
- * function will have any effect.
- *
- * This function emits the #GtkSourceBuffer::undo signal.
- */
-void
-gtk_source_buffer_undo (GtkSourceBuffer *buffer)
-{
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-
-	g_signal_emit (buffer, buffer_signals[UNDO], 0);
-}
-
-/**
- * gtk_source_buffer_redo:
- * @buffer: a #GtkSourceBuffer.
- *
- * Redoes the last undo operation.  Use gtk_source_buffer_can_redo()
- * to check whether a call to this function will have any effect.
- *
- * This function emits the #GtkSourceBuffer::redo signal.
- */
-void
-gtk_source_buffer_redo (GtkSourceBuffer *buffer)
-{
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-
-	g_signal_emit (buffer, buffer_signals[REDO], 0);
-}
-
-/**
- * gtk_source_buffer_get_max_undo_levels:
- * @buffer: a #GtkSourceBuffer.
- *
- * Determines the number of undo levels the buffer will track for buffer edits.
- *
- * Returns: the maximum number of possible undo levels or -1 if no limit is set.
- */
-gint
-gtk_source_buffer_get_max_undo_levels (GtkSourceBuffer *buffer)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), 0);
-
-	return priv->max_undo_levels;
-}
-
-/**
- * gtk_source_buffer_set_max_undo_levels:
- * @buffer: a #GtkSourceBuffer.
- * @max_undo_levels: the desired maximum number of undo levels.
- *
- * Sets the number of undo levels for user actions the buffer will
- * track.  If the number of user actions exceeds the limit set by this
- * function, older actions will be discarded.
- *
- * If @max_undo_levels is -1, the undo/redo is unlimited.
- *
- * If @max_undo_levels is 0, the undo/redo is disabled.
- */
-void
-gtk_source_buffer_set_max_undo_levels (GtkSourceBuffer *buffer,
-				       gint             max_undo_levels)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-
-	if (priv->max_undo_levels == max_undo_levels)
-	{
-		return;
-	}
-
-	priv->max_undo_levels = max_undo_levels;
-
-	if (GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (priv->undo_manager))
-	{
-		gtk_source_undo_manager_default_set_max_undo_levels (GTK_SOURCE_UNDO_MANAGER_DEFAULT (priv->undo_manager),
-		                                                     max_undo_levels);
-	}
-
-	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_MAX_UNDO_LEVELS]);
-}
-
-gboolean
-_gtk_source_buffer_is_undo_redo_enabled (GtkSourceBuffer *buffer)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
-
-	if (priv->undo_manager == NULL)
-	{
-		return FALSE;
-	}
-
-	/* A custom UndoManager is not forced to follow max_undo_levels. */
-	if (!GTK_SOURCE_IS_UNDO_MANAGER_DEFAULT (priv->undo_manager))
-	{
-		return TRUE;
-	}
-
-	return priv->max_undo_levels != 0;
-}
-
-/**
- * gtk_source_buffer_begin_not_undoable_action:
- * @buffer: a #GtkSourceBuffer.
- *
- * Marks the beginning of a not undoable action on the buffer,
- * disabling the undo manager.  Typically you would call this function
- * before initially setting the contents of the buffer (e.g. when
- * loading a file in a text editor).
- *
- * You may nest gtk_source_buffer_begin_not_undoable_action() /
- * gtk_source_buffer_end_not_undoable_action() blocks.
- */
-void
-gtk_source_buffer_begin_not_undoable_action (GtkSourceBuffer *buffer)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-
-	gtk_source_undo_manager_begin_not_undoable_action (priv->undo_manager);
-}
-
-/**
- * gtk_source_buffer_end_not_undoable_action:
- * @buffer: a #GtkSourceBuffer.
- *
- * Marks the end of a not undoable action on the buffer.  When the
- * last not undoable block is closed through the call to this
- * function, the list of undo actions is cleared and the undo manager
- * is re-enabled.
- */
-void
-gtk_source_buffer_end_not_undoable_action (GtkSourceBuffer *buffer)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-
-	gtk_source_undo_manager_end_not_undoable_action (priv->undo_manager);
-}
-
-/**
  * gtk_source_buffer_get_highlight_matching_brackets:
  * @buffer: a #GtkSourceBuffer.
  *
@@ -2109,26 +1694,6 @@ gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
 	{
 		GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->mark_deleted (buffer, mark);
 	}
-}
-
-static void
-gtk_source_buffer_real_undo (GtkSourceBuffer *buffer)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_if_fail (gtk_source_undo_manager_can_undo (priv->undo_manager));
-
-	gtk_source_undo_manager_undo (priv->undo_manager);
-}
-
-static void
-gtk_source_buffer_real_redo (GtkSourceBuffer *buffer)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_if_fail (gtk_source_undo_manager_can_redo (priv->undo_manager));
-
-	gtk_source_undo_manager_redo (priv->undo_manager);
 }
 
 /**
@@ -3190,62 +2755,6 @@ gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
 	}
 
 	g_free (lines);
-}
-
-/**
- * gtk_source_buffer_set_undo_manager:
- * @buffer: a #GtkSourceBuffer.
- * @manager: (nullable): A #GtkSourceUndoManager or %NULL.
- *
- * Set the buffer undo manager. If @manager is %NULL the default undo manager
- * will be set.
- */
-void
-gtk_source_buffer_set_undo_manager (GtkSourceBuffer      *buffer,
-                                    GtkSourceUndoManager *manager)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
-	g_return_if_fail (manager == NULL || GTK_SOURCE_IS_UNDO_MANAGER (manager));
-
-	if (manager == NULL)
-	{
-		manager = g_object_new (GTK_SOURCE_TYPE_UNDO_MANAGER_DEFAULT,
-		                        "buffer", buffer,
-		                        "max-undo-levels", priv->max_undo_levels,
-		                        NULL);
-	}
-	else
-	{
-		g_object_ref (manager);
-	}
-
-	set_undo_manager (buffer, manager);
-	g_object_unref (manager);
-
-	g_object_notify_by_pspec (G_OBJECT (buffer), buffer_properties[PROP_UNDO_MANAGER]);
-}
-
-/**
- * gtk_source_buffer_get_undo_manager:
- * @buffer: a #GtkSourceBuffer.
- *
- * Returns the #GtkSourceUndoManager associated with the buffer,
- * see gtk_source_buffer_set_undo_manager().  The returned object should not be
- * unreferenced by the user.
- *
- * Returns: (nullable) (transfer none): the #GtkSourceUndoManager associated
- * with the buffer, or %NULL.
- */
-GtkSourceUndoManager *
-gtk_source_buffer_get_undo_manager (GtkSourceBuffer *buffer)
-{
-	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-
-	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
-
-	return priv->undo_manager;
 }
 
 void

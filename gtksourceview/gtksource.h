@@ -54,7 +54,6 @@
 #include "gtksourcestyleschemechooserwidget.h"
 #include "gtksourcestyleschememanager.h"
 #include "gtksourcetag.h"
-#include "gtksourceundomanager.h"
 #include "gtksourceutils.h"
 #include "gtksourceversion.h"
 #include "gtksourceview.h"
