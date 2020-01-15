@@ -925,8 +925,8 @@ check_externally_modified_cb (GObject      *source_object,
 	GtkSourceFileSaver *saver;
 	TaskData *task_data;
 	GFileInfo *info;
-	GTimeVal old_mtime;
-	GTimeVal cur_mtime;
+	gint64 old_mtime;
+	gint64 cur_mtime;
 	GError *error = NULL;
 
 	DEBUG ({
@@ -965,10 +965,13 @@ check_externally_modified_cb (GObject      *source_object,
 	    info != NULL &&
 	    g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 	{
-		g_file_info_get_modification_time (info, &cur_mtime);
+		GDateTime *dt;
 
-		if (old_mtime.tv_sec != cur_mtime.tv_sec ||
-		    old_mtime.tv_usec != cur_mtime.tv_usec)
+		dt = g_file_info_get_modification_date_time (info);
+		cur_mtime = g_date_time_to_unix (dt);
+		g_date_time_unref (dt);
+
+		if (old_mtime != cur_mtime)
 		{
 			DEBUG ({
 			       g_print ("The file is externally modified\n");
@@ -1505,10 +1508,14 @@ gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
 
 		if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 		{
-			GTimeVal modification_time;
+			GDateTime *dt;
+			gint64 mtime;
 
-			g_file_info_get_modification_time (task_data->info, &modification_time);
-			_gtk_source_file_set_modification_time (saver->file, modification_time);
+			dt = g_file_info_get_modification_date_time (task_data->info);
+			mtime = g_date_time_to_unix (dt);
+			g_date_time_unref (dt);
+
+			_gtk_source_file_set_modification_time (saver->file, mtime);
 		}
 	}
 

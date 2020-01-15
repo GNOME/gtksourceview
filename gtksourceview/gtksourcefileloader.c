@@ -1250,10 +1250,18 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 
 		if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 		{
-			GTimeVal modification_time;
+			GDateTime *dt;
+			gint64 mtime = 0;
 
-			g_file_info_get_modification_time (task_data->info, &modification_time);
-			_gtk_source_file_set_modification_time (loader->file, modification_time);
+			dt = g_file_info_get_modification_date_time (task_data->info);
+
+			if (dt != NULL)
+			{
+				mtime = g_date_time_to_unix (dt);
+				g_date_time_unref (dt);
+			}
+
+			_gtk_source_file_set_modification_time (loader->file, mtime);
 		}
 
 		if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_ACCESS_CAN_WRITE))
