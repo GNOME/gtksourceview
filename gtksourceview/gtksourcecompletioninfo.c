@@ -68,6 +68,7 @@ struct _GtkSourceCompletionInfo
 	guint idle_resize;
 
 	GtkWidget *attached_to;
+	GtkEventController *key;
 	gulong focus_out_event_handler;
 
 	gint xoffset;
@@ -79,135 +80,17 @@ G_DEFINE_TYPE (GtkSourceCompletionInfo, gtk_source_completion_info, GTK_TYPE_WIN
 
 /* Resize the window */
 
-static gboolean
-idle_resize (GtkSourceCompletionInfo *info)
-{
-	GtkWidget *child = gtk_bin_get_child (GTK_BIN (info));
-	GtkRequisition nat_size;
-	guint border_width;
-	gint window_width;
-	gint window_height;
-	gint cur_window_width;
-	gint cur_window_height;
-
-	info->idle_resize = 0;
-
-	if (child == NULL)
-	{
-		return G_SOURCE_REMOVE;
-	}
-
-	gtk_widget_get_preferred_size (child, NULL, &nat_size);
-
-	border_width = gtk_container_get_border_width (GTK_CONTAINER (info));
-
-	window_width = nat_size.width + 2 * border_width;
-	window_height = nat_size.height + 2 * border_width;
-
-	gtk_window_get_size (GTK_WINDOW (info), &cur_window_width, &cur_window_height);
-
-	/* Avoid an infinite loop */
-	if (cur_window_width != window_width || cur_window_height != window_height)
-	{
-		gtk_window_resize (GTK_WINDOW (info),
-				   MAX (1, window_width),
-				   MAX (1, window_height));
-	}
-
-	return G_SOURCE_REMOVE;
-}
-
-static void
-queue_resize (GtkSourceCompletionInfo *info)
-{
-	if (info->idle_resize == 0)
-	{
-		info->idle_resize = g_idle_add ((GSourceFunc)idle_resize, info);
-	}
-}
-
-static void
-gtk_source_completion_info_check_resize (GtkContainer *container)
-{
-	GtkSourceCompletionInfo *info = GTK_SOURCE_COMPLETION_INFO (container);
-	queue_resize (info);
-
-	GTK_CONTAINER_CLASS (gtk_source_completion_info_parent_class)->check_resize (container);
-}
-
-/* Geometry management */
-
-static GtkSizeRequestMode
-gtk_source_completion_info_get_request_mode (GtkWidget *widget)
-{
-	return GTK_SIZE_REQUEST_CONSTANT_SIZE;
-}
-
-static void
-gtk_source_completion_info_get_preferred_width (GtkWidget *widget,
-						gint	  *min_width,
-						gint	  *nat_width)
-{
-	GtkWidget *child = gtk_bin_get_child (GTK_BIN (widget));
-	gint width = 0;
-
-	if (child != NULL)
-	{
-		GtkRequisition nat_size;
-		gtk_widget_get_preferred_size (child, NULL, &nat_size);
-		width = nat_size.width;
-	}
-
-	if (min_width != NULL)
-	{
-		*min_width = width;
-	}
-
-	if (nat_width != NULL)
-	{
-		*nat_width = width;
-	}
-}
-
-static void
-gtk_source_completion_info_get_preferred_height (GtkWidget *widget,
-						 gint	   *min_height,
-						 gint	   *nat_height)
-{
-	GtkWidget *child = gtk_bin_get_child (GTK_BIN (widget));
-	gint height = 0;
-
-	if (child != NULL)
-	{
-		GtkRequisition nat_size;
-		gtk_widget_get_preferred_size (child, NULL, &nat_size);
-		height = nat_size.height;
-	}
-
-	if (min_height != NULL)
-	{
-		*min_height = height;
-	}
-
-	if (nat_height != NULL)
-	{
-		*nat_height = height;
-	}
-}
-
 /* Init, dispose, finalize, ... */
-
-static gboolean
-focus_out_event_cb (GtkSourceCompletionInfo *info)
-{
-	gtk_widget_hide (GTK_WIDGET (info));
-	return FALSE;
-}
 
 static void
 set_attached_to (GtkSourceCompletionInfo *info,
-		 GtkWidget               *attached_to)
+                 GtkWidget               *attached_to)
 {
+	if (info->attached_to == attached_to)
+	{
+		return;
+	}
+
 	if (info->attached_to != NULL)
 	{
 		g_object_remove_weak_pointer (G_OBJECT (info->attached_to),
@@ -215,14 +98,16 @@ set_attached_to (GtkSourceCompletionInfo *info,
 
 		if (info->focus_out_event_handler != 0)
 		{
-			g_signal_handler_disconnect (info->attached_to,
+			g_signal_handler_disconnect (info->key,
 						     info->focus_out_event_handler);
 
 			info->focus_out_event_handler = 0;
+			info->key = NULL;
 		}
 	}
 
 	info->attached_to = attached_to;
+	info->key = NULL;
 
 	if (attached_to == NULL)
 	{
@@ -232,10 +117,13 @@ set_attached_to (GtkSourceCompletionInfo *info,
 	g_object_add_weak_pointer (G_OBJECT (attached_to),
 				   (gpointer *) &info->attached_to);
 
+	info->key = gtk_event_controller_key_new ();
+	gtk_widget_add_controller (GTK_WIDGET (attached_to), info->key);
+
 	info->focus_out_event_handler =
-		g_signal_connect_swapped (attached_to,
-					  "focus-out-event",
-					  G_CALLBACK (focus_out_event_cb),
+		g_signal_connect_swapped (info->key,
+					  "focus-out",
+					  G_CALLBACK (gtk_widget_hide),
 					  info);
 
 	info->transient_set = FALSE;
@@ -250,8 +138,6 @@ update_attached_to (GtkSourceCompletionInfo *info)
 static void
 gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 {
-	info = gtk_source_completion_info_get_instance_private (info);
-
 	g_signal_connect (info,
 			  "notify::attached-to",
 			  G_CALLBACK (update_attached_to),
@@ -264,9 +150,9 @@ gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 	gtk_widget_set_name (GTK_WIDGET (info), "gtk-tooltip");
 
 	gtk_window_set_type_hint (GTK_WINDOW (info),
-	                          GDK_WINDOW_TYPE_HINT_COMBO);
+	                          GDK_SURFACE_TYPE_HINT_COMBO);
 
-	gtk_container_set_border_width (GTK_CONTAINER (info), 1);
+	g_object_set (info, "margin", 1, NULL);
 }
 
 static void
@@ -292,13 +178,14 @@ gtk_source_completion_info_show (GtkWidget *widget)
 
 	if (info->attached_to != NULL && !info->transient_set)
 	{
-		GtkWidget *toplevel;
+		GtkRoot *toplevel;
 
-		toplevel = gtk_widget_get_toplevel (GTK_WIDGET (info->attached_to));
-		if (gtk_widget_is_toplevel (toplevel))
+		toplevel = gtk_widget_get_root (GTK_WIDGET (info->attached_to));
+
+		if (toplevel != NULL)
 		{
 			gtk_window_set_transient_for (GTK_WINDOW (info),
-						      GTK_WINDOW (toplevel));
+			                              GTK_WINDOW (toplevel));
 			info->transient_set = TRUE;
 		}
 	}
@@ -306,37 +193,15 @@ gtk_source_completion_info_show (GtkWidget *widget)
 	GTK_WIDGET_CLASS (gtk_source_completion_info_parent_class)->show (widget);
 }
 
-static gboolean
-gtk_source_completion_info_draw (GtkWidget *widget,
-                                 cairo_t   *cr)
-{
-	GTK_WIDGET_CLASS (gtk_source_completion_info_parent_class)->draw (widget, cr);
-
-	gtk_render_frame (gtk_widget_get_style_context (widget),
-	                  cr,
-	                  0, 0,
-	                  gtk_widget_get_allocated_width (widget),
-	                  gtk_widget_get_allocated_height (widget));
-
-	return FALSE;
-}
-
 static void
 gtk_source_completion_info_class_init (GtkSourceCompletionInfoClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-	GtkContainerClass *container_class = GTK_CONTAINER_CLASS (klass);
 
 	object_class->dispose = gtk_source_completion_info_dispose;
 
 	widget_class->show = gtk_source_completion_info_show;
-	widget_class->draw = gtk_source_completion_info_draw;
-	widget_class->get_request_mode = gtk_source_completion_info_get_request_mode;
-	widget_class->get_preferred_width = gtk_source_completion_info_get_preferred_width;
-	widget_class->get_preferred_height = gtk_source_completion_info_get_preferred_height;
-
-	container_class->check_resize = gtk_source_completion_info_check_resize;
 }
 
 void
@@ -348,63 +213,47 @@ _gtk_source_completion_info_set_xoffset (GtkSourceCompletionInfo *window,
 	window->xoffset = xoffset;
 }
 
-/* Move to iter */
-
-static void
-get_iter_pos (GtkTextView *text_view,
-              GtkTextIter *iter,
-              gint        *x,
-              gint        *y,
-              gint        *height)
-{
-	GdkRectangle location;
-
-	gtk_text_view_get_iter_location (text_view, iter, &location);
-
-	gtk_text_view_buffer_to_window_coords (text_view,
-					       GTK_TEXT_WINDOW_WIDGET,
-					       location.x,
-					       location.y,
-					       x,
-					       y);
-
-	*height = location.height;
-}
-
 static void
 move_to_iter (GtkSourceCompletionInfo *window,
               GtkTextView             *view,
               GtkTextIter             *iter)
 {
-	GdkRectangle position;
-	GdkWindow *gdk_window;
-	gint x, y;
-	gint line_height;
+	GdkRectangle location;
+	GdkSurface *surface;
+	GtkRoot *root;
 
-	gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
-
-	if (gdk_window == NULL)
-	{
+	if (!GTK_IS_NATIVE (window))
 		return;
-	}
 
-	get_iter_pos (view, iter, &x, &y, &line_height);
+	surface = gtk_native_get_surface (GTK_NATIVE (window));
+	if (surface == NULL)
+		return;
+
+	root = gtk_widget_get_root (GTK_WIDGET (view));
+	if (root == NULL)
+		return;
+
+	gtk_text_view_get_iter_location (view, iter, &location);
+	gtk_text_view_buffer_to_window_coords (view,
+	                                       GTK_TEXT_WINDOW_WIDGET,
+	                                       location.x,
+	                                       location.y,
+	                                       &location.x,
+	                                       &location.y);
 
 	gtk_widget_translate_coordinates (GTK_WIDGET (view),
-	                                  gtk_widget_get_toplevel (GTK_WIDGET (view)),
-					  x, y, &x, &y);
+	                                  GTK_WIDGET (root),
+	                                  location.x + window->xoffset,
+	                                  location.y,
+	                                  &location.x,
+	                                  &location.y);
 
-	position.x = x;
-	position.y = y;
-	position.height = line_height;
-	position.width = 0;
-
-	gdk_window_move_to_rect (gdk_window,
-				 &position,
-				 GDK_GRAVITY_SOUTH_WEST,
-				 GDK_GRAVITY_NORTH_WEST,
-				 GDK_ANCHOR_SLIDE | GDK_ANCHOR_FLIP_Y | GDK_ANCHOR_RESIZE,
-				 window->priv->xoffset, 0);
+	gdk_surface_move_to_rect (surface,
+	                          &location,
+	                          GDK_GRAVITY_SOUTH_WEST,
+	                          GDK_GRAVITY_NORTH_WEST,
+	                          GDK_ANCHOR_SLIDE | GDK_ANCHOR_FLIP_Y | GDK_ANCHOR_RESIZE,
+	                          window->priv->xoffset, 0);
 }
 
 static void
@@ -432,7 +281,7 @@ gtk_source_completion_info_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_INFO,
 	                     "type", GTK_WINDOW_POPUP,
-			     "border-width", 3,
+	                     "margin", 3,
 	                     NULL);
 }
 
