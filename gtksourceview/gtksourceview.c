@@ -439,6 +439,27 @@ gtk_source_view_change_case (GtkSourceView           *view,
 }
 
 static void
+gtk_source_view_activate_change_case (GtkWidget   *widget,
+                                      const gchar *action_name,
+                                      GVariant    *parameter)
+{
+	GEnumClass *klass;
+	GEnumValue *value;
+	const gchar *nick;
+
+	nick = g_variant_get_string (parameter, NULL);
+	klass = g_type_class_ref (GTK_SOURCE_TYPE_CHANGE_CASE_TYPE);
+	value = g_enum_get_value_by_nick (klass, nick);
+
+	if (value != NULL)
+	{
+		gtk_source_view_change_case (GTK_SOURCE_VIEW (widget), value->value);
+	}
+
+	g_type_class_unref (klass);
+}
+
+static void
 gtk_source_view_join_lines (GtkSourceView *view)
 {
 	GtkSourceBuffer *buffer;
@@ -917,6 +938,9 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_signal_set_va_marshaller (signals[JOIN_LINES],
 	                            G_TYPE_FROM_CLASS (klass),
 	                            g_cclosure_marshal_VOID__VOIDv);
+
+	gtk_widget_class_install_action (widget_class, "source.change-case", "s",
+	                                 gtk_source_view_activate_change_case);
 
 	binding_set = gtk_binding_set_by_class (klass);
 
