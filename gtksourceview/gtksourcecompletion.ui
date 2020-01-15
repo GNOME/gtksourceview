@@ -36,8 +36,12 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkSourceCompletionContainer" id="completion_container">
+          <object class="GtkScrolledWindow" id="completion_container">
             <property name="visible">True</property>
+            <!-- TODO: this will need more work with a gtk4 port -->
+            <property name="propagate-natural-height">True</property>
+            <property name="propagate-natural-width">True</property>
+            <property name="max-content-height">250</property>
             <property name="can_focus">False</property>
             <child>
               <object class="GtkTreeView" id="tree_view_proposals">
