@@ -740,7 +740,6 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 		gtk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
 
 		gtk_style_context_get (context,
-				       gtk_style_context_get_state (context),
 				       "background-color", &background_color,
 				       NULL);
 
@@ -790,7 +789,7 @@ get_css_provider_cursors (GtkSourceStyleScheme *scheme,
 
 	provider = gtk_css_provider_new ();
 
-	gtk_css_provider_load_from_data (provider, css, -1, &error);
+	gtk_css_provider_load_from_data (provider, css, -1);
 	g_free (css);
 
 	if (error != NULL)
@@ -826,11 +825,6 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	                                GTK_STYLE_PROVIDER (scheme->css_provider),
 	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
 
-	G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
-	/* See https://bugzilla.gnome.org/show_bug.cgi?id=708583 */
-	gtk_style_context_invalidate (context);
-	G_GNUC_END_IGNORE_DEPRECATIONS;
-
 	/* The CssProvider for the cursors needs that the first provider is
 	 * applied, to get the background color.
 	 */
@@ -845,10 +839,6 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 		gtk_style_context_add_provider (context,
 						GTK_STYLE_PROVIDER (scheme->css_provider_cursors),
 						GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
-
-		G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
-		gtk_style_context_invalidate (context);
-		G_GNUC_END_IGNORE_DEPRECATIONS;
 	}
 }
 
@@ -879,11 +869,6 @@ _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
 		gtk_style_context_remove_provider (context,
 						   GTK_STYLE_PROVIDER (scheme->css_provider_cursors));
 	}
-
-	G_GNUC_BEGIN_IGNORE_DEPRECATIONS;
-	/* See https://bugzilla.gnome.org/show_bug.cgi?id=708583 */
-	gtk_style_context_invalidate (context);
-	G_GNUC_END_IGNORE_DEPRECATIONS;
 }
 
 /* --- PARSER ---------------------------------------------------------------- */
@@ -1001,9 +986,8 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 		GError *error = NULL;
 
 		gtk_css_provider_load_from_data (scheme->css_provider,
-						 final_style->str,
-						 final_style->len,
-						 &error);
+		                                 final_style->str,
+		                                 final_style->len);
 
 		if (error != NULL)
 		{
