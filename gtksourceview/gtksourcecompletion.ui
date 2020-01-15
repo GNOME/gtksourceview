@@ -27,8 +27,6 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
     <property name="type">popup</property>
     <property name="type_hint">combo</property>
     <property name="resizable">False</property>
-    <property name="skip_taskbar_hint">True</property>
-    <property name="skip_pager_hint">True</property>
     <property name="accept_focus">False</property>
     <property name="focus_on_map">False</property>
     <property name="decorated">False</property>
@@ -94,24 +92,24 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
                 <property name="visible">True</property>
                 <property name="halign">end</property>
                 <property name="hexpand">True</property>
+                <layout>
+                  <property name="left_attach">1</property>
+                </layout>
               </object>
-              <packing>
-                <property name="left_attach">1</property>
-              </packing>
             </child>
             <child>
               <object class="GtkLabel" id="selection_label">
                 <property name="visible">True</property>
                 <property name="margin">6</property>
+                <layout>
+                  <property name="left_attach">2</property>
+                </layout>
               </object>
-              <packing>
-                <property name="left_attach">2</property>
-              </packing>
             </child>
+            <layout>
+              <property name="top_attach">1</property>
+            </layout>
           </object>
-          <packing>
-            <property name="top_attach">1</property>
-          </packing>
         </child>
       </object>
     </child>
