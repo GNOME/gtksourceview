@@ -9,7 +9,6 @@ tests_sources = {
                      'search': ['test-search.c'],
         'search-performances': ['test-search-performances.c'],
               'space-drawing': ['test-space-drawing.c'],
-  'undo-manager-performances': ['test-undo-manager-performances.c'],
                      'widget': ['test-widget.c'],
 }
 

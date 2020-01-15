@@ -150,8 +150,6 @@
 
 enum
 {
-	UNDO,
-	REDO,
 	SHOW_COMPLETION,
 	LINE_MARK_ACTIVATED,
 	MOVE_LINES,
@@ -253,8 +251,6 @@ static const GtkTargetEntry drop_types[] = {
 
 static void           gtk_source_view_dispose              (GObject                 *object);
 static void           gtk_source_view_finalize             (GObject                 *object);
-static void           gtk_source_view_undo                 (GtkSourceView           *view);
-static void           gtk_source_view_redo                 (GtkSourceView           *view);
 static void           gtk_source_view_show_completion_real (GtkSourceView           *view);
 static GtkTextBuffer *gtk_source_view_create_buffer        (GtkTextView             *view);
 static void           remove_source_buffer                 (GtkSourceView           *view);
@@ -489,8 +485,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	textview_class->create_buffer = gtk_source_view_create_buffer;
 	textview_class->draw_layer = gtk_source_view_draw_layer;
 
-	klass->undo = gtk_source_view_undo;
-	klass->redo = gtk_source_view_redo;
 	klass->show_completion = gtk_source_view_show_completion_real;
 	klass->move_lines = gtk_source_view_move_lines;
 	klass->move_words = gtk_source_view_move_words;
@@ -701,30 +695,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							      GTK_SOURCE_TYPE_SPACE_DRAWER,
 							      G_PARAM_READABLE |
 							      G_PARAM_STATIC_STRINGS));
-
-	signals[UNDO] =
-		g_signal_new ("undo",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-			      G_STRUCT_OFFSET (GtkSourceViewClass, undo),
-			      NULL, NULL,
-		              g_cclosure_marshal_VOID__VOID,
-			      G_TYPE_NONE, 0);
-	g_signal_set_va_marshaller (signals[UNDO],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            g_cclosure_marshal_VOID__VOIDv);
-
-	signals[REDO] =
-		g_signal_new ("redo",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-			      G_STRUCT_OFFSET (GtkSourceViewClass, redo),
-			      NULL, NULL,
-			      g_cclosure_marshal_VOID__VOID,
-			      G_TYPE_NONE, 0);
-	g_signal_set_va_marshaller (signals[REDO],
-	                            G_TYPE_FROM_CLASS (klass),
-	                            g_cclosure_marshal_VOID__VOIDv);
 
 	/**
 	 * GtkSourceView::show-completion:
@@ -948,18 +918,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 
 	binding_set = gtk_binding_set_by_class (klass);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_z,
-				      GDK_CONTROL_MASK,
-				      "undo", 0);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_z,
-				      GDK_CONTROL_MASK | GDK_SHIFT_MASK,
-				      "redo", 0);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_F14,
-				      0,
-				      "undo", 0);
 	gtk_binding_entry_add_signal (binding_set,
 				      GDK_KEY_space,
 				      GDK_CONTROL_MASK,
@@ -1682,42 +1640,7 @@ scroll_to_insert (GtkSourceView *view,
 
 		gtk_adjustment_set_value (adjustment, position);
 	}
-}
 
-static void
-gtk_source_view_undo (GtkSourceView *view)
-{
-	GtkTextBuffer *buffer;
-
-	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
-
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-
-	if (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) &&
-	    GTK_SOURCE_IS_BUFFER (buffer) &&
-	    gtk_source_buffer_can_undo (GTK_SOURCE_BUFFER (buffer)))
-	{
-		gtk_source_buffer_undo (GTK_SOURCE_BUFFER (buffer));
-		scroll_to_insert (view, buffer);
-	}
-}
-
-static void
-gtk_source_view_redo (GtkSourceView *view)
-{
-	GtkTextBuffer *buffer;
-
-	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
-
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-
-	if (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) &&
-	    GTK_SOURCE_IS_BUFFER (buffer) &&
-	    gtk_source_buffer_can_redo (GTK_SOURCE_BUFFER (buffer)))
-	{
-		gtk_source_buffer_redo (GTK_SOURCE_BUFFER (buffer));
-		scroll_to_insert (view, buffer);
-	}
 }
 
 static void

@@ -87,8 +87,6 @@ struct _GtkSourceViewClass
 {
 	GtkTextViewClass parent_class;
 
-	void (*undo)                (GtkSourceView *view);
-	void (*redo)                (GtkSourceView *view);
 	void (*line_mark_activated) (GtkSourceView *view,
 	                             GtkTextIter   *iter,
 	                             GdkEvent      *event);

@@ -94,9 +94,6 @@ struct _GtkSourceBufferClass
 	GtkTextBufferClass parent_class;
 
 	/* Signals */
-	void (*undo)            (GtkSourceBuffer *buffer);
-	void (*redo)            (GtkSourceBuffer *buffer);
-
 	void (*bracket_matched) (GtkSourceBuffer           *buffer,
 	                         GtkTextIter               *iter,
 	                         GtkSourceBracketMatchType  state);
@@ -120,19 +117,10 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 void                   gtk_source_buffer_set_highlight_matching_brackets       (GtkSourceBuffer         *buffer,
                                                                                 gboolean                 highlight);
 GTK_SOURCE_AVAILABLE_IN_ALL
-gint                   gtk_source_buffer_get_max_undo_levels                   (GtkSourceBuffer         *buffer);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                   gtk_source_buffer_set_max_undo_levels                   (GtkSourceBuffer         *buffer,
-                                                                                gint                     max_undo_levels);
-GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceLanguage     *gtk_source_buffer_get_language                          (GtkSourceBuffer         *buffer);
 GTK_SOURCE_AVAILABLE_IN_ALL
 void                   gtk_source_buffer_set_language                          (GtkSourceBuffer         *buffer,
                                                                                 GtkSourceLanguage       *language);
-GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean               gtk_source_buffer_can_undo                              (GtkSourceBuffer         *buffer);
-GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean               gtk_source_buffer_can_redo                              (GtkSourceBuffer         *buffer);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyleScheme  *gtk_source_buffer_get_style_scheme                      (GtkSourceBuffer         *buffer);
 GTK_SOURCE_AVAILABLE_IN_ALL
@@ -142,14 +130,6 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 void                   gtk_source_buffer_ensure_highlight                      (GtkSourceBuffer         *buffer,
                                                                                 const GtkTextIter       *start,
                                                                                 const GtkTextIter       *end);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                   gtk_source_buffer_undo                                  (GtkSourceBuffer         *buffer);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                   gtk_source_buffer_redo                                  (GtkSourceBuffer         *buffer);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                   gtk_source_buffer_begin_not_undoable_action             (GtkSourceBuffer         *buffer);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                   gtk_source_buffer_end_not_undoable_action               (GtkSourceBuffer         *buffer);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceMark         *gtk_source_buffer_create_source_mark                    (GtkSourceBuffer         *buffer,
                                                                                 const gchar             *name,
@@ -206,11 +186,6 @@ void                   gtk_source_buffer_sort_lines                            (
                                                                                 GtkTextIter             *end,
                                                                                 GtkSourceSortFlags       flags,
                                                                                 gint                     column);
-GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceUndoManager  *gtk_source_buffer_get_undo_manager                      (GtkSourceBuffer         *buffer);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                   gtk_source_buffer_set_undo_manager                      (GtkSourceBuffer         *buffer,
-                                                                                GtkSourceUndoManager    *manager);
 GTK_SOURCE_AVAILABLE_IN_3_14
 void                   gtk_source_buffer_set_implicit_trailing_newline         (GtkSourceBuffer         *buffer,
                                                                                 gboolean                 implicit_trailing_newline);

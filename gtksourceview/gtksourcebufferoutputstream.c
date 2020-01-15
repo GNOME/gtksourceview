@@ -192,12 +192,12 @@ gtk_source_buffer_output_stream_constructed (GObject *object)
 		return;
 	}
 
-	gtk_source_buffer_begin_not_undoable_action (stream->source_buffer);
+	gtk_text_buffer_begin_irreversible_action (GTK_TEXT_BUFFER (stream->source_buffer));
 
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (stream->source_buffer), "", 0);
 	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->source_buffer), FALSE);
 
-	gtk_source_buffer_end_not_undoable_action (stream->source_buffer);
+	gtk_text_buffer_end_irreversible_action (GTK_TEXT_BUFFER (stream->source_buffer));
 
 	G_OBJECT_CLASS (gtk_source_buffer_output_stream_parent_class)->constructed (object);
 }
@@ -765,7 +765,7 @@ end_append_text_to_document (GtkSourceBufferOutputStream *stream)
 	                              FALSE);
 
 	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (stream->source_buffer));
-	gtk_source_buffer_end_not_undoable_action (stream->source_buffer);
+	gtk_text_buffer_end_irreversible_action (GTK_TEXT_BUFFER (stream->source_buffer));
 }
 
 static gboolean
@@ -947,7 +947,7 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		 * as only one action, for the features that rely on the user
 		 * action.
 		 */
-		gtk_source_buffer_begin_not_undoable_action (ostream->source_buffer);
+		gtk_text_buffer_begin_irreversible_action (GTK_TEXT_BUFFER (ostream->source_buffer));
 		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (ostream->source_buffer));
 
 		gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (ostream->source_buffer),
