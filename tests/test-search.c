@@ -154,7 +154,7 @@ static void
 search_entry_changed_cb (TestSearch *search,
 			 GtkEntry   *entry)
 {
-	const gchar *text = gtk_entry_get_text (entry);
+	const gchar *text = gtk_editable_get_text (GTK_EDITABLE (entry));
 	gchar *unescaped_text = gtk_source_utils_unescape_search_text (text);
 
 	gtk_source_search_settings_set_search_text (search->priv->search_settings, unescaped_text);
@@ -270,7 +270,7 @@ button_replace_clicked_cb (TestSearch *search,
 	gtk_source_search_context_replace (search->priv->search_context,
 					   &match_start,
 					   &match_end,
-					   gtk_entry_get_text (search->priv->replace_entry),
+					   gtk_editable_get_text (GTK_EDITABLE (search->priv->replace_entry)),
 					   replace_length,
 					   NULL);
 
@@ -293,7 +293,7 @@ button_replace_all_clicked_cb (TestSearch *search,
 	gint replace_length = gtk_entry_buffer_get_bytes (entry_buffer);
 
 	gtk_source_search_context_replace_all (search->priv->search_context,
-					       gtk_entry_get_text (search->priv->replace_entry),
+					       gtk_editable_get_text (GTK_EDITABLE (search->priv->replace_entry)),
 					       replace_length,
 					       NULL);
 }
@@ -462,7 +462,7 @@ main (gint argc, gchar *argv[])
 	GtkWidget *window;
 	TestSearch *search;
 
-	gtk_init (&argc, &argv);
+	gtk_init ();
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 

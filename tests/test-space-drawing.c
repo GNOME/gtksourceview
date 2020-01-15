@@ -141,14 +141,14 @@ create_window (void)
 
 	gtk_container_add (GTK_CONTAINER (window), hgrid);
 
-	gtk_widget_show_all (window);
+	gtk_window_present (GTK_WINDOW (window));
 }
 
 gint
 main (gint    argc,
       gchar **argv)
 {
-	gtk_init (&argc, &argv);
+	gtk_init ();
 
 	create_window ();
 

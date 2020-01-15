@@ -61,6 +61,7 @@ struct _TestWidgetPrivate
 	GtkLabel *cursor_position_info;
 	GtkSourceStyleSchemeChooserButton *chooser_button;
 	GtkComboBoxText *background_pattern;
+	GtkWidget *top;
 };
 
 GType test_widget_get_type (void);
@@ -472,7 +473,7 @@ open_button_clicked_cb (TestWidget *self)
 	gint response;
 	static gchar *last_dir;
 
-	main_window = gtk_widget_get_toplevel (GTK_WIDGET (self->priv->view));
+	main_window = GTK_WIDGET (gtk_widget_get_root (GTK_WIDGET (self->priv->view)));
 
 	chooser = gtk_file_chooser_dialog_new ("Open file...",
 					       GTK_WINDOW (main_window),
@@ -780,15 +781,20 @@ mark_set_cb (GtkTextBuffer *buffer,
 }
 
 static void
-line_mark_activated_cb (GtkSourceGutter *gutter,
-			GtkTextIter     *iter,
-			GdkEventButton  *event,
-			TestWidget      *self)
+line_mark_activated_cb (GtkSourceGutter   *gutter,
+                        const GtkTextIter *iter,
+                        guint              button,
+                        GdkModifierType    state,
+                        gint               n_presses,
+                        TestWidget        *self)
 {
 	GSList *mark_list;
 	const gchar *mark_type;
 
-	mark_type = event->button == 1 ? MARK_TYPE_1 : MARK_TYPE_2;
+	if ((state & GDK_SHIFT_MASK) != 0)
+		mark_type = MARK_TYPE_2;
+	else
+		mark_type = MARK_TYPE_1;
 
 	/* get the marks already in the line */
 	mark_list = gtk_source_buffer_get_source_marks_at_line (self->priv->buffer,
@@ -980,15 +986,21 @@ test_widget_class_init (TestWidgetClass *klass)
 
 static void
 show_top_border_window_toggled_cb (GtkToggleButton *checkbutton,
-				   TestWidget      *self)
+                                   TestWidget      *self)
 {
 	gint size;
 
 	size = gtk_toggle_button_get_active (checkbutton) ? 20 : 0;
 
-	gtk_text_view_set_border_window_size (GTK_TEXT_VIEW (self->priv->view),
-					      GTK_TEXT_WINDOW_TOP,
-					      size);
+	if (self->priv->top == NULL)
+	{
+		self->priv->top = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+		gtk_text_view_set_gutter (GTK_TEXT_VIEW (self->priv->view),
+		                          GTK_TEXT_WINDOW_TOP,
+		                          GTK_WIDGET (self->priv->top));
+	}
+
+	gtk_widget_set_size_request (self->priv->top, -1, size);
 }
 
 static void
@@ -1085,7 +1097,7 @@ main (int argc, char *argv[])
 	GtkWidget *window;
 	TestWidget *test_widget;
 
-	gtk_init (&argc, &argv);
+	gtk_init ();
 	gtk_source_init ();
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);

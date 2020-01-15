@@ -58,7 +58,7 @@ main (int argc, char *argv[])
 	GtkTextSearchFlags flags;
 	gchar *regex_pattern;
 
-	gtk_init (&argc, &argv);
+	gtk_init ();
 
 	buffer = gtk_source_buffer_new (NULL);
 
