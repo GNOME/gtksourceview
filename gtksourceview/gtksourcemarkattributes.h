@@ -60,7 +60,7 @@ void                     gtk_source_mark_attributes_set_pixbuf         (GtkSourc
 GTK_SOURCE_AVAILABLE_IN_ALL
 const GdkPixbuf         *gtk_source_mark_attributes_get_pixbuf         (GtkSourceMarkAttributes *attributes);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const GdkPixbuf         *gtk_source_mark_attributes_render_icon        (GtkSourceMarkAttributes *attributes,
+GdkPaintable            *gtk_source_mark_attributes_render_icon        (GtkSourceMarkAttributes *attributes,
                                                                         GtkWidget               *widget,
                                                                         gint                     size);
 GTK_SOURCE_AVAILABLE_IN_ALL
