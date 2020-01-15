@@ -108,7 +108,6 @@
 #include "gtksourcecompletioninfo-private.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
-#include "gtksourcecompletioncontainer-private.h"
 #include "gtksourcecompletioncontext-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksource-marshal.h"
@@ -2241,13 +2240,8 @@ gtk_source_completion_constructed (GObject *object)
 	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (object);
 	GError *error = NULL;
 	GtkBuilder *builder = gtk_builder_new ();
-	GtkSourceCompletionContainer *container = _gtk_source_completion_container_new ();
-	g_object_ref_sink (container);
 
 	gtk_builder_set_translation_domain (builder, GETTEXT_PACKAGE);
-
-	/* GtkSourceCompletionContainer is a private type. */
-	gtk_builder_expose_object (builder, "completion_container", G_OBJECT (container));
 
 	gtk_builder_add_from_resource (builder,
 				       "/org/gnome/gtksourceview/ui/gtksourcecompletion.ui",
@@ -2264,7 +2258,6 @@ gtk_source_completion_constructed (GObject *object)
 	connect_style_context (completion);
 
 	g_object_unref (builder);
-	g_object_unref (container);
 
 	G_OBJECT_CLASS (gtk_source_completion_parent_class)->constructed (object);
 }

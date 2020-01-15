@@ -90,7 +90,6 @@ core_private_c = files([
   'gtksourcebufferinputstream.c',
   'gtksourcebufferinternal.c',
   'gtksourcebufferoutputstream.c',
-  'gtksourcecompletioncontainer.c',
   'gtksourcecompletionmodel.c',
   'gtksourcecontextengine.c',
   'gtksourceengine.c',
