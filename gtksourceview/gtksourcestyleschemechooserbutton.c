@@ -176,7 +176,7 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 		return;
 	}
 
-	parent = gtk_widget_get_toplevel (GTK_WIDGET (button));
+	parent = GTK_WIDGET (gtk_widget_get_root (GTK_WIDGET (button)));
 
 	/* TODO: have a ChooserDialog? */
 	priv->dialog = dialog = gtk_dialog_new_with_buttons (_("Select a Style"),
@@ -203,7 +203,7 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 
 	gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (priv->chooser));
 
-	if (gtk_widget_is_toplevel (parent) && GTK_IS_WINDOW (parent))
+	if (GTK_IS_ROOT (parent) && GTK_IS_WINDOW (parent))
 	{
 		if (GTK_WINDOW (parent) != gtk_window_get_transient_for (GTK_WINDOW (dialog)))
 		{
