@@ -738,34 +738,34 @@ gtk_source_completion_activate_proposal (GtkSourceCompletion *completion)
 static void
 update_info_position (GtkSourceCompletion *completion)
 {
-	GdkDisplay *display;
-	GdkMonitor *monitor;
-	GdkWindow *window;
+	GdkSurface *main_surface;
+	GdkSurface *info_surface;
 	GdkRectangle geom;
-	gint x, y;
-	gint width, height;
-	gint info_width;
 
-	gtk_window_get_position (GTK_WINDOW (completion->main_window), &x, &y);
-	gtk_window_get_size (GTK_WINDOW (completion->main_window), &width, &height);
-	gtk_window_get_size (GTK_WINDOW (completion->info_window), &info_width, NULL);
-
-	display = gtk_widget_get_display (GTK_WIDGET (completion->main_window));
-	window = gtk_widget_get_window (GTK_WIDGET (completion->main_window));
-	monitor = gdk_display_get_monitor_at_window (display, window);
-	gdk_monitor_get_geometry (monitor, &geom);
-
-	/* Determine on which side to place it */
-	if (x + width + info_width >= geom.width)
+	if (!GTK_IS_NATIVE (completion->main_window) ||
+	    !GTK_IS_NATIVE (completion->info_window))
 	{
-		x -= info_width;
-	}
-	else
-	{
-		x += width;
+		return;
 	}
 
-	gtk_window_move (GTK_WINDOW (completion->info_window), x, y);
+	main_surface = gtk_native_get_surface (GTK_NATIVE (completion->main_window));
+	info_surface = gtk_native_get_surface (GTK_NATIVE (completion->info_window));
+
+	if (main_surface == NULL || info_surface == NULL)
+	{
+		return;
+	}
+
+	gdk_surface_get_position (main_surface, &geom.x, &geom.y);
+	geom.width = gdk_surface_get_width (main_surface);
+	geom.height = gdk_surface_get_height (main_surface);
+
+	gdk_surface_move_to_rect (info_surface,
+	                          &geom,
+	                          GDK_GRAVITY_NORTH_EAST,
+	                          GDK_GRAVITY_NORTH_WEST,
+	                          GDK_ANCHOR_FLIP_X,
+	                          0, 0);
 }
 
 static GtkSourceCompletionProvider *
@@ -1259,15 +1259,6 @@ selection_changed_cb (GtkTreeSelection    *selection,
 	{
 		update_window_position (completion);
 	}
-}
-
-static gboolean
-gtk_source_completion_configure_event (GtkWidget           *widget,
-                                       GdkEventConfigure   *event,
-                                       GtkSourceCompletion *completion)
-{
-	update_info_position (completion);
-	return FALSE;
 }
 
 static gboolean
@@ -2181,11 +2172,6 @@ init_main_window (GtkSourceCompletion *completion,
 
 	gtk_window_set_attached_to (GTK_WINDOW (completion->main_window),
 				    GTK_WIDGET (completion->view));
-
-	g_signal_connect (completion->main_window,
-			  "configure-event",
-			  G_CALLBACK (gtk_source_completion_configure_event),
-			  completion);
 
 	g_signal_connect_swapped (completion->main_window,
 				  "size-allocate",
