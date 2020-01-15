@@ -275,8 +275,6 @@ static void           gtk_source_view_get_lines            (GtkTextView         
                                                             GArray                  *line_heights,
                                                             GArray                  *numbers,
                                                             gint                    *countp);
-static gboolean       gtk_source_view_draw                 (GtkWidget               *widget,
-                                                            cairo_t                 *cr);
 static void           gtk_source_view_move_lines           (GtkSourceView           *view,
                                                             gboolean                 down);
 static void           gtk_source_view_move_words           (GtkSourceView           *view,
@@ -537,6 +535,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 							       FALSE,
 							       G_PARAM_READWRITE |
 							       G_PARAM_STATIC_STRINGS));
+
 	/**
 	 * GtkSourceView:show-line-marks:
 	 *
@@ -1577,6 +1576,7 @@ remove_source_buffer (GtkSourceView *view)
 		g_signal_handlers_disconnect_by_func (priv->source_buffer,
 						      buffer_has_selection_changed_cb,
 						      view);
+
 		g_signal_handlers_disconnect_by_func (priv->source_buffer,
 						      implicit_trailing_newline_changed_cb,
 						      view);
@@ -2471,15 +2471,17 @@ realign (gint  offset,
 
 static void
 gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
-                                               cairo_t       *cr)
+                                               GtkSnapshot   *snapshot)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
-	GdkRectangle clip;
+	GdkRectangle visible_rect;
 	gint x, y, x2, y2;
 	PangoContext *context;
 	PangoLayout *layout;
 	gint grid_width = 16;
 	gint grid_height = 16;
+
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
 
 	context = gtk_widget_get_pango_context (GTK_WIDGET (view));
 	layout = pango_layout_new (context);
@@ -2491,38 +2493,27 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 	grid_height = MAX (1, grid_height / 2);
 	grid_width = MAX (1, grid_width);
 
-	cairo_save (cr);
-
-	gdk_cairo_get_clip_rectangle (cr, &clip);
-
-	cairo_set_line_width (cr, 1.0);
-	gdk_cairo_set_source_rgba (cr, &priv->background_pattern_color);
-
 	/* Align our drawing position with a multiple of the grid size. */
-	x = realign (clip.x - grid_width, grid_width);
-	y = realign (clip.y - grid_height, grid_height);
-	x2 = realign (x + clip.width + grid_width * 2, grid_width);
-	y2 = realign (y + clip.height + grid_height * 2, grid_height);
+	x = realign (visible_rect.x - grid_width, grid_width);
+	y = realign (visible_rect.y - grid_height, grid_height);
+	x2 = realign (x + visible_rect.width + grid_width * 2, grid_width);
+	y2 = realign (y + visible_rect.height + grid_height * 2, grid_height);
 
-	for (; x <= x2; x += grid_width)
-	{
-		cairo_move_to (cr, x + .5, clip.y - .5);
-		cairo_line_to (cr, x + .5, clip.y + clip.height - .5);
-	}
-
-	for (; y <= y2; y += grid_height)
-	{
-		cairo_move_to (cr, clip.x + .5, y - .5);
-		cairo_line_to (cr, clip.x + clip.width + .5, y - .5);
-	}
-
-	cairo_stroke (cr);
-	cairo_restore (cr);
+	gtk_snapshot_push_repeat (snapshot,
+	                          &GRAPHENE_RECT_INIT (x, y, x2 - x, y2 - y),
+	                          &GRAPHENE_RECT_INIT (x, y, grid_width, grid_height));
+	gtk_snapshot_append_color (snapshot,
+	                           &priv->background_pattern_color,
+	                           &GRAPHENE_RECT_INIT (x, y, 1, grid_height));
+	gtk_snapshot_append_color (snapshot,
+	                           &priv->background_pattern_color,
+	                           &GRAPHENE_RECT_INIT (x, y, grid_width, 1));
+	gtk_snapshot_pop (snapshot);
 }
 
 static void
 gtk_source_view_paint_current_line_highlight (GtkSourceView *view,
-                                              cairo_t       *cr)
+                                              GtkSnapshot   *snapshot)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkTextBuffer *buffer;
@@ -2537,101 +2528,65 @@ gtk_source_view_paint_current_line_highlight (GtkSourceView *view,
 	gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view), &cur, &y, &height);
 
 	gtk_source_view_paint_line_background (GTK_TEXT_VIEW (view),
-					       cr,
+					       snapshot,
 					       y, height,
 					       &priv->current_line_color);
 }
 
 static void
-gtk_source_view_draw_layer (GtkTextView      *text_view,
-                            GtkTextViewLayer  layer,
-                            cairo_t          *cr)
+gtk_source_view_snapshot_layer (GtkTextView      *text_view,
+                                GtkTextViewLayer  layer,
+                                GtkSnapshot      *snapshot)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (text_view);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 
-	cairo_save (cr);
+	gtk_snapshot_save (snapshot);
 
 	if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
 	{
-		gtk_source_view_ensure_redrawn_rect_is_highlighted (view, cr);
-
 		if (priv->background_pattern == GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID &&
 		    priv->background_pattern_color_set)
 		{
-			gtk_source_view_paint_background_pattern_grid (view, cr);
+			gtk_source_view_paint_background_pattern_grid (view, snapshot);
 		}
 
 		if (gtk_widget_is_sensitive (GTK_WIDGET (view)) &&
 		    priv->highlight_current_line &&
 		    priv->current_line_color_set)
 		{
-			gtk_source_view_paint_current_line_highlight (view, cr);
+			gtk_source_view_paint_current_line_highlight (view, snapshot);
 		}
 
-		gtk_source_view_paint_marks_background (view, cr);
+		gtk_source_view_paint_marks_background (view, snapshot);
 	}
 	else if (layer == GTK_TEXT_VIEW_LAYER_ABOVE_TEXT)
 	{
 		/* Draw the right margin vertical line + overlay. */
 		if (priv->show_right_margin)
 		{
-			gtk_source_view_paint_right_margin (view, cr);
+			gtk_source_view_paint_right_margin (view, snapshot);
 		}
 
 		if (priv->space_drawer != NULL)
 		{
-			_gtk_source_space_drawer_draw (priv->space_drawer, view, cr);
+			_gtk_source_space_drawer_draw (priv->space_drawer, view, snapshot);
 		}
 	}
 
-	cairo_restore (cr);
+	gtk_snapshot_restore (snapshot);
 }
 
-static gboolean
-gtk_source_view_draw (GtkWidget *widget,
-                      cairo_t   *cr)
+static void
+gtk_source_view_snapshot (GtkWidget   *widget,
+                          GtkSnapshot *snapshot)
 {
-	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
-	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
-	gboolean event_handled;
+	GdkRectangle visible_rect;
 
-#ifdef ENABLE_PROFILE
-	static GTimer *timer = NULL;
-	if (timer == NULL)
-	{
-		timer = g_timer_new ();
-	}
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
+	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
 
-	g_timer_start (timer);
-#endif
-
-	DEBUG ({
-		g_print ("> gtk_source_view_draw start\n");
-	});
-
-	event_handled = GTK_WIDGET_CLASS (gtk_source_view_parent_class)->draw (widget, cr);
-
-	if (priv->left_gutter != NULL)
-	{
-		_gtk_source_gutter_draw (priv->left_gutter, view, cr);
-	}
-
-	if (priv->right_gutter != NULL)
-	{
-		_gtk_source_gutter_draw (priv->right_gutter, view, cr);
-	}
-
-	PROFILE ({
-		g_timer_stop (timer);
-		g_print ("    gtk_source_view_draw time: %g (sec * 1000)\n",
-		         g_timer_elapsed (timer, NULL) * 1000);
-	});
-	DEBUG ({
-		g_print ("> gtk_source_view_draw end\n");
-	});
-
-	return event_handled;
+	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->snapshot (widget, snapshot);
 }
 
 /* This is a pretty important function... We call it when the tab_stop is changed,
