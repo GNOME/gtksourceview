@@ -727,7 +727,9 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * GtkSourceView::line-mark-activated:
 	 * @view: the #GtkSourceView
 	 * @iter: a #GtkTextIter
-	 * @event: the #GdkEvent that activated the event
+	 * @button: the button that was pressed
+	 * @state: the modifier state, if any
+	 * @n_presses: the number of presses
 	 *
 	 * Emitted when a line mark has been activated (for instance when there
 	 * was a button press in the line marks gutter). You can use @iter to
@@ -735,18 +737,20 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 */
 	signals[LINE_MARK_ACTIVATED] =
 		g_signal_new ("line-mark-activated",
-			      G_TYPE_FROM_CLASS (klass),
-			      G_SIGNAL_RUN_LAST,
-			      G_STRUCT_OFFSET (GtkSourceViewClass, line_mark_activated),
-			      NULL, NULL,
-			      _gtk_source_marshal_VOID__BOXED_BOXED,
-			      G_TYPE_NONE,
-			      2,
-			      GTK_TYPE_TEXT_ITER,
-			      GDK_TYPE_EVENT | G_SIGNAL_TYPE_STATIC_SCOPE);
+		              G_TYPE_FROM_CLASS (klass),
+		              G_SIGNAL_RUN_LAST,
+		              G_STRUCT_OFFSET (GtkSourceViewClass, line_mark_activated),
+		              NULL, NULL,
+		              _gtk_source_marshal_VOID__BOXED_UINT_FLAGS_INT,
+		              G_TYPE_NONE,
+		              4,
+		              GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
+		              G_TYPE_UINT,
+		              GDK_TYPE_MODIFIER_TYPE,
+		              G_TYPE_INT);
 	g_signal_set_va_marshaller (signals[LINE_MARK_ACTIVATED],
 	                            G_TYPE_FROM_CLASS (klass),
-	                            _gtk_source_marshal_VOID__BOXED_BOXEDv);
+	                            _gtk_source_marshal_VOID__BOXED_UINT_FLAGS_INTv);
 
 	/**
 	 * GtkSourceView::move-lines:
@@ -2922,14 +2926,13 @@ static void
 gutter_renderer_marks_activate (GtkSourceGutterRenderer *renderer,
                                 GtkTextIter             *iter,
                                 const GdkRectangle      *area,
-                                GdkEvent                *event,
+                                guint                    button,
+                                GdkModifierType          state,
+                                gint                     n_presses,
                                 GtkSourceView           *view)
 {
-	g_signal_emit (view,
-	               signals[LINE_MARK_ACTIVATED],
-	               0,
-	               iter,
-	               event);
+	g_signal_emit (view, signals[LINE_MARK_ACTIVATED], 0,
+	               iter, button, state, n_presses);
 }
 
 /**
