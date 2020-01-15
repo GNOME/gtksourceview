@@ -136,6 +136,7 @@
 
 enum
 {
+	CURSOR_MOVED,
 	HIGHLIGHT_UPDATED,
 	SOURCE_MARK_UPDATED,
 	UNDO,
@@ -369,6 +370,21 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 				      G_PARAM_STATIC_STRINGS);
 
 	g_object_class_install_properties (object_class, N_PROPERTIES, buffer_properties);
+
+	/**
+	 * GtkSourceBuffer::cursor-moved:
+	 * @buffer: a #GtkSourceBuffer
+	 *
+	 * The "cursor-moved" signal is emitted when then insertion mark has moved.
+	 *
+	 * Since: 5.0
+	 */
+	buffer_signals[CURSOR_MOVED] =
+		g_signal_new_class_handler ("cursor-moved",
+		                            G_OBJECT_CLASS_TYPE (object_class),
+		                            G_SIGNAL_RUN_LAST,
+		                            NULL, NULL, NULL, NULL,
+		                            G_TYPE_NONE, 0);
 
 	/**
 	 * GtkSourceBuffer::highlight-updated:
@@ -971,6 +987,8 @@ static void
 cursor_moved (GtkSourceBuffer *buffer)
 {
 	queue_bracket_highlighting_update (buffer);
+
+	g_signal_emit (buffer, buffer_signals[CURSOR_MOVED], 0);
 }
 
 static void
