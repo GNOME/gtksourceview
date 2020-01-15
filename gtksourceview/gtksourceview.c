@@ -1534,6 +1534,17 @@ buffer_style_scheme_changed_cb (GtkSourceBuffer *buffer,
 }
 
 static void
+buffer_has_selection_changed_cb (GtkSourceBuffer *buffer,
+				 GParamSpec      *pspec,
+				 GtkSourceView   *view)
+{
+	gtk_widget_action_set_enabled (GTK_WIDGET (view),
+				       "source.change-case",
+				       (gtk_text_view_get_editable (GTK_TEXT_VIEW (view)) &&
+					gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER (buffer))));
+}
+
+static void
 implicit_trailing_newline_changed_cb (GtkSourceBuffer *buffer,
                                       GParamSpec      *pspec,
                                       GtkSourceView   *view)
@@ -1563,6 +1574,9 @@ remove_source_buffer (GtkSourceView *view)
 						      buffer_style_scheme_changed_cb,
 						      view);
 
+		g_signal_handlers_disconnect_by_func (priv->source_buffer,
+						      buffer_has_selection_changed_cb,
+						      view);
 		g_signal_handlers_disconnect_by_func (priv->source_buffer,
 						      implicit_trailing_newline_changed_cb,
 						      view);
@@ -1615,6 +1629,11 @@ set_source_buffer (GtkSourceView *view,
 		g_signal_connect (buffer,
 				  "notify::implicit-trailing-newline",
 				  G_CALLBACK (implicit_trailing_newline_changed_cb),
+				  view);
+
+		g_signal_connect (buffer,
+				  "notify::has-selection",
+				  G_CALLBACK (buffer_has_selection_changed_cb),
 				  view);
 
 		buffer_internal = _gtk_source_buffer_internal_get_from_buffer (priv->source_buffer);
