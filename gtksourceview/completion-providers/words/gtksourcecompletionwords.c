@@ -61,7 +61,7 @@ enum
 typedef struct
 {
 	gchar *name;
-	GdkPixbuf *icon;
+	GdkTexture *icon;
 
 	gchar *word;
 	gint word_len;
@@ -110,7 +110,7 @@ gtk_source_completion_words_get_name (GtkSourceCompletionProvider *self)
 	return g_strdup (priv->name);
 }
 
-static GdkPixbuf *
+static GdkTexture *
 gtk_source_completion_words_get_icon (GtkSourceCompletionProvider *self)
 {
 	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (self);
@@ -452,7 +452,7 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 		g_param_spec_object ("icon",
 				     "Icon",
 				     "The provider icon",
-				     GDK_TYPE_PIXBUF,
+				     GDK_TYPE_TEXTURE,
 				     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
 	properties[PROP_PROPOSALS_BATCH_SIZE] =
@@ -599,7 +599,7 @@ gtk_source_completion_words_init (GtkSourceCompletionWords *self)
  */
 GtkSourceCompletionWords *
 gtk_source_completion_words_new (const gchar *name,
-                                 GdkPixbuf   *icon)
+                                 GdkTexture  *icon)
 {
 	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_WORDS,
 	                     "name", name,
