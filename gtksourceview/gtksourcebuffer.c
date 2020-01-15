@@ -961,11 +961,11 @@ queue_bracket_highlighting_update (GtkSourceBuffer *buffer)
 	 * ::update() or ::after-paint() to synchronize this.
 	 */
 	priv->bracket_highlighting_timeout_id =
-		gdk_threads_add_timeout_full (G_PRIORITY_LOW,
-					      UPDATE_BRACKET_DELAY,
-					      bracket_highlighting_timeout_cb,
-					      buffer,
-					      NULL);
+		g_timeout_add_full (G_PRIORITY_LOW,
+		                    UPDATE_BRACKET_DELAY,
+		                    bracket_highlighting_timeout_cb,
+		                    buffer,
+		                    NULL);
 }
 
 /* Although this function is not really useful
