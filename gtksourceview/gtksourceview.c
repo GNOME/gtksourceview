@@ -1352,8 +1352,6 @@ gtk_source_view_dispose (GObject *object)
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 
 	g_clear_object (&priv->completion);
-	g_clear_object (&priv->left_gutter);
-	g_clear_object (&priv->right_gutter);
 	g_clear_object (&priv->style_scheme);
 	g_clear_object (&priv->space_drawer);
 
