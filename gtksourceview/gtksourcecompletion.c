@@ -634,25 +634,19 @@ gtk_source_completion_hide_default (GtkSourceCompletion *completion)
 
 static void
 gtk_source_completion_proposals_size_allocate (GtkSourceCompletion *completion,
-					       GtkAllocation       *allocation,
-					       GtkWidget           *widget)
+                                               GtkAllocation       *allocation,
+                                               GtkWidget           *widget)
 {
+	const gint horizontal_separator = 4; /* From _TREE_VIEW_HORIZONTAL_SEPARATOR */
 	GtkTreeViewColumn *column;
 	gint cell_offset = 0;
 	gint column_offset;
-	gint focus_padding;
-	gint horizontal_separator;
 	gint x_offset = 0;
 
 	if (!gtk_widget_get_realized (GTK_WIDGET (completion->tree_view_proposals)))
 	{
 		return;
 	}
-
-	gtk_widget_style_get (GTK_WIDGET (completion->tree_view_proposals),
-	                      "focus-padding", &focus_padding,
-	                      "horizontal-separator", &horizontal_separator,
-	                      NULL);
 
 	column = gtk_tree_view_get_column (completion->tree_view_proposals, 1);
 	column_offset = gtk_tree_view_column_get_x_offset (column);
@@ -661,7 +655,7 @@ gtk_source_completion_proposals_size_allocate (GtkSourceCompletion *completion,
 	                                        &cell_offset,
 	                                        NULL);
 
-	x_offset = column_offset + cell_offset + horizontal_separator + focus_padding;
+	x_offset = column_offset + cell_offset + horizontal_separator;
 
 	gtk_tree_view_convert_bin_window_to_widget_coords (completion->tree_view_proposals,
 	                                                   x_offset,
@@ -1592,7 +1586,6 @@ style_context_changed (GtkStyleContext     *style_context,
 	gtk_style_context_set_state (style_context, GTK_STATE_FLAG_NORMAL);
 
 	gtk_style_context_get (style_context,
-			       gtk_style_context_get_state (style_context),
 			       GTK_STYLE_PROPERTY_FONT, &font_desc,
 			       NULL);
 
@@ -2103,13 +2096,10 @@ init_tree_view (GtkSourceCompletion *completion,
 	gtk_style_context_set_state (style_context, GTK_STATE_FLAG_INSENSITIVE);
 
 	gtk_style_context_get (style_context,
-			       gtk_style_context_get_state (style_context),
 			       "background-color", &background_color,
 			       NULL);
 
-	gtk_style_context_get_color (style_context,
-				     gtk_style_context_get_state (style_context),
-				     &foreground_color);
+	gtk_style_context_get_color (style_context, &foreground_color);
 
 	gtk_style_context_restore (style_context);
 
@@ -2185,7 +2175,9 @@ init_main_window (GtkSourceCompletion *completion,
 	completion->selection_label = GTK_LABEL (gtk_builder_get_object (builder, "selection_label"));
 	completion->bottom_bar = GTK_WIDGET (gtk_builder_get_object (builder, "bottom_bar"));
 
-	gtk_container_set_border_width (GTK_CONTAINER (completion->main_window), 0);
+	g_object_set (completion->main_window,
+	              "margin", 0,
+	              NULL);
 
 	gtk_window_set_attached_to (GTK_WINDOW (completion->main_window),
 				    GTK_WIDGET (completion->view));
