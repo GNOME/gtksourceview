@@ -33,6 +33,6 @@ void _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 GTK_SOURCE_INTERNAL
 void _gtk_source_space_drawer_draw         (GtkSourceSpaceDrawer *drawer,
                                             GtkSourceView        *view,
-                                            cairo_t              *cr);
+                                            GtkSnapshot          *snapshot);
 
 G_END_DECLS
