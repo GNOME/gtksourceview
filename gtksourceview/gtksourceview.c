@@ -4807,20 +4807,28 @@ gtk_source_view_get_gutter (GtkSourceView     *view,
 	{
 		if (priv->left_gutter == NULL)
 		{
-			priv->left_gutter = _gtk_source_gutter_new (view, window_type);
+			priv->left_gutter = _gtk_source_gutter_new (window_type);
+			gtk_text_view_set_gutter (GTK_TEXT_VIEW (view),
+			                          GTK_TEXT_WINDOW_LEFT,
+			                          GTK_WIDGET (priv->left_gutter));
 		}
 
 		return priv->left_gutter;
 	}
-	else
+	else if (window_type == GTK_TEXT_WINDOW_RIGHT)
 	{
 		if (priv->right_gutter == NULL)
 		{
-			priv->right_gutter = _gtk_source_gutter_new (view, window_type);
+			priv->right_gutter = _gtk_source_gutter_new (window_type);
+			gtk_text_view_set_gutter (GTK_TEXT_VIEW (view),
+			                          GTK_TEXT_WINDOW_RIGHT,
+			                          GTK_WIDGET (priv->right_gutter));
 		}
 
 		return priv->right_gutter;
 	}
+
+	g_return_val_if_reached (NULL);
 }
 
 /**
