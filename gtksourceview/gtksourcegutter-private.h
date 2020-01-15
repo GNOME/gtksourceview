@@ -21,16 +21,16 @@
 #pragma once
 
 #include <gtk/gtk.h>
+
 #include "gtksourcetypes.h"
 
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-GtkSourceGutter *_gtk_source_gutter_new  (GtkSourceView     *view,
-                                          GtkTextWindowType  type);
+GtkSourceGutter      *_gtk_source_gutter_new        (GtkTextWindowType  type);
 G_GNUC_INTERNAL
-void             _gtk_source_gutter_draw (GtkSourceGutter   *gutter,
-                                          GtkSourceView     *view,
-                                          cairo_t           *cr);
+GtkSourceGutterLines *_gtk_source_gutter_get_lines  (GtkSourceGutter   *gutter);
+G_GNUC_INTERNAL
+void                  _gtk_source_gutter_queue_draw (GtkSourceGutter   *gutter);
 
 G_END_DECLS
