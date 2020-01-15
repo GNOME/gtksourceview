@@ -1284,14 +1284,19 @@ hide_completion_cb (GtkSourceCompletion *completion)
 }
 
 static gboolean
-view_key_press_event_cb (GtkSourceView       *view,
-			 GdkEventKey         *event,
-			 GtkSourceCompletion *completion)
+view_key_press_event_cb (GtkEventController  *key,
+                         guint                keyval,
+                         guint                keycode,
+                         GdkModifierType      state,
+                         GtkSourceCompletion *completion)
 {
 	static gboolean mnemonic_keyval_set = FALSE;
 	static guint mnemonic_keyval = GDK_KEY_VoidSymbol;
 	GdkModifierType mod;
 	GtkBindingSet *binding_set;
+
+	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (key));
+	g_assert (GTK_SOURCE_IS_COMPLETION (completion));
 
 	if (!gtk_widget_get_visible (GTK_WIDGET (completion->main_window)))
 	{
@@ -1310,11 +1315,11 @@ view_key_press_event_cb (GtkSourceView       *view,
 		g_object_unref (label);
 	}
 
-	mod = gtk_accelerator_get_default_mod_mask () & event->state;
+	mod = gtk_accelerator_get_default_mod_mask () & state;
 
 	/* Handle info button mnemonic */
 	if ((mod & GDK_MOD1_MASK) != 0 &&
-	    event->keyval == mnemonic_keyval &&
+	    keyval == mnemonic_keyval &&
 	    gtk_widget_get_sensitive (GTK_WIDGET (completion->info_button)))
 	{
 		gtk_toggle_button_set_active (completion->info_button,
@@ -1323,9 +1328,10 @@ view_key_press_event_cb (GtkSourceView       *view,
 	}
 
 	if ((mod & GDK_MOD1_MASK) != 0 &&
-	    GDK_KEY_0 <= event->keyval && event->keyval <= GDK_KEY_9)
+	    GDK_KEY_0 <= keyval &&
+	    keyval <= GDK_KEY_9)
 	{
-		if (activate_by_accelerator (completion, event->keyval - GDK_KEY_0))
+		if (activate_by_accelerator (completion, keyval - GDK_KEY_0))
 		{
 			return TRUE;
 		}
@@ -1333,10 +1339,7 @@ view_key_press_event_cb (GtkSourceView       *view,
 
 	binding_set = gtk_binding_set_by_class (G_OBJECT_GET_CLASS (completion));
 
-	if (gtk_binding_set_activate (binding_set,
-	                              event->keyval,
-	                              event->state,
-	                              G_OBJECT (completion)))
+	if (gtk_binding_set_activate (binding_set, keyval, state, G_OBJECT (completion)))
 	{
 		return TRUE;
 	}
@@ -1806,26 +1809,35 @@ static void
 connect_view (GtkSourceCompletion *completion,
 	      GtkSourceView       *view)
 {
+	GtkEventController *key;
+	GtkGesture *click;
+
 	g_assert (completion->view == NULL);
 	completion->view = view;
+
+	key = gtk_event_controller_key_new ();
+	gtk_widget_add_controller (GTK_WIDGET (view), key);
+
+	click = gtk_gesture_click_new ();
+	gtk_widget_add_controller (GTK_WIDGET (view), GTK_EVENT_CONTROLLER (click));
 
 	g_object_add_weak_pointer (G_OBJECT (view),
 				   (gpointer *)&completion->view);
 
-	g_signal_connect_object (completion->view,
-				 "focus-out-event",
+	g_signal_connect_object (click,
+				 "pressed",
 				 G_CALLBACK (hide_completion_cb),
 				 completion,
 				 G_CONNECT_SWAPPED);
 
-	g_signal_connect_object (completion->view,
-				 "button-press-event",
+	g_signal_connect_object (key,
+				 "focus-out",
 				 G_CALLBACK (hide_completion_cb),
 				 completion,
 				 G_CONNECT_SWAPPED);
 
-	g_signal_connect_object (completion->view,
-				 "key-press-event",
+	g_signal_connect_object (key,
+				 "key-pressed",
 				 G_CALLBACK (view_key_press_event_cb),
 				 completion,
 				 0);
