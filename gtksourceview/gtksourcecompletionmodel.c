@@ -1,5 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- *
- *
+/*
  * This file is part of GtkSourceView
  *
  * Copyright 2009 - Jesse van den Kieboom <jessevdk@gnome.org>

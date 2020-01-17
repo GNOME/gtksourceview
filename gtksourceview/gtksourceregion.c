@@ -1,5 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8 -*-
- * gtksourceregion.c - GtkTextMark-based region utility
+/*
  * This file is part of GtkSourceView
  *
  * Copyright 2002 Gustavo Giráldez <gustavo.giraldez@gmx.net>
