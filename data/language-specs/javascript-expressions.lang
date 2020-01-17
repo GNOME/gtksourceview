@@ -283,6 +283,9 @@
          obj['property']
          fn()
          tag`template`
+         obj?.property
+         obj?.[expr]
+         func?.()
     -->
 
     <context id="_post-primary-expression">
@@ -323,6 +326,28 @@
 
           </include>
         </context> <!-- /_bracket-property-accessors -->
+
+        <!-- ES2020 -->
+        <!-- <OptionalChain> (part of) -->
+        <context id="_optional-chain">
+          <start>\?\.(?![0-9])</start>
+          <end>\%{js:before-next-token}</end>
+          <include>
+            <context ref="js:embedded-lang-hooks"/>
+            <context ref="js:comments"/>
+
+            <context id="_optional-chain-content">
+              <include>
+                <!-- only match dot-property accessor content here
+                     this context will end early for other cases
+                -->
+                <context ref="js-val:properties-methods"/>
+                <context ref="js:identifier"/>
+              </include>
+            </context> <!-- /_optional-chain-content -->
+
+          </include>
+        </context> <!-- /_optional-chain -->
 
         <context ref="_function-arguments-lists"/>
         <context ref="js-lit:template-literals"/>
@@ -551,6 +576,7 @@
         [+/*%-] =? |                         # arithmetic (assignment)
         [!=]==? |                            # equality
         &amp;&amp; | \|\| |                  # logical
+        \?\? |                               # nullish coalescing (ES2020)
         [&amp;|^] =? |                       # bitwise logical (assignment)
         (?: &lt;&lt; | &gt;&gt;&gt;? ) =? |  # bitwise shift (assignment)
         [&lt;&gt;]=? |                       # relational

@@ -497,6 +497,9 @@ a = class extends Bar {
 ( 1 || 2 );
 ( !1 );
 
+// Nullish coalescing (ES2020)
+( a ?? 1 );
+
 // Assignment
 ( a = 1 );
 ( a += 1 );
@@ -565,6 +568,17 @@ fn(x, y,);
 /* Tagged template */
 
 myTag`That ${ person } is ${ age }`;
+
+
+/*
+ * Optional chaining (ES2020)
+ */
+
+obj?.prototype;
+obj?.['constructor'];
+func?.(1, 2, ...args);
+
+foo?.3:0; // ternary operator, not optional chaining
 
 
 /*
@@ -671,6 +685,7 @@ export default class {}
 export { a as default, b };
 
 export * from 'module';
+export * as ns from 'module';
 export { a, b } from 'module';
 export { x as a, y as b, } from 'module';
 export { default } from 'module';
@@ -683,7 +698,7 @@ import { x as a } from "module";
 import { x as a, y as b } from "module";
 import { default as a } from "module";
 import a, { b } from "module";
-import a, * as nm from "module";
+import a, * as ns from "module";
 import "module";
 
 

@@ -601,16 +601,6 @@ a = import . /* comment
 a = import // comment
 .meta.__dirname; // incorrectly highlighted
 
-// Optional chaining (stage 3 proposal)
-obj?.prop;
-obj?.[expr];
-func?.(...args);
-foo?.3:0; // correctly highlighted as the ternary operator, not optional chaining
-
-// Nullish coalescing (stage 3 proposal)
-( obj ?? 'default value' );
-a = foo ?? 1, bar ?? 2;
-
 // Type arguments for function calls
 fn<string>();
 fn<string, number>();
@@ -1152,6 +1142,9 @@ a = class extends Bar {
 ( 1 || 2 );
 ( !1 );
 
+// Nullish coalescing (ES2020)
+( a ?? 1 );
+
 // Assignment
 ( a = 1 );
 ( a += 1 );
@@ -1220,6 +1213,17 @@ fn(x, y,);
 /* Tagged template */
 
 myTag`That ${ person } is ${ age }`;
+
+
+/*
+ * Optional chaining (ES2020)
+ */
+
+obj?.prototype;
+obj?.['constructor'];
+func?.(1, 2, ...args);
+
+foo?.3:0; // ternary operator, not optional chaining
 
 
 /*
@@ -1326,6 +1330,7 @@ export default class {}
 export { a as default, b };
 
 export * from 'module';
+export * as ns from 'module';
 export { a, b } from 'module';
 export { x as a, y as b, } from 'module';
 export { default } from 'module';
@@ -1338,7 +1343,7 @@ import { x as a } from "module";
 import { x as a, y as b } from "module";
 import { default as a } from "module";
 import a, { b } from "module";
-import a, * as nm from "module";
+import a, * as ns from "module";
 import "module";
 
 

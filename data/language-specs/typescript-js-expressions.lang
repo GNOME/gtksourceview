@@ -138,27 +138,6 @@
     </context> <!-- /_function-call-type-arguments-lists -->
 
 
-    <!-- # Optional chaining: stage 3 proposal
-
-         obj?.prop
-         obj?.[expr]
-         func?.(...args)
-    -->
-
-    <!-- we only add the dot-property accessor case
-         other cases will still be matched (the context will end early)
-    -->
-    <context id="_optional-dot-property-accessors">
-      <start>\?\.(?![0-9])</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="typescript:optional-chaining-operator"/>
-        <context ref="js:comments"/>
-        <context ref="js-expr:_dot-property-accessor-content"/>
-      </include>
-    </context> <!-- /_optional-dot-property-accessors -->
-
-
     <!-- # Post-primary expression -->
 
     <!-- replaces js-expr:_post-primary-expression -->
@@ -166,7 +145,6 @@
       <include>
         <context ref="_non-null-assertion-operators"/>
         <context ref="_function-call-type-arguments-lists"/>
-        <context ref="_optional-dot-property-accessors"/>
         <context ref="js-expr:_post-primary-expression" original="true"/>
       </include>
     </context> <!-- /post-primary-expression -->
@@ -181,50 +159,6 @@
         <context ref="js-expr:_pre-lhs-expression" original="true"/>
       </include>
     </context> <!-- /pre-lhs-expression -->
-
-
-    <!-- # Binary operators -->
-
-    <!-- excluding comma operator -->
-    <define-regex id="_binary-operator" extended="true">
-      (?:
-        \*\* =? |                            # exponentiation (assignment) (ES2016)
-        [+/*%-] =? |                         # arithmetic (assignment)
-        [!=]==? |                            # equality
-        &amp;&amp; | \|\| |                  # logical
-        \?\? |                               # nullish coalescing (stage 3 proposal)
-        [&amp;|^] =? |                       # bitwise logical (assignment)
-        (?: &lt;&lt; | &gt;&gt;&gt;? ) =? |  # bitwise shift (assignment)
-        [&lt;&gt;]=? |                       # relational
-        =                                    # assignment
-      )
-    </define-regex> <!-- /_binary-operator -->
-
-    <!-- ## Without comma -->
-
-    <!-- replaces js-expr:_binary-operators-without-comma -->
-    <context id="binary-operators-without-comma">
-      <start>\%{_binary-operator}</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="js:binary-operator"/>
-        <context ref="js:comments"/>
-        <context ref="js-expr:_binary-operator-without-comma-content"/>
-      </include>
-    </context> <!-- /binary-operators-without-comma -->
-
-    <!-- ## With comma -->
-
-    <!-- replaces js-expr:_binary-operators-with-comma -->
-    <context id="binary-operators-with-comma">
-      <start>(\%{_binary-operator}|,)</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="js:binary-operator"/>
-        <context ref="js:comments"/>
-        <context ref="js-expr:_binary-operator-with-comma-content"/>
-      </include>
-    </context> <!-- /binary-operators-with-comma -->
 
 
     <!-- # as operator (type assertion / cast)

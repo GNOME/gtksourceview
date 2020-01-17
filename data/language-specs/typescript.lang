@@ -76,7 +76,6 @@
 
     <!-- JavaScript expressions -->
     <style id="non-null-assertion-operator"                   name="Non-null assertion operator"/>
-    <style id="optional-chaining-operator"                    name="Optional chaining operator"/>
 
     <!-- JavaScript statements -->
     <style id="global-augmentation"                           name="Global augmentation"/>
@@ -775,11 +774,6 @@
     <!-- ### Pre-LHS expression -->
 
     <replace id="js-expr:_pre-lhs-expression" ref="typescript-js-expr:pre-lhs-expression"/>
-
-    <!-- ### Binary operators -->
-
-    <replace id="js-expr:_binary-operators-without-comma" ref="typescript-js-expr:binary-operators-without-comma"/>
-    <replace id="js-expr:_binary-operators-with-comma" ref="typescript-js-expr:binary-operators-with-comma"/>
 
     <!-- ### Post-LHS expression -->
 
