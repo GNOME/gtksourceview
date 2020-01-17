@@ -1,4 +1,3 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * Copyright 2015 Christian Hergert <christian@hergert.me>
  * Copyright 2015 Ignacio Casal Quinteiro <icq@gnome.org>

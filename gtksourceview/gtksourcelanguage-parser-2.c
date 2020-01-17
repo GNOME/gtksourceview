@@ -1,5 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *
+/*
  * Language specification parser for 2.0 version .lang files
  * This file is part of GtkSourceView
  *
