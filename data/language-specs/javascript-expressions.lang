@@ -576,6 +576,7 @@
         [+/*%-] =? |                         # arithmetic (assignment)
         [!=]==? |                            # equality
         &amp;&amp; | \|\| |                  # logical
+        \?\? |                               # nullish coalescing (ES2020)
         [&amp;|^] =? |                       # bitwise logical (assignment)
         (?: &lt;&lt; | &gt;&gt;&gt;? ) =? |  # bitwise shift (assignment)
         [&lt;&gt;]=? |                       # relational

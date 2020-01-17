@@ -601,10 +601,6 @@ a = import . /* comment
 a = import // comment
 .meta.__dirname; // incorrectly highlighted
 
-// Nullish coalescing (stage 3 proposal)
-( obj ?? 'default value' );
-a = foo ?? 1, bar ?? 2;
-
 // Type arguments for function calls
 fn<string>();
 fn<string, number>();
@@ -1145,6 +1141,9 @@ a = class extends Bar {
 ( 1 && 2 );
 ( 1 || 2 );
 ( !1 );
+
+// Nullish coalescing (ES2020)
+( a ?? 1 );
 
 // Assignment
 ( a = 1 );

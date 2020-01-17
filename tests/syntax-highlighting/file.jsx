@@ -497,6 +497,9 @@ a = class extends Bar {
 ( 1 || 2 );
 ( !1 );
 
+// Nullish coalescing (ES2020)
+( a ?? 1 );
+
 // Assignment
 ( a = 1 );
 ( a += 1 );
