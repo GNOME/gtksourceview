@@ -28,6 +28,8 @@ conventions, but for new code it is better to follow them, for consistency.
   - Avoid trailing whitespace.
 
   - Indent the C code with tabulations with a width of eight characters.
+    However, alignment after matching the current scope should be done
+    with spaces.
 
   - All blocks should be surrounded by curly braces, even one-line blocks. The
     curly braces must be placed on their own lines. Like this:
@@ -45,9 +47,12 @@ conventions, but for new code it is better to follow them, for consistency.
     modifying a block of code, if it switches between one and two lines, we
     don't need to add/remove the curly braces all the time.
 
-  - Follow the C89 standard. In particular, no "//"-style comments.
+  - Follow the C99 standard but without "//"-style comments. Some restrictions
+    apply but relatively should match GTK and GLib.
 
-  - The files should have a modeline for the indentation style.
+  - The files should not have modelines included. A .editorconfig file is
+    provided for configuration indentation and many editors have support for
+    using them.
 
   - Do not be cheap about blank lines, spacing the code vertically helps
     readability. However never use two consecutive blank lines, there is really
@@ -57,9 +62,10 @@ conventions, but for new code it is better to follow them, for consistency.
     code.
 
 See also:
-https://developer.gnome.org/programming-guidelines/stable/
-https://wiki.gnome.org/Projects/GTK%2B/BestPractices
-https://wiki.gnome.org/Projects/GLib/CompilerRequirements
+
+  - https://developer.gnome.org/programming-guidelines/stable/
+  - https://wiki.gnome.org/Projects/GTK%2B/BestPractices
+  - https://wiki.gnome.org/Projects/GLib/CompilerRequirements
 
 Programming best-practices
 --------------------------
@@ -71,9 +77,9 @@ old. So when editing the code, we should try to make it better, not worse.
 Here are some general advices:
 
   - Simplicity: the simpler code the better. Any trick that seem smart when you
-    write it is going to bite your ass later when reading the code. In fact, a
+    write it is going to bite you later when reading the code. In fact, the
     code is read far more often than it is written: for fixing a bug, adding a
-    feature, or simply see how it is implemented. So making the code harder to
+    feature, or simply see how it is implemented. Making the code harder to
     read is a net loss.
 
   - Avoid code duplication, make an effort to refactor common code into utility
@@ -127,6 +133,14 @@ Here are some general advices:
   - Contribute below on the stack. Fix a problem at the right place, instead of
     writing hacks or heuristics to work around a bug or a lack of feature in an
     underlying library.
+
+  - Public API should have precondition guards using g_return_if_fail() or
+    g_return_val_if_fail(). Optionally, you may do this before returnin values
+    from the function to help catch bugs earlier in the development cycle.
+
+    Private functions (such as those with static) should use g_assert() to
+    validate invariants. These are used in debug builds but can be compiled
+    out of production/release builds.
 
 See also:
 https://blogs.gnome.org/swilmet/2012/08/01/about-code-quality-and-maintainability/
