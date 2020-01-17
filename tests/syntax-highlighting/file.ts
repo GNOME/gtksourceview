@@ -1218,6 +1218,7 @@ export default class {}
 export { a as default, b };
 
 export * from 'module';
+export * as ns from 'module';
 export { a, b } from 'module';
 export { x as a, y as b, } from 'module';
 export { default } from 'module';
@@ -1230,7 +1231,7 @@ import { x as a } from "module";
 import { x as a, y as b } from "module";
 import { default as a } from "module";
 import a, { b } from "module";
-import a, * as nm from "module";
+import a, * as ns from "module";
 import "module";
 
 

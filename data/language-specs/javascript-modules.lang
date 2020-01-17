@@ -67,6 +67,54 @@
       </include>
     </context> <!-- /_ordered-from-module -->
 
+    <!-- ## (Import) all / as namespace
+
+         * from 'module';
+         * as ns from 'module';
+    -->
+
+    <context id="_as-namespace" once-only="true">
+      <start>\%[as\%]</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_as-namespace-content">
+          <include>
+            <context ref="js:identifier"/>
+          </include>
+        </context> <!-- /_as-namespace-content -->
+
+      </include>
+    </context> <!-- /_as-namespace -->
+
+    <context id="_ordered-as-namespace" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_as-namespace"/>
+      </include>
+    </context> <!-- /_ordered-as-namespace -->
+
+    <context id="_choice-all-as-namespace" end-parent="true">
+      <start>\*</start>
+      <end>\%{js:statement-end}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_import-as-namespace-content">
+          <include>
+            <context ref="_ordered-as-namespace"/>
+            <context ref="_ordered-from-module"/>
+          </include>
+        </context> <!-- /_import-as-namespace-content -->
+
+      </include>
+    </context> <!-- /_choice-all-as-namespace -->
+
     <!-- ## Export / import name group
 
          { x, y as b }
@@ -220,33 +268,13 @@
       </include>
     </context> <!-- /_choice-export-default -->
 
-    <!-- ## Export all
-
-         export * from 'module';
-    -->
-
-    <context id="_choice-export-all" end-parent="true">
-      <start>\*</start>
-      <end>\%{js:statement-end}</end>
-      <include>
-        <context ref="js:embedded-lang-hooks"/>
-        <context ref="js:comments"/>
-
-        <context id="_export-all-content">
-          <include>
-            <context ref="_ordered-from-module"/>
-          </include>
-        </context> <!-- /_export-all-content -->
-
-      </include>
-    </context> <!-- /_choice-export-all -->
-
     <!-- ## Export declaration
 
          export { foo, bar as barry };
          export const a = 1;
          export default function () { ... }
          export * from 'module';
+         export * as ns from 'module';
     -->
 
     <!-- <ExportDeclaration> -->
@@ -262,7 +290,7 @@
           <include>
             <context ref="_choice-export-named"/>
             <context ref="_choice-export-default"/>
-            <context ref="_choice-export-all"/>
+            <context ref="_choice-all-as-namespace"/>
             <context ref="js-fn:choice-class-expression-required-name"/>
             <context ref="js-fn:choice-function-expression"/>
             <context ref="js-st:choice-variable-declaration"/>
@@ -297,58 +325,11 @@
       </include>
     </context> <!-- /_choice-import-named -->
 
-    <!-- ## Import as namespace
-
-         import * as nm from 'module';
-    -->
-
-    <context id="_as-namespace" once-only="true">
-      <start>\%[as\%]</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
-        <context ref="js:embedded-lang-hooks"/>
-        <context ref="js:comments"/>
-
-        <context id="_as-namespace-content">
-          <include>
-            <context ref="js:identifier"/>
-          </include>
-        </context> <!-- /_as-namespace-content -->
-
-      </include>
-    </context> <!-- /_as-namespace -->
-
-    <context id="_ordered-as-namespace" once-only="true">
-      <start>\%{js:before-next-token}</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context ref="_as-namespace"/>
-      </include>
-    </context> <!-- /_ordered-as-namespace -->
-
-    <context id="_choice-import-as-namespace" end-parent="true">
-      <start>\*</start>
-      <end>\%{js:statement-end}</end>
-      <include>
-        <context ref="js:embedded-lang-hooks"/>
-        <context ref="js:comments"/>
-
-        <context id="_import-as-namespace-content">
-          <include>
-            <context ref="_ordered-as-namespace"/>
-            <context ref="_ordered-from-module"/>
-          </include>
-        </context> <!-- /_import-as-namespace-content -->
-
-      </include>
-    </context> <!-- /_choice-import-as-namespace -->
-
     <!-- ## Import default
 
          import def from 'module';
          import def, { a, b } from 'module';
-         import def, * as nm from 'module';
+         import def, * as ns from 'module';
     -->
 
     <context id="_choice-import-default-additional" end-parent="true">
@@ -361,7 +342,7 @@
         <context id="_import-default-additional-content">
           <include>
             <context ref="_choice-import-named"/>
-            <context ref="_choice-import-as-namespace"/>
+            <context ref="_choice-all-as-namespace"/>
           </include>
         </context> <!-- /_import-default-additional-content -->
 
@@ -406,6 +387,7 @@
 
          import { foo as food, bar } from 'module';
          import defaultFn, * as Mod from 'module';
+         import * as ns from 'module';
          import 'module';
     -->
 
@@ -423,7 +405,7 @@
         <context id="_import-declaration-content">
           <include>
             <context ref="_choice-import-named"/>
-            <context ref="_choice-import-as-namespace"/>
+            <context ref="_choice-all-as-namespace"/>
             <context ref="_choice-import-default"/>
             <context ref="js-lit:choice-string-path"/>
           </include>
