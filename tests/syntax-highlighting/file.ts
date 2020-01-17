@@ -495,12 +495,6 @@ a = import . /* comment
 a = import // comment
 .meta.__dirname; // incorrectly highlighted
 
-// Optional chaining (stage 3 proposal)
-obj?.prop;
-obj?.[expr];
-func?.(...args);
-foo?.3:0; // correctly highlighted as the ternary operator, not optional chaining
-
 // Nullish coalescing (stage 3 proposal)
 ( obj ?? 'default value' );
 a = foo ?? 1, bar ?? 2;
@@ -1112,6 +1106,17 @@ fn(x, y,);
 /* Tagged template */
 
 myTag`That ${ person } is ${ age }`;
+
+
+/*
+ * Optional chaining (ES2020)
+ */
+
+obj?.prototype;
+obj?.['constructor'];
+func?.(1, 2, ...args);
+
+foo?.3:0; // ternary operator, not optional chaining
 
 
 /*

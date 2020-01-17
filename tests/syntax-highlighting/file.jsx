@@ -568,6 +568,17 @@ myTag`That ${ person } is ${ age }`;
 
 
 /*
+ * Optional chaining (ES2020)
+ */
+
+obj?.prototype;
+obj?.['constructor'];
+func?.(1, 2, ...args);
+
+foo?.3:0; // ternary operator, not optional chaining
+
+
+/*
  * Statements and declarations
  */
 
