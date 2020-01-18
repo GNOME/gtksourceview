@@ -19,7 +19,6 @@
 
 #define GTK_SOURCE_H_INSIDE
 
-#include "completion-providers/words/gtksourcecompletionwords.h"
 #include "gtksourcetypes.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcecompletioncontext.h"
@@ -47,6 +46,10 @@
 #include "gtksourceregion.h"
 #include "gtksourcesearchcontext.h"
 #include "gtksourcesearchsettings.h"
+#include "gtksourcesnippet.h"
+#include "gtksourcesnippetchunk.h"
+#include "gtksourcesnippetcontext.h"
+#include "gtksourcesnippetmanager.h"
 #include "gtksourcespacedrawer.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
@@ -59,5 +62,8 @@
 #include "gtksourceversion.h"
 #include "gtksourceview.h"
 #include "gtksource-enumtypes.h"
+
+#include "completion-providers/words/gtksourcecompletionwords.h"
+#include "completion-providers/snippets/gtksourcecompletionsnippets.h"
 
 #undef GTK_SOURCE_H_INSIDE

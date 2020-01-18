@@ -306,6 +306,14 @@ show_right_margin_toggled_cb (TestWidget     *self,
 }
 
 static void
+enable_snippets_toggled_cb (TestWidget     *self,
+                            GtkCheckButton *button)
+{
+	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gtk_source_view_set_enable_snippets (self->priv->view, enabled);
+}
+
+static void
 right_margin_position_value_changed_cb (TestWidget    *self,
 					GtkSpinButton *button)
 {
@@ -974,6 +982,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, backward_string_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, forward_string_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_changed_cb);
+	gtk_widget_class_bind_template_callback (widget_class, enable_snippets_toggled_cb);
 
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, view);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, map);
@@ -1098,6 +1107,26 @@ test_widget_new (void)
 	return g_object_new (test_widget_get_type (), NULL);
 }
 
+static void
+setup_search_paths (void)
+{
+	GtkSourceSnippetManager *snippets;
+	GtkSourceStyleSchemeManager *styles;
+	GtkSourceLanguageManager *languages;
+	static const gchar *snippets_path[] = { TOP_SRCDIR"/data/snippets", NULL };
+	static const gchar *langs_path[] = { TOP_SRCDIR"/data/language-specs", NULL };
+
+	snippets = gtk_source_snippet_manager_get_default ();
+	gtk_source_snippet_manager_set_search_path (snippets, snippets_path);
+
+	/* Allow use of system styles, but prefer in-tree */
+	styles = gtk_source_style_scheme_manager_get_default ();
+	gtk_source_style_scheme_manager_prepend_search_path (styles, TOP_SRCDIR"/data/styles");
+
+	languages = gtk_source_language_manager_get_default ();
+	gtk_source_language_manager_set_search_path (languages, langs_path);
+}
+
 int
 main (int argc, char *argv[])
 {
@@ -1108,6 +1137,7 @@ main (int argc, char *argv[])
 
 	gtk_init ();
 	gtk_source_init ();
+	setup_search_paths ();
 
 	window = gtk_window_new ();
 	gtk_window_set_default_size (GTK_WINDOW (window), 900, 600);

@@ -22,8 +22,6 @@
 
 #include "config.h"
 
-#include "gtksourceview.h"
-
 #include <string.h>
 #include <fribidi.h>
 #include <gtk/gtk.h>
@@ -31,25 +29,30 @@
 #include <pango/pango-tabs.h>
 #include <glib/gi18n-lib.h>
 
-#include "gtksourcebuffer.h"
+#include "gtksource-enumtypes.h"
+#include "gtksource-marshal.h"
+
 #include "gtksourcebuffer-private.h"
+#include "gtksourcebuffer.h"
 #include "gtksourcebufferinternal-private.h"
+#include "gtksourcecompletion-private.h"
 #include "gtksourcecompletion.h"
-#include "gtksourcegutter.h"
+#include "gtksourcecompletionprovider.h"
 #include "gtksourcegutter-private.h"
+#include "gtksourcegutter.h"
 #include "gtksourcegutterrendererlines-private.h"
 #include "gtksourcegutterrenderermarks-private.h"
-#include "gtksource-enumtypes.h"
+#include "gtksourceiter-private.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"
-#include "gtksource-marshal.h"
-#include "gtksourcestylescheme-private.h"
-#include "gtksourcecompletion-private.h"
-#include "gtksourcecompletionprovider.h"
-#include "gtksourceiter-private.h"
 #include "gtksourcesearchcontext-private.h"
-#include "gtksourcespacedrawer.h"
+#include "gtksourcesnippet-private.h"
+#include "gtksourcesnippetchunk.h"
+#include "gtksourcesnippetcontext.h"
 #include "gtksourcespacedrawer-private.h"
+#include "gtksourcespacedrawer.h"
+#include "gtksourcestylescheme-private.h"
+#include "gtksourceview-private.h"
 
 /**
  * SECTION:view
@@ -156,6 +159,7 @@ enum
 	MOVE_LINES,
 	MOVE_TO_MATCHING_BRACKET,
 	MOVE_WORDS,
+	PUSH_SNIPPET,
 	SHOW_COMPLETION,
 	SMART_HOME_END,
 	N_SIGNALS
@@ -179,6 +183,7 @@ enum
 	PROP_BACKGROUND_PATTERN,
 	PROP_SMART_BACKSPACE,
 	PROP_SPACE_DRAWER,
+	PROP_ENABLE_SNIPPETS,
 	N_PROPS
 };
 
@@ -207,6 +212,8 @@ typedef struct
 
 	GtkSourceCompletion *completion;
 
+	GtkSourceViewSnippets snippets;
+
 	guint right_margin_pos;
 	gint cached_right_margin_pos;
 	guint tab_width;
@@ -227,6 +234,7 @@ typedef struct
 	guint indent_on_tab : 1;
 	guint show_right_margin  : 1;
 	guint smart_backspace : 1;
+	guint enable_snippets : 1;
 } GtkSourceViewPrivate;
 
 typedef struct
@@ -308,6 +316,9 @@ static gboolean       gtk_source_view_rgba_drop            (GtkDropTarget       
                                                             int                      y,
                                                             GtkSourceView           *view);
 static void           gtk_source_view_populate_extra_menu  (GtkSourceView           *view);
+static void           gtk_source_view_real_push_snippet    (GtkSourceView           *view,
+                                                            GtkSourceSnippet        *snippet,
+                                                            GtkTextIter             *location);
 
 static void
 gtk_source_view_constructed (GObject *object)
@@ -503,6 +514,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	klass->show_completion = gtk_source_view_show_completion_real;
 	klass->move_lines = gtk_source_view_move_lines;
 	klass->move_words = gtk_source_view_move_words;
+	klass->push_snippet = gtk_source_view_real_push_snippet;
 
 	/**
 	 * GtkSourceView:completion:
@@ -710,6 +722,28 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                     (G_PARAM_READABLE |
 		                      G_PARAM_STATIC_STRINGS));
 
+	/**
+	 * GtkSourceView:enable-snippets:
+	 *
+	 * The "enable-snippets" property denotes if snippets should be
+	 * expanded when the user presses Tab after having typed a word
+	 * matching the snippets found in #GtkSourceSnippetManager.
+	 *
+	 * The user may tab through focus-positions of the snippet if any
+	 * are available by pressing Tab repeatedly until the desired focus
+	 * position is selected.
+	 *
+	 * Since: 5.0
+	 */
+	properties [PROP_ENABLE_SNIPPETS] =
+		g_param_spec_boolean ("enable-snippets",
+		                      "Enable Snippets",
+		                      "Whether to enable snippet expansion",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
+
 	g_object_class_install_properties (object_class, N_PROPS, properties);
 
 	/**
@@ -815,6 +849,35 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	g_signal_set_va_marshaller (signals[MOVE_WORDS],
 	                            G_TYPE_FROM_CLASS (klass),
 	                            g_cclosure_marshal_VOID__INTv);
+
+	/**
+	 * GtkSourceView::push-snippet:
+	 * @view: a #GtkSourceView
+	 * @snippet: a #GtkSourceSnippet
+	 * @location: (inout): a #GtkTextIter
+	 *
+	 * The ::push-snippet signal is emitted to insert a new snippet into
+	 * the view. If another snippet was active, it will be paused until all
+	 * focus positions of @snippet have been exhausted.
+	 *
+	 * @location will be updated to point at the end of the snippet.
+	 *
+	 * Since: 5.0
+	 */
+	signals[PUSH_SNIPPET] =
+		g_signal_new ("push-snippet",
+	                      G_TYPE_FROM_CLASS (klass),
+	                      G_SIGNAL_RUN_LAST,
+	                      G_STRUCT_OFFSET (GtkSourceViewClass, push_snippet),
+	                      NULL, NULL,
+	                      _gtk_source_marshal_VOID__OBJECT_BOXED,
+	                      G_TYPE_NONE,
+	                      2,
+	                      GTK_SOURCE_TYPE_SNIPPET,
+	                      GTK_TYPE_TEXT_ITER);
+	g_signal_set_va_marshaller (signals[PUSH_SNIPPET],
+	                            G_TYPE_FROM_CLASS (klass),
+	                            _gtk_source_marshal_VOID__OBJECT_BOXEDv);
 
 	/**
 	 * GtkSourceView::smart-home-end:
@@ -1178,6 +1241,10 @@ gtk_source_view_set_property (GObject      *object,
 			gtk_source_view_set_smart_backspace (view, g_value_get_boolean (value));
 			break;
 
+		case PROP_ENABLE_SNIPPETS:
+			gtk_source_view_set_enable_snippets (view, g_value_get_boolean (value));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -1258,6 +1325,10 @@ gtk_source_view_get_property (GObject    *object,
 			g_value_set_object (value, gtk_source_view_get_space_drawer (view));
 			break;
 
+		case PROP_ENABLE_SNIPPETS:
+			g_value_set_boolean (value, gtk_source_view_get_enable_snippets (view));
+			break;
+
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -1336,6 +1407,8 @@ gtk_source_view_init (GtkSourceView *view)
 	gtk_style_context_add_class (context, "sourceview");
 
 	gtk_source_view_populate_extra_menu (view);
+
+	_gtk_source_view_snippets_init (&priv->snippets, view);
 }
 
 static void
@@ -1349,6 +1422,9 @@ gtk_source_view_dispose (GObject *object)
 	g_clear_object (&priv->space_drawer);
 
 	remove_source_buffer (view);
+
+	/* Release our snippet state. This is safe to call multiple times. */
+	_gtk_source_view_snippets_shutdown (&priv->snippets);
 
 	/* Disconnect notify buffer because the destroy of the textview will set
 	 * the buffer to NULL, and we call get_buffer in the notify which would
@@ -1571,6 +1647,8 @@ remove_source_buffer (GtkSourceView *view)
 						      search_start_cb,
 						      view);
 
+		_gtk_source_view_snippets_set_buffer (&priv->snippets, NULL);
+
 		g_object_unref (priv->source_buffer);
 		priv->source_buffer = NULL;
 	}
@@ -1628,6 +1706,9 @@ set_source_buffer (GtkSourceView *view,
 				  view);
 
 		buffer_has_selection_changed_cb (GTK_SOURCE_BUFFER (buffer), NULL, view);
+
+		_gtk_source_view_snippets_set_buffer (&priv->snippets,
+		                                      priv->source_buffer);
 	}
 
 	gtk_source_view_update_style_scheme (view);
@@ -3831,10 +3912,10 @@ do_ctrl_backspace (GtkSourceView *view)
 
 static gboolean
 gtk_source_view_key_pressed (GtkSourceView         *view,
-			     guint                  key,
-			     guint                  keycode,
-			     guint                  state,
-			     GtkEventControllerKey *controller)
+                             guint                  key,
+                             guint                  keycode,
+                             guint                  state,
+                             GtkEventControllerKey *controller)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkTextBuffer *buf;
@@ -3889,6 +3970,11 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 			gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view), mark);
 			return GDK_EVENT_STOP;
 		}
+	}
+
+	if (_gtk_source_view_snippets_key_pressed (&priv->snippets, key, keycode, state))
+	{
+		return GDK_EVENT_STOP;
 	}
 
 	/* if tab or shift+tab:
@@ -4890,5 +4976,171 @@ gtk_source_view_queue_draw (GtkSourceView *view)
 	if (priv->right_gutter != NULL)
 	{
 		_gtk_source_gutter_queue_draw (priv->right_gutter);
+	}
+}
+
+static gchar *
+get_line_prefix (const GtkTextIter *iter)
+{
+	GtkTextIter begin;
+	GString *str;
+
+	g_assert (iter != NULL);
+
+	if (gtk_text_iter_starts_line (iter))
+	{
+		return NULL;
+	}
+
+	begin = *iter;
+	gtk_text_iter_set_line_offset (&begin, 0);
+
+	str = g_string_new (NULL);
+
+	do
+	{
+		gunichar c = gtk_text_iter_get_char (&begin);
+
+		switch (c)
+		{
+		case '\t':
+		case ' ':
+			g_string_append_unichar (str, c);
+			break;
+
+		default:
+			g_string_append_c (str, ' ');
+			break;
+		}
+	}
+	while (gtk_text_iter_forward_char (&begin) &&
+	       (gtk_text_iter_compare (&begin, iter) < 0));
+
+	return g_string_free (str, FALSE);
+}
+
+static void
+gtk_source_view_real_push_snippet (GtkSourceView    *view,
+                                   GtkSourceSnippet *snippet,
+                                   GtkTextIter      *location)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (GTK_SOURCE_IS_SNIPPET (snippet));
+	g_assert (location != NULL);
+
+	_gtk_source_view_snippets_push (&priv->snippets, snippet, location);
+}
+
+/**
+ * gtk_source_view_push_snippet:
+ * @view: a #GtkSourceView
+ * @snippet: a #GtkSourceSnippet
+ * @location: (nullable): a #GtkTextIter or %NULL for the cursor position
+ *
+ * Inserts a new snippet at @location
+ *
+ * If another snippet was already active, it will be paused and the new
+ * snippet will become active. Once the focus positions of @snippet have
+ * been exhausted, editing will return to the previous snippet.
+ *
+ * Since: 5.0
+ */
+void
+gtk_source_view_push_snippet (GtkSourceView    *view,
+                              GtkSourceSnippet *snippet,
+                              GtkTextIter      *location)
+{
+	GtkSourceSnippetContext *context;
+	GtkTextBuffer *buffer;
+	GtkTextIter iter;
+	gboolean use_spaces;
+	gchar *prefix;
+	gint tab_width;
+
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_SNIPPET (snippet));
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	if (location == NULL)
+	{
+		gtk_text_buffer_get_iter_at_mark (buffer,
+		                                  &iter,
+		                                  gtk_text_buffer_get_insert (buffer));
+		location = &iter;
+	}
+
+	g_return_if_fail (gtk_text_iter_get_buffer (location) == buffer);
+
+	context = gtk_source_snippet_get_context (snippet);
+
+	use_spaces = gtk_source_view_get_insert_spaces_instead_of_tabs (view);
+	gtk_source_snippet_context_set_use_spaces (context, use_spaces);
+
+	tab_width = gtk_source_view_get_tab_width (view);
+	gtk_source_snippet_context_set_tab_width (context, tab_width);
+
+	prefix = get_line_prefix (location);
+	gtk_source_snippet_context_set_line_prefix (context, prefix);
+	g_free (prefix);
+
+	g_signal_emit (view, signals [PUSH_SNIPPET], 0, snippet, location);
+}
+
+/**
+ * gtk_source_view_get_enable_snippets:
+ * @view: a #GtkSourceView
+ *
+ * Gets the #GtkSourceView:enable-snippets property.
+ *
+ * If %TRUE, matching snippets found in the #GtkSourceSnippetManager
+ * may be expanded when the user presses Tab after a word in the
+ * #GtkSourceView.
+ *
+ * Returns: %TRUE if enabled
+ *
+ * Since: 5.0
+ */
+gboolean
+gtk_source_view_get_enable_snippets (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
+
+	return priv->enable_snippets;
+}
+
+/**
+ * gtk_source_view_set_enable_snippets:
+ * @view: a #GtkSourceView
+ * @enable_snippets: if snippets should be enabled
+ *
+ * Sets the #GtkSourceView:enable-snippets property.
+ *
+ * If @enable_snippets is %TRUE, matching snippets found in the
+ * #GtkSourceSnippetManager may be expanded when the user presses
+ * Tab after a word in the #GtkSourceView.
+ *
+ * Since: 5.0
+ */
+void
+gtk_source_view_set_enable_snippets (GtkSourceView *view,
+                                     gboolean       enable_snippets)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+
+	enable_snippets = !!enable_snippets;
+
+	if (enable_snippets != priv->enable_snippets)
+	{
+		priv->enable_snippets = enable_snippets;
+		_gtk_source_view_snippets_pop_all (&priv->snippets);
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_ENABLE_SNIPPETS]);
 	}
 }

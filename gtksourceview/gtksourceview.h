@@ -96,6 +96,9 @@ struct _GtkSourceViewClass
 	                             gboolean           down);
 	void (*move_words)          (GtkSourceView     *view,
 	                             gint               step);
+	void (*push_snippet)        (GtkSourceView     *view,
+	                             GtkSourceSnippet  *snippet,
+	                             GtkTextIter       *location);
 
 	/*< private >*/
 	gpointer _reserved[20];
@@ -183,6 +186,11 @@ void                            gtk_source_view_set_smart_home_end              
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSmartHomeEndType       gtk_source_view_get_smart_home_end                (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
+void                            gtk_source_view_set_enable_snippets               (GtkSourceView                  *view,
+                                                                                   gboolean                        enable_snippets);
+GTK_SOURCE_AVAILABLE_IN_ALL
+gboolean                        gtk_source_view_get_enable_snippets               (GtkSourceView                  *view);
+GTK_SOURCE_AVAILABLE_IN_ALL
 guint                           gtk_source_view_get_visual_column                 (GtkSourceView                  *view,
                                                                                    const GtkTextIter              *iter);
 GTK_SOURCE_AVAILABLE_IN_ALL
@@ -197,5 +205,9 @@ GTK_SOURCE_AVAILABLE_IN_3_16
 GtkSourceBackgroundPatternType  gtk_source_view_get_background_pattern            (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_3_24
 GtkSourceSpaceDrawer           *gtk_source_view_get_space_drawer                  (GtkSourceView                  *view);
+GTK_SOURCE_AVAILABLE_IN_5_0
+void                            gtk_source_view_push_snippet                      (GtkSourceView                  *view,
+                                                                                   GtkSourceSnippet               *snippet,
+                                                                                   GtkTextIter                    *location);
 
 G_END_DECLS

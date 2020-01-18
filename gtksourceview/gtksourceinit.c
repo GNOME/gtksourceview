@@ -32,6 +32,7 @@
 #include "gtksourceinit.h"
 #include "gtksourcelanguagemanager-private.h"
 #include "gtksourcemap.h"
+#include "gtksourcesnippetmanager-private.h"
 #include "gtksourcestyleschemechooser.h"
 #include "gtksourcestyleschemechooserbutton.h"
 #include "gtksourcestyleschemechooserwidget.h"
@@ -233,12 +234,16 @@ gtk_source_finalize (void)
 	{
 		GtkSourceLanguageManager *language_manager;
 		GtkSourceStyleSchemeManager *style_scheme_manager;
+		GtkSourceSnippetManager *snippet_manager;
 
 		language_manager = _gtk_source_language_manager_peek_default ();
 		g_clear_object (&language_manager);
 
 		style_scheme_manager = _gtk_source_style_scheme_manager_peek_default ();
 		g_clear_object (&style_scheme_manager);
+
+		snippet_manager = _gtk_source_snippet_manager_peek_default ();
+		g_clear_object (&snippet_manager);
 
 		done = TRUE;
 	}

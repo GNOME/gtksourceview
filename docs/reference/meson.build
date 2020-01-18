@@ -16,6 +16,7 @@ reference_private_h = [
   'gtksourcecompletioncontext-private.h',
   'gtksourcecompletioninfo-private.h',
   'gtksourcecompletionmodel-private.h',
+  'gtksourcecompletionsnippetsproposal-private.h',
   'gtksourcecompletionwordsbuffer-private.h',
   'gtksourcecompletionwordslibrary-private.h',
   'gtksourcecompletionwordsproposal-private.h',
@@ -35,6 +36,10 @@ reference_private_h = [
   'gtksourcepixbufhelper-private.h',
   'gtksourceregex-private.h',
   'gtksourcesearchcontext-private.h',
+  'gtksourcesnippet-private.h',
+  'gtksourcesnippetbundle-private.h',
+  'gtksourcesnippetcontext-private.h',
+  'gtksourcesnippetmanager-private.h',
   'gtksourcestyle-private.h',
   'gtksourcestylescheme-private.h',
   'gtksourcestyleschememanager-private.h',
@@ -62,6 +67,12 @@ into_xml = configure_file(
 lang_reference_xml = configure_file(
           input: 'lang-reference.xml.in',
          output: 'lang-reference.xml',
+  configuration: config_h
+)
+
+snippet_reference_xml = configure_file(
+          input: 'snippet-reference.xml.in',
+         output: 'snippet-reference.xml',
   configuration: config_h
 )
 

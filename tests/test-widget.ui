@@ -218,6 +218,17 @@
               </object>
             </child>
             <child>
+              <object class="GtkCheckButton" id="enable_snippets">
+                <property name="label">Enable snippets</property>
+                <property name="can-focus">1</property>
+                <signal name="toggled" handler="enable_snippets_toggled_cb" object="TestWidget" swapped="yes"/>
+                <layout>
+                  <property name="top-attach">13</property>
+                  <property name="left-attach">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
               <object class="GtkGrid" id="grid10">
                 <layout>
                   <property name="left_attach">0</property>

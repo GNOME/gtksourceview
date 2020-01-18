@@ -1,7 +1,6 @@
 install_subdir('language-specs',
     install_dir: pkgdatadir,
-  exclude_files: [ 'Makefile.am',
-                   'check-language.sh',
+  exclude_files: [ 'check-language.sh',
                    'lang_v1_to_v2.xslt',
                    'language-specs.its',
                    'language-specs.pot',
@@ -10,10 +9,14 @@ install_subdir('language-specs',
                    'update-pot.sh' ]
 )
 
+install_subdir('snippets',
+    install_dir: pkgdatadir,
+  exclude_files: [ ],
+)
+
 install_subdir('styles',
     install_dir: pkgdatadir,
-  exclude_files: [ 'Makefile.am',
-                   'check-style.sh',
+  exclude_files: [ 'check-style.sh',
                    'styles.its',
                    'styles.pot',
                    'testdark.xml',
