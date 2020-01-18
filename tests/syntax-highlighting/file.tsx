@@ -1178,7 +1178,7 @@ a = class extends Bar {
 arr.length;
 obj
     . prototype
-    . constructor;
+    . extends;
 
 // Bracket notation
 arr['length'];

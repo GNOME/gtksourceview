@@ -489,6 +489,24 @@
       <match>\%{identifier}</match>
     </context> <!-- /_identifier-names -->
 
+    <context id="_identifier-name-content">
+      <include>
+        <context ref="_identifier-names"/>
+      </include>
+    </context> <!-- /_identifier-name-content -->
+
+    <context id="identifier-name" once-only="true">
+      <start>(?=\%{identifier-start})</start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <!-- no embedded-lang-hooks here -->
+        <!-- no comments here -->
+        <!-- do not extend the context by matching comments or
+             embedded-lang-hooks, which may lead to multiple identifiers -->
+        <context ref="_identifier-name-content"/>
+      </include>
+    </context> <!-- /choice-identifier-name -->
+
     <context id="choice-identifier-name" end-parent="true">
       <start>(?=\%{identifier-start})</start>
       <end>\%{def:always-match}</end>
@@ -497,13 +515,7 @@
         <!-- no comments here -->
         <!-- do not extend the context by matching comments or
              embedded-lang-hooks, which may lead to multiple identifiers -->
-
-        <context id="_identifier-name-content">
-          <include>
-            <context ref="_identifier-names"/>
-          </include>
-        </context> <!-- /_identifier-name-content -->
-
+        <context ref="_identifier-name-content"/>
       </include>
     </context> <!-- /choice-identifier-name -->
 

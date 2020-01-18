@@ -303,7 +303,7 @@
             <context id="_dot-property-accessor-content">
               <include>
                 <context ref="js-val:properties-methods"/>
-                <context ref="js:identifier"/>
+                <context ref="js:identifier-name"/>
               </include>
             </context> <!-- /_dot-property-accessor-content -->
 
@@ -342,7 +342,7 @@
                      this context will end early for other cases
                 -->
                 <context ref="js-val:properties-methods"/>
-                <context ref="js:identifier"/>
+                <context ref="js:identifier-name"/>
               </include>
             </context> <!-- /_optional-chain-content -->
 
