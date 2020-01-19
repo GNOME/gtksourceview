@@ -560,7 +560,7 @@
 
         <context id="_ternary-operator-with-comma-true-expression-content">
           <include>
-            <context ref="expression-with-comma"/>
+            <context ref="expression-without-comma"/> <!-- comma not allowed -->
             <context ref="_ternary-operator-with-comma-false-expression"/>
           </include>
         </context> <!-- /_ternary-operator-with-comma-true-expression-content -->

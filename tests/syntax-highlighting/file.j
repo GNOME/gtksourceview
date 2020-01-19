@@ -791,6 +791,7 @@ a = class extends Bar {
 // Conditional / ternary
 ( true ? 1 : 2 );
 ( true ? : 2 ); // missing true value (syntax error)
+obj[ true ? 1, 2 : 3 ]; // comma operator inside true expression (syntax error)
 
 
 /*
