@@ -431,27 +431,27 @@ div {
     color:#000;
     width:#{$width};
 
-    background-image:url( \( \) \{ { );
-    background-image:url( url( { ) );
+    background-image:url( \( \) \{ {      );
+    background-image:url( url( { )        );
     background-image:url( #{ \) ')' '{' } );
-    background-image:url( /* ) { */ );
-    background-image:url( " ) { " );
-    background-image:url( ' ) { ' );
+    background-image:url( /* ) { */       );
+    background-image:url( " ) { "         );
+    background-image:url( ' ) { '         );
 
     margin:#{ \#\{ \} \{ '{' } 10px;
-    margin:#{ url( } { ) } 10px;
-    margin:#{ #{ '{' } } 10px;
-    margin:#{ /* } { */ } 10px;
-    margin:#{ " } { " } 10px;
-    margin:#{ ' } { ' } 10px;
+    margin:#{ url( } { )     } 10px;
+    margin:#{ #{ '{' }       } 10px;
+    margin:#{ /* } { */      } 10px;
+    margin:#{ " } { "        } 10px;
+    margin:#{ ' } { '        } 10px;
 
-    display:/* { */block;
+    display:/* {             */block;
     display:/* #{ \*\/ '{' } */block;
 
-    font-family:" \" \{ { ", serif;
+    font-family:" \" \{ {        ", serif;
     font-family:" #{ \" "" '{' } ", serif;
 
-    font-family:' \' \{ { ', serif;
+    font-family:' \' \{ {        ', serif;
     font-family:' #{ \' '' '{' } ', serif;
 
     // incorrectly highlighted declarations
@@ -467,26 +467,26 @@ div {
 
     a:#{$state} { color: blue; }
 
-    a:focus[id=\]\;] { color: blue; }
+    a:focus[id=\]\;           ] { color: blue; }
     a:focus[id=#{ \] "]" ";" }] { color: blue; }
-    a:focus[id=/* ] ; */] { color: blue; }
-    a:focus[id=" ] ; "] { color: blue; }
-    a:focus[id=' ] ; '] { color: blue; }
+    a:focus[id=/* ] ; */      ] { color: blue; }
+    a:focus[id=" ] ; "        ] { color: blue; }
+    a:focus[id=' ] ; '        ] { color: blue; }
 
     a:#{ \#\{ \} \; ';' } { color: blue; }
-    a:#{ url( } ; ) } { color: blue; }
-    a:#{ #{ ';' } } { color: blue; }
-    a:#{ /* } ; */ } { color: blue; }
-    a:#{ " } ; " } { color: blue; }
-    a:#{ ' } ; ' } { color: blue; }
+    a:#{ url( } ; )     } { color: blue; }
+    a:#{ #{ ';' }       } { color: blue; }
+    a:#{ /* } ; */      } { color: blue; }
+    a:#{ " } ; "        } { color: blue; }
+    a:#{ ' } ; '        } { color: blue; }
 
-    a:/* ; */focus { color: blue; }
+    a:/* ;             */focus { color: blue; }
     a:/* #{ \*\/ ';' } */focus { color: blue; }
 
-    a:focus[id=" ] \" \; ; "] { color: blue; }
+    a:focus[id=" ] \" \; ;      "] { color: blue; }
     a:focus[id=" #{ \" "" ';' } "] { color: blue; }
 
-    a:focus[id=' ] \' \; ; '] { color: blue; }
+    a:focus[id=' ] \' \; ;      '] { color: blue; }
     a:focus[id=' #{ \' '' ';' } '] { color: blue; }
 }
 
