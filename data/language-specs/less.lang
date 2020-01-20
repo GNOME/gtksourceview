@@ -397,29 +397,23 @@
 
     <context id="less-declaration-value">
       <start extended="true">
-        (?(DEFINE) (?&lt;escape_comment_start&gt; (?: \\ /\* )+ ) )
-        (?(DEFINE) (?&lt;escape&gt;               (?: \\ .   )+ ) )
-
-        (?(DEFINE) (?&lt;escape_not_interpolation_start&gt; (?: \\ (?! @{ ) . )+ ) )
-
         (?(DEFINE)
+          (?&lt;escape_comment_start&gt; (?: \\ /\* )+ )
+          (?&lt;escape&gt;               (?: \\ .   )+ )
+
+          (?&lt;escape_not_interpolation_start&gt; (?: \\ (?! @{ ) . )+ )
+
           (?&lt;interpolation_start_chars&gt;
             (?: (?: @ (?! { ) )+ | (?: (?&lt;! @ ) { )+ )
           )
-        )
-        (?(DEFINE)
           (?&lt;comment_start_chars&gt;
             (?: (?: / (?! \* ) )+ | (?: (?&lt;! / ) \* )+ )
           )
-        )
-        (?(DEFINE)
           (?&lt;comment_end_chars&gt;
             (?: (?: \* (?! / ) )+ | (?: (?&lt;! \* ) / )+ )
           )
-        )
 
-        (?(DEFINE)
-          (?&lt;interpolation&gt;  # recursive subpattern to find matching brackets
+          (?&lt;interpolation&gt;  # recursive subpattern to find matching braces
             @{
             (?:
               (?&gt;
@@ -433,8 +427,7 @@
             )*
             }
           )
-        )
-        (?(DEFINE)
+
           (?&lt;parentheses&gt;  # recursive subpattern to find matching parentheses
             \(
             (?:
@@ -447,15 +440,14 @@
                 )+
               ) |
               (?&amp;parentheses) |
-              (?&amp;comment) |
-              (?&amp;double_quotes) |
-              (?&amp;single_quotes)
+              (?&amp;multiline_comment) |
+              (?&amp;double_quote_string) |
+              (?&amp;single_quote_string)
             )*
             \)
           )
-        )
-        (?(DEFINE)
-          (?&lt;comment&gt;  # subpattern to find matching comment delimiters
+
+          (?&lt;multiline_comment&gt;  # subpattern to find matching comment delimiters
             /\*
             (?:
               (?&gt;
@@ -468,9 +460,8 @@
             )*
             \*/
           )
-        )
-        (?(DEFINE)
-          (?&lt;double_quotes&gt;  # subpattern to find matching double quotes
+
+          (?&lt;double_quote_string&gt;  # subpattern to find matching double quotes
             "
             (?:
               (?&gt;
@@ -484,9 +475,8 @@
             )*
             "
           )
-        )
-        (?(DEFINE)
-          (?&lt;single_quotes&gt;  # subpattern to find matching single quotes
+
+          (?&lt;single_quote_string&gt;  # subpattern to find matching single quotes
             '
             (?:
               (?&gt;
@@ -523,9 +513,9 @@
                   )+
                 ) |
                 (?&amp;parentheses) |
-                (?&amp;comment) |
-                (?&amp;double_quotes) |
-                (?&amp;single_quotes)
+                (?&amp;multiline_comment) |
+                (?&amp;double_quote_string) |
+                (?&amp;single_quote_string)
               )*
               \%{css:declaration-value-end}     #   with a semicolon or at the end of a block
             )
