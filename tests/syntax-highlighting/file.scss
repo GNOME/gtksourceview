@@ -457,6 +457,8 @@ div {
     // incorrectly highlighted declarations
     display:block
     ;
+    display:block // {
+    ;
 
     // selectors
     input:focus { opacity: 0.5; }
@@ -488,6 +490,9 @@ div {
 
     a:focus[id=' ] \' \; ;      '] { color: blue; }
     a:focus[id=' #{ \' '' ';' } '] { color: blue; }
+
+    a:focus // ;
+    { color: blue; }
 }
 
 

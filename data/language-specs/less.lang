@@ -398,8 +398,8 @@
     <context id="less-declaration-value">
       <start extended="true">
         (?(DEFINE)
-          (?&lt;escape_comment_start&gt; (?: \\ /\* )+ )
-          (?&lt;escape&gt;               (?: \\ .   )+ )
+          (?&lt;escape_comment_start&gt; (?: \\ /[/*] )+ )
+          (?&lt;escape&gt;               (?: \\ .     )+ )
 
           (?&lt;escape_not_interpolation_start&gt; (?: \\ (?! @{ ) . )+ )
 
@@ -407,11 +407,13 @@
             (?: (?: @ (?! { ) )+ | (?: (?&lt;! @ ) { )+ )
           )
           (?&lt;comment_start_chars&gt;
-            (?: (?: / (?! \* ) )+ | (?: (?&lt;! / ) \* )+ )
+            (?: (?: (?&lt;! / ) / (?! [/*] ) )+ | (?: (?&lt;! / ) \* )+ )
           )
           (?&lt;comment_end_chars&gt;
             (?: (?: \* (?! / ) )+ | (?: (?&lt;! \* ) / )+ )
           )
+
+          (?&lt;single_line_comment&gt; // .* )
 
           (?&lt;interpolation&gt;  # recursive subpattern to find matching braces
             @{
@@ -440,6 +442,7 @@
                 )+
               ) |
               (?&amp;parentheses) |
+              (?&amp;single_line_comment) |
               (?&amp;multiline_comment) |
               (?&amp;double_quote_string) |
               (?&amp;single_quote_string)
@@ -513,6 +516,7 @@
                   )+
                 ) |
                 (?&amp;parentheses) |
+                (?&amp;single_line_comment) |
                 (?&amp;multiline_comment) |
                 (?&amp;double_quote_string) |
                 (?&amp;single_quote_string)
