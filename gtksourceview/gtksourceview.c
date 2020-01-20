@@ -279,7 +279,7 @@ static void           gtk_source_view_move_lines           (GtkSourceView       
 static void           gtk_source_view_move_words           (GtkSourceView           *view,
                                                             gint                     step);
 static gboolean       gtk_source_view_key_pressed          (GtkSourceView           *view,
-                                                            guint                    keyval,
+                                                            guint                    key,
                                                             guint                    keycode,
                                                             guint                    state,
                                                             GtkEventControllerKey   *controller);
@@ -3842,7 +3842,7 @@ do_ctrl_backspace (GtkSourceView *view)
 
 static gboolean
 gtk_source_view_key_pressed (GtkSourceView         *view,
-			     guint                  keyval,
+			     guint                  key,
 			     guint                  keycode,
 			     guint                  state,
 			     GtkEventControllerKey *controller)
@@ -3852,7 +3852,6 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 	GtkTextIter cur;
 	GtkTextMark *mark;
 	guint modifiers;
-	gint key;
 	gboolean editable;
 
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
@@ -3862,8 +3861,6 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 	/* Be careful when testing for modifier state equality:
 	 * caps lock, num lock,etc need to be taken into account */
 	modifiers = gtk_accelerator_get_default_mod_mask ();
-
-	key = keyval;
 
 	mark = gtk_text_buffer_get_insert (buf);
 	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
