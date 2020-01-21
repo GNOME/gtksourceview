@@ -391,7 +391,7 @@
 
     <!-- shared between pre- and post-lhs expressions -->
     <context id="_increment-decrement-operators" style-ref="js:increment-decrement-operator">
-      <match>(\+\+|--)</match>
+      <match>\+\+|--</match>
     </context> <!-- /_increment-decrement-operators -->
 
 
@@ -414,12 +414,10 @@
 
         <context id="_unary-operators" style-ref="js:unary-operator">
           <match extended="true">
-            (
-              \+ |  # unary plus
-              - |   # unary negation
-              ~ |   # bitwise not
-              !     # logical not
-            )
+            \+ |  # unary plus
+            - |   # unary negation
+            ~ |   # bitwise not
+            !     # logical not
           </match>
         </context> <!-- /_unary-operators -->
 
@@ -590,22 +588,20 @@
     <!-- # Binary operators -->
 
     <define-regex id="_keyword-binary-operator" extended="true">
-      (?: \%[ (?: instanceof | in ) \%] )
+      \%[ (?: instanceof | in ) \%]
     </define-regex> <!-- /_keyword-binary-operator -->
 
     <!-- excluding comma operator -->
     <define-regex id="_binary-operator" extended="true">
-      (?:
-        \*\* =? |                            # exponentiation (assignment) (ES2016)
-        [+/*%-] =? |                         # arithmetic (assignment)
-        [!=]==? |                            # equality
-        &amp;&amp; | \|\| |                  # logical
-        \?\? |                               # nullish coalescing (ES2020)
-        [&amp;|^] =? |                       # bitwise logical (assignment)
-        (?: &lt;&lt; | &gt;&gt;&gt;? ) =? |  # bitwise shift (assignment)
-        [&lt;&gt;]=? |                       # relational
-        =                                    # assignment
-      )
+      \*\* =? |                            # exponentiation (assignment) (ES2016)
+      [+/*%-] =? |                         # arithmetic (assignment)
+      [!=]==? |                            # equality
+      &amp;&amp; | \|\| |                  # logical
+      \?\? |                               # nullish coalescing (ES2020)
+      [&amp;|^] =? |                       # bitwise logical (assignment)
+      (?: &lt;&lt; | &gt;&gt;&gt;? ) =? |  # bitwise shift (assignment)
+      [&lt;&gt;]=? |                       # relational
+      =                                    # assignment
     </define-regex> <!-- /_binary-operator -->
 
     <!-- ## Without comma -->
@@ -664,7 +660,7 @@
     </context> <!-- /_keyword-binary-operators-with-comma -->
 
     <context id="_binary-operators-with-comma">
-      <start>(\%{_binary-operator}|,)</start>
+      <start>\%{_binary-operator}|,</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:binary-operator"/>

@@ -38,24 +38,22 @@
     -->
 
     <define-regex id="_basic-types" extended="true">
+      \%[
       (?:
-        \%[
-        (?:
-          any |
-          bigint |
-          boolean |
-          never |
-          null |
-          number |
-          object |
-          string |
-          symbol |
-          undefined |
-          unknown |
-          void
-        )
-        \%]
+        any |
+        bigint |
+        boolean |
+        never |
+        null |
+        number |
+        object |
+        string |
+        symbol |
+        undefined |
+        unknown |
+        void
       )
+      \%]
     </define-regex> <!-- /_basic-types -->
 
     <!-- <PredefinedType> -->
@@ -72,7 +70,7 @@
     -->
 
     <define-regex id="_boolean-types" extended="true">
-      (?: \%[ (?: false | true ) \%] )
+      \%[ (?: false | true ) \%]
     </define-regex> <!-- /_boolean-literal-types -->
 
     <!-- <PredefinedType> -->

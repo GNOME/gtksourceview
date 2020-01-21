@@ -196,11 +196,9 @@
     <!-- ## Import declaration -->
 
     <define-regex id="_import-declaration-keyword" extended="true">
-      (?:
-        \%[ import \%]
-        (?! \%{js:import-function-keyword-suffix} )
-        (?! \%{typescript:import-meta-object-keyword-suffix} )
-      )
+      \%[ import \%]
+      (?! \%{js:import-function-keyword-suffix} )
+      (?! \%{typescript:import-meta-object-keyword-suffix} )
     </define-regex>
 
     <!-- <ImportDeclaration> -->

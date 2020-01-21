@@ -400,7 +400,7 @@
     <!-- ## Literals -->
 
     <define-regex id="_at-function-keyword" extended="true">
-      (?: @ (?: deref | ref ) \%] )
+      @ (?: deref | ref ) \%]
     </define-regex> <!-- /_at-function-keyword -->
 
     <context id="_choice-at-function-keyword" style-ref="js:keyword" end-parent="true">

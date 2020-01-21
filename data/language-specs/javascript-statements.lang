@@ -37,14 +37,10 @@
 
     <!-- # Use strict directive -->
 
-    <!-- apparently, back references are not supported -->
+    <!-- apparently, back references are not supported within the same
+         regex -->
     <context id="_use-strict-directives" style-ref="js:directive">
-      <start extended="true">
-        (?:
-          " use [ ] strict " |
-          ' use [ ] strict '
-        )
-      </start>
+      <start>"use strict"|'use strict'</start>
       <end>\%{js:statement-end}</end>
     </context> <!-- /_use-strict-directives -->
 
@@ -753,7 +749,7 @@
     -->
 
     <define-regex id="_variable-declaration-keyword" extended="true">
-      (?: \%[ (?: const | let | var ) \%] )
+      \%[ (?: const | let | var ) \%]
     </define-regex> <!-- /_variable-declaration-keyword -->
 
     <context id="_variable-declaration-item-content">

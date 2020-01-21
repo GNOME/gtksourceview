@@ -72,7 +72,7 @@
     -->
 
     <define-regex id="_ambient-declaration-keyword" extended="true">
-      (?: \%[ declare \%] )
+      \%[ declare \%]
     </define-regex> <!-- /_ambient-declaration-keyword -->
 
     <context id="_choice-global-augmentation" style-ref="typescript:global-augmentation" end-parent="true">
@@ -136,7 +136,7 @@
     -->
 
     <define-regex id="_const-declaration-keyword" extended="true">
-      (?: \%[ const \%] )
+      \%[ const \%]
     </define-regex> <!-- /_const-declaration-keyword -->
 
     <context id="_const-declaration-content">
@@ -182,7 +182,7 @@
     -->
 
     <define-regex id="_enum-declaration-keyword" extended="true">
-      (?: \%[ enum \%] )
+      \%[ enum \%]
     </define-regex> <!-- /_enum-declaration-keyword -->
 
     <context id="_enum-member-content">
@@ -271,7 +271,7 @@
     -->
 
     <define-regex id="_interface-declaration-keyword" extended="true">
-      (?: \%[ interface \%] )
+      \%[ interface \%]
     </define-regex> <!-- /_interface-declaration-keyword -->
 
     <context id="_interface-extends-clause" once-only="true">
@@ -338,7 +338,7 @@
     -->
 
     <define-regex id="_module-declaration-keyword" extended="true">
-      (?: \%[ module \%] )
+      \%[ module \%]
     </define-regex> <!-- /_module-declaration-keyword -->
 
     <context id="_module-identifier-or-string" once-only="true">
@@ -401,7 +401,7 @@
     -->
 
     <define-regex id="_namespace-declaration-keyword" extended="true">
-      (?: \%[ namespace \%] )
+      \%[ namespace \%]
     </define-regex> <!-- /_namespace-declaration-keyword -->
 
     <context id="_namespace-body" once-only="true">
@@ -468,7 +468,7 @@
     -->
 
     <define-regex id="_type-alias-declaration-keyword" extended="true">
-      (?: \%[ type \%] )
+      \%[ type \%]
     </define-regex> <!-- /_type-alias-declaration-keyword -->
 
     <context id="_type-alias-value" once-only="true">

@@ -112,12 +112,10 @@
     -->
 
     <define-regex id="import-meta-object-keyword-suffix" extended="true">
-      (?:
-        \%{js:optional-whitespace-or-comments}
-        \.
-        \%{js:optional-whitespace-or-comments}
-        meta \%]
-      )
+      \%{js:optional-whitespace-or-comments}
+      \.
+      \%{js:optional-whitespace-or-comments}
+      meta \%]
     </define-regex> <!-- /import-meta-object-keyword-suffix -->
 
     <!-- no line terminator allowed between "abstract" and "class"
@@ -125,12 +123,10 @@
          abstract class expressions -->
     <define-regex id="class-expression-keyword" extended="true">
       (?:
-        (?:
-          \%[ abstract \%]
-          \%{js:optional-whitespace-or-comments}
-        )?
-        \%[ class \%]
-      )
+        \%[ abstract \%]
+        \%{js:optional-whitespace-or-comments}
+      )?
+      \%[ class \%]
     </define-regex> <!-- / -->
 
     <context id="js-ordered-string" once-only="true">
@@ -200,7 +196,7 @@
     <context id="_triple-slash-directives" style-ref="js:directive" end-at-line-end="true" class="comment">
       <start case-sensitive="false" extended="true">
         /// \%{js:whitespace}* &lt;
-        (
+        (?:
           amd-module |
           amd-dependency |
           reference

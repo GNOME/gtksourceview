@@ -67,13 +67,13 @@
       </include>
     </context> <!-- /main-lang -->
 
-    <define-regex id="_start-tag-start">(?:&lt;(?!/))</define-regex>
+    <define-regex id="_start-tag-start">&lt;(?!/)</define-regex>
 
 
     <!-- # Names -->
 
     <define-regex id="_identifier-part" extended="true">
-      (?: \%{js:identifier-part} | - )
+      \%{js:identifier-part} | -
     </define-regex> <!-- /_identifier-part -->
 
     <!-- <JSXIdentifier> -->
@@ -92,7 +92,7 @@
 
     <!-- <JSXNamespacedName> -->
     <define-regex id="_namespaced-name" extended="true">
-      (?: \%{_identifier} : \%{_identifier} )
+      \%{_identifier} : \%{_identifier}
     </define-regex> <!-- /_namespaced-name -->
 
     <context id="_choice-namespaced-name" end-parent="true">
@@ -102,7 +102,7 @@
 
     <!-- <JSXMemberExpression> -->
     <define-regex id="_member-expression" extended="true">
-      (?: \%{_identifier} (?: \. \%{_identifier} )+ )
+      \%{_identifier} (?: \. \%{_identifier} )+
     </define-regex> <!-- /_member-expression -->
 
     <context id="_choice-member-expression" end-parent="true">

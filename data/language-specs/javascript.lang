@@ -191,12 +191,12 @@
 
     <!-- <UnicodeEscapeSequence> -->
     <define-regex id="unicode-escape" extended="true">
-      (?: \\u (?: [0-9a-fA-F]{4} | \{ [0-9a-fA-F]{1,} \} ) )
+      \\u (?: [0-9a-fA-F]{4} | \{ [0-9a-fA-F]{1,} \} )
     </define-regex> <!-- /unicode-escape -->
 
     <!-- <IdentifierStart> -->
     <define-regex id="identifier-start" extended="true">
-      (?: \%{def:unicode-id-start} | [$_] | \%{unicode-escape} )
+      \%{def:unicode-id-start} | [$_] | \%{unicode-escape}
     </define-regex> <!-- /identifier-start -->
 
     <!-- for lookbehinds
@@ -205,17 +205,17 @@
          U+200D Zero-width joiner <ZWJ>
     -->
     <define-regex id="identifier-char" extended="true">
-      (?: \%{def:unicode-id-continue} | [$\x{200C}\x{200D}] )
+      \%{def:unicode-id-continue} | [$\x{200C}\x{200D}]
     </define-regex> <!-- /identifier-char -->
 
     <!-- <IdentifierPart> -->
     <define-regex id="identifier-part" extended="true">
-      (?: \%{identifier-char} | \%{unicode-escape} )
+      \%{identifier-char} | \%{unicode-escape}
     </define-regex> <!-- /identifier-part -->
 
     <!-- <IdentifierName> -->
     <define-regex id="identifier" extended="true">
-      (?: \%{identifier-start} \%{identifier-part}* )
+      \%{identifier-start} \%{identifier-part}*
     </define-regex> <!-- /identifier-->
 
     <!-- <WhiteSpace> -->
@@ -253,11 +253,11 @@
     </define-regex> <!-- /before-next-token -->
 
     <define-regex id="statement-end" extended="true">
-      (?: ; | \%{before-next-token} )
+      ; | \%{before-next-token}
     </define-regex> <!-- /statement-end -->
 
     <define-regex id="statement-end-or-end-of-line" extended="true">
-      (?: \%{statement-end} | $ )
+      \%{statement-end} | $
     </define-regex> <!-- /statement-end-or-end-of-line -->
 
     <!-- wherever this is used, the highlighting will be more brittle,
@@ -276,35 +276,28 @@
     -->
 
     <define-regex id="import-function-keyword-suffix" extended="true">
-      (?:
-        \%{optional-whitespace-or-comments}
-        \(
-      )
+      \%{optional-whitespace-or-comments} \(
     </define-regex> <!-- /import-function-keyword-suffix -->
 
     <define-regex id="new-target-object-keyword-suffix" extended="true">
-      (?:
-        \%{optional-whitespace-or-comments}
-        \.
-        \%{optional-whitespace-or-comments}
-        target \%]
-      )
+      \%{optional-whitespace-or-comments}
+      \.
+      \%{optional-whitespace-or-comments}
+      target \%]
     </define-regex> <!-- /new-target-object-keyword-suffix -->
 
     <!-- async function (ES2017)
          no line terminator allowed between "async" and "function" -->
     <define-regex id="function-expression-keyword" extended="true">
       (?:
-        (?:
-          \%[ async \%]
-          \%{optional-whitespace-or-comments}
-        )?
-        \%[ function \%]
-      )
+        \%[ async \%]
+        \%{optional-whitespace-or-comments}
+      )?
+      \%[ function \%]
     </define-regex> <!-- /function-expression-keyword -->
 
     <define-regex id="class-expression-keyword" extended="true">
-      (?: \%[ class \%] )
+      \%[ class \%]
     </define-regex> <!-- /class-expression-keyword -->
 
     <!-- ## Embedded lang hooks
