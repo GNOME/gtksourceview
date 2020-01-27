@@ -178,8 +178,11 @@ enum
 	PROP_INDENT_ON_TAB,
 	PROP_BACKGROUND_PATTERN,
 	PROP_SMART_BACKSPACE,
-	PROP_SPACE_DRAWER
+	PROP_SPACE_DRAWER,
+	N_PROPS
 };
+
+static GParamSpec *properties[N_PROPS];
 
 typedef struct
 {
@@ -512,122 +515,121 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 *
 	 * The completion object associated with the view
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_COMPLETION,
-					 g_param_spec_object ("completion",
-							      "Completion",
-							      "The completion object associated with the view",
-							      GTK_SOURCE_TYPE_COMPLETION,
-							      G_PARAM_READABLE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_COMPLETION] =
+		g_param_spec_object ("completion",
+		                     "Completion",
+		                     "The completion object associated with the view",
+		                     GTK_SOURCE_TYPE_COMPLETION,
+		                     (G_PARAM_READABLE |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:show-line-numbers:
 	 *
 	 * Whether to display line numbers
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_SHOW_LINE_NUMBERS,
-					 g_param_spec_boolean ("show-line-numbers",
-							       "Show Line Numbers",
-							       "Whether to display line numbers",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_SHOW_LINE_NUMBERS] =
+		g_param_spec_boolean ("show-line-numbers",
+		                      "Show Line Numbers",
+		                      "Whether to display line numbers",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+				       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:show-line-marks:
 	 *
 	 * Whether to display line mark pixbufs
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_SHOW_LINE_MARKS,
-					 g_param_spec_boolean ("show-line-marks",
-							       "Show Line Marks",
-							       "Whether to display line mark pixbufs",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_SHOW_LINE_MARKS] =
+		g_param_spec_boolean ("show-line-marks",
+		                      "Show Line Marks",
+		                      "Whether to display line mark pixbufs",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:tab-width:
 	 *
 	 * Width of a tab character expressed in number of spaces.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_TAB_WIDTH,
-					 g_param_spec_uint ("tab-width",
-							    "Tab Width",
-							    "Width of a tab character expressed in spaces",
-							    1,
-							    MAX_TAB_WIDTH,
-							    DEFAULT_TAB_WIDTH,
-							    G_PARAM_READWRITE |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_TAB_WIDTH] =
+		g_param_spec_uint ("tab-width",
+		                   "Tab Width",
+		                   "Width of a tab character expressed in spaces",
+		                   1,
+		                   MAX_TAB_WIDTH,
+		                   DEFAULT_TAB_WIDTH,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_EXPLICIT_NOTIFY |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:indent-width:
 	 *
 	 * Width of an indentation step expressed in number of spaces.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_INDENT_WIDTH,
-					 g_param_spec_int ("indent-width",
-							   "Indent Width",
-							   "Number of spaces to use for each step of indent",
-							   -1,
-							   MAX_INDENT_WIDTH,
-							   -1,
-							   G_PARAM_READWRITE |
-							   G_PARAM_STATIC_STRINGS));
+	properties [PROP_INDENT_WIDTH] =
+		g_param_spec_int ("indent-width",
+		                  "Indent Width",
+		                  "Number of spaces to use for each step of indent",
+		                  -1,
+		                  MAX_INDENT_WIDTH,
+		                  -1,
+		                  (G_PARAM_READWRITE |
+		                   G_PARAM_EXPLICIT_NOTIFY |
+		                   G_PARAM_STATIC_STRINGS));
 
-	g_object_class_install_property (object_class,
-					 PROP_AUTO_INDENT,
-					 g_param_spec_boolean ("auto-indent",
-							       "Auto Indentation",
-							       "Whether to enable auto indentation",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_AUTO_INDENT] =
+		g_param_spec_boolean ("auto-indent",
+		                      "Auto Indentation",
+		                      "Whether to enable auto indentation",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
-	g_object_class_install_property (object_class,
-					 PROP_INSERT_SPACES,
-					 g_param_spec_boolean ("insert-spaces-instead-of-tabs",
-							       "Insert Spaces Instead of Tabs",
-							       "Whether to insert spaces instead of tabs",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_INSERT_SPACES] =
+		g_param_spec_boolean ("insert-spaces-instead-of-tabs",
+		                      "Insert Spaces Instead of Tabs",
+		                      "Whether to insert spaces instead of tabs",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:show-right-margin:
 	 *
 	 * Whether to display the right margin.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_SHOW_RIGHT_MARGIN,
-					 g_param_spec_boolean ("show-right-margin",
-							       "Show Right Margin",
-							       "Whether to display the right margin",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_SHOW_RIGHT_MARGIN] =
+		g_param_spec_boolean ("show-right-margin",
+		                      "Show Right Margin",
+		                      "Whether to display the right margin",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:right-margin-position:
 	 *
 	 * Position of the right margin.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_RIGHT_MARGIN_POSITION,
-					 g_param_spec_uint ("right-margin-position",
-							    "Right Margin Position",
-							    "Position of the right margin",
-							    1,
-							    MAX_RIGHT_MARGIN_POSITION,
-							    DEFAULT_RIGHT_MARGIN_POSITION,
-							    G_PARAM_READWRITE |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_RIGHT_MARGIN_POSITION] =
+		g_param_spec_uint ("right-margin-position",
+		                   "Right Margin Position",
+		                   "Position of the right margin",
+		                   1,
+		                   MAX_RIGHT_MARGIN_POSITION,
+		                   DEFAULT_RIGHT_MARGIN_POSITION,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_EXPLICIT_NOTIFY |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:smart-home-end:
@@ -636,35 +638,35 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 *
 	 * Since: 2.0
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_SMART_HOME_END,
-					 g_param_spec_enum ("smart-home-end",
-							    "Smart Home/End",
-							    "HOME and END keys move to first/last "
-							    "non whitespace characters on line before going "
-							    "to the start/end of the line",
-							    GTK_SOURCE_TYPE_SMART_HOME_END_TYPE,
-							    GTK_SOURCE_SMART_HOME_END_DISABLED,
-							    G_PARAM_READWRITE |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_SMART_HOME_END] =
+		g_param_spec_enum ("smart-home-end",
+		                   "Smart Home/End",
+		                   "HOME and END keys move to first/last "
+		                   "non whitespace characters on line before going "
+		                   "to the start/end of the line",
+		                   GTK_SOURCE_TYPE_SMART_HOME_END_TYPE,
+		                   GTK_SOURCE_SMART_HOME_END_DISABLED,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_EXPLICIT_NOTIFY |
+		                    G_PARAM_STATIC_STRINGS));
 
-	g_object_class_install_property (object_class,
-					 PROP_HIGHLIGHT_CURRENT_LINE,
-					 g_param_spec_boolean ("highlight-current-line",
-							       "Highlight current line",
-							       "Whether to highlight the current line",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_HIGHLIGHT_CURRENT_LINE] =
+		g_param_spec_boolean ("highlight-current-line",
+		                      "Highlight current line",
+		                      "Whether to highlight the current line",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
-	g_object_class_install_property (object_class,
-					 PROP_INDENT_ON_TAB,
-					 g_param_spec_boolean ("indent-on-tab",
-							       "Indent on tab",
-							       "Whether to indent the selected text when the tab key is pressed",
-							       TRUE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_INDENT_ON_TAB] =
+		g_param_spec_boolean ("indent-on-tab",
+		                      "Indent on tab",
+		                      "Whether to indent the selected text when the tab key is pressed",
+		                      TRUE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:background-pattern:
@@ -673,15 +675,15 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 *
 	 * Since: 3.16
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_BACKGROUND_PATTERN,
-					 g_param_spec_enum ("background-pattern",
-							    "Background pattern",
-							    "Draw a specific background pattern on the view",
-							    GTK_SOURCE_TYPE_BACKGROUND_PATTERN_TYPE,
-							    GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE,
-							    G_PARAM_READWRITE |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_BACKGROUND_PATTERN] =
+		g_param_spec_enum ("background-pattern",
+		                   "Background pattern",
+		                   "Draw a specific background pattern on the view",
+		                   GTK_SOURCE_TYPE_BACKGROUND_PATTERN_TYPE,
+		                   GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_EXPLICIT_NOTIFY |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:smart-backspace:
@@ -690,14 +692,14 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 *
 	 * Since: 3.18
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_SMART_BACKSPACE,
-					 g_param_spec_boolean ("smart-backspace",
-							       "Smart Backspace",
-							       "",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_SMART_BACKSPACE] =
+		g_param_spec_boolean ("smart-backspace",
+		                      "Smart Backspace",
+		                      "",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:space-drawer:
@@ -706,14 +708,15 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 *
 	 * Since: 3.24
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_SPACE_DRAWER,
-					 g_param_spec_object ("space-drawer",
-							      "Space Drawer",
-							      "",
-							      GTK_SOURCE_TYPE_SPACE_DRAWER,
-							      G_PARAM_READABLE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_SPACE_DRAWER] =
+		g_param_spec_object ("space-drawer",
+		                     "Space Drawer",
+		                     "",
+		                     GTK_SOURCE_TYPE_SPACE_DRAWER,
+		                     (G_PARAM_READABLE |
+		                      G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 
 	/**
 	 * GtkSourceView::show-completion:
@@ -2742,7 +2745,8 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 	gtk_widget_set_visible (GTK_WIDGET (priv->line_renderer), show);
 	priv->show_line_numbers = show;
 
-	g_object_notify (G_OBJECT (view), "show_line_numbers");
+	g_object_notify_by_pspec (G_OBJECT (view),
+	                          properties [PROP_SHOW_LINE_NUMBERS]);
 }
 
 /**
@@ -2823,7 +2827,8 @@ gtk_source_view_set_show_line_marks (GtkSourceView *view,
 	gtk_widget_set_visible (GTK_WIDGET (priv->marks_renderer), show);
 	priv->show_line_marks = show;
 
-	g_object_notify (G_OBJECT (view), "show_line_marks");
+	g_object_notify_by_pspec (G_OBJECT (view),
+	                          properties [PROP_SHOW_LINE_MARKS]);
 }
 
 static gboolean
@@ -2880,7 +2885,8 @@ gtk_source_view_set_tab_width (GtkSourceView *view,
 	priv->tab_width = width;
 	if (set_tab_stops_internal (view))
 	{
-		g_object_notify (G_OBJECT (view), "tab-width");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_TAB_WIDTH]);
 	}
 	else
 	{
@@ -2945,7 +2951,8 @@ gtk_source_view_set_indent_width (GtkSourceView *view,
 	if (priv->indent_width != width)
 	{
 		priv->indent_width = width;
-		g_object_notify (G_OBJECT (view), "indent-width");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_INDENT_WIDTH]);
 	}
 }
 
@@ -4010,7 +4017,8 @@ gtk_source_view_set_auto_indent (GtkSourceView *view,
 	if (priv->auto_indent != enable)
 	{
 		priv->auto_indent = enable;
-		g_object_notify (G_OBJECT (view), "auto_indent");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_AUTO_INDENT]);
 	}
 }
 
@@ -4055,7 +4063,8 @@ gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView *view,
 	if (priv->insert_spaces != enable)
 	{
 		priv->insert_spaces = enable;
-		g_object_notify (G_OBJECT (view), "insert_spaces_instead_of_tabs");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_INSERT_SPACES]);
 	}
 }
 
@@ -4106,7 +4115,8 @@ gtk_source_view_set_indent_on_tab (GtkSourceView *view,
 	if (priv->indent_on_tab != enable)
 	{
 		priv->indent_on_tab = enable;
-		g_object_notify (G_OBJECT (view), "indent_on_tab");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_INDENT_ON_TAB]);
 	}
 }
 
@@ -4258,7 +4268,8 @@ gtk_source_view_set_highlight_current_line (GtkSourceView *view,
 
 		gtk_source_view_queue_draw (view);
 
-		g_object_notify (G_OBJECT (view), "highlight_current_line");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_HIGHLIGHT_CURRENT_LINE]);
 	}
 }
 
@@ -4303,7 +4314,8 @@ gtk_source_view_set_show_right_margin (GtkSourceView *view,
 
 		gtk_source_view_queue_draw (view);
 
-		g_object_notify (G_OBJECT (view), "show-right-margin");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_SHOW_RIGHT_MARGIN]);
 	}
 }
 
@@ -4348,7 +4360,8 @@ gtk_source_view_set_right_margin_position (GtkSourceView *view,
 
 		gtk_source_view_queue_draw (view);
 
-		g_object_notify (G_OBJECT (view), "right-margin-position");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_RIGHT_MARGIN_POSITION]);
 	}
 }
 
@@ -4375,7 +4388,8 @@ gtk_source_view_set_smart_backspace (GtkSourceView *view,
 	if (smart_backspace != priv->smart_backspace)
 	{
 		priv->smart_backspace = smart_backspace;
-		g_object_notify (G_OBJECT (view), "smart-backspace");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_SMART_BACKSPACE]);
 	}
 }
 
@@ -4419,7 +4433,8 @@ gtk_source_view_set_smart_home_end (GtkSourceView             *view,
 	if (priv->smart_home_end != smart_home_end)
 	{
 		priv->smart_home_end = smart_home_end;
-		g_object_notify (G_OBJECT (view), "smart_home_end");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_SMART_HOME_END]);
 	}
 }
 
@@ -4872,7 +4887,8 @@ gtk_source_view_set_background_pattern (GtkSourceView                  *view,
 
 		gtk_source_view_queue_draw (view);
 
-		g_object_notify (G_OBJECT (view), "background-pattern");
+		g_object_notify_by_pspec (G_OBJECT (view),
+		                          properties [PROP_BACKGROUND_PATTERN]);
 	}
 }
 

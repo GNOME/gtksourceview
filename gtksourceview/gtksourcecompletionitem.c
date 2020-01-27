@@ -52,7 +52,8 @@ enum
 	PROP_ICON,
 	PROP_ICON_NAME,
 	PROP_GICON,
-	PROP_INFO
+	PROP_INFO,
+	N_PROPS
 };
 
 static void gtk_source_completion_proposal_iface_init (gpointer g_iface, gpointer iface_data);
@@ -63,6 +64,8 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionItem,
                          G_ADD_PRIVATE (GtkSourceCompletionItem)
                          G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,
                                                 gtk_source_completion_proposal_iface_init))
+
+static GParamSpec *properties [N_PROPS];
 
 static gchar *
 gtk_source_completion_proposal_get_label_impl (GtkSourceCompletionProposal *proposal)
@@ -280,56 +283,56 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	 *
 	 * Label to be shown for this proposal.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_LABEL,
-					 g_param_spec_string ("label",
-							      "Label",
-							      "",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_LABEL] =
+		g_param_spec_string ("label",
+		                     "Label",
+		                     "",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:markup:
 	 *
 	 * Label with markup to be shown for this proposal.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_MARKUP,
-					 g_param_spec_string ("markup",
-							      "Markup",
-							      "",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_MARKUP] =
+		g_param_spec_string ("markup",
+		                     "Markup",
+		                     "",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:text:
 	 *
 	 * Proposal text.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_TEXT,
-					 g_param_spec_string ("text",
-							      "Text",
-							      "",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_TEXT] =
+		g_param_spec_string ("text",
+		                     "Text",
+		                     "",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:icon:
 	 *
 	 * The #GdkTexture for the icon to be shown for this proposal.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_ICON,
-					 g_param_spec_object ("icon",
-							      "Icon",
-							      "",
-							      GDK_TYPE_TEXTURE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_ICON] =
+		g_param_spec_object ("icon",
+		                     "Icon",
+		                     "",
+		                     GDK_TYPE_TEXTURE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:icon-name:
@@ -338,14 +341,14 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	 *
 	 * Since: 3.18
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_ICON_NAME,
-					 g_param_spec_string ("icon-name",
-							      "Icon Name",
-							      "",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_ICON_NAME] =
+		g_param_spec_string ("icon-name",
+		                     "Icon Name",
+		                     "",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:gicon:
@@ -354,28 +357,30 @@ gtk_source_completion_item_class_init (GtkSourceCompletionItemClass *klass)
 	 *
 	 * Since: 3.18
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_GICON,
-					 g_param_spec_object ("gicon",
-							      "GIcon",
-							      "",
-							      G_TYPE_ICON,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_GICON] =
+		g_param_spec_object ("gicon",
+		                     "GIcon",
+		                     "",
+		                     G_TYPE_ICON,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionItem:info:
 	 *
 	 * Optional extra information to be shown for this proposal.
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_INFO,
-					 g_param_spec_string ("info",
-							      "Info",
-							      "",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_INFO] =
+		g_param_spec_string ("info",
+		                     "Info",
+		                     "",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -419,7 +424,7 @@ gtk_source_completion_item_set_label (GtkSourceCompletionItem *item,
 		priv->label = g_strdup (label);
 
 		emit_changed (item);
-		g_object_notify (G_OBJECT (item), "label");
+		g_object_notify_by_pspec (G_OBJECT (item), properties [PROP_LABEL]);
 	}
 }
 
@@ -444,7 +449,7 @@ gtk_source_completion_item_set_markup (GtkSourceCompletionItem *item,
 		priv->markup = g_strdup (markup);
 
 		emit_changed (item);
-		g_object_notify (G_OBJECT (item), "markup");
+		g_object_notify_by_pspec (G_OBJECT (item), properties [PROP_MARKUP]);
 	}
 }
 
@@ -469,7 +474,7 @@ gtk_source_completion_item_set_text (GtkSourceCompletionItem *item,
 		priv->text = g_strdup (text);
 
 		emit_changed (item);
-		g_object_notify (G_OBJECT (item), "text");
+		g_object_notify_by_pspec (G_OBJECT (item), properties [PROP_TEXT]);
 	}
 }
 
@@ -492,7 +497,7 @@ gtk_source_completion_item_set_icon (GtkSourceCompletionItem *item,
 	if (g_set_object (&priv->icon, icon))
 	{
 		emit_changed (item);
-		g_object_notify (G_OBJECT (item), "icon");
+		g_object_notify_by_pspec (G_OBJECT (item), properties [PROP_ICON]);
 	}
 }
 
@@ -517,7 +522,7 @@ gtk_source_completion_item_set_icon_name (GtkSourceCompletionItem *item,
 		priv->icon_name = g_strdup (icon_name);
 
 		emit_changed (item);
-		g_object_notify (G_OBJECT (item), "icon-name");
+		g_object_notify_by_pspec (G_OBJECT (item), properties [PROP_ICON_NAME]);
 	}
 }
 
@@ -540,7 +545,7 @@ gtk_source_completion_item_set_gicon (GtkSourceCompletionItem *item,
 	if (g_set_object (&priv->gicon, gicon))
 	{
 		emit_changed (item);
-		g_object_notify (G_OBJECT (item), "gicon");
+		g_object_notify_by_pspec (G_OBJECT (item), properties [PROP_GICON]);
 	}
 }
 
@@ -565,6 +570,6 @@ gtk_source_completion_item_set_info (GtkSourceCompletionItem *item,
 		priv->info = g_strdup (info);
 
 		emit_changed (item);
-		g_object_notify (G_OBJECT (item), "info");
+		g_object_notify_by_pspec (G_OBJECT (item), properties [PROP_INFO]);
 	}
 }

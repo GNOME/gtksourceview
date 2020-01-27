@@ -47,9 +47,12 @@ enum
 	PROP_0,
 	PROP_DRAW_SPACES,
 	PROP_DRAW_SPACES_SET,
+	N_PROPS
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceTag, gtk_source_tag, GTK_TYPE_TEXT_TAG)
+
+static GParamSpec *properties[N_PROPS];
 
 static void
 gtk_source_tag_get_property (GObject    *object,
@@ -92,19 +95,20 @@ gtk_source_tag_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
-		case PROP_DRAW_SPACES:
-			priv->draw_spaces = g_value_get_boolean (value);
-			priv->draw_spaces_set = TRUE;
-			g_object_notify (object, "draw-spaces-set");
-			break;
+	case PROP_DRAW_SPACES:
+		priv->draw_spaces = g_value_get_boolean (value);
+		priv->draw_spaces_set = TRUE;
+		g_object_notify_by_pspec (object,
+		                          properties[PROP_DRAW_SPACES_SET]);
+		break;
 
-		case PROP_DRAW_SPACES_SET:
-			priv->draw_spaces_set = g_value_get_boolean (value);
-			break;
+	case PROP_DRAW_SPACES_SET:
+		priv->draw_spaces_set = g_value_get_boolean (value);
+		break;
 
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-			break;
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+		break;
 	}
 
 	gtk_text_tag_changed (GTK_TEXT_TAG (tag), size_changed);
@@ -130,14 +134,14 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 	 *
 	 * Since: 3.20
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_DRAW_SPACES,
-					 g_param_spec_boolean ("draw-spaces",
-							       "Draw Spaces",
-							       "",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_DRAW_SPACES] =
+		g_param_spec_boolean ("draw-spaces",
+		                      "Draw Spaces",
+		                      "",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceTag:draw-spaces-set:
@@ -147,14 +151,16 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 	 *
 	 * Since: 3.20
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_DRAW_SPACES_SET,
-					 g_param_spec_boolean ("draw-spaces-set",
-							       "Draw Spaces Set",
-							       "",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_DRAW_SPACES_SET] =
+		g_param_spec_boolean ("draw-spaces-set",
+		                      "Draw Spaces Set",
+		                      "",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void

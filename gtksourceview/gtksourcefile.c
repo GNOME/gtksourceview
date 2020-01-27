@@ -51,7 +51,8 @@ enum
 	PROP_ENCODING,
 	PROP_NEWLINE_TYPE,
 	PROP_COMPRESSION_TYPE,
-	PROP_READ_ONLY
+	PROP_READ_ONLY,
+	N_PROPS
 };
 
 typedef struct
@@ -79,6 +80,8 @@ typedef struct
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceFile, gtk_source_file, G_TYPE_OBJECT)
 
+static GParamSpec *properties[N_PROPS];
+
 static void
 gtk_source_file_get_property (GObject    *object,
                               guint       prop_id,
@@ -90,29 +93,29 @@ gtk_source_file_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-		case PROP_LOCATION:
-			g_value_set_object (value, priv->location);
-			break;
+	case PROP_LOCATION:
+		g_value_set_object (value, priv->location);
+		break;
 
-		case PROP_ENCODING:
-			g_value_set_boxed (value, priv->encoding);
-			break;
+	case PROP_ENCODING:
+		g_value_set_boxed (value, priv->encoding);
+		break;
 
-		case PROP_NEWLINE_TYPE:
-			g_value_set_enum (value, priv->newline_type);
-			break;
+	case PROP_NEWLINE_TYPE:
+		g_value_set_enum (value, priv->newline_type);
+		break;
 
-		case PROP_COMPRESSION_TYPE:
-			g_value_set_enum (value, priv->compression_type);
-			break;
+	case PROP_COMPRESSION_TYPE:
+		g_value_set_enum (value, priv->compression_type);
+		break;
 
-		case PROP_READ_ONLY:
-			g_value_set_boolean (value, priv->readonly);
-			break;
+	case PROP_READ_ONLY:
+		g_value_set_boolean (value, priv->readonly);
+		break;
 
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-			break;
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+		break;
 	}
 }
 
@@ -126,13 +129,13 @@ gtk_source_file_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
-		case PROP_LOCATION:
-			gtk_source_file_set_location (file, g_value_get_object (value));
-			break;
+	case PROP_LOCATION:
+		gtk_source_file_set_location (file, g_value_get_object (value));
+		break;
 
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-			break;
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+		break;
 	}
 }
 
@@ -169,15 +172,14 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_LOCATION,
-					 g_param_spec_object ("location",
-							      "Location",
-							      "",
-							      G_TYPE_FILE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_LOCATION] =
+		g_param_spec_object ("location",
+		                     "Location",
+		                     "",
+		                     G_TYPE_FILE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFile:encoding:
@@ -187,14 +189,13 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_ENCODING,
-					 g_param_spec_boxed ("encoding",
-							     "Encoding",
-							     "",
-							     GTK_SOURCE_TYPE_ENCODING,
-							     G_PARAM_READABLE |
-							     G_PARAM_STATIC_STRINGS));
+	properties[PROP_ENCODING] =
+		g_param_spec_boxed ("encoding",
+		                    "Encoding",
+		                    "",
+		                    GTK_SOURCE_TYPE_ENCODING,
+		                    (G_PARAM_READABLE |
+		                     G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFile:newline-type:
@@ -203,15 +204,14 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_NEWLINE_TYPE,
-					 g_param_spec_enum ("newline-type",
-							    "Newline type",
-							    "",
-							    GTK_SOURCE_TYPE_NEWLINE_TYPE,
-							    GTK_SOURCE_NEWLINE_TYPE_LF,
-							    G_PARAM_READABLE |
-							    G_PARAM_STATIC_STRINGS));
+	properties[PROP_NEWLINE_TYPE] =
+		g_param_spec_enum ("newline-type",
+		                   "Newline type",
+		                   "",
+		                   GTK_SOURCE_TYPE_NEWLINE_TYPE,
+		                   GTK_SOURCE_NEWLINE_TYPE_LF,
+		                   (G_PARAM_READABLE |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFile:compression-type:
@@ -220,15 +220,14 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_COMPRESSION_TYPE,
-					 g_param_spec_enum ("compression-type",
-							    "Compression type",
-							    "",
-							    GTK_SOURCE_TYPE_COMPRESSION_TYPE,
-							    GTK_SOURCE_COMPRESSION_TYPE_NONE,
-							    G_PARAM_READABLE |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_COMPRESSION_TYPE] =
+		g_param_spec_enum ("compression-type",
+		                   "Compression type",
+		                   "",
+		                   GTK_SOURCE_TYPE_COMPRESSION_TYPE,
+		                   GTK_SOURCE_COMPRESSION_TYPE_NONE,
+		                   (G_PARAM_READABLE |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFile:read-only:
@@ -238,14 +237,15 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 *
 	 * Since: 3.18
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_READ_ONLY,
-					 g_param_spec_boolean ("read-only",
-							       "Read Only",
-							       "",
-							       FALSE,
-							       G_PARAM_READABLE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_READ_ONLY] =
+		g_param_spec_boolean ("read-only",
+		                      "Read Only",
+		                      "",
+		                      FALSE,
+		                      (G_PARAM_READABLE |
+		                       G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -290,7 +290,7 @@ gtk_source_file_set_location (GtkSourceFile *file,
 
 	if (g_set_object (&priv->location, location))
 	{
-		g_object_notify (G_OBJECT (file), "location");
+		g_object_notify_by_pspec (G_OBJECT (file), properties[PROP_LOCATION]);
 
 		/* The modification_time is for the old location. */
 		priv->modification_time_set = FALSE;
@@ -328,7 +328,7 @@ _gtk_source_file_set_encoding (GtkSourceFile           *file,
 	if (priv->encoding != encoding)
 	{
 		priv->encoding = encoding;
-		g_object_notify (G_OBJECT (file), "encoding");
+		g_object_notify_by_pspec (G_OBJECT (file), properties[PROP_ENCODING]);
 	}
 }
 
@@ -363,7 +363,7 @@ _gtk_source_file_set_newline_type (GtkSourceFile        *file,
 	if (priv->newline_type != newline_type)
 	{
 		priv->newline_type = newline_type;
-		g_object_notify (G_OBJECT (file), "newline-type");
+		g_object_notify_by_pspec (G_OBJECT (file), properties[PROP_NEWLINE_TYPE]);
 	}
 }
 
@@ -395,7 +395,7 @@ _gtk_source_file_set_compression_type (GtkSourceFile            *file,
 	if (priv->compression_type != compression_type)
 	{
 		priv->compression_type = compression_type;
-		g_object_notify (G_OBJECT (file), "compression-type");
+		g_object_notify_by_pspec (G_OBJECT (file), properties[PROP_COMPRESSION_TYPE]);
 	}
 }
 
@@ -680,7 +680,7 @@ _gtk_source_file_set_readonly (GtkSourceFile *file,
 	if (priv->readonly != readonly)
 	{
 		priv->readonly = readonly;
-		g_object_notify (G_OBJECT (file), "read-only");
+		g_object_notify_by_pspec (G_OBJECT (file), properties[PROP_READ_ONLY]);
 	}
 }
 

@@ -189,10 +189,13 @@ enum
 	PROP_LINE_NUMBERS_FONT_NAME,
 	PROP_HEADER_FONT_NAME,
 	PROP_FOOTER_FONT_NAME,
-	PROP_N_PAGES
+	PROP_N_PAGES,
+	N_PROPS
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourcePrintCompositor, gtk_source_print_compositor, G_TYPE_OBJECT)
+
+static GParamSpec *properties[N_PROPS];
 
 #define MM_PER_INCH 25.4
 #define POINTS_PER_INCH 72
@@ -436,15 +439,14 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_BUFFER,
-					 g_param_spec_object ("buffer",
-							      "Source Buffer",
-							      "The GtkSourceBuffer object to print",
-							      GTK_SOURCE_TYPE_BUFFER,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties[PROP_BUFFER] =
+		g_param_spec_object ("buffer",
+		                     "Source Buffer",
+		                     "The GtkSourceBuffer object to print",
+		                     GTK_SOURCE_TYPE_BUFFER,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:tab-width:
@@ -456,16 +458,16 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_TAB_WIDTH,
-					 g_param_spec_uint ("tab-width",
-							    "Tab Width",
-							    "Width of a tab character expressed in spaces",
-							    1,
-							    MAX_TAB_WIDTH,
-							    DEFAULT_TAB_WIDTH,
-							    G_PARAM_READWRITE |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_TAB_WIDTH] =
+		g_param_spec_uint ("tab-width",
+		                   "Tab Width",
+		                   "Width of a tab character expressed in spaces",
+		                   1,
+		                   MAX_TAB_WIDTH,
+		                   DEFAULT_TAB_WIDTH,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_EXPLICIT_NOTIFY |
+		                    G_PARAM_STATIC_STRINGS));
 
 
 	/**
@@ -478,15 +480,15 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_WRAP_MODE,
-					 g_param_spec_enum ("wrap-mode",
-							    "Wrap Mode",
-							    "",
-							    GTK_TYPE_WRAP_MODE,
-							    GTK_WRAP_NONE,
-							    G_PARAM_READWRITE |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_WRAP_MODE] =
+		g_param_spec_enum ("wrap-mode",
+		                   "Wrap Mode",
+		                   "",
+		                   GTK_TYPE_WRAP_MODE,
+		                   GTK_WRAP_NONE,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_EXPLICIT_NOTIFY |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:highlight-syntax:
@@ -498,14 +500,14 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_HIGHLIGHT_SYNTAX,
-					 g_param_spec_boolean ("highlight-syntax",
-							       "Highlight Syntax",
-							       "",
-							       TRUE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_HIGHLIGHT_SYNTAX] =
+		g_param_spec_boolean ("highlight-syntax",
+		                      "Highlight Syntax",
+		                      "",
+		                      TRUE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:print-line-numbers:
@@ -519,14 +521,14 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_PRINT_LINE_NUMBERS,
-					 g_param_spec_uint ("print-line-numbers",
-							    "Print Line Numbers",
-							    "",
-							    0, 100, 1,
-							    G_PARAM_READWRITE |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_PRINT_LINE_NUMBERS] =
+		g_param_spec_uint ("print-line-numbers",
+		                   "Print Line Numbers",
+		                   "",
+		                   0, 100, 1,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_EXPLICIT_NOTIFY |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:print-header:
@@ -542,14 +544,14 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_PRINT_HEADER,
-					 g_param_spec_boolean ("print-header",
-							       "Print Header",
-							       "",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_PRINT_HEADER] =
+		g_param_spec_boolean ("print-header",
+		                      "Print Header",
+		                      "",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:print-footer:
@@ -565,14 +567,14 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_PRINT_FOOTER,
-					 g_param_spec_boolean ("print-footer",
-							       "Print Footer",
-							       "",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_PRINT_FOOTER] =
+		g_param_spec_boolean ("print-footer",
+		                      "Print Footer",
+		                      "",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:body-font-name:
@@ -588,14 +590,14 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_BODY_FONT_NAME,
-					 g_param_spec_string ("body-font-name",
-							      "Body Font Name",
-							      "",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_BODY_FONT_NAME] =
+		g_param_spec_string ("body-font-name",
+		                     "Body Font Name",
+		                     "",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:line-numbers-font-name:
@@ -612,14 +614,14 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_LINE_NUMBERS_FONT_NAME,
-					 g_param_spec_string ("line-numbers-font-name",
-							      "Line Numbers Font Name",
-							      "",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_LINE_NUMBERS_FONT_NAME] =
+		g_param_spec_string ("line-numbers-font-name",
+		                     "Line Numbers Font Name",
+		                     "",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:header-font-name:
@@ -636,14 +638,14 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_HEADER_FONT_NAME,
-					 g_param_spec_string ("header-font-name",
-							      "Header Font Name",
-							      "",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_HEADER_FONT_NAME] =
+		g_param_spec_string ("header-font-name",
+		                     "Header Font Name",
+		                     "",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:footer-font-name:
@@ -660,14 +662,14 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * Since: 2.2
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_FOOTER_FONT_NAME,
-					 g_param_spec_string ("footer-font-name",
-							      "Footer Font Name",
-							      "",
-							      NULL,
-							      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_FOOTER_FONT_NAME] =
+		g_param_spec_string ("footer-font-name",
+		                     "Footer Font Name",
+		                     "",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourcePrintCompositor:n-pages:
@@ -677,14 +679,15 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
  	 *
  	 * Since: 2.2
  	 */
-	g_object_class_install_property (object_class,
-					 PROP_N_PAGES,
-					 g_param_spec_int ("n-pages",
-							   "Number of pages",
-							   "",
-							   -1, G_MAXINT, -1,
-							   G_PARAM_READABLE |
-							   G_PARAM_STATIC_STRINGS));
+	properties [PROP_N_PAGES] =
+		g_param_spec_int ("n-pages",
+		                  "Number of pages",
+		                  "",
+		                  -1, G_MAXINT, -1,
+		                  (G_PARAM_READABLE |
+		                   G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -811,7 +814,6 @@ gtk_source_print_compositor_new_from_view (GtkSourceView *view)
 	font_desc = pango_context_get_font_description (pango_context);
 
 	priv->body_font = pango_font_description_copy (font_desc);
-	g_object_notify (G_OBJECT (compositor), "body-font-name"); /* FIXME: is this needed? */
 
 	return compositor;
 }
@@ -865,7 +867,8 @@ gtk_source_print_compositor_set_tab_width (GtkSourcePrintCompositor *compositor,
 
 	priv->tab_width = width;
 
-	g_object_notify (G_OBJECT (compositor), "tab-width");
+	g_object_notify_by_pspec (G_OBJECT (compositor),
+	                          properties [PROP_TAB_WIDTH]);
 }
 
 /**
@@ -914,7 +917,8 @@ gtk_source_print_compositor_set_wrap_mode (GtkSourcePrintCompositor *compositor,
 
 	priv->wrap_mode = wrap_mode;
 
-	g_object_notify (G_OBJECT (compositor), "wrap-mode");
+	g_object_notify_by_pspec (G_OBJECT (compositor),
+	                          properties [PROP_WRAP_MODE]);
 }
 
 /**
@@ -966,7 +970,8 @@ gtk_source_print_compositor_set_highlight_syntax (GtkSourcePrintCompositor *comp
 
 	priv->highlight_syntax = highlight;
 
-	g_object_notify (G_OBJECT (compositor), "highlight-syntax");
+	g_object_notify_by_pspec (G_OBJECT (compositor),
+	                          properties [PROP_HIGHLIGHT_SYNTAX]);
 }
 
 /**
@@ -1022,7 +1027,8 @@ gtk_source_print_compositor_set_print_line_numbers (GtkSourcePrintCompositor *co
 
 	priv->print_line_numbers = interval;
 
-	g_object_notify (G_OBJECT (compositor), "print-line-numbers");
+	g_object_notify_by_pspec (G_OBJECT (compositor),
+	                          properties [PROP_PRINT_LINE_NUMBERS]);
 }
 
 /**
@@ -1059,7 +1065,8 @@ gtk_source_print_compositor_set_print_header (GtkSourcePrintCompositor *composit
 
 	priv->print_header = print;
 
-	g_object_notify (G_OBJECT (compositor), "print-header");
+	g_object_notify_by_pspec (G_OBJECT (compositor),
+	                          properties [PROP_PRINT_HEADER]);
 }
 
 /**
@@ -1119,7 +1126,8 @@ gtk_source_print_compositor_set_print_footer (GtkSourcePrintCompositor *composit
 
 	priv->print_footer = print;
 
-	g_object_notify (G_OBJECT (compositor), "print-footer");
+	g_object_notify_by_pspec (G_OBJECT (compositor),
+	                          properties [PROP_PRINT_FOOTER]);
 }
 
 /**
@@ -1323,7 +1331,8 @@ gtk_source_print_compositor_set_body_font_name (GtkSourcePrintCompositor *compos
 					    &priv->body_font,
 					    font_name))
 	{
-		g_object_notify (G_OBJECT (compositor), "body-font-name");
+		g_object_notify_by_pspec (G_OBJECT (compositor),
+		                          properties [PROP_BODY_FONT_NAME]);
 	}
 }
 
@@ -1382,7 +1391,8 @@ gtk_source_print_compositor_set_line_numbers_font_name (GtkSourcePrintCompositor
 					    &priv->line_numbers_font,
 					    font_name))
 	{
-		g_object_notify (G_OBJECT (compositor), "line-numbers-font-name");
+		g_object_notify_by_pspec (G_OBJECT (compositor),
+		                          properties [PROP_LINE_NUMBERS_FONT_NAME]);
 	}
 }
 
@@ -1448,7 +1458,8 @@ gtk_source_print_compositor_set_header_font_name (GtkSourcePrintCompositor *comp
 					    font_name))
 
 	{
-		g_object_notify (G_OBJECT (compositor), "header-font-name");
+		g_object_notify_by_pspec (G_OBJECT (compositor),
+		                          properties [PROP_HEADER_FONT_NAME]);
 	}
 }
 
@@ -1514,7 +1525,8 @@ gtk_source_print_compositor_set_footer_font_name (GtkSourcePrintCompositor *comp
 					    font_name))
 
 	{
-		g_object_notify (G_OBJECT (compositor), "footer-font-name");
+		g_object_notify_by_pspec (G_OBJECT (compositor),
+		                          properties [PROP_FOOTER_FONT_NAME]);
 	}
 }
 

@@ -81,7 +81,8 @@ enum
 	PROP_0,
 	PROP_COMPLETION,
 	PROP_ITER,
-	PROP_ACTIVATION
+	PROP_ACTIVATION,
+	N_PROPS
 };
 
 enum
@@ -91,6 +92,7 @@ enum
 };
 
 static guint context_signals[N_SIGNALS];
+static GParamSpec *properties[N_PROPS];
 
 G_DEFINE_TYPE (GtkSourceCompletionContext, gtk_source_completion_context, G_TYPE_INITIALLY_UNOWNED)
 
@@ -147,7 +149,7 @@ set_iter (GtkSourceCompletionContext *context,
 		gtk_text_buffer_move_mark (buffer, context->mark, iter);
 	}
 
-	g_object_notify (G_OBJECT (context), "iter");
+	g_object_notify_by_pspec (G_OBJECT (context), properties[PROP_ITER]);
 }
 
 static void
@@ -160,20 +162,20 @@ gtk_source_completion_context_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
-		case PROP_COMPLETION:
-			context->completion = g_value_dup_object (value);
-			break;
+	case PROP_COMPLETION:
+		context->completion = g_value_dup_object (value);
+		break;
 
-		case PROP_ITER:
-			set_iter (context, g_value_get_boxed (value));
-			break;
+	case PROP_ITER:
+		set_iter (context, g_value_get_boxed (value));
+		break;
 
-		case PROP_ACTIVATION:
-			context->activation = g_value_get_flags (value);
-			break;
+	case PROP_ACTIVATION:
+		context->activation = g_value_get_flags (value);
+		break;
 
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 	}
 }
 
@@ -187,27 +189,27 @@ gtk_source_completion_context_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-		case PROP_COMPLETION:
-			g_value_set_object (value, context->completion);
-			break;
+	case PROP_COMPLETION:
+		g_value_set_object (value, context->completion);
+		break;
 
-		case PROP_ITER:
+	case PROP_ITER:
+		{
+			GtkTextIter iter;
+
+			if (gtk_source_completion_context_get_iter (context, &iter))
 			{
-				GtkTextIter iter;
-
-				if (gtk_source_completion_context_get_iter (context, &iter))
-				{
-					g_value_set_boxed (value, &iter);
-				}
+				g_value_set_boxed (value, &iter);
 			}
-			break;
+		}
+		break;
 
-		case PROP_ACTIVATION:
-			g_value_set_flags (value, context->activation);
-			break;
+	case PROP_ACTIVATION:
+		g_value_set_flags (value, context->activation);
+		break;
 
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 	}
 }
 
@@ -238,45 +240,45 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	 *
 	 * The #GtkSourceCompletion associated with the context.
 	 **/
-	g_object_class_install_property (object_class,
-	                                 PROP_COMPLETION,
-	                                 g_param_spec_object ("completion",
-	                                                      "Completion",
-	                                                      "The completion object to which the context belongs",
-	                                                      GTK_SOURCE_TYPE_COMPLETION,
-	                                                      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_COMPLETION] =
+		g_param_spec_object ("completion",
+		                     "Completion",
+		                     "The completion object to which the context belongs",
+		                     GTK_SOURCE_TYPE_COMPLETION,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionContext:iter:
 	 *
 	 * The #GtkTextIter at which the completion is invoked.
 	 **/
-	g_object_class_install_property (object_class,
-	                                 PROP_ITER,
-					 g_param_spec_boxed ("iter",
-							     "Iterator",
-							     "The GtkTextIter at which the completion was invoked",
-							     GTK_TYPE_TEXT_ITER,
-							     G_PARAM_READWRITE |
-							     G_PARAM_STATIC_STRINGS));
+	properties [PROP_ITER] =
+		g_param_spec_boxed ("iter",
+		                    "Iterator",
+		                    "The GtkTextIter at which the completion was invoked",
+		                    GTK_TYPE_TEXT_ITER,
+		                    (G_PARAM_READWRITE |
+		                     G_PARAM_EXPLICIT_NOTIFY |
+		                     G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletionContext:activation:
 	 *
 	 * The completion activation
 	 **/
-	g_object_class_install_property (object_class,
-	                                 PROP_ACTIVATION,
-	                                 g_param_spec_flags ("activation",
-	                                                     "Activation",
-	                                                     "The type of activation",
-	                                                     GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
-	                                                     GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
-	                                                     G_PARAM_READWRITE |
-							     G_PARAM_CONSTRUCT |
-							     G_PARAM_STATIC_STRINGS));
+	properties [PROP_ACTIVATION] =
+		g_param_spec_flags ("activation",
+		                    "Activation",
+		                    "The type of activation",
+		                    GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
+		                    GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
+		                    (G_PARAM_READWRITE |
+		                     G_PARAM_CONSTRUCT |
+		                     G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void

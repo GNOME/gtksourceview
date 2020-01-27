@@ -298,7 +298,8 @@ enum
 	PROP_HIGHLIGHT,
 	PROP_MATCH_STYLE,
 	PROP_OCCURRENCES_COUNT,
-	PROP_REGEX_ERROR
+	PROP_REGEX_ERROR,
+	N_PROPS
 };
 
 struct _GtkSourceSearchContext
@@ -367,6 +368,8 @@ typedef struct
 } ForwardBackwardData;
 
 G_DEFINE_TYPE (GtkSourceSearchContext, gtk_source_search_context, G_TYPE_OBJECT)
+
+static GParamSpec *properties[N_PROPS];
 
 static void install_idle_scan (GtkSourceSearchContext *search);
 
@@ -541,7 +544,7 @@ clear_search (GtkSourceSearchContext *search)
 	if (search->regex_error != NULL)
 	{
 		g_clear_error (&search->regex_error);
-		g_object_notify (G_OBJECT (search), "regex-error");
+		g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_REGEX_ERROR]);
 	}
 
 	clear_task (search);
@@ -766,7 +769,7 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 
 		if (search->regex_error != NULL)
 		{
-			g_object_notify (G_OBJECT (search), "regex-error");
+			g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_REGEX_ERROR]);
 			found = FALSE;
 		}
 
@@ -1756,7 +1759,8 @@ idle_scan_normal_search (GtkSourceSearchContext *search)
 	{
 		search->idle_scan_id = 0;
 
-		g_object_notify (G_OBJECT (search), "occurrences-count");
+		g_object_notify_by_pspec (G_OBJECT (search),
+		                          properties [PROP_OCCURRENCES_COUNT]);
 
 		g_clear_object (&search->scan_region);
 		return G_SOURCE_REMOVE;
@@ -1926,7 +1930,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 
 	if (search->regex_error != NULL)
 	{
-		g_object_notify (G_OBJECT (search), "regex-error");
+		g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_REGEX_ERROR]);
 	}
 
 	if (g_match_info_is_partial_match (match_info))
@@ -2055,7 +2059,8 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 	{
 		search->idle_scan_id = 0;
 
-		g_object_notify (G_OBJECT (search), "occurrences-count");
+		g_object_notify_by_pspec (G_OBJECT (search),
+		                          properties [PROP_OCCURRENCES_COUNT]);
 
 		g_clear_object (&search->scan_region);
 		return G_SOURCE_REMOVE;
@@ -2364,7 +2369,7 @@ update_regex (GtkSourceSearchContext *search)
 
 	if (regex_error_changed)
 	{
-		g_object_notify (G_OBJECT (search), "regex-error");
+		g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_REGEX_ERROR]);
 	}
 }
 
@@ -2637,7 +2642,8 @@ set_settings (GtkSourceSearchContext  *search,
 	search_text_updated (search);
 	update (search);
 
-	g_object_notify (G_OBJECT (search), "settings");
+	g_object_notify_by_pspec (G_OBJECT (search),
+	                          properties [PROP_SETTINGS]);
 }
 
 static void
@@ -2720,7 +2726,7 @@ gtk_source_search_context_get_property (GObject    *object,
 			break;
 
 		case PROP_REGEX_ERROR:
-			g_value_set_pointer (value, gtk_source_search_context_get_regex_error (search));
+			g_value_take_boxed (value, gtk_source_search_context_get_regex_error (search));
 			break;
 
 		default:
@@ -2782,15 +2788,14 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_BUFFER,
-					 g_param_spec_object ("buffer",
-							      "Buffer",
-							      "The associated GtkSourceBuffer",
-							      GTK_SOURCE_TYPE_BUFFER,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_BUFFER] =
+		g_param_spec_object ("buffer",
+		                     "Buffer",
+		                     "The associated GtkSourceBuffer",
+		                     GTK_SOURCE_TYPE_BUFFER,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:settings:
@@ -2801,15 +2806,14 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_SETTINGS,
-					 g_param_spec_object ("settings",
-							      "Settings",
-							      "The associated GtkSourceSearchSettings",
-							      GTK_SOURCE_TYPE_SEARCH_SETTINGS,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_SETTINGS] =
+		g_param_spec_object ("settings",
+		                     "Settings",
+		                     "The associated GtkSourceSearchSettings",
+		                     GTK_SOURCE_TYPE_SEARCH_SETTINGS,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:highlight:
@@ -2818,15 +2822,14 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_HIGHLIGHT,
-					 g_param_spec_boolean ("highlight",
-							       "Highlight",
-							       "Highlight search occurrences",
-							       TRUE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_CONSTRUCT |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_HIGHLIGHT] =
+		g_param_spec_boolean ("highlight",
+		                      "Highlight",
+		                      "Highlight search occurrences",
+		                      TRUE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_CONSTRUCT |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:match-style:
@@ -2835,15 +2838,14 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.16
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_MATCH_STYLE,
-					 g_param_spec_object ("match-style",
-							      "Match style",
-							      "The text style for matches",
-							      GTK_SOURCE_TYPE_STYLE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_MATCH_STYLE] =
+		g_param_spec_object ("match-style",
+		                     "Match style",
+		                     "The text style for matches",
+		                     GTK_SOURCE_TYPE_STYLE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:occurrences-count:
@@ -2854,16 +2856,15 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_OCCURRENCES_COUNT,
-					 g_param_spec_int ("occurrences-count",
-							   "Occurrences count",
-							   "Total number of search occurrences",
-							   -1,
-							   G_MAXINT,
-							   0,
-							   G_PARAM_READABLE |
-							   G_PARAM_STATIC_STRINGS));
+	properties [PROP_OCCURRENCES_COUNT] =
+		g_param_spec_int ("occurrences-count",
+		                  "Occurrences count",
+		                  "Total number of search occurrences",
+		                  -1,
+		                  G_MAXINT,
+		                  0,
+		                  (G_PARAM_READABLE |
+		                   G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:regex-error:
@@ -2876,13 +2877,15 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_REGEX_ERROR,
-					 g_param_spec_pointer ("regex-error",
-							       "Regex error",
-							       "Regular expression error",
-							       G_PARAM_READABLE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_REGEX_ERROR] =
+		g_param_spec_boxed ("regex-error",
+		                    "Regex error",
+		                    "Regular expression error",
+		                    G_TYPE_ERROR,
+		                    (G_PARAM_READABLE |
+		                     G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -2984,7 +2987,7 @@ gtk_source_search_context_set_highlight (GtkSourceSearchContext *search,
 		search->highlight = highlight;
 		sync_found_tag (search);
 
-		g_object_notify (G_OBJECT (search), "highlight");
+		g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_HIGHLIGHT]);
 	}
 }
 
@@ -3040,7 +3043,7 @@ gtk_source_search_context_set_match_style (GtkSourceSearchContext *search,
 		g_object_ref (match_style);
 	}
 
-	g_object_notify (G_OBJECT (search), "match-style");
+	g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_MATCH_STYLE]);
 }
 
 /**
@@ -3048,12 +3051,14 @@ gtk_source_search_context_set_match_style (GtkSourceSearchContext *search,
  * @search: a #GtkSourceSearchContext.
  *
  * Regular expression patterns must follow certain rules. If
- * #GtkSourceSearchSettings:search-text breaks a rule, the error can be retrieved
- * with this function. The error domain is #G_REGEX_ERROR.
+ * #GtkSourceSearchSettings:search-text breaks a rule, the error can be
+ * retrieved with this function. The error domain is #G_REGEX_ERROR.
  *
  * Free the return value with g_error_free().
  *
- * Returns: (nullable): the #GError, or %NULL if the pattern is valid.
+ * Returns: (transfer full) (nullable): the #GError, or %NULL if the
+ *   pattern is valid.
+ *
  * Since: 3.10
  */
 GError *

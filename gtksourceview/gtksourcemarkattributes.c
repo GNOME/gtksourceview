@@ -93,7 +93,8 @@ enum
 	PROP_BACKGROUND,
 	PROP_PIXBUF,
 	PROP_ICON_NAME,
-	PROP_GICON
+	PROP_GICON,
+	N_PROPS
 };
 
 enum
@@ -104,6 +105,7 @@ enum
 };
 
 static guint signals[N_SIGNALS];
+static GParamSpec *properties[N_PROPS];
 
 static void
 gtk_source_mark_attributes_finalize (GObject *object)
@@ -126,7 +128,8 @@ set_background (GtkSourceMarkAttributes *attributes,
 
 	attributes->background_set = color != NULL;
 
-	g_object_notify (G_OBJECT (attributes), "background");
+	g_object_notify_by_pspec (G_OBJECT (attributes),
+	                          properties [PROP_BACKGROUND]);
 }
 
 static void
@@ -142,7 +145,8 @@ set_icon_name (GtkSourceMarkAttributes *attributes,
 	gtk_source_pixbuf_helper_set_icon_name (attributes->helper,
 	                                        icon_name);
 
-	g_object_notify (G_OBJECT (attributes), "icon-name");
+	g_object_notify_by_pspec (G_OBJECT (attributes),
+	                          properties [PROP_ICON_NAME]);
 }
 
 static void
@@ -157,7 +161,8 @@ set_pixbuf (GtkSourceMarkAttributes *attributes,
 	gtk_source_pixbuf_helper_set_pixbuf (attributes->helper,
 	                                     pixbuf);
 
-	g_object_notify (G_OBJECT (attributes), "pixbuf");
+	g_object_notify_by_pspec (G_OBJECT (attributes),
+	                          properties [PROP_PIXBUF]);
 }
 
 static void
@@ -172,7 +177,8 @@ set_gicon (GtkSourceMarkAttributes *attributes,
 	gtk_source_pixbuf_helper_set_gicon (attributes->helper,
 	                                    gicon);
 
-	g_object_notify (G_OBJECT (attributes), "gicon");
+	g_object_notify_by_pspec (G_OBJECT (attributes),
+	                          properties [PROP_GICON]);
 }
 
 static void
@@ -185,21 +191,21 @@ gtk_source_mark_attributes_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
-		case PROP_BACKGROUND:
-			set_background (self, g_value_get_boxed (value));
-			break;
-		case PROP_PIXBUF:
-			set_pixbuf (self, g_value_get_object (value));
-			break;
-		case PROP_ICON_NAME:
-			set_icon_name (self, g_value_get_string (value));
-			break;
-		case PROP_GICON:
-			set_gicon (self, g_value_get_object (value));
-			break;
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-			break;
+	case PROP_BACKGROUND:
+		set_background (self, g_value_get_boxed (value));
+		break;
+	case PROP_PIXBUF:
+		set_pixbuf (self, g_value_get_object (value));
+		break;
+	case PROP_ICON_NAME:
+		set_icon_name (self, g_value_get_string (value));
+		break;
+	case PROP_GICON:
+		set_gicon (self, g_value_get_object (value));
+		break;
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+		break;
 	}
 }
 
@@ -213,31 +219,31 @@ gtk_source_mark_attributes_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-		case PROP_BACKGROUND:
-			if (self->background_set)
-			{
-				g_value_set_boxed (value, &self->background);
-			}
-			else
-			{
-				g_value_set_boxed (value, NULL);
-			}
-			break;
-		case PROP_PIXBUF:
-			g_value_set_object (value,
-			                    gtk_source_pixbuf_helper_get_pixbuf (self->helper));
-			break;
-		case PROP_ICON_NAME:
-			g_value_set_string (value,
-			                    gtk_source_pixbuf_helper_get_icon_name (self->helper));
-			break;
-		case PROP_GICON:
-			g_value_set_object (value,
-			                    gtk_source_pixbuf_helper_get_gicon (self->helper));
-			break;
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-			break;
+	case PROP_BACKGROUND:
+		if (self->background_set)
+		{
+			g_value_set_boxed (value, &self->background);
+		}
+		else
+		{
+			g_value_set_boxed (value, NULL);
+		}
+		break;
+	case PROP_PIXBUF:
+		g_value_set_object (value,
+		                    gtk_source_pixbuf_helper_get_pixbuf (self->helper));
+		break;
+	case PROP_ICON_NAME:
+		g_value_set_string (value,
+		                    gtk_source_pixbuf_helper_get_icon_name (self->helper));
+		break;
+	case PROP_GICON:
+		g_value_set_object (value,
+		                    gtk_source_pixbuf_helper_get_gicon (self->helper));
+		break;
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+		break;
 	}
 }
 
@@ -256,56 +262,58 @@ gtk_source_mark_attributes_class_init (GtkSourceMarkAttributesClass *klass)
 	 *
 	 * A color used for background of a line.
 	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_BACKGROUND,
-	                                 g_param_spec_boxed ("background",
-	                                                     "Background",
-	                                                     "The background",
-	                                                     GDK_TYPE_RGBA,
-	                                                     G_PARAM_READWRITE |
-							     G_PARAM_STATIC_STRINGS));
+	properties [PROP_BACKGROUND] =
+		g_param_spec_boxed ("background",
+		                    "Background",
+		                    "The background",
+		                    GDK_TYPE_RGBA,
+		                    (G_PARAM_READWRITE |
+		                     G_PARAM_EXPLICIT_NOTIFY |
+		                     G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceMarkAttributes:pixbuf:
 	 *
 	 * A #GdkPixbuf that may be a base of a rendered icon.
 	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_PIXBUF,
-	                                 g_param_spec_object ("pixbuf",
-	                                                      "Pixbuf",
-	                                                      "The pixbuf",
-	                                                      GDK_TYPE_PIXBUF,
-	                                                      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_PIXBUF] =
+		g_param_spec_object ("pixbuf",
+		                     "Pixbuf",
+		                     "The pixbuf",
+		                     GDK_TYPE_PIXBUF,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceMarkAttributes:icon-name:
 	 *
 	 * An icon name that may be a base of a rendered icon.
 	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_ICON_NAME,
-	                                 g_param_spec_string ("icon-name",
-	                                                      "Icon Name",
-	                                                      "The icon name",
-	                                                      NULL,
-	                                                      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_ICON_NAME] =
+		g_param_spec_string ("icon-name",
+		                     "Icon Name",
+		                     "The icon name",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceMarkAttributes:gicon:
 	 *
 	 * A #GIcon that may be a base of a rendered icon.
 	 */
-	g_object_class_install_property (object_class,
-	                                 PROP_GICON,
-	                                 g_param_spec_object ("gicon",
-	                                                      "GIcon",
-	                                                      "The GIcon",
-	                                                      G_TYPE_ICON,
-	                                                      G_PARAM_READWRITE |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_GICON] =
+		g_param_spec_object ("gicon",
+		                     "GIcon",
+		                     "The GIcon",
+		                     G_TYPE_ICON,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 
 	/**
 	 * GtkSourceMarkAttributes::query-tooltip-text:
