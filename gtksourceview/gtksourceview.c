@@ -187,8 +187,6 @@ static GParamSpec *properties[N_PROPS];
 typedef struct
 {
 	GtkSourceStyleScheme *style_scheme;
-	GdkRGBA *right_margin_line_color;
-	GdkRGBA *right_margin_overlay_color;
 
 	GtkSourceSpaceDrawer *space_drawer;
 
@@ -202,7 +200,10 @@ typedef struct
 	GtkSourceGutterRenderer *line_renderer;
 	GtkSourceGutterRenderer *marks_renderer;
 
+	GdkRGBA background_pattern_color;
 	GdkRGBA current_line_color;
+	GdkRGBA right_margin_line_color;
+	GdkRGBA right_margin_overlay_color;
 
 	GtkSourceCompletion *completion;
 
@@ -212,8 +213,11 @@ typedef struct
 	gint indent_width;
 	GtkSourceSmartHomeEndType smart_home_end;
 	GtkSourceBackgroundPatternType background_pattern;
-	GdkRGBA background_pattern_color;
 
+	guint background_pattern_color_set : 1;
+	guint current_line_color_set : 1;
+	guint right_margin_line_color_set : 1;
+	guint right_margin_overlay_color_set : 1;
 	guint tabs_set : 1;
 	guint show_line_numbers : 1;
 	guint show_line_marks : 1;
@@ -222,8 +226,6 @@ typedef struct
 	guint highlight_current_line : 1;
 	guint indent_on_tab : 1;
 	guint show_right_margin  : 1;
-	guint current_line_color_set : 1;
-	guint background_pattern_color_set : 1;
 	guint smart_backspace : 1;
 } GtkSourceViewPrivate;
 
@@ -1304,8 +1306,8 @@ gtk_source_view_init (GtkSourceView *view)
 	gtk_text_view_set_left_margin (GTK_TEXT_VIEW (view), 2);
 	gtk_text_view_set_right_margin (GTK_TEXT_VIEW (view), 2);
 
-	priv->right_margin_line_color = NULL;
-	priv->right_margin_overlay_color = NULL;
+	priv->right_margin_line_color_set = FALSE;
+	priv->right_margin_overlay_color_set = FALSE;
 
 	priv->space_drawer = gtk_source_space_drawer_new ();
 	g_signal_connect_object (priv->space_drawer,
@@ -1374,16 +1376,6 @@ gtk_source_view_finalize (GObject *object)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (object);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
-
-	if (priv->right_margin_line_color != NULL)
-	{
-		gdk_rgba_free (priv->right_margin_line_color);
-	}
-
-	if (priv->right_margin_overlay_color != NULL)
-	{
-		gdk_rgba_free (priv->right_margin_overlay_color);
-	}
 
 	if (priv->mark_categories)
 	{
@@ -2413,7 +2405,7 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 	g_timer_start (timer);
 #endif
 
-	g_return_if_fail (priv->right_margin_line_color != NULL);
+	g_return_if_fail (priv->right_margin_line_color_set);
 
         gtk_text_view_get_visible_rect (text_view, &visible_rect);
 
@@ -2430,16 +2422,16 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 	gtk_snapshot_save (snapshot);
 
 	gtk_snapshot_append_color (snapshot,
-	                           priv->right_margin_line_color,
+	                           &priv->right_margin_line_color,
 	                           &GRAPHENE_RECT_INIT (x,
 	                                                visible_rect.y,
 	                                                1,
 	                                                visible_rect.height));
 
-	if (priv->right_margin_overlay_color != NULL)
+	if (priv->right_margin_overlay_color_set)
 	{
 		gtk_snapshot_append_color (snapshot,
-		                           priv->right_margin_overlay_color,
+		                           &priv->right_margin_overlay_color,
 		                           &GRAPHENE_RECT_INIT (x + 1,
 		                                                visible_rect.y,
 		                                                visible_rect.x + visible_rect.width,
@@ -4545,17 +4537,8 @@ update_right_margin_colors (GtkSourceView *view)
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkWidget *widget = GTK_WIDGET (view);
 
-	if (priv->right_margin_line_color != NULL)
-	{
-		gdk_rgba_free (priv->right_margin_line_color);
-		priv->right_margin_line_color = NULL;
-	}
-
-	if (priv->right_margin_overlay_color != NULL)
-	{
-		gdk_rgba_free (priv->right_margin_overlay_color);
-		priv->right_margin_overlay_color = NULL;
-	}
+	priv->right_margin_line_color_set = FALSE;
+	priv->right_margin_overlay_color_set = FALSE;
 
 	if (priv->style_scheme != NULL)
 	{
@@ -4578,9 +4561,9 @@ update_right_margin_colors (GtkSourceView *view)
 			    color_str != NULL &&
 			    gdk_rgba_parse (&color, color_str))
 			{
-				priv->right_margin_line_color = gdk_rgba_copy (&color);
-				priv->right_margin_line_color->alpha =
-					RIGHT_MARGIN_LINE_ALPHA / 255.;
+				priv->right_margin_line_color = color;
+				priv->right_margin_line_color.alpha = RIGHT_MARGIN_LINE_ALPHA / 255.;
+				priv->right_margin_line_color_set = TRUE;
 			}
 
 			g_free (color_str);
@@ -4595,16 +4578,16 @@ update_right_margin_colors (GtkSourceView *view)
 			    color_str != NULL &&
 			    gdk_rgba_parse (&color, color_str))
 			{
-				priv->right_margin_overlay_color = gdk_rgba_copy (&color);
-				priv->right_margin_overlay_color->alpha =
-					RIGHT_MARGIN_OVERLAY_ALPHA / 255.;
+				priv->right_margin_overlay_color = color;
+				priv->right_margin_overlay_color.alpha = RIGHT_MARGIN_OVERLAY_ALPHA / 255.;
+				priv->right_margin_overlay_color_set = TRUE;
 			}
 
 			g_free (color_str);
 		}
 	}
 
-	if (priv->right_margin_line_color == NULL)
+	if (!priv->right_margin_line_color_set)
 	{
 		GtkStyleContext *context;
 		GdkRGBA color;
@@ -4615,9 +4598,9 @@ update_right_margin_colors (GtkSourceView *view)
 		gtk_style_context_get_color (context, &color);
 		gtk_style_context_restore (context);
 
-		priv->right_margin_line_color = gdk_rgba_copy (&color);
-		priv->right_margin_line_color->alpha =
-			RIGHT_MARGIN_LINE_ALPHA / 255.;
+		priv->right_margin_line_color = color;
+		priv->right_margin_line_color.alpha = RIGHT_MARGIN_LINE_ALPHA / 255.;
+		priv->right_margin_line_color_set = TRUE;
 	}
 }
 
