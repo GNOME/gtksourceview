@@ -466,14 +466,6 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 		                     G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
-
-	/* Due to potential deadlocks when registering types, we need to
-	 * ensure the dependent private class GtkSourceBufferInputStream
-	 * has been registered up front.
-	 *
-	 * See https://bugzilla.gnome.org/show_bug.cgi?id=780216
-	 */
-	g_type_ensure (GTK_SOURCE_TYPE_BUFFER_INPUT_STREAM);
 }
 
 static void

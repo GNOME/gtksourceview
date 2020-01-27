@@ -21,13 +21,21 @@
 
 #include <glib/gi18n-lib.h>
 
-#include "gtksourceinit.h"
+#include "gtksourcebuffer.h"
+#include "gtksourcebufferinputstream-private.h"
+#include "gtksourcebufferoutputstream-private.h"
+#include "gtksourcefileloader.h"
+#include "gtksourcefilesaver.h"
+#include "gtksourcegutterrenderer.h"
 #include "gtksourcegutterrendererpixbuf.h"
 #include "gtksourcegutterrenderertext.h"
+#include "gtksourceinit.h"
 #include "gtksourcelanguagemanager-private.h"
 #include "gtksourcemap.h"
+#include "gtksourcestyleschemechooser.h"
 #include "gtksourcestyleschemechooserbutton.h"
 #include "gtksourcestyleschemechooserwidget.h"
+#include "gtksourcestyleschememanager-private.h"
 #include "gtksourcestyleschememanager-private.h"
 #include "gtksourceview.h"
 
@@ -161,9 +169,23 @@ gtk_source_init (void)
 
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 
+		/* Due to potential deadlocks when registering types, we need to
+		 * ensure the dependent private class GtkSourceBufferOutputStream
+		 * and GtkSourceBufferInputStream have been registered up front.
+		 *
+		 * See https://bugzilla.gnome.org/show_bug.cgi?id=780216
+		 */
+
+		g_type_ensure (GTK_SOURCE_TYPE_BUFFER);
+		g_type_ensure (GTK_SOURCE_TYPE_BUFFER_INPUT_STREAM);
+		g_type_ensure (GTK_SOURCE_TYPE_BUFFER_OUTPUT_STREAM);
+		g_type_ensure (GTK_SOURCE_TYPE_FILE_LOADER);
+		g_type_ensure (GTK_SOURCE_TYPE_FILE_SAVER);
+		g_type_ensure (GTK_SOURCE_TYPE_GUTTER_RENDERER);
 		g_type_ensure (GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT);
 		g_type_ensure (GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF);
 		g_type_ensure (GTK_SOURCE_TYPE_MAP);
+		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER);
 		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON);
 		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET);
 		g_type_ensure (GTK_SOURCE_TYPE_VIEW);
