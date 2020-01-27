@@ -49,7 +49,8 @@
 enum {
 	PROP_0,
 	PROP_SEARCH_PATH,
-	PROP_LANGUAGE_IDS
+	PROP_LANGUAGE_IDS,
+	N_PROPS
 };
 
 struct _GtkSourceLanguageManager
@@ -65,6 +66,7 @@ struct _GtkSourceLanguageManager
 };
 
 static GtkSourceLanguageManager *default_instance;
+static GParamSpec *properties[N_PROPS];
 
 G_DEFINE_TYPE (GtkSourceLanguageManager, gtk_source_language_manager, G_TYPE_OBJECT)
 
@@ -142,25 +144,27 @@ gtk_source_language_manager_class_init (GtkSourceLanguageManagerClass *klass)
 	object_class->set_property = gtk_source_language_manager_set_property;
 	object_class->get_property = gtk_source_language_manager_get_property;
 
-	g_object_class_install_property (object_class,
-					 PROP_SEARCH_PATH,
-					 g_param_spec_boxed ("search-path",
-						 	     "Language specification directories",
-							     "List of directories where the "
-							     "language specification files (.lang) "
-							     "are located",
-							     G_TYPE_STRV,
-							     G_PARAM_READWRITE |
-							     G_PARAM_STATIC_STRINGS));
+	properties[PROP_SEARCH_PATH] =
+		g_param_spec_boxed ("search-path",
+		                    "Language specification directories",
+		                    "List of directories where the "
+		                    "language specification files (.lang) "
+		                    "are located",
+		                    G_TYPE_STRV,
+		                    (G_PARAM_READWRITE |
+		                     G_PARAM_EXPLICIT_NOTIFY |
+		                     G_PARAM_STATIC_STRINGS));
 
-	g_object_class_install_property (object_class,
-					 PROP_LANGUAGE_IDS,
-					 g_param_spec_boxed ("language-ids",
-						 	     "Language ids",
-							     "List of the ids of the available languages",
-							     G_TYPE_STRV,
-							     G_PARAM_READABLE |
-							     G_PARAM_STATIC_STRINGS));
+	properties[PROP_LANGUAGE_IDS] =
+		g_param_spec_boxed ("language-ids",
+		                    "Language ids",
+		                    "List of the ids of the available languages",
+		                    G_TYPE_STRV,
+		                    (G_PARAM_READABLE |
+		                     G_PARAM_EXPLICIT_NOTIFY |
+		                     G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
@@ -218,8 +222,8 @@ _gtk_source_language_manager_peek_default (void)
 static void
 notify_search_path (GtkSourceLanguageManager *mgr)
 {
-	g_object_notify (G_OBJECT (mgr), "search-path");
-	g_object_notify (G_OBJECT (mgr), "language-ids");
+	g_object_notify_by_pspec (G_OBJECT (mgr), properties[PROP_SEARCH_PATH]);
+	g_object_notify_by_pspec (G_OBJECT (mgr), properties[PROP_LANGUAGE_IDS]);
 }
 
 /**

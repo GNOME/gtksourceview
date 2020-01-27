@@ -77,7 +77,8 @@ enum
 	PROP_ENCODING,
 	PROP_NEWLINE_TYPE,
 	PROP_COMPRESSION_TYPE,
-	PROP_FLAGS
+	PROP_FLAGS,
+	N_PROPS
 };
 
 struct _GtkSourceFileSaver
@@ -139,6 +140,8 @@ typedef struct
 } TaskData;
 
 G_DEFINE_TYPE (GtkSourceFileSaver, gtk_source_file_saver, G_TYPE_OBJECT)
+
+static GParamSpec *properties [N_PROPS];
 
 static void read_file_chunk     (GTask *task);
 static void write_file_chunk    (GTask *task);
@@ -352,15 +355,14 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_BUFFER,
-					 g_param_spec_object ("buffer",
-							      "GtkSourceBuffer",
-							      "",
-							      GTK_SOURCE_TYPE_BUFFER,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_BUFFER] =
+		g_param_spec_object ("buffer",
+		                     "GtkSourceBuffer",
+		                     "",
+		                     GTK_SOURCE_TYPE_BUFFER,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:file:
@@ -370,15 +372,14 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_FILE,
-					 g_param_spec_object ("file",
-							      "GtkSourceFile",
-							      "",
-							      GTK_SOURCE_TYPE_FILE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_FILE] =
+		g_param_spec_object ("file",
+		                     "GtkSourceFile",
+		                     "",
+		                     GTK_SOURCE_TYPE_FILE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:location:
@@ -388,15 +389,14 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_LOCATION,
-					 g_param_spec_object ("location",
-							      "Location",
-							      "",
-							      G_TYPE_FILE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_LOCATION] =
+		g_param_spec_object ("location",
+		                     "Location",
+		                     "",
+		                     G_TYPE_FILE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:encoding:
@@ -405,15 +405,14 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_ENCODING,
-					 g_param_spec_boxed ("encoding",
-							     "Encoding",
-							     "",
-							     GTK_SOURCE_TYPE_ENCODING,
-							     G_PARAM_READWRITE |
-							     G_PARAM_CONSTRUCT |
-							     G_PARAM_STATIC_STRINGS));
+	properties [PROP_ENCODING] =
+		g_param_spec_boxed ("encoding",
+		                    "Encoding",
+		                    "",
+		                    GTK_SOURCE_TYPE_ENCODING,
+		                    (G_PARAM_READWRITE |
+		                     G_PARAM_CONSTRUCT |
+		                     G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:newline-type:
@@ -422,16 +421,15 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_NEWLINE_TYPE,
-					 g_param_spec_enum ("newline-type",
-					                    "Newline type",
-							    "",
-					                    GTK_SOURCE_TYPE_NEWLINE_TYPE,
-					                    GTK_SOURCE_NEWLINE_TYPE_LF,
-					                    G_PARAM_READWRITE |
-					                    G_PARAM_CONSTRUCT |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_NEWLINE_TYPE] =
+		g_param_spec_enum ("newline-type",
+		                   "Newline type",
+		                   "",
+		                   GTK_SOURCE_TYPE_NEWLINE_TYPE,
+		                   GTK_SOURCE_NEWLINE_TYPE_LF,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_CONSTRUCT |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:compression-type:
@@ -440,16 +438,15 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_COMPRESSION_TYPE,
-					 g_param_spec_enum ("compression-type",
-					                    "Compression type",
-					                    "",
-					                    GTK_SOURCE_TYPE_COMPRESSION_TYPE,
-					                    GTK_SOURCE_COMPRESSION_TYPE_NONE,
-					                    G_PARAM_READWRITE |
-					                    G_PARAM_CONSTRUCT |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_COMPRESSION_TYPE] =
+		g_param_spec_enum ("compression-type",
+		                   "Compression type",
+		                   "",
+		                   GTK_SOURCE_TYPE_COMPRESSION_TYPE,
+		                   GTK_SOURCE_COMPRESSION_TYPE_NONE,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_CONSTRUCT |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:flags:
@@ -458,16 +455,17 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_FLAGS,
-					 g_param_spec_flags ("flags",
-							     "Flags",
-							     "",
-							     GTK_SOURCE_TYPE_FILE_SAVER_FLAGS,
-							     GTK_SOURCE_FILE_SAVER_FLAGS_NONE,
-							     G_PARAM_READWRITE |
-							     G_PARAM_CONSTRUCT |
-							     G_PARAM_STATIC_STRINGS));
+	properties [PROP_FLAGS] =
+		g_param_spec_flags ("flags",
+		                    "Flags",
+		                    "",
+		                    GTK_SOURCE_TYPE_FILE_SAVER_FLAGS,
+		                    GTK_SOURCE_FILE_SAVER_FLAGS_NONE,
+		                    (G_PARAM_READWRITE |
+		                     G_PARAM_CONSTRUCT |
+		                     G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 
 	/* Due to potential deadlocks when registering types, we need to
 	 * ensure the dependent private class GtkSourceBufferInputStream
@@ -1230,7 +1228,8 @@ gtk_source_file_saver_set_encoding (GtkSourceFileSaver      *saver,
 	if (saver->encoding != encoding)
 	{
 		saver->encoding = encoding;
-		g_object_notify (G_OBJECT (saver), "encoding");
+		g_object_notify_by_pspec (G_OBJECT (saver),
+		                          properties [PROP_ENCODING]);
 	}
 }
 
@@ -1269,7 +1268,8 @@ gtk_source_file_saver_set_newline_type (GtkSourceFileSaver   *saver,
 	if (saver->newline_type != newline_type)
 	{
 		saver->newline_type = newline_type;
-		g_object_notify (G_OBJECT (saver), "newline-type");
+		g_object_notify_by_pspec (G_OBJECT (saver),
+		                          properties [PROP_NEWLINE_TYPE]);
 	}
 }
 
@@ -1308,7 +1308,8 @@ gtk_source_file_saver_set_compression_type (GtkSourceFileSaver       *saver,
 	if (saver->compression_type != compression_type)
 	{
 		saver->compression_type = compression_type;
-		g_object_notify (G_OBJECT (saver), "compression-type");
+		g_object_notify_by_pspec (G_OBJECT (saver),
+		                          properties [PROP_COMPRESSION_TYPE]);
 	}
 }
 
@@ -1344,7 +1345,8 @@ gtk_source_file_saver_set_flags (GtkSourceFileSaver      *saver,
 	if (saver->flags != flags)
 	{
 		saver->flags = flags;
-		g_object_notify (G_OBJECT (saver), "flags");
+		g_object_notify_by_pspec (G_OBJECT (saver),
+		                          properties [PROP_FLAGS]);
 	}
 }
 
