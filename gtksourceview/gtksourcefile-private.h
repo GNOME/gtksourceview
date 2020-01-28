@@ -24,16 +24,16 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-void                      _gtk_source_file_set_encoding               (GtkSourceFile                  *file,
-                                                                       const GtkSourceEncoding        *encoding);
+void             _gtk_source_file_set_encoding            (GtkSourceFile            *file,
+                                                           const GtkSourceEncoding  *encoding);
 G_GNUC_INTERNAL
-void                      _gtk_source_file_set_newline_type           (GtkSourceFile                  *file,
-                                                                       GtkSourceNewlineType            newline_type);
+void             _gtk_source_file_set_newline_type        (GtkSourceFile            *file,
+                                                           GtkSourceNewlineType      newline_type);
 G_GNUC_INTERNAL
-void                      _gtk_source_file_set_compression_type       (GtkSourceFile                  *file,
-                                                                       GtkSourceCompressionType        compression_type);
+void             _gtk_source_file_set_compression_type    (GtkSourceFile            *file,
+                                                           GtkSourceCompressionType  compression_type);
 G_GNUC_INTERNAL
-GMountOperation          *_gtk_source_file_create_mount_operation     (GtkSourceFile                  *file);
+GMountOperation *_gtk_source_file_create_mount_operation  (GtkSourceFile            *file);
 G_GNUC_INTERNAL
 gboolean         _gtk_source_file_get_modification_time   (GtkSourceFile            *file,
                                                            gint64                   *modification_time);
@@ -41,13 +41,13 @@ G_GNUC_INTERNAL
 void             _gtk_source_file_set_modification_time   (GtkSourceFile            *file,
                                                            gint64                    modification_time);
 G_GNUC_INTERNAL
-void                      _gtk_source_file_set_externally_modified    (GtkSourceFile                  *file,
-                                                                       gboolean                        externally_modified);
+void             _gtk_source_file_set_externally_modified (GtkSourceFile            *file,
+                                                           gboolean                  externally_modified);
 G_GNUC_INTERNAL
-void                      _gtk_source_file_set_deleted                (GtkSourceFile                  *file,
-                                                                       gboolean                        deleted);
+void             _gtk_source_file_set_deleted             (GtkSourceFile            *file,
+                                                           gboolean                  deleted);
 G_GNUC_INTERNAL
-void                      _gtk_source_file_set_readonly               (GtkSourceFile                  *file,
-                                                                       gboolean                        readonly);
+void             _gtk_source_file_set_readonly            (GtkSourceFile            *file,
+                                                           gboolean                  readonly);
 
 G_END_DECLS
