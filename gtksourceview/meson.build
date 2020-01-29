@@ -241,6 +241,7 @@ gtksource_lib = shared_library(package_string, gtksource_res,
                 objects: cc.get_id() == 'msvc' ? gtksource_objs : [],
              link_whole: cc.get_id() == 'msvc' ? [] : gtksource_libs,
                  c_args: core_c_args,
+              link_args: release_link_args,
                 install: true,
   gnu_symbol_visibility: 'hidden',
 )

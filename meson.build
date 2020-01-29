@@ -7,6 +7,8 @@ project('gtksourceview', 'c',
                      'warning_level=2' ],
 )
 
+buildtype = get_option('buildtype')
+
 i18n = import('i18n')
 gnome = import('gnome')
 pkg = import('pkgconfig')
@@ -221,7 +223,7 @@ else
     '-Wunused',
     '-fno-strict-aliasing',
   ]
-  if get_option('buildtype') != 'plain'
+  if buildtype != 'plain'
     test_c_args += '-fstack-protector-strong'
   endif
 endif
@@ -254,9 +256,13 @@ add_project_arguments(global_c_args, language: 'c')
 
 # Various optimizations for non-debug builds including disabling of
 # cast checks, asserts, and additional link options.
-global_link_args = []
-test_link_args = ['-Wl,-z,relro', '-Wl,-z,now']
-if not get_option('buildtype').startswith('debug')
+release_link_args = []
+test_link_args = [
+  '-Wl,-z,defs',   # Detect and reject underlinking
+  '-Wl,-z,now',    # Disable lazy binding
+  '-Wl,-z,relro',  # Read-only segments after relocation
+]
+if not buildtype.startswith('debug')
   add_global_arguments([
     '-DG_DISABLE_ASSERT',
     '-DG_DISABLE_CAST_CHECKS',
@@ -265,10 +271,9 @@ if not get_option('buildtype').startswith('debug')
 endif
 foreach link_arg: test_link_args
   if cc.has_link_argument(link_arg)
-    global_link_args += link_arg
+    release_link_args += link_arg
   endif
 endforeach
-add_project_link_arguments(global_link_args, language: 'c')
 
 configure_file(
          output: 'config.h',
