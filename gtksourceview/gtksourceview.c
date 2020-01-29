@@ -1512,12 +1512,15 @@ search_start_cb (GtkSourceBufferInternal *buffer_internal,
 {
 	GtkTextIter visible_start;
 	GtkTextIter visible_end;
-	GtkSourceBuffer *buffer_search;
 
 	get_visible_region (GTK_TEXT_VIEW (view), &visible_start, &visible_end);
 
-	buffer_search = gtk_source_search_context_get_buffer (search_context);
-	g_assert (buffer_search == view->priv->source_buffer);
+#ifndef G_DISABLE_ASSERT
+	{
+		GtkSourceBuffer *buffer_search = gtk_source_search_context_get_buffer (search_context);
+		g_assert (buffer_search == view->priv->source_buffer);
+	}
+#endif
 
 	_gtk_source_search_context_update_highlight (search_context,
 						     &visible_start,

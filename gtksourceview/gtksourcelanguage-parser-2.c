@@ -1466,7 +1466,7 @@ static void
 handle_keyword_char_class_element (ParserState *parser_state)
 {
 	xmlChar *char_class;
-	int ret, type;
+	int type;
 
 	g_return_if_fail (parser_state->error == NULL);
 
@@ -1474,6 +1474,11 @@ handle_keyword_char_class_element (ParserState *parser_state)
 		return;
 
 	do {
+#ifndef G_DISABLE_ASSERT
+		G_GNUC_UNUSED
+#endif
+		int ret;
+
 		ret = xmlTextReaderRead (parser_state->reader);
 		g_assert (ret == 1);
 		type = xmlTextReaderNodeType (parser_state->reader);
