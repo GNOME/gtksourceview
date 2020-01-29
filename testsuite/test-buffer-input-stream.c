@@ -20,6 +20,7 @@
 
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#include <stdlib.h>
 #include <string.h>
 #include <gtksourceview/gtksource.h>
 #include "gtksourceview/gtksourcebufferinputstream.h"

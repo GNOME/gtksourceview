@@ -22,6 +22,7 @@
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <gtk/gtk.h>
+#include <stdlib.h>
 #include <string.h>
 #include <gtksourceview/gtksource.h>
 #include "gtksourceview/gtksourcebufferoutputstream.h"
