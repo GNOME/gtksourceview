@@ -1474,7 +1474,7 @@ handle_keyword_char_class_element (ParserState *parser_state)
 		return;
 
 	do {
-#ifndef G_DISABLE_ASSERT
+#ifdef G_DISABLE_ASSERT
 		G_GNUC_UNUSED
 #endif
 		int ret;
