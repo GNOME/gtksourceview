@@ -10,6 +10,8 @@ test_env = [
 testsuite_c_args = [
   '-DG_LOG_DOMAIN="GtkSourceView"',
   '-DTOP_SRCDIR="@0@"'.format(srcdir),
+  '-UG_DISABLE_ASSERT',
+  '-UG_DISABLE_CAST_CHECKS',
 ]
 
 testsuite_sources = [
