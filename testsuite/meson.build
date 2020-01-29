@@ -45,11 +45,20 @@ foreach test: testsuite_sources
     '@0@.c'.format(test_name),
   ]
 
-  # MSVC builds: We need to link to the main GtkSourceView .lib except
-  # for test-stylescheme.c, where we must link only to the static core lib
+  # To allow our installed libraries to have some optimizations like
+  # -Wl,Bsymbolic we cannot link against them here. It would cause
+  # duplicate type registration which is an error for GObject.
+  #
+  # Furthermore, for MSVC we need to link to the main GtkSourceView .lib
+  # except for test-stylescheme.c, where we must link only to the static core
+  # lib.
+  #
+  # So instead we just always link the static libraries. Since these don't
+  # get installed in the vast majority of cases, that is worth the extra
+  # link and size bloat to make the common case better.
   test_exe = executable(test_name, test_sources,
           c_args: testsuite_c_args,
-    dependencies: cc.get_id() == 'msvc' and test_name == 'test-stylescheme' ? [core_dep] : [gtksource_dep],
+    dependencies: [core_dep, completionwords_dep],
          install: get_option('install_tests'),
      install_dir: testexecdir
   )
