@@ -68,7 +68,7 @@ test_fixture_setup (TestFixture   *fixture,
 		style_dirs[i] = g_test_build_filename (G_TEST_DIST, "styles", NULL);
 	}
 
-	gtk_source_style_scheme_manager_set_search_path (fixture->manager, style_dirs);
+	gtk_source_style_scheme_manager_set_search_path (fixture->manager, (const gchar * const *)style_dirs);
 	g_strfreev (style_dirs);
 }
 

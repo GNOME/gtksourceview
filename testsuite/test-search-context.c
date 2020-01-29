@@ -70,7 +70,7 @@ init_style_scheme_manager (void)
 		dirs = g_new0 (gchar *, 2);
 		dirs[0] = dir;
 
-		gtk_source_style_scheme_manager_set_search_path (manager, dirs);
+		gtk_source_style_scheme_manager_set_search_path (manager, (const gchar * const *)dirs);
 		g_strfreev (dirs);
 	}
 	else

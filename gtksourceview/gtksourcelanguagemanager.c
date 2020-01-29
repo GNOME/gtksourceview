@@ -229,8 +229,8 @@ notify_search_path (GtkSourceLanguageManager *mgr)
 /**
  * gtk_source_language_manager_set_search_path:
  * @lm: a #GtkSourceLanguageManager.
- * @dirs: (nullable) (array zero-terminated=1):
- * a %NULL-terminated array of strings or %NULL.
+ * @dirs: (nullable) (array zero-terminated=1): a %NULL-terminated array of
+ *   strings or %NULL.
  *
  * Sets the list of directories where the @lm looks for
  * language files.
@@ -246,8 +246,8 @@ notify_search_path (GtkSourceLanguageManager *mgr)
  * </note>
  */
 void
-gtk_source_language_manager_set_search_path (GtkSourceLanguageManager  *lm,
-                                             gchar                    **dirs)
+gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
+                                             const gchar * const      *dirs)
 {
 	gchar **tmp;
 
@@ -262,7 +262,7 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager  *lm,
 	if (dirs == NULL)
 		lm->lang_dirs = _gtk_source_utils_get_default_dirs (LANGUAGE_DIR);
 	else
-		lm->lang_dirs = g_strdupv (dirs);
+		lm->lang_dirs = g_strdupv ((gchar **)dirs);
 
 	g_strfreev (tmp);
 

@@ -41,8 +41,8 @@ GtkSourceLanguageManager *gtk_source_language_manager_get_default      (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar * const      *gtk_source_language_manager_get_search_path  (GtkSourceLanguageManager  *lm);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void                      gtk_source_language_manager_set_search_path  (GtkSourceLanguageManager  *lm,
-                                                                        gchar                    **dirs);
+void                      gtk_source_language_manager_set_search_path  (GtkSourceLanguageManager *lm,
+                                                                        const gchar * const      *dirs);
 GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar * const      *gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager  *lm);
 GTK_SOURCE_AVAILABLE_IN_ALL

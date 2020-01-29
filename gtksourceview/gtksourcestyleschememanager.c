@@ -404,16 +404,17 @@ notify_search_path (GtkSourceStyleSchemeManager *mgr)
 /**
  * gtk_source_style_scheme_manager_set_search_path:
  * @manager: a #GtkSourceStyleSchemeManager.
- * @path: (array zero-terminated=1) (nullable):
- * a %NULL-terminated array of strings or %NULL.
+ * @path: (array zero-terminated=1) (nullable): a %NULL-terminated array of
+ *   strings or %NULL.
  *
  * Sets the list of directories where the @manager looks for
  * style scheme files.
+ *
  * If @path is %NULL, the search path is reset to default.
  */
 void
-gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager  *manager,
-                                                 gchar                       **path)
+gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager *manager,
+                                                 const gchar * const         *path)
 {
 	gchar **tmp;
 
@@ -424,7 +425,7 @@ gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager  *m
 	if (path == NULL)
 		manager->search_path = _gtk_source_utils_get_default_dirs (STYLES_DIR);
 	else
-		manager->search_path = g_strdupv (path);
+		manager->search_path = g_strdupv ((gchar **)path);
 
 	g_strfreev (tmp);
 

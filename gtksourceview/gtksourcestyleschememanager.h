@@ -40,7 +40,7 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyleSchemeManager *gtk_source_style_scheme_manager_get_default         (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
 void                         gtk_source_style_scheme_manager_set_search_path     (GtkSourceStyleSchemeManager  *manager,
-                                                                                  gchar                       **path);
+                                                                                  const gchar * const          *path);
 GTK_SOURCE_AVAILABLE_IN_ALL
 void                         gtk_source_style_scheme_manager_append_search_path  (GtkSourceStyleSchemeManager  *manager,
                                                                                   const gchar                  *path);

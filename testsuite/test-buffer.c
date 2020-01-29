@@ -52,7 +52,7 @@ init_default_manager (void)
 	if (g_file_test (dir, G_FILE_TEST_IS_DIR))
 	{
 		GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
-		gchar *lang_dirs[2] = {dir, NULL};
+		const gchar *lang_dirs[2] = {dir, NULL};
 
 		gtk_source_language_manager_set_search_path (lm, lang_dirs);
 	}
