@@ -713,7 +713,7 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 		return NULL;
 	}
 
-	css = g_string_new ("textview text {\n");
+	css = g_string_new ("textview {\n");
 
 	if (primary_color_set)
 	{
@@ -830,7 +830,7 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	if (scheme->css_provider_cursors == NULL)
 	{
 		scheme->css_provider_cursors = get_css_provider_cursors (scheme,
-									       GTK_WIDGET (view));
+		                                                         GTK_WIDGET (view));
 	}
 
 	if (scheme->css_provider_cursors != NULL)
