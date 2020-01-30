@@ -84,6 +84,8 @@ gio_dep = dependency('gio-2.0', version: glib_req)
 gtk_dep = dependency('gtk4', version: gtk_req)
 libxml_dep = dependency('libxml-2.0', version: libxml_req, required: cc.get_id() != 'msvc')
 fribidi_dep = dependency('fribidi', version: fribidi_req)
+fontconfig_dep = dependency('fontconfig', required: false)
+pangoft2_dep = dependency('pangoft2', required: false)
 
 gtk_quartz_dep = dependency('gtk4-quartz', version: gtk_doc_req, required: false)
 
@@ -140,9 +142,11 @@ add_project_arguments([
 config_h = configuration_data()
 config_h.set_quoted('GETTEXT_PACKAGE', package_string)
 config_h.set_quoted('DATADIR', datadir)
+config_h.set_quoted('PACKAGE_DATADIR', pkgdatadir)
 config_h.set_quoted('GSV_API_VERSION_S', api_version)
 config_h.set('GSV_API_VERSION', api_version)
 config_h.set('PACKAGE_VERSION', version)
+config_h.set10('ENABLE_FONT_CONFIG', fontconfig_dep.found() and pangoft2_dep.found())
 
 check_headers = [
   ['unistd.h', 'HAVE_UNISTD_H'],
