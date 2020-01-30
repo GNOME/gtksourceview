@@ -1,18 +1,19 @@
 # gtksourceview ja.po.
-# Copyright (C) 2003-2009 Free Software Foundation, Inc.
+# Copyright (C) 2003-2015, 2020 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2009.
 # Satoru SATOH <ss@gnome.gr.jp>, 2006.
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2012.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2015.
+# sicklylife <translation@sicklylife.jp>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
 "POT-Creation-Date: 2019-11-23 16:07+0000\n"
-"PO-Revision-Date: 2015-09-18 02:44+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"PO-Revision-Date: 2020-01-31 00:00+0900\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -1165,10 +1166,8 @@ msgstr "DPatch"
 
 #. (itstool) path: styles/style@_name
 #: dpatch.lang:31
-#, fuzzy
-#| msgid "patch-start"
 msgid "Patch Start"
-msgstr "patch-start"
+msgstr ""
 
 #. (itstool) path: dtd.lang/language@_name
 #. (itstool) path: styles/style@_name
@@ -1193,10 +1192,8 @@ msgstr "エラー"
 
 #. (itstool) path: styles/style@_name
 #: dtd.lang:36
-#, fuzzy
-#| msgid "quoted-value"
 msgid "Quoted Value"
-msgstr "引用値"
+msgstr ""
 
 #. (itstool) path: eiffel.lang/language@_name
 #: eiffel.lang:24
@@ -1877,10 +1874,8 @@ msgstr "算術モード (インライン)"
 
 #. (itstool) path: styles/style@_name
 #: latex.lang:37
-#, fuzzy
-#| msgid "Math Mode"
 msgid "Math Boundary"
-msgstr "算術モード"
+msgstr ""
 
 #. (itstool) path: styles/style@_name
 #: latex.lang:38 texinfo.lang:41
@@ -3102,7 +3097,7 @@ msgstr "ドキュメントの単語"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:842
 msgid "Invalid byte sequence in conversion input"
-msgstr ""
+msgstr "変換入力に不正なバイトシーケンス"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:848
 #, c-format
@@ -3138,11 +3133,11 @@ msgstr "プロバイダー"
 
 #: gtksourceview/gtksourcecompletion.ui:87
 msgid "Show detailed proposal information"
-msgstr ""
+msgstr "詳細な提案情報を表示します"
 
 #: gtksourceview/gtksourcecompletion.ui:89
 msgid "_Details..."
-msgstr ""
+msgstr "詳細(_D)…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
