@@ -115,6 +115,8 @@ core_deps = [
   gio_dep,
   gtk_dep,
   libxml_dep,
+  pangoft2_dep,
+  fontconfig_dep,
 ]
 
 if config_h.has('OS_OSX')

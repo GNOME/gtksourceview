@@ -20,6 +20,12 @@
 
 #include <string.h>
 
+#if ENABLE_FONT_CONFIG
+# include <fontconfig/fontconfig.h>
+# include <pango/pangocairo.h>
+# include <pango/pangofc-fontmap.h>
+#endif
+
 #include "gtksourcemap.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcecompletion.h"
@@ -180,6 +186,44 @@ enum
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceMap, gtk_source_map, GTK_SOURCE_TYPE_VIEW)
 
 static GParamSpec *properties[N_PROPERTIES];
+
+#if ENABLE_FONT_CONFIG
+static FcConfig *map_font_config;
+
+static void
+load_override_font (GtkSourceMap *map)
+{
+	PangoFontDescription *font_desc;
+	PangoFontMap *font_map;
+
+	if (g_once_init_enter (&map_font_config))
+	{
+		const gchar *font_path = PACKAGE_DATADIR"/fonts/BuilderBlocks.ttf";
+		FcConfig *config = FcInitLoadConfigAndFonts ();
+
+		if (!g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
+			g_debug ("\"%s\" is missing or inaccessible", font_path);
+
+		FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
+
+		g_once_init_leave (&map_font_config, config);
+	}
+
+	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
+	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
+	gtk_widget_set_font_map (GTK_WIDGET (map), font_map);
+	font_desc = pango_font_description_from_string ("Builder Blocks 1");
+
+	g_assert (map_font_config != NULL);
+	g_assert (font_map != NULL);
+	g_assert (font_desc != NULL);
+
+	g_object_set (map, "font-desc", font_desc, NULL);
+
+	pango_font_description_free (font_desc);
+	g_object_unref (font_map);
+}
+#endif
 
 static void
 update_scrubber_position (GtkSourceMap *map)
@@ -1031,12 +1075,23 @@ gtk_source_map_hide (GtkWidget *widget)
 }
 
 static void
+gtk_source_map_constructed (GObject *object)
+{
+	G_OBJECT_CLASS (gtk_source_map_parent_class)->constructed (object);
+
+#ifdef ENABLE_FONT_CONFIG
+	load_override_font (GTK_SOURCE_MAP (object));
+#endif
+}
+
+static void
 gtk_source_map_class_init (GtkSourceMapClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 	GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS (klass);
 
+	object_class->constructed = gtk_source_map_constructed;
 	object_class->get_property = gtk_source_map_get_property;
 	object_class->set_property = gtk_source_map_set_property;
 

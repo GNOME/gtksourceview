@@ -19,3 +19,8 @@ install_subdir('styles',
                    'testdark.xml',
                    'update-pot.sh' ]
 )
+
+install_subdir('fonts',
+    install_dir: pkgdatadir,
+  exclude_files: [ 'BuilderBlocks.ttx' ]
+)
