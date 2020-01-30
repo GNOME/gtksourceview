@@ -1,18 +1,19 @@
 # gtksourceview ja.po.
-# Copyright (C) 2003-2009 Free Software Foundation, Inc.
+# Copyright (C) 2003-2015, 2020 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2009.
 # Satoru SATOH <ss@gnome.gr.jp>, 2006.
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2012.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2015.
+# sicklylife <translation@sicklylife.jp>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
 "POT-Creation-Date: 2019-11-23 16:08+0000\n"
-"PO-Revision-Date: 2015-09-18 02:44+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"PO-Revision-Date: 2020-01-31 00:00+0900\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -1256,10 +1257,8 @@ msgid "DPatch"
 msgstr "DPatch"
 
 #: ../data/language-specs/dpatch.lang.h:3
-#, fuzzy
-#| msgid "patch-start"
 msgid "Patch Start"
-msgstr "patch-start"
+msgstr ""
 
 #: ../data/language-specs/dtd.lang.h:2 ../data/language-specs/html.lang.h:7
 msgid "DTD"
@@ -1278,10 +1277,8 @@ msgid "error"
 msgstr "エラー"
 
 #: ../data/language-specs/dtd.lang.h:6
-#, fuzzy
-#| msgid "quoted-value"
 msgid "Quoted Value"
-msgstr "引用値"
+msgstr ""
 
 #: ../data/language-specs/eiffel.lang.h:2
 msgid "Eiffel"
@@ -1860,10 +1857,8 @@ msgid "Inline Math Mode"
 msgstr "算術モード (インライン)"
 
 #: ../data/language-specs/latex.lang.h:6
-#, fuzzy
-#| msgid "Math Mode"
 msgid "Math Boundary"
-msgstr "算術モード"
+msgstr ""
 
 #: ../data/language-specs/latex.lang.h:7
 #: ../data/language-specs/texinfo.lang.h:11
@@ -2866,7 +2861,7 @@ msgstr "ドキュメントの単語"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:838
 msgid "Invalid byte sequence in conversion input"
-msgstr ""
+msgstr "変換入力に不正なバイトシーケンス"
 
 #: ../gtksourceview/gtksourcebufferoutputstream.c:844
 #, c-format
