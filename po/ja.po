@@ -1,18 +1,19 @@
 # gtksourceview ja.po.
-# Copyright (C) 2003-2009 Free Software Foundation, Inc.
+# Copyright (C) 2003-2015, 2020 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2009.
 # Satoru SATOH <ss@gnome.gr.jp>, 2006.
 # Nishio Futoshi <fut_nis@d3.dion.ne.jp>, 2012.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2015.
+# sicklylife <translation@sicklylife.jp>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
 "POT-Creation-Date: 2019-12-09 20:29+0000\n"
-"PO-Revision-Date: 2015-09-18 02:44+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"PO-Revision-Date: 2020-01-31 00:00+0900\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -250,10 +251,9 @@ msgstr "その他"
 
 #. (itstool) path: chdr.lang/language@_name
 #: chdr.lang:24
-#, fuzzy
 #| msgid "C/C++/ObjC Header"
 msgid "C/ObjC Header"
-msgstr "C/C++/ObjC のヘッダー"
+msgstr "C/ObjC のヘッダー"
 
 #. (itstool) path: cpphdr.lang/language@_name
 #: cpphdr.lang:24
@@ -267,10 +267,8 @@ msgstr "DOS バッチファイル"
 
 #. (itstool) path: dtl.lang/language@_name
 #: dtl.lang:25
-#, fuzzy
-#| msgid "Template"
 msgid "Django Template"
-msgstr "テンプレート"
+msgstr "Django テンプレート"
 
 #. (itstool) path: fcl.lang/language@_section
 #. (itstool) path: gap.lang/language@_section
@@ -316,10 +314,8 @@ msgstr "RPM スペック"
 
 #. (itstool) path: tera.lang/language@_name
 #: tera.lang:23
-#, fuzzy
-#| msgid "Template"
 msgid "Tera Template"
-msgstr "テンプレート"
+msgstr "Tera テンプレート"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:24
@@ -397,7 +393,7 @@ msgstr "ドキュメントの単語"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:843
 msgid "Invalid byte sequence in conversion input"
-msgstr ""
+msgstr "変換入力に不正なバイトシーケンス"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:849
 #, c-format
@@ -405,16 +401,14 @@ msgid "Error during conversion: %s"
 msgstr "変換時にエラー: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:930
-#, fuzzy, c-format
-#| msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
+#, c-format
 msgid "Conversion from character set “%s” to “UTF-8” is not supported"
-msgstr "文字セット '%s' から 'UTF-8' への変換はサポートしていません"
+msgstr "文字セット“%s”から“UTF-8”への変換はサポートしていません"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:936
-#, fuzzy, c-format
-#| msgid "Could not open converter from '%s' to 'UTF-8'"
+#, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
-msgstr "'%s' から 'UTF-8' への変換器を開けませんでした"
+msgstr "“%s”から“UTF-8”への変換器を開けませんでした"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:996
 msgid "Invalid object, not initialized"
@@ -435,11 +429,11 @@ msgstr "プロバイダー"
 
 #: gtksourceview/gtksourcecompletion.ui:87
 msgid "Show detailed proposal information"
-msgstr ""
+msgstr "詳細な提案情報を表示します"
 
 #: gtksourceview/gtksourcecompletion.ui:89
 msgid "_Details…"
-msgstr ""
+msgstr "詳細(_D)…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -465,43 +459,36 @@ msgstr ""
 "す"
 
 #: gtksourceview/gtksourcecontextengine.c:5714
-#, fuzzy, c-format
-#| msgid "context '%s' cannot contain a \\%%{...@start} command"
+#, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
-msgstr "コンテキスト '%s' には \\%%{...@start} コマンドを格納できません"
+msgstr "コンテキスト“%s”には \\%%{...@start} コマンドを格納できません"
 
 #: gtksourceview/gtksourcecontextengine.c:5877
 #: gtksourceview/gtksourcecontextengine.c:5967
-#, fuzzy, c-format
-#| msgid "duplicated context id '%s'"
+#, c-format
 msgid "duplicated context id “%s”"
-msgstr "コンテキスト ID '%s' が重複しています"
+msgstr "コンテキスト ID “%s”が重複しています"
 
 # GTK_SOURCE_CONTEXT_IGNORE_STYLE または  GTK_SOURCE_CONTEXT_OVERRIDE_STYLE が設定されている時のエラー。
 #: gtksourceview/gtksourcecontextengine.c:6081
 #: gtksourceview/gtksourcecontextengine.c:6141
-#, fuzzy, c-format
-#| msgid ""
-#| "style override used with wildcard context reference in language '%s' in "
-#| "ref '%s'"
+#, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
 msgstr ""
-"言語 '%s' の参照 '%s' のワイルドカードの前後関係でスタイルを上書きします"
+"言語“%s”の参照“%s”のワイルドカードの前後関係でスタイルを上書きします"
 
 #: gtksourceview/gtksourcecontextengine.c:6155
-#, fuzzy, c-format
-#| msgid "invalid context reference '%s'"
+#, c-format
 msgid "invalid context reference “%s”"
-msgstr "不正なコンテキストのリファレンス '%s'"
+msgstr "不正なコンテキストのリファレンス“%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6174
 #: gtksourceview/gtksourcecontextengine.c:6184
-#, fuzzy, c-format
-#| msgid "unknown context '%s'"
+#, c-format
 msgid "unknown context “%s”"
-msgstr "不明なコンテキスト '%s'"
+msgstr "不明なコンテキスト“%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6283
 #, c-format
@@ -647,22 +634,23 @@ msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
 msgstr ""
+"文字エンコーディング変換エラーにより、代替文字の使用が必要でした。"
 
 #: gtksourceview/gtksourcefileloader.c:623
 msgid "File too big."
-msgstr ""
+msgstr "ファイルが大きすぎます。"
 
 #: gtksourceview/gtksourcefileloader.c:777
 msgid "Not a regular file."
-msgstr ""
+msgstr "通常のファイルではありません。"
 
 #: gtksourceview/gtksourcefilesaver.c:976
 msgid "The file is externally modified."
-msgstr ""
+msgstr "ファイルが外部で変更されました。"
 
 #: gtksourceview/gtksourcefilesaver.c:1428
 msgid "The buffer contains invalid characters."
-msgstr ""
+msgstr "バッファに不正な文字が含まれています。"
 
 #. *
 #. * SECTION:language
@@ -681,16 +669,14 @@ msgid "Others"
 msgstr "その他"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:950
-#, fuzzy, c-format
-#| msgid "Unknown id '%s' in regex '%s'"
+#, c-format
 msgid "Unknown id “%s” in regex “%s”"
-msgstr "正規表現 '%2$s' の中に不明な ID '%1$s' があります"
+msgstr "正規表現“%2$s”の中に不明な ID “%1$s”があります"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1180
-#, fuzzy, c-format
-#| msgid "in regex '%s': backreferences are not supported"
+#, c-format
 msgid "in regex “%s”: backreferences are not supported"
-msgstr "正規表現 '%s': 後方参照はサポートしていません"
+msgstr "正規表現“%s”: 後方参照はサポートしていません"
 
 #: gtksourceview/gtksourceregex.c:129
 msgid "using \\C is not supported in language definitions"
