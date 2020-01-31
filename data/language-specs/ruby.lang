@@ -512,7 +512,7 @@
     </context>
 
     <context id="here-doc-indented-string" style-ref="here-doc" style-inside="true">
-      <start>&lt;&lt;-([a-zA-Z_]\w*)</start>
+      <start>&lt;&lt;[-~]([a-zA-Z_]\w*)</start>
       <end>^\s*\%{1@start}</end>
       <include>
         <context ref="inside-interpolated-string"/>
