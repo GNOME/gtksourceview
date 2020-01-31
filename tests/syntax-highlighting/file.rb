@@ -37,3 +37,22 @@ puts -11.to_s + ' ' + 0x11.to_s  + ' ' + 1.1.to_s + ' ' + ?a.to_s + ' ' + 1.x
 # Character literals
 str = ?\x41 + ?\101 # == 'AA'
 puts ?\M-\C-x
+
+
+	# xml == '\tlorem\n\tipsum'
+	xml = <<-XML
+	lorem
+	ipsum
+	XML
+
+# xml == 'lorem\nipsum'
+xml = <<XML
+lorem
+ipsum
+XML
+
+	# strip the leading tabs; xml == 'lorem\nipsum'
+	xml = <<~XML
+	lorem
+	ipsum
+	XML
