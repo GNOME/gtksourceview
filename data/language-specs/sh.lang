@@ -264,7 +264,17 @@
     </context>
 
     <context id="function" style-ref="function">
-      <match>\%{lb}\%{command-name}\s*\(\)</match>
+      <!-- Function declaration with or without function keyword.
+           For the later one, parentheses are mandatory -->
+      <match extended="true">
+        \%{lb}(?:
+          (function)\s+\%{command-name}\s*(\(\s*\))? |
+          \%{command-name}\s*\(\s*\)
+        )
+      </match>
+      <include>
+        <context sub-pattern="1" style-ref="keyword"/>
+      </include>
     </context>
 
     <context id="redirection" style-ref="others">
@@ -529,7 +539,6 @@
       <keyword>elif</keyword>
       <keyword>else</keyword>
       <keyword>fi</keyword>
-      <keyword>function</keyword>
       <keyword>if</keyword>
       <keyword>in</keyword>
       <keyword>select</keyword>
