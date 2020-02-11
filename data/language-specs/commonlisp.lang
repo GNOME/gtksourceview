@@ -1,0 +1,1275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Authors: Tarn W. Burton
+ Copyright (C) 2020 Tarn W. Burton <twburton@gmail.com>
+
+ GtkSourceView is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ GtkSourceView is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<language id="commonlisp" name="Common Lisp" version="2.0" _section="Source">
+
+  <metadata>
+    <property name="mimetypes">text/x-common-lisp</property>
+    <property name="globs">*.asd;*.lisp</property>
+    <property name="line-comment-start">;</property>
+    <property name="block-comment-start">#\|</property>
+    <property name="block-comment-end">\|#</property>
+  </metadata>
+
+  <styles>
+    <style id="builtin"             name="Builtin Symbols"     map-to="def:keyword"/>
+    <style id="character"           name="Character"           map-to="def:character"/>
+    <style id="comment"             name="Comment"             map-to="def:comment"/>
+    <style id="constant"            name="Constant"            map-to="def:constant"/>
+    <style id="error"               name="Error"               map-to="def:error"/>
+    <style id="keyword"             name="Keyword"             map-to="def:type"/>
+    <style id="lambda-list-keyword" name="Lambda List Keyword" map-to="def:type"/>
+    <style id="number"              name="Number"              map-to="def:number"/>
+    <style id="operator"            name="Operator"            map-to="def:operator"/>
+    <style id="special"             name="Special"             map-to="def:type"/>
+    <style id="string"              name="String"              map-to="def:string"/>
+    <style id="symbol"              name="Symbol"              map-to="def:identifier"/>
+  </styles>
+
+  <default-regex-options case-sensitive="false"/>
+  <keyword-char-class>([^()"`,#\s])</keyword-char-class>
+
+  <definitions>
+
+    <!--
+      Token Patterns
+      References: http://www.lispworks.com/documentation/HyperSpec/Body/02_ad.htm
+                  http://www.lispworks.com/documentation/HyperSpec/Body/02_c.htm
+    -->
+
+    <define-regex id="token-start" extended="true">
+     	((?&lt;=[()'"`,@#\s])|^)
+    </define-regex>
+
+    <define-regex id="token" extended="true">
+     	(([^()'"`,#\s\\|]|\\\S|\|[^|]*\|)+)
+    </define-regex>
+
+    <define-regex id="namespace" extended="true">
+     	(([^()'"`,:#\s\\|]|\\\S|\|[^|]*\|)+)
+    </define-regex>
+
+    <define-regex id="token-end" extended="true">
+     	(?=([()';"`,#]|$|\s))
+    </define-regex>
+
+    <!--
+      Basic Numbers
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_ca.htm
+      The following patterns assume that the input radix is base 10.
+    -->
+
+    <context id="decimal-rational" style-ref="number">
+      <match extended="true">
+        \%{token-start}
+        ([+-]?[0-9]+([.]|/[0-9]+)?)
+      	\%{token-end}
+      </match>
+    </context>
+
+    <context id="float" style-ref="number">
+      <match extended="true">
+        \%{token-start}
+        ([+-]?([0-9]*[.][0-9]+|[0-9]+([.][0-9]*)?)[defls][+-]?[0-9]+)
+      	\%{token-end}
+      </match>
+    </context>
+
+    <!--
+      Binary Rationals
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dhg.htm
+    -->
+
+    <context id="binary-rational" style-ref="number">
+      <match extended="true">
+        \%{token-start}
+        (\#b[+-]?[01]+([.]|/[01]+)?)
+      	\%{token-end}
+      </match>
+    </context>
+
+    <!--
+      Octal Rationals
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dhh.htm
+    -->
+
+    <context id="octal-rational" style-ref="number">
+      <match extended="true">
+        \%{token-start}
+        (\#o[+-]?[0-7]+([.]|/[0-7]+)?)
+      	\%{token-end}
+      </match>
+    </context>
+
+    <!--
+      Hexadecimal Rationals
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dhi.htm
+    -->
+
+    <context id="hexadecimal-rational" style-ref="number">
+      <match extended="true">
+        \%{token-start}
+        (\#x[+-]?[0-9a-f]+([.]|/[0-9a-f]+)?)
+      	\%{token-end}
+      </match>
+    </context>
+
+    <!--
+      Arbitrary Radix Rationals
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dhj.htm
+    -->
+
+    <context id="radix-rational" style-ref="number">
+      <match extended="true">
+        \%{token-start}
+        (\#[0-9]+r[+-]?[0-9a-z]+([.]|/[0-9a-z]+)?)
+      	\%{token-end}
+      </match>
+    </context>
+
+    <!--
+      Semicolon Comments
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dd.htm
+    -->
+
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+      <start>;</start>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
+    <!--
+      Single Quote
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dc.htm
+    -->
+
+    <context id="single-quote" style-ref="operator">
+      <match extended="true">
+        (')
+      </match>
+    </context>
+
+    <!--
+      Strings
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_de.htm
+    -->
+
+    <context id="string" style-ref="string">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context ref="def:escape"/>
+      </include>
+    </context>
+
+    <!--
+      Template Operators (backquote and comma)
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_df.htm
+    -->
+
+    <context id="template-operators" style-ref="operator">
+      <match extended="true">
+        (`|,@?)
+      </match>
+    </context>
+
+    <!--
+      Sharpsign Dispatching Macro
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dh.htm
+    -->
+
+    <!--
+      Sharpsign Backlash (characters)
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dha.htm
+    -->
+
+    <context id="character" style-ref="character">
+      <match extended="true">
+        \%{token-start}
+        (\#\\\S(\%{token})?)
+        \%{token-end}
+      </match>
+    </context>
+
+    <!--
+      Sharpsign Asterisk (bit vector)
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dhd.htm
+    -->
+
+    <context id="sharpsign-asterisk" style-ref="constant">
+      <match extended="true">
+        (\#[0-9]*\*[01]*)
+      </match>
+    </context>
+
+    <!--
+      Sharpsign Colon (uninterned symbol)
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dhe.htm
+    -->
+
+    <context id="sharpsign-colon" style-ref="symbol">
+      <match extended="true">
+        (\#:\%{token})
+        \%{token-end}
+      </match>
+    </context>
+
+    <!--
+      Sharpsign Vertical-Bar (block comment)
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dhs.htm
+    -->
+
+    <context id="block-comment" style-ref="comment" class="comment" class-disabled="no-spell-check">
+      <start>#\|</start>
+      <end>\|#</end>
+      <include>
+        <context ref="def:in-comment"/>
+      </include>
+    </context>
+
+    <!--
+      Sharpsign Other
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dh.htm
+      Undefined sharpsigns or ones that precede a Lisp expression and therefore
+      act a bit like an operator.
+    -->
+
+    <context id="sharpsign-other" style-ref="operator">
+      <match extended="true">
+        (\#[0-9]*[!"#$%&amp;'(,;=&gt;?@[\]^_`~{}+\-./ac-npqs-wyz])
+      </match>
+    </context>
+
+    <!--
+      Sharpsign Invalid
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dh.htm
+    -->
+
+    <context id="sharpsign-invalid" style-ref="error">
+      <match extended="true">
+        (\#[0-9]*[\s)&lt;])
+      </match>
+    </context>
+
+    <context id="builtin" style-ref="builtin">
+      <keyword>\*</keyword>
+      <keyword>\*\*</keyword>
+      <keyword>\*\*\*</keyword>
+      <keyword>\+</keyword>
+      <keyword>\+\+</keyword>
+      <keyword>\+\+\+</keyword>
+      <keyword>-</keyword>
+      <keyword>/</keyword>
+      <keyword>//</keyword>
+      <keyword>///</keyword>
+      <keyword>/=</keyword>
+      <keyword>1\+</keyword>
+      <keyword>1-</keyword>
+      <keyword>&lt;</keyword>
+      <keyword>&lt;=</keyword>
+      <keyword>=</keyword>
+      <keyword>&gt;</keyword>
+      <keyword>&gt;=</keyword>
+      <keyword>abort</keyword>
+      <keyword>abs</keyword>
+      <keyword>acons</keyword>
+      <keyword>acos</keyword>
+      <keyword>acosh</keyword>
+      <keyword>add-method</keyword>
+      <keyword>adjoin</keyword>
+      <keyword>adjust-array</keyword>
+      <keyword>adjustable-array-p</keyword>
+      <keyword>allocate-instance</keyword>
+      <keyword>alpha-char-p</keyword>
+      <keyword>alphanumericp</keyword>
+      <keyword>and</keyword>
+      <keyword>append</keyword>
+      <keyword>apply</keyword>
+      <keyword>apropos</keyword>
+      <keyword>apropos-list</keyword>
+      <keyword>aref</keyword>
+      <keyword>arithmetic-error</keyword>
+      <keyword>arithmetic-error-operands</keyword>
+      <keyword>arithmetic-error-operation</keyword>
+      <keyword>array</keyword>
+      <keyword>array-dimension</keyword>
+      <keyword>array-dimension-limit</keyword>
+      <keyword>array-dimensions</keyword>
+      <keyword>array-displacement</keyword>
+      <keyword>array-element-type</keyword>
+      <keyword>array-has-fill-pointer-p</keyword>
+      <keyword>array-in-bounds-p</keyword>
+      <keyword>array-rank</keyword>
+      <keyword>array-rank-limit</keyword>
+      <keyword>array-row-major-index</keyword>
+      <keyword>array-total-size</keyword>
+      <keyword>array-total-size-limit</keyword>
+      <keyword>arrayp</keyword>
+      <keyword>ash</keyword>
+      <keyword>asin</keyword>
+      <keyword>asinh</keyword>
+      <keyword>assert</keyword>
+      <keyword>assoc</keyword>
+      <keyword>assoc-if</keyword>
+      <keyword>assoc-if-not</keyword>
+      <keyword>atan</keyword>
+      <keyword>atanh</keyword>
+      <keyword>atom</keyword>
+      <keyword>base-char</keyword>
+      <keyword>base-string</keyword>
+      <keyword>bignum</keyword>
+      <keyword>bit</keyword>
+      <keyword>bit-and</keyword>
+      <keyword>bit-andc1</keyword>
+      <keyword>bit-andc2</keyword>
+      <keyword>bit-eqv</keyword>
+      <keyword>bit-ior</keyword>
+      <keyword>bit-nand</keyword>
+      <keyword>bit-nor</keyword>
+      <keyword>bit-not</keyword>
+      <keyword>bit-orc1</keyword>
+      <keyword>bit-orc2</keyword>
+      <keyword>bit-vector</keyword>
+      <keyword>bit-vector-p</keyword>
+      <keyword>bit-xor</keyword>
+      <keyword>block</keyword>
+      <keyword>boole</keyword>
+      <keyword>boole-1</keyword>
+      <keyword>boole-2</keyword>
+      <keyword>boole-and</keyword>
+      <keyword>boole-andc1</keyword>
+      <keyword>boole-andc2</keyword>
+      <keyword>boole-c1</keyword>
+      <keyword>boole-c2</keyword>
+      <keyword>boole-clr</keyword>
+      <keyword>boole-eqv</keyword>
+      <keyword>boole-ior</keyword>
+      <keyword>boole-nand</keyword>
+      <keyword>boole-nor</keyword>
+      <keyword>boole-orc1</keyword>
+      <keyword>boole-orc2</keyword>
+      <keyword>boole-set</keyword>
+      <keyword>boole-xor</keyword>
+      <keyword>boolean</keyword>
+      <keyword>both-case-p</keyword>
+      <keyword>boundp</keyword>
+      <keyword>break</keyword>
+      <keyword>broadcast-stream</keyword>
+      <keyword>broadcast-stream-streams</keyword>
+      <keyword>built-in-class</keyword>
+      <keyword>butlast</keyword>
+      <keyword>byte</keyword>
+      <keyword>byte-position</keyword>
+      <keyword>byte-size</keyword>
+      <keyword>caaaar</keyword>
+      <keyword>caaadr</keyword>
+      <keyword>caaar</keyword>
+      <keyword>caadar</keyword>
+      <keyword>caaddr</keyword>
+      <keyword>caadr</keyword>
+      <keyword>caar</keyword>
+      <keyword>cadaar</keyword>
+      <keyword>cadadr</keyword>
+      <keyword>cadar</keyword>
+      <keyword>caddar</keyword>
+      <keyword>cadddr</keyword>
+      <keyword>caddr</keyword>
+      <keyword>cadr</keyword>
+      <keyword>call-arguments-limit</keyword>
+      <keyword>call-method</keyword>
+      <keyword>call-next-method</keyword>
+      <keyword>car</keyword>
+      <keyword>case</keyword>
+      <keyword>catch</keyword>
+      <keyword>ccase</keyword>
+      <keyword>cdaaar</keyword>
+      <keyword>cdaadr</keyword>
+      <keyword>cdaar</keyword>
+      <keyword>cdadar</keyword>
+      <keyword>cdaddr</keyword>
+      <keyword>cdadr</keyword>
+      <keyword>cdar</keyword>
+      <keyword>cddaar</keyword>
+      <keyword>cddadr</keyword>
+      <keyword>cddar</keyword>
+      <keyword>cdddar</keyword>
+      <keyword>cddddr</keyword>
+      <keyword>cdddr</keyword>
+      <keyword>cddr</keyword>
+      <keyword>cdr</keyword>
+      <keyword>ceiling</keyword>
+      <keyword>cell-error</keyword>
+      <keyword>cell-error-name</keyword>
+      <keyword>cerror</keyword>
+      <keyword>change-class</keyword>
+      <keyword>char</keyword>
+      <keyword>char-code</keyword>
+      <keyword>char-code-limit</keyword>
+      <keyword>char-downcase</keyword>
+      <keyword>char-equal</keyword>
+      <keyword>char-greaterp</keyword>
+      <keyword>char-int</keyword>
+      <keyword>char-lessp</keyword>
+      <keyword>char-name</keyword>
+      <keyword>char-not-equal</keyword>
+      <keyword>char-not-greaterp</keyword>
+      <keyword>char-not-lessp</keyword>
+      <keyword>char-upcase</keyword>
+      <keyword>char/=</keyword>
+      <keyword>char&lt;</keyword>
+      <keyword>char&lt;=</keyword>
+      <keyword>char=</keyword>
+      <keyword>char&gt;</keyword>
+      <keyword>char&gt;=</keyword>
+      <keyword>character</keyword>
+      <keyword>characterp</keyword>
+      <keyword>check-type</keyword>
+      <keyword>cis</keyword>
+      <keyword>class</keyword>
+      <keyword>class-name</keyword>
+      <keyword>class-of</keyword>
+      <keyword>clear-input</keyword>
+      <keyword>clear-output</keyword>
+      <keyword>close</keyword>
+      <keyword>clrhash</keyword>
+      <keyword>code-char</keyword>
+      <keyword>coerce</keyword>
+      <keyword>compilation-speed</keyword>
+      <keyword>compile</keyword>
+      <keyword>compile-file</keyword>
+      <keyword>compile-file-pathname</keyword>
+      <keyword>compiled-function</keyword>
+      <keyword>compiled-function-p</keyword>
+      <keyword>compiler-macro</keyword>
+      <keyword>compiler-macro-function</keyword>
+      <keyword>complement</keyword>
+      <keyword>complex</keyword>
+      <keyword>complexp</keyword>
+      <keyword>compute-applicable-methods</keyword>
+      <keyword>compute-restarts</keyword>
+      <keyword>concatenate</keyword>
+      <keyword>concatenated-stream</keyword>
+      <keyword>concatenated-stream-streams</keyword>
+      <keyword>cond</keyword>
+      <keyword>condition</keyword>
+      <keyword>conjugate</keyword>
+      <keyword>cons</keyword>
+      <keyword>consp</keyword>
+      <keyword>constantly</keyword>
+      <keyword>constantp</keyword>
+      <keyword>continue</keyword>
+      <keyword>control-error</keyword>
+      <keyword>copy-alist</keyword>
+      <keyword>copy-list</keyword>
+      <keyword>copy-pprint-dispatch</keyword>
+      <keyword>copy-readtable</keyword>
+      <keyword>copy-seq</keyword>
+      <keyword>copy-structure</keyword>
+      <keyword>copy-symbol</keyword>
+      <keyword>copy-tree</keyword>
+      <keyword>cos</keyword>
+      <keyword>cosh</keyword>
+      <keyword>count</keyword>
+      <keyword>count-if</keyword>
+      <keyword>count-if-not</keyword>
+      <keyword>ctypecase</keyword>
+      <keyword>debug</keyword>
+      <keyword>decf</keyword>
+      <keyword>declaim</keyword>
+      <keyword>declaration</keyword>
+      <keyword>declare</keyword>
+      <keyword>decode-float</keyword>
+      <keyword>decode-universal-time</keyword>
+      <keyword>defclass</keyword>
+      <keyword>defconstant</keyword>
+      <keyword>defgeneric</keyword>
+      <keyword>define-compiler-macro</keyword>
+      <keyword>define-condition</keyword>
+      <keyword>define-method-combination</keyword>
+      <keyword>define-modify-macro</keyword>
+      <keyword>define-setf-expander</keyword>
+      <keyword>define-symbol-macro</keyword>
+      <keyword>defmacro</keyword>
+      <keyword>defmethod</keyword>
+      <keyword>defpackage</keyword>
+      <keyword>defparameter</keyword>
+      <keyword>defsetf</keyword>
+      <keyword>defstruct</keyword>
+      <keyword>deftype</keyword>
+      <keyword>defun</keyword>
+      <keyword>defvar</keyword>
+      <keyword>delete</keyword>
+      <keyword>delete-duplicates</keyword>
+      <keyword>delete-file</keyword>
+      <keyword>delete-if</keyword>
+      <keyword>delete-if-not</keyword>
+      <keyword>delete-package</keyword>
+      <keyword>denominator</keyword>
+      <keyword>deposit-field</keyword>
+      <keyword>describe</keyword>
+      <keyword>describe-object</keyword>
+      <keyword>destructuring-bind</keyword>
+      <keyword>digit-char</keyword>
+      <keyword>digit-char-p</keyword>
+      <keyword>directory</keyword>
+      <keyword>directory-namestring</keyword>
+      <keyword>disassemble</keyword>
+      <keyword>division-by-zero</keyword>
+      <keyword>do</keyword>
+      <keyword>do\*</keyword>
+      <keyword>do-all-symbols</keyword>
+      <keyword>do-external-symbols</keyword>
+      <keyword>do-symbols</keyword>
+      <keyword>documentation</keyword>
+      <keyword>dolist</keyword>
+      <keyword>dotimes</keyword>
+      <keyword>double-float</keyword>
+      <keyword>double-float-epsilon</keyword>
+      <keyword>double-float-negative-epsilon</keyword>
+      <keyword>dpb</keyword>
+      <keyword>dribble</keyword>
+      <keyword>dynamic-extent</keyword>
+      <keyword>ecase</keyword>
+      <keyword>echo-stream</keyword>
+      <keyword>echo-stream-input-stream</keyword>
+      <keyword>echo-stream-output-stream</keyword>
+      <keyword>ed</keyword>
+      <keyword>eighth</keyword>
+      <keyword>elt</keyword>
+      <keyword>encode-universal-time</keyword>
+      <keyword>end-of-file</keyword>
+      <keyword>endp</keyword>
+      <keyword>enough-namestring</keyword>
+      <keyword>ensure-directories-exist</keyword>
+      <keyword>ensure-generic-function</keyword>
+      <keyword>eq</keyword>
+      <keyword>eql</keyword>
+      <keyword>equal</keyword>
+      <keyword>equalp</keyword>
+      <keyword>error</keyword>
+      <keyword>etypecase</keyword>
+      <keyword>eval</keyword>
+      <keyword>eval-when</keyword>
+      <keyword>evenp</keyword>
+      <keyword>every</keyword>
+      <keyword>exp</keyword>
+      <keyword>export</keyword>
+      <keyword>expt</keyword>
+      <keyword>extended-char</keyword>
+      <keyword>fboundp</keyword>
+      <keyword>fceiling</keyword>
+      <keyword>fdefinition</keyword>
+      <keyword>ffloor</keyword>
+      <keyword>fifth</keyword>
+      <keyword>file-author</keyword>
+      <keyword>file-error</keyword>
+      <keyword>file-error-pathname</keyword>
+      <keyword>file-length</keyword>
+      <keyword>file-namestring</keyword>
+      <keyword>file-position</keyword>
+      <keyword>file-stream</keyword>
+      <keyword>file-string-length</keyword>
+      <keyword>file-write-date</keyword>
+      <keyword>fill</keyword>
+      <keyword>fill-pointer</keyword>
+      <keyword>find</keyword>
+      <keyword>find-all-symbols</keyword>
+      <keyword>find-class</keyword>
+      <keyword>find-if</keyword>
+      <keyword>find-if-not</keyword>
+      <keyword>find-method</keyword>
+      <keyword>find-package</keyword>
+      <keyword>find-restart</keyword>
+      <keyword>find-symbol</keyword>
+      <keyword>finish-output</keyword>
+      <keyword>first</keyword>
+      <keyword>fixnum</keyword>
+      <keyword>flet</keyword>
+      <keyword>float</keyword>
+      <keyword>float-digits</keyword>
+      <keyword>float-precision</keyword>
+      <keyword>float-radix</keyword>
+      <keyword>float-sign</keyword>
+      <keyword>floating-point-inexact</keyword>
+      <keyword>floating-point-invalid-operation</keyword>
+      <keyword>floating-point-overflow</keyword>
+      <keyword>floating-point-underflow</keyword>
+      <keyword>floatp</keyword>
+      <keyword>floor</keyword>
+      <keyword>fmakunbound</keyword>
+      <keyword>force-output</keyword>
+      <keyword>format</keyword>
+      <keyword>formatter</keyword>
+      <keyword>fourth</keyword>
+      <keyword>fresh-line</keyword>
+      <keyword>fround</keyword>
+      <keyword>ftruncate</keyword>
+      <keyword>ftype</keyword>
+      <keyword>funcall</keyword>
+      <keyword>function</keyword>
+      <keyword>function-keywords</keyword>
+      <keyword>function-lambda-expression</keyword>
+      <keyword>functionp</keyword>
+      <keyword>gcd</keyword>
+      <keyword>generic-function</keyword>
+      <keyword>gensym</keyword>
+      <keyword>gentemp</keyword>
+      <keyword>get</keyword>
+      <keyword>get-decoded-time</keyword>
+      <keyword>get-dispatch-macro-character</keyword>
+      <keyword>get-internal-real-time</keyword>
+      <keyword>get-internal-run-time</keyword>
+      <keyword>get-macro-character</keyword>
+      <keyword>get-output-stream-string</keyword>
+      <keyword>get-properties</keyword>
+      <keyword>get-setf-expansion</keyword>
+      <keyword>get-universal-time</keyword>
+      <keyword>getf</keyword>
+      <keyword>gethash</keyword>
+      <keyword>go</keyword>
+      <keyword>graphic-char-p</keyword>
+      <keyword>handler-bind</keyword>
+      <keyword>handler-case</keyword>
+      <keyword>hash-table</keyword>
+      <keyword>hash-table-count</keyword>
+      <keyword>hash-table-p</keyword>
+      <keyword>hash-table-rehash-size</keyword>
+      <keyword>hash-table-rehash-threshold</keyword>
+      <keyword>hash-table-size</keyword>
+      <keyword>hash-table-test</keyword>
+      <keyword>host-namestring</keyword>
+      <keyword>identity</keyword>
+      <keyword>if</keyword>
+      <keyword>ignorable</keyword>
+      <keyword>ignore</keyword>
+      <keyword>ignore-errors</keyword>
+      <keyword>imagpart</keyword>
+      <keyword>import</keyword>
+      <keyword>in-package</keyword>
+      <keyword>incf</keyword>
+      <keyword>initialize-instance</keyword>
+      <keyword>inline</keyword>
+      <keyword>input-stream-p</keyword>
+      <keyword>inspect</keyword>
+      <keyword>integer</keyword>
+      <keyword>integer-decode-float</keyword>
+      <keyword>integer-length</keyword>
+      <keyword>integerp</keyword>
+      <keyword>interactive-stream-p</keyword>
+      <keyword>intern</keyword>
+      <keyword>internal-time-units-per-second</keyword>
+      <keyword>intersection</keyword>
+      <keyword>invalid-method-error</keyword>
+      <keyword>invoke-debugger</keyword>
+      <keyword>invoke-restart</keyword>
+      <keyword>invoke-restart-interactively</keyword>
+      <keyword>isqrt</keyword>
+      <keyword>keyword</keyword>
+      <keyword>keywordp</keyword>
+      <keyword>labels</keyword>
+      <keyword>lambda</keyword>
+      <keyword>lambda-list-keywords</keyword>
+      <keyword>lambda-parameters-limit</keyword>
+      <keyword>last</keyword>
+      <keyword>lcm</keyword>
+      <keyword>ldb</keyword>
+      <keyword>ldb-test</keyword>
+      <keyword>ldiff</keyword>
+      <keyword>least-negative-double-float</keyword>
+      <keyword>least-negative-long-float</keyword>
+      <keyword>least-negative-normalized-double-float</keyword>
+      <keyword>least-negative-normalized-long-float</keyword>
+      <keyword>least-negative-normalized-short-float</keyword>
+      <keyword>least-negative-normalized-single-float</keyword>
+      <keyword>least-negative-short-float</keyword>
+      <keyword>least-negative-single-float</keyword>
+      <keyword>least-positive-double-float</keyword>
+      <keyword>least-positive-long-float</keyword>
+      <keyword>least-positive-normalized-double-float</keyword>
+      <keyword>least-positive-normalized-long-float</keyword>
+      <keyword>least-positive-normalized-short-float</keyword>
+      <keyword>least-positive-normalized-single-float</keyword>
+      <keyword>least-positive-short-float</keyword>
+      <keyword>least-positive-single-float</keyword>
+      <keyword>length</keyword>
+      <keyword>let</keyword>
+      <keyword>let\*</keyword>
+      <keyword>lisp-implementation-type</keyword>
+      <keyword>lisp-implementation-version</keyword>
+      <keyword>list</keyword>
+      <keyword>list\*</keyword>
+      <keyword>list-all-packages</keyword>
+      <keyword>list-length</keyword>
+      <keyword>listen</keyword>
+      <keyword>listp</keyword>
+      <keyword>load</keyword>
+      <keyword>load-logical-pathname-translations</keyword>
+      <keyword>load-time-value</keyword>
+      <keyword>locally</keyword>
+      <keyword>log</keyword>
+      <keyword>logand</keyword>
+      <keyword>logandc1</keyword>
+      <keyword>logandc2</keyword>
+      <keyword>logbitp</keyword>
+      <keyword>logcount</keyword>
+      <keyword>logeqv</keyword>
+      <keyword>logical-pathname</keyword>
+      <keyword>logical-pathname-translations</keyword>
+      <keyword>logior</keyword>
+      <keyword>lognand</keyword>
+      <keyword>lognor</keyword>
+      <keyword>lognot</keyword>
+      <keyword>logorc1</keyword>
+      <keyword>logorc2</keyword>
+      <keyword>logtest</keyword>
+      <keyword>logxor</keyword>
+      <keyword>long-float</keyword>
+      <keyword>long-float-epsilon</keyword>
+      <keyword>long-float-negative-epsilon</keyword>
+      <keyword>long-site-name</keyword>
+      <keyword>loop</keyword>
+      <keyword>loop-finish</keyword>
+      <keyword>lower-case-p</keyword>
+      <keyword>machine-instance</keyword>
+      <keyword>machine-type</keyword>
+      <keyword>machine-version</keyword>
+      <keyword>macro-function</keyword>
+      <keyword>macroexpand</keyword>
+      <keyword>macroexpand-1</keyword>
+      <keyword>macrolet</keyword>
+      <keyword>make-array</keyword>
+      <keyword>make-broadcast-stream</keyword>
+      <keyword>make-concatenated-stream</keyword>
+      <keyword>make-condition</keyword>
+      <keyword>make-dispatch-macro-character</keyword>
+      <keyword>make-echo-stream</keyword>
+      <keyword>make-hash-table</keyword>
+      <keyword>make-instance</keyword>
+      <keyword>make-instances-obsolete</keyword>
+      <keyword>make-list</keyword>
+      <keyword>make-load-form</keyword>
+      <keyword>make-load-form-saving-slots</keyword>
+      <keyword>make-method</keyword>
+      <keyword>make-package</keyword>
+      <keyword>make-pathname</keyword>
+      <keyword>make-random-state</keyword>
+      <keyword>make-sequence</keyword>
+      <keyword>make-string</keyword>
+      <keyword>make-string-input-stream</keyword>
+      <keyword>make-string-output-stream</keyword>
+      <keyword>make-symbol</keyword>
+      <keyword>make-synonym-stream</keyword>
+      <keyword>make-two-way-stream</keyword>
+      <keyword>makunbound</keyword>
+      <keyword>map</keyword>
+      <keyword>map-into</keyword>
+      <keyword>mapc</keyword>
+      <keyword>mapcan</keyword>
+      <keyword>mapcar</keyword>
+      <keyword>mapcon</keyword>
+      <keyword>maphash</keyword>
+      <keyword>mapl</keyword>
+      <keyword>maplist</keyword>
+      <keyword>mask-field</keyword>
+      <keyword>max</keyword>
+      <keyword>member</keyword>
+      <keyword>member-if</keyword>
+      <keyword>member-if-not</keyword>
+      <keyword>merge</keyword>
+      <keyword>merge-pathnames</keyword>
+      <keyword>method</keyword>
+      <keyword>method-combination</keyword>
+      <keyword>method-combination-error</keyword>
+      <keyword>method-qualifiers</keyword>
+      <keyword>min</keyword>
+      <keyword>minusp</keyword>
+      <keyword>mismatch</keyword>
+      <keyword>mod</keyword>
+      <keyword>most-negative-double-float</keyword>
+      <keyword>most-negative-fixnum</keyword>
+      <keyword>most-negative-long-float</keyword>
+      <keyword>most-negative-short-float</keyword>
+      <keyword>most-negative-single-float</keyword>
+      <keyword>most-positive-double-float</keyword>
+      <keyword>most-positive-fixnum</keyword>
+      <keyword>most-positive-long-float</keyword>
+      <keyword>most-positive-short-float</keyword>
+      <keyword>most-positive-single-float</keyword>
+      <keyword>muffle-warning</keyword>
+      <keyword>multiple-value-bind</keyword>
+      <keyword>multiple-value-call</keyword>
+      <keyword>multiple-value-list</keyword>
+      <keyword>multiple-value-prog1</keyword>
+      <keyword>multiple-value-setq</keyword>
+      <keyword>multiple-values-limit</keyword>
+      <keyword>name-char</keyword>
+      <keyword>namestring</keyword>
+      <keyword>nbutlast</keyword>
+      <keyword>nconc</keyword>
+      <keyword>next-method-p</keyword>
+      <keyword>nil</keyword>
+      <keyword>nintersection</keyword>
+      <keyword>ninth</keyword>
+      <keyword>no-applicable-method</keyword>
+      <keyword>no-next-method</keyword>
+      <keyword>not</keyword>
+      <keyword>notany</keyword>
+      <keyword>notevery</keyword>
+      <keyword>notinline</keyword>
+      <keyword>nreconc</keyword>
+      <keyword>nreverse</keyword>
+      <keyword>nset-difference</keyword>
+      <keyword>nset-exclusive-or</keyword>
+      <keyword>nstring-capitalize</keyword>
+      <keyword>nstring-downcase</keyword>
+      <keyword>nstring-upcase</keyword>
+      <keyword>nsublis</keyword>
+      <keyword>nsubst</keyword>
+      <keyword>nsubst-if</keyword>
+      <keyword>nsubst-if-not</keyword>
+      <keyword>nsubstitute</keyword>
+      <keyword>nsubstitute-if</keyword>
+      <keyword>nsubstitute-if-not</keyword>
+      <keyword>nth</keyword>
+      <keyword>nth-value</keyword>
+      <keyword>nthcdr</keyword>
+      <keyword>null</keyword>
+      <keyword>number</keyword>
+      <keyword>numberp</keyword>
+      <keyword>numerator</keyword>
+      <keyword>nunion</keyword>
+      <keyword>oddp</keyword>
+      <keyword>open</keyword>
+      <keyword>open-stream-p</keyword>
+      <keyword>optimize</keyword>
+      <keyword>or</keyword>
+      <keyword>otherwise</keyword>
+      <keyword>output-stream-p</keyword>
+      <keyword>package</keyword>
+      <keyword>package-error</keyword>
+      <keyword>package-error-package</keyword>
+      <keyword>package-name</keyword>
+      <keyword>package-nicknames</keyword>
+      <keyword>package-shadowing-symbols</keyword>
+      <keyword>package-use-list</keyword>
+      <keyword>package-used-by-list</keyword>
+      <keyword>packagep</keyword>
+      <keyword>pairlis</keyword>
+      <keyword>parse-error</keyword>
+      <keyword>parse-integer</keyword>
+      <keyword>parse-namestring</keyword>
+      <keyword>pathname</keyword>
+      <keyword>pathname-device</keyword>
+      <keyword>pathname-directory</keyword>
+      <keyword>pathname-host</keyword>
+      <keyword>pathname-match-p</keyword>
+      <keyword>pathname-name</keyword>
+      <keyword>pathname-type</keyword>
+      <keyword>pathname-version</keyword>
+      <keyword>pathnamep</keyword>
+      <keyword>peek-char</keyword>
+      <keyword>phase</keyword>
+      <keyword>pi</keyword>
+      <keyword>plusp</keyword>
+      <keyword>pop</keyword>
+      <keyword>position</keyword>
+      <keyword>position-if</keyword>
+      <keyword>position-if-not</keyword>
+      <keyword>pprint</keyword>
+      <keyword>pprint-dispatch</keyword>
+      <keyword>pprint-exit-if-list-exhausted</keyword>
+      <keyword>pprint-fill</keyword>
+      <keyword>pprint-indent</keyword>
+      <keyword>pprint-linear</keyword>
+      <keyword>pprint-logical-block</keyword>
+      <keyword>pprint-newline</keyword>
+      <keyword>pprint-pop</keyword>
+      <keyword>pprint-tab</keyword>
+      <keyword>pprint-tabular</keyword>
+      <keyword>prin1</keyword>
+      <keyword>prin1-to-string</keyword>
+      <keyword>princ</keyword>
+      <keyword>princ-to-string</keyword>
+      <keyword>print</keyword>
+      <keyword>print-not-readable</keyword>
+      <keyword>print-not-readable-object</keyword>
+      <keyword>print-object</keyword>
+      <keyword>print-unreadable-object</keyword>
+      <keyword>probe-file</keyword>
+      <keyword>proclaim</keyword>
+      <keyword>prog</keyword>
+      <keyword>prog\*</keyword>
+      <keyword>prog1</keyword>
+      <keyword>prog2</keyword>
+      <keyword>progn</keyword>
+      <keyword>program-error</keyword>
+      <keyword>progv</keyword>
+      <keyword>provide</keyword>
+      <keyword>psetf</keyword>
+      <keyword>psetq</keyword>
+      <keyword>push</keyword>
+      <keyword>pushnew</keyword>
+      <keyword>quote</keyword>
+      <keyword>random</keyword>
+      <keyword>random-state</keyword>
+      <keyword>random-state-p</keyword>
+      <keyword>rassoc</keyword>
+      <keyword>rassoc-if</keyword>
+      <keyword>rassoc-if-not</keyword>
+      <keyword>ratio</keyword>
+      <keyword>rational</keyword>
+      <keyword>rationalize</keyword>
+      <keyword>rationalp</keyword>
+      <keyword>read</keyword>
+      <keyword>read-byte</keyword>
+      <keyword>read-char</keyword>
+      <keyword>read-char-no-hang</keyword>
+      <keyword>read-delimited-list</keyword>
+      <keyword>read-from-string</keyword>
+      <keyword>read-line</keyword>
+      <keyword>read-preserving-whitespace</keyword>
+      <keyword>read-sequence</keyword>
+      <keyword>reader-error</keyword>
+      <keyword>readtable</keyword>
+      <keyword>readtable-case</keyword>
+      <keyword>readtablep</keyword>
+      <keyword>real</keyword>
+      <keyword>realp</keyword>
+      <keyword>realpart</keyword>
+      <keyword>reduce</keyword>
+      <keyword>reinitialize-instance</keyword>
+      <keyword>rem</keyword>
+      <keyword>remf</keyword>
+      <keyword>remhash</keyword>
+      <keyword>remove</keyword>
+      <keyword>remove-duplicates</keyword>
+      <keyword>remove-if</keyword>
+      <keyword>remove-if-not</keyword>
+      <keyword>remove-method</keyword>
+      <keyword>remprop</keyword>
+      <keyword>rename-file</keyword>
+      <keyword>rename-package</keyword>
+      <keyword>replace</keyword>
+      <keyword>require</keyword>
+      <keyword>rest</keyword>
+      <keyword>restart</keyword>
+      <keyword>restart-bind</keyword>
+      <keyword>restart-case</keyword>
+      <keyword>restart-name</keyword>
+      <keyword>return</keyword>
+      <keyword>return-from</keyword>
+      <keyword>revappend</keyword>
+      <keyword>reverse</keyword>
+      <keyword>room</keyword>
+      <keyword>rotatef</keyword>
+      <keyword>round</keyword>
+      <keyword>row-major-aref</keyword>
+      <keyword>rplaca</keyword>
+      <keyword>rplacd</keyword>
+      <keyword>safety</keyword>
+      <keyword>satisfies</keyword>
+      <keyword>sbit</keyword>
+      <keyword>scale-float</keyword>
+      <keyword>schar</keyword>
+      <keyword>search</keyword>
+      <keyword>second</keyword>
+      <keyword>sequence</keyword>
+      <keyword>serious-condition</keyword>
+      <keyword>set</keyword>
+      <keyword>set-difference</keyword>
+      <keyword>set-dispatch-macro-character</keyword>
+      <keyword>set-exclusive-or</keyword>
+      <keyword>set-macro-character</keyword>
+      <keyword>set-pprint-dispatch</keyword>
+      <keyword>set-syntax-from-char</keyword>
+      <keyword>setf</keyword>
+      <keyword>setq</keyword>
+      <keyword>seventh</keyword>
+      <keyword>shadow</keyword>
+      <keyword>shadowing-import</keyword>
+      <keyword>shared-initialize</keyword>
+      <keyword>shiftf</keyword>
+      <keyword>short-float</keyword>
+      <keyword>short-float-epsilon</keyword>
+      <keyword>short-float-negative-epsilon</keyword>
+      <keyword>short-site-name</keyword>
+      <keyword>signal</keyword>
+      <keyword>signed-byte</keyword>
+      <keyword>signum</keyword>
+      <keyword>simple-array</keyword>
+      <keyword>simple-base-string</keyword>
+      <keyword>simple-bit-vector</keyword>
+      <keyword>simple-bit-vector-p</keyword>
+      <keyword>simple-condition</keyword>
+      <keyword>simple-condition-format-arguments</keyword>
+      <keyword>simple-condition-format-control</keyword>
+      <keyword>simple-error</keyword>
+      <keyword>simple-string</keyword>
+      <keyword>simple-string-p</keyword>
+      <keyword>simple-type-error</keyword>
+      <keyword>simple-vector</keyword>
+      <keyword>simple-vector-p</keyword>
+      <keyword>simple-warning</keyword>
+      <keyword>sin</keyword>
+      <keyword>single-float</keyword>
+      <keyword>single-float-epsilon</keyword>
+      <keyword>single-float-negative-epsilon</keyword>
+      <keyword>sinh</keyword>
+      <keyword>sixth</keyword>
+      <keyword>sleep</keyword>
+      <keyword>slot-boundp</keyword>
+      <keyword>slot-exists-p</keyword>
+      <keyword>slot-makunbound</keyword>
+      <keyword>slot-missing</keyword>
+      <keyword>slot-unbound</keyword>
+      <keyword>slot-value</keyword>
+      <keyword>software-type</keyword>
+      <keyword>software-version</keyword>
+      <keyword>some</keyword>
+      <keyword>sort</keyword>
+      <keyword>space</keyword>
+      <keyword>special</keyword>
+      <keyword>special-operator-p</keyword>
+      <keyword>speed</keyword>
+      <keyword>sqrt</keyword>
+      <keyword>stable-sort</keyword>
+      <keyword>standard</keyword>
+      <keyword>standard-char</keyword>
+      <keyword>standard-char-p</keyword>
+      <keyword>standard-class</keyword>
+      <keyword>standard-generic-function</keyword>
+      <keyword>standard-method</keyword>
+      <keyword>standard-object</keyword>
+      <keyword>step</keyword>
+      <keyword>storage-condition</keyword>
+      <keyword>store-value</keyword>
+      <keyword>stream</keyword>
+      <keyword>stream-element-type</keyword>
+      <keyword>stream-error</keyword>
+      <keyword>stream-error-stream</keyword>
+      <keyword>stream-external-format</keyword>
+      <keyword>streamp</keyword>
+      <keyword>string</keyword>
+      <keyword>string-capitalize</keyword>
+      <keyword>string-downcase</keyword>
+      <keyword>string-equal</keyword>
+      <keyword>string-greaterp</keyword>
+      <keyword>string-left-trim</keyword>
+      <keyword>string-lessp</keyword>
+      <keyword>string-not-equal</keyword>
+      <keyword>string-not-greaterp</keyword>
+      <keyword>string-not-lessp</keyword>
+      <keyword>string-right-trim</keyword>
+      <keyword>string-stream</keyword>
+      <keyword>string-trim</keyword>
+      <keyword>string-upcase</keyword>
+      <keyword>string/=</keyword>
+      <keyword>string&lt;</keyword>
+      <keyword>string&lt;=</keyword>
+      <keyword>string=</keyword>
+      <keyword>string&gt;</keyword>
+      <keyword>string&gt;=</keyword>
+      <keyword>stringp</keyword>
+      <keyword>structure</keyword>
+      <keyword>structure-class</keyword>
+      <keyword>structure-object</keyword>
+      <keyword>style-warning</keyword>
+      <keyword>sublis</keyword>
+      <keyword>subseq</keyword>
+      <keyword>subsetp</keyword>
+      <keyword>subst</keyword>
+      <keyword>subst-if</keyword>
+      <keyword>subst-if-not</keyword>
+      <keyword>substitute</keyword>
+      <keyword>substitute-if</keyword>
+      <keyword>substitute-if-not</keyword>
+      <keyword>subtypep</keyword>
+      <keyword>svref</keyword>
+      <keyword>sxhash</keyword>
+      <keyword>symbol</keyword>
+      <keyword>symbol-function</keyword>
+      <keyword>symbol-macrolet</keyword>
+      <keyword>symbol-name</keyword>
+      <keyword>symbol-package</keyword>
+      <keyword>symbol-plist</keyword>
+      <keyword>symbol-value</keyword>
+      <keyword>symbolp</keyword>
+      <keyword>synonym-stream</keyword>
+      <keyword>synonym-stream-symbol</keyword>
+      <keyword>t</keyword>
+      <keyword>tagbody</keyword>
+      <keyword>tailp</keyword>
+      <keyword>tan</keyword>
+      <keyword>tanh</keyword>
+      <keyword>tenth</keyword>
+      <keyword>terpri</keyword>
+      <keyword>the</keyword>
+      <keyword>third</keyword>
+      <keyword>throw</keyword>
+      <keyword>time</keyword>
+      <keyword>trace</keyword>
+      <keyword>translate-logical-pathname</keyword>
+      <keyword>translate-pathname</keyword>
+      <keyword>tree-equal</keyword>
+      <keyword>truename</keyword>
+      <keyword>truncate</keyword>
+      <keyword>two-way-stream</keyword>
+      <keyword>two-way-stream-input-stream</keyword>
+      <keyword>two-way-stream-output-stream</keyword>
+      <keyword>type</keyword>
+      <keyword>type-error</keyword>
+      <keyword>type-error-datum</keyword>
+      <keyword>type-error-expected-type</keyword>
+      <keyword>type-of</keyword>
+      <keyword>typecase</keyword>
+      <keyword>typep</keyword>
+      <keyword>unbound-slot</keyword>
+      <keyword>unbound-slot-instance</keyword>
+      <keyword>unbound-variable</keyword>
+      <keyword>undefined-function</keyword>
+      <keyword>unexport</keyword>
+      <keyword>unintern</keyword>
+      <keyword>union</keyword>
+      <keyword>unless</keyword>
+      <keyword>unread-char</keyword>
+      <keyword>unsigned-byte</keyword>
+      <keyword>untrace</keyword>
+      <keyword>unuse-package</keyword>
+      <keyword>unwind-protect</keyword>
+      <keyword>update-instance-for-different-class</keyword>
+      <keyword>update-instance-for-redefined-class</keyword>
+      <keyword>upgraded-array-element-type</keyword>
+      <keyword>upgraded-complex-part-type</keyword>
+      <keyword>upper-case-p</keyword>
+      <keyword>use-package</keyword>
+      <keyword>use-value</keyword>
+      <keyword>user-homedir-pathname</keyword>
+      <keyword>values</keyword>
+      <keyword>values-list</keyword>
+      <keyword>variable</keyword>
+      <keyword>vector</keyword>
+      <keyword>vector-pop</keyword>
+      <keyword>vector-push</keyword>
+      <keyword>vector-push-extend</keyword>
+      <keyword>vectorp</keyword>
+      <keyword>warn</keyword>
+      <keyword>warning</keyword>
+      <keyword>when</keyword>
+      <keyword>wild-pathname-p</keyword>
+      <keyword>with-accessors</keyword>
+      <keyword>with-compilation-unit</keyword>
+      <keyword>with-condition-restarts</keyword>
+      <keyword>with-hash-table-iterator</keyword>
+      <keyword>with-input-from-string</keyword>
+      <keyword>with-open-file</keyword>
+      <keyword>with-open-stream</keyword>
+      <keyword>with-output-to-string</keyword>
+      <keyword>with-package-iterator</keyword>
+      <keyword>with-simple-restart</keyword>
+      <keyword>with-slots</keyword>
+      <keyword>with-standard-io-syntax</keyword>
+      <keyword>write</keyword>
+      <keyword>write-byte</keyword>
+      <keyword>write-char</keyword>
+      <keyword>write-line</keyword>
+      <keyword>write-sequence</keyword>
+      <keyword>write-string</keyword>
+      <keyword>write-to-string</keyword>
+      <keyword>y-or-n-p</keyword>
+      <keyword>yes-or-no-p</keyword>
+      <keyword>zerop</keyword>
+    </context>
+
+    <context id="special-variable" style-ref="special">
+      <match extended="true">
+        \%{token-start}
+        (\*(\%{token})*?\*)
+        \%{token-end}
+      </match>
+    </context>
+
+    <context id="constant-variable" style-ref="constant">
+      <match extended="true">
+        \%{token-start}
+        (\+(\%{token})*?\+)
+        \%{token-end}
+      </match>
+    </context>
+
+    <!--
+      Keyword Symbols
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/11_abc.htm
+    -->
+
+    <context id="keyword" style-ref="keyword">
+      <match extended="true">
+        \%{token-start}
+        (:\%{token})
+        \%{token-end}
+      </match>
+    </context>
+
+    <!--
+      Lambda List Keywords
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/03_da.htm
+      Instead of listing the specific keywords in the specification allow for
+      implementation specific ones like `sb-int:&more`.
+    -->
+
+    <context id="lambda-list-keyword" style-ref="lambda-list-keyword">
+      <match extended="true">
+        \%{token-start}
+        ((\%{namespace}::?)?&amp;\%{token})
+        \%{token-end}
+      </match>
+    </context>
+
+    <context id="commonlisp" class="no-spell-check">
+      <include>
+        <context ref="binary-rational"/>
+        <context ref="block-comment"/>
+        <context ref="builtin"/>
+        <context ref="character"/>
+        <context ref="constant-variable"/>
+        <context ref="decimal-rational"/>
+        <context ref="float"/>
+        <context ref="hexadecimal-rational"/>
+        <context ref="keyword"/>
+        <context ref="lambda-list-keyword"/>
+        <context ref="line-comment"/>
+        <context ref="octal-rational"/>
+        <context ref="radix-rational"/>
+        <context ref="sharpsign-asterisk"/>
+        <context ref="sharpsign-colon"/>
+        <context ref="sharpsign-invalid"/>
+        <context ref="sharpsign-other"/>
+        <context ref="single-quote"/>
+        <context ref="special-variable"/>
+        <context ref="string"/>
+        <context ref="template-operators"/>
+      </include>
+    </context>
+
+  </definitions>
+</language>
