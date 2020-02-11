@@ -1204,7 +1204,7 @@
     <context id="special-variable" style-ref="special">
       <match extended="true">
         \%{token-start}
-        (\*(\%{token})*?\*)
+        ((\%{namespace}::?)?\*(\%{token})*?\*)
         \%{token-end}
       </match>
     </context>
@@ -1212,7 +1212,7 @@
     <context id="constant-variable" style-ref="constant">
       <match extended="true">
         \%{token-start}
-        (\+(\%{token})*?\+)
+        ((\%{namespace}::?)?\+(\%{token})*?\+)
         \%{token-end}
       </match>
     </context>
