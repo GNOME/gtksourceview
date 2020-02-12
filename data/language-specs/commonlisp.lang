@@ -32,6 +32,7 @@
   </metadata>
 
   <styles>
+    <style id="boolean"             name="Boolean value"       map-to="def:boolean"/>
     <style id="builtin"             name="Builtin Symbols"     map-to="def:keyword"/>
     <style id="character"           name="Character"           map-to="def:character"/>
     <style id="comment"             name="Comment"             map-to="def:comment"/>
@@ -444,6 +445,11 @@
       <keyword>with-standard-io-syntax</keyword>
     </context>
 
+    <context id="boolean" style-ref="boolean">
+      <keyword>nil</keyword>
+      <keyword>t</keyword>
+    </context>
+
     <context id="special-variable" style-ref="special">
       <match extended="true">
         \%{token-start}
@@ -492,6 +498,7 @@
       <include>
         <context ref="binary-rational"/>
         <context ref="block-comment"/>
+        <context ref="boolean"/>
         <context ref="builtin"/>
         <context ref="character"/>
         <context ref="constant-variable"/>
