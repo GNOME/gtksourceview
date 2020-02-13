@@ -395,7 +395,7 @@
       </include>
     </context>
 
-    <replace id="html:embedded-lang-hook" ref="markdown-syntax"/>
+    <replace id="html:embedded-lang-hook-content" ref="markdown-syntax"/>
 
     <context id="markdown">
       <include>

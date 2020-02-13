@@ -64,10 +64,21 @@
     </context>
 
     <!-- This is a placeholder context intended to be <replace>d
-         in languages like php that need to embedd contexts inside
-         html tags and attributes.
+         in languages like PHP that need to embed contexts inside
+         HTML tags and attributes.
     -->
     <context id="embedded-lang-hook">
+      <start>\%{def:never-match}</start>
+      <end></end>
+    </context>
+
+    <!-- Certain HTML tags (e.g. h1) require container contexts that
+         exclude highlighting from embedding languages. Languages can
+         replace this context when they need to highlight all content,
+         but not inside HTML tags and attributes.
+    -->
+
+    <context id="embedded-lang-hook-content">
       <start>\%{def:never-match}</start>
       <end></end>
     </context>
@@ -103,6 +114,7 @@
                 <context sub-pattern="0" where="start" style-ref="tag"/>
                 <context sub-pattern="0" where="end" style-ref="tag"/>
                 <context ref="embedded-lang-hook"/>
+                <context ref="embedded-lang-hook-content"/>
               </include>
             </context>
           </include>
@@ -121,6 +133,7 @@
                   <match>(?=\%{h1-close})</match>
                 </context>
                 <context ref="embedded-lang-hook"/>
+                <context ref="embedded-lang-hook-content"/>
                 <context ref="tag"/>
               </include>
             </context>
@@ -144,6 +157,7 @@
                   <match>(?=\%{h2-close})</match>
                 </context>
                 <context ref="embedded-lang-hook"/>
+                <context ref="embedded-lang-hook-content"/>
                 <context ref="tag"/>
               </include>
             </context>
@@ -167,6 +181,7 @@
                   <match>(?=\%{h3-close})</match>
                 </context>
                 <context ref="embedded-lang-hook"/>
+                <context ref="embedded-lang-hook-content"/>
                 <context ref="tag"/>
               </include>
             </context>
@@ -190,6 +205,7 @@
                   <match>(?=\%{h4-close})</match>
                 </context>
                 <context ref="embedded-lang-hook"/>
+                <context ref="embedded-lang-hook-content"/>
                 <context ref="tag"/>
               </include>
             </context>
@@ -213,6 +229,7 @@
                   <match>(?=\%{h5-close})</match>
                 </context>
                 <context ref="embedded-lang-hook"/>
+                <context ref="embedded-lang-hook-content"/>
                 <context ref="tag"/>
               </include>
             </context>
@@ -236,6 +253,7 @@
                   <match>(?=\%{h6-close})</match>
                 </context>
                 <context ref="embedded-lang-hook"/>
+                <context ref="embedded-lang-hook-content"/>
                 <context ref="tag"/>
               </include>
             </context>
