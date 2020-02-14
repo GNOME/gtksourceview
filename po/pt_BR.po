@@ -17,13 +17,13 @@
 # Enrico Nicoletto <liverig@gmail.com>, 2013, 2014, 2015.
 # Felipe Braga <fbobraga@gmail.com>, 2015.
 # Rafael Fontenelle <rafaelff@gnome.org>, 2013, 2014, 2016, 2017.
-# Ricardo Silva Veloso <ricvelozo@gmail.com>, 2018.
+# Ricardo Silva Veloso <ricvelozo@gmail.com>, 2018, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2018-08-11 11:27+0000\n"
-"PO-Revision-Date: 2018-08-11 22:14-0300\n"
+"POT-Creation-Date: 2020-01-31 16:21+0000\n"
+"PO-Revision-Date: 2020-02-09 07:47-0300\n"
 "Last-Translator: Ricardo Silva Veloso <ricvelozo@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.1\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Project-Style: gnome\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -51,7 +51,9 @@ msgstr ""
 #. (itstool) path: cpp.lang/language@_section
 #. (itstool) path: csharp.lang/language@_section
 #. (itstool) path: cuda.lang/language@_section
+#. (itstool) path: dart.lang/language@_section
 #. (itstool) path: d.lang/language@_section
+#. (itstool) path: docker.lang/language@_section
 #. (itstool) path: eiffel.lang/language@_section
 #. (itstool) path: erlang.lang/language@_section
 #. (itstool) path: forth.lang/language@_section
@@ -84,11 +86,13 @@ msgstr ""
 #. (itstool) path: opencl.lang/language@_section
 #. (itstool) path: pascal.lang/language@_section
 #. (itstool) path: pig.lang/language@_section
+#. (itstool) path: powershell.lang/language@_section
 #. (itstool) path: prolog.lang/language@_section
 #. (itstool) path: rust.lang/language@_section
 #. (itstool) path: scala.lang/language@_section
 #. (itstool) path: scheme.lang/language@_section
 #. (itstool) path: sml.lang/language@_section
+#. (itstool) path: solidity.lang/language@_section
 #. (itstool) path: sparql.lang/language@_section
 #. (itstool) path: sql.lang/language@_section
 #. (itstool) path: swift.lang/language@_section
@@ -100,38 +104,23 @@ msgstr ""
 #. (itstool) path: vhdl.lang/language@_section
 #: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23
 #: automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23
-#: chdr.lang:24 c.lang:24 cobol.lang:26 cpphdr.lang:24 cpp.lang:24
-#: csharp.lang:26 cuda.lang:22 d.lang:29 eiffel.lang:23 erlang.lang:23
-#: forth.lang:23 fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30
-#: go.lang:24 gradle.lang:21 groovy.lang:24 haskell.lang:24
-#: haskell-literate.lang:23 haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23
-#: kotlin.lang:24 lex.lang:24 llvm.lang:22 logtalk.lang:23 makefile.lang:22
-#: meson.lang:23 nemerle.lang:23 netrexx.lang:23 objc.lang:23 objj.lang:25
-#: ocaml.lang:26 ooc.lang:23 opal.lang:23 opencl.lang:23 pascal.lang:24
-#: pig.lang:26 prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23
-#: sml.lang:23 sparql.lang:23 sql.lang:23 swift.lang:24 systemverilog.lang:21
-#: thrift.lang:20 vala.lang:27 vbnet.lang:23 verilog.lang:23 vhdl.lang:23
+#: chdr.lang:24 c.lang:24 cobol.lang:26 cpphdr.lang:24 cpp.lang:25
+#: csharp.lang:26 cuda.lang:22 dart.lang:22 d.lang:29 docker.lang:21
+#: eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24 fsharp.lang:24
+#: genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21 groovy.lang:24
+#: haskell.lang:24 haskell-literate.lang:23 haxe.lang:34 idl.lang:23
+#: java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
+#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
+#: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
+#: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
+#: solidity.lang:28 sparql.lang:23 sql.lang:23 swift.lang:24
+#: systemverilog.lang:21 thrift.lang:20 vala.lang:27 vbnet.lang:23
+#: verilog.lang:23 vhdl.lang:23
 msgid "Source"
 msgstr "Fonte"
 
-#. (itstool) path: awk.lang/language@_section
-#. (itstool) path: dosbatch.lang/language@_section
-#. (itstool) path: javascript.lang/language@_section
-#. (itstool) path: lua.lang/language@_section
-#. (itstool) path: m4.lang/language@_section
-#. (itstool) path: perl.lang/language@_section
-#. (itstool) path: php.lang/language@_section
-#. (itstool) path: python3.lang/language@_section
-#. (itstool) path: python.lang/language@_section
-#. (itstool) path: ruby.lang/language@_section
-#. (itstool) path: sh.lang/language@_section
-#. (itstool) path: tcl.lang/language@_section
-#: awk.lang:23 dosbatch.lang:23 javascript.lang:27 lua.lang:23 m4.lang:23
-#: perl.lang:25 php.lang:28 python3.lang:23 python.lang:27 ruby.lang:26
-#: sh.lang:24 tcl.lang:23
-msgid "Script"
-msgstr "Script"
-
+#. (itstool) path: asciidoc.lang/language@_section
 #. (itstool) path: bibtex.lang/language@_section
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
@@ -140,6 +129,7 @@ msgstr "Script"
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
 #. (itstool) path: jade.lang/language@_section
+#. (itstool) path: jsdoc.lang/language@_section
 #. (itstool) path: latex.lang/language@_section
 #. (itstool) path: mallard.lang/language@_section
 #. (itstool) path: markdown.lang/language@_section
@@ -152,12 +142,60 @@ msgstr "Script"
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
-#: bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 gtk-doc.lang:24
-#: haddock.lang:23 html.lang:24 jade.lang:24 latex.lang:24 mallard.lang:22
-#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
-#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:25 xslt.lang:23
+#: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
+#: gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24 jsdoc.lang:23
+#: latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22
+#: mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23
+#: texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
 msgstr "Marcação"
+
+#. (itstool) path: awk.lang/language@_section
+#. (itstool) path: dosbatch.lang/language@_section
+#. (itstool) path: fish.lang/language@_section
+#. (itstool) path: gdscript.lang/language@_section
+#. (itstool) path: javascript-expressions.lang/language@_section
+#. (itstool) path: javascript-functions-classes.lang/language@_section
+#. (itstool) path: javascript.lang/language@_section
+#. (itstool) path: javascript-literals.lang/language@_section
+#. (itstool) path: javascript-modules.lang/language@_section
+#. (itstool) path: javascript-statements.lang/language@_section
+#. (itstool) path: javascript-values.lang/language@_section
+#. (itstool) path: jsx.lang/language@_section
+#. (itstool) path: lua.lang/language@_section
+#. (itstool) path: m4.lang/language@_section
+#. (itstool) path: perl.lang/language@_section
+#. (itstool) path: php.lang/language@_section
+#. (itstool) path: python3.lang/language@_section
+#. (itstool) path: python.lang/language@_section
+#. (itstool) path: ruby.lang/language@_section
+#. (itstool) path: sh.lang/language@_section
+#. (itstool) path: tcl.lang/language@_section
+#. (itstool) path: typescript-js-expressions.lang/language@_section
+#. (itstool) path: typescript-js-functions-classes.lang/language@_section
+#. (itstool) path: typescript-js-literals.lang/language@_section
+#. (itstool) path: typescript-js-modules.lang/language@_section
+#. (itstool) path: typescript-js-statements.lang/language@_section
+#. (itstool) path: typescript-js-values.lang/language@_section
+#. (itstool) path: typescript-jsx.lang/language@_section
+#. (itstool) path: typescript.lang/language@_section
+#. (itstool) path: typescript-type-expressions.lang/language@_section
+#. (itstool) path: typescript-type-generics.lang/language@_section
+#. (itstool) path: typescript-type-literals.lang/language@_section
+#: awk.lang:23 dosbatch.lang:23 fish.lang:19 gdscript.lang:22
+#: javascript-expressions.lang:27 javascript-functions-classes.lang:27
+#: javascript.lang:27 javascript-literals.lang:27 javascript-modules.lang:27
+#: javascript-statements.lang:27 javascript-values.lang:27 jsx.lang:23
+#: lua.lang:23 m4.lang:23 perl.lang:25 php.lang:28 python3.lang:23
+#: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
+#: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
+#: typescript-js-literals.lang:23 typescript-js-modules.lang:23
+#: typescript-js-statements.lang:23 typescript-js-values.lang:23
+#: typescript-jsx.lang:23 typescript.lang:23
+#: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
+#: typescript-type-literals.lang:23
+msgid "Script"
+msgstr "Script"
 
 #. (itstool) path: cg.lang/language@_name
 #: cg.lang:23
@@ -172,6 +210,7 @@ msgstr "Linguagem de shader CG"
 #. (itstool) path: diff.lang/language@_section
 #. (itstool) path: dot.lang/language@_section
 #. (itstool) path: dpatch.lang/language@_section
+#. (itstool) path: ftl.lang/language@_section
 #. (itstool) path: gdb-log.lang/language@_section
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
@@ -191,11 +230,11 @@ msgstr "Linguagem de shader CG"
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
 #: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
-#: diff.lang:23 dot.lang:23 dpatch.lang:23 gdb-log.lang:18 gtkrc.lang:24
-#: ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23 logcat.lang:23
-#: nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23 protobuf.lang:21
-#: puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23 yacc.lang:23
-#: yaml.lang:21
+#: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
+#: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
+#: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23
+#: yacc.lang:23 yaml.lang:21
 msgid "Other"
 msgstr "Outro"
 
@@ -279,7 +318,7 @@ msgstr "Esquema de cor clássico"
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
 msgid "Cobalt"
-msgstr "Metálico"
+msgstr "Cobalto"
 
 #. (itstool) path: style-scheme/_description
 #: cobalt.xml:27
@@ -294,7 +333,7 @@ msgstr "Esquema de cores usado no editor de texto Kate"
 #. (itstool) path: oblivion.xml/style-scheme@_name
 #: oblivion.xml:24
 msgid "Oblivion"
-msgstr "Oblivion"
+msgstr "Oblívio"
 
 #. (itstool) path: style-scheme/_description
 #: oblivion.xml:27
@@ -359,12 +398,13 @@ msgid "Invalid object, not initialized"
 msgstr "Objeto inválido, não inicializado"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:1187
+#, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Sequência UTF-8 incompleta na entrada"
 
 #. Translators: "All" is used as a label in the status bar of the
 #. popup, telling that all completion pages are shown.
-#: gtksourceview/gtksourcecompletion.c:833
+#: gtksourceview/gtksourcecompletion.c:838
 msgid "All"
 msgstr "Todas"
 
@@ -407,19 +447,19 @@ msgid ""
 msgstr ""
 "Destacar uma linha só demorou muito, desabilitando o destaque de sintaxe"
 
-#: gtksourceview/gtksourcecontextengine.c:5720
+#: gtksourceview/gtksourcecontextengine.c:5722
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "contexto “%s” não pode conter um comando \\%%{...@start}"
 
-#: gtksourceview/gtksourcecontextengine.c:5883
-#: gtksourceview/gtksourcecontextengine.c:5973
+#: gtksourceview/gtksourcecontextengine.c:5885
+#: gtksourceview/gtksourcecontextengine.c:5975
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "contexto de identificação “%s” duplicado"
 
-#: gtksourceview/gtksourcecontextengine.c:6087
-#: gtksourceview/gtksourcecontextengine.c:6147
+#: gtksourceview/gtksourcecontextengine.c:6089
+#: gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -428,18 +468,18 @@ msgstr ""
 "estilo de sobrescrever usado com referência de contexto coringa na linguagem "
 "“%s” na referência “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6161
+#: gtksourceview/gtksourcecontextengine.c:6163
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "referência de contexto inválida “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6180
-#: gtksourceview/gtksourcecontextengine.c:6190
+#: gtksourceview/gtksourcecontextengine.c:6182
+#: gtksourceview/gtksourcecontextengine.c:6192
 #, c-format
 msgid "unknown context “%s”"
 msgstr "contexto desconhecido “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6289
+#: gtksourceview/gtksourcecontextengine.c:6291
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Faltando a definição para a linguagem principal (id = \"%s\".)"
@@ -646,32 +686,32 @@ msgid "_Select"
 msgstr "_Selecionar"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1727
+#: gtksourceview/gtksourceview.c:1799
 msgid "_Redo"
 msgstr "_Refazer"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1738
+#: gtksourceview/gtksourceview.c:1810
 msgid "_Undo"
 msgstr "_Desfazer"
 
-#: gtksourceview/gtksourceview.c:1757
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Upper Case"
 msgstr "Todas as letras em m_aiúsculas"
 
-#: gtksourceview/gtksourceview.c:1767
+#: gtksourceview/gtksourceview.c:1839
 msgid "All _Lower Case"
 msgstr "Todas as letras em mi_núsculas"
 
-#: gtksourceview/gtksourceview.c:1777
+#: gtksourceview/gtksourceview.c:1849
 msgid "_Invert Case"
 msgstr "_Inverter caixa"
 
-#: gtksourceview/gtksourceview.c:1787
+#: gtksourceview/gtksourceview.c:1859
 msgid "_Title Case"
 msgstr "Ini_ciais em maiúsculas"
 
-#: gtksourceview/gtksourceview.c:1797
+#: gtksourceview/gtksourceview.c:1869
 msgid "C_hange Case"
 msgstr "A_lterar caixa"
 
