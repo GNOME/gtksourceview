@@ -1,3 +1,43 @@
+News in 4.5.91, 2020-02-14
+--------------------------
+* GObject Introspection fixes
+* Removed use of g_assert() in favor of alternatives in unit tests so
+  distribution unit testing is more reliable
+* Robustness improvements in internal GtkTextIter movements
+* Style scheme improvements for recent GTK 3 theme styling changes
+* Build system improvements to support -Bsymbolic, -Wl,-z,relro,
+  -Wl,-z,now and -Wl,-z,defs
+* Build improvements for Windows, FreeBSD, and macOS
+* cmake.lang: track CMake 3.13 changes
+* kotlin.lang: register *.kts glob extension
+* gradle.lang: register *.grandle glob extension
+* php.lang: Large redesigned PHP lang including support for
+  unicode and improved heredoc
+* sh.lang: Many improvements including various GNU bash extensions
+* meson.lang: Support for string escape sequences
+* javascript.lang: Redesign of JavaScript language spec to be more flexible
+  and reusable from other languages which support JS.
+* jsx.lang: Initial support for JSX
+* jsdoc.lang: Initial support for JSDoc
+* objj.lang: Improvements using javascript improvements
+* asciidoc.lang: Improvements to use more generic markup styling
+* t2t.lang: Improvements to use more generic markup styling
+* css.lang: Redesign to be more flexible, support reuse and embedding, and
+  add various new CSS features
+* scss.lang: Improve integration with css.lang
+* less.lang: Improve integration with css.lang
+* ruby.lang: Improvements for string and escape string handling
+* html.lang: Improvements using embedded languages
+* go.lang: Improvements for escape sequences
+* commonlisp.lang: Initial support for Common Lisp
+* ftl.lang: Initial support for Mozilla's Fluent ftl
+* Translation updates
+
+I'd like to personally thank Jeffery To for the overwhelming amount of work
+they have put into reviewing and improving both language specs and style
+schemes this cycle. The number of improvements you see above are largely an
+example of their quality reviews and improvements!
+
 News in 4.4.0, 2019-09-09
 -------------------------
 * Set NO_AT_BRIDGE=1 when running automated tests
