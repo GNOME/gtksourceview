@@ -36,3 +36,5 @@ An [example](http://example.com).
 
 Inline <abbr title="Hypertext Markup Language">HTML</abbr> is supported.
 
+<h1 class="a_long_classname">Formatting inside block-level elements _should_ be **ignored**.</h1>
+

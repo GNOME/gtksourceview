@@ -314,7 +314,7 @@
       </include>
     </context>
 
-    <replace id="html:embedded-lang-hook" ref="mediawiki-syntax"/>
+    <replace id="html:embedded-lang-hook-content" ref="mediawiki-syntax"/>
 
     <context id="mediawiki">
       <include>
