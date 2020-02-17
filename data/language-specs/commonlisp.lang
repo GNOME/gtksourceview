@@ -38,6 +38,7 @@
     <style id="comment"             name="Comment"             map-to="def:comment"/>
     <style id="constant"            name="Constant"            map-to="def:constant"/>
     <style id="error"               name="Error"               map-to="def:error"/>
+    <style id="format-directive"    name="Format Directive"    map-to="def:special-char"/>
     <style id="keyword"             name="Keyword"             map-to="def:type"/>
     <style id="lambda-list-keyword" name="Lambda List Keyword" map-to="def:type"/>
     <style id="number"              name="Number"              map-to="def:number"/>
@@ -91,7 +92,7 @@
     <context id="float" style-ref="number">
       <match extended="true">
         \%{token-start}
-        ([+-]?([0-9]*[.][0-9]+|[0-9]+([.][0-9]*)?)[defls][+-]?[0-9]+)
+        ([+-]?([0-9]*[.][0-9]+|[0-9]+([.][0-9]*)?)([defls][+-]?[0-9]+)?)
       	\%{token-end}
       </match>
     </context>
@@ -172,14 +173,26 @@
     </context>
 
     <!--
+      Format Directives
+      Reference: http://www.lispworks.com/documentation/HyperSpec/Body/22_c.htm
+    -->
+
+    <context id="format-directive" style-ref="format-directive" extend-parent="false">
+      <match extended="true">
+        ~(?:/[^/]+/|$|(?:[-+]?[0-9]+|'.|[#V,])*:?@?[[\]{}()~%&amp;$_&lt;&gt;*?;\^|ABCDEFGIOPRSTWX])
+      </match>
+    </context>
+
+    <!--
       Strings
       Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_de.htm
     -->
 
-    <context id="string" style-ref="string">
+    <context id="string" style-ref="string" class="string">
       <start>"</start>
       <end>"</end>
       <include>
+        <context ref="format-directive"/>
         <context ref="def:escape"/>
       </include>
     </context>
@@ -205,7 +218,7 @@
       Reference: http://www.lispworks.com/documentation/HyperSpec/Body/02_dha.htm
     -->
 
-    <context id="character" style-ref="character">
+    <context id="character" style-ref="character" class="string">
       <match extended="true">
         \%{token-start}
         (\#\\\S(\%{token})?)
@@ -245,6 +258,7 @@
       <start>#\|</start>
       <end>\|#</end>
       <include>
+        <context ref="block-comment"/>
         <context ref="def:in-comment"/>
       </include>
     </context>
@@ -284,6 +298,7 @@
       <keyword>abort</keyword>
       <keyword>add-method</keyword>
       <keyword>apply</keyword>
+      <keyword>assert</keyword>
       <keyword>block</keyword>
       <keyword>break</keyword>
       <keyword>call-method</keyword>
@@ -298,6 +313,7 @@
       <keyword>continue</keyword>
       <keyword>ctypecase</keyword>
       <keyword>debug</keyword>
+      <keyword>decf</keyword>
       <keyword>declaim</keyword>
       <keyword>declaration</keyword>
       <keyword>declare</keyword>
@@ -358,6 +374,7 @@
       <keyword>ignore-errors</keyword>
       <keyword>ignore</keyword>
       <keyword>import</keyword>
+      <keyword>incf</keyword>
       <keyword>inline</keyword>
       <keyword>in-package</keyword>
       <keyword>inspect</keyword>
@@ -388,6 +405,7 @@
       <keyword>notinline</keyword>
       <keyword>optimize</keyword>
       <keyword>otherwise</keyword>
+      <keyword>pop</keyword>
       <keyword>prog1</keyword>
       <keyword>prog2</keyword>
       <keyword>prog</keyword>
@@ -396,7 +414,10 @@
       <keyword>progv</keyword>
       <keyword>psetf</keyword>
       <keyword>psetq</keyword>
+      <keyword>push</keyword>
+      <keyword>pushnew</keyword>
       <keyword>quote</keyword>
+      <keyword>remf</keyword>
       <keyword>remove-method</keyword>
       <keyword>require</keyword>
       <keyword>restart-bind</keyword>
@@ -404,12 +425,14 @@
       <keyword>restart</keyword>
       <keyword>return-from</keyword>
       <keyword>return</keyword>
+      <keyword>rotatef</keyword>
       <keyword>safety</keyword>
       <keyword>setf</keyword>
       <keyword>set</keyword>
       <keyword>set-macro-character</keyword>
       <keyword>setq</keyword>
       <keyword>shadowing-import</keyword>
+      <keyword>shiftf</keyword>
       <keyword>signal</keyword>
       <keyword>special</keyword>
       <keyword>speed</keyword>
