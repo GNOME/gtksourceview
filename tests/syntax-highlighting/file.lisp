@@ -9,6 +9,7 @@
 #|
   Block comment
   more text
+  #| embedded block comment |#
 |#
 
 (defmacro bar (quux &rest wibble)
@@ -21,4 +22,4 @@
      #10*01010101 ; bit vector
      'baz #'gronk)
 
-
+(format t "~{~a~#[~;, and ~:;, ~]~}" '(a b c))
