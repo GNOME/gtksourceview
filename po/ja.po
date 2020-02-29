@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2019-11-23 16:12+0000\n"
+"POT-Creation-Date: 2020-02-14 08:46+0000\n"
 "PO-Revision-Date: 2020-01-28 21:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -432,8 +432,8 @@ msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr ""
-"1 行を強調表示するのにとても時間がかかっているので、構文の強調表示を無効にしま"
-"す"
+"1 行を強調表示するのにとても時間がかかっているので、構文の強調表示を無効にし"
+"ます"
 
 #: gtksourceview/gtksourcecontextengine.c:5722
 #, c-format
@@ -453,8 +453,7 @@ msgstr "コンテキスト ID “%s”が重複しています"
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
-msgstr ""
-"言語“%s”の参照“%s”のワイルドカードの前後関係でスタイルを上書きします"
+msgstr "言語“%s”の参照“%s”のワイルドカードの前後関係でスタイルを上書きします"
 
 #: gtksourceview/gtksourcecontextengine.c:6163
 #, c-format
@@ -610,8 +609,7 @@ msgstr "['UTF-8', 'CURRENT', 'ISO-2022-JP', 'CP932', 'EUC-JP-MS']"
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
-msgstr ""
-"文字エンコーディング変換エラーにより、代替文字の使用が必要でした。"
+msgstr "文字エンコーディング変換エラーにより、代替文字の使用が必要でした。"
 
 #: gtksourceview/gtksourcefileloader.c:629
 msgid "File too big."
@@ -673,32 +671,32 @@ msgid "_Select"
 msgstr "選択(_S)"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1796
+#: gtksourceview/gtksourceview.c:1799
 msgid "_Redo"
 msgstr "やり直す(_R)"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1807
+#: gtksourceview/gtksourceview.c:1810
 msgid "_Undo"
 msgstr "元に戻す(_U)"
 
-#: gtksourceview/gtksourceview.c:1826
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Upper Case"
 msgstr "すべて大文字(_U)"
 
-#: gtksourceview/gtksourceview.c:1836
+#: gtksourceview/gtksourceview.c:1839
 msgid "All _Lower Case"
 msgstr "すべて小文字(_L)"
 
-#: gtksourceview/gtksourceview.c:1846
+#: gtksourceview/gtksourceview.c:1849
 msgid "_Invert Case"
 msgstr "大文字/小文字を入れ替え(_I)"
 
-#: gtksourceview/gtksourceview.c:1856
+#: gtksourceview/gtksourceview.c:1859
 msgid "_Title Case"
 msgstr "タイトルケース(_T)"
 
-#: gtksourceview/gtksourceview.c:1866
+#: gtksourceview/gtksourceview.c:1869
 msgid "C_hange Case"
 msgstr "大文字/小文字を変更(_H)"
 
@@ -1630,9 +1628,6 @@ msgstr "大文字/小文字を変更(_H)"
 
 #~ msgid "Inline Math Mode"
 #~ msgstr "算術モード (インライン)"
-
-#~ msgid "Math Boundary"
-#~ msgstr ""
 
 #~ msgid "Include"
 #~ msgstr "インクルード"
