@@ -738,6 +738,7 @@ update_info_position (GtkSourceCompletion *completion)
 {
 	GdkSurface *main_surface;
 	GdkSurface *info_surface;
+	GdkPopupLayout *layout;
 	GdkRectangle geom;
 
 	if (!GTK_IS_NATIVE (completion->main_window) ||
@@ -758,12 +759,10 @@ update_info_position (GtkSourceCompletion *completion)
 	geom.width = gdk_surface_get_width (main_surface);
 	geom.height = gdk_surface_get_height (main_surface);
 
-	gdk_surface_move_to_rect (info_surface,
-	                          &geom,
-	                          GDK_GRAVITY_NORTH_EAST,
-	                          GDK_GRAVITY_NORTH_WEST,
-	                          GDK_ANCHOR_FLIP_X,
-	                          0, 0);
+	layout = gdk_popup_layout_new (&geom, GDK_GRAVITY_NORTH_EAST, GDK_GRAVITY_NORTH_WEST);
+	gdk_popup_layout_set_anchor_hints (layout, GDK_ANCHOR_FLIP_X);
+	gdk_surface_present_popup (info_surface, geom.width, geom.height, layout);
+	gdk_popup_layout_unref (layout);
 }
 
 static GtkSourceCompletionProvider *
