@@ -200,9 +200,9 @@ static void gtk_source_buffer_real_insert_text         (GtkTextBuffer      *buff
                                                         GtkTextIter        *iter,
                                                         const gchar        *text,
                                                         gint                len);
-static void gtk_source_buffer_real_insert_texture      (GtkTextBuffer      *buffer,
+static void gtk_source_buffer_real_insert_paintable    (GtkTextBuffer      *buffer,
                                                         GtkTextIter        *pos,
-                                                        GdkTexture         *texture);
+                                                        GdkPaintable       *paintable);
 static void gtk_source_buffer_real_insert_child_anchor (GtkTextBuffer      *buffer,
                                                         GtkTextIter        *pos,
                                                         GtkTextChildAnchor *anchor);
@@ -297,7 +297,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 
 	text_buffer_class->delete_range = gtk_source_buffer_real_delete_range;
 	text_buffer_class->insert_text = gtk_source_buffer_real_insert_text;
-	text_buffer_class->insert_texture = gtk_source_buffer_real_insert_texture;
+	text_buffer_class->insert_paintable = gtk_source_buffer_real_insert_paintable;
 	text_buffer_class->insert_child_anchor = gtk_source_buffer_real_insert_child_anchor;
 	text_buffer_class->mark_set = gtk_source_buffer_real_mark_set;
 	text_buffer_class->mark_deleted = gtk_source_buffer_real_mark_deleted;
@@ -1043,14 +1043,14 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 					    gtk_text_iter_get_offset (iter));
 }
 
-/* insert_texture and insert_child_anchor do nothing except notifying
+/* insert_paintable and insert_child_anchor do nothing except notifying
  * the highlighting engine about the change, because engine's idea
  * of buffer char count must be correct at all times.
  */
 static void
-gtk_source_buffer_real_insert_texture (GtkTextBuffer *buffer,
-                                       GtkTextIter   *iter,
-                                       GdkTexture    *texture)
+gtk_source_buffer_real_insert_paintable (GtkTextBuffer *buffer,
+                                         GtkTextIter   *iter,
+                                         GdkPaintable  *paintable)
 {
 	gint start_offset;
 
@@ -1065,7 +1065,7 @@ gtk_source_buffer_real_insert_texture (GtkTextBuffer *buffer,
 	 * default signal handler revalidates it to point to the end of the
 	 * inserted text.
 	 */
-	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->insert_texture (buffer, iter, texture);
+	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->insert_paintable (buffer, iter, paintable);
 
 	gtk_source_buffer_content_inserted (buffer,
 					    start_offset,
