@@ -35,10 +35,24 @@ typedef struct
 	guint forward : 1;
 } AsyncData;
 
+static GMainLoop *main_loop;
+
 static void check_async_search_results (GtkSourceSearchContext *context,
 					SearchResult           *results,
 					gboolean                forward,
 					gboolean                start_check);
+
+static gboolean
+events_pending (void)
+{
+	return g_main_context_pending (NULL);
+}
+
+static void
+main_iteration (void)
+{
+	g_main_context_iteration (NULL, FALSE);
+}
 
 static gchar *
 get_buffer_contents (GtkTextBuffer *buffer)
@@ -82,9 +96,9 @@ init_style_scheme_manager (void)
 static void
 flush_queue (void)
 {
-	while (gtk_events_pending ())
+	while (events_pending ())
 	{
-		gtk_main_iteration ();
+		main_iteration ();
 	}
 }
 
@@ -542,7 +556,7 @@ check_async_search_results (GtkSourceSearchContext *context,
 	}
 	else if (!gtk_text_iter_forward_char (&iter))
 	{
-		gtk_main_quit ();
+		g_main_loop_quit (main_loop);
 		return;
 	}
 
@@ -662,7 +676,7 @@ test_async_forward_search_normal (void)
 
 	check_async_search_results (context, results, TRUE, TRUE);
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
 	g_object_unref (context);
@@ -691,7 +705,7 @@ test_async_forward_search_wrap_around (void)
 
 	check_async_search_results (context, results, TRUE, TRUE);
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
 	g_object_unref (context);
@@ -783,7 +797,7 @@ test_async_backward_search_normal (void)
 
 	check_async_search_results (context, results, FALSE, TRUE);
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
 	g_object_unref (context);
@@ -812,7 +826,7 @@ test_async_backward_search_wrap_around (void)
 
 	check_async_search_results (context, results, FALSE, TRUE);
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 	g_object_unref (source_buffer);
 	g_object_unref (settings);
 	g_object_unref (context);
@@ -1313,6 +1327,8 @@ test_destroy_buffer_during_search (void)
 int
 main (int argc, char **argv)
 {
+	main_loop = g_main_loop_new (NULL, FALSE);
+
 	gtk_test_init (&argc, &argv);
 
 	init_style_scheme_manager ();
