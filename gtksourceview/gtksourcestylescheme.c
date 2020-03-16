@@ -690,8 +690,7 @@ _gtk_source_style_scheme_get_background_pattern_color (GtkSourceStyleScheme *sch
 }
 
 static gchar *
-get_cursors_css_style (GtkSourceStyleScheme *scheme,
-                       GtkWidget            *widget)
+get_cursors_css_style (GtkSourceStyleScheme *scheme)
 {
 	GtkSourceStyle *primary_style;
 	GtkSourceStyle *secondary_style;
@@ -721,65 +720,43 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme,
 
 		primary_color_str = gdk_rgba_to_string (&primary_color);
 		g_string_append_printf (css,
-					"\tcaret-color: %s;\n",
-					primary_color_str);
+		                        "\tcaret-color: %s;\n",
+		                        primary_color_str);
 		g_free (primary_color_str);
 	}
 
 	if (!secondary_color_set)
 	{
-		GtkStyleContext *context;
-		GdkRGBA *background_color;
-
-		g_assert (primary_color_set);
-
-		context = gtk_widget_get_style_context (widget);
-
-		gtk_style_context_save (context);
-		gtk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
-
-		gtk_style_context_get (context,
-				       "background-color", &background_color,
-				       NULL);
-
-		gtk_style_context_restore (context);
-
-		/* Blend primary cursor color with background color. */
-		secondary_color.red = (primary_color.red + background_color->red) * 0.5;
-		secondary_color.green = (primary_color.green + background_color->green) * 0.5;
-		secondary_color.blue = (primary_color.blue + background_color->blue) * 0.5;
-		secondary_color.alpha = (primary_color.alpha + background_color->alpha) * 0.5;
-
-		gdk_rgba_free (background_color);
+		if (primary_color_set)
+		{
+			secondary_color = primary_color;
+			secondary_color.alpha *= .5;
+			secondary_color_set = TRUE;
+		}
 	}
 
-	secondary_color_str = gdk_rgba_to_string (&secondary_color);
-	g_string_append_printf (css,
-				"\t-gtk-secondary-caret-color: %s;\n",
-				secondary_color_str);
-	g_free (secondary_color_str);
+	if (secondary_color_set)
+	{
+		secondary_color_str = gdk_rgba_to_string (&secondary_color);
+		g_string_append_printf (css,
+		                        "\t-gtk-secondary-caret-color: %s;\n",
+		                        secondary_color_str);
+		g_free (secondary_color_str);
+	}
 
 	g_string_append_printf (css, "}\n");
 
 	return g_string_free (css, FALSE);
 }
 
-/* The CssProvider for the cursors depends only on @scheme, but it needs a
- * @widget to shade the background color in case the secondary cursor color
- * isn't defined. The background color is normally defined by @scheme, or if
- * it's not defined it is taken from the GTK+ theme. So ideally, if the GTK+
- * theme changes at runtime, we should regenerate the CssProvider for the
- * cursors, but it isn't done.
- */
 static GtkCssProvider *
-get_css_provider_cursors (GtkSourceStyleScheme *scheme,
-                          GtkWidget            *widget)
+get_css_provider_cursors (GtkSourceStyleScheme *scheme)
 {
 	gchar *css;
 	GtkCssProvider *provider;
 	GError *error = NULL;
 
-	css = get_cursors_css_style (scheme, widget);
+	css = get_cursors_css_style (scheme);
 
 	if (css == NULL)
 	{
@@ -824,13 +801,9 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
 	                                GTK_STYLE_PROVIDER (scheme->css_provider),
 	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
 
-	/* The CssProvider for the cursors needs that the first provider is
-	 * applied, to get the background color.
-	 */
 	if (scheme->css_provider_cursors == NULL)
 	{
-		scheme->css_provider_cursors = get_css_provider_cursors (scheme,
-		                                                         GTK_WIDGET (view));
+		scheme->css_provider_cursors = get_css_provider_cursors (scheme);
 	}
 
 	if (scheme->css_provider_cursors != NULL)
