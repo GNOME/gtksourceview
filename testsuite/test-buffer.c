@@ -33,9 +33,9 @@ static const char *c_snippet =
 static void
 flush_queue (void)
 {
-	while (gtk_events_pending ())
+	while (g_main_context_pending (NULL))
 	{
-		gtk_main_iteration ();
+		g_main_context_iteration (NULL, FALSE);
 	}
 }
 
