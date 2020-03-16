@@ -1006,6 +1006,38 @@ renderer_query_activatable (GtkSourceGutter *gutter,
 	return gtk_source_gutter_renderer_query_activatable (renderer->renderer, &iter, &r);
 }
 
+static gboolean
+get_button (GdkEvent *event,
+            guint    *button)
+{
+	GdkEventType type;
+
+	g_assert (event != NULL);
+	g_assert (button != NULL);
+
+	type = gdk_event_get_event_type (event);
+
+	if (type == GDK_BUTTON_PRESS || type == GDK_BUTTON_RELEASE)
+	{
+		*button = gdk_button_event_get_button (event);
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+static gboolean
+get_modifier_state (GdkEvent        *event,
+                    GdkModifierType *state)
+{
+	g_assert (event != NULL);
+	g_assert (state != NULL);
+
+	*state = gdk_event_get_modifier_state (event);
+
+	return TRUE;
+}
+
 static void
 on_gutter_pressed_cb (GtkSourceGutter *gutter,
                       gint             n_presses,
@@ -1013,7 +1045,7 @@ on_gutter_pressed_cb (GtkSourceGutter *gutter,
                       gdouble          y,
                       GtkGestureClick *click)
 {
-	const GdkEvent *last_event;
+	GdkEvent *last_event;
 	Renderer *renderer;
 	GtkTextIter line_iter;
 	GdkRectangle rect;
@@ -1026,8 +1058,8 @@ on_gutter_pressed_cb (GtkSourceGutter *gutter,
 	last_event = gtk_gesture_get_last_event (GTK_GESTURE (click), NULL);
 
 	if (last_event == NULL ||
-	    !gdk_event_get_state (last_event, &state) ||
-	    !gdk_event_get_button (last_event, &button))
+	    !get_modifier_state (last_event, &state) ||
+	    !get_button (last_event, &button))
 	{
 		return;
 	}
