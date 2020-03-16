@@ -244,15 +244,6 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceView, gtk_source_view, GTK_TYPE_TEXT_VIEW,
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
                                                 gtk_source_view_buildable_interface_init))
 
-/* Implement DnD for application/x-color drops */
-typedef enum _GtkSourceViewDropTypes {
-	TARGET_COLOR = 200
-} GtkSourceViewDropTypes;
-
-static const char *dnd_targets[] = {
-	"application/x-color"
-};
-
 static void           gtk_source_view_dispose              (GObject                 *object);
 static void           gtk_source_view_finalize             (GObject                 *object);
 static void           gtk_source_view_show_completion_real (GtkSourceView           *view);
@@ -311,8 +302,8 @@ static void           gtk_source_view_snapshot_layer       (GtkTextView         
 static void           gtk_source_view_snapshot             (GtkWidget               *widget,
                                                             GtkSnapshot             *snapshot);
 static void           gtk_source_view_queue_draw           (GtkSourceView           *view);
-static gboolean       gtk_source_view_drag_drop            (GtkDropTarget           *dest,
-                                                            GdkDrop                 *drop,
+static gboolean       gtk_source_view_rgba_drop            (GtkDropTarget           *dest,
+                                                            const GValue            *value,
                                                             int                      x,
                                                             int                      y,
                                                             GtkSourceView           *view);
@@ -1293,7 +1284,6 @@ gtk_source_view_init (GtkSourceView *view)
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkStyleContext *context;
 	GtkEventController *key;
-	GdkContentFormats *formats;
 	GtkDropTarget *dest;
 
 	priv->tab_width = DEFAULT_TAB_WIDTH;
@@ -1330,11 +1320,10 @@ gtk_source_view_init (GtkSourceView *view)
 				  view);
 	gtk_widget_add_controller (GTK_WIDGET (view), g_steal_pointer (&key));
 
-	formats = gdk_content_formats_new (dnd_targets, G_N_ELEMENTS (dnd_targets));
-	dest = gtk_drop_target_new (formats, GDK_ACTION_COPY);
-	g_signal_connect (dest, "drag-drop", G_CALLBACK (gtk_source_view_drag_drop), view);
+	dest = gtk_drop_target_new (GDK_TYPE_RGBA, GDK_ACTION_COPY);
+	gtk_drop_target_set_preload (dest, TRUE);
+	g_signal_connect (dest, "drop", G_CALLBACK (gtk_source_view_rgba_drop), view);
 	gtk_widget_add_controller (GTK_WIDGET (view), GTK_EVENT_CONTROLLER (dest));
-	gdk_content_formats_unref (formats);
 
 	gtk_widget_set_has_tooltip (GTK_WIDGET (view), TRUE);
 
@@ -4114,16 +4103,12 @@ gtk_source_view_set_indent_on_tab (GtkSourceView *view,
 }
 
 static void
-insert_rgba_at_mark (GtkSourceView *view,
+insert_rgba_at_iter (GtkSourceView *view,
                      const GdkRGBA *rgba,
-                     GtkTextMark   *mark)
+                     GtkTextIter   *iter)
 {
 	GtkTextBuffer *buffer;
-	GtkTextIter iter;
 	gchar *str;
-
-	buffer = gtk_text_mark_get_buffer (mark);
-	gtk_text_buffer_get_iter_at_mark (buffer, &iter, mark);
 
 	if (rgba->alpha == 1.0)
 	{
@@ -4137,8 +4122,9 @@ insert_rgba_at_mark (GtkSourceView *view,
 		str = gdk_rgba_to_string (rgba);
 	}
 
-	gtk_text_buffer_insert (buffer, &iter, str, -1);
-	gtk_text_buffer_place_cursor (buffer, &iter);
+	buffer = gtk_text_iter_get_buffer (iter);
+	gtk_text_buffer_insert (buffer, iter, str, -1);
+	gtk_text_buffer_place_cursor (buffer, iter);
 
 	/*
 	 * FIXME: Check if the iter is inside a selection
@@ -4149,75 +4135,24 @@ insert_rgba_at_mark (GtkSourceView *view,
 	g_free (str);
 }
 
-static void
-got_color (GObject      *source,
-           GAsyncResult *result,
-           gpointer      data)
-{
-	GdkDrop *drop = GDK_DROP (source);
-	GtkSourceView *view = data;
-	const GValue *value;
-	GtkTextMark *mark;
-
-	value = gdk_drop_read_value_finish (drop, result, NULL);
-	mark = g_object_get_data (G_OBJECT (drop), "GTK_SOURCE_VIEW_DND_MARK");
-
-	if (mark != NULL && value != NULL && G_VALUE_HOLDS (value, GDK_TYPE_RGBA))
-	{
-		const GdkRGBA *rgba = g_value_get_boxed (value);
-		insert_rgba_at_mark (view, rgba, mark);
-		gdk_drop_finish (drop, GDK_ACTION_COPY);
-	}
-	else
-	{
-		gdk_drop_finish (drop, 0);
-	}
-
-	g_object_set_data (G_OBJECT (drop), "GTK_SOURCE_VIEW_DND_MARK", NULL);
-}
-
-static void
-release_drop_mark (GtkTextMark *mark)
-{
-	gtk_text_buffer_delete_mark (gtk_text_mark_get_buffer (mark), mark);
-	g_object_unref (mark);
-}
-
 static gboolean
-gtk_source_view_drag_drop (GtkDropTarget *dest,
-                           GdkDrop       *drop,
+gtk_source_view_rgba_drop (GtkDropTarget *dest,
+                           const GValue  *value,
                            int            x,
                            int            y,
                            GtkSourceView *view)
 {
-	if (gdk_drop_has_value (drop, GDK_TYPE_RGBA))
-	{
-		GtkTextBuffer *buffer;
-		GtkTextMark *mark;
-		GtkTextIter pos;
+	const GdkRGBA *rgba;
+	GtkTextIter pos;
 
-		buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-		gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
-		                                       GTK_TEXT_WINDOW_WIDGET,
-		                                       x, y, &x, &y);
-		gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), &pos, x, y);
+	rgba = g_value_get_boxed (value);
+	gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (view),
+	                                       GTK_TEXT_WINDOW_WIDGET,
+	                                       x, y, &x, &y);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), &pos, x, y);
+	insert_rgba_at_iter (view, rgba, &pos);
 
-		mark = gtk_text_buffer_create_mark (buffer, NULL, &pos, TRUE);
-		g_object_set_data_full (G_OBJECT (drop),
-		                        "GTK_SOURCE_VIEW_DND_MARK",
-		                        g_object_ref (mark),
-		                        (GDestroyNotify) release_drop_mark);
-
-		gdk_drop_read_value_async (drop,
-		                           GDK_TYPE_RGBA,
-		                           G_PRIORITY_DEFAULT,
-		                           NULL,
-		                           got_color,
-		                           view);
-		return TRUE;
-	}
-
-	return FALSE;
+	return TRUE;
 }
 
 /**
@@ -4658,7 +4593,7 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 
 static void
 gtk_source_view_css_changed (GtkWidget         *widget,
-                             GtkCssStyleChange *change);
+                             GtkCssStyleChange *change)
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
