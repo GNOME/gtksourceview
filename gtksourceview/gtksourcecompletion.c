@@ -2167,9 +2167,6 @@ init_main_window (GtkSourceCompletion *completion,
 	              "margin", 0,
 	              NULL);
 
-	gtk_window_set_attached_to (GTK_WINDOW (completion->main_window),
-				    GTK_WIDGET (completion->view));
-
 	g_signal_connect_swapped (completion->main_window,
 				  "size-allocate",
 				  G_CALLBACK (update_window_position),
@@ -2194,9 +2191,6 @@ init_info_window (GtkSourceCompletion *completion)
 {
 	completion->info_window = gtk_source_completion_info_new ();
 	g_object_ref_sink (completion->info_window);
-
-	gtk_window_set_attached_to (GTK_WINDOW (completion->info_window),
-				    GTK_WIDGET (completion->main_window));
 
 	g_signal_connect_swapped (completion->info_window,
 				  "size-allocate",

@@ -44,14 +44,6 @@
  * gtk_container_add (GTK_CONTAINER (info), scrolled_window);
  *   </programlisting>
  * </example>
- *
- * If the calltip is displayed on top of a certain widget, say a #GtkTextView,
- * you should attach the calltip window to the #GtkTextView with
- * gtk_window_set_attached_to().  By doing this, the calltip will be hidden when
- * the #GtkWidget::focus-out-event signal is emitted by the #GtkTextView. You
- * may also be interested by the #GtkTextBuffer:cursor-position property (when
- * its value is modified). If you use the #GtkSourceCompletionInfo through the
- * #GtkSourceCompletion machinery, you don't need to worry about this.
  */
 
 #include "config.h"
@@ -129,27 +121,11 @@ set_attached_to (GtkSourceCompletionInfo *info,
 }
 
 static void
-update_attached_to (GtkSourceCompletionInfo *info)
-{
-	set_attached_to (info, gtk_window_get_attached_to (GTK_WINDOW (info)));
-}
-
-static void
 gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 {
-	g_signal_connect (info,
-			  "notify::attached-to",
-			  G_CALLBACK (update_attached_to),
-			  NULL);
-
-	update_attached_to (info);
-
 	/* Tooltip style */
 	gtk_window_set_title (GTK_WINDOW (info), _("Completion Info"));
 	gtk_widget_set_name (GTK_WIDGET (info), "gtk-tooltip");
-
-	gtk_window_set_type_hint (GTK_WINDOW (info),
-	                          GDK_SURFACE_TYPE_HINT_COMBO);
 
 	g_object_set (info, "margin", 1, NULL);
 }
@@ -279,7 +255,6 @@ GtkSourceCompletionInfo *
 gtk_source_completion_info_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_INFO,
-	                     "type", GTK_WINDOW_POPUP,
 	                     "margin", 3,
 	                     NULL);
 }
