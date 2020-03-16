@@ -299,7 +299,8 @@ static void           gtk_source_view_get_property         (GObject             
                                                             guint                    prop_id,
                                                             GValue                  *value,
                                                             GParamSpec              *pspec);
-static void           gtk_source_view_style_updated        (GtkWidget               *widget);
+static void           gtk_source_view_css_changed          (GtkWidget               *widget,
+                                                            GtkCssStyleChange       *change);
 static void           gtk_source_view_update_style_scheme  (GtkSourceView           *view);
 static MarkCategory  *mark_category_new                    (GtkSourceMarkAttributes *attributes,
                                                             gint                     priority);
@@ -500,7 +501,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	object_class->set_property = gtk_source_view_set_property;
 
 	widget_class->snapshot = gtk_source_view_snapshot;
-	widget_class->style_updated = gtk_source_view_style_updated;
+	widget_class->css_changed = gtk_source_view_css_changed;
 
 	textview_class->move_cursor = gtk_source_view_move_cursor;
 	textview_class->delete_from_cursor = gtk_source_view_delete_from_cursor;
@@ -4656,15 +4657,15 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 }
 
 static void
-gtk_source_view_style_updated (GtkWidget *widget)
+gtk_source_view_css_changed (GtkWidget         *widget,
+                             GtkCssStyleChange *change);
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 
-	/* Call default handler first. */
-	if (GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_updated != NULL)
+	if (GTK_WIDGET_CLASS (gtk_source_view_parent_class)->css_changed)
 	{
-		GTK_WIDGET_CLASS (gtk_source_view_parent_class)->style_updated (widget);
+		GTK_WIDGET_CLASS (gtk_source_view_parent_class)->css_changed (widget, change);
 	}
 
 	/* Re-set tab stops, but only if we already modified them, i.e.
