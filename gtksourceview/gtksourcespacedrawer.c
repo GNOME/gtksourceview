@@ -778,15 +778,10 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 	if (!drawer->color_set)
 	{
 		GtkStyleContext *context;
-		GdkRGBA color;
 
 		context = gtk_widget_get_style_context (GTK_WIDGET (view));
-		gtk_style_context_save (context);
-		gtk_style_context_set_state (context, GTK_STATE_FLAG_INSENSITIVE);
-		gtk_style_context_get_color (context, &color);
-		gtk_style_context_restore (context);
-
-		drawer->color = color;
+		gtk_style_context_get_color (context, &drawer->color);
+		drawer->color.alpha *= .5;
 		drawer->color_set = TRUE;
 	}
 }
