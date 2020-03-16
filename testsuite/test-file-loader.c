@@ -28,6 +28,8 @@ typedef struct
 	gint newline_type;
 } LoaderTestData;
 
+static GMainLoop *main_loop;
+
 static void
 delete_file (GFile *location)
 {
@@ -75,7 +77,7 @@ load_file_cb (GtkSourceFileLoader *loader,
 	}
 
 	/* finished */
-	gtk_main_quit ();
+	g_main_loop_quit (main_loop);
 }
 
 static void
@@ -91,6 +93,8 @@ test_loader (const gchar *filename,
 	GSList *candidate_encodings;
 	LoaderTestData *data;
 	GError *error = NULL;
+
+	main_loop = g_main_loop_new (NULL, FALSE);
 
 	g_file_set_contents (filename, contents, -1, &error);
 	g_assert_no_error (error);
@@ -114,7 +118,7 @@ test_loader (const gchar *filename,
 					   (GAsyncReadyCallback) load_file_cb,
 					   data);
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 
 	g_slice_free (LoaderTestData, data);
 	delete_file (location);
