@@ -1799,6 +1799,7 @@ connect_view (GtkSourceCompletion *completion,
 	      GtkSourceView       *view)
 {
 	GtkEventController *key;
+	GtkEventController *focus;
 	GtkGesture *click;
 
 	g_assert (completion->view == NULL);
@@ -1810,6 +1811,9 @@ connect_view (GtkSourceCompletion *completion,
 	click = gtk_gesture_click_new ();
 	gtk_widget_add_controller (GTK_WIDGET (view), GTK_EVENT_CONTROLLER (click));
 
+	focus = gtk_event_controller_focus_new ();
+	gtk_widget_add_controller (GTK_WIDGET (view), GTK_EVENT_CONTROLLER (focus));
+
 	g_object_add_weak_pointer (G_OBJECT (view),
 				   (gpointer *)&completion->view);
 
@@ -1819,8 +1823,8 @@ connect_view (GtkSourceCompletion *completion,
 				 completion,
 				 G_CONNECT_SWAPPED);
 
-	g_signal_connect_object (key,
-				 "focus-out",
+	g_signal_connect_object (focus,
+				 "leave",
 				 G_CALLBACK (hide_completion_cb),
 				 completion,
 				 G_CONNECT_SWAPPED);

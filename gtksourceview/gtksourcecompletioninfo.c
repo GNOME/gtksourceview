@@ -59,7 +59,7 @@ struct _GtkSourceCompletionInfo
 	guint idle_resize;
 
 	GtkWidget *attached_to;
-	GtkEventController *key;
+	GtkEventController *focus;
 	gulong focus_out_event_handler;
 
 	gint xoffset;
@@ -89,16 +89,16 @@ set_attached_to (GtkSourceCompletionInfo *info,
 
 		if (info->focus_out_event_handler != 0)
 		{
-			g_signal_handler_disconnect (info->key,
+			g_signal_handler_disconnect (info->focus,
 						     info->focus_out_event_handler);
 
 			info->focus_out_event_handler = 0;
-			info->key = NULL;
+			info->focus = NULL;
 		}
 	}
 
 	info->attached_to = attached_to;
-	info->key = NULL;
+	info->focus = NULL;
 
 	if (attached_to == NULL)
 	{
@@ -108,12 +108,12 @@ set_attached_to (GtkSourceCompletionInfo *info,
 	g_object_add_weak_pointer (G_OBJECT (attached_to),
 				   (gpointer *) &info->attached_to);
 
-	info->key = gtk_event_controller_key_new ();
-	gtk_widget_add_controller (GTK_WIDGET (attached_to), info->key);
+	info->focus = gtk_event_controller_focus_new ();
+	gtk_widget_add_controller (GTK_WIDGET (attached_to), info->focus);
 
 	info->focus_out_event_handler =
-		g_signal_connect_swapped (info->key,
-					  "focus-out",
+		g_signal_connect_swapped (info->focus,
+					  "leave",
 					  G_CALLBACK (gtk_widget_hide),
 					  info);
 
