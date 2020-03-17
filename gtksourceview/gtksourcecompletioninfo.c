@@ -199,6 +199,7 @@ move_to_iter (GtkSourceCompletionInfo *window,
               GtkTextIter             *iter)
 {
 	GdkRectangle location;
+	GdkPopupLayout *layout;
 	GdkSurface *surface;
 	GtkRoot *root;
 
@@ -228,12 +229,10 @@ move_to_iter (GtkSourceCompletionInfo *window,
 	                                  &location.x,
 	                                  &location.y);
 
-	gdk_surface_move_to_rect (surface,
-	                          &location,
-	                          GDK_GRAVITY_SOUTH_WEST,
-	                          GDK_GRAVITY_NORTH_WEST,
-	                          GDK_ANCHOR_FLIP_Y,
-	                          0, 0);
+	layout = gdk_popup_layout_new (&location, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST);
+	gdk_popup_layout_set_anchor_hints (layout, GDK_ANCHOR_FLIP_Y);
+	gdk_popup_present (GDK_POPUP (surface), 0, 0, layout);
+	gdk_popup_layout_unref (layout);
 }
 
 static void
