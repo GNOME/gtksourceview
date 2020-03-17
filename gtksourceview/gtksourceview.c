@@ -4616,10 +4616,19 @@ gtk_source_view_css_changed (GtkWidget         *widget,
 
 	update_style (view);
 
-	/* Notify completion to update styling */
 	if (priv->completion != NULL)
 	{
 		_gtk_source_completion_css_changed (priv->completion, change);
+	}
+
+	if (priv->left_gutter != NULL)
+	{
+		_gtk_source_gutter_css_changed (priv->left_gutter, change);
+	}
+
+	if (priv->right_gutter != NULL)
+	{
+		_gtk_source_gutter_css_changed (priv->right_gutter, change);
 	}
 }
 

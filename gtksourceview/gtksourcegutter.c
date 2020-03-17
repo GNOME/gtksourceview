@@ -78,7 +78,6 @@ struct _GtkSourceGutter
 
 	gulong                adj_changed_handler;
 	gulong                realize_handler;
-	gulong                style_updated_handler;
 
 	guint                 is_drawing : 1;
 };
@@ -89,8 +88,6 @@ static void gtk_source_gutter_add           (GtkContainer             *container
                                              GtkWidget                *widget);
 static void gtk_source_gutter_remove        (GtkContainer             *container,
                                              GtkWidget                *widget);
-static void on_view_style_updated           (GtkSourceView            *view,
-                                             GtkSourceGutter          *gutter);
 static void on_gutter_pressed_cb            (GtkSourceGutter          *gutter,
                                              gint                      n_presses,
                                              gdouble                   x,
@@ -233,12 +230,6 @@ connect_view (GtkSourceGutter *gutter,
 		                  "value-changed",
 		                  G_CALLBACK (on_adjustment_value_changed),
 		                  gutter);
-
-	gutter->style_updated_handler =
-		g_signal_connect (view,
-		                  "style-updated",
-		                  G_CALLBACK (on_view_style_updated),
-		                  gutter);
 }
 
 static void
@@ -251,7 +242,6 @@ disconnect_view (GtkSourceGutter *gutter,
 	g_clear_signal_handler (&gutter->adj_changed_handler,
 	                        get_adjustment (gutter, view));
 	g_clear_signal_handler (&gutter->realize_handler, view);
-	g_clear_signal_handler (&gutter->style_updated_handler, view);
 }
 
 static void
@@ -1088,10 +1078,12 @@ on_gutter_pressed_cb (GtkSourceGutter *gutter,
 	}
 }
 
-static void
-on_view_style_updated (GtkSourceView   *view,
-                       GtkSourceGutter *gutter)
+void
+_gtk_source_gutter_css_changed (GtkSourceGutter   *gutter,
+                                GtkCssStyleChange *change)
 {
+	g_assert (GTK_SOURCE_IS_GUTTER (gutter));
+
 	do_redraw (gutter);
 }
 
