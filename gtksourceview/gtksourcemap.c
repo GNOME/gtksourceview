@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Christian Hergert <christian@hergert.me>
+ * Copyright 2015-2020 Christian Hergert <christian@hergert.me>
  * Copyright 2015 Ignacio Casal Quinteiro <icq@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
@@ -59,6 +59,9 @@
  * appropriate font size. "Monospace 1" is the default. See
  * pango_font_description_set_size() for how to alter the size of an existing
  * #PangoFontDescription.
+ *
+ * When FontConfig is available, #GtkSourceMap will try to use a bundled
+ * "block" font to make the map more legible.
  */
 
 /*
@@ -76,8 +79,11 @@
  *     the visible range, scrolling is also quite smooth as we very rarely
  *     perform a new gtk_text_layout_draw().
  *
+ *     With GTK 4, there is no pixel cache and the PangoLayout are cached
+ *     instead.
+ *
  *   - Performance for this type of widget is dominated by text layout
- *     rendering. When you scale out this car, you increase the number of
+ *     rendering. When you scale out this far, you increase the number of
  *     layouts to be rendered greatly.
  *
  *   - We can pack GtkSourceGutterRenderer into the child view to provide
@@ -87,7 +93,7 @@
  *
  * I also tried drawing the contents of the GtkSourceView onto a widget after
  * performing a cairo_scale(). This does not help us much because we ignore
- * pixel cache when cair_scale is not 1-to-1. This results in layout
+ * pixel cache when cairo_scale is not 1-to-1. This results in layout
  * invalidation and worst case render paths.
  *
  * I also tried rendering the scrubber (overlay box) during the
@@ -97,13 +103,6 @@
  * Where as drawing in the GtkTextView::draw() vfunc, after the pixel cache
  * contents have been drawn results in only a composite blend, not
  * invalidating any of the pixel cached text layouts.
- *
- * In the future, we might consider bundling a custom font for the source map.
- * Other overview maps have used a "block" font. However, they typically do
- * that because of the glyph rendering cost. Since we have pixel cache, that
- * deficiency is largely a non-issue. But Pango recently got support for
- * embedding fonts in the application, so it is at least possible to bundle
- * our own font as a resource.
  *
  * By default we use a 1pt Monospace font. However, if the Gtksourcemap:font-desc
  * property is set, we will use that instead.
@@ -173,6 +172,12 @@ typedef struct
 
 	/* Denotes if we are in a grab from button press */
 	guint in_press : 1;
+
+	/* If we failed to locate a color for the scrubber, then this will
+	 * be set to 0 and that means we need to apply the "selection"
+	 * class when drawing so that we get an appropriate color.
+	 */
+	guint had_color : 1;
 } GtkSourceMapPrivate;
 
 enum
@@ -293,7 +298,6 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	GtkSourceStyle *style = NULL;
 	GtkTextBuffer *buffer;
 	GString *gstr;
-	gboolean alter_alpha = TRUE;
 	gchar *background = NULL;
 
 	priv = gtk_source_map_get_instance_private (map);
@@ -348,12 +352,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 
 		style = gtk_source_style_scheme_get_style (style_scheme, "map-overlay");
 
-		if (style != NULL)
-		{
-			/* styling is taking as is only if we found a "map-overlay". */
-			alter_alpha = FALSE;
-		}
-		else
+		if (style == NULL)
 		{
 			style = gtk_source_style_scheme_get_style (style_scheme, "selection");
 		}
@@ -366,49 +365,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		              NULL);
 	}
 
-	if (background == NULL)
-	{
-		GtkStyleContext *context;
-		GdkRGBA *color = NULL;
-
-		/*
-		 * We failed to locate a style for both "map-overlay" and for
-		 * "selection". That means we need to fallback to using the
-		 * selected color for the gtk+ theme. This uses deprecated
-		 * API because we have no way to tell gtk_render_background()
-		 * to render with an alpha.
-		 */
-
-		context = gtk_widget_get_style_context (GTK_WIDGET (priv->view));
-		gtk_style_context_save (context);
-		gtk_style_context_add_class (context, "view");
-		gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
-		gtk_style_context_get (context,
-		                       GTK_STYLE_PROPERTY_BACKGROUND_COLOR, &color,
-		                       NULL);
-		gtk_style_context_restore (context);
-		background = gdk_rgba_to_string (color);
-
-		/*
-		 * Make sure we alter the alpha. It is possible this could be
-		 * FALSE here if we found a style for map-overlay but it did
-		 * not contain a background color.
-		 */
-		alter_alpha = TRUE;
-
-		gdk_rgba_free (color);
-	}
-
-	if (alter_alpha)
-	{
-		GdkRGBA color;
-
-		gdk_rgba_parse (&color, background);
-		color.alpha = 0.75;
-		g_free (background);
-		background = gdk_rgba_to_string (&color);
-	}
-
+	priv->had_color = background != NULL;
 
 	if (background != NULL)
 	{
@@ -842,36 +799,35 @@ gtk_source_map_destroy (GtkWidget *widget)
 }
 
 static void
-gtk_source_map_snapshot (GtkWidget   *widget,
-                         GtkSnapshot *snapshot)
-{
-	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
-	GtkSourceMapPrivate *priv;
-	GtkStyleContext *style_context;
-
-	priv = gtk_source_map_get_instance_private (map);
-
-	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->snapshot (widget, snapshot);
-
-	style_context = gtk_widget_get_style_context (widget);
-
-	gtk_style_context_save (style_context);
-	gtk_style_context_add_class (style_context, "scrubber");
-	gtk_snapshot_render_background (snapshot,
-	                                style_context,
-	                                priv->scrubber_area.x, priv->scrubber_area.y,
-	                                priv->scrubber_area.width, priv->scrubber_area.height);
-	gtk_style_context_restore (style_context);
-}
-
-static void
 gtk_source_map_snapshot_layer (GtkTextView      *text_view,
 			       GtkTextViewLayer  layer,
 			       GtkSnapshot      *snapshot)
 {
-	/* Avoid drawing layers from GtkSourceView. They details are
+	GtkSourceMap *map = (GtkSourceMap *)text_view;
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+	g_assert (GTK_IS_SNAPSHOT (snapshot));
+
+	/* We avoid chaining up to draw layers from GtkSourceView. The details are
 	 * too small to see and significantly slow down rendering.
 	 */
+
+	if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
+	{
+		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
+
+		gtk_style_context_save (style_context);
+		if (priv->had_color)
+			gtk_style_context_add_class (style_context, "scrubber");
+		else
+			gtk_style_context_add_class (style_context, "selection");
+		gtk_snapshot_render_background (snapshot,
+		                                style_context,
+		                                priv->scrubber_area.x, priv->scrubber_area.y,
+		                                priv->scrubber_area.width, priv->scrubber_area.height);
+		gtk_style_context_restore (style_context);
+	}
 }
 
 static void
@@ -1096,7 +1052,6 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 	object_class->set_property = gtk_source_map_set_property;
 
 	widget_class->destroy = gtk_source_map_destroy;
-	widget_class->snapshot = gtk_source_map_snapshot;
 	widget_class->measure = gtk_source_map_measure;
 	widget_class->hide = gtk_source_map_hide;
 	widget_class->size_allocate = gtk_source_map_size_allocate;
