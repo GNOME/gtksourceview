@@ -741,30 +741,30 @@ update_info_position (GtkSourceCompletion *completion)
 {
 	GdkSurface *main_surface;
 	GdkSurface *info_surface;
+	GdkSurface *view_surface;
 	GdkPopupLayout *layout;
+	GtkRoot *root;
 	GdkRectangle geom;
 
 	if (!GTK_IS_NATIVE (completion->main_window) ||
-	    !GTK_IS_NATIVE (completion->info_window))
+	    !(main_surface = gtk_native_get_surface (GTK_NATIVE (completion->main_window))) ||
+	    !GTK_IS_NATIVE (completion->info_window) ||
+	    !(info_surface = gtk_native_get_surface (GTK_NATIVE (completion->info_window))) ||
+	    !(root = gtk_widget_get_root (GTK_WIDGET (completion->view))) ||
+	    !GTK_IS_NATIVE (root) ||
+	    !(view_surface = gtk_native_get_surface (GTK_NATIVE (root))))
 	{
 		return;
 	}
 
-	main_surface = gtk_native_get_surface (GTK_NATIVE (completion->main_window));
-	info_surface = gtk_native_get_surface (GTK_NATIVE (completion->info_window));
-
-	if (main_surface == NULL || info_surface == NULL)
-	{
-		return;
-	}
-
-	gdk_surface_get_position (main_surface, &geom.x, &geom.y);
+	geom.x = gdk_popup_get_position_x (GDK_POPUP (main_surface));
+	geom.y = gdk_popup_get_position_y (GDK_POPUP (main_surface));
 	geom.width = gdk_surface_get_width (main_surface);
 	geom.height = gdk_surface_get_height (main_surface);
 
 	layout = gdk_popup_layout_new (&geom, GDK_GRAVITY_NORTH_EAST, GDK_GRAVITY_NORTH_WEST);
 	gdk_popup_layout_set_anchor_hints (layout, GDK_ANCHOR_FLIP_X);
-	gdk_surface_present_popup (info_surface, geom.width, geom.height, layout);
+	gdk_popup_present (GDK_POPUP (info_surface), geom.width, geom.height, layout);
 	gdk_popup_layout_unref (layout);
 }
 
