@@ -156,6 +156,9 @@ struct _GtkSourceCompletion
 	GtkImage *selection_image;
 	GtkLabel *selection_label;
 
+	/* Used for insensitive styling */
+	GtkTreeView *insensitive;
+
 	/* The default widget for the info window */
 	GtkLabel *default_info;
 
@@ -1568,16 +1571,16 @@ static void
 style_context_changed (GtkStyleContext     *style_context,
 		       GtkSourceCompletion *completion)
 {
-	PangoFontDescription *font_desc = NULL;
+	PangoFontDescription *font_desc;
+	PangoContext *context;
 
-	gtk_style_context_save (style_context);
-	gtk_style_context_set_state (style_context, GTK_STATE_FLAG_NORMAL);
+	if (completion->view == NULL)
+	{
+		return;
+	}
 
-	gtk_style_context_get (style_context,
-			       GTK_STYLE_PROPERTY_FONT, &font_desc,
-			       NULL);
-
-	gtk_style_context_restore (style_context);
+	context = gtk_widget_get_pango_context (GTK_WIDGET (completion->view));
+	font_desc = pango_context_get_font_description (context);
 
 	/*
 	 * Work around issue where when a proposal provides "<b>markup</b>" and
@@ -1591,14 +1594,19 @@ style_context_changed (GtkStyleContext     *style_context,
 	 */
 	if (PANGO_WEIGHT_NORMAL == pango_font_description_get_weight (font_desc))
 	{
+		font_desc = pango_font_description_copy (font_desc);
 		pango_font_description_unset_fields (font_desc, PANGO_FONT_MASK_WEIGHT);
+		g_object_set (completion->cell_renderer_proposal,
+		              "font-desc", font_desc,
+		              NULL);
+		pango_font_description_free (font_desc);
 	}
-
-	g_object_set (completion->cell_renderer_proposal,
-		      "font-desc", font_desc,
-		      NULL);
-
-	pango_font_description_free (font_desc);
+	else
+	{
+		g_object_set (completion->cell_renderer_proposal,
+		              "font-desc", font_desc,
+		              NULL);
+	}
 }
 
 static void
@@ -2029,9 +2037,9 @@ init_tree_view (GtkSourceCompletion *completion,
 	GtkTreeViewColumn *column;
 	GtkCellRenderer *cell_renderer;
 	GtkStyleContext *style_context;
-	GdkRGBA* background_color = NULL;
 	GdkRGBA foreground_color;
 
+	completion->insensitive = GTK_TREE_VIEW (gtk_builder_get_object (builder, "insensitive"));
 	completion->tree_view_proposals = GTK_TREE_VIEW (gtk_builder_get_object (builder, "tree_view_proposals"));
 
 	g_signal_connect_swapped (completion->tree_view_proposals,
@@ -2078,22 +2086,11 @@ init_tree_view (GtkSourceCompletion *completion,
 					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
 					     NULL);
 
-	style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->tree_view_proposals));
-
-	gtk_style_context_save (style_context);
-	gtk_style_context_set_state (style_context, GTK_STATE_FLAG_INSENSITIVE);
-
-	gtk_style_context_get (style_context,
-			       "background-color", &background_color,
-			       NULL);
-
+	/* Get styling for insensitive cell background. Ideally this will all
+	 * go away with a widget'ized form of completion before GTK 4.
+	 */
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->insensitive));
 	gtk_style_context_get_color (style_context, &foreground_color);
-
-	gtk_style_context_restore (style_context);
-
-	g_object_set (cell_renderer,
-	              "cell-background-rgba", background_color,
-	              NULL);
 
 	g_object_bind_property (completion, "show-icons",
 				cell_renderer, "visible",
@@ -2114,7 +2111,6 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	g_object_set (cell_renderer,
 	              "foreground-rgba", &foreground_color,
-	              "cell-background-rgba", background_color,
 	              NULL);
 
 	/* Accelerators cell renderer */
@@ -2123,14 +2119,8 @@ init_tree_view (GtkSourceCompletion *completion,
 
 	cell_renderer = GTK_CELL_RENDERER (gtk_builder_get_object (builder, "cell_renderer_accelerator"));
 
-	gtk_tree_view_column_set_attributes (column,
-					     cell_renderer,
-					     "cell-background-set", GTK_SOURCE_COMPLETION_MODEL_COLUMN_IS_HEADER,
-					     NULL);
-
 	g_object_set (cell_renderer,
 	              "foreground-rgba", &foreground_color,
-	              "cell-background-rgba", background_color,
 		      NULL);
 
 	gtk_tree_view_column_set_cell_data_func (column,
@@ -2144,8 +2134,6 @@ init_tree_view (GtkSourceCompletion *completion,
 				 G_CALLBACK (accelerators_notify_cb),
 				 column,
 				 0);
-
-	gdk_rgba_free (background_color);
 }
 
 static void

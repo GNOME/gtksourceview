@@ -118,4 +118,7 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
       </object>
     </child>
   </object>
+  <object class="GtkTreeView" id="insensitive">
+    <property name="sensitive">False</property>
+  </object>
 </interface>
