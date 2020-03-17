@@ -4615,6 +4615,12 @@ gtk_source_view_css_changed (GtkWidget         *widget,
 	priv->cached_right_margin_pos = -1;
 
 	update_style (view);
+
+	/* Notify completion to update styling */
+	if (priv->completion != NULL)
+	{
+		_gtk_source_completion_css_changed (priv->completion, change);
+	}
 }
 
 static MarkCategory *

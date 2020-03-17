@@ -2196,10 +2196,13 @@ init_info_window (GtkSourceCompletion *completion)
 	gtk_widget_show (GTK_WIDGET (completion->default_info));
 }
 
-static void
-connect_style_context (GtkSourceCompletion *completion)
+void
+_gtk_source_completion_css_changed (GtkSourceCompletion *completion,
+                                    GtkCssStyleChange   *change)
 {
 	GtkStyleContext *style_context;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION (completion));
 
 	if (completion->view == NULL)
 	{
@@ -2207,12 +2210,6 @@ connect_style_context (GtkSourceCompletion *completion)
 	}
 
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (completion->view));
-
-	g_signal_connect_object (style_context,
-				 "changed",
-				 G_CALLBACK (style_context_changed),
-				 completion,
-				 G_CONNECT_AFTER);
 
 	style_context_changed (style_context, completion);
 }
@@ -2238,7 +2235,8 @@ gtk_source_completion_constructed (GObject *object)
 	init_tree_view (completion, builder);
 	init_main_window (completion, builder);
 	init_info_window (completion);
-	connect_style_context (completion);
+
+	_gtk_source_completion_css_changed (completion, NULL);
 
 	g_object_unref (builder);
 
