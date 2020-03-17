@@ -26,10 +26,13 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-GtkSourceGutter      *_gtk_source_gutter_new        (GtkTextWindowType  type);
+GtkSourceGutter      *_gtk_source_gutter_new         (GtkTextWindowType  type);
 G_GNUC_INTERNAL
-GtkSourceGutterLines *_gtk_source_gutter_get_lines  (GtkSourceGutter   *gutter);
+GtkSourceGutterLines *_gtk_source_gutter_get_lines   (GtkSourceGutter   *gutter);
 G_GNUC_INTERNAL
-void                  _gtk_source_gutter_queue_draw (GtkSourceGutter   *gutter);
+void                  _gtk_source_gutter_queue_draw  (GtkSourceGutter   *gutter);
+G_GNUC_INTERNAL
+void                  _gtk_source_gutter_css_changed (GtkSourceGutter   *gutter,
+                                                      GtkCssStyleChange *change);
 
 G_END_DECLS
