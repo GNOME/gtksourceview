@@ -2152,7 +2152,10 @@ init_main_window (GtkSourceCompletion *completion,
 	completion->bottom_bar = GTK_WIDGET (gtk_builder_get_object (builder, "bottom_bar"));
 
 	g_object_set (completion->main_window,
-	              "margin", 0,
+	              "margin-top", 0,
+	              "margin-bottom", 0,
+	              "margin-start", 0,
+	              "margin-end", 0,
 	              NULL);
 
 	g_signal_connect_swapped (completion->main_window,

@@ -167,13 +167,17 @@ make_row (GtkSourceStyleScheme *scheme,
 	                     "visible", TRUE,
 	                     "right-margin-position", 30,
 	                     "show-right-margin", TRUE,
-	                     "margin", 2,
+	                     "margin-top", 2,
+	                     "margin-bottom", 2,
+	                     "margin-start", 2,
+	                     "margin-end", 2,
 	                     NULL);
 	gtk_container_add (GTK_CONTAINER (overlay), view);
 
 	label = g_object_new (GTK_TYPE_LABEL,
 			      "can-focus", FALSE,
-			      "expand", TRUE,
+			      "hexpand", TRUE,
+			      "vexpand", TRUE,
 			      "selectable", FALSE,
 			      NULL);
 	gtk_overlay_add_overlay (GTK_OVERLAY (overlay), label);

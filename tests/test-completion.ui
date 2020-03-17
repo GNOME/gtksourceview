@@ -16,7 +16,10 @@
     <property name="visible">1</property>
     <child>
       <object class="GtkGrid" id="grid1">
-        <property name="margin">6</property>
+        <property name="margin-top">6</property>
+        <property name="margin-bottom">6</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
         <property name="column_spacing">10</property>
         <child>
           <object class="GtkGrid" id="grid2">
@@ -259,7 +262,10 @@
                     <property name="remember_info_visibility">True</property>
                     <child internal-child="info_window">
                       <object class="GtkSourceCompletionInfo">
-                        <property name="margin">3</property>
+                        <property name="margin-top">3</property>
+                        <property name="margin-bottom">3</property>
+                        <property name="margin-start">3</property>
+                        <property name="margin-end">3</property>
                       </object>
                     </child>
                   </object>

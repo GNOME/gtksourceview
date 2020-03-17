@@ -106,7 +106,10 @@ create_window (void)
 
 	gtk_grid_set_row_spacing (GTK_GRID (panel_grid), 6);
 	g_object_set (panel_grid,
-		      "margin", 6,
+		      "margin-top", 6,
+		      "margin-bottom", 6,
+		      "margin-start", 6,
+		      "margin-end", 6,
 		      NULL);
 
 	matrix_checkbutton = gtk_check_button_new_with_label ("GtkSourceSpaceDrawer enable-matrix");
