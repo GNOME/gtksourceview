@@ -36,9 +36,9 @@ struct _TestProvider
 	gint priority;
 	gchar *name;
 
-	GdkPaintable *provider_icon;
+	GtkIconPaintable *provider_icon;
 
-	GdkPaintable *item_icon;
+	GtkIconPaintable *item_icon;
 	GIcon *item_gicon;
 
 	/* If it's a random provider, a subset of 'proposals' are choosen on
@@ -170,11 +170,15 @@ test_provider_init (TestProvider *self)
 	GIcon *icon;
 	GIcon *emblem_icon;
 	GEmblem *emblem;
+	gint scale;
 
 	theme = gtk_icon_theme_get_default ();
-	self->provider_icon = gtk_icon_theme_load_icon (theme, "dialog-information", 16, 0, NULL);
 
-	self->item_icon = gtk_icon_theme_load_icon (theme, "trophy-gold", 16, 0, NULL);
+	/* Just use some defaults for icons here. Normally we would create these with
+	 * the widget to get proper direction, scale, etc.
+	 */
+	self->provider_icon = gtk_icon_theme_lookup_icon (theme, "dialog-information", NULL, 16, 1, GTK_TEXT_DIR_LTR, GTK_ICON_LOOKUP_PRELOAD);
+	self->item_icon = gtk_icon_theme_lookup_icon (theme, "trophy-gold", NULL, 16, 1, GTK_TEXT_DIR_LTR, GTK_ICON_LOOKUP_PRELOAD);
 
 	icon = g_themed_icon_new ("trophy-gold");
 	emblem_icon = g_themed_icon_new ("emblem-urgent");

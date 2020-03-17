@@ -57,7 +57,7 @@ gtk_source_pixbuf_helper_free (GtkSourcePixbufHelper *helper)
 
 static void
 set_cache (GtkSourcePixbufHelper *helper,
-	   GdkPaintable          *paintable)
+           GdkPaintable          *paintable)
 {
 	g_clear_object (&helper->cached_paintable);
 	helper->cached_paintable = paintable;
@@ -159,10 +159,9 @@ from_gicon (GtkSourcePixbufHelper *helper,
             GtkWidget             *widget,
             gint                   size)
 {
-	GdkDisplay *display;
+	GtkIconPaintable *paintable = NULL;
 	GtkIconTheme *icon_theme;
-	GtkIconInfo *info;
-	GtkIconLookupFlags flags;
+	GdkDisplay *display;
 
 	if (helper->gicon == NULL)
 	{
@@ -172,18 +171,14 @@ from_gicon (GtkSourcePixbufHelper *helper,
 	display = gtk_widget_get_display (widget);
 	icon_theme = gtk_icon_theme_get_for_display (display);
 
-	flags = GTK_ICON_LOOKUP_USE_BUILTIN;
+	paintable = gtk_icon_theme_lookup_by_gicon (icon_theme,
+	                                            helper->gicon,
+	                                            size,
+	                                            gtk_widget_get_scale_factor (widget),
+	                                            gtk_widget_get_direction (widget),
+	                                            GTK_ICON_LOOKUP_PRELOAD);
 
-	info = gtk_icon_theme_lookup_by_gicon (icon_theme,
-	                                       helper->gicon,
-	                                       size,
-	                                       flags);
-
-	if (info)
-	{
-
-		set_cache (helper, gtk_icon_info_load_icon (info, NULL));
-	}
+	set_cache (helper, GDK_PAINTABLE (g_steal_pointer (&paintable)));
 }
 
 static void
@@ -191,11 +186,9 @@ from_name (GtkSourcePixbufHelper *helper,
            GtkWidget             *widget,
            gint                   size)
 {
-	GdkDisplay *display;
+	GtkIconPaintable *paintable;
 	GtkIconTheme *icon_theme;
-	GtkIconInfo *info;
-	GtkIconLookupFlags flags;
-	gint scale;
+	GdkDisplay *display;
 
 	if (helper->icon_name == NULL)
 	{
@@ -205,33 +198,15 @@ from_name (GtkSourcePixbufHelper *helper,
 	display = gtk_widget_get_display (widget);
 	icon_theme = gtk_icon_theme_get_for_display (display);
 
-	flags = GTK_ICON_LOOKUP_USE_BUILTIN;
-        scale = gtk_widget_get_scale_factor (widget);
+	paintable = gtk_icon_theme_lookup_icon (icon_theme,
+	                                        helper->icon_name,
+	                                        NULL,
+	                                        size,
+	                                        gtk_widget_get_scale_factor (widget),
+	                                        gtk_widget_get_direction (widget),
+	                                        GTK_ICON_LOOKUP_PRELOAD);
 
-	info = gtk_icon_theme_lookup_icon_for_scale (icon_theme,
-	                                             helper->icon_name,
-	                                             size,
-	                                             scale,
-	                                             flags);
-
-	if (info)
-	{
-		GdkPaintable *paintable;
-
-		if (gtk_icon_info_is_symbolic (info))
-		{
-			GtkStyleContext *context;
-
-			context = gtk_widget_get_style_context (widget);
-			paintable = gtk_icon_info_load_symbolic_for_context (info, context, NULL, NULL);
-		}
-		else
-		{
-			paintable = gtk_icon_info_load_icon (info, NULL);
-		}
-
-		set_cache (helper, paintable);
-	}
+	set_cache (helper, GDK_PAINTABLE (g_steal_pointer (&paintable)));
 }
 
 GdkPaintable *
