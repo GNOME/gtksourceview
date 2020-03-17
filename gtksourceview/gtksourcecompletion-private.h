@@ -31,4 +31,6 @@ void                 _gtk_source_completion_add_proposals (GtkSourceCompletion  
                                                            GtkSourceCompletionProvider *provider,
                                                            GList                       *proposals,
                                                            gboolean                     finished);
-
+G_GNUC_INTERNAL
+void                 _gtk_source_completion_css_changed   (GtkSourceCompletion         *completion,
+                                                           GtkCssStyleChange           *change);
