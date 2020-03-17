@@ -21,6 +21,8 @@
 
 #include <gtksourceview/gtksource.h>
 
+static GMainLoop *main_loop;
+
 static void
 fill_buffer (GtkTextBuffer *buffer,
 	     GtkTextTag    *tag)
@@ -65,9 +67,9 @@ create_window (void)
 	GtkTextTag *tag;
 	GtkSourceSpaceDrawer *space_drawer;
 
-	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	window = gtk_window_new ();
 	gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
-	g_signal_connect (window, "destroy", gtk_main_quit, NULL);
+	g_signal_connect_swapped (window, "destroy", G_CALLBACK (g_main_loop_quit), main_loop);
 
 	hgrid = gtk_grid_new ();
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (hgrid), GTK_ORIENTATION_HORIZONTAL);
@@ -75,7 +77,8 @@ create_window (void)
 	view = GTK_SOURCE_VIEW (gtk_source_view_new ());
 
 	g_object_set (view,
-		      "expand", TRUE,
+		      "hexpand", TRUE,
+		      "vexpand", TRUE,
 		      NULL);
 
 	gtk_text_view_set_monospace (GTK_TEXT_VIEW (view), TRUE);
@@ -147,11 +150,13 @@ gint
 main (gint    argc,
       gchar **argv)
 {
+	main_loop = g_main_loop_new (NULL, FALSE);
+
 	gtk_init ();
 
 	create_window ();
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 
 	return 0;
 }

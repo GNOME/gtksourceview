@@ -27,6 +27,7 @@ typedef struct _TestProviderClass TestProviderClass;
 static GtkSourceCompletionWords *word_provider;
 static TestProvider *fixed_provider;
 static TestProvider *random_provider;
+static GMainLoop *main_loop;
 
 struct _TestProvider
 {
@@ -170,9 +171,8 @@ test_provider_init (TestProvider *self)
 	GIcon *icon;
 	GIcon *emblem_icon;
 	GEmblem *emblem;
-	gint scale;
 
-	theme = gtk_icon_theme_get_default ();
+	theme = gtk_icon_theme_get_for_display (gdk_display_get_default ());
 
 	/* Just use some defaults for icons here. Normally we would create these with
 	 * the widget to get proper direction, scale, etc.
@@ -405,10 +405,10 @@ create_window (void)
 
 	completion = gtk_source_view_get_completion (source_view);
 
-	g_signal_connect (window,
-			  "destroy",
-			  G_CALLBACK (gtk_main_quit),
-			  NULL);
+	g_signal_connect_swapped (window,
+	                          "destroy",
+	                          G_CALLBACK (g_main_loop_quit),
+	                          main_loop);
 
 	g_object_bind_property (completion, "remember-info-visibility",
 				remember_info_visibility, "active",
@@ -460,11 +460,13 @@ int
 main (int   argc,
       char *argv[])
 {
+	main_loop = g_main_loop_new (NULL, FALSE);
+
 	gtk_init ();
 
 	create_window ();
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 
 	/* Not really useful, except for debugging memory leaks. */
 	g_object_unref (word_provider);

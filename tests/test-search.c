@@ -59,6 +59,8 @@ GType test_search_get_type (void);
 
 G_DEFINE_TYPE_WITH_PRIVATE (TestSearch, test_search, GTK_TYPE_GRID)
 
+static GMainLoop *main_loop;
+
 static void
 open_file (TestSearch  *search,
 	   const gchar *filename)
@@ -461,23 +463,25 @@ main (gint argc, gchar *argv[])
 	GtkWidget *window;
 	TestSearch *search;
 
+	main_loop = g_main_loop_new (NULL, FALSE);
+
 	gtk_init ();
 
-	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	window = gtk_window_new ();
 
 	gtk_window_set_default_size (GTK_WINDOW (window), 700, 500);
 
-	g_signal_connect (window,
-			  "destroy",
-			  G_CALLBACK (gtk_main_quit),
-			  NULL);
+	g_signal_connect_swapped (window,
+	                          "destroy",
+	                          G_CALLBACK (g_main_loop_quit),
+	                          main_loop);
 
 	search = test_search_new ();
 	gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (search));
 
 	gtk_widget_show (window);
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 
 	return 0;
 }

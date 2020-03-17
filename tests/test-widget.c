@@ -70,6 +70,8 @@ G_DEFINE_TYPE_WITH_PRIVATE (TestWidget, test_widget, GTK_TYPE_GRID)
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
 
+static GMainLoop *main_loop;
+
 static void
 remove_all_marks (GtkSourceBuffer *buffer)
 {
@@ -257,18 +259,14 @@ end:
 }
 
 static void
-open_file (TestWidget  *self,
-	   const gchar *filename)
+open_file (TestWidget *self,
+           GFile      *file)
 {
-	GFile *location;
 	GtkSourceFileLoader *loader;
 
 	g_clear_object (&self->priv->file);
 	self->priv->file = gtk_source_file_new ();
-
-	location = g_file_new_for_path (filename);
-	gtk_source_file_set_location (self->priv->file, location);
-	g_object_unref (location);
+	gtk_source_file_set_location (self->priv->file, file);
 
 	loader = gtk_source_file_loader_new (self->priv->buffer,
 					     self->priv->file);
@@ -488,25 +486,32 @@ open_button_clicked_cb (TestWidget *self)
 
 	if (last_dir != NULL && g_path_is_absolute (last_dir))
 	{
-		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (chooser),
-						     last_dir);
+		GFile *folder;
+
+		folder = g_file_new_for_path (last_dir);
+		gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (chooser), folder, NULL);
+		g_object_unref (folder);
 	}
 
 	response = gtk_dialog_run (GTK_DIALOG (chooser));
 
 	if (response == GTK_RESPONSE_OK)
 	{
-		gchar *filename;
+		GFile *folder;
+		GFile *file;
 
-		filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+		file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (chooser));
+		folder = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (chooser));
 
-		if (filename != NULL)
+		if (file != NULL && folder != NULL)
 		{
 			g_free (last_dir);
-			last_dir = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (chooser));
-			open_file (self, filename);
-			g_free (filename);
+			last_dir = g_file_get_path (folder);
+			open_file (self, file);
 		}
+
+		g_clear_object (&folder);
+		g_clear_object (&file);
 	}
 
 	gtk_widget_destroy (chooser);
@@ -1006,6 +1011,7 @@ static void
 test_widget_init (TestWidget *self)
 {
 	GtkSourceSpaceDrawer *space_drawer;
+	GFile *file;
 
 	self->priv = test_widget_get_instance_private (self);
 
@@ -1081,7 +1087,9 @@ test_widget_init (TestWidget *self)
 				space_drawer, "enable-matrix",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-	open_file (self, TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
+	file = g_file_new_for_path (TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
+	open_file (self, file);
+	g_object_unref (file);
 }
 
 static TestWidget *
@@ -1096,20 +1104,22 @@ main (int argc, char *argv[])
 	GtkWidget *window;
 	TestWidget *test_widget;
 
+	main_loop = g_main_loop_new (NULL, FALSE);
+
 	gtk_init ();
 	gtk_source_init ();
 
-	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	window = gtk_window_new ();
 	gtk_window_set_default_size (GTK_WINDOW (window), 900, 600);
 
-	g_signal_connect (window, "destroy", gtk_main_quit, NULL);
+	g_signal_connect_swapped (window, "destroy", G_CALLBACK (g_main_loop_quit), main_loop);
 
 	test_widget = test_widget_new ();
 	gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (test_widget));
 
 	gtk_widget_show (window);
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 
 	gtk_source_finalize ();
 
