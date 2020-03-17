@@ -127,7 +127,12 @@ gtk_source_completion_info_init (GtkSourceCompletionInfo *info)
 	gtk_window_set_title (GTK_WINDOW (info), _("Completion Info"));
 	gtk_widget_set_name (GTK_WIDGET (info), "gtk-tooltip");
 
-	g_object_set (info, "margin", 1, NULL);
+	g_object_set (info,
+	              "margin-top", 1,
+	              "margin-bottom", 1,
+	              "margin-start", 1,
+	              "margin-end", 1,
+	              NULL);
 }
 
 static void
@@ -255,7 +260,10 @@ GtkSourceCompletionInfo *
 gtk_source_completion_info_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_INFO,
-	                     "margin", 3,
+	                     "margin-top", 3,
+	                     "margin-bottom", 3,
+	                     "margin-start", 3,
+	                     "margin-end", 3,
 	                     NULL);
 }
 
