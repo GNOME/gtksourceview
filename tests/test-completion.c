@@ -115,9 +115,9 @@ test_provider_populate (GtkSourceCompletionProvider *completion_provider,
 static GdkTexture *
 test_provider_get_icon (GtkSourceCompletionProvider *provider)
 {
-	TestProvider *tp = (TestProvider *)provider;
-
-	return tp->is_random ? NULL : GDK_TEXTURE (tp->provider_icon);
+	//TestProvider *tp = (TestProvider *)provider;
+	//return tp->is_random ? NULL : GDK_TEXTURE (tp->provider_icon);
+	return NULL;
 }
 
 static void
@@ -202,7 +202,7 @@ test_provider_set_fixed (TestProvider *provider,
 	item = gtk_source_completion_item_new ();
 	gtk_source_completion_item_set_markup (item, "A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!");
 	gtk_source_completion_item_set_text (item, "A very long proposal. I repeat, a very long proposal!");
-	gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
+	//gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
 	gtk_source_completion_item_set_info (item, "To test the horizontal scrollbar and the markup.");
 	proposals = g_list_prepend (proposals, item);
 
@@ -225,7 +225,7 @@ test_provider_set_fixed (TestProvider *provider,
 		item = gtk_source_completion_item_new ();
 		gtk_source_completion_item_set_label (item, name);
 		gtk_source_completion_item_set_text (item, name);
-		gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
+		//gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
 		gtk_source_completion_item_set_info (item, "The extra info of the proposal.\nA second line.");
 		proposals = g_list_prepend (proposals, item);
 
@@ -254,7 +254,7 @@ test_provider_set_random (TestProvider *provider,
 		item = gtk_source_completion_item_new ();
 		gtk_source_completion_item_set_label (item, name);
 		gtk_source_completion_item_set_text (item, name);
-		gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
+		//gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
 		proposals = g_list_prepend (proposals, item);
 
 		g_free (padding);
