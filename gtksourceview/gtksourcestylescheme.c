@@ -93,7 +93,6 @@ struct _GtkSourceStyleScheme
 	GHashTable *named_colors;
 
 	GtkCssProvider *css_provider;
-	GtkCssProvider *css_provider_cursors;
 };
 
 G_DEFINE_TYPE (GtkSourceStyleScheme, gtk_source_style_scheme, G_TYPE_OBJECT)
@@ -123,7 +122,6 @@ gtk_source_style_scheme_dispose (GObject *object)
 
 	g_clear_object (&scheme->parent);
 	g_clear_object (&scheme->css_provider);
-	g_clear_object (&scheme->css_provider_cursors);
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_parent_class)->dispose (object);
 }
@@ -279,13 +277,13 @@ gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
 	scheme = gtk_source_style_scheme_get_instance_private (scheme);
 
 	scheme->defined_styles = g_hash_table_new_full (g_str_hash, g_str_equal,
-							      g_free, g_object_unref);
+	                                                g_free, g_object_unref);
 
 	scheme->style_cache = g_hash_table_new_full (g_str_hash, g_str_equal,
-							   g_free, unref_if_not_null);
+	                                             g_free, unref_if_not_null);
 
 	scheme->named_colors = g_hash_table_new_full (g_str_hash, g_str_equal,
-							    g_free, g_free);
+	                                              g_free, g_free);
 
 	scheme->css_provider = gtk_css_provider_new ();
 }
@@ -689,8 +687,9 @@ _gtk_source_style_scheme_get_background_pattern_color (GtkSourceStyleScheme *sch
 	return get_color (style, FALSE, color);
 }
 
-static gchar *
-get_cursors_css_style (GtkSourceStyleScheme *scheme)
+static void
+apply_css_style_cursors (GtkSourceStyleScheme *scheme,
+                         GString              *css)
 {
 	GtkSourceStyle *primary_style;
 	GtkSourceStyle *secondary_style;
@@ -699,7 +698,6 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme)
 	gboolean primary_color_set;
 	gboolean secondary_color_set;
 	gchar *secondary_color_str;
-	GString *css;
 
 	primary_style = gtk_source_style_scheme_get_style (scheme, STYLE_CURSOR);
 	secondary_style = gtk_source_style_scheme_get_style (scheme, STYLE_SECONDARY_CURSOR);
@@ -709,10 +707,10 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme)
 
 	if (!primary_color_set && !secondary_color_set)
 	{
-		return NULL;
+		return;
 	}
 
-	css = g_string_new ("textview {\n");
+	g_string_append_printf (css, "textview gutter {\n");
 
 	if (primary_color_set)
 	{
@@ -745,102 +743,63 @@ get_cursors_css_style (GtkSourceStyleScheme *scheme)
 	}
 
 	g_string_append_printf (css, "}\n");
-
-	return g_string_free (css, FALSE);
-}
-
-static GtkCssProvider *
-get_css_provider_cursors (GtkSourceStyleScheme *scheme)
-{
-	gchar *css;
-	GtkCssProvider *provider;
-	GError *error = NULL;
-
-	css = get_cursors_css_style (scheme);
-
-	if (css == NULL)
-	{
-		return NULL;
-	}
-
-	provider = gtk_css_provider_new ();
-
-	gtk_css_provider_load_from_data (provider, css, -1);
-	g_free (css);
-
-	if (error != NULL)
-	{
-		g_warning ("Error when loading CSS for cursors: %s", error->message);
-		g_clear_error (&error);
-		g_clear_object (&provider);
-	}
-
-	return provider;
 }
 
 /**
  * _gtk_source_style_scheme_apply:
- * @scheme:: a #GtkSourceStyleScheme.
- * @view: a #GtkSourceView to apply styles to.
+ * @scheme: a #GtkSourceStyleScheme.
+ * @widget: (nullable): a #GtkWidget to apply styles to.
  *
- * Sets style colors from @scheme to the @view.
+ * Sets style colors from @scheme to the @widget.
  *
  * Since: 2.0
  */
 void
 _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
-                                GtkSourceView        *view)
+                                GtkWidget            *widget)
 {
 	GtkStyleContext *context;
 
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
-	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (!widget || GTK_IS_WIDGET (widget));
 
-	context = gtk_widget_get_style_context (GTK_WIDGET (view));
+	if (widget == NULL)
+	{
+		return;
+	}
+
+	context = gtk_widget_get_style_context (widget);
 	gtk_style_context_add_provider (context,
 	                                GTK_STYLE_PROVIDER (scheme->css_provider),
 	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
-
-	if (scheme->css_provider_cursors == NULL)
-	{
-		scheme->css_provider_cursors = get_css_provider_cursors (scheme);
-	}
-
-	if (scheme->css_provider_cursors != NULL)
-	{
-		gtk_style_context_add_provider (context,
-						GTK_STYLE_PROVIDER (scheme->css_provider_cursors),
-						GTK_SOURCE_STYLE_PROVIDER_PRIORITY);
-	}
 }
 
 /**
  * _gtk_source_style_scheme_unapply:
  * @scheme: (nullable): a #GtkSourceStyleScheme or %NULL.
- * @view: a #GtkSourceView to unapply styles to.
+ * @widget: (nullable): a (#GtkWidget to unapply styles to.
  *
- * Removes the styles from @scheme in the @view.
+ * Removes the styles from @scheme in the @widget.
  *
  * Since: 3.0
  */
 void
 _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
-                                  GtkSourceView        *view)
+                                  GtkWidget            *widget)
 {
 	GtkStyleContext *context;
 
 	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme));
-	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (!widget || GTK_IS_WIDGET (widget));
 
-	context = gtk_widget_get_style_context (GTK_WIDGET (view));
+	if (widget == NULL)
+	{
+		return;
+	}
+
+	context = gtk_widget_get_style_context (widget);
 	gtk_style_context_remove_provider (context,
 	                                   GTK_STYLE_PROVIDER (scheme->css_provider));
-
-	if (scheme->css_provider_cursors != NULL)
-	{
-		gtk_style_context_remove_provider (context,
-						   GTK_STYLE_PROVIDER (scheme->css_provider_cursors));
-	}
 }
 
 /* --- PARSER ---------------------------------------------------------------- */
@@ -952,6 +911,8 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	{
 		append_css_style (final_style, style, "textview .current-line-number");
 	}
+
+	apply_css_style_cursors (scheme, final_style);
 
 	if (*final_style->str != '\0')
 	{

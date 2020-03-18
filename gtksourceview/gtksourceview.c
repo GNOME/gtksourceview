@@ -4578,14 +4578,18 @@ gtk_source_view_update_style_scheme (GtkSourceView *view)
 
 	if (priv->style_scheme != NULL)
 	{
-		_gtk_source_style_scheme_unapply (priv->style_scheme, view);
+		_gtk_source_style_scheme_unapply (priv->style_scheme, GTK_WIDGET (view));
+		_gtk_source_style_scheme_unapply (priv->style_scheme, GTK_WIDGET (priv->left_gutter));
+		_gtk_source_style_scheme_unapply (priv->style_scheme, GTK_WIDGET (priv->right_gutter));
 	}
 
 	g_set_object (&priv->style_scheme, new_scheme);
 
 	if (priv->style_scheme != NULL)
 	{
-		_gtk_source_style_scheme_apply (priv->style_scheme, view);
+		_gtk_source_style_scheme_apply (priv->style_scheme, GTK_WIDGET (view));
+		_gtk_source_style_scheme_apply (priv->style_scheme, GTK_WIDGET (priv->left_gutter));
+		_gtk_source_style_scheme_apply (priv->style_scheme, GTK_WIDGET (priv->right_gutter));
 	}
 
 	update_style (view);
@@ -4711,6 +4715,8 @@ gtk_source_view_get_gutter (GtkSourceView     *view,
 			gtk_text_view_set_gutter (GTK_TEXT_VIEW (view),
 			                          GTK_TEXT_WINDOW_LEFT,
 			                          GTK_WIDGET (priv->left_gutter));
+			_gtk_source_style_scheme_apply (priv->style_scheme,
+			                                GTK_WIDGET (priv->left_gutter));
 		}
 
 		return priv->left_gutter;
@@ -4723,6 +4729,8 @@ gtk_source_view_get_gutter (GtkSourceView     *view,
 			gtk_text_view_set_gutter (GTK_TEXT_VIEW (view),
 			                          GTK_TEXT_WINDOW_RIGHT,
 			                          GTK_WIDGET (priv->right_gutter));
+			_gtk_source_style_scheme_apply (priv->style_scheme,
+			                                GTK_WIDGET (priv->right_gutter));
 		}
 
 		return priv->right_gutter;
