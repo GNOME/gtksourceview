@@ -141,9 +141,13 @@ gutter_renderer_change_buffer (GtkSourceGutterRenderer *renderer,
 }
 
 static void
-on_view_style_updated (GtkTextView                  *view,
-                       GtkSourceGutterRendererLines *renderer)
+gtk_source_gutter_renderer_lines_css_changed (GtkWidget         *widget,
+                                              GtkCssStyleChange *change)
 {
+	GtkSourceGutterRendererLines *renderer = GTK_SOURCE_GUTTER_RENDERER_LINES (widget);
+
+	GTK_WIDGET_CLASS (_gtk_source_gutter_renderer_lines_parent_class)->css_changed (widget, change);
+
 	/* Force to recalculate the size. */
 	renderer->num_line_digits = -1;
 	recalculate_size (renderer);
@@ -166,9 +170,6 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 	if (old_view != NULL)
 	{
 		g_signal_handlers_disconnect_by_func (old_view,
-						      on_view_style_updated,
-						      renderer);
-		g_signal_handlers_disconnect_by_func (old_view,
 						      on_view_notify_cursor_visible,
 						      renderer);
 	}
@@ -177,12 +178,6 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 
 	if (new_view != NULL)
 	{
-		g_signal_connect_object (new_view,
-					 "style-updated",
-					 G_CALLBACK (on_view_style_updated),
-					 renderer,
-					 0);
-
 		g_signal_connect_object (new_view,
 					 "notify::cursor-visible",
 					 G_CALLBACK (on_view_notify_cursor_visible),
@@ -384,6 +379,7 @@ _gtk_source_gutter_renderer_lines_class_init (GtkSourceGutterRendererLinesClass 
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
 	widget_class->measure = gtk_source_gutter_renderer_lines_measure;
+	widget_class->css_changed = gtk_source_gutter_renderer_lines_css_changed;
 
 	renderer_class->query_activatable = gutter_renderer_query_activatable;
 	renderer_class->query_data = gtk_source_gutter_renderer_lines_query_data;
