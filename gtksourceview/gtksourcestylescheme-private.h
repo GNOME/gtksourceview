@@ -34,10 +34,10 @@ void                  _gtk_source_style_scheme_set_parent                   (Gtk
                                                                              GtkSourceStyleScheme *parent_scheme);
 G_GNUC_INTERNAL
 void                  _gtk_source_style_scheme_apply                        (GtkSourceStyleScheme *scheme,
-                                                                             GtkSourceView        *view);
+                                                                             GtkWidget            *widget);
 G_GNUC_INTERNAL
 void                  _gtk_source_style_scheme_unapply                      (GtkSourceStyleScheme *scheme,
-                                                                             GtkSourceView        *view);
+                                                                             GtkWidget            *widget);
 G_GNUC_INTERNAL
 GtkSourceStyle       *_gtk_source_style_scheme_get_matching_brackets_style  (GtkSourceStyleScheme *scheme);
 G_GNUC_INTERNAL
