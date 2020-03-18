@@ -19,6 +19,9 @@
 
 #include "config.h"
 
+#include <cairo.h>
+#include <gdk/gdk.h>
+
 #include "gtksourcepixbufhelper-private.h"
 
 typedef enum _IconType
@@ -61,6 +64,77 @@ set_cache (GtkSourcePixbufHelper *helper,
 {
 	g_clear_object (&helper->cached_paintable);
 	helper->cached_paintable = paintable;
+}
+
+static GdkTexture *
+texture_new_for_surface (cairo_surface_t *surface)
+{
+  GdkTexture *texture;
+  GBytes *bytes;
+
+  g_return_val_if_fail (cairo_surface_get_type (surface) == CAIRO_SURFACE_TYPE_IMAGE, NULL);
+  g_return_val_if_fail (cairo_image_surface_get_width (surface) > 0, NULL);
+  g_return_val_if_fail (cairo_image_surface_get_height (surface) > 0, NULL);
+
+  bytes = g_bytes_new_with_free_func (cairo_image_surface_get_data (surface),
+                                      cairo_image_surface_get_height (surface)
+                                      * cairo_image_surface_get_stride (surface),
+                                      (GDestroyNotify) cairo_surface_destroy,
+                                      cairo_surface_reference (surface));
+
+  texture = gdk_memory_texture_new (cairo_image_surface_get_width (surface),
+                                    cairo_image_surface_get_height (surface),
+                                    GDK_MEMORY_DEFAULT,
+                                    bytes,
+                                    cairo_image_surface_get_stride (surface));
+
+  g_bytes_unref (bytes);
+
+  return texture;
+}
+
+static GdkTexture *
+render_paintable_to_texture (GdkPaintable *paintable)
+{
+	GtkSnapshot *snapshot;
+	GskRenderNode *node;
+	int width, height;
+	cairo_surface_t *surface;
+	cairo_t *cr;
+	GdkTexture *texture;
+
+	width = gdk_paintable_get_intrinsic_width (paintable);
+	height = gdk_paintable_get_intrinsic_height (paintable);
+
+	surface = cairo_image_surface_create (CAIRO_FORMAT_ARGB32, width, height);
+
+	snapshot = gtk_snapshot_new ();
+	gdk_paintable_snapshot (paintable, snapshot, width, height);
+	node = gtk_snapshot_free_to_node (snapshot);
+
+	cr = cairo_create (surface);
+	gsk_render_node_draw (node, cr);
+	cairo_destroy (cr);
+
+	gsk_render_node_unref (node);
+
+	texture = texture_new_for_surface (surface);
+	cairo_surface_destroy (surface);
+
+	return texture;
+}
+
+static void
+set_cache_from_icon_paintable (GtkSourcePixbufHelper *helper,
+                               GtkIconPaintable      *icon_paintable)
+{
+	GdkTexture *texture;
+
+	g_assert (helper != NULL);
+	g_assert (icon_paintable == NULL || GTK_IS_ICON_PAINTABLE (icon_paintable));
+
+	texture = render_paintable_to_texture (GDK_PAINTABLE (icon_paintable));
+	set_cache (helper, GDK_PAINTABLE (g_steal_pointer (&texture)));
 }
 
 static void
@@ -178,7 +252,9 @@ from_gicon (GtkSourcePixbufHelper *helper,
 	                                            gtk_widget_get_direction (widget),
 	                                            GTK_ICON_LOOKUP_PRELOAD);
 
-	set_cache (helper, GDK_PAINTABLE (g_steal_pointer (&paintable)));
+	set_cache_from_icon_paintable (helper, paintable);
+
+	g_object_unref (paintable);
 }
 
 static void
@@ -206,7 +282,9 @@ from_name (GtkSourcePixbufHelper *helper,
 	                                        gtk_widget_get_direction (widget),
 	                                        GTK_ICON_LOOKUP_PRELOAD);
 
-	set_cache (helper, GDK_PAINTABLE (g_steal_pointer (&paintable)));
+	set_cache_from_icon_paintable (helper, paintable);
+
+	g_object_unref (paintable);
 }
 
 GdkPaintable *
