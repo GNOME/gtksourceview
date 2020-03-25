@@ -50,7 +50,7 @@
     <!-- replaces js-st:_variable-declaration-item-content -->
     <context id="variable-declaration-item-content">
       <include>
-        <context ref="js:ordered-assignment-target"/>
+        <context ref="js:ordered-binding"/>
         <context ref="typescript:ordered-definite-assignment-assertion"/>
         <context ref="typescript:ordered-type-annotation"/>
         <context ref="js:ordered-default-value-assignment"/>

@@ -757,7 +757,7 @@
 
     <context id="_variable-declaration-item-content">
       <include>
-        <context ref="js:ordered-assignment-target"/>
+        <context ref="js:ordered-binding"/>
         <context ref="js:ordered-default-value-assignment"/>
       </include>
     </context> <!-- /_variable-declaration-item-content -->

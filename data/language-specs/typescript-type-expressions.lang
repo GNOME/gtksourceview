@@ -113,7 +113,7 @@
     <!-- ## Type "grouping" -->
 
     <!-- this will only catch simple cases :-( -->
-    <context id="_choice-type-grouping-this-parameter-or-assignment-target" end-parent="true">
+    <context id="_choice-type-grouping-this-parameter-or-binding" end-parent="true">
       <start extended="true">
         (?:
           (?&lt;= \.\.\. ) (?= \%{js:identifier} ) |  # adding js:optional-whitespace-or-comments in between doesn't work
@@ -124,30 +124,30 @@
       <include>
         <context ref="js:comments"/>
 
-        <context id="_type-grouping-this-parameter-or-assignment-target-content">
+        <context id="_type-grouping-this-parameter-or-binding-content">
           <include>
-            <context ref="typescript:ordered-this-parameter-or-assignment-target"/>
+            <context ref="typescript:ordered-this-parameter-or-binding"/>
           </include>
-        </context> <!-- /_type-grouping-this-parameter-or-assignment-target-content -->
+        </context> <!-- /_type-grouping-this-parameter-or-binding-content -->
 
       </include>
-    </context> <!-- /__choice-type-grouping-this-parameter-or-assignment-target -->
+    </context> <!-- /__choice-type-grouping-this-parameter-or-binding -->
 
-    <context id="_type-grouping-type-expression-or-this-parameter-or-assignment-target" once-only="true">
+    <context id="_type-grouping-type-expression-or-this-parameter-or-binding" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <!-- no comments here -->
 
-        <context id="_type-grouping-type-expression-or-this-parameter-or-assignment-target-content">
+        <context id="_type-grouping-type-expression-or-this-parameter-or-binding-content">
           <include>
-            <context ref="_choice-type-grouping-this-parameter-or-assignment-target"/>
+            <context ref="_choice-type-grouping-this-parameter-or-binding"/>
             <context ref="choice-type-expression"/>
           </include>
-        </context> <!-- /_type-grouping-type-expression-or-this-parameter-or-assignment-target-content -->
+        </context> <!-- /_type-grouping-type-expression-or-this-parameter-or-binding-content -->
 
       </include>
-    </context> <!-- /_type-grouping-type-expression-or-this-parameter-or-assignment-target -->
+    </context> <!-- /_type-grouping-type-expression-or-this-parameter-or-binding -->
 
     <!-- function parameter list allows for accessibility modifiers and
          default value assignment, but these are not allowed in a
@@ -173,7 +173,7 @@
                 <context id="_type-grouping-first-item-content">
                   <include>
                     <context ref="js:ordered-rest-syntax"/>
-                    <context ref="_type-grouping-type-expression-or-this-parameter-or-assignment-target"/>
+                    <context ref="_type-grouping-type-expression-or-this-parameter-or-binding"/>
                     <context ref="typescript:ordered-optional-modifier"/>
                     <context ref="typescript:ordered-type-annotation"/>
                   </include>
@@ -191,7 +191,7 @@
                 <context id="_type-grouping-item-content">
                   <include>
                     <context ref="js:ordered-rest-syntax"/>
-                    <context ref="js:ordered-assignment-target"/>
+                    <context ref="js:ordered-binding"/>
                     <context ref="typescript:ordered-optional-modifier"/>
                     <context ref="typescript:ordered-type-annotation"/>
                   </include>

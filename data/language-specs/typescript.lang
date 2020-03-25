@@ -316,44 +316,44 @@
       </include>
     </context> <!-- /ordered-definite-assignment-assertion -->
 
-    <!-- ## this parameter or assignment target -->
+    <!-- ## this parameter or binding -->
 
-    <context id="_this-parameter-or-assignment-target" once-only="true">
+    <context id="_this-parameter-or-binding" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:comments"/>
 
-        <context id="_this-parameter-or-assignment-target-content">
+        <context id="_this-parameter-or-binding-content">
           <include>
 
             <context id="_choice-this-parameter" style-ref="js:keyword" end-parent="true">
               <keyword>this</keyword>
             </context> <!-- /_choice-this-parameter -->
 
-            <context id="_js-choice-assignment-target" end-parent="true">
+            <context id="_js-choice-binding" end-parent="true">
               <start>\%{js:before-next-token}</start>
               <end>\%{js:before-next-token}</end>
               <include>
                 <context ref="js:embedded-lang-hooks"/>
                 <context ref="js:comments"/>
-                <context ref="js:_assignment-target-content"/>
+                <context ref="js:_binding-content"/>
               </include>
-            </context> <!-- /_js-choice-assignment-target -->
+            </context> <!-- /_js-choice-binding -->
 
           </include>
-        </context> <!-- /_this-parameter-or-assignment-target-content -->
+        </context> <!-- /_this-parameter-or-binding-content -->
 
       </include>
-    </context> <!-- /_this-parameter-or-assignment-target -->
+    </context> <!-- /_this-parameter-or-binding -->
 
-    <context id="ordered-this-parameter-or-assignment-target" once-only="true">
+    <context id="ordered-this-parameter-or-binding" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
       <include>
-        <context ref="_this-parameter-or-assignment-target"/>
+        <context ref="_this-parameter-or-binding"/>
       </include>
-    </context> <!-- /ordered-this-parameter-or-assignment-target -->
+    </context> <!-- /ordered-this-parameter-or-binding -->
 
     <!-- ## Decorators
 
