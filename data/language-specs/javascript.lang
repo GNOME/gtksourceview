@@ -75,8 +75,8 @@
     <style id="identifier"                    name="Identifier"/>
     <style id="rest-syntax"                   name="Rest syntax"/>
     <style id="spread-syntax"                 name="Spread syntax"/>
-    <style id="array-destructuring"           name="Array destructuring"/>
-    <style id="object-destructuring"          name="Object destructuring"/>
+    <style id="array-binding-pattern"         name="Array binding pattern"/>
+    <style id="object-binding-pattern"        name="Object binding pattern"/>
 
     <!-- Literals -->
     <style id="array-literal"                 name="Array literal"/>
@@ -636,170 +636,171 @@
     </context> <!-- /ordered-generator-modifier -->
 
 
-    <!-- # Assignment target -->
+    <!-- # Binding
 
-    <!-- ## Array destructuring
+         Patterns for where variable names are bound/created:
+         * Variable declarations
+         * Function parameters
 
-         [ a, b, ...rest ] = [ 1, 2, 3, 4 ]
-         [ a = 1, b = 2, c = 3 ] = [ 11, 12 ]
+         This is not used in assignment expressions; array/object
+         literals will match for array/object destructuring.
     -->
 
-    <context id="_array-destructuring-element-content">
+    <!-- ## Array binding pattern (destructuring)
+
+         var [ a, b, ...rest ] = [ 1, 2, 3, 4 ];
+         function fn([ a = 1, b = 2, c = 3 ]) { ... }
+    -->
+
+    <context id="_array-binding-pattern-element-content">
       <include>
         <context ref="ordered-rest-syntax"/>
-        <context ref="ordered-assignment-target"/>
+        <context ref="ordered-binding"/>
         <context ref="ordered-default-value-assignment"/>
       </include>
-    </context> <!-- /_array-destructuring-element-content -->
+    </context> <!-- /_array-binding-pattern-element-content -->
 
     <!-- <ArrayBindingPattern> -->
-    <context id="_choice-array-destructuring" style-ref="array-destructuring" end-parent="true">
+    <context id="_choice-array-binding-pattern" style-ref="array-binding-pattern" end-parent="true">
       <start>\[</start>
       <end>]</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="comments"/>
 
-        <context id="_array-destructuring-content">
+        <context id="_array-binding-pattern-content">
           <include>
 
-            <context id="_array-destructuring-first-element" once-only="true">
+            <context id="_array-binding-pattern-first-element" once-only="true">
               <start>\%{before-next-token}</start>
               <end>\%{before-next-token}</end>
               <include>
                 <context ref="embedded-lang-hooks"/>
                 <context ref="comments"/>
-                <context ref="_array-destructuring-element-content"/>
+                <context ref="_array-binding-pattern-element-content"/>
               </include>
-            </context> <!-- /_array-destructuring-first-element -->
+            </context> <!-- /_array-binding-pattern-first-element -->
 
-            <context id="_array-destructuring-elements">
+            <context id="_array-binding-pattern-elements">
               <start>,</start>
               <end>\%{before-next-token}</end>
               <include>
                 <context ref="embedded-lang-hooks"/>
                 <context ref="comments"/>
-                <context ref="_array-destructuring-element-content"/>
+                <context ref="_array-binding-pattern-element-content"/>
               </include>
-            </context> <!-- /_array-destructuring-elements -->
+            </context> <!-- /_array-binding-pattern-elements -->
 
           </include>
-        </context> <!-- /_array-destructuring-content -->
+        </context> <!-- /_array-binding-pattern-content -->
 
       </include>
-    </context> <!-- /_choice-array-destructuring -->
+    </context> <!-- /_choice-array-binding-pattern -->
 
-    <!-- ## Object destructuring
+    <!-- ## Object binding pattern (destructuring)
 
-         { a, y: b, ...rest } = { a: 1, y: 2, i: 3, y: 4 }
-         { a = 1, y: b = 2, c = 3 } = { a: 11, y: 12 }
+         var { a, y: b, ...rest } = { a: 1, y: 2, i: 3, y: 4 };
+         function fn({ a = 1, y: b = 2, c = 3 }) { ... }
     -->
 
-    <context id="_object-destructuring-assignment-target" once-only="true">
+    <context id="_object-binding-pattern-inner-binding" once-only="true">
       <start>:</start>
       <end>\%{before-next-token}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="comments"/>
 
-        <context id="_object-destructuring-assignment-target-content">
+        <context id="_object-binding-pattern-inner-binding-content">
           <include>
-            <context ref="ordered-assignment-target"/>
+            <context ref="ordered-binding"/>
           </include>
-        </context> <!-- /_object-destructuring-assignment-target-content -->
+        </context> <!-- /_object-binding-pattern-inner-binding-content -->
 
       </include>
-    </context> <!-- /_object-destructuring-assignment-target -->
+    </context> <!-- /_object-binding-pattern-inner-binding -->
 
-    <context id="_ordered-object-destructuring-assignment-target" once-only="true">
+    <context id="_ordered-object-binding-pattern-inner-binding" once-only="true">
       <start>\%{before-next-token}</start>
       <end>\%{before-next-token}</end>
       <include>
-        <context ref="_object-destructuring-assignment-target"/>
+        <context ref="_object-binding-pattern-inner-binding"/>
       </include>
-    </context> <!-- /_ordered-object-destructuring-assignment-target -->
+    </context> <!-- /_ordered-object-binding-pattern-inner-binding -->
 
-    <context id="_object-destructuring-property-content">
+    <context id="_object-binding-pattern-property-content">
       <include>
         <context ref="ordered-rest-syntax"/> <!-- ES2018 -->
         <context ref="js-lit:ordered-property-name"/>
-        <context ref="_ordered-object-destructuring-assignment-target"/>
+        <context ref="_ordered-object-binding-pattern-inner-binding"/>
         <context ref="ordered-default-value-assignment"/>
       </include>
-    </context> <!-- /_object-destructuring-property-content -->
+    </context> <!-- /_object-binding-pattern-property-content -->
 
     <!-- <ObjectBindingPattern> -->
-    <context id="_choice-object-destructuring" style-ref="object-destructuring" end-parent="true">
+    <context id="_choice-object-binding-pattern" style-ref="object-binding-pattern" end-parent="true">
       <start>{</start>
       <end>}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="comments"/>
 
-        <context id="_object-destructuring-content">
+        <context id="_object-binding-pattern-content">
           <include>
 
-            <context id="_object-destructuring-first-property" once-only="true">
+            <context id="_object-binding-pattern-first-property" once-only="true">
               <start>\%{before-next-token}</start>
               <end>\%{before-next-token}</end>
               <include>
                 <context ref="embedded-lang-hooks"/>
                 <context ref="comments"/>
-                <context ref="_object-destructuring-property-content"/>
+                <context ref="_object-binding-pattern-property-content"/>
               </include>
-            </context> <!-- /_object-destructuring-properties -->
+            </context> <!-- /_object-binding-pattern-properties -->
 
-            <context id="_object-destructuring-properties">
+            <context id="_object-binding-pattern-properties">
               <start>,</start>
               <end>\%{before-next-token}</end>
               <include>
                 <context ref="embedded-lang-hooks"/>
                 <context ref="comments"/>
-                <context ref="_object-destructuring-property-content"/>
+                <context ref="_object-binding-pattern-property-content"/>
               </include>
-            </context> <!-- /_object-destructuring-properties -->
+            </context> <!-- /_object-binding-pattern-properties -->
 
           </include>
-        </context> <!-- /_object-destructuring-content -->
+        </context> <!-- /_object-binding-pattern-content -->
 
       </include>
-    </context> <!-- /_choice-object-destructuring -->
+    </context> <!-- /_choice-object-binding-pattern -->
 
-    <!-- ## Assignment target
-
-         Things that can appear on the left side of an equals sign
-         (identifier or array/object destructuring assignment), in all
-         places (function parameters, variable declaration) *except* in
-         assignment expressions (array/object literals will match for
-         array/object destructuring)
-    -->
+    <!-- ## Binding -->
 
     <!-- <VariableDeclaration> / <LexicalBinding> -->
-    <context id="_assignment-target" once-only="true">
+    <context id="_binding" once-only="true">
       <start>\%{before-next-token}</start>
       <end>\%{before-next-token}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="comments"/>
 
-        <context id="_assignment-target-content">
+        <context id="_binding-content">
           <include>
-            <context ref="_choice-array-destructuring"/>
-            <context ref="_choice-object-destructuring"/>
+            <context ref="_choice-array-binding-pattern"/>
+            <context ref="_choice-object-binding-pattern"/>
             <context ref="choice-identifier"/>
           </include>
-        </context> <!-- /_assignment-target-content -->
+        </context> <!-- /_binding-content -->
 
       </include>
-    </context> <!-- /_assignment-target -->
+    </context> <!-- /_binding -->
 
-    <context id="ordered-assignment-target" once-only="true">
+    <context id="ordered-binding" once-only="true">
       <start>\%{before-next-token}</start>
       <end>\%{before-next-token}</end>
       <include>
-        <context ref="_assignment-target"/>
+        <context ref="_binding"/>
       </include>
-    </context> <!-- /ordered-assignment-target -->
+    </context> <!-- /ordered-binding -->
 
 
     <!-- Approximate code order for component files:
