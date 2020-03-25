@@ -682,29 +682,30 @@
       </include>
     </context> <!-- /_try-statements -->
 
-    <context id="_catch-statement-exception" once-only="true">
+    <!-- <CatchParameter> -->
+    <context id="_catch-statement-parameter" once-only="true">
       <start>\(</start>
       <end>\)</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>
         <context ref="js:comments"/>
 
-        <context id="_catch-statement-exception-content">
+        <context id="_catch-statement-parameter-content">
           <include>
-            <context ref="js:identifier"/>
+            <context ref="js:ordered-binding"/>
           </include>
-        </context> <!-- /_catch-statement-exception-content -->
+        </context> <!-- /_catch-statement-parameter-content -->
 
       </include>
-    </context> <!-- /_catch-statement-exception -->
+    </context> <!-- /_catch-statement-parameter -->
 
-    <context id="_ordered-catch-statement-exception" once-only="true">
+    <context id="_ordered-catch-statement-parameter" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
       <include>
-        <context ref="_catch-statement-exception"/>
+        <context ref="_catch-statement-parameter"/>
       </include>
-    </context> <!-- /_ordered-catch-statement-exception -->
+    </context> <!-- /_ordered-catch-statement-parameter -->
 
     <!-- <Catch> -->
     <context id="_catch-statements" style-ref="js:try-catch-statement">
@@ -717,7 +718,7 @@
 
         <context id="_catch-statement-content">
           <include>
-            <context ref="_ordered-catch-statement-exception"/>
+            <context ref="_ordered-catch-statement-parameter"/>
             <context ref="_last-try-body"/>
           </include>
         </context> <!-- /_catch-statement-content -->
