@@ -1004,17 +1004,29 @@ a = function fn(x = 1, y) {};
 
 // Array destructuring
 a = function fn([x]) {};
-a = function fn([x, y]) {};
+a = function fn([x = 5, y = 7]) {}; // default values
+a = function fn([x, , y]) {}; // ignoring some returned values (elision)
+a = function fn([x, ...y]) {}; // rest syntax
 ([x]) => x;
-([x, y]) => x + y;
+([x = 5, y = 7]) => x + y; // default values
+([x, , y]) => x + y; // ignoring some returned values (elision)
+([x, ...y]) => y; // rest syntax
 
 // Object destructuring
 a = function fn({ x }) {};
-a = function fn({ x, b: y }) {};
+a = function fn({ a: x, b: y }) {}; // assigning to new variable names
+a = function fn({ x = 5, y = 7 }) {}; // default values
+a = function fn({ a: x = 5, b: y = 7 }) {}; // assigning to new variable names and default values
+a = function fn({ ['a']: x, ['b']: y }) {}; // computed property names
+a = function fn({ x, y, ...rest }) {}; // rest properties (ES2018)
 ({ x }) => x;
-({ x, b: y }) => x + y;
+({ a: x, b: y }) => x + y; // assigning to new variable names
+({ x = 5, y = 7 }) => x + y; // default values
+({ a: x = 5, b: y = 7 }) => x + y; // assigning to new variable names and default values
+({ ['a']: x, ['b']: y }) => x + y; // computed property names
+({ x, y, ...rest }) => x; // rest properties (ES2018)
 
-// Destructuring and default value
+// Destructuring and default parameters
 a = function f([x, y] = [1, 2], {c: z} = {c: 3}) {};
 ([x, y] = [1, 2], {c: z} = {c: x + y}) => x + y + z;
 
@@ -1159,8 +1171,20 @@ a = class extends Bar {
 ( a &= 1 );
 ( a |= 1 );
 ( a ^= 1 );
-( [a, b] = [1, 2] ); // array destructuring
-( {a, b} = { a: 1, b: 2} ); // object destructuring
+
+// Array destructuring
+( [a, b] = [1, 2] );
+( [a = 5, b = 7] = [1] ); // default values
+( [a, , b] = f() ); // ignoring some returned values (elision)
+( [a, ...b] = [1, 2, 3] ); // rest syntax
+
+// Object destructuring
+( {a, b} = { a: 1, b: 2} );
+( { a: foo, b: bar } = { a: 1, b: 2 } ); // assigning to new variable names
+( { a = 5, b = 7 } = { a: 1 } ); // default values
+( { a: foo = 5, b: bar = 7 } = { a: 1 } ); // assigning to new variable names and default values
+( { ['a']: foo, ['b']: bar } = { a: 1, b: 2 } ); // computed property names
+( { a, b, ...rest } = { a: 1, b: 2, c: 3, d: 4 } ); // rest properties (ES2018)
 
 // Comma
 1, 2 ;
@@ -1504,7 +1528,7 @@ var [
     ]
     ;
 var [a = 5, b = 7] = [1]; // default values
-var [a, , b] = f(); // ignoring some returned values
+var [a, , b] = f(); // ignoring some returned values (elision)
 var [a, ...b] = [1, 2, 3]; // rest syntax
 
 // Object destructuring
