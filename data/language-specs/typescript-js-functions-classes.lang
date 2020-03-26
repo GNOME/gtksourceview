@@ -60,7 +60,7 @@
              expression/declaration constructors only -->
         <context ref="_ordered-accessibility-modifier"/>
         <context ref="js:ordered-rest-syntax"/>
-        <context ref="js:ordered-assignment-target"/>
+        <context ref="js:ordered-binding"/>
         <context ref="typescript:ordered-optional-modifier"/>
         <context ref="typescript:ordered-type-annotation"/>
         <context ref="js:ordered-default-value-assignment"/>
@@ -85,7 +85,7 @@
             <context ref="js:ordered-rest-syntax"/>
             <!-- this parameters are valid for class
                  expression/declaration methods only -->
-            <context ref="typescript:ordered-this-parameter-or-assignment-target"/>
+            <context ref="typescript:ordered-this-parameter-or-binding"/>
             <context ref="typescript:ordered-optional-modifier"/>
             <context ref="typescript:ordered-type-annotation"/>
             <context ref="js:ordered-default-value-assignment"/>

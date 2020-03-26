@@ -72,7 +72,7 @@
     <context id="_function-parameters-content">
       <include>
         <context ref="js:ordered-rest-syntax"/>
-        <context ref="js:ordered-assignment-target"/>
+        <context ref="js:ordered-binding"/>
         <context ref="js:ordered-default-value-assignment"/>
       </include>
     </context> <!-- /_function-parameters-content -->
