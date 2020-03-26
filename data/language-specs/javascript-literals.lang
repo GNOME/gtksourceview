@@ -351,42 +351,36 @@
          }
     -->
 
+    <context id="_object-literal-property-value" once-only="true">
+      <start>:</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_object-literal-property-value-content">
+          <include>
+            <context ref="js-expr:expression-without-comma"/>
+          </include>
+        </context> <!-- /_object-literal-property-value-content -->
+
+      </include>
+    </context> <!-- /_object-literal-property-value -->
+
+    <context id="_ordered-object-literal-property-value" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_object-literal-property-value"/>
+      </include>
+    </context> <!-- /_ordered-object-literal-property-value -->
+
     <context id="_object-literal-property-content">
       <include>
-
-        <context id="_object-literal-property-name" once-only="true">
-          <start>\%{js:before-next-token}</start>
-          <end>\%{js:before-next-token}</end>
-          <include>
-            <context ref="js:embedded-lang-hooks"/>
-            <context ref="js:comments"/>
-
-            <context id="_object-literal-property-name-content">
-              <include>
-                <context ref="js:ordered-spread-syntax"/> <!-- ES2018 -->
-                <context ref="js-fn:ordered-method-definition"/> <!-- includes property-name -->
-              </include>
-            </context> <!-- /_object-literal-property-name-content -->
-
-          </include>
-        </context> <!-- /_object-literal-property-name -->
-
-        <context id="_object-literal-property-value" once-only="true">
-          <start>:</start>
-          <end>\%{js:before-next-token}</end>
-          <include>
-            <context ref="js:embedded-lang-hooks"/>
-            <context ref="js:comments"/>
-
-            <context id="_object-literal-property-value-content">
-              <include>
-                <context ref="js-expr:expression-without-comma"/>
-              </include>
-            </context> <!-- /_object-literal-property-value-content -->
-
-          </include>
-        </context> <!-- /_object-literal-property-value -->
-
+        <context ref="js:ordered-spread-syntax"/> <!-- ES2018 -->
+        <context ref="js-fn:ordered-method-definition"/> <!-- includes property-name -->
+        <context ref="_ordered-object-literal-property-value"/>
+        <context ref="js:ordered-default-value-assignment"/> <!-- for destructuring assignment -->
       </include>
     </context> <!-- /_object-literal-property-content -->
 
