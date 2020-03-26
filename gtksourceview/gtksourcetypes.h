@@ -38,7 +38,6 @@ G_BEGIN_DECLS
 typedef struct _GtkSourceBuffer                    GtkSourceBuffer;
 typedef struct _GtkSourceCompletionContext         GtkSourceCompletionContext;
 typedef struct _GtkSourceCompletion                GtkSourceCompletion;
-typedef struct _GtkSourceCompletionInfo            GtkSourceCompletionInfo;
 typedef struct _GtkSourceCompletionItem            GtkSourceCompletionItem;
 typedef struct _GtkSourceCompletionProposal        GtkSourceCompletionProposal;
 typedef struct _GtkSourceCompletionProvider        GtkSourceCompletionProvider;

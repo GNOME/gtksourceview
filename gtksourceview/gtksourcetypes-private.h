@@ -25,6 +25,7 @@ G_BEGIN_DECLS
 
 typedef struct _GtkSourceBufferInputStream      GtkSourceBufferInputStream;
 typedef struct _GtkSourceBufferOutputStream     GtkSourceBufferOutputStream;
+typedef struct _GtkSourceCompletionInfo         GtkSourceCompletionInfo;
 typedef struct _GtkSourceCompletionModel        GtkSourceCompletionModel;
 typedef struct _GtkSourceContextEngine          GtkSourceContextEngine;
 typedef struct _GtkSourceEngine                 GtkSourceEngine;

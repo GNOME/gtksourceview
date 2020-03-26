@@ -82,8 +82,6 @@ gboolean                    gtk_source_completion_start               (GtkSource
 GTK_SOURCE_AVAILABLE_IN_ALL
 void                        gtk_source_completion_hide                (GtkSourceCompletion          *completion);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceCompletionInfo    *gtk_source_completion_get_info_window     (GtkSourceCompletion          *completion);
-GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceView              *gtk_source_completion_get_view            (GtkSourceCompletion          *completion);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompletionContext *gtk_source_completion_create_context      (GtkSourceCompletion          *completion,

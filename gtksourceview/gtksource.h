@@ -24,7 +24,6 @@
 #include "gtksourcebuffer.h"
 #include "gtksourcecompletioncontext.h"
 #include "gtksourcecompletion.h"
-#include "gtksourcecompletioninfo.h"
 #include "gtksourcecompletionitem.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"

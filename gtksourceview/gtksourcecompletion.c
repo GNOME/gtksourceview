@@ -71,24 +71,6 @@
  *
  * A same #GtkSourceCompletionProvider object can be used for several
  * #GtkSourceCompletion's.
- *
- * # GtkSourceCompletion as GtkBuildable
- *
- * The GtkSourceCompletion implementation of the #GtkBuildable interface exposes
- * the info window object (see gtk_source_completion_get_info_window()) with the
- * internal-child "info_window".
- *
- * An example of a UI definition fragment with GtkSourceCompletion:
- * |[
- * <object class="GtkSourceCompletion">
- *   <property name="select_on_show">False</property>
- *   <child internal-child="info_window">
- *     <object class="GtkSourceCompletionInfo">
- *       <property name="border_width">6</property>
- *     </object>
- *   </child>
- * </object>
- * ]|
  */
 
 /* Idea to improve the code: use a composite widget template. This class is not
@@ -209,11 +191,7 @@ struct _GtkSourceCompletion
 
 static guint signals[N_SIGNALS];
 
-static void	gtk_source_completion_buildable_interface_init (GtkBuildableIface *iface);
-
-G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT,
-			 G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
-						gtk_source_completion_buildable_interface_init))
+G_DEFINE_TYPE (GtkSourceCompletion, gtk_source_completion, G_TYPE_OBJECT)
 
 static void
 scroll_to_iter (GtkSourceCompletion *completion,
@@ -556,7 +534,7 @@ update_proposal_info_state (GtkSourceCompletion *completion)
 
 		gtk_source_completion_provider_update_info (provider,
 			                                    proposal,
-			                                    completion->info_window);
+			                                    info_widget);
 	}
 	else
 	{
@@ -2673,27 +2651,6 @@ gtk_source_completion_init (GtkSourceCompletion *completion)
 	completion = gtk_source_completion_get_instance_private (completion);
 }
 
-static GObject *
-gtk_source_completion_buildable_get_internal_child (GtkBuildable *buildable,
-						    GtkBuilder   *builder,
-						    const gchar  *childname)
-{
-	GtkSourceCompletion *completion = GTK_SOURCE_COMPLETION (buildable);
-
-	if (g_strcmp0 (childname, "info_window") == 0)
-	{
-		return G_OBJECT (gtk_source_completion_get_info_window (completion));
-	}
-
-	return NULL;
-}
-
-static void
-gtk_source_completion_buildable_interface_init (GtkBuildableIface *iface)
-{
-	iface->get_internal_child = gtk_source_completion_buildable_get_internal_child;
-}
-
 void
 _gtk_source_completion_add_proposals (GtkSourceCompletion         *completion,
                                       GtkSourceCompletionContext  *context,
@@ -2956,24 +2913,6 @@ gtk_source_completion_hide (GtkSourceCompletion *completion)
 	{
 		g_signal_emit (completion, signals[HIDE], 0);
 	}
-}
-
-/**
- * gtk_source_completion_get_info_window:
- * @completion: a #GtkSourceCompletion.
- *
- * The info widget is the window where the completion displays optional extra
- * information of the proposal.
- *
- * Returns: (transfer none): The #GtkSourceCompletionInfo window
- *                           associated with @completion.
- */
-GtkSourceCompletionInfo *
-gtk_source_completion_get_info_window (GtkSourceCompletion *completion)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION (completion), NULL);
-
-	return completion->info_window;
 }
 
 /**

@@ -97,7 +97,7 @@ gtk_source_completion_provider_get_info_widget_default (GtkSourceCompletionProvi
 static void
 gtk_source_completion_provider_update_info_default (GtkSourceCompletionProvider *provider,
                                                     GtkSourceCompletionProposal *proposal,
-                                                    GtkSourceCompletionInfo     *info)
+                                                    GtkWidget                   *widget)
 {
 }
 
@@ -319,7 +319,7 @@ gtk_source_completion_provider_get_info_widget (GtkSourceCompletionProvider *pro
  * gtk_source_completion_provider_update_info:
  * @provider: a #GtkSourceCompletionProvider.
  * @proposal: a #GtkSourceCompletionProposal.
- * @info: a #GtkSourceCompletionInfo.
+ * @widget: a #GtkWidget provided from gtk_source_completion_provider_get_info_widget()
  *
  * Update extra information shown in @info for @proposal.
  *
@@ -333,13 +333,13 @@ gtk_source_completion_provider_get_info_widget (GtkSourceCompletionProvider *pro
 void
 gtk_source_completion_provider_update_info (GtkSourceCompletionProvider *provider,
                                             GtkSourceCompletionProposal *proposal,
-                                            GtkSourceCompletionInfo     *info)
+                                            GtkWidget                   *widget)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROPOSAL (proposal));
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_INFO (info));
+	g_return_if_fail (GTK_IS_WIDGET (widget));
 
-	GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->update_info (provider, proposal, info);
+	GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (provider)->update_info (provider, proposal, widget);
 }
 
 /**
