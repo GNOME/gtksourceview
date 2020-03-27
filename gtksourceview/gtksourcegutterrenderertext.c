@@ -141,9 +141,29 @@ measure_text (GtkSourceGutterRendererText *renderer,
 	GtkSourceView *view;
 	PangoLayout *layout;
 
+	if (width != NULL)
+	{
+		*width = 0;
+	}
+
+	if (height != NULL)
+	{
+		*height = 0;
+	}
+
 	view = gtk_source_gutter_renderer_get_view (GTK_SOURCE_GUTTER_RENDERER (renderer));
 
+	if (view == NULL)
+	{
+		return;
+	}
+
 	layout = gtk_widget_create_pango_layout (GTK_WIDGET (view), NULL);
+
+	if (layout == NULL)
+	{
+		return;
+	}
 
 	if (markup != NULL)
 	{

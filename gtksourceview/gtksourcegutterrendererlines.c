@@ -67,12 +67,22 @@ static void
 recalculate_size (GtkSourceGutterRendererLines *renderer)
 {
 	GtkSourceBuffer *buffer;
-	gint num_lines;
+	gint num_lines = 1;
 	gint num_digits;
 
 	buffer = gtk_source_gutter_renderer_get_buffer (GTK_SOURCE_GUTTER_RENDERER (renderer));
-	num_lines = gtk_text_buffer_get_line_count (GTK_TEXT_BUFFER (buffer));
+
+	if (buffer != NULL)
+	{
+		num_lines = gtk_text_buffer_get_line_count (GTK_TEXT_BUFFER (buffer));
+	}
+
 	num_digits = count_num_digits (num_lines);
+
+	if (num_digits < 2)
+	{
+		num_digits = 2;
+	}
 
 	if (num_digits != renderer->num_line_digits)
 	{
@@ -326,12 +336,21 @@ gtk_source_gutter_renderer_lines_measure (GtkWidget      *widget,
 	{
 		GtkSourceBuffer *buffer;
 		gchar markup[32];
-		guint num_lines;
+		guint num_lines = 0;
 		gint size;
 		gint xpad;
 
 		buffer = gtk_source_gutter_renderer_get_buffer (GTK_SOURCE_GUTTER_RENDERER (renderer));
-		num_lines = MAX (99, gtk_text_buffer_get_line_count (GTK_TEXT_BUFFER (buffer)));
+
+		if (buffer != NULL)
+		{
+			num_lines = gtk_text_buffer_get_line_count (GTK_TEXT_BUFFER (buffer));
+		}
+
+		if (num_lines < 99)
+		{
+			num_lines = 99;
+		}
 
 		g_snprintf (markup, sizeof markup, "<b>%u</b>", num_lines);
 		gtk_source_gutter_renderer_text_measure_markup (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer),
