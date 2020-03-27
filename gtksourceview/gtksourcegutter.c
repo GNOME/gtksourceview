@@ -361,24 +361,6 @@ apply_style (GtkSourceGutter *gutter,
 }
 
 static void
-gtk_source_gutter_root (GtkWidget *widget)
-{
-	GtkWidget *view;
-
-	GTK_WIDGET_CLASS (gtk_source_gutter_parent_class)->root (widget);
-
-	view = gtk_widget_get_ancestor (widget, GTK_SOURCE_TYPE_VIEW);
-	set_view (GTK_SOURCE_GUTTER (widget), GTK_SOURCE_VIEW (view));
-}
-
-static void
-gtk_source_gutter_unroot (GtkWidget *widget)
-{
-	GTK_WIDGET_CLASS (gtk_source_gutter_parent_class)->unroot (widget);
-	set_view (GTK_SOURCE_GUTTER (widget), NULL);
-}
-
-static void
 gtk_source_gutter_forall (GtkContainer *container,
                           GtkCallback   callback,
                           gpointer      callback_data)
@@ -408,6 +390,10 @@ gtk_source_gutter_set_property (GObject       *object,
 	{
 		case PROP_WINDOW_TYPE:
 			gutter->window_type = g_value_get_enum (value);
+			break;
+
+		case PROP_VIEW:
+			set_view (gutter, g_value_get_object (value));
 			break;
 
 		default:
@@ -453,10 +439,8 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 
 	widget_class->map = gtk_source_gutter_map;
 	widget_class->measure = gtk_source_gutter_measure;
-	widget_class->root = gtk_source_gutter_root;
 	widget_class->size_allocate = gtk_source_gutter_size_allocate;
 	widget_class->snapshot = gtk_source_gutter_snapshot;
-	widget_class->unroot = gtk_source_gutter_unroot;
 
 	container_class->forall = gtk_source_gutter_forall;
 	container_class->add = gtk_source_gutter_add;
@@ -473,7 +457,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	                                                      "View",
 	                                                      "",
 	                                                      GTK_SOURCE_TYPE_VIEW,
-	                                                      G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+	                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceGutter:window-type:
@@ -555,10 +539,12 @@ append_renderer (GtkSourceGutter *gutter,
 }
 
 GtkSourceGutter *
-_gtk_source_gutter_new (GtkTextWindowType type)
+_gtk_source_gutter_new (GtkTextWindowType  type,
+                        GtkSourceView     *view)
 {
 	return g_object_new (GTK_SOURCE_TYPE_GUTTER,
-	                     "window_type", type,
+	                     "window-type", type,
+	                     "view", view,
 	                     NULL);
 }
 

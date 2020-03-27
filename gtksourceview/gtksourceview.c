@@ -4711,7 +4711,7 @@ gtk_source_view_get_gutter (GtkSourceView     *view,
 	{
 		if (priv->left_gutter == NULL)
 		{
-			priv->left_gutter = _gtk_source_gutter_new (window_type);
+			priv->left_gutter = _gtk_source_gutter_new (window_type, view);
 			gtk_text_view_set_gutter (GTK_TEXT_VIEW (view),
 			                          GTK_TEXT_WINDOW_LEFT,
 			                          GTK_WIDGET (priv->left_gutter));
@@ -4725,7 +4725,7 @@ gtk_source_view_get_gutter (GtkSourceView     *view,
 	{
 		if (priv->right_gutter == NULL)
 		{
-			priv->right_gutter = _gtk_source_gutter_new (window_type);
+			priv->right_gutter = _gtk_source_gutter_new (window_type, view);
 			gtk_text_view_set_gutter (GTK_TEXT_VIEW (view),
 			                          GTK_TEXT_WINDOW_RIGHT,
 			                          GTK_WIDGET (priv->right_gutter));

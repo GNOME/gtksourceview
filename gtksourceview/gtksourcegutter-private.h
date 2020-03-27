@@ -26,7 +26,8 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-GtkSourceGutter      *_gtk_source_gutter_new         (GtkTextWindowType  type);
+GtkSourceGutter      *_gtk_source_gutter_new         (GtkTextWindowType  type,
+                                                      GtkSourceView     *view);
 G_GNUC_INTERNAL
 GtkSourceGutterLines *_gtk_source_gutter_get_lines   (GtkSourceGutter   *gutter);
 G_GNUC_INTERNAL
