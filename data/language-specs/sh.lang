@@ -436,23 +436,22 @@
       <include>
         <context sub-pattern="0" where="start" style-ref="variable"/>
         <context sub-pattern="0" where="end" style-ref="variable"/>
-        <!-- The order of the two following contexts matters -->
-        <context id="array-variable" once-only="true">
-          <start>([!#])?(\%{identifier})(\[)</start>
-          <end>\]</end>
+        <context id="parameter" once-only="true">
+          <start>(?&lt;=\$\{)([!#]?)(\%{identifier}|\%{special-parameter})</start>
+          <end>\%{def:always-match}</end>
           <include>
             <context sub-pattern="1" where="start" style-ref="keyword"/>
             <context sub-pattern="2" where="start" style-ref="variable"/>
-            <context sub-pattern="3" where="start" style-ref="keyword"/>
-            <context sub-pattern="0" where="end" style-ref="keyword"/>
-            <context ref="expansion-nesting"/>
-            <context ref="expansion-precedence"/>
-          </include>
-        </context>
-        <context id="simple-variable" once-only="true" style-ref="variable">
-          <match>([!#])?\%{identifier}|\%{special-parameter}</match>
-          <include>
-            <context sub-pattern="1" style-ref="keyword"/>
+            <context id="array-part" once-only="true">
+              <start>\[</start>
+              <end>\]</end>
+              <include>
+                <context sub-pattern="0" where="start" style-ref="keyword"/>
+                <context sub-pattern="0" where="end" style-ref="keyword"/>
+                <context ref="expansion-nesting"/>
+                <context ref="expansion-precedence"/>
+              </include>
+            </context>
           </include>
         </context>
         <!-- Must be included first, to ensure unescaped boundaries -->
