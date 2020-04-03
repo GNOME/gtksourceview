@@ -896,14 +896,6 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 		append_css_style (final_style, style, "textview .right");
 		append_css_style (final_style, style, "textview .top");
 		append_css_style (final_style, style, "textview .bottom");
-
-		/* For the corners if the top or bottom gutter is also
-		 * displayed.
-		 * FIXME: this shouldn't be necessary, GTK+ should apply the
-		 * border style to the corners too, see:
-		 * https://bugzilla.gnome.org/show_bug.cgi?id=764239
-		 */
-		append_css_style (final_style, style, "textview");
 	}
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE_NUMBER);
