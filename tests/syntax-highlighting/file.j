@@ -802,6 +802,8 @@ arr.length;
 obj
     . prototype
     . extends;
+const pi = Math.PI
+const num = 0
 
 // Bracket notation
 arr['length'];
