@@ -478,7 +478,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 {
 	GObjectClass *object_class;
 	GtkTextViewClass *textview_class;
-	GtkBindingSet *binding_set;
 	GtkWidgetClass *widget_class;
 
 	object_class = G_OBJECT_CLASS (klass);
@@ -939,156 +938,178 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	gtk_widget_class_install_action (widget_class, "source.change-case", "s",
 	                                 gtk_source_view_activate_change_case);
 
-	binding_set = gtk_binding_set_by_class (klass);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_CONTROL_MASK,
+	                                     GDK_KEY_space,
+	                                     "show-completion",
+	                                     NULL);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_space,
-				      GDK_CONTROL_MASK,
-				      "show-completion", 0);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK,
+	                                     GDK_KEY_Up,
+	                                     "move-lines",
+	                                     "(b)",
+	                                     FALSE);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK,
+	                                     GDK_KEY_KP_Up,
+	                                     "move-lines",
+	                                     "(b)",
+	                                     FALSE);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK,
+	                                     GDK_KEY_Down,
+	                                     "move-lines",
+	                                     "(b)",
+	                                     TRUE);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK,
+	                                     GDK_KEY_KP_Down,
+	                                     "move-lines",
+	                                     "(b)",
+	                                     TRUE);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_Up,
-				      GDK_MOD1_MASK,
-				      "move-lines", 1,
-				      G_TYPE_BOOLEAN, FALSE);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_Up,
-				      GDK_MOD1_MASK,
-				      "move-lines", 1,
-				      G_TYPE_BOOLEAN, FALSE);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_Down,
-				      GDK_MOD1_MASK,
-				      "move-lines", 1,
-				      G_TYPE_BOOLEAN, TRUE);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_Down,
-				      GDK_MOD1_MASK,
-				      "move-lines", 1,
-				      G_TYPE_BOOLEAN, TRUE);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK,
+	                                     GDK_KEY_Left,
+	                                     "move-words",
+	                                     "(i)",
+	                                     -1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK,
+	                                     GDK_KEY_KP_Left,
+	                                     "move-words",
+	                                     "(i)",
+	                                     -1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK,
+	                                     GDK_KEY_Right,
+	                                     "move-words",
+	                                     "(i)",
+	                                     1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK,
+	                                     GDK_KEY_KP_Right,
+	                                     "move-words",
+	                                     "(i)",
+	                                     1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_Left,
-				      GDK_MOD1_MASK,
-				      "move-words", 1,
-				      G_TYPE_INT, -1);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_Left,
-				      GDK_MOD1_MASK,
-				      "move-words", 1,
-				      G_TYPE_INT, -1);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_Right,
-				      GDK_MOD1_MASK,
-				      "move-words", 1,
-				      G_TYPE_INT, 1);
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_Right,
-				      GDK_MOD1_MASK,
-				      "move-words", 1,
-				      G_TYPE_INT, 1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_Up,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_STEPS,
+	                                     -1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_Up,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
-				      G_TYPE_INT, -1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_KP_Up,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_STEPS,
+	                                     -1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_Up,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
-				      G_TYPE_INT, -1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_Down,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_STEPS,
+	                                     1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_Down,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
-				      G_TYPE_INT, 1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_KP_Down,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_STEPS,
+	                                     1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_Down,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_STEPS,
-				      G_TYPE_INT, 1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_Page_Up,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_PAGES,
+	                                     -1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_Page_Up,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
-				      G_TYPE_INT, -1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_KP_Page_Up,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_PAGES,
+	                                     -1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_Page_Up,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
-				      G_TYPE_INT, -1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_Page_Down,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_PAGES,
+	                                     1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_Page_Down,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
-				      G_TYPE_INT, 1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_KP_Page_Down,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_PAGES,
+	                                     1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_Page_Down,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_PAGES,
-				      G_TYPE_INT, 1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_Home,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_ENDS,
+	                                     -1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_Home,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
-				      G_TYPE_INT, -1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_KP_Home,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_ENDS,
+	                                     -1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_Home,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
-				      G_TYPE_INT, -1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_End,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_ENDS,
+	                                     1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_End,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
-				      G_TYPE_INT, 1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_MOD1_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_KP_End,
+	                                     "move-viewport",
+	                                     "(ii)",
+	                                     GTK_SCROLL_ENDS,
+	                                     1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_KP_End,
-				      GDK_MOD1_MASK | GDK_SHIFT_MASK,
-				      "move-viewport", 2,
-				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
-				      G_TYPE_INT, 1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_CONTROL_MASK,
+	                                     GDK_KEY_percent,
+	                                     "move-to-matching-bracket",
+	                                     "(b)",
+	                                     FALSE);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_percent,
-				      GDK_CONTROL_MASK,
-				      "move-to-matching-bracket", 1,
-				      G_TYPE_BOOLEAN, FALSE);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_a,
+	                                     "change-number",
+	                                     "(i)",
+	                                     1);
 
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_a,
-				      GDK_CONTROL_MASK | GDK_SHIFT_MASK,
-				      "change-number", 1,
-				      G_TYPE_INT, 1);
-
-	gtk_binding_entry_add_signal (binding_set,
-				      GDK_KEY_x,
-				      GDK_CONTROL_MASK | GDK_SHIFT_MASK,
-				      "change-number", 1,
-				      G_TYPE_INT, -1);
+	gtk_widget_class_add_binding_signal (widget_class,
+	                                     GDK_CONTROL_MASK | GDK_SHIFT_MASK,
+	                                     GDK_KEY_x,
+	                                     "change-number",
+	                                     "(i)",
+	                                     -1);
 }
 
 static GObject *

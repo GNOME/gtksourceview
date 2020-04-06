@@ -1253,6 +1253,7 @@ view_key_press_event_cb (GtkEventController  *key,
                          GdkModifierType      state,
                          GtkSourceCompletion *completion)
 {
+#if 0
 	static gboolean mnemonic_keyval_set = FALSE;
 	static guint mnemonic_keyval = GDK_KEY_VoidSymbol;
 	GdkModifierType mod;
@@ -1306,6 +1307,7 @@ view_key_press_event_cb (GtkEventController  *key,
 	{
 		return TRUE;
 	}
+#endif
 
 	return FALSE;
 }
@@ -2229,7 +2231,6 @@ static void
 gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-	GtkBindingSet *binding_set;
 
 	object_class->get_property = gtk_source_completion_get_property;
 	object_class->set_property = gtk_source_completion_set_property;
@@ -2541,6 +2542,13 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 			                    G_CALLBACK (gtk_source_completion_activate_proposal),
 			                    NULL, NULL, NULL, G_TYPE_NONE, 0);
 
+#if 0
+
+	/* XXX: We cannot do keybindings with GObject's any more. This will
+	 * need to be redesigned to keep events happening either from the
+	 * completion info class or from the sourceview itself.
+	 */
+
 	/* Key bindings */
 	binding_set = gtk_binding_set_by_class (klass);
 
@@ -2641,6 +2649,7 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 				      2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, 1);
+#endif
 
 	g_type_ensure (GTK_SOURCE_TYPE_COMPLETION_INFO);
 }
