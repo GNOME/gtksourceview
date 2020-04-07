@@ -1122,7 +1122,10 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 	    loader->file == NULL ||
 	    (loader->location == NULL && loader->input_stream_property == NULL))
 	{
-		g_task_return_boolean (loader->task, FALSE);
+		g_task_return_new_error (loader->task,
+		                         G_IO_ERROR,
+		                         G_IO_ERROR_INVALID_ARGUMENT,
+		                         "Invalid argument");
 		return;
 	}
 
