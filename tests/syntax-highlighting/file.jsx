@@ -555,17 +555,19 @@ a = class extends Bar {
 
 // Dot notation
 arr.length;
-obj
-    . prototype
-    . extends;
+( obj
+    . /* comment */ prototype /* comment */
+    . /* comment */ constructor /* comment */
+);
 const pi = Math.PI
 const num = 0
 
 // Bracket notation
 arr['length'];
-obj
-    ['prototype']
-    ['constructor'];
+( obj
+    /* comment */ [ /* comment */ 'prototype' /* comment */ ] /* comment */
+    /* comment */ [ /* comment */ 'constructor' /* comment */ ] /* comment */
+);
 
 // Mixed
 obj
