@@ -192,13 +192,15 @@
                 <!-- no embedded-lang-hooks here -->
                 <!-- no comments here -->
                 <!-- do not extend the context by matching comments or
-                     embedded-lang-hooks, which may lead to multiple identifiers -->
+                     embedded-lang-hooks, which may lead to multiple
+                     identifiers -->
 
                 <context id="_primary-expression-identifier-content">
                   <include>
-                    <!-- technically these would be choices, but it would be very
-                         difficult to turn large keyword contexts into container
-                         contexts with end-parent="true" -->
+                    <!-- technically these would be choices, but it
+                         would be very difficult to turn large keyword
+                         contexts into container contexts with
+                         end-parent="true" -->
                     <context ref="js-lit:null-value"/>
                     <context ref="js-lit:boolean"/>
                     <context ref="js-val:global-values"/>
@@ -288,6 +290,29 @@
          func?.()
     -->
 
+    <context id="_choice-property-identifier" end-parent="true">
+      <start>(?=\%{js:identifier-start})</start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <!-- no embedded-lang-hooks here -->
+        <!-- no comments here -->
+        <!-- do not extend the context by matching comments or
+             embedded-lang-hooks, which may lead to multiple
+             identifiers -->
+
+        <context id="_property-identifier-content">
+          <include>
+            <!-- technically these would be choices, but it would be
+                 very difficult to turn large keyword contexts into
+                 container contexts with end-parent="true" -->
+            <context ref="js-val:properties-methods"/>
+            <context ref="js:identifier-name"/>
+          </include>
+        </context> <!-- /_property-identifier-content -->
+
+      </include>
+    </context> <!-- /_choice-property-identifier -->
+
     <context id="_post-primary-expression">
       <include>
         <context ref="js:embedded-lang-hooks"/>
@@ -302,8 +327,7 @@
 
             <context id="_dot-property-accessor-content">
               <include>
-                <context ref="js-val:properties-methods"/>
-                <context ref="js:identifier-name"/>
+                <context ref="_choice-property-identifier"/>
               </include>
             </context> <!-- /_dot-property-accessor-content -->
 
@@ -341,8 +365,7 @@
                 <!-- only match dot-property accessor content here
                      this context will end early for other cases
                 -->
-                <context ref="js-val:properties-methods"/>
-                <context ref="js:identifier-name"/>
+                <context ref="_choice-property-identifier"/>
               </include>
             </context> <!-- /_optional-chain-content -->
 
