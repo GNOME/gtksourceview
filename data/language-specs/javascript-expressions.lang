@@ -316,6 +316,7 @@
     <context id="_post-primary-expression">
       <include>
         <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
 
         <!-- <MemberExpression> (part of) -->
         <context id="_dot-property-accessors">
