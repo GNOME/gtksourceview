@@ -2737,7 +2737,7 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
 		              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
 		              "yalign", 0.5,
 		              "xalign", 1.0,
-		              "xpad", 3,
+		              "xpad", 6,
 		              NULL);
 
 		gtk_source_gutter_insert (gutter,
