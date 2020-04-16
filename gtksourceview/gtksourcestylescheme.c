@@ -871,6 +871,7 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	final_style = g_string_new ("");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
+	append_css_style (final_style, style, "textview");
 	append_css_style (final_style, style, "textview text");
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_SELECTED);
