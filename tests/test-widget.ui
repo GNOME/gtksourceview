@@ -421,7 +421,6 @@
             <property name="width_request">400</property>
             <property name="height_request">400</property>
             <property name="can-focus">1</property>
-            <property name="shadow_type">in</property>
             <child>
               <object class="GtkSourceView" id="view">
                 <property name="visible">True</property>
