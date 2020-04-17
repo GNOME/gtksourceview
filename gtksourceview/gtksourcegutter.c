@@ -19,10 +19,12 @@
 
 #include "config.h"
 
+#include "gtksourcebuffer.h"
 #include "gtksourcegutter.h"
 #include "gtksourcegutter-private.h"
 #include "gtksourcegutterlines.h"
 #include "gtksourcegutterlines-private.h"
+#include "gtksourcestylescheme-private.h"
 #include "gtksourceview.h"
 #include "gtksourcegutterrenderer.h"
 #include "gtksourcegutterrenderer-private.h"
@@ -590,6 +592,25 @@ gtk_source_gutter_insert (GtkSourceGutter         *gutter,
 	g_return_val_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer), FALSE);
 	g_return_val_if_fail (gtk_source_gutter_renderer_get_view (renderer) == NULL, FALSE);
 
+	if (gutter->view != NULL)
+	{
+		GtkTextBuffer *buffer;
+
+		buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (gutter->view));
+
+		if (GTK_SOURCE_IS_BUFFER (buffer))
+		{
+			GtkSourceStyleScheme *scheme;
+
+			scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (buffer));
+
+			if (scheme != NULL)
+			{
+				_gtk_source_style_scheme_apply (scheme, GTK_WIDGET (renderer));
+			}
+		}
+	}
+
 	internal_renderer = renderer_new (gutter, renderer, position);
 	append_renderer (gutter, internal_renderer);
 	gtk_widget_set_parent (GTK_WIDGET (renderer), GTK_WIDGET (gutter));
@@ -1088,5 +1109,43 @@ _gtk_source_gutter_queue_draw (GtkSourceGutter *gutter)
 		Renderer *renderer = iter->data;
 
 		gtk_widget_queue_allocate (GTK_WIDGET (renderer->renderer));
+	}
+}
+
+void
+_gtk_source_gutter_apply_scheme (GtkSourceGutter      *gutter,
+                                 GtkSourceStyleScheme *scheme)
+{
+	if (gutter == NULL)
+	{
+		return;
+	}
+
+	_gtk_source_style_scheme_apply (scheme, GTK_WIDGET (gutter));
+
+	for (const GList *iter = gutter->renderers; iter; iter = iter->next)
+	{
+		Renderer *renderer = iter->data;
+
+		_gtk_source_style_scheme_apply (scheme, GTK_WIDGET (renderer->renderer));
+	}
+}
+
+void
+_gtk_source_gutter_unapply_scheme (GtkSourceGutter      *gutter,
+                                   GtkSourceStyleScheme *scheme)
+{
+	if (gutter == NULL)
+	{
+		return;
+	}
+
+	_gtk_source_style_scheme_unapply (scheme, GTK_WIDGET (gutter));
+
+	for (const GList *iter = gutter->renderers; iter; iter = iter->next)
+	{
+		Renderer *renderer = iter->data;
+
+		_gtk_source_style_scheme_unapply (scheme, GTK_WIDGET (renderer->renderer));
 	}
 }
