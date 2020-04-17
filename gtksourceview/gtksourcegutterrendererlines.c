@@ -401,7 +401,7 @@ gutter_renderer_snapshot_line (GtkSourceGutterRenderer *renderer,
 	g_assert (GTK_IS_SNAPSHOT (snapshot));
 	g_assert (GTK_SOURCE_IS_GUTTER_LINES (lines));
 
-	if G_LIKELY (gtk_source_gutter_lines_is_cursor (lines, line))
+	if G_LIKELY (!gtk_source_gutter_lines_is_cursor (lines, line))
 	{
 		GTK_SOURCE_GUTTER_RENDERER_CLASS (_gtk_source_gutter_renderer_lines_parent_class)->snapshot_line (renderer, snapshot, lines, line);
 	}
