@@ -890,23 +890,14 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS);
 	if (style != NULL)
 	{
-		append_css_style (final_style, style, "textview border");
-
-		/* Needed for GtkSourceGutter. In the ::draw callback,
-		 * gtk_style_context_add_class() is called to add e.g. the
-		 * "left" class. Because as of GTK+ 3.20 we cannot do the same
-		 * to add the "border" subnode.
-		 */
-		append_css_style (final_style, style, "textview .left");
-		append_css_style (final_style, style, "textview .right");
-		append_css_style (final_style, style, "textview .top");
-		append_css_style (final_style, style, "textview .bottom");
+		append_css_style (final_style, style, "textview border gutter");
 	}
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE_NUMBER);
 	if (style != NULL)
 	{
-		append_css_style (final_style, style, "textview .current-line-number");
+		append_css_style (final_style, style, "textview gutter.current-line-number");
+		append_css_style (final_style, style, "textview gutterrenderer.current-line-number");
 	}
 
 	apply_css_style_cursors (scheme, final_style);
