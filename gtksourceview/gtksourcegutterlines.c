@@ -456,7 +456,8 @@ gboolean
 gtk_source_gutter_lines_is_cursor (GtkSourceGutterLines *lines,
                                    guint                 line)
 {
-	return gtk_source_gutter_lines_has_qclass (lines, line, q_cursor_line);
+	return line == lines->cursor_line ||
+	       gtk_source_gutter_lines_has_qclass (lines, line, q_cursor_line);
 }
 
 /**
