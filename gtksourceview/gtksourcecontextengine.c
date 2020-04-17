@@ -414,7 +414,7 @@ struct _GtkSourceContextData
 
 struct _GtkSourceContextEngine
 {
-  GObject parent_instance;
+	GObject parent_instance;
 
 	GtkSourceContextData *ctx_data;
 
