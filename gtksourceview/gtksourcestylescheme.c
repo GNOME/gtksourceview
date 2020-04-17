@@ -710,7 +710,7 @@ apply_css_style_cursors (GtkSourceStyleScheme *scheme,
 		return;
 	}
 
-	g_string_append_printf (css, "textview gutter {\n");
+	g_string_append_printf (css, "textview {\n");
 
 	if (primary_color_set)
 	{
