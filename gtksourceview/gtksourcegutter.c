@@ -330,39 +330,6 @@ gtk_source_gutter_measure (GtkWidget      *widget,
 }
 
 static void
-apply_style (GtkSourceGutter *gutter,
-	     GtkStyleContext *style_context)
-{
-	const gchar *class;
-
-	switch (gutter->window_type)
-	{
-		case GTK_TEXT_WINDOW_TOP:
-			class = GTK_STYLE_CLASS_TOP;
-			break;
-
-		case GTK_TEXT_WINDOW_RIGHT:
-			class = GTK_STYLE_CLASS_RIGHT;
-			break;
-
-		case GTK_TEXT_WINDOW_BOTTOM:
-			class = GTK_STYLE_CLASS_BOTTOM;
-			break;
-
-		case GTK_TEXT_WINDOW_LEFT:
-			class = GTK_STYLE_CLASS_LEFT;
-			break;
-
-		case GTK_TEXT_WINDOW_WIDGET:
-		case GTK_TEXT_WINDOW_TEXT:
-		default:
-			g_return_if_reached ();
-	}
-
-	gtk_style_context_add_class (style_context, class);
-}
-
-static void
 gtk_source_gutter_forall (GtkContainer *container,
                           GtkCallback   callback,
                           gpointer      callback_data)
@@ -408,7 +375,6 @@ static void
 gtk_source_gutter_constructed (GObject *object)
 {
 	GtkSourceGutter *gutter = GTK_SOURCE_GUTTER (object);
-	GtkStyleContext *context;
 
 	if (gutter->window_type == GTK_TEXT_WINDOW_LEFT ||
 	    gutter->window_type == GTK_TEXT_WINDOW_RIGHT)
@@ -423,9 +389,6 @@ gtk_source_gutter_constructed (GObject *object)
 	}
 
 	G_OBJECT_CLASS (gtk_source_gutter_parent_class)->constructed (object);
-
-	context = gtk_widget_get_style_context (GTK_WIDGET (gutter));
-	apply_style (gutter, context);
 }
 
 static void
