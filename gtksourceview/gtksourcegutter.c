@@ -749,7 +749,7 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 {
 	GtkSourceGutter *gutter = GTK_SOURCE_GUTTER (widget);
 	GtkTextView *text_view = GTK_TEXT_VIEW (gutter->view);
-	GtkStyleContext *view_context;
+	GtkStyleContext *style_context;
 	const GList *list;
 	GdkRectangle visible_rect;
 	GtkTextIter begin;
@@ -764,8 +764,7 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 		return;
 	}
 
-	/* We need the style from the view itself for highlight lines */
-	view_context = gtk_widget_get_style_context (GTK_WIDGET (gutter->view));
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (gutter));
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
 	gtk_text_view_get_iter_at_location (text_view, &begin,
@@ -805,17 +804,17 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 			                                         &y,
 			                                         &height);
 
-			gtk_style_context_save (view_context);
-			gtk_style_context_add_class (view_context, "current-line-number");
+			gtk_style_context_save (style_context);
+			gtk_style_context_add_class (style_context, "current-line-number");
 
 			gtk_snapshot_render_background (snapshot,
-							view_context,
+							style_context,
 							0,
 							y,
 							gtk_widget_get_width (widget),
 							height);
 
-			gtk_style_context_restore (view_context);
+			gtk_style_context_restore (style_context);
 		}
 	}
 
