@@ -67,7 +67,7 @@ typedef struct
 
 struct _GtkSourceGutter
 {
-  GtkContainer          parent_instance;
+	GtkContainer          parent_instance;
 
 	GtkSourceView        *view;
 	GList                *renderers;
