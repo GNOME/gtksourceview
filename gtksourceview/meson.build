@@ -240,7 +240,7 @@ extra_public_sources = []
 subdir('completion-providers')
 
 
-gtksource_lib = shared_library(package_string,
+gtksource_lib = library(package_string,
                 version: lib_version,
         darwin_versions: lib_osx_version,
     include_directories: gtksourceview_include_dirs,
