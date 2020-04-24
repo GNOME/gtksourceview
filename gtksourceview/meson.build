@@ -320,31 +320,11 @@ gtksource_pc_reqs = [
   'gtk4 @0@'.format(gtk_req),
 ]
 
-gtksource_pc_private_reqs = []
-gtksource_lib_private = []
-
-if libxml_dep.type_name() == 'pkgconfig'
-  gtksource_pc_private_reqs += [
-    'libxml-2.0 @0@'.format(libxml_req)
-  ]
-else
-  if libxml_dep.type_name() == 'library'
-    gtksource_lib_private += libxml_dep
-  endif
-endif
-
-gtksource_pc_private_reqs += [
-  'fribidi @0@'.format(fribidi_req),
-]
-
-gtksource_pc = pkg.generate(
+gtksource_pc = pkg.generate(gtksource_lib,
               name: package_string,
        description: 'Source code editing Gtk+ widget.',
           requires: gtksource_pc_reqs,
-  requires_private: gtksource_pc_private_reqs,
            version: version,
            subdirs: package_string,
-         libraries: gtksource_lib,
- libraries_private: gtksource_lib_private,
        install_dir: pkgconfigdir,
 )
