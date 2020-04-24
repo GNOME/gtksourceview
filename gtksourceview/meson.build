@@ -215,11 +215,6 @@ install_headers(
 
 core_enums_h = core_enums.get(1)
 
-# Unfortunately, Visual Studio builds must build the core
-# sources twice, once for the GtkSourceView DLL, and once for
-# the tests (static core lib), so that we can ensure that
-# all the items from the core sources are properly linked into
-# the final GtkSourceView DLL and exported from it.
 core_lib = static_library(package_string + 'core', core_sources,
   include_directories: gtksourceview_include_dirs,
          dependencies: core_deps,
@@ -245,24 +240,12 @@ extra_public_sources = []
 subdir('completion-providers')
 
 
-# We can't use the static libs on Visual Studio builds
-# to form our DLL here directly, so we must use
-# extract_all_objects() to extract all the core and word
-# completion provider objects that we previously built
-# into static .lib's and link them into the main DLL
-# instead
-gtksource_objs = []
-foreach int_lib : gtksource_libs
-  gtksource_objs += int_lib.extract_all_objects()
-endforeach
-
 gtksource_lib = shared_library(package_string,
                 version: lib_version,
         darwin_versions: lib_osx_version,
     include_directories: gtksourceview_include_dirs,
-           dependencies: cc.get_id() == 'msvc' ? core_deps : gtksource_deps,
-                objects: cc.get_id() == 'msvc' ? gtksource_objs : [],
-             link_whole: cc.get_id() == 'msvc' ? [] : gtksource_libs,
+           dependencies: gtksource_deps,
+             link_whole: gtksource_libs,
                  c_args: core_c_args,
               link_args: release_link_args,
                 install: true,
