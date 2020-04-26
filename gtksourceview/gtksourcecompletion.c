@@ -2720,6 +2720,8 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 				      2,
 				      GTK_TYPE_SCROLL_STEP, GTK_SCROLL_ENDS,
 				      G_TYPE_INT, 1);
+
+	g_type_ensure (GTK_SOURCE_TYPE_COMPLETION_INFO);
 }
 
 static void
