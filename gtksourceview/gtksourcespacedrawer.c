@@ -841,8 +841,8 @@ draw_tab_at_pos (cairo_t      *cr,
 	h = rect.height;
 
 	cairo_save (cr);
-	cairo_move_to (cr, x + w * 1 / 8, y);
-	cairo_rel_line_to (cr, w * 6 / 8, 0);
+	cairo_move_to (cr, x + h * 1 / 6, y);
+	cairo_rel_line_to (cr, w - h * 2 / 6, 0);
 	cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
 	cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
 	cairo_rel_line_to (cr, -h * 1 / 4, +h * 1 / 4);
