@@ -497,19 +497,12 @@ static void
 set_info_widget (GtkSourceCompletion *completion,
 		 GtkWidget           *new_widget)
 {
-	GtkWidget *cur_widget = gtk_bin_get_child (GTK_BIN (completion->info_window));
+	GtkWidget *cur_widget = gtk_window_get_child (GTK_WINDOW (completion->info_window));
 
-	if (cur_widget == new_widget)
+	if (cur_widget != new_widget)
 	{
-		return;
+		gtk_window_set_child (GTK_WINDOW (completion->info_window), new_widget);
 	}
-
-	if (cur_widget != NULL)
-	{
-		gtk_container_remove (GTK_CONTAINER (completion->info_window), cur_widget);
-	}
-
-	gtk_container_add (GTK_CONTAINER (completion->info_window), new_widget);
 }
 
 static void
@@ -1641,13 +1634,13 @@ gtk_source_completion_dispose (GObject *object)
 
 	if (completion->info_window != NULL)
 	{
-		gtk_widget_destroy (GTK_WIDGET (completion->info_window));
+		gtk_window_destroy (GTK_WINDOW (completion->info_window));
 		completion->info_window = NULL;
 	}
 
 	if (completion->main_window != NULL)
 	{
-		gtk_widget_destroy (GTK_WIDGET (completion->main_window));
+		gtk_window_destroy (GTK_WINDOW (completion->main_window));
 		completion->main_window = NULL;
 	}
 

@@ -57,7 +57,7 @@ static void style_scheme_chooser_interface_init (GtkSourceStyleSchemeChooserInte
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceStyleSchemeChooserWidget,
                          gtk_source_style_scheme_chooser_widget,
-                         GTK_TYPE_BIN,
+                         GTK_TYPE_WIDGET,
                          G_ADD_PRIVATE (GtkSourceStyleSchemeChooserWidget)
                          G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER,
                                                 style_scheme_chooser_interface_init))
@@ -119,10 +119,15 @@ static void
 gtk_source_style_scheme_chooser_widget_class_init (GtkSourceStyleSchemeChooserWidgetClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
 	object_class->dispose = gtk_source_style_scheme_chooser_widget_dispose;
 	object_class->get_property = gtk_source_style_scheme_chooser_widget_get_property;
 	object_class->set_property = gtk_source_style_scheme_chooser_widget_set_property;
+
+	gtk_widget_class_set_template_from_resource (widget_class,
+	                                             "/org/gnome/gtksourceview/ui/gtksourcestyleschemechooserwidget.ui");
+	gtk_widget_class_bind_template_child_private (widget_class, GtkSourceStyleSchemeChooserWidget, list_box);
 
 	g_object_class_override_property (object_class, PROP_STYLE_SCHEME, "style-scheme");
 }
@@ -209,7 +214,7 @@ static void
 destroy_child_cb (GtkWidget *widget,
                   gpointer   data)
 {
-	gtk_widget_destroy (widget);
+	gtk_container_remove (GTK_CONTAINER (data), widget);
 }
 
 static void
@@ -242,7 +247,7 @@ gtk_source_style_scheme_chooser_widget_populate (GtkSourceStyleSchemeChooserWidg
 
 		scheme = gtk_source_style_scheme_manager_get_scheme (manager, scheme_ids [i]);
 		row = make_row (scheme, lang);
-		gtk_container_add (GTK_CONTAINER (priv->list_box), GTK_WIDGET (row));
+		gtk_list_box_insert (priv->list_box, GTK_WIDGET (row), -1);
 
 		if (scheme == priv->scheme)
 		{
@@ -276,10 +281,7 @@ gtk_source_style_scheme_chooser_widget_init (GtkSourceStyleSchemeChooserWidget *
 	GtkSourceStyleSchemeChooserWidgetPrivate *priv = gtk_source_style_scheme_chooser_widget_get_instance_private (widget);
 	GtkSourceStyleSchemeManager *manager;
 
-	priv->list_box = GTK_LIST_BOX (gtk_list_box_new ());
-	gtk_list_box_set_selection_mode (priv->list_box, GTK_SELECTION_BROWSE);
-	gtk_widget_show (GTK_WIDGET (priv->list_box));
-	gtk_container_add (GTK_CONTAINER (widget), GTK_WIDGET (priv->list_box));
+	gtk_widget_init_template (GTK_WIDGET (widget));
 
 	manager = gtk_source_style_scheme_manager_get_default ();
 	g_signal_connect (manager,

@@ -45,12 +45,12 @@ test_buffer_view_ref (void)
 	GtkWidget *view = NULL;
 	GtkSourceBuffer *buffer = NULL;
 
-	view = gtk_source_view_new ();
+	view = g_object_ref_sink (gtk_source_view_new ());
 	compositor = gtk_source_print_compositor_new_from_view (GTK_SOURCE_VIEW (view));
 	buffer = gtk_source_print_compositor_get_buffer (compositor);
 	g_assert_true (GTK_SOURCE_IS_BUFFER (buffer));
 
-	gtk_widget_destroy (view);
+	g_object_unref (view);
 	buffer = gtk_source_print_compositor_get_buffer (compositor);
 	g_assert_true (GTK_SOURCE_IS_BUFFER (buffer));
 

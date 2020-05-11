@@ -782,12 +782,10 @@ disconnect_view (GtkSourceMap *map)
 }
 
 static void
-gtk_source_map_destroy (GtkWidget *widget)
+gtk_source_map_dispose (GObject *object)
 {
-	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
-	GtkSourceMapPrivate *priv;
-
-	priv = gtk_source_map_get_instance_private (map);
+	GtkSourceMap *map = GTK_SOURCE_MAP (object);
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
 
 	disconnect_buffer (map);
 	disconnect_view (map);
@@ -795,7 +793,7 @@ gtk_source_map_destroy (GtkWidget *widget)
 	g_clear_object (&priv->css_provider);
 	g_clear_pointer (&priv->font_desc, pango_font_description_free);
 
-	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->destroy (widget);
+	G_OBJECT_CLASS (gtk_source_map_parent_class)->dispose (object);
 }
 
 static void
@@ -1048,10 +1046,10 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 	GtkTextViewClass *text_view_class = GTK_TEXT_VIEW_CLASS (klass);
 
 	object_class->constructed = gtk_source_map_constructed;
+	object_class->dispose = gtk_source_map_dispose;
 	object_class->get_property = gtk_source_map_get_property;
 	object_class->set_property = gtk_source_map_set_property;
 
-	widget_class->destroy = gtk_source_map_destroy;
 	widget_class->measure = gtk_source_map_measure;
 	widget_class->hide = gtk_source_map_hide;
 	widget_class->size_allocate = gtk_source_map_size_allocate;

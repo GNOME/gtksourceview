@@ -28,7 +28,7 @@
  * current completion proposal.
  *
  * The info window has always the same size as the natural size of its child
- * widget, added with gtk_container_add().  If you want a fixed size instead, a
+ * widget, added with gtk_widget_set_child().  If you want a fixed size instead, a
  * possibility is to use a scrolled window, as the following example
  * demonstrates.
  *
@@ -40,8 +40,8 @@
  * GtkWidget *scrolled_window = gtk_scrolled_window_new (NULL, NULL);
  *
  * gtk_widget_set_size_request (scrolled_window, 300, 200);
- * gtk_container_add (GTK_CONTAINER (scrolled_window), your_widget);
- * gtk_container_add (GTK_CONTAINER (info), scrolled_window);
+ * gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scrolled_window), your_widget);
+ * gtk_window_set_child (GTK_WINDOW (info), scrolled_window);
  *   </programlisting>
  * </example>
  */

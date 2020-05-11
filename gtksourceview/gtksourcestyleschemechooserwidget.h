@@ -33,14 +33,14 @@ G_BEGIN_DECLS
 
 struct _GtkSourceStyleSchemeChooserWidgetClass
 {
-	GtkBinClass parent;
+	GtkWidgetClass parent;
 
 	/*< private >*/
 	gpointer _reserved[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_3_16
-G_DECLARE_DERIVABLE_TYPE (GtkSourceStyleSchemeChooserWidget, gtk_source_style_scheme_chooser_widget, GTK_SOURCE, STYLE_SCHEME_CHOOSER_WIDGET, GtkBin)
+G_DECLARE_DERIVABLE_TYPE (GtkSourceStyleSchemeChooserWidget, gtk_source_style_scheme_chooser_widget, GTK_SOURCE, STYLE_SCHEME_CHOOSER_WIDGET, GtkWidget)
 
 GTK_SOURCE_AVAILABLE_IN_3_16
 GtkWidget *gtk_source_style_scheme_chooser_widget_new (void);

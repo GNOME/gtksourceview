@@ -514,7 +514,7 @@ open_button_clicked_cb (TestWidget *self)
 		g_clear_object (&file);
 	}
 
-	gtk_widget_destroy (chooser);
+	gtk_window_destroy (GTK_WINDOW (chooser));
 }
 
 #define NON_BLOCKING_PAGINATION
@@ -1115,7 +1115,7 @@ main (int argc, char *argv[])
 	g_signal_connect_swapped (window, "destroy", G_CALLBACK (g_main_loop_quit), main_loop);
 
 	test_widget = test_widget_new ();
-	gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (test_widget));
+	gtk_window_set_child (GTK_WINDOW (window), GTK_WIDGET (test_widget));
 
 	gtk_widget_show (window);
 
