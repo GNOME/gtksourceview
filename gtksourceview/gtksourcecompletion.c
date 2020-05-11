@@ -2019,6 +2019,7 @@ init_tree_view (GtkSourceCompletion *completion,
 	completion->insensitive = GTK_TREE_VIEW (gtk_builder_get_object (builder, "insensitive"));
 	completion->tree_view_proposals = GTK_TREE_VIEW (gtk_builder_get_object (builder, "tree_view_proposals"));
 
+#if 0
 	g_signal_connect_swapped (completion->tree_view_proposals,
 				  "row-activated",
 				  G_CALLBACK (gtk_source_completion_activate_proposal),
@@ -2028,6 +2029,7 @@ init_tree_view (GtkSourceCompletion *completion,
 				  "size-allocate",
 				  G_CALLBACK (gtk_source_completion_proposals_size_allocate),
 				  completion);
+#endif
 
 	/* Selection */
 
@@ -2135,10 +2137,12 @@ init_main_window (GtkSourceCompletion *completion,
 	              "margin-end", 0,
 	              NULL);
 
+#if 0
 	g_signal_connect_swapped (completion->main_window,
 				  "size-allocate",
 				  G_CALLBACK (update_window_position),
 				  completion);
+#endif
 
 	gtk_window_set_hide_on_close (GTK_WINDOW (completion->main_window),
 				      TRUE);
@@ -2160,10 +2164,12 @@ init_info_window (GtkSourceCompletion *completion)
 	completion->info_window = gtk_source_completion_info_new ();
 	g_object_ref_sink (completion->info_window);
 
+#if 0
 	g_signal_connect_swapped (completion->info_window,
 				  "size-allocate",
 				  G_CALLBACK (update_info_position),
 				  completion);
+#endif
 
 	/* Default info widget */
 
