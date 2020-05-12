@@ -212,6 +212,7 @@ else
     '-Wno-missing-field-initializers',
     '-Wno-sign-compare',
     '-Wno-unused-parameter',
+    '-Wno-typedef-redefinition',
     '-Wold-style-definition',
     '-Wpointer-arith',
     '-Wstrict-prototypes',
