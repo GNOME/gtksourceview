@@ -32,7 +32,7 @@ G_BEGIN_DECLS
 #define GTK_SOURCE_TYPE_GUTTER (gtk_source_gutter_get_type())
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-G_DECLARE_FINAL_TYPE (GtkSourceGutter, gtk_source_gutter, GTK_SOURCE, GUTTER, GtkContainer)
+G_DECLARE_FINAL_TYPE (GtkSourceGutter, gtk_source_gutter, GTK_SOURCE, GUTTER, GtkWidget)
 
 GTK_SOURCE_AVAILABLE_IN_3_24
 GtkSourceView     *gtk_source_gutter_get_view        (GtkSourceGutter         *gutter);
@@ -44,5 +44,8 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 void               gtk_source_gutter_reorder         (GtkSourceGutter         *gutter,
                                                       GtkSourceGutterRenderer *renderer,
                                                       gint                     position);
+GTK_SOURCE_AVAILABLE_IN_ALL
+void               gtk_source_gutter_remove          (GtkSourceGutter         *gutter,
+                                                      GtkSourceGutterRenderer *renderer);
 
 G_END_DECLS

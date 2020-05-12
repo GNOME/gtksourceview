@@ -71,6 +71,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (TestWidget, test_widget, GTK_TYPE_GRID)
 #define MARK_TYPE_2      "two"
 
 static GMainLoop *main_loop;
+static gchar *last_dir;
 
 static void
 remove_all_marks (GtkSourceBuffer *buffer)
@@ -463,12 +464,40 @@ forward_string_clicked_cb (TestWidget *self)
 }
 
 static void
+on_chooser_response_cb (TestWidget           *self,
+                        gint                  response,
+                        GtkFileChooserDialog *chooser)
+{
+	g_assert (TEST_IS_WIDGET (self));
+	g_assert (GTK_IS_FILE_CHOOSER_DIALOG (chooser));
+
+	if (response == GTK_RESPONSE_OK)
+	{
+		GFile *folder;
+		GFile *file;
+
+		file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (chooser));
+		folder = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (chooser));
+
+		if (file != NULL && folder != NULL)
+		{
+			g_free (last_dir);
+			last_dir = g_file_get_path (folder);
+			open_file (self, file);
+		}
+
+		g_clear_object (&folder);
+		g_clear_object (&file);
+	}
+
+	gtk_window_destroy (GTK_WINDOW (chooser));
+}
+
+static void
 open_button_clicked_cb (TestWidget *self)
 {
 	GtkWidget *main_window;
 	GtkWidget *chooser;
-	gint response;
-	static gchar *last_dir;
 
 	main_window = GTK_WIDGET (gtk_widget_get_root (GTK_WIDGET (self->priv->view)));
 
@@ -493,28 +522,13 @@ open_button_clicked_cb (TestWidget *self)
 		g_object_unref (folder);
 	}
 
-	response = gtk_dialog_run (GTK_DIALOG (chooser));
+	g_signal_connect_object (chooser,
+				 "response",
+				 G_CALLBACK (on_chooser_response_cb),
+				 self,
+				 G_CONNECT_SWAPPED);
 
-	if (response == GTK_RESPONSE_OK)
-	{
-		GFile *folder;
-		GFile *file;
-
-		file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (chooser));
-		folder = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (chooser));
-
-		if (file != NULL && folder != NULL)
-		{
-			g_free (last_dir);
-			last_dir = g_file_get_path (folder);
-			open_file (self, file);
-		}
-
-		g_clear_object (&folder);
-		g_clear_object (&file);
-	}
-
-	gtk_window_destroy (GTK_WINDOW (chooser));
+	gtk_window_present (GTK_WINDOW (chooser));
 }
 
 #define NON_BLOCKING_PAGINATION

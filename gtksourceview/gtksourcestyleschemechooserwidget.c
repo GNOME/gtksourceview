@@ -162,7 +162,7 @@ make_row (GtkSourceStyleScheme *scheme,
 	g_free (text);
 
 	overlay = gtk_overlay_new ();
-	gtk_container_add (GTK_CONTAINER (row), overlay);
+	gtk_list_box_row_set_child (GTK_LIST_BOX_ROW (row), overlay);
 
 	view = g_object_new (GTK_SOURCE_TYPE_VIEW,
 	                     "buffer", buffer,
@@ -177,7 +177,7 @@ make_row (GtkSourceStyleScheme *scheme,
 	                     "margin-start", 2,
 	                     "margin-end", 2,
 	                     NULL);
-	gtk_container_add (GTK_CONTAINER (overlay), view);
+	gtk_overlay_set_child (GTK_OVERLAY (overlay), view);
 
 	label = g_object_new (GTK_TYPE_LABEL,
 			      "can-focus", FALSE,
@@ -211,13 +211,6 @@ on_row_selected (GtkListBox                        *list_box,
 }
 
 static void
-destroy_child_cb (GtkWidget *widget,
-                  gpointer   data)
-{
-	gtk_container_remove (GTK_CONTAINER (data), widget);
-}
-
-static void
 gtk_source_style_scheme_chooser_widget_populate (GtkSourceStyleSchemeChooserWidget *widget)
 {
 	GtkSourceStyleSchemeChooserWidgetPrivate *priv = gtk_source_style_scheme_chooser_widget_get_instance_private (widget);
@@ -225,14 +218,16 @@ gtk_source_style_scheme_chooser_widget_populate (GtkSourceStyleSchemeChooserWidg
 	GtkSourceLanguage *lang;
 	GtkSourceStyleSchemeManager *manager;
 	const gchar * const *scheme_ids;
+	GtkWidget *child;
 	guint i;
 	gboolean row_selected = FALSE;
 
 	g_signal_handlers_block_by_func (priv->list_box, on_row_selected, widget);
 
-	gtk_container_foreach (GTK_CONTAINER (priv->list_box),
-	                       destroy_child_cb,
-	                       NULL);
+	while ((child = gtk_widget_get_first_child (GTK_WIDGET (priv->list_box))))
+	{
+		gtk_list_box_remove (priv->list_box, child);
+	}
 
 	manager = gtk_source_style_scheme_manager_get_default ();
 	scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (manager);
@@ -318,14 +313,13 @@ gtk_source_style_scheme_chooser_widget_set_style_scheme (GtkSourceStyleSchemeCho
 
 	if (g_set_object (&priv->scheme, scheme))
 	{
-		GList *children;
-		GList *l;
+		GtkWidget *child;
 
-		children = gtk_container_get_children (GTK_CONTAINER (priv->list_box));
-
-		for (l = children; l != NULL; l = g_list_next (l))
+		for (child = gtk_widget_get_first_child (GTK_WIDGET (priv->list_box));
+		     child != NULL;
+		     child = gtk_widget_get_next_sibling (child))
 		{
-			GtkListBoxRow *row = l->data;
+			GtkListBoxRow *row = GTK_LIST_BOX_ROW (child);
 			GtkSourceStyleScheme *cur;
 
 			cur = g_object_get_data (G_OBJECT (row), "scheme");
@@ -338,8 +332,6 @@ gtk_source_style_scheme_chooser_widget_set_style_scheme (GtkSourceStyleSchemeCho
 				break;
 			}
 		}
-
-		g_list_free (children);
 
 		g_object_notify (G_OBJECT (chooser), "style-scheme");
 	}

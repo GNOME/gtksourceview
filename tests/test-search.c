@@ -477,9 +477,9 @@ main (gint argc, gchar *argv[])
 	                          main_loop);
 
 	search = test_search_new ();
-	gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (search));
+	gtk_window_set_child (GTK_WINDOW (window), GTK_WIDGET (search));
 
-	gtk_widget_show (window);
+	gtk_window_present (GTK_WINDOW (window));
 
 	g_main_loop_run (main_loop);
 

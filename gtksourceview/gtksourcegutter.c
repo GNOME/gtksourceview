@@ -69,7 +69,7 @@ typedef struct
 
 struct _GtkSourceGutter
 {
-	GtkContainer          parent_instance;
+	GtkWidget             parent_instance;
 
 	GtkSourceView        *view;
 	GList                *renderers;
@@ -84,12 +84,8 @@ struct _GtkSourceGutter
 	guint                 is_drawing : 1;
 };
 
-G_DEFINE_TYPE (GtkSourceGutter, gtk_source_gutter, GTK_TYPE_CONTAINER)
+G_DEFINE_TYPE (GtkSourceGutter, gtk_source_gutter, GTK_TYPE_WIDGET)
 
-static void gtk_source_gutter_add           (GtkContainer             *container,
-                                             GtkWidget                *widget);
-static void gtk_source_gutter_remove        (GtkContainer             *container,
-                                             GtkWidget                *widget);
 static void on_gutter_pressed_cb            (GtkSourceGutter          *gutter,
                                              gint                      n_presses,
                                              gdouble                   x,
@@ -330,24 +326,6 @@ gtk_source_gutter_measure (GtkWidget      *widget,
 }
 
 static void
-gtk_source_gutter_forall (GtkContainer *container,
-                          GtkCallback   callback,
-                          gpointer      callback_data)
-{
-	GtkSourceGutter *gutter = GTK_SOURCE_GUTTER (container);
-	const GList *list = gutter->renderers;
-
-	while (list != NULL)
-	{
-		Renderer *renderer = list->data;
-
-		list = list->next;
-
-		callback (GTK_WIDGET (renderer->renderer), callback_data);
-	}
-}
-
-static void
 gtk_source_gutter_set_property (GObject       *object,
                                 guint          prop_id,
                                 const GValue  *value,
@@ -396,7 +374,6 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
-	GtkContainerClass *container_class = GTK_CONTAINER_CLASS (klass);
 
 	object_class->constructed = gtk_source_gutter_constructed;
 	object_class->get_property = gtk_source_gutter_get_property;
@@ -406,10 +383,6 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	widget_class->measure = gtk_source_gutter_measure;
 	widget_class->size_allocate = gtk_source_gutter_size_allocate;
 	widget_class->snapshot = gtk_source_gutter_snapshot;
-
-	container_class->forall = gtk_source_gutter_forall;
-	container_class->add = gtk_source_gutter_add;
-	container_class->remove = gtk_source_gutter_remove;
 
 	/**
 	 * GtkSourceGutter:view:
@@ -608,43 +581,19 @@ renderer_find (GtkSourceGutter          *gutter,
 	return FALSE;
 }
 
-static void
-gtk_source_gutter_add (GtkContainer *container,
-		       GtkWidget    *widget)
+void
+gtk_source_gutter_remove (GtkSourceGutter         *gutter,
+                          GtkSourceGutterRenderer *renderer)
 {
-	if (!GTK_SOURCE_IS_GUTTER_RENDERER (widget))
-	{
-		g_warning ("Cannot add %s to %s as it is not a GtkSourceGutterRenderer",
-		           G_OBJECT_TYPE_NAME (widget),
-		           G_OBJECT_TYPE_NAME (container));
-	}
-	else
-	{
-		gtk_source_gutter_insert (GTK_SOURCE_GUTTER (container),
-		                          GTK_SOURCE_GUTTER_RENDERER (widget),
-		                          0);
-	}
-}
-
-static void
-gtk_source_gutter_remove (GtkContainer *container,
-                          GtkWidget    *widget)
-{
-	GtkSourceGutterRenderer *renderer;
-	GtkSourceGutter *gutter;
 	Renderer *ret;
 	GList *retlist;
 
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER (container));
-	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (widget));
-
-	gutter = GTK_SOURCE_GUTTER (container);
-	renderer = GTK_SOURCE_GUTTER_RENDERER (widget);
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER (gutter));
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
 
 	if (renderer_find (gutter, renderer, &ret, &retlist))
 	{
-		gutter->renderers =
-			g_list_delete_link (gutter->renderers, retlist);
+		gutter->renderers = g_list_delete_link (gutter->renderers, retlist);
 		gtk_widget_unparent (GTK_WIDGET (renderer));
 		renderer_free (ret);
 		gtk_widget_queue_resize (GTK_WIDGET (gutter));
@@ -652,7 +601,7 @@ gtk_source_gutter_remove (GtkContainer *container,
 	else
 	{
 		g_warning ("Failed to locate %s within %s",
-		           G_OBJECT_TYPE_NAME (widget),
+		           G_OBJECT_TYPE_NAME (renderer),
 		           G_OBJECT_TYPE_NAME (gutter));
 	}
 }

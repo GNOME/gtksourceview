@@ -102,7 +102,7 @@ create_window (void)
 
 	panel_grid = gtk_grid_new ();
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel_grid), GTK_ORIENTATION_VERTICAL);
-	gtk_container_add (GTK_CONTAINER (hgrid), panel_grid);
+  gtk_grid_attach (GTK_GRID (hgrid), panel_grid, 0, 0, 1, 1);
 
 	gtk_grid_set_row_spacing (GTK_GRID (panel_grid), 6);
 	g_object_set (panel_grid,
@@ -113,21 +113,21 @@ create_window (void)
 		      NULL);
 
 	matrix_checkbutton = gtk_check_button_new_with_label ("GtkSourceSpaceDrawer enable-matrix");
-	gtk_container_add (GTK_CONTAINER (panel_grid), matrix_checkbutton);
+	gtk_grid_attach (GTK_GRID (panel_grid), matrix_checkbutton, 0, 0, 1, 1);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (matrix_checkbutton), TRUE);
 	g_object_bind_property (matrix_checkbutton, "active",
 				space_drawer, "enable-matrix",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
 	tag_set_checkbutton = gtk_check_button_new_with_label ("GtkSourceTag draw-spaces-set");
-	gtk_container_add (GTK_CONTAINER (panel_grid), tag_set_checkbutton);
+	gtk_grid_attach (GTK_GRID (panel_grid), tag_set_checkbutton, 0, 1, 1, 1);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tag_set_checkbutton), TRUE);
 	g_object_bind_property (tag_set_checkbutton, "active",
 				tag, "draw-spaces-set",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
 	tag_checkbutton = gtk_check_button_new_with_label ("GtkSourceTag draw-spaces");
-	gtk_container_add (GTK_CONTAINER (panel_grid), tag_checkbutton);
+	gtk_grid_attach (GTK_GRID (panel_grid), tag_checkbutton, 0, 2, 1, 1);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tag_checkbutton), FALSE);
 	g_object_bind_property (tag_checkbutton, "active",
 				tag, "draw-spaces",
@@ -135,16 +135,16 @@ create_window (void)
 
 	implicit_trailing_newline_checkbutton = gtk_check_button_new_with_label ("Implicit trailing newline");
 	gtk_widget_set_margin_top (implicit_trailing_newline_checkbutton, 12);
-	gtk_container_add (GTK_CONTAINER (panel_grid), implicit_trailing_newline_checkbutton);
+	gtk_grid_attach (GTK_GRID (panel_grid), implicit_trailing_newline_checkbutton, 0, 3, 1, 1);
 	g_object_bind_property (buffer, "implicit-trailing-newline",
 				implicit_trailing_newline_checkbutton, "active",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
 	scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-	gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (view));
-	gtk_container_add (GTK_CONTAINER (hgrid), scrolled_window);
+	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scrolled_window), GTK_WIDGET (view));
+	gtk_grid_attach (GTK_GRID (hgrid), scrolled_window, 1, 0, 1, 1);
 
-	gtk_container_add (GTK_CONTAINER (window), hgrid);
+	gtk_window_set_child (GTK_WINDOW (window), hgrid);
 
 	gtk_window_present (GTK_WINDOW (window));
 }

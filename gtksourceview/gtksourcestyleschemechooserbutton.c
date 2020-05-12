@@ -193,14 +193,14 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 	gtk_widget_set_hexpand (scrolled_window, TRUE);
 	gtk_widget_set_vexpand (scrolled_window, TRUE);
 	content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
-	gtk_container_add (GTK_CONTAINER (content_area), scrolled_window);
+	gtk_box_append (GTK_BOX (content_area), scrolled_window);
 
 	priv->chooser = GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET (gtk_source_style_scheme_chooser_widget_new ());
 	gtk_widget_show (GTK_WIDGET (priv->chooser));
 	gtk_source_style_scheme_chooser_set_style_scheme (GTK_SOURCE_STYLE_SCHEME_CHOOSER (priv->chooser),
 	                                                  priv->scheme);
 
-	gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (priv->chooser));
+	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scrolled_window), GTK_WIDGET (priv->chooser));
 
 	if (GTK_IS_ROOT (parent) && GTK_IS_WINDOW (parent))
 	{
