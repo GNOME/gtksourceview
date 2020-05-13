@@ -95,7 +95,7 @@
       </include>
     </context>
 
-    <context id="command-substitution" style-ref="subshell">
+    <context id="command-substitution" style-ref="subshell" class="no-spell-check">
       <start>\$\((?!\()</start>
       <end>\)</end>
       <include>
@@ -202,7 +202,7 @@
       </include>
     </context>
 
-    <context id="arithmetic-expansion">
+    <context id="arithmetic-expansion" class="no-spell-check">
       <start>\$\({2}(?!\()</start>
       <end>\){2}</end>
       <include>
@@ -228,7 +228,7 @@
 
     <!-- Treated separately, not including itself nor command-like contexts
       (see https://gitlab.gnome.org/GNOME/gtksourceview/issues/94) -->
-    <context id="backtick-subshell" style-ref="subshell">
+    <context id="backtick-subshell" style-ref="subshell" class="no-spell-check">
       <start>`</start>
       <end>`</end>
       <include>
@@ -426,11 +426,11 @@
       </include>
     </context>
 
-    <context id="short-parameter-expansion" style-ref="variable">
+    <context id="short-parameter-expansion" style-ref="variable" class="no-spell-check">
       <match>\$(\%{special-parameter}|\%{identifier})</match>
     </context>
 
-    <context id="parameter-expansion" style-ref="def:statement" style-inside="true">
+    <context id="parameter-expansion" style-ref="def:statement" style-inside="true" class="no-spell-check">
       <start>\$\{(?=[!#]?\%{identifier}|\%{special-parameter})</start>
       <end>\}</end>
       <include>
@@ -573,7 +573,7 @@
       </include>
     </context>
 
-    <context id="history-expansion-command">
+    <context id="history-expansion-command" class="no-spell-check">
       <start extended="true">
         # Event Designator
         ((?&lt;!\\)!) (?: (!|\#|-?[1-9][0-9]*) | (\?)[^?]+(\?|$)
