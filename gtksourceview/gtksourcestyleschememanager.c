@@ -572,8 +572,8 @@ gtk_source_style_scheme_manager_get_scheme_ids (GtkSourceStyleSchemeManager *man
  *
  * Looks up style scheme by id.
  *
- * Returns: (transfer none): a #GtkSourceStyleScheme object. Returned value is owned by
- * @manager and must not be unref'ed.
+ * Returns: (transfer none) (nullable): a #GtkSourceStyleScheme object.
+ *   The returned value is owned by @manager and must not be unref'ed.
  */
 GtkSourceStyleScheme *
 gtk_source_style_scheme_manager_get_scheme (GtkSourceStyleSchemeManager *manager,
