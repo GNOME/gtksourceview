@@ -614,6 +614,7 @@ gtk_source_completion_proposals_size_allocate (GtkSourceCompletion *completion,
 	gint cell_offset = 0;
 	gint column_offset;
 	gint x_offset = 0;
+	gdouble x_translated;
 
 	if (!gtk_widget_get_realized (GTK_WIDGET (completion->tree_view_proposals)))
 	{
@@ -638,10 +639,10 @@ gtk_source_completion_proposals_size_allocate (GtkSourceCompletion *completion,
 	                                  GTK_WIDGET (completion->main_window),
 	                                  x_offset,
 	                                  0,
-	                                  &x_offset,
+	                                  &x_translated,
 	                                  NULL);
 
-	_gtk_source_completion_info_set_xoffset (completion->main_window, -x_offset);
+	_gtk_source_completion_info_set_xoffset (completion->main_window, -x_translated);
 }
 
 static void

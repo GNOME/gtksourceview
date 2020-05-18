@@ -202,6 +202,8 @@ move_to_iter (GtkSourceCompletionInfo *window,
 	GdkPopupLayout *layout;
 	GdkSurface *surface;
 	GtkRoot *root;
+	gdouble x;
+	gdouble y;
 
 	if (!GTK_IS_NATIVE (window))
 		return;
@@ -226,8 +228,11 @@ move_to_iter (GtkSourceCompletionInfo *window,
 	                                  GTK_WIDGET (root),
 	                                  location.x + window->xoffset,
 	                                  location.y,
-	                                  &location.x,
-	                                  &location.y);
+	                                  &x,
+	                                  &y);
+
+	location.x = x;
+	location.y = y;
 
 	layout = gdk_popup_layout_new (&location, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST);
 	gdk_popup_layout_set_anchor_hints (layout, GDK_ANCHOR_SLIDE | GDK_ANCHOR_FLIP_Y | GDK_ANCHOR_RESIZE);
