@@ -71,15 +71,15 @@
         <context ref="typescript:constructor-modifier"/>
         <context ref="typescript-type-gen:type-parameters-list"/>
 
-        <context id="_asserts-type-predicates" style-ref="typescript:type-keyword">
+        <context id="_asserts-type-predicate" style-ref="typescript:type-keyword" once-only="true">
           <keyword>asserts</keyword>
-        </context> <!-- /_asserts-type-predicates -->
+        </context> <!-- /_asserts-type-predicate -->
 
-        <context id="_indexed-type-queries" style-ref="typescript:type-keyword">
+        <context id="_indexed-type-query" style-ref="typescript:type-keyword" once-only="true">
           <keyword>keyof</keyword>
-        </context> <!-- /_indexed-type-queries -->
+        </context> <!-- /_indexed-type-query -->
 
-        <context id="_readonly-type-modifier" style-ref="typescript:type-keyword">
+        <context id="_readonly-type-modifier" style-ref="typescript:type-keyword" once-only="true">
           <keyword>readonly</keyword>
         </context> <!-- /_readonly-type-modifier -->
 

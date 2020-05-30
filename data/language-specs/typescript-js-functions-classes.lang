@@ -170,7 +170,7 @@
 
     <!-- ## Class expression keyword -->
 
-    <context id="_class-expression-abstract-keyword" style-ref="js:keyword">
+    <context id="_class-expression-abstract-keyword" style-ref="js:keyword" once-only="true">
       <keyword>abstract</keyword>
     </context> <!-- /_class-expression-abstract-keyword -->
 
@@ -182,7 +182,7 @@
       </include>
     </context> <!-- /_ordered-class-expression-abstract-keyword -->
 
-    <context id="_class-expression-class-keyword" style-ref="js:keyword">
+    <context id="_class-expression-class-keyword" style-ref="js:keyword" once-only="true">
       <keyword>class</keyword>
     </context> <!-- /_class-expression-class-keyword -->
 

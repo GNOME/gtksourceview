@@ -43,7 +43,7 @@
 
     <!-- ## Function expression keyword -->
 
-    <context id="_function-expression-async-keyword" style-ref="js:keyword">
+    <context id="_function-expression-async-keyword" style-ref="js:keyword" once-only="true">
       <keyword>async</keyword>
     </context> <!-- /_function-expression-async-keyword -->
 
@@ -55,7 +55,7 @@
       </include>
     </context> <!-- /_ordered-function-expression-async-keyword -->
 
-    <context id="_function-expression-function-keyword" style-ref="js:keyword">
+    <context id="_function-expression-function-keyword" style-ref="js:keyword" once-only="true">
       <keyword>function</keyword>
     </context> <!-- /_function-expression-function-keyword -->
 
