@@ -40,9 +40,12 @@
         <!-- import.meta: stage 3 proposal -->
         <context id="_import-meta-object-keywords">
           <start extended="true">
-            \%[ import \%] (?= \%{typescript:import-meta-object-keyword-suffix} )
+            \%{js:keyword-start} import \%{js:keyword-end}
+            (?= \%{typescript:import-meta-object-keyword-suffix} )
           </start>
-          <end>\%[meta\%]</end>
+          <end extended="true">
+            \%{js:keyword-start} meta \%{js:keyword-end}
+          </end>
           <include>
             <context sub-pattern="0" where="start" style-ref="js:keyword"/>
             <context sub-pattern="0" where="end" style-ref="js:keyword"/>

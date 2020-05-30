@@ -94,7 +94,7 @@
           tutorial |
           variation
         )
-        \%]
+        \%{js:keyword-end}
       </start>
       <end>(?=\S)</end>
       <include>
@@ -113,7 +113,7 @@
           fires |
           listens
         )
-        \%]
+        \%{js:keyword-end}
       </start>
       <end>(?=\S)</end>
       <include>
@@ -130,7 +130,7 @@
           access |
           kind
         )
-        \%]
+        \%{js:keyword-end}
       </start>
       <end>(?=\S)</end>
       <include>
@@ -168,7 +168,7 @@
             typeParam |  # tsdoc
             this
           )
-          \%]
+          \%{js:keyword-end}
         )
       </start>
       <end>(?=\S)</end>
@@ -198,7 +198,7 @@
           typedef |
           var
         )
-        \%]
+        \%{js:keyword-end}
       </start>
       <end>(?=\S)</end>
       <include>
@@ -210,7 +210,9 @@
     </context>
 
     <context id="borrows-block-tag" end-at-line-end="true">
-      <start>@borrows\%]</start>
+      <start extended="true">
+        @borrows \%{js:keyword-end}
+      </start>
       <end>(?=\S)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="block-tag"/>
@@ -221,7 +223,9 @@
         </context>
 
         <context end-parent="true">
-          <start>\%[as\%]</start>
+          <start extended="true">
+            \%{js:keyword-start} as \%{js:keyword-end}
+          </start>
           <end>(?=\S)</end>
           <include>
             <context ref="argument" style-ref="namepath"/>
@@ -232,7 +236,9 @@
     </context>
 
     <context id="note-block-tag" style-ref="block-tag">
-      <match>@todo\%]</match>
+      <match extended="true">
+        @todo \%{js:keyword-end}
+      </match>
       <include>
         <context sub-pattern="0" style-ref="note"/>
       </include>

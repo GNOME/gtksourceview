@@ -218,6 +218,14 @@
       \%{identifier-start} \%{identifier-part}*
     </define-regex> <!-- /identifier-->
 
+    <define-regex id="keyword-start" extended="true">
+      (?&lt;! \%{identifier-char} )
+    </define-regex> <!-- /keyword-start -->
+
+    <define-regex id="keyword-end" extended="true">
+      (?! \%{identifier-char} )
+    </define-regex> <!-- /keyword-end -->
+
     <!-- <WhiteSpace> -->
     <!-- does not include characters from <LineTerminator>,
          to only allow space separators when we want match a
@@ -283,21 +291,21 @@
       \%{optional-whitespace-or-comments}
       \.
       \%{optional-whitespace-or-comments}
-      target \%]
+      target \%{keyword-end}
     </define-regex> <!-- /new-target-object-keyword-suffix -->
 
     <!-- async function (ES2017)
          no line terminator allowed between "async" and "function" -->
     <define-regex id="function-expression-keyword" extended="true">
       (?:
-        \%[ async \%]
+        \%{keyword-start} async \%{keyword-end}
         \%{optional-whitespace-or-comments}
       )?
-      \%[ function \%]
+      \%{keyword-start} function \%{keyword-end}
     </define-regex> <!-- /function-expression-keyword -->
 
     <define-regex id="class-expression-keyword" extended="true">
-      \%[ class \%]
+      \%{keyword-start} class \%{keyword-end}
     </define-regex> <!-- /class-expression-keyword -->
 
     <!-- ## Embedded lang hooks

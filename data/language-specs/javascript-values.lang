@@ -122,7 +122,8 @@
 
         <context id="_import-function-keywords">
           <start extended="true">
-            \%[ import \%] (?= \%{js:import-function-keyword-suffix} )
+            \%{js:keyword-start} import \%{js:keyword-end}
+            (?= \%{js:import-function-keyword-suffix} )
           </start>
           <end>(?=\()</end>
           <include>
@@ -134,9 +135,12 @@
 
         <context id="_new-target-object-keywords">
           <start extended="true">
-            \%[ new \%] (?= \%{js:new-target-object-keyword-suffix} )
+            \%{js:keyword-start} new \%{js:keyword-end}
+            (?= \%{js:new-target-object-keyword-suffix} )
           </start>
-          <end>\%[target\%]</end>
+          <end extended="true">
+            \%{js:keyword-start} target \%{js:keyword-end}
+          </end>
           <include>
             <context sub-pattern="0" where="start" style-ref="js:keyword"/>
             <context sub-pattern="0" where="end" style-ref="js:keyword"/>

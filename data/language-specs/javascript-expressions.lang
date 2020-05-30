@@ -60,7 +60,7 @@
         <!-- ES2017, cannot be followed by line terminator -->
         <context id="_async-pre-primary-expression-keywords" style-ref="js:keyword">
           <match extended="true">
-            \%[ async \%]
+            \%{js:keyword-start} async \%{js:keyword-end}
             (?=                                       # preceeds arrow function
               \%{js:optional-whitespace-or-comments}
               (?:
@@ -72,14 +72,15 @@
             )
             (?!                                       # does not preceed "function" (leave to function expression)
               \%{js:optional-whitespace-or-comments}
-              \%[ function \%]
+              \%{js:keyword-start} function \%{js:keyword-end}
             )
           </match>
         </context> <!-- /_async-pre-primary-expression-keywords -->
 
         <context id="_new-pre-primary-expression-keywords" style-ref="js:keyword">
           <match extended="true">
-            \%[ new \%] (?! \%{js:new-target-object-keyword-suffix} )
+            \%{js:keyword-start} new \%{js:keyword-end}
+            (?! \%{js:new-target-object-keyword-suffix} )
           </match>
         </context> <!-- /_new-pre-primary-expression-keywords -->
 
@@ -588,7 +589,7 @@
     <!-- # Binary operators -->
 
     <define-regex id="_keyword-binary-operator" extended="true">
-      \%[ (?: instanceof | in ) \%]
+      \%{js:keyword-start} (?: instanceof | in ) \%{js:keyword-end}
     </define-regex> <!-- /_keyword-binary-operator -->
 
     <!-- excluding comma operator -->

@@ -39,7 +39,9 @@
     -->
 
     <context id="_export-as-namespace-keyword" style-ref="js:keyword" once-only="true">
-      <match>\%[namespace\%]</match>
+      <match extended="true">
+        \%{js:keyword-start} namespace \%{js:keyword-end}
+      </match>
     </context> <!-- /_export-as-namespace-keyword -->
 
     <context id="_ordered-export-as-namespace-keyword" once-only="true">
@@ -51,7 +53,9 @@
     </context> <!-- /_ordered-export-as-namespace-keyword -->
 
     <context id="_choice-export-as-namespace" end-parent="true">
-      <start>\%[as\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} as \%{js:keyword-end}
+      </start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -120,7 +124,9 @@
     -->
 
     <context id="_choice-import-require" end-parent="true">
-      <start>\%[require\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} require \%{js:keyword-end}
+      </start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -196,7 +202,7 @@
     <!-- ## Import declaration -->
 
     <define-regex id="_import-declaration-keyword" extended="true">
-      \%[ import \%]
+      \%{js:keyword-start} import \%{js:keyword-end}
       (?! \%{js:import-function-keyword-suffix} )
       (?! \%{typescript:import-meta-object-keyword-suffix} )
     </define-regex>

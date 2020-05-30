@@ -72,11 +72,13 @@
     -->
 
     <define-regex id="_ambient-declaration-keyword" extended="true">
-      \%[ declare \%]
+      \%{js:keyword-start} declare \%{js:keyword-end}
     </define-regex> <!-- /_ambient-declaration-keyword -->
 
     <context id="_choice-global-augmentation" style-ref="typescript:global-augmentation" end-parent="true">
-      <start>\%[global\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} global \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -136,7 +138,7 @@
     -->
 
     <define-regex id="_const-declaration-keyword" extended="true">
-      \%[ const \%]
+      \%{js:keyword-start} const \%{js:keyword-end}
     </define-regex> <!-- /_const-declaration-keyword -->
 
     <context id="_const-declaration-content">
@@ -182,7 +184,7 @@
     -->
 
     <define-regex id="_enum-declaration-keyword" extended="true">
-      \%[ enum \%]
+      \%{js:keyword-start} enum \%{js:keyword-end}
     </define-regex> <!-- /_enum-declaration-keyword -->
 
     <context id="_enum-member-content">
@@ -271,11 +273,13 @@
     -->
 
     <define-regex id="_interface-declaration-keyword" extended="true">
-      \%[ interface \%]
+      \%{js:keyword-start} interface \%{js:keyword-end}
     </define-regex> <!-- /_interface-declaration-keyword -->
 
     <context id="_interface-extends-clause" once-only="true">
-      <start>\%[extends\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} extends \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -338,7 +342,7 @@
     -->
 
     <define-regex id="_module-declaration-keyword" extended="true">
-      \%[ module \%]
+      \%{js:keyword-start} module \%{js:keyword-end}
     </define-regex> <!-- /_module-declaration-keyword -->
 
     <context id="_module-identifier-or-string" once-only="true">
@@ -401,7 +405,7 @@
     -->
 
     <define-regex id="_namespace-declaration-keyword" extended="true">
-      \%[ namespace \%]
+      \%{js:keyword-start} namespace \%{js:keyword-end}
     </define-regex> <!-- /_namespace-declaration-keyword -->
 
     <context id="_namespace-body" once-only="true">
@@ -468,7 +472,7 @@
     -->
 
     <define-regex id="_type-alias-declaration-keyword" extended="true">
-      \%[ type \%]
+      \%{js:keyword-start} type \%{js:keyword-end}
     </define-regex> <!-- /_type-alias-declaration-keyword -->
 
     <context id="_type-alias-value" once-only="true">

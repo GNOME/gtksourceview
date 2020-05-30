@@ -61,7 +61,7 @@
          any definitive documentation -->
     <context id="_jsx-comment-pragmas" style-ref="js:directive" class="comment">
       <start case-sensitive="false" extended="true">
-        /\*\*? \%{js:whitespace}* @jsx \%]
+        /\*\*? \%{js:whitespace}* @jsx \%{js:keyword-end}
       </start>
       <end>\*/</end>
       <include>
@@ -71,7 +71,7 @@
 
     <context id="_jsx-comment-pragmas-no-extend-parent" style-ref="js:directive" class="comment" extend-parent="false">
       <start extended="true">
-        /\*\*? \%{js:whitespace}* @jsx \%]
+        /\*\*? \%{js:whitespace}* @jsx \%{js:keyword-end}
       </start>
       <end>\*/</end>
       <include>
@@ -132,7 +132,7 @@
           \%{js:identifier}
           \%{js:optional-whitespace-or-comments}
           (?:
-            \%[ extends \%] |
+            \%{js:keyword-start} extends \%{js:keyword-end} |
             , |
             =
           )

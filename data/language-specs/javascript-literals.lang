@@ -39,7 +39,9 @@
 
     <!-- <NullLiteral> -->
     <context id="null-value" style-ref="js:null-value">
-      <match>\%[null\%]</match>
+      <match extended="true">
+        \%{js:keyword-start} null \%{js:keyword-end}
+      </match>
     </context> <!-- /null-value -->
 
     <!-- <BooleanLiteral> -->
@@ -310,7 +312,7 @@
             <context ref="choice-string"/>
 
             <define-regex id="_special-property-names" extended="true">
-              \%[ constructor \%]
+              \%{js:keyword-start} constructor \%{js:keyword-end}
             </define-regex> <!-- /_special-property-names -->
 
             <context id="_choice-special-property-name" style-ref="js:built-in-method" end-parent="true">

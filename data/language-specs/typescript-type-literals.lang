@@ -38,7 +38,7 @@
     -->
 
     <define-regex id="_basic-types" extended="true">
-      \%[
+      \%{js:keyword-start}
       (?:
         any |
         bigint |
@@ -53,7 +53,7 @@
         unknown |
         void
       )
-      \%]
+      \%{js:keyword-end}
     </define-regex> <!-- /_basic-types -->
 
     <!-- <PredefinedType> -->
@@ -70,7 +70,7 @@
     -->
 
     <define-regex id="_boolean-types" extended="true">
-      \%[ (?: false | true ) \%]
+      \%{js:keyword-start} (?: false | true ) \%{js:keyword-end}
     </define-regex> <!-- /_boolean-literal-types -->
 
     <!-- <PredefinedType> -->
@@ -107,7 +107,9 @@
 
     <!-- <ThisType> -->
     <context id="choice-this-type" style-ref="typescript:basic-type" end-parent="true">
-      <start>(?=\%[this\%])</start>
+      <start extended="true">
+        (?= \%{js:keyword-start} this \%{js:keyword-end} )
+      </start>
       <end>this</end>
     </context> <!-- /choice-this-type -->
 
@@ -235,7 +237,9 @@
             <context ref="typescript:choice-type-annotation"/>
 
             <context id="_choice-mapped-type" end-parent="true">
-              <start>\%[in\%]</start>
+              <start extended="true">
+                \%{js:keyword-start} in \%{js:keyword-end}
+              </start>
               <end>\%{js:before-next-token}</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>

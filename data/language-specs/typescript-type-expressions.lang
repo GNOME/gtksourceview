@@ -41,7 +41,9 @@
     -->
 
     <context id="_choice-infer-declaration" end-parent="true">
-      <start>\%[infer\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} infer \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -72,21 +74,29 @@
         <context ref="typescript-type-gen:type-parameters-list"/>
 
         <context id="_asserts-type-predicate" style-ref="typescript:type-keyword" once-only="true">
-          <match>\%[asserts\%]</match>
+          <match extended="true">
+            \%{js:keyword-start} asserts \%{js:keyword-end}
+          </match>
         </context> <!-- /_asserts-type-predicate -->
 
         <context id="_indexed-type-query" style-ref="typescript:type-keyword" once-only="true">
-          <match>\%[keyof\%]</match>
+          <match extended="true">
+            \%{js:keyword-start} keyof \%{js:keyword-end}
+          </match>
         </context> <!-- /_indexed-type-query -->
 
         <context id="_readonly-type-modifier" style-ref="typescript:type-keyword" once-only="true">
-          <match>\%[readonly\%]</match>
+          <match extended="true">
+            \%{js:keyword-start} readonly \%{js:keyword-end}
+          </match>
         </context> <!-- /_readonly-type-modifier -->
 
         <!-- for unique symbol subtype, can contain newlines between
              "unique" and "symbol" -->
         <context id="_unique-symbol-subtype" style-ref="typescript:basic-type" once-only="true">
-          <match>\%[unique\%]</match>
+          <match extended="true">
+            \%{js:keyword-start} unique \%{js:keyword-end}
+          </match>
         </context> <!-- /_unique-symbol-subtype -->
 
       </include>
@@ -279,7 +289,9 @@
 
             <!-- <TypeQuery> -->
             <context id="_choice-type-query" style-ref="typescript:type-query" end-parent="true">
-              <start>\%[typeof\%]</start>
+              <start extended="true">
+                \%{js:keyword-start} typeof \%{js:keyword-end}
+              </start>
               <end>\%{js:before-next-token}</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -394,7 +406,9 @@
     </context> <!-- /_choice-conditional-type-operator-super-type -->
 
     <context id="_conditional-type-operators">
-      <start>\%[extends\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} extends \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -461,7 +475,9 @@
         </context> <!-- /_union-intersection-type-operators -->
 
         <context id="_type-predicate-operators">
-          <start>\%[is\%]</start>
+          <start extended="true">
+            \%{js:keyword-start} is \%{js:keyword-end}
+          </start>
           <end>\%{js:before-next-token}</end>
           <include>
             <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>

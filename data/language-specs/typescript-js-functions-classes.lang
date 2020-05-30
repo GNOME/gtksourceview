@@ -171,7 +171,9 @@
     <!-- ## Class expression keyword -->
 
     <context id="_class-expression-abstract-keyword" style-ref="js:keyword" once-only="true">
-      <match>\%[abstract\%]</match>
+      <match extended="true">
+        \%{js:keyword-start} abstract \%{js:keyword-end}
+      </match>
     </context> <!-- /_class-expression-abstract-keyword -->
 
     <context id="_ordered-class-expression-abstract-keyword" once-only="true">
@@ -183,7 +185,9 @@
     </context> <!-- /_ordered-class-expression-abstract-keyword -->
 
     <context id="_class-expression-class-keyword" style-ref="js:keyword" once-only="true">
-      <match>\%[class\%]</match>
+      <match extended="true">
+        \%{js:keyword-start} class \%{js:keyword-end}
+      </match>
     </context> <!-- /_class-expression-class-keyword -->
 
     <context id="_ordered-class-expression-class-keyword" once-only="true">
@@ -201,7 +205,9 @@
       <include>
 
         <context id="_choice-class-optional-name-ignore-implements" end-parent="true">
-          <start>(?=\%[implements\%])</start>
+          <start extended="true">
+            (?= \%{js:keyword-start} implements \%{js:keyword-end} )
+          </start>
           <end>\%{def:always-match}</end>
         </context> <!-- /_choice-class-optional-name-ignore-implements -->
 
@@ -222,7 +228,9 @@
     <!-- ## Class implements clause -->
 
     <context id="_class-implements-clause" once-only="true">
-      <start>\%[implements\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} implements \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
