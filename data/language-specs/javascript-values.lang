@@ -120,7 +120,7 @@
           <keyword>this</keyword>
         </context> <!-- /_object-keywords -->
 
-        <context id="_import-function-keyword">
+        <context id="_import-function-keywords">
           <start extended="true">
             \%[ import \%] (?= \%{js:import-function-keyword-suffix} )
           </start>
@@ -130,9 +130,9 @@
             <!-- no embedded-lang-hooks here -->
             <context ref="js:comments"/>
           </include>
-        </context> <!-- /_import-function-keyword -->
+        </context> <!-- /_import-function-keywords -->
 
-        <context id="_new-target-object-keyword">
+        <context id="_new-target-object-keywords">
           <start extended="true">
             \%[ new \%] (?= \%{js:new-target-object-keyword-suffix} )
           </start>
@@ -150,7 +150,7 @@
             </context> <!-- /_new-target-object-keyword-content -->
 
           </include>
-        </context> <!-- /_new-target-object-keyword -->
+        </context> <!-- /_new-target-object-keywords -->
 
       </include>
     </context> <!-- /global-values -->

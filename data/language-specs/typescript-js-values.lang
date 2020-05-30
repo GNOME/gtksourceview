@@ -38,7 +38,7 @@
       <include>
 
         <!-- import.meta: stage 3 proposal -->
-        <context id="_import-meta-object-keyword">
+        <context id="_import-meta-object-keywords">
           <start extended="true">
             \%[ import \%] (?= \%{typescript:import-meta-object-keyword-suffix} )
           </start>
@@ -55,7 +55,7 @@
             </context> <!-- /_import-meta-object-keyword-content -->
 
           </include>
-        </context> <!-- /_import-meta-object-keyword -->
+        </context> <!-- /_import-meta-object-keywords -->
 
         <context ref="js-val:global-values" original="true"/>
       </include>

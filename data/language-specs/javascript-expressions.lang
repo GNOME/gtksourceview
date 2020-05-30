@@ -58,7 +58,7 @@
         <context ref="js:embedded-lang-hooks"/>
 
         <!-- ES2017, cannot be followed by line terminator -->
-        <context id="_async-pre-primary-expression-keyword" style-ref="js:keyword">
+        <context id="_async-pre-primary-expression-keywords" style-ref="js:keyword">
           <match extended="true">
             \%[ async \%]
             (?=                                       # preceeds arrow function
@@ -75,13 +75,13 @@
               \%[ function \%]
             )
           </match>
-        </context> <!-- /_async-pre-primary-expression-keyword -->
+        </context> <!-- /_async-pre-primary-expression-keywords -->
 
-        <context id="_new-pre-primary-expression-keyword" style-ref="js:keyword">
+        <context id="_new-pre-primary-expression-keywords" style-ref="js:keyword">
           <match extended="true">
             \%[ new \%] (?! \%{js:new-target-object-keyword-suffix} )
           </match>
-        </context> <!-- /_new-pre-primary-expression-keyword -->
+        </context> <!-- /_new-pre-primary-expression-keywords -->
 
       </include>
     </context> <!-- /_pre-primary-expression -->
@@ -354,7 +354,7 @@
 
         <!-- ES2020 -->
         <!-- <OptionalChain> (part of) -->
-        <context id="_optional-chain">
+        <context id="_optional-chains">
           <start>\?\.(?![0-9])</start>
           <end>\%{js:before-next-token}</end>
           <include>
@@ -371,7 +371,7 @@
             </context> <!-- /_optional-chain-content -->
 
           </include>
-        </context> <!-- /_optional-chain -->
+        </context> <!-- /_optional-chains -->
 
         <context ref="_function-arguments-lists"/>
         <context ref="js-lit:template-literals"/>
