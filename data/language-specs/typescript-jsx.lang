@@ -47,7 +47,7 @@
       <include>
         <context ref="typescript:typescript"/>
       </include>
-    </context>
+    </context> <!-- /main-lang -->
 
     <replace id="jsx:main-lang" ref="main-lang"/>
 
@@ -170,7 +170,7 @@
         <context ref="_arrow-function-type-parameters-list"/>
         <context ref="js-expr:_pre-lhs-expression" original="true"/>
       </include>
-    </context>
+    </context> <!-- /_pre-lhs-expression -->
 
     <replace id="js-expr:_pre-lhs-expression" ref="_pre-lhs-expression"/>
 
@@ -185,7 +185,7 @@
         <context ref="jsx:_attribute-names"/>
         <context ref="jsx:_attribute-initializers"/>
       </include>
-    </context>
+    </context> <!-- /_start-tag-head-content -->
 
     <replace id="jsx:_start-tag-head-content" ref="_start-tag-head-content"/>
 
@@ -196,7 +196,7 @@
       <include>
         <context ref="jsx:jsx"/>
       </include>
-    </context>
+    </context> <!-- /typescript-jsx -->
 
   </definitions>
 </language>

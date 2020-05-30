@@ -460,7 +460,7 @@
         <context ref="js-lit:_array-literal-content" original="true"/>
         <context ref="_message-parameter-data"/>
       </include>
-    </context>
+    </context> <!-- /_array-literal-content -->
 
     <replace id="js-lit:_array-literal-content" ref="_array-literal-content"/>
 
@@ -484,13 +484,13 @@
         <context id="_boolean-constants" style-ref="js:boolean">
           <keyword>NO</keyword>
           <keyword>YES</keyword>
-        </context>
+        </context> <!-- /_boolean-constants -->
 
         <context id="_null-constants" style-ref="js:null-value">
           <keyword>nil</keyword>
           <keyword>Nil</keyword>
           <keyword>NULL</keyword>
-        </context>
+        </context> <!-- /_null-constants -->
 
         <context id="_math-constants" style-ref="js:built-in-value">
           <keyword>E</keyword>
@@ -503,7 +503,7 @@
           <keyword>PI_2</keyword>
           <keyword>SQRT1_2</keyword>
           <keyword>SQRT2</keyword>
-        </context>
+        </context> <!-- /_math-constants -->
 
         <context id="_math-functions" style-ref="js:built-in-function">
           <keyword>ABS</keyword>
@@ -524,13 +524,13 @@
           <keyword>SIN</keyword>
           <keyword>SQRT</keyword>
           <keyword>TAN</keyword>
-        </context>
+        </context> <!-- /_math-functions -->
 
         <!-- "super" is already highlighted by default -->
         <context id="_object-keywords" style-ref="js:keyword">
           <keyword>_cmd</keyword>
           <keyword>self</keyword>
-        </context>
+        </context> <!-- /_object-keywords -->
 
         <context ref="js-val:global-values" original="true"/>
       </include>
