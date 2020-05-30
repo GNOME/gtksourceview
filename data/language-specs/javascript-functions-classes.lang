@@ -44,7 +44,7 @@
     <!-- ## Function expression keyword -->
 
     <context id="_function-expression-async-keyword" style-ref="js:keyword" once-only="true">
-      <keyword>async</keyword>
+      <match>\%[async\%]</match>
     </context> <!-- /_function-expression-async-keyword -->
 
     <context id="_ordered-function-expression-async-keyword" once-only="true">
@@ -56,7 +56,7 @@
     </context> <!-- /_ordered-function-expression-async-keyword -->
 
     <context id="_function-expression-function-keyword" style-ref="js:keyword" once-only="true">
-      <keyword>function</keyword>
+      <match>\%[function\%]</match>
     </context> <!-- /_function-expression-function-keyword -->
 
     <context id="_ordered-function-expression-function-keyword" once-only="true">

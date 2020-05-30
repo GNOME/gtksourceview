@@ -72,21 +72,21 @@
         <context ref="typescript-type-gen:type-parameters-list"/>
 
         <context id="_asserts-type-predicate" style-ref="typescript:type-keyword" once-only="true">
-          <keyword>asserts</keyword>
+          <match>\%[asserts\%]</match>
         </context> <!-- /_asserts-type-predicate -->
 
         <context id="_indexed-type-query" style-ref="typescript:type-keyword" once-only="true">
-          <keyword>keyof</keyword>
+          <match>\%[keyof\%]</match>
         </context> <!-- /_indexed-type-query -->
 
         <context id="_readonly-type-modifier" style-ref="typescript:type-keyword" once-only="true">
-          <keyword>readonly</keyword>
+          <match>\%[readonly\%]</match>
         </context> <!-- /_readonly-type-modifier -->
 
         <!-- for unique symbol subtype, can contain newlines between
              "unique" and "symbol" -->
         <context id="_unique-symbol-subtype" style-ref="typescript:basic-type" once-only="true">
-          <keyword>unique</keyword>
+          <match>\%[unique\%]</match>
         </context> <!-- /_unique-symbol-subtype -->
 
       </include>

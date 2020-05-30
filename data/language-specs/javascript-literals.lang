@@ -39,7 +39,7 @@
 
     <!-- <NullLiteral> -->
     <context id="null-value" style-ref="js:null-value">
-      <keyword>null</keyword>
+      <match>\%[null\%]</match>
     </context> <!-- /null-value -->
 
     <!-- <BooleanLiteral> -->

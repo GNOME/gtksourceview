@@ -39,7 +39,7 @@
     -->
 
     <context id="_export-as-namespace-keyword" style-ref="js:keyword" once-only="true">
-      <keyword>namespace</keyword>
+      <match>\%[namespace\%]</match>
     </context> <!-- /_export-as-namespace-keyword -->
 
     <context id="_ordered-export-as-namespace-keyword" once-only="true">

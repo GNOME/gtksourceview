@@ -324,7 +324,7 @@
           <include>
 
             <context id="_choice-this-parameter" style-ref="js:keyword" end-parent="true">
-              <keyword>this</keyword>
+              <match>\%[this\%]</match>
             </context> <!-- /_choice-this-parameter -->
 
             <context id="_js-choice-binding" end-parent="true">
