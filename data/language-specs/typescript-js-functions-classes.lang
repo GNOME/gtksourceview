@@ -34,6 +34,8 @@
     <!-- # Accessibility modifier -->
 
     <context id="_accessibility-modifier" style-ref="js:keyword" once-only="true">
+      <prefix>\%{js:keyword-start}</prefix>
+      <suffix>\%{js:keyword-end}</suffix>
       <keyword>private</keyword>
       <keyword>protected</keyword>
       <keyword>public</keyword>
@@ -265,6 +267,8 @@
           <include>
 
             <context id="_class-body-member-modifier-keywords" style-ref="js:keyword">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>abstract</keyword>
               <keyword>declare</keyword>
               <keyword>readonly</keyword>

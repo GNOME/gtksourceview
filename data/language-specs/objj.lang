@@ -94,6 +94,8 @@
     <!-- ## Objective-J types -->
 
     <context id="_common-types" style-ref="type">
+      <prefix>\%{js:keyword-start}</prefix>
+      <suffix>\%{js:keyword-end}</suffix>
       <keyword>BOOL</keyword>
       <keyword>byte</keyword>
       <keyword>char</keyword>
@@ -112,11 +114,14 @@
       <include>
 
         <context id="_variable-only-type-keywords" style-ref="type">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>IBOutlet</keyword>
         </context> <!-- /_variable-only-type-keywords -->
 
         <context id="_variable-only-at-type-keywords" style-ref="type">
           <prefix>@</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>outlet</keyword>
         </context> <!-- /_variable-only-at-type-keywords -->
 
@@ -127,12 +132,15 @@
       <include>
 
         <context id="_method-return-only-type-keywords" style-ref="type">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>IBAction</keyword>
           <keyword>void</keyword>
         </context> <!-- /_method-return-only-type-keywords -->
 
         <context id="_method-return-only-at-type-keywords" style-ref="type">
           <prefix>@</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>action</keyword>
         </context> <!-- /_method-return-only-at-type-keywords -->
 
@@ -187,6 +195,8 @@
           <include>
 
             <context id="_at-implementation-variable-declaration-accessor-modifier-keywords" style-ref="js:keyword">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>copy</keyword>
               <keyword>getter</keyword>
               <keyword>property</keyword>
@@ -339,6 +349,7 @@
 
             <context id="_at-protocol-at-keywords" style-ref="js:keyword">
               <prefix>@</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>optional</keyword>
               <keyword>required</keyword>
             </context> <!-- /_at-protocol-at-keywords -->
@@ -502,17 +513,23 @@
       <include>
 
         <context id="_boolean-constants" style-ref="js:boolean">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>NO</keyword>
           <keyword>YES</keyword>
         </context> <!-- /_boolean-constants -->
 
         <context id="_null-constants" style-ref="js:null-value">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>nil</keyword>
           <keyword>Nil</keyword>
           <keyword>NULL</keyword>
         </context> <!-- /_null-constants -->
 
         <context id="_math-constants" style-ref="js:built-in-value">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>E</keyword>
           <keyword>LOG10E</keyword>
           <keyword>LOG2E</keyword>
@@ -526,6 +543,8 @@
         </context> <!-- /_math-constants -->
 
         <context id="_math-functions" style-ref="js:built-in-function">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>ABS</keyword>
           <keyword>ACOS</keyword>
           <keyword>ASIN</keyword>
@@ -548,6 +567,8 @@
 
         <!-- "super" is already highlighted by default -->
         <context id="_object-keywords" style-ref="js:keyword">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>_cmd</keyword>
           <keyword>self</keyword>
         </context> <!-- /_object-keywords -->

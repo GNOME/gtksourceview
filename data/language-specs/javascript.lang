@@ -420,6 +420,8 @@
 
         <!-- <Keyword> -->
         <context id="_keywords" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>await</keyword> <!-- ES2017 -->
           <keyword>break</keyword>
           <keyword>case</keyword>
@@ -460,12 +462,16 @@
              restrictions"
              https://tc39.github.io/ecma262/#sec-keywords -->
         <context id="_strict-mode-keywords" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>let</keyword>
           <keyword>static</keyword>
         </context> <!-- /_strict-mode-keywords -->
 
         <!-- <FutureReservedWord> -->
         <context id="_future-reserved-words" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>enum</keyword>
         </context> <!-- /_future-reserved-words -->
 
@@ -473,6 +479,8 @@
              restrictions"
              https://tc39.github.io/ecma262/#sec-future-reserved-words -->
         <context id="_strict-mode-future-reserved-words" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>implements</keyword>
           <keyword>interface</keyword>
           <keyword>package</keyword>

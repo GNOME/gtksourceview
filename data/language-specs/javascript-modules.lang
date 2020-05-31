@@ -140,6 +140,8 @@
           <include>
 
             <context id="_name-group-keywords" style-ref="js:keyword">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>default</keyword>
             </context> <!-- /_name-group-keywords -->
 

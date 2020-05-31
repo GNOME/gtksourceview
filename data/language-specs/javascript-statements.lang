@@ -251,6 +251,8 @@
           <include>
 
             <context id="_choice-for-statement-modifier-keyword" style-ref="js:keyword" end-parent="true">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>await</keyword> <!-- ES2018 -->
             </context> <!-- /_choice-for-statement-modifier-keyword -->
 

@@ -404,6 +404,8 @@
         <context ref="_increment-decrement-operators"/>
 
         <context id="_keyword-unary-operators" style-ref="js:keyword">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>await</keyword> <!-- ES2017 -->
           <keyword>delete</keyword>
           <keyword>typeof</keyword>

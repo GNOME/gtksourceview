@@ -262,6 +262,8 @@
     <!-- ## Constructor modifier -->
 
     <context id="constructor-modifier" style-ref="type-keyword" once-only="true">
+      <prefix>\%{js:keyword-start}</prefix>
+      <suffix>\%{js:keyword-end}</suffix>
       <keyword>new</keyword>
     </context> <!-- /constructor-modifier -->
 
@@ -448,6 +450,8 @@
     <!-- ## Type name -->
 
     <context id="_built-in-library-types" style-ref="built-in-library-type">
+      <prefix>\%{js:keyword-start}</prefix>
+      <suffix>\%{js:keyword-end}</suffix>
       <keyword>Exclude</keyword>
       <keyword>Extract</keyword>
       <keyword>InstanceType</keyword>

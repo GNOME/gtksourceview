@@ -203,6 +203,8 @@
           <include>
 
             <context id="_choice-object-type-literal-modifier-keyword" style-ref="typescript:type-keyword" end-parent="true">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>readonly</keyword>
             </context> <!-- /_choice-object-type-literal-modifier-keyword -->
 

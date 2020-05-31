@@ -46,6 +46,8 @@
 
     <!-- <BooleanLiteral> -->
     <context id="boolean" style-ref="js:boolean">
+      <prefix>\%{js:keyword-start}</prefix>
+      <suffix>\%{js:keyword-end}</suffix>
       <keyword>false</keyword>
       <keyword>true</keyword>
     </context> <!-- /boolean -->

@@ -242,6 +242,8 @@
           <include>
 
             <context id="_choice-method-definition-modifier-keyword" style-ref="js:keyword" end-parent="true">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>get</keyword>
               <keyword>set</keyword>
             </context> <!-- /_choice-method-definition-modifier-keyword -->
@@ -389,6 +391,8 @@
           <include>
 
             <context id="_choice-class-body-member-modifier-keyword" style-ref="js:keyword" end-parent="true">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>static</keyword>
             </context> <!-- /_choice-class-body-member-modifier-keyword -->
 
