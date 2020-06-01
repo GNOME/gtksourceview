@@ -350,6 +350,8 @@
     </context>
 
     <context id="css3-named-color" style-ref="color">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>aliceblue</keyword>
       <keyword>antiquewhite</keyword>
       <keyword>aquamarine</keyword>
@@ -484,6 +486,8 @@
     </context>
 
     <context id="named-color" style-ref="color">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>aqua</keyword>
       <keyword>black</keyword>
       <keyword>blue</keyword>
@@ -533,6 +537,7 @@
 
     <context id="dimension" style-ref="dimension">
       <prefix>(?&lt;!\%{non-number-char})\%{number}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>ch</keyword>
       <keyword>cm</keyword>
       <keyword>deg</keyword>
@@ -568,6 +573,7 @@
 
     <context id="resolution" style-ref="dimension">
       <prefix>(?&lt;!\%{non-number-char})\%{positive-number}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>dpcm</keyword>
       <keyword>dpi</keyword>
       <keyword>dppx</keyword>
@@ -620,6 +626,8 @@
     <!-- functions -->
 
     <context id="css3-function-arguments" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>at</keyword>
       <keyword>auto-fill</keyword>
       <keyword>auto-fit</keyword>
@@ -771,6 +779,8 @@
     <!-- style properties -->
 
     <context id="svg-property-names" style-ref="property-name">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>clip-path</keyword>
       <keyword>clip-rule</keyword>
       <keyword>color-interpolatation-filters</keyword>
@@ -801,6 +811,8 @@
     </context>
 
     <context id="css3-property-names" style-ref="property-name">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>align-content</keyword>
       <keyword>align-items</keyword>
       <keyword>align-self</keyword>
@@ -936,6 +948,8 @@
     </context>
 
     <context id="property-names" style-ref="property-name">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>azimuth</keyword>
       <keyword>background-attachment</keyword>
       <keyword>background-color</keyword>
@@ -1066,6 +1080,8 @@
     </context>
 
     <context id="animatable-properties" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>background-color</keyword>
       <keyword>background-position</keyword>
       <keyword>background-size</keyword>
@@ -1160,6 +1176,8 @@
     </context>
 
     <context id="svg-property-values" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>alphabetic</keyword>
       <keyword>bevel</keyword>
       <keyword>butt</keyword>
@@ -1193,6 +1211,8 @@
     </context>
 
     <context id="east-asian-variant-values" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>jis04</keyword>
       <keyword>jis78</keyword>
       <keyword>jis83</keyword>
@@ -1202,6 +1222,8 @@
     </context>
 
     <context id="page-sizes" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>A3</keyword>
       <keyword>A4</keyword>
       <keyword>A5</keyword>
@@ -1215,6 +1237,8 @@
     </context>
 
     <context id="css3-property-values" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>active</keyword>
       <keyword>add</keyword>
       <keyword>allow-end</keyword>
@@ -1372,6 +1396,8 @@
     </context>
 
     <context id="property-values" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>above</keyword>
       <keyword>absolute</keyword>
       <keyword>alias</keyword>
@@ -1631,6 +1657,8 @@
     <!-- modifiers -->
 
     <context id="modifiers" style-ref="modifier">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>important</keyword>
     </context>
 
@@ -1708,12 +1736,16 @@
     <!-- media queries -->
 
     <context id="media-query-operators" style-ref="media-query-operator">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>only</keyword>
     </context>
 
     <context id="media-types" style-ref="media-type">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>all</keyword>
       <keyword>print</keyword>
       <keyword>screen</keyword>
@@ -1721,6 +1753,8 @@
     </context>
 
     <context id="css3-media-features" style-ref="media-feature">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>any-hover</keyword>
       <keyword>any-pointer</keyword>
       <keyword>aspect-ratio</keyword>
@@ -1757,6 +1791,8 @@
     </context>
 
     <context id="css3-media-feature-values" style-ref="media-feature-value">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>browser</keyword>
       <keyword>coarse</keyword>
       <keyword>fast</keyword>
@@ -1982,6 +2018,7 @@
 
     <context id="font-feature-types" style-ref="at-rule-inner-selector">
       <prefix>@</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>annotation</keyword>
       <keyword>character-variant</keyword>
       <keyword>ornaments</keyword>
@@ -2086,6 +2123,8 @@
     -->
 
     <context id="keyframe-selector" style-ref="at-rule-inner-selector">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>from</keyword>
       <keyword>to</keyword>
     </context>
@@ -2209,6 +2248,7 @@
 
     <context id="page-margin-box-types" style-ref="at-rule-inner-selector">
       <prefix>@</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>bottom-center</keyword>
       <keyword>bottom-left-corner</keyword>
       <keyword>bottom-left</keyword>
@@ -2261,6 +2301,8 @@
     -->
 
     <context id="at-supports-operators" style-ref="at-rule-operator">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
@@ -2568,6 +2610,8 @@
     </context>
 
     <context id="nth-pseudo-class-keywords" once-only="true" style-ref="keyword">
+      <prefix>\%{keyword-start}</prefix>
+      <suffix>\%{keyword-end}</suffix>
       <keyword>even</keyword>
       <keyword>odd</keyword>
     </context>

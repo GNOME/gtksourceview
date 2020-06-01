@@ -166,6 +166,8 @@
     <!-- Less data types -->
 
     <context id="boolean" style-ref="boolean">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>true</keyword>
     </context>
 
@@ -662,6 +664,8 @@
     -->
 
     <context id="less-at-import-options-keyword" style-ref="css:keyword">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>css</keyword>
       <keyword>inline</keyword>
       <keyword>less</keyword>
@@ -755,6 +759,8 @@
     <!-- guards -->
 
     <context id="guard-logical-operator" style-ref="guard-operator">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
@@ -808,6 +814,8 @@
     </context>
 
     <context id="extend-pseudo-class-keyword" once-only="true" style-ref="css:keyword">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>all</keyword>
     </context>
 

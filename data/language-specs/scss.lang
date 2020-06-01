@@ -150,6 +150,8 @@
     </context>
 
     <context id="logical-operator" style-ref="logical-operator">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>and</keyword>
       <keyword>not</keyword>
       <keyword>or</keyword>
@@ -159,11 +161,15 @@
     <!-- Sass data types -->
 
     <context id="boolean" style-ref="boolean">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>false</keyword>
       <keyword>true</keyword>
     </context>
 
     <context id="null" style-ref="null">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>null</keyword>
     </context>
 
@@ -345,11 +351,15 @@
     <!-- Sass modifiers -->
 
     <context id="variable-assignment-modifiers" style-ref="css:modifier">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>default</keyword>
       <keyword>global</keyword>
     </context>
 
     <context id="at-extend-modifiers" style-ref="css:modifier">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>optional</keyword>
     </context>
 
@@ -633,11 +643,15 @@
     -->
 
     <context id="at-at-root-query-type" style-ref="css:property-name">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>without</keyword>
       <keyword>with</keyword>
     </context>
 
     <context id="at-at-root-query-directive" style-ref="css:keyword">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>all</keyword>
       <keyword>media</keyword>
       <keyword>rule</keyword>
@@ -741,6 +755,8 @@
     -->
 
     <context id="at-for-keyword" style-ref="css:at-rule-operator">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>from</keyword>
       <keyword>through</keyword>
       <keyword>to</keyword>
@@ -766,6 +782,8 @@
     -->
 
     <context id="at-each-keyword" style-ref="css:at-rule-operator">
+      <prefix>\%{css:keyword-start}</prefix>
+      <suffix>\%{css:keyword-end}</suffix>
       <keyword>in</keyword>
     </context>
 
