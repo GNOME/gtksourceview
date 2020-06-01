@@ -55,7 +55,8 @@
 
   <default-regex-options case-sensitive="false"/>
 
-  <keyword-char-class>[a-z0-9_\x{80}-\x{10ffff}\\-]</keyword-char-class>
+  <!-- from css:keyword-code-point -->
+  <keyword-char-class>[^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}\x{5D}\x{5E}\x{60}\x{7B}-\x{7F}]</keyword-char-class>
 
   <definitions>
 
@@ -153,9 +154,9 @@
     <context id="arithmetic-operator" style-ref="operator-symbol">
       <match extended="true">
         [+*/] |
-        (?&lt;! \%{css:single-identifier-char} )
+        (?&lt;! \%{css:keyword-code-point} )
         -
-        (?! \%{css:single-identifier-char} )
+        (?! \%{css:keyword-code-point} )
       </match>
     </context>
 
@@ -497,13 +498,13 @@
           \+_?: |  # property merge
           :
           (?:
-            (?!                                 # not the start of a
-              \%{css:single-identifier-char} |  #   pseudo-class
-              [:\\] |                           #   pseudo-element, escape
-              @{ |                              #   variable interpolation
-              /\*                               #   comment
-            ) |                                 # or
-            (?=                                 # ends like a normal declaration
+            (?!                              # not the start of a
+              \%{css:keyword-code-point} |   #   pseudo-class
+              [:\\] |                        #   pseudo-element, escape
+              @{ |                           #   variable interpolation
+              /\*                            #   comment
+            ) |                              # or
+            (?=                              # ends like a normal declaration
               (?:
                 (?&gt;
                   (?:
@@ -519,7 +520,7 @@
                 (?&amp;double_quote_string) |
                 (?&amp;single_quote_string)
               )*
-              \%{css:declaration-value-end}     #   with a semicolon or at the end of a block
+              \%{css:declaration-value-end}  #   with a semicolon or at the end of a block
             )
           )
         )

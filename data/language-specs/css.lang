@@ -96,7 +96,8 @@
 
   <default-regex-options case-sensitive="false"/>
 
-  <keyword-char-class>[a-z0-9_\x{80}-\x{10ffff}\\-]</keyword-char-class>
+  <!-- from keyword-code-point -->
+  <keyword-char-class>[^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}\x{5D}\x{5E}\x{60}\x{7B}-\x{7F}]</keyword-char-class>
 
   <definitions>
 
@@ -125,30 +126,78 @@
       )
     </define-regex>
 
-    <!-- https://drafts.csswg.org/css-syntax/#non-ascii-code-point -->
-    <define-regex id="non-ascii">[\x{80}-\x{10ffff}]</define-regex>
+    <!--
+    https://drafts.csswg.org/css-syntax/#name-start-code-point
+
+    includes:
+    U+0041-U+005A Latin capital letter A to Z (A-Z)
+    U+005F        Low line (_)
+    U+0061-U+007A Latin small letter A to Z (a-z)
+    U+0080-       Non-ASCII
+    -->
+    <define-regex id="identifier-start-code-point" extended="true">
+      [^\x{0}-\x{40}\x{5B}-\x{5E}\x{60}\x{7B}-\x{7F}]
+    </define-regex>
+
+    <!--
+    https://drafts.csswg.org/css-syntax/#name-code-point
+
+    includes:
+    U+002D        Hyphen-minus (-)
+    U+0030-U+0039 Digit zero to nine (0-9)
+    U+0041-U+005A Latin capital letter A to Z (A-Z)
+    U+005F        Low line (_)
+    U+0061-U+007A Latin small letter A to Z (a-z)
+    U+0080-       Non-ASCII
+    -->
+    <define-regex id="identifier-code-point" extended="true">
+      [^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}-\x{5E}\x{60}\x{7B}-\x{7F}]
+    </define-regex>
+
+    <!--
+    identifier-code-point, excluding hyphen
+
+    includes:
+    U+0030-U+0039 Digit zero to nine (0-9)
+    U+0041-U+005A Latin capital letter A to Z (A-Z)
+    U+005F        Low line (_)
+    U+0061-U+007A Latin small letter A to Z (a-z)
+    U+0080-       Non-ASCII
+    -->
+    <define-regex id="identifier-prefix-code-point" extended="true">
+      [^\x{0}-\x{2F}\x{3A}-\x{40}\x{5B}-\x{5E}\x{60}\x{7B}-\x{7F}]
+    </define-regex>
+
+    <!--
+    identifier-code-point, including backslash
+
+    includes:
+    U+002D        Hyphen-minus (-)
+    U+0030-U+0039 Digit zero to nine (0-9)
+    U+0041-U+005A Latin capital letter A to Z (A-Z)
+    U+005C        Reverse solidus (\)
+    U+005F        Low line (_)
+    U+0061-U+007A Latin small letter A to Z (a-z)
+    U+0080-       Non-ASCII
+    -->
+    <define-regex id="keyword-code-point" extended="true">
+      [^\x{0}-\x{2C}\x{2E}\x{2F}\x{3A}-\x{40}\x{5B}\x{5D}\x{5E}\x{60}\x{7B}-\x{7F}]
+    </define-regex>
 
     <!--
     a combination of name-start code point and escape
-    https://drafts.csswg.org/css-syntax/#name-start-code-point
     https://www.w3.org/TR/selectors-3/#lex
     -->
     <define-regex id="identifier-start-char" extended="true">
-      [a-z_] | \%{non-ascii} | \%{escape}
+      \%{identifier-start-code-point} | \%{escape}
     </define-regex>
 
     <!--
     a combination of name code point and escape
-    https://drafts.csswg.org/css-syntax/#name-code-point
     https://www.w3.org/TR/selectors-3/#lex
     -->
     <define-regex id="identifier-chars" extended="true">
-      (?&gt; (?: [a-z0-9_-]+ | \%{non-ascii}+ | \%{escape}+ )+ )
-    </define-regex>
-
-    <!-- for lookbehinds (and lookaheads) -->
-    <define-regex id="single-identifier-char" extended="true">
-      [a-z0-9_-] | \%{non-ascii}
+      (?&gt; (?: \%{identifier-code-point}+ | \%{escape}+ )+ )
     </define-regex>
 
     <!-- https://drafts.csswg.org/css-syntax/#ident-token-diagram -->
@@ -158,7 +207,7 @@
 
     <!-- identifier-chars, excluding hyphen -->
     <define-regex id="identifier-prefix-chars" extended="true">
-      (?&gt; (?: [a-z0-9_]+ | \%{non-ascii}+ | \%{escape}+ )+ )
+      (?&gt; (?: \%{identifier-prefix-code-point}+ | \%{escape}+ )+ )
     </define-regex>
 
     <!--
@@ -462,7 +511,7 @@
     </define-regex>
 
     <define-regex id="non-number-char" extended="true">
-      \%{single-identifier-char} | \.
+      \%{keyword-code-point} | \.
     </define-regex>
 
     <context id="dimension" style-ref="dimension">
@@ -545,7 +594,7 @@
     <context id="unicode-range" style-ref="unicode-range">
       <match extended="true">
         \%[ u \+ (?&gt; [a-f0-9?]{1,6} ) (?&gt; - [a-f0-9]{1,6} )?
-        (?! \%{single-identifier-char} )
+        (?! \%{keyword-code-point} )
       </match>
     </context>
 
