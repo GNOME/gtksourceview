@@ -89,10 +89,6 @@
       (?&lt;! \%{_identifier-char} ) (?= \%{js:identifier-start} )
     </define-regex> <!-- /_identifier-container-start -->
 
-    <context id="_identifier" once-only="true">
-      <match>\%{_identifier}</match>
-    </context> <!-- /_identifier -->
-
     <context id="_choice-identifier" end-parent="true">
       <start>\%{_identifier-container-start}</start>
       <end>\%{_identifier}</end>
