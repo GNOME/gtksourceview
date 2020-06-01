@@ -62,7 +62,7 @@
     <!-- global -->
 
     <define-regex id="identifier">[\w-]+</define-regex>
-    <define-regex id="statement-end" extended="true">;|(?=})</define-regex>
+    <define-regex id="statement-end">;|(?=})</define-regex>
 
     <context id="embedded-lang-hook"/>
 
@@ -152,12 +152,10 @@
          also not sure what are Less' rules regarding hyphen vs subtraction -->
     <context id="arithmetic-operator" style-ref="operator-symbol">
       <match extended="true">
-        (
-          [+*/] |
-          (?&lt;! \%{css:single-identifier-char} )
-          -
-          (?! \%{css:single-identifier-char} )
-        )
+        [+*/] |
+        (?&lt;! \%{css:single-identifier-char} )
+        -
+        (?! \%{css:single-identifier-char} )
       </match>
     </context>
 
@@ -495,7 +493,7 @@
           )
         )
 
-        (
+        (?:
           \+_?: |  # property merge
           :
           (?:
@@ -750,7 +748,7 @@
     </context>
 
     <context id="guard-comparison-operator" style-ref="operator-symbol">
-      <match>(&gt;=?|=&lt;?|&lt;)</match>
+      <match>&gt;=?|=&lt;?|&lt;</match>
     </context>
 
     <context id="guard-test">

@@ -280,7 +280,7 @@
     </context>
 
     <context id="hexadecimal-color" style-ref="color">
-      <match>#([a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})\%]</match>
+      <match>#(?:[a-f0-9]{8}|[a-f0-9]{6}|[a-f0-9]{4}|[a-f0-9]{3})\%]</match>
     </context>
 
     <context id="css3-named-color" style-ref="color">
@@ -2507,7 +2507,7 @@
 
     <context id="nth-pseudo-class" end-parent="true">
       <start extended="true">
-        \%[ (nth-child | nth-of-type | nth-last-child | nth-last-of-type) \(
+        \%[ (?: nth-child | nth-of-type | nth-last-child | nth-last-of-type ) \(
       </start>
       <end>\)</end>
       <include>

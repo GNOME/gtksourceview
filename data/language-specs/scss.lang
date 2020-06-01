@@ -133,12 +133,10 @@
          a division operation -->
     <context id="arithmetic-operator" style-ref="operator-symbol">
       <match extended="true">
-        (
-          [+*%] |
-          (?&lt;! \%{css:single-identifier-char} )
-          -
-          (?! \%{css:single-identifier-char} )
-        )
+        [+*%] |
+        (?&lt;! \%{css:single-identifier-char} )
+        -
+        (?! \%{css:single-identifier-char} )
       </match>
     </context>
 
@@ -147,7 +145,7 @@
     </context>
 
     <context id="comparison-operator" style-ref="operator-symbol">
-      <match>(&lt;=?|&gt;=?|[=!]=)</match>
+      <match>&lt;=?|&gt;=?|[=!]=</match>
     </context>
 
     <context id="logical-operator" style-ref="logical-operator">
@@ -688,7 +686,7 @@
     -->
 
     <context id="at-debug-warn-error">
-      <start>@(debug|warn|error)\%]</start>
+      <start>@(?:debug|warn|error)\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -705,7 +703,7 @@
     -->
 
     <context id="at-if-else-if">
-      <start>@(if|else\s+if)\%]</start>
+      <start>@(?:if|else\s+if)\%]</start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -954,8 +952,8 @@
     <context id="parent-combinator">
       <match>(&amp;)(\%{css:identifier-chars}?)</match>
       <include>
-        <context sub-pattern="1"  style-ref="css:combinator"/>
-        <context sub-pattern="2"  style-ref="selector-fragment"/>
+        <context sub-pattern="1" style-ref="css:combinator"/>
+        <context sub-pattern="2" style-ref="selector-fragment"/>
       </include>
     </context>
 
