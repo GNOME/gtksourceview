@@ -128,7 +128,7 @@
     -->
 
     <context id="_name-group-identifier" once-only="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -378,7 +378,7 @@
     </context> <!-- /_choice-import-default-only -->
 
     <context id="_choice-import-default" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>

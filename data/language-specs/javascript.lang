@@ -218,6 +218,10 @@
       \%{identifier-start} \%{identifier-part}*
     </define-regex> <!-- /identifier-->
 
+    <define-regex id="identifier-container-start" extended="true">
+      (?&lt;! \%{identifier-char} ) (?= \%{identifier-start} )
+    </define-regex> <!-- /identifier-container-start -->
+
     <define-regex id="keyword-start" extended="true">
       (?&lt;! \%{identifier-char} )
     </define-regex> <!-- /keyword-start -->
@@ -505,7 +509,7 @@
     </context> <!-- /_identifier-name-content -->
 
     <context id="identifier-name" once-only="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -517,7 +521,7 @@
     </context> <!-- /choice-identifier-name -->
 
     <context id="choice-identifier-name" end-parent="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -536,7 +540,7 @@
     </context> <!-- /_identifier-content -->
 
     <context id="identifier" once-only="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -548,7 +552,7 @@
     </context> <!-- /identifier -->
 
     <context id="choice-identifier" end-parent="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->

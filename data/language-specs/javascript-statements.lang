@@ -489,6 +489,7 @@
     -->
     <context id="_label-statements" style-ref="js:label-statement">
       <start extended="true">
+        (?&lt;! \%{js:identifier-char} )
         (?=
           \%{js:identifier}
           \%{js:optional-whitespace-or-comments}

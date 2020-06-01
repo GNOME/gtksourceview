@@ -221,7 +221,7 @@
 
     <!-- <NamespaceName> -->
     <context id="choice-namespace-name" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no comments here -->
@@ -469,6 +469,7 @@
 
     <context id="_choice-type-name-identifier-only" end-parent="true">
       <start extended="true">
+        (?&lt;! \%{js:identifier-char} )
         (?= (?&gt; \%{js:identifier} ) (?! \. ) )
       </start>
       <end>\%{def:always-match}</end>
@@ -487,7 +488,7 @@
     </context> <!-- /_choice-type-name-identifier-only -->
 
     <context id="_type-name" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <!-- no comments here -->
@@ -584,7 +585,7 @@
 
     <!-- <TypeReference> -->
     <context id="choice-type-reference" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:comments"/>

@@ -187,7 +187,7 @@
             <context ref="js-lit:choice-string"/>
 
             <context id="_choice-primary-expression-identifier" end-parent="true">
-              <start>(?=\%{js:identifier-start})</start>
+              <start>\%{js:identifier-container-start}</start>
               <end>\%{def:always-match}</end>
               <include>
                 <!-- no embedded-lang-hooks here -->
@@ -292,7 +292,7 @@
     -->
 
     <context id="_choice-property-identifier" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
