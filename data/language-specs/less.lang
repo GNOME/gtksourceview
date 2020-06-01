@@ -121,7 +121,9 @@
     </context>
 
     <context id="arguments-variable" style-ref="built-in-variable">
-      <match>@arguments\%]</match>
+      <match extended="true">
+        @arguments \%{css:keyword-end}
+      </match>
     </context>
 
     <context id="arguments-variable-interpolation" style-ref="built-in-variable">
@@ -278,7 +280,9 @@
     <!-- functions -->
 
     <context id="less-url">
-      <start>url\(</start>
+      <start extended="true">
+        \%{css:keyword-start} url \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:function"/>
@@ -586,7 +590,9 @@
     </context>
 
     <context id="at-plugin">
-      <start>@plugin\%]</start>
+      <start extended="true">
+        @plugin \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -601,7 +607,9 @@
     </context>
 
     <context id="standalone-plugin-function-call">
-      <start>(?=\%{identifier}\()</start>
+      <start extended="true">
+        \%{css:keyword-start} (?= \%{identifier} \( )
+      </start>
       <end>\%{statement-end}</end>
       <include>
         <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
@@ -615,7 +623,9 @@
     <!-- at-rules -->
 
     <context id="less-at-charset">
-      <start case-sensitive="true">@charset\%]</start>
+      <start case-sensitive="true" extended="true">
+        @charset \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -675,7 +685,9 @@
     </context>
 
     <context id="less-at-import">
-      <start>@import\%]</start>
+      <start extended="true">
+        @import \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -766,7 +778,9 @@
     </context>
 
     <context id="guard">
-      <start>\%[when\%]</start>
+      <start extended="true">
+        \%{css:keyword-start} when \%{css:keyword-end}
+      </start>
       <end>(?={)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="guard-operator"/>
@@ -798,7 +812,9 @@
     </context>
 
     <context id="extend-pseudo-class" end-parent="true">
-      <start>\%[extend\(</start>
+      <start extended="true">
+        \%{css:keyword-start} extend \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:pseudo-class"/>

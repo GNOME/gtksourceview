@@ -245,7 +245,9 @@
     </context>
 
     <context id="scss-url">
-      <start>url\(</start>
+      <start extended="true">
+        \%{css:keyword-start} url \(
+      </start>
       <end>\)</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:function"/>
@@ -613,7 +615,9 @@
     -->
 
     <context id="at-extend">
-      <start>@extend\%]</start>
+      <start extended="true">
+        @extend \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -669,7 +673,9 @@
     </context>
 
     <context id="at-at-root">
-      <start>@at-root\%]</start>
+      <start extended="true">
+        @at-root \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -687,7 +693,9 @@
     -->
 
     <context id="at-debug-warn-error">
-      <start>@(?:debug|warn|error)\%]</start>
+      <start extended="true">
+        @ (?: debug | warn | error ) \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -704,7 +712,9 @@
     -->
 
     <context id="at-if-else-if">
-      <start>@(?:if|else\s+if)\%]</start>
+      <start extended="true">
+        @ (?: if | else \s+ if ) \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -715,7 +725,9 @@
     </context>
 
     <context id="at-else">
-      <start>@else\%]</start>
+      <start extended="true">
+        @else \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -735,7 +747,9 @@
     </context>
 
     <context id="at-for">
-      <start>@for\%]</start>
+      <start extended="true">
+        @for \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -756,7 +770,9 @@
     </context>
 
     <context id="at-each">
-      <start>@each\%]</start>
+      <start extended="true">
+        @each \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -774,7 +790,9 @@
     -->
 
     <context id="at-while">
-      <start>@while\%]</start>
+      <start extended="true">
+        @while \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -801,7 +819,9 @@
     </context>
 
     <context id="at-mixin">
-      <start>@mixin\%]</start>
+      <start extended="true">
+        @mixin \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -817,7 +837,9 @@
     -->
 
     <context id="at-include">
-      <start>@include\%]</start>
+      <start extended="true">
+        @include \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -834,7 +856,9 @@
     -->
 
     <context id="at-content">
-      <start>@content\%]</start>
+      <start extended="true">
+        @content \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -860,7 +884,9 @@
     </context>
 
     <context id="at-function">
-      <start>@function\%]</start>
+      <start extended="true">
+        @function \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
@@ -878,7 +904,9 @@
     -->
 
     <context id="at-return">
-      <start>@return\%]</start>
+      <start extended="true">
+        @return \%{css:keyword-end}
+      </start>
       <include>
         <context sub-pattern="0" where="start" style-ref="css:at-rule"/>
         <context ref="css:embedded-lang-hook"/>
