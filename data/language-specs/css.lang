@@ -156,12 +156,22 @@
       (?: -- | -? \%{identifier-start-char} ) \%{identifier-chars}?
     </define-regex>
 
+    <!-- identifier-chars, excluding hyphen -->
+    <define-regex id="identifier-prefix-chars" extended="true">
+      (?&gt; (?: [a-z0-9_]+ | \%{non-ascii}+ | \%{escape}+ )+ )
+    </define-regex>
+
     <!--
     https://www.w3.org/TR/CSS21/syndata.html#vendor-keywords
     https://en.wikipedia.org/wiki/CSS_hack#List_of_prefixes
     -->
     <define-regex id="vendor-specific-prefix" extended="true">
-      (?: [_-] \%{identifier-start-char}+ | mso | prince ) -
+      (?:
+        [_-] \%{identifier-start-char} \%{identifier-prefix-chars}? |
+        mso |
+        prince
+      )
+      -
     </define-regex>
 
     <define-regex id="vendor-specific-identifier" extended="true">
