@@ -287,10 +287,6 @@
           so we move the definitions of these regexes here
     -->
 
-    <define-regex id="import-function-keyword-suffix" extended="true">
-      \%{optional-whitespace-or-comments} \(
-    </define-regex> <!-- /import-function-keyword-suffix -->
-
     <!-- async function (ES2017)
          no line terminator allowed between "async" and "function" -->
     <define-regex id="function-expression-keyword" extended="true">
@@ -593,18 +589,6 @@
     </context> <!-- /ordered-default-value-assignment -->
 
     <!-- ## Misc syntax -->
-
-    <context id="_keyword-dot" style-ref="keyword" once-only="true">
-      <match>\.</match>
-    </context> <!-- /_keyword-dot -->
-
-    <context id="ordered-keyword-dot" once-only="true">
-      <start>\%{before-next-token}</start>
-      <end>\%{before-next-token}</end>
-      <include>
-        <context ref="_keyword-dot"/>
-      </include>
-    </context> <!-- /ordered-keyword-dot -->
 
     <context id="_rest-syntax" style-ref="rest-syntax" once-only="true">
       <match>\.\.\.</match>

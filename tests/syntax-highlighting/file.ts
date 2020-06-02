@@ -483,18 +483,6 @@ a = class {
 
 /* Expression */
 
-// Dynamic import expression (ES2020)
-a = import('module');
-import("module").then(module => {});
-
-// import.meta (stage 3 proposal)
-a = import.meta.__dirname;
-a = import . /* comment */ meta.__dirname;
-a = import . /* comment
-*/ meta.__dirname; // incorrectly highlighted
-a = import // comment
-.meta.__dirname; // incorrectly highlighted
-
 // Type arguments for function calls
 fn<string>();
 fn<string, number>();
@@ -825,22 +813,31 @@ globalThis; // ES2020
 super;
 this;
 
+// dynamic import (ES2020)
+import("module").then();
+import /* comment */ ("module").then();
+import // comment
+("module").then();
+a = await import("module");
+a = await import /* comment */ ("module");
+a = await import // comment
+("module");
+
+// import.meta (ES2020)
+import.meta;
+import . /* comment */ meta;
+import // comment
+.meta;
+a = import.meta;
+a = import . /* comment */ meta;
+a = import // comment
+.meta;
+
 // new.target
 new.target;
 new . /* comment */ target;
 new // comment
 .target;
-
-// function keywords
-import(); // ES2020
-import /* comment */ (); // ES2020
-// incorrectly highlighted (though it may appear correct)
-import
-();
-import /* comment
-*/ ();
-import // comment
-();
 
 // properties (subset)
 array.length;

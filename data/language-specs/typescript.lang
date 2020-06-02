@@ -111,13 +111,6 @@
           so we move the definitions of these regexes here
     -->
 
-    <define-regex id="import-meta-object-keyword-suffix" extended="true">
-      \%{js:optional-whitespace-or-comments}
-      \.
-      \%{js:optional-whitespace-or-comments}
-      meta \%{js:keyword-end}
-    </define-regex> <!-- /import-meta-object-keyword-suffix -->
-
     <!-- no line terminator allowed between "abstract" and "class"
          technically, there can be abstract class declarations but not
          abstract class expressions -->
@@ -697,7 +690,6 @@
     <context id="unknown-context-error-workaround">
       <include>
         <context ref="typescript-js-lit:choice-number"/>
-        <context ref="typescript-js-val:global-values"/>
         <context ref="typescript-js-fn:function-parameters-content"/>
         <context ref="typescript-js-expr:grouping-item-content"/>
         <context ref="typescript-js-st:class-declarations"/>
@@ -731,11 +723,6 @@
     <!-- ## Literals -->
 
     <replace id="js-lit:choice-number" ref="typescript-js-lit:choice-number"/>
-
-
-    <!-- ## Values -->
-
-    <replace id="js-val:global-values" ref="typescript-js-val:global-values"/>
 
 
     <!-- ## Functions and classes -->
@@ -811,8 +798,6 @@
     <!-- ### Import declaration -->
 
     <replace id="js-mod:_import-default-content" ref="typescript-js-mod:import-default-content"/>
-
-    <replace id="js-mod:import-declarations" ref="typescript-js-mod:import-declarations"/>
 
 
     <!-- # Main context -->

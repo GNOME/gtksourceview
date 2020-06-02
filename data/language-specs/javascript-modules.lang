@@ -404,10 +404,10 @@
     -->
 
     <!-- <ImportDeclaration> -->
+    <!-- also matches import() and import.meta -->
     <context id="import-declarations" style-ref="js:export-import-declaration">
       <start extended="true">
         \%{js:keyword-start} import \%{js:keyword-end}
-        (?! \%{js:import-function-keyword-suffix} )
       </start>
       <end>\%{js:before-next-token}</end>
       <include>
@@ -417,6 +417,8 @@
 
         <context id="_import-declaration-content">
           <include>
+            <context ref="js-expr:_choice-import-call-expression"/>
+            <context ref="js-expr:_choice-import-meta-expression"/>
             <context ref="_choice-import-named"/>
             <context ref="_choice-all-as-namespace"/>
             <context ref="_choice-import-default"/>

@@ -285,22 +285,31 @@ globalThis; // ES2020
 super;
 this;
 
+// dynamic import (ES2020)
+import("module").then();
+import /* comment */ ("module").then();
+import // comment
+("module").then();
+a = await import("module");
+a = await import /* comment */ ("module");
+a = await import // comment
+("module");
+
+// import.meta (ES2020)
+import.meta;
+import . /* comment */ meta;
+import // comment
+.meta;
+a = import.meta;
+a = import . /* comment */ meta;
+a = import // comment
+.meta;
+
 // new.target
 new.target;
 new . /* comment */ target;
 new // comment
 .target;
-
-// function keywords
-import(); // ES2020
-import /* comment */ (); // ES2020
-// incorrectly highlighted (though it may appear correct)
-import
-();
-import /* comment
-*/ ();
-import // comment
-();
 
 // properties (subset)
 array.length;

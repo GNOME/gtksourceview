@@ -102,7 +102,7 @@
         <context ref="typescript-js-st:choice-ambient-declaration"/>
         <context ref="typescript-js-st:choice-const-declaration"/>
         <context ref="typescript-js-st:choice-enum-declaration"/>
-        <context ref="_choice-import-declaration"/> <!-- for import alias declaration -->
+        <context ref="_choice-import-default-declaration"/> <!-- for import alias declaration -->
         <context ref="typescript-js-st:choice-interface-declaration"/>
         <context ref="typescript-js-st:choice-namespace-declaration"/>
         <context ref="typescript-js-st:choice-type-alias-declaration"/>
@@ -199,35 +199,25 @@
       </include>
     </context> <!-- /import-default-content -->
 
-    <!-- ## Import declaration -->
-
-    <define-regex id="_import-declaration-keyword" extended="true">
-      \%{js:keyword-start} import \%{js:keyword-end}
-      (?! \%{js:import-function-keyword-suffix} )
-      (?! \%{typescript:import-meta-object-keyword-suffix} )
-    </define-regex>
-
-    <!-- <ImportDeclaration> -->
-    <context id="_choice-import-declaration" style-ref="js:export-import-declaration" end-parent="true">
-      <start>\%{_import-declaration-keyword}</start>
+    <!-- this is like js-mod:import-declarations but only matches import
+         default (for import alias) -->
+    <context id="_choice-import-default-declaration" style-ref="js:export-import-declaration" end-parent="true">
+      <start extended="true">
+        \%{js:keyword-start} import \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
         <context ref="js:comments"/>
-        <context ref="js-mod:_import-declaration-content"/>
-      </include>
-    </context> <!-- /_choice-import-declaration -->
 
-    <!-- replaces js-mod:import-declarations -->
-    <context id="import-declarations" style-ref="js:export-import-declaration">
-      <start>\%{_import-declaration-keyword}</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
-        <context ref="js:comments"/>
-        <context ref="js-mod:_import-declaration-content"/>
+        <context id="_import-default-declaration-content">
+          <include>
+            <context ref="js-mod:_choice-import-default"/>
+          </include>
+        </context> <!-- /_import-default-declaration-content -->
+
       </include>
-    </context> <!-- /import-declarations -->
+    </context> <!-- /_choice-import-default-declaration -->
 
   </definitions>
 </language>

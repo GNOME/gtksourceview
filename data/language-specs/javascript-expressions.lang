@@ -51,6 +51,78 @@
     -->
 
 
+    <!-- # "import" expression
+
+         import("module")
+         import.meta
+    -->
+
+    <!-- a consequence of this is that "import" by itself (when used as
+         a primary expression) will not be highlighted as an error -->
+
+    <!-- ES2020 -->
+    <!-- <ImportCall> (part of) -->
+    <context id="_choice-import-call-expression" end-parent="true">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_import-call-expression-content">
+          <include>
+            <context ref="expression-without-comma"/>
+          </include>
+        </context> <!-- /_import-call-expression-content -->
+      </include>
+    </context> <!-- /_choice-import-call-expression -->
+
+    <!-- ES2020 -->
+    <!-- <ImportMeta> (part of) -->
+    <context id="_choice-import-meta-expression" end-parent="true">
+      <start>\.</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_import-meta-expression-content">
+          <include>
+
+            <context id="_import-meta-expression-keyword" style-ref="js:keyword" once-only="true">
+              <match extended="true">
+                \%{js:keyword-start} meta \%{js:keyword-end}
+              </match>
+            </context> <!-- /_import-meta-expression-keyword -->
+
+          </include>
+        </context> <!-- /_import-meta-expression-content -->
+
+      </include>
+    </context> <!-- /_choice-import-meta-expression -->
+
+    <context id="_choice-import-expression" end-parent="true">
+      <start extended="true">
+        \%{js:keyword-start} import \%{js:keyword-end}
+      </start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_import-expression-content">
+          <include>
+            <context ref="_choice-import-call-expression"/>
+            <context ref="_choice-import-meta-expression"/>
+          </include>
+        </context> <!-- /_import-expression-content -->
+
+      </include>
+    </context> <!-- /_choice-import-expression -->
+
+
     <!-- # "new" expression
 
          new Array()
@@ -203,6 +275,7 @@
             <context ref="js-lit:choice-template-literal"/>
             <context ref="js-fn:choice-function-expression"/>
             <context ref="js-fn:choice-class-expression"/>
+            <context ref="_choice-import-expression"/>
             <context ref="_choice-new-expression"/>
             <context ref="_choice-grouping"/>
             <context ref="js-lit:choice-number"/>

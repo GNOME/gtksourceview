@@ -130,19 +130,6 @@
           <keyword>this</keyword>
         </context> <!-- /_object-keywords -->
 
-        <context id="_import-function-keywords">
-          <start extended="true">
-            \%{js:keyword-start} import \%{js:keyword-end}
-            (?= \%{js:import-function-keyword-suffix} )
-          </start>
-          <end>(?=\()</end>
-          <include>
-            <context sub-pattern="0" where="start" style-ref="js:keyword"/>
-            <!-- no embedded-lang-hooks here -->
-            <context ref="js:comments"/>
-          </include>
-        </context> <!-- /_import-function-keywords -->
-
       </include>
     </context> <!-- /global-values -->
 
