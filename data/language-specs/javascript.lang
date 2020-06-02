@@ -8,7 +8,7 @@
  Copyright (C) 2005 Stef Walter (formerly Nate Nielsen) <stef@memberwebs.com>
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -191,12 +191,12 @@
 
     <!-- <UnicodeEscapeSequence> -->
     <define-regex id="unicode-escape" extended="true">
-      (?: \\u (?: [0-9a-fA-F]{4} | \{ [0-9a-fA-F]{1,} \} ) )
+      \\u (?: [0-9a-fA-F]{4} | \{ [0-9a-fA-F]{1,} \} )
     </define-regex> <!-- /unicode-escape -->
 
     <!-- <IdentifierStart> -->
     <define-regex id="identifier-start" extended="true">
-      (?: \%{def:unicode-id-start} | [$_] | \%{unicode-escape} )
+      \%{def:unicode-id-start} | [$_] | \%{unicode-escape}
     </define-regex> <!-- /identifier-start -->
 
     <!-- for lookbehinds
@@ -205,18 +205,30 @@
          U+200D Zero-width joiner <ZWJ>
     -->
     <define-regex id="identifier-char" extended="true">
-      (?: \%{def:unicode-id-continue} | [$\x{200C}\x{200D}] )
+      \%{def:unicode-id-continue} | [$\x{200C}\x{200D}]
     </define-regex> <!-- /identifier-char -->
 
     <!-- <IdentifierPart> -->
     <define-regex id="identifier-part" extended="true">
-      (?: \%{identifier-char} | \%{unicode-escape} )
+      \%{identifier-char} | \%{unicode-escape}
     </define-regex> <!-- /identifier-part -->
 
     <!-- <IdentifierName> -->
     <define-regex id="identifier" extended="true">
-      (?: \%{identifier-start} \%{identifier-part}* )
+      \%{identifier-start} \%{identifier-part}*
     </define-regex> <!-- /identifier-->
+
+    <define-regex id="identifier-container-start" extended="true">
+      (?&lt;! \%{identifier-char} ) (?= \%{identifier-start} )
+    </define-regex> <!-- /identifier-container-start -->
+
+    <define-regex id="keyword-start" extended="true">
+      (?&lt;! \%{identifier-char} )
+    </define-regex> <!-- /keyword-start -->
+
+    <define-regex id="keyword-end" extended="true">
+      (?! \%{identifier-char} )
+    </define-regex> <!-- /keyword-end -->
 
     <!-- <WhiteSpace> -->
     <!-- does not include characters from <LineTerminator>,
@@ -253,11 +265,11 @@
     </define-regex> <!-- /before-next-token -->
 
     <define-regex id="statement-end" extended="true">
-      (?: ; | \%{before-next-token} )
+      ; | \%{before-next-token}
     </define-regex> <!-- /statement-end -->
 
     <define-regex id="statement-end-or-end-of-line" extended="true">
-      (?: \%{statement-end} | $ )
+      \%{statement-end} | $
     </define-regex> <!-- /statement-end-or-end-of-line -->
 
     <!-- wherever this is used, the highlighting will be more brittle,
@@ -276,35 +288,28 @@
     -->
 
     <define-regex id="import-function-keyword-suffix" extended="true">
-      (?:
-        \%{optional-whitespace-or-comments}
-        \(
-      )
+      \%{optional-whitespace-or-comments} \(
     </define-regex> <!-- /import-function-keyword-suffix -->
 
     <define-regex id="new-target-object-keyword-suffix" extended="true">
-      (?:
-        \%{optional-whitespace-or-comments}
-        \.
-        \%{optional-whitespace-or-comments}
-        target \%]
-      )
+      \%{optional-whitespace-or-comments}
+      \.
+      \%{optional-whitespace-or-comments}
+      target \%{keyword-end}
     </define-regex> <!-- /new-target-object-keyword-suffix -->
 
     <!-- async function (ES2017)
          no line terminator allowed between "async" and "function" -->
     <define-regex id="function-expression-keyword" extended="true">
       (?:
-        (?:
-          \%[ async \%]
-          \%{optional-whitespace-or-comments}
-        )?
-        \%[ function \%]
-      )
+        \%{keyword-start} async \%{keyword-end}
+        \%{optional-whitespace-or-comments}
+      )?
+      \%{keyword-start} function \%{keyword-end}
     </define-regex> <!-- /function-expression-keyword -->
 
     <define-regex id="class-expression-keyword" extended="true">
-      (?: \%[ class \%] )
+      \%{keyword-start} class \%{keyword-end}
     </define-regex> <!-- /class-expression-keyword -->
 
     <!-- ## Embedded lang hooks
@@ -419,6 +424,8 @@
 
         <!-- <Keyword> -->
         <context id="_keywords" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>await</keyword> <!-- ES2017 -->
           <keyword>break</keyword>
           <keyword>case</keyword>
@@ -459,12 +466,16 @@
              restrictions"
              https://tc39.github.io/ecma262/#sec-keywords -->
         <context id="_strict-mode-keywords" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>let</keyword>
           <keyword>static</keyword>
         </context> <!-- /_strict-mode-keywords -->
 
         <!-- <FutureReservedWord> -->
         <context id="_future-reserved-words" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>enum</keyword>
         </context> <!-- /_future-reserved-words -->
 
@@ -472,6 +483,8 @@
              restrictions"
              https://tc39.github.io/ecma262/#sec-future-reserved-words -->
         <context id="_strict-mode-future-reserved-words" style-ref="reserved-word">
+          <prefix>\%{keyword-start}</prefix>
+          <suffix>\%{keyword-end}</suffix>
           <keyword>implements</keyword>
           <keyword>interface</keyword>
           <keyword>package</keyword>
@@ -496,7 +509,7 @@
     </context> <!-- /_identifier-name-content -->
 
     <context id="identifier-name" once-only="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -508,7 +521,7 @@
     </context> <!-- /choice-identifier-name -->
 
     <context id="choice-identifier-name" end-parent="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -527,7 +540,7 @@
     </context> <!-- /_identifier-content -->
 
     <context id="identifier" once-only="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -539,7 +552,7 @@
     </context> <!-- /identifier -->
 
     <context id="choice-identifier" end-parent="true">
-      <start>(?=\%{identifier-start})</start>
+      <start>\%{identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->

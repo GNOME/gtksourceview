@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -67,13 +67,17 @@
       </include>
     </context> <!-- /main-lang -->
 
-    <define-regex id="_start-tag-start">(?:&lt;(?!/))</define-regex>
+    <define-regex id="_start-tag-start">&lt;(?!/)</define-regex>
 
 
     <!-- # Names -->
 
+    <define-regex id="_identifier-char" extended="true">
+      \%{js:identifier-char} | -
+    </define-regex> <!-- /_identifier-char -->
+
     <define-regex id="_identifier-part" extended="true">
-      (?: \%{js:identifier-part} | - )
+      \%{_identifier-char} | \%{js:unicode-escape}
     </define-regex> <!-- /_identifier-part -->
 
     <!-- <JSXIdentifier> -->
@@ -81,32 +85,36 @@
       \%{js:identifier-start} \%{_identifier-part}*
     </define-regex> <!-- /_identifier -->
 
-    <context id="_identifier" once-only="true">
-      <match>\%{_identifier}</match>
-    </context> <!-- /_identifier -->
+    <define-regex id="_identifier-container-start" extended="true">
+      (?&lt;! \%{_identifier-char} ) (?= \%{js:identifier-start} )
+    </define-regex> <!-- /_identifier-container-start -->
 
     <context id="_choice-identifier" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{_identifier-container-start}</start>
       <end>\%{_identifier}</end>
     </context> <!-- /_choice-identifier -->
 
     <!-- <JSXNamespacedName> -->
     <define-regex id="_namespaced-name" extended="true">
-      (?: \%{_identifier} : \%{_identifier} )
+      \%{_identifier} : \%{_identifier}
     </define-regex> <!-- /_namespaced-name -->
 
     <context id="_choice-namespaced-name" end-parent="true">
-      <start>(?=\%{_namespaced-name})</start>
+      <start extended="true">
+        (?&lt;! \%{_identifier-char} ) (?= \%{_namespaced-name} )
+      </start>
       <end>\%{_namespaced-name}</end>
     </context> <!-- /_choice-namespaced-name -->
 
     <!-- <JSXMemberExpression> -->
     <define-regex id="_member-expression" extended="true">
-      (?: \%{_identifier} (?: \. \%{_identifier} )+ )
+      \%{_identifier} (?: \. \%{_identifier} )+
     </define-regex> <!-- /_member-expression -->
 
     <context id="_choice-member-expression" end-parent="true">
-      <start>(?=\%{_member-expression})</start>
+      <start extended="true">
+        (?&lt;! \%{_identifier-char} ) (?= \%{_member-expression} )
+      </start>
       <end>\%{_member-expression}</end>
     </context> <!-- /_choice-member-expression -->
 
@@ -115,7 +123,7 @@
 
     <!-- <JSXElementName> -->
     <context id="_element-name" style-ref="xml:element-name" once-only="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{_identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:comments"/>
@@ -165,7 +173,7 @@
 
     <!-- <JSXAttributeName> -->
     <context id="_attribute-names" style-ref="xml:attribute-name">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{_identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:comments"/>

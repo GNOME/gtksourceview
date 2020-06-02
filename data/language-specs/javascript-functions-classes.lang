@@ -8,7 +8,7 @@
  Copyright (C) 2005 Stef Walter (formerly Nate Nielsen) <stef@memberwebs.com>
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -43,8 +43,10 @@
 
     <!-- ## Function expression keyword -->
 
-    <context id="_function-expression-async-keyword" style-ref="js:keyword">
-      <keyword>async</keyword>
+    <context id="_function-expression-async-keyword" style-ref="js:keyword" once-only="true">
+      <match extended="true">
+        \%{js:keyword-start} async \%{js:keyword-end}
+      </match>
     </context> <!-- /_function-expression-async-keyword -->
 
     <context id="_ordered-function-expression-async-keyword" once-only="true">
@@ -55,8 +57,10 @@
       </include>
     </context> <!-- /_ordered-function-expression-async-keyword -->
 
-    <context id="_function-expression-function-keyword" style-ref="js:keyword">
-      <keyword>function</keyword>
+    <context id="_function-expression-function-keyword" style-ref="js:keyword" once-only="true">
+      <match extended="true">
+        \%{js:keyword-start} function \%{js:keyword-end}
+      </match>
     </context> <!-- /_function-expression-function-keyword -->
 
     <context id="_ordered-function-expression-function-keyword" once-only="true">
@@ -238,6 +242,8 @@
           <include>
 
             <context id="_choice-method-definition-modifier-keyword" style-ref="js:keyword" end-parent="true">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>get</keyword>
               <keyword>set</keyword>
             </context> <!-- /_choice-method-definition-modifier-keyword -->
@@ -245,7 +251,7 @@
             <!-- ES2017, cannot be followed by line terminator -->
             <context id="_choice-async-method-definition-modifier-keyword" style-ref="js:keyword" end-parent="true">
               <match extended="true">
-                \%[ async \%]
+                \%{js:keyword-start} async \%{js:keyword-end}
                 (?=
                   \%{js:optional-whitespace-or-comments}
                   (?:
@@ -322,7 +328,9 @@
           <include>
 
             <context id="_choice-class-optional-name-ignore-extends" end-parent="true">
-              <start>(?=\%[extends\%])</start>
+              <start extended="true">
+                (?= \%{js:keyword-start} extends \%{js:keyword-end} )
+              </start>
               <end>\%{def:always-match}</end>
             </context> <!-- /_choice-class-optional-name-ignore-extends -->
 
@@ -344,7 +352,9 @@
     <!-- ## Class extends clause -->
 
     <context id="_class-extends-clause" once-only="true">
-      <start>\%[extends\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} extends \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -381,6 +391,8 @@
           <include>
 
             <context id="_choice-class-body-member-modifier-keyword" style-ref="js:keyword" end-parent="true">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>static</keyword>
             </context> <!-- /_choice-class-body-member-modifier-keyword -->
 

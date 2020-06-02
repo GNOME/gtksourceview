@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -47,7 +47,7 @@
       <include>
         <context ref="typescript:typescript"/>
       </include>
-    </context>
+    </context> <!-- /main-lang -->
 
     <replace id="jsx:main-lang" ref="main-lang"/>
 
@@ -61,7 +61,7 @@
          any definitive documentation -->
     <context id="_jsx-comment-pragmas" style-ref="js:directive" class="comment">
       <start case-sensitive="false" extended="true">
-        /\*\*? \%{js:whitespace}* @jsx \%]
+        /\*\*? \%{js:whitespace}* @jsx \%{js:keyword-end}
       </start>
       <end>\*/</end>
       <include>
@@ -71,7 +71,7 @@
 
     <context id="_jsx-comment-pragmas-no-extend-parent" style-ref="js:directive" class="comment" extend-parent="false">
       <start extended="true">
-        /\*\*? \%{js:whitespace}* @jsx \%]
+        /\*\*? \%{js:whitespace}* @jsx \%{js:keyword-end}
       </start>
       <end>\*/</end>
       <include>
@@ -132,7 +132,7 @@
           \%{js:identifier}
           \%{js:optional-whitespace-or-comments}
           (?:
-            \%[ extends \%] |
+            \%{js:keyword-start} extends \%{js:keyword-end} |
             , |
             =
           )
@@ -170,7 +170,7 @@
         <context ref="_arrow-function-type-parameters-list"/>
         <context ref="js-expr:_pre-lhs-expression" original="true"/>
       </include>
-    </context>
+    </context> <!-- /_pre-lhs-expression -->
 
     <replace id="js-expr:_pre-lhs-expression" ref="_pre-lhs-expression"/>
 
@@ -185,7 +185,7 @@
         <context ref="jsx:_attribute-names"/>
         <context ref="jsx:_attribute-initializers"/>
       </include>
-    </context>
+    </context> <!-- /_start-tag-head-content -->
 
     <replace id="jsx:_start-tag-head-content" ref="_start-tag-head-content"/>
 
@@ -196,7 +196,7 @@
       <include>
         <context ref="jsx:jsx"/>
       </include>
-    </context>
+    </context> <!-- /typescript-jsx -->
 
   </definitions>
 </language>

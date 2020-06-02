@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -38,24 +38,22 @@
     -->
 
     <define-regex id="_basic-types" extended="true">
+      \%{js:keyword-start}
       (?:
-        \%[
-        (?:
-          any |
-          bigint |
-          boolean |
-          never |
-          null |
-          number |
-          object |
-          string |
-          symbol |
-          undefined |
-          unknown |
-          void
-        )
-        \%]
+        any |
+        bigint |
+        boolean |
+        never |
+        null |
+        number |
+        object |
+        string |
+        symbol |
+        undefined |
+        unknown |
+        void
       )
+      \%{js:keyword-end}
     </define-regex> <!-- /_basic-types -->
 
     <!-- <PredefinedType> -->
@@ -72,7 +70,7 @@
     -->
 
     <define-regex id="_boolean-types" extended="true">
-      (?: \%[ (?: false | true ) \%] )
+      \%{js:keyword-start} (?: false | true ) \%{js:keyword-end}
     </define-regex> <!-- /_boolean-literal-types -->
 
     <!-- <PredefinedType> -->
@@ -109,7 +107,9 @@
 
     <!-- <ThisType> -->
     <context id="choice-this-type" style-ref="typescript:basic-type" end-parent="true">
-      <start>(?=\%[this\%])</start>
+      <start extended="true">
+        (?= \%{js:keyword-start} this \%{js:keyword-end} )
+      </start>
       <end>this</end>
     </context> <!-- /choice-this-type -->
 
@@ -203,6 +203,8 @@
           <include>
 
             <context id="_choice-object-type-literal-modifier-keyword" style-ref="typescript:type-keyword" end-parent="true">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>readonly</keyword>
             </context> <!-- /_choice-object-type-literal-modifier-keyword -->
 
@@ -237,7 +239,9 @@
             <context ref="typescript:choice-type-annotation"/>
 
             <context id="_choice-mapped-type" end-parent="true">
-              <start>\%[in\%]</start>
+              <start extended="true">
+                \%{js:keyword-start} in \%{js:keyword-end}
+              </start>
               <end>\%{js:before-next-token}</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>

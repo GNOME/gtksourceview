@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -38,11 +38,14 @@
       <include>
 
         <!-- import.meta: stage 3 proposal -->
-        <context id="_import-meta-object-keyword">
+        <context id="_import-meta-object-keywords">
           <start extended="true">
-            \%[ import \%] (?= \%{typescript:import-meta-object-keyword-suffix} )
+            \%{js:keyword-start} import \%{js:keyword-end}
+            (?= \%{typescript:import-meta-object-keyword-suffix} )
           </start>
-          <end>\%[meta\%]</end>
+          <end extended="true">
+            \%{js:keyword-start} meta \%{js:keyword-end}
+          </end>
           <include>
             <context sub-pattern="0" where="start" style-ref="js:keyword"/>
             <context sub-pattern="0" where="end" style-ref="js:keyword"/>
@@ -55,7 +58,7 @@
             </context> <!-- /_import-meta-object-keyword-content -->
 
           </include>
-        </context> <!-- /_import-meta-object-keyword -->
+        </context> <!-- /_import-meta-object-keywords -->
 
         <context ref="js-val:global-values" original="true"/>
       </include>

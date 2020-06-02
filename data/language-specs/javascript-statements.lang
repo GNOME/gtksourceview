@@ -8,7 +8,7 @@
  Copyright (C) 2005 Stef Walter (formerly Nate Nielsen) <stef@memberwebs.com>
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -37,14 +37,10 @@
 
     <!-- # Use strict directive -->
 
-    <!-- apparently, back references are not supported -->
+    <!-- apparently, back references are not supported within the same
+         regex -->
     <context id="_use-strict-directives" style-ref="js:directive">
-      <start extended="true">
-        (?:
-          " use [ ] strict " |
-          ' use [ ] strict '
-        )
-      </start>
+      <start>"use strict"|'use strict'</start>
       <end>\%{js:statement-end}</end>
     </context> <!-- /_use-strict-directives -->
 
@@ -121,7 +117,9 @@
 
     <!-- <BreakStatement> -->
     <context id="_break-statements" style-ref="js:break-statement">
-      <start>\%[break\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} break \%{js:keyword-end}
+      </start>
       <end>\%{js:statement-end-or-end-of-line}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -169,7 +167,9 @@
 
     <!-- <ContinueStatement> -->
     <context id="_continue-statements" style-ref="js:continue-statement">
-      <start>\%[continue\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} continue \%{js:keyword-end}
+      </start>
       <end>\%{js:statement-end-or-end-of-line}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -193,7 +193,9 @@
 
     <!-- <DebuggerStatement> -->
     <context id="_debugger-statements" style-ref="js:debugger-statement">
-      <start>\%[debugger\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} debugger \%{js:keyword-end}
+      </start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -249,6 +251,8 @@
           <include>
 
             <context id="_choice-for-statement-modifier-keyword" style-ref="js:keyword" end-parent="true">
+              <prefix>\%{js:keyword-start}</prefix>
+              <suffix>\%{js:keyword-end}</suffix>
               <keyword>await</keyword> <!-- ES2018 -->
             </context> <!-- /_choice-for-statement-modifier-keyword -->
 
@@ -322,7 +326,9 @@
     </context> <!-- /_for-statement-test -->
 
     <context id="_for-statement-in" once-only="true">
-      <start>\%[in\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} in \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -339,7 +345,9 @@
     </context> <!-- /_for-statement-in -->
 
     <context id="_for-statement-of" once-only="true">
-      <start>\%[of\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} of \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -383,7 +391,9 @@
 
     <!-- <IterationStatement> (part of) -->
     <context id="_for-statements" style-ref="js:for-statement">
-      <start>\%[for\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} for \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -432,7 +442,9 @@
 
     <!-- <IfStatement> (part of) -->
     <context id="_if-statements" style-ref="js:if-statement">
-      <start>\%[if\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} if \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -450,7 +462,9 @@
 
     <!-- <IfStatement> (part of) -->
     <context id="_else-statements" style-ref="js:else-statement">
-      <start>\%[else\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} else \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -475,6 +489,7 @@
     -->
     <context id="_label-statements" style-ref="js:label-statement">
       <start extended="true">
+        (?&lt;! \%{js:identifier-char} )
         (?=
           \%{js:identifier}
           \%{js:optional-whitespace-or-comments}
@@ -509,7 +524,9 @@
 
     <!-- <ReturnStatement> -->
     <context id="_return-statements" style-ref="js:return-statement">
-      <start>\%[return\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} return \%{js:keyword-end}
+      </start>
       <end>\%{js:statement-end-or-end-of-line}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -536,7 +553,9 @@
     -->
 
     <context id="_case-clauses">
-      <start>\%[case\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} case \%{js:keyword-end}
+      </start>
       <end>:</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -553,7 +572,9 @@
     </context> <!-- /_case-clauses -->
 
     <context id="_default-clauses">
-      <start>\%[default\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} default \%{js:keyword-end}
+      </start>
       <end>:</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -593,7 +614,9 @@
 
     <!-- <SwitchStatement> -->
     <context id="_switch-statements" style-ref="js:switch-statement">
-      <start>\%[switch\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} switch \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -618,7 +641,9 @@
 
     <!-- <ThrowStatement> -->
     <context id="_throw-statements" style-ref="js:throw-statement">
-      <start>\%[throw\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} throw \%{js:keyword-end}
+      </start>
       <end>\%{js:statement-end-or-end-of-line}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -666,7 +691,9 @@
 
     <!-- <TryStatement> -->
     <context id="_try-statements" style-ref="js:try-catch-statement">
-      <start>\%[try\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} try \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -709,7 +736,9 @@
 
     <!-- <Catch> -->
     <context id="_catch-statements" style-ref="js:try-catch-statement">
-      <start>\%[catch\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} catch \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -728,7 +757,9 @@
 
     <!-- <Finally> -->
     <context id="_finally-statements" style-ref="js:try-catch-statement">
-      <start>\%[finally\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} finally \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -753,7 +784,7 @@
     -->
 
     <define-regex id="_variable-declaration-keyword" extended="true">
-      (?: \%[ (?: const | let | var ) \%] )
+      \%{js:keyword-start} (?: const | let | var ) \%{js:keyword-end}
     </define-regex> <!-- /_variable-declaration-keyword -->
 
     <context id="_variable-declaration-item-content">
@@ -834,7 +865,9 @@
 
     <!-- <IterationStatement> (part of) -->
     <context id="_while-statements" style-ref="js:while-statement">
-      <start>\%[while\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} while \%{js:keyword-end}
+      </start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -852,7 +885,9 @@
 
     <!-- <IterationStatement> (part of) -->
     <context id="_do-statements" style-ref="js:while-statement">
-      <start>\%[do\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} do \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -873,7 +908,9 @@
 
     <!-- <WithStatement> -->
     <context id="_with-statements" style-ref="js:with-statement">
-      <start>\%[with\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} with \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>

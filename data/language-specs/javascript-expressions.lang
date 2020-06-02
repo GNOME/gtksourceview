@@ -8,7 +8,7 @@
  Copyright (C) 2005 Stef Walter (formerly Nate Nielsen) <stef@memberwebs.com>
  Copyright (C) 2005-2007 Marco Barisione <barisione@gmail.com>
  Copyright (C) 2005-2007 Emanuele Aina
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -58,9 +58,9 @@
         <context ref="js:embedded-lang-hooks"/>
 
         <!-- ES2017, cannot be followed by line terminator -->
-        <context id="_async-pre-primary-expression-keyword" style-ref="js:keyword">
+        <context id="_async-pre-primary-expression-keywords" style-ref="js:keyword">
           <match extended="true">
-            \%[ async \%]
+            \%{js:keyword-start} async \%{js:keyword-end}
             (?=                                       # preceeds arrow function
               \%{js:optional-whitespace-or-comments}
               (?:
@@ -72,16 +72,17 @@
             )
             (?!                                       # does not preceed "function" (leave to function expression)
               \%{js:optional-whitespace-or-comments}
-              \%[ function \%]
+              \%{js:keyword-start} function \%{js:keyword-end}
             )
           </match>
-        </context> <!-- /_async-pre-primary-expression-keyword -->
+        </context> <!-- /_async-pre-primary-expression-keywords -->
 
-        <context id="_new-pre-primary-expression-keyword" style-ref="js:keyword">
+        <context id="_new-pre-primary-expression-keywords" style-ref="js:keyword">
           <match extended="true">
-            \%[ new \%] (?! \%{js:new-target-object-keyword-suffix} )
+            \%{js:keyword-start} new \%{js:keyword-end}
+            (?! \%{js:new-target-object-keyword-suffix} )
           </match>
-        </context> <!-- /_new-pre-primary-expression-keyword -->
+        </context> <!-- /_new-pre-primary-expression-keywords -->
 
       </include>
     </context> <!-- /_pre-primary-expression -->
@@ -186,7 +187,7 @@
             <context ref="js-lit:choice-string"/>
 
             <context id="_choice-primary-expression-identifier" end-parent="true">
-              <start>(?=\%{js:identifier-start})</start>
+              <start>\%{js:identifier-container-start}</start>
               <end>\%{def:always-match}</end>
               <include>
                 <!-- no embedded-lang-hooks here -->
@@ -291,7 +292,7 @@
     -->
 
     <context id="_choice-property-identifier" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no embedded-lang-hooks here -->
@@ -354,7 +355,7 @@
 
         <!-- ES2020 -->
         <!-- <OptionalChain> (part of) -->
-        <context id="_optional-chain">
+        <context id="_optional-chains">
           <start>\?\.(?![0-9])</start>
           <end>\%{js:before-next-token}</end>
           <include>
@@ -371,7 +372,7 @@
             </context> <!-- /_optional-chain-content -->
 
           </include>
-        </context> <!-- /_optional-chain -->
+        </context> <!-- /_optional-chains -->
 
         <context ref="_function-arguments-lists"/>
         <context ref="js-lit:template-literals"/>
@@ -391,7 +392,7 @@
 
     <!-- shared between pre- and post-lhs expressions -->
     <context id="_increment-decrement-operators" style-ref="js:increment-decrement-operator">
-      <match>(\+\+|--)</match>
+      <match>\+\+|--</match>
     </context> <!-- /_increment-decrement-operators -->
 
 
@@ -403,6 +404,8 @@
         <context ref="_increment-decrement-operators"/>
 
         <context id="_keyword-unary-operators" style-ref="js:keyword">
+          <prefix>\%{js:keyword-start}</prefix>
+          <suffix>\%{js:keyword-end}</suffix>
           <keyword>await</keyword> <!-- ES2017 -->
           <keyword>delete</keyword>
           <keyword>typeof</keyword>
@@ -414,12 +417,10 @@
 
         <context id="_unary-operators" style-ref="js:unary-operator">
           <match extended="true">
-            (
-              \+ |  # unary plus
-              - |   # unary negation
-              ~ |   # bitwise not
-              !     # logical not
-            )
+            \+ |  # unary plus
+            - |   # unary negation
+            ~ |   # bitwise not
+            !     # logical not
           </match>
         </context> <!-- /_unary-operators -->
 
@@ -480,7 +481,7 @@
 
     <!-- ## Without comma -->
 
-    <context id="_ternary-operator-without-comma-false-clause" once-only="true">
+    <context id="_ternary-operator-without-comma-false-expression" once-only="true">
       <start>:</start>
       <end>\%{js:before-next-token}</end>
       <include>
@@ -488,14 +489,14 @@
         <context ref="js:embedded-lang-hooks"/>
         <context ref="js:comments"/>
 
-        <context id="_ternary-operator-without-comma-false-clause-content">
+        <context id="_ternary-operator-without-comma-false-expression-content">
           <include>
             <context ref="expression-without-comma"/>
           </include>
-        </context> <!-- /_ternary-operator-without-comma-false-clause-content -->
+        </context> <!-- /_ternary-operator-without-comma-false-expression-content -->
 
       </include>
-    </context> <!-- /_ternary-operator-without-comma-false-clause -->
+    </context> <!-- /_ternary-operator-without-comma-false-expression -->
 
     <context id="_choice-ternary-operator-without-comma-true-expression" end-parent="true">
       <start>\%{js:before-next-token}</start>
@@ -507,7 +508,7 @@
         <context id="_ternary-operator-without-comma-true-expression-content">
           <include>
             <context ref="expression-without-comma"/>
-            <context ref="_ternary-operator-without-comma-false-clause"/>
+            <context ref="_ternary-operator-without-comma-false-expression"/>
           </include>
         </context> <!-- /_ternary-operator-without-comma-true-expression-content -->
 
@@ -534,7 +535,7 @@
 
     <!-- ## With comma -->
 
-    <context id="_ternary-operator-with-comma-false-clause" once-only="true">
+    <context id="_ternary-operator-with-comma-false-expression" once-only="true">
       <start>:</start>
       <end>\%{js:before-next-token}</end>
       <include>
@@ -542,14 +543,14 @@
         <context ref="js:embedded-lang-hooks"/>
         <context ref="js:comments"/>
 
-        <context id="_ternary-operator-with-comma-false-clause-content">
+        <context id="_ternary-operator-with-comma-false-expression-content">
           <include>
             <context ref="expression-with-comma"/>
           </include>
-        </context> <!-- /_ternary-operator-with-comma-false-clause-content -->
+        </context> <!-- /_ternary-operator-with-comma-false-expression-content -->
 
       </include>
-    </context> <!-- /_ternary-operator-with-comma-false-clause -->
+    </context> <!-- /_ternary-operator-with-comma-false-expression -->
 
     <context id="_choice-ternary-operator-with-comma-true-expression" end-parent="true">
       <start>\%{js:before-next-token}</start>
@@ -560,8 +561,8 @@
 
         <context id="_ternary-operator-with-comma-true-expression-content">
           <include>
-            <context ref="expression-with-comma"/>
-            <context ref="_ternary-operator-with-comma-false-clause"/>
+            <context ref="expression-without-comma"/> <!-- comma not allowed -->
+            <context ref="_ternary-operator-with-comma-false-expression"/>
           </include>
         </context> <!-- /_ternary-operator-with-comma-true-expression-content -->
 
@@ -590,22 +591,20 @@
     <!-- # Binary operators -->
 
     <define-regex id="_keyword-binary-operator" extended="true">
-      (?: \%[ (?: instanceof | in ) \%] )
+      \%{js:keyword-start} (?: instanceof | in ) \%{js:keyword-end}
     </define-regex> <!-- /_keyword-binary-operator -->
 
     <!-- excluding comma operator -->
     <define-regex id="_binary-operator" extended="true">
-      (?:
-        \*\* =? |                            # exponentiation (assignment) (ES2016)
-        [+/*%-] =? |                         # arithmetic (assignment)
-        [!=]==? |                            # equality
-        &amp;&amp; | \|\| |                  # logical
-        \?\? |                               # nullish coalescing (ES2020)
-        [&amp;|^] =? |                       # bitwise logical (assignment)
-        (?: &lt;&lt; | &gt;&gt;&gt;? ) =? |  # bitwise shift (assignment)
-        [&lt;&gt;]=? |                       # relational
-        =                                    # assignment
-      )
+      \*\* =? |                            # exponentiation (assignment) (ES2016)
+      [+/*%-] =? |                         # arithmetic (assignment)
+      [!=]==? |                            # equality
+      &amp;&amp; | \|\| |                  # logical
+      \?\? |                               # nullish coalescing (ES2020)
+      [&amp;|^] =? |                       # bitwise logical (assignment)
+      (?: &lt;&lt; | &gt;&gt;&gt;? ) =? |  # bitwise shift (assignment)
+      [&lt;&gt;]=? |                       # relational
+      =                                    # assignment
     </define-regex> <!-- /_binary-operator -->
 
     <!-- ## Without comma -->
@@ -664,7 +663,7 @@
     </context> <!-- /_keyword-binary-operators-with-comma -->
 
     <context id="_binary-operators-with-comma">
-      <start>(\%{_binary-operator}|,)</start>
+      <start>\%{_binary-operator}|,</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:binary-operator"/>

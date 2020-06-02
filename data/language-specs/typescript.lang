@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Author: Jeffery To <jeffery.to@gmail.com>
- Copyright (C) 2019 Jeffery To <jeffery.to@gmail.com>
+ Copyright (C) 2019-2020 Jeffery To <jeffery.to@gmail.com>
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -112,12 +112,10 @@
     -->
 
     <define-regex id="import-meta-object-keyword-suffix" extended="true">
-      (?:
-        \%{js:optional-whitespace-or-comments}
-        \.
-        \%{js:optional-whitespace-or-comments}
-        meta \%]
-      )
+      \%{js:optional-whitespace-or-comments}
+      \.
+      \%{js:optional-whitespace-or-comments}
+      meta \%{js:keyword-end}
     </define-regex> <!-- /import-meta-object-keyword-suffix -->
 
     <!-- no line terminator allowed between "abstract" and "class"
@@ -125,12 +123,10 @@
          abstract class expressions -->
     <define-regex id="class-expression-keyword" extended="true">
       (?:
-        (?:
-          \%[ abstract \%]
-          \%{js:optional-whitespace-or-comments}
-        )?
-        \%[ class \%]
-      )
+        \%{js:keyword-start} abstract \%{js:keyword-end}
+        \%{js:optional-whitespace-or-comments}
+      )?
+      \%{js:keyword-start} class \%{js:keyword-end}
     </define-regex> <!-- / -->
 
     <context id="js-ordered-string" once-only="true">
@@ -153,7 +149,7 @@
     -->
     <context id="_ts-ignore-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
       <start extended="true">
-        ///? \%{js:whitespace}* @ts-ignore \%]
+        ///? \%{js:whitespace}* @ts-ignore \%{js:keyword-end}
       </start>
       <include>
         <context ref="js:_comment-content"/>
@@ -162,7 +158,7 @@
 
     <context id="_ts-ignore-comment-pragmas-no-extend-parent" style-ref="js:directive" end-at-line-end="true" class="comment" extend-parent="false">
       <start extended="true">
-        ///? \%{js:whitespace}* @ts-ignore \%]
+        ///? \%{js:whitespace}* @ts-ignore \%{js:keyword-end}
       </start>
       <include>
         <context ref="js:_comment-content"/>
@@ -180,7 +176,7 @@
 
     <context id="_ts-nocheck-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
       <start case-sensitive="false" extended="true">
-        ///? \s* @ts-nocheck \%]
+        ///? \s* @ts-nocheck \%{js:keyword-end}
       </start>
       <include>
         <context ref="js:_comment-content"/>
@@ -200,7 +196,7 @@
     <context id="_triple-slash-directives" style-ref="js:directive" end-at-line-end="true" class="comment">
       <start case-sensitive="false" extended="true">
         /// \%{js:whitespace}* &lt;
-        (
+        (?:
           amd-module |
           amd-dependency |
           reference
@@ -225,7 +221,7 @@
 
     <!-- <NamespaceName> -->
     <context id="choice-namespace-name" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{def:always-match}</end>
       <include>
         <!-- no comments here -->
@@ -266,6 +262,8 @@
     <!-- ## Constructor modifier -->
 
     <context id="constructor-modifier" style-ref="type-keyword" once-only="true">
+      <prefix>\%{js:keyword-start}</prefix>
+      <suffix>\%{js:keyword-end}</suffix>
       <keyword>new</keyword>
     </context> <!-- /constructor-modifier -->
 
@@ -328,7 +326,9 @@
           <include>
 
             <context id="_choice-this-parameter" style-ref="js:keyword" end-parent="true">
-              <keyword>this</keyword>
+              <match extended="true">
+                \%{js:keyword-start} this \%{js:keyword-end}
+              </match>
             </context> <!-- /_choice-this-parameter -->
 
             <context id="_js-choice-binding" end-parent="true">
@@ -415,7 +415,7 @@
         </context> <!-- /_decorator-dot-property-accessor-content -->
 
       </include>
-    </context>
+    </context> <!-- /_decorator-dot-property-accessors -->
 
     <context id="decorators" style-ref="decorator">
       <start>@</start>
@@ -450,6 +450,8 @@
     <!-- ## Type name -->
 
     <context id="_built-in-library-types" style-ref="built-in-library-type">
+      <prefix>\%{js:keyword-start}</prefix>
+      <suffix>\%{js:keyword-end}</suffix>
       <keyword>Exclude</keyword>
       <keyword>Extract</keyword>
       <keyword>InstanceType</keyword>
@@ -467,6 +469,7 @@
 
     <context id="_choice-type-name-identifier-only" end-parent="true">
       <start extended="true">
+        (?&lt;! \%{js:identifier-char} )
         (?= (?&gt; \%{js:identifier} ) (?! \. ) )
       </start>
       <end>\%{def:always-match}</end>
@@ -485,7 +488,7 @@
     </context> <!-- /_choice-type-name-identifier-only -->
 
     <context id="_type-name" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <!-- no comments here -->
@@ -552,7 +555,9 @@
     </context> <!-- /_ordered-import-type-trailing-dot -->
 
     <context id="_import-type" once-only="true">
-      <start>\%[import\%]</start>
+      <start extended="true">
+        \%{js:keyword-start} import \%{js:keyword-end}
+      </start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="type-keyword"/>
@@ -580,7 +585,7 @@
 
     <!-- <TypeReference> -->
     <context id="choice-type-reference" end-parent="true">
-      <start>(?=\%{js:identifier-start})</start>
+      <start>\%{js:identifier-container-start}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context ref="js:comments"/>
