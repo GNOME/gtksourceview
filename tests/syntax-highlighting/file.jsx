@@ -340,6 +340,7 @@ array.flatMap(); // ES2019
 string.matchAll(); // ES2020
 Promise.allSettled(); // ES2020
 BigInt.asUintN(); // ES2020
+string.replaceAll(); // ES2021
 
 
 /*
