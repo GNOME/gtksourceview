@@ -545,6 +545,7 @@
         <context ref="css:at-rule"/> <!-- because Less variables look like at-rules -->
         <context ref="detached-ruleset-call"/>
         <context ref="standalone-plugin-function-call"/>
+        <context ref="inside-ruleset-extend"/>
         <context ref="css:style-block-content" original="true"/>
         <context ref="css:selector"/>
         <context ref="css:style-block"/>
@@ -801,6 +802,9 @@
 
     <!-- Less selectors -->
 
+    <!-- Less does not appear to allow comments between the colon(s) and
+         pseudo-element/class name -->
+
     <context id="parent-combinator">
       <match>(&amp;)(\%{css:identifier-chars}?)</match>
       <include>
@@ -830,6 +834,17 @@
         <context ref="css:embedded-lang-hook"/>
         <context ref="css:comment"/>
         <context ref="extend-pseudo-class-keyword"/>
+        <context ref="css:selector"/>
+      </include>
+    </context>
+
+    <context id="inside-ruleset-extend">
+      <start>(?=&amp;:extend\()</start>
+      <end>\%{statement-end}</end>
+      <include>
+        <context sub-pattern="0" where="end" style-ref="css:delimiter"/>
+        <context ref="css:embedded-lang-hook"/>
+        <context ref="css:comment"/>
         <context ref="css:selector"/>
       </include>
     </context>

@@ -229,7 +229,8 @@ body {
 
 // attached to selector
 #main:extend(.card-style),
-.sidebar :extend(div pre) {
+.sidebar :extend(div pre),
+:not(:extend(#footer)) { /* not allowed as argument to :not() */
     color: blue;
 }
 
