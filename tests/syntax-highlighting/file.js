@@ -225,15 +225,12 @@ Math.random();
 // object keywords
 arguments;
 globalThis; // ES2020
-new.target;
-new . /* comment */ target;
 super;
 this;
-// incorrectly highlighted
-new .
-target;
-new . /* comment
-*/ target;
+
+// new.target
+new.target;
+new . /* comment */ target;
 new // comment
 .target;
 

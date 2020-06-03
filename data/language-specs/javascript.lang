@@ -291,13 +291,6 @@
       \%{optional-whitespace-or-comments} \(
     </define-regex> <!-- /import-function-keyword-suffix -->
 
-    <define-regex id="new-target-object-keyword-suffix" extended="true">
-      \%{optional-whitespace-or-comments}
-      \.
-      \%{optional-whitespace-or-comments}
-      target \%{keyword-end}
-    </define-regex> <!-- /new-target-object-keyword-suffix -->
-
     <!-- async function (ES2017)
          no line terminator allowed between "async" and "function" -->
     <define-regex id="function-expression-keyword" extended="true">

@@ -143,29 +143,6 @@
           </include>
         </context> <!-- /_import-function-keywords -->
 
-        <context id="_new-target-object-keywords">
-          <start extended="true">
-            \%{js:keyword-start} new \%{js:keyword-end}
-            (?= \%{js:new-target-object-keyword-suffix} )
-          </start>
-          <end extended="true">
-            \%{js:keyword-start} target \%{js:keyword-end}
-          </end>
-          <include>
-            <context sub-pattern="0" where="start" style-ref="js:keyword"/>
-            <context sub-pattern="0" where="end" style-ref="js:keyword"/>
-            <!-- no embedded-lang-hooks here -->
-            <context ref="js:comments"/>
-
-            <context id="_new-target-object-keyword-content">
-              <include>
-                <context ref="js:ordered-keyword-dot"/>
-              </include>
-            </context> <!-- /_new-target-object-keyword-content -->
-
-          </include>
-        </context> <!-- /_new-target-object-keywords -->
-
       </include>
     </context> <!-- /global-values -->
 
