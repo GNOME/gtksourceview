@@ -677,6 +677,13 @@ import shortname = Long.Namespace.Name;
 // Import require
 import mod = require("module");
 
+// Type-only imports and exports
+import type T from './mod';
+import type { A, B } from './mod';
+import type * as Types from './mod';
+export type { T };
+export type { T } from './mod';
+
 
 /* Variable declaration */
 

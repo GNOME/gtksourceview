@@ -471,10 +471,6 @@
          type Container<T> = { value: T };
     -->
 
-    <define-regex id="_type-alias-declaration-keyword" extended="true">
-      \%{js:keyword-start} type \%{js:keyword-end}
-    </define-regex> <!-- /_type-alias-declaration-keyword -->
-
     <context id="_type-alias-value" once-only="true">
       <start>=</start>
       <end>\%{js:before-next-token}</end>
@@ -498,35 +494,24 @@
       </include>
     </context> <!-- /_ordered-type-alias-value -->
 
-    <context id="_type-alias-declaration-content">
-      <include>
-        <context ref="js:ordered-identifier"/>
-        <context ref="typescript-type-gen:ordered-type-parameters-list"/>
-        <context ref="_ordered-type-alias-value"/>
-      </include>
-    </context> <!-- /_type-alias-declaration-content -->
-
     <!-- <TypeAliasDeclaration> -->
     <context id="_type-alias-declarations" style-ref="typescript:type-alias-declaration">
-      <start>\%{_type-alias-declaration-keyword}</start>
+      <start>\%{typescript:type-keyword}</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
         <context ref="js:comments"/>
-        <context ref="_type-alias-declaration-content"/>
+
+        <context id="_type-alias-declaration-content">
+          <include>
+            <context ref="js:ordered-identifier"/>
+            <context ref="typescript-type-gen:ordered-type-parameters-list"/>
+            <context ref="_ordered-type-alias-value"/>
+          </include>
+        </context> <!-- /_type-alias-declaration-content -->
+
       </include>
     </context> <!-- /_type-alias-declarations -->
-
-    <!-- <TypeAliasDeclaration> -->
-    <context id="choice-type-alias-declaration" style-ref="typescript:type-alias-declaration" end-parent="true">
-      <start>\%{_type-alias-declaration-keyword}</start>
-      <end>\%{js:statement-end}</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
-        <context ref="js:comments"/>
-        <context ref="_type-alias-declaration-content"/>
-      </include>
-    </context> <!-- /choice-type-alias-declaration -->
 
 
     <!-- # Statements -->

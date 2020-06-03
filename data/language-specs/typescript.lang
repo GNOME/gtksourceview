@@ -122,6 +122,10 @@
       \%{js:keyword-start} class \%{js:keyword-end}
     </define-regex> <!-- /class-expression-keyword -->
 
+    <define-regex id="type-keyword" extended="true">
+      \%{js:keyword-start} type \%{js:keyword-end}
+    </define-regex> <!-- /type-keyword -->
+
     <context id="js-ordered-string" once-only="true">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
@@ -798,6 +802,7 @@
     <!-- ### Import declaration -->
 
     <replace id="js-mod:_import-default-content" ref="typescript-js-mod:import-default-content"/>
+    <replace id="js-mod:_import-declaration-content" ref="typescript-js-mod:import-declaration-content"/>
 
 
     <!-- # Main context -->
