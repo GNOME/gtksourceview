@@ -286,18 +286,24 @@ new.target;
 new . /* comment */ target;
 super;
 this;
+// incorrectly highlighted
+new .
+target;
 new . /* comment
-*/ target; // not correctly highlighted
+*/ target;
 new // comment
-.target; // not correctly highlighted
+.target;
 
 // function keywords
 import(); // ES2020
 import /* comment */ (); // ES2020
+// incorrectly highlighted (though it may appear correct)
+import
+();
 import /* comment
-*/ (); // not correctly highlighted (though it may appear correct)
+*/ ();
 import // comment
-(); // not correctly highlighted (though it may appear correct)
+();
 
 // properties (subset)
 array.length;

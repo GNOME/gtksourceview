@@ -127,7 +127,7 @@
         \%{js:optional-whitespace-or-comments}
       )?
       \%{js:keyword-start} class \%{js:keyword-end}
-    </define-regex> <!-- / -->
+    </define-regex> <!-- /class-expression-keyword -->
 
     <context id="js-ordered-string" once-only="true">
       <start>\%{js:before-next-token}</start>

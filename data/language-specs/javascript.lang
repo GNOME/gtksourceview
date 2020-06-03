@@ -191,7 +191,7 @@
 
     <!-- <UnicodeEscapeSequence> -->
     <define-regex id="unicode-escape" extended="true">
-      \\u (?: [0-9a-fA-F]{4} | \{ [0-9a-fA-F]{1,} \} )
+      \\u (?: [0-9a-fA-F]{4} | { [0-9a-fA-F]{1,} } )
     </define-regex> <!-- /unicode-escape -->
 
     <!-- <IdentifierStart> -->
@@ -313,6 +313,7 @@
     </define-regex> <!-- /class-expression-keyword -->
 
     <!-- ## Embedded lang hooks
+
          a placeholder context where an embedding language (e.g. html)
          can <replace>
     -->

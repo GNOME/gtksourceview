@@ -57,8 +57,8 @@
     </context>
 
     <context id="inline-tag" style-ref="inline-tag" end-at-line-end="true">
-      <start>\{@</start>
-      <end>\}</end>
+      <start>{@</start>
+      <end>}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="escape"/>
@@ -67,8 +67,8 @@
     </context>
 
     <context id="type" style-ref="type" end-at-line-end="true">
-      <start>\{</start>
-      <end>\}</end>
+      <start>{</start>
+      <end>}</end>
       <include>
         <context ref="embedded-lang-hooks"/>
         <context ref="escape"/>

@@ -171,7 +171,7 @@ let a: (this: void) => void;
 let a: (this /* comment */ : void) => void;
 let a: (...string
 : string[]) => void;
-// Not correctly highlighted
+// Incorrectly highlighted
 let a: (string
 : string) => void;
 let a: (this /* comment
@@ -204,7 +204,7 @@ a = <T, K extends keyof T>(x) => x;
 
 // Type assertion
 a = <string>obj;
-a = <const>obj;
+a = <const>"abc"; // const assertion
 
 
 /*
@@ -229,7 +229,7 @@ let a: string;
 /* as operator (type assertion / cast) */
 
 ( obj as string );
-( obj as const );
+( "abc" as const ); // const assertion
 
 
 // Non-null assertion operator (post-fix !)
@@ -499,7 +499,7 @@ a = import // comment
 fn<string>();
 fn<string, number>();
 fn < string > /* comment */ ();
-// Not correctly highlighted (interpreted as less than / equal than)
+// Incorrectly highlighted (interpreted as less than / equal than)
 fn<string
 >();
 fn<string>
@@ -513,7 +513,7 @@ fn<string> // comment
 myTag<string>`Template literal`;
 myTag<string, number>`Template literal`;
 myTag < string > /* comment */ `Template literal`;
-// Not correctly highlighted (interpreted as less than / equal than)
+// Incorrectly highlighted (interpreted as less than / equal than)
 myTag<string
 >`Template literal`;
 myTag<string>
@@ -525,7 +525,7 @@ myTag<string> // comment
 
 // Type assertion
 a = <string>obj;
-a = <const>obj;
+a = <const>"abc"; // const assertion
 
 
 /* Export / import declaration */
@@ -549,6 +549,9 @@ export declare namespace Super.Sub {}
 // Export enum declaration
 export enum Color { Red, Green, Blue }
 export const enum Num { One = 1, Two, Three }
+
+// Export import alias
+export import shortname = Long.Namespace.Name;
 
 // Export interface declaration
 export interface MyObj {}
@@ -823,18 +826,24 @@ new.target;
 new . /* comment */ target;
 super;
 this;
+// incorrectly highlighted
+new .
+target;
 new . /* comment
-*/ target; // not correctly highlighted
+*/ target;
 new // comment
-.target; // not correctly highlighted
+.target;
 
 // function keywords
 import(); // ES2020
 import /* comment */ (); // ES2020
+// incorrectly highlighted (though it may appear correct)
+import
+();
 import /* comment
-*/ (); // not correctly highlighted (though it may appear correct)
+*/ ();
 import // comment
-(); // not correctly highlighted (though it may appear correct)
+();
 
 // properties (subset)
 array.length;

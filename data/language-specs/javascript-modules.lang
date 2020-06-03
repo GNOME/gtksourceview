@@ -234,7 +234,7 @@
     -->
 
     <context id="_choice-export-named" end-parent="true">
-      <start>(?=\{)</start>
+      <start>(?={)</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>
@@ -321,7 +321,7 @@
     -->
 
     <context id="_choice-import-named" end-parent="true">
-      <start>(?=\{)</start>
+      <start>(?={)</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>
