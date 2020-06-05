@@ -280,6 +280,10 @@
 
     <define-regex id="generator-modifier">\*</define-regex>
 
+    <define-regex id="rest-syntax">\.\.\.</define-regex>
+
+    <define-regex id="spread-syntax">\.\.\.</define-regex>
+
     <!-- "unknown id" errors can occur when using a regex defined in one
           component file in another component file
           https://gitlab.gnome.org/GNOME/gtksourceview/issues/67
@@ -486,12 +490,33 @@
       \%{keyword-start} yield \%{keyword-end}
     </define-regex> <!-- /yield-keyword -->
 
-    <!-- async function (ES2017)
+    <!-- async function: ES2017
          no line terminator allowed between "async" and "function" -->
     <define-regex id="function-expression-keyword" extended="true">
       (?: \%{async-keyword} \%{optional-whitespace-or-comments} )?
       \%{function-keyword}
     </define-regex> <!-- /function-expression-keyword -->
+
+    <!-- async function: ES2017
+         "async" cannot be followed by line terminator -->
+    <define-regex id="method-keyword" extended="true">
+      # get property() / set property()
+      (?: \%{js:get-keyword} | \%{js:set-keyword} )
+      (?=
+        \%{js:optional-whitespace-or-comments}
+        \%{js:identifier-start}
+      ) |
+
+      # async method() / async * generator()
+      \%{js:async-keyword}
+      (?=
+        \%{js:optional-whitespace-or-comments}
+        (?: \%{js:identifier-start} | \%{js:generator-modifier} )
+      ) |
+
+      # * generator()
+      (?= \%{js:generator-modifier} )
+    </define-regex> <!-- /method-keyword -->
 
     <!-- ## Embedded lang hooks
 
@@ -783,7 +808,7 @@
     <!-- ## Misc syntax -->
 
     <context id="_rest-syntax" style-ref="rest-syntax" once-only="true">
-      <match>\.\.\.</match>
+      <match>\%{rest-syntax}</match>
     </context> <!-- /_rest-syntax -->
 
     <context id="ordered-rest-syntax" once-only="true">
@@ -795,7 +820,7 @@
     </context> <!-- /ordered-rest-syntax -->
 
     <context id="_spread-syntax" style-ref="spread-syntax" once-only="true">
-      <match>\.\.\.</match>
+      <match>\%{spread-syntax}</match>
     </context> <!-- /_spread-syntax -->
 
     <context id="ordered-spread-syntax" once-only="true">

@@ -315,7 +315,8 @@
 
          {
            propertyA: 'a',
-           propertyB: getB(),
+           "propertyB": getB(),
+           1: 'one',
            [ computedName() ]: 2 + 3,
            method() { ... },
            get prop() { return this._prop; },
@@ -323,6 +324,24 @@
            ...objectToCopy
          }
     -->
+
+    <!-- ES2018 -->
+    <context id="_choice-object-literal-spread-syntax" end-parent="true">
+      <start>\%{js:spread-syntax}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:spread-syntax"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_object-literal-spread-syntax-content">
+          <include>
+            <context ref="js-expr:expression-without-comma"/>
+          </include>
+        </context> <!-- /_object-literal-spread-syntax-content -->
+
+      </include>
+    </context> <!-- /_choice-object-literal-spread-syntax -->
 
     <context id="_object-literal-property-value" once-only="true">
       <start>:</start>
@@ -348,12 +367,61 @@
       </include>
     </context> <!-- /_ordered-object-literal-property-value -->
 
+    <context id="_choice-object-literal-keyword-named-property-or-method" end-parent="true">
+      <start extended="true">
+        (?: \%{js:get-keyword} | \%{js:set-keyword} )
+        (?= \%{js:optional-whitespace-or-comments} [:=(] )
+      </start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:identifier"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_object-literal-keyword-named-property-or-method-content">
+          <include>
+            <context ref="js-fn:choice-method-definition"/>
+
+            <context ref="_ordered-object-literal-property-value"/>
+            <context ref="js:ordered-default-value-assignment"/> <!-- for destructuring assignment -->
+          </include>
+        </context> <!-- /_object-literal-keyword-named-property-or-method-content -->
+
+      </include>
+    </context> <!-- /_choice-object-literal-keyword-named-property-or-method -->
+
+    <context id="_choice-object-literal-property-or-method" end-parent="true">
+      <start extended="true">
+        (?= [\['"] ) |                         # computed property name, string
+        \%{js:number-start} (?= \.? [0-9] ) |  # number
+        \%{js:identifier-container-start}      # identifier
+      </start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_object-literal-property-or-method-content">
+          <include>
+            <context ref="js-fn:ordered-property-accessor-keyword"/>
+            <context ref="ordered-property-name"/>
+
+            <context ref="js-fn:choice-method-definition"/>
+
+            <context ref="_ordered-object-literal-property-value"/>
+            <context ref="js:ordered-default-value-assignment"/> <!-- for destructuring assignment -->
+          </include>
+        </context> <!-- /_object-literal-property-or-method-content -->
+
+      </include>
+    </context> <!-- /_choice-object-literal-property-or-method -->
+
     <context id="_object-literal-property-content">
       <include>
-        <context ref="js:ordered-spread-syntax"/> <!-- ES2018 -->
-        <context ref="js-fn:ordered-method-definition"/> <!-- includes property-name -->
-        <context ref="_ordered-object-literal-property-value"/>
-        <context ref="js:ordered-default-value-assignment"/> <!-- for destructuring assignment -->
+        <context ref="_choice-object-literal-spread-syntax"/>
+        <context ref="_choice-object-literal-keyword-named-property-or-method"/>
+        <context ref="js-fn:choice-method-keyword-method-definition"/>
+        <context ref="_choice-object-literal-property-or-method"/>
       </include>
     </context> <!-- /_object-literal-property-content -->
 

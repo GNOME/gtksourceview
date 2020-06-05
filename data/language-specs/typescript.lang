@@ -829,7 +829,13 @@
 
     <!-- ## Literals -->
 
+    <!-- ### Number -->
+
     <replace id="js-lit:choice-number" ref="typescript-js-lit:choice-number"/>
+
+    <!-- ### Object literal -->
+
+    <replace id="js-lit:_choice-object-literal-keyword-named-property-or-method" ref="typescript-js-lit:choice-object-literal-keyword-named-property-or-method"/>
 
 
     <!-- ## Functions and classes -->
@@ -842,7 +848,7 @@
 
     <!-- ### Method definition -->
 
-    <replace id="js-fn:_method-definition-content" ref="typescript-js-fn:method-definition-content"/>
+    <replace id="js-fn:choice-method-definition" ref="typescript-js-fn:choice-method-definition"/>
 
     <!-- ### Class expression -->
 

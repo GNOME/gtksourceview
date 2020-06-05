@@ -111,5 +111,22 @@
       </include>
     </context> <!-- /choice-number -->
 
+
+    <!-- # Object literal -->
+
+    <!-- replaces js-lit:_choice-object-literal-keyword-named-property-or-method -->
+    <context id="choice-object-literal-keyword-named-property-or-method" end-parent="true">
+      <start extended="true">
+        (?: \%{js:get-keyword} | \%{js:set-keyword} )
+        (?= \%{js:optional-whitespace-or-comments} [:=&lt;(] )
+      </start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:identifier"/>
+        <context ref="js:comments"/>
+        <context ref="js-lit:_object-literal-keyword-named-property-or-method-content"/>
+      </include>
+    </context> <!-- /choice-object-literal-keyword-named-property-or-method -->
+
   </definitions>
 </language>
