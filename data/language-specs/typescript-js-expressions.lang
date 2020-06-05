@@ -97,7 +97,7 @@
     -->
 
     <context id="_non-null-assertion-operators" style-ref="typescript:non-null-assertion-operator">
-      <match>!</match>
+      <match>!(?!=)</match>
     </context> <!-- /_non-null-assertion-operators -->
 
 
