@@ -287,6 +287,14 @@
           so we move the definitions of these regexes here
     -->
 
+    <define-regex id="number-start" extended="true">
+      (?&lt;! \%{identifier-char} | \. )
+    </define-regex> <!-- /number-start -->
+
+    <define-regex id="number-end" extended="true">
+      (?! \%{identifier-part} | \. )
+    </define-regex> <!-- /number-end -->
+
     <!-- async function (ES2017)
          no line terminator allowed between "async" and "function" -->
     <define-regex id="function-expression-keyword" extended="true">
