@@ -167,9 +167,7 @@
     -->
 
     <context id="_as-operators">
-      <start extended="true">
-        \%{js:keyword-start} as \%{js:keyword-end}
-      </start>
+      <start>\%{js:as-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>

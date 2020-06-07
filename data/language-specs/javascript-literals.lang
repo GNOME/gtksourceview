@@ -39,17 +39,14 @@
 
     <!-- <NullLiteral> -->
     <context id="null-value" style-ref="js:null-value">
-      <match extended="true">
-        \%{js:keyword-start} null \%{js:keyword-end}
-      </match>
+      <match>\%{js:null-keyword}</match>
     </context> <!-- /null-value -->
 
     <!-- <BooleanLiteral> -->
     <context id="boolean" style-ref="js:boolean">
-      <prefix>\%{js:keyword-start}</prefix>
-      <suffix>\%{js:keyword-end}</suffix>
-      <keyword>false</keyword>
-      <keyword>true</keyword>
+      <match extended="true">
+        \%{js:false-keyword} | \%{js:true-keyword}
+      </match>
     </context> <!-- /boolean -->
 
 

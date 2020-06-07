@@ -39,9 +39,7 @@
 
     <!-- <Constraint> -->
     <context id="_type-parameter-constraint" once-only="true">
-      <start extended="true">
-        \%{js:keyword-start} extends \%{js:keyword-end}
-      </start>
+      <start>\%{js:extends-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -153,10 +151,8 @@
     -->
 
     <context id="const-type-assertion-keyword-end-parent" style-ref="typescript:type-keyword" end-parent="true">
-      <start extended="true">
-        (?= \%{js:keyword-start} const \%{js:keyword-end} )
-      </start>
-      <end>const</end>
+      <start>(?=\%{js:const-keyword})</start>
+      <end>\%{js:const-keyword}</end>
     </context> <!-- /const-type-assertion-keyword-end-parent -->
 
     <context id="_type-parameters-list-or-type-assertion-first-parameter" once-only="true">

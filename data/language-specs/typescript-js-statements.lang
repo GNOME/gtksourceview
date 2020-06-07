@@ -71,14 +71,8 @@
          declare global { ... }
     -->
 
-    <define-regex id="_ambient-declaration-keyword" extended="true">
-      \%{js:keyword-start} declare \%{js:keyword-end}
-    </define-regex> <!-- /_ambient-declaration-keyword -->
-
     <context id="_choice-global-augmentation" style-ref="typescript:global-augmentation" end-parent="true">
-      <start extended="true">
-        \%{js:keyword-start} global \%{js:keyword-end}
-      </start>
+      <start>\%{typescript:global-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -108,7 +102,7 @@
 
     <!-- <AmbientDeclaration> -->
     <context id="_ambient-declarations" style-ref="typescript:ambient-declaration">
-      <start>\%{_ambient-declaration-keyword}</start>
+      <start>\%{typescript:declare-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -119,7 +113,7 @@
 
     <!-- <AmbientDeclaration> -->
     <context id="choice-ambient-declaration" style-ref="typescript:ambient-declaration" end-parent="true">
-      <start>\%{_ambient-declaration-keyword}</start>
+      <start>\%{typescript:declare-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -136,10 +130,6 @@
 
          we need a custom const declaration to handle "const enum"
     -->
-
-    <define-regex id="_const-declaration-keyword" extended="true">
-      \%{js:keyword-start} const \%{js:keyword-end}
-    </define-regex> <!-- /_const-declaration-keyword -->
 
     <context id="_const-declaration-content">
       <include>
@@ -158,7 +148,7 @@
     </context> <!-- /_const-declaration-content -->
 
     <context id="_const-declarations" style-ref="js:variable-declaration">
-      <start>\%{_const-declaration-keyword}</start>
+      <start>\%{js:const-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -168,7 +158,7 @@
     </context> <!-- /_const-declarations -->
 
     <context id="choice-const-declaration" style-ref="js:variable-declaration" end-parent="true">
-      <start>\%{_const-declaration-keyword}</start>
+      <start>\%{js:const-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -182,10 +172,6 @@
 
          enum Foo { A = 1, B, C }
     -->
-
-    <define-regex id="_enum-declaration-keyword" extended="true">
-      \%{js:keyword-start} enum \%{js:keyword-end}
-    </define-regex> <!-- /_enum-declaration-keyword -->
 
     <context id="_enum-member-content">
       <include>
@@ -244,7 +230,7 @@
 
     <!-- <EnumDeclaration> -->
     <context id="_enum-declarations" style-ref="typescript:enum-declaration">
-      <start>\%{_enum-declaration-keyword}</start>
+      <start>\%{typescript:enum-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -255,7 +241,7 @@
 
     <!-- <EnumDeclaration> -->
     <context id="choice-enum-declaration" style-ref="typescript:enum-declaration" end-parent="true">
-      <start>\%{_enum-declaration-keyword}</start>
+      <start>\%{typescript:enum-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -272,14 +258,8 @@
            AnotherThing<string, number> { ... }
     -->
 
-    <define-regex id="_interface-declaration-keyword" extended="true">
-      \%{js:keyword-start} interface \%{js:keyword-end}
-    </define-regex> <!-- /_interface-declaration-keyword -->
-
     <context id="_interface-extends-clause" once-only="true">
-      <start extended="true">
-        \%{js:keyword-start} extends \%{js:keyword-end}
-      </start>
+      <start>\%{js:extends-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -313,7 +293,7 @@
 
     <!-- <InterfaceDeclaration> -->
     <context id="_interface-declarations" style-ref="typescript:interface-declaration">
-      <start>\%{_interface-declaration-keyword}</start>
+      <start>\%{typescript:interface-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -324,7 +304,7 @@
 
     <!-- <InterfaceDeclaration> -->
     <context id="choice-interface-declaration" style-ref="typescript:interface-declaration" end-parent="true">
-      <start>\%{_interface-declaration-keyword}</start>
+      <start>\%{typescript:interface-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -340,10 +320,6 @@
                                 // ("internal module")
          module "foo.bar" { ... } // "external module" for d.ts files
     -->
-
-    <define-regex id="_module-declaration-keyword" extended="true">
-      \%{js:keyword-start} module \%{js:keyword-end}
-    </define-regex> <!-- /_module-declaration-keyword -->
 
     <context id="_module-identifier-or-string" once-only="true">
       <start>\%{js:before-next-token}</start>
@@ -378,7 +354,7 @@
 
     <!-- <NamespaceDeclaration> -->
     <context id="_module-declarations" style-ref="typescript:module-declaration">
-      <start>\%{_module-declaration-keyword}</start>
+      <start>\%{typescript:module-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -389,7 +365,7 @@
 
     <!-- <NamespaceDeclaration> -->
     <context id="choice-module-declaration" style-ref="typescript:module-declaration" end-parent="true">
-      <start>\%{_module-declaration-keyword}</start>
+      <start>\%{typescript:module-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -403,10 +379,6 @@
 
          namespace Foo.Bar { ... }
     -->
-
-    <define-regex id="_namespace-declaration-keyword" extended="true">
-      \%{js:keyword-start} namespace \%{js:keyword-end}
-    </define-regex> <!-- /_namespace-declaration-keyword -->
 
     <context id="_namespace-body" once-only="true">
       <start>{</start>
@@ -442,7 +414,7 @@
 
     <!-- <NamespaceDeclaration> -->
     <context id="_namespace-declarations" style-ref="typescript:namespace-declaration">
-      <start>\%{_namespace-declaration-keyword}</start>
+      <start>\%{typescript:namespace-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -453,7 +425,7 @@
 
     <!-- <NamespaceDeclaration> -->
     <context id="choice-namespace-declaration" style-ref="typescript:namespace-declaration" end-parent="true">
-      <start>\%{_namespace-declaration-keyword}</start>
+      <start>\%{typescript:namespace-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>

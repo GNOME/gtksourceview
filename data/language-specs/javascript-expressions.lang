@@ -91,9 +91,7 @@
           <include>
 
             <context id="_import-meta-expression-keyword" style-ref="js:keyword" once-only="true">
-              <match extended="true">
-                \%{js:keyword-start} meta \%{js:keyword-end}
-              </match>
+              <match>\%{js:meta-keyword}</match>
             </context> <!-- /_import-meta-expression-keyword -->
 
           </include>
@@ -103,9 +101,7 @@
     </context> <!-- /_choice-import-meta-expression -->
 
     <context id="_choice-import-expression" end-parent="true">
-      <start extended="true">
-        \%{js:keyword-start} import \%{js:keyword-end}
-      </start>
+      <start>\%{js:import-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -142,9 +138,7 @@
           <include>
 
             <context id="_new-target-expression-keyword" style-ref="js:keyword" once-only="true">
-              <match extended="true">
-                \%{js:keyword-start} target \%{js:keyword-end}
-              </match>
+              <match>\%{js:target-keyword}</match>
             </context> <!-- /_new-target-expression-keyword -->
 
           </include>
@@ -169,9 +163,7 @@
     </context> <!-- /_choice-new-object-expression -->
 
     <context id="_choice-new-expression" end-parent="true">
-      <start extended="true">
-        \%{js:keyword-start} new \%{js:keyword-end}
-      </start>
+      <start>\%{js:new-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -501,7 +493,7 @@
         <!-- ES2017, cannot be followed by line terminator -->
         <context id="_async-keywords" style-ref="js:keyword">
           <match extended="true">
-            \%{js:keyword-start} async \%{js:keyword-end}
+            \%{js:async-keyword}
             # preceeds arrow function
             (?=
               \%{js:optional-whitespace-or-comments}
@@ -511,21 +503,19 @@
               )
             )
             # does not preceed "function" (leave to function expression)
-            (?!
-              \%{js:optional-whitespace-or-comments}
-              \%{js:keyword-start} function \%{js:keyword-end}
-            )
+            (?! \%{js:optional-whitespace-or-comments} \%{js:function-keyword} )
           </match>
         </context> <!-- /_async-keywords -->
 
+        <!-- await: ES2017 -->
         <context id="_keyword-unary-operators" style-ref="js:keyword">
-          <prefix>\%{js:keyword-start}</prefix>
-          <suffix>\%{js:keyword-end}</suffix>
-          <keyword>await</keyword> <!-- ES2017 -->
-          <keyword>delete</keyword>
-          <keyword>typeof</keyword>
-          <keyword>void</keyword>
-          <keyword>yield</keyword>
+          <match extended="true">
+            \%{js:await-keyword} |
+            \%{js:delete-keyword} |
+            \%{js:typeof-keyword} |
+            \%{js:void-keyword} |
+            \%{js:yield-keyword}
+          </match>
         </context> <!-- /_keyword-unary-operators -->
 
         <context ref="js:generator-modifier"/> <!-- for yield* -->
@@ -705,7 +695,7 @@
     <!-- # Binary operators -->
 
     <define-regex id="_keyword-binary-operator" extended="true">
-      \%{js:keyword-start} (?: instanceof | in ) \%{js:keyword-end}
+      \%{js:instanceof-keyword} | \%{js:in-keyword}
     </define-regex> <!-- /_keyword-binary-operator -->
 
     <!-- excluding comma operator -->

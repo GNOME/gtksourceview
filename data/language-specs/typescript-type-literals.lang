@@ -38,22 +38,18 @@
     -->
 
     <define-regex id="_basic-types" extended="true">
-      \%{js:keyword-start}
-      (?:
-        any |
-        bigint |
-        boolean |
-        never |
-        null |
-        number |
-        object |
-        string |
-        symbol |
-        undefined |
-        unknown |
-        void
-      )
-      \%{js:keyword-end}
+      \%{typescript:any-keyword} |
+      \%{typescript:bigint-keyword} |
+      \%{typescript:boolean-keyword} |
+      \%{typescript:never-keyword} |
+      \%{js:null-keyword} |
+      \%{typescript:number-keyword} |
+      \%{typescript:object-keyword} |
+      \%{typescript:string-keyword} |
+      \%{typescript:symbol-keyword} |
+      \%{typescript:undefined-keyword} |
+      \%{typescript:unknown-keyword} |
+      \%{js:void-keyword}
     </define-regex> <!-- /_basic-types -->
 
     <!-- <PredefinedType> -->
@@ -69,14 +65,14 @@
          false
     -->
 
-    <define-regex id="_boolean-types" extended="true">
-      \%{js:keyword-start} (?: false | true ) \%{js:keyword-end}
-    </define-regex> <!-- /_boolean-literal-types -->
-
     <!-- <PredefinedType> -->
     <context id="choice-boolean-type" style-ref="typescript:boolean-type" end-parent="true">
-      <start>(?=\%{_boolean-types})</start>
-      <end>\%{_boolean-types}</end>
+      <start extended="true">
+        (?= \%{js:false-keyword} | \%{js:true-keyword} )
+      </start>
+      <end extended="true">
+        \%{js:false-keyword} | \%{js:true-keyword}
+      </end>
     </context> <!-- /choice-boolean-type -->
 
 
@@ -107,10 +103,8 @@
 
     <!-- <ThisType> -->
     <context id="choice-this-type" style-ref="typescript:basic-type" end-parent="true">
-      <start extended="true">
-        (?= \%{js:keyword-start} this \%{js:keyword-end} )
-      </start>
-      <end>this</end>
+      <start>(?=\%{js:this-keyword})</start>
+      <end>\%{js:this-keyword}</end>
     </context> <!-- /choice-this-type -->
 
 
@@ -203,9 +197,8 @@
           <include>
 
             <context id="_choice-object-type-literal-modifier-keyword" style-ref="typescript:type-keyword" end-parent="true">
-              <prefix>\%{js:keyword-start}</prefix>
-              <suffix>\%{js:keyword-end}</suffix>
-              <keyword>readonly</keyword>
+              <start>(?=\%{typescript:readonly-keyword})</start>
+              <end>\%{typescript:readonly-keyword}</end>
             </context> <!-- /_choice-object-type-literal-modifier-keyword -->
 
           </include>
@@ -239,9 +232,7 @@
             <context ref="typescript:choice-type-annotation"/>
 
             <context id="_choice-mapped-type" end-parent="true">
-              <start extended="true">
-                \%{js:keyword-start} in \%{js:keyword-end}
-              </start>
+              <start>\%{js:in-keyword}</start>
               <end>\%{js:before-next-token}</end>
               <include>
                 <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>

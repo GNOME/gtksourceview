@@ -34,11 +34,11 @@
     <!-- # Accessibility modifier -->
 
     <context id="_accessibility-modifier" style-ref="js:keyword" once-only="true">
-      <prefix>\%{js:keyword-start}</prefix>
-      <suffix>\%{js:keyword-end}</suffix>
-      <keyword>private</keyword>
-      <keyword>protected</keyword>
-      <keyword>public</keyword>
+      <match extended="true">
+        \%{typescript:private-keyword} |
+        \%{typescript:protected-keyword} |
+        \%{typescript:public-keyword}
+      </match>
     </context> <!-- /_accessibility-modifier -->
 
     <context id="_ordered-accessibility-modifier" once-only="true">
@@ -173,9 +173,7 @@
     <!-- ## Class expression keyword -->
 
     <context id="_class-expression-abstract-keyword" style-ref="js:keyword" once-only="true">
-      <match extended="true">
-        \%{js:keyword-start} abstract \%{js:keyword-end}
-      </match>
+      <match>\%{typescript:abstract-keyword}</match>
     </context> <!-- /_class-expression-abstract-keyword -->
 
     <context id="_ordered-class-expression-abstract-keyword" once-only="true">
@@ -187,9 +185,7 @@
     </context> <!-- /_ordered-class-expression-abstract-keyword -->
 
     <context id="_class-expression-class-keyword" style-ref="js:keyword" once-only="true">
-      <match extended="true">
-        \%{js:keyword-start} class \%{js:keyword-end}
-      </match>
+      <match>\%{js:class-keyword}</match>
     </context> <!-- /_class-expression-class-keyword -->
 
     <context id="_ordered-class-expression-class-keyword" once-only="true">
@@ -207,9 +203,7 @@
       <include>
 
         <context id="_choice-class-optional-name-ignore-implements" end-parent="true">
-          <start extended="true">
-            (?= \%{js:keyword-start} implements \%{js:keyword-end} )
-          </start>
+          <start>(?=\%{typescript:implements-keyword})</start>
           <end>\%{def:always-match}</end>
         </context> <!-- /_choice-class-optional-name-ignore-implements -->
 
@@ -230,9 +224,7 @@
     <!-- ## Class implements clause -->
 
     <context id="_class-implements-clause" once-only="true">
-      <start extended="true">
-        \%{js:keyword-start} implements \%{js:keyword-end}
-      </start>
+      <start>\%{typescript:implements-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
@@ -267,11 +259,11 @@
           <include>
 
             <context id="_class-body-member-modifier-keywords" style-ref="js:keyword">
-              <prefix>\%{js:keyword-start}</prefix>
-              <suffix>\%{js:keyword-end}</suffix>
-              <keyword>abstract</keyword>
-              <keyword>declare</keyword>
-              <keyword>readonly</keyword>
+              <match extended="true">
+                \%{typescript:abstract-keyword} |
+                \%{typescript:declare-keyword} |
+                \%{typescript:readonly-keyword}
+              </match>
             </context> <!-- /_class-body-member-modifier-keywords -->
 
           </include>

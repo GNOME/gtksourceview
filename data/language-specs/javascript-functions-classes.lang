@@ -44,9 +44,7 @@
     <!-- ## Function expression keyword -->
 
     <context id="_function-expression-async-keyword" style-ref="js:keyword" once-only="true">
-      <match extended="true">
-        \%{js:keyword-start} async \%{js:keyword-end}
-      </match>
+      <match>\%{js:async-keyword}</match>
     </context> <!-- /_function-expression-async-keyword -->
 
     <context id="_ordered-function-expression-async-keyword" once-only="true">
@@ -58,9 +56,7 @@
     </context> <!-- /_ordered-function-expression-async-keyword -->
 
     <context id="_function-expression-function-keyword" style-ref="js:keyword" once-only="true">
-      <match extended="true">
-        \%{js:keyword-start} function \%{js:keyword-end}
-      </match>
+      <match>\%{js:function-keyword}</match>
     </context> <!-- /_function-expression-function-keyword -->
 
     <context id="_ordered-function-expression-function-keyword" once-only="true">
@@ -242,24 +238,24 @@
           <include>
 
             <context id="_choice-method-definition-modifier-keyword" style-ref="js:keyword" end-parent="true">
-              <prefix>\%{js:keyword-start}</prefix>
-              <suffix>\%{js:keyword-end}</suffix>
-              <keyword>get</keyword>
-              <keyword>set</keyword>
+              <start extended="true">
+                (?= \%{js:get-keyword} | \%{js:set-keyword} )
+              </start>
+              <end extended="true">
+                \%{js:get-keyword} | \%{js:set-keyword}
+              </end>
             </context> <!-- /_choice-method-definition-modifier-keyword -->
 
             <!-- ES2017, cannot be followed by line terminator -->
             <context id="_choice-async-method-definition-modifier-keyword" style-ref="js:keyword" end-parent="true">
-              <match extended="true">
-                \%{js:keyword-start} async \%{js:keyword-end}
+              <start extended="true">
                 (?=
+                  \%{js:async-keyword}
                   \%{js:optional-whitespace-or-comments}
-                  (?:
-                    \%{js:identifier-start} |
-                    \%{js:generator-modifier}
-                  )
+                  (?: \%{js:identifier-start} | \%{js:generator-modifier} )
                 )
-              </match>
+              </start>
+              <end>\%{js:async-keyword}</end>
             </context> <!-- /_choice-async-method-definition-modifier-keyword -->
 
           </include>
@@ -328,9 +324,7 @@
           <include>
 
             <context id="_choice-class-optional-name-ignore-extends" end-parent="true">
-              <start extended="true">
-                (?= \%{js:keyword-start} extends \%{js:keyword-end} )
-              </start>
+              <start>(?=\%{js:extends-keyword})</start>
               <end>\%{def:always-match}</end>
             </context> <!-- /_choice-class-optional-name-ignore-extends -->
 
@@ -352,9 +346,7 @@
     <!-- ## Class extends clause -->
 
     <context id="_class-extends-clause" once-only="true">
-      <start extended="true">
-        \%{js:keyword-start} extends \%{js:keyword-end}
-      </start>
+      <start>\%{js:extends-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -391,9 +383,8 @@
           <include>
 
             <context id="_choice-class-body-member-modifier-keyword" style-ref="js:keyword" end-parent="true">
-              <prefix>\%{js:keyword-start}</prefix>
-              <suffix>\%{js:keyword-end}</suffix>
-              <keyword>static</keyword>
+              <start>(?=\%{js:static-keyword})</start>
+              <end>\%{js:static-keyword}</end>
             </context> <!-- /_choice-class-body-member-modifier-keyword -->
 
           </include>
@@ -455,7 +446,7 @@
 
     <!-- <ClassExpression> / <ClassDeclaration> -->
     <context id="choice-class-expression" style-ref="js:class-expression" end-parent="true">
-      <start>\%{js:class-expression-keyword}</start>
+      <start>\%{js:class-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -475,7 +466,7 @@
 
     <!-- <ClassExpression> / <ClassDeclaration> -->
     <context id="choice-class-expression-required-name" style-ref="js:class-expression" end-parent="true">
-      <start>\%{js:class-expression-keyword}</start>
+      <start>\%{js:class-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>

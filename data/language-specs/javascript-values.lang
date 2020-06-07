@@ -121,13 +121,14 @@
           <keyword>WebAssembly</keyword>
         </context> <!-- /_objects -->
 
+        <!-- globalThis: ES2020 -->
         <context id="_object-keywords" style-ref="js:keyword">
-          <prefix>\%{js:keyword-start}</prefix>
-          <suffix>\%{js:keyword-end}</suffix>
-          <keyword>arguments</keyword>
-          <keyword>globalThis</keyword> <!-- ES2020 -->
-          <keyword>super</keyword>
-          <keyword>this</keyword>
+          <match extended="true">
+            \%{js:keyword-start} arguments \%{js:keyword-end} |
+            \%{js:keyword-start} globalThis \%{js:keyword-end} |
+            \%{js:super-keyword} |
+            \%{js:this-keyword}
+          </match>
         </context> <!-- /_object-keywords -->
 
       </include>

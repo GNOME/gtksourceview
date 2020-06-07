@@ -131,11 +131,7 @@
           \%{js:optional-whitespace-or-comments}
           \%{js:identifier}
           \%{js:optional-whitespace-or-comments}
-          (?:
-            \%{js:keyword-start} extends \%{js:keyword-end} |
-            , |
-            =
-          )
+          (?: \%{js:extends-keyword} | [,=] )
         )
       </start>
       <end>\%{js:before-next-token}</end>

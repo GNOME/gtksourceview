@@ -39,9 +39,7 @@
     -->
 
     <context id="_export-as-namespace-keyword" style-ref="js:keyword" once-only="true">
-      <match extended="true">
-        \%{js:keyword-start} namespace \%{js:keyword-end}
-      </match>
+      <match>\%{typescript:namespace-keyword}</match>
     </context> <!-- /_export-as-namespace-keyword -->
 
     <context id="_ordered-export-as-namespace-keyword" once-only="true">
@@ -53,9 +51,7 @@
     </context> <!-- /_ordered-export-as-namespace-keyword -->
 
     <context id="_choice-export-as-namespace" end-parent="true">
-      <start extended="true">
-        \%{js:keyword-start} as \%{js:keyword-end}
-      </start>
+      <start>\%{js:as-keyword}</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -160,9 +156,7 @@
     -->
 
     <context id="_choice-import-require" end-parent="true">
-      <start extended="true">
-        \%{js:keyword-start} require \%{js:keyword-end}
-      </start>
+      <start>\%{typescript:require-keyword}</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -263,9 +257,7 @@
     <!-- this is like js-mod:import-declarations but only matches import
          default (for import alias) -->
     <context id="_choice-import-default-declaration" style-ref="js:export-import-declaration" end-parent="true">
-      <start extended="true">
-        \%{js:keyword-start} import \%{js:keyword-end}
-      </start>
+      <start>\%{js:import-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
