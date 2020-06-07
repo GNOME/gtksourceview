@@ -365,6 +365,32 @@
       </include>
     </context> <!-- /ordered-namespace-name -->
 
+    <!-- ## Private identifier (stage 3 proposal)
+
+         #identifier
+    -->
+
+    <!-- <PrivateIdentifier> -->
+    <context id="choice-private-identifier" end-parent="true">
+      <start>#(?=\%{js:identifier-start})</start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:identifier"/>
+        <!-- no comments here -->
+        <!-- do not extend the context by matching comments, which may
+             lead to multiple identifiers -->
+        <context ref="js:_identifier-name-content"/>
+      </include>
+    </context> <!-- /choice-private-identifier -->
+
+    <context id="ordered-private-identifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="choice-private-identifier"/>
+      </include>
+    </context> <!-- /ordered-private-identifier -->
+
     <!-- ## Constructor modifier -->
 
     <context id="constructor-modifier" style-ref="type-keyword" once-only="true">
@@ -874,6 +900,8 @@
 
     <!-- ### Post-primary expression -->
 
+    <replace id="js-expr:_dot-property-accessor-content" ref="typescript-js-expr:dot-property-accessor-content"/>
+    <replace id="js-expr:_optional-chain-content" ref="typescript-js-expr:optional-chain-content"/>
     <replace id="js-expr:_post-primary-expression" ref="typescript-js-expr:post-primary-expression"/>
 
     <!-- ### Pre-LHS expression -->

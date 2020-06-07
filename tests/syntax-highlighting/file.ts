@@ -387,7 +387,7 @@ type Container<T> = { value: T };
 
 /* Literals */
 
-// Numeric separators (stage 2 proposal)
+// Numeric separators (stage 3 proposal)
 let decimal = 1_000_000;
 let binary_integer = 0b1100_0011_1101_0001;
 let octal_integer = 0o123_456_700;
@@ -470,7 +470,7 @@ a = class extends Super implements Super.Sub {};
 class MyClass implements Super.Sub {}
 class MyClass extends Super implements Super.Sub {}
 
-// Class properties
+// Class properties (stage 3 proposal)
 a = class {
     property;
     property = 1;
@@ -492,6 +492,13 @@ a = class {
 // Index members
 a = class {
     [index: number]: string;
+};
+
+// Private fields (stage 3 proposal)
+a = class {
+    #privateprop;
+    #privateprop: string = '';
+    setPrivateProp(s: string) { this.#privateprop = s; }
 };
 
 // Accessibility modifiers for properties / methods
@@ -631,6 +638,15 @@ a = class {
     static [prop: string]: any;
     abstract [prop: string]: any;
     declare [prop: string]: any;
+};
+// Modifiers other than "readonly" do not apply to private fields
+a = class {
+    public #privateprop;
+    protected #privateprop;
+    private #privateprop;
+    static #privateprop;
+    abstract #privateprop;
+    declare #privateprop;
 };
 
 

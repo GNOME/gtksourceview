@@ -251,6 +251,25 @@
       </include>
     </context> <!-- /_choice-class-body-index-member -->
 
+    <context id="_choice-class-body-private-field" end-parent="true">
+      <start>(?=#\%{js:identifier-start})</start>
+      <end>;</end>
+      <include>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-private-field-content">
+          <include>
+            <context ref="typescript:ordered-private-identifier"/>
+            <context ref="typescript:ordered-optional-modifier"/>
+            <context ref="typescript:ordered-definite-assignment-assertion"/>
+            <context ref="typescript:ordered-type-annotation"/>
+            <context ref="js:ordered-default-value-assignment"/>
+          </include>
+        </context> <!-- /_class-body-private-field-content -->
+
+      </include>
+    </context> <!-- /_choice-class-body-private-field -->
+
     <context id="_class-body-method-parameters-list" once-only="true">
       <start>\(</start>
       <end>\)</end>
@@ -401,6 +420,8 @@
 
         index members can only be modified with "readonly"
 
+        private fields can only be modified with "readonly"
+
         cannot have abstract generators: abstract *generator()
         https://github.com/Microsoft/TypeScript/issues/25710
 
@@ -421,6 +442,7 @@
         <context ref="_ordered-class-body-readonly-property-modifier"/>
 
         <context ref="_choice-class-body-index-member"/>
+        <context ref="_choice-class-body-private-field"/>
         <context ref="_choice-class-body-method-keyword-method-definition"/>
 
         <context ref="js-fn:ordered-property-accessor-keyword"/>

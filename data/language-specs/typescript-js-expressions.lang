@@ -140,6 +140,22 @@
 
     <!-- # Post-primary expression -->
 
+    <!-- replaces js-expr:_dot-property-accessor-content -->
+    <context id="dot-property-accessor-content">
+      <include>
+        <context ref="typescript:choice-private-identifier"/>
+        <context ref="js-expr:_dot-property-accessor-content" original="true"/>
+      </include>
+    </context> <!-- /dot-property-accessor-content -->
+
+    <!-- replaces js-expr:_optional-chain-content -->
+    <context id="optional-chain-content">
+      <include>
+        <context ref="typescript:choice-private-identifier"/>
+        <context ref="js-expr:_optional-chain-content" original="true"/>
+      </include>
+    </context> <!-- /optional-chain-content -->
+
     <!-- replaces js-expr:_post-primary-expression -->
     <context id="post-primary-expression">
       <include>
