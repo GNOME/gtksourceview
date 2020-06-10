@@ -243,33 +243,84 @@
       </include>
     </context> <!-- /js-ordered-string -->
 
-    <!-- ## @ts-ignore comment pragma
+    <!-- ## @ts-ignore / @ts-expect-error comment pragma
 
          // @ts-ignore
+         /* @ts-expect-error some reasons */
+
+         can be at the start of a double- or triple-slash comment
+         https://github.com/microsoft/TypeScript/blob/3c49fb0d9ffb67fd645835589d66687b4fb7543a/src/compiler/scanner.ts#L275
+
+         can also be on the last line of a multi-line comment
+         https://github.com/microsoft/TypeScript/blob/3c49fb0d9ffb67fd645835589d66687b4fb7543a/src/compiler/scanner.ts#L280
+
+         in both cases, the pragma should be at the start of the
+         line/comment, but in practice there can be code before the
+         comment (on the same line)
+
+         also the regexes don't test for a word break, so any characters
+         can immediately follow the pragmas
     -->
 
-    <!-- can be double- or triple-slash
-         pragma must be at start of comment
-         technically, must be at the start of the line
-         https://github.com/microsoft/TypeScript/blob/e82d0af554d96738b2e8c7f9027e53ac8bc31007/src/compiler/program.ts#L2
-    -->
-    <context id="_ts-ignore-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
-      <start extended="true">
-        ///? \%{js:whitespace}* @ts-ignore \%{js:keyword-end}
-      </start>
-      <include>
-        <context ref="js:_comment-content"/>
-      </include>
-    </context> <!-- /_ts-ignore-comment-pragmas -->
+    <define-regex id="_ts-ignore-comment-pragma" extended="true">
+      @ (?: ts-expect-error | ts-ignore )
+    </define-regex> <!-- /_ts-ignore-comment-pragma -->
 
-    <context id="_ts-ignore-comment-pragmas-no-extend-parent" style-ref="js:directive" end-at-line-end="true" class="comment" extend-parent="false">
+    <context id="_ts-ignore-comment-pragma" style-ref="js:directive" class="no-spell-check" once-only="true">
+      <match>\%{_ts-ignore-comment-pragma}</match>
+    </context> <!-- /_ts-ignore-comment-pragma -->
+
+    <context id="_ts-ignore-comment-pragma-single-line-comments" style-ref="js:directive" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start extended="true">
-        ///? \%{js:whitespace}* @ts-ignore \%{js:keyword-end}
+        // (?= /? \s* \%{_ts-ignore-comment-pragma} )
       </start>
       <include>
-        <context ref="js:_comment-content"/>
+        <context ref="_ts-ignore-comment-pragma"/>
+        <context ref="js:_single-line-comment-content"/>
       </include>
-    </context> <!-- /_ts-ignore-comment-pragmas-no-extend-parent -->
+    </context> <!-- /_ts-ignore-comment-pragma-single-line-comments -->
+
+    <context id="_ts-ignore-comment-pragma-single-line-comments-no-extend-parent" style-ref="js:directive" end-at-line-end="true" class-disabled="no-spell-check" class="comment" extend-parent="false">
+      <start extended="true">
+        // (?= /? \s* \%{_ts-ignore-comment-pragma} )
+      </start>
+      <include>
+        <context ref="_ts-ignore-comment-pragma"/>
+        <context ref="js:_single-line-comment-content"/>
+      </include>
+    </context> <!-- /_ts-ignore-comment-pragma-single-line-comments-no-extend-parent -->
+
+    <context id="_ts-ignore-comment-pragmas-multiline-comments" style-ref="js:directive" class-disabled="no-spell-check" class="comment">
+      <start extended="true">
+        /\* (?= /* \** \s* \%{_ts-ignore-comment-pragma} .*? \*/ )
+      </start>
+      <end>\*/</end>
+      <include>
+        <context ref="_ts-ignore-comment-pragma"/>
+        <context ref="_multiline-comment-content"/>
+      </include>
+    </context> <!-- /_ts-ignore-comment-pragmas-multiline-comments -->
+
+    <context id="_ts-ignore-comment-pragmas-multiline-comments-no-extend-parent" style-ref="js:directive" class-disabled="no-spell-check" class="comment" extend-parent="false">
+      <start extended="true">
+        /\* (?= /* \** \s* \%{_ts-ignore-comment-pragma} .*? \*/ )
+      </start>
+      <end>\*/</end>
+      <include>
+        <context ref="_ts-ignore-comment-pragma"/>
+        <context ref="_multiline-comment-content"/>
+      </include>
+    </context> <!-- /_ts-ignore-comment-pragmas-multiline-comments-no-extend-parent -->
+
+    <context id="_ts-ignore-comment-pragma-multiline-comment-last-line" once-only="true">
+      <start extended="true">
+        ^ \s* /* \** \s* (?= \%{_ts-ignore-comment-pragma} .*? \*/ )
+      </start>
+      <end>\%{def:always-match}</end>
+      <include>
+        <context ref="_ts-ignore-comment-pragma"/>
+      </include>
+    </context> <!-- /_ts-ignore-comment-pragma-multiline-comment-last-line -->
 
     <!-- ## @ts-nocheck comment pragma
 
@@ -277,42 +328,63 @@
 
          can only be preceded by comments or other triple-slash
          directives (i.e. at the top of a file)
-         appears to be case-insensitive (cannot find code reference though)
+         case-insensitive ("i" modifier on regex)
+         https://github.com/microsoft/TypeScript/blob/3c49fb0d9ffb67fd645835589d66687b4fb7543a/src/services/classifier.ts#L768
     -->
 
-    <context id="_ts-nocheck-comment-pragmas" style-ref="js:directive" end-at-line-end="true" class="comment">
+    <define-regex id="_ts-nocheck-comment-pragma" case-sensitive="false" extended="true">
+      @ts-nocheck (?! \S )
+    </define-regex> <!-- /_ts-nocheck-comment-pragma -->
+
+    <context id="_ts-nocheck-comment-pragma-comments" style-ref="js:directive" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start case-sensitive="false" extended="true">
-        ///? \s* @ts-nocheck \%{js:keyword-end}
+        // (?= /? \s* \%{_ts-nocheck-comment-pragma} )
       </start>
       <include>
-        <context ref="js:_comment-content"/>
+
+        <context id="_ts-nocheck-comment-pragma" class="no-spell-check" once-only="true">
+          <match>\%{_ts-nocheck-comment-pragma}</match>
+        </context> <!-- /_ts-nocheck-comment-pragma -->
+
+        <context ref="js:_single-line-comment-content"/>
       </include>
-    </context> <!-- /_ts-nocheck-comment-pragmas -->
+    </context> <!-- /_ts-nocheck-comment-pragma-comments -->
 
     <!-- ## Triple-slash directive
 
-         /// <reference path="..."
+         /// <reference path="..." />
 
          can only be preceded by comments or other triple-slash
          directives (i.e. at the top of a file)
-         appears to be case-insensitive
-         https://github.com/microsoft/TypeScript/blob/ef0cca7d12a320bc98cefebbf4d391de36003149/src/services/classifier.ts#L768
+         case-insensitive ("i" modifier on regex)
+         https://github.com/microsoft/TypeScript/blob/3c49fb0d9ffb67fd645835589d66687b4fb7543a/src/services/classifier.ts#L768
     -->
 
-    <context id="_triple-slash-directives" style-ref="js:directive" end-at-line-end="true" class="comment">
-      <start case-sensitive="false" extended="true">
-        /// \%{js:whitespace}* &lt;
+    <define-regex id="_triple-slash-directive" case-sensitive="false" extended="true">
+      &lt;
+      (?: amd-module | amd-dependency | reference )
+      (?&gt;
         (?:
-          amd-module |
-          amd-dependency |
-          reference
-        )
-        \%{js:whitespace}
+          \s+ |
+          (?&lt;= \s ) [\w-]+ \s* = \s* (?: '[^']*' | "[^"]*" )
+        )*
+      )
+      /&gt;
+    </define-regex> <!-- /_triple-slash-directive -->
+
+    <context id="_triple-slash-directive-comments" style-ref="js:directive" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
+      <start extended="true">
+        /// (?= \s* \%{_triple-slash-directive} )
       </start>
       <include>
-        <context ref="js:_comment-content"/>
+
+        <context id="_triple-slash-directive" class="no-spell-check" once-only="true">
+          <match>\%{_triple-slash-directive}</match>
+        </context> <!-- /_triple-slash-directive -->
+
+        <context ref="js:_single-line-comment-content"/>
       </include>
-    </context> <!-- /_triple-slash-directives -->
+    </context> <!-- /_triple-slash-directive-comments -->
 
     <!-- ## Namespace name
 
@@ -835,20 +907,30 @@
 
     <!-- ## General -->
 
+    <context id="_multiline-comment-content">
+      <include>
+        <context ref="_ts-ignore-comment-pragma-multiline-comment-last-line"/>
+        <context ref="js:_multiline-comment-content" original="true"/>
+      </include>
+    </context> <!-- /_multiline-comment-content -->
+
     <context id="_comments">
       <include>
-        <context ref="_ts-ignore-comment-pragmas"/>
+        <context ref="_ts-ignore-comment-pragma-single-line-comments"/>
+        <context ref="_ts-ignore-comment-pragmas-multiline-comments"/>
         <context ref="js:comments" original="true"/>
       </include>
     </context> <!-- /_comments -->
 
     <context id="_comments-no-extend-parent">
       <include>
-        <context ref="_ts-ignore-comment-pragmas-no-extend-parent"/>
+        <context ref="_ts-ignore-comment-pragma-single-line-comments-no-extend-parent"/>
+        <context ref="_ts-ignore-comment-pragmas-multiline-comments-no-extend-parent"/>
         <context ref="js:comments-no-extend-parent" original="true"/>
       </include>
     </context> <!-- /_comments-no-extend-parent -->
 
+    <replace id="js:_multiline-comment-content" ref="_multiline-comment-content"/>
     <replace id="js:comments" ref="_comments"/>
     <replace id="js:comments-no-extend-parent" ref="_comments-no-extend-parent"/>
 
@@ -946,8 +1028,8 @@
 
     <context id="typescript" class="no-spell-check">
       <include>
-        <context ref="_ts-nocheck-comment-pragmas"/>
-        <context ref="_triple-slash-directives"/>
+        <context ref="_ts-nocheck-comment-pragma-comments"/>
+        <context ref="_triple-slash-directive-comments"/>
         <context ref="js:js"/>
       </include>
     </context> <!-- /typescript -->

@@ -240,19 +240,23 @@ let a: string;
  * TypeScript-specific statements and declarations
  */
 
-/* @ts-ignore comment pragmas */
+/* @ts-ignore / @ts-expect-error comment pragmas */
 
 // Valid pragmas
 //@ts-ignore
-/// @ts-ignore add reason here
+/// @ts-expect-error add reason here
 {
     //  @ts-ignore
 }
+/* @ts-expect-error*/
+/*
+ * @ts-ignore more reasons */
 
 // Invalid pragmas
 // @ ts-ignore
 /// @TS-IGNORE
-/* @ts-ignore */
+/* @ts-expect-error
+ */
 
 
 /* @ts-nocheck comment pragmas */
@@ -274,15 +278,23 @@ let a: string;
 
 // Valid directives
 ///<reference path="foo" />
-/// <REFERENCE lib="es2017.string" />
-/// <amd-module name="bar" />
-///  <aMd-dEpEnDeNcY />
+/// <REFERENCE lib='es2017.string'/>
+/// <amd-module name = "bar/>" />
+///  <aMd-dEpEnDeNcY/>
 
 // Invalid directives
 /// comment
-/// <comment
-/// < reference
-/// <reference-path
+/// <comment />
+/// <reference /
+/// < reference />
+/// <reference / >
+/// <reference-path="foo" />
+/// <reference path />
+/// <reference path "foo" />
+/// <reference path="/>
+/// <reference path=foo />
+/// <reference path='foo" />
+/// <reference path="foo"name="bar" />
 {
     /// <reference path="foo" />
 }

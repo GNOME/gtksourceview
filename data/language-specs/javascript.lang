@@ -535,11 +535,23 @@
       </include>
     </context> <!-- /_comment-content -->
 
+    <context id="_single-line-comment-content">
+      <include>
+        <context ref="_comment-content"/>
+      </include>
+    </context> <!-- /_single-line-comment-content -->
+
+    <context id="_multiline-comment-content">
+      <include>
+        <context ref="_comment-content"/>
+      </include>
+    </context> <!-- /_multiline-comment-content -->
+
     <!-- line continuations are not allowed inside single-line comments -->
     <context id="_single-line-comments" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start>//</start>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_single-line-comment-content"/>
       </include>
     </context> <!-- /_single-line-comments -->
 
@@ -547,14 +559,14 @@
       <start>/\*</start>
       <end>\*/</end>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_multiline-comment-content"/>
       </include>
     </context> <!-- /_multiline-comments -->
 
     <context id="_single-line-comments-no-extend-parent" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment" extend-parent="false">
       <start>//</start>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_single-line-comment-content"/>
       </include>
     </context> <!-- /_single-line-comments-no-extend-parent -->
 
@@ -562,7 +574,7 @@
       <start>/\*</start>
       <end>\*/</end>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_multiline-comment-content"/>
       </include>
     </context> <!-- /_multiline-comments-no-extend-parent -->
 
@@ -583,7 +595,7 @@
 
     <context id="_doc-comment-content">
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_multiline-comment-content"/>
         <context ref="jsdoc:jsdoc"/>
       </include>
     </context> <!-- /_doc-comment-content -->
