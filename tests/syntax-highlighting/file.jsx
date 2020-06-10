@@ -40,6 +40,10 @@
 // XML character entity / numeric character references
 ( <div>&gt;&#47;</div> );
 
+// Invalid characters
+( <div>greater than > right brace }</div> );
+( <div>valid alternatives: &gt; {">"} &rbrace; {'}'}</div> );
+
 // Fragment
 (
     <>
