@@ -134,7 +134,7 @@
          Supported level: ES2020
 
          Supported ES2021 proposals:
-         * (none yet)
+         * String.prototype.replaceAll
 
          Features from Annex B of the spec are not highlighted to
          discourage their use, except:
@@ -191,7 +191,7 @@
 
     <!-- <UnicodeEscapeSequence> -->
     <define-regex id="unicode-escape" extended="true">
-      \\u (?: [0-9a-fA-F]{4} | \{ [0-9a-fA-F]{1,} \} )
+      \\u (?: [0-9a-fA-F]{4} | { [0-9a-fA-F]{1,} } )
     </define-regex> <!-- /unicode-escape -->
 
     <!-- <IdentifierStart> -->
@@ -280,6 +280,10 @@
 
     <define-regex id="generator-modifier">\*</define-regex>
 
+    <define-regex id="rest-syntax">\.\.\.</define-regex>
+
+    <define-regex id="spread-syntax">\.\.\.</define-regex>
+
     <!-- "unknown id" errors can occur when using a regex defined in one
           component file in another component file
           https://gitlab.gnome.org/GNOME/gtksourceview/issues/67
@@ -287,32 +291,235 @@
           so we move the definitions of these regexes here
     -->
 
-    <define-regex id="import-function-keyword-suffix" extended="true">
-      \%{optional-whitespace-or-comments} \(
-    </define-regex> <!-- /import-function-keyword-suffix -->
+    <define-regex id="number-start" extended="true">
+      (?&lt;! \%{identifier-char} | \. )
+    </define-regex> <!-- /number-start -->
 
-    <define-regex id="new-target-object-keyword-suffix" extended="true">
-      \%{optional-whitespace-or-comments}
-      \.
-      \%{optional-whitespace-or-comments}
-      target \%{keyword-end}
-    </define-regex> <!-- /new-target-object-keyword-suffix -->
+    <define-regex id="number-end" extended="true">
+      (?! \%{identifier-part} | \. )
+    </define-regex> <!-- /number-end -->
 
-    <!-- async function (ES2017)
+    <!-- these regexes are keywords that appear as literals in the
+         grammar -->
+
+    <define-regex id="as-keyword" extended="true">
+      \%{keyword-start} as \%{keyword-end}
+    </define-regex> <!-- /as-keyword -->
+
+    <define-regex id="async-keyword" extended="true">
+      \%{keyword-start} async \%{keyword-end}
+    </define-regex> <!-- /async-keyword -->
+
+    <define-regex id="await-keyword" extended="true">
+      \%{keyword-start} await \%{keyword-end}
+    </define-regex> <!-- /await-keyword -->
+
+    <define-regex id="break-keyword" extended="true">
+      \%{keyword-start} break \%{keyword-end}
+    </define-regex> <!-- /break-keyword -->
+
+    <define-regex id="case-keyword" extended="true">
+      \%{keyword-start} case \%{keyword-end}
+    </define-regex> <!-- /case-keyword -->
+
+    <define-regex id="catch-keyword" extended="true">
+      \%{keyword-start} catch \%{keyword-end}
+    </define-regex> <!-- /catch-keyword -->
+
+    <define-regex id="class-keyword" extended="true">
+      \%{keyword-start} class \%{keyword-end}
+    </define-regex> <!-- /class-keyword -->
+
+    <define-regex id="const-keyword" extended="true">
+      \%{keyword-start} const \%{keyword-end}
+    </define-regex> <!-- /const-keyword -->
+
+    <define-regex id="continue-keyword" extended="true">
+      \%{keyword-start} continue \%{keyword-end}
+    </define-regex> <!-- /continue-keyword -->
+
+    <define-regex id="debugger-keyword" extended="true">
+      \%{keyword-start} debugger \%{keyword-end}
+    </define-regex> <!-- /debugger-keyword -->
+
+    <define-regex id="default-keyword" extended="true">
+      \%{keyword-start} default \%{keyword-end}
+    </define-regex> <!-- /default-keyword -->
+
+    <define-regex id="delete-keyword" extended="true">
+      \%{keyword-start} delete \%{keyword-end}
+    </define-regex> <!-- /delete-keyword -->
+
+    <define-regex id="do-keyword" extended="true">
+      \%{keyword-start} do \%{keyword-end}
+    </define-regex> <!-- /do-keyword -->
+
+    <define-regex id="else-keyword" extended="true">
+      \%{keyword-start} else \%{keyword-end}
+    </define-regex> <!-- /else-keyword -->
+
+    <define-regex id="export-keyword" extended="true">
+      \%{keyword-start} export \%{keyword-end}
+    </define-regex> <!-- /export-keyword -->
+
+    <define-regex id="extends-keyword" extended="true">
+      \%{keyword-start} extends \%{keyword-end}
+    </define-regex> <!-- /extends-keyword -->
+
+    <define-regex id="false-keyword" extended="true">
+      \%{keyword-start} false \%{keyword-end}
+    </define-regex> <!-- /false-keyword -->
+
+    <define-regex id="finally-keyword" extended="true">
+      \%{keyword-start} finally \%{keyword-end}
+    </define-regex> <!-- /finally-keyword -->
+
+    <define-regex id="for-keyword" extended="true">
+      \%{keyword-start} for \%{keyword-end}
+    </define-regex> <!-- /for-keyword -->
+
+    <define-regex id="from-keyword" extended="true">
+      \%{keyword-start} from \%{keyword-end}
+    </define-regex> <!-- /from-keyword -->
+
+    <define-regex id="function-keyword" extended="true">
+      \%{keyword-start} function \%{keyword-end}
+    </define-regex> <!-- /function-keyword -->
+
+    <define-regex id="get-keyword" extended="true">
+      \%{keyword-start} get \%{keyword-end}
+    </define-regex> <!-- /get-keyword -->
+
+    <define-regex id="if-keyword" extended="true">
+      \%{keyword-start} if \%{keyword-end}
+    </define-regex> <!-- /if-keyword -->
+
+    <define-regex id="import-keyword" extended="true">
+      \%{keyword-start} import \%{keyword-end}
+    </define-regex> <!-- /import-keyword -->
+
+    <define-regex id="in-keyword" extended="true">
+      \%{keyword-start} in \%{keyword-end}
+    </define-regex> <!-- /in-keyword -->
+
+    <define-regex id="instanceof-keyword" extended="true">
+      \%{keyword-start} instanceof \%{keyword-end}
+    </define-regex> <!-- /instanceof-keyword -->
+
+    <define-regex id="let-keyword" extended="true">
+      \%{keyword-start} let \%{keyword-end}
+    </define-regex> <!-- /let-keyword -->
+
+    <define-regex id="meta-keyword" extended="true">
+      \%{keyword-start} meta \%{keyword-end}
+    </define-regex> <!-- /meta-keyword -->
+
+    <define-regex id="new-keyword" extended="true">
+      \%{keyword-start} new \%{keyword-end}
+    </define-regex> <!-- /new-keyword -->
+
+    <define-regex id="null-keyword" extended="true">
+      \%{keyword-start} null \%{keyword-end}
+    </define-regex> <!-- /null-keyword -->
+
+    <define-regex id="of-keyword" extended="true">
+      \%{keyword-start} of \%{keyword-end}
+    </define-regex> <!-- /of-keyword -->
+
+    <define-regex id="return-keyword" extended="true">
+      \%{keyword-start} return \%{keyword-end}
+    </define-regex> <!-- /return-keyword -->
+
+    <define-regex id="set-keyword" extended="true">
+      \%{keyword-start} set \%{keyword-end}
+    </define-regex> <!-- /set-keyword -->
+
+    <define-regex id="static-keyword" extended="true">
+      \%{keyword-start} static \%{keyword-end}
+    </define-regex> <!-- /static-keyword -->
+
+    <define-regex id="super-keyword" extended="true">
+      \%{keyword-start} super \%{keyword-end}
+    </define-regex> <!-- /super-keyword -->
+
+    <define-regex id="switch-keyword" extended="true">
+      \%{keyword-start} switch \%{keyword-end}
+    </define-regex> <!-- /switch-keyword -->
+
+    <define-regex id="target-keyword" extended="true">
+      \%{keyword-start} target \%{keyword-end}
+    </define-regex> <!-- /target-keyword -->
+
+    <define-regex id="this-keyword" extended="true">
+      \%{keyword-start} this \%{keyword-end}
+    </define-regex> <!-- /this-keyword -->
+
+    <define-regex id="throw-keyword" extended="true">
+      \%{keyword-start} throw \%{keyword-end}
+    </define-regex> <!-- /throw-keyword -->
+
+    <define-regex id="true-keyword" extended="true">
+      \%{keyword-start} true \%{keyword-end}
+    </define-regex> <!-- /true-keyword -->
+
+    <define-regex id="try-keyword" extended="true">
+      \%{keyword-start} try \%{keyword-end}
+    </define-regex> <!-- /try-keyword -->
+
+    <define-regex id="typeof-keyword" extended="true">
+      \%{keyword-start} typeof \%{keyword-end}
+    </define-regex> <!-- /typeof-keyword -->
+
+    <define-regex id="var-keyword" extended="true">
+      \%{keyword-start} var \%{keyword-end}
+    </define-regex> <!-- /var-keyword -->
+
+    <define-regex id="void-keyword" extended="true">
+      \%{keyword-start} void \%{keyword-end}
+    </define-regex> <!-- /void-keyword -->
+
+    <define-regex id="while-keyword" extended="true">
+      \%{keyword-start} while \%{keyword-end}
+    </define-regex> <!-- /while-keyword -->
+
+    <define-regex id="with-keyword" extended="true">
+      \%{keyword-start} with \%{keyword-end}
+    </define-regex> <!-- /with-keyword -->
+
+    <define-regex id="yield-keyword" extended="true">
+      \%{keyword-start} yield \%{keyword-end}
+    </define-regex> <!-- /yield-keyword -->
+
+    <!-- async function: ES2017
          no line terminator allowed between "async" and "function" -->
     <define-regex id="function-expression-keyword" extended="true">
-      (?:
-        \%{keyword-start} async \%{keyword-end}
-        \%{optional-whitespace-or-comments}
-      )?
-      \%{keyword-start} function \%{keyword-end}
+      (?: \%{async-keyword} \%{optional-whitespace-or-comments} )?
+      \%{function-keyword}
     </define-regex> <!-- /function-expression-keyword -->
 
-    <define-regex id="class-expression-keyword" extended="true">
-      \%{keyword-start} class \%{keyword-end}
-    </define-regex> <!-- /class-expression-keyword -->
+    <!-- async function: ES2017
+         "async" cannot be followed by line terminator -->
+    <define-regex id="method-keyword" extended="true">
+      # get property() / set property()
+      (?: \%{js:get-keyword} | \%{js:set-keyword} )
+      (?=
+        \%{js:optional-whitespace-or-comments}
+        \%{js:identifier-start}
+      ) |
+
+      # async method() / async * generator()
+      \%{js:async-keyword}
+      (?=
+        \%{js:optional-whitespace-or-comments}
+        (?: \%{js:identifier-start} | \%{js:generator-modifier} )
+      ) |
+
+      # * generator()
+      (?= \%{js:generator-modifier} )
+    </define-regex> <!-- /method-keyword -->
 
     <!-- ## Embedded lang hooks
+
          a placeholder context where an embedding language (e.g. html)
          can <replace>
     -->
@@ -328,11 +535,23 @@
       </include>
     </context> <!-- /_comment-content -->
 
+    <context id="_single-line-comment-content">
+      <include>
+        <context ref="_comment-content"/>
+      </include>
+    </context> <!-- /_single-line-comment-content -->
+
+    <context id="_multiline-comment-content">
+      <include>
+        <context ref="_comment-content"/>
+      </include>
+    </context> <!-- /_multiline-comment-content -->
+
     <!-- line continuations are not allowed inside single-line comments -->
     <context id="_single-line-comments" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment">
       <start>//</start>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_single-line-comment-content"/>
       </include>
     </context> <!-- /_single-line-comments -->
 
@@ -340,14 +559,14 @@
       <start>/\*</start>
       <end>\*/</end>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_multiline-comment-content"/>
       </include>
     </context> <!-- /_multiline-comments -->
 
     <context id="_single-line-comments-no-extend-parent" style-ref="comment" end-at-line-end="true" class-disabled="no-spell-check" class="comment" extend-parent="false">
       <start>//</start>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_single-line-comment-content"/>
       </include>
     </context> <!-- /_single-line-comments-no-extend-parent -->
 
@@ -355,7 +574,7 @@
       <start>/\*</start>
       <end>\*/</end>
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_multiline-comment-content"/>
       </include>
     </context> <!-- /_multiline-comments-no-extend-parent -->
 
@@ -376,7 +595,7 @@
 
     <context id="_doc-comment-content">
       <include>
-        <context ref="_comment-content"/>
+        <context ref="_multiline-comment-content"/>
         <context ref="jsdoc:jsdoc"/>
       </include>
     </context> <!-- /_doc-comment-content -->
@@ -600,20 +819,8 @@
 
     <!-- ## Misc syntax -->
 
-    <context id="_keyword-dot" style-ref="keyword" once-only="true">
-      <match>\.</match>
-    </context> <!-- /_keyword-dot -->
-
-    <context id="ordered-keyword-dot" once-only="true">
-      <start>\%{before-next-token}</start>
-      <end>\%{before-next-token}</end>
-      <include>
-        <context ref="_keyword-dot"/>
-      </include>
-    </context> <!-- /ordered-keyword-dot -->
-
     <context id="_rest-syntax" style-ref="rest-syntax" once-only="true">
-      <match>\.\.\.</match>
+      <match>\%{rest-syntax}</match>
     </context> <!-- /_rest-syntax -->
 
     <context id="ordered-rest-syntax" once-only="true">
@@ -625,7 +832,7 @@
     </context> <!-- /ordered-rest-syntax -->
 
     <context id="_spread-syntax" style-ref="spread-syntax" once-only="true">
-      <match>\.\.\.</match>
+      <match>\%{spread-syntax}</match>
     </context> <!-- /_spread-syntax -->
 
     <context id="ordered-spread-syntax" once-only="true">

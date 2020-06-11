@@ -396,12 +396,12 @@ var octal2 = 0O4567n;
 
 a = {};
 a = { prop: 'value' };
-a = { prop: 'value', extends: 1 };
+a = { 'prop': 'value', 1: true, .2: 2 };
 
 // Trailing comma
 a = {
     prop: 'value',
-    extends: 1,
+    "extends": 1,
 };
 
 // Shorthand property names
@@ -411,7 +411,17 @@ a = { b, c, d };
 a = {
     _hidden: null,
     get property() { return _hidden; },
-    set property(value) { this._hidden = value; }
+    set property(value) { this._hidden = value; },
+
+    get: 'get',
+    set() { return 'set'; }
+};
+// Incorrectly highlighted as keyword
+a = {
+    get
+    : 'get',
+    set
+    () { return 'set'; }
 };
 
 // Shorthand function notation
@@ -422,9 +432,9 @@ a = {
     // Async function (ES2017)
     async method() {},
     async /* comment */ method() {},
+    async get() {},
     async() {},// method called "async"
     async: false, // property called "async"
-    async prop: 'val', // incorrectly highlighted (syntax error)
 
     // Async generator (ES2018)
     async *generator() {}
@@ -437,7 +447,19 @@ a = {
 };
 
 // Spread properties (ES2018)
-a = { ...b };
+a = {
+    ...b,
+    ...getObj('string')
+};
+
+// Syntax errors
+a = { prop: 'val': 'val' };
+a = { method() {}: 'val' };
+a = { get property() {}: 'val' };
+a = { *generator: 'val' };
+a = { async prop: 'val' };
+a = { ...b: 'val' };
+a = { ...b() { return 'b'; } };
 
 
 /* Regular expression literal */
@@ -526,22 +548,34 @@ Math.random();
 // object keywords
 arguments;
 globalThis; // ES2020
-new.target;
-new . /* comment */ target;
 super;
 this;
-new . /* comment
-*/ target; // not correctly highlighted
-new // comment
-.target; // not correctly highlighted
 
-// function keywords
-import(); // ES2020
-import /* comment */ (); // ES2020
-import /* comment
-*/ (); // not correctly highlighted (though it may appear correct)
+// dynamic import (ES2020)
+import("module").then();
+import /* comment */ ("module").then();
 import // comment
-(); // not correctly highlighted (though it may appear correct)
+("module").then();
+a = await import("module");
+a = await import /* comment */ ("module");
+a = await import // comment
+("module");
+
+// import.meta (ES2020)
+import.meta;
+import . /* comment */ meta;
+import // comment
+.meta;
+a = import.meta;
+a = import . /* comment */ meta;
+a = import // comment
+.meta;
+
+// new.target
+new.target;
+new . /* comment */ target;
+new // comment
+.target;
 
 // properties (subset)
 array.length;
@@ -572,6 +606,7 @@ array.flatMap(); // ES2019
 string.matchAll(); // ES2020
 Promise.allSettled(); // ES2020
 BigInt.asUintN(); // ES2020
+string.replaceAll(); // ES2021
 
 
 /*
@@ -676,18 +711,46 @@ a = class Foo {
     *generator() {}
 };
 a = class extends Bar {
-    constructor() {
-        this._value = null;
-    }
-    get property() {
-        return this._value;
-    }
-    set property(x) {
-        this._value = x;
-    }
-    static get bar() {
-        return 'bar';
-    }
+    constructor() { this._value = null; }
+
+    get property() { return this._value; }
+    set property(x) { this._value = x; }
+    async method() { return 'async'; }
+    async *generator() { return 'generator'; }
+    static method() { return 'static'; }
+
+    static get property() { return this.staticval; }
+    static set property(x) { this.staticval = x; }
+    static async method() { return 'async'; }
+    static async *generator() { return 'generator'; }
+
+    get() { return this.val; }
+    set(v) { this.val = v; }
+    async() { return 'async'; }
+    static() { return 'static'; }
+
+    static get() { return this.val; }
+    static set(v) { this.val = v; }
+    static async() { return 'async'; }
+    static static() { return 'static'; }
+
+    static
+    static
+    () { return 'static'; }
+};
+// Incorrectly highlighted as keyword
+a = class {
+    get
+    () { return this.val; }
+    set
+    (v) { this.val = v; }
+    static
+    () { return 'static'; }
+    static get
+    () { return this.val; }
+    static
+    set
+    (v) { this.val = v; }
 };
 
 
@@ -906,18 +969,46 @@ class Foo {
     *generator() {}
 }
 class Foo extends Bar {
-    constructor() {
-        this._value = null;
-    }
-    get property() {
-        return this._value;
-    }
-    set property(x) {
-        this._value = x;
-    }
-    static get bar() {
-        return 'bar';
-    }
+    constructor() { this._value = null; }
+
+    get property() { return this._value; }
+    set property(x) { this._value = x; }
+    async method() { return 'async'; }
+    async *generator() { return 'generator'; }
+    static method() { return 'static'; }
+
+    static get property() { return this.staticval; }
+    static set property(x) { this.staticval = x; }
+    static async method() { return 'async'; }
+    static async *generator() { return 'generator'; }
+
+    get() { return this.val; }
+    set(v) { this.val = v; }
+    async() { return 'async'; }
+    static() { return 'static'; }
+
+    static get() { return this.val; }
+    static set(v) { this.val = v; }
+    static async() { return 'async'; }
+    static static() { return 'static'; }
+
+    static
+    static
+    () { return 'static'; }
+}
+// Incorrectly highlighted as keyword
+class Foo {
+    get
+    () { return this.val; }
+    set
+    (v) { this.val = v; }
+    static
+    () { return 'static'; }
+    static get
+    () { return this.val; }
+    static
+    set
+    (v) { this.val = v; }
 }
 
 

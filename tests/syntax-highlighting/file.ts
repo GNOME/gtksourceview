@@ -171,7 +171,7 @@ let a: (this: void) => void;
 let a: (this /* comment */ : void) => void;
 let a: (...string
 : string[]) => void;
-// Not correctly highlighted
+// Incorrectly highlighted
 let a: (string
 : string) => void;
 let a: (this /* comment
@@ -204,7 +204,7 @@ a = <T, K extends keyof T>(x) => x;
 
 // Type assertion
 a = <string>obj;
-a = <const>obj;
+a = <const>"abc"; // const assertion
 
 
 /*
@@ -229,7 +229,7 @@ let a: string;
 /* as operator (type assertion / cast) */
 
 ( obj as string );
-( obj as const );
+( "abc" as const ); // const assertion
 
 
 // Non-null assertion operator (post-fix !)
@@ -240,19 +240,23 @@ let a: string;
  * TypeScript-specific statements and declarations
  */
 
-/* @ts-ignore comment pragmas */
+/* @ts-ignore / @ts-expect-error comment pragmas */
 
 // Valid pragmas
 //@ts-ignore
-/// @ts-ignore add reason here
+/// @ts-expect-error add reason here
 {
     //  @ts-ignore
 }
+/* @ts-expect-error*/
+/*
+ * @ts-ignore more reasons */
 
 // Invalid pragmas
 // @ ts-ignore
 /// @TS-IGNORE
-/* @ts-ignore */
+/* @ts-expect-error
+ */
 
 
 /* @ts-nocheck comment pragmas */
@@ -274,15 +278,23 @@ let a: string;
 
 // Valid directives
 ///<reference path="foo" />
-/// <REFERENCE lib="es2017.string" />
-/// <amd-module name="bar" />
-///  <aMd-dEpEnDeNcY />
+/// <REFERENCE lib='es2017.string'/>
+/// <amd-module name = "bar/>" />
+///  <aMd-dEpEnDeNcY/>
 
 // Invalid directives
 /// comment
-/// <comment
-/// < reference
-/// <reference-path
+/// <comment />
+/// <reference /
+/// < reference />
+/// <reference / >
+/// <reference-path="foo" />
+/// <reference path />
+/// <reference path "foo" />
+/// <reference path="/>
+/// <reference path=foo />
+/// <reference path='foo" />
+/// <reference path="foo"name="bar" />
 {
     /// <reference path="foo" />
 }
@@ -387,7 +399,7 @@ type Container<T> = { value: T };
 
 /* Literals */
 
-// Numeric separators (stage 2 proposal)
+// Numeric separators (stage 3 proposal)
 let decimal = 1_000_000;
 let binary_integer = 0b1100_0011_1101_0001;
 let octal_integer = 0o123_456_700;
@@ -401,32 +413,48 @@ let hex_bigint = 0XFF_0C_00_FFn;
 
 /* Object literal */
 
+// Property value vs type annotation
 a = {
-    // Property value vs type annotation 
     property: void 1,
-    method(): void {},
+    method(): void {}
+};
 
-    // Type parameters, type annotations for methods
+// Type annotations for methods
+a = {
     method(this: void, x: number, y?: string, z: number = 0, ...rest: any[]): void {},
-    method<T extends Function>(x: T): T {},
     get property(): string {},
     set property(value: string) {}
+};
+
+// Type parameters for methods
+a = {
+    method<T extends Function>(x: T): T {},
+    get<T extends Function>(x: T): T {}
+};
+// Incorrectly highlighted as keyword
+a = {
+    get
+    <T>(x: T): T {}
 };
 
 
 /* Function expression / declaration */
 
-// Type parameters, type annotations
+// Type annotations
 a = function (this: void, x: number, y?: string, z: number = 1, ...rest: any[]): void {};
-a = function <T extends Function>(x: T): T {};
 function fn(this: void, x: number, y?: string, z: number = 1, ...rest: any[]): void {}
+
+// Type parameters
+a = function <T extends Function>(x: T): T {};
 function fn<T extends Function>(x: T): T {}
 
 
 /* Grouping / arrow function parameters */
 
-// Type parameters, type annotations
+// Type annotations
 a = (x: number, y?: string, z: number = 0, ...rest: any[]): void => x + y;
+
+// Type parameters
 a = <T extends Function>(x: T): T => x;
 
 
@@ -454,52 +482,193 @@ a = class extends Super implements Super.Sub {};
 class MyClass implements Super.Sub {}
 class MyClass extends Super implements Super.Sub {}
 
+// Class properties (stage 3 proposal)
 a = class {
-    // Class property
     property;
-    public property?: number;
-    private property!: number;
-    protected static readonly property: number = 1;
-    abstract property;
-    declare property: number; // for useDefineForClassFields
+    property = 1;
+};
 
-    // Accessibility modifiers, type annotation, parameter properties for constructor
-    private constructor(public x: number, private y?: string);
-    protected constructor(protected x: number = 1) {}
+// Type annotation
+a = class {
+    property: number;
+    property: number = 1;
 
-    // Accessibility modifiers, type parameters, type annotation for class method
-    public method?(this: void, x: number, y?: string, z: number = 1, ...rest: any[]): void;
-    private static method<T extends Function>(x: T): T {}
-    public abstract method();
-    protected get property(): string {}
-    static set property(value: string) {}
-    abstract get property(): string {}
+    constructor(x: number, y?: string) {}
+    constructor(x: number = 1) {}
 
-    // Index members
+    method(this: void, x: number, y?: string, z: number = 1, ...rest: any[]): void {}
+    get property(): string {}
+    set property(value: string) {}
+};
+
+// Index members
+a = class {
     [index: number]: string;
+};
+
+// Private fields (stage 3 proposal)
+a = class {
+    #privateprop;
+    #privateprop: string = '';
+    setPrivateProp(s: string) { this.#privateprop = s; }
+};
+
+// Accessibility modifiers for properties / methods
+a = class {
+    public property;
+    protected method() {}
+    private get property(): string {}
+};
+
+// Abstract properties / methods
+a = abstract class {
+    abstract property;
+    abstract method(): void;
+};
+
+// Read-only properties / index members
+a = class {
+    readonly property;
     readonly [prop: string]: any;
+};
+
+// "declare" properties (no emit when useDefineForClassFields)
+a = class {
+    declare property;
+};
+
+// Optional properties / methods
+a = class {
+    property?;
+    method?(): void;
+};
+
+// Definite assignment assertion for properties
+a = class {
+    property!;
+    property!: number;
+};
+
+// Class method type parameters
+a = class {
+    method<T extends Function>(x: T): T {}
+};
+
+// Parameter properties for constructor
+a = class {
+    constructor(public x: number, private y?: string) {}
+    constructor(protected x: number = 1) {}
+};
+
+// Multiple modifiers
+a = class {
+    public static readonly property;
+    private abstract method();
+
+    // "declare" can be in any position
+    declare protected abstract readonly property;
+    protected declare abstract readonly property;
+    protected abstract declare readonly property;
+    protected abstract readonly declare property;
+};
+
+// Modifier-named properties / methods
+a = class {
+    public;
+    declare protected?;
+    private!;
+    public: number;
+    protected = 1;
+    private() {}
+    public<T>(x: T): T { return x; }
+
+    abstract;
+    public abstract?;
+    protected abstract!;
+    private abstract: number;
+    declare abstract = 1;
+    protected abstract() {}
+    private abstract<T>(x: T): T { return x; }
+
+    readonly;
+    public readonly?;
+    static readonly!;
+    abstract readonly: number;
+    declare readonly = 1;
+    protected readonly() {}
+    private readonly<T>(x: T): T { return x; }
+
+    declare;
+    static declare?;
+    abstract declare!;
+    readonly declare: number;
+    declare declare = 1;
+    public declare() {}
+    protected declare<T>(x: T): T { return x; }
+};
+
+// Syntax errors
+// Multiple accessibility modifiers
+a = class { public private property; };
+a = class { private protected property; };
+a = class { protected public property; };
+// "static" and "abstract" both present
+a = class { static abstract property; };
+a = class { abstract static property; };
+// "static" / "abstract" before accessibility modifier
+a = class { static private property; };
+a = class { abstract protected property; };
+// "readonly" before accessibility modifier
+a = class { readonly public property; };
+// "readonly" before "static" / "abstract"
+a = class { readonly static property; };
+a = class { readonly abstract property; };
+
+// Incorrectly highlighted
+// Property/method name highlighted as keyword
+a = class {
+    public
+    ;
+    declare private
+    ?;
+    abstract readonly
+    : number;
+    readonly declare
+    = 1;
+    protected abstract
+    () {}
+};
+// Abstract generators not allowed
+abstract class Foo {
+    abstract *generator(): object;
+}
+// Modifiers other than "readonly" do not apply to index members
+a = class {
+    public [prop: string]: any;
+    protected [prop: string]: any;
+    private [prop: string]: any;
+    static [prop: string]: any;
+    abstract [prop: string]: any;
+    declare [prop: string]: any;
+};
+// Modifiers other than "readonly" do not apply to private fields
+a = class {
+    public #privateprop;
+    protected #privateprop;
+    private #privateprop;
+    static #privateprop;
+    abstract #privateprop;
+    declare #privateprop;
 };
 
 
 /* Expression */
 
-// Dynamic import expression (ES2020)
-a = import('module');
-import("module").then(module => {});
-
-// import.meta (stage 3 proposal)
-a = import.meta.__dirname;
-a = import . /* comment */ meta.__dirname;
-a = import . /* comment
-*/ meta.__dirname; // incorrectly highlighted
-a = import // comment
-.meta.__dirname; // incorrectly highlighted
-
 // Type arguments for function calls
 fn<string>();
 fn<string, number>();
 fn < string > /* comment */ ();
-// Not correctly highlighted (interpreted as less than / equal than)
+// Incorrectly highlighted (interpreted as less than / equal than)
 fn<string
 >();
 fn<string>
@@ -513,7 +682,7 @@ fn<string> // comment
 myTag<string>`Template literal`;
 myTag<string, number>`Template literal`;
 myTag < string > /* comment */ `Template literal`;
-// Not correctly highlighted (interpreted as less than / equal than)
+// Incorrectly highlighted (interpreted as less than / equal than)
 myTag<string
 >`Template literal`;
 myTag<string>
@@ -525,7 +694,7 @@ myTag<string> // comment
 
 // Type assertion
 a = <string>obj;
-a = <const>obj;
+a = <const>"abc"; // const assertion
 
 
 /* Export / import declaration */
@@ -549,6 +718,9 @@ export declare namespace Super.Sub {}
 // Export enum declaration
 export enum Color { Red, Green, Blue }
 export const enum Num { One = 1, Two, Three }
+
+// Export import alias
+export import shortname = Long.Namespace.Name;
 
 // Export interface declaration
 export interface MyObj {}
@@ -577,6 +749,13 @@ import shortname = Long.Namespace.Name;
 
 // Import require
 import mod = require("module");
+
+// Type-only imports and exports
+import type T from './mod';
+import type { A, B } from './mod';
+import type * as Types from './mod';
+export type { T };
+export type { T } from './mod';
 
 
 /* Variable declaration */
@@ -689,12 +868,12 @@ var octal2 = 0O4567n;
 
 a = {};
 a = { prop: 'value' };
-a = { prop: 'value', extends: 1 };
+a = { 'prop': 'value', 1: true, .2: 2 };
 
 // Trailing comma
 a = {
     prop: 'value',
-    extends: 1,
+    "extends": 1,
 };
 
 // Shorthand property names
@@ -704,7 +883,17 @@ a = { b, c, d };
 a = {
     _hidden: null,
     get property() { return _hidden; },
-    set property(value) { this._hidden = value; }
+    set property(value) { this._hidden = value; },
+
+    get: 'get',
+    set() { return 'set'; }
+};
+// Incorrectly highlighted as keyword
+a = {
+    get
+    : 'get',
+    set
+    () { return 'set'; }
 };
 
 // Shorthand function notation
@@ -715,9 +904,9 @@ a = {
     // Async function (ES2017)
     async method() {},
     async /* comment */ method() {},
+    async get() {},
     async() {},// method called "async"
     async: false, // property called "async"
-    async prop: 'val', // incorrectly highlighted (syntax error)
 
     // Async generator (ES2018)
     async *generator() {}
@@ -730,7 +919,19 @@ a = {
 };
 
 // Spread properties (ES2018)
-a = { ...b };
+a = {
+    ...b,
+    ...getObj('string')
+};
+
+// Syntax errors
+a = { prop: 'val': 'val' };
+a = { method() {}: 'val' };
+a = { get property() {}: 'val' };
+a = { *generator: 'val' };
+a = { async prop: 'val' };
+a = { ...b: 'val' };
+a = { ...b() { return 'b'; } };
 
 
 /* Regular expression literal */
@@ -819,22 +1020,34 @@ Math.random();
 // object keywords
 arguments;
 globalThis; // ES2020
-new.target;
-new . /* comment */ target;
 super;
 this;
-new . /* comment
-*/ target; // not correctly highlighted
-new // comment
-.target; // not correctly highlighted
 
-// function keywords
-import(); // ES2020
-import /* comment */ (); // ES2020
-import /* comment
-*/ (); // not correctly highlighted (though it may appear correct)
+// dynamic import (ES2020)
+import("module").then();
+import /* comment */ ("module").then();
 import // comment
-(); // not correctly highlighted (though it may appear correct)
+("module").then();
+a = await import("module");
+a = await import /* comment */ ("module");
+a = await import // comment
+("module");
+
+// import.meta (ES2020)
+import.meta;
+import . /* comment */ meta;
+import // comment
+.meta;
+a = import.meta;
+a = import . /* comment */ meta;
+a = import // comment
+.meta;
+
+// new.target
+new.target;
+new . /* comment */ target;
+new // comment
+.target;
 
 // properties (subset)
 array.length;
@@ -865,6 +1078,7 @@ array.flatMap(); // ES2019
 string.matchAll(); // ES2020
 Promise.allSettled(); // ES2020
 BigInt.asUintN(); // ES2020
+string.replaceAll(); // ES2021
 
 
 /*
@@ -969,18 +1183,46 @@ a = class Foo {
     *generator() {}
 };
 a = class extends Bar {
-    constructor() {
-        this._value = null;
-    }
-    get property() {
-        return this._value;
-    }
-    set property(x) {
-        this._value = x;
-    }
-    static get bar() {
-        return 'bar';
-    }
+    constructor() { this._value = null; }
+
+    get property() { return this._value; }
+    set property(x) { this._value = x; }
+    async method() { return 'async'; }
+    async *generator() { return 'generator'; }
+    static method() { return 'static'; }
+
+    static get property() { return this.staticval; }
+    static set property(x) { this.staticval = x; }
+    static async method() { return 'async'; }
+    static async *generator() { return 'generator'; }
+
+    get() { return this.val; }
+    set(v) { this.val = v; }
+    async() { return 'async'; }
+    static() { return 'static'; }
+
+    static get() { return this.val; }
+    static set(v) { this.val = v; }
+    static async() { return 'async'; }
+    static static() { return 'static'; }
+
+    static
+    static
+    () { return 'static'; }
+};
+// Incorrectly highlighted as keyword
+a = class {
+    get
+    () { return this.val; }
+    set
+    (v) { this.val = v; }
+    static
+    () { return 'static'; }
+    static get
+    () { return this.val; }
+    static
+    set
+    (v) { this.val = v; }
 };
 
 
@@ -1199,18 +1441,46 @@ class Foo {
     *generator() {}
 }
 class Foo extends Bar {
-    constructor() {
-        this._value = null;
-    }
-    get property() {
-        return this._value;
-    }
-    set property(x) {
-        this._value = x;
-    }
-    static get bar() {
-        return 'bar';
-    }
+    constructor() { this._value = null; }
+
+    get property() { return this._value; }
+    set property(x) { this._value = x; }
+    async method() { return 'async'; }
+    async *generator() { return 'generator'; }
+    static method() { return 'static'; }
+
+    static get property() { return this.staticval; }
+    static set property(x) { this.staticval = x; }
+    static async method() { return 'async'; }
+    static async *generator() { return 'generator'; }
+
+    get() { return this.val; }
+    set(v) { this.val = v; }
+    async() { return 'async'; }
+    static() { return 'static'; }
+
+    static get() { return this.val; }
+    static set(v) { this.val = v; }
+    static async() { return 'async'; }
+    static static() { return 'static'; }
+
+    static
+    static
+    () { return 'static'; }
+}
+// Incorrectly highlighted as keyword
+class Foo {
+    get
+    () { return this.val; }
+    set
+    (v) { this.val = v; }
+    static
+    () { return 'static'; }
+    static get
+    () { return this.val; }
+    static
+    set
+    (v) { this.val = v; }
 }
 
 

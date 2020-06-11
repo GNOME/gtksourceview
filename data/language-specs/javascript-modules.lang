@@ -43,9 +43,7 @@
     -->
 
     <context id="_from-module" once-only="true">
-      <start extended="true">
-        \%{js:keyword-start} from \%{js:keyword-end}
-      </start>
+      <start>\%{js:from-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -76,9 +74,7 @@
     -->
 
     <context id="_as-namespace" once-only="true">
-      <start extended="true">
-        \%{js:keyword-start} as \%{js:keyword-end}
-      </start>
+      <start>\%{js:as-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -140,9 +136,7 @@
           <include>
 
             <context id="_name-group-keywords" style-ref="js:keyword">
-              <prefix>\%{js:keyword-start}</prefix>
-              <suffix>\%{js:keyword-end}</suffix>
-              <keyword>default</keyword>
+              <match>\%{js:default-keyword}</match>
             </context> <!-- /_name-group-keywords -->
 
             <context ref="js:identifier"/>
@@ -153,9 +147,7 @@
     </context> <!-- /_name-group-identifier -->
 
     <context id="_name-group-as-identifier" once-only="true">
-      <start extended="true">
-        \%{js:keyword-start} as \%{js:keyword-end}
-      </start>
+      <start>\%{js:as-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -234,7 +226,7 @@
     -->
 
     <context id="_choice-export-named" end-parent="true">
-      <start>(?=\{)</start>
+      <start>(?={)</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>
@@ -258,9 +250,7 @@
     -->
 
     <context id="_choice-export-default" end-parent="true">
-      <start extended="true">
-        \%{js:keyword-start} default \%{js:keyword-end}
-      </start>
+      <start>\%{js:default-keyword}</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -289,9 +279,7 @@
 
     <!-- <ExportDeclaration> -->
     <context id="export-declarations" style-ref="js:export-import-declaration">
-      <start extended="true">
-        \%{js:keyword-start} export \%{js:keyword-end}
-      </start>
+      <start>\%{js:export-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -321,7 +309,7 @@
     -->
 
     <context id="_choice-import-named" end-parent="true">
-      <start>(?=\{)</start>
+      <start>(?={)</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context ref="js:embedded-lang-hooks"/>
@@ -404,11 +392,9 @@
     -->
 
     <!-- <ImportDeclaration> -->
+    <!-- also matches import() and import.meta -->
     <context id="import-declarations" style-ref="js:export-import-declaration">
-      <start extended="true">
-        \%{js:keyword-start} import \%{js:keyword-end}
-        (?! \%{js:import-function-keyword-suffix} )
-      </start>
+      <start>\%{js:import-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -417,6 +403,8 @@
 
         <context id="_import-declaration-content">
           <include>
+            <context ref="js-expr:_choice-import-call-expression"/>
+            <context ref="js-expr:_choice-import-meta-expression"/>
             <context ref="_choice-import-named"/>
             <context ref="_choice-all-as-namespace"/>
             <context ref="_choice-import-default"/>

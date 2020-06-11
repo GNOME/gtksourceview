@@ -97,7 +97,7 @@
     -->
 
     <context id="_non-null-assertion-operators" style-ref="typescript:non-null-assertion-operator">
-      <match>!</match>
+      <match>!(?!=)</match>
     </context> <!-- /_non-null-assertion-operators -->
 
 
@@ -140,6 +140,22 @@
 
     <!-- # Post-primary expression -->
 
+    <!-- replaces js-expr:_dot-property-accessor-content -->
+    <context id="dot-property-accessor-content">
+      <include>
+        <context ref="typescript:choice-private-identifier"/>
+        <context ref="js-expr:_dot-property-accessor-content" original="true"/>
+      </include>
+    </context> <!-- /dot-property-accessor-content -->
+
+    <!-- replaces js-expr:_optional-chain-content -->
+    <context id="optional-chain-content">
+      <include>
+        <context ref="typescript:choice-private-identifier"/>
+        <context ref="js-expr:_optional-chain-content" original="true"/>
+      </include>
+    </context> <!-- /optional-chain-content -->
+
     <!-- replaces js-expr:_post-primary-expression -->
     <context id="post-primary-expression">
       <include>
@@ -167,9 +183,7 @@
     -->
 
     <context id="_as-operators">
-      <start extended="true">
-        \%{js:keyword-start} as \%{js:keyword-end}
-      </start>
+      <start>\%{js:as-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>

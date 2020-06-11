@@ -39,9 +39,7 @@
     -->
 
     <context id="_export-as-namespace-keyword" style-ref="js:keyword" once-only="true">
-      <match extended="true">
-        \%{js:keyword-start} namespace \%{js:keyword-end}
-      </match>
+      <match>\%{typescript:namespace-keyword}</match>
     </context> <!-- /_export-as-namespace-keyword -->
 
     <context id="_ordered-export-as-namespace-keyword" once-only="true">
@@ -53,9 +51,7 @@
     </context> <!-- /_ordered-export-as-namespace-keyword -->
 
     <context id="_choice-export-as-namespace" end-parent="true">
-      <start extended="true">
-        \%{js:keyword-start} as \%{js:keyword-end}
-      </start>
+      <start>\%{js:as-keyword}</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -92,6 +88,42 @@
       </include>
     </context> <!-- /_choice-export-assignment -->
 
+    <!-- ## Type-only export or export type alias declaration
+
+         type-only export:
+         export type { T };
+         export type { T } from './mod';
+
+         export type alias declaration:
+         export type Name = string;
+    -->
+
+    <context id="_choice-export-type-alias-declaration" style-ref="typescript:type-alias-declaration" end-parent="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:statement-end}</end>
+      <include>
+        <context ref="js:comments"/>
+        <context ref="typescript-js-st:_type-alias-declaration-content"/>
+      </include>
+    </context> <!-- /_choice-export-type-alias-declaration -->
+
+    <context id="_choice-export-type-only-or-type-alias-declaration" end-parent="true">
+      <start>\%{typescript:type-keyword}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
+        <context ref="js:comments"/>
+
+        <context id="_export-type-only-or-type-alias-declaration-content">
+          <include>
+            <context ref="js-mod:_choice-export-named"/>
+            <context ref="_choice-export-type-alias-declaration"/>
+          </include>
+        </context> <!-- /_export-type-only-or-type-alias-declaration-content -->
+
+      </include>
+    </context> <!-- /_choice-export-type-only-or-type-alias-declaration -->
+
     <!-- ## Export declaration -->
 
     <!-- replaces js-mod:_export-declaration-content -->
@@ -102,10 +134,10 @@
         <context ref="typescript-js-st:choice-ambient-declaration"/>
         <context ref="typescript-js-st:choice-const-declaration"/>
         <context ref="typescript-js-st:choice-enum-declaration"/>
-        <context ref="_choice-import-declaration"/> <!-- for import alias declaration -->
+        <context ref="_choice-import-default-declaration"/> <!-- for import alias declaration -->
         <context ref="typescript-js-st:choice-interface-declaration"/>
         <context ref="typescript-js-st:choice-namespace-declaration"/>
-        <context ref="typescript-js-st:choice-type-alias-declaration"/>
+        <context ref="_choice-export-type-only-or-type-alias-declaration"/>
         <context ref="js-mod:_export-declaration-content" original="true"/>
       </include>
     </context> <!-- /export-declaration-content -->
@@ -124,9 +156,7 @@
     -->
 
     <context id="_choice-import-require" end-parent="true">
-      <start extended="true">
-        \%{js:keyword-start} require \%{js:keyword-end}
-      </start>
+      <start>\%{typescript:require-keyword}</start>
       <end>\%{js:statement-end}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
@@ -187,6 +217,31 @@
       </include>
     </context> <!-- /_choice-import-alias-or-require -->
 
+    <!-- ## Type-only import
+
+         import type T from './mod';
+         import type { A, B } from './mod';
+         import type * as Types from './mod';
+    -->
+
+    <context id="_choice-import-type-only" end-parent="true">
+      <start>\%{typescript:type-keyword}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="typescript:type-keyword"/>
+        <context ref="js:comments"/>
+
+        <context id="_import-type-only-content">
+          <include>
+            <context ref="js-mod:_choice-import-named"/>
+            <context ref="js-mod:_choice-all-as-namespace"/>
+            <context ref="js-mod:_choice-import-default"/>
+          </include>
+        </context> <!-- _import-type-only-content -->
+
+      </include>
+    </context> <!-- /_choice-import-type-only -->
+
     <!-- ## Import default -->
 
     <!-- replaces js-mod:_import-default-content -->
@@ -199,35 +254,31 @@
       </include>
     </context> <!-- /import-default-content -->
 
-    <!-- ## Import declaration -->
-
-    <define-regex id="_import-declaration-keyword" extended="true">
-      \%{js:keyword-start} import \%{js:keyword-end}
-      (?! \%{js:import-function-keyword-suffix} )
-      (?! \%{typescript:import-meta-object-keyword-suffix} )
-    </define-regex>
-
-    <!-- <ImportDeclaration> -->
-    <context id="_choice-import-declaration" style-ref="js:export-import-declaration" end-parent="true">
-      <start>\%{_import-declaration-keyword}</start>
+    <!-- this is like js-mod:import-declarations but only matches import
+         default (for import alias) -->
+    <context id="_choice-import-default-declaration" style-ref="js:export-import-declaration" end-parent="true">
+      <start>\%{js:import-keyword}</start>
       <end>\%{js:before-next-token}</end>
       <include>
         <context sub-pattern="0" where="start" style-ref="js:keyword"/>
         <context ref="js:comments"/>
-        <context ref="js-mod:_import-declaration-content"/>
-      </include>
-    </context> <!-- /_choice-import-declaration -->
 
-    <!-- replaces js-mod:import-declarations -->
-    <context id="import-declarations" style-ref="js:export-import-declaration">
-      <start>\%{_import-declaration-keyword}</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context sub-pattern="0" where="start" style-ref="js:keyword"/>
-        <context ref="js:comments"/>
-        <context ref="js-mod:_import-declaration-content"/>
+        <context id="_import-default-declaration-content">
+          <include>
+            <context ref="js-mod:_choice-import-default"/>
+          </include>
+        </context> <!-- /_import-default-declaration-content -->
+
       </include>
-    </context> <!-- /import-declarations -->
+    </context> <!-- /_choice-import-default-declaration -->
+
+    <!-- replaces js-mod:_import-declaration-content -->
+    <context id="import-declaration-content">
+      <include>
+        <context ref="_choice-import-type-only"/>
+        <context ref="js-mod:_import-declaration-content" original="true"/>
+      </include>
+    </context> <!-- /import-declaration-content -->
 
   </definitions>
 </language>

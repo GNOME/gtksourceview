@@ -251,38 +251,10 @@
 
     <!-- # Element / fragment -->
 
-    <context id="_element-content">
+    <context id="_start-tag-tail-non-empty-element-content">
       <include>
 
-        <!-- ## Start tag -->
-
-        <!-- <JSXOpeningElement> / <JSXSelfClosingElement> -->
-        <context id="_start-tag-head" style-ref="xml:tag" once-only="true" class="no-spell-check">
-          <start>\%{_start-tag-start}</start>
-          <end>(?=/?&gt;)</end>
-          <include>
-            <context sub-pattern="0" where="start" style-ref="xml:element-name"/>
-            <context ref="js:comments"/>
-
-            <context id="_start-tag-head-content">
-              <include>
-                <context ref="_ordered-element-name"/>
-                <context ref="_spread-attributes"/>
-                <context ref="_attribute-names"/>
-                <context ref="_attribute-initializers"/>
-              </include>
-            </context> <!-- /_start-tag-head-content -->
-
-          </include>
-        </context> <!-- /_start-tag-head -->
-
-        <context id="_start-tag-tail-empty-element-end-parent" style-ref="xml:tag" end-parent="true" class="no-spell-check">
-          <start>(?=/&gt;)</start>
-          <end>/&gt;</end>
-          <include>
-            <context sub-pattern="0" where="end" style-ref="xml:element-name"/>
-          </include>
-        </context> <!-- /_start-tag-tail-empty-element-end-parent -->
+        <!-- ## Start tag tail -->
 
         <context id="_start-tag-tail" style-ref="xml:tag" once-only="true" class="no-spell-check">
           <match>&gt;</match>
@@ -316,8 +288,7 @@
         <context id="_elements" style-ref="element" class-disabled="no-spell-check">
           <start>(?=\%{_start-tag-start})</start>
           <include>
-            <!-- no comments here - comments appear to be parsed as regular
-                 text -->
+            <!-- no comments here - comments parsed as regular text -->
             <context ref="_element-content"/>
           </include>
         </context> <!-- /_elements -->
@@ -348,6 +319,59 @@
              appear to be parsed -->
         <context ref="xml:entity"/>
         <context ref="xml:character-reference"/>
+
+        <!-- ## Invalid characters -->
+
+        <!-- the spec does not allow these characters: { < > }
+             but we will only highlight > and } as errors -->
+        <context id="_invalid-characters" style-ref="xml:error">
+          <match>[&gt;}]</match>
+        </context> <!-- /_invalid-characters -->
+
+      </include>
+    </context> <!-- /_start-tag-tail-non-empty-element-content -->
+
+    <context id="_element-content">
+      <include>
+
+        <!-- ## Start tag -->
+
+        <!-- <JSXOpeningElement> / <JSXSelfClosingElement> -->
+        <context id="_start-tag-head" style-ref="xml:tag" once-only="true" class="no-spell-check">
+          <start>\%{_start-tag-start}</start>
+          <end>(?=/?&gt;)</end>
+          <include>
+            <context sub-pattern="0" where="start" style-ref="xml:element-name"/>
+            <context ref="js:comments"/>
+
+            <context id="_start-tag-head-content">
+              <include>
+                <context ref="_ordered-element-name"/>
+                <context ref="_spread-attributes"/>
+                <context ref="_attribute-names"/>
+                <context ref="_attribute-initializers"/>
+              </include>
+            </context> <!-- /_start-tag-head-content -->
+
+          </include>
+        </context> <!-- /_start-tag-head -->
+
+        <context id="_choice-start-tag-tail-empty-element" style-ref="xml:tag" end-parent="true" class="no-spell-check">
+          <start>(?=/&gt;)</start>
+          <end>/&gt;</end>
+          <include>
+            <context sub-pattern="0" where="end" style-ref="xml:element-name"/>
+          </include>
+        </context> <!-- /_choice-start-tag-tail-empty-element -->
+
+        <context id="_choice-start-tag-tail-non-empty-element" end-parent="true">
+          <start>(?=&gt;)</start>
+          <include>
+            <!-- no comments here - comments parsed as regular text -->
+            <context ref="_start-tag-tail-non-empty-element-content"/>
+          </include>
+        </context> <!-- /_choice-start-tag-tail-non-empty-element -->
+
       </include>
     </context> <!-- /_element-content -->
 
@@ -355,8 +379,7 @@
     <context id="choice-element" style-ref="element" end-parent="true" class-disabled="no-spell-check">
       <start>(?=\%{_start-tag-start})</start>
       <include>
-        <!-- no comments here - comments appear to be parsed as regular
-             text -->
+        <!-- no comments here - comments parsed as regular text -->
         <context ref="_element-content"/>
       </include>
     </context> <!-- /choice-element -->
