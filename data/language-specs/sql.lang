@@ -57,6 +57,26 @@
       <keyword>BFILE</keyword>
       <keyword>BINARY_(FLOAT|DOUBLE)</keyword>
     </context>
+    
+    <context id="psql-datatypes" style-ref="type">
+      <keyword>BOOL</keyword>
+      <keyword>BYTEA</keyword>
+      <keyword>CITEXT</keyword>
+      <keyword>FLOAT8</keyword>
+      <keyword>FLOAT4</keyword>
+      <keyword>INT</keyword>
+      <keyword>INT2</keyword>
+      <keyword>INT4</keyword>
+      <keyword>INT8</keyword>
+      <keyword>SERIAL2</keyword>
+      <keyword>SERIAL4</keyword>
+      <keyword>SERIAL8</keyword>
+      <keyword>TEXT</keyword>
+      <keyword>TIMESTAMPTZ</keyword>
+      <keyword>TIMETZ</keyword>
+      <keyword>UUID</keyword>
+      <keyword>VARBIT</keyword>
+    </context>
 
     <context id="ansi-datatypes" style-ref="type">
       <!-- FIXME no \n in patterns! -->
@@ -465,6 +485,26 @@
       <keyword>WHERE</keyword>
     </context>
 
+    <context id="psql-reserved-words" style-ref="keyword">
+      <keyword>BEGIN</keyword>
+      <keyword>DOMAIN</keyword>
+      <keyword>FUNCTION</keyword>
+      <keyword>LANGUAGE</keyword>
+      <keyword>RETURNING</keyword>
+      <keyword>RETURNS</keyword>
+    </context>
+
+    <context id="plpgsql-reserved-words" style-ref="keyword">
+      <keyword>ARRAY</keyword>
+      <keyword>DECLARE</keyword>
+      <keyword>ERRCODE</keyword>
+      <keyword>EXCEPTION</keyword>
+      <keyword>HINT</keyword>
+      <keyword>IF</keyword>
+      <keyword>RAISE</keyword>
+      <keyword>RETURN</keyword>
+    </context>
+
     <context id="sql-statements" style-ref="keyword">
       <prefix>^[ \t]*</prefix>
       <keyword>ALTER[ \t]+(CLUSTER|DATABASE|DIMENSION|DISKGROUP|FUNCTION|INDEX(TYPE)?|JAVA|MATERIALIZED[ \t]+VIEW([ \t]+LOG)?|OPERATOR|OUTLINE|PACKAGE|PROCEDURE|PROFILE|RESOURCE[ \t]+COST|ROLE|ROLLBACK[ \t]+SEGMENT|SEQUENCE|SESSION|SYSTEM|TABLE(SPACE)?|TRIGGER|TYPE|USER|VIEW)</keyword>
@@ -472,7 +512,7 @@
       <keyword>(DIS)?ASSOCIATE[ \t]+STATISTICS</keyword>
       <keyword>CALL</keyword>
       <keyword>COMMIT([ \t]+WORK)?</keyword>
-      <keyword>CREATE[ \t]+(CLUSTER|CONTEXT|CONTROLFILE|DATABASE([ \t]+LINK)?|DIMENSION|DIRECTORY|DISKGROUP|FUNCTION|INDEX(TYPE)?|JAVA|LIBRARY|MATERIALIZED[ \t]+VIEW([ \t]+LOG)?|OPERATOR|OUTLINE|PACKAGE([ \t]+BODY)?|S?PFILE|PROCEDURE|PROFILE|RESTORE[ \t]+POINT|ROLE|ROLLBACK[ \t]+SEGMENT|SCHEMA|SEQUENCE|SYNONYM|TABLE(SPACE)?|TRIGGER|TYPE([ \t]+BODY)?|USER|VIEW)</keyword>
+      <keyword>CREATE[ \t]+(CLUSTER|CONTEXT|CONTROLFILE|DATABASE([ \t]+LINK)?|DIMENSION|DIRECTORY|DISKGROUP|DOMAIN|(OR[ \t]+REPLACE[ \t]+)?FUNCTION|INDEX(TYPE)?|JAVA|LIBRARY|MATERIALIZED[ \t]+VIEW([ \t]+LOG)?|OPERATOR|OUTLINE|PACKAGE([ \t]+BODY)?|S?PFILE|PROCEDURE|PROFILE|RESTORE[ \t]+POINT|ROLE|ROLLBACK[ \t]+SEGMENT|SCHEMA|SEQUENCE|SYNONYM|TABLE(SPACE)?|TRIGGER|TYPE([ \t]+BODY)?|USER|VIEW)</keyword>
       <keyword>DROP[ \t]+(CLUSTER|CONTEXT|DATABASE([ \t]+LINK)?|DIMENSION|DIRECTORY|DISKGROUP|FUNCTION|INDEX(TYPE)?|JAVA|LIBRARY|MATERIALIZED[ \t]+VIEW([ \t]+LOG)?|OPERATOR|OUTLINE|PACKAGE|PROCEDURE|PROFILE|RESTORE[ \t]+POINT|ROLE|ROLLBACK[ \t]+SEGMENT|SEQUENCE|SYNONYM|TABLE(SPACE)?|TRIGGER|TYPE([ \t]+BODY)?|USER|VIEW)</keyword>
       <keyword>EXPLAIN[ \t]+PLAN</keyword>
       <keyword>FLASHBACK[ \t]+(DATABASE|TABLE)</keyword>
@@ -576,6 +616,7 @@
         <context ref="ansi-datatypes"/>
         <context ref="sql-ds-and-db2-datatypes"/>
         <context ref="oracle-supplied-types"/>
+        <context ref="psql-datatypes"/>
         <context ref="text-literals"/>
         <context ref="integer-literals"/>
         <context ref="number-literals"/>
@@ -585,6 +626,7 @@
         <context ref="block-comment"/>
         <context ref="line-comment"/>
         <context ref="numeric-functions"/>
+        <context ref="sql-statements"/>
         <context ref="character-functions-returning-character-values"/>
         <context ref="nls-character-functions"/>
         <context ref="character-functions-returning-number-values"/>
@@ -605,7 +647,8 @@
         <context ref="model-functions"/>
         <context ref="ansi-reserved-words"/>
         <context ref="oracle-reserved-words"/>
-        <context ref="sql-statements"/>
+        <context ref="psql-reserved-words"/>
+        <context ref="plpgsql-reserved-words"/>
         <context ref="operators"/>
         <context ref="conditions"/>
         <context ref="sql-plus-at-sign"/>
