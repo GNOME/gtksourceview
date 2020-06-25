@@ -376,8 +376,11 @@
       <keyword>ASC</keyword>
       <keyword>BETWEEN</keyword>
       <keyword>BY</keyword>
+      <keyword>CASCADE</keyword>
+      <keyword>CASCADED</keyword>
       <keyword>CASE</keyword>
       <keyword>CHECK</keyword>
+      <keyword>CONSTRAINT</keyword>
       <keyword>CREATE</keyword>
       <keyword>CROSS</keyword>
       <keyword>CURRENT</keyword>
@@ -420,6 +423,7 @@
       <keyword>PRIOR</keyword>
       <keyword>PRIVILEGES</keyword>
       <keyword>PUBLIC</keyword>
+      <keyword>REFERENCES</keyword>
       <keyword>REVOKE</keyword>
       <keyword>RIGHT</keyword>
       <keyword>ROWS</keyword>
@@ -489,6 +493,8 @@
       <keyword>BEGIN</keyword>
       <keyword>DOMAIN</keyword>
       <keyword>FUNCTION</keyword>
+      <keyword>GENERATED</keyword>
+      <keyword>IDENTITY</keyword>
       <keyword>LANGUAGE</keyword>
       <keyword>RETURNING</keyword>
       <keyword>RETURNS</keyword>
@@ -618,8 +624,8 @@
         <context ref="oracle-supplied-types"/>
         <context ref="psql-datatypes"/>
         <context ref="text-literals"/>
-        <context ref="integer-literals"/>
         <context ref="number-literals"/>
+        <context ref="integer-literals"/>
         <context ref="size-clause"/>
         <context ref="unlimited"/>
         <context ref="null"/>
