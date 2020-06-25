@@ -125,6 +125,7 @@ gtk_source_style_scheme_chooser_widget_class_init (GtkSourceStyleSchemeChooserWi
 	object_class->get_property = gtk_source_style_scheme_chooser_widget_get_property;
 	object_class->set_property = gtk_source_style_scheme_chooser_widget_set_property;
 
+	gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
 	gtk_widget_class_set_template_from_resource (widget_class,
 	                                             "/org/gnome/gtksourceview/ui/gtksourcestyleschemechooserwidget.ui");
 	gtk_widget_class_bind_template_child_private (widget_class, GtkSourceStyleSchemeChooserWidget, list_box);
