@@ -140,7 +140,7 @@ create_window (void)
 				implicit_trailing_newline_checkbutton, "active",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-	scrolled_window = gtk_scrolled_window_new (NULL, NULL);
+	scrolled_window = gtk_scrolled_window_new ();
 	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scrolled_window), GTK_WIDGET (view));
 	gtk_grid_attach (GTK_GRID (hgrid), scrolled_window, 1, 0, 1, 1);
 
