@@ -117,11 +117,12 @@
     </context>
 
     <context id="integer-literals" style-ref="decimal">
-      <match>\b[0-9]+\b</match>
+      <match>\b[0-9]+(?![Ee][\+\-]?[0-9]*)\b</match>
     </context>
 
     <context id="number-literals" style-ref="floating-point">
-      <match>(\b[0-9]+(\.[0-9]+)?|\.[0-9]+)([Ee][\+-]?[0-9]+)?\b</match>
+      <!--match>(\b[0-9]+(\.[0-9]+)?|\.[0-9]+)([Ee][\+-]?[0-9]+)?\b</match-->
+      <match>(?&lt;![\w\.])(([0-9]+\.[0-9]*|\.[0-9]+)([Ee][\+\-]?[0-9]*)?|([0-9]+[Ee][\+\-]?[0-9]*))(?![\w\.])</match>
     </context>
 
     <context id="size-clause" style-ref="decimal">
@@ -412,6 +413,7 @@
       <keyword>LEVEL</keyword>
       <keyword>LIKE</keyword>
       <keyword>LIMIT</keyword>
+      <keyword>LOOP</keyword>
       <keyword>NATURAL</keyword>
       <keyword>NOT</keyword>
       <keyword>OF</keyword>
@@ -426,6 +428,7 @@
       <keyword>PRIVILEGES</keyword>
       <keyword>PUBLIC</keyword>
       <keyword>REFERENCES</keyword>
+      <keyword>REVERSE</keyword>
       <keyword>REVOKE</keyword>
       <keyword>RIGHT</keyword>
       <keyword>ROWS</keyword>
@@ -509,6 +512,7 @@
       <keyword>EXCEPTION</keyword>
       <keyword>HINT</keyword>
       <keyword>IF</keyword>
+      <keyword>NOTICE</keyword>
       <keyword>RAISE</keyword>
       <keyword>RETURN</keyword>
     </context>
