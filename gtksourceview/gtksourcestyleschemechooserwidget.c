@@ -74,6 +74,7 @@ gtk_source_style_scheme_chooser_widget_dispose (GObject *object)
 	GtkSourceStyleSchemeChooserWidget *widget = GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET (object);
 	GtkSourceStyleSchemeChooserWidgetPrivate *priv = gtk_source_style_scheme_chooser_widget_get_instance_private (widget);
 
+	g_clear_pointer ((GtkWidget **)&priv->list_box, gtk_widget_unparent);
 	g_clear_object (&priv->scheme);
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_chooser_widget_parent_class)->dispose (object);
