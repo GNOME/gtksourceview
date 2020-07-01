@@ -1000,6 +1000,8 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, cursor_position_info);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, chooser_button);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, background_pattern);
+
+  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "window.close", NULL);
 }
 
 static void
