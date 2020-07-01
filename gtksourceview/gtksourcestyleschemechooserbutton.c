@@ -213,10 +213,10 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 		                      gtk_window_get_modal (GTK_WINDOW (parent)));
 	}
 
-	g_signal_connect (dialog, "response",
-	                  G_CALLBACK (dialog_response), button);
-	g_signal_connect (dialog, "destroy",
-	                  G_CALLBACK (dialog_destroy), button);
+	g_signal_connect_object (dialog, "response",
+	                         G_CALLBACK (dialog_response), button, 0);
+	g_signal_connect_object (dialog, "destroy",
+	                         G_CALLBACK (dialog_destroy), button, 0);
 }
 
 static void
