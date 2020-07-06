@@ -315,6 +315,8 @@ class Greeter {
         return "Hello " + name + ", " + this.greeting;
     }
 
+    constructor(@required public greeting: string) {} // Parameter decorator
+
     // Accessor decorator
     @configurable<string>(false) /* comment */
     get x() { return this._x; }
@@ -557,8 +559,11 @@ a = class {
 
 // Parameter properties for constructor
 a = class {
-    constructor(public x: number, private y?: string) {}
+    constructor(public x: number, private readonly y?: string) {}
     constructor(protected x: number = 1) {}
+
+    // Accessibility / read-only modifiers do not apply to normal methods
+    method(public x: number, private readonly y?: string) {}
 };
 
 // Multiple modifiers

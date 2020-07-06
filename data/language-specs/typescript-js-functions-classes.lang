@@ -50,6 +50,21 @@
     </context> <!-- /_ordered-accessibility-modifier -->
 
 
+    <!-- # Read-only property modifier -->
+
+    <context id="_read-only-property-modifier" style-ref="js:keyword" once-only="true">
+      <match>\%{typescript:readonly-keyword}</match>
+    </context> <!-- /_read-only-property-modifier -->
+
+    <context id="_ordered-read-only-property-modifier" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_read-only-property-modifier"/>
+      </include>
+    </context> <!-- /_ordered-read-only-property-modifier -->
+
+
     <!-- # Function expression -->
 
     <!-- <CallSignature> / <ParameterList> -->
@@ -223,18 +238,6 @@
       <match>\%{typescript:declare-keyword}</match>
     </context> <!-- /_class-body-declare-property-modifier -->
 
-    <context id="_class-body-readonly-property-modifier" style-ref="js:keyword" once-only="true">
-      <match>\%{typescript:readonly-keyword}</match>
-    </context> <!-- /_class-body-member-modifier -->
-
-    <context id="_ordered-class-body-readonly-property-modifier" once-only="true">
-      <start>\%{js:before-next-token}</start>
-      <end>\%{js:before-next-token}</end>
-      <include>
-        <context ref="_class-body-readonly-property-modifier"/>
-      </include>
-    </context> <!-- /_ordered-class-body-readonly-property-modifier -->
-
     <context id="_choice-class-body-index-member" end-parent="true">
       <start>(?=\[)</start>
       <end>\%{js:before-next-token}</end>
@@ -290,9 +293,6 @@
                     <!-- decorators are valid for class declaration
                          methods only (not class expressions) -->
                     <context ref="typescript:ordered-decorators"/>
-                    <!-- accessibility modifiers are valid for
-                         constructors only (not other methods) -->
-                    <context ref="_ordered-accessibility-modifier"/>
                     <context ref="_function-first-parameter-content"/>
                   </include>
                 </context> <!-- /_class-body-method-first-parameter-content -->
@@ -311,9 +311,6 @@
                     <!-- decorators are valid for class declaration
                          methods only (not class expressions) -->
                     <context ref="typescript:ordered-decorators"/>
-                    <!-- accessibility modifiers are valid for
-                         constructors only (not other methods) -->
-                    <context ref="_ordered-accessibility-modifier"/>
                     <context ref="function-parameters-content"/>
                   </include>
                 </context> <!-- /_class-body-method-parameters-content -->
@@ -410,6 +407,59 @@
       </include>
     </context> <!-- /_choice-class-body-keyword-named-property-or-method -->
 
+    <context id="_class-body-constructor-parameters-content">
+      <include>
+        <!-- decorators are valid for class declaration
+             methods only (not class expressions) -->
+        <context ref="typescript:ordered-decorators"/>
+        <context ref="_ordered-accessibility-modifier"/>
+        <context ref="_ordered-read-only-property-modifier"/>
+        <context ref="function-parameters-content"/>
+      </include>
+    </context> <!-- /_class-body-constructor-parameters-content -->
+
+    <context id="_class-body-constructor-parameters-list" once-only="true">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-constructor-parameters-list-content">
+          <include>
+
+            <context id="_class-body-constructor-first-parameter" once-only="true">
+              <start>\%{js:before-next-token}</start>
+              <end>\%{js:before-next-token}</end>
+              <include>
+                <context ref="js:comments"/>
+                <!-- constructors cannot have a "this" parameter -->
+                <context ref="_class-body-constructor-parameters-content"/>
+              </include>
+            </context> <!-- /_class-body-constructor-first-parameter -->
+
+            <context id="_class-body-constructor-parameters">
+              <start>,</start>
+              <end>\%{js:before-next-token}</end>
+              <include>
+                <context ref="js:comments"/>
+                <context ref="_class-body-constructor-parameters-content"/>
+              </include>
+            </context> <!-- /_class-body-constructor-parameters -->
+
+          </include>
+        </context> <!-- /_class-body-constructor-parameters-list-content -->
+
+      </include>
+    </context> <!-- /_class-body-constructor-parameters-list -->
+
+    <context id="_ordered-class-body-constructor-parameters-list" once-only="true">
+      <start>\%{js:before-next-token}</start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context ref="_class-body-constructor-parameters-list"/>
+      </include>
+    </context> <!-- /_ordered-class-body-constructor-parameters-list -->
+
     <context id="_choice-class-body-constructor-member" style-ref="js:function-expression" end-parent="true">
       <start extended="true">
         \%{js:keyword-start} constructor \%{js:keyword-end}
@@ -422,7 +472,7 @@
 
         <context id="_class-body-constructor-member-content">
           <include>
-            <context ref="_ordered-class-body-method-parameters-list"/>
+            <context ref="_ordered-class-body-constructor-parameters-list"/>
             <context ref="js-fn:_last-function-body"/>
           </include>
         </context> <!-- /_class-body-constructor-member-content -->
@@ -459,7 +509,7 @@
 
         <context ref="_ordered-accessibility-modifier"/>
         <context ref="_ordered-class-body-member-modifier"/>
-        <context ref="_ordered-class-body-readonly-property-modifier"/>
+        <context ref="_ordered-read-only-property-modifier"/>
 
         <context ref="_choice-class-body-index-member"/>
         <context ref="_choice-class-body-private-field"/>
