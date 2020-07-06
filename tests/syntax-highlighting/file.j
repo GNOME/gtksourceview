@@ -752,6 +752,18 @@ a = class {
     set
     (v) { this.val = v; }
 };
+// Properties/methods called "constructor"
+a = class {
+    *constructor() { this._value = null; }
+    get constructor() { this._value = null; }
+    set constructor() { this._value = null; }
+    async constructor() { this._value = null; }
+    async *constructor() { this._value = null; }
+};
+// Incorrectly highlighted as built-in method
+a = class {
+    static constructor() { this._value = null; }
+};
 
 
 /*
@@ -1009,6 +1021,18 @@ class Foo {
     static
     set
     (v) { this.val = v; }
+}
+// Properties/methods called "constructor"
+class Foo {
+    *constructor() { this._value = null; }
+    get constructor() { this._value = null; }
+    set constructor() { this._value = null; }
+    async constructor() { this._value = null; }
+    async *constructor() { this._value = null; }
+}
+// Incorrectly highlighted as built-in method
+class Foo {
+    static constructor() { this._value = null; }
 }
 
 

@@ -410,6 +410,26 @@
       </include>
     </context> <!-- /_choice-class-body-keyword-named-property-or-method -->
 
+    <context id="_choice-class-body-constructor-member" style-ref="js:function-expression" end-parent="true">
+      <start extended="true">
+        \%{js:keyword-start} constructor \%{js:keyword-end}
+        (?= \%{js:optional-whitespace-or-comments} \( )
+      </start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:built-in-method"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-constructor-member-content">
+          <include>
+            <context ref="_ordered-class-body-method-parameters-list"/>
+            <context ref="js-fn:_last-function-body"/>
+          </include>
+        </context> <!-- /_class-body-constructor-member-content -->
+
+      </include>
+    </context> <!-- /_choice-class-body-constructor-member -->
+
     <!-- modifier order:
          * accessibility ("public" / "protected" / "private")
          * "abstract" / "static" (mutually exclusive)
@@ -444,6 +464,8 @@
         <context ref="_choice-class-body-index-member"/>
         <context ref="_choice-class-body-private-field"/>
         <context ref="_choice-class-body-method-keyword-method-definition"/>
+        <!-- should not be combined with some modifiers, but cannot prevent it -->
+        <context ref="_choice-class-body-constructor-member"/>
 
         <context ref="js-fn:ordered-property-accessor-keyword"/>
         <context ref="js-lit:ordered-property-name"/>

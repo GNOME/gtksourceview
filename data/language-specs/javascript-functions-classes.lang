@@ -383,6 +383,25 @@
       </include>
     </context> <!-- /_choice-class-body-keyword-named-method-member -->
 
+    <context id="_choice-class-body-constructor-member" style-ref="js:function-expression" end-parent="true">
+      <start extended="true">
+        \%{js:keyword-start} constructor \%{js:keyword-end}
+      </start>
+      <end>\%{js:before-next-token}</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="js:built-in-method"/>
+        <context ref="js:embedded-lang-hooks"/>
+        <context ref="js:comments"/>
+
+        <context id="_class-body-constructor-member-content">
+          <include>
+            <context ref="choice-method-definition"/>
+          </include>
+        </context> <!-- /_class-body-constructor-member-content -->
+
+      </include>
+    </context> <!-- /_choice-class-body-constructor-member -->
+
     <context id="_class-body-members">
       <start>\%{js:before-next-token}</start>
       <end>\%{js:before-next-token}</end>
@@ -394,6 +413,9 @@
           <include>
             <!-- try to match before and after modifier -->
             <context ref="_choice-class-body-keyword-named-method-member"/>
+
+            <!-- should not be combined with modifier, but cannot prevent it -->
+            <context ref="_choice-class-body-constructor-member"/>
 
             <context ref="_ordered-class-body-member-modifier"/>
 

@@ -285,16 +285,6 @@
 
             <context ref="choice-number"/>
             <context ref="choice-string"/>
-
-            <define-regex id="_special-property-names" extended="true">
-              \%{js:keyword-start} constructor \%{js:keyword-end}
-            </define-regex> <!-- /_special-property-names -->
-
-            <context id="_choice-special-property-name" style-ref="js:built-in-method" end-parent="true">
-              <start>(?=\%{_special-property-names})</start>
-              <end>\%{_special-property-names}</end>
-            </context> <!-- /_choice-special-property-name -->
-
             <context ref="js:choice-identifier-name"/>
           </include>
         </context> <!-- /_property-name-content -->
