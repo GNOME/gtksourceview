@@ -432,6 +432,8 @@ class Greeter {
         return "Hello " + name + ", " + this.greeting;
     }
 
+    constructor(@required public greeting: string) {} // Parameter decorator
+
     // Accessor decorator
     @configurable<string>(false) /* comment */
     get x() { return this._x; }
@@ -603,6 +605,7 @@ class MyClass extends Super implements Super.Sub {}
 a = class {
     property;
     property = 1;
+    constructor = 1;
 };
 
 // Type annotation
@@ -673,8 +676,11 @@ a = class {
 
 // Parameter properties for constructor
 a = class {
-    constructor(public x: number, private y?: string) {}
+    constructor(public x: number, private readonly y?: string) {}
     constructor(protected x: number = 1) {}
+
+    // Accessibility / read-only modifiers do not apply to normal methods
+    method(public x: number, private readonly y?: string) {}
 };
 
 // Multiple modifiers
@@ -776,6 +782,16 @@ a = class {
     static #privateprop;
     abstract #privateprop;
     declare #privateprop;
+};
+// Constructor not highlighted as built-in method
+a = class {
+    constructor
+    () {}
+};
+// "abstract" and "declare" do not apply to constructors
+a = class {
+    abstract constructor() {}
+    declare constructor() {}
 };
 
 
@@ -1343,6 +1359,18 @@ a = class {
     set
     (v) { this.val = v; }
 };
+// Properties/methods called "constructor"
+a = class {
+    *constructor() { this._value = null; }
+    get constructor() { this._value = null; }
+    set constructor() { this._value = null; }
+    async constructor() { this._value = null; }
+    async *constructor() { this._value = null; }
+};
+// Incorrectly highlighted as built-in method
+a = class {
+    static constructor() { this._value = null; }
+};
 
 
 /*
@@ -1600,6 +1628,18 @@ class Foo {
     static
     set
     (v) { this.val = v; }
+}
+// Properties/methods called "constructor"
+class Foo {
+    *constructor() { this._value = null; }
+    get constructor() { this._value = null; }
+    set constructor() { this._value = null; }
+    async constructor() { this._value = null; }
+    async *constructor() { this._value = null; }
+}
+// Incorrectly highlighted as built-in method
+class Foo {
+    static constructor() { this._value = null; }
 }
 
 
