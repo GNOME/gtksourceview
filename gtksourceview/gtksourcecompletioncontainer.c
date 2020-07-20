@@ -62,7 +62,11 @@ get_max_width (GtkSourceCompletionContainer *container)
 		gdk_monitor_get_geometry (monitor, &geom);
 
 		gdk_window_get_origin (window, &xorigin, NULL);
-		max_width = geom.width - xorigin;
+
+                /* Just in case xorigin is not the global coordinate limit the max
+                 * size to the monitor width.
+                 */
+		max_width = MIN (geom.width + geom.x - xorigin, geom.width);
 
 		return MAX (max_width, UNREALIZED_WIDTH);
 	}

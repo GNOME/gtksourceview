@@ -356,12 +356,7 @@ get_iter_pos (GtkTextView *text_view,
               gint        *y,
               gint        *height)
 {
-	GdkWindow *win;
 	GdkRectangle location;
-	gint win_x;
-	gint win_y;
-	gint xx;
-	gint yy;
 
 	gtk_text_view_get_iter_location (text_view, iter, &location);
 
@@ -369,151 +364,46 @@ get_iter_pos (GtkTextView *text_view,
 					       GTK_TEXT_WINDOW_WIDGET,
 					       location.x,
 					       location.y,
-					       &win_x,
-					       &win_y);
+					       x,
+					       y);
 
-	win = gtk_text_view_get_window (text_view, GTK_TEXT_WINDOW_WIDGET);
-	gdk_window_get_origin (win, &xx, &yy);
-
-	*x = win_x + xx;
-	*y = win_y + yy + location.height;
 	*height = location.height;
 }
 
 static void
-compensate_for_gravity (GtkSourceCompletionInfo *window,
-                        gint                    *x,
-                        gint                    *y,
-                        gint                     w,
-                        gint                     h)
-{
-	GdkGravity gravity = gtk_window_get_gravity (GTK_WINDOW (window));
-
-	/* Horizontal */
-	switch (gravity)
-	{
-		case GDK_GRAVITY_NORTH:
-		case GDK_GRAVITY_SOUTH:
-		case GDK_GRAVITY_CENTER:
-			*x = w / 2;
-			break;
-		case GDK_GRAVITY_NORTH_EAST:
-		case GDK_GRAVITY_SOUTH_EAST:
-		case GDK_GRAVITY_EAST:
-			*x = w;
-			break;
-		case GDK_GRAVITY_NORTH_WEST:
-		case GDK_GRAVITY_WEST:
-		case GDK_GRAVITY_SOUTH_WEST:
-		case GDK_GRAVITY_STATIC:
-		default:
-			*x = 0;
-			break;
-	}
-
-	/* Vertical */
-	switch (gravity)
-	{
-		case GDK_GRAVITY_WEST:
-		case GDK_GRAVITY_CENTER:
-		case GDK_GRAVITY_EAST:
-			*y = w / 2;
-			break;
-		case GDK_GRAVITY_SOUTH_EAST:
-		case GDK_GRAVITY_SOUTH:
-		case GDK_GRAVITY_SOUTH_WEST:
-			*y = w;
-			break;
-		case GDK_GRAVITY_NORTH:
-		case GDK_GRAVITY_NORTH_EAST:
-		case GDK_GRAVITY_NORTH_WEST:
-		case GDK_GRAVITY_STATIC:
-		default:
-			*y = 0;
-			break;
-	}
-}
-
-static void
-move_overlap (gint     *y,
-              gint      h,
-              gint      oy,
-              gint      cy,
-              gint      line_height,
-              gboolean  move_up)
-{
-	/* Test if there is overlap */
-	if (*y - cy < oy && *y - cy + h > oy - line_height)
-	{
-		if (move_up)
-		{
-			*y = oy - line_height - h + cy;
-		}
-		else
-		{
-			*y = oy + cy;
-		}
-	}
-}
-
-static void
 move_to_iter (GtkSourceCompletionInfo *window,
-	      GtkTextView             *view,
-	      GtkTextIter             *iter)
+              GtkTextView             *view,
+              GtkTextIter             *iter)
 {
-	GdkDisplay *display;
+	GdkRectangle position;
 	GdkWindow *gdk_window;
-	GdkMonitor *monitor;
-	GdkRectangle geom;
 	gint x, y;
-	gint w, h;
-	gint cx, cy;
-	gint oy;
-	gint height;
-	gboolean overlapup;
+	gint line_height;
 
-	display = gtk_widget_get_display (GTK_WIDGET (view));
-	gdk_window = gtk_widget_get_window (GTK_WIDGET (view));
-	monitor = gdk_display_get_monitor_at_window (display, gdk_window);
-	gdk_monitor_get_geometry (monitor, &geom);
+	gdk_window = gtk_widget_get_window (GTK_WIDGET (window));
 
-	get_iter_pos (view, iter, &x, &y, &height);
-	gtk_window_get_size (GTK_WINDOW (window), &w, &h);
-
-	x += window->priv->xoffset;
-
-	oy = y;
-	compensate_for_gravity (window, &cx, &cy, w, h);
-
-	/* Push window inside screen */
-	if (x - cx + w > geom.width)
+	if (gdk_window == NULL)
 	{
-		x = (geom.width - w) + cx;
-	}
-	else if (x - cx < 0)
-	{
-		x = cx;
+		return;
 	}
 
-	if (y - cy + h > geom.height)
-	{
-		y = (geom.height - h) + cy;
-		overlapup = TRUE;
-	}
-	else if (y - cy < 0)
-	{
-		y = cy;
-		overlapup = FALSE;
-	}
-	else
-	{
-		overlapup = TRUE;
-	}
+	get_iter_pos (view, iter, &x, &y, &line_height);
 
-	/* Make sure that text is still readable */
-	move_overlap (&y, h, oy, cy, height, overlapup);
+	gtk_widget_translate_coordinates (GTK_WIDGET (view),
+	                                  gtk_widget_get_toplevel (GTK_WIDGET (view)),
+					  x, y, &x, &y);
 
-	gtk_window_move (GTK_WINDOW (window), x, y);
+	position.x = x;
+	position.y = y;
+	position.height = line_height;
+	position.width = 0;
+
+	gdk_window_move_to_rect (gdk_window,
+				 &position,
+				 GDK_GRAVITY_SOUTH_WEST,
+				 GDK_GRAVITY_NORTH_WEST,
+				 GDK_ANCHOR_SLIDE | GDK_ANCHOR_FLIP_Y | GDK_ANCHOR_RESIZE,
+				 window->priv->xoffset, 0);
 }
 
 static void

@@ -68,7 +68,7 @@ build_gtk_doc = get_option('gtk_doc')
 cc = meson.get_compiler('c')
 
 glib_req_version = '2.48'
-gtk_req_version = '3.22'
+gtk_req_version = '3.24'
 
 libm_dep = cc.find_library('m', required: false)
 
