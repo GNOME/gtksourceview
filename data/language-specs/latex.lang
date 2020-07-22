@@ -374,7 +374,7 @@
         </context>
 
         <context id="begin-end-command" class="no-spell-check">
-          <match>(\\(begin|end))\{(.*)\}</match>
+          <match>(\\(begin|end))\{(.*?)\}</match>
           <include>
             <context sub-pattern="1" style-ref="common-commands"/>
             <context sub-pattern="3" style-ref="env-name"/>
