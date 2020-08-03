@@ -139,7 +139,6 @@ make_row (GtkSourceStyleScheme *scheme,
           GtkSourceLanguage    *language)
 {
 	GtkWidget *row;
-	AtkObject *accessible;
 	GtkSourceBuffer *buffer;
 	GtkWidget *view;
 	GtkWidget *overlay;
@@ -147,10 +146,6 @@ make_row (GtkSourceStyleScheme *scheme,
 	gchar *text;
 
 	row = gtk_list_box_row_new ();
-	accessible = gtk_widget_get_accessible (row);
-	atk_object_set_name (accessible,
-	                     gtk_source_style_scheme_get_name (scheme));
-	gtk_widget_show (row);
 
 	g_object_set_data (G_OBJECT (row), "scheme", scheme);
 
@@ -188,6 +183,8 @@ make_row (GtkSourceStyleScheme *scheme,
 			      "selectable", FALSE,
 			      NULL);
 	gtk_overlay_add_overlay (GTK_OVERLAY (overlay), label);
+
+	gtk_widget_show (row);
 
 	return row;
 }
