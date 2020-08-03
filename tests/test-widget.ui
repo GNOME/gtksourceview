@@ -46,8 +46,8 @@
             <property name="receives_default">1</property>
             <signal name="clicked" handler="print_button_clicked_cb" object="TestWidget" swapped="yes"/>
             <layout>
-              <property name="left-attach">0</property>
-              <property name="top-attach">1</property>
+              <property name="column">0</property>
+              <property name="row">1</property>
             </layout>
           </object>
         </child>
@@ -59,8 +59,8 @@
               <attribute name="weight" value="bold"></attribute>
             </attributes>
             <layout>
-              <property name="top-attach">3</property>
-              <property name="left-attach">0</property>
+              <property name="row">3</property>
+              <property name="column">0</property>
             </layout>
           </object>
         </child>
@@ -73,8 +73,8 @@
                 <property name="active">1</property>
                 <signal name="toggled" handler="highlight_matching_bracket_toggled_cb" object="TestWidget" swapped="yes"/>
                 <layout>
-                  <property name="top-attach">1</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">1</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -84,8 +84,8 @@
                 <property name="can-focus">1</property>
                 <signal name="toggled" handler="show_line_numbers_toggled_cb" object="TestWidget" swapped="yes"/>
                 <layout>
-                  <property name="top-attach">2</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">2</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -95,8 +95,8 @@
                 <property name="can-focus">1</property>
                 <signal name="toggled" handler="show_line_marks_toggled_cb" object="TestWidget" swapped="yes"/>
                 <layout>
-                  <property name="top-attach">3</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">3</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -106,8 +106,8 @@
                 <property name="can-focus">1</property>
                 <signal name="toggled" handler="show_right_margin_toggled_cb" object="TestWidget" swapped="yes"/>
                 <layout>
-                  <property name="top-attach">5</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">5</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -126,13 +126,13 @@
                     <property name="value">80</property>
                     <signal name="value-changed" handler="right_margin_position_value_changed_cb" object="TestWidget" swapped="yes"/>
                     <layout>
-                      <property name="left-attach">1</property>
+                      <property name="column">1</property>
                     </layout>
                   </object>
                 </child>
                 <layout>
-                  <property name="top-attach">6</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">6</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -141,8 +141,8 @@
                 <property name="label">Show source map</property>
                 <property name="can-focus">1</property>
                 <layout>
-                  <property name="top-attach">7</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">7</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -152,8 +152,8 @@
                 <property name="can-focus">1</property>
                 <signal name="toggled" handler="highlight_current_line_toggled_cb" object="TestWidget" swapped="yes"/>
                 <layout>
-                  <property name="top-attach">8</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">8</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -163,8 +163,8 @@
                 <property name="can-focus">1</property>
                 <signal name="toggled" handler="wrap_lines_toggled_cb" object="TestWidget" swapped="yes"/>
                 <layout>
-                  <property name="top-attach">9</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">9</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -173,8 +173,8 @@
                 <property name="label">Draw Spaces</property>
                 <property name="can-focus">1</property>
                 <layout>
-                  <property name="top-attach">10</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">10</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -183,8 +183,8 @@
                 <property name="label">Smart Backspace</property>
                 <property name="can-focus">1</property>
                 <layout>
-                  <property name="top-attach">11</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">11</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -207,21 +207,21 @@
                     </items>
                     <signal name="changed" handler="smart_home_end_changed_cb" object="TestWidget" swapped="yes"/>
                     <layout>
-                      <property name="left-attach">1</property>
+                      <property name="column">1</property>
                     </layout>
                   </object>
                 </child>
                 <layout>
-                  <property name="top-attach">12</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">12</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
             <child>
               <object class="GtkGrid" id="grid10">
                 <layout>
-                  <property name="left_attach">0</property>
-                  <property name="top_attach">0</property>
+                  <property name="column">0</property>
+                  <property name="row">0</property>
                 </layout>
                 <child>
                   <object class="GtkCheckButton" id="highlight_syntax">
@@ -236,8 +236,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <layout>
-                      <property name="left_attach">1</property>
-                      <property name="top_attach">0</property>
+                      <property name="column">1</property>
+                      <property name="row">0</property>
                     </layout>
                   </object>
                 </child>
@@ -249,8 +249,8 @@
                       <item translatable="yes">Grid</item>
                     </items>
                     <layout>
-                      <property name="left-attach">2</property>
-                      <property name="top_attach">0</property>
+                      <property name="column">2</property>
+                      <property name="row">0</property>
                     </layout>
                   </object>
                 </child>
@@ -262,14 +262,14 @@
                 <property name="can-focus">1</property>
                 <property name="halign">start</property>
                 <layout>
-                  <property name="top-attach">4</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">4</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
             <layout>
-              <property name="top-attach">4</property>
-              <property name="left-attach">0</property>
+              <property name="row">4</property>
+              <property name="column">0</property>
             </layout>
           </object>
         </child>
@@ -281,8 +281,8 @@
               <attribute name="weight" value="bold"></attribute>
             </attributes>
             <layout>
-              <property name="top-attach">5</property>
-              <property name="left-attach">0</property>
+              <property name="row">5</property>
+              <property name="column">0</property>
             </layout>
           </object>
         </child>
@@ -301,8 +301,8 @@
                 <property name="can-focus">1</property>
                 <signal name="toggled" handler="indent_spaces_toggled_cb" object="TestWidget" swapped="yes"/>
                 <layout>
-                  <property name="top-attach">1</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">1</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -321,13 +321,13 @@
                     <property name="value">8</property>
                     <signal name="value-changed" handler="tab_width_value_changed_cb" object="TestWidget" swapped="yes"/>
                     <layout>
-                      <property name="left-attach">1</property>
+                      <property name="column">1</property>
                     </layout>
                   </object>
                 </child>
                 <layout>
-                  <property name="top-attach">2</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">2</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
@@ -340,8 +340,8 @@
                     <property name="adjustment">adjustment_indent_width</property>
                     <property name="value">8</property>
                     <layout>
-                      <property name="left-attach">1</property>
-                      <property name="top-attach">0</property>
+                      <property name="column">1</property>
+                      <property name="row">0</property>
                     </layout>
                   </object>
                 </child>
@@ -350,20 +350,20 @@
                     <property name="label">Different indent width:</property>
                     <property name="can-focus">1</property>
                     <layout>
-                      <property name="left-attach">0</property>
-                      <property name="top-attach">0</property>
+                      <property name="column">0</property>
+                      <property name="row">0</property>
                     </layout>
                   </object>
                 </child>
                 <layout>
-                  <property name="top-attach">3</property>
-                  <property name="left-attach">0</property>
+                  <property name="row">3</property>
+                  <property name="column">0</property>
                 </layout>
               </object>
             </child>
             <layout>
-              <property name="top-attach">6</property>
-              <property name="left-attach">0</property>
+              <property name="row">6</property>
+              <property name="column">0</property>
             </layout>
           </object>
         </child>
@@ -386,7 +386,7 @@
                   </object>
                 </child>
                 <layout>
-                  <property name="left-attach">1</property>
+                  <property name="column">1</property>
                 </layout>
               </object>
             </child>
@@ -401,13 +401,13 @@
                   </object>
                 </child>
                 <layout>
-                  <property name="left-attach">2</property>
+                  <property name="column">2</property>
                 </layout>
               </object>
             </child>
             <layout>
-              <property name="top-attach">2</property>
-              <property name="left-attach">0</property>
+              <property name="row">2</property>
+              <property name="column">0</property>
             </layout>
           </object>
         </child>
@@ -442,8 +442,8 @@
             <property name="can_focus">False</property>
             <property name="view">view</property>
             <layout>
-              <property name="left_attach">1</property>
-              <property name="top_attach">0</property>
+              <property name="column">1</property>
+              <property name="row">0</property>
             </layout>
           </object>
         </child>
@@ -452,14 +452,14 @@
             <property name="halign">start</property>
             <property name="label">Cursor position info</property>
             <layout>
-              <property name="left-attach">0</property>
-              <property name="top-attach">1</property>
+              <property name="column">0</property>
+              <property name="row">1</property>
             </layout>
           </object>
         </child>
         <layout>
-          <property name="left-attach">1</property>
-          <property name="top-attach">0</property>
+          <property name="column">1</property>
+          <property name="row">0</property>
         </layout>
       </object>
     </child>

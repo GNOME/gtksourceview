@@ -93,7 +93,7 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
                 <property name="halign">end</property>
                 <property name="hexpand">True</property>
                 <layout>
-                  <property name="left_attach">1</property>
+                  <property name="column">1</property>
                 </layout>
               </object>
             </child>
@@ -105,12 +105,12 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
                 <property name="margin-end">6</property>
                 <property name="margin-start">6</property>
                 <layout>
-                  <property name="left_attach">2</property>
+                  <property name="column">2</property>
                 </layout>
               </object>
             </child>
             <layout>
-              <property name="top_attach">1</property>
+              <property name="row">1</property>
             </layout>
           </object>
         </child>
