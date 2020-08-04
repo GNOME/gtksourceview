@@ -15,7 +15,7 @@ Dependencies
 ------------
 
 * GLib >= 2.48
-* GTK+ >= 3.22
+* GTK+ >= 3.24
 * libxml2 >= 2.6
 * freebidi >= 0.19.7
 
