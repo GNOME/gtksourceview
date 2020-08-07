@@ -451,6 +451,9 @@
           <object class="GtkLabel" id="cursor_position_info">
             <property name="halign">start</property>
             <property name="label">Cursor position info</property>
+            <attributes>
+              <attribute name="font-features" value="tnum"/>
+            </attributes>
             <layout>
               <property name="column">0</property>
               <property name="row">1</property>
