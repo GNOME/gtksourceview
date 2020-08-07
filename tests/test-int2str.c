@@ -46,7 +46,7 @@ main (gint   argc,
 		g_snprintf (tmpbuf, 12, "%u", i);
 	}
 	d = g_timer_elapsed (timer, NULL);
-	g_print ("     g_snprintf: %lf\n", d);
+	g_print ("   g_snprintf: %lf\n", d);
 
 	/* Make sure implementation is correct */
 	for (i = 0; i < 20000; i++)
