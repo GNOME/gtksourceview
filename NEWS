@@ -1,3 +1,12 @@
+News in 4.7.90, 2020-08-07
+--------------------------
+* Bump GTK requirement to 3.24 for gdk_window_move_to_rect()
+* Use gdk_window_move_to_rect() to more reliably position completion windows
+* erb.lang: initial support for ERB
+* javascript.lang, typescript.lang: various correctness and performance
+  improvements.
+* Translation updates
+
 News in 4.6.1, 2020-06-26
 -------------------------
 * Fix various G-I annotations
