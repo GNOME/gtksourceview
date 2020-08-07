@@ -226,7 +226,7 @@ move_to_iter (GtkSourceCompletionInfo *window,
 
 	gtk_widget_translate_coordinates (GTK_WIDGET (view),
 	                                  GTK_WIDGET (root),
-	                                  location.x + window->xoffset,
+	                                  location.x,
 	                                  location.y,
 	                                  &x,
 	                                  &y);
@@ -236,7 +236,8 @@ move_to_iter (GtkSourceCompletionInfo *window,
 
 	layout = gdk_popup_layout_new (&location, GDK_GRAVITY_SOUTH_WEST, GDK_GRAVITY_NORTH_WEST);
 	gdk_popup_layout_set_anchor_hints (layout, GDK_ANCHOR_SLIDE | GDK_ANCHOR_FLIP_Y | GDK_ANCHOR_RESIZE);
-	gdk_popup_present (GDK_POPUP (surface), window->priv->xoffset, 0, layout);
+	gdk_popup_layout_set_offset (layout, window->xoffset, 0);
+	gdk_popup_present (GDK_POPUP (surface), 0, 0, layout);
 	gdk_popup_layout_unref (layout);
 }
 
