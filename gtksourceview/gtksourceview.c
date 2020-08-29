@@ -22,7 +22,7 @@
 
 #include "config.h"
 
-#include "gtksourceview.h"
+#include "gtksourceview-private.h"
 
 #include <string.h>
 #include <fribidi.h>
@@ -213,6 +213,8 @@ typedef struct
 	gint indent_width;
 	GtkSourceSmartHomeEndType smart_home_end;
 	GtkSourceBackgroundPatternType background_pattern;
+
+	GtkSourceViewAssistants assistants;
 
 	guint background_pattern_color_set : 1;
 	guint current_line_color_set : 1;
@@ -1357,6 +1359,8 @@ gtk_source_view_init (GtkSourceView *view)
 	gtk_style_context_add_class (context, "sourceview");
 
 	gtk_source_view_populate_extra_menu (view);
+
+	_gtk_source_view_assistants_init (&priv->assistants, view);
 }
 
 static void
@@ -4918,4 +4922,28 @@ gtk_source_view_queue_draw (GtkSourceView *view)
 	{
 		_gtk_source_gutter_queue_draw (priv->right_gutter);
 	}
+}
+
+void
+_gtk_source_view_add_assistant (GtkSourceView      *view,
+                                GtkSourceAssistant *assistant)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_ASSISTANT (assistant));
+
+	_gtk_source_view_assistants_add (&priv->assistants, assistant);
+}
+
+void
+_gtk_source_view_remove_assistant (GtkSourceView      *view,
+                                   GtkSourceAssistant *assistant)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (GTK_SOURCE_IS_ASSISTANT (assistant));
+
+	_gtk_source_view_assistants_remove (&priv->assistants, assistant);
 }
