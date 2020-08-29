@@ -85,6 +85,7 @@ core_public_c = files([
 ])
 
 core_private_c = files([
+  'gtksourcebindinggroup.c',
   'gtksourcebufferinputstream.c',
   'gtksourcebufferinternal.c',
   'gtksourcebufferoutputstream.c',
@@ -99,6 +100,7 @@ core_private_c = files([
   'gtksourcemarkssequence.c',
   'gtksourcepixbufhelper.c',
   'gtksourceregex.c',
+  'gtksourcesignalgroup.c',
 ])
 
 core_c_args = [
