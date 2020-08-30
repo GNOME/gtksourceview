@@ -210,7 +210,8 @@ test_provider_display (GtkSourceCompletionProvider *provider,
 			else
 				gtk_source_completion_cell_set_text (cell, p->text);
 		}
-		else if (column == GTK_SOURCE_COMPLETION_COLUMN_COMMENT)
+		else if (column == GTK_SOURCE_COMPLETION_COLUMN_COMMENT ||
+		         column == GTK_SOURCE_COMPLETION_COLUMN_DETAILS)
 		{
 			if (p->info)
 			{
