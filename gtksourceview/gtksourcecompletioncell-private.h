@@ -21,17 +21,12 @@
 
 #pragma once
 
-#include <gtk/gtk.h>
-
-#include "gtksourcetypes-private.h"
+#include "gtksourcecompletioncell.h"
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_COMPLETION_INFO (_gtk_source_completion_info_get_type())
-
-G_DECLARE_FINAL_TYPE (GtkSourceCompletionInfo, _gtk_source_completion_info, GTK_SOURCE, COMPLETION_INFO, GtkSourceAssistant)
-
-GtkSourceCompletionInfo *_gtk_source_completion_info_new      (void);
-GtkSourceCompletionCell *_gtk_source_completion_info_get_cell (GtkSourceCompletionInfo *self);
+void     _gtk_source_completion_cell_set_attrs (GtkSourceCompletionCell *self,
+                                                PangoAttrList           *attrs);
+gboolean _gtk_source_completion_cell_is_empty  (GtkSourceCompletionCell *self);
 
 G_END_DECLS

@@ -23,10 +23,14 @@
 
 G_BEGIN_DECLS
 
+typedef struct _GtkSourceAssistant              GtkSourceAssistant;
+typedef struct _GtkSourceAssistantChild         GtkSourceAssistantChild;
 typedef struct _GtkSourceBufferInputStream      GtkSourceBufferInputStream;
 typedef struct _GtkSourceBufferOutputStream     GtkSourceBufferOutputStream;
 typedef struct _GtkSourceCompletionInfo         GtkSourceCompletionInfo;
-typedef struct _GtkSourceCompletionModel        GtkSourceCompletionModel;
+typedef struct _GtkSourceCompletionList         GtkSourceCompletionList;
+typedef struct _GtkSourceCompletionListBox      GtkSourceCompletionListBox;
+typedef struct _GtkSourceCompletionListBoxRow   GtkSourceCompletionListBoxRow;
 typedef struct _GtkSourceContextEngine          GtkSourceContextEngine;
 typedef struct _GtkSourceEngine                 GtkSourceEngine;
 typedef struct _GtkSourceGutterRendererLines    GtkSourceGutterRendererLines;

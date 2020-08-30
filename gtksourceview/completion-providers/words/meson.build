@@ -4,15 +4,15 @@ completionwords_c_args = [
 ]
 
 completionwords_public_h = [
-  'gtksourcecompletionwords.h',
+  # 'gtksourcecompletionwords.h',
 ]
 
 completionwords_public_c = [
-  'gtksourcecompletionwords.c',
-  'gtksourcecompletionwordsbuffer.c',
-  'gtksourcecompletionwordslibrary.c',
-  'gtksourcecompletionwordsproposal.c',
-  'gtksourcecompletionwordsutils.c',
+  # 'gtksourcecompletionwords.c',
+  # 'gtksourcecompletionwordsbuffer.c',
+  # 'gtksourcecompletionwordslibrary.c',
+  # 'gtksourcecompletionwordsproposal.c',
+  # 'gtksourcecompletionwordsutils.c',
 ]
 
 install_headers(

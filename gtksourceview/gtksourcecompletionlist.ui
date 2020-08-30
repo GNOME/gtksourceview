@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkSourceCompletionList" parent="GtkSourceAssistant">
+    <property name="can-focus">false</property>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="can-focus">false</property>
+        <child>
+          <object class="GtkScrolledWindow" id="scroller">
+            <property name="hscrollbar-policy">never</property>
+            <property name="vscrollbar-policy">automatic</property>
+            <property name="propagate-natural-width">true</property>
+            <property name="propagate-natural-height">true</property>
+            <property name="min-content-height">1</property>
+            <child>
+              <object class="GtkSourceCompletionListBox" id="listbox">
+                <property name="can-focus">false</property>
+                <signal name="notify::proposal" handler="_gtk_source_completion_list_notify_proposal" swapped="true"/>
+                <signal name="reposition" handler="_gtk_source_completion_list_reposition" swapped="true"/>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="details">
+            <property name="can-focus">false</property>
+            <property name="halign">fill</property>
+            <property name="hexpand">true</property>
+            <property name="orientation">horizontal</property>
+            <property name="spacing">12</property>
+            <property name="vexpand">true</property>
+            <style>
+              <class name="details"/>
+            </style>
+            <child>
+              <object class="GtkSourceCompletionCell" id="comments">
+                <property name="column">comment</property>
+                <property name="hexpand">true</property>
+                <property name="valign">baseline</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">horizontal</property>
+                <property name="baseline-position">top</property>
+                <property name="valign">baseline</property>
+                <child>
+                  <object class="GtkLabel" id="alternate_label">
+                    <property name="margin-end">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="valign">baseline</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkToggleButton" id="show_details">
+                    <property name="can-focus">false</property>
+                    <property name="label" translatable="yes">_Details</property>
+                    <property name="use-underline">true</property>
+                    <property name="halign">end</property>
+                    <property name="valign">start</property>
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

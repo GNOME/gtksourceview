@@ -311,6 +311,21 @@ static gboolean       gtk_source_view_rgba_drop            (GtkDropTarget       
                                                             GtkSourceView           *view);
 static void           gtk_source_view_populate_extra_menu  (GtkSourceView           *view);
 
+static GtkSourceCompletion *
+get_completion (GtkSourceView *self)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (self);
+
+	g_assert (GTK_SOURCE_IS_VIEW (self));
+
+	if (priv->completion == NULL)
+	{
+		priv->completion = _gtk_source_completion_new (self);
+	}
+
+	return priv->completion;
+}
+
 static void
 gtk_source_view_constructed (GObject *object)
 {
@@ -1661,15 +1676,8 @@ set_source_buffer (GtkSourceView *view,
 static void
 gtk_source_view_show_completion_real (GtkSourceView *view)
 {
-	GtkSourceCompletion *completion;
-	GtkSourceCompletionContext *context;
-
-	completion = gtk_source_view_get_completion (view);
-	context = gtk_source_completion_create_context (completion, NULL);
-
-	gtk_source_completion_start (completion,
-				     gtk_source_completion_get_providers (completion),
-				     context);
+	GtkSourceCompletion *completion = get_completion (view);
+	gtk_source_completion_show (completion);
 }
 
 static void

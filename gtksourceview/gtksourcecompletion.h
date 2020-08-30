@@ -1,8 +1,7 @@
 /*
  * This file is part of GtkSourceView
  *
- * Copyright 2007 - 2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
- * Copyright 2009 - Jesse van den Kieboom <jessevdk@gnome.org>
+ * Copyright 2020 Christian Hergert <chergert@redhat.com>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,13 +15,11 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
 #pragma once
-
-#if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
-#error "Only <gtksourceview/gtksource.h> can be included directly."
-#endif
 
 #include <gtk/gtk.h>
 
@@ -30,65 +27,40 @@
 
 G_BEGIN_DECLS
 
-/*
- * Type checking and casting macros
- */
 #define GTK_SOURCE_TYPE_COMPLETION (gtk_source_completion_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_0
 G_DECLARE_FINAL_TYPE (GtkSourceCompletion, gtk_source_completion, GTK_SOURCE, COMPLETION, GObject)
 
-/**
- * GTK_SOURCE_COMPLETION_ERROR:
- *
- * Error domain for the completion. Errors in this domain will be from the
- * #GtkSourceCompletionError enumeration. See #GError for more information on
- * error domains.
- */
-#define GTK_SOURCE_COMPLETION_ERROR (gtk_source_completion_error_quark())
-
-/**
- * GtkSourceCompletionError:
- * @GTK_SOURCE_COMPLETION_ERROR_ALREADY_BOUND: The #GtkSourceCompletionProvider
- * is already bound to the #GtkSourceCompletion object.
- * @GTK_SOURCE_COMPLETION_ERROR_NOT_BOUND: The #GtkSourceCompletionProvider is
- * not bound to the #GtkSourceCompletion object.
- *
- * An error code used with %GTK_SOURCE_COMPLETION_ERROR in a #GError returned
- * from a completion-related function.
- */
-typedef enum _GtkSourceCompletionError
-{
-	GTK_SOURCE_COMPLETION_ERROR_ALREADY_BOUND = 0,
-	GTK_SOURCE_COMPLETION_ERROR_NOT_BOUND
-} GtkSourceCompletionError;
-
-GTK_SOURCE_AVAILABLE_IN_ALL
-GQuark                      gtk_source_completion_error_quark         (void);
-GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean                    gtk_source_completion_add_provider        (GtkSourceCompletion          *completion,
-                                                                       GtkSourceCompletionProvider  *provider,
-                                                                       GError                      **error);
-GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean                    gtk_source_completion_remove_provider     (GtkSourceCompletion          *completion,
-                                                                       GtkSourceCompletionProvider  *provider,
-                                                                       GError                      **error);
-GTK_SOURCE_AVAILABLE_IN_ALL
-GList                      *gtk_source_completion_get_providers       (GtkSourceCompletion          *completion);
-GTK_SOURCE_AVAILABLE_IN_ALL
-gboolean                    gtk_source_completion_start               (GtkSourceCompletion          *completion,
-                                                                       GList                        *providers,
-                                                                       GtkSourceCompletionContext   *context);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                        gtk_source_completion_hide                (GtkSourceCompletion          *completion);
-GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceView              *gtk_source_completion_get_view            (GtkSourceCompletion          *completion);
-GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceCompletionContext *gtk_source_completion_create_context      (GtkSourceCompletion          *completion,
-                                                                       GtkTextIter                  *position);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                        gtk_source_completion_block_interactive   (GtkSourceCompletion          *completion);
-GTK_SOURCE_AVAILABLE_IN_ALL
-void                        gtk_source_completion_unblock_interactive (GtkSourceCompletion          *completion);
+GTK_SOURCE_AVAILABLE_IN_5_0
+GtkSourceView   *gtk_source_completion_get_view            (GtkSourceCompletion         *self);
+GTK_SOURCE_AVAILABLE_IN_5_0
+GtkSourceBuffer *gtk_source_completion_get_buffer          (GtkSourceCompletion         *self);
+GTK_SOURCE_AVAILABLE_IN_5_0
+void             gtk_source_completion_show                (GtkSourceCompletion         *self);
+GTK_SOURCE_AVAILABLE_IN_5_0
+void             gtk_source_completion_hide                (GtkSourceCompletion         *self);
+GTK_SOURCE_AVAILABLE_IN_5_0
+void             gtk_source_completion_add_provider        (GtkSourceCompletion         *self,
+                                                            GtkSourceCompletionProvider *provider);
+GTK_SOURCE_AVAILABLE_IN_5_0
+void             gtk_source_completion_remove_provider     (GtkSourceCompletion         *self,
+                                                            GtkSourceCompletionProvider *provider);
+GTK_SOURCE_AVAILABLE_IN_5_0
+void             gtk_source_completion_block_interactive   (GtkSourceCompletion         *self);
+GTK_SOURCE_AVAILABLE_IN_5_0
+void             gtk_source_completion_unblock_interactive (GtkSourceCompletion         *self);
+GTK_SOURCE_AVAILABLE_IN_5_0
+guint            gtk_source_completion_get_page_size       (GtkSourceCompletion         *self);
+GTK_SOURCE_AVAILABLE_IN_5_0
+void             gtk_source_completion_set_page_size       (GtkSourceCompletion         *self,
+                                                            guint                        page_size);
+GTK_SOURCE_AVAILABLE_IN_5_0
+gboolean         gtk_source_completion_fuzzy_match         (const char                  *haystack,
+                                                            const char                  *casefold_needle,
+                                                            guint                       *priority);
+GTK_SOURCE_AVAILABLE_IN_5_0
+PangoAttrList   *gtk_source_completion_fuzzy_highlight     (const char                  *haystack,
+                                                            const char                  *casefold_query);
 
 G_END_DECLS
