@@ -71,7 +71,7 @@ GtkSourceAssistant.completion list row box.more button image {
   margin: 0px;
   padding: 0px;
 }
-GtkSourceAssistant.completion .details {
+GtkSourceAssistant.completion box.details {
   border-top: 1px solid @borders;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -79,11 +79,11 @@ GtkSourceAssistant.completion .details {
   padding-left: 6px;
   padding-right: 3px;
 }
-GtkSourceAssistant.completion .details cell {
+GtkSourceAssistant.completion box.details cell {
   margin-left: 24px;
   margin-bottom: 8px;
 }
-GtkSourceAssistant.completion .details button.flat {
+GtkSourceAssistant.completion box.details button.flat {
   min-height: 8px;
   margin: 3px 0px;
   padding: 3px 6px;
