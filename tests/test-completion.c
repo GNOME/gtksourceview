@@ -172,8 +172,12 @@ test_provider_populate_async (GtkSourceCompletionProvider *completion_provider,
 		g_list_store_append (results, iter->data);
 	}
 
-	g_list_free_full (proposals, g_object_unref);
 	g_task_return_pointer (task, results, g_object_unref);
+
+	if (provider->is_random)
+	{
+		g_list_free (proposals);
+	}
 }
 
 static GListModel *
@@ -185,12 +189,56 @@ test_provider_populate_finish (GtkSourceCompletionProvider  *provider,
 }
 
 static void
+test_provider_display (GtkSourceCompletionProvider *provider,
+                       GtkSourceCompletionContext  *context,
+                       GtkSourceCompletionProposal *proposal,
+                       GtkSourceCompletionCell     *cell)
+{
+	if (TEST_IS_PROPOSAL (proposal))
+	{
+		TestProposal *p = TEST_PROPOSAL (proposal);
+
+		if (gtk_source_completion_cell_get_column (cell) == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
+		{
+			if (p->markup)
+				gtk_source_completion_cell_set_markup (cell, p->markup);
+			else if (p->label)
+				gtk_source_completion_cell_set_text (cell, p->label);
+			else if (p->text)
+				gtk_source_completion_cell_set_text (cell, p->text);
+		}
+	}
+}
+
+static void
+test_provider_activate (GtkSourceCompletionProvider *provider,
+                        GtkSourceCompletionContext  *context,
+                        GtkSourceCompletionProposal *proposal)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter begin, end;
+
+	gtk_source_completion_context_get_bounds (context, &begin, &end);
+	buffer = gtk_text_iter_get_buffer (&begin);
+
+	if (TEST_IS_PROPOSAL (proposal))
+	{
+		gtk_text_buffer_begin_user_action (buffer);
+		gtk_text_buffer_delete (buffer, &begin, &end);
+		gtk_text_buffer_insert (buffer, &begin, TEST_PROPOSAL (proposal)->text, -1);
+		gtk_text_buffer_end_user_action (buffer);
+	}
+}
+
+static void
 test_provider_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
 	iface->get_title = test_provider_get_title;
 	iface->populate_async = test_provider_populate_async;
 	iface->populate_finish = test_provider_populate_finish;
 	iface->get_priority = test_provider_get_priority;
+	iface->display = test_provider_display;
+	iface->activate = test_provider_activate;
 }
 
 static void
@@ -510,6 +558,7 @@ main (int   argc,
 	main_loop = g_main_loop_new (NULL, FALSE);
 
 	gtk_init ();
+	gtk_source_init ();
 
 	create_window ();
 
