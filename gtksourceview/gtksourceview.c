@@ -1399,7 +1399,12 @@ gtk_source_view_dispose (GObject *object)
 	GtkSourceView *view = GTK_SOURCE_VIEW (object);
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 
-	g_clear_object (&priv->completion);
+	if (priv->completion != NULL)
+	{
+		g_object_run_dispose (G_OBJECT (priv->completion));
+		g_clear_object (&priv->completion);
+	}
+
 	g_clear_object (&priv->style_scheme);
 	g_clear_object (&priv->space_drawer);
 
@@ -1412,6 +1417,8 @@ gtk_source_view_dispose (GObject *object)
 	 * several times (if dispose() is called several times).
 	 */
 	g_signal_handlers_disconnect_by_func (view, notify_buffer_cb, NULL);
+
+	_gtk_source_view_assistants_shutdown (&priv->assistants);
 
 	G_OBJECT_CLASS (gtk_source_view_parent_class)->dispose (object);
 }
@@ -3879,10 +3886,10 @@ do_ctrl_backspace (GtkSourceView *view)
 
 static gboolean
 gtk_source_view_key_pressed (GtkSourceView         *view,
-			     guint                  key,
-			     guint                  keycode,
-			     guint                  state,
-			     GtkEventControllerKey *controller)
+                             guint                  key,
+                             guint                  keycode,
+                             guint                  state,
+                             GtkEventControllerKey *controller)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkTextBuffer *buf;
@@ -3890,6 +3897,11 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 	GtkTextMark *mark;
 	guint modifiers;
 	gboolean editable;
+
+	if (_gtk_source_view_assistants_handle_key (&priv->assistants, key, state))
+	{
+		return TRUE;
+	}
 
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
