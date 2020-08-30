@@ -56,6 +56,9 @@ GTK_SOURCE_AVAILABLE_IN_5_0
 void                      gtk_source_completion_cell_set_icon_name            (GtkSourceCompletionCell *self,
                                                                                const char              *icon_name);
 GTK_SOURCE_AVAILABLE_IN_5_0
+void                      gtk_source_completion_cell_set_gicon                (GtkSourceCompletionCell *self,
+                                                                               GIcon                   *gicon);
+GTK_SOURCE_AVAILABLE_IN_5_0
 void                      gtk_source_completion_cell_set_paintable            (GtkSourceCompletionCell *self,
                                                                                GdkPaintable            *paintable);
 GTK_SOURCE_AVAILABLE_IN_5_0

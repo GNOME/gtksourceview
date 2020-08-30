@@ -418,6 +418,22 @@ gtk_source_completion_cell_set_icon_name (GtkSourceCompletionCell *self,
 	gtk_image_set_from_icon_name (GTK_IMAGE (self->child), icon_name);
 }
 
+void
+gtk_source_completion_cell_set_gicon (GtkSourceCompletionCell *self,
+                                      GIcon                   *gicon)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CELL (self));
+	g_return_if_fail (!gicon || G_IS_ICON (gicon));
+
+	if (!GTK_IS_IMAGE (self->child))
+	{
+		GtkWidget *image = gtk_image_new ();
+		gtk_source_completion_cell_set_widget (self, image);
+	}
+
+	gtk_image_set_from_gicon (GTK_IMAGE (self->child), gicon);
+}
+
 gboolean
 _gtk_source_completion_cell_is_empty (GtkSourceCompletionCell *self)
 {
