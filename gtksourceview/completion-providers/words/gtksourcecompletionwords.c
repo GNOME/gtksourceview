@@ -213,7 +213,6 @@ gtk_source_completion_words_populate_async (GtkSourceCompletionProvider *provide
 	word = gtk_text_iter_get_slice (&begin, &end);
 
 	g_assert (word != NULL);
-	g_assert (word[0] != 0);
 
 	activation = gtk_source_completion_context_get_activation (context);
 

@@ -21,6 +21,57 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 
+#define TEST_TYPE_PROPOSAL (test_proposal_get_type())
+G_DECLARE_FINAL_TYPE (TestProposal, test_proposal, TEST, PROPOSAL, GObject)
+
+struct _TestProposal
+{
+	GObject parent_instance;
+	char *label;
+	char *text;
+	char *markup;
+	char *info;
+	char *icon_name;
+	GIcon *gicon;
+	GtkIconPaintable *icon;
+};
+
+G_DEFINE_TYPE_WITH_CODE (TestProposal, test_proposal, G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, NULL))
+
+static void
+test_proposal_dispose (GObject *object)
+{
+	TestProposal *p = TEST_PROPOSAL (object);
+	g_clear_pointer (&p->label, g_free);
+	g_clear_pointer (&p->text, g_free);
+	g_clear_pointer (&p->markup, g_free);
+	g_clear_pointer (&p->info, g_free);
+	g_clear_pointer (&p->icon_name, g_free);
+	g_clear_object (&p->gicon);
+	g_clear_object (&p->icon);
+	G_OBJECT_CLASS (test_proposal_parent_class)->dispose (object);
+}
+
+static void
+test_proposal_class_init (TestProposalClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+	object_class->dispose = test_proposal_dispose;
+}
+
+static void
+test_proposal_init (TestProposal *self)
+{
+}
+
+static TestProposal *
+test_proposal_new (void)
+{
+	return g_object_new (TEST_TYPE_PROPOSAL, NULL);
+}
+
 typedef struct _TestProvider TestProvider;
 typedef struct _TestProviderClass TestProviderClass;
 
@@ -35,7 +86,7 @@ struct _TestProvider
 
 	GList *proposals;
 	gint priority;
-	gchar *name;
+	gchar *title;
 
 	GtkIconPaintable *provider_icon;
 
@@ -62,13 +113,14 @@ G_DEFINE_TYPE_WITH_CODE (TestProvider,
 				 		test_provider_iface_init))
 
 static gchar *
-test_provider_get_name (GtkSourceCompletionProvider *provider)
+test_provider_get_title (GtkSourceCompletionProvider *provider)
 {
-	return g_strdup (((TestProvider *)provider)->name);
+	return g_strdup (((TestProvider *)provider)->title);
 }
 
 static gint
-test_provider_get_priority (GtkSourceCompletionProvider *provider)
+test_provider_get_priority (GtkSourceCompletionProvider *provider,
+                            GtkSourceCompletionContext  *context)
 {
 	return ((TestProvider *)provider)->priority;
 }
@@ -91,11 +143,16 @@ select_random_proposals (GList *all_proposals)
 }
 
 static void
-test_provider_populate (GtkSourceCompletionProvider *completion_provider,
-                        GtkSourceCompletionContext  *context)
+test_provider_populate_async (GtkSourceCompletionProvider *completion_provider,
+                              GtkSourceCompletionContext  *context,
+                              GCancellable                *cancellable,
+                              GAsyncReadyCallback          callback,
+                              gpointer                     user_data)
 {
 	TestProvider *provider = (TestProvider *)completion_provider;
+	GListStore *results;
 	GList *proposals;
+	GTask *task;
 
 	if (provider->is_random)
 	{
@@ -106,27 +163,34 @@ test_provider_populate (GtkSourceCompletionProvider *completion_provider,
 		proposals = provider->proposals;
 	}
 
-	gtk_source_completion_context_add_proposals (context,
-						     completion_provider,
-						     proposals,
-						     TRUE);
+	task = g_task_new (completion_provider, cancellable, callback, user_data);
+
+	results = g_list_store_new (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL);
+
+	for (const GList *iter = proposals; iter; iter = iter->next)
+	{
+		g_list_store_append (results, iter->data);
+	}
+
+	g_list_free_full (proposals, g_object_unref);
+	g_task_return_pointer (task, results, g_object_unref);
 }
 
-static GdkTexture *
-test_provider_get_icon (GtkSourceCompletionProvider *provider)
+static GListModel *
+test_provider_populate_finish (GtkSourceCompletionProvider  *provider,
+                               GAsyncResult                 *result,
+                               GError                      **error)
 {
-	//TestProvider *tp = (TestProvider *)provider;
-	//return tp->is_random ? NULL : GDK_TEXTURE (tp->provider_icon);
-	return NULL;
+	return g_task_propagate_pointer (G_TASK (result), error);
 }
 
 static void
 test_provider_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
-	iface->get_name = test_provider_get_name;
-	iface->populate = test_provider_populate;
+	iface->get_title = test_provider_get_title;
+	iface->populate_async = test_provider_populate_async;
+	iface->populate_finish = test_provider_populate_finish;
 	iface->get_priority = test_provider_get_priority;
-	iface->get_icon = test_provider_get_icon;
 }
 
 static void
@@ -149,8 +213,8 @@ test_provider_finalize (GObject *gobject)
 {
 	TestProvider *self = (TestProvider *)gobject;
 
-	g_free (self->name);
-	self->name = NULL;
+	g_free (self->title);
+	self->title = NULL;
 
 	G_OBJECT_CLASS (test_provider_parent_class)->finalize (gobject);
 }
@@ -193,43 +257,40 @@ static void
 test_provider_set_fixed (TestProvider *provider,
 			 gint          nb_proposals)
 {
-	GtkSourceCompletionItem *item;
+	TestProposal *item;
 	GList *proposals = NULL;
 	gint i;
 
 	g_list_free_full (provider->proposals, g_object_unref);
 
-	item = gtk_source_completion_item_new ();
-	gtk_source_completion_item_set_markup (item, "A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!");
-	gtk_source_completion_item_set_text (item, "A very long proposal. I repeat, a very long proposal!");
-	//gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
-	gtk_source_completion_item_set_info (item, "To test the horizontal scrollbar and the markup.");
+	item = test_proposal_new ();
+	item->markup = g_strdup ("A very <b>long</b> proposal. I <i>repeat</i>, a very long proposal!");
+	item->text = g_strdup ("A very long proposal. I repeat, a very long proposal!");
+	item->info = g_strdup ("To test the horizontal scrollbar and the markup.");
 	proposals = g_list_prepend (proposals, item);
 
-	item = gtk_source_completion_item_new ();
-	gtk_source_completion_item_set_markup (item, "A proposal with a <b>symbolic</b> icon");
-	gtk_source_completion_item_set_text (item, "Test setting the icon-name property");
-	gtk_source_completion_item_set_icon_name (item, "face-cool-symbolic");
+	item = test_proposal_new ();
+	item->markup = g_strdup ("A proposal with a <b>symbolic</b> icon");
+	item->text = g_strdup ("Test setting the icon-name property");
+	item->icon_name = g_strdup ("face-cool-symbolic");
 	proposals = g_list_prepend (proposals, item);
 
-	item = gtk_source_completion_item_new ();
-	gtk_source_completion_item_set_markup (item, "A proposal with an emblem <b>GIcon</b>");
-	gtk_source_completion_item_set_text (item, "Test setting the GIcon property");
-	gtk_source_completion_item_set_gicon (item, provider->item_gicon);
+	item = test_proposal_new ();
+	item->markup = g_strdup ("A proposal with an emblem <b>GIcon</b>");
+	item->text = g_strdup ("Test setting the GIcon property");
+	item->gicon = g_object_ref (provider->item_gicon);
 	proposals = g_list_prepend (proposals, item);
 
 	for (i = nb_proposals - 1; i > 0; i--)
 	{
 		gchar *name = g_strdup_printf ("Proposal %d", i);
 
-		item = gtk_source_completion_item_new ();
-		gtk_source_completion_item_set_label (item, name);
-		gtk_source_completion_item_set_text (item, name);
-		//gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
-		gtk_source_completion_item_set_info (item, "The extra info of the proposal.\nA second line.");
+		item = test_proposal_new ();
+		item->label = name;
+		item->text = g_strdup (name);
+		item->icon = g_object_ref (provider->item_icon);
+		item->info = g_strdup ("The extra info of the proposal.\nA second line.");
 		proposals = g_list_prepend (proposals, item);
-
-		g_free (name);
 	}
 
 	provider->proposals = proposals;
@@ -247,18 +308,17 @@ test_provider_set_random (TestProvider *provider,
 
 	for (i = 0; i < nb_proposals; i++)
 	{
-		GtkSourceCompletionItem *item;
+		TestProposal *item;
 		gchar *padding = g_strnfill ((i * 3) % 10, 'o');
 		gchar *name = g_strdup_printf ("Propo%ssal %d", padding, i);
 
-		item = gtk_source_completion_item_new ();
-		gtk_source_completion_item_set_label (item, name);
-		gtk_source_completion_item_set_text (item, name);
-		//gtk_source_completion_item_set_icon (item, GDK_TEXTURE (provider->item_icon));
+		item = test_proposal_new ();
+		item->label = name;
+		item->text = g_strdup (name);
+		item->icon = g_object_ref (provider->item_icon);
 		proposals = g_list_prepend (proposals, item);
 
 		g_free (padding);
-		g_free (name);
 	}
 
 	provider->proposals = proposals;
@@ -274,11 +334,11 @@ add_remove_provider (GtkToggleButton             *button,
 
 	if (gtk_toggle_button_get_active (button))
 	{
-		gtk_source_completion_add_provider (completion, provider, NULL);
+		gtk_source_completion_add_provider (completion, provider);
 	}
 	else
 	{
-		gtk_source_completion_remove_provider (completion, provider, NULL);
+		gtk_source_completion_remove_provider (completion, provider);
 	}
 }
 
@@ -330,14 +390,13 @@ create_completion (GtkSourceView       *source_view,
 		   GtkSourceCompletion *completion)
 {
 	/* Words completion provider */
-	word_provider = gtk_source_completion_words_new (NULL, NULL);
+	word_provider = gtk_source_completion_words_new (NULL);
 
 	gtk_source_completion_words_register (word_provider,
 	                                      gtk_text_view_get_buffer (GTK_TEXT_VIEW (source_view)));
 
 	gtk_source_completion_add_provider (completion,
-	                                    GTK_SOURCE_COMPLETION_PROVIDER (word_provider),
-	                                    NULL);
+	                                    GTK_SOURCE_COMPLETION_PROVIDER (word_provider));
 
 	g_object_set (word_provider, "priority", 10, NULL);
 
@@ -345,21 +404,19 @@ create_completion (GtkSourceView       *source_view,
 	fixed_provider = g_object_new (test_provider_get_type (), NULL);
 	test_provider_set_fixed (fixed_provider, 3);
 	fixed_provider->priority = 5;
-	fixed_provider->name = g_strdup ("Fixed Provider");
+	fixed_provider->title = g_strdup ("Fixed Provider");
 
 	gtk_source_completion_add_provider (completion,
-	                                    GTK_SOURCE_COMPLETION_PROVIDER (fixed_provider),
-	                                    NULL);
+	                                    GTK_SOURCE_COMPLETION_PROVIDER (fixed_provider));
 
 	/* Random provider: the proposals vary on each populate */
 	random_provider = g_object_new (test_provider_get_type (), NULL);
 	test_provider_set_random (random_provider, 10);
 	random_provider->priority = 1;
-	random_provider->name = g_strdup ("Random Provider");
+	random_provider->title = g_strdup ("Random Provider");
 
 	gtk_source_completion_add_provider (completion,
-	                                    GTK_SOURCE_COMPLETION_PROVIDER (random_provider),
-	                                    NULL);
+	                                    GTK_SOURCE_COMPLETION_PROVIDER (random_provider));
 }
 
 static void
