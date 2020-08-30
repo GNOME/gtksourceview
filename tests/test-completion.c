@@ -210,6 +210,19 @@ test_provider_display (GtkSourceCompletionProvider *provider,
 			else
 				gtk_source_completion_cell_set_text (cell, p->text);
 		}
+		else if (column == GTK_SOURCE_COMPLETION_COLUMN_COMMENT)
+		{
+			if (p->info)
+			{
+				gchar *str = g_strstrip (g_strdup (p->info));
+				gtk_source_completion_cell_set_text (cell, str);
+				g_free (str);
+			}
+			else
+			{
+				gtk_source_completion_cell_set_text (cell, NULL);
+			}
+		}
 		else if (column == GTK_SOURCE_COMPLETION_COLUMN_ICON)
 		{
 			if (p->icon_name)
