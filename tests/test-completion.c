@@ -467,20 +467,8 @@ create_window (void)
 	                          G_CALLBACK (g_main_loop_quit),
 	                          main_loop);
 
-	g_object_bind_property (completion, "remember-info-visibility",
-				remember_info_visibility, "active",
-				G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
-
 	g_object_bind_property (completion, "select-on-show",
 				select_on_show, "active",
-				G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
-
-	g_object_bind_property (completion, "show-headers",
-				show_headers, "active",
-				G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
-
-	g_object_bind_property (completion, "show-icons",
-				show_icons, "active",
 				G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
 	create_completion (source_view, completion);
@@ -511,6 +499,8 @@ create_window (void)
 			  random_provider);
 
 	g_object_unref (builder);
+
+	gtk_window_present (window);
 }
 
 int

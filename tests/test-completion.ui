@@ -256,11 +256,6 @@
                 <property name="right_margin">2</property>
                 <property name="auto_indent">True</property>
                 <property name="monospace">True</property>
-                <child internal-child="completion">
-                  <object class="GtkSourceCompletion">
-                    <property name="remember_info_visibility">True</property>
-                  </object>
-                </child>
               </object>
             </child>
             <layout>
