@@ -197,15 +197,27 @@ test_provider_display (GtkSourceCompletionProvider *provider,
 	if (TEST_IS_PROPOSAL (proposal))
 	{
 		TestProposal *p = TEST_PROPOSAL (proposal);
+		GtkSourceCompletionColumn column;
 
-		if (gtk_source_completion_cell_get_column (cell) == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
+		column = gtk_source_completion_cell_get_column (cell);
+
+		if (column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
 		{
 			if (p->markup)
 				gtk_source_completion_cell_set_markup (cell, p->markup);
 			else if (p->label)
 				gtk_source_completion_cell_set_text (cell, p->label);
-			else if (p->text)
+			else
 				gtk_source_completion_cell_set_text (cell, p->text);
+		}
+		else if (column == GTK_SOURCE_COMPLETION_COLUMN_ICON)
+		{
+			if (p->icon_name)
+				gtk_source_completion_cell_set_icon_name (cell, p->icon_name);
+			else if (p->gicon)
+				gtk_source_completion_cell_set_gicon (cell, p->gicon);
+			else
+				gtk_source_completion_cell_set_icon_name (cell, NULL);
 		}
 	}
 }
