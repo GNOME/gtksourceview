@@ -8,11 +8,11 @@ completionwords_public_h = [
 ]
 
 completionwords_public_c = [
-  # 'gtksourcecompletionwords.c',
-  # 'gtksourcecompletionwordsbuffer.c',
-  # 'gtksourcecompletionwordslibrary.c',
-  # 'gtksourcecompletionwordsproposal.c',
-  # 'gtksourcecompletionwordsutils.c',
+  'gtksourcecompletionwords.c',
+  'gtksourcecompletionwordsbuffer.c',
+  'gtksourcecompletionwordslibrary.c',
+  'gtksourcecompletionwordsproposal.c',
+  'gtksourcecompletionwordsutils.c',
 ]
 
 install_headers(

@@ -37,30 +37,10 @@ enum
 
 static guint signals[N_SIGNALS];
 
-static void gtk_source_completion_proposal_iface_init (gpointer g_iface, gpointer iface_data);
-
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWordsProposal,
-			 gtk_source_completion_words_proposal,
-			 G_TYPE_OBJECT,
-			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,
-			 			gtk_source_completion_proposal_iface_init))
-
-static gchar *
-gtk_source_completion_words_proposal_get_text (GtkSourceCompletionProposal *proposal)
-{
-	return g_strdup (GTK_SOURCE_COMPLETION_WORDS_PROPOSAL(proposal)->word);
-}
-
-static void
-gtk_source_completion_proposal_iface_init (gpointer g_iface,
-                                           gpointer iface_data)
-{
-	GtkSourceCompletionProposalInterface *iface = (GtkSourceCompletionProposalInterface *)g_iface;
-
-	/* Interface data getter implementations */
-	iface->get_label = gtk_source_completion_words_proposal_get_text;
-	iface->get_text = gtk_source_completion_words_proposal_get_text;
-}
+                         gtk_source_completion_words_proposal,
+                         G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, NULL))
 
 static void
 gtk_source_completion_words_proposal_finalize (GObject *object)

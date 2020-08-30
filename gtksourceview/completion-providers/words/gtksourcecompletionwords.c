@@ -47,21 +47,17 @@
 enum
 {
 	PROP_0,
-	PROP_NAME,
-	PROP_ICON,
+	PROP_TITLE,
 	PROP_PROPOSALS_BATCH_SIZE,
 	PROP_SCAN_BATCH_SIZE,
 	PROP_MINIMUM_WORD_SIZE,
-	PROP_INTERACTIVE_DELAY,
 	PROP_PRIORITY,
-	PROP_ACTIVATION,
 	N_PROPERTIES
 };
 
 typedef struct
 {
-	gchar *name;
-	GdkTexture *icon;
+	gchar *title;
 
 	gchar *word;
 	gint word_len;
@@ -70,8 +66,6 @@ typedef struct
 	GtkSourceCompletionContext *context;
 	GSequenceIter *populate_iter;
 
-	guint cancel_id;
-
 	guint proposals_batch_size;
 	guint scan_batch_size;
 	guint minimum_word_size;
@@ -79,16 +73,24 @@ typedef struct
 	GtkSourceCompletionWordsLibrary *library;
 	GList *buffers;
 
-	gint interactive_delay;
 	gint priority;
-	GtkSourceCompletionActivation activation;
-}  GtkSourceCompletionWordsPrivate;
+} GtkSourceCompletionWordsPrivate;
 
 typedef struct
 {
 	GtkSourceCompletionWords *words;
 	GtkSourceCompletionWordsBuffer *buffer;
 } BufferBinding;
+
+typedef struct
+{
+	GtkSourceCompletionContext *context;
+	GtkSourceCompletionActivation activation;
+	GSequenceIter *populate_iter;
+	GListStore *ret;
+	char *word;
+	guint word_len;
+} Populate;
 
 static GParamSpec *properties[N_PROPERTIES];
 
@@ -101,175 +103,154 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWords,
 			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROVIDER,
 				 		gtk_source_completion_words_iface_init))
 
-static gchar *
-gtk_source_completion_words_get_name (GtkSourceCompletionProvider *self)
-{
-	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (self);
-	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
-
-	return g_strdup (priv->name);
-}
-
-static GdkTexture *
-gtk_source_completion_words_get_icon (GtkSourceCompletionProvider *self)
-{
-	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (self);
-	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
-
-	return priv->icon;
-}
-
 static void
-population_finished (GtkSourceCompletionWords *words)
+populate_free (Populate *p)
 {
+	g_clear_object (&p->context);
+	g_clear_object (&p->ret);
+	g_clear_pointer (&p->word, g_free);
+	g_slice_free (Populate, p);
+}
+
+static gchar *
+gtk_source_completion_words_get_title (GtkSourceCompletionProvider *self)
+{
+	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (self);
 	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
 
-	if (priv->idle_id != 0)
-	{
-		g_source_remove (priv->idle_id);
-		priv->idle_id = 0;
-	}
-
-	g_free (priv->word);
-	priv->word = NULL;
-
-	if (priv->context != NULL)
-	{
-		if (priv->cancel_id)
-		{
-			g_signal_handler_disconnect (priv->context,
-			                             priv->cancel_id);
-			priv->cancel_id = 0;
-		}
-
-		g_clear_object (&priv->context);
-	}
+	return g_strdup (priv->title);
 }
 
 static gboolean
-add_in_idle (GtkSourceCompletionWords *words)
+add_in_idle (GTask *task)
 {
+	GtkSourceCompletionWords *words = g_task_get_source_object (task);
 	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
+	Populate *p = g_task_get_task_data (task);
 	guint idx = 0;
-	GList *ret = NULL;
 	gboolean finished;
 
-	if (priv->populate_iter == NULL)
+	if (g_task_return_error_if_cancelled (task))
 	{
-		priv->populate_iter =
-			gtk_source_completion_words_library_find_first (priv->library,
-			                                                priv->word,
-			                                                priv->word_len);
+		g_clear_object (&task);
+		return G_SOURCE_REMOVE;
 	}
 
-	while (idx < priv->proposals_batch_size &&
-	       priv->populate_iter)
+	if (p->populate_iter == NULL)
+	{
+		p->populate_iter =
+			gtk_source_completion_words_library_find_first (priv->library,
+			                                                p->word,
+			                                                p->word_len);
+	}
+
+	while (idx < priv->proposals_batch_size && p->populate_iter)
 	{
 		GtkSourceCompletionWordsProposal *proposal =
-				gtk_source_completion_words_library_get_proposal (priv->populate_iter);
+				gtk_source_completion_words_library_get_proposal (p->populate_iter);
 
 		/* Only add non-exact matches */
-		if (strcmp (gtk_source_completion_words_proposal_get_word (proposal),
-		            priv->word) != 0)
+		if (strcmp (gtk_source_completion_words_proposal_get_word (proposal), p->word) != 0)
 		{
-			ret = g_list_prepend (ret, proposal);
+			g_list_store_append (p->ret, proposal);
 		}
 
-		priv->populate_iter =
-				gtk_source_completion_words_library_find_next (priv->populate_iter,
-		                                                               priv->word,
-		                                                               priv->word_len);
+		g_clear_object (&proposal);
+
+		p->populate_iter = gtk_source_completion_words_library_find_next (p->populate_iter,
+		                                                                  p->word,
+		                                                                  p->word_len);
 		++idx;
 	}
 
-	ret = g_list_reverse (ret);
-	finished = priv->populate_iter == NULL;
-
-	gtk_source_completion_context_add_proposals (priv->context,
-	                                             GTK_SOURCE_COMPLETION_PROVIDER (words),
-	                                             ret,
-	                                             finished);
-
-	g_list_free (ret);
+	finished = p->populate_iter == NULL;
 
 	if (finished)
 	{
+		g_task_return_pointer (task, g_steal_pointer (&p->ret), g_object_unref);
 		gtk_source_completion_words_library_unlock (priv->library);
-		population_finished (words);
+		g_clear_object (&task);
+		return G_SOURCE_REMOVE;
 	}
 
-	return !finished;
-}
-
-static gchar *
-get_word_at_iter (GtkTextIter *iter)
-{
-	GtkTextBuffer *buffer;
-	GtkTextIter start_line;
-	gchar *line_text;
-	gchar *word;
-
-	buffer = gtk_text_iter_get_buffer (iter);
-	start_line = *iter;
-	gtk_text_iter_set_line_offset (&start_line, 0);
-
-	line_text = gtk_text_buffer_get_text (buffer, &start_line, iter, FALSE);
-
-	word = _gtk_source_completion_words_utils_get_end_word (line_text);
-
-	g_free (line_text);
-	return word;
+	return G_SOURCE_CONTINUE;
 }
 
 static void
-gtk_source_completion_words_populate (GtkSourceCompletionProvider *provider,
-                                      GtkSourceCompletionContext  *context)
+gtk_source_completion_words_populate_async (GtkSourceCompletionProvider *provider,
+                                            GtkSourceCompletionContext  *context,
+                                            GCancellable                *cancellable,
+                                            GAsyncReadyCallback          callback,
+                                            gpointer                     user_data)
 {
 	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
 	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
 	GtkSourceCompletionActivation activation;
-	GtkTextIter iter;
+	Populate *populate;
+	GtkTextIter begin, end;
 	gchar *word;
+	GTask *task = NULL;
 
-	if (!gtk_source_completion_context_get_iter (context, &iter))
+	g_assert (GTK_SOURCE_IS_COMPLETION_WORDS (words));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+
+	task = g_task_new (words, cancellable, callback, user_data);
+	g_task_set_source_tag (task, gtk_source_completion_words_populate_async);
+	g_task_set_priority (task, priv->priority);
+
+	if (!gtk_source_completion_context_get_bounds (context, &begin, &end))
 	{
-		gtk_source_completion_context_add_proposals (context, provider, NULL, TRUE);
+		g_task_return_new_error (task,
+		                         G_IO_ERROR,
+		                         G_IO_ERROR_NOT_SUPPORTED,
+		                         "No word to complete");
+		g_clear_object (&task);
 		return;
 	}
 
-	g_free (priv->word);
-	priv->word = NULL;
+	g_clear_pointer (&priv->word, g_free);
 
-	word = get_word_at_iter (&iter);
+	word = gtk_text_iter_get_slice (&begin, &end);
+
+	g_assert (word != NULL);
+	g_assert (word[0] != 0);
 
 	activation = gtk_source_completion_context_get_activation (context);
 
-	if (word == NULL ||
-	    (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE &&
-	     g_utf8_strlen (word, -1) < (glong)priv->minimum_word_size))
+	if (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE &&
+	     g_utf8_strlen (word, -1) < (glong)priv->minimum_word_size)
 	{
 		g_free (word);
-		gtk_source_completion_context_add_proposals (context, provider, NULL, TRUE);
+		g_task_return_new_error (task,
+		                         G_IO_ERROR,
+		                         G_IO_ERROR_NOT_SUPPORTED,
+		                         "Word is too short to complete");
 		return;
 	}
 
-	priv->cancel_id =
-		g_signal_connect_swapped (context,
-			                  "cancelled",
-			                  G_CALLBACK (population_finished),
-			                  provider);
+	populate = g_slice_new0 (Populate);
+	populate->context = g_object_ref (context);
+	populate->activation = activation;
+	populate->word = g_steal_pointer (&word);
+	populate->word_len = g_utf8_strlen (word, -1);
+	populate->ret = g_list_store_new (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL);
 
-	priv->context = g_object_ref (context);
-
-	priv->word = word;
-	priv->word_len = strlen (word);
+	g_task_set_task_data (task, populate, (GDestroyNotify)populate_free);
 
 	/* Do first right now */
-	if (add_in_idle (words))
+	if (add_in_idle (task))
 	{
 		gtk_source_completion_words_library_lock (priv->library);
-		priv->idle_id = g_idle_add ((GSourceFunc)add_in_idle, words);
+		priv->idle_id = g_idle_add ((GSourceFunc)add_in_idle, task);
 	}
+}
+
+static GListModel *
+gtk_source_completion_words_populate_finish (GtkSourceCompletionProvider  *provider,
+                                             GAsyncResult                 *result,
+                                             GError                      **error)
+{
+	return g_task_propagate_pointer (G_TASK (result), error);
 }
 
 static void
@@ -277,8 +258,6 @@ gtk_source_completion_words_dispose (GObject *object)
 {
 	GtkSourceCompletionWords *provider = GTK_SOURCE_COMPLETION_WORDS (object);
 	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (provider);
-
-	population_finished (provider);
 
 	while (priv->buffers != NULL)
 	{
@@ -288,10 +267,7 @@ gtk_source_completion_words_dispose (GObject *object)
 		gtk_source_completion_words_unregister (provider, buffer);
 	}
 
-	g_free (priv->name);
-	priv->name = NULL;
-
-	g_clear_object (&priv->icon);
+	g_clear_pointer (&priv->title, g_free);
 	g_clear_object (&priv->library);
 
 	G_OBJECT_CLASS (gtk_source_completion_words_parent_class)->dispose (object);
@@ -336,19 +312,14 @@ gtk_source_completion_words_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
-		case PROP_NAME:
-			g_free (priv->name);
-			priv->name = g_value_dup_string (value);
+		case PROP_TITLE:
+			g_free (priv->title);
+			priv->title = g_value_dup_string (value);
 
-			if (priv->name == NULL)
+			if (priv->title == NULL)
 			{
-				priv->name = g_strdup (_("Document Words"));
+				priv->title = g_strdup (_("Document Words"));
 			}
-			break;
-
-		case PROP_ICON:
-			g_clear_object (&priv->icon);
-			priv->icon = g_value_dup_object (value);
 			break;
 
 		case PROP_PROPOSALS_BATCH_SIZE:
@@ -365,16 +336,8 @@ gtk_source_completion_words_set_property (GObject      *object,
 			update_buffers_minimum_word_size (self);
 			break;
 
-		case PROP_INTERACTIVE_DELAY:
-			priv->interactive_delay = g_value_get_int (value);
-			break;
-
 		case PROP_PRIORITY:
 			priv->priority = g_value_get_int (value);
-			break;
-
-		case PROP_ACTIVATION:
-			priv->activation = g_value_get_flags (value);
 			break;
 
 		default:
@@ -394,12 +357,8 @@ gtk_source_completion_words_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-		case PROP_NAME:
-			g_value_set_string (value, priv->name);
-			break;
-
-		case PROP_ICON:
-			g_value_set_object (value, priv->icon);
+		case PROP_TITLE:
+			g_value_set_string (value, priv->title);
 			break;
 
 		case PROP_PROPOSALS_BATCH_SIZE:
@@ -414,16 +373,8 @@ gtk_source_completion_words_get_property (GObject    *object,
 			g_value_set_uint (value, priv->minimum_word_size);
 			break;
 
-		case PROP_INTERACTIVE_DELAY:
-			g_value_set_int (value, priv->interactive_delay);
-			break;
-
 		case PROP_PRIORITY:
 			g_value_set_int (value, priv->priority);
-			break;
-
-		case PROP_ACTIVATION:
-			g_value_set_flags (value, priv->activation);
 			break;
 
 		default:
@@ -441,18 +392,11 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 	object_class->set_property = gtk_source_completion_words_set_property;
 	object_class->dispose = gtk_source_completion_words_dispose;
 
-	properties[PROP_NAME] =
-		g_param_spec_string ("name",
-				     "Name",
-				     "The provider name",
+	properties[PROP_TITLE] =
+		g_param_spec_string ("title",
+				     "Title",
+				     "The provider title",
 				     NULL,
-				     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
-
-	properties[PROP_ICON] =
-		g_param_spec_object ("icon",
-				     "Icon",
-				     "The provider icon",
-				     GDK_TYPE_TEXTURE,
 				     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
 	properties[PROP_PROPOSALS_BATCH_SIZE] =
@@ -482,15 +426,6 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 				   2,
 				   G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
-	properties[PROP_INTERACTIVE_DELAY] =
-		g_param_spec_int ("interactive-delay",
-				  "Interactive Delay",
-				  "The delay before initiating interactive completion",
-				  -1,
-				  G_MAXINT,
-				  50,
-				  G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
-
 	properties[PROP_PRIORITY] =
 		g_param_spec_int ("priority",
 				  "Priority",
@@ -500,60 +435,12 @@ gtk_source_completion_words_class_init (GtkSourceCompletionWordsClass *klass)
 				  0,
 				  G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
-	/**
-	 * GtkSourceCompletionWords:activation:
-	 *
-	 * The type of activation.
-	 *
-	 * Since: 3.10
-	 */
-	properties[PROP_ACTIVATION] =
-		g_param_spec_flags ("activation",
-				    "Activation",
-				    "The type of activation",
-				    GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
-				    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE |
-				    GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
-				    G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
-
 	g_object_class_install_properties (object_class, N_PROPERTIES, properties);
 }
 
-static gboolean
-gtk_source_completion_words_get_start_iter (GtkSourceCompletionProvider *provider,
-                                            GtkSourceCompletionContext  *context,
-                                            GtkSourceCompletionProposal *proposal,
-                                            GtkTextIter                 *iter)
-{
-	gchar *word;
-	glong nb_chars;
-
-	if (!gtk_source_completion_context_get_iter (context, iter))
-	{
-		return FALSE;
-	}
-
-	word = get_word_at_iter (iter);
-	g_return_val_if_fail (word != NULL, FALSE);
-
-	nb_chars = g_utf8_strlen (word, -1);
-	gtk_text_iter_backward_chars (iter, nb_chars);
-
-	g_free (word);
-	return TRUE;
-}
-
 static gint
-gtk_source_completion_words_get_interactive_delay (GtkSourceCompletionProvider *provider)
-{
-	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
-	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
-
-	return priv->interactive_delay;
-}
-
-static gint
-gtk_source_completion_words_get_priority (GtkSourceCompletionProvider *provider)
+gtk_source_completion_words_get_priority (GtkSourceCompletionProvider *provider,
+                                          GtkSourceCompletionContext  *context)
 {
 	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
 	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
@@ -561,25 +448,13 @@ gtk_source_completion_words_get_priority (GtkSourceCompletionProvider *provider)
 	return priv->priority;
 }
 
-static GtkSourceCompletionActivation
-gtk_source_completion_words_get_activation (GtkSourceCompletionProvider *provider)
-{
-	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
-	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
-
-	return priv->activation;
-}
-
 static void
 gtk_source_completion_words_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
-	iface->get_name = gtk_source_completion_words_get_name;
-	iface->get_icon = gtk_source_completion_words_get_icon;
-	iface->populate = gtk_source_completion_words_populate;
-	iface->get_start_iter = gtk_source_completion_words_get_start_iter;
-	iface->get_interactive_delay = gtk_source_completion_words_get_interactive_delay;
+	iface->get_title = gtk_source_completion_words_get_title;
+	iface->populate_async = gtk_source_completion_words_populate_async;
+	iface->populate_finish = gtk_source_completion_words_populate_finish;
 	iface->get_priority = gtk_source_completion_words_get_priority;
-	iface->get_activation = gtk_source_completion_words_get_activation;
 }
 
 static void
@@ -592,18 +467,15 @@ gtk_source_completion_words_init (GtkSourceCompletionWords *self)
 
 /**
  * gtk_source_completion_words_new:
- * @name: (nullable): The name for the provider, or %NULL.
- * @icon: (nullable): A specific icon for the provider, or %NULL.
+ * @title: (nullable): The title for the provider, or %NULL.
  *
  * Returns: a new #GtkSourceCompletionWords provider
  */
 GtkSourceCompletionWords *
-gtk_source_completion_words_new (const gchar *name,
-                                 GdkTexture  *icon)
+gtk_source_completion_words_new (const gchar *title)
 {
 	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_WORDS,
-	                     "name", name,
-	                     "icon", icon,
+	                     "title", title,
 	                     NULL);
 }
 

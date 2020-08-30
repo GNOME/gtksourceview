@@ -44,8 +44,7 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (GtkSourceCompletionWords, gtk_source_completion_words, GTK_SOURCE, COMPLETION_WORDS, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceCompletionWords *gtk_source_completion_words_new        (const gchar              *name,
-                                                                  GdkTexture               *icon);
+GtkSourceCompletionWords *gtk_source_completion_words_new        (const gchar              *title);
 GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_completion_words_register   (GtkSourceCompletionWords *words,
                                                                   GtkTextBuffer            *buffer);
