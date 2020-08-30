@@ -18,7 +18,6 @@ testsuite_sources = [
   ['test-buffer'],
   ['test-buffer-input-stream'],
   ['test-buffer-output-stream'],
-  ['test-completion-model'],
   ['test-completion-words'],
   ['test-encoding'],
   ['test-file-loader'],
