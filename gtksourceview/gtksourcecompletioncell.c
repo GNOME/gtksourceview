@@ -22,7 +22,7 @@
 #include "config.h"
 
 #include "gtksource-enumtypes.h"
-#include "gtksourcecompletioncell.h"
+#include "gtksourcecompletioncell-private.h"
 
 struct _GtkSourceCompletionCell
 {
@@ -70,6 +70,14 @@ gtk_source_completion_cell_set_column (GtkSourceCompletionCell   *self,
 
 	case GTK_SOURCE_COMPLETION_COLUMN_AFTER:
 		gtk_widget_add_css_class (GTK_WIDGET (self), "after");
+		break;
+
+	case GTK_SOURCE_COMPLETION_COLUMN_COMMENT:
+		gtk_widget_add_css_class (GTK_WIDGET (self), "comment");
+		break;
+
+	case GTK_SOURCE_COMPLETION_COLUMN_DETAILS:
+		gtk_widget_add_css_class (GTK_WIDGET (self), "details");
 		break;
 
 	default:
