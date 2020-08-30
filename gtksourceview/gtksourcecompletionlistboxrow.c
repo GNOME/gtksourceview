@@ -42,15 +42,7 @@ struct _GtkSourceCompletionListBoxRow
 	GtkSourceCompletionCell     *after;
 };
 
-enum {
-	PROP_0,
-	PROP_PROPOSAL,
-	N_PROPS
-};
-
 G_DEFINE_TYPE (GtkSourceCompletionListBoxRow, gtk_source_completion_list_box_row, GTK_TYPE_LIST_BOX_ROW)
-
-static GParamSpec *properties [N_PROPS];
 
 static void
 gtk_source_completion_list_box_row_finalize (GObject *object)
@@ -91,14 +83,6 @@ GtkWidget *
 _gtk_source_completion_list_box_row_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_LIST_BOX_ROW, NULL);
-}
-
-GtkSourceCompletionProposal *
-_gtk_source_completion_list_box_row_get_proposal (GtkSourceCompletionListBoxRow *self)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_LIST_BOX_ROW (self), NULL);
-
-	return self->proposal;
 }
 
 void
@@ -161,7 +145,6 @@ gint
 _gtk_source_completion_list_box_row_get_x_offset (GtkSourceCompletionListBoxRow *self,
                                                   GtkWidget                     *toplevel)
 {
-	GtkStyleContext *style_context;
 	GtkRequisition min;
 	GtkRequisition nat;
 	GtkBorder margin;
