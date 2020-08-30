@@ -26,6 +26,10 @@
 #include "gtksourcebuffer.h"
 #include "gtksourcebufferinputstream-private.h"
 #include "gtksourcebufferoutputstream-private.h"
+#include "gtksourcecompletion.h"
+#include "gtksourcecompletioncontext.h"
+#include "gtksourcecompletionproposal.h"
+#include "gtksourcecompletionprovider.h"
 #include "gtksourcefileloader.h"
 #include "gtksourcefilesaver.h"
 #include "gtksourcegutterrenderer.h"
@@ -163,6 +167,7 @@ gtk_source_init (void)
 
 	if (!done)
 	{
+		GdkDisplay *display;
 		gchar *locale_dir;
 
 		locale_dir = get_locale_dir ();
@@ -181,6 +186,10 @@ gtk_source_init (void)
 		g_type_ensure (GTK_SOURCE_TYPE_BUFFER);
 		g_type_ensure (GTK_SOURCE_TYPE_BUFFER_INPUT_STREAM);
 		g_type_ensure (GTK_SOURCE_TYPE_BUFFER_OUTPUT_STREAM);
+		g_type_ensure (GTK_SOURCE_TYPE_COMPLETION);
+		g_type_ensure (GTK_SOURCE_TYPE_COMPLETION_CONTEXT);
+		g_type_ensure (GTK_SOURCE_TYPE_COMPLETION_PROVIDER);
+		g_type_ensure (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL);
 		g_type_ensure (GTK_SOURCE_TYPE_FILE_LOADER);
 		g_type_ensure (GTK_SOURCE_TYPE_FILE_SAVER);
 		g_type_ensure (GTK_SOURCE_TYPE_GUTTER_RENDERER);
@@ -191,6 +200,20 @@ gtk_source_init (void)
 		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON);
 		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET);
 		g_type_ensure (GTK_SOURCE_TYPE_VIEW);
+
+		display = gdk_display_get_default ();
+
+		if (display != NULL)
+		{
+			GtkCssProvider *css_provider = gtk_css_provider_new ();
+
+			gtk_css_provider_load_from_resource (css_provider,
+			                                     "/org/gnome/gtksourceview/css/GtkSourceView.css");
+			gtk_style_context_add_provider_for_display (display,
+			                                            GTK_STYLE_PROVIDER (css_provider),
+			                                            GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
+			g_clear_object (&css_provider);
+		}
 
 		done = TRUE;
 	}
