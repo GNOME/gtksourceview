@@ -103,9 +103,9 @@ compare_provider_info (gconstpointer a,
 	int priority_a = gtk_source_completion_provider_get_priority (info_a->provider, self);
 	int priority_b = gtk_source_completion_provider_get_priority (info_b->provider, self);
 
-	if (priority_a < priority_b)
+	if (priority_a > priority_b)
 		return -1;
-	else if (priority_a > priority_b)
+	else if (priority_a < priority_b)
 		return 1;
 	else
 		return 0;
