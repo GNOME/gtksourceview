@@ -491,6 +491,20 @@ gtk_source_view_join_lines (GtkSourceView *view)
 }
 
 static void
+gtk_source_view_size_allocate (GtkWidget *widget,
+                               int        width,
+                               int        height,
+                               int        baseline)
+{
+	GtkSourceView *view = GTK_SOURCE_VIEW (widget);
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->size_allocate (widget, width, height, baseline);
+
+	_gtk_source_view_assistants_size_allocate (&priv->assistants, width, height, baseline);
+}
+
+static void
 gtk_source_view_class_init (GtkSourceViewClass *klass)
 {
 	GObjectClass *object_class;
@@ -509,6 +523,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 
 	widget_class->snapshot = gtk_source_view_snapshot;
 	widget_class->css_changed = gtk_source_view_css_changed;
+	widget_class->size_allocate = gtk_source_view_size_allocate;
 
 	textview_class->move_cursor = gtk_source_view_move_cursor;
 	textview_class->delete_from_cursor = gtk_source_view_delete_from_cursor;
