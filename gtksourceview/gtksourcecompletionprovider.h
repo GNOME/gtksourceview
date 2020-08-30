@@ -34,7 +34,6 @@ struct _GtkSourceCompletionProviderInterface
 {
 	GTypeInterface parent_iface;
 
-	GdkPaintable *(*get_paintable)        (GtkSourceCompletionProvider *self);
 	char         *(*get_title)            (GtkSourceCompletionProvider  *self);
 	int           (*get_priority)         (GtkSourceCompletionProvider  *self,
 	                                       GtkSourceCompletionContext   *context);
@@ -72,8 +71,6 @@ struct _GtkSourceCompletionProviderInterface
 	                                       GtkSourceCompletionProposal  *proposal);
 };
 
-GTK_SOURCE_AVAILABLE_IN_5_0
-GdkPaintable *gtk_source_completion_provider_get_paintable     (GtkSourceCompletionProvider  *self);
 GTK_SOURCE_AVAILABLE_IN_5_0
 char         *gtk_source_completion_provider_get_title         (GtkSourceCompletionProvider  *self);
 GTK_SOURCE_AVAILABLE_IN_5_0

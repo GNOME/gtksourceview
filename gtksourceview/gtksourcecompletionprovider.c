@@ -103,14 +103,6 @@ gtk_source_completion_provider_default_init (GtkSourceCompletionProviderInterfac
 	iface->activate = fallback_activate;
 }
 
-GdkPaintable *
-gtk_source_completion_provider_get_paintable (GtkSourceCompletionProvider *self)
-{
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (self), NULL);
-
-	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (self)->get_paintable (self);
-}
-
 char *
 gtk_source_completion_provider_get_title (GtkSourceCompletionProvider *self)
 {
