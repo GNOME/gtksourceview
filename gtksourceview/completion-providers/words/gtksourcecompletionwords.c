@@ -231,7 +231,7 @@ gtk_source_completion_words_populate_async (GtkSourceCompletionProvider *provide
 	populate->context = g_object_ref (context);
 	populate->activation = activation;
 	populate->word = g_steal_pointer (&word);
-	populate->word_len = g_utf8_strlen (word, -1);
+	populate->word_len = g_utf8_strlen (populate->word, -1);
 	populate->ret = g_list_store_new (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL);
 
 	g_task_set_task_data (task, populate, (GDestroyNotify)populate_free);
