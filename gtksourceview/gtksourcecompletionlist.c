@@ -397,7 +397,7 @@ _gtk_source_completion_list_class_init (GtkSourceCompletionListClass *klass)
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
 
-	gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/gtksourceview/gtksourcecompletionlist.ui");
+	gtk_widget_class_set_template_from_resource (widget_class, "/org/gnome/gtksourceview/ui/gtksourcecompletionlist.ui");
 	gtk_widget_class_bind_template_child (widget_class, GtkSourceCompletionList, alternate_label);
 	gtk_widget_class_bind_template_child (widget_class, GtkSourceCompletionList, comments);
 	gtk_widget_class_bind_template_child (widget_class, GtkSourceCompletionList, details);

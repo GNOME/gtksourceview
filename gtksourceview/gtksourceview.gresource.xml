@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/gnome/gtksourceview/ui">
+    <file preprocess="xml-stripblanks">gtksourcecompletionlist.ui</file>
+    <file preprocess="xml-stripblanks">gtksourcecompletionlistboxrow.ui</file>
     <file preprocess="xml-stripblanks">gtksourcestyleschemechooserwidget.ui</file>
   </gresource>
 </gresources>
