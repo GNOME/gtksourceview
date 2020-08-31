@@ -172,6 +172,18 @@ gtk_source_completion_provider_populate_async (GtkSourceCompletionProvider *self
 	GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (self)->populate_async (self, context, cancellable, callback, user_data);
 }
 
+/**
+ * gtk_source_completion_provider_populate_finish:
+ * @self: a #GtkSourceCompletionProvider
+ * @result: a #GAsyncResult provided to callback
+ * @error: a location for a #GError, or %NULL
+ *
+ * Completes an asynchronous operation to populate a completion provider.
+ *
+ * Returns: (transfer full): a #GListModel of #GtkSourceCompletionProposal
+ *
+ * Since: 5.0
+ */
 GListModel *
 gtk_source_completion_provider_populate_finish (GtkSourceCompletionProvider  *self,
                                                 GAsyncResult                 *result,
@@ -228,7 +240,7 @@ gtk_source_completion_provider_activate (GtkSourceCompletionProvider *self,
 /**
  * gtk_source_completion_provider_list_alternates:
  * @self: a #GtkSourceCompletionProvider
- * @content: a #GtkSourceCompletionContext
+ * @context: a #GtkSourceCompletionContext
  * @proposal: a #GtkSourceCompletionProposal
  *
  * Providers should return a list of alternates to @proposal or %NULL if

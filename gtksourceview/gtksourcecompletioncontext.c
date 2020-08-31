@@ -25,6 +25,7 @@
 
 #include <string.h>
 
+#include "gtksourcebuffer.h"
 #include "gtksourcecompletion.h"
 #include "gtksourcecompletioncontext-private.h"
 #include "gtksourcecompletionproposal.h"
@@ -1004,4 +1005,31 @@ gtk_source_completion_context_get_activation (GtkSourceCompletionContext *self)
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (self), 0);
 
 	return self->activation;
+}
+
+/**
+ * gtk_source_completion_context_get_language:
+ * @self: a #GtkSourceCompletionContext
+ *
+ * Gets the language of the underlying buffer, if any.
+ *
+ * Returns: (nullable) (transfer none): a #GtkSourceLanguage or %NULL
+ *
+ * Since: 5.0
+ */
+GtkSourceLanguage *
+gtk_source_completion_context_get_language (GtkSourceCompletionContext *self)
+{
+	GtkSourceBuffer *buffer;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (self), NULL);
+
+	buffer = gtk_source_completion_context_get_buffer (self);
+
+	if (buffer != NULL)
+	{
+		return gtk_source_buffer_get_language (buffer);
+	}
+
+	return NULL;
 }

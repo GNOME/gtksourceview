@@ -1449,7 +1449,6 @@ add_attributes (PangoAttrList **attrs,
  * gtk_source_completion_fuzzy_highlight:
  * @haystack: the string to be highlighted
  * @casefold_query: the typed-text used to highlight @haystack
- * @attrs: a #PangoAttrList to add the attributes to
  *
  * This will add &lt;b&gt; tags around matched characters in @haystack
  * based on @casefold_query.
