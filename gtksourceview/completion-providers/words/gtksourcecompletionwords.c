@@ -128,20 +128,18 @@ add_in_idle (GTask *task)
 	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
 	Populate *p = g_task_get_task_data (task);
 	guint idx = 0;
-	gboolean finished;
 
 	if (g_task_return_error_if_cancelled (task))
 	{
 		g_clear_object (&task);
-		return G_SOURCE_REMOVE;
+		goto cleanup;
 	}
 
 	if (p->populate_iter == NULL)
 	{
-		p->populate_iter =
-			gtk_source_completion_words_library_find_first (priv->library,
-			                                                p->word,
-			                                                p->word_len);
+		p->populate_iter = gtk_source_completion_words_library_find_first (priv->library,
+		                                                                   p->word,
+		                                                                   p->word_len);
 	}
 
 	while (idx < priv->proposals_batch_size && p->populate_iter)
@@ -163,17 +161,17 @@ add_in_idle (GTask *task)
 		++idx;
 	}
 
-	finished = p->populate_iter == NULL;
-
-	if (finished)
+	if (p->populate_iter != NULL)
 	{
-		g_task_return_pointer (task, g_steal_pointer (&p->ret), g_object_unref);
-		gtk_source_completion_words_library_unlock (priv->library);
-		g_clear_object (&task);
-		return G_SOURCE_REMOVE;
+		return G_SOURCE_CONTINUE;
 	}
 
-	return G_SOURCE_CONTINUE;
+cleanup:
+	g_task_return_pointer (task, g_steal_pointer (&p->ret), g_object_unref);
+	gtk_source_completion_words_library_unlock (priv->library);
+	g_clear_object (&task);
+
+	return G_SOURCE_REMOVE;
 }
 
 static void
@@ -236,10 +234,11 @@ gtk_source_completion_words_populate_async (GtkSourceCompletionProvider *provide
 
 	g_task_set_task_data (task, populate, (GDestroyNotify)populate_free);
 
+	gtk_source_completion_words_library_lock (priv->library);
+
 	/* Do first right now */
 	if (add_in_idle (task))
 	{
-		gtk_source_completion_words_library_lock (priv->library);
 		priv->idle_id = g_idle_add ((GSourceFunc)add_in_idle, task);
 	}
 }
