@@ -35,6 +35,14 @@ enum
 	N_SIGNALS
 };
 
+enum
+{
+	PROP_0,
+	PROP_WORD,
+	N_PROPS
+};
+
+static GParamSpec *properties[N_PROPS];
 static guint signals[N_SIGNALS];
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWordsProposal,
@@ -54,11 +62,40 @@ gtk_source_completion_words_proposal_finalize (GObject *object)
 }
 
 static void
+gtk_source_completion_words_proposal_get_property (GObject    *object,
+                                                   guint       prop_id,
+                                                   GValue     *value,
+                                                   GParamSpec *pspec)
+{
+	GtkSourceCompletionWordsProposal *self = GTK_SOURCE_COMPLETION_WORDS_PROPOSAL (object);
+
+	switch (prop_id)
+	{
+	case PROP_WORD:
+		g_value_set_string (value, self->word);
+		break;
+
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+	}
+}
+
+static void
 gtk_source_completion_words_proposal_class_init (GtkSourceCompletionWordsProposalClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	object_class->finalize = gtk_source_completion_words_proposal_finalize;
+	object_class->get_property = gtk_source_completion_words_proposal_get_property;
+
+	properties [PROP_WORD] =
+		g_param_spec_string ("word",
+		                     "Word",
+		                     "The word for the proposal",
+		                     NULL,
+		                     (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 
 	signals[UNUSED] =
 		g_signal_new ("unused",
