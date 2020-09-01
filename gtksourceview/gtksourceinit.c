@@ -205,14 +205,21 @@ gtk_source_init (void)
 
 		if (display != NULL)
 		{
-			GtkCssProvider *css_provider = gtk_css_provider_new ();
+			GtkCssProvider *css_provider;
+			GtkIconTheme *icon_theme;
 
+			/* Setup default CSS styling for widgetry */
+			css_provider = gtk_css_provider_new ();
 			gtk_css_provider_load_from_resource (css_provider,
 			                                     "/org/gnome/gtksourceview/css/GtkSourceView.css");
 			gtk_style_context_add_provider_for_display (display,
 			                                            GTK_STYLE_PROVIDER (css_provider),
 			                                            GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
 			g_clear_object (&css_provider);
+
+			/* Add path to internal scalable icons */
+			icon_theme = gtk_icon_theme_get_for_display (display);
+			gtk_icon_theme_add_search_path (icon_theme, HICOLORDIR);
 		}
 
 		done = TRUE;

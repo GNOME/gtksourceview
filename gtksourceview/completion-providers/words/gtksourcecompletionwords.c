@@ -468,6 +468,10 @@ gtk_source_completion_words_display (GtkSourceCompletionProvider *provider,
 		const char *word = gtk_source_completion_words_proposal_get_word (p);
 		gtk_source_completion_cell_set_text (cell, word);
 	}
+	else if (column == GTK_SOURCE_COMPLETION_COLUMN_ICON)
+	{
+		gtk_source_completion_cell_set_icon_name (cell, "completion-word-symbolic");
+	}
 }
 
 static void

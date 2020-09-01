@@ -142,6 +142,7 @@ add_project_arguments([
 config_h = configuration_data()
 config_h.set_quoted('GETTEXT_PACKAGE', package_string)
 config_h.set_quoted('DATADIR', datadir)
+config_h.set_quoted('HICOLORDIR', join_paths(datadir, 'icons/hicolor'))
 config_h.set_quoted('PACKAGE_DATADIR', pkgdatadir)
 config_h.set_quoted('GSV_API_VERSION_S', api_version)
 config_h.set('GSV_API_VERSION', api_version)
@@ -306,3 +307,5 @@ summary = [
 ]
 
 message('\n'.join(summary))
+
+meson.add_install_script('meson_postinstall.py')
