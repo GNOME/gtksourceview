@@ -72,14 +72,6 @@ test_proposal_new (void)
 	return g_object_new (TEST_TYPE_PROPOSAL, NULL);
 }
 
-typedef struct _TestProvider TestProvider;
-typedef struct _TestProviderClass TestProviderClass;
-
-static GtkSourceCompletionWords *word_provider;
-static TestProvider *fixed_provider;
-static TestProvider *random_provider;
-static GMainLoop *main_loop;
-
 struct _TestProvider
 {
 	GObject parent;
@@ -104,7 +96,14 @@ struct _TestProviderClass
 };
 
 static void test_provider_iface_init (GtkSourceCompletionProviderInterface *iface);
-GType test_provider_get_type (void);
+
+#define TEST_TYPE_PROVIDER (test_provider_get_type())
+G_DECLARE_FINAL_TYPE (TestProvider, test_provider, TEST, PROVIDER, GObject)
+
+static GtkSourceCompletionWords *word_provider;
+static TestProvider *fixed_provider;
+static TestProvider *random_provider;
+static GMainLoop *main_loop;
 
 G_DEFINE_TYPE_WITH_CODE (TestProvider,
 			 test_provider,
@@ -194,45 +193,54 @@ test_provider_display (GtkSourceCompletionProvider *provider,
                        GtkSourceCompletionProposal *proposal,
                        GtkSourceCompletionCell     *cell)
 {
-	if (TEST_IS_PROPOSAL (proposal))
+	TestProposal *p = (TestProposal *)proposal;
+	GtkSourceCompletionColumn column;
+
+	g_assert (TEST_IS_PROVIDER (provider));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+	g_assert (TEST_IS_PROPOSAL (p));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CELL (cell));
+
+	column = gtk_source_completion_cell_get_column (cell);
+
+	if (column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
 	{
-		TestProposal *p = TEST_PROPOSAL (proposal);
-		GtkSourceCompletionColumn column;
+		g_assert (p->markup || p->text || p->label);
 
-		column = gtk_source_completion_cell_get_column (cell);
+		if (p->markup)
+			gtk_source_completion_cell_set_markup (cell, p->markup);
+		else if (p->label)
+			gtk_source_completion_cell_set_text (cell, p->label);
+		else
+			gtk_source_completion_cell_set_text (cell, p->text);
+	}
+	else if (column == GTK_SOURCE_COMPLETION_COLUMN_COMMENT ||
+	         column == GTK_SOURCE_COMPLETION_COLUMN_DETAILS)
+	{
+		gchar *str = g_strdup (p->info);
 
-		if (column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
+		if (str != NULL)
 		{
-			if (p->markup)
-				gtk_source_completion_cell_set_markup (cell, p->markup);
-			else if (p->label)
-				gtk_source_completion_cell_set_text (cell, p->label);
-			else
-				gtk_source_completion_cell_set_text (cell, p->text);
+			g_strstrip (str);
 		}
-		else if (column == GTK_SOURCE_COMPLETION_COLUMN_COMMENT ||
-		         column == GTK_SOURCE_COMPLETION_COLUMN_DETAILS)
+
+		if (str != NULL)
 		{
-			if (p->info)
-			{
-				gchar *str = g_strstrip (g_strdup (p->info));
-				gtk_source_completion_cell_set_text (cell, str);
-				g_free (str);
-			}
-			else
-			{
-				gtk_source_completion_cell_set_text (cell, NULL);
-			}
+			gtk_source_completion_cell_set_text (cell, str);
 		}
-		else if (column == GTK_SOURCE_COMPLETION_COLUMN_ICON)
+		else
 		{
-			if (p->icon_name)
-				gtk_source_completion_cell_set_icon_name (cell, p->icon_name);
-			else if (p->gicon)
-				gtk_source_completion_cell_set_gicon (cell, p->gicon);
-			else
-				gtk_source_completion_cell_set_icon_name (cell, NULL);
+			gtk_source_completion_cell_set_text (cell, NULL);
 		}
+	}
+	else if (column == GTK_SOURCE_COMPLETION_COLUMN_ICON)
+	{
+		if (p->icon_name)
+			gtk_source_completion_cell_set_icon_name (cell, p->icon_name);
+		else if (p->gicon)
+			gtk_source_completion_cell_set_gicon (cell, p->gicon);
+		else
+			gtk_source_completion_cell_set_icon_name (cell, NULL);
 	}
 }
 
