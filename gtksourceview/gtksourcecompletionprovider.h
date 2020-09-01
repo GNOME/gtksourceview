@@ -56,7 +56,7 @@ struct _GtkSourceCompletionProviderInterface
 	GListModel   *(*populate_finish)      (GtkSourceCompletionProvider  *self,
 	                                       GAsyncResult                 *result,
 	                                       GError                      **error);
-	gboolean      (*refilter)             (GtkSourceCompletionProvider  *self,
+	void          (*refilter)             (GtkSourceCompletionProvider  *self,
 	                                       GtkSourceCompletionContext   *context,
 	                                       GListModel                   *model);
 	void          (*display)              (GtkSourceCompletionProvider  *self,
@@ -97,7 +97,7 @@ GListModel   *gtk_source_completion_provider_populate_finish   (GtkSourceComplet
                                                                 GAsyncResult                 *result,
                                                                 GError                      **error);
 GTK_SOURCE_AVAILABLE_IN_5_0
-gboolean      gtk_source_completion_provider_refilter          (GtkSourceCompletionProvider  *self,
+void          gtk_source_completion_provider_refilter          (GtkSourceCompletionProvider  *self,
                                                                 GtkSourceCompletionContext   *context,
                                                                 GListModel                   *model);
 GTK_SOURCE_AVAILABLE_IN_5_0

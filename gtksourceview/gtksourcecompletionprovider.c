@@ -78,12 +78,11 @@ fallback_populate (GtkSourceCompletionProvider  *provider,
 	return NULL;
 }
 
-static gboolean
+static void
 fallback_refilter (GtkSourceCompletionProvider *provider,
                    GtkSourceCompletionContext  *context,
                    GListModel                  *model)
 {
-	return FALSE;
 }
 
 static void
@@ -194,19 +193,17 @@ gtk_source_completion_provider_populate_finish (GtkSourceCompletionProvider  *se
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (self)->populate_finish (self, result, error);
 }
 
-gboolean
+void
 gtk_source_completion_provider_refilter (GtkSourceCompletionProvider *self,
                                          GtkSourceCompletionContext  *context,
                                          GListModel                  *model)
 {
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (self), FALSE);
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context), FALSE);
-	g_return_val_if_fail (G_IS_LIST_MODEL (model), FALSE);
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_PROVIDER (self));
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+	g_return_if_fail (G_IS_LIST_MODEL (model));
 
 	if (GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (self)->refilter)
-		return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (self)->refilter (self, context, model);
-
-	return FALSE;
+		GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (self)->refilter (self, context, model);
 }
 
 void
