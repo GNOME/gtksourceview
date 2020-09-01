@@ -475,6 +475,30 @@ gtk_source_completion_words_display (GtkSourceCompletionProvider *provider,
 }
 
 static void
+gtk_source_completion_words_activate (GtkSourceCompletionProvider *provider,
+                                      GtkSourceCompletionContext  *context,
+                                      GtkSourceCompletionProposal *proposal)
+{
+	GtkSourceCompletionWordsProposal *p = (GtkSourceCompletionWordsProposal *)proposal;
+	GtkTextIter begin, end;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_WORDS (provider));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+	g_assert (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (p));
+
+	if (gtk_source_completion_context_get_bounds (context, &begin, &end))
+	{
+		GtkTextBuffer *buffer = gtk_text_iter_get_buffer (&begin);
+		const char *word = gtk_source_completion_words_proposal_get_word (p);
+
+		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
+		gtk_text_buffer_delete (GTK_TEXT_BUFFER (buffer), &begin, &end);
+		gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &begin, word, -1);
+		gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+	}
+}
+
+static void
 gtk_source_completion_words_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
 	iface->get_title = gtk_source_completion_words_get_title;
@@ -482,6 +506,7 @@ gtk_source_completion_words_iface_init (GtkSourceCompletionProviderInterface *if
 	iface->populate_finish = gtk_source_completion_words_populate_finish;
 	iface->get_priority = gtk_source_completion_words_get_priority;
 	iface->display = gtk_source_completion_words_display;
+	iface->activate = gtk_source_completion_words_activate;
 }
 
 static void
