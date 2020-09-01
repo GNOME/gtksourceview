@@ -357,7 +357,6 @@ gtk_source_completion_cell_set_widget (GtkSourceCompletionCell *self,
 			{
 				gtk_label_set_xalign (GTK_LABEL (widget), 0.0);
 				gtk_label_set_ellipsize (GTK_LABEL (widget), PANGO_ELLIPSIZE_END);
-				gtk_label_set_lines (GTK_LABEL (widget), 3);
 				gtk_label_set_wrap (GTK_LABEL (widget), TRUE);
 				gtk_label_set_max_width_chars (GTK_LABEL (widget), 50);
 				gtk_widget_set_valign (widget, GTK_ALIGN_BASELINE);

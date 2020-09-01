@@ -29,7 +29,8 @@
             <property name="hexpand">true</property>
             <property name="orientation">horizontal</property>
             <property name="spacing">12</property>
-            <property name="vexpand">true</property>
+            <property name="valign">start</property>
+            <property name="vexpand">false</property>
             <style>
               <class name="details"/>
             </style>
