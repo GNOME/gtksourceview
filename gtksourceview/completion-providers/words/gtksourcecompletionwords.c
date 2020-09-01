@@ -448,12 +448,36 @@ gtk_source_completion_words_get_priority (GtkSourceCompletionProvider *provider,
 }
 
 static void
+gtk_source_completion_words_display (GtkSourceCompletionProvider *provider,
+                                     GtkSourceCompletionContext  *context,
+                                     GtkSourceCompletionProposal *proposal,
+                                     GtkSourceCompletionCell     *cell)
+{
+	GtkSourceCompletionWordsProposal *p = (GtkSourceCompletionWordsProposal *)proposal;
+	GtkSourceCompletionColumn column;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_WORDS (provider));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+	g_assert (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (p));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CELL (cell));
+
+	column = gtk_source_completion_cell_get_column (cell);
+
+	if (column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
+	{
+		const char *word = gtk_source_completion_words_proposal_get_word (p);
+		gtk_source_completion_cell_set_text (cell, word);
+	}
+}
+
+static void
 gtk_source_completion_words_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
 	iface->get_title = gtk_source_completion_words_get_title;
 	iface->populate_async = gtk_source_completion_words_populate_async;
 	iface->populate_finish = gtk_source_completion_words_populate_finish;
 	iface->get_priority = gtk_source_completion_words_get_priority;
+	iface->display = gtk_source_completion_words_display;
 }
 
 static void
