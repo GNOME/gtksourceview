@@ -153,8 +153,6 @@ add_in_idle (GTask *task)
 			g_list_store_append (p->ret, proposal);
 		}
 
-		g_clear_object (&proposal);
-
 		p->populate_iter = gtk_source_completion_words_library_find_next (p->populate_iter,
 		                                                                  p->word,
 		                                                                  p->word_len);
