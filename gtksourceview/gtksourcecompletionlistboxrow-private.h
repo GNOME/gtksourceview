@@ -36,6 +36,7 @@ void                         _gtk_source_completion_list_box_row_display      (G
                                                                                GtkSourceCompletionContext    *context,
                                                                                GtkSourceCompletionProvider   *provider,
                                                                                GtkSourceCompletionProposal   *proposal,
+                                                                               gboolean                       show_icons,
                                                                                gboolean                       has_alternates);
 gint                         _gtk_source_completion_list_box_row_get_x_offset (GtkSourceCompletionListBoxRow *self,
                                                                                GtkWidget                     *toplevel);

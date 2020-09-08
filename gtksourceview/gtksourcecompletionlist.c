@@ -561,3 +561,12 @@ _gtk_source_completion_list_reposition (GtkSourceCompletionList *self)
 		gtk_native_check_resize (GTK_NATIVE (self->info));
 	}
 }
+
+void
+_gtk_source_completion_list_set_show_icons (GtkSourceCompletionList *self,
+                                            gboolean                 show_icons)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST (self));
+
+	_gtk_source_completion_list_box_set_show_icons (self->listbox, show_icons);
+}

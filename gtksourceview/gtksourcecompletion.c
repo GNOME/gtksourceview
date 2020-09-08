@@ -119,6 +119,9 @@ struct _GtkSourceCompletion
 	/* If the first item is automatically selected */
 	guint select_on_show : 1;
 
+	/* If icon column is visible */
+	guint show_icons : 1;
+
 	guint disposed : 1;
 };
 
@@ -129,6 +132,7 @@ enum {
 	PROP_BUFFER,
 	PROP_PAGE_SIZE,
 	PROP_SELECT_ON_SHOW,
+	PROP_SHOW_ICONS,
 	PROP_VIEW,
 	N_PROPS
 };
@@ -869,6 +873,10 @@ gtk_source_completion_get_property (GObject    *object,
 		g_value_set_boolean (value, _gtk_source_completion_get_select_on_show (self));
 		break;
 
+	case PROP_SHOW_ICONS:
+		g_value_set_boolean (value, self->show_icons);
+		break;
+
 	case PROP_VIEW:
 		g_value_set_object (value, self->view);
 		break;
@@ -890,6 +898,15 @@ gtk_source_completion_set_property (GObject      *object,
 	{
 	case PROP_SELECT_ON_SHOW:
 		gtk_source_completion_set_select_on_show (self, g_value_get_boolean (value));
+		break;
+
+	case PROP_SHOW_ICONS:
+		self->show_icons = g_value_get_boolean (value);
+		if (self->display != NULL)
+		{
+			_gtk_source_completion_list_set_show_icons (self->display, self->show_icons);
+		}
+		g_object_notify_by_pspec (object, pspec);
 		break;
 
 	case PROP_VIEW:
@@ -954,6 +971,19 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 		                      (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
 	/**
+	 * GtkSourceCompletion:show-icons:
+	 *
+	 * The "show-icons" property denotes if icons should be displayed within
+	 * the list of completions presented to the user.
+	 */
+	properties [PROP_SHOW_ICONS] =
+		g_param_spec_boolean ("show-icons",
+		                      "Show Icons",
+		                      "If icons should be shown in the completion results",
+		                      TRUE,
+		                      (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+	/**
 	 * GtkSourceCompletion:view:
 	 *
 	 * The "view" property is the #GtkTextView for which this #GtkSourceCompletion
@@ -962,11 +992,11 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * Since: 5.0
 	 */
 	properties [PROP_VIEW] =
-	g_param_spec_object ("view",
-			     "View",
-			     "The text view for which to provide completion",
-			     GTK_SOURCE_TYPE_VIEW,
-			     G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
+		g_param_spec_object ("view",
+		                     "View",
+		                     "The text view for which to provide completion",
+		                     GTK_SOURCE_TYPE_VIEW,
+		                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
 
@@ -1064,6 +1094,7 @@ gtk_source_completion_init (GtkSourceCompletion *self)
 	self->context_signals = gtk_source_signal_group_new (GTK_SOURCE_TYPE_COMPLETION_CONTEXT);
 	self->view_signals = gtk_source_signal_group_new (GTK_SOURCE_TYPE_VIEW);
 	self->page_size = DEFAULT_PAGE_SIZE;
+	self->show_icons = TRUE;
 
 	/*
 	 * We want to be notified when the context switches from no results to
@@ -1327,6 +1358,7 @@ _gtk_source_completion_get_display (GtkSourceCompletion *self)
 		self->display = _gtk_source_completion_list_new ();
 		_gtk_source_completion_list_set_n_rows (self->display, self->page_size);
 		_gtk_source_completion_list_set_font_desc (self->display, self->font_desc);
+		_gtk_source_completion_list_set_show_icons (self->display, self->show_icons);
 		_gtk_source_assistant_set_mark (GTK_SOURCE_ASSISTANT (self->display),
 		                                self->completion_mark);
 		_gtk_source_view_add_assistant (self->view,

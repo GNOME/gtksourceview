@@ -550,8 +550,12 @@ create_window (void)
 	                          main_loop);
 
 	g_object_bind_property (completion, "select-on-show",
-				select_on_show, "active",
-				G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+	                        select_on_show, "active",
+	                        G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+
+	g_object_bind_property (completion, "show-icons",
+	                        show_icons, "active",
+	                        G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
 	create_completion (source_view, completion);
 

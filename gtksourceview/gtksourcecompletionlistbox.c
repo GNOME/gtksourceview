@@ -82,6 +82,9 @@ struct _GtkSourceCompletionListBox
 
 	/* Gesture to handle button press/touch events. */
 	GtkGesture *click_gesture;
+
+	/* If icons are visible */
+	guint show_icons : 1;
 };
 
 typedef struct
@@ -861,6 +864,7 @@ gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
 			                                             state.context,
 			                                             provider,
 			                                             proposal,
+			                                             self->show_icons,
 			                                             has_alternates);
 
 			if (gtk_widget_get_visible (iter))
@@ -875,7 +879,7 @@ gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
 		else
 		{
 			_gtk_source_completion_list_box_row_display (GTK_SOURCE_COMPLETION_LIST_BOX_ROW (iter),
-			                                             NULL, NULL, NULL, FALSE);
+			                                             NULL, NULL, NULL, self->show_icons, FALSE);
 			gtk_widget_hide (GTK_WIDGET (iter));
 		}
 
@@ -1262,4 +1266,15 @@ _gtk_source_completion_list_box_get_n_alternates (GtkSourceCompletionListBox *se
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self), 0);
 
 	return self->alternates ? self->alternates->len : 0;
+}
+
+void
+_gtk_source_completion_list_box_set_show_icons (GtkSourceCompletionListBox *self,
+                                                gboolean                    show_icons)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
+
+	self->show_icons = !!show_icons;
+
+	gtk_source_completion_list_box_queue_update (self);
 }

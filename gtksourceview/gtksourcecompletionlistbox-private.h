@@ -52,5 +52,7 @@ gboolean                       _gtk_source_completion_list_box_key_activates    
                                                                                  const GdkKeyEvent            *key);
 int                            _gtk_source_completion_list_box_get_alternate    (GtkSourceCompletionListBox   *self);
 guint                          _gtk_source_completion_list_box_get_n_alternates (GtkSourceCompletionListBox   *self);
+void                           _gtk_source_completion_list_box_set_show_icons   (GtkSourceCompletionListBox   *self,
+                                                                                 gboolean                      show_icons);
 
 G_END_DECLS

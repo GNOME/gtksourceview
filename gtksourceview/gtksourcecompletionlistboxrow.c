@@ -90,6 +90,7 @@ _gtk_source_completion_list_box_row_display (GtkSourceCompletionListBoxRow *self
                                              GtkSourceCompletionContext    *context,
                                              GtkSourceCompletionProvider   *provider,
                                              GtkSourceCompletionProposal   *proposal,
+                                             gboolean                       show_icons,
                                              gboolean                       has_alternates)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST_BOX_ROW (self));
@@ -112,6 +113,7 @@ _gtk_source_completion_list_box_row_display (GtkSourceCompletionListBoxRow *self
 		gtk_source_completion_provider_display (provider, context, proposal, self->after);
 	}
 
+	gtk_widget_set_visible (GTK_WIDGET (self->icon), show_icons);
 	gtk_widget_set_visible (GTK_WIDGET (self->more), has_alternates);
 }
 

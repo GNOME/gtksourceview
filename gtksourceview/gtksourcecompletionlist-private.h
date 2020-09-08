@@ -44,5 +44,7 @@ void                        _gtk_source_completion_list_set_n_rows       (GtkSou
                                                                           guint                       n_rows);
 void                        _gtk_source_completion_list_set_font_desc    (GtkSourceCompletionList    *self,
                                                                           const PangoFontDescription *font_desc);
+void                        _gtk_source_completion_list_set_show_icons   (GtkSourceCompletionList    *self,
+                                                                          gboolean                    show_icons);
 
 G_END_DECLS
