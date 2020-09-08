@@ -243,19 +243,23 @@
           </object>
         </child>
         <child>
-          <object class="GtkScrolledWindow" id="scrolledwindow1">
-            <property name="width_request">600</property>
-            <property name="can_focus">1</property>
+          <object class="GtkFrame">
             <child>
-              <object class="GtkSourceView" id="source_view">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="left_margin">2</property>
-                <property name="right_margin">2</property>
-                <property name="auto_indent">True</property>
-                <property name="monospace">True</property>
+              <object class="GtkScrolledWindow" id="scrolledwindow1">
+                <property name="width_request">600</property>
+                <property name="can_focus">1</property>
+                <child>
+                  <object class="GtkSourceView" id="source_view">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="left_margin">2</property>
+                    <property name="right_margin">2</property>
+                    <property name="auto_indent">True</property>
+                    <property name="monospace">True</property>
+                  </object>
+                </child>
               </object>
             </child>
             <layout>
