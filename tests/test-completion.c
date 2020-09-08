@@ -511,7 +511,6 @@ create_window (void)
 	GtkSourceCompletion *completion;
 	GtkCheckButton *remember_info_visibility;
 	GtkCheckButton *select_on_show;
-	GtkCheckButton *show_headers;
 	GtkCheckButton *show_icons;
 	GtkCheckButton *enable_word_provider;
 	GtkCheckButton *enable_fixed_provider;
@@ -534,7 +533,6 @@ create_window (void)
 	source_view = GTK_SOURCE_VIEW (gtk_builder_get_object (builder, "source_view"));
 	remember_info_visibility = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_remember_info_visibility"));
 	select_on_show = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_select_on_show"));
-	show_headers = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_show_headers"));
 	show_icons = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_show_icons"));
 	enable_word_provider = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_word_provider"));
 	enable_fixed_provider = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_fixed_provider"));

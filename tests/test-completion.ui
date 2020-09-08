@@ -48,16 +48,6 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkCheckButton" id="checkbutton_show_headers">
-                    <property name="label">Show headers</property>
-                    <property name="can_focus">1</property>
-                    <layout>
-                      <property name="column">0</property>
-                      <property name="row">2</property>
-                    </layout>
-                  </object>
-                </child>
-                <child>
                   <object class="GtkCheckButton" id="checkbutton_show_icons">
                     <property name="label">Show icons</property>
                     <property name="can_focus">1</property>
