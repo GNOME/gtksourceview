@@ -553,6 +553,10 @@ create_window (void)
 	                        select_on_show, "active",
 	                        G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
+	g_object_bind_property (completion, "remember-info-visibility",
+	                        remember_info_visibility, "active",
+	                        G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
+
 	g_object_bind_property (completion, "show-icons",
 	                        show_icons, "active",
 	                        G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);

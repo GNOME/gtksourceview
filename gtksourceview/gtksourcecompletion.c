@@ -119,6 +119,9 @@ struct _GtkSourceCompletion
 	/* If the first item is automatically selected */
 	guint select_on_show : 1;
 
+	/* If we remember to re-show the info window */
+	guint remember_info_visibility : 1;
+
 	/* If icon column is visible */
 	guint show_icons : 1;
 
@@ -131,6 +134,7 @@ enum {
 	PROP_0,
 	PROP_BUFFER,
 	PROP_PAGE_SIZE,
+	PROP_REMEMBER_INFO_VISIBILITY,
 	PROP_SELECT_ON_SHOW,
 	PROP_SHOW_ICONS,
 	PROP_VIEW,
@@ -869,6 +873,10 @@ gtk_source_completion_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
+	case PROP_REMEMBER_INFO_VISIBILITY:
+		g_value_set_boolean (value, self->remember_info_visibility);
+		break;
+
 	case PROP_SELECT_ON_SHOW:
 		g_value_set_boolean (value, _gtk_source_completion_get_select_on_show (self));
 		break;
@@ -896,6 +904,16 @@ gtk_source_completion_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
+	case PROP_REMEMBER_INFO_VISIBILITY:
+		self->remember_info_visibility = g_value_get_boolean (value);
+		if (self->display != NULL)
+		{
+			_gtk_source_completion_list_set_remember_info_visibility (self->display,
+			                                                          self->remember_info_visibility);
+		}
+		g_object_notify_by_pspec (object, pspec);
+		break;
+
 	case PROP_SELECT_ON_SHOW:
 		gtk_source_completion_set_select_on_show (self, g_value_get_boolean (value));
 		break;
@@ -956,6 +974,19 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 		                   "Number of rows to display to the user",
 		                   1, 32, DEFAULT_PAGE_SIZE,
 		                   G_PARAM_READWRITE | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_STRINGS);
+
+	/**
+	 * GtkSourceCompletion:remember-info-visibility:
+	 *
+	 * Determines whether the visibility of the info window should be saved when the
+	 * completion is hidden, and restored when the completion is shown again.
+	 */
+	properties [PROP_REMEMBER_INFO_VISIBILITY] =
+		g_param_spec_boolean ("remember-info-visibility",
+		                      "Remember Info Visibility",
+		                      "Remember Info Visibility",
+		                      FALSE,
+		                      (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceCompletion:select-on-show:
@@ -1359,6 +1390,8 @@ _gtk_source_completion_get_display (GtkSourceCompletion *self)
 		_gtk_source_completion_list_set_n_rows (self->display, self->page_size);
 		_gtk_source_completion_list_set_font_desc (self->display, self->font_desc);
 		_gtk_source_completion_list_set_show_icons (self->display, self->show_icons);
+		_gtk_source_completion_list_set_remember_info_visibility (self->display,
+		                                                          self->remember_info_visibility);
 		_gtk_source_assistant_set_mark (GTK_SOURCE_ASSISTANT (self->display),
 		                                self->completion_mark);
 		_gtk_source_view_add_assistant (self->view,

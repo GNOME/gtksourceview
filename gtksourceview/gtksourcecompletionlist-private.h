@@ -31,20 +31,22 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (GtkSourceCompletionList, _gtk_source_completion_list, GTK_SOURCE, COMPLETION_LIST, GtkSourceAssistant)
 
-GtkSourceCompletionList    *_gtk_source_completion_list_new              (void);
-void                        _gtk_source_completion_list_reposition       (GtkSourceCompletionList    *self);
-GtkSourceCompletionContext *_gtk_source_completion_list_get_context      (GtkSourceCompletionList    *self);
-void                        _gtk_source_completion_list_set_context      (GtkSourceCompletionList    *self,
-                                                                          GtkSourceCompletionContext *context);
-gboolean                    _gtk_source_completion_list_get_show_details (GtkSourceCompletionList    *self);
-void                        _gtk_source_completion_list_set_show_details (GtkSourceCompletionList    *self,
-                                                                          gboolean                    show_details);
-guint                       _gtk_source_completion_list_get_n_rows       (GtkSourceCompletionList    *self);
-void                        _gtk_source_completion_list_set_n_rows       (GtkSourceCompletionList    *self,
-                                                                          guint                       n_rows);
-void                        _gtk_source_completion_list_set_font_desc    (GtkSourceCompletionList    *self,
-                                                                          const PangoFontDescription *font_desc);
-void                        _gtk_source_completion_list_set_show_icons   (GtkSourceCompletionList    *self,
-                                                                          gboolean                    show_icons);
+GtkSourceCompletionList    *_gtk_source_completion_list_new                          (void);
+void                        _gtk_source_completion_list_reposition                   (GtkSourceCompletionList    *self);
+GtkSourceCompletionContext *_gtk_source_completion_list_get_context                  (GtkSourceCompletionList    *self);
+void                        _gtk_source_completion_list_set_context                  (GtkSourceCompletionList    *self,
+                                                                                      GtkSourceCompletionContext *context);
+gboolean                    _gtk_source_completion_list_get_show_details             (GtkSourceCompletionList    *self);
+void                        _gtk_source_completion_list_set_show_details             (GtkSourceCompletionList    *self,
+                                                                                      gboolean                    show_details);
+guint                       _gtk_source_completion_list_get_n_rows                   (GtkSourceCompletionList    *self);
+void                        _gtk_source_completion_list_set_n_rows                   (GtkSourceCompletionList    *self,
+                                                                                      guint                       n_rows);
+void                        _gtk_source_completion_list_set_font_desc                (GtkSourceCompletionList    *self,
+                                                                                      const PangoFontDescription *font_desc);
+void                        _gtk_source_completion_list_set_show_icons               (GtkSourceCompletionList    *self,
+                                                                                      gboolean                    show_icons);
+void                        _gtk_source_completion_list_set_remember_info_visibility (GtkSourceCompletionList    *self,
+                                                                                      gboolean                    remember_info_visibility);
 
 G_END_DECLS

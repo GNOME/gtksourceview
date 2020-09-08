@@ -47,6 +47,8 @@ struct _GtkSourceCompletionList
 	GtkBox                     *details;
 	GtkSourceCompletionCell    *comments;
 	GtkLabel                   *alternate_label;
+
+	guint                       remember_info_visibility : 1;
 };
 
 enum {
@@ -59,6 +61,21 @@ enum {
 G_DEFINE_TYPE (GtkSourceCompletionList, _gtk_source_completion_list, GTK_SOURCE_TYPE_ASSISTANT)
 
 static GParamSpec *properties [N_PROPS];
+
+static void
+_gtk_source_completion_list_hide (GtkWidget *widget)
+{
+	GtkSourceCompletionList *self = (GtkSourceCompletionList *)widget;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
+
+	GTK_WIDGET_CLASS (_gtk_source_completion_list_parent_class)->hide (widget);
+
+	if (!self->remember_info_visibility)
+	{
+		_gtk_source_completion_list_set_show_details (self, FALSE);
+	}
+}
 
 static void
 _gtk_source_completion_list_show (GtkWidget *widget)
@@ -377,6 +394,7 @@ _gtk_source_completion_list_class_init (GtkSourceCompletionListClass *klass)
 
 	widget_class->get_request_mode = _gtk_source_completion_list_get_request_mode;
 	widget_class->show = _gtk_source_completion_list_show;
+	widget_class->hide = _gtk_source_completion_list_hide;
 
 	assistant_class->get_offset = _gtk_source_completion_list_get_offset;
 	assistant_class->get_target_location = _gtk_source_completion_list_get_target_location;
@@ -569,4 +587,13 @@ _gtk_source_completion_list_set_show_icons (GtkSourceCompletionList *self,
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST (self));
 
 	_gtk_source_completion_list_box_set_show_icons (self->listbox, show_icons);
+}
+
+void
+_gtk_source_completion_list_set_remember_info_visibility (GtkSourceCompletionList *self,
+                                                          gboolean                 remember_info_visibility)
+{
+	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST (self));
+
+	self->remember_info_visibility = !!remember_info_visibility;
 }
