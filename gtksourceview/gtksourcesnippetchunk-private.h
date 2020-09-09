@@ -30,8 +30,9 @@ struct _GtkSourceSnippetChunk
 	GList                    link;
 
 	GtkSourceSnippetContext *context;
-	gchar                   *spec;
-	gchar                   *text;
+	char                    *spec;
+	char                    *text;
+	char                    *tooltip_text;
 	GtkTextMark             *begin_mark;
 	GtkTextMark             *end_mark;
 

@@ -44,6 +44,7 @@ enum {
 	PROP_FOCUS_POSITION,
 	PROP_TEXT,
 	PROP_TEXT_SET,
+	PROP_TOOLTIP_TEXT,
 	N_PROPS
 };
 
@@ -379,6 +380,7 @@ gtk_source_snippet_chunk_finalize (GObject *object)
 	g_clear_pointer (&chunk->end_mark, delete_and_unref_mark);
 	g_clear_pointer (&chunk->spec, g_free);
 	g_clear_pointer (&chunk->text, g_free);
+	g_clear_pointer (&chunk->tooltip_text, g_free);
 	g_clear_object (&chunk->context);
 
 	G_OBJECT_CLASS (gtk_source_snippet_chunk_parent_class)->finalize (object);
@@ -589,4 +591,26 @@ _gtk_source_snippet_chunk_contains (GtkSourceSnippetChunk *chunk,
 	}
 
 	return FALSE;
+}
+
+const char *
+gtk_source_snippet_chunk_get_tooltip_text (GtkSourceSnippetChunk *chunk)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_SNIPPET_CHUNK (chunk), NULL);
+
+	return chunk->tooltip_text;
+}
+
+void
+gtk_source_snippet_chunk_set_tooltip_text (GtkSourceSnippetChunk *chunk,
+                                           const char            *tooltip_text)
+{
+	g_return_if_fail (GTK_SOURCE_IS_SNIPPET_CHUNK (chunk));
+
+	if (g_strcmp0 (tooltip_text, chunk->tooltip_text) != 0)
+	{
+		g_free (chunk->tooltip_text);
+		chunk->tooltip_text = g_strdup (tooltip_text);
+		g_object_notify_by_pspec (G_OBJECT (chunk), properties [PROP_TOOLTIP_TEXT]);
+	}
 }

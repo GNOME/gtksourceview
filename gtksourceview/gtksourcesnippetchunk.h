@@ -63,5 +63,10 @@ gboolean                 gtk_source_snippet_chunk_get_text_set       (GtkSourceS
 GTK_SOURCE_AVAILABLE_IN_5_0
 void                     gtk_source_snippet_chunk_set_text_set       (GtkSourceSnippetChunk   *chunk,
                                                                       gboolean                 text_set);
+GTK_SOURCE_AVAILABLE_IN_5_0
+const char              *gtk_source_snippet_chunk_get_tooltip_text   (GtkSourceSnippetChunk   *chunk);
+GTK_SOURCE_AVAILABLE_IN_5_0
+void                     gtk_source_snippet_chunk_set_tooltip_text   (GtkSourceSnippetChunk   *chunk,
+                                                                      const char              *tooltip_text);
 
 G_END_DECLS
