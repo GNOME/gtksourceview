@@ -34,14 +34,14 @@ typedef struct _GtkSourceViewAssistants
 
 typedef struct _GtkSourceViewSnippets
 {
-       GtkSourceView   *view;
-       GtkSourceBuffer *buffer;
-       GQueue           queue;
-       gulong           buffer_insert_text_handler;
-       gulong           buffer_insert_text_after_handler;
-       gulong           buffer_delete_range_handler;
-       gulong           buffer_delete_range_after_handler;
-       gulong           buffer_cursor_moved_handler;
+	GtkSourceView        *view;
+	GtkSourceBuffer      *buffer;
+	GQueue                queue;
+	gulong                buffer_insert_text_handler;
+	gulong                buffer_insert_text_after_handler;
+	gulong                buffer_delete_range_handler;
+	gulong                buffer_delete_range_after_handler;
+	gulong                buffer_cursor_moved_handler;
 } GtkSourceViewSnippets;
 
 void     _gtk_source_view_add_assistant            (GtkSourceView           *view,
