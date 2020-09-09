@@ -40,27 +40,20 @@ typedef struct
 
 G_DECLARE_FINAL_TYPE (GtkSourceSnippetBundle, _gtk_source_snippet_bundle, GTK_SOURCE, SNIPPET_BUNDLE, GObject)
 
-G_GNUC_INTERNAL
 GtkSourceSnippetBundle  *_gtk_source_snippet_bundle_new           (void);
-G_GNUC_INTERNAL
 GtkSourceSnippetBundle  *_gtk_source_snippet_bundle_new_from_file (const gchar              *path,
                                                                    GtkSourceSnippetManager  *manager);
-G_GNUC_INTERNAL
 void                     _gtk_source_snippet_bundle_merge         (GtkSourceSnippetBundle   *self,
                                                                    GtkSourceSnippetBundle   *other);
-G_GNUC_INTERNAL
 const gchar            **_gtk_source_snippet_bundle_list_groups   (GtkSourceSnippetBundle   *self);
-G_GNUC_INTERNAL
 GtkSourceSnippet        *_gtk_source_snippet_bundle_get_snippet   (GtkSourceSnippetBundle   *self,
                                                                    const gchar              *group,
                                                                    const gchar              *language_id,
                                                                    const gchar              *trigger);
-G_GNUC_INTERNAL
 GListModel              *_gtk_source_snippet_bundle_list_matching (GtkSourceSnippetBundle   *self,
                                                                    const gchar              *group,
                                                                    const gchar              *language_id,
                                                                    const gchar              *trigger_prefix);
-G_GNUC_INTERNAL
 GPtrArray               *_gtk_source_snippet_bundle_parse_text    (const gchar              *text,
                                                                    GError                  **error);
 
