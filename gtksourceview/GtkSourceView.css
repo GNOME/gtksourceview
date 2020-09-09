@@ -93,3 +93,55 @@ GtkSourceAssistant.completion box.details button.flat {
 GtkSourceAssistant.completion-info {
   padding: 6px;
 }
+
+GtkSourceAssistant.informative label {
+  padding-right: 10px;
+}
+GtkSourceAssistant.informative image {
+  margin: 0 6px 0 0;
+  padding: 6px 10px 6px 9px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+
+GtkSourceAssistant.informative.warning {
+  background-color: @warning_color;
+  color: @theme_selected_fg_color;
+  border-color: shade(@warning_color, 0.8);
+  text-shadow: 0 1px shade(@warning_color, 0.8);
+  -gtk-icon-shadow: 0 1px shade(@warning_color, 0.8);
+}
+GtkSourceAssistant.informative.warning image {
+  background-color: shade(@warning_color, 0.8);
+}
+
+GtkSourceAssistant.informative.error {
+  background-color: @error_color;
+  color: @theme_selected_fg_color;
+  border-color: shade(@error_color, 0.8);
+  text-shadow: 0 1px shade(@error_color, 0.8);
+  -gtk-icon-shadow: 0 1px shade(@error_color, 0.8);
+}
+GtkSourceAssistant.informative.error image {
+  background-color: shade(@error_color, 0.8);
+}
+
+GtkSourceAssistant.informative.info {
+  background-color: @success_color;
+  color: @theme_selected_fg_color;
+  border-color: shade(@success_color, 0.8);
+  text-shadow: 0 1px shade(@success_color, 0.8);
+  -gtk-icon-shadow: 0 1px shade(@success_color, 0.8);
+}
+GtkSourceAssistant.informative.info image {
+  background-color: shade(@success_color, 0.8);
+}
+
+GtkSourceAssistant.informative.question {
+  background-color: @theme_bg_color;
+  color: @theme_fg_color;
+  border-color: @borders;
+}
+GtkSourceAssistant.informative.question image {
+  background-color: @borders;
+}

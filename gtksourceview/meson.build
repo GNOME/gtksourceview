@@ -107,6 +107,7 @@ core_private_c = files([
   'gtksourceengine.c',
   'gtksourcegutterrendererlines.c',
   'gtksourcegutterrenderermarks.c',
+  'gtksourceinformative.c',
   'gtksourceiter.c',
   'gtksourcelanguage-parser-2.c',
   'gtksourcemarkssequence.c',

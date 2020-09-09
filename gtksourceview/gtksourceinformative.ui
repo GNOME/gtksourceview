@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkSourceInformative" parent="GtkSourceAssistant">
+    <property name="can-focus">false</property>
+    <style>
+      <class name="informative"/>
+    </style>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+        <property name="can-focus">false</property>
+        <child>
+          <object class="GtkImage" id="icon">
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="message">
+            <property name="hexpand">true</property>
+            <property name="xalign">0</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
