@@ -1460,8 +1460,8 @@ gtk_source_view_init (GtkSourceView *view)
 
 	gtk_source_view_populate_extra_menu (view);
 
-	_gtk_source_view_snippets_init (&priv->snippets, view);
 	_gtk_source_view_assistants_init (&priv->assistants, view);
+	_gtk_source_view_snippets_init (&priv->snippets, view);
 }
 
 static void
