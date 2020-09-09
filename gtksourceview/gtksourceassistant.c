@@ -177,16 +177,27 @@ _gtk_source_assistant_real_get_offset (GtkSourceAssistant *assistant,
 {
 	GtkStyleContext *style_context;
 	GtkBorder margin;
+	GtkPositionType pos;
 
 	g_assert (GTK_SOURCE_IS_ASSISTANT (assistant));
 	g_assert (x != NULL);
 	g_assert (y != NULL);
 
+	pos = gtk_popover_get_position (GTK_POPOVER (assistant));
+
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (assistant));
 	gtk_style_context_get_margin (style_context, &margin);
 
 	*x = -margin.left;
-	*y = -margin.top + 1;
+
+	if (pos != GTK_POS_TOP)
+	{
+		*y = -margin.top + 1;
+	}
+	else
+	{
+		*y = margin.bottom - 1;
+	}
 }
 
 static void
