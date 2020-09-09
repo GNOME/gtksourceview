@@ -41,6 +41,8 @@ void                  _gtk_source_style_scheme_unapply                      (Gtk
 G_GNUC_INTERNAL
 GtkSourceStyle       *_gtk_source_style_scheme_get_matching_brackets_style  (GtkSourceStyleScheme *scheme);
 G_GNUC_INTERNAL
+GtkSourceStyle       *_gtk_source_style_scheme_get_snippet_focus_style      (GtkSourceStyleScheme *scheme);
+G_GNUC_INTERNAL
 GtkSourceStyle       *_gtk_source_style_scheme_get_right_margin_style       (GtkSourceStyleScheme *scheme);
 G_GNUC_INTERNAL
 GtkSourceStyle       *_gtk_source_style_scheme_get_draw_spaces_style        (GtkSourceStyleScheme *scheme);

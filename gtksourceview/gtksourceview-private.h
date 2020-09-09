@@ -26,11 +26,23 @@
 
 G_BEGIN_DECLS
 
-typedef struct
+typedef struct _GtkSourceViewAssistants
 {
 	GtkSourceView *view;
 	GQueue         queue;
 } GtkSourceViewAssistants;
+
+typedef struct _GtkSourceViewSnippets
+{
+       GtkSourceView   *view;
+       GtkSourceBuffer *buffer;
+       GQueue           queue;
+       gulong           buffer_insert_text_handler;
+       gulong           buffer_insert_text_after_handler;
+       gulong           buffer_delete_range_handler;
+       gulong           buffer_delete_range_after_handler;
+       gulong           buffer_cursor_moved_handler;
+} GtkSourceViewSnippets;
 
 void     _gtk_source_view_add_assistant            (GtkSourceView           *view,
                                                     GtkSourceAssistant      *assistant);
@@ -52,5 +64,20 @@ void     _gtk_source_view_assistants_size_allocate (GtkSourceViewAssistants *ass
 gboolean _gtk_source_view_assistants_handle_key    (GtkSourceViewAssistants *assistant,
                                                     guint                    keyval,
                                                     GdkModifierType          state);
+
+void     _gtk_source_view_snippets_init        (GtkSourceViewSnippets *snippets,
+                                                GtkSourceView         *view);
+void     _gtk_source_view_snippets_shutdown    (GtkSourceViewSnippets *snippets);
+void     _gtk_source_view_snippets_set_buffer  (GtkSourceViewSnippets *snippets,
+                                                GtkSourceBuffer       *buffer);
+void     _gtk_source_view_snippets_push        (GtkSourceViewSnippets *snippets,
+                                                GtkSourceSnippet      *snippet,
+                                                GtkTextIter           *iter);
+void     _gtk_source_view_snippets_pop         (GtkSourceViewSnippets *snippets);
+void     _gtk_source_view_snippets_pop_all     (GtkSourceViewSnippets *snippets);
+gboolean _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
+                                                guint                  key,
+                                                guint                  keycode,
+                                                GdkModifierType        state);
 
 G_END_DECLS

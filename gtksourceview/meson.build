@@ -32,6 +32,10 @@ core_public_h = files([
   'gtksourceregion.h',
   'gtksourcesearchcontext.h',
   'gtksourcesearchsettings.h',
+  'gtksourcesnippet.h',
+  'gtksourcesnippetchunk.h',
+  'gtksourcesnippetcontext.h',
+  'gtksourcesnippetmanager.h',
   'gtksourcespacedrawer.h',
   'gtksourcestyle.h',
   'gtksourcestylescheme.h',
@@ -71,6 +75,10 @@ core_public_c = files([
   'gtksourceregion.c',
   'gtksourcesearchcontext.c',
   'gtksourcesearchsettings.c',
+  'gtksourcesnippet.c',
+  'gtksourcesnippetchunk.c',
+  'gtksourcesnippetcontext.c',
+  'gtksourcesnippetmanager.c',
   'gtksourcespacedrawer.c',
   'gtksourcestyle.c',
   'gtksourcestylescheme.c',
@@ -106,6 +114,9 @@ core_private_c = files([
   'gtksourceregex.c',
   'gtksourcesignalgroup.c',
   'gtksourceview-assistants.c',
+  'gtksourcesnippetbundle.c',
+  'gtksourcesnippetbundle-parser.c',
+  'gtksourceview-snippets.c',
 ])
 
 core_c_args = [

@@ -172,6 +172,8 @@ typedef struct
 	GtkTextMark *tmp_insert_mark;
 	GtkTextMark *tmp_selection_bound_mark;
 
+	GtkTextTag *snippet_focus_tag;
+
 	GList *search_contexts;
 
 	GtkTextTag *invalid_char_tag;
@@ -256,9 +258,17 @@ gtk_source_buffer_tag_added_cb (GtkTextTagTable *table,
                                 GtkTextTag      *tag,
                                 GtkSourceBuffer *buffer)
 {
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
 	if (GTK_SOURCE_IS_TAG (tag))
 	{
 		gtk_source_buffer_check_tag_for_spaces (buffer, GTK_SOURCE_TAG (tag));
+	}
+
+	if (priv->snippet_focus_tag != NULL)
+	{
+		gtk_text_tag_set_priority (priv->snippet_focus_tag,
+		                           gtk_text_tag_table_get_size (table) - 1);
 	}
 }
 
@@ -652,6 +662,42 @@ gtk_source_buffer_new_with_language (GtkSourceLanguage *language)
 			     "tag-table", NULL,
 			     "language", language,
 			     NULL);
+}
+
+static void
+update_snippet_focus_style (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+	GtkSourceStyle *style = NULL;
+
+	if (priv->snippet_focus_tag == NULL)
+	{
+		return;
+	}
+
+	if (priv->style_scheme != NULL)
+	{
+		style = _gtk_source_style_scheme_get_snippet_focus_style (priv->style_scheme);
+	}
+
+	gtk_source_style_apply (style, priv->snippet_focus_tag);
+}
+
+GtkTextTag *
+_gtk_source_buffer_get_snippet_focus_tag (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	if (priv->snippet_focus_tag == NULL)
+	{
+		priv->snippet_focus_tag =
+			gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (buffer),
+						    NULL,
+						    NULL);
+		update_snippet_focus_style (buffer);
+	}
+
+	return priv->snippet_focus_tag;
 }
 
 static void

@@ -25,4 +25,9 @@ install_subdir('fonts',
   exclude_files: [ 'BuilderBlocks.ttx' ]
 )
 
+install_subdir('snippets',
+    install_dir: pkgdatadir,
+  exclude_files: [],
+)
+
 subdir('icons')

@@ -38,6 +38,7 @@ typedef struct _GtkSourceGutterRendererMarks    GtkSourceGutterRendererMarks;
 typedef struct _GtkSourceMarksSequence          GtkSourceMarksSequence;
 typedef struct _GtkSourcePixbufHelper           GtkSourcePixbufHelper;
 typedef struct _GtkSourceRegex                  GtkSourceRegex;
+typedef struct _GtkSourceSnippetBundle          GtkSourceSnippetBundle;
 
 #ifdef _MSC_VER
 /* For Visual Studio, we need to export the symbols used by the unit tests */

@@ -286,7 +286,7 @@ static void
 show_line_numbers_toggled_cb (TestWidget     *self,
 			      GtkCheckButton *button)
 {
-	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_source_view_set_show_line_numbers (self->priv->view, enabled);
 }
 
@@ -294,7 +294,7 @@ static void
 show_line_marks_toggled_cb (TestWidget     *self,
 			    GtkCheckButton *button)
 {
-	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_source_view_set_show_line_marks (self->priv->view, enabled);
 }
 
@@ -302,7 +302,7 @@ static void
 show_right_margin_toggled_cb (TestWidget     *self,
 			      GtkCheckButton *button)
 {
-	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_source_view_set_show_right_margin (self->priv->view, enabled);
 }
 
@@ -318,7 +318,7 @@ static void
 highlight_syntax_toggled_cb (TestWidget     *self,
 			     GtkCheckButton *button)
 {
-	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_source_buffer_set_highlight_syntax (self->priv->buffer, enabled);
 }
 
@@ -326,7 +326,7 @@ static void
 highlight_matching_bracket_toggled_cb (TestWidget     *self,
 				       GtkCheckButton *button)
 {
-	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_source_buffer_set_highlight_matching_brackets (self->priv->buffer, enabled);
 }
 
@@ -334,7 +334,7 @@ static void
 highlight_current_line_toggled_cb (TestWidget     *self,
 				   GtkCheckButton *button)
 {
-	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_source_view_set_highlight_current_line (self->priv->view, enabled);
 }
 
@@ -342,7 +342,7 @@ static void
 wrap_lines_toggled_cb (TestWidget     *self,
 		       GtkCheckButton *button)
 {
-	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (self->priv->view),
 				     enabled ? GTK_WRAP_WORD : GTK_WRAP_NONE);
 }
@@ -351,7 +351,7 @@ static void
 auto_indent_toggled_cb (TestWidget     *self,
 			GtkCheckButton *button)
 {
-	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_source_view_set_auto_indent (self->priv->view, enabled);
 }
 
@@ -359,7 +359,7 @@ static void
 indent_spaces_toggled_cb (TestWidget     *self,
 			  GtkCheckButton *button)
 {
-	gboolean enabled = gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (button));
+	gboolean enabled = gtk_check_button_get_active (button);
 	gtk_source_view_set_insert_spaces_instead_of_tabs (self->priv->view, enabled);
 }
 
@@ -376,7 +376,7 @@ update_indent_width (TestWidget *self)
 {
 	gint indent_width = -1;
 
-	if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (self->priv->indent_width_checkbutton)))
+	if (gtk_check_button_get_active (self->priv->indent_width_checkbutton))
 	{
 		indent_width = gtk_spin_button_get_value_as_int (self->priv->indent_width_spinbutton);
 	}
@@ -951,6 +951,14 @@ on_background_pattern_changed (GtkComboBox *combobox,
 }
 
 static void
+enable_snippets_toggled_cb (TestWidget     *self,
+                            GtkCheckButton *button)
+{
+	gboolean enabled = gtk_check_button_get_active (button);
+	gtk_source_view_set_enable_snippets (self->priv->view, enabled);
+}
+
+static void
 test_widget_dispose (GObject *object)
 {
 	TestWidget *self = TEST_WIDGET (object);
@@ -988,6 +996,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, backward_string_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, forward_string_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_changed_cb);
+	gtk_widget_class_bind_template_callback (widget_class, enable_snippets_toggled_cb);
 
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, view);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, map);
@@ -1005,12 +1014,12 @@ test_widget_class_init (TestWidgetClass *klass)
 }
 
 static void
-show_top_border_window_toggled_cb (GtkToggleButton *checkbutton,
-                                   TestWidget      *self)
+show_top_border_window_toggled_cb (GtkCheckButton *checkbutton,
+                                   TestWidget     *self)
 {
 	gint size;
 
-	size = gtk_toggle_button_get_active (checkbutton) ? 20 : 0;
+	size = gtk_check_button_get_active (checkbutton) ? 20 : 0;
 
 	if (self->priv->top == NULL)
 	{
@@ -1114,6 +1123,27 @@ test_widget_new (void)
 	return g_object_new (test_widget_get_type (), NULL);
 }
 
+static void
+setup_search_paths (void)
+{
+	GtkSourceSnippetManager *snippets;
+	GtkSourceStyleSchemeManager *styles;
+	GtkSourceLanguageManager *languages;
+	static const gchar *snippets_path[] = { TOP_SRCDIR"/data/snippets", NULL };
+	static const gchar *langs_path[] = { TOP_SRCDIR"/data/language-specs", NULL };
+
+	snippets = gtk_source_snippet_manager_get_default ();
+	gtk_source_snippet_manager_set_search_path (snippets, snippets_path);
+
+	/* Allow use of system styles, but prefer in-tree */
+	styles = gtk_source_style_scheme_manager_get_default ();
+	gtk_source_style_scheme_manager_prepend_search_path (styles, TOP_SRCDIR"/data/styles");
+
+	languages = gtk_source_language_manager_get_default ();
+	gtk_source_language_manager_set_search_path (languages, langs_path);
+}
+
+
 int
 main (int argc, char *argv[])
 {
@@ -1124,6 +1154,7 @@ main (int argc, char *argv[])
 
 	gtk_init ();
 	gtk_source_init ();
+	setup_search_paths ();
 
 	window = gtk_window_new ();
 	gtk_window_set_default_size (GTK_WINDOW (window), 900, 600);

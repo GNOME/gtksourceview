@@ -69,5 +69,7 @@ GTK_SOURCE_INTERNAL
 gboolean                  _gtk_source_buffer_has_source_marks            (GtkSourceBuffer        *buffer);
 GTK_SOURCE_INTERNAL
 gboolean                  _gtk_source_buffer_has_spaces_tag              (GtkSourceBuffer        *buffer);
+GTK_SOURCE_INTERNAL
+GtkTextTag               *_gtk_source_buffer_get_snippet_focus_tag       (GtkSourceBuffer        *buffer);
 
 G_END_DECLS
