@@ -145,13 +145,38 @@ gtk_source_informative_get_offset (GtkSourceAssistant *assistant,
 {
 	GtkSourceInformative *self = GTK_SOURCE_INFORMATIVE (assistant);
 	GtkSourceInformativePrivate *priv = gtk_source_informative_get_instance_private (self);
-	GtkRequisition min;
+	GtkStyleContext *style_context;
+	GtkBorder margin;
+	int min_width, min_baseline;
 
 	GTK_SOURCE_ASSISTANT_CLASS (gtk_source_informative_parent_class)->get_offset (assistant, x_offset, y_offset);
 
-	gtk_widget_get_preferred_size (GTK_WIDGET (priv->icon), &min, NULL);
+	gtk_widget_measure (GTK_WIDGET (priv->icon),
+			    GTK_ORIENTATION_HORIZONTAL,
+			    -1,
+			    &min_width,
+			    NULL,
+			    &min_baseline,
+			    NULL);
 
-	*x_offset -= min.width;
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (priv->icon));
+	gtk_style_context_get_margin (style_context, &margin);
+
+	*x_offset -= min_width;
+	*x_offset += margin.right;
+}
+
+static void
+gtk_source_informative_get_target_location (GtkSourceAssistant *assistant,
+                                            GdkRectangle       *rect)
+{
+	g_assert (GTK_SOURCE_IS_ASSISTANT (assistant));
+	g_assert (rect != NULL);
+
+	GTK_SOURCE_ASSISTANT_CLASS (gtk_source_informative_parent_class)->get_target_location (assistant, rect);
+
+	/* Align to beginning of the character */
+	rect->width = 0;
 }
 
 static gboolean
@@ -263,6 +288,7 @@ gtk_source_informative_class_init (GtkSourceInformativeClass *klass)
 	object_class->set_property = gtk_source_informative_set_property;
 
 	assistant_class->get_offset = gtk_source_informative_get_offset;
+	assistant_class->get_target_location = gtk_source_informative_get_target_location;
 
 	properties [PROP_ICON_NAME] =
 		g_param_spec_string ("icon-name",
