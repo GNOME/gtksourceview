@@ -4029,7 +4029,8 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 		}
 	}
 
-	if (_gtk_source_view_snippets_key_pressed (&priv->snippets, key, keycode, state))
+	if (priv->enable_snippets &&
+	    _gtk_source_view_snippets_key_pressed (&priv->snippets, key, keycode, state))
 	{
 		return GDK_EVENT_STOP;
 	}
