@@ -84,9 +84,9 @@ enum {
 	PROP_0,
 	PROP_BUFFER,
 	PROP_DESCRIPTION,
+	PROP_FOCUS_POSITION,
 	PROP_LANGUAGE_ID,
 	PROP_NAME,
-	PROP_POSITION,
 	PROP_TRIGGER,
 	N_PROPS
 };
@@ -489,6 +489,8 @@ gtk_source_snippet_select_chunk (GtkSourceSnippet      *snippet,
 	snippet->focus_position = chunk->focus_position;
 
 	gtk_text_buffer_select_range (snippet->buffer, &begin, &end);
+
+	g_object_notify_by_pspec (G_OBJECT (snippet), properties [PROP_FOCUS_POSITION]);
 
 #ifndef G_DISABLE_ASSERT
 	{
@@ -1357,7 +1359,7 @@ gtk_source_snippet_get_property (GObject    *object,
 		g_value_set_string (value, snippet->name);
 		break;
 
-	case PROP_POSITION:
+	case PROP_FOCUS_POSITION:
 		g_value_set_uint (value, snippet->focus_position);
 		break;
 
@@ -1452,10 +1454,10 @@ gtk_source_snippet_class_init (GtkSourceSnippetClass *klass)
 		                      G_PARAM_EXPLICIT_NOTIFY |
 		                      G_PARAM_STATIC_STRINGS));
 
-	properties[PROP_POSITION] =
-		g_param_spec_int ("position",
-		                  "Position",
-		                  "The current position",
+	properties[PROP_FOCUS_POSITION] =
+		g_param_spec_int ("focus-position",
+		                  "Focus Position",
+		                  "The currently focused chunk",
 		                  -1,
 		                  G_MAXINT,
 		                  -1,
