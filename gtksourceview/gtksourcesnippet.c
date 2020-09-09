@@ -47,37 +47,6 @@
  * Since: 5.0
  */
 
-struct _GtkSourceSnippet
-{
-	GObject                  parent_instance;
-
-	GtkSourceSnippetContext *context;
-	GtkTextBuffer           *buffer;
-
-	GQueue                   chunks;
-	GtkSourceSnippetChunk   *current_chunk;
-
-	GtkTextMark             *begin_mark;
-	GtkTextMark             *end_mark;
-	gchar                   *trigger;
-	const gchar             *language_id;
-	gchar                   *description;
-	gchar                   *name;
-
-	/* This is used to track the insert position within a snippet
-	 * while we make transforms. We don't use marks here because
-	 * the gravity of the mark is not enought o assure we end up
-	 * at the correct position. So instead we are relative to the
-	 * beginning of the snippet.
-	 */
-	gint                     saved_insert_pos;
-
-	gint                     focus_position;
-	gint                     max_focus_position;
-
-	guint                    inserted : 1;
-};
-
 G_DEFINE_TYPE (GtkSourceSnippet, gtk_source_snippet, G_TYPE_OBJECT)
 
 enum {

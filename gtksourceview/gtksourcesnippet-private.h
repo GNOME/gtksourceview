@@ -17,46 +17,69 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
- #pragma once
+#pragma once
 
- #include "gtksourcesnippet.h"
+#include "gtksourcesnippet.h"
+#include "gtksourcesnippetchunk.h"
+#include "gtksourcesnippetcontext.h"
 
- G_BEGIN_DECLS
+G_BEGIN_DECLS
 
-G_GNUC_INTERNAL
+struct _GtkSourceSnippet
+{
+	GObject                  parent_instance;
+
+	GtkSourceSnippetContext *context;
+	GtkTextBuffer           *buffer;
+
+	GQueue                   chunks;
+	GtkSourceSnippetChunk   *current_chunk;
+
+	GtkTextMark             *begin_mark;
+	GtkTextMark             *end_mark;
+	gchar                   *trigger;
+	const gchar             *language_id;
+	gchar                   *description;
+	gchar                   *name;
+
+	/* This is used to track the insert position within a snippet
+	 * while we make transforms. We don't use marks here because
+	 * the gravity of the mark is not enought o assure we end up
+	 * at the correct position. So instead we are relative to the
+	 * beginning of the snippet.
+	 */
+	gint                     saved_insert_pos;
+
+	gint                     focus_position;
+	gint                     max_focus_position;
+
+	guint                    inserted : 1;
+};
+
+
 void         _gtk_source_snippet_replace_current_chunk_text (GtkSourceSnippet  *self,
                                                              const gchar       *new_text);
-G_GNUC_INTERNAL
 gchar       *_gtk_source_snippet_get_edited_text            (GtkSourceSnippet  *self);
-G_GNUC_INTERNAL
 gboolean     _gtk_source_snippet_begin                      (GtkSourceSnippet  *self,
                                                              GtkSourceBuffer   *buffer,
                                                              GtkTextIter       *iter);
-G_GNUC_INTERNAL
 void         _gtk_source_snippet_finish                     (GtkSourceSnippet  *self);
-G_GNUC_INTERNAL
 gboolean     _gtk_source_snippet_move_next                  (GtkSourceSnippet  *self);
-G_GNUC_INTERNAL
 gboolean     _gtk_source_snippet_move_previous              (GtkSourceSnippet  *self);
-G_GNUC_INTERNAL
 void         _gtk_source_snippet_after_insert_text          (GtkSourceSnippet  *self,
                                                              GtkTextBuffer     *buffer,
                                                              GtkTextIter       *iter,
                                                              const gchar       *text,
                                                              gint               len);
-G_GNUC_INTERNAL
 void         _gtk_source_snippet_after_delete_range         (GtkSourceSnippet  *self,
                                                              GtkTextBuffer     *buffer,
                                                              GtkTextIter       *begin,
                                                              GtkTextIter       *end);
-G_GNUC_INTERNAL
 gboolean     _gtk_source_snippet_insert_set                 (GtkSourceSnippet  *self,
                                                              GtkTextMark       *mark);
-G_GNUC_INTERNAL
 guint        _gtk_source_snippet_count_affected_chunks      (GtkSourceSnippet  *snippet,
                                                              const GtkTextIter *begin,
                                                              const GtkTextIter *end);
-G_GNUC_INTERNAL
 gboolean     _gtk_source_snippet_contains_range             (GtkSourceSnippet  *snippet,
                                                              const GtkTextIter *begin,
                                                              const GtkTextIter *end);
