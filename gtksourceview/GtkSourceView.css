@@ -128,14 +128,14 @@ GtkSourceAssistant.informative.error image {
   background-color: shade(@error_color, 0.8);
 }
 
-GtkSourceAssistant.informative.info {
+GtkSourceAssistant.informative.other {
   background-color: @success_color;
   color: @theme_selected_fg_color;
   border-color: shade(@success_color, 0.8);
   text-shadow: 0 1px shade(@success_color, 0.8);
   -gtk-icon-shadow: 0 1px shade(@success_color, 0.8);
 }
-GtkSourceAssistant.informative.info image {
+GtkSourceAssistant.informative.other image {
   background-color: shade(@success_color, 0.8);
 }
 

@@ -89,6 +89,7 @@ gtk_source_informative_set_message_type (GtkSourceInformative *self,
 	gtk_widget_remove_css_class (GTK_WIDGET (self), "info");
 	gtk_widget_remove_css_class (GTK_WIDGET (self), "question");
 	gtk_widget_remove_css_class (GTK_WIDGET (self), "warning");
+	gtk_widget_remove_css_class (GTK_WIDGET (self), "other");
 
 	switch (priv->message_type)
 	{
@@ -109,6 +110,9 @@ gtk_source_informative_set_message_type (GtkSourceInformative *self,
 		break;
 
 	case GTK_MESSAGE_OTHER:
+		gtk_widget_add_css_class (GTK_WIDGET (self), "other");
+		break;
+
 	default:
 		break;
 	}
