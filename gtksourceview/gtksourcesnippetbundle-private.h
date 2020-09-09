@@ -28,6 +28,7 @@ G_BEGIN_DECLS
 
 typedef struct
 {
+	int          identifier;
 	const gchar *group;
 	const gchar *name;
 	const gchar *trigger;

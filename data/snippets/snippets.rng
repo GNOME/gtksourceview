@@ -50,6 +50,12 @@
               <text/>
             </element>
           </oneOrMore>
+          <oneOrMore>
+            <element name="tooltip">
+              <attribute name="position"/>
+              <attribute name="text"/>
+            </element>
+          </oneOrMore>
         </element>
       </oneOrMore>
     </optional>

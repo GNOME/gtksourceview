@@ -20,14 +20,22 @@
 #include "config.h"
 
 #include "gtksourcesnippet.h"
-#include "gtksourcesnippetchunk.h"
+#include "gtksourcesnippetchunk-private.h"
 #include "gtksourcesnippetbundle-private.h"
 #include "gtksourcesnippetmanager-private.h"
 
+typedef struct
+{
+	guint identifier;
+	guint focus_position;
+	const char *text;
+} GtkSourceSnippetTooltip;
+
 struct _GtkSourceSnippetBundle
 {
-	GObject  parent_instance;
-	GArray  *infos;
+	GObject     parent_instance;
+	GArray     *infos;
+	GArray     *tooltips;
 };
 
 typedef struct
@@ -40,12 +48,34 @@ typedef struct
 	gchar                   *trigger;
 	gchar                  **languages;
 	GString                 *text;
+	guint                    last_identifier;
 } ParseState;
 
 static void list_model_iface_init (GListModelInterface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceSnippetBundle, _gtk_source_snippet_bundle, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (G_TYPE_LIST_MODEL, list_model_iface_init))
+
+static const char *
+find_tooltip (GtkSourceSnippetBundle *self,
+              guint                   identifier,
+              guint                   focus_position)
+{
+	g_assert (GTK_SOURCE_IS_SNIPPET_BUNDLE (self));
+
+	for (guint i = 0; i < self->tooltips->len; i++)
+	{
+		const GtkSourceSnippetTooltip *tooltip = &g_array_index (self->tooltips, GtkSourceSnippetTooltip, i);
+
+		if (tooltip->identifier == identifier &&
+		    tooltip->focus_position == focus_position)
+		{
+			return tooltip->text;
+		}
+	}
+
+	return NULL;
+}
 
 static gint
 compare_infos (const GtkSourceSnippetInfo *info_a,
@@ -80,6 +110,7 @@ gtk_source_snippet_bundle_finalize (GObject *object)
 	GtkSourceSnippetBundle *self = (GtkSourceSnippetBundle *)object;
 
 	g_clear_pointer (&self->infos, g_array_unref);
+	g_clear_pointer (&self->tooltips, g_array_unref);
 
 	G_OBJECT_CLASS (_gtk_source_snippet_bundle_parent_class)->finalize (object);
 }
@@ -97,6 +128,7 @@ static void
 _gtk_source_snippet_bundle_init (GtkSourceSnippetBundle *self)
 {
 	self->infos = g_array_new (FALSE, FALSE, sizeof (GtkSourceSnippetInfo));
+	self->tooltips = g_array_new (FALSE, FALSE, sizeof (GtkSourceSnippetTooltip));
 }
 
 static void
@@ -150,22 +182,40 @@ elements_start_element (GMarkupParseContext  *context,
 
 	if (g_strcmp0 (element_name, "text") == 0)
 	{
-		const gchar *languages = NULL;
+		const char *languages = NULL;
 
 		if (!g_markup_collect_attributes (element_name, attribute_names, attribute_values, error,
-						  G_MARKUP_COLLECT_STRING | G_MARKUP_COLLECT_OPTIONAL, "languages", &languages,
+		                                  G_MARKUP_COLLECT_STRING | G_MARKUP_COLLECT_OPTIONAL, "languages", &languages,
 		                                  G_MARKUP_COLLECT_INVALID))
 			return;
 
 		if (languages != NULL && languages[0] != 0)
 		{
-			gchar **strv = g_strsplit (languages, ";", 0);
+			char **strv = g_strsplit (languages, ";", 0);
 
 			g_strfreev (state->languages);
 			state->languages = g_steal_pointer (&strv);
 		}
 
 		g_markup_parse_context_push (context, &text_parser, state);
+	}
+	else if (g_strcmp0 (element_name, "tooltip") == 0)
+	{
+		GtkSourceSnippetTooltip tooltip;
+		const char *position = NULL;
+		const char *text = NULL;
+
+		if (!g_markup_collect_attributes (element_name, attribute_names, attribute_values, error,
+		                                  G_MARKUP_COLLECT_STRING, "position", &position,
+		                                  G_MARKUP_COLLECT_STRING, "text", &text,
+		                                  G_MARKUP_COLLECT_INVALID))
+			return;
+
+		tooltip.identifier = state->last_identifier;
+		tooltip.focus_position = g_ascii_strtoll (position, NULL, 10);
+		tooltip.text = _gtk_source_snippet_manager_intern (state->manager, text);
+
+		g_array_append_val (state->self->tooltips, tooltip);
 	}
 	else
 	{
@@ -190,31 +240,33 @@ elements_end_element (GMarkupParseContext  *context,
 	g_assert (GTK_SOURCE_IS_SNIPPET_BUNDLE (state->self));
 	g_assert (element_name != NULL);
 
-	if (g_strcmp0 (element_name, "text") == 0 &&
-	    state->languages != NULL &&
-	    state->languages[0] != NULL)
+	if (g_strcmp0 (element_name, "text") == 0)
 	{
-		GtkSourceSnippetInfo info;
-
-		info.group = _gtk_source_snippet_manager_intern (state->manager, state->group);
-		info.name = _gtk_source_snippet_manager_intern (state->manager, state->name);
-		info.description = _gtk_source_snippet_manager_intern (state->manager, state->description);
-		info.trigger = _gtk_source_snippet_manager_intern (state->manager, state->trigger);
-		info.text = _gtk_source_snippet_manager_intern (state->manager, state->text->str);
-
-		for (guint i = 0; state->languages[i]; i++)
+		if (state->languages != NULL && state->languages[0] != NULL)
 		{
-			info.language = _gtk_source_snippet_manager_intern (state->manager, state->languages[i]);
+			GtkSourceSnippetInfo info;
 
-			gtk_source_snippet_bundle_add (state->self, &info);
+			info.identifier = state->last_identifier;
+			info.group = _gtk_source_snippet_manager_intern (state->manager, state->group);
+			info.name = _gtk_source_snippet_manager_intern (state->manager, state->name);
+			info.description = _gtk_source_snippet_manager_intern (state->manager, state->description);
+			info.trigger = _gtk_source_snippet_manager_intern (state->manager, state->trigger);
+			info.text = _gtk_source_snippet_manager_intern (state->manager, state->text->str);
+
+			for (guint i = 0; state->languages[i]; i++)
+			{
+				info.language = _gtk_source_snippet_manager_intern (state->manager, state->languages[i]);
+
+				gtk_source_snippet_bundle_add (state->self, &info);
+			}
+
 		}
 
+		g_clear_pointer (&state->languages, g_strfreev);
+		g_string_truncate (state->text, 0);
+
+		g_markup_parse_context_pop (context);
 	}
-
-	g_clear_pointer (&state->languages, g_strfreev);
-	g_string_truncate (state->text, 0);
-
-	g_markup_parse_context_pop (context);
 }
 
 static const GMarkupParser elements_parser = {
@@ -248,6 +300,8 @@ snippet_start_element (GMarkupParseContext  *context,
 		             element_name);
 		return;
 	}
+
+	state->last_identifier++;
 
 	if (!g_markup_collect_attributes (element_name, attribute_names, attribute_values, error,
 	                                  G_MARKUP_COLLECT_STRING, "trigger", &trigger,
@@ -391,6 +445,7 @@ gtk_source_snippet_bundle_parse (GtkSourceSnippetBundle  *self,
 		state.self = self;
 		state.manager = manager;
 		state.text = g_string_new (NULL);
+		state.last_identifier = 0;
 
 		context = g_markup_parse_context_new (&snippets_parser,
 		                                      (G_MARKUP_TREAT_CDATA_AS_TEXT |
@@ -454,6 +509,8 @@ void
 _gtk_source_snippet_bundle_merge (GtkSourceSnippetBundle *self,
                                   GtkSourceSnippetBundle *other)
 {
+	guint max_id = 0;
+
 	g_return_if_fail (GTK_SOURCE_IS_SNIPPET_BUNDLE (self));
 	g_return_if_fail (!other || GTK_SOURCE_IS_SNIPPET_BUNDLE (other));
 
@@ -462,8 +519,27 @@ _gtk_source_snippet_bundle_merge (GtkSourceSnippetBundle *self,
 		return;
 	}
 
-	g_array_append_vals (self->infos, other->infos->data, other->infos->len);
+	for (guint i = 0; i < other->infos->len; i++)
+	{
+		const GtkSourceSnippetInfo *info = &g_array_index (other->infos, GtkSourceSnippetInfo, i);
+		max_id = MAX (max_id, info->identifier);
+	}
+
+	for (guint i = 0; i < other->infos->len; i++)
+	{
+		GtkSourceSnippetInfo info = g_array_index (other->infos, GtkSourceSnippetInfo, i);
+		info.identifier += max_id;
+		g_array_append_val (self->infos, info);
+	}
+
 	g_array_sort (self->infos, (GCompareFunc) compare_infos);
+
+	for (guint i = 0; i < other->tooltips->len; i++)
+	{
+		GtkSourceSnippetTooltip tooltip = g_array_index (other->tooltips, GtkSourceSnippetTooltip, i);
+		tooltip.identifier += max_id;
+		g_array_append_val (self->tooltips, tooltip);
+	}
 }
 
 const gchar **
@@ -494,7 +570,8 @@ _gtk_source_snippet_bundle_list_groups (GtkSourceSnippetBundle *self)
 }
 
 static GtkSourceSnippet *
-create_snippet_from_info (const GtkSourceSnippetInfo *info)
+create_snippet_from_info (GtkSourceSnippetBundle     *self,
+                          const GtkSourceSnippetInfo *info)
 {
 	GtkSourceSnippet *snippet;
 	GPtrArray *chunks = NULL;
@@ -530,6 +607,15 @@ create_snippet_from_info (const GtkSourceSnippetInfo *info)
 		for (guint i = 0; i < chunks->len; i++)
 		{
 			GtkSourceSnippetChunk *chunk = g_ptr_array_index (chunks, i);
+
+			if (chunk->focus_position >= 0)
+			{
+				gtk_source_snippet_chunk_set_tooltip_text (chunk,
+				                                           find_tooltip (self,
+				                                                         info->identifier,
+				                                                         chunk->focus_position));
+			}
+
 			gtk_source_snippet_add_chunk (snippet, chunk);
 		}
 	}
@@ -594,7 +680,7 @@ _gtk_source_snippet_bundle_get_snippet (GtkSourceSnippetBundle *self,
 
 		if (info_matches (info, group, language_id, trigger, FALSE))
 		{
-			return create_snippet_from_info (info);
+			return create_snippet_from_info (self, info);
 		}
 	}
 
@@ -654,7 +740,7 @@ gtk_source_snippet_bundle_get_item (GListModel *model,
 		return NULL;
 	}
 
-	return create_snippet_from_info (&g_array_index (self->infos, GtkSourceSnippetInfo, position));
+	return create_snippet_from_info (self, &g_array_index (self->infos, GtkSourceSnippetInfo, position));
 }
 
 static void
