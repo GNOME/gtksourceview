@@ -512,6 +512,15 @@ gtk_source_snippet_chunk_class_init (GtkSourceSnippetChunkClass *klass)
 		                       G_PARAM_EXPLICIT_NOTIFY |
 		                       G_PARAM_STATIC_STRINGS));
 
+	properties[PROP_TOOLTIP_TEXT] =
+		g_param_spec_string ("tooltip-text",
+		                     "Tooltip Text",
+		                     "The tooltip text for the chunk.",
+		                     NULL,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
+
 	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
