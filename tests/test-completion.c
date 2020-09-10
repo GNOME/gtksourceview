@@ -408,13 +408,13 @@ test_provider_set_random (TestProvider *provider,
 }
 
 static void
-add_remove_provider (GtkToggleButton             *button,
+add_remove_provider (GtkCheckButton              *button,
 		     GtkSourceCompletion         *completion,
 		     GtkSourceCompletionProvider *provider)
 {
 	g_return_if_fail (provider != NULL);
 
-	if (gtk_toggle_button_get_active (button))
+	if (gtk_check_button_get_active (button))
 	{
 		gtk_source_completion_add_provider (completion, provider);
 	}
@@ -425,7 +425,7 @@ add_remove_provider (GtkToggleButton             *button,
 }
 
 static void
-enable_word_provider_toggled_cb (GtkToggleButton     *button,
+enable_word_provider_toggled_cb (GtkCheckButton      *button,
 				 GtkSourceCompletion *completion)
 {
 	add_remove_provider (button,
@@ -434,7 +434,7 @@ enable_word_provider_toggled_cb (GtkToggleButton     *button,
 }
 
 static void
-enable_fixed_provider_toggled_cb (GtkToggleButton     *button,
+enable_fixed_provider_toggled_cb (GtkCheckButton      *button,
 				  GtkSourceCompletion *completion)
 {
 	add_remove_provider (button,
@@ -443,7 +443,7 @@ enable_fixed_provider_toggled_cb (GtkToggleButton     *button,
 }
 
 static void
-enable_random_provider_toggled_cb (GtkToggleButton     *button,
+enable_random_provider_toggled_cb (GtkCheckButton      *button,
 				   GtkSourceCompletion *completion)
 {
 	add_remove_provider (button,
