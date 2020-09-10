@@ -382,7 +382,7 @@ _gtk_source_view_snippets_init (GtkSourceViewSnippets *snippets,
 	snippets->informative = g_object_new (GTK_SOURCE_TYPE_INFORMATIVE,
 	                                      "position", GTK_POS_TOP,
 	                                      "message-type", GTK_MESSAGE_INFO,
-	                                      "icon-name", "dialog-information-symbolic",
+	                                      "icon-name", "completion-snippet-symbolic",
 	                                      NULL);
 	_gtk_source_view_add_assistant (snippets->view,
 	                                GTK_SOURCE_ASSISTANT (snippets->informative));
