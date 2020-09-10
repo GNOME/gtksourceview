@@ -16,8 +16,8 @@
             <child>
               <object class="GtkSourceCompletionListBox" id="listbox">
                 <property name="can-focus">false</property>
-                <signal name="notify::proposal" handler="_gtk_source_completion_list_notify_proposal" swapped="true"/>
-                <signal name="reposition" handler="_gtk_source_completion_list_reposition" swapped="true"/>
+                <signal name="notify::proposal" handler="_gtk_source_completion_list_notify_proposal_cb" swapped="true"/>
+                <signal name="reposition" handler="_gtk_source_completion_list_reposition_cb" swapped="true"/>
               </object>
             </child>
           </object>

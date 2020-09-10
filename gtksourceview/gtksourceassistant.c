@@ -126,6 +126,8 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 		gtk_popover_set_pointing_to (GTK_POPOVER (assistant), &rect);
 	}
 
+	gtk_native_check_resize (GTK_NATIVE (assistant));
+
 	if (priv->child != NULL)
 	{
 		children = _gtk_source_assistant_child_get_attached (priv->child);
@@ -146,13 +148,41 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 }
 
 static void
+_gtk_source_assistant_update_size (GtkSourceAssistant *self)
+{
+	int min_width;
+	int nat_width;
+
+	g_assert (GTK_SOURCE_IS_ASSISTANT (self));
+
+	/* Hack to force the sizing request, otherwise the popover does
+	 * not shrink as results are reduced.
+	 */
+	gtk_widget_set_size_request (GTK_WIDGET (self), -1, -1);
+	gtk_widget_measure (GTK_WIDGET (self),
+	                    GTK_ORIENTATION_HORIZONTAL,
+	                    -1,
+	                    &min_width, &nat_width, NULL, NULL);
+	gtk_widget_set_size_request (GTK_WIDGET (self), min_width, -1);
+}
+
+void
+_gtk_source_assistant_reposition (GtkSourceAssistant *self)
+{
+	g_return_if_fail (GTK_SOURCE_IS_ASSISTANT (self));
+
+	_gtk_source_assistant_update_size (self);
+	_gtk_source_assistant_update_position (self);
+}
+
+static void
 _gtk_source_assistant_show (GtkWidget *widget)
 {
 	GtkSourceAssistant *assistant = (GtkSourceAssistant *)widget;
 
 	g_assert (GTK_SOURCE_IS_ASSISTANT (assistant));
 
-	_gtk_source_assistant_update_position (assistant);
+	_gtk_source_assistant_reposition (assistant);
 
 	GTK_WIDGET_CLASS (_gtk_source_assistant_parent_class)->show (widget);
 }

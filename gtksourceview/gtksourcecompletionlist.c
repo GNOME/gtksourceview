@@ -84,8 +84,6 @@ _gtk_source_completion_list_show (GtkWidget *widget)
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
 
-	_gtk_source_completion_list_reposition (self);
-
 	GTK_WIDGET_CLASS (_gtk_source_completion_list_parent_class)->show (widget);
 
 	if (_gtk_source_completion_list_get_show_details (self))
@@ -219,9 +217,17 @@ _gtk_source_completion_list_notify_alternates_cb (GtkSourceCompletionList    *se
 }
 
 static void
-_gtk_source_completion_list_notify_proposal (GtkSourceCompletionList    *self,
-                                             GParamSpec                 *pspec,
-                                             GtkSourceCompletionListBox *listbox)
+_gtk_source_completion_list_reposition_cb (GtkSourceCompletionList *self)
+{
+	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
+
+	_gtk_source_assistant_reposition (GTK_SOURCE_ASSISTANT (self));
+}
+
+static void
+_gtk_source_completion_list_notify_proposal_cb (GtkSourceCompletionList    *self,
+                                                GParamSpec                 *pspec,
+                                                GtkSourceCompletionListBox *listbox)
 {
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (self));
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (listbox));
@@ -422,8 +428,8 @@ _gtk_source_completion_list_class_init (GtkSourceCompletionListClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, GtkSourceCompletionList, listbox);
 	gtk_widget_class_bind_template_child (widget_class, GtkSourceCompletionList, scroller);
 	gtk_widget_class_bind_template_child (widget_class, GtkSourceCompletionList, show_details);
-	gtk_widget_class_bind_template_callback (widget_class, _gtk_source_completion_list_reposition);
-	gtk_widget_class_bind_template_callback (widget_class, _gtk_source_completion_list_notify_proposal);
+	gtk_widget_class_bind_template_callback (widget_class, _gtk_source_completion_list_notify_proposal_cb);
+	gtk_widget_class_bind_template_callback (widget_class, _gtk_source_completion_list_reposition_cb);
 
 	g_type_ensure (GTK_SOURCE_TYPE_COMPLETION_LIST_BOX);
 }
@@ -543,41 +549,6 @@ _gtk_source_completion_list_set_font_desc (GtkSourceCompletionList    *self,
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST (self));
 
 	_gtk_source_completion_list_box_set_font_desc (self->listbox, font_desc);
-}
-
-void
-_gtk_source_completion_list_reposition (GtkSourceCompletionList *self)
-{
-	int old_x_offset, old_y_offset;
-	int x_offset = 0, y_offset = 0;
-	int min_width, nat_width;
-
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_LIST (self));
-
-	/* Hack to force the sizing request, otherwise the popover does
-	 * not shrink as results are reduced.
-	 */
-	gtk_widget_set_size_request (GTK_WIDGET (self), -1, -1);
-	gtk_widget_measure (GTK_WIDGET (self),
-	                    GTK_ORIENTATION_HORIZONTAL,
-	                    -1,
-	                    &min_width, &nat_width, NULL, NULL);
-	gtk_widget_set_size_request (GTK_WIDGET (self), min_width, -1);
-
-	/* Reposition the popup if we have a new offset */
-	_gtk_source_completion_list_get_offset (GTK_SOURCE_ASSISTANT (self), &x_offset, &y_offset);
-	gtk_popover_get_offset (GTK_POPOVER (self), &old_x_offset, &old_y_offset);
-	if (old_x_offset != x_offset || old_y_offset != y_offset)
-	{
-		gtk_popover_set_offset (GTK_POPOVER (self), x_offset, y_offset);
-	}
-
-	gtk_native_check_resize (GTK_NATIVE (self));
-
-	if (gtk_widget_get_visible (GTK_WIDGET (self->info)))
-	{
-		gtk_native_check_resize (GTK_NATIVE (self->info));
-	}
 }
 
 void

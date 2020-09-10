@@ -158,7 +158,6 @@ display_show (GtkSourceCompletionList *display)
 {
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST (display));
 
-	_gtk_source_completion_list_reposition (display);
 	gtk_widget_show (GTK_WIDGET (display));
 	gtk_widget_grab_focus (GTK_WIDGET (display));
 }
