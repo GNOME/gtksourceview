@@ -49,6 +49,80 @@
  * Since: 5.0
  */
 
+struct _GtkSourceSnippetResults
+{
+	GObject     parent_instance;
+	GListModel *snippets;
+};
+
+static void list_model_iface_init (GListModelInterface *iface);
+
+#define GTK_SOURCE_TYPE_SNIPPET_RESULTS (gtk_source_snippet_results_get_type())
+G_DECLARE_FINAL_TYPE (GtkSourceSnippetResults, gtk_source_snippet_results, GTK_SOURCE, SNIPPET_RESULTS, GObject)
+G_DEFINE_TYPE_WITH_CODE (GtkSourceSnippetResults, gtk_source_snippet_results, G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (G_TYPE_LIST_MODEL, list_model_iface_init))
+
+static GType
+gtk_source_snippet_results_get_item_type (GListModel *model)
+{
+	return GTK_SOURCE_TYPE_COMPLETION_PROPOSAL;
+}
+
+static guint
+gtk_source_snippet_results_get_n_items (GListModel *model)
+{
+	GtkSourceSnippetResults *self = (GtkSourceSnippetResults *)model;
+	return g_list_model_get_n_items (self->snippets);
+}
+
+static gpointer
+gtk_source_snippet_results_get_item (GListModel *model,
+                                     guint       position)
+{
+	GtkSourceSnippetResults *self = (GtkSourceSnippetResults *)model;
+	GtkSourceSnippet *snippet = g_list_model_get_item (self->snippets, position);
+	return gtk_source_completion_snippets_proposal_new (snippet);
+}
+
+static void
+list_model_iface_init (GListModelInterface *iface)
+{
+	iface->get_item_type = gtk_source_snippet_results_get_item_type;
+	iface->get_n_items = gtk_source_snippet_results_get_n_items;
+	iface->get_item = gtk_source_snippet_results_get_item;
+}
+
+static GListModel *
+gtk_source_snippet_results_new (GListModel *base_model)
+{
+	GtkSourceSnippetResults *self = g_object_new (GTK_SOURCE_TYPE_SNIPPET_RESULTS, NULL);
+	self->snippets = g_object_ref (base_model);
+	return G_LIST_MODEL (self);
+}
+
+static void
+gtk_source_snippet_results_finalize (GObject *object)
+{
+	GtkSourceSnippetResults *self = (GtkSourceSnippetResults *)object;
+
+	g_clear_object (&self->snippets);
+
+	G_OBJECT_CLASS (gtk_source_snippet_results_parent_class)->finalize (object);
+}
+
+static void
+gtk_source_snippet_results_class_init (GtkSourceSnippetResultsClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+	object_class->finalize = gtk_source_snippet_results_finalize;
+}
+
+static void
+gtk_source_snippet_results_init (GtkSourceSnippetResults *self)
+{
+}
+
 typedef struct
 {
 	char *title;
@@ -86,6 +160,7 @@ gtk_source_completion_snippets_populate (GtkSourceCompletionProvider  *provider,
 	const gchar *language_id = NULL;
 	GtkTextIter begin, end;
 	GListModel *matches;
+	GListModel *results = NULL;
 	gchar *word;
 
 	if (!gtk_source_completion_context_get_bounds (context, &begin, &end))
@@ -114,9 +189,23 @@ gtk_source_completion_snippets_populate (GtkSourceCompletionProvider  *provider,
 
 	matches = gtk_source_snippet_manager_list_matching (manager, NULL, language_id, word);
 
+	if (matches != NULL)
+	{
+		results = gtk_source_snippet_results_new (matches);
+	}
+
+	g_clear_object (&matches);
 	g_free (word);
 
-	return matches;
+	if (results == NULL)
+	{
+		g_set_error (error,
+			     G_IO_ERROR,
+			     G_IO_ERROR_NOT_SUPPORTED,
+			     "No results");
+	}
+
+	return results;
 }
 
 static gchar *
@@ -189,7 +278,7 @@ gtk_source_completion_snippets_display (GtkSourceCompletionProvider *provider,
 	if (column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
 	{
 		gtk_source_completion_cell_set_text (cell,
-		                                     gtk_source_snippet_get_name (snippet));
+		                                     gtk_source_snippet_get_trigger (snippet));
 	}
 	else if (column == GTK_SOURCE_COMPLETION_COLUMN_ICON)
 	{
@@ -197,6 +286,11 @@ gtk_source_completion_snippets_display (GtkSourceCompletionProvider *provider,
 		                                          "completion-snippet-symbolic");
 	}
 	else if (column == GTK_SOURCE_COMPLETION_COLUMN_COMMENT)
+	{
+		gtk_source_completion_cell_set_text (cell,
+		                                     gtk_source_snippet_get_trigger (snippet));
+	}
+	else if (column == GTK_SOURCE_COMPLETION_COLUMN_DETAILS)
 	{
 		gtk_source_completion_cell_set_text (cell,
 		                                     gtk_source_snippet_get_description (snippet));
