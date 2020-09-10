@@ -25,17 +25,14 @@
 
 struct _GtkSourceCompletionSnippetsProposal
 {
-	GObject parent_instance;
+	GObject           parent_instance;
 	GtkSourceSnippet *snippet;
 };
-
-static void completion_proposal_iface_init (GtkSourceCompletionProposalInterface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionSnippetsProposal,
                          gtk_source_completion_snippets_proposal,
                          G_TYPE_OBJECT,
-                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,
-                                                completion_proposal_iface_init))
+                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, NULL))
 
 enum {
 	PROP_0,
@@ -44,45 +41,6 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
-
-static gchar *
-get_label (GtkSourceCompletionProposal *proposal)
-{
-	GtkSourceCompletionSnippetsProposal *self = GTK_SOURCE_COMPLETION_SNIPPETS_PROPOSAL (proposal);
-	const gchar *label;
-
-	label = gtk_source_snippet_get_name (self->snippet);
-
-	if (label == NULL)
-		label = gtk_source_snippet_get_trigger (self->snippet);
-
-	if (label == NULL)
-		label = gtk_source_snippet_get_description (self->snippet);
-
-	return g_strdup (label);
-}
-
-static const gchar *
-get_icon_name (GtkSourceCompletionProposal *proposal)
-{
-	/* TODO: Add a symbolic icon for GSV to use */
-	return NULL;
-}
-
-static gchar *
-get_info (GtkSourceCompletionProposal *proposal)
-{
-	GtkSourceCompletionSnippetsProposal *self = GTK_SOURCE_COMPLETION_SNIPPETS_PROPOSAL (proposal);
-	return g_strdup (gtk_source_snippet_get_description (self->snippet));
-}
-
-static void
-completion_proposal_iface_init (GtkSourceCompletionProposalInterface *iface)
-{
-	iface->get_label = get_label;
-	iface->get_icon_name = get_icon_name;
-	iface->get_info = get_info;
-}
 
 static void
 gtk_source_completion_snippets_proposal_finalize (GObject *object)

@@ -24,6 +24,8 @@
 #include <gtksourceview/gtksource-enumtypes.h>
 #include <gtksourceview/gtksourcebuffer.h>
 #include <gtksourceview/gtksourcecompletion.h>
+#include <gtksourceview/gtksourcecompletioncell.h>
+#include <gtksourceview/gtksourcecompletioncontext.h>
 #include <gtksourceview/gtksourceiter-private.h>
 #include <gtksourceview/gtksourcelanguage.h>
 #include <gtksourceview/gtksourcesnippet.h>
@@ -49,13 +51,9 @@
 
 typedef struct
 {
-	GdkTexture                    *icon;
-	gchar                         *name;
-	GtkSourceView                 *view;
-	gint                           interactive_delay;
-	gint                           priority;
-	gint                           minimum_word_size;
-	GtkSourceCompletionActivation  activation;
+	char *title;
+	int   priority;
+	int   minimum_word_size;
 } GtkSourceCompletionSnippetsPrivate;
 
 static void completion_provider_iface_init (GtkSourceCompletionProviderInterface *iface);
@@ -67,138 +65,72 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionSnippets, gtk_source_completion_snip
 
 enum {
 	PROP_0,
-	PROP_ACTIVATION,
-	PROP_ICON,
-	PROP_INTERACTIVE_DELAY,
-	PROP_NAME,
+	PROP_TITLE,
 	PROP_PRIORITY,
 	N_PROPS
 };
 
 static GParamSpec *properties[N_PROPS];
 
-static gchar *
-get_word_at_iter (GtkTextIter *iter)
-{
-	GtkTextBuffer *buffer;
-	GtkTextIter start_line;
-	gchar *line_text;
-	gchar *word;
-
-	buffer = gtk_text_iter_get_buffer (iter);
-	start_line = *iter;
-	gtk_text_iter_set_line_offset (&start_line, 0);
-
-	line_text = gtk_text_buffer_get_text (buffer, &start_line, iter, FALSE);
-	word = _gtk_source_completion_words_utils_get_end_word (line_text);
-	g_free (line_text);
-
-	return word;
-}
-
-static GtkSourceView *
-get_view (GtkSourceCompletionContext *context)
-{
-	GtkSourceCompletion *completion;
-	GtkSourceView *view;
-
-	g_object_get (context, "completion", &completion, NULL);
-	view = gtk_source_completion_get_view (completion);
-	g_object_unref (completion);
-
-	return view;
-}
-
-static void
-gtk_source_completion_snippets_populate (GtkSourceCompletionProvider *provider,
-                                         GtkSourceCompletionContext  *context)
+static GListModel *
+gtk_source_completion_snippets_populate (GtkSourceCompletionProvider  *provider,
+                                         GtkSourceCompletionContext   *context,
+                                         GError                      **error)
 {
 	GtkSourceCompletionSnippets *snippets = GTK_SOURCE_COMPLETION_SNIPPETS (provider);
 	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (snippets);
 	GtkSourceCompletionActivation activation;
 	GtkSourceSnippetManager *manager;
 	GtkSourceLanguage *language;
-	GtkTextBuffer *buffer;
+	GtkSourceBuffer *buffer;
 	const gchar *language_id = NULL;
-	GtkTextIter iter;
+	GtkTextIter begin, end;
 	GListModel *matches;
-	GList *list = NULL;
 	gchar *word;
-	guint n_items;
 
-	if (!gtk_source_completion_context_get_iter (context, &iter))
+	if (!gtk_source_completion_context_get_bounds (context, &begin, &end))
 	{
-		gtk_source_completion_context_add_proposals (context, provider, NULL, TRUE);
-		return;
+		return NULL;
 	}
 
-	priv->view = get_view (context);
-
-	word = get_word_at_iter (&iter);
-
+	buffer = gtk_source_completion_context_get_buffer (context);
+	word = gtk_source_completion_context_get_word (context);
 	activation = gtk_source_completion_context_get_activation (context);
+	manager = gtk_source_snippet_manager_get_default ();
+	language = gtk_source_buffer_get_language (buffer);
 
 	if (word == NULL ||
 	    (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE &&
 	     g_utf8_strlen (word, -1) < (glong)priv->minimum_word_size))
 	{
 		g_free (word);
-		gtk_source_completion_context_add_proposals (context, provider, NULL, TRUE);
-		return;
+		return NULL;
 	}
 
-	manager = gtk_source_snippet_manager_get_default ();
-	buffer = gtk_text_iter_get_buffer (&iter);
-	language = gtk_source_buffer_get_language (GTK_SOURCE_BUFFER (buffer));
 	if (language != NULL)
+	{
 		language_id = gtk_source_language_get_id (language);
+	}
 
 	matches = gtk_source_snippet_manager_list_matching (manager, NULL, language_id, word);
-	n_items = g_list_model_get_n_items (matches);
 
-	for (guint i = 0; i < n_items; i++)
-	{
-		GtkSourceSnippet *snippet = g_list_model_get_item (matches, i);
-		list = g_list_prepend (list, gtk_source_completion_snippets_proposal_new (snippet));
-		g_object_unref (snippet);
-	}
-
-	gtk_source_completion_context_add_proposals (context, provider, list, TRUE);
-
-  g_list_free_full (list, g_object_unref);
-	g_object_unref (matches);
 	g_free (word);
+
+	return matches;
 }
 
 static gchar *
-gtk_source_completion_snippets_get_name (GtkSourceCompletionProvider *self)
+gtk_source_completion_snippets_get_title (GtkSourceCompletionProvider *self)
 {
 	GtkSourceCompletionSnippets *snippets = GTK_SOURCE_COMPLETION_SNIPPETS (self);
 	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (snippets);
 
-	return g_strdup (priv->name);
-}
-
-static GdkTexture *
-gtk_source_completion_snippets_get_icon (GtkSourceCompletionProvider *self)
-{
-	GtkSourceCompletionSnippets *snippets = GTK_SOURCE_COMPLETION_SNIPPETS (self);
-	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (snippets);
-
-	return priv->icon;
+	return g_strdup (priv->title);
 }
 
 static gint
-gtk_source_completion_snippets_get_interactive_delay (GtkSourceCompletionProvider *provider)
-{
-	GtkSourceCompletionSnippets *snippets = GTK_SOURCE_COMPLETION_SNIPPETS (provider);
-	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (snippets);
-
-	return priv->interactive_delay;
-}
-
-static gint
-gtk_source_completion_snippets_get_priority (GtkSourceCompletionProvider *provider)
+gtk_source_completion_snippets_get_priority (GtkSourceCompletionProvider *provider,
+                                             GtkSourceCompletionContext  *context)
 {
 	GtkSourceCompletionSnippets *snippets = GTK_SOURCE_COMPLETION_SNIPPETS (provider);
 	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (snippets);
@@ -206,61 +138,79 @@ gtk_source_completion_snippets_get_priority (GtkSourceCompletionProvider *provid
 	return priv->priority;
 }
 
-static GtkSourceCompletionActivation
-gtk_source_completion_snippets_get_activation (GtkSourceCompletionProvider *provider)
+static void
+gtk_source_completion_snippets_activate (GtkSourceCompletionProvider *provider,
+                                         GtkSourceCompletionContext  *context,
+                                         GtkSourceCompletionProposal *proposal)
 {
-	GtkSourceCompletionSnippets *snippets = GTK_SOURCE_COMPLETION_SNIPPETS (provider);
-	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (snippets);
+	GtkSourceCompletionSnippetsProposal *p = (GtkSourceCompletionSnippetsProposal *)proposal;
+	GtkTextIter begin, end;
 
-	return priv->activation;
+	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (provider));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS_PROPOSAL (p));
+
+	if (gtk_source_completion_context_get_bounds (context, &begin, &end))
+	{
+		GtkTextBuffer *buffer = gtk_text_iter_get_buffer (&begin);
+		GtkSourceView *view = gtk_source_completion_context_get_view (context);
+		GtkSourceSnippet *snippet, *copy;
+
+		snippet = gtk_source_completion_snippets_proposal_get_snippet (GTK_SOURCE_COMPLETION_SNIPPETS_PROPOSAL (proposal));
+		copy = gtk_source_snippet_copy (snippet);
+
+		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
+		gtk_text_buffer_delete (GTK_TEXT_BUFFER (buffer), &begin, &end);
+		gtk_source_view_push_snippet (view, copy, &begin);
+		gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+
+		g_object_unref (copy);
+	}
 }
 
-static gboolean
-gtk_source_completion_snippets_activate_proposal (GtkSourceCompletionProvider *provider,
-                                                  GtkSourceCompletionProposal *proposal,
-                                                  GtkTextIter                 *iter)
+static void
+gtk_source_completion_snippets_display (GtkSourceCompletionProvider *provider,
+                                        GtkSourceCompletionContext  *context,
+                                        GtkSourceCompletionProposal *proposal,
+                                        GtkSourceCompletionCell     *cell)
 {
-	GtkSourceCompletionSnippets *snippets = GTK_SOURCE_COMPLETION_SNIPPETS (provider);
-	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (snippets);
+	GtkSourceCompletionSnippetsProposal *p = (GtkSourceCompletionSnippetsProposal *)proposal;
+	GtkSourceCompletionColumn column;
 	GtkSourceSnippet *snippet;
-	GtkSourceSnippet *copy;
-	GtkTextIter begin;
 
-	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (snippets));
-	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS_PROPOSAL (proposal));
+	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (provider));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS_PROPOSAL (p));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CELL (cell));
 
-	snippet = gtk_source_completion_snippets_proposal_get_snippet (GTK_SOURCE_COMPLETION_SNIPPETS_PROPOSAL (proposal));
+	snippet = gtk_source_completion_snippets_proposal_get_snippet (p);
+	column = gtk_source_completion_cell_get_column (cell);
 
-	if (snippet == NULL || priv->view == NULL)
+	if (column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
 	{
-		return FALSE;
+		gtk_source_completion_cell_set_text (cell,
+		                                     gtk_source_snippet_get_name (snippet));
 	}
-
-	if (_gtk_source_iter_ends_full_word (iter))
+	else if (column == GTK_SOURCE_COMPLETION_COLUMN_ICON)
 	{
-		begin = *iter;
-		_gtk_source_iter_backward_full_word_start (&begin);
-		gtk_text_buffer_delete (gtk_text_iter_get_buffer (&begin), &begin, iter);
+		gtk_source_completion_cell_set_icon_name (cell,
+		                                          "completion-snippet-symbolic");
 	}
-
-	copy = gtk_source_snippet_copy (snippet);
-	gtk_source_view_push_snippet (priv->view, copy, iter);
-	g_object_unref (copy);
-
-	return TRUE;
+	else if (column == GTK_SOURCE_COMPLETION_COLUMN_COMMENT)
+	{
+		gtk_source_completion_cell_set_text (cell,
+		                                     gtk_source_snippet_get_description (snippet));
+	}
 }
 
 static void
 completion_provider_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
-	iface->get_activation = gtk_source_completion_snippets_get_activation;
-	iface->get_icon = gtk_source_completion_snippets_get_icon;
-	iface->get_interactive_delay = gtk_source_completion_snippets_get_interactive_delay;
-	iface->get_name = gtk_source_completion_snippets_get_name;
-	iface->get_name = gtk_source_completion_snippets_get_name;
+	iface->get_title = gtk_source_completion_snippets_get_title;
 	iface->get_priority = gtk_source_completion_snippets_get_priority;
 	iface->populate = gtk_source_completion_snippets_populate;
-	iface->activate_proposal = gtk_source_completion_snippets_activate_proposal;
+	iface->activate = gtk_source_completion_snippets_activate;
+	iface->display = gtk_source_completion_snippets_display;
 }
 
 static void
@@ -269,9 +219,7 @@ gtk_source_completion_snippets_finalize (GObject *object)
 	GtkSourceCompletionSnippets *provider = GTK_SOURCE_COMPLETION_SNIPPETS (object);
 	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (provider);
 
-	priv->view = NULL;
-	g_clear_pointer (&priv->name, g_free);
-	g_clear_object (&priv->icon);
+	g_clear_pointer (&priv->title, g_free);
 
 	G_OBJECT_CLASS (gtk_source_completion_snippets_parent_class)->finalize (object);
 }
@@ -287,24 +235,12 @@ gtk_source_completion_snippets_get_property (GObject    *object,
 
 	switch (prop_id)
 	{
-	case PROP_NAME:
-		g_value_set_string (value, priv->name);
-		break;
-
-	case PROP_ICON:
-		g_value_set_object (value, priv->icon);
-		break;
-
-	case PROP_INTERACTIVE_DELAY:
-		g_value_set_int (value, priv->interactive_delay);
+	case PROP_TITLE:
+		g_value_set_string (value, priv->title);
 		break;
 
 	case PROP_PRIORITY:
 		g_value_set_int (value, priv->priority);
-		break;
-
-	case PROP_ACTIVATION:
-		g_value_set_flags (value, priv->activation);
 		break;
 
 	default:
@@ -324,31 +260,18 @@ gtk_source_completion_snippets_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
-	case PROP_NAME:
-		g_free (priv->name);
-		priv->name = g_value_dup_string (value);
+	case PROP_TITLE:
+		g_free (priv->title);
+		priv->title = g_value_dup_string (value);
 
-		if (priv->name == NULL)
+		if (priv->title == NULL)
 		{
-			priv->name = g_strdup (_("Snippets"));
+			priv->title = g_strdup (_("Snippets"));
 		}
-		break;
-
-	case PROP_ICON:
-		g_clear_object (&priv->icon);
-		priv->icon = g_value_dup_object (value);
-		break;
-
-	case PROP_INTERACTIVE_DELAY:
-		priv->interactive_delay = g_value_get_int (value);
 		break;
 
 	case PROP_PRIORITY:
 		priv->priority = g_value_get_int (value);
-		break;
-
-	case PROP_ACTIVATION:
-		priv->activation = g_value_get_flags (value);
 		break;
 
 	default:
@@ -366,46 +289,21 @@ gtk_source_completion_snippets_class_init (GtkSourceCompletionSnippetsClass *kla
 	object_class->get_property = gtk_source_completion_snippets_get_property;
 	object_class->set_property = gtk_source_completion_snippets_set_property;
 
-	properties[PROP_NAME] =
-		g_param_spec_string ("name",
-				     "Name",
-				     "The provider name",
-				     NULL,
-				     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
-
-	properties[PROP_ICON] =
-		g_param_spec_object ("icon",
-				     "Icon",
-				     "The provider icon",
-				     GDK_TYPE_TEXTURE,
-				     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
-
-	properties[PROP_INTERACTIVE_DELAY] =
-		g_param_spec_int ("interactive-delay",
-				  "Interactive Delay",
-				  "The delay before initiating interactive completion",
-				  -1,
-				  G_MAXINT,
-				  50,
-				  G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
+	properties[PROP_TITLE] =
+		g_param_spec_string ("title",
+		                     "Title",
+		                     "The provider title",
+		                     NULL,
+		                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
 	properties[PROP_PRIORITY] =
 		g_param_spec_int ("priority",
-				  "Priority",
-				  "Provider priority",
-				  G_MININT,
-				  G_MAXINT,
-				  0,
-				  G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
-
-	properties[PROP_ACTIVATION] =
-		g_param_spec_flags ("activation",
-				    "Activation",
-				    "The type of activation",
-				    GTK_SOURCE_TYPE_COMPLETION_ACTIVATION,
-				    GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE |
-				    GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED,
-				    G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
+		                  "Priority",
+		                  "Provider priority",
+		                  G_MININT,
+		                  G_MAXINT,
+		                  0,
+		                  G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
 }

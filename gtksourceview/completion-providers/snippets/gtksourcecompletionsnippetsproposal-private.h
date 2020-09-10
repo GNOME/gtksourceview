@@ -26,12 +26,9 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_COMPLETION_SNIPPETS_PROPOSAL (gtk_source_completion_snippets_proposal_get_type())
 
-G_GNUC_INTERNAL
 G_DECLARE_FINAL_TYPE (GtkSourceCompletionSnippetsProposal, gtk_source_completion_snippets_proposal, GTK_SOURCE, COMPLETION_SNIPPETS_PROPOSAL, GObject)
 
-G_GNUC_INTERNAL
 GtkSourceCompletionProposal *gtk_source_completion_snippets_proposal_new         (GtkSourceSnippet                    *snippet);
-G_GNUC_INTERNAL
 GtkSourceSnippet            *gtk_source_completion_snippets_proposal_get_snippet (GtkSourceCompletionSnippetsProposal *self);
 
 G_END_DECLS

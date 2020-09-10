@@ -1,2 +1,2 @@
-#subdir('snippets')
+subdir('snippets')
 subdir('words')
