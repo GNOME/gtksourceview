@@ -101,6 +101,7 @@ static void test_provider_iface_init (GtkSourceCompletionProviderInterface *ifac
 G_DECLARE_FINAL_TYPE (TestProvider, test_provider, TEST, PROVIDER, GObject)
 
 static GtkSourceCompletionWords *word_provider;
+static GtkSourceCompletionSnippets *snippet_provider;
 static TestProvider *fixed_provider;
 static TestProvider *random_provider;
 static GMainLoop *main_loop;
@@ -468,9 +469,24 @@ nb_proposals_changed_cb (GtkSpinButton *spin_button,
 }
 
 static void
+enable_snippet_provider_toggled_cb (GtkCheckButton      *button,
+                                    GtkSourceCompletion *completion)
+{
+	add_remove_provider (button,
+	                     completion,
+	                     GTK_SOURCE_COMPLETION_PROVIDER (snippet_provider));
+}
+
+static void
 create_completion (GtkSourceView       *source_view,
 		   GtkSourceCompletion *completion)
 {
+	/* Snippets completion provider */
+	snippet_provider = gtk_source_completion_snippets_new ();
+	g_object_set (snippet_provider, "priority", 20, NULL);
+	gtk_source_completion_add_provider (completion,
+	                                    GTK_SOURCE_COMPLETION_PROVIDER (snippet_provider));
+
 	/* Words completion provider */
 	word_provider = gtk_source_completion_words_new (NULL);
 
@@ -515,6 +531,7 @@ create_window (void)
 	GtkCheckButton *enable_word_provider;
 	GtkCheckButton *enable_fixed_provider;
 	GtkCheckButton *enable_random_provider;
+	GtkCheckButton *enable_snippet_provider;
 	GtkSpinButton *nb_fixed_proposals;
 	GtkSpinButton *nb_random_proposals;
 
@@ -535,10 +552,13 @@ create_window (void)
 	select_on_show = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_select_on_show"));
 	show_icons = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_show_icons"));
 	enable_word_provider = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_word_provider"));
+	enable_snippet_provider = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_snippet_provider"));
 	enable_fixed_provider = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_fixed_provider"));
 	enable_random_provider = GTK_CHECK_BUTTON (gtk_builder_get_object (builder, "checkbutton_random_provider"));
 	nb_fixed_proposals = GTK_SPIN_BUTTON (gtk_builder_get_object (builder, "spinbutton_nb_fixed_proposals"));
 	nb_random_proposals = GTK_SPIN_BUTTON (gtk_builder_get_object (builder, "spinbutton_nb_random_proposals"));
+
+	gtk_source_view_set_enable_snippets (source_view, TRUE);
 
 	completion = gtk_source_view_get_completion (source_view);
 
@@ -560,6 +580,11 @@ create_window (void)
 	                        G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
 	create_completion (source_view, completion);
+
+	g_signal_connect (enable_snippet_provider,
+	                  "toggled",
+	                  G_CALLBACK (enable_snippet_provider_toggled_cb),
+	                  completion);
 
 	g_signal_connect (enable_word_provider,
 			  "toggled",
@@ -606,6 +631,7 @@ main (int   argc,
 
 	/* Not really useful, except for debugging memory leaks. */
 	g_object_unref (word_provider);
+	g_object_unref (snippet_provider);
 	g_object_unref (fixed_provider);
 	g_object_unref (random_provider);
 
