@@ -157,7 +157,7 @@ gtk_source_completion_snippets_populate (GtkSourceCompletionProvider  *provider,
 	GtkSourceSnippetManager *manager;
 	GtkSourceLanguage *language;
 	GtkSourceBuffer *buffer;
-	const gchar *language_id = NULL;
+	const gchar *language_id = "";
 	GtkTextIter begin, end;
 	GListModel *matches;
 	GListModel *results = NULL;
@@ -200,9 +200,9 @@ gtk_source_completion_snippets_populate (GtkSourceCompletionProvider  *provider,
 	if (results == NULL)
 	{
 		g_set_error (error,
-			     G_IO_ERROR,
-			     G_IO_ERROR_NOT_SUPPORTED,
-			     "No results");
+		             G_IO_ERROR,
+		             G_IO_ERROR_NOT_SUPPORTED,
+		             "No results");
 	}
 
 	return results;

@@ -426,7 +426,7 @@ lookup_snippet_by_trigger (GtkSourceViewSnippets *snippets,
 {
 	GtkSourceSnippetManager *manager;
 	GtkSourceLanguage *language;
-	const gchar *language_id = NULL;
+	const gchar *language_id = "";
 
 	g_assert (snippets != NULL);
 	g_assert (word != NULL);

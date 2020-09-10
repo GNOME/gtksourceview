@@ -244,7 +244,7 @@ elements_end_element (GMarkupParseContext  *context,
 	{
 		if (state->languages != NULL && state->languages[0] != NULL)
 		{
-			GtkSourceSnippetInfo info;
+			GtkSourceSnippetInfo info = {0};
 
 			info.identifier = state->last_identifier;
 			info.group = _gtk_source_snippet_manager_intern (state->manager, state->group);
@@ -637,8 +637,15 @@ info_matches (const GtkSourceSnippetInfo *info,
 	if (group != NULL && g_strcmp0 (group, info->group) != 0)
 		return FALSE;
 
-	if (language_id != NULL && g_strcmp0 (language_id, info->language) != 0)
-		return FALSE;
+	if (language_id != NULL)
+	{
+		/* If we got "" for language, skip it */
+		if (info->language != NULL && info->language[0] == 0)
+			return FALSE;
+
+		if (g_strcmp0 (language_id, info->language) != 0)
+			return FALSE;
+	}
 
 	if (trigger != NULL)
 	{
