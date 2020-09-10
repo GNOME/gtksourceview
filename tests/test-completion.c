@@ -520,9 +520,12 @@ create_completion (GtkSourceView       *source_view,
 static void
 create_window (void)
 {
+	GtkSourceLanguageManager *lm = gtk_source_language_manager_get_default ();
+	GtkSourceLanguage *l = gtk_source_language_manager_get_language (lm, "c");
 	GtkBuilder *builder;
 	GError *error = NULL;
 	GtkWindow *window;
+	GtkTextBuffer *buffer;
 	GtkSourceView *source_view;
 	GtkSourceCompletion *completion;
 	GtkCheckButton *remember_info_visibility;
@@ -558,6 +561,8 @@ create_window (void)
 	nb_fixed_proposals = GTK_SPIN_BUTTON (gtk_builder_get_object (builder, "spinbutton_nb_fixed_proposals"));
 	nb_random_proposals = GTK_SPIN_BUTTON (gtk_builder_get_object (builder, "spinbutton_nb_random_proposals"));
 
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (source_view));
+	gtk_source_buffer_set_language (GTK_SOURCE_BUFFER (buffer), l);
 	gtk_source_view_set_enable_snippets (source_view, TRUE);
 
 	completion = gtk_source_view_get_completion (source_view);
