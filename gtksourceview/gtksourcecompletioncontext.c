@@ -363,6 +363,9 @@ _gtk_source_completion_context_get_item_full (GtkSourceCompletionContext   *self
 
 		n_items = g_list_model_get_n_items (info->results);
 
+		if (n_items == 0)
+			continue;
+
 		if (position >= n_items)
 		{
 			position -= n_items;

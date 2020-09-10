@@ -48,7 +48,17 @@ fallback_populate_async (GtkSourceCompletionProvider *provider,
 
 	if (ret == NULL)
 	{
-		g_task_return_error (task, g_steal_pointer (&error));
+		if (error != NULL)
+		{
+			g_task_return_error (task, g_steal_pointer (&error));
+		}
+		else
+		{
+			g_task_return_new_error (task,
+			                         G_IO_ERROR,
+			                         G_IO_ERROR_NOT_SUPPORTED,
+			                         "No results");
+		}
 	}
 	else
 	{
