@@ -314,7 +314,15 @@ gtk_source_view_snippets_update_informative (GtkSourceViewSnippets *snippets)
 
 	_gtk_source_assistant_set_mark (GTK_SOURCE_ASSISTANT (snippets->informative), chunk->begin_mark);
 	gtk_source_informative_set_message (snippets->informative, tooltip_text);
-	gtk_widget_show (GTK_WIDGET (snippets->informative));
+
+	if (gtk_widget_get_visible (GTK_WIDGET (snippets->informative)))
+	{
+		_gtk_source_assistant_reposition (GTK_SOURCE_ASSISTANT (snippets->informative));
+	}
+	else
+	{
+		gtk_widget_show (GTK_WIDGET (snippets->informative));
+	}
 
 	return;
 
