@@ -867,14 +867,7 @@ gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
 			                                             self->show_icons,
 			                                             has_alternates);
 
-			if (gtk_widget_get_visible (iter))
-			{
-				gtk_widget_queue_resize (iter);
-			}
-			else
-			{
-				gtk_widget_show (iter);
-			}
+			gtk_widget_show (iter);
 		}
 		else
 		{

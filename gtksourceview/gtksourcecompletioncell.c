@@ -258,8 +258,15 @@ gtk_source_completion_cell_set_text (GtkSourceCompletionCell *self,
 		gtk_source_completion_cell_set_widget (self, child);
 	}
 
-	gtk_label_set_use_markup (GTK_LABEL (self->child), FALSE);
-	gtk_label_set_text (GTK_LABEL (self->child), text);
+	if (gtk_label_get_use_markup (GTK_LABEL (self->child)))
+	{
+		gtk_label_set_use_markup (GTK_LABEL (self->child), FALSE);
+	}
+
+	if (g_strcmp0 (gtk_label_get_label (GTK_LABEL (self->child)), text) != 0)
+	{
+		gtk_label_set_label (GTK_LABEL (self->child), text);
+	}
 }
 
 void
@@ -414,7 +421,10 @@ gtk_source_completion_cell_set_icon_name (GtkSourceCompletionCell *self,
 		gtk_source_completion_cell_set_widget (self, image);
 	}
 
-	gtk_image_set_from_icon_name (GTK_IMAGE (self->child), icon_name);
+	if (g_strcmp0 (icon_name, gtk_image_get_icon_name (GTK_IMAGE (self->child))) != 0)
+	{
+		gtk_image_set_from_icon_name (GTK_IMAGE (self->child), icon_name);
+	}
 }
 
 void
