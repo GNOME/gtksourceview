@@ -275,8 +275,14 @@ gtk_source_completion_snippets_display (GtkSourceCompletionProvider *provider,
 
 	if (column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
 	{
-		gtk_source_completion_cell_set_text (cell,
-		                                     gtk_source_snippet_get_trigger (snippet));
+		const char *trigger = gtk_source_snippet_get_trigger (snippet);
+		char *word = gtk_source_completion_context_get_word (context);
+		PangoAttrList *highlight = gtk_source_completion_fuzzy_highlight (trigger, word);
+
+		gtk_source_completion_cell_set_text_with_attributes (cell, trigger, highlight);
+
+		pango_attr_list_unref (highlight);
+		g_free (word);
 	}
 	else if (column == GTK_SOURCE_COMPLETION_COLUMN_ICON)
 	{
