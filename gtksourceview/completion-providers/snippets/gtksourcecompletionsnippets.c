@@ -32,8 +32,6 @@
 #include <gtksourceview/gtksourcesnippetmanager.h>
 #include <gtksourceview/gtksourceview.h>
 
-#include <gtksourceview/completion-providers/words/gtksourcecompletionwordsutils-private.h>
-
 #include "gtksourcecompletionsnippets.h"
 #include "gtksourcecompletionsnippetsproposal-private.h"
 
@@ -298,6 +296,47 @@ gtk_source_completion_snippets_display (GtkSourceCompletionProvider *provider,
 }
 
 static void
+gtk_source_completion_snippets_refilter (GtkSourceCompletionProvider *provider,
+                                         GtkSourceCompletionContext  *context,
+                                         GListModel                  *model)
+{
+	GtkFilterListModel *filter_model;
+	GtkExpression *expression;
+	GtkStringFilter *filter;
+	gchar *word;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
+	g_assert (G_IS_LIST_MODEL (model));
+
+	word = gtk_source_completion_context_get_word (context);
+
+	if (GTK_IS_FILTER_LIST_MODEL (model))
+	{
+		model = gtk_filter_list_model_get_model (GTK_FILTER_LIST_MODEL (model));
+	}
+
+	if (!word || !word[0])
+	{
+		gtk_source_completion_context_set_proposals_for_provider (context, provider, model);
+		g_free (word);
+		return;
+	}
+
+	expression = gtk_property_expression_new (GTK_SOURCE_TYPE_COMPLETION_SNIPPETS_PROPOSAL, NULL, "trigger");
+	filter = gtk_string_filter_new (g_steal_pointer (&expression));
+	gtk_string_filter_set_search (GTK_STRING_FILTER (filter), word);
+	filter_model = gtk_filter_list_model_new (g_object_ref (model),
+	                                          GTK_FILTER (g_steal_pointer (&filter)));
+	gtk_filter_list_model_set_incremental (filter_model, TRUE);
+	gtk_source_completion_context_set_proposals_for_provider (context, provider, G_LIST_MODEL (filter_model));
+
+	g_clear_object (&filter_model);
+	g_free (word);
+}
+
+
+static void
 completion_provider_iface_init (GtkSourceCompletionProviderInterface *iface)
 {
 	iface->get_title = gtk_source_completion_snippets_get_title;
@@ -305,6 +344,7 @@ completion_provider_iface_init (GtkSourceCompletionProviderInterface *iface)
 	iface->populate = gtk_source_completion_snippets_populate;
 	iface->activate = gtk_source_completion_snippets_activate;
 	iface->display = gtk_source_completion_snippets_display;
+	iface->refilter = gtk_source_completion_snippets_refilter;
 }
 
 static void

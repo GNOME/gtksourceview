@@ -37,6 +37,7 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionSnippetsProposal,
 enum {
 	PROP_0,
 	PROP_SNIPPET,
+	PROP_TRIGGER,
 	N_PROPS
 };
 
@@ -64,6 +65,13 @@ gtk_source_completion_snippets_proposal_get_property (GObject    *object,
 	{
 	case PROP_SNIPPET:
 		g_value_set_object (value, self->snippet);
+		break;
+
+	case PROP_TRIGGER:
+		if (self->snippet != NULL)
+		{
+			g_value_set_string (value, gtk_source_snippet_get_trigger (self->snippet));
+		}
 		break;
 
 	default:
@@ -109,6 +117,13 @@ gtk_source_completion_snippets_proposal_class_init (GtkSourceCompletionSnippetsP
 		                     (G_PARAM_READWRITE |
 		                      G_PARAM_CONSTRUCT_ONLY |
 		                      G_PARAM_STATIC_STRINGS));
+
+	properties [PROP_TRIGGER] =
+		g_param_spec_string ("trigger",
+		                     "Trigger",
+		                     "The trigger for the snippet",
+		                     NULL,
+		                     (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
