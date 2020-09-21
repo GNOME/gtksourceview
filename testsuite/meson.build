@@ -41,7 +41,7 @@ testsuite_sources = [
 
 foreach test: testsuite_sources
   test_name = test.get(0)
-  test_sources = [
+  test_sources = gtksource_res + [
     '@0@.c'.format(test_name),
   ]
 
