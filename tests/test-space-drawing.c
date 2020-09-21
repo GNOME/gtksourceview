@@ -1,5 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *
+/*
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2015 - Université Catholique de Louvain
@@ -21,6 +20,8 @@
  */
 
 #include <gtksourceview/gtksource.h>
+
+static GMainLoop *main_loop;
 
 static void
 fill_buffer (GtkTextBuffer *buffer,
@@ -66,9 +67,9 @@ create_window (void)
 	GtkTextTag *tag;
 	GtkSourceSpaceDrawer *space_drawer;
 
-	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	window = gtk_window_new ();
 	gtk_window_set_default_size (GTK_WINDOW (window), 800, 600);
-	g_signal_connect (window, "destroy", gtk_main_quit, NULL);
+	g_signal_connect_swapped (window, "destroy", G_CALLBACK (g_main_loop_quit), main_loop);
 
 	hgrid = gtk_grid_new ();
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (hgrid), GTK_ORIENTATION_HORIZONTAL);
@@ -76,7 +77,8 @@ create_window (void)
 	view = GTK_SOURCE_VIEW (gtk_source_view_new ());
 
 	g_object_set (view,
-		      "expand", TRUE,
+		      "hexpand", TRUE,
+		      "vexpand", TRUE,
 		      NULL);
 
 	gtk_text_view_set_monospace (GTK_TEXT_VIEW (view), TRUE);
@@ -100,29 +102,32 @@ create_window (void)
 
 	panel_grid = gtk_grid_new ();
 	gtk_orientable_set_orientation (GTK_ORIENTABLE (panel_grid), GTK_ORIENTATION_VERTICAL);
-	gtk_container_add (GTK_CONTAINER (hgrid), panel_grid);
+  gtk_grid_attach (GTK_GRID (hgrid), panel_grid, 0, 0, 1, 1);
 
 	gtk_grid_set_row_spacing (GTK_GRID (panel_grid), 6);
 	g_object_set (panel_grid,
-		      "margin", 6,
+		      "margin-top", 6,
+		      "margin-bottom", 6,
+		      "margin-start", 6,
+		      "margin-end", 6,
 		      NULL);
 
 	matrix_checkbutton = gtk_check_button_new_with_label ("GtkSourceSpaceDrawer enable-matrix");
-	gtk_container_add (GTK_CONTAINER (panel_grid), matrix_checkbutton);
+	gtk_grid_attach (GTK_GRID (panel_grid), matrix_checkbutton, 0, 0, 1, 1);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (matrix_checkbutton), TRUE);
 	g_object_bind_property (matrix_checkbutton, "active",
 				space_drawer, "enable-matrix",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
 	tag_set_checkbutton = gtk_check_button_new_with_label ("GtkSourceTag draw-spaces-set");
-	gtk_container_add (GTK_CONTAINER (panel_grid), tag_set_checkbutton);
+	gtk_grid_attach (GTK_GRID (panel_grid), tag_set_checkbutton, 0, 1, 1, 1);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tag_set_checkbutton), TRUE);
 	g_object_bind_property (tag_set_checkbutton, "active",
 				tag, "draw-spaces-set",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
 	tag_checkbutton = gtk_check_button_new_with_label ("GtkSourceTag draw-spaces");
-	gtk_container_add (GTK_CONTAINER (panel_grid), tag_checkbutton);
+	gtk_grid_attach (GTK_GRID (panel_grid), tag_checkbutton, 0, 2, 1, 1);
 	gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (tag_checkbutton), FALSE);
 	g_object_bind_property (tag_checkbutton, "active",
 				tag, "draw-spaces",
@@ -130,29 +135,31 @@ create_window (void)
 
 	implicit_trailing_newline_checkbutton = gtk_check_button_new_with_label ("Implicit trailing newline");
 	gtk_widget_set_margin_top (implicit_trailing_newline_checkbutton, 12);
-	gtk_container_add (GTK_CONTAINER (panel_grid), implicit_trailing_newline_checkbutton);
+	gtk_grid_attach (GTK_GRID (panel_grid), implicit_trailing_newline_checkbutton, 0, 3, 1, 1);
 	g_object_bind_property (buffer, "implicit-trailing-newline",
 				implicit_trailing_newline_checkbutton, "active",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-	scrolled_window = gtk_scrolled_window_new (NULL, NULL);
-	gtk_container_add (GTK_CONTAINER (scrolled_window), GTK_WIDGET (view));
-	gtk_container_add (GTK_CONTAINER (hgrid), scrolled_window);
+	scrolled_window = gtk_scrolled_window_new ();
+	gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scrolled_window), GTK_WIDGET (view));
+	gtk_grid_attach (GTK_GRID (hgrid), scrolled_window, 1, 0, 1, 1);
 
-	gtk_container_add (GTK_CONTAINER (window), hgrid);
+	gtk_window_set_child (GTK_WINDOW (window), hgrid);
 
-	gtk_widget_show_all (window);
+	gtk_window_present (GTK_WINDOW (window));
 }
 
 gint
 main (gint    argc,
       gchar **argv)
 {
-	gtk_init (&argc, &argv);
+	main_loop = g_main_loop_new (NULL, FALSE);
+
+	gtk_init ();
 
 	create_window ();
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 
 	return 0;
 }

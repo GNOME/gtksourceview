@@ -1,4 +1,3 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
@@ -25,6 +24,7 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
+#include <gtksourceview/gtksourcestylescheme-private.h>
 
 typedef struct _TestFixture TestFixture;
 
@@ -68,7 +68,7 @@ test_fixture_setup (TestFixture   *fixture,
 		style_dirs[i] = g_test_build_filename (G_TEST_DIST, "styles", NULL);
 	}
 
-	gtk_source_style_scheme_manager_set_search_path (fixture->manager, style_dirs);
+	gtk_source_style_scheme_manager_set_search_path (fixture->manager, (const gchar * const *)style_dirs);
 	g_strfreev (style_dirs);
 }
 

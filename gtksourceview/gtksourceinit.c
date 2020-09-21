@@ -1,8 +1,7 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- *
- *
+/*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2016, 2017 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2016, 2017 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,16 +17,34 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourceview-gresources.h"
 
-#include "gtksourceinit.h"
 #include <glib/gi18n-lib.h>
-#include "gtksourcelanguagemanager.h"
-#include "gtksourcestyleschememanager.h"
+
+#include "gtksourcebuffer.h"
+#include "gtksourcebufferinputstream-private.h"
+#include "gtksourcebufferoutputstream-private.h"
+#include "gtksourcecompletion.h"
+#include "gtksourcecompletioncontext.h"
+#include "gtksourcecompletionproposal.h"
+#include "gtksourcecompletionprovider.h"
+#include "gtksourcefileloader.h"
+#include "gtksourcefilesaver.h"
+#include "gtksourcegutterrenderer.h"
+#include "gtksourcegutterrendererpixbuf.h"
+#include "gtksourcegutterrenderertext.h"
+#include "gtksourceinit.h"
+#include "gtksourcelanguagemanager-private.h"
+#include "gtksourcemap.h"
+#include "gtksourcesnippetmanager-private.h"
+#include "gtksourcestyleschemechooser.h"
+#include "gtksourcestyleschemechooserbutton.h"
+#include "gtksourcestyleschemechooserwidget.h"
+#include "gtksourcestyleschememanager-private.h"
+#include "gtksourcestyleschememanager-private.h"
+#include "gtksourceview.h"
 
 #ifdef G_OS_WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -151,6 +168,7 @@ gtk_source_init (void)
 
 	if (!done)
 	{
+		GdkDisplay *display;
 		gchar *locale_dir;
 
 		locale_dir = get_locale_dir ();
@@ -158,6 +176,52 @@ gtk_source_init (void)
 		g_free (locale_dir);
 
 		bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+
+		/* Due to potential deadlocks when registering types, we need to
+		 * ensure the dependent private class GtkSourceBufferOutputStream
+		 * and GtkSourceBufferInputStream have been registered up front.
+		 *
+		 * See https://bugzilla.gnome.org/show_bug.cgi?id=780216
+		 */
+
+		g_type_ensure (GTK_SOURCE_TYPE_BUFFER);
+		g_type_ensure (GTK_SOURCE_TYPE_BUFFER_INPUT_STREAM);
+		g_type_ensure (GTK_SOURCE_TYPE_BUFFER_OUTPUT_STREAM);
+		g_type_ensure (GTK_SOURCE_TYPE_COMPLETION);
+		g_type_ensure (GTK_SOURCE_TYPE_COMPLETION_CONTEXT);
+		g_type_ensure (GTK_SOURCE_TYPE_COMPLETION_PROVIDER);
+		g_type_ensure (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL);
+		g_type_ensure (GTK_SOURCE_TYPE_FILE_LOADER);
+		g_type_ensure (GTK_SOURCE_TYPE_FILE_SAVER);
+		g_type_ensure (GTK_SOURCE_TYPE_GUTTER_RENDERER);
+		g_type_ensure (GTK_SOURCE_TYPE_GUTTER_RENDERER_TEXT);
+		g_type_ensure (GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF);
+		g_type_ensure (GTK_SOURCE_TYPE_MAP);
+		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER);
+		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON);
+		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET);
+		g_type_ensure (GTK_SOURCE_TYPE_VIEW);
+
+		display = gdk_display_get_default ();
+
+		if (display != NULL)
+		{
+			GtkCssProvider *css_provider;
+			GtkIconTheme *icon_theme;
+
+			/* Setup default CSS styling for widgetry */
+			css_provider = gtk_css_provider_new ();
+			gtk_css_provider_load_from_resource (css_provider,
+			                                     "/org/gnome/gtksourceview/css/GtkSourceView.css");
+			gtk_style_context_add_provider_for_display (display,
+			                                            GTK_STYLE_PROVIDER (css_provider),
+			                                            GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
+			g_clear_object (&css_provider);
+
+			/* Add path to internal scalable icons */
+			icon_theme = gtk_icon_theme_get_for_display (display);
+			gtk_icon_theme_add_search_path (icon_theme, HICOLORDIR);
+		}
 
 		done = TRUE;
 	}
@@ -202,6 +266,7 @@ gtk_source_finalize (void)
 	{
 		GtkSourceLanguageManager *language_manager;
 		GtkSourceStyleSchemeManager *style_scheme_manager;
+		GtkSourceSnippetManager *snippet_manager;
 
 		g_resources_register (gtksourceview_get_resource ());
 
@@ -210,6 +275,9 @@ gtk_source_finalize (void)
 
 		style_scheme_manager = _gtk_source_style_scheme_manager_peek_default ();
 		g_clear_object (&style_scheme_manager);
+
+		snippet_manager = _gtk_source_snippet_manager_peek_default ();
+		g_clear_object (&snippet_manager);
 
 		done = TRUE;
 	}

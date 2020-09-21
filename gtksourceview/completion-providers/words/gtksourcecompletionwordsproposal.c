@@ -18,14 +18,13 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
-#include "gtksourcecompletionwordsproposal.h"
+#include "gtksourcecompletionwordsproposal-private.h"
 
-struct _GtkSourceCompletionWordsProposalPrivate
+struct _GtkSourceCompletionWordsProposal
 {
+	GObject parent_instance;
 	gchar *word;
 	gint use_count;
 };
@@ -36,33 +35,20 @@ enum
 	N_SIGNALS
 };
 
+enum
+{
+	PROP_0,
+	PROP_WORD,
+	N_PROPS
+};
+
+static GParamSpec *properties[N_PROPS];
 static guint signals[N_SIGNALS];
 
-static void gtk_source_completion_proposal_iface_init (gpointer g_iface, gpointer iface_data);
-
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWordsProposal,
-			 gtk_source_completion_words_proposal,
-			 G_TYPE_OBJECT,
-			 G_ADD_PRIVATE (GtkSourceCompletionWordsProposal)
-			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,
-			 			gtk_source_completion_proposal_iface_init))
-
-static gchar *
-gtk_source_completion_words_proposal_get_text (GtkSourceCompletionProposal *proposal)
-{
-	return g_strdup (GTK_SOURCE_COMPLETION_WORDS_PROPOSAL(proposal)->priv->word);
-}
-
-static void
-gtk_source_completion_proposal_iface_init (gpointer g_iface,
-                                           gpointer iface_data)
-{
-	GtkSourceCompletionProposalIface *iface = (GtkSourceCompletionProposalIface *)g_iface;
-
-	/* Interface data getter implementations */
-	iface->get_label = gtk_source_completion_words_proposal_get_text;
-	iface->get_text = gtk_source_completion_words_proposal_get_text;
-}
+                         gtk_source_completion_words_proposal,
+                         G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL, NULL))
 
 static void
 gtk_source_completion_words_proposal_finalize (GObject *object)
@@ -70,9 +56,28 @@ gtk_source_completion_words_proposal_finalize (GObject *object)
 	GtkSourceCompletionWordsProposal *proposal;
 
 	proposal = GTK_SOURCE_COMPLETION_WORDS_PROPOSAL (object);
-	g_free (proposal->priv->word);
+	g_free (proposal->word);
 
 	G_OBJECT_CLASS (gtk_source_completion_words_proposal_parent_class)->finalize (object);
+}
+
+static void
+gtk_source_completion_words_proposal_get_property (GObject    *object,
+                                                   guint       prop_id,
+                                                   GValue     *value,
+                                                   GParamSpec *pspec)
+{
+	GtkSourceCompletionWordsProposal *self = GTK_SOURCE_COMPLETION_WORDS_PROPOSAL (object);
+
+	switch (prop_id)
+	{
+	case PROP_WORD:
+		g_value_set_string (value, self->word);
+		break;
+
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+	}
 }
 
 static void
@@ -81,6 +86,16 @@ gtk_source_completion_words_proposal_class_init (GtkSourceCompletionWordsProposa
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	object_class->finalize = gtk_source_completion_words_proposal_finalize;
+	object_class->get_property = gtk_source_completion_words_proposal_get_property;
+
+	properties [PROP_WORD] =
+		g_param_spec_string ("word",
+		                     "Word",
+		                     "The word for the proposal",
+		                     NULL,
+		                     (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 
 	signals[UNUSED] =
 		g_signal_new ("unused",
@@ -94,8 +109,7 @@ gtk_source_completion_words_proposal_class_init (GtkSourceCompletionWordsProposa
 static void
 gtk_source_completion_words_proposal_init (GtkSourceCompletionWordsProposal *self)
 {
-	self->priv = gtk_source_completion_words_proposal_get_instance_private (self);
-	self->priv->use_count = 1;
+	self->use_count = 1;
 }
 
 GtkSourceCompletionWordsProposal *
@@ -104,7 +118,7 @@ gtk_source_completion_words_proposal_new (const gchar *word)
 	GtkSourceCompletionWordsProposal *proposal =
 		g_object_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, NULL);
 
-	proposal->priv->word = g_strdup (word);
+	proposal->word = g_strdup (word);
 	return proposal;
 }
 
@@ -113,7 +127,7 @@ gtk_source_completion_words_proposal_use (GtkSourceCompletionWordsProposal *prop
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal));
 
-	g_atomic_int_inc (&proposal->priv->use_count);
+	g_atomic_int_inc (&proposal->use_count);
 }
 
 void
@@ -121,7 +135,7 @@ gtk_source_completion_words_proposal_unuse (GtkSourceCompletionWordsProposal *pr
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal));
 
-	if (g_atomic_int_dec_and_test (&proposal->priv->use_count))
+	if (g_atomic_int_dec_and_test (&proposal->use_count))
 	{
 		g_signal_emit (proposal, signals[UNUSED], 0);
 	}
@@ -131,6 +145,6 @@ const gchar *
 gtk_source_completion_words_proposal_get_word (GtkSourceCompletionWordsProposal *proposal)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_WORDS_PROPOSAL (proposal), NULL);
-	return proposal->priv->word;
+	return proposal->word;
 }
 

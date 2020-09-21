@@ -1,4 +1,3 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
@@ -68,7 +67,8 @@ test_fixture_setup (TestFixture   *fixture,
 		lang_dirs[i] = g_test_build_filename (G_TEST_DIST, "language-specs", NULL);
 	}
 
-	gtk_source_language_manager_set_search_path (fixture->manager, lang_dirs);
+	gtk_source_language_manager_set_search_path (fixture->manager,
+	                                             (const gchar * const *)lang_dirs);
 	g_strfreev (lang_dirs);
 }
 

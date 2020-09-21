@@ -1,11 +1,10 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2005-2007 - Paolo Borelli and Paolo Maggi
- * Copyright (C) 2007 - Steve Frécinaux
- * Copyright (C) 2008 - Jesse van den Kieboom
- * Copyright (C) 2014, 2016 - Sébastien Wilmet
+ * Copyright 2005-2007 - Paolo Borelli and Paolo Maggi
+ * Copyright 2007 - Steve Frécinaux
+ * Copyright 2008 - Jesse van den Kieboom
+ * Copyright 2014, 2016 - Sébastien Wilmet
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,14 +20,13 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
+
+#include <glib/gi18n-lib.h>
 
 #include "gtksourcefilesaver.h"
-#include <glib/gi18n-lib.h>
-#include "gtksourcefile.h"
-#include "gtksourcebufferinputstream.h"
+#include "gtksourcefile-private.h"
+#include "gtksourcebufferinputstream-private.h"
 #include "gtksourceencoding.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
@@ -79,11 +77,14 @@ enum
 	PROP_ENCODING,
 	PROP_NEWLINE_TYPE,
 	PROP_COMPRESSION_TYPE,
-	PROP_FLAGS
+	PROP_FLAGS,
+	N_PROPS
 };
 
-struct _GtkSourceFileSaverPrivate
+struct _GtkSourceFileSaver
 {
+	GObject parent_instance;
+
 	/* Weak ref to the GtkSourceBuffer. A strong ref could create a
 	 * reference cycle in an application. For example a subclass of
 	 * GtkSourceBuffer can have a strong ref to the FileSaver.
@@ -106,8 +107,7 @@ struct _GtkSourceFileSaverPrivate
 	GTask *task;
 };
 
-typedef struct _TaskData TaskData;
-struct _TaskData
+typedef struct
 {
 	/* The output_stream contains the required converter(s) for the encoding
 	 * and the compression type.
@@ -137,12 +137,14 @@ struct _TaskData
 	gchar chunk_buffer[WRITE_CHUNK_SIZE];
 
 	guint tried_mount : 1;
-};
+} TaskData;
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceFileSaver, gtk_source_file_saver, G_TYPE_OBJECT)
+G_DEFINE_TYPE (GtkSourceFileSaver, gtk_source_file_saver, G_TYPE_OBJECT)
 
-static void read_file_chunk (GTask *task);
-static void write_file_chunk (GTask *task);
+static GParamSpec *properties [N_PROPS];
+
+static void read_file_chunk     (GTask *task);
+static void write_file_chunk    (GTask *task);
 static void recover_not_mounted (GTask *task);
 
 static TaskData *
@@ -176,31 +178,31 @@ task_data_free (gpointer data)
 
 static void
 gtk_source_file_saver_set_property (GObject      *object,
-				    guint         prop_id,
-				    const GValue *value,
-				    GParamSpec   *pspec)
+                                    guint         prop_id,
+                                    const GValue *value,
+                                    GParamSpec   *pspec)
 {
 	GtkSourceFileSaver *saver = GTK_SOURCE_FILE_SAVER (object);
 
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			g_assert (saver->priv->source_buffer == NULL);
-			saver->priv->source_buffer = g_value_get_object (value);
-			g_object_add_weak_pointer (G_OBJECT (saver->priv->source_buffer),
-						   (gpointer *)&saver->priv->source_buffer);
+			g_assert (saver->source_buffer == NULL);
+			saver->source_buffer = g_value_get_object (value);
+			g_object_add_weak_pointer (G_OBJECT (saver->source_buffer),
+						   (gpointer *)&saver->source_buffer);
 			break;
 
 		case PROP_FILE:
-			g_assert (saver->priv->file == NULL);
-			saver->priv->file = g_value_get_object (value);
-			g_object_add_weak_pointer (G_OBJECT (saver->priv->file),
-						   (gpointer *)&saver->priv->file);
+			g_assert (saver->file == NULL);
+			saver->file = g_value_get_object (value);
+			g_object_add_weak_pointer (G_OBJECT (saver->file),
+						   (gpointer *)&saver->file);
 			break;
 
 		case PROP_LOCATION:
-			g_assert (saver->priv->location == NULL);
-			saver->priv->location = g_value_dup_object (value);
+			g_assert (saver->location == NULL);
+			saver->location = g_value_dup_object (value);
 			break;
 
 		case PROP_ENCODING:
@@ -227,40 +229,40 @@ gtk_source_file_saver_set_property (GObject      *object,
 
 static void
 gtk_source_file_saver_get_property (GObject    *object,
-				    guint       prop_id,
-				    GValue     *value,
-				    GParamSpec *pspec)
+                                    guint       prop_id,
+                                    GValue     *value,
+                                    GParamSpec *pspec)
 {
 	GtkSourceFileSaver *saver = GTK_SOURCE_FILE_SAVER (object);
 
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			g_value_set_object (value, saver->priv->source_buffer);
+			g_value_set_object (value, saver->source_buffer);
 			break;
 
 		case PROP_FILE:
-			g_value_set_object (value, saver->priv->file);
+			g_value_set_object (value, saver->file);
 			break;
 
 		case PROP_LOCATION:
-			g_value_set_object (value, saver->priv->location);
+			g_value_set_object (value, saver->location);
 			break;
 
 		case PROP_ENCODING:
-			g_value_set_boxed (value, saver->priv->encoding);
+			g_value_set_boxed (value, saver->encoding);
 			break;
 
 		case PROP_NEWLINE_TYPE:
-			g_value_set_enum (value, saver->priv->newline_type);
+			g_value_set_enum (value, saver->newline_type);
 			break;
 
 		case PROP_COMPRESSION_TYPE:
-			g_value_set_enum (value, saver->priv->compression_type);
+			g_value_set_enum (value, saver->compression_type);
 			break;
 
 		case PROP_FLAGS:
-			g_value_set_flags (value, saver->priv->flags);
+			g_value_set_flags (value, saver->flags);
 			break;
 
 		default:
@@ -274,24 +276,24 @@ gtk_source_file_saver_dispose (GObject *object)
 {
 	GtkSourceFileSaver *saver = GTK_SOURCE_FILE_SAVER (object);
 
-	if (saver->priv->source_buffer != NULL)
+	if (saver->source_buffer != NULL)
 	{
-		g_object_remove_weak_pointer (G_OBJECT (saver->priv->source_buffer),
-					      (gpointer *)&saver->priv->source_buffer);
+		g_object_remove_weak_pointer (G_OBJECT (saver->source_buffer),
+					      (gpointer *)&saver->source_buffer);
 
-		saver->priv->source_buffer = NULL;
+		saver->source_buffer = NULL;
 	}
 
-	if (saver->priv->file != NULL)
+	if (saver->file != NULL)
 	{
-		g_object_remove_weak_pointer (G_OBJECT (saver->priv->file),
-					      (gpointer *)&saver->priv->file);
+		g_object_remove_weak_pointer (G_OBJECT (saver->file),
+					      (gpointer *)&saver->file);
 
-		saver->priv->file = NULL;
+		saver->file = NULL;
 	}
 
-	g_clear_object (&saver->priv->location);
-	g_clear_object (&saver->priv->task);
+	g_clear_object (&saver->location);
+	g_clear_object (&saver->task);
 
 	G_OBJECT_CLASS (gtk_source_file_saver_parent_class)->dispose (object);
 }
@@ -301,28 +303,28 @@ gtk_source_file_saver_constructed (GObject *object)
 {
 	GtkSourceFileSaver *saver = GTK_SOURCE_FILE_SAVER (object);
 
-	if (saver->priv->file != NULL)
+	if (saver->file != NULL)
 	{
 		const GtkSourceEncoding *encoding;
 		GtkSourceNewlineType newline_type;
 		GtkSourceCompressionType compression_type;
 
-		encoding = gtk_source_file_get_encoding (saver->priv->file);
+		encoding = gtk_source_file_get_encoding (saver->file);
 		gtk_source_file_saver_set_encoding (saver, encoding);
 
-		newline_type = gtk_source_file_get_newline_type (saver->priv->file);
+		newline_type = gtk_source_file_get_newline_type (saver->file);
 		gtk_source_file_saver_set_newline_type (saver, newline_type);
 
-		compression_type = gtk_source_file_get_compression_type (saver->priv->file);
+		compression_type = gtk_source_file_get_compression_type (saver->file);
 		gtk_source_file_saver_set_compression_type (saver, compression_type);
 
-		if (saver->priv->location == NULL)
+		if (saver->location == NULL)
 		{
-			saver->priv->location = gtk_source_file_get_location (saver->priv->file);
+			saver->location = gtk_source_file_get_location (saver->file);
 
-			if (saver->priv->location != NULL)
+			if (saver->location != NULL)
 			{
-				g_object_ref (saver->priv->location);
+				g_object_ref (saver->location);
 			}
 			else
 			{
@@ -353,15 +355,14 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_BUFFER,
-					 g_param_spec_object ("buffer",
-							      "GtkSourceBuffer",
-							      "",
-							      GTK_SOURCE_TYPE_BUFFER,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_BUFFER] =
+		g_param_spec_object ("buffer",
+		                     "GtkSourceBuffer",
+		                     "",
+		                     GTK_SOURCE_TYPE_BUFFER,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:file:
@@ -371,15 +372,14 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_FILE,
-					 g_param_spec_object ("file",
-							      "GtkSourceFile",
-							      "",
-							      GTK_SOURCE_TYPE_FILE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_FILE] =
+		g_param_spec_object ("file",
+		                     "GtkSourceFile",
+		                     "",
+		                     GTK_SOURCE_TYPE_FILE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:location:
@@ -389,15 +389,14 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_LOCATION,
-					 g_param_spec_object ("location",
-							      "Location",
-							      "",
-							      G_TYPE_FILE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_LOCATION] =
+		g_param_spec_object ("location",
+		                     "Location",
+		                     "",
+		                     G_TYPE_FILE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:encoding:
@@ -406,15 +405,14 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_ENCODING,
-					 g_param_spec_boxed ("encoding",
-							     "Encoding",
-							     "",
-							     GTK_SOURCE_TYPE_ENCODING,
-							     G_PARAM_READWRITE |
-							     G_PARAM_CONSTRUCT |
-							     G_PARAM_STATIC_STRINGS));
+	properties [PROP_ENCODING] =
+		g_param_spec_boxed ("encoding",
+		                    "Encoding",
+		                    "",
+		                    GTK_SOURCE_TYPE_ENCODING,
+		                    (G_PARAM_READWRITE |
+		                     G_PARAM_CONSTRUCT |
+		                     G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:newline-type:
@@ -423,16 +421,15 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_NEWLINE_TYPE,
-					 g_param_spec_enum ("newline-type",
-					                    "Newline type",
-							    "",
-					                    GTK_SOURCE_TYPE_NEWLINE_TYPE,
-					                    GTK_SOURCE_NEWLINE_TYPE_LF,
-					                    G_PARAM_READWRITE |
-					                    G_PARAM_CONSTRUCT |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_NEWLINE_TYPE] =
+		g_param_spec_enum ("newline-type",
+		                   "Newline type",
+		                   "",
+		                   GTK_SOURCE_TYPE_NEWLINE_TYPE,
+		                   GTK_SOURCE_NEWLINE_TYPE_LF,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_CONSTRUCT |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:compression-type:
@@ -441,16 +438,15 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_COMPRESSION_TYPE,
-					 g_param_spec_enum ("compression-type",
-					                    "Compression type",
-					                    "",
-					                    GTK_SOURCE_TYPE_COMPRESSION_TYPE,
-					                    GTK_SOURCE_COMPRESSION_TYPE_NONE,
-					                    G_PARAM_READWRITE |
-					                    G_PARAM_CONSTRUCT |
-							    G_PARAM_STATIC_STRINGS));
+	properties [PROP_COMPRESSION_TYPE] =
+		g_param_spec_enum ("compression-type",
+		                   "Compression type",
+		                   "",
+		                   GTK_SOURCE_TYPE_COMPRESSION_TYPE,
+		                   GTK_SOURCE_COMPRESSION_TYPE_NONE,
+		                   (G_PARAM_READWRITE |
+		                    G_PARAM_CONSTRUCT |
+		                    G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceFileSaver:flags:
@@ -459,30 +455,22 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * Since: 3.14
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_FLAGS,
-					 g_param_spec_flags ("flags",
-							     "Flags",
-							     "",
-							     GTK_SOURCE_TYPE_FILE_SAVER_FLAGS,
-							     GTK_SOURCE_FILE_SAVER_FLAGS_NONE,
-							     G_PARAM_READWRITE |
-							     G_PARAM_CONSTRUCT |
-							     G_PARAM_STATIC_STRINGS));
+	properties [PROP_FLAGS] =
+		g_param_spec_flags ("flags",
+		                    "Flags",
+		                    "",
+		                    GTK_SOURCE_TYPE_FILE_SAVER_FLAGS,
+		                    GTK_SOURCE_FILE_SAVER_FLAGS_NONE,
+		                    (G_PARAM_READWRITE |
+		                     G_PARAM_CONSTRUCT |
+		                     G_PARAM_STATIC_STRINGS));
 
-	/* Due to potential deadlocks when registering types, we need to
-	 * ensure the dependent private class GtkSourceBufferInputStream
-	 * has been registered up front.
-	 *
-	 * See https://bugzilla.gnome.org/show_bug.cgi?id=780216
-	 */
-	g_type_ensure (GTK_SOURCE_TYPE_BUFFER_INPUT_STREAM);
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
 gtk_source_file_saver_init (GtkSourceFileSaver *saver)
 {
-	saver->priv = gtk_source_file_saver_get_instance_private (saver);
 }
 
 /* BEGIN NOTE:
@@ -508,8 +496,8 @@ gtk_source_file_saver_init (GtkSourceFileSaver *saver)
  */
 static void
 cancel_output_stream_ready_cb (GObject      *source_object,
-			       GAsyncResult *result,
-			       gpointer      user_data)
+                               GAsyncResult *result,
+                               gpointer      user_data)
 {
 	GOutputStream *output_stream = G_OUTPUT_STREAM (source_object);
 	GTask *task = G_TASK (user_data);
@@ -561,8 +549,8 @@ cancel_output_stream (GTask *task)
 
 static void
 query_info_cb (GObject      *source_object,
-	       GAsyncResult *result,
-	       gpointer      user_data)
+               GAsyncResult *result,
+               gpointer      user_data)
 {
 	GFile *location = G_FILE (source_object);
 	GTask *task = G_TASK (user_data);
@@ -593,8 +581,8 @@ query_info_cb (GObject      *source_object,
 
 static void
 close_output_stream_cb (GObject      *source_object,
-			GAsyncResult *result,
-			gpointer      user_data)
+                        GAsyncResult *result,
+                        gpointer      user_data)
 {
 	GOutputStream *output_stream = G_OUTPUT_STREAM (source_object);
 	GTask *task = G_TASK (user_data);
@@ -627,7 +615,7 @@ close_output_stream_cb (GObject      *source_object,
 	       g_print ("Query info on file\n");
 	});
 
-	g_file_query_info_async (saver->priv->location,
+	g_file_query_info_async (saver->location,
 			         QUERY_ATTRIBUTES,
 			         G_FILE_QUERY_INFO_NONE,
 				 g_task_get_priority (task),
@@ -677,8 +665,8 @@ write_complete (GTask *task)
 
 static void
 write_file_chunk_cb (GObject      *source_object,
-		     GAsyncResult *result,
-		     gpointer      user_data)
+                     GAsyncResult *result,
+                     gpointer      user_data)
 {
 	GOutputStream *output_stream = G_OUTPUT_STREAM (source_object);
 	GTask *task = G_TASK (user_data);
@@ -796,8 +784,8 @@ read_file_chunk (GTask *task)
 
 static void
 replace_file_cb (GObject      *source_object,
-		 GAsyncResult *result,
-		 gpointer      user_data)
+                 GAsyncResult *result,
+                 gpointer      user_data)
 {
 	GFile *location = G_FILE (source_object);
 	GTask *task = G_TASK (user_data);
@@ -833,7 +821,7 @@ replace_file_cb (GObject      *source_object,
 		return;
 	}
 
-	if (saver->priv->compression_type == GTK_SOURCE_COMPRESSION_TYPE_GZIP)
+	if (saver->compression_type == GTK_SOURCE_COMPRESSION_TYPE_GZIP)
 	{
 		GZlibCompressor *compressor;
 
@@ -858,14 +846,14 @@ replace_file_cb (GObject      *source_object,
 
 	DEBUG ({
 	       g_print ("Encoding charset: %s\n",
-			gtk_source_encoding_get_charset (saver->priv->encoding));
+			gtk_source_encoding_get_charset (saver->encoding));
 	});
 
-	if (saver->priv->encoding != gtk_source_encoding_get_utf8 ())
+	if (saver->encoding != gtk_source_encoding_get_utf8 ())
 	{
 		GCharsetConverter *converter;
 
-		converter = g_charset_converter_new (gtk_source_encoding_get_charset (saver->priv->encoding),
+		converter = g_charset_converter_new (gtk_source_encoding_get_charset (saver->encoding),
 						     "UTF-8",
 						     NULL);
 
@@ -899,14 +887,14 @@ begin_write (GTask *task)
 
 	saver = g_task_get_source_object (task);
 
-	create_backup = (saver->priv->flags & GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP) != 0;
+	create_backup = (saver->flags & GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP) != 0;
 
 	DEBUG ({
 	       g_print ("Start replacing file contents\n");
 	       g_print ("Make backup: %s\n", create_backup ? "yes" : "no");
 	});
 
-	g_file_replace_async (saver->priv->location,
+	g_file_replace_async (saver->location,
 			      NULL,
 			      create_backup,
 			      G_FILE_CREATE_NONE,
@@ -918,16 +906,16 @@ begin_write (GTask *task)
 
 static void
 check_externally_modified_cb (GObject      *source_object,
-			      GAsyncResult *result,
-			      gpointer      user_data)
+                              GAsyncResult *result,
+                              gpointer      user_data)
 {
 	GFile *location = G_FILE (source_object);
 	GTask *task = G_TASK (user_data);
 	GtkSourceFileSaver *saver;
 	TaskData *task_data;
 	GFileInfo *info;
-	GTimeVal old_mtime;
-	GTimeVal cur_mtime;
+	gint64 old_mtime;
+	gint64 cur_mtime;
 	GError *error = NULL;
 
 	DEBUG ({
@@ -962,14 +950,17 @@ check_externally_modified_cb (GObject      *source_object,
 		return;
 	}
 
-	if (_gtk_source_file_get_modification_time (saver->priv->file, &old_mtime) &&
+	if (_gtk_source_file_get_modification_time (saver->file, &old_mtime) &&
 	    info != NULL &&
 	    g_file_info_has_attribute (info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 	{
-		g_file_info_get_modification_time (info, &cur_mtime);
+		GDateTime *dt;
 
-		if (old_mtime.tv_sec != cur_mtime.tv_sec ||
-		    old_mtime.tv_usec != cur_mtime.tv_usec)
+		dt = g_file_info_get_modification_date_time (info);
+		cur_mtime = g_date_time_to_unix (dt);
+		g_date_time_unref (dt);
+
+		if (old_mtime != cur_mtime)
 		{
 			DEBUG ({
 			       g_print ("The file is externally modified\n");
@@ -1000,21 +991,21 @@ check_externally_modified (GTask *task)
 
 	saver = g_task_get_source_object (task);
 
-	if (saver->priv->file != NULL)
+	if (saver->file != NULL)
 	{
 		GFile *prev_location;
 
-		prev_location = gtk_source_file_get_location (saver->priv->file);
+		prev_location = gtk_source_file_get_location (saver->file);
 
 		/* Don't check for externally modified for a "save as" operation,
 		 * because the user has normally accepted to overwrite the file if it
 		 * already exists.
 		 */
 		save_as = (prev_location == NULL ||
-			   !g_file_equal (prev_location, saver->priv->location));
+			   !g_file_equal (prev_location, saver->location));
 	}
 
-	if (saver->priv->flags & GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME ||
+	if (saver->flags & GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME ||
 	    save_as)
 	{
 		begin_write (task);
@@ -1025,7 +1016,7 @@ check_externally_modified (GTask *task)
 	       g_print ("Check externally modified\n");
 	});
 
-	g_file_query_info_async (saver->priv->location,
+	g_file_query_info_async (saver->location,
 			         G_FILE_ATTRIBUTE_TIME_MODIFIED,
 			         G_FILE_QUERY_INFO_NONE,
 				 g_task_get_priority (task),
@@ -1036,8 +1027,8 @@ check_externally_modified (GTask *task)
 
 static void
 mount_cb (GObject      *source_object,
-	  GAsyncResult *result,
-	  gpointer      user_data)
+          GAsyncResult *result,
+          gpointer      user_data)
 {
 	GFile *location = G_FILE (source_object);
 	GTask *task = G_TASK (user_data);
@@ -1068,7 +1059,7 @@ recover_not_mounted (GTask *task)
 	saver = g_task_get_source_object (task);
 	task_data = g_task_get_task_data (task);
 
-	mount_operation = _gtk_source_file_create_mount_operation (saver->priv->file);
+	mount_operation = _gtk_source_file_create_mount_operation (saver->file);
 
 	DEBUG ({
 	       g_print ("%s\n", G_STRFUNC);
@@ -1076,7 +1067,7 @@ recover_not_mounted (GTask *task)
 
 	task_data->tried_mount = TRUE;
 
-	g_file_mount_enclosing_volume (saver->priv->location,
+	g_file_mount_enclosing_volume (saver->location,
 				       G_MOUNT_MOUNT_NONE,
 				       mount_operation,
 				       g_task_get_cancellable (task),
@@ -1115,7 +1106,7 @@ gtk_source_file_saver_error_quark (void)
  */
 GtkSourceFileSaver *
 gtk_source_file_saver_new (GtkSourceBuffer *buffer,
-			   GtkSourceFile   *file)
+                           GtkSourceFile   *file)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), NULL);
@@ -1145,8 +1136,8 @@ gtk_source_file_saver_new (GtkSourceBuffer *buffer,
  */
 GtkSourceFileSaver *
 gtk_source_file_saver_new_with_target (GtkSourceBuffer *buffer,
-				       GtkSourceFile   *file,
-				       GFile           *target_location)
+                                       GtkSourceFile   *file,
+                                       GFile           *target_location)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE (file), NULL);
@@ -1171,7 +1162,7 @@ gtk_source_file_saver_get_buffer (GtkSourceFileSaver *saver)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver), NULL);
 
-	return saver->priv->source_buffer;
+	return saver->source_buffer;
 }
 
 /**
@@ -1186,7 +1177,7 @@ gtk_source_file_saver_get_file (GtkSourceFileSaver *saver)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver), NULL);
 
-	return saver->priv->file;
+	return saver->file;
 }
 
 /**
@@ -1201,7 +1192,7 @@ gtk_source_file_saver_get_location (GtkSourceFileSaver *saver)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver), NULL);
 
-	return saver->priv->location;
+	return saver->location;
 }
 
 /**
@@ -1216,20 +1207,21 @@ gtk_source_file_saver_get_location (GtkSourceFileSaver *saver)
  */
 void
 gtk_source_file_saver_set_encoding (GtkSourceFileSaver      *saver,
-				    const GtkSourceEncoding *encoding)
+                                    const GtkSourceEncoding *encoding)
 {
 	g_return_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver));
-	g_return_if_fail (saver->priv->task == NULL);
+	g_return_if_fail (saver->task == NULL);
 
 	if (encoding == NULL)
 	{
 		encoding = gtk_source_encoding_get_utf8 ();
 	}
 
-	if (saver->priv->encoding != encoding)
+	if (saver->encoding != encoding)
 	{
-		saver->priv->encoding = encoding;
-		g_object_notify (G_OBJECT (saver), "encoding");
+		saver->encoding = encoding;
+		g_object_notify_by_pspec (G_OBJECT (saver),
+		                          properties [PROP_ENCODING]);
 	}
 }
 
@@ -1245,7 +1237,7 @@ gtk_source_file_saver_get_encoding (GtkSourceFileSaver *saver)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver), NULL);
 
-	return saver->priv->encoding;
+	return saver->encoding;
 }
 
 /**
@@ -1260,15 +1252,16 @@ gtk_source_file_saver_get_encoding (GtkSourceFileSaver *saver)
  */
 void
 gtk_source_file_saver_set_newline_type (GtkSourceFileSaver   *saver,
-					GtkSourceNewlineType  newline_type)
+                                        GtkSourceNewlineType  newline_type)
 {
 	g_return_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver));
-	g_return_if_fail (saver->priv->task == NULL);
+	g_return_if_fail (saver->task == NULL);
 
-	if (saver->priv->newline_type != newline_type)
+	if (saver->newline_type != newline_type)
 	{
-		saver->priv->newline_type = newline_type;
-		g_object_notify (G_OBJECT (saver), "newline-type");
+		saver->newline_type = newline_type;
+		g_object_notify_by_pspec (G_OBJECT (saver),
+		                          properties [PROP_NEWLINE_TYPE]);
 	}
 }
 
@@ -1284,7 +1277,7 @@ gtk_source_file_saver_get_newline_type (GtkSourceFileSaver *saver)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver), GTK_SOURCE_NEWLINE_TYPE_DEFAULT);
 
-	return saver->priv->newline_type;
+	return saver->newline_type;
 }
 
 /**
@@ -1299,15 +1292,16 @@ gtk_source_file_saver_get_newline_type (GtkSourceFileSaver *saver)
  */
 void
 gtk_source_file_saver_set_compression_type (GtkSourceFileSaver       *saver,
-					    GtkSourceCompressionType  compression_type)
+                                            GtkSourceCompressionType  compression_type)
 {
 	g_return_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver));
-	g_return_if_fail (saver->priv->task == NULL);
+	g_return_if_fail (saver->task == NULL);
 
-	if (saver->priv->compression_type != compression_type)
+	if (saver->compression_type != compression_type)
 	{
-		saver->priv->compression_type = compression_type;
-		g_object_notify (G_OBJECT (saver), "compression-type");
+		saver->compression_type = compression_type;
+		g_object_notify_by_pspec (G_OBJECT (saver),
+		                          properties [PROP_COMPRESSION_TYPE]);
 	}
 }
 
@@ -1323,7 +1317,7 @@ gtk_source_file_saver_get_compression_type (GtkSourceFileSaver *saver)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver), GTK_SOURCE_COMPRESSION_TYPE_NONE);
 
-	return saver->priv->compression_type;
+	return saver->compression_type;
 }
 
 /**
@@ -1335,15 +1329,16 @@ gtk_source_file_saver_get_compression_type (GtkSourceFileSaver *saver)
  */
 void
 gtk_source_file_saver_set_flags (GtkSourceFileSaver      *saver,
-				 GtkSourceFileSaverFlags  flags)
+                                 GtkSourceFileSaverFlags  flags)
 {
 	g_return_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver));
-	g_return_if_fail (saver->priv->task == NULL);
+	g_return_if_fail (saver->task == NULL);
 
-	if (saver->priv->flags != flags)
+	if (saver->flags != flags)
 	{
-		saver->priv->flags = flags;
-		g_object_notify (G_OBJECT (saver), "flags");
+		saver->flags = flags;
+		g_object_notify_by_pspec (G_OBJECT (saver),
+		                          properties [PROP_FLAGS]);
 	}
 }
 
@@ -1359,7 +1354,7 @@ gtk_source_file_saver_get_flags (GtkSourceFileSaver *saver)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver), GTK_SOURCE_FILE_SAVER_FLAGS_NONE);
 
-	return saver->priv->flags;
+	return saver->flags;
 }
 
 /**
@@ -1388,14 +1383,14 @@ gtk_source_file_saver_get_flags (GtkSourceFileSaver *saver)
  * https://bugzilla.gnome.org/show_bug.cgi?id=616044
  */
 void
-gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
-				  gint                    io_priority,
-				  GCancellable           *cancellable,
-				  GFileProgressCallback   progress_callback,
-				  gpointer                progress_callback_data,
-				  GDestroyNotify          progress_callback_notify,
-				  GAsyncReadyCallback     callback,
-				  gpointer                user_data)
+gtk_source_file_saver_save_async (GtkSourceFileSaver    *saver,
+                                  gint                   io_priority,
+                                  GCancellable          *cancellable,
+                                  GFileProgressCallback  progress_callback,
+                                  gpointer               progress_callback_data,
+                                  GDestroyNotify         progress_callback_notify,
+                                  GAsyncReadyCallback    callback,
+                                  gpointer               user_data)
 {
 	TaskData *task_data;
 	gboolean check_invalid_chars;
@@ -1403,31 +1398,31 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
 
 	g_return_if_fail (GTK_SOURCE_IS_FILE_SAVER (saver));
 	g_return_if_fail (cancellable == NULL || G_IS_CANCELLABLE (cancellable));
-	g_return_if_fail (saver->priv->task == NULL);
+	g_return_if_fail (saver->task == NULL);
 
-	saver->priv->task = g_task_new (saver, cancellable, callback, user_data);
-	g_task_set_priority (saver->priv->task, io_priority);
+	saver->task = g_task_new (saver, cancellable, callback, user_data);
+	g_task_set_priority (saver->task, io_priority);
 
 	task_data = task_data_new ();
-	g_task_set_task_data (saver->priv->task, task_data, task_data_free);
+	g_task_set_task_data (saver->task, task_data, task_data_free);
 
 	task_data->progress_cb = progress_callback;
 	task_data->progress_cb_data = progress_callback_data;
 	task_data->progress_cb_notify = progress_callback_notify;
 
-	if (saver->priv->source_buffer == NULL ||
-	    saver->priv->file == NULL ||
-	    saver->priv->location == NULL)
+	if (saver->source_buffer == NULL ||
+	    saver->file == NULL ||
+	    saver->location == NULL)
 	{
-		g_task_return_boolean (saver->priv->task, FALSE);
+		g_task_return_boolean (saver->task, FALSE);
 		return;
 	}
 
-	check_invalid_chars = (saver->priv->flags & GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS) == 0;
+	check_invalid_chars = (saver->flags & GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_INVALID_CHARS) == 0;
 
-	if (check_invalid_chars && _gtk_source_buffer_has_invalid_chars (saver->priv->source_buffer))
+	if (check_invalid_chars && _gtk_source_buffer_has_invalid_chars (saver->source_buffer))
 	{
-		g_task_return_new_error (saver->priv->task,
+		g_task_return_new_error (saver->task,
 					 GTK_SOURCE_FILE_SAVER_ERROR,
 					 GTK_SOURCE_FILE_SAVER_ERROR_INVALID_CHARS,
 					 _("The buffer contains invalid characters."));
@@ -1438,17 +1433,17 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
 	       g_print ("Start saving\n");
 	});
 
-	implicit_trailing_newline = gtk_source_buffer_get_implicit_trailing_newline (saver->priv->source_buffer);
+	implicit_trailing_newline = gtk_source_buffer_get_implicit_trailing_newline (saver->source_buffer);
 
 	/* The BufferInputStream has a strong reference to the buffer.
 	 * We create the BufferInputStream here so we are sure that the
 	 * buffer will not be destroyed during the file saving.
 	 */
-	task_data->input_stream = _gtk_source_buffer_input_stream_new (GTK_TEXT_BUFFER (saver->priv->source_buffer),
-								       saver->priv->newline_type,
+	task_data->input_stream = _gtk_source_buffer_input_stream_new (GTK_TEXT_BUFFER (saver->source_buffer),
+								       saver->newline_type,
 								       implicit_trailing_newline);
 
-	check_externally_modified (saver->priv->task);
+	check_externally_modified (saver->task);
 }
 
 /**
@@ -1471,8 +1466,8 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver     *saver,
  */
 gboolean
 gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
-				   GAsyncResult        *result,
-				   GError             **error)
+                                   GAsyncResult        *result,
+                                   GError             **error)
 {
 	gboolean ok;
 
@@ -1482,44 +1477,48 @@ gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,
 
 	ok = g_task_propagate_boolean (G_TASK (result), error);
 
-	if (ok && saver->priv->file != NULL)
+	if (ok && saver->file != NULL)
 	{
 		TaskData *task_data;
 
-		gtk_source_file_set_location (saver->priv->file,
-					      saver->priv->location);
+		gtk_source_file_set_location (saver->file,
+					      saver->location);
 
-		_gtk_source_file_set_encoding (saver->priv->file,
-					       saver->priv->encoding);
+		_gtk_source_file_set_encoding (saver->file,
+					       saver->encoding);
 
-		_gtk_source_file_set_newline_type (saver->priv->file,
-						   saver->priv->newline_type);
+		_gtk_source_file_set_newline_type (saver->file,
+						   saver->newline_type);
 
-		_gtk_source_file_set_compression_type (saver->priv->file,
-						       saver->priv->compression_type);
+		_gtk_source_file_set_compression_type (saver->file,
+						       saver->compression_type);
 
-		_gtk_source_file_set_externally_modified (saver->priv->file, FALSE);
-		_gtk_source_file_set_deleted (saver->priv->file, FALSE);
-		_gtk_source_file_set_readonly (saver->priv->file, FALSE);
+		_gtk_source_file_set_externally_modified (saver->file, FALSE);
+		_gtk_source_file_set_deleted (saver->file, FALSE);
+		_gtk_source_file_set_readonly (saver->file, FALSE);
 
 		task_data = g_task_get_task_data (G_TASK (result));
 
 		if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_TIME_MODIFIED))
 		{
-			GTimeVal modification_time;
+			GDateTime *dt;
+			gint64 mtime;
 
-			g_file_info_get_modification_time (task_data->info, &modification_time);
-			_gtk_source_file_set_modification_time (saver->priv->file, modification_time);
+			dt = g_file_info_get_modification_date_time (task_data->info);
+			mtime = g_date_time_to_unix (dt);
+			g_date_time_unref (dt);
+
+			_gtk_source_file_set_modification_time (saver->file, mtime);
 		}
 	}
 
-	if (ok && saver->priv->source_buffer != NULL)
+	if (ok && saver->source_buffer != NULL)
 	{
-		gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (saver->priv->source_buffer),
+		gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (saver->source_buffer),
 					      FALSE);
 	}
 
-	g_clear_object (&saver->priv->task);
+	g_clear_object (&saver->task);
 
 	return ok;
 }

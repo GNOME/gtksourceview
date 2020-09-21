@@ -1,10 +1,9 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *
+/*
  * Language specification parser for 2.0 version .lang files
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
- * Copyright (C) 2005, 2006 - Emanuele Aina, Marco Barisione
+ * Copyright 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
+ * Copyright 2005, 2006 - Emanuele Aina, Marco Barisione
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -28,14 +27,12 @@
 #define DEBUG(x)
 #endif
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourcebuffer.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguage-private.h"
-#include "gtksourcecontextengine.h"
+#include "gtksourcecontextengine-private.h"
 
 #include <glib.h>
 #include <glib/gstdio.h>
@@ -137,7 +134,7 @@ static ParserState *parser_state_new           (GtkSourceLanguage      *language
                                                 GHashTable             *loaded_lang_ids);
 static void       parser_state_destroy         (ParserState *parser_state);
 
-static gboolean   file_parse                   (gchar                  *filename,
+static gboolean   file_parse                   (const gchar            *filename,
                                                 GtkSourceLanguage      *language,
                                                 GtkSourceContextData   *ctx_data,
                                                 GHashTable             *defined_regexes,
@@ -579,7 +576,7 @@ add_ref (ParserState               *parser_state,
 			}
 			else
 			{
-				file_parse (imported_language->priv->lang_file_name,
+				file_parse (_gtk_source_language_get_file_name (imported_language),
 					    parser_state->language,
 					    parser_state->ctx_data,
 					    parser_state->defined_regexes,
@@ -593,8 +590,8 @@ add_ref (ParserState               *parser_state,
 					GError *tmp_error2 = NULL;
 					g_set_error (&tmp_error2, PARSER_ERROR, tmp_error->code,
 						     "In file '%s' referenced from '%s': %s",
-						     imported_language->priv->lang_file_name,
-						     parser_state->language->priv->lang_file_name,
+						     _gtk_source_language_get_file_name (imported_language),
+						     _gtk_source_language_get_file_name (parser_state->language),
 						     tmp_error->message);
 					g_clear_error (&tmp_error);
 					tmp_error = tmp_error2;
@@ -1357,7 +1354,7 @@ parse_language_with_id (ParserState *parser_state,
 	}
 	else
 	{
-		file_parse (imported_language->priv->lang_file_name,
+		file_parse (_gtk_source_language_get_file_name (imported_language),
 			    parser_state->language,
 			    parser_state->ctx_data,
 			    parser_state->defined_regexes,
@@ -1596,7 +1593,7 @@ text_reader_structured_error_func (ParserState *parser_state,
 }
 
 static gboolean
-file_parse (gchar                     *filename,
+file_parse (const gchar               *filename,
 	    GtkSourceLanguage         *language,
 	    GtkSourceContextData      *ctx_data,
 	    GHashTable                *defined_regexes,
@@ -1722,13 +1719,17 @@ parser_state_new (GtkSourceLanguage       *language,
 		  GHashTable              *loaded_lang_ids)
 {
 	ParserState *parser_state;
+	const gchar *id;
+
+	id = gtk_source_language_get_id (language);
+	g_return_val_if_fail (id != NULL, NULL);
+
 	parser_state = g_slice_new0 (ParserState);
 
 	parser_state->language = language;
 	parser_state->ctx_data = ctx_data;
 
-	g_return_val_if_fail (language->priv->id != NULL, NULL);
-	parser_state->language_decoration = g_strdup_printf ("%s:", language->priv->id);
+	parser_state->language_decoration = g_strdup_printf ("%s:", id);
 
 	parser_state->current_lang_id = NULL;
 
@@ -1789,13 +1790,13 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 	GHashTable *defined_regexes, *styles;
 	gboolean success;
 	GError *error = NULL;
-	gchar *filename;
+	const gchar *filename;
 	GHashTable *loaded_lang_ids;
 	GQueue *replacements;
 
 	g_return_val_if_fail (ctx_data != NULL, FALSE);
 
-	filename = language->priv->lang_file_name;
+	filename = _gtk_source_language_get_file_name (language);
 
 	/* TODO: as an optimization tell the parser to merge CDATA
 	 * as text nodes (XML_PARSE_NOCDATA), and to ignore blank
@@ -1828,7 +1829,7 @@ _gtk_source_language_file_parse_version2 (GtkSourceLanguage       *language,
 	if (success)
 		g_hash_table_foreach_steal (styles,
 					    (GHRFunc) steal_styles_mapping,
-					    language->priv->styles);
+					    _gtk_source_language_get_styles (language));
 
 	g_queue_free_full (replacements, (GDestroyNotify) _gtk_source_context_replace_free);
 	g_hash_table_destroy (loaded_lang_ids);

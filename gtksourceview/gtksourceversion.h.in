@@ -18,8 +18,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_VERSION_H
-#define GTK_SOURCE_VERSION_H
+#pragma once
 
 #include <glib.h>
 
@@ -225,6 +224,16 @@ G_BEGIN_DECLS
  * Since: 4.0
  */
 #define GTK_SOURCE_VERSION_4_0 (G_ENCODE_VERSION (4, 0))
+
+/**
+ * GTK_SOURCE_VERSION_5_0:
+ *
+ * A macro that evaluates to the 5.0 version of GtkSourceView,
+ * in a format that can be used by the C pre-processor.
+ *
+ * Since: 5.0
+ */
+#define GTK_SOURCE_VERSION_5_0 (G_ENCODE_VERSION (4, 90))
 
 /* Define GTK_SOURCE_VERSION_CUR_STABLE */
 #ifndef __GTK_DOC_IGNORE__
@@ -559,20 +568,23 @@ G_BEGIN_DECLS
 #endif
 #endif /* __GTK_DOC_IGNORE__ */
 
-GTK_SOURCE_AVAILABLE_IN_3_20
-guint		gtk_source_get_major_version		(void);
+#ifndef __GTK_DOC_IGNORE__
+#if GTK_SOURCE_VERSION_MAX_ALLOWED < GTK_SOURCE_VERSION_5_0
+#define GTK_SOURCE_AVAILABLE_IN_5_0 G_UNAVAILABLE(4, 90) _GTK_SOURCE_EXTERN
+#else
+#define GTK_SOURCE_AVAILABLE_IN_5_0 _GTK_SOURCE_EXTERN
+#endif
+#endif /* __GTK_DOC_IGNORE__ */
 
 GTK_SOURCE_AVAILABLE_IN_3_20
-guint		gtk_source_get_minor_version		(void);
-
+guint    gtk_source_get_major_version (void);
 GTK_SOURCE_AVAILABLE_IN_3_20
-guint		gtk_source_get_micro_version		(void);
-
+guint    gtk_source_get_minor_version (void);
 GTK_SOURCE_AVAILABLE_IN_3_20
-gboolean	gtk_source_check_version		(guint major,
-							 guint minor,
-							 guint micro);
+guint    gtk_source_get_micro_version (void);
+GTK_SOURCE_AVAILABLE_IN_3_20
+gboolean gtk_source_check_version     (guint major,
+                                       guint minor,
+                                       guint micro);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_VERSION_H */

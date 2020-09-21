@@ -1,4 +1,3 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
@@ -20,7 +19,7 @@
 
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
-#include "gtksourceview/gtksourceregex.h"
+#include "gtksourceview/gtksourceregex-private.h"
 
 static void
 test_slash_c_pattern (void)

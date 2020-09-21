@@ -1,11 +1,10 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2005 - Paolo Borelli
- * Copyright (C) 2007 - Gustavo Giráldez
- * Copyright (C) 2007 - Paolo Maggi
- * Copyright (C) 2013, 2017 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2005 - Paolo Borelli
+ * Copyright 2007 - Gustavo Giráldez
+ * Copyright 2007 - Paolo Maggi
+ * Copyright 2013, 2017 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -29,9 +28,7 @@
  * Utility functions.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourceutils.h"
 #include "gtksourceutils-private.h"
@@ -205,7 +202,7 @@ gtk_source_utils_escape_search_text (const gchar* text)
 	return g_string_free (str, FALSE);
 }
 
-#define GSV_DATA_SUBDIR "gtksourceview-" GSV_API_VERSION
+#define GSV_DATA_SUBDIR "gtksourceview-" GSV_API_VERSION_S
 
 gchar **
 _gtk_source_utils_get_default_dirs (const gchar *basename)

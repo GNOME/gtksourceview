@@ -1,8 +1,7 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- *
- *
+/*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2010 - Krzesimir Nowak
+ * Copyright 2010 - Krzesimir Nowak
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,19 +17,25 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_GUTTER_RENDERER_PRIVATE_H
-#define GTK_SOURCE_GUTTER_RENDERER_PRIVATE_H
+#pragma once
 
 #include <gtk/gtk.h>
+
 #include "gtksourcetypes.h"
 
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-void _gtk_source_gutter_renderer_set_view         (GtkSourceGutterRenderer *renderer,
-                                                   GtkTextView             *view,
-                                                   GtkTextWindowType        window_type);
+void _gtk_source_gutter_renderer_set_view   (GtkSourceGutterRenderer *renderer,
+                                             GtkSourceView           *view);
+G_GNUC_INTERNAL
+void _gtk_source_gutter_renderer_begin      (GtkSourceGutterRenderer *renderer,
+                                             GtkSourceGutterLines    *lines);
+G_GNUC_INTERNAL
+void _gtk_source_gutter_renderer_snapshot   (GtkSourceGutterRenderer *renderer,
+                                             GtkSnapshot             *snapshot,
+                                             GtkSourceGutterLines    *lines);
+G_GNUC_INTERNAL
+void _gtk_source_gutter_renderer_end        (GtkSourceGutterRenderer *renderer);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_GUTTER_RENDERER_PRIVATE_H */

@@ -1,9 +1,8 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2010 - Ignacio Casal Quinteiro
- * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2010 - Ignacio Casal Quinteiro
+ * Copyright 2014 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,14 +18,13 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include <glib.h>
 #include <gio/gio.h>
 #include <string.h>
-#include "gtksourcebufferinputstream.h"
+
+#include "gtksourcebufferinputstream-private.h"
 #include "gtksource-enumtypes.h"
 
 /* NOTE: never use async methods on this stream, the stream is just
@@ -36,8 +34,10 @@
  * thread.
  */
 
-struct _GtkSourceBufferInputStreamPrivate
+struct _GtkSourceBufferInputStream
 {
+	GInputStream parent_instance;
+
 	GtkTextBuffer *buffer;
 	GtkTextMark *pos;
 	gint bytes_partial;
@@ -57,12 +57,12 @@ enum
 	PROP_ADD_TRAILING_NEWLINE
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceBufferInputStream, _gtk_source_buffer_input_stream, G_TYPE_INPUT_STREAM);
+G_DEFINE_TYPE (GtkSourceBufferInputStream, _gtk_source_buffer_input_stream, G_TYPE_INPUT_STREAM)
 
 static gsize
 get_new_line_size (GtkSourceBufferInputStream *stream)
 {
-	switch (stream->priv->newline_type)
+	switch (stream->newline_type)
 	{
 		case GTK_SOURCE_NEWLINE_TYPE_CR:
 		case GTK_SOURCE_NEWLINE_TYPE_LF:
@@ -82,7 +82,7 @@ get_new_line_size (GtkSourceBufferInputStream *stream)
 static const gchar *
 get_new_line (GtkSourceBufferInputStream *stream)
 {
-	switch (stream->priv->newline_type)
+	switch (stream->newline_type)
 	{
 		case GTK_SOURCE_NEWLINE_TYPE_LF:
 			return "\n";
@@ -103,8 +103,8 @@ get_new_line (GtkSourceBufferInputStream *stream)
 
 static gsize
 read_line (GtkSourceBufferInputStream *stream,
-	   gchar                      *outbuf,
-	   gsize                       space_left)
+           gchar                      *outbuf,
+           gsize                       space_left)
 {
 	GtkTextIter start, next, end;
 	gchar *buf;
@@ -113,14 +113,14 @@ read_line (GtkSourceBufferInputStream *stream,
 	const gchar *newline;
 	gboolean is_last;
 
-	if (stream->priv->buffer == NULL)
+	if (stream->buffer == NULL)
 	{
 		return 0;
 	}
 
-	gtk_text_buffer_get_iter_at_mark (stream->priv->buffer,
+	gtk_text_buffer_get_iter_at_mark (stream->buffer,
 					  &start,
-					  stream->priv->pos);
+					  stream->pos);
 
 	if (gtk_text_iter_is_end (&start))
 	{
@@ -142,7 +142,7 @@ read_line (GtkSourceBufferInputStream *stream,
 
 	/* the bytes of a line includes also the newline, so with the
 	   offsets we remove the newline and we add the new newline size */
-	bytes = gtk_text_iter_get_bytes_in_line (&start) - stream->priv->bytes_partial;
+	bytes = gtk_text_iter_get_bytes_in_line (&start) - stream->bytes_partial;
 
 	/* bytes_in_line includes the newlines, so we remove that assuming that
 	   they are single byte characters */
@@ -200,7 +200,7 @@ read_line (GtkSourceBufferInputStream *stream,
 
 		/* Note: offset is one past what we wrote */
 		gtk_text_iter_forward_chars (&start, char_offset);
-		stream->priv->bytes_partial += written;
+		stream->bytes_partial += written;
 		read = written;
 	}
 	else
@@ -215,12 +215,12 @@ read_line (GtkSourceBufferInputStream *stream,
 		}
 
 		start = next;
-		stream->priv->bytes_partial = 0;
+		stream->bytes_partial = 0;
 		read = bytes_to_write;
 	}
 
-	gtk_text_buffer_move_mark (stream->priv->buffer,
-				   stream->priv->pos,
+	gtk_text_buffer_move_mark (stream->buffer,
+				   stream->pos,
 				   &start);
 
 	g_free (buf);
@@ -229,10 +229,10 @@ read_line (GtkSourceBufferInputStream *stream,
 
 static gssize
 _gtk_source_buffer_input_stream_read (GInputStream  *input_stream,
-				      void          *buffer,
-				      gsize          count,
-				      GCancellable  *cancellable,
-				      GError       **error)
+                                      void          *buffer,
+                                      gsize          count,
+                                      GCancellable  *cancellable,
+                                      GError       **error)
 {
 	GtkSourceBufferInputStream *stream;
 	GtkTextIter iter;
@@ -252,21 +252,21 @@ _gtk_source_buffer_input_stream_read (GInputStream  *input_stream,
 		return -1;
 	}
 
-	if (stream->priv->buffer == NULL)
+	if (stream->buffer == NULL)
 	{
 		return 0;
 	}
 
 	/* Initialize the mark to the first char in the text buffer */
-	if (!stream->priv->is_initialized)
+	if (!stream->is_initialized)
 	{
-		gtk_text_buffer_get_start_iter (stream->priv->buffer, &iter);
-		stream->priv->pos = gtk_text_buffer_create_mark (stream->priv->buffer,
+		gtk_text_buffer_get_start_iter (stream->buffer, &iter);
+		stream->pos = gtk_text_buffer_create_mark (stream->buffer,
 								 NULL,
 								 &iter,
 								 FALSE);
 
-		stream->priv->is_initialized = TRUE;
+		stream->is_initialized = TRUE;
 	}
 
 	space_left = count;
@@ -277,24 +277,24 @@ _gtk_source_buffer_input_stream_read (GInputStream  *input_stream,
 		n = read_line (stream, (gchar *)buffer + read, space_left);
 		read += n;
 		space_left -= n;
-	} while (space_left > 0 && n != 0 && stream->priv->bytes_partial == 0);
+	} while (space_left > 0 && n != 0 && stream->bytes_partial == 0);
 
 	/* Make sure that non-empty files are always terminated with \n (see bug #95676).
 	 * Note that we strip the trailing \n when loading the file */
-	gtk_text_buffer_get_iter_at_mark (stream->priv->buffer,
+	gtk_text_buffer_get_iter_at_mark (stream->buffer,
 					  &iter,
-					  stream->priv->pos);
+					  stream->pos);
 
 	if (gtk_text_iter_is_end (&iter) &&
 	    !gtk_text_iter_is_start (&iter) &&
-	    stream->priv->add_trailing_newline)
+	    stream->add_trailing_newline)
 	{
 		gssize newline_size;
 
 		newline_size = get_new_line_size (stream);
 
 		if (space_left >= newline_size &&
-		    !stream->priv->newline_added)
+		    !stream->newline_added)
 		{
 			const gchar *newline;
 
@@ -303,7 +303,7 @@ _gtk_source_buffer_input_stream_read (GInputStream  *input_stream,
 			memcpy ((gchar *)buffer + read, newline, newline_size);
 
 			read += newline_size;
-			stream->priv->newline_added = TRUE;
+			stream->newline_added = TRUE;
 		}
 	}
 
@@ -312,17 +312,17 @@ _gtk_source_buffer_input_stream_read (GInputStream  *input_stream,
 
 static gboolean
 _gtk_source_buffer_input_stream_close (GInputStream  *input_stream,
-				       GCancellable  *cancellable,
-				       GError       **error)
+                                       GCancellable  *cancellable,
+                                       GError       **error)
 {
 	GtkSourceBufferInputStream *stream = GTK_SOURCE_BUFFER_INPUT_STREAM (input_stream);
 
-	stream->priv->newline_added = FALSE;
+	stream->newline_added = FALSE;
 
-	if (stream->priv->is_initialized &&
-	    stream->priv->buffer != NULL)
+	if (stream->is_initialized &&
+	    stream->buffer != NULL)
 	{
-		gtk_text_buffer_delete_mark (stream->priv->buffer, stream->priv->pos);
+		gtk_text_buffer_delete_mark (stream->buffer, stream->pos);
 	}
 
 	return TRUE;
@@ -330,25 +330,25 @@ _gtk_source_buffer_input_stream_close (GInputStream  *input_stream,
 
 static void
 _gtk_source_buffer_input_stream_set_property (GObject      *object,
-					      guint         prop_id,
-					      const GValue *value,
-					      GParamSpec   *pspec)
+                                              guint         prop_id,
+                                              const GValue *value,
+                                              GParamSpec   *pspec)
 {
 	GtkSourceBufferInputStream *stream = GTK_SOURCE_BUFFER_INPUT_STREAM (object);
 
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			g_assert (stream->priv->buffer == NULL);
-			stream->priv->buffer = g_value_dup_object (value);
+			g_assert (stream->buffer == NULL);
+			stream->buffer = g_value_dup_object (value);
 			break;
 
 		case PROP_NEWLINE_TYPE:
-			stream->priv->newline_type = g_value_get_enum (value);
+			stream->newline_type = g_value_get_enum (value);
 			break;
 
 		case PROP_ADD_TRAILING_NEWLINE:
-			stream->priv->add_trailing_newline = g_value_get_boolean (value);
+			stream->add_trailing_newline = g_value_get_boolean (value);
 			break;
 
 		default:
@@ -359,24 +359,24 @@ _gtk_source_buffer_input_stream_set_property (GObject      *object,
 
 static void
 _gtk_source_buffer_input_stream_get_property (GObject    *object,
-					  guint       prop_id,
-					  GValue     *value,
-					  GParamSpec *pspec)
+                                              guint       prop_id,
+                                              GValue     *value,
+                                              GParamSpec *pspec)
 {
 	GtkSourceBufferInputStream *stream = GTK_SOURCE_BUFFER_INPUT_STREAM (object);
 
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			g_value_set_object (value, stream->priv->buffer);
+			g_value_set_object (value, stream->buffer);
 			break;
 
 		case PROP_NEWLINE_TYPE:
-			g_value_set_enum (value, stream->priv->newline_type);
+			g_value_set_enum (value, stream->newline_type);
 			break;
 
 		case PROP_ADD_TRAILING_NEWLINE:
-			g_value_set_boolean (value, stream->priv->add_trailing_newline);
+			g_value_set_boolean (value, stream->add_trailing_newline);
 			break;
 
 		default:
@@ -390,7 +390,7 @@ _gtk_source_buffer_input_stream_dispose (GObject *object)
 {
 	GtkSourceBufferInputStream *stream = GTK_SOURCE_BUFFER_INPUT_STREAM (object);
 
-	g_clear_object (&stream->priv->buffer);
+	g_clear_object (&stream->buffer);
 
 	G_OBJECT_CLASS (_gtk_source_buffer_input_stream_parent_class)->dispose (object);
 }
@@ -455,7 +455,7 @@ _gtk_source_buffer_input_stream_class_init (GtkSourceBufferInputStreamClass *kla
 static void
 _gtk_source_buffer_input_stream_init (GtkSourceBufferInputStream *stream)
 {
-	stream->priv = _gtk_source_buffer_input_stream_get_instance_private (stream);
+	stream = _gtk_source_buffer_input_stream_get_instance_private (stream);
 }
 
 /**
@@ -468,8 +468,8 @@ _gtk_source_buffer_input_stream_init (GtkSourceBufferInputStream *stream)
  */
 GtkSourceBufferInputStream *
 _gtk_source_buffer_input_stream_new (GtkTextBuffer        *buffer,
-				     GtkSourceNewlineType  type,
-				     gboolean              add_trailing_newline)
+                                     GtkSourceNewlineType  type,
+                                     gboolean              add_trailing_newline)
 {
 	g_return_val_if_fail (GTK_IS_TEXT_BUFFER (buffer), NULL);
 
@@ -485,12 +485,12 @@ _gtk_source_buffer_input_stream_get_total_size (GtkSourceBufferInputStream *stre
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER_INPUT_STREAM (stream), 0);
 
-	if (stream->priv->buffer == NULL)
+	if (stream->buffer == NULL)
 	{
 		return 0;
 	}
 
-	return gtk_text_buffer_get_char_count (stream->priv->buffer);
+	return gtk_text_buffer_get_char_count (stream->buffer);
 }
 
 gsize
@@ -501,8 +501,8 @@ _gtk_source_buffer_input_stream_tell (GtkSourceBufferInputStream *stream)
 	/* FIXME: is this potentially inefficient? If yes, we could keep
 	   track of the offset internally, assuming the mark doesn't move
 	   during the operation */
-	if (!stream->priv->is_initialized ||
-	    stream->priv->buffer == NULL)
+	if (!stream->is_initialized ||
+	    stream->buffer == NULL)
 	{
 		return 0;
 	}
@@ -510,9 +510,9 @@ _gtk_source_buffer_input_stream_tell (GtkSourceBufferInputStream *stream)
 	{
 		GtkTextIter iter;
 
-		gtk_text_buffer_get_iter_at_mark (stream->priv->buffer,
+		gtk_text_buffer_get_iter_at_mark (stream->buffer,
 						  &iter,
-						  stream->priv->pos);
+						  stream->pos);
 		return gtk_text_iter_get_offset (&iter);
 	}
 }

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ This file is part of GtkSourceView
+
+ Copyright 2020 Christian Hergert <chergert@redhat.com>
+
+ gtksourceview is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Lesser General Public
+ License as published by the Free Software Foundation; either
+ version 2.1 of the License, or (at your option) any later version.
+
+ gtksourceview is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Lesser General Public License for more details.
+
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
+
+-->
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+         datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<start>
+  <element name="snippets">
+    <choice>
+      <attribute name="group"/>
+      <attribute name="_group"/>
+    </choice>
+    <attribute name="version">
+      <value>1.0</value>
+    </attribute>
+    <optional>
+      <oneOrMore>
+        <element name="snippet">
+          <choice>
+            <attribute name="name"/>
+            <attribute name="_name"/>
+          </choice>
+          <choice>
+            <attribute name="description"/>
+            <attribute name="_description"/>
+          </choice>
+          <attribute name="trigger"/>
+          <oneOrMore>
+            <element name="text">
+              <optional>
+                <attribute name="languages"/>
+              </optional>
+              <text/>
+            </element>
+          </oneOrMore>
+          <oneOrMore>
+            <element name="tooltip">
+              <attribute name="position"/>
+              <attribute name="text"/>
+            </element>
+          </oneOrMore>
+        </element>
+      </oneOrMore>
+    </optional>
+  </element>
+</start>
+</grammar>

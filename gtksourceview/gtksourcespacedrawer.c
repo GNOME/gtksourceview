@@ -1,13 +1,12 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2008, 2011, 2016 - Paolo Borelli <pborelli@gnome.org>
- * Copyright (C) 2008, 2010 - Ignacio Casal Quinteiro <icq@gnome.org>
- * Copyright (C) 2010 - Garret Regier
- * Copyright (C) 2013 - Arpad Borsos <arpad.borsos@googlemail.com>
- * Copyright (C) 2015, 2016 - Sébastien Wilmet <swilmet@gnome.org>
- * Copyright (C) 2016 - Christian Hergert <christian@hergert.me>
+ * Copyright 2008, 2011, 2016 - Paolo Borelli <pborelli@gnome.org>
+ * Copyright 2008, 2010 - Ignacio Casal Quinteiro <icq@gnome.org>
+ * Copyright 2010 - Garret Regier
+ * Copyright 2013 - Arpad Borsos <arpad.borsos@googlemail.com>
+ * Copyright 2015, 2016 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2016 - Christian Hergert <christian@hergert.me>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,16 +22,15 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourcespacedrawer.h"
 #include "gtksourcespacedrawer-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
-#include "gtksourceiter.h"
+#include "gtksourceiter-private.h"
 #include "gtksourcestylescheme.h"
+#include "gtksourcestylescheme-private.h"
 #include "gtksourcetag.h"
 #include "gtksourceview.h"
 
@@ -90,16 +88,41 @@
  * default with a DVD of Matrix, in case the astronauts are bored.
  */
 
-/*
-#define ENABLE_PROFILE
-*/
-#undef ENABLE_PROFILE
+#if 0
+# define ENABLE_PROFILE
+#else
+# undef ENABLE_PROFILE
+#endif
 
-struct _GtkSourceSpaceDrawerPrivate
+typedef enum
 {
+	DRAW_TAB,
+	DRAW_NARROW_NBSP,
+	DRAW_NBSP,
+	DRAW_SPACE,
+	DRAW_NEWLINE,
+	N_DRAW
+} Draw;
+
+typedef struct
+{
+	GskRenderNode *node;
+	gint           width;
+	gint           height;
+} CachedNode;
+
+struct _GtkSourceSpaceDrawer
+{
+	GObject                  parent_instance;
+
 	GtkSourceSpaceTypeFlags *matrix;
-	GdkRGBA *color;
-	guint enable_matrix : 1;
+
+	CachedNode               cached[N_DRAW];
+
+	GdkRGBA                  color;
+
+	guint                    color_set : 1;
+	guint                    enable_matrix : 1;
 };
 
 enum
@@ -112,7 +135,20 @@ enum
 
 static GParamSpec *properties[N_PROPERTIES];
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceSpaceDrawer, gtk_source_space_drawer, G_TYPE_OBJECT)
+G_DEFINE_TYPE (GtkSourceSpaceDrawer, gtk_source_space_drawer, G_TYPE_OBJECT)
+
+static void
+gtk_source_space_drawer_purge_cache (GtkSourceSpaceDrawer *drawer)
+{
+	guint i;
+
+	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
+
+	for (i = 0; i < G_N_ELEMENTS (drawer->cached); i++)
+	{
+		g_clear_pointer (&drawer->cached[i].node, gsk_render_node_unref);
+	}
+}
 
 static gint
 get_number_of_locations (void)
@@ -165,7 +201,7 @@ is_zero_matrix (GtkSourceSpaceDrawer *drawer)
 
 	for (i = 0; i < num_locations; i++)
 	{
-		if (drawer->priv->matrix[i] != 0)
+		if (drawer->matrix[i] != 0)
 		{
 			return FALSE;
 		}
@@ -185,9 +221,9 @@ set_zero_matrix (GtkSourceSpaceDrawer *drawer)
 
 	for (i = 0; i < num_locations; i++)
 	{
-		if (drawer->priv->matrix[i] != 0)
+		if (drawer->matrix[i] != 0)
 		{
-			drawer->priv->matrix[i] = 0;
+			drawer->matrix[i] = 0;
 			changed = TRUE;
 		}
 	}
@@ -201,7 +237,7 @@ set_zero_matrix (GtkSourceSpaceDrawer *drawer)
 /* AND */
 static GtkSourceSpaceTypeFlags
 get_types_at_all_locations (GtkSourceSpaceDrawer        *drawer,
-			    GtkSourceSpaceLocationFlags  locations)
+                            GtkSourceSpaceLocationFlags  locations)
 {
 	GtkSourceSpaceTypeFlags ret = GTK_SOURCE_SPACE_TYPE_ALL;
 	gint index;
@@ -216,7 +252,7 @@ get_types_at_all_locations (GtkSourceSpaceDrawer        *drawer,
 	{
 		if ((locations & 1) == 1)
 		{
-			ret &= drawer->priv->matrix[index];
+			ret &= drawer->matrix[index];
 			found = TRUE;
 		}
 
@@ -230,7 +266,7 @@ get_types_at_all_locations (GtkSourceSpaceDrawer        *drawer,
 /* OR */
 static GtkSourceSpaceTypeFlags
 get_types_at_any_locations (GtkSourceSpaceDrawer        *drawer,
-			    GtkSourceSpaceLocationFlags  locations)
+                            GtkSourceSpaceLocationFlags  locations)
 {
 	GtkSourceSpaceTypeFlags ret = GTK_SOURCE_SPACE_TYPE_NONE;
 	gint index;
@@ -243,7 +279,7 @@ get_types_at_any_locations (GtkSourceSpaceDrawer        *drawer,
 	{
 		if ((locations & 1) == 1)
 		{
-			ret |= drawer->priv->matrix[index];
+			ret |= drawer->matrix[index];
 		}
 
 		locations >>= 1;
@@ -255,9 +291,9 @@ get_types_at_any_locations (GtkSourceSpaceDrawer        *drawer,
 
 static void
 gtk_source_space_drawer_get_property (GObject    *object,
-				      guint       prop_id,
-				      GValue     *value,
-				      GParamSpec *pspec)
+                                      guint       prop_id,
+                                      GValue     *value,
+                                      GParamSpec *pspec)
 {
 	GtkSourceSpaceDrawer *drawer = GTK_SOURCE_SPACE_DRAWER (object);
 
@@ -279,9 +315,9 @@ gtk_source_space_drawer_get_property (GObject    *object,
 
 static void
 gtk_source_space_drawer_set_property (GObject      *object,
-				      guint         prop_id,
-				      const GValue *value,
-				      GParamSpec   *pspec)
+                                      guint         prop_id,
+                                      const GValue *value,
+                                      GParamSpec   *pspec)
 {
 	GtkSourceSpaceDrawer *drawer = GTK_SOURCE_SPACE_DRAWER (object);
 
@@ -306,12 +342,8 @@ gtk_source_space_drawer_finalize (GObject *object)
 {
 	GtkSourceSpaceDrawer *drawer = GTK_SOURCE_SPACE_DRAWER (object);
 
-	g_free (drawer->priv->matrix);
-
-	if (drawer->priv->color != NULL)
-	{
-		gdk_rgba_free (drawer->priv->color);
-	}
+	gtk_source_space_drawer_purge_cache (drawer);
+	g_free (drawer->matrix);
 
 	G_OBJECT_CLASS (gtk_source_space_drawer_parent_class)->finalize (object);
 }
@@ -376,9 +408,7 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 static void
 gtk_source_space_drawer_init (GtkSourceSpaceDrawer *drawer)
 {
-	drawer->priv = gtk_source_space_drawer_get_instance_private (drawer);
-
-	drawer->priv->matrix = g_new0 (GtkSourceSpaceTypeFlags, get_number_of_locations ());
+	drawer->matrix = g_new0 (GtkSourceSpaceTypeFlags, get_number_of_locations ());
 }
 
 /**
@@ -415,7 +445,7 @@ gtk_source_space_drawer_new (void)
  */
 GtkSourceSpaceTypeFlags
 gtk_source_space_drawer_get_types_for_locations (GtkSourceSpaceDrawer        *drawer,
-						 GtkSourceSpaceLocationFlags  locations)
+                                                 GtkSourceSpaceLocationFlags  locations)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer), GTK_SOURCE_SPACE_TYPE_NONE);
 
@@ -435,8 +465,8 @@ gtk_source_space_drawer_get_types_for_locations (GtkSourceSpaceDrawer        *dr
  */
 void
 gtk_source_space_drawer_set_types_for_locations (GtkSourceSpaceDrawer        *drawer,
-						 GtkSourceSpaceLocationFlags  locations,
-						 GtkSourceSpaceTypeFlags      types)
+                                                 GtkSourceSpaceLocationFlags  locations,
+                                                 GtkSourceSpaceTypeFlags      types)
 {
 	gint index;
 	gint num_locations;
@@ -450,9 +480,9 @@ gtk_source_space_drawer_set_types_for_locations (GtkSourceSpaceDrawer        *dr
 	while (locations != 0 && index < num_locations)
 	{
 		if ((locations & 1) == 1 &&
-		    drawer->priv->matrix[index] != types)
+		    drawer->matrix[index] != types)
 		{
-			drawer->priv->matrix[index] = types;
+			drawer->matrix[index] = types;
 			changed = TRUE;
 		}
 
@@ -502,7 +532,7 @@ gtk_source_space_drawer_get_matrix (GtkSourceSpaceDrawer *drawer)
 	{
 		GVariant *space_types;
 
-		space_types = g_variant_new_uint32 (drawer->priv->matrix[i]);
+		space_types = g_variant_new_uint32 (drawer->matrix[i]);
 
 		g_variant_builder_add_value (&builder, space_types);
 	}
@@ -527,7 +557,7 @@ gtk_source_space_drawer_get_matrix (GtkSourceSpaceDrawer *drawer)
  */
 void
 gtk_source_space_drawer_set_matrix (GtkSourceSpaceDrawer *drawer,
-				    GVariant             *matrix)
+                                    GVariant             *matrix)
 {
 	gint num_locations;
 	gint index;
@@ -561,9 +591,9 @@ gtk_source_space_drawer_set_matrix (GtkSourceSpaceDrawer *drawer,
 
 		space_types = g_variant_get_uint32 (child);
 
-		if (drawer->priv->matrix[index] != space_types)
+		if (drawer->matrix[index] != space_types)
 		{
-			drawer->priv->matrix[index] = space_types;
+			drawer->matrix[index] = space_types;
 			changed = TRUE;
 		}
 
@@ -573,9 +603,9 @@ gtk_source_space_drawer_set_matrix (GtkSourceSpaceDrawer *drawer,
 
 	while (index < num_locations)
 	{
-		if (drawer->priv->matrix[index] != 0)
+		if (drawer->matrix[index] != 0)
 		{
-			drawer->priv->matrix[index] = 0;
+			drawer->matrix[index] = 0;
 			changed = TRUE;
 		}
 
@@ -606,7 +636,7 @@ gtk_source_space_drawer_get_enable_matrix (GtkSourceSpaceDrawer *drawer)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer), FALSE);
 
-	return drawer->priv->enable_matrix;
+	return drawer->enable_matrix;
 }
 
 /**
@@ -620,23 +650,23 @@ gtk_source_space_drawer_get_enable_matrix (GtkSourceSpaceDrawer *drawer)
  */
 void
 gtk_source_space_drawer_set_enable_matrix (GtkSourceSpaceDrawer *drawer,
-					   gboolean              enable_matrix)
+                                           gboolean              enable_matrix)
 {
 	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
 
 	enable_matrix = enable_matrix != FALSE;
 
-	if (drawer->priv->enable_matrix != enable_matrix)
+	if (drawer->enable_matrix != enable_matrix)
 	{
-		drawer->priv->enable_matrix = enable_matrix;
+		drawer->enable_matrix = enable_matrix;
 		g_object_notify_by_pspec (G_OBJECT (drawer), properties[PROP_ENABLE_MATRIX]);
 	}
 }
 
 static gboolean
 matrix_get_mapping (GValue   *value,
-		    GVariant *variant,
-		    gpointer  user_data)
+                    GVariant *variant,
+                    gpointer  user_data)
 {
 	g_value_set_variant (value, variant);
 	return TRUE;
@@ -644,8 +674,8 @@ matrix_get_mapping (GValue   *value,
 
 static GVariant *
 matrix_set_mapping (const GValue       *value,
-		    const GVariantType *expected_type,
-		    gpointer            user_data)
+                    const GVariantType *expected_type,
+                    gpointer            user_data)
 {
 	return g_value_dup_variant (value);
 }
@@ -671,9 +701,9 @@ matrix_set_mapping (const GValue       *value,
  */
 void
 gtk_source_space_drawer_bind_matrix_setting (GtkSourceSpaceDrawer *drawer,
-					     GSettings            *settings,
-					     const gchar          *key,
-					     GSettingsBindFlags    flags)
+                                             GSettings            *settings,
+                                             const gchar          *key,
+                                             GSettingsBindFlags    flags)
 {
 	GVariant *value;
 
@@ -701,7 +731,7 @@ gtk_source_space_drawer_bind_matrix_setting (GtkSourceSpaceDrawer *drawer,
 
 void
 _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
-				       GtkSourceView        *view)
+                                       GtkSourceView        *view)
 {
 	GtkSourceBuffer *buffer;
 	GtkSourceStyleScheme *style_scheme;
@@ -709,11 +739,9 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
-	if (drawer->priv->color != NULL)
-	{
-		gdk_rgba_free (drawer->priv->color);
-		drawer->priv->color = NULL;
-	}
+	gtk_source_space_drawer_purge_cache (drawer);
+
+	drawer->color_set = FALSE;
 
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 	style_scheme = gtk_source_buffer_get_style_scheme (buffer);
@@ -739,27 +767,22 @@ _gtk_source_space_drawer_update_color (GtkSourceSpaceDrawer *drawer,
 			    color_str != NULL &&
 			    gdk_rgba_parse (&color, color_str))
 			{
-				drawer->priv->color = gdk_rgba_copy (&color);
+				drawer->color = color;
+				drawer->color_set = TRUE;
 			}
 
 			g_free (color_str);
 		}
 	}
 
-	if (drawer->priv->color == NULL)
+	if (!drawer->color_set)
 	{
 		GtkStyleContext *context;
-		GdkRGBA color;
 
 		context = gtk_widget_get_style_context (GTK_WIDGET (view));
-		gtk_style_context_save (context);
-		gtk_style_context_set_state (context, GTK_STATE_FLAG_INSENSITIVE);
-		gtk_style_context_get_color (context,
-					     gtk_style_context_get_state (context),
-					     &color);
-		gtk_style_context_restore (context);
-
-		drawer->priv->color = gdk_rgba_copy (&color);
+		gtk_style_context_get_color (context, &drawer->color);
+		drawer->color.alpha *= .5;
+		drawer->color_set = TRUE;
 	}
 }
 
@@ -809,61 +832,43 @@ is_whitespace (gunichar ch)
 }
 
 static void
-draw_space_at_pos (cairo_t      *cr,
-		   GdkRectangle  rect)
+draw_space_at_pos (cairo_t *cr,
+                   gdouble  w,
+                   gdouble  h)
 {
-	gint x, y;
-	gdouble w;
+	const gint x = 0;
+	const gint y = h * 2 / 3;
 
-	x = rect.x;
-	y = rect.y + rect.height * 2 / 3;
-
-	w = rect.width;
-
-	cairo_save (cr);
 	cairo_move_to (cr, x + w * 0.5, y);
 	cairo_arc (cr, x + w * 0.5, y, 0.8, 0, 2 * G_PI);
 	cairo_stroke (cr);
-	cairo_restore (cr);
 }
 
 static void
-draw_tab_at_pos (cairo_t      *cr,
-		 GdkRectangle  rect)
+draw_tab_at_pos (cairo_t *cr,
+                 gdouble  w,
+                 gdouble  h)
 {
-	gint x, y;
-	gdouble w, h;
+	const gint x = 0;
+	const gint y = h * 2 / 3;
 
-	x = rect.x;
-	y = rect.y + rect.height * 2 / 3;
-
-	w = rect.width;
-	h = rect.height;
-
-	cairo_save (cr);
 	cairo_move_to (cr, x + h * 1 / 6, y);
 	cairo_rel_line_to (cr, w - h * 2 / 6, 0);
 	cairo_rel_line_to (cr, -h * 1 / 4, -h * 1 / 4);
 	cairo_rel_move_to (cr, +h * 1 / 4, +h * 1 / 4);
 	cairo_rel_line_to (cr, -h * 1 / 4, +h * 1 / 4);
 	cairo_stroke (cr);
-	cairo_restore (cr);
 }
 
 static void
-draw_newline_at_pos (cairo_t      *cr,
-		     GdkRectangle  rect)
+draw_newline_at_pos (cairo_t *cr,
+                     gdouble  w,
+                     gdouble  h)
 {
-	gint x, y;
-	gdouble w, h;
+	const gint x = 0;
+	const gint y = h / 3;
 
-	x = rect.x;
-	y = rect.y + rect.height / 3;
-
-	w = 2 * rect.width;
-	h = rect.height;
-
-	cairo_save (cr);
+	w = w * 2;
 
 	if (gtk_widget_get_default_direction () == GTK_TEXT_DIR_LTR)
 	{
@@ -885,48 +890,50 @@ draw_newline_at_pos (cairo_t      *cr,
 	}
 
 	cairo_stroke (cr);
-	cairo_restore (cr);
 }
 
 static void
-draw_nbsp_at_pos (cairo_t      *cr,
-		  GdkRectangle  rect,
-		  gboolean      narrowed)
+draw_narrow_nbsp_at_pos (cairo_t *cr,
+                         gdouble  w,
+                         gdouble  h)
 {
-	gint x, y;
-	gdouble w, h;
+	const gint x = 0;
+	const gint y = h / 2;
 
-	x = rect.x;
-	y = rect.y + rect.height / 2;
-
-	w = rect.width;
-	h = rect.height;
-
-	cairo_save (cr);
 	cairo_move_to (cr, x + w * 1 / 6, y);
 	cairo_rel_line_to (cr, w * 4 / 6, 0);
 	cairo_rel_line_to (cr, -w * 2 / 6, +h * 1 / 4);
 	cairo_rel_line_to (cr, -w * 2 / 6, -h * 1 / 4);
-
-	if (narrowed)
-	{
-		cairo_fill (cr);
-	}
-	else
-	{
-		cairo_stroke (cr);
-	}
-
-	cairo_restore (cr);
+	cairo_fill (cr);
 }
 
 static void
-draw_whitespace_at_iter (GtkTextView *text_view,
-			 GtkTextIter *iter,
-			 cairo_t     *cr)
+draw_nbsp_at_pos (cairo_t *cr,
+                  gdouble  w,
+                  gdouble  h)
 {
-	gunichar ch;
+	const gint x = 0;
+	const gint y = h / 2;
+
+	cairo_move_to (cr, x + w * 1 / 6, y);
+	cairo_rel_line_to (cr, w * 4 / 6, 0);
+	cairo_rel_line_to (cr, -w * 2 / 6, +h * 1 / 4);
+	cairo_rel_line_to (cr, -w * 2 / 6, -h * 1 / 4);
+	cairo_stroke (cr);
+}
+
+static void
+draw_whitespace_at_iter (GtkSourceSpaceDrawer *drawer,
+                         GtkTextView          *text_view,
+                         const GtkTextIter    *iter,
+                         const GdkRGBA        *color,
+                         GtkSnapshot          *snapshot)
+{
+	void (*draw) (cairo_t *cr, gdouble w, gdouble h) = NULL;
+	CachedNode *cache = NULL;
 	GdkRectangle rect;
+	gunichar ch;
+	gint ratio = 1;
 
 	gtk_text_view_get_iter_location (text_view, iter, &rect);
 
@@ -942,26 +949,73 @@ draw_whitespace_at_iter (GtkTextView *text_view,
 
 	if (is_tab (ch))
 	{
-		draw_tab_at_pos (cr, rect);
+		draw = draw_tab_at_pos;
+		cache = &drawer->cached[DRAW_TAB];
 	}
 	else if (is_nbsp (ch))
 	{
-		draw_nbsp_at_pos (cr, rect, is_narrowed_nbsp (ch));
+		if (is_narrowed_nbsp (ch))
+		{
+			draw = draw_narrow_nbsp_at_pos;
+			cache = &drawer->cached[DRAW_NARROW_NBSP];
+		}
+		else
+		{
+			draw = draw_nbsp_at_pos;
+			cache = &drawer->cached[DRAW_NBSP];
+		}
 	}
 	else if (is_space (ch))
 	{
-		draw_space_at_pos (cr, rect);
+		draw = draw_space_at_pos;
+		cache = &drawer->cached[DRAW_SPACE];
 	}
 	else if (is_newline (iter))
 	{
-		draw_newline_at_pos (cr, rect);
+		draw = draw_newline_at_pos;
+		cache = &drawer->cached[DRAW_NEWLINE];
+		ratio = 2;
+	}
+
+	g_assert (draw == NULL || cache != NULL);
+
+	if (draw != NULL)
+	{
+		if (cache->width != rect.width || cache->height != rect.height)
+		{
+			g_clear_pointer (&cache->node, gsk_render_node_unref);
+		}
+
+		if G_UNLIKELY (cache->node == NULL)
+		{
+			GtkSnapshot *to_cache;
+			cairo_t *cr;
+
+			to_cache = gtk_snapshot_new ();
+			cr = gtk_snapshot_append_cairo (to_cache,
+			                                &GRAPHENE_RECT_INIT (0, 0, rect.width * ratio, rect.height));
+			gdk_cairo_set_source_rgba (cr, color);
+			cairo_set_line_width (cr, 0.8);
+			cairo_translate (cr, -0.5, -0.5);
+			draw (cr, rect.width, rect.height);
+			cairo_destroy (cr);
+
+			cache->node = gtk_snapshot_free_to_node (g_steal_pointer (&to_cache));
+			cache->width = rect.width;
+			cache->height = rect.height;
+		}
+
+		gtk_snapshot_save (snapshot);
+		gtk_snapshot_translate (snapshot, &GRAPHENE_POINT_INIT (rect.x, rect.y));
+		gtk_snapshot_append_node (snapshot, cache->node);
+		gtk_snapshot_restore (snapshot);
 	}
 }
 
 static void
 space_needs_drawing_according_to_tag (const GtkTextIter *iter,
-				      gboolean          *has_tag,
-				      gboolean          *needs_drawing)
+                                      gboolean          *has_tag,
+                                      gboolean          *needs_drawing)
 {
 	GSList *tags;
 	GSList *l;
@@ -1000,8 +1054,8 @@ space_needs_drawing_according_to_tag (const GtkTextIter *iter,
 
 static GtkSourceSpaceLocationFlags
 get_iter_locations (const GtkTextIter *iter,
-		    const GtkTextIter *leading_end,
-		    const GtkTextIter *trailing_start)
+                    const GtkTextIter *leading_end,
+                    const GtkTextIter *trailing_start)
 {
 	GtkSourceSpaceLocationFlags iter_locations = GTK_SOURCE_SPACE_LOCATION_NONE;
 
@@ -1053,9 +1107,9 @@ get_iter_space_type (const GtkTextIter *iter)
 
 static gboolean
 space_needs_drawing_according_to_matrix (GtkSourceSpaceDrawer *drawer,
-					 const GtkTextIter    *iter,
-					 const GtkTextIter    *leading_end,
-					 const GtkTextIter    *trailing_start)
+                                         const GtkTextIter    *iter,
+                                         const GtkTextIter    *leading_end,
+                                         const GtkTextIter    *trailing_start)
 {
 	GtkSourceSpaceLocationFlags iter_locations;
 	GtkSourceSpaceTypeFlags iter_space_type;
@@ -1070,9 +1124,9 @@ space_needs_drawing_according_to_matrix (GtkSourceSpaceDrawer *drawer,
 
 static gboolean
 space_needs_drawing (GtkSourceSpaceDrawer *drawer,
-		     const GtkTextIter    *iter,
-		     const GtkTextIter    *leading_end,
-		     const GtkTextIter    *trailing_start)
+                     const GtkTextIter    *iter,
+                     const GtkTextIter    *leading_end,
+                     const GtkTextIter    *trailing_start)
 {
 	gboolean has_tag;
 	gboolean needs_drawing;
@@ -1085,17 +1139,17 @@ space_needs_drawing (GtkSourceSpaceDrawer *drawer,
 	}
 
 	/* Check the matrix */
-	return (drawer->priv->enable_matrix &&
+	return (drawer->enable_matrix &&
 		space_needs_drawing_according_to_matrix (drawer, iter, leading_end, trailing_start));
 }
 
 static void
 get_line_end (GtkTextView       *text_view,
-	      const GtkTextIter *start_iter,
-	      GtkTextIter       *line_end,
-	      gint               max_x,
-	      gint               max_y,
-	      gboolean           is_wrapping)
+              const GtkTextIter *start_iter,
+              GtkTextIter       *line_end,
+              gint               max_x,
+              gint               max_y,
+              gboolean           is_wrapping)
 {
 	gint min;
 	gint max;
@@ -1145,12 +1199,12 @@ get_line_end (GtkTextView       *text_view,
 
 void
 _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
-			       GtkSourceView        *view,
-			       cairo_t              *cr)
+                               GtkSourceView        *view,
+                               GtkSnapshot          *snapshot)
 {
 	GtkTextView *text_view;
 	GtkTextBuffer *buffer;
-	GdkRectangle clip;
+	GdkRectangle visible;
 	gint min_x;
 	gint min_y;
 	gint max_x;
@@ -1175,9 +1229,8 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 
 	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
-	g_return_if_fail (cr != NULL);
 
-	if (drawer->priv->color == NULL)
+	if (!drawer->color_set)
 	{
 		g_warning ("GtkSourceSpaceDrawer: color not set.");
 		return;
@@ -1186,31 +1239,23 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	text_view = GTK_TEXT_VIEW (view);
 	buffer = gtk_text_view_get_buffer (text_view);
 
-	if ((!drawer->priv->enable_matrix || is_zero_matrix (drawer)) &&
+	if ((!drawer->enable_matrix || is_zero_matrix (drawer)) &&
 	    !_gtk_source_buffer_has_spaces_tag (GTK_SOURCE_BUFFER (buffer)))
 	{
 		return;
 	}
 
-	if (!gdk_cairo_get_clip_rectangle (cr, &clip))
-	{
-		return;
-	}
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible);
 
 	is_wrapping = gtk_text_view_get_wrap_mode (text_view) != GTK_WRAP_NONE;
 
-	min_x = clip.x;
-	min_y = clip.y;
-	max_x = min_x + clip.width;
-	max_y = min_y + clip.height;
+	min_x = visible.x;
+	min_y = visible.y;
+	max_x = min_x + visible.width;
+	max_y = min_y + visible.height;
 
 	gtk_text_view_get_iter_at_location (text_view, &start, min_x, min_y);
 	gtk_text_view_get_iter_at_location (text_view, &end, max_x, max_y);
-
-	cairo_save (cr);
-	gdk_cairo_set_source_rgba (cr, drawer->priv->color);
-	cairo_set_line_width (cr, 0.8);
-	cairo_translate (cr, -0.5, -0.5);
 
 	iter = start;
 	_gtk_source_iter_get_leading_spaces_end_boundary (&iter, &leading_end);
@@ -1226,7 +1271,11 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 		if ((is_whitespace (ch) || gtk_text_iter_is_end (&iter)) &&
 		    space_needs_drawing (drawer, &iter, &leading_end, &trailing_start))
 		{
-			draw_whitespace_at_iter (text_view, &iter, cr);
+			draw_whitespace_at_iter (drawer,
+			                         text_view,
+			                         &iter,
+			                         &drawer->color,
+			                         snapshot);
 		}
 
 		if (gtk_text_iter_is_end (&iter) ||
@@ -1278,8 +1327,6 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 			get_line_end (text_view, &iter, &line_end, max_x, max_y, is_wrapping);
 		}
 	};
-
-	cairo_restore (cr);
 
 #ifdef ENABLE_PROFILE
 	g_timer_stop (timer);

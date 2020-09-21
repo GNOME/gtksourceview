@@ -1,8 +1,7 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2015 - Université Catholique de Louvain
+ * Copyright 2015 - Université Catholique de Louvain
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +19,7 @@
  * Author: Sébastien Wilmet
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourcetag.h"
 
@@ -39,28 +36,29 @@
  * a #GtkTextTag, not a #GtkSourceTag.
  */
 
-typedef struct _GtkSourceTagPrivate GtkSourceTagPrivate;
-
-struct _GtkSourceTagPrivate
+typedef struct
 {
 	guint draw_spaces : 1;
 	guint draw_spaces_set : 1;
-};
+} GtkSourceTagPrivate;
 
 enum
 {
 	PROP_0,
 	PROP_DRAW_SPACES,
 	PROP_DRAW_SPACES_SET,
+	N_PROPS
 };
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceTag, gtk_source_tag, GTK_TYPE_TEXT_TAG)
 
+static GParamSpec *properties[N_PROPS];
+
 static void
 gtk_source_tag_get_property (GObject    *object,
-			     guint       prop_id,
-			     GValue     *value,
-			     GParamSpec *pspec)
+                             guint       prop_id,
+                             GValue     *value,
+                             GParamSpec *pspec)
 {
 	GtkSourceTagPrivate *priv;
 
@@ -84,9 +82,9 @@ gtk_source_tag_get_property (GObject    *object,
 
 static void
 gtk_source_tag_set_property (GObject      *object,
-			     guint         prop_id,
-			     const GValue *value,
-			     GParamSpec   *pspec)
+                             guint         prop_id,
+                             const GValue *value,
+                             GParamSpec   *pspec)
 {
 	GtkSourceTag *tag;
 	GtkSourceTagPrivate *priv;
@@ -97,19 +95,20 @@ gtk_source_tag_set_property (GObject      *object,
 
 	switch (prop_id)
 	{
-		case PROP_DRAW_SPACES:
-			priv->draw_spaces = g_value_get_boolean (value);
-			priv->draw_spaces_set = TRUE;
-			g_object_notify (object, "draw-spaces-set");
-			break;
+	case PROP_DRAW_SPACES:
+		priv->draw_spaces = g_value_get_boolean (value);
+		priv->draw_spaces_set = TRUE;
+		g_object_notify_by_pspec (object,
+		                          properties[PROP_DRAW_SPACES_SET]);
+		break;
 
-		case PROP_DRAW_SPACES_SET:
-			priv->draw_spaces_set = g_value_get_boolean (value);
-			break;
+	case PROP_DRAW_SPACES_SET:
+		priv->draw_spaces_set = g_value_get_boolean (value);
+		break;
 
-		default:
-			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-			break;
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+		break;
 	}
 
 	gtk_text_tag_changed (GTK_TEXT_TAG (tag), size_changed);
@@ -135,14 +134,14 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 	 *
 	 * Since: 3.20
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_DRAW_SPACES,
-					 g_param_spec_boolean ("draw-spaces",
-							       "Draw Spaces",
-							       "",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_DRAW_SPACES] =
+		g_param_spec_boolean ("draw-spaces",
+		                      "Draw Spaces",
+		                      "",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceTag:draw-spaces-set:
@@ -152,14 +151,16 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 	 *
 	 * Since: 3.20
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_DRAW_SPACES_SET,
-					 g_param_spec_boolean ("draw-spaces-set",
-							       "Draw Spaces Set",
-							       "",
-							       FALSE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_DRAW_SPACES_SET] =
+		g_param_spec_boolean ("draw-spaces-set",
+		                      "Draw Spaces Set",
+		                      "",
+		                      FALSE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_EXPLICIT_NOTIFY |
+		                       G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void

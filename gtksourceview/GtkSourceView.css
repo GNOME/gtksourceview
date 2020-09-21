@@ -1,0 +1,149 @@
+@define-color selected_border_color shade(@theme_selected_bg_color, 0.9);
+
+GtkSourceAssistant {
+  background-color: @theme_bg_color;
+  border-radius: 7px;
+  font: initial;
+  margin: 10px 10px 10px 10px;
+  box-shadow: 0 3px 5px 1px @wm_shadow,
+              0 0 0 1px alpha(@wm_border, 1);
+  outline: 1px solid alpha(@wm_highlight, 0.25);
+  background: @theme_bg_color;
+}
+
+GtkSourceAssistant.completion {
+  background-color: @content_view_bg;
+  border: none;
+  min-width: 150px;
+}
+GtkSourceAssistant.completion scrollbar.vertical slider {
+  min-height: 10px;
+}
+GtkSourceAssistant.completion scrollbar.vertical {
+  border-top-right-radius: 5px;
+}
+GtkSourceAssistant.completion scrolledwindow:last-child scrollbar.vertical {
+  border-bottom-right-radius: 5px;
+}
+GtkSourceAssistant.completion list {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin: 0px;
+}
+GtkSourceAssistant.completion list,
+GtkSourceAssistant.completion list row:not(:selected):not(:hover),
+GtkSourceAssistant.completion list row cell {
+  background: transparent;
+}
+GtkSourceAssistant.completion list row {
+  transition: none;
+  box-shadow: none;
+}
+GtkSourceAssistant.completion list row:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+GtkSourceAssistant.completion scrolledwindow:last-child list row:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+GtkSourceAssistant.completion list row cell.icon {
+  padding: 6px;
+  min-width: 16px;
+  min-height: 16px;
+}
+GtkSourceAssistant.completion list row cell.typed-text {
+  margin-left: 6px;
+  margin-right: 6px;
+  min-height: 28px;
+}
+GtkSourceAssistant.completion list row cell.after {
+  margin-right: 6px;
+}
+GtkSourceAssistant.completion list row cell.before {
+  opacity: 0.65;
+}
+GtkSourceAssistant.completion list row box.more button {
+  margin: 0px;
+  padding: 0px;
+}
+GtkSourceAssistant.completion list row box.more button image {
+  margin: 0px;
+  padding: 0px;
+}
+GtkSourceAssistant.completion box.details {
+  border-top: 1px solid @borders;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: @theme_bg_color;
+  padding-left: 6px;
+  padding-right: 3px;
+}
+GtkSourceAssistant.completion box.details cell {
+  margin-left: 24px;
+  margin-bottom: 8px;
+}
+GtkSourceAssistant.completion box.details button.flat {
+  min-height: 8px;
+  margin: 3px 0px;
+  padding: 3px 6px;
+}
+
+GtkSourceAssistant.completion-info {
+  padding: 6px;
+}
+
+GtkSourceAssistant.informative label {
+  padding-right: 10px;
+}
+GtkSourceAssistant.informative image {
+  margin: 0 6px 0 0;
+  padding: 6px 10px 6px 9px;
+  min-width: 16px;
+  min-height: 16px;
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+  background-color: @borders;
+}
+
+GtkSourceAssistant.informative.warning {
+  background-color: @warning_color;
+  color: @theme_selected_fg_color;
+  border-color: shade(@warning_color, 0.8);
+  text-shadow: 0 1px shade(@warning_color, 0.8);
+  -gtk-icon-shadow: 0 1px shade(@warning_color, 0.8);
+}
+GtkSourceAssistant.informative.warning image {
+  background-color: shade(@warning_color, 0.8);
+}
+
+GtkSourceAssistant.informative.error {
+  background-color: @error_color;
+  color: @theme_selected_fg_color;
+  border-color: shade(@error_color, 0.8);
+  text-shadow: 0 1px shade(@error_color, 0.8);
+  -gtk-icon-shadow: 0 1px shade(@error_color, 0.8);
+}
+GtkSourceAssistant.informative.error image {
+  background-color: shade(@error_color, 0.8);
+}
+
+GtkSourceAssistant.informative.other {
+  background-color: @success_color;
+  color: @theme_selected_fg_color;
+  border-color: shade(@success_color, 0.8);
+  text-shadow: 0 1px shade(@success_color, 0.8);
+  -gtk-icon-shadow: 0 1px shade(@success_color, 0.8);
+}
+GtkSourceAssistant.informative.other image {
+  background-color: shade(@success_color, 0.8);
+}
+
+GtkSourceAssistant.informative.question {
+  background-color: @theme_bg_color;
+  color: @theme_fg_color;
+  border-color: @borders;
+}
+GtkSourceAssistant.informative.question image {
+  background-color: @borders;
+}

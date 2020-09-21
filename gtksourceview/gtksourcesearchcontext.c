@@ -1,8 +1,7 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2013-2016 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2013-2016 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,21 +17,20 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
-#include "gtksourcesearchcontext.h"
 #include <string.h>
+
+#include "gtksourcesearchcontext-private.h"
 #include "gtksourcesearchsettings.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
-#include "gtksourcebufferinternal.h"
+#include "gtksourcebufferinternal-private.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils.h"
 #include "gtksourceregion.h"
-#include "gtksourceiter.h"
+#include "gtksourceiter-private.h"
 #include "gtksource-enumtypes.h"
 
 /**
@@ -300,11 +298,14 @@ enum
 	PROP_HIGHLIGHT,
 	PROP_MATCH_STYLE,
 	PROP_OCCURRENCES_COUNT,
-	PROP_REGEX_ERROR
+	PROP_REGEX_ERROR,
+	N_PROPS
 };
 
-struct _GtkSourceSearchContextPrivate
+struct _GtkSourceSearchContext
 {
+	GObject parent_instance;
+
 	/* Weak ref to the buffer. The buffer has also a weak ref to the search
 	 * context. A strong ref in either direction would prevent the pointed
 	 * object to be finalized.
@@ -366,9 +367,11 @@ typedef struct
 	guint is_forward : 1;
 } ForwardBackwardData;
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceSearchContext, gtk_source_search_context, G_TYPE_OBJECT);
+G_DEFINE_TYPE (GtkSourceSearchContext, gtk_source_search_context, G_TYPE_OBJECT)
 
-static void		install_idle_scan		(GtkSourceSearchContext *search);
+static GParamSpec *properties[N_PROPS];
+
+static void install_idle_scan (GtkSourceSearchContext *search);
 
 #ifdef ENABLE_DEBUG
 static void
@@ -385,23 +388,23 @@ print_region (GtkSourceRegion *region)
 static void
 sync_found_tag (GtkSourceSearchContext *search)
 {
-	GtkSourceStyle *style = search->priv->match_style;
+	GtkSourceStyle *style = search->match_style;
 	GtkSourceStyleScheme *style_scheme;
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return;
 	}
 
-	if (!search->priv->highlight)
+	if (!search->highlight)
 	{
-		gtk_source_style_apply (NULL, search->priv->found_tag);
+		gtk_source_style_apply (NULL, search->found_tag);
 		return;
 	}
 
 	if (style == NULL)
 	{
-		style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (search->priv->buffer));
+		style_scheme = gtk_source_buffer_get_style_scheme (GTK_SOURCE_BUFFER (search->buffer));
 
 		if (style_scheme != NULL)
 		{
@@ -414,12 +417,12 @@ sync_found_tag (GtkSourceSearchContext *search)
 		g_warning ("No match style defined nor 'search-match' style available.");
 	}
 
-	gtk_source_style_apply (style, search->priv->found_tag);
+	gtk_source_style_apply (style, search->found_tag);
 }
 
 static void
 text_tag_set_highest_priority (GtkTextTag    *tag,
-			       GtkTextBuffer *buffer)
+                               GtkTextBuffer *buffer)
 {
 	GtkTextTagTable *table;
 	gint n;
@@ -434,8 +437,8 @@ text_tag_set_highest_priority (GtkTextTag    *tag,
  */
 static gboolean
 get_first_subregion (GtkSourceRegion *region,
-		     GtkTextIter     *start,
-		     GtkTextIter     *end)
+                     GtkTextIter     *start,
+                     GtkTextIter     *end)
 {
 	GtkSourceRegionIter region_iter;
 
@@ -469,8 +472,8 @@ get_first_subregion (GtkSourceRegion *region,
  */
 static gboolean
 get_last_subregion (GtkSourceRegion *region,
-		    GtkTextIter     *start,
-		    GtkTextIter     *end)
+                    GtkTextIter     *start,
+                    GtkTextIter     *end)
 {
 	GtkSourceRegionIter region_iter;
 	gboolean found = FALSE;
@@ -510,43 +513,43 @@ get_last_subregion (GtkSourceRegion *region,
 static void
 clear_task (GtkSourceSearchContext *search)
 {
-	g_clear_object (&search->priv->task_region);
+	g_clear_object (&search->task_region);
 
-	if (search->priv->task != NULL)
+	if (search->task != NULL)
 	{
-		GCancellable *cancellable = g_task_get_cancellable (search->priv->task);
+		GCancellable *cancellable = g_task_get_cancellable (search->task);
 
 		if (cancellable != NULL)
 		{
 			g_cancellable_cancel (cancellable);
-			g_task_return_error_if_cancelled (search->priv->task);
+			g_task_return_error_if_cancelled (search->task);
 		}
 
-		g_clear_object (&search->priv->task);
+		g_clear_object (&search->task);
 	}
 }
 
 static void
 clear_search (GtkSourceSearchContext *search)
 {
-	g_clear_object (&search->priv->scan_region);
-	g_clear_object (&search->priv->high_priority_region);
+	g_clear_object (&search->scan_region);
+	g_clear_object (&search->high_priority_region);
 
-	if (search->priv->idle_scan_id != 0)
+	if (search->idle_scan_id != 0)
 	{
-		g_source_remove (search->priv->idle_scan_id);
-		search->priv->idle_scan_id = 0;
+		g_source_remove (search->idle_scan_id);
+		search->idle_scan_id = 0;
 	}
 
-	if (search->priv->regex_error != NULL)
+	if (search->regex_error != NULL)
 	{
-		g_clear_error (&search->priv->regex_error);
-		g_object_notify (G_OBJECT (search), "regex-error");
+		g_clear_error (&search->regex_error);
+		g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_REGEX_ERROR]);
 	}
 
 	clear_task (search);
 
-	search->priv->occurrences_count = 0;
+	search->occurrences_count = 0;
 }
 
 static GtkTextSearchFlags
@@ -554,7 +557,7 @@ get_text_search_flags (GtkSourceSearchContext *search)
 {
 	GtkTextSearchFlags flags = GTK_TEXT_SEARCH_TEXT_ONLY | GTK_TEXT_SEARCH_VISIBLE_ONLY;
 
-	if (!gtk_source_search_settings_get_case_sensitive (search->priv->settings))
+	if (!gtk_source_search_settings_get_case_sensitive (search->settings))
 	{
 		flags |= GTK_TEXT_SEARCH_CASE_INSENSITIVE;
 	}
@@ -565,11 +568,11 @@ get_text_search_flags (GtkSourceSearchContext *search)
 /* @start_pos is in bytes. */
 static void
 regex_search_get_real_start (GtkSourceSearchContext *search,
-			     const GtkTextIter      *start,
-			     GtkTextIter            *real_start,
-			     gint                   *start_pos)
+                             const GtkTextIter      *start,
+                             GtkTextIter            *real_start,
+                             gint                   *start_pos)
 {
-	gint max_lookbehind = g_regex_get_max_lookbehind (search->priv->regex);
+	gint max_lookbehind = g_regex_get_max_lookbehind (search->regex);
 	gint i;
 	gchar *text;
 
@@ -591,7 +594,7 @@ regex_search_get_real_start (GtkSourceSearchContext *search,
 
 static GRegexMatchFlags
 regex_search_get_match_options (const GtkTextIter *real_start,
-				const GtkTextIter *end)
+                                const GtkTextIter *end)
 {
 	GRegexMatchFlags match_options = 0;
 
@@ -622,12 +625,12 @@ regex_search_get_match_options (const GtkTextIter *real_start,
  */
 static gboolean
 regex_search_fetch_match (GMatchInfo  *match_info,
-			  const gchar *subject,
-			  gssize       subject_length,
-			  GtkTextIter *iter,
-			  gint        *iter_byte_pos,
-			  GtkTextIter *match_start,
-			  GtkTextIter *match_end)
+                          const gchar *subject,
+                          gssize       subject_length,
+                          GtkTextIter *iter,
+                          gint        *iter_byte_pos,
+                          GtkTextIter *match_start,
+                          GtkTextIter *match_end)
 {
 	gint start_byte_pos;
 	gint end_byte_pos;
@@ -681,11 +684,11 @@ regex_search_fetch_match (GMatchInfo  *match_info,
  */
 static gboolean
 basic_forward_regex_search (GtkSourceSearchContext *search,
-			    const GtkTextIter      *start_at,
-			    GtkTextIter            *match_start,
-			    GtkTextIter            *match_end,
-			    GtkTextIter            *real_end,
-			    const GtkTextIter      *limit)
+                            const GtkTextIter      *start_at,
+                            GtkTextIter            *match_start,
+                            GtkTextIter            *match_end,
+                            GtkTextIter            *real_end,
+                            const GtkTextIter      *limit)
 {
 	GtkTextIter real_start;
 	GtkTextIter end;
@@ -693,8 +696,8 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 	gboolean found = FALSE;
 	gint nb_lines = 1;
 
-	if (search->priv->regex == NULL ||
-	    search->priv->regex_error != NULL)
+	if (search->regex == NULL ||
+	    search->regex_error != NULL)
 	{
 		return FALSE;
 	}
@@ -703,7 +706,7 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 
 	if (limit == NULL)
 	{
-		gtk_text_buffer_get_end_iter (search->priv->buffer, &end);
+		gtk_text_buffer_get_end_iter (search->buffer, &end);
 	}
 	else
 	{
@@ -725,13 +728,13 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 		subject = gtk_text_iter_get_visible_text (&real_start, &end);
 		subject_length = strlen (subject);
 
-		g_regex_match_full (search->priv->regex,
+		g_regex_match_full (search->regex,
 				    subject,
 				    subject_length,
 				    start_pos,
 				    match_options,
 				    &match_info,
-				    &search->priv->regex_error);
+				    &search->regex_error);
 
 		iter = real_start;
 		iter_byte_pos = 0;
@@ -764,9 +767,9 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 			found = FALSE;
 		}
 
-		if (search->priv->regex_error != NULL)
+		if (search->regex_error != NULL)
 		{
-			g_object_notify (G_OBJECT (search), "regex-error");
+			g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_REGEX_ERROR]);
 			found = FALSE;
 		}
 
@@ -798,13 +801,13 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 
 static gboolean
 basic_forward_search (GtkSourceSearchContext *search,
-		      const GtkTextIter      *iter,
-		      GtkTextIter            *match_start,
-		      GtkTextIter            *match_end,
-		      const GtkTextIter      *limit)
+                      const GtkTextIter      *iter,
+                      GtkTextIter            *match_start,
+                      GtkTextIter            *match_end,
+                      const GtkTextIter      *limit)
 {
 	GtkTextIter begin_search = *iter;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 	GtkTextSearchFlags flags;
 
 	if (search_text == NULL)
@@ -812,7 +815,7 @@ basic_forward_search (GtkSourceSearchContext *search,
 		return FALSE;
 	}
 
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		return basic_forward_regex_search (search,
 						   iter,
@@ -833,7 +836,7 @@ basic_forward_search (GtkSourceSearchContext *search,
 							       match_end,
 							       limit);
 
-		if (!found || !gtk_source_search_settings_get_at_word_boundaries (search->priv->settings))
+		if (!found || !gtk_source_search_settings_get_at_word_boundaries (search->settings))
 		{
 			return found;
 		}
@@ -853,25 +856,25 @@ basic_forward_search (GtkSourceSearchContext *search,
  */
 static gboolean
 basic_backward_regex_search (GtkSourceSearchContext *search,
-			     const GtkTextIter      *start_at,
-			     GtkTextIter            *match_start,
-			     GtkTextIter            *match_end,
-			     const GtkTextIter      *limit)
+                             const GtkTextIter      *start_at,
+                             GtkTextIter            *match_start,
+                             GtkTextIter            *match_end,
+                             const GtkTextIter      *limit)
 {
 	GtkTextIter lower_bound;
 	GtkTextIter m_start;
 	GtkTextIter m_end;
 	gboolean found = FALSE;
 
-	if (search->priv->regex == NULL ||
-	    search->priv->regex_error != NULL)
+	if (search->regex == NULL ||
+	    search->regex_error != NULL)
 	{
 		return FALSE;
 	}
 
 	if (limit == NULL)
 	{
-		gtk_text_buffer_get_start_iter (search->priv->buffer, &lower_bound);
+		gtk_text_buffer_get_start_iter (search->buffer, &lower_bound);
 	}
 	else
 	{
@@ -900,13 +903,13 @@ basic_backward_regex_search (GtkSourceSearchContext *search,
 
 static gboolean
 basic_backward_search (GtkSourceSearchContext *search,
-		       const GtkTextIter      *iter,
-		       GtkTextIter            *match_start,
-		       GtkTextIter            *match_end,
-		       const GtkTextIter      *limit)
+                       const GtkTextIter      *iter,
+                       GtkTextIter            *match_start,
+                       GtkTextIter            *match_end,
+                       const GtkTextIter      *limit)
 {
 	GtkTextIter begin_search = *iter;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 	GtkTextSearchFlags flags;
 
 	if (search_text == NULL)
@@ -914,7 +917,7 @@ basic_backward_search (GtkSourceSearchContext *search,
 		return FALSE;
 	}
 
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		return basic_backward_regex_search (search,
 						    iter,
@@ -934,7 +937,7 @@ basic_backward_search (GtkSourceSearchContext *search,
 							        match_end,
 							        limit);
 
-		if (!found || !gtk_source_search_settings_get_at_word_boundaries (search->priv->settings))
+		if (!found || !gtk_source_search_settings_get_at_word_boundaries (search->settings))
 		{
 			return found;
 		}
@@ -976,23 +979,23 @@ forward_backward_data_free (ForwardBackwardData *data)
 /* Returns TRUE if finished. */
 static gboolean
 smart_forward_search_async_step (GtkSourceSearchContext *search,
-				 GtkTextIter            *start_at,
-				 gboolean               *wrapped_around)
+                                 GtkTextIter            *start_at,
+                                 gboolean               *wrapped_around)
 {
 	GtkTextIter iter = *start_at;
 	GtkTextIter limit;
 	GtkTextIter region_start = *start_at;
 	GtkSourceRegion *region = NULL;
 	ForwardBackwardData *task_data;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 
 	if (gtk_text_iter_is_end (start_at))
 	{
 		if (search_text != NULL &&
 		    !*wrapped_around &&
-		    gtk_source_search_settings_get_wrap_around (search->priv->settings))
+		    gtk_source_search_settings_get_wrap_around (search->settings))
 		{
-			gtk_text_buffer_get_start_iter (search->priv->buffer, start_at);
+			gtk_text_buffer_get_start_iter (search->buffer, start_at);
 			*wrapped_around = TRUE;
 			return FALSE;
 		}
@@ -1002,30 +1005,30 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 		task_data->is_forward = TRUE;
 		task_data->wrapped_around = *wrapped_around;
 
-		g_task_return_pointer (search->priv->task,
+		g_task_return_pointer (search->task,
 				       task_data,
 				       (GDestroyNotify)forward_backward_data_free);
 
-		g_clear_object (&search->priv->task);
+		g_clear_object (&search->task);
 		return TRUE;
 	}
 
-	if (!gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+	if (!gtk_text_iter_has_tag (&iter, search->found_tag))
 	{
-		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+		gtk_text_iter_forward_to_tag_toggle (&iter, search->found_tag);
 	}
-	else if (!gtk_text_iter_starts_tag (&iter, search->priv->found_tag))
+	else if (!gtk_text_iter_starts_tag (&iter, search->found_tag))
 	{
-		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+		gtk_text_iter_backward_to_tag_toggle (&iter, search->found_tag);
 		region_start = iter;
 	}
 
 	limit = iter;
-	gtk_text_iter_forward_to_tag_toggle (&limit, search->priv->found_tag);
+	gtk_text_iter_forward_to_tag_toggle (&limit, search->found_tag);
 
-	if (search->priv->scan_region != NULL)
+	if (search->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+		region = gtk_source_region_intersect_subregion (search->scan_region,
 								&region_start,
 								&limit);
 	}
@@ -1048,23 +1051,23 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 			task_data = g_slice_new0 (ForwardBackwardData);
 			task_data->found = TRUE;
 			task_data->match_start =
-                                gtk_text_buffer_create_mark (search->priv->buffer,
+                                gtk_text_buffer_create_mark (search->buffer,
                                                              NULL,
                                                              &match_start,
                                                              TRUE);
 			task_data->match_end =
-                                gtk_text_buffer_create_mark (search->priv->buffer,
+                                gtk_text_buffer_create_mark (search->buffer,
                                                              NULL,
                                                              &match_end,
                                                              FALSE);
 			task_data->is_forward = TRUE;
 			task_data->wrapped_around = *wrapped_around;
 
-			g_task_return_pointer (search->priv->task,
+			g_task_return_pointer (search->task,
 					       task_data,
 					       (GDestroyNotify)forward_backward_data_free);
 
-			g_clear_object (&search->priv->task);
+			g_clear_object (&search->task);
 			return TRUE;
 		}
 
@@ -1075,17 +1078,17 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 	task_data = g_slice_new0 (ForwardBackwardData);
 	task_data->is_forward = TRUE;
 	task_data->wrapped_around = *wrapped_around;
-	task_data->start_at = gtk_text_buffer_create_mark (search->priv->buffer,
+	task_data->start_at = gtk_text_buffer_create_mark (search->buffer,
 							   NULL,
 							   start_at,
 							   TRUE);
 
-	g_task_set_task_data (search->priv->task,
+	g_task_set_task_data (search->task,
 			      task_data,
 			      (GDestroyNotify)forward_backward_data_free);
 
-	g_clear_object (&search->priv->task_region);
-	search->priv->task_region = region;
+	g_clear_object (&search->task_region);
+	search->task_region = region;
 
 	install_idle_scan (search);
 
@@ -1098,8 +1101,8 @@ smart_forward_search_async_step (GtkSourceSearchContext *search,
 
 static void
 smart_forward_search_async (GtkSourceSearchContext *search,
-			    const GtkTextIter      *start_at,
-			    gboolean                wrapped_around)
+                            const GtkTextIter      *start_at,
+                            gboolean                wrapped_around)
 {
 	GtkTextIter iter = *start_at;
 
@@ -1113,23 +1116,23 @@ smart_forward_search_async (GtkSourceSearchContext *search,
 /* Returns TRUE if finished. */
 static gboolean
 smart_backward_search_async_step (GtkSourceSearchContext *search,
-				  GtkTextIter            *start_at,
-				  gboolean               *wrapped_around)
+                                  GtkTextIter            *start_at,
+                                  gboolean               *wrapped_around)
 {
 	GtkTextIter iter = *start_at;
 	GtkTextIter limit;
 	GtkTextIter region_end = *start_at;
 	GtkSourceRegion *region = NULL;
 	ForwardBackwardData *task_data;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 
 	if (gtk_text_iter_is_start (start_at))
 	{
 		if (search_text != NULL &&
 		    !*wrapped_around &&
-		    gtk_source_search_settings_get_wrap_around (search->priv->settings))
+		    gtk_source_search_settings_get_wrap_around (search->settings))
 		{
-			gtk_text_buffer_get_end_iter (search->priv->buffer, start_at);
+			gtk_text_buffer_get_end_iter (search->buffer, start_at);
 			*wrapped_around = TRUE;
 			return FALSE;
 		}
@@ -1139,32 +1142,32 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 		task_data->is_forward = FALSE;
 		task_data->wrapped_around = *wrapped_around;
 
-		g_task_return_pointer (search->priv->task,
+		g_task_return_pointer (search->task,
 				       task_data,
 				       (GDestroyNotify)forward_backward_data_free);
 
-		g_clear_object (&search->priv->task);
+		g_clear_object (&search->task);
 		return TRUE;
 	}
 
-	if (gtk_text_iter_starts_tag (&iter, search->priv->found_tag) ||
-	    (!gtk_text_iter_has_tag (&iter, search->priv->found_tag) &&
-	     !gtk_text_iter_ends_tag (&iter, search->priv->found_tag)))
+	if (gtk_text_iter_starts_tag (&iter, search->found_tag) ||
+	    (!gtk_text_iter_has_tag (&iter, search->found_tag) &&
+	     !gtk_text_iter_ends_tag (&iter, search->found_tag)))
 	{
-		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+		gtk_text_iter_backward_to_tag_toggle (&iter, search->found_tag);
 	}
-	else if (gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+	else if (gtk_text_iter_has_tag (&iter, search->found_tag))
 	{
-		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+		gtk_text_iter_forward_to_tag_toggle (&iter, search->found_tag);
 		region_end = iter;
 	}
 
 	limit = iter;
-	gtk_text_iter_backward_to_tag_toggle (&limit, search->priv->found_tag);
+	gtk_text_iter_backward_to_tag_toggle (&limit, search->found_tag);
 
-	if (search->priv->scan_region != NULL)
+	if (search->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+		region = gtk_source_region_intersect_subregion (search->scan_region,
 								&limit,
 								&region_end);
 	}
@@ -1187,23 +1190,23 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 			task_data = g_slice_new0 (ForwardBackwardData);
 			task_data->found = TRUE;
 			task_data->match_start =
-				gtk_text_buffer_create_mark (search->priv->buffer,
+				gtk_text_buffer_create_mark (search->buffer,
 				                             NULL,
 				                             &match_start,
 				                             TRUE);
 			task_data->match_end =
-				gtk_text_buffer_create_mark (search->priv->buffer,
+				gtk_text_buffer_create_mark (search->buffer,
 				                             NULL,
 				                             &match_end,
 				                             FALSE);
 			task_data->is_forward = FALSE;
 			task_data->wrapped_around = *wrapped_around;
 
-			g_task_return_pointer (search->priv->task,
+			g_task_return_pointer (search->task,
 					       task_data,
 					       (GDestroyNotify)forward_backward_data_free);
 
-			g_clear_object (&search->priv->task);
+			g_clear_object (&search->task);
 			return TRUE;
 		}
 
@@ -1214,17 +1217,17 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 	task_data = g_slice_new0 (ForwardBackwardData);
 	task_data->is_forward = FALSE;
 	task_data->wrapped_around = *wrapped_around;
-	task_data->start_at = gtk_text_buffer_create_mark (search->priv->buffer,
+	task_data->start_at = gtk_text_buffer_create_mark (search->buffer,
 							   NULL,
 							   start_at,
 							   TRUE);
 
-	g_task_set_task_data (search->priv->task,
+	g_task_set_task_data (search->task,
 			      task_data,
 			      (GDestroyNotify)forward_backward_data_free);
 
-	g_clear_object (&search->priv->task_region);
-	search->priv->task_region = region;
+	g_clear_object (&search->task_region);
+	search->task_region = region;
 
 	install_idle_scan (search);
 
@@ -1237,8 +1240,8 @@ smart_backward_search_async_step (GtkSourceSearchContext *search,
 
 static void
 smart_backward_search_async (GtkSourceSearchContext *search,
-			     const GtkTextIter      *start_at,
-			     gboolean                wrapped_around)
+                             const GtkTextIter      *start_at,
+                             gboolean                wrapped_around)
 {
 	GtkTextIter iter = *start_at;
 
@@ -1253,8 +1256,8 @@ smart_backward_search_async (GtkSourceSearchContext *search,
  */
 static void
 adjust_subregion (GtkSourceSearchContext *search,
-		  GtkTextIter            *start,
-		  GtkTextIter            *end)
+                  GtkTextIter            *start,
+                  GtkTextIter            *end)
 {
 	DEBUG ({
 		g_print ("adjust_subregion(), before adjusting: [%u (%u), %u (%u)]\n",
@@ -1262,8 +1265,8 @@ adjust_subregion (GtkSourceSearchContext *search,
 			 gtk_text_iter_get_line (end), gtk_text_iter_get_offset (end));
 	});
 
-	gtk_text_iter_backward_lines (start, MAX (0, search->priv->text_nb_lines - 1));
-	gtk_text_iter_forward_lines (end, MAX (0, search->priv->text_nb_lines - 1));
+	gtk_text_iter_backward_lines (start, MAX (0, search->text_nb_lines - 1));
+	gtk_text_iter_forward_lines (end, MAX (0, search->text_nb_lines - 1));
 
 	if (!gtk_text_iter_starts_line (start))
 	{
@@ -1283,12 +1286,12 @@ adjust_subregion (GtkSourceSearchContext *search,
 	 * not.
 	 */
 
-	if (gtk_text_iter_has_tag (start, search->priv->found_tag))
+	if (gtk_text_iter_has_tag (start, search->found_tag))
 	{
-		if (gtk_source_region_is_empty (search->priv->scan_region))
+		if (gtk_source_region_is_empty (search->scan_region))
 		{
 			/* 'start' is in a correct match, we can skip it. */
-			gtk_text_iter_forward_to_tag_toggle (start, search->priv->found_tag);
+			gtk_text_iter_forward_to_tag_toggle (start, search->found_tag);
 		}
 		else
 		{
@@ -1296,14 +1299,14 @@ adjust_subregion (GtkSourceSearchContext *search,
 			GtkTextIter tag_end = *start;
 			GtkSourceRegion *region;
 
-			if (!gtk_text_iter_starts_tag (&tag_start, search->priv->found_tag))
+			if (!gtk_text_iter_starts_tag (&tag_start, search->found_tag))
 			{
-				gtk_text_iter_backward_to_tag_toggle (&tag_start, search->priv->found_tag);
+				gtk_text_iter_backward_to_tag_toggle (&tag_start, search->found_tag);
 			}
 
-			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->priv->found_tag);
+			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->found_tag);
 
-			region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+			region = gtk_source_region_intersect_subregion (search->scan_region,
 									&tag_start,
 									&tag_end);
 
@@ -1329,15 +1332,15 @@ adjust_subregion (GtkSourceSearchContext *search,
 
 	/* Symmetric for 'end'. */
 
-	if (gtk_text_iter_has_tag (end, search->priv->found_tag))
+	if (gtk_text_iter_has_tag (end, search->found_tag))
 	{
-		if (gtk_source_region_is_empty (search->priv->scan_region))
+		if (gtk_source_region_is_empty (search->scan_region))
 		{
 			/* 'end' is in a correct match, we can skip it. */
 
-			if (!gtk_text_iter_starts_tag (end, search->priv->found_tag))
+			if (!gtk_text_iter_starts_tag (end, search->found_tag))
 			{
-				gtk_text_iter_backward_to_tag_toggle (end, search->priv->found_tag);
+				gtk_text_iter_backward_to_tag_toggle (end, search->found_tag);
 			}
 		}
 		else
@@ -1346,14 +1349,14 @@ adjust_subregion (GtkSourceSearchContext *search,
 			GtkTextIter tag_end = *end;
 			GtkSourceRegion *region;
 
-			if (!gtk_text_iter_starts_tag (&tag_start, search->priv->found_tag))
+			if (!gtk_text_iter_starts_tag (&tag_start, search->found_tag))
 			{
-				gtk_text_iter_backward_to_tag_toggle (&tag_start, search->priv->found_tag);
+				gtk_text_iter_backward_to_tag_toggle (&tag_start, search->found_tag);
 			}
 
-			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->priv->found_tag);
+			gtk_text_iter_forward_to_tag_toggle (&tag_end, search->found_tag);
 
-			region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+			region = gtk_source_region_intersect_subregion (search->scan_region,
 									&tag_start,
 									&tag_end);
 
@@ -1390,13 +1393,13 @@ adjust_subregion (GtkSourceSearchContext *search,
  */
 static gboolean
 smart_forward_search_without_scanning (GtkSourceSearchContext *search,
-				       const GtkTextIter      *start_at,
-				       GtkTextIter            *match_start,
-				       GtkTextIter            *match_end,
-				       const GtkTextIter      *stop_at)
+                                       const GtkTextIter      *start_at,
+                                       GtkTextIter            *match_start,
+                                       GtkTextIter            *match_end,
+                                       const GtkTextIter      *stop_at)
 {
 	GtkTextIter iter;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 
 	g_assert (start_at != NULL);
 	g_assert (match_start != NULL);
@@ -1414,17 +1417,17 @@ smart_forward_search_without_scanning (GtkSourceSearchContext *search,
 	{
 		GtkTextIter limit;
 
-		if (!gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+		if (!gtk_text_iter_has_tag (&iter, search->found_tag))
 		{
-			gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+			gtk_text_iter_forward_to_tag_toggle (&iter, search->found_tag);
 		}
-		else if (!gtk_text_iter_starts_tag (&iter, search->priv->found_tag))
+		else if (!gtk_text_iter_starts_tag (&iter, search->found_tag))
 		{
-			gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+			gtk_text_iter_backward_to_tag_toggle (&iter, search->found_tag);
 		}
 
 		limit = iter;
-		gtk_text_iter_forward_to_tag_toggle (&limit, search->priv->found_tag);
+		gtk_text_iter_forward_to_tag_toggle (&limit, search->found_tag);
 
 		if (gtk_text_iter_compare (stop_at, &limit) < 0)
 		{
@@ -1452,50 +1455,50 @@ smart_forward_search_without_scanning (GtkSourceSearchContext *search,
  */
 static void
 remove_occurrences_in_range (GtkSourceSearchContext *search,
-			     GtkTextIter            *start,
-			     GtkTextIter            *end)
+                             GtkTextIter            *start,
+                             GtkTextIter            *end)
 {
 	GtkTextIter iter;
 	GtkTextIter match_start;
 	GtkTextIter match_end;
 
-	if ((gtk_text_iter_has_tag (start, search->priv->found_tag) &&
-	     !gtk_text_iter_starts_tag (start, search->priv->found_tag)) ||
-	    (gtk_source_search_settings_get_at_word_boundaries (search->priv->settings) &&
-	     gtk_text_iter_ends_tag (start, search->priv->found_tag)))
+	if ((gtk_text_iter_has_tag (start, search->found_tag) &&
+	     !gtk_text_iter_starts_tag (start, search->found_tag)) ||
+	    (gtk_source_search_settings_get_at_word_boundaries (search->settings) &&
+	     gtk_text_iter_ends_tag (start, search->found_tag)))
 	{
-		gtk_text_iter_backward_to_tag_toggle (start, search->priv->found_tag);
+		gtk_text_iter_backward_to_tag_toggle (start, search->found_tag);
 	}
 
-	if ((gtk_text_iter_has_tag (end, search->priv->found_tag) &&
-	     !gtk_text_iter_starts_tag (end, search->priv->found_tag)) ||
-	    (gtk_source_search_settings_get_at_word_boundaries (search->priv->settings) &&
-	     gtk_text_iter_starts_tag (end, search->priv->found_tag)))
+	if ((gtk_text_iter_has_tag (end, search->found_tag) &&
+	     !gtk_text_iter_starts_tag (end, search->found_tag)) ||
+	    (gtk_source_search_settings_get_at_word_boundaries (search->settings) &&
+	     gtk_text_iter_starts_tag (end, search->found_tag)))
 	{
-		gtk_text_iter_forward_to_tag_toggle (end, search->priv->found_tag);
+		gtk_text_iter_forward_to_tag_toggle (end, search->found_tag);
 	}
 
 	iter = *start;
 
 	while (smart_forward_search_without_scanning (search, &iter, &match_start, &match_end, end))
 	{
-		if (search->priv->scan_region == NULL)
+		if (search->scan_region == NULL)
 		{
 			/* The occurrence has already been scanned, and thus
 			 * occurrence_count take it into account. */
-			search->priv->occurrences_count--;
+			search->occurrences_count--;
 		}
 		else
 		{
 			GtkSourceRegion *region;
 
-			region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+			region = gtk_source_region_intersect_subregion (search->scan_region,
 									&match_start,
 									&match_end);
 
 			if (gtk_source_region_is_empty (region))
 			{
-				search->priv->occurrences_count--;
+				search->occurrences_count--;
 			}
 
 			g_clear_object (&region);
@@ -1504,48 +1507,48 @@ remove_occurrences_in_range (GtkSourceSearchContext *search,
 		iter = match_end;
 	}
 
-	gtk_text_buffer_remove_tag (search->priv->buffer,
-				    search->priv->found_tag,
+	gtk_text_buffer_remove_tag (search->buffer,
+				    search->found_tag,
 				    start,
 				    end);
 }
 
 static void
 scan_subregion (GtkSourceSearchContext *search,
-		GtkTextIter            *start,
-		GtkTextIter            *end)
+                GtkTextIter            *start,
+                GtkTextIter            *end)
 {
 	GtkTextIter iter;
 	GtkTextIter *limit;
 	gboolean found = TRUE;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 
 	/* Make sure the 'found' tag has the priority over syntax highlighting
 	 * tags. */
-	text_tag_set_highest_priority (search->priv->found_tag,
-				       search->priv->buffer);
+	text_tag_set_highest_priority (search->found_tag,
+				       search->buffer);
 
 	adjust_subregion (search, start, end);
 	remove_occurrences_in_range (search, start, end);
 
-	if (search->priv->scan_region != NULL)
+	if (search->scan_region != NULL)
 	{
 		DEBUG ({
 			g_print ("Region to scan, before:\n");
-			print_region (search->priv->scan_region);
+			print_region (search->scan_region);
 		});
 
-		gtk_source_region_subtract_subregion (search->priv->scan_region, start, end);
+		gtk_source_region_subtract_subregion (search->scan_region, start, end);
 
 		DEBUG ({
 			g_print ("Region to scan, after:\n");
-			print_region (search->priv->scan_region);
+			print_region (search->scan_region);
 		});
 	}
 
-	if (search->priv->task_region != NULL)
+	if (search->task_region != NULL)
 	{
-		gtk_source_region_subtract_subregion (search->priv->task_region, start, end);
+		gtk_source_region_subtract_subregion (search->task_region, start, end);
 	}
 
 	if (search_text == NULL)
@@ -1574,12 +1577,12 @@ scan_subregion (GtkSourceSearchContext *search,
 
 		if (found)
 		{
-			gtk_text_buffer_apply_tag (search->priv->buffer,
-						   search->priv->found_tag,
+			gtk_text_buffer_apply_tag (search->buffer,
+						   search->found_tag,
 						   &match_start,
 						   &match_end);
 
-			search->priv->occurrences_count++;
+			search->occurrences_count++;
 		}
 
 		iter = match_end;
@@ -1589,7 +1592,7 @@ scan_subregion (GtkSourceSearchContext *search,
 
 static void
 scan_all_region (GtkSourceSearchContext *search,
-		 GtkSourceRegion        *region)
+                 GtkSourceRegion        *region)
 {
 	GtkSourceRegionIter region_iter;
 
@@ -1621,7 +1624,7 @@ scan_all_region (GtkSourceSearchContext *search,
  */
 static void
 scan_region_forward (GtkSourceSearchContext *search,
-		     GtkSourceRegion        *region)
+                     GtkSourceRegion        *region)
 {
 	gint nb_remaining_lines = SCAN_BATCH_SIZE;
 	GtkTextIter start;
@@ -1655,7 +1658,7 @@ scan_region_forward (GtkSourceSearchContext *search,
 /* Same as scan_region_forward(), but begins the scan at the end of the region. */
 static void
 scan_region_backward (GtkSourceSearchContext *search,
-		      GtkSourceRegion        *region)
+                      GtkSourceRegion        *region)
 {
 	gint nb_remaining_lines = SCAN_BATCH_SIZE;
 	GtkTextIter start;
@@ -1689,12 +1692,12 @@ scan_region_backward (GtkSourceSearchContext *search,
 static void
 resume_task (GtkSourceSearchContext *search)
 {
-	ForwardBackwardData *task_data = g_task_get_task_data (search->priv->task);
+	ForwardBackwardData *task_data = g_task_get_task_data (search->task);
 	GtkTextIter start_at;
 
-	g_clear_object (&search->priv->task_region);
+	g_clear_object (&search->task_region);
 
-	gtk_text_buffer_get_iter_at_mark (search->priv->buffer,
+	gtk_text_buffer_get_iter_at_mark (search->buffer,
 					  &start_at,
 					  task_data->start_at);
 
@@ -1715,15 +1718,15 @@ resume_task (GtkSourceSearchContext *search)
 static void
 scan_task_region (GtkSourceSearchContext *search)
 {
-	ForwardBackwardData *task_data = g_task_get_task_data (search->priv->task);
+	ForwardBackwardData *task_data = g_task_get_task_data (search->task);
 
 	if (task_data->is_forward)
 	{
-		scan_region_forward (search, search->priv->task_region);
+		scan_region_forward (search, search->task_region);
 	}
 	else
 	{
-		scan_region_backward (search, search->priv->task_region);
+		scan_region_backward (search, search->task_region);
 	}
 
 	resume_task (search);
@@ -1732,33 +1735,34 @@ scan_task_region (GtkSourceSearchContext *search)
 static gboolean
 idle_scan_normal_search (GtkSourceSearchContext *search)
 {
-	if (search->priv->high_priority_region != NULL)
+	if (search->high_priority_region != NULL)
 	{
 		/* Normally the high priority region is not really big, since it
 		 * is the visible area on the screen. So we can highlight it in
 		 * one batch.
 		 */
-		scan_all_region (search, search->priv->high_priority_region);
+		scan_all_region (search, search->high_priority_region);
 
-		g_clear_object (&search->priv->high_priority_region);
+		g_clear_object (&search->high_priority_region);
 		return G_SOURCE_CONTINUE;
 	}
 
-	if (search->priv->task_region != NULL)
+	if (search->task_region != NULL)
 	{
 		scan_task_region (search);
 		return G_SOURCE_CONTINUE;
 	}
 
-	scan_region_forward (search, search->priv->scan_region);
+	scan_region_forward (search, search->scan_region);
 
-	if (gtk_source_region_is_empty (search->priv->scan_region))
+	if (gtk_source_region_is_empty (search->scan_region))
 	{
-		search->priv->idle_scan_id = 0;
+		search->idle_scan_id = 0;
 
-		g_object_notify (G_OBJECT (search), "occurrences-count");
+		g_object_notify_by_pspec (G_OBJECT (search),
+		                          properties [PROP_OCCURRENCES_COUNT]);
 
-		g_clear_object (&search->priv->scan_region);
+		g_clear_object (&search->scan_region);
 		return G_SOURCE_REMOVE;
 	}
 
@@ -1779,8 +1783,8 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 	GtkSourceRegion *region;
 	GtkSourceRegionIter region_iter;
 
-	region = gtk_source_region_intersect_region (search->priv->high_priority_region,
-						     search->priv->scan_region);
+	region = gtk_source_region_intersect_region (search->high_priority_region,
+						     search->scan_region);
 
 	if (region == NULL)
 	{
@@ -1801,8 +1805,8 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 			break;
 		}
 
-		gtk_text_buffer_remove_tag (search->priv->buffer,
-					    search->priv->found_tag,
+		gtk_text_buffer_remove_tag (search->buffer,
+					    search->found_tag,
 					    &subregion_start,
 					    &subregion_end);
 
@@ -1815,9 +1819,9 @@ regex_search_handle_high_priority_region (GtkSourceSearchContext *search)
 /* Returns TRUE if the segment is finished, and FALSE on partial match. */
 static gboolean
 regex_search_scan_segment (GtkSourceSearchContext *search,
-			   const GtkTextIter      *segment_start,
-			   const GtkTextIter      *segment_end,
-			   GtkTextIter            *stopped_at)
+                           const GtkTextIter      *segment_start,
+                           const GtkTextIter      *segment_end,
+                           GtkTextIter            *stopped_at)
 {
 	GtkTextIter real_start;
 	gint start_pos;
@@ -1833,13 +1837,13 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 
 	g_assert (stopped_at != NULL);
 
-	gtk_text_buffer_remove_tag (search->priv->buffer,
-				    search->priv->found_tag,
+	gtk_text_buffer_remove_tag (search->buffer,
+				    search->found_tag,
 				    segment_start,
 				    segment_end);
 
-	if (search->priv->regex == NULL ||
-	    search->priv->regex_error != NULL)
+	if (search->regex == NULL ||
+	    search->regex_error != NULL)
 	{
 		*stopped_at = *segment_end;
 		return TRUE;
@@ -1887,13 +1891,13 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 	       g_free (subject_escaped);
 	});
 
-	g_regex_match_full (search->priv->regex,
+	g_regex_match_full (search->regex,
 			    subject,
 			    subject_length,
 			    start_pos,
 			    match_options,
 			    &match_info,
-			    &search->priv->regex_error);
+			    &search->regex_error);
 
 	iter = real_start;
 	iter_byte_pos = 0;
@@ -1906,8 +1910,8 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 					 &match_start,
 					 &match_end))
 	{
-		gtk_text_buffer_apply_tag (search->priv->buffer,
-					   search->priv->found_tag,
+		gtk_text_buffer_apply_tag (search->buffer,
+					   search->found_tag,
 					   &match_start,
 					   &match_end);
 
@@ -1919,14 +1923,14 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 			 g_free (match_escaped);
 		});
 
-		search->priv->occurrences_count++;
+		search->occurrences_count++;
 
-		g_match_info_next (match_info, &search->priv->regex_error);
+		g_match_info_next (match_info, &search->regex_error);
 	}
 
-	if (search->priv->regex_error != NULL)
+	if (search->regex_error != NULL)
 	{
-		g_object_notify (G_OBJECT (search), "regex-error");
+		g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_REGEX_ERROR]);
 	}
 
 	if (g_match_info_is_partial_match (match_info))
@@ -1960,8 +1964,8 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 
 static void
 regex_search_scan_chunk (GtkSourceSearchContext *search,
-			 const GtkTextIter      *chunk_start,
-			 const GtkTextIter      *chunk_end)
+                         const GtkTextIter      *chunk_start,
+                         const GtkTextIter      *chunk_end)
 {
 	GtkTextIter segment_start = *chunk_start;
 
@@ -1991,13 +1995,13 @@ regex_search_scan_chunk (GtkSourceSearchContext *search,
 		segment_start = stopped_at;
 	}
 
-	gtk_source_region_subtract_subregion (search->priv->scan_region,
+	gtk_source_region_subtract_subregion (search->scan_region,
 					      chunk_start,
 					      &segment_start);
 
-	if (search->priv->task_region != NULL)
+	if (search->task_region != NULL)
 	{
-		gtk_source_region_subtract_subregion (search->priv->task_region,
+		gtk_source_region_subtract_subregion (search->task_region,
 						      chunk_start,
 						      &segment_start);
 	}
@@ -2009,12 +2013,12 @@ regex_search_scan_next_chunk (GtkSourceSearchContext *search)
 	GtkTextIter chunk_start;
 	GtkTextIter chunk_end;
 
-	if (gtk_source_region_is_empty (search->priv->scan_region))
+	if (gtk_source_region_is_empty (search->scan_region))
 	{
 		return;
 	}
 
-	if (!gtk_source_region_get_bounds (search->priv->scan_region, &chunk_start, NULL))
+	if (!gtk_source_region_get_bounds (search->scan_region, &chunk_start, NULL))
 	{
 		return;
 	}
@@ -2028,16 +2032,16 @@ regex_search_scan_next_chunk (GtkSourceSearchContext *search)
 static gboolean
 idle_scan_regex_search (GtkSourceSearchContext *search)
 {
-	if (search->priv->high_priority_region != NULL)
+	if (search->high_priority_region != NULL)
 	{
 		regex_search_handle_high_priority_region (search);
-		g_clear_object (&search->priv->high_priority_region);
+		g_clear_object (&search->high_priority_region);
 		return G_SOURCE_CONTINUE;
 	}
 
 	regex_search_scan_next_chunk (search);
 
-	if (search->priv->task != NULL)
+	if (search->task != NULL)
 	{
 		/* Always resume the task, even if the task region has not been
 		 * fully scanned. The task region can be huge (the whole
@@ -2051,13 +2055,14 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 		return G_SOURCE_CONTINUE;
 	}
 
-	if (gtk_source_region_is_empty (search->priv->scan_region))
+	if (gtk_source_region_is_empty (search->scan_region))
 	{
-		search->priv->idle_scan_id = 0;
+		search->idle_scan_id = 0;
 
-		g_object_notify (G_OBJECT (search), "occurrences-count");
+		g_object_notify_by_pspec (G_OBJECT (search),
+		                          properties [PROP_OCCURRENCES_COUNT]);
 
-		g_clear_object (&search->priv->scan_region);
+		g_clear_object (&search->scan_region);
 		return G_SOURCE_REMOVE;
 	}
 
@@ -2067,14 +2072,14 @@ idle_scan_regex_search (GtkSourceSearchContext *search)
 static gboolean
 idle_scan_cb (GtkSourceSearchContext *search)
 {
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
-		search->priv->idle_scan_id = 0;
+		search->idle_scan_id = 0;
 		clear_search (search);
 		return G_SOURCE_REMOVE;
 	}
 
-	return gtk_source_search_settings_get_regex_enabled (search->priv->settings) ?
+	return gtk_source_search_settings_get_regex_enabled (search->settings) ?
 	       idle_scan_regex_search (search) :
 	       idle_scan_normal_search (search);
 }
@@ -2082,40 +2087,40 @@ idle_scan_cb (GtkSourceSearchContext *search)
 static void
 install_idle_scan (GtkSourceSearchContext *search)
 {
-	if (search->priv->idle_scan_id == 0)
+	if (search->idle_scan_id == 0)
 	{
-		search->priv->idle_scan_id = g_idle_add ((GSourceFunc)idle_scan_cb, search);
+		search->idle_scan_id = g_idle_add ((GSourceFunc)idle_scan_cb, search);
 	}
 }
 
 /* Returns TRUE when finished. */
 static gboolean
 smart_forward_search_step (GtkSourceSearchContext *search,
-			   GtkTextIter            *start_at,
-			   GtkTextIter            *match_start,
-			   GtkTextIter            *match_end)
+                           GtkTextIter            *start_at,
+                           GtkTextIter            *match_start,
+                           GtkTextIter            *match_end)
 {
 	GtkTextIter iter = *start_at;
 	GtkTextIter limit;
 	GtkTextIter region_start = *start_at;
 	GtkSourceRegion *region = NULL;
 
-	if (!gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+	if (!gtk_text_iter_has_tag (&iter, search->found_tag))
 	{
-		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+		gtk_text_iter_forward_to_tag_toggle (&iter, search->found_tag);
 	}
-	else if (!gtk_text_iter_starts_tag (&iter, search->priv->found_tag))
+	else if (!gtk_text_iter_starts_tag (&iter, search->found_tag))
 	{
-		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+		gtk_text_iter_backward_to_tag_toggle (&iter, search->found_tag);
 		region_start = iter;
 	}
 
 	limit = iter;
-	gtk_text_iter_forward_to_tag_toggle (&limit, search->priv->found_tag);
+	gtk_text_iter_forward_to_tag_toggle (&limit, search->found_tag);
 
-	if (search->priv->scan_region != NULL)
+	if (search->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+		region = gtk_source_region_intersect_subregion (search->scan_region,
 								&region_start,
 								&limit);
 	}
@@ -2141,7 +2146,7 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 	/* Scan a chunk of the buffer, not the whole 'region'. An occurrence can
 	 * be found before the 'region' is scanned entirely.
 	 */
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		regex_search_scan_next_chunk (search);
 	}
@@ -2158,12 +2163,12 @@ smart_forward_search_step (GtkSourceSearchContext *search,
 /* Doesn't wrap around. */
 static gboolean
 smart_forward_search (GtkSourceSearchContext *search,
-		      const GtkTextIter      *start_at,
-		      GtkTextIter            *match_start,
-		      GtkTextIter            *match_end)
+                      const GtkTextIter      *start_at,
+                      GtkTextIter            *match_start,
+                      GtkTextIter            *match_end)
 {
 	GtkTextIter iter = *start_at;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 
 	g_return_val_if_fail (match_start != NULL, FALSE);
 	g_return_val_if_fail (match_end != NULL, FALSE);
@@ -2187,33 +2192,33 @@ smart_forward_search (GtkSourceSearchContext *search,
 /* Returns TRUE when finished. */
 static gboolean
 smart_backward_search_step (GtkSourceSearchContext *search,
-			    GtkTextIter            *start_at,
-			    GtkTextIter            *match_start,
-			    GtkTextIter            *match_end)
+                            GtkTextIter            *start_at,
+                            GtkTextIter            *match_start,
+                            GtkTextIter            *match_end)
 {
 	GtkTextIter iter = *start_at;
 	GtkTextIter limit;
 	GtkTextIter region_end = *start_at;
 	GtkSourceRegion *region = NULL;
 
-	if (gtk_text_iter_starts_tag (&iter, search->priv->found_tag) ||
-	    (!gtk_text_iter_has_tag (&iter, search->priv->found_tag) &&
-	     !gtk_text_iter_ends_tag (&iter, search->priv->found_tag)))
+	if (gtk_text_iter_starts_tag (&iter, search->found_tag) ||
+	    (!gtk_text_iter_has_tag (&iter, search->found_tag) &&
+	     !gtk_text_iter_ends_tag (&iter, search->found_tag)))
 	{
-		gtk_text_iter_backward_to_tag_toggle (&iter, search->priv->found_tag);
+		gtk_text_iter_backward_to_tag_toggle (&iter, search->found_tag);
 	}
-	else if (gtk_text_iter_has_tag (&iter, search->priv->found_tag))
+	else if (gtk_text_iter_has_tag (&iter, search->found_tag))
 	{
-		gtk_text_iter_forward_to_tag_toggle (&iter, search->priv->found_tag);
+		gtk_text_iter_forward_to_tag_toggle (&iter, search->found_tag);
 		region_end = iter;
 	}
 
 	limit = iter;
-	gtk_text_iter_backward_to_tag_toggle (&limit, search->priv->found_tag);
+	gtk_text_iter_backward_to_tag_toggle (&limit, search->found_tag);
 
-	if (search->priv->scan_region != NULL)
+	if (search->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+		region = gtk_source_region_intersect_subregion (search->scan_region,
 								&limit,
 								&region_end);
 	}
@@ -2239,7 +2244,7 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 	/* Scan a chunk of the buffer, not the whole 'region'. An occurrence can
 	 * be found before the 'region' is scanned entirely.
 	 */
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		regex_search_scan_next_chunk (search);
 	}
@@ -2256,12 +2261,12 @@ smart_backward_search_step (GtkSourceSearchContext *search,
 /* Doesn't wrap around. */
 static gboolean
 smart_backward_search (GtkSourceSearchContext *search,
-		       const GtkTextIter      *start_at,
-		       GtkTextIter            *match_start,
-		       GtkTextIter            *match_end)
+                       const GtkTextIter      *start_at,
+                       GtkTextIter            *match_start,
+                       GtkTextIter            *match_end)
 {
 	GtkTextIter iter = *start_at;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 
 	g_return_val_if_fail (match_start != NULL, FALSE);
 	g_return_val_if_fail (match_end != NULL, FALSE);
@@ -2284,27 +2289,27 @@ smart_backward_search (GtkSourceSearchContext *search,
 
 static void
 add_subregion_to_scan (GtkSourceSearchContext *search,
-		       const GtkTextIter      *subregion_start,
-		       const GtkTextIter      *subregion_end)
+                       const GtkTextIter      *subregion_start,
+                       const GtkTextIter      *subregion_end)
 {
 	GtkTextIter start = *subregion_start;
 	GtkTextIter end = *subregion_end;
 
-	if (search->priv->scan_region == NULL)
+	if (search->scan_region == NULL)
 	{
-		search->priv->scan_region = gtk_source_region_new (search->priv->buffer);
+		search->scan_region = gtk_source_region_new (search->buffer);
 	}
 
 	DEBUG ({
 		g_print ("add_subregion_to_scan(): region to scan, before:\n");
-		print_region (search->priv->scan_region);
+		print_region (search->scan_region);
 	});
 
-	gtk_source_region_add_subregion (search->priv->scan_region, &start, &end);
+	gtk_source_region_add_subregion (search->scan_region, &start, &end);
 
 	DEBUG ({
 		g_print ("add_subregion_to_scan(): region to scan, after:\n");
-		print_region (search->priv->scan_region);
+		print_region (search->scan_region);
 	});
 
 	install_idle_scan (search);
@@ -2314,49 +2319,49 @@ static void
 update_regex (GtkSourceSearchContext *search)
 {
 	gboolean regex_error_changed = FALSE;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 
-	if (search->priv->regex != NULL)
+	if (search->regex != NULL)
 	{
-		g_regex_unref (search->priv->regex);
-		search->priv->regex = NULL;
+		g_regex_unref (search->regex);
+		search->regex = NULL;
 	}
 
-	if (search->priv->regex_error != NULL)
+	if (search->regex_error != NULL)
 	{
-		g_clear_error (&search->priv->regex_error);
+		g_clear_error (&search->regex_error);
 		regex_error_changed = TRUE;
 	}
 
 	if (search_text != NULL &&
-	    gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	    gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		GRegexCompileFlags compile_flags = G_REGEX_OPTIMIZE | G_REGEX_MULTILINE;
 		gchar *pattern = (gchar *)search_text;
 
-		search->priv->text_nb_lines = 0;
+		search->text_nb_lines = 0;
 
-		if (!gtk_source_search_settings_get_case_sensitive (search->priv->settings))
+		if (!gtk_source_search_settings_get_case_sensitive (search->settings))
 		{
 			compile_flags |= G_REGEX_CASELESS;
 		}
 
-		if (gtk_source_search_settings_get_at_word_boundaries (search->priv->settings))
+		if (gtk_source_search_settings_get_at_word_boundaries (search->settings))
 		{
 			pattern = g_strdup_printf ("\\b%s\\b", search_text);
 		}
 
-		search->priv->regex = g_regex_new (pattern,
+		search->regex = g_regex_new (pattern,
 						   compile_flags,
 						   G_REGEX_MATCH_NOTEMPTY,
-						   &search->priv->regex_error);
+						   &search->regex_error);
 
-		if (search->priv->regex_error != NULL)
+		if (search->regex_error != NULL)
 		{
 			regex_error_changed = TRUE;
 		}
 
-		if (gtk_source_search_settings_get_at_word_boundaries (search->priv->settings))
+		if (gtk_source_search_settings_get_at_word_boundaries (search->settings))
 		{
 			g_free (pattern);
 		}
@@ -2364,7 +2369,7 @@ update_regex (GtkSourceSearchContext *search)
 
 	if (regex_error_changed)
 	{
-		g_object_notify (G_OBJECT (search), "regex-error");
+		g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_REGEX_ERROR]);
 	}
 }
 
@@ -2375,7 +2380,7 @@ update (GtkSourceSearchContext *search)
 	GtkTextIter end;
 	GtkSourceBufferInternal *buffer_internal;
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return;
 	}
@@ -2383,31 +2388,31 @@ update (GtkSourceSearchContext *search)
 	clear_search (search);
 	update_regex (search);
 
-	search->priv->scan_region = gtk_source_region_new (search->priv->buffer);
+	search->scan_region = gtk_source_region_new (search->buffer);
 
-	gtk_text_buffer_get_bounds (search->priv->buffer, &start, &end);
+	gtk_text_buffer_get_bounds (search->buffer, &start, &end);
 	add_subregion_to_scan (search, &start, &end);
 
 	/* Notify the GtkSourceViews that the search is starting, so that
 	 * _gtk_source_search_context_update_highlight() can be called for the
 	 * visible regions of the buffer.
 	 */
-	buffer_internal = _gtk_source_buffer_internal_get_from_buffer (GTK_SOURCE_BUFFER (search->priv->buffer));
+	buffer_internal = _gtk_source_buffer_internal_get_from_buffer (GTK_SOURCE_BUFFER (search->buffer));
 	_gtk_source_buffer_internal_emit_search_start (buffer_internal, search);
 }
 
 static void
 insert_text_before_cb (GtkSourceSearchContext *search,
-		       GtkTextIter            *location,
-		       gchar                  *text,
-		       gint                    length)
+                       GtkTextIter            *location,
+                       gchar                  *text,
+                       gint                    length)
 {
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 
 	clear_task (search);
 
 	if (search_text != NULL &&
-	    !gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	    !gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		GtkTextIter start = *location;
 		GtkTextIter end = *location;
@@ -2419,11 +2424,11 @@ insert_text_before_cb (GtkSourceSearchContext *search,
 
 static void
 insert_text_after_cb (GtkSourceSearchContext *search,
-		      GtkTextIter            *location,
-		      gchar                  *text,
-		      gint                    length)
+                      GtkTextIter            *location,
+                      gchar                  *text,
+                      gint                    length)
 {
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		update (search);
 	}
@@ -2443,27 +2448,27 @@ insert_text_after_cb (GtkSourceSearchContext *search,
 
 static void
 delete_range_before_cb (GtkSourceSearchContext *search,
-			GtkTextIter            *delete_start,
-			GtkTextIter            *delete_end)
+                        GtkTextIter            *delete_start,
+                        GtkTextIter            *delete_end)
 {
 	GtkTextIter start_buffer;
 	GtkTextIter end_buffer;
-	const gchar *search_text = gtk_source_search_settings_get_search_text (search->priv->settings);
+	const gchar *search_text = gtk_source_search_settings_get_search_text (search->settings);
 
 	clear_task (search);
 
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		return;
 	}
 
-	gtk_text_buffer_get_bounds (search->priv->buffer, &start_buffer, &end_buffer);
+	gtk_text_buffer_get_bounds (search->buffer, &start_buffer, &end_buffer);
 
 	if (gtk_text_iter_equal (delete_start, &start_buffer) &&
 	    gtk_text_iter_equal (delete_end, &end_buffer))
 	{
 		/* Special case when removing all the text. */
-		search->priv->occurrences_count = 0;
+		search->occurrences_count = 0;
 		return;
 	}
 
@@ -2472,8 +2477,8 @@ delete_range_before_cb (GtkSourceSearchContext *search,
 		GtkTextIter start = *delete_start;
 		GtkTextIter end = *delete_end;
 
-		gtk_text_iter_backward_lines (&start, search->priv->text_nb_lines);
-		gtk_text_iter_forward_lines (&end, search->priv->text_nb_lines);
+		gtk_text_iter_backward_lines (&start, search->text_nb_lines);
+		gtk_text_iter_forward_lines (&end, search->text_nb_lines);
 
 		remove_occurrences_in_range (search, &start, &end);
 		add_subregion_to_scan (search, &start, &end);
@@ -2482,10 +2487,10 @@ delete_range_before_cb (GtkSourceSearchContext *search,
 
 static void
 delete_range_after_cb (GtkSourceSearchContext *search,
-		       GtkTextIter            *start,
-		       GtkTextIter            *end)
+                       GtkTextIter            *start,
+                       GtkTextIter            *end)
 {
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		update (search);
 	}
@@ -2499,16 +2504,16 @@ static void
 set_buffer (GtkSourceSearchContext *search,
 	    GtkSourceBuffer        *buffer)
 {
-	g_assert (search->priv->buffer == NULL);
-	g_assert (search->priv->tag_table == NULL);
+	g_assert (search->buffer == NULL);
+	g_assert (search->tag_table == NULL);
 
-	search->priv->buffer = GTK_TEXT_BUFFER (buffer);
+	search->buffer = GTK_TEXT_BUFFER (buffer);
 
 	g_object_add_weak_pointer (G_OBJECT (buffer),
-				   (gpointer *)&search->priv->buffer);
+				   (gpointer *)&search->buffer);
 
-	search->priv->tag_table = gtk_text_buffer_get_tag_table (search->priv->buffer);
-	g_object_ref (search->priv->tag_table);
+	search->tag_table = gtk_text_buffer_get_tag_table (search->buffer);
+	g_object_ref (search->tag_table);
 
 	g_signal_connect_object (buffer,
 				 "insert-text",
@@ -2534,12 +2539,12 @@ set_buffer (GtkSourceSearchContext *search,
 				 search,
 				 G_CONNECT_AFTER | G_CONNECT_SWAPPED);
 
-	search->priv->found_tag = gtk_text_buffer_create_tag (search->priv->buffer, NULL, NULL);
-	g_object_ref (search->priv->found_tag);
+	search->found_tag = gtk_text_buffer_create_tag (search->buffer, NULL, NULL);
+	g_object_ref (search->found_tag);
 
 	sync_found_tag (search);
 
-	g_signal_connect_object (search->priv->buffer,
+	g_signal_connect_object (search->buffer,
 				 "notify::style-scheme",
 				 G_CALLBACK (sync_found_tag),
 				 search,
@@ -2587,21 +2592,21 @@ compute_number_of_lines (const gchar *text)
 static void
 search_text_updated (GtkSourceSearchContext *search)
 {
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
-		search->priv->text_nb_lines = 0;
+		search->text_nb_lines = 0;
 	}
 	else
 	{
-		const gchar *text = gtk_source_search_settings_get_search_text (search->priv->settings);
-		search->priv->text_nb_lines = compute_number_of_lines (text);
+		const gchar *text = gtk_source_search_settings_get_search_text (search->settings);
+		search->text_nb_lines = compute_number_of_lines (text);
 	}
 }
 
 static void
 settings_notify_cb (GtkSourceSearchContext  *search,
-		    GParamSpec              *pspec,
-		    GtkSourceSearchSettings *settings)
+                    GParamSpec              *pspec,
+                    GtkSourceSearchSettings *settings)
 {
 	const gchar *property = g_param_spec_get_name (pspec);
 
@@ -2615,20 +2620,20 @@ settings_notify_cb (GtkSourceSearchContext  *search,
 
 static void
 set_settings (GtkSourceSearchContext  *search,
-	      GtkSourceSearchSettings *settings)
+              GtkSourceSearchSettings *settings)
 {
-	g_assert (search->priv->settings == NULL);
+	g_assert (search->settings == NULL);
 
 	if (settings != NULL)
 	{
-		search->priv->settings = g_object_ref (settings);
+		search->settings = g_object_ref (settings);
 	}
 	else
 	{
-		search->priv->settings = gtk_source_search_settings_new ();
+		search->settings = gtk_source_search_settings_new ();
 	}
 
-	g_signal_connect_object (search->priv->settings,
+	g_signal_connect_object (search->settings,
 				 "notify",
 				 G_CALLBACK (settings_notify_cb),
 				 search,
@@ -2637,7 +2642,8 @@ set_settings (GtkSourceSearchContext  *search,
 	search_text_updated (search);
 	update (search);
 
-	g_object_notify (G_OBJECT (search), "settings");
+	g_object_notify_by_pspec (G_OBJECT (search),
+	                          properties [PROP_SETTINGS]);
 }
 
 static void
@@ -2647,25 +2653,25 @@ gtk_source_search_context_dispose (GObject *object)
 
 	clear_search (search);
 
-	if (search->priv->found_tag != NULL &&
-	    search->priv->tag_table != NULL)
+	if (search->found_tag != NULL &&
+	    search->tag_table != NULL)
 	{
-		gtk_text_tag_table_remove (search->priv->tag_table,
-					   search->priv->found_tag);
+		gtk_text_tag_table_remove (search->tag_table,
+					   search->found_tag);
 
-		g_clear_object (&search->priv->found_tag);
-		g_clear_object (&search->priv->tag_table);
+		g_clear_object (&search->found_tag);
+		g_clear_object (&search->tag_table);
 	}
 
-	if (search->priv->buffer != NULL)
+	if (search->buffer != NULL)
 	{
-		g_object_remove_weak_pointer (G_OBJECT (search->priv->buffer),
-					      (gpointer *)&search->priv->buffer);
+		g_object_remove_weak_pointer (G_OBJECT (search->buffer),
+					      (gpointer *)&search->buffer);
 
-		search->priv->buffer = NULL;
+		search->buffer = NULL;
 	}
 
-	g_clear_object (&search->priv->settings);
+	g_clear_object (&search->settings);
 
 	G_OBJECT_CLASS (gtk_source_search_context_parent_class)->dispose (object);
 }
@@ -2675,21 +2681,21 @@ gtk_source_search_context_finalize (GObject *object)
 {
 	GtkSourceSearchContext *search = GTK_SOURCE_SEARCH_CONTEXT (object);
 
-	if (search->priv->regex != NULL)
+	if (search->regex != NULL)
 	{
-		g_regex_unref (search->priv->regex);
+		g_regex_unref (search->regex);
 	}
 
-	g_clear_error (&search->priv->regex_error);
+	g_clear_error (&search->regex_error);
 
 	G_OBJECT_CLASS (gtk_source_search_context_parent_class)->finalize (object);
 }
 
 static void
 gtk_source_search_context_get_property (GObject    *object,
-					guint       prop_id,
-					GValue     *value,
-					GParamSpec *pspec)
+                                        guint       prop_id,
+                                        GValue     *value,
+                                        GParamSpec *pspec)
 {
 	GtkSourceSearchContext *search;
 
@@ -2700,19 +2706,19 @@ gtk_source_search_context_get_property (GObject    *object,
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			g_value_set_object (value, search->priv->buffer);
+			g_value_set_object (value, search->buffer);
 			break;
 
 		case PROP_SETTINGS:
-			g_value_set_object (value, search->priv->settings);
+			g_value_set_object (value, search->settings);
 			break;
 
 		case PROP_HIGHLIGHT:
-			g_value_set_boolean (value, search->priv->highlight);
+			g_value_set_boolean (value, search->highlight);
 			break;
 
 		case PROP_MATCH_STYLE:
-			g_value_set_object (value, search->priv->match_style);
+			g_value_set_object (value, search->match_style);
 			break;
 
 		case PROP_OCCURRENCES_COUNT:
@@ -2720,7 +2726,7 @@ gtk_source_search_context_get_property (GObject    *object,
 			break;
 
 		case PROP_REGEX_ERROR:
-			g_value_set_pointer (value, gtk_source_search_context_get_regex_error (search));
+			g_value_take_boxed (value, gtk_source_search_context_get_regex_error (search));
 			break;
 
 		default:
@@ -2731,9 +2737,9 @@ gtk_source_search_context_get_property (GObject    *object,
 
 static void
 gtk_source_search_context_set_property (GObject      *object,
-					guint         prop_id,
-					const GValue *value,
-					GParamSpec   *pspec)
+                                        guint         prop_id,
+                                        const GValue *value,
+                                        GParamSpec   *pspec)
 {
 	GtkSourceSearchContext *search;
 
@@ -2782,15 +2788,14 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_BUFFER,
-					 g_param_spec_object ("buffer",
-							      "Buffer",
-							      "The associated GtkSourceBuffer",
-							      GTK_SOURCE_TYPE_BUFFER,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_BUFFER] =
+		g_param_spec_object ("buffer",
+		                     "Buffer",
+		                     "The associated GtkSourceBuffer",
+		                     GTK_SOURCE_TYPE_BUFFER,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:settings:
@@ -2801,15 +2806,14 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_SETTINGS,
-					 g_param_spec_object ("settings",
-							      "Settings",
-							      "The associated GtkSourceSearchSettings",
-							      GTK_SOURCE_TYPE_SEARCH_SETTINGS,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT_ONLY |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_SETTINGS] =
+		g_param_spec_object ("settings",
+		                     "Settings",
+		                     "The associated GtkSourceSearchSettings",
+		                     GTK_SOURCE_TYPE_SEARCH_SETTINGS,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT_ONLY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:highlight:
@@ -2818,15 +2822,14 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_HIGHLIGHT,
-					 g_param_spec_boolean ("highlight",
-							       "Highlight",
-							       "Highlight search occurrences",
-							       TRUE,
-							       G_PARAM_READWRITE |
-							       G_PARAM_CONSTRUCT |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_HIGHLIGHT] =
+		g_param_spec_boolean ("highlight",
+		                      "Highlight",
+		                      "Highlight search occurrences",
+		                      TRUE,
+		                      (G_PARAM_READWRITE |
+		                       G_PARAM_CONSTRUCT |
+		                       G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:match-style:
@@ -2835,15 +2838,14 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.16
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_MATCH_STYLE,
-					 g_param_spec_object ("match-style",
-							      "Match style",
-							      "The text style for matches",
-							      GTK_SOURCE_TYPE_STYLE,
-							      G_PARAM_READWRITE |
-							      G_PARAM_CONSTRUCT |
-							      G_PARAM_STATIC_STRINGS));
+	properties [PROP_MATCH_STYLE] =
+		g_param_spec_object ("match-style",
+		                     "Match style",
+		                     "The text style for matches",
+		                     GTK_SOURCE_TYPE_STYLE,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_CONSTRUCT |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:occurrences-count:
@@ -2854,16 +2856,15 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_OCCURRENCES_COUNT,
-					 g_param_spec_int ("occurrences-count",
-							   "Occurrences count",
-							   "Total number of search occurrences",
-							   -1,
-							   G_MAXINT,
-							   0,
-							   G_PARAM_READABLE |
-							   G_PARAM_STATIC_STRINGS));
+	properties [PROP_OCCURRENCES_COUNT] =
+		g_param_spec_int ("occurrences-count",
+		                  "Occurrences count",
+		                  "Total number of search occurrences",
+		                  -1,
+		                  G_MAXINT,
+		                  0,
+		                  (G_PARAM_READABLE |
+		                   G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceSearchContext:regex-error:
@@ -2876,19 +2877,21 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 *
 	 * Since: 3.10
 	 */
-	g_object_class_install_property (object_class,
-					 PROP_REGEX_ERROR,
-					 g_param_spec_pointer ("regex-error",
-							       "Regex error",
-							       "Regular expression error",
-							       G_PARAM_READABLE |
-							       G_PARAM_STATIC_STRINGS));
+	properties [PROP_REGEX_ERROR] =
+		g_param_spec_boxed ("regex-error",
+		                    "Regex error",
+		                    "Regular expression error",
+		                    G_TYPE_ERROR,
+		                    (G_PARAM_READABLE |
+		                     G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
 gtk_source_search_context_init (GtkSourceSearchContext *search)
 {
-	search->priv = gtk_source_search_context_get_instance_private (search);
+	search = gtk_source_search_context_get_instance_private (search);
 }
 
 /**
@@ -2906,7 +2909,7 @@ gtk_source_search_context_init (GtkSourceSearchContext *search)
  */
 GtkSourceSearchContext *
 gtk_source_search_context_new (GtkSourceBuffer         *buffer,
-			       GtkSourceSearchSettings *settings)
+                               GtkSourceSearchSettings *settings)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), NULL);
 	g_return_val_if_fail (settings == NULL || GTK_SOURCE_IS_SEARCH_SETTINGS (settings), NULL);
@@ -2929,7 +2932,7 @@ gtk_source_search_context_get_buffer (GtkSourceSearchContext *search)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), NULL);
 
-	return GTK_SOURCE_BUFFER (search->priv->buffer);
+	return GTK_SOURCE_BUFFER (search->buffer);
 }
 
 /**
@@ -2944,7 +2947,7 @@ gtk_source_search_context_get_settings (GtkSourceSearchContext *search)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), NULL);
 
-	return search->priv->settings;
+	return search->settings;
 }
 
 /**
@@ -2959,7 +2962,7 @@ gtk_source_search_context_get_highlight (GtkSourceSearchContext *search)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), FALSE);
 
-	return search->priv->highlight;
+	return search->highlight;
 }
 
 /**
@@ -2973,18 +2976,18 @@ gtk_source_search_context_get_highlight (GtkSourceSearchContext *search)
  */
 void
 gtk_source_search_context_set_highlight (GtkSourceSearchContext *search,
-					 gboolean                highlight)
+                                         gboolean                highlight)
 {
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
 
 	highlight = highlight != FALSE;
 
-	if (search->priv->highlight != highlight)
+	if (search->highlight != highlight)
 	{
-		search->priv->highlight = highlight;
+		search->highlight = highlight;
 		sync_found_tag (search);
 
-		g_object_notify (G_OBJECT (search), "highlight");
+		g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_HIGHLIGHT]);
 	}
 }
 
@@ -3001,7 +3004,7 @@ gtk_source_search_context_get_match_style (GtkSourceSearchContext *search)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), NULL);
 
-	return search->priv->match_style;
+	return search->match_style;
 }
 
 /**
@@ -3018,29 +3021,29 @@ gtk_source_search_context_get_match_style (GtkSourceSearchContext *search)
  */
 void
 gtk_source_search_context_set_match_style (GtkSourceSearchContext *search,
-					   GtkSourceStyle         *match_style)
+                                           GtkSourceStyle         *match_style)
 {
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
 	g_return_if_fail (match_style == NULL || GTK_SOURCE_IS_STYLE (match_style));
 
-	if (search->priv->match_style == match_style)
+	if (search->match_style == match_style)
 	{
 		return;
 	}
 
-	if (search->priv->match_style != NULL)
+	if (search->match_style != NULL)
 	{
-		g_object_unref (search->priv->match_style);
+		g_object_unref (search->match_style);
 	}
 
-	search->priv->match_style = match_style;
+	search->match_style = match_style;
 
 	if (match_style != NULL)
 	{
 		g_object_ref (match_style);
 	}
 
-	g_object_notify (G_OBJECT (search), "match-style");
+	g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_MATCH_STYLE]);
 }
 
 /**
@@ -3048,12 +3051,14 @@ gtk_source_search_context_set_match_style (GtkSourceSearchContext *search,
  * @search: a #GtkSourceSearchContext.
  *
  * Regular expression patterns must follow certain rules. If
- * #GtkSourceSearchSettings:search-text breaks a rule, the error can be retrieved
- * with this function. The error domain is #G_REGEX_ERROR.
+ * #GtkSourceSearchSettings:search-text breaks a rule, the error can be
+ * retrieved with this function. The error domain is #G_REGEX_ERROR.
  *
  * Free the return value with g_error_free().
  *
- * Returns: (nullable): the #GError, or %NULL if the pattern is valid.
+ * Returns: (transfer full) (nullable): the #GError, or %NULL if the
+ *   pattern is valid.
+ *
  * Since: 3.10
  */
 GError *
@@ -3061,12 +3066,12 @@ gtk_source_search_context_get_regex_error (GtkSourceSearchContext *search)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), NULL);
 
-	if (search->priv->regex_error == NULL)
+	if (search->regex_error == NULL)
 	{
 		return NULL;
 	}
 
-	return g_error_copy (search->priv->regex_error);
+	return g_error_copy (search->regex_error);
 }
 
 /**
@@ -3085,12 +3090,12 @@ gtk_source_search_context_get_occurrences_count (GtkSourceSearchContext *search)
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search), -1);
 
-	if (!gtk_source_region_is_empty (search->priv->scan_region))
+	if (!gtk_source_region_is_empty (search->scan_region))
 	{
 		return -1;
 	}
 
-	return search->priv->occurrences_count;
+	return search->occurrences_count;
 }
 
 /**
@@ -3112,8 +3117,8 @@ gtk_source_search_context_get_occurrences_count (GtkSourceSearchContext *search)
  */
 gint
 gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *search,
-						   const GtkTextIter      *match_start,
-						   const GtkTextIter      *match_end)
+                                                   const GtkTextIter      *match_start,
+                                                   const GtkTextIter      *match_end)
 {
 	GtkTextIter m_start;
 	GtkTextIter m_end;
@@ -3127,16 +3132,16 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 	g_return_val_if_fail (match_start != NULL, -1);
 	g_return_val_if_fail (match_end != NULL, -1);
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return -1;
 	}
 
 	/* Verify that the [match_start; match_end] region has been scanned. */
 
-	if (search->priv->scan_region != NULL)
+	if (search->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+		region = gtk_source_region_intersect_subregion (search->scan_region,
 								match_start,
 								match_end);
 
@@ -3169,11 +3174,11 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
 	 * and the end of the occurrence.
 	 */
 
-	gtk_text_buffer_get_start_iter (search->priv->buffer, &iter);
+	gtk_text_buffer_get_start_iter (search->buffer, &iter);
 
-	if (search->priv->scan_region != NULL)
+	if (search->scan_region != NULL)
 	{
-		region = gtk_source_region_intersect_subregion (search->priv->scan_region,
+		region = gtk_source_region_intersect_subregion (search->scan_region,
 								&iter,
 								match_end);
 
@@ -3223,10 +3228,10 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
  */
 gboolean
 gtk_source_search_context_forward (GtkSourceSearchContext *search,
-				   const GtkTextIter      *iter,
-				   GtkTextIter            *match_start,
-				   GtkTextIter            *match_end,
-				   gboolean               *has_wrapped_around)
+                                   const GtkTextIter      *iter,
+                                   GtkTextIter            *match_start,
+                                   GtkTextIter            *match_end,
+                                   gboolean               *has_wrapped_around)
 {
 	GtkTextIter m_start;
 	GtkTextIter m_end;
@@ -3240,17 +3245,17 @@ gtk_source_search_context_forward (GtkSourceSearchContext *search,
 		*has_wrapped_around = FALSE;
 	}
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return FALSE;
 	}
 
 	found = smart_forward_search (search, iter, &m_start, &m_end);
 
-	if (!found && gtk_source_search_settings_get_wrap_around (search->priv->settings))
+	if (!found && gtk_source_search_settings_get_wrap_around (search->settings))
 	{
 		GtkTextIter start_iter;
-		gtk_text_buffer_get_start_iter (search->priv->buffer, &start_iter);
+		gtk_text_buffer_get_start_iter (search->buffer, &start_iter);
 
 		found = smart_forward_search (search, &start_iter, &m_start, &m_end);
 
@@ -3296,21 +3301,21 @@ gtk_source_search_context_forward (GtkSourceSearchContext *search,
  */
 void
 gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
-					 const GtkTextIter      *iter,
-					 GCancellable           *cancellable,
-					 GAsyncReadyCallback     callback,
-					 gpointer                user_data)
+                                         const GtkTextIter      *iter,
+                                         GCancellable           *cancellable,
+                                         GAsyncReadyCallback     callback,
+                                         gpointer                user_data)
 {
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
 	g_return_if_fail (iter != NULL);
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return;
 	}
 
 	clear_task (search);
-	search->priv->task = g_task_new (search, cancellable, callback, user_data);
+	search->task = g_task_new (search, cancellable, callback, user_data);
 
 	smart_forward_search_async (search, iter, FALSE);
 }
@@ -3336,11 +3341,11 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
  */
 gboolean
 gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
-					  GAsyncResult            *result,
-					  GtkTextIter             *match_start,
-					  GtkTextIter             *match_end,
-					  gboolean                *has_wrapped_around,
-					  GError                 **error)
+                                          GAsyncResult            *result,
+                                          GtkTextIter             *match_start,
+                                          GtkTextIter             *match_end,
+                                          gboolean                *has_wrapped_around,
+                                          GError                 **error)
 {
 	ForwardBackwardData *data;
 	gboolean found;
@@ -3352,7 +3357,7 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
 		*has_wrapped_around = FALSE;
 	}
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return FALSE;
 	}
@@ -3372,14 +3377,14 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
 	{
 		if (match_start != NULL)
 		{
-                        gtk_text_buffer_get_iter_at_mark (search->priv->buffer,
+                        gtk_text_buffer_get_iter_at_mark (search->buffer,
                                                           match_start,
                                                           data->match_start);
 		}
 
 		if (match_end != NULL)
 		{
-                        gtk_text_buffer_get_iter_at_mark (search->priv->buffer,
+                        gtk_text_buffer_get_iter_at_mark (search->buffer,
                                                           match_end,
                                                           data->match_end);
 		}
@@ -3419,10 +3424,10 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
  */
 gboolean
 gtk_source_search_context_backward (GtkSourceSearchContext *search,
-				    const GtkTextIter      *iter,
-				    GtkTextIter            *match_start,
-				    GtkTextIter            *match_end,
-				    gboolean               *has_wrapped_around)
+                                    const GtkTextIter      *iter,
+                                    GtkTextIter            *match_start,
+                                    GtkTextIter            *match_end,
+                                    gboolean               *has_wrapped_around)
 {
 	GtkTextIter m_start;
 	GtkTextIter m_end;
@@ -3436,18 +3441,18 @@ gtk_source_search_context_backward (GtkSourceSearchContext *search,
 		*has_wrapped_around = FALSE;
 	}
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return FALSE;
 	}
 
 	found = smart_backward_search (search, iter, &m_start, &m_end);
 
-	if (!found && gtk_source_search_settings_get_wrap_around (search->priv->settings))
+	if (!found && gtk_source_search_settings_get_wrap_around (search->settings))
 	{
 		GtkTextIter end_iter;
 
-		gtk_text_buffer_get_end_iter (search->priv->buffer, &end_iter);
+		gtk_text_buffer_get_end_iter (search->buffer, &end_iter);
 
 		found = smart_backward_search (search, &end_iter, &m_start, &m_end);
 
@@ -3493,21 +3498,21 @@ gtk_source_search_context_backward (GtkSourceSearchContext *search,
  */
 void
 gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
-					  const GtkTextIter      *iter,
-					  GCancellable           *cancellable,
-					  GAsyncReadyCallback     callback,
-					  gpointer                user_data)
+                                          const GtkTextIter      *iter,
+                                          GCancellable           *cancellable,
+                                          GAsyncReadyCallback     callback,
+                                          gpointer                user_data)
 {
 	g_return_if_fail (GTK_SOURCE_IS_SEARCH_CONTEXT (search));
 	g_return_if_fail (iter != NULL);
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return;
 	}
 
 	clear_task (search);
-	search->priv->task = g_task_new (search, cancellable, callback, user_data);
+	search->task = g_task_new (search, cancellable, callback, user_data);
 
 	smart_backward_search_async (search, iter, FALSE);
 }
@@ -3533,11 +3538,11 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
  */
 gboolean
 gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
-					   GAsyncResult            *result,
-					   GtkTextIter             *match_start,
-					   GtkTextIter             *match_end,
-					   gboolean                *has_wrapped_around,
-					   GError                 **error)
+                                           GAsyncResult            *result,
+                                           GtkTextIter             *match_start,
+                                           GtkTextIter             *match_end,
+                                           gboolean                *has_wrapped_around,
+                                           GError                 **error)
 {
 	return gtk_source_search_context_forward_finish (search,
 							 result,
@@ -3570,8 +3575,8 @@ regex_replace (GtkSourceSearchContext  *search,
 	GError *tmp_error = NULL;
 	gboolean replaced = FALSE;
 
-	if (search->priv->regex == NULL ||
-	    search->priv->regex_error != NULL)
+	if (search->regex == NULL ||
+	    search->regex_error != NULL)
 	{
 		return FALSE;
 	}
@@ -3603,7 +3608,7 @@ regex_replace (GtkSourceSearchContext  *search,
 	match_options = regex_search_get_match_options (&real_start, &real_end);
 	match_options |= G_REGEX_MATCH_ANCHORED;
 
-	subject_replaced = g_regex_replace (search->priv->regex,
+	subject_replaced = g_regex_replace (search->regex,
 					    subject,
 					    -1,
 					    start_pos,
@@ -3630,10 +3635,10 @@ regex_replace (GtkSourceSearchContext  *search,
 
 	match_start_copy = *match_start;
 
-	gtk_text_buffer_begin_user_action (search->priv->buffer);
-	gtk_text_buffer_delete (search->priv->buffer, &match_start_copy, match_end);
-	gtk_text_buffer_insert (search->priv->buffer, match_end, subject_replaced + start_pos, -1);
-	gtk_text_buffer_end_user_action (search->priv->buffer);
+	gtk_text_buffer_begin_user_action (search->buffer);
+	gtk_text_buffer_delete (search->buffer, &match_start_copy, match_end);
+	gtk_text_buffer_insert (search->buffer, match_end, subject_replaced + start_pos, -1);
+	gtk_text_buffer_end_user_action (search->buffer);
 
 	replaced = TRUE;
 
@@ -3668,11 +3673,11 @@ end:
  */
 gboolean
 gtk_source_search_context_replace (GtkSourceSearchContext  *search,
-				   GtkTextIter             *match_start,
-				   GtkTextIter             *match_end,
-				   const gchar             *replace,
-				   gint                     replace_length,
-				   GError                 **error)
+                                   GtkTextIter             *match_start,
+                                   GtkTextIter             *match_end,
+                                   const gchar             *replace,
+                                   gint                     replace_length,
+                                   GError                 **error)
 {
 	GtkTextIter start;
 	GtkTextIter end;
@@ -3685,7 +3690,7 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
 	g_return_val_if_fail (replace != NULL, FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return FALSE;
 	}
@@ -3701,29 +3706,29 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
 		return FALSE;
 	}
 
-	start_mark = gtk_text_buffer_create_mark (search->priv->buffer, NULL, &start, TRUE);
+	start_mark = gtk_text_buffer_create_mark (search->buffer, NULL, &start, TRUE);
 
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		replaced = regex_replace (search, &start, &end, replace, error);
 	}
 	else
 	{
-		gtk_text_buffer_begin_user_action (search->priv->buffer);
-		gtk_text_buffer_delete (search->priv->buffer, &start, &end);
-		gtk_text_buffer_insert (search->priv->buffer, &end, replace, replace_length);
-		gtk_text_buffer_end_user_action (search->priv->buffer);
+		gtk_text_buffer_begin_user_action (search->buffer);
+		gtk_text_buffer_delete (search->buffer, &start, &end);
+		gtk_text_buffer_insert (search->buffer, &end, replace, replace_length);
+		gtk_text_buffer_end_user_action (search->buffer);
 
 		replaced = TRUE;
 	}
 
 	if (replaced)
 	{
-		gtk_text_buffer_get_iter_at_mark (search->priv->buffer, match_start, start_mark);
+		gtk_text_buffer_get_iter_at_mark (search->buffer, match_start, start_mark);
 		*match_end = end;
 	}
 
-	gtk_text_buffer_delete_mark (search->priv->buffer, start_mark);
+	gtk_text_buffer_delete_mark (search->buffer, start_mark);
 
 	return replaced;
 }
@@ -3747,9 +3752,9 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
  */
 guint
 gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
-				       const gchar             *replace,
-				       gint                     replace_length,
-				       GError                 **error)
+                                       const gchar             *replace,
+                                       gint                     replace_length,
+                                       GError                 **error)
 {
 	GtkTextIter iter;
 	GtkTextIter match_start;
@@ -3762,17 +3767,17 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 	g_return_val_if_fail (replace != NULL, 0);
 	g_return_val_if_fail (error == NULL || *error == NULL, 0);
 
-	if (search->priv->buffer == NULL)
+	if (search->buffer == NULL)
 	{
 		return 0;
 	}
 
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		GError *tmp_error = NULL;
 
-		if (search->priv->regex == NULL ||
-		    search->priv->regex_error != NULL)
+		if (search->regex == NULL ||
+		    search->regex_error != NULL)
 		{
 			return 0;
 		}
@@ -3788,22 +3793,22 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 		}
 	}
 
-	g_signal_handlers_block_by_func (search->priv->buffer, insert_text_before_cb, search);
-	g_signal_handlers_block_by_func (search->priv->buffer, insert_text_after_cb, search);
-	g_signal_handlers_block_by_func (search->priv->buffer, delete_range_before_cb, search);
-	g_signal_handlers_block_by_func (search->priv->buffer, delete_range_after_cb, search);
+	g_signal_handlers_block_by_func (search->buffer, insert_text_before_cb, search);
+	g_signal_handlers_block_by_func (search->buffer, insert_text_after_cb, search);
+	g_signal_handlers_block_by_func (search->buffer, delete_range_before_cb, search);
+	g_signal_handlers_block_by_func (search->buffer, delete_range_after_cb, search);
 
 	highlight_matching_brackets =
-		gtk_source_buffer_get_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->priv->buffer));
+		gtk_source_buffer_get_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->buffer));
 
-	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->priv->buffer),
+	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->buffer),
 							   FALSE);
 
-	_gtk_source_buffer_save_and_clear_selection (GTK_SOURCE_BUFFER (search->priv->buffer));
+	_gtk_source_buffer_save_and_clear_selection (GTK_SOURCE_BUFFER (search->buffer));
 
-	gtk_text_buffer_get_start_iter (search->priv->buffer, &iter);
+	gtk_text_buffer_get_start_iter (search->buffer, &iter);
 
-	gtk_text_buffer_begin_user_action (search->priv->buffer);
+	gtk_text_buffer_begin_user_action (search->buffer);
 
 	while (smart_forward_search (search, &iter, &match_start, &match_end))
 	{
@@ -3816,25 +3821,25 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 		}
 		else
 		{
-			gtk_text_buffer_delete (search->priv->buffer, &match_start, &match_end);
-			gtk_text_buffer_insert (search->priv->buffer, &match_end, replace, replace_length);
+			gtk_text_buffer_delete (search->buffer, &match_start, &match_end);
+			gtk_text_buffer_insert (search->buffer, &match_end, replace, replace_length);
 		}
 
 		nb_matches_replaced++;
 		iter = match_end;
 	}
 
-	gtk_text_buffer_end_user_action (search->priv->buffer);
+	gtk_text_buffer_end_user_action (search->buffer);
 
-	_gtk_source_buffer_restore_selection (GTK_SOURCE_BUFFER (search->priv->buffer));
+	_gtk_source_buffer_restore_selection (GTK_SOURCE_BUFFER (search->buffer));
 
-	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->priv->buffer),
+	gtk_source_buffer_set_highlight_matching_brackets (GTK_SOURCE_BUFFER (search->buffer),
 							   highlight_matching_brackets);
 
-	g_signal_handlers_unblock_by_func (search->priv->buffer, insert_text_before_cb, search);
-	g_signal_handlers_unblock_by_func (search->priv->buffer, insert_text_after_cb, search);
-	g_signal_handlers_unblock_by_func (search->priv->buffer, delete_range_before_cb, search);
-	g_signal_handlers_unblock_by_func (search->priv->buffer, delete_range_after_cb, search);
+	g_signal_handlers_unblock_by_func (search->buffer, insert_text_before_cb, search);
+	g_signal_handlers_unblock_by_func (search->buffer, insert_text_after_cb, search);
+	g_signal_handlers_unblock_by_func (search->buffer, delete_range_before_cb, search);
+	g_signal_handlers_unblock_by_func (search->buffer, delete_range_after_cb, search);
 
 	update (search);
 
@@ -3844,9 +3849,9 @@ gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,
 /* Highlight the [start,end] region in priority. */
 void
 _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
-					     const GtkTextIter      *start,
-					     const GtkTextIter      *end,
-					     gboolean                synchronous)
+                                             const GtkTextIter      *start,
+                                             const GtkTextIter      *end,
+                                             gboolean                synchronous)
 {
 	GtkSourceRegion *region_to_highlight = NULL;
 
@@ -3854,14 +3859,14 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 	g_return_if_fail (start != NULL);
 	g_return_if_fail (end != NULL);
 
-	if (search->priv->buffer == NULL ||
-	    gtk_source_region_is_empty (search->priv->scan_region) ||
-	    !search->priv->highlight)
+	if (search->buffer == NULL ||
+	    gtk_source_region_is_empty (search->scan_region) ||
+	    !search->highlight)
 	{
 		return;
 	}
 
-	region_to_highlight = gtk_source_region_intersect_subregion (search->priv->scan_region,
+	region_to_highlight = gtk_source_region_intersect_subregion (search->scan_region,
 								     start,
 								     end);
 
@@ -3872,14 +3877,14 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 
 	if (!synchronous)
 	{
-		if (search->priv->high_priority_region == NULL)
+		if (search->high_priority_region == NULL)
 		{
-			search->priv->high_priority_region = region_to_highlight;
+			search->high_priority_region = region_to_highlight;
 			region_to_highlight = NULL;
 		}
 		else
 		{
-			gtk_source_region_add_region (search->priv->high_priority_region,
+			gtk_source_region_add_region (search->high_priority_region,
 						      region_to_highlight);
 		}
 
@@ -3887,11 +3892,11 @@ _gtk_source_search_context_update_highlight (GtkSourceSearchContext *search,
 		goto out;
 	}
 
-	if (gtk_source_search_settings_get_regex_enabled (search->priv->settings))
+	if (gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
 		GtkTextIter region_start;
 
-		if (!gtk_source_region_get_bounds (search->priv->scan_region,
+		if (!gtk_source_region_get_bounds (search->scan_region,
 						   &region_start,
 						   NULL))
 		{

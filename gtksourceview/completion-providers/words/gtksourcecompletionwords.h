@@ -18,55 +18,38 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_COMPLETION_WORDS_H
-#define GTK_SOURCE_COMPLETION_WORDS_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
 #endif
 
-#include <gtksourceview/gtksourcecompletionprovider.h>
 #include <gtk/gtk.h>
+
+#include "../../gtksourcecompletionprovider.h"
 
 G_BEGIN_DECLS
 
-#define GTK_SOURCE_TYPE_COMPLETION_WORDS		(gtk_source_completion_words_get_type ())
-#define GTK_SOURCE_COMPLETION_WORDS(obj)		(G_TYPE_CHECK_INSTANCE_CAST ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS, GtkSourceCompletionWords))
-#define GTK_SOURCE_COMPLETION_WORDS_CLASS(klass)	(G_TYPE_CHECK_CLASS_CAST ((klass), GTK_SOURCE_TYPE_COMPLETION_WORDS, GtkSourceCompletionWordsClass))
-#define GTK_SOURCE_IS_COMPLETION_WORDS(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS))
-#define GTK_SOURCE_IS_COMPLETION_WORDS_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_SOURCE_TYPE_COMPLETION_WORDS))
-#define GTK_SOURCE_COMPLETION_WORDS_GET_CLASS(obj)	(G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_SOURCE_TYPE_COMPLETION_WORDS, GtkSourceCompletionWordsClass))
+#define GTK_SOURCE_TYPE_COMPLETION_WORDS (gtk_source_completion_words_get_type())
 
-typedef struct _GtkSourceCompletionWords		GtkSourceCompletionWords;
-typedef struct _GtkSourceCompletionWordsClass		GtkSourceCompletionWordsClass;
-typedef struct _GtkSourceCompletionWordsPrivate		GtkSourceCompletionWordsPrivate;
-
-struct _GtkSourceCompletionWords {
-	GObject parent;
-
-	GtkSourceCompletionWordsPrivate *priv;
-};
-
-struct _GtkSourceCompletionWordsClass {
+struct _GtkSourceCompletionWordsClass
+{
 	GObjectClass parent_class;
+
+	/*< private >*/
+	gpointer _reserved[10];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GType		gtk_source_completion_words_get_type	(void) G_GNUC_CONST;
+G_DECLARE_DERIVABLE_TYPE (GtkSourceCompletionWords, gtk_source_completion_words, GTK_SOURCE, COMPLETION_WORDS, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceCompletionWords *
-		gtk_source_completion_words_new 	(const gchar              *name,
-		                                         GdkPixbuf                *icon);
-
+GtkSourceCompletionWords *gtk_source_completion_words_new        (const gchar              *title);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void 		gtk_source_completion_words_register 	(GtkSourceCompletionWords *words,
-                                                         GtkTextBuffer            *buffer);
-
+void                      gtk_source_completion_words_register   (GtkSourceCompletionWords *words,
+                                                                  GtkTextBuffer            *buffer);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void 		gtk_source_completion_words_unregister 	(GtkSourceCompletionWords *words,
-                                                         GtkTextBuffer            *buffer);
+void                      gtk_source_completion_words_unregister (GtkSourceCompletionWords *words,
+                                                                  GtkTextBuffer            *buffer);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_COMPLETION_WORDS_H */

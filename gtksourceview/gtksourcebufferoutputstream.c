@@ -1,9 +1,8 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2010 - Ignacio Casal Quinteiro
- * Copyright (C) 2014 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2010 - Ignacio Casal Quinteiro
+ * Copyright 2014 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,14 +18,13 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
-#include "gtksourcebufferoutputstream.h"
 #include <string.h>
 #include <errno.h>
 #include <glib/gi18n-lib.h>
+
+#include "gtksourcebufferoutputstream-private.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
 #include "gtksourceencoding.h"
@@ -57,8 +55,10 @@
 
 #define MAX_UNICHAR_LEN 6
 
-struct _GtkSourceBufferOutputStreamPrivate
+struct _GtkSourceBufferOutputStream
 {
+	GOutputStream parent_instance;
+
 	GtkSourceBuffer *source_buffer;
 	GtkTextIter pos;
 
@@ -94,39 +94,37 @@ enum
 	PROP_REMOVE_TRAILING_NEWLINE
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceBufferOutputStream, gtk_source_buffer_output_stream, G_TYPE_OUTPUT_STREAM)
+G_DEFINE_TYPE (GtkSourceBufferOutputStream, gtk_source_buffer_output_stream, G_TYPE_OUTPUT_STREAM)
 
-static gssize gtk_source_buffer_output_stream_write   (GOutputStream  *stream,
-						       const void     *buffer,
-						       gsize           count,
-						       GCancellable   *cancellable,
-						       GError        **error);
-
+static gssize   gtk_source_buffer_output_stream_write (GOutputStream  *stream,
+                                                       const void     *buffer,
+                                                       gsize           count,
+                                                       GCancellable   *cancellable,
+                                                       GError        **error);
 static gboolean gtk_source_buffer_output_stream_close (GOutputStream  *stream,
-						       GCancellable   *cancellable,
-						       GError        **error);
-
+                                                       GCancellable   *cancellable,
+                                                       GError        **error);
 static gboolean gtk_source_buffer_output_stream_flush (GOutputStream  *stream,
-						       GCancellable   *cancellable,
-						       GError        **error);
+                                                       GCancellable   *cancellable,
+                                                       GError        **error);
 
 static void
 gtk_source_buffer_output_stream_set_property (GObject      *object,
-					      guint         prop_id,
-					      const GValue *value,
-					      GParamSpec   *pspec)
+                                              guint         prop_id,
+                                              const GValue *value,
+                                              GParamSpec   *pspec)
 {
 	GtkSourceBufferOutputStream *stream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (object);
 
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			g_assert (stream->priv->source_buffer == NULL);
-			stream->priv->source_buffer = g_value_dup_object (value);
+			g_assert (stream->source_buffer == NULL);
+			stream->source_buffer = g_value_dup_object (value);
 			break;
 
 		case PROP_REMOVE_TRAILING_NEWLINE:
-			stream->priv->remove_trailing_newline = g_value_get_boolean (value);
+			stream->remove_trailing_newline = g_value_get_boolean (value);
 			break;
 
 		default:
@@ -137,20 +135,20 @@ gtk_source_buffer_output_stream_set_property (GObject      *object,
 
 static void
 gtk_source_buffer_output_stream_get_property (GObject    *object,
-					      guint       prop_id,
-					      GValue     *value,
-					      GParamSpec *pspec)
+                                              guint       prop_id,
+                                              GValue     *value,
+                                              GParamSpec *pspec)
 {
 	GtkSourceBufferOutputStream *stream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (object);
 
 	switch (prop_id)
 	{
 		case PROP_BUFFER:
-			g_value_set_object (value, stream->priv->source_buffer);
+			g_value_set_object (value, stream->source_buffer);
 			break;
 
 		case PROP_REMOVE_TRAILING_NEWLINE:
-			g_value_set_boolean (value, stream->priv->remove_trailing_newline);
+			g_value_set_boolean (value, stream->remove_trailing_newline);
 			break;
 
 		default:
@@ -164,8 +162,8 @@ gtk_source_buffer_output_stream_dispose (GObject *object)
 {
 	GtkSourceBufferOutputStream *stream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (object);
 
-	g_clear_object (&stream->priv->source_buffer);
-	g_clear_object (&stream->priv->charset_conv);
+	g_clear_object (&stream->source_buffer);
+	g_clear_object (&stream->charset_conv);
 
 	G_OBJECT_CLASS (gtk_source_buffer_output_stream_parent_class)->dispose (object);
 }
@@ -175,9 +173,9 @@ gtk_source_buffer_output_stream_finalize (GObject *object)
 {
 	GtkSourceBufferOutputStream *stream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (object);
 
-	g_free (stream->priv->buffer);
-	g_free (stream->priv->iconv_buffer);
-	g_slist_free (stream->priv->encodings);
+	g_free (stream->buffer);
+	g_free (stream->iconv_buffer);
+	g_slist_free (stream->encodings);
 
 	G_OBJECT_CLASS (gtk_source_buffer_output_stream_parent_class)->finalize (object);
 }
@@ -187,18 +185,18 @@ gtk_source_buffer_output_stream_constructed (GObject *object)
 {
 	GtkSourceBufferOutputStream *stream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (object);
 
-	if (stream->priv->source_buffer == NULL)
+	if (stream->source_buffer == NULL)
 	{
 		g_critical ("This should never happen, a problem happened constructing the Buffer Output Stream!");
 		return;
 	}
 
-	gtk_source_buffer_begin_not_undoable_action (stream->priv->source_buffer);
+	gtk_text_buffer_begin_irreversible_action (GTK_TEXT_BUFFER (stream->source_buffer));
 
-	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (stream->priv->source_buffer), "", 0);
-	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->priv->source_buffer), FALSE);
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (stream->source_buffer), "", 0);
+	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->source_buffer), FALSE);
 
-	gtk_source_buffer_end_not_undoable_action (stream->priv->source_buffer);
+	gtk_text_buffer_end_irreversible_action (GTK_TEXT_BUFFER (stream->source_buffer));
 
 	G_OBJECT_CLASS (gtk_source_buffer_output_stream_parent_class)->constructed (object);
 }
@@ -243,44 +241,42 @@ gtk_source_buffer_output_stream_class_init (GtkSourceBufferOutputStreamClass *kl
 static void
 gtk_source_buffer_output_stream_init (GtkSourceBufferOutputStream *stream)
 {
-	stream->priv = gtk_source_buffer_output_stream_get_instance_private (stream);
+	stream->buffer = NULL;
+	stream->buflen = 0;
 
-	stream->priv->buffer = NULL;
-	stream->priv->buflen = 0;
+	stream->charset_conv = NULL;
+	stream->encodings = NULL;
+	stream->current_encoding = NULL;
 
-	stream->priv->charset_conv = NULL;
-	stream->priv->encodings = NULL;
-	stream->priv->current_encoding = NULL;
+	stream->error_offset = -1;
 
-	stream->priv->error_offset = -1;
-
-	stream->priv->is_initialized = FALSE;
-	stream->priv->is_closed = FALSE;
-	stream->priv->is_utf8 = FALSE;
-	stream->priv->use_first = FALSE;
+	stream->is_initialized = FALSE;
+	stream->is_closed = FALSE;
+	stream->is_utf8 = FALSE;
+	stream->use_first = FALSE;
 }
 
 static const GtkSourceEncoding *
 get_encoding (GtkSourceBufferOutputStream *stream)
 {
-	if (stream->priv->current_encoding == NULL)
+	if (stream->current_encoding == NULL)
 	{
-		stream->priv->current_encoding = stream->priv->encodings;
+		stream->current_encoding = stream->encodings;
 	}
 	else
 	{
-		stream->priv->current_encoding = g_slist_next (stream->priv->current_encoding);
+		stream->current_encoding = g_slist_next (stream->current_encoding);
 	}
 
-	if (stream->priv->current_encoding != NULL)
+	if (stream->current_encoding != NULL)
 	{
-		return stream->priv->current_encoding->data;
+		return stream->current_encoding->data;
 	}
 
-	stream->priv->use_first = TRUE;
-	stream->priv->current_encoding = stream->priv->encodings;
+	stream->use_first = TRUE;
+	stream->current_encoding = stream->encodings;
 
-	return stream->priv->current_encoding->data;
+	return stream->current_encoding->data;
 }
 
 static gboolean
@@ -357,21 +353,21 @@ try_convert (GCharsetConverter *converter,
 
 static GCharsetConverter *
 guess_encoding (GtkSourceBufferOutputStream *stream,
-	       	const void                  *inbuf,
-	       	gsize                        inbuf_size)
+                const void                  *inbuf,
+                gsize                        inbuf_size)
 {
 	GCharsetConverter *conv = NULL;
 
 	if (inbuf == NULL || inbuf_size == 0)
 	{
-		stream->priv->is_utf8 = TRUE;
+		stream->is_utf8 = TRUE;
 		return NULL;
 	}
 
-	if (stream->priv->encodings != NULL &&
-	    stream->priv->encodings->next == NULL)
+	if (stream->encodings != NULL &&
+	    stream->encodings->next == NULL)
 	{
-		stream->priv->use_first = TRUE;
+		stream->use_first = TRUE;
 	}
 
 	/* We just check the first block */
@@ -392,7 +388,7 @@ guess_encoding (GtkSourceBufferOutputStream *stream,
 
 		DEBUG ({
 		       g_print ("trying charset: %s\n",
-				gtk_source_encoding_get_charset (stream->priv->current_encoding->data));
+				gtk_source_encoding_get_charset (stream->current_encoding->data));
 		});
 
 		if (enc == gtk_source_encoding_get_utf8 ())
@@ -401,9 +397,9 @@ guess_encoding (GtkSourceBufferOutputStream *stream,
 			const gchar *end;
 
 			if (g_utf8_validate (inbuf, inbuf_size, &end) ||
-			    stream->priv->use_first)
+			    stream->use_first)
 			{
-				stream->priv->is_utf8 = TRUE;
+				stream->is_utf8 = TRUE;
 				break;
 			}
 
@@ -411,7 +407,7 @@ guess_encoding (GtkSourceBufferOutputStream *stream,
 			remainder = inbuf_size - (end - (gchar *)inbuf);
 			if (remainder < 6)
 			{
-				stream->priv->is_utf8 = TRUE;
+				stream->is_utf8 = TRUE;
 				break;
 			}
 
@@ -423,7 +419,7 @@ guess_encoding (GtkSourceBufferOutputStream *stream,
 						NULL);
 
 		/* If we tried all encodings we use the first one */
-		if (stream->priv->use_first)
+		if (stream->use_first)
 		{
 			break;
 		}
@@ -475,8 +471,8 @@ get_newline_type (GtkTextIter *end)
 
 GtkSourceBufferOutputStream *
 gtk_source_buffer_output_stream_new (GtkSourceBuffer *buffer,
-				     GSList          *candidate_encodings,
-				     gboolean         remove_trailing_newline)
+                                     GSList          *candidate_encodings,
+                                     gboolean         remove_trailing_newline)
 {
 	GtkSourceBufferOutputStream *stream;
 
@@ -485,7 +481,7 @@ gtk_source_buffer_output_stream_new (GtkSourceBuffer *buffer,
 	                       "remove-trailing-newline", remove_trailing_newline,
 	                       NULL);
 
-	stream->priv->encodings = g_slist_copy (candidate_encodings);
+	stream->encodings = g_slist_copy (candidate_encodings);
 
 	return stream;
 }
@@ -499,14 +495,14 @@ gtk_source_buffer_output_stream_detect_newline_type (GtkSourceBufferOutputStream
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER_OUTPUT_STREAM (stream),
 			      GTK_SOURCE_NEWLINE_TYPE_DEFAULT);
 
-	if (stream->priv->source_buffer == NULL)
+	if (stream->source_buffer == NULL)
 	{
 		return GTK_SOURCE_NEWLINE_TYPE_DEFAULT;
 	}
 
 	type = GTK_SOURCE_NEWLINE_TYPE_DEFAULT;
 
-	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (stream->priv->source_buffer),
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (stream->source_buffer),
 					&iter);
 
 	if (gtk_text_iter_ends_line (&iter) || gtk_text_iter_forward_to_line_end (&iter))
@@ -522,11 +518,11 @@ gtk_source_buffer_output_stream_get_guessed (GtkSourceBufferOutputStream *stream
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER_OUTPUT_STREAM (stream), NULL);
 
-	if (stream->priv->current_encoding != NULL)
+	if (stream->current_encoding != NULL)
 	{
-		return stream->priv->current_encoding->data;
+		return stream->current_encoding->data;
 	}
-	else if (stream->priv->is_utf8 || !stream->priv->is_initialized)
+	else if (stream->is_utf8 || !stream->is_initialized)
 	{
 		/* If it is not initialized we assume that we are trying to
 		 * convert the empty string.
@@ -542,7 +538,7 @@ gtk_source_buffer_output_stream_get_num_fallbacks (GtkSourceBufferOutputStream *
 {
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER_OUTPUT_STREAM (stream), 0);
 
-	return stream->priv->n_fallback_errors;
+	return stream->n_fallback_errors;
 }
 
 static void
@@ -550,31 +546,31 @@ apply_error_tag (GtkSourceBufferOutputStream *stream)
 {
 	GtkTextIter start;
 
-	if (stream->priv->error_offset == -1 ||
-	    stream->priv->source_buffer == NULL)
+	if (stream->error_offset == -1 ||
+	    stream->source_buffer == NULL)
 	{
 		return;
 	}
 
-	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (stream->priv->source_buffer),
-	                                    &start, stream->priv->error_offset);
+	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (stream->source_buffer),
+	                                    &start, stream->error_offset);
 
-	_gtk_source_buffer_set_as_invalid_character (stream->priv->source_buffer,
+	_gtk_source_buffer_set_as_invalid_character (stream->source_buffer,
 						     &start,
-						     &stream->priv->pos);
+						     &stream->pos);
 
-	stream->priv->error_offset = -1;
+	stream->error_offset = -1;
 }
 
 static void
 insert_fallback (GtkSourceBufferOutputStream *stream,
-		 const gchar                 *buffer)
+                 const gchar                 *buffer)
 {
 	guint8 out[4];
 	guint8 v;
 	const gchar hex[] = "0123456789ABCDEF";
 
-	if (stream->priv->source_buffer == NULL)
+	if (stream->source_buffer == NULL)
 	{
 		return;
 	}
@@ -588,30 +584,30 @@ insert_fallback (GtkSourceBufferOutputStream *stream,
 	out[2] = hex[(v & 0x0f) >> 0];
 	out[3] = '\0';
 
-	gtk_text_buffer_insert (GTK_TEXT_BUFFER (stream->priv->source_buffer),
-	                        &stream->priv->pos, (const gchar *)out, 3);
+	gtk_text_buffer_insert (GTK_TEXT_BUFFER (stream->source_buffer),
+	                        &stream->pos, (const gchar *)out, 3);
 
-	++stream->priv->n_fallback_errors;
+	++stream->n_fallback_errors;
 }
 
 static void
 validate_and_insert (GtkSourceBufferOutputStream *stream,
-		     gchar                       *buffer,
-		     gsize                        count,
-		     gboolean                     owned)
+                     gchar                       *buffer,
+                     gsize                        count,
+                     gboolean                     owned)
 {
 	GtkTextBuffer *text_buffer;
 	GtkTextIter *iter;
 	gsize len;
 	gchar *free_text = NULL;
 
-	if (stream->priv->source_buffer == NULL)
+	if (stream->source_buffer == NULL)
 	{
 		return;
 	}
 
-	text_buffer = GTK_TEXT_BUFFER (stream->priv->source_buffer);
-	iter = &stream->priv->pos;
+	text_buffer = GTK_TEXT_BUFFER (stream->source_buffer);
+	iter = &stream->pos;
 	len = count;
 
 	while (len != 0)
@@ -637,10 +633,10 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 
 			if (ptr && *ptr == '\r' && ptr - buffer == (glong)len - 1)
 			{
-				stream->priv->buffer = g_new (gchar, 2);
-				stream->priv->buffer[0] = '\r';
-				stream->priv->buffer[1] = '\0';
-				stream->priv->buflen = 1;
+				stream->buffer = g_new (gchar, 2);
+				stream->buffer[0] = '\r';
+				stream->buffer[1] = '\0';
+				stream->buflen = 1;
 
 				/* Decrease also the len so in the check
 				   nvalid == len we get out of this method */
@@ -701,16 +697,16 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 		if ((len < MAX_UNICHAR_LEN) &&
 		    (g_utf8_get_char_validated (buffer, len) == (gunichar)-2))
 		{
-			stream->priv->buffer = g_strndup (end, len);
-			stream->priv->buflen = len;
+			stream->buffer = g_strndup (end, len);
+			stream->buflen = len;
 
 			break;
 		}
 
 		/* we need the start of the chunk of invalid chars */
-		if (stream->priv->error_offset == -1)
+		if (stream->error_offset == -1)
 		{
-			stream->priv->error_offset = gtk_text_iter_get_offset (&stream->priv->pos);
+			stream->error_offset = gtk_text_iter_get_offset (&stream->pos);
 		}
 
 		insert_fallback (stream, buffer);
@@ -727,12 +723,12 @@ remove_trailing_newline (GtkSourceBufferOutputStream *stream)
 	GtkTextIter end;
 	GtkTextIter start;
 
-	if (stream->priv->source_buffer == NULL)
+	if (stream->source_buffer == NULL)
 	{
 		return;
 	}
 
-	gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (stream->priv->source_buffer), &end);
+	gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (stream->source_buffer), &end);
 	start = end;
 
 	gtk_text_iter_set_line_offset (&start, 0);
@@ -745,7 +741,7 @@ remove_trailing_newline (GtkSourceBufferOutputStream *stream)
 			gtk_text_iter_forward_to_line_end (&start);
 		}
 
-		gtk_text_buffer_delete (GTK_TEXT_BUFFER (stream->priv->source_buffer),
+		gtk_text_buffer_delete (GTK_TEXT_BUFFER (stream->source_buffer),
 		                        &start,
 		                        &end);
 	}
@@ -754,30 +750,30 @@ remove_trailing_newline (GtkSourceBufferOutputStream *stream)
 static void
 end_append_text_to_document (GtkSourceBufferOutputStream *stream)
 {
-	if (stream->priv->source_buffer == NULL)
+	if (stream->source_buffer == NULL)
 	{
 		return;
 	}
 
-	if (stream->priv->remove_trailing_newline)
+	if (stream->remove_trailing_newline)
 	{
 		remove_trailing_newline (stream);
 	}
 
-	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->priv->source_buffer),
+	gtk_text_buffer_set_modified (GTK_TEXT_BUFFER (stream->source_buffer),
 	                              FALSE);
 
-	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (stream->priv->source_buffer));
-	gtk_source_buffer_end_not_undoable_action (stream->priv->source_buffer);
+	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (stream->source_buffer));
+	gtk_text_buffer_end_irreversible_action (GTK_TEXT_BUFFER (stream->source_buffer));
 }
 
 static gboolean
 convert_text (GtkSourceBufferOutputStream  *stream,
-	      const gchar                  *inbuf,
-	      gsize                         inbuf_len,
-	      gchar                       **outbuf,
-	      gsize                        *outbuf_len,
-	      GError                      **error)
+              const gchar                  *inbuf,
+              gsize                         inbuf_len,
+              gchar                       **outbuf,
+              gsize                        *outbuf_len,
+              GError                      **error)
 {
 	gchar *out, *dest;
 	gsize in_left, out_left, outbuf_size, res;
@@ -802,7 +798,7 @@ convert_text (GtkSourceBufferOutputStream  *stream,
 		/* If we reached here is because we need to convert the text,
 		   so we convert it using iconv.
 		   See that if inbuf is NULL the data will be flushed */
-		res = g_iconv (stream->priv->iconv,
+		res = g_iconv (stream->iconv,
 		               (gchar **)&inbuf, &in_left,
 		               &out, &out_left);
 
@@ -815,8 +811,8 @@ convert_text (GtkSourceBufferOutputStream  *stream,
 			{
 				case EINVAL:
 					/* Incomplete text, do not report an error */
-					stream->priv->iconv_buffer = g_strndup (inbuf, in_left);
-					stream->priv->iconv_buflen = in_left;
+					stream->iconv_buffer = g_strndup (inbuf, in_left);
+					stream->iconv_buflen = in_left;
 					done = TRUE;
 					break;
 
@@ -875,10 +871,10 @@ convert_text (GtkSourceBufferOutputStream  *stream,
 
 static gssize
 gtk_source_buffer_output_stream_write (GOutputStream  *stream,
-				       const void     *buffer,
-				       gsize           count,
-				       GCancellable   *cancellable,
-				       GError        **error)
+                                       const void     *buffer,
+                                       gsize           count,
+                                       GCancellable   *cancellable,
+                                       GError        **error)
 {
 	GtkSourceBufferOutputStream *ostream;
 	gchar *text;
@@ -888,19 +884,19 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 	ostream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (stream);
 
 	if (g_cancellable_set_error_if_cancelled (cancellable, error) ||
-	    ostream->priv->source_buffer == NULL)
+	    ostream->source_buffer == NULL)
 	{
 		return -1;
 	}
 
-	if (!ostream->priv->is_initialized)
+	if (!ostream->is_initialized)
 	{
-		ostream->priv->charset_conv = guess_encoding (ostream, buffer, count);
+		ostream->charset_conv = guess_encoding (ostream, buffer, count);
 
 		/* If we still have the previous case is that we didn't guess
 		   anything */
-		if (ostream->priv->charset_conv == NULL &&
-		    !ostream->priv->is_utf8)
+		if (ostream->charset_conv == NULL &&
+		    !ostream->is_utf8)
 		{
 			g_set_error_literal (error, GTK_SOURCE_FILE_LOADER_ERROR,
 			                     GTK_SOURCE_FILE_LOADER_ERROR_ENCODING_AUTO_DETECTION_FAILED,
@@ -910,18 +906,18 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		}
 
 		/* Do not initialize iconv if we are not going to convert anything */
-		if (!ostream->priv->is_utf8)
+		if (!ostream->is_utf8)
 		{
 			gchar *from_charset;
 
 			/* Initialize iconv */
-			g_object_get (G_OBJECT (ostream->priv->charset_conv),
+			g_object_get (G_OBJECT (ostream->charset_conv),
 				      "from-charset", &from_charset,
 				      NULL);
 
-			ostream->priv->iconv = g_iconv_open ("UTF-8", from_charset);
+			ostream->iconv = g_iconv_open ("UTF-8", from_charset);
 
-			if (ostream->priv->iconv == (GIConv)-1)
+			if (ostream->iconv == (GIConv)-1)
 			{
 				if (errno == EINVAL)
 				{
@@ -937,7 +933,7 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 				}
 
 				g_free (from_charset);
-				g_clear_object (&ostream->priv->charset_conv);
+				g_clear_object (&ostream->charset_conv);
 
 				return -1;
 			}
@@ -950,29 +946,29 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		 * as only one action, for the features that rely on the user
 		 * action.
 		 */
-		gtk_source_buffer_begin_not_undoable_action (ostream->priv->source_buffer);
-		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (ostream->priv->source_buffer));
+		gtk_text_buffer_begin_irreversible_action (GTK_TEXT_BUFFER (ostream->source_buffer));
+		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (ostream->source_buffer));
 
-		gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (ostream->priv->source_buffer),
-		                                &ostream->priv->pos);
+		gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (ostream->source_buffer),
+		                                &ostream->pos);
 
-		ostream->priv->is_initialized = TRUE;
+		ostream->is_initialized = TRUE;
 	}
 
-	if (ostream->priv->buflen > 0)
+	if (ostream->buflen > 0)
 	{
-		len = ostream->priv->buflen + count;
+		len = ostream->buflen + count;
 		text = g_malloc (len + 1);
 
-		memcpy (text, ostream->priv->buffer, ostream->priv->buflen);
-		memcpy (text + ostream->priv->buflen, buffer, count);
+		memcpy (text, ostream->buffer, ostream->buflen);
+		memcpy (text + ostream->buflen, buffer, count);
 
 		text[len] = '\0';
 
-		g_free (ostream->priv->buffer);
+		g_free (ostream->buffer);
 
-		ostream->priv->buffer = NULL;
-		ostream->priv->buflen = 0;
+		ostream->buffer = NULL;
+		ostream->buflen = 0;
 
 		freetext = TRUE;
 	}
@@ -982,14 +978,14 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		len = count;
 	}
 
-	if (!ostream->priv->is_utf8)
+	if (!ostream->is_utf8)
 	{
 		gchar *outbuf;
 		gsize outbuf_len;
 
 		/* check if iconv was correctly initializated, this shouldn't
 		   happen but better be safe */
-		if (ostream->priv->iconv == NULL)
+		if (ostream->iconv == NULL)
 		{
 			g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_NOT_INITIALIZED,
 			                     _("Invalid object, not initialized"));
@@ -1003,16 +999,16 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 		}
 
 		/* manage the previous conversion buffer */
-		if (ostream->priv->iconv_buflen > 0)
+		if (ostream->iconv_buflen > 0)
 		{
 			gchar *text2;
 			gsize len2;
 
-			len2 = len + ostream->priv->iconv_buflen;
+			len2 = len + ostream->iconv_buflen;
 			text2 = g_malloc (len2 + 1);
 
-			memcpy (text2, ostream->priv->iconv_buffer, ostream->priv->iconv_buflen);
-			memcpy (text2 + ostream->priv->iconv_buflen, text, len);
+			memcpy (text2, ostream->iconv_buffer, ostream->iconv_buflen);
+			memcpy (text2 + ostream->iconv_buflen, text, len);
 
 			text2[len2] = '\0';
 
@@ -1024,10 +1020,10 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 			text = text2;
 			len = len2;
 
-			g_free (ostream->priv->iconv_buffer);
+			g_free (ostream->iconv_buffer);
 
-			ostream->priv->iconv_buffer = NULL;
-			ostream->priv->iconv_buflen = 0;
+			ostream->iconv_buffer = NULL;
+			ostream->iconv_buflen = 0;
 
 			freetext = TRUE;
 		}
@@ -1064,21 +1060,21 @@ gtk_source_buffer_output_stream_write (GOutputStream  *stream,
 
 static gboolean
 gtk_source_buffer_output_stream_flush (GOutputStream  *stream,
-				       GCancellable   *cancellable,
-				       GError        **error)
+                                       GCancellable   *cancellable,
+                                       GError        **error)
 {
 	GtkSourceBufferOutputStream *ostream;
 
 	ostream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (stream);
 
-	if (ostream->priv->is_closed ||
-	    ostream->priv->source_buffer == NULL)
+	if (ostream->is_closed ||
+	    ostream->source_buffer == NULL)
 	{
 		return TRUE;
 	}
 
 	/* if we have converted something flush residual data, validate and insert */
-	if (ostream->priv->iconv != NULL)
+	if (ostream->iconv != NULL)
 	{
 		gchar *outbuf;
 		gsize outbuf_len;
@@ -1094,65 +1090,65 @@ gtk_source_buffer_output_stream_flush (GOutputStream  *stream,
 		}
 	}
 
-	if (ostream->priv->buflen > 0 && *ostream->priv->buffer != '\r')
+	if (ostream->buflen > 0 && *ostream->buffer != '\r')
 	{
 		/* If we reached here is because the last insertion was a half
 		   correct char, which has to be inserted as fallback */
 		gchar *text;
 
-		if (ostream->priv->error_offset == -1)
+		if (ostream->error_offset == -1)
 		{
-			ostream->priv->error_offset = gtk_text_iter_get_offset (&ostream->priv->pos);
+			ostream->error_offset = gtk_text_iter_get_offset (&ostream->pos);
 		}
 
-		text = ostream->priv->buffer;
-		while (ostream->priv->buflen != 0)
+		text = ostream->buffer;
+		while (ostream->buflen != 0)
 		{
 			insert_fallback (ostream, text);
 			++text;
-			--ostream->priv->buflen;
+			--ostream->buflen;
 		}
 
-		g_free (ostream->priv->buffer);
-		ostream->priv->buffer = NULL;
+		g_free (ostream->buffer);
+		ostream->buffer = NULL;
 	}
-	else if (ostream->priv->buflen == 1 && *ostream->priv->buffer == '\r')
+	else if (ostream->buflen == 1 && *ostream->buffer == '\r')
 	{
 		/* The previous chars can be invalid */
 		apply_error_tag (ostream);
 
 		/* See special case above, flush this */
-		gtk_text_buffer_insert (GTK_TEXT_BUFFER (ostream->priv->source_buffer),
-		                        &ostream->priv->pos,
+		gtk_text_buffer_insert (GTK_TEXT_BUFFER (ostream->source_buffer),
+		                        &ostream->pos,
 		                        "\r",
 		                        1);
 
-		g_free (ostream->priv->buffer);
-		ostream->priv->buffer = NULL;
-		ostream->priv->buflen = 0;
+		g_free (ostream->buffer);
+		ostream->buffer = NULL;
+		ostream->buflen = 0;
 	}
 
-	if (ostream->priv->iconv_buflen > 0 )
+	if (ostream->iconv_buflen > 0 )
 	{
 		/* If we reached here is because the last insertion was a half
 		   correct char, which has to be inserted as fallback */
 		gchar *text;
 
-		if (ostream->priv->error_offset == -1)
+		if (ostream->error_offset == -1)
 		{
-			ostream->priv->error_offset = gtk_text_iter_get_offset (&ostream->priv->pos);
+			ostream->error_offset = gtk_text_iter_get_offset (&ostream->pos);
 		}
 
-		text = ostream->priv->iconv_buffer;
-		while (ostream->priv->iconv_buflen != 0)
+		text = ostream->iconv_buffer;
+		while (ostream->iconv_buflen != 0)
 		{
 			insert_fallback (ostream, text);
 			++text;
-			--ostream->priv->iconv_buflen;
+			--ostream->iconv_buflen;
 		}
 
-		g_free (ostream->priv->iconv_buffer);
-		ostream->priv->iconv_buffer = NULL;
+		g_free (ostream->iconv_buffer);
+		ostream->iconv_buffer = NULL;
 	}
 
 	apply_error_tag (ostream);
@@ -1162,24 +1158,24 @@ gtk_source_buffer_output_stream_flush (GOutputStream  *stream,
 
 static gboolean
 gtk_source_buffer_output_stream_close (GOutputStream  *stream,
-				       GCancellable   *cancellable,
-				       GError        **error)
+                                       GCancellable   *cancellable,
+                                       GError        **error)
 {
 	GtkSourceBufferOutputStream *ostream = GTK_SOURCE_BUFFER_OUTPUT_STREAM (stream);
 
-	if (!ostream->priv->is_closed && ostream->priv->is_initialized)
+	if (!ostream->is_closed && ostream->is_initialized)
 	{
 		end_append_text_to_document (ostream);
 
-		if (ostream->priv->iconv != NULL)
+		if (ostream->iconv != NULL)
 		{
-			g_iconv_close (ostream->priv->iconv);
+			g_iconv_close (ostream->iconv);
 		}
 
-		ostream->priv->is_closed = TRUE;
+		ostream->is_closed = TRUE;
 	}
 
-	if (ostream->priv->buflen > 0 || ostream->priv->iconv_buflen > 0)
+	if (ostream->buflen > 0 || ostream->iconv_buflen > 0)
 	{
 		g_set_error (error,
 		             G_IO_ERROR,

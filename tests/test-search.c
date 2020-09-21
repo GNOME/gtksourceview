@@ -1,5 +1,4 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *
+/*
  * This file is part of GtkSourceView
  *
  * Copyright (C) 2013 - Sébastien Wilmet <swilmet@gnome.org>
@@ -59,6 +58,8 @@ struct _TestSearchPrivate
 GType test_search_get_type (void);
 
 G_DEFINE_TYPE_WITH_PRIVATE (TestSearch, test_search, GTK_TYPE_GRID)
+
+static GMainLoop *main_loop;
 
 static void
 open_file (TestSearch  *search,
@@ -154,7 +155,7 @@ static void
 search_entry_changed_cb (TestSearch *search,
 			 GtkEntry   *entry)
 {
-	const gchar *text = gtk_entry_get_text (entry);
+	const gchar *text = gtk_editable_get_text (GTK_EDITABLE (entry));
 	gchar *unescaped_text = gtk_source_utils_unescape_search_text (text);
 
 	gtk_source_search_settings_set_search_text (search->priv->search_settings, unescaped_text);
@@ -270,7 +271,7 @@ button_replace_clicked_cb (TestSearch *search,
 	gtk_source_search_context_replace (search->priv->search_context,
 					   &match_start,
 					   &match_end,
-					   gtk_entry_get_text (search->priv->replace_entry),
+					   gtk_editable_get_text (GTK_EDITABLE (search->priv->replace_entry)),
 					   replace_length,
 					   NULL);
 
@@ -293,7 +294,7 @@ button_replace_all_clicked_cb (TestSearch *search,
 	gint replace_length = gtk_entry_buffer_get_bytes (entry_buffer);
 
 	gtk_source_search_context_replace_all (search->priv->search_context,
-					       gtk_entry_get_text (search->priv->replace_entry),
+					       gtk_editable_get_text (GTK_EDITABLE (search->priv->replace_entry)),
 					       replace_length,
 					       NULL);
 }
@@ -462,23 +463,25 @@ main (gint argc, gchar *argv[])
 	GtkWidget *window;
 	TestSearch *search;
 
-	gtk_init (&argc, &argv);
+	main_loop = g_main_loop_new (NULL, FALSE);
 
-	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+	gtk_init ();
+
+	window = gtk_window_new ();
 
 	gtk_window_set_default_size (GTK_WINDOW (window), 700, 500);
 
-	g_signal_connect (window,
-			  "destroy",
-			  G_CALLBACK (gtk_main_quit),
-			  NULL);
+	g_signal_connect_swapped (window,
+	                          "destroy",
+	                          G_CALLBACK (g_main_loop_quit),
+	                          main_loop);
 
 	search = test_search_new ();
-	gtk_container_add (GTK_CONTAINER (window), GTK_WIDGET (search));
+	gtk_window_set_child (GTK_WINDOW (window), GTK_WIDGET (search));
 
-	gtk_widget_show (window);
+	gtk_window_present (GTK_WINDOW (window));
 
-	gtk_main ();
+	g_main_loop_run (main_loop);
 
 	return 0;
 }

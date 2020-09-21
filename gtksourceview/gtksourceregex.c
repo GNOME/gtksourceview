@@ -1,9 +1,8 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *
+/*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
- * Copyright (C) 2005, 2006 - Marco Barisione, Emanuele Aina
+ * Copyright 2003 - Gustavo Giráldez <gustavo.giraldez@gmx.net>
+ * Copyright 2005, 2006 - Marco Barisione, Emanuele Aina
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -19,14 +18,13 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
-#include "gtksourceregex.h"
 #include <string.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
+
+#include "gtksourceregex-private.h"
 #include "gtksourceutils-private.h"
 
 /*

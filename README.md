@@ -1,6 +1,8 @@
 GtkSourceView
 =============
 
+This is a development branch progressing towards GTK 4 support.
+
 GtkSourceView is a GNOME library that extends GtkTextView, the standard GTK+
 widget for multiline text editing. GtkSourceView adds support for syntax
 highlighting, undo/redo, file loading and saving, search and replace, a
@@ -14,8 +16,8 @@ The official web site is https://wiki.gnome.org/Projects/GtkSourceView.
 Dependencies
 ------------
 
-* GLib >= 2.48
-* GTK+ >= 3.24
+* GLib >= 2.62
+* GTK+ >= 3.96
 * libxml2 >= 2.6
 * freebidi >= 0.19.7
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="GtkSourceCompletionListBoxRow" parent="GtkListBoxRow">
+    <property name="can-focus">false</property>
+    <child>
+      <object class="GtkBox" id="box">
+        <property name="can-focus">false</property>
+        <property name="hexpand">true</property>
+        <property name="orientation">horizontal</property>
+        <child>
+          <object class="GtkSourceCompletionCell" id="icon">
+            <property name="can-focus">false</property>
+            <property name="column">icon</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSourceCompletionCell" id="before">
+            <property name="can-focus">false</property>
+            <property name="column">before</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSourceCompletionCell" id="typed_text">
+            <property name="can-focus">false</property>
+            <property name="column">typed-text</property>
+            <property name="hexpand">true</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSourceCompletionCell" id="after">
+            <property name="can-focus">false</property>
+            <property name="column">after</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="more">
+            <style>
+              <class name="more"/>
+            </style>
+            <child>
+              <object class="GtkButton" id="more1">
+                <property name="action-name">proposal.move-previous-alternate</property>
+                <property name="can-focus">false</property>
+                <property name="icon-name">pan-start-symbolic</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="more2">
+                <property name="action-name">proposal.move-next-alternate</property>
+                <property name="can-focus">false</property>
+                <property name="icon-name">pan-end-symbolic</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

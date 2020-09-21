@@ -1,7 +1,3 @@
-if install_glade_catalog
-  subdir('glade')
-endif
-
 install_subdir('language-specs',
     install_dir: pkgdatadir,
   exclude_files: [ 'Makefile.am',
@@ -23,3 +19,15 @@ install_subdir('styles',
                    'testdark.xml',
                    'update-pot.sh' ]
 )
+
+install_subdir('fonts',
+    install_dir: pkgdatadir,
+  exclude_files: [ 'BuilderBlocks.ttx' ]
+)
+
+install_subdir('snippets',
+    install_dir: pkgdatadir,
+  exclude_files: [],
+)
+
+subdir('icons')

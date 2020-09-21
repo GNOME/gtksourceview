@@ -1,10 +1,9 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *
+/*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2007 - Gustavo Giráldez
- * Copyright (C) 2007 - Paolo Maggi
- * Copyright (C) 2017 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2007 - Gustavo Giráldez
+ * Copyright 2007 - Paolo Maggi
+ * Copyright 2017 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,8 +19,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_UTILS_PRIVATE_H
-#define GTK_SOURCE_UTILS_PRIVATE_H
+#pragma once
 
 #include <glib.h>
 #include <pango/pango.h>
@@ -29,28 +27,22 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-gchar **	_gtk_source_utils_get_default_dirs		(const gchar *basename);
-
+gchar  **_gtk_source_utils_get_default_dirs              (const gchar                 *basename);
 G_GNUC_INTERNAL
-GSList *	_gtk_source_utils_get_file_list			(gchar       **path,
-								 const gchar  *suffix,
-								 gboolean      only_dirs);
-
+GSList  *_gtk_source_utils_get_file_list                 (gchar                      **path,
+                                                          const gchar                 *suffix,
+                                                          gboolean                     only_dirs);
 G_GNUC_INTERNAL
-gint		_gtk_source_utils_string_to_int			(const gchar *str);
-
+gint     _gtk_source_utils_string_to_int                 (const gchar                 *str);
 G_GNUC_INTERNAL
-gint		_gtk_source_utils_int_to_string			(guint         value,
-								 const gchar **outstr);
-
+gint     _gtk_source_utils_int_to_string                 (guint                        value,
+                                                          const gchar                **outstr);
 G_GNUC_INTERNAL
-gchar *		_gtk_source_utils_pango_font_description_to_css	(const PangoFontDescription *font_desc);
+gchar   *_gtk_source_utils_pango_font_description_to_css (const PangoFontDescription  *font_desc);
 
 /* Note: it returns duplicated string. */
 G_GNUC_INTERNAL
-gchar *		_gtk_source_utils_dgettext			(const gchar *domain,
-								 const gchar *msgid) G_GNUC_FORMAT(2);
+gchar   *_gtk_source_utils_dgettext                      (const gchar                 *domain,
+                                                          const gchar                 *msgid) G_GNUC_FORMAT(2);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_UTILS_PRIVATE_H */

@@ -18,7 +18,6 @@ testsuite_sources = [
   ['test-buffer'],
   ['test-buffer-input-stream'],
   ['test-buffer-output-stream'],
-  ['test-completion-model'],
   ['test-completion-words'],
   ['test-encoding'],
   ['test-file-loader'],
@@ -34,7 +33,6 @@ testsuite_sources = [
   ['test-space-drawer'],
   ['test-stylescheme'],
   ['test-styleschememanager'],
-  ['test-undo-manager'],
   ['test-utils'],
   ['test-view'],
 ]

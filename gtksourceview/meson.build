@@ -7,14 +7,12 @@ core_marshallers = gnome.genmarshal('gtksource-marshal',
 
 core_public_h = files([
   'gtksource.h',
-  'gtksourceautocleanups.h',
   'gtksourcebuffer.h',
   'gtksourcecompletion.h',
+  'gtksourcecompletioncell.h',
   'gtksourcecompletioncontext.h',
-  'gtksourcecompletioninfo.h',
-  'gtksourcecompletionitem.h',
-  'gtksourcecompletionproposal.h',
   'gtksourcecompletionprovider.h',
+  'gtksourcecompletionproposal.h',
   'gtksourceencoding.h',
   'gtksourcefile.h',
   'gtksourcefileloader.h',
@@ -26,6 +24,7 @@ core_public_h = files([
   'gtksourceinit.h',
   'gtksourcelanguage.h',
   'gtksourcelanguagemanager.h',
+  'gtksourcegutterlines.h',
   'gtksourcemap.h',
   'gtksourcemark.h',
   'gtksourcemarkattributes.h',
@@ -33,6 +32,10 @@ core_public_h = files([
   'gtksourceregion.h',
   'gtksourcesearchcontext.h',
   'gtksourcesearchsettings.h',
+  'gtksourcesnippet.h',
+  'gtksourcesnippetchunk.h',
+  'gtksourcesnippetcontext.h',
+  'gtksourcesnippetmanager.h',
   'gtksourcespacedrawer.h',
   'gtksourcestyle.h',
   'gtksourcestylescheme.h',
@@ -42,7 +45,6 @@ core_public_h = files([
   'gtksourcestyleschememanager.h',
   'gtksourcetag.h',
   'gtksourcetypes.h',
-  'gtksourceundomanager.h',
   'gtksourceutils.h',
   'gtksourceview.h',
 ])
@@ -50,11 +52,10 @@ core_public_h = files([
 core_public_c = files([
   'gtksourcebuffer.c',
   'gtksourcecompletion.c',
+  'gtksourcecompletioncell.c',
   'gtksourcecompletioncontext.c',
-  'gtksourcecompletioninfo.c',
-  'gtksourcecompletionitem.c',
-  'gtksourcecompletionproposal.c',
   'gtksourcecompletionprovider.c',
+  'gtksourcecompletionproposal.c',
   'gtksourceencoding.c',
   'gtksourcefile.c',
   'gtksourcefileloader.c',
@@ -66,6 +67,7 @@ core_public_c = files([
   'gtksourceinit.c',
   'gtksourcelanguage.c',
   'gtksourcelanguagemanager.c',
+  'gtksourcegutterlines.c',
   'gtksourcemap.c',
   'gtksourcemark.c',
   'gtksourcemarkattributes.c',
@@ -73,6 +75,10 @@ core_public_c = files([
   'gtksourceregion.c',
   'gtksourcesearchcontext.c',
   'gtksourcesearchsettings.c',
+  'gtksourcesnippet.c',
+  'gtksourcesnippetchunk.c',
+  'gtksourcesnippetcontext.c',
+  'gtksourcesnippetmanager.c',
   'gtksourcespacedrawer.c',
   'gtksourcestyle.c',
   'gtksourcestylescheme.c',
@@ -81,32 +87,40 @@ core_public_c = files([
   'gtksourcestyleschemechooserwidget.c',
   'gtksourcestyleschememanager.c',
   'gtksourcetag.c',
-  'gtksourceundomanager.c',
   'gtksourceutils.c',
   'gtksourceversion.c',
   'gtksourceview.c',
 ])
 
 core_private_c = files([
+  'gtksourceassistant.c',
+  'gtksourceassistantchild.c',
+  'gtksourcebindinggroup.c',
   'gtksourcebufferinputstream.c',
   'gtksourcebufferinternal.c',
   'gtksourcebufferoutputstream.c',
-  'gtksourcecompletioncontainer.c',
-  'gtksourcecompletionmodel.c',
+  'gtksourcecompletioninfo.c',
+  'gtksourcecompletionlist.c',
+  'gtksourcecompletionlistbox.c',
+  'gtksourcecompletionlistboxrow.c',
   'gtksourcecontextengine.c',
   'gtksourceengine.c',
   'gtksourcegutterrendererlines.c',
   'gtksourcegutterrenderermarks.c',
+  'gtksourceinformative.c',
   'gtksourceiter.c',
   'gtksourcelanguage-parser-2.c',
   'gtksourcemarkssequence.c',
   'gtksourcepixbufhelper.c',
   'gtksourceregex.c',
-  'gtksourceundomanagerdefault.c',
+  'gtksourcesignalgroup.c',
+  'gtksourceview-assistants.c',
+  'gtksourcesnippetbundle.c',
+  'gtksourcesnippetbundle-parser.c',
+  'gtksourceview-snippets.c',
 ])
 
 core_c_args = [
-  '-DHAVE_CONFIG_H',
   '-DGTK_SOURCE_COMPILATION',
   '-DG_LOG_DOMAIN="GtkSourceView"',
 ]
@@ -119,6 +133,8 @@ core_deps = [
   gio_dep,
   gtk_dep,
   libxml_dep,
+  pangoft2_dep,
+  fontconfig_dep,
 ]
 
 if config_h.has('OS_OSX')
@@ -139,8 +155,8 @@ gtksourceview_include_dirs = [rootdir, gtksourceview_extra_include_dirs]
 
 core_enums_header = '''
 
-#if defined (GTK_SOURCE_COMPILATION) && defined (HAVE_CONFIG_H)
-# include <config.h>
+#if defined (GTK_SOURCE_COMPILATION)
+# include "config.h"
 #endif
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
@@ -266,12 +282,12 @@ if generate_gir
       identifier_prefix: 'GtkSource',
         export_packages: [package_string],
               link_with: gtksource_lib,
-               includes: [ 'Gdk-3.0', 'Gtk-3.0' ],
+               includes: [ 'Gtk-4.0' ],
                 install: true,
         install_dir_gir: girdir,
     install_dir_typelib: typelibdir,
              extra_args: [ '--c-include=gtksourceview/gtksource.h',
-	                   '--warn-all' ],
+                           '--warn-all' ],
   )
 
   gtksource_dep_sources += [
@@ -290,13 +306,11 @@ if generate_gir
       metadata_dirs: join_paths(builddir, 'gtksourceview'),
             install: true,
         install_dir: vapidir,
-           packages: [ 'atk',
-                       'gdk-3.0',
-		       'gdk-pixbuf-2.0',
-		       'gio-2.0',
-		       'gtk+-3.0',
-		       'pango',
-		       'cairo' ],
+           packages: [ 'gdk-pixbuf-2.0',
+                       'gio-2.0',
+                       'gtk4',
+                       'pango',
+                       'cairo' ],
     )
   endif
 endif
@@ -313,7 +327,7 @@ gtksource_pc_reqs = [
   'glib-2.0 @0@'.format(glib_req),
   'gobject-2.0 @0@'.format(glib_req),
   'gio-2.0 @0@'.format(glib_req),
-  'gtk+-3.0 @0@'.format(gtk_req),
+  'gtk4 @0@'.format(gtk_req),
 ]
 
 gtksource_pc_private_reqs = []

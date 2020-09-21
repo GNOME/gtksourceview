@@ -1,7 +1,7 @@
 /*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2017 - Sébastien Wilmet <swilmet@gnome.org>
+ * Copyright 2017 - Sébastien Wilmet <swilmet@gnome.org>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -17,24 +17,21 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GTK_SOURCE_INIT_H
-#define GTK_SOURCE_INIT_H
+#pragma once
 
 #if !defined (GTK_SOURCE_H_INSIDE) && !defined (GTK_SOURCE_COMPILATION)
 #error "Only <gtksourceview/gtksource.h> can be included directly."
 #endif
 
 #include <glib.h>
-#include <gtksourceview/gtksourceversion.h>
+
+#include "gtksourceversion.h"
 
 G_BEGIN_DECLS
 
 GTK_SOURCE_AVAILABLE_IN_4_0
-void	gtk_source_init		(void);
-
+void gtk_source_init     (void);
 GTK_SOURCE_AVAILABLE_IN_4_0
-void	gtk_source_finalize	(void);
+void gtk_source_finalize (void);
 
 G_END_DECLS
-
-#endif /* GTK_SOURCE_INIT_H */

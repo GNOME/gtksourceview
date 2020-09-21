@@ -1,8 +1,7 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *
+/*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2010 - Jesse van den Kieboom
+ * Copyright 2010 - Jesse van den Kieboom
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,28 +17,31 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
-#include "gtksourcegutterrenderermarks.h"
+#include "gtksourcegutterrenderermarks-private.h"
 #include "gtksourceview.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcemarkattributes.h"
 #include "gtksourcemark.h"
 
-#define COMPOSITE_ALPHA                 225
+#define COMPOSITE_ALPHA 225
+
+struct _GtkSourceGutterRendererMarks
+{
+	GtkSourceGutterRendererPixbuf parent_instance;
+};
 
 G_DEFINE_TYPE (GtkSourceGutterRendererMarks, gtk_source_gutter_renderer_marks, GTK_SOURCE_TYPE_GUTTER_RENDERER_PIXBUF)
 
 static gint
 sort_marks_by_priority (gconstpointer m1,
-			gconstpointer m2,
-			gpointer data)
+                        gconstpointer m2,
+                        gpointer      data)
 {
-	GtkSourceMark *mark1 = GTK_SOURCE_MARK (m1);
-	GtkSourceMark *mark2 = GTK_SOURCE_MARK (m2);
-	GtkSourceView *view = GTK_SOURCE_VIEW (data);
+	GtkSourceMark *mark1 = (GtkSourceMark *)m1;
+	GtkSourceMark *mark2 = (GtkSourceMark *)m2;
+	GtkSourceView *view = data;
 	GtkTextIter iter1, iter2;
 	gint line1;
 	gint line2;
@@ -93,28 +95,23 @@ measure_line_height (GtkSourceView *view)
 	return height - 2;
 }
 
-static GdkPixbuf *
-composite_marks (GtkSourceView *view,
-                 GSList        *marks,
-                 gint           size)
+static void
+composite_marks (GtkSourceView                 *view,
+                 GtkSourceGutterRendererPixbuf *renderer,
+                 GSList                        *marks,
+                 gint                           size)
 {
-	GdkPixbuf *composite;
-	gint mark_width;
-	gint mark_height;
-
 	/* Draw the mark with higher priority */
 	marks = g_slist_sort_with_data (marks, sort_marks_by_priority, view);
 
-	composite = NULL;
-	mark_width = 0;
-	mark_height = 0;
+	gtk_source_gutter_renderer_pixbuf_set_paintable (renderer, NULL);
 
 	/* composite all the pixbufs for the marks present at the line */
 	do
 	{
 		GtkSourceMark *mark;
 		GtkSourceMarkAttributes *attrs;
-		const GdkPixbuf *pixbuf;
+		GdkPaintable *paintable;
 
 		mark = marks->data;
 		attrs = gtk_source_view_get_mark_attributes (view,
@@ -126,81 +123,53 @@ composite_marks (GtkSourceView *view,
 			continue;
 		}
 
-		pixbuf = gtk_source_mark_attributes_render_icon (attrs,
-		                                                 GTK_WIDGET (view),
-		                                                 size);
+		paintable = gtk_source_mark_attributes_render_icon (attrs,
+		                                                    GTK_WIDGET (view),
+		                                                    size);
 
-		if (pixbuf != NULL)
+		if (paintable != NULL)
 		{
-			if (composite == NULL)
-			{
-				composite = gdk_pixbuf_copy (pixbuf);
-				mark_width = gdk_pixbuf_get_width (composite);
-				mark_height = gdk_pixbuf_get_height (composite);
-			}
-			else
-			{
-				gint pixbuf_w;
-				gint pixbuf_h;
-
-				pixbuf_w = gdk_pixbuf_get_width (pixbuf);
-				pixbuf_h = gdk_pixbuf_get_height (pixbuf);
-
-				gdk_pixbuf_composite (pixbuf,
-				                      composite,
-				                      0, 0,
-				                      mark_width, mark_height,
-				                      0, 0,
-				                      (gdouble) pixbuf_w / mark_width,
-				                      (gdouble) pixbuf_h / mark_height,
-				                      GDK_INTERP_BILINEAR,
-				                      COMPOSITE_ALPHA);
-			}
+			gtk_source_gutter_renderer_pixbuf_overlay_paintable (renderer, paintable);
 		}
 
 		marks = g_slist_next (marks);
 	}
 	while (marks);
-
-	return composite;
 }
 
 static void
-gutter_renderer_query_data (GtkSourceGutterRenderer      *renderer,
-			    GtkTextIter                  *start,
-			    GtkTextIter                  *end,
-			    GtkSourceGutterRendererState  state)
+gutter_renderer_query_data (GtkSourceGutterRenderer *renderer,
+                            GtkSourceGutterLines    *lines,
+                            guint                    line)
 {
-	GSList *marks;
-	GdkPixbuf *pixbuf = NULL;
-	gint size = 0;
-	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
+	GtkSourceView *view;
+	GtkTextIter iter;
+	GSList *marks;
 
 	view = GTK_SOURCE_VIEW (gtk_source_gutter_renderer_get_view (renderer));
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
-	marks = gtk_source_buffer_get_source_marks_at_iter (buffer,
-	                                                    start,
-	                                                    NULL);
+	gtk_text_buffer_get_iter_at_line (GTK_TEXT_BUFFER (buffer), &iter, line);
+	marks = gtk_source_buffer_get_source_marks_at_iter (buffer, &iter, NULL);
 
 	if (marks != NULL)
 	{
-		size = measure_line_height (view);
-		pixbuf = composite_marks (view, marks, size);
-
+		gint size = measure_line_height (view);
+		composite_marks (view, GTK_SOURCE_GUTTER_RENDERER_PIXBUF (renderer), marks, size);
+		g_object_set (G_OBJECT (renderer),
+		              "xpad", 2,
+		              "yalign", 0.5,
+		              "xalign", 0.5,
+		              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
+		              NULL);
 		g_slist_free (marks);
 	}
-
-	g_object_set (G_OBJECT (renderer),
-	              "pixbuf", pixbuf,
-	              "xpad", 2,
-	              "yalign", 0.5,
-	              "xalign", 0.5,
-	              "alignment-mode", GTK_SOURCE_GUTTER_RENDERER_ALIGNMENT_MODE_FIRST,
-	              NULL);
-
-	g_clear_object (&pixbuf);
+	else
+	{
+		gtk_source_gutter_renderer_pixbuf_set_paintable (GTK_SOURCE_GUTTER_RENDERER_PIXBUF (renderer),
+		                                                 NULL);
+	}
 }
 
 static gboolean
@@ -208,11 +177,9 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
                                GtkTooltip    *tooltip,
                                GSList        *marks)
 {
+	const gint icon_size = 16;
 	GtkGrid *grid = NULL;
 	gint row_num = 0;
-	gint icon_size;
-
-	gtk_icon_size_lookup (GTK_ICON_SIZE_MENU, NULL, &icon_size);
 
 	for (; marks; marks = g_slist_next (marks))
 	{
@@ -222,7 +189,7 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 		gchar *text;
 		gboolean ismarkup = FALSE;
 		GtkWidget *label;
-		const GdkPixbuf *pixbuf;
+		GdkPaintable *paintable;
 
 		mark = marks->data;
 		category = gtk_source_mark_get_category (mark);
@@ -272,23 +239,19 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 		gtk_widget_set_valign (label, GTK_ALIGN_START);
 		gtk_widget_show (label);
 
-		pixbuf = gtk_source_mark_attributes_render_icon (attrs,
-		                                                 GTK_WIDGET (view),
-		                                                 icon_size);
+		paintable = gtk_source_mark_attributes_render_icon (attrs,
+		                                                    GTK_WIDGET (view),
+		                                                    icon_size);
 
-		if (pixbuf == NULL)
+		if (paintable == NULL)
 		{
 			gtk_grid_attach (grid, label, 0, row_num, 2, 1);
 		}
 		else
 		{
 			GtkWidget *image;
-			GdkPixbuf *copy;
 
-			/* FIXME why a copy is needed? */
-			copy = gdk_pixbuf_copy (pixbuf);
-			image = gtk_image_new_from_pixbuf (copy);
-			g_object_unref (copy);
+			image = gtk_image_new_from_paintable (paintable);
 
 			gtk_widget_set_halign (image, GTK_ALIGN_START);
 			gtk_widget_set_valign (image, GTK_ALIGN_START);
@@ -326,24 +289,26 @@ set_tooltip_widget_from_marks (GtkSourceView *view,
 }
 
 static gboolean
-gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
-                               GtkTextIter             *iter,
-                               GdkRectangle            *area,
-                               gint                     x,
-                               gint                     y,
-                               GtkTooltip              *tooltip)
+gutter_renderer_query_tooltip (GtkWidget    *widget,
+                               gint          x,
+                               gint          y,
+                               gboolean      keyboard,
+                               GtkTooltip   *tooltip)
 {
+	GtkSourceGutterRenderer *renderer;
 	GSList *marks;
 	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
+	GtkTextIter iter;
 	gboolean ret;
 
+	renderer = GTK_SOURCE_GUTTER_RENDERER (widget);
 	view = GTK_SOURCE_VIEW (gtk_source_gutter_renderer_get_view (renderer));
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
-	marks = gtk_source_buffer_get_source_marks_at_iter (buffer,
-	                                                    iter,
-	                                                    NULL);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), &iter, 0, y);
+
+	marks = gtk_source_buffer_get_source_marks_at_iter (buffer, &iter, NULL);
 
 	if (marks != NULL)
 	{
@@ -366,24 +331,24 @@ gutter_renderer_query_tooltip (GtkSourceGutterRenderer *renderer,
 static gboolean
 gutter_renderer_query_activatable (GtkSourceGutterRenderer *renderer,
                                    GtkTextIter             *iter,
-                                   GdkRectangle            *area,
-                                   GdkEvent                *event)
+                                   GdkRectangle            *area)
 {
 	return TRUE;
 }
 
 static void
 gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
-                             GtkTextView             *old_view)
+			     GtkSourceView           *old_view)
 {
 	GtkSourceView *view;
 
-	view = GTK_SOURCE_VIEW (gtk_source_gutter_renderer_get_view (renderer));
+	view = gtk_source_gutter_renderer_get_view (renderer);
 
 	if (view != NULL)
 	{
-		gtk_source_gutter_renderer_set_size (renderer,
-		                                     measure_line_height (view));
+		gtk_widget_set_size_request (GTK_WIDGET (renderer), 
+		                             measure_line_height (view),
+		                             -1);
 	}
 
 	if (GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_marks_parent_class)->change_view != NULL)
@@ -397,9 +362,11 @@ static void
 gtk_source_gutter_renderer_marks_class_init (GtkSourceGutterRendererMarksClass *klass)
 {
 	GtkSourceGutterRendererClass *renderer_class = GTK_SOURCE_GUTTER_RENDERER_CLASS (klass);
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+	widget_class->query_tooltip = gutter_renderer_query_tooltip;
 
 	renderer_class->query_data = gutter_renderer_query_data;
-	renderer_class->query_tooltip = gutter_renderer_query_tooltip;
 	renderer_class->query_activatable = gutter_renderer_query_activatable;
 	renderer_class->change_view = gutter_renderer_change_view;
 }

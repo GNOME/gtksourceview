@@ -1,4 +1,3 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*- */
 /*
  * This file is part of GtkSourceView
  *
@@ -58,6 +57,8 @@ struct _SaverTestData
 	guint file_existed : 1;
 };
 
+static GMainLoop *main_loop;
+
 static const gchar *
 read_file (GFile *location)
 {
@@ -106,7 +107,7 @@ save_file_cb (GtkSourceFileSaver *saver,
 	}
 
 	/* finished */
-	gtk_main_quit ();
+	g_main_loop_quit (main_loop);
 }
 
 static void
@@ -179,6 +180,8 @@ test_saver (const gchar            *filename_or_uri,
 	GtkSourceFileSaver *saver;
 	SaverTestData *data;
 
+	main_loop = g_main_loop_new (NULL, FALSE);
+
 	location = g_file_new_for_commandline_arg (filename_or_uri);
 
 	buffer = gtk_source_buffer_new (NULL);
@@ -198,7 +201,7 @@ test_saver (const gchar            *filename_or_uri,
 	data->userdata = userdata;
 
 	check_mounted (data);
-	gtk_main ();
+	g_main_loop_run (main_loop);
 
 	g_object_unref (location);
 	g_object_unref (buffer);

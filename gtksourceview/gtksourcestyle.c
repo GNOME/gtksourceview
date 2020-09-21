@@ -1,8 +1,7 @@
-/* -*- Mode: C; tab-width: 8; indent-tabs-mode: t; c-basic-offset: 8; coding: utf-8 -*-
- *
+/*
  * This file is part of GtkSourceView
  *
- * Copyright (C) 2003 - Paolo Maggi <paolo.maggi@polito.it>
+ * Copyright 2003 - Paolo Maggi <paolo.maggi@polito.it>
  *
  * GtkSourceView is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,9 +17,7 @@
  * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
+#include "config.h"
 
 #include "gtksourcestyle.h"
 #include "gtksourcestyle-private.h"
@@ -35,20 +32,14 @@
  * which are set when given style is used.
  */
 
-static void	gtk_source_style_set_property	(GObject      *object,
-						 guint         prop_id,
-						 const GValue *value,
-						 GParamSpec   *pspec);
-
-static void	gtk_source_style_get_property	(GObject      *object,
-						 guint         prop_id,
-						 GValue       *value,
-						 GParamSpec   *pspec);
-
-struct _GtkSourceStyleClass
-{
-	GObjectClass parent_class;
-};
+static void gtk_source_style_set_property (GObject      *object,
+                                           guint         prop_id,
+                                           const GValue *value,
+                                           GParamSpec   *pspec);
+static void gtk_source_style_get_property (GObject      *object,
+                                           guint         prop_id,
+                                           GValue       *value,
+                                           GParamSpec   *pspec);
 
 G_DEFINE_TYPE (GtkSourceStyle, gtk_source_style, G_TYPE_OBJECT)
 
@@ -257,9 +248,9 @@ G_STMT_START {					\
 
 static void
 gtk_source_style_set_property (GObject      *object,
-			       guint         prop_id,
-			       const GValue *value,
-			       GParamSpec   *pspec)
+                               guint         prop_id,
+                               const GValue *value,
+                               GParamSpec   *pspec)
 {
 	GtkSourceStyle *style = GTK_SOURCE_STYLE (object);
 	const gchar *string;
@@ -399,10 +390,10 @@ gtk_source_style_set_property (GObject      *object,
 }
 
 static void
-gtk_source_style_get_property (GObject      *object,
-			       guint         prop_id,
-			       GValue       *value,
-			       GParamSpec   *pspec)
+gtk_source_style_get_property (GObject    *object,
+                               guint       prop_id,
+                               GValue     *value,
+                               GParamSpec *pspec)
 {
 	GtkSourceStyle *style = GTK_SOURCE_STYLE (object);
 
@@ -538,7 +529,7 @@ gtk_source_style_copy (const GtkSourceStyle *style)
  */
 void
 gtk_source_style_apply (const GtkSourceStyle *style,
-			GtkTextTag           *tag)
+                        GtkTextTag           *tag)
 {
 	g_return_if_fail (GTK_IS_TEXT_TAG (tag));
 
