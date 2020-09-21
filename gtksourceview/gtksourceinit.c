@@ -22,6 +22,8 @@
 #include <config.h>
 #endif
 
+#include "gtksourceview-gresources.h"
+
 #include "gtksourceinit.h"
 #include <glib/gi18n-lib.h>
 #include "gtksourcelanguagemanager.h"
@@ -200,6 +202,8 @@ gtk_source_finalize (void)
 	{
 		GtkSourceLanguageManager *language_manager;
 		GtkSourceStyleSchemeManager *style_scheme_manager;
+
+		g_resources_register (gtksourceview_get_resource ());
 
 		language_manager = _gtk_source_language_manager_peek_default ();
 		g_clear_object (&language_manager);
