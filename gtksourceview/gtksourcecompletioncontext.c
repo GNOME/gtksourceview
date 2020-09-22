@@ -393,16 +393,13 @@ gtk_source_completion_context_get_item (GListModel *model,
                                         guint       position)
 {
 	GtkSourceCompletionContext *self = (GtkSourceCompletionContext *)model;
-	g_autoptr(GtkSourceCompletionProposal) proposal = NULL;
+	GtkSourceCompletionProposal *proposal = NULL;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (self));
 
-	if (_gtk_source_completion_context_get_item_full (self, position, NULL, &proposal))
-	{
-		return g_steal_pointer (&proposal);
-	}
+	_gtk_source_completion_context_get_item_full (self, position, NULL, &proposal);
 
-	return NULL;
+	return g_steal_pointer (&proposal);
 }
 
 static void
@@ -660,9 +657,9 @@ gtk_source_completion_context_populate_cb (GObject      *object,
 	GtkSourceCompletionProvider *provider = (GtkSourceCompletionProvider *)object;
 	GtkSourceCompletionContext *self;
 	CompleteTaskData *task_data;
-	g_autoptr(GListModel) results = NULL;
-	g_autoptr(GTask) task = user_data;
-	g_autoptr(GError) error = NULL;
+	GListModel *results = NULL;
+	GTask *task = user_data;
+	GError *error = NULL;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
 	g_assert (G_IS_ASYNC_RESULT (result));
@@ -675,16 +672,26 @@ gtk_source_completion_context_populate_cb (GObject      *object,
 	g_assert (task_data != NULL);
 
 	if (!(results = gtk_source_completion_provider_populate_finish (provider, result, &error)))
+	{
 		gtk_source_completion_context_mark_failed (self, provider, error);
+	}
 	else
+	{
 		gtk_source_completion_context_set_proposals_for_provider (self, provider, results);
+	}
 
 	task_data->n_active--;
 
 	gtk_source_completion_context_update_empty (self);
 
 	if (task_data->n_active == 0)
+	{
 		g_task_return_boolean (task, TRUE);
+	}
+
+	g_clear_object (&results);
+	g_clear_object (&task);
+	g_clear_error (&error);
 }
 
 static void
@@ -722,7 +729,7 @@ _gtk_source_completion_context_complete_async (GtkSourceCompletionContext    *se
                                                GAsyncReadyCallback            callback,
                                                gpointer                       user_data)
 {
-	g_autoptr(GTask) task = NULL;
+	GTask *task = NULL;
 	CompleteTaskData *task_data;
 	GtkSourceBuffer *buffer;
 	guint n_items;
@@ -784,6 +791,8 @@ _gtk_source_completion_context_complete_async (GtkSourceCompletionContext    *se
 	}
 
 	g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_BUSY]);
+
+	g_clear_object (&task);
 }
 
 /**

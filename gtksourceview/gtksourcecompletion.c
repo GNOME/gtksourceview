@@ -387,7 +387,7 @@ static void
 gtk_source_completion_start (GtkSourceCompletion           *self,
                              GtkSourceCompletionActivation  activation)
 {
-	g_autoptr(GtkSourceCompletionContext) context = NULL;
+	GtkSourceCompletionContext *context = NULL;
 	GtkTextBuffer *buffer;
 	GtkTextIter begin;
 	GtkTextIter end;
@@ -400,7 +400,7 @@ gtk_source_completion_start (GtkSourceCompletion           *self,
 	if (!gtk_source_completion_compute_bounds (self, &begin, &end))
 	{
 		if (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE)
-			return;
+			goto cleanup;
 		begin = end;
 	}
 
@@ -432,6 +432,9 @@ gtk_source_completion_start (GtkSourceCompletion           *self,
 		else
 			display_hide (self->display);
 	}
+
+cleanup:
+	g_clear_object (&context);
 }
 
 static void
