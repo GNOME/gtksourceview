@@ -110,25 +110,6 @@
  * read the no-spell-check region).
  */
 
-/*
-#define ENABLE_DEBUG
-#define ENABLE_PROFILE
-*/
-#undef ENABLE_DEBUG
-#undef ENABLE_PROFILE
-
-#ifdef ENABLE_DEBUG
-#define DEBUG(x) (x)
-#else
-#define DEBUG(x)
-#endif
-
-#ifdef ENABLE_PROFILE
-#define PROFILE(x) (x)
-#else
-#define PROFILE(x)
-#endif
-
 #define UPDATE_BRACKET_DELAY          50
 #define BRACKET_MATCHING_CHARS_LIMIT  10000
 #define CONTEXT_CLASSES_PREFIX        "gtksourceview:context-classes:"
