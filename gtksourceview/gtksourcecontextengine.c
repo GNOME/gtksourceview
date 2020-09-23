@@ -34,26 +34,12 @@
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils-private.h"
+#include "gtksourcetrace.h"
 
-#undef ENABLE_DEBUG
-#undef ENABLE_PROFILE
 #undef ENABLE_CHECK_TREE
 
-#ifdef ENABLE_DEBUG
-#define DEBUG(x) (x)
-#else
-#define DEBUG(x)
-#endif
-
-#ifdef ENABLE_PROFILE
-#define PROFILE(x) (x)
-#else
-#define PROFILE(x)
-#endif
-
-#if defined (ENABLE_DEBUG) || defined (ENABLE_PROFILE) || \
-    defined (ENABLE_CHECK_TREE)
-#define NEED_DEBUG_ID
+#if defined (GTK_SOURCE_PROFILER_ENABLED) || defined (ENABLE_CHECK_TREE)
+# define NEED_DEBUG_ID
 #endif
 
 /* Priority of one-time idle which is installed after buffer is modified. */
@@ -1301,7 +1287,7 @@ add_invalid (GtkSourceContextEngine *ce,
 						   segment,
 						   (GCompareFunc) segment_cmp);
 
-	DEBUG (g_print ("%d invalid\n", g_slist_length (ce->invalid)));
+	GTK_SOURCE_PROFILER_LOG ("%d invalid", g_slist_length (ce->invalid));
 }
 
 /**
@@ -1805,14 +1791,16 @@ invalidate_region (GtkSourceContextEngine *ce,
 		region->delta += length;
 	}
 
-	DEBUG (({
+#ifdef DEVELOPMENT_BUILD
+	{
 		gint start, end;
 		gtk_text_buffer_get_iter_at_mark (buffer, &iter, region->start);
 		start = gtk_text_iter_get_offset (&iter);
 		gtk_text_buffer_get_iter_at_mark (buffer, &iter, region->end);
 		end = gtk_text_iter_get_offset (&iter);
 		g_assert (start <= end - region->delta);
-	}));
+	}
+#endif
 
 	CHECK_TREE (ce);
 
@@ -3302,7 +3290,7 @@ context_unref (Context *context)
 	if (context == NULL || --context->ref_count != 0)
 		return;
 
-	DEBUG (g_print ("destroying context %s\n", context->definition->id));
+	GTK_SOURCE_PROFILER_LOG ("destroying context %s\n", context->definition->id);
 
 	children = context->children;
 	context->children = NULL;
@@ -5563,9 +5551,9 @@ update_syntax (GtkSourceContextEngine *ce,
 
 	refresh_range (ce, &start_iter, &end_iter);
 
-	PROFILE (g_print ("analyzed %d chars from %d to %d in %fms\n",
-			  analyzed_end - start_offset, start_offset, analyzed_end,
-			  g_timer_elapsed (timer, NULL) * 1000));
+	GTK_SOURCE_PROFILER_LOG ("analyzed %d chars from %d to %d in %fms",
+	                         analyzed_end - start_offset, start_offset, analyzed_end,
+	                         g_timer_elapsed (timer, NULL) * 1000);
 
 	g_timer_destroy (timer);
 

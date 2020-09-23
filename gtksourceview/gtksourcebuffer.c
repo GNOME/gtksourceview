@@ -41,6 +41,7 @@
 #include "gtksourcesearchcontext-private.h"
 #include "gtksourcetag.h"
 #include "gtksource-enumtypes.h"
+#include "gtksourcetrace.h"
 
 /**
  * SECTION:buffer
@@ -1014,7 +1015,11 @@ cursor_moved (GtkSourceBuffer *buffer)
 {
 	queue_bracket_highlighting_update (buffer);
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
+
 	g_signal_emit (buffer, buffer_signals[CURSOR_MOVED], 0);
+
+	GTK_SOURCE_PROFILER_END_MARK ("GtkSourceBuffer::cursor-moved", NULL);
 }
 
 static void

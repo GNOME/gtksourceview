@@ -52,6 +52,7 @@
 #include "gtksourcespacedrawer-private.h"
 #include "gtksourcesnippet.h"
 #include "gtksourcesnippetcontext.h"
+#include "gtksourcetrace.h"
 
 /**
  * SECTION:view
@@ -115,28 +116,6 @@
  * #GtkTextTag:scale set so that the font size may be scaled relative to
  * the default font set in CSS.
  */
-
-/*
-#define ENABLE_DEBUG
-*/
-#undef ENABLE_DEBUG
-
-/*
-#define ENABLE_PROFILE
-*/
-#undef ENABLE_PROFILE
-
-#ifdef ENABLE_DEBUG
-#define DEBUG(x) (x)
-#else
-#define DEBUG(x)
-#endif
-
-#ifdef ENABLE_PROFILE
-#define PROFILE(x) (x)
-#else
-#define PROFILE(x)
-#endif
 
 #define GUTTER_PIXMAP                   16
 #define DEFAULT_TAB_WIDTH               8
@@ -2275,12 +2254,15 @@ gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
 	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter2, clip->y + clip->height, NULL);
 	gtk_text_iter_forward_line (&iter2);
 
-	DEBUG ({
-		g_print ("    draw area: %d - %d\n", clip->y, clip->y + clip->height);
-		g_print ("    lines to update: %d - %d\n",
-			 gtk_text_iter_get_line (&iter1),
-			 gtk_text_iter_get_line (&iter2));
-	});
+	if (GTK_SOURCE_PROFILER_ACTIVE)
+	{
+		char *message = g_strdup_printf ("Area: Y=%d Height=%d BeginLine=%d EndLine=%d",
+		                                 clip->y, clip->height,
+		                                 gtk_text_iter_get_line (&iter1),
+		                                 gtk_text_iter_get_line (&iter2));
+		GTK_SOURCE_PROFILER_MARK (0, "GtkSourceView::IsHighlighted", message);
+		g_free (message);
+	}
 
 	_gtk_source_buffer_update_syntax_highlight (priv->source_buffer,
 						    &iter1, &iter2, FALSE);
@@ -2451,11 +2433,7 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 		count = 1;
 	}
 
-	DEBUG ({
-		g_print ("    Painting marks background for line numbers %d - %d\n",
-		         g_array_index (numbers, gint, 0),
-		         g_array_index (numbers, gint, count - 1));
-	});
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	for (i = 0; i < count; ++i)
 	{
@@ -2503,6 +2481,8 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 		}
 	}
 
+	GTK_SOURCE_PROFILER_END_MARK ("GtkSourceView::paint-marks-background", NULL);
+
 	g_array_free (heights, TRUE);
 	g_array_free (pixels, TRUE);
 	g_array_free (numbers, TRUE);
@@ -2517,18 +2497,9 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 	GdkRectangle visible_rect;
 	gdouble x;
 
-#ifdef ENABLE_PROFILE
-	static GTimer *timer = NULL;
-
-	if (timer == NULL)
-	{
-		timer = g_timer_new ();
-	}
-
-	g_timer_start (timer);
-#endif
-
 	g_return_if_fail (priv->right_margin_line_color_set);
+
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
         gtk_text_view_get_visible_rect (text_view, &visible_rect);
 
@@ -2563,12 +2534,7 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 
 	gtk_snapshot_restore (snapshot);
 
-	PROFILE ({
-		g_timer_stop (timer);
-		g_print ("    gtk_source_view_paint_right_margin time: "
-			 "%g (sec * 1000)\n",
-			 g_timer_elapsed (timer, NULL) * 1000);
-	});
+	GTK_SOURCE_PROFILER_END_MARK ("GtkSourceView::paint-right-margin", NULL);
 }
 
 static gint

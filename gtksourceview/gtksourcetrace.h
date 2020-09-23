@@ -34,6 +34,9 @@
 G_BEGIN_DECLS
 
 #ifdef HAVE_SYSPROF
+# define GTK_SOURCE_PROFILER_ENABLED 1
+# define GTK_SOURCE_PROFILER_CURRENT_TIME SYSPROF_CAPTURE_CURRENT_TIME
+# define GTK_SOURCE_PROFILER_ACTIVE (sysprof_collector_is_active())
 # define GTK_SOURCE_PROFILER_BEGIN_MARK \
   G_STMT_START { \
     gint64 __begin_time = SYSPROF_CAPTURE_CURRENT_TIME;
@@ -46,13 +49,22 @@ G_BEGIN_DECLS
 # define GTK_SOURCE_PROFILER_MARK(duration, name, message) \
   G_STMT_START { \
     sysprof_collector_mark (SYSPROF_CAPTURE_CURRENT_TIME - duration, \
-                            duration, "GtkSourceView", name, message) \
+                            duration, "GtkSourceView", name, message); \
+  } G_STMT_END
+# define GTK_SOURCE_PROFILER_LOG(format, ...) \
+  G_STMT_START { \
+    if (GTK_SOURCE_PROFILER_ACTIVE) \
+      sysprof_collector_log_printf(G_LOG_LEVEL_DEBUG, G_LOG_DOMAIN, format, __VA_ARGS__); \
   } G_STMT_END
 #else
+# undef GTK_SOURCE_PROFILER_ENABLED
+# define GTK_SOURCE_PROFILER_ACTIVE (0)
+# define GTK_SOURCE_PROFILER_CURRENT_TIME 0
 # define GTK_SOURCE_PROFILER_MARK(duration, name, message) \
   G_STMT_START { } G_STMT_END
 # define GTK_SOURCE_PROFILER_BEGIN_MARK G_STMT_START {
 # define GTK_SOURCE_PROFILER_END_MARK(name, message) } G_STMT_END
+# define GTK_SOURCE_PROFILER_LOG(format, ...) G_STMT_START { } G_STMT_END
 #endif
 
 G_END_DECLS

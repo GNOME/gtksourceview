@@ -32,6 +32,7 @@
 #include "gtksourcestylescheme.h"
 #include "gtksourcestylescheme-private.h"
 #include "gtksourcetag.h"
+#include "gtksourcetrace.h"
 #include "gtksourceview.h"
 
 /**
@@ -87,12 +88,6 @@
 /* A drawer specially designed for the International Space Station. It comes by
  * default with a DVD of Matrix, in case the astronauts are bored.
  */
-
-#if 0
-# define ENABLE_PROFILE
-#else
-# undef ENABLE_PROFILE
-#endif
 
 typedef enum
 {
@@ -1217,16 +1212,6 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	GtkTextIter line_end;
 	gboolean is_wrapping;
 
-#ifdef ENABLE_PROFILE
-	static GTimer *timer = NULL;
-	if (timer == NULL)
-	{
-		timer = g_timer_new ();
-	}
-
-	g_timer_start (timer);
-#endif
-
 	g_return_if_fail (GTK_SOURCE_IS_SPACE_DRAWER (drawer));
 	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
 
@@ -1244,6 +1229,8 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 	{
 		return;
 	}
+
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible);
 
@@ -1328,12 +1315,5 @@ _gtk_source_space_drawer_draw (GtkSourceSpaceDrawer *drawer,
 		}
 	};
 
-#ifdef ENABLE_PROFILE
-	g_timer_stop (timer);
-
-	/* Same indentation as similar features in gtksourceview.c. */
-	g_print ("    %s time: %g (sec * 1000)\n",
-		 G_STRFUNC,
-		 g_timer_elapsed (timer, NULL) * 1000);
-#endif
+	GTK_SOURCE_PROFILER_END_MARK ("GtkSourceSpaceDrawer::draw", NULL);
 }

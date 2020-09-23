@@ -30,6 +30,7 @@
 #include "gtksourceview.h"
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
+#include "gtksourcetrace.h"
 
 /**
  * SECTION:printcompositor
@@ -49,27 +50,6 @@
  * ones are used as a fallback by the #GtkSourcePrintCompositor object, so that
  * the printed area is not clipped.
  */
-
-/*
-#define ENABLE_DEBUG
-#define ENABLE_PROFILE
-*/
-
-#undef ENABLE_DEBUG
-#undef ENABLE_PROFILE
-
-#ifdef ENABLE_DEBUG
-#define DEBUG(x) (x)
-#else
-#define DEBUG(x)
-#endif
-
-#ifdef ENABLE_PROFILE
-#define PROFILE(x) (x)
-static GTimer *pagination_timer = NULL;
-#else
-#define PROFILE(x)
-#endif
 
 #define DEFAULT_TAB_WIDTH 		8
 #define MAX_TAB_WIDTH			32
@@ -173,6 +153,10 @@ typedef struct
 	PangoLanguage           *language; /* must not be freed */
 
 	GtkTextMark             *pagination_mark;
+
+#ifdef GTK_SOURCE_PROFILER_ENABLED
+	gint64                   pagination_timer;
+#endif
 } GtkSourcePrintCompositorPrivate;
 
 enum
@@ -2064,14 +2048,11 @@ calculate_line_numbers_layout_size (GtkSourcePrintCompositor *compositor,
 		priv->line_numbers_width = 0.0;
 		priv->line_numbers_height = 0.0;
 
-		DEBUG ({
-			g_debug ("line_numbers_width: %f points (%f mm)",
-				 priv->line_numbers_width,
-				 convert_to_mm (priv->line_numbers_width, GTK_UNIT_POINTS));
-			g_debug ("line_numbers_height: %f points (%f mm)",
-				 priv->line_numbers_height,
-				 convert_to_mm (priv->line_numbers_height, GTK_UNIT_POINTS));
-		});
+		GTK_SOURCE_PROFILER_LOG ("line_numbers_width: %f points (%f mm), line_numbers_height: %f points (%f mm)",
+		                         priv->line_numbers_width,
+		                         convert_to_mm (priv->line_numbers_width, GTK_UNIT_POINTS),
+		                         priv->line_numbers_height,
+		                         convert_to_mm (priv->line_numbers_height, GTK_UNIT_POINTS));
 
 		return;
 	}
@@ -2086,14 +2067,11 @@ calculate_line_numbers_layout_size (GtkSourcePrintCompositor *compositor,
 			 &priv->line_numbers_width,
 			 &priv->line_numbers_height);
 
-	DEBUG ({
-		g_debug ("line_numbers_width: %f points (%f mm)",
-			 priv->line_numbers_width,
-			 convert_to_mm (priv->line_numbers_width, GTK_UNIT_POINTS));
-		g_debug ("line_numbers_height: %f points (%f mm)",
-			 priv->line_numbers_height,
-			 convert_to_mm (priv->line_numbers_height, GTK_UNIT_POINTS));
-	});
+	GTK_SOURCE_PROFILER_LOG ("line_numbers_width: %f points (%f mm), line_numbers_height: %f points (%f mm)",
+	                         priv->line_numbers_width,
+	                         convert_to_mm (priv->line_numbers_width, GTK_UNIT_POINTS),
+	                         priv->line_numbers_height,
+	                         convert_to_mm (priv->line_numbers_height, GTK_UNIT_POINTS));
 }
 
 static gdouble
@@ -2137,11 +2115,9 @@ calculate_header_height (GtkSourcePrintCompositor *compositor,
 	{
 		priv->header_height = 0.0;
 
-		DEBUG ({
-			g_debug ("header_height: %f points (%f mm)",
-				 priv->header_height,
-				 convert_to_mm (priv->header_height, GTK_UNIT_POINTS));
-		});
+		GTK_SOURCE_PROFILER_LOG ("header_height: %f points (%f mm)",
+		                         priv->header_height,
+		                         convert_to_mm (priv->header_height, GTK_UNIT_POINTS));
 
 		return;
 	}
@@ -2153,11 +2129,9 @@ calculate_header_height (GtkSourcePrintCompositor *compositor,
 									  priv->header_font,
 									  NULL);
 
-	DEBUG ({
-		g_debug ("header_height: %f points (%f mm)",
-			 priv->header_height,
-			 convert_to_mm (priv->header_height, GTK_UNIT_POINTS));
-	});
+	GTK_SOURCE_PROFILER_LOG ("header_height: %f points (%f mm)",
+	                         priv->header_height,
+	                         convert_to_mm (priv->header_height, GTK_UNIT_POINTS));
 }
 
 static void
@@ -2170,12 +2144,9 @@ calculate_footer_height (GtkSourcePrintCompositor *compositor,
 	{
 		priv->footer_height = 0.0;
 
-		DEBUG ({
-			g_debug ("footer_height: %f points (%f mm)",
-				 priv->footer_height,
-				 convert_to_mm (priv->footer_height, GTK_UNIT_POINTS));
-		});
-
+		GTK_SOURCE_PROFILER_LOG ("footer_height: %f points (%f mm)",
+		                         priv->footer_height,
+		                         convert_to_mm (priv->footer_height, GTK_UNIT_POINTS));
 
 		return;
 	}
@@ -2188,11 +2159,9 @@ calculate_footer_height (GtkSourcePrintCompositor *compositor,
 									  priv->footer_font,
 									  &priv->footer_font_descent);
 
-	DEBUG ({
-		g_debug ("footer_height: %f points (%f mm)",
-			 priv->footer_height,
-			 convert_to_mm (priv->footer_height, GTK_UNIT_POINTS));
-	});
+	GTK_SOURCE_PROFILER_LOG ("footer_height: %f points (%f mm)",
+	                         priv->footer_height,
+	                         convert_to_mm (priv->footer_height, GTK_UNIT_POINTS));
 }
 
 static void
@@ -2224,39 +2193,34 @@ calculate_page_size_and_margins (GtkSourcePrintCompositor *compositor,
 	priv->real_margin_right = MAX (gtk_page_setup_get_right_margin (page_setup, GTK_UNIT_POINTS),
 						   convert_from_mm (priv->margin_right, GTK_UNIT_POINTS));
 
-	DEBUG ({
-		g_debug ("real_margin_top: %f points (%f mm)",
-			 priv->real_margin_top,
-			 convert_to_mm (priv->real_margin_top, GTK_UNIT_POINTS));
-		g_debug ("real_margin_bottom: %f points (%f mm)",
-			 priv->real_margin_bottom,
-			 convert_to_mm (priv->real_margin_bottom, GTK_UNIT_POINTS));
-		g_debug ("real_margin_left: %f points (%f mm)",
-			 priv->real_margin_left,
-			 convert_to_mm (priv->real_margin_left, GTK_UNIT_POINTS));
-		g_debug ("real_margin_righ: %f points (%f mm)",
-			 priv->real_margin_right,
-			 convert_to_mm (priv->real_margin_right, GTK_UNIT_POINTS));
-	});
+	GTK_SOURCE_PROFILER_LOG ("real_margin_top: %f points (%f mm), "
+	                         "real_margin_bottom: %f points (%f mm), "
+	                         "real_margin_left: %f points (%f mm), "
+	                         "real_margin_righ: %f points (%f mm)",
+	                         priv->real_margin_top,
+	                         convert_to_mm (priv->real_margin_top, GTK_UNIT_POINTS),
+	                         priv->real_margin_bottom,
+	                         convert_to_mm (priv->real_margin_bottom, GTK_UNIT_POINTS),
+	                         priv->real_margin_left,
+	                         convert_to_mm (priv->real_margin_left, GTK_UNIT_POINTS),
+	                         priv->real_margin_right,
+	                         convert_to_mm (priv->real_margin_right, GTK_UNIT_POINTS));
 
 	priv->paper_width = gtk_page_setup_get_paper_width (page_setup, GTK_UNIT_POINTS);
 	priv->paper_height = gtk_page_setup_get_paper_height (page_setup, GTK_UNIT_POINTS);
 
-	DEBUG ({
-		gdouble text_width;
-		gdouble text_height;
-		g_debug ("paper_width: %f points (%f mm)",
-			 priv->paper_width,
-			 convert_to_mm (priv->paper_width, GTK_UNIT_POINTS));
-		g_debug ("paper_heigth: %f points (%f mm)",
-			 priv->paper_height,
-			 convert_to_mm (priv->paper_height, GTK_UNIT_POINTS));
-		text_width = get_text_width (compositor);
-		text_height = get_text_height (compositor);
-		g_debug ("text_width: %f points (%f mm)", text_width, convert_to_mm (text_width, GTK_UNIT_POINTS));
-		g_debug ("text_height: %f points (%f mm)", text_height, convert_to_mm (text_height, GTK_UNIT_POINTS));
-
-	});
+	GTK_SOURCE_PROFILER_LOG ("paper_width: %f points (%f mm), "
+	                         "paper_heigth: %f points (%f mm), "
+	                         "text_width: %f points (%f mm), "
+	                         "text_height: %f points (%f mm)",
+	                         priv->paper_width,
+	                         convert_to_mm (priv->paper_width, GTK_UNIT_POINTS),
+	                         priv->paper_height,
+	                         convert_to_mm (priv->paper_height, GTK_UNIT_POINTS),
+				 get_text_width (compositor),
+	                         convert_to_mm (get_text_width (compositor), GTK_UNIT_POINTS),
+				 get_text_height (compositor),
+	                         convert_to_mm (get_text_height (compositor), GTK_UNIT_POINTS));
 }
 
 /* TODO: maybe we should have a public api to set
@@ -2614,12 +2578,10 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
 
 	if (priv->state == INIT)
 	{
-		PROFILE ({
-			if (pagination_timer != NULL)
-				g_timer_destroy (pagination_timer);
-
-			pagination_timer = g_timer_new ();
-		});
+		if (GTK_SOURCE_PROFILER_ACTIVE)
+		{
+			priv->pagination_timer = GTK_SOURCE_PROFILER_CURRENT_TIME;
+		}
 
 		g_return_val_if_fail (priv->pages == NULL, TRUE);
 
@@ -2662,9 +2624,7 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
 						  priv->pagination_mark);
 	}
 
-	DEBUG ({
-		g_debug ("Start paginating at %d", gtk_text_iter_get_offset (&start));
-	});
+	GTK_SOURCE_PROFILER_LOG ("Start paginating at %d", gtk_text_iter_get_offset (&start));
 
 	gtk_text_buffer_get_end_iter (GTK_TEXT_BUFFER (priv->buffer), &end);
 
@@ -2799,17 +2759,17 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
 
 	if (done)
 	{
-		PROFILE ({
-			g_debug ("Paginated in %f seconds:\n", g_timer_elapsed (pagination_timer, NULL));
 
-			g_timer_destroy (pagination_timer);
-			pagination_timer = NULL;
-		});
+#ifdef GTK_SOURCE_PROFILER_ENABLED
+		if (GTK_SOURCE_PROFILER_ACTIVE)
+		{
+			gint64 duration = GTK_SOURCE_PROFILER_CURRENT_TIME - priv->pagination_timer;
+			char *message = g_strdup_printf ("Paginated in %lf seconds",
+							 (duration / 1000L) / (double)G_USEC_PER_SEC);
+			GTK_SOURCE_PROFILER_MARK (duration, "Print Pagination", message);
+			g_free (message);
 
-		DEBUG ({
-			int i;
-
-			for (i = 0; i < priv->pages->len; i += 1)
+			for (guint i = 0; i < priv->pages->len; i += 1)
 			{
 				gint offset;
 				GtkTextIter iter;
@@ -2817,9 +2777,11 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
 				offset = g_array_index (priv->pages, int, i);
 				gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (priv->buffer), &iter, offset);
 
-				g_debug ("  page %d starts at line %d (offset %d)\n", i, gtk_text_iter_get_line (&iter), offset);
+				GTK_SOURCE_PROFILER_LOG ("page %d starts at line %d (offset %d)",
+				                         i, gtk_text_iter_get_line (&iter), offset);
 			}
-		});
+		}
+#endif
 
 		priv->state = DONE;
 
@@ -2921,7 +2883,9 @@ print_header_string (GtkSourcePrintCompositor *compositor,
 				break;
 		}
 
-		DEBUG ({
+#if 0
+		/* Debug Margins */
+		{
 			cairo_save (cr);
 
 			cairo_set_line_width (cr, 1.);
@@ -2934,7 +2898,8 @@ print_header_string (GtkSourcePrintCompositor *compositor,
 			cairo_stroke (cr);
 
 			cairo_restore (cr);
-		});
+		}
+#endif
 
 		line = pango_layout_iter_get_line_readonly (iter);
 
@@ -3040,7 +3005,9 @@ print_footer_string (GtkSourcePrintCompositor *compositor,
 		/* Print only the first line */
 		line = pango_layout_get_line (priv->footer_layout, 0);
 
-		DEBUG ({
+#if 0
+		/* Debug Footer Line */
+		{
 			gdouble w;
 			gdouble h;
 
@@ -3056,12 +3023,12 @@ print_footer_string (GtkSourcePrintCompositor *compositor,
 					 layout_height);
 			cairo_stroke (cr);
 			cairo_restore (cr);
-		});
+		}
+#endif
 
 		cairo_move_to (cr,
-			       x,
-			       priv->paper_height -
-			       	priv->real_margin_bottom - priv->footer_font_descent);
+		               x,
+		               priv->paper_height - priv->real_margin_bottom - priv->footer_font_descent);
 
 		pango_cairo_show_layout_line (cr, line);
 
@@ -3184,7 +3151,9 @@ gtk_source_print_compositor_draw_page (GtkSourcePrintCompositor *compositor,
 	y = get_text_y (compositor);
 	ln_x = get_line_numbers_x (compositor);
 
-	DEBUG ({
+#if 0
+	/* Debug Page Drawing */
+	{
 		cairo_save (cr);
 
 		cairo_set_line_width (cr, 1.);
@@ -3220,7 +3189,8 @@ gtk_source_print_compositor_draw_page (GtkSourcePrintCompositor *compositor,
 		cairo_stroke (cr);
 
 		cairo_restore (cr);
-	});
+	}
+#endif
 
 	g_return_if_fail (priv->layout != NULL);
 	pango_cairo_update_layout (cr, priv->layout);
