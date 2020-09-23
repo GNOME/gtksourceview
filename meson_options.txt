@@ -13,3 +13,7 @@ option('vapi',
 option('gtk_doc',
        type: 'boolean', value: false,
        description: 'Build reference manual (requires gtk-doc)')
+
+option('sysprof',
+       type: 'boolean', value: false,
+       description: 'Build with sysprof profiler support')

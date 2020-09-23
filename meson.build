@@ -122,7 +122,7 @@ glib_version_arr = glib_req_version.split('.')
 glib_major_version = glib_version_arr[0]
 glib_minor_version = glib_version_arr[1]
 
-# Override until GTK 4 is released
+# XXX: Override until GTK 4 is released
 gtk_version_arr = gtk_req_version.split('.')
 gtk_major_version = '4' # gtk_version_arr[0]
 gtk_minor_version = '0' # gtk_version_arr[1]
@@ -158,6 +158,28 @@ foreach header: check_headers
     config_h.set(header.get(1), 1)
   endif
 endforeach
+
+# libsysprof-capture support
+if get_option('sysprof')
+  libsysprof_capture_dep = dependency('sysprof-capture-4',
+    required: get_option('sysprof'),
+    default_options: [
+      'enable_examples=false',
+      'enable_gtk=false',
+      'enable_tests=false',
+      'enable_tools=false',
+      'libsysprof=true',
+      'with_sysprofd=none',
+      'help=false',
+    ],
+    fallback: ['sysprof', 'libsysprof_capture_dep'],
+  )
+  config_h.set('HAVE_SYSPROF', libsysprof_capture_dep.found())
+  profiler_enabled = true
+else
+  libsysprof_capture_dep = disabler()
+  profiler_enabled = false
+endif
 
 if build_machine.system() == 'darwin' and gtk_quartz_dep.found()
   cocoa_dep = dependency('appleframeworks', modules: 'Cocoa', required: false)

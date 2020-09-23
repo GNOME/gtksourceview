@@ -137,6 +137,10 @@ core_deps = [
   fontconfig_dep,
 ]
 
+if profiler_enabled
+  core_deps += [libsysprof_capture_dep]
+endif
+
 if config_h.has('OS_OSX')
   core_c_args += '-xobjective-c'
   core_deps += [
