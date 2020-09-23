@@ -149,6 +149,10 @@ config_h.set('GSV_API_VERSION', api_version)
 config_h.set('PACKAGE_VERSION', version)
 config_h.set10('ENABLE_FONT_CONFIG', fontconfig_dep.found() and pangoft2_dep.found())
 
+if (version_minor % 2 == 1) or (version_minor >= 90)
+  config_h.set10('DEVELOPMENT_BUILD', 1)
+endif
+
 check_headers = [
   ['unistd.h', 'HAVE_UNISTD_H'],
 ]
