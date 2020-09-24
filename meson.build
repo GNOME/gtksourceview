@@ -77,6 +77,7 @@ libxml_req = '>= 2.6'
 introspection_req  = '>= 1.42.0'
 gtk_doc_req = '>= 1.25'
 fribidi_req = '>= 0.19.7'
+pcre2_req = '>= 10.21'
 
 glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
@@ -86,6 +87,7 @@ libxml_dep = dependency('libxml-2.0', version: libxml_req, required: cc.get_id()
 fribidi_dep = dependency('fribidi', version: fribidi_req)
 fontconfig_dep = dependency('fontconfig', required: false)
 pangoft2_dep = dependency('pangoft2', required: false)
+pcre2_dep = dependency('libpcre2-8', version: pcre2_req)
 
 gtk_quartz_dep = dependency('gtk4-quartz', version: gtk_doc_req, required: false)
 
