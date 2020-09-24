@@ -2580,7 +2580,9 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
 	{
 		if (GTK_SOURCE_PROFILER_ACTIVE)
 		{
+#ifdef GTK_SOURCE_PROFILER_ENABLED
 			priv->pagination_timer = GTK_SOURCE_PROFILER_CURRENT_TIME;
+#endif
 		}
 
 		g_return_val_if_fail (priv->pages == NULL, TRUE);
