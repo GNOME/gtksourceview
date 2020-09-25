@@ -354,8 +354,8 @@ _gtk_source_regex_fetch_pos_bytes (GtkSourceRegex *regex,
 				   gint           *start_pos_p, /* byte offsets */
 				   gint           *end_pos_p)   /* byte offsets */
 {
-	gint start_pos;
-	gint end_pos;
+	gint start_pos = -1;
+	gint end_pos = -1;
 
 	g_assert (regex->resolved);
 

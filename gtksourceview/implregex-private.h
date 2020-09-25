@@ -41,6 +41,7 @@ gboolean    impl_regex_match                (const ImplRegex        *regex,
                                              const char             *string,
                                              GRegexMatchFlags        match_options,
                                              ImplMatchInfo         **match_info);
+ImplRegex  *impl_regex_ref                  (ImplRegex              *regex);
 void        impl_regex_unref                (ImplRegex              *regex);
 void        impl_match_info_free            (ImplMatchInfo          *match_info);
 char       *impl_match_info_fetch           (const ImplMatchInfo    *match_info,
@@ -50,7 +51,7 @@ char       *impl_match_info_fetch_named     (const ImplMatchInfo    *match_info,
 char       *impl_regex_replace_eval         (const ImplRegex        *regex,
                                              const char             *string,
                                              gssize                  string_len,
-                                             int                     start_position,
+                                             gsize                   start_position,
                                              GRegexMatchFlags        match_options,
                                              ImplRegexEvalCallback   eval,
                                              gpointer                user_data,
@@ -58,18 +59,21 @@ char       *impl_regex_replace_eval         (const ImplRegex        *regex,
 gboolean    impl_regex_match_full           (const ImplRegex        *regex,
                                              const char             *string,
                                              gssize                  string_len,
-                                             int                     start_position,
+                                             gsize                   start_position,
                                              GRegexMatchFlags        match_options,
                                              ImplMatchInfo         **match_info,
                                              GError                **error);
 gboolean    impl_match_info_fetch_pos       (const ImplMatchInfo    *match_info,
-                                             int                     match_num,
+                                             guint                   match_num,
                                              int                    *start_pos,
                                              int                    *end_pos);
 gboolean    impl_match_info_fetch_named_pos (const ImplMatchInfo    *match_info,
                                              const char             *name,
                                              int                    *start_pos,
                                              int                    *end_pos);
+gboolean    impl_match_info_matches         (const ImplMatchInfo    *match_info);
+gboolean    impl_match_info_next            (ImplMatchInfo          *match_info,
+                                             GError                **error);
 const char *impl_regex_get_pattern          (const ImplRegex        *regex);
 
 G_END_DECLS
