@@ -72,6 +72,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (TestWidget, test_widget, GTK_TYPE_GRID)
 
 static GMainLoop *main_loop;
 static gchar *last_dir;
+static const char *cmd_filename;
 
 static void
 remove_all_marks (GtkSourceBuffer *buffer)
@@ -1112,7 +1113,11 @@ test_widget_init (TestWidget *self)
 				space_drawer, "enable-matrix",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-	file = g_file_new_for_path (TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
+	if (cmd_filename)
+		file = g_file_new_for_commandline_arg (cmd_filename);
+	else
+		file = g_file_new_for_path (TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
+
 	open_file (self, file);
 	g_object_unref (file);
 }
@@ -1151,6 +1156,11 @@ main (int argc, char *argv[])
 	TestWidget *test_widget;
 
 	main_loop = g_main_loop_new (NULL, FALSE);
+
+	if (argc == 2 && g_file_test (argv[1], G_FILE_TEST_IS_REGULAR))
+	{
+		cmd_filename = argv[1];
+	}
 
 	gtk_init ();
 	gtk_source_init ();

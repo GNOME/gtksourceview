@@ -118,6 +118,7 @@ core_private_c = files([
   'gtksourcesnippetbundle.c',
   'gtksourcesnippetbundle-parser.c',
   'gtksourceview-snippets.c',
+  'implregex.c',
 ])
 
 core_c_args = [
@@ -135,6 +136,7 @@ core_deps = [
   libxml_dep,
   pangoft2_dep,
   fontconfig_dep,
+  pcre2_dep,
 ]
 
 if profiler_enabled
