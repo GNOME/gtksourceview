@@ -42,6 +42,7 @@ struct _ImplRegex
 	PCRE2_SPTR             name_table;
 	int                    name_count;
 	int                    name_entry_size;
+	guint                  has_jit : 1;
 };
 
 struct _ImplMatchInfo
@@ -189,6 +190,9 @@ impl_regex_new (const char          *pattern,
 		                    PCRE2_INFO_NAMETABLE,
 		                    &regex->name_table);
 	}
+
+	/* Now try to JIT the pattern for faster execution time */
+	regex->has_jit = pcre2_jit_compile (regex->code, PCRE2_JIT_COMPLETE) == 0;
 
 #ifdef GTK_SOURCE_PROFILER_ENABLED
 	if (GTK_SOURCE_PROFILER_ACTIVE)
@@ -545,13 +549,26 @@ again:
 	prev_begin = match_info->offsets[0];
 	prev_end = match_info->offsets[1];
 
-	rc = pcre2_match (match_info->regex->code,
-	                  (PCRE2_SPTR)match_info->string,
-	                  match_info->string_len,
-	                  match_info->start_pos,
-	                  match_info->match_flags,
-	                  match_info->match_data,
-	                  NULL);
+	if (match_info->regex->has_jit)
+	{
+		rc = pcre2_jit_match (match_info->regex->code,
+		                      (PCRE2_SPTR)match_info->string,
+		                      match_info->string_len,
+		                      match_info->start_pos,
+		                      match_info->match_flags,
+		                      match_info->match_data,
+		                      NULL);
+	}
+	else
+	{
+		rc = pcre2_match (match_info->regex->code,
+		                  (PCRE2_SPTR)match_info->string,
+		                  match_info->string_len,
+		                  match_info->start_pos,
+		                  match_info->match_flags,
+		                  match_info->match_data,
+		                  NULL);
+	}
 
 	if (set_regex_error (error, rc))
 	{
