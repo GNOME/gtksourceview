@@ -1158,6 +1158,7 @@ main (int argc, char *argv[])
 
 	window = gtk_window_new ();
 	gtk_window_set_default_size (GTK_WINDOW (window), 900, 600);
+	gtk_window_set_title (GTK_WINDOW (window), "GtkSourceView Test");
 
 	g_signal_connect_swapped (window, "destroy", G_CALLBACK (g_main_loop_quit), main_loop);
 
