@@ -493,7 +493,7 @@ impl_match_info_fetch_named_pos (const ImplMatchInfo *match_info,
                                  int                 *start_pos,
                                  int                 *end_pos)
 {
-	PCRE2_SPTR tabptr;
+	int num;
 
 	g_return_val_if_fail (match_info != NULL, FALSE);
 	g_return_val_if_fail (match_info->match_data != NULL, FALSE);
@@ -501,18 +501,11 @@ impl_match_info_fetch_named_pos (const ImplMatchInfo *match_info,
 	g_return_val_if_fail (start_pos != NULL, FALSE);
 	g_return_val_if_fail (end_pos != NULL, FALSE);
 
-	tabptr = match_info->regex->name_table;
+	num = pcre2_substring_number_from_name (match_info->regex->code, (PCRE2_SPTR)name);
 
-	for (gsize i = 0; i < match_info->regex->name_count; i++)
+	if (num >= 0)
 	{
-		PCRE2_SIZE n = (tabptr[0] << 8) | tabptr[1];
-
-		if (g_strcmp0 (name, (const char *)(tabptr+2)) == 0)
-		{
-			return impl_match_info_fetch_pos (match_info, n, start_pos, end_pos);
-		}
-
-		tabptr += match_info->regex->name_entry_size;
+		return impl_match_info_fetch_pos (match_info, num, start_pos, end_pos);
 	}
 
 	return FALSE;
