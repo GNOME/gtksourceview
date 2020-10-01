@@ -1216,7 +1216,7 @@ refresh_range (GtkSourceContextEngine *ce,
 	if (gtk_text_iter_equal (start, end))
 		return;
 
-	/* Refresh the contex classes here */
+	/* Refresh the context classes here */
 	refresh_context_classes (ce, start, end);
 
 	/* Here we need to make sure we do not make it redraw next line */
@@ -3177,7 +3177,7 @@ context_new (Context           *parent,
 							  line_text);
 	}
 
-	/* Create reg_all. If it is possibile we share the same reg_all
+	/* Create reg_all. If it is possible we share the same reg_all
 	 * for more contexts storing it in the definition. */
 	if (ANCESTOR_CAN_END_CONTEXT (context) ||
 	    (definition->type == CONTEXT_TYPE_CONTAINER &&
@@ -3749,7 +3749,7 @@ create_segment (GtkSourceContextEngine *ce,
 
 /**
  * segment_extend:
- * @state: the semgent.
+ * @state: the segment.
  * @end_at: new end offset, characters.
  *
  * Updates end offset in the segment and its ancestors.
@@ -4073,7 +4073,7 @@ segment_ends_here (Segment  *state,
  * @line_pos: the position inside @line, bytes.
  *
  * Verifies if some ancestor context ends at the current position.
- * This function only checks conetxts and does not modify the tree,
+ * This function only checks contexts and does not modify the tree,
  * it's used by ancestor_ends_here().
  *
  * Returns: the ancestor context that terminates here or %NULL.
@@ -4992,7 +4992,7 @@ segment_erase_middle_ (GtkSourceContextEngine *ce,
  * @start: start offset of range to erase, characters.
  * @end: end offset of range to erase, characters.
  *
- * Recurisvely removes segments from [@start, @end] interval
+ * Recursively removes segments from [@start, @end] interval
  * starting from @segment. If @segment belongs to the range,
  * or it's a zero-length segment at @end offset, and it's not
  * the toplevel segment, then it's removed from the tree.

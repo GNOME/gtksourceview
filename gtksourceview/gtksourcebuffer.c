@@ -991,7 +991,7 @@ queue_bracket_highlighting_update (GtkSourceBuffer *buffer)
 	 * resulted in continuing to see frame stutter, but 50 was not
 	 * distinguishable from having matching-brackets disabled.
 	 * The animation in gtkscrolledwindow is 200, but that creates
-	 * an undesireable delay before the match is shown to the user.
+	 * an undesirable delay before the match is shown to the user.
 	 * 50msec errors on the side of "immediate", but without the
 	 * frame stutter.
 	 *
@@ -2699,7 +2699,7 @@ gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
 		gtk_text_iter_set_line_offset (start, 0);
 	}
 
-	/* if we are at line start our last line is the previus one.
+	/* if we are at line start our last line is the previous one.
 	 * Otherwise the last line is the current one but we try to
 	 * move the iter after the line terminator */
 	if (gtk_text_iter_starts_line (end))

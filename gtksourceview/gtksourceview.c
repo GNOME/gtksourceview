@@ -2678,7 +2678,7 @@ gtk_source_view_snapshot (GtkWidget   *widget,
  * It may be a good idea to set the tab_width for each GtkTextTag as well
  * based on the font that we set at creation time
  * something like style_cache_set_tabs_from_font or the like.
- * Now, this *may* not be necessary because most tabs wont be inside of another highlight,
+ * Now, this *may* not be necessary because most tabs won't be inside of another highlight,
  * except for things like multi-line comments (which will usually have an italic font which
  * may or may not be a different size than the standard one), or if some random language
  * definition decides that it would be spiffy to have a bg color for "start of line" whitespace
@@ -3980,7 +3980,7 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 			                                  gtk_text_view_get_editable (GTK_TEXT_VIEW (view)));
 
 			/* If an input method or deletion has inserted some text while handling the
-			 * key press event, the cur iterm may be invalid, so get the iter again
+			 * key press event, the cur iter may be invalid, so get the iter again
 			 */
 			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 

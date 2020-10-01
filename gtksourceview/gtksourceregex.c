@@ -105,7 +105,7 @@ find_single_byte_escape (const gchar *string)
  * gtk_source_regex_new:
  * @pattern: the regular expression.
  * @flags: compile options for @pattern.
- * @error: location to store the error occuring, or %NULL to ignore errors.
+ * @error: location to store the error occurring, or %NULL to ignore errors.
  *
  * Creates a new regex.
  *
@@ -272,7 +272,7 @@ _gtk_source_regex_resolve (GtkSourceRegex *regex,
 		_gtk_source_regex_unref (new_regex);
 		g_warning ("Regular expression %s cannot be expanded.",
 			   regex->u.info.pattern);
-		/* Returns a regex that nevers matches. */
+		/* Returns a regex that never matches. */
 		new_regex = _gtk_source_regex_new ("$never-match^", 0, NULL);
 	}
 

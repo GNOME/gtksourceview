@@ -30,7 +30,7 @@
          A style scheme has to at least define the style
          for the first item of each group and if desired
          define the style for the other items to achieve a
-         more finegrained control on the apperance.
+         more finegrained control on the appearance.
          Finally a style scheme may also define language
          specific styles. -->
 
@@ -125,7 +125,7 @@
     <style id="preprocessor"        name="Preprocessor directive"/>
     <!-- Any erroneous construct -->
     <style id="error"               name="Error"/>
-    <!-- to mark possibily errors or unrecommended syntax  -->
+    <!-- to mark possibly errors or unrecommended syntax  -->
     <style id="warning"             name="Warning"/>
     <!--Reserved keywords: like "const" and "goto" in Java -->
     <style id="reserved"            name="Reserved keyword" map-to="def:error" />

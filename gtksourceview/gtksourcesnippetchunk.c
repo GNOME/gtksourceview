@@ -160,7 +160,7 @@ gtk_source_snippet_chunk_set_context (GtkSourceSnippetChunk   *chunk,
  * #GtkSourceSnippetChunk:text and #GtkSourceSnippetChunk:text-set properties
  * are updated.
  *
- * Returns: (transfer none) (nullable): the specificiation, if any
+ * Returns: (transfer none) (nullable): the specification, if any
  *
  * Since: 5.0
  */

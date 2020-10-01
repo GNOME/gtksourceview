@@ -378,7 +378,7 @@ gtk_source_gutter_lines_remove_qclass (GtkSourceGutterLines *lines,
  * gtk_source_gutter_lines_has_class:
  * @lines: a #GtkSourceGutterLines
  * @line: a line number starting from zero
- * @name: a class name that may be convered to a #GQuark
+ * @name: a class name that may be converted, to a #GQuark
  *
  * Checks to see if gtk_source_gutter_lines_add_class() was called with
  * the @name for @line.

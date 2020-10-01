@@ -276,7 +276,7 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
  * Gets the list directories where @lm looks for language files.
  *
  * Returns: (array zero-terminated=1) (transfer none): %NULL-terminated array
- * containg a list of language files directories.
+ * containing a list of language files directories.
  * The array is owned by @lm and must not be modified.
  */
 const gchar * const *

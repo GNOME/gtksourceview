@@ -44,7 +44,7 @@ struct _GtkSourceSnippet
 
 	/* This is used to track the insert position within a snippet
 	 * while we make transforms. We don't use marks here because
-	 * the gravity of the mark is not enought o assure we end up
+	 * the gravity of the mark is not enough o assure we end up
 	 * at the correct position. So instead we are relative to the
 	 * beginning of the snippet.
 	 */
