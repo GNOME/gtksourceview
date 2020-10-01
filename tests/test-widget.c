@@ -750,6 +750,8 @@ update_cursor_position_info (TestWidget *self)
 	gchar **classes;
 	gchar **classes_ptr;
 	GString *classes_str;
+	GtkSourceLanguage *lang;
+	const char *language = "none";
 
 	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self->priv->buffer),
 					  &iter,
@@ -775,11 +777,15 @@ update_cursor_position_info (TestWidget *self)
 
 	g_strfreev (classes);
 
-	msg = g_strdup_printf ("offset: %d, line: %d, column: %u, classes: %s",
-			       offset,
-			       line,
-			       column,
-			       classes_str->str);
+	if ((lang = gtk_source_buffer_get_language (self->priv->buffer)))
+		language = gtk_source_language_get_id (lang);
+
+	msg = g_strdup_printf ("language: %s offset: %d, line: %d, column: %u, classes: %s",
+	                       language,
+	                       offset,
+	                       line,
+	                       column,
+	                       classes_str->str);
 
 	gtk_label_set_text (self->priv->cursor_position_info, msg);
 
@@ -1045,6 +1051,11 @@ test_widget_init (TestWidget *self)
 
 	self->priv->buffer = GTK_SOURCE_BUFFER (
 		gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->priv->view)));
+
+	g_signal_connect_swapped (self->priv->buffer,
+	                          "notify::language",
+	                          G_CALLBACK (update_cursor_position_info),
+	                          self);
 
 	g_object_ref (self->priv->buffer);
 
