@@ -134,7 +134,6 @@ impl_regex_new (const char          *pattern,
 #endif
 
 	g_return_val_if_fail (pattern != NULL, NULL);
-	g_return_val_if_fail (strstr (pattern, "\\K") == NULL, NULL);
 
 	context = pcre2_compile_context_create (NULL);
 
