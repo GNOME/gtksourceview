@@ -152,6 +152,8 @@ impl_regex_new (const char          *pattern,
 		pcre2_set_newline (context, PCRE2_NEWLINE_CRLF);
 	else if (compile_options & G_REGEX_NEWLINE_ANYCRLF)
 		pcre2_set_newline (context, PCRE2_NEWLINE_ANYCRLF);
+	else
+		pcre2_set_newline (context, PCRE2_NEWLINE_LF);
 
 	regex->code = pcre2_compile ((PCRE2_SPTR)pattern,
 	                             PCRE2_ZERO_TERMINATED,
