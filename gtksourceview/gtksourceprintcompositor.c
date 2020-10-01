@@ -2699,7 +2699,7 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
 				while (pango_layout_iter_next_line (layout_iter));
 
 				/* move our start iter to the page break:
-				 * note that text_iter_set_index mesures from
+				 * note that text_iter_set_index measures from
 				 * the start of the line, while our layout
 				 * may start in the middle of a line, so we have
 				 * to add.

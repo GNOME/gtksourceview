@@ -778,7 +778,7 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 
 	/* Now let the renderers draw the content for each line. Because
 	 * iterating a Linked-List is slower than iterating a series of line
-	 * numbers, we make the renderer list the outter loop, and the
+	 * numbers, we make the renderer list the outer loop, and the
 	 * snapshotting of lines (within the renderer) the inner loop as part
 	 * of snapshot.
 	 */

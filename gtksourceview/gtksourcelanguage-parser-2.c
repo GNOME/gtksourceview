@@ -1538,7 +1538,7 @@ element_start (ParserState *parser_state)
 
 	g_return_if_fail (parser_state->error == NULL);
 
-	/* TODO: check the namespace and ignore everithing is not in our namespace */
+	/* TODO: check the namespace and ignore everything is not in our namespace */
 	name = xmlTextReaderConstName (parser_state->reader);
 
 	if (xmlStrcmp (BAD_CAST "context", name) == 0)

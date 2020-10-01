@@ -218,7 +218,7 @@ The possible options are:
 <para>
 You can set the default options using the <code>&lt;default-regex-options</code> tag
 before the <code>&lt;definitions&gt;</code> element. To disable a group of options,
-instead, you have to preced them with a hyphen (<code>-</code>).
+instead, you have to precede them with a hyphen (<code>-</code>).
 [FIXME: add an example]
 </para>
 
@@ -247,13 +247,13 @@ style regular expressions:
     sub-pattern (can be a number or a name if named sub-patterns are
     used) in the preceding <code>&lt;start&gt;</code> element. For an example
     see the implementation of here-documents in the <filename>sh.lang</filename>
-    language description distribuited with GtkSourceView.
+    language description distributed with GtkSourceView.
 </para></listitem>
 </itemizedlist>
 
 <para>
 The next context is for C-style strings. They start and end with a double
-quote but they can contain escaped double quotes, so we sould make sure
+quote but they can contain escaped double quotes, so we should make sure
 we don't end the string prematurely:
 </para>
 
@@ -372,7 +372,7 @@ language, separating them with a colon:
 <para>
 The definitions for decimal and float constants are in a external file,
 with id <code>def</code>, which is not associated with any language but contains
-reusable contexts wich every language definition can import.
+reusable contexts which every language definition can import.
 </para>
 
 <para>
@@ -476,7 +476,7 @@ Keep in mind that every keyword is a regular expression:
 </programlisting>
 
 <para>
-In C, there is a common pratice to use <code>#if 0</code> to express multi-line
+In C, there is a common practice to use <code>#if 0</code> to express multi-line
 nesting comments. To make things easier to the user, we want to highlight
 these pseudo-comments as comments:
 </para>

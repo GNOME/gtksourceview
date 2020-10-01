@@ -494,7 +494,7 @@
         <context id="_async-keywords" style-ref="js:keyword">
           <match extended="true">
             \%{js:async-keyword}
-            # preceeds arrow function
+            # precedes arrow function
             (?=
               \%{js:optional-whitespace-or-comments}
               (?:
@@ -502,7 +502,7 @@
                 \(  # can this be better?
               )
             )
-            # does not preceed "function" (leave to function expression)
+            # does not precede "function" (leave to function expression)
             (?! \%{js:optional-whitespace-or-comments} \%{js:function-keyword} )
           </match>
         </context> <!-- /_async-keywords -->

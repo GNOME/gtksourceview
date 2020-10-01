@@ -17,7 +17,7 @@ installing = Installing { -brand-name }
 spaces = {"    "}This message starts with 3 spaces
 tears-of-joy = Use {"\U01F602"} or 😂
 
-## Varibles
+## Variables
 
 unread-emails = { $user } has { $email-count } unread emails
 

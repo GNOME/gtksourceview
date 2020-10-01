@@ -142,7 +142,7 @@
     <context id="_escapes">
       <include>
 
-        <!-- Annex B: <LegacyOctalEscapeSequence> (preceeded by
+        <!-- Annex B: <LegacyOctalEscapeSequence> (preceded by
              backslash) -->
         <context id="_legacy-octal-escape-sequences" style-ref="js:escape">
           <match extended="true">
@@ -155,7 +155,7 @@
           </match>
         </context> <!-- /_legacy-octal-escape-sequences -->
 
-        <!-- <EscapeSequence> (preceeded by backslash) -->
+        <!-- <EscapeSequence> (preceded by backslash) -->
         <context id="_escape-sequences" style-ref="js:escape">
           <match extended="true">
             \%{js:unicode-escape} |

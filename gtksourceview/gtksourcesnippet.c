@@ -1228,7 +1228,7 @@ _gtk_source_snippet_count_affected_chunks (GtkSourceSnippet  *snippet,
  * gtk_source_snippet_get_context:
  * @snippet: an #GtkSourceSnippet
  *
- * Get's the context used for expanding the snippet.
+ * Gets the context used for expanding the snippet.
  *
  * Returns: (nullable) (transfer none): an #GtkSourceSnippetContext
  *

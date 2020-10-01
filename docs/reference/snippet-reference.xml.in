@@ -133,7 +133,7 @@ add additional variables with either gtk_source_snippet_context_set_constant()
 for values that may change.</para>
 <para>Snippet chunks can reference a variable anywhere by using a dollar sign
 followed by the variable name such as <code>$variable</code>.</para>
-<para>You can also reference another focus position's value by usin their focus
+<para>You can also reference another focus position's value by using their focus
 position number as the variable such as <code>$1</code>.</para>
 <para>To post-process a variables value, enclose the variable in curly-brackets
 and use the pipe operator to denote the post-processing function such as

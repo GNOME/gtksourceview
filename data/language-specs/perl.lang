@@ -165,7 +165,7 @@ FIXME: =pod should require an empty line before/after, as written in perlpod
     </define-regex>
 
     <!-- this assertion is shared by all the regex contexts to avoid wrong
-         highlighing of function calls, etc.
+         highlighting of function calls, etc.
          \b can't be used because of $var, @var, &func, %func.              -->
     <!-- FIXME I added { and ( to the list to fix #507075 and #535703. Someone
          please look at it, it seems wrong. It probably should be a positive

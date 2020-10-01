@@ -167,7 +167,7 @@
          Naming convention for contexts:
          * Prefixes:
            * "_" (underscore): "Private" to one or more "public"
-             contexts (can still be overriden by child languages)
+             contexts (can still be overridden by child languages)
            * "ordered-": Wrapper for another context so that it can only
              match in a referenced position (has once-only="true")
            * "last-": An "ordered-" wrapper with end-parent="true",

@@ -280,7 +280,7 @@ gtk_source_snippet_manager_set_search_path (GtkSourceSnippetManager *self,
  * Gets the list directories where @self looks for snippet files.
  *
  * Returns: (array zero-terminated=1) (transfer none): %NULL-terminated array
- *   containg a list of snippet files directories.
+ *   containing a list of snippet files directories.
  *   The array is owned by @lm and must not be modified.
  *
  * Since: 5.0
@@ -340,7 +340,7 @@ ensure_snippets (GtkSourceSnippetManager *self)
  *
  * List all the known groups within the snippet manager.
  *
- * The result should be freed with g_free(), and the invidual strings are
+ * The result should be freed with g_free(), and the individual strings are
  * owned by @self and should never be freed by the caller.
  *
  * Returns: (transfer container) (array zero-terminated=1) (element-type utf8):

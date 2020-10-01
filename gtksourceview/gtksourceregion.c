@@ -668,7 +668,7 @@ gtk_source_region_subtract_subregion (GtkSourceRegion   *region,
 							       FALSE);
 
 			/* No further processing needed. */
-			DEBUG (g_message ("subregion splitted"));
+			DEBUG (g_message ("subregion split"));
 
 			return;
 		}

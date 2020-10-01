@@ -85,7 +85,7 @@ struct _TestProvider
 	GtkIconPaintable *item_icon;
 	GIcon *item_gicon;
 
-	/* If it's a random provider, a subset of 'proposals' are choosen on
+	/* If it's a random provider, a subset of 'proposals' are chosen on
 	 * each populate. Otherwise, all the proposals are shown. */
 	guint is_random : 1;
 };

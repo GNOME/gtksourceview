@@ -545,7 +545,7 @@ gtk_source_language_get_name (GtkSourceLanguage *language)
  * @language: a #GtkSourceLanguage.
  *
  * Returns the localized section of the language.
- * Each language belong to a section (ex. HTML belogs to the
+ * Each language belong to a section (ex. HTML belongs to the
  * Markup section).
  * The returned string is owned by @language and should not be freed
  * or modified.
