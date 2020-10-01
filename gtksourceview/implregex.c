@@ -76,7 +76,9 @@ translate_compile_flags (GRegexCompileFlags flags)
 		ret |= PCRE2_DUPNAMES;
 
 	ret |= PCRE2_UCP;
-	ret |= PCRE2_BSR_UNICODE;
+
+	if (~flags & G_REGEX_BSR_ANYCRLF)
+		ret |= PCRE2_BSR_UNICODE;
 
 	return ret;
 }
@@ -153,7 +155,7 @@ impl_regex_new (const char          *pattern,
 	else if (compile_options & G_REGEX_NEWLINE_ANYCRLF)
 		pcre2_set_newline (context, PCRE2_NEWLINE_ANYCRLF);
 	else
-		pcre2_set_newline (context, PCRE2_NEWLINE_LF);
+		pcre2_set_newline (context, PCRE2_NEWLINE_ANY);
 
 	regex->code = pcre2_compile ((PCRE2_SPTR)pattern,
 	                             PCRE2_ZERO_TERMINATED,
@@ -543,11 +545,16 @@ again:
 	}
 	else
 	{
+		gsize match_flags = match_info->regex->match_flags;
+
+		if (match_info->regex->compile_flags & PCRE2_UTF)
+			match_flags |= PCRE2_NO_UTF_CHECK;
+
 		rc = pcre2_match (match_info->regex->code,
 		                  (PCRE2_SPTR)match_info->string,
 		                  match_info->string_len,
 		                  match_info->start_pos,
-		                  match_info->match_flags,
+		                  match_flags,
 		                  match_info->match_data,
 		                  NULL);
 	}
