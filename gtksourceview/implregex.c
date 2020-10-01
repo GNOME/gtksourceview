@@ -39,9 +39,6 @@ struct _ImplRegex
 	gsize                  match_flags;
 	pcre2_compile_context *context;
 	pcre2_code            *code;
-	PCRE2_SPTR             name_table;
-	int                    name_count;
-	int                    name_entry_size;
 	guint                  has_jit : 1;
 };
 
@@ -181,18 +178,6 @@ impl_regex_new (const char          *pattern,
 		             pattern);
 		impl_regex_unref (regex);
 		return NULL;
-	}
-
-	pcre2_pattern_info (regex->code, PCRE2_INFO_NAMECOUNT, &regex->name_count);
-
-	if (regex->name_count > 0)
-	{
-		pcre2_pattern_info (regex->code,
-		                    PCRE2_INFO_NAMEENTRYSIZE,
-		                    &regex->name_entry_size);
-		pcre2_pattern_info (regex->code,
-		                    PCRE2_INFO_NAMETABLE,
-		                    &regex->name_table);
 	}
 
 	/* Now try to JIT the pattern for faster execution time */
