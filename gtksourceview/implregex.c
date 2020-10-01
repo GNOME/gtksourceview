@@ -75,6 +75,9 @@ translate_compile_flags (GRegexCompileFlags flags)
 	if (flags & G_REGEX_EXTENDED)
 		ret |= PCRE2_EXTENDED;
 
+	if (flags & G_REGEX_DUPNAMES)
+		ret |= PCRE2_DUPNAMES;
+
 	ret |= PCRE2_UCP;
 	ret |= PCRE2_BSR_UNICODE;
 
