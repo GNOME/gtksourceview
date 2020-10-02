@@ -525,7 +525,7 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 again:
 	match_info->n_groups = -1;
 
-	if (match_info->start_pos >= match_info->string_len)
+	if (match_info->start_pos > match_info->string_len)
 	{
 		return FALSE;
 	}
