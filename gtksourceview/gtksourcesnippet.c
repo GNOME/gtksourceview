@@ -65,34 +65,6 @@ static GParamSpec *properties [N_PROPS];
 static void gtk_source_snippet_update_marks (GtkSourceSnippet *snippet);
 static void gtk_source_snippet_clear_tags   (GtkSourceSnippet *snippet);
 
-static inline void
-print_chunk_positions (GtkSourceSnippet *snippet)
-{
-	guint i = 0;
-
-	for (const GList *l = snippet->chunks.head; l; l = l->next)
-	{
-		GtkSourceSnippetChunk *chunk = l->data;
-		GtkTextIter begin, end;
-
-		if (_gtk_source_snippet_chunk_get_bounds (chunk, &begin, &end))
-		{
-			gchar *real_text = gtk_text_iter_get_slice (&begin, &end);
-			g_printerr ("  Chunk %-2u: %u:%u to %u:%u - %s (text-set=%d)\n",
-				    i,
-				    gtk_text_iter_get_line (&begin),
-				    gtk_text_iter_get_line_offset (&begin),
-				    gtk_text_iter_get_line (&end),
-				    gtk_text_iter_get_line_offset (&end),
-				    real_text,
-				    gtk_source_snippet_chunk_get_text_set (chunk));
-			g_free (real_text);
-		}
-
-		i++;
-	}
-}
-
 static void
 gtk_source_snippet_save_insert (GtkSourceSnippet *snippet)
 {
