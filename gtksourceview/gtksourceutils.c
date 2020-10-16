@@ -354,6 +354,31 @@ _gtk_source_utils_pango_font_description_to_css (const PangoFontDescription *fon
 
 	if ((mask & PANGO_FONT_MASK_STYLE) != 0)
 	{
+		PangoStyle style;
+
+		style = pango_font_description_get_style (font_desc);
+
+		switch (style)
+		{
+			case PANGO_STYLE_NORMAL:
+				ADD_KEYVAL (FONT_STYLE, "normal");
+				break;
+
+			case PANGO_STYLE_OBLIQUE:
+				ADD_KEYVAL (FONT_STYLE, "oblique");
+				break;
+
+			case PANGO_STYLE_ITALIC:
+				ADD_KEYVAL (FONT_STYLE, "italic");
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	if ((mask & PANGO_FONT_MASK_VARIANT) != 0)
+	{
 		PangoVariant variant;
 
 		variant = pango_font_description_get_variant (font_desc);
@@ -425,7 +450,7 @@ _gtk_source_utils_pango_font_description_to_css (const PangoFontDescription *fon
 		switch (pango_font_description_get_stretch (font_desc))
 		{
 			case PANGO_STRETCH_ULTRA_CONDENSED:
-				ADD_KEYVAL (FONT_STRETCH, "untra-condensed");
+				ADD_KEYVAL (FONT_STRETCH, "ultra-condensed");
 				break;
 
 			case PANGO_STRETCH_EXTRA_CONDENSED:
@@ -457,7 +482,7 @@ _gtk_source_utils_pango_font_description_to_css (const PangoFontDescription *fon
 				break;
 
 			case PANGO_STRETCH_ULTRA_EXPANDED:
-				ADD_KEYVAL (FONT_STRETCH, "untra-expanded");
+				ADD_KEYVAL (FONT_STRETCH, "ultra-expanded");
 				break;
 
 			default:
