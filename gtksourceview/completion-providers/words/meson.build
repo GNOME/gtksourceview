@@ -4,7 +4,7 @@ completionwords_c_args = [
 ]
 
 completionwords_public_h = [
-  # 'gtksourcecompletionwords.h',
+  'gtksourcecompletionwords.h',
 ]
 
 completionwords_public_c = [
