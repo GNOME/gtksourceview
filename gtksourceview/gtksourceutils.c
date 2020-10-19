@@ -322,6 +322,7 @@ _gtk_source_utils_string_to_int (const gchar *str)
 #define FONT_VARIANT "font-variant"
 #define FONT_STRETCH "font-stretch"
 #define FONT_WEIGHT  "font-weight"
+#define FONT_STYLE   "font-style"
 #define FONT_SIZE    "font-size"
 
 gchar *
