@@ -252,6 +252,13 @@ else
     '-Wunused',
     '-fno-strict-aliasing',
   ]
+
+  # Ignore some Werror for clang until GLib fixes volatile usage in
+  # GType registration.
+  if meson.get_compiler('c').get_id() == 'clang'
+    test_c_args += ['-Wno-incompatible-pointer-types-discards-qualifiers']
+  endif
+
   if buildtype != 'plain'
     test_c_args += '-fstack-protector-strong'
   endif
