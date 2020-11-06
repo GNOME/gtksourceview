@@ -243,7 +243,7 @@ gtk_source_completion_snippets_activate (GtkSourceCompletionProvider *provider,
 		GtkSourceView *view = gtk_source_completion_context_get_view (context);
 		GtkSourceSnippet *snippet, *copy;
 
-		snippet = gtk_source_completion_snippets_proposal_get_snippet (GTK_SOURCE_COMPLETION_SNIPPETS_PROPOSAL (proposal));
+		snippet = gtk_source_completion_snippets_proposal_get_snippet (p);
 		copy = gtk_source_snippet_copy (snippet);
 
 		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
