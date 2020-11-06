@@ -178,9 +178,11 @@ test_guess_language (void)
 	l = gtk_source_language_manager_guess_language (lm, "foo.c", "text/x-fortran");
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");
 
+#if !defined(__APPLE__)
 	/* when content type is a descendent of the mime matched by the glob, mime wins */
 	l = gtk_source_language_manager_guess_language (lm, "foo.xml", "application/xslt+xml");
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "xslt");
+#endif
 }
 
 int
