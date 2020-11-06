@@ -620,8 +620,9 @@ gtk_source_map_measure (GtkWidget      *widget,
  * calling this function.
  */
 static void
-scroll_to_child_point (GtkSourceMap   *map,
-                       const GdkPoint *point)
+scroll_to_child_point (GtkSourceMap *map,
+                       double        x,
+                       double        y)
 {
 	GtkSourceMapPrivate *priv;
 
@@ -633,10 +634,7 @@ scroll_to_child_point (GtkSourceMap   *map,
 		GtkTextIter iter;
 
 		gtk_widget_get_allocation (GTK_WIDGET (map), &alloc);
-
-		gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (map),
-		                                    &iter, point->x, point->y);
-
+		gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (map), &iter, x, y);
 		gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->view), &iter,
 		                              0.0, TRUE, 1.0, 0.5);
 	}
@@ -887,7 +885,6 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 	GtkAllocation alloc;
 	GdkRectangle area;
 	GtkTextIter iter;
-	GdkPoint point;
 	gdouble yratio;
 	gdouble begin_x;
 	gdouble begin_y;
@@ -912,10 +909,7 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 
 	yratio = CLAMP (y, 0, height) / (gdouble)height;
 
-	point.x = 0;
-	point.y = real_height * yratio;
-
-	scroll_to_child_point (map, &point);
+	scroll_to_child_point (map, 0, real_height * yratio);
 }
 
 static void
