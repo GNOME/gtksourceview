@@ -1798,7 +1798,7 @@ invalidate_region (GtkSourceContextEngine *ce,
 		start = gtk_text_iter_get_offset (&iter);
 		gtk_text_buffer_get_iter_at_mark (buffer, &iter, region->end);
 		end = gtk_text_iter_get_offset (&iter);
-		g_assert (start <= end - region->delta);
+		g_assert_cmpint (start, <=, end - region->delta);
 	}
 #endif
 
