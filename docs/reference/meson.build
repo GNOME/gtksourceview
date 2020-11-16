@@ -57,6 +57,7 @@ reference_private_h = [
   'gtksourcecompletionwordsproposal-private.h',
   'gtksourcecompletionwordsutils-private.h',
   'gtksourcecompletionsnippetsproposal-private.h',
+  'implregex-private.h',
   'quarkset-inline.h',
 ]
 
