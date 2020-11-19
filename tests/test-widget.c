@@ -1173,6 +1173,8 @@ main (int argc, char *argv[])
 		cmd_filename = argv[1];
 	}
 
+	g_set_prgname ("test-widget");
+
 	gtk_init ();
 	gtk_source_init ();
 	setup_search_paths ();
