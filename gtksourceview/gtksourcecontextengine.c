@@ -6274,7 +6274,7 @@ _gtk_source_context_data_finish_parse (GtkSourceContextData  *ctx_data,
 	{
 		g_set_error (error, GTK_SOURCE_CONTEXT_ENGINE_ERROR,
 			     GTK_SOURCE_CONTEXT_ENGINE_ERROR_BAD_FILE,
-			     _("Missing main language definition (id = “%s”.)"),
+			     _("Missing main language definition (id = “%s”)."),
 			     gtk_source_language_get_id (ctx_data->lang));
 		return FALSE;
 	}
