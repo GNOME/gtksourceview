@@ -5393,8 +5393,6 @@ update_syntax (GtkSourceContextEngine *ce,
 			had_bom = TRUE;
 			gtk_text_iter_forward_char (&start_iter);
 			start_offset = gtk_text_iter_get_offset (&start_iter);
-			segment_remove (ce, invalid);
-			CHECK_TREE (ce);
 		}
 	}
 
