@@ -4191,7 +4191,7 @@ ancestor_ends_here (Segment   *state,
  * @line: analyzed line.
  * @line_pos: position inside @line, bytes.
  * @new_state: where to store the new state.
- * @hint: child of @state used to optimize tree operations.
+ * @had_bom: if a BOM was found in the buffer
  *
  * Verifies if a context starts or ends in @line at @line_pos of after it.
  * If the contexts starts or ends here @new_state and @line_pos are updated.
@@ -4203,7 +4203,8 @@ next_segment (GtkSourceContextEngine  *ce,
 	      Segment                 *state,
 	      LineInfo                *line,
 	      gint                    *line_pos,
-	      Segment                **new_state)
+	      Segment                **new_state,
+	      gboolean                 had_bom)
 {
 	gint pos = *line_pos;
 
@@ -4258,7 +4259,7 @@ next_segment (GtkSourceContextEngine  *ce,
 			if (!HAS_OPTION (child_def->u.definition, EXTEND_PARENT) && context_end_found)
 				try_this = FALSE;
 
-			if (HAS_OPTION (child_def->u.definition, FIRST_LINE_ONLY) && line->start_at != 0)
+			if (HAS_OPTION (child_def->u.definition, FIRST_LINE_ONLY) && line->start_at != had_bom)
 				try_this = FALSE;
 
 			if (HAS_OPTION (child_def->u.definition, ONCE_ONLY))
@@ -4435,7 +4436,7 @@ delete_zero_length_segments (GtkSourceContextEngine *ce,
  * @ce: #GtkSourceContextEngine.
  * @state: the state at the beginning of line.
  * @line: the line.
- * @hint: a child of @state around start of line, to make it faster.
+ * @had_bom: if the buffer had a BOM
  *
  * Finds contexts at the line and updates the syntax tree on it.
  *
@@ -4444,7 +4445,8 @@ delete_zero_length_segments (GtkSourceContextEngine *ce,
 static Segment *
 analyze_line (GtkSourceContextEngine *ce,
 	      Segment                *state,
-	      LineInfo               *line)
+	      LineInfo               *line,
+	      gboolean                had_bom)
 {
 	gint line_pos = 0;
 	GList *end_segments = NULL;
@@ -4463,7 +4465,7 @@ analyze_line (GtkSourceContextEngine *ce,
 	{
 		Segment *new_state = NULL;
 
-		if (!next_segment (ce, state, line, &line_pos, &new_state))
+		if (!next_segment (ce, state, line, &line_pos, &new_state, had_bom))
 			break;
 
 		if (g_timer_elapsed (timer, NULL) * 1000 > MAX_TIME_FOR_ONE_LINE)
@@ -5328,6 +5330,7 @@ update_syntax (GtkSourceContextEngine *ce,
 	gint line_start_offset, line_end_offset;
 	gint analyzed_end;
 	gboolean first_line = FALSE;
+	gboolean had_bom = FALSE;
 	GTimer *timer;
 
 	buffer = ce->priv->buffer;
@@ -5387,6 +5390,7 @@ update_syntax (GtkSourceContextEngine *ce,
 		c = gtk_text_iter_get_char (&start_iter);
 		if (IS_BOM (c))
 		{
+			had_bom = TRUE;
 			gtk_text_iter_forward_char (&start_iter);
 			start_offset = gtk_text_iter_get_offset (&start_iter);
 			segment_remove (ce, invalid);
@@ -5458,7 +5462,7 @@ update_syntax (GtkSourceContextEngine *ce,
 		if (ce->priv->hint2 != NULL && ce->priv->hint2->parent != state)
 			ce->priv->hint2 = NULL;
 
-		state = analyze_line (ce, state, &line);
+		state = analyze_line (ce, state, &line, had_bom);
 
 		/* At this point analyze_line() could have disabled highlighting */
 		if (ce->priv->disabled)
@@ -5545,7 +5549,7 @@ update_syntax (GtkSourceContextEngine *ce,
 			line_end_offset = gtk_text_iter_get_offset (&line_end);
 		}
 
-		first_line = (0 == line_start_offset);
+		first_line = start_offset == line_start_offset;
 	}
 
 	if (analyzed_end == gtk_text_buffer_get_char_count (buffer))
