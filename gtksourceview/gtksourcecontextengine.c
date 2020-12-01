@@ -5549,7 +5549,7 @@ update_syntax (GtkSourceContextEngine *ce,
 			line_end_offset = gtk_text_iter_get_offset (&line_end);
 		}
 
-		first_line = start_offset == line_start_offset;
+		first_line = (start_offset - had_bom) == line_start_offset;
 	}
 
 	if (analyzed_end == gtk_text_buffer_get_char_count (buffer))
