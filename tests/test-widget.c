@@ -70,6 +70,8 @@ G_DEFINE_TYPE_WITH_PRIVATE (TestWidget, test_widget, GTK_TYPE_GRID)
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
 
+static const char *cmd_filename;
+
 static void
 remove_all_marks (GtkSourceBuffer *buffer)
 {
@@ -257,18 +259,15 @@ end:
 }
 
 static void
-open_file (TestWidget  *self,
-	   const gchar *filename)
+open_file (TestWidget *self,
+	   GFile      *location)
 {
-	GFile *location;
 	GtkSourceFileLoader *loader;
 
 	g_clear_object (&self->priv->file);
 	self->priv->file = gtk_source_file_new ();
 
-	location = g_file_new_for_path (filename);
 	gtk_source_file_set_location (self->priv->file, location);
-	g_object_unref (location);
 
 	loader = gtk_source_file_loader_new (self->priv->buffer,
 					     self->priv->file);
@@ -496,16 +495,16 @@ open_button_clicked_cb (TestWidget *self)
 
 	if (response == GTK_RESPONSE_OK)
 	{
-		gchar *filename;
+		GFile *file;
 
-		filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (chooser));
+		file = gtk_file_chooser_get_file (GTK_FILE_CHOOSER (chooser));
 
-		if (filename != NULL)
+		if (file != NULL)
 		{
 			g_free (last_dir);
 			last_dir = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (chooser));
-			open_file (self, filename);
-			g_free (filename);
+			open_file (self, file);
+			g_object_unref (file);
 		}
 	}
 
@@ -1001,6 +1000,7 @@ static void
 test_widget_init (TestWidget *self)
 {
 	GtkSourceSpaceDrawer *space_drawer;
+	GFile *file;
 
 	self->priv = test_widget_get_instance_private (self);
 
@@ -1081,7 +1081,13 @@ test_widget_init (TestWidget *self)
 				space_drawer, "enable-matrix",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
-	open_file (self, TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
+	if (cmd_filename)
+		file = g_file_new_for_commandline_arg (cmd_filename);
+	else
+		file = g_file_new_for_path (TOP_SRCDIR "/gtksourceview/gtksourcebuffer.c");
+
+	open_file (self, file);
+	g_object_unref (file);
 }
 
 static TestWidget *
@@ -1098,6 +1104,11 @@ main (int argc, char *argv[])
 
 	gtk_init (&argc, &argv);
 	gtk_source_init ();
+
+	if (argc == 2 && g_file_test (argv[1], G_FILE_TEST_IS_REGULAR))
+	{
+		cmd_filename = argv[1];
+	}
 
 	window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_default_size (GTK_WINDOW (window), 900, 600);
