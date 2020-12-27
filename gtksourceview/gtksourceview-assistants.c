@@ -124,7 +124,7 @@ _gtk_source_view_assistants_size_allocate (GtkSourceViewAssistants *assistants,
 		                             assistant_width,
 		                             assistant_height);
 
-		gtk_native_check_resize (GTK_NATIVE (assistant));
+		gtk_popover_present (GTK_POPOVER (assistant));
 	}
 }
 

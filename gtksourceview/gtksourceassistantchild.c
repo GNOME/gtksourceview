@@ -54,7 +54,7 @@ _gtk_source_assistant_child_size_allocate (GtkWidget *widget,
 
 		if (gtk_widget_get_visible (GTK_WIDGET (attached)))
 		{
-			gtk_native_check_resize (GTK_NATIVE (attached));
+			gtk_popover_present (GTK_POPOVER (attached));
 		}
 	}
 }
@@ -149,7 +149,7 @@ _gtk_source_assistant_child_attach (GtkSourceAssistantChild *self,
 	{
 		if (gtk_widget_get_visible (GTK_WIDGET (child)))
 		{
-			gtk_native_check_resize (GTK_NATIVE (child));
+			gtk_popover_present (GTK_POPOVER (child));
 		}
 	}
 }
