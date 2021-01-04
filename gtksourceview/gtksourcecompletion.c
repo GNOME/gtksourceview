@@ -1,6 +1,9 @@
 /*
  * This file is part of GtkSourceView
  *
+ * Copyright 2007-2009 Jesús Barbero Rodríguez <chuchiperriman@gmail.com>
+ * Copyright 2009 Jesse van den Kieboom <jessevdk@gnome.org>
+ * Copyright 2013 Sébastien Wilmet <swilmet@gnome.org>
  * Copyright 2020 Christian Hergert <chergert@redhat.com>
  *
  * GtkSourceView is free software; you can redistribute it and/or
