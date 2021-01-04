@@ -105,44 +105,6 @@ gtk_source_completion_activation_get_type
 </SECTION>
 
 <SECTION>
-<FILE>completioninfo</FILE>
-GtkSourceCompletionInfo
-gtk_source_completion_info_new
-gtk_source_completion_info_move_to_iter
-<SUBSECTION Standard>
-GTK_SOURCE_IS_COMPLETION_INFO
-GTK_SOURCE_IS_COMPLETION_INFO_CLASS
-GTK_SOURCE_COMPLETION_INFO
-GTK_SOURCE_COMPLETION_INFO_CLASS
-GTK_SOURCE_COMPLETION_INFO_GET_CLASS
-GTK_SOURCE_TYPE_COMPLETION_INFO
-gtk_source_completion_info_get_type
-GtkSourceCompletionInfoClass
-</SECTION>
-
-<SECTION>
-<FILE>completionitem</FILE>
-GtkSourceCompletionItem
-gtk_source_completion_item_new
-gtk_source_completion_item_set_label
-gtk_source_completion_item_set_markup
-gtk_source_completion_item_set_text
-gtk_source_completion_item_set_icon
-gtk_source_completion_item_set_icon_name
-gtk_source_completion_item_set_gicon
-gtk_source_completion_item_set_info
-<SUBSECTION Standard>
-GTK_SOURCE_IS_COMPLETION_ITEM
-GTK_SOURCE_IS_COMPLETION_ITEM_CLASS
-GTK_SOURCE_COMPLETION_ITEM
-GTK_SOURCE_COMPLETION_ITEM_CLASS
-GTK_SOURCE_COMPLETION_ITEM_GET_CLASS
-GTK_SOURCE_TYPE_COMPLETION_ITEM
-gtk_source_completion_item_get_type
-GtkSourceCompletionItemClass
-</SECTION>
-
-<SECTION>
 <FILE>completionproposal</FILE>
 GtkSourceCompletionProposal
 GtkSourceCompletionProposalInterface
