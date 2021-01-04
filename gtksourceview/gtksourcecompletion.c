@@ -34,6 +34,46 @@
 #include "gtksourcesignalgroup-private.h"
 #include "gtksourceview-private.h"
 
+/**
+ * SECTION:completion
+ * @title: GtkSourceCompletion
+ * @short_description: Main Completion Object
+ *
+ * The completion system helps the user when he/she writes some text,
+ * such as words, command names, functions, and suchlike. Proposals can
+ * be shown, to complete the text the user is writing. Each proposal can
+ * contain an additional piece of information (for example
+ * documentation), that is displayed when the "Details" button is
+ * clicked.
+ *
+ * Proposals are created via a #GtkSourceCompletionProvider. There can
+ * be for example a provider to complete words (see
+ * #GtkSourceCompletionWords), another provider for the completion of
+ * function names, etc. To add a provider, call
+ * gtk_source_completion_add_provider().
+ *
+ * When several providers match, they are all shown in the completion
+ * window, but one can switch between providers: see the
+ * #GtkSourceCompletion::move-page signal. It is also possible to
+ * activate the first proposals with key bindings, see the
+ * #GtkSourceCompletion:accelerators property.
+ *
+ * The #GtkSourceCompletionProposal interface represents a proposal.
+ *
+ * If a proposal contains extra information (see
+ * %GTK_SOURCE_COMPLETION_COLUMN_DETAILS), it will be
+ * displayed in a supplemental details window, which appears when
+ * the "Details" button is clicked.
+ *
+ * Each #GtkSourceView object is associated with a #GtkSourceCompletion
+ * instance. This instance can be obtained with
+ * gtk_source_view_get_completion(). The #GtkSourceView class contains also the
+ * #GtkSourceView::show-completion signal.
+ *
+ * A same #GtkSourceCompletionProvider object can be used for several
+ * #GtkSourceCompletion's.
+ */
+
 #define DEFAULT_PAGE_SIZE 5
 
 struct _GtkSourceCompletion
