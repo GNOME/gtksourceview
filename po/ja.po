@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
 "POT-Creation-Date: 2020-11-28 13:37+0000\n"
-"PO-Revision-Date: 2020-02-29 22:00+0900\n"
+"PO-Revision-Date: 2021-01-06 05:30+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -297,22 +297,22 @@ msgstr "Tera テンプレート"
 #. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
 #: Adwaita-dark.style-scheme.xml:20
 msgid "Adwaita Dark"
-msgstr ""
+msgstr "Adwaita Dark"
 
 #. (itstool) path: style-scheme/_description
 #: Adwaita-dark.style-scheme.xml:22
 msgid "A dark color scheme matching GTK's default theme"
-msgstr ""
+msgstr "GTK の標準テーマにマッチする暗いカラースキーム"
 
 #. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
 #: Adwaita.style-scheme.xml:20
 msgid "Adwaita"
-msgstr ""
+msgstr "Adwaita"
 
 #. (itstool) path: style-scheme/_description
 #: Adwaita.style-scheme.xml:22
 msgid "A color scheme matching GTK's default theme"
-msgstr ""
+msgstr "GTK の標準テーマにマッチするカラースキーム"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -381,7 +381,7 @@ msgstr "Tango 系の配色を使用したカラースキーム"
 
 #: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:409
 msgid "Snippets"
-msgstr ""
+msgstr "スニペット"
 
 #: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:317
 msgid "Document Words"
@@ -419,13 +419,11 @@ msgstr "入力に不正な UTF-8 シーケンス"
 #: gtksourceview/gtksourcecompletionlist.c:210
 #, c-format
 msgid "%d of %u"
-msgstr ""
+msgstr "%d / %u"
 
 #: gtksourceview/gtksourcecompletionlist.ui:59
-#, fuzzy
-#| msgid "_Details…"
 msgid "_Details"
-msgstr "詳細(_D)…"
+msgstr "詳細(_D)"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -482,10 +480,9 @@ msgid "unknown context “%s”"
 msgstr "不明なコンテキスト“%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6277
-#, fuzzy, c-format
-#| msgid "Missing main language definition (id = \"%s\".)"
+#, c-format
 msgid "Missing main language definition (id = “%s”)."
-msgstr "主要な言語定義がありません (id = \"%s\")"
+msgstr "主要な言語定義がありません (id = “%s”)。"
 
 #: gtksourceview/gtksourceencoding.c:143 gtksourceview/gtksourceencoding.c:186
 #: gtksourceview/gtksourceencoding.c:188 gtksourceview/gtksourceencoding.c:190
