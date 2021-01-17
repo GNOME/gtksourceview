@@ -931,7 +931,7 @@ gtk_source_map_scroll (GtkWidget *widget,
                        gdouble    x,
                        gdouble    y)
 {
-	static const gint scroll_acceleration = 6;
+	static const gint scroll_acceleration = 12;
 	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
 	GtkSourceMapPrivate *priv;
 
