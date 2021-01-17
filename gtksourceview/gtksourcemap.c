@@ -124,6 +124,26 @@
 
 #define DEFAULT_WIDTH 100
 
+struct _GtkSourceMapSlider
+{
+	GtkWidget parent_instance;
+};
+
+#define GTK_SOURCE_TYPE_MAP_SLIDER (gtk_source_map_slider_get_type())
+G_DECLARE_FINAL_TYPE (GtkSourceMapSlider, gtk_source_map_slider, GTK_SOURCE, MAP_SLIDER, GtkWidget)
+G_DEFINE_TYPE (GtkSourceMapSlider, gtk_source_map_slider, GTK_TYPE_WIDGET)
+
+static void
+gtk_source_map_slider_class_init (GtkSourceMapSliderClass *klass)
+{
+	gtk_widget_class_set_css_name (GTK_WIDGET_CLASS (klass), "slider");
+}
+
+static void
+gtk_source_map_slider_init (GtkSourceMapSlider *self)
+{
+}
+
 typedef struct
 {
 	/*
@@ -153,6 +173,9 @@ typedef struct
 
 	/* A weak pointer to the connected buffer */
 	GtkTextBuffer *buffer;
+
+	/* The slider widget */
+	GtkSourceMapSlider *slider;
 
 	/* The location of the scrubber in widget coordinate space. */
 	GdkRectangle scrubber_area;
@@ -243,7 +266,6 @@ update_scrubber_position (GtkSourceMap *map)
 	gint ignored;
 	gint child_height;
 	gint view_height;
-	gint y;
 
 	priv = gtk_source_map_get_instance_private (map);
 
@@ -270,23 +292,31 @@ update_scrubber_position (GtkSourceMap *map)
 	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (priv->view), &iter,
 	                                    visible_area.x, visible_area.y);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &iter, &iter_area);
-	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (map),
-	                                       GTK_TEXT_WINDOW_WIDGET,
-	                                       iter_area.x, iter_area.y,
-	                                       NULL, &y);
 
 	scrubber_area.x = 0;
 	scrubber_area.width = alloc.width;
-	scrubber_area.y = y;
+	scrubber_area.y = iter_area.y;
 	scrubber_area.height = ((gdouble)view_alloc.height /
 	                        (gdouble)view_height *
 	                        (gdouble)child_height) +
 	                       iter_area.height;
 
+	if (scrubber_area.height > alloc.height)
+	{
+		scrubber_area.height = alloc.height;
+	}
+
 	if (memcmp (&scrubber_area, &priv->scrubber_area, sizeof scrubber_area) != 0)
 	{
 		priv->scrubber_area = scrubber_area;
-		gtk_widget_queue_draw (GTK_WIDGET (map));
+		gtk_widget_set_size_request (GTK_WIDGET (priv->slider),
+		                             scrubber_area.width,
+		                             scrubber_area.height);
+		gtk_text_view_move_overlay (GTK_TEXT_VIEW (map),
+		                            GTK_WIDGET (priv->slider),
+					    scrubber_area.x,
+		                            scrubber_area.y);
+		gtk_widget_queue_allocate (GTK_WIDGET (map));
 	}
 }
 
@@ -370,10 +400,15 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	if (background != NULL)
 	{
 		g_string_append_printf (gstr,
-		                        "textview.scrubber {\n"
-		                        "\tbackground-color: %s;\n"
-		                        "\tborder-top: 1px solid shade(%s,0.9);\n"
-		                        "\tborder-bottom: 1px solid shade(%s,0.9);\n"
+		                        "slider {\n"
+		                        "\tbackground-color: alpha(%s,.3);\n"
+		                        "\tborder-radius: 3px;\n"
+		                        "\tborder: 1px solid alpha(shade(%s,.9),.3);\n"
+		                        "\tmargin-top: 1px;\n"
+		                        "\tmargin-bottom: 1px;\n"
+		                        "}\n"
+		                        "slider:hover {\n"
+		                        "\tbackground-color: alpha(%s,.5);\n"
 		                        "}\n",
 		                        background,
 		                        background,
@@ -641,19 +676,6 @@ scroll_to_child_point (GtkSourceMap *map,
 }
 
 static void
-gtk_source_map_size_allocate (GtkWidget *widget,
-                              int        width,
-                              int        height,
-                              int        baseline)
-{
-	GtkSourceMap *map = GTK_SOURCE_MAP (widget);
-
-	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->size_allocate (widget, width, height, baseline);
-
-	update_scrubber_position (map);
-}
-
-static void
 connect_view (GtkSourceMap  *map,
               GtkSourceView *view)
 {
@@ -799,31 +821,12 @@ gtk_source_map_snapshot_layer (GtkTextView      *text_view,
 			       GtkTextViewLayer  layer,
 			       GtkSnapshot      *snapshot)
 {
-	GtkSourceMap *map = (GtkSourceMap *)text_view;
-	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
-
-	g_assert (GTK_SOURCE_IS_MAP (map));
+	g_assert (GTK_SOURCE_IS_MAP (text_view));
 	g_assert (GTK_IS_SNAPSHOT (snapshot));
 
 	/* We avoid chaining up to draw layers from GtkSourceView. The details are
 	 * too small to see and significantly slow down rendering.
 	 */
-
-	if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
-	{
-		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
-
-		gtk_style_context_save (style_context);
-		if (priv->had_color)
-			gtk_style_context_add_class (style_context, "scrubber");
-		else
-			gtk_style_context_add_class (style_context, "selection");
-		gtk_snapshot_render_background (snapshot,
-		                                style_context,
-		                                priv->scrubber_area.x, priv->scrubber_area.y,
-		                                priv->scrubber_area.width, priv->scrubber_area.height);
-		gtk_style_context_restore (style_context);
-	}
 }
 
 static void
@@ -1046,7 +1049,6 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 
 	widget_class->measure = gtk_source_map_measure;
 	widget_class->hide = gtk_source_map_hide;
-	widget_class->size_allocate = gtk_source_map_size_allocate;
 	widget_class->show = gtk_source_map_show;
 	widget_class->state_flags_changed = gtk_source_map_state_flags_changed;
 	widget_class->realize = gtk_source_map_realize;
@@ -1076,15 +1078,21 @@ gtk_source_map_init (GtkSourceMap *map)
 	GtkSourceMapPrivate *priv;
 	GtkSourceCompletion *completion;
 	GtkEventController *scroll;
-	GtkStyleContext *context;
 	GtkGesture *drag;
 
 	priv = gtk_source_map_get_instance_private (map);
 
 	priv->css_provider = gtk_css_provider_new ();
+        priv->slider = g_object_new (GTK_SOURCE_TYPE_MAP_SLIDER,
+				     "width-request", 1,
+				     "height-request", 1,
+				     NULL);
+        gtk_text_view_add_overlay (GTK_TEXT_VIEW (map), GTK_WIDGET (priv->slider), 0, 0);
 
-	context = gtk_widget_get_style_context (GTK_WIDGET (map));
-	gtk_style_context_add_provider (context,
+	gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (map)),
+	                                GTK_STYLE_PROVIDER (priv->css_provider),
+	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY + 1);
+	gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (priv->slider)),
 	                                GTK_STYLE_PROVIDER (priv->css_provider),
 	                                GTK_SOURCE_STYLE_PROVIDER_PRIORITY + 1);
 
@@ -1105,6 +1113,8 @@ gtk_source_map_init (GtkSourceMap *map)
 	gtk_source_map_set_font_name (map, "BuilderBlocks 1");
 
 	drag = gtk_gesture_drag_new ();
+	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (drag),
+                                                    GTK_PHASE_CAPTURE);
 	g_signal_connect_swapped (drag,
 				  "drag-begin",
 				  G_CALLBACK (gtk_source_map_drag_begin),
