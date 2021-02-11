@@ -154,8 +154,8 @@
         # we can't have it match an arbitrary amount of whitespace. Thus, we do an approximate
         # check, only trying zero and one spaces.
 
-        (?&lt;! \+\+   | --   | [])}'"\$\d]   | \%{letter} |
-                \+\+\s | --\s | [])}'"\$\d]\s | \%{letter}\s )
+        (?&lt;! \+\+   | --   | [\]\)}'"\$\d]   | \%{letter} |
+                \+\+\s | --\s | [\]\)}'"\$\d]\s | \%{letter}\s )
 
         /
       </start>
