@@ -79,7 +79,6 @@ struct _GtkSourceGutter
 	GtkOrientation        orientation;
 
 	gulong                adj_changed_handler;
-	gulong                realize_handler;
 
 	guint                 is_drawing : 1;
 };
@@ -239,7 +238,6 @@ disconnect_view (GtkSourceGutter *gutter,
 
 	g_clear_signal_handler (&gutter->adj_changed_handler,
 	                        get_adjustment (gutter, view));
-	g_clear_signal_handler (&gutter->realize_handler, view);
 }
 
 static void
