@@ -79,6 +79,7 @@ struct _GtkSourceGutter
 	GtkOrientation        orientation;
 
 	gulong                adj_changed_handler;
+	gulong                adj_upper_changed_handler;
 
 	guint                 is_drawing : 1;
 };
@@ -190,14 +191,15 @@ static void
 on_adjustment_value_changed (GtkAdjustment   *adj,
                              GtkSourceGutter *gutter)
 {
-	const GList *list;
+	_gtk_source_gutter_queue_draw (gutter);
+}
 
-	for (list = gutter->renderers; list; list = list->next)
-	{
-		Renderer *renderer = list->data;
-
-		gtk_widget_queue_draw (GTK_WIDGET (renderer->renderer));
-	}
+static void
+on_adjustment_upper_changed (GtkAdjustment   *adj,
+                             GParamSpec      *pspec,
+                             GtkSourceGutter *gutter)
+{
+	_gtk_source_gutter_queue_draw (gutter);
 }
 
 static GtkAdjustment *
@@ -227,6 +229,11 @@ connect_view (GtkSourceGutter *gutter,
 		                  "value-changed",
 		                  G_CALLBACK (on_adjustment_value_changed),
 		                  gutter);
+	gutter->adj_upper_changed_handler =
+		g_signal_connect (get_adjustment (gutter, view),
+		                  "notify::upper",
+		                  G_CALLBACK (on_adjustment_upper_changed),
+		                  gutter);
 }
 
 static void
@@ -237,6 +244,8 @@ disconnect_view (GtkSourceGutter *gutter,
 	g_assert (GTK_SOURCE_IS_VIEW (view));
 
 	g_clear_signal_handler (&gutter->adj_changed_handler,
+	                        get_adjustment (gutter, view));
+	g_clear_signal_handler (&gutter->adj_upper_changed_handler,
 	                        get_adjustment (gutter, view));
 }
 
@@ -1018,7 +1027,7 @@ _gtk_source_gutter_queue_draw (GtkSourceGutter *gutter)
 	{
 		Renderer *renderer = iter->data;
 
-		gtk_widget_queue_allocate (GTK_WIDGET (renderer->renderer));
+		gtk_widget_queue_draw (GTK_WIDGET (renderer->renderer));
 	}
 }
 
