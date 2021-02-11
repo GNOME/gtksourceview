@@ -33,6 +33,7 @@ testsuite_sources = [
   ['test-space-drawer'],
   ['test-stylescheme'],
   ['test-styleschememanager'],
+  ['test-syntax'],
   ['test-utils'],
   ['test-view'],
 ]
