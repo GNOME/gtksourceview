@@ -1,3 +1,44 @@
+News in 4.99.0, 2021-02-12
+--------------------------
+
+GtkSourceView 4.99.0 is a beta release targeting GTK 4 and will eventually
+become GtkSourceView 5.0.
+
+It is the largest release of GtkSourceView in many releases and contains new
+subsystems and performance improvements. More than 300 commits are part of this
+release touching everything from syntax highlighting to a new snippet engine.
+
+As GtkSourceView 4.99 moves to using PCRE2, it is possible that some language
+definitions will need tweaking for differences between PCRE and PCRE2. So far,
+very few changes were necessary within the GtkSourceView codebase but external
+language specifications may require some tweaks. In particular, improper
+escaping is the only incompatability seen thus far.
+
+* Improvements when converting Pango styling to CSS
+* Build system improvements
+* GObject modernization
+* A new completion engine has been added that reduces overhead and fits with
+  GTK 4 lazy lists more closely. It is largely based on the code and design
+  from GNOME Builder.
+* GtkSourceGutterRenderers are now a GtkWidget allowing more interesting
+  features to be implemented by applications.
+* Undo management was moved into GTK 4 directly and is no longer part of
+  GtkSourceView.
+* Syntax highlighting has moved to PCRE2 and utilizes a JIT when available.
+* GtkSourceBuffer has a new "cursor-moved" signal.
+* A new font "Builder Blocks" from GNOME Builder has been bundled for use
+  in the GtkSourceMap.
+* To speed up gutter operations, a new GtkSourceLines abstraction has been
+  added which allows fewer passes across the source buffer to extract features
+  for display.
+* A new snippet engine based originally upon GNOME Builder's but with a
+  new snippet language based on XML similar to language-specs and
+  style-schemes.
+* A new "Assistant" abstraction which can be used for tooltips and eventually
+  hover providers.
+* Updates to go.lang, cmake.lang, meson.lang, csharp.lang.
+* Translation updates
+
 News in 4.8.0, 2020-09-12
 -------------------------
 * Translation updates
