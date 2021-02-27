@@ -33,6 +33,8 @@ void                      _gtk_source_buffer_update_syntax_highlight     (GtkSou
                                                                           const GtkTextIter      *end,
                                                                           gboolean                synchronous);
 GTK_SOURCE_INTERNAL
+gboolean                  _gtk_source_buffer_has_search_highlights       (GtkSourceBuffer        *buffer);
+GTK_SOURCE_INTERNAL
 void                      _gtk_source_buffer_update_search_highlight     (GtkSourceBuffer        *buffer,
                                                                           const GtkTextIter      *start,
                                                                           const GtkTextIter      *end,

@@ -2252,6 +2252,17 @@ gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
+	/* If there is nothing to update here in terms of highlighting, then we can
+	 * avoid some expensive operations such as looking up iters by location.
+	 * Inside of test-widget, this function can easily take .5msec according to
+	 * profiling data.
+	 */
+	if (!gtk_source_buffer_get_highlight_syntax (priv->source_buffer) &&
+	    !_gtk_source_buffer_has_search_highlights (priv->source_buffer))
+	{
+		return;
+	}
+
 	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter1, clip->y, NULL);
 	gtk_text_iter_backward_line (&iter1);
 	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter2, clip->y + clip->height, NULL);

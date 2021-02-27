@@ -1563,11 +1563,10 @@ _gtk_source_buffer_update_search_highlight (GtkSourceBuffer   *buffer,
 					    gboolean           synchronous)
 {
 	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
-	GList *l;
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
 
-	for (l = priv->search_contexts; l != NULL; l = l->next)
+	for (GList *l = priv->search_contexts; l != NULL; l = l->next)
 	{
 		GtkSourceSearchContext *search_context = l->data;
 
@@ -1576,6 +1575,24 @@ _gtk_source_buffer_update_search_highlight (GtkSourceBuffer   *buffer,
 							     end,
 							     synchronous);
 	}
+}
+
+gboolean
+_gtk_source_buffer_has_search_highlights (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	for (GList *l = priv->search_contexts; l != NULL; l = l->next)
+	{
+		GtkSourceSearchContext *search_context = l->data;
+
+		if (gtk_source_search_context_get_highlight (search_context))
+			return TRUE;
+	}
+
+	return FALSE;
 }
 
 /**
