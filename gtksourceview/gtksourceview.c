@@ -2248,26 +2248,27 @@ gtk_source_view_ensure_redrawn_rect_is_highlighted (GtkSourceView *view,
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkTextIter iter1, iter2;
+	char *message = NULL;
+
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter1, clip->y, NULL);
 	gtk_text_iter_backward_line (&iter1);
 	gtk_text_view_get_line_at_y (GTK_TEXT_VIEW (view), &iter2, clip->y + clip->height, NULL);
 	gtk_text_iter_forward_line (&iter2);
 
-	if (GTK_SOURCE_PROFILER_ACTIVE)
-	{
-		char *message = g_strdup_printf ("Area: Y=%d Height=%d BeginLine=%d EndLine=%d",
-		                                 clip->y, clip->height,
-		                                 gtk_text_iter_get_line (&iter1),
-		                                 gtk_text_iter_get_line (&iter2));
-		GTK_SOURCE_PROFILER_MARK (0, "GtkSourceView::IsHighlighted", message);
-		g_free (message);
-	}
-
 	_gtk_source_buffer_update_syntax_highlight (priv->source_buffer,
 						    &iter1, &iter2, FALSE);
 	_gtk_source_buffer_update_search_highlight (priv->source_buffer,
 						    &iter1, &iter2, FALSE);
+
+	if (GTK_SOURCE_PROFILER_ACTIVE)
+		message = g_strdup_printf ("Area: Y=%d Height=%d BeginLine=%d EndLine=%d",
+	                                 clip->y, clip->height,
+	                                 gtk_text_iter_get_line (&iter1),
+	                                 gtk_text_iter_get_line (&iter2));
+	GTK_SOURCE_PROFILER_END_MARK ("GtkSourceView::IsHighlighted", message);
+	g_free (message);
 }
 
 /* This function is taken from gtk+/tests/testtext.c */
