@@ -24,6 +24,7 @@
 #include "gtksourcegutter-private.h"
 #include "gtksourcegutterlines.h"
 #include "gtksourcegutterlines-private.h"
+#include "gtksourcesignalgroup-private.h"
 #include "gtksourcestylescheme-private.h"
 #include "gtksourceview.h"
 #include "gtksourcegutterrenderer.h"
@@ -74,12 +75,11 @@ struct _GtkSourceGutter
 	GtkSourceView        *view;
 	GList                *renderers;
 	GtkSourceGutterLines *lines;
+	GtkSourceSignalGroup *signals;
+	GBinding             *target_binding;
 
 	GtkTextWindowType     window_type;
 	GtkOrientation        orientation;
-
-	gulong                adj_changed_handler;
-	gulong                adj_upper_changed_handler;
 
 	guint                 is_drawing : 1;
 };
@@ -202,38 +202,29 @@ on_adjustment_upper_changed (GtkAdjustment   *adj,
 	_gtk_source_gutter_queue_draw (gutter);
 }
 
-static GtkAdjustment *
-get_adjustment (GtkSourceGutter *gutter,
-		GtkSourceView   *view)
-{
-	if (gutter->window_type == GTK_TEXT_WINDOW_LEFT ||
-	    gutter->window_type == GTK_TEXT_WINDOW_RIGHT)
-	{
-		return gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (view));
-	}
-	else
-	{
-		return gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (view));
-	}
-}
-
 static void
 connect_view (GtkSourceGutter *gutter,
               GtkSourceView   *view)
 {
+	const gchar *property_name;
+
 	g_assert (GTK_SOURCE_IS_GUTTER (gutter));
 	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (gutter->target_binding == NULL);
 
-	gutter->adj_changed_handler =
-		g_signal_connect (get_adjustment (gutter, view),
-		                  "value-changed",
-		                  G_CALLBACK (on_adjustment_value_changed),
-		                  gutter);
-	gutter->adj_upper_changed_handler =
-		g_signal_connect (get_adjustment (gutter, view),
-		                  "notify::upper",
-		                  G_CALLBACK (on_adjustment_upper_changed),
-		                  gutter);
+	if (gutter->window_type == GTK_TEXT_WINDOW_LEFT ||
+	    gutter->window_type == GTK_TEXT_WINDOW_RIGHT)
+	{
+		property_name = "vadjustment";
+	}
+	else
+	{
+		property_name = "hadjustment";
+	}
+
+	g_object_bind_property (view, property_name,
+				gutter->signals, "target",
+				G_BINDING_SYNC_CREATE);
 }
 
 static void
@@ -243,10 +234,7 @@ disconnect_view (GtkSourceGutter *gutter,
 	g_assert (GTK_SOURCE_IS_GUTTER (gutter));
 	g_assert (GTK_SOURCE_IS_VIEW (view));
 
-	g_clear_signal_handler (&gutter->adj_changed_handler,
-	                        get_adjustment (gutter, view));
-	g_clear_signal_handler (&gutter->adj_upper_changed_handler,
-	                        get_adjustment (gutter, view));
+	g_clear_pointer (&gutter->target_binding, g_binding_unbind);
 }
 
 static void
@@ -377,12 +365,29 @@ gtk_source_gutter_constructed (GObject *object)
 }
 
 static void
+gtk_source_gutter_dispose (GObject *object)
+{
+	GtkSourceGutter *gutter = (GtkSourceGutter *)object;
+
+	g_clear_pointer (&gutter->target_binding, g_binding_unbind);
+
+	if (gutter->signals != NULL)
+	{
+		gtk_source_signal_group_set_target (gutter->signals, NULL);
+		g_clear_object (&gutter->signals);
+	}
+
+	G_OBJECT_CLASS (gtk_source_gutter_parent_class)->dispose (object);
+}
+
+static void
 gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
 	object_class->constructed = gtk_source_gutter_constructed;
+	object_class->dispose = gtk_source_gutter_dispose;
 	object_class->get_property = gtk_source_gutter_get_property;
 	object_class->set_property = gtk_source_gutter_set_property;
 
@@ -427,7 +432,19 @@ gtk_source_gutter_init (GtkSourceGutter *gutter)
 	GtkGesture *click;
 	GtkEventController *motion;
 
-  gutter->window_type = GTK_TEXT_WINDOW_LEFT;
+	gutter->window_type = GTK_TEXT_WINDOW_LEFT;
+
+	gutter->signals = gtk_source_signal_group_new (GTK_TYPE_ADJUSTMENT);
+	gtk_source_signal_group_connect_object (gutter->signals,
+						"value-changed",
+						G_CALLBACK (on_adjustment_value_changed),
+						gutter,
+						0);
+	gtk_source_signal_group_connect_object (gutter->signals,
+						"notify::upper",
+						G_CALLBACK (on_adjustment_upper_changed),
+						gutter,
+						0);
 
 	/* Setup fallback click handling */
 	click = gtk_gesture_click_new ();
