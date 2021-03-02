@@ -395,6 +395,13 @@ impl_regex_replace_eval (const ImplRegex        *regex,
 		done = (*eval) (match_info, result, user_data);
 		str_pos = match_info->offsets[1];
 		impl_match_info_next (match_info, &tmp_error);
+
+		/* We already matched, so ignore future matches */
+		if (g_error_matches (tmp_error, G_REGEX_ERROR, G_REGEX_ERROR_MATCH))
+		{
+			g_clear_error (&tmp_error);
+			break;
+		}
 	}
 
 	impl_match_info_free (match_info);
