@@ -194,12 +194,18 @@ gtksourceversion_h = configure_file(
     install_dir: join_paths(pkgincludedir, 'gtksourceview'),
 )
 
+gtksource_res = gnome.compile_resources(
+  'gtksourceview-gresources',
+  'gtksourceview.gresource.xml'
+)
+
 core_sources = [
   core_public_c,
   core_private_c,
   core_enums,
   gtksourceversion_h,
   core_marshallers,
+  gtksource_res,
 ]
 
 install_headers(
@@ -238,11 +244,6 @@ extra_public_sources = []
 
 subdir('completion-providers')
 
-gtksource_res = gnome.compile_resources(
-  'gtksourceview-gresources',
-  'gtksourceview.gresource.xml'
-)
-
 
 # We can't use the static libs on Visual Studio builds
 # to form our DLL here directly, so we must use
@@ -255,7 +256,7 @@ foreach int_lib : gtksource_libs
   gtksource_objs += int_lib.extract_all_objects()
 endforeach
 
-gtksource_lib = shared_library(package_string, gtksource_res,
+gtksource_lib = shared_library(package_string,
                 version: lib_version,
         darwin_versions: lib_osx_version,
     include_directories: gtksourceview_include_dirs,
