@@ -965,6 +965,31 @@ enable_snippets_toggled_cb (TestWidget     *self,
 	gtk_source_view_set_enable_snippets (self->priv->view, enabled);
 }
 
+static GtkSourceHoverProvider *
+create_hover_provider (void)
+{
+	return NULL;
+}
+
+static void
+enable_hover_toggled_cb (TestWidget     *self,
+                         GtkCheckButton *button)
+{
+	static GtkSourceHoverProvider *test_hover_provider;
+	GtkSourceHover *hover = gtk_source_view_get_hover (self->priv->view);
+	gboolean enabled = gtk_check_button_get_active (button);
+
+	if (test_hover_provider == NULL)
+	{
+		test_hover_provider = create_hover_provider ();
+	}
+
+	if (enabled)
+		gtk_source_hover_add_provider (hover, test_hover_provider);
+	else
+		gtk_source_hover_remove_provider (hover, test_hover_provider);
+}
+
 static void
 test_widget_dispose (GObject *object)
 {
@@ -1004,6 +1029,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, forward_string_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_changed_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_snippets_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, enable_hover_toggled_cb);
 
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, view);
 	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, map);
