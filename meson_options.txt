@@ -2,8 +2,8 @@ option('install_tests',
        type: 'boolean', value: false,
        description: 'Install test programs')
 
-option('gir',
-       type: 'boolean', value: true,
+option('introspection',
+       type: 'feature', value: 'auto',
        description: 'Generate gir data (requires gobject-introspection)')
 
 option('vapi',

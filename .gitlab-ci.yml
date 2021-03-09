@@ -31,7 +31,7 @@ reference:
         - dnf update -y --nogpgcheck
         - dnf install -y --nogpgcheck $FEDORA_DEPS
         - mkdir -p pfx/
-        - meson ${MESON_FLAGS} --prefix=${PWD}/pfx -Dgtk_doc=true -Dgir=false _build
+        - meson ${MESON_FLAGS} --prefix=${PWD}/pfx -Dgtk_doc=true _build
         - ninja -C _build install
         - mkdir -p _reference/
         - mv pfx/share/gtk-doc/html/gtksourceview-5.0 _reference/

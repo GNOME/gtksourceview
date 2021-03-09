@@ -59,7 +59,8 @@ testdatadir = join_paths(datadir, 'installed-tests', package_string)
 docpath = join_paths(datadir, 'gtk-doc', 'html', package_string)
 
 # Options
-generate_gir = get_option('gir')
+gir = find_program('g-ir-scanner', required : get_option('introspection'))
+generate_gir = gir.found() and (not meson.is_cross_build() or get_option('introspection').enabled())
 generate_vapi = generate_gir and get_option('vapi')
 build_gtk_doc = get_option('gtk_doc')
 
