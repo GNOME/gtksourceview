@@ -274,10 +274,12 @@ gtk_source_hover_motion_timeout_cb (gpointer data)
 
 	if (self->view == NULL ||
 	    self->state != HOVER_STATE_INITIAL ||
-	    gtk_source_hover_get_bounds (self, &begin, &end, &location))
+	    !gtk_source_hover_get_bounds (self, &begin, &end, &location))
 	{
 		return G_SOURCE_REMOVE;
 	}
+
+	g_assert (GTK_SOURCE_IS_VIEW (self->view));
 
 	if (self->assistant == NULL)
 	{
@@ -307,6 +309,7 @@ gtk_source_hover_motion_timeout_cb (gpointer data)
 	}
 
 	self->state = HOVER_STATE_DISPLAY;
+
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (self->view), &begin, &begin_rect);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (self->view), &end, &end_rect);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (self->view), &location, &location_rect);
@@ -469,40 +472,40 @@ _gtk_source_hover_new (GtkSourceView *view)
 
 	key = gtk_event_controller_key_new ();
 	g_signal_connect_object (key,
-				 "key-pressed",
-				 G_CALLBACK (on_key_pressed_cb),
-				 self,
-				 G_CONNECT_SWAPPED);
-	gtk_widget_add_controller (GTK_WIDGET (self), key);
+	                         "key-pressed",
+	                         G_CALLBACK (on_key_pressed_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_widget_add_controller (GTK_WIDGET (view), key);
 
 	focus = gtk_event_controller_focus_new ();
 	g_signal_connect_object (focus,
-				 "enter",
-				 G_CALLBACK (on_focus_enter_cb),
-				 self,
-				 G_CONNECT_SWAPPED);
+	                         "enter",
+	                         G_CALLBACK (on_focus_enter_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
 	g_signal_connect_object (focus,
-				 "leave",
-				 G_CALLBACK (on_focus_leave_cb),
-				 self,
-				 G_CONNECT_SWAPPED);
-	gtk_widget_add_controller (GTK_WIDGET (self), focus);
+	                         "leave",
+	                         G_CALLBACK (on_focus_leave_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_widget_add_controller (GTK_WIDGET (view), focus);
 
 	motion = gtk_event_controller_motion_new ();
 	g_signal_connect_object (motion,
-				 "motion",
-				 G_CALLBACK (on_motion_cb),
-				 self,
-				 G_CONNECT_SWAPPED);
-	gtk_widget_add_controller (GTK_WIDGET (self), motion);
+	                         "motion",
+	                         G_CALLBACK (on_motion_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_widget_add_controller (GTK_WIDGET (view), motion);
 
 	scroll = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
 	g_signal_connect_object (scroll,
-				 "scroll",
-				 G_CALLBACK (on_scroll_cb),
-				 self,
-				 G_CONNECT_SWAPPED);
-	gtk_widget_add_controller (GTK_WIDGET (self), scroll);
+	                         "scroll",
+	                         G_CALLBACK (on_scroll_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_widget_add_controller (GTK_WIDGET (view), scroll);
 
 	return self;
 }
