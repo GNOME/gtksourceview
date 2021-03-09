@@ -1,7 +1,7 @@
 project('gtksourceview', 'c',
           version: '4.99.0',
           license: 'LGPL-2.1-or-later',
-    meson_version: '>= 0.52.0',
+    meson_version: '>= 0.53.0',
   default_options: [ 'c_std=gnu99',
                      'buildtype=debugoptimized',
                      'warning_level=2' ],
@@ -67,7 +67,7 @@ build_gtk_doc = get_option('gtk_doc')
 # Dependencies
 cc = meson.get_compiler('c')
 
-glib_req_version = '2.62'
+glib_req_version = '2.66'
 gtk_req_version = '3.99'
 
 libm_dep = cc.find_library('m', required: false)
@@ -317,25 +317,13 @@ subdir('po')
 subdir('tests')
 subdir('testsuite')
 
-summary = [
-  '',
-  '------',
-  'GtkSourceView @0@ (@1@)'.format(version, api_version),
-  '',
-  '  Documentation: @0@'.format(build_gtk_doc),
-  '  Install tests: @0@'.format(get_option('install_tests')),
-  '  Introspection: @0@'.format(generate_gir),
-  '      Vala vapi: @0@'.format(generate_vapi),
-  '',
-  'Directories:',
-  '         prefix: @0@'.format(prefix),
-  '     includedir: @0@'.format(includedir),
-  '         libdir: @0@'.format(libdir),
-  '        datadir: @0@'.format(datadir),
-  '------',
-]
-
-message('\n'.join(summary))
+summary({
+  'Documentation': build_gtk_doc,
+  'Install tests': get_option('install_tests'),
+  'Introspection': generate_gir,
+  'Vala vapi': generate_vapi,
+  }, bool_yn: true,
+)
 
 if meson.version().version_compare('>=0.57.0')
   gnome.post_install(

@@ -272,6 +272,7 @@ if generate_gir
       identifier_prefix: 'GtkSource',
         export_packages: [package_string],
               link_with: gtksource_lib,
+           dependencies: gtksource_deps,
                includes: [ 'Gtk-4.0' ],
                 install: true,
         install_dir_gir: girdir,
@@ -305,11 +306,10 @@ if generate_gir
   endif
 endif
 
-# MSVC builds: Only link to the dependent packages/.lib's
 gtksource_dep = declare_dependency(
             link_with: gtksource_lib,
   include_directories: rootdir,
-         dependencies: cc.get_id() == 'msvc' ? core_deps : gtksource_deps,
+         dependencies: gtksource_deps,
               sources: gtksource_dep_sources,
 )
 
