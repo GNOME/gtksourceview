@@ -39,6 +39,7 @@
 #include "gtksourcegutter-private.h"
 #include "gtksourcegutterrendererlines-private.h"
 #include "gtksourcegutterrenderermarks-private.h"
+#include "gtksourcehover-private.h"
 #include "gtksource-enumtypes.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"
@@ -189,6 +190,7 @@ typedef struct
 	GdkRGBA right_margin_overlay_color;
 
 	GtkSourceCompletion *completion;
+	GtkSourceHover *hover;
 
 	guint right_margin_pos;
 	gint cached_right_margin_pos;
@@ -1453,6 +1455,12 @@ gtk_source_view_dispose (GObject *object)
 	{
 		g_object_run_dispose (G_OBJECT (priv->completion));
 		g_clear_object (&priv->completion);
+	}
+
+	if (priv->hover != NULL)
+	{
+		g_object_run_dispose (G_OBJECT (priv->hover));
+		g_clear_object (&priv->hover);
 	}
 
 	g_clear_object (&priv->style_scheme);
@@ -4803,6 +4811,31 @@ gtk_source_view_get_completion (GtkSourceView *view)
 	}
 
 	return priv->completion;
+}
+
+/**
+ * gtk_source_view_get_hover:
+ * @view: a #GtkSourceView.
+ *
+ * Gets the #GtkSourceHover associated with @view. The returned object is
+ * guaranteed to be the same for the lifetime of @view. Each #GtkSourceView
+ * object has a different #GtkSourceHover.
+ *
+ * Returns: (transfer none): a #GtkSourceHover associated with @view.
+ */
+GtkSourceHover *
+gtk_source_view_get_hover (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
+
+	if (priv->hover == NULL)
+	{
+		priv->hover = _gtk_source_hover_new (view);
+	}
+
+	return priv->hover;
 }
 
 /**
