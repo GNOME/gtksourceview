@@ -337,4 +337,10 @@ summary = [
 
 message('\n'.join(summary))
 
-meson.add_install_script('meson_postinstall.py')
+if meson.version().version_compare('>=0.57.0')
+  gnome.post_install(
+    gtk_update_icon_cache: true,
+  )
+else
+  meson.add_install_script('meson_postinstall.py')
+endif
