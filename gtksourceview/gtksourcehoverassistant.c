@@ -56,7 +56,7 @@ gtk_source_hover_assistant_init (GtkSourceHoverAssistant *self)
 	_gtk_source_assistant_set_child (GTK_SOURCE_ASSISTANT (self), GTK_WIDGET (self->display));
 }
 
-GtkSourceHoverAssistant *
+GtkSourceAssistant *
 _gtk_source_hover_assistant_new (void)
 {
 	return g_object_new (GTK_SOURCE_TYPE_HOVER_ASSISTANT, NULL);

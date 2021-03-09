@@ -28,7 +28,7 @@
 #include "gtksourcehoverprovider.h"
 #include "gtksourceiter-private.h"
 #include "gtksourcesignalgroup-private.h"
-#include "gtksourceview.h"
+#include "gtksourceview-private.h"
 
 #define DISMISS_DELAY_MSEC 10
 #define GRACE_X 20
@@ -114,20 +114,24 @@ on_key_pressed_cb (GtkSourceHover        *hover,
 }
 
 static void
-on_focus_enter_cb (GtkSourceHover          *hover,
-                   GtkEventControllerFocus *controller)
+on_motion_enter_cb (GtkSourceHover           *self,
+                    double                    x,
+                    double                    y,
+                    GtkEventControllerMotion *controller)
 {
-	g_assert (GTK_SOURCE_IS_HOVER (hover));
-	g_assert (GTK_IS_EVENT_CONTROLLER_FOCUS (controller));
+	g_assert (GTK_SOURCE_IS_HOVER (self));
+	g_assert (GTK_SOURCE_IS_VIEW (self->view));
+	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (controller));
 
+	g_clear_handle_id (&self->dismiss_source, g_source_remove);
 }
 
 static void
-on_focus_leave_cb (GtkSourceHover          *self,
-                   GtkEventControllerFocus *controller)
+on_motion_leave_cb (GtkSourceHover          *self,
+                    GtkEventControllerMotion *controller)
 {
 	g_assert (GTK_SOURCE_IS_HOVER (self));
-	g_assert (GTK_IS_EVENT_CONTROLLER_FOCUS (controller));
+	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (controller));
 
 	gtk_source_hover_queue_dismiss (self);
 }
@@ -142,7 +146,7 @@ gtk_source_hover_get_bounds (GtkSourceHover *self,
 	int x, y;
 
 	g_assert (GTK_SOURCE_IS_HOVER (self));
-	g_assert (GTK_SOURCE_IS_VIEW (self->view));
+	g_assert (!self->view || GTK_SOURCE_IS_VIEW (self->view));
 	g_assert (begin != NULL);
 	g_assert (end != NULL);
 	g_assert (location != NULL);
@@ -285,8 +289,9 @@ gtk_source_hover_motion_timeout_cb (gpointer data)
 	{
 		GtkEventController *motion;
 
-		self->assistant = _gtk_source_assistant_new ();
+		self->assistant = _gtk_source_hover_assistant_new ();
 		gtk_popover_set_position (GTK_POPOVER (self->assistant), GTK_POS_TOP);
+		gtk_popover_set_autohide (GTK_POPOVER (self->assistant), TRUE);
 
 		g_signal_connect_object (self->assistant,
 		                         "closed",
@@ -306,6 +311,8 @@ gtk_source_hover_motion_timeout_cb (gpointer data)
 		                         self,
 		                         G_CONNECT_SWAPPED);
 		gtk_widget_add_controller (GTK_WIDGET (self->assistant), motion);
+
+		_gtk_source_view_add_assistant (self->view, self->assistant);
 	}
 
 	self->state = HOVER_STATE_DISPLAY;
@@ -346,6 +353,11 @@ on_motion_cb (GtkSourceHover           *self,
 {
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (controller));
+
+	self->motion_x = x;
+	self->motion_y = y;
+
+	g_print ("Motion %lf,%lf\n",  x, y);
 
 	/*
 	 * If we have a popover displayed, get it's allocation so that
@@ -460,7 +472,6 @@ GtkSourceHover *
 _gtk_source_hover_new (GtkSourceView *view)
 {
 	GtkSourceHover *self;
-	GtkEventController *focus;
 	GtkEventController *key;
 	GtkEventController *motion;
 	GtkEventController *scroll;
@@ -478,20 +489,17 @@ _gtk_source_hover_new (GtkSourceView *view)
 	                         G_CONNECT_SWAPPED);
 	gtk_widget_add_controller (GTK_WIDGET (view), key);
 
-	focus = gtk_event_controller_focus_new ();
-	g_signal_connect_object (focus,
-	                         "enter",
-	                         G_CALLBACK (on_focus_enter_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
-	g_signal_connect_object (focus,
-	                         "leave",
-	                         G_CALLBACK (on_focus_leave_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
-	gtk_widget_add_controller (GTK_WIDGET (view), focus);
-
 	motion = gtk_event_controller_motion_new ();
+	g_signal_connect_object (motion,
+	                         "enter",
+	                         G_CALLBACK (on_motion_enter_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	g_signal_connect_object (motion,
+	                         "leave",
+	                         G_CALLBACK (on_motion_leave_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
 	g_signal_connect_object (motion,
 	                         "motion",
 	                         G_CALLBACK (on_motion_cb),
