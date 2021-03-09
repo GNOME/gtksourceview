@@ -22,7 +22,11 @@
 #include <string.h>
 #include <gtksourceview/gtksource.h>
 
+#define TEST_TYPE_WIDGET (test_widget_get_type())
+#define TEST_TYPE_HOVER_PROVIDER (test_hover_provider_get_type())
+
 G_DECLARE_FINAL_TYPE (TestWidget, test_widget, TEST, WIDGET, GtkGrid)
+G_DECLARE_FINAL_TYPE (TestHoverProvider, test_hover_provider, TEST, HOVER_PROVIDER, GObject)
 
 struct _TestWidget
 {
@@ -44,9 +48,16 @@ struct _TestWidget
 	GtkWidget *top;
 };
 
-GType test_widget_get_type (void);
+struct _TestHoverProvider
+{
+	GObject parent_instance;
+};
+
+static void hover_provider_iface_init (GtkSourceHoverProviderInterface *iface);
 
 G_DEFINE_TYPE (TestWidget, test_widget, GTK_TYPE_GRID)
+G_DEFINE_TYPE_WITH_CODE (TestHoverProvider, test_hover_provider, G_TYPE_OBJECT,
+			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_HOVER_PROVIDER, hover_provider_iface_init))
 
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
@@ -946,6 +957,31 @@ enable_snippets_toggled_cb (TestWidget     *self,
 	gtk_source_view_set_enable_snippets (self->view, enabled);
 }
 
+static GtkSourceHoverProvider *
+create_hover_provider (void)
+{
+	return g_object_new (TEST_TYPE_HOVER_PROVIDER, NULL);
+}
+
+static void
+enable_hover_toggled_cb (TestWidget     *self,
+                         GtkCheckButton *button)
+{
+	static GtkSourceHoverProvider *test_hover_provider;
+	GtkSourceHover *hover = gtk_source_view_get_hover (self->view);
+	gboolean enabled = gtk_check_button_get_active (button);
+
+	if (test_hover_provider == NULL)
+	{
+		test_hover_provider = create_hover_provider ();
+	}
+
+	if (enabled)
+		gtk_source_hover_add_provider (hover, test_hover_provider);
+	else
+		gtk_source_hover_remove_provider (hover, test_hover_provider);
+}
+
 static void
 test_widget_dispose (GObject *object)
 {
@@ -985,6 +1021,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, forward_string_clicked_cb);
 	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_changed_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_snippets_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, enable_hover_toggled_cb);
 
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, view);
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, map);
@@ -1120,6 +1157,41 @@ test_widget_new (void)
 	return g_object_new (test_widget_get_type (), NULL);
 }
 
+static gboolean
+test_hover_provider_populate (GtkSourceHoverProvider  *provider,
+                              GtkSourceHoverContext   *context,
+                              GtkSourceHoverDisplay   *display,
+                              GError                 **error)
+{
+	GtkTextIter begin, end;
+
+	if (gtk_source_hover_context_get_bounds (context, &begin, &end))
+	{
+		gchar *text = gtk_text_iter_get_slice (&begin, &end);
+		GtkWidget *label = gtk_label_new (text);
+		gtk_source_hover_display_append (display, label);
+		g_free (text);
+	}
+
+	return TRUE;
+}
+
+static void
+hover_provider_iface_init (GtkSourceHoverProviderInterface *iface)
+{
+	iface->populate = test_hover_provider_populate;
+}
+
+static void
+test_hover_provider_class_init (TestHoverProviderClass *klass)
+{
+}
+
+static void
+test_hover_provider_init (TestHoverProvider *self)
+{
+}
+
 static void
 setup_search_paths (void)
 {
@@ -1139,7 +1211,6 @@ setup_search_paths (void)
 	languages = gtk_source_language_manager_get_default ();
 	gtk_source_language_manager_set_search_path (languages, langs_path);
 }
-
 
 int
 main (int argc, char *argv[])

@@ -71,6 +71,14 @@
       <xi:include href="xml/markattributes.xml"/>
     </chapter>
 
+    <chapter id="hover">
+      <title>Interactive Tooltips</title>
+      <xi:include href="xml/hover.xml"/>
+      <xi:include href="xml/hovercontext.xml"/>
+      <xi:include href="xml/hoverdisplay.xml"/>
+      <xi:include href="xml/hoverprovider.xml"/>
+    </chapter>
+
     <chapter id="printing">
       <title>Printing</title>
       <xi:include href="xml/printcompositor.xml"/>

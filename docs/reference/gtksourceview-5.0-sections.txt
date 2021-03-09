@@ -435,6 +435,72 @@ gtk_source_gutter_renderer_text_get_type
 </SECTION>
 
 <SECTION>
+<FILE>hover</FILE>
+GtkSourceHover
+<SUBSECTION>
+gtk_source_hover_add_provider
+gtk_source_hover_remove_provider
+<SUBSECTION Standard>
+GTK_SOURCE_IS_HOVER
+GTK_SOURCE_IS_HOVER_CLASS
+GTK_SOURCE_HOVER
+GTK_SOURCE_HOVER_CLASS
+GTK_SOURCE_HOVER_GET_CLASS
+GTK_SOURCE_TYPE_HOVER
+gtk_source_hover_get_type
+</SECTION>
+
+<SECTION>
+<FILE>hovercontext</FILE>
+GtkSourceHoverContext
+<SUBSECTION>
+gtk_source_hover_context_get_bounds
+gtk_source_hover_context_get_buffer
+gtk_source_hover_context_get_iter
+gtk_source_hover_context_get_view
+<SUBSECTION Standard>
+GTK_SOURCE_IS_HOVER_CONTEXT
+GTK_SOURCE_IS_HOVER_CONTEXT_CLASS
+GTK_SOURCE_HOVER_CONTEXT
+GTK_SOURCE_HOVER_CONTEXT_CLASS
+GTK_SOURCE_HOVER_CONTEXT_GET_CLASS
+GTK_SOURCE_TYPE_HOVER_CONTEXT
+gtk_source_hover_context_get_type
+</SECTION>
+
+<SECTION>
+<FILE>hoverdisplay</FILE>
+GtkSourceHoverDisplay
+<SUBSECTION>
+gtk_source_hover_display_append
+gtk_source_hover_display_prepend
+gtk_source_hover_display_insert_after
+gtk_source_hover_display_remove
+<SUBSECTION Standard>
+GTK_SOURCE_IS_HOVER_DISPLAY
+GTK_SOURCE_IS_HOVER_DISPLAY_CLASS
+GTK_SOURCE_HOVER_DISPLAY
+GTK_SOURCE_HOVER_DISPLAY_CLASS
+GTK_SOURCE_HOVER_DISPLAY_GET_CLASS
+GTK_SOURCE_TYPE_HOVER_DISPLAY
+gtk_source_hover_display_get_type
+</SECTION>
+
+<SECTION>
+<FILE>hoverprovider</FILE>
+GtkSourceHoverProvider
+GtkSourceHoverProviderInterface
+gtk_source_hover_provider_populate_async
+gtk_source_hover_provider_populate_finish
+<SUBSECTION Standard>
+GTK_SOURCE_IS_HOVER_PROVIDER
+GTK_SOURCE_HOVER_PROVIDER
+GTK_SOURCE_HOVER_PROVIDER_GET_IFACE
+GTK_SOURCE_TYPE_HOVER_PROVIDER
+gtk_source_hover_provider_get_type
+</SECTION>
+
+<SECTION>
 <FILE>init</FILE>
 <TITLE>GtkSourceView Initialization and Finalization</TITLE>
 gtk_source_init
