@@ -22,7 +22,11 @@
 #include <string.h>
 #include <gtksourceview/gtksource.h>
 
+#define TEST_TYPE_WIDGET (test_widget_get_type())
+#define TEST_TYPE_HOVER_PROVIDER (test_hover_provider_get_type())
+
 G_DECLARE_FINAL_TYPE (TestWidget, test_widget, TEST, WIDGET, GtkGrid)
+G_DECLARE_FINAL_TYPE (TestHoverProvider, test_hover_provider, TEST, HOVER_PROVIDER, GObject)
 
 struct _TestWidget
 {
@@ -44,9 +48,16 @@ struct _TestWidget
 	GtkWidget *top;
 };
 
-GType test_widget_get_type (void);
+struct _TestHoverProvider
+{
+	GObject parent_instance;
+};
+
+static void hover_provider_iface_init (GtkSourceHoverProviderInterface *iface);
 
 G_DEFINE_TYPE (TestWidget, test_widget, GTK_TYPE_GRID)
+G_DEFINE_TYPE_WITH_CODE (TestHoverProvider, test_hover_provider, G_TYPE_OBJECT,
+			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_HOVER_PROVIDER, hover_provider_iface_init))
 
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
@@ -949,7 +960,7 @@ enable_snippets_toggled_cb (TestWidget     *self,
 static GtkSourceHoverProvider *
 create_hover_provider (void)
 {
-	return NULL;
+	return g_object_new (TEST_TYPE_HOVER_PROVIDER, NULL);
 }
 
 static void
@@ -1146,6 +1157,31 @@ test_widget_new (void)
 	return g_object_new (test_widget_get_type (), NULL);
 }
 
+static gboolean
+test_hover_provider_populate (GtkSourceHoverProvider  *provider,
+                              GtkSourceHoverContext   *context,
+                              GtkSourceHoverDisplay   *display,
+                              GError                 **error)
+{
+	return TRUE;
+}
+
+static void
+hover_provider_iface_init (GtkSourceHoverProviderInterface *iface)
+{
+	iface->populate = test_hover_provider_populate;
+}
+
+static void
+test_hover_provider_class_init (TestHoverProviderClass *klass)
+{
+}
+
+static void
+test_hover_provider_init (TestHoverProvider *self)
+{
+}
+
 static void
 setup_search_paths (void)
 {
@@ -1165,7 +1201,6 @@ setup_search_paths (void)
 	languages = gtk_source_language_manager_get_default ();
 	gtk_source_language_manager_set_search_path (languages, langs_path);
 }
-
 
 int
 main (int argc, char *argv[])
