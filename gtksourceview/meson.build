@@ -272,6 +272,7 @@ if generate_gir
       identifier_prefix: 'GtkSource',
         export_packages: [package_string],
               link_with: gtksource_lib,
+           dependencies: gtksource_deps,
                includes: [ 'Gtk-4.0' ],
                 install: true,
         install_dir_gir: girdir,
