@@ -48,7 +48,6 @@ To build GtkSourceView, do the following:
   --backend=vs: Generate Visual Studio projects for building on Visual Studio 2010, 2015
                 2017, 2019.  This will remove the need for Ninja.  Please note that the
                 generated project files are only valid on the machine they are generated.
-  -Dgir=false: Disable introspection builds.
 
 -If the previous command completed successfully, carry out the build by running 'ninja' or
  by opening and building the projects with the generated Visual Studio projects, if using

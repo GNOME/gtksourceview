@@ -59,7 +59,8 @@ testdatadir = join_paths(datadir, 'installed-tests', package_string)
 docpath = join_paths(datadir, 'gtk-doc', 'html', package_string)
 
 # Options
-generate_gir = get_option('gir')
+gir = find_program('g-ir-scanner', required : get_option('introspection'))
+generate_gir = gir.found() and (not meson.is_cross_build() or get_option('introspection').enabled())
 generate_vapi = generate_gir and get_option('vapi')
 build_gtk_doc = get_option('gtk_doc')
 
@@ -83,11 +84,13 @@ glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
 gtk_dep = dependency('gtk4', version: gtk_req)
-libxml_dep = dependency('libxml-2.0', version: libxml_req, required: cc.get_id() != 'msvc')
+libxml_dep = dependency('libxml-2.0', version: libxml_req,
+                        fallback : ['libxml2', 'xml2lib_dep'])
 fribidi_dep = dependency('fribidi', version: fribidi_req)
 fontconfig_dep = dependency('fontconfig', required: false)
 pangoft2_dep = dependency('pangoft2', required: false)
-pcre2_dep = dependency('libpcre2-8', version: pcre2_req)
+pcre2_dep = dependency('libpcre2-8', version: pcre2_req,
+                       fallback : ['pcre2', 'libpcre2_8'])
 
 gtk_quartz_dep = dependency('gtk4-quartz', version: gtk_doc_req, required: false)
 
@@ -107,15 +110,6 @@ if build_gtk_doc
   gtk_doc_dep = dependency('gtk-doc', version: gtk_doc_req)
 else
   gtk_doc_dep = []
-endif
-
-# Look for the libxml2 library manually on Visual Studio if
-# its pkg-config file could not be found, as the NMake
-# Makefiles of libxml2 do not generate the pkg-config files
-# for us.  Remove once Meson gains the ability to declare
-# deps in a declarative way
-if cc.get_id() == 'msvc' and not libxml_dep.found()
-  libxml_dep = cc.find_library('libxml2', has_headers: ['libxml/xmlreader.h', 'libxml/parser.h'])
 endif
 
 xmllint_prg = find_program('xmllint', required: false)
