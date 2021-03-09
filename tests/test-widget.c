@@ -1163,6 +1163,16 @@ test_hover_provider_populate (GtkSourceHoverProvider  *provider,
                               GtkSourceHoverDisplay   *display,
                               GError                 **error)
 {
+	GtkTextIter begin, end;
+
+	if (gtk_source_hover_context_get_bounds (context, &begin, &end))
+	{
+		gchar *text = gtk_text_iter_get_slice (&begin, &end);
+		GtkWidget *label = gtk_label_new (text);
+		gtk_source_hover_display_append (display, label);
+		g_free (text);
+	}
+
 	return TRUE;
 }
 
