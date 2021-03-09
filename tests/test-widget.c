@@ -22,31 +22,12 @@
 #include <string.h>
 #include <gtksourceview/gtksource.h>
 
-#define TEST_TYPE_WIDGET             (test_widget_get_type ())
-#define TEST_WIDGET(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), TEST_TYPE_WIDGET, TestWidget))
-#define TEST_WIDGET_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), TEST_TYPE_WIDGET, TestWidgetClass))
-#define TEST_IS_WIDGET(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TEST_TYPE_WIDGET))
-#define TEST_IS_WIDGET_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), TEST_TYPE_WIDGET))
-#define TEST_WIDGET_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), TEST_TYPE_WIDGET, TestWidgetClass))
-
-typedef struct _TestWidget         TestWidget;
-typedef struct _TestWidgetClass    TestWidgetClass;
-typedef struct _TestWidgetPrivate  TestWidgetPrivate;
+G_DECLARE_FINAL_TYPE (TestWidget, test_widget, TEST, WIDGET, GtkGrid)
 
 struct _TestWidget
 {
-	GtkGrid parent;
+	GtkGrid parent_instance;
 
-	TestWidgetPrivate *priv;
-};
-
-struct _TestWidgetClass
-{
-	GtkGridClass parent_class;
-};
-
-struct _TestWidgetPrivate
-{
 	GtkSourceView *view;
 	GtkSourceBuffer *buffer;
 	GtkSourceFile *file;
@@ -65,7 +46,7 @@ struct _TestWidgetPrivate
 
 GType test_widget_get_type (void);
 
-G_DEFINE_TYPE_WITH_PRIVATE (TestWidget, test_widget, GTK_TYPE_GRID)
+G_DEFINE_TYPE (TestWidget, test_widget, GTK_TYPE_GRID)
 
 #define MARK_TYPE_1      "one"
 #define MARK_TYPE_2      "two"
@@ -231,19 +212,19 @@ load_cb (GtkSourceFileLoader *loader,
 	{
 		g_warning ("Error while loading the file: %s", error->message);
 		g_clear_error (&error);
-		g_clear_object (&self->priv->file);
+		g_clear_object (&self->file);
 		goto end;
 	}
 
 	/* move cursor to the beginning */
-	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self->priv->buffer), &iter);
-	gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (self->priv->buffer), &iter);
-	gtk_widget_grab_focus (GTK_WIDGET (self->priv->view));
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (self->buffer), &iter);
+	gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (self->buffer), &iter);
+	gtk_widget_grab_focus (GTK_WIDGET (self->view));
 
 	location = gtk_source_file_loader_get_location (loader);
 
-	language = get_language (GTK_TEXT_BUFFER (self->priv->buffer), location);
-	gtk_source_buffer_set_language (self->priv->buffer, language);
+	language = get_language (GTK_TEXT_BUFFER (self->buffer), location);
+	gtk_source_buffer_set_language (self->buffer, language);
 
 	if (language != NULL)
 	{
@@ -266,14 +247,14 @@ open_file (TestWidget *self,
 {
 	GtkSourceFileLoader *loader;
 
-	g_clear_object (&self->priv->file);
-	self->priv->file = gtk_source_file_new ();
-	gtk_source_file_set_location (self->priv->file, file);
+	g_clear_object (&self->file);
+	self->file = gtk_source_file_new ();
+	gtk_source_file_set_location (self->file, file);
 
-	loader = gtk_source_file_loader_new (self->priv->buffer,
-					     self->priv->file);
+	loader = gtk_source_file_loader_new (self->buffer,
+					     self->file);
 
-	remove_all_marks (self->priv->buffer);
+	remove_all_marks (self->buffer);
 
 	gtk_source_file_loader_load_async (loader,
 					   G_PRIORITY_DEFAULT,
@@ -288,7 +269,7 @@ show_line_numbers_toggled_cb (TestWidget     *self,
 			      GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_source_view_set_show_line_numbers (self->priv->view, enabled);
+	gtk_source_view_set_show_line_numbers (self->view, enabled);
 }
 
 static void
@@ -296,7 +277,7 @@ show_line_marks_toggled_cb (TestWidget     *self,
 			    GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_source_view_set_show_line_marks (self->priv->view, enabled);
+	gtk_source_view_set_show_line_marks (self->view, enabled);
 }
 
 static void
@@ -304,7 +285,7 @@ show_right_margin_toggled_cb (TestWidget     *self,
 			      GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_source_view_set_show_right_margin (self->priv->view, enabled);
+	gtk_source_view_set_show_right_margin (self->view, enabled);
 }
 
 static void
@@ -312,7 +293,7 @@ right_margin_position_value_changed_cb (TestWidget    *self,
 					GtkSpinButton *button)
 {
 	gint position = gtk_spin_button_get_value_as_int (button);
-	gtk_source_view_set_right_margin_position (self->priv->view, position);
+	gtk_source_view_set_right_margin_position (self->view, position);
 }
 
 static void
@@ -320,7 +301,7 @@ highlight_syntax_toggled_cb (TestWidget     *self,
 			     GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_source_buffer_set_highlight_syntax (self->priv->buffer, enabled);
+	gtk_source_buffer_set_highlight_syntax (self->buffer, enabled);
 }
 
 static void
@@ -328,7 +309,7 @@ highlight_matching_bracket_toggled_cb (TestWidget     *self,
 				       GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_source_buffer_set_highlight_matching_brackets (self->priv->buffer, enabled);
+	gtk_source_buffer_set_highlight_matching_brackets (self->buffer, enabled);
 }
 
 static void
@@ -336,7 +317,7 @@ highlight_current_line_toggled_cb (TestWidget     *self,
 				   GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_source_view_set_highlight_current_line (self->priv->view, enabled);
+	gtk_source_view_set_highlight_current_line (self->view, enabled);
 }
 
 static void
@@ -344,7 +325,7 @@ wrap_lines_toggled_cb (TestWidget     *self,
 		       GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (self->priv->view),
+	gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (self->view),
 				     enabled ? GTK_WRAP_WORD : GTK_WRAP_NONE);
 }
 
@@ -353,7 +334,7 @@ auto_indent_toggled_cb (TestWidget     *self,
 			GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_source_view_set_auto_indent (self->priv->view, enabled);
+	gtk_source_view_set_auto_indent (self->view, enabled);
 }
 
 static void
@@ -361,7 +342,7 @@ indent_spaces_toggled_cb (TestWidget     *self,
 			  GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_source_view_set_insert_spaces_instead_of_tabs (self->priv->view, enabled);
+	gtk_source_view_set_insert_spaces_instead_of_tabs (self->view, enabled);
 }
 
 static void
@@ -369,7 +350,7 @@ tab_width_value_changed_cb (TestWidget    *self,
 			    GtkSpinButton *button)
 {
 	gint tab_width = gtk_spin_button_get_value_as_int (button);
-	gtk_source_view_set_tab_width (self->priv->view, tab_width);
+	gtk_source_view_set_tab_width (self->view, tab_width);
 }
 
 static void
@@ -377,12 +358,12 @@ update_indent_width (TestWidget *self)
 {
 	gint indent_width = -1;
 
-	if (gtk_check_button_get_active (self->priv->indent_width_checkbutton))
+	if (gtk_check_button_get_active (self->indent_width_checkbutton))
 	{
-		indent_width = gtk_spin_button_get_value_as_int (self->priv->indent_width_spinbutton);
+		indent_width = gtk_spin_button_get_value_as_int (self->indent_width_spinbutton);
 	}
 
-	gtk_source_view_set_indent_width (self->priv->view, indent_width);
+	gtk_source_view_set_indent_width (self->view, indent_width);
 }
 
 static void
@@ -415,7 +396,7 @@ smart_home_end_changed_cb (TestWidget  *self,
 			break;
 	}
 
-	gtk_source_view_set_smart_home_end (self->priv->view, type);
+	gtk_source_view_set_smart_home_end (self->view, type);
 }
 
 static void
@@ -424,21 +405,21 @@ backward_string_clicked_cb (TestWidget *self)
 	GtkTextIter iter;
 	GtkTextMark *insert;
 
-	insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self->priv->buffer));
+	insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self->buffer));
 
-	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self->priv->buffer),
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self->buffer),
 	                                  &iter,
 	                                  insert);
 
-	if (gtk_source_buffer_iter_backward_to_context_class_toggle (self->priv->buffer,
+	if (gtk_source_buffer_iter_backward_to_context_class_toggle (self->buffer,
 	                                                             &iter,
 	                                                             "string"))
 	{
-		gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (self->priv->buffer), &iter);
-		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (self->priv->view), insert);
+		gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (self->buffer), &iter);
+		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (self->view), insert);
 	}
 
-	gtk_widget_grab_focus (GTK_WIDGET (self->priv->view));
+	gtk_widget_grab_focus (GTK_WIDGET (self->view));
 }
 
 static void
@@ -447,21 +428,21 @@ forward_string_clicked_cb (TestWidget *self)
 	GtkTextIter iter;
 	GtkTextMark *insert;
 
-	insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self->priv->buffer));
+	insert = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self->buffer));
 
-	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self->priv->buffer),
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self->buffer),
 	                                  &iter,
 	                                  insert);
 
-	if (gtk_source_buffer_iter_forward_to_context_class_toggle (self->priv->buffer,
+	if (gtk_source_buffer_iter_forward_to_context_class_toggle (self->buffer,
 								    &iter,
 								    "string"))
 	{
-		gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (self->priv->buffer), &iter);
-		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (self->priv->view), insert);
+		gtk_text_buffer_place_cursor (GTK_TEXT_BUFFER (self->buffer), &iter);
+		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (self->view), insert);
 	}
 
-	gtk_widget_grab_focus (GTK_WIDGET (self->priv->view));
+	gtk_widget_grab_focus (GTK_WIDGET (self->view));
 }
 
 static void
@@ -500,7 +481,7 @@ open_button_clicked_cb (TestWidget *self)
 	GtkWidget *main_window;
 	GtkWidget *chooser;
 
-	main_window = GTK_WIDGET (gtk_widget_get_root (GTK_WIDGET (self->priv->view)));
+	main_window = GTK_WIDGET (gtk_widget_get_root (GTK_WIDGET (self->view)));
 
 	chooser = gtk_file_chooser_dialog_new ("Open file...",
 					       GTK_WINDOW (main_window),
@@ -660,11 +641,11 @@ print_button_clicked_cb (TestWidget *self)
 	GtkSourcePrintCompositor *compositor;
 	GtkPrintOperation *operation;
 
-	if (self->priv->file != NULL)
+	if (self->file != NULL)
 	{
 		GFile *location;
 
-		location = gtk_source_file_get_location (self->priv->file);
+		location = gtk_source_file_get_location (self->file);
 
 		if (location != NULL)
 		{
@@ -673,15 +654,15 @@ print_button_clicked_cb (TestWidget *self)
 	}
 
 #ifdef SETUP_FROM_VIEW
-	compositor = gtk_source_print_compositor_new_from_view (self->priv->view);
+	compositor = gtk_source_print_compositor_new_from_view (self->view);
 #else
-	compositor = gtk_source_print_compositor_new (self->priv->buffer);
+	compositor = gtk_source_print_compositor_new (self->buffer);
 
 	gtk_source_print_compositor_set_tab_width (compositor,
-						   gtk_source_view_get_tab_width (self->priv->view));
+						   gtk_source_view_get_tab_width (self->view));
 
 	gtk_source_print_compositor_set_wrap_mode (compositor,
-						   gtk_text_view_get_wrap_mode (GTK_TEXT_VIEW (self->priv->view)));
+						   gtk_text_view_get_wrap_mode (GTK_TEXT_VIEW (self->view)));
 
 	gtk_source_print_compositor_set_print_line_numbers (compositor, 1);
 
@@ -753,15 +734,15 @@ update_cursor_position_info (TestWidget *self)
 	GtkSourceLanguage *lang;
 	const char *language = "none";
 
-	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self->priv->buffer),
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (self->buffer),
 					  &iter,
-					  gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self->priv->buffer)));
+					  gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (self->buffer)));
 
 	offset = gtk_text_iter_get_offset (&iter);
 	line = gtk_text_iter_get_line (&iter) + 1;
-	column = gtk_source_view_get_visual_column (self->priv->view, &iter) + 1;
+	column = gtk_source_view_get_visual_column (self->view, &iter) + 1;
 
-	classes = gtk_source_buffer_get_context_classes_at_iter (self->priv->buffer, &iter);
+	classes = gtk_source_buffer_get_context_classes_at_iter (self->buffer, &iter);
 
 	classes_str = g_string_new ("");
 
@@ -777,7 +758,7 @@ update_cursor_position_info (TestWidget *self)
 
 	g_strfreev (classes);
 
-	if ((lang = gtk_source_buffer_get_language (self->priv->buffer)))
+	if ((lang = gtk_source_buffer_get_language (self->buffer)))
 		language = gtk_source_language_get_id (lang);
 
 	msg = g_strdup_printf ("language: %s offset: %d, line: %d, column: %u, classes: %s",
@@ -787,7 +768,7 @@ update_cursor_position_info (TestWidget *self)
 	                       column,
 	                       classes_str->str);
 
-	gtk_label_set_text (self->priv->cursor_position_info, msg);
+	gtk_label_set_text (self->cursor_position_info, msg);
 
 	g_free (msg);
 	g_string_free (classes_str, TRUE);
@@ -822,20 +803,20 @@ line_mark_activated_cb (GtkSourceGutter   *gutter,
 		mark_type = MARK_TYPE_1;
 
 	/* get the marks already in the line */
-	mark_list = gtk_source_buffer_get_source_marks_at_line (self->priv->buffer,
+	mark_list = gtk_source_buffer_get_source_marks_at_line (self->buffer,
 								gtk_text_iter_get_line (iter),
 								mark_type);
 
 	if (mark_list != NULL)
 	{
 		/* just take the first and delete it */
-		gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (self->priv->buffer),
+		gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (self->buffer),
 					     GTK_TEXT_MARK (mark_list->data));
 	}
 	else
 	{
 		/* no mark found: create one */
-		gtk_source_buffer_create_source_mark (self->priv->buffer,
+		gtk_source_buffer_create_source_mark (self->buffer,
 						      NULL,
 						      mark_type,
 						      iter);
@@ -945,12 +926,12 @@ on_background_pattern_changed (GtkComboBox *combobox,
 
 	if (g_strcmp0 (text, "Grid") == 0)
 	{
-		gtk_source_view_set_background_pattern (self->priv->view,
+		gtk_source_view_set_background_pattern (self->view,
 		                                        GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID);
 	}
 	else
 	{
-		gtk_source_view_set_background_pattern (self->priv->view,
+		gtk_source_view_set_background_pattern (self->view,
 		                                        GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE);
 	}
 
@@ -962,7 +943,7 @@ enable_snippets_toggled_cb (TestWidget     *self,
                             GtkCheckButton *button)
 {
 	gboolean enabled = gtk_check_button_get_active (button);
-	gtk_source_view_set_enable_snippets (self->priv->view, enabled);
+	gtk_source_view_set_enable_snippets (self->view, enabled);
 }
 
 static GtkSourceHoverProvider *
@@ -976,7 +957,7 @@ enable_hover_toggled_cb (TestWidget     *self,
                          GtkCheckButton *button)
 {
 	static GtkSourceHoverProvider *test_hover_provider;
-	GtkSourceHover *hover = gtk_source_view_get_hover (self->priv->view);
+	GtkSourceHover *hover = gtk_source_view_get_hover (self->view);
 	gboolean enabled = gtk_check_button_get_active (button);
 
 	if (test_hover_provider == NULL)
@@ -995,8 +976,8 @@ test_widget_dispose (GObject *object)
 {
 	TestWidget *self = TEST_WIDGET (object);
 
-	g_clear_object (&self->priv->buffer);
-	g_clear_object (&self->priv->file);
+	g_clear_object (&self->buffer);
+	g_clear_object (&self->file);
 
 	G_OBJECT_CLASS (test_widget_parent_class)->dispose (object);
 }
@@ -1031,17 +1012,17 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, enable_snippets_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_hover_toggled_cb);
 
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, view);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, map);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, show_top_border_window_checkbutton);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, show_map_checkbutton);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, draw_spaces_checkbutton);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, smart_backspace_checkbutton);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_checkbutton);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, indent_width_spinbutton);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, cursor_position_info);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, chooser_button);
-	gtk_widget_class_bind_template_child_private (widget_class, TestWidget, background_pattern);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, view);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, map);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, show_top_border_window_checkbutton);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, show_map_checkbutton);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, draw_spaces_checkbutton);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, smart_backspace_checkbutton);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, indent_width_checkbutton);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, indent_width_spinbutton);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, cursor_position_info);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, chooser_button);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, background_pattern);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "window.close", NULL);
 }
@@ -1054,15 +1035,15 @@ show_top_border_window_toggled_cb (GtkCheckButton *checkbutton,
 
 	size = gtk_check_button_get_active (checkbutton) ? 20 : 0;
 
-	if (self->priv->top == NULL)
+	if (self->top == NULL)
 	{
-		self->priv->top = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-		gtk_text_view_set_gutter (GTK_TEXT_VIEW (self->priv->view),
+		self->top = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+		gtk_text_view_set_gutter (GTK_TEXT_VIEW (self->view),
 		                          GTK_TEXT_WINDOW_TOP,
-		                          GTK_WIDGET (self->priv->top));
+		                          GTK_WIDGET (self->top));
 	}
 
-	gtk_widget_set_size_request (self->priv->top, -1, size);
+	gtk_widget_set_size_request (self->top, -1, size);
 }
 
 static void
@@ -1071,82 +1052,82 @@ test_widget_init (TestWidget *self)
 	GtkSourceSpaceDrawer *space_drawer;
 	GFile *file;
 
-	self->priv = test_widget_get_instance_private (self);
+	self = test_widget_get_instance_private (self);
 
 	gtk_widget_init_template (GTK_WIDGET (self));
 
-	self->priv->buffer = GTK_SOURCE_BUFFER (
-		gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->priv->view)));
+	self->buffer = GTK_SOURCE_BUFFER (
+		gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->view)));
 
-	g_signal_connect_swapped (self->priv->buffer,
+	g_signal_connect_swapped (self->buffer,
 	                          "notify::language",
 	                          G_CALLBACK (update_cursor_position_info),
 	                          self);
 
-	g_object_ref (self->priv->buffer);
+	g_object_ref (self->buffer);
 
-	g_signal_connect (self->priv->show_top_border_window_checkbutton,
+	g_signal_connect (self->show_top_border_window_checkbutton,
 			  "toggled",
 			  G_CALLBACK (show_top_border_window_toggled_cb),
 			  self);
 
-	g_signal_connect_swapped (self->priv->indent_width_checkbutton,
+	g_signal_connect_swapped (self->indent_width_checkbutton,
 				  "toggled",
 				  G_CALLBACK (update_indent_width),
 				  self);
 
-	g_signal_connect_swapped (self->priv->indent_width_spinbutton,
+	g_signal_connect_swapped (self->indent_width_spinbutton,
 				  "value-changed",
 				  G_CALLBACK (update_indent_width),
 				  self);
 
-	g_signal_connect (self->priv->buffer,
+	g_signal_connect (self->buffer,
 			  "mark-set",
 			  G_CALLBACK (mark_set_cb),
 			  self);
 
-	g_signal_connect_swapped (self->priv->buffer,
+	g_signal_connect_swapped (self->buffer,
 				  "changed",
 				  G_CALLBACK (update_cursor_position_info),
 				  self);
 
-	g_signal_connect (self->priv->buffer,
+	g_signal_connect (self->buffer,
 			  "bracket-matched",
 			  G_CALLBACK (bracket_matched_cb),
 			  NULL);
 
-	add_source_mark_attributes (self->priv->view);
+	add_source_mark_attributes (self->view);
 
-	g_signal_connect (self->priv->view,
+	g_signal_connect (self->view,
 			  "line-mark-activated",
 			  G_CALLBACK (line_mark_activated_cb),
 			  self);
 
-	g_object_bind_property (self->priv->chooser_button,
+	g_object_bind_property (self->chooser_button,
 	                        "style-scheme",
-	                        self->priv->buffer,
+	                        self->buffer,
 	                        "style-scheme",
 	                        G_BINDING_SYNC_CREATE);
 
-	g_object_bind_property (self->priv->show_map_checkbutton,
+	g_object_bind_property (self->show_map_checkbutton,
 	                        "active",
-	                        self->priv->map,
+	                        self->map,
 	                        "visible",
 	                        G_BINDING_SYNC_CREATE);
 
-	g_object_bind_property (self->priv->smart_backspace_checkbutton,
+	g_object_bind_property (self->smart_backspace_checkbutton,
 	                        "active",
-	                        self->priv->view,
+	                        self->view,
 	                        "smart-backspace",
 	                        G_BINDING_SYNC_CREATE);
 
-	g_signal_connect (self->priv->background_pattern,
+	g_signal_connect (self->background_pattern,
 	                  "changed",
 	                  G_CALLBACK (on_background_pattern_changed),
 	                  self);
 
-	space_drawer = gtk_source_view_get_space_drawer (self->priv->view);
-	g_object_bind_property (self->priv->draw_spaces_checkbutton, "active",
+	space_drawer = gtk_source_view_get_space_drawer (self->view);
+	g_object_bind_property (self->draw_spaces_checkbutton, "active",
 				space_drawer, "enable-matrix",
 				G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
