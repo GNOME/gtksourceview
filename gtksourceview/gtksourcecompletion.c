@@ -881,11 +881,7 @@ gtk_source_completion_dispose (GObject *object)
 	gtk_source_signal_group_set_target (self->buffer_signals, NULL);
 	gtk_source_signal_group_set_target (self->view_signals, NULL);
 
-	if (self->display != NULL)
-	{
-		_gtk_source_assistant_destroy (GTK_SOURCE_ASSISTANT (self->display));
-		self->display = NULL;
-	}
+	g_clear_pointer ((GtkSourceAssistant **)&self->display, _gtk_source_assistant_destroy);
 
 	g_clear_object (&self->context);
 	g_clear_object (&self->cancellable);
