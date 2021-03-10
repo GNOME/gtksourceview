@@ -19,14 +19,26 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-
-
 #include "config.h"
 
 #include "gtksourcecompletioncontext.h"
 #include "gtksourcecompletioncell.h"
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
+
+/**
+ * SECTION:completionprovider
+ * @title: GtkSourceCompletionProvider
+ * @short_description: Completion provider interface
+ *
+ * You must implement this interface to provide proposals to #GtkSourceCompletion
+ *
+ * In most cases, implementations of this interface will want to use
+ * #GtkSourceCompletion.populate_async to asynchronously populate the results
+ * to avoid blocking the main loop.
+ *
+ * Since: 5.0
+ */
 
 G_DEFINE_INTERFACE (GtkSourceCompletionProvider, gtk_source_completion_provider, G_TYPE_OBJECT)
 
@@ -112,6 +124,19 @@ gtk_source_completion_provider_default_init (GtkSourceCompletionProviderInterfac
 	iface->activate = fallback_activate;
 }
 
+/**
+ * gtk_source_completion_provider_get_title:
+ * @self: a #GtkSourceCompletionProvider
+ *
+ * Gets the title of the completion provider, if any.
+ *
+ * Currently, titles are not displayed in the completion results, but may be
+ * at some point in the future when non-%NULL.
+ *
+ * Returns: (transfer full) (nullable): a title for the provider or %NULL
+ *
+ * Since: 5.0
+ */
 char *
 gtk_source_completion_provider_get_title (GtkSourceCompletionProvider *self)
 {
@@ -123,6 +148,21 @@ gtk_source_completion_provider_get_title (GtkSourceCompletionProvider *self)
 	return NULL;
 }
 
+/**
+ * gtk_source_completion_provider_get_priority:
+ * @self: a #GtkSourceCompletionProvider
+ * @context: a #GtkSourceCompletionContext
+ *
+ * This function should return the priority of @self in @context.
+ *
+ * The priority is used to sort groups of completion proposals by
+ * provider so that higher priority providers results are shown
+ * above lower priority providers.
+ *
+ * Lower value indicates higher priority.
+ *
+ * Since: 5.0
+ */
 int
 gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *self,
                                              GtkSourceCompletionContext  *context)
@@ -136,6 +176,20 @@ gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *self,
 	return 0;
 }
 
+/**
+ * gtk_source_completion_provider_is_trigger:
+ * @self: a #GtkSourceCompletionProvider
+ * @iter: a #GtkTextIter
+ * @ch: a #gunichar of the character inserted
+ *
+ * This function is used to determine of a character inserted into the text
+ * editor should cause a new completion request to be triggered.
+ *
+ * An example would be period '.' which might indicate that the user wants
+ * to complete method or field names of an object.
+ *
+ * Since: 5.0
+ */
 gboolean
 gtk_source_completion_provider_is_trigger (GtkSourceCompletionProvider *self,
                                            const GtkTextIter           *iter,
@@ -150,6 +204,23 @@ gtk_source_completion_provider_is_trigger (GtkSourceCompletionProvider *self,
 	return FALSE;
 }
 
+/**
+ * gtk_source_completion_provider_key_activates:
+ * @self: a #GtkSourceCompletionProvider
+ * @context: a #GtkSourceCompletionContext
+ * @proposal: a #GtkSourceCompletionProposal
+ * @keyval: a keyval such as %GDK_KEY_period
+ * @state: a #GdkModifierType or 0
+ *
+ * This function is used to determine if a key typed by the user should
+ * activate @proposal (resulting in committing the text to the editor).
+ *
+ * This is useful when using languages where convention may lead to less
+ * typing by the user. One example may be the use of "." or "-" to expand
+ * a field access in the C programming language.
+ *
+ * Since: 5.0
+ */
 gboolean
 gtk_source_completion_provider_key_activates (GtkSourceCompletionProvider *self,
                                               GtkSourceCompletionContext  *context,
@@ -167,6 +238,24 @@ gtk_source_completion_provider_key_activates (GtkSourceCompletionProvider *self,
 	return FALSE;
 }
 
+/**
+ * gtk_source_completion_provider_populate_async:
+ * @self: a #GtkSourceCompletionProvider
+ * @context: a #GtkSourceCompletionContext
+ * @cancellable: (nullable): a #GCancellable or %NULL
+ * @callback: a callback to execute upon completion
+ * @user_data: closure data for @callback
+ *
+ * Asynchronously requests that the provider populates the completion
+ * results for @context.
+ *
+ * For providers that would like to populate a #GListModel while those
+ * results are displayed to the user,
+ * gtk_source_completion_context_set_proposals_for_provider() may be used
+ * to reduce latency until the user sees results.
+ *
+ * Since: 5.0
+ */
 void
 gtk_source_completion_provider_populate_async (GtkSourceCompletionProvider *self,
                                                GtkSourceCompletionContext  *context,
@@ -203,6 +292,21 @@ gtk_source_completion_provider_populate_finish (GtkSourceCompletionProvider  *se
 	return GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (self)->populate_finish (self, result, error);
 }
 
+/**
+ * gtk_source_completion_provider_refilter:
+ * @self: a #GtkSourceCompletionProvider
+ * @context: a #GtkSourceCompletionContext
+ * @model: a #GListModel
+ *
+ * This function can be used to filter results previously provided to
+ * the #GtkSourceCompletionContext by the #GtkSourceCompletionProvider.
+ *
+ * This can happen as the user types additionl text onto the word so
+ * that previously matched items may be removed from the list instead of
+ * generating new #GListModel of results.
+ *
+ * Since: 5.0
+ */
 void
 gtk_source_completion_provider_refilter (GtkSourceCompletionProvider *self,
                                          GtkSourceCompletionContext  *context,
@@ -216,6 +320,23 @@ gtk_source_completion_provider_refilter (GtkSourceCompletionProvider *self,
 		GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (self)->refilter (self, context, model);
 }
 
+/**
+ * gtk_source_completion_provider_display:
+ * @self: a #GtkSourceCompletionProvider
+ * @context: a #GtkSourceCompletionContext
+ * @proposal: a #GtkSourceCompletionProposal
+ * @cell: a #GtkSourceCompletionCell
+ *
+ * This function requests that the #GtkSourceCompletionProvider prepares
+ * @cell to display the contents of @proposal. Based on @cells column
+ * type, you may want to display different information.
+ *
+ * This allows for columns of information among completion proposals
+ * resulting in better alignment of similar content (icons, return types,
+ * method names, and parameter lists).
+ *
+ * Since: 5.0
+ */
 void
 gtk_source_completion_provider_display (GtkSourceCompletionProvider *self,
                                         GtkSourceCompletionContext  *context,
@@ -231,6 +352,22 @@ gtk_source_completion_provider_display (GtkSourceCompletionProvider *self,
 		GTK_SOURCE_COMPLETION_PROVIDER_GET_IFACE (self)->display (self, context, proposal, cell);
 }
 
+/**
+ * gtk_source_completion_provider_activate:
+ * @self: a #GtkSourceCompletionProvider
+ * @context: a #GtkSourceCompletionContext
+ * @proposal: a #GtkSourceCompletionProposal
+ *
+ * This function requests @proposal to be activated by the
+ * #GtkSourceCompletionProvider.
+ *
+ * What the provider does to activate the proposal is specific to that
+ * provider. Many providers may choose to insert a #GtkSourceSnippet with
+ * edit points the user may cycle through.
+ *
+ * See also: #GtkSourceSnippet, #GtkSourceSnippetChunk, gtk_source_view_push_snippet()
+ * Since: 5.0
+ */
 void
 gtk_source_completion_provider_activate (GtkSourceCompletionProvider *self,
                                          GtkSourceCompletionContext  *context,

@@ -19,11 +19,25 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
-
-
 #include "config.h"
 
 #include "gtksourcecompletionproposal.h"
+
+/**
+ * SECTION:completionproposal
+ * @Title: GtkSourceCompletionProposal
+ * @Short_description: interface for completion proposals
+ *
+ * This interface is used to denote that an object is capable of being
+ * a completion proposal for #GtkSourceCompletion.
+ *
+ * Currently, no method or functions are required but additional methods
+ * may be added in the future. Proposals created by
+ * #GtkSourceCompletionProvider can use %G_IMPLEMENT_INTERFACE to
+ * implement this with %NULL for the interface init function.
+ *
+ * Since: 5.0
+ */
 
 G_DEFINE_INTERFACE (GtkSourceCompletionProposal, gtk_source_completion_proposal, G_TYPE_OBJECT)
 

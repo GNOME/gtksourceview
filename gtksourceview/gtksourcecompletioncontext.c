@@ -31,6 +31,31 @@
 #include "gtksourcecompletionproposal.h"
 #include "gtksourcecompletionprovider.h"
 
+/**
+ * SECTION:completioncontext
+ * @Title: GtkSourceCompletionContext
+ * @Short_description: The context of a completion
+ * @See_also: #GtkSourceCompletion, #GtkSourceCompletionProvider, and
+ *   #GtkSourceCompletionProposal.
+ *
+ * #GtkSourceCompletionContext contains information about an attept to display
+ * completion proposals to the user based on typed text in the #GtkSourceView.
+ *
+ * When typing, #GtkSourceCompletion may use registered
+ * #GtkSourceCompletionProvider to determine if there may be results which
+ * could be displayed. If so, a #GtkSourceCompletionContext is created with
+ * information that is provided to the #GtkSourceCompletionProvider to populate
+ * results which might be useful to the user.
+ *
+ * #GtkSourceCompletionProvider are expected to provide #GListModel with
+ * #GtkSourceCompletionProposal which may be joined together in a list of
+ * results for the user. They are also responsible for how the contents are
+ * displayed using #GtkSourceCompletionCell which allows for some level of
+ * customization.
+ *
+ * Since: 5.0
+ */
+
 struct _GtkSourceCompletionContext
 {
 	GObject parent_instance;
@@ -820,6 +845,7 @@ _gtk_source_completion_context_complete_finish (GtkSourceCompletionContext  *sel
 
 /**
  * gtk_source_completion_context_get_busy:
+ * @self: a #GtkSourceCompletionContext
  *
  * Gets the "busy" property. This is set to %TRUE while the completion
  * context is actively fetching proposals from registered
