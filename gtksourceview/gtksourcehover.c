@@ -30,7 +30,7 @@
 #include "gtksourcesignalgroup-private.h"
 #include "gtksourceview-private.h"
 
-#define MOTION_SETTLE_TIMEOUT_MSEC 250
+#define DEFAULT_HOVER_DELAY 250
 
 struct _GtkSourceHover
 {
@@ -44,6 +44,7 @@ struct _GtkSourceHover
 	double              motion_x;
 	double              motion_y;
 
+	guint               hover_delay;
 	guint               settle_source;
 };
 
@@ -140,7 +141,7 @@ gtk_source_hover_queue_settle (GtkSourceHover *self)
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 
 	g_clear_handle_id (&self->settle_source, g_source_remove);
-	self->settle_source = g_timeout_add (MOTION_SETTLE_TIMEOUT_MSEC,
+	self->settle_source = g_timeout_add (self->hover_delay,
 	                                     (GSourceFunc) gtk_source_hover_settled_cb,
 	                                     self);
 }
@@ -245,6 +246,7 @@ static void
 gtk_source_hover_init (GtkSourceHover *self)
 {
 	self->providers = g_ptr_array_new_with_free_func (g_object_unref);
+	self->hover_delay = DEFAULT_HOVER_DELAY;
 }
 
 GtkSourceHover *
