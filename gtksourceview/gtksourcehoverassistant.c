@@ -122,6 +122,8 @@ gtk_source_hover_assistant_init (GtkSourceHoverAssistant *self)
 {
 	GtkEventController *motion;
 
+	gtk_widget_add_css_class (GTK_WIDGET (self), "hover-assistant");
+
 	gtk_popover_set_autohide (GTK_POPOVER (self), TRUE);
 
 	self->display = g_object_new (GTK_SOURCE_TYPE_HOVER_DISPLAY,
