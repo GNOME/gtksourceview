@@ -229,6 +229,17 @@
               </object>
             </child>
             <child>
+              <object class="GtkCheckButton" id="enable_hover">
+                <property name="label">Enable hoverers</property>
+                <property name="can-focus">1</property>
+                <signal name="toggled" handler="enable_hover_toggled_cb" object="TestWidget" swapped="yes"/>
+                <layout>
+                  <property name="row">14</property>
+                  <property name="column">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
               <object class="GtkGrid" id="grid10">
                 <layout>
                   <property name="column">0</property>

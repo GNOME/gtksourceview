@@ -195,6 +195,8 @@ guint                           gtk_source_view_get_visual_column               
                                                                                    const GtkTextIter              *iter);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompletion            *gtk_source_view_get_completion                    (GtkSourceView                  *view);
+GTK_SOURCE_AVAILABLE_IN_5_0
+GtkSourceHover                 *gtk_source_view_get_hover                         (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceGutter                *gtk_source_view_get_gutter                        (GtkSourceView                  *view,
                                                                                    GtkTextWindowType               window_type);
