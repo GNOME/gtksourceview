@@ -94,6 +94,20 @@ gtk_source_hover_assistant_motion_cb (GtkSourceHoverAssistant  *self,
 	}
 }
 
+static gboolean
+gtk_source_hover_assistant_scroll_cb (GtkSourceHoverAssistant  *self,
+                                      double                    dx,
+                                      double                    dy,
+                                      GtkEventControllerScroll *controller)
+{
+	g_assert (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
+	g_assert (GTK_IS_EVENT_CONTROLLER_SCROLL (controller));
+
+	gtk_widget_hide (GTK_WIDGET (self));
+
+	return GDK_EVENT_PROPAGATE;
+}
+
 static void
 gtk_source_hover_assistant_dispose (GObject *object)
 {
@@ -121,6 +135,7 @@ static void
 gtk_source_hover_assistant_init (GtkSourceHoverAssistant *self)
 {
 	GtkEventController *motion;
+	GtkEventController *scroll;
 
 	gtk_widget_add_css_class (GTK_WIDGET (self), "hover-assistant");
 
@@ -140,6 +155,14 @@ gtk_source_hover_assistant_init (GtkSourceHoverAssistant *self)
 	                         self,
 	                         G_CONNECT_SWAPPED);
 	gtk_widget_add_controller (GTK_WIDGET (self), motion);
+
+	scroll = gtk_event_controller_scroll_new (GTK_EVENT_CONTROLLER_SCROLL_BOTH_AXES);
+	g_signal_connect_object (scroll,
+	                         "scroll",
+	                         G_CALLBACK (gtk_source_hover_assistant_scroll_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_widget_add_controller (GTK_WIDGET (self), scroll);
 }
 
 GtkSourceAssistant *
