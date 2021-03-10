@@ -11,6 +11,11 @@ The GtkSourceView library is free software and is released under the terms of
 the GNU Lesser General Public License, see the 'COPYING' file for more details.
 The official web site is https://wiki.gnome.org/Projects/GtkSourceView.
 
+Documentation
+-------------
+
+Nightly documentation can be [found here](https://gnome.pages.gitlab.gnome.org/gtksourceview/gtksourceview-5.0/).
+
 Dependencies
 ------------
 
