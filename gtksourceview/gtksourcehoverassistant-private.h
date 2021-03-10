@@ -31,9 +31,13 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (GtkSourceHoverAssistant, gtk_source_hover_assistant, GTK_SOURCE, HOVER_ASSISTANT, GtkSourceAssistant)
 
-GtkSourceAssistant    *_gtk_source_hover_assistant_new            (void);
-GtkSourceHoverDisplay *_gtk_source_hover_assistant_get_display    (GtkSourceHoverAssistant *self);
-void                   _gtk_source_hover_assistant_set_hovered_at (GtkSourceHoverAssistant *self,
-                                                                   const GdkRectangle      *rect);
+GtkSourceAssistant *_gtk_source_hover_assistant_new     (void);
+void                _gtk_source_hover_assistant_dismiss (GtkSourceHoverAssistant  *self);
+void                _gtk_source_hover_assistant_display (GtkSourceHoverAssistant  *self,
+                                                         GtkSourceHoverProvider  **providers,
+                                                         guint                     n_providers,
+                                                         const GtkTextIter        *begin,
+                                                         const GtkTextIter        *end,
+                                                         const GtkTextIter        *location);
 
 G_END_DECLS

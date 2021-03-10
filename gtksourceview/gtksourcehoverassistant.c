@@ -23,12 +23,18 @@
 
 #include "gtksourceassistant-private.h"
 #include "gtksourcehoverassistant-private.h"
-#include "gtksourcehoverdisplay.h"
+#include "gtksourcehovercontext-private.h"
+#include "gtksourcehoverdisplay-private.h"
+#include "gtksourceview.h"
+
+#define GRACE_X 20
+#define GRACE_Y 20
 
 struct _GtkSourceHoverAssistant
 {
 	GtkSourceAssistant parent_instance;
-  GtkSourceHoverDisplay *display;
+	GtkSourceHoverDisplay *display;
+	GCancellable *cancellable;
 	GdkRectangle hovered_at;
 };
 
@@ -42,9 +48,71 @@ gtk_source_hover_assistant_get_target_location (GtkSourceAssistant *assistant,
 }
 
 static void
+gtk_source_hover_assistant_motion_cb (GtkSourceHoverAssistant  *self,
+                                      double                    x,
+                                      double                    y,
+                                      GtkEventControllerMotion *controller)
+{
+	GdkSurface *assistant_surface;
+	GtkWidget *parent;
+	GtkRoot *root;
+	double tx, ty;
+	int width, height;
+
+	g_assert (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
+	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (controller));
+
+	if (gtk_event_controller_motion_contains_pointer (controller))
+	{
+		return;
+	}
+
+	if (!(parent = gtk_widget_get_parent (GTK_WIDGET (self))) ||
+	    !(root = gtk_widget_get_root (parent)) ||
+	    !(assistant_surface = gtk_native_get_surface (GTK_NATIVE (self))))
+	{
+		return;
+	}
+
+	gtk_widget_translate_coordinates (parent, GTK_WIDGET (root), x, y, &x, &y);
+	x -= gdk_popup_get_position_x (GDK_POPUP (assistant_surface));
+	y -= gdk_popup_get_position_y (GDK_POPUP (assistant_surface));
+
+	gtk_native_get_surface_transform (GTK_NATIVE (root), &tx, &ty);
+	x += tx;
+	y += ty;
+
+	width = gdk_surface_get_width (assistant_surface);
+	height = gdk_surface_get_height (assistant_surface);
+
+	if (x < -GRACE_X ||
+	    x > width + GRACE_Y ||
+	    y < -GRACE_Y ||
+	    y > height + GRACE_Y)
+	{
+		gtk_widget_hide (GTK_WIDGET (self));
+	}
+}
+
+static void
+gtk_source_hover_assistant_dispose (GObject *object)
+{
+	GtkSourceHoverAssistant *self = (GtkSourceHoverAssistant *)object;
+
+	self->display = NULL;
+
+	g_clear_object (&self->cancellable);
+
+	G_OBJECT_CLASS (gtk_source_hover_assistant_parent_class)->dispose (object);
+}
+
+static void
 gtk_source_hover_assistant_class_init (GtkSourceHoverAssistantClass *klass)
 {
 	GtkSourceAssistantClass *assistant_class = GTK_SOURCE_ASSISTANT_CLASS (klass);
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+	object_class->dispose = gtk_source_hover_assistant_dispose;
 
 	assistant_class->get_target_location = gtk_source_hover_assistant_get_target_location;
 }
@@ -52,8 +120,24 @@ gtk_source_hover_assistant_class_init (GtkSourceHoverAssistantClass *klass)
 static void
 gtk_source_hover_assistant_init (GtkSourceHoverAssistant *self)
 {
-	self->display = g_object_new (GTK_SOURCE_TYPE_HOVER_DISPLAY, NULL);
+	GtkEventController *motion;
+
+	gtk_popover_set_autohide (GTK_POPOVER (self), TRUE);
+
+	self->display = g_object_new (GTK_SOURCE_TYPE_HOVER_DISPLAY,
+	                              "width-request", 100,
+	                              "height-request", 48,
+	                              NULL);
 	_gtk_source_assistant_set_child (GTK_SOURCE_ASSISTANT (self), GTK_WIDGET (self->display));
+
+	motion = gtk_event_controller_motion_new ();
+	gtk_event_controller_set_propagation_phase (motion, GTK_PHASE_CAPTURE);
+	g_signal_connect_object (motion,
+	                         "motion",
+	                         G_CALLBACK (gtk_source_hover_assistant_motion_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_widget_add_controller (GTK_WIDGET (self), motion);
 }
 
 GtkSourceAssistant *
@@ -62,20 +146,118 @@ _gtk_source_hover_assistant_new (void)
 	return g_object_new (GTK_SOURCE_TYPE_HOVER_ASSISTANT, NULL);
 }
 
-void
-_gtk_source_hover_assistant_set_hovered_at (GtkSourceHoverAssistant *self,
-                                            const GdkRectangle      *hovered_at)
+static void
+gtk_source_hover_assistant_populate_cb (GObject      *object,
+                                        GAsyncResult *result,
+                                        gpointer      user_data)
 {
-	g_return_if_fail (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
-	g_return_if_fail (hovered_at != NULL);
+	GtkSourceHoverContext *context = (GtkSourceHoverContext *)object;
+	GtkSourceHoverAssistant *self = user_data;
+	GError *error = NULL;
 
-	self->hovered_at = *hovered_at;
+	g_assert (GTK_SOURCE_IS_HOVER_CONTEXT (context));
+	g_assert (G_IS_ASYNC_RESULT (result));
+	g_assert (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
+
+	if (_gtk_source_hover_context_populate_finish (context, result, &error))
+	{
+		gtk_widget_show (GTK_WIDGET (self));
+	}
+
+	g_clear_object (&self);
+	g_clear_error (&error);
 }
 
-GtkSourceHoverDisplay *
-_gtk_source_hover_assistant_get_display (GtkSourceHoverAssistant *self)
+void
+_gtk_source_hover_assistant_display (GtkSourceHoverAssistant  *self,
+                                     GtkSourceHoverProvider  **providers,
+                                     guint                     n_providers,
+                                     const GtkTextIter        *begin,
+                                     const GtkTextIter        *end,
+                                     const GtkTextIter        *location)
 {
-	g_return_val_if_fail (GTK_SOURCE_IS_HOVER_ASSISTANT (self), NULL);
+	GtkSourceHoverContext *context;
+	GtkSourceView *view;
+	GdkRectangle begin_rect;
+	GdkRectangle end_rect;
+	GdkRectangle location_rect;
 
-	return self->display;
+	g_return_if_fail (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
+	g_return_if_fail (n_providers == 0 || providers != NULL);
+	g_return_if_fail (begin != NULL);
+	g_return_if_fail (end != NULL);
+	g_return_if_fail (location != NULL);
+
+	if (n_providers == 0)
+	{
+		if (gtk_widget_get_visible (GTK_WIDGET (self)))
+		{
+			gtk_widget_hide (GTK_WIDGET (self));
+		}
+
+		return;
+	}
+
+	if (self->cancellable != NULL)
+	{
+		g_cancellable_cancel (self->cancellable);
+		g_clear_object (&self->cancellable);
+	}
+
+	view = GTK_SOURCE_VIEW (gtk_widget_get_parent (GTK_WIDGET (self)));
+
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), begin, &begin_rect);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), end, &end_rect);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), location, &location_rect);
+
+	gdk_rectangle_union (&begin_rect, &end_rect, &location_rect);
+
+	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (view),
+	                                       GTK_TEXT_WINDOW_WIDGET,
+	                                       location_rect.x,
+	                                       location_rect.y,
+	                                       &location_rect.x,
+	                                       &location_rect.y);
+
+	if (gtk_text_iter_equal (begin, end) &&
+	    gtk_text_iter_starts_line (begin))
+	{
+		location_rect.width = 1;
+		gtk_popover_set_position (GTK_POPOVER (self), GTK_POS_RIGHT);
+	}
+	else
+	{
+		gtk_popover_set_position (GTK_POPOVER (self), GTK_POS_TOP);
+	}
+
+	self->hovered_at = location_rect;
+
+	context = _gtk_source_hover_context_new (view, begin, end, location);
+
+	for (guint i = 0; i < n_providers; i++)
+	{
+		_gtk_source_hover_context_add_provider (context, providers[i]);
+	}
+
+	self->cancellable = g_cancellable_new ();
+
+	_gtk_source_hover_display_clear (self->display);
+
+	_gtk_source_hover_context_populate_async (context,
+	                                          self->display,
+	                                          self->cancellable,
+	                                          gtk_source_hover_assistant_populate_cb,
+	                                          g_object_ref (self));
+
+	g_object_unref (context);
+}
+
+void
+_gtk_source_hover_assistant_dismiss (GtkSourceHoverAssistant *self)
+{
+	g_return_if_fail (GTK_SOURCE_IS_HOVER_ASSISTANT (self));
+
+	g_cancellable_cancel (self->cancellable);
+	gtk_widget_hide (GTK_WIDGET (self));
+	_gtk_source_hover_display_clear (self->display);
 }

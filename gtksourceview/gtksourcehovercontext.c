@@ -152,11 +152,27 @@ gtk_source_hover_context_get_buffer (GtkSourceHoverContext *self)
 	return GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->view)));
 }
 
+static GtkTextMark *
+create_mark (GtkSourceHoverContext *self,
+             const GtkTextIter     *iter,
+             gboolean               left_gravity)
+{
+	GtkTextMark *mark;
+	GtkTextBuffer *buffer;
+
+	g_assert (GTK_SOURCE_IS_HOVER_CONTEXT (self));
+
+	buffer = GTK_TEXT_BUFFER (self->buffer);
+	mark = gtk_text_buffer_create_mark (buffer, NULL, iter, left_gravity);
+
+	return g_object_ref (mark);
+}
+
 GtkSourceHoverContext *
 _gtk_source_hover_context_new (GtkSourceView     *view,
-			       const GtkTextIter *begin,
-			       const GtkTextIter *end,
-			       const GtkTextIter *location)
+                               const GtkTextIter *begin,
+                               const GtkTextIter *end,
+                               const GtkTextIter *location)
 {
 	GtkSourceHoverContext *self;
 	GtkSourceBuffer *buffer;
@@ -167,10 +183,14 @@ _gtk_source_hover_context_new (GtkSourceView     *view,
 	g_return_val_if_fail (location != NULL, NULL);
 
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-	self = g_object_new (GTK_SOURCE_TYPE_VIEW, NULL);
+	self = g_object_new (GTK_SOURCE_TYPE_HOVER_CONTEXT, NULL);
 
 	g_set_weak_pointer (&self->view, view);
 	g_set_weak_pointer (&self->buffer, buffer);
+
+	self->begin = create_mark (self, begin, TRUE);
+	self->end = create_mark (self, end, FALSE);
+	self->location = create_mark (self, location, FALSE);
 
 	return self;
 }
@@ -231,7 +251,14 @@ _gtk_source_hover_context_populate_async (GtkSourceHoverContext *self,
 	g_task_set_source_tag (task, _gtk_source_hover_context_populate_async);
 	g_task_set_task_data (task, state, g_free);
 
-	if (g_task_return_error_if_cancelled (task))
+	if (self->view == NULL || self->buffer == NULL)
+	{
+		g_task_return_new_error (task,
+		                         G_IO_ERROR,
+		                         G_IO_ERROR_CANCELLED,
+		                         "Cannot populate, view destroyed");
+	}
+	else if (g_task_return_error_if_cancelled (task))
 	{
 		/* Do nothing */
 	}

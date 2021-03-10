@@ -21,7 +21,7 @@
 
 #include "config.h"
 
-#include "gtksourcehoverdisplay.h"
+#include "gtksourcehoverdisplay-private.h"
 
 struct _GtkSourceHoverDisplay
 {
@@ -56,7 +56,9 @@ gtk_source_hover_display_class_init (GtkSourceHoverDisplayClass *klass)
 static void
 gtk_source_hover_display_init (GtkSourceHoverDisplay *self)
 {
-	self->vbox = g_object_new (GTK_TYPE_BOX, NULL);
+	self->vbox = g_object_new (GTK_TYPE_BOX,
+	                           "orientation", GTK_ORIENTATION_VERTICAL,
+	                           NULL);
 	gtk_widget_set_parent (GTK_WIDGET (self->vbox), GTK_WIDGET (self));
 }
 
@@ -66,6 +68,8 @@ gtk_source_hover_display_append (GtkSourceHoverDisplay *self,
 {
 	g_return_if_fail (GTK_SOURCE_IS_HOVER_DISPLAY (self));
 	g_return_if_fail (GTK_IS_WIDGET (child));
+
+	gtk_box_append (self->vbox, child);
 }
 
 void
@@ -74,6 +78,8 @@ gtk_source_hover_display_prepend (GtkSourceHoverDisplay *self,
 {
 	g_return_if_fail (GTK_SOURCE_IS_HOVER_DISPLAY (self));
 	g_return_if_fail (GTK_IS_WIDGET (child));
+
+	gtk_box_prepend (self->vbox, child);
 }
 
 void
@@ -89,6 +95,10 @@ gtk_source_hover_display_insert_after (GtkSourceHoverDisplay *self,
 	{
 		gtk_source_hover_display_append (self, child);
 	}
+	else
+	{
+		gtk_box_insert_child_after (self->vbox, child, sibling);
+	}
 }
 
 void
@@ -98,4 +108,19 @@ gtk_source_hover_display_remove (GtkSourceHoverDisplay *self,
 	g_return_if_fail (GTK_SOURCE_IS_HOVER_DISPLAY (self));
 	g_return_if_fail (GTK_IS_WIDGET (child));
 	g_return_if_fail (gtk_widget_get_parent (child) == (GtkWidget *)self->vbox);
+
+	gtk_box_remove (self->vbox, child);
+}
+
+void
+_gtk_source_hover_display_clear (GtkSourceHoverDisplay *self)
+{
+	GtkWidget *child;
+
+	g_return_if_fail (GTK_SOURCE_IS_HOVER_DISPLAY (self));
+
+	while ((child = gtk_widget_get_first_child (GTK_WIDGET (self->vbox))))
+	{
+		gtk_box_remove (self->vbox, child);
+	}
 }
