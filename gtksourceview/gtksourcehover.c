@@ -68,6 +68,8 @@ gtk_source_hover_dismiss_cb (gpointer data)
 
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 
+	g_print ("Hover dismiss\n");
+
 	self->dismiss_source = 0;
 
 	switch (self->state) {
@@ -97,17 +99,69 @@ gtk_source_hover_queue_dismiss (GtkSourceHover *self)
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 
 	g_clear_handle_id (&self->dismiss_source, g_source_remove);
-	self->dismiss_source = g_timeout_add (DISMISS_DELAY_MSEC, gtk_source_hover_dismiss_cb, self);
+	self->dismiss_source = g_timeout_add (DISMISS_DELAY_MSEC,
+					      gtk_source_hover_dismiss_cb,
+					      self);
+}
+
+static void
+on_assistant_motion_cb (GtkSourceHover           *self,
+                        double                    x,
+                        double                    y,
+                        GtkEventControllerMotion *controller)
+{
+	GtkAllocation alloc;
+	GdkSurface *surface;
+	GtkRoot *toplevel;
+	double abs_x, abs_y;
+	double popup_x, popup_y;
+
+	g_assert (GTK_SOURCE_IS_HOVER (self));
+	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (controller));
+
+	if (self->assistant == NULL || self->view == NULL)
+	{
+		return;
+	}
+
+	toplevel = gtk_widget_get_root (GTK_WIDGET (self->view));
+	surface = gtk_native_get_surface (GTK_NATIVE (self->assistant));
+
+	/* To translate, because we are crossing surfaces, we need to
+	 * take the position of the popup relative to the surface of
+	 * the parent view.
+	 */
+	popup_x = gdk_popup_get_position_x (GDK_POPUP (surface));
+	popup_y = gdk_popup_get_position_y (GDK_POPUP (surface));
+	gtk_widget_get_allocation (GTK_WIDGET (self->assistant), &alloc);
+	gtk_widget_translate_coordinates (GTK_WIDGET (self->view),
+	                                  GTK_WIDGET (toplevel),
+	                                  x, y, &abs_x, &abs_y);
+
+	if (abs_x < (popup_x - GRACE_X) ||
+	    abs_x > (popup_x + alloc.width + GRACE_X) ||
+	    abs_y < (popup_y - GRACE_Y) ||
+	    abs_y > (popup_y + alloc.height + GRACE_Y))
+	{
+		gtk_event_controller_reset (GTK_EVENT_CONTROLLER (controller));
+		gtk_widget_hide (GTK_WIDGET (self->assistant));
+
+		g_assert (self->assistant == NULL);
+		g_assert (self->state == HOVER_STATE_INITIAL);
+	}
+
+	g_clear_handle_id (&self->dismiss_source, g_source_remove);
+	g_clear_handle_id (&self->delay_display_source, g_source_remove);
 }
 
 static gboolean
-on_key_pressed_cb (GtkSourceHover        *hover,
+on_key_pressed_cb (GtkSourceHover        *self,
                    guint                  keyval,
                    guint                  keycode,
                    GdkModifierType        state,
                    GtkEventControllerKey *controller)
 {
-	g_assert (GTK_SOURCE_IS_HOVER (hover));
+	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_KEY (controller));
 
 	return GDK_EVENT_PROPAGATE;
@@ -123,7 +177,6 @@ on_motion_enter_cb (GtkSourceHover           *self,
 	g_assert (GTK_SOURCE_IS_VIEW (self->view));
 	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (controller));
 
-	g_clear_handle_id (&self->dismiss_source, g_source_remove);
 }
 
 static void
@@ -133,7 +186,6 @@ on_motion_leave_cb (GtkSourceHover          *self,
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (controller));
 
-	gtk_source_hover_queue_dismiss (self);
 }
 
 static gboolean
@@ -200,8 +252,8 @@ gtk_source_hover_get_bounds (GtkSourceHover *self,
 }
 
 static void
-gtk_source_hover_assistant_closed_cb (GtkSourceHover          *self,
-                                      GtkSourceHoverAssistant *assistant)
+on_assistant_closed_cb (GtkSourceHover          *self,
+                        GtkSourceHoverAssistant *assistant)
 {
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_SOURCE_IS_HOVER_ASSISTANT (assistant));
@@ -220,13 +272,15 @@ gtk_source_hover_assistant_closed_cb (GtkSourceHover          *self,
 }
 
 static gboolean
-gtk_source_hover_assistant_motion_enter_cb (GtkSourceHover           *self,
-                                            double                    x,
-                                            double                    y,
-                                            GtkEventControllerMotion *motion)
+on_assistant_motion_enter_cb (GtkSourceHover           *self,
+                              double                    x,
+                              double                    y,
+                              GtkEventControllerMotion *motion)
 {
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (motion));
+
+	g_print ("Motion enter\n");
 
 	/* Possible with DnD dragging? */
 	if (self->state != HOVER_STATE_DISPLAY)
@@ -241,8 +295,8 @@ gtk_source_hover_assistant_motion_enter_cb (GtkSourceHover           *self,
 }
 
 static gboolean
-gtk_source_hover_assistant_motion_leave_cb (GtkSourceHover           *self,
-                                            GtkEventControllerMotion *motion)
+on_assistant_motion_leave_cb (GtkSourceHover           *self,
+                              GtkEventControllerMotion *motion)
 {
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (motion));
@@ -252,10 +306,7 @@ gtk_source_hover_assistant_motion_leave_cb (GtkSourceHover           *self,
 		self->state = HOVER_STATE_DISPLAY;
 	}
 
-	if (gtk_event_controller_motion_contains_pointer (motion))
-	{
-		gtk_source_hover_queue_dismiss (self);
-	}
+	gtk_source_hover_queue_dismiss (self);
 
 	return GDK_EVENT_PROPAGATE;
 }
@@ -274,6 +325,8 @@ gtk_source_hover_motion_timeout_cb (gpointer data)
 
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 
+	g_print ("Motion timeout\n");
+
 	self->delay_display_source = 0;
 
 	if (self->view == NULL ||
@@ -290,24 +343,31 @@ gtk_source_hover_motion_timeout_cb (gpointer data)
 		GtkEventController *motion;
 
 		self->assistant = _gtk_source_hover_assistant_new ();
+
 		gtk_popover_set_position (GTK_POPOVER (self->assistant), GTK_POS_TOP);
 		gtk_popover_set_autohide (GTK_POPOVER (self->assistant), TRUE);
 
 		g_signal_connect_object (self->assistant,
 		                         "closed",
-		                         G_CALLBACK (gtk_source_hover_assistant_closed_cb),
+		                         G_CALLBACK (on_assistant_closed_cb),
 		                         self,
 		                         G_CONNECT_SWAPPED);
 
 		motion = gtk_event_controller_motion_new ();
+		gtk_event_controller_set_propagation_phase (motion, GTK_PHASE_CAPTURE);
 		g_signal_connect_object (motion,
 		                         "enter",
-		                         G_CALLBACK (gtk_source_hover_assistant_motion_enter_cb),
+		                         G_CALLBACK (on_assistant_motion_enter_cb),
+		                         self,
+		                         G_CONNECT_SWAPPED);
+		g_signal_connect_object (motion,
+		                         "motion",
+		                         G_CALLBACK (on_assistant_motion_cb),
 		                         self,
 		                         G_CONNECT_SWAPPED);
 		g_signal_connect_object (motion,
 		                         "leave",
-		                         G_CALLBACK (gtk_source_hover_assistant_motion_leave_cb),
+		                         G_CALLBACK (on_assistant_motion_leave_cb),
 		                         self,
 		                         G_CONNECT_SWAPPED);
 		gtk_widget_add_controller (GTK_WIDGET (self->assistant), motion);
@@ -357,49 +417,10 @@ on_motion_cb (GtkSourceHover           *self,
 	self->motion_x = x;
 	self->motion_y = y;
 
-	g_print ("Motion %lf,%lf\n",  x, y);
-
-	/*
-	 * If we have a popover displayed, get it's allocation so that
-	 * we can detect if our x/y coordinate is outside the threshold
-	 * of the rectangle + grace area. If so, we'll dismiss the popover
-	 * immediately.
-	 */
-
-	if (self->assistant != NULL)
-	{
-		GtkAllocation alloc;
-		GdkRectangle pointing_to;
-		double dx, dy;
-
-		gtk_widget_get_allocation (GTK_WIDGET (self->assistant), &alloc);
-		gtk_widget_translate_coordinates (GTK_WIDGET (self->assistant),
-		                                  GTK_WIDGET (self->view),
-		                                  alloc.x, alloc.y,
-		                                  &dx, &dy);
-		gtk_popover_get_pointing_to (GTK_POPOVER (self->assistant), &pointing_to);
-
-		alloc.x = dx - GRACE_X;
-		alloc.width += GRACE_X * 2;
-		alloc.y = dy - GRACE_Y;
-		alloc.height += GRACE_Y * 2;
-
-		gdk_rectangle_union (&alloc, &pointing_to, &alloc);
-
-		if (x < alloc.x ||
-		    x > (alloc.x + alloc.width) ||
-		    y < alloc.y ||
-		    y > (alloc.y + alloc.height))
-		{
-			gtk_widget_hide (GTK_WIDGET (self->assistant));
-
-			g_assert (self->assistant == NULL);
-			g_assert (self->state == HOVER_STATE_INITIAL);
-		}
-	}
-
 	g_clear_handle_id (&self->dismiss_source, g_source_remove);
 	g_clear_handle_id (&self->delay_display_source, g_source_remove);
+
+	g_print ("Motion cb\n");
 
 	self->delay_display_source = g_timeout_add (MOTION_SETTLE_TIMEOUT_MSEC,
 	                                            gtk_source_hover_motion_timeout_cb,
@@ -490,6 +511,7 @@ _gtk_source_hover_new (GtkSourceView *view)
 	gtk_widget_add_controller (GTK_WIDGET (view), key);
 
 	motion = gtk_event_controller_motion_new ();
+	gtk_event_controller_set_propagation_phase (motion, GTK_PHASE_CAPTURE);
 	g_signal_connect_object (motion,
 	                         "enter",
 	                         G_CALLBACK (on_motion_enter_cb),
