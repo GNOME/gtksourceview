@@ -144,6 +144,7 @@ _gtk_source_hover_context_add_provider (GtkSourceHoverContext  *self,
 
 /**
  * gtk_source_hover_context_get_view:
+ * @self: a #GtkSourceHoverContext
  *
  * Returns: (transfer none): the #GtkSourceView that owns the context
  */
@@ -157,6 +158,7 @@ gtk_source_hover_context_get_view (GtkSourceHoverContext *self)
 
 /**
  * gtk_source_hover_context_get_buffer:
+ * @self: a #GtkSourceHoverContext
  *
  * A convenience function to get the buffer.
  *
