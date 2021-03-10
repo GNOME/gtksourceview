@@ -26,7 +26,7 @@
 #include "gtksourcehoverprovider.h"
 
 /**
- * SETION:hoverprovider
+ * SECTION:hoverprovider
  * @Title: GtkSourceHoverProvider
  * @Short_description: interface to populate interactive tooltips
  * @See_also: #GtkSourceHover, #GtkSourceHoverDisplay, #GtkSourceHoverContext
