@@ -30,9 +30,6 @@
 #include "gtksourcesignalgroup-private.h"
 #include "gtksourceview-private.h"
 
-#define DISMISS_DELAY_MSEC 10
-#define GRACE_X 20
-#define GRACE_Y 20
 #define MOTION_SETTLE_TIMEOUT_MSEC 250
 
 struct _GtkSourceHover
