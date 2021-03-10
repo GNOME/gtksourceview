@@ -25,7 +25,7 @@
 
 #include "gtksourcesignalgroup-private.h"
 
-/**
+/*
  * SECTION:gtksourcesignalgroup
  * @title: GtkSourceSignalGroup
  * @short_description: Manage a collection of signals on a #GObject
