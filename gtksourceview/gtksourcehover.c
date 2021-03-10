@@ -30,7 +30,7 @@
 #include "gtksourcesignalgroup-private.h"
 #include "gtksourceview-private.h"
 
-#define DEFAULT_HOVER_DELAY 250
+#define DEFAULT_HOVER_DELAY 500
 
 struct _GtkSourceHover
 {
@@ -49,6 +49,14 @@ struct _GtkSourceHover
 };
 
 G_DEFINE_TYPE (GtkSourceHover, gtk_source_hover, G_TYPE_OBJECT)
+
+enum {
+	PROP_0,
+	PROP_HOVER_DELAY,
+	N_PROPS
+};
+
+static GParamSpec *properties [N_PROPS];
 
 static gboolean
 gtk_source_hover_get_bounds (GtkSourceHover *self,
@@ -234,12 +242,65 @@ gtk_source_hover_finalize (GObject *object)
 }
 
 static void
+gtk_source_hover_get_property (GObject    *object,
+                               guint       prop_id,
+                               GValue     *value,
+                               GParamSpec *pspec)
+{
+	GtkSourceHover *self = GTK_SOURCE_HOVER (object);
+
+	switch (prop_id) {
+	case PROP_HOVER_DELAY:
+		g_value_set_uint (value, self->hover_delay);
+		break;
+
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+	}
+}
+
+static void
+gtk_source_hover_set_property (GObject      *object,
+                               guint         prop_id,
+                               const GValue *value,
+                               GParamSpec   *pspec)
+{
+	GtkSourceHover *self = GTK_SOURCE_HOVER (object);
+
+	switch (prop_id) {
+	case PROP_HOVER_DELAY:
+		self->hover_delay = g_value_get_uint (value);
+		break;
+
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+	}
+}
+
+static void
 gtk_source_hover_class_init (GtkSourceHoverClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
 	object_class->dispose = gtk_source_hover_dispose;
 	object_class->finalize = gtk_source_hover_finalize;
+	object_class->get_property = gtk_source_hover_get_property;
+	object_class->set_property = gtk_source_hover_set_property;
+
+	/**
+	 * GtkSourceHover:hover-delay:
+	 *
+	 * The "hover-delay" property contains the number of milliseconds to
+	 * delay before showing the hover assistant.
+	 */
+	properties [PROP_HOVER_DELAY] =
+		g_param_spec_uint ("hover-delay",
+		                   "Hover Delay",
+		                   "Number of milliseconds to delay before showing assistant",
+		                   1, 5000, DEFAULT_HOVER_DELAY,
+		                   (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
 }
 
 static void
