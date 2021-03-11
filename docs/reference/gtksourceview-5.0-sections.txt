@@ -493,6 +493,20 @@ gtk_source_hover_provider_get_type
 </SECTION>
 
 <SECTION>
+<FILE>indenter</FILE>
+GtkSourceIndenter
+GtkSourceIndenterInterface
+gtk_source_indenter_is_trigger
+gtk_source_indenter_indent
+<SUBSECTION Standard>
+GTK_SOURCE_IS_INDENTER
+GTK_SOURCE_INDENTER
+GTK_SOURCE_INDENTER_GET_IFACE
+GTK_SOURCE_TYPE_INDENTER
+gtk_source_indenter_get_type
+</SECTION>
+
+<SECTION>
 <FILE>init</FILE>
 <TITLE>GtkSourceView Initialization and Finalization</TITLE>
 gtk_source_init
@@ -1023,6 +1037,8 @@ gtk_source_view_new_with_buffer
 gtk_source_view_get_completion
 gtk_source_view_get_gutter
 gtk_source_view_get_hover
+gtk_source_view_get_indenter
+gtk_source_view_set_indenter
 gtk_source_view_get_space_drawer
 gtk_source_view_set_show_line_numbers
 gtk_source_view_get_show_line_numbers

@@ -38,6 +38,7 @@
 #include "gtksourcehovercontext.h"
 #include "gtksourcehoverdisplay.h"
 #include "gtksourcehoverprovider.h"
+#include "gtksourceindenter.h"
 #include "gtksourceinit.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcelanguagemanager.h"
