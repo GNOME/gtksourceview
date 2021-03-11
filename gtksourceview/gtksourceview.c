@@ -3106,42 +3106,6 @@ gtk_source_view_get_indent_width (GtkSourceView *view)
 	return priv->indent_width;
 }
 
-static gchar *
-compute_indentation (GtkSourceView *view,
-                     GtkTextIter   *cur)
-{
-	GtkTextIter start;
-	GtkTextIter end;
-	gunichar ch;
-
-	start = *cur;
-	gtk_text_iter_set_line_offset (&start, 0);
-
-	end = start;
-
-	ch = gtk_text_iter_get_char (&end);
-
-	while (g_unichar_isspace (ch) &&
-	       (ch != '\n') &&
-	       (ch != '\r') &&
-	       (gtk_text_iter_compare (&end, cur) < 0))
-	{
-		if (!gtk_text_iter_forward_char (&end))
-		{
-			break;
-		}
-
-		ch = gtk_text_iter_get_char (&end);
-	}
-
-	if (gtk_text_iter_equal (&start, &end))
-	{
-		return NULL;
-	}
-
-	return gtk_text_iter_get_slice (&start, &end);
-}
-
 static guint
 get_real_indent_width (GtkSourceView *view)
 {
@@ -3992,11 +3956,6 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 	guint modifiers;
 	gboolean editable;
 
-	if (_gtk_source_view_assistants_handle_key (&priv->assistants, key, state))
-	{
-		return TRUE;
-	}
-
 	buf = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 
 	editable = gtk_text_view_get_editable (GTK_TEXT_VIEW (view));
@@ -4008,41 +3967,67 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 	mark = gtk_text_buffer_get_insert (buf);
 	gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 
-	if ((key == GDK_KEY_Return || key == GDK_KEY_KP_Enter) &&
-	    !(state & GDK_SHIFT_MASK) &&
-	    priv->auto_indent)
+	if (editable &&
+	    priv->auto_indent &&
+	    priv->indenter != NULL &&
+	    gtk_source_indenter_is_trigger (priv->indenter, view, &cur, state, key))
 	{
-		/* Auto-indent means that when you press ENTER at the end of a
-		 * line, the new line is automatically indented at the same
-		 * level as the previous line.
-		 * SHIFT+ENTER allows to avoid autoindentation.
+		GdkEvent *event = gtk_event_controller_get_current_event (GTK_EVENT_CONTROLLER (controller));
+		gint64 insertion_count = _gtk_source_buffer_get_insertion_count (priv->source_buffer);
+
+		g_assert (gdk_event_get_event_type (event) == GDK_KEY_PRESS);
+
+		/* To make this work as close to how GTK will commit text to the
+		 * buffer as possible, we deliver the event information to the input
+		 * method who then might commit the text to the GtkSourceBuffer. To
+		 * do anything else would put some difficult work on the indenter to
+		 * translate GDK keyvals into text which is incredibly complicated
+		 * when input methods are in play.
+		 *
+		 * Since we don't have direct access to the input method, we check
+		 * the location of the input and see if it changed after filtering
+		 * the key press event.
+		 *
+		 * If we detect that something was actually inserted (and not filtered
+		 * into a compose sequence or similar) then we ask the indenter to
+		 * indent the line (starting from the location directly after the
+		 * inserted character).
 		 */
-		gchar *indent = NULL;
 
-		/* Calculate line indentation and create indent string. */
-		indent = compute_indentation (view, &cur);
+		gtk_text_buffer_begin_user_action (buf);
 
-		if (indent != NULL)
+		/* We can ignore the return value from filter_keypress because we
+		 * already know this is a key we care about. Either we inserted
+		 * text and will indent, or we didn't insert text and we should
+		 * stop processing anyway.
+		 *
+		 * However, if key is Enter/Return, we will need to insert that
+		 * newline manually instead of relying on the input method as it
+		 * will not be doing it for us.
+		 */
+		if (!gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (view), event))
 		{
-			/* Delete any selected text to preserve behavior without auto-indent */
-			gtk_text_buffer_delete_selection (buf,
-			                                  TRUE,
-			                                  gtk_text_view_get_editable (GTK_TEXT_VIEW (view)));
-
-			/* If an input method or deletion has inserted some text while handling the
-			 * key press event, the cur iter may be invalid, so get the iter again
-			 */
-			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
-
-			/* Insert new line and auto-indent. */
-			gtk_text_buffer_begin_user_action (buf);
-			gtk_text_buffer_insert (buf, &cur, "\n", 1);
-			gtk_text_buffer_insert (buf, &cur, indent, strlen (indent));
-			g_free (indent);
-			gtk_text_buffer_end_user_action (buf);
-			gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view), mark);
-			return GDK_EVENT_STOP;
+			if (key == GDK_KEY_Return || key == GDK_KEY_KP_Enter)
+			{
+				gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
+				gtk_text_buffer_insert (buf, &cur, "\n", 1);
+			}
 		}
+
+		/* Changing the preedit should not change our insertion count,
+		 * so if our insertion count changed it was because soemthing
+		 * was committed to the underlying source buffer.
+		 */
+		if (insertion_count != _gtk_source_buffer_get_insertion_count (priv->source_buffer))
+		{
+			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
+			gtk_source_indenter_indent (priv->indenter, view, &cur);
+			gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view), mark);
+		}
+
+		gtk_text_buffer_end_user_action (buf);
+
+		return GDK_EVENT_STOP;
 	}
 
 	if (priv->enable_snippets &&
