@@ -40,6 +40,7 @@
 #include "gtksourcegutterrendererlines-private.h"
 #include "gtksourcegutterrenderermarks-private.h"
 #include "gtksourcehover-private.h"
+#include "gtksourceindenter-private.h"
 #include "gtksource-enumtypes.h"
 #include "gtksourcemark.h"
 #include "gtksourcemarkattributes.h"
@@ -154,6 +155,7 @@ enum
 	PROP_HIGHLIGHT_CURRENT_LINE,
 	PROP_INDENT_ON_TAB,
 	PROP_INDENT_WIDTH,
+	PROP_INDENTER,
 	PROP_INSERT_SPACES,
 	PROP_RIGHT_MARGIN_POSITION,
 	PROP_SHOW_LINE_MARKS,
@@ -191,6 +193,7 @@ typedef struct
 
 	GtkSourceCompletion *completion;
 	GtkSourceHover *hover;
+	GtkSourceIndenter *indenter;
 
 	guint right_margin_pos;
 	gint cached_right_margin_pos;
@@ -605,6 +608,23 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 		                   (G_PARAM_READWRITE |
 		                    G_PARAM_EXPLICIT_NOTIFY |
 		                    G_PARAM_STATIC_STRINGS));
+
+	/**
+	 * GtkSourceView:indenter:
+	 *
+	 * The "indenter" property is a #GtkSourceIndenter to use to indent
+	 * as the user types into the #GtkSourceView.
+	 *
+	 * Since: 5.0
+	 */
+	properties [PROP_INDENTER] =
+		g_param_spec_object ("indenter",
+		                     "Indenter",
+		                     "A indenter to use to indent typed text",
+		                     GTK_SOURCE_TYPE_INDENTER,
+		                     (G_PARAM_READWRITE |
+		                      G_PARAM_EXPLICIT_NOTIFY |
+		                      G_PARAM_STATIC_STRINGS));
 
 	/**
 	 * GtkSourceView:indent-width:
@@ -1234,6 +1254,10 @@ gtk_source_view_set_property (GObject      *object,
 			gtk_source_view_set_tab_width (view, g_value_get_uint (value));
 			break;
 
+		case PROP_INDENTER:
+			gtk_source_view_set_indenter (view, g_value_get_object (value));
+			break;
+
 		case PROP_INDENT_WIDTH:
 			gtk_source_view_set_indent_width (view, g_value_get_int (value));
 			break;
@@ -1312,6 +1336,10 @@ gtk_source_view_get_property (GObject    *object,
 
 		case PROP_TAB_WIDTH:
 			g_value_set_uint (value, gtk_source_view_get_tab_width (view));
+			break;
+
+		case PROP_INDENTER:
+			g_value_set_object (value, gtk_source_view_get_indenter (view));
 			break;
 
 		case PROP_INDENT_WIDTH:
@@ -1397,6 +1425,7 @@ gtk_source_view_init (GtkSourceView *view)
 	priv->smart_home_end = GTK_SOURCE_SMART_HOME_END_DISABLED;
 	priv->right_margin_pos = DEFAULT_RIGHT_MARGIN_POSITION;
 	priv->cached_right_margin_pos = -1;
+	priv->indenter = _gtk_source_indenter_internal_new ();
 
 	gtk_text_view_set_left_margin (GTK_TEXT_VIEW (view), 2);
 	gtk_text_view_set_right_margin (GTK_TEXT_VIEW (view), 2);
@@ -1463,6 +1492,7 @@ gtk_source_view_dispose (GObject *object)
 		g_clear_object (&priv->hover);
 	}
 
+	g_clear_object (&priv->indenter);
 	g_clear_object (&priv->style_scheme);
 	g_clear_object (&priv->space_drawer);
 
@@ -5241,5 +5271,57 @@ gtk_source_view_set_enable_snippets (GtkSourceView *view,
 		_gtk_source_view_snippets_pop_all (&priv->snippets);
 		g_object_notify_by_pspec (G_OBJECT (view),
 		                          properties [PROP_ENABLE_SNIPPETS]);
+	}
+}
+
+/**
+ * gtk_source_view_get_indenter:
+ * @view: a #GtkSourceView
+ *
+ * Gets the #GtkSourceView:indenter property.
+ *
+ * Returns: (transfer none) (nullable): a #GtkSourceIndenter or %NULL
+ *
+ * Since: 5.0
+ */
+GtkSourceIndenter *
+gtk_source_view_get_indenter (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), NULL);
+
+	return priv->indenter;
+}
+
+/**
+ * gtk_source_view_set_indenter:
+ * @view: a #GtkSourceView
+ * @indenter: (nullable): a #GtkSourceIndenter or %NULL
+ *
+ * Sets the indenter for @view to @indenter.
+ *
+ * Note that the indenter will not be used unless #GtkSourceView:auto-indent
+ * has been set to %TRUE.
+ *
+ * Since: 5.0
+ */
+void
+gtk_source_view_set_indenter (GtkSourceView     *view,
+                              GtkSourceIndenter *indenter)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_if_fail (GTK_SOURCE_IS_VIEW (view));
+	g_return_if_fail (!indenter || GTK_SOURCE_IS_INDENTER (indenter));
+
+	if (g_set_object (&priv->indenter, indenter))
+	{
+		if (priv->indenter == NULL)
+		{
+			priv->indenter = _gtk_source_indenter_internal_new ();
+		}
+
+		g_object_notify_by_pspec (G_OBJECT (view), properties [PROP_INDENTER]);
 	}
 }
