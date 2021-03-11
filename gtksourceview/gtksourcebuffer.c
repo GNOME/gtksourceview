@@ -160,6 +160,8 @@ typedef struct
 
 	GtkTextTag *invalid_char_tag;
 
+	gint64 insertion_count;
+
 	guint has_draw_spaces_tag : 1;
 	guint highlight_syntax : 1;
 	guint highlight_brackets : 1;
@@ -1054,6 +1056,8 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 				    const gchar   *text,
 				    gint           len)
 {
+	GtkSourceBuffer *source_buffer = (GtkSourceBuffer *)buffer;
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (source_buffer);
 	gint start_offset;
 
 	g_return_if_fail (GTK_SOURCE_IS_BUFFER (buffer));
@@ -1069,6 +1073,8 @@ gtk_source_buffer_real_insert_text (GtkTextBuffer *buffer,
 	 * inserted text.
 	 */
 	GTK_TEXT_BUFFER_CLASS (gtk_source_buffer_parent_class)->insert_text (buffer, iter, text, len);
+
+	priv->insertion_count++;
 
 	gtk_source_buffer_content_inserted (buffer,
 					    start_offset,
@@ -3050,4 +3056,14 @@ _gtk_source_buffer_has_spaces_tag (GtkSourceBuffer *buffer)
 	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
 
 	return priv->has_draw_spaces_tag;
+}
+
+gint64
+_gtk_source_buffer_get_insertion_count (GtkSourceBuffer *buffer)
+{
+	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_BUFFER (buffer), FALSE);
+
+	return priv->insertion_count;
 }
