@@ -140,7 +140,6 @@ indent_by_copying_previous_line (GtkSourceIndenter *self,
 	if (line > 0)
 	{
 		gchar *text = copy_prefix_for_line (buffer, line - 1);
-		g_print ("prefix: '%s'\n", text);
 		gtk_text_buffer_insert (buffer, &begin, text, -1);
 		g_free (text);
 	}
