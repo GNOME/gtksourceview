@@ -32,12 +32,12 @@
   </metadata>
 
   <styles>
-    <style id="comment"            _name="Comment"                   map-to="def:comment"/>
-    <style id="data-name"          _name="Data Name (key)"           map-to="def:identifier"/>
-    <style id="keyword"            _name="Keyword"                   map-to="def:keyword"/>
-    <style id="framecode"          _name="Frame Code"                map-to="def:type"/>
-    <style id="string"             _name="String (value)"            map-to="def:string"/>
-    <style id="data-value"         _name="Data Value" />
+    <style id="comment"            name="Comment"                   map-to="def:comment"/>
+    <style id="data-name"          name="Data Name (key)"           map-to="def:identifier"/>
+    <style id="keyword"            name="Keyword"                   map-to="def:keyword"/>
+    <style id="framecode"          name="Frame Code"                map-to="def:type"/>
+    <style id="string"             name="String (value)"            map-to="def:string"/>
+    <style id="data-value"         name="Data Value" />
   </styles>
 
   <default-regex-options case-sensitive="false"/>
