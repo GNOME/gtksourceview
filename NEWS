@@ -1,3 +1,34 @@
+News in 5.0.0, 2021-03-19
+-------------------------
+
+GtkSourceView 5.0 is the first stable release of GtkSourceView targeting the
+GTK 4 toolkit. It is the culmination of about a year of development.
+
+Numerous new features were added that are not available in the 4.8 series of
+GtkSourceView.
+
+Notably:
+
+ * A new GListModel-based completion engine with a refresh on autocompletion
+   interface styling which was upstreamed from GNOME Builder.
+ * Syntax languages are now implemented using PCRE2 instead of GRegex which
+   also allowed for enabling the PCRE2 JIT for faster syntax highlighting.
+ * GtkSourceView can now integrate with Sysprof to generate performance
+   information. This may be helpful to application developers to help optimize
+   application rendering on GTK 4.
+ * Many internal components have become native GtkWidgets.
+ * A new code-snippet engine with an XML-based language have been added which
+   were upstreamed from GNOME Builder.
+ * Support for interactive tooltips using GtkSourceHover which was upstreamed
+   from GNOME Builder.
+ * You can now write custom indenters using GtkSourceIndenter which was
+   upstreamed from GNOME Builder.
+ * The overview map now bundles a custom "BuilderBlocks" font which was
+   upstreamed from GNOME Builder.
+ * Undo management is now part of GTK 4.
+ * Translation updates.
+
+
 News in 4.99.0, 2021-02-12
 --------------------------
 

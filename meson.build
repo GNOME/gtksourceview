@@ -1,5 +1,5 @@
 project('gtksourceview', 'c',
-          version: '4.99.0',
+          version: '5.0.0',
           license: 'LGPL-2.1-or-later',
     meson_version: '>= 0.53.0',
   default_options: [ 'c_std=gnu99',
@@ -68,7 +68,7 @@ build_gtk_doc = get_option('gtk_doc')
 cc = meson.get_compiler('c')
 
 glib_req_version = '2.66'
-gtk_req_version = '3.99'
+gtk_req_version = '4.1'
 
 libm_dep = cc.find_library('m', required: false)
 
@@ -202,7 +202,8 @@ else
     '-Werror=empty-body',
     '-Werror=implicit',
     '-Werror=implicit-function-declaration',
-    '-Werror=incompatible-pointer-types',
+    # disabled due to glib volatile issues
+    # '-Werror=incompatible-pointer-types',
     '-Werror=init-self',
     '-Werror=int-conversion',
     '-Werror=int-to-pointer-cast',
