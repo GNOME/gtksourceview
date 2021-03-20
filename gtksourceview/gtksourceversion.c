@@ -114,5 +114,5 @@ gtk_source_check_version (guint major,
                           guint minor,
                           guint micro)
 {
-	return GTK_SOURCE_CHECK_VERSION (major, minor, micro);
+	return GTK_SOURCE_CHECK_VERSION (major, (int)minor, micro);
 }
