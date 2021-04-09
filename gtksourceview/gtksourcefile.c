@@ -36,12 +36,6 @@
  * properties). On a successful load or save operation, the #GtkSourceFile
  * properties are updated. If an operation fails, the #GtkSourceFile properties
  * have still the previous valid values.
- *
- * <warning>
- * This class is no longer maintained, patches are not accepted. There is a
- * better implementation in the
- * <ulink url="https://wiki.gnome.org/Projects/Tepl">Tepl</ulink> library.
- * </warning>
  */
 
 enum

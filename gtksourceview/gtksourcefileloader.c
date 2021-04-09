@@ -56,13 +56,6 @@
  * saved somewhere (for example if you load from stdin), then you should
  * probably call gtk_text_buffer_set_modified() with %TRUE after calling
  * gtk_source_file_loader_load_finish().
- *
- * <warning>
- * This class is no longer maintained, patches are not accepted. There is work
- * in progress in the
- * <ulink url="https://wiki.gnome.org/Projects/Tepl">Tepl</ulink> library to
- * have a better implementation.
- * </warning>
  */
 
 #if 0

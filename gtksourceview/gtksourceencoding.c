@@ -33,12 +33,6 @@
  * The #GtkSourceEncoding boxed type represents a character encoding. It is used
  * for example by #GtkSourceFile. Note that the text in GTK+ widgets is always
  * encoded in UTF-8.
- *
- * <warning>
- * This class is no longer maintained, patches are not accepted. There is a
- * better implementation in the
- * <ulink url="https://wiki.gnome.org/Projects/Tepl">Tepl</ulink> library.
- * </warning>
  */
 
 struct _GtkSourceEncoding
