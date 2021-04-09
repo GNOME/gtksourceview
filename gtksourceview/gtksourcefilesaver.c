@@ -46,12 +46,6 @@
  * A file saver should be used only for one save operation, including errors
  * handling. If an error occurs, you can reconfigure the saver and relaunch the
  * operation with gtk_source_file_saver_save_async().
- *
- * <warning>
- * This class is no longer maintained, patches are not accepted. There is a
- * better implementation in the
- * <ulink url="https://wiki.gnome.org/Projects/Tepl">Tepl</ulink> library.
- * </warning>
  */
 
 /* The code has been written initially in gedit (GeditDocumentSaver).
