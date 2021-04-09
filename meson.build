@@ -118,10 +118,9 @@ glib_version_arr = glib_req_version.split('.')
 glib_major_version = glib_version_arr[0]
 glib_minor_version = glib_version_arr[1]
 
-# XXX: Override until GTK 4 is released
 gtk_version_arr = gtk_req_version.split('.')
-gtk_major_version = '4' # gtk_version_arr[0]
-gtk_minor_version = '0' # gtk_version_arr[1]
+gtk_major_version = gtk_version_arr[0]
+gtk_minor_version = gtk_version_arr[1]
 
 # Configurations
 add_project_arguments([
