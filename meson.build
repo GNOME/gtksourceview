@@ -181,7 +181,8 @@ else
     '-Werror=empty-body',
     '-Werror=implicit',
     '-Werror=implicit-function-declaration',
-    '-Werror=incompatible-pointer-types',
+    # Disabled due to volatile changes in GLib
+    # '-Werror=incompatible-pointer-types',
     '-Werror=init-self',
     '-Werror=int-conversion',
     '-Werror=int-to-pointer-cast',
