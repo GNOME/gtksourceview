@@ -155,11 +155,11 @@ gtk_source_mark_init (GtkSourceMark *mark)
 
 /**
  * gtk_source_mark_new:
- * @name: Name of the #GtkSourceMark, can be NULL when not using a name
+ * @name: (nullable): Name of the #GtkSourceMark or %NULL
  * @category: is used to classify marks according to common characteristics
- * (e.g. all the marks representing a bookmark could belong to the "bookmark"
- * category, or all the marks representing a compilation error could belong to
- * "error" category).
+ *   (e.g. all the marks representing a bookmark could belong to the "bookmark"
+ *   category, or all the marks representing a compilation error could belong
+ *   to "error" category).
  *
  * Creates a text mark. Add it to a buffer using gtk_text_buffer_add_mark().
  * If name is NULL, the mark is anonymous; otherwise, the mark can be retrieved
@@ -173,15 +173,15 @@ gtk_source_mark_init (GtkSourceMark *mark)
  */
 GtkSourceMark *
 gtk_source_mark_new (const gchar *name,
-		     const gchar *category)
+                     const gchar *category)
 {
 	g_return_val_if_fail (category != NULL, NULL);
 
 	return GTK_SOURCE_MARK (g_object_new (GTK_SOURCE_TYPE_MARK,
-					      "category", category,
-					      "name", name,
-					      "left-gravity", TRUE,
-					       NULL));
+	                                      "category", category,
+	                                      "name", name,
+	                                      "left-gravity", TRUE,
+	                                      NULL));
 }
 
 /**
