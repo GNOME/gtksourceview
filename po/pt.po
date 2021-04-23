@@ -8,86 +8,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=gtksourceview&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-08 15:21+0000\n"
-"PO-Revision-Date: 2016-05-11 20:48+0100\n"
-"Last-Translator: Tiago Santos <tiagofsantos81@sapo.pt>\n"
-"Language-Team: Português <palbuquerque73@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
+"POT-Creation-Date: 2020-06-25 18:16+0000\n"
+"PO-Revision-Date: 2021-04-23 12:18+0100\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
+"Language-Team: Português <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 2.3\n"
 
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:23
-msgid "Disabled"
-msgstr "Desativado"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:24
-msgid "Before"
-msgstr "Antes"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:25
-msgid "After"
-msgstr "Depois"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:26
-msgid "Always"
-msgstr "Sempre"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:32
-msgid "Space"
-msgstr "Espaço"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:33
-msgid "Tab"
-msgstr "Tabulador"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:34
-msgid "Newline"
-msgstr "Quebra de linha"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:35
-msgid "Non Breaking Whitespace"
-msgstr "Espaço sem quebra de linha"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:36
-msgid "Leading"
-msgstr "Precedente"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:37
-msgid "Text"
-msgstr "Texto"
-
-#. (itstool) path: displayable-values/value@name
-#: gtksourceview.xml:38
-msgid "Trailing"
-msgstr "Subsequente"
-
-#. (itstool) path: displayable-values/value@name
-#. Translators: "All" is used as a label in the status bar of the
-#. popup, telling that all completion pages are shown.
-#: gtksourceview.xml:39 gtksourceview/gtksourcecompletion.c:834
-msgid "All"
-msgstr "Todas"
-
-#. (itstool) path: actionscript.lang/language@_name
-#: actionscript.lang:25
-msgid "ActionScript"
-msgstr "ActionScript"
-
+#. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
 #. (itstool) path: ada.lang/language@_section
 #. (itstool) path: ansforth94.lang/language@_section
@@ -100,11 +33,14 @@ msgstr "ActionScript"
 #. (itstool) path: chdr.lang/language@_section
 #. (itstool) path: c.lang/language@_section
 #. (itstool) path: cobol.lang/language@_section
+#. (itstool) path: commonlisp.lang/language@_section
 #. (itstool) path: cpphdr.lang/language@_section
 #. (itstool) path: cpp.lang/language@_section
 #. (itstool) path: csharp.lang/language@_section
 #. (itstool) path: cuda.lang/language@_section
+#. (itstool) path: dart.lang/language@_section
 #. (itstool) path: d.lang/language@_section
+#. (itstool) path: docker.lang/language@_section
 #. (itstool) path: eiffel.lang/language@_section
 #. (itstool) path: erlang.lang/language@_section
 #. (itstool) path: forth.lang/language@_section
@@ -113,13 +49,18 @@ msgstr "ActionScript"
 #. (itstool) path: genie.lang/language@_section
 #. (itstool) path: glsl.lang/language@_section
 #. (itstool) path: go.lang/language@_section
+#. (itstool) path: gradle.lang/language@_section
+#. (itstool) path: groovy.lang/language@_section
 #. (itstool) path: haskell.lang/language@_section
 #. (itstool) path: haskell-literate.lang/language@_section
+#. (itstool) path: haxe.lang/language@_section
 #. (itstool) path: idl.lang/language@_section
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
+#. (itstool) path: kotlin.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
+#. (itstool) path: logtalk.lang/language@_section
 #. (itstool) path: makefile.lang/language@_section
 #. (itstool) path: meson.lang/language@_section
 #. (itstool) path: nemerle.lang/language@_section
@@ -132,355 +73,82 @@ msgstr "ActionScript"
 #. (itstool) path: opencl.lang/language@_section
 #. (itstool) path: pascal.lang/language@_section
 #. (itstool) path: pig.lang/language@_section
+#. (itstool) path: powershell.lang/language@_section
 #. (itstool) path: prolog.lang/language@_section
 #. (itstool) path: rust.lang/language@_section
 #. (itstool) path: scala.lang/language@_section
 #. (itstool) path: scheme.lang/language@_section
 #. (itstool) path: sml.lang/language@_section
+#. (itstool) path: solidity.lang/language@_section
 #. (itstool) path: sparql.lang/language@_section
 #. (itstool) path: sql.lang/language@_section
+#. (itstool) path: swift.lang/language@_section
 #. (itstool) path: systemverilog.lang/language@_section
 #. (itstool) path: thrift.lang/language@_section
 #. (itstool) path: vala.lang/language@_section
 #. (itstool) path: vbnet.lang/language@_section
 #. (itstool) path: verilog.lang/language@_section
 #. (itstool) path: vhdl.lang/language@_section
-#: actionscript.lang:25 ada.lang:26 ansforth94.lang:25 asp.lang:24
-#: automake.lang:24 bennugd.lang:23 bluespec.lang:22 boo.lang:24 cg.lang:24
-#: chdr.lang:25 c.lang:25 cobol.lang:27 cpphdr.lang:25 cpp.lang:25
-#: csharp.lang:27 cuda.lang:23 d.lang:30 eiffel.lang:24 erlang.lang:24
-#: forth.lang:24 fortran.lang:25 fsharp.lang:25 genie.lang:24 glsl.lang:31
-#: go.lang:25 haskell.lang:25 haskell-literate.lang:24 idl.lang:24
-#: java.lang:25 j.lang:24 lex.lang:25 llvm.lang:23 makefile.lang:23
-#: meson.lang:24 nemerle.lang:24 netrexx.lang:24 objc.lang:24 objj.lang:26
-#: ocaml.lang:27 ooc.lang:24 opal.lang:24 opencl.lang:24 pascal.lang:25
-#: pig.lang:27 prolog.lang:24 rust.lang:36 scala.lang:25 scheme.lang:24
-#: sml.lang:24 sparql.lang:24 sql.lang:24 systemverilog.lang:22 thrift.lang:21
-#: vala.lang:28 vbnet.lang:24 verilog.lang:24 vhdl.lang:24
+#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23
+#: automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23
+#: chdr.lang:24 c.lang:24 cobol.lang:26 commonlisp.lang:24 cpphdr.lang:24
+#: cpp.lang:25 csharp.lang:26 cuda.lang:22 dart.lang:22 d.lang:29
+#: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
+#: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
+#: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
+#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
+#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
+#: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
+#: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
+#: solidity.lang:28 sparql.lang:23 sql.lang:23 swift.lang:24
+#: systemverilog.lang:21 thrift.lang:20 vala.lang:27 vbnet.lang:23
+#: verilog.lang:23 vhdl.lang:23
 msgid "Source"
 msgstr "Fonte"
 
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:35 ada.lang:34 ansforth94.lang:39 asp.lang:32
-#: bennugd.lang:32 boo.lang:34 cg.lang:33 c.lang:35 cobol.lang:35
-#: csharp.lang:37 def.lang:40 d.lang:40 dosbatch.lang:31 dot.lang:34
-#: eiffel.lang:33 erlang.lang:32 fcl.lang:30 forth.lang:34 fortran.lang:33
-#: fsharp.lang:34 gap.lang:32 genie.lang:34 go.lang:35 gtkrc.lang:33
-#: haskell.lang:34 html.lang:34 idl-exelis.lang:28 idl.lang:32 ini.lang:31
-#: jade.lang:33 java.lang:35 j.lang:32 latex.lang:33 llvm.lang:30 lua.lang:34
-#: matlab.lang:41 modelica.lang:36 nemerle.lang:34 netrexx.lang:38
-#: nsis.lang:32 ocaml.lang:36 ocl.lang:41 octave.lang:41 ooc.lang:33
-#: opal.lang:34 pascal.lang:33 perl.lang:34 php.lang:40 pig.lang:41 po.lang:32
-#: prolog.lang:34 protobuf.lang:31 rst.lang:36 ruby.lang:36 rust.lang:45
-#: scala.lang:38 scheme.lang:32 scilab.lang:31 sh.lang:33 sml.lang:32
-#: sql.lang:32 sweave.lang:32 t2t.lang:31 texinfo.lang:33 thrift.lang:30
-#: vala.lang:38 vbnet.lang:32 verilog.lang:34 vhdl.lang:32 xml.lang:35
-#: yaml.lang:31
-msgid "Comment"
-msgstr "Comentário"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:36 cg.lang:34 c.lang:54 cobol.lang:43 csharp.lang:38
-#: css.lang:48 def.lang:102 d.lang:41 dot.lang:35 go.lang:36 html.lang:39
-#: jade.lang:41 j.lang:35 json.lang:42 nemerle.lang:35 ocaml.lang:53
-#: ooc.lang:34 opal.lang:36 perl.lang:48 php.lang:41 prolog.lang:40
-#: scala.lang:36 vala.lang:39 verilog.lang:38 xml.lang:45
-msgid "Error"
-msgstr "Erro"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:37 ada.lang:35 ansforth94.lang:43 asp.lang:33 boo.lang:36
-#: c.lang:36 cobol.lang:40 csharp.lang:40 css.lang:50 csv.lang:34 def.lang:57
-#: d.lang:42 dosbatch.lang:32 eiffel.lang:34 erlang.lang:36 forth.lang:35
-#: fortran.lang:34 fsharp.lang:38 gdb-log.lang:30 genie.lang:36 go.lang:37
-#: gtkrc.lang:34 haskell.lang:39 idl-exelis.lang:32 idl.lang:36 imagej.lang:40
-#: ini.lang:33 java.lang:37 javascript.lang:47 j.lang:45 json.lang:39
-#: julia.lang:37 llvm.lang:31 lua.lang:35 meson.lang:34 modelica.lang:37
-#: nemerle.lang:38 netrexx.lang:36 nsis.lang:33 objc.lang:37 objj.lang:41
-#: ocaml.lang:41 ocl.lang:42 octave.lang:42 ooc.lang:36 opal.lang:37
-#: pascal.lang:34 perl.lang:37 php.lang:45 po.lang:34 prolog.lang:37
-#: protobuf.lang:37 python3.lang:34 python.lang:39 ruby.lang:46 rust.lang:46
-#: scala.lang:39 scheme.lang:34 scilab.lang:33 sh.lang:35 sml.lang:36
-#: sql.lang:34 texinfo.lang:36 thrift.lang:33 vala.lang:41 vbnet.lang:33
-#: verilog.lang:35 vhdl.lang:33 yaml.lang:32
-msgid "String"
-msgstr "Cadeia"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:38 java.lang:41 ooc.lang:37 scala.lang:37
-msgid "External"
-msgstr "Externo"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:39 java.lang:42 ooc.lang:38 scala.lang:41
-msgid "Declaration"
-msgstr "Declaração"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:40 ada.lang:39 cg.lang:40 c.lang:44 java.lang:43
-#: ooc.lang:39
-msgid "Storage Class"
-msgstr "Classe de armazenamento"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:41 java.lang:44 ooc.lang:40
-msgid "Scope Declaration"
-msgstr "Declaração de âmbito"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:42 ada.lang:36 ansforth94.lang:36 asp.lang:35 awk.lang:32
-#: bennugd.lang:36 bluespec.lang:35 boo.lang:41 cg.lang:38 c.lang:41
-#: cobol.lang:38 cpp.lang:35 csharp.lang:45 css.lang:59 cuda.lang:33
-#: def.lang:92 d.lang:43 dosbatch.lang:33 dot.lang:36 eiffel.lang:37
-#: erlang.lang:33 fcl.lang:32 forth.lang:37 fortran.lang:36 fsharp.lang:39
-#: gap.lang:34 genie.lang:41 glsl.lang:43 go.lang:39 gtkrc.lang:35
-#: haskell.lang:37 idl-exelis.lang:31 idl.lang:35 imagej.lang:38 ini.lang:34
-#: java.lang:45 javascript.lang:41 julia.lang:44 lex.lang:35 llvm.lang:32
-#: lua.lang:36 matlab.lang:42 modelica.lang:46 nemerle.lang:39 objc.lang:34
-#: objj.lang:37 ocaml.lang:42 ocl.lang:43 octave.lang:48 ooc.lang:41
-#: opal.lang:38 opencl.lang:33 pascal.lang:35 perl.lang:38 php.lang:48
-#: po.lang:36 prolog.lang:36 protobuf.lang:35 python3.lang:32 python.lang:37
-#: R.lang:34 ruby.lang:39 rust.lang:48 scala.lang:43 scheme.lang:35
-#: scilab.lang:34 sh.lang:36 sml.lang:33 sparql.lang:37 sql.lang:35
-#: systemverilog.lang:33 tcl.lang:33 texinfo.lang:37 thrift.lang:32
-#: vala.lang:42 vbnet.lang:35 verilog.lang:42 vhdl.lang:35
-msgid "Keyword"
-msgstr "Palavra chave"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:43 boo.lang:43 csharp.lang:47 d.lang:46 fsharp.lang:52
-#: genie.lang:43 java.lang:46 javascript.lang:38 json.lang:40 nemerle.lang:41
-#: objj.lang:42 ooc.lang:42 php.lang:52 vala.lang:44
-msgid "Null Value"
-msgstr "Valor nulo"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:44 ada.lang:38 asp.lang:42 bennugd.lang:41 cg.lang:46
-#: c.lang:51 csharp.lang:48 def.lang:75 fsharp.lang:50 go.lang:48
-#: gtkrc.lang:40 ini.lang:38 java.lang:47 llvm.lang:38 lua.lang:42
-#: nemerle.lang:42 ocaml.lang:52 ooc.lang:43 opal.lang:39 php.lang:53
-#: protobuf.lang:36 R.lang:39 ruby.lang:41 rust.lang:50 sml.lang:40
-#: vala.lang:43 vbnet.lang:38 vhdl.lang:37
-msgid "Boolean value"
-msgstr "Valor booliano"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:45 asp.lang:43 boo.lang:45 cobol.lang:41 def.lang:63
-#: desktop.lang:38 forth.lang:39 genie.lang:45 java.lang:48 j.lang:42
-#: julia.lang:39 llvm.lang:39 netrexx.lang:48 prolog.lang:38 rust.lang:52
-#: scala.lang:45 vhdl.lang:40
-msgid "Number"
-msgstr "Número"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:46 java.lang:49 javascript.lang:46 ooc.lang:48
-msgid "Future Reserved Keywords"
-msgstr "Palavras chave reservadas futuras"
-
-#. (itstool) path: styles/style@_name
-#: actionscript.lang:47 ada.lang:40 asp.lang:40 bennugd.lang:37 boo.lang:39
-#: cg.lang:39 c.lang:43 cpp.lang:36 csharp.lang:39 cuda.lang:34 d.lang:44
-#: eiffel.lang:38 forth.lang:38 fortran.lang:40 fsharp.lang:42 genie.lang:39
-#: glsl.lang:42 go.lang:40 gtkrc.lang:37 haskell.lang:38 idl-exelis.lang:29
-#: idl.lang:33 ini.lang:37 java.lang:50 javascript.lang:42 llvm.lang:37
-#: nemerle.lang:40 objc.lang:35 objj.lang:38 ocaml.lang:45 ocl.lang:45
-#: ooc.lang:49 opal.lang:41 opencl.lang:34 pascal.lang:37 php.lang:51
-#: pig.lang:36 protobuf.lang:34 rust.lang:49 scala.lang:47 sml.lang:34
-#: sparql.lang:34 sql.lang:38 thrift.lang:31 vala.lang:40 vbnet.lang:36
-msgid "Data Type"
-msgstr "Tipo de dados"
-
-#. (itstool) path: ada.lang/language@_name
-#: ada.lang:26
-msgid "Ada"
-msgstr "Ada"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:37 bennugd.lang:39 cg.lang:43 c.lang:48 csharp.lang:49 csv.lang:31
-#: def.lang:67 d.lang:49 eiffel.lang:45 erlang.lang:39 fsharp.lang:37
-#: go.lang:45 idl-exelis.lang:34 nemerle.lang:44 ocaml.lang:40 ooc.lang:45
-#: opal.lang:40 php.lang:55 python3.lang:40 python.lang:46 ruby.lang:43
-msgid "Decimal number"
-msgstr "Número decimal"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:41 asp.lang:34 bennugd.lang:33 cg.lang:35 c.lang:37 csharp.lang:46
-#: forth.lang:36 fortran.lang:41 fsharp.lang:51 glsl.lang:41 haskell.lang:33
-#: idl-exelis.lang:30 idl.lang:34 nemerle.lang:36 objj.lang:39 pascal.lang:38
-#: vbnet.lang:34
-msgid "Preprocessor"
-msgstr "Pré-processador"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:42
-msgid "Arbitrary base number"
-msgstr "Número base arbitrário"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:43 csharp.lang:51 verilog.lang:46 vhdl.lang:39
-msgid "Real number"
-msgstr "Número real"
-
-#. (itstool) path: styles/style@_name
-#: ada.lang:44 cg.lang:41 c.lang:46 csharp.lang:42 eiffel.lang:42
-#: fortran.lang:44 fsharp.lang:49 go.lang:42 haskell.lang:41 imagej.lang:37
-#: java.lang:36 javascript.lang:37 json.lang:38 lua.lang:37 netrexx.lang:35
-#: ocaml.lang:51 ooc.lang:35 php.lang:44 prolog.lang:41 python3.lang:35
-#: python.lang:40 ruby.lang:35 scala.lang:40 sml.lang:37 texinfo.lang:34
-#: vala.lang:49 verilog.lang:37
-msgid "Escaped Character"
-msgstr "Carácter escapado"
-
-#. (itstool) path: ansforth94.lang/language@_name
-#: ansforth94.lang:25
-msgid "ANS-Forth94"
-msgstr "ANS-Forth94"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:37
-msgid "Obsolete Keyword"
-msgstr "Palavra chave obsoleta"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:40
-msgid "Alert"
-msgstr "Alerta"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:41 c.lang:40 csharp.lang:41 def.lang:55 erlang.lang:37
-#: gap.lang:33 go.lang:38 haskell.lang:40 java.lang:38 julia.lang:38
-#: nemerle.lang:37 netrexx.lang:37 rust.lang:47 sml.lang:35 vhdl.lang:34
-msgid "Character"
-msgstr "Carácter"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:42
-msgid "Word"
-msgstr "Palavra"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:44 cmake.lang:34 cobol.lang:39 def.lang:53 gtk-doc.lang:32
-#: libtool.lang:32 ruby.lang:50
-msgid "Constant"
-msgstr "Constante"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:45 awk.lang:34 cmake.lang:37 cobol.lang:37 haskell.lang:35
-#: ini.lang:36 llvm.lang:35 makefile.lang:31 nsis.lang:34 perl.lang:44
-#: php.lang:42 pkgconfig.lang:31 prolog.lang:35 protobuf.lang:33 ruby.lang:54
-#: sh.lang:37 sparql.lang:44 tcl.lang:32
-msgid "Variable"
-msgstr "Variável"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:46
-msgid "Local Variable"
-msgstr "Variável local"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:47
-msgid "Single Number"
-msgstr "Número único"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:48
-msgid "Double Number"
-msgstr "Número duplo"
-
-#. (itstool) path: styles/style@_name
-#: ansforth94.lang:49 haskell.lang:42
-msgid "Float"
-msgstr "Fração"
-
-#. (itstool) path: asp.lang/language@_name
-#: asp.lang:24
-msgid "ASP"
-msgstr "ASP"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:36 cg.lang:48 changelog.lang:39 css.lang:53 def.lang:81
-#: gap.lang:35 gdb-log.lang:29 gtk-doc.lang:34 idl-exelis.lang:35
-#: javascript.lang:43 llvm.lang:33 lua.lang:40 scheme.lang:36 scilab.lang:35
-#: sh.lang:34 sparql.lang:35 sql.lang:36
-msgid "Function"
-msgstr "Função"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:37 bennugd.lang:35 c.lang:42 cmake.lang:35 cobol.lang:42
-#: def.lang:90 erlang.lang:34 imagej.lang:39 julia.lang:43 meson.lang:33
-#: modelica.lang:38 nsis.lang:31 octave.lang:43 perl.lang:43 php.lang:50
-#: prolog.lang:39 scala.lang:46 sparql.lang:45
-msgid "Operator"
-msgstr "Operador"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:38
-msgid "ASP Object"
-msgstr "Objeto ASP"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:39
-msgid "VBScript and ADO constants"
-msgstr "Constantes VBScript e ADO"
-
-#. (itstool) path: styles/style@_name
-#: asp.lang:41 def.lang:73 vbnet.lang:37
-msgid "Special constant"
-msgstr "Constante especial"
-
-#. (itstool) path: automake.lang/language@_name
-#: automake.lang:24
-msgid "Automake"
-msgstr "Automake"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:39
-msgid "Automake Variable"
-msgstr "Variável Automake"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:40
-msgid "Primary"
-msgstr "Primária"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:41
-msgid "Secondary"
-msgstr "Secundária"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:42
-msgid "Prefix"
-msgstr "Prefixo"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:43
-msgid "Optional Target"
-msgstr "Alvo opcional"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:44
-msgid "Built-in Target"
-msgstr "Alvo embutido"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:45
-msgid "Other Keyword"
-msgstr "Outra palavra chave"
-
-#. (itstool) path: styles/style@_name
-#: automake.lang:46 rst.lang:38
-msgid "Substitution"
-msgstr "Substituição"
-
-#. (itstool) path: awk.lang/language@_name
-#: awk.lang:24
-msgid "awk"
-msgstr "awk"
+#. (itstool) path: asciidoc.lang/language@_section
+#. (itstool) path: bibtex.lang/language@_section
+#. (itstool) path: docbook.lang/language@_section
+#. (itstool) path: dtd.lang/language@_section
+#. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: gtk-doc.lang/language@_section
+#. (itstool) path: haddock.lang/language@_section
+#. (itstool) path: html.lang/language@_section
+#. (itstool) path: jade.lang/language@_section
+#. (itstool) path: jsdoc.lang/language@_section
+#. (itstool) path: latex.lang/language@_section
+#. (itstool) path: mallard.lang/language@_section
+#. (itstool) path: markdown.lang/language@_section
+#. (itstool) path: mediawiki.lang/language@_section
+#. (itstool) path: mxml.lang/language@_section
+#. (itstool) path: rst.lang/language@_section
+#. (itstool) path: sweave.lang/language@_section
+#. (itstool) path: t2t.lang/language@_section
+#. (itstool) path: tera.lang/language@_section
+#. (itstool) path: texinfo.lang/language@_section
+#. (itstool) path: xml.lang/language@_section
+#. (itstool) path: xslt.lang/language@_section
+#: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
+#: gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24 jsdoc.lang:23
+#: latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22
+#: mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23
+#: texinfo.lang:24 xml.lang:26 xslt.lang:23
+msgid "Markup"
+msgstr "Linguagem por etiquetas"
 
 #. (itstool) path: awk.lang/language@_section
 #. (itstool) path: dosbatch.lang/language@_section
+#. (itstool) path: fish.lang/language@_section
+#. (itstool) path: gdscript.lang/language@_section
+#. (itstool) path: javascript-expressions.lang/language@_section
+#. (itstool) path: javascript-functions-classes.lang/language@_section
 #. (itstool) path: javascript.lang/language@_section
+#. (itstool) path: javascript-literals.lang/language@_section
+#. (itstool) path: javascript-modules.lang/language@_section
+#. (itstool) path: javascript-statements.lang/language@_section
+#. (itstool) path: javascript-values.lang/language@_section
+#. (itstool) path: jsx.lang/language@_section
 #. (itstool) path: lua.lang/language@_section
 #. (itstool) path: m4.lang/language@_section
 #. (itstool) path: perl.lang/language@_section
@@ -490,193 +158,36 @@ msgstr "awk"
 #. (itstool) path: ruby.lang/language@_section
 #. (itstool) path: sh.lang/language@_section
 #. (itstool) path: tcl.lang/language@_section
-#: awk.lang:24 dosbatch.lang:24 javascript.lang:27 lua.lang:24 m4.lang:24
-#: perl.lang:26 php.lang:29 python3.lang:24 python.lang:28 ruby.lang:27
-#: sh.lang:25 tcl.lang:24
+#. (itstool) path: typescript-js-expressions.lang/language@_section
+#. (itstool) path: typescript-js-functions-classes.lang/language@_section
+#. (itstool) path: typescript-js-literals.lang/language@_section
+#. (itstool) path: typescript-js-modules.lang/language@_section
+#. (itstool) path: typescript-js-statements.lang/language@_section
+#. (itstool) path: typescript-js-values.lang/language@_section
+#. (itstool) path: typescript-jsx.lang/language@_section
+#. (itstool) path: typescript.lang/language@_section
+#. (itstool) path: typescript-type-expressions.lang/language@_section
+#. (itstool) path: typescript-type-generics.lang/language@_section
+#. (itstool) path: typescript-type-literals.lang/language@_section
+#: awk.lang:23 dosbatch.lang:23 fish.lang:19 gdscript.lang:22
+#: javascript-expressions.lang:27 javascript-functions-classes.lang:27
+#: javascript.lang:27 javascript-literals.lang:27 javascript-modules.lang:27
+#: javascript-statements.lang:27 javascript-values.lang:27 jsx.lang:23
+#: lua.lang:23 m4.lang:23 perl.lang:25 php.lang:28 python3.lang:23
+#: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
+#: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
+#: typescript-js-literals.lang:23 typescript-js-modules.lang:23
+#: typescript-js-statements.lang:23 typescript-js-values.lang:23
+#: typescript-jsx.lang:23 typescript.lang:23
+#: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
+#: typescript-type-literals.lang:23
 msgid "Script"
 msgstr "Script"
 
-#. (itstool) path: styles/style@_name
-#: awk.lang:33 lex.lang:36
-msgid "Pattern"
-msgstr "Padrão"
-
-#. (itstool) path: styles/style@_name
-#: awk.lang:35 boo.lang:46 genie.lang:46 glsl.lang:44 go.lang:50
-#: netrexx.lang:47 perl.lang:39 python3.lang:45 python.lang:51
-msgid "Builtin Function"
-msgstr "Função embutida"
-
-#. (itstool) path: bennugd.lang/language@_name
-#: bennugd.lang:23
-msgid "BennuGD"
-msgstr "BennuGD"
-
-#. (itstool) path: styles/style@_name
-#: bennugd.lang:34 def.lang:79 llvm.lang:36 php.lang:43 rust.lang:51
-msgid "Identifier"
-msgstr "Identificador"
-
-#. (itstool) path: styles/style@_name
-#: bennugd.lang:38 cg.lang:42 c.lang:47 csv.lang:33 def.lang:65 d.lang:48
-#: erlang.lang:38 go.lang:43 idl-exelis.lang:33 json.lang:44 nemerle.lang:43
-#: ooc.lang:44 php.lang:54 python3.lang:39 python.lang:45 R.lang:41
-#: ruby.lang:42
-msgid "Floating point number"
-msgstr "Número de vírgula flutuante"
-
-#. (itstool) path: styles/style@_name
-#: bennugd.lang:40 cg.lang:45 c.lang:50 csharp.lang:50 d.lang:52
-#: eiffel.lang:46 go.lang:47 nemerle.lang:47 ooc.lang:47 php.lang:57
-msgid "Hexadecimal number"
-msgstr "Número hexadecimal"
-
-#. (itstool) path: bibtex.lang/language@_name
-#: bibtex.lang:24
-msgid "BibTeX"
-msgstr "BibTeX"
-
-#. (itstool) path: bibtex.lang/language@_section
-#. (itstool) path: docbook.lang/language@_section
-#. (itstool) path: dtd.lang/language@_section
-#. (itstool) path: gtk-doc.lang/language@_section
-#. (itstool) path: haddock.lang/language@_section
-#. (itstool) path: html.lang/language@_section
-#. (itstool) path: jade.lang/language@_section
-#. (itstool) path: latex.lang/language@_section
-#. (itstool) path: mallard.lang/language@_section
-#. (itstool) path: markdown.lang/language@_section
-#. (itstool) path: mediawiki.lang/language@_section
-#. (itstool) path: mxml.lang/language@_section
-#. (itstool) path: rst.lang/language@_section
-#. (itstool) path: sweave.lang/language@_section
-#. (itstool) path: t2t.lang/language@_section
-#. (itstool) path: texinfo.lang/language@_section
-#. (itstool) path: xml.lang/language@_section
-#. (itstool) path: xslt.lang/language@_section
-#: bibtex.lang:24 docbook.lang:24 dtd.lang:24 gtk-doc.lang:25 haddock.lang:24
-#: html.lang:25 jade.lang:26 latex.lang:25 mallard.lang:23 markdown.lang:26
-#: mediawiki.lang:23 mxml.lang:24 rst.lang:23 sweave.lang:25 t2t.lang:24
-#: texinfo.lang:25 xml.lang:26 xslt.lang:24
-msgid "Markup"
-msgstr "Linguagem por etiquetas"
-
-#. (itstool) path: styles/style@_name
-#: bibtex.lang:32
-msgid "Entries"
-msgstr "Entradas"
-
-#. (itstool) path: styles/style@_name
-#: bibtex.lang:33
-msgid "Field"
-msgstr "Campo"
-
-#. (itstool) path: bluespec.lang/language@_name
-#: bluespec.lang:22
-msgid "Bluespec SystemVerilog"
-msgstr "Bluespec SystemVerilog"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:31 systemverilog.lang:32
-msgid "System Task"
-msgstr "Tarefa de sistema"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:32
-msgid "Annotation"
-msgstr "Anotação"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:33 rust.lang:54
-msgid "Attribute"
-msgstr "Atributo"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:34
-msgid "Import BVI"
-msgstr "BVI Importado"
-
-#. (itstool) path: styles/style@_name
-#: bluespec.lang:36 gtk-doc.lang:33 julia.lang:49 systemverilog.lang:34
-#: verilog.lang:44 vhdl.lang:36
-msgid "Type"
-msgstr "Tipo"
-
-#. (itstool) path: boo.lang/language@_name
-#: boo.lang:24
-msgid "Boo"
-msgstr "Boo"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:35 genie.lang:35 python3.lang:33 python.lang:38
-msgid "Multiline string"
-msgstr "Cadeia multilinha"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:37 genie.lang:37 javascript.lang:48 perl.lang:47 ruby.lang:57
-#: vala.lang:48
-msgid "Regular Expression"
-msgstr "Expressão regular"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:38 genie.lang:38 sparql.lang:38 xml.lang:44 xslt.lang:34
-msgid "Namespace"
-msgstr "Nome de espaço"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:40 genie.lang:40
-msgid "Definition"
-msgstr "Definição"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:42 genie.lang:42 python3.lang:37 python.lang:43 ruby.lang:52
-msgid "Special Variable"
-msgstr "Variável especial"
-
-#. (itstool) path: styles/style@_name
-#: boo.lang:44 desktop.lang:39 d.lang:47 genie.lang:44 imagej.lang:34
-#: julia.lang:40 libtool.lang:33 modelica.lang:42 objj.lang:36 octave.lang:46
-#: python3.lang:38 python.lang:44 scheme.lang:33 scilab.lang:36 sparql.lang:39
-#: yaml.lang:39
-msgid "Boolean"
-msgstr "Booliano"
-
 #. (itstool) path: cg.lang/language@_name
-#: cg.lang:24
+#: cg.lang:23
 msgid "CG Shader Language"
 msgstr "Linguagem CG Shader"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:36
-msgid "Bindings"
-msgstr "Ligações"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:37 c.lang:39 fortran.lang:43 objj.lang:40
-msgid "Included File"
-msgstr "Ficheiro incluído"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:44 c.lang:49 d.lang:51 go.lang:46 nemerle.lang:46 ooc.lang:46
-#: php.lang:56
-msgid "Octal number"
-msgstr "Número octal"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:47
-msgid "Swizzle operator"
-msgstr "Operador swizzle"
-
-#. (itstool) path: styles/style@_name
-#: cg.lang:49 erlang.lang:41 imagej.lang:33 matlab.lang:43 modelica.lang:47
-#: octave.lang:50 ruby.lang:49
-msgid "Builtin"
-msgstr "Embutido"
-
-#. (itstool) path: changelog.lang/language@_name
-#: changelog.lang:25
-msgid "ChangeLog"
-msgstr "Registo de alterações"
 
 #. (itstool) path: changelog.lang/language@_section
 #. (itstool) path: cmake.lang/language@_section
@@ -686,11 +197,14 @@ msgstr "Registo de alterações"
 #. (itstool) path: diff.lang/language@_section
 #. (itstool) path: dot.lang/language@_section
 #. (itstool) path: dpatch.lang/language@_section
+#. (itstool) path: ftl.lang/language@_section
 #. (itstool) path: gdb-log.lang/language@_section
 #. (itstool) path: gtkrc.lang/language@_section
 #. (itstool) path: ini.lang/language@_section
 #. (itstool) path: json.lang/language@_section
+#. (itstool) path: less.lang/language@_section
 #. (itstool) path: libtool.lang/language@_section
+#. (itstool) path: logcat.lang/language@_section
 #. (itstool) path: nsis.lang/language@_section
 #. (itstool) path: ocl.lang/language@_section
 #. (itstool) path: pkgconfig.lang/language@_section
@@ -698,565 +212,39 @@ msgstr "Registo de alterações"
 #. (itstool) path: protobuf.lang/language@_section
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
-#. (itstool) path: styles/style@_name
+#. (itstool) path: scss.lang/language@_section
+#. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
-#: changelog.lang:25 cmake.lang:24 css.lang:39 csv.lang:24 desktop.lang:25
-#: diff.lang:24 dot.lang:24 dpatch.lang:24 gdb-log.lang:19 gtkrc.lang:25
-#: ini.lang:23 json.lang:30 libtool.lang:24 nsis.lang:24 ocl.lang:33
-#: pkgconfig.lang:24 po.lang:24 protobuf.lang:21 puppet.lang:24
-#: rpmspec.lang:24 scala.lang:49 yacc.lang:24 yaml.lang:22
+#. (itstool) path: yara.lang/language@_section
+#: changelog.lang:24 cmake.lang:23 css.lang:26 csv.lang:23 desktop.lang:24
+#: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
+#: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
+#: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23
+#: yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "Outro"
 
-#. (itstool) path: styles/style@_name
-#: changelog.lang:33 rpmspec.lang:43
-msgid "Date"
-msgstr "Data"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:35 latex.lang:52
-msgid "Name"
-msgstr "Nome"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:36
-msgid "E-mail address"
-msgstr "Endereço de email"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:37
-msgid "File"
-msgstr "Ficheiro"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:38 rst.lang:34
-msgid "Bullet"
-msgstr "Ponto de lista"
-
-#. (itstool) path: styles/style@_name
-#: changelog.lang:40
-msgid "Release"
-msgstr "Versão"
-
 #. (itstool) path: chdr.lang/language@_name
-#: chdr.lang:25
+#: chdr.lang:24
 msgid "C/ObjC Header"
 msgstr "Cabeçalho C/ObjC"
 
-#. (itstool) path: c.lang/language@_name
-#: c.lang:25
-msgid "C"
-msgstr "C"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:38 cpp.lang:37 objc.lang:36 opal.lang:35
-msgid "Common Defines"
-msgstr "Definições comuns"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:45 genie.lang:47 go.lang:41 verilog.lang:36
-msgid "printf Conversion"
-msgstr "Conversão printf"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:52
-msgid "Standard stream"
-msgstr "Fluxo padrão"
-
-#. (itstool) path: styles/style@_name
-#: c.lang:53
-msgid "Signal name"
-msgstr "Nome do sinal"
-
-#. (itstool) path: cmake.lang/language@_name
-#: cmake.lang:24
-msgid "CMake"
-msgstr "CMake"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:31 meson.lang:32
-msgid "Builtin Command"
-msgstr "Comando embutido"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:32
-msgid "Deprecated Builtin Command"
-msgstr "Comando embutido obsoleto"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:33 glsl.lang:46
-msgid "Builtin Variable"
-msgstr "Variável embutida"
-
-#. (itstool) path: styles/style@_name
-#: cmake.lang:36
-msgid "Control Keyword"
-msgstr "Palavra chave de controlo"
-
-#. (itstool) path: cobol.lang/language@_name
-#: cobol.lang:27
-msgid "COBOL"
-msgstr "COBOL"
-
-#. (itstool) path: styles/style@_name
-#: cobol.lang:36 def.lang:88 protobuf.lang:32
-msgid "Statement"
-msgstr "Declaração"
-
 #. (itstool) path: cpphdr.lang/language@_name
-#: cpphdr.lang:25
+#: cpphdr.lang:24
 msgid "C++ Header"
 msgstr "Cabeçalho C++"
 
-#. (itstool) path: cpp.lang/language@_name
-#: cpp.lang:25
-msgid "C++"
-msgstr "C++"
-
-#. (itstool) path: csharp.lang/language@_name
-#: csharp.lang:27
-msgid "C#"
-msgstr "C#"
-
-#. (itstool) path: styles/style@_name
-#: csharp.lang:44 po.lang:37
-msgid "String Format"
-msgstr "Formato da cadeia"
-
-#. (itstool) path: css.lang/language@_name
-#: css.lang:39
-msgid "CSS"
-msgstr "CSS"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:49
-msgid "Others 2"
-msgstr "Outras 2"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:51
-msgid "Color"
-msgstr "Cor"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:52
-msgid "Others 3"
-msgstr "Outras 3"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:55 fcl.lang:34 fortran.lang:39 gap.lang:36 gtkrc.lang:36
-#: haskell.lang:43 ini.lang:35 json.lang:43 modelica.lang:43 pascal.lang:36
-#: sml.lang:39 sql.lang:37
-msgid "Decimal"
-msgstr "Decimal"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:56
-msgid "Dimension"
-msgstr "Dimensão"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:57
-msgid "Property Value"
-msgstr "Valor da propriedade"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:58
-msgid "at-rules"
-msgstr "Regras-at"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:60
-msgid "ID Selector"
-msgstr "Seletor de ID"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:61
-msgid "Class Selector"
-msgstr "Seletor de classe"
-
-#. (itstool) path: styles/style@_name
-#: css.lang:62
-msgid "Tag Name Selector"
-msgstr "Seletor de nome de etiqueta"
-
-#. (itstool) path: csv.lang/language@_name
-#: csv.lang:24
-msgid "CSV"
-msgstr "CSV"
-
-#. (itstool) path: styles/style@_name
-#: csv.lang:32
-msgid "Escaped character"
-msgstr "Carácter escapado"
-
-#. (itstool) path: cuda.lang/language@_name
-#: cuda.lang:23
-msgid "CUDA"
-msgstr "CUDA"
-
-#. (itstool) path: styles/style@_name
-#: cuda.lang:35
-msgid "Global Functions"
-msgstr "Funções globais"
-
-#. (itstool) path: styles/style@_name
-#: cuda.lang:36
-msgid "Device Functions"
-msgstr "Funções de dispositivo"
-
-#. (itstool) path: styles/style@_name
-#: cuda.lang:37
-msgid "Global Variables"
-msgstr "Variáveis globais"
-
-#. (itstool) path: def.lang/language@_name
-#: def.lang:25
-msgid "Defaults"
-msgstr "Predefinições"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:42
-msgid "Shebang"
-msgstr "Cardinal e exclamação"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:45
-msgid "Documentation comment"
-msgstr "Comentário de documentação"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:49
-msgid "Documentation comment element"
-msgstr "Elemento de comentário de documentação"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:61
-msgid "Special character (inside a string)"
-msgstr "Carácter especial (dentro de uma cadeia)"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:69 python3.lang:41 python.lang:47 ruby.lang:44
-msgid "Base-N number"
-msgstr "Número de base-N"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:71 python3.lang:42 python.lang:48
-msgid "Complex number"
-msgstr "Número complexo"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:84
-msgid "Built-in identifier"
-msgstr "Identificador proprietário"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:96 modelica.lang:40 octave.lang:44
-msgid "Data type"
-msgstr "Tipo de dados"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:100
-msgid "Preprocessor directive"
-msgstr "Diretiva de pré-processador"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:104
-msgid "Warning"
-msgstr "Aviso"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:106
-msgid "Reserved keyword"
-msgstr "Palavra chave reservada"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:108
-msgid "Note (FIXME, TODO, XXX, etc.)"
-msgstr "Nota (CORRIGE-ME, A-FAZER, XXX, etc.)"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:110
-msgid "Underlined"
-msgstr "Sublinhado"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:112
-msgid "Heading 0"
-msgstr "Título 0"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:113
-msgid "Heading 1"
-msgstr "Título 1"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:114
-msgid "Heading 2"
-msgstr "Título 2"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:115
-msgid "Heading 3"
-msgstr "Título 3"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:116
-msgid "Heading 4"
-msgstr "Título 4"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:117
-msgid "Heading 5"
-msgstr "Título 5"
-
-#. (itstool) path: styles/style@_name
-#: def.lang:118
-msgid "Heading 6"
-msgstr "Título 6"
-
-#. (itstool) path: desktop.lang/language@_name
-#: desktop.lang:25
-msgid ".desktop"
-msgstr ".desktop"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:33
-msgid "Group"
-msgstr "Grupo"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:36 json.lang:37
-msgid "Key"
-msgstr "Chave"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:37
-msgid "Translation"
-msgstr "Tradução"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:40
-msgid "Exec parameter"
-msgstr "Parâmetro de execução"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:41
-msgid "Encoding"
-msgstr "Codificação"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:42
-msgid "Main Category"
-msgstr "Categoria principal"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:43
-msgid "Additional Category"
-msgstr "Categoria adicional"
-
-#. (itstool) path: styles/style@_name
-#: desktop.lang:44
-msgid "Reserved Category"
-msgstr "Categoria reservada"
-
-#. (itstool) path: diff.lang/language@_name
-#: diff.lang:24
-msgid "Diff"
-msgstr "Diff"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:31
-msgid "Added line"
-msgstr "Linha adicionada"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:32
-msgid "Removed line"
-msgstr "Linha removida"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:33
-msgid "Changed line"
-msgstr "Linha alterada"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:34
-msgid "Special case"
-msgstr "Caso especial"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:35 po.lang:33
-msgid "Location"
-msgstr "Localização"
-
-#. (itstool) path: styles/style@_name
-#: diff.lang:36
-msgid "Ignore"
-msgstr "Ignorar"
-
-#. (itstool) path: d.lang/language@_name
-#: d.lang:30
-msgid "D"
-msgstr "D"
-
-#. (itstool) path: styles/style@_name
-#: d.lang:45
-msgid "Special Token"
-msgstr "Elemento especial"
-
-#. (itstool) path: styles/style@_name
-#: d.lang:50 nemerle.lang:45
-msgid "Binary number"
-msgstr "Número binário"
-
-#. (itstool) path: docbook.lang/language@_name
-#: docbook.lang:24
-msgid "DocBook"
-msgstr "DocBook"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:33
-msgid "Header Elements"
-msgstr "Elementos de cabeçalho"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:34
-msgid "Formatting Elements"
-msgstr "Elementos de formatação"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:35
-msgid "GUI Elements"
-msgstr "Elementos de GUI (ambiente gráfico)"
-
-#. (itstool) path: styles/style@_name
-#: docbook.lang:36
-msgid "Structural Elements"
-msgstr "Elementos estruturais"
-
 #. (itstool) path: dosbatch.lang/language@_name
-#: dosbatch.lang:24
+#: dosbatch.lang:23
 msgid "DOS Batch"
 msgstr "Batch DOS"
 
-#. (itstool) path: styles/style@_name
-#: dosbatch.lang:34 latex.lang:39 latex.lang:40 sweave.lang:33
-msgid "Command"
-msgstr "Comando"
-
-#. (itstool) path: dot.lang/language@_name
-#: dot.lang:24
-msgid "Graphviz Dot"
-msgstr "Dot Graphviz"
-
-#. (itstool) path: styles/style@_name
-#: dot.lang:37 jade.lang:37 xml.lang:40
-msgid "Attribute name"
-msgstr "Nome do atributo"
-
-#. (itstool) path: dpatch.lang/language@_name
-#: dpatch.lang:24
-msgid "DPatch"
-msgstr "DPatch"
-
-#. (itstool) path: styles/style@_name
-#: dpatch.lang:31
-msgid "Patch Start"
-msgstr "Início do patch"
-
-#. (itstool) path: dtd.lang/language@_name
-#. (itstool) path: styles/style@_name
-#: dtd.lang:24 html.lang:38
-msgid "DTD"
-msgstr "DTD"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:33
-msgid "entity"
-msgstr "entidade"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:34
-msgid "decl"
-msgstr "decl"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:35
-msgid "error"
-msgstr "erro"
-
-#. (itstool) path: styles/style@_name
-#: dtd.lang:36
-msgid "Quoted Value"
-msgstr "valor entre aspas"
-
-#. (itstool) path: eiffel.lang/language@_name
-#: eiffel.lang:24
-msgid "Eiffel"
-msgstr "Eiffel"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:35
-msgid "Debug"
-msgstr "Depurar"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:36
-msgid "Assertion"
-msgstr "Asserção"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:39
-msgid "Design by Contract"
-msgstr "Desenho por contrato"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:40
-msgid "Exception Handling"
-msgstr "Manipulação de exceções"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:41 ruby.lang:53
-msgid "Predefined Variable"
-msgstr "Variável predefinida"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:43
-msgid "Void Value"
-msgstr "Ausência de valor"
-
-#. (itstool) path: styles/style@_name
-#: eiffel.lang:44 javascript.lang:40 json.lang:41
-msgid "Boolean Value"
-msgstr "Valor lógico"
-
-#. (itstool) path: erlang.lang/language@_name
-#: erlang.lang:24
-msgid "Erlang"
-msgstr "Erlang"
-
-#. (itstool) path: styles/style@_name
-#: erlang.lang:35
-msgid "Atom"
-msgstr "Atom"
-
-#. (itstool) path: styles/style@_name
-#: erlang.lang:40 fsharp.lang:35 modelica.lang:45 ocaml.lang:38 sml.lang:38
-#: verilog.lang:45 vhdl.lang:38
-msgid "Base-N Integer"
-msgstr "Inteiro base-N"
-
-#. (itstool) path: styles/style@_name
-#: erlang.lang:42 forth.lang:42 systemverilog.lang:31 verilog.lang:39
-msgid "Compiler Directive"
-msgstr "Diretiva de compilação"
-
-#. (itstool) path: fcl.lang/language@_name
-#: fcl.lang:23
-msgid "FCL"
-msgstr "FCL"
+#. (itstool) path: dtl.lang/language@_name
+#: dtl.lang:25
+msgid "Django Template"
+msgstr "Modelo Django"
 
 #. (itstool) path: fcl.lang/language@_section
 #. (itstool) path: gap.lang/language@_section
@@ -1264,1823 +252,109 @@ msgstr "FCL"
 #. (itstool) path: imagej.lang/language@_section
 #. (itstool) path: julia.lang/language@_section
 #. (itstool) path: matlab.lang/language@_section
+#. (itstool) path: maxima.lang/language@_section
 #. (itstool) path: modelica.lang/language@_section
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
-#: fcl.lang:23 gap.lang:24 idl-exelis.lang:21 imagej.lang:24 julia.lang:24
-#: matlab.lang:26 modelica.lang:26 octave.lang:26 R.lang:26 scilab.lang:24
+#: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
+#: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
+#: scilab.lang:23
 msgid "Scientific"
 msgstr "Científico"
 
-#. (itstool) path: styles/style@_name
-#: fcl.lang:31 fortran.lang:35 ini.lang:32 modelica.lang:44 scilab.lang:32
-#: sql.lang:33
-msgid "Floating Point"
-msgstr "Vírgula flutuante"
-
-#. (itstool) path: styles/style@_name
-#: fcl.lang:33
-msgid "Block"
-msgstr "Bloco"
-
-#. (itstool) path: styles/style@_name
-#: fcl.lang:35 octave.lang:49 scilab.lang:37
-msgid "Reserved Constant"
-msgstr "Constante reservada"
-
-#. (itstool) path: forth.lang/language@_name
-#: forth.lang:24
-msgid "Forth"
-msgstr "Forth"
-
-#. (itstool) path: styles/style@_name
-#: forth.lang:40
-msgid "Debug Code"
-msgstr "Código de depuração"
-
-#. (itstool) path: styles/style@_name
-#: forth.lang:41
-msgid "Error Text"
-msgstr "Texto do erro"
-
-#. (itstool) path: fortran.lang/language@_name
-#: fortran.lang:25
-msgid "Fortran 95"
-msgstr "Fortran 95"
-
-#. (itstool) path: styles/style@_name
-#: fortran.lang:37
-msgid "Intrinsic function"
-msgstr "Função intrínseca"
-
-#. (itstool) path: styles/style@_name
-#: fortran.lang:38
-msgid "BOZ Literal"
-msgstr "Literal BOZ"
-
-#. (itstool) path: styles/style@_name
-#: fortran.lang:42
-msgid "OpenMP directives"
-msgstr "Diretivas OpenMP"
-
-#. (itstool) path: fsharp.lang/language@_name
-#: fsharp.lang:25
-msgid "F#"
-msgstr "F#"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:36 ocaml.lang:39 sml.lang:41
-msgid "Floating Point number"
-msgstr "Número de vírgula flutuante"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:40 ocaml.lang:43
-msgid "Type, module or object keyword"
-msgstr "Palavra chave de tipo, módulo ou objeto"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:41 ocaml.lang:44
-msgid "Builtin-function keyword"
-msgstr "Palavra chave de função embutida"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:43 ocaml.lang:46
-msgid "Labeled argument"
-msgstr "Argumento rotulado"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:44 ocaml.lang:47
-msgid "Polymorphic Variant"
-msgstr "Variante polimórfica"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:45 ocaml.lang:48
-msgid "Variant Constructor"
-msgstr "Construtor de variante"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:47 ocaml.lang:49
-msgid "Type Variable"
-msgstr "Variável de tipo"
-
-#. (itstool) path: styles/style@_name
-#: fsharp.lang:48 ocaml.lang:50
-msgid "Module Path"
-msgstr "Caminho do módulo"
-
-#. (itstool) path: gap.lang/language@_name
-#: gap.lang:24
-msgid "GAP"
-msgstr "GAP"
-
 #. (itstool) path: gdb-log.lang/language@_name
-#: gdb-log.lang:19
+#: gdb-log.lang:18
 msgid "GDB Log"
 msgstr "Registo do GDB"
 
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:25
-msgid "Thread Action"
-msgstr "Ação da thread"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:26
-msgid "Thread Header"
-msgstr "Cabeçalho da thread"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:27
-msgid "Frame Number"
-msgstr "Número da moldura"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:28
-msgid "Address"
-msgstr "Endereço"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:31
-msgid "Filename"
-msgstr "Nome do ficheiro"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:32
-msgid "Optimized Out"
-msgstr "Saída otimizada"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:33
-msgid "Incomplete Sequence"
-msgstr "Sequência incompleta"
-
-#. (itstool) path: styles/style@_name
-#: gdb-log.lang:34
-msgid "Prompt"
-msgstr "Linha de comando"
-
-#. (itstool) path: genie.lang/language@_name
-#: genie.lang:24
-msgid "Genie"
-msgstr "Genie"
-
 #. (itstool) path: glsl.lang/language@_name
-#: glsl.lang:31
+#: glsl.lang:30
 msgid "OpenGL Shading Language"
 msgstr "Linguagem OpenGL Shading"
 
-#. (itstool) path: styles/style@_name
-#: glsl.lang:45 go.lang:49 python3.lang:43 python.lang:49
-msgid "Builtin Constant"
-msgstr "Constante embutida"
-
-#. (itstool) path: styles/style@_name
-#: glsl.lang:47
-msgid "Reserved Keywords"
-msgstr "Palavras reservadas"
-
-#. (itstool) path: go.lang/language@_name
-#: go.lang:25
-msgid "Go"
-msgstr "Ir"
-
-#. (itstool) path: styles/style@_name
-#: go.lang:44
-msgid "Imaginary number"
-msgstr "Número imaginário"
-
-#. (itstool) path: gtk-doc.lang/language@_name
-#: gtk-doc.lang:25
-msgid "gtk-doc"
-msgstr "gtk-doc"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:27
-msgid "Inline Documentation Section"
-msgstr "Secção de documentação embutida"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:28 python.lang:52
-msgid "Function Name"
-msgstr "Nome da função"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:29
-msgid "Signal Name"
-msgstr "Nome do sinal"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:30
-msgid "Property Name"
-msgstr "Nome da propriedade"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:31
-msgid "Parameter"
-msgstr "Parâmetro"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:35
-msgid "Return"
-msgstr "Devolvido"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:36
-msgid "Since"
-msgstr "Desde"
-
-#. (itstool) path: styles/style@_name
-#: gtk-doc.lang:37
-msgid "Deprecated"
-msgstr "Obsoleto"
-
-#. (itstool) path: gtkrc.lang/language@_name
-#: gtkrc.lang:25
-msgid "GtkRC"
-msgstr "GtkRC"
-
-#. (itstool) path: styles/style@_name
-#: gtkrc.lang:38
-msgid "Widget State"
-msgstr "Estado do widget"
-
-#. (itstool) path: styles/style@_name
-#: gtkrc.lang:39
-msgid "Include directive"
-msgstr "Diretiva de inclusão"
-
-#. (itstool) path: haddock.lang/language@_name
-#: haddock.lang:24
-msgid "Haddock"
-msgstr "Haddock"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:27
-msgid "Inline Haddock Section"
-msgstr "Secção embutida Haddock"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:28
-msgid "Haddock Directive"
-msgstr "Diretiva Haddock"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:29
-msgid "Hyperlinked Identifier"
-msgstr "Indentificador da hiperligação"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:30
-msgid "Hyperlinked Module Name"
-msgstr "Nome do módulo da hiperligação"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:31
-msgid "Escape"
-msgstr "Escape"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:32 markdown.lang:45 rst.lang:32
-msgid "Emphasis"
-msgstr "Ênfase"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:33
-msgid "Monospace"
-msgstr "Monoespaçada"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:34
-msgid "Code Block"
-msgstr "Bloco de código"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:35
-msgid "Header Property"
-msgstr "Propriedade do cabeçalho"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:36
-msgid "Itemized list"
-msgstr "Lista de itens"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:37
-msgid "Enumerated list"
-msgstr "Lista enumerada"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:38
-msgid "Definition list"
-msgstr "Lista de definição"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:39 markdown.lang:40 mediawiki.lang:33
-msgid "URL"
-msgstr "URL"
-
-#. (itstool) path: styles/style@_name
-#: haddock.lang:40 t2t.lang:41 yaml.lang:33
-msgid "Anchor"
-msgstr "Âncora"
-
-#. (itstool) path: haskell.lang/language@_name
-#: haskell.lang:25
-msgid "Haskell"
-msgstr "Haskell"
-
-#. (itstool) path: styles/style@_name
-#: haskell.lang:36 ruby.lang:51
-msgid "Symbol"
-msgstr "Símbolo"
-
-#. (itstool) path: styles/style@_name
-#: haskell.lang:44
-msgid "Octal"
-msgstr "Octal"
-
-#. (itstool) path: styles/style@_name
-#: haskell.lang:45
-msgid "Hex"
-msgstr "Hex"
-
-#. (itstool) path: haskell-literate.lang/language@_name
-#: haskell-literate.lang:24
-msgid "Literate Haskell"
-msgstr "Haskell literado"
-
-#. (itstool) path: html.lang/language@_name
-#: html.lang:25
-msgid "HTML"
-msgstr "HTML"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:35 xml.lang:43 yaml.lang:34
-msgid "Tag"
-msgstr "Etiqueta"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:36
-msgid "Attribute Name"
-msgstr "Nome do atributo"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:37 markdown.lang:43
-msgid "Attribute Value"
-msgstr "Valor do atributo"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:40
-msgid "Page title"
-msgstr "Título da página"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:41
-msgid "Heading level 1"
-msgstr "Título nível 1"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:42
-msgid "Heading level 2"
-msgstr "Título nível 2"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:43
-msgid "Heading level 3"
-msgstr "Título nível 3"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:44
-msgid "Heading level 4"
-msgstr "Título nível 4"
-
-#. (itstool) path: styles/style@_name
-#: html.lang:45
-msgid "Heading level 5"
-msgstr "Título nível 5"
-
-#. (itstool) path: idl-exelis.lang/language@_name
-#: idl-exelis.lang:21
-msgid "IDL-Exelis"
-msgstr "IDL-Exelis"
-
-#. (itstool) path: idl.lang/language@_name
-#: idl.lang:24
-msgid "IDL"
-msgstr "IDL"
-
-#. (itstool) path: imagej.lang/language@_name
-#: imagej.lang:24
-msgid "ImageJ"
-msgstr "ImageJ"
-
-#. (itstool) path: styles/style@_name
-#: imagej.lang:35
-msgid "Commands"
-msgstr "Comandos"
-
-#. (itstool) path: styles/style@_name
-#: imagej.lang:36 octave.lang:45
-msgid "Storage Type"
-msgstr "Tipo de armazenamento"
-
-#. (itstool) path: ini.lang/language@_name
-#: ini.lang:23
-msgid ".ini"
-msgstr ".ini"
-
-#. (itstool) path: jade.lang/language@_name
-#: jade.lang:26
-msgid "Jade"
-msgstr "Jade"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:34 xml.lang:36
-msgid "DOCTYPE"
-msgstr "DOCTYPE"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:35 xml.lang:38
-msgid "Processing instruction"
-msgstr "Instrução de processamento"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:36 mxml.lang:32 xml.lang:39
-msgid "Element name"
-msgstr "Nome do elemento"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:38 xml.lang:41
-msgid "Attribute value"
-msgstr "Valor do atributo"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:39
-msgid "Tags"
-msgstr "Etiquetas"
-
-#. (itstool) path: styles/style@_name
-#: jade.lang:40 xml.lang:42
-msgid "Entity"
-msgstr "Entidade"
-
-#. (itstool) path: java.lang/language@_name
-#: java.lang:25
-msgid "Java"
-msgstr "Java"
-
-#. (itstool) path: javascript.lang/language@_name
-#: javascript.lang:27
-msgid "JavaScript"
-msgstr "JavaScript"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:39
-msgid "Undefined Value"
-msgstr "Valor indefinido"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:44
-msgid "Properties"
-msgstr "Propriedades"
-
-#. (itstool) path: styles/style@_name
-#: javascript.lang:45
-msgid "Constructors"
-msgstr "Construtores"
-
-#. (itstool) path: j.lang/language@_name
-#: j.lang:24
-msgid "J"
-msgstr "J"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:31
-msgid "Adverb"
-msgstr "Adverb"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:33
-msgid "Conjunction"
-msgstr "Conjunção"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:34 perl.lang:46
-msgid "Control"
-msgstr "Controlo"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:36
-msgid "Explicit Argument"
-msgstr "Argumento explícito"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:37
-msgid "Global"
-msgstr "Global"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:38
-msgid "Lab Text"
-msgstr "Texto de Lab"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:39
-msgid "Local"
-msgstr "Local"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:40
-msgid "Noun"
-msgstr "Nome"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:41
-msgid "Explicit Noun Definition"
-msgstr "Definição explícita de nome"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:43
-msgid "Parens"
-msgstr "Parens"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:44
-msgid "Primitive"
-msgstr "Primitiva"
-
-#. (itstool) path: styles/style@_name
-#: j.lang:46
-msgid "Verb"
-msgstr "Verbo"
-
-#. (itstool) path: julia.lang/language@_name
-#: julia.lang:24
-msgid "Julia"
-msgstr "Júlia"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:41
-msgid "Math Constant"
-msgstr "Constante matemática"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:42 R.lang:38 scala.lang:44
-msgid "Special Constant"
-msgstr "Constante especial"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:45 rust.lang:55
-msgid "Macro"
-msgstr "Macro"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:46
-msgid "External Command"
-msgstr "Comando externo"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:47
-msgid "Built-in Function"
-msgstr "Função interna"
-
-#. (itstool) path: styles/style@_name
-#: julia.lang:48
-msgid "Module"
-msgstr "Módulo"
-
-#. (itstool) path: latex.lang/language@_name
-#: latex.lang:25
-msgid "LaTeX"
-msgstr "LateX"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:34 latex.lang:36
-msgid "Math Mode"
-msgstr "Modo matemático"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:35
-msgid "Inline Math Mode"
-msgstr "Modo matemático embutido"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:37
-msgid "Math Boundary"
-msgstr "Limite matemático"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:38 texinfo.lang:41
-msgid "Include"
-msgstr "Incluir"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:41 sweave.lang:34 t2t.lang:44
-msgid "Verbatim"
-msgstr "Verbatim"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:42
-msgid "Special Character"
-msgstr "Caráter especial"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:43
-msgid "Part Heading"
-msgstr "Título de parte"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:44
-msgid "Chapter Heading"
-msgstr "Título de capítulo"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:45
-msgid "Section Heading"
-msgstr "Título de secção"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:46
-msgid "SubSection Heading"
-msgstr "Título de sub-secção"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:47
-msgid "SubSubSection Heading"
-msgstr "Título de sub-sub-secção"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:48
-msgid "Paragraph Heading"
-msgstr "Título de parágrafo"
-
-#. (itstool) path: styles/style@_name
-#: latex.lang:49
-msgid "SubParagraph Heading"
-msgstr "Título de sub-parágrafo"
-
-#. (itstool) path: lex.lang/language@_name
-#: lex.lang:25
-msgid "Lex"
-msgstr "Lex"
-
-#. (itstool) path: styles/style@_name
-#: lex.lang:34
-msgid "Token"
-msgstr "Símbolo"
-
-#. (itstool) path: styles/style@_name
-#: lex.lang:37
-msgid "Expression"
-msgstr "Expressão"
-
-#. (itstool) path: libtool.lang/language@_name
-#: libtool.lang:24
-msgid "libtool"
-msgstr "libtool"
-
 #. (itstool) path: llvm.lang/language@_name
-#: llvm.lang:23
+#: llvm.lang:22
 msgid "LLVM IR"
 msgstr "LLVM IR"
 
-#. (itstool) path: styles/style@_name
-#: llvm.lang:34
-msgid "Constants"
-msgstr "Constantes"
-
-#. (itstool) path: lua.lang/language@_name
-#: lua.lang:24
-msgid "Lua"
-msgstr "Lua"
-
-#. (itstool) path: styles/style@_name
-#: lua.lang:38
-msgid "Reserved Identifier"
-msgstr "Identificador reservado"
-
-#. (itstool) path: styles/style@_name
-#: lua.lang:39 markdown.lang:42
-msgid "Label"
-msgstr "Etiqueta"
-
-#. (itstool) path: styles/style@_name
-#: lua.lang:41 ruby.lang:40
-msgid "Nil Constant"
-msgstr "Constante nula"
-
-#. (itstool) path: m4.lang/language@_name
-#: m4.lang:24
-msgid "m4"
-msgstr "m4"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:32
-msgid "m4 Comment"
-msgstr "Comentário m4"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:33
-msgid "m4 Macro"
-msgstr "Macro m4"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:34
-msgid "Autoconf Macro"
-msgstr "Macro Autoconf"
-
-#. (itstool) path: styles/style@_name
-#: m4.lang:35
-msgid "Obsolete Autoconf Macro"
-msgstr "Macro Autoconf obsoleta"
-
-#. (itstool) path: makefile.lang/language@_name
-#: makefile.lang:23
-msgid "Makefile"
-msgstr "Makefile"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:32
-msgid "Assignment Right Hand Side"
-msgstr "Lado direito da atribuição"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:33
-msgid "Assignment Left Hand Side"
-msgstr "Lado esquerdo da atribuição"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:34
-msgid "targets"
-msgstr "alvos"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:35
-msgid "prereq"
-msgstr "prereq"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:36
-msgid "command"
-msgstr "comando"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:39
-msgid "Trailing Tab"
-msgstr "Tabuladores no final das linhas"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:40
-msgid "function"
-msgstr "função"
-
-#. (itstool) path: styles/style@_name
-#: makefile.lang:41 yacc.lang:35
-msgid "keyword"
-msgstr "palavra chave"
-
-#. (itstool) path: mallard.lang/language@_name
-#: mallard.lang:23
-msgid "Mallard"
-msgstr "Mallard"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:32
-msgid "Page Elements"
-msgstr "Elementos de página"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:33
-msgid "Section Elements"
-msgstr "Elementos de secção"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:34
-msgid "Block Elements"
-msgstr "Elementos de bloco"
-
-#. (itstool) path: styles/style@_name
-#: mallard.lang:35
-msgid "Inline Elements"
-msgstr "Elementos embutidos"
-
-#. (itstool) path: markdown.lang/language@_name
-#: markdown.lang:26
-msgid "Markdown"
-msgstr "Marcar abaixo"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:35 rpmspec.lang:33 rst.lang:31 t2t.lang:34
-msgid "Header"
-msgstr "Cabeçalho"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:36
-msgid "Horizontal Rule"
-msgstr "Régua horizontal"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:37
-msgid "List Marker"
-msgstr "Marcador de lista"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:38 rst.lang:39
-msgid "Code"
-msgstr "Código"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:39
-msgid "Blockquote Marker"
-msgstr "Marcador de bloco de citação"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:41
-msgid "Link Text"
-msgstr "Texto de ligação"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:44
-msgid "Image Marker"
-msgstr "Marcador de imagem"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:46 mediawiki.lang:30 rst.lang:33
-msgid "Strong Emphasis"
-msgstr "Ênfase negrito"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:47
-msgid "Backslash Escape"
-msgstr "Escape de barra esquerda"
-
-#. (itstool) path: styles/style@_name
-#: markdown.lang:48
-msgid "Line Break"
-msgstr "Quebra de linha"
-
-#. (itstool) path: matlab.lang/language@_name
-#: matlab.lang:26
-msgid "Matlab"
-msgstr "Matlab"
-
-#. (itstool) path: mediawiki.lang/language@_name
-#: mediawiki.lang:23
-msgid "MediaWiki"
-msgstr "MediaWiki"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:31
-msgid "Light Emphasis"
-msgstr "Ênfase ligeiro"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:32
-msgid "Signature"
-msgstr "Assinatura"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:34 rst.lang:37
-msgid "Link"
-msgstr "Ligação"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:35
-msgid "Symbol on a Link"
-msgstr "Símbolo numa ligação"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:36
-msgid "Line"
-msgstr "Linha"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:37
-msgid "List"
-msgstr "Lista"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:38
-msgid "Magic Word"
-msgstr "Palavra mágica"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:39
-msgid "Symbol of a Table"
-msgstr "Símbolo de uma tabela"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:40
-msgid "Preformatted"
-msgstr "Pré-formatado"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:41
-msgid "Redirect"
-msgstr "Redirecionar"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:42
-msgid "Title"
-msgstr "Título"
-
-#. (itstool) path: styles/style@_name
-#: mediawiki.lang:43
-msgid "Template"
-msgstr "Modelo"
-
-#. (itstool) path: meson.lang/language@_name
-#: meson.lang:24
-msgid "Meson"
-msgstr "Meson"
-
-#. (itstool) path: modelica.lang/language@_name
-#: modelica.lang:26
-msgid "Modelica"
-msgstr "Modelica"
-
-#. (itstool) path: styles/style@_name
-#: modelica.lang:39
-msgid "Class type"
-msgstr "Tipo de classe"
-
-#. (itstool) path: styles/style@_name
-#: modelica.lang:41
-msgid "Default Attribute"
-msgstr "Atributo predefinido"
-
-#. (itstool) path: mxml.lang/language@_name
-#: mxml.lang:24
-msgid "MXML"
-msgstr "MXML"
-
-#. (itstool) path: styles/style@_name
-#: mxml.lang:33 xml.lang:37
-msgid "CDATA delimiter"
-msgstr "Delimitador CDATA"
-
-#. (itstool) path: nemerle.lang/language@_name
-#: nemerle.lang:24
-msgid "Nemerle"
-msgstr "Nemerle"
-
-#. (itstool) path: netrexx.lang/language@_name
-#: netrexx.lang:24
-msgid "NetRexx"
-msgstr "NetRexx"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:39
-msgid "Externals"
-msgstr "Externos"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:40
-msgid "Options"
-msgstr "Opções"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:41
-msgid "Data Types"
-msgstr "Tipos de dados"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:42
-msgid "Special"
-msgstr "Especial"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:43
-msgid "Visibility"
-msgstr "Visibilidade"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:44
-msgid "Modifiers"
-msgstr "Modificadores"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:45
-msgid "Keywords"
-msgstr "Palavras chave"
-
-#. (itstool) path: styles/style@_name
-#: netrexx.lang:46
-msgid "Sub Keywords"
-msgstr "Subpalavras chave"
-
-#. (itstool) path: nsis.lang/language@_name
-#: nsis.lang:24
-msgid "NSIS"
-msgstr "NSIS"
-
-#. (itstool) path: objc.lang/language@_name
-#: objc.lang:24
-msgid "Objective-C"
-msgstr "Objective-C"
-
-#. (itstool) path: objj.lang/language@_name
-#: objj.lang:26
-msgid "Objective-J"
-msgstr "Objective-J"
-
-#. (itstool) path: ocaml.lang/language@_name
-#: ocaml.lang:27
-msgid "OCaml"
-msgstr "OCaml"
-
-#. (itstool) path: styles/style@_name
-#: ocaml.lang:37
-msgid "Ocamldoc Comments"
-msgstr "Comentário de Ocamldoc"
-
-#. (itstool) path: styles/style@_name
-#: ocaml.lang:54
-msgid "Standard Modules"
-msgstr "Módulos padrão"
-
-#. (itstool) path: ocl.lang/language@_name
-#: ocl.lang:33
-msgid "OCL"
-msgstr "OCL"
-
-#. (itstool) path: styles/style@_name
-#: ocl.lang:44
-msgid "Type Operators"
-msgstr "Operadores de tipo"
-
-#. (itstool) path: styles/style@_name
-#: ocl.lang:46
-msgid "Operation operator"
-msgstr "Operador da operação"
-
-#. (itstool) path: octave.lang/language@_name
-#: octave.lang:26
-msgid "Octave"
-msgstr "Octave"
-
-# 48x48/emblems/emblem-package.icon.in.h:1
-# 48x48/emblems/emblem-package.icon.in.h:1
-#. (itstool) path: styles/style@_name
-#: octave.lang:47
-msgid "Package Manager"
-msgstr "Gestor de pacotes"
-
-#. (itstool) path: ooc.lang/language@_name
-#: ooc.lang:24
-msgid "OOC"
-msgstr "OOC"
-
-#. (itstool) path: opal.lang/language@_name
-#: opal.lang:24
-msgid "Opal"
-msgstr "Opal"
-
-#. (itstool) path: styles/style@_name
-#: opal.lang:33 python3.lang:31 python.lang:36
-msgid "Module Handler"
-msgstr "Manipulador de módulo"
-
-#. (itstool) path: styles/style@_name
-#: opal.lang:42
-msgid "Keysymbol"
-msgstr "Símbolo chave"
-
-#. (itstool) path: opencl.lang/language@_name
-#: opencl.lang:24
-msgid "OpenCL"
-msgstr "OpenCL"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:35
-msgid "Global Function"
-msgstr "Função global"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:36
-msgid "Device Function"
-msgstr "Função de dispositivo"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:37
-msgid "Device Cast"
-msgstr "Emissão de dispositivo"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:38
-msgid "OpenCL Constant"
-msgstr "Constante OpenCL"
-
-#. (itstool) path: styles/style@_name
-#: opencl.lang:39
-msgid "Global Variable"
-msgstr "Variável global"
-
-#. (itstool) path: pascal.lang/language@_name
-#: pascal.lang:25
-msgid "Pascal"
-msgstr "Pascal"
-
-#. (itstool) path: perl.lang/language@_name
-#: perl.lang:26
-msgid "Perl"
-msgstr "Perl"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:35
-msgid "Line Directive"
-msgstr "Diretiva de linha"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:36
-msgid "Include Statement"
-msgstr "Comando de inclusão"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:40 php.lang:46 ruby.lang:55
-msgid "Heredoc"
-msgstr "Heredoc"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:41 php.lang:47 ruby.lang:56 sh.lang:41
-msgid "Heredoc Bound"
-msgstr "Limite de Heredoc"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:42
-msgid "System Command"
-msgstr "Comando de sistema"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:45
-msgid "File Descriptor"
-msgstr "Descritor de ficheiro"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:49
-msgid "POD"
-msgstr "POD"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:50
-msgid "POD Escape"
-msgstr "Escape POD"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:51
-msgid "POD keyword"
-msgstr "Palavra chave POD"
-
-#. (itstool) path: styles/style@_name
-#: perl.lang:52
-msgid "POD heading"
-msgstr "Cabeçalho POD"
-
-#. (itstool) path: php.lang/language@_name
-#: php.lang:29
-msgid "PHP"
-msgstr "PHP"
-
-#. (itstool) path: styles/style@_name
-#: php.lang:39
-msgid "Preprocessor tags"
-msgstr "Etiquetas do pré-processador"
-
-#. (itstool) path: styles/style@_name
-#: php.lang:49
-msgid "Common Function"
-msgstr "Função comum"
-
-#. (itstool) path: pig.lang/language@_name
-#: pig.lang:27
-msgid "Pig"
-msgstr "Pig"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:37
-msgid "Reserved Words"
-msgstr "Palavras reservadas"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:38
-msgid "Built In Functions"
-msgstr "Funções internas"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:39
-msgid "Boolean values"
-msgstr "Valores lógicos"
-
-#. (itstool) path: styles/style@_name
-#: pig.lang:40 yaml.lang:38
-msgid "Null"
-msgstr "Nulo"
-
-#. (itstool) path: pkgconfig.lang/language@_name
-#: pkgconfig.lang:24
-msgid "pkg-config"
-msgstr "pkg-config"
-
-# 48x48/emblems/emblem-package.icon.in.h:1
-# 48x48/emblems/emblem-package.icon.in.h:1
-#. (itstool) path: styles/style@_name
-#: pkgconfig.lang:32
-msgid "Package Info"
-msgstr "Informação do pacote"
-
 #. (itstool) path: po.lang/language@_name
-#: po.lang:24
+#: po.lang:23
 msgid "gettext translation"
 msgstr "Tradução gettext"
-
-#. (itstool) path: styles/style@_name
-#: po.lang:35
-msgid "Fuzzy"
-msgstr "Aproximada"
-
-#. (itstool) path: prolog.lang/language@_name
-#: prolog.lang:24
-msgid "Prolog"
-msgstr "Prolog"
-
-#. (itstool) path: puppet.lang/language@_name
-#: puppet.lang:24
-msgid "Puppet"
-msgstr "Puppet"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:31
-msgid "Resources"
-msgstr "Recursos"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:32
-msgid "Parameters"
-msgstr "Parâmetros"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:33
-msgid "Metaparameters"
-msgstr "Metaparâmetros"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:34 R.lang:42
-msgid "Functions"
-msgstr "Funções"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:35
-msgid "Values"
-msgstr "Valores"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:36
-msgid "Variables"
-msgstr "Variáveis"
-
-#. (itstool) path: styles/style@_name
-#: puppet.lang:37
-msgid "Class names"
-msgstr "Nomes de classes"
-
-#. (itstool) path: python3.lang/language@_name
-#: python3.lang:24
-msgid "Python 3"
-msgstr "Python 3"
-
-#. (itstool) path: styles/style@_name
-#: python3.lang:36 python.lang:41
-msgid "Format"
-msgstr "Formato"
-
-#. (itstool) path: styles/style@_name
-#: python3.lang:44 python.lang:50
-msgid "Builtin Object"
-msgstr "Objeto embutido"
-
-#. (itstool) path: python.lang/language@_name
-#: python.lang:28
-msgid "Python"
-msgstr "Python"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:42
-msgid "String Conversion"
-msgstr "Conversão de cadeia"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:53
-msgid "Class Name"
-msgstr "Nome de classe"
-
-#. (itstool) path: styles/style@_name
-#: python.lang:54
-msgid "Decorator"
-msgstr "Decoração"
-
-#. (itstool) path: R.lang/language@_name
-#: R.lang:26
-msgid "R"
-msgstr "R"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:35
-msgid "Reserved Class"
-msgstr "Classe reservada"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:36
-msgid "Assignment Operator"
-msgstr "Operador de atribuição"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:37
-msgid "Delimiter"
-msgstr "Delimitador"
-
-#. (itstool) path: styles/style@_name
-#: R.lang:40 verilog.lang:47
-msgid "Integer Number"
-msgstr "Número inteiro"
 
 #. (itstool) path: rpmspec.lang/language@_name
 #: rpmspec.lang:24
 msgid "RPM spec"
 msgstr "Especificação RPM"
 
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:32
-msgid "Define"
-msgstr "Definição"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:34 t2t.lang:35
-msgid "Section"
-msgstr "Secção"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:35
-msgid "Spec Macro"
-msgstr "Especificação de macros"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:36
-msgid "Directory Macro"
-msgstr "Macro de pasta"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:37
-msgid "Command Macro"
-msgstr "Macro de comando"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:38
-msgid "Conditional Macro"
-msgstr "Macro condicional"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:39
-msgid "Other Macro"
-msgstr "Outra macro"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:40
-msgid "Flow Conditional"
-msgstr "Fluxo condicional"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:41
-msgid "RPM Variable"
-msgstr "Variável RPM"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:42
-msgid "Switch"
-msgstr "Trocar"
-
-#. (itstool) path: styles/style@_name
-#: rpmspec.lang:44
-msgid "Email"
-msgstr "Email"
-
-#. (itstool) path: rst.lang/language@_name
-#: rst.lang:23
-msgid "reStructuredText"
-msgstr "reStructuredText"
-
-#. (itstool) path: styles/style@_name
-#: rst.lang:35 yaml.lang:37
-msgid "Directive"
-msgstr "Diretiva"
-
-#. (itstool) path: ruby.lang/language@_name
-#: ruby.lang:27
-msgid "Ruby"
-msgstr "Ruby"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:37
-msgid "Attribute Definition"
-msgstr "Definição de atributo"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:38
-msgid "Module handler"
-msgstr "Gestor de módulo"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:45
-msgid "Numeric literal"
-msgstr "Literal numérico"
-
-#. (itstool) path: styles/style@_name
-#: ruby.lang:47 sparql.lang:40
-msgid "Literal"
-msgstr "Literal"
-
-#. (itstool) path: rust.lang/language@_name
-#: rust.lang:36
-msgid "Rust"
-msgstr "Ferrugem"
-
-#. (itstool) path: styles/style@_name
-#: rust.lang:53
-msgid "Scope"
-msgstr "Âmbito"
-
-#. (itstool) path: scala.lang/language@_name
-#: scala.lang:25
-msgid "Scala"
-msgstr "Scala"
-
-#. (itstool) path: styles/style@_name
-#: scala.lang:42
-msgid "Modifier"
-msgstr "Modificador"
-
-#. (itstool) path: styles/style@_name
-#: scala.lang:48
-msgid "Built In"
-msgstr "Interno"
-
-#. (itstool) path: styles/style@_name
-#: scala.lang:50
-msgid "XML Tag"
-msgstr "Etiqueta XML"
-
-#. (itstool) path: scheme.lang/language@_name
-#: scheme.lang:24
-msgid "Scheme"
-msgstr "Scheme"
-
-#. (itstool) path: scilab.lang/language@_name
-#: scilab.lang:24
-msgid "Scilab"
-msgstr "Scilab"
-
-#. (itstool) path: sh.lang/language@_name
-#: sh.lang:25
-msgid "sh"
-msgstr "sh"
-
-#. (itstool) path: styles/style@_name
-#: sh.lang:38
-msgid "Variable Definition"
-msgstr "Definição de variável"
-
-#. (itstool) path: styles/style@_name
-#. *
-#. * SECTION:language
-#. * @Short_description: Represents a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
-#. *
-#. * #GtkSourceLanguage encapsulates syntax and highlighting styles for a
-#. * particular language. Use #GtkSourceLanguageManager to obtain a
-#. * #GtkSourceLanguage instance, and gtk_source_buffer_set_language() to apply it
-#. * to a #GtkSourceBuffer.
-#.
-#: sh.lang:39 texinfo.lang:35 gtksourceview/gtksourcelanguage.c:55
-msgid "Others"
-msgstr "Outros"
-
-#. (itstool) path: styles/style@_name
-#: sh.lang:40
-msgid "Common Commands"
-msgstr "Comandos comuns"
-
-#. (itstool) path: styles/style@_name
-#: sh.lang:42
-msgid "Subshell"
-msgstr "Subterminal"
-
-#. (itstool) path: sml.lang/language@_name
-#: sml.lang:24
-msgid "Standard ML"
-msgstr "ML padrão"
-
-#. (itstool) path: styles/style@_name
-#: sml.lang:42
-msgid "Module name, Variant, etc"
-msgstr "Nome de módulo, variante, etc"
-
-#. (itstool) path: sparql.lang/language@_name
-#: sparql.lang:24
-msgid "SPARQL"
-msgstr "SPARQL"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:33
-msgid "Class"
-msgstr "Classe"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:36
-msgid "Individual"
-msgstr "Indivíduo"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:41
-msgid "Predicate"
-msgstr "Predicado"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:42
-msgid "QName"
-msgstr "QName"
-
-#. (itstool) path: styles/style@_name
-#: sparql.lang:43
-msgid "IRI"
-msgstr "IRI"
-
-#. (itstool) path: sql.lang/language@_name
-#: sql.lang:24
-msgid "SQL"
-msgstr "SQL"
-
-#. (itstool) path: styles/style@_name
-#: sql.lang:39
-msgid "No idea what it is"
-msgstr "Sem ideia do que seja"
-
-#. (itstool) path: sweave.lang/language@_name
-#: sweave.lang:25
-msgid "Sweave"
-msgstr "Sweave"
-
-#. (itstool) path: systemverilog.lang/language@_name
-#: systemverilog.lang:22
-msgid "SystemVerilog"
-msgstr "SystemVerilog"
-
-#. (itstool) path: t2t.lang/language@_name
-#: t2t.lang:24
-msgid "txt2tags"
-msgstr "txt2tags"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:32
-msgid "Option"
-msgstr "Opção"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:33
-msgid "Option Name"
-msgstr "Nome da opção"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:36
-msgid "Section 1"
-msgstr "Secção 1"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:37
-msgid "Section 2"
-msgstr "Secção 2"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:38
-msgid "Section 3"
-msgstr "Secção 3"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:39
-msgid "Section 4"
-msgstr "Secção 4"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:40
-msgid "Section 5"
-msgstr "Secção 5"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:42
-msgid "Italic"
-msgstr "Itálico"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:43
-msgid "Bold"
-msgstr "Negrito"
-
-#. (itstool) path: styles/style@_name
-#: t2t.lang:45
-msgid "Verbatim Block"
-msgstr "Bloco verbatim"
-
-#. (itstool) path: tcl.lang/language@_name
-#: tcl.lang:24
-msgid "Tcl"
-msgstr "Tcl"
-
-#. (itstool) path: texinfo.lang/language@_name
-#: texinfo.lang:25
-msgid "Texinfo"
-msgstr "Texinfo"
-
-#. (itstool) path: styles/style@_name
-#: texinfo.lang:38
-msgid "Macros"
-msgstr "Macros"
-
-#. (itstool) path: styles/style@_name
-#: texinfo.lang:39
-msgid "File Attributes"
-msgstr "Atributos de ficheiro"
-
-#. (itstool) path: styles/style@_name
-#: texinfo.lang:40
-msgid "Generated Content"
-msgstr "Conteúdo gerado"
-
-#. (itstool) path: thrift.lang/language@_name
-#: thrift.lang:21
-msgid "Thrift"
-msgstr "Thrift"
-
-#. (itstool) path: vala.lang/language@_name
-#: vala.lang:28
-msgid "Vala"
-msgstr "Vala"
-
-#. (itstool) path: vbnet.lang/language@_name
-#: vbnet.lang:24
-msgid "VB.NET"
-msgstr "VB.NET"
-
-#. (itstool) path: verilog.lang/language@_name
-#: verilog.lang:24
-msgid "Verilog"
-msgstr "Verilog"
-
-#. (itstool) path: styles/style@_name
-#: verilog.lang:40
-msgid "IEEE System Task"
-msgstr "Tarefa de sistema IEEE"
-
-#. (itstool) path: styles/style@_name
-#: verilog.lang:41
-msgid "LRM Additional System Task"
-msgstr "Tarefa de sistema adicional LRM"
-
-#. (itstool) path: styles/style@_name
-#: verilog.lang:43
-msgid "Gate"
-msgstr "Portão"
-
-#. (itstool) path: vhdl.lang/language@_name
-#: vhdl.lang:24
-msgid "VHDL"
-msgstr "VHDL"
-
-#. (itstool) path: xml.lang/language@_name
-#: xml.lang:26
-msgid "XML"
-msgstr "XML"
-
-#. (itstool) path: xslt.lang/language@_name
-#: xslt.lang:24
-msgid "XSLT"
-msgstr "XSLT"
-
-#. (itstool) path: styles/style@_name
-#: xslt.lang:33
-msgid "Element"
-msgstr "Elemento"
-
-#. (itstool) path: yacc.lang/language@_name
-#: yacc.lang:24
-msgid "Yacc"
-msgstr "Yacc"
-
-#. (itstool) path: styles/style@_name
-#: yacc.lang:36
-msgid "token type"
-msgstr "tipo de bloco"
-
-#. (itstool) path: styles/style@_name
-#: yacc.lang:37
-msgid "rule"
-msgstr "regra"
-
-#. (itstool) path: yaml.lang/language@_name
-#: yaml.lang:22
-msgid "YAML"
-msgstr "YAML"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:30
-msgid "Block literal"
-msgstr "Literal de bloco"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:35
-msgid "Alias"
-msgstr "Aliás"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:36
-msgid "Map key"
-msgstr "Chave de mapa"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:40
-msgid "Integer"
-msgstr "Inteiro"
-
-#. (itstool) path: styles/style@_name
-#: yaml.lang:41
-msgid "Floating point"
-msgstr "Vírgula flutuante"
+#. (itstool) path: tera.lang/language@_name
+#: tera.lang:23
+msgid "Tera Template"
+msgstr "Modelo Tera"
 
 #. (itstool) path: classic.xml/style-scheme@_name
-#: classic.xml:24
+#: classic.xml:23
 msgid "Classic"
 msgstr "Clássico"
 
 #. (itstool) path: style-scheme/_description
-#: classic.xml:26
+#: classic.xml:25
 msgid "Classic color scheme"
 msgstr "Esquema de cor clássico"
 
 #. (itstool) path: cobalt.xml/style-scheme@_name
-#: cobalt.xml:26
+#: cobalt.xml:25
 msgid "Cobalt"
 msgstr "Cobalt"
 
 #. (itstool) path: style-scheme/_description
-#: cobalt.xml:28
+#: cobalt.xml:27
 msgid "Blue based color scheme"
 msgstr "Esquema de cores baseado em azul"
 
-#. (itstool) path: kate.xml/style-scheme@_name
-#: kate.xml:24
-msgid "Kate"
-msgstr "Kate"
-
 #. (itstool) path: style-scheme/_description
-#: kate.xml:26
+#: kate.xml:25
 msgid "Color scheme used in the Kate text editor"
 msgstr "A cor de esquema utilizada no editor de texto Kate"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:25
+#: oblivion.xml:24
 msgid "Oblivion"
 msgstr "Oblivion"
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:28
+#: oblivion.xml:27
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Esquema de cores escuras utilizando a paleta de cores Tango"
 
 #. (itstool) path: solarized-dark.xml/style-scheme@_name
-#: solarized-dark.xml:24
+#: solarized-dark.xml:23
 msgid "Solarized Dark"
 msgstr "Escuro ensolarado"
 
 #. (itstool) path: style-scheme/_description
-#: solarized-dark.xml:26
+#: solarized-dark.xml:25
 msgid "Color scheme using Solarized dark color palette"
 msgstr "Esquema de cores utilizando a paleta de cores Escuro ensolarado"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
-#: solarized-light.xml:24
+#: solarized-light.xml:23
 msgid "Solarized Light"
 msgstr "Luminoso ensolarado"
 
 #. (itstool) path: style-scheme/_description
-#: solarized-light.xml:26
+#: solarized-light.xml:25
 msgid "Color scheme using Solarized light color palette"
 msgstr "Esquema de cores utilizando a paleta de cores Luminoso ensolarado"
 
 #. (itstool) path: tango.xml/style-scheme@_name
-#: tango.xml:24
+#: tango.xml:23
 msgid "Tango"
 msgstr "Tango"
 
 #. (itstool) path: style-scheme/_description
-#: tango.xml:26
+#: tango.xml:25
 msgid "Color scheme using Tango color palette"
 msgstr "Esquema de cores utilizando a paleta de cores Tango"
 
@@ -3099,45 +373,51 @@ msgstr "Erro durante a conversão: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:929
 #, c-format
-msgid "Conversion from character set '%s' to 'UTF-8' is not supported"
-msgstr ""
-"Conversão do conjunto de caracteres \"%s\" para \"UTF-8\" não é suportada"
+msgid "Conversion from character set “%s” to “UTF-8” is not supported"
+msgstr "Conversão do conjunto de caracteres “%s” para “UTF-8” não é suportada"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:935
 #, c-format
-msgid "Could not open converter from '%s' to 'UTF-8'"
-msgstr "Impossível abrir o conversor de \"%s\" para \"UTF-8\""
+msgid "Could not open converter from “%s” to “UTF-8”"
+msgstr "Impossível abrir o conversor de “%s” para “UTF-8”"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:990
+#: gtksourceview/gtksourcebufferoutputstream.c:995
 msgid "Invalid object, not initialized"
 msgstr "Objeto inválido, não inicializado"
 
-#: gtksourceview/gtksourcebufferoutputstream.c:1182
+#: gtksourceview/gtksourcebufferoutputstream.c:1187
+#, c-format
 msgid "Incomplete UTF-8 sequence in input"
 msgstr "Sequência UTF-8 incompleta na entrada"
 
+#. Translators: "All" is used as a label in the status bar of the
+#. popup, telling that all completion pages are shown.
+#: gtksourceview/gtksourcecompletion.c:838
+msgid "All"
+msgstr "Todas"
+
 #. Tooltip style
-#: gtksourceview/gtksourcecompletioninfo.c:272
+#: gtksourceview/gtksourcecompletioninfo.c:262
 msgid "Completion Info"
 msgstr "Informação de conclusão"
 
-#: gtksourceview/gtksourcecompletionmodel.c:495
+#: gtksourceview/gtksourcecompletionmodel.c:494
 msgid "Provider"
 msgstr "Fornecedor"
 
-#: gtksourceview/gtksourcecompletion.ui:87
+#: gtksourceview/gtksourcecompletion.ui:86
 msgid "Show detailed proposal information"
 msgstr "Mostrar informação detalhada de propostas"
 
-#: gtksourceview/gtksourcecompletion.ui:89
-msgid "_Details..."
-msgstr "_Detalhes..."
+#: gtksourceview/gtksourcecompletion.ui:88
+msgid "_Details…"
+msgstr "_Detalhes…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
 #. * too long. In this case fixing lang file helps (e.g. renaming
 #. * subpatterns, making huge keywords use bigger prefixes, etc.)
-#: gtksourceview/gtksourcecontextengine.c:3145
+#: gtksourceview/gtksourcecontextengine.c:3140
 #, c-format
 msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
@@ -3148,7 +428,7 @@ msgstr ""
 "de realce de sintaxe será mais lento que o normal.\n"
 "O erro foi: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4468
+#: gtksourceview/gtksourcecontextengine.c:4472
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -3156,156 +436,156 @@ msgstr ""
 "Realçar uma única linha demorou demasiado tempo, o realce de sintaxe será "
 "desativado"
 
-#: gtksourceview/gtksourcecontextengine.c:5716
+#: gtksourceview/gtksourcecontextengine.c:5722
 #, c-format
-msgid "context '%s' cannot contain a \\%%{...@start} command"
-msgstr "contexto \"%s\" não pode conter um comando \\%%{...@start}"
+msgid "context “%s” cannot contain a \\%%{...@start} command"
+msgstr "contexto “%s” não pode conter um comando \\%%{...@start}"
 
-#: gtksourceview/gtksourcecontextengine.c:5879
-#: gtksourceview/gtksourcecontextengine.c:5970
+#: gtksourceview/gtksourcecontextengine.c:5885
+#: gtksourceview/gtksourcecontextengine.c:5975
 #, c-format
-msgid "duplicated context id '%s'"
-msgstr "id \"%s\" de contexto duplicado"
+msgid "duplicated context id “%s”"
+msgstr "id “%s” de contexto duplicado"
 
-#: gtksourceview/gtksourcecontextengine.c:6084
-#: gtksourceview/gtksourcecontextengine.c:6144
+#: gtksourceview/gtksourcecontextengine.c:6089
+#: gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
 msgid ""
-"style override used with wildcard context reference in language '%s' in ref "
-"'%s'"
+"style override used with wildcard context reference in language “%s” in ref "
+"“%s”"
 msgstr ""
 "sobreposição de estilo utilizada com caracteres globais de referência de "
-"contexto na linguagem \"%s\" na referência \"%s\""
+"contexto na linguagem “%s” na referência \"%s\""
 
-#: gtksourceview/gtksourcecontextengine.c:6158
+#: gtksourceview/gtksourcecontextengine.c:6163
 #, c-format
-msgid "invalid context reference '%s'"
-msgstr "referência de contexto \"%s\" inválida"
+msgid "invalid context reference “%s”"
+msgstr "referência de contexto “%s” inválida"
 
-#: gtksourceview/gtksourcecontextengine.c:6177
-#: gtksourceview/gtksourcecontextengine.c:6187
+#: gtksourceview/gtksourcecontextengine.c:6182
+#: gtksourceview/gtksourcecontextengine.c:6192
 #, c-format
-msgid "unknown context '%s'"
-msgstr "contexto \"%s\" desconhecido"
+msgid "unknown context “%s”"
+msgstr "contexto “%s” desconhecido"
 
-#: gtksourceview/gtksourcecontextengine.c:6286
+#: gtksourceview/gtksourcecontextengine.c:6291
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "Definição principal de linguagem não encontrada (id = \"%s\".)"
 
-#: gtksourceview/gtksourceencoding.c:141 gtksourceview/gtksourceencoding.c:184
-#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
-#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
-#: gtksourceview/gtksourceencoding.c:194 gtksourceview/gtksourceencoding.c:196
+#: gtksourceview/gtksourceencoding.c:146 gtksourceview/gtksourceencoding.c:189
+#: gtksourceview/gtksourceencoding.c:191 gtksourceview/gtksourceencoding.c:193
+#: gtksourceview/gtksourceencoding.c:195 gtksourceview/gtksourceencoding.c:197
+#: gtksourceview/gtksourceencoding.c:199 gtksourceview/gtksourceencoding.c:201
 msgid "Unicode"
 msgstr "Unicode"
 
-#: gtksourceview/gtksourceencoding.c:155 gtksourceview/gtksourceencoding.c:179
-#: gtksourceview/gtksourceencoding.c:229 gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:234 gtksourceview/gtksourceencoding.c:277
 msgid "Western"
 msgstr "Ocidental"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:231
-#: gtksourceview/gtksourceencoding.c:268
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:236
+#: gtksourceview/gtksourceencoding.c:273
 msgid "Central European"
 msgstr "Europeu Central"
 
-#: gtksourceview/gtksourceencoding.c:159
+#: gtksourceview/gtksourceencoding.c:164
 msgid "South European"
 msgstr "Europeu do Sul"
 
-#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:175
-#: gtksourceview/gtksourceencoding.c:282
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:287
 msgid "Baltic"
 msgstr "Báltico"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:233
-#: gtksourceview/gtksourceencoding.c:246 gtksourceview/gtksourceencoding.c:250
-#: gtksourceview/gtksourceencoding.c:252 gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:168 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:255
+#: gtksourceview/gtksourceencoding.c:257 gtksourceview/gtksourceencoding.c:275
 msgid "Cyrillic"
 msgstr "Cirílico"
 
-#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:239
-#: gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:244
+#: gtksourceview/gtksourceencoding.c:285
 msgid "Arabic"
 msgstr "Arábico"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:172 gtksourceview/gtksourceencoding.c:279
 msgid "Greek"
 msgstr "Grego"
 
-#: gtksourceview/gtksourceencoding.c:169
+#: gtksourceview/gtksourceencoding.c:174
 msgid "Hebrew Visual"
 msgstr "Hebreu visual"
 
-#: gtksourceview/gtksourceencoding.c:171 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:176 gtksourceview/gtksourceencoding.c:240
+#: gtksourceview/gtksourceencoding.c:281
 msgid "Turkish"
 msgstr "Turco"
 
-#: gtksourceview/gtksourceencoding.c:173
+#: gtksourceview/gtksourceencoding.c:178
 msgid "Nordic"
 msgstr "Nórdico"
 
-#: gtksourceview/gtksourceencoding.c:177
+#: gtksourceview/gtksourceencoding.c:182
 msgid "Celtic"
 msgstr "Celta"
 
-#: gtksourceview/gtksourceencoding.c:181
+#: gtksourceview/gtksourceencoding.c:186
 msgid "Romanian"
 msgstr "Romeno"
 
-#: gtksourceview/gtksourceencoding.c:199
+#: gtksourceview/gtksourceencoding.c:204
 msgid "Armenian"
 msgstr "Arménio"
 
-#: gtksourceview/gtksourceencoding.c:201 gtksourceview/gtksourceencoding.c:203
-#: gtksourceview/gtksourceencoding.c:217
+#: gtksourceview/gtksourceencoding.c:206 gtksourceview/gtksourceencoding.c:208
+#: gtksourceview/gtksourceencoding.c:222
 msgid "Chinese Traditional"
 msgstr "Chinês tradicional"
 
-#: gtksourceview/gtksourceencoding.c:205
+#: gtksourceview/gtksourceencoding.c:210
 msgid "Cyrillic/Russian"
 msgstr "Cirílico/Russo"
 
-#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:210
-#: gtksourceview/gtksourceencoding.c:212 gtksourceview/gtksourceencoding.c:242
-#: gtksourceview/gtksourceencoding.c:257
+#: gtksourceview/gtksourceencoding.c:213 gtksourceview/gtksourceencoding.c:215
+#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:247
+#: gtksourceview/gtksourceencoding.c:262
 msgid "Japanese"
 msgstr "Japonês"
 
-#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:244
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:249
+#: gtksourceview/gtksourceencoding.c:253 gtksourceview/gtksourceencoding.c:268
 msgid "Korean"
 msgstr "Coreano"
 
-#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:222
-#: gtksourceview/gtksourceencoding.c:224
+#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:227
+#: gtksourceview/gtksourceencoding.c:229
 msgid "Chinese Simplified"
 msgstr "Chinês simplificado"
 
-#: gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:231
 msgid "Georgian"
 msgstr "Georgiano"
 
-#: gtksourceview/gtksourceencoding.c:237 gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:283
 msgid "Hebrew"
 msgstr "Hebreu"
 
-#: gtksourceview/gtksourceencoding.c:254
+#: gtksourceview/gtksourceencoding.c:259
 msgid "Cyrillic/Ukrainian"
 msgstr "Cirílico/Ucraniano"
 
-#: gtksourceview/gtksourceencoding.c:259 gtksourceview/gtksourceencoding.c:265
-#: gtksourceview/gtksourceencoding.c:284
+#: gtksourceview/gtksourceencoding.c:264 gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:289
 msgid "Vietnamese"
 msgstr "Vietnamita"
 
-#: gtksourceview/gtksourceencoding.c:261
+#: gtksourceview/gtksourceencoding.c:266
 msgid "Thai"
 msgstr "Tailandês"
 
-#: gtksourceview/gtksourceencoding.c:495
+#: gtksourceview/gtksourceencoding.c:500
 msgid "Unknown"
 msgstr "Desconhecido"
 
@@ -3319,15 +599,15 @@ msgstr "Desconhecido"
 #. * value used by GtkSourceView and it represents the encoding for the
 #. * current locale, so please don't translate the "CURRENT" term.  Only
 #. * recognized encodings are used. See
-#. * https://git.gnome.org/browse/gtksourceview/tree/gtksourceview/gtksourceencoding.c#n147
+#. * https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:639
+#: gtksourceview/gtksourceencoding.c:644
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'ISO-8859-1', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:508
+#: gtksourceview/gtksourcefileloader.c:522
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -3335,34 +615,49 @@ msgstr ""
 "Houve um erro de conversão de codificação de carateres e foi necessario "
 "utilizar um caratere de recurso."
 
-#: gtksourceview/gtksourcefileloader.c:615
+#: gtksourceview/gtksourcefileloader.c:629
 msgid "File too big."
 msgstr "Ficheiro demasiado grande."
 
-#: gtksourceview/gtksourcefileloader.c:769
+#: gtksourceview/gtksourcefileloader.c:783
 msgid "Not a regular file."
 msgstr "Não é um ficheiro regular."
 
-#: gtksourceview/gtksourcefilesaver.c:968
+#: gtksourceview/gtksourcefilesaver.c:981
 msgid "The file is externally modified."
 msgstr "O ficheiro foi modificado externamente."
 
-#: gtksourceview/gtksourcefilesaver.c:1420
+#: gtksourceview/gtksourcefilesaver.c:1433
 msgid "The buffer contains invalid characters."
 msgstr "O buffer contém carateres inválidos."
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:950
-#, c-format
-msgid "Unknown id '%s' in regex '%s'"
-msgstr "id \"%s\" desconhecido na expressão regular \"%s\""
+#. *
+#. * SECTION:language
+#. * @Short_description: Represents a syntax highlighted language
+#. * @Title: GtkSourceLanguage
+#. * @See_also: #GtkSourceLanguageManager
+#. *
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes][context-classes].
+#. *
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
+#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#.
+#: gtksourceview/gtksourcelanguage.c:56
+msgid "Others"
+msgstr "Outros"
 
-#: gtksourceview/gtksourcelanguage-parser-2.c:1180
+#: gtksourceview/gtksourcelanguage-parser-2.c:949
 #, c-format
-msgid "in regex '%s': backreferences are not supported"
-msgstr ""
-"na expressão regular \"%s\": não são suportadas referências retroativas"
+msgid "Unknown id “%s” in regex “%s”"
+msgstr "id “%s” desconhecido na expressão regular “%s”"
 
-#: gtksourceview/gtksourceregex.c:129
+#: gtksourceview/gtksourcelanguage-parser-2.c:1179
+#, c-format
+msgid "in regex “%s”: backreferences are not supported"
+msgstr "na expressão regular “%s”: não são suportadas referências retroativas"
+
+#: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
 msgstr "utilizar \\C não é suportado nas definições de linguagem"
 
@@ -3380,40 +675,1636 @@ msgid "_Select"
 msgstr "_Selecionar"
 
 #. create redo menu_item.
-#: gtksourceview/gtksourceview.c:1565
+#: gtksourceview/gtksourceview.c:1799
 msgid "_Redo"
 msgstr "_Refazer"
 
 #. create undo menu_item.
-#: gtksourceview/gtksourceview.c:1576
+#: gtksourceview/gtksourceview.c:1810
 msgid "_Undo"
 msgstr "_Desfazer"
 
-#: gtksourceview/gtksourceview.c:1595
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Upper Case"
-msgstr "Tudo em _Maiúsculas"
+msgstr "Tudo em maiúsc_ulas"
 
-#: gtksourceview/gtksourceview.c:1605
+#: gtksourceview/gtksourceview.c:1839
 msgid "All _Lower Case"
-msgstr "Tudo em mi_Núsculas"
+msgstr "Tudo em minúscu_las"
 
-#: gtksourceview/gtksourceview.c:1615
+#: gtksourceview/gtksourceview.c:1849
 msgid "_Invert Case"
-msgstr "_iNVERTER lETRAS"
+msgstr "_Inverter Letras"
 
-#: gtksourceview/gtksourceview.c:1625
+#: gtksourceview/gtksourceview.c:1859
 msgid "_Title Case"
-msgstr "_Letras do título "
+msgstr "_Letras do título"
 
-#: gtksourceview/gtksourceview.c:1635
+#: gtksourceview/gtksourceview.c:1869
 msgid "C_hange Case"
 msgstr "Alterar maiúsculas/minúsculas"
 
-#: gtksourceview/gtksourceview-i18n.c:116
-msgid "translator-credits"
-msgstr ""
-"Duarte Loreto <happyguy_pt@hotmail.com>\n"
-"Pedro Albuquerque <palbuquerque73@gmail.com>"
+#~ msgid "Disabled"
+#~ msgstr "Desativado"
+
+#~ msgid "Before"
+#~ msgstr "Antes"
+
+#~ msgid "After"
+#~ msgstr "Depois"
+
+#~ msgid "Always"
+#~ msgstr "Sempre"
+
+#~ msgid "Space"
+#~ msgstr "Espaço"
+
+#~ msgid "Tab"
+#~ msgstr "Tabulador"
+
+#~ msgid "Newline"
+#~ msgstr "Quebra de linha"
+
+#~ msgid "Non Breaking Whitespace"
+#~ msgstr "Espaço sem quebra de linha"
+
+#~ msgid "Leading"
+#~ msgstr "Precedente"
+
+#~ msgid "Text"
+#~ msgstr "Texto"
+
+#~ msgid "Trailing"
+#~ msgstr "Subsequente"
+
+#~ msgid "ActionScript"
+#~ msgstr "ActionScript"
+
+#~ msgid "Comment"
+#~ msgstr "Comentário"
+
+#~ msgid "Error"
+#~ msgstr "Erro"
+
+#~ msgid "String"
+#~ msgstr "Cadeia"
+
+#~ msgid "External"
+#~ msgstr "Externo"
+
+#~ msgid "Declaration"
+#~ msgstr "Declaração"
+
+#~ msgid "Storage Class"
+#~ msgstr "Classe de armazenamento"
+
+#~ msgid "Scope Declaration"
+#~ msgstr "Declaração de âmbito"
+
+#~ msgid "Keyword"
+#~ msgstr "Palavra chave"
+
+#~ msgid "Null Value"
+#~ msgstr "Valor nulo"
+
+#~ msgid "Boolean value"
+#~ msgstr "Valor booliano"
+
+#~ msgid "Number"
+#~ msgstr "Número"
+
+#~ msgid "Future Reserved Keywords"
+#~ msgstr "Palavras chave reservadas futuras"
+
+#~ msgid "Data Type"
+#~ msgstr "Tipo de dados"
+
+#~ msgid "Ada"
+#~ msgstr "Ada"
+
+#~ msgid "Decimal number"
+#~ msgstr "Número decimal"
+
+#~ msgid "Preprocessor"
+#~ msgstr "Pré-processador"
+
+#~ msgid "Arbitrary base number"
+#~ msgstr "Número base arbitrário"
+
+#~ msgid "Real number"
+#~ msgstr "Número real"
+
+#~ msgid "Escaped Character"
+#~ msgstr "Carácter escapado"
+
+#~ msgid "ANS-Forth94"
+#~ msgstr "ANS-Forth94"
+
+#~ msgid "Obsolete Keyword"
+#~ msgstr "Palavra chave obsoleta"
+
+#~ msgid "Alert"
+#~ msgstr "Alerta"
+
+#~ msgid "Character"
+#~ msgstr "Carácter"
+
+#~ msgid "Word"
+#~ msgstr "Palavra"
+
+#~ msgid "Constant"
+#~ msgstr "Constante"
+
+#~ msgid "Variable"
+#~ msgstr "Variável"
+
+#~ msgid "Local Variable"
+#~ msgstr "Variável local"
+
+#~ msgid "Single Number"
+#~ msgstr "Número único"
+
+#~ msgid "Double Number"
+#~ msgstr "Número duplo"
+
+#~ msgid "Float"
+#~ msgstr "Fração"
+
+#~ msgid "ASP"
+#~ msgstr "ASP"
+
+#~ msgid "Function"
+#~ msgstr "Função"
+
+#~ msgid "Operator"
+#~ msgstr "Operador"
+
+#~ msgid "ASP Object"
+#~ msgstr "Objeto ASP"
+
+#~ msgid "VBScript and ADO constants"
+#~ msgstr "Constantes VBScript e ADO"
+
+#~ msgid "Special constant"
+#~ msgstr "Constante especial"
+
+#~ msgid "Automake"
+#~ msgstr "Automake"
+
+#~ msgid "Automake Variable"
+#~ msgstr "Variável Automake"
+
+#~ msgid "Primary"
+#~ msgstr "Primária"
+
+#~ msgid "Secondary"
+#~ msgstr "Secundária"
+
+#~ msgid "Prefix"
+#~ msgstr "Prefixo"
+
+#~ msgid "Optional Target"
+#~ msgstr "Alvo opcional"
+
+#~ msgid "Built-in Target"
+#~ msgstr "Alvo embutido"
+
+#~ msgid "Other Keyword"
+#~ msgstr "Outra palavra chave"
+
+#~ msgid "Substitution"
+#~ msgstr "Substituição"
+
+#~ msgid "awk"
+#~ msgstr "awk"
+
+#~ msgid "Pattern"
+#~ msgstr "Padrão"
+
+#~ msgid "Builtin Function"
+#~ msgstr "Função embutida"
+
+#~ msgid "BennuGD"
+#~ msgstr "BennuGD"
+
+#~ msgid "Identifier"
+#~ msgstr "Identificador"
+
+#~ msgid "Floating point number"
+#~ msgstr "Número de vírgula flutuante"
+
+#~ msgid "Hexadecimal number"
+#~ msgstr "Número hexadecimal"
+
+#~ msgid "BibTeX"
+#~ msgstr "BibTeX"
+
+#~ msgid "Entries"
+#~ msgstr "Entradas"
+
+#~ msgid "Field"
+#~ msgstr "Campo"
+
+#~ msgid "Bluespec SystemVerilog"
+#~ msgstr "Bluespec SystemVerilog"
+
+#~ msgid "System Task"
+#~ msgstr "Tarefa de sistema"
+
+#~ msgid "Annotation"
+#~ msgstr "Anotação"
+
+#~ msgid "Attribute"
+#~ msgstr "Atributo"
+
+#~ msgid "Import BVI"
+#~ msgstr "BVI Importado"
+
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgid "Boo"
+#~ msgstr "Boo"
+
+#~ msgid "Multiline string"
+#~ msgstr "Cadeia multilinha"
+
+#~ msgid "Regular Expression"
+#~ msgstr "Expressão regular"
+
+#~ msgid "Namespace"
+#~ msgstr "Nome de espaço"
+
+#~ msgid "Definition"
+#~ msgstr "Definição"
+
+#~ msgid "Special Variable"
+#~ msgstr "Variável especial"
+
+#~ msgid "Boolean"
+#~ msgstr "Booliano"
+
+#~ msgid "Bindings"
+#~ msgstr "Ligações"
+
+#~ msgid "Included File"
+#~ msgstr "Ficheiro incluído"
+
+#~ msgid "Octal number"
+#~ msgstr "Número octal"
+
+#~ msgid "Swizzle operator"
+#~ msgstr "Operador swizzle"
+
+#~ msgid "Builtin"
+#~ msgstr "Embutido"
+
+#~ msgid "ChangeLog"
+#~ msgstr "Registo de alterações"
+
+#~ msgid "Date"
+#~ msgstr "Data"
+
+#~ msgid "Name"
+#~ msgstr "Nome"
+
+#~ msgid "E-mail address"
+#~ msgstr "Endereço de email"
+
+#~ msgid "File"
+#~ msgstr "Ficheiro"
+
+#~ msgid "Bullet"
+#~ msgstr "Ponto de lista"
+
+#~ msgid "Release"
+#~ msgstr "Versão"
+
+#~ msgid "C"
+#~ msgstr "C"
+
+#~ msgid "Common Defines"
+#~ msgstr "Definições comuns"
+
+#~ msgid "printf Conversion"
+#~ msgstr "Conversão printf"
+
+#~ msgid "Standard stream"
+#~ msgstr "Fluxo padrão"
+
+#~ msgid "Signal name"
+#~ msgstr "Nome do sinal"
+
+#~ msgid "CMake"
+#~ msgstr "CMake"
+
+#~ msgid "Builtin Command"
+#~ msgstr "Comando embutido"
+
+#~ msgid "Deprecated Builtin Command"
+#~ msgstr "Comando embutido obsoleto"
+
+#~ msgid "Builtin Variable"
+#~ msgstr "Variável embutida"
+
+#~ msgid "Control Keyword"
+#~ msgstr "Palavra chave de controlo"
+
+#~ msgid "COBOL"
+#~ msgstr "COBOL"
+
+#~ msgid "Statement"
+#~ msgstr "Declaração"
+
+#~ msgid "C++"
+#~ msgstr "C++"
+
+#~ msgid "C#"
+#~ msgstr "C#"
+
+#~ msgid "String Format"
+#~ msgstr "Formato da cadeia"
+
+#~ msgid "CSS"
+#~ msgstr "CSS"
+
+#~ msgid "Others 2"
+#~ msgstr "Outras 2"
+
+#~ msgid "Color"
+#~ msgstr "Cor"
+
+#~ msgid "Others 3"
+#~ msgstr "Outras 3"
+
+#~ msgid "Decimal"
+#~ msgstr "Decimal"
+
+#~ msgid "Dimension"
+#~ msgstr "Dimensão"
+
+#~ msgid "Property Value"
+#~ msgstr "Valor da propriedade"
+
+#~ msgid "at-rules"
+#~ msgstr "Regras-at"
+
+#~ msgid "ID Selector"
+#~ msgstr "Seletor de ID"
+
+#~ msgid "Class Selector"
+#~ msgstr "Seletor de classe"
+
+#~ msgid "Tag Name Selector"
+#~ msgstr "Seletor de nome de etiqueta"
+
+#~ msgid "CSV"
+#~ msgstr "CSV"
+
+#~ msgid "Escaped character"
+#~ msgstr "Carácter escapado"
+
+#~ msgid "CUDA"
+#~ msgstr "CUDA"
+
+#~ msgid "Global Functions"
+#~ msgstr "Funções globais"
+
+#~ msgid "Device Functions"
+#~ msgstr "Funções de dispositivo"
+
+#~ msgid "Global Variables"
+#~ msgstr "Variáveis globais"
+
+#~ msgid "Defaults"
+#~ msgstr "Predefinições"
+
+#~ msgid "Shebang"
+#~ msgstr "Cardinal e exclamação"
+
+#~ msgid "Documentation comment"
+#~ msgstr "Comentário de documentação"
+
+#~ msgid "Documentation comment element"
+#~ msgstr "Elemento de comentário de documentação"
+
+#~ msgid "Special character (inside a string)"
+#~ msgstr "Carácter especial (dentro de uma cadeia)"
+
+#~ msgid "Base-N number"
+#~ msgstr "Número de base-N"
+
+#~ msgid "Complex number"
+#~ msgstr "Número complexo"
+
+#~ msgid "Built-in identifier"
+#~ msgstr "Identificador proprietário"
+
+#~ msgid "Data type"
+#~ msgstr "Tipo de dados"
+
+#~ msgid "Preprocessor directive"
+#~ msgstr "Diretiva de pré-processador"
+
+#~ msgid "Warning"
+#~ msgstr "Aviso"
+
+#~ msgid "Reserved keyword"
+#~ msgstr "Palavra chave reservada"
+
+#~ msgid "Note (FIXME, TODO, XXX, etc.)"
+#~ msgstr "Nota (CORRIGE-ME, A-FAZER, XXX, etc.)"
+
+#~ msgid "Underlined"
+#~ msgstr "Sublinhado"
+
+#~ msgid "Heading 0"
+#~ msgstr "Título 0"
+
+#~ msgid "Heading 1"
+#~ msgstr "Título 1"
+
+#~ msgid "Heading 2"
+#~ msgstr "Título 2"
+
+#~ msgid "Heading 3"
+#~ msgstr "Título 3"
+
+#~ msgid "Heading 4"
+#~ msgstr "Título 4"
+
+#~ msgid "Heading 5"
+#~ msgstr "Título 5"
+
+#~ msgid "Heading 6"
+#~ msgstr "Título 6"
+
+#~ msgid ".desktop"
+#~ msgstr ".desktop"
+
+#~ msgid "Group"
+#~ msgstr "Grupo"
+
+#~ msgid "Key"
+#~ msgstr "Chave"
+
+#~ msgid "Translation"
+#~ msgstr "Tradução"
+
+#~ msgid "Exec parameter"
+#~ msgstr "Parâmetro de execução"
+
+#~ msgid "Encoding"
+#~ msgstr "Codificação"
+
+#~ msgid "Main Category"
+#~ msgstr "Categoria principal"
+
+#~ msgid "Additional Category"
+#~ msgstr "Categoria adicional"
+
+#~ msgid "Reserved Category"
+#~ msgstr "Categoria reservada"
+
+#~ msgid "Diff"
+#~ msgstr "Diff"
+
+#~ msgid "Added line"
+#~ msgstr "Linha adicionada"
+
+#~ msgid "Removed line"
+#~ msgstr "Linha removida"
+
+#~ msgid "Changed line"
+#~ msgstr "Linha alterada"
+
+#~ msgid "Special case"
+#~ msgstr "Caso especial"
+
+#~ msgid "Location"
+#~ msgstr "Localização"
+
+#~ msgid "Ignore"
+#~ msgstr "Ignorar"
+
+#~ msgid "D"
+#~ msgstr "D"
+
+#~ msgid "Special Token"
+#~ msgstr "Elemento especial"
+
+#~ msgid "Binary number"
+#~ msgstr "Número binário"
+
+#~ msgid "DocBook"
+#~ msgstr "DocBook"
+
+#~ msgid "Header Elements"
+#~ msgstr "Elementos de cabeçalho"
+
+#~ msgid "Formatting Elements"
+#~ msgstr "Elementos de formatação"
+
+#~ msgid "GUI Elements"
+#~ msgstr "Elementos de GUI (ambiente gráfico)"
+
+#~ msgid "Structural Elements"
+#~ msgstr "Elementos estruturais"
+
+#~ msgid "Command"
+#~ msgstr "Comando"
+
+#~ msgid "Graphviz Dot"
+#~ msgstr "Dot Graphviz"
+
+#~ msgid "Attribute name"
+#~ msgstr "Nome do atributo"
+
+#~ msgid "DPatch"
+#~ msgstr "DPatch"
+
+#~ msgid "Patch Start"
+#~ msgstr "Início do patch"
+
+#~ msgid "DTD"
+#~ msgstr "DTD"
+
+#~ msgid "entity"
+#~ msgstr "entidade"
+
+#~ msgid "decl"
+#~ msgstr "decl"
+
+#~ msgid "error"
+#~ msgstr "erro"
+
+#~ msgid "Quoted Value"
+#~ msgstr "valor entre aspas"
+
+#~ msgid "Eiffel"
+#~ msgstr "Eiffel"
+
+#~ msgid "Debug"
+#~ msgstr "Depurar"
+
+#~ msgid "Assertion"
+#~ msgstr "Asserção"
+
+#~ msgid "Design by Contract"
+#~ msgstr "Desenho por contrato"
+
+#~ msgid "Exception Handling"
+#~ msgstr "Manipulação de exceções"
+
+#~ msgid "Predefined Variable"
+#~ msgstr "Variável predefinida"
+
+#~ msgid "Void Value"
+#~ msgstr "Ausência de valor"
+
+#~ msgid "Boolean Value"
+#~ msgstr "Valor lógico"
+
+#~ msgid "Erlang"
+#~ msgstr "Erlang"
+
+#~ msgid "Atom"
+#~ msgstr "Atom"
+
+#~ msgid "Base-N Integer"
+#~ msgstr "Inteiro base-N"
+
+#~ msgid "Compiler Directive"
+#~ msgstr "Diretiva de compilação"
+
+#~ msgid "FCL"
+#~ msgstr "FCL"
+
+#~ msgid "Floating Point"
+#~ msgstr "Vírgula flutuante"
+
+#~ msgid "Block"
+#~ msgstr "Bloco"
+
+#~ msgid "Reserved Constant"
+#~ msgstr "Constante reservada"
+
+#~ msgid "Forth"
+#~ msgstr "Forth"
+
+#~ msgid "Debug Code"
+#~ msgstr "Código de depuração"
+
+#~ msgid "Error Text"
+#~ msgstr "Texto do erro"
+
+#~ msgid "Fortran 95"
+#~ msgstr "Fortran 95"
+
+#~ msgid "Intrinsic function"
+#~ msgstr "Função intrínseca"
+
+#~ msgid "BOZ Literal"
+#~ msgstr "Literal BOZ"
+
+#~ msgid "OpenMP directives"
+#~ msgstr "Diretivas OpenMP"
+
+#~ msgid "F#"
+#~ msgstr "F#"
+
+#~ msgid "Floating Point number"
+#~ msgstr "Número de vírgula flutuante"
+
+#~ msgid "Type, module or object keyword"
+#~ msgstr "Palavra chave de tipo, módulo ou objeto"
+
+#~ msgid "Builtin-function keyword"
+#~ msgstr "Palavra chave de função embutida"
+
+#~ msgid "Labeled argument"
+#~ msgstr "Argumento rotulado"
+
+#~ msgid "Polymorphic Variant"
+#~ msgstr "Variante polimórfica"
+
+#~ msgid "Variant Constructor"
+#~ msgstr "Construtor de variante"
+
+#~ msgid "Type Variable"
+#~ msgstr "Variável de tipo"
+
+#~ msgid "Module Path"
+#~ msgstr "Caminho do módulo"
+
+#~ msgid "GAP"
+#~ msgstr "GAP"
+
+#~ msgid "Thread Action"
+#~ msgstr "Ação da thread"
+
+#~ msgid "Thread Header"
+#~ msgstr "Cabeçalho da thread"
+
+#~ msgid "Frame Number"
+#~ msgstr "Número da moldura"
+
+#~ msgid "Address"
+#~ msgstr "Endereço"
+
+#~ msgid "Filename"
+#~ msgstr "Nome do ficheiro"
+
+#~ msgid "Optimized Out"
+#~ msgstr "Saída otimizada"
+
+#~ msgid "Incomplete Sequence"
+#~ msgstr "Sequência incompleta"
+
+#~ msgid "Prompt"
+#~ msgstr "Linha de comando"
+
+#~ msgid "Genie"
+#~ msgstr "Genie"
+
+#~ msgid "Builtin Constant"
+#~ msgstr "Constante embutida"
+
+#~ msgid "Reserved Keywords"
+#~ msgstr "Palavras reservadas"
+
+#~ msgid "Go"
+#~ msgstr "Ir"
+
+#~ msgid "Imaginary number"
+#~ msgstr "Número imaginário"
+
+#~ msgid "gtk-doc"
+#~ msgstr "gtk-doc"
+
+#~ msgid "Inline Documentation Section"
+#~ msgstr "Secção de documentação embutida"
+
+#~ msgid "Function Name"
+#~ msgstr "Nome da função"
+
+#~ msgid "Signal Name"
+#~ msgstr "Nome do sinal"
+
+#~ msgid "Property Name"
+#~ msgstr "Nome da propriedade"
+
+#~ msgid "Parameter"
+#~ msgstr "Parâmetro"
+
+#~ msgid "Return"
+#~ msgstr "Devolvido"
+
+#~ msgid "Since"
+#~ msgstr "Desde"
+
+#~ msgid "Deprecated"
+#~ msgstr "Obsoleto"
+
+#~ msgid "GtkRC"
+#~ msgstr "GtkRC"
+
+#~ msgid "Widget State"
+#~ msgstr "Estado do widget"
+
+#~ msgid "Include directive"
+#~ msgstr "Diretiva de inclusão"
+
+#~ msgid "Haddock"
+#~ msgstr "Haddock"
+
+#~ msgid "Inline Haddock Section"
+#~ msgstr "Secção embutida Haddock"
+
+#~ msgid "Haddock Directive"
+#~ msgstr "Diretiva Haddock"
+
+#~ msgid "Hyperlinked Identifier"
+#~ msgstr "Indentificador da hiperligação"
+
+#~ msgid "Hyperlinked Module Name"
+#~ msgstr "Nome do módulo da hiperligação"
+
+#~ msgid "Escape"
+#~ msgstr "Escape"
+
+#~ msgid "Emphasis"
+#~ msgstr "Ênfase"
+
+#~ msgid "Monospace"
+#~ msgstr "Monoespaçada"
+
+#~ msgid "Code Block"
+#~ msgstr "Bloco de código"
+
+#~ msgid "Header Property"
+#~ msgstr "Propriedade do cabeçalho"
+
+#~ msgid "Itemized list"
+#~ msgstr "Lista de itens"
+
+#~ msgid "Enumerated list"
+#~ msgstr "Lista enumerada"
+
+#~ msgid "Definition list"
+#~ msgstr "Lista de definição"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "Anchor"
+#~ msgstr "Âncora"
+
+#~ msgid "Haskell"
+#~ msgstr "Haskell"
+
+#~ msgid "Symbol"
+#~ msgstr "Símbolo"
+
+#~ msgid "Octal"
+#~ msgstr "Octal"
+
+#~ msgid "Hex"
+#~ msgstr "Hex"
+
+#~ msgid "Literate Haskell"
+#~ msgstr "Haskell literado"
+
+#~ msgid "HTML"
+#~ msgstr "HTML"
+
+#~ msgid "Tag"
+#~ msgstr "Etiqueta"
+
+#~ msgid "Attribute Name"
+#~ msgstr "Nome do atributo"
+
+#~ msgid "Attribute Value"
+#~ msgstr "Valor do atributo"
+
+#~ msgid "Page title"
+#~ msgstr "Título da página"
+
+#~ msgid "Heading level 1"
+#~ msgstr "Título nível 1"
+
+#~ msgid "Heading level 2"
+#~ msgstr "Título nível 2"
+
+#~ msgid "Heading level 3"
+#~ msgstr "Título nível 3"
+
+#~ msgid "Heading level 4"
+#~ msgstr "Título nível 4"
+
+#~ msgid "Heading level 5"
+#~ msgstr "Título nível 5"
+
+#~ msgid "IDL-Exelis"
+#~ msgstr "IDL-Exelis"
+
+#~ msgid "IDL"
+#~ msgstr "IDL"
+
+#~ msgid "ImageJ"
+#~ msgstr "ImageJ"
+
+#~ msgid "Commands"
+#~ msgstr "Comandos"
+
+#~ msgid "Storage Type"
+#~ msgstr "Tipo de armazenamento"
+
+#~ msgid ".ini"
+#~ msgstr ".ini"
+
+#~ msgid "Jade"
+#~ msgstr "Jade"
+
+#~ msgid "DOCTYPE"
+#~ msgstr "DOCTYPE"
+
+#~ msgid "Processing instruction"
+#~ msgstr "Instrução de processamento"
+
+#~ msgid "Element name"
+#~ msgstr "Nome do elemento"
+
+#~ msgid "Attribute value"
+#~ msgstr "Valor do atributo"
+
+#~ msgid "Tags"
+#~ msgstr "Etiquetas"
+
+#~ msgid "Entity"
+#~ msgstr "Entidade"
+
+#~ msgid "Java"
+#~ msgstr "Java"
+
+#~ msgid "JavaScript"
+#~ msgstr "JavaScript"
+
+#~ msgid "Undefined Value"
+#~ msgstr "Valor indefinido"
+
+#~ msgid "Properties"
+#~ msgstr "Propriedades"
+
+#~ msgid "Constructors"
+#~ msgstr "Construtores"
+
+#~ msgid "J"
+#~ msgstr "J"
+
+#~ msgid "Adverb"
+#~ msgstr "Adverb"
+
+#~ msgid "Conjunction"
+#~ msgstr "Conjunção"
+
+#~ msgid "Control"
+#~ msgstr "Controlo"
+
+#~ msgid "Explicit Argument"
+#~ msgstr "Argumento explícito"
+
+#~ msgid "Global"
+#~ msgstr "Global"
+
+#~ msgid "Lab Text"
+#~ msgstr "Texto de Lab"
+
+#~ msgid "Local"
+#~ msgstr "Local"
+
+#~ msgid "Noun"
+#~ msgstr "Nome"
+
+#~ msgid "Explicit Noun Definition"
+#~ msgstr "Definição explícita de nome"
+
+#~ msgid "Parens"
+#~ msgstr "Parens"
+
+#~ msgid "Primitive"
+#~ msgstr "Primitiva"
+
+#~ msgid "Verb"
+#~ msgstr "Verbo"
+
+#~ msgid "Julia"
+#~ msgstr "Júlia"
+
+#~ msgid "Math Constant"
+#~ msgstr "Constante matemática"
+
+#~ msgid "Special Constant"
+#~ msgstr "Constante especial"
+
+#~ msgid "Macro"
+#~ msgstr "Macro"
+
+#~ msgid "External Command"
+#~ msgstr "Comando externo"
+
+#~ msgid "Built-in Function"
+#~ msgstr "Função interna"
+
+#~ msgid "Module"
+#~ msgstr "Módulo"
+
+#~ msgid "LaTeX"
+#~ msgstr "LateX"
+
+#~ msgid "Math Mode"
+#~ msgstr "Modo matemático"
+
+#~ msgid "Inline Math Mode"
+#~ msgstr "Modo matemático embutido"
+
+#~ msgid "Math Boundary"
+#~ msgstr "Limite matemático"
+
+#~ msgid "Include"
+#~ msgstr "Incluir"
+
+#~ msgid "Verbatim"
+#~ msgstr "Verbatim"
+
+#~ msgid "Special Character"
+#~ msgstr "Caráter especial"
+
+#~ msgid "Part Heading"
+#~ msgstr "Título de parte"
+
+#~ msgid "Chapter Heading"
+#~ msgstr "Título de capítulo"
+
+#~ msgid "Section Heading"
+#~ msgstr "Título de secção"
+
+#~ msgid "SubSection Heading"
+#~ msgstr "Título de sub-secção"
+
+#~ msgid "SubSubSection Heading"
+#~ msgstr "Título de sub-sub-secção"
+
+#~ msgid "Paragraph Heading"
+#~ msgstr "Título de parágrafo"
+
+#~ msgid "SubParagraph Heading"
+#~ msgstr "Título de sub-parágrafo"
+
+#~ msgid "Lex"
+#~ msgstr "Lex"
+
+#~ msgid "Token"
+#~ msgstr "Símbolo"
+
+#~ msgid "Expression"
+#~ msgstr "Expressão"
+
+#~ msgid "libtool"
+#~ msgstr "libtool"
+
+#~ msgid "Constants"
+#~ msgstr "Constantes"
+
+#~ msgid "Lua"
+#~ msgstr "Lua"
+
+#~ msgid "Reserved Identifier"
+#~ msgstr "Identificador reservado"
+
+#~ msgid "Label"
+#~ msgstr "Etiqueta"
+
+#~ msgid "Nil Constant"
+#~ msgstr "Constante nula"
+
+#~ msgid "m4"
+#~ msgstr "m4"
+
+#~ msgid "m4 Comment"
+#~ msgstr "Comentário m4"
+
+#~ msgid "m4 Macro"
+#~ msgstr "Macro m4"
+
+#~ msgid "Autoconf Macro"
+#~ msgstr "Macro Autoconf"
+
+#~ msgid "Obsolete Autoconf Macro"
+#~ msgstr "Macro Autoconf obsoleta"
+
+#~ msgid "Makefile"
+#~ msgstr "Makefile"
+
+#~ msgid "Assignment Right Hand Side"
+#~ msgstr "Lado direito da atribuição"
+
+#~ msgid "Assignment Left Hand Side"
+#~ msgstr "Lado esquerdo da atribuição"
+
+#~ msgid "targets"
+#~ msgstr "alvos"
+
+#~ msgid "prereq"
+#~ msgstr "prereq"
+
+#~ msgid "command"
+#~ msgstr "comando"
+
+#~ msgid "Trailing Tab"
+#~ msgstr "Tabuladores no final das linhas"
+
+#~ msgid "function"
+#~ msgstr "função"
+
+#~ msgid "keyword"
+#~ msgstr "palavra chave"
+
+#~ msgid "Mallard"
+#~ msgstr "Mallard"
+
+#~ msgid "Page Elements"
+#~ msgstr "Elementos de página"
+
+#~ msgid "Section Elements"
+#~ msgstr "Elementos de secção"
+
+#~ msgid "Block Elements"
+#~ msgstr "Elementos de bloco"
+
+#~ msgid "Inline Elements"
+#~ msgstr "Elementos embutidos"
+
+#~ msgid "Markdown"
+#~ msgstr "Marcar abaixo"
+
+#~ msgid "Header"
+#~ msgstr "Cabeçalho"
+
+#~ msgid "Horizontal Rule"
+#~ msgstr "Régua horizontal"
+
+#~ msgid "List Marker"
+#~ msgstr "Marcador de lista"
+
+#~ msgid "Code"
+#~ msgstr "Código"
+
+#~ msgid "Blockquote Marker"
+#~ msgstr "Marcador de bloco de citação"
+
+#~ msgid "Link Text"
+#~ msgstr "Texto de ligação"
+
+#~ msgid "Image Marker"
+#~ msgstr "Marcador de imagem"
+
+#~ msgid "Strong Emphasis"
+#~ msgstr "Ênfase negrito"
+
+#~ msgid "Backslash Escape"
+#~ msgstr "Escape de barra esquerda"
+
+#~ msgid "Line Break"
+#~ msgstr "Quebra de linha"
+
+#~ msgid "Matlab"
+#~ msgstr "Matlab"
+
+#~ msgid "MediaWiki"
+#~ msgstr "MediaWiki"
+
+#~ msgid "Light Emphasis"
+#~ msgstr "Ênfase ligeiro"
+
+#~ msgid "Signature"
+#~ msgstr "Assinatura"
+
+#~ msgid "Link"
+#~ msgstr "Ligação"
+
+#~ msgid "Symbol on a Link"
+#~ msgstr "Símbolo numa ligação"
+
+#~ msgid "Line"
+#~ msgstr "Linha"
+
+#~ msgid "List"
+#~ msgstr "Lista"
+
+#~ msgid "Magic Word"
+#~ msgstr "Palavra mágica"
+
+#~ msgid "Symbol of a Table"
+#~ msgstr "Símbolo de uma tabela"
+
+#~ msgid "Preformatted"
+#~ msgstr "Pré-formatado"
+
+#~ msgid "Redirect"
+#~ msgstr "Redirecionar"
+
+#~ msgid "Title"
+#~ msgstr "Título"
+
+#~ msgid "Meson"
+#~ msgstr "Meson"
+
+#~ msgid "Modelica"
+#~ msgstr "Modelica"
+
+#~ msgid "Class type"
+#~ msgstr "Tipo de classe"
+
+#~ msgid "Default Attribute"
+#~ msgstr "Atributo predefinido"
+
+#~ msgid "MXML"
+#~ msgstr "MXML"
+
+#~ msgid "CDATA delimiter"
+#~ msgstr "Delimitador CDATA"
+
+#~ msgid "Nemerle"
+#~ msgstr "Nemerle"
+
+#~ msgid "NetRexx"
+#~ msgstr "NetRexx"
+
+#~ msgid "Externals"
+#~ msgstr "Externos"
+
+#~ msgid "Options"
+#~ msgstr "Opções"
+
+#~ msgid "Data Types"
+#~ msgstr "Tipos de dados"
+
+#~ msgid "Special"
+#~ msgstr "Especial"
+
+#~ msgid "Visibility"
+#~ msgstr "Visibilidade"
+
+#~ msgid "Modifiers"
+#~ msgstr "Modificadores"
+
+#~ msgid "Keywords"
+#~ msgstr "Palavras chave"
+
+#~ msgid "Sub Keywords"
+#~ msgstr "Subpalavras chave"
+
+#~ msgid "NSIS"
+#~ msgstr "NSIS"
+
+#~ msgid "Objective-C"
+#~ msgstr "Objective-C"
+
+#~ msgid "Objective-J"
+#~ msgstr "Objective-J"
+
+#~ msgid "OCaml"
+#~ msgstr "OCaml"
+
+#~ msgid "Ocamldoc Comments"
+#~ msgstr "Comentário de Ocamldoc"
+
+#~ msgid "Standard Modules"
+#~ msgstr "Módulos padrão"
+
+#~ msgid "OCL"
+#~ msgstr "OCL"
+
+#~ msgid "Type Operators"
+#~ msgstr "Operadores de tipo"
+
+#~ msgid "Operation operator"
+#~ msgstr "Operador da operação"
+
+#~ msgid "Octave"
+#~ msgstr "Octave"
+
+# 48x48/emblems/emblem-package.icon.in.h:1
+# 48x48/emblems/emblem-package.icon.in.h:1
+#~ msgid "Package Manager"
+#~ msgstr "Gestor de pacotes"
+
+#~ msgid "OOC"
+#~ msgstr "OOC"
+
+#~ msgid "Opal"
+#~ msgstr "Opal"
+
+#~ msgid "Module Handler"
+#~ msgstr "Manipulador de módulo"
+
+#~ msgid "Keysymbol"
+#~ msgstr "Símbolo chave"
+
+#~ msgid "OpenCL"
+#~ msgstr "OpenCL"
+
+#~ msgid "Global Function"
+#~ msgstr "Função global"
+
+#~ msgid "Device Function"
+#~ msgstr "Função de dispositivo"
+
+#~ msgid "Device Cast"
+#~ msgstr "Emissão de dispositivo"
+
+#~ msgid "OpenCL Constant"
+#~ msgstr "Constante OpenCL"
+
+#~ msgid "Global Variable"
+#~ msgstr "Variável global"
+
+#~ msgid "Pascal"
+#~ msgstr "Pascal"
+
+#~ msgid "Perl"
+#~ msgstr "Perl"
+
+#~ msgid "Line Directive"
+#~ msgstr "Diretiva de linha"
+
+#~ msgid "Include Statement"
+#~ msgstr "Comando de inclusão"
+
+#~ msgid "Heredoc"
+#~ msgstr "Heredoc"
+
+#~ msgid "Heredoc Bound"
+#~ msgstr "Limite de Heredoc"
+
+#~ msgid "System Command"
+#~ msgstr "Comando de sistema"
+
+#~ msgid "File Descriptor"
+#~ msgstr "Descritor de ficheiro"
+
+#~ msgid "POD"
+#~ msgstr "POD"
+
+#~ msgid "POD Escape"
+#~ msgstr "Escape POD"
+
+#~ msgid "POD keyword"
+#~ msgstr "Palavra chave POD"
+
+#~ msgid "POD heading"
+#~ msgstr "Cabeçalho POD"
+
+#~ msgid "PHP"
+#~ msgstr "PHP"
+
+#~ msgid "Preprocessor tags"
+#~ msgstr "Etiquetas do pré-processador"
+
+#~ msgid "Common Function"
+#~ msgstr "Função comum"
+
+#~ msgid "Pig"
+#~ msgstr "Pig"
+
+#~ msgid "Reserved Words"
+#~ msgstr "Palavras reservadas"
+
+#~ msgid "Built In Functions"
+#~ msgstr "Funções internas"
+
+#~ msgid "Boolean values"
+#~ msgstr "Valores lógicos"
+
+#~ msgid "Null"
+#~ msgstr "Nulo"
+
+#~ msgid "pkg-config"
+#~ msgstr "pkg-config"
+
+# 48x48/emblems/emblem-package.icon.in.h:1
+# 48x48/emblems/emblem-package.icon.in.h:1
+#~ msgid "Package Info"
+#~ msgstr "Informação do pacote"
+
+#~ msgid "Fuzzy"
+#~ msgstr "Aproximada"
+
+#~ msgid "Prolog"
+#~ msgstr "Prolog"
+
+#~ msgid "Puppet"
+#~ msgstr "Puppet"
+
+#~ msgid "Resources"
+#~ msgstr "Recursos"
+
+#~ msgid "Parameters"
+#~ msgstr "Parâmetros"
+
+#~ msgid "Metaparameters"
+#~ msgstr "Metaparâmetros"
+
+#~ msgid "Functions"
+#~ msgstr "Funções"
+
+#~ msgid "Values"
+#~ msgstr "Valores"
+
+#~ msgid "Variables"
+#~ msgstr "Variáveis"
+
+#~ msgid "Class names"
+#~ msgstr "Nomes de classes"
+
+#~ msgid "Python 3"
+#~ msgstr "Python 3"
+
+#~ msgid "Format"
+#~ msgstr "Formato"
+
+#~ msgid "Builtin Object"
+#~ msgstr "Objeto embutido"
+
+#~ msgid "Python"
+#~ msgstr "Python"
+
+#~ msgid "String Conversion"
+#~ msgstr "Conversão de cadeia"
+
+#~ msgid "Class Name"
+#~ msgstr "Nome de classe"
+
+#~ msgid "Decorator"
+#~ msgstr "Decoração"
+
+#~ msgid "R"
+#~ msgstr "R"
+
+#~ msgid "Reserved Class"
+#~ msgstr "Classe reservada"
+
+#~ msgid "Assignment Operator"
+#~ msgstr "Operador de atribuição"
+
+#~ msgid "Delimiter"
+#~ msgstr "Delimitador"
+
+#~ msgid "Integer Number"
+#~ msgstr "Número inteiro"
+
+#~ msgid "Define"
+#~ msgstr "Definição"
+
+#~ msgid "Section"
+#~ msgstr "Secção"
+
+#~ msgid "Spec Macro"
+#~ msgstr "Especificação de macros"
+
+#~ msgid "Directory Macro"
+#~ msgstr "Macro de pasta"
+
+#~ msgid "Command Macro"
+#~ msgstr "Macro de comando"
+
+#~ msgid "Conditional Macro"
+#~ msgstr "Macro condicional"
+
+#~ msgid "Other Macro"
+#~ msgstr "Outra macro"
+
+#~ msgid "Flow Conditional"
+#~ msgstr "Fluxo condicional"
+
+#~ msgid "RPM Variable"
+#~ msgstr "Variável RPM"
+
+#~ msgid "Switch"
+#~ msgstr "Trocar"
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#~ msgid "reStructuredText"
+#~ msgstr "reStructuredText"
+
+#~ msgid "Directive"
+#~ msgstr "Diretiva"
+
+#~ msgid "Ruby"
+#~ msgstr "Ruby"
+
+#~ msgid "Attribute Definition"
+#~ msgstr "Definição de atributo"
+
+#~ msgid "Module handler"
+#~ msgstr "Gestor de módulo"
+
+#~ msgid "Numeric literal"
+#~ msgstr "Literal numérico"
+
+#~ msgid "Literal"
+#~ msgstr "Literal"
+
+#~ msgid "Rust"
+#~ msgstr "Ferrugem"
+
+#~ msgid "Scope"
+#~ msgstr "Âmbito"
+
+#~ msgid "Scala"
+#~ msgstr "Scala"
+
+#~ msgid "Modifier"
+#~ msgstr "Modificador"
+
+#~ msgid "Built In"
+#~ msgstr "Interno"
+
+#~ msgid "XML Tag"
+#~ msgstr "Etiqueta XML"
+
+#~ msgid "Scheme"
+#~ msgstr "Scheme"
+
+#~ msgid "Scilab"
+#~ msgstr "Scilab"
+
+#~ msgid "sh"
+#~ msgstr "sh"
+
+#~ msgid "Variable Definition"
+#~ msgstr "Definição de variável"
+
+#~ msgid "Common Commands"
+#~ msgstr "Comandos comuns"
+
+#~ msgid "Subshell"
+#~ msgstr "Subterminal"
+
+#~ msgid "Standard ML"
+#~ msgstr "ML padrão"
+
+#~ msgid "Module name, Variant, etc"
+#~ msgstr "Nome de módulo, variante, etc"
+
+#~ msgid "SPARQL"
+#~ msgstr "SPARQL"
+
+#~ msgid "Class"
+#~ msgstr "Classe"
+
+#~ msgid "Individual"
+#~ msgstr "Indivíduo"
+
+#~ msgid "Predicate"
+#~ msgstr "Predicado"
+
+#~ msgid "QName"
+#~ msgstr "QName"
+
+#~ msgid "IRI"
+#~ msgstr "IRI"
+
+#~ msgid "SQL"
+#~ msgstr "SQL"
+
+#~ msgid "No idea what it is"
+#~ msgstr "Sem ideia do que seja"
+
+#~ msgid "Sweave"
+#~ msgstr "Sweave"
+
+#~ msgid "SystemVerilog"
+#~ msgstr "SystemVerilog"
+
+#~ msgid "txt2tags"
+#~ msgstr "txt2tags"
+
+#~ msgid "Option"
+#~ msgstr "Opção"
+
+#~ msgid "Option Name"
+#~ msgstr "Nome da opção"
+
+#~ msgid "Section 1"
+#~ msgstr "Secção 1"
+
+#~ msgid "Section 2"
+#~ msgstr "Secção 2"
+
+#~ msgid "Section 3"
+#~ msgstr "Secção 3"
+
+#~ msgid "Section 4"
+#~ msgstr "Secção 4"
+
+#~ msgid "Section 5"
+#~ msgstr "Secção 5"
+
+#~ msgid "Italic"
+#~ msgstr "Itálico"
+
+#~ msgid "Bold"
+#~ msgstr "Negrito"
+
+#~ msgid "Verbatim Block"
+#~ msgstr "Bloco verbatim"
+
+#~ msgid "Tcl"
+#~ msgstr "Tcl"
+
+#~ msgid "Texinfo"
+#~ msgstr "Texinfo"
+
+#~ msgid "Macros"
+#~ msgstr "Macros"
+
+#~ msgid "File Attributes"
+#~ msgstr "Atributos de ficheiro"
+
+#~ msgid "Generated Content"
+#~ msgstr "Conteúdo gerado"
+
+#~ msgid "Thrift"
+#~ msgstr "Thrift"
+
+#~ msgid "Vala"
+#~ msgstr "Vala"
+
+#~ msgid "VB.NET"
+#~ msgstr "VB.NET"
+
+#~ msgid "Verilog"
+#~ msgstr "Verilog"
+
+#~ msgid "IEEE System Task"
+#~ msgstr "Tarefa de sistema IEEE"
+
+#~ msgid "LRM Additional System Task"
+#~ msgstr "Tarefa de sistema adicional LRM"
+
+#~ msgid "Gate"
+#~ msgstr "Portão"
+
+#~ msgid "VHDL"
+#~ msgstr "VHDL"
+
+#~ msgid "XML"
+#~ msgstr "XML"
+
+#~ msgid "XSLT"
+#~ msgstr "XSLT"
+
+#~ msgid "Element"
+#~ msgstr "Elemento"
+
+#~ msgid "Yacc"
+#~ msgstr "Yacc"
+
+#~ msgid "token type"
+#~ msgstr "tipo de bloco"
+
+#~ msgid "rule"
+#~ msgstr "regra"
+
+#~ msgid "YAML"
+#~ msgstr "YAML"
+
+#~ msgid "Block literal"
+#~ msgstr "Literal de bloco"
+
+#~ msgid "Alias"
+#~ msgstr "Aliás"
+
+#~ msgid "Map key"
+#~ msgstr "Chave de mapa"
+
+#~ msgid "Integer"
+#~ msgstr "Inteiro"
+
+#~ msgid "Floating point"
+#~ msgstr "Vírgula flutuante"
+
+#~ msgid "Kate"
+#~ msgstr "Kate"
+
+#~ msgid "translator-credits"
+#~ msgstr ""
+#~ "Duarte Loreto <happyguy_pt@hotmail.com>\n"
+#~ "Pedro Albuquerque <palbuquerque73@gmail.com>"
 
 #~ msgid "Escaped Characters"
 #~ msgstr "Caracteres escapados"
