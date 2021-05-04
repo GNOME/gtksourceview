@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview.gnome-2-20.ne\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-04-15 15:11+0000\n"
-"PO-Revision-Date: 2021-04-20 20:41+0545\n"
+"POT-Creation-Date: 2020-09-26 11:07+0000\n"
+"PO-Revision-Date: 2021-05-04 21:51+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
 "Language: ne\n"
@@ -113,9 +113,6 @@ msgstr "स्रोत"
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
 #. (itstool) path: dtl.lang/language@_section
-#. (itstool) path: erb-html.lang/language@_section
-#. (itstool) path: erb-js.lang/language@_section
-#. (itstool) path: erb.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
@@ -133,11 +130,10 @@ msgstr "स्रोत"
 #. (itstool) path: texinfo.lang/language@_section
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
-#: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 erb-html.lang:20
-#: erb-js.lang:20 erb.lang:20 gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24
-#: jsdoc.lang:23 latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22
-#: mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23 texinfo.lang:24
-#: xml.lang:26 xslt.lang:23
+#: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25 gtk-doc.lang:24
+#: haddock.lang:23 html.lang:25 jade.lang:24 jsdoc.lang:23 latex.lang:24 mallard.lang:22
+#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23
+#: tera.lang:23 texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
 msgstr "मार्कअप"
 
@@ -167,6 +163,7 @@ msgstr "मार्कअप"
 #. (itstool) path: typescript-js-literals.lang/language@_section
 #. (itstool) path: typescript-js-modules.lang/language@_section
 #. (itstool) path: typescript-js-statements.lang/language@_section
+#. (itstool) path: typescript-js-values.lang/language@_section
 #. (itstool) path: typescript-jsx.lang/language@_section
 #. (itstool) path: typescript.lang/language@_section
 #. (itstool) path: typescript-type-expressions.lang/language@_section
@@ -178,18 +175,17 @@ msgstr "मार्कअप"
 #: jsx.lang:23 lua.lang:23 m4.lang:23 perl.lang:25 php.lang:28 python3.lang:23
 #: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23 typescript-js-expressions.lang:23
 #: typescript-js-functions-classes.lang:23 typescript-js-literals.lang:23
-#: typescript-js-modules.lang:23 typescript-js-statements.lang:23 typescript-jsx.lang:23
-#: typescript.lang:23 typescript-type-expressions.lang:23 typescript-type-generics.lang:23
+#: typescript-js-modules.lang:23 typescript-js-statements.lang:23
+#: typescript-js-values.lang:23 typescript-jsx.lang:23 typescript.lang:23
+#: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
 #: typescript-type-literals.lang:23
 msgid "Script"
 msgstr "स्क्रिप्ट"
 
 #. (itstool) path: cg.lang/language@_name
 #: cg.lang:23
-#, fuzzy
-#| msgid "Language"
 msgid "CG Shader Language"
-msgstr "भाषा"
+msgstr "CG छाया भाषा"
 
 #. (itstool) path: changelog.lang/language@_section
 #. (itstool) path: cmake.lang/language@_section
@@ -215,7 +211,6 @@ msgstr "भाषा"
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
 #. (itstool) path: scss.lang/language@_section
-#. (itstool) path: terraform.lang/language@_section
 #. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
@@ -224,7 +219,7 @@ msgstr "भाषा"
 #: dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18 gtkrc.lang:24 ini.lang:22
 #: json.lang:29 less.lang:23 libtool.lang:23 logcat.lang:23 nsis.lang:23 ocl.lang:32
 #: pkgconfig.lang:23 po.lang:23 protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23
-#: terraform.lang:23 toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
+#: toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "अन्य"
 
@@ -240,7 +235,6 @@ msgstr "C++ हेडर"
 
 #. (itstool) path: dosbatch.lang/language@_name
 #: dosbatch.lang:23
-#| msgid "DPatch"
 msgid "DOS Batch"
 msgstr "DOS Batch"
 
@@ -260,9 +254,8 @@ msgstr "जाङ्गो टेम्प्लेट"
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
-#. (itstool) path: star.lang/language@_section
 #: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23 matlab.lang:25
-#: maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25 scilab.lang:23 star.lang:28
+#: maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25 scilab.lang:23
 msgid "Scientific"
 msgstr "वैज्ञानिक"
 
@@ -333,29 +326,23 @@ msgstr "टाङ्गो रङ रङदानी प्रयोग गर�
 
 #. (itstool) path: solarized-dark.xml/style-scheme@_name
 #: solarized-dark.xml:23
-#, fuzzy
 msgid "Solarized Dark"
-msgstr "गाढा "
+msgstr "गाढा सोलाराइज्ड"
 
 #. (itstool) path: style-scheme/_description
 #: solarized-dark.xml:25
-#, fuzzy
-#| msgid "Color scheme using Tango color palette"
 msgid "Color scheme using Solarized dark color palette"
-msgstr "टाङ्गो रङ रङदानी प्रयोग गर्ने गाढा रङ योजना"
+msgstr "सोलाराइज्ड गाढा रङ दानी प्रयोग गर्ने रङ योजना"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
 #: solarized-light.xml:23
-#, fuzzy
 msgid "Solarized Light"
-msgstr "हल्का"
+msgstr "हल्का सोलाराइज्ड"
 
 #. (itstool) path: style-scheme/_description
 #: solarized-light.xml:25
-#, fuzzy
-#| msgid "Color scheme using Tango color palette"
 msgid "Color scheme using Solarized light color palette"
-msgstr "टाङ्गो रङ रङदानी प्रयोग गर्ने रङ योजना"
+msgstr "सोलाराइज्ड हल्का रङ रङदानी प्रयोग गर्ने रङ योजना"
 
 #. (itstool) path: tango.xml/style-scheme@_name
 #: tango.xml:23
@@ -420,7 +407,7 @@ msgstr "विस्तृत प्रस्ताव सूचना देख
 
 #: gtksourceview/gtksourcecompletion.ui:88
 msgid "_Details…"
-msgstr "विस्तृत…"
+msgstr "विस्तृत विवरणहरू…"
 
 #. regex_new could fail, for instance if there are different
 #. * named sub-patterns with the same name or if resulting regex is
@@ -437,153 +424,153 @@ msgstr ""
 "।\n"
 "त्रुटि यस प्रकारको थियो: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4474
+#: gtksourceview/gtksourcecontextengine.c:4472
 msgid "Highlighting a single line took too much time, syntax highlighting will be disabled"
 msgstr "एकल रेखा हाइलाइट गर्न धेरै समय लाग्यो, वाक्य संरचना हाइलाइटिङ अक्षम गरिनेछ"
 
-#: gtksourceview/gtksourcecontextengine.c:5724
+#: gtksourceview/gtksourcecontextengine.c:5722
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "सन्दर्भ '%s' ले \\%%{...@start} आदेश समावेश गर्न सक्दैन"
 
-#: gtksourceview/gtksourcecontextengine.c:5887 gtksourceview/gtksourcecontextengine.c:5977
+#: gtksourceview/gtksourcecontextengine.c:5885 gtksourceview/gtksourcecontextengine.c:5975
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "\"%s\" प्रसङ्ग आईडी नक्कल गरियो"
 
-#: gtksourceview/gtksourcecontextengine.c:6091 gtksourceview/gtksourcecontextengine.c:6151
+#: gtksourceview/gtksourcecontextengine.c:6089 gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
 msgid "style override used with wildcard context reference in language “%s” in ref “%s”"
 msgstr "भाषा '%s' को '%s' सन्दर्भमा वाइल्डकार्ड विषय सन्दर्भसँग शैलि अधिरोहण प्रयोग गरियो"
 
-#: gtksourceview/gtksourcecontextengine.c:6165
+#: gtksourceview/gtksourcecontextengine.c:6163
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "अवैध विषयवस्तु सन्दर्भ \"%s\""
 
-#: gtksourceview/gtksourcecontextengine.c:6184 gtksourceview/gtksourcecontextengine.c:6194
+#: gtksourceview/gtksourcecontextengine.c:6182 gtksourceview/gtksourcecontextengine.c:6192
 #, c-format
 msgid "unknown context “%s”"
 msgstr "अज्ञात सन्दर्भ “%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6293
+#: gtksourceview/gtksourcecontextengine.c:6291
 #, c-format
 msgid "Missing main language definition (id = \"%s\".)"
 msgstr "हराइरहेको मूख्य भाषा परिभाषा (id = \"%s\".)"
 
-#: gtksourceview/gtksourceencoding.c:140 gtksourceview/gtksourceencoding.c:183
-#: gtksourceview/gtksourceencoding.c:185 gtksourceview/gtksourceencoding.c:187
-#: gtksourceview/gtksourceencoding.c:189 gtksourceview/gtksourceencoding.c:191
-#: gtksourceview/gtksourceencoding.c:193 gtksourceview/gtksourceencoding.c:195
+#: gtksourceview/gtksourceencoding.c:146 gtksourceview/gtksourceencoding.c:189
+#: gtksourceview/gtksourceencoding.c:191 gtksourceview/gtksourceencoding.c:193
+#: gtksourceview/gtksourceencoding.c:195 gtksourceview/gtksourceencoding.c:197
+#: gtksourceview/gtksourceencoding.c:199 gtksourceview/gtksourceencoding.c:201
 msgid "Unicode"
 msgstr "युनिकोड"
 
-#: gtksourceview/gtksourceencoding.c:154 gtksourceview/gtksourceencoding.c:178
-#: gtksourceview/gtksourceencoding.c:228 gtksourceview/gtksourceencoding.c:271
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:234 gtksourceview/gtksourceencoding.c:277
 msgid "Western"
 msgstr "पश्चिमी"
 
-#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:230
-#: gtksourceview/gtksourceencoding.c:267
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:236
+#: gtksourceview/gtksourceencoding.c:273
 msgid "Central European"
 msgstr "केन्द्रीय युरोपेली"
 
-#: gtksourceview/gtksourceencoding.c:158
+#: gtksourceview/gtksourceencoding.c:164
 msgid "South European"
 msgstr "दक्षिण युरोपेली"
 
-#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:174
-#: gtksourceview/gtksourceencoding.c:281
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:287
 msgid "Baltic"
 msgstr "बाल्टिक"
 
-#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:232
-#: gtksourceview/gtksourceencoding.c:245 gtksourceview/gtksourceencoding.c:249
-#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:269
+#: gtksourceview/gtksourceencoding.c:168 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:251 gtksourceview/gtksourceencoding.c:255
+#: gtksourceview/gtksourceencoding.c:257 gtksourceview/gtksourceencoding.c:275
 msgid "Cyrillic"
 msgstr "सिरिलिक"
 
-#: gtksourceview/gtksourceencoding.c:164 gtksourceview/gtksourceencoding.c:238
-#: gtksourceview/gtksourceencoding.c:279
+#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:244
+#: gtksourceview/gtksourceencoding.c:285
 msgid "Arabic"
 msgstr "अरबी"
 
-#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:273
+#: gtksourceview/gtksourceencoding.c:172 gtksourceview/gtksourceencoding.c:279
 msgid "Greek"
 msgstr "ग्रीक"
 
-#: gtksourceview/gtksourceencoding.c:168
+#: gtksourceview/gtksourceencoding.c:174
 msgid "Hebrew Visual"
 msgstr "हिब्रु दृश्यात्मक"
 
-#: gtksourceview/gtksourceencoding.c:170 gtksourceview/gtksourceencoding.c:234
-#: gtksourceview/gtksourceencoding.c:275
+#: gtksourceview/gtksourceencoding.c:176 gtksourceview/gtksourceencoding.c:240
+#: gtksourceview/gtksourceencoding.c:281
 msgid "Turkish"
 msgstr "टर्कीस"
 
-#: gtksourceview/gtksourceencoding.c:172
+#: gtksourceview/gtksourceencoding.c:178
 msgid "Nordic"
 msgstr "नोर्डिक"
 
-#: gtksourceview/gtksourceencoding.c:176
+#: gtksourceview/gtksourceencoding.c:182
 msgid "Celtic"
 msgstr "केल्टिक"
 
-#: gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:186
 msgid "Romanian"
 msgstr "रोमानियन"
 
-#: gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:204
 msgid "Armenian"
 msgstr "आर्मेनियन"
 
-#: gtksourceview/gtksourceencoding.c:200 gtksourceview/gtksourceencoding.c:202
-#: gtksourceview/gtksourceencoding.c:216
+#: gtksourceview/gtksourceencoding.c:206 gtksourceview/gtksourceencoding.c:208
+#: gtksourceview/gtksourceencoding.c:222
 msgid "Chinese Traditional"
 msgstr "पारम्परागत चिनियाँ"
 
-#: gtksourceview/gtksourceencoding.c:204
+#: gtksourceview/gtksourceencoding.c:210
 msgid "Cyrillic/Russian"
 msgstr "सिरिलिक/रसियाली"
 
-#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:209
-#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:241
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:213 gtksourceview/gtksourceencoding.c:215
+#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:247
+#: gtksourceview/gtksourceencoding.c:262
 msgid "Japanese"
 msgstr "जापानी"
 
-#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:243
-#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:262
+#: gtksourceview/gtksourceencoding.c:220 gtksourceview/gtksourceencoding.c:249
+#: gtksourceview/gtksourceencoding.c:253 gtksourceview/gtksourceencoding.c:268
 msgid "Korean"
 msgstr "कोरियाली"
 
-#: gtksourceview/gtksourceencoding.c:219 gtksourceview/gtksourceencoding.c:221
-#: gtksourceview/gtksourceencoding.c:223
+#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:227
+#: gtksourceview/gtksourceencoding.c:229
 msgid "Chinese Simplified"
 msgstr "सरलिकृत चिनियाँ"
 
-#: gtksourceview/gtksourceencoding.c:225
+#: gtksourceview/gtksourceencoding.c:231
 msgid "Georgian"
 msgstr "जर्जियन"
 
-#: gtksourceview/gtksourceencoding.c:236 gtksourceview/gtksourceencoding.c:277
+#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:283
 msgid "Hebrew"
 msgstr "हिब्रु"
 
-#: gtksourceview/gtksourceencoding.c:253
+#: gtksourceview/gtksourceencoding.c:259
 msgid "Cyrillic/Ukrainian"
 msgstr "सिरिलिक/युक्रेनियन"
 
-#: gtksourceview/gtksourceencoding.c:258 gtksourceview/gtksourceencoding.c:264
-#: gtksourceview/gtksourceencoding.c:283
+#: gtksourceview/gtksourceencoding.c:264 gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:289
 msgid "Vietnamese"
 msgstr "भियतनामी"
 
-#: gtksourceview/gtksourceencoding.c:260
+#: gtksourceview/gtksourceencoding.c:266
 msgid "Thai"
 msgstr "थाइ"
 
-#: gtksourceview/gtksourceencoding.c:494
+#: gtksourceview/gtksourceencoding.c:500
 msgid "Unknown"
 msgstr "अज्ञात"
 
@@ -601,30 +588,30 @@ msgstr "अज्ञात"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:638
+#: gtksourceview/gtksourceencoding.c:644
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:515
+#: gtksourceview/gtksourcefileloader.c:522
 msgid ""
 "There was a character encoding conversion error and it was needed to use a fallback "
 "character."
 msgstr ""
 "त्यहाँ एउटा क्यारेक्टर सङ्केतन रूपान्तरण त्रुटि थियो र यसलाई फलब्याक क्यारेक्टर प्रयोग गर्न आवश्यक थियो ।."
 
-#: gtksourceview/gtksourcefileloader.c:622
+#: gtksourceview/gtksourcefileloader.c:629
 msgid "File too big."
 msgstr "यो फाइल निकै ठूलो छ ।."
 
-#: gtksourceview/gtksourcefileloader.c:776
+#: gtksourceview/gtksourcefileloader.c:783
 msgid "Not a regular file."
 msgstr "नियमित फाइल होइन."
 
-#: gtksourceview/gtksourcefilesaver.c:975
+#: gtksourceview/gtksourcefilesaver.c:981
 msgid "The file is externally modified."
 msgstr "फाइल लाई बाहिरी तरिकाले परिमार्जित गरियो."
 
-#: gtksourceview/gtksourcefilesaver.c:1427
+#: gtksourceview/gtksourcefilesaver.c:1433
 msgid "The buffer contains invalid characters."
 msgstr "बफरले अवैध क्यारेक्टरहरू समाविष्ट गर्दछ ।."
 
@@ -656,7 +643,7 @@ msgstr "रेगेक्स \"%s\" मा: पछाडिको सन्द�
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
-msgstr "भाषा परिभाषामा \\C को प्रयोग समर्थित छैन"
+msgstr " \\C को प्रयोग भाषा सेटिङमा समर्थन गरिदैन"
 
 #. TODO: have a ChooserDialog?
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:185
@@ -700,18 +687,6 @@ msgstr "शीर्षक वर्ण"
 #: gtksourceview/gtksourceview.c:1869
 msgid "C_hange Case"
 msgstr "परिवर्तन वर्ण"
-
-#~ msgid "Adwaita Dark"
-#~ msgstr "अदविता-गाढा"
-
-#~ msgid "Adwaita"
-#~ msgstr "अदविता"
-
-#~ msgid "Snippets"
-#~ msgstr "स्निप्पेटस्"
-
-#~ msgid "%d of %u"
-#~ msgstr "%d को %u"
 
 #~ msgid "Highlight Syntax"
 #~ msgstr "वाक्य संरचना हाइलाइट गर्नुहोस्"
