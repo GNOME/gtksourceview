@@ -10,6 +10,7 @@ xxx${var\
 
 xxx$0000 # One digit parameter
 xxx$-xxx xxx$$xxx xxx$@xxx # Special parameters
+xxx$_param-xxx # Starting with '_'
 xxx${!array[@]}xxx${#array[-1]}xxx${array[0x1+var/2*$(cmd)]/a/b}xxx # Arrays
 
 xxx${parameter:-word}xxx${parameter-word}xxx # Use Default Values
