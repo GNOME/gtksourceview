@@ -300,7 +300,11 @@ update_scrubber_position (GtkSourceMap *map)
 	                        (gdouble)view_height *
 	                        (gdouble)child_height) +
 	                       iter_area.height;
-	scrubber_area.height = CLAMP (scrubber_area.height, 1, alloc.height);
+
+	if (scrubber_area.height > alloc.height)
+		scrubber_area.height = alloc.height;
+	else if (scrubber_area.height < 0)
+		scrubber_area.height = 1;
 
 	if (memcmp (&scrubber_area, &priv->scrubber_area, sizeof scrubber_area) != 0)
 	{
