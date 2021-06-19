@@ -400,19 +400,14 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	if (background != NULL)
 	{
 		g_string_append_printf (gstr,
-		                        "slider {\n"
-		                        "\tbackground-color: alpha(%s,.3);\n"
-		                        "\tborder-radius: 3px;\n"
-		                        "\tborder: 1px solid alpha(shade(%s,.9),.3);\n"
-		                        "\tmargin-top: 1px;\n"
-		                        "\tmargin-bottom: 1px;\n"
+		                        "slider {"
+		                        " background-color: alpha(%s,.25);"
+		                        " transition-duration: 300ms;"
 		                        "}\n"
-		                        "slider:hover {\n"
-		                        "\tbackground-color: alpha(%s,.5);\n"
+		                        "slider:hover {"
+		                        " background-color: alpha(%s,.35);"
 		                        "}\n",
-		                        background,
-		                        background,
-		                        background);
+		                        background, background);
 	}
 
 	g_free (background);
