@@ -1110,7 +1110,7 @@ gtk_source_map_init (GtkSourceMap *map)
 	completion = gtk_source_view_get_completion (GTK_SOURCE_VIEW (map));
 	gtk_source_completion_block_interactive (completion);
 
-	gtk_source_map_set_font_name (map, "BuilderBlocks 1");
+	gtk_source_map_set_font_name (map, "BuilderBlocks 2");
 
 	drag = gtk_gesture_drag_new ();
 	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (drag),
