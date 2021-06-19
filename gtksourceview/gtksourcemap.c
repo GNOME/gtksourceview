@@ -612,8 +612,16 @@ gtk_source_map_measure (GtkWidget      *widget,
 		else
 		{
 			PangoLayout *layout;
-			gint height;
-			gint width;
+			char *text;
+			guint right_margin_position;
+			int height;
+			int width;
+
+			right_margin_position = gtk_source_view_get_right_margin_position (priv->view);
+
+			text = g_malloc (right_margin_position + 1);
+			memset (text, 'X', right_margin_position);
+			text[right_margin_position] = 0;
 
 			/*
 			 * FIXME:
@@ -622,11 +630,10 @@ gtk_source_map_measure (GtkWidget      *widget,
 			 * rebuilding our CSS since it gets used a bunch and changes
 			 * very little.
 			 */
-			layout = gtk_widget_create_pango_layout (GTK_WIDGET (map), "X");
+			layout = gtk_widget_create_pango_layout (GTK_WIDGET (map), text);
 			pango_layout_get_pixel_size (layout, &width, &height);
 			g_object_unref (layout);
-
-			width *= gtk_source_view_get_right_margin_position (priv->view);
+			g_free (text);
 
 			*minimum = *natural = width;
 		}
