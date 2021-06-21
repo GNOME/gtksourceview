@@ -257,12 +257,14 @@ static void
 update_scrubber_position (GtkSourceMap *map)
 {
 	GtkSourceMapPrivate *priv;
+	GtkStyleContext *style_context;
 	GtkTextIter iter;
 	GdkRectangle visible_area;
 	GdkRectangle iter_area;
 	GdkRectangle scrubber_area;
 	GtkAllocation alloc;
 	GtkAllocation view_alloc;
+	GtkBorder border;
 	gint ignored;
 	gint child_height;
 	gint view_height;
@@ -293,8 +295,11 @@ update_scrubber_position (GtkSourceMap *map)
 	                                    visible_area.x, visible_area.y);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &iter, &iter_area);
 
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
+	gtk_style_context_get_border (style_context, &border);
+
 	scrubber_area.x = 0;
-	scrubber_area.width = alloc.width;
+	scrubber_area.width = alloc.width - border.left - border.right;
 	scrubber_area.y = iter_area.y;
 	scrubber_area.height = ((gdouble)view_alloc.height /
 	                        (gdouble)view_height *
