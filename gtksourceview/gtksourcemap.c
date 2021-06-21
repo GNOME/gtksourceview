@@ -96,9 +96,9 @@
  * pixel cache when cairo_scale is not 1-to-1. This results in layout
  * invalidation and worst case render paths.
  *
- * I also tried rendering the scrubber (overlay box) during the
+ * I also tried rendering the slider (overlay box) during the
  * GtkTextView::draw_layer() vfunc. The problem with this approach is that
- * the scrubber contents are actually pixel cached. So every time the scrubber
+ * the slider contents are actually pixel cached. So every time the slider
  * moves we have to invalidate the GtkTextLayout and redraw cached contents.
  * Where as drawing in the GtkTextView::draw() vfunc, after the pixel cache
  * contents have been drawn results in only a composite blend, not
@@ -162,7 +162,7 @@ typedef struct
 	PangoFontDescription *font_desc;
 
 	/*
-	 * The easiest way to style the scrubber and the sourceview is
+	 * The easiest way to style the slider and the sourceview is
 	 * by using CSS. This is necessary since we can't mess with the
 	 * fonts used in the textbuffer (as one might using GtkTextTag).
 	 */
@@ -177,8 +177,8 @@ typedef struct
 	/* The slider widget */
 	GtkSourceMapSlider *slider;
 
-	/* The location of the scrubber in widget coordinate space. */
-	GdkRectangle scrubber_area;
+	/* The location of the slider in widget coordinate space. */
+	GdkRectangle slider_area;
 
 	/* Weak pointer view to child view bindings */
 	GBinding *buffer_binding;
@@ -196,7 +196,7 @@ typedef struct
 	/* Denotes if we are in a grab from button press */
 	guint in_press : 1;
 
-	/* If we failed to locate a color for the scrubber, then this will
+	/* If we failed to locate a color for the slider, then this will
 	 * be set to 0 and that means we need to apply the "selection"
 	 * class when drawing so that we get an appropriate color.
 	 */
@@ -254,73 +254,55 @@ load_override_font (GtkSourceMap *map)
 #endif
 
 static void
-update_scrubber_position (GtkSourceMap *map)
+update_slider_position (GtkSourceMap *map)
 {
-	GtkSourceMapPrivate *priv;
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	GdkRectangle them_visible_rect;
+	GdkRectangle us_alloc;
+	GdkRectangle slider_area;
 	GtkStyleContext *style_context;
-	GtkTextIter iter;
-	GdkRectangle visible_area;
-	GdkRectangle iter_area;
-	GdkRectangle scrubber_area;
-	GtkAllocation alloc;
-	GtkAllocation view_alloc;
+	GtkTextBuffer *buffer;
+	GtkTextIter end_iter;
+	GdkRectangle end_rect;
 	GtkBorder border;
-	gint ignored;
-	gint child_height;
-	gint view_height;
-
-	priv = gtk_source_map_get_instance_private (map);
+	int us_height;
+	int them_height;
 
 	if (priv->view == NULL)
 	{
 		return;
 	}
 
-	gtk_widget_get_allocation (GTK_WIDGET (priv->view), &view_alloc);
-	gtk_widget_get_allocation (GTK_WIDGET (map), &alloc);
+	gtk_widget_get_allocation (GTK_WIDGET (map), &us_alloc);
 
-	gtk_widget_measure (GTK_WIDGET (priv->view),
-	                    GTK_ORIENTATION_VERTICAL,
-	                    gtk_widget_get_width (GTK_WIDGET (priv->view)),
-	                    NULL,
-	                    &view_height,
-	                    NULL, NULL);
-	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->measure (GTK_WIDGET (map),
-								 GTK_ORIENTATION_VERTICAL,
-								 gtk_widget_get_width (GTK_WIDGET (map)),
-								 &ignored, &child_height, &ignored, &ignored);
-
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (priv->view), &visible_area);
-	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (priv->view), &iter,
-	                                    visible_area.x, visible_area.y);
-	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &iter, &iter_area);
-
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (map));
 	style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
 	gtk_style_context_get_border (style_context, &border);
 
-	scrubber_area.x = 0;
-	scrubber_area.width = alloc.width - border.left - border.right;
-	scrubber_area.y = iter_area.y;
-	scrubber_area.height = ((gdouble)view_alloc.height /
-	                        (gdouble)view_height *
-	                        (gdouble)child_height) +
-	                       iter_area.height;
+	gtk_text_buffer_get_end_iter (buffer, &end_iter);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &end_iter, &end_rect);
+	us_height = end_rect.y + end_rect.height;
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (priv->view), &end_iter, &end_rect);
+	them_height = end_rect.y + end_rect.height;
 
-	if (scrubber_area.height > alloc.height)
-		scrubber_area.height = alloc.height;
-	else if (scrubber_area.height < 0)
-		scrubber_area.height = 1;
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (priv->view), &them_visible_rect);
 
-	if (memcmp (&scrubber_area, &priv->scrubber_area, sizeof scrubber_area) != 0)
+	slider_area.x = 0;
+	slider_area.width = us_alloc.width - border.left - border.right;
+	slider_area.height = 100;
+	slider_area.y = (double)them_visible_rect.y / (double)them_height * (double)us_height;
+	slider_area.height = ((double)(them_visible_rect.y + them_visible_rect.height) / (double)them_height * (double)us_height) - slider_area.y;
+
+	if (memcmp (&slider_area, &priv->slider_area, sizeof slider_area) != 0)
 	{
-		priv->scrubber_area = scrubber_area;
+		priv->slider_area = slider_area;
 		gtk_widget_set_size_request (GTK_WIDGET (priv->slider),
-		                             scrubber_area.width,
-		                             scrubber_area.height);
+		                             MAX (0, slider_area.width),
+		                             MAX (0, slider_area.height));
 		gtk_text_view_move_overlay (GTK_TEXT_VIEW (map),
 		                            GTK_WIDGET (priv->slider),
-					    scrubber_area.x,
-		                            scrubber_area.y);
+		                            slider_area.x,
+		                            slider_area.y);
 		gtk_widget_queue_allocate (GTK_WIDGET (map));
 	}
 }
@@ -344,17 +326,17 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 
 	/*
 	 * This is where we calculate the CSS that maps the font for the
-	 * minimap as well as the styling for the scrubber.
+	 * minimap as well as the styling for the slider.
 	 *
 	 * The font is calculated from #GtkSourceMap:font-desc. We convert this
 	 * to CSS using _gtk_source_utils_pango_font_description_to_css(). It
 	 * gets applied to the minimap widget via the CSS style provider which
 	 * we attach to the view in gtk_source_map_init().
 	 *
-	 * The rules for calculating the style for the scrubber are as follows.
+	 * The rules for calculating the style for the slider are as follows.
 	 *
 	 * If the current style scheme provides a background color for the
-	 * scrubber using the "map-overlay" style name, we use that without
+	 * slider using the "map-overlay" style name, we use that without
 	 * any transformations.
 	 *
 	 * If the style scheme contains a "selection" style scheme, used for
@@ -471,7 +453,7 @@ view_vadj_value_changed (GtkSourceMap  *map,
                          GtkAdjustment *vadj)
 {
 	update_child_vadjustment (map);
-	update_scrubber_position (map);
+	update_slider_position (map);
 }
 
 static void
@@ -479,7 +461,7 @@ view_vadj_notify_upper (GtkSourceMap  *map,
                         GParamSpec    *pspec,
                         GtkAdjustment *vadj)
 {
-	update_scrubber_position (map);
+	update_slider_position (map);
 }
 
 static void
