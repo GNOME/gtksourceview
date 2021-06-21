@@ -622,6 +622,11 @@ gtk_source_map_measure (GtkWidget      *widget,
 			g_object_unref (layout);
 			g_free (text);
 
+			/* If left-margin is set, try to balance the right side with the same amount
+			 * of additional space to keep it aligned.
+			 */
+			width += (gtk_text_view_get_left_margin (GTK_TEXT_VIEW (map)) * 2);
+
 			*minimum = *natural = width;
 		}
 	}
