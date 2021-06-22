@@ -4741,6 +4741,7 @@ update_right_margin_colors (GtkSourceView *view)
 			}
 
 			g_clear_pointer (&color_str, g_free);
+			g_clear_pointer (&text_background_str, g_free);
 		}
 	}
 
