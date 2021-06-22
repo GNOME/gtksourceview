@@ -18,6 +18,7 @@
 
 #include "config.h"
 
+#include <math.h>
 #include <string.h>
 
 #if ENABLE_FONT_CONFIG
