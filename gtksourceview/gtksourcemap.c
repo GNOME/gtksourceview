@@ -880,34 +880,32 @@ gtk_source_map_set_property (GObject      *object,
 
 static void
 gtk_source_map_drag_update (GtkSourceMap   *map,
-			    gdouble         x,
-			    gdouble         y,
-			    GtkGestureDrag *drag)
+                            double          x,
+                            double          y,
+                            GtkGestureDrag *drag)
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
 	GtkTextBuffer *buffer;
 	GtkAllocation alloc;
 	GdkRectangle area;
 	GtkTextIter iter;
-	gdouble yratio;
-	gdouble begin_x;
-	gdouble begin_y;
-	gint ignored;
-	gint real_height;
-	gint height;
+	double yratio;
+	double begin_x;
+	double begin_y;
+	int ignored;
+	int real_height;
+	int height;
 
 	if (!priv->reached_drag_threshold && ABS (y) < DRAG_THRESHOLD)
 	{
 		return;
 	}
 
-	y = ceil (y);
-
 	priv->reached_drag_threshold = TRUE;
 
 	gtk_widget_get_allocation (GTK_WIDGET (map), &alloc);
 	gtk_gesture_drag_get_start_point (drag, &begin_x, &begin_y);
-	y = CLAMP (begin_y + y, 0, alloc.height);
+	y = CLAMP (ceil (begin_y + y), 0, alloc.height);
 
 	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->measure (GTK_WIDGET (map),
 								 GTK_ORIENTATION_VERTICAL,
@@ -920,7 +918,7 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 	gtk_text_buffer_get_end_iter (buffer, &iter);
 	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &iter, &area);
 
-	yratio = CLAMP (y, 0, height) / (gdouble)height;
+	yratio = y / (double)height;
 
 	scroll_to_child_point (map, 0, real_height * yratio);
 }
