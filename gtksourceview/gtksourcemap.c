@@ -34,6 +34,7 @@
 #include "gtksourceutils-private.h"
 
 #define SCRUBBER_MIN_HEIGHT 10
+#define DRAG_THRESHOLD      5.0
 
 /**
  * SECTION:map
@@ -201,6 +202,9 @@ typedef struct
 	 * class when drawing so that we get an appropriate color.
 	 */
 	guint had_color : 1;
+
+	/* If we dragged enough to reach a drag threshold */
+	guint reached_drag_threshold : 1;
 } GtkSourceMapPrivate;
 
 enum
@@ -879,6 +883,7 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 			    gdouble         y,
 			    GtkGestureDrag *drag)
 {
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
 	GtkTextBuffer *buffer;
 	GtkAllocation alloc;
 	GdkRectangle area;
@@ -889,6 +894,13 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 	gint ignored;
 	gint real_height;
 	gint height;
+
+	if (!priv->reached_drag_threshold && ABS (y) < DRAG_THRESHOLD)
+	{
+		return;
+	}
+
+	priv->reached_drag_threshold = TRUE;
 
 	gtk_widget_get_allocation (GTK_WIDGET (map), &alloc);
 	gtk_gesture_drag_get_start_point (drag, &begin_x, &begin_y);
@@ -916,10 +928,42 @@ gtk_source_map_drag_begin (GtkSourceMap   *map,
 			   gdouble         start_y,
 			   GtkGestureDrag *drag)
 {
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	priv->reached_drag_threshold = FALSE;
+
 	gtk_gesture_set_state (GTK_GESTURE (drag), GTK_EVENT_SEQUENCE_CLAIMED);
 	gtk_source_map_drag_update (map, 0, 0, drag);
 }
 
+static void
+gtk_source_map_click_pressed (GtkSourceMap *map,
+			      int           n_presses,
+                              double        x,
+                              double        y,
+                              GtkGesture   *click)
+{
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	GtkTextIter iter;
+	int buffer_x, buffer_y;
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+	g_assert (GTK_IS_GESTURE_CLICK (click));
+
+	if (priv->view == NULL)
+	{
+		return;
+	}
+
+	gtk_gesture_set_state (click, GTK_EVENT_SEQUENCE_CLAIMED);
+
+	gtk_text_view_window_to_buffer_coords (GTK_TEXT_VIEW (map),
+	                                       GTK_TEXT_WINDOW_WIDGET,
+	                                       x, y, &buffer_x, &buffer_y);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (map), &iter, 0, buffer_y);
+	gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->view), &iter,
+	                              0.0, TRUE, 1.0, 0.5);
+}
 
 static gboolean
 gtk_source_map_scroll (GtkWidget *widget,
@@ -1073,6 +1117,7 @@ gtk_source_map_init (GtkSourceMap *map)
 	GtkSourceMapPrivate *priv;
 	GtkSourceCompletion *completion;
 	GtkEventController *scroll;
+	GtkEventController *press;
 	GtkGesture *drag;
 
 	priv = gtk_source_map_get_instance_private (map);
@@ -1128,6 +1173,14 @@ gtk_source_map_init (GtkSourceMap *map)
 	                          G_CALLBACK (gtk_source_map_scroll),
 	                          map);
 	gtk_widget_add_controller (GTK_WIDGET (map), g_steal_pointer (&scroll));
+
+	press = GTK_EVENT_CONTROLLER (gtk_gesture_click_new ());
+	g_signal_connect_swapped (press,
+	                          "pressed",
+	                          G_CALLBACK (gtk_source_map_click_pressed),
+	                          map);
+	gtk_event_controller_set_propagation_phase (press, GTK_PHASE_CAPTURE);
+	gtk_widget_add_controller (GTK_WIDGET (map), press);
 }
 
 /**
