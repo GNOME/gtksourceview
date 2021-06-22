@@ -669,8 +669,8 @@ scroll_to_child_point (GtkSourceMap *map,
 
 		gtk_widget_get_allocation (GTK_WIDGET (map), &alloc);
 		gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (map), &iter, x, y);
-		gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->view), &iter,
-		                              0.0, TRUE, 1.0, 0.5);
+		_gtk_source_view_jump_to_iter (GTK_TEXT_VIEW (priv->view), &iter,
+		                               0.0, TRUE, 1.0, 0.5);
 	}
 }
 
@@ -899,6 +899,8 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 	{
 		return;
 	}
+
+	y = ceil (y);
 
 	priv->reached_drag_threshold = TRUE;
 

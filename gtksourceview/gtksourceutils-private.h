@@ -21,8 +21,8 @@
 
 #pragma once
 
-#include <glib.h>
 #include <pango/pango.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -44,5 +44,13 @@ gchar   *_gtk_source_utils_pango_font_description_to_css (const PangoFontDescrip
 G_GNUC_INTERNAL
 gchar   *_gtk_source_utils_dgettext                      (const gchar                 *domain,
                                                           const gchar                 *msgid) G_GNUC_FORMAT(2);
+
+G_GNUC_INTERNAL
+void     _gtk_source_view_jump_to_iter                   (GtkTextView                 *view,
+                                                          const GtkTextIter           *iter,
+                                                          double                       within_margin,
+                                                          gboolean                     use_align,
+                                                          double                       xalign,
+                                                          double                       yalign);
 
 G_END_DECLS
