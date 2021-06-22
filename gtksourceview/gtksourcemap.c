@@ -1098,6 +1098,32 @@ gtk_source_map_hide (GtkWidget *widget)
 }
 
 static void
+gtk_source_map_css_changed (GtkWidget         *widget,
+                            GtkCssStyleChange *change)
+{
+	g_assert (GTK_IS_WIDGET (widget));
+
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->css_changed (widget, change);
+
+#if GTK_CHECK_VERSION(4,3,1)
+	{
+		PangoContext *rtl_context;
+		PangoContext *ltr_context;
+
+		/* Ensure rounding so that BuilderBlocks aligns properly within
+		 * rounding errors between glyphs.
+		 */
+
+		rtl_context = gtk_text_view_get_rtl_context (GTK_TEXT_VIEW (widget));
+		ltr_context = gtk_text_view_get_ltr_context (GTK_TEXT_VIEW (widget));
+
+		pango_context_set_round_glyph_positions (rtl_context, TRUE);
+		pango_context_set_round_glyph_positions (ltr_context, TRUE);
+	}
+#endif
+}
+
+static void
 gtk_source_map_constructed (GObject *object)
 {
 	G_OBJECT_CLASS (gtk_source_map_parent_class)->constructed (object);
@@ -1124,6 +1150,7 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 	widget_class->show = gtk_source_map_show;
 	widget_class->state_flags_changed = gtk_source_map_state_flags_changed;
 	widget_class->realize = gtk_source_map_realize;
+	widget_class->css_changed = gtk_source_map_css_changed;
 
 	text_view_class->snapshot_layer = gtk_source_map_snapshot_layer;
 
