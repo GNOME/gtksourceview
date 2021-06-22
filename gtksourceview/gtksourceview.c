@@ -2401,17 +2401,18 @@ gtk_source_view_get_lines (GtkTextView *text_view,
  * See https://bugzilla.gnome.org/show_bug.cgi?id=310847 for more details.
  */
 static void
-gtk_source_view_paint_line_background (GtkTextView   *text_view,
+gtk_source_view_paint_line_background (GtkSourceView *view,
                                        GtkSnapshot   *snapshot,
                                        int            y, /* in buffer coordinates */
                                        int            height,
                                        const GdkRGBA *color)
 {
 	static const float widths[4] = { 1, 0, 1, 0 };
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GdkRGBA colors[4] = { *color, *color, *color, *color };
 	GdkRectangle visible_rect;
 
-	gtk_text_view_get_visible_rect (text_view, &visible_rect);
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
 	gtk_snapshot_append_border (snapshot,
 	                            &GSK_ROUNDED_RECT_INIT (visible_rect.x,
 	                                                    y,
@@ -2425,6 +2426,26 @@ gtk_source_view_paint_line_background (GtkTextView   *text_view,
 	                                                y,
 	                                                visible_rect.width,
 	                                                height));
+
+	/* If we premixed colors for the margin, we need to draw the line
+	 * separator over the right-margin-position. We don't bother with
+	 * drawing alpha over the right because in most cases it's so
+	 * similar it's not worth the compositing cost.
+	 */
+	if (priv->show_right_margin &&
+	    priv->right_margin_line_color_set &&
+	    priv->cached_right_margin_pos >= 0)
+	{
+		int x = priv->cached_right_margin_pos + gtk_text_view_get_left_margin (GTK_TEXT_VIEW (view));
+
+		if (x >= visible_rect.x &&
+		    x < visible_rect.x + visible_rect.width)
+		{
+			gtk_snapshot_append_color (snapshot,
+			                           &priv->right_margin_line_color,
+			                           &GRAPHENE_RECT_INIT (x, y, 1, height));
+		}
+	}
 }
 
 static void
@@ -2523,7 +2544,7 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 
 		if (priority != -1)
 		{
-			gtk_source_view_paint_line_background (text_view,
+			gtk_source_view_paint_line_background (view,
 			                                       snapshot,
 			                                       g_array_index (pixels, gint, i),
 			                                       g_array_index (heights, gint, i),
@@ -2660,7 +2681,7 @@ gtk_source_view_paint_current_line_highlight (GtkSourceView *view,
 					  gtk_text_buffer_get_insert (buffer));
 	gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view), &cur, &y, &height);
 
-	gtk_source_view_paint_line_background (GTK_TEXT_VIEW (view),
+	gtk_source_view_paint_line_background (view,
 					       snapshot,
 					       y, height,
 					       &priv->current_line_color);
@@ -2678,6 +2699,23 @@ gtk_source_view_snapshot_layer (GtkTextView      *text_view,
 
 	if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
 	{
+		/* Draw the right margin vertical line + background overlay.
+		 * This is done below text so that we can avoid compositing RGBA
+		 * values over the text and other content.
+		 *
+		 * One change by doing this here instead of above-text is that
+		 * the current line highlight can draw over the right margin
+		 * position, but that is a small behavior change compared to
+		 * the additional perf boost avoiding the composite.
+		 */
+		if (priv->show_right_margin)
+		{
+			gtk_source_view_paint_right_margin (view, snapshot);
+		}
+
+		/* Now draw the background pattern, which might draw above the
+		 * right-margin area for additional texture.
+		 */
 		if (priv->background_pattern == GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID &&
 		    priv->background_pattern_color_set)
 		{
@@ -2695,12 +2733,6 @@ gtk_source_view_snapshot_layer (GtkTextView      *text_view,
 	}
 	else if (layer == GTK_TEXT_VIEW_LAYER_ABOVE_TEXT)
 	{
-		/* Draw the right margin vertical line + overlay. */
-		if (priv->show_right_margin)
-		{
-			gtk_source_view_paint_right_margin (view, snapshot);
-		}
-
 		if (priv->space_drawer != NULL)
 		{
 			_gtk_source_space_drawer_draw (priv->space_drawer, view, snapshot);
@@ -4612,6 +4644,32 @@ update_current_line_color (GtkSourceView *view)
 								 &priv->current_line_color);
 }
 
+static inline void
+premix_colors (GdkRGBA       *dest,
+               const GdkRGBA *fg,
+               const GdkRGBA *bg,
+               gboolean       bg_set,
+               double         alpha)
+{
+	g_assert (dest != NULL);
+	g_assert (fg != NULL);
+	g_assert (bg != NULL || bg_set == FALSE);
+	g_assert (alpha >= 0.0 && alpha <= 1.0);
+
+	if (bg_set)
+	{
+		dest->red = ((1 - alpha) * bg->red) + (alpha * fg->red);
+		dest->green = ((1 - alpha) * bg->green) + (alpha * fg->green);
+		dest->blue = ((1 - alpha) * bg->blue) + (alpha * fg->blue);
+		dest->alpha = 1.0;
+	}
+	else
+	{
+		*dest = *fg;
+		dest->alpha = alpha;
+	}
+}
+
 static void
 update_right_margin_colors (GtkSourceView *view)
 {
@@ -4623,34 +4681,51 @@ update_right_margin_colors (GtkSourceView *view)
 
 	if (priv->style_scheme != NULL)
 	{
-		GtkSourceStyle *style;
+		GtkSourceStyle *right_margin_style;
+		GtkSourceStyle *text_style;
 
-		style = _gtk_source_style_scheme_get_right_margin_style (priv->style_scheme);
+		right_margin_style = _gtk_source_style_scheme_get_right_margin_style (priv->style_scheme);
+		text_style = gtk_source_style_scheme_get_style (priv->style_scheme, "text");
 
-		if (style != NULL)
+		if (right_margin_style != NULL)
 		{
-			gchar *color_str = NULL;
+			char *text_background_str = NULL;
+			char *color_str = NULL;
+			gboolean text_background_set = FALSE;
 			gboolean color_set;
 			GdkRGBA color;
+			GdkRGBA background;
 
-			g_object_get (style,
+			g_object_get (right_margin_style,
 				      "foreground", &color_str,
 				      "foreground-set", &color_set,
 				      NULL);
+
+			if (text_style != NULL)
+			{
+				g_object_get (text_style,
+				              "background", &text_background_str,
+				              "background-set", &text_background_set,
+				              NULL);
+
+				text_background_set = (text_background_set &&
+				                       text_background_str != NULL &&
+				                       gdk_rgba_parse (&background, text_background_str));
+			}
 
 			if (color_set &&
 			    color_str != NULL &&
 			    gdk_rgba_parse (&color, color_str))
 			{
-				priv->right_margin_line_color = color;
-				priv->right_margin_line_color.alpha = RIGHT_MARGIN_LINE_ALPHA / 255.;
+				premix_colors (&priv->right_margin_line_color, &color, &background,
+				               text_background_set,
+				               RIGHT_MARGIN_LINE_ALPHA / 255.0);
 				priv->right_margin_line_color_set = TRUE;
 			}
 
-			g_free (color_str);
-			color_str = NULL;
+			g_clear_pointer (&color_str, g_free);
 
-			g_object_get (style,
+			g_object_get (right_margin_style,
 				      "background", &color_str,
 				      "background-set", &color_set,
 				      NULL);
@@ -4659,12 +4734,13 @@ update_right_margin_colors (GtkSourceView *view)
 			    color_str != NULL &&
 			    gdk_rgba_parse (&color, color_str))
 			{
-				priv->right_margin_overlay_color = color;
-				priv->right_margin_overlay_color.alpha = RIGHT_MARGIN_OVERLAY_ALPHA / 255.;
+				premix_colors (&priv->right_margin_overlay_color, &color, &background,
+				               text_background_set,
+				               RIGHT_MARGIN_OVERLAY_ALPHA / 255.0);
 				priv->right_margin_overlay_color_set = TRUE;
 			}
 
-			g_free (color_str);
+			g_clear_pointer (&color_str, g_free);
 		}
 	}
 
