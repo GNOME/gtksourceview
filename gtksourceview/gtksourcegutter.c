@@ -716,7 +716,7 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 
 	g_clear_object (&gutter->lines);
 
-	if (text_view == NULL || gtk_widget_get_width (widget) == 0)
+	if (gutter->renderers == NULL || text_view == NULL || gtk_widget_get_width (widget) == 0)
 	{
 		return;
 	}
