@@ -320,7 +320,8 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	GtkSourceStyle *style = NULL;
 	GtkTextBuffer *buffer;
 	GString *gstr;
-	gchar *background = NULL;
+	char *background = NULL;
+	char *foreground = NULL;
 
 	priv = gtk_source_map_get_instance_private (map);
 
@@ -382,16 +383,45 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 
 	if (style != NULL)
 	{
+		gboolean foreground_set;
+		gboolean background_set;
+
 		g_object_get (style,
+		              "foreground", &foreground,
+		              "foreground-set", &foreground_set,
 		              "background", &background,
+		              "background-set", &background_set,
 		              NULL);
+
+		if (!foreground_set)
+		{
+			g_clear_pointer (&foreground, g_free);
+		}
+
+		if (!background_set)
+		{
+			g_clear_pointer (&background, g_free);
+		}
 	}
 
 	priv->had_color = background != NULL;
 
 	if (background != NULL)
 	{
+		if (foreground == NULL)
+		{
+			GtkStyleContext *style_context;
+			GdkRGBA color;
+
+			style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
+			gtk_style_context_get_color (style_context, &color);
+			foreground = gdk_rgba_to_string (&color);
+		}
+
 		g_string_append_printf (gstr,
+		                        "textview.source-map {"
+		                        " color: mix(%s,%s,.25);"
+		                        "}\n"
 		                        "slider {"
 		                        " background-color: alpha(%s,.25);"
 		                        " transition-duration: 300ms;"
@@ -399,10 +429,12 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		                        "slider:hover {"
 		                        " background-color: alpha(%s,.35);"
 		                        "}\n",
+					foreground, background,
 		                        background, background);
 	}
 
 	g_free (background);
+	g_free (foreground);
 
 	if (gstr->len > 0)
 	{
