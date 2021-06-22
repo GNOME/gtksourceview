@@ -33,10 +33,17 @@
 
 typedef struct
 {
+	int width;
+	int height;
+} Size;
+
+typedef struct
+{
 	gchar       *text;
 	PangoLayout *cached_layout;
 	GdkRGBA      cached_color;
 	gsize        text_len;
+	Size         cached_sizes[5];
 	guint        is_markup : 1;
 } GtkSourceGutterRendererTextPrivate;
 
@@ -51,6 +58,45 @@ enum
 };
 
 static void
+gtk_source_gutter_renderer_text_clear_cached_sizes (GtkSourceGutterRendererText *text)
+{
+	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (text);
+
+	for (guint i = 0; i < G_N_ELEMENTS (priv->cached_sizes); i++)
+	{
+		priv->cached_sizes[i].width = -1;
+		priv->cached_sizes[i].height = -1;
+	}
+}
+
+static inline void
+gtk_source_gutter_renderer_text_get_size (GtkSourceGutterRendererTextPrivate *priv,
+                                          PangoLayout                        *layout,
+                                          int                                 text_len,
+                                          int                                *width,
+                                          int                                *height)
+{
+	g_assert (text_len > 0);
+
+	if G_UNLIKELY (text_len > G_N_ELEMENTS (priv->cached_sizes) ||
+	               priv->cached_sizes[text_len-1].width == -1)
+	{
+		pango_layout_get_pixel_size (layout, width, height);
+
+		if (text_len <= G_N_ELEMENTS (priv->cached_sizes))
+		{
+			priv->cached_sizes[text_len-1].width = *width;
+			priv->cached_sizes[text_len-1].height = *height;
+		}
+	}
+	else
+	{
+		*width = priv->cached_sizes[text_len-1].width;
+		*height = priv->cached_sizes[text_len-1].height;
+	}
+}
+
+static void
 gtk_source_gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
                                        GtkSourceGutterLines    *lines)
 {
@@ -62,6 +108,8 @@ gtk_source_gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
 
 	g_clear_object (&priv->cached_layout);
 	priv->cached_layout = gtk_widget_create_pango_layout (GTK_WIDGET (renderer), NULL);
+
+	gtk_source_gutter_renderer_text_clear_cached_sizes (text);
 }
 
 static void
@@ -73,10 +121,10 @@ gtk_source_gutter_renderer_text_snapshot_line (GtkSourceGutterRenderer *renderer
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
 	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (text);
 	PangoLayout *layout;
-	gfloat x;
-	gfloat y;
-	gint width;
-	gint height;
+	float x;
+	float y;
+	int width;
+	int height;
 
 	if (priv->text == NULL || priv->text_len == 0)
 	{
@@ -98,14 +146,8 @@ gtk_source_gutter_renderer_text_snapshot_line (GtkSourceGutterRenderer *renderer
 		                       priv->text_len);
 	}
 
-	pango_layout_get_pixel_size (layout, &width, &height);
-
-	gtk_source_gutter_renderer_align_cell (renderer,
-	                                       line,
-	                                       width,
-	                                       height,
-	                                       &x,
-	                                       &y);
+	gtk_source_gutter_renderer_text_get_size (priv, layout, priv->text_len, &width, &height);
+	gtk_source_gutter_renderer_align_cell (renderer, line, width, height, &x, &y);
 
 	gtk_snapshot_render_layout (snapshot,
 	                            gtk_widget_get_style_context (GTK_WIDGET (text)),
@@ -388,6 +430,8 @@ gtk_source_gutter_renderer_text_init (GtkSourceGutterRendererText *self)
 	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (self);
 
 	priv->is_markup = TRUE;
+
+	gtk_source_gutter_renderer_text_clear_cached_sizes (self);
 }
 
 /**
