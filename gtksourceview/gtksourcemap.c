@@ -428,9 +428,12 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		                        "}\n"
 		                        "slider:hover {"
 		                        " background-color: alpha(%s,.35);"
+		                        "}\n"
+		                        "slider.dragging:hover {"
+		                        " background-color: alpha(%s,.5);"
 		                        "}\n",
 					foreground, background,
-		                        background, background);
+		                        background, background, background);
 	}
 
 	g_free (background);
@@ -957,9 +960,9 @@ gtk_source_map_drag_update (GtkSourceMap   *map,
 
 static void
 gtk_source_map_drag_begin (GtkSourceMap   *map,
-			   gdouble         start_x,
-			   gdouble         start_y,
-			   GtkGestureDrag *drag)
+                           double          start_x,
+                           double          start_y,
+                           GtkGestureDrag *drag)
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
 
@@ -967,11 +970,24 @@ gtk_source_map_drag_begin (GtkSourceMap   *map,
 
 	gtk_gesture_set_state (GTK_GESTURE (drag), GTK_EVENT_SEQUENCE_CLAIMED);
 	gtk_source_map_drag_update (map, 0, 0, drag);
+
+	gtk_widget_add_css_class (GTK_WIDGET (priv->slider), "dragging");
+}
+
+static void
+gtk_source_map_drag_end (GtkSourceMap   *map,
+                         double          start_x,
+                         double          start_y,
+                         GtkGestureDrag *drag)
+{
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	gtk_widget_remove_css_class (GTK_WIDGET (priv->slider), "dragging");
 }
 
 static void
 gtk_source_map_click_pressed (GtkSourceMap *map,
-			      int           n_presses,
+                              int           n_presses,
                               double        x,
                               double        y,
                               GtkGesture   *click)
@@ -1216,13 +1232,17 @@ gtk_source_map_init (GtkSourceMap *map)
 	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (drag),
                                                     GTK_PHASE_CAPTURE);
 	g_signal_connect_swapped (drag,
-				  "drag-begin",
-				  G_CALLBACK (gtk_source_map_drag_begin),
-				  map);
+	                          "drag-begin",
+	                          G_CALLBACK (gtk_source_map_drag_begin),
+	                          map);
 	g_signal_connect_swapped (drag,
-				  "drag-update",
-				  G_CALLBACK (gtk_source_map_drag_update),
-				  map);
+	                          "drag-end",
+	                          G_CALLBACK (gtk_source_map_drag_end),
+	                          map);
+	g_signal_connect_swapped (drag,
+	                          "drag-update",
+	                          G_CALLBACK (gtk_source_map_drag_update),
+	                          map);
 	gtk_widget_add_controller (GTK_WIDGET (map),
 	                           GTK_EVENT_CONTROLLER (g_steal_pointer (&drag)));
 
