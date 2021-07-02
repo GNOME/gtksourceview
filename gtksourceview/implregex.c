@@ -1048,12 +1048,12 @@ again:
 	if (match_info->regex->has_jit)
 	{
 		match_info->matches = pcre2_jit_match (match_info->regex->code,
-		                                        (PCRE2_SPTR)match_info->string,
-		                                        match_info->string_len,
-		                                        match_info->start_pos,
-		                                        match_info->match_flags,
-		                                        match_info->match_data,
-		                                        NULL);
+		                                       (PCRE2_SPTR)match_info->string,
+		                                       match_info->string_len,
+		                                       match_info->start_pos,
+		                                       match_info->match_flags,
+		                                       match_info->match_data,
+		                                       NULL);
 	}
 	else
 	{
@@ -1063,12 +1063,12 @@ again:
 			match_flags |= PCRE2_NO_UTF_CHECK;
 
 		match_info->matches = pcre2_match (match_info->regex->code,
-		                                    (PCRE2_SPTR)match_info->string,
-		                                    match_info->string_len,
-		                                    match_info->start_pos,
-		                                    match_flags,
-		                                    match_info->match_data,
-		                                    NULL);
+		                                   (PCRE2_SPTR)match_info->string,
+		                                   match_info->string_len,
+		                                   match_info->start_pos,
+		                                   match_flags,
+		                                   match_info->match_data,
+		                                   NULL);
 	}
 
 	if (set_regex_error (error, match_info->matches))
