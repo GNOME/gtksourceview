@@ -37,7 +37,8 @@ test_slash_c_pattern (void)
 static void
 compare_impl_regex_to_g_regex (const char         *subject,
                                const char         *pattern,
-                               GRegexCompileFlags  compile_flags)
+                               GRegexCompileFlags  compile_flags,
+                               GRegexMatchFlags    match_flags)
 {
   GError *err1 = NULL;
   GError *err2 = NULL;
@@ -56,8 +57,8 @@ compare_impl_regex_to_g_regex (const char         *subject,
                    ==,
                    impl_regex_get_max_lookbehind (reg2));
 
-  r1 = g_regex_match (reg1, subject, 0, &mi1);
-  r2 = impl_regex_match (reg2, subject, 0, &mi2);
+  r1 = g_regex_match (reg1, subject, match_flags, &mi1);
+  r2 = impl_regex_match (reg2, subject, match_flags, &mi2);
   g_assert_cmpint (r1, ==, r2);
 
   for (;;)
@@ -115,26 +116,26 @@ test_compare (void)
 {
   /* Note: G_REGEX_OPTIMIZE tests the JIT path in ImplRegex */
 
-  compare_impl_regex_to_g_regex ("aaa\n", "aa", 0);
-  compare_impl_regex_to_g_regex ("aaa\n", "aa", G_REGEX_OPTIMIZE);
+  compare_impl_regex_to_g_regex ("aaa\n", "aa", 0, 0);
+  compare_impl_regex_to_g_regex ("aaa\n", "aa", G_REGEX_OPTIMIZE, 0);
 
-  compare_impl_regex_to_g_regex ("aaaa\n", "aa", 0);
-  compare_impl_regex_to_g_regex ("aaaa\n", "aa", G_REGEX_OPTIMIZE);
+  compare_impl_regex_to_g_regex ("aaaa\n", "aa", 0, 0);
+  compare_impl_regex_to_g_regex ("aaaa\n", "aa", G_REGEX_OPTIMIZE, 0);
 
-  compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", 0);
-  compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", G_REGEX_OPTIMIZE);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", 0, 0);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", G_REGEX_OPTIMIZE, 0);
 
-  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*)*", 0);
-  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*)*", G_REGEX_OPTIMIZE);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*)*", 0, 0);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*)*", G_REGEX_OPTIMIZE, 0);
 
-  compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", 0);
-  compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", G_REGEX_OPTIMIZE);
+  compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", 0, 0);
+  compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", G_REGEX_OPTIMIZE, 0);
 
-  compare_impl_regex_to_g_regex ("aa#bb cc#dd", "(\\w+)#(\\w+)", 0);
-  compare_impl_regex_to_g_regex ("aa#bb cc#dd", "(\\w+)#(\\w+)", G_REGEX_OPTIMIZE);
+  compare_impl_regex_to_g_regex ("aa#bb cc#dd", "(\\w+)#(\\w+)", 0, 0);
+  compare_impl_regex_to_g_regex ("aa#bb cc#dd", "(\\w+)#(\\w+)", G_REGEX_OPTIMIZE, 0);
 
-  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", 0);
-  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", G_REGEX_OPTIMIZE);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", 0, 0);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", G_REGEX_OPTIMIZE, 0);
 }
 
 int
