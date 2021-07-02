@@ -291,7 +291,7 @@ impl_match_info_new (ImplRegex        *regex,
 	match_info = g_slice_new0 (ImplMatchInfo);
 	match_info->regex = impl_regex_ref (regex);
 	match_info->match_flags = regex->match_flags | translate_match_flags (match_options);
-	match_info->start_pos = -1;
+	match_info->start_pos = 0;
 	match_info->matches = -1;
 	match_info->string = string;
 	match_info->string_len = string_len;
