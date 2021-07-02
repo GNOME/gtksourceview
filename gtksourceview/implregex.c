@@ -75,6 +75,9 @@ translate_compile_flags (GRegexCompileFlags flags)
 	if (flags & G_REGEX_DUPNAMES)
 		ret |= PCRE2_DUPNAMES;
 
+	if (flags & G_REGEX_MULTILINE)
+		ret |= PCRE2_MULTILINE;
+
 	ret |= PCRE2_UCP;
 
 	if (~flags & G_REGEX_BSR_ANYCRLF)
@@ -90,6 +93,14 @@ translate_match_flags (GRegexMatchFlags flags)
 
 	if (flags & G_REGEX_MATCH_ANCHORED)
 		ret |= PCRE2_ANCHORED;
+	if (flags & G_REGEX_MATCH_NOTBOL)
+		ret |= PCRE2_NOTBOL;
+	if (flags & G_REGEX_MATCH_NOTEOL)
+		ret |= PCRE2_NOTEOL;
+	if (flags & G_REGEX_MATCH_PARTIAL_HARD)
+		ret |= PCRE2_PARTIAL_HARD;
+	if (flags & G_REGEX_MATCH_NOTEMPTY)
+		ret |= PCRE2_NOTEMPTY;
 
 	return ret;
 }
@@ -183,7 +194,10 @@ impl_regex_new (const char          *pattern,
 	}
 
 	/* Now try to JIT the pattern for faster execution time */
-	regex->has_jit = pcre2_jit_compile (regex->code, PCRE2_JIT_COMPLETE) == 0;
+	if (compile_options & G_REGEX_OPTIMIZE)
+	{
+		regex->has_jit = pcre2_jit_compile (regex->code, PCRE2_JIT_COMPLETE) == 0;
+	}
 
 #ifdef GTK_SOURCE_PROFILER_ENABLED
 	if (GTK_SOURCE_PROFILER_ACTIVE)
@@ -432,7 +446,6 @@ impl_regex_match_full (const ImplRegex   *regex,
 
 	g_return_val_if_fail (regex != NULL, FALSE);
 	g_return_val_if_fail (regex->code != NULL, FALSE);
-	g_return_val_if_fail (match_options == 0, FALSE);
 	g_return_val_if_fail (string != NULL, FALSE);
 
 	if (string_len < 0)
