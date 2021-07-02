@@ -75,6 +75,7 @@ gboolean    impl_match_info_matches         (const ImplMatchInfo    *match_info)
 gboolean    impl_match_info_next            (ImplMatchInfo          *match_info,
                                              GError                **error);
 const char *impl_regex_get_pattern          (const ImplRegex        *regex);
+gboolean    impl_match_info_is_partial_match (const ImplMatchInfo    *match_info);
 int         impl_match_info_get_match_count  (const ImplMatchInfo    *match_info);
 int         impl_regex_get_max_lookbehind    (const ImplRegex        *regex);
 

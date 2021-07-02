@@ -634,6 +634,14 @@ impl_regex_get_max_lookbehind (const ImplRegex *regex)
 	return value;
 }
 
+gboolean
+impl_match_info_is_partial_match (const ImplMatchInfo *match_info)
+{
+	g_return_val_if_fail (match_info != NULL, FALSE);
+
+	return match_info->n_groups == PCRE2_ERROR_PARTIAL;
+}
+
 int
 impl_match_info_get_match_count (const ImplMatchInfo *match_info)
 {
