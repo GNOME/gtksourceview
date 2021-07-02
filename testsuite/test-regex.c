@@ -47,9 +47,6 @@ compare_impl_regex_to_g_regex (const char         *subject,
   ImplMatchInfo *mi2 = NULL;
   gboolean r1, r2;
 
-  g_debug ("Subject: %s", subject);
-  g_debug ("Pattern: %s", pattern);
-
   g_assert_true ((reg1 == NULL && reg2 == NULL) ||
                  (reg1 != NULL && reg2 != NULL));
   g_assert_cmpstr (g_regex_get_pattern (reg1),
