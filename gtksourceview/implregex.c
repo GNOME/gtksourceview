@@ -345,6 +345,7 @@ char *
 impl_match_info_fetch (const ImplMatchInfo *match_info,
                        int                  match_num)
 {
+	char *match = NULL;
 	int begin =  -1;
 	int end =  -1;
 
@@ -352,18 +353,16 @@ impl_match_info_fetch (const ImplMatchInfo *match_info,
 	g_return_val_if_fail (match_info->string != NULL, NULL);
 	g_return_val_if_fail (match_info->offsets != NULL, NULL);
 	g_return_val_if_fail (impl_match_info_matches (match_info), NULL);
+	g_return_val_if_fail (match_num >= 0, NULL);
 
-	if (impl_match_info_fetch_pos (match_info, match_num, &begin, &end))
-	{
-		if (begin >= 0 && end >= 0)
-		{
-			return g_strndup (match_info->string + begin, end - begin);
-		}
+	if (!impl_match_info_fetch_pos (match_info, match_num, &begin, &end))
+		match = NULL;
+	else if (begin == -1)
+		match = g_strdup ("");
+	else
+		match = g_strndup (&match_info->string[begin], end - begin);
 
-		return g_strdup ("");
-	}
-
-	return NULL;
+	return match;
 }
 
 char *
