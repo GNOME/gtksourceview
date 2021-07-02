@@ -1025,6 +1025,7 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 {
 	gssize prev_end;
 	gssize prev_begin;
+	int rc;
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
@@ -1047,13 +1048,13 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 
 	if (match_info->regex->has_jit)
 	{
-		match_info->matches = pcre2_jit_match (match_info->regex->code,
-		                                       (PCRE2_SPTR)match_info->string,
-		                                       match_info->string_len,
-		                                       match_info->start_pos,
-		                                       match_info->match_flags,
-		                                       match_info->match_data,
-		                                       NULL);
+		rc = pcre2_jit_match (match_info->regex->code,
+		                      (PCRE2_SPTR)match_info->string,
+		                      match_info->string_len,
+		                      match_info->start_pos,
+		                      match_info->match_flags,
+		                      match_info->match_data,
+		                      NULL);
 	}
 	else
 	{
@@ -1062,24 +1063,26 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 		if (match_info->regex->compile_flags & PCRE2_UTF)
 			match_flags |= PCRE2_NO_UTF_CHECK;
 
-		match_info->matches = pcre2_match (match_info->regex->code,
-		                                   (PCRE2_SPTR)match_info->string,
-		                                   match_info->string_len,
-		                                   match_info->start_pos,
-		                                   match_flags,
-		                                   match_info->match_data,
-		                                   NULL);
+		rc = pcre2_match (match_info->regex->code,
+		                  (PCRE2_SPTR)match_info->string,
+		                  match_info->string_len,
+		                  match_info->start_pos,
+		                  match_flags,
+		                  match_info->match_data,
+		                  NULL);
 	}
 
-	if (set_regex_error (error, match_info->matches))
+	if (set_regex_error (error, rc))
 	{
+		match_info->matches = rc;
+		match_info->start_pos = -1;
 		return FALSE;
 	}
 
 	/* Avoid infinite loops if the pattern is an empty string or
 	 * something equivalent.
 	 */
-	if (match_info->start_pos == match_info->offsets[1])
+	if (prev_end == match_info->offsets[1])
 	{
 		if (match_info->start_pos > match_info->string_len)
 		{
@@ -1115,6 +1118,8 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 		return impl_match_info_next (match_info, error);
 	}
 
+	match_info->matches = rc;
+
 	g_assert (match_info->offsets == pcre2_get_ovector_pointer (match_info->match_data));
 
 	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, NULL);
@@ -1148,5 +1153,5 @@ impl_match_info_get_match_count (const ImplMatchInfo *match_info)
 {
 	g_return_val_if_fail (match_info != NULL, 0);
 
-	return match_info->matches;
+	return MAX (0, match_info->matches);
 }
