@@ -375,14 +375,11 @@ impl_match_info_fetch_named (const ImplMatchInfo *match_info,
 
 	g_return_val_if_fail (match_info != NULL, NULL);
 
-	if (match_info->start_pos < match_info->string_len)
+	if (impl_match_info_fetch_named_pos (match_info, name, &begin, &end))
 	{
-		if (impl_match_info_fetch_named_pos (match_info, name, &begin, &end))
+		if (begin >= 0 && end >= 0)
 		{
-			if (begin >= 0 && end >= 0)
-			{
-				return g_strndup (match_info->string + begin, end - begin);
-			}
+			return g_strndup (match_info->string + begin, end - begin);
 		}
 	}
 
