@@ -132,25 +132,25 @@ static gboolean
 set_regex_error (GError **error,
                  int      rc)
 {
-	if (rc > 0)
+	if (rc < PCRE2_ERROR_NOMATCH && rc != PCRE2_ERROR_PARTIAL)
 	{
-		return FALSE;
+		if (error != NULL)
+		{
+			guchar errstr[128];
+
+			pcre2_get_error_message (rc, errstr, sizeof errstr - 1);
+			errstr[sizeof errstr - 1] = 0;
+
+			g_set_error_literal (error,
+			                     G_REGEX_ERROR,
+			                     G_REGEX_ERROR_MATCH,
+			                     (const gchar *)errstr);
+		}
+
+		return TRUE;
 	}
 
-	if (error != NULL)
-	{
-		guchar errstr[128];
-
-		pcre2_get_error_message (rc, errstr, sizeof errstr - 1);
-		errstr[sizeof errstr - 1] = 0;
-
-		g_set_error_literal (error,
-		                     G_REGEX_ERROR,
-		                     G_REGEX_ERROR_MATCH,
-		                     (const gchar *)errstr);
-	}
-
-	return TRUE;
+	return FALSE;
 }
 
 ImplRegex *
