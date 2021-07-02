@@ -607,3 +607,24 @@ again:
 
 	return impl_match_info_matches (match_info);
 }
+
+int
+impl_regex_get_max_lookbehind (const ImplRegex *regex)
+{
+	size_t value = 0;
+
+	g_return_val_if_fail (regex != NULL, 0);
+	g_return_val_if_fail (regex->code != NULL, 0);
+
+	pcre2_pattern_info (regex->code, PCRE2_INFO_MAXLOOKBEHIND, &value);
+
+	return value;
+}
+
+int
+impl_match_info_get_match_count (const ImplMatchInfo *match_info)
+{
+	g_return_val_if_fail (match_info != NULL, 0);
+
+	return MAX (0, match_info->n_groups);
+}
