@@ -127,11 +127,17 @@ test_compare (void)
   compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", 0);
   compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", G_REGEX_OPTIMIZE);
 
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*)*", 0);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*)*", G_REGEX_OPTIMIZE);
+
   compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", 0);
   compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", G_REGEX_OPTIMIZE);
 
   compare_impl_regex_to_g_regex ("aa#bb cc#dd", "(\\w+)#(\\w+)", 0);
   compare_impl_regex_to_g_regex ("aa#bb cc#dd", "(\\w+)#(\\w+)", G_REGEX_OPTIMIZE);
+
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", 0);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", G_REGEX_OPTIMIZE);
 }
 
 int

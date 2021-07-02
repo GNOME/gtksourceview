@@ -1012,7 +1012,7 @@ impl_match_info_matches (const ImplMatchInfo *match_info)
 	g_return_val_if_fail (match_info != NULL, FALSE);
 	g_return_val_if_fail (match_info->n_groups != 0, FALSE);
 
-	return match_info->n_groups > 0;
+	return match_info->n_groups >= 0;
 }
 
 gboolean
@@ -1021,7 +1021,6 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 {
 	gssize prev_end;
 	gssize prev_begin;
-	int rc;
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
@@ -1043,13 +1042,13 @@ again:
 
 	if (match_info->regex->has_jit)
 	{
-		rc = pcre2_jit_match (match_info->regex->code,
-		                      (PCRE2_SPTR)match_info->string,
-		                      match_info->string_len,
-		                      match_info->start_pos,
-		                      match_info->match_flags,
-		                      match_info->match_data,
-		                      NULL);
+		match_info->n_groups = pcre2_jit_match (match_info->regex->code,
+		                                        (PCRE2_SPTR)match_info->string,
+		                                        match_info->string_len,
+		                                        match_info->start_pos,
+		                                        match_info->match_flags,
+		                                        match_info->match_data,
+		                                        NULL);
 	}
 	else
 	{
@@ -1058,30 +1057,32 @@ again:
 		if (match_info->regex->compile_flags & PCRE2_UTF)
 			match_flags |= PCRE2_NO_UTF_CHECK;
 
-		rc = pcre2_match (match_info->regex->code,
-		                  (PCRE2_SPTR)match_info->string,
-		                  match_info->string_len,
-		                  match_info->start_pos,
-		                  match_flags,
-		                  match_info->match_data,
-		                  NULL);
+		match_info->n_groups = pcre2_match (match_info->regex->code,
+		                                    (PCRE2_SPTR)match_info->string,
+		                                    match_info->string_len,
+		                                    match_info->start_pos,
+		                                    match_flags,
+		                                    match_info->match_data,
+		                                    NULL);
 	}
 
-	if (set_regex_error (error, rc))
+	if (set_regex_error (error, match_info->n_groups))
 	{
-		match_info->n_groups = -1;
 		match_info->start_pos = match_info->string_len + 1;
 		return FALSE;
 	}
 
+	/* Avoid infinite loops if the pattern is an empty string or
+	 * something equivalent.
+	 */
 	if (prev_end == match_info->offsets[1])
 	{
 		const char *next = g_utf8_next_char (match_info->string + prev_end);
 
 		if (match_info->start_pos > match_info->string_len)
 		{
-			match_info->start_pos = match_info->string_len + 1;
-			match_info->n_groups = -1;
+			match_info->start_pos = -1;
+			match_info->n_groups = PCRE2_ERROR_NOMATCH;
 			return FALSE;
 		}
 
@@ -1092,6 +1093,17 @@ again:
 		match_info->start_pos = match_info->offsets[1];
 	}
 
+	/* it's possible to get two identical matches when we are matching
+	 * empty strings, for instance if the pattern is "(?=[A-Z0-9])" and
+	 * the string is "RegExTest" we have:
+	 *  - search at position 0: match from 0 to 0
+	 *  - search at position 1: match from 3 to 3
+	 *  - search at position 3: match from 3 to 3 (duplicate)
+	 *  - search at position 4: match from 5 to 5
+	 *  - search at position 5: match from 5 to 5 (duplicate)
+	 *  - search at position 6: no match -> stop
+	 * so we have to ignore the duplicates.
+	 * see bug #515944: http://bugzilla.gnome.org/show_bug.cgi?id=515944 */
 	if (match_info->n_groups >= 0 &&
 	    prev_begin == match_info->offsets[0] &&
 	    prev_end == match_info->offsets[1])
@@ -1099,10 +1111,7 @@ again:
 		goto again;
 	}
 
-	match_info->n_groups = rc;
-
 	g_assert (match_info->offsets == pcre2_get_ovector_pointer (match_info->match_data));
-	g_assert (impl_match_info_matches (match_info));
 
 	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, NULL);
 
@@ -1135,5 +1144,5 @@ impl_match_info_get_match_count (const ImplMatchInfo *match_info)
 {
 	g_return_val_if_fail (match_info != NULL, 0);
 
-	return MAX (0, match_info->n_groups);
+	return match_info->n_groups;
 }
