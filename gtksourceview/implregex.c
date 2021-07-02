@@ -74,7 +74,7 @@ struct _ImplMatchInfo
 	gsize             string_len;
 	pcre2_match_data *match_data;
 	PCRE2_SIZE       *offsets;
-	int               n_groups;
+	int               matches;
 	gsize             start_pos;
 };
 
@@ -292,7 +292,7 @@ impl_match_info_new (ImplRegex        *regex,
 	match_info->regex = impl_regex_ref (regex);
 	match_info->match_flags = regex->match_flags | translate_match_flags (match_options);
 	match_info->start_pos = -1;
-	match_info->n_groups = -1;
+	match_info->matches = -1;
 	match_info->string = string;
 	match_info->string_len = string_len;
 	match_info->match_data = pcre2_match_data_create_from_pattern (regex->code, NULL);
@@ -318,7 +318,7 @@ impl_match_info_free (ImplMatchInfo *match_info)
 		match_info->string_len = 0;
 		match_info->compile_flags = 0;
 		match_info->match_flags = 0;
-		match_info->n_groups = 0;
+		match_info->matches = 0;
 		match_info->start_pos = 0;
 		match_info->offsets = NULL;
 		g_slice_free (ImplMatchInfo, match_info);
@@ -968,7 +968,7 @@ impl_match_info_fetch_pos (const ImplMatchInfo *match_info,
 	g_return_val_if_fail (match_info->match_data != NULL, FALSE);
 	g_return_val_if_fail (match_info->offsets != NULL, FALSE);
 
-	if (match_info->n_groups > 0 && match_num < match_info->n_groups)
+	if (match_info->matches > 0 && match_num < match_info->matches)
 	{
 		if (start_pos)
 			*start_pos = match_info->offsets[2*match_num];
@@ -1010,9 +1010,9 @@ gboolean
 impl_match_info_matches (const ImplMatchInfo *match_info)
 {
 	g_return_val_if_fail (match_info != NULL, FALSE);
-	g_return_val_if_fail (match_info->n_groups != 0, FALSE);
+	g_return_val_if_fail (match_info->matches != 0, FALSE);
 
-	return match_info->n_groups >= 0;
+	return match_info->matches >= 0;
 }
 
 gboolean
@@ -1030,7 +1030,7 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 	g_assert (match_info->offsets == pcre2_get_ovector_pointer (match_info->match_data));
 
 again:
-	match_info->n_groups = -1;
+	match_info->matches = -1;
 
 	if (match_info->start_pos > match_info->string_len)
 	{
@@ -1042,7 +1042,7 @@ again:
 
 	if (match_info->regex->has_jit)
 	{
-		match_info->n_groups = pcre2_jit_match (match_info->regex->code,
+		match_info->matches = pcre2_jit_match (match_info->regex->code,
 		                                        (PCRE2_SPTR)match_info->string,
 		                                        match_info->string_len,
 		                                        match_info->start_pos,
@@ -1057,7 +1057,7 @@ again:
 		if (match_info->regex->compile_flags & PCRE2_UTF)
 			match_flags |= PCRE2_NO_UTF_CHECK;
 
-		match_info->n_groups = pcre2_match (match_info->regex->code,
+		match_info->matches = pcre2_match (match_info->regex->code,
 		                                    (PCRE2_SPTR)match_info->string,
 		                                    match_info->string_len,
 		                                    match_info->start_pos,
@@ -1066,7 +1066,7 @@ again:
 		                                    NULL);
 	}
 
-	if (set_regex_error (error, match_info->n_groups))
+	if (set_regex_error (error, match_info->matches))
 	{
 		match_info->start_pos = match_info->string_len + 1;
 		return FALSE;
@@ -1082,7 +1082,7 @@ again:
 		if (match_info->start_pos > match_info->string_len)
 		{
 			match_info->start_pos = -1;
-			match_info->n_groups = PCRE2_ERROR_NOMATCH;
+			match_info->matches = PCRE2_ERROR_NOMATCH;
 			return FALSE;
 		}
 
@@ -1104,7 +1104,7 @@ again:
 	 *  - search at position 6: no match -> stop
 	 * so we have to ignore the duplicates.
 	 * see bug #515944: http://bugzilla.gnome.org/show_bug.cgi?id=515944 */
-	if (match_info->n_groups >= 0 &&
+	if (match_info->matches >= 0 &&
 	    prev_begin == match_info->offsets[0] &&
 	    prev_end == match_info->offsets[1])
 	{
@@ -1136,7 +1136,7 @@ impl_match_info_is_partial_match (const ImplMatchInfo *match_info)
 {
 	g_return_val_if_fail (match_info != NULL, FALSE);
 
-	return match_info->n_groups == PCRE2_ERROR_PARTIAL;
+	return match_info->matches == PCRE2_ERROR_PARTIAL;
 }
 
 int
@@ -1144,5 +1144,5 @@ impl_match_info_get_match_count (const ImplMatchInfo *match_info)
 {
 	g_return_val_if_fail (match_info != NULL, 0);
 
-	return match_info->n_groups;
+	return match_info->matches;
 }
