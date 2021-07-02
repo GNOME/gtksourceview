@@ -22,10 +22,33 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
+/* Some code in this file is based upon GRegex from GLib */
+/* GRegex -- regular expression API wrapper around PCRE.
+ *
+ * Copyright (C) 1999, 2000 Scott Wimer
+ * Copyright (C) 2004, Matthias Clasen <mclasen@redhat.com>
+ * Copyright (C) 2005 - 2007, Marco Barisione <marco@barisione.org>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library; if not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "config.h"
 
 #define PCRE2_CODE_UNIT_WIDTH 8
 #include <pcre2.h>
+
+#include <glib/gi18n.h>
 #include <string.h>
 
 #include "implregex-private.h"
@@ -468,6 +491,471 @@ impl_regex_match_full (const ImplRegex   *regex,
 	}
 
 	return ret;
+}
+
+enum
+{
+	REPL_TYPE_STRING,
+	REPL_TYPE_CHARACTER,
+	REPL_TYPE_SYMBOLIC_REFERENCE,
+	REPL_TYPE_NUMERIC_REFERENCE,
+	REPL_TYPE_CHANGE_CASE
+};
+
+typedef enum
+{
+	CHANGE_CASE_NONE         = 1 << 0,
+	CHANGE_CASE_UPPER        = 1 << 1,
+	CHANGE_CASE_LOWER        = 1 << 2,
+	CHANGE_CASE_UPPER_SINGLE = 1 << 3,
+	CHANGE_CASE_LOWER_SINGLE = 1 << 4,
+	CHANGE_CASE_SINGLE_MASK  = CHANGE_CASE_UPPER_SINGLE | CHANGE_CASE_LOWER_SINGLE,
+	CHANGE_CASE_LOWER_MASK   = CHANGE_CASE_LOWER | CHANGE_CASE_LOWER_SINGLE,
+	CHANGE_CASE_UPPER_MASK   = CHANGE_CASE_UPPER | CHANGE_CASE_UPPER_SINGLE
+} ChangeCase;
+
+typedef struct _InterpolationData
+{
+	char      *text;
+	int        type;
+	int        num;
+	char       c;
+	ChangeCase change_case;
+} InterpolationData;
+
+static void
+free_interpolation_data (InterpolationData *data)
+{
+	g_free (data->text);
+	g_free (data);
+}
+
+static const char *
+expand_escape (const char         *replacement,
+               const char         *p,
+               InterpolationData  *data,
+               GError            **error)
+{
+	const char *q, *r;
+	int x, d, h, i;
+	const char *error_detail;
+	int base = 0;
+	GError *tmp_error = NULL;
+
+	p++;
+	switch (*p)
+	{
+		case 't':
+			p++;
+			data->c = '\t';
+			data->type = REPL_TYPE_CHARACTER;
+			break;
+		case 'n':
+			p++;
+			data->c = '\n';
+			data->type = REPL_TYPE_CHARACTER;
+			break;
+		case 'v':
+			p++;
+			data->c = '\v';
+			data->type = REPL_TYPE_CHARACTER;
+			break;
+		case 'r':
+			p++;
+			data->c = '\r';
+			data->type = REPL_TYPE_CHARACTER;
+			break;
+		case 'f':
+			p++;
+			data->c = '\f';
+			data->type = REPL_TYPE_CHARACTER;
+			break;
+		case 'a':
+			p++;
+			data->c = '\a';
+			data->type = REPL_TYPE_CHARACTER;
+			break;
+		case 'b':
+			p++;
+			data->c = '\b';
+			data->type = REPL_TYPE_CHARACTER;
+			break;
+		case '\\':
+			p++;
+			data->c = '\\';
+			data->type = REPL_TYPE_CHARACTER;
+			break;
+		case 'x':
+			p++;
+			x = 0;
+			if (*p == '{')
+			{
+				p++;
+				do
+				{
+					h = g_ascii_xdigit_value (*p);
+					if (h < 0)
+					{
+						error_detail = _("hexadecimal digit or “}” expected");
+						goto error;
+					}
+					x = x * 16 + h;
+					p++;
+				}
+				while (*p != '}');
+				p++;
+			}
+			else
+			{
+				for (i = 0; i < 2; i++)
+				{
+					h = g_ascii_xdigit_value (*p);
+					if (h < 0)
+					{
+						error_detail = _("hexadecimal digit expected");
+						goto error;
+					}
+					x = x * 16 + h;
+					p++;
+				}
+			}
+			data->type = REPL_TYPE_STRING;
+			data->text = g_new0 (gchar, 8);
+			g_unichar_to_utf8 (x, data->text);
+			break;
+		case 'l':
+			p++;
+			data->type = REPL_TYPE_CHANGE_CASE;
+			data->change_case = CHANGE_CASE_LOWER_SINGLE;
+			break;
+		case 'u':
+			p++;
+			data->type = REPL_TYPE_CHANGE_CASE;
+			data->change_case = CHANGE_CASE_UPPER_SINGLE;
+			break;
+		case 'L':
+			p++;
+			data->type = REPL_TYPE_CHANGE_CASE;
+			data->change_case = CHANGE_CASE_LOWER;
+			break;
+		case 'U':
+			p++;
+			data->type = REPL_TYPE_CHANGE_CASE;
+			data->change_case = CHANGE_CASE_UPPER;
+			break;
+		case 'E':
+			p++;
+			data->type = REPL_TYPE_CHANGE_CASE;
+			data->change_case = CHANGE_CASE_NONE;
+			break;
+		case 'g':
+			p++;
+			if (*p != '<')
+			{
+				error_detail = _("missing “<” in symbolic reference");
+				goto error;
+			}
+			q = p + 1;
+			do
+			{
+				p++;
+				if (!*p)
+				{
+					error_detail = _("unfinished symbolic reference");
+					goto error;
+				}
+			}
+			while (*p != '>');
+			if (p - q == 0)
+			{
+				error_detail = _("zero-length symbolic reference");
+				goto error;
+			}
+			if (g_ascii_isdigit (*q))
+			{
+				x = 0;
+				do
+				{
+					h = g_ascii_digit_value (*q);
+					if (h < 0)
+					{
+						error_detail = _("digit expected");
+						p = q;
+						goto error;
+					}
+					x = x * 10 + h;
+					q++;
+				}
+				while (q != p);
+				data->num = x;
+				data->type = REPL_TYPE_NUMERIC_REFERENCE;
+			}
+			else
+			{
+				r = q;
+				do
+				{
+					if (!g_ascii_isalnum (*r))
+					{
+						error_detail = _("illegal symbolic reference");
+						p = r;
+						goto error;
+					}
+					r++;
+				}
+				while (r != p);
+				data->text = g_strndup (q, p - q);
+				data->type = REPL_TYPE_SYMBOLIC_REFERENCE;
+			}
+			p++;
+			break;
+		case '0':
+			/* if \0 is followed by a number is an octal number representing a
+			 * character, else it is a numeric reference. */
+			if (g_ascii_digit_value (*g_utf8_next_char (p)) >= 0)
+			{
+				base = 8;
+				p = g_utf8_next_char (p);
+			}
+			G_GNUC_FALLTHROUGH;
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+			x = 0;
+			d = 0;
+			for (i = 0; i < 3; i++)
+			{
+				h = g_ascii_digit_value (*p);
+				if (h < 0)
+					break;
+				if (h > 7)
+				{
+					if (base == 8)
+						break;
+					else
+						base = 10;
+				}
+				if (i == 2 && base == 10)
+					break;
+				x = x * 8 + h;
+				d = d * 10 + h;
+				p++;
+			}
+			if (base == 8 || i == 3)
+			{
+				data->type = REPL_TYPE_STRING;
+				data->text = g_new0 (gchar, 8);
+				g_unichar_to_utf8 (x, data->text);
+			}
+			else
+			{
+				data->type = REPL_TYPE_NUMERIC_REFERENCE;
+				data->num = d;
+			}
+			break;
+		case 0:
+			error_detail = _("stray final “\\”");
+			goto error;
+			break;
+		default:
+			error_detail = _("unknown escape sequence");
+			goto error;
+	}
+
+	return p;
+
+error:
+	/* G_GSSIZE_FORMAT doesn't work with gettext, so we use %lu */
+	tmp_error = g_error_new (G_REGEX_ERROR,
+				 G_REGEX_ERROR_REPLACE,
+				 _("Error while parsing replacement "
+				   "text “%s” at char %lu: %s"),
+				 replacement,
+				 (gulong)(p - replacement),
+				 error_detail);
+	g_propagate_error (error, tmp_error);
+
+	return NULL;
+}
+
+static GList *
+split_replacement (const gchar  *replacement,
+                   GError      **error)
+{
+	GList *list = NULL;
+	InterpolationData *data;
+	const gchar *p, *start;
+
+	start = p = replacement;
+	while (*p)
+	{
+		if (*p == '\\')
+		{
+			data = g_new0 (InterpolationData, 1);
+			start = p = expand_escape (replacement, p, data, error);
+			if (p == NULL)
+			{
+				g_list_free_full (list, (GDestroyNotify) free_interpolation_data);
+				free_interpolation_data (data);
+
+				return NULL;
+			}
+			list = g_list_prepend (list, data);
+		}
+		else
+		{
+			p++;
+			if (*p == '\\' || *p == '\0')
+			{
+				if (p - start > 0)
+				{
+					data = g_new0 (InterpolationData, 1);
+					data->text = g_strndup (start, p - start);
+					data->type = REPL_TYPE_STRING;
+					list = g_list_prepend (list, data);
+				}
+			}
+		}
+	}
+
+	return g_list_reverse (list);
+}
+
+/* Change the case of c based on change_case. */
+#define CHANGE_CASE(c, change_case) \
+        (((change_case) & CHANGE_CASE_LOWER_MASK) ? \
+                g_unichar_tolower (c) : \
+                g_unichar_toupper (c))
+
+static void
+string_append (GString     *string,
+               const gchar *text,
+               ChangeCase  *change_case)
+{
+	gunichar c;
+
+	if (text[0] == '\0')
+		return;
+
+	if (*change_case == CHANGE_CASE_NONE)
+	{
+		g_string_append (string, text);
+	}
+	else if (*change_case & CHANGE_CASE_SINGLE_MASK)
+	{
+		c = g_utf8_get_char (text);
+		g_string_append_unichar (string, CHANGE_CASE (c, *change_case));
+		g_string_append (string, g_utf8_next_char (text));
+		*change_case = CHANGE_CASE_NONE;
+	}
+	else
+	{
+		while (*text != '\0')
+		{
+			c = g_utf8_get_char (text);
+			g_string_append_unichar (string, CHANGE_CASE (c, *change_case));
+			text = g_utf8_next_char (text);
+		}
+	}
+}
+
+static gboolean
+interpolate_replacement (const ImplMatchInfo *match_info,
+                         GString             *result,
+                         gpointer             data)
+{
+	GList *list;
+	InterpolationData *idata;
+	gchar *match;
+	ChangeCase change_case = CHANGE_CASE_NONE;
+
+	for (list = data; list; list = list->next)
+	{
+		idata = list->data;
+		switch (idata->type)
+		{
+			case REPL_TYPE_STRING:
+				string_append (result, idata->text, &change_case);
+				break;
+			case REPL_TYPE_CHARACTER:
+				g_string_append_c (result, CHANGE_CASE (idata->c, change_case));
+				if (change_case & CHANGE_CASE_SINGLE_MASK)
+					change_case = CHANGE_CASE_NONE;
+				break;
+			case REPL_TYPE_NUMERIC_REFERENCE:
+				match = impl_match_info_fetch (match_info, idata->num);
+				if (match)
+				{
+					string_append (result, match, &change_case);
+					g_free (match);
+				}
+				break;
+			case REPL_TYPE_SYMBOLIC_REFERENCE:
+				match = impl_match_info_fetch_named (match_info, idata->text);
+				if (match)
+				{
+					string_append (result, match, &change_case);
+					g_free (match);
+				}
+				break;
+			case REPL_TYPE_CHANGE_CASE:
+				change_case = idata->change_case;
+				break;
+			default:
+				g_warn_if_reached ();
+				break;
+		}
+	}
+
+	return FALSE;
+}
+
+char *
+impl_regex_replace (const ImplRegex   *regex,
+                    const char        *string,
+                    gssize             string_len,
+                    int                start_position,
+                    const char        *replacement,
+                    GRegexMatchFlags   match_options,
+                    GError           **error)
+{
+	char *result;
+	GList *list;
+	GError *tmp_error = NULL;
+
+	g_return_val_if_fail (regex != NULL, NULL);
+	g_return_val_if_fail (string != NULL, NULL);
+	g_return_val_if_fail (start_position >= 0, NULL);
+	g_return_val_if_fail (replacement != NULL, NULL);
+	g_return_val_if_fail (error == NULL || *error == NULL, NULL);
+
+	list = split_replacement (replacement, &tmp_error);
+
+	if (tmp_error != NULL)
+	{
+		g_propagate_error (error, tmp_error);
+		return NULL;
+	}
+
+	result = impl_regex_replace_eval (regex,
+	                                  string, string_len, start_position,
+	                                  match_options,
+	                                  interpolate_replacement,
+	                                  (gpointer)list,
+	                                  &tmp_error);
+
+	if (tmp_error != NULL)
+		g_propagate_error (error, tmp_error);
+
+	g_list_free_full (list, (GDestroyNotify) free_interpolation_data);
+
+	return result;
 }
 
 gboolean
