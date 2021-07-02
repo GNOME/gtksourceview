@@ -75,6 +75,7 @@ struct _ImplMatchInfo
 	pcre2_match_data *match_data;
 	PCRE2_SIZE       *offsets;
 	int               matches;
+	PCRE2_SIZE        n_subpatterns;
 	gssize            start_pos;
 };
 
@@ -296,6 +297,8 @@ impl_match_info_new (ImplRegex        *regex,
 	match_info->string = string;
 	match_info->string_len = string_len;
 	match_info->match_data = pcre2_match_data_create_from_pattern (regex->code, NULL);
+
+	pcre2_pattern_info (regex->code, PCRE2_INFO_CAPTURECOUNT, &match_info->n_subpatterns);
 
 	if (match_info->match_data == NULL)
 	{
