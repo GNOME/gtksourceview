@@ -128,6 +128,9 @@ test_compare (void)
   compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*)*", 0, 0);
   compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*)*", G_REGEX_OPTIMIZE, 0);
 
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", 0, G_REGEX_MATCH_NOTBOL | G_REGEX_MATCH_PARTIAL);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", G_REGEX_OPTIMIZE, G_REGEX_MATCH_NOTBOL | G_REGEX_MATCH_PARTIAL);
+
   compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", 0, 0);
   compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", G_REGEX_OPTIMIZE, 0);
 
