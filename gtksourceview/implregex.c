@@ -960,26 +960,31 @@ impl_regex_replace (const ImplRegex   *regex,
 
 gboolean
 impl_match_info_fetch_pos (const ImplMatchInfo *match_info,
-                           guint                match_num,
+                           int                  match_num,
                            int                 *start_pos,
                            int                 *end_pos)
 {
 	g_return_val_if_fail (match_info != NULL, FALSE);
 	g_return_val_if_fail (match_info->match_data != NULL, FALSE);
 	g_return_val_if_fail (match_info->offsets != NULL, FALSE);
+	g_return_val_if_fail (match_num >= 0, FALSE);
 
-	if (match_info->matches > 0 && match_num < match_info->matches)
-	{
-		if (start_pos)
-			*start_pos = match_info->offsets[2*match_num];
+	if (match_info->matches < 0)
+		return FALSE;
 
-		if (end_pos)
-			*end_pos = match_info->offsets[2*match_num+1];
+	/* make sure the sub expression number they're requesting is less than
+	 * the total number of sub expressions in the regex. When matching all
+	 * (g_regex_match_all()), also compare against the number of matches */
+	if (match_num >= MAX (match_info->matches, match_info->n_subpatterns + 1))
+		return FALSE;
 
-		return TRUE;
-	}
+	if (start_pos)
+		*start_pos = (match_num < match_info->matches) ? match_info->offsets[2 * match_num] : -1;
 
-	return FALSE;
+	if (end_pos)
+		*end_pos = (match_num < match_info->matches) ? match_info->offsets[2 * match_num + 1] : -1;
+
+	return TRUE;
 }
 
 gboolean

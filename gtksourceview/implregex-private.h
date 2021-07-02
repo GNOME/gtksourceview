@@ -71,7 +71,7 @@ gboolean    impl_regex_match_full            (const ImplRegex        *regex,
                                               ImplMatchInfo         **match_info,
                                               GError                **error);
 gboolean    impl_match_info_fetch_pos        (const ImplMatchInfo    *match_info,
-                                              guint                   match_num,
+                                              int                     match_num,
                                               int                    *start_pos,
                                               int                    *end_pos);
 gboolean    impl_match_info_fetch_named_pos  (const ImplMatchInfo    *match_info,
