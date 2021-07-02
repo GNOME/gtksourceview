@@ -33,6 +33,8 @@
 #include "gtksourceiter-private.h"
 #include "gtksource-enumtypes.h"
 
+#include "implregex-private.h"
+
 /**
  * SECTION:searchcontext
  * @Short_description: Search context
@@ -344,7 +346,7 @@ struct _GtkSourceSearchContext
 	 */
 	gint text_nb_lines;
 
-	GRegex *regex;
+	ImplRegex *regex;
 	GError *regex_error;
 
 	gint occurrences_count;
@@ -572,7 +574,7 @@ regex_search_get_real_start (GtkSourceSearchContext *search,
                              GtkTextIter            *real_start,
                              gint                   *start_pos)
 {
-	gint max_lookbehind = g_regex_get_max_lookbehind (search->regex);
+	gint max_lookbehind = impl_regex_get_max_lookbehind (search->regex);
 	gint i;
 	gchar *text;
 
@@ -617,35 +619,35 @@ regex_search_get_match_options (const GtkTextIter *real_start,
 }
 
 /* Get the @match_start and @match_end iters of the @match_info.
- * g_match_info_fetch_pos() returns byte positions. To get the iters, we need to
- * know the number of UTF-8 characters. A GMatchInfo can contain several matches
- * (with g_match_info_next()). So instead of calling g_utf8_strlen() each time
+ * impl_match_info_fetch_pos() returns byte positions. To get the iters, we need to
+ * know the number of UTF-8 characters. A ImplMatchInfo can contain several matches
+ * (with impl_match_info_next()). So instead of calling g_utf8_strlen() each time
  * at the beginning of @subject, @iter and @iter_byte_pos are used to remember
  * where g_utf8_strlen() stopped.
  */
 static gboolean
-regex_search_fetch_match (GMatchInfo  *match_info,
-                          const gchar *subject,
-                          gssize       subject_length,
-                          GtkTextIter *iter,
-                          gint        *iter_byte_pos,
-                          GtkTextIter *match_start,
-                          GtkTextIter *match_end)
+regex_search_fetch_match (ImplMatchInfo *match_info,
+                          const gchar   *subject,
+                          gssize         subject_length,
+                          GtkTextIter   *iter,
+                          gint          *iter_byte_pos,
+                          GtkTextIter   *match_start,
+                          GtkTextIter   *match_end)
 {
-	gint start_byte_pos;
-	gint end_byte_pos;
+	gint start_byte_pos = 0;
+	gint end_byte_pos = 0;
 	gint nb_chars;
 
 	g_assert (*iter_byte_pos <= subject_length);
 	g_assert (match_start != NULL);
 	g_assert (match_end != NULL);
 
-	if (!g_match_info_matches (match_info))
+	if (!impl_match_info_matches (match_info))
 	{
 		return FALSE;
 	}
 
-	if (!g_match_info_fetch_pos (match_info, 0, &start_byte_pos, &end_byte_pos))
+	if (!impl_match_info_fetch_pos (match_info, 0, &start_byte_pos, &end_byte_pos))
 	{
 		g_warning ("Impossible to fetch regex match position.");
 		return FALSE;
@@ -718,7 +720,7 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 		GRegexMatchFlags match_options;
 		gchar *subject;
 		gssize subject_length;
-		GMatchInfo *match_info;
+		ImplMatchInfo *match_info;
 		GtkTextIter iter;
 		gint iter_byte_pos;
 		GtkTextIter m_start;
@@ -728,13 +730,13 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 		subject = gtk_text_iter_get_visible_text (&real_start, &end);
 		subject_length = strlen (subject);
 
-		g_regex_match_full (search->regex,
-				    subject,
-				    subject_length,
-				    start_pos,
-				    match_options,
-				    &match_info,
-				    &search->regex_error);
+		impl_regex_match_full (search->regex,
+		                       subject,
+		                       subject_length,
+		                       start_pos,
+		                       match_options,
+		                       &match_info,
+		                       &search->regex_error);
 
 		iter = real_start;
 		iter_byte_pos = 0;
@@ -747,13 +749,13 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 						  &m_start,
 						  &m_end);
 
-		if (!found && g_match_info_is_partial_match (match_info))
+		if (!found && impl_match_info_is_partial_match (match_info))
 		{
 			gtk_text_iter_forward_lines (&end, nb_lines);
 			nb_lines <<= 1;
 
 			g_free (subject);
-			g_match_info_free (match_info);
+			impl_match_info_free (match_info);
 			continue;
 		}
 
@@ -792,7 +794,7 @@ basic_forward_regex_search (GtkSourceSearchContext *search,
 		}
 
 		g_free (subject);
-		g_match_info_free (match_info);
+		impl_match_info_free (match_info);
 		break;
 	}
 
@@ -1828,7 +1830,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 	gchar *subject;
 	gssize subject_length;
 	GRegexMatchFlags match_options;
-	GMatchInfo *match_info;
+	ImplMatchInfo *match_info;
 	GtkTextIter iter;
 	gint iter_byte_pos;
 	gboolean segment_finished;
@@ -1891,13 +1893,13 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 	       g_free (subject_escaped);
 	});
 
-	g_regex_match_full (search->regex,
-			    subject,
-			    subject_length,
-			    start_pos,
-			    match_options,
-			    &match_info,
-			    &search->regex_error);
+	impl_regex_match_full (search->regex,
+	                       subject,
+	                       subject_length,
+	                       start_pos,
+	                       match_options,
+	                       &match_info,
+	                       &search->regex_error);
 
 	iter = real_start;
 	iter_byte_pos = 0;
@@ -1925,7 +1927,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 
 		search->occurrences_count++;
 
-		g_match_info_next (match_info, &search->regex_error);
+		impl_match_info_next (match_info, &search->regex_error);
 	}
 
 	if (search->regex_error != NULL)
@@ -1933,7 +1935,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 		g_object_notify_by_pspec (G_OBJECT (search), properties [PROP_REGEX_ERROR]);
 	}
 
-	if (g_match_info_is_partial_match (match_info))
+	if (impl_match_info_is_partial_match (match_info))
 	{
 		segment_finished = FALSE;
 
@@ -1957,7 +1959,7 @@ regex_search_scan_segment (GtkSourceSearchContext *search,
 	}
 
 	g_free (subject);
-	g_match_info_free (match_info);
+	impl_match_info_free (match_info);
 
 	return segment_finished;
 }
@@ -2323,7 +2325,7 @@ update_regex (GtkSourceSearchContext *search)
 
 	if (search->regex != NULL)
 	{
-		g_regex_unref (search->regex);
+		impl_regex_unref (search->regex);
 		search->regex = NULL;
 	}
 
@@ -2336,7 +2338,7 @@ update_regex (GtkSourceSearchContext *search)
 	if (search_text != NULL &&
 	    gtk_source_search_settings_get_regex_enabled (search->settings))
 	{
-		GRegexCompileFlags compile_flags = G_REGEX_OPTIMIZE | G_REGEX_MULTILINE;
+		GRegexCompileFlags compile_flags = G_REGEX_MULTILINE;
 		gchar *pattern = (gchar *)search_text;
 
 		search->text_nb_lines = 0;
@@ -2351,10 +2353,10 @@ update_regex (GtkSourceSearchContext *search)
 			pattern = g_strdup_printf ("\\b%s\\b", search_text);
 		}
 
-		search->regex = g_regex_new (pattern,
-						   compile_flags,
-						   G_REGEX_MATCH_NOTEMPTY,
-						   &search->regex_error);
+		search->regex = impl_regex_new (pattern,
+		                                compile_flags,
+		                                G_REGEX_MATCH_NOTEMPTY,
+		                                &search->regex_error);
 
 		if (search->regex_error != NULL)
 		{
@@ -2681,11 +2683,7 @@ gtk_source_search_context_finalize (GObject *object)
 {
 	GtkSourceSearchContext *search = GTK_SOURCE_SEARCH_CONTEXT (object);
 
-	if (search->regex != NULL)
-	{
-		g_regex_unref (search->regex);
-	}
-
+	g_clear_pointer (&search->regex, impl_regex_unref);
 	g_clear_error (&search->regex_error);
 
 	G_OBJECT_CLASS (gtk_source_search_context_parent_class)->finalize (object);
@@ -3608,13 +3606,13 @@ regex_replace (GtkSourceSearchContext  *search,
 	match_options = regex_search_get_match_options (&real_start, &real_end);
 	match_options |= G_REGEX_MATCH_ANCHORED;
 
-	subject_replaced = g_regex_replace (search->regex,
-					    subject,
-					    -1,
-					    start_pos,
-					    replace,
-					    match_options,
-					    &tmp_error);
+	subject_replaced = impl_regex_replace (search->regex,
+	                                       subject,
+	                                       -1,
+	                                       start_pos,
+	                                       replace,
+	                                       match_options,
+	                                       &tmp_error);
 
 	if (tmp_error != NULL)
 	{
@@ -3666,7 +3664,7 @@ end:
  *
  * For a regular expression replacement, you can check if @replace is valid by
  * calling g_regex_check_replacement(). The @replace text can contain
- * backreferences; read the g_regex_replace() documentation for more details.
+ * backreferences.
  *
  * Returns: whether the match has been replaced.
  * Since: 4.0
@@ -3745,7 +3743,7 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
  *
  * For a regular expression replacement, you can check if @replace is valid by
  * calling g_regex_check_replacement(). The @replace text can contain
- * backreferences; read the g_regex_replace() documentation for more details.
+ * backreferences.
  *
  * Returns: the number of replaced matches.
  * Since: 3.10
