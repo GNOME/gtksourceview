@@ -1032,17 +1032,18 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 	g_assert (match_info->regex != NULL);
 	g_assert (match_info->regex->code != NULL);
 	g_assert (match_info->offsets == pcre2_get_ovector_pointer (match_info->match_data));
-
-again:
-	match_info->matches = -1;
-
-	if (match_info->start_pos > match_info->string_len)
-	{
-		return FALSE;
-	}
+	g_assert (match_info->start_pos >= 0);
 
 	prev_begin = match_info->offsets[0];
 	prev_end = match_info->offsets[1];
+
+	if (match_info->start_pos > match_info->string_len)
+	{
+		/* we have reached the end of the string */
+		match_info->start_pos = -1;
+		match_info->matches = PCRE2_ERROR_NOMATCH;
+		return FALSE;
+	}
 
 	if (match_info->regex->has_jit)
 	{
@@ -1072,25 +1073,23 @@ again:
 
 	if (set_regex_error (error, match_info->matches))
 	{
-		match_info->start_pos = match_info->string_len + 1;
 		return FALSE;
 	}
 
 	/* Avoid infinite loops if the pattern is an empty string or
 	 * something equivalent.
 	 */
-	if (prev_end == match_info->offsets[1])
+	if (match_info->start_pos == match_info->offsets[1])
 	{
-		const char *next = g_utf8_next_char (match_info->string + prev_end);
-
 		if (match_info->start_pos > match_info->string_len)
 		{
+			/* we have reached the end of the string */
 			match_info->start_pos = -1;
 			match_info->matches = PCRE2_ERROR_NOMATCH;
 			return FALSE;
 		}
 
-		match_info->start_pos = next - match_info->string;
+		match_info->start_pos = g_utf8_next_char (&match_info->string[match_info->start_pos]) - match_info->string;
 	}
 	else
 	{
@@ -1112,14 +1111,15 @@ again:
 	    prev_begin == match_info->offsets[0] &&
 	    prev_end == match_info->offsets[1])
 	{
-		goto again;
+		/* ignore this match and search the next one */
+		return impl_match_info_next (match_info, error);
 	}
 
 	g_assert (match_info->offsets == pcre2_get_ovector_pointer (match_info->match_data));
 
 	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, NULL);
 
-	return impl_match_info_matches (match_info);
+	return match_info->matches >= 0;
 }
 
 int
