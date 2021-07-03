@@ -1025,20 +1025,17 @@ gboolean
 impl_match_info_next (ImplMatchInfo  *match_info,
                       GError        **error)
 {
-	gssize prev_end;
-	gssize prev_begin;
-	int rc;
+	gssize prev_match_start;
+	gssize prev_match_end;
 
 	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
-	g_assert (match_info != NULL);
-	g_assert (match_info->regex != NULL);
-	g_assert (match_info->regex->code != NULL);
-	g_assert (match_info->offsets == pcre2_get_ovector_pointer (match_info->match_data));
-	g_assert (match_info->start_pos >= 0);
+	g_return_val_if_fail (match_info != NULL, FALSE);
+	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+	g_return_val_if_fail (match_info->start_pos >= 0, FALSE);
 
-	prev_begin = match_info->offsets[0];
-	prev_end = match_info->offsets[1];
+	prev_match_start = match_info->offsets[0];
+	prev_match_end = match_info->offsets[1];
 
 	if (match_info->start_pos > match_info->string_len)
 	{
@@ -1050,13 +1047,13 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 
 	if (match_info->regex->has_jit)
 	{
-		rc = pcre2_jit_match (match_info->regex->code,
-		                      (PCRE2_SPTR)match_info->string,
-		                      match_info->string_len,
-		                      match_info->start_pos,
-		                      match_info->match_flags,
-		                      match_info->match_data,
-		                      NULL);
+		match_info->matches = pcre2_jit_match (match_info->regex->code,
+		                                       (PCRE2_SPTR)match_info->string,
+		                                       match_info->string_len,
+		                                       match_info->start_pos,
+		                                       match_info->match_flags,
+		                                       match_info->match_data,
+		                                       NULL);
 	}
 	else
 	{
@@ -1065,26 +1062,21 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 		if (match_info->regex->compile_flags & PCRE2_UTF)
 			match_flags |= PCRE2_NO_UTF_CHECK;
 
-		rc = pcre2_match (match_info->regex->code,
-		                  (PCRE2_SPTR)match_info->string,
-		                  match_info->string_len,
-		                  match_info->start_pos,
-		                  match_flags,
-		                  match_info->match_data,
-		                  NULL);
+		match_info->matches = pcre2_match (match_info->regex->code,
+		                                   (PCRE2_SPTR)match_info->string,
+		                                   match_info->string_len,
+		                                   match_info->start_pos,
+		                                   match_flags,
+		                                   match_info->match_data,
+		                                   NULL);
 	}
 
-	if (set_regex_error (error, rc))
-	{
-		match_info->matches = rc;
-		match_info->start_pos = -1;
+	if (set_regex_error (error, match_info->matches))
 		return FALSE;
-	}
 
-	/* Avoid infinite loops if the pattern is an empty string or
-	 * something equivalent.
-	 */
-	if (prev_end == match_info->offsets[1])
+	/* avoid infinite loops if the pattern is an empty string or something
+	 * equivalent */
+	if (match_info->start_pos == match_info->offsets[1])
 	{
 		if (match_info->start_pos > match_info->string_len)
 		{
@@ -1101,6 +1093,8 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 		match_info->start_pos = match_info->offsets[1];
 	}
 
+	g_assert (match_info->matches <= match_info->n_subpatterns + 1);
+
 	/* it's possible to get two identical matches when we are matching
 	 * empty strings, for instance if the pattern is "(?=[A-Z0-9])" and
 	 * the string is "RegExTest" we have:
@@ -1113,16 +1107,12 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 	 * so we have to ignore the duplicates.
 	 * see bug #515944: http://bugzilla.gnome.org/show_bug.cgi?id=515944 */
 	if (match_info->matches >= 0 &&
-	    prev_begin == match_info->offsets[0] &&
-	    prev_end == match_info->offsets[1])
+	    prev_match_start == match_info->offsets[0] &&
+	    prev_match_end == match_info->offsets[1])
 	{
 		/* ignore this match and search the next one */
 		return impl_match_info_next (match_info, error);
 	}
-
-	match_info->matches = rc;
-
-	g_assert (match_info->offsets == pcre2_get_ovector_pointer (match_info->match_data));
 
 	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, NULL);
 
