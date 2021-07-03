@@ -75,7 +75,7 @@ struct _ImplMatchInfo
 	pcre2_match_data *match_data;
 	PCRE2_SIZE       *offsets;
 	int               matches;
-	PCRE2_SIZE        n_subpatterns;
+	int               n_subpatterns;
 	gssize            start_pos;
 };
 
