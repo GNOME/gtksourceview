@@ -306,6 +306,8 @@ impl_match_info_new (ImplRegex        *regex,
 	}
 
 	match_info->offsets = pcre2_get_ovector_pointer (match_info->match_data);
+	match_info->offsets[0] = -1;
+	match_info->offsets[1] = -1;
 
 	return match_info;
 }
