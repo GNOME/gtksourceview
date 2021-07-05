@@ -35,38 +35,21 @@ test_slash_c_pattern (void)
 }
 
 static void
-compare_impl_regex_to_g_regex (const char         *subject,
-                               const char         *pattern,
-                               GRegexCompileFlags  compile_flags,
-                               GRegexMatchFlags    match_flags)
+assert_iterations (GMatchInfo    *mi1,
+                   ImplMatchInfo *mi2)
 {
+  gboolean r1;
+  gboolean r2;
+  gboolean next1;
+  gboolean next2;
   GError *err1 = NULL;
   GError *err2 = NULL;
-  GRegex *reg1 = g_regex_new (pattern, compile_flags, 0, &err1);
-  ImplRegex *reg2 = impl_regex_new (pattern, compile_flags, 0, &err2);
-  GMatchInfo *mi1 = NULL;
-  ImplMatchInfo *mi2 = NULL;
-  gboolean r1, r2;
-
-  g_assert_true ((reg1 == NULL && reg2 == NULL) ||
-                 (reg1 != NULL && reg2 != NULL));
-  g_assert_cmpstr (g_regex_get_pattern (reg1),
-                   ==,
-                   impl_regex_get_pattern (reg2));
-  g_assert_cmpint (g_regex_get_max_lookbehind (reg1),
-                   ==,
-                   impl_regex_get_max_lookbehind (reg2));
-
-  r1 = g_regex_match (reg1, subject, match_flags, &mi1);
-  r2 = impl_regex_match (reg2, subject, match_flags, &mi2);
-  g_assert_cmpint (r1, ==, r2);
 
   for (;;)
     {
       gboolean matches1 = g_match_info_matches (mi1);
       gboolean matches2 = impl_match_info_matches (mi2);
       int count1, count2;
-      gboolean next1, next2;
 
       g_assert_cmpint (matches1, ==, matches2);
 
@@ -80,8 +63,8 @@ compare_impl_regex_to_g_regex (const char         *subject,
       /* Check past boundaries for correctness */
       for (int i = 0; i < count1 + 2; i++)
         {
-          int p1_begin, p2_begin;
-          int p1_end, p2_end;
+          int p1_begin = -123, p2_begin = -123;
+          int p1_end = -123, p2_end = -123;
           char *str1, *str2;
 
           r1 = g_match_info_fetch_pos (mi1, i, &p1_begin, &p1_end);
@@ -105,6 +88,54 @@ compare_impl_regex_to_g_regex (const char         *subject,
       next1 = g_match_info_next (mi1, &err1);
       next2 = impl_match_info_next (mi2, &err2);
       g_assert_cmpint (next1, ==, next2);
+      g_assert_true (err1 == NULL || err2 != NULL);
+    }
+
+  g_assert_false (g_match_info_matches (mi1));
+  g_assert_false (impl_match_info_matches (mi2));
+}
+
+static void
+compare_impl_regex_to_g_regex (const char         *subject,
+                               const char         *pattern,
+                               GRegexCompileFlags  compile_flags,
+                               GRegexMatchFlags    match_flags)
+{
+  GError *err1 = NULL;
+  GError *err2 = NULL;
+  GRegex *reg1 = g_regex_new (pattern, compile_flags, 0, &err1);
+  ImplRegex *reg2 = impl_regex_new (pattern, compile_flags, 0, &err2);
+  GMatchInfo *mi1 = NULL;
+  ImplMatchInfo *mi2 = NULL;
+  gboolean r1, r2;
+  int subject_len = strlen (subject);
+
+  g_assert_true ((reg1 == NULL && reg2 == NULL) ||
+                 (reg1 != NULL && reg2 != NULL));
+  g_assert_cmpstr (g_regex_get_pattern (reg1),
+                   ==,
+                   impl_regex_get_pattern (reg2));
+  g_assert_cmpint (g_regex_get_max_lookbehind (reg1),
+                   ==,
+                   impl_regex_get_max_lookbehind (reg2));
+
+  r1 = g_regex_match (reg1, subject, match_flags, &mi1);
+  r2 = impl_regex_match (reg2, subject, match_flags, &mi2);
+  g_assert_cmpint (r1, ==, r2);
+  g_assert_true (err1 == NULL || err2 != NULL);
+  assert_iterations (mi1, mi2);
+  g_clear_pointer (&mi1, g_match_info_free);
+  g_clear_pointer (&mi2, impl_match_info_free);
+
+  for (int i = 0; i <= subject_len; i++)
+    {
+      r1 = g_regex_match_full (reg1, subject, subject_len, i, match_flags, &mi1, &err1);
+      r2 = impl_regex_match_full (reg2, subject, subject_len, i, match_flags, &mi2, &err2);
+      g_assert_cmpint (r1, ==, r2);
+      g_assert_true (err1 == NULL || err2 != NULL);
+      assert_iterations (mi1, mi2);
+      g_clear_pointer (&mi1, g_match_info_free);
+      g_clear_pointer (&mi2, impl_match_info_free);
     }
 
   g_clear_pointer (&reg1, g_regex_unref);
@@ -119,8 +150,17 @@ test_compare (void)
   compare_impl_regex_to_g_regex ("aaa\n", "aa", 0, 0);
   compare_impl_regex_to_g_regex ("aaa\n", "aa", G_REGEX_OPTIMIZE, 0);
 
+  compare_impl_regex_to_g_regex ("aaaa", "aa", 0, 0);
+  compare_impl_regex_to_g_regex ("aaaa", "aa", G_REGEX_OPTIMIZE, 0);
+
   compare_impl_regex_to_g_regex ("aaaa\n", "aa", 0, 0);
   compare_impl_regex_to_g_regex ("aaaa\n", "aa", G_REGEX_OPTIMIZE, 0);
+
+  compare_impl_regex_to_g_regex ("", "aa", 0, 0);
+  compare_impl_regex_to_g_regex ("", "aa", G_REGEX_OPTIMIZE, 0);
+
+  compare_impl_regex_to_g_regex ("hello\n", "\\w+", 0, 0);
+  compare_impl_regex_to_g_regex ("hello\n", "\\w+", G_REGEX_OPTIMIZE, 0);
 
   compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", 0, 0);
   compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", G_REGEX_OPTIMIZE, 0);
@@ -131,14 +171,25 @@ test_compare (void)
   compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", 0, G_REGEX_MATCH_NOTBOL | G_REGEX_MATCH_PARTIAL);
   compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", G_REGEX_OPTIMIZE, G_REGEX_MATCH_NOTBOL | G_REGEX_MATCH_PARTIAL);
 
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", 0, G_REGEX_MATCH_NOTBOL | G_REGEX_MATCH_NOTEOL | G_REGEX_MATCH_PARTIAL);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "\\w+", G_REGEX_OPTIMIZE, G_REGEX_MATCH_NOTBOL | G_REGEX_MATCH_NOTEOL | G_REGEX_MATCH_PARTIAL);
+
   compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", 0, 0);
   compare_impl_regex_to_g_regex ("aa#bb", "(\\w+)#(\\w+)", G_REGEX_OPTIMIZE, 0);
 
   compare_impl_regex_to_g_regex ("aa#bb cc#dd", "(\\w+)#(\\w+)", 0, 0);
   compare_impl_regex_to_g_regex ("aa#bb cc#dd", "(\\w+)#(\\w+)", G_REGEX_OPTIMIZE, 0);
+  compare_impl_regex_to_g_regex ("aa#bb cc#dd", "(\\w+)#(\\w+)", 0x2003, 0x400);
 
   compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", 0, 0);
   compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", G_REGEX_OPTIMIZE, 0);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", 0, G_REGEX_MATCH_NOTBOL | G_REGEX_MATCH_NOTEOL | G_REGEX_MATCH_PARTIAL);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", G_REGEX_OPTIMIZE, G_REGEX_MATCH_NOTBOL | G_REGEX_MATCH_NOTEOL | G_REGEX_MATCH_PARTIAL);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\\n)*", 0, 0);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\\n)*", G_REGEX_OPTIMIZE, 0);
+
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\\n)*", 0x2003, 0x400);
 }
 
 int
