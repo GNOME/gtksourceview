@@ -79,33 +79,44 @@ struct _ImplMatchInfo
 	gssize            start_pos;
 };
 
+#define TAKE(f,gbit,pbit)            \
+	G_STMT_START {               \
+		if (f & gbit)        \
+		{                    \
+			ret |= pbit; \
+			f &= ~gbit;  \
+		}                    \
+	} G_STMT_END
+
 static gsize
 translate_compile_flags (GRegexCompileFlags flags)
 {
-	gsize ret = 0;
+	gsize ret = PCRE2_UCP;
 
-	if (!(flags & G_REGEX_RAW))
+	if ((flags & G_REGEX_RAW) == 0)
+	{
 		ret |= (PCRE2_UTF | PCRE2_NO_UTF_CHECK);
-
-	if (flags & G_REGEX_ANCHORED)
-		ret |= PCRE2_ANCHORED;
-
-	if (flags & G_REGEX_CASELESS)
-		ret |= PCRE2_CASELESS;
-
-	if (flags & G_REGEX_EXTENDED)
-		ret |= PCRE2_EXTENDED;
-
-	if (flags & G_REGEX_DUPNAMES)
-		ret |= PCRE2_DUPNAMES;
-
-	if (flags & G_REGEX_MULTILINE)
-		ret |= PCRE2_MULTILINE;
-
-	ret |= PCRE2_UCP;
+		flags &= ~G_REGEX_RAW;
+	}
 
 	if (~flags & G_REGEX_BSR_ANYCRLF)
+	{
 		ret |= PCRE2_BSR_UNICODE;
+		flags &= ~G_REGEX_BSR_ANYCRLF;
+	}
+
+	TAKE (flags, G_REGEX_ANCHORED, PCRE2_ANCHORED);
+	TAKE (flags, G_REGEX_CASELESS, PCRE2_CASELESS);
+	TAKE (flags, G_REGEX_EXTENDED, PCRE2_EXTENDED);
+	TAKE (flags, G_REGEX_DUPNAMES, PCRE2_DUPNAMES);
+	TAKE (flags, G_REGEX_MULTILINE, PCRE2_MULTILINE);
+	TAKE (flags, G_REGEX_NEWLINE_ANYCRLF, PCRE2_NEWLINE_ANYCRLF);
+	TAKE (flags, G_REGEX_NEWLINE_CR, PCRE2_NEWLINE_CR);
+	TAKE (flags, G_REGEX_NEWLINE_LF, PCRE2_NEWLINE_LF);
+
+	flags &= ~G_REGEX_OPTIMIZE;
+
+	g_assert (flags == 0);
 
 	return ret;
 }
@@ -115,16 +126,14 @@ translate_match_flags (GRegexMatchFlags flags)
 {
 	gsize ret = 0;
 
-	if (flags & G_REGEX_MATCH_ANCHORED)
-		ret |= PCRE2_ANCHORED;
-	if (flags & G_REGEX_MATCH_NOTBOL)
-		ret |= PCRE2_NOTBOL;
-	if (flags & G_REGEX_MATCH_NOTEOL)
-		ret |= PCRE2_NOTEOL;
-	if (flags & G_REGEX_MATCH_PARTIAL_HARD)
-		ret |= PCRE2_PARTIAL_HARD;
-	if (flags & G_REGEX_MATCH_NOTEMPTY)
-		ret |= PCRE2_NOTEMPTY;
+	TAKE (flags, G_REGEX_MATCH_ANCHORED, PCRE2_ANCHORED);
+	TAKE (flags, G_REGEX_MATCH_NOTBOL, PCRE2_NOTBOL);
+	TAKE (flags, G_REGEX_MATCH_NOTEOL, PCRE2_NOTEOL);
+	TAKE (flags, G_REGEX_MATCH_PARTIAL_SOFT, PCRE2_PARTIAL_SOFT);
+	TAKE (flags, G_REGEX_MATCH_PARTIAL_HARD, PCRE2_PARTIAL_HARD);
+	TAKE (flags, G_REGEX_MATCH_NOTEMPTY, PCRE2_NOTEMPTY);
+
+	g_assert (flags == 0);
 
 	return ret;
 }
