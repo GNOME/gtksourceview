@@ -190,6 +190,22 @@ test_compare (void)
 
   compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\n)*", 0x2003, 0x400);
   compare_impl_regex_to_g_regex ("hello\nworld\n", "(.*\\n)*", 0x2003, 0x400);
+
+  compare_impl_regex_to_g_regex ("&aa", "\\baa\\b", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("\342\200\223aa", "\\baa\\b", 0x2003, 0x400);
+
+  compare_impl_regex_to_g_regex ("12\n", "(?<=1)23", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("\n23\n", "(?<=1)23", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("\n123\n", "(?<=1)23", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("\n23\n", "(?<=1)23", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("\n12", "(?<=1)23", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("3", "(?<=1)23", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("\n123 123\n", "(?<=1)23", 0x2003, 0x400);
+
+  compare_impl_regex_to_g_regex ("12\n", "12(?=3)", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("123\n", "12(?=3)", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("\n123", "12(?=3)", 0x2003, 0x400);
+  compare_impl_regex_to_g_regex ("\n123 123\n", "12(?=3)", 0x2003, 0x400);
 }
 
 int
