@@ -76,8 +76,11 @@ struct _ImplMatchInfo
 	PCRE2_SIZE       *offsets;
 	int               matches;
 	int               n_subpatterns;
-	gssize            start_pos;
+	gssize            pos;
 };
+
+/* if the string is in UTF-8 use g_utf8_ functions, else use use just +/- 1. */
+#define NEXT_CHAR(re, s) ((!((re)->compile_flags & PCRE2_UTF)) ? ((s) + 1) : g_utf8_next_char (s))
 
 #define TAKE(f,gbit,pbit)            \
 	G_STMT_START {               \
@@ -285,7 +288,8 @@ static ImplMatchInfo *
 impl_match_info_new (ImplRegex        *regex,
                      GRegexMatchFlags  match_options,
                      const char       *string,
-                     gssize            string_len)
+                     gssize            string_len,
+                     gssize            position)
 {
 	ImplMatchInfo *match_info;
 
@@ -301,18 +305,16 @@ impl_match_info_new (ImplRegex        *regex,
 	match_info = g_slice_new0 (ImplMatchInfo);
 	match_info->regex = impl_regex_ref (regex);
 	match_info->match_flags = regex->match_flags | translate_match_flags (match_options);
-	match_info->start_pos = 0;
-	match_info->matches = -1;
+	match_info->pos = MAX (0, position);
+	match_info->matches = PCRE2_ERROR_NOMATCH;
 	match_info->string = string;
 	match_info->string_len = string_len;
 	match_info->match_data = pcre2_match_data_create_from_pattern (regex->code, NULL);
 
-	pcre2_pattern_info (regex->code, PCRE2_INFO_CAPTURECOUNT, &match_info->n_subpatterns);
-
 	if (match_info->match_data == NULL)
-	{
 		g_error ("Failed to allocate match data");
-	}
+
+	pcre2_pattern_info (regex->code, PCRE2_INFO_CAPTURECOUNT, &match_info->n_subpatterns);
 
 	match_info->offsets = pcre2_get_ovector_pointer (match_info->match_data);
 	match_info->offsets[0] = -1;
@@ -333,7 +335,7 @@ impl_match_info_free (ImplMatchInfo *match_info)
 		match_info->compile_flags = 0;
 		match_info->match_flags = 0;
 		match_info->matches = 0;
-		match_info->start_pos = 0;
+		match_info->pos = 0;
 		match_info->offsets = NULL;
 		g_slice_free (ImplMatchInfo, match_info);
 	}
@@ -486,8 +488,7 @@ impl_regex_match_full (const ImplRegex   *regex,
 		string_len = strlen (string);
 	}
 
-	local_match_info = impl_match_info_new ((ImplRegex *)regex, match_options, string, string_len);
-	local_match_info->start_pos = start_position;
+	local_match_info = impl_match_info_new ((ImplRegex *)regex, match_options, string, string_len, start_position);
 
 	ret = impl_match_info_next (local_match_info, error);
 
@@ -1041,15 +1042,15 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 
 	g_return_val_if_fail (match_info != NULL, FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
-	g_return_val_if_fail (match_info->start_pos >= 0, FALSE);
+	g_return_val_if_fail (match_info->pos >= 0, FALSE);
 
 	prev_match_start = match_info->offsets[0];
 	prev_match_end = match_info->offsets[1];
 
-	if (match_info->start_pos > match_info->string_len)
+	if (match_info->pos > match_info->string_len)
 	{
 		/* we have reached the end of the string */
-		match_info->start_pos = -1;
+		match_info->pos = -1;
 		match_info->matches = PCRE2_ERROR_NOMATCH;
 		return FALSE;
 	}
@@ -1059,7 +1060,7 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 		match_info->matches = pcre2_jit_match (match_info->regex->code,
 		                                       (PCRE2_SPTR)match_info->string,
 		                                       match_info->string_len,
-		                                       match_info->start_pos,
+		                                       match_info->pos,
 		                                       match_info->match_flags,
 		                                       match_info->match_data,
 		                                       NULL);
@@ -1074,7 +1075,7 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 		match_info->matches = pcre2_match (match_info->regex->code,
 		                                   (PCRE2_SPTR)match_info->string,
 		                                   match_info->string_len,
-		                                   match_info->start_pos,
+		                                   match_info->pos,
 		                                   match_flags,
 		                                   match_info->match_data,
 		                                   NULL);
@@ -1085,21 +1086,24 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 
 	/* avoid infinite loops if the pattern is an empty string or something
 	 * equivalent */
-	if (match_info->start_pos == match_info->offsets[1])
+	if (match_info->pos == match_info->offsets[1])
 	{
-		if (match_info->start_pos > match_info->string_len)
+		if (match_info->pos > match_info->string_len)
 		{
 			/* we have reached the end of the string */
-			match_info->start_pos = -1;
+			match_info->pos = -1;
 			match_info->matches = PCRE2_ERROR_NOMATCH;
 			return FALSE;
 		}
 
-		match_info->start_pos = g_utf8_next_char (&match_info->string[match_info->start_pos]) - match_info->string;
+		match_info->pos = NEXT_CHAR (match_info->regex, &match_info->string[match_info->pos]) -
+		                  match_info->string;
+
+
 	}
 	else
 	{
-		match_info->start_pos = match_info->offsets[1];
+		match_info->pos = match_info->offsets[1];
 	}
 
 	g_assert (match_info->matches <= match_info->n_subpatterns + 1);
