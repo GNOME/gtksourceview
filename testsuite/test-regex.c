@@ -104,7 +104,8 @@ compare_impl_regex_to_g_regex (const char         *subject,
   GError *err1 = NULL;
   GError *err2 = NULL;
   GRegex *reg1 = g_regex_new (pattern, compile_flags, 0, &err1);
-  ImplRegex *reg2 = impl_regex_new (pattern, compile_flags, 0, &err2);
+  /* Disable JIT for ImplRegex, as it is not as flexible for search */
+  ImplRegex *reg2 = impl_regex_new (pattern, compile_flags & ~G_REGEX_OPTIMIZE, 0, &err2);
   GMatchInfo *mi1 = NULL;
   ImplMatchInfo *mi2 = NULL;
   gboolean r1, r2;
