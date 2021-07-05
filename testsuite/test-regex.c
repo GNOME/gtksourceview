@@ -211,6 +211,29 @@ test_compare (void)
   compare_impl_regex_to_g_regex ("\n123 123\n", "12(?=3)", compile, match);
 }
 
+static void
+test_issue_138 (void)
+{
+  GError *error = NULL;
+  ImplRegex *re = impl_regex_new ("(a)*", 0, 0, &error);
+  ImplMatchInfo *mi = NULL;
+  g_autofree char *aaa = g_malloc (8192);
+  gboolean r;
+
+  g_assert_no_error (error);
+  g_assert_nonnull (re);
+
+  memset (aaa, 'a', 8191);
+  aaa[8191] = 0;
+  r = impl_regex_match_full (re, aaa, 8191, 0, 0, &mi, &error);
+  g_assert_no_error (error);
+  g_assert_nonnull (mi);
+  g_assert_true (r);
+
+  g_clear_pointer (&mi, impl_match_info_free);
+  g_clear_pointer (&re, impl_regex_unref);
+}
+
 int
 main (int argc, char** argv)
 {
@@ -218,6 +241,7 @@ main (int argc, char** argv)
 
 	g_test_add_func ("/Regex/slash-c", test_slash_c_pattern);
 	g_test_add_func ("/Regex/compare-g-regex", test_compare);
+	g_test_add_func ("/Regex/issue_138", test_issue_138);
 
 	return g_test_run();
 }
