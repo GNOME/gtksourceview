@@ -1066,7 +1066,7 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 	}
 	else
 	{
-		gsize match_flags = match_info->regex->match_flags;
+		gsize match_flags = match_info->regex->match_flags | match_info->match_flags;
 
 		if (match_info->regex->compile_flags & PCRE2_UTF)
 			match_flags |= PCRE2_NO_UTF_CHECK;
