@@ -212,7 +212,7 @@ test_compare (void)
 }
 
 static void
-test_issue_138 (void)
+test_issue_198 (void)
 {
   GError *error = NULL;
   ImplRegex *re = impl_regex_new ("(a)*", 0, 0, &error);
@@ -241,7 +241,7 @@ main (int argc, char** argv)
 
 	g_test_add_func ("/Regex/slash-c", test_slash_c_pattern);
 	g_test_add_func ("/Regex/compare-g-regex", test_compare);
-	g_test_add_func ("/Regex/issue_138", test_issue_138);
+	g_test_add_func ("/Regex/issue_198", test_issue_198);
 
 	return g_test_run();
 }
