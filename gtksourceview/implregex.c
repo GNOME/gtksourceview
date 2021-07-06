@@ -1105,7 +1105,7 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 		match_info->pos = match_info->offsets[1];
 	}
 
-	g_assert (match_info->matches <= match_info->n_subpatterns + 1);
+	g_assert (match_info->matches <= (int)match_info->n_subpatterns + 1);
 
 	/* it's possible to get two identical matches when we are matching
 	 * empty strings, for instance if the pattern is "(?=[A-Z0-9])" and
