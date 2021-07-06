@@ -75,7 +75,7 @@ struct _ImplMatchInfo
 	pcre2_match_data *match_data;
 	PCRE2_SIZE       *offsets;
 	int               matches;
-	int               n_subpatterns;
+	uint32_t          n_subpatterns;
 	gssize            pos;
 };
 
@@ -216,7 +216,6 @@ impl_regex_new (const char          *pattern,
 		char errmsg[128];
 
 		pcre2_get_error_message (errnumber, (guchar *)errmsg, sizeof errmsg-1);
-		errmsg[sizeof errmsg-1] = 0;
 
 		g_set_error (error,
 		             G_REGEX_ERROR,
@@ -1135,7 +1134,7 @@ impl_match_info_next (ImplMatchInfo  *match_info,
 int
 impl_regex_get_max_lookbehind (const ImplRegex *regex)
 {
-	size_t value = 0;
+	uint32_t value = 0;
 
 	g_return_val_if_fail (regex != NULL, 0);
 	g_return_val_if_fail (regex->code != NULL, 0);
