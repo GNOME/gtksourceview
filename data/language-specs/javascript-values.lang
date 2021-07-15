@@ -26,7 +26,7 @@
 -->
 <language id="js-val" name="JavaScript Built-in Values" version="2.0" _section="Script" hidden="true">
   <!-- from js:identifier-char -->
-  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\N{U+2E2F})[\p{L}\p{Nl}\N{U+1885}-\N{U+1886}\N{U+2118}\N{U+212E}\N{U+309B}-\N{U+309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\N{U+00B7}\N{U+0387}\N{U+1369}-\N{U+1371}\N{U+19DA}$\N{U+200C}\N{U+200D}]</keyword-char-class>
 
   <definitions>
 

@@ -58,7 +58,7 @@
 
   <definitions>
 
-    <define-regex id="identifier">[a-zA-Z_\x{80}-\x{10ffff}][a-zA-Z0-9_\x{80}-\x{10ffff}]*</define-regex>
+    <define-regex id="identifier">[a-zA-Z_\N{U+80}-\N{U+10ffff}][a-zA-Z0-9_\N{U+80}-\N{U+10ffff}]*</define-regex>
 
     <context id="bash-line-comment" style-ref="comment" end-at-line-end="true" extend-parent="false" class="comment" class-disabled="no-spell-check">
       <start>#</start>

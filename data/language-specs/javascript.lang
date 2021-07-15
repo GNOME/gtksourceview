@@ -120,7 +120,7 @@
   </styles>
 
   <!-- from identifier-char -->
-  <keyword-char-class>(?!\x{2E2F})[\p{L}\p{Nl}\x{1885}-\x{1886}\x{2118}\x{212E}\x{309B}-\x{309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{00B7}\x{0387}\x{1369}-\x{1371}\x{19DA}$\x{200C}\x{200D}]</keyword-char-class>
+  <keyword-char-class>(?!\N{U+2E2F})[\p{L}\p{Nl}\N{U+1885}-\N{U+1886}\N{U+2118}\N{U+212E}\N{U+309B}-\N{U+309C}\p{Mn}\p{Mc}\p{Nd}\p{Pc}\N{U+00B7}\N{U+0387}\N{U+1369}-\N{U+1371}\N{U+19DA}$\N{U+200C}\N{U+200D}]</keyword-char-class>
 
   <definitions>
 
@@ -205,7 +205,7 @@
          U+200D Zero-width joiner <ZWJ>
     -->
     <define-regex id="identifier-char" extended="true">
-      \%{def:unicode-id-continue} | [$\x{200C}\x{200D}]
+      \%{def:unicode-id-continue} | [$\N{U+200C}\N{U+200D}]
     </define-regex> <!-- /identifier-char -->
 
     <!-- <IdentifierPart> -->
@@ -244,7 +244,7 @@
          Zs Space_Separator category <USP>
     -->
     <define-regex id="whitespace" extended="true">
-      [\t\x{000B}\f \x{00A0}\x{FEFF}\p{Zs}]
+      [\t\N{U+000B}\f \N{U+00A0}\N{U+FEFF}\p{Zs}]
     </define-regex> <!-- /whitespace -->
 
     <!-- includes characters from <LineTerminator>,
@@ -257,7 +257,7 @@
          U+2029 Paragraph separator <PS>
     -->
     <define-regex id="not-whitespace" extended="true">
-      [^\t\x{000B}\f \x{00A0}\x{FEFF}\p{Zs}\n\r\x{2028}\x{2029}]
+      [^\t\N{U+000B}\f \N{U+00A0}\N{U+FEFF}\p{Zs}\n\r\N{U+2028}\N{U+2029}]
     </define-regex> <!-- /not-whitespace -->
 
     <define-regex id="before-next-token" extended="true">
