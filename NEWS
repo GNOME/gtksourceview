@@ -1,3 +1,29 @@
+News in 5.1.0, 2021-07-19
+-------------------------
+
+GtkSourceView 5.1.0 is the first alpha release of GtkSourceView as we
+progress towards the 5.2 release.
+
+Changes since 5.0.0
+
+ * Fix GtkSourceView 5.0 version check macros
+ * Improve font and styling of GtkSourceMap
+ * Improve input gestures to make GtkSourceMap more predictable and
+   reduce scroll latency
+ * Various GObject Introspection fixes
+ * Avoid a number of string copies in CSS processing
+ * Avoid alpha compositing when drawing the right-margin
+ * Improve PCRE2 support to perform closer to GRegex
+ * GtkSourceSearchContext is now powered by PCRE2 when regexes are in use
+ * javascript.lang, typescript.lang, html.lang: alter character ranges to
+   work with PCRE2 by using \N{U+} style escapes
+ * groovy.lang: add mimetype for groovy
+ * sh.lang: fix short parameter expansion
+ * powershell.lang: add support for powershell 7
+ * Kate: fix matched brackets color
+ * Adwaita: fix selection styling to support libadwaita
+ * Translation updates
+
 News in 5.0.0, 2021-03-19
 -------------------------
 
