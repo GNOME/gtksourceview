@@ -10,6 +10,7 @@ tests_sources = {
         'search-performances': ['test-search-performances.c'],
                    'snippets': ['test-snippets.c'],
               'space-drawing': ['test-space-drawing.c'],
+                       'load': ['test-load.c'],
                      'widget': ['test-widget.c'],
 }
 
