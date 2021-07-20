@@ -2407,19 +2407,12 @@ gtk_source_view_paint_line_background (GtkSourceView *view,
                                        int            height,
                                        const GdkRGBA *color)
 {
-	static const float widths[4] = { 1, 0, 1, 0 };
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
-	GdkRGBA colors[4] = { *color, *color, *color, *color };
 	GdkRectangle visible_rect;
 
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
-	gtk_snapshot_append_border (snapshot,
-	                            &GSK_ROUNDED_RECT_INIT (visible_rect.x,
-	                                                    y,
-	                                                    visible_rect.width,
-	                                                    height),
-	                            widths,
-	                            colors);
 	gtk_snapshot_append_color (snapshot,
 	                           color,
 	                           &GRAPHENE_RECT_INIT (visible_rect.x,
