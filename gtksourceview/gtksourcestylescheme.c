@@ -63,6 +63,7 @@
 #define STYLE_RIGHT_MARGIN		"right-margin"
 #define STYLE_DRAW_SPACES		"draw-spaces"
 #define STYLE_SNIPPET_FOCUS		"snippet-focus"
+#define STYLE_BACKGROUND		"background"
 #define STYLE_BACKGROUND_PATTERN	"background-pattern"
 
 #define STYLE_SCHEME_VERSION		"1.0"
@@ -679,6 +680,20 @@ _gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
 	return get_color (style, FALSE, color);
 }
 
+gboolean
+_gtk_source_style_scheme_get_current_line_number_color (GtkSourceStyleScheme *scheme,
+                                                        GdkRGBA              *color)
+{
+	GtkSourceStyle *style;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
+	g_return_val_if_fail (color != NULL, FALSE);
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE_NUMBER);
+
+	return get_color (style, FALSE, color);
+}
+
 /*
  * Returns TRUE if the style for background-pattern-color is set in the scheme
  */
@@ -692,6 +707,20 @@ _gtk_source_style_scheme_get_background_pattern_color (GtkSourceStyleScheme *sch
 	g_return_val_if_fail (color != NULL, FALSE);
 
 	style = gtk_source_style_scheme_get_style (scheme, STYLE_BACKGROUND_PATTERN);
+
+	return get_color (style, FALSE, color);
+}
+
+gboolean
+_gtk_source_style_scheme_get_background_color (GtkSourceStyleScheme *scheme,
+                                               GdkRGBA              *color)
+{
+	GtkSourceStyle *style;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
+	g_return_val_if_fail (color != NULL, FALSE);
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_BACKGROUND);
 
 	return get_color (style, FALSE, color);
 }

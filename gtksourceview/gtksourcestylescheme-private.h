@@ -50,7 +50,13 @@ G_GNUC_INTERNAL
 gboolean              _gtk_source_style_scheme_get_current_line_color       (GtkSourceStyleScheme *scheme,
                                                                              GdkRGBA              *color);
 G_GNUC_INTERNAL
+gboolean              _gtk_source_style_scheme_get_current_line_number_color(GtkSourceStyleScheme *scheme,
+                                                                             GdkRGBA              *color);
+G_GNUC_INTERNAL
 gboolean              _gtk_source_style_scheme_get_background_pattern_color (GtkSourceStyleScheme *scheme,
+                                                                             GdkRGBA              *color);
+G_GNUC_INTERNAL
+gboolean              _gtk_source_style_scheme_get_background_color         (GtkSourceStyleScheme *scheme,
                                                                              GdkRGBA              *color);
 
 G_END_DECLS
