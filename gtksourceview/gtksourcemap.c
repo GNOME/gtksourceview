@@ -33,6 +33,7 @@
 #include "gtksourcestyle-private.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourceutils-private.h"
+#include "gtksourceview-private.h"
 
 #define SCRUBBER_MIN_HEIGHT 10
 #define DRAG_THRESHOLD      5.0
@@ -372,12 +373,11 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 
 	if (style_scheme != NULL)
 	{
-
-		style = gtk_source_style_scheme_get_style (style_scheme, "map-overlay");
-
-		if (style == NULL)
+		if (!(style = gtk_source_style_scheme_get_style (style_scheme, "map-overlay")) &&
+		    !(style = gtk_source_style_scheme_get_style (style_scheme, "selection")) &&
+		    !(style = gtk_source_style_scheme_get_style (style_scheme, "current-line")))
 		{
-			style = gtk_source_style_scheme_get_style (style_scheme, "selection");
+			/* Do Nothing */
 		}
 	}
 
@@ -401,6 +401,16 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		if (!background_set)
 		{
 			g_clear_pointer (&background, g_free);
+		}
+	}
+	else
+	{
+		GdkRGBA bg;
+
+		if (_gtk_source_view_get_current_line_background (priv->view, &bg))
+		{
+			bg.alpha = 0.3;
+			background = gdk_rgba_to_string (&bg);
 		}
 	}
 
