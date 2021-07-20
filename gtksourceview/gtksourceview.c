@@ -188,6 +188,7 @@ typedef struct
 
 	GdkRGBA background_pattern_color;
 	GdkRGBA current_line_color;
+	GdkRGBA current_line_number_color;
 	GdkRGBA right_margin_line_color;
 	GdkRGBA right_margin_overlay_color;
 
@@ -208,6 +209,7 @@ typedef struct
 
 	guint background_pattern_color_set : 1;
 	guint current_line_color_set : 1;
+	guint current_line_number_color_set : 1;
 	guint right_margin_line_color_set : 1;
 	guint right_margin_overlay_color_set : 1;
 	guint tabs_set : 1;
@@ -4621,22 +4623,6 @@ update_background_pattern_color (GtkSourceView *view)
 								       &priv->background_pattern_color);
 }
 
-static void
-update_current_line_color (GtkSourceView *view)
-{
-	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
-
-	if (priv->style_scheme == NULL)
-	{
-		priv->current_line_color_set = FALSE;
-		return;
-	}
-
-	priv->current_line_color_set =
-		_gtk_source_style_scheme_get_current_line_color (priv->style_scheme,
-								 &priv->current_line_color);
-}
-
 static inline void
 premix_colors (GdkRGBA       *dest,
                const GdkRGBA *fg,
@@ -4660,6 +4646,56 @@ premix_colors (GdkRGBA       *dest,
 	{
 		*dest = *fg;
 		dest->alpha = alpha;
+	}
+}
+
+static void
+update_current_line_color (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	if (priv->style_scheme != NULL)
+	{
+		priv->current_line_color_set =
+			_gtk_source_style_scheme_get_current_line_color (priv->style_scheme,
+									 &priv->current_line_color);
+		priv->current_line_number_color_set =
+			_gtk_source_style_scheme_get_current_line_number_color (priv->style_scheme,
+										&priv->current_line_number_color);
+	}
+
+	/* If we failed to get a highlight-current-line color, then premix the foreground
+	 * and the background to give something relatively useful (and avoid alpha-composite
+	 * if we can w/ premix).
+	 */
+	if (!priv->current_line_color_set)
+	{
+		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
+		gboolean has_bg = FALSE;
+		GdkRGBA fg, bg;
+
+		if (priv->style_scheme != NULL)
+			has_bg = _gtk_source_style_scheme_get_background_color (priv->style_scheme, &bg);
+
+		gtk_style_context_get_color (style_context, &fg);
+
+		premix_colors (&priv->current_line_color, &fg, &bg, has_bg, 0.05);
+		priv->current_line_color_set = TRUE;
+	}
+
+	if (!priv->current_line_number_color_set)
+	{
+		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
+		gboolean has_bg = FALSE;
+		GdkRGBA fg, bg;
+
+		if (priv->style_scheme != NULL)
+			has_bg = _gtk_source_style_scheme_get_background_color (priv->style_scheme, &bg);
+
+		gtk_style_context_get_color (style_context, &fg);
+
+		premix_colors (&priv->current_line_number_color, &fg, &bg, has_bg, 0.05);
+		priv->current_line_number_color_set = TRUE;
 	}
 }
 
