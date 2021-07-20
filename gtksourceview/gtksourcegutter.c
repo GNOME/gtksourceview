@@ -26,7 +26,7 @@
 #include "gtksourcegutterlines-private.h"
 #include "gtksourcesignalgroup-private.h"
 #include "gtksourcestylescheme-private.h"
-#include "gtksourceview.h"
+#include "gtksourceview-private.h"
 #include "gtksourcegutterrenderer.h"
 #include "gtksourcegutterrenderer-private.h"
 
@@ -706,7 +706,6 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 {
 	GtkSourceGutter *gutter = GTK_SOURCE_GUTTER (widget);
 	GtkTextView *text_view = GTK_TEXT_VIEW (gutter->view);
-	GtkStyleContext *style_context;
 	const GList *list;
 	GdkRectangle visible_rect;
 	GtkTextIter begin;
@@ -720,8 +719,6 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 	{
 		return;
 	}
-
-	style_context = gtk_widget_get_style_context (GTK_WIDGET (gutter));
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
 	gtk_text_view_get_iter_at_location (text_view, &begin,
@@ -752,6 +749,7 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 		if (cursor_line >= gtk_source_gutter_lines_get_first (gutter->lines) &&
 		    cursor_line <= gtk_source_gutter_lines_get_last (gutter->lines))
 		{
+			GdkRGBA highlight;
 			gint y;
 			gint height;
 
@@ -761,17 +759,14 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 			                                         &y,
 			                                         &height);
 
-			gtk_style_context_save (style_context);
-			gtk_style_context_add_class (style_context, "current-line-number");
+			if (_gtk_source_view_get_current_line_number_background (gutter->view, &highlight))
+			{
+				int width = gtk_widget_get_width (widget);
 
-			gtk_snapshot_render_background (snapshot,
-							style_context,
-							0,
-							y,
-							gtk_widget_get_width (widget),
-							height);
-
-			gtk_style_context_restore (style_context);
+				gtk_snapshot_append_color (snapshot,
+				                           &highlight,
+				                           &GRAPHENE_RECT_INIT (0, y, width, height));
+			}
 		}
 	}
 
