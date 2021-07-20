@@ -89,4 +89,12 @@
     </para>
   </refsect1>
 
+  <refsect1>
+    <title>Style Schemes</title>
+    <para>Since 5.2, GtkSourceView will synthesize an appropriate background color
+    for current-line-number if current-line-number’s background is not specified.
+    Style schemes which have not already set current-line-number should be updated
+    and use "#rgba(0,0,0,0)" to match the previous behavior.</para>
+  </refsect1>
+
 </chapter>
