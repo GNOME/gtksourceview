@@ -5418,8 +5418,24 @@ gtk_source_view_set_indenter (GtkSourceView     *view,
 }
 
 gboolean
+_gtk_source_view_get_current_line_background (GtkSourceView *view,
+                                              GdkRGBA       *rgba)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
+
+	if (rgba != NULL)
+	{
+		*rgba = priv->current_line_color;
+	}
+
+	return priv->current_line_color_set;
+}
+
+gboolean
 _gtk_source_view_get_current_line_number_background (GtkSourceView *view,
-						     GdkRGBA       *rgba)
+                                                     GdkRGBA       *rgba)
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 

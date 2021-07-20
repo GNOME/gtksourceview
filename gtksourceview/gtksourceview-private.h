@@ -85,6 +85,8 @@ gboolean _gtk_source_view_snippets_key_pressed (GtkSourceViewSnippets *snippets,
                                                 guint                  keycode,
                                                 GdkModifierType        state);
 
+gboolean _gtk_source_view_get_current_line_background        (GtkSourceView *view,
+                                                              GdkRGBA       *rgba);
 gboolean _gtk_source_view_get_current_line_number_background (GtkSourceView *view,
                                                               GdkRGBA       *rgba);
 
