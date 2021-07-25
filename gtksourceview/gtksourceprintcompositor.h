@@ -150,5 +150,8 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_print_compositor_draw_page                  (GtkSourcePrintCompositor *compositor,
                                                                                   GtkPrintContext          *context,
                                                                                   gint                      page_nr);
+GTK_SOURCE_AVAILABLE_IN_5_2
+void                      gtk_source_print_compositor_ignore_tag                 (GtkSourcePrintCompositor *compositor,
+                                                                                  GtkTextTag               *tag);
 
 G_END_DECLS

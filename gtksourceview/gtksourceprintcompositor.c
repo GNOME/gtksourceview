@@ -154,6 +154,8 @@ typedef struct
 
 	GtkTextMark             *pagination_mark;
 
+	GHashTable              *ignored_tags;
+
 #ifdef GTK_SOURCE_PROFILER_ENABLED
 	gint64                   pagination_timer;
 #endif
@@ -305,6 +307,15 @@ gtk_source_print_compositor_set_property (GObject      *object,
 	{
 		case PROP_BUFFER:
 			priv->buffer = GTK_SOURCE_BUFFER (g_value_dup_object (value));
+			if (priv->buffer)
+			{
+				GtkTextTag *tag = _gtk_source_buffer_get_bracket_match_tag (priv->buffer);
+
+				if (tag)
+				{
+					gtk_source_print_compositor_ignore_tag (compositor, tag);
+				}
+			}
 			break;
 		case PROP_TAB_WIDTH:
 			gtk_source_print_compositor_set_tab_width (compositor,
@@ -356,6 +367,8 @@ gtk_source_print_compositor_finalize (GObject *object)
 {
 	GtkSourcePrintCompositor *compositor = GTK_SOURCE_PRINT_COMPOSITOR (object);
 	GtkSourcePrintCompositorPrivate *priv = gtk_source_print_compositor_get_instance_private (compositor);
+
+	g_clear_pointer (&priv->ignored_tags, g_hash_table_unref);
 
 	if (priv->pages != NULL)
 		g_array_free (priv->pages, TRUE);
@@ -680,6 +693,7 @@ gtk_source_print_compositor_init (GtkSourcePrintCompositor *compositor)
 	GtkSourcePrintCompositorPrivate *priv = gtk_source_print_compositor_get_instance_private (compositor);
 
 	priv->buffer = NULL;
+	priv->ignored_tags = g_hash_table_new (NULL, NULL);
 
 	priv->tab_width = DEFAULT_TAB_WIDTH;
 	priv->wrap_mode = GTK_WRAP_NONE;
@@ -2223,22 +2237,12 @@ calculate_page_size_and_margins (GtkSourcePrintCompositor *compositor,
 	                         convert_to_mm (get_text_height (compositor), GTK_UNIT_POINTS));
 }
 
-/* TODO: maybe we should have a public api to set
- * which tags need to be printed and which should not.
- * For now we special case bracket matches.
- */
 static gboolean
 ignore_tag (GtkSourcePrintCompositor *compositor,
             GtkTextTag               *tag)
 {
 	GtkSourcePrintCompositorPrivate *priv = gtk_source_print_compositor_get_instance_private (compositor);
-	GtkTextTag *bm_tag;
-
-	bm_tag = _gtk_source_buffer_get_bracket_match_tag (priv->buffer);
-	if ((bm_tag != NULL) && (tag == bm_tag))
-		return TRUE;
-
-	return FALSE;
+	return tag ? g_hash_table_contains (priv->ignored_tags, tag) : FALSE;
 }
 
 static GSList *
@@ -3299,5 +3303,30 @@ gtk_source_print_compositor_draw_page (GtkSourcePrintCompositor *compositor,
 
 		y += line_height;
 		gtk_text_iter_forward_line (&start);
+	}
+}
+
+/**
+ * gtk_source_print_compositor_ignore_tag:
+ * @compositor: a #GtkSourcePrintCompositor
+ * @tag: a #GtkTextTag
+ *
+ * Specifies a tag whose style should be ignored when compositing the
+ * document to the printable page.
+ *
+ * Since: 5.2
+ */
+void
+gtk_source_print_compositor_ignore_tag (GtkSourcePrintCompositor *compositor,
+                                        GtkTextTag               *tag)
+{
+	GtkSourcePrintCompositorPrivate *priv = gtk_source_print_compositor_get_instance_private (compositor);
+
+	g_return_if_fail (GTK_SOURCE_IS_PRINT_COMPOSITOR (compositor));
+	g_return_if_fail (!tag || GTK_IS_TEXT_TAG (tag));
+
+	if (tag != NULL)
+	{
+		g_hash_table_add (priv->ignored_tags, tag);
 	}
 }
