@@ -10,6 +10,7 @@ stages:
 variables:
     FEDORA_DEPS:
         meson vala gtk4-devel ninja-build pkgconf clang gobject-introspection-devel gtk-doc vulkan-headers docbook-style-xsl docbook-dtds
+    FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtk/fedora:v32"
 
 flatpak:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
@@ -22,14 +23,14 @@ flatpak:
     extends: ".flatpak"
 
 reference:
-    image: fedora:rawhide
+    image: $FEDORA_IMAGE
     stage: docs
     needs: []
     variables:
         MESON_FLAGS: "-Dwerror=true --buildtype=release"
     script:
-        - dnf update -y --nogpgcheck
-        - dnf install -y --nogpgcheck $FEDORA_DEPS
+        - sudo dnf update -y --nogpgcheck
+        - sudo dnf install -y --nogpgcheck $FEDORA_DEPS
         - mkdir -p pfx/
         - meson ${MESON_FLAGS} --prefix=${PWD}/pfx -Dgtk_doc=true _build
         - ninja -C _build install
