@@ -47,6 +47,10 @@ test_unescape_search_text (void)
 	unescaped_text = gtk_source_utils_unescape_search_text ("foo\n bar\r ß\t hello\\blah");
 	g_assert_cmpstr (unescaped_text, ==, "foo\n bar\r ß\t hello\\blah");
 	g_free (unescaped_text);
+
+	unescaped_text = gtk_source_utils_unescape_search_text ("\\n \\1");
+	g_assert_cmpstr (unescaped_text, ==, "\n \\1");
+	g_free (unescaped_text);
 }
 
 static void
