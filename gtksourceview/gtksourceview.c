@@ -3748,7 +3748,8 @@ gtk_source_view_move_words (GtkSourceView *view,
 	}
 
 	if (gtk_text_iter_in_range (&ns, &s, &e) ||
-	    gtk_text_iter_in_range (&ne, &s, &e))
+	    (!gtk_text_iter_equal (&s, &ne) &&
+	     gtk_text_iter_in_range (&ne, &s, &e)))
 	{
 		return;
 	}
@@ -3758,8 +3759,8 @@ gtk_source_view_move_words (GtkSourceView *view,
 
 	gtk_text_buffer_begin_user_action (buf);
 
-	nsmark = gtk_text_buffer_create_mark (buf, NULL, &ns, TRUE);
-	nemark = gtk_text_buffer_create_mark (buf, NULL, &ne, FALSE);
+	nsmark = gtk_text_buffer_create_mark (buf, NULL, &ns, step < 0);
+	nemark = gtk_text_buffer_create_mark (buf, NULL, &ne, step < 0);
 
 	gtk_text_buffer_delete (buf, &s, &e);
 	gtk_text_buffer_insert (buf, &s, new_text, -1);

@@ -294,6 +294,56 @@ test_sort_lines (void)
 }
 
 static void
+do_test_move_words (GtkSourceView      *view,
+                    GtkSourceBuffer    *buffer,
+                    const gchar        *text,
+                    const gchar        *expected,
+                    gint                start_offset,
+                    gint                end_offset,
+                    gint                step)
+{
+	GtkTextIter start;
+	GtkTextIter end;
+	gchar *changed;
+
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
+
+	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &start, start_offset);
+	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &end, end_offset);
+	gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &start, &end);
+
+	g_signal_emit_by_name (view, "move-words", step);
+
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &start, &end);
+	changed = gtk_text_buffer_get_text (GTK_TEXT_BUFFER (buffer), &start, &end, TRUE);
+
+	g_assert_cmpstr (changed, ==, expected);
+
+	g_free (changed);
+}
+
+static void
+test_move_words (void)
+{
+	GtkSourceView *view;
+	GtkSourceBuffer *buffer;
+
+	buffer = gtk_source_buffer_new (NULL);
+	view = g_object_ref_sink (GTK_SOURCE_VIEW (gtk_source_view_new ()));
+
+	gtk_text_view_set_buffer (GTK_TEXT_VIEW (view), GTK_TEXT_BUFFER (buffer));
+
+	do_test_move_words (view, buffer, "a > b", "a b >", 2, 3, 1);
+	do_test_move_words (view, buffer, "a>b", "ab>", 1, 2, 1);
+	do_test_move_words (view, buffer, "a>b", ">ab", 1, 2, -1);
+	do_test_move_words (view, buffer, "what is this word.", "what word this is.", 13, 17, -2);
+	do_test_move_words (view, buffer, "what word this is.", "what is this word.", 5, 9, 2);
+
+	g_object_unref (buffer);
+	g_object_unref (view);
+}
+
+static void
 do_test_bracket_matching (GtkSourceBuffer           *source_buffer,
 			  const gchar               *text,
 			  gint                       offset,
@@ -448,6 +498,7 @@ main (int argc, char** argv)
 	g_test_add_func ("/Buffer/change-case", test_change_case);
 	g_test_add_func ("/Buffer/join-lines", test_join_lines);
 	g_test_add_func ("/Buffer/sort-lines", test_sort_lines);
+	g_test_add_func ("/Buffer/move-words", test_move_words);
 	g_test_add_func ("/Buffer/bracket-matching", test_bracket_matching);
 
 	return g_test_run();
