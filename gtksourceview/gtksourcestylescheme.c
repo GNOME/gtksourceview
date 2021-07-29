@@ -59,6 +59,7 @@
 #define STYLE_SECONDARY_CURSOR		"secondary-cursor"
 #define STYLE_CURRENT_LINE		"current-line"
 #define STYLE_LINE_NUMBERS		"line-numbers"
+#define STYLE_LINE_NUMBERS_BORDER	"line-numbers-border"
 #define STYLE_CURRENT_LINE_NUMBER	"current-line-number"
 #define STYLE_RIGHT_MARGIN		"right-margin"
 #define STYLE_DRAW_SPACES		"draw-spaces"
@@ -929,6 +930,24 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 	if (style != NULL)
 	{
 		append_css_style (final_style, style, "textview border gutter");
+	}
+
+	/* Add border for line-numbers-border if specified */
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_LINE_NUMBERS_BORDER);
+	if (style != NULL)
+	{
+		GdkRGBA color;
+
+		if (get_color (style, FALSE, &color))
+		{
+			char *bg = gdk_rgba_to_string (&color);
+			g_string_append_printf (final_style,
+			                        "textview border.left gutter {\n"
+			                        "  border-right: 1px solid %s;\n"
+			                        "}\n",
+			                        bg);
+			g_free (bg);
+		}
 	}
 
 	apply_css_style_cursors (scheme, final_style);

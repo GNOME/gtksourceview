@@ -216,6 +216,11 @@ is used.</para></listitem>
 numbers are drawn.</para></listitem>
 </varlistentry>
 <varlistentry>
+<term><code>line-numbers-border</code></term>
+<listitem><para>Background color for the border between the left gutter and
+textview.</para></listitem>
+</varlistentry>
+<varlistentry>
 <term><code>current-line-number</code></term>
 <listitem><para>Current line style for the left margin, on which the current
 line number is drawn. Only the <code>background</code> attribute is used.</para></listitem>
