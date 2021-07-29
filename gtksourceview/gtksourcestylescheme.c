@@ -931,13 +931,6 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 		append_css_style (final_style, style, "textview border gutter");
 	}
 
-	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE_NUMBER);
-	if (style != NULL)
-	{
-		append_css_style (final_style, style, "textview gutter.current-line-number");
-		append_css_style (final_style, style, "textview gutterrenderer.current-line-number");
-	}
-
 	apply_css_style_cursors (scheme, final_style);
 
 	if (*final_style->str != '\0')
