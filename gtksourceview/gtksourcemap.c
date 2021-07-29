@@ -651,8 +651,8 @@ scroll_to_child_point (GtkSourceMap   *map,
 		gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (map),
 		                                    &iter, point->x, point->y);
 
-		gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (priv->view), &iter,
-		                              0.0, TRUE, 1.0, 0.5);
+		_gtk_source_view_jump_to_iter (GTK_TEXT_VIEW (priv->view), &iter,
+		                               0.0, TRUE, 1.0, 0.5);
 	}
 }
 
