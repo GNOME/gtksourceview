@@ -387,7 +387,18 @@ gtk_source_view_change_number (GtkSourceView *view,
 	{
 		if (!gtk_text_iter_starts_word (&start))
 		{
+			GtkTextIter prev;
+
 			gtk_text_iter_backward_word_start (&start);
+
+			/* Include the negative sign if there is one.
+			 * https://gitlab.gnome.org/GNOME/gtksourceview/-/issues/117
+			 */
+			prev = start;
+			if (gtk_text_iter_backward_char (&prev) && gtk_text_iter_get_char (&prev) == '-')
+			{
+				start = prev;
+			}
 		}
 
 		if (!gtk_text_iter_ends_word (&end))
