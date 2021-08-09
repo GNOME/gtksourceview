@@ -46,6 +46,7 @@ struct _TestWidget
 	GtkSourceStyleSchemeChooserButton *chooser_button;
 	GtkComboBoxText *background_pattern;
 	GtkWidget *top;
+	GtkScrolledWindow *scrolledwindow1;
 };
 
 struct _TestHoverProvider
@@ -1034,6 +1035,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, cursor_position_info);
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, chooser_button);
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, background_pattern);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, scrolledwindow1);
 
   gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "window.close", NULL);
 }
@@ -1055,6 +1057,19 @@ show_top_border_window_toggled_cb (GtkCheckButton *checkbutton,
 	}
 
 	gtk_widget_set_size_request (self->top, -1, size);
+}
+
+static gboolean
+boolean_to_scrollbar_policy (GBinding     *binding,
+			     const GValue *from_value,
+			     GValue       *to_value,
+			     gpointer      user_data)
+{
+	if (g_value_get_boolean (from_value))
+		g_value_set_enum (to_value, GTK_POLICY_EXTERNAL);
+	else
+		g_value_set_enum (to_value, GTK_POLICY_AUTOMATIC);
+	return TRUE;
 }
 
 static void
@@ -1131,6 +1146,13 @@ test_widget_init (TestWidget *self)
 	                        self->map,
 	                        "visible",
 	                        G_BINDING_SYNC_CREATE);
+	g_object_bind_property_full (self->show_map_checkbutton,
+				     "active",
+				     self->scrolledwindow1,
+				     "vscrollbar-policy",
+				     G_BINDING_SYNC_CREATE,
+				     boolean_to_scrollbar_policy, NULL,
+				     NULL, NULL);
 
 	g_object_bind_property (self->smart_backspace_checkbutton,
 	                        "active",
