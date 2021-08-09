@@ -1061,6 +1061,7 @@ static void
 test_widget_init (TestWidget *self)
 {
 	GtkSourceSpaceDrawer *space_drawer;
+	GtkSourceStyleScheme *style_scheme;
 	GFile *file;
 
 	self = test_widget_get_instance_private (self);
@@ -1119,6 +1120,11 @@ test_widget_init (TestWidget *self)
 	                        self->buffer,
 	                        "style-scheme",
 	                        G_BINDING_SYNC_CREATE);
+
+	style_scheme = gtk_source_style_scheme_manager_get_scheme (
+		gtk_source_style_scheme_manager_get_default (),
+		"Adwaita");
+	gtk_source_buffer_set_style_scheme (self->buffer, style_scheme);
 
 	g_object_bind_property (self->show_map_checkbutton,
 	                        "active",
