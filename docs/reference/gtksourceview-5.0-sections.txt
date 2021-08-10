@@ -1028,6 +1028,14 @@ GTK_SOURCE_VERSION_MAX_ALLOWED
 </SECTION>
 
 <SECTION>
+<FILE>scheduler</FILE>
+GtkSourceSchedulerCallback
+gtk_source_scheduler_add
+gtk_source_scheduler_add_full
+gtk_source_scheduler_remove
+</SECTION>
+
+<SECTION>
 <FILE>view</FILE>
 GtkSourceView
 GtkSourceSmartHomeEndType
