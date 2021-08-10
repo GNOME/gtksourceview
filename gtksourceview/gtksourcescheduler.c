@@ -25,6 +25,13 @@
 
 #include "gtksourcescheduler.h"
 
+/**
+ * SECTION:scheduler
+ * @title: Work Scheduling
+ * @short_description: scheduling background work
+ *
+ */
+
 /* The goal of this GSource is to let us pile on a bunch of background work but
  * only do a small amount of it at a time per-frame cycle. This becomes more
  * important when you have multiple documents open all competing to do
@@ -35,7 +42,7 @@
  *
  * Since we don't have access to the widgets, we need to base this work off the
  * shortest delay between frames among the available monitors. Some aliasing is
- * still possible depending on per-monitor scanouts, but we already have that
+ * still possible depending on per-monitor scan-outs, but we already have that
  * issue without this.
  */
 
@@ -220,6 +227,15 @@ get_scheduler (void)
 	return (GtkSourceScheduler *)the_source;
 }
 
+/**
+ * gtk_source_scheduler_add:
+ * @callback: (scope async): the callback to execute
+ * @user_data: user data for @callback
+ *
+ * Simplified version of gtk_source_scheduler_add_full().
+ *
+ * Since: 5.2
+ */
 gsize
 gtk_source_scheduler_add (GtkSourceSchedulerCallback callback,
                           gpointer                   user_data)
@@ -227,6 +243,24 @@ gtk_source_scheduler_add (GtkSourceSchedulerCallback callback,
 	return gtk_source_scheduler_add_full (callback, user_data, NULL);
 }
 
+/**
+ * gtk_source_scheduler_add_full:
+ * @callback: (scope async): the callback to execute
+ * @user_data: user data for @callback
+ * @notify: closure notify for @user_data
+ *
+ * Adds a new callback that will be executed as time permits on the main thread.
+ *
+ * This is useful when you need to do a lot of background work but want to do
+ * it incrementally.
+ *
+ * @callback will be provided a deadline that it should complete it's work by
+ * (or near) and can be checked using g_get_monotonic_time() for comparison.
+ *
+ * Use gtk_source_scheduler_remove() to remove the handler.
+ *
+ * Since: 5.2
+ */
 gsize
 gtk_source_scheduler_add_full (GtkSourceSchedulerCallback callback,
                                gpointer                   user_data,
@@ -248,6 +282,15 @@ gtk_source_scheduler_add_full (GtkSourceSchedulerCallback callback,
 	return task->id;
 }
 
+/**
+ * gtk_source_scheduler_remove:
+ * @handler_id: the handler id
+ *
+ * Removes a scheduler callback previously registered with
+ * gtk_source_scheduler_add() or gtk_source_scheduler_add_full().
+ *
+ * Since: 5.2
+ */
 void
 gtk_source_scheduler_remove (gsize handler_id)
 {

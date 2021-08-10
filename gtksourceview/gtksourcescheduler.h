@@ -31,6 +31,23 @@
 
 G_BEGIN_DECLS
 
+/**
+ * GtkSourceSchedulerCallback:
+ * @deadline: the time the callback should complete by
+ * @user_data: closure data provided when registering callback
+ *
+ * This function is called incrementally to process additional background work.
+ * A deadline is provided which can be checked using g_get_monotonic_time() so
+ * that additional work can be processed each frame.
+ *
+ * This is useful for situations where you are incrementally performing
+ * background work such as spell checking or semantic syntax highlighting.
+ *
+ * Returns: %TRUE if there is more work to process, otherwise %FALSE and the
+ *   handler is unregistered.
+ *
+ * Since: 5.2
+ */
 typedef gboolean (*GtkSourceSchedulerCallback) (gint64   deadline,
                                                 gpointer user_data);
 
