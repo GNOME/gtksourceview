@@ -48,6 +48,7 @@
 #include "gtksourcemarkattributes.h"
 #include "gtksourceprintcompositor.h"
 #include "gtksourceregion.h"
+#include "gtksourcescheduler.h"
 #include "gtksourcesearchcontext.h"
 #include "gtksourcesearchsettings.h"
 #include "gtksourcesnippet.h"
