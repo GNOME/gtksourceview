@@ -12,21 +12,27 @@
 # Fran Diéguez <frandieguez@gnome.org>, 2009, 2010, 2011, 2012.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
 # Fran Dieguez <frandieguez@gnome.org>, 2012-2021.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview-master-po-gl-28392.merged\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-01-25 13:59+0000\n"
-"PO-Revision-Date: 2021-02-23 20:39+0100\n"
+"POT-Creation-Date: 2021-08-01 01:28+0000\n"
+"PO-Revision-Date: 2021-08-25 20:29+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Proxecto Trasno <proxecto@trasno.gal>\n"
+"Language-Team: Galician <Proxecto Trasno <proxecto@trasno.gal>>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 40.0\n"
 "X-Project-Style: gnome\n"
+"X-DL-Team: gl\n"
+"X-DL-Module: gtksourceview\n"
+"X-DL-Branch: master\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -120,6 +126,9 @@ msgstr "Código fonte"
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
 #. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: erb-html.lang/language@_section
+#. (itstool) path: erb-js.lang/language@_section
+#. (itstool) path: erb.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
@@ -138,10 +147,10 @@ msgstr "Código fonte"
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
 #: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
-#: gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24 jsdoc.lang:23
-#: latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22
-#: mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23
-#: texinfo.lang:24 xml.lang:26 xslt.lang:23
+#: erb-html.lang:20 erb-js.lang:20 erb.lang:20 gtk-doc.lang:24 haddock.lang:23
+#: html.lang:25 jade.lang:24 jsdoc.lang:23 latex.lang:24 mallard.lang:22
+#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
 msgstr "Marcación"
 
@@ -171,7 +180,6 @@ msgstr "Marcación"
 #. (itstool) path: typescript-js-literals.lang/language@_section
 #. (itstool) path: typescript-js-modules.lang/language@_section
 #. (itstool) path: typescript-js-statements.lang/language@_section
-#. (itstool) path: typescript-js-values.lang/language@_section
 #. (itstool) path: typescript-jsx.lang/language@_section
 #. (itstool) path: typescript.lang/language@_section
 #. (itstool) path: typescript-type-expressions.lang/language@_section
@@ -185,8 +193,7 @@ msgstr "Marcación"
 #: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
 #: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
 #: typescript-js-literals.lang:23 typescript-js-modules.lang:23
-#: typescript-js-statements.lang:23 typescript-js-values.lang:23
-#: typescript-jsx.lang:23 typescript.lang:23
+#: typescript-js-statements.lang:23 typescript-jsx.lang:23 typescript.lang:23
 #: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
 #: typescript-type-literals.lang:23
 msgid "Script"
@@ -221,6 +228,7 @@ msgstr "Idioma do shader GC"
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
 #. (itstool) path: scss.lang/language@_section
+#. (itstool) path: terraform.lang/language@_section
 #. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
@@ -229,8 +237,8 @@ msgstr "Idioma do shader GC"
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
 #: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
 #: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
-#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23
-#: yacc.lang:23 yaml.lang:21 yara.lang:26
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23
+#: terraform.lang:23 toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "Outro"
 
@@ -265,9 +273,10 @@ msgstr "Modelo de Django"
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
+#. (itstool) path: star.lang/language@_section
 #: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
 #: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
-#: scilab.lang:23
+#: scilab.lang:23 star.lang:28
 msgid "Scientific"
 msgstr "Científico"
 
@@ -492,119 +501,119 @@ msgstr "contexto «%s» descoñecido"
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Falta a definición principal de linguaxe (id = «%s»)."
 
-#: gtksourceview/gtksourceencoding.c:143 gtksourceview/gtksourceencoding.c:186
-#: gtksourceview/gtksourceencoding.c:188 gtksourceview/gtksourceencoding.c:190
-#: gtksourceview/gtksourceencoding.c:192 gtksourceview/gtksourceencoding.c:194
-#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:137 gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:182 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
+#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
 msgid "Unicode"
 msgstr "Unicode"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:181
-#: gtksourceview/gtksourceencoding.c:231 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:151 gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:268
 msgid "Western"
 msgstr "Occidental"
 
-#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:233
-#: gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:153 gtksourceview/gtksourceencoding.c:227
+#: gtksourceview/gtksourceencoding.c:264
 msgid "Central European"
 msgstr "Europa Central"
 
-#: gtksourceview/gtksourceencoding.c:161
+#: gtksourceview/gtksourceencoding.c:155
 msgid "South European"
 msgstr "Europa do Sur"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:177
-#: gtksourceview/gtksourceencoding.c:284
+#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:278
 msgid "Baltic"
 msgstr "Báltico"
 
-#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:252
-#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:229
+#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:246
+#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:266
 msgid "Cyrillic"
 msgstr "Cirílico"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:241
-#: gtksourceview/gtksourceencoding.c:282
+#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:235
+#: gtksourceview/gtksourceencoding.c:276
 msgid "Arabic"
 msgstr "Árabe"
 
-#: gtksourceview/gtksourceencoding.c:169 gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:270
 msgid "Greek"
 msgstr "Grego"
 
-#: gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:165
 msgid "Hebrew Visual"
 msgstr "Hebreo visual"
 
-#: gtksourceview/gtksourceencoding.c:173 gtksourceview/gtksourceencoding.c:237
-#: gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:231
+#: gtksourceview/gtksourceencoding.c:272
 msgid "Turkish"
 msgstr "Turco"
 
-#: gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:169
 msgid "Nordic"
 msgstr "Nórdico"
 
-#: gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:173
 msgid "Celtic"
 msgstr "Celta"
 
-#: gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:177
 msgid "Romanian"
 msgstr "Romanés"
 
-#: gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:195
 msgid "Armenian"
 msgstr "Armenio"
 
-#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
-#: gtksourceview/gtksourceencoding.c:219
+#: gtksourceview/gtksourceencoding.c:197 gtksourceview/gtksourceencoding.c:199
+#: gtksourceview/gtksourceencoding.c:213
 msgid "Chinese Traditional"
 msgstr "Chinés tradicional"
 
-#: gtksourceview/gtksourceencoding.c:207
+#: gtksourceview/gtksourceencoding.c:201
 msgid "Cyrillic/Russian"
 msgstr "Cirílico/Ruso"
 
-#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:212
-#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:244
-#: gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:204 gtksourceview/gtksourceencoding.c:206
+#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:253
 msgid "Japanese"
 msgstr "Xaponés"
 
-#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:246
-#: gtksourceview/gtksourceencoding.c:250 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:240
+#: gtksourceview/gtksourceencoding.c:244 gtksourceview/gtksourceencoding.c:259
 msgid "Korean"
 msgstr "Coreano"
 
-#: gtksourceview/gtksourceencoding.c:222 gtksourceview/gtksourceencoding.c:224
-#: gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:216 gtksourceview/gtksourceencoding.c:218
+#: gtksourceview/gtksourceencoding.c:220
 msgid "Chinese Simplified"
 msgstr "Chinés simplificado"
 
-#: gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:222
 msgid "Georgian"
 msgstr "Xeorxiano"
 
-#: gtksourceview/gtksourceencoding.c:239 gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:233 gtksourceview/gtksourceencoding.c:274
 msgid "Hebrew"
 msgstr "Hebreo"
 
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:250
 msgid "Cyrillic/Ukrainian"
 msgstr "Cirílico/Ucraíno"
 
-#: gtksourceview/gtksourceencoding.c:261 gtksourceview/gtksourceencoding.c:267
-#: gtksourceview/gtksourceencoding.c:286
+#: gtksourceview/gtksourceencoding.c:255 gtksourceview/gtksourceencoding.c:261
+#: gtksourceview/gtksourceencoding.c:280
 msgid "Vietnamese"
 msgstr "Vietnamita"
 
-#: gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:257
 msgid "Thai"
 msgstr "Tailandés"
 
-#: gtksourceview/gtksourceencoding.c:497
+#: gtksourceview/gtksourceencoding.c:491
 msgid "Unknown"
 msgstr "Descoñecido"
 
@@ -622,11 +631,11 @@ msgstr "Descoñecido"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:641
+#: gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:513
+#: gtksourceview/gtksourcefileloader.c:506
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -634,19 +643,19 @@ msgstr ""
 "Houbo un erro na conversión da codificación de caracteres e foi preciso usar "
 "un carácter alternativo."
 
-#: gtksourceview/gtksourcefileloader.c:620
+#: gtksourceview/gtksourcefileloader.c:613
 msgid "File too big."
 msgstr "Ficheiro demasiado grande."
 
-#: gtksourceview/gtksourcefileloader.c:774
+#: gtksourceview/gtksourcefileloader.c:767
 msgid "Not a regular file."
 msgstr "Non é un ficheiro normal."
 
-#: gtksourceview/gtksourcefilesaver.c:972
+#: gtksourceview/gtksourcefilesaver.c:966
 msgid "The file is externally modified."
 msgstr "O ficheiro foi modificado externamente."
 
-#: gtksourceview/gtksourcefilesaver.c:1428
+#: gtksourceview/gtksourcefilesaver.c:1422
 msgid "The buffer contains invalid characters."
 msgstr "O búfer contén caracteres non válidos."
 
@@ -693,25 +702,68 @@ msgstr "_Cancelar"
 msgid "_Select"
 msgstr "_Seleccionar"
 
-#: gtksourceview/gtksourceview.c:1774
+#: gtksourceview/gtksourceview.c:1825
 msgid "All _Upper Case"
 msgstr "Todo en _maiúsculas"
 
-#: gtksourceview/gtksourceview.c:1778
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Lower Case"
 msgstr "Todo en m_inúsculas"
 
-#: gtksourceview/gtksourceview.c:1782
+#: gtksourceview/gtksourceview.c:1833
 msgid "_Invert Case"
 msgstr "_Inverter capitalización"
 
-#: gtksourceview/gtksourceview.c:1786
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "Capitalización como _título"
 
-#: gtksourceview/gtksourceview.c:1790
+#: gtksourceview/gtksourceview.c:1841
 msgid "C_hange Case"
 msgstr "C_ambiar capitalización"
+
+#: gtksourceview/implregex.c:609
+msgid "hexadecimal digit or “}” expected"
+msgstr "agardábase un díxito hexadecimal ou «}»"
+
+#: gtksourceview/implregex.c:625
+msgid "hexadecimal digit expected"
+msgstr "agardábase un díxito hexadecimal"
+
+#: gtksourceview/implregex.c:665
+msgid "missing “<” in symbolic reference"
+msgstr "falta un «<» na referencia simbólica "
+
+#: gtksourceview/implregex.c:674
+msgid "unfinished symbolic reference"
+msgstr "referencia simbólica non rematada"
+
+#: gtksourceview/implregex.c:681
+msgid "zero-length symbolic reference"
+msgstr "referencia simbólica con lonxitude 0"
+
+#: gtksourceview/implregex.c:692
+msgid "digit expected"
+msgstr "agardábase un díxito"
+
+#: gtksourceview/implregex.c:710
+msgid "illegal symbolic reference"
+msgstr "referencia simbólica ilegal"
+
+#: gtksourceview/implregex.c:773
+msgid "stray final “\\”"
+msgstr "«\\» final perdido"
+
+#: gtksourceview/implregex.c:777
+msgid "unknown escape sequence"
+msgstr "secuencia de escape descoñecida"
+
+#: gtksourceview/implregex.c:787
+#, c-format
+msgid "Error while parsing replacement text “%s” at char %lu: %s"
+msgstr ""
+"Produciuse un erro ao analicar o texto de substitución «%s» no carácter %lu: "
+"%s"
 
 #~ msgid "All"
 #~ msgstr "Todos"
