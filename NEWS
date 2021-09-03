@@ -1,3 +1,15 @@
+News in 4.8.2, 2021-09-03
+-------------------------
+* New syntax highlighting definition file for: STAR
+* Improved syntax highlighting definition file for: YARA, LLVM
+* GtkSourceMap now avoids animation while scrolling in response
+  to clicks. This should help prevent some hysteresis.
+* GObject Introspection fixes
+* Fixed decrement of negative numbers in GtkSourceView
+* Improvements to style schemes: kate
+* Fixed build-time macros for version checking in some scenarios
+* Translation updates
+
 News in 4.8.1, 2021-03-02
 -------------------------
 * Fix highlighting in presence of byte-order-marks (BOM)
