@@ -1,3 +1,25 @@
+News in 5.2.0, 2021-09-03
+-------------------------
+
+GtkSourceView 5.2.0 is the release corresponding with GNOME 41.0 for
+GTK 4-based applications. We expect performance improvements when
+combined with GTK 4.4's NGL renderer, especially on HiDPI systems.
+
+Changes since 5.1.0
+
+ * Add support for drawing a highlight line between the gutter and
+   text area. kate.xml uses this to more closely match Kate.
+ * Python 3 is now preferred over Python 2.
+ * Fixes for moving words.
+ * A new scheduler API to help with background buffer work
+ * Improvements to YARA syntax.
+ * Translation updates.
+
+More information can be found at:
+
+ * https://blogs.gnome.org/chergert/2021/07/05/gtksourceview-searching-with-pcre2/
+ * https://blogs.gnome.org/chergert/2021/06/27/performance-improvements-in-text-editing/
+
 News in 5.1.0, 2021-07-19
 -------------------------
 
