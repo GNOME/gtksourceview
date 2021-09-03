@@ -15,16 +15,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-03-20 13:11+0000\n"
-"PO-Revision-Date: 2021-03-28 02:57+0800\n"
-"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
+"POT-Creation-Date: 2021-08-01 01:28+0000\n"
+"PO-Revision-Date: 2021-09-03 14:12-0400\n"
+"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -488,119 +488,119 @@ msgstr "未知的上下文“%s”"
 msgid "Missing main language definition (id = “%s”)."
 msgstr "缺少主要语言定义（id = “%s”）。"
 
-#: gtksourceview/gtksourceencoding.c:143 gtksourceview/gtksourceencoding.c:186
-#: gtksourceview/gtksourceencoding.c:188 gtksourceview/gtksourceencoding.c:190
-#: gtksourceview/gtksourceencoding.c:192 gtksourceview/gtksourceencoding.c:194
-#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:137 gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:182 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
+#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
 msgid "Unicode"
 msgstr "万国码"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:181
-#: gtksourceview/gtksourceencoding.c:231 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:151 gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:268
 msgid "Western"
 msgstr "西文"
 
-#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:233
-#: gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:153 gtksourceview/gtksourceencoding.c:227
+#: gtksourceview/gtksourceencoding.c:264
 msgid "Central European"
 msgstr "中欧"
 
-#: gtksourceview/gtksourceencoding.c:161
+#: gtksourceview/gtksourceencoding.c:155
 msgid "South European"
 msgstr "南欧"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:177
-#: gtksourceview/gtksourceencoding.c:284
+#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:278
 msgid "Baltic"
 msgstr "波罗的海语"
 
-#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:252
-#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:229
+#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:246
+#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:266
 msgid "Cyrillic"
 msgstr "西里尔文"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:241
-#: gtksourceview/gtksourceencoding.c:282
+#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:235
+#: gtksourceview/gtksourceencoding.c:276
 msgid "Arabic"
 msgstr "阿拉伯语"
 
-#: gtksourceview/gtksourceencoding.c:169 gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:270
 msgid "Greek"
 msgstr "希腊语"
 
-#: gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:165
 msgid "Hebrew Visual"
 msgstr "希伯来视觉"
 
-#: gtksourceview/gtksourceencoding.c:173 gtksourceview/gtksourceencoding.c:237
-#: gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:231
+#: gtksourceview/gtksourceencoding.c:272
 msgid "Turkish"
 msgstr "土耳其语"
 
-#: gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:169
 msgid "Nordic"
 msgstr "北欧语"
 
-#: gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:173
 msgid "Celtic"
 msgstr "凯尔特语"
 
-#: gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:177
 msgid "Romanian"
 msgstr "罗马尼亚语"
 
-#: gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:195
 msgid "Armenian"
 msgstr "亚美尼亚语"
 
-#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
-#: gtksourceview/gtksourceencoding.c:219
+#: gtksourceview/gtksourceencoding.c:197 gtksourceview/gtksourceencoding.c:199
+#: gtksourceview/gtksourceencoding.c:213
 msgid "Chinese Traditional"
 msgstr "繁体中文"
 
-#: gtksourceview/gtksourceencoding.c:207
+#: gtksourceview/gtksourceencoding.c:201
 msgid "Cyrillic/Russian"
 msgstr "西里尔文/俄文"
 
-#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:212
-#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:244
-#: gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:204 gtksourceview/gtksourceencoding.c:206
+#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:253
 msgid "Japanese"
 msgstr "日语"
 
-#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:246
-#: gtksourceview/gtksourceencoding.c:250 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:240
+#: gtksourceview/gtksourceencoding.c:244 gtksourceview/gtksourceencoding.c:259
 msgid "Korean"
 msgstr "韩语"
 
-#: gtksourceview/gtksourceencoding.c:222 gtksourceview/gtksourceencoding.c:224
-#: gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:216 gtksourceview/gtksourceencoding.c:218
+#: gtksourceview/gtksourceencoding.c:220
 msgid "Chinese Simplified"
 msgstr "简体中文"
 
-#: gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:222
 msgid "Georgian"
 msgstr "格鲁吉亚语"
 
-#: gtksourceview/gtksourceencoding.c:239 gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:233 gtksourceview/gtksourceencoding.c:274
 msgid "Hebrew"
 msgstr "希伯来文"
 
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:250
 msgid "Cyrillic/Ukrainian"
 msgstr "西里尔文/乌克兰语"
 
-#: gtksourceview/gtksourceencoding.c:261 gtksourceview/gtksourceencoding.c:267
-#: gtksourceview/gtksourceencoding.c:286
+#: gtksourceview/gtksourceencoding.c:255 gtksourceview/gtksourceencoding.c:261
+#: gtksourceview/gtksourceencoding.c:280
 msgid "Vietnamese"
 msgstr "越南语"
 
-#: gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:257
 msgid "Thai"
 msgstr "泰语"
 
-#: gtksourceview/gtksourceencoding.c:497
+#: gtksourceview/gtksourceencoding.c:491
 msgid "Unknown"
 msgstr "未知"
 
@@ -618,29 +618,29 @@ msgstr "未知"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:641
+#: gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['CURRENT', 'GB18030', 'UTF-8', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:513
+#: gtksourceview/gtksourcefileloader.c:506
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
 msgstr "发生了字符编码转换错误，需要使用回退字符。"
 
-#: gtksourceview/gtksourcefileloader.c:620
+#: gtksourceview/gtksourcefileloader.c:613
 msgid "File too big."
 msgstr "文件过大。"
 
-#: gtksourceview/gtksourcefileloader.c:774
+#: gtksourceview/gtksourcefileloader.c:767
 msgid "Not a regular file."
 msgstr "不是普通文件。"
 
-#: gtksourceview/gtksourcefilesaver.c:972
+#: gtksourceview/gtksourcefilesaver.c:966
 msgid "The file is externally modified."
 msgstr "文件被其他程序修改。"
 
-#: gtksourceview/gtksourcefilesaver.c:1428
+#: gtksourceview/gtksourcefilesaver.c:1422
 msgid "The buffer contains invalid characters."
 msgstr "缓存中包含错误字符。"
 
@@ -687,25 +687,66 @@ msgstr "取消(_C)"
 msgid "_Select"
 msgstr "选择(_S)"
 
-#: gtksourceview/gtksourceview.c:1812
+#: gtksourceview/gtksourceview.c:1825
 msgid "All _Upper Case"
 msgstr "全部大写(_U)"
 
-#: gtksourceview/gtksourceview.c:1816
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Lower Case"
 msgstr "全部小写(_L)"
 
-#: gtksourceview/gtksourceview.c:1820
+#: gtksourceview/gtksourceview.c:1833
 msgid "_Invert Case"
 msgstr "反转大小写(_I)"
 
-#: gtksourceview/gtksourceview.c:1824
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "词首字母大写(_T)"
 
-#: gtksourceview/gtksourceview.c:1828
+#: gtksourceview/gtksourceview.c:1841
 msgid "C_hange Case"
 msgstr "更改大小写(_H)"
+
+#: gtksourceview/implregex.c:609
+msgid "hexadecimal digit or “}” expected"
+msgstr "需要十六进制数字或“{”"
+
+#: gtksourceview/implregex.c:625
+msgid "hexadecimal digit expected"
+msgstr "需要十六进制数字"
+
+#: gtksourceview/implregex.c:665
+msgid "missing “<” in symbolic reference"
+msgstr "符号引用中缺失“<”"
+
+#: gtksourceview/implregex.c:674
+msgid "unfinished symbolic reference"
+msgstr "未完成的符号引用"
+
+#: gtksourceview/implregex.c:681
+msgid "zero-length symbolic reference"
+msgstr "零长度符号引用"
+
+#: gtksourceview/implregex.c:692
+msgid "digit expected"
+msgstr "需要数字"
+
+#: gtksourceview/implregex.c:710
+msgid "illegal symbolic reference"
+msgstr "非法的符号引用"
+
+#: gtksourceview/implregex.c:773
+msgid "stray final “\\”"
+msgstr "孤立的末尾“\\”"
+
+#: gtksourceview/implregex.c:777
+msgid "unknown escape sequence"
+msgstr "未知转义序列"
+
+#: gtksourceview/implregex.c:787
+#, c-format
+msgid "Error while parsing replacement text “%s” at char %lu: %s"
+msgstr "解析替换文本“%s”（位于字符 %lu: %s）时出错"
 
 #~ msgid "All"
 #~ msgstr "全部"
