@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2020-11-28 13:37+0000\n"
-"PO-Revision-Date: 2021-03-07 17:23+0900\n"
+"POT-Creation-Date: 2021-09-03 19:36+0000\n"
+"PO-Revision-Date: 2021-09-05 22:16+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -110,6 +110,9 @@ msgstr "소스"
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
 #. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: erb-html.lang/language@_section
+#. (itstool) path: erb-js.lang/language@_section
+#. (itstool) path: erb.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
@@ -128,10 +131,10 @@ msgstr "소스"
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
 #: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
-#: gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24 jsdoc.lang:23
-#: latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22
-#: mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23
-#: texinfo.lang:24 xml.lang:26 xslt.lang:23
+#: erb-html.lang:20 erb-js.lang:20 erb.lang:20 gtk-doc.lang:24 haddock.lang:23
+#: html.lang:25 jade.lang:24 jsdoc.lang:23 latex.lang:24 mallard.lang:22
+#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
 msgstr "마크업"
 
@@ -161,7 +164,6 @@ msgstr "마크업"
 #. (itstool) path: typescript-js-literals.lang/language@_section
 #. (itstool) path: typescript-js-modules.lang/language@_section
 #. (itstool) path: typescript-js-statements.lang/language@_section
-#. (itstool) path: typescript-js-values.lang/language@_section
 #. (itstool) path: typescript-jsx.lang/language@_section
 #. (itstool) path: typescript.lang/language@_section
 #. (itstool) path: typescript-type-expressions.lang/language@_section
@@ -175,8 +177,7 @@ msgstr "마크업"
 #: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
 #: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
 #: typescript-js-literals.lang:23 typescript-js-modules.lang:23
-#: typescript-js-statements.lang:23 typescript-js-values.lang:23
-#: typescript-jsx.lang:23 typescript.lang:23
+#: typescript-js-statements.lang:23 typescript-jsx.lang:23 typescript.lang:23
 #: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
 #: typescript-type-literals.lang:23
 msgid "Script"
@@ -211,6 +212,7 @@ msgstr "CG 쉐이더 언어"
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
 #. (itstool) path: scss.lang/language@_section
+#. (itstool) path: terraform.lang/language@_section
 #. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
@@ -219,8 +221,8 @@ msgstr "CG 쉐이더 언어"
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
 #: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
 #: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
-#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23
-#: yacc.lang:23 yaml.lang:21 yara.lang:26
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23
+#: terraform.lang:23 toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "기타"
 
@@ -255,9 +257,10 @@ msgstr "장고 서식"
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
+#. (itstool) path: star.lang/language@_section
 #: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
 #: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
-#: scilab.lang:23
+#: scilab.lang:23 star.lang:28
 msgid "Scientific"
 msgstr "과학"
 
@@ -437,26 +440,26 @@ msgstr ""
 "집니다.\n"
 "오류는: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4456
+#: gtksourceview/gtksourcecontextengine.c:4458
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
 msgstr "한 줄을 강조하는 데 너무 오래 걸렸습니다. 구문 분석을 하지 않습니다."
 
-#: gtksourceview/gtksourcecontextengine.c:5706
+#: gtksourceview/gtksourcecontextengine.c:5708
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "컨텍스트에는(“%s”) \\%%{...@start} 명령이 들어갈 수 없습니다"
 
-#: gtksourceview/gtksourcecontextengine.c:5869
-#: gtksourceview/gtksourcecontextengine.c:5959
+#: gtksourceview/gtksourcecontextengine.c:5871
+#: gtksourceview/gtksourcecontextengine.c:5961
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "컨텍스트 ID가 중복되었습니다 (“%s”)"
 
 # FIXME: 뭔 소리?
-#: gtksourceview/gtksourcecontextengine.c:6073
-#: gtksourceview/gtksourcecontextengine.c:6133
+#: gtksourceview/gtksourcecontextengine.c:6075
+#: gtksourceview/gtksourcecontextengine.c:6135
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -465,135 +468,135 @@ msgstr ""
 "스타일 무시를 와일드카드 컨텍스트 참조와 같이 사용했습니다. (언어 “%s”, 참조 "
 "“%s”)"
 
-#: gtksourceview/gtksourcecontextengine.c:6147
+#: gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "컨텍스트 참조가 잘못되었습니다 (“%s”)"
 
-#: gtksourceview/gtksourcecontextengine.c:6166
-#: gtksourceview/gtksourcecontextengine.c:6176
+#: gtksourceview/gtksourcecontextengine.c:6168
+#: gtksourceview/gtksourcecontextengine.c:6178
 #, c-format
 msgid "unknown context “%s”"
 msgstr "컨텍스트를 알 수 없습니다 (“%s”)"
 
-#: gtksourceview/gtksourcecontextengine.c:6277
+#: gtksourceview/gtksourcecontextengine.c:6279
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "주 언어 정의가 없습니다. (ID = “%s”)"
 
-#: gtksourceview/gtksourceencoding.c:143 gtksourceview/gtksourceencoding.c:186
-#: gtksourceview/gtksourceencoding.c:188 gtksourceview/gtksourceencoding.c:190
-#: gtksourceview/gtksourceencoding.c:192 gtksourceview/gtksourceencoding.c:194
-#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:137 gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:182 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
+#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
 msgid "Unicode"
 msgstr "유니코드"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:181
-#: gtksourceview/gtksourceencoding.c:231 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:151 gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:268
 msgid "Western"
 msgstr "서양 언어"
 
-#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:233
-#: gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:153 gtksourceview/gtksourceencoding.c:227
+#: gtksourceview/gtksourceencoding.c:264
 msgid "Central European"
 msgstr "중앙 유럽 언어"
 
-#: gtksourceview/gtksourceencoding.c:161
+#: gtksourceview/gtksourceencoding.c:155
 msgid "South European"
 msgstr "남부 유럽 언어"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:177
-#: gtksourceview/gtksourceencoding.c:284
+#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:278
 msgid "Baltic"
 msgstr "발트어"
 
-#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:252
-#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:229
+#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:246
+#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:266
 msgid "Cyrillic"
 msgstr "키릴 문자"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:241
-#: gtksourceview/gtksourceencoding.c:282
+#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:235
+#: gtksourceview/gtksourceencoding.c:276
 msgid "Arabic"
 msgstr "아랍어"
 
-#: gtksourceview/gtksourceencoding.c:169 gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:270
 msgid "Greek"
 msgstr "그리스어"
 
-#: gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:165
 msgid "Hebrew Visual"
 msgstr "히브리어 비주얼"
 
-#: gtksourceview/gtksourceencoding.c:173 gtksourceview/gtksourceencoding.c:237
-#: gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:231
+#: gtksourceview/gtksourceencoding.c:272
 msgid "Turkish"
 msgstr "터키어"
 
-#: gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:169
 msgid "Nordic"
 msgstr "노르웨이어"
 
-#: gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:173
 msgid "Celtic"
 msgstr "켈트어"
 
-#: gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:177
 msgid "Romanian"
 msgstr "루마니아어"
 
-#: gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:195
 msgid "Armenian"
 msgstr "아르메니아어"
 
-#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
-#: gtksourceview/gtksourceencoding.c:219
+#: gtksourceview/gtksourceencoding.c:197 gtksourceview/gtksourceencoding.c:199
+#: gtksourceview/gtksourceencoding.c:213
 msgid "Chinese Traditional"
 msgstr "중국어 번체"
 
-#: gtksourceview/gtksourceencoding.c:207
+#: gtksourceview/gtksourceencoding.c:201
 msgid "Cyrillic/Russian"
 msgstr "키릴 문자/러시아어"
 
-#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:212
-#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:244
-#: gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:204 gtksourceview/gtksourceencoding.c:206
+#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:253
 msgid "Japanese"
 msgstr "일본어"
 
-#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:246
-#: gtksourceview/gtksourceencoding.c:250 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:240
+#: gtksourceview/gtksourceencoding.c:244 gtksourceview/gtksourceencoding.c:259
 msgid "Korean"
 msgstr "한국어"
 
-#: gtksourceview/gtksourceencoding.c:222 gtksourceview/gtksourceencoding.c:224
-#: gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:216 gtksourceview/gtksourceencoding.c:218
+#: gtksourceview/gtksourceencoding.c:220
 msgid "Chinese Simplified"
 msgstr "중국어 간체"
 
-#: gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:222
 msgid "Georgian"
 msgstr "그루지야어"
 
-#: gtksourceview/gtksourceencoding.c:239 gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:233 gtksourceview/gtksourceencoding.c:274
 msgid "Hebrew"
 msgstr "히브리어"
 
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:250
 msgid "Cyrillic/Ukrainian"
 msgstr "키릴 문자/우크라이나어"
 
-#: gtksourceview/gtksourceencoding.c:261 gtksourceview/gtksourceencoding.c:267
-#: gtksourceview/gtksourceencoding.c:286
+#: gtksourceview/gtksourceencoding.c:255 gtksourceview/gtksourceencoding.c:261
+#: gtksourceview/gtksourceencoding.c:280
 msgid "Vietnamese"
 msgstr "베트남어"
 
-#: gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:257
 msgid "Thai"
 msgstr "태국어"
 
-#: gtksourceview/gtksourceencoding.c:497
+#: gtksourceview/gtksourceencoding.c:491
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -611,29 +614,29 @@ msgstr "알 수 없음"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:641
+#: gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'CP949', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:513
+#: gtksourceview/gtksourcefileloader.c:506
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
 msgstr "문자 인코딩 변환에 오류가 있어서 대체 문자를 사용했어야 했습니다."
 
-#: gtksourceview/gtksourcefileloader.c:620
+#: gtksourceview/gtksourcefileloader.c:613
 msgid "File too big."
 msgstr "파일이 너무 큽니다."
 
-#: gtksourceview/gtksourcefileloader.c:774
+#: gtksourceview/gtksourcefileloader.c:767
 msgid "Not a regular file."
 msgstr "일반 파일이 아닙니다."
 
-#: gtksourceview/gtksourcefilesaver.c:972
+#: gtksourceview/gtksourcefilesaver.c:966
 msgid "The file is externally modified."
 msgstr "파일이 외부에서 수정되었습니다."
 
-#: gtksourceview/gtksourcefilesaver.c:1428
+#: gtksourceview/gtksourcefilesaver.c:1422
 msgid "The buffer contains invalid characters."
 msgstr "버퍼에 올바르지 않은 문자가 들어 있습니다."
 
@@ -680,25 +683,66 @@ msgstr "취소(_C)"
 msgid "_Select"
 msgstr "선택(_S)"
 
-#: gtksourceview/gtksourceview.c:1774
+#: gtksourceview/gtksourceview.c:1825
 msgid "All _Upper Case"
 msgstr "모두 대문자(_U)"
 
-#: gtksourceview/gtksourceview.c:1778
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Lower Case"
 msgstr "모두 소문자(_L)"
 
-#: gtksourceview/gtksourceview.c:1782
+#: gtksourceview/gtksourceview.c:1833
 msgid "_Invert Case"
 msgstr "대소문자 뒤바꾸기(_I)"
 
-#: gtksourceview/gtksourceview.c:1786
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "제목 대소문자(_T)"
 
-#: gtksourceview/gtksourceview.c:1790
+#: gtksourceview/gtksourceview.c:1841
 msgid "C_hange Case"
 msgstr "대소문자 바꾸기(_H)"
+
+#: gtksourceview/implregex.c:609
+msgid "hexadecimal digit or “}” expected"
+msgstr "16진수 숫자 또는 “}”가 와야 합니다"
+
+#: gtksourceview/implregex.c:625
+msgid "hexadecimal digit expected"
+msgstr "16진수 숫자가 와야 합니다"
+
+#: gtksourceview/implregex.c:665
+msgid "missing “<” in symbolic reference"
+msgstr "심볼 참조에서 “<” 문자가 빠졌습니다"
+
+#: gtksourceview/implregex.c:674
+msgid "unfinished symbolic reference"
+msgstr "심볼 참조를 끝마치지 않았습니다"
+
+#: gtksourceview/implregex.c:681
+msgid "zero-length symbolic reference"
+msgstr "심볼 참조의 길이가 0입니다"
+
+#: gtksourceview/implregex.c:692
+msgid "digit expected"
+msgstr "숫자가 와야 합니다"
+
+#: gtksourceview/implregex.c:710
+msgid "illegal symbolic reference"
+msgstr "잘못된 심볼 참조"
+
+#: gtksourceview/implregex.c:773
+msgid "stray final “\\”"
+msgstr "마지막 “\\” 위치 잘못됨"
+
+#: gtksourceview/implregex.c:777
+msgid "unknown escape sequence"
+msgstr "알 수 없는 이스케이프 시퀀스"
+
+#: gtksourceview/implregex.c:787
+#, c-format
+msgid "Error while parsing replacement text “%s” at char %lu: %s"
+msgstr "바꿀 텍스트 “%s” 파싱에 오류, 문자 %lu 위치: %s"
 
 #~ msgid "All"
 #~ msgstr "모두"
