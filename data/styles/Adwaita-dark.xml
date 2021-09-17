@@ -69,7 +69,7 @@
 
 
   <!-- Global Settings -->
-  <style name="text"                        foreground="light4" background="content_bg"/>
+  <style name="text"                        foreground="light5" background="content_bg"/>
   <style name="map-overlay"                 background="dark1"/>
   <style name="cursor"                      foreground="light4"/>
   <style name="line-numbers"                foreground="content_alt" background="content_bg"/>
@@ -111,7 +111,7 @@
 
   <style name="def:base-n-integer"          foreground="purple1"/>
   <style name="def:boolean"                 foreground="purple1"/>
-  <style name="def:comment"                 foreground="light5"/>
+  <style name="def:comment"                 foreground="dark2"/>
   <style name="def:constant"                foreground="red1"/>
   <style name="def:decimal"                 foreground="orange4"/>
   <style name="def:deletion"                strikethrough="true"/>
@@ -132,7 +132,7 @@
   <style name="def:net-address"             italic="true" underline="true"/>
   <style name="def:note"                    underline="error" underline-color="dark1"/>
   <style name="def:preformatting-section"   foreground="purple1"/>
-  <style name="def:preprocessor"            foreground="dark2"/>
+  <style name="def:preprocessor"            foreground="dark1"/>
   <style name="def:shebang"                 foreground="dark1" bold="true"/>
   <style name="def:special-char"            foreground="blue3" bold="true"/>
   <style name="def:special-constant"        foreground="light5"/>
