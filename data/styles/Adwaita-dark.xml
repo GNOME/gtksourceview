@@ -117,7 +117,7 @@
   <style name="def:deletion"                strikethrough="true"/>
   <style name="def:doc-comment-element"     italic="true"/>
   <style name="def:emphasis"                italic="true"/>
-  <style name="def:error"                   line-background="red2" />
+  <style name="def:error"                   underline="error" underline-color="red2" />
   <style name="def:floating-point"          foreground="purple1"/>
   <style name="def:function"                foreground="dark1" bold="true"/>
   <style name="def:heading"                 foreground="orange4" bold="true"/>
@@ -130,7 +130,7 @@
   <style name="def:link-text"               foreground="blue3"/>
   <style name="def:list-marker"             foreground="light1" bold="true"/>
   <style name="def:net-address"             italic="true" underline="true"/>
-  <style name="def:note"                    foreground="light1" background="orange3" bold="true"/>
+  <style name="def:note"                    underline="error" underline-color="dark1"/>
   <style name="def:preformatting-section"   foreground="purple1"/>
   <style name="def:preprocessor"            foreground="dark2"/>
   <style name="def:shebang"                 foreground="dark1" bold="true"/>
@@ -141,6 +141,6 @@
   <style name="def:strong-emphasis"         foreground="light3" bold="true"/>
   <style name="def:thematic-break"          foreground="green5" bold="true"/>
   <style name="def:type"                    foreground="light3" bold="true"/>
-  <style name="def:warning"                 background="yellow3"/>
+  <style name="def:warning"                 underline="error" underline-color="yellow3"/>
 
 </style-scheme>
