@@ -213,6 +213,7 @@
       <keyword>protected</keyword>
       <keyword>public</keyword>
       <keyword>ref</keyword>
+      <keyword>sealed</keyword>
       <keyword>static</keyword>
       <keyword>unowned</keyword>
       <keyword>virtual</keyword>
@@ -251,11 +252,12 @@
       <keyword>throws</keyword>
       <keyword>try</keyword>
       <keyword>typeof</keyword>
+      <keyword>unlock</keyword>
       <keyword>value</keyword>
       <keyword>var</keyword>
       <keyword>while</keyword>
+      <keyword>with</keyword>
       <keyword>yield</keyword>
-      <keyword>yields</keyword>
     </context>
 
     <context id="primitives" style-ref="type">
@@ -273,6 +275,9 @@
       <keyword>size_t</keyword>
       <keyword>ssize_t</keyword>
       <keyword>string</keyword>
+      <keyword>string16</keyword>
+      <keyword>string32</keyword>
+      <keyword>time_t</keyword>
       <keyword>uchar</keyword>
       <keyword>uint</keyword>
       <keyword>uint8</keyword>
@@ -283,6 +288,7 @@
       <keyword>unichar</keyword>
       <keyword>unichar2</keyword>
       <keyword>ushort</keyword>
+      <keyword>va_list</keyword>
       <keyword>void</keyword>
     </context>
 
@@ -324,6 +330,7 @@
       PrintfFormat|
       ReturnsModifiedPointer|
       ScanfFormat|
+      SingleInstance|
       ThreadLocal
     </define-regex>
 
