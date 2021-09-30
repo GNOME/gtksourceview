@@ -39,7 +39,7 @@
  * @title: GtkSourceCompletion
  * @short_description: Main Completion Object
  *
- * The completion system helps the user when he/she writes some text,
+ * The completion system helps the user when they writes some text,
  * such as words, command names, functions, and suchlike. Proposals can
  * be shown, to complete the text the user is writing. Each proposal can
  * contain an additional piece of information (for example
