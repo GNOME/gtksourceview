@@ -24,6 +24,26 @@
 #include "gtksource-enumtypes.h"
 #include "gtksourcecompletioncell-private.h"
 
+/**
+ * SECTION:completioncell
+ * @title: GtkSourceCompletionCell
+ * @short_description: widget for single cell of completion proposal
+ *
+ * The #GtkSourceCompletionCell widget provides a container to display various
+ * types of information with the completion display.
+ *
+ * Each proposal may consist of multiple cells depending on the complexity of
+ * the proposal. For example, programming language proposals may contain a cell
+ * for the "left-hand-side" of an operation along with the "typed-text" for a
+ * function name and "parameters". They may also optionally set an icon to
+ * signify the kind of result.
+ *
+ * A #GtkSourceCompletionProvider should implement the
+ * #GtkSourceCompletionProviderInterface.display virtual function to control
+ * how to convert data from their #GtkSourceCompletionProposal to content for
+ * the #GtkSourceCompletionCell.
+ */
+
 struct _GtkSourceCompletionCell
 {
 	GtkWidget                  widget;
@@ -215,7 +235,7 @@ gtk_source_completion_cell_class_init (GtkSourceCompletionCellClass *klass)
 		                     "Widget",
 		                     GTK_TYPE_WIDGET,
 		                     (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
-	
+
 	g_object_class_install_properties (object_class, N_PROPS, properties);
 
 	gtk_widget_class_set_css_name (widget_class, "cell");
