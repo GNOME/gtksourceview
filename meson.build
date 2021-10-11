@@ -1,5 +1,5 @@
 project('gtksourceview', 'c',
-          version: '5.2.0',
+          version: '5.3.0',
           license: 'LGPL-2.1-or-later',
     meson_version: '>= 0.53.0',
   default_options: [ 'c_std=gnu99',
@@ -68,7 +68,7 @@ build_gtk_doc = get_option('gtk_doc')
 cc = meson.get_compiler('c')
 
 glib_req_version = '2.66'
-gtk_req_version = '4.2'
+gtk_req_version = '4.4'
 
 libm_dep = cc.find_library('m', required: false)
 
