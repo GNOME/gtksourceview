@@ -20,6 +20,12 @@
 
 #include "config.h"
 
+#if ENABLE_FONT_CONFIG
+# include <fontconfig/fontconfig.h>
+# include <pango/pangocairo.h>
+# include <pango/pangofc-fontmap.h>
+#endif
+
 #include "gtksourcestyleschemechooserwidget.h"
 #include "gtksourcestyleschemechooser.h"
 #include "gtksourcestylescheme-private.h"
@@ -67,6 +73,50 @@ enum
 	PROP_0,
 	PROP_STYLE_SCHEME
 };
+
+#if ENABLE_FONT_CONFIG
+static FcConfig *map_font_config;
+static GtkCssProvider *css_provider;
+
+static void
+load_override_font (GtkWidget *widget)
+{
+	PangoFontDescription *font_desc;
+	PangoFontMap *font_map;
+
+	if (g_once_init_enter (&map_font_config))
+	{
+		const gchar *font_path = PACKAGE_DATADIR"/fonts/BuilderBlocks.ttf";
+		FcConfig *config = FcInitLoadConfigAndFonts ();
+
+		if (!g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
+			g_debug ("\"%s\" is missing or inaccessible", font_path);
+
+		FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
+
+		css_provider = gtk_css_provider_new ();
+		gtk_css_provider_load_from_data (css_provider, "textview, textview text { font-family: BuilderBlocks; font-size: 10pt; }", -1);
+
+		g_once_init_leave (&map_font_config, config);
+	}
+
+	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
+	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
+	gtk_widget_set_font_map (widget, font_map);
+	font_desc = pango_font_description_from_string ("BuilderBlocks 8");
+
+	g_assert (map_font_config != NULL);
+	g_assert (font_map != NULL);
+	g_assert (font_desc != NULL);
+
+	gtk_style_context_add_provider (gtk_widget_get_style_context (widget),
+					GTK_STYLE_PROVIDER (css_provider),
+					GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
+
+	pango_font_description_free (font_desc);
+	g_object_unref (font_map);
+}
+#endif
 
 static void
 gtk_source_style_scheme_chooser_widget_dispose (GObject *object)
@@ -138,14 +188,20 @@ static GtkWidget *
 make_row (GtkSourceStyleScheme *scheme,
           GtkSourceLanguage    *language)
 {
+	PangoAttrList *attrs;
 	GtkWidget *row;
 	GtkSourceBuffer *buffer;
 	GtkWidget *view;
 	GtkWidget *overlay;
 	GtkWidget *label;
 	gchar *text;
+	const char *name;
+	GdkRGBA fg;
+	gboolean has_fg;
 
 	row = gtk_list_box_row_new ();
+	name = gtk_source_style_scheme_get_name (scheme);
+	has_fg = _gtk_source_style_scheme_get_text_color (scheme, &fg);
 
 	g_object_set_data (G_OBJECT (row), "scheme", scheme);
 
@@ -163,28 +219,47 @@ make_row (GtkSourceStyleScheme *scheme,
 
 	view = g_object_new (GTK_SOURCE_TYPE_VIEW,
 	                     "buffer", buffer,
+	                     "focusable", FALSE,
 	                     "can-focus", FALSE,
 	                     "cursor-visible", FALSE,
 	                     "editable", FALSE,
 	                     "visible", TRUE,
 	                     "right-margin-position", 30,
 	                     "show-right-margin", TRUE,
-	                     "margin-top", 2,
-	                     "margin-bottom", 2,
-	                     "margin-start", 2,
-	                     "margin-end", 2,
+	                     "top-margin", 6,
+	                     "bottom-margin", 6,
+	                     "left-margin", 6,
+	                     "right-margin", 6,
+			     "height-request", 38,
 	                     NULL);
+	load_override_font (view);
 	gtk_overlay_set_child (GTK_OVERLAY (overlay), view);
 
+	if (!has_fg)
+		gtk_style_context_get_color (gtk_widget_get_style_context (view), &fg);
+
+	attrs = pango_attr_list_new ();
+	pango_attr_list_insert (attrs, pango_attr_foreground_new (fg.red * 65535, fg.green * 65535, fg.blue * 65535));
+	pango_attr_list_insert (attrs, pango_attr_weight_new (PANGO_WEIGHT_BOLD));
+	pango_attr_list_insert (attrs, pango_attr_scale_new (0.9));
+
 	label = g_object_new (GTK_TYPE_LABEL,
+	                      "attributes", attrs,
+			      "focusable", FALSE,
 			      "can-focus", FALSE,
 			      "hexpand", TRUE,
 			      "vexpand", TRUE,
+			      "yalign", 0.0f,
+			      "xalign", 1.0f,
+			      "label", name,
 			      "selectable", FALSE,
+			      "margin-top", 3,
+			      "margin-end", 6,
 			      NULL);
 	gtk_overlay_add_overlay (GTK_OVERLAY (overlay), label);
 
 	gtk_widget_show (row);
+	pango_attr_list_unref (attrs);
 
 	return row;
 }
