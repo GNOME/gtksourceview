@@ -58,5 +58,8 @@ gboolean              _gtk_source_style_scheme_get_background_pattern_color (Gtk
 G_GNUC_INTERNAL
 gboolean              _gtk_source_style_scheme_get_background_color         (GtkSourceStyleScheme *scheme,
                                                                              GdkRGBA              *color);
+G_GNUC_INTERNAL
+gboolean              _gtk_source_style_scheme_get_text_color               (GtkSourceStyleScheme *scheme,
+                                                                             GdkRGBA              *color);
 
 G_END_DECLS

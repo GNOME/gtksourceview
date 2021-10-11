@@ -726,6 +726,20 @@ _gtk_source_style_scheme_get_background_color (GtkSourceStyleScheme *scheme,
 	return get_color (style, FALSE, color);
 }
 
+gboolean
+_gtk_source_style_scheme_get_text_color (GtkSourceStyleScheme *scheme,
+                                         GdkRGBA              *color)
+{
+	GtkSourceStyle *style;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
+	g_return_val_if_fail (color != NULL, FALSE);
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_TEXT);
+
+	return get_color (style, TRUE, color);
+}
+
 static void
 apply_css_style_cursors (GtkSourceStyleScheme *scheme,
                          GString              *css)
