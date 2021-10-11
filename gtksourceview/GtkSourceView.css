@@ -147,3 +147,17 @@ GtkSourceAssistant.informative.question {
 GtkSourceAssistant.informative.question image {
   background-color: @borders;
 }
+
+GtkSourceStyleSchemePreview frame {
+  border-width: 2px;
+}
+GtkSourceStyleSchemePreview.selected frame {
+  border-color: @theme_selected_bg_color;
+}
+GtkSourceStyleSchemePreview.selected image {
+  border-radius: 9999px;
+  background-color: @theme_selected_bg_color;
+  color: @theme_selected_fg_color;
+  padding: 6px;
+  margin: 3px;
+}

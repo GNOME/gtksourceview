@@ -12,6 +12,7 @@ tests_sources = {
               'space-drawing': ['test-space-drawing.c'],
                        'load': ['test-load.c'],
                      'widget': ['test-widget.c'],
+                    'preview': ['test-preview.c'],
 }
 
 tests_resources = {

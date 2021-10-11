@@ -1,0 +1,397 @@
+/*
+ * This file is part of GtkSourceView
+ *
+ * Copyright 2021 Christian Hergert <chergert@redhat.com>
+ *
+ * GtkSourceView is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * GtkSourceView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library; if not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: LGPL-2.1-or-later
+ */
+
+#include "config.h"
+
+#if ENABLE_FONT_CONFIG
+# include <fontconfig/fontconfig.h>
+# include <pango/pangocairo.h>
+# include <pango/pangofc-fontmap.h>
+#endif
+
+#include "gtksourcebuffer.h"
+#include "gtksourcelanguage.h"
+#include "gtksourcelanguagemanager.h"
+#include "gtksourcestylescheme.h"
+#include "gtksourcestyleschemepreview.h"
+#include "gtksourceview.h"
+
+/**
+ * SECTION:sourcestyleschemepreview
+ * @title: GtkSourceStyleSchemePreview
+ * @short_description: a preview widget for #GtkSourceStyleScheme
+ *
+ * This widget provides a convenient #GtkWidget to preview a #GtkSourceStyleScheme.
+ *
+ * The #GtkSourceStyleSchemePreview:selected property can be used to manage
+ * the selection state of a single preview widget.
+ *
+ * Since: 5.4
+ */
+
+struct _GtkSourceStyleSchemePreview
+{
+	GtkWidget             parent_instance;
+	GtkSourceStyleScheme *scheme;
+	GtkImage             *image;
+	guint                 selected : 1;
+};
+
+G_DEFINE_TYPE (GtkSourceStyleSchemePreview, gtk_source_style_scheme_preview, GTK_TYPE_WIDGET)
+
+enum {
+	PROP_0,
+	PROP_SCHEME,
+	PROP_SELECTED,
+	N_PROPS
+};
+
+enum {
+	ACTIVATE,
+	N_SIGNALS
+};
+
+static GParamSpec *properties [N_PROPS];
+static guint signals [N_SIGNALS];
+
+static GtkCssProvider *css_provider;
+#if ENABLE_FONT_CONFIG
+static FcConfig *map_font_config;
+#endif
+
+static void
+load_override_font (GtkSourceView *view)
+{
+	static gsize initialized;
+	PangoFontDescription *font_desc;
+	PangoFontMap *font_map;
+
+	if (g_once_init_enter (&initialized))
+	{
+#if ENABLE_FONT_CONFIG
+		const gchar *font_path = PACKAGE_DATADIR"/fonts/BuilderBlocks.ttf";
+		FcConfig *config = FcInitLoadConfigAndFonts ();
+		if (!g_file_test (font_path, G_FILE_TEST_IS_REGULAR))
+			g_debug ("\"%s\" is missing or inaccessible", font_path);
+		FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
+		map_font_config = config;
+#endif
+
+		css_provider = gtk_css_provider_new ();
+		gtk_css_provider_load_from_data (css_provider, "textview, textview text { font-family: BuilderBlocks; font-size: 4pt; }", -1);
+
+		g_once_init_leave (&initialized, TRUE);
+	}
+
+	gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (view)),
+					GTK_STYLE_PROVIDER (css_provider),
+					GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
+
+#if ENABLE_FONT_CONFIG
+	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
+	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
+	gtk_widget_set_font_map (GTK_WIDGET (view), font_map);
+	font_desc = pango_font_description_from_string ("BuilderBlocks 4");
+
+	g_assert (map_font_config != NULL);
+	g_assert (font_map != NULL);
+	g_assert (font_desc != NULL);
+
+	pango_font_description_free (font_desc);
+	g_object_unref (font_map);
+#endif
+}
+
+static void
+on_click_pressed_cb (GtkSourceStyleSchemePreview *self,
+                     int                          n_presses,
+                     double                       x,
+                     double                       y,
+                     GtkGestureClick             *click)
+{
+	g_assert (GTK_SOURCE_IS_STYLE_SCHEME_PREVIEW (self));
+	g_assert (GTK_IS_GESTURE_CLICK (click));
+
+	g_signal_emit (self, signals [ACTIVATE], 0);
+}
+
+static void
+gtk_source_style_scheme_preview_constructed (GObject *object)
+{
+	GtkSourceStyleSchemePreview *self = (GtkSourceStyleSchemePreview *)object;
+	GtkSourceLanguage *lang;
+	GtkSourceBuffer *buffer;
+	GtkSourceView *view;
+	GtkOverlay *overlay;
+	const char *name;
+	GtkLabel *label;
+	GtkFrame *frame;
+
+	G_OBJECT_CLASS (gtk_source_style_scheme_preview_parent_class)->constructed (object);
+
+	if (self->scheme == NULL)
+	{
+		static gboolean warned;
+		if (!warned)
+			g_warning ("Attempt to create GtkSourceStyleSchemePreview without a scheme!");
+		warned = TRUE;
+		return;
+	}
+
+	name = gtk_source_style_scheme_get_name (self->scheme);
+	gtk_widget_set_tooltip_text (GTK_WIDGET (self), name);
+
+	frame = g_object_new (GTK_TYPE_FRAME,
+	                      "can-focus", FALSE,
+	                      "focusable", FALSE,
+			      NULL);
+	view = g_object_new (GTK_SOURCE_TYPE_VIEW,
+	                     "focusable", FALSE,
+	                     "can-focus", FALSE,
+	                     "cursor-visible", FALSE,
+	                     "editable", FALSE,
+	                     "right-margin-position", 20,
+	                     "show-right-margin", TRUE,
+	                     "top-margin", 12,
+	                     "bottom-margin", 12,
+	                     "left-margin", 0,
+	                     "right-margin", 6,
+	                     "width-request", 100,
+	                     "show-line-numbers", TRUE,
+	                     NULL);
+	overlay = g_object_new (GTK_TYPE_OVERLAY, NULL);
+	label = g_object_new (GTK_TYPE_LABEL, NULL);
+	self->image = g_object_new (GTK_TYPE_IMAGE,
+	                            "icon-name", "object-select-symbolic",
+	                            "halign", GTK_ALIGN_END,
+	                            "valign", GTK_ALIGN_END,
+	                            "visible", FALSE,
+	                            NULL);
+
+	lang = gtk_source_language_manager_get_language (gtk_source_language_manager_get_default (), "c");
+	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+
+	gtk_source_buffer_set_style_scheme (buffer, self->scheme);
+	gtk_source_buffer_set_language (buffer, lang);
+
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), "\
+#include <glib.h>\n\
+  /* comment */\n\
+static void f () { return; }\n\
+typedef struct {\n\
+ int i; double d;\n\
+ }; char *s = \"string\";", -1);
+	load_override_font (view);
+
+	gtk_frame_set_child (frame, GTK_WIDGET (overlay));
+	gtk_overlay_set_child (overlay, GTK_WIDGET (view));
+	gtk_overlay_add_overlay (overlay, GTK_WIDGET (label));
+	gtk_overlay_add_overlay (overlay, GTK_WIDGET (self->image));
+	gtk_widget_set_parent (GTK_WIDGET (frame), GTK_WIDGET (self));
+}
+
+static void
+gtk_source_style_scheme_preview_dispose (GObject *object)
+{
+	GtkSourceStyleSchemePreview *self = (GtkSourceStyleSchemePreview *)object;
+	GtkWidget *child;
+
+	while ((child = gtk_widget_get_first_child (GTK_WIDGET (self))))
+	{
+		gtk_widget_unparent (child);
+	}
+
+	G_OBJECT_CLASS (gtk_source_style_scheme_preview_parent_class)->dispose (object);
+}
+
+static void
+gtk_source_style_scheme_preview_get_property (GObject    *object,
+                                              guint       prop_id,
+                                              GValue     *value,
+                                              GParamSpec *pspec)
+{
+	GtkSourceStyleSchemePreview *self = GTK_SOURCE_STYLE_SCHEME_PREVIEW (object);
+
+	switch (prop_id)
+	{
+	case PROP_SCHEME:
+		g_value_set_object (value, self->scheme);
+		break;
+
+	case PROP_SELECTED:
+		g_value_set_boolean (value, gtk_source_style_scheme_preview_get_selected (self));
+		break;
+
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+	}
+}
+
+static void
+gtk_source_style_scheme_preview_set_property (GObject      *object,
+                                              guint         prop_id,
+                                              const GValue *value,
+                                              GParamSpec   *pspec)
+{
+	GtkSourceStyleSchemePreview *self = GTK_SOURCE_STYLE_SCHEME_PREVIEW (object);
+
+	switch (prop_id)
+	{
+	case PROP_SCHEME:
+		self->scheme = g_value_dup_object (value);
+		break;
+
+	case PROP_SELECTED:
+		gtk_source_style_scheme_preview_set_selected (self, g_value_get_boolean (value));
+		break;
+
+	default:
+		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+	}
+}
+
+static void
+gtk_source_style_scheme_preview_class_init (GtkSourceStyleSchemePreviewClass *klass)
+{
+	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+	object_class->constructed = gtk_source_style_scheme_preview_constructed;
+	object_class->dispose = gtk_source_style_scheme_preview_dispose;
+	object_class->get_property = gtk_source_style_scheme_preview_get_property;
+	object_class->set_property = gtk_source_style_scheme_preview_set_property;
+
+	properties [PROP_SCHEME] =
+		g_param_spec_object ("scheme",
+		                     "Scheme",
+		                     "The style scheme to preview",
+		                     GTK_SOURCE_TYPE_STYLE_SCHEME,
+		                     (G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS));
+
+	properties [PROP_SELECTED] =
+		g_param_spec_boolean ("selected",
+		                      "Selected",
+		                      "If the preview should have the selected state",
+		                      FALSE,
+		                      (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+
+	g_object_class_install_properties (object_class, N_PROPS, properties);
+
+	signals [ACTIVATE] = g_signal_new ("activate",
+	                                   G_TYPE_FROM_CLASS (klass),
+	                                   G_SIGNAL_RUN_LAST,
+	                                   0,
+	                                   NULL, NULL, NULL,
+	                                   G_TYPE_NONE, 0);
+
+	gtk_widget_class_set_activate_signal (widget_class, signals [ACTIVATE]);
+	gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
+	gtk_widget_class_set_css_name (widget_class, "GtkSourceStyleSchemePreview");
+}
+
+static void
+gtk_source_style_scheme_preview_init (GtkSourceStyleSchemePreview *self)
+{
+	GtkGesture *gesture;
+
+	gesture = gtk_gesture_click_new ();
+	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (gesture), GTK_PHASE_CAPTURE);
+	g_signal_connect_object (gesture,
+	                         "pressed",
+	                         G_CALLBACK (on_click_pressed_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_widget_add_controller (GTK_WIDGET (self), GTK_EVENT_CONTROLLER (gesture));
+}
+
+/**
+ * gtk_source_style_scheme_preview_new:
+ * @scheme: a #GtkSourceStyleScheme
+ *
+ * Creates a new #GtkSourceStyleSchemePreview to preview the style scheme
+ * provided in @scheme.
+ *
+ * Returns: (transfer full): a #GtkWidget
+ *
+ * Since: 5.4
+ */
+GtkWidget *
+gtk_source_style_scheme_preview_new (GtkSourceStyleScheme *scheme)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
+
+	return g_object_new (GTK_SOURCE_TYPE_STYLE_SCHEME_PREVIEW,
+	                     "scheme", scheme,
+	                     NULL);
+}
+
+/**
+ * gtk_source_style_scheme_preview_get_scheme:
+ * @self: a #GtkSourceStyleSchemePreview
+ *
+ * Gets the #GtkSourceStyleScheme previewed by the widget.
+ *
+ * Returns: (transfer none): a #GtkSourceStyleScheme
+ *
+ * Since: 5.4
+ */
+GtkSourceStyleScheme *
+gtk_source_style_scheme_preview_get_scheme (GtkSourceStyleSchemePreview *self)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME_PREVIEW (self), NULL);
+
+	return self->scheme;
+}
+
+gboolean
+gtk_source_style_scheme_preview_get_selected (GtkSourceStyleSchemePreview *self)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME_PREVIEW (self), FALSE);
+
+	return self->selected;
+}
+
+void
+gtk_source_style_scheme_preview_set_selected (GtkSourceStyleSchemePreview *self,
+                                              gboolean                     selected)
+{
+	g_return_if_fail (GTK_SOURCE_IS_STYLE_SCHEME_PREVIEW (self));
+
+	selected = !!selected;
+
+	if (selected != self->selected)
+	{
+		self->selected = selected;
+
+		if (selected)
+		{
+			gtk_widget_add_css_class (GTK_WIDGET (self), "selected");
+			gtk_widget_show (GTK_WIDGET (self->image));
+		}
+		else
+		{
+			gtk_widget_remove_css_class (GTK_WIDGET (self), "selected");
+			gtk_widget_hide (GTK_WIDGET (self->image));
+		}
+
+		g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SELECTED]);
+	}
+}

@@ -985,6 +985,23 @@ gtk_source_style_scheme_chooser_widget_get_type
 </SECTION>
 
 <SECTION>
+<FILE>styleschemepreview</FILE>
+GtkSourceStyleSchemePreview
+gtk_source_style_scheme_preview_new
+gtk_source_style_scheme_preview_get_scheme
+<SUBSECTION Standard>
+GtkSourceStyleSchemePreviewClass
+GTK_SOURCE_TYPE_STYLE_SCHEME_PREVIEW
+GTK_SOURCE_STYLE_SCHEME_PREVIEW
+GTK_SOURCE_STYLE_SCHEME_PREVIEW_CONST
+GTK_SOURCE_STYLE_SCHEME_PREVIEW_CLASS
+GTK_SOURCE_IS_STYLE_SCHEME_PREVIEW
+GTK_SOURCE_IS_STYLE_SCHEME_PREVIEW_CLASS
+GTK_SOURCE_STYLE_SCHEME_PREVIEW_GET_CLASS
+gtk_source_style_scheme_preview_get_type
+</SECTION>
+
+<SECTION>
 <FILE>styleschememanager</FILE>
 GtkSourceStyleSchemeManager
 gtk_source_style_scheme_manager_new

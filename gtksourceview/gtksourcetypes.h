@@ -74,6 +74,7 @@ typedef struct _GtkSourceStyleSchemeChooser        GtkSourceStyleSchemeChooser;
 typedef struct _GtkSourceStyleSchemeChooserWidget  GtkSourceStyleSchemeChooserWidget;
 typedef struct _GtkSourceStyleScheme               GtkSourceStyleScheme;
 typedef struct _GtkSourceStyleSchemeManager        GtkSourceStyleSchemeManager;
+typedef struct _GtkSourceStyleSchemePreview        GtkSourceStyleSchemePreview;
 typedef struct _GtkSourceView                      GtkSourceView;
 
 G_END_DECLS

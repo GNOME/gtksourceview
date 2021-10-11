@@ -62,6 +62,7 @@
 #include "gtksourcestyleschemechooserbutton.h"
 #include "gtksourcestyleschemechooserwidget.h"
 #include "gtksourcestyleschememanager.h"
+#include "gtksourcestyleschemepreview.h"
 #include "gtksourcetag.h"
 #include "gtksourceutils.h"
 #include "gtksourceversion.h"
