@@ -223,14 +223,13 @@ make_row (GtkSourceStyleScheme *scheme,
 	                     "can-focus", FALSE,
 	                     "cursor-visible", FALSE,
 	                     "editable", FALSE,
-	                     "visible", TRUE,
 	                     "right-margin-position", 30,
 	                     "show-right-margin", TRUE,
 	                     "top-margin", 6,
 	                     "bottom-margin", 6,
 	                     "left-margin", 6,
 	                     "right-margin", 6,
-			     "height-request", 38,
+	                     "height-request", 38,
 	                     NULL);
 	load_override_font (view);
 	gtk_overlay_set_child (GTK_OVERLAY (overlay), view);
