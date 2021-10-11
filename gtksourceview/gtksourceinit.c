@@ -44,6 +44,7 @@
 #include "gtksourcestyleschemechooserwidget.h"
 #include "gtksourcestyleschememanager-private.h"
 #include "gtksourcestyleschememanager-private.h"
+#include "gtksourcestyleschemepreview.h"
 #include "gtksourceview.h"
 
 #ifdef G_OS_WIN32
@@ -200,6 +201,7 @@ gtk_source_init (void)
 		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER);
 		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_BUTTON);
 		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET);
+		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_PREVIEW);
 		g_type_ensure (GTK_SOURCE_TYPE_VIEW);
 
 		display = gdk_display_get_default ();
