@@ -20,9 +20,7 @@
  along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
-
 <style-scheme id="oblivion" _name="Oblivion" version="1.0">
-
   <author>Paolo Borelli</author>
   <_description>Dark color scheme using the Tango color palette</_description>
 
@@ -57,22 +55,19 @@
   <color name="white"                       value="#ffffff"/>
   <color name="black"                       value="#000000"/>
 
-  <color name="aluminium4-3-blend"          value="#a1a49e"/>
-  <color name="aluminium6-5-blend"          value="#34393A"/>
-
   <!-- Global Settings -->
   <style name="text"                        foreground="aluminium2" background="aluminium6"/>
-  <style name="selection"                   foreground="aluminium1" background="aluminium4"/>
   <style name="cursor"                      foreground="aluminium2"/>
-  <style name="secondary-cursor"            foreground="aluminium4-3-blend"/>
-  <style name="current-line"                background="aluminium5"/>
+  <style name="secondary-cursor"            foreground="#a1a49e"/>
   <style name="line-numbers"                foreground="aluminium5" background="black"/>
+  <style name="current-line"                background="aluminium5"/>
+  <style name="current-line-number"         background="#212121"/>
   <style name="draw-spaces"                 foreground="aluminium4"/>
-  <style name="background-pattern"          background="aluminium6-5-blend"/>
-  <style name="snippet-focus"               foreground="aluminium6" background="aluminium4-3-blend"/>
+  <style name="background-pattern"          background="#34393a"/>
+  <style name="snippet-focus"               foreground="aluminium6" background="aluminium3"/>
 
   <!-- Bracket Matching -->
-  <style name="bracket-match"               foreground="chocolate2"/>
+  <style name="bracket-match"               foreground="aluminium1" background="aluminium4"/>
   <style name="bracket-mismatch"            foreground="aluminium1" background="scarletred2"/>
 
   <!-- Right Margin -->
@@ -89,9 +84,9 @@
   <!-- Constants -->
   <style name="def:constant"                foreground="butter2"/>
   <style name="def:string"                  foreground="butter2"/>
-  <style name="def:special-char"            foreground="orange3"/>
-  <style name="def:special-constant"        foreground="orange3"/>
-  <style name="def:floating-point"          foreground="orange3"/>
+  <style name="def:special-char"            foreground="orange2"/>
+  <style name="def:special-constant"        foreground="orange2"/>
+  <style name="def:floating-point"          foreground="orange2"/>
 
   <!-- Identifiers -->
   <style name="def:identifier"              foreground="skyblue1"/>
@@ -108,8 +103,8 @@
   <style name="def:inline-code"             foreground="skyblue1"/>
   <style name="def:insertion"               underline="single"/>
   <style name="def:deletion"                strikethrough="true"/>
-  <style name="def:link-text"               foreground="aluminium4"/>
-  <style name="def:link-symbol"             foreground="aluminium4" bold="true"/>
+  <style name="def:link-text"               foreground="skyblue1"/>
+  <style name="def:link-symbol"             foreground="skyblue1" bold="true"/>
   <style name="def:link-destination"        italic="true" underline="single"/>
   <style name="def:heading"                 foreground="chameleon1" bold="true"/>
   <style name="def:thematic-break"          foreground="chameleon1" bold="true"/>
@@ -120,7 +115,7 @@
   <style name="def:preprocessor"            foreground="plum1"/>
   <style name="def:error"                   foreground="aluminium1" background="scarletred2" bold="true"/>
   <style name="def:warning"                 foreground="aluminium1" background="plum1"/>
-  <style name="def:note"                    background="butter1" foreground="aluminium4" bold="true"/>
+  <style name="def:note"                    background="butter1" foreground="aluminium5" bold="true"/>
   <style name="def:net-address"             italic="true" underline="single"/>
 
   <!-- Heading styles, uncomment to enable -->
@@ -138,12 +133,16 @@
   <style name="diff:added-line"             foreground="butter2"/>
   <style name="diff:removed-line"           foreground="skyblue1"/>
   <style name="diff:changed-line"           foreground="plum1"/>
-  <style name="diff:diff-file"              foreground="chameleon1" bold="true"/>
-  <style name="diff:location"               foreground="chameleon1"/>
-  <style name="diff:special-case"           foreground="white" bold="true"/>
+  <style name="diff:diff-file"              use-style="def:type"/>
+  <style name="diff:location"               use-style="def:statement"/>
+  <style name="diff:special-case"           use-style="def:statement"/>
+
+  <style name="xml:namespace"               bold="true"/>
 
   <style name="latex:command"               foreground="chameleon1" bold="true"/>
   <style name="latex:include"               use-style="def:preprocessor"/>
 
+  <style name="sh:variable"                 foreground="orange2"/>
+  <style name="sh:variable-definition"      foreground="chameleon1"/>
+  
 </style-scheme>
-
