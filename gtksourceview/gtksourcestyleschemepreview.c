@@ -52,16 +52,24 @@ struct _GtkSourceStyleSchemePreview
 	GtkWidget             parent_instance;
 	GtkSourceStyleScheme *scheme;
 	GtkImage             *image;
+	char                 *action_name;
+	GVariant             *action_target;
 	guint                 selected : 1;
 };
 
-G_DEFINE_TYPE (GtkSourceStyleSchemePreview, gtk_source_style_scheme_preview, GTK_TYPE_WIDGET)
+static void actionable_iface_init (GtkActionableInterface *iface);
+
+G_DEFINE_TYPE_WITH_CODE (GtkSourceStyleSchemePreview, gtk_source_style_scheme_preview, GTK_TYPE_WIDGET,
+                         G_IMPLEMENT_INTERFACE (GTK_TYPE_ACTIONABLE, actionable_iface_init))
 
 enum {
 	PROP_0,
 	PROP_SCHEME,
 	PROP_SELECTED,
-	N_PROPS
+	N_PROPS,
+
+	PROP_ACTION_NAME,
+	PROP_ACTION_TARGET,
 };
 
 enum {
@@ -118,6 +126,19 @@ load_override_font (GtkSourceView *view)
 	pango_font_description_free (font_desc);
 	g_object_unref (font_map);
 #endif
+}
+
+static void
+gtk_source_style_scheme_preview_real_activate (GtkSourceStyleSchemePreview *self)
+{
+	g_assert (GTK_SOURCE_IS_STYLE_SCHEME_PREVIEW (self));
+
+	if (self->action_name)
+	{
+		gtk_widget_activate_action_variant (GTK_WIDGET (self),
+		                                    self->action_name,
+		                                    self->action_target);
+	}
 }
 
 static void
@@ -220,6 +241,9 @@ gtk_source_style_scheme_preview_dispose (GObject *object)
 		gtk_widget_unparent (child);
 	}
 
+	g_clear_pointer (&self->action_name, g_free);
+	g_clear_pointer (&self->action_target, g_variant_unref);
+
 	G_OBJECT_CLASS (gtk_source_style_scheme_preview_parent_class)->dispose (object);
 }
 
@@ -239,6 +263,14 @@ gtk_source_style_scheme_preview_get_property (GObject    *object,
 
 	case PROP_SELECTED:
 		g_value_set_boolean (value, gtk_source_style_scheme_preview_get_selected (self));
+		break;
+
+	case PROP_ACTION_NAME:
+		g_value_set_string (value, self->action_name);
+		break;
+
+	case PROP_ACTION_TARGET:
+		g_value_set_variant (value, self->action_target);
 		break;
 
 	default:
@@ -264,6 +296,16 @@ gtk_source_style_scheme_preview_set_property (GObject      *object,
 		gtk_source_style_scheme_preview_set_selected (self, g_value_get_boolean (value));
 		break;
 
+	case PROP_ACTION_NAME:
+		g_free (self->action_name);
+		self->action_name = g_value_dup_string (value);
+		break;
+
+	case PROP_ACTION_TARGET:
+		g_clear_pointer (&self->action_target, g_variant_unref);
+		self->action_target = g_value_dup_variant (value);
+		break;
+
 	default:
 		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 	}
@@ -279,6 +321,9 @@ gtk_source_style_scheme_preview_class_init (GtkSourceStyleSchemePreviewClass *kl
 	object_class->dispose = gtk_source_style_scheme_preview_dispose;
 	object_class->get_property = gtk_source_style_scheme_preview_get_property;
 	object_class->set_property = gtk_source_style_scheme_preview_set_property;
+
+	g_object_class_override_property (object_class, PROP_ACTION_NAME, "action-name");
+	g_object_class_override_property (object_class, PROP_ACTION_TARGET, "action-target");
 
 	properties [PROP_SCHEME] =
 		g_param_spec_object ("scheme",
@@ -296,12 +341,12 @@ gtk_source_style_scheme_preview_class_init (GtkSourceStyleSchemePreviewClass *kl
 
 	g_object_class_install_properties (object_class, N_PROPS, properties);
 
-	signals [ACTIVATE] = g_signal_new ("activate",
-	                                   G_TYPE_FROM_CLASS (klass),
-	                                   G_SIGNAL_RUN_LAST,
-	                                   0,
-	                                   NULL, NULL, NULL,
-	                                   G_TYPE_NONE, 0);
+	signals [ACTIVATE] = g_signal_new_class_handler ("activate",
+	                                                 G_TYPE_FROM_CLASS (klass),
+	                                                 G_SIGNAL_RUN_LAST,
+	                                                 G_CALLBACK (gtk_source_style_scheme_preview_real_activate),
+	                                                 NULL, NULL, NULL,
+	                                                 G_TYPE_NONE, 0);
 
 	gtk_widget_class_set_activate_signal (widget_class, signals [ACTIVATE]);
 	gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
@@ -395,4 +440,39 @@ gtk_source_style_scheme_preview_set_selected (GtkSourceStyleSchemePreview *self,
 
 		g_object_notify_by_pspec (G_OBJECT (self), properties [PROP_SELECTED]);
 	}
+}
+
+static const char *
+get_action_name (GtkActionable *actionable)
+{
+  return GTK_SOURCE_STYLE_SCHEME_PREVIEW (actionable)->action_name;
+}
+
+static void
+set_action_name (GtkActionable *actionable,
+                 const char    *action_name)
+{
+  g_object_set (actionable, "action-name", action_name, NULL);
+}
+
+static GVariant *
+get_action_target (GtkActionable *actionable)
+{
+  return GTK_SOURCE_STYLE_SCHEME_PREVIEW (actionable)->action_target;
+}
+
+static void
+set_action_target (GtkActionable *actionable,
+                   GVariant      *action_target)
+{
+  g_object_set (actionable, "action-target", action_target, NULL);
+}
+
+static void
+actionable_iface_init (GtkActionableInterface *iface)
+{
+  iface->get_action_name = get_action_name;
+  iface->set_action_name = set_action_name;
+  iface->get_action_target_value = get_action_target;
+  iface->set_action_target_value = set_action_target;
 }
