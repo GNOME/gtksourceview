@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-07-13 09:47+0000\n"
-"PO-Revision-Date: 2021-07-13 21:42+0200\n"
+"POT-Creation-Date: 2021-10-12 18:50+0000\n"
+"PO-Revision-Date: 2021-10-12 21:08+0200\n"
 "Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -60,6 +60,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -98,8 +99,8 @@ msgstr ""
 #: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
 #: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
 #: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
-#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
-#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
+#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
 #: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
 #: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
 #: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
@@ -298,35 +299,45 @@ msgstr "RPM določila"
 msgid "Tera Template"
 msgstr "Predloga Tera"
 
-#. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
-#: Adwaita-dark.style-scheme.xml:20
+#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
+#: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
-msgstr "Adwaita Dark"
+msgstr "Adwaita Temno"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.style-scheme.xml:22
+#: Adwaita-dark.xml:22
 msgid "A dark color scheme matching GTK's default theme"
-msgstr "Temna barvna shema, ki je v skladu s privzeto shemo GTK."
+msgstr "Temna barvna shema, skladna s privzeto temo GTK."
 
-#. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
-#: Adwaita.style-scheme.xml:20
+#. (itstool) path: Adwaita.xml/style-scheme@_name
+#: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita.style-scheme.xml:22
+#: Adwaita.xml:22
 msgid "A color scheme matching GTK's default theme"
-msgstr "Barvna shema, ki je v skladu s privzeto shemo GTK."
+msgstr "Osnovna barvna shema, skladna s privzeto temo GTK."
+
+#. (itstool) path: classic-dark.xml/style-scheme@_name
+#: classic-dark.xml:22
+msgid "Classic Dark"
+msgstr "Klasična Temna"
+
+#. (itstool) path: style-scheme/_description
+#: classic-dark.xml:24
+msgid "Classic dark color scheme"
+msgstr "Klasična temna barvna shema"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
 msgid "Classic"
-msgstr "Običajno"
+msgstr "Klasična"
 
 #. (itstool) path: style-scheme/_description
 #: classic.xml:25
 msgid "Classic color scheme"
-msgstr "Običajna barvna shema"
+msgstr "Klasična barvna shema"
 
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
@@ -336,12 +347,17 @@ msgstr "Cobalt"
 #. (itstool) path: style-scheme/_description
 #: cobalt.xml:27
 msgid "Blue based color scheme"
-msgstr "Običajna modra barvna shema"
+msgstr "Modra barvna shema"
+
+#. (itstool) path: style-scheme/_description
+#: kate-dark.xml:24
+msgid "Dark color scheme used in the Kate text editor"
+msgstr "Temna barvna shema, uporabljena v urejevalniku Kate"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
 msgid "Color scheme used in the Kate text editor"
-msgstr "Barvna shema uporabljena v Kate urejevalniku besedil"
+msgstr "Barvna shema, uporabljena v urejevalniku Kate"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
 #: oblivion.xml:24
@@ -351,27 +367,27 @@ msgstr "Pozaba"
 #. (itstool) path: style-scheme/_description
 #: oblivion.xml:27
 msgid "Dark color scheme using the Tango color palette"
-msgstr "Temna barvna shema z barvno paleto tango"
+msgstr "Temna barvna shema z barvno paleto Tango"
 
 #. (itstool) path: solarized-dark.xml/style-scheme@_name
 #: solarized-dark.xml:23
 msgid "Solarized Dark"
-msgstr "Temna tema"
+msgstr "Solarized Temna"
 
 #. (itstool) path: style-scheme/_description
 #: solarized-dark.xml:25
 msgid "Color scheme using Solarized dark color palette"
-msgstr "Barvna shema s temno barvno paleto"
+msgstr "Temna barvna shema, zasnovana na barvah palete Solarized"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
 #: solarized-light.xml:23
 msgid "Solarized Light"
-msgstr "Svetla tema"
+msgstr "Solarized Svetla"
 
 #. (itstool) path: style-scheme/_description
 #: solarized-light.xml:25
 msgid "Color scheme using Solarized light color palette"
-msgstr "Barvna shema s svetlo barvno paleto"
+msgstr "Svetla barvna shema, zasnovana na barvah palete Solarized"
 
 #. (itstool) path: tango.xml/style-scheme@_name
 #: tango.xml:23
@@ -381,7 +397,7 @@ msgstr "Tango"
 #. (itstool) path: style-scheme/_description
 #: tango.xml:25
 msgid "Color scheme using Tango color palette"
-msgstr "Barvna shema z barvno paleto tango"
+msgstr "Barvna shema z barvno paleto Tango"
 
 #: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:409
 msgid "Snippets"
@@ -690,23 +706,23 @@ msgstr "_Prekliči"
 msgid "_Select"
 msgstr "_Izberi"
 
-#: gtksourceview/gtksourceview.c:1812
+#: gtksourceview/gtksourceview.c:1825
 msgid "All _Upper Case"
 msgstr "Vse _velike črke"
 
-#: gtksourceview/gtksourceview.c:1816
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Lower Case"
 msgstr "Vse _male črke"
 
-#: gtksourceview/gtksourceview.c:1820
+#: gtksourceview/gtksourceview.c:1833
 msgid "_Invert Case"
 msgstr "_Obrni velikost črk"
 
-#: gtksourceview/gtksourceview.c:1824
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "_Velike prve črke besed"
 
-#: gtksourceview/gtksourceview.c:1828
+#: gtksourceview/gtksourceview.c:1841
 msgid "C_hange Case"
 msgstr "Spreme_ni velikost črk"
 
