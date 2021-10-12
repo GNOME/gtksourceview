@@ -198,7 +198,7 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	label = g_object_new (GTK_TYPE_LABEL, NULL);
 	self->image = g_object_new (GTK_TYPE_IMAGE,
 	                            "icon-name", "object-select-symbolic",
-	                            "pixel-size", 8,
+	                            "pixel-size", 12,
 	                            "halign", GTK_ALIGN_END,
 	                            "valign", GTK_ALIGN_END,
 	                            "visible", FALSE,
