@@ -28,8 +28,7 @@
 #endif
 
 #include "gtksourcebuffer.h"
-#include "gtksourcelanguage.h"
-#include "gtksourcelanguagemanager.h"
+#include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourcestyleschemepreview.h"
 #include "gtksourceview.h"
@@ -154,10 +153,95 @@ on_click_pressed_cb (GtkSourceStyleSchemePreview *self,
 }
 
 static void
+add_text (GtkSourceBuffer      *buffer,
+	  GtkSourceStyleScheme *scheme)
+{
+	static const struct {
+		const char *text;
+		const char *style;
+	} runs[] = {
+		{ "XXXXXXXXXXX", "def:type" },
+		{ "   ", NULL },
+		{ "XXXXXXXXXXXXXXXXXXXX", "def:function" },
+		{ "   ", NULL },
+		{ "XXXXXXXXXXXXXXX", "def:comment" },
+		{ "\n", NULL },
+		{ "    ", NULL },
+		{ "XXXXXXXXXXXXXXXXXXXX", "def:preprocessor" },
+		{ "    ", NULL },
+		{ "XXXXX", "def:comment" },
+		{ "    ", NULL },
+		{ "XXXXXXXX", "def:string" },
+		{ "    ", NULL },
+		{ "XXXXXXXXXXXX", "def:decimal" },
+		{ "\n", NULL },
+		{ "    ", NULL },
+		{ "XXXXXXXXXXX", "def:keyword" },
+		{ "    ", NULL },
+		{ "XXXXXXXXXXXXX", "def:boolean" },
+		{ "    ", NULL },
+		{ "XXXXXXX", "def:comment" },
+		{ "\n", NULL },
+		{ "    ", NULL },
+		{ "XXXXXXXXX", "def:constant" },
+		{ "    ", NULL },
+		{ "XXX", "def:special-char" },
+		{ "    ", NULL },
+		{ "XXXXXXX", NULL },
+		{ "    ", NULL },
+		{ "XXXXXXXXXXXXXXXXXXX", "def:string" },
+		{ "\n", NULL },
+		{ "          ", NULL },
+		{ "XXXXXXXXXXXXXXXXXXX", NULL },
+		{ "\n", NULL },
+		{ "XXXXXXXXXXXXXXX", NULL },
+		{ "    ", NULL },
+		{ "XXXXXX", "def:statement" },
+		{ "    ", NULL },
+		{ "XXXXXXXX", "def:identifier" },
+	};
+	GHashTable *tags;
+	GtkTextIter iter;
+
+	tags = g_hash_table_new (NULL, NULL);
+
+	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
+
+	for (guint i = 0; i < G_N_ELEMENTS (runs); i++)
+	{
+		gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &iter, runs[i].text, -1);
+
+		if (runs[i].style)
+		{
+			GtkSourceStyle *style = gtk_source_style_scheme_get_style (scheme, runs[i].style);
+
+			if (style != NULL)
+			{
+				GtkTextTag *tag;
+				GtkTextIter begin;
+
+				begin = iter;
+				gtk_text_iter_backward_chars (&begin, g_utf8_strlen (runs[i].text, -1));
+
+				if (!(tag = g_hash_table_lookup (tags, runs[i].style)))
+				{
+					tag = gtk_text_buffer_create_tag (GTK_TEXT_BUFFER (buffer), NULL, NULL);
+					gtk_source_style_apply (style, tag);
+					g_hash_table_insert (tags, (gpointer)runs[i].style, tag);
+				}
+
+				gtk_text_buffer_apply_tag (GTK_TEXT_BUFFER (buffer), tag, &begin, &iter);
+			}
+		}
+	}
+
+	g_hash_table_unref (tags);
+}
+
+static void
 gtk_source_style_scheme_preview_constructed (GObject *object)
 {
 	GtkSourceStyleSchemePreview *self = (GtkSourceStyleSchemePreview *)object;
-	GtkSourceLanguage *lang;
 	GtkSourceBuffer *buffer;
 	GtkSourceView *view;
 	GtkOverlay *overlay;
@@ -188,7 +272,7 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	                     "can-focus", FALSE,
 	                     "cursor-visible", FALSE,
 	                     "editable", FALSE,
-	                     "right-margin-position", 40,
+	                     "right-margin-position", 48,
 	                     "show-right-margin", TRUE,
 	                     "top-margin", 6,
 	                     "bottom-margin", 6,
@@ -207,19 +291,10 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	                            "visible", FALSE,
 	                            NULL);
 
-	lang = gtk_source_language_manager_get_language (gtk_source_language_manager_get_default (), "c");
 	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
 
 	gtk_source_buffer_set_style_scheme (buffer, self->scheme);
-	gtk_source_buffer_set_language (buffer, lang);
-
-	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), "\
-#include <glib.h>\n\
-  /* comment */\n\
-static void f () { return; }\n\
-typedef struct {\n\
- int i; double d;\n\
- }; char *s = \"string\";", -1);
+	add_text (buffer, self->scheme);
 	load_override_font (view);
 
 	gtk_frame_set_child (frame, GTK_WIDGET (overlay));
