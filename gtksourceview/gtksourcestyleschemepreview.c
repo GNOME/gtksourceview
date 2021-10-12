@@ -34,7 +34,7 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:sourcestyleschemepreview
+ * SECTION:styleschemepreview
  * @title: GtkSourceStyleSchemePreview
  * @short_description: a preview widget for #GtkSourceStyleScheme
  *
