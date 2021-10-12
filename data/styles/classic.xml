@@ -30,6 +30,7 @@
 
   <!-- Palette -->
   <color name="white"      value="#FFFFFF"/>
+  <color name="black"      value="#000000"/>
   <color name="blue"       value="#0000FF"/>
   <color name="magenta"    value="#FF00FF"/>
   <color name="violet"     value="#6A5ACD"/>
@@ -40,6 +41,9 @@
   <color name="red"        value="#FF0000"/>
   <color name="yellow"     value="#FFFF00"/>
   <color name="purple"     value="#A020F0"/>
+
+  <style name="text"                        foreground="black" background="white"/>
+  <style name="line-numbers"                foreground="black" background="white"/>
 
   <!-- Global Settings -->
   <style name="draw-spaces"                 foreground="#babdb6"/>
