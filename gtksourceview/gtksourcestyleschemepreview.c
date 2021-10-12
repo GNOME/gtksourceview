@@ -104,7 +104,7 @@ load_override_font (GtkSourceView *view)
 #endif
 
 		css_provider = gtk_css_provider_new ();
-		gtk_css_provider_load_from_data (css_provider, "textview, textview text { font-family: BuilderBlocks; font-size: 4pt; }", -1);
+		gtk_css_provider_load_from_data (css_provider, "textview, textview text { font-family: BuilderBlocks; font-size: 6pt; }", -1);
 
 		g_once_init_leave (&initialized, TRUE);
 	}
@@ -195,7 +195,7 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	                     "bottom-margin", 12,
 	                     "left-margin", 0,
 	                     "right-margin", 6,
-	                     "width-request", 100,
+	                     "width-request", 120,
 	                     "show-line-numbers", TRUE,
 	                     NULL);
 	overlay = g_object_new (GTK_TYPE_OVERLAY, NULL);
