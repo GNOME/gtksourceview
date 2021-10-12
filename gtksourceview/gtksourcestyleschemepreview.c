@@ -187,11 +187,11 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	                     "editable", FALSE,
 	                     "right-margin-position", 20,
 	                     "show-right-margin", TRUE,
-	                     "top-margin", 12,
-	                     "bottom-margin", 12,
+	                     "top-margin", 9,
+	                     "bottom-margin", 9,
 	                     "left-margin", 0,
-	                     "right-margin", 6,
 	                     "width-request", 120,
+	                     "right-margin", 9,
 	                     "show-line-numbers", TRUE,
 	                     NULL);
 	overlay = g_object_new (GTK_TYPE_OVERLAY, NULL);
