@@ -25,8 +25,6 @@
   <_description>Color scheme using Tango color palette</_description>
 
   <!-- Tango Palette -->
-  <color name="white"                       value="#FFFFFF"/>
-  <color name="black"                       value="#000000"/>
   <color name="butter1"                     value="#fce94f"/>
   <color name="butter2"                     value="#edd400"/>
   <color name="butter3"                     value="#c4a000"/>
@@ -54,13 +52,16 @@
   <color name="aluminium4"                  value="#888a85"/>
   <color name="aluminium5"                  value="#555753"/>
   <color name="aluminium6"                  value="#2e3436"/>
-
-  <style name="text"                        foreground="black" background="white"/>
+  <color name="white"                       value="#ffffff"/>
+  <color name="black"                       value="#000000"/>
 
   <!-- Global Settings -->
-  <style name="line-numbers"                background="aluminium1"/>
+  <style name="text"                        foreground="aluminium6" background="white"/>
+  <style name="cursor"                      foreground="aluminium6"/>
+  <style name="secondary-cursor"            foreground="aluminium4"/>
+  <style name="line-numbers"                foreground="aluminium5" background="aluminium1"/>
   <style name="current-line"                background="aluminium1"/>
-  <style name="current-line-number"         background="aluminium1"/>
+  <style name="current-line-number"         background="#e3e3e1"/>
   <style name="draw-spaces"                 foreground="aluminium3"/>
   <style name="background-pattern"          background="#f3f3f3"/>
   <style name="snippet-focus"               foreground="aluminium6" background="aluminium2"/>
@@ -76,26 +77,29 @@
   <style name="search-match"                background="butter1"/>
 
   <!-- Comments -->
-  <style name="def:comment"                 foreground="skyblue3"/>
-  <style name="def:shebang"                 foreground="skyblue3" bold="true"/>
+  <style name="def:comment"                 foreground="aluminium4"/>
+  <style name="def:shebang"                 foreground="aluminium4" bold="true"/>
   <style name="def:doc-comment-element"     italic="true"/>
 
   <!-- Constants -->
   <style name="def:constant"                foreground="plum1"/>
-  <style name="def:special-char"            foreground="plum3"/>
+  <style name="def:string"                  foreground="plum1"/>
+  <style name="def:special-char"            foreground="plum2"/>
+  <style name="def:special-constant"        foreground="plum2"/>
+  <style name="def:floating-point"          foreground="plum2"/>
 
   <!-- Identifiers -->
   <style name="def:identifier"              foreground="skyblue2"/>
 
   <!-- Statements -->
-  <style name="def:statement"               foreground="scarletred3" bold="true"/>
+  <style name="def:statement"               foreground="aluminium6" bold="true"/>
 
   <!-- Types -->
   <style name="def:type"                    foreground="chameleon3" bold="true"/>
 
   <!-- Markup -->
   <style name="def:emphasis"                italic="true"/>
-  <style name="def:strong-emphasis"         foreground="scarletred3" bold="true"/>
+  <style name="def:strong-emphasis"         foreground="aluminium6" bold="true"/>
   <style name="def:inline-code"             foreground="skyblue2"/>
   <style name="def:insertion"               underline="single"/>
   <style name="def:deletion"                strikethrough="true"/>
@@ -105,12 +109,12 @@
   <style name="def:heading"                 foreground="chameleon3" bold="true"/>
   <style name="def:thematic-break"          foreground="chameleon3" bold="true"/>
   <style name="def:preformatted-section"    foreground="skyblue2"/>
-  <style name="def:list-marker"             foreground="scarletred3" bold="true"/>
+  <style name="def:list-marker"             foreground="aluminium6" bold="true"/>
 
   <!-- Others -->
   <style name="def:preprocessor"            foreground="chocolate3"/>
-  <style name="def:error"                   background="scarletred2" bold="true"/>
-  <style name="def:warning"                 background="plum1"/>
+  <style name="def:error"                   foreground="white" background="scarletred2" bold="true"/>
+  <style name="def:warning"                 foreground="white" background="plum1"/>
   <style name="def:note"                    background="orange1" bold="true"/>
   <style name="def:net-address"             italic="true" underline="single"/>
 
@@ -131,17 +135,13 @@
   <style name="diff:changed-line"           use-style="def:preprocessor"/>
   <style name="diff:diff-file"              use-style="def:type"/>
   <style name="diff:location"               use-style="def:statement"/>
-  <style name="diff:special-case"           use-style="def:constant"/>
+  <style name="diff:special-case"           use-style="def:statement"/>
 
-  <style name="xml:tags"                    foreground="chameleon3"/>
   <style name="xml:namespace"               bold="true"/>
-
-  <style name="js:built-in-constructor"     foreground="chameleon3"/>
 
   <style name="latex:display-math"          foreground="plum3"/>
   <style name="latex:command"               foreground="chameleon3" bold="true"/>
   <style name="latex:include"               use-style="def:preprocessor"/>
-  <style name="latex:special-char"          use-style="def:constant"/>
 
   <style name="sh:variable"                 foreground="plum3"/>
   <style name="sh:variable-definition"      foreground="chameleon3"/>
