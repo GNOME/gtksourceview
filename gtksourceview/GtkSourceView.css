@@ -150,6 +150,7 @@ GtkSourceAssistant.informative.question image {
 
 GtkSourceStyleSchemePreview frame {
   margin: 1px;
+  border-radius: 11px;
 }
 GtkSourceStyleSchemePreview.selected frame {
   border-color: @theme_selected_bg_color;
