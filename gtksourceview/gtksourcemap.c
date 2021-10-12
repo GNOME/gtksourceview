@@ -246,7 +246,8 @@ load_override_font (GtkSourceMap *map)
 	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
 	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
 	gtk_widget_set_font_map (GTK_WIDGET (map), font_map);
-	font_desc = pango_font_description_from_string ("BuilderBlocks 2");
+	font_desc = pango_font_description_from_string ("BuilderBlocks");
+	pango_font_description_set_size (font_desc, 3 * PANGO_SCALE);
 
 	g_assert (map_font_config != NULL);
 	g_assert (font_map != NULL);
