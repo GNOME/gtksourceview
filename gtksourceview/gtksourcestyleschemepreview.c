@@ -89,7 +89,6 @@ static void
 load_override_font (GtkSourceView *view)
 {
 	static gsize initialized;
-	PangoFontDescription *font_desc;
 	PangoFontMap *font_map;
 
 	if (g_once_init_enter (&initialized))
@@ -110,20 +109,17 @@ load_override_font (GtkSourceView *view)
 	}
 
 	gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (view)),
-					GTK_STYLE_PROVIDER (css_provider),
-					GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
+	                                GTK_STYLE_PROVIDER (css_provider),
+	                                GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
 
 #if ENABLE_FONT_CONFIG
 	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
 	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
 	gtk_widget_set_font_map (GTK_WIDGET (view), font_map);
-	font_desc = pango_font_description_from_string ("BuilderBlocks 4");
 
 	g_assert (map_font_config != NULL);
 	g_assert (font_map != NULL);
-	g_assert (font_desc != NULL);
 
-	pango_font_description_free (font_desc);
 	g_object_unref (font_map);
 #endif
 }
@@ -183,7 +179,7 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	frame = g_object_new (GTK_TYPE_FRAME,
 	                      "can-focus", FALSE,
 	                      "focusable", FALSE,
-			      NULL);
+	                      NULL);
 	view = g_object_new (GTK_SOURCE_TYPE_VIEW,
 	                     "focusable", FALSE,
 	                     "can-focus", FALSE,
