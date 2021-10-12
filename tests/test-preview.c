@@ -49,6 +49,8 @@ main (int argc,
 	ids = gtk_source_style_scheme_manager_get_scheme_ids (manager);
 
 	window = g_object_new (GTK_TYPE_WINDOW,
+	                       "default-width", 120,
+	                       "default-height", 500,
 	                       NULL);
 	scroller = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
 	                         "propagate-natural-width", TRUE,
