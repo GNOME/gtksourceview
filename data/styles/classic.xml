@@ -42,10 +42,10 @@
   <color name="yellow"     value="#FFFF00"/>
   <color name="purple"     value="#A020F0"/>
 
-  <style name="text"                        foreground="black" background="white"/>
-  <style name="line-numbers"                foreground="black" background="white"/>
-
   <!-- Global Settings -->
+  <style name="text"                        foreground="black" background="white"/>
+  <style name="cursor"                      foreground="black"/>
+  <style name="line-numbers"                foreground="black" background="white"/>
   <style name="draw-spaces"                 foreground="#babdb6"/>
   <style name="background-pattern"          background="#rgba(73,74,71,0.1)"/>
   <style name="snippet-focus"               background="gray"/>
