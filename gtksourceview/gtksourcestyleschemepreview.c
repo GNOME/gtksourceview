@@ -185,7 +185,7 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	                     "can-focus", FALSE,
 	                     "cursor-visible", FALSE,
 	                     "editable", FALSE,
-	                     "right-margin-position", 20,
+	                     "right-margin-position", 40,
 	                     "show-right-margin", TRUE,
 	                     "top-margin", 9,
 	                     "bottom-margin", 9,
