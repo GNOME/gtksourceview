@@ -103,18 +103,10 @@ load_override_font (GtkSourceView *view)
 #endif
 
 		css_provider = gtk_css_provider_new ();
-		gtk_css_provider_load_from_data (css_provider, "\
-textview, textview text\n\
-{\n\
-  font-family: BuilderBlocks;\n\
-  font-size: 4px;\n\
-  line-height: 8px;\n\
-}\n\
-textview border.left gutter\n\
-{\n\
-  padding-left: 2px;\n\
-}\n\
-", -1);
+		gtk_css_provider_load_from_data (css_provider,
+		                                 "textview, textview text { font-family: BuilderBlocks; font-size: 4px; line-height: 8px; }\n"
+		                                 "textview border.left gutter { padding-left: 2px; }\n",
+		                                 -1);
 
 		g_once_init_leave (&initialized, TRUE);
 	}
