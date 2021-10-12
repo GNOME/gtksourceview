@@ -276,10 +276,9 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	                     "show-right-margin", TRUE,
 	                     "top-margin", 6,
 	                     "bottom-margin", 6,
-	                     "left-margin", 3,
+	                     "left-margin", 9,
 	                     "width-request", 120,
 	                     "right-margin", 9,
-	                     "show-line-numbers", TRUE,
 	                     NULL);
 	overlay = g_object_new (GTK_TYPE_OVERLAY, NULL);
 	label = g_object_new (GTK_TYPE_LABEL, NULL);
