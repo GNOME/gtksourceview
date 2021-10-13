@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-09-18 17:46+0000\n"
-"PO-Revision-Date: 2021-09-21 18:45+0430\n"
+"POT-Creation-Date: 2021-10-11 21:30+0000\n"
+"PO-Revision-Date: 2021-10-13 14:55+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <farsi@lists.sharif.edu>\n"
 "Language: fa\n"
@@ -295,25 +295,35 @@ msgstr "مشخصات RPM"
 msgid "Tera Template"
 msgstr "قالب ترا"
 
-#. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
-#: Adwaita-dark.style-scheme.xml:20
+#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
+#: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
 msgstr "تک تیره"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.style-scheme.xml:22
+#: Adwaita-dark.xml:22
 msgid "A dark color scheme matching GTK's default theme"
 msgstr "شمای رنگی تاریک مطابق با زمینهٔ پیش‌گزیدهٔ GTK"
 
-#. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
-#: Adwaita.style-scheme.xml:20
+#. (itstool) path: Adwaita.xml/style-scheme@_name
+#: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "تک"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita.style-scheme.xml:22
+#: Adwaita.xml:22
 msgid "A color scheme matching GTK's default theme"
 msgstr "شمای رنگی مطابق با زمینهٔ پیش‌گزیدهٔ GTK"
+
+#. (itstool) path: classic-dark.xml/style-scheme@_name
+#: classic-dark.xml:22
+msgid "Classic Dark"
+msgstr "کلاسیک تیره"
+
+#. (itstool) path: style-scheme/_description
+#: classic-dark.xml:24
+msgid "Classic dark color scheme"
+msgstr "شمای رنگی کلاسیک تیره"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -323,7 +333,7 @@ msgstr "کلاسیک"
 #. (itstool) path: style-scheme/_description
 #: classic.xml:25
 msgid "Classic color scheme"
-msgstr "شمای رنگ کلاسیک"
+msgstr "شمای رنگی کلاسیک"
 
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
@@ -333,12 +343,17 @@ msgstr "کبالت"
 #. (itstool) path: style-scheme/_description
 #: cobalt.xml:27
 msgid "Blue based color scheme"
-msgstr "شمای رنگ مبتنی بر آبی"
+msgstr "شمای رنگی مبتنی بر آبی"
+
+#. (itstool) path: style-scheme/_description
+#: kate-dark.xml:24
+msgid "Dark color scheme used in the Kate text editor"
+msgstr "شمای رنگی تیرهٔ استفاده شده در ویرایشگر متن کیت"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
 msgid "Color scheme used in the Kate text editor"
-msgstr "شمای رنگ استفاده شده در ویرایشگر متن کیت"
+msgstr "شمای رنگی استفاده شده در ویرایشگر متن کیت"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
 #: oblivion.xml:24
@@ -348,7 +363,7 @@ msgstr "نسیان"
 #. (itstool) path: style-scheme/_description
 #: oblivion.xml:27
 msgid "Dark color scheme using the Tango color palette"
-msgstr "شمای رنگ تاریک با استفاده از پالت رنگی تانگو"
+msgstr "شمای رنگی تیره با استفاده از پالت رنگی تانگو"
 
 #. (itstool) path: solarized-dark.xml/style-scheme@_name
 #: solarized-dark.xml:23
@@ -358,7 +373,7 @@ msgstr "آفتاب‌زدهٔ تیره"
 #. (itstool) path: style-scheme/_description
 #: solarized-dark.xml:25
 msgid "Color scheme using Solarized dark color palette"
-msgstr "شمای رنگ تاریک با استفاده از پالت رنگی آفتاب‌زده"
+msgstr "شمای رنگی تیره با استفاده از پالت رنگی آفتاب‌زده"
 
 #. (itstool) path: solarized-light.xml/style-scheme@_name
 #: solarized-light.xml:23
@@ -368,7 +383,7 @@ msgstr "آفتاب‌زدهٔ روشن"
 #. (itstool) path: style-scheme/_description
 #: solarized-light.xml:25
 msgid "Color scheme using Solarized light color palette"
-msgstr "شمای رنگ روشن با استفاده از پالت رنگی آفتاب‌زده"
+msgstr "شمای رنگی روشن با استفاده از پالت رنگی آفتاب‌زده"
 
 #. (itstool) path: tango.xml/style-scheme@_name
 #: tango.xml:23
@@ -378,7 +393,7 @@ msgstr "تانگو"
 #. (itstool) path: style-scheme/_description
 #: tango.xml:25
 msgid "Color scheme using Tango color palette"
-msgstr "شمای رنگ با استفاده از پالت رنگی تانگو"
+msgstr "شمای رنگی با استفاده از تختهٔ رنگی تانگو"
 
 #: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:409
 msgid "Snippets"
