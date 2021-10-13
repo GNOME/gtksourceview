@@ -95,7 +95,7 @@ load_override_font (GtkWidget *widget)
 		FcConfigAppFontAddFile (config, (const FcChar8 *)font_path);
 
 		css_provider = gtk_css_provider_new ();
-		gtk_css_provider_load_from_data (css_provider, "textview, textview text { font-family: BuilderBlocks; font-size: 10pt; }", -1);
+		gtk_css_provider_load_from_data (css_provider, "textview, textview text { font-family: BuilderBlocks; font-size: 13px; line-height: 17px; }", -1);
 
 		g_once_init_leave (&map_font_config, config);
 	}
@@ -103,7 +103,7 @@ load_override_font (GtkWidget *widget)
 	font_map = pango_cairo_font_map_new_for_font_type (CAIRO_FONT_TYPE_FT);
 	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
 	gtk_widget_set_font_map (widget, font_map);
-	font_desc = pango_font_description_from_string ("BuilderBlocks 8");
+	font_desc = pango_font_description_from_string ("BuilderBlocks");
 
 	g_assert (map_font_config != NULL);
 	g_assert (font_map != NULL);
