@@ -305,7 +305,10 @@ right_margin_position_value_changed_cb (TestWidget    *self,
 					GtkSpinButton *button)
 {
 	gint position = gtk_spin_button_get_value_as_int (button);
+
 	gtk_source_view_set_right_margin_position (self->view, position);
+	gtk_source_view_set_right_margin_position (GTK_SOURCE_VIEW (self->map), position);
+	gtk_widget_queue_resize (GTK_WIDGET (self->map));
 }
 
 static void
