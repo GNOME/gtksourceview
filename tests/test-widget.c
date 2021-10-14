@@ -1137,7 +1137,7 @@ test_widget_init (TestWidget *self)
 	                        "style-scheme",
 	                        self->buffer,
 	                        "style-scheme",
-	                        G_BINDING_SYNC_CREATE);
+	                        G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL);
 
 	style_scheme = gtk_source_style_scheme_manager_get_scheme (
 		gtk_source_style_scheme_manager_get_default (),
