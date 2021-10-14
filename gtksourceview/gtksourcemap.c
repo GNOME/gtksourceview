@@ -261,57 +261,46 @@ load_override_font (GtkSourceMap *map)
 #endif
 
 static void
-update_slider_position (GtkSourceMap *map)
+get_slider_position (GtkSourceMap *map,
+                     int           width,
+                     int           height,
+                     GdkRectangle *slider_area)
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
-	GdkRectangle them_visible_rect;
-	GdkRectangle us_alloc;
-	GdkRectangle slider_area;
-	GtkStyleContext *style_context;
-	GtkTextBuffer *buffer;
-	GtkTextIter end_iter;
-	GdkRectangle end_rect;
-	GtkBorder border;
-	int us_height;
-	int them_height;
+	GdkRectangle visible_rect, top_rect, bottom_rect;
+	GtkTextIter top, bottom;
+	int top_y, bottom_y;
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+
+	slider_area->x = 0;
+	slider_area->y = 0;
+	slider_area->width = width;
+	slider_area->height = 0;
 
 	if (priv->view == NULL)
 	{
 		return;
 	}
 
-	gtk_widget_get_allocation (GTK_WIDGET (map), &us_alloc);
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (priv->view), &visible_rect);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (priv->view), &top, 0, visible_rect.y);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (priv->view), &bottom, 0, visible_rect.y + visible_rect.height);
 
-	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (map));
-	style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
-	gtk_style_context_get_border (style_context, &border);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &top, &top_rect);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &bottom, &bottom_rect);
 
-	gtk_text_buffer_get_end_iter (buffer, &end_iter);
-	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &end_iter, &end_rect);
-	us_height = end_rect.y + end_rect.height;
-	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (priv->view), &end_iter, &end_rect);
-	them_height = end_rect.y + end_rect.height;
+	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (map),
+	                                       GTK_TEXT_WINDOW_WIDGET,
+	                                       0, top_rect.y,
+	                                       NULL, &top_y);
+	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (map),
+	                                       GTK_TEXT_WINDOW_WIDGET,
+	                                       0, bottom_rect.y + bottom_rect.height,
+	                                       NULL, &bottom_y);
 
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (priv->view), &them_visible_rect);
-
-	slider_area.x = 0;
-	slider_area.width = us_alloc.width - border.left - border.right;
-	slider_area.height = 100;
-	slider_area.y = (double)them_visible_rect.y / (double)them_height * (double)us_height;
-	slider_area.height = ((double)(them_visible_rect.y + them_visible_rect.height) / (double)them_height * (double)us_height) - slider_area.y;
-
-	if (memcmp (&slider_area, &priv->slider_area, sizeof slider_area) != 0)
-	{
-		priv->slider_area = slider_area;
-		gtk_widget_set_size_request (GTK_WIDGET (priv->slider),
-		                             MAX (0, slider_area.width),
-		                             MAX (0, slider_area.height));
-		gtk_text_view_move_overlay (GTK_TEXT_VIEW (map),
-		                            GTK_WIDGET (priv->slider),
-		                            slider_area.x,
-		                            slider_area.y);
-		gtk_widget_queue_allocate (GTK_WIDGET (map));
-	}
+	slider_area->y = top_y;
+	slider_area->height = bottom_y - top_y;
 }
 
 static void
@@ -501,7 +490,7 @@ view_vadj_value_changed (GtkSourceMap  *map,
                          GtkAdjustment *vadj)
 {
 	update_child_vadjustment (map);
-	update_slider_position (map);
+	gtk_widget_queue_allocate (GTK_WIDGET (map));
 }
 
 static void
@@ -509,7 +498,7 @@ view_vadj_notify_upper (GtkSourceMap  *map,
                         GParamSpec    *pspec,
                         GtkAdjustment *vadj)
 {
-	update_slider_position (map);
+	gtk_widget_queue_allocate (GTK_WIDGET (map));
 }
 
 static void
@@ -855,6 +844,12 @@ gtk_source_map_dispose (GObject *object)
 	g_clear_object (&priv->css_provider);
 	g_clear_pointer (&priv->font_desc, pango_font_description_free);
 
+	if (priv->slider)
+	{
+		gtk_widget_unparent (GTK_WIDGET (priv->slider));
+		priv->slider = NULL;
+	}
+
 	G_OBJECT_CLASS (gtk_source_map_parent_class)->dispose (object);
 }
 
@@ -1147,6 +1142,44 @@ gtk_source_map_css_changed (GtkWidget         *widget,
 }
 
 static void
+gtk_source_map_size_allocate (GtkWidget *widget,
+                              int        width,
+                              int        height,
+                              int        baseline)
+{
+	GtkSourceMap *map = (GtkSourceMap *)widget;
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	GdkRectangle area;
+	int min, nat;
+
+	g_assert (GTK_SOURCE_IS_MAP (map));
+
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->size_allocate (widget, width, height, baseline);
+
+	get_slider_position (map, width, height, &area);
+	gtk_widget_measure (GTK_WIDGET (priv->slider),
+	                    GTK_ORIENTATION_VERTICAL,
+			    width, &min, &nat, NULL, NULL);
+	area.height = MAX (nat, area.height);
+	gtk_widget_size_allocate (GTK_WIDGET (priv->slider), &area, -1);
+}
+
+static void
+gtk_source_map_snapshot (GtkWidget   *widget,
+                         GtkSnapshot *snapshot)
+{
+	GtkSourceMap *map = (GtkSourceMap *)widget;
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+
+	g_assert (GTK_IS_WIDGET (widget));
+	g_assert (GTK_IS_SNAPSHOT (snapshot));
+
+	GTK_WIDGET_CLASS (gtk_source_map_parent_class)->snapshot (widget, snapshot);
+
+	gtk_widget_snapshot_child (GTK_WIDGET (map), GTK_WIDGET (priv->slider), snapshot);
+}
+
+static void
 gtk_source_map_constructed (GObject *object)
 {
 	G_OBJECT_CLASS (gtk_source_map_parent_class)->constructed (object);
@@ -1174,6 +1207,8 @@ gtk_source_map_class_init (GtkSourceMapClass *klass)
 	widget_class->state_flags_changed = gtk_source_map_state_flags_changed;
 	widget_class->realize = gtk_source_map_realize;
 	widget_class->css_changed = gtk_source_map_css_changed;
+	widget_class->size_allocate = gtk_source_map_size_allocate;
+	widget_class->snapshot = gtk_source_map_snapshot;
 
 	text_view_class->snapshot_layer = gtk_source_map_snapshot_layer;
 
@@ -1210,7 +1245,7 @@ gtk_source_map_init (GtkSourceMap *map)
 				     "width-request", 1,
 				     "height-request", 1,
 				     NULL);
-        gtk_text_view_add_overlay (GTK_TEXT_VIEW (map), GTK_WIDGET (priv->slider), 0, 0);
+	gtk_widget_set_parent (GTK_WIDGET (priv->slider), GTK_WIDGET (map));
 
 	gtk_style_context_add_provider (gtk_widget_get_style_context (GTK_WIDGET (map)),
 	                                GTK_STYLE_PROVIDER (priv->css_provider),
