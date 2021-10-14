@@ -459,13 +459,21 @@
           </object>
         </child>
         <child>
+          <object class="GtkSeparator">
+            <layout>
+              <property name="column">1</property>
+              <property name="row">0</property>
+            </layout>
+          </object>
+        </child>
+        <child>
           <object class="GtkSourceMap" id="map">
             <property name="left-margin">12</property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="view">view</property>
             <layout>
-              <property name="column">1</property>
+              <property name="column">2</property>
               <property name="row">0</property>
             </layout>
           </object>
