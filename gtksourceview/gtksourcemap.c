@@ -430,9 +430,6 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		}
 
 		g_string_append_printf (gstr,
-		                        "textview.source-map {"
-		                        " color: mix(%s,%s,.25);"
-		                        "}\n"
 		                        "slider {"
 		                        " background-color: alpha(%s,.25);"
 		                        " transition-duration: 300ms;"
@@ -443,7 +440,6 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		                        "slider.dragging:hover {"
 		                        " background-color: alpha(%s,.5);"
 		                        "}\n",
-					foreground, background,
 		                        background, background, background);
 	}
 
