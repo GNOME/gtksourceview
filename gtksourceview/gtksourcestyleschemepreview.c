@@ -28,6 +28,8 @@
 #endif
 
 #include "gtksourcebuffer.h"
+#include "gtksourcelanguage.h"
+#include "gtksourcelanguagemanager.h"
 #include "gtksourcestyle.h"
 #include "gtksourcestylescheme.h"
 #include "gtksourcestyleschemepreview.h"
@@ -200,9 +202,11 @@ add_text (GtkSourceBuffer      *buffer,
 		{ "    ", NULL },
 		{ "XXXXXXXX", "def:identifier" },
 	};
+	GtkSourceLanguage *def;
 	GHashTable *tags;
 	GtkTextIter iter;
 
+	def = gtk_source_language_manager_get_language (gtk_source_language_manager_get_default (), "def");
 	tags = g_hash_table_new (NULL, NULL);
 
 	gtk_text_buffer_get_start_iter (GTK_TEXT_BUFFER (buffer), &iter);
@@ -214,6 +218,16 @@ add_text (GtkSourceBuffer      *buffer,
 		if (runs[i].style)
 		{
 			GtkSourceStyle *style = gtk_source_style_scheme_get_style (scheme, runs[i].style);
+
+			if (style == NULL)
+			{
+				const char *fallback = gtk_source_language_get_style_fallback (def, runs[i].style);
+
+				if (fallback != NULL)
+				{
+					style = gtk_source_style_scheme_get_style (scheme, fallback);
+				}
+			}
 
 			if (style != NULL)
 			{
