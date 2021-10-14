@@ -410,7 +410,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 
 		if (_gtk_source_view_get_current_line_background (priv->view, &bg))
 		{
-			bg.alpha = 0.3;
+			bg.alpha = 1.0;
 			background = gdk_rgba_to_string (&bg);
 		}
 	}
