@@ -472,6 +472,9 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="view">view</property>
+            <style>
+              <class name="map"/>
+            </style>
             <layout>
               <property name="column">2</property>
               <property name="row">0</property>
