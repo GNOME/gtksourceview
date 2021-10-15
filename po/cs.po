@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-08-01 01:28+0000\n"
-"PO-Revision-Date: 2021-08-06 20:56+0200\n"
+"POT-Creation-Date: 2021-10-13 11:26+0000\n"
+"PO-Revision-Date: 2021-10-15 13:17+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -64,6 +64,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -102,8 +103,8 @@ msgstr ""
 #: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
 #: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
 #: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
-#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
-#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
+#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
 #: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
 #: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
 #: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
@@ -302,25 +303,35 @@ msgstr "Specifikace RPM"
 msgid "Tera Template"
 msgstr "Šablona Tera"
 
-#. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
-#: Adwaita-dark.style-scheme.xml:20
+#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
+#: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
 msgstr "Adwaita tmavá"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.style-scheme.xml:22
+#: Adwaita-dark.xml:22
 msgid "A dark color scheme matching GTK's default theme"
 msgstr "Tmavé schéma barev odpovídající výchozímu motivu GTK"
 
-#. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
-#: Adwaita.style-scheme.xml:20
+#. (itstool) path: Adwaita.xml/style-scheme@_name
+#: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita.style-scheme.xml:22
+#: Adwaita.xml:22
 msgid "A color scheme matching GTK's default theme"
 msgstr "Schéma barev odpovídající výchozímu motivu GTK"
+
+#. (itstool) path: classic-dark.xml/style-scheme@_name
+#: classic-dark.xml:22
+msgid "Classic Dark"
+msgstr "Classic tmavý"
+
+#. (itstool) path: style-scheme/_description
+#: classic-dark.xml:24
+msgid "Classic dark color scheme"
+msgstr "Klasické tmavé barevné schéma"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -341,6 +352,11 @@ msgstr "Cobalt"
 #: cobalt.xml:27
 msgid "Blue based color scheme"
 msgstr "Barevné schéma do modra"
+
+#. (itstool) path: style-scheme/_description
+#: kate-dark.xml:24
+msgid "Dark color scheme used in the Kate text editor"
+msgstr "Tmavé barevné schéma používané v editoru Kate"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
