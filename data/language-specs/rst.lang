@@ -137,7 +137,7 @@
 
     <context id="substitution" style-ref="substitution">
       <start>(\%{legal-start})\|(?!(\s|$))</start>
-      <end>(?&lt;!\s)\|(\%{legal-end})</end>
+      <end>(?&lt;!\s)\|_?_?(\%{legal-end})</end>
     </context>
 
     <context id="literals">
