@@ -266,40 +266,43 @@ get_slider_position (GtkSourceMap *map,
                      GdkRectangle *slider_area)
 {
 	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
-	GdkRectangle visible_rect, top_rect, bottom_rect;
-	GtkTextIter top, bottom;
-	int top_y, bottom_y;
-
-	g_assert (GTK_SOURCE_IS_MAP (map));
-
-	slider_area->x = 0;
-	slider_area->y = 0;
-	slider_area->width = width;
-	slider_area->height = 0;
+	GdkRectangle them_visible_rect, us_visible_rect;
+	GdkRectangle us_alloc;
+	GtkStyleContext *style_context;
+	GtkTextBuffer *buffer;
+	GtkTextIter end_iter;
+	GdkRectangle end_rect;
+	GtkBorder border;
+	int us_height;
+	int them_height;
 
 	if (priv->view == NULL)
 	{
 		return;
 	}
 
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (priv->view), &visible_rect);
-	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (priv->view), &top, 0, visible_rect.y);
-	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (priv->view), &bottom, 0, visible_rect.y + visible_rect.height);
+	gtk_widget_get_allocation (GTK_WIDGET (map), &us_alloc);
 
-	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &top, &top_rect);
-	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &bottom, &bottom_rect);
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (map));
+	style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
+	gtk_style_context_get_border (style_context, &border);
 
-	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (map),
-	                                       GTK_TEXT_WINDOW_WIDGET,
-	                                       0, top_rect.y,
-	                                       NULL, &top_y);
-	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (map),
-	                                       GTK_TEXT_WINDOW_WIDGET,
-	                                       0, bottom_rect.y + bottom_rect.height,
-	                                       NULL, &bottom_y);
+	gtk_text_buffer_get_end_iter (buffer, &end_iter);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (map), &end_iter, &end_rect);
+	us_height = end_rect.y + end_rect.height;
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (priv->view), &end_iter, &end_rect);
+	them_height = end_rect.y + end_rect.height;
 
-	slider_area->y = top_y;
-	slider_area->height = bottom_y - top_y;
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (priv->view), &them_visible_rect);
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (map), &us_visible_rect);
+
+	slider_area->x = 0;
+	slider_area->width = us_alloc.width - border.left - border.right;
+	slider_area->height = 100;
+	slider_area->y = (double)them_visible_rect.y / (double)them_height * (double)us_height;
+	slider_area->height = ((double)(them_visible_rect.y + them_visible_rect.height) / (double)them_height * (double)us_height) - slider_area->y;
+
+	slider_area->y -= us_visible_rect.y;
 }
 
 static void
