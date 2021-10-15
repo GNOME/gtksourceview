@@ -1244,6 +1244,8 @@ gtk_source_map_init (GtkSourceMap *map)
 
 	priv = gtk_source_map_get_instance_private (map);
 
+	gtk_widget_add_css_class (GTK_WIDGET (map), "GtkSourceMap");
+
 	priv->css_provider = gtk_css_provider_new ();
         priv->slider = g_object_new (GTK_SOURCE_TYPE_MAP_SLIDER,
 				     "width-request", 1,
