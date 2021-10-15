@@ -77,8 +77,20 @@
       <match>^\s*[\*\+\-•‣⁃] </match>
     </context>
 
+    <define-regex id="roman-upper" extended="true">
+      (M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3}))
+    </define-regex>
+
+    <define-regex id="roman-lower" extended="true">
+      (m*(c[md]|d?c{0,3})(x[cl]|l?x{0,3})(i[xc]|c?i{0,3}))
+    </define-regex>
+
+    <define-regex id="roman-numerals" extended="true">
+      ((\%{roman-upper})|(\%{roman-lower}))
+    </define-regex>
+
     <define-regex id="enumerator-chars" extended="true">
-      ([a-zA-Z]|([0-9]+))
+      ([a-zA-Z]|([0-9]+)|(\%{roman-numerals}))
     </define-regex>
 
     <context id="enumerator" style-ref="bullet">
