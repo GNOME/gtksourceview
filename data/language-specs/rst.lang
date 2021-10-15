@@ -59,17 +59,20 @@
     </context>
 
     <context id="comment" style-ref="comment">
-      <start>^(\s*)\.\.(\s+).+$</start>
-      <end>^(?!(\%{1@start}  \%{2@start})|(^$))</end>
+      <start>^(\s*)\.\.\s*.+$</start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
     </context>
 
     <context id="comment-single" style-ref="comment">
-      <start>^(\s*)\.\.(\s*)$</start>
-      <end>x</end>
+      <start>^(\s*)\.\.\s*$</start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
       <include>
-        <context id="comment-single-block" style-ref="comment" end-parent="true">
-          <start>(\s*).+$</start>
-          <end>^(?!(\%{1@start}))</end>
+        <context id="comment-non-empty-block" extend-parent="false" end-parent="true">
+          <start>^(\s*)\S</start>
+          <end>^(?!(\%{1@start})|(\s*$))</end>
+        </context>
+        <context id="comment-empty-block" extend-parent="false" end-parent="true">
+          <match>^\s*$</match>
         </context>
       </include>
     </context>
