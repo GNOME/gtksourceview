@@ -43,19 +43,23 @@
   <definitions>
 
     <context id="directive" class="no-spell-check" style-ref="directive">
-      <match>^\s*\.\. \w*::.*$</match>
+      <start>^(\s*)\.\. \w*::</start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
     </context>
 
     <context id="footnotes" style-ref="directive">
-      <match>^\s*\.\. \[([0-9]+|\#|\#\w+|\*)\] </match>
+      <start>^(\s*)\.\. \[([0-9]+|\#|\#\w+|\*)\] </start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
     </context>
 
     <context id="citation" style-ref="directive">
-      <match>^\s*\.\. \[\w+\] </match>
+      <start>^(\s*)\.\. \[\w+\] </start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
     </context>
 
     <context id="link-target" class="no-spell-check" style-ref="directive">
-      <match>^\s*\.\. _.*:.*$</match>
+      <start>^(\s*)\.\. _.*:</start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
     </context>
 
     <context id="comment" style-ref="comment">
