@@ -102,11 +102,13 @@
     </context>
 
     <context id="strong-emphasis" style-ref="strong-emphasis">
-      <match>\*\*(?!\s).+?(?!\s)\*\*</match>
+      <start>\*\*(?!(\s|$))</start>
+      <end>(?&lt;!\s)\*\*</end>
     </context>
 
     <context id="emphasis" style-ref="emphasis">
-      <match>\*(?!\s).+?(?!\s)\*</match>
+      <start>\*(?!(\s|$))</start>
+      <end>(?&lt;!\s)\*</end>
     </context>
 
     <context id="link" style-ref="link">
@@ -114,13 +116,15 @@
     </context>
 
     <context id="substitution" style-ref="substitution">
-      <match>\|\b.*\b\|</match>
+      <start>\|(?!(\s|$))</start>
+      <end>(?&lt;!\s)\|</end>
     </context>
 
     <context id="literals">
       <include>
         <context id="inline-literals" class="no-spell-check" style-ref="code">
-          <match>``(?!\s).*(?!\s)``</match>
+          <start>``(?!(\s|$))</start>
+          <end>(?&lt;!\s)``</end>
         </context>
       </include>
     </context>
