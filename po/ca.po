@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-07-20 14:52+0000\n"
+"POT-Creation-Date: 2021-10-13 11:26+0000\n"
 "PO-Revision-Date: 2020-12-22 15:45+0100\n"
 "Last-Translator: Jordi Mas <jmas@softcatala.org>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -58,6 +58,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -89,14 +90,14 @@ msgstr ""
 #. (itstool) path: vbnet.lang/language@_section
 #. (itstool) path: verilog.lang/language@_section
 #. (itstool) path: vhdl.lang/language@_section
-#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24
-#: asp.lang:23 automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23
-#: cg.lang:23 chdr.lang:24 c.lang:24 cobol.lang:26 commonlisp.lang:24
-#: cpphdr.lang:24 cpp.lang:25 csharp.lang:26 cuda.lang:22 dart.lang:22
-#: d.lang:29 docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23
-#: fortran.lang:24 fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24
-#: gradle.lang:21 groovy.lang:24 haskell.lang:24 haskell-literate.lang:23
-#: haxe.lang:34 idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24
+#: abnf.lang:30 actionscript.lang:24 ada.lang:25 ansforth94.lang:24 asp.lang:23
+#: automake.lang:23 bennugd.lang:22 bluespec.lang:21 boo.lang:23 cg.lang:23
+#: chdr.lang:24 c.lang:24 cobol.lang:26 commonlisp.lang:24 cpphdr.lang:24
+#: cpp.lang:25 csharp.lang:26 cuda.lang:22 dart.lang:22 d.lang:29
+#: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
+#: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
+#: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
+#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
 #: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
 #: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
 #: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
@@ -296,26 +297,36 @@ msgstr "Especificació RPM"
 msgid "Tera Template"
 msgstr "Plantilla Tera"
 
-#. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
-#: Adwaita-dark.style-scheme.xml:20
+#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
+#: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
 msgstr "Adwaita fosc"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.style-scheme.xml:22
+#: Adwaita-dark.xml:22
 msgid "A dark color scheme matching GTK's default theme"
 msgstr ""
 "Un esquema de color fosc que coincideix amb el tema per defecte del GTK"
 
-#. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
-#: Adwaita.style-scheme.xml:20
+#. (itstool) path: Adwaita.xml/style-scheme@_name
+#: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita.style-scheme.xml:22
+#: Adwaita.xml:22
 msgid "A color scheme matching GTK's default theme"
 msgstr "Un esquema de color que coincideix amb el tema per defecte del GTK"
+
+#. (itstool) path: classic-dark.xml/style-scheme@_name
+#: classic-dark.xml:22
+msgid "Classic Dark"
+msgstr "Fosc clàssic"
+
+#. (itstool) path: style-scheme/_description
+#: classic-dark.xml:24
+msgid "Classic dark color scheme"
+msgstr "Esquema de color fosc clàssic"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -336,6 +347,11 @@ msgstr "Cobalt"
 #: cobalt.xml:27
 msgid "Blue based color scheme"
 msgstr "Esquema de color blau"
+
+#. (itstool) path: style-scheme/_description
+#: kate-dark.xml:24
+msgid "Dark color scheme used in the Kate text editor"
+msgstr "Esquema de color fosc que s'utilitza en l'editor de text Kate"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
@@ -435,10 +451,12 @@ msgstr "_Detalls"
 #: gtksourceview/gtksourcecontextengine.c:3124
 #, c-format
 msgid ""
-"Cannot create a regex for all the transitions, the syntax highlighting process will be slower than usual.\n"
+"Cannot create a regex for all the transitions, the syntax highlighting "
+"process will be slower than usual.\n"
 "The error was: %s"
 msgstr ""
-"No s'ha pogut crear una expressió regular per a totes les transicions. El procés de ressaltat serà més lent de l'habitual.\n"
+"No s'ha pogut crear una expressió regular per a totes les transicions. El "
+"procés de ressaltat serà més lent de l'habitual.\n"
 "L'error ha sigut: %s"
 
 #: gtksourceview/gtksourcecontextengine.c:4458
@@ -612,10 +630,10 @@ msgstr "Desconeguda"
 #. * value used by GtkSourceView and it represents the encoding for the
 #. * current locale, so please don't translate the "CURRENT" term.  Only
 #. * recognized encodings are used. See
-#. *
-#. https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
+#. * https://gitlab.gnome.org/GNOME/gtksourceview/blob/master/gtksourceview/gtksourceencoding.c#L142
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
+#.
 #: gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
@@ -650,13 +668,12 @@ msgstr "La memòria intermèdia conté caràcters invàlids."
 #. * @Title: GtkSourceLanguage
 #. * @See_also: #GtkSourceLanguageManager
 #. *
-#. * A #GtkSourceLanguage represents a programming or markup language,
-#. affecting
+#. * A #GtkSourceLanguage represents a programming or markup language, affecting
 #. * syntax highlighting and [context classes][context-classes].
 #. *
-#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance,
-#. and
+#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
 #. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#.
 #: gtksourceview/gtksourcelanguage.c:53
 msgid "Others"
 msgstr "Altres"
@@ -669,8 +686,7 @@ msgstr "Identificador «%s» desconegut en l'expressió regular «%s»"
 #: gtksourceview/gtksourcelanguage-parser-2.c:1176
 #, c-format
 msgid "in regex “%s”: backreferences are not supported"
-msgstr ""
-"en l'expressió regular «%s»: no es permeten les referències cap enrere"
+msgstr "en l'expressió regular «%s»: no es permeten les referències cap enrere"
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
@@ -689,23 +705,23 @@ msgstr "_Cancel·la"
 msgid "_Select"
 msgstr "_Selecciona"
 
-#: gtksourceview/gtksourceview.c:1812
+#: gtksourceview/gtksourceview.c:1825
 msgid "All _Upper Case"
 msgstr "Tot en majúsc_ules"
 
-#: gtksourceview/gtksourceview.c:1816
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Lower Case"
 msgstr "Tot en minúscu_les"
 
-#: gtksourceview/gtksourceview.c:1820
+#: gtksourceview/gtksourceview.c:1833
 msgid "_Invert Case"
 msgstr "_Inverteix les majúscules/minúscules"
 
-#: gtksourceview/gtksourceview.c:1824
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "Majúscules/minúscules del _títol"
 
-#: gtksourceview/gtksourceview.c:1828
+#: gtksourceview/gtksourceview.c:1841
 msgid "C_hange Case"
 msgstr "Ca_nvia les majúscules/minúscules"
 
@@ -751,4 +767,3 @@ msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr ""
 "S'ha produït un error en analitzar el text de substitució «%s» al caràcter "
 "%lu: %s"
-
