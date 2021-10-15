@@ -90,7 +90,7 @@
     </define-regex>
 
     <define-regex id="enumerator-chars" extended="true">
-      ([a-zA-Z]|([0-9]+)|(\%{roman-numerals}))
+      ([#]|[a-zA-Z]|([0-9]+)|(\%{roman-numerals}))
     </define-regex>
 
     <context id="enumerator" style-ref="bullet">
