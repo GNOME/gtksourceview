@@ -247,7 +247,6 @@ load_override_font (GtkSourceMap *map)
 	pango_fc_font_map_set_config (PANGO_FC_FONT_MAP (font_map), map_font_config);
 	gtk_widget_set_font_map (GTK_WIDGET (map), font_map);
 	font_desc = pango_font_description_from_string ("BuilderBlocks");
-	pango_font_description_set_size (font_desc, 3 * PANGO_SCALE);
 
 	g_assert (map_font_config != NULL);
 	g_assert (font_map != NULL);
@@ -591,6 +590,11 @@ gtk_source_map_set_font_desc (GtkSourceMap               *map,
 		if (font_desc)
 		{
 			priv->font_desc = pango_font_description_copy (font_desc);
+
+			if ((pango_font_description_get_set_fields (priv->font_desc) & PANGO_FONT_MASK_SIZE) == 0)
+			{
+				pango_font_description_set_size (priv->font_desc, 1.75 * PANGO_SCALE);
+			}
 		}
 	}
 
@@ -1268,7 +1272,7 @@ gtk_source_map_init (GtkSourceMap *map)
 	completion = gtk_source_view_get_completion (GTK_SOURCE_VIEW (map));
 	gtk_source_completion_block_interactive (completion);
 
-	gtk_source_map_set_font_name (map, "BuilderBlocks 2");
+	gtk_source_map_set_font_name (map, "BuilderBlocks");
 
 	drag = gtk_gesture_drag_new ();
 	gtk_event_controller_set_propagation_phase (GTK_EVENT_CONTROLLER (drag),
