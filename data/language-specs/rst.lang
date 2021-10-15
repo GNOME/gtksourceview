@@ -31,6 +31,7 @@
     <style id="emphasis" name="Emphasis" map-to="def:emphasis"/>
     <style id="strong-emphasis" name="Strong Emphasis" map-to="def:strong-emphasis"/>
     <style id="bullet" name="Bullet" map-to="def:list-marker"/>
+    <style id="lineblock" name="Line block" map-to="def:string"/>
     <style id="directive" name="Directive" map-to="def:constant"/>
     <style id="comment" name="Comment" map-to="def:comment"/>
     <style id="interpreted" name="Interpreted" map-to="def:identifier"/>
@@ -109,6 +110,11 @@
       <match>^\s*((\%{enumerator-chars}\.)|(\(?\%{enumerator-chars}\)) )</match>
     </context>
 
+    <context id="lineblock" style-ref="lineblock">
+      <start>^(\s*)\| \S</start>
+      <end>^(?!(\%{1@start}(  |\|))|(\s*$))</end>
+    </context>
+
     <context id="field" style-ref="bullet">
       <match>:(?![: ])([^:\\]|\\.|:(?!([ `]|$)))*(?&lt;! ):( +|$)</match>
     </context>
@@ -180,6 +186,7 @@
         <context ref="title-adornment"/>
         <context ref="bullet"/>
         <context ref="enumerator"/>
+        <context ref="lineblock"/>
         <context ref="field"/>
         <context ref="strong-emphasis"/>
         <context ref="emphasis"/>
