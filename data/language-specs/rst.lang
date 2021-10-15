@@ -82,6 +82,24 @@
       </include>
     </context>
 
+    <context id="literal-block">
+      <include>
+        <context id="literal-indented" style-ref="code">
+          <start>^(\s*)::\s*$</start>
+          <end>^(?!(\%{1@start}   )|(\s*$))</end>
+        </context>
+        <context id="literal-quoted" style-ref="code">
+          <start>(?&lt;!:)::\s*$</start>
+          <include>
+            <context id="literal-quoted-block" end-parent="true">
+              <start>^(\s*)\S</start>
+              <end>^(?!(\%{1@start})|(\s*$))</end>
+            </context>
+          </include>
+        </context>
+      </include>
+    </context>
+
     <context id="title-adornment" style-ref="header">
       <match>^\s*(=+|\-+|`+|:+|(\.\.\.+)|'+|"+|~+|\^+|_+|\*+|\++|#+)\s*$</match>
     </context>
@@ -183,6 +201,7 @@
         <context ref="citation"/>
         <context ref="comment"/>
         <context ref="comment-single"/>
+        <context ref="literal-block"/>
         <context ref="title-adornment"/>
         <context ref="bullet"/>
         <context ref="enumerator"/>
