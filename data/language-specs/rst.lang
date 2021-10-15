@@ -43,11 +43,15 @@
   <definitions>
 
     <context id="directive" class="no-spell-check" style-ref="directive">
-      <match>^\s*\.\. .*::.*$</match>
+      <match>^\s*\.\. \w*::.*$</match>
     </context>
 
     <context id="footnotes" style-ref="directive">
-      <match>^\s*\.\. \[.+\] .*$</match>
+      <match>^\s*\.\. \[([0-9]+|\#|\#\w+|\*)\] </match>
+    </context>
+
+    <context id="citation" style-ref="directive">
+      <match>^\s*\.\. \[\w+\] </match>
     </context>
 
     <context id="link-target" class="no-spell-check" style-ref="directive">
@@ -163,6 +167,7 @@
         <context ref="directive"/>
         <context ref="link-target"/>
         <context ref="footnotes"/>
+        <context ref="citation"/>
         <context ref="comment"/>
         <context ref="comment-single"/>
         <context ref="title-adornment"/>
