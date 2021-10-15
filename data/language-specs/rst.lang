@@ -101,42 +101,50 @@
       <match>^\s*:.+?:</match>
     </context>
 
+    <define-regex id="legal-start" extended="true">
+      ((?&lt;=(\s|[-:/'"&lt;([{‘’“”‚„]))|^)
+    </define-regex>
+
+    <define-regex id="legal-end" extended="true">
+      ((?=(\s|[-.,:;!?\\/'")\]}&gt;‘’“”‚„]))|$)
+    </define-regex>
+
     <context id="strong-emphasis" style-ref="strong-emphasis">
-      <start>\*\*(?!(\s|$))</start>
-      <end>(?&lt;!\s)\*\*</end>
+      <start>(\%{legal-start})\*\*(?!(\s|$))</start>
+      <end>(?&lt;!\s)\*\*(\%{legal-end})</end>
     </context>
 
     <context id="emphasis" style-ref="emphasis">
-      <start>\*(?!(\s|$))</start>
-      <end>(?&lt;!\s)\*</end>
+      <start>(\%{legal-start})\*(?!(\s|$))</start>
+      <end>(?&lt;!\s)\*(\%{legal-end})</end>
     </context>
 
     <context id="links">
       <include>
         <context id="target" style-ref="link">
-          <start>_`(?!(\s|$))</start>
-          <end>(?&lt;!\s)`</end>
+          <start>(\%{legal-start})_`(?!(\s|$))</start>
+          <end>(?&lt;!\s)`(\%{legal-end})</end>
         </context>
         <context id="link" style-ref="link">
-          <start>`(?!(\s|$|`))</start>
-          <end>(?&lt;!\s)`__?</end>
+          <start>(\%{legal-start})`(?!(\s|$|`))</start>
+          <end>(?&lt;!\s)`__?(\%{legal-end})</end>
         </context>
         <context id="simple-link" style-ref="link">
-          <match>[^\W_]\w*_(\%{legal-end})</match>
+          <match>(\%{legal-start})[^\W_]\w*_(\%{legal-end})</match>
         </context>
       </include>
     </context>
 
     <context id="substitution" style-ref="substitution">
-      <start>\|(?!(\s|$))</start>
-      <end>(?&lt;!\s)\|</end>
+      <start>(\%{legal-start})\|(?!(\s|$))</start>
+      <end>(?&lt;!\s)\|(\%{legal-end})</end>
     </context>
 
     <context id="literals">
       <include>
         <context id="inline-literals" class="no-spell-check" style-ref="code">
-          <start>``(?!(\s|$))</start>
-          <end>(?&lt;!\s)``</end>
+          <start>(\%{legal-start})``(?!(\s|$))</start>
+          <end>(?&lt;!\s)``(\%{legal-end})</end>
         </context>
       </include>
     </context>
