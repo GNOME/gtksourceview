@@ -111,8 +111,20 @@
       <end>(?&lt;!\s)\*</end>
     </context>
 
-    <context id="link" style-ref="link">
-      <match>(\S+_\b)|(`\b.*?\b`_)</match>
+    <context id="links">
+      <include>
+        <context id="target" style-ref="link">
+          <start>_`(?!(\s|$))</start>
+          <end>(?&lt;!\s)`</end>
+        </context>
+        <context id="link" style-ref="link">
+          <start>`(?!(\s|$|`))</start>
+          <end>(?&lt;!\s)`__?</end>
+        </context>
+        <context id="simple-link" style-ref="link">
+          <match>[^\W_]\w*_(\%{legal-end})</match>
+        </context>
+      </include>
     </context>
 
     <context id="substitution" style-ref="substitution">
@@ -146,7 +158,7 @@
         <context ref="field"/>
         <context ref="strong-emphasis"/>
         <context ref="emphasis"/>
-        <context ref="link"/>
+        <context ref="links"/>
         <context ref="substitution"/>
         <context ref="literals"/>
         <context ref="url"/>
