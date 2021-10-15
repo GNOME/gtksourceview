@@ -99,7 +99,7 @@
     </context>
 
     <context id="field" style-ref="bullet">
-      <match>^\s*:.+?:</match>
+      <match>:(?![: ])([^:\\]|\\.|:(?!([ `]|$)))*(?&lt;! ):( +|$)</match>
     </context>
 
     <define-regex id="legal-start" extended="true">
