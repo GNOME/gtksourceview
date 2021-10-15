@@ -33,6 +33,7 @@
     <style id="bullet" name="Bullet" map-to="def:list-marker"/>
     <style id="directive" name="Directive" map-to="def:constant"/>
     <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="interpreted" name="Interpreted" map-to="def:identifier"/>
     <style id="link" name="Link" map-to="def:link-text"/>
     <style id="substitution" name="Substitution" map-to="def:type"/>
     <style id="code" name="Code" map-to="def:inline-code"/>
@@ -119,27 +120,6 @@
       <end>(?&lt;!\s)\*(\%{legal-end})</end>
     </context>
 
-    <context id="links">
-      <include>
-        <context id="target" style-ref="link">
-          <start>(\%{legal-start})_`(?!(\s|$))</start>
-          <end>(?&lt;!\s)`(\%{legal-end})</end>
-        </context>
-        <context id="link" style-ref="link">
-          <start>(\%{legal-start})`(?!(\s|$|`))</start>
-          <end>(?&lt;!\s)`__?(\%{legal-end})</end>
-        </context>
-        <context id="simple-link" style-ref="link">
-          <match>(\%{legal-start})[^\W_]\w*_(\%{legal-end})</match>
-        </context>
-      </include>
-    </context>
-
-    <context id="substitution" style-ref="substitution">
-      <start>(\%{legal-start})\|(?!(\s|$))</start>
-      <end>(?&lt;!\s)\|_?_?(\%{legal-end})</end>
-    </context>
-
     <context id="literals">
       <include>
         <context id="inline-literals" class="no-spell-check" style-ref="code">
@@ -147,6 +127,31 @@
           <end>(?&lt;!\s)``(\%{legal-end})</end>
         </context>
       </include>
+    </context>
+
+    <context id="target" style-ref="link">
+      <start>(\%{legal-start})_`(?!(\s|$))</start>
+      <end>(?&lt;!\s)`(\%{legal-end})</end>
+    </context>
+
+    <context id="interpreted" style-ref="interpreted">
+      <start>(\%{legal-start}):[\w:]+:`(?!(\s|$))</start>
+      <end>(?&lt;!\s)`(\%{legal-end})</end>
+    </context>
+
+    <!-- FIXME: Can we separate these two somehow? -->
+    <context id="interpreted-or-link" style-ref="link">
+      <start>(\%{legal-start})`(?!(\s|$))</start>
+      <end>(?&lt;!\s)`(:[\w:]+:)?_?_?(\%{legal-end})</end>
+    </context>
+
+    <context id="simple-link" style-ref="link">
+      <match>(\%{legal-start})[^\W_]\w*_(\%{legal-end})</match>
+    </context>
+
+    <context id="substitution" style-ref="substitution">
+      <start>(\%{legal-start})\|(?!(\s|$))</start>
+      <end>(?&lt;!\s)\|_?_?(\%{legal-end})</end>
     </context>
 
     <context id="url" style-ref="url">
@@ -166,9 +171,12 @@
         <context ref="field"/>
         <context ref="strong-emphasis"/>
         <context ref="emphasis"/>
-        <context ref="links"/>
-        <context ref="substitution"/>
         <context ref="literals"/>
+        <context ref="target"/>
+        <context ref="interpreted"/>
+        <context ref="interpreted-or-link"/>
+        <context ref="simple-link"/>
+        <context ref="substitution"/>
         <context ref="url"/>
       </include>
     </context>
