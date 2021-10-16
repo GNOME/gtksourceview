@@ -195,8 +195,12 @@ ensure_dialog (GtkSourceStyleSchemeChooserButton *button)
 	content_area = gtk_dialog_get_content_area (GTK_DIALOG (dialog));
 	gtk_box_append (GTK_BOX (content_area), scrolled_window);
 
-	priv->chooser = GTK_SOURCE_STYLE_SCHEME_CHOOSER_WIDGET (gtk_source_style_scheme_chooser_widget_new ());
-	gtk_widget_show (GTK_WIDGET (priv->chooser));
+	priv->chooser = g_object_new (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET,
+	                              "margin-top", 24,
+	                              "margin-bottom", 24,
+	                              "margin-start", 24,
+	                              "margin-end", 24,
+	                              NULL);
 	gtk_source_style_scheme_chooser_set_style_scheme (GTK_SOURCE_STYLE_SCHEME_CHOOSER (priv->chooser),
 	                                                  priv->scheme);
 
