@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-07-04 16:02+0000\n"
-"PO-Revision-Date: 2021-07-11 12:45+0200\n"
+"POT-Creation-Date: 2021-10-13 11:26+0000\n"
+"PO-Revision-Date: 2021-10-17 13:20+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -61,6 +61,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -99,8 +100,8 @@ msgstr ""
 #: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
 #: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
 #: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
-#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
-#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
+#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
 #: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
 #: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
 #: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
@@ -299,25 +300,35 @@ msgstr "Plik spec formatu RPM"
 msgid "Tera Template"
 msgstr "Szablon Tera"
 
-#. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
-#: Adwaita-dark.style-scheme.xml:20
+#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
+#: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
 msgstr "Ciemna Adwaita"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.style-scheme.xml:22
+#: Adwaita-dark.xml:22
 msgid "A dark color scheme matching GTK's default theme"
 msgstr "Ciemny schemat kolorów pasujący do domyślnego motywu GTK"
 
-#. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
-#: Adwaita.style-scheme.xml:20
+#. (itstool) path: Adwaita.xml/style-scheme@_name
+#: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita.style-scheme.xml:22
+#: Adwaita.xml:22
 msgid "A color scheme matching GTK's default theme"
 msgstr "Schemat kolorów pasujący do domyślnego motywu GTK"
+
+#. (itstool) path: classic-dark.xml/style-scheme@_name
+#: classic-dark.xml:22
+msgid "Classic Dark"
+msgstr "Ciemny klasyczny"
+
+#. (itstool) path: style-scheme/_description
+#: classic-dark.xml:24
+msgid "Classic dark color scheme"
+msgstr "Klasyczny ciemny schemat kolorów"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -340,9 +351,14 @@ msgid "Blue based color scheme"
 msgstr "Niebieski schemat kolorów"
 
 #. (itstool) path: style-scheme/_description
+#: kate-dark.xml:24
+msgid "Dark color scheme used in the Kate text editor"
+msgstr "Ciemny schemat kolorów używany w edytorze tekstu Kate"
+
+#. (itstool) path: style-scheme/_description
 #: kate.xml:25
 msgid "Color scheme used in the Kate text editor"
-msgstr "Schemat kolorów używany w edytorze tekstowym Kate"
+msgstr "Schemat kolorów używany w edytorze tekstu Kate"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
 #: oblivion.xml:24
@@ -689,63 +705,63 @@ msgstr "_Anuluj"
 msgid "_Select"
 msgstr "_Wybierz"
 
-#: gtksourceview/gtksourceview.c:1812
+#: gtksourceview/gtksourceview.c:1825
 msgid "All _Upper Case"
 msgstr "Wszystko _wielkimi literami"
 
-#: gtksourceview/gtksourceview.c:1816
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Lower Case"
 msgstr "Wszystko _małymi literami"
 
-#: gtksourceview/gtksourceview.c:1820
+#: gtksourceview/gtksourceview.c:1833
 msgid "_Invert Case"
 msgstr "_Odwróć wielkość liter"
 
-#: gtksourceview/gtksourceview.c:1824
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "Jak W _Tytule"
 
-#: gtksourceview/gtksourceview.c:1828
+#: gtksourceview/gtksourceview.c:1841
 msgid "C_hange Case"
 msgstr "_Zmień wielkość liter"
 
-#: gtksourceview/implregex.c:600
+#: gtksourceview/implregex.c:609
 msgid "hexadecimal digit or “}” expected"
 msgstr "oczekiwano cyfry szesnastkowej lub znaku „}”"
 
-#: gtksourceview/implregex.c:616
+#: gtksourceview/implregex.c:625
 msgid "hexadecimal digit expected"
 msgstr "oczekiwano cyfry szesnastkowej"
 
-#: gtksourceview/implregex.c:656
+#: gtksourceview/implregex.c:665
 msgid "missing “<” in symbolic reference"
 msgstr "brak znaku „<” w referencji symbolicznej"
 
-#: gtksourceview/implregex.c:665
+#: gtksourceview/implregex.c:674
 msgid "unfinished symbolic reference"
 msgstr "niezakończona referencja symboliczna"
 
-#: gtksourceview/implregex.c:672
+#: gtksourceview/implregex.c:681
 msgid "zero-length symbolic reference"
 msgstr "referencja symboliczna o zerowej długości"
 
-#: gtksourceview/implregex.c:683
+#: gtksourceview/implregex.c:692
 msgid "digit expected"
 msgstr "oczekiwano cyfry"
 
-#: gtksourceview/implregex.c:701
+#: gtksourceview/implregex.c:710
 msgid "illegal symbolic reference"
 msgstr "niedozwolona referencja symboliczna"
 
-#: gtksourceview/implregex.c:764
+#: gtksourceview/implregex.c:773
 msgid "stray final “\\”"
 msgstr "pominięto końcowe „\\”"
 
-#: gtksourceview/implregex.c:768
+#: gtksourceview/implregex.c:777
 msgid "unknown escape sequence"
 msgstr "nieznana sekwencja sterująca"
 
-#: gtksourceview/implregex.c:778
+#: gtksourceview/implregex.c:787
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Błąd podczas przetwarzania tekstu zastępczego „%s” przy znaku %lu: %s"
