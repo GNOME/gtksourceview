@@ -217,15 +217,16 @@ add_text (GtkSourceBuffer      *buffer,
 
 		if (runs[i].style)
 		{
-			GtkSourceStyle *style = gtk_source_style_scheme_get_style (scheme, runs[i].style);
+			const char *fallback = runs[i].style;
+			GtkSourceStyle *style = NULL;
 
-			if (style == NULL)
+			while (style == NULL && fallback != NULL)
 			{
-				const char *fallback = gtk_source_language_get_style_fallback (def, runs[i].style);
+				style = gtk_source_style_scheme_get_style (scheme, fallback);
 
-				if (fallback != NULL)
+				if (style == NULL)
 				{
-					style = gtk_source_style_scheme_get_style (scheme, fallback);
+					fallback = gtk_source_language_get_style_fallback (def, fallback);
 				}
 			}
 
