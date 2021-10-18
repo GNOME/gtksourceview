@@ -1,0 +1,18 @@
+vim_sources = files([
+  'gtksourcevim.c',
+  'gtksourcevimcharpending.c',
+  'gtksourcevimcommandbar.c',
+  'gtksourcevimcommand.c',
+  'gtksourceviminsert.c',
+  'gtksourceviminsertliteral.c',
+  'gtksourcevimjumplist.c',
+  'gtksourcevimmarks.c',
+  'gtksourcevimmotion.c',
+  'gtksourcevimnormal.c',
+  'gtksourcevimregisters.c',
+  'gtksourcevimreplace.c',
+  'gtksourcevimstate.c',
+  'gtksourcevimtexthistory.c',
+  'gtksourcevimtextobject.c',
+  'gtksourcevimvisual.c',
+])

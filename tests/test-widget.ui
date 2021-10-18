@@ -218,12 +218,22 @@
               </object>
             </child>
             <child>
+              <object class="GtkCheckButton" id="vim_checkbutton">
+                <property name="label">Vim Emulation</property>
+                <signal name="toggled" handler="vim_checkbutton_toggled_cb" object="TestWidget" swapped="yes"/>
+                <layout>
+                  <property name="row">13</property>
+                  <property name="column">0</property>
+                </layout>
+              </object>
+            </child>
+            <child>
               <object class="GtkCheckButton" id="enable_snippets">
                 <property name="label">Enable snippets</property>
                 <property name="can-focus">1</property>
                 <signal name="toggled" handler="enable_snippets_toggled_cb" object="TestWidget" swapped="yes"/>
                 <layout>
-                  <property name="row">13</property>
+                  <property name="row">14</property>
                   <property name="column">0</property>
                 </layout>
               </object>
@@ -234,7 +244,7 @@
                 <property name="can-focus">1</property>
                 <signal name="toggled" handler="enable_hover_toggled_cb" object="TestWidget" swapped="yes"/>
                 <layout>
-                  <property name="row">14</property>
+                  <property name="row">15</property>
                   <property name="column">0</property>
                 </layout>
               </object>
@@ -479,12 +489,22 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel" id="cursor_position_info">
-            <property name="halign">start</property>
-            <property name="label">Cursor position info</property>
-            <attributes>
-              <attribute name="font-features" value="tnum"/>
-            </attributes>
+          <object class="GtkBox">
+            <child>
+              <object class="GtkLabel" id="command_bar">
+                <property name="halign">start</property>
+                <property name="hexpand">true</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="cursor_position_info">
+                <property name="halign">end</property>
+                <property name="label">Cursor position info</property>
+                <attributes>
+                  <attribute name="font-features" value="tnum"/>
+                </attributes>
+              </object>
+            </child>
             <layout>
               <property name="column">0</property>
               <property name="row">1</property>

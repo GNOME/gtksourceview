@@ -37,6 +37,9 @@ testsuite_sources = [
   ['test-syntax'],
   ['test-utils'],
   ['test-view'],
+  ['test-vim-input'],
+  ['test-vim-state'],
+  ['test-vim-text-object'],
 ]
 
 foreach test: testsuite_sources
