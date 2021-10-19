@@ -293,7 +293,7 @@ test_link_args = [
   '-Wl,-z,relro',  # Read-only segments after relocation
 ]
 if not buildtype.startswith('debug')
-  add_global_arguments([
+  add_project_arguments([
     '-DG_DISABLE_ASSERT',
     '-DG_DISABLE_CAST_CHECKS',
   ], language: 'c')
