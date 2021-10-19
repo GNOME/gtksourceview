@@ -780,8 +780,8 @@ gtk_source_gutter_renderer_align_cell (GtkSourceGutterRenderer *renderer,
 
 	get_line_rect (renderer, line, &rect);
 
-	*x = rect.x + (rect.width - width) * priv->xalign;
-	*y = rect.y + (rect.height - height) * priv->yalign;
+	*x = rect.x + MAX (0, (rect.width - width)) * priv->xalign;
+	*y = rect.y + MAX (0, (rect.height - height)) * priv->yalign;
 }
 
 /**
