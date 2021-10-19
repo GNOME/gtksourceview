@@ -193,9 +193,9 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 		else
 		{
 			gtk_text_view_get_line_yrange (text_view,
-						       &iter,
-						       &info.y,
-						       &info.height);
+			                               &iter,
+			                               &info.y,
+			                               &info.height);
 
 			if (gtk_text_iter_starts_line (&iter) &&
 			    gtk_text_iter_ends_line (&iter))
