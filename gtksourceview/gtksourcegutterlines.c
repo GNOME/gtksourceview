@@ -209,11 +209,14 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 
 				if (needs_wrap_first)
 				{
-
-					gtk_text_view_get_iter_location (text_view,
-									 &iter,
-									 &rect);
+					gtk_text_view_get_iter_location (text_view, &iter, &rect);
 					info.first_height = rect.height;
+
+					if (info.y != rect.y)
+					{
+						info.height -= rect.y - info.y;
+						info.y = rect.y;
+					}
 				}
 				else
 				{
@@ -223,14 +226,27 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 				if (needs_wrap_last)
 				{
 					gtk_text_iter_forward_to_line_end (&iter);
-					gtk_text_view_get_iter_location (text_view,
-									 &iter,
-									 &rect);
+
+					/* Prefer the character right before \n to get
+					 * more accurate rectangle sizing.
+					 */
+					if (!gtk_text_iter_starts_line (&iter))
+					{
+						gtk_text_iter_backward_char (&iter);
+						gtk_text_view_get_iter_location (text_view, &iter, &rect);
+						gtk_text_iter_forward_char (&iter);
+					}
+					else
+					{
+						gtk_text_view_get_iter_location (text_view, &iter, &rect);
+					}
+
 					info.last_height = rect.height;
+					info.height = rect.y + rect.height - info.y;
 				}
 				else
 				{
-					info.last_height = info.height;
+					info.last_height = info.first_height;
 				}
 			}
 		}
