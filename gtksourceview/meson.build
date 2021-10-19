@@ -328,6 +328,8 @@ gtksource_dep = declare_dependency(
               sources: gtksource_dep_sources,
 )
 
+meson.override_dependency(package_string, gtksource_dep)
+
 gtksource_pc_reqs = [
   'glib-2.0 @0@'.format(glib_req),
   'gobject-2.0 @0@'.format(glib_req),
