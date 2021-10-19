@@ -31,8 +31,10 @@
     <style id="emphasis" name="Emphasis" map-to="def:emphasis"/>
     <style id="strong-emphasis" name="Strong Emphasis" map-to="def:strong-emphasis"/>
     <style id="bullet" name="Bullet" map-to="def:list-marker"/>
+    <style id="lineblock" name="Line block" map-to="def:string"/>
     <style id="directive" name="Directive" map-to="def:constant"/>
     <style id="comment" name="Comment" map-to="def:comment"/>
+    <style id="interpreted" name="Interpreted" map-to="def:identifier"/>
     <style id="link" name="Link" map-to="def:link-text"/>
     <style id="substitution" name="Substitution" map-to="def:type"/>
     <style id="code" name="Code" map-to="def:inline-code"/>
@@ -42,29 +44,58 @@
   <definitions>
 
     <context id="directive" class="no-spell-check" style-ref="directive">
-      <match>^\s*\.\. .*::.*$</match>
+      <start>^(\s*)\.\. \w*::</start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
     </context>
 
     <context id="footnotes" style-ref="directive">
-      <match>^\s*\.\. \[.+\] .*$</match>
+      <start>^(\s*)\.\. \[([0-9]+|\#|\#\w+|\*)\] </start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
+    </context>
+
+    <context id="citation" style-ref="directive">
+      <start>^(\s*)\.\. \[\w+\] </start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
     </context>
 
     <context id="link-target" class="no-spell-check" style-ref="directive">
-      <match>^\s*\.\. _.*:.*$</match>
+      <start>^(\s*)\.\. _.*:</start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
     </context>
 
     <context id="comment" style-ref="comment">
-      <start>^(\s*)\.\.(\s+).+$</start>
-      <end>^(?!(\%{1@start}  \%{2@start})|(^$))</end>
+      <start>^(\s*)\.\.\s*.+$</start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
     </context>
 
     <context id="comment-single" style-ref="comment">
-      <start>^(\s*)\.\.(\s*)$</start>
-      <end>x</end>
+      <start>^(\s*)\.\.\s*$</start>
+      <end>^(?!(\%{1@start}   )|(\s*$))</end>
       <include>
-        <context id="comment-single-block" style-ref="comment" end-parent="true">
-          <start>(\s*).+$</start>
-          <end>^(?!(\%{1@start}))</end>
+        <context id="comment-non-empty-block" extend-parent="false" end-parent="true">
+          <start>^(\s*)\S</start>
+          <end>^(?!(\%{1@start})|(\s*$))</end>
+        </context>
+        <context id="comment-empty-block" extend-parent="false" end-parent="true">
+          <match>^\s*$</match>
+        </context>
+      </include>
+    </context>
+
+    <context id="literal-block">
+      <include>
+        <context id="literal-indented" style-ref="code">
+          <start>^(\s*)::\s*$</start>
+          <end>^(?!(\%{1@start}   )|(\s*$))</end>
+        </context>
+        <context id="literal-quoted" style-ref="code">
+          <start>(?&lt;!:)::\s*$</start>
+          <include>
+            <context id="literal-quoted-block" end-parent="true">
+              <start>^(\s*)\S</start>
+              <end>^(?!(\%{1@start})|(\s*$))</end>
+            </context>
+          </include>
         </context>
       </include>
     </context>
@@ -77,40 +108,85 @@
       <match>^\s*[\*\+\-•‣⁃] </match>
     </context>
 
+    <define-regex id="roman-upper" extended="true">
+      (M*(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3}))
+    </define-regex>
+
+    <define-regex id="roman-lower" extended="true">
+      (m*(c[md]|d?c{0,3})(x[cl]|l?x{0,3})(i[xc]|c?i{0,3}))
+    </define-regex>
+
+    <define-regex id="roman-numerals" extended="true">
+      ((\%{roman-upper})|(\%{roman-lower}))
+    </define-regex>
+
     <define-regex id="enumerator-chars" extended="true">
-      ([a-zA-Z]|([0-9]+))
+      ([#]|[a-zA-Z]|([0-9]+)|(\%{roman-numerals}))
     </define-regex>
 
     <context id="enumerator" style-ref="bullet">
       <match>^\s*((\%{enumerator-chars}\.)|(\(?\%{enumerator-chars}\)) )</match>
     </context>
 
-    <context id="field" style-ref="bullet">
-      <match>^\s*:.+?:</match>
+    <context id="lineblock" style-ref="lineblock">
+      <start>^(\s*)\| \S</start>
+      <end>^(?!(\%{1@start}(  |\|))|(\s*$))</end>
     </context>
 
+    <context id="field" style-ref="bullet">
+      <match>:(?![: ])([^:\\]|\\.|:(?!([ `]|$)))*(?&lt;! ):( +|$)</match>
+    </context>
+
+    <define-regex id="legal-start" extended="true">
+      ((?&lt;=(\s|[-:/'"&lt;([{‘’“”‚„]))|^)
+    </define-regex>
+
+    <define-regex id="legal-end" extended="true">
+      ((?=(\s|[-.,:;!?\\/'")\]}&gt;‘’“”‚„]))|$)
+    </define-regex>
+
     <context id="strong-emphasis" style-ref="strong-emphasis">
-      <match>\*\*(?!\s).+?(?!\s)\*\*</match>
+      <start>(\%{legal-start})\*\*(?!(\s|$))</start>
+      <end>(?&lt;!\s)\*\*(\%{legal-end})</end>
     </context>
 
     <context id="emphasis" style-ref="emphasis">
-      <match>\*(?!\s).+?(?!\s)\*</match>
-    </context>
-
-    <context id="link" style-ref="link">
-      <match>(\S+_\b)|(`\b.*?\b`_)</match>
-    </context>
-
-    <context id="substitution" style-ref="substitution">
-      <match>\|\b.*\b\|</match>
+      <start>(\%{legal-start})\*(?!(\s|$))</start>
+      <end>(?&lt;!\s)\*(\%{legal-end})</end>
     </context>
 
     <context id="literals">
       <include>
         <context id="inline-literals" class="no-spell-check" style-ref="code">
-          <match>``(?!\s).*(?!\s)``</match>
+          <start>(\%{legal-start})``(?!(\s|$))</start>
+          <end>(?&lt;!\s)``(\%{legal-end})</end>
         </context>
       </include>
+    </context>
+
+    <context id="target" style-ref="link">
+      <start>(\%{legal-start})_`(?!(\s|$))</start>
+      <end>(?&lt;!\s)`(\%{legal-end})</end>
+    </context>
+
+    <context id="interpreted" style-ref="interpreted">
+      <start>(\%{legal-start}):[\w:]+:`(?!(\s|$))</start>
+      <end>(?&lt;!\s)`(\%{legal-end})</end>
+    </context>
+
+    <!-- FIXME: Can we separate these two somehow? -->
+    <context id="interpreted-or-link" style-ref="link">
+      <start>(\%{legal-start})`(?!(\s|$))</start>
+      <end>(?&lt;!\s)`(:[\w:]+:)?_?_?(\%{legal-end})</end>
+    </context>
+
+    <context id="simple-link" style-ref="link">
+      <match>(\%{legal-start})[^\W_]\w*_(\%{legal-end})</match>
+    </context>
+
+    <context id="substitution" style-ref="substitution">
+      <start>(\%{legal-start})\|(?!(\s|$))</start>
+      <end>(?&lt;!\s)\|_?_?(\%{legal-end})</end>
     </context>
 
     <context id="url" style-ref="url">
@@ -122,17 +198,23 @@
         <context ref="directive"/>
         <context ref="link-target"/>
         <context ref="footnotes"/>
+        <context ref="citation"/>
         <context ref="comment"/>
         <context ref="comment-single"/>
+        <context ref="literal-block"/>
         <context ref="title-adornment"/>
         <context ref="bullet"/>
         <context ref="enumerator"/>
+        <context ref="lineblock"/>
         <context ref="field"/>
         <context ref="strong-emphasis"/>
         <context ref="emphasis"/>
-        <context ref="link"/>
-        <context ref="substitution"/>
         <context ref="literals"/>
+        <context ref="target"/>
+        <context ref="interpreted"/>
+        <context ref="interpreted-or-link"/>
+        <context ref="simple-link"/>
+        <context ref="substitution"/>
         <context ref="url"/>
       </include>
     </context>

@@ -29,3 +29,15 @@ This is a sentence with a `http-link <http://www.wikipedia.org/>`_, a `https-lin
 .. math::
 
   \lambda = \lambda_{0} + \arctan \left[ \frac{x}{-y} \right]
+
+`This is the
+first item`
+
+`This is the
+second item`_
+
+`This is the
+third item`_
+
+`This is the
+fourth item`
