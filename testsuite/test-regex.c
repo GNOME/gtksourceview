@@ -217,7 +217,7 @@ test_issue_198 (void)
   GError *error = NULL;
   ImplRegex *re = impl_regex_new ("(a)*", 0, 0, &error);
   ImplMatchInfo *mi = NULL;
-  g_autofree char *aaa = g_malloc (8192);
+  char *aaa = g_malloc (8192);
   gboolean r;
 
   g_assert_no_error (error);
@@ -230,6 +230,7 @@ test_issue_198 (void)
   g_assert_nonnull (mi);
   g_assert_true (r);
 
+  g_free (aaa);
   g_clear_pointer (&mi, impl_match_info_free);
   g_clear_pointer (&re, impl_regex_unref);
 }

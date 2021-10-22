@@ -6,12 +6,13 @@ finished_cb (GObject      *object,
              GAsyncResult *result,
              gpointer      user_data)
 {
-  g_autoptr(GError) error = NULL;
+  GError *error = NULL;
   GMainLoop *loop = user_data;
 
   if (!gtk_source_file_loader_load_finish (GTK_SOURCE_FILE_LOADER (object), result, &error))
     g_printerr ("Error loading file: %s\n", error->message);
 
+  g_clear_error (&error);
   g_main_loop_quit (loop);
 }
 
@@ -19,11 +20,11 @@ int
 main (int argc,
       char *argv[])
 {
-  g_autoptr(GFile) file = NULL;
-  g_autoptr(GMainLoop) loop = NULL;
-  g_autoptr(GtkSourceBuffer) buffer = NULL;
-  g_autoptr(GtkSourceFile) sfile = NULL;
-  g_autoptr(GtkSourceFileLoader) loader = NULL;
+  GFile *file = NULL;
+  GMainLoop *loop = NULL;
+  GtkSourceBuffer *buffer = NULL;
+  GtkSourceFile *sfile = NULL;
+  GtkSourceFileLoader *loader = NULL;
 
   if (argc != 2)
     {
@@ -44,5 +45,10 @@ main (int argc,
 
   g_main_loop_run (loop);
 
+  g_object_unref (loader);
+  g_object_unref (sfile);
+  g_object_unref (buffer);
+  g_object_unref (file);
+  g_main_loop_unref (loop);
   return EXIT_SUCCESS;
 }
