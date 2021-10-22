@@ -20,6 +20,7 @@
 #include "config.h"
 
 #include <errno.h>
+#include <stdlib.h>
 
 #include "gtksourcesnippetbundle-private.h"
 #include "gtksourcesnippetchunk.h"
