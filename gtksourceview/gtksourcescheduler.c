@@ -117,11 +117,13 @@ get_interval (GtkSourceScheduler *self)
 
 		for (guint i = 0; i < n_items; i++)
 		{
-			g_autoptr(GdkMonitor) monitor = g_list_model_get_item (monitors, i);
+			GdkMonitor *monitor = g_list_model_get_item (monitors, i);
 			gint64 interval = gdk_monitor_get_refresh_rate (monitor);
 
 			if (interval != 0 && interval < lowest_interval)
 				lowest_interval = interval;
+
+			g_object_unref (monitor);
 		}
 
 		self->interval = (double)G_USEC_PER_SEC / (double)lowest_interval * 1000.0;

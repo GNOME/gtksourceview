@@ -116,7 +116,7 @@ gtk_source_binding_group_connect (GtkSourceBindingGroup *self,
 #ifdef DEBUG_BINDINGS
 	{
 		GFlagsClass *flags_class;
-		g_autofree gchar *flags_str = NULL;
+		gchar *flags_str = NULL;
 
 		flags_class = g_type_class_ref (G_TYPE_BINDING_FLAGS);
 		flags_str = _g_flags_to_string (flags_class, lazy_binding->binding_flags);
@@ -130,6 +130,7 @@ gtk_source_binding_group_connect (GtkSourceBindingGroup *self,
 		         lazy_binding->target_property,
 		         flags_str);
 
+		g_free (flags_str);
 		g_type_class_unref (flags_class);
 	}
 #endif
