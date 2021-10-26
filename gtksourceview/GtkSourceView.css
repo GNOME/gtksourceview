@@ -1,13 +1,15 @@
 @define-color selected_border_color shade(@theme_selected_bg_color, 0.9);
+@define-color shadow_color rgba(0,0,0,0.09);
 
 GtkSourceAssistant {
   background-color: @theme_bg_color;
-  border-radius: 7px;
+  border-radius: 11px;
   font: initial;
-  margin: 10px 10px 10px 10px;
-  box-shadow: 0 3px 5px 1px @wm_shadow,
-              0 0 0 1px alpha(@wm_border, 1);
-  outline: 1px solid alpha(@wm_highlight, 0.25);
+  margin: 20px;
+  box-shadow: 0 3px 14px 7px @shadow_color,
+              0 0 0 1px alpha(@shadow_color, 1);
+  outline: 1px solid alpha(@shadow_color, 0.1);
+  outline-offset: -1px;
   background: @theme_bg_color;
 }
 
@@ -20,14 +22,14 @@ GtkSourceAssistant.completion scrollbar.vertical slider {
   min-height: 10px;
 }
 GtkSourceAssistant.completion scrollbar.vertical {
-  border-top-right-radius: 5px;
+  border-top-right-radius: 11px;
 }
 GtkSourceAssistant.completion scrolledwindow:last-child scrollbar.vertical {
-  border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 11px;
 }
 GtkSourceAssistant.completion list {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
   margin: 0px;
 }
 GtkSourceAssistant.completion list,
@@ -40,12 +42,12 @@ GtkSourceAssistant.completion list row {
   box-shadow: none;
 }
 GtkSourceAssistant.completion list row:first-child {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
 }
 GtkSourceAssistant.completion scrolledwindow:last-child list row:last-child {
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
 }
 GtkSourceAssistant.completion list row cell.icon {
   padding: 6px;
@@ -73,8 +75,8 @@ GtkSourceAssistant.completion list row box.more button image {
 }
 GtkSourceAssistant.completion box.details {
   border-top: 1px solid @borders;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
   background-color: @theme_bg_color;
   padding-left: 6px;
   padding-right: 3px;
