@@ -181,14 +181,13 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 
 		if G_LIKELY (single_line)
 		{
-			GdkRectangle rect;
+			/* Need to use yrange so that line-height can be taken
+			 * into account.
+			 */
+			gtk_text_view_get_line_yrange (text_view, &iter, &info.y, &info.height);
 
-			gtk_text_view_get_iter_location (text_view, &iter, &rect);
-
-			info.y = rect.y;
-			info.height = rect.height;
-			info.first_height = rect.height;
-			info.last_height = rect.height;
+			info.first_height = info.height;
+			info.last_height = info.height;
 		}
 		else
 		{
@@ -210,13 +209,9 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 				if (needs_wrap_first)
 				{
 					gtk_text_view_get_iter_location (text_view, &iter, &rect);
-					info.first_height = rect.height;
 
-					if (info.y != rect.y)
-					{
-						info.height -= rect.y - info.y;
-						info.y = rect.y;
-					}
+					/* Try to somewhat handle line-height correctly */
+					info.first_height = ((rect.y - info.y) * 2) + rect.height;
 				}
 				else
 				{
@@ -241,8 +236,8 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 						gtk_text_view_get_iter_location (text_view, &iter, &rect);
 					}
 
-					info.last_height = rect.height;
-					info.height = rect.y + rect.height - info.y;
+					/* Try to somewhat handle line-height correctly */
+					info.last_height = ((info.y + info.height) - (rect.y + rect.height)) * 2 + rect.height;
 				}
 				else
 				{
