@@ -12,7 +12,7 @@ GtkSourceAssistant {
 }
 
 GtkSourceAssistant.completion {
-  background-color: @content_view_bg;
+  background-color: @theme_base_color;
   border: none;
   min-width: 150px;
 }
