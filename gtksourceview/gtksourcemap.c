@@ -1191,7 +1191,7 @@ gtk_source_map_constructed (GObject *object)
 {
 	G_OBJECT_CLASS (gtk_source_map_parent_class)->constructed (object);
 
-#ifdef ENABLE_FONT_CONFIG
+#if ENABLE_FONT_CONFIG
 	load_override_font (GTK_SOURCE_MAP (object));
 #endif
 }
