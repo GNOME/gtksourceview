@@ -151,8 +151,8 @@ gtk_source_gutter_renderer_text_snapshot_line (GtkSourceGutterRenderer *renderer
 
 	gtk_snapshot_render_layout (snapshot,
 	                            gtk_widget_get_style_context (GTK_WIDGET (text)),
-	                            x,
-	                            y,
+	                            ceilf (x),
+	                            ceilf (y),
 	                            layout);
 
 	if (priv->is_markup)
