@@ -652,12 +652,15 @@ _gtk_source_view_jump_to_iter (GtkTextView       *text_view,
   int screen_yoffset;
   int current_x_scroll;
   int current_y_scroll;
+  int top_margin;
 
   g_return_if_fail (GTK_IS_TEXT_VIEW (text_view));
   g_return_if_fail (iter != NULL);
   g_return_if_fail (within_margin >= 0.0 && within_margin <= 0.5);
   g_return_if_fail (xalign >= 0.0 && xalign <= 1.0);
   g_return_if_fail (yalign >= 0.0 && yalign <= 1.0);
+
+  g_object_get (text_view, "top-margin", &top_margin, NULL);
 
   hadj = gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (text_view));
   vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (text_view));
@@ -753,5 +756,5 @@ _gtk_source_view_jump_to_iter (GtkTextView       *text_view,
   xvalue += current_x_scroll;
 
   gtk_adjustment_set_value (hadj, xvalue);
-  gtk_adjustment_set_value (vadj, yvalue);
+  gtk_adjustment_set_value (vadj, yvalue + top_margin);
 }
