@@ -1,7 +1,7 @@
 project('gtksourceview', 'c',
           version: '5.3.0',
           license: 'LGPL-2.1-or-later',
-    meson_version: '>= 0.53.0',
+    meson_version: '>= 0.59.0',
   default_options: [ 'c_std=gnu99',
                      'buildtype=debugoptimized',
                      'warning_level=2' ],
@@ -37,8 +37,8 @@ package_string = '@0@-@1@'.format(package_name, api_version)
 
 # Paths
 rootdir = include_directories('.')
-srcdir = meson.source_root()
-builddir = meson.build_root()
+srcdir = meson.project_source_root()
+builddir = meson.project_build_root()
 
 prefix = get_option('prefix')
 
@@ -293,7 +293,7 @@ test_link_args = [
   '-Wl,-z,relro',  # Read-only segments after relocation
 ]
 if not buildtype.startswith('debug')
-  add_global_arguments([
+  add_project_arguments([
     '-DG_DISABLE_ASSERT',
     '-DG_DISABLE_CAST_CHECKS',
   ], language: 'c')
