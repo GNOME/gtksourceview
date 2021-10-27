@@ -37,8 +37,8 @@ package_string = '@0@-@1@'.format(package_name, api_version)
 
 # Paths
 rootdir = include_directories('.')
-srcdir = meson.source_root()
-builddir = meson.build_root()
+srcdir = meson.project_source_root()
+builddir = meson.project_build_root()
 
 prefix = get_option('prefix')
 
