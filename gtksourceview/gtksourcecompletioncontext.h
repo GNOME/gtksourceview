@@ -48,9 +48,6 @@ gboolean                       gtk_source_completion_context_get_bounds         
                                                                                          GtkTextIter                 *begin,
                                                                                          GtkTextIter                 *end);
 GTK_SOURCE_AVAILABLE_IN_5_0
-void                           gtk_source_completion_context_get_start_iter             (GtkSourceCompletionContext  *self,
-                                                                                         GtkTextIter                 *iter);
-GTK_SOURCE_AVAILABLE_IN_5_0
 gboolean                       gtk_source_completion_context_get_empty                  (GtkSourceCompletionContext  *self);
 GTK_SOURCE_AVAILABLE_IN_5_0
 char                          *gtk_source_completion_context_get_word                   (GtkSourceCompletionContext  *self);
