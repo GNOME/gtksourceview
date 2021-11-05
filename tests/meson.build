@@ -38,7 +38,7 @@ foreach test_name, test_sources: tests_sources
   if get_option('install_tests')
     if test_name == 'widget'
       executable('gtksourceview@0@-widget'.format(api_version), test_sources,
-              c_args: tests_c_args,
+              c_args: tests_c_args + deprecated_c_args,
         dependencies: tests_deps,
              install: true,
       )
@@ -48,7 +48,7 @@ foreach test_name, test_sources: tests_sources
   # MSVC builds: We need items from the main GtkSourceView .lib as
   # well as the static core lib
   executable('test-@0@'.format(test_name), test_sources,
-          c_args: tests_c_args,
+          c_args: tests_c_args + deprecated_c_args,
     dependencies: tests_deps,
   )
 endforeach

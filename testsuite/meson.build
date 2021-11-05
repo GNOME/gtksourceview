@@ -57,7 +57,7 @@ foreach test: testsuite_sources
   # get installed in the vast majority of cases, that is worth the extra
   # link and size bloat to make the common case better.
   test_exe = executable(test_name, test_sources,
-          c_args: testsuite_c_args,
+          c_args: testsuite_c_args + deprecated_c_args,
     dependencies: [core_dep, completionwords_dep],
          install: get_option('install_tests'),
      install_dir: testexecdir

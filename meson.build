@@ -122,8 +122,7 @@ gtk_version_arr = gtk_req_version.split('.')
 gtk_major_version = gtk_version_arr[0]
 gtk_minor_version = gtk_version_arr[1]
 
-# Configurations
-add_project_arguments([
+deprecated_c_args = [
   '-DG_DISABLE_DEPRECATED',
   '-DGDK_DISABLE_DEPRECATED',
   '-DGTK_DISABLE_DEPRECATED',
@@ -132,7 +131,7 @@ add_project_arguments([
   '-DGDK_VERSION_MAX_ALLOWED=GDK_VERSION_@0@_@1@'.format(gtk_major_version, gtk_minor_version),
   '-DGLIB_VERSION_MIN_REQUIRED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
   '-DGLIB_VERSION_MAX_ALLOWED=GLIB_VERSION_@0@_@1@'.format(glib_major_version, glib_minor_version),
-], language: 'c')
+]
 
 config_h = configuration_data()
 config_h.set_quoted('GETTEXT_PACKAGE', package_string)

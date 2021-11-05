@@ -233,7 +233,7 @@ core_enums_h = core_enums.get(1)
 core_lib = static_library(package_string + 'core', core_sources,
   include_directories: gtksourceview_include_dirs,
          dependencies: core_deps,
-               c_args: core_c_args,
+               c_args: core_c_args + deprecated_c_args,
               install: false
 )
 
@@ -261,7 +261,7 @@ gtksource_lib = library(package_string,
     include_directories: gtksourceview_include_dirs,
            dependencies: gtksource_deps,
              link_whole: gtksource_libs,
-                 c_args: core_c_args,
+                 c_args: core_c_args + deprecated_c_args,
               link_args: release_link_args,
                 install: true,
   gnu_symbol_visibility: 'hidden',
