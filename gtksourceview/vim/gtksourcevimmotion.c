@@ -1909,6 +1909,7 @@ gtk_source_vim_motion_repeat (GtkSourceVimState *state)
 {
 	GtkSourceVimMotion *self = (GtkSourceVimMotion *)state;
 	GtkSourceBuffer *buffer;
+	GtkSourceView *view;
 	GtkTextIter iter;
 	int count;
 
@@ -1919,6 +1920,7 @@ gtk_source_vim_motion_repeat (GtkSourceVimState *state)
 		return;
 	}
 
+	view = gtk_source_vim_state_get_view (state);
 	buffer = gtk_source_vim_state_get_buffer (state, &iter, NULL);
 	count = get_adjusted_count (self);
 
@@ -1945,6 +1947,9 @@ gtk_source_vim_motion_repeat (GtkSourceVimState *state)
 	{
 		gtk_source_vim_state_select (state, &iter, &iter);
 	}
+
+	gtk_text_view_reset_im_context (GTK_TEXT_VIEW (view));
+	gtk_text_view_reset_cursor_blink (GTK_TEXT_VIEW (view));
 }
 
 static void
