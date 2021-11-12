@@ -111,14 +111,23 @@ constrain_insert_source (gpointer data)
 	GtkSourceBuffer *buffer;
 	GtkTextIter iter, selection;
 
+	g_assert (GTK_SOURCE_IS_VIM (self));
+	g_assert (self->in_handle_event == FALSE);
+
 	self->constrain_insert_source = 0;
 
 	buffer = gtk_source_vim_state_get_buffer (GTK_SOURCE_VIM_STATE (self), &iter, &selection);
 	current = gtk_source_vim_state_get_current (GTK_SOURCE_VIM_STATE (self));
 
-	if (!GTK_SOURCE_IS_VIM_INSERT (current) &&
-	    !GTK_SOURCE_IS_VIM_REPLACE (current) &&
-	    !gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER (buffer)))
+	self->in_handle_event = TRUE;
+
+	if (GTK_SOURCE_IS_VIM_VISUAL (current))
+	{
+		gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (current), &iter);
+	}
+	else if (!GTK_SOURCE_IS_VIM_INSERT (current) &&
+	         !GTK_SOURCE_IS_VIM_REPLACE (current) &&
+	         !gtk_text_buffer_get_has_selection (GTK_TEXT_BUFFER (buffer)))
 	{
 		if (gtk_text_iter_ends_line (&iter) &&
 		    !gtk_text_iter_starts_line (&iter))
@@ -138,6 +147,8 @@ constrain_insert_source (gpointer data)
 		g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_COMMAND_TEXT]);
 		g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_COMMAND_BAR_TEXT]);
 	}
+
+	self->in_handle_event = FALSE;
 
 	return G_SOURCE_REMOVE;
 }

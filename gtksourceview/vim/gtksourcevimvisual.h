@@ -41,5 +41,7 @@ GtkSourceVimState *gtk_source_vim_visual_clone      (GtkSourceVimVisual     *sel
 gboolean           gtk_source_vim_visual_get_bounds (GtkSourceVimVisual     *self,
                                                      GtkTextIter            *cursor,
                                                      GtkTextIter            *started_at);
+void               gtk_source_vim_visual_warp       (GtkSourceVimVisual     *self,
+                                                     const GtkTextIter      *iter);
 
 G_END_DECLS

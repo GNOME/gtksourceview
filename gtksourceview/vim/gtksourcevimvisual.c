@@ -892,6 +892,21 @@ gtk_source_vim_visual_get_bounds (GtkSourceVimVisual *self,
 	return TRUE;
 }
 
+void
+gtk_source_vim_visual_warp (GtkSourceVimVisual *self,
+                            const GtkTextIter  *iter)
+{
+	GtkTextBuffer *buffer;
+
+	g_return_if_fail (GTK_SOURCE_IS_VIM_VISUAL (self));
+	g_return_if_fail (iter != NULL);
+
+	buffer = gtk_text_mark_get_buffer (self->cursor);
+	gtk_text_buffer_move_mark (buffer, self->cursor, iter);
+	gtk_source_vim_visual_track_motion (self);
+	update_cursor_visible (self);
+}
+
 GtkSourceVimState *
 gtk_source_vim_visual_clone (GtkSourceVimVisual *self)
 {
