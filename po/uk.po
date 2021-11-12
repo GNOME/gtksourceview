@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-10-11 21:30+0000\n"
-"PO-Revision-Date: 2021-10-12 08:50+0300\n"
+"POT-Creation-Date: 2021-11-12 05:42+0000\n"
+"PO-Revision-Date: 2021-11-12 08:00+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -319,13 +319,11 @@ msgstr "Схема кольорів, яка відповідає типовій 
 
 #. (itstool) path: classic-dark.xml/style-scheme@_name
 #: classic-dark.xml:22
-#| msgid "Classic"
 msgid "Classic Dark"
 msgstr "Класична темна"
 
 #. (itstool) path: style-scheme/_description
 #: classic-dark.xml:24
-#| msgid "Classic color scheme"
 msgid "Classic dark color scheme"
 msgstr "Класична темна схема кольорів"
 
@@ -769,6 +767,31 @@ msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr ""
 "Під час розбору тексту заміни «%s» сталася помилка у символі з номером %lu: "
 "%s"
+
+#: gtksourceview/vim/gtksourceviminsert.c:479
+msgid "-- INSERT --"
+msgstr ""
+"-- ВСТАВЛЕННЯ --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:128
+msgid "-- REPLACE --"
+msgstr ""
+"-- ЗАМІНА --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:294
+msgid "-- VISUAL --"
+msgstr ""
+"-- ВІЗУАЛЬНИЙ --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:297
+msgid "-- VISUAL LINE --"
+msgstr ""
+"-- ВІЗУАЛЬНИЙ РЯДКОВИЙ --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:300
+msgid "-- VISUAL BLOCK --"
+msgstr ""
+"-- ВІЗУАЛЬНИЙ БЛОКОВИЙ --"
 
 #~ msgid "All"
 #~ msgstr "Усі"
