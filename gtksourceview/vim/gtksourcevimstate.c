@@ -468,14 +468,12 @@ void
 gtk_source_vim_state_beep (GtkSourceVimState *self)
 {
 	GtkSourceView *view;
-	GdkDisplay *display;
 
 	g_return_if_fail (GTK_SOURCE_IS_VIM_STATE (self));
 
-	if ((view = gtk_source_vim_state_get_view (self)) &&
-	    (display = gtk_widget_get_display (GTK_WIDGET (view))))
+	if ((view = gtk_source_vim_state_get_view (self)))
 	{
-		gdk_display_beep (display);
+		gtk_widget_error_bell (GTK_WIDGET (view));
 	}
 }
 
