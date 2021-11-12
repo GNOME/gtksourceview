@@ -134,11 +134,14 @@ static gboolean
 gtk_source_vim_im_context_real_execute_command (GtkSourceVimIMContext *self,
                                                 const char            *command)
 {
-	g_auto(GStrv) parts = NULL;
+	GtkSourceView *view;
+	char **parts;
+	gboolean ret = FALSE;
 
 	g_assert (GTK_SOURCE_IS_VIM_IM_CONTEXT (self));
 	g_assert (command != NULL);
 
+	view = gtk_source_vim_state_get_view (GTK_SOURCE_VIM_STATE (self->vim));
 	parts = g_strsplit (command, " ", 2);
 
 	if (parts[1] != NULL)
@@ -149,29 +152,31 @@ gtk_source_vim_im_context_real_execute_command (GtkSourceVimIMContext *self,
 	if (g_str_equal (command, ":w") ||
 	    g_str_equal (command, ":write"))
 	{
-		g_signal_emit (self, signals[WRITE], 0, NULL);
-		return TRUE;
+		g_signal_emit (self, signals[WRITE], 0, view, NULL);
+		ret = TRUE;
 	}
 	else if (g_str_equal (command, ":e") ||
 	         g_str_equal (command, ":edit"))
 	{
-		g_signal_emit (self, signals[EDIT], 0, NULL);
-		return TRUE;
+		g_signal_emit (self, signals[EDIT], 0, view, NULL);
+		ret = TRUE;
 	}
 	else if (g_str_has_prefix (command, ":w ") ||
 	         g_str_has_prefix (command, ":write "))
 	{
-		g_signal_emit (self, signals[WRITE], 0, parts[1]);
-		return TRUE;
+		g_signal_emit (self, signals[WRITE], 0, view, parts[1]);
+		ret = TRUE;
 	}
 	else if (g_str_has_prefix (command, ":e ") ||
 	         g_str_has_prefix (command, ":edit "))
 	{
-		g_signal_emit (self, signals[EDIT], 0, parts[1]);
-		return TRUE;
+		g_signal_emit (self, signals[EDIT], 0, view, parts[1]);
+		ret = TRUE;
 	}
 
-	return FALSE;
+	g_strfreev (parts);
+
+	return ret;
 }
 
 static void
