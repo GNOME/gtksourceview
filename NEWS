@@ -1,3 +1,18 @@
+
+ * Updated language specs: rst.lang, c.lang, vala.lang, spice.lang,
+   lean.lang, and yara.lang.
+ * Updated style schemes which improve the quality of output when used with
+   non-standard GTK themes.
+ * A new GtkSourceStyleSchemePreview widget.
+ * The GtkSourceStyleSchemeChooserWidget now uses GtkSourceStyleSchemePreview
+   to display style schemes.
+ * Improve autocompletion styling when used with libadwaita.
+ * Improvements to cell alignment in the gutter particularly useful when
+   the CSS line-height attribute is used.
+ * Many fit-n-finish improvements to GtkSourceMap.
+ * Build system improvements.
+ * Translation updates.
+
 News in 5.2.0, 2021-09-03
 -------------------------
 
