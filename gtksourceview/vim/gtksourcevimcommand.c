@@ -1031,7 +1031,7 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 	GtkSourceSearchSettings *search;
 	GtkSourceBuffer *buffer;
 	GtkSourceView *view;
-	g_auto(GStrv) parts = NULL;
+	char **parts = NULL;
 
 	g_assert (GTK_SOURCE_IS_VIM_COMMAND (self));
 
@@ -1112,6 +1112,8 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 			gtk_source_view_set_insert_spaces_instead_of_tabs (view, FALSE);
 		}
 	}
+
+	g_strfreev (parts);
 }
 
 static void
