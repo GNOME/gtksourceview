@@ -394,6 +394,28 @@ _gtk_source_utils_pango_font_description_to_css (const PangoFontDescription *fon
 				ADD_KEYVAL (FONT_VARIANT, "small-caps");
 				break;
 
+#if PANGO_VERSION_CHECK(1, 49, 3)
+			case PANGO_VARIANT_ALL_SMALL_CAPS:
+				ADD_KEYVAL (FONT_VARIANT, "all-small-caps");
+				break;
+
+			case PANGO_VARIANT_PETITE_CAPS:
+				ADD_KEYVAL (FONT_VARIANT, "petite-caps");
+				break;
+
+			case PANGO_VARIANT_ALL_PETITE_CAPS:
+				ADD_KEYVAL (FONT_VARIANT, "all-petite-caps");
+				break;
+
+			case PANGO_VARIANT_UNICASE:
+				ADD_KEYVAL (FONT_VARIANT, "unicase");
+				break;
+
+			case PANGO_VARIANT_TITLE_CAPS:
+				ADD_KEYVAL (FONT_VARIANT, "titling-caps");
+				break;
+#endif
+
 			default:
 				break;
 		}
