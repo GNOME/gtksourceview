@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview 0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-10-11 21:30+0000\n"
-"PO-Revision-Date: 2021-10-13 11:40+0200\n"
+"POT-Creation-Date: 2021-11-12 05:42+0000\n"
+"PO-Revision-Date: 2021-11-12 12:34+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "Language: hr\n"
@@ -762,6 +762,26 @@ msgstr "nepoznat escape slijed"
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Greška pri obradi zamjenskog teksta “%s” pri znaku %lu: %s"
+
+#: gtksourceview/vim/gtksourceviminsert.c:479
+msgid "-- INSERT --"
+msgstr "-- UMETNI --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:128
+msgid "-- REPLACE --"
+msgstr "-- ZAMIJENI --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:294
+msgid "-- VISUAL --"
+msgstr "-- VIZUALNO --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:297
+msgid "-- VISUAL LINE --"
+msgstr "-- VIZUALNI REDAK --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:300
+msgid "-- VISUAL BLOCK --"
+msgstr "-- VIZUALNI BLOK --"
 
 #~ msgid "All"
 #~ msgstr "Sve"
