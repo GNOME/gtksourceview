@@ -170,7 +170,12 @@ on_cursor_moved_cb (GtkSourceVim    *self,
 	 */
 	if (self->constrain_insert_source == 0)
 	{
-		self->constrain_insert_source = g_idle_add (constrain_insert_source, self);
+		self->constrain_insert_source =
+			g_timeout_add_full (G_PRIORITY_LOW,
+			                    35,
+			                    constrain_insert_source,
+			                    g_object_ref (self),
+			                    g_object_unref);
 	}
 }
 
