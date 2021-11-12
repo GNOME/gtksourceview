@@ -1143,3 +1143,22 @@ gtk_source_smart_home_end_type_get_type
 GTK_SOURCE_TYPE_VIEW_GUTTER_POSITION
 gtk_source_view_gutter_position_get_type
 </SECTION>
+
+<SECTION>
+<FILE>vimimcontext</FILE>
+GtkSourceVimIMContext
+gtk_source_vim_im_context_new
+gtk_source_vim_im_context_get_command_text
+gtk_source_vim_im_context_get_command_bar_text
+gtk_source_vim_im_context_execute_command
+<SUBSECTION Standard>
+GtkSourceVimIMContextClass
+GTK_SOURCE_TYPE_VIM_IM_CONTEXT
+GTK_SOURCE_VIM_IM_CONTEXT
+GTK_SOURCE_VIM_IM_CONTEXT_CONST
+GTK_SOURCE_VIM_IM_CONTEXT_CLASS
+GTK_SOURCE_IS_VIM_IM_CONTEXT
+GTK_SOURCE_IS_VIM_IM_CONTEXT_CLASS
+GTK_SOURCE_VIM_IM_CONTEXT_GET_CLASS
+gtk_source_vim_im_context_get_type
+</SECTION>

@@ -46,6 +46,7 @@
 #include "gtksourcestyleschememanager-private.h"
 #include "gtksourcestyleschemepreview.h"
 #include "gtksourceview.h"
+#include "gtksourcevimimcontext.h"
 
 #ifdef G_OS_WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -203,6 +204,7 @@ gtk_source_init (void)
 		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER_WIDGET);
 		g_type_ensure (GTK_SOURCE_TYPE_STYLE_SCHEME_PREVIEW);
 		g_type_ensure (GTK_SOURCE_TYPE_VIEW);
+		g_type_ensure (GTK_SOURCE_TYPE_VIM_IM_CONTEXT);
 
 		display = gdk_display_get_default ();
 

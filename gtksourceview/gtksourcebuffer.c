@@ -2486,6 +2486,9 @@ do_title_case (GtkTextBuffer     *buffer,
  *
  * Changes the case of the text between the specified iterators.
  *
+ * Since 5.4, this function will update the position of @start and
+ * @end to surround the modified text.
+ *
  * Since: 3.12
  */
 void
@@ -2531,6 +2534,10 @@ gtk_source_buffer_change_case (GtkSourceBuffer         *buffer,
 	gtk_text_buffer_delete (text_buffer, start, end);
 	gtk_text_buffer_insert (text_buffer, start, new_text, -1);
 	gtk_text_buffer_end_user_action (text_buffer);
+
+        /* Leave @start and @end in valid positions around the text */
+	*end = *start;
+	gtk_text_iter_backward_chars (start, g_utf8_strlen (new_text, -1));
 
 	g_free (new_text);
 }

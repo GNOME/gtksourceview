@@ -5,6 +5,8 @@ core_marshallers = gnome.genmarshal('gtksource-marshal',
   valist_marshallers: true,
 )
 
+subdir('vim')
+
 core_public_h = files([
   'gtksource.h',
   'gtksourcebuffer.h',
@@ -54,6 +56,7 @@ core_public_h = files([
   'gtksourcetypes.h',
   'gtksourceutils.h',
   'gtksourceview.h',
+  'gtksourcevimimcontext.h',
 ])
 
 core_public_c = files([
@@ -104,6 +107,7 @@ core_public_c = files([
   'gtksourceutils.c',
   'gtksourceversion.c',
   'gtksourceview.c',
+  'gtksourcevimimcontext.c',
 ])
 
 core_private_c = files([
@@ -221,6 +225,7 @@ core_sources = [
   gtksourceversion_h,
   core_marshallers,
   gtksource_res,
+  vim_sources,
 ]
 
 install_headers(

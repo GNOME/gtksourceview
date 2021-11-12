@@ -67,6 +67,7 @@
 #include "gtksourceutils.h"
 #include "gtksourceversion.h"
 #include "gtksourceview.h"
+#include "gtksourcevimimcontext.h"
 #include "gtksource-enumtypes.h"
 
 #include "completion-providers/words/gtksourcecompletionwords.h"

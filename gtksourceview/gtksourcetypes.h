@@ -54,6 +54,7 @@ typedef struct _GtkSourceHover                     GtkSourceHover;
 typedef struct _GtkSourceHoverContext              GtkSourceHoverContext;
 typedef struct _GtkSourceHoverDisplay              GtkSourceHoverDisplay;
 typedef struct _GtkSourceHoverProvider             GtkSourceHoverProvider;
+typedef struct _GtkSourceVimIMContext              GtkSourceVimIMContext;
 typedef struct _GtkSourceIndenter                  GtkSourceIndenter;
 typedef struct _GtkSourceLanguage                  GtkSourceLanguage;
 typedef struct _GtkSourceLanguageManager           GtkSourceLanguageManager;

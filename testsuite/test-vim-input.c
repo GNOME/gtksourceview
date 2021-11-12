@@ -1,0 +1,227 @@
+/*
+ * This file is part of GtkSourceView
+ *
+ * Copyright 2021 Christian Hergert <chergert@redhat.com>
+ *
+ * GtkSourceView is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * GtkSourceView is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library; if not, see <http://www.gnu.org/licenses/>.
+ *
+ * SPDX-License-Identifier: LGPL-2.1-or-later
+ */
+
+#include "config.h"
+
+#include <gtksourceview/gtksource.h>
+#include <gtksourceview/vim/gtksourcevim.h>
+#include <gtksourceview/vim/gtksourcevimcommand.h>
+#include <gtksourceview/vim/gtksourceviminsert.h>
+#include <gtksourceview/vim/gtksourcevimnormal.h>
+#include <gtksourceview/vim/gtksourcevimstate.h>
+
+static void
+run_test (const char *text,
+          const char *input,
+          const char *expected)
+{
+	GtkSourceView *view = GTK_SOURCE_VIEW (g_object_ref_sink (gtk_source_view_new ()));
+	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+	GtkSourceVim *vim = gtk_source_vim_new (view);
+	GtkTextIter begin, end;
+	char *ret;
+
+	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
+	gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &begin, &begin);
+
+	for (const char *c = input; *c; c = g_utf8_next_char (c))
+	{
+		GtkSourceVimState *current = gtk_source_vim_state_get_current (GTK_SOURCE_VIM_STATE (vim));
+		gunichar ch = g_utf8_get_char (c);
+		char string[16] = {0};
+		GdkModifierType mods = 0;
+		guint keyval;
+
+		/* It would be nice to send GdkEvent, but we have to rely on
+		 * the fact that our engine knows key-presses pretty much
+		 * everywhere so that we can send keypresses based on chars.
+		 */
+		string[g_unichar_to_utf8 (ch, string)] = 0;
+
+		if (ch == '\e')
+		{
+			string[0] = '^';
+			string[1] = '[';
+			string[2] = 0;
+			keyval = GDK_KEY_Escape;
+		}
+		else if (ch == '\n')
+		{
+			string[0] = '\n';
+			string[1] = 0;
+			keyval = GDK_KEY_Return;
+		}
+		else
+		{
+			keyval = gdk_unicode_to_keyval (ch);
+		}
+
+		if (!GTK_SOURCE_VIM_STATE_GET_CLASS (current)->handle_keypress (current, keyval, 0, mods, string))
+		{
+			gtk_text_buffer_insert_at_cursor (GTK_TEXT_BUFFER (buffer), string, -1);
+		}
+	}
+
+	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
+	ret = gtk_text_iter_get_slice (&begin, &end);
+	g_assert_cmpstr (ret, ==, expected);
+	g_free (ret);
+
+	g_object_unref (vim);
+	g_object_unref (view);
+}
+
+static void
+test_yank (void)
+{
+	run_test ("1\n2\n3", "yGP", "1\n2\n3\n1\n2\n3");
+	run_test ("1\n2\n3", "yGp", "1\n1\n2\n3\n2\n3");
+	run_test ("1\n2\n3", "\"zyGP", "1\n2\n3");
+	run_test ("1\n2\n3", "\"zyG\"zP", "1\n2\n3\n1\n2\n3");
+}
+
+static void
+test_insert (void)
+{
+	run_test ("line1", "o\e", "line1\n");
+	run_test ("line1", "O\e", "\nline1");
+	run_test ("", "itesting\ea this.\e", "testing this.");
+	run_test ("", "3iz\e", "zzz");
+}
+
+static void
+test_change (void)
+{
+	run_test ("word here", "ciwnot\e", "not here");
+}
+
+static void
+test_delete (void)
+{
+	run_test ("a word here.", "v$x", "");
+	run_test ("t\nt\n", "Vx", "t\n");
+	run_test ("a word here.", "vex", " here.");
+	run_test ("line1", "dd", "");
+	run_test ("line1\n", "dj", "");
+	run_test ("line1\n\n", "dj", "");
+	run_test ("1\n2\n", "d2j", "");
+	run_test ("1\n2\n", "d10j", "");
+	run_test ("1\n2\n3\n42", "vjjjx", "2");
+	run_test ("1\n2\n3\n42", "vjjjVx", "");
+	run_test ("1\n2\n3\n4", "dG", "");
+	run_test ("1\n2\n3\n42", "jmzjjd'z", "1\n");
+	run_test ("1\n2\n3\n4\n5", "4Gd1G", "5");
+	run_test ("1\n2\n3\n4\n5", ":4\nd1G", "5");
+
+#if 0
+	/* somehow VIM ignores \n before 4. */
+	run_test ("1\n22\n3\n4", "jlmzjjd`z", "1\n2\n4");
+#endif
+}
+
+static void
+test_search_and_replace (void)
+{
+	static const struct {
+		const char *command;
+		gboolean success;
+		const char *search;
+		const char *replace;
+		const char *options;
+	} parse_s_and_r[] = {
+		{ "s/", TRUE, NULL, NULL, NULL },
+		{ "s/a", TRUE, "a", NULL, NULL },
+		{ "s/a/", TRUE, "a", NULL, NULL },
+		{ "s/a/b", TRUE, "a", "b", NULL },
+		{ "s/a/b/", TRUE, "a", "b", NULL },
+		{ "s/a/b/c", TRUE, "a", "b", "c" },
+		{ "s#a#b#c", TRUE, "a", "b", "c" },
+		{ "s/^ \\//", TRUE, "^ /", NULL, NULL },
+		{ "s/\\/\\/", TRUE, "//", NULL, NULL },
+		{ "s/^$//gI", TRUE, "^$", "", "gI" },
+	};
+
+	for (guint i = 0; i < G_N_ELEMENTS (parse_s_and_r); i++)
+	{
+		const char *str = parse_s_and_r[i].command;
+		char *search = NULL;
+		char *replace = NULL;
+		char *options = NULL;
+		gboolean ret;
+
+		g_assert_true (*str == 's');
+
+		str++;
+		ret = gtk_source_vim_command_parse_search_and_replace (str, &search, &replace, &options);
+
+		if (!parse_s_and_r[i].success && ret)
+		{
+			g_error ("expected %s to fail, but it succeeded",
+			         parse_s_and_r[i].command);
+		}
+		else if (parse_s_and_r[i].success && !ret)
+		{
+			g_error ("expected %s to pass, but it failed",
+			         parse_s_and_r[i].command);
+		}
+
+		g_assert_cmpstr (search, ==, parse_s_and_r[i].search);
+		g_assert_cmpstr (replace, ==, parse_s_and_r[i].replace);
+		g_assert_cmpstr (options, ==, parse_s_and_r[i].options);
+
+		g_free (search);
+		g_free (replace);
+		g_free (options);
+	}
+
+	run_test ("test test test test", ":s/test\n", " test test test");
+	run_test ("test test test test", ":s/test/bar\n", "bar test test test");
+	run_test ("test test test test", ":s/test/bar/g\n", "bar bar bar bar");
+	run_test ("test test test test", ":s/TEST/bar/gi\n", "bar bar bar bar");
+	run_test ("test test test test", ":s/TEST/bar\n", "test test test test");
+	run_test ("t t t t\nt t t t\n", ":s/t/f\n", "f t t t\nt t t t\n");
+	run_test ("t t t t\nt t t t\n", ":%s/t/f\n", "f t t t\nf t t t\n");
+	run_test ("t t t t\nt t t t\n", ":%s/t/f/g\n", "f f f f\nf f f f\n");
+	run_test ("t t t t\nt t t t\n", ":.,$s/t/f\n", "f t t t\nf t t t\n");
+	run_test ("t t\nt t\nt t\n", ":.,+1s/t/f\n", "f t\nf t\nt t\n");
+	run_test ("t t t t\nt t t t\n", "V:s/t/f\n", "f t t t\nt t t t\n");
+	run_test ("/ / / /", ":s/\\//#/g\n", "# # # #");
+}
+
+int
+main (int argc,
+      char *argv[])
+{
+	int ret;
+
+	gtk_init ();
+	gtk_source_init ();
+	g_test_init (&argc, &argv, NULL);
+	g_test_add_func ("/GtkSourceView/vim-input/yank", test_yank);
+	g_test_add_func ("/GtkSourceView/vim-input/insert", test_insert);
+	g_test_add_func ("/GtkSourceView/vim-input/change", test_change);
+	g_test_add_func ("/GtkSourceView/vim-input/delete", test_delete);
+	g_test_add_func ("/GtkSourceView/vim-input/search-and-replace", test_search_and_replace);
+	ret = g_test_run ();
+	gtk_source_finalize ();
+	return ret;
+}

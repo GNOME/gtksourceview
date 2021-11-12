@@ -41,12 +41,16 @@ struct _TestWidget
 	GtkCheckButton *draw_spaces_checkbutton;
 	GtkCheckButton *smart_backspace_checkbutton;
 	GtkCheckButton *indent_width_checkbutton;
+	GtkCheckButton *vim_checkbutton;
 	GtkSpinButton *indent_width_spinbutton;
 	GtkLabel *cursor_position_info;
 	GtkSourceStyleSchemeChooserButton *chooser_button;
+	GtkIMContext *vim_im_context;
 	GtkComboBoxText *background_pattern;
 	GtkWidget *top;
 	GtkScrolledWindow *scrolledwindow1;
+	GtkEventController *vim_controller;
+	GtkLabel *command_bar;
 };
 
 struct _TestHoverProvider
@@ -987,6 +991,42 @@ enable_hover_toggled_cb (TestWidget     *self,
 }
 
 static void
+vim_checkbutton_toggled_cb (TestWidget     *self,
+                            GtkCheckButton *button)
+{
+	g_assert (TEST_IS_WIDGET (self));
+	g_assert (GTK_IS_CHECK_BUTTON (button));
+
+	if (gtk_check_button_get_active (button))
+	{
+		if (!self->vim_controller)
+		{
+			self->vim_im_context = gtk_source_vim_im_context_new ();
+			gtk_im_context_set_client_widget (self->vim_im_context,
+			                                  GTK_WIDGET (self->view));
+			g_object_bind_property (self->vim_im_context, "command-bar-text", self->command_bar, "label", 0);
+
+			self->vim_controller = gtk_event_controller_key_new ();
+			gtk_event_controller_set_propagation_phase (self->vim_controller, GTK_PHASE_CAPTURE);
+			gtk_event_controller_key_set_im_context (GTK_EVENT_CONTROLLER_KEY (self->vim_controller),
+			                                         GTK_IM_CONTEXT (self->vim_im_context));
+			gtk_widget_add_controller (GTK_WIDGET (self->view),
+			                           self->vim_controller);
+		}
+	}
+	else
+	{
+		if (self->vim_controller)
+		{
+			g_clear_object (&self->vim_im_context);
+			gtk_widget_remove_controller (GTK_WIDGET (self->view),
+			                              self->vim_controller);
+			self->vim_controller = NULL;
+		}
+	}
+}
+
+static void
 test_widget_dispose (GObject *object)
 {
 	TestWidget *self = TEST_WIDGET (object);
@@ -1026,6 +1066,7 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_callback (widget_class, smart_home_end_changed_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_snippets_toggled_cb);
 	gtk_widget_class_bind_template_callback (widget_class, enable_hover_toggled_cb);
+	gtk_widget_class_bind_template_callback (widget_class, vim_checkbutton_toggled_cb);
 
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, view);
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, map);
@@ -1039,8 +1080,10 @@ test_widget_class_init (TestWidgetClass *klass)
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, chooser_button);
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, background_pattern);
 	gtk_widget_class_bind_template_child (widget_class, TestWidget, scrolledwindow1);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, vim_checkbutton);
+	gtk_widget_class_bind_template_child (widget_class, TestWidget, command_bar);
 
-  gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "window.close", NULL);
+	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "window.close", NULL);
 }
 
 static void

@@ -1,3 +1,25 @@
+
+ * A new Vim emulator in the form of GtkSourceVimIMContext. This can emulate
+   basic features such as Normal, Insert, Replace, Visual, Visual Line, and
+   Command Bar modes. Additionally, many Vim-style motions and text-objects
+   are supported. Registers, Marks, and Jumplists are also partially suppored.
+   The + and * registers can be used to integrate with both the system and
+   primary GDK clipboards. Various commands are available in teh command bar
+   such as nohl, set, :s, :join, and more.
+ * Updated language specs: rst.lang, c.lang, vala.lang, spice.lang,
+   lean.lang, and yara.lang.
+ * Updated style schemes which improve the quality of output when used with
+   non-standard GTK themes.
+ * A new GtkSourceStyleSchemePreview widget.
+ * The GtkSourceStyleSchemeChooserWidget now uses GtkSourceStyleSchemePreview
+   to display style schemes.
+ * Improve autocompletion styling when used with libadwaita.
+ * Improvements to cell alignment in the gutter particularly useful when
+   the CSS line-height attribute is used.
+ * Many fit-n-finish improvements to GtkSourceMap.
+ * Build system improvements.
+ * Translation updates.
+
 News in 5.2.0, 2021-09-03
 -------------------------
 
