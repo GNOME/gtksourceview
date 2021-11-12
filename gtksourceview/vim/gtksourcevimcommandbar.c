@@ -274,6 +274,13 @@ gtk_source_vim_command_bar_leave (GtkSourceVimState *state)
 }
 
 static void
+gtk_source_vim_command_bar_append_command (GtkSourceVimState *state,
+                                           GString           *command_text)
+{
+	g_string_truncate (command_text, 0);
+}
+
+static void
 gtk_source_vim_command_bar_class_init (GtkSourceVimCommandBarClass *klass)
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -281,6 +288,7 @@ gtk_source_vim_command_bar_class_init (GtkSourceVimCommandBarClass *klass)
 
 	object_class->dispose = gtk_source_vim_command_bar_dispose;
 
+	state_class->append_command = gtk_source_vim_command_bar_append_command;
 	state_class->enter = gtk_source_vim_command_bar_enter;
 	state_class->leave = gtk_source_vim_command_bar_leave;
 	state_class->handle_keypress = gtk_source_vim_command_bar_handle_keypress;
