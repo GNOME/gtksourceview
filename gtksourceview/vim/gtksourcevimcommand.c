@@ -1254,11 +1254,22 @@ gtk_source_vim_command_resume (GtkSourceVimState *state,
 	g_assert (GTK_SOURCE_IS_VIM_COMMAND (self));
 	g_assert (GTK_SOURCE_IS_VIM_STATE (from));
 
-	/* Complete if waiting for a motion */
+	/* Complete if waiting for a motion. If we had a count, instead
+	 * move it to the motion.
+	 */
 	if (GTK_SOURCE_IS_VIM_MOTION (from) && self->motion == NULL)
 	{
+		int count = gtk_source_vim_state_get_count (state);
+
+		if (count > 1)
+		{
+			gtk_source_vim_state_set_count (from, count);
+			gtk_source_vim_state_set_count (state, 0);
+		}
+
 		gtk_source_vim_state_reparent (from, state, &self->motion);
 		gtk_source_vim_state_pop (state);
+
 		return;
 	}
 
