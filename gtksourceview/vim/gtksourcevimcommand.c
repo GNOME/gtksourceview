@@ -1156,6 +1156,14 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 		{
 			gtk_text_view_set_wrap_mode (GTK_TEXT_VIEW (view), GTK_WRAP_NONE);
 		}
+		else if (g_str_equal (part, "ai") || g_str_equal (part, "autoindent"))
+		{
+			gtk_source_view_set_auto_indent (view, TRUE);
+		}
+		else if (g_str_equal (part, "noai") || g_str_equal (part, "noautoindent"))
+		{
+			gtk_source_view_set_auto_indent (view, FALSE);
+		}
 	}
 
 	g_strfreev (parts);
