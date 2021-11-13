@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-10-12 00:56+0000\n"
+"POT-Creation-Date: 2021-11-12 19:20+0000\n"
 "PO-Revision-Date: 2021-10-12 18:50+0200\n"
 "Last-Translator: Luna Jernberg <droidbittin@gmail.com>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
@@ -766,6 +766,26 @@ msgstr "okänd escape-sekvens"
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Fel vid tolkning av ersättningstexten ”%s” vid tecknet %lu: %s"
+
+#: gtksourceview/vim/gtksourceviminsert.c:479
+msgid "-- INSERT --"
+msgstr "-- INFOGA --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:128
+msgid "-- REPLACE --"
+msgstr "-- ERSÄTT --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:294
+msgid "-- VISUAL --"
+msgstr "-- VISUELL --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:297
+msgid "-- VISUAL LINE --"
+msgstr "-- VISUELL RAD --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:300
+msgid "-- VISUAL BLOCK --"
+msgstr "-- VISUELLT BLOCK --"
 
 #~ msgid "Disabled"
 #~ msgstr "Inaktiverad"
