@@ -597,6 +597,16 @@ key_handler_initial (GtkSourceVimVisual *self,
 		case GDK_KEY_less:
 			return gtk_source_vim_visual_begin_command (self, "unindent", FALSE);
 
+		case GDK_KEY_slash:
+		case GDK_KEY_question:
+		{
+			GtkSourceVimState *new_state = gtk_source_vim_command_bar_new ();
+			gtk_source_vim_command_bar_set_text (GTK_SOURCE_VIM_COMMAND_BAR (new_state),
+			                                     keyval == GDK_KEY_slash ? "/" : "?");
+			gtk_source_vim_state_push (GTK_SOURCE_VIM_STATE (self), new_state);
+			return TRUE;
+		}
+
 		case GDK_KEY_colon:
 		{
 			GtkSourceVimState *new_state = gtk_source_vim_command_bar_new ();
