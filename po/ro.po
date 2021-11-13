@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-10-13 11:26+0000\n"
-"PO-Revision-Date: 2021-10-14 19:20+0200\n"
+"POT-Creation-Date: 2021-11-12 19:20+0000\n"
+"PO-Revision-Date: 2021-11-13 18:12+0100\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28@gmail.com>\n"
 "Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -769,6 +769,26 @@ msgstr "secvență de eludare necunoscută"
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Eroare la parsarea textului înlocuitor „%s” la caracterul %lu: %s"
+
+#: gtksourceview/vim/gtksourceviminsert.c:479
+msgid "-- INSERT --"
+msgstr "-- INTRODUCERE --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:128
+msgid "-- REPLACE --"
+msgstr "-- ÎNLOCUIRE --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:294
+msgid "-- VISUAL --"
+msgstr "-- VIZUALĂ --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:297
+msgid "-- VISUAL LINE --"
+msgstr "-- LINIE VIZUALĂ --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:300
+msgid "-- VISUAL BLOCK --"
+msgstr "-- BLOC VIZUAL --"
 
 #~ msgid "All"
 #~ msgstr "Toate"
