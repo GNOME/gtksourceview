@@ -127,11 +127,11 @@ void               gtk_source_vim_state_set_reverse_search         (GtkSourceVim
 GtkTextMark       *gtk_source_vim_state_get_mark                   (GtkSourceVimState        *self,
                                                                     const char               *name);
 void               gtk_source_vim_state_set_mark                   (GtkSourceVimState        *self,
-								    const char               *name,
-								    const GtkTextIter        *iter);
+                                                                    const char               *name,
+                                                                    const GtkTextIter        *iter);
 gboolean           gtk_source_vim_state_get_iter_at_mark           (GtkSourceVimState        *self,
-								    const char               *name,
-								    GtkTextIter              *iter);
+                                                                    const char               *name,
+                                                                    GtkTextIter              *iter);
 void               gtk_source_vim_state_keyval_to_string           (guint                     keyval,
                                                                     GdkModifierType           mods,
                                                                     char                      string[16]);
@@ -194,6 +194,17 @@ gtk_source_vim_state_is_ctrl_c (guint           keyval,
                                 GdkModifierType mods)
 {
 	return keyval == GDK_KEY_c && (mods & GDK_CONTROL_MASK) != 0;
+}
+
+static inline GtkSourceVimState *
+gtk_source_vim_state_get_ancestor (GtkSourceVimState *state,
+                                   GType              type)
+{
+  if (state == NULL)
+    return NULL;
+  if (G_TYPE_CHECK_INSTANCE_TYPE (state, type))
+    return state;
+  return gtk_source_vim_state_get_ancestor (gtk_source_vim_state_get_parent (state), type);
 }
 
 G_END_DECLS

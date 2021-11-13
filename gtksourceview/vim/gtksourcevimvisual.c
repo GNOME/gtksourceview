@@ -63,6 +63,8 @@ struct _GtkSourceVimVisual
 	GtkTextMark *cursor;
 
 	int count;
+
+	guint ignore_command : 1;
 };
 
 typedef struct
@@ -713,14 +715,18 @@ gtk_source_vim_visual_resume (GtkSourceVimState *state,
 	{
 		GtkSourceVimState *command = gtk_source_vim_command_bar_take_command (GTK_SOURCE_VIM_COMMAND_BAR (from));
 
-		if (command != NULL)
+		if (command != NULL && !self->ignore_command)
 		{
 			gtk_source_vim_state_reparent (command, self, &self->command);
 			g_object_unref (command);
 		}
 
 		gtk_source_vim_state_unparent (from);
-		gtk_source_vim_state_pop (state);
+
+		if (self->ignore_command)
+			self->ignore_command = FALSE;
+		else
+			gtk_source_vim_state_pop (state);
 	}
 	else if (from == self->command)
 	{
@@ -931,4 +937,12 @@ gtk_source_vim_visual_clone (GtkSourceVimVisual *self)
 	}
 
 	return ret;
+}
+
+void
+gtk_source_vim_visual_ignore_command (GtkSourceVimVisual *self)
+{
+	g_return_if_fail (GTK_SOURCE_IS_VIM_VISUAL (self));
+
+	self->ignore_command = TRUE;
 }

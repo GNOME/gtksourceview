@@ -36,12 +36,19 @@ typedef enum
 
 G_DECLARE_FINAL_TYPE (GtkSourceVimVisual, gtk_source_vim_visual, GTK_SOURCE, VIM_VISUAL, GtkSourceVimState)
 
-GtkSourceVimState *gtk_source_vim_visual_new        (GtkSourceVimVisualMode  mode);
-GtkSourceVimState *gtk_source_vim_visual_clone      (GtkSourceVimVisual     *self);
-gboolean           gtk_source_vim_visual_get_bounds (GtkSourceVimVisual     *self,
-                                                     GtkTextIter            *cursor,
-                                                     GtkTextIter            *started_at);
-void               gtk_source_vim_visual_warp       (GtkSourceVimVisual     *self,
-                                                     const GtkTextIter      *iter);
+GtkSourceVimState *gtk_source_vim_visual_new            (GtkSourceVimVisualMode  mode);
+GtkSourceVimState *gtk_source_vim_visual_clone          (GtkSourceVimVisual     *self);
+gboolean           gtk_source_vim_visual_get_bounds     (GtkSourceVimVisual     *self,
+                                                         GtkTextIter            *cursor,
+                                                         GtkTextIter            *started_at);
+void               gtk_source_vim_visual_warp           (GtkSourceVimVisual     *self,
+                                                         const GtkTextIter      *iter);
+void               gtk_source_vim_visual_ignore_command (GtkSourceVimVisual     *self);
+
+static inline gboolean
+GTK_SOURCE_IN_VIM_VISUAL (gpointer data)
+{
+	return gtk_source_vim_state_get_ancestor (data, GTK_SOURCE_TYPE_VIM_VISUAL) != NULL;
+}
 
 G_END_DECLS
