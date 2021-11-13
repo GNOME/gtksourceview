@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-10-11 21:30+0000\n"
-"PO-Revision-Date: 2021-10-12 12:10+0100\n"
+"POT-Creation-Date: 2021-11-12 19:20+0000\n"
+"PO-Revision-Date: 2021-11-13 15:31+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -766,6 +766,26 @@ msgstr "sequência de saída desconhecida"
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Erro ao analisar o texto de substituição \"%s\" no char %lu: %s"
+
+#: gtksourceview/vim/gtksourceviminsert.c:479
+msgid "-- INSERT --"
+msgstr "-- INSERIR --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:128
+msgid "-- REPLACE --"
+msgstr "-- SUBSTITUIR --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:294
+msgid "-- VISUAL --"
+msgstr "-- VISUAL --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:297
+msgid "-- VISUAL LINE --"
+msgstr "-- LINHA VISUAL --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:300
+msgid "-- VISUAL BLOCK --"
+msgstr "-- BLOCO VISUAL --"
 
 #~ msgid "All"
 #~ msgstr "Todas"
