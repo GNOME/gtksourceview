@@ -37,6 +37,7 @@
 #include "gtksourcevimcommand.h"
 #include "gtksourcevimjumplist.h"
 #include "gtksourcevimregisters.h"
+#include "gtksourcevimvisual.h"
 
 typedef void (*Command) (GtkSourceVimCommand *self);
 
@@ -691,7 +692,21 @@ gtk_source_vim_command_search (GtkSourceVimCommand *self)
 	if (gtk_source_search_context_forward (context, &iter, &match, NULL, NULL))
 	{
 		gtk_source_vim_state_push_jump (GTK_SOURCE_VIM_STATE (self), &iter);
-		gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &match, &match);
+
+		if (GTK_SOURCE_IN_VIM_VISUAL (self))
+		{
+			GtkSourceVimState *visual;
+
+			visual = gtk_source_vim_state_get_ancestor (GTK_SOURCE_VIM_STATE (self),
+			                                            GTK_SOURCE_TYPE_VIM_VISUAL);
+			gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (visual), &match);
+			gtk_source_vim_visual_ignore_command (GTK_SOURCE_VIM_VISUAL (visual));
+		}
+		else
+		{
+			gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &match, &match);
+		}
+
 		gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (view), &match, 0.25, TRUE, 1.0, 0.0);
 
 		self->ignore_mark = TRUE;
@@ -742,7 +757,21 @@ gtk_source_vim_command_search_reverse (GtkSourceVimCommand *self)
 	if (gtk_source_search_context_backward (context, &iter, &match, NULL, NULL))
 	{
 		gtk_source_vim_state_push_jump (GTK_SOURCE_VIM_STATE (self), &iter);
-		gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &match, &match);
+
+		if (GTK_SOURCE_IN_VIM_VISUAL (self))
+		{
+			GtkSourceVimState *visual;
+
+			visual = gtk_source_vim_state_get_ancestor (GTK_SOURCE_VIM_STATE (self),
+			                                            GTK_SOURCE_TYPE_VIM_VISUAL);
+			gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (visual), &match);
+			gtk_source_vim_visual_ignore_command (GTK_SOURCE_VIM_VISUAL (visual));
+		}
+		else
+		{
+			gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &match, &match);
+		}
+
 		gtk_text_view_scroll_to_iter (GTK_TEXT_VIEW (view), &match, 0.25, TRUE, 1.0, 0.0);
 
 		self->ignore_mark = TRUE;
