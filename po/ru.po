@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-10-13 11:26+0000\n"
-"PO-Revision-Date: 2021-10-16 00:52+0300\n"
+"POT-Creation-Date: 2021-11-12 05:42+0000\n"
+"PO-Revision-Date: 2021-11-12 13:52+0300\n"
 "Last-Translator: Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -32,8 +32,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 40.0\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0\n"
 "X-DL-Team: ru\n"
 "X-DL-Module: gtksourceview\n"
 "X-DL-Branch: master\n"
@@ -709,7 +709,7 @@ msgstr "в выражении «%s»: обратные ссылки не под�
 
 #: gtksourceview/gtksourceregex.c:128
 msgid "using \\C is not supported in language definitions"
-msgstr "Использование \\C не поддерживается в определениях языка"
+msgstr "использование \\C не поддерживается в определениях языка"
 
 #. TODO: have a ChooserDialog?
 #: gtksourceview/gtksourcestyleschemechooserbutton.c:181
@@ -785,3 +785,22 @@ msgstr "неизвестная закодированная последоват
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Ошибка разбора текста замены «%s» на символе %lu: %s"
 
+#: gtksourceview/vim/gtksourceviminsert.c:479
+msgid "-- INSERT --"
+msgstr "-- ВСТАВКА --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:128
+msgid "-- REPLACE --"
+msgstr "-- ЗАМЕНА --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:294
+msgid "-- VISUAL --"
+msgstr "-- ВИЗУАЛЬНЫЙ --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:297
+msgid "-- VISUAL LINE --"
+msgstr "-- ВИЗУАЛЬНАЯ ЛИНИЯ --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:300
+msgid "-- VISUAL BLOCK --"
+msgstr "-- ВИЗУАЛЬНЫЙ БЛОК --"
