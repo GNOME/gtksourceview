@@ -21,7 +21,6 @@
 
 #include "config.h"
 
-#include "gtksourcebuffer.h"
 #include "gtksourceview.h"
 
 #include "gtksourcevim.h"
@@ -36,7 +35,7 @@ struct _GtkSourceVim
 {
 	GtkSourceVimState  parent_instance;
 	GString           *command_text;
-	GtkSourceBuffer   *buffer;
+	GtkGestureClick   *click;
 	guint              constrain_insert_source;
 	guint              in_handle_event : 1;
 };
@@ -141,9 +140,14 @@ constrain_insert_source (gpointer data)
 	{
 		GtkSourceVimState *visual;
 
-		/* Enter visual mode */
+		/* Try to emulate the selection as if it happened in Visual mode
+		 * by first clearing the selection and then warp visual mode
+		 * to where the insert cursor is now.
+		 */
+		gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &selection, &selection);
 		visual = gtk_source_vim_visual_new (GTK_SOURCE_VIM_VISUAL_CHAR);
 		gtk_source_vim_state_push (current, visual);
+		gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (visual), &iter);
 		g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_COMMAND_TEXT]);
 		g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_COMMAND_BAR_TEXT]);
 	}
@@ -154,11 +158,9 @@ constrain_insert_source (gpointer data)
 }
 
 static void
-on_cursor_moved_cb (GtkSourceVim    *self,
-                    GtkSourceBuffer *buffer)
+queue_constrain (GtkSourceVim *self)
 {
 	g_assert (GTK_SOURCE_IS_VIM (self));
-	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
 
 	if (self->in_handle_event)
 		return;
@@ -170,45 +172,23 @@ on_cursor_moved_cb (GtkSourceVim    *self,
 	 */
 	if (self->constrain_insert_source == 0)
 	{
-		self->constrain_insert_source =
-			g_timeout_add_full (G_PRIORITY_LOW, 35,
-			                    constrain_insert_source, self, NULL);
+		self->constrain_insert_source = g_idle_add (constrain_insert_source, self);
 	}
 }
 
 static void
-on_notify_buffer_cb (GtkSourceVim  *self,
-                     GParamSpec    *pspec,
-                     GtkSourceView *view)
+on_click_released_cb (GtkSourceVim    *self,
+                      int              n_press,
+                      double           x,
+                      double           y,
+                      GtkGestureClick *click)
 {
-	GtkSourceBuffer *buffer;
-
 	g_assert (GTK_SOURCE_IS_VIM (self));
-	g_assert (GTK_SOURCE_IS_VIEW (view));
+	g_assert (GTK_IS_GESTURE_CLICK (click));
 
-	buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
-
-	if (self->buffer == buffer)
-		return;
-
-	if (self->buffer != NULL)
+	if (n_press == 1)
 	{
-		g_signal_handlers_disconnect_by_func (self->buffer,
-		                                      G_CALLBACK (on_cursor_moved_cb),
-		                                      self);
-		g_clear_object (&self->buffer);
-	}
-
-	g_set_object (&self->buffer, buffer);
-
-	if (buffer != NULL)
-	{
-		g_signal_connect_object (buffer,
-		                         "cursor-moved",
-		                         G_CALLBACK (on_cursor_moved_cb),
-		                         self,
-		                         G_CONNECT_SWAPPED);
-		on_cursor_moved_cb (self, buffer);
+		queue_constrain (self);
 	}
 }
 
@@ -225,12 +205,14 @@ gtk_source_vim_view_set (GtkSourceVimState *state)
 	view = gtk_source_vim_state_get_view (state);
 	gtk_source_vim_state_get_buffer (state, &iter, NULL);
 
-	g_signal_connect_object (view,
-				 "notify::buffer",
-				 G_CALLBACK (on_notify_buffer_cb),
-				 self,
-				 G_CONNECT_SWAPPED);
-	on_notify_buffer_cb (self, NULL, view);
+	self->click = GTK_GESTURE_CLICK (gtk_gesture_click_new ());
+	g_signal_connect_object (self->click,
+	                         "released",
+	                         G_CALLBACK (on_click_released_cb),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_widget_add_controller (GTK_WIDGET (view),
+	                           GTK_EVENT_CONTROLLER (self->click));
 
 	gtk_source_vim_state_push_jump (state, &iter);
 
@@ -255,9 +237,16 @@ static void
 gtk_source_vim_dispose (GObject *object)
 {
 	GtkSourceVim *self = (GtkSourceVim *)object;
+	GtkSourceView *view = gtk_source_vim_state_get_view (GTK_SOURCE_VIM_STATE (self));
+
+	if (view != NULL && self->click)
+	{
+		gtk_widget_remove_controller (GTK_WIDGET (view),
+		                              GTK_EVENT_CONTROLLER (self->click));
+		self->click = NULL;
+	}
 
 	g_clear_handle_id (&self->constrain_insert_source, g_source_remove);
-	g_clear_object (&self->buffer);
 
 	if (self->command_text != NULL)
 	{
