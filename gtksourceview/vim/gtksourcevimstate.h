@@ -102,6 +102,7 @@ void               gtk_source_vim_state_scroll_line                (GtkSourceVim
                                                                     int                       count);
 void               gtk_source_vim_state_z_scroll                   (GtkSourceVimState        *self,
                                                                     double                    yalign);
+void               gtk_source_vim_state_scroll_insert_onscreen     (GtkSourceVimState        *self);
 void               gtk_source_vim_state_select                     (GtkSourceVimState        *self,
                                                                     const GtkTextIter        *insert,
                                                                     const GtkTextIter        *selection);

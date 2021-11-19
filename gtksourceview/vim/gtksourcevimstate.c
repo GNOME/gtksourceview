@@ -1460,3 +1460,19 @@ gtk_source_vim_state_jump_forward (GtkSourceVimState *self,
 
 	return gtk_source_vim_jumplist_next (jumplist, iter);
 }
+
+void
+gtk_source_vim_state_scroll_insert_onscreen (GtkSourceVimState *self)
+{
+	GtkSourceView *view;
+
+	g_return_if_fail (GTK_SOURCE_IS_VIM_STATE (self));
+
+	if ((view = gtk_source_vim_state_get_view (self)))
+	{
+		GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+		GtkTextMark *mark = gtk_text_buffer_get_insert (buffer);
+
+		gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view), mark);
+	}
+}
