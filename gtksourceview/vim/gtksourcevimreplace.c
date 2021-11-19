@@ -97,6 +97,7 @@ gtk_source_vim_replace_enter (GtkSourceVimState *state)
 	g_assert (GTK_SOURCE_IS_VIM_REPLACE (state));
 
 	gtk_source_vim_state_set_overwrite (state, TRUE);
+	gtk_source_vim_state_scroll_insert_onscreen (state);
 	gtk_source_vim_state_begin_user_action (state);
 }
 

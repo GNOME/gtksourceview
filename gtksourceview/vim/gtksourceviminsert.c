@@ -342,6 +342,8 @@ gtk_source_vim_insert_enter (GtkSourceVimState *state)
 	gtk_source_vim_insert_prepare (self);
 	gtk_source_vim_text_history_begin (self->history);
 
+	gtk_source_vim_state_scroll_insert_onscreen (state);
+
 	g_object_unref (history);
 }
 
