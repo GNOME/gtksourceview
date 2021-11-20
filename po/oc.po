@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: oc\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-10-13 11:26+0000\n"
-"PO-Revision-Date: 2021-11-07 20:47+0100\n"
+"POT-Creation-Date: 2021-11-15 16:26+0000\n"
+"PO-Revision-Date: 2021-11-20 18:48+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Tot En Òc\n"
 "Language: oc\n"
@@ -286,7 +286,7 @@ msgstr "LLVM IR"
 #. (itstool) path: po.lang/language@_name
 #: po.lang:23
 msgid "gettext translation"
-msgstr "Traduccion gettext"
+msgstr "traduccion gettext"
 
 #. (itstool) path: rpmspec.lang/language@_name
 #: rpmspec.lang:24
@@ -772,6 +772,26 @@ msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr ""
 "Error al moment de l’analisi del tèxte de substitucion « %s » al caractèr "
 "%lu : %s"
+
+#: gtksourceview/vim/gtksourceviminsert.c:479
+msgid "-- INSERT --"
+msgstr "-- INSERIR --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:128
+msgid "-- REPLACE --"
+msgstr "-- REMPLAÇAR --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:296
+msgid "-- VISUAL --"
+msgstr "-- VISUAL --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:299
+msgid "-- VISUAL LINE --"
+msgstr "-- LINHA VISUALA --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:302
+msgid "-- VISUAL BLOCK --"
+msgstr "-- BLÒTS VISUAL --"
 
 #~ msgid "All"
 #~ msgstr "Totes / Totas"
