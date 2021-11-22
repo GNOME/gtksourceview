@@ -724,12 +724,17 @@ gtk_source_vim_state_scroll_line (GtkSourceVimState *self,
 
 	view = gtk_source_vim_state_get_view (self);
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &rect);
-	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), &top, rect.x, rect.y);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), &top, 0, rect.y);
 	gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view), &top, &y, &height);
 
 	/* Add a line is slightly visible. Works in both directions */
-	if (y < rect.y)
-		count++;
+	if (y < rect.y && (rect.y - y) > (height / 2))
+	{
+		if (count > 0)
+		{
+			count++;
+		}
+	}
 
 	if (count > 0)
 		gtk_text_iter_forward_lines (&top, count);
@@ -773,7 +778,7 @@ scroll_half_page_up (GtkSourceVimState *self)
 
 void
 gtk_source_vim_state_scroll_half_page (GtkSourceVimState *self,
-				       int                count)
+                                       int                count)
 {
 	GtkSourceView *view;
 	GdkRectangle rect, loc;
