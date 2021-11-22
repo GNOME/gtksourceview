@@ -142,7 +142,7 @@ gtk_source_vim_state_keyval_unescaped (guint           keyval,
 			break;
 	}
 
-	return gtk_source_vim_state_keyval_to_string (keyval, mods, str);
+	gtk_source_vim_state_keyval_to_string (keyval, mods, str);
 
 #undef return_str
 }
@@ -1382,7 +1382,7 @@ gtk_source_vim_state_set_mark (GtkSourceVimState *self,
 
 	marks = gtk_source_vim_state_get_marks (self);
 
-	return gtk_source_vim_marks_set_mark (marks, name, iter);
+	gtk_source_vim_marks_set_mark (marks, name, iter);
 }
 
 gboolean
