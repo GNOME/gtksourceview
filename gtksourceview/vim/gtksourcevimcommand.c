@@ -211,6 +211,24 @@ gtk_source_vim_command_delete (GtkSourceVimCommand *self)
 
 	gtk_source_vim_state_set_current_register_value (GTK_SOURCE_VIM_STATE (self), text);
 
+	if (self->motion != NULL)
+	{
+		if (gtk_source_vim_motion_is_linewise (self->motion))
+		{
+			gtk_text_iter_order (&iter, &selection);
+
+			/* If we are at the end of the buffer, then we need
+			 * to emulate linewise by swallowing the leading
+			 * newline.
+			 */
+			if (gtk_text_iter_is_end (&selection) &&
+			    gtk_text_iter_starts_line (&iter))
+			{
+				gtk_text_iter_backward_char (&iter);
+			}
+		}
+	}
+
 	gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
 	gtk_text_buffer_delete (GTK_TEXT_BUFFER (buffer), &iter, &selection);
 	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
