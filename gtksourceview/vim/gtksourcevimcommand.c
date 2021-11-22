@@ -178,13 +178,13 @@ gtk_source_vim_command_shift (GtkSourceVimCommand *self,
 static void
 gtk_source_vim_command_indent (GtkSourceVimCommand *self)
 {
-	return gtk_source_vim_command_shift (self, 1);
+	gtk_source_vim_command_shift (self, 1);
 }
 
 static void
 gtk_source_vim_command_unindent (GtkSourceVimCommand *self)
 {
-	return gtk_source_vim_command_shift (self, -1);
+	gtk_source_vim_command_shift (self, -1);
 }
 
 static void
@@ -451,13 +451,13 @@ gtk_source_vim_command_change_case (GtkSourceVimCommand     *self,
 static void
 gtk_source_vim_command_upcase (GtkSourceVimCommand *self)
 {
-	return gtk_source_vim_command_change_case (self, GTK_SOURCE_CHANGE_CASE_UPPER);
+	gtk_source_vim_command_change_case (self, GTK_SOURCE_CHANGE_CASE_UPPER);
 }
 
 static void
 gtk_source_vim_command_downcase (GtkSourceVimCommand *self)
 {
-	return gtk_source_vim_command_change_case (self, GTK_SOURCE_CHANGE_CASE_LOWER);
+	gtk_source_vim_command_change_case (self, GTK_SOURCE_CHANGE_CASE_LOWER);
 }
 
 static char *
