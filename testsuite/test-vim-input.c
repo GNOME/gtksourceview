@@ -106,12 +106,14 @@ test_insert (void)
 	run_test ("line1", "O\e", "\nline1");
 	run_test ("", "itesting\ea this.\e", "testing this.");
 	run_test ("", "3iz\e", "zzz");
+	run_test ("\tPROP_0,\n", "3IPROP\e", "\tPROPPROPPROPPROP_0,\n");
 }
 
 static void
 test_change (void)
 {
 	run_test ("word here", "ciwnot\e", "not here");
+	run_test ("word here", "wc$\e", "word ");
 }
 
 static void

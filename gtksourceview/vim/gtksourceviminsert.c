@@ -205,7 +205,7 @@ gtk_source_vim_insert_prepare (GtkSourceVimInsert *self)
 	{
 		if (self->motion)
 		{
-			gtk_source_vim_motion_apply (self->motion, &iter, TRUE);
+			gtk_source_vim_motion_apply (self->motion, &iter, self->selection_motion != NULL);
 
 			if (self->at == GTK_SOURCE_VIM_INSERT_AFTER_CHAR ||
 			    self->at == GTK_SOURCE_VIM_INSERT_AFTER_CHAR_UNLESS_BOF)
