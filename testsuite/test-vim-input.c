@@ -128,7 +128,7 @@ test_delete (void)
 	run_test ("1\n2\n3\n42", "vjjjx", "2");
 	run_test ("1\n2\n3\n42", "vjjjVx", "");
 	run_test ("1\n2\n3\n4", "dG", "");
-	run_test ("1\n2\n3\n42", "jmzjjd'z", "1\n");
+	run_test ("1\n2\n3\n42", "jmzjjd'z", "1");
 	run_test ("1\n2\n3\n4\n5", "4Gd1G", "5");
 	run_test ("1\n2\n3\n4\n5", ":4\nd1G", "5");
 
