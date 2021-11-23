@@ -625,9 +625,17 @@ key_handler_command (GtkSourceVimNormal *self,
 		case GDK_KEY_period:
 			if (self->repeat != NULL)
 			{
-				gtk_source_vim_state_repeat (self->repeat);
+				GtkSourceBuffer *buffer = gtk_source_vim_state_get_buffer (GTK_SOURCE_VIM_STATE (self), NULL, NULL);
+				int count = MAX (1, self->count);
+
+				gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
+				for (int i = 0; i < count && self->repeat != NULL; i++)
+					gtk_source_vim_state_repeat (self->repeat);
+				gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+
 				gtk_source_vim_normal_clear (self);
 				keep_on_char (self);
+
 				return TRUE;
 			}
 			break;
