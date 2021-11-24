@@ -209,6 +209,17 @@ test_search_and_replace (void)
 	run_test ("/ / / /", ":s/\\//#/g\n", "# # # #");
 }
 
+static void
+test_command_bar (void)
+{
+	run_test ("", ":set sw=0\n", "");
+	run_test ("", ":set sw=-2\n", "");
+	run_test ("", ":set sw=33\n", "");
+	run_test ("", ":set ts=0\n", "");
+	run_test ("", ":set ts=-2\n", "");
+	run_test ("", ":set ts=33\n", "");
+}
+
 int
 main (int argc,
       char *argv[])
@@ -223,6 +234,7 @@ main (int argc,
 	g_test_add_func ("/GtkSourceView/vim-input/change", test_change);
 	g_test_add_func ("/GtkSourceView/vim-input/delete", test_delete);
 	g_test_add_func ("/GtkSourceView/vim-input/search-and-replace", test_search_and_replace);
+	g_test_add_func ("/GtkSourceView/vim-input/command-bar", test_command_bar);
 	ret = g_test_run ();
 	gtk_source_finalize ();
 	return ret;

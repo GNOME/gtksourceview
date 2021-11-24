@@ -1134,7 +1134,8 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 
 			if (parse_number (ts, &n))
 			{
-				gtk_source_view_set_tab_width (view, CLAMP (n, -1, 32));
+				if (n >= -1 && n != 0 && n <= 32)
+					gtk_source_view_set_tab_width (view, n);
 			}
 		}
 		else if (g_str_has_prefix (part, "sw=") ||
@@ -1145,7 +1146,8 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 
 			if (parse_number (sw, &n))
 			{
-				gtk_source_view_set_indent_width (view, CLAMP (n, -1, 32));
+				if (n >= -1 && n != 0 && n <= 32)
+					gtk_source_view_set_indent_width (view, n);
 			}
 		}
 		else if (g_str_equal (part, "et") ||
