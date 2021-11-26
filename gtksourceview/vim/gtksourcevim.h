@@ -35,7 +35,10 @@ const char   *gtk_source_vim_get_command_text     (GtkSourceVim   *self);
 const char   *gtk_source_vim_get_command_bar_text (GtkSourceVim   *self);
 gboolean      gtk_source_vim_emit_execute_command (GtkSourceVim   *self,
                                                    const char     *command);
-void          gtk_source_vim_emit_format          (GtkSourceVim   *self,
+gboolean      gtk_source_vim_emit_filter          (GtkSourceVim   *self,
+                                                   GtkTextIter    *begin,
+                                                   GtkTextIter    *end);
+gboolean      gtk_source_vim_emit_format          (GtkSourceVim   *self,
                                                    GtkTextIter    *begin,
                                                    GtkTextIter    *end);
 void          gtk_source_vim_emit_ready           (GtkSourceVim   *self);

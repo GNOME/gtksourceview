@@ -597,6 +597,9 @@ key_handler_initial (GtkSourceVimVisual *self,
 		case GDK_KEY_less:
 			return gtk_source_vim_visual_begin_command (self, "unindent", FALSE);
 
+		case GDK_KEY_equal:
+			return gtk_source_vim_visual_begin_command (self, "filter", FALSE);
+
 		case GDK_KEY_slash:
 		case GDK_KEY_question:
 		{

@@ -99,6 +99,34 @@ parse_number (const char *str,
 }
 
 static void
+gtk_source_vim_command_filter (GtkSourceVimCommand *self)
+{
+	GtkSourceVimState *root;
+	GtkSourceBuffer *buffer;
+	GtkTextIter iter;
+	GtkTextIter selection;
+
+	if (!gtk_source_vim_state_get_editable (GTK_SOURCE_VIM_STATE (self)))
+		return;
+
+	buffer = gtk_source_vim_state_get_buffer (GTK_SOURCE_VIM_STATE (self), &iter, &selection);
+	root = gtk_source_vim_state_get_root (GTK_SOURCE_VIM_STATE (self));
+
+	if (GTK_SOURCE_IS_VIM (root))
+	{
+		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
+		gtk_source_vim_emit_filter (GTK_SOURCE_VIM (root), &iter, &selection);
+		gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+
+		gtk_text_iter_order (&iter, &selection);
+
+		gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &iter, &iter);
+	}
+
+	self->ignore_mark = TRUE;
+}
+
+static void
 gtk_source_vim_command_format (GtkSourceVimCommand *self)
 {
 	GtkSourceVimState *root;
@@ -1515,6 +1543,7 @@ gtk_source_vim_command_class_init (GtkSourceVimCommandClass *klass)
 	ADD_COMMAND ("indent",         gtk_source_vim_command_indent);
 	ADD_COMMAND ("unindent",       gtk_source_vim_command_unindent);
 	ADD_COMMAND ("line-number",    gtk_source_vim_command_line_number);
+	ADD_COMMAND ("filter",         gtk_source_vim_command_filter);
 	ADD_COMMAND ("format",         gtk_source_vim_command_format);
 	ADD_COMMAND ("search",         gtk_source_vim_command_search);
 	ADD_COMMAND ("search-replace", gtk_source_vim_command_search_replace);

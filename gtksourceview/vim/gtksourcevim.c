@@ -21,6 +21,7 @@
 
 #include "config.h"
 
+#include "gtksourceindenter.h"
 #include "gtksourceview.h"
 
 #include "gtksourcevim.h"
@@ -51,6 +52,7 @@ enum {
 
 enum {
 	EXECUTE_COMMAND,
+	FILTER,
 	FORMAT,
 	READY,
 	SPLIT,
@@ -68,6 +70,95 @@ gtk_source_vim_new (GtkSourceView *view)
 	return g_object_new (GTK_SOURCE_TYPE_VIM,
 	                     "view", view,
 	                     NULL);
+}
+
+static inline gboolean
+compare_position (const GtkTextIter *iter,
+		  GtkTextMark       *mark)
+{
+	GtkTextIter mark_iter;
+	gtk_text_buffer_get_iter_at_mark (gtk_text_mark_get_buffer (mark),
+	                                  &mark_iter, mark);
+	return gtk_text_iter_compare (iter, &mark_iter);
+}
+
+static gboolean
+gtk_source_vim_real_format (GtkSourceVim *self,
+                            GtkTextIter  *begin,
+                            GtkTextIter  *end)
+{
+	return FALSE;
+}
+
+static gboolean
+gtk_source_vim_real_filter (GtkSourceVim *self,
+                            GtkTextIter  *begin,
+                            GtkTextIter  *end)
+{
+	GtkSourceIndenter *indenter;
+	GtkSourceView *view;
+	GtkTextBuffer *buffer;
+	GtkTextMark *begin_mark;
+	GtkTextMark *end_mark;
+	GtkTextIter iter;
+
+	g_assert (GTK_SOURCE_IS_VIM (self));
+	g_assert (begin != NULL);
+	g_assert (end != NULL);
+
+	buffer = gtk_text_iter_get_buffer (begin);
+	view = gtk_source_vim_state_get_view (GTK_SOURCE_VIM_STATE (self));
+
+	/* If there is no indenter, we can't do anything here */
+	if (!(indenter = gtk_source_view_get_indenter (view)))
+	{
+		return FALSE;
+	}
+
+	/* Create temporary marks for bounds checking */
+	begin_mark = gtk_text_buffer_create_mark (buffer, NULL, begin, TRUE);
+	end_mark = gtk_text_buffer_create_mark (buffer, NULL, end, FALSE);
+
+	/* Start at beginning of first line */
+	gtk_text_buffer_get_iter_at_mark (buffer, &iter, begin_mark);
+	gtk_text_iter_set_line_offset (&iter, 0);
+
+	/* Remove prefix space from each line */
+	while (compare_position (&iter, end_mark) < 0)
+	{
+		GtkTextIter end_of_space = iter;
+		guint line;
+
+		while (!gtk_text_iter_ends_line (&end_of_space) &&
+		       g_unichar_isspace (gtk_text_iter_get_char (&end_of_space)))
+		{
+			gtk_text_iter_forward_char (&end_of_space);
+		}
+
+		if (!gtk_text_iter_equal (&iter, &end_of_space))
+		{
+			gtk_text_buffer_delete (buffer, &iter, &end_of_space);
+		}
+
+		/* The thought here to get_iter_at_line() instead of forward_line()
+		 * is that it is a bit more resilient against how much the indenter
+		 * changes outside of the direct indentation point. It ensures that
+		 * we take the next line after we were on and then processes it too.
+		 */
+		line = gtk_text_iter_get_line (&iter);
+		gtk_source_indenter_indent (indenter, view, &iter);
+		gtk_text_buffer_get_iter_at_line (buffer, &iter, line + 1);
+	}
+
+	/* Revalidate iter positions */
+	gtk_text_buffer_get_iter_at_mark (buffer, begin, begin_mark);
+	gtk_text_buffer_get_iter_at_mark (buffer, end, end_mark);
+
+	/* Remove our temporary marks */
+	gtk_text_buffer_delete_mark (buffer, begin_mark);
+	gtk_text_buffer_delete_mark (buffer, end_mark);
+
+	return TRUE;
 }
 
 static gboolean
@@ -341,16 +432,58 @@ gtk_source_vim_class_init (GtkSourceVimClass *klass)
 	 * @begin: the beginning of the text range
 	 * @end: the end of the text range
 	 *
-	 * Requests that the text range @begin to @end be reformatted.
+	 * Requests that the text range @begin to @end be formatted.
+	 *
+	 * This is equivalent to the `gq` command in Vim.
+	 *
 	 * Applications should conntect to this signal to implement
-	 * reformatting as they would like.
+	 * formatting as they would like.
+	 *
+	 * Returns: %TRUE if the format request was handled; otherwise %FALSE
 	 */
 	signals[FORMAT] =
-		g_signal_new ("format",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST,
-		              0, NULL, NULL, NULL,
-		              G_TYPE_NONE, 2, GTK_TYPE_TEXT_ITER, GTK_TYPE_TEXT_ITER);
+		g_signal_new_class_handler ("format",
+		                            G_TYPE_FROM_CLASS (klass),
+		                            G_SIGNAL_RUN_LAST,
+		                            G_CALLBACK (gtk_source_vim_real_format),
+		                            g_signal_accumulator_true_handled, NULL,
+		                            NULL,
+		                            G_TYPE_BOOLEAN,
+		                            2,
+		                            GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
+		                            GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE);
+
+	/**
+	 * GtkSourceVim::filter:
+	 * @self: a #GtkSourceVim
+	 * @begin: the beginning of the text range
+	 * @end: the end of the text range
+	 *
+	 * Requests that the text range @begin to @end be filtered (transformed
+	 * in some way and replaced).
+	 *
+	 * Applications should conntect to this signal to implement
+	 * filtering as they would like.
+	 *
+	 * The default handler will attempt to filter by using the
+	 * #GtkSourceView's indenter to reindent each line.
+	 *
+	 * In the future, some effort may be made to restrict line width for
+	 * languages and contexts which are known to be safe.
+	 *
+	 * Returns: %TRUE if the filter request was handled; otherwise %FALSE
+	 */
+	signals[FILTER] =
+		g_signal_new_class_handler ("filter",
+		                            G_TYPE_FROM_CLASS (klass),
+		                            G_SIGNAL_RUN_LAST,
+		                            G_CALLBACK (gtk_source_vim_real_filter),
+		                            g_signal_accumulator_true_handled, NULL,
+		                            NULL,
+		                            G_TYPE_BOOLEAN,
+		                            2,
+		                            GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE,
+		                            GTK_TYPE_TEXT_ITER | G_SIGNAL_TYPE_STATIC_SCOPE);
 
 	signals[READY] =
 		g_signal_new ("ready",
@@ -494,14 +627,38 @@ gtk_source_vim_emit_ready (GtkSourceVim *self)
 	g_signal_emit (self, signals[READY], 0);
 }
 
-void
+gboolean
+gtk_source_vim_emit_filter (GtkSourceVim *self,
+                            GtkTextIter  *begin,
+                            GtkTextIter  *end)
+{
+	gboolean ret;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_VIM (self), FALSE);
+	g_return_val_if_fail (begin != NULL, FALSE);
+	g_return_val_if_fail (end != NULL, FALSE);
+
+	gtk_text_iter_order (begin, end);
+
+	g_signal_emit (self, signals[FILTER], 0, begin, end, &ret);
+
+	return ret;
+}
+
+gboolean
 gtk_source_vim_emit_format (GtkSourceVim *self,
                             GtkTextIter  *begin,
                             GtkTextIter  *end)
 {
-	g_return_if_fail (GTK_SOURCE_IS_VIM (self));
-	g_return_if_fail (begin != NULL);
-	g_return_if_fail (end != NULL);
+	gboolean ret;
 
-	g_signal_emit (self, signals[FORMAT], 0, begin, end);
+	g_return_val_if_fail (GTK_SOURCE_IS_VIM (self), FALSE);
+	g_return_val_if_fail (begin != NULL, FALSE);
+	g_return_val_if_fail (end != NULL, FALSE);
+
+	gtk_text_iter_order (begin, end);
+
+	g_signal_emit (self, signals[FORMAT], 0, begin, end, &ret);
+
+	return ret;
 }
