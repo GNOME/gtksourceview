@@ -663,6 +663,12 @@ key_handler_command (GtkSourceVimNormal *self,
 			return TRUE;
 
 		case GDK_KEY_equal:
+			gtk_source_vim_normal_begin_command (self,
+			                                     NULL,
+			                                     gtk_source_vim_motion_new_none (),
+			                                     "filter", GDK_KEY_equal);
+			return TRUE;
+
 		case GDK_KEY_plus:
 		default:
 			break;
