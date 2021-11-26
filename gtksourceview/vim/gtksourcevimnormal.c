@@ -644,7 +644,7 @@ key_handler_command (GtkSourceVimNormal *self,
 			gtk_source_vim_normal_begin_command (self,
 			                                     gtk_source_vim_motion_new_down (-1),
 			                                     gtk_source_vim_motion_new_none (),
-							     ":yank", 0);
+			                                     ":yank", 0);
 			return TRUE;
 
 		case GDK_KEY_p:
