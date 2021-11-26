@@ -477,6 +477,7 @@ gtk_source_completion_words_activate (GtkSourceCompletionProvider *provider,
                                       GtkSourceCompletionProposal *proposal)
 {
 	GtkSourceCompletionWordsProposal *p = (GtkSourceCompletionWordsProposal *)proposal;
+	GtkTextMark *end_mark = NULL;
 	GtkTextIter begin, end;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_WORDS (provider));
@@ -487,11 +488,45 @@ gtk_source_completion_words_activate (GtkSourceCompletionProvider *provider,
 	{
 		GtkTextBuffer *buffer = gtk_text_iter_get_buffer (&begin);
 		const char *word = gtk_source_completion_words_proposal_get_word (p);
+		int len = -1;
+
+		/* If the insertion cursor is within a word and the trailing characters
+		 * of the word match the suffix of the proposal, then limit how much
+		 * text we insert so that the word is completed properly.
+		 */
+		if (!gtk_text_iter_ends_line (&end) &&
+		    !g_unichar_isspace (gtk_text_iter_get_char (&end)) &&
+		    !gtk_text_iter_ends_word (&end))
+		{
+			GtkTextIter word_end = end;
+
+			if (gtk_text_iter_forward_word_end (&word_end))
+			{
+				char *text = gtk_text_iter_get_slice (&end, &word_end);
+
+				if (g_str_has_suffix (word, text))
+				{
+					g_assert (strlen (word) >= strlen (text));
+					len = strlen (word) - strlen (text);
+					end_mark = gtk_text_buffer_create_mark (GTK_TEXT_BUFFER (buffer),
+					                                       NULL,
+					                                       &word_end,
+					                                       FALSE);
+				}
+			}
+		}
 
 		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
 		gtk_text_buffer_delete (GTK_TEXT_BUFFER (buffer), &begin, &end);
-		gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &begin, word, -1);
+		gtk_text_buffer_insert (GTK_TEXT_BUFFER (buffer), &begin, word, len);
 		gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+
+		if (end_mark != NULL)
+		{
+			gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (buffer), &end, end_mark);
+			gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &end, &end);
+			gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer), end_mark);
+		}
 	}
 }
 
