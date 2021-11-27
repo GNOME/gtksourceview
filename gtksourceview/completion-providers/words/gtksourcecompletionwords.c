@@ -40,6 +40,7 @@
 #include "gtksourcecompletionwords.h"
 #include "gtksourcecompletionwordslibrary-private.h"
 #include "gtksourcecompletionwordsbuffer-private.h"
+#include "gtksourcecompletionwordsmodel-private.h"
 #include "gtksourcecompletionwordsutils-private.h"
 
 #define BUFFER_KEY "GtkSourceCompletionWordsBufferKey"
@@ -103,15 +104,6 @@ G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionWords,
 			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROVIDER,
 				 		gtk_source_completion_words_iface_init))
 
-static void
-populate_free (Populate *p)
-{
-	g_clear_object (&p->context);
-	g_clear_object (&p->ret);
-	g_clear_pointer (&p->word, g_free);
-	g_slice_free (Populate, p);
-}
-
 static gchar *
 gtk_source_completion_words_get_title (GtkSourceCompletionProvider *self)
 {
@@ -119,57 +111,6 @@ gtk_source_completion_words_get_title (GtkSourceCompletionProvider *self)
 	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
 
 	return g_strdup (priv->title);
-}
-
-static gboolean
-add_in_idle (GTask *task)
-{
-	GtkSourceCompletionWords *words = g_task_get_source_object (task);
-	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
-	Populate *p = g_task_get_task_data (task);
-	guint idx = 0;
-
-	if (g_task_return_error_if_cancelled (task))
-	{
-		g_clear_object (&task);
-		goto cleanup;
-	}
-
-	if (p->populate_iter == NULL)
-	{
-		p->populate_iter = gtk_source_completion_words_library_find_first (priv->library,
-		                                                                   p->word,
-		                                                                   p->word_len);
-	}
-
-	while (idx < priv->proposals_batch_size && p->populate_iter)
-	{
-		GtkSourceCompletionWordsProposal *proposal =
-				gtk_source_completion_words_library_get_proposal (p->populate_iter);
-
-		/* Only add non-exact matches */
-		if (strcmp (gtk_source_completion_words_proposal_get_word (proposal), p->word) != 0)
-		{
-			g_list_store_append (p->ret, proposal);
-		}
-
-		p->populate_iter = gtk_source_completion_words_library_find_next (p->populate_iter,
-		                                                                  p->word,
-		                                                                  p->word_len);
-		++idx;
-	}
-
-	if (p->populate_iter != NULL)
-	{
-		return G_SOURCE_CONTINUE;
-	}
-
-cleanup:
-	g_task_return_pointer (task, g_steal_pointer (&p->ret), g_object_unref);
-	gtk_source_completion_words_library_unlock (priv->library);
-	g_clear_object (&task);
-
-	return G_SOURCE_REMOVE;
 }
 
 static void
@@ -181,11 +122,9 @@ gtk_source_completion_words_populate_async (GtkSourceCompletionProvider *provide
 {
 	GtkSourceCompletionWords *words = GTK_SOURCE_COMPLETION_WORDS (provider);
 	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (words);
-	GtkSourceCompletionActivation activation;
-	Populate *populate;
-	GtkTextIter begin, end;
-	gchar *word;
-	GTask *task = NULL;
+	GListModel *model;
+	GTask *task;
+	char *word;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_WORDS (words));
 	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
@@ -194,51 +133,17 @@ gtk_source_completion_words_populate_async (GtkSourceCompletionProvider *provide
 	g_task_set_source_tag (task, gtk_source_completion_words_populate_async);
 	g_task_set_priority (task, priv->priority);
 
-	if (!gtk_source_completion_context_get_bounds (context, &begin, &end))
-	{
-		g_task_return_new_error (task,
-		                         G_IO_ERROR,
-		                         G_IO_ERROR_NOT_SUPPORTED,
-		                         "No word to complete");
-		g_clear_object (&task);
-		return;
-	}
+	word = gtk_source_completion_context_get_word (context);
+	model = gtk_source_completion_words_model_new (priv->library,
+	                                               priv->proposals_batch_size,
+	                                               priv->minimum_word_size,
+	                                               word);
 
-	g_clear_pointer (&priv->word, g_free);
+	g_task_return_pointer (task, g_steal_pointer (&model), g_object_unref);
 
-	word = gtk_text_iter_get_slice (&begin, &end);
-
-	g_assert (word != NULL);
-
-	activation = gtk_source_completion_context_get_activation (context);
-
-	if (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE &&
-	     g_utf8_strlen (word, -1) < (glong)priv->minimum_word_size)
-	{
-		g_free (word);
-		g_task_return_new_error (task,
-		                         G_IO_ERROR,
-		                         G_IO_ERROR_NOT_SUPPORTED,
-		                         "Word is too short to complete");
-		return;
-	}
-
-	populate = g_slice_new0 (Populate);
-	populate->context = g_object_ref (context);
-	populate->activation = activation;
-	populate->word = g_steal_pointer (&word);
-	populate->word_len = g_utf8_strlen (populate->word, -1);
-	populate->ret = g_list_store_new (GTK_SOURCE_TYPE_COMPLETION_PROPOSAL);
-
-	g_task_set_task_data (task, populate, (GDestroyNotify)populate_free);
-
-	gtk_source_completion_words_library_lock (priv->library);
-
-	/* Do first right now */
-	if (add_in_idle (task))
-	{
-		priv->idle_id = g_idle_add ((GSourceFunc)add_in_idle, task);
-	}
+	g_clear_object (&model);
+	g_clear_object (&task);
+	g_clear_pointer (&word, g_free);
 }
 
 static GListModel *
@@ -535,12 +440,15 @@ gtk_source_completion_words_refilter (GtkSourceCompletionProvider *provider,
                                       GtkSourceCompletionContext  *context,
                                       GListModel                  *model)
 {
-	GtkFilterListModel *filter_model;
-	GtkExpression *expression;
-	GtkStringFilter *filter;
-	gchar *word;
+	GtkSourceCompletionWords *self = (GtkSourceCompletionWords *)provider;
+	GtkSourceCompletionWordsPrivate *priv = gtk_source_completion_words_get_instance_private (self);
+	GtkFilterListModel *filter_model = NULL;
+	GtkExpression *expression = NULL;
+	GtkStringFilter *filter = NULL;
+	GListModel *replaced_model = NULL;
+	char *word;
 
-	g_assert (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
+	g_assert (GTK_SOURCE_IS_COMPLETION_WORDS (self));
 	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 	g_assert (G_IS_LIST_MODEL (model));
 
@@ -551,23 +459,31 @@ gtk_source_completion_words_refilter (GtkSourceCompletionProvider *provider,
 		model = gtk_filter_list_model_get_model (GTK_FILTER_LIST_MODEL (model));
 	}
 
-	if (!word || !word[0])
+	g_assert (GTK_SOURCE_IS_COMPLETION_WORDS_MODEL (model));
+
+	if (!gtk_source_completion_words_model_can_filter (GTK_SOURCE_COMPLETION_WORDS_MODEL (model), word))
 	{
-		gtk_source_completion_context_set_proposals_for_provider (context, provider, model);
-		g_free (word);
-		return;
+		gtk_source_completion_words_model_cancel (GTK_SOURCE_COMPLETION_WORDS_MODEL (model));
+		replaced_model = gtk_source_completion_words_model_new (priv->library,
+		                                                        priv->proposals_batch_size,
+		                                                        priv->minimum_word_size,
+		                                                        word);
+		gtk_source_completion_context_set_proposals_for_provider (context, provider, replaced_model);
+	}
+	else
+	{
+		expression = gtk_property_expression_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, NULL, "word");
+		filter = gtk_string_filter_new (g_steal_pointer (&expression));
+		gtk_string_filter_set_search (GTK_STRING_FILTER (filter), word);
+		filter_model = gtk_filter_list_model_new (g_object_ref (model),
+		                                          GTK_FILTER (g_steal_pointer (&filter)));
+		gtk_filter_list_model_set_incremental (filter_model, TRUE);
+		gtk_source_completion_context_set_proposals_for_provider (context, provider, G_LIST_MODEL (filter_model));
 	}
 
-	expression = gtk_property_expression_new (GTK_SOURCE_TYPE_COMPLETION_WORDS_PROPOSAL, NULL, "word");
-	filter = gtk_string_filter_new (g_steal_pointer (&expression));
-	gtk_string_filter_set_search (GTK_STRING_FILTER (filter), word);
-	filter_model = gtk_filter_list_model_new (g_object_ref (model),
-	                                          GTK_FILTER (g_steal_pointer (&filter)));
-	gtk_filter_list_model_set_incremental (filter_model, TRUE);
-	gtk_source_completion_context_set_proposals_for_provider (context, provider, G_LIST_MODEL (filter_model));
-
+	g_clear_object (&replaced_model);
 	g_clear_object (&filter_model);
-	g_free (word);
+	g_clear_pointer (&word, g_free);
 }
 
 static void

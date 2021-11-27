@@ -11,6 +11,7 @@ completionwords_public_c = [
   'gtksourcecompletionwords.c',
   'gtksourcecompletionwordsbuffer.c',
   'gtksourcecompletionwordslibrary.c',
+  'gtksourcecompletionwordsmodel.c',
   'gtksourcecompletionwordsproposal.c',
   'gtksourcecompletionwordsutils.c',
 ]
