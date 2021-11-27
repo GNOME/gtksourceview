@@ -460,6 +460,23 @@ gtk_source_vim_visual_replace (GtkSourceVimVisual *self)
 	return TRUE;
 }
 
+static void
+gtk_source_vim_visual_swap_cursor (GtkSourceVimVisual *self)
+{
+	GtkTextBuffer *buffer;
+	GtkTextIter cursor, started_at;
+
+	g_assert (GTK_SOURCE_IS_VIM_VISUAL (self));
+
+	gtk_source_vim_visual_get_bounds (self, &cursor, &started_at);
+
+	buffer = gtk_text_iter_get_buffer (&cursor);
+	gtk_text_buffer_move_mark (buffer, self->cursor, &started_at);
+	gtk_text_buffer_move_mark (buffer, self->started_at, &cursor);
+
+	gtk_source_vim_visual_track_motion (self);
+}
+
 static gboolean
 key_handler_g (GtkSourceVimVisual *self,
 	       guint               keyval,
@@ -617,6 +634,11 @@ key_handler_initial (GtkSourceVimVisual *self,
 			gtk_source_vim_state_push (GTK_SOURCE_VIM_STATE (self), new_state);
 			return TRUE;
 		}
+
+		case GDK_KEY_o:
+			gtk_source_vim_visual_swap_cursor (self);
+			gtk_source_vim_visual_clear (self);
+			return TRUE;
 
 		default:
 			break;

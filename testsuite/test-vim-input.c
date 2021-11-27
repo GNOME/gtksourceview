@@ -220,6 +220,12 @@ test_command_bar (void)
 	run_test ("", ":set ts=33\n", "");
 }
 
+static void
+test_visual (void)
+{
+	run_test ("0123456789", "3lvllohhx", "06789");
+}
+
 int
 main (int argc,
       char *argv[])
@@ -235,6 +241,7 @@ main (int argc,
 	g_test_add_func ("/GtkSourceView/vim-input/delete", test_delete);
 	g_test_add_func ("/GtkSourceView/vim-input/search-and-replace", test_search_and_replace);
 	g_test_add_func ("/GtkSourceView/vim-input/command-bar", test_command_bar);
+	g_test_add_func ("/GtkSourceView/vim-input/visual", test_visual);
 	ret = g_test_run ();
 	gtk_source_finalize ();
 	return ret;
