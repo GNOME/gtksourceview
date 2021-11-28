@@ -130,24 +130,41 @@ static void
 gtk_source_vim_command_format (GtkSourceVimCommand *self)
 {
 	GtkSourceVimState *root;
-	GtkSourceBuffer *buffer;
-	GtkTextIter iter;
-	GtkTextIter selection;
 
 	if (!gtk_source_vim_state_get_editable (GTK_SOURCE_VIM_STATE (self)))
 		return;
 
-	buffer = gtk_source_vim_state_get_buffer (GTK_SOURCE_VIM_STATE (self), &iter, &selection);
 	root = gtk_source_vim_state_get_root (GTK_SOURCE_VIM_STATE (self));
 
 	if (GTK_SOURCE_IS_VIM (root))
 	{
+		GtkSourceBuffer *buffer;
+		GtkTextIter iter;
+		GtkTextIter selection;
+
+		buffer = gtk_source_vim_state_get_buffer (GTK_SOURCE_VIM_STATE (self), &iter, &selection);
+
+		/* Extend our selection linewise */
+		gtk_text_iter_order (&iter, &selection);
+		gtk_text_iter_set_line_offset (&iter, 0);
+		if (!gtk_text_iter_ends_line (&selection))
+		{
+			gtk_text_iter_forward_to_line_end (&selection);
+		}
+
+		/* Request formatting from the application or internally */
 		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
 		gtk_source_vim_emit_format (GTK_SOURCE_VIM (root), &iter, &selection);
 		gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
 
+		/* Leave cursor on first non-space character */
 		gtk_text_iter_order (&iter, &selection);
-
+		gtk_text_iter_set_line_offset (&iter, 0);
+		while (!gtk_text_iter_ends_line (&iter) &&
+		       g_unichar_isspace (gtk_text_iter_get_char (&iter)))
+		{
+			gtk_text_iter_forward_char (&iter);
+		}
 		gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &iter, &iter);
 	}
 
