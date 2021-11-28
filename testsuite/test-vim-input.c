@@ -219,6 +219,7 @@ test_command_bar (void)
 	run_test ("", ":set ts=-2\n", "");
 	run_test ("", ":set ts=33\n", "");
 	run_test ("", ":set tw=100\n", "");
+	run_test ("", ":set ft=c\n", "");
 }
 
 static void
