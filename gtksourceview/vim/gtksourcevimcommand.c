@@ -1178,6 +1178,18 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 					gtk_source_view_set_indent_width (view, n);
 			}
 		}
+		else if (g_str_has_prefix (part, "tw=") ||
+			 g_str_has_prefix (part, "textwidth="))
+		{
+			const char *sw = strchr (part, '=') + 1;
+			int n;
+
+			if (parse_number (sw, &n))
+			{
+				if (n >= 1 && n <= 1000)
+					gtk_source_view_set_right_margin_position (view, n);
+			}
+		}
 		else if (g_str_equal (part, "et") ||
 			 g_str_equal (part, "expandtab"))
 		{
