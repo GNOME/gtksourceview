@@ -355,9 +355,7 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 	/**
 	 * GtkSourceSpaceDrawer:enable-matrix:
 	 *
-	 * Whether the #GtkSourceSpaceDrawer:matrix property is enabled.
-	 *
-	 * Since: 3.24
+	 * Whether the #GtkSourceSpaceDrawer:matrix property is enabled.4
 	 */
 	properties[PROP_ENABLE_MATRIX] =
 		g_param_spec_boolean ("enable-matrix",
@@ -383,9 +381,7 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 	 * If the array is shorter than the number of locations, then the value
 	 * for the missing locations will be %GTK_SOURCE_SPACE_TYPE_NONE.
 	 *
-	 * By default, %GTK_SOURCE_SPACE_TYPE_ALL is set for all locations.
-	 *
-	 * Since: 3.24
+	 * By default, %GTK_SOURCE_SPACE_TYPE_ALL is set for all locations.4
 	 */
 	properties[PROP_MATRIX] =
 		g_param_spec_variant ("matrix",
@@ -413,7 +409,6 @@ gtk_source_space_drawer_init (GtkSourceSpaceDrawer *drawer)
  * settings independently of a #GtkSourceView.
  *
  * Returns: a new #GtkSourceSpaceDrawer.
- * Since: 3.24
  */
 GtkSourceSpaceDrawer *
 gtk_source_space_drawer_new (void)
@@ -436,7 +431,6 @@ gtk_source_space_drawer_new (void)
  * specified @locations.
  *
  * Returns: a combination of #GtkSourceSpaceTypeFlags.
- * Since: 3.24
  */
 GtkSourceSpaceTypeFlags
 gtk_source_space_drawer_get_types_for_locations (GtkSourceSpaceDrawer        *drawer,
@@ -455,8 +449,6 @@ gtk_source_space_drawer_get_types_for_locations (GtkSourceSpaceDrawer        *dr
  *
  * Modifies the #GtkSourceSpaceDrawer:matrix property at the specified
  * @locations.
- *
- * Since: 3.24
  */
 void
 gtk_source_space_drawer_set_types_for_locations (GtkSourceSpaceDrawer        *drawer,
@@ -503,7 +495,6 @@ gtk_source_space_drawer_set_types_for_locations (GtkSourceSpaceDrawer        *dr
  *
  * Returns: the #GtkSourceSpaceDrawer:matrix value as a new floating #GVariant
  *   instance.
- * Since: 3.24
  */
 GVariant *
 gtk_source_space_drawer_get_matrix (GtkSourceSpaceDrawer *drawer)
@@ -547,8 +538,6 @@ gtk_source_space_drawer_get_matrix (GtkSourceSpaceDrawer *drawer)
  *
  * The gtk_source_space_drawer_set_types_for_locations() function may be more
  * convenient to use.
- *
- * Since: 3.24
  */
 void
 gtk_source_space_drawer_set_matrix (GtkSourceSpaceDrawer *drawer,
@@ -624,7 +613,6 @@ gtk_source_space_drawer_set_matrix (GtkSourceSpaceDrawer *drawer,
  * @drawer: a #GtkSourceSpaceDrawer.
  *
  * Returns: whether the #GtkSourceSpaceDrawer:matrix property is enabled.
- * Since: 3.24
  */
 gboolean
 gtk_source_space_drawer_get_enable_matrix (GtkSourceSpaceDrawer *drawer)
@@ -640,8 +628,6 @@ gtk_source_space_drawer_get_enable_matrix (GtkSourceSpaceDrawer *drawer)
  * @enable_matrix: the new value.
  *
  * Sets whether the #GtkSourceSpaceDrawer:matrix property is enabled.
- *
- * Since: 3.24
  */
 void
 gtk_source_space_drawer_set_enable_matrix (GtkSourceSpaceDrawer *drawer,
@@ -691,8 +677,6 @@ matrix_set_mapping (const GValue       *value,
  * mapping functions don't support #GVariant properties (maybe it will be
  * supported by a future GIO version, in which case this function can be
  * deprecated).
- *
- * Since: 3.24
  */
 void
 gtk_source_space_drawer_bind_matrix_setting (GtkSourceSpaceDrawer *drawer,

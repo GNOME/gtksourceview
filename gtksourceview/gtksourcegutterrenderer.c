@@ -762,8 +762,6 @@ get_line_rect (GtkSourceGutterRenderer *renderer,
  *
  * It is encouraged that renderers use this function when snappshotting
  * to ensure consistent placement of their contents.
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_renderer_align_cell (GtkSourceGutterRenderer *renderer,
@@ -790,8 +788,6 @@ gtk_source_gutter_renderer_align_cell (GtkSourceGutterRenderer *renderer,
  *
  * Gets the "xpad" property of the #GtkSourceGutterRenderer. This may be used
  * to adjust the cell rectangle that the renderer will use to draw.
- *
- * Since: 5.0
  */
 gint
 gtk_source_gutter_renderer_get_xpad (GtkSourceGutterRenderer *renderer)
@@ -810,8 +806,6 @@ gtk_source_gutter_renderer_get_xpad (GtkSourceGutterRenderer *renderer)
  *
  * Adjusts the "xpad" property of the #GtkSourceGutterRenderer. This may be
  * used to adjust the cell rectangle that the renderer will use to draw.
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_renderer_set_xpad (GtkSourceGutterRenderer *renderer,
@@ -837,8 +831,6 @@ gtk_source_gutter_renderer_set_xpad (GtkSourceGutterRenderer *renderer,
  *
  * Gets the "ypad" property of the #GtkSourceGutterRenderer. This may be used
  * to adjust the cell rectangle that the renderer will use to draw.
- *
- * Since: 5.0
  */
 gint
 gtk_source_gutter_renderer_get_ypad (GtkSourceGutterRenderer *renderer)
@@ -857,8 +849,6 @@ gtk_source_gutter_renderer_get_ypad (GtkSourceGutterRenderer *renderer)
  *
  * Adjusts the "ypad" property of the #GtkSourceGutterRenderer. This may be
  * used to adjust the cell rectangle that the renderer will use to draw.
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_renderer_set_ypad (GtkSourceGutterRenderer *renderer,
@@ -884,8 +874,6 @@ gtk_source_gutter_renderer_set_ypad (GtkSourceGutterRenderer *renderer,
  *
  * Gets the "xalign" property of the #GtkSourceGutterRenderer. This may be used
  * to adjust where within the cell rectangle the renderer will draw.
- *
- * Since: 5.0
  */
 gfloat
 gtk_source_gutter_renderer_get_xalign (GtkSourceGutterRenderer *renderer)
@@ -904,8 +892,6 @@ gtk_source_gutter_renderer_get_xalign (GtkSourceGutterRenderer *renderer)
  *
  * Adjusts the "xalign" property of the #GtkSourceGutterRenderer. This may be
  * used to adjust where within the cell rectangle the renderer will draw.
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_renderer_set_xalign (GtkSourceGutterRenderer *renderer,
@@ -931,8 +917,6 @@ gtk_source_gutter_renderer_set_xalign (GtkSourceGutterRenderer *renderer,
  *
  * Gets the "yalign" property of the #GtkSourceGutterRenderer. This may be used
  * to adjust where within the cell rectangle the renderer will draw.
- *
- * Since: 5.0
  */
 gfloat
 gtk_source_gutter_renderer_get_yalign (GtkSourceGutterRenderer *renderer)
@@ -951,8 +935,6 @@ gtk_source_gutter_renderer_get_yalign (GtkSourceGutterRenderer *renderer)
  *
  * Adjusts the "yalign" property of the #GtkSourceGutterRenderer. This may be
  * used to adjust where within the cell rectangle the renderer will draw.
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_renderer_set_yalign (GtkSourceGutterRenderer *renderer,
@@ -979,8 +961,6 @@ gtk_source_gutter_renderer_set_yalign (GtkSourceGutterRenderer *renderer,
  * Gets the #GtkSourceBuffer for which the gutter renderer is drawing.
  *
  * Returns: (transfer none) (nullable): a #GtkTextBuffer or %NULL
- *
- * Since: 5.0
  */
 GtkSourceBuffer *
 gtk_source_gutter_renderer_get_buffer (GtkSourceGutterRenderer *renderer)

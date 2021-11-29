@@ -296,8 +296,6 @@ gtk_source_style_scheme_init (GtkSourceStyleScheme *scheme)
  * @scheme: a #GtkSourceStyleScheme.
  *
  * Returns: @scheme id.
- *
- * Since: 2.0
  */
 const gchar *
 gtk_source_style_scheme_get_id (GtkSourceStyleScheme *scheme)
@@ -313,8 +311,6 @@ gtk_source_style_scheme_get_id (GtkSourceStyleScheme *scheme)
  * @scheme: a #GtkSourceStyleScheme.
  *
  * Returns: @scheme name.
- *
- * Since: 2.0
  */
 const gchar *
 gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
@@ -330,8 +326,6 @@ gtk_source_style_scheme_get_name (GtkSourceStyleScheme *scheme)
  * @scheme: a #GtkSourceStyleScheme.
  *
  * Returns: (nullable): @scheme description (if defined), or %NULL.
- *
- * Since: 2.0
  */
 const gchar *
 gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
@@ -348,8 +342,6 @@ gtk_source_style_scheme_get_description (GtkSourceStyleScheme *scheme)
  * Returns: (nullable) (array zero-terminated=1) (transfer none): a
  * %NULL-terminated array containing the @scheme authors or %NULL if
  * no author is specified by the style scheme.
- *
- * Since: 2.0
  */
 const gchar * const *
 gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
@@ -370,8 +362,6 @@ gtk_source_style_scheme_get_authors (GtkSourceStyleScheme *scheme)
  *
  * Returns: (nullable): @scheme file name if the scheme was created
  * parsing a style scheme file or %NULL in the other cases.
- *
- * Since: 2.0
  */
 const gchar *
 gtk_source_style_scheme_get_filename (GtkSourceStyleScheme *scheme)
@@ -413,8 +403,6 @@ color_parse (const gchar *color,
  * Returned value is actual color string suitable for gdk_rgba_parse().
  * It may be @name or part of @name so copy it or something, if you need
  * it to stay around.
- *
- * Since: 2.0
  */
 static const gchar *
 get_color_by_name (GtkSourceStyleScheme *scheme,
@@ -544,8 +532,6 @@ gtk_source_style_scheme_get_style_internal (GtkSourceStyleScheme *scheme,
  * Returns: (nullable) (transfer none): style which corresponds to @style_id in
  * the @scheme, or %NULL when no style with this name found.  It is owned by
  * @scheme and may not be unref'ed.
- *
- * Since: 2.0
  */
 /*
  * It's a little weird because we have named colors: styles loaded from
@@ -804,8 +790,6 @@ apply_css_style_cursors (GtkSourceStyleScheme *scheme,
  * @widget: (nullable): a #GtkWidget to apply styles to.
  *
  * Sets style colors from @scheme to the @widget.
- *
- * Since: 2.0
  */
 void
 _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
@@ -833,8 +817,6 @@ _gtk_source_style_scheme_apply (GtkSourceStyleScheme *scheme,
  * @widget: (nullable): a (#GtkWidget to unapply styles to.
  *
  * Removes the styles from @scheme in the @widget.
- *
- * Since: 3.0
  */
 void
 _gtk_source_style_scheme_unapply (GtkSourceStyleScheme *scheme,
@@ -1337,8 +1319,6 @@ parse_style_scheme_element (GtkSourceStyleScheme  *scheme,
  *
  * Returns: (nullable): new #GtkSourceStyleScheme created from file,
  * or %NULL on error.
- *
- * Since: 2.0
  */
 GtkSourceStyleScheme *
 _gtk_source_style_scheme_new_from_file (const gchar *filename)
@@ -1416,8 +1396,6 @@ _gtk_source_style_scheme_new_from_file (const gchar *filename)
  * @scheme: a #GtkSourceStyleScheme.
  *
  * Returns: (nullable): parent style scheme id or %NULL.
- *
- * Since: 2.0
  */
 const gchar *
 _gtk_source_style_scheme_get_parent_id (GtkSourceStyleScheme *scheme)
@@ -1435,8 +1413,6 @@ _gtk_source_style_scheme_get_parent_id (GtkSourceStyleScheme *scheme)
  * Sets @parent_scheme as parent scheme for @scheme, @scheme will
  * look for styles in @parent_scheme if it doesn't have style set
  * for given name.
- *
- * Since: 2.0
  */
 void
 _gtk_source_style_scheme_set_parent (GtkSourceStyleScheme *scheme,
@@ -1469,8 +1445,6 @@ _gtk_source_style_scheme_set_parent (GtkSourceStyleScheme *scheme,
  *
  * Returns: default style scheme to be used when user didn't set
  * style scheme explicitly.
- *
- * Since: 2.0
  */
 GtkSourceStyleScheme *
 _gtk_source_style_scheme_get_default (void)

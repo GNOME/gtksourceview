@@ -346,8 +346,6 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * The #GtkSourceBuffer to save. The #GtkSourceFileSaver object has a
 	 * weak reference to the buffer.
-	 *
-	 * Since: 3.14
 	 */
 	properties [PROP_BUFFER] =
 		g_param_spec_object ("buffer",
@@ -363,8 +361,6 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * The #GtkSourceFile. The #GtkSourceFileSaver object has a weak
 	 * reference to the file.
-	 *
-	 * Since: 3.14
 	 */
 	properties [PROP_FILE] =
 		g_param_spec_object ("file",
@@ -380,8 +376,6 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 *
 	 * The #GFile where to save the buffer. By default the location is taken
 	 * from the #GtkSourceFile at construction time.
-	 *
-	 * Since: 3.14
 	 */
 	properties [PROP_LOCATION] =
 		g_param_spec_object ("location",
@@ -396,8 +390,6 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 * GtkSourceFileSaver:encoding:
 	 *
 	 * The file's encoding.
-	 *
-	 * Since: 3.14
 	 */
 	properties [PROP_ENCODING] =
 		g_param_spec_boxed ("encoding",
@@ -412,8 +404,6 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 * GtkSourceFileSaver:newline-type:
 	 *
 	 * The newline type.
-	 *
-	 * Since: 3.14
 	 */
 	properties [PROP_NEWLINE_TYPE] =
 		g_param_spec_enum ("newline-type",
@@ -429,8 +419,6 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 * GtkSourceFileSaver:compression-type:
 	 *
 	 * The compression type.
-	 *
-	 * Since: 3.14
 	 */
 	properties [PROP_COMPRESSION_TYPE] =
 		g_param_spec_enum ("compression-type",
@@ -446,8 +434,6 @@ gtk_source_file_saver_class_init (GtkSourceFileSaverClass *klass)
 	 * GtkSourceFileSaver:flags:
 	 *
 	 * File saving flags.
-	 *
-	 * Since: 3.14
 	 */
 	properties [PROP_FLAGS] =
 		g_param_spec_flags ("flags",
@@ -1096,7 +1082,6 @@ gtk_source_file_saver_error_quark (void)
  * already contains a non-%NULL #GtkSourceFile:location.
  *
  * Returns: a new #GtkSourceFileSaver object.
- * Since: 3.14
  */
 GtkSourceFileSaver *
 gtk_source_file_saver_new (GtkSourceBuffer *buffer,
@@ -1126,7 +1111,6 @@ gtk_source_file_saver_new (GtkSourceBuffer *buffer,
  * buffer for the first time.
  *
  * Returns: a new #GtkSourceFileSaver object.
- * Since: 3.14
  */
 GtkSourceFileSaver *
 gtk_source_file_saver_new_with_target (GtkSourceBuffer *buffer,
@@ -1149,7 +1133,6 @@ gtk_source_file_saver_new_with_target (GtkSourceBuffer *buffer,
  * @saver: a #GtkSourceFileSaver.
  *
  * Returns: (transfer none): the #GtkSourceBuffer to save.
- * Since: 3.14
  */
 GtkSourceBuffer *
 gtk_source_file_saver_get_buffer (GtkSourceFileSaver *saver)
@@ -1164,7 +1147,6 @@ gtk_source_file_saver_get_buffer (GtkSourceFileSaver *saver)
  * @saver: a #GtkSourceFileSaver.
  *
  * Returns: (transfer none): the #GtkSourceFile.
- * Since: 3.14
  */
 GtkSourceFile *
 gtk_source_file_saver_get_file (GtkSourceFileSaver *saver)
@@ -1179,7 +1161,6 @@ gtk_source_file_saver_get_file (GtkSourceFileSaver *saver)
  * @saver: a #GtkSourceFileSaver.
  *
  * Returns: (transfer none): the #GFile where to save the buffer to.
- * Since: 3.14
  */
 GFile *
 gtk_source_file_saver_get_location (GtkSourceFileSaver *saver)
@@ -1196,8 +1177,6 @@ gtk_source_file_saver_get_location (GtkSourceFileSaver *saver)
  *
  * Sets the encoding. If @encoding is %NULL, the UTF-8 encoding will be set.
  * By default the encoding is taken from the #GtkSourceFile.
- *
- * Since: 3.14
  */
 void
 gtk_source_file_saver_set_encoding (GtkSourceFileSaver      *saver,
@@ -1224,7 +1203,6 @@ gtk_source_file_saver_set_encoding (GtkSourceFileSaver      *saver,
  * @saver: a #GtkSourceFileSaver.
  *
  * Returns: the encoding.
- * Since: 3.14
  */
 const GtkSourceEncoding *
 gtk_source_file_saver_get_encoding (GtkSourceFileSaver *saver)
@@ -1241,8 +1219,6 @@ gtk_source_file_saver_get_encoding (GtkSourceFileSaver *saver)
  *
  * Sets the newline type. By default the newline type is taken from the
  * #GtkSourceFile.
- *
- * Since: 3.14
  */
 void
 gtk_source_file_saver_set_newline_type (GtkSourceFileSaver   *saver,
@@ -1264,7 +1240,6 @@ gtk_source_file_saver_set_newline_type (GtkSourceFileSaver   *saver,
  * @saver: a #GtkSourceFileSaver.
  *
  * Returns: the newline type.
- * Since: 3.14
  */
 GtkSourceNewlineType
 gtk_source_file_saver_get_newline_type (GtkSourceFileSaver *saver)
@@ -1281,8 +1256,6 @@ gtk_source_file_saver_get_newline_type (GtkSourceFileSaver *saver)
  *
  * Sets the compression type. By default the compression type is taken from the
  * #GtkSourceFile.
- *
- * Since: 3.14
  */
 void
 gtk_source_file_saver_set_compression_type (GtkSourceFileSaver       *saver,
@@ -1304,7 +1277,6 @@ gtk_source_file_saver_set_compression_type (GtkSourceFileSaver       *saver,
  * @saver: a #GtkSourceFileSaver.
  *
  * Returns: the compression type.
- * Since: 3.14
  */
 GtkSourceCompressionType
 gtk_source_file_saver_get_compression_type (GtkSourceFileSaver *saver)
@@ -1318,8 +1290,6 @@ gtk_source_file_saver_get_compression_type (GtkSourceFileSaver *saver)
  * gtk_source_file_saver_set_flags:
  * @saver: a #GtkSourceFileSaver.
  * @flags: the new flags.
- *
- * Since: 3.14
  */
 void
 gtk_source_file_saver_set_flags (GtkSourceFileSaver      *saver,
@@ -1341,7 +1311,6 @@ gtk_source_file_saver_set_flags (GtkSourceFileSaver      *saver,
  * @saver: a #GtkSourceFileSaver.
  *
  * Returns: the flags.
- * Since: 3.14
  */
 GtkSourceFileSaverFlags
 gtk_source_file_saver_get_flags (GtkSourceFileSaver *saver)
@@ -1369,8 +1338,6 @@ gtk_source_file_saver_get_flags (GtkSourceFileSaver *saver)
  *
  * Saves asynchronously the buffer into the file. See the #GAsyncResult
  * documentation to know how to use this function.
- *
- * Since: 3.14
  */
 
 /* The GDestroyNotify is needed, currently the following bug is not fixed:
@@ -1456,7 +1423,6 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver    *saver,
  * if the file has been saved successfully.
  *
  * Returns: whether the file was saved successfully.
- * Since: 3.14
  */
 gboolean
 gtk_source_file_saver_save_finish (GtkSourceFileSaver  *saver,

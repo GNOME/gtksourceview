@@ -44,8 +44,6 @@
  * use gtk_source_style_scheme_chooser_set_style_scheme().
  * To get the selected style scheme
  * use gtk_source_style_scheme_chooser_get_style_scheme().
- *
- * Since: 3.16
  */
 
 typedef struct
@@ -257,8 +255,6 @@ style_scheme_chooser_interface_init (GtkSourceStyleSchemeChooserInterface *iface
  * Creates a new #GtkSourceStyleSchemeChooserWidget.
  *
  * Returns: a new  #GtkSourceStyleSchemeChooserWidget.
- *
- * Since: 3.16
  */
 GtkWidget *
 gtk_source_style_scheme_chooser_widget_new (void)

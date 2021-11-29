@@ -43,8 +43,6 @@
  * The #GtkSourceCompletionSnippets is an example of an implementation of
  * the #GtkSourceCompletionProvider interface. The proposals are snippets
  * registered with the #GtkSourceSnippetManager.
- *
- * Since: 5.0
  */
 
 struct _GtkSourceSnippetResults

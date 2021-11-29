@@ -335,8 +335,6 @@ gtk_source_completion_cell_set_paintable (GtkSourceCompletionCell *self,
  * Gets the child #GtkWidget, if any.
  *
  * Returns: (transfer none) (nullable): a #GtkWidget or %NULL
- *
- * Since: 5.0
  */
 GtkWidget *
 gtk_source_completion_cell_get_widget (GtkSourceCompletionCell *self)

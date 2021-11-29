@@ -42,8 +42,6 @@
  * Use gtk_source_hover_context_get_bounds() to get the word that was
  * requested. gtk_source_hover_contents_get_iter() will get you the location
  * of the pointer when the request was made.
- *
- * Since: 5.0
  */
 
 struct _GtkSourceHoverContext

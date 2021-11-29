@@ -38,8 +38,6 @@
  *
  * Use gtk_source_snippet_manager_get_snippets() to retrieve snippets for
  * a given snippets.
- *
- * Since: 5.0
  */
 
 #define SNIPPET_DIR         "snippets"
@@ -163,8 +161,6 @@ gtk_source_snippet_manager_class_init (GtkSourceSnippetManagerClass *klass)
 	 *
 	 * The "search-path" property contains a list of directories to search
 	 * for files containing snippets (*.snippets).
-	 *
-	 * Since: 5.0
 	 */
 	properties[PROP_SEARCH_PATH] =
 		g_param_spec_boxed ("search-path",
@@ -190,8 +186,6 @@ gtk_source_snippet_manager_init (GtkSourceSnippetManager *self)
  *
  * Returns: (transfer none) (not nullable): a #GtkSourceSnippetManager which
  *   is owned by GtkSourceView library and must not be unref'd.
- *
- * Since: 5.0
  */
 GtkSourceSnippetManager *
 gtk_source_snippet_manager_get_default (void)
@@ -249,8 +243,6 @@ _gtk_source_snippet_manager_intern (GtkSourceSnippetManager *self,
  *     you have to call this function right after creating it.
  *   </para>
  * </note>
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_manager_set_search_path (GtkSourceSnippetManager *self,
@@ -282,8 +274,6 @@ gtk_source_snippet_manager_set_search_path (GtkSourceSnippetManager *self,
  * Returns: (array zero-terminated=1) (transfer none): %NULL-terminated array
  *   containing a list of snippet files directories.
  *   The array is owned by @lm and must not be modified.
- *
- * Since: 5.0
  */
 const gchar * const *
 gtk_source_snippet_manager_get_search_path (GtkSourceSnippetManager *self)
@@ -345,8 +335,6 @@ ensure_snippets (GtkSourceSnippetManager *self)
  *
  * Returns: (transfer container) (array zero-terminated=1) (element-type utf8):
  *   An array of strings which should be freed with g_free().
- *
- * Since: 5.0
  */
 const gchar **
 gtk_source_snippet_manager_list_groups (GtkSourceSnippetManager *self)
@@ -375,8 +363,6 @@ gtk_source_snippet_manager_list_groups (GtkSourceSnippetManager *self)
  * the calling application.
  *
  * Returns: (transfer full): a #GListModel of #GtkSourceSnippet.
- *
- * Since: 5.0
  */
 GListModel *
 gtk_source_snippet_manager_list_matching (GtkSourceSnippetManager *self,
@@ -403,8 +389,6 @@ gtk_source_snippet_manager_list_matching (GtkSourceSnippetManager *self,
  *
  * Returns: (transfer full) (nullable): a #GtkSourceSnippet or %NULL if no
  *   matching snippet was found.
- *
- * Since: 5.0
  */
 GtkSourceSnippet *
 gtk_source_snippet_manager_get_snippet (GtkSourceSnippetManager *self,

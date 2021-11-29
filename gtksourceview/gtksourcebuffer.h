@@ -60,8 +60,6 @@ typedef enum _GtkSourceBracketMatchType
  * @GTK_SOURCE_CHANGE_CASE_UPPER: change case to uppercase.
  * @GTK_SOURCE_CHANGE_CASE_TOGGLE: toggle case of each character.
  * @GTK_SOURCE_CHANGE_CASE_TITLE: capitalize each word.
- *
- * Since: 3.12
  */
 typedef enum _GtkSourceChangeCaseType
 {
@@ -77,8 +75,6 @@ typedef enum _GtkSourceChangeCaseType
  * @GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE: case sensitive sort
  * @GTK_SOURCE_SORT_FLAGS_REVERSE_ORDER: sort in reverse order
  * @GTK_SOURCE_SORT_FLAGS_REMOVE_DUPLICATES: remove duplicates
- *
- * Since: 3.18
  */
 typedef enum _GtkSourceSortFlags
 {

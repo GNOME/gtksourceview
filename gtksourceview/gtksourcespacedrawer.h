@@ -43,8 +43,6 @@ G_BEGIN_DECLS
  * @GTK_SOURCE_SPACE_TYPE_ALL: All white spaces.
  *
  * #GtkSourceSpaceTypeFlags contains flags for white space types.
- *
- * Since: 3.24
  */
 typedef enum _GtkSourceSpaceTypeFlags
 {
@@ -69,8 +67,6 @@ typedef enum _GtkSourceSpaceTypeFlags
  *
  * If a line contains only white spaces (no text), the white spaces match both
  * %GTK_SOURCE_SPACE_LOCATION_LEADING and %GTK_SOURCE_SPACE_LOCATION_TRAILING.
- *
- * Since: 3.24
  */
 typedef enum _GtkSourceSpaceLocationFlags
 {

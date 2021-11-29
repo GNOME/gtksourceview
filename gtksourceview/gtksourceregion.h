@@ -48,8 +48,6 @@ struct _GtkSourceRegionClass
  *
  * #GtkSourceRegionIter is an opaque datatype; ignore all its fields.
  * Initialize the iter with gtk_source_region_get_start_region_iter().
- *
- * Since: 3.22
  */
 typedef struct _GtkSourceRegionIter GtkSourceRegionIter;
 struct _GtkSourceRegionIter

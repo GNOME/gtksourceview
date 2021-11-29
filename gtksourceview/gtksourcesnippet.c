@@ -43,8 +43,6 @@
  *
  * Snippet chunks can reference other snippet chunks as well as post-process
  * the values from other chunks such as capitalization.
- *
- * Since: 5.0
  */
 
 G_DEFINE_TYPE (GtkSourceSnippet, gtk_source_snippet, G_TYPE_OBJECT)
@@ -121,8 +119,6 @@ gtk_source_snippet_restore_insert (GtkSourceSnippet *snippet)
  * Creates a new #GtkSourceSnippet
  *
  * Returns: (transfer full): A new #GtkSourceSnippet
- *
- * Since: 5.0
  */
 GtkSourceSnippet *
 gtk_source_snippet_new (const gchar *trigger,
@@ -141,8 +137,6 @@ gtk_source_snippet_new (const gchar *trigger,
  * Does a deep copy of the snippet.
  *
  * Returns: (transfer full): A new #GtkSourceSnippet
- *
- * Since: 5.0
  */
 GtkSourceSnippet *
 gtk_source_snippet_copy (GtkSourceSnippet *snippet)
@@ -176,8 +170,6 @@ gtk_source_snippet_copy (GtkSourceSnippet *snippet)
  * as the user tabs through focus locations.
  *
  * Returns: The focus position, or -1 if unset.
- *
- * Since: 5.0
  */
 gint
 gtk_source_snippet_get_focus_position (GtkSourceSnippet *snippet)
@@ -196,8 +188,6 @@ gtk_source_snippet_get_focus_position (GtkSourceSnippet *snippet)
  * Note that not all chunks are editable.
  *
  * Returns: The number of chunks.
- *
- * Since: 5.0
  */
 guint
 gtk_source_snippet_get_n_chunks (GtkSourceSnippet *snippet)
@@ -215,8 +205,6 @@ gtk_source_snippet_get_n_chunks (GtkSourceSnippet *snippet)
  * Gets the chunk at @nth.
  *
  * Returns: (transfer none): an #GtkSourceSnippetChunk
- *
- * Since: 5.0
  */
 GtkSourceSnippetChunk *
 gtk_source_snippet_get_nth_chunk (GtkSourceSnippet *snippet,
@@ -239,8 +227,6 @@ gtk_source_snippet_get_nth_chunk (GtkSourceSnippet *snippet,
  * the user presses Tab.
  *
  * Returns: (nullable): A string or %NULL
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_get_trigger (GtkSourceSnippet *snippet)
@@ -256,8 +242,6 @@ gtk_source_snippet_get_trigger (GtkSourceSnippet *snippet)
  * @trigger: the trigger word
  *
  * Sets the trigger for the snippet.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_set_trigger (GtkSourceSnippet *snippet,
@@ -284,8 +268,6 @@ gtk_source_snippet_set_trigger (GtkSourceSnippet *snippet,
  * source language #GtkSourceLanguage:id property.
  *
  * Returns: the language identifier
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_get_language_id (GtkSourceSnippet *snippet)
@@ -303,8 +285,6 @@ gtk_source_snippet_get_language_id (GtkSourceSnippet *snippet)
  * Sets the language identifier for the snippet.
  *
  * This should match the #GtkSourceLanguage:id identifier.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_set_language_id (GtkSourceSnippet *snippet,
@@ -327,8 +307,6 @@ gtk_source_snippet_set_language_id (GtkSourceSnippet *snippet,
  * @snippet: a #GtkSourceSnippet
  *
  * Gets the description for the snippet.
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_get_description (GtkSourceSnippet *snippet)
@@ -344,8 +322,6 @@ gtk_source_snippet_get_description (GtkSourceSnippet *snippet)
  * @description: the snippet description
  *
  * Sets the description for the snippet.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_set_description (GtkSourceSnippet *snippet,
@@ -367,8 +343,6 @@ gtk_source_snippet_set_description (GtkSourceSnippet *snippet,
  * @snippet: a #GtkSourceSnippet
  *
  * Gets the name for the snippet.
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_get_name (GtkSourceSnippet *snippet)
@@ -384,8 +358,6 @@ gtk_source_snippet_get_name (GtkSourceSnippet *snippet)
  * @name: the snippet name
  *
  * Sets the name for the snippet.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_set_name (GtkSourceSnippet *snippet,
@@ -866,8 +838,6 @@ _gtk_source_snippet_finish (GtkSourceSnippet *snippet)
  * Appends @chunk to the @snippet.
  *
  * This may only be called before the snippet has been expanded.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_add_chunk (GtkSourceSnippet      *snippet,
@@ -1203,8 +1173,6 @@ _gtk_source_snippet_count_affected_chunks (GtkSourceSnippet  *snippet,
  * Gets the context used for expanding the snippet.
  *
  * Returns: (nullable) (transfer none): an #GtkSourceSnippetContext
- *
- * Since: 5.0
  */
 GtkSourceSnippetContext *
 gtk_source_snippet_get_context (GtkSourceSnippet *snippet)

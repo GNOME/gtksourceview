@@ -50,8 +50,6 @@
  *
  * You can change how long to wait to display the interactive tooltip by
  * setting the #GtkSourceHover:hover-delay property in milliseconds.
- *
- * Since: 5.0
  */
 
 struct _GtkSourceHover

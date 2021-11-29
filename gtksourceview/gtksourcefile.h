@@ -37,8 +37,6 @@ G_BEGIN_DECLS
  * @GTK_SOURCE_NEWLINE_TYPE_CR: carriage return, used on Mac.
  * @GTK_SOURCE_NEWLINE_TYPE_CR_LF: carriage return followed by a line feed, used
  *   on Windows.
- *
- * Since: 3.14
  */
 typedef enum _GtkSourceNewlineType
 {
@@ -51,8 +49,6 @@ typedef enum _GtkSourceNewlineType
  * GTK_SOURCE_NEWLINE_TYPE_DEFAULT:
  *
  * The default newline type on the current OS.
- *
- * Since: 3.14
  */
 #ifdef G_OS_WIN32
 #define GTK_SOURCE_NEWLINE_TYPE_DEFAULT GTK_SOURCE_NEWLINE_TYPE_CR_LF
@@ -64,8 +60,6 @@ typedef enum _GtkSourceNewlineType
  * GtkSourceCompressionType:
  * @GTK_SOURCE_COMPRESSION_TYPE_NONE: plain text.
  * @GTK_SOURCE_COMPRESSION_TYPE_GZIP: gzip compression.
- *
- * Since: 3.14
  */
 typedef enum _GtkSourceCompressionType
 {
@@ -80,8 +74,6 @@ typedef enum _GtkSourceCompressionType
  *
  * Type definition for a function that will be called to create a
  * #GMountOperation. This is useful for creating a #GtkMountOperation.
- *
- * Since: 3.14
  */
 typedef GMountOperation *(*GtkSourceMountOperationFactory) (GtkSourceFile *file,
                                                             gpointer       userdata);

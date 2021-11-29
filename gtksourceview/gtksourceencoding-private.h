@@ -31,8 +31,6 @@ G_BEGIN_DECLS
  *
  * Specifies which encoding occurrence to keep when removing duplicated
  * encodings in a list with gtk_source_encoding_remove_duplicates().
- *
- * Since: 3.14
  */
 typedef enum _GtkSourceEncodingDuplicates
 {

@@ -350,8 +350,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 *
 	 * Whether the buffer has an implicit trailing newline. See
 	 * gtk_source_buffer_set_implicit_trailing_newline().
-	 *
-	 * Since: 3.14
 	 */
 	buffer_properties[PROP_IMPLICIT_TRAILING_NEWLINE] =
 		g_param_spec_boolean ("implicit-trailing-newline",
@@ -369,8 +367,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * @buffer: a #GtkSourceBuffer
 	 *
 	 * The "cursor-moved" signal is emitted when then insertion mark has moved.
-	 *
-	 * Since: 5.0
 	 */
 	buffer_signals[CURSOR_MOVED] =
 		g_signal_new_class_handler ("cursor-moved",
@@ -439,8 +435,6 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * the cursor moves.
 	 *
 	 * A use-case for this signal is to show messages in a #GtkStatusbar.
-	 *
-	 * Since: 2.12
 	 */
 	buffer_signals[BRACKET_MATCHED] =
 	    g_signal_new ("bracket-matched",
@@ -1785,8 +1779,6 @@ gtk_source_buffer_real_mark_deleted (GtkTextBuffer *buffer,
  * executing instruction indication in a source file, etc..
  *
  * Returns: (transfer none): a new #GtkSourceMark, owned by the buffer.
- *
- * Since: 2.2
  */
 GtkSourceMark *
 gtk_source_buffer_create_source_mark (GtkSourceBuffer   *buffer,
@@ -1880,8 +1872,6 @@ _gtk_source_buffer_source_mark_prev (GtkSourceBuffer *buffer,
  * next source mark can be of any category.
  *
  * Returns: whether @iter was moved.
- *
- * Since: 2.2
  */
 gboolean
 gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
@@ -1914,8 +1904,6 @@ gtk_source_buffer_forward_iter_to_source_mark (GtkSourceBuffer *buffer,
  * previous source mark can be of any category.
  *
  * Returns: whether @iter was moved.
- *
- * Since: 2.2
  */
 gboolean
 gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
@@ -1948,8 +1936,6 @@ gtk_source_buffer_backward_iter_to_source_mark (GtkSourceBuffer *buffer,
  *
  * Returns: (element-type GtkSource.Mark) (transfer container):
  * a newly allocated #GSList.
- *
- * Since: 2.2
  */
 GSList *
 gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
@@ -1982,8 +1968,6 @@ gtk_source_buffer_get_source_marks_at_iter (GtkSourceBuffer *buffer,
  *
  * Returns: (element-type GtkSource.Mark) (transfer container):
  * a newly allocated #GSList.
- *
- * Since: 2.2
  */
 GSList *
 gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
@@ -2026,8 +2010,6 @@ gtk_source_buffer_get_source_marks_at_line (GtkSourceBuffer *buffer,
  *
  * Remove all marks of @category between @start and @end from the buffer.
  * If @category is NULL, all marks in the range will be removed.
- *
- * Since: 2.2
  */
 void
 gtk_source_buffer_remove_source_marks (GtkSourceBuffer   *buffer,
@@ -2103,7 +2085,6 @@ get_context_class_tag (GtkSourceBuffer *buffer,
  * See the #GtkSourceBuffer description for the list of default context classes.
  *
  * Returns: whether @iter has the context class.
- * Since: 2.10
  */
 gboolean
 gtk_source_buffer_iter_has_context_class (GtkSourceBuffer   *buffer,
@@ -2138,8 +2119,6 @@ gtk_source_buffer_iter_has_context_class (GtkSourceBuffer   *buffer,
  * Returns: (array zero-terminated=1) (transfer full): a new %NULL
  * terminated array of context class names.
  * Use g_strfreev() to free the array if it is no longer needed.
- *
- * Since: 2.10
  */
 gchar **
 gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
@@ -2195,8 +2174,6 @@ gtk_source_buffer_get_context_classes_at_iter (GtkSourceBuffer   *buffer,
  * See the #GtkSourceBuffer description for the list of default context classes.
  *
  * Returns: whether we found a context class toggle after @iter
- *
- * Since: 2.10
  */
 gboolean
 gtk_source_buffer_iter_forward_to_context_class_toggle (GtkSourceBuffer *buffer,
@@ -2234,8 +2211,6 @@ gtk_source_buffer_iter_forward_to_context_class_toggle (GtkSourceBuffer *buffer,
  * See the #GtkSourceBuffer description for the list of default context classes.
  *
  * Returns: whether we found a context class toggle before @iter
- *
- * Since: 2.10
  */
 gboolean
 gtk_source_buffer_iter_backward_to_context_class_toggle (GtkSourceBuffer *buffer,
@@ -2488,8 +2463,6 @@ do_title_case (GtkTextBuffer     *buffer,
  *
  * Since 5.4, this function will update the position of @start and
  * @end to surround the modified text.
- *
- * Since: 3.12
  */
 void
 gtk_source_buffer_change_case (GtkSourceBuffer         *buffer,
@@ -2577,8 +2550,6 @@ move_to_line_text_end(GtkTextIter *iter)
  * @end: a #GtkTextIter.
  *
  * Joins the lines of text between the specified iterators.
- *
- * Since: 3.16
  */
 void
 gtk_source_buffer_join_lines (GtkSourceBuffer *buffer,
@@ -2694,8 +2665,6 @@ compare_line_reversed (gconstpointer aptr,
  * @column: sort considering the text starting at the given column
  *
  * Sort the lines of text between the specified iterators.
- *
- * Since: 3.18
  */
 void
 gtk_source_buffer_sort_lines (GtkSourceBuffer    *buffer,
@@ -2959,8 +2928,6 @@ _gtk_source_buffer_has_invalid_chars (GtkSourceBuffer *buffer)
  * On the other hand, if @implicit_trailing_newline is %FALSE, the file's
  * content is not modified when loaded into the @buffer, and the @buffer's
  * content is not modified when saved into a file.
- *
- * Since: 3.14
  */
 void
 gtk_source_buffer_set_implicit_trailing_newline (GtkSourceBuffer *buffer,
@@ -2984,7 +2951,6 @@ gtk_source_buffer_set_implicit_trailing_newline (GtkSourceBuffer *buffer,
  * @buffer: a #GtkSourceBuffer.
  *
  * Returns: whether the @buffer has an implicit trailing newline.
- * Since: 3.14
  */
 gboolean
 gtk_source_buffer_get_implicit_trailing_newline (GtkSourceBuffer *buffer)
@@ -3020,7 +2986,6 @@ gtk_source_buffer_get_implicit_trailing_newline (GtkSourceBuffer *buffer)
  * of properties to set on the tag, as with g_object_set().
  *
  * Returns: (transfer none): a new #GtkSourceTag.
- * Since: 3.20
  */
 GtkTextTag *
 gtk_source_buffer_create_source_tag (GtkSourceBuffer *buffer,

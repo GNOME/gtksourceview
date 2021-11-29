@@ -39,8 +39,6 @@
  * have included when compiling your code.
  *
  * Returns: the major version number of the GtkSourceView library
- *
- * Since: 3.20
  */
 guint
 gtk_source_get_major_version (void)
@@ -60,8 +58,6 @@ gtk_source_get_major_version (void)
  * have included when compiling your code.
  *
  * Returns: the minor version number of the GtkSourceView library
- *
- * Since: 3.20
  */
 guint
 gtk_source_get_minor_version (void)
@@ -81,8 +77,6 @@ gtk_source_get_minor_version (void)
  * have included when compiling your code.
  *
  * Returns: the micro version number of the GtkSourceView library
- *
- * Since: 3.20
  */
 guint
 gtk_source_get_micro_version (void)
@@ -103,8 +97,6 @@ gtk_source_get_micro_version (void)
  *
  * Returns: %TRUE if the version of the GtkSourceView currently loaded
  * is the same as or newer than the passed-in version.
- *
- * Since: 3.20
  */
 gboolean
 gtk_source_check_version (guint major,

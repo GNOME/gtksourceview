@@ -158,8 +158,6 @@ gtk_source_mark_init (GtkSourceMark *mark)
  * gtk_source_buffer_create_source_mark().
  *
  * Returns: a new #GtkSourceMark that can be added using gtk_text_buffer_add_mark().
- *
- * Since: 2.2
  */
 GtkSourceMark *
 gtk_source_mark_new (const gchar *name,
@@ -181,8 +179,6 @@ gtk_source_mark_new (const gchar *name,
  * Returns the mark category.
  *
  * Returns: the category of the #GtkSourceMark.
- *
- * Since: 2.2
  */
 const gchar *
 gtk_source_mark_get_category (GtkSourceMark *mark)
@@ -205,8 +201,6 @@ gtk_source_mark_get_category (GtkSourceMark *mark)
  * If @category is %NULL, looks for marks of any category.
  *
  * Returns: (nullable) (transfer none): the next #GtkSourceMark, or %NULL.
- *
- * Since: 2.2
  */
 GtkSourceMark *
 gtk_source_mark_next (GtkSourceMark *mark,
@@ -239,8 +233,6 @@ gtk_source_mark_next (GtkSourceMark *mark,
  * If @category is %NULL, looks for marks of any category
  *
  * Returns: (nullable) (transfer none): the previous #GtkSourceMark, or %NULL.
- *
- * Since: 2.2
  */
 GtkSourceMark *
 gtk_source_mark_prev (GtkSourceMark *mark,

@@ -31,8 +31,6 @@
  * may or may not be an edit point within the snippet. Chunks that are
  * an edit point (also called a tab stop) have the
  * #GtkSourceSnippetChunk:focus-position property set.
- *
- * Since: 5.0
  */
 
 G_DEFINE_TYPE (GtkSourceSnippetChunk, gtk_source_snippet_chunk, G_TYPE_INITIALLY_UNOWNED)
@@ -55,8 +53,6 @@ static GParamSpec *properties[N_PROPS];
  *
  * Create a new #GtkSourceSnippetChunk that can be added to
  * a #GtkSourceSnippet.
- *
- * Since: 5.0
  */
 GtkSourceSnippetChunk *
 gtk_source_snippet_chunk_new (void)
@@ -71,8 +67,6 @@ gtk_source_snippet_chunk_new (void)
  * Copies the source snippet.
  *
  * Returns: (transfer full): A #GtkSourceSnippetChunk
- *
- * Since: 5.0
  */
 GtkSourceSnippetChunk *
 gtk_source_snippet_chunk_copy (GtkSourceSnippetChunk *chunk)
@@ -109,8 +103,6 @@ on_context_changed (GtkSourceSnippetContext *context,
  * Gets the context for the snippet insertion.
  *
  * Returns: (transfer none): A #GtkSourceSnippetContext
- *
- * Since: 5.0
  */
 GtkSourceSnippetContext *
 gtk_source_snippet_chunk_get_context (GtkSourceSnippetChunk *chunk)
@@ -161,8 +153,6 @@ gtk_source_snippet_chunk_set_context (GtkSourceSnippetChunk   *chunk,
  * are updated.
  *
  * Returns: (transfer none) (nullable): the specification, if any
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_chunk_get_spec (GtkSourceSnippetChunk *chunk)
@@ -183,8 +173,6 @@ gtk_source_snippet_chunk_get_spec (GtkSourceSnippetChunk *chunk)
  * within the snippet context. If the user has changed the text, the
  * #GtkSourceSnippetChunk:text and #GtkSourceSnippetChunk:text-set properties
  * are updated.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_chunk_set_spec (GtkSourceSnippetChunk *chunk,
@@ -216,8 +204,6 @@ gtk_source_snippet_chunk_set_spec (GtkSourceSnippetChunk *chunk,
  * A focus-position of -1 means the chunk cannot be focused by the user.
  *
  * Returns: the focus-position
- *
- * Since: 5.0
  */
 gint
 gtk_source_snippet_chunk_get_focus_position (GtkSourceSnippetChunk *chunk)
@@ -241,8 +227,6 @@ gtk_source_snippet_chunk_get_focus_position (GtkSourceSnippetChunk *chunk)
  * and snippet editing ends when it has been reached.
  *
  * A focus-position of -1 means the chunk cannot be focused by the user.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_chunk_set_focus_position (GtkSourceSnippetChunk *chunk,
@@ -271,8 +255,6 @@ gtk_source_snippet_chunk_set_focus_position (GtkSourceSnippetChunk *chunk,
  * returned.
  *
  * Returns: (not nullable): the text of the chunk
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_chunk_get_text (GtkSourceSnippetChunk *chunk)
@@ -292,8 +274,6 @@ gtk_source_snippet_chunk_get_text (GtkSourceSnippetChunk *chunk)
  * This is usually used by the snippet engine to update the text, but may
  * be useful when creating custom snippets to avoid expansion of any
  * specification.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_chunk_set_text (GtkSourceSnippetChunk *chunk,
@@ -317,8 +297,6 @@ gtk_source_snippet_chunk_set_text (GtkSourceSnippetChunk *chunk,
  * Gets the #GtkSourceSnippetChunk:text-set property.
  *
  * This is typically set when the user has edited a snippet chunk.
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_snippet_chunk_get_text_set (GtkSourceSnippetChunk *chunk)
@@ -337,8 +315,6 @@ gtk_source_snippet_chunk_get_text_set (GtkSourceSnippetChunk *chunk)
  *
  * This is typically set when the user has edited a snippet chunk by the
  * snippet engine.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_chunk_set_text_set (GtkSourceSnippetChunk *chunk,

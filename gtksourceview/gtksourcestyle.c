@@ -486,8 +486,6 @@ gtk_source_style_get_property (GObject    *object,
  *
  * Returns: (transfer full): copy of @style, call g_object_unref()
  * when you are done with it.
- *
- * Since: 2.0
  */
 GtkSourceStyle *
 gtk_source_style_copy (const GtkSourceStyle *style)
@@ -524,8 +522,6 @@ gtk_source_style_copy (const GtkSourceStyle *style)
  *
  * If @style is %NULL, the related *-set properties of #GtkTextTag are set to
  * %FALSE.
- *
- * Since: 3.22
  */
 void
 gtk_source_style_apply (const GtkSourceStyle *style,

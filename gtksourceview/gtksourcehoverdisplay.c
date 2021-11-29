@@ -35,8 +35,6 @@
  *
  * Implement the #GtkSourceHoverProvider interface to be notified of when
  * to populate a #GtkSourceHoverDisplay on behalf of the user.
- *
- * Since: 5.0
  */
 
 struct _GtkSourceHoverDisplay

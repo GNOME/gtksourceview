@@ -51,7 +51,6 @@
  * See also: gtk_source_utils_escape_search_text().
  *
  * Returns: the unescaped @text.
- * Since: 3.10
  */
 gchar *
 gtk_source_utils_unescape_search_text (const gchar *text)
@@ -151,7 +150,6 @@ gtk_source_utils_unescape_search_text (const gchar *text)
  * </warning>
  *
  * Returns: the escaped @text.
- * Since: 3.10
  */
 gchar *
 gtk_source_utils_escape_search_text (const gchar* text)

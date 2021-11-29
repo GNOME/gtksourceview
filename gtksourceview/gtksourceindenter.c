@@ -57,8 +57,6 @@
  *
  * All changes are encapsulated within a single user action so that the
  * user may undo them using standard undo/redo accelerators.
- *
- * Since: 5.0
  */
 
 /**
@@ -67,8 +65,6 @@
  * @indent: the virtual function pointer for gtk_source_indenter_indent()
  *
  * The virtual function table for #GtkSourceIndenter.
- *
- * Since: 5.0
  */
 
 static inline gboolean
@@ -186,8 +182,6 @@ gtk_source_indenter_default_init (GtkSourceIndenterInterface *iface)
  *
  * Returns: %TRUE if indentation should be automatically triggered;
  *   otherwise %FALSE and no indentation will be performed.
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_indenter_is_trigger (GtkSourceIndenter *self,
@@ -226,8 +220,6 @@ gtk_source_indenter_is_trigger (GtkSourceIndenter *self,
  *
  * The default implementation for this virtual function will copy the
  * indentation of the previous line.
- *
- * Since: 5.0
  */
 void
 gtk_source_indenter_indent (GtkSourceIndenter *self,

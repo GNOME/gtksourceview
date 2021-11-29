@@ -40,8 +40,6 @@
  *
  * In #GtkSourceStyleSchemeChooserButton, a #GtkSourceStyleSchemeChooserWidget
  * is used to provide a dialog for selecting style schemes.
- *
- * Since: 3.16
  */
 
 typedef struct
@@ -305,8 +303,6 @@ style_scheme_chooser_interface_init (GtkSourceStyleSchemeChooserInterface *iface
  * Creates a new #GtkSourceStyleSchemeChooserButton.
  *
  * Returns: a new #GtkSourceStyleSchemeChooserButton.
- *
- * Since: 3.16
  */
 GtkWidget *
 gtk_source_style_scheme_chooser_button_new (void)

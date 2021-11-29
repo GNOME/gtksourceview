@@ -515,8 +515,6 @@ _gtk_source_gutter_new (GtkTextWindowType  type,
  * @gutter: a #GtkSourceGutter.
  *
  * Returns: (transfer none): the associated #GtkSourceView.
- *
- * Since: 3.24
  */
 GtkSourceView *
 gtk_source_gutter_get_view (GtkSourceGutter *gutter)
@@ -537,9 +535,6 @@ gtk_source_gutter_get_view (GtkSourceGutter *gutter)
  * @renderer cannot be already inserted to another gutter.
  *
  * Returns: %TRUE if operation succeeded. Otherwise %FALSE.
- *
- * Since: 3.0
- *
  **/
 gboolean
 gtk_source_gutter_insert (GtkSourceGutter         *gutter,
@@ -637,8 +632,6 @@ gtk_source_gutter_remove (GtkSourceGutter         *gutter,
  * @position: the new renderer position.
  *
  * Reorders @renderer in @gutter to new @position.
- *
- * Since: 2.8
  */
 void
 gtk_source_gutter_reorder (GtkSourceGutter         *gutter,

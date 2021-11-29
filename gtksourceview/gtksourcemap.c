@@ -1320,8 +1320,6 @@ gtk_source_map_init (GtkSourceMap *map)
  * Creates a new #GtkSourceMap.
  *
  * Returns: a new #GtkSourceMap.
- *
- * Since: 3.18
  */
 GtkWidget *
 gtk_source_map_new (void)
@@ -1335,8 +1333,6 @@ gtk_source_map_new (void)
  * @view: a #GtkSourceView
  *
  * Sets the view that @map will be doing the mapping to.
- *
- * Since: 3.18
  */
 void
 gtk_source_map_set_view (GtkSourceMap  *map,
@@ -1374,8 +1370,6 @@ gtk_source_map_set_view (GtkSourceMap  *map,
  * Gets the #GtkSourceMap:view property, which is the view this widget is mapping.
  *
  * Returns: (transfer none) (nullable): a #GtkSourceView or %NULL.
- *
- * Since: 3.18
  */
 GtkSourceView *
 gtk_source_map_get_view (GtkSourceMap *map)

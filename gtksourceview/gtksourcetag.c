@@ -131,8 +131,6 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 	 *
 	 * Setting this property also changes #GtkSourceTag:draw-spaces-set to
 	 * %TRUE.
-	 *
-	 * Since: 3.20
 	 */
 	properties [PROP_DRAW_SPACES] =
 		g_param_spec_boolean ("draw-spaces",
@@ -148,8 +146,6 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 	 *
 	 * Whether the #GtkSourceTag:draw-spaces property is set and must be
 	 * taken into account.
-	 *
-	 * Since: 3.20
 	 */
 	properties [PROP_DRAW_SPACES_SET] =
 		g_param_spec_boolean ("draw-spaces-set",
@@ -179,7 +175,6 @@ gtk_source_tag_init (GtkSourceTag *tag)
  * use.
  *
  * Returns: a new #GtkSourceTag.
- * Since: 3.20
  */
 GtkTextTag *
 gtk_source_tag_new (const gchar *name)

@@ -163,8 +163,6 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 * GtkSourceFile:location:
 	 *
 	 * The location.
-	 *
-	 * Since: 3.14
 	 */
 	properties [PROP_LOCATION] =
 		g_param_spec_object ("location",
@@ -180,8 +178,6 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 *
 	 * The character encoding, initially %NULL. After a successful file
 	 * loading or saving operation, the encoding is non-%NULL.
-	 *
-	 * Since: 3.14
 	 */
 	properties[PROP_ENCODING] =
 		g_param_spec_boxed ("encoding",
@@ -195,8 +191,6 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 * GtkSourceFile:newline-type:
 	 *
 	 * The line ending type.
-	 *
-	 * Since: 3.14
 	 */
 	properties[PROP_NEWLINE_TYPE] =
 		g_param_spec_enum ("newline-type",
@@ -211,8 +205,6 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 * GtkSourceFile:compression-type:
 	 *
 	 * The compression type.
-	 *
-	 * Since: 3.14
 	 */
 	properties [PROP_COMPRESSION_TYPE] =
 		g_param_spec_enum ("compression-type",
@@ -228,8 +220,6 @@ gtk_source_file_class_init (GtkSourceFileClass *klass)
 	 *
 	 * Whether the file is read-only or not. The value of this property is
 	 * not updated automatically (there is no file monitors).
-	 *
-	 * Since: 3.18
 	 */
 	properties [PROP_READ_ONLY] =
 		g_param_spec_boolean ("read-only",
@@ -256,7 +246,6 @@ gtk_source_file_init (GtkSourceFile *file)
  * gtk_source_file_new:
  *
  * Returns: a new #GtkSourceFile object.
- * Since: 3.14
  */
 GtkSourceFile *
 gtk_source_file_new (void)
@@ -270,8 +259,6 @@ gtk_source_file_new (void)
  * @location: (nullable): the new #GFile, or %NULL.
  *
  * Sets the location.
- *
- * Since: 3.14
  */
 void
 gtk_source_file_set_location (GtkSourceFile *file,
@@ -299,7 +286,6 @@ gtk_source_file_set_location (GtkSourceFile *file,
  * @file: a #GtkSourceFile.
  *
  * Returns: (transfer none): the #GFile.
- * Since: 3.14
  */
 GFile *
 gtk_source_file_get_location (GtkSourceFile *file)
@@ -334,7 +320,6 @@ _gtk_source_file_set_encoding (GtkSourceFile           *file,
  * operation, the encoding is non-%NULL.
  *
  * Returns: the character encoding.
- * Since: 3.14
  */
 const GtkSourceEncoding *
 gtk_source_file_get_encoding (GtkSourceFile *file)
@@ -366,7 +351,6 @@ _gtk_source_file_set_newline_type (GtkSourceFile        *file,
  * @file: a #GtkSourceFile.
  *
  * Returns: the newline type.
- * Since: 3.14
  */
 GtkSourceNewlineType
 gtk_source_file_get_newline_type (GtkSourceFile *file)
@@ -398,7 +382,6 @@ _gtk_source_file_set_compression_type (GtkSourceFile            *file,
  * @file: a #GtkSourceFile.
  *
  * Returns: the compression type.
- * Since: 3.14
  */
 GtkSourceCompressionType
 gtk_source_file_get_compression_type (GtkSourceFile *file)
@@ -425,8 +408,6 @@ gtk_source_file_get_compression_type (GtkSourceFile *file)
  *
  * If a mount operation factory isn't set, g_mount_operation_new() will be
  * called.
- *
- * Since: 3.14
  */
 void
 gtk_source_file_set_mount_operation_factory (GtkSourceFile                  *file,
@@ -504,7 +485,6 @@ _gtk_source_file_set_modification_time (GtkSourceFile *file,
  * returns %FALSE.
  *
  * Returns: whether the file is local.
- * Since: 3.18
  */
 gboolean
 gtk_source_file_is_local (GtkSourceFile *file)
@@ -534,8 +514,6 @@ gtk_source_file_is_local (GtkSourceFile *file)
  *
  * Since this function is synchronous, it is advised to call it only on local
  * files. See gtk_source_file_is_local().
- *
- * Since: 3.18
  */
 void
 gtk_source_file_check_file_on_disk (GtkSourceFile *file)
@@ -615,7 +593,6 @@ _gtk_source_file_set_externally_modified (GtkSourceFile *file,
  * gtk_source_file_check_file_on_disk().
  *
  * Returns: whether the file is externally modified.
- * Since: 3.18
  */
 gboolean
 gtk_source_file_is_externally_modified (GtkSourceFile *file)
@@ -649,7 +626,6 @@ _gtk_source_file_set_deleted (GtkSourceFile *file,
  * gtk_source_file_check_file_on_disk().
  *
  * Returns: whether the file has been deleted.
- * Since: 3.18
  */
 gboolean
 gtk_source_file_is_deleted (GtkSourceFile *file)
@@ -689,7 +665,6 @@ _gtk_source_file_set_readonly (GtkSourceFile *file,
  * gtk_source_file_check_file_on_disk().
  *
  * Returns: whether the file is read-only.
- * Since: 3.18
  */
 gboolean
 gtk_source_file_is_readonly (GtkSourceFile *file)

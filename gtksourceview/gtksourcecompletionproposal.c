@@ -35,8 +35,6 @@
  * may be added in the future. Proposals created by
  * #GtkSourceCompletionProvider can use %G_IMPLEMENT_INTERFACE to
  * implement this with %NULL for the interface init function.
- *
- * Since: 5.0
  */
 
 G_DEFINE_INTERFACE (GtkSourceCompletionProposal, gtk_source_completion_proposal, G_TYPE_OBJECT)

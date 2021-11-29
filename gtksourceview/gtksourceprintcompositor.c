@@ -433,8 +433,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 * GtkSourcePrintCompositor:buffer:
 	 *
 	 * The GtkSourceBuffer object to print.
-	 *
-	 * Since: 2.2
 	 */
 	properties[PROP_BUFFER] =
 		g_param_spec_object ("buffer",
@@ -452,8 +450,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_TAB_WIDTH] =
 		g_param_spec_uint ("tab-width",
@@ -474,8 +470,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
  	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_WRAP_MODE] =
 		g_param_spec_enum ("wrap-mode",
@@ -494,8 +488,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
  	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_HIGHLIGHT_SYNTAX] =
 		g_param_spec_boolean ("highlight-syntax",
@@ -515,8 +507,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_PRINT_LINE_NUMBERS] =
 		g_param_spec_uint ("print-line-numbers",
@@ -538,8 +528,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_PRINT_HEADER] =
 		g_param_spec_boolean ("print-header",
@@ -561,8 +549,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_PRINT_FOOTER] =
 		g_param_spec_boolean ("print-footer",
@@ -584,8 +570,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_BODY_FONT_NAME] =
 		g_param_spec_string ("body-font-name",
@@ -608,8 +592,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_LINE_NUMBERS_FONT_NAME] =
 		g_param_spec_string ("line-numbers-font-name",
@@ -632,8 +614,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_HEADER_FONT_NAME] =
 		g_param_spec_string ("header-font-name",
@@ -656,8 +636,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * The value of this property cannot be changed anymore after the first
 	 * call to the gtk_source_print_compositor_paginate() function.
-	 *
-	 * Since: 2.2
 	 */
 	properties [PROP_FOOTER_FONT_NAME] =
 		g_param_spec_string ("footer-font-name",
@@ -673,8 +651,6 @@ gtk_source_print_compositor_class_init (GtkSourcePrintCompositorClass *klass)
 	 *
 	 * The number of pages in the document or <code>-1</code> if the
  	 * document has not been completely paginated.
- 	 *
- 	 * Since: 2.2
  	 */
 	properties [PROP_N_PAGES] =
 		g_param_spec_int ("n-pages",
@@ -753,8 +729,6 @@ gtk_source_print_compositor_init (GtkSourcePrintCompositor *compositor)
  * Creates a new print compositor that can be used to print @buffer.
  *
  * Return value: a new print compositor object.
- *
- * Since: 2.2
  **/
 GtkSourcePrintCompositor *
 gtk_source_print_compositor_new (GtkSourceBuffer *buffer)
@@ -779,8 +753,6 @@ gtk_source_print_compositor_new (GtkSourceBuffer *buffer)
  * #GtkSourcePrintCompositor:print-line-numbers.
  *
  * Return value: a new print compositor object.
- *
- * Since: 2.2
  **/
 GtkSourcePrintCompositor *
 gtk_source_print_compositor_new_from_view (GtkSourceView *view)
@@ -825,8 +797,6 @@ gtk_source_print_compositor_new_from_view (GtkSourceView *view)
  * should not be unreferenced.
  *
  * Return value: (transfer none): the #GtkSourceBuffer associated with the compositor.
- *
- * Since: 2.2
  **/
 GtkSourceBuffer *
 gtk_source_print_compositor_get_buffer (GtkSourcePrintCompositor *compositor)
@@ -847,8 +817,6 @@ gtk_source_print_compositor_get_buffer (GtkSourcePrintCompositor *compositor)
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_tab_width (GtkSourcePrintCompositor *compositor,
@@ -876,8 +844,6 @@ gtk_source_print_compositor_set_tab_width (GtkSourcePrintCompositor *compositor,
  * Returns the width of tabulation in characters for printed text.
  *
  * Return value: width of tab.
- *
- * Since: 2.2
  */
 guint
 gtk_source_print_compositor_get_tab_width (GtkSourcePrintCompositor *compositor)
@@ -898,8 +864,6 @@ gtk_source_print_compositor_get_tab_width (GtkSourcePrintCompositor *compositor)
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_wrap_mode (GtkSourcePrintCompositor *compositor,
@@ -926,8 +890,6 @@ gtk_source_print_compositor_set_wrap_mode (GtkSourcePrintCompositor *compositor,
  * Gets the line wrapping mode for the printed text.
  *
  * Return value: the line wrap mode.
- *
- * Since: 2.2
  */
 GtkWrapMode
 gtk_source_print_compositor_get_wrap_mode (GtkSourcePrintCompositor *compositor)
@@ -949,8 +911,6 @@ gtk_source_print_compositor_get_wrap_mode (GtkSourcePrintCompositor *compositor)
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  **/
 void
 gtk_source_print_compositor_set_highlight_syntax (GtkSourcePrintCompositor *compositor,
@@ -981,8 +941,6 @@ gtk_source_print_compositor_set_highlight_syntax (GtkSourcePrintCompositor *comp
  * only if the buffer to print has highlighting activated.
  *
  * Return value: %TRUE if the printed output will be highlighted.
- *
- * Since: 2.2
  **/
 gboolean
 gtk_source_print_compositor_get_highlight_syntax (GtkSourcePrintCompositor *compositor)
@@ -1007,8 +965,6 @@ gtk_source_print_compositor_get_highlight_syntax (GtkSourcePrintCompositor *comp
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  **/
 void
 gtk_source_print_compositor_set_print_line_numbers (GtkSourcePrintCompositor *compositor,
@@ -1044,8 +1000,6 @@ gtk_source_print_compositor_set_print_line_numbers (GtkSourcePrintCompositor *co
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  **/
 void
 gtk_source_print_compositor_set_print_header (GtkSourcePrintCompositor *compositor,
@@ -1077,8 +1031,6 @@ gtk_source_print_compositor_set_print_header (GtkSourcePrintCompositor *composit
  * with gtk_source_print_compositor_set_header_format().
  *
  * Return value: %TRUE if the header is set to be printed.
- *
- * Since: 2.2
  **/
 gboolean
 gtk_source_print_compositor_get_print_header (GtkSourcePrintCompositor *compositor)
@@ -1105,8 +1057,6 @@ gtk_source_print_compositor_get_print_header (GtkSourcePrintCompositor *composit
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  **/
 void
 gtk_source_print_compositor_set_print_footer (GtkSourcePrintCompositor *compositor,
@@ -1138,8 +1088,6 @@ gtk_source_print_compositor_set_print_footer (GtkSourcePrintCompositor *composit
  * with gtk_source_print_compositor_set_footer_format().
  *
  * Return value: %TRUE if the footer is set to be printed.
- *
- * Since: 2.2
  **/
 gboolean
 gtk_source_print_compositor_get_print_footer (GtkSourcePrintCompositor *compositor)
@@ -1180,8 +1128,6 @@ gtk_source_print_compositor_get_print_footer (GtkSourcePrintCompositor *composit
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  **/
 void
 gtk_source_print_compositor_set_header_format (GtkSourcePrintCompositor *compositor,
@@ -1217,8 +1163,6 @@ gtk_source_print_compositor_set_header_format (GtkSourcePrintCompositor *composi
  *
  * See gtk_source_print_compositor_set_header_format() for more information
  * about the parameters.
- *
- * Since: 2.2
  **/
 void
 gtk_source_print_compositor_set_footer_format (GtkSourcePrintCompositor *compositor,
@@ -1253,8 +1197,6 @@ gtk_source_print_compositor_set_footer_format (GtkSourcePrintCompositor *composi
  * 1 (i.e. numbers printed in all lines).
  *
  * Return value: the interval of printed line numbers.
- *
- * Since: 2.2
  **/
 guint
 gtk_source_print_compositor_get_print_line_numbers (GtkSourcePrintCompositor *compositor)
@@ -1312,8 +1254,6 @@ set_font_description_from_name (GtkSourcePrintCompositor  *compositor,
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_body_font_name (GtkSourcePrintCompositor *compositor,
@@ -1343,8 +1283,6 @@ gtk_source_print_compositor_set_body_font_name (GtkSourcePrintCompositor *compos
  *
  * Return value: a new string containing the name of the font used to print the
  * text body.
- *
- * Since: 2.2
  */
 gchar *
 gtk_source_print_compositor_get_body_font_name (GtkSourcePrintCompositor *compositor)
@@ -1372,8 +1310,6 @@ gtk_source_print_compositor_get_body_font_name (GtkSourcePrintCompositor *compos
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_line_numbers_font_name (GtkSourcePrintCompositor *compositor,
@@ -1403,8 +1339,6 @@ gtk_source_print_compositor_set_line_numbers_font_name (GtkSourcePrintCompositor
  *
  * Return value: a new string containing the name of the font used to print
  * line numbers on the left margin.
- *
- * Since: 2.2
  */
 gchar *
 gtk_source_print_compositor_get_line_numbers_font_name (GtkSourcePrintCompositor *compositor)
@@ -1438,8 +1372,6 @@ gtk_source_print_compositor_get_line_numbers_font_name (GtkSourcePrintCompositor
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_header_font_name (GtkSourcePrintCompositor *compositor,
@@ -1470,8 +1402,6 @@ gtk_source_print_compositor_set_header_font_name (GtkSourcePrintCompositor *comp
  *
  * Return value: a new string containing the name of the font used to print
  * the page header.
- *
- * Since: 2.2
  */
 gchar *
 gtk_source_print_compositor_get_header_font_name (GtkSourcePrintCompositor *compositor)
@@ -1505,8 +1435,6 @@ gtk_source_print_compositor_get_header_font_name (GtkSourcePrintCompositor *comp
  *
  * This function cannot be called anymore after the first call to the
  * gtk_source_print_compositor_paginate() function.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_footer_font_name (GtkSourcePrintCompositor *compositor,
@@ -1537,8 +1465,6 @@ gtk_source_print_compositor_set_footer_font_name (GtkSourcePrintCompositor *comp
  *
  * Return value: a new string containing the name of the font used to print
  * the page footer.
- *
- * Since: 2.2
  */
 gchar *
 gtk_source_print_compositor_get_footer_font_name (GtkSourcePrintCompositor *compositor)
@@ -1563,8 +1489,6 @@ gtk_source_print_compositor_get_footer_font_name (GtkSourcePrintCompositor *comp
  * @unit: the units for @margin
  *
  * Sets the top margin used by @compositor.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_top_margin (GtkSourcePrintCompositor *compositor,
@@ -1586,8 +1510,6 @@ gtk_source_print_compositor_set_top_margin (GtkSourcePrintCompositor *compositor
  * Gets the top margin in units of @unit.
  *
  * Return value: the top margin.
- *
- * Since: 2.2
  */
 gdouble
 gtk_source_print_compositor_get_top_margin (GtkSourcePrintCompositor *compositor,
@@ -1607,8 +1529,6 @@ gtk_source_print_compositor_get_top_margin (GtkSourcePrintCompositor *compositor
  * @unit: the units for @margin.
  *
  * Sets the bottom margin used by @compositor.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_bottom_margin (GtkSourcePrintCompositor *compositor,
@@ -1630,8 +1550,6 @@ gtk_source_print_compositor_set_bottom_margin (GtkSourcePrintCompositor *composi
  * Gets the bottom margin in units of @unit.
  *
  * Return value: the bottom margin.
- *
- * Since: 2.2
  */
 gdouble
 gtk_source_print_compositor_get_bottom_margin (GtkSourcePrintCompositor *compositor,
@@ -1651,8 +1569,6 @@ gtk_source_print_compositor_get_bottom_margin (GtkSourcePrintCompositor *composi
  * @unit: the units for @margin.
  *
  * Sets the left margin used by @compositor.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_left_margin (GtkSourcePrintCompositor *compositor,
@@ -1674,8 +1590,6 @@ gtk_source_print_compositor_set_left_margin (GtkSourcePrintCompositor *composito
  * Gets the left margin in units of @unit.
  *
  * Return value: the left margin
- *
- * Since: 2.2
  */
 gdouble
 gtk_source_print_compositor_get_left_margin (GtkSourcePrintCompositor *compositor,
@@ -1695,8 +1609,6 @@ gtk_source_print_compositor_get_left_margin (GtkSourcePrintCompositor *composito
  * @unit: the units for @margin.
  *
  * Sets the right margin used by @compositor.
- *
- * Since: 2.2
  */
 void
 gtk_source_print_compositor_set_right_margin (GtkSourcePrintCompositor *compositor,
@@ -1718,8 +1630,6 @@ gtk_source_print_compositor_set_right_margin (GtkSourcePrintCompositor *composit
  * Gets the right margin in units of @unit.
  *
  * Return value: the right margin.
- *
- * Since: 2.2
  */
 gdouble
 gtk_source_print_compositor_get_right_margin (GtkSourcePrintCompositor *compositor,
@@ -1741,8 +1651,6 @@ gtk_source_print_compositor_get_right_margin (GtkSourcePrintCompositor *composit
  *
  * Return value: the number of pages in the document or <code>-1</code> if the
  * document has not been completely paginated.
- *
- * Since: 2.2
  */
 gint
 gtk_source_print_compositor_get_n_pages (GtkSourcePrintCompositor *compositor)
@@ -2558,8 +2466,6 @@ set_pango_layouts_width (GtkSourcePrintCompositor *compositor)
  * </programlisting></informalexample>
  *
  * Return value: %TRUE if the document has been completely paginated, %FALSE otherwise.
- *
- * Since: 2.2
  */
 gboolean
 gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
@@ -2809,8 +2715,6 @@ gtk_source_print_compositor_paginate (GtkSourcePrintCompositor *compositor,
  * Returns the current fraction of the document pagination that has been completed.
  *
  * Return value: a fraction from 0.0 to 1.0 inclusive.
- *
- * Since: 2.2
  */
 gdouble
 gtk_source_print_compositor_get_pagination_progress (GtkSourcePrintCompositor *compositor)

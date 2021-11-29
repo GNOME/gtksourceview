@@ -308,7 +308,6 @@ gtk_source_encoding_lazy_init (void)
  *
  * Returns: (nullable): the corresponding #GtkSourceEncoding, or %NULL
  * if not found.
- * Since: 3.14
  */
 const GtkSourceEncoding *
 gtk_source_encoding_get_from_charset (const gchar *charset)
@@ -348,7 +347,6 @@ gtk_source_encoding_get_from_charset (const gchar *charset)
  *
  * Returns: (transfer container) (element-type GtkSource.Encoding): a list of
  * all #GtkSourceEncoding's. Free with g_slist_free().
- * Since: 3.14
  */
 GSList *
 gtk_source_encoding_get_all (void)
@@ -370,7 +368,6 @@ gtk_source_encoding_get_all (void)
  * gtk_source_encoding_get_utf8:
  *
  * Returns: the UTF-8 encoding.
- * Since: 3.14
  */
 const GtkSourceEncoding *
 gtk_source_encoding_get_utf8 (void)
@@ -384,7 +381,6 @@ gtk_source_encoding_get_utf8 (void)
  * Gets the #GtkSourceEncoding for the current locale. See also g_get_charset().
  *
  * Returns: the current locale encoding.
- * Since: 3.14
  */
 const GtkSourceEncoding *
 gtk_source_encoding_get_current (void)
@@ -425,7 +421,6 @@ gtk_source_encoding_get_current (void)
  * @enc: a #GtkSourceEncoding.
  *
  * Returns: a string representation. Free with g_free() when no longer needed.
- * Since: 3.14
  */
 gchar *
 gtk_source_encoding_to_string (const GtkSourceEncoding* enc)
@@ -458,7 +453,6 @@ gtk_source_encoding_to_string (const GtkSourceEncoding* enc)
  * "ISO-8859-1".
  *
  * Returns: the character set of the #GtkSourceEncoding.
- * Since: 3.14
  */
 const gchar *
 gtk_source_encoding_get_charset (const GtkSourceEncoding* enc)
@@ -479,7 +473,6 @@ gtk_source_encoding_get_charset (const GtkSourceEncoding* enc)
  * Gets the name of the #GtkSourceEncoding such as "Unicode" or "Western".
  *
  * Returns: the name of the #GtkSourceEncoding.
- * Since: 3.14
  */
 const gchar *
 gtk_source_encoding_get_name (const GtkSourceEncoding* enc)
@@ -573,7 +566,6 @@ remove_duplicates_keep_last (GSList *list)
  *
  * Returns: (transfer container) (element-type GtkSource.Encoding): the new
  * start of the #GSList.
- * Since: 3.14
  */
 GSList *
 _gtk_source_encoding_remove_duplicates (GSList                      *list,
@@ -606,7 +598,6 @@ _gtk_source_encoding_remove_duplicates (GSList                      *list,
  *
  * Returns: (transfer container) (element-type GtkSource.Encoding): the list of
  * default candidate encodings. Free with g_slist_free().
- * Since: 3.18
  */
 GSList *
 gtk_source_encoding_get_default_candidates (void)
@@ -689,7 +680,6 @@ gtk_source_encoding_get_default_candidates (void)
  * Used by language bindings.
  *
  * Returns: a copy of @enc.
- * Since: 3.14
  */
 GtkSourceEncoding *
 gtk_source_encoding_copy (const GtkSourceEncoding *enc)
@@ -704,8 +694,6 @@ gtk_source_encoding_copy (const GtkSourceEncoding *enc)
  * @enc: a #GtkSourceEncoding.
  *
  * Used by language bindings.
- *
- * Since: 3.14
  */
 void
 gtk_source_encoding_free (GtkSourceEncoding *enc)

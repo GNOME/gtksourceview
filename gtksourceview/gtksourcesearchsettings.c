@@ -156,8 +156,6 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 * A search string, or %NULL if the search is disabled. If the regular
 	 * expression search is enabled, #GtkSourceSearchSettings:search-text is
 	 * the pattern.
-	 *
-	 * Since: 3.10
 	 */
 	properties[PROP_SEARCH_TEXT] =
 		g_param_spec_string ("search-text",
@@ -170,8 +168,6 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 * GtkSourceSearchSettings:case-sensitive:
 	 *
 	 * Whether the search is case sensitive.
-	 *
-	 * Since: 3.10
 	 */
 	properties[PROP_CASE_SENSITIVE] =
 		g_param_spec_boolean ("case-sensitive",
@@ -185,8 +181,6 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 *
 	 * If %TRUE, a search match must start and end a word. The match can
 	 * span multiple words.
-	 *
-	 * Since: 3.10
 	 */
 	properties[PROP_AT_WORD_BOUNDARIES] =
 		g_param_spec_boolean ("at-word-boundaries",
@@ -201,8 +195,6 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 * For a forward search, continue at the beginning of the buffer if no
 	 * search occurrence is found. For a backward search, continue at the
 	 * end of the buffer.
-	 *
-	 * Since: 3.10
 	 */
 	properties[PROP_WRAP_AROUND] =
 		g_param_spec_boolean ("wrap-around",
@@ -216,8 +208,6 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 *
 	 * Search by regular expressions with
 	 * #GtkSourceSearchSettings:search-text as the pattern.
-	 *
-	 * Since: 3.10
 	 */
 	properties[PROP_REGEX_ENABLED] =
 		g_param_spec_boolean ("regex-enabled",
@@ -240,7 +230,6 @@ gtk_source_search_settings_init (GtkSourceSearchSettings *self)
  * Creates a new search settings object.
  *
  * Returns: a new search settings object.
- * Since: 3.10
  */
 GtkSourceSearchSettings *
 gtk_source_search_settings_new (void)
@@ -259,8 +248,6 @@ gtk_source_search_settings_new (void)
  *
  * You may be interested to call gtk_source_utils_unescape_search_text() before
  * this function.
- *
- * Since: 3.10
  */
 void
 gtk_source_search_settings_set_search_text (GtkSourceSearchSettings *settings,
@@ -302,7 +289,6 @@ gtk_source_search_settings_set_search_text (GtkSourceSearchSettings *settings,
  * this function.
  *
  * Returns: (nullable): the text to search, or %NULL if the search is disabled.
- * Since: 3.10
  */
 const gchar *
 gtk_source_search_settings_get_search_text (GtkSourceSearchSettings *settings)
@@ -320,8 +306,6 @@ gtk_source_search_settings_get_search_text (GtkSourceSearchSettings *settings)
  * @case_sensitive: the setting.
  *
  * Enables or disables the case sensitivity for the search.
- *
- * Since: 3.10
  */
 void
 gtk_source_search_settings_set_case_sensitive (GtkSourceSearchSettings *settings,
@@ -345,7 +329,6 @@ gtk_source_search_settings_set_case_sensitive (GtkSourceSearchSettings *settings
  * @settings: a #GtkSourceSearchSettings.
  *
  * Returns: whether the search is case sensitive.
- * Since: 3.10
  */
 gboolean
 gtk_source_search_settings_get_case_sensitive (GtkSourceSearchSettings *settings)
@@ -366,8 +349,6 @@ gtk_source_search_settings_get_case_sensitive (GtkSourceSearchSettings *settings
  * is %TRUE, a search match must start and end a word. The match can span
  * multiple words. See also gtk_text_iter_starts_word() and
  * gtk_text_iter_ends_word().
- *
- * Since: 3.10
  */
 void
 gtk_source_search_settings_set_at_word_boundaries (GtkSourceSearchSettings *settings,
@@ -391,7 +372,6 @@ gtk_source_search_settings_set_at_word_boundaries (GtkSourceSearchSettings *sett
  * @settings: a #GtkSourceSearchSettings.
  *
  * Returns: whether to search at word boundaries.
- * Since: 3.10
  */
 gboolean
 gtk_source_search_settings_get_at_word_boundaries (GtkSourceSearchSettings *settings)
@@ -412,8 +392,6 @@ gtk_source_search_settings_get_at_word_boundaries (GtkSourceSearchSettings *sett
  * forward search continues at the beginning of the buffer if no search
  * occurrences are found. Similarly, the backward search continues to search at
  * the end of the buffer.
- *
- * Since: 3.10
  */
 void
 gtk_source_search_settings_set_wrap_around (GtkSourceSearchSettings *settings,
@@ -437,7 +415,6 @@ gtk_source_search_settings_set_wrap_around (GtkSourceSearchSettings *settings,
  * @settings: a #GtkSourceSearchSettings.
  *
  * Returns: whether to wrap around the search.
- * Since: 3.10
  */
 gboolean
 gtk_source_search_settings_get_wrap_around (GtkSourceSearchSettings *settings)
@@ -461,8 +438,6 @@ gtk_source_search_settings_get_wrap_around (GtkSourceSearchSettings *settings)
  * #GtkSourceSearchContext uses #GRegex when regex search is enabled. See the
  * [Regular expression syntax](https://developer.gnome.org/glib/stable/glib-regex-syntax.html)
  * page in the GLib reference manual.
- *
- * Since: 3.10
  */
 void
 gtk_source_search_settings_set_regex_enabled (GtkSourceSearchSettings *settings,
@@ -486,7 +461,6 @@ gtk_source_search_settings_set_regex_enabled (GtkSourceSearchSettings *settings,
  * @settings: a #GtkSourceSearchSettings.
  *
  * Returns: whether to search by regular expressions.
- * Since: 3.10
  */
 gboolean
 gtk_source_search_settings_get_regex_enabled (GtkSourceSearchSettings *settings)

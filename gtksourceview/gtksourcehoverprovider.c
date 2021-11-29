@@ -39,8 +39,6 @@
  * #GtkSourceHoverProvider.populate. Otherwise, interface implementations that
  * may take additional time should use #GtkSourceHoverProvider.populate_async
  * to avoid blocking the main loop.
- *
- * Since: 5.0
  */
 
 G_DEFINE_INTERFACE (GtkSourceHoverProvider, gtk_source_hover_provider, G_TYPE_OBJECT)

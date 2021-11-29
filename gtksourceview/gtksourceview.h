@@ -70,8 +70,6 @@ typedef enum _GtkSourceSmartHomeEndType
  * GtkSourceBackgroundPatternType:
  * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE: no pattern
  * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID: grid pattern
- *
- * Since: 3.16
  */
 typedef enum _GtkSourceBackgroundPatternType
 {

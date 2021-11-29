@@ -992,8 +992,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * The #GtkTextBuffer for the #GtkSourceCompletion:view.
 	 * This is a convenience property for providers.
-	 *
-	 * Since: 5.0
 	 */
 	properties [PROP_BUFFER] =
 		g_param_spec_object ("buffer",
@@ -1006,8 +1004,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * GtkSourceCompletion:page-size:
 	 *
 	 * The number of rows to display to the user before scrolling.
-	 *
-	 * Since: 5.0
 	 */
 	properties [PROP_PAGE_SIZE] =
 		g_param_spec_uint ("page-size",
@@ -1060,8 +1056,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * The "view" property is the #GtkTextView for which this #GtkSourceCompletion
 	 * is providing completion features.
-	 *
-	 * Since: 5.0
 	 */
 	properties [PROP_VIEW] =
 		g_param_spec_object ("view",
@@ -1079,8 +1073,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * The "provided-added" signal is emitted when a new provider is
 	 * added to the completion.
-	 *
-	 * Since: 5.0
 	 */
 	signals [PROVIDER_ADDED] =
 		g_signal_new ("provider-added",
@@ -1100,8 +1092,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * The "provided-removed" signal is emitted when a provider has
 	 * been removed from the completion.
-	 *
-	 * Since: 5.0
 	 */
 	signals [PROVIDER_REMOVED] =
 		g_signal_new ("provider-removed",
@@ -1120,8 +1110,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * The "hide" signal is emitted when the completion window should
 	 * be hidden.
-	 *
-	 * Since: 5.0
 	 */
 	signals [HIDE] =
 		g_signal_new_class_handler ("hide",
@@ -1141,8 +1129,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * The "show" signal is emitted when the completion window should
 	 * be shown.
-	 *
-	 * Since: 5.0
 	 */
 	signals [SHOW] =
 		g_signal_new_class_handler ("show",
@@ -1233,8 +1219,6 @@ gtk_source_completion_init (GtkSourceCompletion *self)
  * Gets the #GtkSourceView that owns the #GtkSourceCompletion.
  *
  * Returns: (transfer none): A #GtkSourceView
- *
- * Since: 5.0
  */
 GtkSourceView *
 gtk_source_completion_get_view (GtkSourceCompletion *self)
@@ -1251,8 +1235,6 @@ gtk_source_completion_get_view (GtkSourceCompletion *self)
  * Gets the connected #GtkSourceView's #GtkSourceBuffer
  *
  * Returns: (transfer none): A #GtkSourceBuffer
- *
- * Since: 5.0
  */
 GtkSourceBuffer *
 gtk_source_completion_get_buffer (GtkSourceCompletion *self)
@@ -1269,8 +1251,6 @@ gtk_source_completion_get_buffer (GtkSourceCompletion *self)
  *
  * Adds an #GtkSourceCompletionProvider to the list of providers to be queried
  * for completion results.
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_add_provider (GtkSourceCompletion         *self,
@@ -1290,8 +1270,6 @@ gtk_source_completion_add_provider (GtkSourceCompletion         *self,
  *
  * Removes an #GtkSourceCompletionProvider previously added with
  * gtk_source_completion_add_provider().
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_remove_provider (GtkSourceCompletion         *self,
@@ -1320,8 +1298,6 @@ gtk_source_completion_remove_provider (GtkSourceCompletion         *self,
  *
  * When the "show" signal is emitted, the completion window will be
  * displayed if there are any results available.
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_show (GtkSourceCompletion *self)
@@ -1345,8 +1321,6 @@ gtk_source_completion_show (GtkSourceCompletion *self)
  *
  * When the "hide" signal is emitted, the completion window will be
  * dismissed.
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_hide (GtkSourceCompletion *self)
@@ -1457,8 +1431,6 @@ _gtk_source_completion_get_display (GtkSourceCompletion *self)
  * it will be set to zero.
  *
  * Returns: %TRUE if @haystack matched @casefold_needle, otherwise %FALSE.
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_completion_fuzzy_match (const char *haystack,
@@ -1560,8 +1532,6 @@ add_attributes (PangoAttrList **attrs,
  * based on @casefold_query.
  *
  * Returns: (transfer full) (nullable): a #PangoAttrList or %NULL
- *
- * Since: 5.0
  */
 PangoAttrList *
 gtk_source_completion_fuzzy_highlight (const char *haystack,

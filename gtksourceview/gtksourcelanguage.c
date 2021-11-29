@@ -944,8 +944,6 @@ gtk_source_language_get_style_name (GtkSourceLanguage *language,
  * specified @style_id is not present in the current style scheme or %NULL
  * if the style has no fallback defined.
  * The returned string is owned by the @language and must not be modified.
- *
- * Since: 3.4
  */
 const gchar *
 gtk_source_language_get_style_fallback (GtkSourceLanguage *language,

@@ -44,7 +44,6 @@ G_BEGIN_DECLS
  *   modified.
  *
  * An error code used with the %GTK_SOURCE_FILE_SAVER_ERROR domain.
- * Since: 3.14
  */
 typedef enum _GtkSourceFileSaverError
 {
@@ -60,7 +59,6 @@ typedef enum _GtkSourceFileSaverError
  * @GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP: Create a backup before saving the file.
  *
  * Flags to define the behavior of a #GtkSourceFileSaver.
- * Since: 3.14
  */
 typedef enum _GtkSourceFileSaverFlags
 {

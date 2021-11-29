@@ -2783,8 +2783,6 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 * GtkSourceSearchContext:buffer:
 	 *
 	 * The #GtkSourceBuffer associated to the search context.
-	 *
-	 * Since: 3.10
 	 */
 	properties [PROP_BUFFER] =
 		g_param_spec_object ("buffer",
@@ -2801,8 +2799,6 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 * The #GtkSourceSearchSettings associated to the search context.
 	 *
 	 * This property is construct-only since version 4.0.
-	 *
-	 * Since: 3.10
 	 */
 	properties [PROP_SETTINGS] =
 		g_param_spec_object ("settings",
@@ -2817,8 +2813,6 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 * GtkSourceSearchContext:highlight:
 	 *
 	 * Highlight the search occurrences.
-	 *
-	 * Since: 3.10
 	 */
 	properties [PROP_HIGHLIGHT] =
 		g_param_spec_boolean ("highlight",
@@ -2833,8 +2827,6 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 * GtkSourceSearchContext:match-style:
 	 *
 	 * A #GtkSourceStyle, or %NULL for theme's scheme default style.
-	 *
-	 * Since: 3.16
 	 */
 	properties [PROP_MATCH_STYLE] =
 		g_param_spec_object ("match-style",
@@ -2851,8 +2843,6 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 * The total number of search occurrences. If the search is disabled,
 	 * the value is 0. If the buffer is not already fully scanned, the value
 	 * is -1.
-	 *
-	 * Since: 3.10
 	 */
 	properties [PROP_OCCURRENCES_COUNT] =
 		g_param_spec_int ("occurrences-count",
@@ -2872,8 +2862,6 @@ gtk_source_search_context_class_init (GtkSourceSearchContextClass *klass)
 	 * %NULL.
 	 *
 	 * Free with g_error_free().
-	 *
-	 * Since: 3.10
 	 */
 	properties [PROP_REGEX_ERROR] =
 		g_param_spec_boxed ("regex-error",
@@ -2903,7 +2891,6 @@ gtk_source_search_context_init (GtkSourceSearchContext *search)
  * gtk_source_search_context_get_settings().
  *
  * Returns: a new search context.
- * Since: 3.10
  */
 GtkSourceSearchContext *
 gtk_source_search_context_new (GtkSourceBuffer         *buffer,
@@ -2923,7 +2910,6 @@ gtk_source_search_context_new (GtkSourceBuffer         *buffer,
  * @search: a #GtkSourceSearchContext.
  *
  * Returns: (transfer none): the associated buffer.
- * Since: 3.10
  */
 GtkSourceBuffer *
 gtk_source_search_context_get_buffer (GtkSourceSearchContext *search)
@@ -2938,7 +2924,6 @@ gtk_source_search_context_get_buffer (GtkSourceSearchContext *search)
  * @search: a #GtkSourceSearchContext.
  *
  * Returns: (transfer none): the search settings.
- * Since: 3.10
  */
 GtkSourceSearchSettings *
 gtk_source_search_context_get_settings (GtkSourceSearchContext *search)
@@ -2953,7 +2938,6 @@ gtk_source_search_context_get_settings (GtkSourceSearchContext *search)
  * @search: a #GtkSourceSearchContext.
  *
  * Returns: whether to highlight the search occurrences.
- * Since: 3.10
  */
 gboolean
 gtk_source_search_context_get_highlight (GtkSourceSearchContext *search)
@@ -2969,8 +2953,6 @@ gtk_source_search_context_get_highlight (GtkSourceSearchContext *search)
  * @highlight: the setting.
  *
  * Enables or disables the search occurrences highlighting.
- *
- * Since: 3.10
  */
 void
 gtk_source_search_context_set_highlight (GtkSourceSearchContext *search,
@@ -2994,8 +2976,6 @@ gtk_source_search_context_set_highlight (GtkSourceSearchContext *search,
  * @search: a #GtkSourceSearchContext.
  *
  * Returns: (transfer none): the #GtkSourceStyle to apply on search matches.
- *
- * Since: 3.16
  */
 GtkSourceStyle *
 gtk_source_search_context_get_match_style (GtkSourceSearchContext *search)
@@ -3014,8 +2994,6 @@ gtk_source_search_context_get_match_style (GtkSourceSearchContext *search)
  * theme's scheme 'match-style' will be used.
  * To enable or disable the search highlighting, use
  * gtk_source_search_context_set_highlight().
- *
- * Since: 3.16
  */
 void
 gtk_source_search_context_set_match_style (GtkSourceSearchContext *search,
@@ -3056,8 +3034,6 @@ gtk_source_search_context_set_match_style (GtkSourceSearchContext *search,
  *
  * Returns: (transfer full) (nullable): the #GError, or %NULL if the
  *   pattern is valid.
- *
- * Since: 3.10
  */
 GError *
 gtk_source_search_context_get_regex_error (GtkSourceSearchContext *search)
@@ -3081,7 +3057,6 @@ gtk_source_search_context_get_regex_error (GtkSourceSearchContext *search)
  * returned.
  *
  * Returns: the total number of search occurrences, or -1 if unknown.
- * Since: 3.10
  */
 gint
 gtk_source_search_context_get_occurrences_count (GtkSourceSearchContext *search)
@@ -3110,8 +3085,6 @@ gtk_source_search_context_get_occurrences_count (GtkSourceSearchContext *search)
  * Returns: the position of the search occurrence. The first occurrence has the
  * position 1 (not 0). Returns 0 if @match_start and @match_end don't delimit
  * an occurrence. Returns -1 if the position is not yet known.
- *
- * Since: 3.10
  */
 gint
 gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *search,
@@ -3222,7 +3195,6 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
  * the same value as the #GtkSourceSearchSettings:wrap-around property.
  *
  * Returns: whether a match was found.
- * Since: 4.0
  */
 gboolean
 gtk_source_search_context_forward (GtkSourceSearchContext *search,
@@ -3294,8 +3266,6 @@ gtk_source_search_context_forward (GtkSourceSearchContext *search,
  * If the operation is cancelled, the @callback will only be called if
  * @cancellable was not %NULL. gtk_source_search_context_forward_async() takes
  * ownership of @cancellable, so you can unref it after calling this function.
- *
- * Since: 3.10
  */
 void
 gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
@@ -3335,7 +3305,6 @@ gtk_source_search_context_forward_async (GtkSourceSearchContext *search,
  * details.
  *
  * Returns: whether a match was found.
- * Since: 4.0
  */
 gboolean
 gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
@@ -3418,7 +3387,6 @@ gtk_source_search_context_forward_finish (GtkSourceSearchContext  *search,
  * the same value as the #GtkSourceSearchSettings:wrap-around property.
  *
  * Returns: whether a match was found.
- * Since: 4.0
  */
 gboolean
 gtk_source_search_context_backward (GtkSourceSearchContext *search,
@@ -3491,8 +3459,6 @@ gtk_source_search_context_backward (GtkSourceSearchContext *search,
  * If the operation is cancelled, the @callback will only be called if
  * @cancellable was not %NULL. gtk_source_search_context_backward_async() takes
  * ownership of @cancellable, so you can unref it after calling this function.
- *
- * Since: 3.10
  */
 void
 gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
@@ -3532,7 +3498,6 @@ gtk_source_search_context_backward_async (GtkSourceSearchContext *search,
  * details.
  *
  * Returns: whether a match was found.
- * Since: 4.0
  */
 gboolean
 gtk_source_search_context_backward_finish (GtkSourceSearchContext  *search,
@@ -3667,7 +3632,6 @@ end:
  * backreferences.
  *
  * Returns: whether the match has been replaced.
- * Since: 4.0
  */
 gboolean
 gtk_source_search_context_replace (GtkSourceSearchContext  *search,
@@ -3746,7 +3710,6 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
  * backreferences.
  *
  * Returns: the number of replaced matches.
- * Since: 3.10
  */
 guint
 gtk_source_search_context_replace_all (GtkSourceSearchContext  *search,

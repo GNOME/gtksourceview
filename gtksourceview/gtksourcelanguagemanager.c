@@ -645,8 +645,6 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  * Returns: (nullable) (transfer none): a #GtkSourceLanguage, or %NULL if there
  * is no suitable language for given @filename and/or @content_type. Return
  * value is owned by @lm and should not be freed.
- *
- * Since: 2.4
  */
 GtkSourceLanguage *
 gtk_source_language_manager_guess_language (GtkSourceLanguageManager *lm,
