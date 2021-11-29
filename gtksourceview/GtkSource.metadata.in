@@ -1,8 +1,0 @@
-* name="(.+)/Source\\1"
-utils_* name="utils_(.+)" parent="Gtk.SourceUtils"
-GtkSource name="Gtk" cprefix="Gtk" lower_case_cprefix="gtk_"
-CompletionProvider
-        .*#virtual_method virtual
-CompletionProposal
-SearchContext
-        .regex_error type="GLib.Error?"

@@ -306,15 +306,8 @@ if generate_gir
   ]
 
   if generate_vapi
-    configure_file(
-        input: 'GtkSource.metadata.in',
-       output: 'GtkSource-@0@.metadata'.format(api_version),
-         copy: true,
-    )
-
     gtksource_vapi = gnome.generate_vapi(package_string,
             sources: gtksource_gir.get(0),
-      metadata_dirs: join_paths(builddir, 'gtksourceview'),
             install: true,
         install_dir: vapidir,
            packages: [ 'gdk-pixbuf-2.0',
