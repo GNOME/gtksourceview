@@ -1,4 +1,8 @@
 
+ * The Vala bindings have moved from the Gtk namespace to the GtkSource
+   namespace to match the bindings in all other languages. While it is
+   unfortunate that this has happened after 5.0, it is still early enough
+   that we can avoid having to maintain a clashing namespace with Gtk.
  * A new Vim emulator in the form of GtkSourceVimIMContext. This can emulate
    basic features such as Normal, Insert, Replace, Visual, Visual Line, and
    Command Bar modes. Additionally, many Vim-style motions and text-objects
