@@ -33,11 +33,9 @@
 #define DEFAULT_HOVER_DELAY 500
 
 /**
- * SECTION:hover
- * @Title: GtkSourceHover
- * @Short_description: Interactive tooltips
- * @See_also: #GtkSourceHoverProvider, #GtkSourceHoverDisplay, and
- *   #GtkSourceHoverContext.
+ * GtkSourceHover:
+ * 
+ * Interactive tooltips.
  *
  * #GtkSourceHover allows a #GtkSourceView to provide contextual information.
  * When enabled, if the user hovers over a word in the text editor, a series

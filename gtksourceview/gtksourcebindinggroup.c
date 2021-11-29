@@ -27,9 +27,9 @@
 #include "gtksourcebindinggroup-private.h"
 
 /*
- * SECTION:gtksourcebindinggroup:
- * @title: GtkSourceBindingGroup
- * @short_description: Binding multiple properties as a group
+ * GtkSourceBindingGroup:
+ * 
+ * Binding multiple properties as a group.
  *
  * The #GtkSourceBindingGroup can be used to bind multiple properties
  * from an object collectively.

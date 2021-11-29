@@ -57,10 +57,9 @@
 #include "gtksourcetrace.h"
 
 /**
- * SECTION:view
- * @Short_description: Subclass of #GtkTextView
- * @Title: GtkSourceView
- * @See_also: #GtkTextView, #GtkSourceBuffer
+ * GtkSourceView:
+ *
+ * Subclass of #GtkTextView.
  *
  * #GtkSourceView is the main class of the GtkSourceView library.
  * Use a #GtkSourceBuffer to display text with a #GtkSourceView.

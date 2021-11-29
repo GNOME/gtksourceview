@@ -28,10 +28,9 @@
 #include "gtksourceutils-private.h"
 
 /**
- * SECTION:languagemanager
- * @Short_description: Provides access to GtkSourceLanguages
- * @Title: GtkSourceLanguageManager
- * @See_also: #GtkSourceLanguage
+ * GtkSourceLanguageManager:
+ * 
+ * Provides access to GtkSourceLanguages.
  *
  * #GtkSourceLanguageManager is an object which processes language description
  * files and creates and stores #GtkSourceLanguage objects, and provides API to

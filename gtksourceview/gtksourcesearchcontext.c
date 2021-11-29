@@ -36,10 +36,9 @@
 #include "implregex-private.h"
 
 /**
- * SECTION:searchcontext
- * @Short_description: Search context
- * @Title: GtkSourceSearchContext
- * @See_also: #GtkSourceBuffer, #GtkSourceSearchSettings
+ * GtkSourceSearchContext:
+ * 
+ * Search context.
  *
  * A #GtkSourceSearchContext is used for the search and replace in a
  * #GtkSourceBuffer. The search settings are represented by a

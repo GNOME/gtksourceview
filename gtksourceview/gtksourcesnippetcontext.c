@@ -26,9 +26,9 @@
 #include "gtksourcesnippetcontext-private.h"
 
 /**
- * SECTION:snippetcontext
- * @title: GtkSourceSnippetContext
- * @short_description: Context for expanding #GtkSourceSnippetChunk
+ * GtkSourceSnippetContext:
+ *
+ * Context for expanding #GtkSourceSnippetChunk.
  *
  * This class is currently used primary as a hashtable. However, the longer
  * term goal is to have it hold onto a GjsContext as well as other languages

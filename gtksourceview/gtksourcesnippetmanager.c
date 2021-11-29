@@ -25,10 +25,9 @@
 #include "gtksourceutils-private.h"
 
 /**
- * SECTION:snippetmanager
- * @title: GtkSourceSnippetManager
- * @short_description: Provides access to #GtkSourceSnippet
- * @see_also: #GtkSourceSnippet
+ * GtkSourceSnippetManager:
+ * 
+ * Provides access to #GtkSourceSnippet.
  *
  * #GtkSourceSnippetManager is an object which processes snippet description
  * files and creates #GtkSourceSnippet objects.

@@ -35,9 +35,9 @@
 #include "gtksourceview-private.h"
 
 /**
- * SECTION:completion
- * @title: GtkSourceCompletion
- * @short_description: Main Completion Object
+ * GtkSourceCompletion:
+ *
+ * Main Completion Object.
  *
  * The completion system helps the user when they writes some text,
  * such as words, command names, functions, and suchlike. Proposals can

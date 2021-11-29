@@ -23,10 +23,9 @@
 #include "gtksourceregion.h"
 
 /**
- * SECTION:region
- * @Short_description: Region utility
- * @Title: GtkSourceRegion
- * @See_also: #GtkTextBuffer
+ * GtkSourceRegion:
+ * 
+ * Region utility.
  *
  * A #GtkSourceRegion permits to store a group of subregions of a
  * #GtkTextBuffer. #GtkSourceRegion stores the subregions with pairs of

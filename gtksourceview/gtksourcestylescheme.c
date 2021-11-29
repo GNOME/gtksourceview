@@ -32,10 +32,9 @@
 #include "gtksourcelanguage-private.h"
 
 /**
- * SECTION:stylescheme
- * @Short_description: Controls the appearance of GtkSourceView
- * @Title: GtkSourceStyleScheme
- * @See_also: #GtkSourceStyle, #GtkSourceStyleSchemeManager
+ * GtkSourceStyleScheme:
+ * 
+ * Controls the appearance of GtkSourceView.
  *
  * #GtkSourceStyleScheme contains all the text styles to be used in
  * #GtkSourceView and #GtkSourceBuffer. For instance, it contains text styles

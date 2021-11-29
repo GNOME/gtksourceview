@@ -29,9 +29,9 @@
 #include "vim/gtksourcevimcommand.h"
 
 /**
- * SECTION:vimimcontext
- * @title: GtkSourceVimIMContext
- * @short_description: Vim emulation
+ * GtkSourceVimIMContext:
+ *
+ * Vim emulation.
  *
  * The #GtkSourceVimIMContext is a #GtkIMContext implementation that can
  * be used to provide Vim-like editing controls within a #GtkSourceView.

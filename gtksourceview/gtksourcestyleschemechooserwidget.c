@@ -31,10 +31,9 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:styleschemechooserwidget
- * @Short_description: A widget for choosing style schemes
- * @Title: GtkSourceStyleSchemeChooserWidget
- * @See_also: #GtkSourceStyleSchemeChooserButton
+ * GtkSourceStyleSchemeChooserWidget:
+ * 
+ * A widget for choosing style schemes.
  *
  * The #GtkSourceStyleSchemeChooserWidget widget lets the user select a
  * style scheme. By default, the chooser presents a predefined list

@@ -23,10 +23,9 @@
 #include "gtksourcepixbufhelper-private.h"
 
 /**
- * SECTION:gutterrendererpixbuf
- * @Short_description: Renders a pixbuf in the gutter
- * @Title: GtkSourceGutterRendererPixbuf
- * @See_also: #GtkSourceGutterRenderer, #GtkSourceGutter
+ * GtkSourceGutterRendererPixbuf:
+ *
+ * Renders a pixbuf in the gutter.
  *
  * A #GtkSourceGutterRendererPixbuf can be used to render an image in a cell of
  * #GtkSourceGutter.

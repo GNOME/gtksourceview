@@ -39,10 +39,9 @@
 #define DRAG_THRESHOLD      5.0
 
 /**
- * SECTION:map
- * @Short_description: Widget that displays a map for a specific #GtkSourceView
- * @Title: GtkSourceMap
- * @See_also: #GtkSourceView
+ * GtkSourceMap:
+ * 
+ * Widget that displays a map for a specific #GtkSourceView.
  *
  * #GtkSourceMap is a widget that maps the content of a #GtkSourceView into
  * a smaller view so the user can have a quick overview of the whole document.

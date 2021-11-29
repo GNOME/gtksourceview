@@ -26,10 +26,8 @@
 #include "gtksourcepixbufhelper-private.h"
 
 /**
- * SECTION:markattributes
- * @short_description: The source mark attributes object
- * @title: GtkSourceMarkAttributes
- * @see_also: #GtkSourceMark
+ * GtkSourceMarkAttributes:
+ * The source mark attributes object.
  *
  * #GtkSourceMarkAttributes is an object specifying attributes used by
  * a #GtkSourceView to visually show lines marked with #GtkSourceMark<!-- -->s

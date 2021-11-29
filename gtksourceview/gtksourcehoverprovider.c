@@ -26,10 +26,9 @@
 #include "gtksourcehoverprovider.h"
 
 /**
- * SECTION:hoverprovider
- * @Title: GtkSourceHoverProvider
- * @Short_description: interface to populate interactive tooltips
- * @See_also: #GtkSourceHover, #GtkSourceHoverDisplay, #GtkSourceHoverContext
+ * GtkSourceHoverProvider:
+ * 
+ * Interface to populate interactive tooltips.
  *
  * #GtkSourceHoverProvider is an interface that should be implemented to extend
  * the contents of a #GtkSourceHoverDisplay. This is typical in editors that

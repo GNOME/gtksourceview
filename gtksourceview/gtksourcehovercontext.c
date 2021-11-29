@@ -28,10 +28,9 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:hovercontext
- * @Title: GtkSourceHoverContext
- * @Short_description: Context for populating #GtkSourceHoverDisplay contents
- * @See_also: #GtkSourceHover, #GtkSourceHoverProvider, #GtkSourceHoverDisplay
+ * GtkSourceHoverContext:
+ *
+ * Context for populating #GtkSourceHoverDisplay contents.
  *
  * #GtkSourceHoverContext contains information about the request to populate
  * contents for a #GtkSourceHoverDisplay.

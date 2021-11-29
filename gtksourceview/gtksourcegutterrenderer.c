@@ -31,10 +31,9 @@
 #include "gtksource-marshal.h"
 
 /**
- * SECTION:gutterrenderer
- * @Short_description: Gutter cell renderer
- * @Title: GtkSourceGutterRenderer
- * @See_also: #GtkSourceGutter
+ * GtkSourceGutterRenderer:
+ * 
+ * Gutter cell renderer.
  *
  * A #GtkSourceGutterRenderer represents a column in a #GtkSourceGutter. The
  * column contains one cell for each visible line of the #GtkTextBuffer. Due to

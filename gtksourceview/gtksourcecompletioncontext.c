@@ -32,11 +32,9 @@
 #include "gtksourcecompletionprovider.h"
 
 /**
- * SECTION:completioncontext
- * @Title: GtkSourceCompletionContext
- * @Short_description: The context of a completion
- * @See_also: #GtkSourceCompletion, #GtkSourceCompletionProvider, and
- *   #GtkSourceCompletionProposal.
+ * GtkSourceCompletionContext:
+ *
+ * The context of a completion.
  *
  * #GtkSourceCompletionContext contains information about an attept to display
  * completion proposals to the user based on typed text in the #GtkSourceView.

@@ -36,9 +36,9 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:styleschemepreview
- * @title: GtkSourceStyleSchemePreview
- * @short_description: a preview widget for #GtkSourceStyleScheme
+ * GtkSourceStyleSchemePreview:
+ * 
+ * A preview widget for #GtkSourceStyleScheme.
  *
  * This widget provides a convenient #GtkWidget to preview a #GtkSourceStyleScheme.
  *

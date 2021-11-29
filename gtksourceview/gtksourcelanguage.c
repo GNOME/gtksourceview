@@ -38,10 +38,9 @@
 #endif
 
 /**
- * SECTION:language
- * @Short_description: Represents a syntax highlighted language
- * @Title: GtkSourceLanguage
- * @See_also: #GtkSourceLanguageManager
+ * GtkSourceLanguage:
+ * 
+ * Represents a syntax highlighted language.
  *
  * A #GtkSourceLanguage represents a programming or markup language, affecting
  * syntax highlighting and [context classes][context-classes].

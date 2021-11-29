@@ -26,10 +26,9 @@
 #include "gtksourceutils-private.h"
 
 /**
- * SECTION:styleschememanager
- * @Short_description: Provides access to GtkSourceStyleSchemes
- * @Title: GtkSourceStyleSchemeManager
- * @See_also: #GtkSourceStyleScheme
+ * GtkSourceStyleSchemeManager:
+ *
+ * Provides access to GtkSourceStyleSchemes.
  *
  * Object which provides access to #GtkSourceStyleScheme<!-- -->s.
  */

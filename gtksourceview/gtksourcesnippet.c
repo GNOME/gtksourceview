@@ -28,10 +28,9 @@
 #include "gtksourcesnippetcontext-private.h"
 
 /**
- * SECTION:snippet
- * @title: GtkSourceSnippet
- * @short_description: Quick insertion code snippets
- * @see_also: #GtkSourceSnippetChunk, #GtkSourceSnippetContext, #GtkSourceSnippetManager
+ * GtkSourceSnippet:
+ * 
+ * Quick insertion code snippets.
  *
  * The #GtkSourceSnippet represents a series of chunks that can quickly be
  * inserted into the #GtkSourceView.

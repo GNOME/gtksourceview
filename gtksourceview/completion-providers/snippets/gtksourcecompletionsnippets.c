@@ -36,9 +36,9 @@
 #include "gtksourcecompletionsnippetsproposal-private.h"
 
 /**
- * SECTION:completionsnippets
- * @title: GtkSourceCompletionSnippets
- * @short_description: A GtkSourceCompletionProvider for the completion of snippets
+ * GtkSourceCompletionSnippets:
+ *
+ * A GtkSourceCompletionProvider for the completion of snippets.
  *
  * The #GtkSourceCompletionSnippets is an example of an implementation of
  * the #GtkSourceCompletionProvider interface. The proposals are snippets

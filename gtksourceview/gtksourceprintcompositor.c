@@ -33,9 +33,9 @@
 #include "gtksourcetrace.h"
 
 /**
- * SECTION:printcompositor
- * @Short_description: Compose a GtkSourceBuffer for printing
- * @Title: GtkSourcePrintCompositor
+ * GtkSourcePrintCompositor:
+ * 
+ * Compose a GtkSourceBuffer for printing.
  *
  * The #GtkSourcePrintCompositor object is used to compose a #GtkSourceBuffer
  * for printing. You can set various configuration options to customize the

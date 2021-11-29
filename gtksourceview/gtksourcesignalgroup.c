@@ -26,9 +26,9 @@
 #include "gtksourcesignalgroup-private.h"
 
 /*
- * SECTION:gtksourcesignalgroup
- * @title: GtkSourceSignalGroup
- * @short_description: Manage a collection of signals on a #GObject
+ * GtkSourceSignalGroup:
+ * 
+ * Manage a collection of signals on a #GObject.
  *
  * #GtkSourceSignalGroup manages to simplify the process of connecting
  * many signals to a #GObject as a group. As such there is no API

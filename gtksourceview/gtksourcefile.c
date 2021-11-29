@@ -24,10 +24,9 @@
 #include "gtksource-enumtypes.h"
 
 /**
- * SECTION:file
- * @Short_description: On-disk representation of a GtkSourceBuffer
- * @Title: GtkSourceFile
- * @See_also: #GtkSourceFileLoader, #GtkSourceFileSaver
+ * GtkSourceFile:
+ * 
+ * On-disk representation of a GtkSourceBuffer.
  *
  * A #GtkSourceFile object is the on-disk representation of a #GtkSourceBuffer.
  * With a #GtkSourceFile, you can create and configure a #GtkSourceFileLoader

@@ -44,10 +44,9 @@
 #include "gtksourcetrace.h"
 
 /**
- * SECTION:buffer
- * @Short_description: Subclass of #GtkTextBuffer
- * @Title: GtkSourceBuffer
- * @See_also: #GtkTextBuffer, #GtkSourceView
+ * GtkSourceBuffer:
+ *
+ * Subclass of #GtkTextBuffer.
  *
  * A #GtkSourceBuffer object is the model for #GtkSourceView widgets.
  * It extends the #GtkTextBuffer class by adding features useful to display

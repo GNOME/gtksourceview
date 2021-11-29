@@ -33,10 +33,9 @@
 #include "gtksource-enumtypes.h"
 
 /**
- * SECTION:filesaver
- * @Short_description: Save a GtkSourceBuffer into a file
- * @Title: GtkSourceFileSaver
- * @See_also: #GtkSourceFile, #GtkSourceFileLoader
+ * GtkSourceFileSaver:
+ *
+ * Save a GtkSourceBuffer into a file.
  *
  * A #GtkSourceFileSaver object permits to save a #GtkSourceBuffer into a
  * #GFile.

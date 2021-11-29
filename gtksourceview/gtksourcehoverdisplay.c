@@ -24,10 +24,9 @@
 #include "gtksourcehoverdisplay-private.h"
 
 /**
- * SECTION:hoverdisplay
- * @Title: GtkSourceHoverDisplay
- * @Short_description: display for interactive tooltips
- * @See_also: #GtkSourceHoverProvider
+ * GtkSourceHoverDisplay:
+ * 
+ * Display for interactive tooltips.
  *
  * #GtkSourceHoverDisplay is a #GtkWidget that may be populated with widgets
  * to be displayed to the user in interactive tooltips. The children widgets

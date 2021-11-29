@@ -23,10 +23,9 @@
 #include "gtksourcestylescheme.h"
 
 /**
- * SECTION:styleschemechooser
- * @Short_description: Interface implemented by widgets for choosing style schemes
- * @Title: GtkSourceStyleSchemeChooser
- * @See_also: #GtkSourceStyleSchemeChooserWidget, #GtkSourceStyleSchemeChooserButton
+ * GtkSourceStyleSchemeChooser:
+ * 
+ * Interface implemented by widgets for choosing style schemes.
  *
  * #GtkSourceStyleSchemeChooser is an interface that is implemented by widgets
  * for choosing style schemes.

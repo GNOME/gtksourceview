@@ -24,9 +24,9 @@
 #include "gtksourcecompletionproposal.h"
 
 /**
- * SECTION:completionproposal
- * @Title: GtkSourceCompletionProposal
- * @Short_description: interface for completion proposals
+ * GtkSourceCompletionProposal:
+ *
+ * Interface for completion proposals.
  *
  * This interface is used to denote that an object is capable of being
  * a completion proposal for #GtkSourceCompletion.

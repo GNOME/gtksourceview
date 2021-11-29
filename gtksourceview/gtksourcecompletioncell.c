@@ -25,9 +25,9 @@
 #include "gtksourcecompletioncell-private.h"
 
 /**
- * SECTION:completioncell
- * @title: GtkSourceCompletionCell
- * @short_description: widget for single cell of completion proposal
+ * GtkSourceCompletionCell:
+ *
+ * Widget for single cell of completion proposal.
  *
  * The #GtkSourceCompletionCell widget provides a container to display various
  * types of information with the completion display.

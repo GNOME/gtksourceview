@@ -24,10 +24,9 @@
 #include "gtksourcebuffer-private.h"
 
 /**
- * SECTION:mark
- * @Short_description: Mark object for GtkSourceBuffer
- * @Title: GtkSourceMark
- * @See_also: #GtkSourceBuffer
+ * GtkSourceMark:
+ *
+ * Mark object for GtkSourceBuffer.
  *
  * A #GtkSourceMark marks a position in the text where you want to display
  * additional info. It is based on #GtkTextMark and thus is still valid after

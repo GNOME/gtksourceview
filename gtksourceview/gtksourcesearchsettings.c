@@ -22,10 +22,9 @@
 #include "gtksourcesearchsettings.h"
 
 /**
- * SECTION:searchsettings
- * @Short_description: Search settings
- * @Title: GtkSourceSearchSettings
- * @See_also: #GtkSourceSearchContext
+ * GtkSourceSearchSettings:
+ * 
+ * Search settings.
  *
  * A #GtkSourceSearchSettings object represents the settings of a search. The
  * search settings can be associated with one or several

@@ -23,10 +23,9 @@
 #include "gtksourcestyle-private.h"
 
 /**
- * SECTION:style
- * @Short_description: Represents a style
- * @Title: GtkSourceStyle
- * @See_also: #GtkSourceStyleScheme, #GtkSourceStyleSchemeManager
+ * GtkSourceStyle:
+ * 
+ * Represents a style.
  *
  * The #GtkSourceStyle structure is used to describe text attributes
  * which are set when given style is used.

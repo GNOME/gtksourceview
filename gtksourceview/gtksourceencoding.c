@@ -25,10 +25,9 @@
 #include <glib/gi18n-lib.h>
 
 /**
- * SECTION:encoding
- * @Short_description: Character encoding
- * @Title: GtkSourceEncoding
- * @See_also: #GtkSourceFileSaver, #GtkSourceFileLoader
+ * GtkSourceEncoding:
+ * 
+ * Character encoding.
  *
  * The #GtkSourceEncoding boxed type represents a character encoding. It is used
  * for example by #GtkSourceFile. Note that the text in GTK+ widgets is always

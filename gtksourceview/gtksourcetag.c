@@ -24,10 +24,9 @@
 #include "gtksourcetag.h"
 
 /**
- * SECTION:tag
- * @Short_description: A tag that can be applied to text in a GtkSourceBuffer
- * @Title: GtkSourceTag
- * @See_also: #GtkSourceBuffer
+ * GtkSourceTag:
+ * 
+ * A tag that can be applied to text in a GtkSourceBuffer.
  *
  * #GtkSourceTag is a subclass of #GtkTextTag that adds properties useful for
  * the GtkSourceView library.

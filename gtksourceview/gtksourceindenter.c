@@ -25,10 +25,9 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:indenter
- * @Title: GtkSourceIndenter
- * @Short_description: Auto-indentation interface
- * @See_also: gtk_source_view_set_indenter()
+ * GtkSourceIndenter:
+ * 
+ * Auto-indentation interface.
  *
  * By default, #GtkSourceView can auto-indent as you type when
  * #GtkSourceView:auto-indent is enabled. The indentation simply copies the

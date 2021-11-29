@@ -23,9 +23,9 @@
 #include "gtksourcesnippetcontext.h"
 
 /**
- * SECTION:snippetchunk
- * @title: GtkSourceSnippetChunk
- * @short_description: An chunk of text within the source snippet
+ * GtkSourceSnippetChunk:
+ * 
+ * A chunk of text within the source snippet.
  *
  * The #GtkSourceSnippetChunk represents a single chunk of text that
  * may or may not be an edit point within the snippet. Chunks that are

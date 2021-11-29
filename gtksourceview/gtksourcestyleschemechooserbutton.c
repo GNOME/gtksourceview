@@ -28,10 +28,9 @@
 #include "gtksourcestylescheme-private.h"
 
 /**
- * SECTION:styleschemechooserbutton
- * @Short_description: A button to launch a style scheme selection dialog
- * @Title: GtkSourceStyleSchemeChooserButton
- * @See_also: #GtkSourceStyleSchemeChooserWidget
+ * GtkSourceStyleSchemeChooserButton:
+ * 
+ * A button to launch a style scheme selection dialog.
  *
  * The #GtkSourceStyleSchemeChooserButton is a button which displays
  * the currently selected style scheme and allows to open a style scheme

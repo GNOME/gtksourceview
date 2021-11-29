@@ -25,9 +25,9 @@
 #include "quarkset-inline.h"
 
 /**
- * SECTION:gutterlines
- * @title: GtkSourceGutterLines
- * @short_description: Collected information about visible lines
+ * GtkSourceGutterLines: 
+ *
+ * Collected information about visible lines.
  *
  * The #GtkSourceGutterLines object is used to collect information about
  * visible lines.

@@ -36,10 +36,9 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:spacedrawer
- * @Short_description: Represent white space characters with symbols
- * @Title: GtkSourceSpaceDrawer
- * @See_also: #GtkSourceView
+ * GtkSourceSpaceDrawer:
+ * 
+ * Represent white space characters with symbols.
  *
  * #GtkSourceSpaceDrawer provides a way to visualize white spaces, by drawing
  * symbols.

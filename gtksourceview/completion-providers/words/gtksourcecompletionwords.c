@@ -20,9 +20,9 @@
  */
 
 /**
- * SECTION:completionwords
- * @title: GtkSourceCompletionWords
- * @short_description: A GtkSourceCompletionProvider for the completion of words
+ * GtkSourceCompletionWords:
+ *
+ * A GtkSourceCompletionProvider for the completion of words.
  *
  * The #GtkSourceCompletionWords is an example of an implementation of
  * the #GtkSourceCompletionProvider interface. The proposals are words

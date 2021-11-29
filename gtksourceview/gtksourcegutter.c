@@ -31,10 +31,9 @@
 #include "gtksourcegutterrenderer-private.h"
 
 /**
- * SECTION:gutter
- * @Short_description: Gutter object for GtkSourceView
- * @Title: GtkSourceGutter
- * @See_also: #GtkSourceView, #GtkSourceMark
+ * GtkSourceGutter:
+ *
+ * Gutter object for GtkSourceView.
  *
  * The #GtkSourceGutter object represents the left or right gutter of the text
  * view. It is used by #GtkSourceView to draw the line numbers and

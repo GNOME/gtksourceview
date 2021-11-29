@@ -27,9 +27,9 @@
 #include "gtksourcecompletionprovider.h"
 
 /**
- * SECTION:completionprovider
- * @title: GtkSourceCompletionProvider
- * @short_description: Completion provider interface
+ * GtkSourceCompletionProvider:
+ *
+ * Completion provider interface.
  *
  * You must implement this interface to provide proposals to #GtkSourceCompletion
  *

@@ -33,10 +33,9 @@
 #include "gtksource-enumtypes.h"
 
 /**
- * SECTION:fileloader
- * @Short_description: Load a file into a GtkSourceBuffer
- * @Title: GtkSourceFileLoader
- * @See_also: #GtkSourceFile, #GtkSourceFileSaver
+ * GtkSourceFileLoader:
+ * 
+ * Load a file into a GtkSourceBuffer.
  *
  * A #GtkSourceFileLoader object permits to load the contents of a #GFile or a
  * #GInputStream into a #GtkSourceBuffer.
