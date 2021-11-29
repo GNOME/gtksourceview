@@ -33,13 +33,13 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_HOVER (gtk_source_hover_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceHover, gtk_source_hover, GTK_SOURCE, HOVER, GObject)
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_hover_add_provider    (GtkSourceHover         *self,
                                        GtkSourceHoverProvider *provider);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_hover_remove_provider (GtkSourceHover         *self,
                                        GtkSourceHoverProvider *provider);
 

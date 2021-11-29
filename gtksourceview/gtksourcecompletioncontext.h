@@ -36,30 +36,30 @@ typedef enum _GtkSourceCompletionActivation
 	GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED = 2,
 } GtkSourceCompletionActivation;
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceCompletionContext, gtk_source_completion_context, GTK_SOURCE, COMPLETION_CONTEXT, GObject)
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompletion           *gtk_source_completion_context_get_completion             (GtkSourceCompletionContext  *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompletionActivation  gtk_source_completion_context_get_activation             (GtkSourceCompletionContext  *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                       gtk_source_completion_context_get_bounds                 (GtkSourceCompletionContext  *self,
                                                                                          GtkTextIter                 *begin,
                                                                                          GtkTextIter                 *end);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                       gtk_source_completion_context_get_empty                  (GtkSourceCompletionContext  *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 char                          *gtk_source_completion_context_get_word                   (GtkSourceCompletionContext  *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                       gtk_source_completion_context_get_busy                   (GtkSourceCompletionContext  *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceView                 *gtk_source_completion_context_get_view                   (GtkSourceCompletionContext  *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceBuffer               *gtk_source_completion_context_get_buffer                 (GtkSourceCompletionContext  *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceLanguage             *gtk_source_completion_context_get_language               (GtkSourceCompletionContext  *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                           gtk_source_completion_context_set_proposals_for_provider (GtkSourceCompletionContext  *self,
                                                                                          GtkSourceCompletionProvider *provider,
                                                                                          GListModel                  *results);

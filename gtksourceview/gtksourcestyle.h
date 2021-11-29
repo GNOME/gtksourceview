@@ -36,7 +36,7 @@ G_DECLARE_FINAL_TYPE (GtkSourceStyle, gtk_source_style, GTK_SOURCE, STYLE, GObje
 
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyle *gtk_source_style_copy  (const GtkSourceStyle *style);
-GTK_SOURCE_AVAILABLE_IN_3_22
+GTK_SOURCE_AVAILABLE_IN_ALL
 void            gtk_source_style_apply (const GtkSourceStyle *style,
                                         GtkTextTag           *tag);
 

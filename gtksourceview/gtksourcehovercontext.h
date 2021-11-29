@@ -33,17 +33,17 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_HOVER_CONTEXT (gtk_source_hover_context_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceHoverContext, gtk_source_hover_context, GTK_SOURCE, HOVER_CONTEXT, GObject)
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceView   *gtk_source_hover_context_get_view   (GtkSourceHoverContext *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceBuffer *gtk_source_hover_context_get_buffer (GtkSourceHoverContext *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean         gtk_source_hover_context_get_iter   (GtkSourceHoverContext *self,
                                                       GtkTextIter           *iter);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean         gtk_source_hover_context_get_bounds (GtkSourceHoverContext *self,
                                                       GtkTextIter           *begin,
                                                       GtkTextIter           *end);

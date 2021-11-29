@@ -31,41 +31,41 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_SNIPPET_CHUNK (gtk_source_snippet_chunk_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceSnippetChunk, gtk_source_snippet_chunk, GTK_SOURCE, SNIPPET_CHUNK, GInitiallyUnowned)
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSnippetChunk   *gtk_source_snippet_chunk_new                (void);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSnippetChunk   *gtk_source_snippet_chunk_copy               (GtkSourceSnippetChunk   *chunk);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSnippetContext *gtk_source_snippet_chunk_get_context        (GtkSourceSnippetChunk   *chunk);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                     gtk_source_snippet_chunk_set_context        (GtkSourceSnippetChunk   *chunk,
                                                                       GtkSourceSnippetContext *context);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar             *gtk_source_snippet_chunk_get_spec           (GtkSourceSnippetChunk   *chunk);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                     gtk_source_snippet_chunk_set_spec           (GtkSourceSnippetChunk   *chunk,
                                                                       const gchar             *spec);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gint                     gtk_source_snippet_chunk_get_focus_position (GtkSourceSnippetChunk   *chunk);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                     gtk_source_snippet_chunk_set_focus_position (GtkSourceSnippetChunk   *chunk,
                                                                       gint                     focus_position);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar             *gtk_source_snippet_chunk_get_text           (GtkSourceSnippetChunk   *chunk);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                     gtk_source_snippet_chunk_set_text           (GtkSourceSnippetChunk   *chunk,
                                                                       const gchar             *text);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                 gtk_source_snippet_chunk_get_text_set       (GtkSourceSnippetChunk   *chunk);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                     gtk_source_snippet_chunk_set_text_set       (GtkSourceSnippetChunk   *chunk,
                                                                       gboolean                 text_set);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 const char              *gtk_source_snippet_chunk_get_tooltip_text   (GtkSourceSnippetChunk   *chunk);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                     gtk_source_snippet_chunk_set_tooltip_text   (GtkSourceSnippetChunk   *chunk,
                                                                       const char              *tooltip_text);
 

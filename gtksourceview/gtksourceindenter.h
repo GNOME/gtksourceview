@@ -33,7 +33,7 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_INDENTER (gtk_source_indenter_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_INTERFACE (GtkSourceIndenter, gtk_source_indenter, GTK_SOURCE, INDENTER, GObject)
 
 struct _GtkSourceIndenterInterface
@@ -50,13 +50,13 @@ struct _GtkSourceIndenterInterface
 	                        GtkTextIter       *iter);
 };
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean gtk_source_indenter_is_trigger (GtkSourceIndenter *self,
                                          GtkSourceView     *view,
                                          const GtkTextIter *location,
                                          GdkModifierType    state,
                                          guint              keyval);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void     gtk_source_indenter_indent     (GtkSourceIndenter *self,
                                          GtkSourceView     *view,
                                          GtkTextIter       *iter);

@@ -29,9 +29,9 @@
 
 G_BEGIN_DECLS
 
-GTK_SOURCE_AVAILABLE_IN_4_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_init     (void);
-GTK_SOURCE_AVAILABLE_IN_4_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_finalize (void);
 
 G_END_DECLS

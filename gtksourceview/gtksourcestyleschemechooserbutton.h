@@ -40,10 +40,10 @@ struct _GtkSourceStyleSchemeChooserButtonClass
 	gpointer _reserved[10];
 };
 
-GTK_SOURCE_AVAILABLE_IN_3_16
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (GtkSourceStyleSchemeChooserButton, gtk_source_style_scheme_chooser_button, GTK_SOURCE, STYLE_SCHEME_CHOOSER_BUTTON, GtkButton)
 
-GTK_SOURCE_AVAILABLE_IN_3_16
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkWidget *gtk_source_style_scheme_chooser_button_new (void);
 
 G_END_DECLS

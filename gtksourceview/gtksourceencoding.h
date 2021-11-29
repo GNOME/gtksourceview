@@ -33,29 +33,29 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_ENCODING (gtk_source_encoding_get_type ())
 
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GType                    gtk_source_encoding_get_type               (void) G_GNUC_CONST;
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 const GtkSourceEncoding *gtk_source_encoding_get_from_charset       (const gchar             *charset);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 gchar                   *gtk_source_encoding_to_string              (const GtkSourceEncoding *enc);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar             *gtk_source_encoding_get_name               (const GtkSourceEncoding *enc);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar             *gtk_source_encoding_get_charset            (const GtkSourceEncoding *enc);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 const GtkSourceEncoding *gtk_source_encoding_get_utf8               (void);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 const GtkSourceEncoding *gtk_source_encoding_get_current            (void);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GSList                  *gtk_source_encoding_get_all                (void);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 GSList                  *gtk_source_encoding_get_default_candidates (void);
 
 /* These should not be used, they are just to make python bindings happy */
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceEncoding       *gtk_source_encoding_copy                   (const GtkSourceEncoding *enc);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                     gtk_source_encoding_free                   (GtkSourceEncoding       *enc);
 
 G_END_DECLS

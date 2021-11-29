@@ -31,7 +31,7 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_STYLE_SCHEME_CHOOSER (gtk_source_style_scheme_chooser_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_3_16
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_INTERFACE (GtkSourceStyleSchemeChooser, gtk_source_style_scheme_chooser, GTK_SOURCE, STYLE_SCHEME_CHOOSER, GObject)
 
 struct _GtkSourceStyleSchemeChooserInterface
@@ -48,9 +48,9 @@ struct _GtkSourceStyleSchemeChooserInterface
 	gpointer _reserved[12];
 };
 
-GTK_SOURCE_AVAILABLE_IN_3_16
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyleScheme *gtk_source_style_scheme_chooser_get_style_scheme (GtkSourceStyleSchemeChooser *chooser);
-GTK_SOURCE_AVAILABLE_IN_3_16
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                  gtk_source_style_scheme_chooser_set_style_scheme (GtkSourceStyleSchemeChooser *chooser,
                                                                         GtkSourceStyleScheme        *scheme);
 

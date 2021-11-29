@@ -86,7 +86,7 @@ typedef enum _GtkSourceCompressionType
 typedef GMountOperation *(*GtkSourceMountOperationFactory) (GtkSourceFile *file,
                                                             gpointer       userdata);
 
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (GtkSourceFile, gtk_source_file, GTK_SOURCE, FILE, GObject)
 
 struct _GtkSourceFileClass
@@ -98,33 +98,33 @@ struct _GtkSourceFileClass
 };
 
 
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceFile            *gtk_source_file_new                         (void);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GFile                    *gtk_source_file_get_location                (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_set_location                (GtkSourceFile                  *file,
                                                                        GFile                          *location);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 const GtkSourceEncoding  *gtk_source_file_get_encoding                (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceNewlineType      gtk_source_file_get_newline_type            (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompressionType  gtk_source_file_get_compression_type        (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_set_mount_operation_factory (GtkSourceFile                  *file,
                                                                        GtkSourceMountOperationFactory  callback,
                                                                        gpointer                        user_data,
                                                                        GDestroyNotify                  notify);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_check_file_on_disk          (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                  gtk_source_file_is_local                    (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                  gtk_source_file_is_externally_modified      (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                  gtk_source_file_is_deleted                  (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                  gtk_source_file_is_readonly                 (GtkSourceFile                  *file);
 
 G_END_DECLS

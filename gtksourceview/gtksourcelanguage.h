@@ -54,7 +54,7 @@ gchar       **gtk_source_language_get_style_ids      (GtkSourceLanguage *languag
 GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar  *gtk_source_language_get_style_name     (GtkSourceLanguage *language,
                                                       const gchar       *style_id);
-GTK_SOURCE_AVAILABLE_IN_3_4
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar  *gtk_source_language_get_style_fallback (GtkSourceLanguage *language,
                                                       const gchar       *style_id);
 

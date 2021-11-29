@@ -27,7 +27,7 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_COMPLETION_PROVIDER (gtk_source_completion_provider_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_INTERFACE (GtkSourceCompletionProvider, gtk_source_completion_provider, GTK_SOURCE, COMPLETION_PROVIDER, GObject)
 
 struct _GtkSourceCompletionProviderInterface
@@ -71,45 +71,45 @@ struct _GtkSourceCompletionProviderInterface
 	                                       GtkSourceCompletionProposal  *proposal);
 };
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 char         *gtk_source_completion_provider_get_title         (GtkSourceCompletionProvider  *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 int           gtk_source_completion_provider_get_priority      (GtkSourceCompletionProvider  *self,
                                                                 GtkSourceCompletionContext   *context);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean      gtk_source_completion_provider_is_trigger        (GtkSourceCompletionProvider  *self,
                                                                 const GtkTextIter            *iter,
                                                                 gunichar                      ch);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean      gtk_source_completion_provider_key_activates     (GtkSourceCompletionProvider  *self,
                                                                 GtkSourceCompletionContext   *context,
                                                                 GtkSourceCompletionProposal  *proposal,
                                                                 guint                         keyval,
                                                                 GdkModifierType               state);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void          gtk_source_completion_provider_populate_async    (GtkSourceCompletionProvider  *self,
                                                                 GtkSourceCompletionContext   *context,
                                                                 GCancellable                 *cancellable,
                                                                 GAsyncReadyCallback           callback,
                                                                 gpointer                      user_data);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GListModel   *gtk_source_completion_provider_populate_finish   (GtkSourceCompletionProvider  *self,
                                                                 GAsyncResult                 *result,
                                                                 GError                      **error);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void          gtk_source_completion_provider_refilter          (GtkSourceCompletionProvider  *self,
                                                                 GtkSourceCompletionContext   *context,
                                                                 GListModel                   *model);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void          gtk_source_completion_provider_display           (GtkSourceCompletionProvider  *self,
                                                                 GtkSourceCompletionContext   *context,
                                                                 GtkSourceCompletionProposal  *proposal,
                                                                 GtkSourceCompletionCell      *cell);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void          gtk_source_completion_provider_activate          (GtkSourceCompletionProvider  *self,
                                                                 GtkSourceCompletionContext   *context,
                                                                 GtkSourceCompletionProposal  *proposal);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GPtrArray    *gtk_source_completion_provider_list_alternates   (GtkSourceCompletionProvider  *self,
                                                                 GtkSourceCompletionContext   *context,
                                                                 GtkSourceCompletionProposal  *proposal);
