@@ -18,9 +18,6 @@ endif
 
 docs_dir = datadir / 'doc'
 
-subdir('reference')
-
-
 if get_option('gtk_doc')
   source_toml = configure_file(
     input: 'GtkSource.toml.in',

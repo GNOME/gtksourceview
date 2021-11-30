@@ -106,11 +106,6 @@ else
   vapigen_dep = []
 endif
 
-if build_gtk_doc
-  gtk_doc_dep = dependency('gtk-doc', version: gtk_doc_req)
-else
-  gtk_doc_dep = []
-endif
 
 xmllint_prg = find_program('xmllint', required: false)
 
