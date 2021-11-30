@@ -82,15 +82,8 @@ snippet_reference_xml = configure_file(
   configuration: config_h
 )
 
-style_reference_xml = configure_file(
-          input: 'style-reference.xml.in',
-         output: 'style-reference.xml',
-  configuration: config_h
-)
-
 reference_content_files += [
   lang_reference_xml,
-  style_reference_xml,
 ]
 
 gtksourceview_docs_xml = configure_file(
