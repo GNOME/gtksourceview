@@ -69,11 +69,6 @@ reference_sources = [
   join_paths(builddir, 'gtksourceview'),
 ]
 
-into_xml = configure_file(
-         input: 'intro.xml.in',
-         output: 'intro.xml',
-  configuration: config_h
-)
 
 lang_reference_xml = configure_file(
           input: 'lang-reference.xml.in',
@@ -94,7 +89,6 @@ style_reference_xml = configure_file(
 )
 
 reference_content_files += [
-  into_xml,
   lang_reference_xml,
   style_reference_xml,
 ]
