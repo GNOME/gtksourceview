@@ -70,20 +70,7 @@ reference_sources = [
 ]
 
 
-lang_reference_xml = configure_file(
-          input: 'lang-reference.xml.in',
-         output: 'lang-reference.xml',
-  configuration: config_h
-)
-
-snippet_reference_xml = configure_file(
-          input: 'snippet-reference.xml.in',
-         output: 'snippet-reference.xml',
-  configuration: config_h
-)
-
 reference_content_files += [
-  lang_reference_xml,
 ]
 
 gtksourceview_docs_xml = configure_file(
