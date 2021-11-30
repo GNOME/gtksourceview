@@ -30,7 +30,7 @@
  * Character encoding.
  *
  * The #GtkSourceEncoding boxed type represents a character encoding. It is used
- * for example by #GtkSourceFile. Note that the text in GTK+ widgets is always
+ * for example by #GtkSourceFile. Note that the text in GTK widgets is always
  * encoded in UTF-8.
  */
 

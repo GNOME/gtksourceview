@@ -46,7 +46,7 @@
  * documented in the [style scheme reference][style-reference].
  *
  * The two style schemes with IDs "classic" and "tango" follow more closely the
- * GTK+ theme (for example for the background color).
+ * GTK theme (for example for the background color).
  */
 
 #define STYLE_TEXT			"text"

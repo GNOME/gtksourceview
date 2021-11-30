@@ -798,7 +798,7 @@ bracket_pair (gunichar  base_char,
  * by minimizing the damage regions. This results in fewer full-redraws
  * when updating the text marks. To see the difference, compare this to
  * gtk_text_buffer_remove_tag() and enable the "show pixel cache" feature
- * the GTK+ inspector.
+ * the GTK inspector.
  */
 static void
 remove_tag_with_minimal_damage (GtkTextBuffer     *buffer,
@@ -1635,7 +1635,7 @@ gtk_source_buffer_ensure_highlight (GtkSourceBuffer   *buffer,
  * Instead of setting a %NULL @scheme, it is better to disable syntax
  * highlighting with [method@Buffer.set_highlight_syntax], and setting the
  * [class@StyleScheme] with the "classic" or "tango" ID, because those two
- * style schemes follow more closely the GTK+ theme (for example for the
+ * style schemes follow more closely the GTK theme (for example for the
  * background color).
  *
  * The buffer holds a reference to @scheme.

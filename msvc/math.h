@@ -34,7 +34,7 @@
 #define __MSVC_MATH_COMPAT_H__
 
 /* Note: This is a rather generic fallback implementation for round(), which is
- *       okay for the purposes for GTK+, but please note the following if intending
+ *       okay for the purposes for GTK, but please note the following if intending
  *       use this implementation:
  *
  *       -The largest floating point value strictly less than 0.5.  The problem is

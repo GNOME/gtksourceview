@@ -2,7 +2,7 @@ Title: GtkSourceView 4 -> 5 Migration Guide
 
 # GtkSourceView 4 -> 5 Migration Guide
 
-## GTK+ dependency
+## GTK dependency
 
 GtkSourceView 5 depends on GTK 4.
 

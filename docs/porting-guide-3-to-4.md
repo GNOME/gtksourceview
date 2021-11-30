@@ -4,7 +4,7 @@ Title: GtkSourceView 3 -> 4 Migration Guide
 
 ## Dependencies
 
-Both GtkSourceView 3 and GtkSourceView 4 depend on GTK+ 3.
+Both GtkSourceView 3 and GtkSourceView 4 depend on GTK 3.
 
 ## Preparation in GtkSourceView 3
 
