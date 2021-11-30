@@ -63,7 +63,6 @@ reference_private_h = [
 
 reference_content_files = files([
   'lang-tutorial.xml',
-  'porting-guide-3-to-4.xml',
   'porting-guide-4-to-5.xml',
 ])
 
