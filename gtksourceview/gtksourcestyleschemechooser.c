@@ -27,11 +27,11 @@
  * 
  * Interface implemented by widgets for choosing style schemes.
  *
- * #GtkSourceStyleSchemeChooser is an interface that is implemented by widgets
+ * `GtkSourceStyleSchemeChooser` is an interface that is implemented by widgets
  * for choosing style schemes.
  *
  * In GtkSourceView, the main widgets that implement this interface are
- * #GtkSourceStyleSchemeChooserWidget and #GtkSourceStyleSchemeChooserButton.
+ * [class@StyleSchemeChooserWidget] and [class@StyleSchemeChooserButton].
  */
 
 G_DEFINE_INTERFACE (GtkSourceStyleSchemeChooser, gtk_source_style_scheme_chooser, G_TYPE_OBJECT);
@@ -42,9 +42,9 @@ gtk_source_style_scheme_chooser_default_init (GtkSourceStyleSchemeChooserInterfa
 	/**
 	 * GtkSourceStyleSchemeChooser:style-scheme:
 	 *
-	 * The :style-scheme property contains the currently selected style
-	 * scheme. The property can be set to change
-	 * the current selection programmatically.
+	 * Contains the currently selected style scheme. 
+	 *
+	 * The property can be set to change the current selection programmatically.
 	 */
 	g_object_interface_install_property (iface,
 		g_param_spec_object ("style-scheme",

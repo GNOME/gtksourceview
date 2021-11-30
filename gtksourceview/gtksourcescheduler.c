@@ -234,7 +234,7 @@ get_scheduler (void)
  * @callback: (scope async): the callback to execute
  * @user_data: user data for @callback
  *
- * Simplified version of gtk_source_scheduler_add_full().
+ * Simplified version of [func@scheduler_add_full].
  *
  * Since: 5.2
  */
@@ -257,9 +257,9 @@ gtk_source_scheduler_add (GtkSourceSchedulerCallback callback,
  * it incrementally.
  *
  * @callback will be provided a deadline that it should complete it's work by
- * (or near) and can be checked using g_get_monotonic_time() for comparison.
+ * (or near) and can be checked using [func@GLib.get_monotonic_time] for comparison.
  *
- * Use gtk_source_scheduler_remove() to remove the handler.
+ * Use [func@scheduler_remove] to remove the handler.
  *
  * Since: 5.2
  */
@@ -289,7 +289,7 @@ gtk_source_scheduler_add_full (GtkSourceSchedulerCallback callback,
  * @handler_id: the handler id
  *
  * Removes a scheduler callback previously registered with
- * gtk_source_scheduler_add() or gtk_source_scheduler_add_full().
+ * [func@scheduler_add] or [func@scheduler_add_full].
  *
  * Since: 5.2
  */

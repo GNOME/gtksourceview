@@ -27,48 +27,37 @@
 
 /**
  * GtkSourceMarkAttributes:
+ *
  * The source mark attributes object.
  *
- * #GtkSourceMarkAttributes is an object specifying attributes used by
- * a #GtkSourceView to visually show lines marked with #GtkSourceMark<!-- -->s
+ * `GtkSourceMarkAttributes` is an object specifying attributes used by
+ * a [class@View] to visually show lines marked with [class@Mark]s
  * of a specific category. It allows you to define a background color of a line,
  * an icon shown in gutter and tooltips.
  *
  * The background color is used as a background of a line where a mark is placed
- * and it can be set with gtk_source_mark_attributes_set_background(). To check
+ * and it can be set with [method@MarkAttributes.set_background]. To check
  * if any custom background color was defined and what color it is, use
- * gtk_source_mark_attributes_get_background().
+ * [method@MarkAttributes.get_background].
  *
  * An icon is a graphic element which is shown in the gutter of a view. An
  * example use is showing a red filled circle in a debugger to show that a
  * breakpoint was set in certain line. To get an icon that will be placed in
  * a gutter, first a base for it must be specified and then
- * gtk_source_mark_attributes_render_icon() must be called.
+ * [method@MarkAttributes.render_icon] must be called.
  * There are several ways to specify a base for an icon:
- * <itemizedlist>
- *  <listitem>
- *   <para>
- *    gtk_source_mark_attributes_set_icon_name()
- *   </para>
- *  </listitem>
- *  <listitem>
- *   <para>
- *    gtk_source_mark_attributes_set_gicon()
- *   </para>
- *  </listitem>
- *  <listitem>
- *   <para>
- *    gtk_source_mark_attributes_set_pixbuf()
- *   </para>
- *  </listitem>
- * </itemizedlist>
+ *
+ * - [method@MarkAttributes.set_icon_name]
+ * - [method@MarkAttributes.set_gicon]
+ * - [method@MarkAttributes.set_pixbuf]
+ *
  * Using any of the above functions overrides the one used earlier. But note
  * that a getter counterpart of earlier used function can still return some
  * value, but it is just not used when rendering the proper icon.
  *
  * To provide meaningful tooltips for a given mark of a category, you should
- * connect to #GtkSourceMarkAttributes::query-tooltip-text or
- * #GtkSourceMarkAttributes::query-tooltip-markup where the latter
+ * connect to [signal@MarkAttributes::query-tooltip-text] or
+ * [signal@MarkAttributes::query-tooltip-markup] where the latter
  * takes precedence.
  */
 
@@ -441,8 +430,9 @@ gtk_source_mark_attributes_set_icon_name (GtkSourceMarkAttributes *attributes,
  * gtk_source_mark_attributes_get_icon_name:
  * @attributes: a #GtkSourceMarkAttributes.
  *
- * Gets a name of an icon to be used as a base for rendered icon. Note that the
- * icon name can be %NULL if it wasn't set earlier.
+ * Gets a name of an icon to be used as a base for rendered icon.
+ *
+ * Note that the icon name can be %NULL if it wasn't set earlier.
  *
  * Returns: (transfer none): An icon name. The string belongs to @attributes and
  * should not be freed.
@@ -475,8 +465,9 @@ gtk_source_mark_attributes_set_gicon (GtkSourceMarkAttributes *attributes,
  * gtk_source_mark_attributes_get_gicon:
  * @attributes: a #GtkSourceMarkAttributes.
  *
- * Gets a #GIcon to be used as a base for rendered icon. Note that the icon can
- * be %NULL if it wasn't set earlier.
+ * Gets a [class@Gio.Icon] to be used as a base for rendered icon. 
+ * 
+ * Note that the icon can be %NULL if it wasn't set earlier.
  *
  * Returns: (transfer none): An icon. The icon belongs to @attributes and should
  * not be unreffed.
@@ -509,8 +500,9 @@ gtk_source_mark_attributes_set_pixbuf (GtkSourceMarkAttributes *attributes,
  * gtk_source_mark_attributes_get_pixbuf:
  * @attributes: a #GtkSourceMarkAttributes.
  *
- * Gets a #GdkPixbuf to be used as a base for rendered icon. Note that the
- * pixbuf can be %NULL if it wasn't set earlier.
+ * Gets a [class@GdkPixbuf.Pixbuf] to be used as a base for rendered icon. 
+ *
+ * Note that the pixbuf can be %NULL if it wasn't set earlier.
  *
  * Returns: (transfer none): A pixbuf. The pixbuf belongs to @attributes and
  * should not be unreffed.
@@ -529,10 +521,15 @@ gtk_source_mark_attributes_get_pixbuf (GtkSourceMarkAttributes *attributes)
  * @widget: widget of which style settings may be used.
  * @size: size of the rendered icon.
  *
- * Renders an icon of given size. The base of the icon is set by the last call
- * to one of: gtk_source_mark_attributes_set_pixbuf(),
- * gtk_source_mark_attributes_set_gicon() or
- * gtk_source_mark_attributes_set_icon_name(). @size cannot be lower than 1.
+ * Renders an icon of given size. 
+ * 
+ * The base of the icon is set by the last call to one of: 
+ * 
+ * - [method@MarkAttributes.set_pixbuf]
+ * - [method@MarkAttributes.set_gicon]
+ * - [method@MarkAttributes.set_icon_name]
+ * 
+ * @size cannot be lower than 1.
  *
  * Returns: (transfer none): A #GdkPaintable. The paintable belongs to @attributes
  * and should not be unreffed.
@@ -562,9 +559,9 @@ gtk_source_mark_attributes_render_icon (GtkSourceMarkAttributes *attributes,
  * @attributes: a #GtkSourceMarkAttributes.
  * @mark: a #GtkSourceMark.
  *
- * Queries for a tooltip by emitting
- * a #GtkSourceMarkAttributes::query-tooltip-text signal. The tooltip is a plain
- * text.
+ * Queries for a tooltip by emitting a [signal@MarkAttributes::query-tooltip-text] signal. 
+ * 
+ * The tooltip is a plain text.
  *
  * Returns: (transfer full): A tooltip. The returned string should be freed by
  * using g_free() when done with it.
@@ -589,9 +586,9 @@ gtk_source_mark_attributes_get_tooltip_text (GtkSourceMarkAttributes *attributes
  * @attributes: a #GtkSourceMarkAttributes.
  * @mark: a #GtkSourceMark.
  *
- * Queries for a tooltip by emitting
- * a #GtkSourceMarkAttributes::query-tooltip-markup signal. The tooltip may contain
- * a markup.
+ * Queries for a tooltip by emitting a [signal@MarkAttributes::query-tooltip-markup] signal. 
+ * 
+ * The tooltip may contain a markup.
  *
  * Returns: (transfer full): A tooltip. The returned string should be freed by
  * using g_free() when done with it.

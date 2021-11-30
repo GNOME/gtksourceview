@@ -30,13 +30,13 @@
  * 
  * Interface to populate interactive tooltips.
  *
- * #GtkSourceHoverProvider is an interface that should be implemented to extend
- * the contents of a #GtkSourceHoverDisplay. This is typical in editors that
+ * `GtkSourceHoverProvider` is an interface that should be implemented to extend
+ * the contents of a [class@HoverDisplay]. This is typical in editors that
  * interact external tooling such as those utilizing Language Server Protocol.
  *
- * If you can populate the #GtkSourceHoverDisplay synchronously, use
- * #GtkSourceHoverProvider.populate. Otherwise, interface implementations that
- * may take additional time should use #GtkSourceHoverProvider.populate_async
+ * If you can populate the [class@HoverDisplay] synchronously, use
+ * [vfunc@HoverProvider.populate]. Otherwise, interface implementations that
+ * may take additional time should use [vfunc@HoverProvider.populate_async]
  * to avoid blocking the main loop.
  */
 

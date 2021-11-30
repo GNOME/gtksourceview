@@ -73,7 +73,7 @@ typedef enum _GtkSourceCompressionType
  * @userdata: user data
  *
  * Type definition for a function that will be called to create a
- * #GMountOperation. This is useful for creating a #GtkMountOperation.
+ * [class@Gio.MountOperation]. This is useful for creating a [class@Gtk.MountOperation].
  */
 typedef GMountOperation *(*GtkSourceMountOperationFactory) (GtkSourceFile *file,
                                                             gpointer       userdata);

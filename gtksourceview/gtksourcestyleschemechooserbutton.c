@@ -32,12 +32,12 @@
  * 
  * A button to launch a style scheme selection dialog.
  *
- * The #GtkSourceStyleSchemeChooserButton is a button which displays
+ * The `GtkSourceStyleSchemeChooserButton` is a button which displays
  * the currently selected style scheme and allows to open a style scheme
  * selection dialog to change the style scheme.
  * It is suitable widget for selecting a style scheme in a preference dialog.
  *
- * In #GtkSourceStyleSchemeChooserButton, a #GtkSourceStyleSchemeChooserWidget
+ * In `GtkSourceStyleSchemeChooserButton`, a [class@StyleSchemeChooserWidget]
  * is used to provide a dialog for selecting style schemes.
  */
 

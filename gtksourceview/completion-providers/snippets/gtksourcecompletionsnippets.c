@@ -38,11 +38,11 @@
 /**
  * GtkSourceCompletionSnippets:
  *
- * A GtkSourceCompletionProvider for the completion of snippets.
+ * A [iface@CompletionProvider] for the completion of snippets.
  *
- * The #GtkSourceCompletionSnippets is an example of an implementation of
- * the #GtkSourceCompletionProvider interface. The proposals are snippets
- * registered with the #GtkSourceSnippetManager.
+ * The `GtkSourceCompletionSnippets` is an example of an implementation of
+ * the [iface@CompletionProvider] interface. The proposals are snippets
+ * registered with the [class@SnippetManager].
  */
 
 struct _GtkSourceSnippetResults

@@ -42,11 +42,11 @@
  * 
  * Represents a syntax highlighted language.
  *
- * A #GtkSourceLanguage represents a programming or markup language, affecting
+ * A `GtkSourceLanguage` represents a programming or markup language, affecting
  * syntax highlighting and [context classes][context-classes].
  *
- * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
- * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+ * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
+ * [method@Buffer.set_language] to apply it to a [class@Buffer].
  */
 
 #define DEFAULT_SECTION _("Others")
@@ -505,9 +505,10 @@ _gtk_source_language_translate_string (GtkSourceLanguage *language,
  * gtk_source_language_get_id:
  * @language: a #GtkSourceLanguage.
  *
- * Returns the ID of the language. The ID is not locale-dependent.
- * The returned string is owned by @language and should not be freed
- * or modified.
+ * Returns the ID of the language. 
+ * 
+ * The ID is not locale-dependent.The returned string is owned by @language 
+ * and should not be freed or modified.
  *
  * Returns: the ID of @language.
  **/
@@ -525,6 +526,7 @@ gtk_source_language_get_id (GtkSourceLanguage *language)
  * @language: a #GtkSourceLanguage.
  *
  * Returns the localized name of the language.
+ *
  * The returned string is owned by @language and should not be freed
  * or modified.
  *
@@ -544,6 +546,7 @@ gtk_source_language_get_name (GtkSourceLanguage *language)
  * @language: a #GtkSourceLanguage.
  *
  * Returns the localized section of the language.
+ *
  * Each language belong to a section (ex. HTML belongs to the
  * Markup section).
  * The returned string is owned by @language and should not be freed
@@ -601,8 +604,9 @@ gtk_source_language_get_metadata (GtkSourceLanguage *language,
  * gtk_source_language_get_mime_types:
  * @language: a #GtkSourceLanguage.
  *
- * Returns the mime types associated to this language. This is just
- * an utility wrapper around gtk_source_language_get_metadata() to
+ * Returns the mime types associated to this language. 
+ * 
+ * This is just an utility wrapper around [method@Language.get_metadata] to
  * retrieve the "mimetypes" metadata property and split it into an
  * array.
  *
@@ -629,8 +633,9 @@ gtk_source_language_get_mime_types (GtkSourceLanguage *language)
  * gtk_source_language_get_globs:
  * @language: a #GtkSourceLanguage.
  *
- * Returns the globs associated to this language. This is just
- * an utility wrapper around gtk_source_language_get_metadata() to
+ * Returns the globs associated to this language. 
+ * 
+ * This is just an utility wrapper around [method@Language.get_metadata] to
  * retrieve the "globs" metadata property and split it into an array.
  *
  * Returns: (nullable) (array zero-terminated=1) (transfer full):

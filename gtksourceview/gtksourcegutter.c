@@ -33,21 +33,21 @@
 /**
  * GtkSourceGutter:
  *
- * Gutter object for GtkSourceView.
+ * Gutter object for [class@View].
  *
- * The #GtkSourceGutter object represents the left or right gutter of the text
- * view. It is used by #GtkSourceView to draw the line numbers and
- * #GtkSourceMark<!-- -->s that might be present on a line. By packing
- * additional #GtkSourceGutterRenderer objects in the gutter, you can extend the
+ * The `GtkSourceGutter` object represents the left or right gutter of the text
+ * view. It is used by [class@View] to draw the line numbers and
+ * [class@Mark]s that might be present on a line. By packing
+ * additional [class@GutterRenderer] objects in the gutter, you can extend the
  * gutter with your own custom drawings.
  *
- * To get a #GtkSourceGutter, use the gtk_source_view_get_gutter() function.
+ * To get a `GtkSourceGutter`, use the [method@View.get_gutter] function.
  *
- * The gutter works very much the same way as cells rendered in a #GtkTreeView.
+ * The gutter works very much the same way as cells rendered in a [class@Gtk.TreeView].
  * The concept is similar, with the exception that the gutter does not have an
- * underlying #GtkTreeModel. The builtin line number renderer is at position
- * #GTK_SOURCE_VIEW_GUTTER_POSITION_LINES (-30) and the marks renderer is at
- * #GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS (-20). The gutter sorts the renderers
+ * underlying [class@Gtk.TreeModel]. The builtin line number renderer is at position
+ * %GTK_SOURCE_VIEW_GUTTER_POSITION_LINES (-30) and the marks renderer is at
+ * %GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS (-20). The gutter sorts the renderers
  * in ascending order, from left to right. So the marks are displayed on the
  * right of the line numbers.
  */

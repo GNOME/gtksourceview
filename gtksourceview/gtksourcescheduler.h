@@ -37,7 +37,7 @@ G_BEGIN_DECLS
  * @user_data: closure data provided when registering callback
  *
  * This function is called incrementally to process additional background work.
- * A deadline is provided which can be checked using g_get_monotonic_time() so
+ * A deadline is provided which can be checked using [func@GLib.get_monotonic_time] so
  * that additional work can be processed each frame.
  *
  * This is useful for situations where you are incrementally performing

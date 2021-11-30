@@ -27,24 +27,24 @@
  * 
  * Region utility.
  *
- * A #GtkSourceRegion permits to store a group of subregions of a
- * #GtkTextBuffer. #GtkSourceRegion stores the subregions with pairs of
- * #GtkTextMark's, so the region is still valid after insertions and deletions
- * in the #GtkTextBuffer.
+ * A `GtkSourceRegion` permits to store a group of subregions of a
+ * [class@Gtk.TextBuffer]. `GtkSourceRegion` stores the subregions with pairs of
+ * [class@Gtk.TextMark]'s, so the region is still valid after insertions and deletions
+ * in the [class@Gtk.TextBuffer].
  *
- * The #GtkTextMark for the start of a subregion has a left gravity, while the
- * #GtkTextMark for the end of a subregion has a right gravity.
+ * The [class@Gtk.TextMark] for the start of a subregion has a left gravity, while the
+ * [class@Gtk.TextMark] for the end of a subregion has a right gravity.
  *
- * The typical use-case of #GtkSourceRegion is to scan a #GtkTextBuffer chunk by
+ * The typical use-case of `GtkSourceRegion` is to scan a [class@Gtk.TextBuffer] chunk by
  * chunk, not the whole buffer at once to not block the user interface. The
- * #GtkSourceRegion represents in that case the remaining region to scan. You
- * can listen to the #GtkTextBuffer::insert-text and
- * #GtkTextBuffer::delete-range signals to update the #GtkSourceRegion
+ * `GtkSourceRegion` represents in that case the remaining region to scan. You
+ * can listen to the [signal@Gtk.TextBuffer::insert-text] and
+ * [signal@Gtk.TextBuffer::delete-range] signals to update the `GtkSourceRegion`
  * accordingly.
  *
- * To iterate through the subregions, you need to use a #GtkSourceRegionIter,
+ * To iterate through the subregions, you need to use a [struct@RegionIter],
  * for example:
- * |[
+ * ```c
  * GtkSourceRegion *region;
  * GtkSourceRegionIter region_iter;
  *
@@ -66,7 +66,7 @@
  *
  *         gtk_source_region_iter_next (&region_iter);
  * }
- * ]|
+ * ```
  */
 
 /* With the gravities of the GtkTextMarks, it is possible for subregions to
@@ -298,8 +298,8 @@ gtk_source_region_class_init (GtkSourceRegionClass *klass)
 	/**
 	 * GtkSourceRegion:buffer:
 	 *
-	 * The #GtkTextBuffer. The #GtkSourceRegion has a weak reference to the
-	 * buffer.2
+	 * The [class@Gtk.TextBuffer]. The #GtkSourceRegion has a weak reference to the
+	 * buffer.
 	 */
 	properties[PROP_BUFFER] =
 		g_param_spec_object ("buffer",
@@ -518,7 +518,9 @@ gtk_source_region_add_subregion (GtkSourceRegion   *region,
  * @region: a #GtkSourceRegion.
  * @region_to_add: (nullable): the #GtkSourceRegion to add to @region, or %NULL.
  *
- * Adds @region_to_add to @region. @region_to_add is not modified.
+ * Adds @region_to_add to @region. 
+ * 
+ * @region_to_add is not modified.
  */
 void
 gtk_source_region_add_region (GtkSourceRegion *region,
@@ -745,8 +747,9 @@ gtk_source_region_subtract_subregion (GtkSourceRegion   *region,
  * @region_to_subtract: (nullable): the #GtkSourceRegion to subtract from
  *   @region, or %NULL.
  *
- * Subtracts @region_to_subtract from @region. @region_to_subtract is not
- * modified.
+ * Subtracts @region_to_subtract from @region.
+ *
+ * @region_to_subtract is not modified.
  */
 void
 gtk_source_region_subtract_region (GtkSourceRegion *region,
@@ -794,7 +797,9 @@ gtk_source_region_subtract_region (GtkSourceRegion *region,
  * gtk_source_region_is_empty:
  * @region: (nullable): a #GtkSourceRegion, or %NULL.
  *
- * Returns whether the @region is empty. A %NULL @region is considered empty.
+ * Returns whether the @region is empty. 
+ * 
+ * A %NULL @region is considered empty.
  *
  * Returns: whether the @region is empty.
  */
@@ -895,7 +900,9 @@ gtk_source_region_get_bounds (GtkSourceRegion *region,
  * @_end: the end of the subregion.
  *
  * Returns the intersection between @region and the subregion delimited by
- * @_start and @_end. @region is not modified.
+ * @_start and @_end. 
+ * 
+ * @region is not modified.
  *
  * Returns: (transfer full) (nullable): the intersection as a new
  *   #GtkSourceRegion.
@@ -1065,8 +1072,9 @@ gtk_source_region_intersect_subregion (GtkSourceRegion   *region,
  * @region1: (nullable): a #GtkSourceRegion, or %NULL.
  * @region2: (nullable): a #GtkSourceRegion, or %NULL.
  *
- * Returns the intersection between @region1 and @region2. @region1 and
- * @region2 are not modified.
+ * Returns the intersection between @region1 and @region2. 
+ *
+ * @region1 and @region2 are not modified.
  *
  * Returns: (transfer full) (nullable): the intersection as a #GtkSourceRegion
  *   object.
@@ -1170,8 +1178,9 @@ invalid:
  * @region: a #GtkSourceRegion.
  * @iter: (out): iterator to initialize to the first subregion.
  *
- * Initializes a #GtkSourceRegionIter to the first subregion of @region. If
- * @region is empty, @iter will be initialized to the end iterator.
+ * Initializes a [struct@RegionIter] to the first subregion of @region. 
+ *
+ * If @region is empty, @iter will be initialized to the end iterator.
  */
 void
 gtk_source_region_get_start_region_iter (GtkSourceRegion     *region,

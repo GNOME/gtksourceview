@@ -30,14 +30,15 @@
 /**
  * GtkSourceLanguageManager:
  * 
- * Provides access to GtkSourceLanguages.
+ * Provides access to [class@Language]s.
  *
- * #GtkSourceLanguageManager is an object which processes language description
- * files and creates and stores #GtkSourceLanguage objects, and provides API to
+ * `GtkSourceLanguageManager` is an object which processes language description
+ * files and creates and stores [class@Language] objects, and provides API to
  * access them.
- * Use gtk_source_language_manager_get_default() to retrieve the default
- * instance of #GtkSourceLanguageManager, and
- * gtk_source_language_manager_guess_language() to get a #GtkSourceLanguage for
+ *
+ * Use [func@LanguageManager.get_default] to retrieve the default
+ * instance of `GtkSourceLanguageManager`, and
+ * [method@LanguageManager.guess_language] to get a [class@Language] for
  * given file name and content type.
  */
 
@@ -179,9 +180,10 @@ gtk_source_language_manager_init (GtkSourceLanguageManager *lm)
 /**
  * gtk_source_language_manager_new:
  *
- * Creates a new language manager. If you do not need more than one language
- * manager or a private language manager instance then use
- * gtk_source_language_manager_get_default() instead.
+ * Creates a new language manager.
+ * 
+ * If you do not need more than one language manager or a private language manager 
+ * instance then use [func@LanguageManager.get_default] instead.
  *
  * Returns: a new #GtkSourceLanguageManager.
  */
@@ -233,16 +235,13 @@ notify_search_path (GtkSourceLanguageManager *mgr)
  *
  * Sets the list of directories where the @lm looks for
  * language files.
+ *
  * If @dirs is %NULL, the search path is reset to default.
  *
- * <note>
- *   <para>
- *     At the moment this function can be called only before the
- *     language files are loaded for the first time. In practice
- *     to set a custom search path for a #GtkSourceLanguageManager,
- *     you have to call this function right after creating it.
- *   </para>
- * </note>
+ * At the moment this function can be called only before the
+ * language files are loaded for the first time. In practice
+ * to set a custom search path for a `GtkSourceLanguageManager`,
+ * you have to call this function right after creating it.
  */
 void
 gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
@@ -438,7 +437,7 @@ gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager *lm)
  * @lm: a #GtkSourceLanguageManager.
  * @id: a language id.
  *
- * Gets the #GtkSourceLanguage identified by the given @id in the language
+ * Gets the [class@Language] identified by the given @id in the language
  * manager.
  *
  * Returns: (nullable) (transfer none): a #GtkSourceLanguage, or %NULL
@@ -608,37 +607,38 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  * @filename: (nullable): a filename in Glib filename encoding, or %NULL.
  * @content_type: (nullable): a content type (as in GIO API), or %NULL.
  *
- * Picks a #GtkSourceLanguage for given file name and content type,
- * according to the information in lang files. Either @filename or
- * @content_type may be %NULL. This function can be used as follows:
+ * Picks a [class@Language] for given file name and content type,
+ * according to the information in lang files. 
+ * 
+ * Either @filename or @content_type may be %NULL. This function can be used as follows:
  *
- * <informalexample><programlisting>
- *   GtkSourceLanguage *lang;
- *   lang = gtk_source_language_manager_guess_language (filename, NULL);
- *   gtk_source_buffer_set_language (buffer, lang);
- * </programlisting></informalexample>
+ * ```c
+ * GtkSourceLanguage *lang;
+ * lang = gtk_source_language_manager_guess_language (filename, NULL);
+ * gtk_source_buffer_set_language (buffer, lang);
+ * ```
  *
  * or
  *
- * <informalexample><programlisting>
- *   GtkSourceLanguage *lang = NULL;
- *   gboolean result_uncertain;
- *   gchar *content_type;
+ * ```c
+ * GtkSourceLanguage *lang = NULL;
+ * gboolean result_uncertain;
+ * gchar *content_type;
  *
- *   content_type = g_content_type_guess (filename, NULL, 0, &result_uncertain);
- *   if (result_uncertain)
- *     {
- *       g_free (content_type);
- *       content_type = NULL;
- *     }
+ * content_type = g_content_type_guess (filename, NULL, 0, &result_uncertain);
+ * if (result_uncertain)
+ *   {
+ *     g_free (content_type);
+ *     content_type = NULL;
+ *   }
  *
- *   lang = gtk_source_language_manager_guess_language (manager, filename, content_type);
- *   gtk_source_buffer_set_language (buffer, lang);
+ * lang = gtk_source_language_manager_guess_language (manager, filename, content_type);
+ * gtk_source_buffer_set_language (buffer, lang);
  *
- *   g_free (content_type);
- * </programlisting></informalexample>
+ * g_free (content_type);
+ * ```
  *
- * etc. Use gtk_source_language_get_mime_types() and gtk_source_language_get_globs()
+ * etc. Use [method@Language.get_mime_types] and [method@Language.get_globs]
  * if you need full control over file -> language mapping.
  *
  * Returns: (nullable) (transfer none): a #GtkSourceLanguage, or %NULL if there

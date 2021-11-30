@@ -36,19 +36,19 @@
  *
  * The context of a completion.
  *
- * #GtkSourceCompletionContext contains information about an attept to display
- * completion proposals to the user based on typed text in the #GtkSourceView.
+ * `GtkSourceCompletionContext` contains information about an attept to display
+ * completion proposals to the user based on typed text in the [class@View].
  *
- * When typing, #GtkSourceCompletion may use registered
- * #GtkSourceCompletionProvider to determine if there may be results which
- * could be displayed. If so, a #GtkSourceCompletionContext is created with
- * information that is provided to the #GtkSourceCompletionProvider to populate
+ * When typing, [class@Completion] may use registered
+ * [iface@CompletionProvider] to determine if there may be results which
+ * could be displayed. If so, a `GtkSourceCompletionContext` is created with
+ * information that is provided to the [iface@CompletionProvider] to populate
  * results which might be useful to the user.
  *
- * #GtkSourceCompletionProvider are expected to provide #GListModel with
- * #GtkSourceCompletionProposal which may be joined together in a list of
+ * [iface@CompletionProvider] are expected to provide [iface@Gio.ListModel] with
+ * [class@CompletionProposal] which may be joined together in a list of
  * results for the user. They are also responsible for how the contents are
- * displayed using #GtkSourceCompletionCell which allows for some level of
+ * displayed using [class@CompletionCell] which allows for some level of
  * customization.
  */
 
@@ -596,8 +596,9 @@ gtk_source_completion_context_items_changed_cb (GtkSourceCompletionContext *self
  * @results: (nullable): a #GListModel or %NULL
  *
  * This function allows providers to update their results for a context
- * outside of a call to gtk_source_completion_provider_populate_async(). This
- * can be used to immediately return results for a provider while it does
+ * outside of a call to [method@CompletionProvider.populate_async]. 
+ * 
+ * This can be used to immediately return results for a provider while it does
  * additional asynchronous work. Doing so will allow the completions to
  * update while the operation is in progress.
  */

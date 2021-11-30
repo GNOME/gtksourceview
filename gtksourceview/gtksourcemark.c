@@ -26,17 +26,17 @@
 /**
  * GtkSourceMark:
  *
- * Mark object for GtkSourceBuffer.
+ * Mark object for [class@Buffer].
  *
- * A #GtkSourceMark marks a position in the text where you want to display
- * additional info. It is based on #GtkTextMark and thus is still valid after
+ * A `GtkSourceMark` marks a position in the text where you want to display
+ * additional info. It is based on [class@Gtk.TextMark] and thus is still valid after
  * the text has changed though its position may change.
  *
- * #GtkSourceMark<!-- -->s are organised in categories which you have to set
+ * `GtkSourceMark`s are organized in categories which you have to set
  * when you create the mark. Each category can have a priority, a pixbuf and
- * other associated attributes. See gtk_source_view_set_mark_attributes().
+ * other associated attributes. See [method@View.set_mark_attributes].
  * The pixbuf will be displayed in the margin at the line where the mark
- * residents if the #GtkSourceView:show-line-marks property is set to %TRUE. If
+ * residents if the [property@View:show-line-marks] property is set to %TRUE. If
  * there are multiple marks in the same line, the pixbufs will be drawn on top
  * of each other. The mark with the highest priority will be drawn on top.
  */
@@ -123,7 +123,7 @@ gtk_source_mark_class_init (GtkSourceMarkClass *klass)
 	/**
 	 * GtkSourceMark:category:
 	 *
-	 * The category of the #GtkSourceMark, classifies the mark and controls
+	 * The category of the `GtkSourceMark`, classifies the mark and controls
 	 * which pixbuf is used and with which priority it is drawn.
 	 */
 	g_object_class_install_property (object_class,
@@ -150,13 +150,15 @@ gtk_source_mark_init (GtkSourceMark *mark)
  *   category, or all the marks representing a compilation error could belong
  *   to "error" category).
  *
- * Creates a text mark. Add it to a buffer using gtk_text_buffer_add_mark().
+ * Creates a text mark. 
+ * 
+ * Add it to a buffer using [method@Gtk.TextBuffer.add_mark].
  * If name is NULL, the mark is anonymous; otherwise, the mark can be retrieved
- * by name using gtk_text_buffer_get_mark().
+ * by name using [method@Gtk.TextBuffer.get_mark].
  * Normally marks are created using the utility function
- * gtk_source_buffer_create_source_mark().
+ * [method@Buffer.create_source_mark].
  *
- * Returns: a new #GtkSourceMark that can be added using gtk_text_buffer_add_mark().
+ * Returns: a new #GtkSourceMark that can be added using [method@Gtk.TextBuffer.add_mark].
  */
 GtkSourceMark *
 gtk_source_mark_new (const gchar *name,
@@ -194,8 +196,10 @@ gtk_source_mark_get_category (GtkSourceMark *mark)
  * @mark: a #GtkSourceMark.
  * @category: (nullable): a string specifying the mark category, or %NULL.
  *
- * Returns the next #GtkSourceMark in the buffer or %NULL if the mark
- * was not added to a buffer. If there is no next mark, %NULL will be returned.
+ * Returns the next `GtkSourceMark` in the buffer or %NULL if the mark
+ * was not added to a buffer.
+ *
+ *  If there is no next mark, %NULL will be returned.
  *
  * If @category is %NULL, looks for marks of any category.
  *
@@ -226,8 +230,10 @@ gtk_source_mark_next (GtkSourceMark *mark,
  * @mark: a #GtkSourceMark.
  * @category: a string specifying the mark category, or %NULL.
  *
- * Returns the previous #GtkSourceMark in the buffer or %NULL if the mark
- * was not added to a buffer. If there is no previous mark, %NULL is returned.
+ * Returns the previous `GtkSourceMark` in the buffer or %NULL if the mark
+ * was not added to a buffer. 
+ *
+ * If there is no previous mark, %NULL is returned.
  *
  * If @category is %NULL, looks for marks of any category
  *

@@ -28,12 +28,12 @@
  * 
  * Display for interactive tooltips.
  *
- * #GtkSourceHoverDisplay is a #GtkWidget that may be populated with widgets
+ * `GtkSourceHoverDisplay` is a [class@Gtk.Widget] that may be populated with widgets
  * to be displayed to the user in interactive tooltips. The children widgets
- * are packed vertically using a #GtkBox.
+ * are packed vertically using a [class@Gtk.Box].
  *
- * Implement the #GtkSourceHoverProvider interface to be notified of when
- * to populate a #GtkSourceHoverDisplay on behalf of the user.
+ * Implement the [iface@HoverProvider] interface to be notified of when
+ * to populate a `GtkSourceHoverDisplay` on behalf of the user.
  */
 
 struct _GtkSourceHoverDisplay

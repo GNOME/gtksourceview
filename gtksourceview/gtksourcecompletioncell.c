@@ -29,7 +29,7 @@
  *
  * Widget for single cell of completion proposal.
  *
- * The #GtkSourceCompletionCell widget provides a container to display various
+ * The `GtkSourceCompletionCell` widget provides a container to display various
  * types of information with the completion display.
  *
  * Each proposal may consist of multiple cells depending on the complexity of
@@ -38,10 +38,10 @@
  * function name and "parameters". They may also optionally set an icon to
  * signify the kind of result.
  *
- * A #GtkSourceCompletionProvider should implement the
- * #GtkSourceCompletionProviderInterface.display virtual function to control
- * how to convert data from their #GtkSourceCompletionProposal to content for
- * the #GtkSourceCompletionCell.
+ * A [iface@CompletionProvider] should implement the
+ * [vfunc@CompletionProvider.display] virtual function to control
+ * how to convert data from their [iface@CompletionProposal] to content for
+ * the `GtkSourceCompletionCell`.
  */
 
 struct _GtkSourceCompletionCell

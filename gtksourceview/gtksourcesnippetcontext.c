@@ -28,14 +28,14 @@
 /**
  * GtkSourceSnippetContext:
  *
- * Context for expanding #GtkSourceSnippetChunk.
+ * Context for expanding [class@SnippetChunk].
  *
  * This class is currently used primary as a hashtable. However, the longer
- * term goal is to have it hold onto a GjsContext as well as other languages
- * so that #GtkSourceSnippetChunk can expand themselves by executing
+ * term goal is to have it hold onto a `GjsContext` as well as other languages
+ * so that [class@SnippetChunk] can expand themselves by executing
  * script within the context.
  *
- * The #GtkSourceSnippet will build the context and then expand each of the
+ * The [class@Snippet] will build the context and then expand each of the
  * chunks during the insertion/edit phase.
  */
 
@@ -125,8 +125,9 @@ gtk_source_snippet_context_set_variable (GtkSourceSnippetContext *self,
  * @key: the constant name
  * @value: the value of the constant
  *
- * Sets a constatnt within the context. This is similar to
- * a variable set with gtk_source_snippet_context_set_variable()
+ * Sets a constatnt within the context. 
+ *
+ * This is similar to a variable set with [method@SnippetContext.set_variable]
  * but is expected to not change during use of the snippet.
  *
  * Examples would be the date or users name.
@@ -828,7 +829,7 @@ gtk_source_snippet_context_class_init (GtkSourceSnippetContextClass *klass)
 	/**
 	 * GtkSourceSnippetContext::changed:
 	 *
-	 * The "changed" signal is emitted when a change has been
+	 * The signal is emitted when a change has been
 	 * discovered in one of the chunks of the snippet which has
 	 * caused a variable or other dynamic data within the context
 	 * to have changed.

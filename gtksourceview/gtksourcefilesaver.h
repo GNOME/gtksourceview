@@ -58,7 +58,7 @@ typedef enum _GtkSourceFileSaverError
  * @GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME: Save file despite external modifications.
  * @GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP: Create a backup before saving the file.
  *
- * Flags to define the behavior of a #GtkSourceFileSaver.
+ * Flags to define the behavior of a [flags@FileSaverFlags].
  */
 typedef enum _GtkSourceFileSaverFlags
 {

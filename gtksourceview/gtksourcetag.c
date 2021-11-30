@@ -26,13 +26,13 @@
 /**
  * GtkSourceTag:
  * 
- * A tag that can be applied to text in a GtkSourceBuffer.
+ * A tag that can be applied to text in a [class@Buffer].
  *
- * #GtkSourceTag is a subclass of #GtkTextTag that adds properties useful for
+ * `GtkSourceTag` is a subclass of [class@Gtk.TextTag] that adds properties useful for
  * the GtkSourceView library.
  *
- * If, for a certain tag, #GtkTextTag is sufficient, it's better that you create
- * a #GtkTextTag, not a #GtkSourceTag.
+ * If, for a certain tag, [class@Gtk.TextTag] is sufficient, it's better that you create
+ * a [class@Gtk.TextTag], not a [class@Tag].
  */
 
 typedef struct
@@ -124,11 +124,12 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 	/**
 	 * GtkSourceTag:draw-spaces:
 	 *
-	 * Whether to draw white spaces. This property takes precedence over the value
-	 * defined by the GtkSourceSpaceDrawer's #GtkSourceSpaceDrawer:matrix property
-	 * (only where the tag is applied).
+	 * Whether to draw white spaces. 
+	 * 
+	 * This property takes precedence over the value defined by the [class@SpaceDrawer]'s
+	 * [property@SpaceDrawer:matrix] property (only where the tag is applied).
 	 *
-	 * Setting this property also changes #GtkSourceTag:draw-spaces-set to
+	 * Setting this property also changes [property@Tag:draw-spaces-set] to
 	 * %TRUE.
 	 */
 	properties [PROP_DRAW_SPACES] =
@@ -143,7 +144,7 @@ gtk_source_tag_class_init (GtkSourceTagClass *klass)
 	/**
 	 * GtkSourceTag:draw-spaces-set:
 	 *
-	 * Whether the #GtkSourceTag:draw-spaces property is set and must be
+	 * Whether the [property@Tag:draw-spaces] property is set and must be
 	 * taken into account.
 	 */
 	properties [PROP_DRAW_SPACES_SET] =
@@ -167,13 +168,14 @@ gtk_source_tag_init (GtkSourceTag *tag)
  * gtk_source_tag_new:
  * @name: (nullable): tag name, or %NULL.
  *
- * Creates a #GtkSourceTag. Configure the tag using object arguments,
- * i.e. using g_object_set().
+ * Creates a `GtkSourceTag`. 
+ * 
+ * Configure the tag using object arguments, i.e. using [method@GObject.Object.set].
  *
- * For usual cases, gtk_source_buffer_create_source_tag() is more convenient to
+ * For usual cases, [method@Buffer.create_source_tag] is more convenient to
  * use.
  *
- * Returns: a new #GtkSourceTag.
+ * Returns: a new `GtkSourceTag`.
  */
 GtkTextTag *
 gtk_source_tag_new (const gchar *name)

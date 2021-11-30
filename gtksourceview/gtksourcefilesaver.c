@@ -35,14 +35,14 @@
 /**
  * GtkSourceFileSaver:
  *
- * Save a GtkSourceBuffer into a file.
+ * Save a [class@Buffer] into a file.
  *
- * A #GtkSourceFileSaver object permits to save a #GtkSourceBuffer into a
- * #GFile.
+ * A `GtkSourceFileSaver` object permits to save a [class@Buffer] into a
+ * [class@Gio.File].
  *
  * A file saver should be used only for one save operation, including errors
  * handling. If an error occurs, you can reconfigure the saver and relaunch the
- * operation with gtk_source_file_saver_save_async().
+ * operation with [method@FileSaver.save_async].
  */
 
 /* The code has been written initially in gedit (GeditDocumentSaver).
@@ -1075,10 +1075,10 @@ gtk_source_file_saver_error_quark (void)
  * @file: the #GtkSourceFile.
  *
  * Creates a new #GtkSourceFileSaver object. The @buffer will be saved to the
- * #GtkSourceFile's location.
+ * [class@File]'s location.
  *
  * This constructor is suitable for a simple "save" operation, when the @file
- * already contains a non-%NULL #GtkSourceFile:location.
+ * already contains a non-%NULL [property@File:location].
  *
  * Returns: a new #GtkSourceFileSaver object.
  */
@@ -1101,10 +1101,11 @@ gtk_source_file_saver_new (GtkSourceBuffer *buffer,
  * @file: the #GtkSourceFile.
  * @target_location: the #GFile where to save the buffer to.
  *
- * Creates a new #GtkSourceFileSaver object with a target location. When the
- * file saving is finished successfully, @target_location is set to the @file's
- * #GtkSourceFile:location property. If an error occurs, the previous valid
- * location is still available in #GtkSourceFile.
+ * Creates a new #GtkSourceFileSaver object with a target location. 
+ * 
+ * When the file saving is finished successfully, @target_location is set to the @file's
+ * [property@File:location] property. If an error occurs, the previous valid
+ * location is still available in [class@File].
  *
  * This constructor is suitable for a "save as" operation, or for saving a new
  * buffer for the first time.
@@ -1175,6 +1176,7 @@ gtk_source_file_saver_get_location (GtkSourceFileSaver *saver)
  * @encoding: (nullable): the new encoding, or %NULL for UTF-8.
  *
  * Sets the encoding. If @encoding is %NULL, the UTF-8 encoding will be set.
+ *
  * By default the encoding is taken from the #GtkSourceFile.
  */
 void
@@ -1335,8 +1337,9 @@ gtk_source_file_saver_get_flags (GtkSourceFileSaver *saver)
  *   satisfied.
  * @user_data: user data to pass to @callback.
  *
- * Saves asynchronously the buffer into the file. See the #GAsyncResult
- * documentation to know how to use this function.
+ * Saves asynchronously the buffer into the file. 
+ * 
+ * See the [iface@Gio.AsyncResult] documentation to know how to use this function.
  */
 
 /* The GDestroyNotify is needed, currently the following bug is not fixed:
@@ -1412,13 +1415,13 @@ gtk_source_file_saver_save_async (GtkSourceFileSaver    *saver,
  * @result: a #GAsyncResult.
  * @error: a #GError, or %NULL.
  *
- * Finishes a file saving started with gtk_source_file_saver_save_async().
+ * Finishes a file saving started with [method@FileSaver.save_async].
  *
- * If the file has been saved successfully, the following #GtkSourceFile
+ * If the file has been saved successfully, the following [class@File]
  * properties will be updated: the location, the encoding, the newline type and
  * the compression type.
  *
- * Since the 3.20 version, gtk_text_buffer_set_modified() is called with %FALSE
+ * Since the 3.20 version, [method@Gtk.TextBuffer.set_modified] is called with %FALSE
  * if the file has been saved successfully.
  *
  * Returns: whether the file was saved successfully.

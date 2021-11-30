@@ -34,10 +34,10 @@
 /**
  * GtkSourceStyleScheme:
  * 
- * Controls the appearance of GtkSourceView.
+ * Controls the appearance of [class@View].
  *
  * #GtkSourceStyleScheme contains all the text styles to be used in
- * #GtkSourceView and #GtkSourceBuffer. For instance, it contains text styles
+ * [class@View] and [class@Buffer]. For instance, it contains text styles
  * for syntax highlighting, it may contain foreground and background color for
  * non-highlighted text, color for the line numbers, current line highlighting,
  * bracket matching, etc.
@@ -214,7 +214,7 @@ gtk_source_style_scheme_class_init (GtkSourceStyleSchemeClass *klass)
 	 * GtkSourceStyleScheme:id:
 	 *
 	 * Style scheme id, a unique string used to identify the style scheme
-	 * in #GtkSourceStyleSchemeManager.
+	 * in [class@StyleSchemeManager].
 	 */
 	g_object_class_install_property (object_class,
 					 PROP_ID,

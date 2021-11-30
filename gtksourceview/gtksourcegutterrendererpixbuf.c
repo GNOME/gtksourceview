@@ -27,8 +27,8 @@
  *
  * Renders a pixbuf in the gutter.
  *
- * A #GtkSourceGutterRendererPixbuf can be used to render an image in a cell of
- * #GtkSourceGutter.
+ * A `GtkSourceGutterRendererPixbuf` can be used to render an image in a cell of
+ * [class@Gutter].
  */
 
 typedef struct
@@ -412,8 +412,8 @@ gtk_source_gutter_renderer_pixbuf_set_paintable (GtkSourceGutterRendererPixbuf *
  * gtk_source_gutter_renderer_pixbuf_get_paintable:
  * @renderer: a #GtkSourceGutterRendererPixbuf
  *
- * Gets a #GdkPaintable that was set with
- * gtk_source_gutter_renderer_pixbuf_set_paintable()
+ * Gets a [class@Gdk.Paintable] that was set with
+ * [method@GutterRendererPixbuf.set_paintable]
  *
  * Returns: (transfer none) (nullable): a #GdkPaintable or %NULL
  */

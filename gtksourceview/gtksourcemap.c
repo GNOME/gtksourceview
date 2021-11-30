@@ -41,28 +41,28 @@
 /**
  * GtkSourceMap:
  * 
- * Widget that displays a map for a specific #GtkSourceView.
+ * Widget that displays a map for a specific [class@View].
  *
- * #GtkSourceMap is a widget that maps the content of a #GtkSourceView into
+ * `GtkSourceMap` is a widget that maps the content of a [class@View] into
  * a smaller view so the user can have a quick overview of the whole document.
  *
- * This works by connecting a #GtkSourceView to to the #GtkSourceMap using
- * the #GtkSourceMap:view property or gtk_source_map_set_view().
+ * This works by connecting a [class@View] to to the `GtkSourceMap` using
+ * the [property@Map:view] property or [method@Map.set_view].
  *
- * #GtkSourceMap is a #GtkSourceView object. This means that you can add a
- * #GtkSourceGutterRenderer to a gutter in the same way you would for a
- * #GtkSourceView. One example might be a #GtkSourceGutterRenderer that shows
+ * `GtkSourceMap` is a [class@View] object. This means that you can add a
+ * [class@GutterRenderer] to a gutter in the same way you would for a
+ * [class@View]. One example might be a [class@GutterRenderer] that shows
  * which lines have changed in the document.
  *
- * Additionally, it is desirable to match the font of the #GtkSourceMap and
- * the #GtkSourceView used for editing. Therefore, #GtkSourceMap:font-desc
+ * Additionally, it is desirable to match the font of the `GtkSourceMap` and
+ * the [class@View] used for editing. Therefore, [property@Map:font-desc]
  * should be used to set the target font. You will need to adjust this to the
  * desired font size for the map. A 1pt font generally seems to be an
  * appropriate font size. "Monospace 1" is the default. See
- * pango_font_description_set_size() for how to alter the size of an existing
- * #PangoFontDescription.
+ * [method@Pango.FontDescription.set_size] for how to alter the size of an existing
+ * [class@Pango.FontDescription].
  *
- * When FontConfig is available, #GtkSourceMap will try to use a bundled
+ * When FontConfig is available, `GtkSourceMap` will try to use a bundled
  * "block" font to make the map more legible.
  */
 
@@ -1316,7 +1316,7 @@ gtk_source_map_init (GtkSourceMap *map)
 /**
  * gtk_source_map_new:
  *
- * Creates a new #GtkSourceMap.
+ * Creates a new `GtkSourceMap`.
  *
  * Returns: a new #GtkSourceMap.
  */
@@ -1366,7 +1366,7 @@ gtk_source_map_set_view (GtkSourceMap  *map,
  * gtk_source_map_get_view:
  * @map: a #GtkSourceMap.
  *
- * Gets the #GtkSourceMap:view property, which is the view this widget is mapping.
+ * Gets the [property@Map:view] property, which is the view this widget is mapping.
  *
  * Returns: (transfer none) (nullable): a #GtkSourceView or %NULL.
  */

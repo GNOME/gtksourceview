@@ -26,9 +26,9 @@
  * 
  * Search settings.
  *
- * A #GtkSourceSearchSettings object represents the settings of a search. The
+ * A `GtkSourceSearchSettings` object represents the settings of a search. The
  * search settings can be associated with one or several
- * #GtkSourceSearchContext<!-- -->s.
+ * [class@SearchContext]s.
  */
 
 enum
@@ -152,8 +152,9 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	/**
 	 * GtkSourceSearchSettings:search-text:
 	 *
-	 * A search string, or %NULL if the search is disabled. If the regular
-	 * expression search is enabled, #GtkSourceSearchSettings:search-text is
+	 * A search string, or %NULL if the search is disabled. 
+	 * 
+	 * If the regular expression search is enabled, [property@SearchSettings:search-text] is
 	 * the pattern.
 	 */
 	properties[PROP_SEARCH_TEXT] =
@@ -206,7 +207,7 @@ gtk_source_search_settings_class_init (GtkSourceSearchSettingsClass *klass)
 	 * GtkSourceSearchSettings:regex-enabled:
 	 *
 	 * Search by regular expressions with
-	 * #GtkSourceSearchSettings:search-text as the pattern.
+	 * [property@SearchSettings:search-text] as the pattern.
 	 */
 	properties[PROP_REGEX_ENABLED] =
 		g_param_spec_boolean ("regex-enabled",
@@ -241,11 +242,12 @@ gtk_source_search_settings_new (void)
  * @settings: a #GtkSourceSearchSettings.
  * @search_text: (nullable): the nul-terminated text to search, or %NULL to disable the search.
  *
- * Sets the text to search. If @search_text is %NULL or is empty, the search
- * will be disabled. A copy of @search_text will be made, so you can safely free
- * @search_text after a call to this function.
+ * Sets the text to search. 
+ * 
+ * If @search_text is %NULL or is empty, the search will be disabled. A copy of @search_text 
+ * will be made, so you can safely free @search_text after a call to this function.
  *
- * You may be interested to call gtk_source_utils_unescape_search_text() before
+ * You may be interested to call [func@utils_unescape_search_text] before
  * this function.
  */
 void
@@ -282,9 +284,11 @@ gtk_source_search_settings_set_search_text (GtkSourceSearchSettings *settings,
  * gtk_source_search_settings_get_search_text:
  * @settings: a #GtkSourceSearchSettings.
  *
- * Gets the text to search. The return value must not be freed.
+ * Gets the text to search. 
+ * 
+ * The return value must not be freed.
  *
- * You may be interested to call gtk_source_utils_escape_search_text() after
+ * You may be interested to call [func@utils_escape_search_text] after
  * this function.
  *
  * Returns: (nullable): the text to search, or %NULL if the search is disabled.
@@ -344,10 +348,11 @@ gtk_source_search_settings_get_case_sensitive (GtkSourceSearchSettings *settings
  * @settings: a #GtkSourceSearchSettings.
  * @at_word_boundaries: the setting.
  *
- * Change whether the search is done at word boundaries. If @at_word_boundaries
- * is %TRUE, a search match must start and end a word. The match can span
- * multiple words. See also gtk_text_iter_starts_word() and
- * gtk_text_iter_ends_word().
+ * Change whether the search is done at word boundaries. 
+ * 
+ * If @at_word_boundaries is %TRUE, a search match must start and end a word.
+ * The match can span multiple words. See also [method@Gtk.TextIter.starts_word] and
+ * [method@Gtk.TextIter.ends_word].
  */
 void
 gtk_source_search_settings_set_at_word_boundaries (GtkSourceSearchSettings *settings,
@@ -387,9 +392,10 @@ gtk_source_search_settings_get_at_word_boundaries (GtkSourceSearchSettings *sett
  * @settings: a #GtkSourceSearchSettings.
  * @wrap_around: the setting.
  *
- * Enables or disables the wrap around search. If @wrap_around is %TRUE, the
- * forward search continues at the beginning of the buffer if no search
- * occurrences are found. Similarly, the backward search continues to search at
+ * Enables or disables the wrap around search. 
+ * 
+ * If @wrap_around is %TRUE, the forward search continues at the beginning of the buffer
+ * if no search occurrences are found. Similarly, the backward search continues to search at
  * the end of the buffer.
  */
 void
@@ -431,10 +437,11 @@ gtk_source_search_settings_get_wrap_around (GtkSourceSearchSettings *settings)
  * @regex_enabled: the setting.
  *
  * Enables or disables whether to search by regular expressions.
- * If enabled, the #GtkSourceSearchSettings:search-text property contains the
+ *
+ * If enabled, the [property@SearchSettings:search-text] property contains the
  * pattern of the regular expression.
  *
- * #GtkSourceSearchContext uses #GRegex when regex search is enabled. See the
+ * [class@SearchContext] uses #GRegex when regex search is enabled. See the
  * [Regular expression syntax](https://developer.gnome.org/glib/stable/glib-regex-syntax.html)
  * page in the GLib reference manual.
  */

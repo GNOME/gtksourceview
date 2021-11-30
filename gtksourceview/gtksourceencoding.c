@@ -377,7 +377,9 @@ gtk_source_encoding_get_utf8 (void)
 /**
  * gtk_source_encoding_get_current:
  *
- * Gets the #GtkSourceEncoding for the current locale. See also g_get_charset().
+ * Gets the #GtkSourceEncoding for the current locale.
+ * 
+ * See also [func@GLib.get_charset].
  *
  * Returns: the current locale encoding.
  */
@@ -588,8 +590,9 @@ _gtk_source_encoding_remove_duplicates (GSList                      *list,
 /**
  * gtk_source_encoding_get_default_candidates:
  *
- * Gets the list of default candidate encodings to try when loading a file. See
- * gtk_source_file_loader_set_candidate_encodings().
+ * Gets the list of default candidate encodings to try when loading a file.
+ *
+ * See [method@FileLoader.set_candidate_encodings].
  *
  * This function returns a different list depending on the current locale (i.e.
  * language, country and default encoding). The UTF-8 encoding and the current

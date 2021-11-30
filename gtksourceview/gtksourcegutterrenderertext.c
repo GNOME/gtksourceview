@@ -26,8 +26,8 @@
  * 
  * Renders text in the gutter.
  *
- * A #GtkSourceGutterRendererText can be used to render text in a cell of
- * #GtkSourceGutter.
+ * A `GtkSourceGutterRendererText` can be used to render text in a cell of
+ * [class@Gutter].
  */
 
 typedef struct

@@ -27,15 +27,15 @@
 /**
  * GtkSourceSnippetManager:
  * 
- * Provides access to #GtkSourceSnippet.
+ * Provides access to [class@Snippet].
  *
- * #GtkSourceSnippetManager is an object which processes snippet description
- * files and creates #GtkSourceSnippet objects.
+ * `GtkSourceSnippetManager` is an object which processes snippet description
+ * files and creates [class@Snippet] objects.
  *
- * Use gtk_source_snippet_manager_get_default() to retrieve the default
- * instance of #GtkSourceSnippetManager.
+ * Use [func@SnippetManager.get_default] to retrieve the default
+ * instance of `GtkSourceSnippetManager`.
  *
- * Use gtk_source_snippet_manager_get_snippets() to retrieve snippets for
+ * Use [method@SnippetManager.get_snippet] to retrieve snippets for
  * a given snippets.
  */
 
@@ -158,8 +158,7 @@ gtk_source_snippet_manager_class_init (GtkSourceSnippetManagerClass *klass)
 	/**
 	 * GtkSourceSnippetManager:search-path:
 	 *
-	 * The "search-path" property contains a list of directories to search
-	 * for files containing snippets (*.snippets).
+	 * Contains a list of directories to search for files containing snippets (*.snippets).
 	 */
 	properties[PROP_SEARCH_PATH] =
 		g_param_spec_boxed ("search-path",
@@ -231,17 +230,15 @@ _gtk_source_snippet_manager_intern (GtkSourceSnippetManager *self,
  * @dirs: (nullable) (array zero-terminated=1): a %NULL-terminated array of
  *   strings or %NULL.
  *
- * Sets the list of directories in which the #GtkSourceSnippetManagerlooks for
- * snippet files.  If @dirs is %NULL, the search path is reset to default.
+ * Sets the list of directories in which the `GtkSourceSnippetManager` looks for
+ * snippet files.
  *
- * <note>
- *   <para>
- *     At the moment this function can be called only before the
- *     snippet files are loaded for the first time. In practice
- *     to set a custom search path for a #GtkSourceSnippetManager,
- *     you have to call this function right after creating it.
- *   </para>
- * </note>
+ * If @dirs is %NULL, the search path is reset to default.
+ *
+ * At the moment this function can be called only before the
+ * snippet files are loaded for the first time. In practice
+ * to set a custom search path for a `GtkSourceSnippetManager`,
+ * you have to call this function right after creating it.
  */
 void
 gtk_source_snippet_manager_set_search_path (GtkSourceSnippetManager *self,
@@ -353,12 +350,13 @@ gtk_source_snippet_manager_list_groups (GtkSourceSnippetManager *self)
  * @trigger_prefix: (nullable): a prefix for a trigger to activate
  *
  * Queries the known snippets for those matching @group, @language_id, and/or
- * @trigger_prefix. If any of these are %NULL, they will be ignored when
- * filtering the available snippets.
+ * @trigger_prefix.
  *
- * The #GListModel only contains information about the available snippets until
- * g_list_model_get_item() is called for a specific snippet. This helps reduce
- * the number of #GObject's that are created at runtime to those needed by
+ * If any of these are %NULL, they will be ignored when filtering the available snippets.
+ *
+ * The [iface@Gio.ListModel] only contains information about the available snippets until
+ * [method@Gio.ListModel.get_item] is called for a specific snippet. This helps reduce
+ * the number of [class@GObject.Object]'s that are created at runtime to those needed by
  * the calling application.
  *
  * Returns: (transfer full): a #GListModel of #GtkSourceSnippet.
@@ -384,7 +382,9 @@ gtk_source_snippet_manager_list_matching (GtkSourceSnippetManager *self,
  * @trigger: the trigger for the snippet
  *
  * Queries the known snippets for the first matching @group, @language_id,
- * and/or @trigger. If @group or @language_id are %NULL, they will be ignored.
+ * and/or @trigger. 
+ *
+ * If @group or @language_id are %NULL, they will be ignored.
  *
  * Returns: (transfer full) (nullable): a #GtkSourceSnippet or %NULL if no
  *   matching snippet was found.

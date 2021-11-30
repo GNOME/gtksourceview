@@ -26,14 +26,14 @@
 /**
  * GtkSourceFile:
  * 
- * On-disk representation of a GtkSourceBuffer.
+ * On-disk representation of a [class@Buffer].
  *
- * A #GtkSourceFile object is the on-disk representation of a #GtkSourceBuffer.
- * With a #GtkSourceFile, you can create and configure a #GtkSourceFileLoader
- * and #GtkSourceFileSaver which take by default the values of the
- * #GtkSourceFile properties (except for the file loader which auto-detect some
- * properties). On a successful load or save operation, the #GtkSourceFile
- * properties are updated. If an operation fails, the #GtkSourceFile properties
+ * A `GtkSourceFile` object is the on-disk representation of a [class@Buffer].
+ * With a `GtkSourceFile`, you can create and configure a [class@FileLoader]
+ * and [class@FileSaver] which take by default the values of the
+ * `GtkSourceFile` properties (except for the file loader which auto-detect some
+ * properties). On a successful load or save operation, the `GtkSourceFile`
+ * properties are updated. If an operation fails, the `GtkSourceFile` properties
  * have still the previous valid values.
  */
 
@@ -401,11 +401,12 @@ gtk_source_file_get_compression_type (GtkSourceFile *file)
  * @notify: (nullable): function to call on @user_data when the @callback is no
  *   longer needed, or %NULL.
  *
- * Sets a #GtkSourceMountOperationFactory function that will be called when a
- * #GMountOperation must be created. This is useful for creating a
- * #GtkMountOperation with the parent #GtkWindow.
+ * Sets a [callback@MountOperationFactory] function that will be called when a
+ * [class@Gio.MountOperation] must be created. 
  *
- * If a mount operation factory isn't set, g_mount_operation_new() will be
+ * This is useful for creating a [class@Gtk.MountOperation] with the parent [class@Gtk.Window].
+ *
+ * If a mount operation factory isn't set, [ctor@Gio.MountOperation.new] will be
  * called.
  */
 void
@@ -480,7 +481,7 @@ _gtk_source_file_set_modification_time (GtkSourceFile *file,
  * gtk_source_file_is_local:
  * @file: a #GtkSourceFile.
  *
- * Returns whether the file is local. If the #GtkSourceFile:location is %NULL,
+ * Returns whether the file is local. If the [property@File:location] is %NULL,
  * returns %FALSE.
  *
  * Returns: whether the file is local.
@@ -507,12 +508,12 @@ gtk_source_file_is_local (GtkSourceFile *file)
  * Checks synchronously the file on disk, to know whether the file is externally
  * modified, or has been deleted, and whether the file is read-only.
  *
- * #GtkSourceFile doesn't create a #GFileMonitor to track those properties, so
- * this function needs to be called instead. Creating lots of #GFileMonitor's
+ * #GtkSourceFile doesn't create a [class@Gio.FileMonitor] to track those properties, so
+ * this function needs to be called instead. Creating lots of [class@Gio.FileMonitor]'s
  * would take lots of resources.
  *
  * Since this function is synchronous, it is advised to call it only on local
- * files. See gtk_source_file_is_local().
+ * files. See [method@File.is_local].
  */
 void
 gtk_source_file_check_file_on_disk (GtkSourceFile *file)
@@ -586,10 +587,10 @@ _gtk_source_file_set_externally_modified (GtkSourceFile *file,
  * @file: a #GtkSourceFile.
  *
  * Returns whether the file is externally modified. If the
- * #GtkSourceFile:location is %NULL, returns %FALSE.
+ * [property@File:location] is %NULL, returns %FALSE.
  *
  * To have an up-to-date value, you must first call
- * gtk_source_file_check_file_on_disk().
+ * [method@File.check_file_on_disk].
  *
  * Returns: whether the file is externally modified.
  */
@@ -619,10 +620,10 @@ _gtk_source_file_set_deleted (GtkSourceFile *file,
  * @file: a #GtkSourceFile.
  *
  * Returns whether the file has been deleted. If the
- * #GtkSourceFile:location is %NULL, returns %FALSE.
+ * [property@File:location] is %NULL, returns %FALSE.
  *
  * To have an up-to-date value, you must first call
- * gtk_source_file_check_file_on_disk().
+ * [method@File.check_file_on_disk].
  *
  * Returns: whether the file has been deleted.
  */
@@ -658,10 +659,10 @@ _gtk_source_file_set_readonly (GtkSourceFile *file,
  * @file: a #GtkSourceFile.
  *
  * Returns whether the file is read-only. If the
- * #GtkSourceFile:location is %NULL, returns %FALSE.
+ * [property@File:location] is %NULL, returns %FALSE.
  *
  * To have an up-to-date value, you must first call
- * gtk_source_file_check_file_on_disk().
+ * [method@File.check_file_on_disk].
  *
  * Returns: whether the file is read-only.
  */

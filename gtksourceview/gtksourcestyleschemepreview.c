@@ -38,11 +38,11 @@
 /**
  * GtkSourceStyleSchemePreview:
  * 
- * A preview widget for #GtkSourceStyleScheme.
+ * A preview widget for [class@StyleScheme].
  *
- * This widget provides a convenient #GtkWidget to preview a #GtkSourceStyleScheme.
+ * This widget provides a convenient [class@Gtk.Widget] to preview a [class@StyleScheme].
  *
- * The #GtkSourceStyleSchemePreview:selected property can be used to manage
+ * The [property@StyleSchemePreview:selected] property can be used to manage
  * the selection state of a single preview widget.
  *
  * Since: 5.4

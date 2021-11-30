@@ -33,13 +33,13 @@
  *
  * Vim emulation.
  *
- * The #GtkSourceVimIMContext is a #GtkIMContext implementation that can
- * be used to provide Vim-like editing controls within a #GtkSourceView.
+ * The `GtkSourceVimIMContext` is a [iface@Gtk.IMContext] implementation that can
+ * be used to provide Vim-like editing controls within a [class@View].
  *
- * The #GtkSourceViMIMContext will process incoming #GdkKeyEvent as the
- * user types. It should be used in conjunction with a #GtkEventControllerKey.
+ * The `GtkSourceViMIMContext` will process incoming [class@Gdk.KeyEvent] as the
+ * user types. It should be used in conjunction with a [class@Gtk.EventControllerKey].
  *
- * Various features supported by #GtkSourceVimIMContext include:
+ * Various features supported by `GtkSourceVimIMContext` include:
  *
  *  - Normal, Insert, Replace, Visual, and Visual Line modes
  *  - Support for an integrated command bar and current command preview
@@ -52,30 +52,30 @@
  *  - Some commonly used Vim commands
  *
  * It is recommended that applications display the contents of
- * #GtkSourceVimIMContext:command-bar-text and
- * #GtkSourceVimIMContext:command-text to the user as they represent the
+ * [property@VimIMContext:command-bar-text] and
+ * [property@VimIMContext:command-text] to the user as they represent the
  * command-bar and current command preview found in Vim.
  *
- * #GtkSourceVimIMContext attempts to work with additional #GtkIMContext
- * implementations such as IBus by querying the #GtkTextView before processing
+ * `GtkSourceVimIMContext` attempts to work with additional [iface@Gtk.IMContext]
+ * implementations such as IBus by querying the [class@Gtk.TextView] before processing
  * the command in states which support it (notably Insert and Replace modes).
  *
- * <informalexample><programlisting>
- *  GtkEventController *key;
- *  GtkSourceView *view;
- *  GtkIMContext *im_context;
+ * ```c
+ * GtkEventController *key;
+ * GtkSourceView *view;
+ * GtkIMContext *im_context;
  *
- *  view = gtk_source_view_new ();
- *  im_context = gtk_source_vim_im_context_new ();
- *  key = gtk_event_controller_key_new ();
+ * view = gtk_source_view_new ();
+ * im_context = gtk_source_vim_im_context_new ();
+ * key = gtk_event_controller_key_new ();
  *
- *  gtk_event_controller_key_set_im_context (GTK_EVENT_CONTROLLER_KEY (key), im_context);
- *  gtk_event_controller_set_propagation_phase (key, GTK_PHASE_CAPTURE);
- *  gtk_widget_add_controller (GTK_WIDGET (view), key);
+ * gtk_event_controller_key_set_im_context (GTK_EVENT_CONTROLLER_KEY (key), im_context);
+ * gtk_event_controller_set_propagation_phase (key, GTK_PHASE_CAPTURE);
+ * gtk_widget_add_controller (GTK_WIDGET (view), key);
  *
- *  g_object_bind_property (im_context, "command-bar-text", command_bar_label, "label", 0);
- *  g_object_bind_property (im_context, "command-text", command_label, "label", 0);
- * </programlisting></informalexample>
+ * g_object_bind_property (im_context, "command-bar-text", command_bar_label, "label", 0);
+ * g_object_bind_property (im_context, "command-text", command_label, "label", 0);
+ * ```
  *
  * Since: 5.4
  */
@@ -411,8 +411,8 @@ gtk_source_vim_im_context_class_init (GtkSourceVimIMContextClass *klass)
 	 * @self: a #GtkSourceVimIMContext
 	 * @command: the command to execute
 	 *
-	 * The "execute-command" signal is emitted when a command should be
-	 * executed. This might be something like ":wq" or ":e &lt;path&gt;".
+	 * The signal is emitted when a command should be
+	 * executed. This might be something like `:wq` or `:e <path>`.
 	 *
 	 * If the application chooses to implement this, it should return
 	 * %TRUE from this signal to indicate the command has been handled.
@@ -461,11 +461,10 @@ gtk_source_vim_im_context_class_init (GtkSourceVimIMContextClass *klass)
 	 * @view: the #GtkSourceView
 	 * @path: (nullable): the path if provided, otherwise %NULL
 	 *
-	 * Requests the application save the file. If a filename was provided,
-	 * it will be available to the signal handler as @path.
-	 *
-	 * This may be executed in relation to the user running the
-	 * `:write` or `:w` commands.
+	 * Requests the application save the file. 
+	 * 
+	 * If a filename was provided, it will be available to the signal handler as @path.
+	 * This may be executed in relation to the user running the `:write` or `:w` commands.
 	 *
 	 * Since: 5.4
 	 */
@@ -487,8 +486,9 @@ gtk_source_vim_im_context_class_init (GtkSourceVimIMContextClass *klass)
 	 * @view: the #GtkSourceView
 	 * @path: (nullable): the path if provided, otherwise %NULL
 	 *
-	 * Requests the application open the file found at @path. If @path is
-	 * %NULL, then the current file should be reloaded from storage.
+	 * Requests the application open the file found at @path. 
+	 * 
+	 * If @path is %NULL, then the current file should be reloaded from storage.
 	 *
 	 * This may be executed in relation to the user running the
 	 * `:edit` or `:e` commands.
@@ -582,7 +582,7 @@ gtk_source_vim_im_context_get_command_bar_text (GtkSourceVimIMContext *self)
  *
  * Executes @command as if it was typed into the command bar by the
  * user except that this does not emit the
- * #GtkSourceVimIMContext::execute-command signal.
+ * [signal@VimIMContext::execute-command] signal.
  *
  * Since: 5.4
  */

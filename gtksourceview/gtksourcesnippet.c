@@ -32,13 +32,13 @@
  * 
  * Quick insertion code snippets.
  *
- * The #GtkSourceSnippet represents a series of chunks that can quickly be
- * inserted into the #GtkSourceView.
+ * The `GtkSourceSnippet` represents a series of chunks that can quickly be
+ * inserted into the [class@View].
  *
  * Snippets are defined in XML files which are loaded by the
- * #GtkSourceSnippetManager. Alternatively, applications can create snippets
- * on demand and insert them into the #GtkSourceView using
- * gtk_source_view_push_snippet().
+ * [class@SnippetManager]. Alternatively, applications can create snippets
+ * on demand and insert them into the [class@View] using
+ * [method@View.push_snippet].
  *
  * Snippet chunks can reference other snippet chunks as well as post-process
  * the values from other chunks such as capitalization.
@@ -165,8 +165,9 @@ gtk_source_snippet_copy (GtkSourceSnippet *snippet)
  * gtk_source_snippet_get_focus_position:
  * @snippet: a #GtkSourceSnippet
  *
- * Gets the current focus for the snippet. This is changed
- * as the user tabs through focus locations.
+ * Gets the current focus for the snippet. 
+ * 
+ * This is changed as the user tabs through focus locations.
  *
  * Returns: The focus position, or -1 if unset.
  */
@@ -221,8 +222,9 @@ gtk_source_snippet_get_nth_chunk (GtkSourceSnippet *snippet,
  * gtk_source_snippet_get_trigger:
  * @snippet: a #GtkSourceSnippet
  *
- * Gets the trigger for the source snippet. A trigger is
- * a word that can be expanded into the full snippet when
+ * Gets the trigger for the source snippet.
+ * 
+ * A trigger is a word that can be expanded into the full snippet when
  * the user presses Tab.
  *
  * Returns: (nullable): A string or %NULL
@@ -264,7 +266,7 @@ gtk_source_snippet_set_trigger (GtkSourceSnippet *snippet,
  * Gets the language-id used for the source snippet.
  *
  * The language identifier should be one that matches a
- * source language #GtkSourceLanguage:id property.
+ * source language [property@Language:id] property.
  *
  * Returns: the language identifier
  */
@@ -283,7 +285,7 @@ gtk_source_snippet_get_language_id (GtkSourceSnippet *snippet)
  *
  * Sets the language identifier for the snippet.
  *
- * This should match the #GtkSourceLanguage:id identifier.
+ * This should match the [property@Language:id] identifier.
  */
 void
 gtk_source_snippet_set_language_id (GtkSourceSnippet *snippet,

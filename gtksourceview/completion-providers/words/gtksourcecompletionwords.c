@@ -22,11 +22,11 @@
 /**
  * GtkSourceCompletionWords:
  *
- * A GtkSourceCompletionProvider for the completion of words.
+ * A [iface@CompletionProvider] for the completion of words.
  *
- * The #GtkSourceCompletionWords is an example of an implementation of
- * the #GtkSourceCompletionProvider interface. The proposals are words
- * appearing in the registered #GtkTextBuffer<!-- -->s.
+ * The `GtkSourceCompletionWords` is an example of an implementation of
+ * the [iface@CompletionProvider] interface. The proposals are words
+ * appearing in the registered [class@Gtk.TextBuffer]s.
  */
 
 #include "config.h"

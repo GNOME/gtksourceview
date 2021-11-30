@@ -28,9 +28,7 @@
 /**
  * GtkSourceStyleSchemeManager:
  *
- * Provides access to GtkSourceStyleSchemes.
- *
- * Object which provides access to #GtkSourceStyleScheme<!-- -->s.
+ * Provides access to [class@StyleScheme]s.
  */
 
 #define SCHEME_FILE_SUFFIX ".xml"
@@ -176,8 +174,10 @@ gtk_source_style_scheme_manager_init (GtkSourceStyleSchemeManager *mgr)
 /**
  * gtk_source_style_scheme_manager_new:
  *
- * Creates a new style manager. If you do not need more than one style
- * manager then use gtk_source_style_scheme_manager_get_default() instead.
+ * Creates a new style manager.
+ *
+ * If you do not need more than one style manager 
+ * then use [func@StyleSchemeManager.get_default] instead.
  *
  * Returns: a new #GtkSourceStyleSchemeManager.
  */
@@ -438,7 +438,8 @@ gtk_source_style_scheme_manager_set_search_path (GtkSourceStyleSchemeManager *ma
  *
  * Appends @path to the list of directories where the @manager looks for
  * style scheme files.
- * See gtk_source_style_scheme_manager_set_search_path() for details.
+ *
+ * See [method@StyleSchemeManager.set_search_path] for details.
  */
 void
 gtk_source_style_scheme_manager_append_search_path (GtkSourceStyleSchemeManager *manager,
@@ -473,7 +474,8 @@ gtk_source_style_scheme_manager_append_search_path (GtkSourceStyleSchemeManager 
  *
  * Prepends @path to the list of directories where the @manager looks
  * for style scheme files.
- * See gtk_source_style_scheme_manager_set_search_path() for details.
+ *
+ * See [method@StyleSchemeManager.set_search_path] for details.
  */
 void
 gtk_source_style_scheme_manager_prepend_search_path (GtkSourceStyleSchemeManager *manager,
@@ -507,7 +509,8 @@ gtk_source_style_scheme_manager_prepend_search_path (GtkSourceStyleSchemeManager
  * @manager: a #GtkSourceStyleSchemeManager.
  *
  * Returns the current search path for the @manager.
- * See gtk_source_style_scheme_manager_set_search_path() for details.
+ *
+ * See [method@StyleSchemeManager.set_search_path] for details.
  *
  * Returns: (array zero-terminated=1) (transfer none): a %NULL-terminated array
  * of string containing the search path.
@@ -528,9 +531,10 @@ gtk_source_style_scheme_manager_get_search_path (GtkSourceStyleSchemeManager *ma
  * gtk_source_style_scheme_manager_force_rescan:
  * @manager: a #GtkSourceStyleSchemeManager.
  *
- * Mark any currently cached information about the available style scehems
- * as invalid. All the available style schemes will be reloaded next time
- * the @manager is accessed.
+ * Mark any currently cached information about the available style schems
+ * as invalid. 
+ * 
+ * All the available style schemes will be reloaded next time the @manager is accessed.
  */
 void
 gtk_source_style_scheme_manager_force_rescan (GtkSourceStyleSchemeManager *manager)
