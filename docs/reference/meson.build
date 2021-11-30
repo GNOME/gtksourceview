@@ -62,7 +62,6 @@ reference_private_h = [
 ]
 
 reference_content_files = files([
-  'lang-tutorial.xml',
 ])
 
 reference_sources = [
