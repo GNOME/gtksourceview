@@ -51,3 +51,13 @@ search_index = true
 name = "basic"
 show_index_summary = true
 show_class_hierarchy = true
+
+[extra]
+# The same order will be used when generating the index
+content_files = [
+  "porting-guide-3-to-4.md",
+]
+
+content_images = [
+  "logo.svg",
+]
