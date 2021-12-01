@@ -29,6 +29,7 @@ struct _GtkSourceGutterRendererLines
 	GtkSourceGutterRendererText parent_instance;
 	gint num_line_digits;
 	gint prev_line_num;
+	guint highlight_current_line : 1;
 	guint cursor_visible : 1;
 };
 
@@ -102,7 +103,7 @@ static void
 on_buffer_cursor_moved (GtkSourceBuffer              *buffer,
                         GtkSourceGutterRendererLines *renderer)
 {
-	if (renderer->cursor_visible)
+	if (renderer->cursor_visible || renderer->highlight_current_line)
 	{
 		/* Redraw if the current-line needs updating */
 		gtk_widget_queue_draw (GTK_WIDGET (renderer));
@@ -164,11 +165,12 @@ gtk_source_gutter_renderer_lines_css_changed (GtkWidget         *widget,
 }
 
 static void
-on_view_notify_cursor_visible (GtkTextView                  *view,
-                               GParamSpec                   *pspec,
-                               GtkSourceGutterRendererLines *renderer)
+on_view_notify (GtkSourceView                *view,
+                GParamSpec                   *pspec,
+                GtkSourceGutterRendererLines *renderer)
 {
-	renderer->cursor_visible = gtk_text_view_get_cursor_visible (view);
+	renderer->cursor_visible = gtk_text_view_get_cursor_visible (GTK_TEXT_VIEW (view));
+	renderer->highlight_current_line = gtk_source_view_get_highlight_current_line (view);
 }
 
 static void
@@ -179,9 +181,7 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 
 	if (old_view != NULL)
 	{
-		g_signal_handlers_disconnect_by_func (old_view,
-						      on_view_notify_cursor_visible,
-						      renderer);
+		g_signal_handlers_disconnect_by_func (old_view, on_view_notify, renderer);
 	}
 
 	new_view = gtk_source_gutter_renderer_get_view (renderer);
@@ -189,12 +189,17 @@ gutter_renderer_change_view (GtkSourceGutterRenderer *renderer,
 	if (new_view != NULL)
 	{
 		g_signal_connect_object (new_view,
-					 "notify::cursor-visible",
-					 G_CALLBACK (on_view_notify_cursor_visible),
-					 renderer,
-					 0);
+		                         "notify::cursor-visible",
+		                         G_CALLBACK (on_view_notify),
+		                         renderer,
+		                         0);
+		g_signal_connect_object (new_view,
+		                         "notify::highlight-current-line",
+		                         G_CALLBACK (on_view_notify),
+		                         renderer,
+		                         0);
 
-		GTK_SOURCE_GUTTER_RENDERER_LINES (renderer)->cursor_visible = gtk_text_view_get_cursor_visible (GTK_TEXT_VIEW (new_view));
+		on_view_notify (new_view, NULL, GTK_SOURCE_GUTTER_RENDERER_LINES (renderer));
 	}
 
 	GTK_SOURCE_GUTTER_RENDERER_CLASS (_gtk_source_gutter_renderer_lines_parent_class)->change_view (renderer, old_view);
