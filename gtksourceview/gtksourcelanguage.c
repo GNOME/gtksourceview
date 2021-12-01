@@ -43,7 +43,7 @@
  * Represents a syntax highlighted language.
  *
  * A `GtkSourceLanguage` represents a programming or markup language, affecting
- * syntax highlighting and [context classes][context-classes].
+ * syntax highlighting and [context classes](./class.Buffer.html#context-classes).
  *
  * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
  * [method@Buffer.set_language] to apply it to a [class@Buffer].

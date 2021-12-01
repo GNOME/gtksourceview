@@ -383,7 +383,7 @@ gtk_source_buffer_class_init (GtkSourceBufferClass *klass)
 	 * @end: the end of the updated region
 	 *
 	 * The ::highlight-updated signal is emitted when the syntax
-	 * highlighting and [context classes][context-classes] are updated in a
+	 * highlighting and [context classes](./class.Buffer.html#context-classes) are updated in a
 	 * certain region of the @buffer.
 	 */
 	buffer_signals[HIGHLIGHT_UPDATED] =
@@ -1461,7 +1461,7 @@ gtk_source_buffer_set_highlight_syntax (GtkSourceBuffer *buffer,
  * Associates a [class@Language] with the buffer.
  *
  * Note that a [class@Language] affects not only the syntax highlighting, but
- * also the [context classes][context-classes]. If you want to disable just the
+ * also the [context classes](./class.Buffer.html#context-classes). If you want to disable just the
  * syntax highlighting, see [method@Buffer.set_highlight_syntax].
  *
  * The buffer holds a reference to @language.

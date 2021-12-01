@@ -43,7 +43,7 @@
  * bracket matching, etc.
  *
  * Style schemes are stored in XML files. The format of a scheme file is
- * documented in the [style scheme reference][style-reference].
+ * documented in the [style scheme reference](./style-reference.html).
  *
  * The two style schemes with IDs "classic" and "tango" follow more closely the
  * GTK theme (for example for the background color).
