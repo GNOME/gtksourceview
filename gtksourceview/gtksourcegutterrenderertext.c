@@ -22,13 +22,12 @@
 #include "gtksourcegutterrenderertext.h"
 
 /**
- * SECTION:gutterrenderertext
- * @Short_description: Renders text in the gutter
- * @Title: GtkSourceGutterRendererText
- * @See_also: #GtkSourceGutterRenderer, #GtkSourceGutter
+ * GtkSourceGutterRendererText:
+ * 
+ * Renders text in the gutter.
  *
- * A #GtkSourceGutterRendererText can be used to render text in a cell of
- * #GtkSourceGutter.
+ * A `GtkSourceGutterRendererText` can be used to render text in a cell of
+ * [class@Gutter].
  */
 
 typedef struct

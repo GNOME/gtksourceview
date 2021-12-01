@@ -32,7 +32,7 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_COMPLETION_SNIPPETS (gtk_source_completion_snippets_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (GtkSourceCompletionSnippets, gtk_source_completion_snippets, GTK_SOURCE, COMPLETION_SNIPPETS, GObject)
 
 struct _GtkSourceCompletionSnippetsClass
@@ -43,7 +43,7 @@ struct _GtkSourceCompletionSnippetsClass
 	gpointer _reserved[10];
 };
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompletionSnippets *gtk_source_completion_snippets_new (void);
 
 G_END_DECLS

@@ -25,19 +25,17 @@
 #include "quarkset-inline.h"
 
 /**
- * SECTION:gutterlines
- * @title: GtkSourceGutterLines
- * @short_description: Collected information about visible lines
+ * GtkSourceGutterLines: 
  *
- * The #GtkSourceGutterLines object is used to collect information about
+ * Collected information about visible lines.
+ *
+ * The `GtkSourceGutterLines` object is used to collect information about
  * visible lines.
  *
- * Use this from your #GtkSourceGutterRenderer::query-data to collect the
+ * Use this from your [signal@GutterRenderer::query-data] to collect the
  * necessary information on visible lines. Doing so reduces the number of
  * passes through the text btree allowing GtkSourceView to reach more
  * frames-per-second while performing kinetic scrolling.
- *
- * Since: 5.0
  */
 
 struct _GtkSourceGutterLines
@@ -275,12 +273,10 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
  * Adds the class denoted by @qname to @line.
  *
  * You may check if a line has @qname by calling
- * gtk_source_gutter_lines_has_qclass().
+ * [method@GutterLines.has_qclass].
  *
  * You can remove @qname by calling
- * gtk_source_gutter_lines_remove_qclass().
- *
- * Since: 5.0
+ * [method@GutterLines.remove_qclass].
  */
 void
 gtk_source_gutter_lines_add_qclass (GtkSourceGutterLines *lines,
@@ -307,12 +303,10 @@ gtk_source_gutter_lines_add_qclass (GtkSourceGutterLines *lines,
  *
  * Adds the class @name to @line.
  *
- * @name will be converted to a #GQuark as part of this process. A
+ * @name will be converted to a [class@GLib.Quark] as part of this process. A
  * faster version of this function is available via
- * gtk_source_gutter_lines_add_qclass() for situations where the #GQuark is
+ * [method@GutterLines.add_qclass] for situations where the [class@GLib.Quark] is
  * known ahead of time.
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_lines_add_class (GtkSourceGutterLines *lines,
@@ -335,10 +329,8 @@ gtk_source_gutter_lines_add_class (GtkSourceGutterLines *lines,
  * Removes the class matching @name from @line.
  *
  * A faster version of this function is available via
- * gtk_source_gutter_lines_remove_qclass() for situations where the
+ * [method@GutterLines.remove_qclass] for situations where the
  * #GQuark is known ahead of time.
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_lines_remove_class (GtkSourceGutterLines *lines,
@@ -363,10 +355,8 @@ gtk_source_gutter_lines_remove_class (GtkSourceGutterLines *lines,
  * @line: a line number starting from zero
  * @qname: a #GQuark to remove from @line
  *
- * Reverses a call to gtk_source_gutter_lines_add_qclass() by removing
- * the #GQuark matching @qname.
- *
- * Since: 5.0
+ * Reverses a call to [method@GutterLines.add_qclass] by removing
+ * the [class@GLib.Quark] matching @qname.
  */
 void
 gtk_source_gutter_lines_remove_qclass (GtkSourceGutterLines *lines,
@@ -391,16 +381,14 @@ gtk_source_gutter_lines_remove_qclass (GtkSourceGutterLines *lines,
  * @line: a line number starting from zero
  * @name: a class name that may be converted, to a #GQuark
  *
- * Checks to see if gtk_source_gutter_lines_add_class() was called with
+ * Checks to see if [method@GutterLines.add_class] was called with
  * the @name for @line.
  *
  * A faster version of this function is provided via
- * gtk_source_gutter_lines_has_qclass() for situations where the quark
+ * [method@GutterLines.has_qclass] for situations where the quark
  * is known ahead of time.
  *
  * Returns: %TRUE if @line contains @name
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_gutter_lines_has_class (GtkSourceGutterLines *lines,
@@ -427,12 +415,10 @@ gtk_source_gutter_lines_has_class (GtkSourceGutterLines *lines,
  * @line: a line number starting from zero
  * @qname: a #GQuark containing the class name
  *
- * Checks to see if gtk_source_gutter_lines_add_qclass() was called with
+ * Checks to see if [method@GutterLines.add_qclass] was called with
  * the quark denoted by @qname for @line.
  *
  * Returns: %TRUE if @line contains @qname
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_gutter_lines_has_qclass (GtkSourceGutterLines *lines,
@@ -460,8 +446,6 @@ gtk_source_gutter_lines_has_qclass (GtkSourceGutterLines *lines,
  * Checks to see if @line contains the insertion cursor.
  *
  * Returns: %TRUE if the insertion cursor is on @line
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_gutter_lines_is_cursor (GtkSourceGutterLines *lines,
@@ -480,8 +464,6 @@ gtk_source_gutter_lines_is_cursor (GtkSourceGutterLines *lines,
  * the mouse pointer is over the line within the gutter.
  *
  * Returns: %TRUE if the line is prelit
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_gutter_lines_is_prelit (GtkSourceGutterLines *lines,
@@ -499,8 +481,6 @@ gtk_source_gutter_lines_is_prelit (GtkSourceGutterLines *lines,
  * @line in some way.
  *
  * Returns: %TRUE if the line contains a selection
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_gutter_lines_is_selected (GtkSourceGutterLines *lines,
@@ -517,8 +497,6 @@ gtk_source_gutter_lines_is_selected (GtkSourceGutterLines *lines,
  * user visible.
  *
  * Returns: a line number starting from 0
- *
- * Since: 5.0
  */
 guint
 gtk_source_gutter_lines_get_first (GtkSourceGutterLines *lines)
@@ -536,8 +514,6 @@ gtk_source_gutter_lines_get_first (GtkSourceGutterLines *lines)
  * user visible.
  *
  * Returns: a line number starting from 0
- *
- * Since: 5.0
  */
 guint
 gtk_source_gutter_lines_get_last (GtkSourceGutterLines *lines)
@@ -554,8 +530,6 @@ gtk_source_gutter_lines_get_last (GtkSourceGutterLines *lines)
  * @line: the line number
  *
  * Gets a #GtkTextIter for the current buffer at @line
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_lines_get_iter_at_line (GtkSourceGutterLines *lines,
@@ -575,11 +549,9 @@ gtk_source_gutter_lines_get_iter_at_line (GtkSourceGutterLines *lines,
  * gtk_source_gutter_lines_get_view:
  * @lines: a #GtkSourceGutterLines
  *
- * Gets the #GtkTextView that the #GtkSourceGutterLines represents.
+ * Gets the [class@Gtk.TextView] that the `GtkSourceGutterLines` represents.
  *
  * Returns: (transfer none) (not nullable): a #GtkTextView
- *
- * Since: 5.0
  */
 GtkTextView *
 gtk_source_gutter_lines_get_view (GtkSourceGutterLines *lines)
@@ -593,11 +565,9 @@ gtk_source_gutter_lines_get_view (GtkSourceGutterLines *lines)
  * gtk_source_gutter_lines_get_buffer:
  * @lines: a #GtkSourceGutterLines
  *
- * Gets the #GtkTextBuffer that the #GtkSourceGutterLines represents.
+ * Gets the [class@Gtk.TextBuffer] that the `GtkSourceGutterLines` represents.
  *
  * Returns: (transfer none) (not nullable): a #GtkTextBuffer
- *
- * Since: 5.0
  */
 GtkTextBuffer *
 gtk_source_gutter_lines_get_buffer (GtkSourceGutterLines *lines)
@@ -618,8 +588,6 @@ gtk_source_gutter_lines_get_buffer (GtkSourceGutterLines *lines)
  * Gets the Y range for a line based on @mode.
  *
  * The value for @y is relative to the renderers widget coordinates.
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_lines_get_line_yrange (GtkSourceGutterLines                 *lines,

@@ -23,13 +23,12 @@
 #include "gtksourcepixbufhelper-private.h"
 
 /**
- * SECTION:gutterrendererpixbuf
- * @Short_description: Renders a pixbuf in the gutter
- * @Title: GtkSourceGutterRendererPixbuf
- * @See_also: #GtkSourceGutterRenderer, #GtkSourceGutter
+ * GtkSourceGutterRendererPixbuf:
  *
- * A #GtkSourceGutterRendererPixbuf can be used to render an image in a cell of
- * #GtkSourceGutter.
+ * Renders a pixbuf in the gutter.
+ *
+ * A `GtkSourceGutterRendererPixbuf` can be used to render an image in a cell of
+ * [class@Gutter].
  */
 
 typedef struct
@@ -413,12 +412,10 @@ gtk_source_gutter_renderer_pixbuf_set_paintable (GtkSourceGutterRendererPixbuf *
  * gtk_source_gutter_renderer_pixbuf_get_paintable:
  * @renderer: a #GtkSourceGutterRendererPixbuf
  *
- * Gets a #GdkPaintable that was set with
- * gtk_source_gutter_renderer_pixbuf_set_paintable()
+ * Gets a [class@Gdk.Paintable] that was set with
+ * [method@GutterRendererPixbuf.set_paintable]
  *
  * Returns: (transfer none) (nullable): a #GdkPaintable or %NULL
- *
- * Since: 5.0
  */
 GdkPaintable *
 gtk_source_gutter_renderer_pixbuf_get_paintable (GtkSourceGutterRendererPixbuf *renderer)
@@ -438,8 +435,6 @@ gtk_source_gutter_renderer_pixbuf_get_paintable (GtkSourceGutterRendererPixbuf *
  * Allows overlaying a paintable on top of any other image that
  * has been set for the pixbuf. This will be applied when the
  * widget is next snapshot.
- *
- * Since: 5.0
  */
 void
 gtk_source_gutter_renderer_pixbuf_overlay_paintable (GtkSourceGutterRendererPixbuf *renderer,

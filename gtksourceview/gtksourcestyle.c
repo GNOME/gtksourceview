@@ -23,12 +23,11 @@
 #include "gtksourcestyle-private.h"
 
 /**
- * SECTION:style
- * @Short_description: Represents a style
- * @Title: GtkSourceStyle
- * @See_also: #GtkSourceStyleScheme, #GtkSourceStyleSchemeManager
+ * GtkSourceStyle:
+ * 
+ * Represents a style.
  *
- * The #GtkSourceStyle structure is used to describe text attributes
+ * The `GtkSourceStyle` structure is used to describe text attributes
  * which are set when given style is used.
  */
 
@@ -486,8 +485,6 @@ gtk_source_style_get_property (GObject    *object,
  *
  * Returns: (transfer full): copy of @style, call g_object_unref()
  * when you are done with it.
- *
- * Since: 2.0
  */
 GtkSourceStyle *
 gtk_source_style_copy (const GtkSourceStyle *style)
@@ -517,15 +514,13 @@ gtk_source_style_copy (const GtkSourceStyle *style)
  * @style: (nullable): a #GtkSourceStyle to apply, or %NULL.
  * @tag: a #GtkTextTag to apply styles to.
  *
- * This function modifies the #GtkTextTag properties that are related to the
- * #GtkSourceStyle properties. Other #GtkTextTag properties are left untouched.
+ * This function modifies the [class@Gtk.TextTag] properties that are related to the
+ * #GtkSourceStyle properties. Other [class@Gtk.TextTag] properties are left untouched.
  *
  * If @style is non-%NULL, applies @style to @tag.
  *
- * If @style is %NULL, the related *-set properties of #GtkTextTag are set to
+ * If @style is %NULL, the related *-set properties of [class@Gtk.TextTag] are set to
  * %FALSE.
- *
- * Since: 3.22
  */
 void
 gtk_source_style_apply (const GtkSourceStyle *style,

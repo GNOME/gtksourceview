@@ -28,23 +28,20 @@
 #include "gtksourcesnippetcontext-private.h"
 
 /**
- * SECTION:snippet
- * @title: GtkSourceSnippet
- * @short_description: Quick insertion code snippets
- * @see_also: #GtkSourceSnippetChunk, #GtkSourceSnippetContext, #GtkSourceSnippetManager
+ * GtkSourceSnippet:
+ * 
+ * Quick insertion code snippets.
  *
- * The #GtkSourceSnippet represents a series of chunks that can quickly be
- * inserted into the #GtkSourceView.
+ * The `GtkSourceSnippet` represents a series of chunks that can quickly be
+ * inserted into the [class@View].
  *
  * Snippets are defined in XML files which are loaded by the
- * #GtkSourceSnippetManager. Alternatively, applications can create snippets
- * on demand and insert them into the #GtkSourceView using
- * gtk_source_view_push_snippet().
+ * [class@SnippetManager]. Alternatively, applications can create snippets
+ * on demand and insert them into the [class@View] using
+ * [method@View.push_snippet].
  *
  * Snippet chunks can reference other snippet chunks as well as post-process
  * the values from other chunks such as capitalization.
- *
- * Since: 5.0
  */
 
 G_DEFINE_TYPE (GtkSourceSnippet, gtk_source_snippet, G_TYPE_OBJECT)
@@ -121,8 +118,6 @@ gtk_source_snippet_restore_insert (GtkSourceSnippet *snippet)
  * Creates a new #GtkSourceSnippet
  *
  * Returns: (transfer full): A new #GtkSourceSnippet
- *
- * Since: 5.0
  */
 GtkSourceSnippet *
 gtk_source_snippet_new (const gchar *trigger,
@@ -141,8 +136,6 @@ gtk_source_snippet_new (const gchar *trigger,
  * Does a deep copy of the snippet.
  *
  * Returns: (transfer full): A new #GtkSourceSnippet
- *
- * Since: 5.0
  */
 GtkSourceSnippet *
 gtk_source_snippet_copy (GtkSourceSnippet *snippet)
@@ -172,12 +165,11 @@ gtk_source_snippet_copy (GtkSourceSnippet *snippet)
  * gtk_source_snippet_get_focus_position:
  * @snippet: a #GtkSourceSnippet
  *
- * Gets the current focus for the snippet. This is changed
- * as the user tabs through focus locations.
+ * Gets the current focus for the snippet. 
+ * 
+ * This is changed as the user tabs through focus locations.
  *
  * Returns: The focus position, or -1 if unset.
- *
- * Since: 5.0
  */
 gint
 gtk_source_snippet_get_focus_position (GtkSourceSnippet *snippet)
@@ -196,8 +188,6 @@ gtk_source_snippet_get_focus_position (GtkSourceSnippet *snippet)
  * Note that not all chunks are editable.
  *
  * Returns: The number of chunks.
- *
- * Since: 5.0
  */
 guint
 gtk_source_snippet_get_n_chunks (GtkSourceSnippet *snippet)
@@ -215,8 +205,6 @@ gtk_source_snippet_get_n_chunks (GtkSourceSnippet *snippet)
  * Gets the chunk at @nth.
  *
  * Returns: (transfer none): an #GtkSourceSnippetChunk
- *
- * Since: 5.0
  */
 GtkSourceSnippetChunk *
 gtk_source_snippet_get_nth_chunk (GtkSourceSnippet *snippet,
@@ -234,13 +222,12 @@ gtk_source_snippet_get_nth_chunk (GtkSourceSnippet *snippet,
  * gtk_source_snippet_get_trigger:
  * @snippet: a #GtkSourceSnippet
  *
- * Gets the trigger for the source snippet. A trigger is
- * a word that can be expanded into the full snippet when
+ * Gets the trigger for the source snippet.
+ * 
+ * A trigger is a word that can be expanded into the full snippet when
  * the user presses Tab.
  *
  * Returns: (nullable): A string or %NULL
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_get_trigger (GtkSourceSnippet *snippet)
@@ -256,8 +243,6 @@ gtk_source_snippet_get_trigger (GtkSourceSnippet *snippet)
  * @trigger: the trigger word
  *
  * Sets the trigger for the snippet.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_set_trigger (GtkSourceSnippet *snippet,
@@ -281,11 +266,9 @@ gtk_source_snippet_set_trigger (GtkSourceSnippet *snippet,
  * Gets the language-id used for the source snippet.
  *
  * The language identifier should be one that matches a
- * source language #GtkSourceLanguage:id property.
+ * source language [property@Language:id] property.
  *
  * Returns: the language identifier
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_get_language_id (GtkSourceSnippet *snippet)
@@ -302,9 +285,7 @@ gtk_source_snippet_get_language_id (GtkSourceSnippet *snippet)
  *
  * Sets the language identifier for the snippet.
  *
- * This should match the #GtkSourceLanguage:id identifier.
- *
- * Since: 5.0
+ * This should match the [property@Language:id] identifier.
  */
 void
 gtk_source_snippet_set_language_id (GtkSourceSnippet *snippet,
@@ -327,8 +308,6 @@ gtk_source_snippet_set_language_id (GtkSourceSnippet *snippet,
  * @snippet: a #GtkSourceSnippet
  *
  * Gets the description for the snippet.
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_get_description (GtkSourceSnippet *snippet)
@@ -344,8 +323,6 @@ gtk_source_snippet_get_description (GtkSourceSnippet *snippet)
  * @description: the snippet description
  *
  * Sets the description for the snippet.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_set_description (GtkSourceSnippet *snippet,
@@ -367,8 +344,6 @@ gtk_source_snippet_set_description (GtkSourceSnippet *snippet,
  * @snippet: a #GtkSourceSnippet
  *
  * Gets the name for the snippet.
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_get_name (GtkSourceSnippet *snippet)
@@ -384,8 +359,6 @@ gtk_source_snippet_get_name (GtkSourceSnippet *snippet)
  * @name: the snippet name
  *
  * Sets the name for the snippet.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_set_name (GtkSourceSnippet *snippet,
@@ -866,8 +839,6 @@ _gtk_source_snippet_finish (GtkSourceSnippet *snippet)
  * Appends @chunk to the @snippet.
  *
  * This may only be called before the snippet has been expanded.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_add_chunk (GtkSourceSnippet      *snippet,
@@ -1203,8 +1174,6 @@ _gtk_source_snippet_count_affected_chunks (GtkSourceSnippet  *snippet,
  * Gets the context used for expanding the snippet.
  *
  * Returns: (nullable) (transfer none): an #GtkSourceSnippetContext
- *
- * Since: 5.0
  */
 GtkSourceSnippetContext *
 gtk_source_snippet_get_context (GtkSourceSnippet *snippet)

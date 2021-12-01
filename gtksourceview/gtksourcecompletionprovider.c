@@ -27,17 +27,15 @@
 #include "gtksourcecompletionprovider.h"
 
 /**
- * SECTION:completionprovider
- * @title: GtkSourceCompletionProvider
- * @short_description: Completion provider interface
+ * GtkSourceCompletionProvider:
  *
- * You must implement this interface to provide proposals to #GtkSourceCompletion
+ * Completion provider interface.
+ *
+ * You must implement this interface to provide proposals to [class@Completion].
  *
  * In most cases, implementations of this interface will want to use
- * #GtkSourceCompletion.populate_async to asynchronously populate the results
+ * [vfunc@CompletionProvider.populate_async] to asynchronously populate the results
  * to avoid blocking the main loop.
- *
- * Since: 5.0
  */
 
 G_DEFINE_INTERFACE (GtkSourceCompletionProvider, gtk_source_completion_provider, G_TYPE_OBJECT)
@@ -134,8 +132,6 @@ gtk_source_completion_provider_default_init (GtkSourceCompletionProviderInterfac
  * at some point in the future when non-%NULL.
  *
  * Returns: (transfer full) (nullable): a title for the provider or %NULL
- *
- * Since: 5.0
  */
 char *
 gtk_source_completion_provider_get_title (GtkSourceCompletionProvider *self)
@@ -160,8 +156,6 @@ gtk_source_completion_provider_get_title (GtkSourceCompletionProvider *self)
  * above lower priority providers.
  *
  * Lower value indicates higher priority.
- *
- * Since: 5.0
  */
 int
 gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *self,
@@ -187,8 +181,6 @@ gtk_source_completion_provider_get_priority (GtkSourceCompletionProvider *self,
  *
  * An example would be period '.' which might indicate that the user wants
  * to complete method or field names of an object.
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_completion_provider_is_trigger (GtkSourceCompletionProvider *self,
@@ -209,7 +201,7 @@ gtk_source_completion_provider_is_trigger (GtkSourceCompletionProvider *self,
  * @self: a #GtkSourceCompletionProvider
  * @context: a #GtkSourceCompletionContext
  * @proposal: a #GtkSourceCompletionProposal
- * @keyval: a keyval such as %GDK_KEY_period
+ * @keyval: a keyval such as [const@Gdk.KEY_period]
  * @state: a #GdkModifierType or 0
  *
  * This function is used to determine if a key typed by the user should
@@ -218,8 +210,6 @@ gtk_source_completion_provider_is_trigger (GtkSourceCompletionProvider *self,
  * This is useful when using languages where convention may lead to less
  * typing by the user. One example may be the use of "." or "-" to expand
  * a field access in the C programming language.
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_completion_provider_key_activates (GtkSourceCompletionProvider *self,
@@ -249,12 +239,10 @@ gtk_source_completion_provider_key_activates (GtkSourceCompletionProvider *self,
  * Asynchronously requests that the provider populates the completion
  * results for @context.
  *
- * For providers that would like to populate a #GListModel while those
+ * For providers that would like to populate a [iface@Gio.ListModel] while those
  * results are displayed to the user,
- * gtk_source_completion_context_set_proposals_for_provider() may be used
+ * [method@CompletionContext.set_proposals_for_provider] may be used
  * to reduce latency until the user sees results.
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_provider_populate_async (GtkSourceCompletionProvider *self,
@@ -279,8 +267,6 @@ gtk_source_completion_provider_populate_async (GtkSourceCompletionProvider *self
  * Completes an asynchronous operation to populate a completion provider.
  *
  * Returns: (transfer full): a #GListModel of #GtkSourceCompletionProposal
- *
- * Since: 5.0
  */
 GListModel *
 gtk_source_completion_provider_populate_finish (GtkSourceCompletionProvider  *self,
@@ -299,13 +285,11 @@ gtk_source_completion_provider_populate_finish (GtkSourceCompletionProvider  *se
  * @model: a #GListModel
  *
  * This function can be used to filter results previously provided to
- * the #GtkSourceCompletionContext by the #GtkSourceCompletionProvider.
+ * the [class@CompletionContext] by the #GtkSourceCompletionProvider.
  *
- * This can happen as the user types additionl text onto the word so
+ * This can happen as the user types additional text onto the word so
  * that previously matched items may be removed from the list instead of
- * generating new #GListModel of results.
- *
- * Since: 5.0
+ * generating new [iface@Gio.ListModel] of results.
  */
 void
 gtk_source_completion_provider_refilter (GtkSourceCompletionProvider *self,
@@ -328,14 +312,13 @@ gtk_source_completion_provider_refilter (GtkSourceCompletionProvider *self,
  * @cell: a #GtkSourceCompletionCell
  *
  * This function requests that the #GtkSourceCompletionProvider prepares
- * @cell to display the contents of @proposal. Based on @cells column
- * type, you may want to display different information.
+ * @cell to display the contents of @proposal.
+ * 
+ * Based on @cells column type, you may want to display different information.
  *
  * This allows for columns of information among completion proposals
  * resulting in better alignment of similar content (icons, return types,
  * method names, and parameter lists).
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_provider_display (GtkSourceCompletionProvider *self,
@@ -365,8 +348,7 @@ gtk_source_completion_provider_display (GtkSourceCompletionProvider *self,
  * provider. Many providers may choose to insert a #GtkSourceSnippet with
  * edit points the user may cycle through.
  *
- * See also: #GtkSourceSnippet, #GtkSourceSnippetChunk, gtk_source_view_push_snippet()
- * Since: 5.0
+ * See also: [class@Snippet], [class@SnippetChunk], [method@View.push_snippet]
  */
 void
 gtk_source_completion_provider_activate (GtkSourceCompletionProvider *self,
@@ -388,14 +370,13 @@ gtk_source_completion_provider_activate (GtkSourceCompletionProvider *self,
  * @proposal: a #GtkSourceCompletionProposal
  *
  * Providers should return a list of alternates to @proposal or %NULL if
- * there are no alternates available. This can be used by the completion
- * view to allow the user to move laterally through similar proposals, such
- * as overrides of methods by the same name.
+ * there are no alternates available.
+ * 
+ * This can be used by the completion view to allow the user to move laterally
+ * through similar proposals, such as overrides of methods by the same name.
  *
  * Returns: (nullable) (transfer full) (element-type GtkSourceCompletionProposal):
  *   a #GPtrArray of #GtkSourceCompletionProposal or %NULL.
- *
- * Since: 5.0
  */
 GPtrArray *
 gtk_source_completion_provider_list_alternates (GtkSourceCompletionProvider *self,

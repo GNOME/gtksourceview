@@ -44,7 +44,6 @@ G_BEGIN_DECLS
  *   modified.
  *
  * An error code used with the %GTK_SOURCE_FILE_SAVER_ERROR domain.
- * Since: 3.14
  */
 typedef enum _GtkSourceFileSaverError
 {
@@ -59,8 +58,7 @@ typedef enum _GtkSourceFileSaverError
  * @GTK_SOURCE_FILE_SAVER_FLAGS_IGNORE_MODIFICATION_TIME: Save file despite external modifications.
  * @GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP: Create a backup before saving the file.
  *
- * Flags to define the behavior of a #GtkSourceFileSaver.
- * Since: 3.14
+ * Flags to define the behavior of a [flags@FileSaverFlags].
  */
 typedef enum _GtkSourceFileSaverFlags
 {
@@ -70,45 +68,45 @@ typedef enum _GtkSourceFileSaverFlags
 	GTK_SOURCE_FILE_SAVER_FLAGS_CREATE_BACKUP            = 1 << 2
 } GtkSourceFileSaverFlags;
 
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceFileSaver, gtk_source_file_saver, GTK_SOURCE, FILE_SAVER, GObject)
 
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GQuark                    gtk_source_file_saver_error_quark          (void);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceFileSaver       *gtk_source_file_saver_new                  (GtkSourceBuffer           *buffer,
                                                                       GtkSourceFile             *file);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceFileSaver       *gtk_source_file_saver_new_with_target      (GtkSourceBuffer           *buffer,
                                                                       GtkSourceFile             *file,
                                                                       GFile                     *target_location);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceBuffer          *gtk_source_file_saver_get_buffer           (GtkSourceFileSaver        *saver);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceFile            *gtk_source_file_saver_get_file             (GtkSourceFileSaver        *saver);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GFile                    *gtk_source_file_saver_get_location         (GtkSourceFileSaver        *saver);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_saver_set_encoding         (GtkSourceFileSaver        *saver,
                                                                       const GtkSourceEncoding   *encoding);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 const GtkSourceEncoding  *gtk_source_file_saver_get_encoding         (GtkSourceFileSaver        *saver);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_saver_set_newline_type     (GtkSourceFileSaver        *saver,
                                                                       GtkSourceNewlineType       newline_type);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceNewlineType      gtk_source_file_saver_get_newline_type     (GtkSourceFileSaver        *saver);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_saver_set_compression_type (GtkSourceFileSaver        *saver,
                                                                       GtkSourceCompressionType   compression_type);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompressionType  gtk_source_file_saver_get_compression_type (GtkSourceFileSaver        *saver);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_saver_set_flags            (GtkSourceFileSaver        *saver,
                                                                       GtkSourceFileSaverFlags    flags);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceFileSaverFlags   gtk_source_file_saver_get_flags            (GtkSourceFileSaver        *saver);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_saver_save_async           (GtkSourceFileSaver        *saver,
                                                                       gint                       io_priority,
                                                                       GCancellable              *cancellable,
@@ -117,7 +115,7 @@ void                      gtk_source_file_saver_save_async           (GtkSourceF
                                                                       GDestroyNotify             progress_callback_notify,
                                                                       GAsyncReadyCallback        callback,
                                                                       gpointer                   user_data);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                  gtk_source_file_saver_save_finish          (GtkSourceFileSaver        *saver,
                                                                       GAsyncResult              *result,
                                                                       GError                   **error);

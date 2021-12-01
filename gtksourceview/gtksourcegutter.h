@@ -34,7 +34,7 @@ G_BEGIN_DECLS
 GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceGutter, gtk_source_gutter, GTK_SOURCE, GUTTER, GtkWidget)
 
-GTK_SOURCE_AVAILABLE_IN_3_24
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceView     *gtk_source_gutter_get_view        (GtkSourceGutter         *gutter);
 GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean           gtk_source_gutter_insert          (GtkSourceGutter         *gutter,

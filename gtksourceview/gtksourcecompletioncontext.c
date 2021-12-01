@@ -32,28 +32,24 @@
 #include "gtksourcecompletionprovider.h"
 
 /**
- * SECTION:completioncontext
- * @Title: GtkSourceCompletionContext
- * @Short_description: The context of a completion
- * @See_also: #GtkSourceCompletion, #GtkSourceCompletionProvider, and
- *   #GtkSourceCompletionProposal.
+ * GtkSourceCompletionContext:
  *
- * #GtkSourceCompletionContext contains information about an attept to display
- * completion proposals to the user based on typed text in the #GtkSourceView.
+ * The context of a completion.
  *
- * When typing, #GtkSourceCompletion may use registered
- * #GtkSourceCompletionProvider to determine if there may be results which
- * could be displayed. If so, a #GtkSourceCompletionContext is created with
- * information that is provided to the #GtkSourceCompletionProvider to populate
+ * `GtkSourceCompletionContext` contains information about an attept to display
+ * completion proposals to the user based on typed text in the [class@View].
+ *
+ * When typing, [class@Completion] may use registered
+ * [iface@CompletionProvider] to determine if there may be results which
+ * could be displayed. If so, a `GtkSourceCompletionContext` is created with
+ * information that is provided to the [iface@CompletionProvider] to populate
  * results which might be useful to the user.
  *
- * #GtkSourceCompletionProvider are expected to provide #GListModel with
- * #GtkSourceCompletionProposal which may be joined together in a list of
+ * [iface@CompletionProvider] are expected to provide [iface@Gio.ListModel] with
+ * [class@CompletionProposal] which may be joined together in a list of
  * results for the user. They are also responsible for how the contents are
- * displayed using #GtkSourceCompletionCell which allows for some level of
+ * displayed using [class@CompletionCell] which allows for some level of
  * customization.
- *
- * Since: 5.0
  */
 
 struct _GtkSourceCompletionContext
@@ -283,8 +279,6 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	*
 	* The "busy" property is %TRUE while the completion context is
 	* populating completion proposals.
-	*
-	* Since: 5.0
 	*/
 	properties [PROP_BUSY] =
 		g_param_spec_boolean ("busy",
@@ -300,8 +294,6 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	*
 	* It will be notified when the first result is added or the last
 	* result is removed.
-	*
-	* Since: 5.0
 	*/
 	properties [PROP_EMPTY] =
 		g_param_spec_boolean ("empty",
@@ -314,8 +306,6 @@ gtk_source_completion_context_class_init (GtkSourceCompletionContextClass *klass
 	* GtkSourceCompletionContext:completion:
 	*
 	* The "completion" is the #GtkSourceCompletion that was used to create the context.
-	*
-	* Since: 5.0
 	*/
 	properties [PROP_COMPLETION] =
 		g_param_spec_object ("completion",
@@ -452,8 +442,6 @@ list_model_iface_init (GListModelInterface *iface)
  * current word being completed.
  *
  * Returns: %TRUE if the marks are still valid and @begin or @end was set.
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_completion_context_get_bounds (GtkSourceCompletionContext *self,
@@ -507,8 +495,6 @@ gtk_source_completion_context_get_bounds (GtkSourceCompletionContext *self,
  * Gets the #GtkSourceCompletion that created the context.
  *
  * Returns: (transfer none) (nullable): an #GtkSourceCompletion or %NULL
- *
- * Since: 5.0
  */
 GtkSourceCompletion *
 gtk_source_completion_context_get_completion (GtkSourceCompletionContext *self)
@@ -610,12 +596,11 @@ gtk_source_completion_context_items_changed_cb (GtkSourceCompletionContext *self
  * @results: (nullable): a #GListModel or %NULL
  *
  * This function allows providers to update their results for a context
- * outside of a call to gtk_source_completion_provider_populate_async(). This
- * can be used to immediately return results for a provider while it does
+ * outside of a call to [method@CompletionProvider.populate_async]. 
+ * 
+ * This can be used to immediately return results for a provider while it does
  * additional asynchronous work. Doing so will allow the completions to
  * update while the operation is in progress.
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_context_set_proposals_for_provider (GtkSourceCompletionContext  *self,
@@ -742,8 +727,6 @@ gtk_source_completion_context_notify_complete_cb (GtkSourceCompletionContext *se
  *
  * Asynchronously requests that the completion context load proposals
  * from the registered providers.
- *
- * Since: 5.0
  */
 void
 _gtk_source_completion_context_complete_async (GtkSourceCompletionContext    *self,
@@ -829,8 +812,6 @@ _gtk_source_completion_context_complete_async (GtkSourceCompletionContext    *se
  * Completes an asynchronous request to populate proposals.
  *
  * Returns: %TRUE if successful; otherwise %FALSE and @error is set
- *
- * Since: 5.0
  */
 gboolean
 _gtk_source_completion_context_complete_finish (GtkSourceCompletionContext  *self,
@@ -852,8 +833,6 @@ _gtk_source_completion_context_complete_finish (GtkSourceCompletionContext  *sel
  * #GtkSourceCompletionProvider's.
  *
  * Returns: %TRUE if the context is busy
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_completion_context_get_busy (GtkSourceCompletionContext *self)
@@ -873,8 +852,6 @@ gtk_source_completion_context_get_busy (GtkSourceCompletionContext *self)
  * property.
  *
  * Returns: (transfer none) (nullable): a #GtkTextBuffer or %NULL
- *
- * Since: 5.0
  */
 GtkSourceBuffer *
 gtk_source_completion_context_get_buffer (GtkSourceCompletionContext *self)
@@ -894,8 +871,6 @@ gtk_source_completion_context_get_buffer (GtkSourceCompletionContext *self)
  * Gets the text view for the context.
  *
  * Returns: (nullable) (transfer none): a #GtkSourceView or %NULL
- *
- * Since: 5.0
  */
 GtkSourceView *
 gtk_source_completion_context_get_view (GtkSourceCompletionContext *self)
@@ -958,8 +933,6 @@ _gtk_source_completion_context_iter_invalidates (GtkSourceCompletionContext *sel
  * Out of convenience, this function will return %TRUE if @self is %NULL.
  *
  * Returns: %TRUE if there are no proposals in the context
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_completion_context_get_empty (GtkSourceCompletionContext *self)
@@ -976,8 +949,6 @@ gtk_source_completion_context_get_empty (GtkSourceCompletionContext *self)
  * Gets the word that is being completed up to the position of the insert mark.
  *
  * Returns: (transfer full): a string containing the current word
- *
- * Since: 5.0
  */
 gchar *
 gtk_source_completion_context_get_word (GtkSourceCompletionContext *self)
@@ -1034,8 +1005,6 @@ _gtk_source_completion_context_can_refilter (GtkSourceCompletionContext *self,
  * @self: a #GtkSourceCompletionContext
  *
  * Gets the mode for which the context was activated.
- *
- * Since: 5.0
  */
 GtkSourceCompletionActivation
 gtk_source_completion_context_get_activation (GtkSourceCompletionContext *self)
@@ -1052,8 +1021,6 @@ gtk_source_completion_context_get_activation (GtkSourceCompletionContext *self)
  * Gets the language of the underlying buffer, if any.
  *
  * Returns: (nullable) (transfer none): a #GtkSourceLanguage or %NULL
- *
- * Since: 5.0
  */
 GtkSourceLanguage *
 gtk_source_completion_context_get_language (GtkSourceCompletionContext *self)

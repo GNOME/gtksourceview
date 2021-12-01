@@ -8,9 +8,7 @@ stages:
     - deploy
 
 variables:
-    FEDORA_DEPS:
-        meson vala gtk4-devel ninja-build pkgconf clang gobject-introspection-devel gtk-doc vulkan-headers docbook-style-xsl docbook-dtds
-    FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtk/fedora:v32"
+    FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtksourceview/fedora:latest"
 
 flatpak:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
@@ -29,13 +27,11 @@ reference:
     variables:
         MESON_FLAGS: "-Dwerror=true --buildtype=release"
     script:
-        - sudo dnf update -y --nogpgcheck
-        - sudo dnf install -y --nogpgcheck $FEDORA_DEPS
         - mkdir -p pfx/
         - meson ${MESON_FLAGS} --prefix=${PWD}/pfx -Dgtk_doc=true _build
         - ninja -C _build install
         - mkdir -p _reference/
-        - mv pfx/share/gtk-doc/html/gtksourceview-5.0 _reference/
+        - mv pfx/share/doc/gtksourceview5/ _reference/
     artifacts:
         paths:
             - _reference

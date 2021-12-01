@@ -31,7 +31,7 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_MAP (gtk_source_map_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (GtkSourceMap, gtk_source_map, GTK_SOURCE, MAP, GtkSourceView)
 
 struct _GtkSourceMapClass
@@ -42,12 +42,12 @@ struct _GtkSourceMapClass
 	gpointer _reserved[10];
 };
 
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkWidget     *gtk_source_map_new      (void);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 void           gtk_source_map_set_view (GtkSourceMap  *map,
                                         GtkSourceView *view);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceView *gtk_source_map_get_view (GtkSourceMap  *map);
 
 G_END_DECLS

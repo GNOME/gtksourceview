@@ -24,19 +24,17 @@
 #include "gtksourcecompletionproposal.h"
 
 /**
- * SECTION:completionproposal
- * @Title: GtkSourceCompletionProposal
- * @Short_description: interface for completion proposals
+ * GtkSourceCompletionProposal:
+ *
+ * Interface for completion proposals.
  *
  * This interface is used to denote that an object is capable of being
- * a completion proposal for #GtkSourceCompletion.
+ * a completion proposal for [class@Completion].
  *
  * Currently, no method or functions are required but additional methods
  * may be added in the future. Proposals created by
- * #GtkSourceCompletionProvider can use %G_IMPLEMENT_INTERFACE to
+ * #GtkSourceCompletionProvider can use [func@GObject.IMPLEMENT_INTERFACE] to
  * implement this with %NULL for the interface init function.
- *
- * Since: 5.0
  */
 
 G_DEFINE_INTERFACE (GtkSourceCompletionProposal, gtk_source_completion_proposal, G_TYPE_OBJECT)

@@ -26,9 +26,9 @@
 #include "gtksourcesignalgroup-private.h"
 
 /*
- * SECTION:gtksourcesignalgroup
- * @title: GtkSourceSignalGroup
- * @short_description: Manage a collection of signals on a #GObject
+ * GtkSourceSignalGroup:
+ * 
+ * Manage a collection of signals on a #GObject.
  *
  * #GtkSourceSignalGroup manages to simplify the process of connecting
  * many signals to a #GObject as a group. As such there is no API
@@ -310,7 +310,7 @@ gtk_source_signal_group_check_target_type (GtkSourceSignalGroup *self,
  *
  * This blocked state will be kept across changes of the target instance.
  *
- * See: g_signal_handler_block().
+ * See: [func@GObject.signal_handler_block].
  */
 void
 gtk_source_signal_group_block (GtkSourceSignalGroup *self)
@@ -351,7 +351,7 @@ gtk_source_signal_group_block (GtkSourceSignalGroup *self)
  * again. Must be unblocked exactly the same number of times it
  * has been blocked to become active again.
  *
- * See: g_signal_handler_unblock().
+ * See: [func@GObject.signal_handler_unblock].
  */
 void
 gtk_source_signal_group_unblock (GtkSourceSignalGroup *self)
@@ -736,7 +736,7 @@ gtk_source_signal_group_connect_full (GtkSourceSignalGroup *self,
  * by temporarily adding a reference count. When the @object is destroyed
  * the signal handler will automatically be removed.
  *
- * See: g_signal_connect_object().
+ * See: [func@GObject.signal_connect_object].
  */
 void
 gtk_source_signal_group_connect_object (GtkSourceSignalGroup *self,
@@ -763,7 +763,7 @@ gtk_source_signal_group_connect_object (GtkSourceSignalGroup *self,
  * Connects @callback to the signal @detailed_signal
  * on the target instance of @self.
  *
- * See: g_signal_connect_data().
+ * See: [func@GObject.signal_connect_data].
  */
 void
 gtk_source_signal_group_connect_data (GtkSourceSignalGroup *self,
@@ -787,7 +787,7 @@ gtk_source_signal_group_connect_data (GtkSourceSignalGroup *self,
  * Connects @callback to the signal @detailed_signal
  * on the target instance of @self.
  *
- * See: g_signal_connect().
+ * See: [func@GObject.signal_connect].
  */
 void
 gtk_source_signal_group_connect (GtkSourceSignalGroup *self,
@@ -811,7 +811,7 @@ gtk_source_signal_group_connect (GtkSourceSignalGroup *self,
  *
  * The @callback will be called after the default handler of the signal.
  *
- * See: g_signal_connect_after().
+ * See: [func@GObject.signal_connect_after].
  */
 void
 gtk_source_signal_group_connect_after (GtkSourceSignalGroup *self,
@@ -836,7 +836,7 @@ gtk_source_signal_group_connect_after (GtkSourceSignalGroup *self,
  * The instance on which the signal is emitted and @data
  * will be swapped when calling @callback.
  *
- * See: g_signal_connect_swapped().
+ * See: [func@GObject.signal_connect_swapped].
  */
 void
 gtk_source_signal_group_connect_swapped (GtkSourceSignalGroup *self,

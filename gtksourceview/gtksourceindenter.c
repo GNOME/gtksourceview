@@ -25,40 +25,36 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:indenter
- * @Title: GtkSourceIndenter
- * @Short_description: Auto-indentation interface
- * @See_also: gtk_source_view_set_indenter()
+ * GtkSourceIndenter:
+ * 
+ * Auto-indentation interface.
  *
- * By default, #GtkSourceView can auto-indent as you type when
- * #GtkSourceView:auto-indent is enabled. The indentation simply copies the
+ * By default, [class@View] can auto-indent as you type when
+ * [property@View:auto-indent] is enabled. The indentation simply copies the
  * previous lines indentation.
  *
- * This can be changed by implementing #GtkSourceIndenter and setting the
- * #GtkSourceView:indenter property.
+ * This can be changed by implementing `GtkSourceIndenter` and setting the
+ * [property@View:indenter] property.
  *
  * Implementors of this interface should implement both
- * #GtkSourceIndenterInterface.is_trigger and
- * #GtkSourceIndenterInterface.indent.
+ * [vfunc@Indenter.is_trigger] and [vfunc@Indenter.indent].
  *
- * #GtkSourceIndenterInterface.is_trigger is called upon key-press to
+ * [vfunc@Indenter.is_trigger] is called upon key-press to
  * determine of the key press should trigger an indentation.  The default
  * implementation of the interface checks to see if the key was
- * %GDK_KEY_Return or %GDK_KEY_KP_Enter without %GDK_SHIFT_MASK set.
+ * [const@Gdk.KEY_Return] or [const@Gdk.KEY_KP_Enter] without %GDK_SHIFT_MASK set.
  *
- * #GtkSourceIndenterInterface.indent is called after text has been
- * inserted into #GtkSourceBuffer when
- * #GtkSourceIndenterInterface.is_trigger returned %TRUE. The #GtkTextIter
+ * [vfunc@Indenter.indent] is called after text has been
+ * inserted into [class@Buffer] when
+ * [vfunc@Indenter.is_trigger] returned %TRUE. The [class@Gtk.TextIter]
  * is placed directly after the inserted character or characters.
  *
  * It may be beneficial to move the insertion mark using
- * gtk_text_buffer_select_range() depending on how the indenter changes
+ * [method@Gtk.TextBuffer.select_range] depending on how the indenter changes
  * the indentation.
  *
  * All changes are encapsulated within a single user action so that the
  * user may undo them using standard undo/redo accelerators.
- *
- * Since: 5.0
  */
 
 /**
@@ -67,8 +63,6 @@
  * @indent: the virtual function pointer for gtk_source_indenter_indent()
  *
  * The virtual function table for #GtkSourceIndenter.
- *
- * Since: 5.0
  */
 
 static inline gboolean
@@ -173,21 +167,19 @@ gtk_source_indenter_default_init (GtkSourceIndenterInterface *iface)
  * @view: a #GtkSourceView
  * @location: the location where @ch is to be inserted
  * @state: modifier state for the insertion
- * @keyval: the keyval pressed such as %GDK_KEY_Return
+ * @keyval: the keyval pressed such as [const@Gdk.KEY_Return]
  *
  * This function is used to determine if a key pressed should cause the
  * indenter to automatically indent.
  *
  * The default implementation of this virtual method will check to see
- * if @keyval is %GDK_KEY_Return or %GDK_KEY_KP_Enter and @state does
+ * if @keyval is [const@Gdk.KEY_Return] or [const@Gdk.KEY_KP_Enter] and @state does
  * not have %GDK_SHIFT_MASK set. This is to allow the user to avoid
  * indentation when Shift+Return is pressed. Other indenters may want
  * to copy this behavior to provide a consistent experience to users.
  *
  * Returns: %TRUE if indentation should be automatically triggered;
  *   otherwise %FALSE and no indentation will be performed.
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_indenter_is_trigger (GtkSourceIndenter *self,
@@ -210,14 +202,15 @@ gtk_source_indenter_is_trigger (GtkSourceIndenter *self,
  * @iter: (inout): the location of the indentation request
  *
  * This function should be implemented to alter the indentation of text
- * within the view. @view is provided so that the indenter may retrieve
- * settings such as indentation and tab widths.
+ * within the view. 
+ * 
+ * @view is provided so that the indenter may retrieve settings such as indentation and tab widths.
  *
  * @iter is the location where the indentation was requested. This typically
  * is after having just inserted a newline (\n) character but can be other
  * situations such as a manually requested indentation or reformatting.
  *
- * See gtk_source_indenter_is_trigger() for how to trigger indentation on
+ * See [iface@Indenter.is_trigger] for how to trigger indentation on
  * various characters inserted into the buffer.
  *
  * The implementor of this function is expected to keep @iter valid across
@@ -226,8 +219,6 @@ gtk_source_indenter_is_trigger (GtkSourceIndenter *self,
  *
  * The default implementation for this virtual function will copy the
  * indentation of the previous line.
- *
- * Since: 5.0
  */
 void
 gtk_source_indenter_indent (GtkSourceIndenter *self,

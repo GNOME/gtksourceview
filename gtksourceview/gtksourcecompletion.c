@@ -35,9 +35,9 @@
 #include "gtksourceview-private.h"
 
 /**
- * SECTION:completion
- * @title: GtkSourceCompletion
- * @short_description: Main Completion Object
+ * GtkSourceCompletion:
+ *
+ * Main Completion Object.
  *
  * The completion system helps the user when they writes some text,
  * such as words, command names, functions, and suchlike. Proposals can
@@ -46,11 +46,11 @@
  * documentation), that is displayed when the "Details" button is
  * clicked.
  *
- * Proposals are created via a #GtkSourceCompletionProvider. There can
- * be for example a provider to complete words (see
- * #GtkSourceCompletionWords), another provider for the completion of
+ * Proposals are created via a [iface@CompletionProvider]. There can
+ * be for example a provider to complete words (see [class@CompletionWords]),
+ * another provider for the completion of
  * function names, etc. To add a provider, call
- * gtk_source_completion_add_provider().
+ * [method@Completion.add_provider].
  *
  * When several providers match, they are all shown in the completion
  * window, but one can switch between providers: see the
@@ -58,20 +58,20 @@
  * activate the first proposals with key bindings, see the
  * #GtkSourceCompletion:accelerators property.
  *
- * The #GtkSourceCompletionProposal interface represents a proposal.
+ * The [iface@CompletionProposal] interface represents a proposal.
  *
  * If a proposal contains extra information (see
  * %GTK_SOURCE_COMPLETION_COLUMN_DETAILS), it will be
  * displayed in a supplemental details window, which appears when
  * the "Details" button is clicked.
  *
- * Each #GtkSourceView object is associated with a #GtkSourceCompletion
+ * Each [class@View] object is associated with a [class@Completion]
  * instance. This instance can be obtained with
- * gtk_source_view_get_completion(). The #GtkSourceView class contains also the
- * #GtkSourceView::show-completion signal.
+ * [method@View.get_completion]. The [class@View] class contains also the
+ * [signal@View::show-completion] signal.
  *
- * A same #GtkSourceCompletionProvider object can be used for several
- * #GtkSourceCompletion's.
+ * A same [iface@CompletionProvider] object can be used for several
+ * `GtkSourceCompletion`'s.
  */
 
 #define DEFAULT_PAGE_SIZE 5
@@ -992,8 +992,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * The #GtkTextBuffer for the #GtkSourceCompletion:view.
 	 * This is a convenience property for providers.
-	 *
-	 * Since: 5.0
 	 */
 	properties [PROP_BUFFER] =
 		g_param_spec_object ("buffer",
@@ -1006,8 +1004,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 * GtkSourceCompletion:page-size:
 	 *
 	 * The number of rows to display to the user before scrolling.
-	 *
-	 * Since: 5.0
 	 */
 	properties [PROP_PAGE_SIZE] =
 		g_param_spec_uint ("page-size",
@@ -1060,8 +1056,6 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	 *
 	 * The "view" property is the #GtkTextView for which this #GtkSourceCompletion
 	 * is providing completion features.
-	 *
-	 * Since: 5.0
 	 */
 	properties [PROP_VIEW] =
 		g_param_spec_object ("view",
@@ -1075,12 +1069,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion::provider-added:
 	 * @self: an #ideCompletion
-	 * @provider: an #GtkSourceCompletionProvider
+	 * @provider: a #GtkSourceCompletionProvider
 	 *
 	 * The "provided-added" signal is emitted when a new provider is
 	 * added to the completion.
-	 *
-	 * Since: 5.0
 	 */
 	signals [PROVIDER_ADDED] =
 		g_signal_new ("provider-added",
@@ -1096,12 +1088,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 	/**
 	 * GtkSourceCompletion::provider-removed:
 	 * @self: an #ideCompletion
-	 * @provider: an #GtkSourceCompletionProvider
+	 * @provider: a #GtkSourceCompletionProvider
 	 *
 	 * The "provided-removed" signal is emitted when a provider has
 	 * been removed from the completion.
-	 *
-	 * Since: 5.0
 	 */
 	signals [PROVIDER_REMOVED] =
 		g_signal_new ("provider-removed",
@@ -1116,12 +1106,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 
 	/**
 	 * GtkSourceCompletion::hide:
-	 * @self: an #GtkSourceCompletion
+	 * @self: a #GtkSourceCompletion
 	 *
 	 * The "hide" signal is emitted when the completion window should
 	 * be hidden.
-	 *
-	 * Since: 5.0
 	 */
 	signals [HIDE] =
 		g_signal_new_class_handler ("hide",
@@ -1137,12 +1125,10 @@ gtk_source_completion_class_init (GtkSourceCompletionClass *klass)
 
 	/**
 	 * GtkSourceCompletion::show:
-	 * @self: an #GtkSourceCompletion
+	 * @self: a #GtkSourceCompletion
 	 *
 	 * The "show" signal is emitted when the completion window should
 	 * be shown.
-	 *
-	 * Since: 5.0
 	 */
 	signals [SHOW] =
 		g_signal_new_class_handler ("show",
@@ -1230,11 +1216,9 @@ gtk_source_completion_init (GtkSourceCompletion *self)
  * gtk_source_completion_get_view:
  * @self: a #GtkSourceCompletion
  *
- * Gets the #GtkSourceView that owns the #GtkSourceCompletion.
+ * Gets the [class@View] that owns the [class@Completion].
  *
  * Returns: (transfer none): A #GtkSourceView
- *
- * Since: 5.0
  */
 GtkSourceView *
 gtk_source_completion_get_view (GtkSourceCompletion *self)
@@ -1248,11 +1232,9 @@ gtk_source_completion_get_view (GtkSourceCompletion *self)
  * gtk_source_completion_get_buffer:
  * @self: a #GtkSourceCompletion
  *
- * Gets the connected #GtkSourceView's #GtkSourceBuffer
+ * Gets the connected [class@View]'s [class@Buffer]
  *
  * Returns: (transfer none): A #GtkSourceBuffer
- *
- * Since: 5.0
  */
 GtkSourceBuffer *
 gtk_source_completion_get_buffer (GtkSourceCompletion *self)
@@ -1264,13 +1246,11 @@ gtk_source_completion_get_buffer (GtkSourceCompletion *self)
 
 /**
  * gtk_source_completion_add_provider:
- * @self: an #GtkSourceCompletion
- * @provider: an #GtkSourceCompletionProvider
+ * @self: a #GtkSourceCompletion
+ * @provider: a #GtkSourceCompletionProvider
  *
- * Adds an #GtkSourceCompletionProvider to the list of providers to be queried
+ * Adds a [iface@CompletionProvider] to the list of providers to be queried
  * for completion results.
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_add_provider (GtkSourceCompletion         *self,
@@ -1285,13 +1265,11 @@ gtk_source_completion_add_provider (GtkSourceCompletion         *self,
 
 /**
  * gtk_source_completion_remove_provider:
- * @self: an #GtkSourceCompletion
- * @provider: an #GtkSourceCompletionProvider
+ * @self: a #GtkSourceCompletion
+ * @provider: a #GtkSourceCompletionProvider
  *
- * Removes an #GtkSourceCompletionProvider previously added with
- * gtk_source_completion_add_provider().
- *
- * Since: 5.0
+ * Removes a [iface@CompletionProvider] previously added with
+ * [method@Completion.add_provider].
  */
 void
 gtk_source_completion_remove_provider (GtkSourceCompletion         *self,
@@ -1314,14 +1292,12 @@ gtk_source_completion_remove_provider (GtkSourceCompletion         *self,
 
 /**
  * gtk_source_completion_show:
- * @self: an #GtkSourceCompletion
+ * @self: a #GtkSourceCompletion
  *
  * Emits the "show" signal.
  *
  * When the "show" signal is emitted, the completion window will be
  * displayed if there are any results available.
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_show (GtkSourceCompletion *self)
@@ -1339,14 +1315,12 @@ gtk_source_completion_show (GtkSourceCompletion *self)
 
 /**
  * gtk_source_completion_hide:
- * @self: an #GtkSourceCompletion
+ * @self: a #GtkSourceCompletion
  *
  * Emits the "hide" signal.
  *
  * When the "hide" signal is emitted, the completion window will be
  * dismissed.
- *
- * Since: 5.0
  */
 void
 gtk_source_completion_hide (GtkSourceCompletion *self)
@@ -1450,15 +1424,15 @@ _gtk_source_completion_get_display (GtkSourceCompletion *self)
  * @priority: (out) (allow-none): An optional location for the score of the match
  *
  * This helper function can do a fuzzy match for you giving a haystack and
- * casefolded needle. Casefold your needle using g_utf8_casefold() before
+ * casefolded needle. 
+ *
+ * Casefold your needle using [func@GLib.utf8_casefold] before
  * running the query.
  *
  * Score will be set with the score of the match upon success. Otherwise,
  * it will be set to zero.
  *
  * Returns: %TRUE if @haystack matched @casefold_needle, otherwise %FALSE.
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_completion_fuzzy_match (const char *haystack,
@@ -1556,12 +1530,10 @@ add_attributes (PangoAttrList **attrs,
  * @haystack: the string to be highlighted
  * @casefold_query: the typed-text used to highlight @haystack
  *
- * This will add &lt;b&gt; tags around matched characters in @haystack
+ * This will add `<b>` tags around matched characters in @haystack
  * based on @casefold_query.
  *
  * Returns: (transfer full) (nullable): a #PangoAttrList or %NULL
- *
- * Since: 5.0
  */
 PangoAttrList *
 gtk_source_completion_fuzzy_highlight (const char *haystack,

@@ -26,19 +26,17 @@
 #include "gtksourcesnippetcontext-private.h"
 
 /**
- * SECTION:snippetcontext
- * @title: GtkSourceSnippetContext
- * @short_description: Context for expanding #GtkSourceSnippetChunk
+ * GtkSourceSnippetContext:
+ *
+ * Context for expanding [class@SnippetChunk].
  *
  * This class is currently used primary as a hashtable. However, the longer
- * term goal is to have it hold onto a GjsContext as well as other languages
- * so that #GtkSourceSnippetChunk can expand themselves by executing
+ * term goal is to have it hold onto a `GjsContext` as well as other languages
+ * so that [class@SnippetChunk] can expand themselves by executing
  * script within the context.
  *
- * The #GtkSourceSnippet will build the context and then expand each of the
+ * The [class@Snippet] will build the context and then expand each of the
  * chunks during the insertion/edit phase.
- *
- * Since: 5.0
  */
 
 struct _GtkSourceSnippetContext
@@ -78,8 +76,6 @@ static guint signals[N_SIGNALS];
  * expansion of snippets manually.
  *
  * Returns: (transfer full): a #GtkSourceSnippetContext
- *
- * Since: 5.0
  */
 GtkSourceSnippetContext *
 gtk_source_snippet_context_new (void)
@@ -92,8 +88,6 @@ gtk_source_snippet_context_new (void)
  * @self: a #GtkSourceSnippetContext
  *
  * Removes all variables from the context.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_context_clear_variables (GtkSourceSnippetContext *self)
@@ -113,8 +107,6 @@ gtk_source_snippet_context_clear_variables (GtkSourceSnippetContext *self)
  *
  * This variable may be overridden by future updates to the
  * context.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_context_set_variable (GtkSourceSnippetContext *self,
@@ -133,13 +125,12 @@ gtk_source_snippet_context_set_variable (GtkSourceSnippetContext *self,
  * @key: the constant name
  * @value: the value of the constant
  *
- * Sets a constatnt within the context. This is similar to
- * a variable set with gtk_source_snippet_context_set_variable()
+ * Sets a constatnt within the context. 
+ *
+ * This is similar to a variable set with [method@SnippetContext.set_variable]
  * but is expected to not change during use of the snippet.
  *
  * Examples would be the date or users name.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_context_set_constant (GtkSourceSnippetContext *self,
@@ -160,8 +151,6 @@ gtk_source_snippet_context_set_constant (GtkSourceSnippetContext *self,
  * Gets the current value for a variable named @key.
  *
  * Returns: (transfer none) (nullable): the value for the variable, or %NULL
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_context_get_variable (GtkSourceSnippetContext *self,
@@ -840,12 +829,10 @@ gtk_source_snippet_context_class_init (GtkSourceSnippetContextClass *klass)
 	/**
 	 * GtkSourceSnippetContext::changed:
 	 *
-	 * The "changed" signal is emitted when a change has been
+	 * The signal is emitted when a change has been
 	 * discovered in one of the chunks of the snippet which has
 	 * caused a variable or other dynamic data within the context
 	 * to have changed.
-	 *
-	 * Since: 5.0
 	 */
 	signals[CHANGED] =
 		g_signal_new ("changed",

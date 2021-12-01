@@ -36,33 +36,32 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:spacedrawer
- * @Short_description: Represent white space characters with symbols
- * @Title: GtkSourceSpaceDrawer
- * @See_also: #GtkSourceView
+ * GtkSourceSpaceDrawer:
+ * 
+ * Represent white space characters with symbols.
  *
  * #GtkSourceSpaceDrawer provides a way to visualize white spaces, by drawing
  * symbols.
  *
- * Call gtk_source_view_get_space_drawer() to get the #GtkSourceSpaceDrawer
- * instance of a certain #GtkSourceView.
+ * Call [method@View.get_space_drawer] to get the `GtkSourceSpaceDrawer`
+ * instance of a certain [class@View].
  *
  * By default, no white spaces are drawn because the
- * #GtkSourceSpaceDrawer:enable-matrix is %FALSE.
+ * [property@SpaceDrawer:enable-matrix] is %FALSE.
  *
- * To draw white spaces, gtk_source_space_drawer_set_types_for_locations() can
- * be called to set the #GtkSourceSpaceDrawer:matrix property (by default all
+ * To draw white spaces, [method@SpaceDrawer.set_types_for_locations] can
+ * be called to set the [property@SpaceDrawer:matrix] property (by default all
  * space types are enabled at all locations). Then call
- * gtk_source_space_drawer_set_enable_matrix().
+ * [method@SpaceDrawer.set_enable_matrix].
  *
- * For a finer-grained method, there is also the GtkSourceTag's
- * #GtkSourceTag:draw-spaces property.
+ * For a finer-grained method, there is also the [class@Tag]'s
+ * [property@Tag:draw-spaces] property.
  *
  * # Example
  *
  * To draw non-breaking spaces everywhere and draw all types of trailing spaces
  * except newlines:
- * |[
+ * ```c
  * gtk_source_space_drawer_set_types_for_locations (space_drawer,
  *                                                  GTK_SOURCE_SPACE_LOCATION_ALL,
  *                                                  GTK_SOURCE_SPACE_TYPE_NBSP);
@@ -73,11 +72,12 @@
  *                                                  ~GTK_SOURCE_SPACE_TYPE_NEWLINE);
  *
  * gtk_source_space_drawer_set_enable_matrix (space_drawer, TRUE);
- * ]|
+ * ```
  *
  * # Use-case: draw unwanted white spaces
  *
  * A possible use-case is to draw only unwanted white spaces. Examples:
+ *
  * - Draw all trailing spaces.
  * - If the indentation and alignment must be done with spaces, draw tabs.
  *
@@ -355,9 +355,7 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 	/**
 	 * GtkSourceSpaceDrawer:enable-matrix:
 	 *
-	 * Whether the #GtkSourceSpaceDrawer:matrix property is enabled.
-	 *
-	 * Since: 3.24
+	 * Whether the [property@SpaceDrawer:matrix] property is enabled.
 	 */
 	properties[PROP_ENABLE_MATRIX] =
 		g_param_spec_boolean ("enable-matrix",
@@ -371,21 +369,19 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 	/**
 	 * GtkSourceSpaceDrawer:matrix:
 	 *
-	 * The :matrix property is a #GVariant property to specify where and
+	 * The property is a [class@GLib.Variant] property to specify where and
 	 * what kind of white spaces to draw.
 	 *
-	 * The #GVariant is of type `"au"`, an array of unsigned integers. Each
-	 * integer is a combination of #GtkSourceSpaceTypeFlags. There is one
-	 * integer for each #GtkSourceSpaceLocationFlags, in the same order as
+	 * The [class@GLib.Variant] is of type `"au"`, an array of unsigned integers. Each
+	 * integer is a combination of [flags@SpaceTypeFlags]. There is one
+	 * integer for each [flags@SpaceLocationFlags], in the same order as
 	 * they are defined in the enum (%GTK_SOURCE_SPACE_LOCATION_NONE and
 	 * %GTK_SOURCE_SPACE_LOCATION_ALL are not taken into account).
 	 *
 	 * If the array is shorter than the number of locations, then the value
 	 * for the missing locations will be %GTK_SOURCE_SPACE_TYPE_NONE.
 	 *
-	 * By default, %GTK_SOURCE_SPACE_TYPE_ALL is set for all locations.
-	 *
-	 * Since: 3.24
+	 * By default, %GTK_SOURCE_SPACE_TYPE_ALL is set for all locations.4
 	 */
 	properties[PROP_MATRIX] =
 		g_param_spec_variant ("matrix",
@@ -409,11 +405,11 @@ gtk_source_space_drawer_init (GtkSourceSpaceDrawer *drawer)
 /**
  * gtk_source_space_drawer_new:
  *
- * Creates a new #GtkSourceSpaceDrawer object. Useful for storing space drawing
- * settings independently of a #GtkSourceView.
+ * Creates a new #GtkSourceSpaceDrawer object.
+ * 
+ * Useful for storing space drawing settings independently of a [class@View].
  *
  * Returns: a new #GtkSourceSpaceDrawer.
- * Since: 3.24
  */
 GtkSourceSpaceDrawer *
 gtk_source_space_drawer_new (void)
@@ -427,8 +423,9 @@ gtk_source_space_drawer_new (void)
  * @locations: one or several #GtkSourceSpaceLocationFlags.
  *
  * If only one location is specified, this function returns what kind of
- * white spaces are drawn at that location. The value is retrieved from the
- * #GtkSourceSpaceDrawer:matrix property.
+ * white spaces are drawn at that location. 
+ * 
+ * The value is retrieved from the [property@SpaceDrawer:matrix] property.
  *
  * If several locations are specified, this function returns the logical AND for
  * those locations. Which means that if a certain kind of white space is present
@@ -436,7 +433,6 @@ gtk_source_space_drawer_new (void)
  * specified @locations.
  *
  * Returns: a combination of #GtkSourceSpaceTypeFlags.
- * Since: 3.24
  */
 GtkSourceSpaceTypeFlags
 gtk_source_space_drawer_get_types_for_locations (GtkSourceSpaceDrawer        *drawer,
@@ -453,10 +449,8 @@ gtk_source_space_drawer_get_types_for_locations (GtkSourceSpaceDrawer        *dr
  * @locations: one or several #GtkSourceSpaceLocationFlags.
  * @types: a combination of #GtkSourceSpaceTypeFlags.
  *
- * Modifies the #GtkSourceSpaceDrawer:matrix property at the specified
+ * Modifies the [property@SpaceDrawer:matrix] property at the specified
  * @locations.
- *
- * Since: 3.24
  */
 void
 gtk_source_space_drawer_set_types_for_locations (GtkSourceSpaceDrawer        *drawer,
@@ -495,15 +489,15 @@ gtk_source_space_drawer_set_types_for_locations (GtkSourceSpaceDrawer        *dr
  * gtk_source_space_drawer_get_matrix:
  * @drawer: a #GtkSourceSpaceDrawer.
  *
- * Gets the value of the #GtkSourceSpaceDrawer:matrix property, as a #GVariant.
+ * Gets the value of the [property@SpaceDrawer:matrix] property, as a [class@GLib.Variant].
+ *
  * An empty array can be returned in case the matrix is a zero matrix.
  *
- * The gtk_source_space_drawer_get_types_for_locations() function may be more
+ * The [method@SpaceDrawer.get_types_for_locations] function may be more
  * convenient to use.
  *
  * Returns: the #GtkSourceSpaceDrawer:matrix value as a new floating #GVariant
  *   instance.
- * Since: 3.24
  */
 GVariant *
 gtk_source_space_drawer_get_matrix (GtkSourceSpaceDrawer *drawer)
@@ -540,15 +534,14 @@ gtk_source_space_drawer_get_matrix (GtkSourceSpaceDrawer *drawer)
  * @drawer: a #GtkSourceSpaceDrawer.
  * @matrix: (transfer floating) (nullable): the new matrix value, or %NULL.
  *
- * Sets a new value to the #GtkSourceSpaceDrawer:matrix property, as a
- * #GVariant. If @matrix is %NULL, then an empty array is set.
+ * Sets a new value to the [property@SpaceDrawer:matrix] property, as a [class@GLib.Variant]. 
+ * 
+ * If @matrix is %NULL, then an empty array is set.
  *
  * If @matrix is floating, it is consumed.
  *
- * The gtk_source_space_drawer_set_types_for_locations() function may be more
+ * The [method@SpaceDrawer.set_types_for_locations] function may be more
  * convenient to use.
- *
- * Since: 3.24
  */
 void
 gtk_source_space_drawer_set_matrix (GtkSourceSpaceDrawer *drawer,
@@ -624,7 +617,6 @@ gtk_source_space_drawer_set_matrix (GtkSourceSpaceDrawer *drawer,
  * @drawer: a #GtkSourceSpaceDrawer.
  *
  * Returns: whether the #GtkSourceSpaceDrawer:matrix property is enabled.
- * Since: 3.24
  */
 gboolean
 gtk_source_space_drawer_get_enable_matrix (GtkSourceSpaceDrawer *drawer)
@@ -639,9 +631,7 @@ gtk_source_space_drawer_get_enable_matrix (GtkSourceSpaceDrawer *drawer)
  * @drawer: a #GtkSourceSpaceDrawer.
  * @enable_matrix: the new value.
  *
- * Sets whether the #GtkSourceSpaceDrawer:matrix property is enabled.
- *
- * Since: 3.24
+ * Sets whether the [property@SpaceDrawer:matrix] property is enabled.
  */
 void
 gtk_source_space_drawer_set_enable_matrix (GtkSourceSpaceDrawer *drawer,
@@ -682,17 +672,15 @@ matrix_set_mapping (const GValue       *value,
  * @key: the @settings key to bind.
  * @flags: flags for the binding.
  *
- * Binds the #GtkSourceSpaceDrawer:matrix property to a #GSettings key.
+ * Binds the [property@SpaceDrawer:matrix] property to a [class@Gio.Settings] key.
  *
- * The #GSettings key must be of the same type as the
- * #GtkSourceSpaceDrawer:matrix property, that is, `"au"`.
+ * The [class@Gio.Settings] key must be of the same type as the
+ * [property@SpaceDrawer:matrix] property, that is, `"au"`.
  *
- * The g_settings_bind() function cannot be used, because the default GIO
- * mapping functions don't support #GVariant properties (maybe it will be
+ * The [method@Gio.Settings.bind] function cannot be used, because the default GIO
+ * mapping functions don't support [class@GLib.Variant] properties (maybe it will be
  * supported by a future GIO version, in which case this function can be
  * deprecated).
- *
- * Since: 3.24
  */
 void
 gtk_source_space_drawer_bind_matrix_setting (GtkSourceSpaceDrawer *drawer,

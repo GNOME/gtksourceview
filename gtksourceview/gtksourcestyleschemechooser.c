@@ -23,18 +23,15 @@
 #include "gtksourcestylescheme.h"
 
 /**
- * SECTION:styleschemechooser
- * @Short_description: Interface implemented by widgets for choosing style schemes
- * @Title: GtkSourceStyleSchemeChooser
- * @See_also: #GtkSourceStyleSchemeChooserWidget, #GtkSourceStyleSchemeChooserButton
+ * GtkSourceStyleSchemeChooser:
+ * 
+ * Interface implemented by widgets for choosing style schemes.
  *
- * #GtkSourceStyleSchemeChooser is an interface that is implemented by widgets
+ * `GtkSourceStyleSchemeChooser` is an interface that is implemented by widgets
  * for choosing style schemes.
  *
  * In GtkSourceView, the main widgets that implement this interface are
- * #GtkSourceStyleSchemeChooserWidget and #GtkSourceStyleSchemeChooserButton.
- *
- * Since: 3.16
+ * [class@StyleSchemeChooserWidget] and [class@StyleSchemeChooserButton].
  */
 
 G_DEFINE_INTERFACE (GtkSourceStyleSchemeChooser, gtk_source_style_scheme_chooser, G_TYPE_OBJECT);
@@ -45,11 +42,9 @@ gtk_source_style_scheme_chooser_default_init (GtkSourceStyleSchemeChooserInterfa
 	/**
 	 * GtkSourceStyleSchemeChooser:style-scheme:
 	 *
-	 * The :style-scheme property contains the currently selected style
-	 * scheme. The property can be set to change
-	 * the current selection programmatically.
+	 * Contains the currently selected style scheme. 
 	 *
-	 * Since: 3.16
+	 * The property can be set to change the current selection programmatically.
 	 */
 	g_object_interface_install_property (iface,
 		g_param_spec_object ("style-scheme",
@@ -66,8 +61,6 @@ gtk_source_style_scheme_chooser_default_init (GtkSourceStyleSchemeChooserInterfa
  * Gets the currently-selected scheme.
  *
  * Returns: (transfer none): the currently-selected scheme.
- *
- * Since: 3.16
  */
 GtkSourceStyleScheme *
 gtk_source_style_scheme_chooser_get_style_scheme (GtkSourceStyleSchemeChooser *chooser)
@@ -83,8 +76,6 @@ gtk_source_style_scheme_chooser_get_style_scheme (GtkSourceStyleSchemeChooser *c
  * @scheme: a #GtkSourceStyleScheme
  *
  * Sets the scheme.
- *
- * Since: 3.16
  */
 void
 gtk_source_style_scheme_chooser_set_style_scheme (GtkSourceStyleSchemeChooser *chooser,

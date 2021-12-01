@@ -33,20 +33,20 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_HOVER_DISPLAY (gtk_source_hover_display_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceHoverDisplay, gtk_source_hover_display, GTK_SOURCE, HOVER_DISPLAY, GtkWidget)
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_hover_display_append       (GtkSourceHoverDisplay *self,
                                             GtkWidget             *child);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_hover_display_prepend      (GtkSourceHoverDisplay *self,
                                             GtkWidget             *child);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_hover_display_insert_after (GtkSourceHoverDisplay *self,
                                             GtkWidget             *child,
                                             GtkWidget             *sibling);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void gtk_source_hover_display_remove       (GtkSourceHoverDisplay *self,
                                             GtkWidget             *child);
 

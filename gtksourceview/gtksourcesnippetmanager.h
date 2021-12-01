@@ -34,21 +34,21 @@ G_BEGIN_DECLS
 GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceSnippetManager, gtk_source_snippet_manager, GTK_SOURCE, SNIPPET_MANAGER, GObject)
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSnippetManager  *gtk_source_snippet_manager_get_default     (void);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar * const      *gtk_source_snippet_manager_get_search_path (GtkSourceSnippetManager *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_snippet_manager_set_search_path (GtkSourceSnippetManager *self,
                                                                       const gchar * const     *dirs);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSnippet         *gtk_source_snippet_manager_get_snippet     (GtkSourceSnippetManager *self,
                                                                       const gchar             *group,
                                                                       const gchar             *language_id,
                                                                       const gchar             *trigger);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 const gchar             **gtk_source_snippet_manager_list_groups     (GtkSourceSnippetManager *self);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GListModel               *gtk_source_snippet_manager_list_matching   (GtkSourceSnippetManager *self,
                                                                       const gchar             *group,
                                                                       const gchar             *language_id,

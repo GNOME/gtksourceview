@@ -33,25 +33,21 @@
 #define DEFAULT_HOVER_DELAY 500
 
 /**
- * SECTION:hover
- * @Title: GtkSourceHover
- * @Short_description: Interactive tooltips
- * @See_also: #GtkSourceHoverProvider, #GtkSourceHoverDisplay, and
- *   #GtkSourceHoverContext.
+ * GtkSourceHover:
+ * 
+ * Interactive tooltips.
  *
- * #GtkSourceHover allows a #GtkSourceView to provide contextual information.
+ * `GtkSourceHover` allows a [class@View] to provide contextual information.
  * When enabled, if the user hovers over a word in the text editor, a series
- * of registered #GtkSourceHoverProvider can populate a #GtkSourceHoverDisplay
+ * of registered [iface@HoverProvider] can populate a [class@HoverDisplay]
  * with useful information.
  *
- * To enable call gtk_source_view_get_hover() and add #GtkSourceHoverProvider
- * using gtk_source_hover_add_provider(). To disable, remove all registered
- * providers with gtk_source_hover_remove_provider().
+ * To enable call [method@View.get_hover] and add [iface@HoverProvider]
+ * using [method@Hover.add_provider]. To disable, remove all registered
+ * providers with [method@Hover.remove_provider].
  *
  * You can change how long to wait to display the interactive tooltip by
- * setting the #GtkSourceHover:hover-delay property in milliseconds.
- *
- * Since: 5.0
+ * setting the [property@Hover:hover-delay] property in milliseconds.
  */
 
 struct _GtkSourceHover
@@ -312,8 +308,7 @@ gtk_source_hover_class_init (GtkSourceHoverClass *klass)
 	/**
 	 * GtkSourceHover:hover-delay:
 	 *
-	 * The "hover-delay" property contains the number of milliseconds to
-	 * delay before showing the hover assistant.
+	 * Contains the number of milliseconds to delay before showing the hover assistant.
 	 */
 	properties [PROP_HOVER_DELAY] =
 		g_param_spec_uint ("hover-delay",

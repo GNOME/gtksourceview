@@ -28,22 +28,19 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:hovercontext
- * @Title: GtkSourceHoverContext
- * @Short_description: Context for populating #GtkSourceHoverDisplay contents
- * @See_also: #GtkSourceHover, #GtkSourceHoverProvider, #GtkSourceHoverDisplay
+ * GtkSourceHoverContext:
  *
- * #GtkSourceHoverContext contains information about the request to populate
- * contents for a #GtkSourceHoverDisplay.
+ * Context for populating [class@HoverDisplay] contents.
  *
- * It can be used to retrieve the #GtkSourceView, #GtkSourceBuffer, and
- * #GtkTextIter for the regions of text which are being displayed.
+ * `GtkSourceHoverContext` contains information about the request to populate
+ * contents for a [class@HoverDisplay].
  *
- * Use gtk_source_hover_context_get_bounds() to get the word that was
- * requested. gtk_source_hover_contents_get_iter() will get you the location
+ * It can be used to retrieve the [class@View], [class@Buffer], and
+ * [class@Gtk.TextIter] for the regions of text which are being displayed.
+ *
+ * Use [method@HoverContext.get_bounds] to get the word that was
+ * requested. [method@HoverContext.get_iter] will get you the location
  * of the pointer when the request was made.
- *
- * Since: 5.0
  */
 
 struct _GtkSourceHoverContext

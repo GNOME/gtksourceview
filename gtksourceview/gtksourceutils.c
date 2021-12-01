@@ -41,17 +41,16 @@
  * gtk_source_utils_unescape_search_text:
  * @text: the text to unescape.
  *
- * Use this function before gtk_source_search_settings_set_search_text(), to
+ * Use this function before [method@SearchSettings.set_search_text], to
  * unescape the following sequences of characters: `\n`, `\r`, `\t` and `\\`.
  * The purpose is to easily write those characters in a search entry.
  *
  * Note that unescaping the search text is not needed for regular expression
  * searches.
  *
- * See also: gtk_source_utils_escape_search_text().
+ * See also: [func@utils_escape_search_text].
  *
  * Returns: the unescaped @text.
- * Since: 3.10
  */
 gchar *
 gtk_source_utils_unescape_search_text (const gchar *text)
@@ -141,7 +140,7 @@ gtk_source_utils_unescape_search_text (const gchar *text)
  * search entry. The selection can contain tabulations, newlines, etc. So it's
  * better to escape those special characters to better fit in the search entry.
  *
- * See also: gtk_source_utils_unescape_search_text().
+ * See also: [func@utils_unescape_search_text].
  *
  * <warning>
  * Warning: the escape and unescape functions are not reciprocal! For example,
@@ -151,7 +150,6 @@ gtk_source_utils_unescape_search_text (const gchar *text)
  * </warning>
  *
  * Returns: the escaped @text.
- * Since: 3.10
  */
 gchar *
 gtk_source_utils_escape_search_text (const gchar* text)

@@ -37,8 +37,6 @@ G_BEGIN_DECLS
  * @GTK_SOURCE_NEWLINE_TYPE_CR: carriage return, used on Mac.
  * @GTK_SOURCE_NEWLINE_TYPE_CR_LF: carriage return followed by a line feed, used
  *   on Windows.
- *
- * Since: 3.14
  */
 typedef enum _GtkSourceNewlineType
 {
@@ -51,8 +49,6 @@ typedef enum _GtkSourceNewlineType
  * GTK_SOURCE_NEWLINE_TYPE_DEFAULT:
  *
  * The default newline type on the current OS.
- *
- * Since: 3.14
  */
 #ifdef G_OS_WIN32
 #define GTK_SOURCE_NEWLINE_TYPE_DEFAULT GTK_SOURCE_NEWLINE_TYPE_CR_LF
@@ -64,8 +60,6 @@ typedef enum _GtkSourceNewlineType
  * GtkSourceCompressionType:
  * @GTK_SOURCE_COMPRESSION_TYPE_NONE: plain text.
  * @GTK_SOURCE_COMPRESSION_TYPE_GZIP: gzip compression.
- *
- * Since: 3.14
  */
 typedef enum _GtkSourceCompressionType
 {
@@ -79,14 +73,12 @@ typedef enum _GtkSourceCompressionType
  * @userdata: user data
  *
  * Type definition for a function that will be called to create a
- * #GMountOperation. This is useful for creating a #GtkMountOperation.
- *
- * Since: 3.14
+ * [class@Gio.MountOperation]. This is useful for creating a [class@Gtk.MountOperation].
  */
 typedef GMountOperation *(*GtkSourceMountOperationFactory) (GtkSourceFile *file,
                                                             gpointer       userdata);
 
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (GtkSourceFile, gtk_source_file, GTK_SOURCE, FILE, GObject)
 
 struct _GtkSourceFileClass
@@ -98,33 +90,33 @@ struct _GtkSourceFileClass
 };
 
 
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceFile            *gtk_source_file_new                         (void);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GFile                    *gtk_source_file_get_location                (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_set_location                (GtkSourceFile                  *file,
                                                                        GFile                          *location);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 const GtkSourceEncoding  *gtk_source_file_get_encoding                (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceNewlineType      gtk_source_file_get_newline_type            (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompressionType  gtk_source_file_get_compression_type        (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_14
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_set_mount_operation_factory (GtkSourceFile                  *file,
                                                                        GtkSourceMountOperationFactory  callback,
                                                                        gpointer                        user_data,
                                                                        GDestroyNotify                  notify);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                      gtk_source_file_check_file_on_disk          (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                  gtk_source_file_is_local                    (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                  gtk_source_file_is_externally_modified      (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                  gtk_source_file_is_deleted                  (GtkSourceFile                  *file);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                  gtk_source_file_is_readonly                 (GtkSourceFile                  *file);
 
 G_END_DECLS

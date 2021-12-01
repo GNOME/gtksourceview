@@ -29,7 +29,7 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_COMPLETION_PROPOSAL (gtk_source_completion_proposal_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_INTERFACE (GtkSourceCompletionProposal, gtk_source_completion_proposal, GTK_SOURCE, COMPLETION_PROPOSAL, GObject)
 
 struct _GtkSourceCompletionProposalInterface

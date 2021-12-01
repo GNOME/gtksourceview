@@ -160,8 +160,6 @@ get_locale_dir (void)
  *
  * This function can be called several times, but is meant to be called at the
  * beginning of main(), before any other GtkSourceView function call.
- *
- * Since: 4.0
  */
 void
 gtk_source_init (void)
@@ -240,8 +238,6 @@ gtk_source_init (void)
  * It is not mandatory to call this function, it's just to be friendlier to
  * memory debugging tools. This function is meant to be called at the end of
  * main(). It can be called several times.
- *
- * Since: 4.0
  */
 
 /* Another way is to use a DSO destructor, see gconstructor.h in GLib.

@@ -28,20 +28,17 @@
 #include "gtksourcestylescheme-private.h"
 
 /**
- * SECTION:styleschemechooserbutton
- * @Short_description: A button to launch a style scheme selection dialog
- * @Title: GtkSourceStyleSchemeChooserButton
- * @See_also: #GtkSourceStyleSchemeChooserWidget
+ * GtkSourceStyleSchemeChooserButton:
+ * 
+ * A button to launch a style scheme selection dialog.
  *
- * The #GtkSourceStyleSchemeChooserButton is a button which displays
+ * The `GtkSourceStyleSchemeChooserButton` is a button which displays
  * the currently selected style scheme and allows to open a style scheme
  * selection dialog to change the style scheme.
  * It is suitable widget for selecting a style scheme in a preference dialog.
  *
- * In #GtkSourceStyleSchemeChooserButton, a #GtkSourceStyleSchemeChooserWidget
+ * In `GtkSourceStyleSchemeChooserButton`, a [class@StyleSchemeChooserWidget]
  * is used to provide a dialog for selecting style schemes.
- *
- * Since: 3.16
  */
 
 typedef struct
@@ -305,8 +302,6 @@ style_scheme_chooser_interface_init (GtkSourceStyleSchemeChooserInterface *iface
  * Creates a new #GtkSourceStyleSchemeChooserButton.
  *
  * Returns: a new #GtkSourceStyleSchemeChooserButton.
- *
- * Since: 3.16
  */
 GtkWidget *
 gtk_source_style_scheme_chooser_button_new (void)

@@ -23,16 +23,14 @@
 #include "gtksourcesnippetcontext.h"
 
 /**
- * SECTION:snippetchunk
- * @title: GtkSourceSnippetChunk
- * @short_description: An chunk of text within the source snippet
+ * GtkSourceSnippetChunk:
+ * 
+ * A chunk of text within the source snippet.
  *
- * The #GtkSourceSnippetChunk represents a single chunk of text that
+ * The `GtkSourceSnippetChunk` represents a single chunk of text that
  * may or may not be an edit point within the snippet. Chunks that are
  * an edit point (also called a tab stop) have the
- * #GtkSourceSnippetChunk:focus-position property set.
- *
- * Since: 5.0
+ * [property@SnippetChunk:focus-position] property set.
  */
 
 G_DEFINE_TYPE (GtkSourceSnippetChunk, gtk_source_snippet_chunk, G_TYPE_INITIALLY_UNOWNED)
@@ -53,10 +51,8 @@ static GParamSpec *properties[N_PROPS];
 /**
  * gtk_source_snippet_chunk_new:
  *
- * Create a new #GtkSourceSnippetChunk that can be added to
- * a #GtkSourceSnippet.
- *
- * Since: 5.0
+ * Create a new `GtkSourceSnippetChunk` that can be added to
+ * a [class@Snippet].
  */
 GtkSourceSnippetChunk *
 gtk_source_snippet_chunk_new (void)
@@ -71,8 +67,6 @@ gtk_source_snippet_chunk_new (void)
  * Copies the source snippet.
  *
  * Returns: (transfer full): A #GtkSourceSnippetChunk
- *
- * Since: 5.0
  */
 GtkSourceSnippetChunk *
 gtk_source_snippet_chunk_copy (GtkSourceSnippetChunk *chunk)
@@ -109,8 +103,6 @@ on_context_changed (GtkSourceSnippetContext *context,
  * Gets the context for the snippet insertion.
  *
  * Returns: (transfer none): A #GtkSourceSnippetContext
- *
- * Since: 5.0
  */
 GtkSourceSnippetContext *
 gtk_source_snippet_chunk_get_context (GtkSourceSnippetChunk *chunk)
@@ -157,12 +149,10 @@ gtk_source_snippet_chunk_set_context (GtkSourceSnippetChunk   *chunk,
  *
  * The specification is evaluated for variables when other chunks are edited
  * within the snippet context. If the user has changed the text, the
- * #GtkSourceSnippetChunk:text and #GtkSourceSnippetChunk:text-set properties
+ * [property@SnippetChunk:text] and [property@SnippetChunk:text-set] properties
  * are updated.
  *
  * Returns: (transfer none) (nullable): the specification, if any
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_chunk_get_spec (GtkSourceSnippetChunk *chunk)
@@ -181,10 +171,8 @@ gtk_source_snippet_chunk_get_spec (GtkSourceSnippetChunk *chunk)
  *
  * The specification is evaluated for variables when other chunks are edited
  * within the snippet context. If the user has changed the text, the
- * #GtkSourceSnippetChunk:text and #GtkSourceSnippetChunk:text-set properties
+ * [property@SnippetChunk:text and] [property@SnippetChunk:text-set] properties
  * are updated.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_chunk_set_spec (GtkSourceSnippetChunk *chunk,
@@ -205,7 +193,7 @@ gtk_source_snippet_chunk_set_spec (GtkSourceSnippetChunk *chunk,
  * gtk_source_snippet_chunk_get_focus_position:
  * @chunk: a #GtkSourceSnippetChunk
  *
- * Gets the #GtkSourceSnippetChunk:focus-position.
+ * Gets the [property@SnippetChunk:focus-position].
  *
  * The focus-position is used to determine how many tabs it takes for the
  * snippet to advanced to this chunk.
@@ -216,8 +204,6 @@ gtk_source_snippet_chunk_set_spec (GtkSourceSnippetChunk *chunk,
  * A focus-position of -1 means the chunk cannot be focused by the user.
  *
  * Returns: the focus-position
- *
- * Since: 5.0
  */
 gint
 gtk_source_snippet_chunk_get_focus_position (GtkSourceSnippetChunk *chunk)
@@ -232,7 +218,7 @@ gtk_source_snippet_chunk_get_focus_position (GtkSourceSnippetChunk *chunk)
  * @chunk: a #GtkSourceSnippetChunk
  * @focus_position: the focus-position
  *
- * Sets the #GtkSourceSnippetChunk:focus-position property.
+ * Sets the [property@SnippetChunk:focus-position] property.
  *
  * The focus-position is used to determine how many tabs it takes for the
  * snippet to advanced to this chunk.
@@ -241,8 +227,6 @@ gtk_source_snippet_chunk_get_focus_position (GtkSourceSnippetChunk *chunk)
  * and snippet editing ends when it has been reached.
  *
  * A focus-position of -1 means the chunk cannot be focused by the user.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_chunk_set_focus_position (GtkSourceSnippetChunk *chunk,
@@ -264,15 +248,13 @@ gtk_source_snippet_chunk_set_focus_position (GtkSourceSnippetChunk *chunk,
  * gtk_source_snippet_chunk_get_text:
  * @chunk: a #GtkSourceSnippetChunk
  *
- * Gets the #GtkSourceSnippetChunk:text property.
+ * Gets the [property@SnippetChunk:text] property.
  *
  * The text property is updated when the user edits the text of the chunk.
- * If it has not been edited, the #GtkSourceSnippetChunk:spec property is
+ * If it has not been edited, the [property@SnippetChunk:spec] property is
  * returned.
  *
  * Returns: (not nullable): the text of the chunk
- *
- * Since: 5.0
  */
 const gchar *
 gtk_source_snippet_chunk_get_text (GtkSourceSnippetChunk *chunk)
@@ -292,8 +274,6 @@ gtk_source_snippet_chunk_get_text (GtkSourceSnippetChunk *chunk)
  * This is usually used by the snippet engine to update the text, but may
  * be useful when creating custom snippets to avoid expansion of any
  * specification.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_chunk_set_text (GtkSourceSnippetChunk *chunk,
@@ -314,11 +294,9 @@ gtk_source_snippet_chunk_set_text (GtkSourceSnippetChunk *chunk,
  * gtk_source_snippet_chunk_get_text_set:
  * @chunk: a #GtkSourceSnippetChunk
  *
- * Gets the #GtkSourceSnippetChunk:text-set property.
+ * Gets the [property@SnippetChunk:text-set] property.
  *
  * This is typically set when the user has edited a snippet chunk.
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_snippet_chunk_get_text_set (GtkSourceSnippetChunk *chunk)
@@ -333,12 +311,10 @@ gtk_source_snippet_chunk_get_text_set (GtkSourceSnippetChunk *chunk)
  * @chunk: a #GtkSourceSnippetChunk
  * @text_set: the property value
  *
- * Sets the #GtkSourceSnippetChunk:text-set property.
+ * Sets the [property@SnippetChunk:text-set] property.
  *
  * This is typically set when the user has edited a snippet chunk by the
  * snippet engine.
- *
- * Since: 5.0
  */
 void
 gtk_source_snippet_chunk_set_text_set (GtkSourceSnippetChunk *chunk,

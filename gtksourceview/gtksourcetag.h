@@ -33,7 +33,7 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_TAG (gtk_source_tag_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_3_20
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_DERIVABLE_TYPE (GtkSourceTag, gtk_source_tag, GTK_SOURCE, TAG, GtkTextTag)
 
 struct _GtkSourceTagClass
@@ -44,7 +44,7 @@ struct _GtkSourceTagClass
 	gpointer _reserved[10];
 };
 
-GTK_SOURCE_AVAILABLE_IN_3_20
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkTextTag *gtk_source_tag_new (const gchar *name);
 
 G_END_DECLS

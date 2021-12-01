@@ -31,21 +31,18 @@
 #include "gtksourceview.h"
 
 /**
- * SECTION:styleschemechooserwidget
- * @Short_description: A widget for choosing style schemes
- * @Title: GtkSourceStyleSchemeChooserWidget
- * @See_also: #GtkSourceStyleSchemeChooserButton
+ * GtkSourceStyleSchemeChooserWidget:
+ * 
+ * A widget for choosing style schemes.
  *
- * The #GtkSourceStyleSchemeChooserWidget widget lets the user select a
+ * The `GtkSourceStyleSchemeChooserWidget` widget lets the user select a
  * style scheme. By default, the chooser presents a predefined list
  * of style schemes.
  *
  * To change the initially selected style scheme,
- * use gtk_source_style_scheme_chooser_set_style_scheme().
+ * use [method@StyleSchemeChooser.set_style_scheme].
  * To get the selected style scheme
- * use gtk_source_style_scheme_chooser_get_style_scheme().
- *
- * Since: 3.16
+ * use [method@StyleSchemeChooser.get_style_scheme].
  */
 
 typedef struct
@@ -257,8 +254,6 @@ style_scheme_chooser_interface_init (GtkSourceStyleSchemeChooserInterface *iface
  * Creates a new #GtkSourceStyleSchemeChooserWidget.
  *
  * Returns: a new  #GtkSourceStyleSchemeChooserWidget.
- *
- * Since: 3.16
  */
 GtkWidget *
 gtk_source_style_scheme_chooser_widget_new (void)

@@ -25,11 +25,11 @@
 #include "gtksourcecompletioncell-private.h"
 
 /**
- * SECTION:completioncell
- * @title: GtkSourceCompletionCell
- * @short_description: widget for single cell of completion proposal
+ * GtkSourceCompletionCell:
  *
- * The #GtkSourceCompletionCell widget provides a container to display various
+ * Widget for single cell of completion proposal.
+ *
+ * The `GtkSourceCompletionCell` widget provides a container to display various
  * types of information with the completion display.
  *
  * Each proposal may consist of multiple cells depending on the complexity of
@@ -38,10 +38,10 @@
  * function name and "parameters". They may also optionally set an icon to
  * signify the kind of result.
  *
- * A #GtkSourceCompletionProvider should implement the
- * #GtkSourceCompletionProviderInterface.display virtual function to control
- * how to convert data from their #GtkSourceCompletionProposal to content for
- * the #GtkSourceCompletionCell.
+ * A [iface@CompletionProvider] should implement the
+ * [vfunc@CompletionProvider.display] virtual function to control
+ * how to convert data from their [iface@CompletionProposal] to content for
+ * the `GtkSourceCompletionCell`.
  */
 
 struct _GtkSourceCompletionCell
@@ -335,8 +335,6 @@ gtk_source_completion_cell_set_paintable (GtkSourceCompletionCell *self,
  * Gets the child #GtkWidget, if any.
  *
  * Returns: (transfer none) (nullable): a #GtkWidget or %NULL
- *
- * Since: 5.0
  */
 GtkWidget *
 gtk_source_completion_cell_get_widget (GtkSourceCompletionCell *self)

@@ -33,7 +33,7 @@ G_BEGIN_DECLS
 
 #define GTK_SOURCE_TYPE_HOVER_PROVIDER (gtk_source_hover_provider_get_type())
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_INTERFACE (GtkSourceHoverProvider, gtk_source_hover_provider, GTK_SOURCE, HOVER_PROVIDER, GObject)
 
 struct _GtkSourceHoverProviderInterface
@@ -55,14 +55,14 @@ struct _GtkSourceHoverProviderInterface
 	                             GError                 **error);
 };
 
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void     gtk_source_hover_provider_populate_async  (GtkSourceHoverProvider  *self,
                                                     GtkSourceHoverContext   *context,
                                                     GtkSourceHoverDisplay   *display,
                                                     GCancellable            *cancellable,
                                                     GAsyncReadyCallback      callback,
                                                     gpointer                 user_data);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean gtk_source_hover_provider_populate_finish (GtkSourceHoverProvider  *self,
                                                     GAsyncResult                 *result,
                                                     GError                      **error);

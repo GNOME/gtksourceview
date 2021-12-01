@@ -990,8 +990,6 @@ _gtk_source_completion_list_box_set_n_rows (GtkSourceCompletionListBox *self,
  * Gets the currently selected proposal, or %NULL if no proposal is selected
  *
  * Returns: (nullable) (transfer full): a #GtkSourceCompletionProposal or %NULL
- *
- * Since: 5.0
  */
 GtkSourceCompletionProposal *
 _gtk_source_completion_list_box_get_proposal (GtkSourceCompletionListBox *self)
@@ -1021,8 +1019,6 @@ _gtk_source_completion_list_box_get_proposal (GtkSourceCompletionListBox *self)
  * are set to the selected provider/proposal.
  *
  * Returns: %TRUE if there is a selection
- *
- * Since: 5.0
  */
 gboolean
 _gtk_source_completion_list_box_get_selected (GtkSourceCompletionListBox   *self,
@@ -1056,8 +1052,6 @@ _gtk_source_completion_list_box_get_selected (GtkSourceCompletionListBox   *self
  * Gets the context that is being displayed in the list box.
  *
  * Returns: (transfer none) (nullable): an #GtkSourceCompletionContext or %NULL
- *
- * Since: 5.0
  */
 GtkSourceCompletionContext *
 _gtk_source_completion_list_box_get_context (GtkSourceCompletionListBox *self)
@@ -1094,8 +1088,6 @@ gtk_source_completion_list_box_items_changed_cb (GtkSourceCompletionListBox *sel
  * @context: the #GtkSourceCompletionContext
  *
  * Sets the context to be displayed.
- *
- * Since: 5.0
  */
 void
 _gtk_source_completion_list_box_set_context (GtkSourceCompletionListBox *self,

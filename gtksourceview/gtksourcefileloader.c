@@ -33,29 +33,26 @@
 #include "gtksource-enumtypes.h"
 
 /**
- * SECTION:fileloader
- * @Short_description: Load a file into a GtkSourceBuffer
- * @Title: GtkSourceFileLoader
- * @See_also: #GtkSourceFile, #GtkSourceFileSaver
+ * GtkSourceFileLoader:
+ * 
+ * Load a file into a GtkSourceBuffer.
  *
- * A #GtkSourceFileLoader object permits to load the contents of a #GFile or a
- * #GInputStream into a #GtkSourceBuffer.
+ * A `GtkSourceFileLoader` object permits to load the contents of a [class@Gio.File] or a
+ * [class@Gio.InputStream] into a [class@Buffer].
  *
  * A file loader should be used only for one load operation, including errors
  * handling. If an error occurs, you can reconfigure the loader and relaunch the
- * operation with gtk_source_file_loader_load_async().
+ * operation with [method@FileLoader.load_async].
  *
- * Running a #GtkSourceFileLoader is an undoable action for the
- * #GtkSourceBuffer. That is, gtk_source_buffer_begin_not_undoable_action() and
- * gtk_source_buffer_end_not_undoable_action() are called, which delete the
- * undo/redo history.
+ * Running a `GtkSourceFileLoader` is an undoable action for the
+ * [class@Buffer].
  *
  * After a file loading, the buffer is reset to the contents provided by the
- * #GFile or #GInputStream, so the buffer is set as “unmodified”, that is,
- * gtk_text_buffer_set_modified() is called with %FALSE. If the contents isn't
+ * [class@Gio.File] or [class@Gio.InputStream], so the buffer is set as “unmodified”, that is,
+ * [method@Gtk.TextBuffer.set_modified] is called with %FALSE. If the contents isn't
  * saved somewhere (for example if you load from stdin), then you should
- * probably call gtk_text_buffer_set_modified() with %TRUE after calling
- * gtk_source_file_loader_load_finish().
+ * probably call [method@Gtk.TextBuffer.set_modified] with %TRUE after calling
+ * [method@FileLoader.load_finish].
  */
 
 #if 0
@@ -382,8 +379,6 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 *
 	 * The #GtkSourceBuffer to load the contents into. The
 	 * #GtkSourceFileLoader object has a weak reference to the buffer.
-	 *
-	 * Since: 3.14
 	 */
 	g_object_class_install_property (object_class, PROP_BUFFER,
 					 g_param_spec_object ("buffer",
@@ -399,8 +394,6 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 *
 	 * The #GtkSourceFile. The #GtkSourceFileLoader object has a weak
 	 * reference to the file.
-	 *
-	 * Since: 3.14
 	 */
 	g_object_class_install_property (object_class, PROP_FILE,
 					 g_param_spec_object ("file",
@@ -417,8 +410,6 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 * The #GFile to load. If the #GtkSourceFileLoader:input-stream is
 	 * %NULL, by default the location is taken from the #GtkSourceFile at
 	 * construction time.
-	 *
-	 * Since: 3.14
 	 */
 	g_object_class_install_property (object_class, PROP_LOCATION,
 					 g_param_spec_object ("location",
@@ -434,8 +425,6 @@ gtk_source_file_loader_class_init (GtkSourceFileLoaderClass *klass)
 	 *
 	 * The #GInputStream to load. Useful for reading stdin. If this property
 	 * is set, the #GtkSourceFileLoader:location property is ignored.
-	 *
-	 * Since: 3.14
 	 */
 	g_object_class_install_property (object_class, PROP_INPUT_STREAM,
 					 g_param_spec_object ("input-stream",
@@ -911,14 +900,14 @@ gtk_source_file_loader_error_quark (void)
  * @buffer: the #GtkSourceBuffer to load the contents into.
  * @file: the #GtkSourceFile.
  *
- * Creates a new #GtkSourceFileLoader object. The contents is read from the
- * #GtkSourceFile's location. If not already done, call
- * gtk_source_file_set_location() before calling this constructor. The previous
- * location is anyway not needed, because as soon as the file loading begins,
+ * Creates a new `GtkSourceFileLoader` object. The contents is read from the
+ * [class@File]'s location. 
+ *
+ * If not already done, call [method@File.set_location] before calling this constructor. 
+ * The previous location is anyway not needed, because as soon as the file loading begins,
  * the @buffer is emptied.
  *
  * Returns: a new #GtkSourceFileLoader object.
- * Since: 3.14
  */
 GtkSourceFileLoader *
 gtk_source_file_loader_new (GtkSourceBuffer *buffer,
@@ -942,7 +931,6 @@ gtk_source_file_loader_new (GtkSourceBuffer *buffer,
  * Creates a new #GtkSourceFileLoader object. The contents is read from @stream.
  *
  * Returns: a new #GtkSourceFileLoader object.
- * Since: 3.14
  */
 GtkSourceFileLoader *
 gtk_source_file_loader_new_from_stream (GtkSourceBuffer *buffer,
@@ -966,19 +954,17 @@ gtk_source_file_loader_new_from_stream (GtkSourceBuffer *buffer,
  * @candidate_encodings: (element-type GtkSourceEncoding): a list of
  *   #GtkSourceEncoding<!-- -->s.
  *
- * Sets the candidate encodings for the file loading. The encodings are tried in
- * the same order as the list.
+ * Sets the candidate encodings for the file loading. 
+ *
+ * The encodings are tried in the same order as the list.
  *
  * For convenience, @candidate_encodings can contain duplicates. Only the first
  * occurrence of a duplicated encoding is kept in the list.
  *
  * By default the candidate encodings are (in that order in the list):
- * 1. If set, the #GtkSourceFile's encoding as returned by
- * gtk_source_file_get_encoding().
- * 2. The default candidates as returned by
- * gtk_source_encoding_get_default_candidates().
  *
- * Since: 3.14
+ * 1. If set, the [class@File]'s encoding as returned by [method@File.get_encoding].
+ * 2. The default candidates as returned by [func@Encoding.get_default_candidates].
  */
 void
 gtk_source_file_loader_set_candidate_encodings (GtkSourceFileLoader *loader,
@@ -1001,7 +987,6 @@ gtk_source_file_loader_set_candidate_encodings (GtkSourceFileLoader *loader,
  * @loader: a #GtkSourceFileLoader.
  *
  * Returns: (transfer none): the #GtkSourceBuffer to load the contents into.
- * Since: 3.14
  */
 GtkSourceBuffer *
 gtk_source_file_loader_get_buffer (GtkSourceFileLoader *loader)
@@ -1016,7 +1001,6 @@ gtk_source_file_loader_get_buffer (GtkSourceFileLoader *loader)
  * @loader: a #GtkSourceFileLoader.
  *
  * Returns: (transfer none): the #GtkSourceFile.
- * Since: 3.14
  */
 GtkSourceFile *
 gtk_source_file_loader_get_file (GtkSourceFileLoader *loader)
@@ -1032,7 +1016,6 @@ gtk_source_file_loader_get_file (GtkSourceFileLoader *loader)
  *
  * Returns: (nullable) (transfer none): the #GFile to load, or %NULL
  * if an input stream is used.
- * Since: 3.14
  */
 GFile *
 gtk_source_file_loader_get_location (GtkSourceFileLoader *loader)
@@ -1048,7 +1031,6 @@ gtk_source_file_loader_get_location (GtkSourceFileLoader *loader)
  *
  * Returns: (nullable) (transfer none): the #GInputStream to load, or %NULL
  * if a #GFile is used.
- * Since: 3.14
  */
 GInputStream *
 gtk_source_file_loader_get_input_stream (GtkSourceFileLoader *loader)
@@ -1074,11 +1056,10 @@ gtk_source_file_loader_get_input_stream (GtkSourceFileLoader *loader)
  *   satisfied.
  * @user_data: user data to pass to @callback.
  *
- * Loads asynchronously the file or input stream contents into the
- * #GtkSourceBuffer. See the #GAsyncResult documentation to know how to use this
- * function.
+ * Loads asynchronously the file or input stream contents into the [class@Buffer]. 
  *
- * Since: 3.14
+ * See the [iface@Gio.AsyncResult] documentation to know how to use this
+ * function.
  */
 
 /* The GDestroyNotify is needed, currently the following bug is not fixed:
@@ -1172,14 +1153,13 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
  * @result: a #GAsyncResult.
  * @error: a #GError, or %NULL.
  *
- * Finishes a file loading started with gtk_source_file_loader_load_async().
+ * Finishes a file loading started with [method@FileLoader.load_async].
  *
- * If the contents has been loaded, the following #GtkSourceFile properties will
+ * If the contents has been loaded, the following [class@File] properties will
  * be updated: the location, the encoding, the newline type and the compression
  * type.
  *
  * Returns: whether the contents has been loaded successfully.
- * Since: 3.14
  */
 gboolean
 gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
@@ -1281,7 +1261,6 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
  * @loader: a #GtkSourceFileLoader.
  *
  * Returns: the detected file encoding.
- * Since: 3.14
  */
 const GtkSourceEncoding *
 gtk_source_file_loader_get_encoding (GtkSourceFileLoader *loader)
@@ -1296,7 +1275,6 @@ gtk_source_file_loader_get_encoding (GtkSourceFileLoader *loader)
  * @loader: a #GtkSourceFileLoader.
  *
  * Returns: the detected newline type.
- * Since: 3.14
  */
 GtkSourceNewlineType
 gtk_source_file_loader_get_newline_type (GtkSourceFileLoader *loader)
@@ -1312,7 +1290,6 @@ gtk_source_file_loader_get_newline_type (GtkSourceFileLoader *loader)
  * @loader: a #GtkSourceFileLoader.
  *
  * Returns: the detected compression type.
- * Since: 3.14
  */
 GtkSourceCompressionType
 gtk_source_file_loader_get_compression_type (GtkSourceFileLoader *loader)

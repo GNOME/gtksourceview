@@ -57,15 +57,15 @@
 #include "gtksourcetrace.h"
 
 /**
- * SECTION:view
- * @Short_description: Subclass of #GtkTextView
- * @Title: GtkSourceView
- * @See_also: #GtkTextView, #GtkSourceBuffer
+ * GtkSourceView:
  *
- * #GtkSourceView is the main class of the GtkSourceView library.
- * Use a #GtkSourceBuffer to display text with a #GtkSourceView.
+ * Subclass of [class@Gtk.TextView].
+ *
+ * `GtkSourceView` is the main class of the GtkSourceView library.
+ * Use a [class@Buffer] to display text with a `GtkSourceView`.
  *
  * This class provides:
+ *
  *  - Show the line numbers;
  *  - Show a right margin;
  *  - Highlight the current line;
@@ -79,43 +79,43 @@
  *
  * # GtkSourceView as GtkBuildable
  *
- * The GtkSourceView implementation of the #GtkBuildable interface exposes the
- * #GtkSourceView:completion object with the internal-child "completion".
+ * The GtkSourceView implementation of the [iface@Gtk.Buildable] interface exposes the
+ * [property@View:completion] object with the internal-child "completion".
  *
  * An example of a UI definition fragment with GtkSourceView:
- * |[
+ * ```xml
  * <object class="GtkSourceView" id="source_view">
- *   <property name="tab_width">4</property>
- *   <property name="auto_indent">True</property>
+ *   <property name="tab-width">4</property>
+ *   <property name="auto-indent">True</property>
  *   <child internal-child="completion">
  *     <object class="GtkSourceCompletion">
- *       <property name="select_on_show">False</property>
+ *       <property name="select-on-show">False</property>
  *     </object>
  *   </child>
  * </object>
- * ]|
+ * ```
  *
  * # Changing the Font
  *
- * Gtk CSS provides the best way to change the font for a #GtkSourceView in a
- * manner that allows for components like #GtkSourceMap to scale the desired
+ * Gtk CSS provides the best way to change the font for a `GtkSourceView` in a
+ * manner that allows for components like [class@Map] to scale the desired
  * font.
  *
- * |[
- *   GtkCssProvider *provider = gtk_css_provider_new ();
- *   gtk_css_provider_load_from_data (provider,
- *                                    "textview { font-family: Monospace; font-size: 8pt; }",
- *                                    -1,
- *                                    NULL);
- *   gtk_style_context_add_provider (gtk_widget_get_style_context (view),
- *                                   GTK_STYLE_PROVIDER (provider),
- *                                   GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
- *   g_object_unref (provider);
- * ]|
+ * ```c
+ * GtkCssProvider *provider = gtk_css_provider_new ();
+ * gtk_css_provider_load_from_data (provider,
+ *                                  "textview { font-family: Monospace; font-size: 8pt; }",
+ *                                  -1,
+ *                                  NULL);
+ * gtk_style_context_add_provider (gtk_widget_get_style_context (view),
+ *                                 GTK_STYLE_PROVIDER (provider),
+ *                                 GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+ * g_object_unref (provider);
+ * ```
  *
  * If you need to adjust the font or size of font within a portion of the
- * document only, you should use a #GtkTextTag with the #GtkTextTag:family or
- * #GtkTextTag:scale set so that the font size may be scaled relative to
+ * document only, you should use a [class@Gtk.TextTag] with the [property@Gtk.TextTag:family] or
+ * [property@Gtk.TextTag:scale] set so that the font size may be scaled relative to
  * the default font set in CSS.
  */
 
@@ -559,15 +559,13 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	/**
 	 * GtkSourceView:enable-snippets:
 	 *
-	 * The "enable-snippets" property denotes if snippets should be
+	 * The property denotes if snippets should be
 	 * expanded when the user presses Tab after having typed a word
-	 * matching the snippets found in #GtkSourceSnippetManager.
+	 * matching the snippets found in [class@SnippetManager].
 	 *
 	 * The user may tab through focus-positions of the snippet if any
 	 * are available by pressing Tab repeatedly until the desired focus
 	 * position is selected.
-	 *
-	 * Since: 5.0
 	 */
 	properties [PROP_ENABLE_SNIPPETS] =
 		g_param_spec_boolean ("enable-snippets",
@@ -625,10 +623,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	/**
 	 * GtkSourceView:indenter:
 	 *
-	 * The "indenter" property is a #GtkSourceIndenter to use to indent
-	 * as the user types into the #GtkSourceView.
-	 *
-	 * Since: 5.0
+	 * The property is a [iface@Indenter] to use to indent
+	 * as the user types into the [class@View].
 	 */
 	properties [PROP_INDENTER] =
 		g_param_spec_object ("indenter",
@@ -707,8 +703,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * GtkSourceView:smart-home-end:
 	 *
 	 * Set the behavior of the HOME and END keys.
-	 *
-	 * Since: 2.0
 	 */
 	properties [PROP_SMART_HOME_END] =
 		g_param_spec_enum ("smart-home-end",
@@ -744,8 +738,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * GtkSourceView:background-pattern:
 	 *
 	 * Draw a specific background pattern on the view.
-	 *
-	 * Since: 3.16
 	 */
 	properties [PROP_BACKGROUND_PATTERN] =
 		g_param_spec_enum ("background-pattern",
@@ -761,8 +753,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * GtkSourceView:smart-backspace:
 	 *
 	 * Whether smart Backspace should be used.
-	 *
-	 * Since: 3.18
 	 */
 	properties [PROP_SMART_BACKSPACE] =
 		g_param_spec_boolean ("smart-backspace",
@@ -776,9 +766,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	/**
 	 * GtkSourceView:space-drawer:
 	 *
-	 * The #GtkSourceSpaceDrawer object associated with the view.
-	 *
-	 * Since: 3.24
+	 * The [class@SpaceDrawer] object associated with the view.4
 	 */
 	properties [PROP_SPACE_DRAWER] =
 		g_param_spec_object ("space-drawer",
@@ -794,15 +782,15 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * GtkSourceView::show-completion:
 	 * @view: The #GtkSourceView who emits the signal
 	 *
-	 * The ::show-completion signal is a key binding signal which gets
+	 * The signal is a key binding signal which gets
 	 * emitted when the user requests a completion, by pressing
 	 * <keycombo><keycap>Control</keycap><keycap>space</keycap></keycombo>.
 	 *
-	 * This will create a #GtkSourceCompletionContext with the activation
+	 * This will create a [class@CompletionContext] with the activation
 	 * type as %GTK_SOURCE_COMPLETION_ACTIVATION_USER_REQUESTED.
 	 *
 	 * Applications should not connect to it, but may emit it with
-	 * g_signal_emit_by_name() if they need to activate the completion by
+	 * [func@GObject.signal_emit_by_name] if they need to activate the completion by
 	 * another means, for example with another key binding or a menu entry.
 	 */
 	signals[SHOW_COMPLETION] =
@@ -826,8 +814,9 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @n_presses: the number of presses
 	 *
 	 * Emitted when a line mark has been activated (for instance when there
-	 * was a button press in the line marks gutter). You can use @iter to
-	 * determine on which line the activation took place.
+	 * was a button press in the line marks gutter).
+	 *
+	 * You can use @iter to determine on which line the activation took place.
 	 */
 	signals[LINE_MARK_ACTIVATED] =
 		g_signal_new ("line-mark-activated",
@@ -851,9 +840,9 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @view: the #GtkSourceView which received the signal.
 	 * @down: %TRUE to move down, %FALSE to move up.
 	 *
-	 * The ::move-lines signal is a keybinding which gets emitted
-	 * when the user initiates moving a line. The default binding key
-	 * is Alt+Up/Down arrow. And moves the currently selected lines,
+	 * The signal is a keybinding which gets emitted when the user initiates moving a line. 
+	 *
+	 * The default binding key is Alt+Up/Down arrow. And moves the currently selected lines,
 	 * or the current line up or down by one line.
 	 */
 	signals[MOVE_LINES] =
@@ -874,12 +863,10 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @view: the #GtkSourceView which received the signal
 	 * @count: the number of words to move over
 	 *
-	 * The ::move-words signal is a keybinding which gets emitted
-	 * when the user initiates moving a word. The default binding key
-	 * is Alt+Left/Right Arrow and moves the current selection, or the current
+	 * The signal is a keybinding which gets emitted when the user initiates moving a word.
+	 * 
+	 * The default binding key is Alt+Left/Right Arrow and moves the current selection, or the current
 	 * word by one word.
-	 *
-	 * Since: 3.0
 	 */
 	signals[MOVE_WORDS] =
 		g_signal_new ("move-words",
@@ -900,13 +887,11 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @snippet: a #GtkSourceSnippet
 	 * @location: (inout): a #GtkTextIter
 	 *
-	 * The ::push-snippet signal is emitted to insert a new snippet into
-	 * the view. If another snippet was active, it will be paused until all
-	 * focus positions of @snippet have been exhausted.
+	 * The signal is emitted to insert a new snippet into the view. 
+	 * 
+	 * If another snippet was active, it will be paused until all focus positions of @snippet have been exhausted.
 	 *
 	 * @location will be updated to point at the end of the snippet.
-	 *
-	 * Since: 5.0
 	 */
 	signals[PUSH_SNIPPET] =
 		g_signal_new ("push-snippet",
@@ -929,13 +914,12 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @iter: a #GtkTextIter
 	 * @count: the count
 	 *
-	 * Emitted when a the cursor was moved according to the smart home
-	 * end setting. The signal is emitted after the cursor is moved, but
-	 * during the GtkTextView::move-cursor action. This can be used to find
+	 * Emitted when a the cursor was moved according to the smart home end setting. 
+	 *
+	 * The signal is emitted after the cursor is moved, but
+	 * during the [signal@Gtk.TextView::move-cursor] action. This can be used to find
 	 * out whether the cursor was moved by a normal home/end or by a smart
 	 * home/end.
-	 *
-	 * Since: 3.0
 	 */
 	signals[SMART_HOME_END] =
 		g_signal_new ("smart-home-end",
@@ -958,8 +942,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @extend_selection: %TRUE if the move should extend the selection
 	 *
 	 * Keybinding signal to move the cursor to the matching bracket.
-	 *
-	 * Since: 3.16
 	 */
 	signals[MOVE_TO_MATCHING_BRACKET] =
 		/* we have to do it this way since we do not have any more vfunc slots */
@@ -982,8 +964,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @count: the number to add to the number at the current position
 	 *
 	 * Keybinding signal to edit a number at the current cursor position.
-	 *
-	 * Since: 3.16
 	 */
 	signals[CHANGE_NUMBER] =
 		g_signal_new_class_handler ("change-number",
@@ -1005,8 +985,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @case_type: the case to use
 	 *
 	 * Keybinding signal to change case of the text at the current cursor position.
-	 *
-	 * Since: 3.16
 	 */
 	signals[CHANGE_CASE] =
 		g_signal_new_class_handler ("change-case",
@@ -1027,8 +1005,6 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @view: the #GtkSourceView
 	 *
 	 * Keybinding signal to join the lines currently selected.
-	 *
-	 * Since: 3.16
 	 */
 	signals[JOIN_LINES] =
 		g_signal_new_class_handler ("join-lines",
@@ -2816,14 +2792,14 @@ gtk_source_view_create_buffer (GtkTextView *text_view)
 /**
  * gtk_source_view_new:
  *
- * Creates a new #GtkSourceView.
+ * Creates a new `GtkSourceView`.
  *
- * By default, an empty #GtkSourceBuffer will be lazily created and can be
- * retrieved with gtk_text_view_get_buffer().
+ * By default, an empty [class@Buffer] will be lazily created and can be
+ * retrieved with [method@Gtk.TextView.get_buffer].
  *
  * If you want to specify your own buffer, either override the
- * #GtkTextViewClass create_buffer factory method, or use
- * gtk_source_view_new_with_buffer().
+ * [vfunc@Gtk.TextView.create_buffer] factory method, or use
+ * [ctor@View.new_with_buffer].
  *
  * Returns: a new #GtkSourceView.
  */
@@ -2837,8 +2813,9 @@ gtk_source_view_new (void)
  * gtk_source_view_new_with_buffer:
  * @buffer: a #GtkSourceBuffer.
  *
- * Creates a new #GtkSourceView widget displaying the buffer
- * @buffer. One buffer can be shared among many widgets.
+ * Creates a new #GtkSourceView widget displaying the buffer @buffer.
+ *
+ * One buffer can be shared among many widgets.
  *
  * Returns: a new #GtkSourceView.
  */
@@ -2925,8 +2902,6 @@ gtk_source_view_set_show_line_numbers (GtkSourceView *view,
  * Returns whether line marks are displayed beside the text.
  *
  * Return value: %TRUE if the line marks are displayed.
- *
- * Since: 2.2
  */
 gboolean
 gtk_source_view_get_show_line_marks (GtkSourceView *view)
@@ -2957,8 +2932,6 @@ gutter_renderer_marks_activate (GtkSourceGutterRenderer *renderer,
  * @show: whether line marks should be displayed.
  *
  * If %TRUE line marks will be displayed beside the text.
- *
- * Since: 2.2
  */
 void
 gtk_source_view_set_show_line_marks (GtkSourceView *view,
@@ -3031,9 +3004,10 @@ set_tab_stops_internal (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @width: width of tab in characters.
  *
- * Sets the width of tabulation in characters. The #GtkTextBuffer still contains
- * \t characters, but they can take a different visual width in a #GtkSourceView
- * widget.
+ * Sets the width of tabulation in characters. 
+ *
+ * The #GtkTextBuffer still contains `\t` characters, 
+ * but they can take a different visual width in a [class@View] widget.
  */
 void
 gtk_source_view_set_tab_width (GtkSourceView *view,
@@ -3088,21 +3062,23 @@ gtk_source_view_get_tab_width (GtkSourceView *view)
  * @width: indent width in characters.
  *
  * Sets the number of spaces to use for each step of indent when the tab key is
- * pressed. If @width is -1, the value of the #GtkSourceView:tab-width property
+ * pressed. 
+ * 
+ * If @width is -1, the value of the [property@View:tab-width] property
  * will be used.
  *
- * The #GtkSourceView:indent-width interacts with the
- * #GtkSourceView:insert-spaces-instead-of-tabs property and
- * #GtkSourceView:tab-width. An example will be clearer: if the
- * #GtkSourceView:indent-width is 4 and
- * #GtkSourceView:tab-width is 8 and
- * #GtkSourceView:insert-spaces-instead-of-tabs is %FALSE, then pressing the tab
+ * The [property@View:indent-width] interacts with the
+ * [property@View:insert-spaces-instead-of-tabs] property and
+ * [property@View:tab-width]. An example will be clearer: 
+ *
+ * If the [property@View:indent-width] is 4 and [property@View:tab-width] is 8 and
+ * [property@View:insert-spaces-instead-of-tabs] is %FALSE, then pressing the tab
  * key at the beginning of a line will insert 4 spaces. So far so good. Pressing
- * the tab key a second time will remove the 4 spaces and insert a \t character
- * instead (since #GtkSourceView:tab-width is 8). On the other hand, if
- * #GtkSourceView:insert-spaces-instead-of-tabs is %TRUE, the second tab key
+ * the tab key a second time will remove the 4 spaces and insert a `\t` character
+ * instead (since [property@View:tab-width] is 8). On the other hand, if
+ * [property@View:insert-spaces-instead-of-tabs] is %TRUE, the second tab key
  * pressed will insert 4 more spaces for a total of 8 spaces in the
- * #GtkTextBuffer.
+ * [class@Gtk.TextBuffer].
  *
  * The test-widget program (available in the GtkSourceView repository) may be
  * useful to better understand the indentation settings (enable the space
@@ -3130,7 +3106,8 @@ gtk_source_view_set_indent_width (GtkSourceView *view,
  * @view: a #GtkSourceView.
  *
  * Returns the number of spaces to use for each step of indent.
- * See gtk_source_view_set_indent_width() for details.
+ *
+ * See [method@View.set_indent_width] for details.
  *
  * Return value: indent width.
  */
@@ -3185,8 +3162,6 @@ get_indent_string (guint tabs,
  *
  * Inserts one indentation level at the beginning of the specified lines. The
  * empty lines are not indented.
- *
- * Since: 3.16
  */
 void
 gtk_source_view_indent_lines (GtkSourceView *view,
@@ -3340,8 +3315,6 @@ gtk_source_view_indent_lines (GtkSourceView *view,
  *
  * Removes one indentation level at the beginning of the
  * specified lines.
- *
- * Since: 3.16
  */
 void
 gtk_source_view_unindent_lines (GtkSourceView *view,
@@ -4166,7 +4139,7 @@ gtk_source_view_get_auto_indent (GtkSourceView *view)
  * If %TRUE auto-indentation of text is enabled.
  *
  * When Enter is pressed to create a new line, the auto-indentation inserts the
- * same indentation as the previous line. This is <emphasis>not</emphasis> a
+ * same indentation as the previous line. This is **not** a
  * "smart indentation" where an indentation level is added or removed depending
  * on the context.
  */
@@ -4212,9 +4185,10 @@ gtk_source_view_get_insert_spaces_instead_of_tabs (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @enable: whether to insert spaces instead of tabs.
  *
- * If %TRUE a tab key pressed is replaced by a group of space characters. Of
- * course it is still possible to insert a real \t programmatically with the
- * #GtkTextBuffer API.
+ * If %TRUE a tab key pressed is replaced by a group of space characters. 
+ * 
+ * Of course it is still possible to insert a real `\t` programmatically with the
+ * [class@Gtk.TextBuffer] API.
  */
 void
 gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView *view,
@@ -4239,7 +4213,7 @@ gtk_source_view_set_insert_spaces_instead_of_tabs (GtkSourceView *view,
  * @view: a #GtkSourceView.
  *
  * Returns whether when the tab key is pressed the current selection
- * should get indented instead of replaced with the \t character.
+ * should get indented instead of replaced with the `\t` character.
  *
  * Return value: %TRUE if the selection is indented when tab is pressed.
  */
@@ -4259,14 +4233,14 @@ gtk_source_view_get_indent_on_tab (GtkSourceView *view)
  * @enable: whether to indent a block when tab is pressed.
  *
  * If %TRUE, when the tab key is pressed when several lines are selected, the
- * selected lines are indented of one level instead of being replaced with a \t
+ * selected lines are indented of one level instead of being replaced with a `\t`
  * character. Shift+Tab unindents the selection.
  *
  * If the first or last line is not selected completely, it is also indented or
  * unindented.
  *
  * When the selection doesn't span several lines, the tab key always replaces
- * the selection with a normal \t character.
+ * the selection with a normal `\t` character.
  */
 void
 gtk_source_view_set_indent_on_tab (GtkSourceView *view,
@@ -4484,8 +4458,6 @@ gtk_source_view_set_right_margin_position (GtkSourceView *view,
  *
  * When set to %TRUE, pressing the Backspace key will try to delete spaces
  * up to the previous tab stop.
- *
- * Since: 3.18
  */
 void
 gtk_source_view_set_smart_backspace (GtkSourceView *view,
@@ -4513,8 +4485,6 @@ gtk_source_view_set_smart_backspace (GtkSourceView *view,
  * up to the previous tab stop.
  *
  * Returns: %TRUE if smart Backspace handling is enabled.
- *
- * Since: 3.18
  */
 gboolean
 gtk_source_view_get_smart_backspace (GtkSourceView *view)
@@ -4554,7 +4524,7 @@ gtk_source_view_set_smart_home_end (GtkSourceView             *view,
  * gtk_source_view_get_smart_home_end:
  * @view: a #GtkSourceView.
  *
- * Returns a #GtkSourceSmartHomeEndType end value specifying
+ * Returns a [enum@SmartHomeEndType] end value specifying
  * how the cursor will move when HOME and END keys are pressed.
  *
  * Returns: a #GtkSourceSmartHomeEndType value.
@@ -4575,7 +4545,7 @@ gtk_source_view_get_smart_home_end (GtkSourceView *view)
  * @iter: a position in @view.
  *
  * Determines the visual column at @iter taking into consideration the
- * #GtkSourceView:tab-width of @view.
+ * [property@View:tab-width] of @view.
  *
  * Returns: the visual column at @iter.
  */
@@ -4925,9 +4895,10 @@ mark_category_free (MarkCategory *category)
  * gtk_source_view_get_completion:
  * @view: a #GtkSourceView.
  *
- * Gets the #GtkSourceCompletion associated with @view. The returned object is
- * guaranteed to be the same for the lifetime of @view. Each #GtkSourceView
- * object has a different #GtkSourceCompletion.
+ * Gets the [class@Completion] associated with @view. 
+ * 
+ * The returned object is guaranteed to be the same for the lifetime of @view.
+ * Each `GtkSourceView` object has a different [class@Completion].
  *
  * Returns: (transfer none): the #GtkSourceCompletion associated with @view.
  */
@@ -4950,9 +4921,10 @@ gtk_source_view_get_completion (GtkSourceView *view)
  * gtk_source_view_get_hover:
  * @view: a #GtkSourceView.
  *
- * Gets the #GtkSourceHover associated with @view. The returned object is
- * guaranteed to be the same for the lifetime of @view. Each #GtkSourceView
- * object has a different #GtkSourceHover.
+ * Gets the [class@Hover] associated with @view. 
+ * 
+ * The returned object is guaranteed to be the same for the lifetime of @view.
+ * Each [class@View] object has a different [class@Hover].
  *
  * Returns: (transfer none): a #GtkSourceHover associated with @view.
  */
@@ -4976,12 +4948,11 @@ gtk_source_view_get_hover (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @window_type: the gutter window type.
  *
- * Returns the #GtkSourceGutter object associated with @window_type for @view.
- * Only GTK_TEXT_WINDOW_LEFT and GTK_TEXT_WINDOW_RIGHT are supported,
+ * Returns the [class@Gutter] object associated with @window_type for @view.
+ *
+ * Only %GTK_TEXT_WINDOW_LEFT and %GTK_TEXT_WINDOW_RIGHT are supported,
  * respectively corresponding to the left and right gutter. The line numbers
  * and mark category icons are rendered in the left gutter.
- *
- * Since: 2.8
  *
  * Returns: (transfer none): the #GtkSourceGutter.
  */
@@ -5106,8 +5077,6 @@ gtk_source_view_get_mark_attributes (GtkSourceView *view,
  * @background_pattern: the #GtkSourceBackgroundPatternType.
  *
  * Set if and how the background pattern should be displayed.
- *
- * Since: 3.16
  */
 void
 gtk_source_view_set_background_pattern (GtkSourceView                  *view,
@@ -5136,7 +5105,6 @@ gtk_source_view_set_background_pattern (GtkSourceView                  *view,
  * the background pattern should be displayed for this @view.
  *
  * Returns: the #GtkSourceBackgroundPatternType.
- * Since: 3.16
  */
 GtkSourceBackgroundPatternType
 gtk_source_view_get_background_pattern (GtkSourceView *view)
@@ -5152,12 +5120,12 @@ gtk_source_view_get_background_pattern (GtkSourceView *view)
  * gtk_source_view_get_space_drawer:
  * @view: a #GtkSourceView.
  *
- * Gets the #GtkSourceSpaceDrawer associated with @view. The returned object is
- * guaranteed to be the same for the lifetime of @view. Each #GtkSourceView
- * object has a different #GtkSourceSpaceDrawer.
+ * Gets the [class@SpaceDrawer] associated with @view.
+ * 
+ * The returned object is guaranteed to be the same for the lifetime of @view.
+ * Each [class@View] object has a different [class@SpaceDrawer].
  *
  * Returns: (transfer none): the #GtkSourceSpaceDrawer associated with @view.
- * Since: 3.24
  */
 GtkSourceSpaceDrawer *
 gtk_source_view_get_space_drawer (GtkSourceView *view)
@@ -5276,8 +5244,6 @@ gtk_source_view_real_push_snippet (GtkSourceView    *view,
  * If another snippet was already active, it will be paused and the new
  * snippet will become active. Once the focus positions of @snippet have
  * been exhausted, editing will return to the previous snippet.
- *
- * Since: 5.0
  */
 void
 gtk_source_view_push_snippet (GtkSourceView    *view,
@@ -5325,15 +5291,12 @@ gtk_source_view_push_snippet (GtkSourceView    *view,
  * gtk_source_view_get_enable_snippets:
  * @view: a #GtkSourceView
  *
- * Gets the #GtkSourceView:enable-snippets property.
+ * Gets the [property@View:enable-snippets] property.
  *
- * If %TRUE, matching snippets found in the #GtkSourceSnippetManager
- * may be expanded when the user presses Tab after a word in the
- * #GtkSourceView.
+ * If %TRUE, matching snippets found in the [class@SnippetManager]
+ * may be expanded when the user presses Tab after a word in the [class@View].
  *
  * Returns: %TRUE if enabled
- *
- * Since: 5.0
  */
 gboolean
 gtk_source_view_get_enable_snippets (GtkSourceView *view)
@@ -5350,13 +5313,11 @@ gtk_source_view_get_enable_snippets (GtkSourceView *view)
  * @view: a #GtkSourceView
  * @enable_snippets: if snippets should be enabled
  *
- * Sets the #GtkSourceView:enable-snippets property.
+ * Sets the [property@View:enable-snippets] property.
  *
  * If @enable_snippets is %TRUE, matching snippets found in the
- * #GtkSourceSnippetManager may be expanded when the user presses
- * Tab after a word in the #GtkSourceView.
- *
- * Since: 5.0
+ * [class@SnippetManager] may be expanded when the user presses
+ * Tab after a word in the [class@View].
  */
 void
 gtk_source_view_set_enable_snippets (GtkSourceView *view,
@@ -5381,11 +5342,9 @@ gtk_source_view_set_enable_snippets (GtkSourceView *view,
  * gtk_source_view_get_indenter:
  * @view: a #GtkSourceView
  *
- * Gets the #GtkSourceView:indenter property.
+ * Gets the [property@View:indenter] property.
  *
  * Returns: (transfer none) (nullable): a #GtkSourceIndenter or %NULL
- *
- * Since: 5.0
  */
 GtkSourceIndenter *
 gtk_source_view_get_indenter (GtkSourceView *view)
@@ -5406,8 +5365,6 @@ gtk_source_view_get_indenter (GtkSourceView *view)
  *
  * Note that the indenter will not be used unless #GtkSourceView:auto-indent
  * has been set to %TRUE.
- *
- * Since: 5.0
  */
 void
 gtk_source_view_set_indenter (GtkSourceView     *view,

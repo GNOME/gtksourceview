@@ -70,8 +70,6 @@ typedef enum _GtkSourceSmartHomeEndType
  * GtkSourceBackgroundPatternType:
  * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_NONE: no pattern
  * @GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID: grid pattern
- *
- * Since: 3.16
  */
 typedef enum _GtkSourceBackgroundPatternType
 {
@@ -138,11 +136,11 @@ void                            gtk_source_view_set_indent_on_tab               
                                                                                    gboolean                        enable);
 GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                        gtk_source_view_get_indent_on_tab                 (GtkSourceView                  *view);
-GTK_SOURCE_AVAILABLE_IN_3_16
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                            gtk_source_view_indent_lines                      (GtkSourceView                  *view,
                                                                                    GtkTextIter                    *start,
                                                                                    GtkTextIter                    *end);
-GTK_SOURCE_AVAILABLE_IN_3_16
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                            gtk_source_view_unindent_lines                    (GtkSourceView                  *view,
                                                                                    GtkTextIter                    *start,
                                                                                    GtkTextIter                    *end);
@@ -175,10 +173,10 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceMarkAttributes        *gtk_source_view_get_mark_attributes               (GtkSourceView                  *view,
                                                                                    const gchar                    *category,
                                                                                    gint                           *priority);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                            gtk_source_view_set_smart_backspace               (GtkSourceView                  *view,
                                                                                    gboolean                        smart_backspace);
-GTK_SOURCE_AVAILABLE_IN_3_18
+GTK_SOURCE_AVAILABLE_IN_ALL
 gboolean                        gtk_source_view_get_smart_backspace               (GtkSourceView                  *view);
 GTK_SOURCE_AVAILABLE_IN_ALL
 void                            gtk_source_view_set_smart_home_end                (GtkSourceView                  *view,
@@ -195,24 +193,24 @@ guint                           gtk_source_view_get_visual_column               
                                                                                    const GtkTextIter              *iter);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceCompletion            *gtk_source_view_get_completion                    (GtkSourceView                  *view);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceHover                 *gtk_source_view_get_hover                         (GtkSourceView                  *view);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceIndenter              *gtk_source_view_get_indenter                      (GtkSourceView                  *view);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                            gtk_source_view_set_indenter                      (GtkSourceView                  *view,
                                                                                    GtkSourceIndenter              *indenter);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceGutter                *gtk_source_view_get_gutter                        (GtkSourceView                  *view,
                                                                                    GtkTextWindowType               window_type);
-GTK_SOURCE_AVAILABLE_IN_3_16
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                            gtk_source_view_set_background_pattern            (GtkSourceView                  *view,
                                                                                    GtkSourceBackgroundPatternType  background_pattern);
-GTK_SOURCE_AVAILABLE_IN_3_16
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceBackgroundPatternType  gtk_source_view_get_background_pattern            (GtkSourceView                  *view);
-GTK_SOURCE_AVAILABLE_IN_3_24
+GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSpaceDrawer           *gtk_source_view_get_space_drawer                  (GtkSourceView                  *view);
-GTK_SOURCE_AVAILABLE_IN_5_0
+GTK_SOURCE_AVAILABLE_IN_ALL
 void                            gtk_source_view_push_snippet                      (GtkSourceView                  *view,
                                                                                    GtkSourceSnippet               *snippet,
                                                                                    GtkTextIter                    *location);
