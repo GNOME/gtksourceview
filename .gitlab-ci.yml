@@ -8,9 +8,7 @@ stages:
     - deploy
 
 variables:
-    FEDORA_DEPS:
-        meson vala gtk4-devel ninja-build pkgconf clang gobject-introspection-devel vulkan-headers gi-docgen
-    FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtk/fedora:v35"
+    FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtksourceview/fedora:latest"
 
 flatpak:
     image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
@@ -29,8 +27,6 @@ reference:
     variables:
         MESON_FLAGS: "-Dwerror=true --buildtype=release"
     script:
-        - sudo dnf update -y --nogpgcheck
-        - sudo dnf install -y --nogpgcheck $FEDORA_DEPS
         - mkdir -p pfx/
         - meson ${MESON_FLAGS} --prefix=${PWD}/pfx -Dgtk_doc=true _build
         - ninja -C _build install
