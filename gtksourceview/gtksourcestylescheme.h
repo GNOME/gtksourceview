@@ -47,5 +47,8 @@ const gchar         *gtk_source_style_scheme_get_filename    (GtkSourceStyleSche
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceStyle      *gtk_source_style_scheme_get_style       (GtkSourceStyleScheme *scheme,
                                                               const gchar          *style_id);
+GTK_SOURCE_AVAILABLE_IN_5_4
+const char          *gtk_source_style_scheme_get_metadata    (GtkSourceStyleScheme *scheme,
+                                                              const char           *name);
 
 G_END_DECLS

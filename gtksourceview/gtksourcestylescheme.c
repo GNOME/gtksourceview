@@ -94,6 +94,7 @@ struct _GtkSourceStyleScheme
 	GHashTable *defined_styles;
 	GHashTable *style_cache;
 	GHashTable *named_colors;
+	GHashTable *metadata;
 
 	GtkCssProvider *css_provider;
 };
@@ -105,23 +106,10 @@ gtk_source_style_scheme_dispose (GObject *object)
 {
 	GtkSourceStyleScheme *scheme = GTK_SOURCE_STYLE_SCHEME (object);
 
-	if (scheme->named_colors != NULL)
-	{
-		g_hash_table_unref (scheme->named_colors);
-		scheme->named_colors = NULL;
-	}
-
-	if (scheme->style_cache != NULL)
-	{
-		g_hash_table_unref (scheme->style_cache);
-		scheme->style_cache = NULL;
-	}
-
-	if (scheme->defined_styles != NULL)
-	{
-		g_hash_table_unref (scheme->defined_styles);
-		scheme->defined_styles = NULL;
-	}
+	g_clear_pointer (&scheme->named_colors, g_hash_table_unref);
+	g_clear_pointer (&scheme->style_cache, g_hash_table_unref);
+	g_clear_pointer (&scheme->defined_styles, g_hash_table_unref);
+	g_clear_pointer (&scheme->metadata, g_hash_table_unref);
 
 	g_clear_object (&scheme->parent);
 	g_clear_object (&scheme->css_provider);
@@ -1256,6 +1244,38 @@ parse_style_scheme_child (GtkSourceStyleScheme  *scheme,
 		scheme->description = g_strdup (_((char*) tmp));
 		xmlFree (tmp);
 	}
+	else if (strcmp ((char*) node->name, "metadata") == 0)
+	{
+		for (xmlNode *child = node->children; child != NULL; child = child->next)
+		{
+			if (strcmp ((char*) child->name, "property") == 0)
+			{
+				xmlChar *name;
+				xmlChar *content;
+
+				name = xmlGetProp (child, BAD_CAST "name");
+				content = xmlNodeGetContent (child);
+
+				if (name != NULL && content != NULL)
+				{
+					if (scheme->metadata == NULL)
+					{
+						scheme->metadata = g_hash_table_new_full (g_str_hash,
+						                                          g_str_equal,
+						                                          g_free,
+						                                          g_free);
+					}
+
+					g_hash_table_insert (scheme->metadata,
+					                     g_strdup ((char *)name),
+					                     g_strdup ((char *)content));
+				}
+
+				xmlFree (name);
+				xmlFree (content);
+			}
+		}
+	}
 	else
 	{
 		g_set_error (error, ERROR_QUARK, 0, "unknown node '%s'", node->name);
@@ -1481,4 +1501,32 @@ _gtk_source_style_scheme_get_default (void)
 
 	return gtk_source_style_scheme_manager_get_scheme (manager,
 							   DEFAULT_STYLE_SCHEME);
+}
+
+/**
+ * gtk_source_style_scheme_get_metadata:
+ * @scheme: a #GtkSourceStyleScheme.
+ * @name: metadata property name.
+ *
+ * Gets a metadata property from the style scheme.
+ *
+ * Returns: (nullable) (transfer none): value of property @name stored in
+ *   the metadata of @scheme or %NULL if @scheme does not contain the
+ *   specified metadata property.
+ *
+ * Since: 5.4
+ */
+const char *
+gtk_source_style_scheme_get_metadata (GtkSourceStyleScheme *scheme,
+                                      const char           *name)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), NULL);
+	g_return_val_if_fail (name != NULL, NULL);
+
+	if (scheme->metadata == NULL)
+	{
+		return NULL;
+	}
+
+	return g_hash_table_lookup (scheme->metadata, name);
 }
