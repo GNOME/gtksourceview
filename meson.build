@@ -67,7 +67,7 @@ build_gtk_doc = get_option('gtk_doc')
 # Dependencies
 cc = meson.get_compiler('c')
 
-glib_req_version = '2.66'
+glib_req_version = '2.70'
 gtk_req_version = '4.2'
 
 libm_dep = cc.find_library('m', required: false)
@@ -75,7 +75,7 @@ libm_dep = cc.find_library('m', required: false)
 glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
 libxml_req = '>= 2.6'
-introspection_req  = '>= 1.42.0'
+introspection_req  = '>= 1.70.0'
 gtk_doc_req = '>= 1.25'
 fribidi_req = '>= 0.19.7'
 pcre2_req = '>= 10.21'
