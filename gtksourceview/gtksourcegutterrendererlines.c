@@ -380,7 +380,7 @@ gtk_source_gutter_renderer_lines_query_data (GtkSourceGutterRenderer *renderer,
 	GtkSourceGutterRendererLines *self = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
 	gint len;
 
-	if G_UNLIKELY (self->cursor_visible && gtk_source_gutter_lines_is_cursor (lines, line))
+	if G_UNLIKELY ((self->cursor_visible || self->highlight_current_line) && gtk_source_gutter_lines_is_cursor (lines, line))
 	{
 		gchar text[32];
 
