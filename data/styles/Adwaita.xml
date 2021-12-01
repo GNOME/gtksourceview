@@ -21,6 +21,11 @@
   <author>Christian Hergert</author>
   <_description>A color scheme matching GTK's default theme</_description>
 
+  <metadata>
+    <property name="variant">light</property>
+    <property name="dark-variant">Adwaita-dark</property>
+  </metadata>
+
   <!-- Adwaita Palette -->
   <color name="blue1"                       value="#99c1f1"/>
   <color name="blue2"                       value="#62a0ea"/>

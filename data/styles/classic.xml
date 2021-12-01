@@ -24,6 +24,11 @@
   <author>GtkSourceView team</author>
   <_description>Classic color scheme</_description>
 
+  <metadata>
+    <property name="variant">light</property>
+    <property name="dark-variant">classic-dark</property>
+  </metadata>
+
   <!-- The scheme tries to look like the default GVim scheme,
        since it is also what the hardwired GtkSourceView 1 color
        scheme did -->
