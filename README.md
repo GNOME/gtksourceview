@@ -14,7 +14,7 @@ The official web site is https://wiki.gnome.org/Projects/GtkSourceView.
 Documentation
 -------------
 
-Nightly documentation can be [found here](https://gnome.pages.gitlab.gnome.org/gtksourceview/gtksourceview-5.0/).
+Nightly documentation can be [found here](https://gnome.pages.gitlab.gnome.org/gtksourceview/gtksourceview5/).
 
 Dependencies
 ------------
