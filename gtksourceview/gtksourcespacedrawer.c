@@ -37,7 +37,7 @@
 
 /**
  * GtkSourceSpaceDrawer:
- * 
+ *
  * Represent white space characters with symbols.
  *
  * #GtkSourceSpaceDrawer provides a way to visualize white spaces, by drawing
@@ -369,10 +369,10 @@ gtk_source_space_drawer_class_init (GtkSourceSpaceDrawerClass *klass)
 	/**
 	 * GtkSourceSpaceDrawer:matrix:
 	 *
-	 * The property is a [class@GLib.Variant] property to specify where and
+	 * The property is a [struct@GLib.Variant] property to specify where and
 	 * what kind of white spaces to draw.
 	 *
-	 * The [class@GLib.Variant] is of type `"au"`, an array of unsigned integers. Each
+	 * The [struct@GLib.Variant] is of type `"au"`, an array of unsigned integers. Each
 	 * integer is a combination of [flags@SpaceTypeFlags]. There is one
 	 * integer for each [flags@SpaceLocationFlags], in the same order as
 	 * they are defined in the enum (%GTK_SOURCE_SPACE_LOCATION_NONE and
@@ -406,7 +406,7 @@ gtk_source_space_drawer_init (GtkSourceSpaceDrawer *drawer)
  * gtk_source_space_drawer_new:
  *
  * Creates a new #GtkSourceSpaceDrawer object.
- * 
+ *
  * Useful for storing space drawing settings independently of a [class@View].
  *
  * Returns: a new #GtkSourceSpaceDrawer.
@@ -423,8 +423,8 @@ gtk_source_space_drawer_new (void)
  * @locations: one or several #GtkSourceSpaceLocationFlags.
  *
  * If only one location is specified, this function returns what kind of
- * white spaces are drawn at that location. 
- * 
+ * white spaces are drawn at that location.
+ *
  * The value is retrieved from the [property@SpaceDrawer:matrix] property.
  *
  * If several locations are specified, this function returns the logical AND for
@@ -489,7 +489,7 @@ gtk_source_space_drawer_set_types_for_locations (GtkSourceSpaceDrawer        *dr
  * gtk_source_space_drawer_get_matrix:
  * @drawer: a #GtkSourceSpaceDrawer.
  *
- * Gets the value of the [property@SpaceDrawer:matrix] property, as a [class@GLib.Variant].
+ * Gets the value of the [property@SpaceDrawer:matrix] property, as a [struct@GLib.Variant].
  *
  * An empty array can be returned in case the matrix is a zero matrix.
  *
@@ -534,8 +534,8 @@ gtk_source_space_drawer_get_matrix (GtkSourceSpaceDrawer *drawer)
  * @drawer: a #GtkSourceSpaceDrawer.
  * @matrix: (transfer floating) (nullable): the new matrix value, or %NULL.
  *
- * Sets a new value to the [property@SpaceDrawer:matrix] property, as a [class@GLib.Variant]. 
- * 
+ * Sets a new value to the [property@SpaceDrawer:matrix] property, as a [struct@GLib.Variant].
+ *
  * If @matrix is %NULL, then an empty array is set.
  *
  * If @matrix is floating, it is consumed.
@@ -678,7 +678,7 @@ matrix_set_mapping (const GValue       *value,
  * [property@SpaceDrawer:matrix] property, that is, `"au"`.
  *
  * The [method@Gio.Settings.bind] function cannot be used, because the default GIO
- * mapping functions don't support [class@GLib.Variant] properties (maybe it will be
+ * mapping functions don't support [struct@GLib.Variant] properties (maybe it will be
  * supported by a future GIO version, in which case this function can be
  * deprecated).
  */

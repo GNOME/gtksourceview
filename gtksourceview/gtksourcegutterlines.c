@@ -25,7 +25,7 @@
 #include "quarkset-inline.h"
 
 /**
- * GtkSourceGutterLines: 
+ * GtkSourceGutterLines:
  *
  * Collected information about visible lines.
  *
@@ -303,9 +303,9 @@ gtk_source_gutter_lines_add_qclass (GtkSourceGutterLines *lines,
  *
  * Adds the class @name to @line.
  *
- * @name will be converted to a [class@GLib.Quark] as part of this process. A
+ * @name will be converted to a [alias@GLib.Quark] as part of this process. A
  * faster version of this function is available via
- * [method@GutterLines.add_qclass] for situations where the [class@GLib.Quark] is
+ * [method@GutterLines.add_qclass] for situations where the [alias@GLib.Quark] is
  * known ahead of time.
  */
 void
@@ -356,7 +356,7 @@ gtk_source_gutter_lines_remove_class (GtkSourceGutterLines *lines,
  * @qname: a #GQuark to remove from @line
  *
  * Reverses a call to [method@GutterLines.add_qclass] by removing
- * the [class@GLib.Quark] matching @qname.
+ * the [alias@GLib.Quark] matching @qname.
  */
 void
 gtk_source_gutter_lines_remove_qclass (GtkSourceGutterLines *lines,

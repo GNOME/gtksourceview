@@ -38,7 +38,7 @@
  * Save a [class@Buffer] into a file.
  *
  * A `GtkSourceFileSaver` object permits to save a [class@Buffer] into a
- * [class@Gio.File].
+ * [iface@Gio.File].
  *
  * A file saver should be used only for one save operation, including errors
  * handling. If an error occurs, you can reconfigure the saver and relaunch the
@@ -1101,8 +1101,8 @@ gtk_source_file_saver_new (GtkSourceBuffer *buffer,
  * @file: the #GtkSourceFile.
  * @target_location: the #GFile where to save the buffer to.
  *
- * Creates a new #GtkSourceFileSaver object with a target location. 
- * 
+ * Creates a new #GtkSourceFileSaver object with a target location.
+ *
  * When the file saving is finished successfully, @target_location is set to the @file's
  * [property@File:location] property. If an error occurs, the previous valid
  * location is still available in [class@File].
@@ -1337,8 +1337,8 @@ gtk_source_file_saver_get_flags (GtkSourceFileSaver *saver)
  *   satisfied.
  * @user_data: user data to pass to @callback.
  *
- * Saves asynchronously the buffer into the file. 
- * 
+ * Saves asynchronously the buffer into the file.
+ *
  * See the [iface@Gio.AsyncResult] documentation to know how to use this function.
  */
 

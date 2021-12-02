@@ -26,7 +26,7 @@
 
 /**
  * GtkSourceIndenter:
- * 
+ *
  * Auto-indentation interface.
  *
  * By default, [class@View] can auto-indent as you type when
@@ -46,7 +46,7 @@
  *
  * [vfunc@Indenter.indent] is called after text has been
  * inserted into [class@Buffer] when
- * [vfunc@Indenter.is_trigger] returned %TRUE. The [class@Gtk.TextIter]
+ * [vfunc@Indenter.is_trigger] returned %TRUE. The [struct@Gtk.TextIter]
  * is placed directly after the inserted character or characters.
  *
  * It may be beneficial to move the insertion mark using
@@ -202,8 +202,8 @@ gtk_source_indenter_is_trigger (GtkSourceIndenter *self,
  * @iter: (inout): the location of the indentation request
  *
  * This function should be implemented to alter the indentation of text
- * within the view. 
- * 
+ * within the view.
+ *
  * @view is provided so that the indenter may retrieve settings such as indentation and tab widths.
  *
  * @iter is the location where the indentation was requested. This typically

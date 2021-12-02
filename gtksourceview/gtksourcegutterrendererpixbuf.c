@@ -412,7 +412,7 @@ gtk_source_gutter_renderer_pixbuf_set_paintable (GtkSourceGutterRendererPixbuf *
  * gtk_source_gutter_renderer_pixbuf_get_paintable:
  * @renderer: a #GtkSourceGutterRendererPixbuf
  *
- * Gets a [class@Gdk.Paintable] that was set with
+ * Gets a [iface@Gdk.Paintable] that was set with
  * [method@GutterRendererPixbuf.set_paintable]
  *
  * Returns: (transfer none) (nullable): a #GdkPaintable or %NULL

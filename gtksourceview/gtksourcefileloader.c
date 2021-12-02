@@ -34,10 +34,10 @@
 
 /**
  * GtkSourceFileLoader:
- * 
+ *
  * Load a file into a GtkSourceBuffer.
  *
- * A `GtkSourceFileLoader` object permits to load the contents of a [class@Gio.File] or a
+ * A `GtkSourceFileLoader` object permits to load the contents of a [iface@Gio.File] or a
  * [class@Gio.InputStream] into a [class@Buffer].
  *
  * A file loader should be used only for one load operation, including errors
@@ -48,7 +48,7 @@
  * [class@Buffer].
  *
  * After a file loading, the buffer is reset to the contents provided by the
- * [class@Gio.File] or [class@Gio.InputStream], so the buffer is set as “unmodified”, that is,
+ * [iface@Gio.File] or [class@Gio.InputStream], so the buffer is set as “unmodified”, that is,
  * [method@Gtk.TextBuffer.set_modified] is called with %FALSE. If the contents isn't
  * saved somewhere (for example if you load from stdin), then you should
  * probably call [method@Gtk.TextBuffer.set_modified] with %TRUE after calling
@@ -901,9 +901,9 @@ gtk_source_file_loader_error_quark (void)
  * @file: the #GtkSourceFile.
  *
  * Creates a new `GtkSourceFileLoader` object. The contents is read from the
- * [class@File]'s location. 
+ * [class@File]'s location.
  *
- * If not already done, call [method@File.set_location] before calling this constructor. 
+ * If not already done, call [method@File.set_location] before calling this constructor.
  * The previous location is anyway not needed, because as soon as the file loading begins,
  * the @buffer is emptied.
  *
@@ -954,7 +954,7 @@ gtk_source_file_loader_new_from_stream (GtkSourceBuffer *buffer,
  * @candidate_encodings: (element-type GtkSourceEncoding): a list of
  *   #GtkSourceEncoding<!-- -->s.
  *
- * Sets the candidate encodings for the file loading. 
+ * Sets the candidate encodings for the file loading.
  *
  * The encodings are tried in the same order as the list.
  *
@@ -1056,7 +1056,7 @@ gtk_source_file_loader_get_input_stream (GtkSourceFileLoader *loader)
  *   satisfied.
  * @user_data: user data to pass to @callback.
  *
- * Loads asynchronously the file or input stream contents into the [class@Buffer]. 
+ * Loads asynchronously the file or input stream contents into the [class@Buffer].
  *
  * See the [iface@Gio.AsyncResult] documentation to know how to use this
  * function.

@@ -465,8 +465,8 @@ gtk_source_mark_attributes_set_gicon (GtkSourceMarkAttributes *attributes,
  * gtk_source_mark_attributes_get_gicon:
  * @attributes: a #GtkSourceMarkAttributes.
  *
- * Gets a [class@Gio.Icon] to be used as a base for rendered icon. 
- * 
+ * Gets a [iface@Gio.Icon] to be used as a base for rendered icon.
+ *
  * Note that the icon can be %NULL if it wasn't set earlier.
  *
  * Returns: (transfer none): An icon. The icon belongs to @attributes and should
@@ -500,7 +500,7 @@ gtk_source_mark_attributes_set_pixbuf (GtkSourceMarkAttributes *attributes,
  * gtk_source_mark_attributes_get_pixbuf:
  * @attributes: a #GtkSourceMarkAttributes.
  *
- * Gets a [class@GdkPixbuf.Pixbuf] to be used as a base for rendered icon. 
+ * Gets a [class@GdkPixbuf.Pixbuf] to be used as a base for rendered icon.
  *
  * Note that the pixbuf can be %NULL if it wasn't set earlier.
  *
@@ -521,14 +521,14 @@ gtk_source_mark_attributes_get_pixbuf (GtkSourceMarkAttributes *attributes)
  * @widget: widget of which style settings may be used.
  * @size: size of the rendered icon.
  *
- * Renders an icon of given size. 
- * 
- * The base of the icon is set by the last call to one of: 
- * 
+ * Renders an icon of given size.
+ *
+ * The base of the icon is set by the last call to one of:
+ *
  * - [method@MarkAttributes.set_pixbuf]
  * - [method@MarkAttributes.set_gicon]
  * - [method@MarkAttributes.set_icon_name]
- * 
+ *
  * @size cannot be lower than 1.
  *
  * Returns: (transfer none): A #GdkPaintable. The paintable belongs to @attributes
@@ -559,8 +559,8 @@ gtk_source_mark_attributes_render_icon (GtkSourceMarkAttributes *attributes,
  * @attributes: a #GtkSourceMarkAttributes.
  * @mark: a #GtkSourceMark.
  *
- * Queries for a tooltip by emitting a [signal@MarkAttributes::query-tooltip-text] signal. 
- * 
+ * Queries for a tooltip by emitting a [signal@MarkAttributes::query-tooltip-text] signal.
+ *
  * The tooltip is a plain text.
  *
  * Returns: (transfer full): A tooltip. The returned string should be freed by
@@ -586,8 +586,8 @@ gtk_source_mark_attributes_get_tooltip_text (GtkSourceMarkAttributes *attributes
  * @attributes: a #GtkSourceMarkAttributes.
  * @mark: a #GtkSourceMark.
  *
- * Queries for a tooltip by emitting a [signal@MarkAttributes::query-tooltip-markup] signal. 
- * 
+ * Queries for a tooltip by emitting a [signal@MarkAttributes::query-tooltip-markup] signal.
+ *
  * The tooltip may contain a markup.
  *
  * Returns: (transfer full): A tooltip. The returned string should be freed by

@@ -254,7 +254,7 @@ Contained elements:
 
 ## Tag `<define-regex>`
 
-The syntax highlighting engine of GtkSourceView uses [class@GLib.Regex],
+The syntax highlighting engine of GtkSourceView uses [struct@GLib.Regex],
 which uses the PCRE library. See the [Regular expression syntax](https://developer.gnome.org/glib/stable/glib-regex-syntax.html)
 page in the GLib reference manual.
 

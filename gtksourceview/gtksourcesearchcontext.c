@@ -37,7 +37,7 @@
 
 /**
  * GtkSourceSearchContext:
- * 
+ *
  * Search context.
  *
  * A `GtkSourceSearchContext` is used for the search and replace in a
@@ -2885,8 +2885,8 @@ gtk_source_search_context_init (GtkSourceSearchContext *search)
  * @settings: (nullable): a #GtkSourceSearchSettings, or %NULL.
  *
  * Creates a new search context, associated with @buffer, and customized with
- * @settings. 
- * 
+ * @settings.
+ *
  * If @settings is %NULL, a new [class@SearchSettings] object will
  * be created, that you can retrieve with [method@SearchContext.get_settings].
  *
@@ -2990,8 +2990,8 @@ gtk_source_search_context_get_match_style (GtkSourceSearchContext *search)
  * @search: a #GtkSourceSearchContext.
  * @match_style: (nullable): a #GtkSourceStyle, or %NULL.
  *
- * Set the style to apply on search matches. 
- * 
+ * Set the style to apply on search matches.
+ *
  * If @match_style is %NULL, default theme's scheme 'match-style' will be used.
  * To enable or disable the search highlighting, use [method@SearchContext.set_highlight].
  */
@@ -3028,9 +3028,9 @@ gtk_source_search_context_set_match_style (GtkSourceSearchContext *search,
  *
  * Regular expression patterns must follow certain rules. If
  * [property@SearchSettings:search-text] breaks a rule, the error can be
- * retrieved with this function. 
- * 
- * The error domain is [error@GLib.RegexError].
+ * retrieved with this function.
+ *
+ * The error domain is [enum@GLib.RegexError].
  *
  * Free the return value with [method@GLib.Error.free].
  *
@@ -3054,9 +3054,9 @@ gtk_source_search_context_get_regex_error (GtkSourceSearchContext *search)
  * gtk_source_search_context_get_occurrences_count:
  * @search: a #GtkSourceSearchContext.
  *
- * Gets the total number of search occurrences. 
- * 
- * If the buffer is not already fully scanned, the total number of occurrences is 
+ * Gets the total number of search occurrences.
+ *
+ * If the buffer is not already fully scanned, the total number of occurrences is
  * unknown, and -1 is returned.
  *
  * Returns: the total number of search occurrences, or -1 if unknown.
@@ -3081,7 +3081,7 @@ gtk_source_search_context_get_occurrences_count (GtkSourceSearchContext *search)
  * @match_end: the end of the occurrence.
  *
  * Gets the position of a search occurrence.
- * 
+ *
  * If the buffer is not already fully scanned, the position may be unknown,
  * and -1 is returned. If 0 is returned, it means that this part of the buffer
  * has already been scanned, and that @match_start and @match_end don't delimit an occurrence.
@@ -3187,9 +3187,9 @@ gtk_source_search_context_get_occurrence_position (GtkSourceSearchContext *searc
  * @has_wrapped_around: (out) (optional): return location to know whether the
  *   search has wrapped around, or %NULL.
  *
- * Synchronous forward search. 
+ * Synchronous forward search.
  *
- * It is recommended to use the asynchronous functions instead, to not block the user interface. 
+ * It is recommended to use the asynchronous functions instead, to not block the user interface.
  * However, if you are sure that the @buffer is small, this function is more convenient to use.
  *
  * If the [property@SearchSettings:wrap-around] property is %FALSE, this function
@@ -3701,8 +3701,8 @@ gtk_source_search_context_replace (GtkSourceSearchContext  *search,
  * @replace_length: the length of @replace in bytes, or -1.
  * @error: location to a #GError, or %NULL to ignore errors.
  *
- * Replaces all search matches by another text. 
- * 
+ * Replaces all search matches by another text.
+ *
  * It is a synchronous function, so it can block the user interface.
  *
  * For a regular expression replacement, you can check if @replace is valid by

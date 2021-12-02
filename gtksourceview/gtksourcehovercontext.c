@@ -36,7 +36,7 @@
  * contents for a [class@HoverDisplay].
  *
  * It can be used to retrieve the [class@View], [class@Buffer], and
- * [class@Gtk.TextIter] for the regions of text which are being displayed.
+ * [struct@Gtk.TextIter] for the regions of text which are being displayed.
  *
  * Use [method@HoverContext.get_bounds] to get the word that was
  * requested. [method@HoverContext.get_iter] will get you the location

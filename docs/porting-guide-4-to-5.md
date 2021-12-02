@@ -45,7 +45,7 @@ has allowed for much reduction in overhead when generating results and
 presenting them to the user. Additionally, it has improved Wayland support
 for placing completion results.
 
-[class@CompletionProposal] no longer requires any implementation except
+[iface@CompletionProposal] no longer requires any implementation except
 to implement the interface symbolically. That can be done using
 `G_IMPLEMENT_INTERFACE(GTK_SOURCE_TYPE_COMPLETION_PROPOSAL,NULL)`.
 This allowed all of the implementation details to be placed in
@@ -56,7 +56,7 @@ in multiple places as a generic container for information about completion
 proposals.
 
 [iface@CompletionProvider]s are now expected to asynchronously
-provide a [iface@Gio.ListModel] of [class@CompletionProposal]
+provide a [iface@Gio.ListModel] of [iface@CompletionProposal]
 instead of a `GList`. Refiltering of results can be provided using
 the refilter method and should be updated while the user types further. If a
 new model must be generated, use [method@CompletionContext.set_proposals_for_provider].

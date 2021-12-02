@@ -25,7 +25,7 @@
 
 /**
  * GtkSourceFile:
- * 
+ *
  * On-disk representation of a [class@Buffer].
  *
  * A `GtkSourceFile` object is the on-disk representation of a [class@Buffer].
@@ -402,7 +402,7 @@ gtk_source_file_get_compression_type (GtkSourceFile *file)
  *   longer needed, or %NULL.
  *
  * Sets a [callback@MountOperationFactory] function that will be called when a
- * [class@Gio.MountOperation] must be created. 
+ * [class@Gio.MountOperation] must be created.
  *
  * This is useful for creating a [class@Gtk.MountOperation] with the parent [class@Gtk.Window].
  *

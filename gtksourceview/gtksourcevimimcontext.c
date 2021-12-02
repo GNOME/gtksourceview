@@ -33,7 +33,7 @@
  *
  * Vim emulation.
  *
- * The `GtkSourceVimIMContext` is a [iface@Gtk.IMContext] implementation that can
+ * The `GtkSourceVimIMContext` is a [class@Gtk.IMContext] implementation that can
  * be used to provide Vim-like editing controls within a [class@View].
  *
  * The `GtkSourceViMIMContext` will process incoming [class@Gdk.KeyEvent] as the
@@ -56,7 +56,7 @@
  * [property@VimIMContext:command-text] to the user as they represent the
  * command-bar and current command preview found in Vim.
  *
- * `GtkSourceVimIMContext` attempts to work with additional [iface@Gtk.IMContext]
+ * `GtkSourceVimIMContext` attempts to work with additional [class@Gtk.IMContext]
  * implementations such as IBus by querying the [class@Gtk.TextView] before processing
  * the command in states which support it (notably Insert and Replace modes).
  *
@@ -461,8 +461,8 @@ gtk_source_vim_im_context_class_init (GtkSourceVimIMContextClass *klass)
 	 * @view: the #GtkSourceView
 	 * @path: (nullable): the path if provided, otherwise %NULL
 	 *
-	 * Requests the application save the file. 
-	 * 
+	 * Requests the application save the file.
+	 *
 	 * If a filename was provided, it will be available to the signal handler as @path.
 	 * This may be executed in relation to the user running the `:write` or `:w` commands.
 	 *
@@ -486,8 +486,8 @@ gtk_source_vim_im_context_class_init (GtkSourceVimIMContextClass *klass)
 	 * @view: the #GtkSourceView
 	 * @path: (nullable): the path if provided, otherwise %NULL
 	 *
-	 * Requests the application open the file found at @path. 
-	 * 
+	 * Requests the application open the file found at @path.
+	 *
 	 * If @path is %NULL, then the current file should be reloaded from storage.
 	 *
 	 * This may be executed in relation to the user running the

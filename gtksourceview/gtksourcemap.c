@@ -40,7 +40,7 @@
 
 /**
  * GtkSourceMap:
- * 
+ *
  * Widget that displays a map for a specific [class@View].
  *
  * `GtkSourceMap` is a widget that maps the content of a [class@View] into
@@ -60,7 +60,7 @@
  * desired font size for the map. A 1pt font generally seems to be an
  * appropriate font size. "Monospace 1" is the default. See
  * [method@Pango.FontDescription.set_size] for how to alter the size of an existing
- * [class@Pango.FontDescription].
+ * [struct@Pango.FontDescription].
  *
  * When FontConfig is available, `GtkSourceMap` will try to use a bundled
  * "block" font to make the map more legible.

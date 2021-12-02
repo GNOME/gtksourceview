@@ -45,7 +45,7 @@
  *
  * The gutter works very much the same way as cells rendered in a [class@Gtk.TreeView].
  * The concept is similar, with the exception that the gutter does not have an
- * underlying [class@Gtk.TreeModel]. The builtin line number renderer is at position
+ * underlying [iface@Gtk.TreeModel]. The builtin line number renderer is at position
  * %GTK_SOURCE_VIEW_GUTTER_POSITION_LINES (-30) and the marks renderer is at
  * %GTK_SOURCE_VIEW_GUTTER_POSITION_MARKS (-20). The gutter sorts the renderers
  * in ascending order, from left to right. So the marks are displayed on the

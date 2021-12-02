@@ -46,7 +46,7 @@
  * results which might be useful to the user.
  *
  * [iface@CompletionProvider] are expected to provide [iface@Gio.ListModel] with
- * [class@CompletionProposal] which may be joined together in a list of
+ * [iface@CompletionProposal] which may be joined together in a list of
  * results for the user. They are also responsible for how the contents are
  * displayed using [class@CompletionCell] which allows for some level of
  * customization.
@@ -596,8 +596,8 @@ gtk_source_completion_context_items_changed_cb (GtkSourceCompletionContext *self
  * @results: (nullable): a #GListModel or %NULL
  *
  * This function allows providers to update their results for a context
- * outside of a call to [method@CompletionProvider.populate_async]. 
- * 
+ * outside of a call to [method@CompletionProvider.populate_async].
+ *
  * This can be used to immediately return results for a provider while it does
  * additional asynchronous work. Doing so will allow the completions to
  * update while the operation is in progress.
