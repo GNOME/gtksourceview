@@ -57,7 +57,7 @@
   <!-- Global Settings -->
 
   <style name="text"                        foreground="white" background="dark_blue"/>
-  <style name="selection"                   foreground="white" background="sky_blue"/>
+  <style name="selection"                   foreground="#rgba(0,0,0,0)" background="#rgba(0, 136, 255, .3)"/>
   <style name="cursor"                      foreground="white"/>
   <style name="current-line"                background="medium_blue"/>
   <style name="line-numbers"                foreground="light_blue" background="black_blue"/>
