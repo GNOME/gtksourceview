@@ -409,6 +409,8 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 
 	if (background != NULL)
 	{
+		GdkRGBA parsed;
+
 		if (foreground == NULL)
 		{
 			GtkStyleContext *style_context;
@@ -417,6 +419,16 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 			style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
 			gtk_style_context_get_color (style_context, &color);
 			foreground = gdk_rgba_to_string (&color);
+		}
+
+		if (gdk_rgba_parse (&parsed, background))
+		{
+			if (parsed.alpha < 1.0)
+			{
+				parsed.alpha = 1.0;
+				g_free (background);
+				background = gdk_rgba_to_string (&parsed);
+			}
 		}
 
 		g_string_append_printf (gstr,
