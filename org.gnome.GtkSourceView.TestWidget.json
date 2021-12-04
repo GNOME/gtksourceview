@@ -60,8 +60,8 @@
                 "--libdir=lib",
                 "-Dgtk_doc=false",
                 "-Dsysprof=true",
-                "-Dgir=false",
-                "-Dvapi=false",
+                "-Dgir=true",
+                "-Dvapi=true",
                 "-Dinstall_tests=true"
             ],
             "sources" : [
