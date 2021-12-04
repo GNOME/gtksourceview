@@ -236,7 +236,7 @@ impl_regex_new (const char          *pattern,
 
 #ifdef GTK_SOURCE_PROFILER_ENABLED
 	if (GTK_SOURCE_PROFILER_ACTIVE)
-		message = g_strdup_printf ("compile=%lx match=%lx pattern=%s",
+		message = g_strdup_printf ("compile=%"G_GSIZE_MODIFIER"x match=%"G_GSIZE_MODIFIER"x pattern=%s",
 		                           regex->compile_flags,
 		                           regex->match_flags,
 		                           regex->pattern);
