@@ -1304,7 +1304,20 @@ key_handler_initial (GtkSourceVimNormal *self,
 	}
 
 	if (self->handler == key_handler_initial)
+	{
+		/* If this is possibly a shortcut (alt, control, etc) then we
+		 * can let it pass through without being too likely to activate
+		 * text insertion. Additionally, if there is no @string value
+		 * then there isn't anything likely to be passed on to the
+		 * textview to insert but it might be something like F10.
+		 */
+		if ((mods & (GDK_CONTROL_MASK | GDK_SUPER_MASK | GDK_ALT_MASK)) != 0 || string[0] == 0)
+		{
+			return FALSE;
+		}
+
 		return gtk_source_vim_normal_bail (self);
+	}
 
 	return self->handler (self, keyval, keycode, mods, string);
 }
