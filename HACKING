@@ -145,17 +145,3 @@ Here are some general advices:
   - When transfering ownership of an object or struct, use g_steal_pointer()
     to make it clear when reading that ownership was transfered.
 
-See also:
-https://blogs.gnome.org/swilmet/2012/08/01/about-code-quality-and-maintainability/
-
-Other links
------------
-
-http://ometer.com/hacking.html
-
-For a shared library:
-
-http://davidz25.blogspot.be/2011/07/writing-c-library-intro-conclusion-and.html
-http://akkadia.org/drepper/ (Ulrich Drepper):
-	- How to Write Shared Libraries
-	- Good Practices in Library Design, Implementation, and Maintenance
