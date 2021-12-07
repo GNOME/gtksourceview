@@ -1314,6 +1314,12 @@ key_handler_initial (GtkSourceVimNormal *self,
 		 */
 		if ((mods & (GDK_CONTROL_MASK | GDK_SUPER_MASK | GDK_ALT_MASK)) != 0 || string[0] == 0)
 		{
+			/* Ignore this from the command_text */
+			if (strlen (string) <= self->command_text->len)
+			{
+				g_string_truncate (self->command_text, self->command_text->len - strlen (string));
+			}
+
 			return FALSE;
 		}
 
