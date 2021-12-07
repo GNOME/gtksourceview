@@ -1332,15 +1332,6 @@ gtk_source_vim_normal_handle_keypress (GtkSourceVimState *state,
 }
 
 static void
-gtk_source_vim_normal_suspend (GtkSourceVimState *state,
-                               GtkSourceVimState *to)
-{
-	g_assert (GTK_SOURCE_IS_VIM_NORMAL (state));
-	g_assert (GTK_SOURCE_IS_VIM_STATE (to));
-
-}
-
-static void
 gtk_source_vim_normal_resume (GtkSourceVimState *state,
                               GtkSourceVimState *from)
 {
@@ -1456,7 +1447,6 @@ gtk_source_vim_normal_class_init (GtkSourceVimNormalClass *klass)
 	state_class->handle_keypress = gtk_source_vim_normal_handle_keypress;
 	state_class->enter = gtk_source_vim_normal_enter;
 	state_class->resume = gtk_source_vim_normal_resume;
-	state_class->suspend = gtk_source_vim_normal_suspend;
 }
 
 static void
