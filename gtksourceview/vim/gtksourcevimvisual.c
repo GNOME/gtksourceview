@@ -45,6 +45,8 @@ struct _GtkSourceVimVisual
 
 	GtkSourceVimVisualMode mode;
 
+	GString *command_text;
+
 	/* A recording of motions so that we can replay commands
 	 * such as delete and get a similar result to VIM. Replaying
 	 * our motion's visual selection is not enough as after a
@@ -173,6 +175,7 @@ gtk_source_vim_visual_clear (GtkSourceVimVisual *self)
 {
 	self->handler = key_handler_initial;
 	self->count = 0;
+	g_string_truncate (self->command_text, 0);
 }
 
 static gboolean
@@ -409,6 +412,9 @@ gtk_source_vim_visual_try_motion (GtkSourceVimVisual *self,
 	gtk_source_vim_motion_set_mark (GTK_SOURCE_VIM_MOTION (motion), self->cursor);
 	gtk_source_vim_state_push (GTK_SOURCE_VIM_STATE (self), motion);
 	gtk_source_vim_state_synthesize (motion, keyval, mods);
+
+	if (self->command_text->len)
+		g_string_truncate (self->command_text, 0);
 
 	return TRUE;
 }
@@ -721,6 +727,9 @@ gtk_source_vim_visual_resume (GtkSourceVimState *state,
 
 	self->handler = key_handler_initial;
 
+	if (self->command_text->len > 0)
+		g_string_truncate (self->command_text, self->command_text->len - 1);
+
 	if (GTK_SOURCE_IS_VIM_MOTION (from))
 	{
 		GtkSourceVimState *chained;
@@ -832,14 +841,34 @@ gtk_source_vim_visual_handle_keypress (GtkSourceVimState *state,
 
 	g_assert (GTK_SOURCE_IS_VIM_VISUAL (state));
 
+	g_string_append (self->command_text, string);
+
 	/* Leave insert mode if Escape/ctrl+[ was pressed */
 	if (gtk_source_vim_state_is_escape (keyval, mods))
 	{
+		gtk_source_vim_visual_clear (self);
 		gtk_source_vim_state_pop (GTK_SOURCE_VIM_STATE (self));
 		return TRUE;
 	}
 
 	return self->handler (self, keyval, keycode, mods, string);
+}
+
+static void
+gtk_source_vim_visual_append_command (GtkSourceVimState *state,
+                                      GString           *string)
+{
+	GtkSourceVimVisual *self = (GtkSourceVimVisual *)state;
+
+	g_assert (GTK_SOURCE_IS_VIM_STATE (state));
+	g_assert (string != NULL);
+
+	if (self->command_text->len > 0)
+	{
+		g_string_append_len (string,
+		                     self->command_text->str,
+		                     self->command_text->len);
+	}
 }
 
 static void
@@ -865,6 +894,12 @@ gtk_source_vim_visual_dispose (GObject *object)
 		gtk_text_buffer_delete_mark (GTK_TEXT_BUFFER (buffer), mark);
 	}
 
+	if (self->command_text != NULL)
+	{
+		g_string_free (self->command_text, TRUE);
+		self->command_text = NULL;
+	}
+
 	gtk_source_vim_state_release (&self->motion);
 	gtk_source_vim_state_release (&self->command);
 
@@ -886,12 +921,14 @@ gtk_source_vim_visual_class_init (GtkSourceVimVisualClass *klass)
 	state_class->resume = gtk_source_vim_visual_resume;
 	state_class->suspend = gtk_source_vim_visual_suspend;
 	state_class->repeat = gtk_source_vim_visual_repeat;
+	state_class->append_command = gtk_source_vim_visual_append_command;
 }
 
 static void
 gtk_source_vim_visual_init (GtkSourceVimVisual *self)
 {
 	self->handler = key_handler_initial;
+	self->command_text = g_string_new (NULL);
 }
 
 GtkSourceVimState *
