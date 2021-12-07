@@ -148,8 +148,10 @@ trigger_on_newline (GtkSourceIndenter *self,
                     GdkModifierType    state,
                     guint              keyval)
 {
-	return !(state & GDK_SHIFT_MASK) &&
-	       (keyval == GDK_KEY_Return || keyval == GDK_KEY_KP_Enter);
+	if ((state & (GDK_SHIFT_MASK | GDK_CONTROL_MASK | GDK_SUPER_MASK)) != 0)
+		return FALSE;
+
+	return (keyval == GDK_KEY_Return || keyval == GDK_KEY_KP_Enter);
 }
 
 G_DEFINE_INTERFACE (GtkSourceIndenter, gtk_source_indenter, G_TYPE_OBJECT)
