@@ -8,6 +8,7 @@ int main (void)
     int b = 089;
     int c = 89.;
     int d = 'a';
+    double hexadecimal_floating_constant = 0x1.2p3;
     printf ("Hello %s!\n", "world");
     return 0;
 }
