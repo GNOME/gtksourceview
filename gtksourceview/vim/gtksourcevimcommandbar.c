@@ -225,6 +225,16 @@ gtk_source_vim_command_bar_handle_keypress (GtkSourceVimState *state,
 			gtk_source_vim_state_pop (state);
 			return TRUE;
 
+		case GDK_KEY_u:
+			if (mods & GDK_CONTROL_MASK)
+			{
+				g_string_truncate (self->buffer, 1);
+				do_notify (self);
+				return TRUE;
+			}
+
+			break;
+
 		default:
 			break;
 	}
