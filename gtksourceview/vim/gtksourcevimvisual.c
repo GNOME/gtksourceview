@@ -563,11 +563,17 @@ key_handler_initial (GtkSourceVimVisual *self,
 		case GDK_KEY_7: case GDK_KEY_KP_7:
 		case GDK_KEY_8: case GDK_KEY_KP_8:
 		case GDK_KEY_9: case GDK_KEY_KP_9:
+			/* ignore if mods set as that is a common keybinding */
+			if (self->count == 0 && mods != 0)
+				return FALSE;
+
 			self->count *= 10;
+
 			if (keyval >= GDK_KEY_0 && keyval <= GDK_KEY_9)
 				self->count += keyval - GDK_KEY_0;
 			else if (keyval >= GDK_KEY_KP_0 && keyval <= GDK_KEY_KP_9)
 				self->count += keyval - GDK_KEY_KP_0;
+
 			return TRUE;
 
 		case GDK_KEY_z:

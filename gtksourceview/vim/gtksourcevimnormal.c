@@ -1217,7 +1217,8 @@ key_handler_initial (GtkSourceVimNormal *self,
 			case GDK_KEY_7: case GDK_KEY_KP_7:
 			case GDK_KEY_8: case GDK_KEY_KP_8:
 			case GDK_KEY_9: case GDK_KEY_KP_9:
-				if (self->has_count == FALSE)
+				/* ignore if mods set as that is a common keybinding */
+				if (self->has_count == FALSE && mods == 0)
 					self->handler = key_handler_count;
 				break;
 
