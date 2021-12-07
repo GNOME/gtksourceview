@@ -141,8 +141,8 @@ read_clipboard (GtkSourceVimRegisters  *self,
 
 	gdk_clipboard_read_text_async (clipboard,
 	                               clip.cancellable,
-				       read_clipboard_cb,
-				       &clip);
+	                               read_clipboard_cb,
+	                               &clip);
 
 	g_main_loop_run (clip.main_loop);
 
