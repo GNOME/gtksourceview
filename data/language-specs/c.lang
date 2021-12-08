@@ -222,10 +222,9 @@
     </context>
 
     <context id="types" style-ref="type">
-      <keyword>_Bool</keyword>
+      <keyword>(_B|b)ool</keyword>
       <keyword>_Complex</keyword>
       <keyword>_Imaginary</keyword>
-      <keyword>bool</keyword>
       <keyword>char</keyword>
       <keyword>char(16|32)_t</keyword>
       <keyword>double(_t)?</keyword>
