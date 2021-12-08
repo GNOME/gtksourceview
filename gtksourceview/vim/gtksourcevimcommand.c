@@ -317,6 +317,41 @@ gtk_source_vim_command_join (GtkSourceVimCommand *self)
 }
 
 static void
+gtk_source_vim_command_sort (GtkSourceVimCommand *self)
+{
+	GtkSourceBuffer *buffer;
+	GtkTextIter iter;
+	GtkTextIter selection;
+	GtkTextIter end;
+	guint offset;
+
+	if (!gtk_source_vim_state_get_editable (GTK_SOURCE_VIM_STATE (self)))
+		return;
+
+	buffer = gtk_source_vim_state_get_buffer (GTK_SOURCE_VIM_STATE (self), &iter, &selection);
+
+	gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
+
+	gtk_text_iter_order (&iter, &selection);
+	offset = gtk_text_iter_get_offset (&iter);
+
+	end = iter;
+	if (!gtk_text_iter_ends_line (&end))
+		gtk_text_iter_forward_to_line_end (&end);
+	offset = gtk_text_iter_get_offset (&end);
+
+	gtk_source_buffer_sort_lines (buffer, &iter, &selection, GTK_SOURCE_SORT_FLAGS_CASE_SENSITIVE, 0);
+	gtk_text_buffer_get_iter_at_offset (GTK_TEXT_BUFFER (buffer), &iter, offset);
+	gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &iter, &iter);
+
+	gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
+
+	gtk_source_vim_state_set_can_repeat (GTK_SOURCE_VIM_STATE (self), TRUE);
+
+	self->ignore_mark = TRUE;
+}
+
+static void
 gtk_source_vim_command_yank (GtkSourceVimCommand *self)
 {
 	GtkTextIter iter;
@@ -1558,6 +1593,7 @@ gtk_source_vim_command_class_init (GtkSourceVimCommandClass *klass)
 	ADD_COMMAND (":nohl",          gtk_source_vim_command_nohl);
 	ADD_COMMAND (":redo",          gtk_source_vim_command_redo);
 	ADD_COMMAND (":set",           gtk_source_vim_command_set);
+	ADD_COMMAND (":sort",          gtk_source_vim_command_sort);
 	ADD_COMMAND (":u",             gtk_source_vim_command_undo);
 	ADD_COMMAND (":undo",          gtk_source_vim_command_undo);
 	ADD_COMMAND (":y",             gtk_source_vim_command_yank);
