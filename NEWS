@@ -1,4 +1,17 @@
+News in 5.3.0, 2021-12-08
+-------------------------
 
+This is a development release as we progress towards GNOME 42. It is
+not a stable release and is intended for testing purposes.
+
+ * Documentation has been updated to use gi-docgen.
+ * Style schemes now support the <metadata> tag similar to languages.
+   This can be used by style schemes to denote if they are light or dark
+   mode and a relative scheme for use when desktop dark mode preferences
+   have changed.
+ * Selections for most style schemes bundled with GtkSourceView are now
+   translucent and do not modify the foreground color. This performs very
+   well now that we have GL based rendering in GTK.
  * The Vala bindings have moved from the Gtk namespace to the GtkSource
    namespace to match the bindings in all other languages. While it is
    unfortunate that this has happened after 5.0, it is still early enough
@@ -10,7 +23,7 @@
    The + and * registers can be used to integrate with both the system and
    primary GDK clipboards. Various commands are available in teh command bar
    such as nohl, set, :s, :join, and more.
- * Updated language specs: rst.lang, c.lang, vala.lang, spice.lang,
+ * Updated language specs: rst.lang, c.lang, cpp.lang, vala.lang, spice.lang,
    lean.lang, and yara.lang.
  * Updated style schemes which improve the quality of output when used with
    non-standard GTK themes.
@@ -21,8 +34,15 @@
  * Improvements to cell alignment in the gutter particularly useful when
    the CSS line-height attribute is used.
  * Many fit-n-finish improvements to GtkSourceMap.
+ * The gutter line renderer now adapts to more situations where it will
+   need to redraw based on highlight-current-line.
  * Build system improvements.
  * Translation updates.
+
+More information can be found at:
+
+ * https://blogs.gnome.org/chergert/2021/11/01/gtksourceview-is-getting-a-vim-emulator/
+ * https://blogs.gnome.org/chergert/2021/10/12/gtksourcestyleschemepreview/
 
 News in 5.2.0, 2021-09-03
 -------------------------
