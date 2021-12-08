@@ -48,8 +48,6 @@
                 </context>
 
                 <context id="keywords" style-ref="keyword">
-                    <keyword>alignas</keyword>
-                    <keyword>alignof</keyword>
                     <keyword>and</keyword>
                     <keyword>and_eq</keyword>
                     <keyword>bitand</keyword>
@@ -67,7 +65,6 @@
                     <keyword>delete</keyword>
                     <keyword>dynamic_cast</keyword>
                     <keyword>export</keyword>
-                    <keyword>false</keyword>
                     <keyword>final</keyword>
                     <keyword>friend</keyword>
                     <keyword>import</keyword>
@@ -91,7 +88,6 @@
                     <keyword>this</keyword>
                     <keyword>thread_local</keyword>
                     <keyword>throw</keyword>
-                    <keyword>true</keyword>
                     <keyword>try</keyword>
                     <keyword>typeid</keyword>
                     <keyword>using</keyword>
@@ -106,14 +102,9 @@
                 </context>
 
                 <context id="types" style-ref="type">
-                    <keyword>bool</keyword>
-                    <keyword>char16_t</keyword>
-                    <keyword>char32_t</keyword>
                     <keyword>explicit</keyword>
-                    <keyword>inline</keyword>
                     <keyword>mutable</keyword>
                     <keyword>nullptr_t</keyword>
-                    <keyword>wchar_t</keyword>
                 </context>
 
                 <context id="common-defines" style-ref="common-defines">
