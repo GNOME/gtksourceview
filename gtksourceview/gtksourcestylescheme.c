@@ -33,7 +33,7 @@
 
 /**
  * GtkSourceStyleScheme:
- * 
+ *
  * Controls the appearance of [class@View].
  *
  * #GtkSourceStyleScheme contains all the text styles to be used in
@@ -861,6 +861,43 @@ get_css_color_style (GtkSourceStyle *style,
 }
 
 static void
+fix_broken_selection (char **bg_out,
+		      char **text_out)
+{
+	char *bg = *bg_out;
+	char *text = *text_out;
+	char *tmp = NULL;
+	const char *space;
+	const char *semi;
+	GdkRGBA rgba;
+
+	/* If there is no foreground and the background is solid, we must
+	 * alter it to be transparent or some systems will not see anything
+	 * (such as those in libadwaita).
+	 */
+
+	if ((space = strchr (bg, ' ')) &&
+	    (semi = strchr (space, ';')) &&
+	    (tmp = g_strndup (space + 1, semi - space - 1)) &&
+	    gdk_rgba_parse (&rgba, tmp) &&
+	    rgba.alpha >= 1.0)
+	{
+		char *new_bg;
+		rgba.alpha = .3;
+		new_bg = gdk_rgba_to_string (&rgba);
+		g_free (bg);
+		text = g_strdup ("color: rgba(0,0,0,0);");
+		bg = g_strdup_printf ("background-color: %s;", new_bg);
+		g_free (new_bg);
+	}
+
+	g_free (tmp);
+
+	*bg_out = bg;
+	*text_out = text;
+}
+
+static void
 append_css_style (GString        *string,
                   GtkSourceStyle *style,
                   const gchar    *selector)
@@ -873,8 +910,12 @@ append_css_style (GString        *string,
 		"}\n";
 
 	get_css_color_style (style, &bg, &text);
+
 	if (bg || text)
 	{
+		if (bg && !text && g_str_has_suffix (selector, " selection"))
+			fix_broken_selection (&bg, &text);
+
 		g_string_append_printf (string, css_style, selector,
 		                        bg != NULL ? bg : "",
 		                        text != NULL ? text : "");
