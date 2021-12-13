@@ -42,10 +42,5 @@ gboolean      gtk_source_vim_emit_format          (GtkSourceVim   *self,
                                                    GtkTextIter    *begin,
                                                    GtkTextIter    *end);
 void          gtk_source_vim_emit_ready           (GtkSourceVim   *self);
-void          gtk_source_vim_emit_split           (GtkSourceVim   *self,
-                                                   GtkOrientation  orientation,
-                                                   gboolean        new_document,
-                                                   gboolean        focus_split,
-                                                   int             numeric);
 
 G_END_DECLS

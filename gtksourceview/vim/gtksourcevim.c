@@ -55,7 +55,6 @@ enum {
 	FILTER,
 	FORMAT,
 	READY,
-	SPLIT,
 	N_SIGNALS
 };
 
@@ -493,29 +492,6 @@ gtk_source_vim_class_init (GtkSourceVimClass *klass)
 		              NULL, NULL,
 		              NULL,
 		              G_TYPE_NONE, 0);
-
-	/**
-	 * GtkSourceVim::split:
-	 * @self: a #GtkSourceVim
-	 * @orientation: a #GtkOrientation for vertical or horizontal
-	 * @new_document: %TRUE if a new document should be created
-	 * @focus_split: %TRUE if the new document should be focused
-	 * @numeric: a numeric value provided with the command such as
-	 *   the number of columns for the split
-	 */
-	signals[SPLIT] =
-		g_signal_new ("split",
-		              G_TYPE_FROM_CLASS (klass),
-		              G_SIGNAL_RUN_LAST,
-		              0,
-		              NULL, NULL,
-		              NULL,
-		              G_TYPE_NONE,
-		              3,
-		              GTK_TYPE_ORIENTATION,
-		              G_TYPE_BOOLEAN,
-		              G_TYPE_BOOLEAN,
-		              G_TYPE_INT);
 }
 
 static void
@@ -562,19 +538,6 @@ gtk_source_vim_get_command_bar_text (GtkSourceVim *self)
 	}
 
 	return "";
-}
-
-void
-gtk_source_vim_emit_split (GtkSourceVim   *self,
-                           GtkOrientation  orientation,
-                           gboolean        new_document,
-                           gboolean        focus_split,
-                           int             numeric)
-{
-	g_return_if_fail (GTK_SOURCE_IS_VIM (self));
-
-	g_signal_emit (self, signals[SPLIT], 0,
-	               orientation, new_document, focus_split, numeric);
 }
 
 void
