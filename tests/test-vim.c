@@ -31,7 +31,7 @@ static gboolean
 execute_command (GtkSourceVimIMContext *context,
                  const char            *command)
 {
-	if (g_str_equal (command, ":q"))
+	if (g_str_equal (command, ":q") || g_str_equal (command, "^Wc"))
 	{
 		g_main_loop_quit (main_loop);
 		return TRUE;

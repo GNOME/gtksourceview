@@ -999,9 +999,29 @@ key_handler_split (GtkSourceVimNormal *self,
                    GdkModifierType     mods,
                    const char         *string)
 {
+	GtkSourceVimState *root;
+
 	g_assert (GTK_SOURCE_IS_VIM_NORMAL (self));
 
-	return TRUE;
+	switch (keyval)
+	{
+	case GDK_KEY_c:
+	case GDK_KEY_v:
+	case GDK_KEY_s:
+	case GDK_KEY_w:
+		if ((root = gtk_source_vim_state_get_root (GTK_SOURCE_VIM_STATE (self))) &&
+		    GTK_SOURCE_IS_VIM (root))
+		{
+			gtk_source_vim_emit_execute_command (GTK_SOURCE_VIM (root), self->command_text->str);
+			gtk_source_vim_normal_clear (self);
+			return TRUE;
+		}
+
+		return gtk_source_vim_normal_bail (self);
+
+	default:
+		return FALSE;
+	}
 }
 
 static gboolean
@@ -1134,7 +1154,7 @@ key_handler_initial (GtkSourceVimNormal *self,
 
 			case GDK_KEY_w:
 				self->handler = key_handler_split;
-				break;
+				return TRUE;
 
 			case GDK_KEY_r:
 				self->handler = key_handler_command;
