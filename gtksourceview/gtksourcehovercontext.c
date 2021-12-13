@@ -330,6 +330,22 @@ gtk_source_hover_context_get_iter (GtkSourceHoverContext *self,
 	return TRUE;
 }
 
+/**
+ * gtk_source_hover_context_get_bounds:
+ * @self: an #GtkSourceHoverContext
+ * @begin: (out) (optional): a #GtkTextIter
+ * @end: (out) (optional): a #GtkTextIter
+ *
+ * Gets the current word bounds of the hover.
+ *
+ * If @begin is non-%NULL, it will be set to the start position of the
+ * current word being hovered.
+ *
+ * If @end is non-%NULL, it will be set to the end position for the
+ * current word being hovered.
+ *
+ * Returns: %TRUE if the marks are still valid and @begin or @end was set.
+ */
 gboolean
 gtk_source_hover_context_get_bounds (GtkSourceHoverContext *self,
                                      GtkTextIter           *begin,
