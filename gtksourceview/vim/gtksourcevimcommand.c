@@ -797,7 +797,7 @@ gtk_source_vim_command_search (GtkSourceVimCommand *self)
 
 			visual = gtk_source_vim_state_get_ancestor (GTK_SOURCE_VIM_STATE (self),
 			                                            GTK_SOURCE_TYPE_VIM_VISUAL);
-			gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (visual), &match);
+			gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (visual), &match, NULL);
 			gtk_source_vim_visual_ignore_command (GTK_SOURCE_VIM_VISUAL (visual));
 		}
 		else
@@ -862,7 +862,7 @@ gtk_source_vim_command_search_reverse (GtkSourceVimCommand *self)
 
 			visual = gtk_source_vim_state_get_ancestor (GTK_SOURCE_VIM_STATE (self),
 			                                            GTK_SOURCE_TYPE_VIM_VISUAL);
-			gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (visual), &match);
+			gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (visual), &match, NULL);
 			gtk_source_vim_visual_ignore_command (GTK_SOURCE_VIM_VISUAL (visual));
 		}
 		else

@@ -42,7 +42,8 @@ gboolean           gtk_source_vim_visual_get_bounds     (GtkSourceVimVisual     
                                                          GtkTextIter            *cursor,
                                                          GtkTextIter            *started_at);
 void               gtk_source_vim_visual_warp           (GtkSourceVimVisual     *self,
-                                                         const GtkTextIter      *iter);
+                                                         const GtkTextIter      *iter,
+                                                         const GtkTextIter      *selection);
 void               gtk_source_vim_visual_ignore_command (GtkSourceVimVisual     *self);
 
 static inline gboolean

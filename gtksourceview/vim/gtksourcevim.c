@@ -213,7 +213,7 @@ constrain_insert_source (gpointer data)
 
 	if (GTK_SOURCE_IS_VIM_VISUAL (current))
 	{
-		gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (current), &iter);
+		gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (current), &iter, &selection);
 	}
 	else if (!GTK_SOURCE_IS_VIM_INSERT (current) &&
 	         !GTK_SOURCE_IS_VIM_REPLACE (current) &&
@@ -238,7 +238,7 @@ constrain_insert_source (gpointer data)
 		gtk_text_buffer_select_range (GTK_TEXT_BUFFER (buffer), &selection, &selection);
 		visual = gtk_source_vim_visual_new (GTK_SOURCE_VIM_VISUAL_CHAR);
 		gtk_source_vim_state_push (current, visual);
-		gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (visual), &iter);
+		gtk_source_vim_visual_warp (GTK_SOURCE_VIM_VISUAL (visual), &iter, &selection);
 		g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_COMMAND_TEXT]);
 		g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_COMMAND_BAR_TEXT]);
 	}
