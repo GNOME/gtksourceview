@@ -31,6 +31,7 @@
 #include "gtksourceencoding.h"
 #include "gtksourceencoding-private.h"
 #include "gtksource-enumtypes.h"
+#include "gtksourcetrace.h"
 
 /**
  * GtkSourceFileLoader:
@@ -54,12 +55,6 @@
  * probably call [method@Gtk.TextBuffer.set_modified] with %TRUE after calling
  * [method@FileLoader.load_finish].
  */
-
-#if 0
-#define DEBUG(x) (x)
-#else
-#define DEBUG(x)
-#endif
 
 enum
 {
@@ -107,6 +102,8 @@ struct _GtkSourceFileLoader
 	GtkSourceCompressionType auto_detected_compression_type;
 
 	GTask *task;
+
+	gint64 load_begin_time;
 };
 
 typedef struct
@@ -451,37 +448,36 @@ close_input_stream_cb (GObject      *source_object,
 	GTask *task = G_TASK (user_data);
 	TaskData *task_data;
 	GError *error = NULL;
+	G_GNUC_UNUSED gint64 begin_time;
 
-	DEBUG ({
-	       g_print ("%s\n", G_STRFUNC);
-	});
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	task_data = g_task_get_task_data (task);
 
+	begin_time = GTK_SOURCE_PROFILER_CURRENT_TIME;
 	g_input_stream_close_finish (input_stream, result, &error);
+	GTK_SOURCE_PROFILER_MARK (GTK_SOURCE_PROFILER_CURRENT_TIME - begin_time,
+	                          "FileLoader.close-input", "");
 
 	if (error != NULL)
 	{
-		DEBUG ({
-		       g_print ("Closing input stream error: %s\n", error->message);
-		});
-
+		GTK_SOURCE_PROFILER_LOG ("Error closing input stream: %s", error->message);
 		g_task_return_error (task, error);
-		return;
+		goto cleanup;
 	}
 
-	DEBUG ({
-	       g_print ("Close output stream\n");
-	});
-
+	begin_time = GTK_SOURCE_PROFILER_CURRENT_TIME;
 	g_output_stream_close (G_OUTPUT_STREAM (task_data->output_stream),
-			       g_task_get_cancellable (task),
-			       &error);
+	                       g_task_get_cancellable (task),
+	                       &error);
+	GTK_SOURCE_PROFILER_MARK (GTK_SOURCE_PROFILER_CURRENT_TIME - begin_time,
+	                          "FileLoader.close-output", "");
 
 	if (error != NULL)
 	{
+		GTK_SOURCE_PROFILER_LOG ("Error closing output stream: %s", error->message);
 		g_task_return_error (task, error);
-		return;
+		goto cleanup;
 	}
 
 	/* Check if we needed some fallback char, if so, check if there was a
@@ -494,10 +490,25 @@ close_input_stream_cb (GObject      *source_object,
 					 GTK_SOURCE_FILE_LOADER_ERROR_CONVERSION_FALLBACK,
 					 _("There was a character encoding conversion error "
 					   "and it was needed to use a fallback character."));
-		return;
+		goto cleanup;
 	}
 
+	/* The task completion here will result in the task's callback
+	 * getting called. So it is important that function does relatively
+	 * little amount of work initially or we could end up blocking the
+	 * main loop for long enough that we drop a frame.
+	 *
+	 * Therefore, we add a mark here to make it easier to find that
+	 * in applications. Often it is things like setting syntax or
+	 * other slightly intenstive operations that should be made async.
+	 */
+	begin_time = GTK_SOURCE_PROFILER_CURRENT_TIME;
 	g_task_return_boolean (task, TRUE);
+	GTK_SOURCE_PROFILER_MARK (GTK_SOURCE_PROFILER_CURRENT_TIME - begin_time,
+	                          "FileLoader.task-complete-cb", "");
+
+cleanup:
+	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
 }
 
 static void
@@ -536,16 +547,11 @@ write_file_chunk (GTask *task)
 						       g_task_get_cancellable (task),
 						       &error);
 
-		DEBUG ({
-		       g_print ("Written: %" G_GSSIZE_FORMAT "\n", bytes_written);
-		});
+		GTK_SOURCE_PROFILER_LOG ("Written: %" G_GSSIZE_FORMAT, bytes_written);
 
 		if (error != NULL)
 		{
-			DEBUG ({
-			       g_print ("Write error: %s\n", error->message);
-			});
-
+			GTK_SOURCE_PROFILER_LOG ("Write error: %s", error->message);
 			g_task_return_error (task, error);
 			return;
 		}
@@ -578,9 +584,7 @@ read_cb (GObject      *source_object,
 	TaskData *task_data;
 	GError *error = NULL;
 
-	DEBUG ({
-	       g_print ("%s\n", G_STRFUNC);
-	});
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	loader = g_task_get_source_object (task);
 	task_data = g_task_get_task_data (task);
@@ -590,17 +594,17 @@ read_cb (GObject      *source_object,
 	if (error != NULL)
 	{
 		g_task_return_error (task, error);
-		return;
+		goto cleanup;
 	}
 
 	/* Check for the extremely unlikely case where the file size overflows. */
 	if (task_data->total_bytes_read + task_data->chunk_bytes_read < task_data->total_bytes_read)
 	{
 		g_task_return_new_error (task,
-					 GTK_SOURCE_FILE_LOADER_ERROR,
-					 GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
-					 _("File too big."));
-		return;
+		                         GTK_SOURCE_FILE_LOADER_ERROR,
+		                         GTK_SOURCE_FILE_LOADER_ERROR_TOO_BIG,
+		                         _("File too big."));
+		goto cleanup;
 	}
 
 	if (task_data->guess_content_type_from_content &&
@@ -637,12 +641,15 @@ read_cb (GObject      *source_object,
 			gtk_source_buffer_output_stream_detect_newline_type (task_data->output_stream);
 
 		write_complete (task);
-		return;
+		goto cleanup;
 	}
 
 	task_data->total_bytes_read += task_data->chunk_bytes_read;
 
 	write_file_chunk (task);
+
+cleanup:
+	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
 }
 
 static void
@@ -732,9 +739,7 @@ query_info_cb (GObject      *source_object,
 	TaskData *task_data;
 	GError *error = NULL;
 
-	DEBUG ({
-	       g_print ("%s\n", G_STRFUNC);
-	});
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	task_data = g_task_get_task_data (task);
 
@@ -744,17 +749,17 @@ query_info_cb (GObject      *source_object,
 	if (error != NULL)
 	{
 		g_task_return_error (task, error);
-		return;
+		goto cleanup;
 	}
 
 	if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_STANDARD_TYPE) &&
 	    g_file_info_get_file_type (task_data->info) != G_FILE_TYPE_REGULAR)
 	{
 		g_task_return_new_error (task,
-					 G_IO_ERROR,
-					 G_IO_ERROR_NOT_REGULAR_FILE,
-					 _("Not a regular file."));
-		return;
+		                         G_IO_ERROR,
+		                         G_IO_ERROR_NOT_REGULAR_FILE,
+		                         _("Not a regular file."));
+		goto cleanup;
 	}
 
 	if (g_file_info_has_attribute (task_data->info, G_FILE_ATTRIBUTE_STANDARD_SIZE))
@@ -764,6 +769,9 @@ query_info_cb (GObject      *source_object,
 	}
 
 	create_input_stream (task);
+
+cleanup:
+	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
 }
 
 static void
@@ -775,9 +783,7 @@ mount_cb (GObject      *source_object,
 	GTask *task = G_TASK (user_data);
 	GError *error = NULL;
 
-	DEBUG ({
-	       g_print ("%s\n", G_STRFUNC);
-	});
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	g_file_mount_enclosing_volume_finish (location, result, &error);
 
@@ -790,6 +796,8 @@ mount_cb (GObject      *source_object,
 		/* Try again to open the file for reading. */
 		open_file (task);
 	}
+
+	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
 }
 
 static void
@@ -799,14 +807,12 @@ recover_not_mounted (GTask *task)
 	TaskData *task_data;
 	GMountOperation *mount_operation;
 
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
+
 	loader = g_task_get_source_object (task);
 	task_data = g_task_get_task_data (task);
 
 	mount_operation = _gtk_source_file_create_mount_operation (loader->file);
-
-	DEBUG ({
-	       g_print ("%s\n", G_STRFUNC);
-	});
 
 	task_data->tried_mount = TRUE;
 
@@ -818,6 +824,8 @@ recover_not_mounted (GTask *task)
 				       task);
 
 	g_object_unref (mount_operation);
+
+	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
 }
 
 static void
@@ -830,9 +838,7 @@ open_file_cb (GObject      *source_object,
 	TaskData *task_data;
 	GError *error = NULL;
 
-	DEBUG ({
-	       g_print ("%s\n", G_STRFUNC);
-	});
+	GTK_SOURCE_PROFILER_BEGIN_MARK;
 
 	task_data = g_task_get_task_data (task);
 
@@ -850,7 +856,7 @@ open_file_cb (GObject      *source_object,
 		}
 
 		g_task_return_error (task, error);
-		return;
+		goto cleanup;
 	}
 
 	/* Get the file info: note we cannot use
@@ -866,6 +872,9 @@ open_file_cb (GObject      *source_object,
 				 g_task_get_cancellable (task),
 				 query_info_cb,
 				 task);
+
+cleanup:
+	GTK_SOURCE_PROFILER_END_MARK (G_STRFUNC, "");
 }
 
 static void
@@ -1103,9 +1112,7 @@ gtk_source_file_loader_load_async (GtkSourceFileLoader   *loader,
 		return;
 	}
 
-	DEBUG ({
-	       g_print ("Start loading\n");
-	});
+	loader->load_begin_time = GTK_SOURCE_PROFILER_CURRENT_TIME;
 
 	/* Update GtkSourceFile location directly. The other GtkSourceFile
 	 * properties are updated when the operation is finished. But since the
@@ -1252,6 +1259,10 @@ gtk_source_file_loader_load_finish (GtkSourceFileLoader  *loader,
 	{
 		g_error_free (real_error);
 	}
+
+	GTK_SOURCE_PROFILER_MARK (GTK_SOURCE_PROFILER_CURRENT_TIME - loader->load_begin_time,
+				  "GtkSourceFileLoader.load",
+				  g_file_peek_path (loader->location));
 
 	return ok;
 }
