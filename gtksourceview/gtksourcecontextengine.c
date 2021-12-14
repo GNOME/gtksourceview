@@ -3290,7 +3290,7 @@ context_unref (Context *context)
 	if (context == NULL || --context->ref_count != 0)
 		return;
 
-	GTK_SOURCE_PROFILER_LOG ("destroying context %s\n", context->definition->id);
+	GTK_SOURCE_PROFILER_LOG ("destroying context %s", context->definition->id);
 
 	children = context->children;
 	context->children = NULL;
