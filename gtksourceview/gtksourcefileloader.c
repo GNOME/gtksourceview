@@ -32,6 +32,7 @@
 #include "gtksourceencoding-private.h"
 #include "gtksource-enumtypes.h"
 #include "gtksourcetrace.h"
+#include "gtksourceutils-private.h"
 
 /**
  * GtkSourceFileLoader:
@@ -65,7 +66,8 @@ enum
 	PROP_INPUT_STREAM
 };
 
-#define READ_CHUNK_SIZE 8192
+#define READ_N_PAGES 2
+#define READ_CHUNK_SIZE (_gtk_source_utils_get_page_size()*READ_N_PAGES)
 #define LOADER_QUERY_ATTRIBUTES G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE "," \
 				G_FILE_ATTRIBUTE_STANDARD_TYPE "," \
 				G_FILE_ATTRIBUTE_TIME_MODIFIED "," \
@@ -126,7 +128,7 @@ typedef struct
 	goffset total_size;
 
 	gssize chunk_bytes_read;
-	gchar chunk_buffer[READ_CHUNK_SIZE];
+	gchar *chunk_buffer;
 
 	guint guess_content_type_from_content : 1;
 	guint tried_mount : 1;
@@ -140,7 +142,14 @@ static void read_file_chunk (GTask *task);
 static TaskData *
 task_data_new (void)
 {
-	return g_new0 (TaskData, 1);
+	TaskData *task_data = g_new0 (TaskData, 1);
+
+	task_data->chunk_buffer =
+		_gtk_source_utils_aligned_alloc (_gtk_source_utils_get_page_size (),
+		                                 READ_N_PAGES,
+		                                 _gtk_source_utils_get_page_size ());
+
+	return task_data;
 }
 
 static void
@@ -161,6 +170,8 @@ task_data_free (gpointer data)
 	{
 		task_data->progress_cb_notify (task_data->progress_cb_data);
 	}
+
+	_gtk_source_utils_aligned_free (task_data->chunk_buffer);
 
 	g_free (task_data);
 }
