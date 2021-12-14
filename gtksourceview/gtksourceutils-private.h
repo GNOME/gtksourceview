@@ -53,4 +53,13 @@ void     _gtk_source_view_jump_to_iter                   (GtkTextView           
                                                           double                       xalign,
                                                           double                       yalign);
 
+G_GNUC_INTERNAL
+char    *_gtk_source_utils_aligned_alloc                 (gsize                        size,
+                                                          gsize                        number,
+                                                          gsize                        alignment);
+G_GNUC_INTERNAL
+void     _gtk_source_utils_aligned_free                  (gpointer                     data);
+G_GNUC_INTERNAL
+gsize    _gtk_source_utils_get_page_size                 (void) G_GNUC_CONST;
+
 G_END_DECLS
