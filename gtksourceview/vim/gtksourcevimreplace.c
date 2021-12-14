@@ -102,15 +102,11 @@ gtk_source_vim_replace_enter (GtkSourceVimState *state)
 }
 
 static void
-gtk_source_vim_replace_resume (GtkSourceVimState *state,
-                               GtkSourceVimState *from)
+gtk_source_vim_replace_leave (GtkSourceVimState *state)
 {
 	g_assert (GTK_SOURCE_IS_VIM_REPLACE (state));
-	g_assert (GTK_SOURCE_IS_VIM_STATE (from));
 
-	gtk_source_vim_state_set_overwrite (state, TRUE);
 	gtk_source_vim_state_end_user_action (state);
-	gtk_source_vim_state_unparent (from);
 }
 
 static void
@@ -130,7 +126,7 @@ gtk_source_vim_replace_class_init (GtkSourceVimReplaceClass *klass)
 	state_class->append_command = gtk_source_vim_replace_append_command;
 	state_class->handle_keypress = gtk_source_vim_replace_handle_keypress;
 	state_class->enter = gtk_source_vim_replace_enter;
-	state_class->resume = gtk_source_vim_replace_resume;
+	state_class->leave = gtk_source_vim_replace_leave;
 }
 
 static void
