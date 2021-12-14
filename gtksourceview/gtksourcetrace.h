@@ -48,8 +48,8 @@ G_BEGIN_DECLS
   } G_STMT_END
 # define GTK_SOURCE_PROFILER_MARK(duration, name, message) \
   G_STMT_START { \
-    sysprof_collector_mark (SYSPROF_CAPTURE_CURRENT_TIME - duration, \
-                            duration, "GtkSourceView", name, message); \
+    sysprof_collector_mark (SYSPROF_CAPTURE_CURRENT_TIME - (duration), \
+                            (duration), "GtkSourceView", name, message); \
   } G_STMT_END
 # define GTK_SOURCE_PROFILER_LOG(format, ...) \
   G_STMT_START { \
