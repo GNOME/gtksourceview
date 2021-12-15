@@ -31,6 +31,7 @@
 #include "gtksourcebuffer.h"
 #include "gtksourcebuffer-private.h"
 #include "gtksource-enumtypes.h"
+#include "gtksourceutils-private.h"
 
 /**
  * GtkSourceFileSaver:
@@ -57,7 +58,8 @@
 #define DEBUG(x)
 #endif
 
-#define WRITE_CHUNK_SIZE 8192
+#define WRITE_N_PAGES 2
+#define WRITE_CHUNK_SIZE (_gtk_source_utils_get_page_size()*WRITE_N_PAGES)
 
 #define QUERY_ATTRIBUTES G_FILE_ATTRIBUTE_TIME_MODIFIED
 
@@ -127,7 +129,7 @@ typedef struct
 
 	gssize chunk_bytes_read;
 	gssize chunk_bytes_written;
-	gchar chunk_buffer[WRITE_CHUNK_SIZE];
+	gchar *chunk_buffer;
 
 	guint tried_mount : 1;
 } TaskData;
@@ -143,7 +145,14 @@ static void recover_not_mounted (GTask *task);
 static TaskData *
 task_data_new (void)
 {
-	return g_new0 (TaskData, 1);
+	TaskData *task_data = g_new0 (TaskData, 1);
+
+	task_data->chunk_buffer =
+		_gtk_source_utils_aligned_alloc (_gtk_source_utils_get_page_size (),
+		                                 WRITE_N_PAGES,
+		                                 _gtk_source_utils_get_page_size ());
+
+	return task_data;
 }
 
 static void
@@ -165,6 +174,8 @@ task_data_free (gpointer data)
 	{
 		task_data->progress_cb_notify (task_data->progress_cb_data);
 	}
+
+	_gtk_source_utils_aligned_free (task_data->chunk_buffer);
 
 	g_free (task_data);
 }
