@@ -1009,6 +1009,10 @@ key_handler_split (GtkSourceVimNormal *self,
 	case GDK_KEY_v:
 	case GDK_KEY_s:
 	case GDK_KEY_w:
+	case GDK_KEY_h:
+	case GDK_KEY_l:
+	case GDK_KEY_j:
+	case GDK_KEY_k:
 		if ((root = gtk_source_vim_state_get_root (GTK_SOURCE_VIM_STATE (self))) &&
 		    GTK_SOURCE_IS_VIM (root))
 		{
@@ -1017,10 +1021,10 @@ key_handler_split (GtkSourceVimNormal *self,
 			return TRUE;
 		}
 
-		return gtk_source_vim_normal_bail (self);
+		G_GNUC_FALLTHROUGH;
 
 	default:
-		return FALSE;
+		return gtk_source_vim_normal_bail (self);
 	}
 }
 
