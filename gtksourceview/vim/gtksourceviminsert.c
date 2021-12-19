@@ -118,7 +118,9 @@ gtk_source_vim_insert_handle_keypress (GtkSourceVimState *state,
 		switch (keyval)
 		{
 			case GDK_KEY_u:
-				return clear_to_first_char (self);
+				if ((mods & GDK_SHIFT_MASK) == 0)
+					return clear_to_first_char (self);
+				break;
 
 			case GDK_KEY_v:
 				gtk_source_vim_state_push (state, gtk_source_vim_insert_literal_new ());
