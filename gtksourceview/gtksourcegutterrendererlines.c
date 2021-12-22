@@ -357,7 +357,7 @@ gtk_source_gutter_renderer_lines_measure (GtkWidget      *widget,
 			num_lines = 99;
 		}
 
-		g_snprintf (markup, sizeof markup, "<b>%u</b>", num_lines);
+		g_snprintf (markup, sizeof markup, "%u", num_lines);
 		gtk_source_gutter_renderer_text_measure_markup (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer),
 								markup,
 								&size,
@@ -377,48 +377,11 @@ gtk_source_gutter_renderer_lines_query_data (GtkSourceGutterRenderer *renderer,
                                              GtkSourceGutterLines    *lines,
                                              guint                    line)
 {
-	GtkSourceGutterRendererLines *self = GTK_SOURCE_GUTTER_RENDERER_LINES (renderer);
+	const gchar *text;
 	gint len;
 
-	if G_UNLIKELY ((self->cursor_visible || self->highlight_current_line) && gtk_source_gutter_lines_is_cursor (lines, line))
-	{
-		gchar text[32];
-
-		len = g_snprintf (text, sizeof text, "<b>%d</b>", line + 1);
-		gtk_source_gutter_renderer_text_set_markup (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer), text, len);
-	}
-	else
-	{
-		const gchar *text;
-
-		len = _gtk_source_utils_int_to_string (line + 1, &text);
-		gtk_source_gutter_renderer_text_set_text (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer), text, len);
-	}
-}
-
-static void
-gutter_renderer_snapshot_line (GtkSourceGutterRenderer *renderer,
-                               GtkSnapshot             *snapshot,
-                               GtkSourceGutterLines    *lines,
-                               guint                    line)
-{
-	g_assert (GTK_SOURCE_IS_GUTTER_RENDERER_LINES (renderer));
-	g_assert (GTK_IS_SNAPSHOT (snapshot));
-	g_assert (GTK_SOURCE_IS_GUTTER_LINES (lines));
-
-	if G_LIKELY (!gtk_source_gutter_lines_is_cursor (lines, line))
-	{
-		GTK_SOURCE_GUTTER_RENDERER_CLASS (_gtk_source_gutter_renderer_lines_parent_class)->snapshot_line (renderer, snapshot, lines, line);
-	}
-	else
-	{
-		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (renderer));
-
-		gtk_style_context_save (style_context);
-		gtk_style_context_add_class (style_context, "current-line-number");
-		GTK_SOURCE_GUTTER_RENDERER_CLASS (_gtk_source_gutter_renderer_lines_parent_class)->snapshot_line (renderer, snapshot, lines, line);
-		gtk_style_context_restore (style_context);
-	}
+	len = _gtk_source_utils_int_to_string (line + 1, &text);
+	gtk_source_gutter_renderer_text_set_text (GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer), text, len);
 }
 
 static void
@@ -435,7 +398,6 @@ _gtk_source_gutter_renderer_lines_class_init (GtkSourceGutterRendererLinesClass 
 	renderer_class->activate = gutter_renderer_activate;
 	renderer_class->change_buffer = gutter_renderer_change_buffer;
 	renderer_class->change_view = gutter_renderer_change_view;
-	renderer_class->snapshot_line = gutter_renderer_snapshot_line;
 }
 
 static void
