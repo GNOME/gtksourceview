@@ -20,6 +20,8 @@
 #include "config.h"
 
 #include "gtksourcegutterrenderertext.h"
+#include "gtksourcegutterlines.h"
+#include "gtksourceview-private.h"
 
 /**
  * GtkSourceGutterRendererText:
@@ -38,12 +40,13 @@ typedef struct
 
 typedef struct
 {
-	gchar       *text;
-	PangoLayout *cached_layout;
-	GdkRGBA      cached_color;
-	gsize        text_len;
-	Size         cached_sizes[5];
-	guint        is_markup : 1;
+	gchar          *text;
+	PangoLayout    *cached_layout;
+	PangoAttribute *current_line_bold;
+	PangoAttribute *current_line_color;
+	gsize           text_len;
+	Size            cached_sizes[5];
+	guint           is_markup : 1;
 } GtkSourceGutterRendererTextPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererText, gtk_source_gutter_renderer_text, GTK_SOURCE_TYPE_GUTTER_RENDERER)
@@ -102,11 +105,25 @@ gtk_source_gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
 
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
 	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (text);
+	GtkSourceView *view = gtk_source_gutter_renderer_get_view (GTK_SOURCE_GUTTER_RENDERER (renderer));
+	GdkRGBA current;
 
 	GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_text_parent_class)->begin (renderer, lines);
 
 	g_clear_object (&priv->cached_layout);
 	priv->cached_layout = gtk_widget_create_pango_layout (GTK_WIDGET (renderer), NULL);
+
+	if (_gtk_source_view_get_current_line_number_color (view, &current))
+	{
+		priv->current_line_color = pango_attr_foreground_new (current.red * 255,
+		                                                      current.green * 255,
+		                                                      current.blue * 255);
+	}
+
+	if (_gtk_source_view_get_current_line_number_bold (view))
+	{
+		priv->current_line_bold = pango_attr_weight_new (PANGO_WEIGHT_BOLD);
+	}
 
 	gtk_source_gutter_renderer_text_clear_cached_sizes (text);
 }
@@ -120,6 +137,7 @@ gtk_source_gutter_renderer_text_snapshot_line (GtkSourceGutterRenderer *renderer
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
 	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (text);
 	PangoLayout *layout;
+	gboolean clear_attributes;
 	float x;
 	float y;
 	int width;
@@ -131,6 +149,7 @@ gtk_source_gutter_renderer_text_snapshot_line (GtkSourceGutterRenderer *renderer
 	}
 
 	layout = priv->cached_layout;
+	clear_attributes = priv->is_markup;
 
 	if (priv->is_markup)
 	{
@@ -145,6 +164,37 @@ gtk_source_gutter_renderer_text_snapshot_line (GtkSourceGutterRenderer *renderer
 		                       priv->text_len);
 	}
 
+	if (G_UNLIKELY (gtk_source_gutter_lines_is_cursor (lines, line)))
+	{
+		PangoAttrList *attrs = pango_layout_get_attributes (layout);
+
+		if (attrs == NULL)
+		{
+			attrs = pango_attr_list_new ();
+			pango_layout_set_attributes (layout, attrs);
+		}
+		else
+		{
+			pango_attr_list_ref (attrs);
+		}
+
+		if (priv->current_line_color)
+		{
+			pango_attr_list_insert_before (attrs,
+			                               pango_attribute_copy (priv->current_line_color));
+			clear_attributes = TRUE;
+		}
+
+		if (priv->current_line_bold)
+		{
+			pango_attr_list_insert_before (attrs,
+			                               pango_attribute_copy (priv->current_line_bold));
+			clear_attributes = TRUE;
+		}
+
+		pango_attr_list_unref (attrs);
+	}
+
 	gtk_source_gutter_renderer_text_get_size (priv, layout, priv->text_len, &width, &height);
 	gtk_source_gutter_renderer_align_cell (renderer, line, width, height, &x, &y);
 
@@ -154,7 +204,7 @@ gtk_source_gutter_renderer_text_snapshot_line (GtkSourceGutterRenderer *renderer
 	                            ceilf (y),
 	                            layout);
 
-	if (priv->is_markup)
+	if (clear_attributes)
 	{
 		pango_layout_set_attributes (layout, NULL);
 	}
@@ -169,6 +219,8 @@ gtk_source_gutter_renderer_text_end (GtkSourceGutterRenderer *renderer)
 
 	GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_text_parent_class)->end (renderer);
 
+	g_clear_pointer (&priv->current_line_bold, pango_attribute_destroy);
+	g_clear_pointer (&priv->current_line_color, pango_attribute_destroy);
 	g_clear_object (&priv->cached_layout);
 }
 
