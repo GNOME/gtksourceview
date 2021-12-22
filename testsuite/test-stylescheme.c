@@ -156,7 +156,7 @@ test_named_color_alpha (TestFixture   *fixture,
 	scheme = gtk_source_style_scheme_manager_get_scheme (fixture->manager, "test");
 
 	/* Use these two semi private methods to compare a named color and a normal one */
-	res = _gtk_source_style_scheme_get_current_line_color (scheme, &color1);
+	res = _gtk_source_style_scheme_get_current_line_background_color (scheme, &color1);
 	g_assert_true (res);
 
 	res = _gtk_source_style_scheme_get_background_pattern_color (scheme, &color2);

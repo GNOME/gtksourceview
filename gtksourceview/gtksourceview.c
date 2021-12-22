@@ -187,8 +187,9 @@ typedef struct
 	GtkSourceGutterRenderer *marks_renderer;
 
 	GdkRGBA background_pattern_color;
-	GdkRGBA current_line_color;
+	GdkRGBA current_line_background_color;
 	GdkRGBA current_line_number_color;
+	GdkRGBA current_line_number_background_color;
 	GdkRGBA right_margin_line_color;
 	GdkRGBA right_margin_overlay_color;
 
@@ -208,8 +209,10 @@ typedef struct
 	GtkSourceViewSnippets snippets;
 
 	guint background_pattern_color_set : 1;
-	guint current_line_color_set : 1;
+	guint current_line_background_color_set : 1;
+	guint current_line_number_bold : 1;
 	guint current_line_number_color_set : 1;
+	guint current_line_number_background_color_set : 1;
 	guint right_margin_line_color_set : 1;
 	guint right_margin_overlay_color_set : 1;
 	guint tabs_set : 1;
@@ -2666,7 +2669,7 @@ gtk_source_view_paint_current_line_highlight (GtkSourceView *view,
 	gtk_source_view_paint_line_background (view,
 					       snapshot,
 					       y, height,
-					       &priv->current_line_color);
+					       &priv->current_line_background_color);
 }
 
 static void
@@ -2706,7 +2709,7 @@ gtk_source_view_snapshot_layer (GtkTextView      *text_view,
 
 		if (gtk_widget_is_sensitive (GTK_WIDGET (view)) &&
 		    priv->highlight_current_line &&
-		    priv->current_line_color_set)
+		    priv->current_line_background_color_set)
 		{
 			gtk_source_view_paint_current_line_highlight (view, snapshot);
 		}
@@ -4638,19 +4641,24 @@ update_current_line_color (GtkSourceView *view)
 
 	if (priv->style_scheme != NULL)
 	{
-		priv->current_line_color_set =
-			_gtk_source_style_scheme_get_current_line_color (priv->style_scheme,
-									 &priv->current_line_color);
+		priv->current_line_background_color_set =
+			_gtk_source_style_scheme_get_current_line_background_color (priv->style_scheme,
+									            &priv->current_line_background_color);
+		priv->current_line_number_background_color_set =
+			_gtk_source_style_scheme_get_current_line_number_background_color (priv->style_scheme,
+			                                                                   &priv->current_line_number_background_color);
 		priv->current_line_number_color_set =
 			_gtk_source_style_scheme_get_current_line_number_color (priv->style_scheme,
-										&priv->current_line_number_color);
+			                                                        &priv->current_line_number_color);
+		priv->current_line_number_bold =
+			_gtk_source_style_scheme_get_current_line_number_bold (priv->style_scheme);
 	}
 
 	/* If we failed to get a highlight-current-line color, then premix the foreground
 	 * and the background to give something relatively useful (and avoid alpha-composite
 	 * if we can w/ premix).
 	 */
-	if (!priv->current_line_color_set)
+	if (!priv->current_line_background_color_set)
 	{
 		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
 		gboolean has_bg = FALSE;
@@ -4661,23 +4669,8 @@ update_current_line_color (GtkSourceView *view)
 
 		gtk_style_context_get_color (style_context, &fg);
 
-		premix_colors (&priv->current_line_color, &fg, &bg, has_bg, 0.05);
-		priv->current_line_color_set = TRUE;
-	}
-
-	if (!priv->current_line_number_color_set)
-	{
-		GtkStyleContext *style_context = gtk_widget_get_style_context (GTK_WIDGET (view));
-		gboolean has_bg = FALSE;
-		GdkRGBA fg, bg;
-
-		if (priv->style_scheme != NULL)
-			has_bg = _gtk_source_style_scheme_get_background_color (priv->style_scheme, &bg);
-
-		gtk_style_context_get_color (style_context, &fg);
-
-		premix_colors (&priv->current_line_number_color, &fg, &bg, has_bg, 0.05);
-		priv->current_line_number_color_set = TRUE;
+		premix_colors (&priv->current_line_background_color, &fg, &bg, has_bg, 0.05);
+		priv->current_line_background_color_set = TRUE;
 	}
 }
 
@@ -5396,10 +5389,10 @@ _gtk_source_view_get_current_line_background (GtkSourceView *view,
 
 	if (rgba != NULL)
 	{
-		*rgba = priv->current_line_color;
+		*rgba = priv->current_line_background_color;
 	}
 
-	return priv->current_line_color_set;
+	return priv->current_line_background_color_set;
 }
 
 gboolean
@@ -5412,8 +5405,34 @@ _gtk_source_view_get_current_line_number_background (GtkSourceView *view,
 
 	if (rgba != NULL)
 	{
+		*rgba = priv->current_line_number_background_color;
+	}
+
+	return priv->current_line_number_background_color_set;
+}
+
+gboolean
+_gtk_source_view_get_current_line_number_color (GtkSourceView *view,
+                                                GdkRGBA       *rgba)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
+
+	if (rgba != NULL)
+	{
 		*rgba = priv->current_line_number_color;
 	}
 
 	return priv->current_line_number_color_set;
+}
+
+gboolean
+_gtk_source_view_get_current_line_number_bold (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_return_val_if_fail (GTK_SOURCE_IS_VIEW (view), FALSE);
+
+	return priv->current_line_number_bold;
 }

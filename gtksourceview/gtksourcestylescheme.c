@@ -641,8 +641,8 @@ get_color (GtkSourceStyle *style,
  * Returns TRUE if the style for current-line is set in the scheme
  */
 gboolean
-_gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
-                                                 GdkRGBA              *color)
+_gtk_source_style_scheme_get_current_line_background_color (GtkSourceStyleScheme *scheme,
+							    GdkRGBA              *color)
 {
 	GtkSourceStyle *style;
 
@@ -657,6 +657,40 @@ _gtk_source_style_scheme_get_current_line_color (GtkSourceStyleScheme *scheme,
 gboolean
 _gtk_source_style_scheme_get_current_line_number_color (GtkSourceStyleScheme *scheme,
                                                         GdkRGBA              *color)
+{
+	GtkSourceStyle *style;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
+	g_return_val_if_fail (color != NULL, FALSE);
+
+	style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE_NUMBER);
+
+	return get_color (style, TRUE, color);
+}
+
+gboolean
+_gtk_source_style_scheme_get_current_line_number_bold (GtkSourceStyleScheme *scheme)
+{
+	GtkSourceStyle *style;
+	gboolean bold_set = FALSE;
+	gboolean bold = FALSE;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_STYLE_SCHEME (scheme), FALSE);
+
+	if ((style = gtk_source_style_scheme_get_style (scheme, STYLE_CURRENT_LINE_NUMBER)))
+	{
+		g_object_get (style,
+		              "bold-set", &bold_set,
+		              "bold", &bold,
+		              NULL);
+	}
+
+	return !bold_set || bold;
+}
+
+gboolean
+_gtk_source_style_scheme_get_current_line_number_background_color (GtkSourceStyleScheme *scheme,
+                                                                   GdkRGBA              *color)
 {
 	GtkSourceStyle *style;
 

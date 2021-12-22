@@ -47,10 +47,17 @@ GtkSourceStyle       *_gtk_source_style_scheme_get_right_margin_style       (Gtk
 G_GNUC_INTERNAL
 GtkSourceStyle       *_gtk_source_style_scheme_get_draw_spaces_style        (GtkSourceStyleScheme *scheme);
 G_GNUC_INTERNAL
-gboolean              _gtk_source_style_scheme_get_current_line_color       (GtkSourceStyleScheme *scheme,
+gboolean              _gtk_source_style_scheme_get_current_line_number_bold (GtkSourceStyleScheme *scheme);
+G_GNUC_INTERNAL
+gboolean              _gtk_source_style_scheme_get_current_line_background_color
+                                                                            (GtkSourceStyleScheme *scheme,
                                                                              GdkRGBA              *color);
 G_GNUC_INTERNAL
 gboolean              _gtk_source_style_scheme_get_current_line_number_color(GtkSourceStyleScheme *scheme,
+                                                                             GdkRGBA              *color);
+G_GNUC_INTERNAL
+gboolean              _gtk_source_style_scheme_get_current_line_number_background_color
+                                                                            (GtkSourceStyleScheme *scheme,
                                                                              GdkRGBA              *color);
 G_GNUC_INTERNAL
 gboolean              _gtk_source_style_scheme_get_background_pattern_color (GtkSourceStyleScheme *scheme,
