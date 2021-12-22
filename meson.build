@@ -8,6 +8,7 @@ project('gtksourceview', 'c',
 )
 
 buildtype = get_option('buildtype')
+host_system = host_machine.system()
 
 i18n = import('i18n')
 gnome = import('gnome')
