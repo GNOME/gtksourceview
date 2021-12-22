@@ -63,7 +63,7 @@ G_BEGIN_DECLS
 # define GTK_SOURCE_PROFILER_MARK(duration, name, message) \
   G_STMT_START { } G_STMT_END
 # define GTK_SOURCE_PROFILER_BEGIN_MARK G_STMT_START {
-# define GTK_SOURCE_PROFILER_END_MARK(name, message) } G_STMT_END
+# define GTK_SOURCE_PROFILER_END_MARK(name, message) (void)0; } G_STMT_END
 # define GTK_SOURCE_PROFILER_LOG(format, ...) G_STMT_START { } G_STMT_END
 #endif
 
