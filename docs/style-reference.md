@@ -141,7 +141,10 @@ textview.
 - `current-line-number`
 
 Current line style for the left margin, on which the current
-line number is drawn. Only the `background` attribute is used.
+line number is drawn. The `background`, `foreground`, and
+`bold` attributes may be used. `foreground` and `bold` were
+added in GtkSourceView 5.4. If `bold` is unset, it defaults
+to `true`.
 
 - `bracket-match`
 
