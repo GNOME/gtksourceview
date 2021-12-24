@@ -4009,8 +4009,6 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 		 * inserted character).
 		 */
 
-		gtk_text_buffer_begin_user_action (buf);
-
 		/* We can ignore the return value from filter_keypress because we
 		 * already know this is a key we care about. Either we inserted
 		 * text and will indent, or we didn't insert text and we should
@@ -4022,25 +4020,27 @@ gtk_source_view_key_pressed (GtkSourceView         *view,
 		 */
 		if (!gtk_text_view_im_context_filter_keypress (GTK_TEXT_VIEW (view), event))
 		{
+			gtk_text_buffer_begin_user_action (buf);
+
 			if (key == GDK_KEY_Return || key == GDK_KEY_KP_Enter)
 			{
 				gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
 				gtk_text_buffer_insert (buf, &cur, "\n", 1);
 			}
-		}
 
-		/* Changing the preedit should not change our insertion count,
-		 * so if our insertion count changed it was because soemthing
-		 * was committed to the underlying source buffer.
-		 */
-		if (insertion_count != _gtk_source_buffer_get_insertion_count (priv->source_buffer))
-		{
-			gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
-			gtk_source_indenter_indent (priv->indenter, view, &cur);
-			gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view), mark);
-		}
+			/* Changing the preedit should not change our insertion count,
+			 * so if our insertion count changed it was because soemthing
+			 * was committed to the underlying source buffer.
+			 */
+			if (insertion_count != _gtk_source_buffer_get_insertion_count (priv->source_buffer))
+			{
+				gtk_text_buffer_get_iter_at_mark (buf, &cur, mark);
+				gtk_source_indenter_indent (priv->indenter, view, &cur);
+				gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (view), mark);
+			}
 
-		gtk_text_buffer_end_user_action (buf);
+			gtk_text_buffer_end_user_action (buf);
+		}
 
 		return GDK_EVENT_STOP;
 	}
