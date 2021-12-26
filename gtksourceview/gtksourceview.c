@@ -2593,15 +2593,13 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 	GTK_SOURCE_PROFILER_END_MARK ("GtkSourceView::paint-right-margin", NULL);
 }
 
-static gint
-realign (gint  offset,
-         guint align)
+static inline int
+realign (int offset,
+	 int align)
 {
-	if (offset > 0 && align > 0)
+	if (align > 0)
 	{
-		gint padding;
-
-		padding = (align - (offset % align)) % align;
+		int padding = (align - (offset % align)) % align;
 		return offset + padding;
 	}
 
