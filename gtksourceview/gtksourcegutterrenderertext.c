@@ -115,9 +115,9 @@ gtk_source_gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
 
 	if (_gtk_source_view_get_current_line_number_color (view, &current))
 	{
-		priv->current_line_color = pango_attr_foreground_new (current.red * 255,
-		                                                      current.green * 255,
-		                                                      current.blue * 255);
+		priv->current_line_color = pango_attr_foreground_new (current.red * 65535,
+		                                                      current.green * 65535,
+		                                                      current.blue * 65535);
 	}
 
 	if (_gtk_source_view_get_current_line_number_bold (view))
