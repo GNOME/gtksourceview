@@ -843,7 +843,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @view: the #GtkSourceView which received the signal.
 	 * @down: %TRUE to move down, %FALSE to move up.
 	 *
-	 * The signal is a keybinding which gets emitted when the user initiates moving a line. 
+	 * The signal is a keybinding which gets emitted when the user initiates moving a line.
 	 *
 	 * The default binding key is Alt+Up/Down arrow. And moves the currently selected lines,
 	 * or the current line up or down by one line.
@@ -867,7 +867,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @count: the number of words to move over
 	 *
 	 * The signal is a keybinding which gets emitted when the user initiates moving a word.
-	 * 
+	 *
 	 * The default binding key is Alt+Left/Right Arrow and moves the current selection, or the current
 	 * word by one word.
 	 */
@@ -890,8 +890,8 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @snippet: a #GtkSourceSnippet
 	 * @location: (inout): a #GtkTextIter
 	 *
-	 * The signal is emitted to insert a new snippet into the view. 
-	 * 
+	 * The signal is emitted to insert a new snippet into the view.
+	 *
 	 * If another snippet was active, it will be paused until all focus positions of @snippet have been exhausted.
 	 *
 	 * @location will be updated to point at the end of the snippet.
@@ -917,7 +917,7 @@ gtk_source_view_class_init (GtkSourceViewClass *klass)
 	 * @iter: a #GtkTextIter
 	 * @count: the count
 	 *
-	 * Emitted when a the cursor was moved according to the smart home end setting. 
+	 * Emitted when a the cursor was moved according to the smart home end setting.
 	 *
 	 * The signal is emitted after the cursor is moved, but
 	 * during the [signal@Gtk.TextView::move-cursor] action. This can be used to find
@@ -3005,9 +3005,9 @@ set_tab_stops_internal (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @width: width of tab in characters.
  *
- * Sets the width of tabulation in characters. 
+ * Sets the width of tabulation in characters.
  *
- * The #GtkTextBuffer still contains `\t` characters, 
+ * The #GtkTextBuffer still contains `\t` characters,
  * but they can take a different visual width in a [class@View] widget.
  */
 void
@@ -3063,14 +3063,14 @@ gtk_source_view_get_tab_width (GtkSourceView *view)
  * @width: indent width in characters.
  *
  * Sets the number of spaces to use for each step of indent when the tab key is
- * pressed. 
- * 
+ * pressed.
+ *
  * If @width is -1, the value of the [property@View:tab-width] property
  * will be used.
  *
  * The [property@View:indent-width] interacts with the
  * [property@View:insert-spaces-instead-of-tabs] property and
- * [property@View:tab-width]. An example will be clearer: 
+ * [property@View:tab-width]. An example will be clearer:
  *
  * If the [property@View:indent-width] is 4 and [property@View:tab-width] is 8 and
  * [property@View:insert-spaces-instead-of-tabs] is %FALSE, then pressing the tab
@@ -4186,8 +4186,8 @@ gtk_source_view_get_insert_spaces_instead_of_tabs (GtkSourceView *view)
  * @view: a #GtkSourceView.
  * @enable: whether to insert spaces instead of tabs.
  *
- * If %TRUE a tab key pressed is replaced by a group of space characters. 
- * 
+ * If %TRUE a tab key pressed is replaced by a group of space characters.
+ *
  * Of course it is still possible to insert a real `\t` programmatically with the
  * [class@Gtk.TextBuffer] API.
  */
@@ -4886,8 +4886,8 @@ mark_category_free (MarkCategory *category)
  * gtk_source_view_get_completion:
  * @view: a #GtkSourceView.
  *
- * Gets the [class@Completion] associated with @view. 
- * 
+ * Gets the [class@Completion] associated with @view.
+ *
  * The returned object is guaranteed to be the same for the lifetime of @view.
  * Each `GtkSourceView` object has a different [class@Completion].
  *
@@ -4912,8 +4912,8 @@ gtk_source_view_get_completion (GtkSourceView *view)
  * gtk_source_view_get_hover:
  * @view: a #GtkSourceView.
  *
- * Gets the [class@Hover] associated with @view. 
- * 
+ * Gets the [class@Hover] associated with @view.
+ *
  * The returned object is guaranteed to be the same for the lifetime of @view.
  * Each [class@View] object has a different [class@Hover].
  *
@@ -5112,7 +5112,7 @@ gtk_source_view_get_background_pattern (GtkSourceView *view)
  * @view: a #GtkSourceView.
  *
  * Gets the [class@SpaceDrawer] associated with @view.
- * 
+ *
  * The returned object is guaranteed to be the same for the lifetime of @view.
  * Each [class@View] object has a different [class@SpaceDrawer].
  *
