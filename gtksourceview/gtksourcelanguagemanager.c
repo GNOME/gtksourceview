@@ -601,7 +601,7 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
 /**
  * gtk_source_language_manager_guess_language:
  * @lm: a #GtkSourceLanguageManager.
- * @filename: (nullable): a filename in Glib filename encoding, or %NULL.
+ * @filename: (nullable) (type filename): a filename in Glib filename encoding, or %NULL.
  * @content_type: (nullable): a content type (as in GIO API), or %NULL.
  *
  * Picks a #GtkSourceLanguage for given file name and content type,
