@@ -110,7 +110,6 @@
 
   <style name="c:keyword"                   bold="true" />
   <style name="c:storage-class"             bold="true" />
-  <style name="c:type"                      bold="true" foreground="#859900" />
   <style name="c:included-file"             foreground="orange3"/>
 
   <style name="json:string"                 foreground="dark3"/>
@@ -120,14 +119,14 @@
   <style name="def:base-n-integer"          foreground="purple3"/>
   <style name="def:boolean"                 foreground="purple3"/>
   <style name="def:comment"                 foreground="light5"/>
-  <style name="def:constant"                foreground="red1"/>
+  <style name="def:constant"                foreground="dark3"/>
   <style name="def:decimal"                 foreground="purple3"/>
   <style name="def:deletion"                strikethrough="true"/>
   <style name="def:doc-comment-element"     italic="true"/>
   <style name="def:emphasis"                italic="true"/>
   <style name="def:error"                   underline="error" underline-color="red2" />
   <style name="def:floating-point"          foreground="purple3"/>
-  <style name="def:function"                foreground="blue2"/>
+  <style name="def:function"                foreground="dark3"/>
   <style name="def:heading"                 foreground="orange5" bold="true"/>
   <style name="def:identifier"              foreground="dark1"/>
   <style name="def:inline-code"             foreground="purple2"/>
@@ -139,7 +138,7 @@
   <style name="def:net-address"             underline="true" foreground="blue3"/>
   <style name="def:note"                    underline="error" underline-color="light5"/>
   <style name="def:preformatted-section"    foreground="purple1"/>
-  <style name="def:preprocessor"            foreground="#8e8e8e"/>
+  <style name="def:preprocessor"            foreground="dark1"/>
   <style name="def:shebang"                 foreground="dark1" bold="true"/>
   <style name="def:special-char"            foreground="blue3"/>
   <style name="def:special-constant"        foreground="#6C71C4"/>
