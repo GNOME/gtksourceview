@@ -96,18 +96,19 @@
   <style name="gutter:changed-line"         foreground="orange3"/>
   <style name="gutter:removed-line"         foreground="red3"/>
 
-  <style name="gtk-doc:function-name"       bold="true"/>
-  <style name="gtk-doc:function"            bold="true"/>
+  <style name="gtk-doc:inline-docs-section" foreground="dark1"/>
+  <style name="gtk-doc:function-name"       foreground="blue3"/>
+  <style name="gtk-doc:function"            foreground="blue3"/>
   <style name="gtk-doc:parameter"           bold="true"/>
   <style name="gtk-doc:constant"            bold="true"/>
-  <style name="gtk-doc:type"                bold="true"/>
+  <style name="gtk-doc:type"                foreground="blue3"/>
   <style name="gtk-doc:since"               bold="true"/>
   <style name="gtk-doc:return"              bold="true"/>
   <style name="gtk-doc:deprecated"          bold="true"/>
   <style name="gtk-doc:signal-name"         bold="true"/>
   <style name="gtk-doc:property-name"       bold="true"/>
 
-  <style name="c:storage-class"             bold="true"/>
+  <style name="c:storage-class"             bold="true" foreground="dark2"/>
   <style name="c:included-file"             foreground="orange3"/>
 
   <style name="json:string"                 foreground="dark3"/>
@@ -124,12 +125,12 @@
   <style name="def:emphasis"                italic="true"/>
   <style name="def:error"                   underline="error" underline-color="red2" />
   <style name="def:floating-point"          foreground="purple3"/>
-  <style name="def:function"                foreground="dark1" bold="true"/>
+  <style name="def:function"                foreground="blue2"/>
   <style name="def:heading"                 foreground="orange5" bold="true"/>
   <style name="def:identifier"              foreground="dark1"/>
   <style name="def:inline-code"             foreground="purple2"/>
   <style name="def:insertion"               underline="single"/>
-  <style name="def:keyword"                 foreground="dark2" bold="true"/>
+  <style name="def:keyword"                 foreground="dark1" bold="true"/>
   <style name="def:link-destination"        underline="true" foreground="blue3"/>
   <style name="def:link-symbol"             foreground="blue3" bold="true"/>
   <style name="def:list-marker"             foreground="dark5" bold="true"/>
