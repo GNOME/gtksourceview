@@ -2654,14 +2654,18 @@ gtk_source_view_paint_current_line_highlight (GtkSourceView *view,
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GtkTextBuffer *buffer;
-	GtkTextIter cur;
+	GtkTextIter cur, sel;
 	gint y;
 	gint height;
 
 	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
-	gtk_text_buffer_get_iter_at_mark (buffer,
-					  &cur,
-					  gtk_text_buffer_get_insert (buffer));
+
+	/* Don't paint line if the selection cross multiple lines */
+	if (gtk_text_buffer_get_selection_bounds (buffer, &cur, &sel))
+	{
+		return;
+	}
+
 	gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view), &cur, &y, &height);
 
 	gtk_source_view_paint_line_background (view,

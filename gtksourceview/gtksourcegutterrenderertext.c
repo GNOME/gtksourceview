@@ -25,7 +25,7 @@
 
 /**
  * GtkSourceGutterRendererText:
- * 
+ *
  * Renders text in the gutter.
  *
  * A `GtkSourceGutterRendererText` can be used to render text in a cell of
@@ -47,6 +47,7 @@ typedef struct
 	gsize           text_len;
 	Size            cached_sizes[5];
 	guint           is_markup : 1;
+	guint           has_selection : 1;
 } GtkSourceGutterRendererTextPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (GtkSourceGutterRendererText, gtk_source_gutter_renderer_text, GTK_SOURCE_TYPE_GUTTER_RENDERER)
@@ -106,9 +107,12 @@ gtk_source_gutter_renderer_text_begin (GtkSourceGutterRenderer *renderer,
 	GtkSourceGutterRendererText *text = GTK_SOURCE_GUTTER_RENDERER_TEXT (renderer);
 	GtkSourceGutterRendererTextPrivate *priv = gtk_source_gutter_renderer_text_get_instance_private (text);
 	GtkSourceView *view = gtk_source_gutter_renderer_get_view (GTK_SOURCE_GUTTER_RENDERER (renderer));
+	GtkTextBuffer *buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
 	GdkRGBA current;
 
 	GTK_SOURCE_GUTTER_RENDERER_CLASS (gtk_source_gutter_renderer_text_parent_class)->begin (renderer, lines);
+
+	priv->has_selection = gtk_text_buffer_get_has_selection (buffer);
 
 	g_clear_object (&priv->cached_layout);
 	priv->cached_layout = gtk_widget_create_pango_layout (GTK_WIDGET (renderer), NULL);
@@ -164,7 +168,7 @@ gtk_source_gutter_renderer_text_snapshot_line (GtkSourceGutterRenderer *renderer
 		                       priv->text_len);
 	}
 
-	if (G_UNLIKELY (gtk_source_gutter_lines_is_cursor (lines, line)))
+	if (G_UNLIKELY (!priv->has_selection && gtk_source_gutter_lines_is_cursor (lines, line)))
 	{
 		PangoAttrList *attrs = pango_layout_get_attributes (layout);
 

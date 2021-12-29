@@ -698,10 +698,11 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 {
 	GtkSourceGutter *gutter = GTK_SOURCE_GUTTER (widget);
 	GtkTextView *text_view = GTK_TEXT_VIEW (gutter->view);
+	GtkTextBuffer *buffer;
 	const GList *list;
 	GdkRectangle visible_rect;
-	GtkTextIter begin;
-	GtkTextIter end;
+	GtkTextIter begin, end;
+	GtkTextIter cur, sel;
 	gboolean needs_wrap_first = FALSE;
 	gboolean needs_wrap_last = FALSE;
 
@@ -711,6 +712,8 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 	{
 		return;
 	}
+
+	buffer = gtk_text_view_get_buffer (text_view);
 
 	gtk_text_view_get_visible_rect (text_view, &visible_rect);
 	gtk_text_view_get_iter_at_location (text_view, &begin,
@@ -732,18 +735,21 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 	                                              needs_wrap_last);
 
 	/* Draw the current-line highlight if necessary */
-	if (gtk_source_view_get_highlight_current_line (gutter->view))
+	if (gtk_source_view_get_highlight_current_line (gutter->view) &&
+	    !gtk_text_buffer_get_selection_bounds (buffer, &cur, &sel))
 	{
+		GdkRGBA highlight;
 		guint cursor_line;
 
 		cursor_line = _gtk_source_gutter_lines_get_cursor_line (gutter->lines);
 
 		if (cursor_line >= gtk_source_gutter_lines_get_first (gutter->lines) &&
-		    cursor_line <= gtk_source_gutter_lines_get_last (gutter->lines))
+		    cursor_line <= gtk_source_gutter_lines_get_last (gutter->lines) &&
+		    _gtk_source_view_get_current_line_number_background (gutter->view, &highlight))
 		{
-			GdkRGBA highlight;
-			gint y;
-			gint height;
+			int width = gtk_widget_get_width (widget);
+			int height;
+			int y;
 
 			gtk_source_gutter_lines_get_line_yrange (gutter->lines,
 			                                         cursor_line,
@@ -751,14 +757,9 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 			                                         &y,
 			                                         &height);
 
-			if (_gtk_source_view_get_current_line_number_background (gutter->view, &highlight))
-			{
-				int width = gtk_widget_get_width (widget);
-
-				gtk_snapshot_append_color (snapshot,
-				                           &highlight,
-				                           &GRAPHENE_RECT_INIT (0, y, width, height));
-			}
+			gtk_snapshot_append_color (snapshot,
+			                           &highlight,
+			                           &GRAPHENE_RECT_INIT (0, y, width, height));
 		}
 	}
 
