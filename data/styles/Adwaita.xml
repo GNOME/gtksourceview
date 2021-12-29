@@ -108,7 +108,9 @@
   <style name="gtk-doc:signal-name"         bold="true"/>
   <style name="gtk-doc:property-name"       bold="true"/>
 
-  <style name="c:storage-class"             bold="true" foreground="dark2"/>
+  <style name="c:keyword"                   bold="true" />
+  <style name="c:storage-class"             bold="true" />
+  <style name="c:type"                      bold="true" foreground="#859900" />
   <style name="c:included-file"             foreground="orange3"/>
 
   <style name="json:string"                 foreground="dark3"/>
@@ -140,9 +142,9 @@
   <style name="def:preprocessor"            foreground="#8e8e8e"/>
   <style name="def:shebang"                 foreground="dark1" bold="true"/>
   <style name="def:special-char"            foreground="blue3"/>
-  <style name="def:special-constant"        foreground="light5"/>
+  <style name="def:special-constant"        foreground="#6C71C4"/>
   <style name="def:statement"               foreground="green5" bold="true"/>
-  <style name="def:string"                  foreground="orange3"/>
+  <style name="def:string"                  foreground="#dd4a68"/>
   <style name="def:strong-emphasis"         foreground="dark2" bold="true"/>
   <style name="def:thematic-break"          foreground="green5" bold="true"/>
   <style name="def:type"                    foreground="dark2" bold="true"/>
