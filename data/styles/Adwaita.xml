@@ -100,11 +100,11 @@
   <style name="right-margin"                foreground="dark1" background="light4"/>
   <style name="draw-spaces"                 foreground="text0"/>
   <style name="background-pattern"          background="#fafafa"/>
+  <style name="misspelled-word"             underline="error" underline-color="red2"/>
 
   <style name="bracket-match"               background="light3" bold="true"/>
   <style name="bracket-mismatch"            foreground="dark1" background="red3" bold="true"/>
   <style name="search-match"                foreground="light1" background="orange3"/>
-  <style name="misspelled-match"            foreground="light1" background="red3"/>
 
   <!-- Diffs and VCS gutter -->
   <style name="diff:added-line"             foreground="green5"/>
@@ -166,7 +166,7 @@
   <style name="def:deletion"                strikethrough="true"/>
   <style name="def:doc-comment-element"     italic="true"/>
   <style name="def:emphasis"                italic="true"/>
-  <style name="def:error"                   underline="error" underline-color="red2" />
+  <style name="def:error"                   underline="error" underline-color="red2"/>
   <style name="def:floating-point"          foreground="numbers"/>
   <style name="def:function"                foreground="text7"/>
   <style name="def:heading"                 foreground="teal" />
@@ -178,7 +178,7 @@
   <style name="def:link-symbol"             foreground="url_blue" bold="true"/>
   <style name="def:list-marker"             foreground="text6" bold="true"/>
   <style name="def:net-address"             underline="true" foreground="url_blue"/>
-  <style name="def:note"                    underline="error" underline-color="light5"/>
+  <style name="def:note"                    underline="error" underline-color="text2"/>
   <style name="def:preformatted-section"    foreground="purple1"/>
   <style name="def:preprocessor"            foreground="text3"/>
   <style name="def:shebang"                 foreground="text3" bold="true"/>
