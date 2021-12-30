@@ -133,6 +133,7 @@
   <style name="python:class-name"           bold="true"/>
   <style name="python:function-name"        foreground="teal"/>
   <style name="python:builtin-constant"     bold="true"/>
+  <style name="python:multiline-string"     foreground="text2"/>
 
   <style name="json:keyname"                foreground="teal" bold="true"/>
   <style name="json:string"                 foreground="text5"/>
@@ -159,7 +160,7 @@
   <style name="def:floating-point"          foreground="numbers"/>
   <style name="def:function"                foreground="dark3"/>
   <style name="def:heading"                 foreground="teal" />
-  <style name="def:identifier"              foreground="dark1"/>
+  <style name="def:identifier"              foreground="text7"/>
   <style name="def:inline-code"             foreground="purple2"/>
   <style name="def:insertion"               underline="single"/>
   <style name="def:keyword"                 foreground="text7" bold="true"/>
