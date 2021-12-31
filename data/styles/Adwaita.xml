@@ -161,6 +161,13 @@
   <style name="meson:string"                foreground="pink1"/>
   <style name="meson:operator"              foreground="text5" bold="true"/>
 
+  <style name="rust:macro"                  foreground="text2"/>
+  <style name="rust:attribute"              foreground="text2"/>
+  <style name="rust:type"                   foreground="teal" bold="true"/>
+  <style name="rust:scope"                  foreground="teal"/>
+  <style name="rust:lifetime"               foreground="orange4" bold="true"/>
+  <style name="rust:self"                   foreground="text5" bold="true"/>
+
   <style name="def:base-n-integer"          foreground="numbers"/>
   <style name="def:builtin"                 bold="true"/>
   <style name="def:boolean"                 foreground="numbers"/>
