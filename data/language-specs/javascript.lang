@@ -1037,6 +1037,7 @@
 
     <context id="js" class="no-spell-check">
       <include>
+        <context ref="def:shebang"/>
         <context ref="embedded-lang-hooks"/>
         <context ref="comments"/>
         <context ref="js-st:directives"/>
