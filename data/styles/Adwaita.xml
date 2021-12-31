@@ -147,7 +147,11 @@
 
   <style name="markdown:header"             foreground="teal" scale="1.1"/>
 
-  <style name="css:property-name"           foreground="dark1" bold="true"/>
+  <style name="css:class-selector"          foreground="pink1"/>
+  <style name="css:type-selector"           foreground="teal" bold="true"/>
+  <style name="css:property-name"           bold="true"/>
+  <style name="css:pseudo-selector"         foreground="pink1" bold="true"/>
+  <style name="css:string"                  foreground="orange3"/>
 
   <style name="xml:element-name"            foreground="teal" bold="true"/>
   <style name="xml:attribute-name"          foreground="pink1"/>
@@ -160,6 +164,7 @@
   <style name="def:base-n-integer"          foreground="numbers"/>
   <style name="def:builtin"                 bold="true"/>
   <style name="def:boolean"                 foreground="numbers"/>
+  <style name="def:number"                  foreground="numbers"/>
   <style name="def:comment"                 foreground="text1"/>
   <style name="def:constant"                foreground="text3" bold="true"/>
   <style name="def:decimal"                 foreground="numbers"/>
