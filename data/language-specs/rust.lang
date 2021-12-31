@@ -55,6 +55,7 @@ except according to those terms.
     <style id="macro"      name="Macro"         map-to="def:preprocessor"/>
     <style id="error"      name="Error"         map-to="def:error"/>
     <style id="lifetime"   name="Lifetime"      map-to="rust:keyword"/>
+    <style id="self"       name="Self"          map-to="rust:identifier"/>
   </styles>
 
   <definitions>
@@ -145,7 +146,7 @@ except according to those terms.
       <keyword>str</keyword>
     </context>
 
-    <context id="self" style-ref="identifier">
+    <context id="self" style-ref="self">
       <keyword>Self</keyword>
       <keyword>self</keyword>
     </context>
