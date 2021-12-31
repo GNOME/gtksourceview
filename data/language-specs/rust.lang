@@ -54,6 +54,7 @@ except according to those terms.
     <style id="attribute"  name="Attribute"     map-to="def:preprocessor"/>
     <style id="macro"      name="Macro"         map-to="def:preprocessor"/>
     <style id="error"      name="Error"         map-to="def:error"/>
+    <style id="lifetime"   name="Lifetime"      map-to="rust:keyword"/>
   </styles>
 
   <definitions>
@@ -223,7 +224,7 @@ except according to those terms.
       </match>
     </context>
 
-    <context id="lifetime" style-ref="keyword">
+    <context id="lifetime" style-ref="lifetime">
       <match extended="true">
         '\%{ident}
       </match>
