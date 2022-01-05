@@ -13,7 +13,6 @@ tests_sources = {
                        'load': ['test-load.c'],
                      'widget': ['test-widget.c'],
                     'preview': ['test-preview.c'],
-                        'vim': ['test-vim.c'],
 }
 
 tests_resources = {
