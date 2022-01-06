@@ -100,6 +100,7 @@ gtk_source_vim_insert_handle_keypress (GtkSourceVimState *state,
                                        const char        *string)
 {
 	GtkSourceVimInsert *self = (GtkSourceVimInsert *)state;
+	GtkSourceView *view;
 
 	g_assert (GTK_SOURCE_IS_VIM_STATE (state));
 	g_assert (string != NULL);
@@ -111,6 +112,8 @@ gtk_source_vim_insert_handle_keypress (GtkSourceVimState *state,
 		gtk_source_vim_state_pop (GTK_SOURCE_VIM_STATE (self));
 		return TRUE;
 	}
+
+	view = gtk_source_vim_state_get_view (state);
 
 	/* Now handle our commands */
 	if ((mods & GDK_CONTROL_MASK) != 0)
@@ -124,6 +127,11 @@ gtk_source_vim_insert_handle_keypress (GtkSourceVimState *state,
 
 			case GDK_KEY_v:
 				gtk_source_vim_state_push (state, gtk_source_vim_insert_literal_new ());
+				return TRUE;
+
+			case GDK_KEY_V:
+				/* For the terminal users out there */
+				g_signal_emit_by_name (view, "paste-clipboard");
 				return TRUE;
 
 			default:
@@ -178,7 +186,6 @@ gtk_source_vim_insert_handle_event (GtkSourceVimState *state,
 	/* Only deal with presses after this */
 	if (gdk_event_get_event_type (event) != GDK_KEY_PRESS)
 		return TRUE;
-
 
 	gtk_source_vim_state_keyval_to_string (keyval, mods, string);
 
