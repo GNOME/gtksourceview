@@ -1,3 +1,37 @@
+News in 5.3.1, 2022-01-06
+-------------------------
+
+This is a development release as we progress towards GNOME 42. It is
+not a stable release and is intended for testing purposes.
+
+ * python3.lang: add support for .pyi glob and f-strings.
+ * c.lang: Hightlight _t and _T types.
+ * rust.lang: You can now style lifetime and self in style schemes.
+ * javascript.lang: Support for shebang's have been added.
+ * GObject Introspection improvements.
+ * Fixes to work around improper selections in some style-schemes.
+ * Vim: many improvements to and compatibility fixes in emulation.
+ * Tracing: More modules now use sysprof for tracing information.
+ * Ctrl+shift+u works again when auto-indent is enabled, which was
+   stealing input before ctrl+shift+u could process the unicode input.
+ * Gutter renderers now more aggresively cache color information for
+   drawing highlights and more.
+ * GtkSourceGutterRendererLines avoids using GMarkup just for bold
+   attributes as using a single referenced PangoAttrList is faster.
+ * Adwaita and Adwaita-dark have been updated and improved along with
+   more specific highlighting for a number of languages.
+ * You can now set `bold="false"` on current-line-number to disable
+   bold weight on the current line number.
+ * Drawing of background grids have been improved when margins are used
+   as well as trying harder to align to the character grid and taking
+   CSS line-height into account when possible.
+ * Current line number is no longer drawn specially when selections are
+   active. The highlight-current-line is also disabled during selections.
+ * GtkSourceFileLoader now tries to use aligned pages when loading
+   buffers from storage and reads in a multiple of the page size.
+ * Build fixes for macOS.
+ * Translation updates.
+
 News in 5.3.0, 2021-12-08
 -------------------------
 
