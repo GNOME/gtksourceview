@@ -2612,11 +2612,14 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 {
 	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
 	GdkRectangle visible_rect;
-	gint x, y, x2, y2;
+	int x, y, x2, y2;
 	PangoContext *context;
 	PangoLayout *layout;
-	gint grid_width = 16;
-	gint grid_height = 16;
+	GtkTextIter iter;
+	int grid_half_height = 8;
+	int grid_width = 16;
+	int grid_height = 16;
+	int line_y, line_height;
 
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible_rect);
 
@@ -2626,25 +2629,41 @@ gtk_source_view_paint_background_pattern_grid (GtkSourceView *view,
 	pango_layout_get_pixel_size (layout, &grid_width, &grid_height);
 	g_object_unref (layout);
 
+	/* Try to take CSS line-height into account */
+	if (gtk_text_view_get_wrap_mode (GTK_TEXT_VIEW (view)) == GTK_WRAP_NONE)
+	{
+		gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), &iter, visible_rect.x, visible_rect.y);
+		gtk_text_view_get_line_yrange (GTK_TEXT_VIEW (view), &iter, &line_y, &line_height);
+
+		if (line_height > grid_height)
+		{
+			grid_height = line_height;
+		}
+	}
+
 	/* each character becomes 2 stacked boxes. */
-	grid_height = MAX (1, grid_height / 2);
+	grid_height = MAX (1, grid_height);
+	grid_half_height = grid_height / 2;
 	grid_width = MAX (1, grid_width);
 
 	/* Align our drawing position with a multiple of the grid size. */
 	x = realign (visible_rect.x - grid_width, grid_width);
-	y = realign (visible_rect.y - grid_height, grid_height);
+	y = realign (visible_rect.y - grid_half_height, grid_half_height);
 	x2 = realign (x + visible_rect.width + grid_width * 2, grid_width);
-	y2 = realign (y + visible_rect.height + grid_height * 2, grid_height);
+	y2 = realign (y + visible_rect.height + grid_height, grid_height);
 
 	gtk_snapshot_push_repeat (snapshot,
 	                          &GRAPHENE_RECT_INIT (x, y, x2 - x, y2 - y),
 	                          &GRAPHENE_RECT_INIT (x, y, grid_width, grid_height));
 	gtk_snapshot_append_color (snapshot,
 	                           &priv->background_pattern_color,
-	                           &GRAPHENE_RECT_INIT (x, y, 1, grid_height));
+	                           &GRAPHENE_RECT_INIT (x+1, y, 1, grid_height));
 	gtk_snapshot_append_color (snapshot,
 	                           &priv->background_pattern_color,
 	                           &GRAPHENE_RECT_INIT (x, y, grid_width, 1));
+	gtk_snapshot_append_color (snapshot,
+	                           &priv->background_pattern_color,
+	                           &GRAPHENE_RECT_INIT (x, y + grid_half_height, grid_width, 1));
 	gtk_snapshot_pop (snapshot);
 }
 
