@@ -118,6 +118,10 @@ gtk_version_arr = gtk_req_version.split('.')
 gtk_major_version = gtk_version_arr[0]
 gtk_minor_version = gtk_version_arr[1]
 
+if gtk_minor_version.to_int() % 2 == 1
+  gtk_minor_version = '@0@'.format(gtk_minor_version.to_int()+1)
+endif
+
 deprecated_c_args = [
   '-DG_DISABLE_DEPRECATED',
   '-DGDK_DISABLE_DEPRECATED',
