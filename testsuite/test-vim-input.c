@@ -35,9 +35,13 @@ run_test (const char *text,
 {
 	GtkSourceView *view = GTK_SOURCE_VIEW (g_object_ref_sink (gtk_source_view_new ()));
 	GtkSourceBuffer *buffer = GTK_SOURCE_BUFFER (gtk_text_view_get_buffer (GTK_TEXT_VIEW (view)));
+	GtkSourceStyleSchemeManager *schemes = gtk_source_style_scheme_manager_get_default ();
+	GtkSourceStyleScheme *scheme = gtk_source_style_scheme_manager_get_scheme (schemes, "Adwaita");
 	GtkSourceVim *vim = gtk_source_vim_new (view);
 	GtkTextIter begin, end;
 	char *ret;
+
+	gtk_source_buffer_set_style_scheme (buffer, scheme);
 
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
 	gtk_text_buffer_get_bounds (GTK_TEXT_BUFFER (buffer), &begin, &end);
