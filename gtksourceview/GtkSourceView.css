@@ -169,5 +169,5 @@ GtkSourceStyleSchemePreview.selected image {
 
 textview.GtkSourceMap {
   font-size: 1.75pt;
-  line-height: 4px;
+  /* Requires GTK 4.6: line-height: 4px; */
 }
