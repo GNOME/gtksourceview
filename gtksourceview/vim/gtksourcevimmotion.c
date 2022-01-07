@@ -704,10 +704,17 @@ motion_screen_top (GtkTextIter        *iter,
                    GtkSourceVimMotion *state)
 {
 	GtkSourceView *view = gtk_source_vim_state_get_view (GTK_SOURCE_VIM_STATE (state));
+	GdkRectangle visible;
 	GdkRectangle rect;
 
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &rect);
-	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), iter, rect.x, rect.y);
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), iter, visible.x, visible.y);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), iter, &rect);
+
+	if (rect.y < visible.y)
+	{
+		gtk_text_iter_forward_line (iter);
+	}
 
 	return TRUE;
 }
@@ -717,10 +724,17 @@ motion_screen_bottom (GtkTextIter        *iter,
                       GtkSourceVimMotion *state)
 {
 	GtkSourceView *view = gtk_source_vim_state_get_view (GTK_SOURCE_VIM_STATE (state));
+	GdkRectangle visible;
 	GdkRectangle rect;
 
-	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &rect);
-	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), iter, rect.x, rect.y + rect.height);
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (view), &visible);
+	gtk_text_view_get_iter_at_location (GTK_TEXT_VIEW (view), iter, visible.x, visible.y + visible.height);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (view), iter, &rect);
+
+	if (rect.y + rect.height > visible.y + visible.height)
+	{
+		gtk_text_iter_backward_line (iter);
+	}
 
 	return TRUE;
 }
