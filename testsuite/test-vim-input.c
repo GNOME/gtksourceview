@@ -236,10 +236,21 @@ int
 main (int argc,
       char *argv[])
 {
+	const char *srcdir = g_getenv ("G_TEST_SRCDIR");
+	char *schemes_search_path[2] = { NULL };
+	GtkSourceStyleSchemeManager *schemes;
 	int ret;
+
+	g_assert_true (g_file_test (srcdir, G_FILE_TEST_IS_DIR));
 
 	gtk_init ();
 	gtk_source_init ();
+
+	schemes = gtk_source_style_scheme_manager_get_default ();
+	schemes_search_path[0] = g_build_filename (srcdir, "..", "data", "styles", NULL);
+	gtk_source_style_scheme_manager_set_search_path (schemes, (const char * const *)schemes_search_path);
+	g_free (schemes_search_path[0]);
+
 	g_test_init (&argc, &argv, NULL);
 	g_test_add_func ("/GtkSourceView/vim-input/yank", test_yank);
 	g_test_add_func ("/GtkSourceView/vim-input/insert", test_insert);
