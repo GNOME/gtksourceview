@@ -59,6 +59,10 @@
 #include "gtksourceutils.h"
 #include "gtksourceutils-private.h"
 
+#ifdef G_OS_WIN32
+#include <windows.h>
+#endif
+
 /**
  * gtk_source_utils_unescape_search_text:
  * @text: the text to unescape.
