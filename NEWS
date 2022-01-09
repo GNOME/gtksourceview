@@ -1,3 +1,16 @@
+News in 5.3.2, 2022-01-09
+-------------------------
+
+This is a development release as we progress towards GNOME 42. It is
+not a stable release and is intended for testing purposes.
+
+ * Support ctrl+shift+v in Vim insert mode to paste similar to terminal
+ * Improve placement of H/L movements in Vim emulation
+ * Various build system improvements
+ * Fix running testsuite before installation
+ * Bump GTK required version to match actual requirements in code
+ * Remove CSS line-height usage until we can depend on GTK 4.6
+
 News in 5.3.1, 2022-01-06
 -------------------------
 
