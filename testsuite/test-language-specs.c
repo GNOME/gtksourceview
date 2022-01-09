@@ -10,8 +10,8 @@ test_func (gconstpointer data)
 	GtkSourceLanguage *l;
 	GtkSourceBuffer *buffer;
 
-	g_assert (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm));
-	g_assert (data != NULL);
+	g_assert_true (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm));
+	g_assert_nonnull (data);
 
 	if (g_hash_table_contains (skipped, language_id))
 	{

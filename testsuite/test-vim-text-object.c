@@ -33,8 +33,8 @@ run_test (GtkSourceVimState *text_object,
 	GtkSourceBuffer *buffer;
 	GtkTextIter begin, end;
 
-	g_assert (GTK_SOURCE_IS_VIM_TEXT_OBJECT (text_object));
-	g_assert (text != NULL);
+	g_assert_true (GTK_SOURCE_IS_VIM_TEXT_OBJECT (text_object));
+	g_assert_nonnull (text);
 
 	buffer = gtk_source_buffer_new (NULL);
 	gtk_text_buffer_set_text (GTK_TEXT_BUFFER (buffer), text, -1);
