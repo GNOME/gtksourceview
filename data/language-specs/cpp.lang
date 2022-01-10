@@ -35,6 +35,7 @@
         <style id="raw-string" name="Raw String" map-to="def:string"/>
         <style id="keyword" name="Keyword" map-to="c:keyword"/>
         <style id="type" name="Data Type" map-to="c:type"/>
+        <style id="nullptr" name="Null Pointer Value" map-to="def:special-constant"/>
         <style id="common-defines" name="Common Defines" map-to="c:common-defines"/>
     </styles>
 
@@ -73,7 +74,6 @@
                     <keyword>noexcept</keyword>
                     <keyword>not</keyword>
                     <keyword>not_eq</keyword>
-                    <keyword>nullptr</keyword>
                     <keyword>operator</keyword>
                     <keyword>or</keyword>
                     <keyword>or_eq</keyword>
@@ -105,6 +105,10 @@
                     <keyword>explicit</keyword>
                     <keyword>mutable</keyword>
                     <keyword>nullptr_t</keyword>
+                </context>
+
+                <context id="nullptr" style-ref="nullptr">
+                    <keyword>nullptr</keyword>
                 </context>
 
                 <context id="common-defines" style-ref="common-defines">
