@@ -167,9 +167,10 @@
   <style name="sql:keyword"                 bold="true"/>
   <style name="sql:type"                    foreground="teal" bold="true"/>
 
-  <style name="xml:element-name"            foreground="teal" bold="true"/>
-  <style name="xml:attribute-name"          foreground="text3" bold="true"/>
+  <style name="xml:element-name"            foreground="teal"/>
+  <style name="xml:attribute-name"          foreground="green5"/>
   <style name="xml:attribute-value"         foreground="pink1"/>
+  <style name="xml:processing-instruction"  bold="true"/>
 
   <style name="meson:builtin-command"       foreground="teal" bold="true"/>
   <style name="meson:string"                foreground="pink1"/>
