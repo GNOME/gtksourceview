@@ -38,6 +38,7 @@
     <style id="included-file"     name="Included File"         map-to="def:string"/>
     <style id="char"              name="Character"             map-to="def:character"/>
     <style id="keyword"           name="Keyword"               map-to="def:keyword"/>
+    <style id="type-keyword"      name="Type Keyword"          map-to="c:keyword"/>
     <style id="operator"          name="Operator"              map-to="def:operator"/>
     <style id="type"              name="Data Type"             map-to="def:type"/>
     <style id="storage-class"     name="Storage Class"         map-to="def:type"/>
@@ -199,17 +200,20 @@
       <keyword>default</keyword>
       <keyword>do</keyword>
       <keyword>else</keyword>
-      <keyword>enum</keyword>
       <keyword>for</keyword>
       <keyword>fortran</keyword>
       <keyword>goto</keyword>
       <keyword>if</keyword>
       <keyword>return</keyword>
-      <keyword>struct</keyword>
       <keyword>switch</keyword>
+      <keyword>while</keyword>
+    </context>
+
+    <context id="type-keywords" style-ref="type-keyword">
+      <keyword>enum</keyword>
+      <keyword>struct</keyword>
       <keyword>typedef</keyword>
       <keyword>union</keyword>
-      <keyword>while</keyword>
     </context>
 
     <context id="operators" style-ref="operator">
@@ -320,6 +324,7 @@
         <context ref="invalid-octal"/>
         <context ref="decimal"/>
         <context ref="keywords"/>
+        <context ref="type-keywords"/>
         <context ref="operators"/>
         <context ref="types"/>
         <context ref="storage-class"/>
