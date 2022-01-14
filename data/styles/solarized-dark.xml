@@ -132,4 +132,15 @@
   <style name="c:preprocessor"              foreground="orange"/>
   <style name="c:type-keyword"              foreground="yellow"/>
 
+  <!-- GTK-DOC Overrides -->
+  <style name="gtk-doc:type"                foreground="yellow"/>
+  <style name="gtk-doc:function"            foreground="blue"/>
+  <style name="gtk-doc:function-name"       bold="true"/>
+  <style name="gtk-doc:property-name"       bold="true"/>
+  <style name="gtk-doc:signal-name"         bold="true"/>
+  <style name="gtk-doc:parameter"           bold="true"/>
+  <style name="gtk-doc:constant"            foreground="cyan"/>
+  <style name="gtk-doc:return"              bold="true"/>
+  <style name="gtk-doc:since"               bold="true"/>
+  <style name="gtk-doc:deprecated"          bold="true"/>
 </style-scheme>
