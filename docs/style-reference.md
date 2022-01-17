@@ -85,6 +85,8 @@ Background color.
 
 - `weight`
 
+The weight attribute was added in GtkSourceView 5.4.
+
 The weight of the matched text block. The default value is "normal" but
 you may use any of the [enum@Pango.Weight] nicks or optionally a numeric
 value equivalent to the weights of CSS.
