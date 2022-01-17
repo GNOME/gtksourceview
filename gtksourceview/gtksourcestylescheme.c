@@ -1029,11 +1029,33 @@ generate_css_style (GtkSourceStyleScheme *scheme)
 }
 
 static gboolean
-parse_bool (char *value)
+parse_bool (const char *value)
 {
 	return (g_ascii_strcasecmp (value, "true") == 0 ||
 	        g_ascii_strcasecmp (value, "yes") == 0 ||
 	        g_ascii_strcasecmp (value, "1") == 0);
+}
+
+static gboolean
+parse_int (int        *out_value,
+           const char *str)
+{
+	gint64 v;
+
+	if (str == NULL)
+		return FALSE;
+
+	if (str[0] < '0' || str[0] > '9')
+		return FALSE;
+
+	v = g_ascii_strtoll (str, NULL, 10);
+
+	if (v < G_MININT || v > G_MAXINT)
+		return FALSE;
+
+	*out_value = v;
+
+	return TRUE;
 }
 
 static void
@@ -1074,6 +1096,7 @@ parse_style (GtkSourceStyleScheme  *scheme,
 	xmlChar *underline = NULL;
 	xmlChar *underline_color = NULL;
 	xmlChar *scale = NULL;
+	xmlChar *weight = NULL;
 	xmlChar *tmp;
 
 	tmp = xmlGetProp (node, BAD_CAST "name");
@@ -1112,6 +1135,7 @@ parse_style (GtkSourceStyleScheme  *scheme,
 	underline = xmlGetProp (node, BAD_CAST "underline");
 	underline_color = xmlGetProp (node, BAD_CAST "underline-color");
 	scale = xmlGetProp (node, BAD_CAST "scale");
+	weight = xmlGetProp (node, BAD_CAST "weight");
 
 	if (use_style)
 	{
@@ -1121,7 +1145,8 @@ parse_style (GtkSourceStyleScheme  *scheme,
 		    mask != 0 ||
 		    underline != NULL ||
 		    underline_color != NULL ||
-		    scale != NULL)
+		    scale != NULL ||
+		    weight != NULL)
 		{
 			g_set_error (error, ERROR_QUARK, 0,
 				     "in style '%s': style attributes used along with use-style",
@@ -1134,6 +1159,7 @@ parse_style (GtkSourceStyleScheme  *scheme,
 			xmlFree (underline);
 			xmlFree (underline_color);
 			xmlFree (scale);
+			xmlFree (weight);
 			return FALSE;
 		}
 
@@ -1210,6 +1236,45 @@ parse_style (GtkSourceStyleScheme  *scheme,
 			result->scale = g_intern_string ((char*) scale);
 			result->mask |= GTK_SOURCE_STYLE_USE_SCALE;
 		}
+
+		if (weight != NULL)
+		{
+			GEnumClass *enum_class;
+			GEnumValue *enum_value;
+			char *weight_lowercase;
+			int v;
+
+			enum_class = G_ENUM_CLASS (g_type_class_ref (PANGO_TYPE_WEIGHT));
+
+			weight_lowercase = g_ascii_strdown ((char*) weight, -1);
+			enum_value = g_enum_get_value_by_nick (enum_class, weight_lowercase);
+			g_free (weight_lowercase);
+
+			if (enum_value != NULL)
+			{
+				result->weight = enum_value->value;
+				result->mask |= GTK_SOURCE_STYLE_USE_WEIGHT;
+				result->mask &= ~GTK_SOURCE_STYLE_USE_BOLD;
+			}
+			else if (parse_int (&v, weight_lowercase))
+			{
+				result->weight = v;
+				result->mask |= GTK_SOURCE_STYLE_USE_WEIGHT;
+				result->mask &= ~GTK_SOURCE_STYLE_USE_BOLD;
+			}
+			else
+			{
+				static gboolean has_warned;
+
+				if (!has_warned)
+				{
+					g_warning ("Failed to parse style attribute weight=\"%s\"", weight);
+					has_warned = TRUE;
+				}
+			}
+
+			g_type_class_unref (enum_class);
+		}
 	}
 
 	*style_p = result;
@@ -1221,6 +1286,7 @@ parse_style (GtkSourceStyleScheme  *scheme,
 	xmlFree (underline);
 	xmlFree (underline_color);
 	xmlFree (scale);
+	xmlFree (weight);
 
 	return TRUE;
 }

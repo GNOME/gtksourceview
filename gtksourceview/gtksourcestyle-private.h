@@ -41,6 +41,7 @@ enum
 	GTK_SOURCE_STYLE_USE_STRIKETHROUGH   = 1 << 6, /*< nick=use_strikethrough >*/
 	GTK_SOURCE_STYLE_USE_SCALE           = 1 << 7, /*< nick=use_scale >*/
 	GTK_SOURCE_STYLE_USE_UNDERLINE_COLOR = 1 << 8, /*< nick=use_underline_color >*/
+	GTK_SOURCE_STYLE_USE_WEIGHT          = 1 << 9, /*< nick=use_weight >*/
 };
 
 struct _GtkSourceStyle
@@ -57,11 +58,12 @@ struct _GtkSourceStyle
 	const gchar *underline_color;
 
 	PangoUnderline underline;
+	PangoWeight weight;
 
 	guint italic : 1;
 	guint bold : 1;
 	guint strikethrough : 1;
-	guint mask : 12;
+	guint mask : 16;
 };
 
 G_END_DECLS

@@ -24,7 +24,7 @@
 
 /**
  * GtkSourceStyle:
- * 
+ *
  * Represents a style.
  *
  * The `GtkSourceStyle` structure is used to describe text attributes
@@ -62,7 +62,10 @@ enum
 	PROP_SCALE,
 	PROP_SCALE_SET,
 	PROP_UNDERLINE_COLOR,
-	PROP_UNDERLINE_COLOR_SET
+	PROP_UNDERLINE_COLOR_SET,
+	PROP_WEIGHT,
+	PROP_WEIGHT_SET,
+	N_PROPS
 };
 
 static void
@@ -143,6 +146,15 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
+	                                 PROP_WEIGHT,
+	                                 g_param_spec_enum ("weight",
+	                                                    "Weight",
+	                                                    "Text weight",
+	                                                    PANGO_TYPE_WEIGHT,
+	                                                    PANGO_WEIGHT_NORMAL,
+	                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+
+	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE_COLOR,
 					 g_param_spec_string ("underline-color",
 							      "Underline Color",
@@ -215,6 +227,14 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
 	g_object_class_install_property (object_class,
+					 PROP_WEIGHT_SET,
+					 g_param_spec_boolean ("weight-set",
+							       "Weight set",
+							       "Whether weight attribute is set",
+							       FALSE,
+							       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+
+	g_object_class_install_property (object_class,
 					 PROP_UNDERLINE_COLOR_SET,
 					 g_param_spec_boolean ("underline-color-set",
 							       "Underline color set",
@@ -226,9 +246,6 @@ gtk_source_style_class_init (GtkSourceStyleClass *klass)
 static void
 gtk_source_style_init (GtkSourceStyle *style)
 {
-	style->foreground = NULL;
-	style->background = NULL;
-	style->line_background = NULL;
 }
 
 #define SET_MASK(style,name) (style)->mask |= (GTK_SOURCE_STYLE_USE_##name)
@@ -332,6 +349,11 @@ gtk_source_style_set_property (GObject      *object,
 			}
 			break;
 
+		case PROP_WEIGHT:
+			style->weight = (PangoWeight) g_value_get_enum (value);
+			SET_MASK (style, WEIGHT);
+			break;
+
 		case PROP_UNDERLINE_COLOR:
 			string = g_value_get_string (value);
 			if (string != NULL)
@@ -380,6 +402,10 @@ gtk_source_style_set_property (GObject      *object,
 
 		case PROP_UNDERLINE_COLOR_SET:
 			MODIFY_MASK (style, value, UNDERLINE_COLOR);
+			break;
+
+		case PROP_WEIGHT_SET:
+			MODIFY_MASK (style, value, WEIGHT);
 			break;
 
 		default:
@@ -434,6 +460,10 @@ gtk_source_style_get_property (GObject    *object,
 			g_value_set_string (value, style->underline_color);
 			break;
 
+		case PROP_WEIGHT:
+			g_value_set_enum (value, style->weight);
+			break;
+
 		case PROP_FOREGROUND_SET:
 			GET_MASK (style, value, FOREGROUND);
 			break;
@@ -468,6 +498,10 @@ gtk_source_style_get_property (GObject    *object,
 
 		case PROP_UNDERLINE_COLOR_SET:
 			GET_MASK (style, value, UNDERLINE_COLOR);
+			break;
+
+		case PROP_WEIGHT_SET:
+			GET_MASK (style, value, WEIGHT);
 			break;
 
 		default:
@@ -505,6 +539,7 @@ gtk_source_style_copy (const GtkSourceStyle *style)
 	copy->strikethrough = style->strikethrough;
 	copy->mask = style->mask;
 	copy->scale = style->scale;
+	copy->weight = style->weight;
 
 	return copy;
 }
@@ -649,6 +684,15 @@ gtk_source_style_apply (const GtkSourceStyle *style,
 		else
 		{
 			g_object_set (tag, "scale-set", FALSE, NULL);
+		}
+
+		if (style->mask & GTK_SOURCE_STYLE_USE_WEIGHT)
+		{
+			g_object_set (tag, "weight", style->weight, NULL);
+		}
+		else
+		{
+			g_object_set (tag, "weight-set", FALSE, NULL);
 		}
 
 		g_object_thaw_notify (G_OBJECT (tag));
