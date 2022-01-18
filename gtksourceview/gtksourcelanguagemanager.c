@@ -614,7 +614,9 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  *
  * ```c
  * GtkSourceLanguage *lang;
- * lang = gtk_source_language_manager_guess_language (filename, NULL);
+ * GtkSourceLanguageManager *manager;
+ * lm = gtk_source_language_manager_get_default ();
+ * lang = gtk_source_language_manager_guess_language (manager, filename, NULL);
  * gtk_source_buffer_set_language (buffer, lang);
  * ```
  *
@@ -622,6 +624,7 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  *
  * ```c
  * GtkSourceLanguage *lang = NULL;
+ * GtkSourceLanguageManager *manager;
  * gboolean result_uncertain;
  * gchar *content_type;
  *
@@ -632,6 +635,7 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  *     content_type = NULL;
  *   }
  *
+ * manager = gtk_source_language_manager_get_default ();
  * lang = gtk_source_language_manager_guess_language (manager, filename, content_type);
  * gtk_source_buffer_set_language (buffer, lang);
  *
