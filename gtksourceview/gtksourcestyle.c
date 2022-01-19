@@ -603,7 +603,11 @@ gtk_source_style_apply (const GtkSourceStyle *style,
 			g_object_set (tag, "style-set", FALSE, NULL);
 		}
 
-		if (style->mask & GTK_SOURCE_STYLE_USE_BOLD)
+		if (style->mask & GTK_SOURCE_STYLE_USE_WEIGHT)
+		{
+			g_object_set (tag, "weight", style->weight, NULL);
+		}
+		else if (style->mask & GTK_SOURCE_STYLE_USE_BOLD)
 		{
 			g_object_set (tag, "weight", style->bold ? PANGO_WEIGHT_BOLD : PANGO_WEIGHT_NORMAL, NULL);
 		}
@@ -684,15 +688,6 @@ gtk_source_style_apply (const GtkSourceStyle *style,
 		else
 		{
 			g_object_set (tag, "scale-set", FALSE, NULL);
-		}
-
-		if (style->mask & GTK_SOURCE_STYLE_USE_WEIGHT)
-		{
-			g_object_set (tag, "weight", style->weight, NULL);
-		}
-		else
-		{
-			g_object_set (tag, "weight-set", FALSE, NULL);
 		}
 
 		g_object_thaw_notify (G_OBJECT (tag));
