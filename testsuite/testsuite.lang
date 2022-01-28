@@ -21,6 +21,7 @@
   <styles>
     <style id="escaped-character" name="Escaped character"     map-to="def:special-char"/>
     <style id="string"            name="String"                map-to="def:string"/>
+    <style id="integer"           name="Integer"               map-to="def:number"/>
   </styles>
   <definitions>
     <context id="string" style-ref="string" class="string" class-disabled="no-spell-check">
@@ -37,6 +38,7 @@
     <context id="testsuite" class="no-spell-check">
       <include>
         <context ref="string"/>
+        <context ref="testsuite-2:integer"/>
       </include>
     </context>
   </definitions>

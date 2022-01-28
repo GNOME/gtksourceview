@@ -1604,22 +1604,42 @@ file_parse (const gchar               *filename,
 {
 	ParserState *parser_state;
 	xmlTextReader *reader = NULL;
+	GBytes *bytes = NULL;
 	int fd = -1;
 	GError *tmp_error = NULL;
 	GtkSourceLanguageManager *lm;
 	const gchar *rng_lang_schema;
 
+	g_return_val_if_fail (filename != NULL, FALSE);
 	g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
 	DEBUG (g_message ("loading file '%s'", filename));
 
-	/*
-	 * Use fd instead of filename so that it's utf8 safe on w32.
-	 */
-	fd = g_open (filename, O_RDONLY, 0);
+	if (g_str_has_prefix (filename, "resource://"))
+	{
+		const char *path = filename + strlen ("resource://");
 
-	if (fd != -1)
-		reader = xmlReaderForFd (fd, filename, NULL, 0);
+		bytes = g_resources_lookup_data (path, 0, NULL);
+
+		if (bytes != NULL)
+		{
+			reader = xmlReaderForMemory (g_bytes_get_data (bytes, NULL),
+			                             g_bytes_get_size (bytes),
+			                             NULL, NULL, 0);
+		}
+	}
+	else
+	{
+		/*
+		 * Use fd instead of filename so that it's utf8 safe on w32.
+		 */
+		fd = g_open (filename, O_RDONLY, 0);
+
+		if (fd != -1)
+		{
+			reader = xmlReaderForFd (fd, filename, NULL, 0);
+		}
+	}
 
 	if (reader == NULL)
 	{
@@ -1697,13 +1717,16 @@ file_parse (const gchar               *filename,
 	if (tmp_error != NULL)
 		goto error;
 
-	close (fd);
+	if (fd != -1)
+		close (fd);
+	g_clear_pointer (&bytes, g_bytes_unref);
 
 	return TRUE;
 
 error:
 	if (fd != -1)
 		close (fd);
+	g_clear_pointer (&bytes, g_bytes_unref);
 	g_propagate_error (error, tmp_error);
 	return FALSE;
 }

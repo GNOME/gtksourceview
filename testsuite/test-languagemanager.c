@@ -191,19 +191,33 @@ static void
 test_resources (void)
 {
 	GtkSourceLanguageManager *lm = gtk_source_language_manager_new ();
-	const char * const search_path[] = { "resource:///language-specs/", NULL };
+	GtkSourceLanguage *l;
+	GtkSourceBuffer *buffer;
+	const char * search_path[] = { "resource:///language-specs/", NULL, NULL };
 	const char * const *ids;
+	char *dir;
+
+	dir = g_build_filename (TOP_SRCDIR, "data", "language-specs", NULL);
+	search_path[1] = dir;
 
 	g_resources_register (testsuite_get_resource ());
 
 	gtk_source_language_manager_set_search_path (lm, search_path);
 	ids = gtk_source_language_manager_get_language_ids (lm);
 
-	g_assert_nonnull (ids);
-	g_assert_cmpstr (ids[0], ==, "testsuite");
-	g_assert_null (ids[1]);
+	g_assert_true (g_strv_contains (ids, "testsuite"));
+	g_assert_true (g_strv_contains (ids, "testsuite-2"));
 
+	l = gtk_source_language_manager_get_language (lm, "testsuite");
+	g_assert_nonnull (l);
+	g_assert_cmpstr ("testsuite", ==, gtk_source_language_get_id (l));
+
+	buffer = gtk_source_buffer_new (NULL);
+	gtk_source_buffer_set_language (buffer, l);
+
+	g_object_unref (buffer);
 	g_object_unref (lm);
+	g_free (dir);
 }
 
 int
