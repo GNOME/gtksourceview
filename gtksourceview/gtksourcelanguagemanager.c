@@ -268,6 +268,79 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
 }
 
 /**
+ * gtk_source_language_manager_append_search_path:
+ * @manager: a #GtkSourceLanguageManager.
+ * @path: a directory or a filename.
+ *
+ * Appends @path to the list of directories where the @manager looks for
+ * language files.
+ *
+ * See [method@LanguageManager.set_search_path] for details.
+ */
+void
+gtk_source_language_manager_append_search_path (GtkSourceLanguageManager *lm,
+                                                const gchar              *path)
+{
+	guint len = 0;
+
+	g_return_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm));
+	g_return_if_fail (path != NULL);
+
+	if (lm->lang_dirs == NULL)
+		lm->lang_dirs = _gtk_source_utils_get_default_dirs (LANGUAGE_DIR);
+
+	g_return_if_fail (lm->lang_dirs != NULL);
+
+	len = g_strv_length (lm->lang_dirs);
+
+	lm->lang_dirs = g_renew (gchar *,
+					lm->lang_dirs,
+					len + 2); /* old path + new entry + NULL */
+
+	lm->lang_dirs[len] = g_strdup (path);
+	lm->lang_dirs[len + 1] = NULL;
+
+	notify_search_path (lm);
+}
+
+/**
+ * gtk_source_language_manager_prepend_search_path:
+ * @manager: a #GtkSourceLanguageManager.
+ * @path: a directory or a filename.
+ *
+ * Prepends @path to the list of directories where the @manager looks
+ * for language files.
+ *
+ * See [method@LanguageManager.set_search_path] for details.
+ */
+void
+gtk_source_language_manager_prepend_search_path (GtkSourceLanguageManager *lm,
+                                                 const gchar              *path)
+{
+	guint len = 0;
+	gchar **new_lang_dirs;
+
+	g_return_if_fail (GTK_SOURCE_IS_LANGUAGE_MANAGER (lm));
+	g_return_if_fail (path != NULL);
+
+	if (lm->lang_dirs == NULL)
+		lm->lang_dirs = _gtk_source_utils_get_default_dirs (LANGUAGE_DIR);
+
+	g_return_if_fail (lm->lang_dirs != NULL);
+
+	len = g_strv_length (lm->lang_dirs);
+
+	new_lang_dirs = g_new (gchar *, len + 2);
+	new_lang_dirs[0] = g_strdup (path);
+	memcpy (new_lang_dirs + 1, lm->lang_dirs, (len + 1) * sizeof (gchar*));
+
+	g_free (lm->lang_dirs);
+	lm->lang_dirs = new_lang_dirs;
+
+	notify_search_path (lm);
+}
+
+/**
  * gtk_source_language_manager_get_search_path:
  * @lm: a #GtkSourceLanguageManager.
  *
