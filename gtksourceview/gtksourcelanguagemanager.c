@@ -242,6 +242,10 @@ notify_search_path (GtkSourceLanguageManager *mgr)
  * language files are loaded for the first time. In practice
  * to set a custom search path for a `GtkSourceLanguageManager`,
  * you have to call this function right after creating it.
+ *
+ * Since GtkSourceView 5.4 this function will allow you to provide
+ * paths in the form of "resource:///" URIs to embedded `GResource`s.
+ * They must contain the path of a directory within the `GResource`.
  */
 void
 gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
