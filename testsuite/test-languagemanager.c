@@ -220,6 +220,43 @@ test_resources (void)
 	g_free (dir);
 }
 
+static void
+on_notify_search_path_cb (GtkSourceLanguageManager *lm,
+                          GParamSpec *pspec,
+                          guint *count)
+{
+  (*count)++;
+}
+
+static void
+test_search_path (void)
+{
+  GtkSourceLanguageManager *lm;
+  static const char * const first[] = { "first", NULL };
+  const char * const *search_path;
+  guint count = 0;
+
+  lm = gtk_source_language_manager_new ();
+  gtk_source_language_manager_set_search_path (lm, first);
+  g_signal_connect (lm, "notify::search-path", G_CALLBACK (on_notify_search_path_cb), &count);
+  gtk_source_language_manager_prepend_search_path (lm, "zero");
+  g_assert_cmpint (count, ==, 1);
+  gtk_source_language_manager_append_search_path (lm, "second");
+  g_assert_cmpint (count, ==, 2);
+  gtk_source_language_manager_append_search_path (lm, "resource:///third");
+  g_assert_cmpint (count, ==, 3);
+  search_path = gtk_source_language_manager_get_search_path (lm);
+
+  g_assert_nonnull (search_path);
+  g_assert_cmpstr (search_path[0], ==, "zero");
+  g_assert_cmpstr (search_path[1], ==, "first");
+  g_assert_cmpstr (search_path[2], ==, "second");
+  g_assert_cmpstr (search_path[3], ==, "resource:///third");
+  g_assert_null (search_path[4]);
+
+  g_assert_finalize_object (lm);
+}
+
 int
 main (int argc, char** argv)
 {
@@ -235,6 +272,7 @@ main (int argc, char** argv)
 	g_test_add_func ("/LanguageManager/guess-language/subprocess/null_empty", test_guess_language_null_empty);
 	g_test_add_func ("/LanguageManager/guess-language/subprocess/empty_empty", test_guess_language_empty_empty);
 	g_test_add_func ("/LanguageManager/resources", test_resources);
+	g_test_add_func ("/LanguageManager/search-path", test_search_path);
 
 	return g_test_run();
 }
