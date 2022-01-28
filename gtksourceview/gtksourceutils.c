@@ -273,6 +273,41 @@ build_file_listing (const gchar *item,
 		return filenames;
 
 	}
+
+	if (g_str_has_prefix (item, "resource://"))
+	{
+		const char *path = item + strlen ("resource://");
+		char **children;
+
+		children = g_resources_enumerate_children (path, 0, NULL);
+
+		if (children != NULL)
+		{
+			for (guint i = 0; children[i] != NULL; i++)
+			{
+				if (g_str_has_suffix (children[i], suffix))
+				{
+					char *full_path = g_build_path ("/", item, children[i], NULL);
+					const char *resource_full_path = full_path + strlen ("resource://");
+					gsize size = 0;
+
+					if (g_resources_get_info (resource_full_path, 0, &size, NULL, NULL) && size > 0)
+					{
+						filenames = g_slist_prepend (filenames, full_path);
+					}
+					else
+					{
+						g_free (full_path);
+					}
+				}
+			}
+		}
+
+		g_strfreev (children);
+
+		return filenames;
+	}
+
 	dir = g_dir_open (item, 0, NULL);
 
 	if (dir == NULL)
