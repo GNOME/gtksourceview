@@ -276,6 +276,8 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
  * language files.
  *
  * See [method@LanguageManager.set_search_path] for details.
+ *
+ * Since: 5.4
  */
 void
 gtk_source_language_manager_append_search_path (GtkSourceLanguageManager *lm,
@@ -312,6 +314,8 @@ gtk_source_language_manager_append_search_path (GtkSourceLanguageManager *lm,
  * for language files.
  *
  * See [method@LanguageManager.set_search_path] for details.
+ *
+ * Since: 5.4
  */
 void
 gtk_source_language_manager_prepend_search_path (GtkSourceLanguageManager *lm,
