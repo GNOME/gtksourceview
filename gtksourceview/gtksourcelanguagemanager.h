@@ -35,28 +35,28 @@ GTK_SOURCE_AVAILABLE_IN_ALL
 G_DECLARE_FINAL_TYPE (GtkSourceLanguageManager, gtk_source_language_manager, GTK_SOURCE, LANGUAGE_MANAGER, GObject)
 
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceLanguageManager *gtk_source_language_manager_new              (void);
+GtkSourceLanguageManager *gtk_source_language_manager_new                 (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceLanguageManager *gtk_source_language_manager_get_default      (void);
+GtkSourceLanguageManager *gtk_source_language_manager_get_default         (void);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar * const      *gtk_source_language_manager_get_search_path  (GtkSourceLanguageManager  *lm);
+const gchar * const      *gtk_source_language_manager_get_search_path     (GtkSourceLanguageManager *lm);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void                      gtk_source_language_manager_set_search_path  (GtkSourceLanguageManager *lm,
-                                                                        const gchar * const      *dirs);
-GTK_SOURCE_AVAILABLE_IN_ALL
+void                      gtk_source_language_manager_set_search_path     (GtkSourceLanguageManager *lm,
+                                                                           const gchar * const      *dirs);
+GTK_SOURCE_AVAILABLE_IN_5_4
 void                      gtk_source_language_manager_append_search_path  (GtkSourceLanguageManager *lm,
                                                                            const gchar              *path);
-GTK_SOURCE_AVAILABLE_IN_ALL
+GTK_SOURCE_AVAILABLE_IN_5_4
 void                      gtk_source_language_manager_prepend_search_path (GtkSourceLanguageManager *lm,
                                                                            const gchar              *path);
 GTK_SOURCE_AVAILABLE_IN_ALL
-const gchar * const      *gtk_source_language_manager_get_language_ids (GtkSourceLanguageManager  *lm);
+const gchar * const      *gtk_source_language_manager_get_language_ids    (GtkSourceLanguageManager *lm);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceLanguage        *gtk_source_language_manager_get_language     (GtkSourceLanguageManager  *lm,
-                                                                        const gchar               *id);
+GtkSourceLanguage        *gtk_source_language_manager_get_language        (GtkSourceLanguageManager *lm,
+                                                                           const gchar              *id);
 GTK_SOURCE_AVAILABLE_IN_ALL
-GtkSourceLanguage        *gtk_source_language_manager_guess_language   (GtkSourceLanguageManager  *lm,
-                                                                        const gchar               *filename,
-                                                                        const gchar               *content_type);
+GtkSourceLanguage        *gtk_source_language_manager_guess_language      (GtkSourceLanguageManager *lm,
+                                                                           const gchar              *filename,
+                                                                           const gchar              *content_type);
 
 G_END_DECLS
