@@ -23,6 +23,8 @@
 #include <gtk/gtk.h>
 #include <gtksourceview/gtksource.h>
 
+#include "testsuite-gresources.h"
+
 /* If we are running from the source dir (e.g. during make check)
  * we override the path to read from the data dir
  */
@@ -185,6 +187,25 @@ test_guess_language (void)
 #endif
 }
 
+static void
+test_resources (void)
+{
+	GtkSourceLanguageManager *lm = gtk_source_language_manager_new ();
+	const char * const search_path[] = { "resource:///language-specs/", NULL };
+	const char * const *ids;
+
+	g_resources_register (testsuite_get_resource ());
+
+	gtk_source_language_manager_set_search_path (lm, search_path);
+	ids = gtk_source_language_manager_get_language_ids (lm);
+
+	g_assert_nonnull (ids);
+	g_assert_cmpstr (ids[0], ==, "testsuite");
+	g_assert_null (ids[1]);
+
+	g_object_unref (lm);
+}
+
 int
 main (int argc, char** argv)
 {
@@ -199,6 +220,7 @@ main (int argc, char** argv)
 	g_test_add_func ("/LanguageManager/guess-language/subprocess/empty_null", test_guess_language_empty_null);
 	g_test_add_func ("/LanguageManager/guess-language/subprocess/null_empty", test_guess_language_null_empty);
 	g_test_add_func ("/LanguageManager/guess-language/subprocess/empty_empty", test_guess_language_empty_empty);
+	g_test_add_func ("/LanguageManager/resources", test_resources);
 
 	return g_test_run();
 }

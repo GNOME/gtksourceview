@@ -14,6 +14,11 @@ testsuite_c_args = [
   '-UG_DISABLE_CAST_CHECKS',
 ]
 
+testsuite_res = gnome.compile_resources(
+  'testsuite-gresources',
+  'testsuite.gresource.xml'
+)
+
 testsuite_sources = [
   ['test-buffer'],
   ['test-buffer-input-stream'],
@@ -44,7 +49,7 @@ testsuite_sources = [
 
 foreach test: testsuite_sources
   test_name = test.get(0)
-  test_sources = gtksource_res + [
+  test_sources = gtksource_res + testsuite_res + [
     '@0@.c'.format(test_name),
   ]
 

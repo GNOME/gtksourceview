@@ -97,18 +97,35 @@ _gtk_source_language_new_from_file (const gchar              *filename,
 {
 	GtkSourceLanguage *lang = NULL;
 	xmlTextReaderPtr reader = NULL;
+	GBytes *bytes = NULL;
 	gint ret;
-	gint fd;
+	gint fd = -1;
 
 	g_return_val_if_fail (filename != NULL, NULL);
 	g_return_val_if_fail (lm != NULL, NULL);
 
-	/*
-	 * Use fd instead of filename so that it's utf8 safe on w32.
-	 */
-	fd = g_open (filename, O_RDONLY, 0);
-	if (fd != -1)
-		reader = xmlReaderForFd (fd, filename, NULL, 0);
+	if (g_str_has_prefix (filename, "resource://"))
+	{
+		const char *path = filename + strlen ("resource://");
+
+		bytes = g_resources_lookup_data (path, 0, NULL);
+
+		if (bytes != NULL)
+		{
+			reader = xmlReaderForMemory (g_bytes_get_data (bytes, NULL),
+			                             g_bytes_get_size (bytes),
+			                             NULL, NULL, 0);
+		}
+	}
+	else
+	{
+		/*
+		 * Use fd instead of filename so that it's utf8 safe on w32.
+		 */
+		fd = g_open (filename, O_RDONLY, 0);
+		if (fd != -1)
+			reader = xmlReaderForFd (fd, filename, NULL, 0);
+	}
 
 	if (reader != NULL)
 	{
@@ -135,23 +152,14 @@ _gtk_source_language_new_from_file (const gchar              *filename,
 				ret = xmlTextReaderRead (reader);
 		}
 
-		xmlFreeTextReader (reader);
-		close (fd);
-
 		if (ret != 0)
 		{
-	            g_warning("Failed to parse '%s'", filename);
-		    return NULL;
+	            g_warning ("Failed to parse '%s'", filename);
 		}
         }
 	else
 	{
 		g_warning ("Unable to open '%s'", filename);
-
-		if (fd != -1)
-		{
-			close (fd);
-		}
     	}
 
 	if (lang != NULL)
@@ -159,6 +167,21 @@ _gtk_source_language_new_from_file (const gchar              *filename,
 		lang->language_manager = lm;
 		g_object_add_weak_pointer (G_OBJECT (lm),
 					   (gpointer) &lang->language_manager);
+	}
+
+	if (reader != NULL)
+	{
+		xmlFreeTextReader (reader);
+	}
+
+	if (fd != -1)
+	{
+		close (fd);
+	}
+
+	if (bytes != NULL)
+	{
+		g_bytes_unref (bytes);
 	}
 
 	return lang;
