@@ -269,7 +269,7 @@ gtk_source_language_manager_set_search_path (GtkSourceLanguageManager *lm,
 
 /**
  * gtk_source_language_manager_append_search_path:
- * @manager: a #GtkSourceLanguageManager.
+ * @lm: a #GtkSourceLanguageManager.
  * @path: a directory or a filename.
  *
  * Appends @path to the list of directories where the @manager looks for
@@ -307,7 +307,7 @@ gtk_source_language_manager_append_search_path (GtkSourceLanguageManager *lm,
 
 /**
  * gtk_source_language_manager_prepend_search_path:
- * @manager: a #GtkSourceLanguageManager.
+ * @lm: a #GtkSourceLanguageManager.
  * @path: a directory or a filename.
  *
  * Prepends @path to the list of directories where the @manager looks
