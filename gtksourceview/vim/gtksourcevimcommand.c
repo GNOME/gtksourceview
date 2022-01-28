@@ -1205,6 +1205,11 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 			language = gtk_source_language_manager_get_language (manager, ft);
 
 			gtk_source_buffer_set_language (buffer, language);
+
+			if (language != NULL)
+			{
+				gtk_source_buffer_set_highlight_syntax (buffer, TRUE);
+			}
 		}
 		else if (g_str_has_prefix (part, "ts=") ||
 			 g_str_has_prefix (part, "tabstop="))
@@ -1241,6 +1246,10 @@ gtk_source_vim_command_set (GtkSourceVimCommand *self)
 				if (n >= 1 && n <= 1000)
 					gtk_source_view_set_right_margin_position (view, n);
 			}
+		}
+		else if (g_str_equal (part, "syntax=off"))
+		{
+			gtk_source_buffer_set_highlight_syntax (buffer, FALSE);
 		}
 		else if (g_str_equal (part, "et") ||
 			 g_str_equal (part, "expandtab"))
