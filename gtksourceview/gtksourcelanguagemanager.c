@@ -29,7 +29,7 @@
 
 /**
  * GtkSourceLanguageManager:
- * 
+ *
  * Provides access to [class@Language]s.
  *
  * `GtkSourceLanguageManager` is an object which processes language description
@@ -181,8 +181,8 @@ gtk_source_language_manager_init (GtkSourceLanguageManager *lm)
  * gtk_source_language_manager_new:
  *
  * Creates a new language manager.
- * 
- * If you do not need more than one language manager or a private language manager 
+ *
+ * If you do not need more than one language manager or a private language manager
  * instance then use [func@LanguageManager.get_default] instead.
  *
  * Returns: a new #GtkSourceLanguageManager.
@@ -294,8 +294,8 @@ gtk_source_language_manager_append_search_path (GtkSourceLanguageManager *lm,
 	len = g_strv_length (lm->lang_dirs);
 
 	lm->lang_dirs = g_renew (gchar *,
-					lm->lang_dirs,
-					len + 2); /* old path + new entry + NULL */
+	                         lm->lang_dirs,
+	                         len + 2); /* old path + new entry + NULL */
 
 	lm->lang_dirs[len] = g_strdup (path);
 	lm->lang_dirs[len + 1] = NULL;
@@ -681,8 +681,8 @@ pick_lang_for_mime_type (GtkSourceLanguageManager *lm,
  * @content_type: (nullable): a content type (as in GIO API), or %NULL.
  *
  * Picks a [class@Language] for given file name and content type,
- * according to the information in lang files. 
- * 
+ * according to the information in lang files.
+ *
  * Either @filename or @content_type may be %NULL. This function can be used as follows:
  *
  * ```c
