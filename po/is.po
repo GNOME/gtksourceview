@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
 "POT-Creation-Date: 2021-12-29 17:52+0000\n"
-"PO-Revision-Date: 2022-01-29 14:07+0000\n"
+"PO-Revision-Date: 2022-01-29 14:38+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.org>\n"
 "Language: is\n"
@@ -185,7 +185,7 @@ msgstr "Skrifta"
 #. (itstool) path: cg.lang/language@_name
 #: cg.lang:23
 msgid "CG Shader Language"
-msgstr ""
+msgstr "CG Shader tungumál"
 
 #. (itstool) path: changelog.lang/language@_section
 #. (itstool) path: cmake.lang/language@_section
@@ -271,7 +271,7 @@ msgstr "GDB atvikaskráning"
 #. (itstool) path: glsl.lang/language@_name
 #: glsl.lang:30
 msgid "OpenGL Shading Language"
-msgstr ""
+msgstr "OpenGL Shading tungumál"
 
 #. (itstool) path: llvm.lang/language@_name
 #: llvm.lang:22
@@ -384,16 +384,16 @@ msgstr "Úrklippur (snippets)"
 
 #: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:317
 msgid "Document Words"
-msgstr ""
+msgstr "Orð skjals"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:838
 msgid "Invalid byte sequence in conversion input"
-msgstr ""
+msgstr "Ógild bætaruna í ílagi umbreytingar"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:844
 #, c-format
 msgid "Error during conversion: %s"
-msgstr ""
+msgstr "Villa við umbreytingu: %s"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:925
 #, c-format
@@ -403,16 +403,16 @@ msgstr "Umbreyting úr stafatöflunni '%s' í '“UTF-8' er ekki stutt"
 #: gtksourceview/gtksourcebufferoutputstream.c:931
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
-msgstr ""
+msgstr "Gat ekki opnað umbreyti fyrir umbreytingu úr “%s” í “UTF-8”"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:991
 msgid "Invalid object, not initialized"
-msgstr ""
+msgstr "Ógildur hlutur, ekki ennþá frumstillt"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:1183
 #, c-format
 msgid "Incomplete UTF-8 sequence in input"
-msgstr ""
+msgstr "Ófullgerð UTF-8 runa í inntaki"
 
 #: gtksourceview/gtksourcecompletionlist.c:206
 #: gtksourceview/gtksourcecompletionlist.c:210
@@ -470,7 +470,7 @@ msgstr ""
 #: gtksourceview/gtksourcecontextengine.c:6178
 #, c-format
 msgid "unknown context “%s”"
-msgstr ""
+msgstr "óþekkt samhengi “%s”"
 
 #: gtksourceview/gtksourcecontextengine.c:6279
 #, c-format
@@ -627,7 +627,7 @@ msgstr "Ekki venjuleg skrá."
 
 #: gtksourceview/gtksourcefilesaver.c:966
 msgid "The file is externally modified."
-msgstr ""
+msgstr "Skránni er breytt með öðru forriti."
 
 #: gtksourceview/gtksourcefilesaver.c:1422
 msgid "The buffer contains invalid characters."
@@ -652,7 +652,7 @@ msgstr "Annað"
 #: gtksourceview/gtksourcelanguage-parser-2.c:946
 #, c-format
 msgid "Unknown id “%s” in regex “%s”"
-msgstr ""
+msgstr "Óþekkt auðkenni “%s” í reglulegu segðinni “%s”"
 
 #: gtksourceview/gtksourcelanguage-parser-2.c:1176
 #, c-format
@@ -698,11 +698,11 @@ msgstr "Bre_yta stafstöðu"
 
 #: gtksourceview/implregex.c:609
 msgid "hexadecimal digit or “}” expected"
-msgstr ""
+msgstr "bjóst við sextándakerfisstaf eða “}”"
 
 #: gtksourceview/implregex.c:625
 msgid "hexadecimal digit expected"
-msgstr ""
+msgstr "bjóst við sextándakerfisstaf"
 
 #: gtksourceview/implregex.c:665
 msgid "missing “<” in symbolic reference"
@@ -718,7 +718,7 @@ msgstr ""
 
 #: gtksourceview/implregex.c:692
 msgid "digit expected"
-msgstr ""
+msgstr "bjóst við tölustaf"
 
 #: gtksourceview/implregex.c:710
 msgid "illegal symbolic reference"
