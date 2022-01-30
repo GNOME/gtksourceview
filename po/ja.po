@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2020-11-28 13:37+0000\n"
+"POT-Creation-Date: 2022-01-29 14:40+0000\n"
 "PO-Revision-Date: 2021-01-06 05:30+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -59,6 +59,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -97,8 +98,8 @@ msgstr ""
 #: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
 #: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
 #: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
-#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
-#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
+#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
 #: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
 #: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
 #: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
@@ -113,6 +114,9 @@ msgstr "ソース"
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
 #. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: erb-html.lang/language@_section
+#. (itstool) path: erb-js.lang/language@_section
+#. (itstool) path: erb.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
@@ -131,10 +135,10 @@ msgstr "ソース"
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
 #: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
-#: gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24 jsdoc.lang:23
-#: latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22
-#: mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23
-#: texinfo.lang:24 xml.lang:26 xslt.lang:23
+#: erb-html.lang:20 erb-js.lang:20 erb.lang:20 gtk-doc.lang:24 haddock.lang:23
+#: html.lang:25 jade.lang:24 jsdoc.lang:23 latex.lang:24 mallard.lang:22
+#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
 msgstr "マークアップ"
 
@@ -164,7 +168,6 @@ msgstr "マークアップ"
 #. (itstool) path: typescript-js-literals.lang/language@_section
 #. (itstool) path: typescript-js-modules.lang/language@_section
 #. (itstool) path: typescript-js-statements.lang/language@_section
-#. (itstool) path: typescript-js-values.lang/language@_section
 #. (itstool) path: typescript-jsx.lang/language@_section
 #. (itstool) path: typescript.lang/language@_section
 #. (itstool) path: typescript-type-expressions.lang/language@_section
@@ -178,8 +181,7 @@ msgstr "マークアップ"
 #: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
 #: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
 #: typescript-js-literals.lang:23 typescript-js-modules.lang:23
-#: typescript-js-statements.lang:23 typescript-js-values.lang:23
-#: typescript-jsx.lang:23 typescript.lang:23
+#: typescript-js-statements.lang:23 typescript-jsx.lang:23 typescript.lang:23
 #: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
 #: typescript-type-literals.lang:23
 msgid "Script"
@@ -214,6 +216,7 @@ msgstr "CG シェーダー言語"
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
 #. (itstool) path: scss.lang/language@_section
+#. (itstool) path: terraform.lang/language@_section
 #. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
@@ -222,8 +225,8 @@ msgstr "CG シェーダー言語"
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
 #: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
 #: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
-#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23
-#: yacc.lang:23 yaml.lang:21 yara.lang:26
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23
+#: terraform.lang:23 toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "その他"
 
@@ -258,9 +261,10 @@ msgstr "Django テンプレート"
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
+#. (itstool) path: star.lang/language@_section
 #: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
 #: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
-#: scilab.lang:23
+#: scilab.lang:23 star.lang:28
 msgid "Scientific"
 msgstr "科学"
 
@@ -294,25 +298,39 @@ msgstr "RPM スペック"
 msgid "Tera Template"
 msgstr "Tera テンプレート"
 
-#. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
-#: Adwaita-dark.style-scheme.xml:20
+#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
+#: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
 msgstr "Adwaita Dark"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.style-scheme.xml:22
+#: Adwaita-dark.xml:22
 msgid "A dark color scheme matching GTK's default theme"
 msgstr "GTK の標準テーマにマッチする暗いカラースキーム"
 
-#. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
-#: Adwaita.style-scheme.xml:20
+#. (itstool) path: Adwaita.xml/style-scheme@_name
+#: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita.style-scheme.xml:22
+#: Adwaita.xml:22
 msgid "A color scheme matching GTK's default theme"
 msgstr "GTK の標準テーマにマッチするカラースキーム"
+
+#. (itstool) path: classic-dark.xml/style-scheme@_name
+#: classic-dark.xml:22
+#, fuzzy
+#| msgid "Classic"
+msgid "Classic Dark"
+msgstr "クラシック"
+
+#. (itstool) path: style-scheme/_description
+#: classic-dark.xml:24
+#, fuzzy
+#| msgid "Classic color scheme"
+msgid "Classic dark color scheme"
+msgstr "古くから使用されている伝統的なカラースキーム"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -333,6 +351,13 @@ msgstr "コバルト"
 #: cobalt.xml:27
 msgid "Blue based color scheme"
 msgstr "青をベースにしたカラースキーム"
+
+#. (itstool) path: style-scheme/_description
+#: kate-dark.xml:24
+#, fuzzy
+#| msgid "Color scheme used in the Kate text editor"
+msgid "Dark color scheme used in the Kate text editor"
+msgstr "Kate テキストエディターで使用しているカラースキーム"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
@@ -379,11 +404,11 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Tango 系の配色を使用したカラースキーム"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:409
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:407
 msgid "Snippets"
 msgstr "スニペット"
 
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:317
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:222
 msgid "Document Words"
 msgstr "ドキュメントの単語"
 
@@ -440,7 +465,7 @@ msgstr ""
 "通常よりも遅くなります:\n"
 "エラー: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4456
+#: gtksourceview/gtksourcecontextengine.c:4458
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -448,155 +473,155 @@ msgstr ""
 "1 行を強調表示するのにとても時間がかかっているので、構文の強調表示を無効にし"
 "ます"
 
-#: gtksourceview/gtksourcecontextengine.c:5706
+#: gtksourceview/gtksourcecontextengine.c:5708
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "コンテキスト“%s”には \\%%{...@start} コマンドを格納できません"
 
-#: gtksourceview/gtksourcecontextengine.c:5869
-#: gtksourceview/gtksourcecontextengine.c:5959
+#: gtksourceview/gtksourcecontextengine.c:5871
+#: gtksourceview/gtksourcecontextengine.c:5961
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "コンテキスト ID “%s”が重複しています"
 
 # GTK_SOURCE_CONTEXT_IGNORE_STYLE または  GTK_SOURCE_CONTEXT_OVERRIDE_STYLE が設定されている時のエラー。
-#: gtksourceview/gtksourcecontextengine.c:6073
-#: gtksourceview/gtksourcecontextengine.c:6133
+#: gtksourceview/gtksourcecontextengine.c:6075
+#: gtksourceview/gtksourcecontextengine.c:6135
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
 msgstr "言語“%s”の参照“%s”のワイルドカードの前後関係でスタイルを上書きします"
 
-#: gtksourceview/gtksourcecontextengine.c:6147
+#: gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "不正なコンテキストのリファレンス“%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6166
-#: gtksourceview/gtksourcecontextengine.c:6176
+#: gtksourceview/gtksourcecontextengine.c:6168
+#: gtksourceview/gtksourcecontextengine.c:6178
 #, c-format
 msgid "unknown context “%s”"
 msgstr "不明なコンテキスト“%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6277
+#: gtksourceview/gtksourcecontextengine.c:6279
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "主要な言語定義がありません (id = “%s”)。"
 
-#: gtksourceview/gtksourceencoding.c:143 gtksourceview/gtksourceencoding.c:186
-#: gtksourceview/gtksourceencoding.c:188 gtksourceview/gtksourceencoding.c:190
-#: gtksourceview/gtksourceencoding.c:192 gtksourceview/gtksourceencoding.c:194
-#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:136 gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:181 gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:185 gtksourceview/gtksourceencoding.c:187
+#: gtksourceview/gtksourceencoding.c:189 gtksourceview/gtksourceencoding.c:191
 msgid "Unicode"
 msgstr "Unicode"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:181
-#: gtksourceview/gtksourceencoding.c:231 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:150 gtksourceview/gtksourceencoding.c:174
+#: gtksourceview/gtksourceencoding.c:224 gtksourceview/gtksourceencoding.c:267
 msgid "Western"
 msgstr "西欧諸語"
 
-#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:233
-#: gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:152 gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:263
 msgid "Central European"
 msgstr "中欧諸語"
 
-#: gtksourceview/gtksourceencoding.c:161
+#: gtksourceview/gtksourceencoding.c:154
 msgid "South European"
 msgstr "南欧諸語"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:177
-#: gtksourceview/gtksourceencoding.c:284
+#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:170
+#: gtksourceview/gtksourceencoding.c:277
 msgid "Baltic"
 msgstr "バルト語派"
 
-#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:252
-#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:158 gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:241 gtksourceview/gtksourceencoding.c:245
+#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:265
 msgid "Cyrillic"
 msgstr "キリル文字"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:241
-#: gtksourceview/gtksourceencoding.c:282
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:234
+#: gtksourceview/gtksourceencoding.c:275
 msgid "Arabic"
 msgstr "アラビア語"
 
-#: gtksourceview/gtksourceencoding.c:169 gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:269
 msgid "Greek"
 msgstr "ギリシャ語"
 
-#: gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:164
 msgid "Hebrew Visual"
 msgstr "ヘブライ語 (ISO-Visual)"
 
-#: gtksourceview/gtksourceencoding.c:173 gtksourceview/gtksourceencoding.c:237
-#: gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:230
+#: gtksourceview/gtksourceencoding.c:271
 msgid "Turkish"
 msgstr "トルコ語"
 
-#: gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:168
 msgid "Nordic"
 msgstr "北ゲルマン語群"
 
-#: gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:172
 msgid "Celtic"
 msgstr "ケルト語派"
 
-#: gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:176
 msgid "Romanian"
 msgstr "ルーマニア語"
 
-#: gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:194
 msgid "Armenian"
 msgstr "アルメニア語"
 
-#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
-#: gtksourceview/gtksourceencoding.c:219
+#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:212
 msgid "Chinese Traditional"
 msgstr "繁体字中国語"
 
-#: gtksourceview/gtksourceencoding.c:207
+#: gtksourceview/gtksourceencoding.c:200
 msgid "Cyrillic/Russian"
 msgstr "キリル文字/ロシア語"
 
-#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:212
-#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:244
-#: gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
+#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:237
+#: gtksourceview/gtksourceencoding.c:252
 msgid "Japanese"
 msgstr "日本語"
 
-#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:246
-#: gtksourceview/gtksourceencoding.c:250 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:239
+#: gtksourceview/gtksourceencoding.c:243 gtksourceview/gtksourceencoding.c:258
 msgid "Korean"
 msgstr "韓国語"
 
-#: gtksourceview/gtksourceencoding.c:222 gtksourceview/gtksourceencoding.c:224
-#: gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:217
+#: gtksourceview/gtksourceencoding.c:219
 msgid "Chinese Simplified"
 msgstr "簡体字中国語"
 
-#: gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:221
 msgid "Georgian"
 msgstr "グルジア語"
 
-#: gtksourceview/gtksourceencoding.c:239 gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:232 gtksourceview/gtksourceencoding.c:273
 msgid "Hebrew"
 msgstr "ヘブライ語"
 
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:249
 msgid "Cyrillic/Ukrainian"
 msgstr "キリル文字/ウクライナ語"
 
-#: gtksourceview/gtksourceencoding.c:261 gtksourceview/gtksourceencoding.c:267
-#: gtksourceview/gtksourceencoding.c:286
+#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:260
+#: gtksourceview/gtksourceencoding.c:279
 msgid "Vietnamese"
 msgstr "ベトナム語"
 
-#: gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:256
 msgid "Thai"
 msgstr "タイ語"
 
-#: gtksourceview/gtksourceencoding.c:497
+#: gtksourceview/gtksourceencoding.c:485
 msgid "Unknown"
 msgstr "不明"
 
@@ -614,45 +639,44 @@ msgstr "不明"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:641
+#: gtksourceview/gtksourceencoding.c:628
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-2022-JP', 'CP932', 'EUC-JP-MS']"
 
-#: gtksourceview/gtksourcefileloader.c:513
+#: gtksourceview/gtksourcefileloader.c:502
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
 msgstr "文字エンコーディング変換エラーにより、代替文字の使用が必要でした。"
 
-#: gtksourceview/gtksourcefileloader.c:620
+#: gtksourceview/gtksourcefileloader.c:617
 msgid "File too big."
 msgstr "ファイルが大きすぎます。"
 
-#: gtksourceview/gtksourcefileloader.c:774
+#: gtksourceview/gtksourcefileloader.c:772
 msgid "Not a regular file."
 msgstr "通常のファイルではありません。"
 
-#: gtksourceview/gtksourcefilesaver.c:972
+#: gtksourceview/gtksourcefilesaver.c:962
 msgid "The file is externally modified."
 msgstr "ファイルが外部で変更されました。"
 
-#: gtksourceview/gtksourcefilesaver.c:1428
+#: gtksourceview/gtksourcefilesaver.c:1402
 msgid "The buffer contains invalid characters."
 msgstr "バッファに不正な文字が含まれています。"
 
 #. *
-#. * SECTION:language
-#. * @Short_description: Represents a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
+#. * GtkSourceLanguage:
 #. *
-#. * A #GtkSourceLanguage represents a programming or markup language, affecting
-#. * syntax highlighting and [context classes][context-classes].
+#. * Represents a syntax highlighted language.
 #. *
-#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
-#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#. * A `GtkSourceLanguage` represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes](./class.Buffer.html#context-classes).
+#. *
+#. * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
+#. * [method@Buffer.set_language] to apply it to a [class@Buffer].
 #.
-#: gtksourceview/gtksourcelanguage.c:53
+#: gtksourceview/gtksourcelanguage.c:52
 msgid "Others"
 msgstr "その他"
 
@@ -671,37 +695,98 @@ msgid "using \\C is not supported in language definitions"
 msgstr "言語定義では \\C 言語の使用をサポートしていません"
 
 #. TODO: have a ChooserDialog?
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:181
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:178
 msgid "Select a Style"
 msgstr "スタイルの選択"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:182
 msgid "_Cancel"
 msgstr "キャンセル(_C)"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:186
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:183
 msgid "_Select"
 msgstr "選択(_S)"
 
-#: gtksourceview/gtksourceview.c:1774
+#: gtksourceview/gtksourceview.c:1804
 msgid "All _Upper Case"
 msgstr "すべて大文字(_U)"
 
-#: gtksourceview/gtksourceview.c:1778
+#: gtksourceview/gtksourceview.c:1808
 msgid "All _Lower Case"
 msgstr "すべて小文字(_L)"
 
-#: gtksourceview/gtksourceview.c:1782
+#: gtksourceview/gtksourceview.c:1812
 msgid "_Invert Case"
 msgstr "大文字/小文字を入れ替え(_I)"
 
-#: gtksourceview/gtksourceview.c:1786
+#: gtksourceview/gtksourceview.c:1816
 msgid "_Title Case"
 msgstr "タイトルケース(_T)"
 
-#: gtksourceview/gtksourceview.c:1790
+#: gtksourceview/gtksourceview.c:1820
 msgid "C_hange Case"
 msgstr "大文字/小文字を変更(_H)"
+
+#: gtksourceview/implregex.c:609
+msgid "hexadecimal digit or “}” expected"
+msgstr ""
+
+#: gtksourceview/implregex.c:625
+msgid "hexadecimal digit expected"
+msgstr ""
+
+#: gtksourceview/implregex.c:665
+msgid "missing “<” in symbolic reference"
+msgstr ""
+
+#: gtksourceview/implregex.c:674
+msgid "unfinished symbolic reference"
+msgstr ""
+
+#: gtksourceview/implregex.c:681
+msgid "zero-length symbolic reference"
+msgstr ""
+
+#: gtksourceview/implregex.c:692
+msgid "digit expected"
+msgstr ""
+
+#: gtksourceview/implregex.c:710
+msgid "illegal symbolic reference"
+msgstr ""
+
+#: gtksourceview/implregex.c:773
+msgid "stray final “\\”"
+msgstr ""
+
+#: gtksourceview/implregex.c:777
+msgid "unknown escape sequence"
+msgstr ""
+
+#: gtksourceview/implregex.c:787
+#, c-format
+msgid "Error while parsing replacement text “%s” at char %lu: %s"
+msgstr ""
+
+#: gtksourceview/vim/gtksourceviminsert.c:490
+msgid "-- INSERT --"
+msgstr ""
+
+#: gtksourceview/vim/gtksourcevimreplace.c:125
+msgid "-- REPLACE --"
+msgstr ""
+
+#: gtksourceview/vim/gtksourcevimvisual.c:299
+msgid "-- VISUAL --"
+msgstr ""
+
+#: gtksourceview/vim/gtksourcevimvisual.c:302
+msgid "-- VISUAL LINE --"
+msgstr ""
+
+#: gtksourceview/vim/gtksourcevimvisual.c:305
+msgid "-- VISUAL BLOCK --"
+msgstr ""
 
 #~ msgid "All"
 #~ msgstr "すべて"
