@@ -29,6 +29,8 @@
 
 #include "gtksourcetypes.h"
 
+G_BEGIN_DECLS
+
 #define GTK_SOURCE_TYPE_STYLE_SCHEME_PREVIEW (gtk_source_style_scheme_preview_get_type())
 
 GTK_SOURCE_AVAILABLE_IN_5_4
