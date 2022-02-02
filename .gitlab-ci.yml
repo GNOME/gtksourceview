@@ -25,7 +25,7 @@ reference:
     stage: docs
     needs: []
     variables:
-        MESON_FLAGS: "-Dwerror=true --buildtype=release -Dgtk:media-gstreamer=disabled -Dgtk:broadway-backend=false -Dgtk:demos=false -Dgtk:build-examples=false -Dgtk:build-tests=false -Dgtk:werror=false -Dlibsass:werror=false -Dsass:werror=false -Dlibadwaita:werror=false"
+        MESON_FLAGS: "-Dwerror=true --buildtype=release -Dgtk:media-gstreamer=disabled -Dgtk:broadway-backend=false -Dgtk:demos=false -Dgtk:build-examples=false -Dgtk:build-tests=false -Dgtk:werror=false -Dlibsass:werror=false -Dsassc:werror=false -Dlibadwaita:werror=false"
     script:
         - sudo dnf -y install git libpng-devel libjpeg-turbo-devel expat-devel
         - mkdir -p pfx/
