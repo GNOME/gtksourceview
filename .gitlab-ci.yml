@@ -27,7 +27,7 @@ reference:
     variables:
         MESON_FLAGS: "-Dwerror=true --buildtype=release"
     script:
-        - dnf -y install git
+        - sudo dnf -y install git
         - mkdir -p pfx/
         - meson ${MESON_FLAGS} --prefix=${PWD}/pfx -Dgtk_doc=true _build
         - ninja -C _build install
