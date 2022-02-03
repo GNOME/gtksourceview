@@ -24,6 +24,7 @@
 #include "gtksourcevimjumplist.h"
 
 #define MAX_JUMPS 100
+#define JUMP_INIT {{0}}
 
 typedef struct
 {
@@ -193,7 +194,7 @@ gtk_source_vim_jumplist_previous (GtkSourceVimJumplist *self,
 {
 	GtkSourceBuffer *buffer;
 	GtkTextIter before;
-	Jump current = {0};
+	Jump current = JUMP_INIT;
 	gboolean ret = FALSE;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_VIM_JUMPLIST (self), FALSE);
@@ -229,7 +230,7 @@ gtk_source_vim_jumplist_next (GtkSourceVimJumplist *self,
 {
 	GtkSourceBuffer *buffer;
 	GtkTextIter before;
-	Jump current = {0};
+	Jump current = JUMP_INIT;
 	gboolean ret = FALSE;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_VIM_JUMPLIST (self), FALSE);
