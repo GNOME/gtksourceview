@@ -343,10 +343,4 @@ summary({
   }, bool_yn: true,
 )
 
-if meson.version().version_compare('>=0.57.0')
-  gnome.post_install(
-    gtk_update_icon_cache: true,
-  )
-else
-  meson.add_install_script('meson_postinstall.py')
-endif
+gnome.post_install(gtk_update_icon_cache: true)
