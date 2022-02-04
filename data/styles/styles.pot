@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-10-11 23:52+0300\n"
+"POT-Creation-Date: 2022-02-04 20:15+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,17 +16,13 @@ msgstr ""
 
 #. (itstool) path: style-scheme/_description
 #: Adwaita-dark.xml:22
-msgid "A dark color scheme matching GTK's default theme"
+#: Adwaita.xml:22
+msgid "An style scheme for Adwaita"
 msgstr ""
 
 #. (itstool) path: Adwaita.xml/style-scheme@_name
 #: Adwaita.xml:20
 msgid "Adwaita"
-msgstr ""
-
-#. (itstool) path: style-scheme/_description
-#: Adwaita.xml:22
-msgid "A color scheme matching GTK's default theme"
 msgstr ""
 
 #. (itstool) path: classic-dark.xml/style-scheme@_name
@@ -49,14 +45,20 @@ msgstr ""
 msgid "Classic color scheme"
 msgstr ""
 
-#. (itstool) path: cobalt.xml/style-scheme@_name
-#: cobalt.xml:25
-msgid "Cobalt"
+#. (itstool) path: cobalt-light.xml/style-scheme@_name
+#: cobalt-light.xml:20
+msgid "Cobalt Light"
 msgstr ""
 
 #. (itstool) path: style-scheme/_description
+#: cobalt-light.xml:22
 #: cobalt.xml:27
 msgid "Blue based color scheme"
+msgstr ""
+
+#. (itstool) path: cobalt.xml/style-scheme@_name
+#: cobalt.xml:25
+msgid "Cobalt"
 msgstr ""
 
 #. (itstool) path: style-scheme/_description
@@ -70,12 +72,12 @@ msgid "Color scheme used in the Kate text editor"
 msgstr ""
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:24
+#: oblivion.xml:23
 msgid "Oblivion"
 msgstr ""
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:27
+#: oblivion.xml:25
 msgid "Dark color scheme using the Tango color palette"
 msgstr ""
 
