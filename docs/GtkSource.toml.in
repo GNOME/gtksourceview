@@ -52,6 +52,9 @@ name = "basic"
 show_index_summary = true
 show_class_hierarchy = true
 
+[source-location]
+base_url = "https://gitlab.gnome.org/GNOME/gtksourceview/-/blob/master/"
+
 [extra]
 # The same order will be used when generating the index
 content_files = [
