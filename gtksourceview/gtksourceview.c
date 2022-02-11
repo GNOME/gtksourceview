@@ -1410,6 +1410,8 @@ gtk_source_view_init (GtkSourceView *view)
 	GtkEventController *key;
 	GtkDropTarget *dest;
 
+	gtk_widget_add_css_class (GTK_WIDGET (view), "GtkSourceView");
+
 	priv->tab_width = DEFAULT_TAB_WIDTH;
 	priv->tabs_set = FALSE;
 	priv->indent_width = -1;

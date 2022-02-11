@@ -167,6 +167,11 @@ GtkSourceStyleSchemePreview.selected image {
   margin: 6px;
 }
 
+/* Ensure we don't double draw backgrounds */
+textview.GtkSourceView text {
+  background: transparent;
+}
+
 textview.GtkSourceMap {
   font-size: 1.75pt;
   line-height: 4px;
