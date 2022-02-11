@@ -250,6 +250,7 @@ else
     '-Wmissing-noreturn',
     '-Wnested-externs',
     '-Wno-cast-function-type',
+    '-Wno-dangling-pointer',
     '-Wno-missing-field-initializers',
     '-Wno-sign-compare',
     '-Wno-unused-parameter',
