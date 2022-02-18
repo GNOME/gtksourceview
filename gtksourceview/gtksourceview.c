@@ -2571,12 +2571,10 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 
 	x = priv->cached_right_margin_pos + gtk_text_view_get_left_margin (text_view);
 
-	gtk_snapshot_save (snapshot);
-
 	gtk_snapshot_append_color (snapshot,
 	                           &priv->right_margin_line_color,
-	                           &GRAPHENE_RECT_INIT (x,
-	                                                visible_rect.y,
+	                           &GRAPHENE_RECT_INIT (x - visible_rect.x,
+	                                                0,
 	                                                1,
 	                                                visible_rect.height));
 
@@ -2584,13 +2582,11 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 	{
 		gtk_snapshot_append_color (snapshot,
 		                           &priv->right_margin_overlay_color,
-		                           &GRAPHENE_RECT_INIT (x + 1,
-		                                                visible_rect.y,
-		                                                visible_rect.x + visible_rect.width,
+		                           &GRAPHENE_RECT_INIT (x - visible_rect.x + 1,
+								0,
+		                                                visible_rect.width,
 		                                                visible_rect.height));
 	}
-
-	gtk_snapshot_restore (snapshot);
 
 	GTK_SOURCE_PROFILER_END_MARK ("GtkSourceView::paint-right-margin", NULL);
 }
@@ -2707,22 +2703,10 @@ gtk_source_view_snapshot_layer (GtkTextView      *text_view,
 
 	if (layer == GTK_TEXT_VIEW_LAYER_BELOW_TEXT)
 	{
-		/* Draw the right margin vertical line + background overlay.
-		 * This is done below text so that we can avoid compositing RGBA
-		 * values over the text and other content.
-		 *
-		 * One change by doing this here instead of above-text is that
-		 * the current line highlight can draw over the right margin
-		 * position, but that is a small behavior change compared to
-		 * the additional perf boost avoiding the composite.
-		 */
-		if (priv->show_right_margin)
-		{
-			gtk_source_view_paint_right_margin (view, snapshot);
-		}
-
 		/* Now draw the background pattern, which might draw above the
-		 * right-margin area for additional texture.
+		 * right-margin area for additional texture. We can't really optimize
+		 * these too much since they move every scroll. Otherwise we'd move
+		 * them into the snapshot of the GtkSourceView rather than a layer.
 		 */
 		if (priv->background_pattern == GTK_SOURCE_BACKGROUND_PATTERN_TYPE_GRID &&
 		    priv->background_pattern_color_set)
@@ -2754,10 +2738,34 @@ static void
 gtk_source_view_snapshot (GtkWidget   *widget,
                           GtkSnapshot *snapshot)
 {
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (GTK_SOURCE_VIEW (widget));
 	GdkRectangle visible_rect;
 
 	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (widget), &visible_rect);
 	gtk_source_view_ensure_redrawn_rect_is_highlighted (GTK_SOURCE_VIEW (widget), &visible_rect);
+
+	/* Draw the right margin vertical line + background overlay. This is
+	 * drawn from the GtkSourceView.snapshot() vfunc because that is the
+	 * one place we can append the rectangular regions without a GSK
+	 * translation transform being applied. This is very important from a
+	 * performance perspective because once a transform is applied GSK will
+	 * no longer elide the large rectangular regions meaning we draw many
+	 * pixels multiple times.
+	 *
+	 * We already potentially draw over the right-margin twice (once for
+	 * the textview background and once for the right-margin) so we
+	 * additionally disable "textview text" from our high-priority CSS to
+	 * save a third rectangular region draw. These framebuffer damages are
+	 * very important to avoid from a scrolling performance perspective.
+	 *
+	 * Of course, this is all subject to change in GTK if we can manage to
+	 * track transforms across gtk_snapshot_append_*() calls or elide
+	 * rectangular regions when appending newer regions.
+	 */
+	if (priv->show_right_margin)
+	{
+		gtk_source_view_paint_right_margin (GTK_SOURCE_VIEW (widget), snapshot);
+	}
 
 	GTK_WIDGET_CLASS (gtk_source_view_parent_class)->snapshot (widget, snapshot);
 }
