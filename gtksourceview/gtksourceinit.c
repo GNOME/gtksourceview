@@ -220,6 +220,21 @@ gtk_source_init (void)
 			                                            GTK_STYLE_PROVIDER_PRIORITY_APPLICATION-1);
 			g_clear_object (&css_provider);
 
+			/* We need an additional provider that ensures that the application cannot set
+			 * a background for "textview text" which would end up drawing the background
+			 * twice for textview, drawing over our right-margin. See gtksourceview.c for
+			 * details on why we draw the right-margin from gtk_source_view_snapshot().
+			 */
+			css_provider = gtk_css_provider_new ();
+			gtk_css_provider_load_from_data (css_provider,
+			                                 "textview.GtkSourceView text {background: transparent;}\n"
+			                                 "textview.GtkSourceMap text {background: transparent;}\n",
+			                                 -1);
+			gtk_style_context_add_provider_for_display (display,
+			                                            GTK_STYLE_PROVIDER (css_provider),
+			                                            G_MAXINT);
+			g_clear_object (&css_provider);
+
 			/* Add path to internal scalable icons */
 			icon_theme = gtk_icon_theme_get_for_display (display);
 			gtk_icon_theme_add_search_path (icon_theme, HICOLORDIR);
