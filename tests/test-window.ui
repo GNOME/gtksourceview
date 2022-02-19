@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <template class="TestWindow" parent="GtkWindow">
+    <child type="titlebar">
+      <object class="GtkHeaderBar">
+        <child type="title">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="valign">center</property>
+            <child>
+              <object class="GtkLabel" id="title">
+                <property name="label">filename.c</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="subtitle">
+                <property name="label">document information</property>
+                <attributes>
+                  <attribute name="scale" value="0.8333"/>
+                  <attribute name="foreground-alpha" value="32768"/>
+                </attributes>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="start">
+          <object class="GtkMenuButton">
+            <property name="label">Style</property>
+            <property name="popover">
+              <object class="GtkPopover">
+                <child>
+                  <object class="GtkScrolledWindow">
+                    <property name="propagate-natural-width">true</property>
+                    <property name="propagate-natural-height">true</property>
+                    <property name="min-content-width">200</property>
+                    <property name="max-content-height">600</property>
+                    <property name="hscrollbar-policy">never</property>
+                    <child>
+                      <object class="GtkViewport">
+                        <property name="scroll-to-focus">true</property>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkLabel">
+                                <property name="label">Style Scheme</property>
+                                <property name="margin-top">6</property>
+                                <property name="halign">center</property>
+                                <attributes>
+                                  <attribute name="weight" value="bold"/>
+                                </attributes>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkGrid" id="style_grid">
+                                <property name="margin-top">12</property>
+                                <property name="margin-bottom">12</property>
+                                <property name="margin-start">12</property>
+                                <property name="margin-end">12</property>
+                                <property name="column-spacing">6</property>
+                                <property name="row-spacing">6</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child type="start">
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <style>
+              <class name="linked"/>
+            </style>
+            <child>
+              <object class="GtkButton">
+                <property name="tooltip-text">Move to previous string toggle</property>
+                <property name="icon-name">go-previous-symbolic</property>
+                <property name="action-name">win.previous-string</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="tooltip-text">Move to next string toggle</property>
+                <property name="icon-name">go-next-symbolic</property>
+                <property name="action-name">win.next-string</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkMenuButton">
+            <property name="primary">true</property>
+            <property name="icon-name">open-menu-symbolic</property>
+            <property name="menu-model">primary_menu</property>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkMenuButton">
+            <property name="primary">true</property>
+            <property name="icon-name">document-properties-symbolic</property>
+            <property name="menu-model">properties_menu</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">horizontal</property>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="hexpand">true</property>
+            <property name="vexpand">true</property>
+            <child>
+              <object class="GtkSourceView" id="view">
+                <property name="monospace">true</property>
+                <property name="show-line-numbers">true</property>
+                <property name="left-margin">6</property>
+                <property name="top-margin">6</property>
+                <property name="buffer">buffer</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkSourceMap" id="map">
+            <property name="view">view</property>
+            <property name="left-margin">6</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label">Open</attribute>
+        <attribute name="action">win.open</attribute>
+        <attribute name="accel">&lt;ctrl&gt;o</attribute>
+      </item>
+      <item>
+        <attribute name="label">Save</attribute>
+        <attribute name="action">win.save</attribute>
+        <attribute name="accel">&lt;ctrl&gt;s</attribute>
+      </item>
+      <item>
+        <attribute name="label">Save</attribute>
+        <attribute name="action">win.save-as</attribute>
+        <attribute name="accel">&lt;ctrl&gt;&lt;shift&gt;s</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label">Print</attribute>
+        <attribute name="action">win.print</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label">Fullscreen</attribute>
+        <attribute name="action">win.fullscreen</attribute>
+        <attribute name="accel">F11</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label">Close</attribute>
+        <attribute name="action">window.close</attribute>
+        <attribute name="accel">&lt;ctrl&gt;w</attribute>
+      </item>
+    </section>
+  </menu>
+  <menu id="properties_menu">
+    <section>
+      <attribute name="label">Show</attribute>
+      <item>
+        <attribute name="label">Line Marks</attribute>
+        <attribute name="action">view.show-line-marks</attribute>
+      </item>
+      <item>
+        <attribute name="label">Line Numbers</attribute>
+        <attribute name="action">view.show-line-numbers</attribute>
+      </item>
+      <item>
+        <attribute name="label">Spaces</attribute>
+        <attribute name="action">view.show-spaces</attribute>
+      </item>
+      <item>
+        <attribute name="label">Overview Map</attribute>
+        <attribute name="action">view.show-map</attribute>
+      </item>
+    </section>
+    <section>
+      <attribute name="label">Behavior</attribute>
+      <item>
+        <attribute name="label">Wrap Text</attribute>
+        <attribute name="action">win.wrap-text</attribute>
+      </item>
+      <item>
+        <attribute name="label">Smart Backspace</attribute>
+        <attribute name="action">win.smart-backspace</attribute>
+      </item>
+      <submenu>
+        <attribute name="label">Smart Home &amp; End</attribute>
+        <section>
+          <item>
+            <attribute name="label">Disabled</attribute>
+            <attribute name="action">win.smart-home-end</attribute>
+            <attribute name="target" type='s'>'disabled'</attribute>
+          </item>
+          <item>
+            <attribute name="label">Before</attribute>
+            <attribute name="action">win.smart-home-end</attribute>
+            <attribute name="target" type='s'>'before'</attribute>
+          </item>
+          <item>
+            <attribute name="label">After</attribute>
+            <attribute name="action">win.smart-home-end</attribute>
+            <attribute name="target" type='s'>'after'</attribute>
+          </item>
+          <item>
+            <attribute name="label">Always</attribute>
+            <attribute name="action">win.smart-home-end</attribute>
+            <attribute name="target" type='s'>'always'</attribute>
+          </item>
+        </section>
+      </submenu>
+      <item>
+        <attribute name="label">Vim Emulation</attribute>
+        <attribute name="action">view.vim</attribute>
+      </item>
+      <item>
+        <attribute name="label">Snippets</attribute>
+        <attribute name="action">view.enable-snippets</attribute>
+      </item>
+      <item>
+        <attribute name="label">Hover Assistants</attribute>
+        <attribute name="action">view.hoverers</attribute>
+      </item>
+      <item>
+        <attribute name="label">Completion</attribute>
+        <attribute name="action">view.completion</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label">Right Margin</attribute>
+        <attribute name="action">view.show-right-margin</attribute>
+      </item>
+      <submenu>
+        <attribute name="label">Right Margin Position</attribute>
+        <section>
+          <item>
+            <attribute name="label">72</attribute>
+            <attribute name="action">view.right-margin-position</attribute>
+            <attribute name="target" type="u">72</attribute>
+          </item>
+          <item>
+            <attribute name="label">80</attribute>
+            <attribute name="action">view.right-margin-position</attribute>
+            <attribute name="target" type="u">80</attribute>
+          </item>
+          <item>
+            <attribute name="label">100</attribute>
+            <attribute name="action">view.right-margin-position</attribute>
+            <attribute name="target" type="u">100</attribute>
+          </item>
+          <item>
+            <attribute name="label">120</attribute>
+            <attribute name="action">view.right-margin-position</attribute>
+            <attribute name="target" type="u">120</attribute>
+          </item>
+        </section>
+      </submenu>
+    </section>
+    <section>
+      <attribute name="label">Highlight</attribute>
+      <item>
+        <attribute name="label">Current Line</attribute>
+        <attribute name="action">view.highlight-current-line</attribute>
+      </item>
+      <item>
+        <attribute name="label">Matching Brackets</attribute>
+        <attribute name="action">buffer.highlight-matching-brackets</attribute>
+      </item>
+      <item>
+        <attribute name="label">Syntax</attribute>
+        <attribute name="action">buffer.highlight-syntax</attribute>
+      </item>
+      <submenu>
+        <attribute name="label">Language</attribute>
+      </submenu>
+    </section>
+    <section>
+      <attribute name="label">Indentation</attribute>
+      <item>
+        <attribute name="label">Automatic Indentation</attribute>
+        <attribute name="action">view.auto-indent</attribute>
+      </item>
+      <item>
+        <attribute name="label">Indent with Spaces</attribute>
+        <attribute name="action">view.insert-spaces-instead-of-tabs</attribute>
+      </item>
+      <submenu>
+        <attribute name="label">Tab Width</attribute>
+        <item>
+          <attribute name="label">2</attribute>
+          <attribute name="action">view.tab-width</attribute>
+          <attribute name="target" type="u">2</attribute>
+        </item>
+        <item>
+          <attribute name="label">3</attribute>
+          <attribute name="action">view.tab-width</attribute>
+          <attribute name="target" type="u">3</attribute>
+        </item>
+        <item>
+          <attribute name="label">4</attribute>
+          <attribute name="action">view.tab-width</attribute>
+          <attribute name="target" type="u">4</attribute>
+        </item>
+        <item>
+          <attribute name="label">5</attribute>
+          <attribute name="action">view.tab-width</attribute>
+          <attribute name="target" type="u">5</attribute>
+        </item>
+        <item>
+          <attribute name="label">6</attribute>
+          <attribute name="action">view.tab-width</attribute>
+          <attribute name="target" type="u">6</attribute>
+        </item>
+        <item>
+          <attribute name="label">7</attribute>
+          <attribute name="action">view.tab-width</attribute>
+          <attribute name="target" type="u">7</attribute>
+        </item>
+        <item>
+          <attribute name="label">8</attribute>
+          <attribute name="action">view.tab-width</attribute>
+          <attribute name="target" type="u">8</attribute>
+        </item>
+      </submenu>
+      <submenu>
+        <attribute name="label">Indentation Width</attribute>
+        <item>
+          <attribute name="label">Use Tab Width</attribute>
+          <attribute name="action">view.indent-width</attribute>
+          <attribute name="target" type="i">-1</attribute>
+        </item>
+        <item>
+          <attribute name="label">2</attribute>
+          <attribute name="action">view.indent-width</attribute>
+          <attribute name="target" type="i">2</attribute>
+        </item>
+        <item>
+          <attribute name="label">3</attribute>
+          <attribute name="action">view.indent-width</attribute>
+          <attribute name="target" type="i">3</attribute>
+        </item>
+        <item>
+          <attribute name="label">4</attribute>
+          <attribute name="action">view.indent-width</attribute>
+          <attribute name="target" type="i">4</attribute>
+        </item>
+        <item>
+          <attribute name="label">5</attribute>
+          <attribute name="action">view.indent-width</attribute>
+          <attribute name="target" type="i">5</attribute>
+        </item>
+        <item>
+          <attribute name="label">6</attribute>
+          <attribute name="action">view.indent-width</attribute>
+          <attribute name="target" type="i">6</attribute>
+        </item>
+        <item>
+          <attribute name="label">7</attribute>
+          <attribute name="action">view.indent-width</attribute>
+          <attribute name="target" type="i">7</attribute>
+        </item>
+        <item>
+          <attribute name="label">8</attribute>
+          <attribute name="action">view.indent-width</attribute>
+          <attribute name="target" type="i">8</attribute>
+        </item>
+      </submenu>
+    </section>
+  </menu>
+  <object class="GtkSourceBuffer" id="buffer">
+  </object>
+</interface>

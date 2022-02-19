@@ -22,11 +22,21 @@
 #include <string.h>
 #include <gtksourceview/gtksource.h>
 
+#define TEST_TYPE_WINDOW (test_window_get_type())
 #define TEST_TYPE_WIDGET (test_widget_get_type())
 #define TEST_TYPE_HOVER_PROVIDER (test_hover_provider_get_type())
 
+G_DECLARE_FINAL_TYPE (TestWindow, test_window, TEST, WINDOW, GtkWindow)
 G_DECLARE_FINAL_TYPE (TestWidget, test_widget, TEST, WIDGET, GtkGrid)
 G_DECLARE_FINAL_TYPE (TestHoverProvider, test_hover_provider, TEST, HOVER_PROVIDER, GObject)
+
+struct _TestWindow
+{
+	GtkWindow        parent_instance;
+	GtkSourceBuffer *buffer;
+	GtkSourceView   *view;
+	GtkGrid         *style_grid;
+};
 
 struct _TestWidget
 {
@@ -60,6 +70,7 @@ struct _TestHoverProvider
 
 static void hover_provider_iface_init (GtkSourceHoverProviderInterface *iface);
 
+G_DEFINE_TYPE (TestWindow, test_window, GTK_TYPE_WINDOW)
 G_DEFINE_TYPE (TestWidget, test_widget, GTK_TYPE_GRID)
 G_DEFINE_TYPE_WITH_CODE (TestHoverProvider, test_hover_provider, G_TYPE_OBJECT,
 			 G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_HOVER_PROVIDER, hover_provider_iface_init))
@@ -1267,6 +1278,147 @@ test_hover_provider_init (TestHoverProvider *self)
 }
 
 static void
+load_previews (TestWindow *self)
+{
+	GtkSourceStyleSchemeManager *manager = gtk_source_style_scheme_manager_get_default ();
+	const char * const *scheme_ids = gtk_source_style_scheme_manager_get_scheme_ids (manager);
+
+	for (guint i = 0; scheme_ids[i]; i++)
+	{
+		GtkSourceStyleScheme *scheme = gtk_source_style_scheme_manager_get_scheme (manager, scheme_ids[i]);
+		GtkWidget *preview = gtk_source_style_scheme_preview_new (scheme);
+
+		gtk_actionable_set_action_name (GTK_ACTIONABLE (preview), "buffer.style-scheme");
+		gtk_actionable_set_action_target (GTK_ACTIONABLE (preview), "s", scheme_ids[i]);
+		gtk_grid_attach (self->style_grid, preview, i % 2, i / 2, 1, 1);
+	}
+}
+
+static void
+set_style_scheme_cb (GSimpleAction *action,
+		     GVariant      *param,
+		     gpointer       user_data)
+{
+	TestWindow *self = user_data;
+	GtkSourceStyleSchemeManager *manager;
+	GtkSourceStyleScheme *style_scheme;
+	const char *name;
+
+	if (!g_variant_is_of_type (param, G_VARIANT_TYPE_STRING))
+		return;
+
+	name = g_variant_get_string (param, NULL);
+	manager = gtk_source_style_scheme_manager_get_default ();
+	style_scheme = gtk_source_style_scheme_manager_get_scheme (manager, name);
+	gtk_source_buffer_set_style_scheme (self->buffer, style_scheme);
+
+	for (GtkWidget *child = gtk_widget_get_first_child (GTK_WIDGET (self->style_grid));
+	     child;
+	     child = gtk_widget_get_next_sibling (child))
+	{
+		GtkSourceStyleSchemePreview *preview = GTK_SOURCE_STYLE_SCHEME_PREVIEW (child);
+
+		if (style_scheme == gtk_source_style_scheme_preview_get_scheme (preview))
+			gtk_source_style_scheme_preview_set_selected (preview, TRUE);
+		else
+			gtk_source_style_scheme_preview_set_selected (preview, FALSE);
+	}
+
+	g_simple_action_set_state (action, param);
+}
+
+static void
+action_fullscreen (GtkWidget  *widget,
+		   const char *action_name,
+		   GVariant   *param)
+{
+	if (gtk_window_is_fullscreen (GTK_WINDOW (widget)))
+		gtk_window_unfullscreen (GTK_WINDOW (widget));
+	else
+		gtk_window_fullscreen (GTK_WINDOW (widget));
+}
+
+static void
+test_window_class_init (TestWindowClass *klass)
+{
+	GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+	gtk_widget_class_set_template_from_resource (widget_class,
+	                                             "/org/gnome/gtksourceview/tests/ui/test-window.ui");
+	gtk_widget_class_bind_template_child (widget_class, TestWindow, buffer);
+	gtk_widget_class_bind_template_child (widget_class, TestWindow, view);
+	gtk_widget_class_bind_template_child (widget_class, TestWindow, style_grid);
+
+	gtk_widget_class_install_action (widget_class, "win.fullscreen", NULL, action_fullscreen);
+
+	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_F11, 0, "win.fullscreen", NULL);
+	gtk_widget_class_add_binding_action (widget_class, GDK_KEY_w, GDK_CONTROL_MASK, "window.close", NULL);
+}
+
+static void
+test_window_init (TestWindow *self)
+{
+	static const GActionEntry buffer_actions[] = {
+		{ "style-scheme", NULL, "s", "''", set_style_scheme_cb },
+	};
+	static const char * const buffer_properties[] = {
+		"highlight-matching-brackets",
+		"highlight-syntax",
+	};
+	static const char * const view_properties[] = {
+		"auto-indent",
+		"indent-width",
+		"tab-width",
+		"insert-spaces-instead-of-tabs",
+		"enable-snippets",
+		"highlight-current-line",
+		"right-margin-position",
+		"show-line-marks",
+		"show-line-numbers",
+		"show-right-margin",
+		"smart-backspace",
+		"smart-home-end",
+	};
+	GSimpleActionGroup *group = NULL;
+
+	gtk_widget_init_template (GTK_WIDGET (self));
+
+	load_previews (self);
+
+	group = g_simple_action_group_new ();
+	g_action_map_add_action_entries (G_ACTION_MAP (group),
+	                                 buffer_actions,
+	                                 G_N_ELEMENTS (buffer_actions),
+	                                 self);
+	gtk_widget_insert_action_group (GTK_WIDGET (self),
+	                                "buffer",
+	                                G_ACTION_GROUP (group));
+	for (guint i = 0; i < G_N_ELEMENTS (buffer_properties); i++)
+	{
+		GPropertyAction *property;
+
+		property = g_property_action_new (buffer_properties[i], self->buffer, buffer_properties[i]);
+		g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (property));
+		g_clear_object (&property);
+	}
+	g_clear_object (&group);
+
+	group = g_simple_action_group_new ();
+	gtk_widget_insert_action_group (GTK_WIDGET (self),
+	                                "view",
+	                                G_ACTION_GROUP (group));
+	for (guint i = 0; i < G_N_ELEMENTS (view_properties); i++)
+	{
+		GPropertyAction *property;
+
+		property = g_property_action_new (view_properties[i], self->view, view_properties[i]);
+		g_action_map_add_action (G_ACTION_MAP (group), G_ACTION (property));
+		g_clear_object (&property);
+	}
+	g_clear_object (&group);
+}
+
+static void
 setup_search_paths (void)
 {
 	GtkSourceSnippetManager *snippets;
@@ -1305,14 +1457,16 @@ main (int argc, char *argv[])
 	gtk_source_init ();
 	setup_search_paths ();
 
-	window = gtk_window_new ();
-	gtk_window_set_default_size (GTK_WINDOW (window), 900, 600);
-	gtk_window_set_title (GTK_WINDOW (window), "GtkSourceView Test");
+	window = g_object_new (TEST_TYPE_WINDOW,
+	                       "default-width", 900,
+	                       "default-height", 600,
+	                        "title", "GtkSourceView Test Widget",
+	                       NULL);
 
 	g_signal_connect_swapped (window, "destroy", G_CALLBACK (g_main_loop_quit), main_loop);
 
 	test_widget = test_widget_new ();
-	gtk_window_set_child (GTK_WINDOW (window), GTK_WIDGET (test_widget));
+	//gtk_window_set_child (GTK_WINDOW (window), GTK_WIDGET (test_widget));
 
 	gtk_widget_show (window);
 
