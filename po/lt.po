@@ -7,14 +7,14 @@
 # Žygimantas Beručka <zygis@gnome.org>, 2003-2006.
 # Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
 # Vytautas Liuolia <vytautas.liuolia@gmail.com>, 2007.
-# Aurimas Černius <aurisc4@gmail.com>, 2013-2021.
+# Aurimas Černius <aurisc4@gmail.com>, 2013-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-12-08 23:09+0000\n"
-"PO-Revision-Date: 2021-12-14 13:58+0200\n"
+"POT-Creation-Date: 2022-02-18 12:08+0000\n"
+"PO-Revision-Date: 2022-02-20 15:12+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -308,19 +308,15 @@ msgid "Adwaita Dark"
 msgstr "Adwaita tamsi"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.xml:22
-msgid "A dark color scheme matching GTK's default theme"
-msgstr "Tamsi spalvų schema, atitinkanti GTK numatytąją temą"
+#: Adwaita-dark.xml:22 Adwaita.xml:22
+#| msgid "Style scheme search path"
+msgid "An style scheme for Adwaita"
+msgstr "Adwaita stiliaus schema"
 
 #. (itstool) path: Adwaita.xml/style-scheme@_name
 #: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
-
-#. (itstool) path: style-scheme/_description
-#: Adwaita.xml:22
-msgid "A color scheme matching GTK's default theme"
-msgstr "Spalvų schema, atitinkanti GTK numatytąją temą"
 
 #. (itstool) path: classic-dark.xml/style-scheme@_name
 #: classic-dark.xml:22
@@ -342,15 +338,21 @@ msgstr "Klasikinis"
 msgid "Classic color scheme"
 msgstr "Klasikinė spalvų schema"
 
+#. (itstool) path: cobalt-light.xml/style-scheme@_name
+#: cobalt-light.xml:20
+#| msgid "Cobalt"
+msgid "Cobalt Light"
+msgstr "Kobalto šviesi"
+
+#. (itstool) path: style-scheme/_description
+#: cobalt-light.xml:22 cobalt.xml:27
+msgid "Blue based color scheme"
+msgstr "Mėlynos pagrindo spalvų schema"
+
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
 msgid "Cobalt"
 msgstr "Cobalt"
-
-#. (itstool) path: style-scheme/_description
-#: cobalt.xml:27
-msgid "Blue based color scheme"
-msgstr "Mėlynos pagrindo spalvų schema"
 
 #. (itstool) path: style-scheme/_description
 #: kate-dark.xml:24
@@ -363,12 +365,12 @@ msgid "Color scheme used in the Kate text editor"
 msgstr "Kate redaktoriuje naudojama spalvų schema"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:24
+#: oblivion.xml:23
 msgid "Oblivion"
 msgstr "Oblivion"
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:27
+#: oblivion.xml:25
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Tamsi spalvų schema, naudojanti Tango paletę"
 
@@ -641,25 +643,25 @@ msgstr "Nežinoma"
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-13', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:495
+#: gtksourceview/gtksourcefileloader.c:502
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
 msgstr "Kilo klaida konvertuojant koduotę ir teko naudoti atsarginį simbolį."
 
-#: gtksourceview/gtksourcefileloader.c:602
+#: gtksourceview/gtksourcefileloader.c:617
 msgid "File too big."
 msgstr "Failas yra per didelis."
 
-#: gtksourceview/gtksourcefileloader.c:756
+#: gtksourceview/gtksourcefileloader.c:772
 msgid "Not a regular file."
 msgstr "Ne įprastinis failas."
 
-#: gtksourceview/gtksourcefilesaver.c:951
+#: gtksourceview/gtksourcefilesaver.c:962
 msgid "The file is externally modified."
 msgstr "Failas buvo pakeistas išorėje."
 
-#: gtksourceview/gtksourcefilesaver.c:1391
+#: gtksourceview/gtksourcefilesaver.c:1402
 msgid "The buffer contains invalid characters."
 msgstr "Buferyje yra netinkamų simbolių."
 
@@ -705,23 +707,23 @@ msgstr "_Atsisakyti"
 msgid "_Select"
 msgstr "_Pasirinkti"
 
-#: gtksourceview/gtksourceview.c:1801
+#: gtksourceview/gtksourceview.c:1806
 msgid "All _Upper Case"
 msgstr "Viskas _didžiosiomis"
 
-#: gtksourceview/gtksourceview.c:1805
+#: gtksourceview/gtksourceview.c:1810
 msgid "All _Lower Case"
 msgstr "Viskas _mažosiomis"
 
-#: gtksourceview/gtksourceview.c:1809
+#: gtksourceview/gtksourceview.c:1814
 msgid "_Invert Case"
 msgstr "_Invertuoti raidžių registrą"
 
-#: gtksourceview/gtksourceview.c:1813
+#: gtksourceview/gtksourceview.c:1818
 msgid "_Title Case"
 msgstr "_Pavadinimo registras"
 
-#: gtksourceview/gtksourceview.c:1817
+#: gtksourceview/gtksourceview.c:1822
 msgid "C_hange Case"
 msgstr "Pa_keisti registrą"
 
@@ -766,11 +768,11 @@ msgstr "nežinoma pakaitos seka"
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Klaida analizuojant pakeitimo tekstą „%s“ ties simboliu %lu: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:481
+#: gtksourceview/vim/gtksourceviminsert.c:490
 msgid "-- INSERT --"
 msgstr "-- ĮTERPTI --"
 
-#: gtksourceview/vim/gtksourcevimreplace.c:129
+#: gtksourceview/vim/gtksourcevimreplace.c:125
 msgid "-- REPLACE --"
 msgstr "-- PAKEISTI --"
 
@@ -785,6 +787,12 @@ msgstr "-- VIZUALI EILUTĖS --"
 #: gtksourceview/vim/gtksourcevimvisual.c:305
 msgid "-- VISUAL BLOCK --"
 msgstr "-- VIZUALI BLOKO --"
+
+#~ msgid "A dark color scheme matching GTK's default theme"
+#~ msgstr "Tamsi spalvų schema, atitinkanti GTK numatytąją temą"
+
+#~ msgid "A color scheme matching GTK's default theme"
+#~ msgstr "Spalvų schema, atitinkanti GTK numatytąją temą"
 
 #~ msgid "All"
 #~ msgstr "Visi"
@@ -2995,9 +3003,6 @@ msgstr "-- VIZUALI BLOKO --"
 
 #~ msgid "Style scheme filename"
 #~ msgstr "Stiliaus schemos failo pavadinimas"
-
-#~ msgid "Style scheme search path"
-#~ msgstr "Vietos, kuriose ieškoti stilių schemų"
 
 #~ msgid "List of directories and files where the style schemes are located"
 #~ msgstr "Aplankų ir failų, kuriuose yra stilių schemos, vieta"
