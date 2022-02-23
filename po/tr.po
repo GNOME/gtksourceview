@@ -8,22 +8,22 @@
 # Necdet Yücel <necdetyucel@gmail.com>, 2014.
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2012, 2014, 2015.
 # Çağatay Yiğit Şahin <cyigitsahin@outlook.com>, 2017.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2018-2021.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2018-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-12-08 23:09+0000\n"
-"PO-Revision-Date: 2021-12-17 17:52+0300\n"
+"POT-Creation-Date: 2022-02-18 12:08+0000\n"
+"PO-Revision-Date: 2022-02-23 13:20+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 41.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-POOTLE-MTIME: 1419203099.000000\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -309,29 +309,22 @@ msgid "Adwaita Dark"
 msgstr "Adwaita Karanlık"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.xml:22
-msgid "A dark color scheme matching GTK's default theme"
-msgstr "GTK'nin öntanımlı temasıyla eşleşen koyu renk şeması"
+#: Adwaita-dark.xml:22 Adwaita.xml:22
+msgid "An style scheme for Adwaita"
+msgstr "Adwaita için biçem şeması"
 
 #. (itstool) path: Adwaita.xml/style-scheme@_name
 #: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
 
-#. (itstool) path: style-scheme/_description
-#: Adwaita.xml:22
-msgid "A color scheme matching GTK's default theme"
-msgstr "GTK'nin öntanımlı temasıyla eşleşen renk şeması"
-
 #. (itstool) path: classic-dark.xml/style-scheme@_name
 #: classic-dark.xml:22
-#| msgid "Classic"
 msgid "Classic Dark"
 msgstr "Klasik Karanlık"
 
 #. (itstool) path: style-scheme/_description
 #: classic-dark.xml:24
-#| msgid "Classic color scheme"
 msgid "Classic dark color scheme"
 msgstr "Klasik karanlık renk şeması"
 
@@ -345,19 +338,23 @@ msgstr "Klasik"
 msgid "Classic color scheme"
 msgstr "Klasik renk şeması"
 
+#. (itstool) path: cobalt-light.xml/style-scheme@_name
+#: cobalt-light.xml:20
+msgid "Cobalt Light"
+msgstr "Cobalt Aydınlık"
+
+#. (itstool) path: style-scheme/_description
+#: cobalt-light.xml:22 cobalt.xml:27
+msgid "Blue based color scheme"
+msgstr "Mavi temelli renk şeması"
+
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
 msgid "Cobalt"
 msgstr "Cobalt"
 
 #. (itstool) path: style-scheme/_description
-#: cobalt.xml:27
-msgid "Blue based color scheme"
-msgstr "Mavi temelli renk şeması"
-
-#. (itstool) path: style-scheme/_description
 #: kate-dark.xml:24
-#| msgid "Color scheme used in the Kate text editor"
 msgid "Dark color scheme used in the Kate text editor"
 msgstr "Kate metin düzenleyicide kullanılan karanlık renk şeması"
 
@@ -367,12 +364,12 @@ msgid "Color scheme used in the Kate text editor"
 msgstr "Kate metin düzenleyicide kullanılan renk şeması"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:24
+#: oblivion.xml:23
 msgid "Oblivion"
 msgstr "Oblivion"
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:27
+#: oblivion.xml:25
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Tango renk paletinde kullanılan koyu renk şeması"
 
@@ -646,7 +643,7 @@ msgstr "Bilinmeyen"
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-9', 'UTF-16', 'WINDOWS-1254']"
 
-#: gtksourceview/gtksourcefileloader.c:495
+#: gtksourceview/gtksourcefileloader.c:502
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -654,19 +651,19 @@ msgstr ""
 "Bir karakter kodlama dönüşümü hatası vardı ve yedek karakter kullanılması "
 "gerekti."
 
-#: gtksourceview/gtksourcefileloader.c:602
+#: gtksourceview/gtksourcefileloader.c:617
 msgid "File too big."
 msgstr "Dosya çok büyük."
 
-#: gtksourceview/gtksourcefileloader.c:756
+#: gtksourceview/gtksourcefileloader.c:772
 msgid "Not a regular file."
 msgstr "Normal bir dosya değil."
 
-#: gtksourceview/gtksourcefilesaver.c:951
+#: gtksourceview/gtksourcefilesaver.c:962
 msgid "The file is externally modified."
 msgstr "Dosya dıştan düzenlenmiş."
 
-#: gtksourceview/gtksourcefilesaver.c:1391
+#: gtksourceview/gtksourcefilesaver.c:1402
 msgid "The buffer contains invalid characters."
 msgstr "Arabellek geçersiz karakterler içeriyor."
 
@@ -712,23 +709,23 @@ msgstr "_Vazgeç"
 msgid "_Select"
 msgstr "_Seç"
 
-#: gtksourceview/gtksourceview.c:1801
+#: gtksourceview/gtksourceview.c:1806
 msgid "All _Upper Case"
 msgstr "Tümü _Büyük Harf"
 
-#: gtksourceview/gtksourceview.c:1805
+#: gtksourceview/gtksourceview.c:1810
 msgid "All _Lower Case"
 msgstr "Tümü _Küçük Harf"
 
-#: gtksourceview/gtksourceview.c:1809
+#: gtksourceview/gtksourceview.c:1814
 msgid "_Invert Case"
 msgstr "Durum Değ_iştir"
 
-#: gtksourceview/gtksourceview.c:1813
+#: gtksourceview/gtksourceview.c:1818
 msgid "_Title Case"
 msgstr "Başlık _Durumu"
 
-#: gtksourceview/gtksourceview.c:1817
+#: gtksourceview/gtksourceview.c:1822
 msgid "C_hange Case"
 msgstr "Büyük/Küçük Harf _Değiştir"
 
@@ -773,11 +770,11 @@ msgstr "geçersiz çıkış dizisi"
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Yerine koyma metni “%s” işlenirken karakter %lu hatalı: %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:481
+#: gtksourceview/vim/gtksourceviminsert.c:490
 msgid "-- INSERT --"
 msgstr "-- YERLEŞTİR --"
 
-#: gtksourceview/vim/gtksourcevimreplace.c:129
+#: gtksourceview/vim/gtksourcevimreplace.c:125
 msgid "-- REPLACE --"
 msgstr "-- DEĞİŞTİR --"
 
@@ -792,6 +789,12 @@ msgstr "-- GÖRSEL SATIR --"
 #: gtksourceview/vim/gtksourcevimvisual.c:305
 msgid "-- VISUAL BLOCK --"
 msgstr "-- GÖRSEL BLOK --"
+
+#~ msgid "A dark color scheme matching GTK's default theme"
+#~ msgstr "GTK'nin öntanımlı temasıyla eşleşen koyu renk şeması"
+
+#~ msgid "A color scheme matching GTK's default theme"
+#~ msgstr "GTK'nin öntanımlı temasıyla eşleşen renk şeması"
 
 #~ msgid "All"
 #~ msgstr "Tümü"
@@ -2990,9 +2993,6 @@ msgstr "-- GÖRSEL BLOK --"
 
 #~ msgid "Style scheme filename"
 #~ msgstr "Biçem şeması dosya ismi"
-
-#~ msgid "Style scheme search path"
-#~ msgstr "Biçem şeması arama yolu"
 
 #~ msgid "List of directories and files where the style schemes are located"
 #~ msgstr "Biçem şemalarının bulunduğu dosyaların ve dizinlerin listesi"
