@@ -8,7 +8,7 @@
 # flemming christensen <fc@stromata.dk>, 2011.
 # Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 09, 10, 11, 12, 13, 14, 16, 17, 18.
 # scootergrisen, 2015.
-# Alan Mortensen <alanmortensen.am@gmail.com>, 2017, 2021.
+# Alan Mortensen <alanmortensen.am@gmail.com>, 2017, 2021-22.
 #
 # Konventioner:
 #
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-07-20 14:52+0000\n"
-"PO-Revision-Date: 2021-08-28 15:57+0200\n"
+"POT-Creation-Date: 2022-02-18 12:08+0000\n"
+"PO-Revision-Date: 2022-02-27 16:25+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -76,6 +76,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -114,8 +115,8 @@ msgstr ""
 #: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
 #: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
 #: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
-#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
-#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
+#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
 #: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
 #: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
 #: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
@@ -317,25 +318,30 @@ msgstr "RPM-spec"
 msgid "Tera Template"
 msgstr "Tera-skabelon"
 
-#. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
-#: Adwaita-dark.style-scheme.xml:20
+#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
+#: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
 msgstr "Adwaita mørk"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.style-scheme.xml:22
-msgid "A dark color scheme matching GTK's default theme"
-msgstr "Mørkt farveskema der matcher GTK's standardtema"
+#: Adwaita-dark.xml:22 Adwaita.xml:22
+msgid "An style scheme for Adwaita"
+msgstr "Et stilskema til Adwaita"
 
-#. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
-#: Adwaita.style-scheme.xml:20
+#. (itstool) path: Adwaita.xml/style-scheme@_name
+#: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
 
+#. (itstool) path: classic-dark.xml/style-scheme@_name
+#: classic-dark.xml:22
+msgid "Classic Dark"
+msgstr "Klassisk mørk"
+
 #. (itstool) path: style-scheme/_description
-#: Adwaita.style-scheme.xml:22
-msgid "A color scheme matching GTK's default theme"
-msgstr "Farveskema der matcher GTK's standardtema"
+#: classic-dark.xml:24
+msgid "Classic dark color scheme"
+msgstr "Klassisk mørkt farveskema"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -347,15 +353,25 @@ msgstr "Klassisk"
 msgid "Classic color scheme"
 msgstr "Klassisk farveskema"
 
+#. (itstool) path: cobalt-light.xml/style-scheme@_name
+#: cobalt-light.xml:20
+msgid "Cobalt Light"
+msgstr "Cobalt lys"
+
+#. (itstool) path: style-scheme/_description
+#: cobalt-light.xml:22 cobalt.xml:27
+msgid "Blue based color scheme"
+msgstr "Blåligt farveskema"
+
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
 msgid "Cobalt"
 msgstr "Cobalt"
 
 #. (itstool) path: style-scheme/_description
-#: cobalt.xml:27
-msgid "Blue based color scheme"
-msgstr "Blåligt farveskema"
+#: kate-dark.xml:24
+msgid "Dark color scheme used in the Kate text editor"
+msgstr "Mørkt farveskema som bruges i tekstredigeringsprogrammet Kate"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
@@ -363,12 +379,12 @@ msgid "Color scheme used in the Kate text editor"
 msgstr "Farveskema som bruges i tekstredigeringsprogrammet Kate"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:24
+#: oblivion.xml:23
 msgid "Oblivion"
 msgstr "Oblivion"
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:27
+#: oblivion.xml:25
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Mørkt farveskema der bruger Tango-farvepaletten"
 
@@ -402,12 +418,12 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Farveskema der bruger Tango-farvepaletten"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:409
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:407
 msgid "Snippets"
 msgstr "Tekststumper"
 
 # ???
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:317
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:222
 msgid "Document Words"
 msgstr "Dokumentord"
 
@@ -509,119 +525,119 @@ msgstr "ukendt kontekst “%s”"
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Mangler hovedsprogsdefinition (id = “%s”)."
 
-#: gtksourceview/gtksourceencoding.c:137 gtksourceview/gtksourceencoding.c:180
-#: gtksourceview/gtksourceencoding.c:182 gtksourceview/gtksourceencoding.c:184
-#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
-#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
+#: gtksourceview/gtksourceencoding.c:136 gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:181 gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:185 gtksourceview/gtksourceencoding.c:187
+#: gtksourceview/gtksourceencoding.c:189 gtksourceview/gtksourceencoding.c:191
 msgid "Unicode"
 msgstr "Unicode"
 
-#: gtksourceview/gtksourceencoding.c:151 gtksourceview/gtksourceencoding.c:175
-#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:268
+#: gtksourceview/gtksourceencoding.c:150 gtksourceview/gtksourceencoding.c:174
+#: gtksourceview/gtksourceencoding.c:224 gtksourceview/gtksourceencoding.c:267
 msgid "Western"
 msgstr "Vestlig"
 
-#: gtksourceview/gtksourceencoding.c:153 gtksourceview/gtksourceencoding.c:227
-#: gtksourceview/gtksourceencoding.c:264
+#: gtksourceview/gtksourceencoding.c:152 gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:263
 msgid "Central European"
 msgstr "Centraleuropæisk"
 
-#: gtksourceview/gtksourceencoding.c:155
+#: gtksourceview/gtksourceencoding.c:154
 msgid "South European"
 msgstr "Sydeuropæisk"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:171
-#: gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:170
+#: gtksourceview/gtksourceencoding.c:277
 msgid "Baltic"
 msgstr "Baltisk"
 
-#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:229
-#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:246
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:266
+#: gtksourceview/gtksourceencoding.c:158 gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:241 gtksourceview/gtksourceencoding.c:245
+#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:265
 msgid "Cyrillic"
 msgstr "Kyrillisk"
 
-#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:234
+#: gtksourceview/gtksourceencoding.c:275
 msgid "Arabic"
 msgstr "Arabisk"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:269
 msgid "Greek"
 msgstr "Græsk"
 
-#: gtksourceview/gtksourceencoding.c:165
+#: gtksourceview/gtksourceencoding.c:164
 msgid "Hebrew Visual"
 msgstr "Hebræisk visuelt"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:231
-#: gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:230
+#: gtksourceview/gtksourceencoding.c:271
 msgid "Turkish"
 msgstr "Tyrkisk"
 
-#: gtksourceview/gtksourceencoding.c:169
+#: gtksourceview/gtksourceencoding.c:168
 msgid "Nordic"
 msgstr "Nordisk"
 
-#: gtksourceview/gtksourceencoding.c:173
+#: gtksourceview/gtksourceencoding.c:172
 msgid "Celtic"
 msgstr "Keltisk"
 
-#: gtksourceview/gtksourceencoding.c:177
+#: gtksourceview/gtksourceencoding.c:176
 msgid "Romanian"
 msgstr "Rumænsk"
 
-#: gtksourceview/gtksourceencoding.c:195
+#: gtksourceview/gtksourceencoding.c:194
 msgid "Armenian"
 msgstr "Armensk"
 
-#: gtksourceview/gtksourceencoding.c:197 gtksourceview/gtksourceencoding.c:199
-#: gtksourceview/gtksourceencoding.c:213
+#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:212
 msgid "Chinese Traditional"
 msgstr "Kinesisk traditionel"
 
-#: gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:200
 msgid "Cyrillic/Russian"
 msgstr "Kyrillisk/russisk"
 
-#: gtksourceview/gtksourceencoding.c:204 gtksourceview/gtksourceencoding.c:206
-#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:238
-#: gtksourceview/gtksourceencoding.c:253
+#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
+#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:237
+#: gtksourceview/gtksourceencoding.c:252
 msgid "Japanese"
 msgstr "Japansk"
 
-#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:240
-#: gtksourceview/gtksourceencoding.c:244 gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:239
+#: gtksourceview/gtksourceencoding.c:243 gtksourceview/gtksourceencoding.c:258
 msgid "Korean"
 msgstr "Koreansk"
 
-#: gtksourceview/gtksourceencoding.c:216 gtksourceview/gtksourceencoding.c:218
-#: gtksourceview/gtksourceencoding.c:220
+#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:217
+#: gtksourceview/gtksourceencoding.c:219
 msgid "Chinese Simplified"
 msgstr "Kinesisk forenklet"
 
-#: gtksourceview/gtksourceencoding.c:222
+#: gtksourceview/gtksourceencoding.c:221
 msgid "Georgian"
 msgstr "Georgisk"
 
-#: gtksourceview/gtksourceencoding.c:233 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:232 gtksourceview/gtksourceencoding.c:273
 msgid "Hebrew"
 msgstr "Hebræisk"
 
-#: gtksourceview/gtksourceencoding.c:250
+#: gtksourceview/gtksourceencoding.c:249
 msgid "Cyrillic/Ukrainian"
 msgstr "Kyrillisk/ukrainsk"
 
-#: gtksourceview/gtksourceencoding.c:255 gtksourceview/gtksourceencoding.c:261
-#: gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:260
+#: gtksourceview/gtksourceencoding.c:279
 msgid "Vietnamese"
 msgstr "Vietnamesisk"
 
-#: gtksourceview/gtksourceencoding.c:257
+#: gtksourceview/gtksourceencoding.c:256
 msgid "Thai"
 msgstr "Thai"
 
-#: gtksourceview/gtksourceencoding.c:491
+#: gtksourceview/gtksourceencoding.c:485
 msgid "Unknown"
 msgstr "Ukendt"
 
@@ -639,11 +655,11 @@ msgstr "Ukendt"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:635
+#: gtksourceview/gtksourceencoding.c:628
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:506
+#: gtksourceview/gtksourcefileloader.c:502
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -651,35 +667,34 @@ msgstr ""
 "Der opstod en fejl ved konvertering af tegnkodning, og det var nødvendigt at "
 "bruge et erstatningstegn."
 
-#: gtksourceview/gtksourcefileloader.c:613
+#: gtksourceview/gtksourcefileloader.c:617
 msgid "File too big."
 msgstr "Filen er for stor."
 
-#: gtksourceview/gtksourcefileloader.c:767
+#: gtksourceview/gtksourcefileloader.c:772
 msgid "Not a regular file."
 msgstr "Ikke en almindelig fil."
 
-#: gtksourceview/gtksourcefilesaver.c:966
+#: gtksourceview/gtksourcefilesaver.c:962
 msgid "The file is externally modified."
 msgstr "Filen er ændret udefra."
 
-#: gtksourceview/gtksourcefilesaver.c:1422
+#: gtksourceview/gtksourcefilesaver.c:1402
 msgid "The buffer contains invalid characters."
 msgstr "Bufferen indeholder ugyldige tegn."
 
 #. *
-#. * SECTION:language
-#. * @Short_description: Represents a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
+#. * GtkSourceLanguage:
 #. *
-#. * A #GtkSourceLanguage represents a programming or markup language, affecting
-#. * syntax highlighting and [context classes][context-classes].
+#. * Represents a syntax highlighted language.
 #. *
-#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
-#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#. * A `GtkSourceLanguage` represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes](./class.Buffer.html#context-classes).
+#. *
+#. * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
+#. * [method@Buffer.set_language] to apply it to a [class@Buffer].
 #.
-#: gtksourceview/gtksourcelanguage.c:53
+#: gtksourceview/gtksourcelanguage.c:52
 msgid "Others"
 msgstr "Andre"
 
@@ -698,35 +713,35 @@ msgid "using \\C is not supported in language definitions"
 msgstr "brug af \\C er ikke understøttet i sprogdefinitionerne"
 
 #. TODO: have a ChooserDialog?
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:181
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:178
 msgid "Select a Style"
 msgstr "Vælg en stil"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:182
 msgid "_Cancel"
 msgstr "_Annullér"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:186
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:183
 msgid "_Select"
 msgstr "_Vælg"
 
-#: gtksourceview/gtksourceview.c:1812
+#: gtksourceview/gtksourceview.c:1806
 msgid "All _Upper Case"
 msgstr "Alle med _store bogstaver"
 
-#: gtksourceview/gtksourceview.c:1816
+#: gtksourceview/gtksourceview.c:1810
 msgid "All _Lower Case"
 msgstr "Alle med s_må bogstaver"
 
-#: gtksourceview/gtksourceview.c:1820
+#: gtksourceview/gtksourceview.c:1814
 msgid "_Invert Case"
 msgstr "_Omvendte store/små bogstaver"
 
-#: gtksourceview/gtksourceview.c:1824
+#: gtksourceview/gtksourceview.c:1818
 msgid "_Title Case"
 msgstr "Ord _begynder med stort"
 
-#: gtksourceview/gtksourceview.c:1828
+#: gtksourceview/gtksourceview.c:1822
 msgid "C_hange Case"
 msgstr "_Ændr mellem store/små bogstaver"
 
@@ -770,6 +785,32 @@ msgstr "ukendt undvigesekvens"
 #, c-format
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Fejl under fortolkning af erstatningstekst “%s” ved tegn %lu: %s"
+
+#: gtksourceview/vim/gtksourceviminsert.c:490
+msgid "-- INSERT --"
+msgstr "-- INDSÆT --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:125
+msgid "-- REPLACE --"
+msgstr "-- ERSTAT --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:299
+msgid "-- VISUAL --"
+msgstr "-- VISUEL --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:302
+msgid "-- VISUAL LINE --"
+msgstr "-- VISUEL LINJE --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:305
+msgid "-- VISUAL BLOCK --"
+msgstr "-- VISUEL BLOK --"
+
+#~ msgid "A dark color scheme matching GTK's default theme"
+#~ msgstr "Mørkt farveskema der matcher GTK's standardtema"
+
+#~ msgid "A color scheme matching GTK's default theme"
+#~ msgstr "Farveskema der matcher GTK's standardtema"
 
 #~ msgid "All"
 #~ msgstr "Alle"
@@ -3025,9 +3066,6 @@ msgstr "Fejl under fortolkning af erstatningstekst “%s” ved tegn %lu: %s"
 
 #~ msgid "Style scheme filename"
 #~ msgstr "Stilskema-filnavn"
-
-#~ msgid "Style scheme search path"
-#~ msgstr "Søgesti til stilskema"
 
 #~ msgid "List of directories and files where the style schemes are located"
 #~ msgstr "Liste af mapper og filer hvori stilskemaerne er placeret"
