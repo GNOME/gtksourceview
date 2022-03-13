@@ -1,25 +1,25 @@
 # Hungarian translation for gtksourceview.
-# Copyright (C) 2003-2017 Free Software Foundation, Inc.
+# Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2022 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gtksourceview package.
 #
 # Andras Timar <timar at gnome dot hu>, 2003.
 # Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016.
-# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015, 2016, 2017.
-# Balázs Meskó <meskobalazs at fedoraproject dot org>, 2017.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2012, 2013, 2014, 2015, 2016, 2017, 2022.
+# Balázs Meskó <mesko.balazs at fsf dot hu>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2020-11-28 13:37+0000\n"
-"PO-Revision-Date: 2021-02-12 15:08+0100\n"
-"Last-Translator: Meskó Balázs <mesko.balazs@fsf.hu>\n"
-"Language-Team: Hungarian <openscope at googlegroups dot com>\n"
+"POT-Creation-Date: 2021-12-29 17:52+0000\n"
+"PO-Revision-Date: 2022-03-13 01:28+0100\n"
+"Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Lokalize 19.12.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. (itstool) path: abnf.lang/language@_section
@@ -114,6 +114,9 @@ msgstr "Forrás"
 #. (itstool) path: docbook.lang/language@_section
 #. (itstool) path: dtd.lang/language@_section
 #. (itstool) path: dtl.lang/language@_section
+#. (itstool) path: erb-html.lang/language@_section
+#. (itstool) path: erb-js.lang/language@_section
+#. (itstool) path: erb.lang/language@_section
 #. (itstool) path: gtk-doc.lang/language@_section
 #. (itstool) path: haddock.lang/language@_section
 #. (itstool) path: html.lang/language@_section
@@ -132,10 +135,10 @@ msgstr "Forrás"
 #. (itstool) path: xml.lang/language@_section
 #. (itstool) path: xslt.lang/language@_section
 #: asciidoc.lang:22 bibtex.lang:23 docbook.lang:23 dtd.lang:23 dtl.lang:25
-#: gtk-doc.lang:24 haddock.lang:23 html.lang:25 jade.lang:24 jsdoc.lang:23
-#: latex.lang:24 mallard.lang:22 markdown.lang:25 mediawiki.lang:22
-#: mxml.lang:23 rst.lang:22 sweave.lang:24 t2t.lang:23 tera.lang:23
-#: texinfo.lang:24 xml.lang:26 xslt.lang:23
+#: erb-html.lang:20 erb-js.lang:20 erb.lang:20 gtk-doc.lang:24 haddock.lang:23
+#: html.lang:25 jade.lang:24 jsdoc.lang:23 latex.lang:24 mallard.lang:22
+#: markdown.lang:25 mediawiki.lang:22 mxml.lang:23 rst.lang:22 sweave.lang:24
+#: t2t.lang:23 tera.lang:23 texinfo.lang:24 xml.lang:26 xslt.lang:23
 msgid "Markup"
 msgstr "Leírónyelv"
 
@@ -165,7 +168,6 @@ msgstr "Leírónyelv"
 #. (itstool) path: typescript-js-literals.lang/language@_section
 #. (itstool) path: typescript-js-modules.lang/language@_section
 #. (itstool) path: typescript-js-statements.lang/language@_section
-#. (itstool) path: typescript-js-values.lang/language@_section
 #. (itstool) path: typescript-jsx.lang/language@_section
 #. (itstool) path: typescript.lang/language@_section
 #. (itstool) path: typescript-type-expressions.lang/language@_section
@@ -179,8 +181,7 @@ msgstr "Leírónyelv"
 #: python.lang:27 ruby.lang:27 sh.lang:24 tcl.lang:23
 #: typescript-js-expressions.lang:23 typescript-js-functions-classes.lang:23
 #: typescript-js-literals.lang:23 typescript-js-modules.lang:23
-#: typescript-js-statements.lang:23 typescript-js-values.lang:23
-#: typescript-jsx.lang:23 typescript.lang:23
+#: typescript-js-statements.lang:23 typescript-jsx.lang:23 typescript.lang:23
 #: typescript-type-expressions.lang:23 typescript-type-generics.lang:23
 #: typescript-type-literals.lang:23
 msgid "Script"
@@ -215,6 +216,7 @@ msgstr "CG árnyalónyelv"
 #. (itstool) path: puppet.lang/language@_section
 #. (itstool) path: rpmspec.lang/language@_section
 #. (itstool) path: scss.lang/language@_section
+#. (itstool) path: terraform.lang/language@_section
 #. (itstool) path: toml.lang/language@_section
 #. (itstool) path: yacc.lang/language@_section
 #. (itstool) path: yaml.lang/language@_section
@@ -223,8 +225,8 @@ msgstr "CG árnyalónyelv"
 #: diff.lang:23 dot.lang:23 dpatch.lang:23 ftl.lang:23 gdb-log.lang:18
 #: gtkrc.lang:24 ini.lang:22 json.lang:29 less.lang:23 libtool.lang:23
 #: logcat.lang:23 nsis.lang:23 ocl.lang:32 pkgconfig.lang:23 po.lang:23
-#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23 toml.lang:23
-#: yacc.lang:23 yaml.lang:21 yara.lang:26
+#: protobuf.lang:21 puppet.lang:23 rpmspec.lang:24 scss.lang:23
+#: terraform.lang:23 toml.lang:23 yacc.lang:23 yaml.lang:21 yara.lang:26
 msgid "Other"
 msgstr "Egyéb"
 
@@ -259,9 +261,10 @@ msgstr "Django sablon"
 #. (itstool) path: octave.lang/language@_section
 #. (itstool) path: R.lang/language@_section
 #. (itstool) path: scilab.lang/language@_section
+#. (itstool) path: star.lang/language@_section
 #: fcl.lang:23 gap.lang:23 idl-exelis.lang:20 imagej.lang:23 julia.lang:23
 #: matlab.lang:25 maxima.lang:24 modelica.lang:25 octave.lang:25 R.lang:25
-#: scilab.lang:23
+#: scilab.lang:23 star.lang:28
 msgid "Scientific"
 msgstr "Tudományos"
 
@@ -444,7 +447,7 @@ msgstr ""
 "szintaxiskiemelési folyamat lassabb lesz a megszokottnál.\n"
 "A hiba: %s"
 
-#: gtksourceview/gtksourcecontextengine.c:4456
+#: gtksourceview/gtksourcecontextengine.c:4458
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
@@ -452,19 +455,19 @@ msgstr ""
 "Egyetlen sor kiemelése túl sokáig tartott, a szintaxiskiemelés letiltásra "
 "kerül"
 
-#: gtksourceview/gtksourcecontextengine.c:5706
+#: gtksourceview/gtksourcecontextengine.c:5708
 #, c-format
 msgid "context “%s” cannot contain a \\%%{...@start} command"
 msgstr "a(z) „%s” kontextus nem tartalmazhat \\%%{...@start} parancsot"
 
-#: gtksourceview/gtksourcecontextengine.c:5869
-#: gtksourceview/gtksourcecontextengine.c:5959
+#: gtksourceview/gtksourcecontextengine.c:5871
+#: gtksourceview/gtksourcecontextengine.c:5961
 #, c-format
 msgid "duplicated context id “%s”"
 msgstr "többszörös kontextusazonosító: „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6073
-#: gtksourceview/gtksourcecontextengine.c:6133
+#: gtksourceview/gtksourcecontextengine.c:6075
+#: gtksourceview/gtksourcecontextengine.c:6135
 #, c-format
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
@@ -473,135 +476,135 @@ msgstr ""
 "a helyettesítő karakteres kontextushivatkozáshoz stílus-felülbírálás került "
 "felhasználásra a(z) „%s” nyelv „%s” hivatkozásában."
 
-#: gtksourceview/gtksourcecontextengine.c:6147
+#: gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
 msgid "invalid context reference “%s”"
 msgstr "érvénytelen kontextushivatkozás („%s”)"
 
-#: gtksourceview/gtksourcecontextengine.c:6166
-#: gtksourceview/gtksourcecontextengine.c:6176
+#: gtksourceview/gtksourcecontextengine.c:6168
+#: gtksourceview/gtksourcecontextengine.c:6178
 #, c-format
 msgid "unknown context “%s”"
 msgstr "ismeretlen kontextus: „%s”"
 
-#: gtksourceview/gtksourcecontextengine.c:6277
+#: gtksourceview/gtksourcecontextengine.c:6279
 #, c-format
 msgid "Missing main language definition (id = “%s”)."
 msgstr "Hiányzó elsődleges nyelvmeghatározás (azonosító = „%s”)"
 
-#: gtksourceview/gtksourceencoding.c:143 gtksourceview/gtksourceencoding.c:186
-#: gtksourceview/gtksourceencoding.c:188 gtksourceview/gtksourceencoding.c:190
-#: gtksourceview/gtksourceencoding.c:192 gtksourceview/gtksourceencoding.c:194
-#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:137 gtksourceview/gtksourceencoding.c:180
+#: gtksourceview/gtksourceencoding.c:182 gtksourceview/gtksourceencoding.c:184
+#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
+#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
 msgid "Unicode"
 msgstr "Unicode"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:181
-#: gtksourceview/gtksourceencoding.c:231 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:151 gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:268
 msgid "Western"
 msgstr "Nyugati"
 
-#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:233
-#: gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:153 gtksourceview/gtksourceencoding.c:227
+#: gtksourceview/gtksourceencoding.c:264
 msgid "Central European"
 msgstr "Közép-európai"
 
-#: gtksourceview/gtksourceencoding.c:161
+#: gtksourceview/gtksourceencoding.c:155
 msgid "South European"
 msgstr "Dél-európai"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:177
-#: gtksourceview/gtksourceencoding.c:284
+#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:278
 msgid "Baltic"
 msgstr "Balti"
 
-#: gtksourceview/gtksourceencoding.c:165 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:252
-#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:229
+#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:246
+#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:266
 msgid "Cyrillic"
 msgstr "Cirill"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:241
-#: gtksourceview/gtksourceencoding.c:282
+#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:235
+#: gtksourceview/gtksourceencoding.c:276
 msgid "Arabic"
 msgstr "Arab"
 
-#: gtksourceview/gtksourceencoding.c:169 gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:270
 msgid "Greek"
 msgstr "Görög"
 
-#: gtksourceview/gtksourceencoding.c:171
+#: gtksourceview/gtksourceencoding.c:165
 msgid "Hebrew Visual"
 msgstr "Héber (vizuális)"
 
-#: gtksourceview/gtksourceencoding.c:173 gtksourceview/gtksourceencoding.c:237
-#: gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:231
+#: gtksourceview/gtksourceencoding.c:272
 msgid "Turkish"
 msgstr "Török"
 
-#: gtksourceview/gtksourceencoding.c:175
+#: gtksourceview/gtksourceencoding.c:169
 msgid "Nordic"
 msgstr "Északi"
 
-#: gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:173
 msgid "Celtic"
 msgstr "Kelta"
 
-#: gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:177
 msgid "Romanian"
 msgstr "Román"
 
-#: gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:195
 msgid "Armenian"
 msgstr "Örmény"
 
-#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
-#: gtksourceview/gtksourceencoding.c:219
+#: gtksourceview/gtksourceencoding.c:197 gtksourceview/gtksourceencoding.c:199
+#: gtksourceview/gtksourceencoding.c:213
 msgid "Chinese Traditional"
 msgstr "Hagyományos kínai"
 
-#: gtksourceview/gtksourceencoding.c:207
+#: gtksourceview/gtksourceencoding.c:201
 msgid "Cyrillic/Russian"
 msgstr "Cirill/orosz"
 
-#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:212
-#: gtksourceview/gtksourceencoding.c:214 gtksourceview/gtksourceencoding.c:244
-#: gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:204 gtksourceview/gtksourceencoding.c:206
+#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:238
+#: gtksourceview/gtksourceencoding.c:253
 msgid "Japanese"
 msgstr "Japán"
 
-#: gtksourceview/gtksourceencoding.c:217 gtksourceview/gtksourceencoding.c:246
-#: gtksourceview/gtksourceencoding.c:250 gtksourceview/gtksourceencoding.c:265
+#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:240
+#: gtksourceview/gtksourceencoding.c:244 gtksourceview/gtksourceencoding.c:259
 msgid "Korean"
 msgstr "Koreai"
 
-#: gtksourceview/gtksourceencoding.c:222 gtksourceview/gtksourceencoding.c:224
-#: gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:216 gtksourceview/gtksourceencoding.c:218
+#: gtksourceview/gtksourceencoding.c:220
 msgid "Chinese Simplified"
 msgstr "Egyszerűsített kínai"
 
-#: gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:222
 msgid "Georgian"
 msgstr "Grúz"
 
-#: gtksourceview/gtksourceencoding.c:239 gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:233 gtksourceview/gtksourceencoding.c:274
 msgid "Hebrew"
 msgstr "Héber"
 
-#: gtksourceview/gtksourceencoding.c:256
+#: gtksourceview/gtksourceencoding.c:250
 msgid "Cyrillic/Ukrainian"
 msgstr "Cirill/ukrán"
 
-#: gtksourceview/gtksourceencoding.c:261 gtksourceview/gtksourceencoding.c:267
-#: gtksourceview/gtksourceencoding.c:286
+#: gtksourceview/gtksourceencoding.c:255 gtksourceview/gtksourceencoding.c:261
+#: gtksourceview/gtksourceencoding.c:280
 msgid "Vietnamese"
 msgstr "Vietnámi"
 
-#: gtksourceview/gtksourceencoding.c:263
+#: gtksourceview/gtksourceencoding.c:257
 msgid "Thai"
 msgstr "Thai"
 
-#: gtksourceview/gtksourceencoding.c:497
+#: gtksourceview/gtksourceencoding.c:491
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -619,11 +622,11 @@ msgstr "Ismeretlen"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:641
+#: gtksourceview/gtksourceencoding.c:635
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-2', 'WINDOWS-1250', 'IBM852', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:513
+#: gtksourceview/gtksourcefileloader.c:506
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -631,19 +634,19 @@ msgstr ""
 "Karakterkódolás átalakítási hiba volt, és egy tartalék karakter használatára "
 "volt szükség."
 
-#: gtksourceview/gtksourcefileloader.c:620
+#: gtksourceview/gtksourcefileloader.c:613
 msgid "File too big."
 msgstr "A fájl túl nagy."
 
-#: gtksourceview/gtksourcefileloader.c:774
+#: gtksourceview/gtksourcefileloader.c:767
 msgid "Not a regular file."
 msgstr "Nem szabályos fájl."
 
-#: gtksourceview/gtksourcefilesaver.c:972
+#: gtksourceview/gtksourcefilesaver.c:966
 msgid "The file is externally modified."
 msgstr "A fájlt külsőleg módosították."
 
-#: gtksourceview/gtksourcefilesaver.c:1428
+#: gtksourceview/gtksourcefilesaver.c:1422
 msgid "The buffer contains invalid characters."
 msgstr "A puffer érvénytelen karaktereket tartalmaz."
 
@@ -690,1642 +693,64 @@ msgstr "_Mégse"
 msgid "_Select"
 msgstr "_Kiválasztás"
 
-#: gtksourceview/gtksourceview.c:1774
+#: gtksourceview/gtksourceview.c:1825
 msgid "All _Upper Case"
 msgstr "Mind _nagybetűs"
 
-#: gtksourceview/gtksourceview.c:1778
+#: gtksourceview/gtksourceview.c:1829
 msgid "All _Lower Case"
 msgstr "Mind _kisbetűs"
 
-#: gtksourceview/gtksourceview.c:1782
+#: gtksourceview/gtksourceview.c:1833
 msgid "_Invert Case"
 msgstr "Kis- és nagybetű _invertálása"
 
-#: gtksourceview/gtksourceview.c:1786
+#: gtksourceview/gtksourceview.c:1837
 msgid "_Title Case"
 msgstr "Szó_kezdő"
 
-#: gtksourceview/gtksourceview.c:1790
+#: gtksourceview/gtksourceview.c:1841
 msgid "C_hange Case"
 msgstr "Kis- és nagybetű mó_dosítása"
 
-#~ msgid "All"
-#~ msgstr "Mind"
-
-#~ msgid "Completion Info"
-#~ msgstr "Kiegészítési információk"
-
-#~ msgid "Provider"
-#~ msgstr "Szolgáltató"
-
-#~ msgid "Show detailed proposal information"
-#~ msgstr "Részletes javaslatinformációk megjelenítése"
-
-#~ msgid "_Redo"
-#~ msgstr "Új_ra"
-
-#~ msgid "_Undo"
-#~ msgstr "_Visszavonás"
-
-#~ msgid "Disabled"
-#~ msgstr "Letiltva"
-
-#~ msgid "Before"
-#~ msgstr "Előtte"
-
-#~ msgid "After"
-#~ msgstr "Utána"
-
-#~ msgid "Always"
-#~ msgstr "Mindig"
-
-#~ msgid "ABNF"
-#~ msgstr "ABNF"
-
-#~ msgid "Comment"
-#~ msgstr "Megjegyzés"
-
-#~ msgid "Rule Name"
-#~ msgstr "Szabálynév"
-
-#~ msgid "Binary number"
-#~ msgstr "Bináris szám"
-
-#~ msgid "Decimal number"
-#~ msgstr "Decimális szám"
-
-#~ msgid "Hexadecimal number"
-#~ msgstr "Hexadecimális szám"
-
-#~ msgid "String"
-#~ msgstr "Karakterlánc"
-
-#~ msgid "ActionScript"
-#~ msgstr "ActionScript"
-
-#~ msgid "Error"
-#~ msgstr "Hiba"
-
-#~ msgid "External"
-#~ msgstr "Külső"
-
-#~ msgid "Declaration"
-#~ msgstr "Deklaráció"
-
-#~ msgid "Storage Class"
-#~ msgstr "Tárolóosztály"
-
-#~ msgid "Scope Declaration"
-#~ msgstr "Hatókör-deklaráció"
-
-#~ msgid "Keyword"
-#~ msgstr "Kulcsszó"
-
-#~ msgid "Null Value"
-#~ msgstr "Null érték"
-
-#~ msgid "Boolean value"
-#~ msgstr "Logikai érték"
-
-#~ msgid "Number"
-#~ msgstr "Szám"
-
-#~ msgid "Future Reserved Keywords"
-#~ msgstr "Jövőbeli védett kulcsszavak"
-
-#~ msgid "Data Type"
-#~ msgstr "Adattípus"
-
-#~ msgid "Ada"
-#~ msgstr "Ada"
-
-#~ msgid "Preprocessor"
-#~ msgstr "Előfeldolgozó"
-
-#~ msgid "Arbitrary base number"
-#~ msgstr "Tetszőleges alapszám"
-
-#~ msgid "Real number"
-#~ msgstr "Valós szám"
-
-#~ msgid "Escaped Character"
-#~ msgstr "Escape-elt karakter"
-
-#~ msgid "ANS-Forth94"
-#~ msgstr "ANS-Forth94"
-
-#~ msgid "Obsolete Keyword"
-#~ msgstr "Elavult kulcsszó"
-
-#~ msgid "Alert"
-#~ msgstr "Figyelmeztetés"
-
-#~ msgid "Character"
-#~ msgstr "Karakter"
-
-#~ msgid "Word"
-#~ msgstr "Szó"
-
-#~ msgid "Constant"
-#~ msgstr "Állandó"
-
-#~ msgid "Variable"
-#~ msgstr "Változó"
-
-#~ msgid "Local Variable"
-#~ msgstr "Helyi változó"
-
-#~ msgid "Single Number"
-#~ msgstr "Egyszeres szám"
-
-#~ msgid "Double Number"
-#~ msgstr "Dupla szám"
-
-#~ msgid "Float"
-#~ msgstr "Lebegő"
-
-#~ msgid "ASP"
-#~ msgstr "ASP"
-
-#~ msgid "Function"
-#~ msgstr "Függvény"
-
-#~ msgid "Operator"
-#~ msgstr "Operátor"
-
-#~ msgid "ASP Object"
-#~ msgstr "ASP objektum"
-
-#~ msgid "VBScript and ADO constants"
-#~ msgstr "VBScript és ADO konstansok"
-
-#~ msgid "Special constant"
-#~ msgstr "Speciális konstans"
-
-#~ msgid "Automake"
-#~ msgstr "Automake"
-
-#~ msgid "Automake Variable"
-#~ msgstr "Automake változó"
-
-#~ msgid "Primary"
-#~ msgstr "Elsődleges"
-
-#~ msgid "Secondary"
-#~ msgstr "Másodlagos"
-
-#~ msgid "Prefix"
-#~ msgstr "Előtag"
-
-#~ msgid "Optional Target"
-#~ msgstr "Elhagyható cél"
-
-#~ msgid "Built-in Target"
-#~ msgstr "Beépített cél"
-
-#~ msgid "Other Keyword"
-#~ msgstr "Egyéb kulcsszó"
-
-#~ msgid "Substitution"
-#~ msgstr "Helyettesítés"
-
-#~ msgid "awk"
-#~ msgstr "awk"
-
-#~ msgid "Pattern"
-#~ msgstr "Minta"
-
-#~ msgid "Builtin Function"
-#~ msgstr "Beépített függvény"
-
-#~ msgid "BennuGD"
-#~ msgstr "BennuGD"
-
-#~ msgid "Identifier"
-#~ msgstr "Azonosító"
-
-#~ msgid "Floating point number"
-#~ msgstr "Lebegőpontos szám"
-
-#~ msgid "BibTeX"
-#~ msgstr "BibTeX"
-
-#~ msgid "Entries"
-#~ msgstr "Bejegyzések"
-
-#~ msgid "Field"
-#~ msgstr "Mező"
-
-#~ msgid "Bluespec SystemVerilog"
-#~ msgstr "Bluespec SystemVerilog"
-
-#~ msgid "System Task"
-#~ msgstr "Rendszerfeladat"
-
-#~ msgid "Annotation"
-#~ msgstr "Feljegyzés"
-
-#~ msgid "Attribute"
-#~ msgstr "Attribútum"
-
-#~ msgid "Import BVI"
-#~ msgstr "BVI importálása"
-
-#~ msgid "Type"
-#~ msgstr "Típus"
-
-#~ msgid "Boo"
-#~ msgstr "Boo"
-
-#~ msgid "Multiline string"
-#~ msgstr "Többsoros karakterlánc"
-
-#~ msgid "Regular Expression"
-#~ msgstr "Reguláris kifejezés"
-
-#~ msgid "Namespace"
-#~ msgstr "Névtér"
-
-#~ msgid "Definition"
-#~ msgstr "Definíció"
-
-#~ msgid "Special Variable"
-#~ msgstr "Speciális változó"
-
-#~ msgid "Boolean"
-#~ msgstr "Logikai"
-
-#~ msgid "Bindings"
-#~ msgstr "Kötések"
-
-#~ msgid "Included File"
-#~ msgstr "Include-olt fájl"
-
-#~ msgid "Octal number"
-#~ msgstr "Oktális szám"
-
-#~ msgid "Swizzle operator"
-#~ msgstr "Feloldási operátor"
-
-#~ msgid "Builtin"
-#~ msgstr "Beépített"
-
-#~ msgid "ChangeLog"
-#~ msgstr "ChangeLog"
-
-#~ msgid "Date"
-#~ msgstr "Dátum"
-
-#~ msgid "Name"
-#~ msgstr "Név"
-
-#~ msgid "E-mail address"
-#~ msgstr "E-mail cím"
-
-#~ msgid "File"
-#~ msgstr "Fájl"
-
-#~ msgid "Bullet"
-#~ msgstr "Felsorolásjel"
-
-#~ msgid "Release"
-#~ msgstr "Kiadás"
-
-#~ msgid "C"
-#~ msgstr "C"
-
-#~ msgid "Common Defines"
-#~ msgstr "Általános definíció"
-
-#~ msgid "printf Conversion"
-#~ msgstr "printf átalakítás"
-
-#~ msgid "Standard stream"
-#~ msgstr "Szabványos adatfolyam"
-
-#~ msgid "Signal name"
-#~ msgstr "Szignálnév"
-
-#~ msgid "CMake"
-#~ msgstr "CMake"
-
-#~ msgid "Builtin Command"
-#~ msgstr "Beépített parancs"
-
-#~ msgid "Deprecated Builtin Command"
-#~ msgstr "Elavult beépített parancs"
-
-#~ msgid "Builtin Variable"
-#~ msgstr "Beépített változó"
-
-#~ msgid "Control Keyword"
-#~ msgstr "Vezérlő kulcsszó"
-
-#~ msgid "COBOL"
-#~ msgstr "COBOL"
-
-#~ msgid "Statement"
-#~ msgstr "Utasítás"
-
-#~ msgid "C++"
-#~ msgstr "C++"
-
-#~ msgid "C#"
-#~ msgstr "C#"
-
-#~ msgid "String Format"
-#~ msgstr "Karakterlánc formátuma"
-
-#~ msgid "CSS"
-#~ msgstr "CSS"
-
-#~ msgid "Others 2"
-#~ msgstr "Egyéb 2"
-
-#~ msgid "Color"
-#~ msgstr "Szín"
-
-#~ msgid "Others 3"
-#~ msgstr "Egyéb 3"
-
-#~ msgid "Decimal"
-#~ msgstr "Decimális"
-
-#~ msgid "Dimension"
-#~ msgstr "Dimenzió"
-
-#~ msgid "Property Value"
-#~ msgstr "Tulajdonságérték"
-
-#~ msgid "at-rules"
-#~ msgstr "at-szabályok"
-
-#~ msgid "ID Selector"
-#~ msgstr "Azonosítóválasztó"
-
-#~ msgid "Class Selector"
-#~ msgstr "Osztályválasztó"
-
-#~ msgid "Tag Name Selector"
-#~ msgstr "Címkenévválasztó"
-
-#~ msgid "CSV"
-#~ msgstr "CSV"
-
-#~ msgid "Escaped character"
-#~ msgstr "Escape-elt karakter"
-
-#~ msgid "CUDA"
-#~ msgstr "CUDA"
-
-#~ msgid "Global Functions"
-#~ msgstr "Globális függvények"
-
-#~ msgid "Device Functions"
-#~ msgstr "Eszközfüggvények"
-
-#~ msgid "Global Variables"
-#~ msgstr "Globális változók"
-
-#~ msgid "Defaults"
-#~ msgstr "Alapértékek"
-
-#~ msgid "Shebang"
-#~ msgstr "Shebang"
-
-#~ msgid "Documentation comment"
-#~ msgstr "Dokumentációs megjegyzés"
-
-#~ msgid "Documentation comment element"
-#~ msgstr "Dokumentációs megjegyzés eleme"
-
-#~ msgid "Special character (inside a string)"
-#~ msgstr "Speciális karakter (karakterláncon belül)"
-
-#~ msgid "Base-N number"
-#~ msgstr "N-alapú szám"
-
-#~ msgid "Complex number"
-#~ msgstr "Komplex szám"
-
-#~ msgid "Built-in identifier"
-#~ msgstr "Beépített azonosító"
-
-#~ msgid "Data type"
-#~ msgstr "Adattípus"
-
-#~ msgid "Preprocessor directive"
-#~ msgstr "Előfeldolgozó-direktíva"
-
-#~ msgid "Warning"
-#~ msgstr "Figyelmeztetés"
-
-#~ msgid "Reserved keyword"
-#~ msgstr "Védett kulcsszó"
-
-#~ msgid "Note (FIXME, TODO, XXX, etc.)"
-#~ msgstr "Megjegyzés (FIXME, TODO, XXX, stb.)"
-
-#~ msgid "Underlined"
-#~ msgstr "Aláhúzott"
-
-#~ msgid "Heading 0"
-#~ msgstr "Címsor 0"
-
-#~ msgid "Heading 1"
-#~ msgstr "Címsor 1"
-
-#~ msgid "Heading 2"
-#~ msgstr "Címsor 2"
-
-#~ msgid "Heading 3"
-#~ msgstr "Címsor 3"
-
-#~ msgid "Heading 4"
-#~ msgstr "Címsor 4"
-
-#~ msgid "Heading 5"
-#~ msgstr "Címsor 5"
-
-#~ msgid "Heading 6"
-#~ msgstr "Címsor 6"
-
-#~ msgid ".desktop"
-#~ msgstr ".desktop"
-
-#~ msgid "Group"
-#~ msgstr "Csoport"
-
-#~ msgid "Key"
-#~ msgstr "Kulcs"
-
-#~ msgid "Translation"
-#~ msgstr "Fordítás"
-
-#~ msgid "Exec parameter"
-#~ msgstr "Exec paramétere"
-
-#~ msgid "Encoding"
-#~ msgstr "Kódolás"
-
-#~ msgid "Main Category"
-#~ msgstr "Főkategória"
-
-#~ msgid "Additional Category"
-#~ msgstr "További kategória"
-
-#~ msgid "Reserved Category"
-#~ msgstr "Védett kategória"
-
-#~ msgid "Diff"
-#~ msgstr "Diff"
-
-#~ msgid "Added line"
-#~ msgstr "Hozzáadott sor"
-
-#~ msgid "Removed line"
-#~ msgstr "Eltávolított sor"
-
-#~ msgid "Changed line"
-#~ msgstr "Megváltozott sor"
-
-#~ msgid "Special case"
-#~ msgstr "Speciális eset"
-
-#~ msgid "Location"
-#~ msgstr "Hely"
-
-#~ msgid "Ignore"
-#~ msgstr "Mellőzés"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#~ msgid "Special Token"
-#~ msgstr "Speciális jelsor"
-
-#~ msgid "DocBook"
-#~ msgstr "DocBook"
-
-#~ msgid "Header Elements"
-#~ msgstr "Fejlécelemek"
-
-#~ msgid "Formatting Elements"
-#~ msgstr "Formázóelemek"
-
-#~ msgid "GUI Elements"
-#~ msgstr "GUI elemek"
-
-#~ msgid "Structural Elements"
-#~ msgstr "Szerkezeti elemek"
-
-#~ msgid "Command"
-#~ msgstr "Parancs"
-
-#~ msgid "Graphviz Dot"
-#~ msgstr "Graphviz Dot"
-
-#~ msgid "Attribute name"
-#~ msgstr "Attribútumnév"
-
-#~ msgid "DPatch"
-#~ msgstr "DPatch"
-
-#~ msgid "Patch Start"
-#~ msgstr "Folt kezdete"
-
-#~ msgid "DTD"
-#~ msgstr "DTD"
-
-#~ msgid "entity"
-#~ msgstr "entitás"
-
-#~ msgid "decl"
-#~ msgstr "deklaráció"
-
-#~ msgid "error"
-#~ msgstr "hiba"
-
-#~ msgid "Quoted Value"
-#~ msgstr "Idézett érték"
-
-#~ msgid "Eiffel"
-#~ msgstr "Eiffel"
-
-#~ msgid "Debug"
-#~ msgstr "Hibakeresés"
-
-#~ msgid "Assertion"
-#~ msgstr "Kijelentés"
-
-#~ msgid "Design by Contract"
-#~ msgstr "Szerződéses tervezés"
-
-#~ msgid "Exception Handling"
-#~ msgstr "Kivételkezelés"
-
-#~ msgid "Predefined Variable"
-#~ msgstr "Előre meghatározott változó"
-
-#~ msgid "Void Value"
-#~ msgstr "Null érték"
-
-#~ msgid "Boolean Value"
-#~ msgstr "Logikai érték"
-
-#~ msgid "Erlang"
-#~ msgstr "Erlang"
-
-#~ msgid "Atom"
-#~ msgstr "Atom"
-
-#~ msgid "Base-N Integer"
-#~ msgstr "N-alapú egész"
-
-#~ msgid "Compiler Directive"
-#~ msgstr "Fordítódirektíva"
-
-#~ msgid "FCL"
-#~ msgstr "FCL"
-
-#~ msgid "Floating Point"
-#~ msgstr "Lebegőpontos"
-
-#~ msgid "Block"
-#~ msgstr "Blokk"
-
-#~ msgid "Reserved Constant"
-#~ msgstr "Védett állandó"
-
-#~ msgid "Forth"
-#~ msgstr "Forth"
-
-#~ msgid "Debug Code"
-#~ msgstr "Hibakeresési kód"
-
-#~ msgid "Error Text"
-#~ msgstr "Hibaszöveg"
-
-#~ msgid "Fortran 95"
-#~ msgstr "Fortran 95"
-
-#~ msgid "Intrinsic function"
-#~ msgstr "Belső függvény"
-
-#~ msgid "BOZ Literal"
-#~ msgstr "BOZ literál"
-
-#~ msgid "OpenMP directives"
-#~ msgstr "OpenMP direktívák"
-
-#~ msgid "F#"
-#~ msgstr "F#"
-
-#~ msgid "Floating Point number"
-#~ msgstr "Lebegőpontos szám"
-
-#~ msgid "Type, module or object keyword"
-#~ msgstr "Típus, modul vagy objektum kulcsszó"
-
-#~ msgid "Builtin-function keyword"
-#~ msgstr "Beépített függvény kulcsszó"
-
-#~ msgid "Labeled argument"
-#~ msgstr "Címkézett argumentum"
-
-#~ msgid "Polymorphic Variant"
-#~ msgstr "Polimorf változó"
-
-#~ msgid "Variant Constructor"
-#~ msgstr "Változó konstruktor"
-
-#~ msgid "Type Variable"
-#~ msgstr "Típusváltozó"
-
-#~ msgid "Module Path"
-#~ msgstr "Modulútvonal"
-
-#~ msgid "GAP"
-#~ msgstr "GAP"
-
-#~ msgid "Thread Action"
-#~ msgstr "Szálművelet"
-
-#~ msgid "Thread Header"
-#~ msgstr "Szálfejléc"
-
-#~ msgid "Frame Number"
-#~ msgstr "Keretszám"
-
-#~ msgid "Address"
-#~ msgstr "Cím"
-
-#~ msgid "Filename"
-#~ msgstr "Fájlnév"
-
-#~ msgid "Optimized Out"
-#~ msgstr "Kioptimalizálva"
-
-#~ msgid "Incomplete Sequence"
-#~ msgstr "Befejezetlen sorozat"
-
-#~ msgid "Prompt"
-#~ msgstr "Parancssor"
-
-#~ msgid "Genie"
-#~ msgstr "Genie"
-
-#~ msgid "Builtin Constant"
-#~ msgstr "Beépített állandó"
-
-#~ msgid "Reserved Keywords"
-#~ msgstr "Védett kulcsszavak"
-
-#~ msgid "Go"
-#~ msgstr "Go"
-
-#~ msgid "Imaginary number"
-#~ msgstr "Képzetes szám"
-
-#~ msgid "gtk-doc"
-#~ msgstr "gtk-doc"
-
-#~ msgid "Inline Documentation Section"
-#~ msgstr "Beágyazott dokumentációrész"
-
-#~ msgid "Function Name"
-#~ msgstr "Függvénynév"
-
-#~ msgid "Signal Name"
-#~ msgstr "Szignálnév"
-
-#~ msgid "Property Name"
-#~ msgstr "Tulajdonságnév"
-
-#~ msgid "Parameter"
-#~ msgstr "Paraméter"
-
-#~ msgid "Return"
-#~ msgstr "Enter"
-
-#~ msgid "Since"
-#~ msgstr "Kezdet"
-
-#~ msgid "Deprecated"
-#~ msgstr "Elavult"
-
-#~ msgid "GtkRC"
-#~ msgstr "GtkRC"
-
-#~ msgid "Widget State"
-#~ msgstr "Felületi elem állapota"
-
-#~ msgid "Include directive"
-#~ msgstr "Include direktíva"
-
-#~ msgid "Haddock"
-#~ msgstr "Haddock"
-
-#~ msgid "Inline Haddock Section"
-#~ msgstr "Beágyazott haddock szakasz"
-
-#~ msgid "Haddock Directive"
-#~ msgstr "Haddock direktíva"
-
-#~ msgid "Hyperlinked Identifier"
-#~ msgstr "Hiperhivatkozott azonosító"
-
-#~ msgid "Hyperlinked Module Name"
-#~ msgstr "Hiperhivatkozott modulnév"
-
-#~ msgid "Escape"
-#~ msgstr "Escape"
-
-#~ msgid "Emphasis"
-#~ msgstr "Kiemelés"
-
-#~ msgid "Monospace"
-#~ msgstr "Rögzített szélességű"
-
-#~ msgid "Code Block"
-#~ msgstr "Kódblokk"
-
-#~ msgid "Header Property"
-#~ msgstr "Fejléctulajdonság"
-
-#~ msgid "Itemized list"
-#~ msgstr "Felsorolásos lista"
-
-#~ msgid "Enumerated list"
-#~ msgstr "Felsorolásos lista"
-
-#~ msgid "Definition list"
-#~ msgstr "Definíciólista"
-
-#~ msgid "URL"
-#~ msgstr "URL"
-
-#~ msgid "Anchor"
-#~ msgstr "Horgony"
-
-#~ msgid "Haskell"
-#~ msgstr "Haskell"
-
-#~ msgid "Symbol"
-#~ msgstr "Szimbólum"
-
-#~ msgid "Octal"
-#~ msgstr "Oktális"
-
-#~ msgid "Hex"
-#~ msgstr "Hexadecimális"
-
-#~ msgid "Literate Haskell"
-#~ msgstr "Irodalmi Haskell"
-
-#~ msgid "Haxe"
-#~ msgstr "Haxe"
-
-#~ msgid "Scope"
-#~ msgstr "Hatókör"
-
-#~ msgid "Metadata"
-#~ msgstr "Metaadatok"
-
-#~ msgid "Macro"
-#~ msgstr "Makró"
-
-#~ msgid "Identifier Prefix"
-#~ msgstr "Azonosító előtag"
-
-#~ msgid "HTML"
-#~ msgstr "HTML"
-
-#~ msgid "Tag"
-#~ msgstr "Tag"
-
-#~ msgid "Attribute Name"
-#~ msgstr "Attribútumnév"
-
-#~ msgid "Attribute Value"
-#~ msgstr "Attribútumérték"
-
-#~ msgid "Page title"
-#~ msgstr "Oldalcím"
-
-#~ msgid "Heading level 1"
-#~ msgstr "1. szintű címsor"
-
-#~ msgid "Heading level 2"
-#~ msgstr "2. szintű címsor"
-
-#~ msgid "Heading level 3"
-#~ msgstr "3. szintű címsor"
-
-#~ msgid "Heading level 4"
-#~ msgstr "4. szintű címsor"
-
-#~ msgid "Heading level 5"
-#~ msgstr "5. szintű címsor"
-
-#~ msgid "IDL-Exelis"
-#~ msgstr "IDL-Exelis"
-
-#~ msgid "IDL"
-#~ msgstr "IDL"
-
-#~ msgid "ImageJ"
-#~ msgstr "ImageJ"
-
-#~ msgid "Commands"
-#~ msgstr "Parancsok"
-
-#~ msgid "Storage Type"
-#~ msgstr "Tárolótípus"
-
-#~ msgid ".ini"
-#~ msgstr ".ini"
-
-#~ msgid "Jade"
-#~ msgstr "Jade"
-
-#~ msgid "DOCTYPE"
-#~ msgstr "DOCTYPE"
-
-#~ msgid "Processing instruction"
-#~ msgstr "Feldolgozóutasítás"
-
-#~ msgid "Element name"
-#~ msgstr "Elemnév"
-
-#~ msgid "Attribute value"
-#~ msgstr "Attribútumérték"
-
-#~ msgid "Tags"
-#~ msgstr "Címkék"
-
-#~ msgid "Entity"
-#~ msgstr "Entitás"
-
-#~ msgid "Java"
-#~ msgstr "Java"
-
-#~ msgid "JavaScript"
-#~ msgstr "JavaScript"
-
-#~ msgid "Undefined Value"
-#~ msgstr "Definiálatlan érték"
-
-#~ msgid "Properties"
-#~ msgstr "Tulajdonságok"
-
-#~ msgid "Constructors"
-#~ msgstr "Konstruktorok"
-
-#~ msgid "J"
-#~ msgstr "J"
-
-#~ msgid "Adverb"
-#~ msgstr "Határozószó"
-
-#~ msgid "Conjunction"
-#~ msgstr "Kötőszó"
-
-#~ msgid "Control"
-#~ msgstr "Control"
-
-#~ msgid "Explicit Argument"
-#~ msgstr "Explicit argumentum"
-
-#~ msgid "Global"
-#~ msgstr "Globális"
-
-#~ msgid "Lab Text"
-#~ msgstr "Laborszöveg"
-
-#~ msgid "Local"
-#~ msgstr "Helyi"
-
-#~ msgid "Noun"
-#~ msgstr "Főnév"
-
-#~ msgid "Explicit Noun Definition"
-#~ msgstr "Explicit főnév-definíció"
-
-#~ msgid "Parens"
-#~ msgstr "Zárójelek"
-
-#~ msgid "Primitive"
-#~ msgstr "Primitív"
-
-#~ msgid "Verb"
-#~ msgstr "Ige"
-
-#~ msgid "Julia"
-#~ msgstr "Julia"
-
-#~ msgid "Math Constant"
-#~ msgstr "Matematikai állandó"
-
-#~ msgid "Special Constant"
-#~ msgstr "Speciális állandó"
-
-#~ msgid "External Command"
-#~ msgstr "Külső parancs"
-
-#~ msgid "Built-in Function"
-#~ msgstr "Beépített függvény"
-
-#~ msgid "Module"
-#~ msgstr "Modul"
-
-#~ msgid "LaTeX"
-#~ msgstr "LaTeX"
-
-#~ msgid "Math Mode"
-#~ msgstr "Matematikai mód"
-
-#~ msgid "Inline Math Mode"
-#~ msgstr "Beágyazott matematikai mód"
-
-#~ msgid "Math Boundary"
-#~ msgstr "Matematikai határ"
-
-#~ msgid "Include"
-#~ msgstr "Beleértve"
-
-#~ msgid "Verbatim"
-#~ msgstr "Változatlan"
-
-#~ msgid "Special Character"
-#~ msgstr "Különleges karakter"
-
-#~ msgid "Part Heading"
-#~ msgstr "Rész címsora"
-
-#~ msgid "Chapter Heading"
-#~ msgstr "Fejezet címsora"
-
-#~ msgid "Section Heading"
-#~ msgstr "Szakasz címsora"
-
-#~ msgid "SubSection Heading"
-#~ msgstr "Alszakasz címsora"
-
-#~ msgid "SubSubSection Heading"
-#~ msgstr "Al-alszakasz címsora"
-
-#~ msgid "Paragraph Heading"
-#~ msgstr "Bekezdés címsora"
-
-#~ msgid "SubParagraph Heading"
-#~ msgstr "Albekezdés címsora"
-
-#~ msgid "Lex"
-#~ msgstr "Lex"
-
-#~ msgid "Token"
-#~ msgstr "Jelsor"
-
-#~ msgid "Expression"
-#~ msgstr "Kifejezés"
-
-#~ msgid "libtool"
-#~ msgstr "libtool"
-
-#~ msgid "Constants"
-#~ msgstr "Állandók"
-
-#~ msgid "Lua"
-#~ msgstr "Lua"
-
-#~ msgid "Reserved Identifier"
-#~ msgstr "Védett azonosító"
-
-#~ msgid "Label"
-#~ msgstr "Címke"
-
-#~ msgid "Nil Constant"
-#~ msgstr "Nil állandó"
-
-#~ msgid "m4"
-#~ msgstr "m4"
-
-#~ msgid "m4 Comment"
-#~ msgstr "m4 megjegyzés"
-
-#~ msgid "m4 Macro"
-#~ msgstr "m4 makró"
-
-#~ msgid "Autoconf Macro"
-#~ msgstr "Autoconf makró"
-
-#~ msgid "Obsolete Autoconf Macro"
-#~ msgstr "Elavult Autoconf makró"
-
-#~ msgid "Makefile"
-#~ msgstr "Makefile"
-
-#~ msgid "Assignment Right Hand Side"
-#~ msgstr "Értékadás jobb oldala"
-
-#~ msgid "Assignment Left Hand Side"
-#~ msgstr "Értékadás bal oldala"
-
-#~ msgid "targets"
-#~ msgstr "Célok"
-
-#~ msgid "prereq"
-#~ msgstr "Előfeltétel"
-
-#~ msgid "command"
-#~ msgstr "Parancs"
-
-#~ msgid "Trailing Tab"
-#~ msgstr "Záró tab"
-
-#~ msgid "function"
-#~ msgstr "Függvény"
-
-#~ msgid "keyword"
-#~ msgstr "Kulcsszó"
-
-#~ msgid "Mallard"
-#~ msgstr "Mallard"
-
-#~ msgid "Page Elements"
-#~ msgstr "Oldalelemek"
-
-#~ msgid "Section Elements"
-#~ msgstr "Szakaszelemek"
-
-#~ msgid "Block Elements"
-#~ msgstr "Blokkelemek"
-
-#~ msgid "Inline Elements"
-#~ msgstr "Beágyazott elemek"
-
-#~ msgid "Markdown"
-#~ msgstr "Markdown"
-
-#~ msgid "Header"
-#~ msgstr "Fejléc"
-
-#~ msgid "Horizontal Rule"
-#~ msgstr "vízszintes elválasztó"
-
-#~ msgid "List Marker"
-#~ msgstr "Listajelölő"
-
-#~ msgid "Code"
-#~ msgstr "Kód"
-
-#~ msgid "Blockquote Marker"
-#~ msgstr "Idézetblokk-jelölő"
-
-#~ msgid "Link Text"
-#~ msgstr "Hivatkozásszöveg"
-
-#~ msgid "Image Marker"
-#~ msgstr "Képjelölő"
-
-#~ msgid "Strong Emphasis"
-#~ msgstr "Erős kiemelés"
-
-#~ msgid "Backslash Escape"
-#~ msgstr "Backslash elfedés"
-
-#~ msgid "Line Break"
-#~ msgstr "Sortörés"
-
-#~ msgid "Matlab"
-#~ msgstr "Matlab"
-
-#~ msgid "Maxima"
-#~ msgstr "Maxima"
-
-#~ msgid "MediaWiki"
-#~ msgstr "MediaWiki"
-
-#~ msgid "Light Emphasis"
-#~ msgstr "Enyhe kiemelés"
-
-#~ msgid "Signature"
-#~ msgstr "Aláírás"
-
-#~ msgid "Link"
-#~ msgstr "Hivatkozás"
-
-#~ msgid "Symbol on a Link"
-#~ msgstr "Szimbólum hivatkozáson"
-
-#~ msgid "Line"
-#~ msgstr "Vonal"
-
-#~ msgid "List"
-#~ msgstr "Lista"
-
-#~ msgid "Magic Word"
-#~ msgstr "Bűvös szó"
-
-#~ msgid "Symbol of a Table"
-#~ msgstr "Táblázat szimbóluma"
-
-#~ msgid "Preformatted"
-#~ msgstr "Előreformázott"
-
-#~ msgid "Redirect"
-#~ msgstr "Átirányítás"
-
-#~ msgid "Title"
-#~ msgstr "Cím"
-
-#~ msgid "Meson"
-#~ msgstr "Meson"
-
-#~ msgid "Modelica"
-#~ msgstr "Modelica"
-
-#~ msgid "Class type"
-#~ msgstr "Osztály típus"
-
-#~ msgid "Default Attribute"
-#~ msgstr "Alapértelmezett attribútum"
-
-#~ msgid "MXML"
-#~ msgstr "MXML"
-
-#~ msgid "CDATA delimiter"
-#~ msgstr "CDATA elválasztó"
-
-#~ msgid "Nemerle"
-#~ msgstr "Nemerle"
-
-#~ msgid "NetRexx"
-#~ msgstr "NetRexx"
-
-#~ msgid "Externals"
-#~ msgstr "Külsők"
-
-#~ msgid "Options"
-#~ msgstr "Beállítások"
-
-#~ msgid "Data Types"
-#~ msgstr "Adattípusok"
-
-#~ msgid "Special"
-#~ msgstr "Speciális"
-
-#~ msgid "Visibility"
-#~ msgstr "Láthatóság"
-
-#~ msgid "Modifiers"
-#~ msgstr "Módosítók"
-
-#~ msgid "Keywords"
-#~ msgstr "Kulcsszavak"
-
-#~ msgid "Sub Keywords"
-#~ msgstr "Alkulcsszavak"
-
-#~ msgid "NSIS"
-#~ msgstr "NSIS"
-
-#~ msgid "Objective-C"
-#~ msgstr "Objective C"
-
-#~ msgid "Objective-J"
-#~ msgstr "Objective-J"
-
-#~ msgid "OCaml"
-#~ msgstr "OCaml"
-
-#~ msgid "Ocamldoc Comments"
-#~ msgstr "Ocamldoc megjegyzések"
-
-#~ msgid "Standard Modules"
-#~ msgstr "Szabványos modulok"
-
-#~ msgid "OCL"
-#~ msgstr "OCL"
-
-#~ msgid "Type Operators"
-#~ msgstr "Típusoperátorok"
-
-#~ msgid "Operation operator"
-#~ msgstr "Műveletoperátor"
-
-#~ msgid "Octave"
-#~ msgstr "Octave"
-
-#~ msgid "Package Manager"
-#~ msgstr "Csomagkezelő"
-
-#~ msgid "OOC"
-#~ msgstr "OOC"
-
-#~ msgid "Opal"
-#~ msgstr "Opal"
-
-#~ msgid "Module Handler"
-#~ msgstr "Modulkezelő"
-
-#~ msgid "Keysymbol"
-#~ msgstr "Kulcsszimbólum"
-
-#~ msgid "OpenCL"
-#~ msgstr "OpenCL"
-
-#~ msgid "Global Function"
-#~ msgstr "Globális függvény"
-
-#~ msgid "Device Function"
-#~ msgstr "Eszközfüggvény"
-
-#~ msgid "Device Cast"
-#~ msgstr "Eszközkényszerítés"
-
-#~ msgid "OpenCL Constant"
-#~ msgstr "OpenCL állandó"
-
-#~ msgid "Global Variable"
-#~ msgstr "Globális változó"
-
-#~ msgid "Pascal"
-#~ msgstr "Pascal"
-
-#~ msgid "Perl"
-#~ msgstr "Perl"
-
-#~ msgid "Line Directive"
-#~ msgstr "Sordirektíva"
-
-#~ msgid "Include Statement"
-#~ msgstr "Include utasítás"
-
-#~ msgid "Heredoc"
-#~ msgstr "Heredoc"
-
-#~ msgid "Heredoc Bound"
-#~ msgstr "Heredoc határ"
-
-#~ msgid "System Command"
-#~ msgstr "Rendszerparancs"
-
-#~ msgid "File Descriptor"
-#~ msgstr "Fájlleíró"
-
-#~ msgid "POD"
-#~ msgstr "POD"
-
-#~ msgid "POD Escape"
-#~ msgstr "POD escape"
-
-#~ msgid "POD keyword"
-#~ msgstr "POD kulcsszó"
-
-#~ msgid "POD heading"
-#~ msgstr "POD fejléc"
-
-#~ msgid "PHP"
-#~ msgstr "PHP"
-
-#~ msgid "Preprocessor tags"
-#~ msgstr "Előfeldolgozó címkék"
-
-#~ msgid "Common Function"
-#~ msgstr "Általános függvény"
-
-#~ msgid "Pig"
-#~ msgstr "Pig"
-
-#~ msgid "Reserved Words"
-#~ msgstr "Fenntartott szavak"
-
-#~ msgid "Built In Functions"
-#~ msgstr "Beépített függvények"
-
-#~ msgid "Boolean values"
-#~ msgstr "Logikai értékek"
-
-#~ msgid "Null"
-#~ msgstr "Null"
-
-#~ msgid "pkg-config"
-#~ msgstr "pkg-config"
-
-#~ msgid "Package Info"
-#~ msgstr "Csomaginformációk"
-
-#~ msgid "Fuzzy"
-#~ msgstr "Ellenőrzendő"
-
-#~ msgid "Prolog"
-#~ msgstr "Prolog"
-
-#~ msgid "Puppet"
-#~ msgstr "Puppet"
-
-#~ msgid "Resources"
-#~ msgstr "Erőforrások"
-
-#~ msgid "Parameters"
-#~ msgstr "Paraméterek"
-
-#~ msgid "Metaparameters"
-#~ msgstr "Metaparaméterek"
-
-#~ msgid "Functions"
-#~ msgstr "Függvények"
-
-#~ msgid "Values"
-#~ msgstr "Értékek"
-
-#~ msgid "Variables"
-#~ msgstr "Változók"
-
-#~ msgid "Class names"
-#~ msgstr "Osztálynevek"
-
-#~ msgid "Python 3"
-#~ msgstr "Python 3"
-
-#~ msgid "Format"
-#~ msgstr "Formátum"
-
-#~ msgid "Builtin Object"
-#~ msgstr "Beépített objektum"
-
-#~ msgid "Python"
-#~ msgstr "Python"
-
-#~ msgid "String Conversion"
-#~ msgstr "Karakterlánc-átalakítás"
-
-#~ msgid "Class Name"
-#~ msgstr "Osztály neve"
-
-#~ msgid "Decorator"
-#~ msgstr "Dekorátor"
-
-#~ msgid "R"
-#~ msgstr "R"
-
-#~ msgid "Reserved Class"
-#~ msgstr "Védett osztály"
-
-#~ msgid "Assignment Operator"
-#~ msgstr "Hozzárendelő operátorok"
-
-#~ msgid "Delimiter"
-#~ msgstr "Elválasztó"
-
-#~ msgid "Integer Number"
-#~ msgstr "Egész szám"
-
-#~ msgid "Define"
-#~ msgstr "Definíció"
-
-#~ msgid "Section"
-#~ msgstr "Fejezet"
-
-#~ msgid "Spec Macro"
-#~ msgstr "Spec makró"
-
-#~ msgid "Directory Macro"
-#~ msgstr "Könyvtármakró"
-
-#~ msgid "Command Macro"
-#~ msgstr "Parancsmakró"
-
-#~ msgid "Conditional Macro"
-#~ msgstr "Feltételes makró"
-
-#~ msgid "Other Macro"
-#~ msgstr "Egyéb makró"
-
-#~ msgid "Flow Conditional"
-#~ msgstr "Feltételes irányítás"
-
-#~ msgid "RPM Variable"
-#~ msgstr "RPM változó"
-
-#~ msgid "Switch"
-#~ msgstr "Kapcsoló"
-
-#~ msgid "Email"
-#~ msgstr "E-mail"
-
-#~ msgid "reStructuredText"
-#~ msgstr "reStructuredText"
-
-#~ msgid "Directive"
-#~ msgstr "Direktíva"
-
-#~ msgid "Ruby"
-#~ msgstr "Ruby"
-
-#~ msgid "Attribute Definition"
-#~ msgstr "Attribútumdefiníció"
-
-#~ msgid "Module handler"
-#~ msgstr "Modulkezelő"
-
-#~ msgid "Numeric literal"
-#~ msgstr "Numerikus literál"
-
-#~ msgid "Literal"
-#~ msgstr "Literál"
-
-#~ msgid "Rust"
-#~ msgstr "Rust"
-
-#~ msgid "Scala"
-#~ msgstr "Scala"
-
-#~ msgid "Modifier"
-#~ msgstr "Módosító"
-
-#~ msgid "Built In"
-#~ msgstr "Beépített"
-
-#~ msgid "XML Tag"
-#~ msgstr "XML címke"
-
-#~ msgid "Scheme"
-#~ msgstr "Scheme"
-
-#~ msgid "Scilab"
-#~ msgstr "Scilab"
-
-#~ msgid "sh"
-#~ msgstr "sh"
-
-#~ msgid "Variable Definition"
-#~ msgstr "Változódefiníció"
-
-#~ msgid "Common Commands"
-#~ msgstr "Gyakori parancsok"
-
-#~ msgid "Subshell"
-#~ msgstr "Alparancsértelmező"
-
-#~ msgid "Standard ML"
-#~ msgstr "Szabványos ML"
-
-#~ msgid "Module name, Variant, etc"
-#~ msgstr "Modulnév, változat stb."
-
-#~ msgid "SPARQL"
-#~ msgstr "SPARQL"
-
-#~ msgid "Class"
-#~ msgstr "Osztály"
-
-#~ msgid "Individual"
-#~ msgstr "Önálló"
-
-#~ msgid "Predicate"
-#~ msgstr "Predikátum"
-
-#~ msgid "QName"
-#~ msgstr "QName"
-
-#~ msgid "IRI"
-#~ msgstr "IRI"
-
-#~ msgid "SQL"
-#~ msgstr "SQL"
-
-#~ msgid "No idea what it is"
-#~ msgstr "Nem tudom mi ez"
-
-#~ msgid "Sweave"
-#~ msgstr "Sweave"
-
-#~ msgid "Swift"
-#~ msgstr "Swift"
-
-#~ msgid "Builtin Value"
-#~ msgstr "Beépített érték"
-
-#~ msgid "Compiler Control"
-#~ msgstr "Fordítóvezérlés"
-
-#~ msgid "Interpolated Expression"
-#~ msgstr "Interpolált kifejezés"
-
-#~ msgid "SystemVerilog"
-#~ msgstr "SystemVerilog"
-
-#~ msgid "txt2tags"
-#~ msgstr "txt2tags"
-
-#~ msgid "Option"
-#~ msgstr "Kapcsoló"
-
-#~ msgid "Option Name"
-#~ msgstr "Kapcsolónév"
-
-#~ msgid "Section 1"
-#~ msgstr "1. szakasz"
-
-#~ msgid "Section 2"
-#~ msgstr "2. szakasz"
-
-#~ msgid "Section 3"
-#~ msgstr "3. szakasz"
-
-#~ msgid "Section 4"
-#~ msgstr "4. szakasz"
-
-#~ msgid "Section 5"
-#~ msgstr "5. szakasz"
-
-#~ msgid "Italic"
-#~ msgstr "Dőlt"
-
-#~ msgid "Bold"
-#~ msgstr "Félkövér"
-
-#~ msgid "Verbatim Block"
-#~ msgstr "Változatlan blokk"
-
-#~ msgid "Tcl"
-#~ msgstr "Tcl"
-
-#~ msgid "Texinfo"
-#~ msgstr "Texinfo"
-
-#~ msgid "Macros"
-#~ msgstr "Makrók"
-
-#~ msgid "File Attributes"
-#~ msgstr "Fájlattribútumok"
-
-#~ msgid "Generated Content"
-#~ msgstr "Védett tartalom"
-
-#~ msgid "Thrift"
-#~ msgstr "Thrift"
-
-#~ msgid "Vala"
-#~ msgstr "Vala"
-
-#~ msgid "VB.NET"
-#~ msgstr "VB.NET"
-
-#~ msgid "Verilog"
-#~ msgstr "Verilog"
-
-#~ msgid "IEEE System Task"
-#~ msgstr "IEEE rendszerfeladat"
-
-#~ msgid "LRM Additional System Task"
-#~ msgstr "LRM további rendszerfeladat"
-
-#~ msgid "Gate"
-#~ msgstr "Kapu"
-
-#~ msgid "VHDL"
-#~ msgstr "VHDL"
-
-#~ msgid "XML"
-#~ msgstr "XML"
-
-#~ msgid "XSLT"
-#~ msgstr "XSLT"
-
-#~ msgid "Element"
-#~ msgstr "Elem"
-
-#~ msgid "Yacc"
-#~ msgstr "Yacc"
-
-#~ msgid "token type"
-#~ msgstr "jelsortípus"
-
-#~ msgid "rule"
-#~ msgstr "Szabály"
-
-#~ msgid "YAML"
-#~ msgstr "YAML"
-
-#~ msgid "Block literal"
-#~ msgstr "Blokkliterál"
-
-#~ msgid "Alias"
-#~ msgstr "Álnév"
-
-#~ msgid "Map key"
-#~ msgstr "Leképezéskulcs"
-
-#~ msgid "Integer"
-#~ msgstr "Egész szám"
-
-#~ msgid "Floating point"
-#~ msgstr "Lebegőpontos"
-
-#~ msgid "Kate"
-#~ msgstr "Kate"
+#: gtksourceview/implregex.c:609
+msgid "hexadecimal digit or “}” expected"
+msgstr "hexadecimális számjegy vagy „}” várt"
+
+#: gtksourceview/implregex.c:625
+msgid "hexadecimal digit expected"
+msgstr "hexadecimális számjegy várt"
+
+#: gtksourceview/implregex.c:665
+msgid "missing “<” in symbolic reference"
+msgstr "hiányzó „<” a szimbolikus hivatkozásban"
+
+#: gtksourceview/implregex.c:674
+msgid "unfinished symbolic reference"
+msgstr "be nem fejezett szimbolikus hivatkozás"
+
+#: gtksourceview/implregex.c:681
+msgid "zero-length symbolic reference"
+msgstr "nulla hosszúságú szimbolikus hivatkozás"
+
+#: gtksourceview/implregex.c:692
+msgid "digit expected"
+msgstr "számjegy várt"
+
+#: gtksourceview/implregex.c:710
+msgid "illegal symbolic reference"
+msgstr "érvénytelen szimbolikus hivatkozás"
+
+#: gtksourceview/implregex.c:773
+msgid "stray final “\\”"
+msgstr "felesleges záró „\\”"
+
+#: gtksourceview/implregex.c:777
+msgid "unknown escape sequence"
+msgstr "ismeretlen elfedési szekvencia"
+
+#: gtksourceview/implregex.c:787
+#, c-format
+msgid "Error while parsing replacement text “%s” at char %lu: %s"
+msgstr ""
+"Hiba a(z) „%s” helyettesítő szöveg feldolgozásakor a(z) %lu. karakternél: %s"
