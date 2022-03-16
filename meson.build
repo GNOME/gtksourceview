@@ -77,7 +77,6 @@ glib_req = '>= @0@'.format(glib_req_version)
 gtk_req = '>= @0@'.format(gtk_req_version)
 libxml_req = '>= 2.6'
 introspection_req  = '>= 1.70.0'
-gtk_doc_req = '>= 1.25'
 fribidi_req = '>= 0.19.7'
 pcre2_req = '>= 10.21'
 
@@ -93,7 +92,7 @@ pangoft2_dep = dependency('pangoft2', required: false)
 pcre2_dep = dependency('libpcre2-8', version: pcre2_req,
                        fallback : ['pcre2', 'libpcre2_8'])
 
-gtk_quartz_dep = dependency('gtk4-quartz', version: gtk_doc_req, required: false)
+gtk_quartz_dep = dependency('gtk4-quartz', version: gtk_req, required: false)
 
 if generate_gir
   introspection_dep = dependency('gobject-introspection-1.0', version: introspection_req)
