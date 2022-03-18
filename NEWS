@@ -1,3 +1,20 @@
+News in 5.4.0, 2022-03-18
+-------------------------
+
+ * Build system fixes for Windows and macOS
+ * Style updates for Adwaita, Adwaita-dark, solarized-light, solarized-dark,
+   Classic, and a new Cobalt-light variant
+ * Language improvements for C, C++, GTK-DOC, and JSON
+ * Various header fixes
+ * Additional API to append/prepend search paths for language manager
+ * Allow loading language specifications via GResources
+ * A new "weight" attribute for style schemes which allows more control
+   than just bold="true"
+ * Various Vim emulation fixes
+ * GtkSourceView now requires GTK 4.6 for various CSS improvements
+ * Additional performance fixes to reduce overdraws by GPU
+ * Translation updates
+
 News in 5.3.2, 2022-01-09
 -------------------------
 
