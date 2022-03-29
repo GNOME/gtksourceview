@@ -48,11 +48,6 @@ GtkTextView   *gtk_source_gutter_lines_get_view         (GtkSourceGutterLines   
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkTextBuffer *gtk_source_gutter_lines_get_buffer       (GtkSourceGutterLines                 *lines);
 GTK_SOURCE_AVAILABLE_IN_ALL
-void           gtk_source_gutter_lines_get_yrange       (GtkSourceGutterLines                 *lines,
-                                                         guint                                 line,
-                                                         guint                                *line_y,
-                                                         guint                                *line_height);
-GTK_SOURCE_AVAILABLE_IN_ALL
 void           gtk_source_gutter_lines_add_qclass       (GtkSourceGutterLines                 *lines,
                                                          guint                                 line,
                                                          GQuark                                qname);
