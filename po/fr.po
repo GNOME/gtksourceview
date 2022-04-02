@@ -11,17 +11,17 @@
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2007.
 # Laurent Coudeur <laurentc@iol.ie>, 2009
 # Gérard Baylard <Geodebay@gmail.com>, 2011.
-# Charles Monzat <charles.monzat@numericable.fr>, 2018.
 # vanadiae <vanadiae35@gmail.com>, 2021.
 # Claude Paroz <claude@2xlibre.net>, 2007-2021.
+# Charles Monzat <charles.monzat@free.fr>, 2018-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gtksourceview HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2021-08-27 10:21+0000\n"
-"PO-Revision-Date: 2021-08-31 13:49+0200\n"
-"Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
+"POT-Creation-Date: 2022-03-03 12:23+0000\n"
+"PO-Revision-Date: 2022-03-12 18:20+0100\n"
+"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -68,6 +68,7 @@ msgstr ""
 #. (itstool) path: java.lang/language@_section
 #. (itstool) path: j.lang/language@_section
 #. (itstool) path: kotlin.lang/language@_section
+#. (itstool) path: lean.lang/language@_section
 #. (itstool) path: lex.lang/language@_section
 #. (itstool) path: llvm.lang/language@_section
 #. (itstool) path: logtalk.lang/language@_section
@@ -106,8 +107,8 @@ msgstr ""
 #: docker.lang:21 eiffel.lang:23 erlang.lang:23 forth.lang:23 fortran.lang:24
 #: fsharp.lang:24 genie.lang:23 glsl.lang:30 go.lang:24 gradle.lang:21
 #: groovy.lang:24 haskell.lang:24 haskell-literate.lang:23 haxe.lang:34
-#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lex.lang:24 llvm.lang:22
-#: logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
+#: idl.lang:23 java.lang:24 j.lang:23 kotlin.lang:24 lean.lang:23 lex.lang:24
+#: llvm.lang:22 logtalk.lang:23 makefile.lang:22 meson.lang:23 nemerle.lang:23
 #: netrexx.lang:23 objc.lang:23 objj.lang:26 ocaml.lang:26 ooc.lang:23
 #: opal.lang:23 opencl.lang:23 pascal.lang:24 pig.lang:26 powershell.lang:23
 #: prolog.lang:23 rust.lang:35 scala.lang:24 scheme.lang:23 sml.lang:23
@@ -307,25 +308,32 @@ msgstr "Spécification RPM"
 msgid "Tera Template"
 msgstr "Gabarit Tera"
 
-#. (itstool) path: Adwaita-dark.style-scheme.xml/style-scheme@_name
-#: Adwaita-dark.style-scheme.xml:20
+#. (itstool) path: Adwaita-dark.xml/style-scheme@_name
+#: Adwaita-dark.xml:20
 msgid "Adwaita Dark"
 msgstr "Adwaita sombre"
 
 #. (itstool) path: style-scheme/_description
-#: Adwaita-dark.style-scheme.xml:22
-msgid "A dark color scheme matching GTK's default theme"
-msgstr "Un jeu de couleurs sombre correspondant au thème GTK par défaut"
+#: Adwaita-dark.xml:22 Adwaita.xml:22
+msgid "An style scheme for Adwaita"
+msgstr "Un schéma de style pour Adwaita"
 
-#. (itstool) path: Adwaita.style-scheme.xml/style-scheme@_name
-#: Adwaita.style-scheme.xml:20
+#. (itstool) path: Adwaita.xml/style-scheme@_name
+#: Adwaita.xml:20
 msgid "Adwaita"
 msgstr "Adwaita"
 
+#. (itstool) path: classic-dark.xml/style-scheme@_name
+#: classic-dark.xml:22
+#| msgid "Classic"
+msgid "Classic Dark"
+msgstr "Classique sombre"
+
 #. (itstool) path: style-scheme/_description
-#: Adwaita.style-scheme.xml:22
-msgid "A color scheme matching GTK's default theme"
-msgstr "Un jeu de couleurs correspondant au thème GTK par défaut"
+#: classic-dark.xml:24
+#| msgid "Classic color scheme"
+msgid "Classic dark color scheme"
+msgstr "Jeu de couleurs classique sombre"
 
 #. (itstool) path: classic.xml/style-scheme@_name
 #: classic.xml:23
@@ -337,15 +345,27 @@ msgstr "Classique"
 msgid "Classic color scheme"
 msgstr "Jeu de couleurs classique"
 
+#. (itstool) path: cobalt-light.xml/style-scheme@_name
+#: cobalt-light.xml:20
+#| msgid "Cobalt"
+msgid "Cobalt Light"
+msgstr "Cobalt clair"
+
+#. (itstool) path: style-scheme/_description
+#: cobalt-light.xml:22 cobalt.xml:27
+msgid "Blue based color scheme"
+msgstr "Jeu de couleurs basé sur le bleu"
+
 #. (itstool) path: cobalt.xml/style-scheme@_name
 #: cobalt.xml:25
 msgid "Cobalt"
 msgstr "Cobalt"
 
 #. (itstool) path: style-scheme/_description
-#: cobalt.xml:27
-msgid "Blue based color scheme"
-msgstr "Jeu de couleurs basé sur le bleu"
+#: kate-dark.xml:24
+#| msgid "Color scheme used in the Kate text editor"
+msgid "Dark color scheme used in the Kate text editor"
+msgstr "Jeu de couleurs sombre utilisé dans l’éditeur de texte Kate"
 
 #. (itstool) path: style-scheme/_description
 #: kate.xml:25
@@ -353,12 +373,12 @@ msgid "Color scheme used in the Kate text editor"
 msgstr "Jeu de couleurs utilisé dans l’éditeur de texte Kate"
 
 #. (itstool) path: oblivion.xml/style-scheme@_name
-#: oblivion.xml:24
+#: oblivion.xml:23
 msgid "Oblivion"
 msgstr "Oblivion"
 
 #. (itstool) path: style-scheme/_description
-#: oblivion.xml:27
+#: oblivion.xml:25
 msgid "Dark color scheme using the Tango color palette"
 msgstr "Jeu de couleurs sombre utilisant la palette Tango"
 
@@ -392,11 +412,11 @@ msgstr "Tango"
 msgid "Color scheme using Tango color palette"
 msgstr "Jeu de couleurs utilisant la palette Tango"
 
-#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:409
+#: gtksourceview/completion-providers/snippets/gtksourcecompletionsnippets.c:407
 msgid "Snippets"
 msgstr "Extraits de code"
 
-#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:317
+#: gtksourceview/completion-providers/words/gtksourcecompletionwords.c:222
 msgid "Document Words"
 msgstr "Mots du document"
 
@@ -500,119 +520,119 @@ msgstr "contexte « %s » inconnu"
 msgid "Missing main language definition (id = “%s”)."
 msgstr "La définition principale du langage est manquante (id = « %s »)."
 
-#: gtksourceview/gtksourceencoding.c:137 gtksourceview/gtksourceencoding.c:180
-#: gtksourceview/gtksourceencoding.c:182 gtksourceview/gtksourceencoding.c:184
-#: gtksourceview/gtksourceencoding.c:186 gtksourceview/gtksourceencoding.c:188
-#: gtksourceview/gtksourceencoding.c:190 gtksourceview/gtksourceencoding.c:192
+#: gtksourceview/gtksourceencoding.c:136 gtksourceview/gtksourceencoding.c:179
+#: gtksourceview/gtksourceencoding.c:181 gtksourceview/gtksourceencoding.c:183
+#: gtksourceview/gtksourceencoding.c:185 gtksourceview/gtksourceencoding.c:187
+#: gtksourceview/gtksourceencoding.c:189 gtksourceview/gtksourceencoding.c:191
 msgid "Unicode"
 msgstr "Unicode"
 
-#: gtksourceview/gtksourceencoding.c:151 gtksourceview/gtksourceencoding.c:175
-#: gtksourceview/gtksourceencoding.c:225 gtksourceview/gtksourceencoding.c:268
+#: gtksourceview/gtksourceencoding.c:150 gtksourceview/gtksourceencoding.c:174
+#: gtksourceview/gtksourceencoding.c:224 gtksourceview/gtksourceencoding.c:267
 msgid "Western"
 msgstr "Occidental"
 
-#: gtksourceview/gtksourceencoding.c:153 gtksourceview/gtksourceencoding.c:227
-#: gtksourceview/gtksourceencoding.c:264
+#: gtksourceview/gtksourceencoding.c:152 gtksourceview/gtksourceencoding.c:226
+#: gtksourceview/gtksourceencoding.c:263
 msgid "Central European"
 msgstr "Europe centrale"
 
-#: gtksourceview/gtksourceencoding.c:155
+#: gtksourceview/gtksourceencoding.c:154
 msgid "South European"
 msgstr "Europe méridionale"
 
-#: gtksourceview/gtksourceencoding.c:157 gtksourceview/gtksourceencoding.c:171
-#: gtksourceview/gtksourceencoding.c:278
+#: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:170
+#: gtksourceview/gtksourceencoding.c:277
 msgid "Baltic"
 msgstr "Balte"
 
-#: gtksourceview/gtksourceencoding.c:159 gtksourceview/gtksourceencoding.c:229
-#: gtksourceview/gtksourceencoding.c:242 gtksourceview/gtksourceencoding.c:246
-#: gtksourceview/gtksourceencoding.c:248 gtksourceview/gtksourceencoding.c:266
+#: gtksourceview/gtksourceencoding.c:158 gtksourceview/gtksourceencoding.c:228
+#: gtksourceview/gtksourceencoding.c:241 gtksourceview/gtksourceencoding.c:245
+#: gtksourceview/gtksourceencoding.c:247 gtksourceview/gtksourceencoding.c:265
 msgid "Cyrillic"
 msgstr "Cyrillique"
 
-#: gtksourceview/gtksourceencoding.c:161 gtksourceview/gtksourceencoding.c:235
-#: gtksourceview/gtksourceencoding.c:276
+#: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:234
+#: gtksourceview/gtksourceencoding.c:275
 msgid "Arabic"
 msgstr "Arabe"
 
-#: gtksourceview/gtksourceencoding.c:163 gtksourceview/gtksourceencoding.c:270
+#: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:269
 msgid "Greek"
 msgstr "Grec"
 
-#: gtksourceview/gtksourceencoding.c:165
+#: gtksourceview/gtksourceencoding.c:164
 msgid "Hebrew Visual"
 msgstr "Hébreu visuel"
 
-#: gtksourceview/gtksourceencoding.c:167 gtksourceview/gtksourceencoding.c:231
-#: gtksourceview/gtksourceencoding.c:272
+#: gtksourceview/gtksourceencoding.c:166 gtksourceview/gtksourceencoding.c:230
+#: gtksourceview/gtksourceencoding.c:271
 msgid "Turkish"
 msgstr "Turc"
 
-#: gtksourceview/gtksourceencoding.c:169
+#: gtksourceview/gtksourceencoding.c:168
 msgid "Nordic"
 msgstr "Scandinave"
 
-#: gtksourceview/gtksourceencoding.c:173
+#: gtksourceview/gtksourceencoding.c:172
 msgid "Celtic"
 msgstr "Celte"
 
-#: gtksourceview/gtksourceencoding.c:177
+#: gtksourceview/gtksourceencoding.c:176
 msgid "Romanian"
 msgstr "Roumain"
 
-#: gtksourceview/gtksourceencoding.c:195
+#: gtksourceview/gtksourceencoding.c:194
 msgid "Armenian"
 msgstr "Arménien"
 
-#: gtksourceview/gtksourceencoding.c:197 gtksourceview/gtksourceencoding.c:199
-#: gtksourceview/gtksourceencoding.c:213
+#: gtksourceview/gtksourceencoding.c:196 gtksourceview/gtksourceencoding.c:198
+#: gtksourceview/gtksourceencoding.c:212
 msgid "Chinese Traditional"
 msgstr "Chinois traditionnel"
 
-#: gtksourceview/gtksourceencoding.c:201
+#: gtksourceview/gtksourceencoding.c:200
 msgid "Cyrillic/Russian"
 msgstr "Cyrillique/russe"
 
-#: gtksourceview/gtksourceencoding.c:204 gtksourceview/gtksourceencoding.c:206
-#: gtksourceview/gtksourceencoding.c:208 gtksourceview/gtksourceencoding.c:238
-#: gtksourceview/gtksourceencoding.c:253
+#: gtksourceview/gtksourceencoding.c:203 gtksourceview/gtksourceencoding.c:205
+#: gtksourceview/gtksourceencoding.c:207 gtksourceview/gtksourceencoding.c:237
+#: gtksourceview/gtksourceencoding.c:252
 msgid "Japanese"
 msgstr "Japonais"
 
-#: gtksourceview/gtksourceencoding.c:211 gtksourceview/gtksourceencoding.c:240
-#: gtksourceview/gtksourceencoding.c:244 gtksourceview/gtksourceencoding.c:259
+#: gtksourceview/gtksourceencoding.c:210 gtksourceview/gtksourceencoding.c:239
+#: gtksourceview/gtksourceencoding.c:243 gtksourceview/gtksourceencoding.c:258
 msgid "Korean"
 msgstr "Coréen"
 
-#: gtksourceview/gtksourceencoding.c:216 gtksourceview/gtksourceencoding.c:218
-#: gtksourceview/gtksourceencoding.c:220
+#: gtksourceview/gtksourceencoding.c:215 gtksourceview/gtksourceencoding.c:217
+#: gtksourceview/gtksourceencoding.c:219
 msgid "Chinese Simplified"
 msgstr "Chinois simplifié"
 
-#: gtksourceview/gtksourceencoding.c:222
+#: gtksourceview/gtksourceencoding.c:221
 msgid "Georgian"
 msgstr "Géorgien"
 
-#: gtksourceview/gtksourceencoding.c:233 gtksourceview/gtksourceencoding.c:274
+#: gtksourceview/gtksourceencoding.c:232 gtksourceview/gtksourceencoding.c:273
 msgid "Hebrew"
 msgstr "Hébreu"
 
-#: gtksourceview/gtksourceencoding.c:250
+#: gtksourceview/gtksourceencoding.c:249
 msgid "Cyrillic/Ukrainian"
 msgstr "Cyrillique/ukrainien"
 
-#: gtksourceview/gtksourceencoding.c:255 gtksourceview/gtksourceencoding.c:261
-#: gtksourceview/gtksourceencoding.c:280
+#: gtksourceview/gtksourceencoding.c:254 gtksourceview/gtksourceencoding.c:260
+#: gtksourceview/gtksourceencoding.c:279
 msgid "Vietnamese"
 msgstr "Vietnamien"
 
-#: gtksourceview/gtksourceencoding.c:257
+#: gtksourceview/gtksourceencoding.c:256
 msgid "Thai"
 msgstr "Thaï"
 
-#: gtksourceview/gtksourceencoding.c:491
+#: gtksourceview/gtksourceencoding.c:485
 msgid "Unknown"
 msgstr "Inconnu"
 
@@ -630,11 +650,11 @@ msgstr "Inconnu"
 #. * for a list of supported encodings.
 #. * Keep the same format: square brackets, single quotes, commas.
 #.
-#: gtksourceview/gtksourceencoding.c:635
+#: gtksourceview/gtksourceencoding.c:628
 msgid "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 
-#: gtksourceview/gtksourcefileloader.c:506
+#: gtksourceview/gtksourcefileloader.c:502
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
@@ -642,35 +662,34 @@ msgstr ""
 "Une erreur de conversion de codage de caractère s’est produite et il a fallu "
 "utiliser un caractère de remplacement."
 
-#: gtksourceview/gtksourcefileloader.c:613
+#: gtksourceview/gtksourcefileloader.c:617
 msgid "File too big."
 msgstr "Fichier trop volumineux."
 
-#: gtksourceview/gtksourcefileloader.c:767
+#: gtksourceview/gtksourcefileloader.c:772
 msgid "Not a regular file."
 msgstr "Ce n’est pas un fichier normal."
 
-#: gtksourceview/gtksourcefilesaver.c:966
+#: gtksourceview/gtksourcefilesaver.c:962
 msgid "The file is externally modified."
 msgstr "Le fichier a été modifié par un programme externe."
 
-#: gtksourceview/gtksourcefilesaver.c:1422
+#: gtksourceview/gtksourcefilesaver.c:1402
 msgid "The buffer contains invalid characters."
 msgstr "Le tampon contient des caractères non valides."
 
 #. *
-#. * SECTION:language
-#. * @Short_description: Represents a syntax highlighted language
-#. * @Title: GtkSourceLanguage
-#. * @See_also: #GtkSourceLanguageManager
+#. * GtkSourceLanguage:
 #. *
-#. * A #GtkSourceLanguage represents a programming or markup language, affecting
-#. * syntax highlighting and [context classes][context-classes].
+#. * Represents a syntax highlighted language.
 #. *
-#. * Use #GtkSourceLanguageManager to obtain a #GtkSourceLanguage instance, and
-#. * gtk_source_buffer_set_language() to apply it to a #GtkSourceBuffer.
+#. * A `GtkSourceLanguage` represents a programming or markup language, affecting
+#. * syntax highlighting and [context classes](./class.Buffer.html#context-classes).
+#. *
+#. * Use [class@LanguageManager] to obtain a `GtkSourceLanguage` instance, and
+#. * [method@Buffer.set_language] to apply it to a [class@Buffer].
 #.
-#: gtksourceview/gtksourcelanguage.c:53
+#: gtksourceview/gtksourcelanguage.c:52
 msgid "Others"
 msgstr "Autres"
 
@@ -693,35 +712,35 @@ msgstr ""
 "langage"
 
 #. TODO: have a ChooserDialog?
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:181
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:178
 msgid "Select a Style"
 msgstr "Choisir un style"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:185
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:182
 msgid "_Cancel"
 msgstr "A_nnuler"
 
-#: gtksourceview/gtksourcestyleschemechooserbutton.c:186
+#: gtksourceview/gtksourcestyleschemechooserbutton.c:183
 msgid "_Select"
 msgstr "_Choisir"
 
-#: gtksourceview/gtksourceview.c:1825
+#: gtksourceview/gtksourceview.c:1806
 msgid "All _Upper Case"
 msgstr "Tout en _majuscules"
 
-#: gtksourceview/gtksourceview.c:1829
+#: gtksourceview/gtksourceview.c:1810
 msgid "All _Lower Case"
 msgstr "Tout en mi_nuscules"
 
-#: gtksourceview/gtksourceview.c:1833
+#: gtksourceview/gtksourceview.c:1814
 msgid "_Invert Case"
 msgstr "_Inverser la casse"
 
-#: gtksourceview/gtksourceview.c:1837
+#: gtksourceview/gtksourceview.c:1818
 msgid "_Title Case"
 msgstr "Ma_juscules initiales"
 
-#: gtksourceview/gtksourceview.c:1841
+#: gtksourceview/gtksourceview.c:1822
 msgid "C_hange Case"
 msgstr "Mo_difier la casse"
 
@@ -767,3 +786,29 @@ msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr ""
 "Erreur lors de l’analyse du texte de remplacement « %s » au caractère %lu : "
 "%s"
+
+#: gtksourceview/vim/gtksourceviminsert.c:490
+msgid "-- INSERT --"
+msgstr "-- INSERTION --"
+
+#: gtksourceview/vim/gtksourcevimreplace.c:125
+msgid "-- REPLACE --"
+msgstr "-- REMPLACEMENT --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:299
+msgid "-- VISUAL --"
+msgstr "-- VISUEL --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:302
+msgid "-- VISUAL LINE --"
+msgstr "-- VISUEL LIGNE --"
+
+#: gtksourceview/vim/gtksourcevimvisual.c:305
+msgid "-- VISUAL BLOCK --"
+msgstr "-- VISUEL BLOC --"
+
+#~ msgid "A dark color scheme matching GTK's default theme"
+#~ msgstr "Un jeu de couleurs sombre correspondant au thème GTK par défaut"
+
+#~ msgid "A color scheme matching GTK's default theme"
+#~ msgstr "Un jeu de couleurs correspondant au thème GTK par défaut"
