@@ -29,7 +29,7 @@
 
 /**
  * GtkSourceSnippet:
- * 
+ *
  * Quick insertion code snippets.
  *
  * The `GtkSourceSnippet` represents a series of chunks that can quickly be
@@ -165,8 +165,8 @@ gtk_source_snippet_copy (GtkSourceSnippet *snippet)
  * gtk_source_snippet_get_focus_position:
  * @snippet: a #GtkSourceSnippet
  *
- * Gets the current focus for the snippet. 
- * 
+ * Gets the current focus for the snippet.
+ *
  * This is changed as the user tabs through focus locations.
  *
  * Returns: The focus position, or -1 if unset.
@@ -223,7 +223,7 @@ gtk_source_snippet_get_nth_chunk (GtkSourceSnippet *snippet,
  * @snippet: a #GtkSourceSnippet
  *
  * Gets the trigger for the source snippet.
- * 
+ *
  * A trigger is a word that can be expanded into the full snippet when
  * the user presses Tab.
  *
