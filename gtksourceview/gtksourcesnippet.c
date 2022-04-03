@@ -24,6 +24,7 @@
 #include "gtksourcebuffer-private.h"
 #include "gtksourcelanguage.h"
 #include "gtksourcesnippet-private.h"
+#include "gtksourcesnippetbundle-private.h"
 #include "gtksourcesnippetchunk-private.h"
 #include "gtksourcesnippetcontext-private.h"
 
@@ -1412,4 +1413,55 @@ _gtk_source_snippet_replace_current_chunk_text (GtkSourceSnippet *snippet,
 		gtk_source_snippet_chunk_set_text (snippet->current_chunk, new_text);
 		gtk_source_snippet_chunk_set_text_set (snippet->current_chunk, TRUE);
 	}
+}
+
+/**
+ * gtk_source_snippet_new_parsed:
+ * @text: the formatted snippet text to parse
+ * @error: a location for a #GError or %NULL
+ *
+ * Parses the snippet formatted @text into a series of chunks and adds them
+ * to a new #GtkSourceSnippet.
+ *
+ * Returns: (transfer full): the newly parsed #GtkSourceSnippet, or %NULL upon
+ *   failure and @error is set.
+ *
+ * Since: 5.6
+ */
+GtkSourceSnippet *
+gtk_source_snippet_new_parsed (const char  *text,
+                               GError     **error)
+{
+	GtkSourceSnippet *snippet;
+	GPtrArray *chunks;
+
+	g_return_val_if_fail (text != NULL, NULL);
+
+	chunks = _gtk_source_snippet_bundle_parse_text (text, error);
+
+	if (chunks == NULL)
+	{
+		return NULL;
+	}
+
+	if (chunks->len == 0)
+	{
+		g_set_error (error,
+			     G_IO_ERROR,
+			     G_IO_ERROR_INVALID_DATA,
+			     "Failed to parse any content from snippet text");
+		g_ptr_array_unref (chunks);
+		return NULL;
+	}
+
+	snippet = gtk_source_snippet_new (NULL, NULL);
+
+	for (guint i = 0; i < chunks->len; i++)
+	{
+		gtk_source_snippet_add_chunk (snippet, g_ptr_array_index (chunks, i));
+	}
+
+	g_ptr_array_unref (chunks);
+
+	return g_steal_pointer (&snippet);
 }

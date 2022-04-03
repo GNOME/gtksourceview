@@ -37,6 +37,9 @@ G_DECLARE_FINAL_TYPE (GtkSourceSnippet, gtk_source_snippet, GTK_SOURCE, SNIPPET,
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSnippet        *gtk_source_snippet_new                        (const gchar           *trigger,
                                                                         const gchar           *language_id);
+GTK_SOURCE_AVAILABLE_IN_5_6
+GtkSourceSnippet        *gtk_source_snippet_new_parsed                 (const char            *text,
+                                                                        GError               **error);
 GTK_SOURCE_AVAILABLE_IN_ALL
 GtkSourceSnippet        *gtk_source_snippet_copy                       (GtkSourceSnippet      *snippet);
 GTK_SOURCE_AVAILABLE_IN_ALL

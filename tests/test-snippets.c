@@ -51,6 +51,44 @@ test_simple (void)
 	g_assert_finalize_object (mgr);
 }
 
+static void
+test_snippet_parse (void)
+{
+	GtkSourceSnippet *snippet;
+	GtkSourceSnippetChunk *chunk;
+	GError *error = NULL;
+
+	snippet = gtk_source_snippet_new_parsed ("${1:test} ${2:$1}$0", &error);
+	g_assert_no_error (error);
+	g_assert_nonnull (snippet);
+
+	g_assert_cmpint (4, ==, gtk_source_snippet_get_n_chunks (snippet));
+
+	chunk = gtk_source_snippet_get_nth_chunk (snippet, 0);
+	g_assert_cmpint (1, ==, gtk_source_snippet_chunk_get_focus_position (chunk));
+	g_assert_cmpstr ("test", ==, gtk_source_snippet_chunk_get_spec (chunk));
+	g_assert_nonnull (chunk);
+
+	chunk = gtk_source_snippet_get_nth_chunk (snippet, 1);
+	g_assert_cmpint (-1, ==, gtk_source_snippet_chunk_get_focus_position (chunk));
+	g_assert_cmpstr (" ", ==, gtk_source_snippet_chunk_get_spec (chunk));
+	g_assert_nonnull (chunk);
+
+	chunk = gtk_source_snippet_get_nth_chunk (snippet, 2);
+	g_assert_cmpint (2, ==, gtk_source_snippet_chunk_get_focus_position (chunk));
+	g_assert_cmpstr ("$1", ==, gtk_source_snippet_chunk_get_spec (chunk));
+	/* Unset until user types */
+	g_assert_cmpstr ("", ==, gtk_source_snippet_chunk_get_text (chunk));
+	g_assert_nonnull (chunk);
+
+	chunk = gtk_source_snippet_get_nth_chunk (snippet, 3);
+	g_assert_cmpint (0, ==, gtk_source_snippet_chunk_get_focus_position (chunk));
+	g_assert_cmpstr ("", ==, gtk_source_snippet_chunk_get_spec (chunk));
+	g_assert_nonnull (chunk);
+
+	g_assert_finalize_object (snippet);
+}
+
 gint
 main (gint argc,
       gchar *argv[])
@@ -62,6 +100,7 @@ main (gint argc,
 	g_test_init (&argc, &argv, NULL);
 
 	g_test_add_func ("/SourceView/Snippets/parse-bundle", test_simple);
+	g_test_add_func ("/SourceView/Snippets/new-parsed", test_snippet_parse);
 	ret = g_test_run ();
 
 	gtk_source_finalize ();
