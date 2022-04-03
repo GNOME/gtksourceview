@@ -27,18 +27,14 @@ static const gchar *search_path[] = {
 	NULL
 };
 
-gint
-main (gint argc,
-      gchar *argv[])
+static void
+test_simple (void)
 {
 	GtkSourceSnippetManager *mgr;
 	GtkSourceSnippet *snippet;
 	const gchar **groups;
 
-	gtk_init ();
-	gtk_source_init ();
-
-	mgr = gtk_source_snippet_manager_get_default ();
+	mgr = g_object_new (GTK_SOURCE_TYPE_SNIPPET_MANAGER, NULL);
 	gtk_source_snippet_manager_set_search_path (mgr, search_path);
 
 	/* Update if you add new groups to data/snippets/ */
@@ -52,7 +48,23 @@ main (gint argc,
 	g_assert_nonnull (snippet);
 	g_assert_finalize_object (snippet);
 
+	g_assert_finalize_object (mgr);
+}
+
+gint
+main (gint argc,
+      gchar *argv[])
+{
+	int ret;
+
+	gtk_init ();
+	gtk_source_init ();
+	g_test_init (&argc, &argv, NULL);
+
+	g_test_add_func ("/SourceView/Snippets/parse-bundle", test_simple);
+	ret = g_test_run ();
+
 	gtk_source_finalize ();
 
-	return 0;
+	return ret;
 }
