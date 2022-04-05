@@ -243,38 +243,42 @@ gtk_source_vim_im_context_set_client_widget (GtkIMContext *context,
 	GtkSourceVimIMContext *self = (GtkSourceVimIMContext *)context;
 
 	g_return_if_fail (GTK_SOURCE_IS_VIM_IM_CONTEXT (self));
+	g_return_if_fail (!widget || GTK_SOURCE_IS_VIEW (widget));
 
 	if (self->vim != NULL)
-	{
-		g_object_run_dispose (G_OBJECT (self->vim));
-		g_clear_object (&self->vim);
-	}
+    {
+      g_object_run_dispose (G_OBJECT (self->vim));
+      g_clear_object (&self->vim);
+    }
 
-	self->vim = gtk_source_vim_new (GTK_SOURCE_VIEW (widget));
+  if (widget != NULL)
+    {
+      self->vim = gtk_source_vim_new (GTK_SOURCE_VIEW (widget));
 
-	g_signal_connect_object (self->vim,
-	                         "notify",
-	                         G_CALLBACK (on_vim_notify_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
+      g_signal_connect_object (self->vim,
+                               "notify",
+                               G_CALLBACK (on_vim_notify_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
 
-	g_signal_connect_object (self->vim,
-	                         "execute-command",
-	                         G_CALLBACK (on_vim_execute_command_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
+      g_signal_connect_object (self->vim,
+                               "execute-command",
+                               G_CALLBACK (on_vim_execute_command_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
 
-	g_signal_connect_object (self->vim,
-	                         "format",
-	                         G_CALLBACK (on_vim_format_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
+      g_signal_connect_object (self->vim,
+                               "format",
+                               G_CALLBACK (on_vim_format_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
 
-	g_signal_connect_object (self->vim,
-	                         "ready",
-	                         G_CALLBACK (on_vim_ready_cb),
-	                         self,
-	                         G_CONNECT_SWAPPED);
+      g_signal_connect_object (self->vim,
+                               "ready",
+                               G_CALLBACK (on_vim_ready_cb),
+                               self,
+                               G_CONNECT_SWAPPED);
+    }
 
 	g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_COMMAND_TEXT]);
 	g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_COMMAND_BAR_TEXT]);
