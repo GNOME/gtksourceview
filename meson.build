@@ -343,4 +343,4 @@ summary({
   }, bool_yn: true,
 )
 
-gnome.post_install(gtk_update_icon_cache: true)
+gnome.post_install(gtk_update_icon_cache: not meson.is_cross_build())
