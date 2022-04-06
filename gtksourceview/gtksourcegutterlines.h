@@ -86,5 +86,8 @@ void           gtk_source_gutter_lines_get_line_yrange  (GtkSourceGutterLines   
                                                          GtkSourceGutterRendererAlignmentMode  mode,
                                                          gint                                 *y,
                                                          gint                                 *height);
+GTK_SOURCE_AVAILABLE_IN_5_6
+gboolean       gtk_source_gutter_lines_has_any_class    (GtkSourceGutterLines                 *lines,
+                                                         guint                                 line);
 
 G_END_DECLS
