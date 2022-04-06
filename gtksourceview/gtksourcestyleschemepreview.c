@@ -259,10 +259,8 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	GtkSourceStyleSchemePreview *self = (GtkSourceStyleSchemePreview *)object;
 	GtkSourceBuffer *buffer;
 	GtkSourceView *view;
-	GtkOverlay *overlay;
 	const char *name;
 	GtkLabel *label;
-	GtkFrame *frame;
 
 	G_OBJECT_CLASS (gtk_source_style_scheme_preview_parent_class)->constructed (object);
 
@@ -278,10 +276,6 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	name = gtk_source_style_scheme_get_name (self->scheme);
 	gtk_widget_set_tooltip_text (GTK_WIDGET (self), name);
 
-	frame = g_object_new (GTK_TYPE_FRAME,
-	                      "can-focus", FALSE,
-	                      "focusable", FALSE,
-	                      NULL);
 	view = g_object_new (GTK_SOURCE_TYPE_VIEW,
 	                     "focusable", FALSE,
 	                     "can-focus", FALSE,
@@ -295,7 +289,6 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	                     "width-request", 120,
 	                     "right-margin", 9,
 	                     NULL);
-	overlay = g_object_new (GTK_TYPE_OVERLAY, NULL);
 	label = g_object_new (GTK_TYPE_LABEL, NULL);
 	self->image = g_object_new (GTK_TYPE_IMAGE,
 	                            "icon-name", "object-select-symbolic",
@@ -311,11 +304,11 @@ gtk_source_style_scheme_preview_constructed (GObject *object)
 	add_text (buffer, self->scheme);
 	load_override_font (view);
 
-	gtk_frame_set_child (frame, GTK_WIDGET (overlay));
-	gtk_overlay_set_child (overlay, GTK_WIDGET (view));
-	gtk_overlay_add_overlay (overlay, GTK_WIDGET (label));
-	gtk_overlay_add_overlay (overlay, GTK_WIDGET (self->image));
-	gtk_widget_set_parent (GTK_WIDGET (frame), GTK_WIDGET (self));
+	gtk_widget_set_parent (GTK_WIDGET (view), GTK_WIDGET (self));
+	gtk_widget_set_parent (GTK_WIDGET (label), GTK_WIDGET (self));
+	gtk_widget_set_parent (GTK_WIDGET (self->image), GTK_WIDGET (self));
+
+	gtk_widget_set_overflow (GTK_WIDGET (self), GTK_OVERFLOW_HIDDEN);
 }
 
 static void
