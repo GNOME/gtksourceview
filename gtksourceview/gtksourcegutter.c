@@ -722,6 +722,14 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 	                                    visible_rect.x,
 	                                    visible_rect.y + visible_rect.height);
 
+	/* Try to include an extra line on each edge so that situations
+	 * that are dependent on neighboring lines can still include enough
+	 * information to draw correctly. This is useful for situations like
+	 * git where you might need to draw special delete marks.
+	 */
+	gtk_text_iter_backward_line (&begin);
+	gtk_text_iter_forward_line (&end);
+
 	/* The first step is to get line information about all the visible
 	 * lines. We do this up front so that we can do it once to reduce many
 	 * times the renderers need to walk through the buffer contents as that
