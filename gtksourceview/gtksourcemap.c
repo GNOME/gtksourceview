@@ -187,8 +187,9 @@ typedef struct
 	GBinding *indent_width_binding;
 	GBinding *tab_width_binding;
 
-	/* Our signal handler for buffer changes */
+	/* Our signal handler for view changes */
 	gulong view_notify_buffer_handler;
+	gulong view_notify_right_margin_position_handler;
 	gulong view_vadj_value_changed_handler;
 	gulong view_vadj_notify_upper_handler;
 
@@ -785,6 +786,13 @@ connect_view (GtkSourceMap  *map,
 		                         G_CONNECT_SWAPPED);
 	view_notify_buffer (map, NULL, view);
 
+	priv->view_notify_right_margin_position_handler =
+		g_signal_connect_object (view,
+		                         "notify::right-margin-position",
+		                         G_CALLBACK (gtk_widget_queue_resize),
+		                         map,
+		                         G_CONNECT_SWAPPED);
+
 	priv->view_vadj_value_changed_handler =
 		g_signal_connect_object (vadj,
 		                         "value-changed",
@@ -848,11 +856,8 @@ disconnect_view (GtkSourceMap *map)
 		priv->tab_width_binding = NULL;
 	}
 
-	if (priv->view_notify_buffer_handler != 0)
-	{
-		g_signal_handler_disconnect (priv->view, priv->view_notify_buffer_handler);
-		priv->view_notify_buffer_handler = 0;
-	}
+	g_clear_signal_handler (&priv->view_notify_buffer_handler, priv->view);
+	g_clear_signal_handler (&priv->view_notify_right_margin_position_handler, priv->view);
 
 	vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->view));
 	if (vadj != NULL)
