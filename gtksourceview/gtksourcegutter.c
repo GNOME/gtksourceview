@@ -1081,3 +1081,16 @@ _gtk_source_gutter_unapply_scheme (GtkSourceGutter      *gutter,
 		_gtk_source_style_scheme_unapply (scheme, GTK_WIDGET (renderer->renderer));
 	}
 }
+
+void
+_gtk_source_gutter_buffer_changed (GtkSourceGutter *gutter)
+{
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER (gutter));
+
+	for (const GList *iter = gutter->renderers; iter; iter = iter->next)
+	{
+		Renderer *renderer = iter->data;
+
+		_gtk_source_gutter_renderer_buffer_changed (renderer->renderer);
+	}
+}

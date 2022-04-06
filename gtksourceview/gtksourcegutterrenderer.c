@@ -1005,3 +1005,16 @@ _gtk_source_gutter_renderer_end (GtkSourceGutterRenderer *renderer)
 	GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->end (renderer);
 	g_clear_object (&priv->lines);
 }
+
+void
+_gtk_source_gutter_renderer_buffer_changed (GtkSourceGutterRenderer *renderer)
+{
+	GtkSourceGutterRendererPrivate *priv = gtk_source_gutter_renderer_get_instance_private (renderer);
+
+	g_return_if_fail (GTK_SOURCE_IS_GUTTER_RENDERER (renderer));
+
+	if (GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->buffer_changed)
+	{
+		GTK_SOURCE_GUTTER_RENDERER_GET_CLASS (renderer)->buffer_changed (renderer);
+	}
+}

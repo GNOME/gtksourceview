@@ -90,8 +90,21 @@ struct _GtkSourceGutterRendererClass
 	                                   GdkModifierType               state,
 	                                   gint                          n_presses);
 
+  /**
+   * GtkSourceGutterRendererClass.buffer_changed:
+   *
+   * This virtual function is called when the underlying buffer changes
+   * to allow renderer implementations simplified access to invalidate
+   * any state necessary.
+   *
+   * An attempt is made to only call this once per main-loop cycle.
+   *
+   * Since: 5.6
+   */
+  void     (*buffer_changed)        (GtkSourceGutterRenderer      *renderer);
+
 	/*< private >*/
-	gpointer _reserved[20];
+	gpointer _reserved[19];
 };
 
 GTK_SOURCE_AVAILABLE_IN_ALL

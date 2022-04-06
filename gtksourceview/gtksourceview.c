@@ -208,6 +208,8 @@ typedef struct
 
 	GtkSourceViewSnippets snippets;
 
+	guint propagate_change_source;
+
 	guint background_pattern_color_set : 1;
 	guint current_line_background_color_set : 1;
 	guint current_line_number_bold : 1;
@@ -1683,6 +1685,46 @@ implicit_trailing_newline_changed_cb (GtkSourceBuffer *buffer,
 	gtk_source_view_queue_draw (view);
 }
 
+
+static gboolean
+propagate_change_cb (gpointer data)
+{
+	GtkSourceView *view = data;
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
+	priv->propagate_change_source = 0;
+
+	if (priv->left_gutter)
+	{
+		_gtk_source_gutter_buffer_changed (priv->left_gutter);
+	}
+
+	if (priv->right_gutter)
+	{
+		_gtk_source_gutter_buffer_changed (priv->right_gutter);
+	}
+
+	return G_SOURCE_REMOVE;
+}
+
+static void
+changed_cb (GtkSourceBuffer *buffer,
+            GtkSourceView   *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
+	if (priv->propagate_change_source == 0 &&
+	    (priv->left_gutter != NULL || priv->right_gutter != NULL))
+	{
+		priv->propagate_change_source = g_idle_add (propagate_change_cb, view);
+	}
+}
+
 static void
 remove_source_buffer (GtkSourceView *view)
 {
@@ -1691,6 +1733,12 @@ remove_source_buffer (GtkSourceView *view)
 	if (priv->source_buffer != NULL)
 	{
 		GtkSourceBufferInternal *buffer_internal;
+
+		g_clear_handle_id (&priv->propagate_change_source, g_source_remove);
+
+		g_signal_handlers_disconnect_by_func (priv->source_buffer,
+						      changed_cb,
+						      view);
 
 		g_signal_handlers_disconnect_by_func (priv->source_buffer,
 						      highlight_updated_cb,
@@ -1743,6 +1791,11 @@ set_source_buffer (GtkSourceView *view,
 		GtkSourceBufferInternal *buffer_internal;
 
 		priv->source_buffer = g_object_ref (GTK_SOURCE_BUFFER (buffer));
+
+		g_signal_connect (buffer,
+				  "changed",
+				  G_CALLBACK (changed_cb),
+				  view);
 
 		g_signal_connect (buffer,
 				  "highlight-updated",

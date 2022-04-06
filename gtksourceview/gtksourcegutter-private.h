@@ -33,6 +33,8 @@ GtkSourceGutterLines *_gtk_source_gutter_get_lines      (GtkSourceGutter      *g
 G_GNUC_INTERNAL
 void                  _gtk_source_gutter_queue_draw     (GtkSourceGutter      *gutter);
 G_GNUC_INTERNAL
+void                  _gtk_source_gutter_buffer_changed (GtkSourceGutter      *gutter);
+G_GNUC_INTERNAL
 void                  _gtk_source_gutter_css_changed    (GtkSourceGutter      *gutter,
                                                          GtkCssStyleChange    *change);
 G_GNUC_INTERNAL

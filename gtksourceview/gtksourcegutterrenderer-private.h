@@ -26,16 +26,18 @@
 G_BEGIN_DECLS
 
 G_GNUC_INTERNAL
-void _gtk_source_gutter_renderer_set_view   (GtkSourceGutterRenderer *renderer,
-                                             GtkSourceView           *view);
+void _gtk_source_gutter_renderer_buffer_changed (GtkSourceGutterRenderer *renderer);
 G_GNUC_INTERNAL
-void _gtk_source_gutter_renderer_begin      (GtkSourceGutterRenderer *renderer,
-                                             GtkSourceGutterLines    *lines);
+void _gtk_source_gutter_renderer_set_view       (GtkSourceGutterRenderer *renderer,
+                                                 GtkSourceView           *view);
 G_GNUC_INTERNAL
-void _gtk_source_gutter_renderer_snapshot   (GtkSourceGutterRenderer *renderer,
-                                             GtkSnapshot             *snapshot,
-                                             GtkSourceGutterLines    *lines);
+void _gtk_source_gutter_renderer_begin          (GtkSourceGutterRenderer *renderer,
+                                                 GtkSourceGutterLines    *lines);
 G_GNUC_INTERNAL
-void _gtk_source_gutter_renderer_end        (GtkSourceGutterRenderer *renderer);
+void _gtk_source_gutter_renderer_snapshot       (GtkSourceGutterRenderer *renderer,
+                                                 GtkSnapshot             *snapshot,
+                                                 GtkSourceGutterLines    *lines);
+G_GNUC_INTERNAL
+void _gtk_source_gutter_renderer_end            (GtkSourceGutterRenderer *renderer);
 
 G_END_DECLS
