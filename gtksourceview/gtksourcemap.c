@@ -311,6 +311,8 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	GtkSourceStyleScheme *style_scheme;
 	GtkSourceStyle *style = NULL;
 	GtkTextBuffer *buffer;
+	const char *color;
+	gboolean use_fg = FALSE;
 	GString *gstr;
 	char *background = NULL;
 	char *foreground = NULL;
@@ -365,33 +367,40 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 	if (style_scheme != NULL)
 	{
 		if (!(style = gtk_source_style_scheme_get_style (style_scheme, "map-overlay")) &&
-		    !(style = gtk_source_style_scheme_get_style (style_scheme, "selection")) &&
-		    !(style = gtk_source_style_scheme_get_style (style_scheme, "current-line")))
+		    !(style = gtk_source_style_scheme_get_style (style_scheme, "selection")))
 		{
-			/* Do Nothing */
+			/* Use the foreground color if we can as that will get lightened to
+			 * .25 alpha below so that we have *something* rather dark compared
+			 * to the background color. Otherwise it will get washed out like it
+			 * does with classic.xml.
+			 */
+			if ((style = gtk_source_style_scheme_get_style (style_scheme, "text")))
+			{
+				use_fg = TRUE;
+			}
 		}
 	}
 
 	if (style != NULL)
 	{
-		gboolean foreground_set;
 		gboolean background_set;
+		gboolean foreground_set;
 
 		g_object_get (style,
-		              "foreground", &foreground,
-		              "foreground-set", &foreground_set,
 		              "background", &background,
 		              "background-set", &background_set,
+		              "foreground", &foreground,
+		              "foreground-set", &foreground_set,
 		              NULL);
-
-		if (!foreground_set)
-		{
-			g_clear_pointer (&foreground, g_free);
-		}
 
 		if (!background_set)
 		{
 			g_clear_pointer (&background, g_free);
+		}
+
+		if (!foreground_set)
+		{
+			g_clear_pointer (&foreground, g_free);
 		}
 	}
 	else
@@ -405,21 +414,9 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		}
 	}
 
-	priv->had_color = background != NULL;
-
 	if (background != NULL)
 	{
 		GdkRGBA parsed;
-
-		if (foreground == NULL)
-		{
-			GtkStyleContext *style_context;
-			GdkRGBA color;
-
-			style_context = gtk_widget_get_style_context (GTK_WIDGET (map));
-			gtk_style_context_get_color (style_context, &color);
-			foreground = gdk_rgba_to_string (&color);
-		}
 
 		if (gdk_rgba_parse (&parsed, background))
 		{
@@ -430,7 +427,28 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 				background = gdk_rgba_to_string (&parsed);
 			}
 		}
+	}
 
+	if (foreground != NULL)
+	{
+		GdkRGBA parsed;
+
+		if (gdk_rgba_parse (&parsed, foreground))
+		{
+			if (parsed.alpha < 1.0)
+			{
+				parsed.alpha = 1.0;
+				g_free (foreground);
+				foreground = gdk_rgba_to_string (&parsed);
+			}
+		}
+	}
+
+	color = use_fg ? foreground : background;
+	priv->had_color = color != NULL;
+
+	if (color != NULL)
+	{
 		g_string_append_printf (gstr,
 		                        "slider {"
 		                        " background-color: alpha(%s,.25);"
@@ -442,7 +460,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 		                        "slider.dragging:hover {"
 		                        " background-color: alpha(%s,.5);"
 		                        "}\n",
-		                        background, background, background);
+		                        color, color, color);
 	}
 
 	g_free (background);
