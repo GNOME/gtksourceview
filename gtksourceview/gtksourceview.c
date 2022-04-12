@@ -2546,6 +2546,21 @@ gtk_source_view_paint_marks_background (GtkSourceView *view,
 	g_array_free (numbers, TRUE);
 }
 
+static int
+get_left_gutter_size (GtkSourceView *view)
+{
+	GtkSourceViewPrivate *priv = gtk_source_view_get_instance_private (view);
+
+	if (priv->left_gutter != NULL)
+	{
+		GtkAllocation alloc;
+		gtk_widget_get_allocation (GTK_WIDGET (priv->left_gutter), &alloc);
+		return alloc.width;
+	}
+
+	return 0;
+}
+
 static void
 gtk_source_view_paint_right_margin (GtkSourceView *view,
                                     GtkSnapshot   *snapshot)
@@ -2569,7 +2584,7 @@ gtk_source_view_paint_right_margin (GtkSourceView *view,
 						  '_');
 	}
 
-	x = priv->cached_right_margin_pos + gtk_text_view_get_left_margin (text_view);
+	x = priv->cached_right_margin_pos + gtk_text_view_get_left_margin (text_view) + get_left_gutter_size (view);
 
 	gtk_snapshot_append_color (snapshot,
 	                           &priv->right_margin_line_color,
