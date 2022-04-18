@@ -39,23 +39,49 @@ _gtk_source_assistant_child_size_allocate (GtkWidget *widget,
                                            int        height,
                                            int        baseline)
 {
-	GtkSourceAssistantChild *child = (GtkSourceAssistantChild *)widget;
+	GtkSourceAssistantChild *self = (GtkSourceAssistantChild *)widget;
 
-	g_assert (GTK_SOURCE_IS_ASSISTANT_CHILD (child));
+	g_assert (GTK_SOURCE_IS_ASSISTANT_CHILD (self));
 
-	GTK_WIDGET_CLASS (_gtk_source_assistant_child_parent_class)->size_allocate (widget, width, height, baseline);
+	if (self->child != NULL)
+	{
+		gtk_widget_size_allocate (self->child,
+					  &(GtkAllocation) { 0, 0, width, height },
+					  baseline);
+	}
 
-	for (const GList *iter = child->attached.head; iter; iter = iter->next)
+	for (const GList *iter = self->attached.head; iter; iter = iter->next)
 	{
 		GtkSourceAssistant *attached = iter->data;
 
 		g_assert (GTK_SOURCE_IS_ASSISTANT (attached));
-		g_assert (GTK_IS_NATIVE (attached));
 
-		if (gtk_widget_get_visible (GTK_WIDGET (attached)))
-		{
-			gtk_popover_present (GTK_POPOVER (attached));
-		}
+		gtk_popover_present (GTK_POPOVER (attached));
+	}
+}
+
+static void
+_gtk_source_assistant_child_measure (GtkWidget      *widget,
+                                     GtkOrientation  orientation,
+                                     int             for_size,
+                                     int            *minimum,
+                                     int            *natural,
+                                     int            *minimum_baseline,
+                                     int            *natural_baseline)
+{
+	GtkSourceAssistantChild *self = (GtkSourceAssistantChild *)widget;
+
+	g_assert (GTK_SOURCE_IS_ASSISTANT_CHILD (self));
+
+	if (self->child != NULL)
+	{
+		gtk_widget_measure (self->child,
+				    orientation,
+				    for_size,
+				    minimum,
+				    natural,
+				    minimum_baseline,
+				    natural_baseline);
 	}
 }
 
@@ -75,7 +101,7 @@ _gtk_source_assistant_child_dispose (GObject *object)
 		_gtk_source_assistant_child_detach (self, attached);
 	}
 
-  g_clear_pointer (&self->child, gtk_widget_unparent);
+	g_clear_pointer (&self->child, gtk_widget_unparent);
 
 	G_OBJECT_CLASS (_gtk_source_assistant_child_parent_class)->dispose (object);
 }
@@ -89,8 +115,7 @@ _gtk_source_assistant_child_class_init (GtkSourceAssistantChildClass *klass)
 	object_class->dispose = _gtk_source_assistant_child_dispose;
 
 	widget_class->size_allocate = _gtk_source_assistant_child_size_allocate;
-
-	gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
+	widget_class->measure = _gtk_source_assistant_child_measure;
 }
 
 static void
@@ -136,21 +161,18 @@ _gtk_source_assistant_child_detach (GtkSourceAssistantChild *self,
 
 void
 _gtk_source_assistant_child_attach (GtkSourceAssistantChild *self,
-                                    GtkSourceAssistant      *child)
+                                    GtkSourceAssistant      *other)
 {
 	g_return_if_fail (GTK_SOURCE_IS_ASSISTANT_CHILD (self));
-	g_return_if_fail (GTK_SOURCE_IS_ASSISTANT (child));
-	g_return_if_fail (gtk_widget_get_parent (GTK_WIDGET (child)) == NULL);
+	g_return_if_fail (GTK_SOURCE_IS_ASSISTANT (other));
+	g_return_if_fail (gtk_widget_get_parent (GTK_WIDGET (other)) == NULL);
 
-	g_queue_push_tail (&self->attached, g_object_ref_sink (child));
-	gtk_widget_set_parent (GTK_WIDGET (child), GTK_WIDGET (self));
+	g_queue_push_tail (&self->attached, g_object_ref_sink (other));
+	gtk_widget_set_parent (GTK_WIDGET (other), GTK_WIDGET (self));
 
-	if (GTK_IS_NATIVE (child))
+	if (gtk_widget_get_visible (GTK_WIDGET (self)))
 	{
-		if (gtk_widget_get_visible (GTK_WIDGET (child)))
-		{
-			gtk_popover_present (GTK_POPOVER (child));
-		}
+		gtk_popover_present (GTK_POPOVER (other));
 	}
 }
 
