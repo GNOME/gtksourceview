@@ -100,29 +100,8 @@ _gtk_source_view_assistants_size_allocate (GtkSourceViewAssistants *assistants,
 	for (const GList *iter = assistants->queue.head; iter; iter = iter->next)
 	{
 		GtkSourceAssistant *assistant = iter->data;
-		int assistant_width;
-		int assistant_height;
 
 		g_assert (GTK_SOURCE_IS_ASSISTANT (assistant));
-
-		gtk_widget_measure (GTK_WIDGET (assistant),
-		                    GTK_ORIENTATION_HORIZONTAL,
-		                    -1,
-		                    NULL,
-		                    &assistant_width,
-		                    NULL,
-		                    NULL);
-		gtk_widget_measure (GTK_WIDGET (assistant),
-		                    GTK_ORIENTATION_VERTICAL,
-		                    assistant_width,
-		                    NULL,
-		                    &assistant_height,
-		                    NULL,
-		                    NULL);
-
-		gtk_widget_set_size_request (GTK_WIDGET (assistant),
-		                             assistant_width,
-		                             assistant_height);
 
 		gtk_popover_present (GTK_POPOVER (assistant));
 	}
