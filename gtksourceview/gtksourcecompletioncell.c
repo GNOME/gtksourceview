@@ -254,7 +254,10 @@ gtk_source_completion_cell_set_markup (GtkSourceCompletionCell *self,
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CELL (self));
 
-	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CELL (self));
+	if (markup == NULL && _gtk_source_completion_cell_is_empty (self))
+	{
+		return;
+	}
 
 	if (!GTK_IS_LABEL (self->child))
 	{
@@ -279,6 +282,11 @@ gtk_source_completion_cell_set_text (GtkSourceCompletionCell *self,
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CELL (self));
 
+	if (text == NULL && _gtk_source_completion_cell_is_empty (self))
+	{
+		return;
+	}
+
 	if (!GTK_IS_LABEL (self->child))
 	{
 		GtkWidget *child = gtk_label_new (NULL);
@@ -302,6 +310,11 @@ gtk_source_completion_cell_set_text_with_attributes (GtkSourceCompletionCell *se
                                                      PangoAttrList           *attrs)
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CELL (self));
+
+	if (text == NULL && _gtk_source_completion_cell_is_empty (self))
+	{
+		return;
+	}
 
 	gtk_source_completion_cell_set_text (self, text);
 
@@ -332,6 +345,11 @@ gtk_source_completion_cell_set_paintable (GtkSourceCompletionCell *self,
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CELL (self));
 	g_return_if_fail (!paintable || GDK_IS_PAINTABLE (paintable));
 
+	if (paintable == NULL && _gtk_source_completion_cell_is_empty (self))
+	{
+		return;
+	}
+
 	gtk_source_completion_cell_set_widget (self, gtk_image_new_from_paintable (paintable));
 }
 
@@ -360,7 +378,9 @@ gtk_source_completion_cell_set_widget (GtkSourceCompletionCell *self,
 	g_return_if_fail (!widget || gtk_widget_get_parent (widget) == NULL);
 
 	if (widget == self->child)
+	{
 		return;
+	}
 
 	g_clear_pointer (&self->child, gtk_widget_unparent);
 
@@ -440,6 +460,11 @@ gtk_source_completion_cell_set_icon_name (GtkSourceCompletionCell *self,
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CELL (self));
 
+	if (icon_name == NULL && _gtk_source_completion_cell_is_empty (self))
+	{
+		return;
+	}
+
 	if (!GTK_IS_IMAGE (self->child))
 	{
 		GtkWidget *image = gtk_image_new ();
@@ -458,6 +483,11 @@ gtk_source_completion_cell_set_gicon (GtkSourceCompletionCell *self,
 {
 	g_return_if_fail (GTK_SOURCE_IS_COMPLETION_CELL (self));
 	g_return_if_fail (!gicon || G_IS_ICON (gicon));
+
+	if (gicon == NULL && _gtk_source_completion_cell_is_empty (self))
+	{
+		return;
+	}
 
 	if (!GTK_IS_IMAGE (self->child))
 	{
