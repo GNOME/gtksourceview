@@ -1516,11 +1516,18 @@ gtk_source_vim_normal_clear (GtkSourceVimNormal *self)
 	self->has_count = FALSE;
 	self->change_modifier = CHANGE_NONE;
 
-	g_string_truncate (self->command_text, 0);
+  /* If self->command_text == NULL, then we've disposed and we
+   * don't want to notify anything (as they should be disconnected
+   * anyway as part of g_object_run_dispose() process.
+   */
+  if (self->command_text != NULL)
+    {
+      g_string_truncate (self->command_text, 0);
 
-	/* Let the toplevel know we're back at steady state. This is
-	 * basically just so observers can watch keys which makes it
-	 * much easier to debug issues.
-	 */
-	gtk_source_vim_normal_emit_ready (self);
+      /* Let the toplevel know we're back at steady state. This is
+       * basically just so observers can watch keys which makes it
+       * much easier to debug issues.
+       */
+      gtk_source_vim_normal_emit_ready (self);
+    }
 }
