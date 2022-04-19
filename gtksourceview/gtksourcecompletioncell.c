@@ -266,6 +266,13 @@ gtk_source_completion_cell_set_markup (GtkSourceCompletionCell *self,
 	gtk_label_set_use_markup (GTK_LABEL (self->child), TRUE);
 }
 
+/**
+ * gtk_source_completion_cell_set_text:
+ * @self: a #GtkSourceCompletionCell
+ * @text: (nullable): the text to set or %NULL
+ *
+ * Sets the text for the column cell. Use %NULL to unset.
+ */
 void
 gtk_source_completion_cell_set_text (GtkSourceCompletionCell *self,
                                      const char              *text)
