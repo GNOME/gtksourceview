@@ -467,14 +467,13 @@ gtk_source_vim_insert_dispose (GObject *object)
 {
 	GtkSourceVimInsert *self = (GtkSourceVimInsert *)object;
 
-	g_clear_pointer (&self->prefix, g_free);
+	G_OBJECT_CLASS (gtk_source_vim_insert_parent_class)->dispose (object);
 
+	g_clear_pointer (&self->prefix, g_free);
 	gtk_source_vim_state_release (&self->history);
 	gtk_source_vim_state_release (&self->motion);
 	gtk_source_vim_state_release (&self->selection_motion);
 	gtk_source_vim_state_release (&self->text_object);
-
-	G_OBJECT_CLASS (gtk_source_vim_insert_parent_class)->dispose (object);
 }
 
 static void
