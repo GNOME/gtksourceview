@@ -62,6 +62,7 @@ G_DEFINE_TYPE (GtkSourceHoverContext, gtk_source_hover_context, G_TYPE_OBJECT)
 typedef struct
 {
 	guint n_active;
+	guint n_success;
 } Populate;
 
 static void
@@ -239,10 +240,24 @@ gtk_source_hover_context_populate_cb (GObject      *object,
 
 		g_clear_error (&error);
 	}
+	else
+	{
+		state->n_success++;
+	}
 
 	if (--state->n_active == 0)
 	{
-		g_task_return_boolean (task, TRUE);
+		if (state->n_success > 0)
+		{
+			g_task_return_boolean (task, TRUE);
+		}
+		else
+		{
+			g_task_return_new_error (task,
+			                         G_IO_ERROR,
+			                         G_IO_ERROR_NOT_SUPPORTED,
+			                         "No hover providers populated the context");
+		}
 	}
 
 	g_object_unref (task);
