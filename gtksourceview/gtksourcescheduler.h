@@ -59,7 +59,7 @@ gsize gtk_source_scheduler_add_full (GtkSourceSchedulerCallback callback,
                                      gpointer                   user_data,
                                      GDestroyNotify             notify);
 GTK_SOURCE_AVAILABLE_IN_5_2
-void gtk_source_scheduler_remove    (gsize handler_id);
+void gtk_source_scheduler_remove    (gsize                      handler_id);
 
 static inline void
 gtk_source_scheduler_clear (gsize *handler_id_ptr)
