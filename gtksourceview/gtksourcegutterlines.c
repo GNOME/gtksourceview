@@ -634,26 +634,3 @@ _gtk_source_gutter_lines_get_cursor_line (GtkSourceGutterLines *lines)
 
 	return lines->cursor_line;
 }
-
-/**
- * gtk_source_gutter_lines_has_any_class:
- * @lines: a #GtkSourceGutterLines
- * @line: a line contained within @lines
- *
- * Checks to see if the line has any GQuark classes set. This can be
- * used to help renderer implementations avoid work if nothing has
- * been set on the class.
- *
- * Returns: %TRUE if any quark was set for the line
- *
- * Since: 5.6
- */
-gboolean
-gtk_source_gutter_lines_has_any_class (GtkSourceGutterLines *lines,
-                                       guint                 line)
-{
-	if (lines == NULL || line < lines->first || line > lines->last || line - lines->first >= lines->lines->len)
-    return FALSE;
-
-  return g_array_index (lines->lines, LineInfo, line - lines->first).classes.len > 0;
-}
