@@ -97,13 +97,13 @@
   <style name="bracket-match"              bold="true"/>
   <style name="current-line"               background="libadwaita-dark-alt"/>
   <style name="current-line-number"        background="libadwaita-dark-alt" foreground="light_7"/>
+  <style name="cursor"                     foreground="light_5"/>
   <style name="draw-spaces"                foreground="dark_3"/>
   <style name="line-numbers"               background="libadwaita-dark" foreground="dark_2"/>
   <style name="map-overlay"                background="dark_1"/>
   <style name="right-margin"               background="dark_1" foreground="dark_1"/>
   <style name="search-match"               background="yellow_4" foreground="dark_4"/>
   <style name="text"                       background="libadwaita-dark" foreground="light_5"/>
-  <style name="cursor"                     foreground="light_5"/>
 
   <!-- Defaults -->
   <style name="def:base-n-integer"         foreground="violet_2"/>
@@ -113,9 +113,11 @@
   <style name="def:decimal"                foreground="violet_2"/>
   <style name="def:deletion"               strikethrough="true"/>
   <style name="def:doc-comment-element"    foreground="light_7"/>
+  <style name="def:emphasis"               italic="true"/>
   <style name="def:floating-point"         foreground="violet_2"/>
   <style name="def:function"               foreground="blue_2"/>
   <style name="def:heading"                foreground="teal_3" bold="true"/>
+  <style name="def:inline-code"            foreground="violet_2"/>
   <style name="def:keyword"                foreground="orange_2" bold="true"/>
   <style name="def:link-destination"       foreground="blue_2" italic="true" underline="low"/>
   <style name="def:link-text"              foreground="red_2"/>
