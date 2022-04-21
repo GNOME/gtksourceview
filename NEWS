@@ -1,3 +1,25 @@
+News in 5.4.1, 2022-04-21
+-------------------------
+
+ * Improved styling for style scheme preview widgets
+ * Improved styling and positioning of completion windows
+ * Improved styling for various style schemes
+ * Unit test fixes
+ * Hover assistants will no longer be showed if no providers
+   completed successfully to add widgets
+ * GtkSourceVimIMContext tries to handle various corner cases
+   better with regards to reuse and being removed from an
+   event controller or widget
+ * GtkSourceCompletionCell has improved fast-paths for resetting
+   cells to empty state when already empty
+ * Improved sizing and placement of assistants including hover
+   popovers, interactive tooltips, and completion windows
+ * The overview map has improved it's fallback styling
+ * The overview map will now properly update when the sourceview's
+   right-margin-position changes
+ * Fixes to vala.lang for regex detection
+ * Translation updates
+
 News in 5.4.0, 2022-03-18
 -------------------------
 
