@@ -433,11 +433,17 @@ gtk_source_snippet_bundle_parse (GtkSourceSnippetBundle  *self,
 	gchar *contents = NULL;
 	gsize length = 0;
 	gboolean ret = FALSE;
+	GFile *file;
 
 	g_assert (GTK_SOURCE_IS_SNIPPET_BUNDLE (self));
 	g_assert (path != NULL);
 
-	if (g_file_get_contents (path, &contents, &length, NULL))
+	if (g_str_has_prefix (path, "resource://"))
+		file = g_file_new_for_uri (path);
+	else
+		file = g_file_new_for_path (path);
+
+	if (g_file_load_contents (file, NULL, &contents, &length, NULL, NULL))
 	{
 		GMarkupParseContext *context;
 		ParseState state = {0};
@@ -475,6 +481,8 @@ gtk_source_snippet_bundle_parse (GtkSourceSnippetBundle  *self,
 		}
 #endif
 	}
+
+	g_object_unref (file);
 
 	return ret;
 }
