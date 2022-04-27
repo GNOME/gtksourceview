@@ -32,7 +32,7 @@
 
 /**
  * GtkSourceGutterRenderer:
- * 
+ *
  * Gutter cell renderer.
  *
  * A `GtkSourceGutterRenderer` represents a column in a [class@Gutter]. The
@@ -361,14 +361,14 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 
 	klass->begin = gtk_source_gutter_renderer_real_begin;
 	klass->end = gtk_source_gutter_renderer_real_end;
-        klass->change_buffer = gtk_source_gutter_renderer_change_buffer;
+	klass->change_buffer = gtk_source_gutter_renderer_change_buffer;
 	klass->change_view = gtk_source_gutter_renderer_change_view;
 	klass->query_data = gtk_source_gutter_renderer_query_data;
 
 	/**
 	 * GtkSourceGutterRenderer:lines:
 	 *
-	 * Contains information about the lines to be rendered. 
+	 * Contains information about the lines to be rendered.
 	 *
 	 * It should be used by #GtkSourceGutterRenderer implementations from [vfunc@Gtk.Widget.snapshot].
 	 */
@@ -410,8 +410,8 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	/**
 	 * GtkSourceGutterRenderer:xalign:
 	 *
-	 * The horizontal alignment of the renderer. 
-	 * 
+	 * The horizontal alignment of the renderer.
+	 *
 	 * Set to 0 for a left alignment. 1 for a right alignment. And 0.5 for centering the cells.
 	 * A value lower than 0 doesn't modify the alignment.
 	 */
@@ -457,8 +457,8 @@ gtk_source_gutter_renderer_class_init (GtkSourceGutterRendererClass *klass)
 	/**
 	 * GtkSourceGutterRenderer:alignment-mode:
 	 *
-	 * The alignment mode of the renderer. 
-	 * 
+	 * The alignment mode of the renderer.
+	 *
 	 * This can be used to indicate that in the case a cell spans multiple lines (due to text wrapping)
 	 * the alignment should work on either the full cell, the first line or the last line.
 	 **/
@@ -645,7 +645,7 @@ gtk_source_gutter_renderer_set_alignment_mode (GtkSourceGutterRenderer          
  * gtk_source_gutter_renderer_get_alignment_mode:
  * @renderer: a #GtkSourceGutterRenderer
  *
- * Get the alignment mode. 
+ * Get the alignment mode.
  *
  * The alignment mode describes the manner in which the
  * renderer is aligned (see [property@GutterRenderer:xalign] and
@@ -878,7 +878,7 @@ gtk_source_gutter_renderer_set_ypad (GtkSourceGutterRenderer *renderer,
  * gtk_source_gutter_renderer_get_xalign:
  * @renderer: a #GtkSourceGutterRenderer
  *
- * Gets the `xalign` property. 
+ * Gets the `xalign` property.
  *
  * This may be used to adjust where within the cell rectangle the renderer will draw.
  */
@@ -923,7 +923,7 @@ gtk_source_gutter_renderer_set_xalign (GtkSourceGutterRenderer *renderer,
  * gtk_source_gutter_renderer_get_yalign:
  * @renderer: a #GtkSourceGutterRenderer
  *
- * Gets the `yalign` property. 
+ * Gets the `yalign` property.
  *
  * This may be used to adjust where within the cell rectangle the renderer will draw.
  */
