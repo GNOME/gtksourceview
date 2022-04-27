@@ -125,7 +125,7 @@
     </context>
 
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
-      <start>L?"</start>
+      <start>(L|u8|u|U)?"</start>
       <end>"</end>
       <include>
         <context ref="printf"/>
@@ -137,7 +137,7 @@
     </context>
 
     <context id="char" style-ref="char" class="string">
-      <match>L?'(\%{escaped-character}|.)'</match>
+      <match>(L|u8|u|U)?'(\%{escaped-character}|.)'</match>
     </context>
 
     <!-- http://www.lysator.liu.se/c/ANSI-C-grammar-l.html -->
