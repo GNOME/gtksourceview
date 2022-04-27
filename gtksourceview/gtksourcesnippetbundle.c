@@ -255,9 +255,15 @@ elements_end_element (GMarkupParseContext  *context,
 
 			for (guint i = 0; state->languages[i]; i++)
 			{
-				info.language = _gtk_source_snippet_manager_intern (state->manager, state->languages[i]);
+				char *stripped = g_strstrip (g_strdup (state->languages[i]));
 
-				gtk_source_snippet_bundle_add (state->self, &info);
+				if (stripped != NULL && stripped[0] != 0)
+				{
+					info.language = _gtk_source_snippet_manager_intern (state->manager, stripped);
+					gtk_source_snippet_bundle_add (state->self, &info);
+				}
+
+				g_free (stripped);
 			}
 
 		}
