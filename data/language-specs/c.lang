@@ -62,7 +62,9 @@
       \\(                   # leading backslash
       [\\\"\'nrbtfav\?] |   # escaped character
       [0-7]{1,3} |          # one, two, or three octal digits
-      x[0-9A-Fa-f]+         # 'x' followed by hex digits
+      x[0-9A-Fa-f]+ |       # 'x' followed by hex digits
+      u[0-9A-Fa-f]{4} |     # 'u' followed by 4 hex digits
+      U[0-9A-Fa-f]{8}       # 'U' followed by 8 hex digits
       )
     </define-regex>
 
@@ -125,7 +127,7 @@
     </context>
 
     <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
-      <start>L?"</start>
+      <start>(L|u8|u|U)?"</start>
       <end>"</end>
       <include>
         <context ref="printf"/>
@@ -137,7 +139,7 @@
     </context>
 
     <context id="char" style-ref="char" class="string">
-      <match>L?'(\%{escaped-character}|.)'</match>
+      <match>(L|u8|u|U)?'(\%{escaped-character}|.)'</match>
     </context>
 
     <!-- http://www.lysator.liu.se/c/ANSI-C-grammar-l.html -->
