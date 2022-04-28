@@ -114,9 +114,12 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 	GtkTextBuffer *buffer;
 	GtkTextMark *mark;
 	GtkTextIter iter;
+	GtkTextIter sel_begin, sel_end;
 	gboolean single_line;
 	guint cursor_line;
 	guint i;
+	int first_selected = -1;
+	int last_selected = -1;
 
 	g_return_val_if_fail (GTK_IS_TEXT_VIEW (text_view), NULL);
 	g_return_val_if_fail (begin != NULL, NULL);
@@ -127,6 +130,13 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 
 	g_return_val_if_fail (gtk_text_iter_get_buffer (begin) == buffer, NULL);
 	g_return_val_if_fail (gtk_text_iter_get_buffer (end) == buffer, NULL);
+
+	if (gtk_text_buffer_get_selection_bounds (buffer, &sel_begin, &sel_end))
+	{
+		gtk_text_iter_order (&sel_begin, &sel_end);
+		first_selected = gtk_text_iter_get_line (&sel_begin);
+		last_selected = gtk_text_iter_get_line (&sel_end);
+	}
 
 	if (gtk_text_iter_compare (begin, end) > 0)
 	{
@@ -247,6 +257,11 @@ _gtk_source_gutter_lines_new (GtkTextView       *text_view,
 		if G_UNLIKELY (i == cursor_line)
 		{
 			quark_set_add (&info.classes, q_cursor_line);
+		}
+
+		if G_UNLIKELY (i >= first_selected && i <= last_selected)
+		{
+			quark_set_add (&info.classes, q_selected);
 		}
 
 		g_array_append_val (lines->lines, info);
