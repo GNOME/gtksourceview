@@ -198,6 +198,12 @@ gtk_source_hover_motion_cb (GtkSourceHover           *self,
 	g_assert (GTK_SOURCE_IS_HOVER (self));
 	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (controller));
 
+	/* Ignore synthesized motion events */
+	if (self->motion_x == x && self->motion_y == y)
+	{
+		return;
+	}
+
 	self->motion_x = x;
 	self->motion_y = y;
 
