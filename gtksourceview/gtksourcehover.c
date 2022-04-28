@@ -22,6 +22,7 @@
 #include "config.h"
 
 #include "gtksourceassistant-private.h"
+#include "gtksourcebuffer.h"
 #include "gtksourcehover-private.h"
 #include "gtksourcehoverassistant-private.h"
 #include "gtksourcehovercontext.h"
@@ -34,7 +35,7 @@
 
 /**
  * GtkSourceHover:
- * 
+ *
  * Interactive tooltips.
  *
  * `GtkSourceHover` allows a [class@View] to provide contextual information.
@@ -56,6 +57,7 @@ struct _GtkSourceHover
 
 	GtkSourceView      *view;
 	GtkSourceAssistant *assistant;
+	GtkTextBuffer      *buffer;
 
 	GPtrArray          *providers;
 
@@ -75,6 +77,57 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
+
+static void
+cursor_moved_cb (GtkSourceHover  *hover,
+		 GtkSourceBuffer *buffer)
+{
+	g_assert (GTK_SOURCE_IS_HOVER (hover));
+	g_assert (GTK_SOURCE_IS_BUFFER (buffer));
+
+	g_clear_handle_id (&hover->settle_source, g_source_remove);
+	_gtk_source_hover_assistant_dismiss (GTK_SOURCE_HOVER_ASSISTANT (hover->assistant));
+}
+
+static void
+gtk_source_hover_notify_buffer (GtkSourceHover *hover,
+                                GParamSpec     *pspec,
+                                GtkSourceView  *view)
+{
+	GtkTextBuffer *buffer;
+
+	g_assert (GTK_SOURCE_IS_HOVER (hover));
+	g_assert (GTK_SOURCE_IS_VIEW (view));
+
+	buffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (view));
+
+	if (buffer == hover->buffer)
+	{
+		return;
+	}
+
+	if (hover->buffer != NULL)
+	{
+		g_signal_handlers_disconnect_by_func (hover->buffer,
+						      G_CALLBACK (cursor_moved_cb),
+						      hover);
+		g_clear_weak_pointer (&hover->buffer);
+	}
+
+	if (!GTK_SOURCE_IS_BUFFER (buffer))
+	{
+		return;
+	}
+
+	if (g_set_weak_pointer (&hover->buffer, buffer))
+	{
+		g_signal_connect_object (hover->buffer,
+					 "cursor-moved",
+					 G_CALLBACK (cursor_moved_cb),
+					 hover,
+					 G_CONNECT_SWAPPED);
+	}
+}
 
 static gboolean
 gtk_source_hover_get_bounds (GtkSourceHover *self,
@@ -243,6 +296,7 @@ gtk_source_hover_dispose (GObject *object)
 	g_clear_handle_id (&self->settle_source, g_source_remove);
 	g_clear_pointer (&self->assistant, _gtk_source_assistant_destroy);
 	g_clear_weak_pointer (&self->view);
+	g_clear_weak_pointer (&self->buffer);
 
 	if (self->providers->len > 0)
 	{
@@ -376,6 +430,13 @@ _gtk_source_hover_new (GtkSourceView *view)
 	                         self,
 	                         G_CONNECT_SWAPPED);
 	gtk_widget_add_controller (GTK_WIDGET (view), scroll);
+
+	g_signal_connect_object (view,
+	                         "notify::buffer",
+	                         G_CALLBACK (gtk_source_hover_notify_buffer),
+	                         self,
+	                         G_CONNECT_SWAPPED);
+	gtk_source_hover_notify_buffer (self, NULL, view);
 
 	return self;
 }
