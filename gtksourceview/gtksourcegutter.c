@@ -80,7 +80,11 @@ struct _GtkSourceGutter
 	GtkTextWindowType     window_type;
 	GtkOrientation        orientation;
 
+	double                pointer_x;
+	double                pointer_y;
+
 	guint                 is_drawing : 1;
+	guint                 pointer_in_gutter : 1;
 };
 
 G_DEFINE_TYPE (GtkSourceGutter, gtk_source_gutter, GTK_TYPE_WIDGET)
@@ -320,10 +324,40 @@ gtk_source_gutter_measure (GtkWidget      *widget,
 }
 
 static void
-gtk_source_gutter_set_property (GObject       *object,
-                                guint          prop_id,
-                                const GValue  *value,
-                                GParamSpec    *pspec)
+gtk_source_gutter_motion_cb (GtkSourceGutter          *gutter,
+			     double                    x,
+			     double                    y,
+			     GtkEventControllerMotion *motion)
+{
+	g_assert (GTK_SOURCE_IS_GUTTER (gutter));
+	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (motion));
+
+	gutter->pointer_x = x;
+	gutter->pointer_y = y;
+	gutter->pointer_in_gutter = TRUE;
+
+	_gtk_source_gutter_queue_draw (gutter);
+}
+
+static void
+gtk_source_gutter_leave_cb (GtkSourceGutter          *gutter,
+			    GtkEventControllerMotion *motion)
+{
+	g_assert (GTK_SOURCE_IS_GUTTER (gutter));
+	g_assert (GTK_IS_EVENT_CONTROLLER_MOTION (motion));
+
+	gutter->pointer_x = -1;
+	gutter->pointer_y = -1;
+	gutter->pointer_in_gutter = FALSE;
+
+	_gtk_source_gutter_queue_draw (gutter);
+}
+
+static void
+gtk_source_gutter_set_property (GObject      *object,
+                                guint         prop_id,
+                                const GValue *value,
+                                GParamSpec   *pspec)
 {
 	GtkSourceGutter *gutter = GTK_SOURCE_GUTTER (object);
 
@@ -457,15 +491,15 @@ gtk_source_gutter_init (GtkSourceGutter *gutter)
 	motion = gtk_event_controller_motion_new ();
 	g_signal_connect_swapped (motion,
 	                          "enter",
-	                          G_CALLBACK (gtk_widget_queue_draw),
+	                          G_CALLBACK (gtk_source_gutter_motion_cb),
 	                          gutter);
 	g_signal_connect_swapped (motion,
 	                          "leave",
-	                          G_CALLBACK (gtk_widget_queue_draw),
+	                          G_CALLBACK (gtk_source_gutter_leave_cb),
 	                          gutter);
 	g_signal_connect_swapped (motion,
 	                          "motion",
-	                          G_CALLBACK (gtk_widget_queue_draw),
+	                          G_CALLBACK (gtk_source_gutter_motion_cb),
 	                          gutter);
 	gtk_widget_add_controller (GTK_WIDGET (gutter), motion);
 }
@@ -741,6 +775,27 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 	                                              &end,
 	                                              needs_wrap_first,
 	                                              needs_wrap_last);
+
+	/* Get the line under the pointer so we can set "prelit" on it */
+	if (gutter->pointer_in_gutter)
+	{
+		GtkTextIter pointer;
+		GdkRectangle pointer_rect;
+
+		gtk_text_view_get_iter_at_location (text_view,
+		                                    &pointer,
+		                                    0,
+		                                    visible_rect.y + gutter->pointer_y);
+		gtk_text_view_get_iter_location (text_view, &pointer, &pointer_rect);
+		pointer_rect.y -= visible_rect.y;
+
+		if (gutter->pointer_y >= pointer_rect.y &&
+		    gutter->pointer_y <= pointer_rect.y + pointer_rect.height)
+		{
+			guint line = gtk_text_iter_get_line (&pointer);
+			gtk_source_gutter_lines_add_class (gutter->lines, line, "prelit");
+		}
+	}
 
 	/* Draw the current-line highlight if necessary */
 	if (gtk_source_view_get_highlight_current_line (gutter->view) &&
