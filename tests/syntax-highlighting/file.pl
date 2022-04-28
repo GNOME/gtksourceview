@@ -102,16 +102,51 @@ sub login {
   } until /^\s+$/;
 }
 
+=pod
+
 =head1 EXAMPLE
+
 B<collateindex.pl> B<-o> F<index.sgml> F<HTML.index>
+
 =head1 EXIT STATUS
+
 =over 5
+
 =item B<0>
 Success
+
 =item B<1>
 Failure
+
 =back
+
 =head1 AUTHOR
+
 Norm Walsh E<lt>ndw@nwalsh.comE<gt>
 Minor updates by Adam Di Carlo E<lt>adam@onshore.comE<gt> and Peter Eisentraut E<lt>peter_e@gmx.netE<gt>
+
+=begin html
+<!--
+This is raw data ignored by POD processors.
+=end not_the_end
 =cut
+-->
+=end html
+
+Still POD.
+
+=cut
+
+sub end {
+=pod
+
+Here's another snippet of valid C<POD>.
+
+=cut
+
+    my $foo = { bar => \*STDOUT };
+}
+
+__END__
+
+if present, this data isn't supposed to be processed as Perl.
