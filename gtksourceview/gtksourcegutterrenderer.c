@@ -192,12 +192,22 @@ gtk_source_gutter_renderer_snapshot (GtkWidget   *widget,
 	first = gtk_source_gutter_lines_get_first (lines);
 	last = gtk_source_gutter_lines_get_last (lines);
 
-	for (line = first; line <= last; line++)
+	if (klass->query_data)
 	{
-		gtk_source_gutter_lines_get_line_yrange (lines, line, mode, &y, &h);
-
-		klass->query_data (renderer, lines, line);
-		klass->snapshot_line (renderer, snapshot, lines, line);
+		for (line = first; line <= last; line++)
+		{
+			gtk_source_gutter_lines_get_line_yrange (lines, line, mode, &y, &h);
+			klass->query_data (renderer, lines, line);
+			klass->snapshot_line (renderer, snapshot, lines, line);
+		}
+	}
+	else
+	{
+		for (line = first; line <= last; line++)
+		{
+			gtk_source_gutter_lines_get_line_yrange (lines, line, mode, &y, &h);
+			klass->snapshot_line (renderer, snapshot, lines, line);
+		}
 	}
 }
 
