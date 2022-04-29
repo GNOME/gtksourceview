@@ -354,6 +354,24 @@ gtk_source_gutter_leave_cb (GtkSourceGutter          *gutter,
 }
 
 static void
+gtk_source_gutter_root (GtkWidget *widget)
+{
+	GtkWidget *parent;
+
+	g_assert (GTK_SOURCE_IS_GUTTER (widget));
+
+	parent = gtk_widget_get_parent (widget);
+
+	/* The GtkTextViewChild has "overflow" set to Hidden and we
+	 * want to allow drawing over that.
+	 */
+	if (parent != NULL)
+	{
+		gtk_widget_set_overflow (parent, GTK_OVERFLOW_VISIBLE);
+	}
+}
+
+static void
 gtk_source_gutter_set_property (GObject      *object,
                                 guint         prop_id,
                                 const GValue *value,
@@ -428,6 +446,7 @@ gtk_source_gutter_class_init (GtkSourceGutterClass *klass)
 	widget_class->measure = gtk_source_gutter_measure;
 	widget_class->size_allocate = gtk_source_gutter_size_allocate;
 	widget_class->snapshot = gtk_source_gutter_snapshot;
+	widget_class->root = gtk_source_gutter_root;
 
 	/**
 	 * GtkSourceGutter:view:
@@ -739,6 +758,7 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 	GtkTextIter cur, sel;
 	gboolean needs_wrap_first = FALSE;
 	gboolean needs_wrap_last = FALSE;
+	int clip_width = 0;
 
 	g_clear_object (&gutter->lines);
 
@@ -845,10 +865,18 @@ gtk_source_gutter_snapshot (GtkWidget   *widget,
 		                                   gutter->lines);
 	}
 
+	clip_width = gtk_widget_get_width (widget);
+
+	/* Allow drawing over the left margin from renderers */
+	if (gutter->window_type == GTK_TEXT_WINDOW_LEFT)
+	{
+		clip_width += gtk_text_view_get_left_margin (text_view);
+	}
+
 	gtk_snapshot_push_clip (snapshot,
 	                        &GRAPHENE_RECT_INIT (0,
 	                                             0,
-	                                             gtk_widget_get_width (widget),
+						     clip_width,
 	                                             gtk_widget_get_height (widget)));
 
 	/* Now let the renderers draw the content for each line. Because
