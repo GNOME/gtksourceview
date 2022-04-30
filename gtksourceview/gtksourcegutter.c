@@ -360,6 +360,8 @@ gtk_source_gutter_root (GtkWidget *widget)
 
 	g_assert (GTK_SOURCE_IS_GUTTER (widget));
 
+	GTK_WIDGET_CLASS (gtk_source_gutter_parent_class)->root (widget);
+
 	parent = gtk_widget_get_parent (widget);
 
 	/* The GtkTextViewChild has "overflow" set to Hidden and we
