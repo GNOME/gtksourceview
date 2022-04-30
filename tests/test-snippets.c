@@ -22,8 +22,12 @@
 #include <gtksourceview/gtksource.h>
 #include <gtksourceview/gtksourceinit.h>
 
-static const gchar *search_path[] = {
+static const gchar *data_search_path[] = {
 	TOP_SRCDIR"/data/snippets",
+	NULL
+};
+static const char *test_search_path[] = {
+	TOP_SRCDIR"/tests/snippets",
 	NULL
 };
 
@@ -35,7 +39,7 @@ test_simple (void)
 	const gchar **groups;
 
 	mgr = g_object_new (GTK_SOURCE_TYPE_SNIPPET_MANAGER, NULL);
-	gtk_source_snippet_manager_set_search_path (mgr, search_path);
+	gtk_source_snippet_manager_set_search_path (mgr, data_search_path);
 
 	/* Update if you add new groups to data/snippets/ */
 	groups = gtk_source_snippet_manager_list_groups (mgr);
@@ -47,6 +51,32 @@ test_simple (void)
 	snippet = gtk_source_snippet_manager_get_snippet (mgr, NULL, "c", "gpl3");
 	g_assert_nonnull (snippet);
 	g_assert_finalize_object (snippet);
+
+	g_assert_finalize_object (mgr);
+}
+
+static void
+test_snippet_fetching (void)
+{
+	GtkSourceSnippetManager *mgr;
+	GListModel *model;
+	guint n_items;
+
+	mgr = g_object_new (GTK_SOURCE_TYPE_SNIPPET_MANAGER, NULL);
+	gtk_source_snippet_manager_set_search_path (mgr, test_search_path);
+
+	model = gtk_source_snippet_manager_list_all (mgr);
+	n_items = g_list_model_get_n_items (model);
+
+	/* Test language id for snippets */
+	for (guint i = 0; i < n_items; i++)
+	{
+		g_autoptr(GtkSourceSnippet) snippet = g_list_model_get_item (model, i);
+		const char *language_id = gtk_source_snippet_get_language_id (snippet);
+
+		g_assert_nonnull (language_id);
+		g_assert_cmpstr (language_id, !=, "");
+	}
 
 	g_assert_finalize_object (mgr);
 }
@@ -101,6 +131,7 @@ main (gint argc,
 
 	g_test_add_func ("/SourceView/Snippets/parse-bundle", test_simple);
 	g_test_add_func ("/SourceView/Snippets/new-parsed", test_snippet_parse);
+	g_test_add_func ("/SourceView/Snippets/snippet-fetching", test_snippet_fetching);
 	ret = g_test_run ();
 
 	gtk_source_finalize ();
