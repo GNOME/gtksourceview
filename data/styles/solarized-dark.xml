@@ -108,6 +108,13 @@
   <style name="def:preformatted-section"    foreground="blue"/>
   <style name="def:list-marker"             foreground="orange"/>
 
+  <!-- Diff -->
+  <style name="diff:added-line"             foreground="green"/>
+  <style name="diff:removed-line"           foreground="red"/>
+  <style name="diff:changed-line"           foreground="yellow"/>
+  <style name="diff:location"               foreground="blue"/>
+  <style name="diff:diff-file"              foreground="yellow"/>
+
   <!-- Operators -->
   <style name="def:operator"                foreground="green"/>
 
