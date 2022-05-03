@@ -26,8 +26,8 @@ static const gchar *data_search_path[] = {
 	TOP_SRCDIR"/data/snippets",
 	NULL
 };
-static const char *test_search_path[] = {
-	TOP_SRCDIR"/tests/snippets",
+static const char *testsuite_search_path[] = {
+	TOP_SRCDIR"/testsuite/snippets",
 	NULL
 };
 
@@ -63,7 +63,7 @@ test_snippet_fetching (void)
 	guint n_items;
 
 	mgr = g_object_new (GTK_SOURCE_TYPE_SNIPPET_MANAGER, NULL);
-	gtk_source_snippet_manager_set_search_path (mgr, test_search_path);
+	gtk_source_snippet_manager_set_search_path (mgr, testsuite_search_path);
 
 	model = gtk_source_snippet_manager_list_all (mgr);
 	n_items = g_list_model_get_n_items (model);
