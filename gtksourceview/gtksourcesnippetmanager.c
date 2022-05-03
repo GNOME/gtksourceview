@@ -401,3 +401,26 @@ gtk_source_snippet_manager_get_snippet (GtkSourceSnippetManager *self,
 
 	return _gtk_source_snippet_bundle_get_snippet (self->bundle, group, language_id, trigger);
 }
+
+/**
+ * gtk_source_snippet_manager_list_all:
+ * @self: a #GtkSourceSnippetManager
+ *
+ * Gets a [iface@Gio.ListModel] of all snippets.
+ *
+ * This can be used to get an unfiltered list of all of the snippets
+ * known to the snippet manager.
+ *
+ * Returns: (transfer none): a [iface@Gio.ListModel] of [class@GtkSource.Snippet]
+ *
+ * Since: 5.6
+ */
+GListModel *
+gtk_source_snippet_manager_list_all (GtkSourceSnippetManager *self)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_SNIPPET_MANAGER (self), NULL);
+
+	ensure_snippets (self);
+
+	return G_LIST_MODEL (self->bundle);
+}

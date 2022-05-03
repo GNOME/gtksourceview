@@ -53,5 +53,7 @@ GListModel               *gtk_source_snippet_manager_list_matching   (GtkSourceS
                                                                       const gchar             *group,
                                                                       const gchar             *language_id,
                                                                       const gchar             *trigger_prefix);
+GTK_SOURCE_AVAILABLE_IN_5_6
+GListModel               *gtk_source_snippet_manager_list_all        (GtkSourceSnippetManager *self);
 
 G_END_DECLS
