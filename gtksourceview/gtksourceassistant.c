@@ -103,6 +103,19 @@ _gtk_source_assistant_get_target_location (GtkSourceAssistant *assistant,
 	GTK_SOURCE_ASSISTANT_GET_CLASS (assistant)->get_target_location (assistant, location);
 }
 
+static int
+get_gutter_width (GtkSourceView *view)
+{
+	GtkSourceGutter *left = gtk_source_view_get_gutter (view, GTK_TEXT_WINDOW_LEFT);
+
+	if (left != NULL)
+	{
+		return gtk_widget_get_width (GTK_WIDGET (left));
+	}
+
+	return 0;
+}
+
 static void
 _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 {
@@ -119,8 +132,16 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 
 	if (GTK_SOURCE_IS_VIEW (parent))
 	{
+		GdkRectangle visible_rect;
+
+		gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (parent), &visible_rect);
+
 		_gtk_source_assistant_get_offset (assistant, &x, &y);
 		_gtk_source_assistant_get_target_location (assistant, &rect);
+
+		rect.x -= visible_rect.x;
+		rect.y -= visible_rect.y;
+		rect.x += get_gutter_width (GTK_SOURCE_VIEW (parent));
 
 		gtk_popover_set_offset (GTK_POPOVER (assistant), x, y);
 		gtk_popover_set_pointing_to (GTK_POPOVER (assistant), &rect);
