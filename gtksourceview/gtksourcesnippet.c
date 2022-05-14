@@ -210,12 +210,18 @@ GtkSourceSnippetChunk *
 gtk_source_snippet_get_nth_chunk (GtkSourceSnippet *snippet,
                                   guint             nth)
 {
+	GtkSourceSnippetChunk *chunk = NULL;
+
 	g_return_val_if_fail (GTK_SOURCE_IS_SNIPPET (snippet), 0);
 
 	if (nth < snippet->chunks.length)
-		return g_queue_peek_nth (&snippet->chunks, nth);
+	{
+		chunk = g_queue_peek_nth (&snippet->chunks, nth);
+	}
 
-	return NULL;
+	g_return_val_if_fail (!chunk || GTK_SOURCE_IS_SNIPPET_CHUNK (chunk), NULL);
+
+	return chunk;
 }
 
 /**
@@ -849,11 +855,11 @@ gtk_source_snippet_add_chunk (GtkSourceSnippet      *snippet,
 	g_return_if_fail (GTK_SOURCE_IS_SNIPPET (snippet));
 	g_return_if_fail (GTK_SOURCE_IS_SNIPPET_CHUNK (chunk));
 	g_return_if_fail (!snippet->inserted);
-	g_return_if_fail (chunk->link.data != NULL);
+	g_return_if_fail (chunk->link.data == chunk);
 	g_return_if_fail (chunk->link.prev == NULL);
 	g_return_if_fail (chunk->link.next == NULL);
 
-	g_object_ref_sink (chunk);
+	g_object_ref (chunk);
 
 	g_queue_push_tail_link (&snippet->chunks, &chunk->link);
 
