@@ -28,6 +28,9 @@
 #include "gtksourcesnippetchunk-private.h"
 #include "gtksourcesnippetmanager.h"
 #include "gtksourceview-private.h"
+#include "gtksourceutils-private.h"
+
+static void gtk_source_view_snippets_update_informative (GtkSourceViewSnippets *snippets);
 
 static void
 gtk_source_view_snippets_block (GtkSourceViewSnippets *snippets)
@@ -67,11 +70,36 @@ static void
 gtk_source_view_snippets_scroll_to_insert (GtkSourceViewSnippets *snippets)
 {
 	GtkTextMark *mark;
+	GtkTextIter iter;
+	GdkRectangle area;
+	GdkRectangle visible_rect;
+	double x, y;
 
 	g_assert (snippets != NULL);
 
 	mark = gtk_text_buffer_get_insert (GTK_TEXT_BUFFER (snippets->buffer));
-	gtk_text_view_scroll_mark_onscreen (GTK_TEXT_VIEW (snippets->view), mark);
+	gtk_text_buffer_get_iter_at_mark (GTK_TEXT_BUFFER (snippets->buffer), &iter, mark);
+	gtk_text_view_get_iter_location (GTK_TEXT_VIEW (snippets->view), &iter, &area);
+	gtk_text_view_get_visible_rect (GTK_TEXT_VIEW (snippets->view), &visible_rect);
+
+	if (area.x < visible_rect.x)
+		x = area.x;
+	else if (area.x > visible_rect.x + visible_rect.width)
+		x = area.x - visible_rect.width;
+	else
+		x = visible_rect.x;
+
+	if (area.y < visible_rect.y)
+		y = area.y;
+	else if (area.y > visible_rect.y + visible_rect.height)
+		y = area.y - visible_rect.height;
+	else
+		y = visible_rect.y;
+
+	gtk_adjustment_set_value (gtk_scrollable_get_hadjustment (GTK_SCROLLABLE (snippets->view)), x);
+	gtk_adjustment_set_value (gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (snippets->view)), y);
+
+	gtk_source_view_snippets_update_informative (snippets);
 }
 
 static void
