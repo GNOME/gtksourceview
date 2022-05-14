@@ -103,7 +103,14 @@ _gtk_source_view_assistants_size_allocate (GtkSourceViewAssistants *assistants,
 
 		g_assert (GTK_SOURCE_IS_ASSISTANT (assistant));
 
-		gtk_popover_present (GTK_POPOVER (assistant));
+		if (gtk_widget_get_visible (GTK_WIDGET (assistant)) &&
+		    gtk_native_get_surface (GTK_NATIVE (assistant)) != NULL)
+		{
+			GtkRequisition req;
+
+			gtk_widget_get_preferred_size (GTK_WIDGET (assistant), NULL, &req);
+			gtk_popover_present (GTK_POPOVER (assistant));
+		}
 	}
 }
 
