@@ -126,8 +126,6 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 		gtk_popover_set_pointing_to (GTK_POPOVER (assistant), &rect);
 	}
 
-	gtk_popover_present (GTK_POPOVER (assistant));
-
 	if (priv->child != NULL)
 	{
 		children = _gtk_source_assistant_child_get_attached (priv->child);
@@ -139,8 +137,6 @@ _gtk_source_assistant_update_position (GtkSourceAssistant *assistant)
 
 		_gtk_source_assistant_get_offset (child, &x, &y);
 		gtk_popover_set_offset (GTK_POPOVER (child), x, y);
-
-		gtk_popover_present (GTK_POPOVER (child));
 	}
 }
 
