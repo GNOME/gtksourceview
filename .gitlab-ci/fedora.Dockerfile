@@ -1,16 +1,20 @@
-FROM fedora:35
+FROM fedora:36
 
 RUN dnf update -y
 RUN dnf -y install \
     meson \
     vala \
+    libvala-devel \
     gtk4-devel \
     ninja-build \
     pkgconf \
     clang \
     gobject-introspection-devel \
     vulkan-headers \
-    python3-pip
+    python3-pip \
+    wayland-devel \
+    wayland-protocols-devel \
+    sysprof-devel
 
 RUN dnf clean all
 
