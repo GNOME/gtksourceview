@@ -312,6 +312,17 @@ gtk_source_view_snippets_update_informative (GtkSourceViewSnippets *snippets)
 		goto hide_informative;
 	}
 
+	if (snippets->informative == NULL)
+	{
+		snippets->informative = g_object_new (GTK_SOURCE_TYPE_INFORMATIVE,
+		                                      "position", GTK_POS_TOP,
+		                                      "message-type", GTK_MESSAGE_INFO,
+		                                       "icon-name", "completion-snippet-symbolic",
+		                                      NULL);
+		_gtk_source_view_add_assistant (snippets->view,
+		                                GTK_SOURCE_ASSISTANT (snippets->informative));
+	}
+
 	_gtk_source_assistant_set_mark (GTK_SOURCE_ASSISTANT (snippets->informative), chunk->begin_mark);
 	gtk_source_informative_set_message (snippets->informative, tooltip_text);
 
@@ -327,7 +338,10 @@ gtk_source_view_snippets_update_informative (GtkSourceViewSnippets *snippets)
 	return;
 
 hide_informative:
-	gtk_widget_hide (GTK_WIDGET (snippets->informative));
+	if (snippets->informative != NULL)
+	{
+		gtk_widget_hide (GTK_WIDGET (snippets->informative));
+	}
 }
 
 static void
@@ -386,14 +400,6 @@ _gtk_source_view_snippets_init (GtkSourceViewSnippets *snippets,
 		_gtk_source_view_snippets_set_buffer (snippets,
 		                                      GTK_SOURCE_BUFFER (buffer));
 	}
-
-	snippets->informative = g_object_new (GTK_SOURCE_TYPE_INFORMATIVE,
-	                                      "position", GTK_POS_TOP,
-	                                      "message-type", GTK_MESSAGE_INFO,
-	                                      "icon-name", "completion-snippet-symbolic",
-	                                      NULL);
-	_gtk_source_view_add_assistant (snippets->view,
-	                                GTK_SOURCE_ASSISTANT (snippets->informative));
 }
 
 void
@@ -415,8 +421,11 @@ _gtk_source_view_snippets_shutdown (GtkSourceViewSnippets *snippets)
 	g_clear_signal_handler (&snippets->buffer_cursor_moved_handler,
 	                        snippets->buffer);
 
-	_gtk_source_view_remove_assistant (snippets->view,
-	                                   GTK_SOURCE_ASSISTANT (snippets->informative));
+	if (snippets->informative != NULL)
+	{
+		_gtk_source_view_remove_assistant (snippets->view,
+		                                   GTK_SOURCE_ASSISTANT (snippets->informative));
+	}
 
 	if (snippets->snippet_signals != NULL)
 	{
@@ -661,7 +670,10 @@ _gtk_source_view_snippets_pop (GtkSourceViewSnippets *snippets)
 
 		g_object_unref (snippet);
 
-		gtk_widget_hide (GTK_WIDGET (snippets->informative));
+		if (snippets->informative != NULL)
+		{
+			gtk_widget_hide (GTK_WIDGET (snippets->informative));
+		}
 	}
 
 	snippet = g_queue_peek_head (&snippets->queue);
