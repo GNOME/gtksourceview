@@ -670,6 +670,11 @@ _gtk_source_view_snippets_pop (GtkSourceViewSnippets *snippets)
 
 	g_return_if_fail (snippets != NULL);
 
+	if (snippets->informative != NULL)
+	{
+		gtk_widget_hide (GTK_WIDGET (snippets->informative));
+	}
+
 	if (snippets->buffer == NULL)
 	{
 		return;
@@ -697,11 +702,6 @@ _gtk_source_view_snippets_pop (GtkSourceViewSnippets *snippets)
 		gtk_source_view_snippets_scroll_to_insert (snippets);
 
 		g_object_unref (snippet);
-
-		if (snippets->informative != NULL)
-		{
-			gtk_widget_hide (GTK_WIDGET (snippets->informative));
-		}
 	}
 
 	snippet = g_queue_peek_head (&snippets->queue);
