@@ -26,6 +26,7 @@
     <property name="mimetypes">text/x-rpm-spec</property>
     <property name="globs">*.spec</property>
     <property name="line-comment-start">#</property>
+    <property name="suggested-suffix">.spec</property>
   </metadata>
 
   <styles>

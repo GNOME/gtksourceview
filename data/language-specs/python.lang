@@ -27,8 +27,9 @@
 <language id="python" name="Python 2" version="2.0" _section="Script">
   <metadata>
     <property name="mimetypes">text/x-python;application/x-python</property>
-    <property name="globs">*.py</property>
+    <property name="globs">*.py;*.py2</property>
     <property name="line-comment-start">#</property>
+    <property name="suggested-suffix">.py2</property>
   </metadata>
 
   <styles>
