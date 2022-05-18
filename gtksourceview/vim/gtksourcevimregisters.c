@@ -323,3 +323,20 @@ gtk_source_vim_register_is_read_only (const char *name)
 		return FALSE;
 	}
 }
+
+void
+gtk_source_vim_registers_reset (GtkSourceVimRegisters *self)
+{
+	g_return_if_fail (GTK_SOURCE_IS_VIM_REGISTERS (self));
+
+	g_hash_table_remove_all (self->values);
+	g_clear_pointer (&self->clipboard, g_ref_string_release);
+	g_clear_pointer (&self->primary_clipboard, g_ref_string_release);
+
+	for (guint i = 0; i < G_N_ELEMENTS (self->numbered); i++)
+	{
+		self->numbered[i] = NULL;
+	}
+
+	self->numbered_pos = 0;
+}

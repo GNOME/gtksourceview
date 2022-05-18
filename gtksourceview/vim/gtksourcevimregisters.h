@@ -37,6 +37,7 @@ const char        *gtk_source_vim_registers_get_numbered (GtkSourceVimRegisters 
 void               gtk_source_vim_registers_set          (GtkSourceVimRegisters *self,
                                                           const char            *name,
                                                           const char            *string);
+void               gtk_source_vim_registers_reset        (GtkSourceVimRegisters *self);
 void               gtk_source_vim_registers_clear        (GtkSourceVimRegisters *self,
                                                           const char            *name);
 gboolean           gtk_source_vim_register_is_read_only  (const char            *name);
