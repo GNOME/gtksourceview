@@ -75,7 +75,7 @@ GtkSourceBuffer   *gtk_source_vim_state_get_buffer                 (GtkSourceVim
                                                                     GtkTextIter              *selection_bound);
 GtkSourceVimState *gtk_source_vim_state_get_root                   (GtkSourceVimState        *self);
 GtkSourceVimState *gtk_source_vim_state_get_parent                 (GtkSourceVimState        *self);
-GtkSourceVimState *gtk_source_vim_state_get_registers              (GtkSourceVimState        *self);
+GtkSourceVimState *gtk_source_vim_state_get_registers              (void);
 int                gtk_source_vim_state_get_count                  (GtkSourceVimState        *self);
 gboolean           gtk_source_vim_state_get_count_set              (GtkSourceVimState        *self);
 void               gtk_source_vim_state_set_count                  (GtkSourceVimState        *self,

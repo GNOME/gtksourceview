@@ -287,7 +287,7 @@ gtk_source_vim_text_history_end (GtkSourceVimTextHistory *self)
 		}
 	}
 
-	registers = gtk_source_vim_state_get_registers (GTK_SOURCE_VIM_STATE (self));
+	registers = gtk_source_vim_state_get_registers ();
 	gtk_source_vim_registers_set (GTK_SOURCE_VIM_REGISTERS (registers), ".", inserted->str);
 	g_string_free (inserted, TRUE);
 }
