@@ -36,7 +36,8 @@
 
 typedef struct
 {
-	/* Owned reference to marks/etc (usually set low in the stack) */
+	/* Owned reference to marks/registers (usually set low in the stack) */
+	GtkSourceVimState *registers;
 	GtkSourceVimState *marks;
 	GtkSourceVimState *jumplist;
 
@@ -93,7 +94,6 @@ enum {
 };
 
 static GParamSpec *properties [N_PROPS];
-static GtkSourceVimState *shared_registers;
 
 void
 gtk_source_vim_state_keyval_unescaped (guint           keyval,
@@ -299,6 +299,7 @@ gtk_source_vim_state_dispose (GObject *object)
 	g_clear_object (&priv->search_context);
 	g_clear_object (&priv->search_settings);
 
+	gtk_source_vim_state_release (&priv->registers);
 	gtk_source_vim_state_release (&priv->marks);
 	gtk_source_vim_state_release (&priv->jumplist);
 
@@ -1084,14 +1085,23 @@ gtk_source_vim_state_set_can_repeat (GtkSourceVimState *self,
 }
 
 GtkSourceVimState *
-gtk_source_vim_state_get_registers (void)
+gtk_source_vim_state_get_registers (GtkSourceVimState *self)
 {
-	if (shared_registers == NULL)
+	GtkSourceVimStatePrivate *priv;
+	GtkSourceVimState *root;
+
+	g_return_val_if_fail (GTK_SOURCE_IS_VIM_STATE (self), NULL);
+
+	root = gtk_source_vim_state_get_root (self);
+	priv = gtk_source_vim_state_get_instance_private (root);
+
+	if (priv->registers == NULL)
 	{
-		shared_registers = gtk_source_vim_registers_new ();
+		priv->registers = gtk_source_vim_registers_new ();
+		gtk_source_vim_state_set_parent (priv->registers, GTK_SOURCE_VIM_STATE (root));
 	}
 
-	return shared_registers;
+	return priv->registers;
 }
 
 const char *
@@ -1137,7 +1147,7 @@ gtk_source_vim_state_get_current_register_value (GtkSourceVimState *self)
 	g_return_val_if_fail (GTK_SOURCE_IS_VIM_STATE (self), NULL);
 
 	current_register = gtk_source_vim_state_get_current_register (self);
-	registers = gtk_source_vim_state_get_registers ();
+	registers = gtk_source_vim_state_get_registers (self);
 
 	return gtk_source_vim_registers_get (GTK_SOURCE_VIM_REGISTERS (registers), current_register);
 }
@@ -1152,7 +1162,7 @@ gtk_source_vim_state_set_current_register_value (GtkSourceVimState *self,
 	g_return_if_fail (GTK_SOURCE_IS_VIM_STATE (self));
 
 	current_register = gtk_source_vim_state_get_current_register (self);
-	registers = gtk_source_vim_state_get_registers ();
+	registers = gtk_source_vim_state_get_registers (self);
 
 	if (!gtk_source_vim_register_is_read_only (current_register))
 	{

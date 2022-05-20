@@ -26,7 +26,6 @@
 #include <gtksourceview/vim/gtksourcevimcommand.h>
 #include <gtksourceview/vim/gtksourceviminsert.h>
 #include <gtksourceview/vim/gtksourcevimnormal.h>
-#include <gtksourceview/vim/gtksourcevimregisters.h>
 #include <gtksourceview/vim/gtksourcevimstate.h>
 
 static void
@@ -41,8 +40,6 @@ run_test (const char *text,
 	GtkSourceVim *vim = gtk_source_vim_new (view);
 	GtkTextIter begin, end;
 	char *ret;
-
-	gtk_source_vim_registers_reset (GTK_SOURCE_VIM_REGISTERS (gtk_source_vim_state_get_registers ()));
 
 	gtk_source_buffer_set_style_scheme (buffer, scheme);
 
