@@ -29,50 +29,28 @@
 struct _GtkSourceVimRegisters
 {
 	GtkSourceVimState parent_instance;
-
-	GHashTable *values;
-
-	char *clipboard;
-	char *primary_clipboard;
-
-	char *numbered[10];
-	int numbered_pos;
 };
 
 G_DEFINE_TYPE (GtkSourceVimRegisters, gtk_source_vim_registers, GTK_SOURCE_TYPE_VIM_STATE)
 
-static void
-gtk_source_vim_registers_finalize (GObject *object)
-{
-	GtkSourceVimRegisters *self = (GtkSourceVimRegisters *)object;
-
-	g_clear_pointer (&self->values, g_hash_table_unref);
-	g_clear_pointer (&self->clipboard, g_ref_string_release);
-	g_clear_pointer (&self->primary_clipboard, g_ref_string_release);
-
-	for (guint i = 0; i < G_N_ELEMENTS (self->numbered); i++)
-	{
-		g_clear_pointer (&self->numbered[i], g_ref_string_release);
-	}
-
-	G_OBJECT_CLASS (gtk_source_vim_registers_parent_class)->finalize (object);
-}
+static GHashTable *g_values;
+static char       *g_clipboard;
+static char       *g_primary_clipboard;
+static char       *g_numbered[10];
+static int         g_numbered_pos;
 
 static void
 gtk_source_vim_registers_class_init (GtkSourceVimRegistersClass *klass)
 {
-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-	object_class->finalize = gtk_source_vim_registers_finalize;
+	g_values = g_hash_table_new_full (g_str_hash,
+	                                  g_str_equal,
+	                                  NULL,
+	                                  (GDestroyNotify)g_ref_string_release);
 }
 
 static void
 gtk_source_vim_registers_init (GtkSourceVimRegisters *self)
 {
-	self->values = g_hash_table_new_full (g_str_hash,
-	                                      g_str_equal,
-	                                      NULL,
-	                                      (GDestroyNotify)g_ref_string_release);
 }
 
 static void
@@ -188,18 +166,18 @@ gtk_source_vim_registers_get (GtkSourceVimRegisters *self,
 	if (g_str_equal (name, "+"))
 	{
 		GdkClipboard *clipboard = gtk_widget_get_clipboard (GTK_WIDGET (view));
-		read_clipboard (self, clipboard, &self->clipboard);
-		return self->clipboard;
+		read_clipboard (self, clipboard, &g_clipboard);
+		return g_clipboard;
 	}
 	else if (g_str_equal (name, "*"))
 	{
 		GdkClipboard *clipboard = gtk_widget_get_primary_clipboard (GTK_WIDGET (view));
-		read_clipboard (self, clipboard, &self->primary_clipboard);
-		return self->primary_clipboard;
+		read_clipboard (self, clipboard, &g_primary_clipboard);
+		return g_primary_clipboard;
 	}
 	else
 	{
-		return g_hash_table_lookup (self->values, name);
+		return g_hash_table_lookup (g_values, name);
 	}
 }
 
@@ -207,7 +185,7 @@ static inline char **
 get_numbered_pos (GtkSourceVimRegisters *self,
                   guint                  n)
 {
-	return &self->numbered[(self->numbered_pos + n) % 10];
+	return &g_numbered[(g_numbered_pos + n) % 10];
 }
 
 const char *
@@ -228,13 +206,13 @@ gtk_source_vim_registers_push (GtkSourceVimRegisters *self,
 
 	g_return_if_fail (GTK_SOURCE_IS_VIM_REGISTERS (self));
 
-	if (self->numbered_pos == 0)
+	if (g_numbered_pos == 0)
 	{
-		self->numbered_pos = G_N_ELEMENTS (self->numbered) - 1;
+		g_numbered_pos = G_N_ELEMENTS (g_numbered) - 1;
 	}
 	else
 	{
-		self->numbered_pos--;
+		g_numbered_pos--;
 	}
 
 	pos = get_numbered_pos (self, 0);
@@ -270,7 +248,7 @@ gtk_source_vim_registers_set (GtkSourceVimRegisters *self,
 
 	if (value == NULL)
 	{
-		g_hash_table_remove (self->values, name);
+		g_hash_table_remove (g_values, name);
 		return;
 	}
 
@@ -289,7 +267,7 @@ gtk_source_vim_registers_set (GtkSourceVimRegisters *self,
 	}
 	else
 	{
-		g_hash_table_insert (self->values,
+		g_hash_table_insert (g_values,
 		                     (char *)g_intern_string (name),
 		                     str);
 	}
@@ -329,14 +307,16 @@ gtk_source_vim_registers_reset (GtkSourceVimRegisters *self)
 {
 	g_return_if_fail (GTK_SOURCE_IS_VIM_REGISTERS (self));
 
-	g_hash_table_remove_all (self->values);
-	g_clear_pointer (&self->clipboard, g_ref_string_release);
-	g_clear_pointer (&self->primary_clipboard, g_ref_string_release);
+	g_hash_table_remove_all (g_values);
 
-	for (guint i = 0; i < G_N_ELEMENTS (self->numbered); i++)
+	/* Clear global state, but this is just for tests anyway */
+	g_clear_pointer (&g_clipboard, g_ref_string_release);
+	g_clear_pointer (&g_primary_clipboard, g_ref_string_release);
+
+	for (guint i = 0; i < G_N_ELEMENTS (g_numbered); i++)
 	{
-		self->numbered[i] = NULL;
+		g_clear_pointer (&g_numbered[i], g_ref_string_release);
 	}
 
-	self->numbered_pos = 0;
+	g_numbered_pos = 0;
 }
