@@ -26,6 +26,7 @@
 #include <gtksourceview/vim/gtksourcevimcommand.h>
 #include <gtksourceview/vim/gtksourceviminsert.h>
 #include <gtksourceview/vim/gtksourcevimnormal.h>
+#include <gtksourceview/vim/gtksourcevimregisters.h>
 #include <gtksourceview/vim/gtksourcevimstate.h>
 
 static void
@@ -38,8 +39,12 @@ run_test (const char *text,
 	GtkSourceStyleSchemeManager *schemes = gtk_source_style_scheme_manager_get_default ();
 	GtkSourceStyleScheme *scheme = gtk_source_style_scheme_manager_get_scheme (schemes, "Adwaita");
 	GtkSourceVim *vim = gtk_source_vim_new (view);
+	GtkSourceVimState *registers = gtk_source_vim_state_get_registers (GTK_SOURCE_VIM_STATE (vim));
 	GtkTextIter begin, end;
 	char *ret;
+
+	/* Registers are shared per-process, so they need to be reset between runs */
+	gtk_source_vim_registers_reset (GTK_SOURCE_VIM_REGISTERS (registers));
 
 	gtk_source_buffer_set_style_scheme (buffer, scheme);
 
