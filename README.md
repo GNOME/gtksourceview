@@ -22,7 +22,7 @@ Dependencies
 * GLib >= 2.70
 * GTK >= 4.6
 * libxml2 >= 2.6
-* freebidi >= 0.19.7
+* fribidi >= 0.19.7
 * libpcre2-8 >= 10.21
 
 Installation
