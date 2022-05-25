@@ -78,26 +78,53 @@ test_fixture_teardown (TestFixture   *fixture,
 {
 }
 
-static void
-compare_strv_unordered (const gchar **strv,
-                        const gchar **expected_strv)
+static int
+sort_strv_strcmpptr (gconstpointer a,
+		     gconstpointer b,
+		     gpointer      user_data)
 {
-	if (expected_strv != NULL)
-	{
-		guint i;
+	const char *stra = *(const char **)a;
+	const char *strb = *(const char **)b;
 
-		g_assert_cmpuint (g_strv_length ((gchar **) strv), ==,
-				  g_strv_length ((gchar **) expected_strv));
+	return g_strcmp0 (stra, strb);
+}
 
-		for (i = 0; expected_strv[i] != NULL; i++)
-		{
-			g_assert_true (g_strv_contains (strv, expected_strv[i]));
-		}
-	}
-	else
+static char **
+sort_strv (const char * const *strv)
+{
+	char **copy = g_strdupv ((char **)strv);
+	gsize n_elements = g_strv_length (copy);
+	g_qsort_with_data (copy, n_elements, sizeof (char *), sort_strv_strcmpptr, NULL);
+	return copy;
+}
+
+static void
+compare_strv_unordered (const gchar * const *strv,
+                        const gchar * const *expected_strv)
+{
+	char **strv_sorted;
+	char **expected_strv_sorted;
+
+	if (expected_strv == NULL)
 	{
-		g_assert_null (strv);
+		g_assert_true (strv == NULL || strv[0] == NULL);
+		return;
 	}
+
+	g_assert_nonnull (strv);
+
+	g_assert_cmpint (g_strv_length ((char **)strv), ==, g_strv_length ((char **)expected_strv));
+
+	strv_sorted = sort_strv (strv);
+	expected_strv_sorted = sort_strv (strv);
+
+	for (guint i = 0; strv_sorted[i]; i++)
+	{
+		g_assert_cmpstr (strv_sorted[i], ==, expected_strv_sorted[i]);
+	}
+
+	g_strfreev (strv_sorted);
+	g_strfreev (expected_strv_sorted);
 }
 
 static void
