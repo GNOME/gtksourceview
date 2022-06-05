@@ -37,12 +37,12 @@
             "builddir" : true,
             "config-opts" : [
                 "--libdir=lib",
-                "-Denable_gtk=false",
-                "-Dwith_sysprofd=none",
+                "-Dgtk=false",
+                "-Dsysprofd=none",
                 "-Dhelp=false",
-                "-Denable_tools=false",
-                "-Denable_tests=false",
-                "-Denable_examples=false",
+                "-Dtools=false",
+                "-Dtests=false",
+                "-Dexamples=false",
                 "-Dlibsysprof=false"
             ],
             "sources" : [
