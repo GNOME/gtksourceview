@@ -1075,9 +1075,14 @@ gtk_source_completion_list_box_items_changed_cb (GtkSourceCompletionListBox *sel
 
 	offset = gtk_source_completion_list_box_get_offset (self);
 
-	/* Skip widget resize if results are after visible area */
-	if (position >= offset + self->n_rows)
+	/* Skip widget resize if results are out of view and wont force our
+	 * current results down.
+	 */
+	if ((position >= offset + self->n_rows) ||
+	    (removed == added && (position + added) < offset))
+	{
 		return;
+	}
 
 	gtk_source_completion_list_box_queue_update (self);
 }
