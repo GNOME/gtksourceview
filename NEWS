@@ -1,3 +1,62 @@
+News in 5.4.2, 2022-06-12
+-------------------------
+
+ * Updated languages: c.lang, perl.lang
+ * Updated style-schemes: Adwaita-dark, solarized-light, solarized-dark
+ * Updated translations: Friulian
+ * Gutter renderers are now provided a prelight quark for lines when the
+   pointer is over the gutter.
+ * Hover assistants now avoid synthesized motion which is used much more
+   often in GTK 4 when dealing with crossing-events.
+ * Hover assistants will now dismiss themselves when the cursor moves.
+ * GtkSourceMap has reduced how often it needs to do allocation by ignoring
+   spurious notify::upper and value-changed signals from GtkTextView's
+   vertical GtkAdjustment.
+ * The testsuite has gained some correctness improvements thanks to
+   issues pointed out by Sébastien Wilmet.
+ * The Vim emulation's register implementation is now shared between buffers
+   as it would be expected in Vim.
+ * Snippets have gained some robustness improvements including the ability
+   to simplify results from the snippet parser, more defensive behavior,
+   and being lazier when possible.
+ * Tabbing through focus-positions in snippets will now immediately jump
+   to the new position if scrolling is required instead of animating as
+   it results in better placement of tooltip assistants.
+ * Assistants including completion, hover, and interactive tooltips now
+   reduce how often they request presentation and position calculation from
+   GDK and ultimately display servers such as Wayland.
+ * Completion windows now take the size of the gutter into account when
+   calculating their position relative to the parent GtkWindow so that the
+   typed-text column remains aligned with typed text in the source view.
+ * Completion has gained robustness improvements to do less work when
+   possible and avoid spinning the frame-clock which could happen in
+   certain scenarios.
+
+It is recommended that distributions update to this release if they are
+already shipping a GtkSourceView 5.4.x release.
+
+News in 5.4.1, 2022-04-21
+-------------------------
+
+ * Improved styling for style scheme preview widgets
+ * Improved styling and positioning of completion windows
+ * Improved styling for various style schemes
+ * Unit test fixes
+ * Hover assistants will no longer be showed if no providers
+   completed successfully to add widgets
+ * GtkSourceVimIMContext tries to handle various corner cases
+   better with regards to reuse and being removed from an
+   event controller or widget
+ * GtkSourceCompletionCell has improved fast-paths for resetting
+   cells to empty state when already empty
+ * Improved sizing and placement of assistants including hover
+   popovers, interactive tooltips, and completion windows
+ * The overview map has improved it's fallback styling
+ * The overview map will now properly update when the sourceview's
+   right-margin-position changes
+ * Fixes to vala.lang for regex detection
+ * Translation updates
+
 News in 5.4.0, 2022-03-18
 -------------------------
 
