@@ -871,9 +871,9 @@ gtk_source_completion_list_box_do_update (GtkSourceCompletionListBox *self,
 		}
 		else
 		{
+			gtk_widget_hide (GTK_WIDGET (iter));
 			_gtk_source_completion_list_box_row_display (GTK_SOURCE_COMPLETION_LIST_BOX_ROW (iter),
 			                                             NULL, NULL, NULL, self->show_icons, FALSE);
-			gtk_widget_hide (GTK_WIDGET (iter));
 		}
 
 		state.position++;
