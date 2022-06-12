@@ -903,8 +903,20 @@ gtk_source_completion_list_box_update_cb (GtkWidget     *widget,
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
 
-	gtk_source_completion_list_box_do_update (self, TRUE);
 	self->queued_update = 0;
+
+	gtk_source_completion_list_box_do_update (self, TRUE);
+
+	/* There is a chance that the update sequence could cause us to need
+	 * to queue another update. But we don't actually need it. Just cancel
+	 * any additional request immediately.
+	 */
+	if (self->queued_update != 0)
+	{
+		gtk_widget_remove_tick_callback (GTK_WIDGET (self), self->queued_update);
+		self->queued_update = 0;
+	}
+
 	return G_SOURCE_REMOVE;
 }
 
