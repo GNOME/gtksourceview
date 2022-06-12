@@ -608,16 +608,16 @@ gtk_source_completion_real_show (GtkSourceCompletion *self)
 static gboolean
 gtk_source_completion_queued_update_cb (gpointer user_data)
 {
-  GtkSourceCompletion *self = user_data;
+	GtkSourceCompletion *self = user_data;
 
-  g_assert (GTK_SOURCE_IS_COMPLETION (self));
+	g_assert (GTK_SOURCE_IS_COMPLETION (self));
 
-  self->queued_update = 0;
+	self->queued_update = 0;
 
-  if (self->context != NULL)
-    gtk_source_completion_update (self, GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE);
+	if (self->context != NULL)
+		gtk_source_completion_update (self, GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE);
 
-  return G_SOURCE_REMOVE;
+	return G_SOURCE_REMOVE;
 }
 
 static void
