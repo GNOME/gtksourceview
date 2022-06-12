@@ -925,7 +925,7 @@ gtk_source_completion_list_box_queue_update (GtkSourceCompletionListBox *self)
 {
 	g_assert (GTK_SOURCE_IS_COMPLETION_LIST_BOX (self));
 
-	/* See gtk_source_completion_list_box_set_selected() for while this needs
+	/* See gtk_source_completion_list_box_set_selected() for why this needs
 	 * to be set here to avoid re-entrancy.
 	 */
 	if (self->queued_update == 0)
