@@ -182,6 +182,12 @@ typedef struct
 	/* The location of the slider in widget coordinate space. */
 	GdkRectangle slider_area;
 
+	/* We compare against old values from the vadjustment as it can
+	 * notify a bit more than is necessary.
+	 */
+	double last_vadj_upper;
+	double last_vadj_value;
+
 	/* Weak pointer view to child view bindings */
 	GBinding *buffer_binding;
 	GBinding *indent_width_binding;
@@ -479,7 +485,7 @@ gtk_source_map_rebuild_css (GtkSourceMap *map)
 static void
 update_child_vadjustment (GtkSourceMap *map)
 {
-	GtkSourceMapPrivate *priv;
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
 	GtkAdjustment *vadj;
 	GtkAdjustment *child_vadj;
 	gdouble value;
@@ -488,8 +494,6 @@ update_child_vadjustment (GtkSourceMap *map)
 	gdouble child_upper;
 	gdouble child_page_size;
 	gdouble new_value = 0.0;
-
-	priv = gtk_source_map_get_instance_private (map);
 
 	vadj = gtk_scrollable_get_vadjustment (GTK_SCROLLABLE (priv->view));
 	g_object_get (vadj,
@@ -521,8 +525,15 @@ static void
 view_vadj_value_changed (GtkSourceMap  *map,
                          GtkAdjustment *vadj)
 {
-	update_child_vadjustment (map);
-	gtk_widget_queue_allocate (GTK_WIDGET (map));
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	double value = gtk_adjustment_get_value (vadj);
+
+	if (value != priv->last_vadj_value)
+	{
+		priv->last_vadj_value = value;
+		update_child_vadjustment (map);
+		gtk_widget_queue_allocate (GTK_WIDGET (map));
+	}
 }
 
 static void
@@ -530,7 +541,14 @@ view_vadj_notify_upper (GtkSourceMap  *map,
                         GParamSpec    *pspec,
                         GtkAdjustment *vadj)
 {
-	gtk_widget_queue_allocate (GTK_WIDGET (map));
+	GtkSourceMapPrivate *priv = gtk_source_map_get_instance_private (map);
+	double upper = gtk_adjustment_get_upper (vadj);
+
+	if (upper != priv->last_vadj_upper)
+	{
+		priv->last_vadj_upper = upper;
+		gtk_widget_queue_allocate (GTK_WIDGET (map));
+	}
 }
 
 static void
