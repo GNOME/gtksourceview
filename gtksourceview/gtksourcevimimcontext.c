@@ -62,8 +62,8 @@
  *
  * ```c
  * GtkEventController *key;
- * GtkSourceView *view;
  * GtkIMContext *im_context;
+ * GtkWidget *view;
  *
  * view = gtk_source_view_new ();
  * im_context = gtk_source_vim_im_context_new ();
@@ -71,7 +71,8 @@
  *
  * gtk_event_controller_key_set_im_context (GTK_EVENT_CONTROLLER_KEY (key), im_context);
  * gtk_event_controller_set_propagation_phase (key, GTK_PHASE_CAPTURE);
- * gtk_widget_add_controller (GTK_WIDGET (view), key);
+ * gtk_widget_add_controller (view, key);
+ * gtk_im_context_set_client_widget (im_context, view);
  *
  * g_object_bind_property (im_context, "command-bar-text", command_bar_label, "label", 0);
  * g_object_bind_property (im_context, "command-text", command_label, "label", 0);
