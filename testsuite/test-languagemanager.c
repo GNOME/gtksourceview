@@ -123,6 +123,14 @@ test_guess_language_empty_empty (void)
 	gtk_source_language_manager_guess_language (lm, "", "");
 }
 
+static inline void
+assert_null_language (GtkSourceLanguage *l)
+{
+  if (l != NULL)
+    g_error ("Expected NULL language, got %s",
+             gtk_source_language_get_id (l));
+}
+
 static void
 test_guess_language (void)
 {
@@ -144,16 +152,16 @@ test_guess_language (void)
 	g_test_trap_assert_failed ();
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.abcdef", NULL);
-	g_assert_null (l);
+	assert_null_language (l);
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.abcdef", "");
-	g_assert_null (l);
+	assert_null_language (l);
 
 	l = gtk_source_language_manager_guess_language (lm, NULL, "image/png");
-	g_assert_null (l);
+	assert_null_language (l);
 
 	l = gtk_source_language_manager_guess_language (lm, "", "image/png");
-	g_assert_null (l);
+	assert_null_language (l);
 
 	l = gtk_source_language_manager_guess_language (lm, "foo.c", NULL);
 	g_assert_cmpstr (gtk_source_language_get_id (l), ==, "c");
