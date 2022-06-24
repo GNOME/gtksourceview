@@ -71,11 +71,13 @@ test_snippet_fetching (void)
 	/* Test language id for snippets */
 	for (guint i = 0; i < n_items; i++)
 	{
-		g_autoptr(GtkSourceSnippet) snippet = g_list_model_get_item (model, i);
+		GtkSourceSnippet *snippet = g_list_model_get_item (model, i);
 		const char *language_id = gtk_source_snippet_get_language_id (snippet);
 
 		g_assert_nonnull (language_id);
 		g_assert_cmpstr (language_id, !=, "");
+
+		g_object_unref (snippet);
 	}
 
 	g_assert_finalize_object (mgr);

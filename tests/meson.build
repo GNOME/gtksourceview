@@ -21,9 +21,6 @@ tests_resources = {
 }
 
 tests_deps = [gtksource_dep]
-if cc.get_id() == 'msvc'
-  tests_deps += [core_dep]
-endif
 
 foreach test_name, test_sources: tests_sources
   if tests_resources.has_key(test_name)
