@@ -169,15 +169,6 @@ if config_h.has('OS_OSX')
   ]
 endif
 
-if cc.get_id() == 'msvc' and cc.version().version_compare('<18')
-  # include our math.h to implement round() for pre-2013 Visual Studio
-  gtksourceview_extra_include_dirs = include_directories('../msvc')
-else
-  gtksourceview_extra_include_dirs = []
-endif
-
-gtksourceview_include_dirs = [rootdir, gtksourceview_extra_include_dirs]
-
 core_enums_header = '''
 
 #if defined (GTK_SOURCE_COMPILATION)
@@ -236,7 +227,7 @@ install_headers(
 core_enums_h = core_enums.get(1)
 
 core_lib = static_library(package_string + 'core', core_sources,
-  include_directories: gtksourceview_include_dirs,
+  include_directories: rootdir,
          dependencies: core_deps,
                c_args: core_c_args + deprecated_c_args,
               install: false
@@ -263,7 +254,7 @@ subdir('completion-providers')
 gtksource_lib = library(package_string,
                 version: lib_version,
         darwin_versions: lib_osx_version,
-    include_directories: gtksourceview_include_dirs,
+    include_directories: rootdir,
            dependencies: gtksource_deps,
              link_whole: gtksource_libs,
                  c_args: core_c_args + deprecated_c_args,
