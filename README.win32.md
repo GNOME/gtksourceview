@@ -33,6 +33,9 @@ include these repective paths, and ensure that `cmake` is installed and in your 
 For the introspection to complete successfully, you will also need to ensure that the DLLs
 can be found in the bindir entries of your .pc files or in your `%PATH%`.
 
+ARM64 Windows builds are also supported provided that a valid cross compilation config file
+is set up and passed into the Meson command line using `--cross-file=...`.
+
 #### Building GtkSourceView
 
 Please do the following:
