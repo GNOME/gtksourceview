@@ -84,8 +84,19 @@ glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
 gtk_dep = dependency('gtk4', version: gtk_req)
-libxml_dep = dependency('libxml-2.0', version: libxml_req,
-                        fallback : ['libxml2', 'xml2lib_dep'])
+
+libxml_dep = dependency('libxml-2.0',
+                        method: 'pkg-config',
+                        version: libxml_req,
+                        required : false)
+
+if not libxml_dep.found()
+  libxml_dep = dependency('LibXml2',
+                          method: 'cmake',
+                          version: libxml_req,
+                          fallback : ['libxml2', 'xml2lib_dep'])
+endif
+
 fribidi_dep = dependency('fribidi', version: fribidi_req)
 fontconfig_dep = dependency('fontconfig', required: false)
 pangoft2_dep = dependency('pangoft2', required: false)
