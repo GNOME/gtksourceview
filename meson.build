@@ -84,7 +84,8 @@ glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
 gtk_dep = dependency('gtk4', version: gtk_req)
-libxml_dep = dependency('libxml-2.0', version: libxml_req,
+libxml_dep = dependency(['libxml-2.0', 'LibXml2'],
+                        version: libxml_req,
                         fallback : ['libxml2', 'xml2lib_dep'])
 fribidi_dep = dependency('fribidi', version: fribidi_req)
 fontconfig_dep = dependency('fontconfig', required: false)
