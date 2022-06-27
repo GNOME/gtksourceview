@@ -95,6 +95,8 @@ pcre2_dep = dependency('libpcre2-8', version: pcre2_req,
 
 gtk_quartz_dep = dependency('gtk4-quartz', version: gtk_req, required: false)
 
+vulkan_dep = dependency('vulkan', required: false)
+
 if generate_gir
   introspection_dep = dependency('gobject-introspection-1.0', version: introspection_req)
 else
