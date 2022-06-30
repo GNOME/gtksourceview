@@ -135,7 +135,7 @@ Here are some general advices:
     underlying library.
 
   - Public API should have precondition guards using g_return_if_fail() or
-    g_return_val_if_fail(). Optionally, you may do this before returnin values
+    g_return_val_if_fail(). Optionally, you may do this before returning values
     from the function to help catch bugs earlier in the development cycle.
 
     Private functions (such as those with static) should use g_assert() to
