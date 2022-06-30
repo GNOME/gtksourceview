@@ -158,6 +158,14 @@ core_deps = [
   pcre2_dep,
 ]
 
+# We have no way to know from the gtk4_dep whether Vulkan support
+# is enabled, and so neglect to include the Vulkan header include
+# path unless Vulkan was found via pkg-config when gtk4 was built.
+# Help the build to find the Vulkan headers.
+if vulkan_dep.found() and vulkan_dep.type_name() != 'pkgconfig'
+  core_deps += vulkan_dep
+endif
+
 if profiler_enabled
   core_deps += [libsysprof_capture_dep]
 endif

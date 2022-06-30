@@ -1,7 +1,7 @@
 project('gtksourceview', 'c',
           version: '5.5.0',
           license: 'LGPL-2.1-or-later',
-    meson_version: '>= 0.59.0',
+    meson_version: '>= 0.60.0',
   default_options: [ 'c_std=gnu99',
                      'buildtype=debugoptimized',
                      'warning_level=2' ],
@@ -84,7 +84,8 @@ glib_dep = dependency('glib-2.0', version: glib_req)
 gobject_dep = dependency('gobject-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
 gtk_dep = dependency('gtk4', version: gtk_req)
-libxml_dep = dependency('libxml-2.0', version: libxml_req,
+libxml_dep = dependency(['libxml-2.0', 'LibXml2'],
+                        version: libxml_req,
                         fallback : ['libxml2', 'xml2lib_dep'])
 fribidi_dep = dependency('fribidi', version: fribidi_req)
 fontconfig_dep = dependency('fontconfig', required: false)
@@ -93,6 +94,8 @@ pcre2_dep = dependency('libpcre2-8', version: pcre2_req,
                        fallback : ['pcre2', 'libpcre2_8'])
 
 gtk_quartz_dep = dependency('gtk4-quartz', version: gtk_req, required: false)
+
+vulkan_dep = dependency('vulkan', required: false)
 
 if generate_gir
   introspection_dep = dependency('gobject-introspection-1.0', version: introspection_req)
