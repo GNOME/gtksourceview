@@ -60,7 +60,7 @@
                 "--libdir=lib",
                 "-Dgtk_doc=false",
                 "-Dsysprof=true",
-                "-Dgir=true",
+                "-Dintrospection=enabled",
                 "-Dvapi=true",
                 "-Dinstall_tests=true"
             ],
