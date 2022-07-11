@@ -25,6 +25,7 @@
 
 G_BEGIN_DECLS
 
-void _gtk_source_hover_display_clear (GtkSourceHoverDisplay *self);
+void     _gtk_source_hover_display_clear    (GtkSourceHoverDisplay *self);
+gboolean _gtk_source_hover_display_is_empty (GtkSourceHoverDisplay *self);
 
 G_END_DECLS

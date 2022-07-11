@@ -183,7 +183,8 @@ gtk_source_hover_assistant_populate_cb (GObject      *object,
 
 	if (_gtk_source_hover_context_populate_finish (context, result, &error))
 	{
-		gtk_widget_show (GTK_WIDGET (self));
+		gtk_widget_set_visible (GTK_WIDGET (self),
+					!_gtk_source_hover_display_is_empty (self->display));
 	}
 
 	g_clear_object (&self);

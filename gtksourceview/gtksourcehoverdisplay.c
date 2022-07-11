@@ -25,7 +25,7 @@
 
 /**
  * GtkSourceHoverDisplay:
- * 
+ *
  * Display for interactive tooltips.
  *
  * `GtkSourceHoverDisplay` is a [class@Gtk.Widget] that may be populated with widgets
@@ -136,4 +136,12 @@ _gtk_source_hover_display_clear (GtkSourceHoverDisplay *self)
 	{
 		gtk_box_remove (self->vbox, child);
 	}
+}
+
+gboolean
+_gtk_source_hover_display_is_empty (GtkSourceHoverDisplay *self)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_HOVER_DISPLAY (self), FALSE);
+
+	return gtk_widget_get_first_child (GTK_WIDGET (self->vbox)) == NULL;
 }
