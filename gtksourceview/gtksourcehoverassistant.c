@@ -234,13 +234,6 @@ _gtk_source_hover_assistant_display (GtkSourceHoverAssistant  *self,
 
 	gdk_rectangle_union (&begin_rect, &end_rect, &location_rect);
 
-	gtk_text_view_buffer_to_window_coords (GTK_TEXT_VIEW (view),
-	                                       GTK_TEXT_WINDOW_WIDGET,
-	                                       location_rect.x,
-	                                       location_rect.y,
-	                                       &location_rect.x,
-	                                       &location_rect.y);
-
 	if (gtk_text_iter_equal (begin, end) &&
 	    gtk_text_iter_starts_line (begin))
 	{
