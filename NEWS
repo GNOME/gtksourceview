@@ -1,3 +1,20 @@
+News in 5.5.0, 2022-07-11
+-------------------------
+
+ * Build fixes for deprecated meson features and MSVC improvements
+ * Fixes for hover assistant placement and display
+ * A number of improvements to Vim emulation
+ * The overview map can now avoid redrawing in a number of scenarios
+ * The completion popover can now avoid repositioning in a number of scenarios
+ * The completion popover now hides before resetting grid content
+ * Language specifications can now provide a suggested suffix or name for new
+   files. GNOME Text Editor has examples for using this new opt-in metadata.
+ * Various fixes display of snippet assistants
+ * New languages: twig.lang
+ * Translation updates
+
+This is a development release snapshot not intended for end-user use.
+
 News in 5.4.2, 2022-06-12
 -------------------------
 
