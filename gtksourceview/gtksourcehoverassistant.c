@@ -90,7 +90,20 @@ gtk_source_hover_assistant_motion_cb (GtkSourceHoverAssistant  *self,
 	    y < -GRACE_Y ||
 	    y > height + GRACE_Y)
 	{
+		GtkWidget *focus = gtk_root_get_focus (root);
+		GtkWidget *view = gtk_widget_get_ancestor (GTK_WIDGET (self), GTK_SOURCE_TYPE_VIEW);
+		gboolean return_focus;
+
+		return_focus = focus != NULL &&
+			(focus == GTK_WIDGET (self) ||
+			 gtk_widget_is_ancestor (focus, GTK_WIDGET (self)));
+
 		gtk_widget_hide (GTK_WIDGET (self));
+
+		if (return_focus && view != NULL)
+		{
+			gtk_widget_grab_focus (GTK_WIDGET (view));
+		}
 	}
 }
 
