@@ -26,6 +26,7 @@ testsuite_sources = [
   ['test-iter'],
   ['test-language'],
   ['test-languagemanager'],
+  ['test-language-specs'],
   ['test-mark'],
   ['test-printcompositor'],
   ['test-regex'],
