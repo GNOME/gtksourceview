@@ -265,7 +265,7 @@ parse_dollar:
 	}
 
 #if 0
-	g_printerr ("Parse Variable: N=%d  inner=\"%s\"\n", n, inner);
+	g_printerr ("Parse Variable: N=%ld  inner=\"%s\"\n", n, inner);
 	g_printerr ("  Left over: \"%s\"\n", line);
 #endif
 
