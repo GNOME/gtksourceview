@@ -342,6 +342,8 @@ _gtk_source_snippet_bundle_parse_text (const gchar  *text,
 		}
 	}
 
+	flush_chunk (&parser);
+
 	goto finish;
 
 handle_error:
