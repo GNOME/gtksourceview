@@ -97,21 +97,21 @@ test_snippet_parse (void)
 	g_assert_cmpint (4, ==, gtk_source_snippet_get_n_chunks (snippet));
 
 	chunk = gtk_source_snippet_get_nth_chunk (snippet, 0);
+	g_assert_nonnull (chunk);
 	g_assert_cmpint (1, ==, gtk_source_snippet_chunk_get_focus_position (chunk));
 	g_assert_cmpstr ("test", ==, gtk_source_snippet_chunk_get_spec (chunk));
-	g_assert_nonnull (chunk);
 
 	chunk = gtk_source_snippet_get_nth_chunk (snippet, 1);
+	g_assert_nonnull (chunk);
 	g_assert_cmpint (-1, ==, gtk_source_snippet_chunk_get_focus_position (chunk));
 	g_assert_cmpstr (" ", ==, gtk_source_snippet_chunk_get_spec (chunk));
-	g_assert_nonnull (chunk);
 
 	chunk = gtk_source_snippet_get_nth_chunk (snippet, 2);
+	g_assert_nonnull (chunk);
 	g_assert_cmpint (2, ==, gtk_source_snippet_chunk_get_focus_position (chunk));
 	g_assert_cmpstr ("$1", ==, gtk_source_snippet_chunk_get_spec (chunk));
 	/* Unset until user types */
 	g_assert_cmpstr ("", ==, gtk_source_snippet_chunk_get_text (chunk));
-	g_assert_nonnull (chunk);
 
 	chunk = gtk_source_snippet_get_nth_chunk (snippet, 3);
 	g_assert_cmpint (0, ==, gtk_source_snippet_chunk_get_focus_position (chunk));
