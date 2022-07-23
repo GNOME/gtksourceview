@@ -45,6 +45,25 @@
  * registered with the [class@SnippetManager].
  */
 
+typedef struct
+{
+	char *word;
+	int minimum_word_size;
+	guint filter_all : 1;
+} FilterData;
+
+static void
+filter_data_finalize (FilterData *fd)
+{
+	g_clear_pointer (&fd->word, g_free);
+}
+
+static void
+filter_data_release (FilterData *fd)
+{
+	g_atomic_rc_box_release_full (fd, (GDestroyNotify)filter_data_finalize);
+}
+
 struct _GtkSourceSnippetResults
 {
 	GObject     parent_instance;
@@ -68,7 +87,13 @@ static guint
 gtk_source_snippet_results_get_n_items (GListModel *model)
 {
 	GtkSourceSnippetResults *self = (GtkSourceSnippetResults *)model;
-	return g_list_model_get_n_items (self->snippets);
+
+	if (self->snippets != NULL)
+	{
+		return g_list_model_get_n_items (self->snippets);
+	}
+
+	return 0;
 }
 
 static gpointer
@@ -76,8 +101,17 @@ gtk_source_snippet_results_get_item (GListModel *model,
                                      guint       position)
 {
 	GtkSourceSnippetResults *self = (GtkSourceSnippetResults *)model;
-	GtkSourceSnippet *snippet = g_list_model_get_item (self->snippets, position);
-	return gtk_source_completion_snippets_proposal_new (snippet);
+
+	g_assert (!self->snippets || GTK_SOURCE_IS_SNIPPET_BUNDLE (self->snippets));
+
+	if (self->snippets != NULL)
+	{
+		GtkSourceSnippetBundle *bundle = GTK_SOURCE_SNIPPET_BUNDLE (self->snippets);
+		const GtkSourceSnippetInfo *info = _gtk_source_snippet_bundle_get_info (bundle, position);
+		return gtk_source_completion_snippets_proposal_new (bundle, info);
+	}
+
+	return NULL;
 }
 
 static void
@@ -92,7 +126,7 @@ static GListModel *
 gtk_source_snippet_results_new (GListModel *base_model)
 {
 	GtkSourceSnippetResults *self = g_object_new (GTK_SOURCE_TYPE_SNIPPET_RESULTS, NULL);
-	self->snippets = g_object_ref (base_model);
+	g_set_object (&self->snippets, base_model);
 	return G_LIST_MODEL (self);
 }
 
@@ -121,17 +155,16 @@ gtk_source_snippet_results_init (GtkSourceSnippetResults *self)
 
 typedef struct
 {
-	char *title;
-	int   priority;
-	int   minimum_word_size;
+	FilterData *filter_data;
+	char       *title;
+	int         priority;
 } GtkSourceCompletionSnippetsPrivate;
 
 static void completion_provider_iface_init (GtkSourceCompletionProviderInterface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionSnippets, gtk_source_completion_snippets, G_TYPE_OBJECT,
                          G_ADD_PRIVATE (GtkSourceCompletionSnippets)
-                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROVIDER,
-                                                completion_provider_iface_init))
+                         G_IMPLEMENT_INTERFACE (GTK_SOURCE_TYPE_COMPLETION_PROVIDER, completion_provider_iface_init))
 
 enum {
 	PROP_0,
@@ -142,6 +175,34 @@ enum {
 
 static GParamSpec *properties[N_PROPS];
 
+static gboolean
+filter_snippet_func (gpointer item,
+		     gpointer user_data)
+{
+	GtkSourceCompletionSnippetsProposal *proposal = item;
+	FilterData *fd = user_data;
+
+	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS_PROPOSAL (proposal));
+	g_assert (fd != NULL);
+
+	if (fd->filter_all)
+	{
+		return FALSE;
+	}
+
+	if (proposal->info.trigger == NULL)
+	{
+		return FALSE;
+	}
+
+	/* We could do fuzzy here, or we could also do case-insensitive (strcasestr),
+	 * but generally, having case match can be helpful in it's own. We could always
+	 * add more tweaks to this if they become necessary.
+	 */
+
+	return strstr (proposal->info.trigger, fd->word) != NULL;
+}
+
 static GListModel *
 gtk_source_completion_snippets_populate (GtkSourceCompletionProvider  *provider,
                                          GtkSourceCompletionContext   *context,
@@ -151,57 +212,51 @@ gtk_source_completion_snippets_populate (GtkSourceCompletionProvider  *provider,
 	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (snippets);
 	GtkSourceCompletionActivation activation;
 	GtkSourceSnippetManager *manager;
+	GtkFilterListModel *filter_model;
 	GtkSourceLanguage *language;
+	GtkCustomFilter *filter;
 	GtkSourceBuffer *buffer;
-	const gchar *language_id = "";
-	GtkTextIter begin, end;
+	const char *language_id = "";
 	GListModel *matches;
-	GListModel *results = NULL;
-	gchar *word;
+	GListModel *results;
 
-	if (!gtk_source_completion_context_get_bounds (context, &begin, &end))
-	{
-		return NULL;
-	}
+	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (snippets));
+	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 
 	buffer = gtk_source_completion_context_get_buffer (context);
-	word = gtk_source_completion_context_get_word (context);
 	activation = gtk_source_completion_context_get_activation (context);
 	manager = gtk_source_snippet_manager_get_default ();
 	language = gtk_source_buffer_get_language (buffer);
 
-	if (word == NULL ||
-	    (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE &&
-	     g_utf8_strlen (word, -1) < (glong)priv->minimum_word_size))
-	{
-		g_free (word);
-		return NULL;
-	}
+	/* Update state in indirected struct for filters */
+	g_free (priv->filter_data->word);
+	priv->filter_data->word = gtk_source_completion_context_get_word (context);
+
+	priv->filter_data->filter_all =
+		(priv->filter_data->word == NULL ||
+		 (activation == GTK_SOURCE_COMPLETION_ACTIVATION_INTERACTIVE &&
+		  g_utf8_strlen (priv->filter_data->word, -1) < (glong)priv->filter_data->minimum_word_size));
 
 	if (language != NULL)
 	{
 		language_id = gtk_source_language_get_id (language);
 	}
 
-	matches = gtk_source_snippet_manager_list_matching (manager, NULL, language_id, word);
-
-	if (matches != NULL)
-	{
-		results = gtk_source_snippet_results_new (matches);
-	}
-
+	matches = gtk_source_snippet_manager_list_matching (manager, NULL, language_id, NULL);
+	results = gtk_source_snippet_results_new (matches);
 	g_clear_object (&matches);
-	g_free (word);
 
-	if (results == NULL)
-	{
-		g_set_error (error,
-		             G_IO_ERROR,
-		             G_IO_ERROR_NOT_SUPPORTED,
-		             "No results");
-	}
+	/* Create a filter we can re-use so we get optimal updates on
+	 * change (only refilter the portions either matching or not-matching
+	 * when words change).
+	 */
+	filter = gtk_custom_filter_new (filter_snippet_func,
+	                                g_atomic_rc_box_acquire (priv->filter_data),
+	                                (GDestroyNotify)filter_data_release);
+	filter_model = gtk_filter_list_model_new (results, GTK_FILTER (filter));
+	gtk_filter_list_model_set_incremental (filter_model, TRUE);
 
-	return results;
+	return G_LIST_MODEL (filter_model);
 }
 
 static gchar *
@@ -228,10 +283,11 @@ gtk_source_completion_snippets_activate (GtkSourceCompletionProvider *provider,
                                          GtkSourceCompletionContext  *context,
                                          GtkSourceCompletionProposal *proposal)
 {
+	GtkSourceCompletionSnippets *self = (GtkSourceCompletionSnippets *)provider;
 	GtkSourceCompletionSnippetsProposal *p = (GtkSourceCompletionSnippetsProposal *)proposal;
 	GtkTextIter begin, end;
 
-	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (provider));
+	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (self));
 	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS_PROPOSAL (p));
 
@@ -239,17 +295,16 @@ gtk_source_completion_snippets_activate (GtkSourceCompletionProvider *provider,
 	{
 		GtkTextBuffer *buffer = gtk_text_iter_get_buffer (&begin);
 		GtkSourceView *view = gtk_source_completion_context_get_view (context);
-		GtkSourceSnippet *snippet, *copy;
+		GtkSourceSnippet *snippet;
 
-		snippet = gtk_source_completion_snippets_proposal_get_snippet (p);
-		copy = gtk_source_snippet_copy (snippet);
+		snippet = gtk_source_completion_snippets_proposal_dup_snippet (p);
 
 		gtk_text_buffer_begin_user_action (GTK_TEXT_BUFFER (buffer));
 		gtk_text_buffer_delete (GTK_TEXT_BUFFER (buffer), &begin, &end);
-		gtk_source_view_push_snippet (view, copy, &begin);
+		gtk_source_view_push_snippet (view, snippet, &begin);
 		gtk_text_buffer_end_user_action (GTK_TEXT_BUFFER (buffer));
 
-		g_object_unref (copy);
+		g_object_unref (snippet);
 	}
 }
 
@@ -261,19 +316,17 @@ gtk_source_completion_snippets_display (GtkSourceCompletionProvider *provider,
 {
 	GtkSourceCompletionSnippetsProposal *p = (GtkSourceCompletionSnippetsProposal *)proposal;
 	GtkSourceCompletionColumn column;
-	GtkSourceSnippet *snippet;
 
 	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (provider));
 	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS_PROPOSAL (p));
 	g_assert (GTK_SOURCE_IS_COMPLETION_CELL (cell));
 
-	snippet = gtk_source_completion_snippets_proposal_get_snippet (p);
 	column = gtk_source_completion_cell_get_column (cell);
 
 	if (column == GTK_SOURCE_COMPLETION_COLUMN_TYPED_TEXT)
 	{
-		const char *trigger = gtk_source_snippet_get_trigger (snippet);
+		const char *trigger = p->info.trigger;
 		char *word = gtk_source_completion_context_get_word (context);
 		PangoAttrList *highlight = gtk_source_completion_fuzzy_highlight (trigger, word);
 
@@ -284,18 +337,15 @@ gtk_source_completion_snippets_display (GtkSourceCompletionProvider *provider,
 	}
 	else if (column == GTK_SOURCE_COMPLETION_COLUMN_ICON)
 	{
-		gtk_source_completion_cell_set_icon_name (cell,
-		                                          "completion-snippet-symbolic");
+		gtk_source_completion_cell_set_icon_name (cell, "completion-snippet-symbolic");
 	}
 	else if (column == GTK_SOURCE_COMPLETION_COLUMN_COMMENT)
 	{
-		gtk_source_completion_cell_set_text (cell,
-		                                     gtk_source_snippet_get_trigger (snippet));
+		gtk_source_completion_cell_set_text (cell, p->info.trigger);
 	}
 	else if (column == GTK_SOURCE_COMPLETION_COLUMN_DETAILS)
 	{
-		gtk_source_completion_cell_set_text (cell,
-		                                     gtk_source_snippet_get_description (snippet));
+		gtk_source_completion_cell_set_text (cell, p->info.description);
 	}
 }
 
@@ -304,39 +354,41 @@ gtk_source_completion_snippets_refilter (GtkSourceCompletionProvider *provider,
                                          GtkSourceCompletionContext  *context,
                                          GListModel                  *model)
 {
-	GtkFilterListModel *filter_model;
-	GtkExpression *expression;
-	GtkStringFilter *filter;
-	gchar *word;
+	GtkSourceCompletionSnippets *self = (GtkSourceCompletionSnippets *)provider;
+	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (self);
+	GtkFilterChange change;
+	GtkFilter *filter;
+	char *old_word;
+	char *word;
 
-	g_assert (GTK_SOURCE_IS_COMPLETION_PROVIDER (provider));
+	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (self));
 	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
-	g_assert (G_IS_LIST_MODEL (model));
+	g_assert (GTK_IS_FILTER_LIST_MODEL (model));
 
 	word = gtk_source_completion_context_get_word (context);
+	old_word = g_steal_pointer (&priv->filter_data->word);
 
-	if (GTK_IS_FILTER_LIST_MODEL (model))
+	if (old_word && g_str_has_prefix (word, old_word))
 	{
-		model = gtk_filter_list_model_get_model (GTK_FILTER_LIST_MODEL (model));
+		change = GTK_FILTER_CHANGE_MORE_STRICT;
+	}
+	else
+	{
+		change = GTK_FILTER_CHANGE_LESS_STRICT;
 	}
 
-	if (!word || !word[0])
+	if (priv->filter_data->filter_all)
 	{
-		gtk_source_completion_context_set_proposals_for_provider (context, provider, model);
-		g_free (word);
-		return;
+		priv->filter_data->filter_all = FALSE;
+		change = GTK_FILTER_CHANGE_LESS_STRICT;
 	}
 
-	expression = gtk_property_expression_new (GTK_SOURCE_TYPE_COMPLETION_SNIPPETS_PROPOSAL, NULL, "trigger");
-	filter = gtk_string_filter_new (g_steal_pointer (&expression));
-	gtk_string_filter_set_search (GTK_STRING_FILTER (filter), word);
-	filter_model = gtk_filter_list_model_new (g_object_ref (model),
-	                                          GTK_FILTER (g_steal_pointer (&filter)));
-	gtk_filter_list_model_set_incremental (filter_model, TRUE);
-	gtk_source_completion_context_set_proposals_for_provider (context, provider, G_LIST_MODEL (filter_model));
+	priv->filter_data->word = word;
 
-	g_clear_object (&filter_model);
-	g_free (word);
+	filter = gtk_filter_list_model_get_filter (GTK_FILTER_LIST_MODEL (model));
+	gtk_filter_changed (filter, change);
+
+	g_free (old_word);
 }
 
 
@@ -358,6 +410,7 @@ gtk_source_completion_snippets_finalize (GObject *object)
 	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (provider);
 
 	g_clear_pointer (&priv->title, g_free);
+	g_clear_pointer (&priv->filter_data, filter_data_release);
 
 	G_OBJECT_CLASS (gtk_source_completion_snippets_parent_class)->finalize (object);
 }
@@ -451,7 +504,8 @@ gtk_source_completion_snippets_init (GtkSourceCompletionSnippets *self)
 {
 	GtkSourceCompletionSnippetsPrivate *priv = gtk_source_completion_snippets_get_instance_private (self);
 
-	priv->minimum_word_size = 2;
+	priv->filter_data = g_atomic_rc_box_alloc0 (sizeof (FilterData));
+	priv->filter_data->minimum_word_size = 2;
 }
 
 GtkSourceCompletionSnippets *

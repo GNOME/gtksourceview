@@ -21,6 +21,7 @@
 
 #include <gtksourceview/gtksourcetypes.h>
 #include <gtksourceview/gtksourcecompletionproposal.h>
+#include <gtksourceview/gtksourcesnippetbundle-private.h>
 
 G_BEGIN_DECLS
 
@@ -28,7 +29,15 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE (GtkSourceCompletionSnippetsProposal, gtk_source_completion_snippets_proposal, GTK_SOURCE, COMPLETION_SNIPPETS_PROPOSAL, GObject)
 
-GtkSourceCompletionProposal *gtk_source_completion_snippets_proposal_new         (GtkSourceSnippet                    *snippet);
-GtkSourceSnippet            *gtk_source_completion_snippets_proposal_get_snippet (GtkSourceCompletionSnippetsProposal *self);
+struct _GtkSourceCompletionSnippetsProposal
+{
+	GObject                 parent_instance;
+  GtkSourceSnippetBundle *bundle;
+	GtkSourceSnippetInfo    info;
+};
+
+GtkSourceCompletionProposal *gtk_source_completion_snippets_proposal_new         (GtkSourceSnippetBundle              *bundle,
+                                                                                  const GtkSourceSnippetInfo          *info);
+GtkSourceSnippet            *gtk_source_completion_snippets_proposal_dup_snippet (GtkSourceCompletionSnippetsProposal *self);
 
 G_END_DECLS

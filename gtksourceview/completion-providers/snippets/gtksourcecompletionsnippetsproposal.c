@@ -23,11 +23,6 @@
 
 #include "gtksourcecompletionsnippetsproposal-private.h"
 
-struct _GtkSourceCompletionSnippetsProposal
-{
-	GObject           parent_instance;
-	GtkSourceSnippet *snippet;
-};
 
 G_DEFINE_TYPE_WITH_CODE (GtkSourceCompletionSnippetsProposal,
                          gtk_source_completion_snippets_proposal,
@@ -44,16 +39,6 @@ enum {
 static GParamSpec *properties [N_PROPS];
 
 static void
-gtk_source_completion_snippets_proposal_finalize (GObject *object)
-{
-	GtkSourceCompletionSnippetsProposal *self = GTK_SOURCE_COMPLETION_SNIPPETS_PROPOSAL (object);
-
-	g_clear_object (&self->snippet);
-
-	G_OBJECT_CLASS (gtk_source_completion_snippets_proposal_parent_class)->finalize (object);
-}
-
-static void
 gtk_source_completion_snippets_proposal_get_property (GObject    *object,
                                                       guint       prop_id,
                                                       GValue     *value,
@@ -64,34 +49,11 @@ gtk_source_completion_snippets_proposal_get_property (GObject    *object,
 	switch (prop_id)
 	{
 	case PROP_SNIPPET:
-		g_value_set_object (value, self->snippet);
+		g_value_take_object (value, gtk_source_completion_snippets_proposal_dup_snippet (self));
 		break;
 
 	case PROP_TRIGGER:
-		if (self->snippet != NULL)
-		{
-			g_value_set_string (value, gtk_source_snippet_get_trigger (self->snippet));
-		}
-		break;
-
-	default:
-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-		break;
-	}
-}
-
-static void
-gtk_source_completion_snippets_proposal_set_property (GObject      *object,
-                                                      guint         prop_id,
-                                                      const GValue *value,
-                                                      GParamSpec   *pspec)
-{
-	GtkSourceCompletionSnippetsProposal *self = GTK_SOURCE_COMPLETION_SNIPPETS_PROPOSAL (object);
-
-	switch (prop_id)
-	{
-	case PROP_SNIPPET:
-		self->snippet = g_value_dup_object (value);
+		g_value_set_string (value, self->info.trigger);
 		break;
 
 	default:
@@ -105,23 +67,15 @@ gtk_source_completion_snippets_proposal_class_init (GtkSourceCompletionSnippetsP
 {
 	GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-	object_class->finalize = gtk_source_completion_snippets_proposal_finalize;
 	object_class->get_property = gtk_source_completion_snippets_proposal_get_property;
-	object_class->set_property = gtk_source_completion_snippets_proposal_set_property;
 
 	properties [PROP_SNIPPET] =
-		g_param_spec_object ("snippet",
-		                     "snippet",
-		                     "The snippet to expand",
+		g_param_spec_object ("snippet", NULL, NULL,
 		                     GTK_SOURCE_TYPE_SNIPPET,
-		                     (G_PARAM_READWRITE |
-		                      G_PARAM_CONSTRUCT_ONLY |
-		                      G_PARAM_STATIC_STRINGS));
+		                     (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
 	properties [PROP_TRIGGER] =
-		g_param_spec_string ("trigger",
-		                     "Trigger",
-		                     "The trigger for the snippet",
+		g_param_spec_string ("trigger", NULL, NULL,
 		                     NULL,
 		                     (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
@@ -134,24 +88,22 @@ gtk_source_completion_snippets_proposal_init (GtkSourceCompletionSnippetsProposa
 }
 
 GtkSourceCompletionProposal *
-gtk_source_completion_snippets_proposal_new (GtkSourceSnippet *snippet)
+gtk_source_completion_snippets_proposal_new (GtkSourceSnippetBundle     *bundle,
+					     const GtkSourceSnippetInfo *info)
 {
-	g_return_val_if_fail (GTK_SOURCE_IS_SNIPPET (snippet), NULL);
+	GtkSourceCompletionSnippetsProposal *ret;
 
-	return g_object_new (GTK_SOURCE_TYPE_COMPLETION_SNIPPETS_PROPOSAL,
-	                     "snippet", snippet,
-	                     NULL);
+	g_return_val_if_fail (info != NULL, NULL);
+
+	ret = g_object_new (GTK_SOURCE_TYPE_COMPLETION_SNIPPETS_PROPOSAL, NULL);
+	g_set_object (&ret->bundle, bundle);
+	ret->info = *info;
+
+	return GTK_SOURCE_COMPLETION_PROPOSAL (ret);
 }
 
-/**
- * gtk_source_completion_snippets_proposal_get_snippet:
- *
- * Returns: (transfer none): a #GtkSourceSnippet
- */
 GtkSourceSnippet *
-gtk_source_completion_snippets_proposal_get_snippet (GtkSourceCompletionSnippetsProposal *self)
+gtk_source_completion_snippets_proposal_dup_snippet (GtkSourceCompletionSnippetsProposal *self)
 {
-	g_return_val_if_fail (GTK_SOURCE_IS_COMPLETION_SNIPPETS_PROPOSAL (self), NULL);
-
-	return self->snippet;
+	return _gtk_source_snippet_bundle_create_snippet (self->bundle, &self->info);
 }
