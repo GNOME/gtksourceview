@@ -28,34 +28,38 @@ G_BEGIN_DECLS
 
 typedef struct
 {
-	int          identifier;
-	const gchar *group;
-	const gchar *name;
-	const gchar *trigger;
-	const gchar *language;
-	const gchar *description;
-	const gchar *text;
+	int         identifier;
+	const char *group;
+	const char *name;
+	const char *trigger;
+	const char *language;
+	const char *description;
+	const char *text;
 } GtkSourceSnippetInfo;
 
 #define GTK_SOURCE_TYPE_SNIPPET_BUNDLE (_gtk_source_snippet_bundle_get_type())
 
 G_DECLARE_FINAL_TYPE (GtkSourceSnippetBundle, _gtk_source_snippet_bundle, GTK_SOURCE, SNIPPET_BUNDLE, GObject)
 
-GtkSourceSnippetBundle  *_gtk_source_snippet_bundle_new           (void);
-GtkSourceSnippetBundle  *_gtk_source_snippet_bundle_new_from_file (const gchar              *path,
-                                                                   GtkSourceSnippetManager  *manager);
-void                     _gtk_source_snippet_bundle_merge         (GtkSourceSnippetBundle   *self,
-                                                                   GtkSourceSnippetBundle   *other);
-const gchar            **_gtk_source_snippet_bundle_list_groups   (GtkSourceSnippetBundle   *self);
-GtkSourceSnippet        *_gtk_source_snippet_bundle_get_snippet   (GtkSourceSnippetBundle   *self,
-                                                                   const gchar              *group,
-                                                                   const gchar              *language_id,
-                                                                   const gchar              *trigger);
-GListModel              *_gtk_source_snippet_bundle_list_matching (GtkSourceSnippetBundle   *self,
-                                                                   const gchar              *group,
-                                                                   const gchar              *language_id,
-                                                                   const gchar              *trigger_prefix);
-GPtrArray               *_gtk_source_snippet_bundle_parse_text    (const gchar              *text,
-                                                                   GError                  **error);
+GtkSourceSnippetBundle  *_gtk_source_snippet_bundle_new            (void);
+GtkSourceSnippetBundle  *_gtk_source_snippet_bundle_new_from_file  (const char                  *path,
+                                                                    GtkSourceSnippetManager     *manager);
+void                     _gtk_source_snippet_bundle_merge          (GtkSourceSnippetBundle      *self,
+                                                                    GtkSourceSnippetBundle      *other);
+const char             **_gtk_source_snippet_bundle_list_groups    (GtkSourceSnippetBundle      *self);
+GtkSourceSnippet        *_gtk_source_snippet_bundle_get_snippet    (GtkSourceSnippetBundle      *self,
+                                                                    const char                  *group,
+                                                                    const char                  *language_id,
+                                                                    const char                  *trigger);
+GListModel              *_gtk_source_snippet_bundle_list_matching  (GtkSourceSnippetBundle      *self,
+                                                                    const char                  *group,
+                                                                    const char                  *language_id,
+                                                                    const char                  *trigger_prefix);
+GPtrArray               *_gtk_source_snippet_bundle_parse_text     (const char                  *text,
+                                                                    GError                     **error);
+GtkSourceSnippetInfo    *_gtk_source_snippet_bundle_get_info       (GtkSourceSnippetBundle      *self,
+                                                                    guint                        position);
+GtkSourceSnippet        *_gtk_source_snippet_bundle_create_snippet (GtkSourceSnippetBundle      *self,
+                                                                    const GtkSourceSnippetInfo  *info);
 
 G_END_DECLS

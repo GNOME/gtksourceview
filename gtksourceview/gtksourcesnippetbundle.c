@@ -639,6 +639,16 @@ create_snippet_from_info (GtkSourceSnippetBundle     *self,
 	return g_steal_pointer (&snippet);
 }
 
+GtkSourceSnippet *
+_gtk_source_snippet_bundle_create_snippet (GtkSourceSnippetBundle     *self,
+                                           const GtkSourceSnippetInfo *info)
+{
+	g_return_val_if_fail (GTK_SOURCE_IS_SNIPPET_BUNDLE (self), NULL);
+	g_return_val_if_fail (info != NULL, NULL);
+
+	return create_snippet_from_info (self, info);
+}
+
 static gboolean
 info_matches (const GtkSourceSnippetInfo *info,
               const gchar                *group,
@@ -715,7 +725,7 @@ _gtk_source_snippet_bundle_list_matching (GtkSourceSnippetBundle *self,
                                           const gchar            *trigger_prefix)
 {
 	GtkSourceSnippetBundle *ret;
-	const gchar *last = NULL;
+	const char *last = NULL;
 
 	g_return_val_if_fail (GTK_SOURCE_IS_SNIPPET_BUNDLE (self), NULL);
 
@@ -748,6 +758,18 @@ static guint
 gtk_source_snippet_bundle_get_n_items (GListModel *model)
 {
 	return GTK_SOURCE_SNIPPET_BUNDLE (model)->infos->len;
+}
+
+GtkSourceSnippetInfo *
+_gtk_source_snippet_bundle_get_info (GtkSourceSnippetBundle *self,
+                                     guint                   position)
+{
+	if (position >= self->infos->len)
+	{
+		return NULL;
+	}
+
+	return &g_array_index (self->infos, GtkSourceSnippetInfo, position);
 }
 
 static gpointer
