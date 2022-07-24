@@ -4,7 +4,7 @@
  This file is part of GtkSourceView
 
  Authors: Elias Aebi
- Copyright (C) 2021 Elias Aebi
+ Copyright (C) 2021-2022 Elias Aebi
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -33,6 +33,7 @@
     <style id="comment" name="Comment" map-to="def:comment"/>
     <style id="command" name="Command" map-to="def:preprocessor"/>
     <style id="keyword" name="Keyword" map-to="def:keyword"/>
+    <style id="identifier" name="Identifier"/>
     <style id="string" name="String" map-to="def:string"/>
     <style id="character" name="Character" map-to="def:character"/>
     <style id="escaped-character" name="Escaped Character" map-to="def:special-char"/>
@@ -101,6 +102,14 @@
       <keyword>λ</keyword>
     </context>
 
+    <context id="identifier" style-ref="identifier">
+      <match extended="true">
+        (?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_]
+        (?:(?![λΠΣ])[a-zA-Zα-ωΑ-Ωἀ-῾ϊ-ϻ℀-⅏_0-9'ⁿ₀-₉ₐ-ₜᵢ-ᵪ])*
+        | «[^«»\r\n\t]*»
+      </match>
+    </context>
+
     <define-regex id="string-escape" extended="true">
       \\(
           \\
@@ -152,6 +161,7 @@
         <context ref="block-comment"/>
         <context ref="command"/>
         <context ref="keyword"/>
+        <context ref="identifier"/>
         <context ref="string"/>
         <context ref="character"/>
         <context ref="numeric"/>
