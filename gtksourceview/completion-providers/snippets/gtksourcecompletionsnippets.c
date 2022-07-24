@@ -283,11 +283,10 @@ gtk_source_completion_snippets_activate (GtkSourceCompletionProvider *provider,
                                          GtkSourceCompletionContext  *context,
                                          GtkSourceCompletionProposal *proposal)
 {
-	GtkSourceCompletionSnippets *self = (GtkSourceCompletionSnippets *)provider;
 	GtkSourceCompletionSnippetsProposal *p = (GtkSourceCompletionSnippetsProposal *)proposal;
 	GtkTextIter begin, end;
 
-	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (self));
+	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS (provider));
 	g_assert (GTK_SOURCE_IS_COMPLETION_CONTEXT (context));
 	g_assert (GTK_SOURCE_IS_COMPLETION_SNIPPETS_PROPOSAL (p));
 
