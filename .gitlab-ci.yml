@@ -11,7 +11,6 @@ variables:
     FEDORA_IMAGE: "registry.gitlab.gnome.org/gnome/gtksourceview/fedora:latest"
 
 flatpak:
-    image: 'registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:master'
     variables:
         BUNDLE: "gtksourceview-test-widget-dev.flatpak"
         MANIFEST_PATH: "org.gnome.GtkSourceView.TestWidget.json"
