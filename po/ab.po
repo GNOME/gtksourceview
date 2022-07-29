@@ -1,20 +1,14 @@
-# Abkhazian translation for gtksourceview.
-# Copyright (C) 2022 gtksourceview's COPYRIGHT HOLDER
-# This file is distributed under the same license as the gtksourceview package.
-# Нанба Наала <naala-nanba@rambler.ru>, 2022.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: gtksourceview master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gtksourceview/issues\n"
-"POT-Creation-Date: 2022-04-12 03:56+0000\n"
-"PO-Revision-Date: 2022-04-12 03:56+0000\n"
+"POT-Creation-Date: 2022-07-14 21:23+0000\n"
 "Last-Translator: Нанба Наала <naala-nanba@rambler.ru>\n"
 "Language-Team: Abkhazian <ab@li.org>\n"
 "Language: ab\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. (itstool) path: abnf.lang/language@_section
 #. (itstool) path: actionscript.lang/language@_section
@@ -418,7 +412,7 @@ msgstr "Аиҭеиҭакра акодркра “%s” аҟынтә “UTF-8” 
 #: gtksourceview/gtksourcebufferoutputstream.c:931
 #, c-format
 msgid "Could not open converter from “%s” to “UTF-8”"
-msgstr "Изалымшахеит  аиҭакга акодркра “%s” аҟынтә “UTF-8” ахь аартра" 
+msgstr "Изалымшахеит  аиҭакга акодркра “%s” аҟынтә “UTF-8” ахь аартра"
 
 #: gtksourceview/gtksourcebufferoutputstream.c:991
 msgid "Invalid object, not initialized"
@@ -449,14 +443,17 @@ msgid ""
 "Cannot create a regex for all the transitions, the syntax highlighting "
 "process will be slower than usual.\n"
 "The error was: %s"
-msgstr "Изалымшахеит еиԥырҟьам аҿаԥшылара аԥҵара аиҭеиҭакрақәа зегьы рзы, асинтаксис арлашара нагӡахалоит  имырццаыкӡакәа.\n"
+msgstr ""
+"Изалымшахеит еиԥырҟьам аҿаԥшылара аԥҵара аиҭеиҭакрақәа зегьы рзы, асинтаксис "
+"арлашара нагӡахалоит  имырццаыкӡакәа.\n"
 "Агха: %s"
 
 #: gtksourceview/gtksourcecontextengine.c:4458
 msgid ""
 "Highlighting a single line took too much time, syntax highlighting will be "
 "disabled"
-msgstr "Цәаҳәак аус адулара амцхә ирацәаны аамҭа агеит, асинтаксис арлашара аҿыххоит"
+msgstr ""
+"Цәаҳәак аус адулара амцхә ирацәаны аамҭа агеит, асинтаксис арлашара аҿыххоит"
 
 #: gtksourceview/gtksourcecontextengine.c:5708
 #, c-format
@@ -475,7 +472,9 @@ msgstr "Ҽазныктәи аконтекст “%s” аиԥшрагәаҭаг�
 msgid ""
 "style override used with wildcard context reference in language “%s” in ref "
 "“%s”"
-msgstr "астиль аиҭеиҭакра, ахархәара зауо аконтексттә зхьарԥш ацҵаны  аҵаргыларатә дырга ахь абызшәа “%s” аҟны азхьарԥш “%s” аҿы."
+msgstr ""
+"астиль аиҭеиҭакра, ахархәара зауо аконтексттә зхьарԥш ацҵаны  аҵаргыларатә "
+"дырга ахь абызшәа “%s” аҟны азхьарԥш “%s” аҿы."
 
 #: gtksourceview/gtksourcecontextengine.c:6149
 #, c-format
@@ -517,7 +516,7 @@ msgstr "Алада-европатәи"
 #: gtksourceview/gtksourceencoding.c:156 gtksourceview/gtksourceencoding.c:170
 #: gtksourceview/gtksourceencoding.c:277
 msgid "Baltic"
-msgstr "Балтикатә"
+msgstr "Абалтикатә"
 
 #: gtksourceview/gtksourceencoding.c:158 gtksourceview/gtksourceencoding.c:228
 #: gtksourceview/gtksourceencoding.c:241 gtksourceview/gtksourceencoding.c:245
@@ -528,7 +527,7 @@ msgstr "Акириллица"
 #: gtksourceview/gtksourceencoding.c:160 gtksourceview/gtksourceencoding.c:234
 #: gtksourceview/gtksourceencoding.c:275
 msgid "Arabic"
-msgstr "Арабтә"
+msgstr "Арабтәи"
 
 #: gtksourceview/gtksourceencoding.c:162 gtksourceview/gtksourceencoding.c:269
 msgid "Greek"
@@ -586,7 +585,7 @@ msgstr "Акитаитә, имарианы"
 
 #: gtksourceview/gtksourceencoding.c:221
 msgid "Georgian"
-msgstr "Ақырҭуатә"
+msgstr "қырҭтәылатәи"
 
 #: gtksourceview/gtksourceencoding.c:232 gtksourceview/gtksourceencoding.c:273
 msgid "Hebrew"
@@ -603,7 +602,7 @@ msgstr "Виетнамтәи"
 
 #: gtksourceview/gtksourceencoding.c:256
 msgid "Thai"
-msgstr "Таиландтәи"
+msgstr "Thai"
 
 #: gtksourceview/gtksourceencoding.c:485
 msgid "Unknown"
@@ -631,7 +630,9 @@ msgstr "['UTF-8', 'CURRENT', 'ISO-8859-15', 'UTF-16']"
 msgid ""
 "There was a character encoding conversion error and it was needed to use a "
 "fallback character."
-msgstr "Иҟалеит агха асимволқәа ркодркра аиҭеиҭакраан, уи иахарҟьаны арезервтә симовол ахархәара аиуит "
+msgstr ""
+"Иҟалеит агха асимволқәа ркодркра аиҭеиҭакраан, уи иахарҟьаны арезервтә "
+"симовол ахархәара аиуит "
 
 #: gtksourceview/gtksourcefileloader.c:617
 msgid "File too big."
@@ -752,7 +753,7 @@ msgstr "Еилкаам икодрку аишьҭагылазаара"
 msgid "Error while parsing replacement text “%s” at char %lu: %s"
 msgstr "Аҧсахратә текст  аилыргара агха “%s”  асимвол %lu аҟны : %s"
 
-#: gtksourceview/vim/gtksourceviminsert.c:490
+#: gtksourceview/vim/gtksourceviminsert.c:489
 msgid "-- INSERT --"
 msgstr "-- Аҭаргылара --"
 
