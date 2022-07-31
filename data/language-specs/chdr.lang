@@ -40,7 +40,7 @@
     for instance a different style for C++ headers.
   -->
   <definitions>
-    <context id="chdr">
+    <context id="chdr" class="no-spell-check">
       <include>
         <context ref="objc:objc-header"/>
         <context ref="cpp:cpp-proper"/>
