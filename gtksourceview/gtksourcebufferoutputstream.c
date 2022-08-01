@@ -563,36 +563,71 @@ apply_error_tag (GtkSourceBufferOutputStream *stream)
 	stream->error_offset = -1;
 }
 
+static const char *hex_fallback[] = {
+	"\\00", "\\01", "\\02", "\\03", "\\04", "\\05", "\\06", "\\07", "\\08", "\\09",
+	"\\0A", "\\0B", "\\0C", "\\0D", "\\0E", "\\0F", "\\10", "\\11", "\\12", "\\13",
+	"\\14", "\\15", "\\16", "\\17", "\\18", "\\19", "\\1A", "\\1B", "\\1C", "\\1D",
+	"\\1E", "\\1F", "\\20", "\\21", "\\22", "\\23", "\\24", "\\25", "\\26", "\\27",
+	"\\28", "\\29", "\\2A", "\\2B", "\\2C", "\\2D", "\\2E", "\\2F", "\\30", "\\31",
+	"\\32", "\\33", "\\34", "\\35", "\\36", "\\37", "\\38", "\\39", "\\3A", "\\3B",
+	"\\3C", "\\3D", "\\3E", "\\3F", "\\40", "\\41", "\\42", "\\43", "\\44", "\\45",
+	"\\46", "\\47", "\\48", "\\49", "\\4A", "\\4B", "\\4C", "\\4D", "\\4E", "\\4F",
+	"\\50", "\\51", "\\52", "\\53", "\\54", "\\55", "\\56", "\\57", "\\58", "\\59",
+	"\\5A", "\\5B", "\\5C", "\\5D", "\\5E", "\\5F", "\\60", "\\61", "\\62", "\\63",
+	"\\64", "\\65", "\\66", "\\67", "\\68", "\\69", "\\6A", "\\6B", "\\6C", "\\6D",
+	"\\6E", "\\6F", "\\70", "\\71", "\\72", "\\73", "\\74", "\\75", "\\76", "\\77",
+	"\\78", "\\79", "\\7A", "\\7B", "\\7C", "\\7D", "\\7E", "\\7F", "\\80", "\\81",
+	"\\82", "\\83", "\\84", "\\85", "\\86", "\\87", "\\88", "\\89", "\\8A", "\\8B",
+	"\\8C", "\\8D", "\\8E", "\\8F", "\\90", "\\91", "\\92", "\\93", "\\94", "\\95",
+	"\\96", "\\97", "\\98", "\\99", "\\9A", "\\9B", "\\9C", "\\9D", "\\9E", "\\9F",
+	"\\A0", "\\A1", "\\A2", "\\A3", "\\A4", "\\A5", "\\A6", "\\A7", "\\A8", "\\A9",
+	"\\AA", "\\AB", "\\AC", "\\AD", "\\AE", "\\AF", "\\B0", "\\B1", "\\B2", "\\B3",
+	"\\B4", "\\B5", "\\B6", "\\B7", "\\B8", "\\B9", "\\BA", "\\BB", "\\BC", "\\BD",
+	"\\BE", "\\BF", "\\C0", "\\C1", "\\C2", "\\C3", "\\C4", "\\C5", "\\C6", "\\C7",
+	"\\C8", "\\C9", "\\CA", "\\CB", "\\CC", "\\CD", "\\CE", "\\CF", "\\D0", "\\D1",
+	"\\D2", "\\D3", "\\D4", "\\D5", "\\D6", "\\D7", "\\D8", "\\D9", "\\DA", "\\DB",
+	"\\DC", "\\DD", "\\DE", "\\DF", "\\E0", "\\E1", "\\E2", "\\E3", "\\E4", "\\E5",
+	"\\E6", "\\E7", "\\E8", "\\E9", "\\EA", "\\EB", "\\EC", "\\ED", "\\EE", "\\EF",
+	"\\F0", "\\F1", "\\F2", "\\F3", "\\F4", "\\F5", "\\F6", "\\F7", "\\F8", "\\F9",
+	"\\FA", "\\FB", "\\FC", "\\FD", "\\FE", "\\FF",
+
+};
+
 static void
 insert_fallback (GtkSourceBufferOutputStream *stream,
-                 const gchar                 *buffer)
+		 const char                  *buffer,
+		 gsize                        count)
 {
-	guint8 out[4];
-	guint8 v;
-	const gchar hex[] = "0123456789ABCDEF";
+	g_assert (count > 0);
 
 	if (stream->source_buffer == NULL)
 	{
 		return;
 	}
 
-	GTK_SOURCE_PROFILER_BEGIN_MARK
+	if (count > 1)
+	{
+		GString *str = g_string_new (NULL);
 
-	/* If we are here it is because we are pointing to an invalid char so we
-	 * substitute it by an hex value.
-	 */
-	v = *(guint8 *)buffer;
-	out[0] = '\\';
-	out[1] = hex[(v & 0xf0) >> 4];
-	out[2] = hex[(v & 0x0f) >> 0];
-	out[3] = '\0';
+		for (gsize i = 0; i < count; i++)
+		{
+			guint8 c = ((const guint8 *)buffer)[i];
+			g_string_append_len (str, hex_fallback[c], 3);
+		}
 
-	gtk_text_buffer_insert (GTK_TEXT_BUFFER (stream->source_buffer),
-	                        &stream->pos, (const gchar *)out, 3);
+		gtk_text_buffer_insert (GTK_TEXT_BUFFER (stream->source_buffer),
+		                        &stream->pos, str->str, str->len);
 
-	++stream->n_fallback_errors;
+		g_string_free (str, TRUE);
+	}
+	else
+	{
+		guint8 c = ((const guint8 *)buffer)[0];
+		gtk_text_buffer_insert (GTK_TEXT_BUFFER (stream->source_buffer),
+		                        &stream->pos, hex_fallback[c], 3);
+	}
 
-	GTK_SOURCE_PROFILER_END_MARK ("BufferOutputStream", "insert_fallback");
+	stream->n_fallback_errors += count;
 }
 
 static void
@@ -622,6 +657,7 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 		const gchar *end;
 		gboolean valid;
 		gsize nvalid;
+		gsize invalseq;
 
 		/* validate */
 		valid = g_utf8_validate (buffer, len, &end);
@@ -716,9 +752,31 @@ validate_and_insert (GtkSourceBufferOutputStream *stream,
 			stream->error_offset = gtk_text_iter_get_offset (&stream->pos);
 		}
 
-		insert_fallback (stream, buffer);
-		++buffer;
-		--len;
+		/* We failed hard if we got no characters valid. Try to scan ahead
+		 * a bit and see where that stops so that we can insert them as
+		 * a group instead of individually. Often, we have large sequences
+		 * of invalid characters and this improves load time dramatically.
+		 */
+		invalseq = 1;
+		if (!valid && nvalid == 0)
+		{
+			while (invalseq < len)
+			{
+				if (!g_utf8_validate (&buffer[invalseq], len - invalseq, NULL))
+				{
+					invalseq++;
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+
+		insert_fallback (stream, buffer, invalseq);
+
+		buffer += invalseq;
+		len -= invalseq;
 	}
 
 	g_free (free_text);
@@ -1135,7 +1193,7 @@ gtk_source_buffer_output_stream_flush (GOutputStream  *stream,
 		text = ostream->buffer;
 		while (ostream->buflen != 0)
 		{
-			insert_fallback (ostream, text);
+			insert_fallback (ostream, text, 1);
 			++text;
 			--ostream->buflen;
 		}
@@ -1173,7 +1231,7 @@ gtk_source_buffer_output_stream_flush (GOutputStream  *stream,
 		text = ostream->iconv_buffer;
 		while (ostream->iconv_buflen != 0)
 		{
-			insert_fallback (ostream, text);
+			insert_fallback (ostream, text, 1);
 			++text;
 			--ostream->iconv_buflen;
 		}
