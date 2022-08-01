@@ -974,6 +974,16 @@ queue_bracket_highlighting_update (GtkSourceBuffer *buffer)
 {
 	GtkSourceBufferPrivate *priv = gtk_source_buffer_get_instance_private (buffer);
 
+	/* Short-circuit unless we're processing bracket highlighting. Since
+	 * gtk_source_buffer_set_highlight_matching_brackets() will call
+	 * update_bracket_highlighting() already, this short-circuit is safe
+	 * as we'll already be in stable state.
+	 */
+	if (priv->highlight_brackets == FALSE)
+	{
+		return;
+	}
+
 	/* Rearm existing GSource when possible */
 	if (priv->bracket_highlighting_timeout_id != 0)
 	{
